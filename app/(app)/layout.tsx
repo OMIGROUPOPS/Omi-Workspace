@@ -1,14 +1,22 @@
+import { redirect } from "next/navigation";
+import { createServerSupabaseClient } from "@/lib/supabaseClient";
 import dynamic from "next/dynamic";
 
-// Load client components WITHOUT forcing the layout to become a client component
 const Sidebar = dynamic(() => import("@/components/Sidebar"), { ssr: false });
 const Topbar = dynamic(() => import("@/components/Topbar"), { ssr: false });
 
-export default function AppLayout({
+export default async function AppLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const supabase = await createServerSupabaseClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
   return (
     <div className="flex min-h-screen">
       <Sidebar />

@@ -4,22 +4,29 @@ import { useState } from "react";
 import { createBrowserClient } from "@supabase/ssr";
 import Link from "next/link";
 
-export default function ClientLoginPage() {
+export default function ClientSignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 
-  const handleLogin = async () => {
+  const handleSignup = async () => {
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
     setLoading(true);
     setError("");
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
     });
@@ -30,8 +37,26 @@ export default function ClientLoginPage() {
       return;
     }
 
-    window.location.href = "/portal";
+    setSuccess(true);
+    setLoading(false);
   };
+
+  if (success) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="w-full max-w-md text-center">
+          <div className="inline-flex items-center justify-center h-14 w-14 rounded-xl bg-green-600 text-xl font-bold text-white mb-4">
+            ✓
+          </div>
+          <h1 className="text-2xl font-semibold text-gray-900">Check your email</h1>
+          <p className="text-gray-500 mt-2">We sent you a confirmation link. Click it to activate your account.</p>
+          <Link href="/client/login" className="inline-block mt-6 text-indigo-600 hover:text-indigo-700">
+            Back to login
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
@@ -40,8 +65,8 @@ export default function ClientLoginPage() {
           <div className="inline-flex items-center justify-center h-14 w-14 rounded-xl bg-indigo-600 text-xl font-bold text-white mb-4">
             OMI
           </div>
-          <h1 className="text-2xl font-semibold text-gray-900">Client Portal</h1>
-          <p className="text-gray-500 mt-1">Sign in to access your dashboard</p>
+          <h1 className="text-2xl font-semibold text-gray-900">Create Account</h1>
+          <p className="text-gray-500 mt-1">Sign up for the Client Portal</p>
         </div>
 
         <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
@@ -74,18 +99,29 @@ export default function ClientLoginPage() {
               />
             </div>
 
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+              <input
+                type="password"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="********"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
+
             <button
-              onClick={handleLogin}
+              onClick={handleSignup}
               disabled={loading}
               className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white font-medium rounded-lg"
             >
-              {loading ? "Signing in..." : "Sign in"}
+              {loading ? "Creating account..." : "Sign up"}
             </button>
 
             <p className="text-center text-gray-500 text-sm">
-              Do not have an account?{" "}
-              <Link href="/client/signup" className="text-indigo-600 hover:text-indigo-700">
-                Sign up
+              Already have an account?{" "}
+              <Link href="/client/login" className="text-indigo-600 hover:text-indigo-700">
+                Sign in
               </Link>
             </p>
           </div>

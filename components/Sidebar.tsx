@@ -10,6 +10,7 @@ const NAV = [
   { label: "Projects", href: "/projects", key: "P" },
   { label: "Automations", href: "/automations", key: "A" },
   { label: "Tasks", href: "/tasks", key: "T" },
+  { label: "Deliverables", href: "/deliverables", key: "F" },
   { label: "Knowledge", href: "/knowledge", key: "K" },
   { label: "Integrations", href: "/integrations", key: "I" },
   { label: "Billing", href: "/billing", key: "B" },

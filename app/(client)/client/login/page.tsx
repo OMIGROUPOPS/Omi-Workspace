@@ -37,12 +37,17 @@ export default function ClientLoginPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <header className="px-6 py-4 border-b border-gray-200">
-        <Link href="/" className="flex items-center gap-2 w-fit">
-          <div className="h-8 w-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-xs font-bold">
-            OMI
+        <div className="max-w-md mx-auto flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <span className="text-xl">←</span>
+            <span className="text-sm font-medium">Back to OMI Group</span>
+          </Link>
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-xs font-bold">
+              OMI
+            </div>
           </div>
-          <span className="font-semibold text-gray-900">OMI Solutions</span>
-        </Link>
+        </div>
       </header>
 
       {/* Main */}
@@ -99,10 +104,6 @@ export default function ClientLoginPage() {
               </p>
             </div>
           </div>
-
-          <p className="text-center text-gray-400 text-sm mt-8">
-            OMI Group Solutions - Client Portal
-          </p>
         </div>
       </div>
     </div>

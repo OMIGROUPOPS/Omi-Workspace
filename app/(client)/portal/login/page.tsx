@@ -88,7 +88,7 @@ export default function ClientLoginPage() {
 
             <p className="text-center text-gray-500 text-sm">
               Do not have an account?{" "}
-              <Link href="/portal/signup" className="text-indigo-600 hover:text-indigo-700">
+              <Link href="/client/signup" className="text-indigo-600 hover:text-indigo-700">
                 Sign up
               </Link>
             </p>

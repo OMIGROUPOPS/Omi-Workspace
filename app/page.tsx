@@ -16,14 +16,11 @@ export default function LandingPage() {
       </header>
 
       {/* Hero */}
-      <main className="px-6 py-20">
+      <main className="px-6 py-24">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl font-bold text-white mb-6">
+          <h1 className="text-5xl font-bold text-white mb-20">
             OMI Group
           </h1>
-          <p className="text-xl text-gray-400 mb-16">
-            Two divisions. Two markets. One standard of intelligence.
-          </p>
 
           {/* Division Cards */}
           <div className="grid md:grid-cols-2 gap-8">
@@ -33,10 +30,7 @@ export default function LandingPage() {
                 S
               </div>
               <h2 className="text-2xl font-semibold text-white mb-1">OMI Solutions</h2>
-              <p className="text-indigo-400 text-sm font-medium mb-4">Adaptive Enterprise Systems</p>
-              <p className="text-gray-400 mb-6">
-                AI-powered operating environments that unify workflows, knowledge, automation, and decision support for your business.
-              </p>
+              <p className="text-indigo-400 text-sm font-medium mb-6">Adaptive Enterprise Systems</p>
               <Link
                 href="/client/login"
                 className="inline-flex px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors"
@@ -51,10 +45,7 @@ export default function LandingPage() {
                 E
               </div>
               <h2 className="text-2xl font-semibold text-white mb-1">OMI Edge</h2>
-              <p className="text-emerald-400 text-sm font-medium mb-4">Predictive Market Intelligence</p>
-              <p className="text-gray-400 mb-6">
-                Quantitative analysis and AI-driven insights for sports and event markets. Institutional-grade intelligence.
-              </p>
+              <p className="text-emerald-400 text-sm font-medium mb-6">Predictive Market Intelligence</p>
               <span className="inline-flex px-6 py-3 bg-gray-700 text-gray-400 font-medium rounded-lg cursor-not-allowed">
                 Coming Soon
               </span>

@@ -5,26 +5,22 @@ export default async function ClientPortalPage() {
   const supabase = await createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  // Check if they've completed onboarding
   const { data: intake } = await supabase
     .from("client_intakes")
     .select("*")
     .eq("user_id", user?.id)
     .single();
 
-  // Get their uploads count
   const { count: uploadsCount } = await supabase
     .from("document_uploads")
     .select("*", { count: "exact", head: true })
     .eq("user_id", user?.id);
 
-  // Get their deliverables count
   const { count: deliverablesCount } = await supabase
     .from("deliverables")
     .select("*", { count: "exact", head: true })
     .eq("user_id", user?.id);
 
-  // If no intake, show onboarding prompt
   if (!intake) {
     return (
       <div className="text-center py-12">
@@ -32,7 +28,7 @@ export default async function ClientPortalPage() {
           <span className="text-2xl">👋</span>
         </div>
         <h1 className="text-2xl font-semibold text-gray-900 mb-2">Welcome to OMI Solutions</h1>
-        <p className="text-gray-600 mb-6">Let's get started by learning about your business.</p>
+        <p className="text-gray-600 mb-6">Get started by learning about your business.</p>
         <Link
           href="/portal/onboarding"
           className="inline-flex px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors"
@@ -43,7 +39,6 @@ export default async function ClientPortalPage() {
     );
   }
 
-  // Otherwise show their dashboard
   return (
     <div>
       <div className="mb-8">
@@ -51,7 +46,6 @@ export default async function ClientPortalPage() {
         <p className="text-gray-600">{intake.company}</p>
       </div>
 
-      {/* Status Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
         <div className="bg-white rounded-xl border border-gray-200 p-6">
           <p className="text-sm text-gray-500 mb-1">Documents Uploaded</p>
@@ -67,7 +61,6 @@ export default async function ClientPortalPage() {
         </div>
       </div>
 
-      {/* Quick Actions */}
       <div className="bg-white rounded-xl border border-gray-200 p-6">
         <h2 className="font-semibold text-gray-900 mb-4">Quick Actions</h2>
         <div className="flex gap-4">

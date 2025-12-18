@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createBrowserClient } from "@supabase/ssr";
 import { useRouter } from "next/navigation";
 
@@ -8,11 +8,23 @@ export default function OnboardingPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
+
+  useEffect(() => {
+    // Get user email on load
+    const getUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user?.email) {
+        setUserEmail(user.email);
+      }
+    };
+    getUser();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,7 +45,7 @@ export default function OnboardingPage() {
       user_id: user.id,
       name: formData.get("name"),
       company: formData.get("company"),
-      email: formData.get("email"),
+      email: user.email, // Use logged-in user's email
       business_description: formData.get("business_description"),
       pain_points: formData.get("pain_points"),
       goals: formData.get("goals"),
@@ -89,10 +101,11 @@ export default function OnboardingPage() {
           <input
             type="email"
             name="email"
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            placeholder="john@acme.com"
+            value={userEmail}
+            disabled
+            className="w-full px-4 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-500"
           />
+          <p className="text-xs text-gray-400 mt-1">Using your account email</p>
         </div>
 
         <div>

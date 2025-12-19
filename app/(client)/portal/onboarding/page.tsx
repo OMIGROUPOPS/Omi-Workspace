@@ -11,6 +11,8 @@ export default function OnboardingPage() {
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [userCompany, setUserCompany] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [customIndustry, setCustomIndustry] = useState("");
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -52,10 +54,12 @@ export default function OnboardingPage() {
       return;
     }
 
+    const finalIndustry = industry === "Other" ? customIndustry : industry;
+
     const { error } = await supabase
       .from("client_intakes")
       .update({
-        industry: formData.get("industry"),
+        industry: finalIndustry,
         business_description: formData.get("business_description"),
         current_tools: formData.get("current_tools"),
         pain_points: formData.get("pain_points"),
@@ -133,7 +137,8 @@ export default function OnboardingPage() {
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Industry / Sector</label>
           <select
-            name="industry"
+            value={industry}
+            onChange={(e) => setIndustry(e.target.value)}
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
           >
@@ -153,6 +158,20 @@ export default function OnboardingPage() {
             <option value="Other">Other</option>
           </select>
         </div>
+
+        {industry === "Other" && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Please specify your industry</label>
+            <input
+              type="text"
+              value={customIndustry}
+              onChange={(e) => setCustomIndustry(e.target.value)}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              placeholder="Enter your industry"
+            />
+          </div>
+        )}
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Describe your business</label>

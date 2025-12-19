@@ -39,7 +39,6 @@ export default function ClientSignupPage() {
     setLoading(true);
     setError("");
 
-    // Sign up the user
     const { data, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
@@ -51,7 +50,6 @@ export default function ClientSignupPage() {
       return;
     }
 
-    // Create client intake record with name and company
     if (data.user) {
       await supabase.from("client_intakes").insert({
         user_id: data.user.id,
@@ -61,8 +59,7 @@ export default function ClientSignupPage() {
       });
     }
 
-    // Redirect to portal
-    router.push("/portal");
+    router.push("/portal/onboarding");
   };
 
   return (

@@ -23,7 +23,6 @@ export default function OnboardingPage() {
       if (user?.email) {
         setUserEmail(user.email);
         
-        // Get existing intake data (name/company from signup)
         const { data: intake } = await supabase
           .from("client_intakes")
           .select("name, company")
@@ -53,7 +52,6 @@ export default function OnboardingPage() {
       return;
     }
 
-    // Update existing intake record with onboarding info
     const { error } = await supabase
       .from("client_intakes")
       .update({
@@ -89,7 +87,6 @@ export default function OnboardingPage() {
       )}
 
       <form onSubmit={handleSubmit} className="bg-white rounded-xl border border-gray-200 p-6 space-y-6">
-        {/* Pre-filled info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
@@ -163,7 +160,7 @@ export default function OnboardingPage() {
             name="business_description"
             rows={3}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            placeholder="What does your company do? What's your core service or product?"
+            placeholder="What does your company do? What is your core service or product?"
           />
         </div>
 
@@ -178,7 +175,7 @@ export default function OnboardingPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">What's slowing your business down?</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">What is slowing your business down?</label>
           <textarea
             name="pain_points"
             rows={3}

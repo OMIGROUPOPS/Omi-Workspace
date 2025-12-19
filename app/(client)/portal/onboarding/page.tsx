@@ -9,6 +9,8 @@ export default function OnboardingPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [userEmail, setUserEmail] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userCompany, setUserCompany] = useState("");
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -16,11 +18,22 @@ export default function OnboardingPage() {
   );
 
   useEffect(() => {
-    // Get user email on load
     const getUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       if (user?.email) {
         setUserEmail(user.email);
+        
+        // Get existing intake data (name/company from signup)
+        const { data: intake } = await supabase
+          .from("client_intakes")
+          .select("name, company")
+          .eq("user_id", user.id)
+          .single();
+        
+        if (intake) {
+          setUserName(intake.name || "");
+          setUserCompany(intake.company || "");
+        }
       }
     };
     getUser();
@@ -32,7 +45,6 @@ export default function OnboardingPage() {
     setError("");
 
     const formData = new FormData(e.currentTarget);
-
     const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) {
@@ -41,15 +53,18 @@ export default function OnboardingPage() {
       return;
     }
 
-    const { error } = await supabase.from("client_intakes").insert({
-      user_id: user.id,
-      name: formData.get("name"),
-      company: formData.get("company"),
-      email: user.email, // Use logged-in user's email
-      business_description: formData.get("business_description"),
-      pain_points: formData.get("pain_points"),
-      goals: formData.get("goals"),
-    });
+    // Update existing intake record with onboarding info
+    const { error } = await supabase
+      .from("client_intakes")
+      .update({
+        industry: formData.get("industry"),
+        business_description: formData.get("business_description"),
+        current_tools: formData.get("current_tools"),
+        pain_points: formData.get("pain_points"),
+        goals: formData.get("goals"),
+        phone: formData.get("phone"),
+      })
+      .eq("user_id", user.id);
 
     if (error) {
       setError(error.message);
@@ -64,7 +79,7 @@ export default function OnboardingPage() {
     <div className="max-w-2xl mx-auto">
       <div className="mb-8">
         <h1 className="text-2xl font-semibold text-gray-900">Tell us about your business</h1>
-        <p className="text-gray-600">This helps us understand how to best serve you.</p>
+        <p className="text-gray-600">This helps us understand how to best serve you, {userName || "there"}.</p>
       </div>
 
       {error && (
@@ -74,38 +89,72 @@ export default function OnboardingPage() {
       )}
 
       <form onSubmit={handleSubmit} className="bg-white rounded-xl border border-gray-200 p-6 space-y-6">
+        {/* Pre-filled info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
             <input
               type="text"
-              name="name"
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-              placeholder="John Smith"
+              value={userName}
+              disabled
+              className="w-full px-4 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-500"
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
             <input
               type="text"
-              name="company"
+              value={userCompany}
+              disabled
+              className="w-full px-4 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-500"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+            <input
+              type="email"
+              value={userEmail}
+              disabled
+              className="w-full px-4 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-500"
+            />
+            <p className="text-xs text-gray-400 mt-1">Using your account email</p>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number <span className="text-gray-400">(optional)</span></label>
+            <input
+              type="tel"
+              name="phone"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-              placeholder="Acme Inc"
+              placeholder="(555) 123-4567"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={userEmail}
-            disabled
-            className="w-full px-4 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-500"
-          />
-          <p className="text-xs text-gray-400 mt-1">Using your account email</p>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Industry / Sector</label>
+          <select
+            name="industry"
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          >
+            <option value="">Select your industry</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="Financial Services">Financial Services</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Technology">Technology</option>
+            <option value="Manufacturing">Manufacturing</option>
+            <option value="Retail / E-commerce">Retail / E-commerce</option>
+            <option value="Professional Services">Professional Services</option>
+            <option value="Construction">Construction</option>
+            <option value="Legal">Legal</option>
+            <option value="Insurance">Insurance</option>
+            <option value="Education">Education</option>
+            <option value="Hospitality">Hospitality</option>
+            <option value="Other">Other</option>
+          </select>
         </div>
 
         <div>
@@ -114,17 +163,27 @@ export default function OnboardingPage() {
             name="business_description"
             rows={3}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            placeholder="What does your company do? What industry are you in?"
+            placeholder="What does your company do? What's your core service or product?"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">What are your biggest pain points?</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">What tools or software do you currently use?</label>
+          <textarea
+            name="current_tools"
+            rows={2}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            placeholder="e.g., Excel, Salesforce, QuickBooks, custom software..."
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">What's slowing your business down?</label>
           <textarea
             name="pain_points"
             rows={3}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            placeholder="What processes are manual, slow, or frustrating?"
+            placeholder="What processes are manual, repetitive, or frustrating? Where are the bottlenecks?"
           />
         </div>
 
@@ -134,7 +193,7 @@ export default function OnboardingPage() {
             name="goals"
             rows={3}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            placeholder="What would success look like for you?"
+            placeholder="What would success look like for you? What do you want to achieve?"
           />
         </div>
 
@@ -143,7 +202,7 @@ export default function OnboardingPage() {
           disabled={loading}
           className="w-full py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 disabled:bg-indigo-400 transition-colors"
         >
-          {loading ? "Submitting..." : "Submit"}
+          {loading ? "Submitting..." : "Continue to Dashboard"}
         </button>
       </form>
     </div>

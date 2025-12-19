@@ -1,66 +1,24 @@
-"use client";
+export const dynamic = "force-dynamic";
 
-import { useState, useEffect } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { createServerSupabaseClient } from "@/lib/supabaseClient";
+import Link from "next/link";
 
-export default function EditClientPage() {
-  const router = useRouter();
-  const params = useParams();
-  const id = params.id as string;
+export default async function ClientDetailPage({ params }: { params: { id: string } }) {
+  const supabase = await createServerSupabaseClient();
 
-  const [loading, setLoading] = useState(false);
-  const [loadingClient, setLoadingClient] = useState(true);
-  const [error, setError] = useState("");
-  const [name, setName] = useState("");
+  const { data: client, error } = await supabase
+    .from("client_intakes")
+    .select("*")
+    .eq("id", params.id)
+    .single();
 
-  useEffect(() => {
-    async function fetchClient() {
-      const response = await fetch(`/api/clients/${id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setName(data.data.name);
-      } else {
-        setError("Failed to load client");
-      }
-      setLoadingClient(false);
-    }
-    fetchClient();
-  }, [id]);
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-
-    if (!name.trim()) {
-      setError("Client name is required");
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const response = await fetch(`/api/clients/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.trim() }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to update client");
-      }
-
-      router.push("/clients");
-      router.refresh();
-    } catch (err) {
-      setError("Failed to update client. Please try again.");
-      setLoading(false);
-    }
-  }
-
-  if (loadingClient) {
+  if (error || !client) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <p className="text-gray-500">Loading...</p>
+      <div className="p-8">
+        <p className="text-red-500">Client not found.</p>
+        <Link href="/clients" className="text-blue-600 hover:underline mt-4 inline-block">
+          Back to Clients
+        </Link>
       </div>
     );
   }
@@ -69,54 +27,71 @@ export default function EditClientPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="bg-white border-b border-gray-200">
         <div className="px-8 py-6">
-          <h1 className="text-2xl font-semibold text-gray-900">Edit Client</h1>
-          <p className="text-sm text-gray-500 mt-1">Update client information</p>
+          <Link href="/clients" className="text-sm text-gray-500 hover:text-gray-700 mb-2 inline-block">
+            ← Back to Clients
+          </Link>
+          <h1 className="text-2xl font-semibold text-gray-900">{client.name}</h1>
+          <p className="text-gray-500">{client.company}</p>
         </div>
       </div>
 
       <div className="px-8 py-8">
-        <div className="max-w-2xl">
-          <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
-            {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md">
-                <p className="text-sm text-red-800">{error}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Contact Info */}
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Contact Information</h2>
+            <div className="space-y-3">
+              <div>
+                <p className="text-sm text-gray-500">Email</p>
+                <p className="text-gray-900">{client.email || "-"}</p>
               </div>
-            )}
-
-            <div className="mb-6">
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                Client Name *
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                placeholder="Enter client name"
-              />
+              <div>
+                <p className="text-sm text-gray-500">Phone</p>
+                <p className="text-gray-900">{client.phone || "-"}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-500">Industry</p>
+                <p className="text-gray-900">{client.industry || "-"}</p>
+              </div>
             </div>
+          </div>
 
-            <div className="flex items-center gap-3">
-              <button
-                type="submit"
-                disabled={loading}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white text-sm font-medium rounded-md shadow-sm transition-colors"
-              >
-                {loading ? "Saving..." : "Save Changes"}
-              </button>
-
-              <button
-                type="button"
-                onClick={() => router.push("/clients")}
-                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-md transition-colors"
-              >
-                Cancel
-              </button>
+          {/* Business Info */}
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Business Details</h2>
+            <div className="space-y-3">
+              <div>
+                <p className="text-sm text-gray-500">Description</p>
+                <p className="text-gray-900">{client.business_description || "-"}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-500">Current Tools</p>
+                <p className="text-gray-900">{client.current_tools || "-"}</p>
+              </div>
             </div>
-          </form>
+          </div>
+
+          {/* Pain Points */}
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Pain Points</h2>
+            <p className="text-gray-900">{client.pain_points || "-"}</p>
+          </div>
+
+          {/* Goals */}
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Goals</h2>
+            <p className="text-gray-900">{client.goals || "-"}</p>
+          </div>
+        </div>
+
+        {/* Upload Deliverable Button */}
+        <div className="mt-8">
+          <Link
+            href={`/deliverables/new?user_id=${client.user_id}`}
+            className="px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors"
+          >
+            Upload Deliverable for this Client
+          </Link>
         </div>
       </div>
     </div>

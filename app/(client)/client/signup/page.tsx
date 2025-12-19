@@ -3,14 +3,17 @@
 import { useState } from "react";
 import { createBrowserClient } from "@supabase/ssr";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function ClientSignupPage() {
+  const router = useRouter();
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [sent, setSent] = useState(false);
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -28,58 +31,39 @@ export default function ClientSignupPage() {
       return;
     }
 
+    if (!name || !company) {
+      setError("Please fill in all fields");
+      return;
+    }
+
     setLoading(true);
     setError("");
 
-    const { error } = await supabase.auth.signUp({
+    // Sign up the user
+    const { data, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        emailRedirectTo: `${window.location.origin}/portal`,
-      },
     });
 
-    if (error) {
-      setError(error.message);
+    if (signUpError) {
+      setError(signUpError.message);
       setLoading(false);
       return;
     }
 
-    setSent(true);
-    setLoading(false);
+    // Create client intake record with name and company
+    if (data.user) {
+      await supabase.from("client_intakes").insert({
+        user_id: data.user.id,
+        name: name,
+        company: company,
+        email: email,
+      });
+    }
+
+    // Redirect to portal
+    router.push("/portal");
   };
-
-  if (sent) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex flex-col">
-        <header className="px-6 py-4 border-b border-gray-200">
-          <div className="max-w-md mx-auto flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors">
-              <span className="text-xl">←</span>
-              <span className="text-sm font-medium">Back to OMI Group</span>
-            </Link>
-            <div className="h-8 w-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-xs font-bold">
-              OMI
-            </div>
-          </div>
-        </header>
-
-        <div className="flex-1 flex items-center justify-center px-4">
-          <div className="w-full max-w-md text-center">
-            <div className="inline-flex items-center justify-center h-14 w-14 rounded-xl bg-green-600 text-xl font-bold text-white mb-4">
-              ✓
-            </div>
-            <h1 className="text-2xl font-semibold text-gray-900">Check your email</h1>
-            <p className="text-gray-500 mt-2">We sent a verification link to <span className="font-medium text-gray-700">{email}</span></p>
-            <p className="text-gray-400 text-sm mt-4">Click the link to activate your account.</p>
-            <Link href="/client/login" className="inline-block mt-6 text-indigo-600 hover:text-indigo-700">
-              Back to login
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -95,7 +79,7 @@ export default function ClientSignupPage() {
         </div>
       </header>
 
-      <div className="flex-1 flex items-center justify-center px-4">
+      <div className="flex-1 flex items-center justify-center px-4 py-8">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <h1 className="text-2xl font-semibold text-gray-900">Create Account</h1>
@@ -109,7 +93,29 @@ export default function ClientSignupPage() {
               </div>
             )}
 
-            <div className="space-y-5">
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  placeholder="John Smith"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  placeholder="Acme Inc"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                />
+              </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                 <input
@@ -145,7 +151,7 @@ export default function ClientSignupPage() {
 
               <button
                 onClick={handleSignup}
-                disabled={loading || !email || !password}
+                disabled={loading || !email || !password || !name || !company}
                 className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white font-medium rounded-lg"
               >
                 {loading ? "Creating account..." : "Sign up"}

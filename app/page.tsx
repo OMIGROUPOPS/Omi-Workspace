@@ -12,6 +12,12 @@ export default function LandingPage() {
             </div>
             <span className="text-xl font-semibold text-white">OMI Group</span>
           </div>
+          <Link
+            href="/login"
+            className="text-sm text-gray-400 hover:text-white transition-colors"
+          >
+            Internal Login
+          </Link>
         </div>
       </header>
 

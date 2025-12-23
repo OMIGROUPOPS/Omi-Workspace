@@ -70,12 +70,15 @@ export const SUPPORTED_SPORTS = [
   // Basketball
   { key: 'basketball_nba', name: 'NBA', group: 'Basketball', icon: '🏀', active: true, hasOutrights: false },
   { key: 'basketball_nba_championship_winner', name: 'NBA Championship', group: 'Basketball', icon: '🏆', active: true, hasOutrights: true },
+  { key: 'basketball_wnba', name: 'WNBA', group: 'Basketball', icon: '🏀', active: true, hasOutrights: false },
   { key: 'basketball_ncaab', name: 'NCAAB', group: 'Basketball', icon: '🏀', active: true, hasOutrights: false },
   { key: 'basketball_ncaab_championship_winner', name: 'NCAAB Championship', group: 'Basketball', icon: '🏆', active: true, hasOutrights: true },
   { key: 'basketball_wncaab', name: 'WNCAAB', group: 'Basketball', icon: '🏀', active: true, hasOutrights: false },
   { key: 'basketball_nbl', name: 'NBL Australia', group: 'Basketball', icon: '🏀', active: true, hasOutrights: false },
+  { key: 'basketball_euroleague', name: 'EuroLeague', group: 'Basketball', icon: '🏀', active: true, hasOutrights: false },
 
   // Baseball
+  { key: 'baseball_mlb', name: 'MLB', group: 'Baseball', icon: '⚾', active: true, hasOutrights: false },
   { key: 'baseball_mlb_world_series_winner', name: 'MLB World Series', group: 'Baseball', icon: '🏆', active: true, hasOutrights: true },
 
   // Ice Hockey
@@ -86,8 +89,14 @@ export const SUPPORTED_SPORTS = [
   { key: 'icehockey_liiga', name: 'Liiga Finland', group: 'Ice Hockey', icon: '🏒', active: true, hasOutrights: false },
   { key: 'icehockey_mestis', name: 'Mestis Finland', group: 'Ice Hockey', icon: '🏒', active: true, hasOutrights: false },
 
+  // Tennis
+  { key: 'tennis_atp_australian_open', name: 'Australian Open', group: 'Tennis', icon: '🎾', active: true, hasOutrights: false },
+  { key: 'tennis_atp_french_open', name: 'French Open', group: 'Tennis', icon: '🎾', active: true, hasOutrights: false },
+  { key: 'tennis_atp_us_open', name: 'US Open', group: 'Tennis', icon: '🎾', active: true, hasOutrights: false },
+  { key: 'tennis_atp_wimbledon', name: 'Wimbledon', group: 'Tennis', icon: '🎾', active: true, hasOutrights: false },
+
   // Combat Sports
-  { key: 'mma_mixed_martial_arts', name: 'MMA', group: 'Combat Sports', icon: '🥊', active: true, hasOutrights: false },
+  { key: 'mma_mixed_martial_arts', name: 'MMA/UFC', group: 'Combat Sports', icon: '🥊', active: true, hasOutrights: false },
   { key: 'boxing_boxing', name: 'Boxing', group: 'Combat Sports', icon: '🥊', active: true, hasOutrights: false },
 
   // Soccer - England
@@ -119,6 +128,7 @@ export const SUPPORTED_SPORTS = [
   { key: 'soccer_spl', name: 'Scottish Premiership', group: 'Soccer', icon: '⚽', active: true, hasOutrights: false },
 
   // Soccer - Americas
+  { key: 'soccer_usa_mls', name: 'MLS', group: 'Soccer', icon: '⚽', active: true, hasOutrights: false },
   { key: 'soccer_brazil_campeonato', name: 'Brasileirão', group: 'Soccer', icon: '⚽', active: true, hasOutrights: false },
   { key: 'soccer_mexico_ligamx', name: 'Liga MX', group: 'Soccer', icon: '⚽', active: true, hasOutrights: false },
   { key: 'soccer_conmebol_copa_libertadores', name: 'Copa Libertadores', group: 'Soccer', icon: '⚽', active: true, hasOutrights: false },
@@ -126,6 +136,7 @@ export const SUPPORTED_SPORTS = [
 
   // Soccer - International
   { key: 'soccer_uefa_champs_league', name: 'Champions League', group: 'Soccer', icon: '⚽', active: true, hasOutrights: false },
+  { key: 'soccer_uefa_europa_league', name: 'Europa League', group: 'Soccer', icon: '⚽', active: true, hasOutrights: false },
   { key: 'soccer_fifa_world_cup', name: 'FIFA World Cup', group: 'Soccer', icon: '⚽', active: true, hasOutrights: false },
   { key: 'soccer_fifa_world_cup_winner', name: 'World Cup Winner', group: 'Soccer', icon: '🏆', active: true, hasOutrights: true },
   { key: 'soccer_fifa_world_cup_qualifiers_europe', name: 'WC Qualifiers Europe', group: 'Soccer', icon: '⚽', active: true, hasOutrights: false },
@@ -143,6 +154,7 @@ export const SUPPORTED_SPORTS = [
   // Cricket
   { key: 'cricket_big_bash', name: 'Big Bash', group: 'Cricket', icon: '🏏', active: true, hasOutrights: false },
   { key: 'cricket_test_match', name: 'Test Matches', group: 'Cricket', icon: '🏏', active: true, hasOutrights: false },
+  { key: 'cricket_ipl', name: 'IPL', group: 'Cricket', icon: '🏏', active: true, hasOutrights: false },
 
   // Rugby
   { key: 'rugbyleague_nrl', name: 'NRL', group: 'Rugby', icon: '🏉', active: true, hasOutrights: false },

@@ -1,63 +1,102 @@
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
+import { createOddsApiClient } from '@/lib/edge/api/odds-api';
+import { removeVigFromAmerican } from '@/lib/edge/utils/odds-math';
 import Link from 'next/link';
+import { SportsHomeGrid } from '@/components/edge/SportsHomeGrid';
 
-export default function SportsPage() {
-  // Group sports by their group
-  const grouped = SUPPORTED_SPORTS.reduce((acc, sport) => {
-    if (!acc[sport.group]) {
-      acc[sport.group] = [];
+const FEATURED_SPORTS = [
+  'americanfootball_nfl',
+  'americanfootball_ncaaf',
+  'basketball_nba', 
+  'icehockey_nhl',
+  'basketball_ncaab',
+];
+
+async function fetchSportGames(client: any, sportKey: string) {
+  try {
+    const data = await client.fetchOdds(sportKey, {
+      regions: 'us',
+      markets: 'h2h,spreads,totals',
+      oddsFormat: 'american',
+    });
+    return data.slice(0, 10); // Get first 10 games per sport
+  } catch (e) {
+    return [];
+  }
+}
+
+function processGame(game: any, sportKey: string) {
+  const bookmaker = game.bookmakers?.[0];
+  if (!bookmaker) return null;
+
+  const h2hMarket = bookmaker.markets?.find((m: any) => m.key === 'h2h');
+  const spreadsMarket = bookmaker.markets?.find((m: any) => m.key === 'spreads');
+  const totalsMarket = bookmaker.markets?.find((m: any) => m.key === 'totals');
+
+  let consensus: any = {};
+
+  if (h2hMarket) {
+    const home = h2hMarket.outcomes.find((o: any) => o.name === game.home_team);
+    const away = h2hMarket.outcomes.find((o: any) => o.name === game.away_team);
+    if (home && away) {
+      consensus.h2h = { homePrice: home.price, awayPrice: away.price };
     }
-    acc[sport.group].push(sport);
-    return acc;
-  }, {} as Record<string, typeof SUPPORTED_SPORTS[number][]>);
+  }
 
-  // Order groups
-  const groupOrder = [
-    'American Football',
-    'Basketball', 
-    'Ice Hockey',
-    'Baseball',
-    'Combat Sports',
-    'Soccer',
-    'Golf',
-    'Cricket',
-    'Rugby',
-    'Aussie Rules',
-    'Handball',
-    'Politics',
-  ];
+  if (spreadsMarket) {
+    const home = spreadsMarket.outcomes.find((o: any) => o.name === game.home_team);
+    const away = spreadsMarket.outcomes.find((o: any) => o.name === game.away_team);
+    if (home && away) {
+      consensus.spreads = { 
+        line: home.point, 
+        homePrice: home.price, 
+        awayPrice: away.price 
+      };
+    }
+  }
+
+  if (totalsMarket) {
+    const over = totalsMarket.outcomes.find((o: any) => o.name === 'Over');
+    const under = totalsMarket.outcomes.find((o: any) => o.name === 'Under');
+    if (over && under) {
+      consensus.totals = { 
+        line: over.point, 
+        overPrice: over.price, 
+        underPrice: under.price 
+      };
+    }
+  }
+
+  return {
+    id: game.id,
+    sportKey: game.sport_key,
+    homeTeam: game.home_team,
+    awayTeam: game.away_team,
+    commenceTime: new Date(game.commence_time),
+    consensus,
+  };
+}
+
+export default async function SportsPage() {
+  const client = createOddsApiClient(process.env.ODDS_API_KEY!);
+
+  const allGames: Record<string, any[]> = {};
+
+  for (const sportKey of FEATURED_SPORTS) {
+    const games = await fetchSportGames(client, sportKey);
+    const processed = games
+      .map((g: any) => processGame(g, sportKey))
+      .filter(Boolean)
+      .sort((a: any, b: any) => a.commenceTime.getTime() - b.commenceTime.getTime());
+    
+    if (processed.length > 0) {
+      allGames[sportKey] = processed;
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold mb-2">Sports</h1>
-        <p className="text-zinc-400 mb-8">Select a league to view games and edges</p>
-
-        <div className="space-y-8">
-          {groupOrder.map((groupName) => {
-            const sports = grouped[groupName];
-            if (!sports) return null;
-
-            return (
-              <div key={groupName}>
-                <h2 className="text-lg font-semibold text-zinc-300 mb-3">{groupName}</h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                  {sports.map((sport) => (
-                    <Link
-                      key={sport.key}
-                      href={`/edge/portal/sports/${sport.key}`}
-                      className="flex flex-col items-center gap-2 p-4 bg-zinc-900/50 border border-zinc-800 rounded-lg hover:border-zinc-700 hover:bg-zinc-900 transition-all"
-                    >
-                      <span className="text-2xl">{sport.icon}</span>
-                      <span className="text-sm font-medium text-center">{sport.name}</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+    <div className="py-4">
+      <SportsHomeGrid games={allGames} />
     </div>
   );
 }

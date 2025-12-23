@@ -5,6 +5,12 @@ import dynamic from "next/dynamic";
 const Sidebar = dynamic(() => import("@/components/Sidebar"), { ssr: false });
 const Topbar = dynamic(() => import("@/components/Topbar"), { ssr: false });
 
+// Only these emails can access the internal dashboard
+const ALLOWED_OPERATORS = [
+  "omigroup.ops@outlook.com",
+  // Add more operator emails here as needed
+];
+
 export default async function AppLayout({
   children,
 }: {
@@ -15,6 +21,13 @@ export default async function AppLayout({
 
   if (!user) {
     redirect("/login");
+  }
+
+  // Check if user is an approved operator
+  if (!ALLOWED_OPERATORS.includes(user.email || "")) {
+    // Not authorized - sign them out and redirect
+    await supabase.auth.signOut();
+    redirect("/");
   }
 
   return (

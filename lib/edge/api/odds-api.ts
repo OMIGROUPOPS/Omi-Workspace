@@ -25,6 +25,7 @@ export interface OddsApiMarket {
 
 export interface OddsApiOutcome {
   name: string;
+  description?: string;
   price: number;
   point?: number;
 }
@@ -59,7 +60,52 @@ export function createOddsApiClient(apiKey: string) {
       throw new Error(`Odds API error: ${res.status}`);
     }
 
-    // Log remaining requests
+    const remaining = res.headers.get('x-requests-remaining');
+    console.log(`[Odds API] Requests remaining: ${remaining}`);
+
+    return res.json();
+  }
+
+  async function fetchEvents(sportKey: string): Promise<{ id: string; sport_key: string; commence_time: string; home_team: string; away_team: string }[]> {
+    const url = `${ODDS_API_BASE}/sports/${sportKey}/events?apiKey=${apiKey}`;
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error(`Odds API error: ${res.status}`);
+    }
+
+    return res.json();
+  }
+
+  async function fetchEventOdds(
+    sportKey: string,
+    eventId: string,
+    options: { 
+      regions?: string; 
+      markets?: string; 
+      oddsFormat?: string 
+    } = {}
+  ): Promise<OddsApiGame> {
+    const { 
+      regions = 'us', 
+      markets = 'h2h,spreads,totals', 
+      oddsFormat = 'american' 
+    } = options;
+
+    const params = new URLSearchParams({
+      apiKey,
+      regions,
+      markets,
+      oddsFormat,
+    });
+
+    const url = `${ODDS_API_BASE}/sports/${sportKey}/events/${eventId}/odds?${params}`;
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error(`Odds API error: ${res.status}`);
+    }
+
     const remaining = res.headers.get('x-requests-remaining');
     console.log(`[Odds API] Requests remaining: ${remaining}`);
 
@@ -98,6 +144,8 @@ export function createOddsApiClient(apiKey: string) {
 
   return {
     fetchOdds,
+    fetchEvents,
+    fetchEventOdds,
     fetchSports,
     fetchScores,
   };

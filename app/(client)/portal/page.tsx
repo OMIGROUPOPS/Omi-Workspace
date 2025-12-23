@@ -41,9 +41,17 @@ export default async function ClientPortalPage() {
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="text-2xl font-semibold text-gray-900">Welcome back, {intake.name}</h1>
-        <p className="text-gray-600">{intake.company}</p>
+      <div className="mb-8 flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold text-gray-900">Welcome back, {intake.name}</h1>
+          <p className="text-gray-600">{intake.company}</p>
+        </div>
+        <Link
+          href="/portal/profile"
+          className="text-sm text-indigo-600 hover:text-indigo-700 font-medium"
+        >
+          Edit Profile
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">

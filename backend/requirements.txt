@@ -1,0 +1,24 @@
+# OMI Edge Backend Dependencies
+
+# API & Web
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+httpx==0.24.1
+python-dotenv==1.0.0
+
+# Database
+supabase==2.3.4
+
+# Scheduling
+apscheduler==3.10.4
+
+# Data Processing
+pandas==2.1.4
+numpy==1.26.3
+
+# Date/Time
+python-dateutil==2.8.2
+pytz==2024.1
+
+# Type hints
+pydantic==2.5.3

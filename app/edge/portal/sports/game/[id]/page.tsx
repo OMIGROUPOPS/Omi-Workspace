@@ -1,124 +1,135 @@
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
-import { createOddsApiClient } from '@/lib/edge/api/odds-api';
 import Link from 'next/link';
 import { GameDetailClient } from '@/components/edge/GameDetailClient';
 
-function generateMockEdge(id: string, offset: number = 0): number {
-  const seed = id.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + offset;
-  const x = Math.sin(seed) * 10000;
-  return (x - Math.floor(x) - 0.5) * 0.08;
-}
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 
 interface PageProps {
   params: Promise<{ id: string }>;
   searchParams: Promise<{ sport?: string }>;
 }
 
-// Get sport-specific markets to avoid 422 errors
-function getMarketsForSport(sportKey: string): string {
-  const baseMarkets = ['h2h', 'spreads', 'totals'];
-  const halfMarkets = ['h2h_h1', 'spreads_h1', 'totals_h1', 'h2h_h2', 'spreads_h2', 'totals_h2'];
-  const quarterMarkets = ['h2h_q1', 'spreads_q1', 'totals_q1', 'h2h_q2', 'spreads_q2', 'totals_q2', 'h2h_q3', 'spreads_q3', 'totals_q3', 'h2h_q4', 'spreads_q4', 'totals_q4'];
-  const periodMarkets = ['h2h_p1', 'spreads_p1', 'totals_p1', 'h2h_p2', 'spreads_p2', 'totals_p2', 'h2h_p3', 'spreads_p3', 'totals_p3'];
-  const altMarkets = ['alternate_spreads', 'alternate_totals', 'team_totals'];
-
-  // NFL props
-  const nflProps = [
-    'player_pass_tds', 'player_pass_yds', 'player_pass_completions', 'player_pass_attempts',
-    'player_rush_yds', 'player_rush_attempts', 'player_receptions', 'player_reception_yds',
-    'player_anytime_td', 'player_kicking_points', 'player_field_goals'
-  ];
-
-  // NBA props
-  const nbaProps = [
-    'player_points', 'player_rebounds', 'player_assists', 'player_threes',
-    'player_blocks', 'player_steals', 'player_turnovers',
-    'player_points_rebounds_assists', 'player_points_rebounds',
-    'player_points_assists', 'player_rebounds_assists', 'player_double_double'
-  ];
-
-  // NHL props
-  const nhlProps = [
-    'player_goals', 'player_assists', 'player_points', 'player_shots_on_goal',
-    'player_power_play_points', 'player_blocked_shots'
-  ];
-
-  let markets = [...baseMarkets];
-
-  if (sportKey.includes('nfl') || sportKey.includes('ncaaf')) {
-    markets = [...markets, ...halfMarkets, ...quarterMarkets, ...altMarkets, ...nflProps];
-  } else if (sportKey.includes('nba') || sportKey.includes('ncaab') || sportKey.includes('wnba') || sportKey.includes('wncaab')) {
-    markets = [...markets, ...halfMarkets, ...quarterMarkets, ...altMarkets, ...nbaProps];
-  } else if (sportKey.includes('nhl') || sportKey.includes('icehockey')) {
-    markets = [...markets, ...periodMarkets, ...altMarkets, ...nhlProps];
-  } else if (sportKey.includes('soccer')) {
-    markets = [...markets, 'btts', 'draw_no_bet'];
-  } else {
-    // Default - just base markets
-    markets = [...markets, ...altMarkets];
+async function fetchLineHistory(gameId: string, market: string = 'spread', period: string = 'full', book?: string) {
+  try {
+    let url = `${BACKEND_URL}/api/lines/${gameId}?market=${market}&period=${period}`;
+    if (book) url += `&book=${book}`;
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.snapshots || [];
+  } catch (e) {
+    console.error('[GameDetail] Line history fetch error:', e);
+    return [];
   }
+}
 
-  return markets.join(',');
+async function fetchAllGamesForSport(sport: string) {
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/edges/${sport}`, { cache: 'no-store' });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.games || [];
+  } catch (e) {
+    console.error('[GameDetail] Sport games fetch error:', e);
+    return [];
+  }
+}
+
+async function fetchProps(sport: string, gameId: string) {
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/props/${sport}/${gameId}`, { cache: 'no-store' });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.props || [];
+  } catch (e) {
+    console.error('[GameDetail] Props fetch error:', e);
+    return [];
+  }
+}
+
+async function fetchConsensus(sport: string, gameId: string) {
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/consensus/${sport}/${gameId}`, { cache: 'no-store' });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (e) {
+    console.error('[GameDetail] Consensus fetch error:', e);
+    return null;
+  }
+}
+
+async function fetchPerBookOdds(sport: string, gameId: string) {
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/odds/${sport}/${gameId}`, { cache: 'no-store' });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (e) {
+    console.error('[GameDetail] Per-book odds fetch error:', e);
+    return null;
+  }
+}
+
+// Generate deterministic mock edge based on game ID
+function generateMockEdge(id: string, offset: number = 0): number {
+  const seed = id.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + offset;
+  const x = Math.sin(seed) * 10000;
+  return (x - Math.floor(x) - 0.5) * 0.08;
 }
 
 export default async function GameDetailPage({ params, searchParams }: PageProps) {
   const { id: gameId } = await params;
   const { sport: querySport } = await searchParams;
 
-  console.log('[GameDetail] gameId:', gameId);
-  console.log('[GameDetail] querySport:', querySport);
+  let gameData: any = null;
+  let sportKey: string = querySport || '';
+  let backendSportKey: string = '';
 
-  const client = createOddsApiClient(process.env.ODDS_API_KEY!);
-  
-  let sportKey: string = '';
-  let gameInfo: any = null;
+  const sportMap: Record<string, string> = {
+    'americanfootball_nfl': 'NFL',
+    'basketball_nba': 'NBA',
+    'icehockey_nhl': 'NHL',
+    'americanfootball_ncaaf': 'NCAAF',
+    'basketball_ncaab': 'NCAAB',
+  };
 
   if (querySport) {
-    try {
-      console.log('[GameDetail] Fetching events for sport:', querySport);
-      const events = await client.fetchEvents(querySport);
-      console.log('[GameDetail] Found', events.length, 'events');
-      const found = events.find((e) => e.id === gameId);
-      if (found) {
-        console.log('[GameDetail] Found game:', found.home_team, 'vs', found.away_team);
-        sportKey = querySport;
-        gameInfo = found;
-      } else {
-        console.log('[GameDetail] Game ID not found in events');
-      }
-    } catch (e) {
-      console.error('[GameDetail] Failed to fetch from query sport:', e);
+    backendSportKey = sportMap[querySport] || querySport.toUpperCase();
+    const allGames = await fetchAllGamesForSport(backendSportKey);
+    gameData = allGames.find((g: any) => g.game_id === gameId);
+    if (gameData) {
+      sportKey = querySport;
     }
   }
 
-  if (!sportKey || !gameInfo) {
-    const sportsToSearch = [
-      'americanfootball_nfl', 'basketball_nba', 'icehockey_nhl',
-      'americanfootball_ncaaf', 'basketball_ncaab'
-    ];
+  if (!gameData) {
+    const sportsToSearch = ['NFL', 'NBA', 'NHL', 'NCAAF', 'NCAAB'];
+    const reverseMap: Record<string, string> = {
+      'NFL': 'americanfootball_nfl',
+      'NBA': 'basketball_nba',
+      'NHL': 'icehockey_nhl',
+      'NCAAF': 'americanfootball_ncaaf',
+      'NCAAB': 'basketball_ncaab',
+    };
     
     for (const sport of sportsToSearch) {
-      if (sport === querySport) continue;
-      try {
-        const events = await client.fetchEvents(sport);
-        const found = events.find((e) => e.id === gameId);
-        if (found) {
-          sportKey = sport;
-          gameInfo = found;
-          break;
-        }
-      } catch (e) {
-        continue;
+      const allGames = await fetchAllGamesForSport(sport);
+      const found = allGames.find((g: any) => g.game_id === gameId);
+      if (found) {
+        gameData = found;
+        sportKey = reverseMap[sport] || sport.toLowerCase();
+        backendSportKey = sport;
+        break;
       }
     }
   }
 
-  if (!sportKey || !gameInfo) {
+  if (!gameData) {
     return (
       <div className="min-h-screen bg-zinc-950 text-zinc-100 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-2">Game not found</h1>
           <p className="text-zinc-500 mb-4 text-sm">ID: {gameId}</p>
+          <p className="text-zinc-600 text-xs mb-4">Make sure the backend is running and data has been fetched.</p>
           <Link href="/edge/portal/sports" className="text-emerald-400 hover:underline">
             Back to sports
           </Link>
@@ -127,284 +138,171 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     );
   }
 
-  // Get sport-specific markets
-  const allMarkets = getMarketsForSport(sportKey);
-  console.log('[GameDetail] Requesting markets for', sportKey);
+  // Fetch per-book odds data
+  const perBookOdds = await fetchPerBookOdds(backendSportKey, gameId);
+  
+  // Fetch props
+  const propsData = await fetchProps(backendSportKey, gameId);
+  
+  // Fetch consensus data as fallback
+  const consensusData = await fetchConsensus(backendSportKey, gameId);
 
-  let rawOdds: any = null;
-  try {
-    rawOdds = await client.fetchEventOdds(sportKey, gameId, { markets: allMarkets });
-    console.log('[GameDetail] Got odds, bookmakers:', rawOdds?.bookmakers?.length || 0);
-    if (rawOdds?.bookmakers?.[0]?.markets) {
-      const marketKeys = rawOdds.bookmakers[0].markets.map((m: any) => m.key);
-      console.log('[GameDetail] Markets returned:', marketKeys);
-    }
-  } catch (e) {
-    console.error('[GameDetail] Failed to fetch odds:', e);
-  }
+  // Fetch line history for all periods
+  const [
+    spreadHistory, mlHistory, totalHistory,
+    spreadH1History, totalH1History,
+    spreadH2History, totalH2History
+  ] = await Promise.all([
+    fetchLineHistory(gameId, 'spread', 'full'),
+    fetchLineHistory(gameId, 'moneyline', 'full'),
+    fetchLineHistory(gameId, 'total', 'full'),
+    fetchLineHistory(gameId, 'spread', 'h1'),
+    fetchLineHistory(gameId, 'total', 'h1'),
+    fetchLineHistory(gameId, 'spread', 'h2'),
+    fetchLineHistory(gameId, 'total', 'h2'),
+  ]);
 
-  if (!rawOdds?.bookmakers?.length) {
-    return (
-      <div className="min-h-screen bg-zinc-950 text-zinc-100 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-2">No odds available</h1>
-          <p className="text-zinc-500 mb-4">Odds for this game are not yet available</p>
-          <Link href={`/edge/portal/sports/${sportKey}`} className="text-emerald-400 hover:underline">
-            Back to games
-          </Link>
-        </div>
-      </div>
-    );
-  }
+  const homeTeam = gameData.home_team;
+  const awayTeam = gameData.away_team;
+  const commenceTime = gameData.commence_time;
+  const compositeScore = gameData.composite_score || 0.5;
+  const confidence = gameData.overall_confidence || 'PASS';
 
-  const homeTeam = gameInfo.home_team;
-  const awayTeam = gameInfo.away_team;
+  // Build line history object
+  const lineHistory = {
+    full: { spread: spreadHistory, moneyline: mlHistory, total: totalHistory },
+    h1: { spread: spreadH1History, total: totalH1History },
+    h2: { spread: spreadH2History, total: totalH2History },
+  };
 
-  function processBookmakerOdds(bookmaker: any) {
-    const marketGroups: any = {
-      fullGame: { h2h: null, spreads: null, totals: null },
-      firstHalf: { h2h: null, spreads: null, totals: null },
-      secondHalf: { h2h: null, spreads: null, totals: null },
-      q1: { h2h: null, spreads: null, totals: null },
-      q2: { h2h: null, spreads: null, totals: null },
-      q3: { h2h: null, spreads: null, totals: null },
-      q4: { h2h: null, spreads: null, totals: null },
-      p1: { h2h: null, spreads: null, totals: null },
-      p2: { h2h: null, spreads: null, totals: null },
-      p3: { h2h: null, spreads: null, totals: null },
-      teamTotals: null,
-      playerProps: [],
-      alternates: { spreads: [], totals: [] },
-    };
+  // Use per-book odds if available, otherwise fall back to consensus
+  let bookmakers: Record<string, any> = {};
+  let availableBooks: string[] = [];
 
-    for (const market of bookmaker.markets || []) {
-      const key = market.key;
-      const outcomes = market.outcomes || [];
-
-      if (key === 'h2h') {
-        const home = outcomes.find((o: any) => o.name === homeTeam);
-        const away = outcomes.find((o: any) => o.name === awayTeam);
-        if (home && away) {
-          marketGroups.fullGame.h2h = {
-            home: { price: home.price, edge: generateMockEdge(gameId, 1) },
-            away: { price: away.price, edge: generateMockEdge(gameId, 2) },
-          };
-        }
-      } else if (key === 'spreads') {
-        const home = outcomes.find((o: any) => o.name === homeTeam);
-        const away = outcomes.find((o: any) => o.name === awayTeam);
-        if (home && away) {
-          marketGroups.fullGame.spreads = {
-            home: { line: home.point, price: home.price, edge: generateMockEdge(gameId, 3) },
-            away: { line: away.point, price: away.price, edge: generateMockEdge(gameId, 4) },
-          };
-        }
-      } else if (key === 'totals') {
-        const over = outcomes.find((o: any) => o.name === 'Over');
-        const under = outcomes.find((o: any) => o.name === 'Under');
-        if (over && under) {
-          marketGroups.fullGame.totals = {
-            line: over.point,
-            over: { price: over.price, edge: generateMockEdge(gameId, 5) },
-            under: { price: under.price, edge: generateMockEdge(gameId, 6) },
-          };
+  if (perBookOdds && perBookOdds.bookmakers) {
+    // Use real per-book data
+    bookmakers = perBookOdds.bookmakers;
+    availableBooks = perBookOdds.books || Object.keys(bookmakers);
+    
+    // Add line history and props to each book's marketGroups
+    Object.keys(bookmakers).forEach(book => {
+      if (bookmakers[book].marketGroups) {
+        bookmakers[book].marketGroups.lineHistory = lineHistory;
+        // Props are already filtered by book in the backend
+        if (!bookmakers[book].marketGroups.playerProps || bookmakers[book].marketGroups.playerProps.length === 0) {
+          bookmakers[book].marketGroups.playerProps = propsData.filter((p: any) => p.book === book);
         }
       }
-      else if (key === 'h2h_h1') {
-        const home = outcomes.find((o: any) => o.name === homeTeam);
-        const away = outcomes.find((o: any) => o.name === awayTeam);
-        if (home && away) {
-          marketGroups.firstHalf.h2h = {
-            home: { price: home.price, edge: generateMockEdge(gameId, 11) },
-            away: { price: away.price, edge: generateMockEdge(gameId, 12) },
-          };
-        }
-      } else if (key === 'spreads_h1') {
-        const home = outcomes.find((o: any) => o.name === homeTeam);
-        const away = outcomes.find((o: any) => o.name === awayTeam);
-        if (home && away) {
-          marketGroups.firstHalf.spreads = {
-            home: { line: home.point, price: home.price, edge: generateMockEdge(gameId, 13) },
-            away: { line: away.point, price: away.price, edge: generateMockEdge(gameId, 14) },
-          };
-        }
-      } else if (key === 'totals_h1') {
-        const over = outcomes.find((o: any) => o.name === 'Over');
-        const under = outcomes.find((o: any) => o.name === 'Under');
-        if (over && under) {
-          marketGroups.firstHalf.totals = {
-            line: over.point,
-            over: { price: over.price, edge: generateMockEdge(gameId, 15) },
-            under: { price: under.price, edge: generateMockEdge(gameId, 16) },
-          };
-        }
-      }
-      else if (key === 'h2h_h2') {
-        const home = outcomes.find((o: any) => o.name === homeTeam);
-        const away = outcomes.find((o: any) => o.name === awayTeam);
-        if (home && away) {
-          marketGroups.secondHalf.h2h = {
-            home: { price: home.price, edge: generateMockEdge(gameId, 21) },
-            away: { price: away.price, edge: generateMockEdge(gameId, 22) },
-          };
-        }
-      } else if (key === 'spreads_h2') {
-        const home = outcomes.find((o: any) => o.name === homeTeam);
-        const away = outcomes.find((o: any) => o.name === awayTeam);
-        if (home && away) {
-          marketGroups.secondHalf.spreads = {
-            home: { line: home.point, price: home.price, edge: generateMockEdge(gameId, 23) },
-            away: { line: away.point, price: away.price, edge: generateMockEdge(gameId, 24) },
-          };
-        }
-      } else if (key === 'totals_h2') {
-        const over = outcomes.find((o: any) => o.name === 'Over');
-        const under = outcomes.find((o: any) => o.name === 'Under');
-        if (over && under) {
-          marketGroups.secondHalf.totals = {
-            line: over.point,
-            over: { price: over.price, edge: generateMockEdge(gameId, 25) },
-            under: { price: under.price, edge: generateMockEdge(gameId, 26) },
-          };
-        }
-      }
-      else if (key.match(/_(q[1-4]|p[1-3])$/)) {
-        const suffix = key.slice(-2);
-        const type = key.replace(`_${suffix}`, '');
-        const periodKey = suffix as 'q1' | 'q2' | 'q3' | 'q4' | 'p1' | 'p2' | 'p3';
-        const offset = { q1: 30, q2: 40, q3: 50, q4: 60, p1: 70, p2: 80, p3: 90 }[periodKey] || 30;
-
-        if (type === 'h2h') {
-          const home = outcomes.find((o: any) => o.name === homeTeam);
-          const away = outcomes.find((o: any) => o.name === awayTeam);
-          if (home && away) {
-            marketGroups[periodKey].h2h = {
-              home: { price: home.price, edge: generateMockEdge(gameId, offset + 1) },
-              away: { price: away.price, edge: generateMockEdge(gameId, offset + 2) },
-            };
-          }
-        } else if (type === 'spreads') {
-          const home = outcomes.find((o: any) => o.name === homeTeam);
-          const away = outcomes.find((o: any) => o.name === awayTeam);
-          if (home && away) {
-            marketGroups[periodKey].spreads = {
-              home: { line: home.point, price: home.price, edge: generateMockEdge(gameId, offset + 3) },
-              away: { line: away.point, price: away.price, edge: generateMockEdge(gameId, offset + 4) },
-            };
-          }
-        } else if (type === 'totals') {
-          const over = outcomes.find((o: any) => o.name === 'Over');
-          const under = outcomes.find((o: any) => o.name === 'Under');
-          if (over && under) {
-            marketGroups[periodKey].totals = {
-              line: over.point,
-              over: { price: over.price, edge: generateMockEdge(gameId, offset + 5) },
-              under: { price: under.price, edge: generateMockEdge(gameId, offset + 6) },
-            };
-          }
-        }
-      }
-      else if (key === 'team_totals') {
-        const homeOver = outcomes.find((o: any) => o.name === homeTeam && o.description === 'Over');
-        const homeUnder = outcomes.find((o: any) => o.name === homeTeam && o.description === 'Under');
-        const awayOver = outcomes.find((o: any) => o.name === awayTeam && o.description === 'Over');
-        const awayUnder = outcomes.find((o: any) => o.name === awayTeam && o.description === 'Under');
-        
-        marketGroups.teamTotals = {
-          home: homeOver && homeUnder ? {
-            line: homeOver.point,
-            over: { price: homeOver.price, edge: generateMockEdge(gameId, 100) },
-            under: { price: homeUnder.price, edge: generateMockEdge(gameId, 101) },
-          } : null,
-          away: awayOver && awayUnder ? {
-            line: awayOver.point,
-            over: { price: awayOver.price, edge: generateMockEdge(gameId, 102) },
-            under: { price: awayUnder.price, edge: generateMockEdge(gameId, 103) },
-          } : null,
+    });
+  } else {
+    // Fallback to consensus data
+    const consensus = gameData.consensus_odds || consensusData?.consensus || {};
+    const edges = gameData.edges || {};
+    
+    const buildMarket = (marketData: any, prefix: string) => {
+      if (!marketData) return { h2h: null, spreads: null, totals: null };
+      
+      const result: any = { h2h: null, spreads: null, totals: null };
+      
+      if (marketData.spreads?.home) {
+        result.spreads = {
+          home: { 
+            line: marketData.spreads.home.line, 
+            price: marketData.spreads.home.odds,
+            edge: edges[`${prefix}spread_home`]?.edge_pct || generateMockEdge(gameId, prefix.length + 3)
+          },
+          away: { 
+            line: marketData.spreads.away?.line, 
+            price: marketData.spreads.away?.odds,
+            edge: edges[`${prefix}spread_away`]?.edge_pct || generateMockEdge(gameId, prefix.length + 4)
+          },
         };
       }
-      else if (key === 'alternate_spreads') {
-        for (const o of outcomes) {
-          marketGroups.alternates.spreads.push({
-            team: o.name,
-            line: o.point,
-            price: o.price,
-            edge: generateMockEdge(gameId + o.point, 110),
-          });
-        }
-      }
-      else if (key === 'alternate_totals') {
-        for (const o of outcomes) {
-          marketGroups.alternates.totals.push({
-            type: o.name,
-            line: o.point,
-            price: o.price,
-            edge: generateMockEdge(gameId + o.point, 120),
-          });
-        }
-      }
-      else if (key.startsWith('player_')) {
-        const propType = key.replace('player_', '').replace(/_/g, ' ');
-        for (const o of outcomes) {
-          const playerName = o.description || o.name;
-          const existing = marketGroups.playerProps.find(
-            (p: any) => p.player === playerName && p.market === propType
-          );
-          if (existing) {
-            if (o.name === 'Over') {
-              existing.over = { price: o.price, edge: generateMockEdge(gameId + playerName, 130) };
-            } else if (o.name === 'Under') {
-              existing.under = { price: o.price, edge: generateMockEdge(gameId + playerName, 131) };
-            } else {
-              existing.yes = { price: o.price, edge: generateMockEdge(gameId + playerName, 132) };
-            }
-          } else {
-            const prop: any = { player: playerName, market: propType, line: o.point };
-            if (o.name === 'Over') {
-              prop.over = { price: o.price, edge: generateMockEdge(gameId + playerName, 130) };
-            } else if (o.name === 'Under') {
-              prop.under = { price: o.price, edge: generateMockEdge(gameId + playerName, 131) };
-            } else {
-              prop.yes = { price: o.price, edge: generateMockEdge(gameId + playerName, 132) };
-            }
-            marketGroups.playerProps.push(prop);
-          }
-        }
-      }
-    }
 
-    return { marketGroups };
+      if (marketData.h2h?.home !== undefined) {
+        result.h2h = {
+          home: { 
+            price: marketData.h2h.home,
+            edge: edges[`${prefix}ml_home`]?.edge_pct || generateMockEdge(gameId, prefix.length + 1)
+          },
+          away: { 
+            price: marketData.h2h.away,
+            edge: edges[`${prefix}ml_away`]?.edge_pct || generateMockEdge(gameId, prefix.length + 2)
+          },
+        };
+      }
+
+      if (marketData.totals?.over) {
+        result.totals = {
+          line: marketData.totals.over.line,
+          over: { 
+            price: marketData.totals.over.odds,
+            edge: edges[`${prefix}total_over`]?.edge_pct || generateMockEdge(gameId, prefix.length + 5)
+          },
+          under: { 
+            price: marketData.totals.under?.odds,
+            edge: edges[`${prefix}total_under`]?.edge_pct || generateMockEdge(gameId, prefix.length + 6)
+          },
+        };
+      }
+      
+      return result;
+    };
+    
+    const marketGroups: any = {
+      fullGame: buildMarket(consensus, ''),
+      firstHalf: buildMarket(consensus.first_half, 'h1_'),
+      secondHalf: buildMarket(consensus.second_half, 'h2_'),
+      q1: buildMarket(consensus.quarters?.q1, 'q1_'),
+      q2: buildMarket(consensus.quarters?.q2, 'q2_'),
+      q3: buildMarket(consensus.quarters?.q3, 'q3_'),
+      q4: buildMarket(consensus.quarters?.q4, 'q4_'),
+      p1: buildMarket(consensus.periods?.p1, 'p1_'),
+      p2: buildMarket(consensus.periods?.p2, 'p2_'),
+      p3: buildMarket(consensus.periods?.p3, 'p3_'),
+      teamTotals: null,
+      playerProps: propsData,
+      alternates: { spreads: [], totals: [] },
+      lineHistory: lineHistory,
+    };
+
+    // Get unique books from props
+    const booksFromProps: string[] = Array.from(
+      new Set(propsData.map((p: any) => String(p.book || '')).filter((b: string) => b && b !== ''))
+    );
+    const defaultBooks = ['fanduel', 'draftkings'];
+    availableBooks = booksFromProps.length > 0 ? booksFromProps : defaultBooks;
+    
+    // For consensus fallback, all books show the same data
+    availableBooks.forEach(book => {
+      bookmakers[book] = { marketGroups };
+    });
   }
 
-  const bookmakers: Record<string, any> = {};
-  const availableBooks: string[] = [];
+  const fullSportKey = sportKey;
+  const sportConfig = SUPPORTED_SPORTS.find(s => s.key === fullSportKey);
 
-  for (const bm of rawOdds.bookmakers) {
-    bookmakers[bm.key] = processBookmakerOdds(bm);
-    availableBooks.push(bm.key);
-  }
+  const scoreColor = compositeScore >= 0.5 ? 'text-emerald-400' : 'text-red-400';
+  const scoreBg = compositeScore >= 0.5 ? 'bg-emerald-500/10' : 'bg-red-500/10';
 
-  const hasFirstHalf = availableBooks.some(b => bookmakers[b]?.marketGroups?.firstHalf?.h2h || bookmakers[b]?.marketGroups?.firstHalf?.spreads);
-  const hasSecondHalf = availableBooks.some(b => bookmakers[b]?.marketGroups?.secondHalf?.h2h || bookmakers[b]?.marketGroups?.secondHalf?.spreads);
-  const hasQ1 = availableBooks.some(b => bookmakers[b]?.marketGroups?.q1?.h2h || bookmakers[b]?.marketGroups?.q1?.spreads);
-  const hasQ2 = availableBooks.some(b => bookmakers[b]?.marketGroups?.q2?.h2h || bookmakers[b]?.marketGroups?.q2?.spreads);
-  const hasQ3 = availableBooks.some(b => bookmakers[b]?.marketGroups?.q3?.h2h || bookmakers[b]?.marketGroups?.q3?.spreads);
-  const hasQ4 = availableBooks.some(b => bookmakers[b]?.marketGroups?.q4?.h2h || bookmakers[b]?.marketGroups?.q4?.spreads);
-  const hasP1 = availableBooks.some(b => bookmakers[b]?.marketGroups?.p1?.h2h || bookmakers[b]?.marketGroups?.p1?.spreads);
-  const hasP2 = availableBooks.some(b => bookmakers[b]?.marketGroups?.p2?.h2h || bookmakers[b]?.marketGroups?.p2?.spreads);
-  const hasP3 = availableBooks.some(b => bookmakers[b]?.marketGroups?.p3?.h2h || bookmakers[b]?.marketGroups?.p3?.spreads);
-  const hasProps = availableBooks.some(b => bookmakers[b]?.marketGroups?.playerProps?.length > 0);
-  const hasAlts = availableBooks.some(b => bookmakers[b]?.marketGroups?.alternates?.spreads?.length > 0 || bookmakers[b]?.marketGroups?.alternates?.totals?.length > 0);
-  const hasTeamTotals = availableBooks.some(b => bookmakers[b]?.marketGroups?.teamTotals?.home || bookmakers[b]?.marketGroups?.teamTotals?.away);
+  const hasProps = propsData && propsData.length > 0;
+  const isNHL = fullSportKey.includes('icehockey');
+  const isFootball = fullSportKey.includes('football');
+  const isBasketball = fullSportKey.includes('basketball');
 
-  const sportConfig = SUPPORTED_SPORTS.find(s => s.key === sportKey);
-  const isNHL = sportKey.includes('icehockey');
+  // Check if we have any half/quarter data
+  const hasFirstHalf = Object.values(bookmakers).some((b: any) => 
+    b.marketGroups?.firstHalf?.spreads || b.marketGroups?.firstHalf?.h2h || b.marketGroups?.firstHalf?.totals
+  );
+  const hasSecondHalf = Object.values(bookmakers).some((b: any) => 
+    b.marketGroups?.secondHalf?.spreads || b.marketGroups?.secondHalf?.h2h || b.marketGroups?.secondHalf?.totals
+  );
 
   return (
     <div className="py-6">
       <div className="mb-6">
         <Link 
-          href={`/edge/portal/sports/${sportKey}`}
+          href={`/edge/portal/sports/${fullSportKey}`}
           className="inline-flex items-center gap-2 text-zinc-400 hover:text-zinc-100 transition-colors mb-4"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -413,41 +311,60 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
           Back to {sportConfig?.name || 'games'}
         </Link>
         
-        <div className="flex items-center gap-4">
-          <div className="text-3xl">{sportConfig?.icon || '🏆'}</div>
-          <div>
-            <h1 className="text-2xl font-bold text-zinc-100">{awayTeam} @ {homeTeam}</h1>
-            <p className="text-zinc-400">
-              {new Date(gameInfo.commence_time).toLocaleString('en-US', {
-                weekday: 'long',
-                month: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: '2-digit',
-              })}
-            </p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="text-3xl">{sportConfig?.icon || '🏆'}</div>
+            <div>
+              <h1 className="text-2xl font-bold text-zinc-100">{awayTeam} @ {homeTeam}</h1>
+              <p className="text-zinc-400">
+                {new Date(commenceTime).toLocaleString('en-US', {
+                  weekday: 'long',
+                  month: 'long',
+                  day: 'numeric',
+                  hour: 'numeric',
+                  minute: '2-digit',
+                })}
+              </p>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            <div className={`px-3 py-1.5 rounded-lg ${scoreBg} flex items-center gap-2`}>
+              <span className="text-xs text-zinc-400">Edge Score</span>
+              <span className={`text-lg font-bold ${scoreColor}`}>
+                {(compositeScore * 100).toFixed(0)}%
+              </span>
+            </div>
+            <span className={`text-xs font-medium px-2 py-1 rounded ${
+              confidence === 'STRONG_EDGE' ? 'bg-emerald-500/20 text-emerald-400' :
+              confidence === 'EDGE' ? 'bg-emerald-500/10 text-emerald-300' :
+              confidence === 'WATCH' ? 'bg-yellow-500/10 text-yellow-400' :
+              'bg-zinc-800 text-zinc-500'
+            }`}>
+              {confidence}
+            </span>
           </div>
         </div>
       </div>
 
       <GameDetailClient
-        gameData={{ id: gameId, homeTeam, awayTeam, sportKey }}
+        gameData={{ id: gameId, homeTeam, awayTeam, sportKey: fullSportKey }}
         bookmakers={bookmakers}
         availableBooks={availableBooks}
         availableTabs={{
           fullGame: true,
-          firstHalf: hasFirstHalf,
-          secondHalf: hasSecondHalf,
-          q1: hasQ1,
-          q2: hasQ2,
-          q3: hasQ3,
-          q4: hasQ4,
-          p1: hasP1,
-          p2: hasP2,
-          p3: hasP3,
+          firstHalf: true,
+          secondHalf: true,
+          q1: isFootball || isBasketball,
+          q2: isFootball || isBasketball,
+          q3: isFootball || isBasketball,
+          q4: isFootball || isBasketball,
+          p1: isNHL,
+          p2: isNHL,
+          p3: isNHL,
           props: hasProps,
-          alternates: hasAlts,
-          teamTotals: hasTeamTotals,
+          alternates: true,
+          teamTotals: true,
         }}
       />
     </div>

@@ -1,96 +1,85 @@
-import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
-import { createOddsApiClient } from '@/lib/edge/api/odds-api';
-import { removeVigFromAmerican } from '@/lib/edge/utils/odds-math';
-import Link from 'next/link';
 import { SportsHomeGrid } from '@/components/edge/SportsHomeGrid';
 
-const FEATURED_SPORTS = [
-  'americanfootball_nfl',
-  'americanfootball_ncaaf',
-  'basketball_nba', 
-  'icehockey_nhl',
-  'basketball_ncaab',
-];
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 
-async function fetchSportGames(client: any, sportKey: string) {
+const SPORT_MAPPING: Record<string, string> = {
+  'NFL': 'americanfootball_nfl',
+  'NCAAF': 'americanfootball_ncaaf',
+  'NBA': 'basketball_nba',
+  'NHL': 'icehockey_nhl',
+  'NCAAB': 'basketball_ncaab',
+};
+
+async function fetchEdgesFromBackend(sport: string) {
   try {
-    const data = await client.fetchOdds(sportKey, {
-      regions: 'us',
-      markets: 'h2h,spreads,totals',
-      oddsFormat: 'american',
+    const res = await fetch(`${BACKEND_URL}/api/edges/${sport}`, {
+      cache: 'no-store'
     });
-    return data.slice(0, 10); // Get first 10 games per sport
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.games || [];
   } catch (e) {
+    console.error(`Failed to fetch ${sport}:`, e);
     return [];
   }
 }
 
-function processGame(game: any, sportKey: string) {
-  const bookmaker = game.bookmakers?.[0];
-  if (!bookmaker) return null;
-
-  const h2hMarket = bookmaker.markets?.find((m: any) => m.key === 'h2h');
-  const spreadsMarket = bookmaker.markets?.find((m: any) => m.key === 'spreads');
-  const totalsMarket = bookmaker.markets?.find((m: any) => m.key === 'totals');
-
-  let consensus: any = {};
-
-  if (h2hMarket) {
-    const home = h2hMarket.outcomes.find((o: any) => o.name === game.home_team);
-    const away = h2hMarket.outcomes.find((o: any) => o.name === game.away_team);
-    if (home && away) {
-      consensus.h2h = { homePrice: home.price, awayPrice: away.price };
-    }
+function processBackendGame(game: any) {
+  const consensus: any = {};
+  
+  if (game.consensus_odds?.h2h) {
+    consensus.h2h = {
+      homePrice: game.consensus_odds.h2h.home,
+      awayPrice: game.consensus_odds.h2h.away,
+    };
   }
-
-  if (spreadsMarket) {
-    const home = spreadsMarket.outcomes.find((o: any) => o.name === game.home_team);
-    const away = spreadsMarket.outcomes.find((o: any) => o.name === game.away_team);
-    if (home && away) {
-      consensus.spreads = { 
-        line: home.point, 
-        homePrice: home.price, 
-        awayPrice: away.price 
-      };
-    }
+  
+  if (game.consensus_odds?.spreads) {
+    consensus.spreads = {
+      line: game.consensus_odds.spreads.home?.line,
+      homePrice: game.consensus_odds.spreads.home?.odds,
+      awayPrice: game.consensus_odds.spreads.away?.odds,
+    };
   }
-
-  if (totalsMarket) {
-    const over = totalsMarket.outcomes.find((o: any) => o.name === 'Over');
-    const under = totalsMarket.outcomes.find((o: any) => o.name === 'Under');
-    if (over && under) {
-      consensus.totals = { 
-        line: over.point, 
-        overPrice: over.price, 
-        underPrice: under.price 
-      };
-    }
+  
+  if (game.consensus_odds?.totals) {
+    consensus.totals = {
+      line: game.consensus_odds.totals.over?.line,
+      overPrice: game.consensus_odds.totals.over?.odds,
+      underPrice: game.consensus_odds.totals.under?.odds,
+    };
   }
 
   return {
-    id: game.id,
-    sportKey: game.sport_key,
+    id: game.game_id,
+    sportKey: SPORT_MAPPING[game.sport] || game.sport,
     homeTeam: game.home_team,
     awayTeam: game.away_team,
     commenceTime: new Date(game.commence_time),
     consensus,
+    edges: game.edges,
+    pillars: game.pillars,
+    composite_score: game.composite_score,
+    overall_confidence: game.overall_confidence,
+    best_bet: game.best_bet,
+    best_edge: game.best_edge,
   };
 }
 
 export default async function SportsPage() {
-  const client = createOddsApiClient(process.env.ODDS_API_KEY!);
-
+  const sports = ['NFL', 'NCAAF', 'NBA', 'NHL', 'NCAAB'];
   const allGames: Record<string, any[]> = {};
 
-  for (const sportKey of FEATURED_SPORTS) {
-    const games = await fetchSportGames(client, sportKey);
+  for (const sport of sports) {
+    const games = await fetchEdgesFromBackend(sport);
     const processed = games
-      .map((g: any) => processGame(g, sportKey))
+      .map(processBackendGame)
       .filter(Boolean)
       .sort((a: any, b: any) => a.commenceTime.getTime() - b.commenceTime.getTime());
     
-    if (processed.length > 0) {
-      allGames[sportKey] = processed;
+    const frontendKey = SPORT_MAPPING[sport];
+    if (processed.length > 0 && frontendKey) {
+      allGames[frontendKey] = processed;
     }
   }
 

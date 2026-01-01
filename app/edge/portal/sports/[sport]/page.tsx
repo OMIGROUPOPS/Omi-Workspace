@@ -1,99 +1,29 @@
-import { SUPPORTED_SPORTS, PILLAR_WEIGHTS_DEFAULT } from '@/lib/edge/utils/constants';
-import { createOddsApiClient } from '@/lib/edge/api/odds-api';
-import { removeVigFromAmerican } from '@/lib/edge/utils/odds-math';
+import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import Link from 'next/link';
 import { SportsGrid } from '@/components/edge/SportsGrid';
 
-function generateMockPillarScores(gameId: string) {
-  const seed = gameId.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-  const seededRandom = (offset: number) => {
-    const x = Math.sin(seed + offset) * 10000;
-    return 0.5 + (x - Math.floor(x) - 0.5) * 0.4;
-  };
-  return {
-    execution: seededRandom(1),
-    incentives: seededRandom(2),
-    shocks: seededRandom(3),
-    timeDecay: seededRandom(4),
-    flow: seededRandom(5),
-  };
-}
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 
-function calculateEdge(bookImpliedProb: number, pillarScores: any) {
-  const weights = PILLAR_WEIGHTS_DEFAULT;
-  const weightedSum =
-    (pillarScores.execution - 0.5) * weights.EXECUTION +
-    (pillarScores.incentives - 0.5) * weights.INCENTIVES +
-    (pillarScores.shocks - 0.5) * weights.SHOCKS +
-    (pillarScores.timeDecay - 0.5) * weights.TIME_DECAY +
-    (pillarScores.flow - 0.5) * weights.FLOW;
-  const pillarAdjustment = weightedSum * 0.3;
-  const omiTrueProb = Math.max(0.01, Math.min(0.99, bookImpliedProb + pillarAdjustment));
-  return { omiTrueProb, edgeDelta: omiTrueProb - bookImpliedProb, pillarAdjustment };
-}
+const SPORT_MAPPING: Record<string, string> = {
+  'americanfootball_nfl': 'NFL',
+  'americanfootball_ncaaf': 'NCAAF',
+  'basketball_nba': 'NBA',
+  'icehockey_nhl': 'NHL',
+  'basketball_ncaab': 'NCAAB',
+};
 
-function getEdgeStatus(confidence: number) {
-  if (confidence >= 45) return 'rare';
-  if (confidence >= 38) return 'strong_edge';
-  if (confidence >= 32) return 'edge';
-  if (confidence >= 25) return 'watch';
-  return 'pass';
-}
-
-function runDecisionGate(pillarScores: any, edgeDelta: number) {
-  const weights = PILLAR_WEIGHTS_DEFAULT;
-  const weightedScore =
-    pillarScores.execution * weights.EXECUTION +
-    pillarScores.incentives * weights.INCENTIVES +
-    pillarScores.shocks * weights.SHOCKS +
-    pillarScores.timeDecay * weights.TIME_DECAY +
-    pillarScores.flow * weights.FLOW;
-  const pillarConfidence = weightedScore * 50;
-  const edgeBonus = Math.min(Math.abs(edgeDelta) * 500, 50);
-  const rawConfidence = pillarConfidence + edgeBonus;
-  const adjustedConfidence = Math.min(rawConfidence * 0.8, 100);
-  return { rawConfidence, adjustedConfidence, status: getEdgeStatus(adjustedConfidence) };
-}
-
-function processBookmaker(bookmaker: any, game: any) {
-  const h2hMarket = bookmaker.markets.find((m: any) => m.key === 'h2h');
-  const spreadsMarket = bookmaker.markets.find((m: any) => m.key === 'spreads');
-  const totalsMarket = bookmaker.markets.find((m: any) => m.key === 'totals');
-  let consensus: any = undefined;
-  let edge: any = undefined;
-
-  if (h2hMarket) {
-    const home = h2hMarket.outcomes.find((o: any) => o.name === game.home_team);
-    const away = h2hMarket.outcomes.find((o: any) => o.name === game.away_team);
-    if (home && away) {
-      const { true1, true2 } = removeVigFromAmerican(home.price, away.price);
-      consensus = { ...consensus, h2h: { homePrice: home.price, awayPrice: away.price, homeImplied: true1, awayImplied: true2 } };
-      const pillarScores = generateMockPillarScores(game.id);
-      const edgeCalc = calculateEdge(true1, pillarScores);
-      const decision = runDecisionGate(pillarScores, edgeCalc.edgeDelta);
-      edge = { bookImpliedProb: true1, omiTrueProb: edgeCalc.omiTrueProb, edgeDelta: edgeCalc.edgeDelta, rawConfidence: decision.rawConfidence, adjustedConfidence: decision.adjustedConfidence, status: decision.status };
-    }
+async function fetchEdgesFromBackend(sport: string) {
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/edges/${sport}`, {
+      cache: 'no-store'
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.games || [];
+  } catch (e) {
+    console.error(`Failed to fetch ${sport}:`, e);
+    return [];
   }
-
-  if (spreadsMarket) {
-    const home = spreadsMarket.outcomes.find((o: any) => o.name === game.home_team);
-    const away = spreadsMarket.outcomes.find((o: any) => o.name === game.away_team);
-    if (home && away) {
-      const { true1, true2 } = removeVigFromAmerican(home.price, away.price);
-      consensus = { ...consensus, spreads: { line: home.point, homePrice: home.price, awayPrice: away.price, homeImplied: true1, awayImplied: true2 } };
-    }
-  }
-
-  if (totalsMarket) {
-    const over = totalsMarket.outcomes.find((o: any) => o.name === 'Over');
-    const under = totalsMarket.outcomes.find((o: any) => o.name === 'Under');
-    if (over && under) {
-      const { true1, true2 } = removeVigFromAmerican(over.price, under.price);
-      consensus = { ...consensus, totals: { line: over.point, overPrice: over.price, underPrice: under.price, overImplied: true1, underImplied: true2 } };
-    }
-  }
-
-  return { consensus, edge };
 }
 
 interface PageProps {
@@ -115,31 +45,78 @@ export default async function SportGamesPage({ params }: PageProps) {
     );
   }
 
-  const client = createOddsApiClient(process.env.ODDS_API_KEY!);
-  let games: any[] = [];
+  const backendSport = SPORT_MAPPING[sportKey] || sportKey.toUpperCase();
+  const games = await fetchEdgesFromBackend(backendSport);
+  
   let error: string | null = null;
-  let availableBooks: string[] = [];
-
-  try {
-    const data = await client.fetchOdds(sportKey, { regions: 'us', markets: 'h2h,spreads,totals', oddsFormat: 'american' });
-    games = data;
-    const bookSet = new Set<string>();
-    games.forEach((game: any) => game.bookmakers?.forEach((b: any) => bookSet.add(b.key)));
-    availableBooks = Array.from(bookSet);
-  } catch (e) {
-    error = e instanceof Error ? e.message : 'Failed to fetch odds';
+  if (games.length === 0) {
+    error = 'No games found. Make sure the backend is running and data has been fetched.';
   }
 
-  const gamesWithAllBooks = games.map((game) => {
-    const bookmakerOdds: Record<string, { consensus: any; edge: any }> = {};
-    game.bookmakers?.forEach((bookmaker: any) => { bookmakerOdds[bookmaker.key] = processBookmaker(bookmaker, game); });
+  // Transform backend data to match SportsGrid expected format
+  const gamesWithAllBooks = games.map((game: any) => {
+    const consensus: any = {};
+    
+    if (game.consensus_odds?.h2h) {
+      consensus.h2h = {
+        homePrice: game.consensus_odds.h2h.home,
+        awayPrice: game.consensus_odds.h2h.away,
+      };
+    }
+    
+    if (game.consensus_odds?.spreads) {
+      consensus.spreads = {
+        line: game.consensus_odds.spreads.home?.line,
+        homePrice: game.consensus_odds.spreads.home?.odds,
+        awayPrice: game.consensus_odds.spreads.away?.odds,
+      };
+    }
+    
+    if (game.consensus_odds?.totals) {
+      consensus.totals = {
+        line: game.consensus_odds.totals.over?.line,
+        overPrice: game.consensus_odds.totals.over?.odds,
+        underPrice: game.consensus_odds.totals.under?.odds,
+      };
+    }
+
+    // Build edge info
+    const edge = {
+      status: game.overall_confidence?.toLowerCase() || 'pass',
+      adjustedConfidence: (game.composite_score || 0.5) * 100,
+      edgeDelta: game.best_edge || 0,
+    };
+
     return {
-      game: { id: game.id, externalId: game.id, sportKey: game.sport_key, homeTeam: game.home_team, awayTeam: game.away_team, commenceTime: new Date(game.commence_time), status: 'upcoming' as const },
-      bookmakerOdds,
+      game: {
+        id: game.game_id,
+        externalId: game.game_id,
+        sportKey: sportKey,
+        homeTeam: game.home_team,
+        awayTeam: game.away_team,
+        commenceTime: new Date(game.commence_time),
+        status: 'upcoming' as const,
+      },
+      bookmakerOdds: {
+        consensus: { consensus, edge }
+      },
+      pillars: game.pillar_scores,
+      composite_score: game.composite_score,
+      overall_confidence: game.overall_confidence,
     };
   });
 
-  const sorted = [...gamesWithAllBooks].sort((a, b) => new Date(a.game.commenceTime).getTime() - new Date(b.game.commenceTime).getTime());
+  const sorted = [...gamesWithAllBooks].sort((a, b) => 
+    new Date(a.game.commenceTime).getTime() - new Date(b.game.commenceTime).getTime()
+  );
+
+  // Filter out games that have already started (commenced more than 3 hours ago)
+  const now = new Date();
+  const filtered = sorted.filter(g => {
+    const gameTime = new Date(g.game.commenceTime);
+    const hoursAgo = (now.getTime() - gameTime.getTime()) / (1000 * 60 * 60);
+    return hoursAgo < 3; // Show games that started less than 3 hours ago
+  });
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
@@ -159,9 +136,9 @@ export default async function SportGamesPage({ params }: PageProps) {
         </div>
       </div>
 
-      {error && <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6"><p className="text-red-400">{error}</p></div>}
-      {!error && sorted.length === 0 && <div className="text-center py-12"><p className="text-zinc-400">No upcoming games found</p></div>}
-      {sorted.length > 0 && <SportsGrid games={sorted} availableBooks={availableBooks} />}
+      {error && filtered.length === 0 && <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6"><p className="text-red-400">{error}</p></div>}
+      {!error && filtered.length === 0 && <div className="text-center py-12"><p className="text-zinc-400">No upcoming games found</p></div>}
+      {filtered.length > 0 && <SportsGrid games={filtered} availableBooks={['consensus']} />}
     </div>
   );
 }

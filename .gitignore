@@ -34,3 +34,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+
+# Arb Executor secrets
+arb-executor/kalshi.pem
+arb-executor/__pycache__/
+arb-executor/.claude/
+*.pyc

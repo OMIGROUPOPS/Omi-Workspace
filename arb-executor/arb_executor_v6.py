@@ -772,8 +772,10 @@ async def run_executor():
                     else:
                         print(f"[X] Partner FAILED: {pm_result.get('error')}")
                         print(f"[!!!] UNHEDGED POSITION - CLOSE MANUALLY: {actual_fill} contracts")
+                        print(f"[STOP] Bot stopping due to UNHEDGED position - manual intervention required")
                         log_trade(best, k_result, pm_result, 'UNHEDGED')
-                    
+                        raise SystemExit("UNHEDGED POSITION - Bot stopped for safety")
+
                     last_trade_time = time.time()
                 
                 elif k_result.get('success') and k_result.get('fill_count', 0) > 0:

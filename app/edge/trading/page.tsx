@@ -342,16 +342,38 @@ export default function TradingDashboard() {
     showToast("PM balance refresh not yet implemented");
   };
 
-  // Computed values
+  const handleClearData = async () => {
+    if (!confirm("Clear all trade history and logs? This cannot be undone.")) return;
+    try {
+      const res = await fetch(`${BOT_SERVER_URL}/clear`, { method: "POST" });
+      if (res.ok) {
+        setTrades([]);
+        setLogs([]);
+        showToast("All data cleared");
+      } else {
+        showToast("Failed to clear data");
+      }
+    } catch (e) {
+      showToast("Error clearing data");
+    }
+  };
+
+  // Computed values - STRICT filtering:
+  // Live = execution_mode is "live" AND status is "SUCCESS" (actually filled & hedged)
+  // Paper = execution_mode is "paper" OR status is "PAPER"
   const filteredTrades = trades.filter((t) => {
     if (tradeFilter === "all") return true;
-    if (tradeFilter === "live") return t.execution_mode === "live" || (!t.execution_mode && t.status !== "PAPER");
+    if (tradeFilter === "live") return t.execution_mode === "live" && t.status === "SUCCESS";
     if (tradeFilter === "paper") return t.execution_mode === "paper" || t.status === "PAPER";
     return true;
   });
 
-  const liveTrades = trades.filter((t) => t.execution_mode === "live" || (!t.execution_mode && t.status !== "PAPER"));
+  // Only count SUCCESSFUL live trades (filled AND hedged)
+  const liveTrades = trades.filter((t) => t.execution_mode === "live" && t.status === "SUCCESS");
+  // Paper trades include PAPER status or paper execution mode
   const paperTrades = trades.filter((t) => t.execution_mode === "paper" || t.status === "PAPER");
+  // Failed/NO_FILL trades
+  const failedTrades = trades.filter((t) => t.status === "NO_FILL" || t.status === "UNHEDGED");
 
   const totalPnL = trades.reduce((sum, t) => {
     if (t.status === "SUCCESS" || t.status === "PAPER") {
@@ -531,17 +553,29 @@ export default function TradingDashboard() {
 
           {/* Stats */}
           <div className="bg-[#111] border border-[#333] p-4">
-            <h2 className="text-sm text-[#888] mb-4 uppercase tracking-wider">Session Stats</h2>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-sm text-[#888] uppercase tracking-wider">Session Stats</h2>
+              <button
+                onClick={handleClearData}
+                className="text-xs text-[#ff6666] hover:text-[#ff8888] px-2 py-1 border border-[#ff4444] hover:border-[#ff6666]"
+              >
+                Clear All
+              </button>
+            </div>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-[#666]">Total Trades:</span>
-                <span>{trades.length}</span>
+                <span className="text-[#666]">Live Fills:</span>
+                <span className="text-[#00ff00]">{liveTrades.length}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#666]">Successful:</span>
-                <span className="text-[#00ff00]">{successfulTrades}</span>
+                <span className="text-[#666]">Paper Trades:</span>
+                <span className="text-[#ffff00]">{paperTrades.length}</span>
               </div>
               <div className="flex justify-between">
+                <span className="text-[#666]">No Fill:</span>
+                <span className="text-[#888]">{failedTrades.length}</span>
+              </div>
+              <div className="flex justify-between pt-2 border-t border-[#333]">
                 <span className="text-[#666]">Est. P&L:</span>
                 <span className={totalPnL >= 0 ? "text-[#00ff00]" : "text-[#ff0000]"}>
                   ${totalPnL.toFixed(2)}

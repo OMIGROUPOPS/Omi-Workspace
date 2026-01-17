@@ -75,6 +75,7 @@ bot_process = None
 log_queue: Queue = Queue(maxsize=1000)
 connected_clients: Set[WebSocket] = set()
 state_lock = Lock()
+session_start_time: Optional[str] = None  # Track when current session started
 
 # ============================================================================
 # KALSHI API CLIENT
@@ -254,13 +255,21 @@ import subprocess
 
 async def start_bot():
     """Start the arb executor as a subprocess"""
-    global bot_state, bot_process
+    global bot_state, bot_process, session_start_time
 
     if bot_state == BotState.RUNNING:
         return False, "Bot is already running"
 
     bot_state = BotState.STARTING
+    session_start_time = datetime.now().isoformat()
     await broadcast_state()
+
+    # Log session start separator
+    session_log = {
+        "time": datetime.now().strftime("%H:%M:%S"),
+        "message": f"\n{'='*50}\n=== NEW SESSION STARTED ({execution_mode.value.upper()}) ===\n{'='*50}"
+    }
+    await broadcast_log(session_log)
 
     try:
         # Modify the executor mode before starting
@@ -444,11 +453,42 @@ async def get_trades():
     try:
         with open('trades.json', 'r') as f:
             trades = json.load(f)
-        return {"trades": trades}
+        return {"trades": trades, "session_start": session_start_time}
     except FileNotFoundError:
-        return {"trades": []}
+        return {"trades": [], "session_start": session_start_time}
     except Exception as e:
-        return {"trades": [], "error": str(e)}
+        return {"trades": [], "error": str(e), "session_start": session_start_time}
+
+@app.post("/clear")
+async def clear_data():
+    """Clear all trade history and logs"""
+    global log_queue, session_start_time
+
+    # Clear trades.json
+    try:
+        with open('trades.json', 'w') as f:
+            json.dump([], f)
+    except Exception as e:
+        pass
+
+    # Clear log queue
+    while not log_queue.empty():
+        try:
+            log_queue.get_nowait()
+        except:
+            break
+
+    # Reset session
+    session_start_time = datetime.now().isoformat()
+
+    # Broadcast clear to all clients
+    clear_log = {
+        "time": datetime.now().strftime("%H:%M:%S"),
+        "message": "\n=== DATA CLEARED - FRESH START ==="
+    }
+    await broadcast_log(clear_log)
+
+    return {"success": True, "message": "All data cleared", "session_start": session_start_time}
 
 @app.post("/start")
 async def start():

@@ -253,8 +253,6 @@ class KalshiAPI:
             'count': count,
             'type': 'limit',
             'client_order_id': str(uuid.uuid4()),
-            # IOC: expire in 3 seconds (Kalshi uses SECONDS not milliseconds!)
-            'expiration_ts': int(time.time() + 3),
         }
 
         # Set price - use aggressive price to cross the spread
@@ -263,12 +261,15 @@ class KalshiAPI:
         else:
             payload['no_price'] = aggressive_price
 
-        # Use buy_max_cost for additional safety on buys
+        # buy_max_cost enforces Fill-or-Kill behavior for buys
+        # sell_position_floor enforces Fill-or-Kill for sells (won't go below 0)
         if action == 'buy':
-            payload['buy_max_cost'] = max_cost + (count * 10)  # Larger buffer for aggressive price
+            payload['buy_max_cost'] = max_cost + (count * 10)  # Buffer for aggressive price
+        else:
+            payload['sell_position_floor'] = 0  # Don't go short
 
         try:
-            print(f"   [ORDER] {action} {count} {side} @ {aggressive_price}c (was: {price_cents}c, IOC 3s)")
+            print(f"   [ORDER] {action} {count} {side} @ {aggressive_price}c (was: {price_cents}c)")
             
             print(f"   [DEBUG] Payload: {payload}")
 

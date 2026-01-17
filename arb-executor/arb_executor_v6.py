@@ -50,7 +50,8 @@ KALSHI_PRIVATE_KEY = open('kalshi.pem').read()
 
 KALSHI_FEE = 0.01
 PM_TAKER_FEE_RATE = 0.02
-PARTNER_WEBHOOK_URL = os.environ.get('PARTNER_WEBHOOK_URL', 'http://localhost:8080/signal')
+# Tony's partner webhook - DO NOT CHANGE without coordinating
+PARTNER_WEBHOOK_URL = os.environ.get('PARTNER_WEBHOOK_URL', 'https://unexceptional-unpersonalised-winnie.ngrok-free.dev/signal')
 API_SECRET = "23c584339763ccd46668868bc1094fa28b42f6a84112d2be749e379e4772def1"
 
 # Trade log - load existing trades on startup
@@ -314,10 +315,10 @@ class KalshiAPI:
 
 async def notify_partner(session, arb: ArbOpportunity, fill_count: int, fill_price: int) -> Dict:
     """Send signal to partner with actual fill details"""
-    if PARTNER_WEBHOOK_URL == 'http://localhost:8080/signal':
-        print("   [!] Partner webhook not configured")
-        return {'success': False, 'error': 'No webhook configured'}
-    
+    if 'localhost' in PARTNER_WEBHOOK_URL or '127.0.0.1' in PARTNER_WEBHOOK_URL:
+        print(f"   [!] Partner webhook is localhost - skipping: {PARTNER_WEBHOOK_URL}")
+        return {'success': False, 'error': 'Webhook is localhost'}
+
     if EXECUTION_MODE == ExecutionMode.PAPER:
         print(f"   [PAPER] Would notify partner: {fill_count} contracts")
         return {'success': True, 'paper': True}
@@ -777,53 +778,51 @@ async def run_executor():
                     session, best.kalshi_ticker, 'yes', k_action, best.size, k_price
                 )
                 
-                # Wait for settlement
-                await asyncio.sleep(1.0)
-                
-                # Get position AFTER order
+                # Get fill count from API response (PRIMARY indicator)
+                api_fill_count = k_result.get('fill_count', 0)
+
+                # Wait briefly then verify with position check (SECONDARY)
+                await asyncio.sleep(0.5)
                 post_position = await kalshi_api.get_position_for_ticker(session, best.kalshi_ticker)
                 print(f"[>>] POST-TRADE: Position = {post_position}")
-                
-                # Determine actual fill from position change
+
+                # Calculate position change for verification
+                position_change = 0
                 if pre_position is not None and post_position is not None:
-                    position_change = abs(post_position - (pre_position or 0))
-                else:
-                    position_change = 0
-                
-                # CRITICAL: Only signal partner if position actually changed
-                if position_change > 0:
-                    actual_fill = position_change
-                    print(f"\n[OK] KALSHI FILLED: {actual_fill} contracts (position changed)")
-                    
-                    # Signal partner
-                    print(f"[>>] Signaling partner...")
+                    position_change = abs(post_position - pre_position)
+
+                # Determine actual fill - trust API first, use position change as backup
+                actual_fill = api_fill_count if api_fill_count > 0 else position_change
+
+                print(f"[>>] Fill detection: API={api_fill_count}, Position change={position_change}, Using={actual_fill}")
+
+                # CRITICAL: If we have ANY fill, signal partner
+                if actual_fill > 0:
+                    print(f"\n[OK] KALSHI FILLED: {actual_fill} contracts")
+
+                    # Signal partner webhook
+                    print(f"[>>] Signaling partner at {PARTNER_WEBHOOK_URL}...")
                     pm_result = await notify_partner(session, best, actual_fill, k_price)
-                    
+
                     if pm_result.get('success'):
                         print(f"[OK] Partner executed!")
                         total_trades += 1
-                        # Estimate profit based on actual fill
                         actual_profit = (best.net_spread / 100) * actual_fill
                         total_profit += actual_profit
                         print(f"[$] Trade #{total_trades} | +${actual_profit:.2f} | Total: ${total_profit:.2f}")
                         log_trade(best, k_result, pm_result, 'SUCCESS')
                     else:
                         print(f"[X] Partner FAILED: {pm_result.get('error')}")
-                        print(f"[!!!] UNHEDGED POSITION - CLOSE MANUALLY: {actual_fill} contracts")
+                        print(f"[!!!] UNHEDGED POSITION - CLOSE MANUALLY: {actual_fill} contracts on {best.kalshi_ticker}")
                         print(f"[STOP] Bot stopping due to UNHEDGED position - manual intervention required")
                         log_trade(best, k_result, pm_result, 'UNHEDGED')
                         raise SystemExit("UNHEDGED POSITION - Bot stopped for safety")
 
                     last_trade_time = time.time()
-                
-                elif k_result.get('success') and k_result.get('fill_count', 0) > 0:
-                    # API said success but position didn't change - weird state
-                    print(f"\n[?] API reports fill but position unchanged - investigating")
-                    log_trade(best, k_result, {}, 'UNCLEAR')
-                    last_trade_time = time.time()
-                
+
                 else:
-                    print(f"\n[X] No fill - Order status: {k_result.get('status', k_result.get('error'))}")
+                    # No fill from either source
+                    print(f"\n[X] NO FILL - Status: {k_result.get('status', 'unknown')}, Error: {k_result.get('error', 'none')}")
                     log_trade(best, k_result, {}, 'NO_FILL')
             
             elif exec_arbs:

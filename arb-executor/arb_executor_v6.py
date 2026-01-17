@@ -239,8 +239,12 @@ class KalshiAPI:
         
         path = '/trade-api/v2/portfolio/orders'
 
-        # For aggressive fills, pay 1 cent more than ask (buys) or accept 1 cent less than bid (sells)
-        aggressive_price = price_cents + 1 if action == 'buy' else max(1, price_cents - 1)
+        # For aggressive fills, pay MORE than ask (buys) or accept LESS than bid (sells)
+        # This ensures we cross the spread and take liquidity
+        if action == 'buy':
+            aggressive_price = price_cents + 2  # Pay 2c above ask
+        else:
+            aggressive_price = max(1, price_cents - 2)  # Accept 2c below bid
 
         payload = {
             'ticker': ticker,
@@ -249,8 +253,8 @@ class KalshiAPI:
             'count': count,
             'type': 'limit',
             'client_order_id': str(uuid.uuid4()),
-            # IOC behavior: expire in 2 seconds if not filled
-            'expiration_ts': int((time.time() + 2) * 1000),
+            # IOC: expire in 3 seconds (Kalshi uses SECONDS not milliseconds!)
+            'expiration_ts': int(time.time() + 3),
         }
 
         # Set price - use aggressive price to cross the spread
@@ -261,10 +265,10 @@ class KalshiAPI:
 
         # Use buy_max_cost for additional safety on buys
         if action == 'buy':
-            payload['buy_max_cost'] = max_cost + (count * 5)  # Buffer for aggressive price + fees
+            payload['buy_max_cost'] = max_cost + (count * 10)  # Larger buffer for aggressive price
 
         try:
-            print(f"   [ORDER] {action} {count} {side} @ {aggressive_price}c (original: {price_cents}c, IOC 2s)")
+            print(f"   [ORDER] {action} {count} {side} @ {aggressive_price}c (was: {price_cents}c, IOC 3s)")
             
             print(f"   [DEBUG] Payload: {payload}")
 

@@ -33,6 +33,13 @@ interface LogEntry {
   message: string;
 }
 
+interface ScanInfo {
+  scanNumber: number;
+  gamesFound: number;
+  arbsFound: number;
+  isScanning: boolean;
+}
+
 interface BotStatus {
   bot_state: "stopped" | "starting" | "running" | "stopping" | "error";
   mode: "paper" | "live";
@@ -61,10 +68,62 @@ export default function TradingDashboard() {
   const [error, setError] = useState<string | null>(null);
   const [pmBalance] = useState<number>(494.90); // Tony's PM balance - hardcoded for now
   const [toast, setToast] = useState<string | null>(null);
+  const [scanInfo, setScanInfo] = useState<ScanInfo>({
+    scanNumber: 0,
+    gamesFound: 0,
+    arbsFound: 0,
+    isScanning: false,
+  });
 
   const wsRef = useRef<WebSocket | null>(null);
   const logsEndRef = useRef<HTMLDivElement>(null);
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Parse scan info from log message
+  const parseScanInfo = useCallback((message: string) => {
+    // Match: "=== Scan 123 ==="
+    const scanMatch = message.match(/=== Scan (\d+) ===/);
+    if (scanMatch) {
+      setScanInfo(prev => ({ ...prev, scanNumber: parseInt(scanMatch[1]), isScanning: true, arbsFound: 0 }));
+      return;
+    }
+    // Match: "Found 5 games to scan"
+    const gamesMatch = message.match(/Found (\d+) games? to scan/);
+    if (gamesMatch) {
+      setScanInfo(prev => ({ ...prev, gamesFound: parseInt(gamesMatch[1]) }));
+      return;
+    }
+    // Match: "[*] Found 3 arbs"
+    const arbsMatch = message.match(/\[\*\] Found (\d+) arb/);
+    if (arbsMatch) {
+      setScanInfo(prev => ({ ...prev, arbsFound: parseInt(arbsMatch[1]) }));
+      return;
+    }
+    // Match: "Sleeping" indicates scan complete
+    if (message.includes("Sleeping")) {
+      setScanInfo(prev => ({ ...prev, isScanning: false }));
+    }
+  }, []);
+
+  // Helper to get trade status display
+  const getTradeStatus = (trade: Trade): { text: string; color: string } => {
+    if (trade.status === "SUCCESS") {
+      return mode === "paper"
+        ? { text: "PAPER", color: "text-[#ffff00]" }
+        : { text: "SUCCESS", color: "text-[#00ff00]" };
+    }
+    if (trade.status === "NO_FILL") {
+      return { text: "NO_FILL", color: "text-[#888]" };
+    }
+    if (trade.status === "UNHEDGED") {
+      return { text: "UNHEDGED", color: "text-[#ff0000]" };
+    }
+    // For UNCLEAR or other statuses in paper mode, show PAPER
+    if (mode === "paper") {
+      return { text: "PAPER", color: "text-[#ffff00]" };
+    }
+    return { text: trade.status, color: "text-[#ff6600]" };
+  };
 
   // Auto-scroll logs
   useEffect(() => {
@@ -104,10 +163,13 @@ export default function TradingDashboard() {
 
           case "log":
             setLogs((prev) => [...prev.slice(-500), message.data]);
+            parseScanInfo(message.data.message);
             break;
 
           case "logs":
             setLogs((prev) => [...prev, ...message.data].slice(-500));
+            // Parse last few logs for scan info
+            message.data.slice(-10).forEach((log: LogEntry) => parseScanInfo(log.message));
             break;
 
           case "pong":
@@ -135,7 +197,7 @@ export default function TradingDashboard() {
     };
 
     wsRef.current = ws;
-  }, []);
+  }, [parseScanInfo]);
 
   // Initial connection
   useEffect(() => {
@@ -287,6 +349,24 @@ export default function TradingDashboard() {
           <span className="text-[#666]">|</span>
           <span className="text-sm text-[#888]">ARB EXECUTOR v6</span>
         </div>
+
+        {/* Scanning Indicator */}
+        {botState === "running" && (
+          <div className="flex items-center gap-4 bg-[#111] border border-[#333] px-4 py-2">
+            <div className="flex items-center gap-2">
+              <div className={`w-2 h-2 rounded-full ${scanInfo.isScanning ? "bg-[#00ffff] animate-pulse" : "bg-[#333]"}`} />
+              <span className={`text-sm font-bold ${scanInfo.isScanning ? "text-[#00ffff]" : "text-[#666]"}`}>
+                {scanInfo.isScanning ? "SCANNING" : "IDLE"}
+              </span>
+            </div>
+            <span className="text-[#666]">|</span>
+            <span className="text-xs text-[#888]">Scan #{scanInfo.scanNumber}</span>
+            <span className="text-xs text-[#888]">{scanInfo.gamesFound} games</span>
+            <span className={`text-xs ${scanInfo.arbsFound > 0 ? "text-[#00ff00]" : "text-[#888]"}`}>
+              {scanInfo.arbsFound} arbs
+            </span>
+          </div>
+        )}
 
         {/* Connection Status */}
         <div className="flex items-center gap-2">
@@ -498,56 +578,55 @@ export default function TradingDashboard() {
             <h2 className="text-sm text-[#888] mb-4 uppercase tracking-wider">
               Trade History ({trades.length})
             </h2>
-            <div className="max-h-[300px] overflow-y-auto">
+            <div className="max-h-[400px] overflow-y-auto">
               {trades.length === 0 ? (
                 <div className="text-[#666] text-sm py-4 text-center">No trades yet</div>
               ) : (
-                <table className="w-full text-xs">
-                  <thead className="sticky top-0 bg-[#111]">
-                    <tr className="text-[#666] text-left border-b border-[#333]">
-                      <th className="pb-2">Time</th>
-                      <th className="pb-2">Game</th>
-                      <th className="pb-2">Team</th>
-                      <th className="pb-2 text-right">Size</th>
-                      <th className="pb-2 text-right">P&L</th>
-                      <th className="pb-2 text-right">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[...trades].reverse().map((trade, i) => (
-                      <tr key={i} className="border-b border-[#222]">
-                        <td className="py-2 text-[#666]">
-                          {new Date(trade.timestamp).toLocaleTimeString("en-US", {
-                            hour12: false,
-                          })}
-                        </td>
-                        <td className="py-2">{trade.game}</td>
-                        <td className="py-2 text-[#00ffff]">{trade.team}</td>
-                        <td className="py-2 text-right">{trade.k_fill_count}</td>
-                        <td
-                          className={`py-2 text-right ${
-                            trade.expected_profit >= 0 ? "text-[#00ff00]" : "text-[#ff0000]"
-                          }`}
-                        >
-                          ${trade.expected_profit.toFixed(2)}
-                        </td>
-                        <td className="py-2 text-right">
-                          <span
-                            className={`px-1 ${
-                              trade.status === "SUCCESS"
-                                ? "text-[#00ff00]"
-                                : trade.status === "NO_FILL"
-                                ? "text-[#888]"
-                                : "text-[#ff6600]"
-                            }`}
-                          >
-                            {trade.status}
+                <div className="space-y-2">
+                  {[...trades].reverse().map((trade, i) => {
+                    const status = getTradeStatus(trade);
+                    return (
+                      <div key={i} className="bg-[#0a0a0a] border border-[#222] p-3">
+                        {/* Header row */}
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[#666] text-xs">
+                              {new Date(trade.timestamp).toLocaleTimeString("en-US", { hour12: false })}
+                            </span>
+                            <span className={`text-xs px-1.5 py-0.5 ${status.color} border border-current`}>
+                              {status.text}
+                            </span>
+                          </div>
+                          <span className={`text-sm font-bold ${trade.expected_profit >= 0 ? "text-[#00ff00]" : "text-[#ff0000]"}`}>
+                            {trade.expected_profit >= 0 ? "+" : ""}${trade.expected_profit.toFixed(2)}
                           </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                        </div>
+                        {/* Details */}
+                        <div className="text-xs">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-[#00ffff] font-bold">{trade.team}</span>
+                            <span className="text-[#666]">|</span>
+                            <span className="text-[#888]">{trade.game}</span>
+                          </div>
+                          <div className="flex items-center gap-4 text-[#888]">
+                            <span>
+                              Dir: <span className={trade.direction === "YES" ? "text-[#00ff00]" : "text-[#ff6666]"}>{trade.direction || "YES"}</span>
+                            </span>
+                            <span>
+                              Size: <span className="text-white">{trade.k_fill_count}</span>
+                            </span>
+                            <span>
+                              K: <span className="text-[#00ffff]">{trade.k_fill_price ? `${trade.k_fill_price}¢` : "--"}</span>
+                            </span>
+                            <span>
+                              ROI: <span className={trade.roi > 0 ? "text-[#00ff00]" : "text-[#888]"}>{trade.roi ? `${trade.roi.toFixed(1)}%` : "--"}</span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               )}
             </div>
           </div>

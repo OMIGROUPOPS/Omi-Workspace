@@ -238,6 +238,10 @@ class KalshiAPI:
             }
         
         path = '/trade-api/v2/portfolio/orders'
+
+        # For aggressive fills, pay 1 cent more than ask (buys) or accept 1 cent less than bid (sells)
+        aggressive_price = price_cents + 1 if action == 'buy' else max(1, price_cents - 1)
+
         payload = {
             'ticker': ticker,
             'action': action,
@@ -245,21 +249,25 @@ class KalshiAPI:
             'count': count,
             'type': 'limit',
             'client_order_id': str(uuid.uuid4()),
+            # IOC behavior: expire in 2 seconds if not filled
+            'expiration_ts': int((time.time() + 2) * 1000),
         }
-        
-        # Set price
+
+        # Set price - use aggressive price to cross the spread
         if side == 'yes':
-            payload['yes_price'] = price_cents
+            payload['yes_price'] = aggressive_price
         else:
-            payload['no_price'] = price_cents
-        
-        # Use buy_max_cost for Fill-or-Kill behavior on buys
+            payload['no_price'] = aggressive_price
+
+        # Use buy_max_cost for additional safety on buys
         if action == 'buy':
-            payload['buy_max_cost'] = max_cost + (count * 2)  # Add buffer for fees
-        
+            payload['buy_max_cost'] = max_cost + (count * 5)  # Buffer for aggressive price + fees
+
         try:
-            print(f"   [ORDER] {action} {count} {side} @ {price_cents}c (max_cost: ${max_cost/100:.2f})")
+            print(f"   [ORDER] {action} {count} {side} @ {aggressive_price}c (original: {price_cents}c, IOC 2s)")
             
+            print(f"   [DEBUG] Payload: {payload}")
+
             async with session.post(
                 f'{self.BASE_URL}{path}',
                 headers=self._headers('POST', path),
@@ -267,10 +275,11 @@ class KalshiAPI:
                 timeout=aiohttp.ClientTimeout(total=10)
             ) as r:
                 data = await r.json()
-                print(f"   [DEBUG] Status: {r.status}")
-                
+                print(f"   [DEBUG] HTTP Status: {r.status}")
+                print(f"   [DEBUG] Response: {data}")
+
                 order = data.get('order', {})
-                fill_count = order.get('fill_count', 0) or order.get('taker_fill_count', 0)
+                fill_count = order.get('taker_fill_count', 0) or order.get('fill_count', 0)
                 status = order.get('status', '')
                 
                 print(f"   [DEBUG] Order status: {status}, fill_count: {fill_count}")

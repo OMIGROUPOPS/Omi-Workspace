@@ -240,12 +240,9 @@ class KalshiAPI:
         
         path = '/trade-api/v2/portfolio/orders'
 
-        # For aggressive fills, pay MORE than ask (buys) or accept LESS than bid (sells)
-        # This ensures we cross the spread and take liquidity
-        if action == 'buy':
-            aggressive_price = price_cents + 2  # Pay 2c above ask
-        else:
-            aggressive_price = max(1, price_cents - 2)  # Accept 2c below bid
+        # Use EXACT bid/ask prices - no adjustment
+        # BUY at ask, SELL at bid (prices passed in are already correct)
+        order_price = price_cents
 
         payload = {
             'ticker': ticker,
@@ -256,21 +253,18 @@ class KalshiAPI:
             'client_order_id': str(uuid.uuid4()),
         }
 
-        # Set price - use aggressive price to cross the spread
+        # Set price at exact bid/ask
         if side == 'yes':
-            payload['yes_price'] = aggressive_price
+            payload['yes_price'] = order_price
         else:
-            payload['no_price'] = aggressive_price
+            payload['no_price'] = order_price
 
-        # buy_max_cost enforces Fill-or-Kill behavior for buys
-        # sell_position_floor enforces Fill-or-Kill for sells (won't go below 0)
+        # buy_max_cost caps total spend (allows partial fills - IOC behavior)
         if action == 'buy':
-            payload['buy_max_cost'] = max_cost + (count * 10)  # Buffer for aggressive price
-        else:
-            payload['sell_position_floor'] = 0  # Don't go short
+            payload['buy_max_cost'] = count * order_price + (count * 2)  # Small buffer for fees only
 
         try:
-            print(f"   [ORDER] {action} {count} {side} @ {aggressive_price}c (was: {price_cents}c)")
+            print(f"   [ORDER] {action} {count} {side} @ {order_price}c")
             
             print(f"   [DEBUG] Payload: {payload}")
 

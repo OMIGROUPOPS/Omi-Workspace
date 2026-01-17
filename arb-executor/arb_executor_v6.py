@@ -765,43 +765,90 @@ async def run_executor():
                 # Get position BEFORE order
                 pre_position = await kalshi_api.get_position_for_ticker(session, best.kalshi_ticker)
                 print(f"\n[>>] PRE-TRADE: Position = {pre_position}")
-                
-                # Place order
-                print(f"[>>] PLACING: {k_action} {best.size} YES @ {k_price}c")
-                k_result = await kalshi_api.place_order(
-                    session, best.kalshi_ticker, 'yes', k_action, best.size, k_price
-                )
-                
-                # Get fill count from API response (PRIMARY indicator)
-                api_fill_count = k_result.get('fill_count', 0)
 
-                # Wait briefly then verify with position check (SECONDARY)
-                await asyncio.sleep(0.5)
+                # ORDER BOOK SWEEP: Try progressively worse prices until fill or ROI < threshold
+                MAX_PRICE_LEVELS = 10  # Max cents to sweep through
+                actual_fill = 0
+                fill_price = k_price
+                k_result = {}
+
+                for price_offset in range(MAX_PRICE_LEVELS + 1):
+                    # Calculate current try price
+                    if k_action == 'buy':
+                        try_price = k_price + price_offset  # Pay more for buys
+                    else:
+                        try_price = k_price - price_offset  # Accept less for sells
+
+                    # Don't go below 1c or above 99c
+                    if try_price < 1 or try_price > 99:
+                        print(f"   [X] Price {try_price}c out of bounds, stopping sweep")
+                        break
+
+                    # Calculate ROI at this price level
+                    if k_action == 'buy':
+                        # Buying: higher price = less profit
+                        price_diff = price_offset  # How much more we're paying
+                        adjusted_profit = best.profit - (price_diff * best.size / 100)
+                        adjusted_capital = best.size * (try_price / 100)
+                    else:
+                        # Selling: lower price = less profit
+                        price_diff = price_offset  # How much less we're getting
+                        adjusted_profit = best.profit - (price_diff * best.size / 100)
+                        adjusted_capital = best.size * ((100 - try_price) / 100)
+
+                    adjusted_roi = (adjusted_profit / adjusted_capital * 100) if adjusted_capital > 0 else 0
+
+                    # Check if still profitable
+                    if adjusted_roi < MIN_ROI:
+                        print(f"   [X] ROI {adjusted_roi:.1f}% < {MIN_ROI}% at {try_price}c, stopping sweep")
+                        break
+
+                    # Try this price level
+                    print(f"[>>] SWEEP {price_offset}: {k_action} {best.size} YES @ {try_price}c (ROI: {adjusted_roi:.1f}%)")
+                    k_result = await kalshi_api.place_order(
+                        session, best.kalshi_ticker, 'yes', k_action, best.size, try_price
+                    )
+
+                    api_fill_count = k_result.get('fill_count', 0)
+                    if api_fill_count > 0:
+                        actual_fill = api_fill_count
+                        fill_price = try_price
+                        print(f"   [OK] Got fill at {try_price}c!")
+                        break
+                    else:
+                        print(f"   [.] No fill at {try_price}c, trying next level...")
+                        await asyncio.sleep(0.2)  # Brief pause between attempts
+
+                # Verify with position check
+                await asyncio.sleep(0.3)
                 post_position = await kalshi_api.get_position_for_ticker(session, best.kalshi_ticker)
                 print(f"[>>] POST-TRADE: Position = {post_position}")
 
-                # Calculate position change for verification
                 position_change = 0
                 if pre_position is not None and post_position is not None:
                     position_change = abs(post_position - pre_position)
 
-                # Determine actual fill - trust API first, use position change as backup
-                actual_fill = api_fill_count if api_fill_count > 0 else position_change
+                # Use position change if API didn't report fill
+                if actual_fill == 0 and position_change > 0:
+                    actual_fill = position_change
+                    print(f"[>>] Position changed by {position_change}, using as fill count")
 
-                print(f"[>>] Fill detection: API={api_fill_count}, Position change={position_change}, Using={actual_fill}")
+                print(f"[>>] Final: API fill={k_result.get('fill_count', 0)}, Position change={position_change}, Using={actual_fill}")
 
                 # CRITICAL: If we have ANY fill, signal partner
                 if actual_fill > 0:
-                    print(f"\n[OK] KALSHI FILLED: {actual_fill} contracts")
+                    print(f"\n[OK] KALSHI FILLED: {actual_fill} contracts @ {fill_price}c")
 
                     # Signal partner webhook
                     print(f"[>>] Signaling partner at {PARTNER_WEBHOOK_URL}...")
-                    pm_result = await notify_partner(session, best, actual_fill, k_price)
+                    pm_result = await notify_partner(session, best, actual_fill, fill_price)
 
                     if pm_result.get('success'):
                         print(f"[OK] Partner executed!")
                         total_trades += 1
-                        actual_profit = (best.net_spread / 100) * actual_fill
+                        # Calculate actual profit at fill price
+                        price_diff = abs(fill_price - k_price)
+                        actual_profit = best.profit - (price_diff * actual_fill / 100)
                         total_profit += actual_profit
                         print(f"[$] Trade #{total_trades} | +${actual_profit:.2f} | Total: ${total_profit:.2f}")
                         log_trade(best, k_result, pm_result, 'SUCCESS')
@@ -815,8 +862,8 @@ async def run_executor():
                     last_trade_time = time.time()
 
                 else:
-                    # No fill from either source
-                    print(f"\n[X] NO FILL - Status: {k_result.get('status', 'unknown')}, Error: {k_result.get('error', 'none')}")
+                    # No fill after sweeping
+                    print(f"\n[X] NO FILL after sweeping {MAX_PRICE_LEVELS} price levels")
                     log_trade(best, k_result, {}, 'NO_FILL')
             
             elif exec_arbs:

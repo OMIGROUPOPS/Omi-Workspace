@@ -53,8 +53,17 @@ PM_TAKER_FEE_RATE = 0.02
 PARTNER_WEBHOOK_URL = os.environ.get('PARTNER_WEBHOOK_URL', 'http://localhost:8080/signal')
 API_SECRET = "23c584339763ccd46668868bc1094fa28b42f6a84112d2be749e379e4772def1"
 
-# Trade log
-TRADE_LOG: List[Dict] = []
+# Trade log - load existing trades on startup
+def load_trades() -> List[Dict]:
+    try:
+        with open('trades.json', 'r') as f:
+            trades = json.load(f)
+            # Keep last 1000 trades
+            return trades[-1000:] if len(trades) > 1000 else trades
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+TRADE_LOG: List[Dict] = load_trades()
 
 @dataclass
 class ArbOpportunity:
@@ -346,6 +355,15 @@ async def notify_partner(session, arb: ArbOpportunity, fill_count: int, fill_pri
 
 def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str):
     """Log trade details"""
+    global TRADE_LOG
+
+    # Determine display status based on execution mode
+    if EXECUTION_MODE == ExecutionMode.PAPER:
+        display_status = 'PAPER'
+    else:
+        # LIVE mode - use actual status
+        display_status = status
+
     trade = {
         'timestamp': datetime.now().isoformat(),
         'sport': arb.sport,
@@ -358,12 +376,18 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str)
         'k_order_id': k_result.get('order_id'),
         'pm_success': pm_result.get('success', False),
         'pm_error': pm_result.get('error'),
-        'status': status,
+        'status': display_status,
+        'raw_status': status,  # Keep original status for debugging
+        'execution_mode': EXECUTION_MODE.value,
         'expected_profit': arb.profit,
         'roi': arb.roi
     }
     TRADE_LOG.append(trade)
-    
+
+    # Keep only last 1000 trades
+    if len(TRADE_LOG) > 1000:
+        TRADE_LOG = TRADE_LOG[-1000:]
+
     # Save to file
     try:
         with open('trades.json', 'w') as f:

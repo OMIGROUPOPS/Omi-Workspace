@@ -24,9 +24,13 @@ interface Trade {
   pm_success: boolean;
   pm_error?: string;
   status: string;
+  raw_status?: string;
+  execution_mode?: "paper" | "live";
   expected_profit: number;
   roi: number;
 }
+
+type TradeFilter = "all" | "live" | "paper";
 
 interface LogEntry {
   time: string;
@@ -68,6 +72,7 @@ export default function TradingDashboard() {
   const [error, setError] = useState<string | null>(null);
   const [pmBalance] = useState<number>(494.90); // Tony's PM balance - hardcoded for now
   const [toast, setToast] = useState<string | null>(null);
+  const [tradeFilter, setTradeFilter] = useState<TradeFilter>("all");
   const [scanInfo, setScanInfo] = useState<ScanInfo>({
     scanNumber: 0,
     gamesFound: 0,
@@ -105,12 +110,19 @@ export default function TradingDashboard() {
     }
   }, []);
 
-  // Helper to get trade status display
+  // Helper to get trade status display - uses trade's stored status/mode, not current dashboard mode
   const getTradeStatus = (trade: Trade): { text: string; color: string } => {
+    // If status is already PAPER, show as paper trade
+    if (trade.status === "PAPER") {
+      return { text: "PAPER", color: "text-[#ffff00]" };
+    }
+    // If execution_mode is paper but status isn't PAPER (legacy trades), show PAPER
+    if (trade.execution_mode === "paper") {
+      return { text: "PAPER", color: "text-[#ffff00]" };
+    }
+    // Live trade statuses
     if (trade.status === "SUCCESS") {
-      return mode === "paper"
-        ? { text: "PAPER", color: "text-[#ffff00]" }
-        : { text: "SUCCESS", color: "text-[#00ff00]" };
+      return { text: "SUCCESS", color: "text-[#00ff00]" };
     }
     if (trade.status === "NO_FILL") {
       return { text: "NO_FILL", color: "text-[#888]" };
@@ -118,11 +130,11 @@ export default function TradingDashboard() {
     if (trade.status === "UNHEDGED") {
       return { text: "UNHEDGED", color: "text-[#ff0000]" };
     }
-    // For UNCLEAR or other statuses in paper mode, show PAPER
-    if (mode === "paper") {
-      return { text: "PAPER", color: "text-[#ffff00]" };
+    if (trade.status === "FAILED") {
+      return { text: "FAILED", color: "text-[#ff0000]" };
     }
-    return { text: trade.status, color: "text-[#ff6600]" };
+    // Unknown status
+    return { text: trade.status || "UNKNOWN", color: "text-[#ff6600]" };
   };
 
   // Auto-scroll logs
@@ -331,14 +343,24 @@ export default function TradingDashboard() {
   };
 
   // Computed values
+  const filteredTrades = trades.filter((t) => {
+    if (tradeFilter === "all") return true;
+    if (tradeFilter === "live") return t.execution_mode === "live" || (!t.execution_mode && t.status !== "PAPER");
+    if (tradeFilter === "paper") return t.execution_mode === "paper" || t.status === "PAPER";
+    return true;
+  });
+
+  const liveTrades = trades.filter((t) => t.execution_mode === "live" || (!t.execution_mode && t.status !== "PAPER"));
+  const paperTrades = trades.filter((t) => t.execution_mode === "paper" || t.status === "PAPER");
+
   const totalPnL = trades.reduce((sum, t) => {
-    if (t.status === "SUCCESS") {
+    if (t.status === "SUCCESS" || t.status === "PAPER") {
       return sum + t.expected_profit;
     }
     return sum;
   }, 0);
 
-  const successfulTrades = trades.filter((t) => t.status === "SUCCESS").length;
+  const successfulTrades = trades.filter((t) => t.status === "SUCCESS" || t.status === "PAPER").length;
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono p-4">
@@ -575,15 +597,50 @@ export default function TradingDashboard() {
 
           {/* Trade History */}
           <div className="bg-[#111] border border-[#333] p-4">
-            <h2 className="text-sm text-[#888] mb-4 uppercase tracking-wider">
-              Trade History ({trades.length})
-            </h2>
+            {/* Header with tabs */}
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-sm text-[#888] uppercase tracking-wider">Trade History</h2>
+              <div className="flex gap-1">
+                <button
+                  onClick={() => setTradeFilter("all")}
+                  className={`px-2 py-1 text-xs border ${
+                    tradeFilter === "all"
+                      ? "bg-[#333] border-[#555] text-white"
+                      : "border-[#333] text-[#666] hover:border-[#444]"
+                  }`}
+                >
+                  All ({trades.length})
+                </button>
+                <button
+                  onClick={() => setTradeFilter("live")}
+                  className={`px-2 py-1 text-xs border ${
+                    tradeFilter === "live"
+                      ? "bg-[#2e1a1a] border-[#ff4444] text-[#ff6666]"
+                      : "border-[#333] text-[#666] hover:border-[#444]"
+                  }`}
+                >
+                  Live ({liveTrades.length})
+                </button>
+                <button
+                  onClick={() => setTradeFilter("paper")}
+                  className={`px-2 py-1 text-xs border ${
+                    tradeFilter === "paper"
+                      ? "bg-[#2e2e1a] border-[#ffff44] text-[#ffff66]"
+                      : "border-[#333] text-[#666] hover:border-[#444]"
+                  }`}
+                >
+                  Paper ({paperTrades.length})
+                </button>
+              </div>
+            </div>
             <div className="max-h-[400px] overflow-y-auto">
-              {trades.length === 0 ? (
-                <div className="text-[#666] text-sm py-4 text-center">No trades yet</div>
+              {filteredTrades.length === 0 ? (
+                <div className="text-[#666] text-sm py-4 text-center">
+                  {trades.length === 0 ? "No trades yet" : `No ${tradeFilter} trades`}
+                </div>
               ) : (
                 <div className="space-y-2">
-                  {[...trades].reverse().map((trade, i) => {
+                  {[...filteredTrades].reverse().map((trade, i) => {
                     const status = getTradeStatus(trade);
                     return (
                       <div key={i} className="bg-[#0a0a0a] border border-[#222] p-3">

@@ -306,6 +306,29 @@ class KalshiAPI:
             print(f"   [!] Order error: {e}")
             return {'success': False, 'error': str(e)}
 
+    async def cancel_order(self, session, order_id: str) -> bool:
+        """Cancel a resting order"""
+        if not order_id:
+            return False
+
+        path = f'/trade-api/v2/portfolio/orders/{order_id}'
+        try:
+            async with session.delete(
+                f'{self.BASE_URL}{path}',
+                headers=self._headers('DELETE', path),
+                timeout=aiohttp.ClientTimeout(total=5)
+            ) as r:
+                if r.status in [200, 204]:
+                    print(f"   [X] Cancelled order {order_id[:8]}...")
+                    return True
+                else:
+                    data = await r.json()
+                    print(f"   [!] Cancel failed: {data}")
+                    return False
+        except Exception as e:
+            print(f"   [!] Cancel error: {e}")
+            return False
+
 
 async def notify_partner(session, arb: ArbOpportunity, fill_count: int, fill_price: int) -> Dict:
     """Send signal to partner with actual fill details"""
@@ -801,6 +824,9 @@ async def run_executor():
                     # Check if still profitable
                     if adjusted_roi < MIN_ROI:
                         print(f"   [X] ROI {adjusted_roi:.1f}% < {MIN_ROI}% at {try_price}c, stopping sweep")
+                        # Cancel any resting order from previous attempt
+                        if k_result.get('order_id') and k_result.get('fill_count', 0) == 0:
+                            await kalshi_api.cancel_order(session, k_result.get('order_id'))
                         break
 
                     # Try this price level
@@ -810,14 +836,19 @@ async def run_executor():
                     )
 
                     api_fill_count = k_result.get('fill_count', 0)
+                    order_id = k_result.get('order_id')
+
                     if api_fill_count > 0:
                         actual_fill = api_fill_count
                         fill_price = try_price
                         print(f"   [OK] Got fill at {try_price}c!")
                         break
                     else:
+                        # CRITICAL: Cancel unfilled order before trying next price!
+                        if order_id:
+                            await kalshi_api.cancel_order(session, order_id)
                         print(f"   [.] No fill at {try_price}c, trying next level...")
-                        await asyncio.sleep(0.2)  # Brief pause between attempts
+                        await asyncio.sleep(0.1)  # Brief pause between attempts
 
                 # Verify with position check
                 await asyncio.sleep(0.3)

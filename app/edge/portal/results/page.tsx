@@ -302,7 +302,7 @@ export default function ResultsPage() {
             
             {results.length === 0 ? (
               <div className="p-8 text-center text-zinc-500">
-                No graded games yet. Games will appear here after they're completed and graded.
+                No graded games yet. Games will appear here after they&apos;re completed and graded.
               </div>
             ) : (
               <div className="overflow-x-auto">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 
 // Types
 interface Position {
@@ -30,7 +30,7 @@ interface Trade {
   roi: number;
 }
 
-type TradeFilter = "all" | "live" | "paper";
+type TradeFilter = "all" | "live" | "paper" | "failed";
 
 interface LogEntry {
   time: string;
@@ -59,6 +59,122 @@ type ConnectionStatus = "disconnected" | "connecting" | "connected" | "error";
 const BOT_SERVER_URL = process.env.NEXT_PUBLIC_BOT_SERVER_URL || "http://localhost:8001";
 const WS_URL = BOT_SERVER_URL.replace("http", "ws") + "/ws";
 
+// Mini Sparkline component
+function Sparkline({ data, width = 120, height = 32, color = "#00ff00" }: {
+  data: number[];
+  width?: number;
+  height?: number;
+  color?: string;
+}) {
+  if (data.length < 2) {
+    return (
+      <div style={{ width, height }} className="flex items-center justify-center text-[#444] text-xs">
+        No data
+      </div>
+    );
+  }
+
+  const min = Math.min(...data);
+  const max = Math.max(...data);
+  const range = max - min || 1;
+  const padding = 2;
+
+  const points = data.map((value, index) => {
+    const x = (index / (data.length - 1)) * (width - padding * 2) + padding;
+    const y = height - padding - ((value - min) / range) * (height - padding * 2);
+    return `${x},${y}`;
+  }).join(' ');
+
+  const lastPoint = data[data.length - 1];
+  const lastX = width - padding;
+  const lastY = height - padding - ((lastPoint - min) / range) * (height - padding * 2);
+
+  return (
+    <svg width={width} height={height} className="overflow-visible">
+      <defs>
+        <linearGradient id="sparklineGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={color} stopOpacity="0.3" />
+          <stop offset="100%" stopColor={color} stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      {/* Area fill */}
+      <polygon
+        points={`${padding},${height - padding} ${points} ${lastX},${height - padding}`}
+        fill="url(#sparklineGradient)"
+      />
+      {/* Line */}
+      <polyline
+        points={points}
+        fill="none"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Current value dot */}
+      <circle cx={lastX} cy={lastY} r="3" fill={color} />
+    </svg>
+  );
+}
+
+// Status indicator component
+function StatusDot({ status, size = "sm", pulse = false }: {
+  status: "success" | "warning" | "error" | "neutral" | "info";
+  size?: "sm" | "md";
+  pulse?: boolean;
+}) {
+  const colors = {
+    success: "bg-emerald-500 shadow-emerald-500/50",
+    warning: "bg-amber-500 shadow-amber-500/50",
+    error: "bg-red-500 shadow-red-500/50",
+    neutral: "bg-zinc-500 shadow-zinc-500/50",
+    info: "bg-cyan-500 shadow-cyan-500/50",
+  };
+
+  const sizes = {
+    sm: "w-2 h-2",
+    md: "w-3 h-3",
+  };
+
+  return (
+    <div
+      className={`rounded-full shadow-lg ${colors[status]} ${sizes[size]} ${pulse ? "animate-pulse" : ""}`}
+    />
+  );
+}
+
+// Card component for consistent styling
+function Card({ children, className = "", glow = false }: {
+  children: React.ReactNode;
+  className?: string;
+  glow?: boolean;
+}) {
+  return (
+    <div className={`
+      bg-zinc-900/80 backdrop-blur-sm border border-zinc-800
+      rounded-lg shadow-xl
+      ${glow ? "shadow-emerald-500/10 border-emerald-500/30" : ""}
+      ${className}
+    `}>
+      {children}
+    </div>
+  );
+}
+
+// Stat display component
+function StatValue({ value, unit = "", color = "text-zinc-100", mono = true }: {
+  value: string | number;
+  unit?: string;
+  color?: string;
+  mono?: boolean;
+}) {
+  return (
+    <span className={`${color} ${mono ? "font-mono" : ""}`}>
+      {value}{unit && <span className="text-zinc-500 text-xs ml-0.5">{unit}</span>}
+    </span>
+  );
+}
+
 export default function TradingDashboard() {
   // State
   const [connectionStatus, setConnectionStatus] = useState<ConnectionStatus>("disconnected");
@@ -70,7 +186,7 @@ export default function TradingDashboard() {
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [pmBalance] = useState<number>(494.90); // Tony's PM balance - hardcoded for now
+  const [pmBalance] = useState<number>(494.90);
   const [toast, setToast] = useState<string | null>(null);
   const [tradeFilter, setTradeFilter] = useState<TradeFilter>("all");
   const [scanInfo, setScanInfo] = useState<ScanInfo>({
@@ -79,68 +195,145 @@ export default function TradingDashboard() {
     arbsFound: 0,
     isScanning: false,
   });
+  const [startTime, setStartTime] = useState<Date | null>(null);
+  const [uptime, setUptime] = useState<string>("00:00:00");
+  const [latency, setLatency] = useState<number | null>(null);
+  const [profitHistory, setProfitHistory] = useState<number[]>([0]);
 
   const wsRef = useRef<WebSocket | null>(null);
   const logsEndRef = useRef<HTMLDivElement>(null);
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Calculate uptime
+  useEffect(() => {
+    if (botState === "running" && !startTime) {
+      setStartTime(new Date());
+    } else if (botState === "stopped") {
+      setStartTime(null);
+      setUptime("00:00:00");
+    }
+  }, [botState, startTime]);
+
+  useEffect(() => {
+    if (!startTime) return;
+
+    const interval = setInterval(() => {
+      const now = new Date();
+      const diff = Math.floor((now.getTime() - startTime.getTime()) / 1000);
+      const hours = Math.floor(diff / 3600).toString().padStart(2, '0');
+      const minutes = Math.floor((diff % 3600) / 60).toString().padStart(2, '0');
+      const seconds = (diff % 60).toString().padStart(2, '0');
+      setUptime(`${hours}:${minutes}:${seconds}`);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [startTime]);
+
   // Parse scan info from log message
   const parseScanInfo = useCallback((message: string) => {
-    // Match: "=== Scan 123 ==="
-    const scanMatch = message.match(/=== Scan (\d+) ===/);
+    const scanMatch = message.match(/Scan #?(\d+)/i);
     if (scanMatch) {
       setScanInfo(prev => ({ ...prev, scanNumber: parseInt(scanMatch[1]), isScanning: true, arbsFound: 0 }));
       return;
     }
-    // Match: "Found 5 games to scan"
-    const gamesMatch = message.match(/Found (\d+) games? to scan/);
+    const gamesMatch = message.match(/Games:\s*(\d+)|(\d+)\s*games/i);
     if (gamesMatch) {
-      setScanInfo(prev => ({ ...prev, gamesFound: parseInt(gamesMatch[1]) }));
+      setScanInfo(prev => ({ ...prev, gamesFound: parseInt(gamesMatch[1] || gamesMatch[2]) }));
       return;
     }
-    // Match: "[*] Found 3 arbs"
-    const arbsMatch = message.match(/\[\*\] Found (\d+) arb/);
+    const arbsMatch = message.match(/(\d+)\s*arb|Found\s*(\d+)/i);
     if (arbsMatch) {
-      setScanInfo(prev => ({ ...prev, arbsFound: parseInt(arbsMatch[1]) }));
+      const count = parseInt(arbsMatch[1] || arbsMatch[2]);
+      if (count >= 0 && count <= 100) {
+        setScanInfo(prev => ({ ...prev, arbsFound: count }));
+      }
       return;
     }
-    // Match: "Sleeping" indicates scan complete
-    if (message.includes("Sleeping")) {
+    if (message.includes("Sleeping") || message.includes("sleep")) {
       setScanInfo(prev => ({ ...prev, isScanning: false }));
     }
   }, []);
 
-  // Helper to get trade status display - uses trade's stored status/mode, not current dashboard mode
-  const getTradeStatus = (trade: Trade): { text: string; color: string } => {
-    // If status is already PAPER, show as paper trade
-    if (trade.status === "PAPER") {
-      return { text: "PAPER", color: "text-[#ffff00]" };
+  // Calculate fill rate and stats
+  const stats = useMemo(() => {
+    const liveTrades = trades.filter(t => t.execution_mode === "live" && t.status === "SUCCESS");
+    const paperTrades = trades.filter(t => t.execution_mode === "paper" || t.status === "PAPER");
+    const failedTrades = trades.filter(t => t.status === "NO_FILL" || t.status === "UNHEDGED");
+    const liveAttempts = trades.filter(t => t.execution_mode === "live");
+
+    const fillRate = liveAttempts.length > 0
+      ? (liveTrades.length / liveAttempts.length) * 100
+      : 0;
+
+    const totalPnL = trades.reduce((sum, t) => {
+      if (t.status === "SUCCESS" || t.status === "PAPER") {
+        return sum + t.expected_profit;
+      }
+      return sum;
+    }, 0);
+
+    const lastSuccessfulTrade = [...trades]
+      .filter(t => t.status === "SUCCESS" || t.status === "PAPER")
+      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())[0];
+
+    return {
+      liveTrades,
+      paperTrades,
+      failedTrades,
+      liveAttempts,
+      fillRate,
+      totalPnL,
+      lastSuccessfulTrade,
+      totalTrades: trades.length,
+    };
+  }, [trades]);
+
+  // Update profit history
+  useEffect(() => {
+    setProfitHistory(prev => {
+      const newHistory = [...prev, stats.totalPnL];
+      return newHistory.slice(-30); // Keep last 30 data points
+    });
+  }, [stats.totalPnL]);
+
+  // Get trade status display
+  const getTradeStatus = (trade: Trade): { text: string; color: string; bgColor: string } => {
+    if (trade.status === "PAPER" || trade.execution_mode === "paper") {
+      return { text: "PAPER", color: "text-amber-400", bgColor: "bg-amber-500/10 border-amber-500/30" };
     }
-    // If execution_mode is paper but status isn't PAPER (legacy trades), show PAPER
-    if (trade.execution_mode === "paper") {
-      return { text: "PAPER", color: "text-[#ffff00]" };
-    }
-    // Live trade statuses
     if (trade.status === "SUCCESS") {
-      return { text: "SUCCESS", color: "text-[#00ff00]" };
+      return { text: "SUCCESS", color: "text-emerald-400", bgColor: "bg-emerald-500/10 border-emerald-500/30" };
     }
     if (trade.status === "NO_FILL") {
-      return { text: "NO_FILL", color: "text-[#888]" };
+      return { text: "NO_FILL", color: "text-zinc-400", bgColor: "bg-zinc-500/10 border-zinc-500/30" };
     }
     if (trade.status === "UNHEDGED") {
-      return { text: "UNHEDGED", color: "text-[#ff0000]" };
+      return { text: "UNHEDGED", color: "text-red-400", bgColor: "bg-red-500/10 border-red-500/30" };
     }
     if (trade.status === "FAILED") {
-      return { text: "FAILED", color: "text-[#ff0000]" };
+      return { text: "FAILED", color: "text-red-400", bgColor: "bg-red-500/10 border-red-500/30" };
     }
-    // Unknown status
-    return { text: trade.status || "UNKNOWN", color: "text-[#ff6600]" };
+    return { text: trade.status || "UNKNOWN", color: "text-orange-400", bgColor: "bg-orange-500/10 border-orange-500/30" };
   };
 
   // Auto-scroll logs
   useEffect(() => {
     logsEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [logs]);
+
+  // Ping for latency
+  const measureLatency = useCallback(async () => {
+    try {
+      const start = performance.now();
+      const res = await fetch(`${BOT_SERVER_URL}/status`, { method: "GET" });
+      if (res.ok) {
+        const end = performance.now();
+        setLatency(Math.round(end - start));
+      }
+    } catch {
+      setLatency(null);
+    }
+  }, []);
 
   // WebSocket connection
   const connectWebSocket = useCallback(() => {
@@ -152,8 +345,8 @@ export default function TradingDashboard() {
     ws.onopen = () => {
       setConnectionStatus("connected");
       setError(null);
-      // Request initial status
       ws.send(JSON.stringify({ type: "get_status" }));
+      measureLatency();
     };
 
     ws.onmessage = (event) => {
@@ -180,12 +373,10 @@ export default function TradingDashboard() {
 
           case "logs":
             setLogs((prev) => [...prev, ...message.data].slice(-500));
-            // Parse last few logs for scan info
             message.data.slice(-10).forEach((log: LogEntry) => parseScanInfo(log.message));
             break;
 
           case "pong":
-            // Keep-alive response
             break;
         }
       } catch (e) {
@@ -201,15 +392,13 @@ export default function TradingDashboard() {
     ws.onclose = () => {
       setConnectionStatus("disconnected");
       wsRef.current = null;
-
-      // Reconnect after 3 seconds
       reconnectTimeoutRef.current = setTimeout(() => {
         connectWebSocket();
       }, 3000);
     };
 
     wsRef.current = ws;
-  }, [parseScanInfo]);
+  }, [parseScanInfo, measureLatency]);
 
   // Initial connection
   useEffect(() => {
@@ -217,13 +406,12 @@ export default function TradingDashboard() {
     fetchTrades();
     fetchStatus();
 
-    // Periodic status refresh
     const statusInterval = setInterval(() => {
       fetchStatus();
       fetchTrades();
+      measureLatency();
     }, 5000);
 
-    // Keep-alive ping
     const pingInterval = setInterval(() => {
       if (wsRef.current?.readyState === WebSocket.OPEN) {
         wsRef.current.send(JSON.stringify({ type: "ping" }));
@@ -238,7 +426,7 @@ export default function TradingDashboard() {
       }
       wsRef.current?.close();
     };
-  }, [connectWebSocket]);
+  }, [connectWebSocket, measureLatency]);
 
   // API calls
   const fetchStatus = async () => {
@@ -251,8 +439,8 @@ export default function TradingDashboard() {
         setBalance(data.balance);
         setPositions(data.positions || []);
       }
-    } catch (e) {
-      // Silent fail - WebSocket will keep us updated
+    } catch {
+      // Silent fail
     }
   };
 
@@ -263,7 +451,7 @@ export default function TradingDashboard() {
         const data = await res.json();
         setTrades(data.trades || []);
       }
-    } catch (e) {
+    } catch {
       // Silent fail
     }
   };
@@ -338,10 +526,6 @@ export default function TradingDashboard() {
     setTimeout(() => setToast(null), 3000);
   };
 
-  const handlePmRefresh = () => {
-    showToast("PM balance refresh not yet implemented");
-  };
-
   const handleClearData = async () => {
     if (!confirm("Clear all trade history and logs? This cannot be undone.")) return;
     try {
@@ -349,90 +533,133 @@ export default function TradingDashboard() {
       if (res.ok) {
         setTrades([]);
         setLogs([]);
+        setProfitHistory([0]);
         showToast("All data cleared");
       } else {
         showToast("Failed to clear data");
       }
-    } catch (e) {
+    } catch {
       showToast("Error clearing data");
     }
   };
 
-  // Computed values - STRICT filtering:
-  // Live = execution_mode is "live" AND status is "SUCCESS" (actually filled & hedged)
-  // Paper = execution_mode is "paper" OR status is "PAPER"
+  // Filtered trades
   const filteredTrades = trades.filter((t) => {
     if (tradeFilter === "all") return true;
     if (tradeFilter === "live") return t.execution_mode === "live" && t.status === "SUCCESS";
     if (tradeFilter === "paper") return t.execution_mode === "paper" || t.status === "PAPER";
+    if (tradeFilter === "failed") return t.status === "NO_FILL" || t.status === "UNHEDGED" || t.status === "FAILED";
     return true;
   });
 
-  // Only count SUCCESSFUL live trades (filled AND hedged)
-  const liveTrades = trades.filter((t) => t.execution_mode === "live" && t.status === "SUCCESS");
-  // Paper trades include PAPER status or paper execution mode
-  const paperTrades = trades.filter((t) => t.execution_mode === "paper" || t.status === "PAPER");
-  // Failed/NO_FILL trades
-  const failedTrades = trades.filter((t) => t.status === "NO_FILL" || t.status === "UNHEDGED");
-
-  const totalPnL = trades.reduce((sum, t) => {
-    if (t.status === "SUCCESS" || t.status === "PAPER") {
-      return sum + t.expected_profit;
-    }
-    return sum;
-  }, 0);
-
-  const successfulTrades = trades.filter((t) => t.status === "SUCCESS" || t.status === "PAPER").length;
-
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono p-4">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4 border-b border-[#333] pb-4">
-        <div className="flex items-center gap-4">
-          <h1 className="text-xl font-bold text-[#00ff00]">OMI EDGE</h1>
-          <span className="text-[#666]">|</span>
-          <span className="text-sm text-[#888]">ARB EXECUTOR v6</span>
-        </div>
-
-        {/* Scanning Indicator */}
-        {botState === "running" && (
-          <div className="flex items-center gap-4 bg-[#111] border border-[#333] px-4 py-2">
-            <div className="flex items-center gap-2">
-              <div className={`w-2 h-2 rounded-full ${scanInfo.isScanning ? "bg-[#00ffff] animate-pulse" : "bg-[#333]"}`} />
-              <span className={`text-sm font-bold ${scanInfo.isScanning ? "text-[#00ffff]" : "text-[#666]"}`}>
-                {scanInfo.isScanning ? "SCANNING" : "IDLE"}
-              </span>
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 selection:bg-emerald-500/30">
+      {/* Top Stats Bar */}
+      <div className="mb-4">
+        <Card className="p-3">
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            {/* Logo & Title */}
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center font-bold text-sm">
+                  OMI
+                </div>
+                <div>
+                  <h1 className="text-lg font-bold text-zinc-100">OMI EDGE</h1>
+                  <p className="text-[10px] text-zinc-500 uppercase tracking-wider">ARB EXECUTOR v6</p>
+                </div>
+              </div>
             </div>
-            <span className="text-[#666]">|</span>
-            <span className="text-xs text-[#888]">Scan #{scanInfo.scanNumber}</span>
-            <span className="text-xs text-[#888]">{scanInfo.gamesFound} games</span>
-            <span className={`text-xs ${scanInfo.arbsFound > 0 ? "text-[#00ff00]" : "text-[#888]"}`}>
-              {scanInfo.arbsFound} arbs
-            </span>
-          </div>
-        )}
 
-        {/* Connection Status */}
-        <div className="flex items-center gap-2">
-          <div
-            className={`w-2 h-2 rounded-full ${
-              connectionStatus === "connected"
-                ? "bg-[#00ff00]"
-                : connectionStatus === "connecting"
-                ? "bg-[#ffff00] animate-pulse"
-                : "bg-[#ff0000]"
-            }`}
-          />
-          <span className="text-xs text-[#888] uppercase">{connectionStatus}</span>
-        </div>
+            {/* Real-time Stats */}
+            <div className="flex items-center gap-6 text-sm">
+              {/* Scan Status */}
+              <div className="flex items-center gap-2">
+                <StatusDot
+                  status={scanInfo.isScanning ? "info" : "neutral"}
+                  pulse={scanInfo.isScanning}
+                />
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-zinc-500 uppercase">Scan</span>
+                  <span className="font-mono text-zinc-100">#{scanInfo.scanNumber}</span>
+                </div>
+              </div>
+
+              <div className="w-px h-8 bg-zinc-800" />
+
+              {/* Games */}
+              <div className="flex flex-col">
+                <span className="text-[10px] text-zinc-500 uppercase">Games</span>
+                <span className="font-mono text-zinc-100">{scanInfo.gamesFound}</span>
+              </div>
+
+              {/* Arbs */}
+              <div className="flex flex-col">
+                <span className="text-[10px] text-zinc-500 uppercase">Arbs</span>
+                <span className={`font-mono ${scanInfo.arbsFound > 0 ? "text-emerald-400" : "text-zinc-400"}`}>
+                  {scanInfo.arbsFound}
+                </span>
+              </div>
+
+              <div className="w-px h-8 bg-zinc-800" />
+
+              {/* Fill Rate */}
+              <div className="flex flex-col">
+                <span className="text-[10px] text-zinc-500 uppercase">Fill Rate</span>
+                <span className={`font-mono ${
+                  stats.fillRate >= 50 ? "text-emerald-400" :
+                  stats.fillRate >= 25 ? "text-amber-400" : "text-red-400"
+                }`}>
+                  {stats.fillRate.toFixed(1)}%
+                </span>
+              </div>
+
+              {/* Uptime */}
+              <div className="flex flex-col">
+                <span className="text-[10px] text-zinc-500 uppercase">Uptime</span>
+                <span className="font-mono text-zinc-100">{uptime}</span>
+              </div>
+
+              <div className="w-px h-8 bg-zinc-800" />
+
+              {/* Connection & Latency */}
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <StatusDot
+                    status={connectionStatus === "connected" ? "success" : connectionStatus === "connecting" ? "warning" : "error"}
+                    pulse={connectionStatus === "connecting"}
+                  />
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-zinc-500 uppercase">API</span>
+                    <span className={`text-xs font-mono ${
+                      connectionStatus === "connected" ? "text-emerald-400" :
+                      connectionStatus === "connecting" ? "text-amber-400" : "text-red-400"
+                    }`}>
+                      {latency !== null ? `${latency}ms` : "---"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mode Badge */}
+              <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
+                mode === "live"
+                  ? "bg-red-500/20 text-red-400 border border-red-500/50"
+                  : "bg-blue-500/20 text-blue-400 border border-blue-500/50"
+              }`}>
+                {mode}
+              </div>
+            </div>
+          </div>
+        </Card>
       </div>
 
       {/* Error Banner */}
       {error && (
-        <div className="bg-[#ff0000]/20 border border-[#ff0000] text-[#ff6666] px-4 py-2 mb-4 text-sm">
-          {error}
-          <button onClick={() => setError(null)} className="ml-4 text-[#888] hover:text-white">
-            [dismiss]
+        <div className="mb-4 bg-red-500/10 border border-red-500/50 rounded-lg text-red-400 px-4 py-3 text-sm flex items-center justify-between">
+          <span>{error}</span>
+          <button onClick={() => setError(null)} className="text-red-400/60 hover:text-red-400 transition-colors">
+            ✕
           </button>
         </div>
       )}
@@ -442,32 +669,32 @@ export default function TradingDashboard() {
         {/* Left Column - Controls & Status */}
         <div className="col-span-12 lg:col-span-3 space-y-4">
           {/* Bot Controls */}
-          <div className="bg-[#111] border border-[#333] p-4">
-            <h2 className="text-sm text-[#888] mb-4 uppercase tracking-wider">Bot Control</h2>
+          <Card className="p-4">
+            <h2 className="text-xs text-zinc-500 mb-4 uppercase tracking-wider font-medium">Bot Control</h2>
 
             {/* Mode Toggle */}
             <div className="mb-4">
-              <label className="text-xs text-[#666] mb-2 block">EXECUTION MODE</label>
-              <div className="flex">
+              <label className="text-[10px] text-zinc-600 mb-2 block uppercase tracking-wider">Execution Mode</label>
+              <div className="flex rounded-lg overflow-hidden border border-zinc-700">
                 <button
                   onClick={() => handleModeChange("paper")}
                   disabled={isLoading || botState === "running"}
-                  className={`flex-1 py-2 text-sm border ${
+                  className={`flex-1 py-2.5 text-sm font-medium transition-all ${
                     mode === "paper"
-                      ? "bg-[#1a1a2e] border-[#4444ff] text-[#6666ff]"
-                      : "bg-[#111] border-[#333] text-[#666] hover:border-[#444]"
-                  } disabled:opacity-50`}
+                      ? "bg-blue-500/20 text-blue-400"
+                      : "bg-zinc-800 text-zinc-500 hover:bg-zinc-700 hover:text-zinc-400"
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
                   PAPER
                 </button>
                 <button
                   onClick={() => handleModeChange("live")}
                   disabled={isLoading || botState === "running"}
-                  className={`flex-1 py-2 text-sm border border-l-0 ${
+                  className={`flex-1 py-2.5 text-sm font-medium transition-all ${
                     mode === "live"
-                      ? "bg-[#2e1a1a] border-[#ff4444] text-[#ff6666]"
-                      : "bg-[#111] border-[#333] text-[#666] hover:border-[#444]"
-                  } disabled:opacity-50`}
+                      ? "bg-red-500/20 text-red-400"
+                      : "bg-zinc-800 text-zinc-500 hover:bg-zinc-700 hover:text-zinc-400"
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
                   LIVE
                 </button>
@@ -479,146 +706,173 @@ export default function TradingDashboard() {
               <button
                 onClick={handleStart}
                 disabled={isLoading || botState === "running" || botState === "starting"}
-                className="flex-1 py-3 bg-[#003300] hover:bg-[#004400] border border-[#00ff00] text-[#00ff00]
-                         disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-sm font-bold"
+                className="flex-1 py-3 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/50
+                         text-emerald-400 disabled:opacity-30 disabled:cursor-not-allowed transition-all
+                         text-sm font-bold rounded-lg hover:shadow-lg hover:shadow-emerald-500/10"
               >
                 {botState === "starting" ? "STARTING..." : "START"}
               </button>
               <button
                 onClick={handleStop}
                 disabled={isLoading || botState === "stopped" || botState === "stopping"}
-                className="flex-1 py-3 bg-[#330000] hover:bg-[#440000] border border-[#ff0000] text-[#ff0000]
-                         disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-sm font-bold"
+                className="flex-1 py-3 bg-red-500/10 hover:bg-red-500/20 border border-red-500/50
+                         text-red-400 disabled:opacity-30 disabled:cursor-not-allowed transition-all
+                         text-sm font-bold rounded-lg hover:shadow-lg hover:shadow-red-500/10"
               >
                 {botState === "stopping" ? "STOPPING..." : "STOP"}
               </button>
             </div>
 
             {/* Bot State */}
-            <div className="mt-4 pt-4 border-t border-[#333]">
-              <div className="flex justify-between text-sm">
-                <span className="text-[#666]">State:</span>
-                <span
-                  className={`uppercase font-bold ${
-                    botState === "running"
-                      ? "text-[#00ff00]"
-                      : botState === "error"
-                      ? "text-[#ff0000]"
-                      : botState === "starting" || botState === "stopping"
-                      ? "text-[#ffff00]"
-                      : "text-[#888]"
-                  }`}
-                >
-                  {botState}
-                </span>
+            <div className="mt-4 pt-4 border-t border-zinc-800">
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-zinc-500">State</span>
+                <div className="flex items-center gap-2">
+                  <StatusDot
+                    status={
+                      botState === "running" ? "success" :
+                      botState === "error" ? "error" :
+                      (botState === "starting" || botState === "stopping") ? "warning" : "neutral"
+                    }
+                    pulse={botState === "starting" || botState === "stopping"}
+                  />
+                  <span className={`uppercase font-bold font-mono ${
+                    botState === "running" ? "text-emerald-400" :
+                    botState === "error" ? "text-red-400" :
+                    (botState === "starting" || botState === "stopping") ? "text-amber-400" : "text-zinc-400"
+                  }`}>
+                    {botState}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
+          </Card>
 
           {/* Balances */}
-          <div className="bg-[#111] border border-[#333] p-4">
-            <h2 className="text-sm text-[#888] mb-3 uppercase tracking-wider">Account Balances</h2>
-            <div className="space-y-3">
+          <Card className="p-4">
+            <h2 className="text-xs text-zinc-500 mb-4 uppercase tracking-wider font-medium">Account Balances</h2>
+            <div className="space-y-4">
               {/* Kalshi */}
-              <div>
-                <div className="text-xs text-[#666] mb-1">KALSHI</div>
-                <div className="text-2xl font-bold text-[#00ff00]">
+              <div className="p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/50">
+                <div className="text-[10px] text-zinc-500 mb-1 uppercase tracking-wider">Kalshi</div>
+                <div className="text-2xl font-bold font-mono text-emerald-400">
                   {balance !== null ? `$${balance.toFixed(2)}` : "---"}
                 </div>
               </div>
               {/* Polymarket */}
-              <div className="pt-2 border-t border-[#333]">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs text-[#666]">POLYMARKET</span>
-                  <button
-                    onClick={handlePmRefresh}
-                    className="text-xs text-[#666] hover:text-[#888] px-1.5 py-0.5 border border-[#333] hover:border-[#444]"
-                  >
-                    refresh
-                  </button>
-                </div>
-                <div className="text-2xl font-bold text-[#a855f7]">
+              <div className="p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/50">
+                <div className="text-[10px] text-zinc-500 mb-1 uppercase tracking-wider">Polymarket</div>
+                <div className="text-2xl font-bold font-mono text-purple-400">
                   ${pmBalance.toFixed(2)}
                 </div>
               </div>
               {/* Combined */}
-              <div className="pt-2 border-t border-[#333]">
-                <div className="text-xs text-[#666] mb-1">COMBINED</div>
-                <div className="text-xl font-bold text-[#e0e0e0]">
+              <div className="p-3 bg-gradient-to-br from-emerald-500/10 to-purple-500/10 rounded-lg border border-zinc-700/50">
+                <div className="text-[10px] text-zinc-500 mb-1 uppercase tracking-wider">Combined</div>
+                <div className="text-2xl font-bold font-mono text-zinc-100">
                   ${((balance || 0) + pmBalance).toFixed(2)}
                 </div>
               </div>
             </div>
-          </div>
+          </Card>
 
-          {/* Stats */}
-          <div className="bg-[#111] border border-[#333] p-4">
+          {/* Session Stats */}
+          <Card className="p-4">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-sm text-[#888] uppercase tracking-wider">Session Stats</h2>
+              <h2 className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Session Stats</h2>
               <button
                 onClick={handleClearData}
-                className="text-xs text-[#ff6666] hover:text-[#ff8888] px-2 py-1 border border-[#ff4444] hover:border-[#ff6666]"
+                className="text-[10px] text-red-400/60 hover:text-red-400 px-2 py-1 border border-red-500/30
+                         hover:border-red-500/50 rounded transition-all hover:bg-red-500/10"
               >
                 Clear All
               </button>
             </div>
+
+            {/* P&L with Sparkline */}
+            <div className="mb-4 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/50">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] text-zinc-500 uppercase tracking-wider">Estimated P&L</span>
+                <span className={`text-xl font-bold font-mono ${
+                  stats.totalPnL >= 0 ? "text-emerald-400" : "text-red-400"
+                }`}>
+                  {stats.totalPnL >= 0 ? "+" : ""}${stats.totalPnL.toFixed(2)}
+                </span>
+              </div>
+              <Sparkline
+                data={profitHistory}
+                color={stats.totalPnL >= 0 ? "#10b981" : "#ef4444"}
+                width={200}
+                height={40}
+              />
+            </div>
+
             <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-[#666]">Live Fills:</span>
-                <span className="text-[#00ff00]">{liveTrades.length}</span>
+              <div className="flex justify-between items-center py-1.5 border-b border-zinc-800/50">
+                <span className="text-zinc-500">Live Fills</span>
+                <span className="font-mono text-emerald-400">{stats.liveTrades.length}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-[#666]">Paper Trades:</span>
-                <span className="text-[#ffff00]">{paperTrades.length}</span>
+              <div className="flex justify-between items-center py-1.5 border-b border-zinc-800/50">
+                <span className="text-zinc-500">Paper Trades</span>
+                <span className="font-mono text-amber-400">{stats.paperTrades.length}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-[#666]">No Fill:</span>
-                <span className="text-[#888]">{failedTrades.length}</span>
+              <div className="flex justify-between items-center py-1.5 border-b border-zinc-800/50">
+                <span className="text-zinc-500">No Fill</span>
+                <span className="font-mono text-zinc-400">{stats.failedTrades.length}</span>
               </div>
-              <div className="flex justify-between pt-2 border-t border-[#333]">
-                <span className="text-[#666]">Est. P&L:</span>
-                <span className={totalPnL >= 0 ? "text-[#00ff00]" : "text-[#ff0000]"}>
-                  ${totalPnL.toFixed(2)}
+              <div className="flex justify-between items-center py-1.5 border-b border-zinc-800/50">
+                <span className="text-zinc-500">Fill Rate</span>
+                <span className={`font-mono ${
+                  stats.fillRate >= 50 ? "text-emerald-400" :
+                  stats.fillRate >= 25 ? "text-amber-400" : "text-red-400"
+                }`}>
+                  {stats.fillRate.toFixed(1)}%
+                </span>
+              </div>
+              <div className="flex justify-between items-center py-1.5">
+                <span className="text-zinc-500">Last Success</span>
+                <span className="font-mono text-zinc-300 text-xs">
+                  {stats.lastSuccessfulTrade
+                    ? new Date(stats.lastSuccessfulTrade.timestamp).toLocaleTimeString("en-US", { hour12: false })
+                    : "---"
+                  }
                 </span>
               </div>
             </div>
-          </div>
+          </Card>
         </div>
 
         {/* Middle Column - Positions & Trades */}
         <div className="col-span-12 lg:col-span-5 space-y-4">
           {/* Positions */}
-          <div className="bg-[#111] border border-[#333] p-4">
-            <h2 className="text-sm text-[#888] mb-4 uppercase tracking-wider">Open Positions</h2>
+          <Card className="p-4">
+            <h2 className="text-xs text-zinc-500 mb-4 uppercase tracking-wider font-medium">Open Positions</h2>
             {positions.length === 0 ? (
-              <div className="text-[#666] text-sm py-4 text-center">No open positions</div>
+              <div className="text-zinc-500 text-sm py-8 text-center bg-zinc-800/30 rounded-lg border border-zinc-800">
+                No open positions
+              </div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="text-[#666] text-left border-b border-[#333]">
-                      <th className="pb-2">Ticker</th>
-                      <th className="pb-2 text-right">Position</th>
-                      <th className="pb-2 text-right">Exposure</th>
-                      <th className="pb-2 text-right">Cost</th>
+                    <tr className="text-zinc-500 text-left">
+                      <th className="pb-3 font-medium text-[10px] uppercase tracking-wider">Ticker</th>
+                      <th className="pb-3 font-medium text-[10px] uppercase tracking-wider text-right">Position</th>
+                      <th className="pb-3 font-medium text-[10px] uppercase tracking-wider text-right">Exposure</th>
+                      <th className="pb-3 font-medium text-[10px] uppercase tracking-wider text-right">Cost</th>
                     </tr>
                   </thead>
                   <tbody>
                     {positions.map((pos) => (
-                      <tr key={pos.ticker} className="border-b border-[#222]">
-                        <td className="py-2 text-[#00ffff]">{pos.ticker}</td>
-                        <td
-                          className={`py-2 text-right ${
-                            pos.position > 0 ? "text-[#00ff00]" : "text-[#ff0000]"
-                          }`}
-                        >
-                          {pos.position > 0 ? "+" : ""}
-                          {pos.position}
+                      <tr key={pos.ticker} className="border-t border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
+                        <td className="py-3 font-mono text-cyan-400">{pos.ticker}</td>
+                        <td className={`py-3 text-right font-mono ${pos.position > 0 ? "text-emerald-400" : "text-red-400"}`}>
+                          {pos.position > 0 ? "+" : ""}{pos.position}
                         </td>
-                        <td className="py-2 text-right">
+                        <td className="py-3 text-right font-mono text-zinc-300">
                           ${((pos.market_exposure || 0) / 100).toFixed(2)}
                         </td>
-                        <td className="py-2 text-right text-[#888]">
+                        <td className="py-3 text-right font-mono text-zinc-500">
                           ${((pos.total_cost || 0) / 100).toFixed(2)}
                         </td>
                       </tr>
@@ -627,163 +881,164 @@ export default function TradingDashboard() {
                 </table>
               </div>
             )}
-          </div>
+          </Card>
 
           {/* Trade History */}
-          <div className="bg-[#111] border border-[#333] p-4">
+          <Card className="p-4">
             {/* Header with tabs */}
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-sm text-[#888] uppercase tracking-wider">Trade History</h2>
-              <div className="flex gap-1">
-                <button
-                  onClick={() => setTradeFilter("all")}
-                  className={`px-2 py-1 text-xs border ${
-                    tradeFilter === "all"
-                      ? "bg-[#333] border-[#555] text-white"
-                      : "border-[#333] text-[#666] hover:border-[#444]"
-                  }`}
-                >
-                  All ({trades.length})
-                </button>
-                <button
-                  onClick={() => setTradeFilter("live")}
-                  className={`px-2 py-1 text-xs border ${
-                    tradeFilter === "live"
-                      ? "bg-[#2e1a1a] border-[#ff4444] text-[#ff6666]"
-                      : "border-[#333] text-[#666] hover:border-[#444]"
-                  }`}
-                >
-                  Live ({liveTrades.length})
-                </button>
-                <button
-                  onClick={() => setTradeFilter("paper")}
-                  className={`px-2 py-1 text-xs border ${
-                    tradeFilter === "paper"
-                      ? "bg-[#2e2e1a] border-[#ffff44] text-[#ffff66]"
-                      : "border-[#333] text-[#666] hover:border-[#444]"
-                  }`}
-                >
-                  Paper ({paperTrades.length})
-                </button>
+            <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <h2 className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Trade History</h2>
+              <div className="flex gap-1 bg-zinc-800/50 p-1 rounded-lg">
+                {[
+                  { key: "all", label: "All", count: trades.length },
+                  { key: "live", label: "Live", count: stats.liveTrades.length, color: "emerald" },
+                  { key: "paper", label: "Paper", count: stats.paperTrades.length, color: "amber" },
+                  { key: "failed", label: "Failed", count: stats.failedTrades.length, color: "zinc" },
+                ].map(({ key, label, count, color }) => (
+                  <button
+                    key={key}
+                    onClick={() => setTradeFilter(key as TradeFilter)}
+                    className={`px-3 py-1.5 text-xs rounded-md transition-all font-medium ${
+                      tradeFilter === key
+                        ? color === "emerald"
+                          ? "bg-emerald-500/20 text-emerald-400"
+                          : color === "amber"
+                          ? "bg-amber-500/20 text-amber-400"
+                          : color === "zinc"
+                          ? "bg-zinc-600/50 text-zinc-300"
+                          : "bg-zinc-700 text-zinc-100"
+                        : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-700/50"
+                    }`}
+                  >
+                    {label} <span className="opacity-60">({count})</span>
+                  </button>
+                ))}
               </div>
             </div>
-            <div className="max-h-[400px] overflow-y-auto">
+            <div className="max-h-[400px] overflow-y-auto space-y-2 pr-1">
               {filteredTrades.length === 0 ? (
-                <div className="text-[#666] text-sm py-4 text-center">
+                <div className="text-zinc-500 text-sm py-8 text-center bg-zinc-800/30 rounded-lg border border-zinc-800">
                   {trades.length === 0 ? "No trades yet" : `No ${tradeFilter} trades`}
                 </div>
               ) : (
-                <div className="space-y-2">
-                  {[...filteredTrades].reverse().map((trade, i) => {
-                    const status = getTradeStatus(trade);
-                    return (
-                      <div key={i} className="bg-[#0a0a0a] border border-[#222] p-3">
-                        {/* Header row */}
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center gap-2">
-                            <span className="text-[#666] text-xs">
-                              {new Date(trade.timestamp).toLocaleTimeString("en-US", { hour12: false })}
-                            </span>
-                            <span className={`text-xs px-1.5 py-0.5 ${status.color} border border-current`}>
-                              {status.text}
-                            </span>
-                          </div>
-                          <span className={`text-sm font-bold ${trade.expected_profit >= 0 ? "text-[#00ff00]" : "text-[#ff0000]"}`}>
-                            {trade.expected_profit >= 0 ? "+" : ""}${trade.expected_profit.toFixed(2)}
+                [...filteredTrades].reverse().map((trade, i) => {
+                  const status = getTradeStatus(trade);
+                  return (
+                    <div
+                      key={i}
+                      className={`p-3 rounded-lg border transition-all hover:border-zinc-600 ${status.bgColor}`}
+                    >
+                      {/* Header row */}
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-zinc-500 text-xs font-mono">
+                            {new Date(trade.timestamp).toLocaleTimeString("en-US", { hour12: false })}
+                          </span>
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium uppercase ${status.color} border border-current/30`}>
+                            {status.text}
                           </span>
                         </div>
-                        {/* Details */}
-                        <div className="text-xs">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-[#00ffff] font-bold">{trade.team}</span>
-                            <span className="text-[#666]">|</span>
-                            <span className="text-[#888]">{trade.game}</span>
-                          </div>
-                          <div className="flex items-center gap-4 text-[#888]">
-                            <span>
-                              Dir: <span className={trade.direction === "YES" ? "text-[#00ff00]" : "text-[#ff6666]"}>{trade.direction || "YES"}</span>
+                        <span className={`text-sm font-bold font-mono ${trade.expected_profit >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                          {trade.expected_profit >= 0 ? "+" : ""}${trade.expected_profit.toFixed(2)}
+                        </span>
+                      </div>
+                      {/* Details */}
+                      <div className="text-xs">
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <span className="text-cyan-400 font-bold">{trade.team}</span>
+                          <span className="text-zinc-600">|</span>
+                          <span className="text-zinc-400">{trade.game}</span>
+                        </div>
+                        <div className="flex items-center gap-4 text-zinc-500">
+                          <span>
+                            Size: <span className="text-zinc-200 font-mono">{trade.k_fill_count}</span>
+                          </span>
+                          <span>
+                            Price: <span className="text-cyan-400 font-mono">{trade.k_fill_price ? `${trade.k_fill_price}¢` : "--"}</span>
+                          </span>
+                          <span>
+                            ROI: <span className={`font-mono ${trade.roi > 0 ? "text-emerald-400" : "text-zinc-400"}`}>
+                              {trade.roi ? `${trade.roi.toFixed(1)}%` : "--"}
                             </span>
-                            <span>
-                              Size: <span className="text-white">{trade.k_fill_count}</span>
-                            </span>
-                            <span>
-                              K: <span className="text-[#00ffff]">{trade.k_fill_price ? `${trade.k_fill_price}¢` : "--"}</span>
-                            </span>
-                            <span>
-                              ROI: <span className={trade.roi > 0 ? "text-[#00ff00]" : "text-[#888]"}>{trade.roi ? `${trade.roi.toFixed(1)}%` : "--"}</span>
-                            </span>
-                          </div>
+                          </span>
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
+                    </div>
+                  );
+                })
               )}
             </div>
-          </div>
+          </Card>
         </div>
 
         {/* Right Column - Logs */}
         <div className="col-span-12 lg:col-span-4">
-          <div className="bg-[#111] border border-[#333] p-4 h-full">
+          <Card className="p-4 h-full flex flex-col">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-sm text-[#888] uppercase tracking-wider">Bot Logs</h2>
+              <h2 className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Bot Logs</h2>
               <button
                 onClick={() => setLogs([])}
-                className="text-xs text-[#666] hover:text-[#888] px-2 py-1 border border-[#333] hover:border-[#444]"
+                className="text-[10px] text-zinc-500 hover:text-zinc-300 px-2 py-1 border border-zinc-700
+                         hover:border-zinc-600 rounded transition-all hover:bg-zinc-800"
               >
                 Clear
               </button>
             </div>
-            <div className="bg-[#0a0a0a] border border-[#222] h-[500px] overflow-y-auto p-2 text-xs">
-              {logs.length === 0 ? (
-                <div className="text-[#666] py-4 text-center">Waiting for logs...</div>
-              ) : (
-                <>
-                  {logs.map((log, i) => (
-                    <div key={i} className="py-0.5 hover:bg-[#1a1a1a]">
-                      <span className="text-[#666]">[{log.time}]</span>{" "}
-                      <span
-                        className={
-                          log.message.includes("[OK]") || log.message.includes("SUCCESS")
-                            ? "text-[#00ff00]"
-                            : log.message.includes("[!]") ||
-                              log.message.includes("ERROR") ||
-                              log.message.includes("[X]")
-                            ? "text-[#ff6666]"
-                            : log.message.includes("[>>]")
-                            ? "text-[#00ffff]"
-                            : log.message.includes("PAPER")
-                            ? "text-[#ffff00]"
-                            : "text-[#aaa]"
-                        }
-                      >
-                        {log.message}
-                      </span>
-                    </div>
-                  ))}
-                  <div ref={logsEndRef} />
-                </>
-              )}
+            <div className="bg-zinc-950 border border-zinc-800 rounded-lg flex-1 overflow-hidden">
+              <div className="h-[550px] overflow-y-auto p-3 text-xs font-mono">
+                {logs.length === 0 ? (
+                  <div className="text-zinc-600 py-4 text-center">Waiting for logs...</div>
+                ) : (
+                  <>
+                    {logs.map((log, i) => (
+                      <div key={i} className="py-0.5 hover:bg-zinc-900/50 rounded px-1 -mx-1">
+                        <span className="text-zinc-600">[{log.time}]</span>{" "}
+                        <span
+                          className={
+                            log.message.includes("[OK]") || log.message.includes("SUCCESS")
+                              ? "text-emerald-400"
+                              : log.message.includes("[!]") || log.message.includes("ERROR") || log.message.includes("[X]")
+                              ? "text-red-400"
+                              : log.message.includes("[>>]") || log.message.includes("SWEEP")
+                              ? "text-cyan-400"
+                              : log.message.includes("PAPER")
+                              ? "text-amber-400"
+                              : log.message.includes("[CANCEL]") || log.message.includes("CLEANUP")
+                              ? "text-orange-400"
+                              : "text-zinc-400"
+                          }
+                        >
+                          {log.message}
+                        </span>
+                      </div>
+                    ))}
+                    <div ref={logsEndRef} />
+                  </>
+                )}
+              </div>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="mt-4 pt-4 border-t border-[#333] text-xs text-[#666] flex justify-between">
-        <span>
-          Server: {BOT_SERVER_URL} | Mode:{" "}
-          <span className={mode === "live" ? "text-[#ff6666]" : "text-[#6666ff]"}>
-            {mode.toUpperCase()}
+      <div className="mt-4 pt-4 border-t border-zinc-800 text-xs text-zinc-600 flex justify-between items-center">
+        <div className="flex items-center gap-4">
+          <span className="font-mono">{BOT_SERVER_URL}</span>
+          <span className="text-zinc-800">|</span>
+          <span>
+            Mode: <span className={mode === "live" ? "text-red-400 font-medium" : "text-blue-400 font-medium"}>
+              {mode.toUpperCase()}
+            </span>
           </span>
-        </span>
-        <span>OMI Edge Arb Executor Dashboard</span>
+        </div>
+        <span className="text-zinc-700">OMI Edge Trading Terminal v1.0</span>
       </div>
 
       {/* Toast */}
       {toast && (
-        <div className="fixed bottom-4 right-4 bg-[#222] border border-[#444] text-[#e0e0e0] px-4 py-3 text-sm shadow-lg">
+        <div className="fixed bottom-4 right-4 bg-zinc-800 border border-zinc-700 text-zinc-100
+                       px-4 py-3 text-sm rounded-lg shadow-2xl animate-in slide-in-from-bottom-2">
           {toast}
         </div>
       )}

@@ -319,15 +319,115 @@ class KalshiAPI:
                 timeout=aiohttp.ClientTimeout(total=5)
             ) as r:
                 if r.status in [200, 204]:
-                    print(f"   [X] Cancelled order {order_id[:8]}...")
+                    print(f"   [CANCEL] Order {order_id[:8]}... cancelled")
                     return True
                 else:
                     data = await r.json()
-                    print(f"   [!] Cancel failed: {data}")
+                    error_msg = data.get('error', {}).get('message', str(data))
+                    # "order not found" means already filled or cancelled - that's OK
+                    if 'not found' in error_msg.lower() or 'already' in error_msg.lower():
+                        print(f"   [CANCEL] Order {order_id[:8]}... already gone (filled/cancelled)")
+                        return True
+                    print(f"   [!] Cancel failed: {error_msg}")
                     return False
         except Exception as e:
             print(f"   [!] Cancel error: {e}")
             return False
+
+    async def get_open_orders(self, session, ticker: str = None) -> List[Dict]:
+        """
+        Get all open (resting) orders, optionally filtered by ticker.
+        Returns list of order dicts with order_id, ticker, action, side, count, price.
+        """
+        path = '/trade-api/v2/portfolio/orders?status=resting'
+        if ticker:
+            path += f'&ticker={ticker}'
+
+        try:
+            async with session.get(
+                f'{self.BASE_URL}{path}',
+                headers=self._headers('GET', path),
+                timeout=aiohttp.ClientTimeout(total=10)
+            ) as r:
+                if r.status == 200:
+                    data = await r.json()
+                    orders = data.get('orders', [])
+                    return [{
+                        'order_id': o.get('order_id'),
+                        'ticker': o.get('ticker'),
+                        'action': o.get('action'),
+                        'side': o.get('side'),
+                        'count': o.get('remaining_count', o.get('count', 0)),
+                        'price': o.get('yes_price') or o.get('no_price'),
+                        'created_time': o.get('created_time')
+                    } for o in orders]
+                else:
+                    print(f"   [!] Get orders failed: HTTP {r.status}")
+        except Exception as e:
+            print(f"   [!] Get orders error: {e}")
+        return []
+
+    async def cancel_all_orders_for_ticker(self, session, ticker: str) -> int:
+        """
+        Cancel ALL open orders for a specific ticker.
+        Returns count of orders cancelled.
+        This is CRITICAL to prevent resting orders from filling without tracking.
+        """
+        cancelled = 0
+        max_attempts = 3  # Try multiple times to ensure all orders are cancelled
+
+        for attempt in range(max_attempts):
+            orders = await self.get_open_orders(session, ticker)
+
+            if not orders:
+                if attempt == 0:
+                    print(f"   [CLEANUP] No open orders for {ticker}")
+                break
+
+            print(f"   [CLEANUP] Found {len(orders)} open orders for {ticker}, cancelling...")
+
+            for order in orders:
+                order_id = order.get('order_id')
+                if order_id:
+                    success = await self.cancel_order(session, order_id)
+                    if success:
+                        cancelled += 1
+                    await asyncio.sleep(0.05)  # Small delay between cancels
+
+            # Brief pause then verify
+            await asyncio.sleep(0.2)
+
+        if cancelled > 0:
+            print(f"   [CLEANUP] Cancelled {cancelled} orders for {ticker}")
+
+        return cancelled
+
+    async def cancel_all_open_orders(self, session) -> int:
+        """
+        Cancel ALL open orders across ALL tickers.
+        Used on startup to clean slate.
+        """
+        cancelled = 0
+        orders = await self.get_open_orders(session)
+
+        if not orders:
+            print("[CLEANUP] No open orders found")
+            return 0
+
+        print(f"[CLEANUP] Found {len(orders)} total open orders, cancelling all...")
+
+        for order in orders:
+            order_id = order.get('order_id')
+            ticker = order.get('ticker', 'unknown')
+            if order_id:
+                print(f"   [CANCEL] {ticker}: order {order_id[:8]}...")
+                success = await self.cancel_order(session, order_id)
+                if success:
+                    cancelled += 1
+                await asyncio.sleep(0.05)
+
+        print(f"[CLEANUP] Cancelled {cancelled} orders total")
+        return cancelled
 
 
 async def notify_partner(session, arb: ArbOpportunity, fill_count: int, fill_price: int) -> Dict:
@@ -578,7 +678,15 @@ async def run_executor():
             print(f"Open positions: {len(positions)}")
             for ticker, pos in positions.items():
                 print(f"  {ticker}: {pos.position} contracts")
-        
+
+        # CRITICAL: Cancel ALL stale orders on startup to prevent untracked fills
+        if EXECUTION_MODE == ExecutionMode.LIVE:
+            print("\n[STARTUP CLEANUP] Checking for stale orders...")
+            cancelled = await kalshi_api.cancel_all_open_orders(session)
+            if cancelled > 0:
+                print(f"[STARTUP CLEANUP] Cancelled {cancelled} stale orders from previous session")
+            print("[STARTUP CLEANUP] Done - clean slate\n")
+
         scan_num = 0
         
         while True:
@@ -789,66 +897,83 @@ async def run_executor():
                 pre_position = await kalshi_api.get_position_for_ticker(session, best.kalshi_ticker)
                 print(f"\n[>>] PRE-TRADE: Position = {pre_position}")
 
-                # ORDER BOOK SWEEP: Try progressively worse prices until fill or ROI < threshold
+                # =============================================================
+                # BULLETPROOF ORDER BOOK SWEEP
+                # Uses try/finally to GUARANTEE cleanup of any resting orders
+                # =============================================================
                 MAX_PRICE_LEVELS = 10  # Max cents to sweep through
                 actual_fill = 0
                 fill_price = k_price
                 k_result = {}
+                placed_order_ids = []  # Track ALL orders we place
 
-                for price_offset in range(MAX_PRICE_LEVELS + 1):
-                    # Calculate current try price
-                    if k_action == 'buy':
-                        try_price = k_price + price_offset  # Pay more for buys
-                    else:
-                        try_price = k_price - price_offset  # Accept less for sells
+                try:
+                    for price_offset in range(MAX_PRICE_LEVELS + 1):
+                        # Calculate current try price
+                        if k_action == 'buy':
+                            try_price = k_price + price_offset  # Pay more for buys
+                        else:
+                            try_price = k_price - price_offset  # Accept less for sells
 
-                    # Don't go below 1c or above 99c
-                    if try_price < 1 or try_price > 99:
-                        print(f"   [X] Price {try_price}c out of bounds, stopping sweep")
-                        break
+                        # Don't go below 1c or above 99c
+                        if try_price < 1 or try_price > 99:
+                            print(f"   [X] Price {try_price}c out of bounds, stopping sweep")
+                            break
 
-                    # Calculate ROI at this price level
-                    if k_action == 'buy':
-                        # Buying: higher price = less profit
-                        price_diff = price_offset  # How much more we're paying
-                        adjusted_profit = best.profit - (price_diff * best.size / 100)
-                        adjusted_capital = best.size * (try_price / 100)
-                    else:
-                        # Selling: lower price = less profit
-                        price_diff = price_offset  # How much less we're getting
-                        adjusted_profit = best.profit - (price_diff * best.size / 100)
-                        adjusted_capital = best.size * ((100 - try_price) / 100)
+                        # Calculate ROI at this price level
+                        if k_action == 'buy':
+                            price_diff = price_offset
+                            adjusted_profit = best.profit - (price_diff * best.size / 100)
+                            adjusted_capital = best.size * (try_price / 100)
+                        else:
+                            price_diff = price_offset
+                            adjusted_profit = best.profit - (price_diff * best.size / 100)
+                            adjusted_capital = best.size * ((100 - try_price) / 100)
 
-                    adjusted_roi = (adjusted_profit / adjusted_capital * 100) if adjusted_capital > 0 else 0
+                        adjusted_roi = (adjusted_profit / adjusted_capital * 100) if adjusted_capital > 0 else 0
 
-                    # Check if still profitable
-                    if adjusted_roi < MIN_ROI:
-                        print(f"   [X] ROI {adjusted_roi:.1f}% < {MIN_ROI}% at {try_price}c, stopping sweep")
-                        # Cancel any resting order from previous attempt
-                        if k_result.get('order_id') and k_result.get('fill_count', 0) == 0:
-                            await kalshi_api.cancel_order(session, k_result.get('order_id'))
-                        break
+                        # Check if still profitable
+                        if adjusted_roi < MIN_ROI:
+                            print(f"   [X] ROI {adjusted_roi:.1f}% < {MIN_ROI}% at {try_price}c, stopping sweep")
+                            break
 
-                    # Try this price level
-                    print(f"[>>] SWEEP {price_offset}: {k_action} {best.size} YES @ {try_price}c (ROI: {adjusted_roi:.1f}%)")
-                    k_result = await kalshi_api.place_order(
-                        session, best.kalshi_ticker, 'yes', k_action, best.size, try_price
-                    )
+                        # Try this price level
+                        print(f"[>>] SWEEP {price_offset}: {k_action} {best.size} YES @ {try_price}c (ROI: {adjusted_roi:.1f}%)")
+                        k_result = await kalshi_api.place_order(
+                            session, best.kalshi_ticker, 'yes', k_action, best.size, try_price
+                        )
 
-                    api_fill_count = k_result.get('fill_count', 0)
-                    order_id = k_result.get('order_id')
+                        api_fill_count = k_result.get('fill_count', 0)
+                        order_id = k_result.get('order_id')
 
-                    if api_fill_count > 0:
-                        actual_fill = api_fill_count
-                        fill_price = try_price
-                        print(f"   [OK] Got fill at {try_price}c!")
-                        break
-                    else:
-                        # CRITICAL: Cancel unfilled order before trying next price!
+                        # Track this order for cleanup
                         if order_id:
-                            await kalshi_api.cancel_order(session, order_id)
-                        print(f"   [.] No fill at {try_price}c, trying next level...")
-                        await asyncio.sleep(0.1)  # Brief pause between attempts
+                            placed_order_ids.append(order_id)
+                            print(f"   [ORDER PLACED] {order_id[:12]}...")
+
+                        if api_fill_count > 0:
+                            actual_fill = api_fill_count
+                            fill_price = try_price
+                            print(f"   [OK] Got fill at {try_price}c!")
+                            break
+                        else:
+                            # Cancel this order IMMEDIATELY before trying next price
+                            if order_id:
+                                cancelled = await kalshi_api.cancel_order(session, order_id)
+                                if not cancelled:
+                                    print(f"   [!] WARNING: Cancel may have failed for {order_id[:12]}")
+                            print(f"   [.] No fill at {try_price}c, trying next level...")
+                            await asyncio.sleep(0.1)
+
+                finally:
+                    # =============================================================
+                    # CRITICAL CLEANUP: Cancel ALL orders for this ticker
+                    # This runs NO MATTER WHAT (success, failure, exception)
+                    # =============================================================
+                    print(f"\n[SWEEP CLEANUP] Ensuring no resting orders for {best.kalshi_ticker}...")
+                    cleanup_count = await kalshi_api.cancel_all_orders_for_ticker(session, best.kalshi_ticker)
+                    if cleanup_count > 0:
+                        print(f"[SWEEP CLEANUP] Cancelled {cleanup_count} resting orders")
 
                 # Verify with position check
                 await asyncio.sleep(0.3)
@@ -865,6 +990,7 @@ async def run_executor():
                     print(f"[>>] Position changed by {position_change}, using as fill count")
 
                 print(f"[>>] Final: API fill={k_result.get('fill_count', 0)}, Position change={position_change}, Using={actual_fill}")
+                print(f"[>>] Orders placed this sweep: {len(placed_order_ids)}")
 
                 # CRITICAL: If we have ANY fill, signal partner
                 if actual_fill > 0:

@@ -39,47 +39,6 @@ function TeamLogo({ teamName, sportKey }: { teamName: string; sportKey: string }
   );
 }
 
-function getMockEdge(gameId: string, marketIndex: number, bookSeed: number = 0): number {
-  const seed = gameId.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + bookSeed;
-  const x = Math.sin(seed + marketIndex) * 10000;
-  return ((x - Math.floor(x)) - 0.5) * 10;
-}
-
-function MiniSparkline({ gameId, marketIndex, bookSeed = 0, data: realData }: { gameId: string; marketIndex: number; bookSeed?: number; data?: number[] }) {
-  const height = 12;
-  const width = 24;
-
-  if (realData && realData.length >= 2) {
-    const min = Math.min(...realData);
-    const max = Math.max(...realData);
-    const range = max - min || 1;
-
-    const pathData = realData
-      .map((p, i) => {
-        const x = (i / (realData.length - 1)) * width;
-        const y = height - ((p - min) / range) * height;
-        return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
-      })
-      .join(' ');
-
-    const trend = realData[realData.length - 1] - realData[0];
-    const color = trend >= 0 ? '#10b981' : '#ef4444';
-
-    return (
-      <svg width={width} height={height} className="opacity-60">
-        <path d={pathData} fill="none" stroke={color} strokeWidth="1.5" />
-      </svg>
-    );
-  }
-
-  // No real data — show flat neutral dashed line
-  return (
-    <svg width={width} height={height} className="opacity-40">
-      <line x1="0" y1={height / 2} x2={width} y2={height / 2} stroke="#71717a" strokeWidth="1" strokeDasharray="2 2" />
-    </svg>
-  );
-}
-
 function EdgeArrow({ value }: { value: number }) {
   if (Math.abs(value) < 0.5) return null;
   const isUp = value > 0;
@@ -93,11 +52,11 @@ function EdgeArrow({ value }: { value: number }) {
   );
 }
 
-function OddsCell({ line, price, gameId, marketIndex, bookSeed = 0 }: { line?: number | string; price: number; gameId: string; marketIndex: number; bookSeed?: number }) {
-  const edge = getMockEdge(gameId, marketIndex, bookSeed);
-  const edgeColor = edge >= 0 ? 'text-emerald-400' : 'text-red-400';
-  const bgTint = edge >= 2 ? 'bg-emerald-500/10' : edge <= -2 ? 'bg-red-500/5' : 'bg-zinc-800/80';
-  const borderTint = edge >= 3 ? 'border-emerald-500/30' : edge <= -3 ? 'border-red-500/20' : 'border-zinc-700/50';
+function OddsCell({ line, price, edge }: { line?: number | string; price: number; edge?: number }) {
+  const hasEdge = edge !== undefined && edge !== null;
+  const edgeColor = hasEdge ? (edge >= 0 ? 'text-emerald-400' : 'text-red-400') : 'text-zinc-500';
+  const bgTint = hasEdge && edge >= 2 ? 'bg-emerald-500/10' : hasEdge && edge <= -2 ? 'bg-red-500/5' : 'bg-zinc-800/80';
+  const borderTint = hasEdge && edge >= 3 ? 'border-emerald-500/30' : hasEdge && edge <= -3 ? 'border-red-500/20' : 'border-zinc-700/50';
 
   return (
     <div className={`flex flex-col items-center justify-center p-1.5 ${bgTint} border ${borderTint} rounded hover:border-zinc-600 transition-all cursor-pointer group`}>
@@ -109,35 +68,37 @@ function OddsCell({ line, price, gameId, marketIndex, bookSeed = 0 }: { line?: n
       <span className={`text-[11px] font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-300'}`}>
         {formatOdds(price)}
       </span>
-      <div className="flex items-center gap-0.5 mt-0.5">
-        <MiniSparkline gameId={gameId} marketIndex={marketIndex} bookSeed={bookSeed} />
-        <EdgeArrow value={edge} />
-        <span className={`text-[9px] font-mono ${edgeColor}`}>
-          {edge >= 0 ? '+' : ''}{edge.toFixed(1)}%
-        </span>
-      </div>
+      {hasEdge && (
+        <div className="flex items-center gap-0.5 mt-0.5">
+          <EdgeArrow value={edge} />
+          <span className={`text-[9px] font-mono ${edgeColor}`}>
+            {edge >= 0 ? '+' : ''}{edge.toFixed(1)}%
+          </span>
+        </div>
+      )}
     </div>
   );
 }
 
-function MoneylineCell({ price, gameId, marketIndex, bookSeed = 0 }: { price: number; gameId: string; marketIndex: number; bookSeed?: number }) {
-  const edge = getMockEdge(gameId, marketIndex, bookSeed);
-  const edgeColor = edge >= 0 ? 'text-emerald-400' : 'text-red-400';
-  const bgTint = edge >= 2 ? 'bg-emerald-500/10' : edge <= -2 ? 'bg-red-500/5' : 'bg-zinc-800/80';
-  const borderTint = edge >= 3 ? 'border-emerald-500/30' : edge <= -3 ? 'border-red-500/20' : 'border-zinc-700/50';
+function MoneylineCell({ price, edge }: { price: number; edge?: number }) {
+  const hasEdge = edge !== undefined && edge !== null;
+  const edgeColor = hasEdge ? (edge >= 0 ? 'text-emerald-400' : 'text-red-400') : 'text-zinc-500';
+  const bgTint = hasEdge && edge >= 2 ? 'bg-emerald-500/10' : hasEdge && edge <= -2 ? 'bg-red-500/5' : 'bg-zinc-800/80';
+  const borderTint = hasEdge && edge >= 3 ? 'border-emerald-500/30' : hasEdge && edge <= -3 ? 'border-red-500/20' : 'border-zinc-700/50';
 
   return (
     <div className={`flex flex-col items-center justify-center p-1.5 ${bgTint} border ${borderTint} rounded hover:border-zinc-600 transition-all cursor-pointer group`}>
       <span className={`text-xs font-semibold font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-100'}`}>
         {formatOdds(price)}
       </span>
-      <div className="flex items-center gap-0.5 mt-0.5">
-        <MiniSparkline gameId={gameId} marketIndex={marketIndex} bookSeed={bookSeed} />
-        <EdgeArrow value={edge} />
-        <span className={`text-[9px] font-mono ${edgeColor}`}>
-          {edge >= 0 ? '+' : ''}{edge.toFixed(1)}%
-        </span>
-      </div>
+      {hasEdge && (
+        <div className="flex items-center gap-0.5 mt-0.5">
+          <EdgeArrow value={edge} />
+          <span className={`text-[9px] font-mono ${edgeColor}`}>
+            {edge >= 0 ? '+' : ''}{edge.toFixed(1)}%
+          </span>
+        </div>
+      )}
     </div>
   );
 }
@@ -160,12 +121,6 @@ function getEdgeBadge(game: any): { label: string; color: string; bg: string } |
   if (game.overall_confidence === 'STRONG_EDGE') return { label: 'STRONG', color: 'text-emerald-300', bg: 'bg-emerald-500/20 border-emerald-500/30' };
   if (game.overall_confidence === 'EDGE') return { label: 'EDGE', color: 'text-blue-300', bg: 'bg-blue-500/20 border-blue-500/30' };
   if (game.overall_confidence === 'WATCH') return { label: 'WATCH', color: 'text-amber-300', bg: 'bg-amber-500/20 border-amber-500/30' };
-
-  // Generate synthetic edge badge for value detection
-  const seed = (game.id || '').split('').reduce((a: number, c: string) => a + c.charCodeAt(0), 0);
-  const synthEdge = Math.sin(seed) * 10000;
-  const edgeVal = (synthEdge - Math.floor(synthEdge)) * 100;
-  if (edgeVal > 85) return { label: 'VALUE', color: 'text-emerald-300', bg: 'bg-emerald-500/15 border-emerald-500/25' };
   return null;
 }
 
@@ -294,7 +249,6 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
   }, [searchQuery, activeSport, games, orderedGames]);
 
   const isAllView = activeSport === null;
-  const bookSeed = selectedBook === 'draftkings' ? 100 : 0;
   const selectedBookConfig = BOOK_CONFIG[selectedBook];
 
   // Count active sports with data
@@ -581,26 +535,17 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                           <OddsCell
                             line={-game.consensus.spreads.line}
                             price={game.consensus.spreads.awayPrice}
-                            gameId={game.id}
-                            marketIndex={0}
-                            bookSeed={bookSeed}
                           />
                         ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                         {game.consensus?.h2h ? (
                           <MoneylineCell
                             price={game.consensus.h2h.awayPrice}
-                            gameId={game.id}
-                            marketIndex={1}
-                            bookSeed={bookSeed}
                           />
                         ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                         {game.consensus?.totals ? (
                           <OddsCell
                             line={`O${game.consensus.totals.line}`}
                             price={game.consensus.totals.overPrice}
-                            gameId={game.id}
-                            marketIndex={2}
-                            bookSeed={bookSeed}
                           />
                         ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                       </div>
@@ -615,26 +560,17 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                           <OddsCell
                             line={game.consensus.spreads.line}
                             price={game.consensus.spreads.homePrice}
-                            gameId={game.id}
-                            marketIndex={3}
-                            bookSeed={bookSeed}
                           />
                         ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                         {game.consensus?.h2h ? (
                           <MoneylineCell
                             price={game.consensus.h2h.homePrice}
-                            gameId={game.id}
-                            marketIndex={4}
-                            bookSeed={bookSeed}
                           />
                         ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                         {game.consensus?.totals ? (
                           <OddsCell
                             line={`U${game.consensus.totals.line}`}
                             price={game.consensus.totals.underPrice}
-                            gameId={game.id}
-                            marketIndex={5}
-                            bookSeed={bookSeed}
                           />
                         ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                       </div>

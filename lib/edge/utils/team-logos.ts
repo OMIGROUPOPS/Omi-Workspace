@@ -38,50 +38,79 @@ export const WNBA_TEAMS: Record<string, string> = {
   'New York Liberty': 'ny', 'Phoenix Mercury': 'phx', 'Seattle Storm': 'sea', 'Washington Mystics': 'wsh',
 };
 
-// ESPN numeric IDs for NCAAB teams
+// ESPN numeric IDs for NCAAB teams — using EXACT Odds API team names
+// (e.g. "Michigan St Spartans" not "Michigan State Spartans")
 export const NCAAB_TEAMS: Record<string, number> = {
-  'Duke Blue Devils': 150, 'North Carolina Tar Heels': 153, 'Kentucky Wildcats': 96,
-  'Kansas Jayhawks': 2305, 'Gonzaga Bulldogs': 2250, 'UCLA Bruins': 26,
-  'Villanova Wildcats': 222, 'Michigan State Spartans': 127, 'Michigan Wolverines': 130,
-  'UConn Huskies': 41, 'Connecticut Huskies': 41, 'Purdue Boilermakers': 2509,
-  'Arizona Wildcats': 12, 'Houston Cougars': 248, 'Alabama Crimson Tide': 333,
-  'Tennessee Volunteers': 2633, 'Baylor Bears': 239, 'Auburn Tigers': 2,
-  'Creighton Bluejays': 156, 'Marquette Golden Eagles': 269, 'Texas Longhorns': 251,
-  'Indiana Hoosiers': 84, 'Iowa State Cyclones': 66, 'Iowa Hawkeyes': 2294,
-  'Illinois Fighting Illini': 356, 'Wisconsin Badgers': 275, 'Ohio State Buckeyes': 194,
-  'Louisville Cardinals': 97, 'Syracuse Orange': 183, 'Virginia Cavaliers': 258,
-  'Florida State Seminoles': 52, 'Florida Gators': 57, 'LSU Tigers': 99,
-  'Arkansas Razorbacks': 8, 'Memphis Tigers': 235, 'Oregon Ducks': 2483,
-  'San Diego State Aztecs': 21, 'Xavier Musketeers': 2752, 'St. Johns Red Storm': 2599,
-  "St. John's Red Storm": 2599, 'Seton Hall Pirates': 2550, 'Providence Friars': 2507,
-  'Georgetown Hoyas': 46, 'Dayton Flyers': 2168, 'Maryland Terrapins': 120,
-  'Pittsburgh Panthers': 221, 'West Virginia Mountaineers': 277, 'Texas Tech Red Raiders': 2641,
-  'Oklahoma Sooners': 201, 'Oklahoma State Cowboys': 197, 'TCU Horned Frogs': 2628,
-  'Kansas State Wildcats': 2306, 'Cincinnati Bearcats': 2132, 'Colorado Buffaloes': 38,
-  'USC Trojans': 30, 'Stanford Cardinal': 24, 'Washington Huskies': 264,
-  'Arizona State Sun Devils': 9, 'Oregon State Beavers': 204, 'Utah Utes': 254,
-  'Nevada Wolf Pack': 2440, 'UNLV Rebels': 2439, 'BYU Cougars': 252,
-  'Boise State Broncos': 68, 'New Mexico Lobos': 167, 'Wyoming Cowboys': 2751,
-  'Clemson Tigers': 228, 'NC State Wolfpack': 152, 'Wake Forest Demon Deacons': 154,
-  'Georgia Tech Yellow Jackets': 59, 'Miami Hurricanes': 2390, 'Virginia Tech Hokies': 259,
-  'Mississippi State Bulldogs': 344, 'Ole Miss Rebels': 145, 'Missouri Tigers': 142,
-  'Vanderbilt Commodores': 238, 'South Carolina Gamecocks': 2579, 'Georgia Bulldogs': 61,
-  'Northwestern Wildcats': 77, 'Minnesota Golden Gophers': 135, 'Penn State Nittany Lions': 213,
-  'Rutgers Scarlet Knights': 164, 'Nebraska Cornhuskers': 158,
+  // Power conferences + top teams
+  'Alabama Crimson Tide': 333, 'Arizona St Sun Devils': 9, 'Arizona Wildcats': 12,
+  'Arkansas Razorbacks': 8, 'Auburn Tigers': 2, 'Baylor Bears': 239,
+  'Boise State Broncos': 68, 'Butler Bulldogs': 2086, 'California Golden Bears': 25,
+  'Charlotte 49ers': 2429, 'Cincinnati Bearcats': 2132, 'Clemson Tigers': 228,
+  'Colorado St Rams': 36, 'Creighton Bluejays': 156, 'Davidson Wildcats': 2166,
+  'Dayton Flyers': 2168, 'DePaul Blue Demons': 305, 'Drake Bulldogs': 2181,
+  'Duke Blue Devils': 150, 'Duquesne Dukes': 2184,
+  'East Carolina Pirates': 151, 'Evansville Purple Aces': 339,
+  'Florida Gators': 57, 'Florida St Seminoles': 52, 'Fordham Rams': 2226,
+  'Georgetown Hoyas': 46, 'Georgia Bulldogs': 61, 'Georgia Tech Yellow Jackets': 59,
+  'Gonzaga Bulldogs': 2250, 'Grand Canyon Antelopes': 2253,
+  'Houston Cougars': 248, 'Illinois Fighting Illini': 356,
+  'Indiana Hoosiers': 84, 'Indiana St Sycamores': 282, 'Iowa Hawkeyes': 2294,
+  'Iowa St Cyclones': 66, 'Kansas Jayhawks': 2305, 'Kansas St Wildcats': 2306,
+  'Kent State Golden Flashes': 2309, 'Kentucky Wildcats': 96,
+  'LSU Tigers': 99, 'La Salle Explorers': 2325, 'Loyola Marymount Lions': 2350,
+  'Marquette Golden Eagles': 269, 'Marshall Thundering Herd': 276,
+  'Massachusetts Minutemen': 113, 'McNeese Cowboys': 2377,
+  'Miami Hurricanes': 2390, 'Michigan St Spartans': 127, 'Michigan Wolverines': 130,
+  'Minnesota Golden Gophers': 135, 'Mississippi St Bulldogs': 344, 'Missouri Tigers': 142,
+  'Missouri St Bears': 2623, 'Murray St Racers': 2405,
+  'NC State Wolfpack': 152, 'Nebraska Cornhuskers': 158, 'Nevada Wolf Pack': 2440,
+  'New Mexico Lobos': 167, 'New Mexico St Aggies': 166,
+  'North Carolina Tar Heels': 153, 'North Texas Mean Green': 249,
+  'Northern Illinois Huskies': 2459, 'Northern Iowa Panthers': 2460,
+  'Northwestern Wildcats': 77, 'Notre Dame Fighting Irish': 87,
+  'Ohio Bobcats': 195, 'Oklahoma Sooners': 201, 'Oklahoma St Cowboys': 197,
+  'Old Dominion Monarchs': 295, 'Oregon Ducks': 2483, 'Oregon St Beavers': 204,
+  'Pacific Tigers': 279, 'Pepperdine Waves': 2492, 'Pittsburgh Panthers': 221,
+  'Portland Pilots': 2501, 'Providence Friars': 2507, 'Purdue Boilermakers': 2509,
+  'Rhode Island Rams': 227, 'Rice Owls': 242, 'Richmond Spiders': 257,
+  'Rutgers Scarlet Knights': 164,
+  'Saint Louis Billikens': 139, 'Sam Houston St Bearkats': 2534,
+  'San Diego St Aztecs': 21, 'San Diego Toreros': 2540, 'San Francisco Dons': 2539,
+  'Santa Clara Broncos': 2541, 'Seattle Redhawks': 2547,
+  'Seton Hall Pirates': 2550, 'South Carolina Gamecocks': 2579,
+  'South Dakota St Jackrabbits': 2571, 'South Florida Bulls': 58,
+  'Southern Illinois Salukis': 79, 'St. Bonaventure Bonnies': 179,
+  "St. John's Red Storm": 2599, 'Stanford Cardinal': 24, 'Syracuse Orange': 183,
+  'TCU Horned Frogs': 2628, 'Temple Owls': 218, 'Tennessee Volunteers': 2633,
+  'Texas Longhorns': 251, 'Texas Southern Tigers': 2640, 'Texas Tech Red Raiders': 2641,
+  'Texas State Bobcats': 326, 'Toledo Rockets': 2649,
+  'Tulane Green Wave': 2655, 'Tulsa Golden Hurricane': 202,
+  'UAB Blazers': 5, 'UCF Knights': 2116, 'UCLA Bruins': 26, 'UConn Huskies': 41,
+  'UNLV Rebels': 2439, 'USC Trojans': 30, 'UTEP Miners': 2638, 'UTSA Roadrunners': 2636,
+  'Utah State Aggies': 328, 'VCU Rams': 2670, 'Valparaiso Beacons': 2674,
+  'Vanderbilt Commodores': 238, 'Villanova Wildcats': 222,
+  'Virginia Cavaliers': 258, 'Virginia Tech Hokies': 259,
+  'Wake Forest Demon Deacons': 154, 'Washington St Cougars': 265,
+  'West Virginia Mountaineers': 277, 'Western Kentucky Hilltoppers': 98,
+  'Western Michigan Broncos': 2711, 'Wisconsin Badgers': 275,
+  'Wyoming Cowboys': 2751, 'Xavier Musketeers': 2752,
+  // Alternate name forms
+  'Michigan State Spartans': 127, 'Arizona State Sun Devils': 9, 'Florida State Seminoles': 52,
+  'Kansas State Wildcats': 2306, 'Iowa State Cyclones': 66, 'Oklahoma State Cowboys': 197,
+  'Mississippi State Bulldogs': 344, 'Oregon State Beavers': 204, 'Washington State Cougars': 265,
+  'Connecticut Huskies': 41, 'North Carolina State Wolfpack': 152,
 };
 
-// NCAAF shares many schools with NCAAB; add football-specific entries
+// NCAAF shares schools with NCAAB
 export const NCAAF_TEAMS: Record<string, number> = {
   ...NCAAB_TEAMS,
-  'Alabama Crimson Tide': 333, 'Ohio State Buckeyes': 194, 'Georgia Bulldogs': 61,
-  'Clemson Tigers': 228, 'Michigan Wolverines': 130, 'LSU Tigers': 99,
-  'Oklahoma Sooners': 201, 'Notre Dame Fighting Irish': 87,
-  'Texas A&M Aggies': 245, 'Penn State Nittany Lions': 213,
+  'Notre Dame Fighting Irish': 87, 'Texas A&M Aggies': 245,
+  'Penn State Nittany Lions': 213, 'Penn St Nittany Lions': 213,
 };
 
 export function getTeamLogo(teamName: string, sportKey: string): string | null {
   // NFL
-  if (sportKey.includes('americanfootball_nfl') || sportKey === 'americanfootball_nfl') {
+  if (sportKey.includes('americanfootball_nfl') && !sportKey.includes('ncaaf')) {
     const abbrev = NFL_TEAMS[teamName];
     if (abbrev) return `https://a.espncdn.com/i/teamlogos/nfl/500/${abbrev}.png`;
   }
@@ -126,7 +155,8 @@ export function getTeamInitials(teamName: string): string {
   const words = teamName.split(' ');
   if (words.length === 1) return teamName.slice(0, 2).toUpperCase();
   if (words.length >= 2) {
-    if (words[1] === 'State' || words[1] === 'Tech') {
+    // "Michigan St" / "Michigan State" / "Virginia Tech"
+    if (['State', 'St', 'Tech'].includes(words[1])) {
       return (words[0][0] + words[1][0]).toUpperCase();
     }
     return words[0].slice(0, 2).toUpperCase();

@@ -472,8 +472,131 @@ function PlayerPropsSection({ props, gameId, onSelectProp, selectedProp, selecte
   );
 }
 
-function TeamTotalsSection({ teamTotals, homeTeam, awayTeam, gameId }: { teamTotals: any; homeTeam: string; awayTeam: string; gameId?: string }) { return <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-8 text-center"><p className="text-zinc-500">No team totals available</p></div>; }
-function AlternatesSection({ alternates, homeTeam, awayTeam, gameId }: { alternates: any; homeTeam: string; awayTeam: string; gameId?: string }) { return <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-8 text-center"><p className="text-zinc-500">No alternate lines available</p></div>; }
+function TeamTotalsSection({ teamTotals, homeTeam, awayTeam, gameId }: { teamTotals: any; homeTeam: string; awayTeam: string; gameId?: string }) {
+  if (!teamTotals || (!teamTotals.home?.over && !teamTotals.away?.over)) {
+    return <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-8 text-center"><p className="text-zinc-500">No team totals available</p></div>;
+  }
+  const renderTeam = (label: string, data: any) => {
+    if (!data?.over) return null;
+    return (
+      <div className="flex items-center justify-between py-3">
+        <span className="font-medium text-zinc-100 text-sm min-w-[140px]">{label}</span>
+        <div className="flex gap-3">
+          <div className="text-center py-2 px-4 rounded border bg-emerald-500/10 border-emerald-500/30 min-w-[100px]">
+            <div className="text-sm font-medium text-zinc-100">O {data.over.line}</div>
+            <div className="text-xs text-zinc-400">{formatOdds(data.over.price)}</div>
+          </div>
+          {data.under && (
+            <div className="text-center py-2 px-4 rounded border bg-red-500/10 border-red-500/30 min-w-[100px]">
+              <div className="text-sm font-medium text-zinc-100">U {data.under.line}</div>
+              <div className="text-xs text-zinc-400">{formatOdds(data.under.price)}</div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+  return (
+    <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+      <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800">
+        <h2 className="font-semibold text-zinc-100">Team Totals</h2>
+      </div>
+      <div className="p-4 divide-y divide-zinc-800/50">
+        {renderTeam(awayTeam, teamTotals.away)}
+        {renderTeam(homeTeam, teamTotals.home)}
+      </div>
+    </div>
+  );
+}
+
+function AlternatesSection({ alternates, homeTeam, awayTeam, gameId }: { alternates: any; homeTeam: string; awayTeam: string; gameId?: string }) {
+  const [view, setView] = useState<'spreads' | 'totals'>('spreads');
+  const altSpreads = alternates?.spreads || [];
+  const altTotals = alternates?.totals || [];
+  if (altSpreads.length === 0 && altTotals.length === 0) {
+    return <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-8 text-center"><p className="text-zinc-500">No alternate lines available</p></div>;
+  }
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2">
+        {altSpreads.length > 0 && (
+          <button onClick={() => setView('spreads')} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${view === 'spreads' ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>
+            Alt Spreads ({altSpreads.length})
+          </button>
+        )}
+        {altTotals.length > 0 && (
+          <button onClick={() => setView('totals')} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${view === 'totals' ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>
+            Alt Totals ({altTotals.length})
+          </button>
+        )}
+      </div>
+
+      {view === 'spreads' && altSpreads.length > 0 && (
+        <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+          <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800">
+            <h2 className="font-semibold text-zinc-100">Alternate Spreads</h2>
+          </div>
+          <div className="p-4">
+            <div className="grid grid-cols-[80px,1fr,1fr] gap-2 mb-2">
+              <div className="text-xs text-zinc-500 uppercase">Spread</div>
+              <div className="text-xs text-zinc-500 uppercase text-center">{awayTeam}</div>
+              <div className="text-xs text-zinc-500 uppercase text-center">{homeTeam}</div>
+            </div>
+            <div className="space-y-1.5 max-h-[400px] overflow-y-auto">
+              {altSpreads.map((row: any, i: number) => (
+                <div key={i} className="grid grid-cols-[80px,1fr,1fr] gap-2 items-center">
+                  <span className="text-sm font-medium text-zinc-300">{formatSpread(row.homeSpread)}</span>
+                  <div className="text-center py-1.5 px-2 rounded border bg-zinc-800/50 border-zinc-700">
+                    {row.away ? (
+                      <><div className="text-sm font-medium text-zinc-100">{formatSpread(row.away.line)}</div><div className="text-xs text-zinc-400">{formatOdds(row.away.price)}</div></>
+                    ) : <span className="text-zinc-600">-</span>}
+                  </div>
+                  <div className="text-center py-1.5 px-2 rounded border bg-zinc-800/50 border-zinc-700">
+                    {row.home ? (
+                      <><div className="text-sm font-medium text-zinc-100">{formatSpread(row.home.line)}</div><div className="text-xs text-zinc-400">{formatOdds(row.home.price)}</div></>
+                    ) : <span className="text-zinc-600">-</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {view === 'totals' && altTotals.length > 0 && (
+        <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+          <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800">
+            <h2 className="font-semibold text-zinc-100">Alternate Totals</h2>
+          </div>
+          <div className="p-4">
+            <div className="grid grid-cols-[80px,1fr,1fr] gap-2 mb-2">
+              <div className="text-xs text-zinc-500 uppercase">Line</div>
+              <div className="text-xs text-zinc-500 uppercase text-center">Over</div>
+              <div className="text-xs text-zinc-500 uppercase text-center">Under</div>
+            </div>
+            <div className="space-y-1.5 max-h-[400px] overflow-y-auto">
+              {altTotals.map((row: any, i: number) => (
+                <div key={i} className="grid grid-cols-[80px,1fr,1fr] gap-2 items-center">
+                  <span className="text-sm font-medium text-zinc-300">{row.line}</span>
+                  <div className="text-center py-1.5 px-2 rounded border bg-emerald-500/10 border-emerald-500/30">
+                    {row.over ? (
+                      <span className="text-sm font-medium text-zinc-100">{formatOdds(row.over.price)}</span>
+                    ) : <span className="text-zinc-600">-</span>}
+                  </div>
+                  <div className="text-center py-1.5 px-2 rounded border bg-red-500/10 border-red-500/30">
+                    {row.under ? (
+                      <span className="text-sm font-medium text-zinc-100">{formatOdds(row.under.price)}</span>
+                    ) : <span className="text-zinc-600">-</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 interface GameDetailClientProps {
   gameData: { id: string; homeTeam: string; awayTeam: string; sportKey: string };

@@ -46,15 +46,18 @@ export default function LandingPage() {
             </div>
 
             {/* OMI Edge */}
-            <div className="bg-gray-800/50 border border-gray-700 rounded-2xl p-8 text-left opacity-75">
+            <div className="bg-gray-800/50 border border-gray-700 rounded-2xl p-8 text-left">
               <div className="h-12 w-12 rounded-xl bg-emerald-600 flex items-center justify-center text-white text-lg font-bold mb-4">
                 E
               </div>
               <h2 className="text-2xl font-semibold text-white mb-1">OMI Edge</h2>
               <p className="text-emerald-400 text-sm font-medium mb-6">Predictive Market Intelligence</p>
-              <span className="inline-flex px-6 py-3 bg-gray-700 text-gray-400 font-medium rounded-lg cursor-not-allowed">
-                Coming Soon
-              </span>
+              <Link
+                href="/edge/portal/sports"
+                className="inline-flex px-6 py-3 bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-700 transition-colors"
+              >
+                OMI Edge
+              </Link>
             </div>
           </div>
         </div>

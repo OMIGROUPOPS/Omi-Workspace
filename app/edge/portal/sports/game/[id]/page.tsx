@@ -1,8 +1,25 @@
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import Link from 'next/link';
 import { GameDetailClient } from '@/components/edge/GameDetailClient';
+import { cookies } from 'next/headers';
+import { createServerClient } from '@supabase/ssr';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
+
+function getSupabase() {
+  const cookieStore = cookies();
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value;
+        },
+      },
+    }
+  );
+}
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -69,6 +86,91 @@ async function fetchPerBookOdds(sport: string, gameId: string) {
   }
 }
 
+async function fetchGameFromCache(gameId: string) {
+  try {
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('cached_odds')
+      .select('sport_key, game_data')
+      .eq('game_id', gameId)
+      .single();
+
+    if (error || !data) return null;
+    return data;
+  } catch (e) {
+    console.error('[GameDetail] Cache fetch error:', e);
+    return null;
+  }
+}
+
+function buildConsensusFromBookmakers(game: any) {
+  const bookmakers = game.bookmakers;
+  if (!bookmakers || bookmakers.length === 0) return {};
+
+  const h2h: { home: number[]; away: number[] } = { home: [], away: [] };
+  const spreads: { homeLine: number[]; homeOdds: number[]; awayLine: number[]; awayOdds: number[] } = { homeLine: [], homeOdds: [], awayLine: [], awayOdds: [] };
+  const totals: { line: number[]; overOdds: number[]; underOdds: number[] } = { line: [], overOdds: [], underOdds: [] };
+
+  for (const bk of bookmakers) {
+    for (const market of bk.markets) {
+      if (market.key === 'h2h') {
+        const home = market.outcomes.find((o: any) => o.name === game.home_team);
+        const away = market.outcomes.find((o: any) => o.name === game.away_team);
+        if (home) h2h.home.push(home.price);
+        if (away) h2h.away.push(away.price);
+      }
+      if (market.key === 'spreads') {
+        const home = market.outcomes.find((o: any) => o.name === game.home_team);
+        const away = market.outcomes.find((o: any) => o.name === game.away_team);
+        if (home?.point !== undefined) {
+          spreads.homeLine.push(home.point);
+          spreads.homeOdds.push(home.price);
+        }
+        if (away?.point !== undefined) {
+          spreads.awayLine.push(away.point);
+          spreads.awayOdds.push(away.price);
+        }
+      }
+      if (market.key === 'totals') {
+        const over = market.outcomes.find((o: any) => o.name === 'Over');
+        const under = market.outcomes.find((o: any) => o.name === 'Under');
+        if (over?.point !== undefined) {
+          totals.line.push(over.point);
+          totals.overOdds.push(over.price);
+        }
+        if (under) totals.underOdds.push(under.price);
+      }
+    }
+  }
+
+  const median = (arr: number[]) => {
+    if (arr.length === 0) return undefined;
+    const sorted = [...arr].sort((a, b) => a - b);
+    const mid = Math.floor(sorted.length / 2);
+    return sorted.length % 2 !== 0 ? sorted[mid] : Math.round((sorted[mid - 1] + sorted[mid]) / 2);
+  };
+
+  const consensus: any = {};
+
+  if (h2h.home.length > 0) {
+    consensus.h2h = { home: median(h2h.home), away: median(h2h.away) };
+  }
+  if (spreads.homeLine.length > 0) {
+    consensus.spreads = {
+      home: { line: median(spreads.homeLine), odds: median(spreads.homeOdds) },
+      away: { line: median(spreads.awayLine), odds: median(spreads.awayOdds) },
+    };
+  }
+  if (totals.line.length > 0) {
+    consensus.totals = {
+      over: { line: median(totals.line), odds: median(totals.overOdds) },
+      under: { odds: median(totals.underOdds) },
+    };
+  }
+
+  return consensus;
+}
+
 // Generate deterministic mock edge based on game ID
 function generateMockEdge(id: string, offset: number = 0): number {
   const seed = id.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + offset;
@@ -120,6 +222,23 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
         backendSportKey = sport;
         break;
       }
+    }
+  }
+
+  // Fallback: read from cached_odds table
+  if (!gameData) {
+    const cached = await fetchGameFromCache(gameId);
+    if (cached) {
+      const raw = cached.game_data;
+      gameData = {
+        game_id: raw.id,
+        home_team: raw.home_team,
+        away_team: raw.away_team,
+        commence_time: raw.commence_time,
+        consensus_odds: buildConsensusFromBookmakers(raw),
+      };
+      sportKey = cached.sport_key;
+      backendSportKey = sportMap[cached.sport_key] || cached.sport_key.toUpperCase();
     }
   }
 

@@ -4,40 +4,7 @@ import { useState, useRef, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { formatOdds } from '@/lib/edge/utils/odds-math';
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
-
-const NFL_TEAMS: Record<string, string> = {
-  'Arizona Cardinals': 'ari', 'Atlanta Falcons': 'atl', 'Baltimore Ravens': 'bal', 'Buffalo Bills': 'buf',
-  'Carolina Panthers': 'car', 'Chicago Bears': 'chi', 'Cincinnati Bengals': 'cin', 'Cleveland Browns': 'cle',
-  'Dallas Cowboys': 'dal', 'Denver Broncos': 'den', 'Detroit Lions': 'det', 'Green Bay Packers': 'gb',
-  'Houston Texans': 'hou', 'Indianapolis Colts': 'ind', 'Jacksonville Jaguars': 'jax', 'Kansas City Chiefs': 'kc',
-  'Las Vegas Raiders': 'lv', 'Los Angeles Chargers': 'lac', 'Los Angeles Rams': 'lar', 'Miami Dolphins': 'mia',
-  'Minnesota Vikings': 'min', 'New England Patriots': 'ne', 'New Orleans Saints': 'no', 'New York Giants': 'nyg',
-  'New York Jets': 'nyj', 'Philadelphia Eagles': 'phi', 'Pittsburgh Steelers': 'pit', 'San Francisco 49ers': 'sf',
-  'Seattle Seahawks': 'sea', 'Tampa Bay Buccaneers': 'tb', 'Tennessee Titans': 'ten', 'Washington Commanders': 'wsh',
-};
-
-const NBA_TEAMS: Record<string, string> = {
-  'Atlanta Hawks': 'atl', 'Boston Celtics': 'bos', 'Brooklyn Nets': 'bkn', 'Charlotte Hornets': 'cha',
-  'Chicago Bulls': 'chi', 'Cleveland Cavaliers': 'cle', 'Dallas Mavericks': 'dal', 'Denver Nuggets': 'den',
-  'Detroit Pistons': 'det', 'Golden State Warriors': 'gs', 'Houston Rockets': 'hou', 'Indiana Pacers': 'ind',
-  'LA Clippers': 'lac', 'Los Angeles Clippers': 'lac', 'Los Angeles Lakers': 'lal', 'LA Lakers': 'lal',
-  'Memphis Grizzlies': 'mem', 'Miami Heat': 'mia', 'Milwaukee Bucks': 'mil', 'Minnesota Timberwolves': 'min',
-  'New Orleans Pelicans': 'no', 'New York Knicks': 'ny', 'Oklahoma City Thunder': 'okc', 'Orlando Magic': 'orl',
-  'Philadelphia 76ers': 'phi', 'Phoenix Suns': 'phx', 'Portland Trail Blazers': 'por', 'Sacramento Kings': 'sac',
-  'San Antonio Spurs': 'sa', 'Toronto Raptors': 'tor', 'Utah Jazz': 'utah', 'Washington Wizards': 'wsh',
-};
-
-const NHL_TEAMS: Record<string, string> = {
-  'Anaheim Ducks': 'ana', 'Boston Bruins': 'bos', 'Buffalo Sabres': 'buf', 'Calgary Flames': 'cgy',
-  'Carolina Hurricanes': 'car', 'Chicago Blackhawks': 'chi', 'Colorado Avalanche': 'col',
-  'Columbus Blue Jackets': 'cbj', 'Dallas Stars': 'dal', 'Detroit Red Wings': 'det', 'Edmonton Oilers': 'edm',
-  'Florida Panthers': 'fla', 'Los Angeles Kings': 'la', 'Minnesota Wild': 'min', 'Montreal Canadiens': 'mtl',
-  'Nashville Predators': 'nsh', 'New Jersey Devils': 'nj', 'New York Islanders': 'nyi', 'New York Rangers': 'nyr',
-  'Ottawa Senators': 'ott', 'Philadelphia Flyers': 'phi', 'Pittsburgh Penguins': 'pit', 'San Jose Sharks': 'sj',
-  'Seattle Kraken': 'sea', 'St. Louis Blues': 'stl', 'Tampa Bay Lightning': 'tb', 'Toronto Maple Leafs': 'tor',
-  'Utah Hockey Club': 'utah', 'Vancouver Canucks': 'van', 'Vegas Golden Knights': 'vgk',
-  'Washington Capitals': 'wsh', 'Winnipeg Jets': 'wpg',
-};
+import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 
 const BOOK_CONFIG: Record<string, { name: string; color: string }> = {
   'fanduel': { name: 'FanDuel', color: '#1493ff' },
@@ -45,34 +12,6 @@ const BOOK_CONFIG: Record<string, { name: string; color: string }> = {
 };
 
 const GAMES_PER_SPORT_IN_ALL_VIEW = 6;
-
-function getTeamLogo(teamName: string, sportKey: string): string | null {
-  if (sportKey.includes('nfl')) {
-    const abbrev = NFL_TEAMS[teamName];
-    if (abbrev) return `https://a.espncdn.com/i/teamlogos/nfl/500/${abbrev}.png`;
-  }
-  if (sportKey.includes('nba')) {
-    const abbrev = NBA_TEAMS[teamName];
-    if (abbrev) return `https://a.espncdn.com/i/teamlogos/nba/500/${abbrev}.png`;
-  }
-  if (sportKey.includes('nhl') || sportKey.includes('icehockey')) {
-    const abbrev = NHL_TEAMS[teamName];
-    if (abbrev) return `https://a.espncdn.com/i/teamlogos/nhl/500/${abbrev}.png`;
-  }
-  return null;
-}
-
-function getTeamColor(teamName: string): string {
-  const colors = ['#1d4ed8', '#dc2626', '#059669', '#d97706', '#7c3aed', '#db2777', '#0891b2', '#65a30d'];
-  const hash = teamName.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-  return colors[hash % colors.length];
-}
-
-function getTeamInitials(teamName: string): string {
-  const words = teamName.split(' ');
-  if (words.length === 1) return teamName.slice(0, 2).toUpperCase();
-  return words[0].slice(0, 2).toUpperCase();
-}
 
 function getDisplayTeamName(teamName: string, sportKey: string): string {
   if (sportKey.includes('ncaa')) {
@@ -84,7 +23,11 @@ function getDisplayTeamName(teamName: string, sportKey: string): string {
 
 function TeamLogo({ teamName, sportKey }: { teamName: string; sportKey: string }) {
   const logo = getTeamLogo(teamName, sportKey);
-  if (logo) return <img src={logo} alt={teamName} className="w-5 h-5 object-contain" />;
+  const [imgError, setImgError] = useState(false);
+
+  if (logo && !imgError) {
+    return <img src={logo} alt={teamName} className="w-5 h-5 object-contain" onError={() => setImgError(true)} />;
+  }
 
   return (
     <div
@@ -102,34 +45,37 @@ function getMockEdge(gameId: string, marketIndex: number, bookSeed: number = 0):
   return ((x - Math.floor(x)) - 0.5) * 10;
 }
 
-function MiniSparkline({ gameId, marketIndex, bookSeed = 0 }: { gameId: string; marketIndex: number; bookSeed?: number }) {
-  const seed = gameId.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + marketIndex + bookSeed;
-  const points: number[] = [];
-  for (let i = 0; i < 8; i++) {
-    const x = Math.sin(seed + i * 0.7) * 10000;
-    points.push((x - Math.floor(x)) * 10);
-  }
-
-  const min = Math.min(...points);
-  const max = Math.max(...points);
-  const range = max - min || 1;
+function MiniSparkline({ gameId, marketIndex, bookSeed = 0, data: realData }: { gameId: string; marketIndex: number; bookSeed?: number; data?: number[] }) {
   const height = 12;
   const width = 24;
 
-  const pathData = points
-    .map((p, i) => {
-      const x = (i / (points.length - 1)) * width;
-      const y = height - ((p - min) / range) * height;
-      return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
-    })
-    .join(' ');
+  if (realData && realData.length >= 2) {
+    const min = Math.min(...realData);
+    const max = Math.max(...realData);
+    const range = max - min || 1;
 
-  const trend = points[points.length - 1] - points[0];
-  const color = trend >= 0 ? '#10b981' : '#ef4444';
+    const pathData = realData
+      .map((p, i) => {
+        const x = (i / (realData.length - 1)) * width;
+        const y = height - ((p - min) / range) * height;
+        return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
+      })
+      .join(' ');
 
+    const trend = realData[realData.length - 1] - realData[0];
+    const color = trend >= 0 ? '#10b981' : '#ef4444';
+
+    return (
+      <svg width={width} height={height} className="opacity-60">
+        <path d={pathData} fill="none" stroke={color} strokeWidth="1.5" />
+      </svg>
+    );
+  }
+
+  // No real data — show flat neutral dashed line
   return (
-    <svg width={width} height={height} className="opacity-60">
-      <path d={pathData} fill="none" stroke={color} strokeWidth="1.5" />
+    <svg width={width} height={height} className="opacity-40">
+      <line x1="0" y1={height / 2} x2={width} y2={height / 2} stroke="#71717a" strokeWidth="1" strokeDasharray="2 2" />
     </svg>
   );
 }
@@ -250,6 +196,10 @@ const SPORT_PILLS = [
   { key: 'baseball_mlb', label: 'MLB', icon: 'baseball' },
   { key: 'basketball_wnba', label: 'WNBA', icon: 'basketball' },
   { key: 'mma_mixed_martial_arts', label: 'MMA', icon: 'mma' },
+  { key: 'tennis_atp_australian_open', label: 'AUS Open', icon: 'tennis' },
+  { key: 'tennis_atp_french_open', label: 'FR Open', icon: 'tennis' },
+  { key: 'tennis_atp_us_open', label: 'US Open', icon: 'tennis' },
+  { key: 'tennis_atp_wimbledon', label: 'Wimbledon', icon: 'tennis' },
   { key: 'soccer_epl', label: 'Soccer', icon: 'soccer' },
 ];
 
@@ -262,6 +212,10 @@ const SPORT_ORDER = [
   'baseball_mlb',
   'basketball_wnba',
   'mma_mixed_martial_arts',
+  'tennis_atp_australian_open',
+  'tennis_atp_french_open',
+  'tennis_atp_us_open',
+  'tennis_atp_wimbledon',
 ];
 
 const AVAILABLE_BOOKS = ['fanduel', 'draftkings'];

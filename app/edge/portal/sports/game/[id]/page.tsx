@@ -27,15 +27,52 @@ interface PageProps {
 }
 
 async function fetchLineHistory(gameId: string, market: string = 'spread', period: string = 'full', book?: string) {
+  // Try backend first
   try {
     let url = `${BACKEND_URL}/api/lines/${gameId}?market=${market}&period=${period}`;
     if (book) url += `&book=${book}`;
     const res = await fetch(url, { cache: 'no-store' });
-    if (!res.ok) return [];
-    const data = await res.json();
-    return data.snapshots || [];
+    if (res.ok) {
+      const data = await res.json();
+      if (data.snapshots && data.snapshots.length > 0) return data.snapshots;
+    }
   } catch (e) {
-    console.error('[GameDetail] Line history fetch error:', e);
+    // Backend unavailable, fall through to Supabase
+  }
+
+  // Fallback: query odds_snapshots from Supabase
+  try {
+    const marketMap: Record<string, string> = {
+      'spread': 'spreads',
+      'moneyline': 'h2h',
+      'total': 'totals',
+    };
+    const snapshotMarket = marketMap[market] || market;
+    const supabase = getSupabase();
+    let query = supabase
+      .from('odds_snapshots')
+      .select('*')
+      .eq('game_id', gameId)
+      .eq('market', snapshotMarket)
+      .order('snapshot_time', { ascending: true });
+
+    if (book) {
+      query = query.eq('book_key', book);
+    }
+
+    const { data, error } = await query;
+    if (error || !data || data.length === 0) return [];
+
+    // Convert to the format expected by the line chart
+    return data.map((row: any) => ({
+      timestamp: row.snapshot_time,
+      book: row.book_key,
+      outcome: row.outcome_type,
+      line: row.line,
+      odds: row.odds,
+    }));
+  } catch (e) {
+    console.error('[GameDetail] Snapshot fallback error:', e);
     return [];
   }
 }
@@ -306,7 +343,7 @@ function buildPerBookFromCache(game: any): Record<string, { marketGroups: any }>
         // Yes/no props (e.g., anytime TD) - name is player name
         for (const o of outcomes) {
           playerProps.push({
-            player: o.name, market: key, market_type: key, book: bookKey,
+            player: o.description || o.name, market: key, market_type: key, book: bookKey,
             line: o.point ?? null, over: null, under: null,
             yes: { odds: o.price },
           });
@@ -359,6 +396,13 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     'icehockey_nhl': 'NHL',
     'americanfootball_ncaaf': 'NCAAF',
     'basketball_ncaab': 'NCAAB',
+    'baseball_mlb': 'MLB',
+    'basketball_wnba': 'WNBA',
+    'mma_mixed_martial_arts': 'MMA',
+    'tennis_atp_australian_open': 'TENNIS_AO',
+    'tennis_atp_french_open': 'TENNIS_FO',
+    'tennis_atp_us_open': 'TENNIS_USO',
+    'tennis_atp_wimbledon': 'TENNIS_WIM',
   };
 
   if (querySport) {
@@ -371,13 +415,20 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   }
 
   if (!gameData) {
-    const sportsToSearch = ['NFL', 'NBA', 'NHL', 'NCAAF', 'NCAAB'];
+    const sportsToSearch = ['NFL', 'NBA', 'NHL', 'NCAAF', 'NCAAB', 'MLB', 'WNBA', 'MMA', 'TENNIS_AO', 'TENNIS_FO', 'TENNIS_USO', 'TENNIS_WIM'];
     const reverseMap: Record<string, string> = {
       'NFL': 'americanfootball_nfl',
       'NBA': 'basketball_nba',
       'NHL': 'icehockey_nhl',
       'NCAAF': 'americanfootball_ncaaf',
       'NCAAB': 'basketball_ncaab',
+      'MLB': 'baseball_mlb',
+      'WNBA': 'basketball_wnba',
+      'MMA': 'mma_mixed_martial_arts',
+      'TENNIS_AO': 'tennis_atp_australian_open',
+      'TENNIS_FO': 'tennis_atp_french_open',
+      'TENNIS_USO': 'tennis_atp_us_open',
+      'TENNIS_WIM': 'tennis_atp_wimbledon',
     };
     
     for (const sport of sportsToSearch) {

@@ -15,6 +15,10 @@ const SPORT_KEYS: Record<string, string> = {
   MLB: "baseball_mlb",
   WNBA: "basketball_wnba",
   MMA: "mma_mixed_martial_arts",
+  TENNIS_AO: "tennis_atp_australian_open",
+  TENNIS_FO: "tennis_atp_french_open",
+  TENNIS_USO: "tennis_atp_us_open",
+  TENNIS_WIM: "tennis_atp_wimbledon",
 };
 
 // Core markets fetched via /sports/{sport}/odds (all sports)
@@ -58,6 +62,9 @@ const EVENT_MARKETS: Record<string, string[]> = {
     "player_threes",
   ], // 13 markets
 };
+
+// Core market keys to snapshot (not props/alts)
+const SNAPSHOT_MARKETS = ["h2h", "spreads", "totals"];
 
 function getSupabase() {
   const cookieStore = cookies();
@@ -146,119 +153,184 @@ function mergeBookmakers(game: any, additionalBookmakers: any[]) {
   }
 }
 
+// Build snapshot rows from games for odds_snapshots table
+function buildSnapshotRows(games: any[], sportKey: string, snapshotTime: string) {
+  const rows: any[] = [];
+  for (const game of games) {
+    if (!game.bookmakers) continue;
+    for (const bk of game.bookmakers) {
+      for (const market of bk.markets || []) {
+        if (!SNAPSHOT_MARKETS.includes(market.key)) continue;
+        for (const outcome of market.outcomes || []) {
+          rows.push({
+            game_id: game.id,
+            sport_key: sportKey,
+            book_key: bk.key,
+            market: market.key,
+            outcome_type: outcome.name,
+            line: outcome.point ?? null,
+            odds: outcome.price,
+            snapshot_time: snapshotTime,
+          });
+        }
+      }
+    }
+  }
+  return rows;
+}
+
+// Shared sync logic used by both GET (cron) and POST (manual)
+async function runSync() {
+  if (!ODDS_API_KEY) {
+    return NextResponse.json(
+      { error: "ODDS_API_KEY not configured" },
+      { status: 500 }
+    );
+  }
+
+  const supabase = getSupabase();
+  let totalSynced = 0;
+  let totalCost = 0;
+  let lastRemaining: string | null = null;
+  const errors: string[] = [];
+  const sportSummary: Record<
+    string,
+    { games: number; enriched: number; cost: number }
+  > = {};
+  const snapshotTime = new Date().toISOString();
+
+  for (const [sport, sportKey] of Object.entries(SPORT_KEYS)) {
+    try {
+      // Pass 1: Core markets for all games
+      const { games, cost: coreCost, remaining } =
+        await fetchCoreOdds(sportKey);
+      if (remaining) lastRemaining = remaining;
+      let sportCost = coreCost;
+      let enrichedCount = 0;
+
+      if (games.length === 0) {
+        sportSummary[sport] = { games: 0, enriched: 0, cost: sportCost };
+        continue;
+      }
+
+      // Pass 2: Per-event enrichment (pro sports only)
+      const additionalMarkets = EVENT_MARKETS[sportKey];
+      if (additionalMarkets && additionalMarkets.length > 0) {
+        for (const game of games) {
+          try {
+            const { bookmakers, cost, remaining: evtRemaining } =
+              await fetchEventMarkets(
+                sportKey,
+                game.id,
+                additionalMarkets
+              );
+            sportCost += cost;
+            if (evtRemaining) lastRemaining = evtRemaining;
+
+            if (bookmakers.length > 0) {
+              mergeBookmakers(game, bookmakers);
+              enrichedCount++;
+            }
+          } catch (e: any) {
+            // Log but continue — don't fail the whole sport on one event
+            console.error(
+              `[Odds Sync] ${sport} event ${game.id} enrich failed:`,
+              e?.message
+            );
+          }
+        }
+      }
+
+      totalCost += sportCost;
+
+      // Upsert to Supabase cached_odds
+      const rows = games.map((game: any) => ({
+        sport_key: sportKey,
+        game_id: game.id,
+        game_data: game,
+        updated_at: new Date().toISOString(),
+      }));
+
+      const { error } = await supabase
+        .from("cached_odds")
+        .upsert(rows, { onConflict: "sport_key,game_id" });
+
+      if (error) {
+        errors.push(`${sport}: ${error.message}`);
+      } else {
+        totalSynced += games.length;
+      }
+
+      // Save snapshots to odds_snapshots
+      const snapshotRows = buildSnapshotRows(games, sportKey, snapshotTime);
+      if (snapshotRows.length > 0) {
+        // Batch insert in chunks of 500 to avoid payload limits
+        for (let i = 0; i < snapshotRows.length; i += 500) {
+          const chunk = snapshotRows.slice(i, i + 500);
+          const { error: snapError } = await supabase
+            .from("odds_snapshots")
+            .upsert(chunk, { onConflict: "game_id,book_key,market,outcome_type,snapshot_time" });
+          if (snapError) {
+            console.error(`[Odds Sync] ${sport} snapshot save failed:`, snapError.message);
+          }
+        }
+      }
+
+      sportSummary[sport] = {
+        games: games.length,
+        enriched: enrichedCount,
+        cost: sportCost,
+      };
+
+      console.log(
+        `[Odds Sync] ${sport}: ${games.length} games, ${enrichedCount} enriched (${sportCost} reqs)`
+      );
+    } catch (e: any) {
+      const msg = e?.message || String(e);
+      console.error(`[Odds Sync] ${sport} failed:`, msg);
+      errors.push(`${sport}: ${msg}`);
+    }
+  }
+
+  console.log(
+    `[Odds Sync] Done: ${totalSynced} games, ${totalCost} reqs used, ${lastRemaining} remaining`
+  );
+
+  return NextResponse.json({
+    synced: totalSynced,
+    requestsUsed: totalCost,
+    remaining: lastRemaining,
+    sports: sportSummary,
+    errors: errors.length > 0 ? errors : undefined,
+  });
+}
+
+// GET handler for Vercel cron (sends Authorization: Bearer <CRON_SECRET>)
+export async function GET(request: Request) {
+  try {
+    const authHeader = request.headers.get("authorization");
+    const token = authHeader?.replace("Bearer ", "");
+    if (!CRON_SECRET || token !== CRON_SECRET) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    return await runSync();
+  } catch (error) {
+    console.error("[Odds Sync] Fatal error:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}
+
+// POST handler for manual sync (uses x-cron-secret header)
 export async function POST(request: Request) {
   try {
     const authHeader = request.headers.get("x-cron-secret");
     if (!CRON_SECRET || authHeader !== CRON_SECRET) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-
-    if (!ODDS_API_KEY) {
-      return NextResponse.json(
-        { error: "ODDS_API_KEY not configured" },
-        { status: 500 }
-      );
-    }
-
-    const supabase = getSupabase();
-    let totalSynced = 0;
-    let totalCost = 0;
-    let lastRemaining: string | null = null;
-    const errors: string[] = [];
-    const sportSummary: Record<
-      string,
-      { games: number; enriched: number; cost: number }
-    > = {};
-
-    for (const [sport, sportKey] of Object.entries(SPORT_KEYS)) {
-      try {
-        // Pass 1: Core markets for all games
-        const { games, cost: coreCost, remaining } =
-          await fetchCoreOdds(sportKey);
-        if (remaining) lastRemaining = remaining;
-        let sportCost = coreCost;
-        let enrichedCount = 0;
-
-        if (games.length === 0) {
-          sportSummary[sport] = { games: 0, enriched: 0, cost: sportCost };
-          continue;
-        }
-
-        // Pass 2: Per-event enrichment (pro sports only)
-        const additionalMarkets = EVENT_MARKETS[sportKey];
-        if (additionalMarkets && additionalMarkets.length > 0) {
-          for (const game of games) {
-            try {
-              const { bookmakers, cost, remaining: evtRemaining } =
-                await fetchEventMarkets(
-                  sportKey,
-                  game.id,
-                  additionalMarkets
-                );
-              sportCost += cost;
-              if (evtRemaining) lastRemaining = evtRemaining;
-
-              if (bookmakers.length > 0) {
-                mergeBookmakers(game, bookmakers);
-                enrichedCount++;
-              }
-            } catch (e: any) {
-              // Log but continue — don't fail the whole sport on one event
-              console.error(
-                `[Odds Sync] ${sport} event ${game.id} enrich failed:`,
-                e?.message
-              );
-            }
-          }
-        }
-
-        totalCost += sportCost;
-
-        // Upsert to Supabase
-        const rows = games.map((game: any) => ({
-          sport_key: sportKey,
-          game_id: game.id,
-          game_data: game,
-          updated_at: new Date().toISOString(),
-        }));
-
-        const { error } = await supabase
-          .from("cached_odds")
-          .upsert(rows, { onConflict: "sport_key,game_id" });
-
-        if (error) {
-          errors.push(`${sport}: ${error.message}`);
-        } else {
-          totalSynced += games.length;
-        }
-
-        sportSummary[sport] = {
-          games: games.length,
-          enriched: enrichedCount,
-          cost: sportCost,
-        };
-
-        console.log(
-          `[Odds Sync] ${sport}: ${games.length} games, ${enrichedCount} enriched (${sportCost} reqs)`
-        );
-      } catch (e: any) {
-        const msg = e?.message || String(e);
-        console.error(`[Odds Sync] ${sport} failed:`, msg);
-        errors.push(`${sport}: ${msg}`);
-      }
-    }
-
-    console.log(
-      `[Odds Sync] Done: ${totalSynced} games, ${totalCost} reqs used, ${lastRemaining} remaining`
-    );
-
-    return NextResponse.json({
-      synced: totalSynced,
-      requestsUsed: totalCost,
-      remaining: lastRemaining,
-      sports: sportSummary,
-      errors: errors.length > 0 ? errors : undefined,
-    });
+    return await runSync();
   } catch (error) {
     console.error("[Odds Sync] Fatal error:", error);
     return NextResponse.json(

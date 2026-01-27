@@ -13,6 +13,10 @@ const SPORT_MAPPING: Record<string, string> = {
   'MLB': 'baseball_mlb',
   'WNBA': 'basketball_wnba',
   'MMA': 'mma_mixed_martial_arts',
+  'TENNIS_AO': 'tennis_atp_australian_open',
+  'TENNIS_FO': 'tennis_atp_french_open',
+  'TENNIS_USO': 'tennis_atp_us_open',
+  'TENNIS_WIM': 'tennis_atp_wimbledon',
 };
 
 function getSupabase() {
@@ -187,7 +191,7 @@ async function fetchFromCache(sportKey: string) {
 }
 
 export default async function SportsPage() {
-  const sports = ['NFL', 'NBA', 'NHL', 'NCAAF', 'NCAAB', 'MLB'];
+  const sports = ['NFL', 'NBA', 'NHL', 'NCAAF', 'NCAAB', 'MLB', 'MMA', 'TENNIS_AO', 'TENNIS_FO', 'TENNIS_USO', 'TENNIS_WIM'];
   const allGames: Record<string, any[]> = {};
   let dataSource: 'backend' | 'odds_api' | 'none' = 'none';
   let totalGames = 0;

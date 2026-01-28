@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { getAuthState, logout } from '@/lib/edge/auth';
 
 interface NavItem {
   key: string;
@@ -117,7 +118,7 @@ function Logo() {
   );
 }
 
-function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; onClose: () => void; onLogout: () => void; userEmail: string | null }) {
   const pathname = usePathname();
   const userTier = 1;
 
@@ -188,6 +189,23 @@ function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) 
 
         {/* Status Footer */}
         <div className="p-2 border-t border-zinc-800/80 flex-shrink-0 space-y-2">
+          {/* User Info */}
+          {userEmail && (
+            <div className="bg-zinc-900/50 rounded-md p-2.5">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 bg-emerald-500/20 rounded flex items-center justify-center flex-shrink-0">
+                  <span className="text-[9px] font-mono font-bold text-emerald-400">
+                    {userEmail.slice(0, 2).toUpperCase()}
+                  </span>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[10px] text-zinc-400 truncate">{userEmail}</p>
+                  <p className="text-[8px] font-mono text-zinc-600 uppercase">Beta Access</p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* System Status */}
           <div className="bg-zinc-900/50 rounded-md p-2.5">
             <div className="flex items-center gap-1.5 mb-2">
@@ -213,6 +231,17 @@ function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) 
           >
             Upgrade Plan
           </Link>
+
+          {/* Logout */}
+          <button
+            onClick={onLogout}
+            className="w-full flex items-center justify-center gap-1.5 text-[10px] font-mono font-medium text-zinc-500 hover:text-red-400 bg-zinc-900/50 hover:bg-red-500/10 border border-zinc-800 hover:border-red-500/20 rounded-md py-1.5 transition-colors uppercase tracking-wider"
+          >
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            Sign Out
+          </button>
         </div>
       </aside>
     </>
@@ -268,10 +297,41 @@ function Header({ onMenuClick }: { onMenuClick: () => void }) {
 
 export default function PortalLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+  const router = useRouter();
+
+  // Check auth on mount
+  useEffect(() => {
+    const authState = getAuthState();
+    if (!authState.isAuthenticated) {
+      router.replace('/edge/login');
+    } else {
+      setUserEmail(authState.email);
+      setIsLoading(false);
+    }
+  }, [router]);
+
+  const handleLogout = () => {
+    logout();
+    router.replace('/edge/login');
+  };
+
+  // Show loading state while checking auth
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-8 h-8 border-2 border-emerald-500/30 border-t-emerald-500 rounded-full animate-spin" />
+          <span className="text-xs font-mono text-zinc-600 uppercase tracking-wider">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 flex">
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} onLogout={handleLogout} userEmail={userEmail} />
       <div className="flex-1 flex flex-col min-w-0">
         <Header onMenuClick={() => setSidebarOpen(true)} />
         <main className="flex-1 overflow-auto">{children}</main>

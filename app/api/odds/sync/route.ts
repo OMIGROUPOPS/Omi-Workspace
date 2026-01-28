@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
-import { createServerClient } from "@supabase/ssr";
+import { createClient } from "@supabase/supabase-js";
 
 const CRON_SECRET = process.env.CRON_SECRET || "";
 const ODDS_API_KEY = process.env.ODDS_API_KEY || "";
@@ -66,18 +65,11 @@ const EVENT_MARKETS: Record<string, string[]> = {
 // Core market keys to snapshot (not props/alts)
 const SNAPSHOT_MARKETS = ["h2h", "spreads", "totals"];
 
+// Use direct Supabase client (no cookies needed — cron/API context, not browser)
 function getSupabase() {
-  const cookieStore = cookies();
-  return createServerClient(
+  return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
-        },
-      },
-    }
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 }
 

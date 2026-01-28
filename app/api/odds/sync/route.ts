@@ -62,11 +62,26 @@ const EVENT_MARKETS: Record<string, string[]> = {
   ], // 13 markets
 };
 
-// Market keys to snapshot for line movement charts (includes halves)
+// Market keys to snapshot for line movement charts (includes halves and props)
 const SNAPSHOT_MARKETS = [
+  // Core game markets
   "h2h", "spreads", "totals",
   "h2h_h1", "spreads_h1", "totals_h1",
   "h2h_h2", "spreads_h2", "totals_h2",
+  // Player props - NBA/WNBA/NCAAB
+  "player_points", "player_rebounds", "player_assists", "player_threes",
+  "player_blocks", "player_steals", "player_points_rebounds_assists",
+  "player_points_rebounds", "player_points_assists", "player_rebounds_assists",
+  // Player props - NFL
+  "player_pass_yds", "player_pass_tds", "player_pass_completions",
+  "player_pass_attempts", "player_pass_interceptions", "player_rush_yds",
+  "player_rush_attempts", "player_reception_yds", "player_receptions",
+  "player_anytime_td",
+  // Player props - NHL
+  "player_shots_on_goal", "player_blocked_shots",
+  // Player props - MLB
+  "pitcher_strikeouts", "batter_total_bases", "batter_hits",
+  "batter_home_runs", "batter_rbis",
 ];
 
 // Use direct Supabase client (no cookies needed — cron/API context, not browser)
@@ -157,13 +172,22 @@ function buildSnapshotRows(games: any[], sportKey: string, snapshotTime: string)
     for (const bk of game.bookmakers) {
       for (const market of bk.markets || []) {
         if (!SNAPSHOT_MARKETS.includes(market.key)) continue;
+        const isProp = market.key.startsWith("player_") ||
+                       market.key.startsWith("pitcher_") ||
+                       market.key.startsWith("batter_");
         for (const outcome of market.outcomes || []) {
+          // For props: outcome.name is player name, outcome.description is "Over"/"Under"
+          // For game markets: outcome.name is team name or "Over"/"Under"
+          const outcomeType = isProp && outcome.description
+            ? `${outcome.name}|${outcome.description}` // e.g., "Josh Allen|Over"
+            : outcome.name;
+
           rows.push({
             game_id: game.id,
             sport_key: sportKey,
             book_key: bk.key,
             market: market.key,
-            outcome_type: outcome.name,
+            outcome_type: outcomeType,
             line: outcome.point ?? null,
             odds: outcome.price,
             snapshot_time: snapshotTime,

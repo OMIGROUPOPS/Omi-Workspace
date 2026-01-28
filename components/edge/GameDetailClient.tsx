@@ -784,10 +784,21 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
       setLoadingPropHistory(true);
       const playerName = encodeURIComponent(selectedProp.player);
       const marketType = encodeURIComponent(selectedProp.market || selectedProp.market_type);
-      fetch(`http://localhost:8000/api/props/history/${gameData.id}/${playerName}/${marketType}?book=${selectedBook}`)
+      // Use our API route which queries Supabase odds_snapshots
+      fetch(`/api/odds/prop-history?gameId=${gameData.id}&player=${playerName}&market=${marketType}&book=${selectedBook}`)
         .then(res => res.json())
         .then(data => {
-          setPropHistory(data.snapshots || []);
+          // Transform to format expected by chart (filter to Over side by default)
+          const overSnapshots = (data.snapshots || [])
+            .filter((s: any) => s.side === 'Over')
+            .map((s: any) => ({
+              snapshot_time: s.snapshot_time,
+              book_key: s.book_key,
+              outcome_type: s.player,
+              line: s.line,
+              odds: s.odds,
+            }));
+          setPropHistory(overSnapshots);
           setLoadingPropHistory(false);
         })
         .catch(err => {

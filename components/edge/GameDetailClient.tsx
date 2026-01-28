@@ -69,6 +69,8 @@ function PriceFlowIndicator({ value, seed, size = 'normal' }: { value: number; s
   );
 }
 
+type ChartViewMode = 'line' | 'price';
+
 type ChartSelection = {
   type: 'market';
   market: 'spread' | 'total' | 'moneyline';
@@ -102,14 +104,21 @@ interface LineMovementChartProps {
   lineHistory?: any[];
   selectedBook: string;
   homeTeam?: string;
+  viewMode: ChartViewMode;
+  onViewModeChange: (mode: ChartViewMode) => void;
 }
 
-function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam }: LineMovementChartProps) {
+function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, viewMode, onViewModeChange }: LineMovementChartProps) {
   const [hoveredPoint, setHoveredPoint] = useState<{ x: number; y: number; value: number; timestamp: Date; index: number } | null>(null);
 
   const isProp = selection.type === 'prop';
   const marketType = selection.type === 'market' ? selection.market : 'line';
   const baseValue = selection.line ?? (selection.type === 'market' ? selection.price : 0) ?? 0;
+
+  // For price view, determine which side to show
+  const isShowingPrice = viewMode === 'price';
+  // Moneyline always shows price (it IS the price), so force line mode display
+  const effectiveViewMode = marketType === 'moneyline' ? 'line' : viewMode;
 
   // Filter line history by selected book AND outcome side
   // Spreads/moneyline: show home team only; Totals: show Over only
@@ -121,29 +130,55 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     if (homeTeam) return snapshot.outcome_type === homeTeam;
     return true;
   });
-  
+
   const hasRealData = filteredHistory.length > 0;
-  
+
   let data: { timestamp: Date; value: number }[] = [];
-  
+
   if (hasRealData) {
     // Use ONLY real data filtered by book - works for both main markets and props
     data = filteredHistory.map(snapshot => ({
       timestamp: new Date(snapshot.snapshot_time),
-      value: isProp ? snapshot.line : (marketType === 'moneyline' ? snapshot.odds : snapshot.line)
+      // For price view, always use odds; for line view, use line (or odds for moneyline)
+      value: effectiveViewMode === 'price'
+        ? snapshot.odds
+        : (isProp ? snapshot.line : (marketType === 'moneyline' ? snapshot.odds : snapshot.line))
     })).filter(d => d.value !== null && d.value !== undefined);
-    
+
     // Sort by timestamp
     data.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
   }
-  
+
+  // Chart title based on view mode
+  const chartTitle = effectiveViewMode === 'price'
+    ? `${selection.label} - Price/Juice`
+    : selection.label;
+
   // If no data or only 1 point, show message
   if (data.length === 0) {
     return (
       <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-sm font-medium text-zinc-100">{selection.label}</h3>
-          <span className="text-xs text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Collecting Data</span>
+          <h3 className="text-sm font-medium text-zinc-100">{chartTitle}</h3>
+          <div className="flex items-center gap-2">
+            {marketType !== 'moneyline' && (
+              <div className="flex rounded-lg overflow-hidden border border-zinc-700">
+                <button
+                  onClick={() => onViewModeChange('line')}
+                  className={`px-2.5 py-1 text-xs font-medium transition-colors ${viewMode === 'line' ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200'}`}
+                >
+                  Line
+                </button>
+                <button
+                  onClick={() => onViewModeChange('price')}
+                  className={`px-2.5 py-1 text-xs font-medium transition-colors ${viewMode === 'price' ? 'bg-amber-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200'}`}
+                >
+                  Price
+                </button>
+              </div>
+            )}
+            <span className="text-xs text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Collecting Data</span>
+          </div>
         </div>
         <div className="flex items-center justify-center h-32 text-zinc-500 text-sm">
           <div className="text-center">
@@ -154,7 +189,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       </div>
     );
   }
-  
+
   // Even with 1 point, show it as a flat line
   if (data.length === 1) {
     const singleValue = data[0].value;
@@ -164,7 +199,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       { timestamp: new Date(), value: singleValue }
     ];
   }
-  
+
   const openValue = data[0]?.value || baseValue;
   const currentValue = data[data.length - 1]?.value || baseValue;
   const movement = currentValue - openValue;
@@ -173,12 +208,12 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const maxVal = Math.max(...values);
   const range = maxVal - minVal || 1;
   const padding = range * 0.15;
-  
+
   const width = 400, height = 140;
   const paddingLeft = 50, paddingRight = 15, paddingTop = 15, paddingBottom = 25;
   const chartWidth = width - paddingLeft - paddingRight;
   const chartHeight = height - paddingTop - paddingBottom;
-  
+
   const chartPoints = data.map((d, i) => ({
     x: paddingLeft + (i / Math.max(data.length - 1, 1)) * chartWidth,
     y: paddingTop + chartHeight - ((d.value - minVal + padding) / (range + 2 * padding)) * chartHeight,
@@ -186,19 +221,26 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     timestamp: d.timestamp,
     index: i
   }));
-  
+
   const pathD = chartPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
-  
+
   const formatValue = (val: number) => {
+    // Price view always formats as odds
+    if (effectiveViewMode === 'price') {
+      return val > 0 ? `+${val}` : val.toString();
+    }
     if (isProp) return val.toString();
     if (marketType === 'moneyline' || marketType === 'spread') return val > 0 ? `+${val}` : val.toString();
     return val.toString();
   };
-  
+
   const movementColor = movement > 0 ? 'text-emerald-400' : movement < 0 ? 'text-red-400' : 'text-zinc-400';
-  const roundLabel = (val: number) => marketType === 'moneyline' ? Math.round(val) : Math.round(val * 2) / 2;
+
+  // For price view, use different step sizes
+  const isPrice = effectiveViewMode === 'price';
+  const roundLabel = (val: number) => isPrice || marketType === 'moneyline' ? Math.round(val) : Math.round(val * 2) / 2;
   const center = roundLabel((maxVal + minVal) / 2);
-  const step = marketType === 'moneyline' ? 5 : 0.5;
+  const step = isPrice || marketType === 'moneyline' ? Math.max(2, Math.round(range / 4)) : 0.5;
   const yLabels = [
     { value: center + step, y: paddingTop },
     { value: center, y: paddingTop + chartHeight / 2 },
@@ -223,82 +265,140 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     setHoveredPoint(minDist < 20 ? nearestPoint : null);
   };
 
+  // Chart colors based on view mode
+  const chartColor = effectiveViewMode === 'price' ? '#f59e0b' : (isProp ? '#3b82f6' : '#10b981');
+  const chartColorLight = effectiveViewMode === 'price' ? '#fbbf24' : (isProp ? '#60a5fa' : '#34d399');
+  const gradientId = `chart-grad-${gameId}-${effectiveViewMode}`;
+
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-medium text-zinc-100">{selection.label}</h3>
-        <span className="text-xs text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Live Data</span>
+        <h3 className="text-sm font-medium text-zinc-100">{chartTitle}</h3>
+        <div className="flex items-center gap-2">
+          {marketType !== 'moneyline' && (
+            <div className="flex rounded-lg overflow-hidden border border-zinc-700">
+              <button
+                onClick={() => onViewModeChange('line')}
+                className={`px-2.5 py-1 text-xs font-medium transition-colors ${viewMode === 'line' ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200'}`}
+              >
+                Line
+              </button>
+              <button
+                onClick={() => onViewModeChange('price')}
+                className={`px-2.5 py-1 text-xs font-medium transition-colors ${viewMode === 'price' ? 'bg-amber-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200'}`}
+              >
+                Price
+              </button>
+            </div>
+          )}
+          <span className="text-xs text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Live Data</span>
+        </div>
       </div>
-      
+
       <div className="flex gap-6 mb-4">
-        <div><span className="text-zinc-500 text-xs block">Open</span><span className="text-lg font-semibold text-zinc-300">{formatValue(openValue)}</span></div>
-        <div><span className="text-zinc-500 text-xs block">Current</span><span className="text-lg font-semibold text-zinc-100">{formatValue(currentValue)}</span></div>
-        <div><span className="text-zinc-500 text-xs block">Movement</span><span className={`text-lg font-semibold ${movementColor}`}>{movement > 0 ? '+' : ''}{movement.toFixed(1)}</span></div>
+        <div>
+          <span className="text-zinc-500 text-xs block">Open</span>
+          <span className="text-lg font-semibold text-zinc-300">{formatValue(openValue)}</span>
+        </div>
+        <div>
+          <span className="text-zinc-500 text-xs block">Current</span>
+          <span className="text-lg font-semibold text-zinc-100">{formatValue(currentValue)}</span>
+        </div>
+        <div>
+          <span className="text-zinc-500 text-xs block">Movement</span>
+          <span className={`text-lg font-semibold ${movementColor}`}>
+            {movement > 0 ? '+' : ''}{effectiveViewMode === 'price' ? Math.round(movement) : movement.toFixed(1)}
+          </span>
+        </div>
+        {effectiveViewMode === 'price' && (
+          <div className="ml-auto">
+            <span className="text-zinc-500 text-xs block">Current Line</span>
+            <span className="text-lg font-semibold text-zinc-400">
+              {marketType === 'spread' ? formatSpread(selection.line ?? 0) : selection.line ?? '-'}
+            </span>
+          </div>
+        )}
       </div>
-      
-      <div className="flex gap-4 mb-4 pb-3 border-b border-zinc-800">
-        {selection.type === 'market' && selection.market === 'spread' && (
-          <>
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-              <span className="text-xs text-zinc-400">Home</span>
-              <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.homePrice || -110)}</span>
-              <PriceFlowIndicator value={selection.homePriceMovement || 0} seed={`${gameId}-spread-home-price`} size="small" />
-            </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-              <span className="text-xs text-zinc-400">Away</span>
-              <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.awayPrice || -110)}</span>
-              <PriceFlowIndicator value={selection.awayPriceMovement || 0} seed={`${gameId}-spread-away-price`} size="small" />
-            </div>
-          </>
-        )}
-        {selection.type === 'market' && selection.market === 'total' && (
-          <>
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-              <span className="text-xs text-zinc-400">Over</span>
-              <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.overPrice || -110)}</span>
-              <PriceFlowIndicator value={selection.overPriceMovement || 0} seed={`${gameId}-total-over-price`} size="small" />
-            </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-              <span className="text-xs text-zinc-400">Under</span>
-              <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.underPrice || -110)}</span>
-              <PriceFlowIndicator value={selection.underPriceMovement || 0} seed={`${gameId}-total-under-price`} size="small" />
-            </div>
-          </>
-        )}
-        {selection.type === 'market' && selection.market === 'moneyline' && (
-          <>
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-              <span className="text-xs text-zinc-400">Home</span>
-              <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.homePrice || -110)}</span>
-              <PriceFlowIndicator value={selection.homePriceMovement || 0} seed={`${gameId}-ml-home-price`} size="small" />
-            </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-              <span className="text-xs text-zinc-400">Away</span>
-              <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.awayPrice || 110)}</span>
-              <PriceFlowIndicator value={selection.awayPriceMovement || 0} seed={`${gameId}-ml-away-price`} size="small" />
-            </div>
-          </>
-        )}
-        {isProp && selection.type === 'prop' && (
-          <>
-            {selection.overOdds && (
+
+      {effectiveViewMode === 'line' && (
+        <div className="flex gap-4 mb-4 pb-3 border-b border-zinc-800">
+          {selection.type === 'market' && selection.market === 'spread' && (
+            <>
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
+                <span className="text-xs text-zinc-400">Home</span>
+                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.homePrice || -110)}</span>
+                <PriceFlowIndicator value={selection.homePriceMovement || 0} seed={`${gameId}-spread-home-price`} size="small" />
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
+                <span className="text-xs text-zinc-400">Away</span>
+                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.awayPrice || -110)}</span>
+                <PriceFlowIndicator value={selection.awayPriceMovement || 0} seed={`${gameId}-spread-away-price`} size="small" />
+              </div>
+            </>
+          )}
+          {selection.type === 'market' && selection.market === 'total' && (
+            <>
               <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
                 <span className="text-xs text-zinc-400">Over</span>
-                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.overOdds)}</span>
-                <PriceFlowIndicator value={selection.overPriceMovement || 0} seed={`${gameId}-${selection.player}-over-price`} size="small" />
+                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.overPrice || -110)}</span>
+                <PriceFlowIndicator value={selection.overPriceMovement || 0} seed={`${gameId}-total-over-price`} size="small" />
               </div>
-            )}
-            {selection.underOdds && (
               <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
                 <span className="text-xs text-zinc-400">Under</span>
-                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.underOdds)}</span>
-                <PriceFlowIndicator value={selection.underPriceMovement || 0} seed={`${gameId}-${selection.player}-under-price`} size="small" />
+                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.underPrice || -110)}</span>
+                <PriceFlowIndicator value={selection.underPriceMovement || 0} seed={`${gameId}-total-under-price`} size="small" />
               </div>
-            )}
-          </>
-        )}
-      </div>
-      
+            </>
+          )}
+          {selection.type === 'market' && selection.market === 'moneyline' && (
+            <>
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
+                <span className="text-xs text-zinc-400">Home</span>
+                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.homePrice || -110)}</span>
+                <PriceFlowIndicator value={selection.homePriceMovement || 0} seed={`${gameId}-ml-home-price`} size="small" />
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
+                <span className="text-xs text-zinc-400">Away</span>
+                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.awayPrice || 110)}</span>
+                <PriceFlowIndicator value={selection.awayPriceMovement || 0} seed={`${gameId}-ml-away-price`} size="small" />
+              </div>
+            </>
+          )}
+          {isProp && selection.type === 'prop' && (
+            <>
+              {selection.overOdds && (
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
+                  <span className="text-xs text-zinc-400">Over</span>
+                  <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.overOdds)}</span>
+                  <PriceFlowIndicator value={selection.overPriceMovement || 0} seed={`${gameId}-${selection.player}-over-price`} size="small" />
+                </div>
+              )}
+              {selection.underOdds && (
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
+                  <span className="text-xs text-zinc-400">Under</span>
+                  <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.underOdds)}</span>
+                  <PriceFlowIndicator value={selection.underPriceMovement || 0} seed={`${gameId}-${selection.player}-under-price`} size="small" />
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      )}
+
+      {effectiveViewMode === 'price' && (
+        <div className="flex gap-4 mb-4 pb-3 border-b border-zinc-800">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded">
+            <span className="text-xs text-amber-400">Tracking</span>
+            <span className="text-sm font-medium text-amber-200">
+              {marketType === 'spread' ? 'Home Spread Price' : 'Over Price'}
+            </span>
+          </div>
+          <div className="text-xs text-zinc-500 flex items-center">
+            Price moves from -110 to -106 means line is getting steamed
+          </div>
+        </div>
+      )}
+
       <div className="relative">
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto cursor-crosshair" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
           {yLabels.map((label, i) => (
@@ -309,18 +409,18 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           ))}
           {xLabels.map((label, i) => (<text key={i} x={label.x} y={height - 5} textAnchor="middle" fill="#71717a" fontSize="10">{label.label}</text>))}
           <defs>
-            <linearGradient id={`line-grad-${gameId}`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={isProp ? "#3b82f6" : "#10b981"} stopOpacity="0.3" />
-              <stop offset="100%" stopColor={isProp ? "#3b82f6" : "#10b981"} stopOpacity="0" />
+            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={chartColor} stopOpacity="0.3" />
+              <stop offset="100%" stopColor={chartColor} stopOpacity="0" />
             </linearGradient>
           </defs>
           {chartPoints.length > 0 && (
             <>
-              <path d={`${pathD} L ${chartPoints[chartPoints.length - 1].x} ${paddingTop + chartHeight} L ${paddingLeft} ${paddingTop + chartHeight} Z`} fill={`url(#line-grad-${gameId})`} />
-              <path d={pathD} fill="none" stroke={isProp ? "#3b82f6" : "#10b981"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              {hoveredPoint && (<><line x1={hoveredPoint.x} y1={paddingTop} x2={hoveredPoint.x} y2={paddingTop + chartHeight} stroke="#a1a1aa" strokeWidth="1" strokeDasharray="3 3" /><circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="5" fill={isProp ? "#3b82f6" : "#10b981"} stroke="#fff" strokeWidth="2" /></>)}
+              <path d={`${pathD} L ${chartPoints[chartPoints.length - 1].x} ${paddingTop + chartHeight} L ${paddingLeft} ${paddingTop + chartHeight} Z`} fill={`url(#${gradientId})`} />
+              <path d={pathD} fill="none" stroke={chartColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              {hoveredPoint && (<><line x1={hoveredPoint.x} y1={paddingTop} x2={hoveredPoint.x} y2={paddingTop + chartHeight} stroke="#a1a1aa" strokeWidth="1" strokeDasharray="3 3" /><circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="5" fill={chartColor} stroke="#fff" strokeWidth="2" /></>)}
               <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="3" fill="#71717a" stroke="#3f3f46" strokeWidth="2" />
-              <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="4" fill={isProp ? "#3b82f6" : "#10b981"} stroke={isProp ? "#1e3a5f" : "#064e3b"} strokeWidth="2" />
+              <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="4" fill={chartColor} stroke={effectiveViewMode === 'price' ? '#78350f' : (isProp ? '#1e3a5f' : '#064e3b')} strokeWidth="2" />
             </>
           )}
         </svg>
@@ -331,10 +431,13 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           </div>
         )}
       </div>
-      
+
       <div className="flex items-center gap-4 mt-2 text-xs text-zinc-500">
         <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-zinc-500"></span><span>Opening</span></div>
-        <div className="flex items-center gap-1.5"><span className={`w-2 h-2 rounded-full ${isProp ? 'bg-blue-500' : 'bg-emerald-500'}`}></span><span>Current</span></div>
+        <div className="flex items-center gap-1.5">
+          <span className={`w-2 h-2 rounded-full`} style={{ backgroundColor: chartColor }}></span>
+          <span>Current</span>
+        </div>
         <div className="ml-auto text-zinc-600">{filteredHistory.length} snapshots</div>
       </div>
     </div>
@@ -617,6 +720,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
   const [activeTab, setActiveTab] = useState('full');
   const [chartMarket, setChartMarket] = useState<'spread' | 'total' | 'moneyline'>('spread');
   const [selectedProp, setSelectedProp] = useState<any | null>(null);
+  const [chartViewMode, setChartViewMode] = useState<ChartViewMode>('line');
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   // Filter to only allowed books
@@ -684,8 +788,8 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
     const periodKey = activeTab === 'full' ? 'full' : activeTab === '1h' ? 'h1' : activeTab === '2h' ? 'h2' : 'full'; 
     return marketGroups.lineHistory?.[periodKey]?.[chartMarket] || []; 
   };
-  const handleSelectProp = (prop: any) => setSelectedProp(prop);
-  const handleSelectMarket = (market: 'spread' | 'total' | 'moneyline') => { setChartMarket(market); setSelectedProp(null); };
+  const handleSelectProp = (prop: any) => { setSelectedProp(prop); setChartViewMode('line'); };
+  const handleSelectMarket = (market: 'spread' | 'total' | 'moneyline') => { setChartMarket(market); setSelectedProp(null); setChartViewMode('line'); };
   const handleTabChange = (tab: string) => { setActiveTab(tab); if (tab !== 'props') setSelectedProp(null); };
   
   const tabs = [
@@ -710,7 +814,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         <div>
           {!selectedProp && (<div className="flex gap-2 mb-3">{['spread', 'total', 'moneyline'].map((market) => (<button key={market} onClick={() => handleSelectMarket(market as any)} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${chartMarket === market ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>{market.charAt(0).toUpperCase() + market.slice(1)}</button>))}</div>)}
           {selectedProp && (<div className="flex gap-2 mb-3 items-center"><button onClick={() => setSelectedProp(null)} className="px-3 py-1.5 rounded text-xs font-medium bg-zinc-800 text-zinc-400 hover:bg-zinc-700 flex items-center gap-1"><svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>Back to Markets</button><span className="px-3 py-1.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400">{selectedProp.player}</span><span className="text-xs text-zinc-500">via {selectedProp.book}</span></div>)}
-          <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} />
+          <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} viewMode={chartViewMode} onViewModeChange={setChartViewMode} />
         </div>
         <AskEdgeAI gameId={gameData.id} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} chartSelection={chartSelection} />
       </div>

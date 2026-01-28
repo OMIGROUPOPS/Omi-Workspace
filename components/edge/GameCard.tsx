@@ -44,19 +44,47 @@ interface GameCardProps {
   edge?: EdgeCalculation;
 }
 
+// Check if game is currently live (started but not more than 4 hours ago)
+function isGameLive(commenceTime: Date): boolean {
+  const now = new Date();
+  const gameStart = new Date(commenceTime);
+  const diff = now.getTime() - gameStart.getTime();
+  const hoursElapsed = diff / (1000 * 60 * 60);
+  // Game is live if it started (diff > 0) and less than 4 hours ago
+  return diff > 0 && hoursElapsed < 4;
+}
+
 export function GameCard({ game, consensus, edge }: GameCardProps) {
   const formatGameTime = (date: Date) => {
     return date.toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' });
   };
 
+  const isLive = isGameLive(game.commenceTime);
+
   return (
     <Link
       href={`/edge/portal/sports/game/${game.id}?sport=${game.sportKey}`}
-      className="block bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden hover:border-zinc-700 hover:bg-zinc-900/80 transition-all"
+      className={`block bg-zinc-900 border rounded-lg overflow-hidden hover:bg-zinc-900/80 transition-all ${
+        isLive
+          ? 'border-red-500/50 ring-1 ring-red-500/20 hover:border-red-500/70'
+          : 'border-zinc-800 hover:border-zinc-700'
+      }`}
     >
       {/* Header */}
       <div className="px-3 py-2 bg-zinc-800/50 border-b border-zinc-800 flex justify-between items-center">
-        <span className="text-xs text-zinc-400">{formatGameTime(game.commenceTime)}</span>
+        <div className="flex items-center gap-2">
+          {isLive ? (
+            <span className="flex items-center gap-1.5 text-xs font-medium text-red-400 bg-red-500/20 px-1.5 py-0.5 rounded">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+              </span>
+              LIVE
+            </span>
+          ) : (
+            <span className="text-xs text-zinc-400">{formatGameTime(game.commenceTime)}</span>
+          )}
+        </div>
         {edge && edge.status !== 'pass' && (
           <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded ${
             edge.status === 'rare' ? 'bg-purple-500/20 text-purple-400' :

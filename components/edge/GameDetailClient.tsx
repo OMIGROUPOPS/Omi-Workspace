@@ -725,19 +725,81 @@ function AlternatesSection({ alternates, homeTeam, awayTeam, gameId }: { alterna
   );
 }
 
+// Demo accounts that get full access to live tracking
+// Add your email and investor demo emails here
+const DEMO_ACCOUNTS = [
+  // 'your-email@example.com',
+  // 'dean@investor.com',
+  // 'investor@example.com',
+];
+
 interface GameDetailClientProps {
-  gameData: { id: string; homeTeam: string; awayTeam: string; sportKey: string };
+  gameData: { id: string; homeTeam: string; awayTeam: string; sportKey: string; commenceTime?: string };
   bookmakers: Record<string, any>;
   availableBooks: string[];
   availableTabs?: { fullGame?: boolean; firstHalf?: boolean; secondHalf?: boolean; q1?: boolean; q2?: boolean; q3?: boolean; q4?: boolean; p1?: boolean; p2?: boolean; p3?: boolean; props?: boolean; alternates?: boolean; teamTotals?: boolean };
+  userTier?: 'tier_1' | 'tier_2';
+  userEmail?: string;
+  isDemo?: boolean;
 }
 
-export function GameDetailClient({ gameData, bookmakers, availableBooks, availableTabs }: GameDetailClientProps) {
+// Check if game is currently live
+function isGameLive(commenceTime?: string): boolean {
+  if (!commenceTime) return false;
+  const now = new Date();
+  const gameStart = new Date(commenceTime);
+  const diff = now.getTime() - gameStart.getTime();
+  const hoursElapsed = diff / (1000 * 60 * 60);
+  return diff > 0 && hoursElapsed < 4;
+}
+
+// Lock overlay for tier-restricted content
+function LiveLockOverlay() {
+  return (
+    <div className="absolute inset-0 bg-zinc-900/80 backdrop-blur-sm flex flex-col items-center justify-center z-20 rounded-lg">
+      <div className="text-center p-6">
+        <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-amber-500/20 flex items-center justify-center">
+          <svg className="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+        </div>
+        <h3 className="text-lg font-semibold text-zinc-100 mb-1">Live In-Game Tracking</h3>
+        <p className="text-sm text-zinc-400 mb-4">Upgrade to Tier 2 for real-time line movement</p>
+        <button className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-black font-medium rounded-lg transition-colors text-sm">
+          Upgrade
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// Demo mode banner shown to demo users viewing live games
+function DemoModeBanner() {
+  return (
+    <div className="absolute top-2 left-2 right-2 z-10">
+      <div className="px-3 py-1.5 bg-purple-500/20 border border-purple-500/30 rounded text-xs text-purple-300 text-center">
+        Demo Mode - Live tracking is a Tier 2 feature
+      </div>
+    </div>
+  );
+}
+
+export function GameDetailClient({ gameData, bookmakers, availableBooks, availableTabs, userTier = 'tier_2', userEmail, isDemo = false }: GameDetailClientProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('full');
   const [chartMarket, setChartMarket] = useState<'spread' | 'total' | 'moneyline'>('spread');
   const [selectedProp, setSelectedProp] = useState<any | null>(null);
   const [chartViewMode, setChartViewMode] = useState<ChartViewMode>('line');
+
+  // Check if user is in demo mode (via URL param or demo account email)
+  const isDemoUser = isDemo || (userEmail && DEMO_ACCOUNTS.includes(userEmail.toLowerCase()));
+
+  // Check if game is live and if user needs upgrade
+  const isLive = isGameLive(gameData.commenceTime);
+  // Show lock for tier_1 users, unless they're in demo mode
+  const showLiveLock = isLive && userTier === 'tier_1' && !isDemoUser;
+  // Show demo banner for demo users viewing live games
+  const showDemoBanner = isLive && isDemoUser && userTier === 'tier_1';
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   // Filter to only allowed books
@@ -838,11 +900,27 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
 
   return (
     <div>
+      {/* Live game indicator banner */}
+      {isLive && (
+        <div className="mb-4 px-4 py-3 bg-red-500/10 border border-red-500/30 rounded-lg flex items-center gap-3">
+          <span className="relative flex h-3 w-3">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+          </span>
+          <span className="text-sm font-medium text-red-400">Game In Progress</span>
+          <span className="text-xs text-red-400/70">Live odds updates every sync cycle</span>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-        <div>
+        <div className="relative">
           {!selectedProp && (<div className="flex gap-2 mb-3">{['spread', 'total', 'moneyline'].map((market) => (<button key={market} onClick={() => handleSelectMarket(market as any)} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${chartMarket === market ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>{market.charAt(0).toUpperCase() + market.slice(1)}</button>))}</div>)}
           {selectedProp && (<div className="flex gap-2 mb-3 items-center"><button onClick={() => setSelectedProp(null)} className="px-3 py-1.5 rounded text-xs font-medium bg-zinc-800 text-zinc-400 hover:bg-zinc-700 flex items-center gap-1"><svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>Back to Markets</button><span className="px-3 py-1.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400">{selectedProp.player}</span><span className="text-xs text-zinc-500">via {selectedProp.book}</span></div>)}
           <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} viewMode={chartViewMode} onViewModeChange={setChartViewMode} />
+          {/* Lock overlay for tier 1 users viewing live games */}
+          {showLiveLock && <LiveLockOverlay />}
+          {/* Demo mode banner for demo users viewing live games */}
+          {showDemoBanner && <DemoModeBanner />}
         </div>
         <AskEdgeAI gameId={gameData.id} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} chartSelection={chartSelection} />
       </div>

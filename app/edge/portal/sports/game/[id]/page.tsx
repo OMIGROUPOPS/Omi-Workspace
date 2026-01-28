@@ -23,7 +23,7 @@ function getSupabase() {
 
 interface PageProps {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ sport?: string }>;
+  searchParams: Promise<{ sport?: string; demo?: string }>;
 }
 
 async function fetchLineHistory(gameId: string, market: string = 'spread', period: string = 'full', book?: string) {
@@ -386,7 +386,20 @@ function generateMockEdge(id: string, offset: number = 0): number {
 
 export default async function GameDetailPage({ params, searchParams }: PageProps) {
   const { id: gameId } = await params;
-  const { sport: querySport } = await searchParams;
+  const { sport: querySport, demo } = await searchParams;
+
+  // Check for demo mode via URL param
+  const isDemo = demo === 'true';
+
+  // Get user email from session (for demo account check)
+  let userEmail: string | undefined;
+  try {
+    const supabase = getSupabase();
+    const { data: { user } } = await supabase.auth.getUser();
+    userEmail = user?.email;
+  } catch (e) {
+    // No session or error - that's fine
+  }
 
   let gameData: any = null;
   let cachedRaw: any = null; // Raw cached game data with all enriched markets
@@ -685,9 +698,12 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
       </div>
 
       <GameDetailClient
-        gameData={{ id: gameId, homeTeam, awayTeam, sportKey: fullSportKey }}
+        gameData={{ id: gameId, homeTeam, awayTeam, sportKey: fullSportKey, commenceTime }}
         bookmakers={bookmakers}
         availableBooks={availableBooks}
+        userTier="tier_1"
+        userEmail={userEmail}
+        isDemo={isDemo}
         availableTabs={{
           fullGame: true,
           firstHalf: hasFirstHalf || isFootball || isBasketball || isNHL,

@@ -297,19 +297,23 @@ async function runSync() {
   });
 }
 
+// Vercel cron max duration (seconds) — prevent premature timeout
+export const maxDuration = 300;
+
 // GET handler for Vercel cron (sends Authorization: Bearer <CRON_SECRET>)
 export async function GET(request: Request) {
   try {
-    const authHeader = request.headers.get("authorization");
-    const token = authHeader?.replace("Bearer ", "");
+    const authHeader = request.headers.get("authorization") || "";
+    const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
     if (!CRON_SECRET || token !== CRON_SECRET) {
+      console.error("[Odds Sync] Auth failed. CRON_SECRET set:", !!CRON_SECRET, "Token received:", !!token);
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     return await runSync();
-  } catch (error) {
-    console.error("[Odds Sync] Fatal error:", error);
+  } catch (error: any) {
+    console.error("[Odds Sync] Fatal error:", error?.message || error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Internal server error", message: error?.message },
       { status: 500 }
     );
   }

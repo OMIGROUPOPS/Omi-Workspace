@@ -44,7 +44,7 @@ class ExecutionMode(Enum):
 # START IN PAPER MODE - Change to LIVE only when ready
 EXECUTION_MODE = ExecutionMode.PAPER
 
-KALSHI_API_KEY = 'c9121f7f-c56f-4940-95b2-f604ffb0a23f'
+KALSHI_API_KEY = 'f3b064d1-a02e-42a4-b2b1-132834694d23'
 KALSHI_PRIVATE_KEY = open('kalshi.pem').read()
 
 # Polymarket US credentials (Ed25519 auth)
@@ -453,9 +453,10 @@ class PolymarketUSAPI:
         return {}
 
     async def get_moneyline_markets(self, session) -> List[Dict]:
-        """Fetch all active moneyline markets"""
+        """Fetch all active markets (filter for sports in code)"""
         path = '/v1/markets'
-        query = '?sportsMarketTypes=MONEYLINE&active=true&closed=false&limit=200'
+        # Note: sportsMarketTypes filter doesn't work, fetch all and filter in code
+        query = '?active=true&closed=false&limit=200'
         try:
             async with session.get(
                 f'{self.BASE_URL}{path}{query}',

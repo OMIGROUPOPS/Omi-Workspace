@@ -82,12 +82,15 @@ interface LineMovementChartProps {
   lineHistory?: any[];
   selectedBook: string;
   homeTeam?: string;
+  awayTeam?: string;
   viewMode: ChartViewMode;
   onViewModeChange: (mode: ChartViewMode) => void;
 }
 
-function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, viewMode, onViewModeChange }: LineMovementChartProps) {
+function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, awayTeam, viewMode, onViewModeChange }: LineMovementChartProps) {
   const [hoveredPoint, setHoveredPoint] = useState<{ x: number; y: number; value: number; timestamp: Date; index: number } | null>(null);
+  // Track which side to show: 'home'/'away' for spreads/ML, 'over'/'under' for totals
+  const [trackingSide, setTrackingSide] = useState<'home' | 'away' | 'over' | 'under'>('home');
 
   const isProp = selection.type === 'prop';
   const marketType = selection.type === 'market' ? selection.market : 'line';
@@ -98,14 +101,23 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   // Moneyline always shows price (it IS the price), so force line mode display
   const effectiveViewMode = marketType === 'moneyline' ? 'line' : viewMode;
 
+  // Determine which outcome to filter by based on trackingSide
+  const getOutcomeFilter = () => {
+    if (marketType === 'total') {
+      return trackingSide === 'under' ? 'Under' : 'Over';
+    }
+    // For spreads/moneyline, use team names
+    if (trackingSide === 'away' && awayTeam) return awayTeam;
+    return homeTeam;
+  };
+
   // Filter line history by selected book AND outcome side
-  // Spreads/moneyline: show home team only; Totals: show Over only
   const filteredHistory = (lineHistory || []).filter(snapshot => {
     const bookMatch = snapshot.book_key === selectedBook || snapshot.book === selectedBook;
     if (!bookMatch) return false;
     if (!snapshot.outcome_type) return true; // no outcome info, keep it
-    if (marketType === 'total') return snapshot.outcome_type === 'Over';
-    if (homeTeam) return snapshot.outcome_type === homeTeam;
+    const targetOutcome = getOutcomeFilter();
+    if (targetOutcome) return snapshot.outcome_type === targetOutcome;
     return true;
   });
 
@@ -130,12 +142,40 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   // Determine which side we're tracking for clear labeling
   const getTrackingLabel = () => {
     if (isProp) return selection.type === 'prop' ? selection.player : 'Prop';
-    if (marketType === 'total') return 'Over';
-    if (marketType === 'moneyline') return homeTeam ? `${homeTeam} ML` : 'Home ML';
-    if (marketType === 'spread') return homeTeam ? `${homeTeam}` : 'Home';
+    if (marketType === 'total') {
+      return trackingSide === 'under' ? 'Under' : 'Over';
+    }
+    if (marketType === 'moneyline') {
+      const team = trackingSide === 'away' ? awayTeam : homeTeam;
+      return team ? `${team} ML` : (trackingSide === 'away' ? 'Away ML' : 'Home ML');
+    }
+    if (marketType === 'spread') {
+      const team = trackingSide === 'away' ? awayTeam : homeTeam;
+      return team || (trackingSide === 'away' ? 'Away' : 'Home');
+    }
     return 'Line';
   };
   const trackingLabel = getTrackingLabel();
+
+  // Get the opposite side label for toggle
+  const getOppositeSideLabel = () => {
+    if (isProp) return null;
+    if (marketType === 'total') {
+      return trackingSide === 'under' ? 'Over' : 'Under';
+    }
+    const oppositeTeam = trackingSide === 'away' ? homeTeam : awayTeam;
+    return oppositeTeam || (trackingSide === 'away' ? 'Home' : 'Away');
+  };
+  const oppositeSideLabel = getOppositeSideLabel();
+
+  // Toggle to the other side
+  const toggleSide = () => {
+    if (marketType === 'total') {
+      setTrackingSide(trackingSide === 'over' ? 'under' : 'over');
+    } else {
+      setTrackingSide(trackingSide === 'home' ? 'away' : 'home');
+    }
+  };
 
   // Chart title based on view mode
   const chartTitle = effectiveViewMode === 'price'
@@ -195,13 +235,17 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const minVal = Math.min(...values);
   const maxVal = Math.max(...values);
   const range = maxVal - minVal || 1;
-  const padding = range * 0.15;
+  const padding = range * 0.2;
 
   const width = 400, height = 140;
   const paddingLeft = 50, paddingRight = 15, paddingTop = 15, paddingBottom = 25;
   const chartWidth = width - paddingLeft - paddingRight;
   const chartHeight = height - paddingTop - paddingBottom;
 
+  // For price charts, "better" prices should be at TOP:
+  // - Negative odds: less negative is better (e.g., -106 > -114), so higher value = TOP ✓
+  // - Positive odds: more positive is better (e.g., +150 > +120), so higher value = TOP ✓
+  // Standard formula already handles this correctly
   const chartPoints = data.map((d, i) => ({
     x: paddingLeft + (i / Math.max(data.length - 1, 1)) * chartWidth,
     y: paddingTop + chartHeight - ((d.value - minVal + padding) / (range + 2 * padding)) * chartHeight,
@@ -224,15 +268,22 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   const movementColor = movement > 0 ? 'text-emerald-400' : movement < 0 ? 'text-red-400' : 'text-zinc-400';
 
-  // For price view, use different step sizes
+  // Y-axis labels: use actual data range with padding
+  // For all chart types, higher values are at TOP (smaller y), lower values at BOTTOM (larger y)
+  // This means: better prices (less negative or more positive) at TOP
   const isPrice = effectiveViewMode === 'price';
   const roundLabel = (val: number) => isPrice || marketType === 'moneyline' ? Math.round(val) : Math.round(val * 2) / 2;
-  const center = roundLabel((maxVal + minVal) / 2);
-  const step = isPrice || marketType === 'moneyline' ? Math.max(2, Math.round(range / 4)) : 0.5;
+
+  // Calculate proper min/max with padding for labels
+  const labelMax = roundLabel(maxVal + padding * 0.5);
+  const labelMin = roundLabel(minVal - padding * 0.5);
+  const labelMid = roundLabel((maxVal + minVal) / 2);
+
+  // Y-axis: TOP = higher value (better price for odds), BOTTOM = lower value (worse price)
   const yLabels = [
-    { value: center + step, y: paddingTop },
-    { value: center, y: paddingTop + chartHeight / 2 },
-    { value: center - step, y: paddingTop + chartHeight }
+    { value: labelMax, y: paddingTop },
+    { value: labelMid, y: paddingTop + chartHeight / 2 },
+    { value: labelMin, y: paddingTop + chartHeight }
   ];
   const xLabels = data.length > 0 ? [0, Math.floor(data.length / 2), data.length - 1].map(i => ({
     x: chartPoints[i]?.x || 0,
@@ -283,15 +334,42 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         </div>
       </div>
 
-      {/* Tracking indicator - shows which team/side */}
+      {/* Tracking indicator - clickable to toggle between sides */}
       <div className="flex items-center gap-2 mb-3 pb-3 border-b border-zinc-800">
         <span className="text-xs text-zinc-500">Tracking:</span>
-        <span className="px-2 py-0.5 bg-zinc-800 rounded text-sm font-medium text-zinc-100">{trackingLabel}</span>
+        {!isProp && oppositeSideLabel ? (
+          <div className="flex rounded overflow-hidden border border-zinc-700">
+            <button
+              onClick={() => marketType === 'total' ? setTrackingSide('over') : setTrackingSide('home')}
+              className={`px-2 py-0.5 text-xs font-medium transition-colors ${
+                (marketType === 'total' ? trackingSide === 'over' : trackingSide === 'home')
+                  ? 'bg-zinc-700 text-zinc-100'
+                  : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-300'
+              }`}
+            >
+              {marketType === 'total' ? 'Over' : (homeTeam || 'Home')}
+            </button>
+            <button
+              onClick={() => marketType === 'total' ? setTrackingSide('under') : setTrackingSide('away')}
+              className={`px-2 py-0.5 text-xs font-medium transition-colors ${
+                (marketType === 'total' ? trackingSide === 'under' : trackingSide === 'away')
+                  ? 'bg-zinc-700 text-zinc-100'
+                  : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-300'
+              }`}
+            >
+              {marketType === 'total' ? 'Under' : (awayTeam || 'Away')}
+            </button>
+          </div>
+        ) : (
+          <span className="px-2 py-0.5 bg-zinc-800 rounded text-sm font-medium text-zinc-100">{trackingLabel}</span>
+        )}
         {marketType === 'spread' && selection.line !== undefined && (
-          <span className="text-sm text-zinc-400">({formatSpread(selection.line)})</span>
+          <span className="text-xs text-zinc-400">
+            ({trackingSide === 'away' ? formatSpread(-(selection.line)) : formatSpread(selection.line)})
+          </span>
         )}
         {marketType === 'total' && selection.line !== undefined && (
-          <span className="text-sm text-zinc-400">({selection.line})</span>
+          <span className="text-xs text-zinc-400">({selection.line})</span>
         )}
       </div>
 
@@ -329,24 +407,25 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           </defs>
           {chartPoints.length > 0 && (
             <>
-              {/* For price view: show discrete points only. For line view: show connected line with fill */}
+              {/* For price view: thin line with small dots. For line view: filled area chart */}
               {effectiveViewMode === 'price' ? (
                 <>
-                  {/* Discrete points for price view */}
+                  {/* Thin connecting line */}
+                  <path d={pathD} fill="none" stroke={chartColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+                  {/* Small dots at each point */}
                   {chartPoints.map((point, i) => (
                     <circle
                       key={i}
                       cx={point.x}
                       cy={point.y}
-                      r={i === 0 ? 4 : i === chartPoints.length - 1 ? 5 : 4}
-                      fill={i === 0 ? '#71717a' : chartColor}
-                      stroke={i === 0 ? '#3f3f46' : '#fff'}
-                      strokeWidth="2"
-                      className="transition-all"
+                      r={i === 0 || i === chartPoints.length - 1 ? 3 : 2}
+                      fill={chartColor}
+                      stroke="none"
                     />
                   ))}
-                  {/* Connect with subtle dashed line */}
-                  <path d={pathD} fill="none" stroke={chartColor} strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
+                  {/* Highlight first and last */}
+                  <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="4" fill="#71717a" stroke="#52525b" strokeWidth="1" />
+                  <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="4" fill={chartColor} stroke="#fff" strokeWidth="1" />
                 </>
               ) : (
                 <>
@@ -752,7 +831,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         <div>
           {!selectedProp && (<div className="flex gap-2 mb-3">{['spread', 'total', 'moneyline'].map((market) => (<button key={market} onClick={() => handleSelectMarket(market as any)} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${chartMarket === market ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>{market.charAt(0).toUpperCase() + market.slice(1)}</button>))}</div>)}
           {selectedProp && (<div className="flex gap-2 mb-3 items-center"><button onClick={() => setSelectedProp(null)} className="px-3 py-1.5 rounded text-xs font-medium bg-zinc-800 text-zinc-400 hover:bg-zinc-700 flex items-center gap-1"><svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>Back to Markets</button><span className="px-3 py-1.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400">{selectedProp.player}</span><span className="text-xs text-zinc-500">via {selectedProp.book}</span></div>)}
-          <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} viewMode={chartViewMode} onViewModeChange={setChartViewMode} />
+          <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} viewMode={chartViewMode} onViewModeChange={setChartViewMode} />
         </div>
         <AskEdgeAI gameId={gameData.id} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} chartSelection={chartSelection} />
       </div>

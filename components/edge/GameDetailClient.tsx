@@ -127,9 +127,19 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     data.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
   }
 
+  // Determine which side we're tracking for clear labeling
+  const getTrackingLabel = () => {
+    if (isProp) return selection.type === 'prop' ? selection.player : 'Prop';
+    if (marketType === 'total') return 'Over';
+    if (marketType === 'moneyline') return homeTeam ? `${homeTeam} ML` : 'Home ML';
+    if (marketType === 'spread') return homeTeam ? `${homeTeam}` : 'Home';
+    return 'Line';
+  };
+  const trackingLabel = getTrackingLabel();
+
   // Chart title based on view mode
   const chartTitle = effectiveViewMode === 'price'
-    ? `${selection.label} - Price/Juice`
+    ? `${selection.label} - Price`
     : selection.label;
 
   // If no data or only 1 point, show message
@@ -273,27 +283,31 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         </div>
       </div>
 
-      <div className="flex gap-6 mb-4">
-        <div>
-          <span className="text-zinc-500 text-xs block">Open</span>
-          <span className="text-lg font-semibold text-zinc-300">{formatValue(openValue)}</span>
-        </div>
-        <div>
-          <span className="text-zinc-500 text-xs block">Current</span>
-          <span className="text-lg font-semibold text-zinc-100">{formatValue(currentValue)}</span>
-        </div>
-        <div>
-          <span className="text-zinc-500 text-xs block">Movement</span>
-          <span className={`text-lg font-semibold ${movementColor}`}>
-            {movement > 0 ? '+' : ''}{effectiveViewMode === 'price' ? Math.round(movement) : movement.toFixed(1)}
+      {/* Tracking indicator - shows which team/side */}
+      <div className="flex items-center gap-2 mb-3 pb-3 border-b border-zinc-800">
+        <span className="text-xs text-zinc-500">Tracking:</span>
+        <span className="px-2 py-0.5 bg-zinc-800 rounded text-sm font-medium text-zinc-100">{trackingLabel}</span>
+        {marketType === 'spread' && selection.line !== undefined && (
+          <span className="text-sm text-zinc-400">({formatSpread(selection.line)})</span>
+        )}
+        {marketType === 'total' && selection.line !== undefined && (
+          <span className="text-sm text-zinc-400">({selection.line})</span>
+        )}
+      </div>
+
+      {/* Movement summary - clear format: "opened → current (delta)" */}
+      <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-2">
+          <span className="text-zinc-300 text-sm">{formatValue(openValue)}</span>
+          <span className="text-zinc-500">→</span>
+          <span className="text-zinc-100 text-sm font-semibold">{formatValue(currentValue)}</span>
+          <span className={`text-sm font-medium ${movementColor}`}>
+            ({movement > 0 ? '+' : ''}{effectiveViewMode === 'price' ? Math.round(movement) : movement.toFixed(1)})
           </span>
         </div>
-        {effectiveViewMode === 'price' && (
-          <div className="ml-auto">
-            <span className="text-zinc-500 text-xs block">Current Line</span>
-            <span className="text-lg font-semibold text-zinc-400">
-              {marketType === 'spread' ? formatSpread(selection.line ?? 0) : selection.line ?? '-'}
-            </span>
+        {effectiveViewMode === 'price' && selection.line !== undefined && (
+          <div className="ml-auto text-xs text-zinc-500">
+            Line: {marketType === 'spread' ? formatSpread(selection.line) : selection.line}
           </div>
         )}
       </div>
@@ -360,13 +374,12 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         )}
       </div>
 
-      <div className="flex items-center gap-4 mt-2 text-xs text-zinc-500">
-        <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-zinc-500"></span><span>Open: {formatValue(openValue)}</span></div>
-        <div className="flex items-center gap-1.5">
-          <span className={`w-2 h-2 rounded-full`} style={{ backgroundColor: chartColor }}></span>
-          <span>Now: {formatValue(currentValue)}</span>
+      <div className="flex items-center justify-between mt-2 text-xs text-zinc-500">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-zinc-500"></span><span>Open</span></div>
+          <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full" style={{ backgroundColor: chartColor }}></span><span>Current</span></div>
         </div>
-        <div className="ml-auto text-zinc-600">{filteredHistory.length} snapshots</div>
+        <span className="text-zinc-600">{filteredHistory.length} snapshots</span>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export const DEMO_ACCOUNTS: string[] = [
 // Valid beta accounts (email + password pairs)
 // In production, this would be a database lookup
 export const BETA_ACCOUNTS: Record<string, string> = {
-  // 'email@example.com': 'password',
+  'omigroup.ops@outlook.com': 'Druids08',
 };
 
 export function getAuthState(): AuthState {

@@ -176,10 +176,10 @@ function buildSnapshotRows(games: any[], sportKey: string, snapshotTime: string)
                        market.key.startsWith("pitcher_") ||
                        market.key.startsWith("batter_");
         for (const outcome of market.outcomes || []) {
-          // For props: outcome.name is player name, outcome.description is "Over"/"Under"
+          // For props: outcome.description is player name, outcome.name is "Over"/"Under"
           // For game markets: outcome.name is team name or "Over"/"Under"
           const outcomeType = isProp && outcome.description
-            ? `${outcome.name}|${outcome.description}` // e.g., "Josh Allen|Over"
+            ? `${outcome.description}|${outcome.name}` // e.g., "DeMar DeRozan|Over"
             : outcome.name;
 
           rows.push({

@@ -1,5 +1,5 @@
 import { BOT_SERVER_URL } from "./config";
-import type { BotStatus, Trade } from "./types";
+import type { BotStatus, Trade, MarketData } from "./types";
 
 export async function fetchStatus(): Promise<BotStatus | null> {
   try {
@@ -84,6 +84,15 @@ export async function measureLatency(): Promise<number | null> {
     const res = await fetch(`${BOT_SERVER_URL}/status`, { method: "GET" });
     if (res.ok) return Math.round(performance.now() - start);
     return null;
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchMarkets(): Promise<MarketData | null> {
+  try {
+    const res = await fetch(`${BOT_SERVER_URL}/markets`);
+    return res.ok ? res.json() : null;
   } catch {
     return null;
   }

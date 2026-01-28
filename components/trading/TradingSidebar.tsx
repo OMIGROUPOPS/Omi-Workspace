@@ -28,6 +28,7 @@ interface TradingSidebarProps {
 const TABS: { key: ActiveTab; label: string }[] = [
   { key: "dashboard", label: "Dashboard" },
   { key: "trades", label: "Trades" },
+  { key: "markets", label: "Markets" },
   { key: "research", label: "Research" },
   { key: "logs", label: "Logs" },
 ];

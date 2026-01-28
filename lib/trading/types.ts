@@ -55,7 +55,7 @@ export interface BotStatus {
 
 export type ConnectionStatus = "disconnected" | "connecting" | "connected" | "error";
 
-export type ActiveTab = "dashboard" | "trades" | "research" | "logs";
+export type ActiveTab = "dashboard" | "trades" | "markets" | "research" | "logs";
 
 export type PnLPeriod = "1H" | "6H" | "24H" | "ALL";
 
@@ -100,6 +100,50 @@ export interface SportProfit {
   sport: string;
   profit: number;
   count: number;
+}
+
+export interface KalshiMarket {
+  sport: string;
+  game: string;
+  team: string;
+  ticker: string;
+  k_bid: number;
+  k_ask: number;
+  pm_slug: string | null;
+  pm_bid: number | null;
+  pm_ask: number | null;
+  matched: boolean;
+  date: string | null;
+}
+
+export interface MatchStats {
+  matched: number;
+  total: number;
+  rate: number;
+}
+
+export interface SpreadData {
+  sport: string;
+  game: string;
+  team: string;
+  k_bid: number;
+  k_ask: number;
+  pm_bid: number;
+  pm_ask: number;
+  spread: number;
+  roi: number;
+  status: "ARB" | "CLOSE" | "NO_EDGE";
+  pm_slug: string;
+  ticker: string;
+}
+
+export interface MarketData {
+  timestamp: string | null;
+  kalshi_games: KalshiMarket[];
+  match_stats: Record<string, MatchStats>;
+  spreads: SpreadData[];
+  total_kalshi: number;
+  total_matched: number;
 }
 
 export interface FullAnalytics {

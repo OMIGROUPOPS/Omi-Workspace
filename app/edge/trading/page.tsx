@@ -6,6 +6,7 @@ import type {
   BotStatus,
   ConnectionStatus,
   LogEntry,
+  MarketData,
   Position,
   ScanInfo,
   Trade,
@@ -14,6 +15,7 @@ import { WS_URL } from "@/lib/trading/config";
 import {
   fetchStatus,
   fetchTrades,
+  fetchMarkets,
   startBot,
   stopBot,
   setMode,
@@ -27,6 +29,7 @@ import TradingSidebar from "@/components/trading/TradingSidebar";
 import TradingFooter from "@/components/trading/TradingFooter";
 import DashboardTab from "@/components/trading/tabs/DashboardTab";
 import TradesTab from "@/components/trading/tabs/TradesTab";
+import MarketsTab from "@/components/trading/tabs/MarketsTab";
 import ResearchTab from "@/components/trading/tabs/ResearchTab";
 import LogsTab from "@/components/trading/tabs/LogsTab";
 
@@ -52,6 +55,7 @@ export default function TradingDashboard() {
   const [profitHistory, setProfitHistory] = useState<number[]>([0]);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [activeTab, setActiveTab] = useState<ActiveTab>("dashboard");
+  const [marketData, setMarketData] = useState<MarketData | null>(null);
 
   const wsRef = useRef<WebSocket | null>(null);
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -192,7 +196,7 @@ export default function TradingDashboard() {
     connectWebSocket();
 
     const loadData = async () => {
-      const [status, tradesData] = await Promise.all([fetchStatus(), fetchTrades()]);
+      const [status, tradesData, md] = await Promise.all([fetchStatus(), fetchTrades(), fetchMarkets()]);
       if (status) {
         setBotState(status.bot_state);
         setModeState(status.mode);
@@ -200,14 +204,16 @@ export default function TradingDashboard() {
         setPositions(status.positions || []);
       }
       setTrades(tradesData);
+      if (md) setMarketData(md);
     };
     loadData();
 
     const statusInterval = setInterval(async () => {
-      const [status, tradesData, lat] = await Promise.all([
+      const [status, tradesData, lat, md] = await Promise.all([
         fetchStatus(),
         fetchTrades(),
         measureLatency(),
+        fetchMarkets(),
       ]);
       if (status) {
         setBotState(status.bot_state);
@@ -217,6 +223,7 @@ export default function TradingDashboard() {
       }
       setTrades(tradesData);
       setLatency(lat);
+      if (md) setMarketData(md);
     }, 5000);
 
     const pingInterval = setInterval(() => {
@@ -365,6 +372,9 @@ export default function TradingDashboard() {
           )}
           {activeTab === "trades" && (
             <TradesTab trades={trades} analytics={analytics} />
+          )}
+          {activeTab === "markets" && (
+            <MarketsTab marketData={marketData} />
           )}
           {activeTab === "research" && (
             <ResearchTab analytics={analytics} />

@@ -547,6 +547,25 @@ async def get_logs(limit: int = 100):
 
     return {"logs": logs[-limit:]}
 
+@app.get("/markets")
+async def get_markets():
+    """Get market mapping and spread data"""
+    try:
+        with open('market_data.json', 'r') as f:
+            return json.load(f)
+    except:
+        return {"kalshi_games": [], "match_stats": {}, "spreads": []}
+
+@app.get("/spreads")
+async def get_spreads():
+    """Get spread data only"""
+    try:
+        with open('market_data.json', 'r') as f:
+            data = json.load(f)
+        return {"spreads": data.get("spreads", []), "timestamp": data.get("timestamp")}
+    except:
+        return {"spreads": [], "timestamp": None}
+
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     """WebSocket endpoint for real-time updates"""

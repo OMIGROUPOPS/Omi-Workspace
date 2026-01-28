@@ -703,6 +703,63 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str)
         pass
 
 
+def export_market_data(all_games: Dict, arbs: List[ArbOpportunity]):
+    """Export market mapping and spread data for dashboard"""
+    kalshi_games = []
+    spreads = []
+    match_stats = {}
+
+    for cfg in SPORTS_CONFIG:
+        sport = cfg['sport'].upper()
+        sport_games = all_games.get(cfg['sport'], {})
+        matched_count = 0
+
+        for gid, game in sport_games.items():
+            for team, p in game['teams'].items():
+                ticker = game['tickers'].get(team, '')
+                has_pm = 'pm_ask' in p
+                if has_pm:
+                    matched_count += 1
+
+                kalshi_games.append({
+                    'sport': sport, 'game': gid, 'team': team, 'ticker': ticker,
+                    'k_bid': p.get('k_bid', 0), 'k_ask': p.get('k_ask', 0),
+                    'pm_slug': p.get('pm_slug'), 'pm_bid': p.get('pm_bid'),
+                    'pm_ask': p.get('pm_ask'), 'matched': has_pm, 'date': game.get('date')
+                })
+
+                if has_pm:
+                    spread = p['k_bid'] - p['pm_ask']
+                    roi = (spread / p['pm_ask'] * 100) if p['pm_ask'] > 0 else 0
+                    spreads.append({
+                        'sport': sport, 'game': gid, 'team': team,
+                        'k_bid': p['k_bid'], 'k_ask': p['k_ask'],
+                        'pm_bid': p['pm_bid'], 'pm_ask': p['pm_ask'],
+                        'spread': spread, 'roi': roi,
+                        'status': 'ARB' if roi >= 5 else 'CLOSE' if roi >= 2 else 'NO_EDGE',
+                        'pm_slug': p['pm_slug'], 'ticker': ticker
+                    })
+
+        total = len(sport_games)
+        match_stats[sport] = {'matched': matched_count // 2, 'total': total,
+                             'rate': (matched_count // 2 / total * 100) if total else 0}
+
+    spreads.sort(key=lambda x: -x['roi'])
+
+    data = {
+        'timestamp': datetime.now().isoformat(),
+        'kalshi_games': kalshi_games, 'match_stats': match_stats,
+        'spreads': spreads, 'total_kalshi': len(kalshi_games) // 2,
+        'total_matched': sum(s['matched'] for s in match_stats.values())
+    }
+
+    try:
+        with open('market_data.json', 'w') as f:
+            json.dump(data, f)
+    except:
+        pass
+
+
 # Market data mappings
 MONTH_MAP = {'JAN':'01','FEB':'02','MAR':'03','APR':'04','MAY':'05','JUN':'06',
              'JUL':'07','AUG':'08','SEP':'09','OCT':'10','NOV':'11','DEC':'12'}
@@ -1079,6 +1136,9 @@ async def run_executor():
 
             print(f"\n[i] Kalshi Games: {total_games} | PM US Matched: {total_matched} | PM US Markets: {pm_us_matched}")
             print(f"[i] Found {len(arbs)} arbs, {len(exec_arbs)} pass {MIN_ROI}% ROI threshold")
+
+            # Export market data for dashboard
+            export_market_data(all_games, arbs)
 
             # Execute if we have arbs and cooldown passed
             if exec_arbs and (time.time() - last_trade_time) >= COOLDOWN_SECONDS:

@@ -566,6 +566,21 @@ async def get_spreads():
     except:
         return {"spreads": [], "timestamp": None}
 
+@app.get("/volume")
+async def get_volume():
+    """Get volume data by sport and trends"""
+    try:
+        with open('market_data.json', 'r') as f:
+            data = json.load(f)
+        return {
+            "volume_by_sport": data.get("volume_by_sport", {}),
+            "volume_history": data.get("volume_history", []),
+            "total_volume": data.get("total_volume", {"kalshi": 0, "pm": 0, "total": 0}),
+            "timestamp": data.get("timestamp")
+        }
+    except:
+        return {"volume_by_sport": {}, "volume_history": [], "total_volume": {"kalshi": 0, "pm": 0, "total": 0}, "timestamp": None}
+
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     """WebSocket endpoint for real-time updates"""

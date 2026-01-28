@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import type { MarketData } from "@/lib/trading/types";
+import type { MarketData, VolumeHistoryPoint } from "@/lib/trading/types";
 import Panel from "../shared/Panel";
 
 interface MarketsTabProps {
@@ -11,6 +11,76 @@ interface MarketsTabProps {
 type MarketFilter = "all" | "matched" | "unmatched";
 
 const SPORTS = ["NBA", "NHL", "MLB", "NFL"];
+
+function formatVolume(vol: number): string {
+  if (vol >= 1000000) return `${(vol / 1000000).toFixed(1)}M`;
+  if (vol >= 1000) return `${(vol / 1000).toFixed(1)}K`;
+  return vol.toFixed(0);
+}
+
+function VolumeTrendsChart({ history }: { history: VolumeHistoryPoint[] }) {
+  if (!history || history.length < 2) {
+    return (
+      <div className="h-[120px] flex items-center justify-center text-slate-600 text-[11px]">
+        Collecting volume data...
+      </div>
+    );
+  }
+
+  const maxTotal = Math.max(...history.map((h) => h.total), 1);
+  const width = 320;
+  const height = 120;
+  const padding = { top: 10, right: 10, bottom: 20, left: 10 };
+  const chartWidth = width - padding.left - padding.right;
+  const chartHeight = height - padding.top - padding.bottom;
+
+  const points = history.map((h, i) => ({
+    x: padding.left + (i / (history.length - 1)) * chartWidth,
+    yKalshi: padding.top + chartHeight - (h.kalshi / maxTotal) * chartHeight,
+    yPm: padding.top + chartHeight - (h.pm / maxTotal) * chartHeight,
+    yTotal: padding.top + chartHeight - (h.total / maxTotal) * chartHeight,
+  }));
+
+  const kalshiPath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.yKalshi}`).join(" ");
+  const pmPath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.yPm}`).join(" ");
+
+  return (
+    <svg width={width} height={height} className="overflow-visible">
+      {/* Grid lines */}
+      {[0, 0.25, 0.5, 0.75, 1].map((ratio) => (
+        <line
+          key={ratio}
+          x1={padding.left}
+          y1={padding.top + chartHeight * (1 - ratio)}
+          x2={width - padding.right}
+          y2={padding.top + chartHeight * (1 - ratio)}
+          stroke="#1e293b"
+          strokeWidth={1}
+        />
+      ))}
+
+      {/* Kalshi line */}
+      <path d={kalshiPath} fill="none" stroke="#22d3ee" strokeWidth={2} strokeOpacity={0.8} />
+
+      {/* PM line */}
+      <path d={pmPath} fill="none" stroke="#a78bfa" strokeWidth={2} strokeOpacity={0.8} />
+
+      {/* Time labels */}
+      <text x={padding.left} y={height - 2} fill="#64748b" fontSize={9} textAnchor="start">
+        {history.length > 0 ? new Date(history[0].timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : ""}
+      </text>
+      <text x={width - padding.right} y={height - 2} fill="#64748b" fontSize={9} textAnchor="end">
+        {history.length > 0 ? new Date(history[history.length - 1].timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : ""}
+      </text>
+
+      {/* Legend */}
+      <circle cx={padding.left + 5} cy={padding.top + 5} r={3} fill="#22d3ee" />
+      <text x={padding.left + 12} y={padding.top + 8} fill="#64748b" fontSize={8}>K</text>
+      <circle cx={padding.left + 30} cy={padding.top + 5} r={3} fill="#a78bfa" />
+      <text x={padding.left + 37} y={padding.top + 8} fill="#64748b" fontSize={8}>PM</text>
+    </svg>
+  );
+}
 
 export default function MarketsTab({ marketData }: MarketsTabProps) {
   const [marketFilter, setMarketFilter] = useState<MarketFilter>("all");
@@ -146,6 +216,89 @@ export default function MarketsTab({ marketData }: MarketsTabProps) {
           </table>
         </div>
       </Panel>
+
+      {/* Volume Section */}
+      <div className="grid grid-cols-2 gap-2">
+        {/* Volume by Sport */}
+        <Panel
+          title="Volume by Sport"
+          headerRight={
+            <span className="text-[10px] text-slate-500 font-mono tabular-nums">
+              Total: {formatVolume(marketData?.total_volume?.total ?? 0)}
+            </span>
+          }
+        >
+          <div className="p-3">
+            <div className="space-y-3">
+              {SPORTS.map((sport) => {
+                const volume = marketData?.volume_by_sport?.[sport];
+                const kalshiVol = volume?.kalshi ?? 0;
+                const pmVol = volume?.pm ?? 0;
+                const maxVol = Math.max(
+                  ...SPORTS.map((s) => (marketData?.volume_by_sport?.[s]?.total ?? 0)),
+                  1
+                );
+                const kalshiWidth = maxVol > 0 ? (kalshiVol / maxVol) * 100 : 0;
+                const pmWidth = maxVol > 0 ? (pmVol / maxVol) * 100 : 0;
+
+                return (
+                  <div key={sport}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
+                        {sport}
+                      </span>
+                      <span className="text-[10px] text-slate-500 font-mono tabular-nums">
+                        {formatVolume(kalshiVol + pmVol)}
+                      </span>
+                    </div>
+                    <div className="flex gap-0.5 h-4">
+                      <div
+                        className="bg-cyan-500/60 rounded-l transition-all"
+                        style={{ width: `${kalshiWidth}%` }}
+                        title={`Kalshi: ${formatVolume(kalshiVol)}`}
+                      />
+                      <div
+                        className="bg-violet-500/60 rounded-r transition-all"
+                        style={{ width: `${pmWidth}%` }}
+                        title={`PM US: ${formatVolume(pmVol)}`}
+                      />
+                      {kalshiWidth === 0 && pmWidth === 0 && (
+                        <div className="bg-slate-800 rounded flex-1" />
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="flex gap-4 mt-3 pt-2 border-t border-slate-800">
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 rounded bg-cyan-500/60" />
+                <span className="text-[9px] text-slate-500">Kalshi</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 rounded bg-violet-500/60" />
+                <span className="text-[9px] text-slate-500">PM US</span>
+              </div>
+            </div>
+          </div>
+        </Panel>
+
+        {/* Volume Trends */}
+        <Panel
+          title="Volume Trends (24H)"
+          headerRight={
+            <div className="flex gap-2 text-[10px] font-mono tabular-nums">
+              <span className="text-cyan-400">{formatVolume(marketData?.total_volume?.kalshi ?? 0)}</span>
+              <span className="text-slate-600">/</span>
+              <span className="text-violet-400">{formatVolume(marketData?.total_volume?.pm ?? 0)}</span>
+            </div>
+          }
+        >
+          <div className="p-3">
+            <VolumeTrendsChart history={marketData?.volume_history ?? []} />
+          </div>
+        </Panel>
+      </div>
 
       {/* All Kalshi Markets Table */}
       <Panel

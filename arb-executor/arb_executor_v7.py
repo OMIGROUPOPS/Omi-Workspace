@@ -704,15 +704,20 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str)
 
 
 def export_market_data(all_games: Dict, arbs: List[ArbOpportunity]):
-    """Export market mapping and spread data for dashboard"""
+    """Export market mapping, spread, and volume data for dashboard"""
+    global VOLUME_HISTORY
+
     kalshi_games = []
     spreads = []
     match_stats = {}
+    volume_by_sport = {}
 
     for cfg in SPORTS_CONFIG:
         sport = cfg['sport'].upper()
         sport_games = all_games.get(cfg['sport'], {})
         matched_count = 0
+        sport_k_volume = 0
+        sport_pm_volume = 0
 
         for gid, game in sport_games.items():
             for team, p in game['teams'].items():
@@ -721,9 +726,16 @@ def export_market_data(all_games: Dict, arbs: List[ArbOpportunity]):
                 if has_pm:
                     matched_count += 1
 
+                # Aggregate volume
+                k_vol = p.get('k_volume', 0) or 0
+                pm_vol = p.get('pm_volume', 0) or 0
+                sport_k_volume += k_vol
+                sport_pm_volume += pm_vol
+
                 kalshi_games.append({
                     'sport': sport, 'game': gid, 'team': team, 'ticker': ticker,
                     'k_bid': p.get('k_bid', 0), 'k_ask': p.get('k_ask', 0),
+                    'k_volume': k_vol, 'pm_volume': pm_vol,
                     'pm_slug': p.get('pm_slug'), 'pm_bid': p.get('pm_bid'),
                     'pm_ask': p.get('pm_ask'), 'matched': has_pm, 'date': game.get('date')
                 })
@@ -743,14 +755,44 @@ def export_market_data(all_games: Dict, arbs: List[ArbOpportunity]):
         total = len(sport_games)
         match_stats[sport] = {'matched': matched_count // 2, 'total': total,
                              'rate': (matched_count // 2 / total * 100) if total else 0}
+        volume_by_sport[sport] = {
+            'kalshi': sport_k_volume,
+            'pm': sport_pm_volume,
+            'total': sport_k_volume + sport_pm_volume
+        }
 
     spreads.sort(key=lambda x: -x['roi'])
 
+    # Calculate total volume
+    total_k_volume = sum(v['kalshi'] for v in volume_by_sport.values())
+    total_pm_volume = sum(v['pm'] for v in volume_by_sport.values())
+    total_volume = total_k_volume + total_pm_volume
+
+    # Add to volume history
+    now = datetime.now()
+    VOLUME_HISTORY.append({
+        'timestamp': now.isoformat(),
+        'kalshi': total_k_volume,
+        'pm': total_pm_volume,
+        'total': total_volume
+    })
+
+    # Keep only last 24 hours
+    if len(VOLUME_HISTORY) > MAX_VOLUME_HISTORY:
+        VOLUME_HISTORY = VOLUME_HISTORY[-MAX_VOLUME_HISTORY:]
+
     data = {
-        'timestamp': datetime.now().isoformat(),
+        'timestamp': now.isoformat(),
         'kalshi_games': kalshi_games, 'match_stats': match_stats,
         'spreads': spreads, 'total_kalshi': len(kalshi_games) // 2,
-        'total_matched': sum(s['matched'] for s in match_stats.values())
+        'total_matched': sum(s['matched'] for s in match_stats.values()),
+        'volume_by_sport': volume_by_sport,
+        'volume_history': VOLUME_HISTORY[-50:],  # Last 50 data points for chart
+        'total_volume': {
+            'kalshi': total_k_volume,
+            'pm': total_pm_volume,
+            'total': total_volume
+        }
     }
 
     try:
@@ -797,8 +839,12 @@ SPORTS_CONFIG = [
     {'sport':'nhl','series':'KXNHLGAME','k2pm':NHL_K2PM,'pm2k':NHL_PM2K},
 ]
 
-# PM US market cache: {cache_key: {slug, teams: {K_ABBR: {price, outcome_index}}}}
+# PM US market cache: {cache_key: {slug, teams: {K_ABBR: {price, outcome_index}}, volume}}
 PM_US_MARKET_CACHE = {}
+
+# Volume history for trends (stores last 24h of snapshots)
+VOLUME_HISTORY: List[Dict] = []
+MAX_VOLUME_HISTORY = 288  # 24 hours at 5-minute intervals
 
 
 def parse_gid(gid):
@@ -902,7 +948,8 @@ async def fetch_pm_us_markets(session, pm_api):
                     'teams': {
                         team_0: {'price': price_0, 'outcome_index': 0},
                         team_1: {'price': price_1, 'outcome_index': 1}
-                    }
+                    },
+                    'volume': market.get('volumeNum', 0) or market.get('volume24hr', 0) or 0
                 }
                 matched += 1
                 break
@@ -1001,7 +1048,8 @@ async def run_executor():
 
                         all_games[sport][gid]['teams'][team] = {
                             'k_bid': m.get('yes_bid', 0),
-                            'k_ask': m.get('yes_ask', 0)
+                            'k_ask': m.get('yes_ask', 0),
+                            'k_volume': m.get('volume', 0) or 0
                         }
                         all_games[sport][gid]['tickers'][team] = m.get('ticker')
 
@@ -1034,6 +1082,7 @@ async def run_executor():
                                 game['teams'][team]['pm_ask_size'] = MAX_CONTRACTS
                                 game['teams'][team]['pm_slug'] = pm_market['slug']
                                 game['teams'][team]['pm_outcome_index'] = outcome_idx
+                                game['teams'][team]['pm_volume'] = pm_market.get('volume', 0)
 
             # Find arbs
             arbs = []

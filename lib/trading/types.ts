@@ -109,11 +109,32 @@ export interface KalshiMarket {
   ticker: string;
   k_bid: number;
   k_ask: number;
+  k_volume: number;
+  pm_volume: number;
   pm_slug: string | null;
   pm_bid: number | null;
   pm_ask: number | null;
   matched: boolean;
   date: string | null;
+}
+
+export interface SportVolumeData {
+  kalshi: number;
+  pm: number;
+  total: number;
+}
+
+export interface VolumeHistoryPoint {
+  timestamp: string;
+  kalshi: number;
+  pm: number;
+  total: number;
+}
+
+export interface TotalVolume {
+  kalshi: number;
+  pm: number;
+  total: number;
 }
 
 export interface MatchStats {
@@ -144,6 +165,9 @@ export interface MarketData {
   spreads: SpreadData[];
   total_kalshi: number;
   total_matched: number;
+  volume_by_sport: Record<string, SportVolumeData>;
+  volume_history: VolumeHistoryPoint[];
+  total_volume: TotalVolume;
 }
 
 export interface FullAnalytics {

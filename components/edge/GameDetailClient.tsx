@@ -851,12 +851,12 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         .then(res => res.json())
         .then(data => {
           // Transform to format expected by chart (filter to Over side by default)
+          // Don't set outcome_type - it would cause filter mismatch since chart expects team names
           const overSnapshots = (data.snapshots || [])
             .filter((s: any) => s.side === 'Over')
             .map((s: any) => ({
               snapshot_time: s.snapshot_time,
               book_key: s.book_key,
-              outcome_type: s.player,
               line: s.line,
               odds: s.odds,
             }));

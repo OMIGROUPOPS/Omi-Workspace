@@ -261,7 +261,7 @@ async function runSync() {
           const chunk = snapshotRows.slice(i, i + 500);
           const { error: snapError } = await supabase
             .from("odds_snapshots")
-            .upsert(chunk, { onConflict: "game_id,book_key,market,outcome_type,snapshot_time" });
+            .insert(chunk);
           if (snapError) {
             console.error(`[Odds Sync] ${sport} snapshot save failed:`, snapError.message);
           }

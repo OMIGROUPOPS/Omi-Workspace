@@ -101,19 +101,26 @@ interface LineMovementChartProps {
   selection: ChartSelection;
   lineHistory?: any[];
   selectedBook: string;
+  homeTeam?: string;
 }
 
-function LineMovementChart({ gameId, selection, lineHistory, selectedBook }: LineMovementChartProps) {
+function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam }: LineMovementChartProps) {
   const [hoveredPoint, setHoveredPoint] = useState<{ x: number; y: number; value: number; timestamp: Date; index: number } | null>(null);
-  
+
   const isProp = selection.type === 'prop';
   const marketType = selection.type === 'market' ? selection.market : 'line';
   const baseValue = selection.line ?? (selection.type === 'market' ? selection.price : 0) ?? 0;
-  
-  // Filter line history by selected book - REAL DATA ONLY
-  const filteredHistory = (lineHistory || []).filter(snapshot => 
-    snapshot.book_key === selectedBook || snapshot.book === selectedBook
-  );
+
+  // Filter line history by selected book AND outcome side
+  // Spreads/moneyline: show home team only; Totals: show Over only
+  const filteredHistory = (lineHistory || []).filter(snapshot => {
+    const bookMatch = snapshot.book_key === selectedBook || snapshot.book === selectedBook;
+    if (!bookMatch) return false;
+    if (!snapshot.outcome_type) return true; // no outcome info, keep it
+    if (marketType === 'total') return snapshot.outcome_type === 'Over';
+    if (homeTeam) return snapshot.outcome_type === homeTeam;
+    return true;
+  });
   
   const hasRealData = filteredHistory.length > 0;
   
@@ -703,7 +710,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         <div>
           {!selectedProp && (<div className="flex gap-2 mb-3">{['spread', 'total', 'moneyline'].map((market) => (<button key={market} onClick={() => handleSelectMarket(market as any)} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${chartMarket === market ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>{market.charAt(0).toUpperCase() + market.slice(1)}</button>))}</div>)}
           {selectedProp && (<div className="flex gap-2 mb-3 items-center"><button onClick={() => setSelectedProp(null)} className="px-3 py-1.5 rounded text-xs font-medium bg-zinc-800 text-zinc-400 hover:bg-zinc-700 flex items-center gap-1"><svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>Back to Markets</button><span className="px-3 py-1.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400">{selectedProp.player}</span><span className="text-xs text-zinc-500">via {selectedProp.book}</span></div>)}
-          <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} />
+          <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} />
         </div>
         <AskEdgeAI gameId={gameData.id} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} chartSelection={chartSelection} />
       </div>

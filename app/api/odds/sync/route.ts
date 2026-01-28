@@ -62,8 +62,12 @@ const EVENT_MARKETS: Record<string, string[]> = {
   ], // 13 markets
 };
 
-// Core market keys to snapshot (not props/alts)
-const SNAPSHOT_MARKETS = ["h2h", "spreads", "totals"];
+// Market keys to snapshot for line movement charts (includes halves)
+const SNAPSHOT_MARKETS = [
+  "h2h", "spreads", "totals",
+  "h2h_h1", "spreads_h1", "totals_h1",
+  "h2h_h2", "spreads_h2", "totals_h2",
+];
 
 // Use direct Supabase client (no cookies needed — cron/API context, not browser)
 function getSupabase() {

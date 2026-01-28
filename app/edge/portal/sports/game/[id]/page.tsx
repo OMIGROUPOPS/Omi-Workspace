@@ -47,7 +47,10 @@ async function fetchLineHistory(gameId: string, market: string = 'spread', perio
       'moneyline': 'h2h',
       'total': 'totals',
     };
-    const snapshotMarket = marketMap[market] || market;
+    // Build market key with period suffix (e.g., spreads_h1 for 1st half spread)
+    const baseMarket = marketMap[market] || market;
+    const snapshotMarket = period === 'full' ? baseMarket : `${baseMarket}_${period}`;
+
     const supabase = getSupabase();
     let query = supabase
       .from('odds_snapshots')

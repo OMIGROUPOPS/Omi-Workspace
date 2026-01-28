@@ -20,52 +20,30 @@ function getEdgeBg(delta: number): string {
   return delta >= 0 ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-red-500/10 border-red-500/30';
 }
 
-// Price flow indicator with tooltip showing actual variance
-function PriceFlowIndicator({ value, seed, size = 'normal' }: { value: number; seed: string; size?: 'normal' | 'small' }) {
-  const [showTooltip, setShowTooltip] = useState(false);
-  
-  const hashSeed = seed.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-  const data: number[] = [];
-  let v = value;
-  for (let i = 7; i >= 0; i--) {
-    const x = Math.sin(hashSeed * (i + 1)) * 10000;
-    const drift = (x - Math.floor(x) - 0.5) * 0.4;
-    v = value + drift * ((8 - i) / 8) * 2;
-    data.unshift(v);
-  }
-  data[data.length - 1] = value;
-  
-  const min = Math.min(...data);
-  const max = Math.max(...data);
-  const range = max - min || 1;
-  const width = size === 'small' ? 24 : 32;
-  const height = size === 'small' ? 8 : 12;
-  const pathPoints = data.map((val, i) => `${(i / 7) * width},${height - ((val - min) / range) * height}`).join(' ');
-  const color = value >= 0 ? '#10b981' : '#ef4444';
-  
-  // Show actual variance percentage in tooltip
-  const varianceText = value >= 0 
-    ? `+${(value * 100).toFixed(1)}% from open` 
-    : `${(value * 100).toFixed(1)}% from open`;
-  
-  return (
-    <div 
-      className="relative inline-flex items-center gap-1 cursor-help"
-      onMouseEnter={() => setShowTooltip(true)}
-      onMouseLeave={() => setShowTooltip(false)}
-    >
-      <svg width={width} height={height} className="opacity-70">
-        <polyline points={pathPoints} fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      <span className={`text-xs ${value >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-        {value >= 0 ? '+' : ''}{(value * 100).toFixed(1)}%
+// Simple price movement display: shows "opened → current" or delta
+function PriceMovement({ openPrice, currentPrice, compact = false }: { openPrice?: number; currentPrice?: number; compact?: boolean }) {
+  if (openPrice === undefined || currentPrice === undefined) return null;
+
+  const delta = currentPrice - openPrice;
+  if (delta === 0) return <span className="text-xs text-zinc-500">—</span>;
+
+  const deltaColor = delta > 0 ? 'text-emerald-400' : 'text-red-400';
+  const deltaSign = delta > 0 ? '+' : '';
+
+  if (compact) {
+    // Just show the delta: "+4" or "-6"
+    return (
+      <span className={`text-xs font-medium ${deltaColor}`}>
+        {deltaSign}{delta}
       </span>
-      {showTooltip && (
-        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-zinc-800 border border-zinc-700 rounded text-xs text-zinc-200 whitespace-nowrap z-50 shadow-lg">
-          {varianceText}
-        </div>
-      )}
-    </div>
+    );
+  }
+
+  // Full display: "-110 → -106"
+  return (
+    <span className="text-xs text-zinc-400">
+      {formatOdds(openPrice)} → <span className={`font-medium ${deltaColor}`}>{formatOdds(currentPrice)}</span>
+    </span>
   );
 }
 
@@ -320,85 +298,6 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         )}
       </div>
 
-      {effectiveViewMode === 'line' && (
-        <div className="flex gap-4 mb-4 pb-3 border-b border-zinc-800">
-          {selection.type === 'market' && selection.market === 'spread' && (
-            <>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-                <span className="text-xs text-zinc-400">Home</span>
-                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.homePrice || -110)}</span>
-                <PriceFlowIndicator value={selection.homePriceMovement || 0} seed={`${gameId}-spread-home-price`} size="small" />
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-                <span className="text-xs text-zinc-400">Away</span>
-                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.awayPrice || -110)}</span>
-                <PriceFlowIndicator value={selection.awayPriceMovement || 0} seed={`${gameId}-spread-away-price`} size="small" />
-              </div>
-            </>
-          )}
-          {selection.type === 'market' && selection.market === 'total' && (
-            <>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-                <span className="text-xs text-zinc-400">Over</span>
-                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.overPrice || -110)}</span>
-                <PriceFlowIndicator value={selection.overPriceMovement || 0} seed={`${gameId}-total-over-price`} size="small" />
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-                <span className="text-xs text-zinc-400">Under</span>
-                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.underPrice || -110)}</span>
-                <PriceFlowIndicator value={selection.underPriceMovement || 0} seed={`${gameId}-total-under-price`} size="small" />
-              </div>
-            </>
-          )}
-          {selection.type === 'market' && selection.market === 'moneyline' && (
-            <>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-                <span className="text-xs text-zinc-400">Home</span>
-                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.homePrice || -110)}</span>
-                <PriceFlowIndicator value={selection.homePriceMovement || 0} seed={`${gameId}-ml-home-price`} size="small" />
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-                <span className="text-xs text-zinc-400">Away</span>
-                <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.awayPrice || 110)}</span>
-                <PriceFlowIndicator value={selection.awayPriceMovement || 0} seed={`${gameId}-ml-away-price`} size="small" />
-              </div>
-            </>
-          )}
-          {isProp && selection.type === 'prop' && (
-            <>
-              {selection.overOdds && (
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-                  <span className="text-xs text-zinc-400">Over</span>
-                  <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.overOdds)}</span>
-                  <PriceFlowIndicator value={selection.overPriceMovement || 0} seed={`${gameId}-${selection.player}-over-price`} size="small" />
-                </div>
-              )}
-              {selection.underOdds && (
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded">
-                  <span className="text-xs text-zinc-400">Under</span>
-                  <span className="text-sm font-medium text-zinc-100">{formatOdds(selection.underOdds)}</span>
-                  <PriceFlowIndicator value={selection.underPriceMovement || 0} seed={`${gameId}-${selection.player}-under-price`} size="small" />
-                </div>
-              )}
-            </>
-          )}
-        </div>
-      )}
-
-      {effectiveViewMode === 'price' && (
-        <div className="flex gap-4 mb-4 pb-3 border-b border-zinc-800">
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded">
-            <span className="text-xs text-amber-400">Tracking</span>
-            <span className="text-sm font-medium text-amber-200">
-              {marketType === 'spread' ? 'Home Spread Price' : 'Over Price'}
-            </span>
-          </div>
-          <div className="text-xs text-zinc-500 flex items-center">
-            Price moves from -110 to -106 means line is getting steamed
-          </div>
-        </div>
-      )}
-
       <div className="relative">
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto cursor-crosshair" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
           {yLabels.map((label, i) => (
@@ -416,11 +315,40 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           </defs>
           {chartPoints.length > 0 && (
             <>
-              <path d={`${pathD} L ${chartPoints[chartPoints.length - 1].x} ${paddingTop + chartHeight} L ${paddingLeft} ${paddingTop + chartHeight} Z`} fill={`url(#${gradientId})`} />
-              <path d={pathD} fill="none" stroke={chartColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              {hoveredPoint && (<><line x1={hoveredPoint.x} y1={paddingTop} x2={hoveredPoint.x} y2={paddingTop + chartHeight} stroke="#a1a1aa" strokeWidth="1" strokeDasharray="3 3" /><circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="5" fill={chartColor} stroke="#fff" strokeWidth="2" /></>)}
-              <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="3" fill="#71717a" stroke="#3f3f46" strokeWidth="2" />
-              <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="4" fill={chartColor} stroke={effectiveViewMode === 'price' ? '#78350f' : (isProp ? '#1e3a5f' : '#064e3b')} strokeWidth="2" />
+              {/* For price view: show discrete points only. For line view: show connected line with fill */}
+              {effectiveViewMode === 'price' ? (
+                <>
+                  {/* Discrete points for price view */}
+                  {chartPoints.map((point, i) => (
+                    <circle
+                      key={i}
+                      cx={point.x}
+                      cy={point.y}
+                      r={i === 0 ? 4 : i === chartPoints.length - 1 ? 5 : 4}
+                      fill={i === 0 ? '#71717a' : chartColor}
+                      stroke={i === 0 ? '#3f3f46' : '#fff'}
+                      strokeWidth="2"
+                      className="transition-all"
+                    />
+                  ))}
+                  {/* Connect with subtle dashed line */}
+                  <path d={pathD} fill="none" stroke={chartColor} strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
+                </>
+              ) : (
+                <>
+                  {/* Connected line with fill for line view */}
+                  <path d={`${pathD} L ${chartPoints[chartPoints.length - 1].x} ${paddingTop + chartHeight} L ${paddingLeft} ${paddingTop + chartHeight} Z`} fill={`url(#${gradientId})`} />
+                  <path d={pathD} fill="none" stroke={chartColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="3" fill="#71717a" stroke="#3f3f46" strokeWidth="2" />
+                  <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="4" fill={chartColor} stroke={isProp ? '#1e3a5f' : '#064e3b'} strokeWidth="2" />
+                </>
+              )}
+              {hoveredPoint && (
+                <>
+                  <line x1={hoveredPoint.x} y1={paddingTop} x2={hoveredPoint.x} y2={paddingTop + chartHeight} stroke="#a1a1aa" strokeWidth="1" strokeDasharray="3 3" />
+                  <circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="6" fill={chartColor} stroke="#fff" strokeWidth="2" />
+                </>
+              )}
             </>
           )}
         </svg>
@@ -433,10 +361,10 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       </div>
 
       <div className="flex items-center gap-4 mt-2 text-xs text-zinc-500">
-        <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-zinc-500"></span><span>Opening</span></div>
+        <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-zinc-500"></span><span>Open: {formatValue(openValue)}</span></div>
         <div className="flex items-center gap-1.5">
           <span className={`w-2 h-2 rounded-full`} style={{ backgroundColor: chartColor }}></span>
-          <span>Current</span>
+          <span>Now: {formatValue(currentValue)}</span>
         </div>
         <div className="ml-auto text-zinc-600">{filteredHistory.length} snapshots</div>
       </div>
@@ -491,14 +419,15 @@ function AskEdgeAI({ gameId, homeTeam, awayTeam, sportKey, chartSelection }: { g
   );
 }
 
-function MarketCell({ value, subValue, edge, seed, onClick, isSelected }: { value: string | number; subValue?: string; edge: number; seed: string; onClick?: () => void; isSelected?: boolean }) {
+function MarketCell({ value, subValue, edge, onClick, isSelected }: { value: string | number; subValue?: string; edge: number; onClick?: () => void; isSelected?: boolean }) {
+  // Simplified cell: just show line and price, no confusing percentages
+  const edgeColor = edge >= 0 ? 'text-emerald-400' : 'text-red-400';
+  const edgeBg = edge >= 0 ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-red-500/10 border-red-500/30';
+
   return (
-    <div onClick={onClick} className={`w-full text-center py-2 px-2 rounded border transition-all cursor-pointer hover:brightness-110 ${getEdgeBg(edge)} ${isSelected ? 'ring-2 ring-emerald-500' : ''}`}>
+    <div onClick={onClick} className={`w-full text-center py-2 px-2 rounded border transition-all cursor-pointer hover:brightness-110 ${edgeBg} ${isSelected ? 'ring-2 ring-emerald-500' : ''}`}>
       <div className="text-sm font-medium text-zinc-100">{value}</div>
       {subValue && <div className="text-xs text-zinc-400">{subValue}</div>}
-      <div className="flex items-center justify-center gap-1 mt-0.5">
-        <PriceFlowIndicator value={edge} seed={seed} size="small" />
-      </div>
     </div>
   );
 }
@@ -515,15 +444,15 @@ function MarketSection({ title, markets, homeTeam, awayTeam, gameId, onSelectMar
         <div className="grid grid-cols-[1fr,100px,100px,100px] gap-3 mb-3"><div></div><div className="text-center text-xs text-zinc-500 uppercase tracking-wide">Spread</div><div className="text-center text-xs text-zinc-500 uppercase tracking-wide">ML</div><div className="text-center text-xs text-zinc-500 uppercase tracking-wide">Total</div></div>
         <div className="grid grid-cols-[1fr,100px,100px,100px] gap-3 mb-3 items-center">
           <div className="font-medium text-zinc-100 text-sm">{awayTeam}</div>
-          {markets.spreads ? <MarketCell value={formatSpread(markets.spreads.away.line)} subValue={formatOdds(markets.spreads.away.price)} edge={markets.spreads.away.edge || 0} seed={`${id}-${title}-sp-a`} onClick={() => onSelectMarket('spread')} isSelected={selectedMarket === 'spread'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
-          {markets.h2h ? <MarketCell value={formatOdds(markets.h2h.away.price)} edge={markets.h2h.away.edge || 0} seed={`${id}-${title}-ml-a`} onClick={() => onSelectMarket('moneyline')} isSelected={selectedMarket === 'moneyline'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
-          {markets.totals ? <MarketCell value={`O ${markets.totals.line}`} subValue={formatOdds(markets.totals.over.price)} edge={markets.totals.over.edge || 0} seed={`${id}-${title}-to-o`} onClick={() => onSelectMarket('total')} isSelected={selectedMarket === 'total'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.spreads ? <MarketCell value={formatSpread(markets.spreads.away.line)} subValue={formatOdds(markets.spreads.away.price)} edge={markets.spreads.away.edge || 0} onClick={() => onSelectMarket('spread')} isSelected={selectedMarket === 'spread'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.h2h ? <MarketCell value={formatOdds(markets.h2h.away.price)} edge={markets.h2h.away.edge || 0} onClick={() => onSelectMarket('moneyline')} isSelected={selectedMarket === 'moneyline'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.totals ? <MarketCell value={`O ${markets.totals.line}`} subValue={formatOdds(markets.totals.over.price)} edge={markets.totals.over.edge || 0} onClick={() => onSelectMarket('total')} isSelected={selectedMarket === 'total'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
         </div>
         <div className="grid grid-cols-[1fr,100px,100px,100px] gap-3 items-center">
           <div className="font-medium text-zinc-100 text-sm">{homeTeam}</div>
-          {markets.spreads ? <MarketCell value={formatSpread(markets.spreads.home.line)} subValue={formatOdds(markets.spreads.home.price)} edge={markets.spreads.home.edge || 0} seed={`${id}-${title}-sp-h`} onClick={() => onSelectMarket('spread')} isSelected={selectedMarket === 'spread'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
-          {markets.h2h ? <MarketCell value={formatOdds(markets.h2h.home.price)} edge={markets.h2h.home.edge || 0} seed={`${id}-${title}-ml-h`} onClick={() => onSelectMarket('moneyline')} isSelected={selectedMarket === 'moneyline'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
-          {markets.totals ? <MarketCell value={`U ${markets.totals.line}`} subValue={formatOdds(markets.totals.under.price)} edge={markets.totals.under.edge || 0} seed={`${id}-${title}-to-u`} onClick={() => onSelectMarket('total')} isSelected={selectedMarket === 'total'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.spreads ? <MarketCell value={formatSpread(markets.spreads.home.line)} subValue={formatOdds(markets.spreads.home.price)} edge={markets.spreads.home.edge || 0} onClick={() => onSelectMarket('spread')} isSelected={selectedMarket === 'spread'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.h2h ? <MarketCell value={formatOdds(markets.h2h.home.price)} edge={markets.h2h.home.edge || 0} onClick={() => onSelectMarket('moneyline')} isSelected={selectedMarket === 'moneyline'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.totals ? <MarketCell value={`U ${markets.totals.line}`} subValue={formatOdds(markets.totals.under.price)} edge={markets.totals.under.edge || 0} onClick={() => onSelectMarket('total')} isSelected={selectedMarket === 'total'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
         </div>
       </div>
     </div>
@@ -544,8 +473,6 @@ function PlayerPropsSection({ props, gameId, onSelectProp, selectedProp, selecte
   const marketTypes = Object.keys(grouped);
   const filteredMarkets = selectedMarket === 'all' ? marketTypes : [selectedMarket];
   
-  const generatePriceMovement = (odds: number, seed: string) => { const hashSeed = seed.split('').reduce((a, c) => a + c.charCodeAt(0), 0); const x = Math.sin(hashSeed) * 10000; return (x - Math.floor(x) - 0.5) * 0.2; };
-  
   return (
     <div className="space-y-4">
       <div className="flex gap-2 flex-wrap">
@@ -561,16 +488,14 @@ function PlayerPropsSection({ props, gameId, onSelectProp, selectedProp, selecte
               const isSelected = selectedProp?.player === prop.player && selectedProp?.market === (prop.market || prop.market_type) && selectedProp?.book === prop.book;
               const overOdds = prop.over?.odds; const underOdds = prop.under?.odds; const yesOdds = prop.yes?.odds;
               const line = prop.line ?? prop.over?.line ?? prop.under?.line;
-              const overMovement = overOdds ? generatePriceMovement(overOdds, `${gameId}-${prop.player}-over`) : 0;
-              const underMovement = underOdds ? generatePriceMovement(underOdds, `${gameId}-${prop.player}-under`) : 0;
               return (
-                <div key={`${prop.player}-${prop.book}-${idx}`} onClick={() => onSelectProp({ ...prop, overPriceMovement: overMovement, underPriceMovement: underMovement })} className={`px-4 py-3 flex items-center justify-between cursor-pointer hover:bg-zinc-800/50 transition-colors ${isSelected ? 'bg-blue-500/10 ring-1 ring-blue-500/50' : ''}`}>
+                <div key={`${prop.player}-${prop.book}-${idx}`} onClick={() => onSelectProp(prop)} className={`px-4 py-3 flex items-center justify-between cursor-pointer hover:bg-zinc-800/50 transition-colors ${isSelected ? 'bg-blue-500/10 ring-1 ring-blue-500/50' : ''}`}>
                   <div className="flex-1"><div className="font-medium text-zinc-100 text-sm">{prop.player}</div>{line !== null && line !== undefined && <span className="text-xs text-zinc-400">Line: {line}</span>}</div>
                   <div className="flex gap-2">
                     {overOdds && underOdds ? (<>
-                      <div className={`text-center py-2 px-3 rounded border transition-all min-w-[85px] ${overMovement >= 0 ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-red-500/10 border-red-500/30'}`}><div className="text-sm font-medium text-zinc-100">{formatOdds(overOdds)}</div><div className="text-xs text-zinc-500 mb-1">Over</div><PriceFlowIndicator value={overMovement} seed={`${gameId}-${prop.player}-over`} size="small" /></div>
-                      <div className={`text-center py-2 px-3 rounded border transition-all min-w-[85px] ${underMovement >= 0 ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-red-500/10 border-red-500/30'}`}><div className="text-sm font-medium text-zinc-100">{formatOdds(underOdds)}</div><div className="text-xs text-zinc-500 mb-1">Under</div><PriceFlowIndicator value={underMovement} seed={`${gameId}-${prop.player}-under`} size="small" /></div>
-                    </>) : yesOdds ? (<div className={`text-center py-2 px-3 rounded border transition-all min-w-[85px] ${generatePriceMovement(yesOdds, `${gameId}-${prop.player}-yes`) >= 0 ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-red-500/10 border-red-500/30'}`}><div className="text-sm font-medium text-zinc-100">{formatOdds(yesOdds)}</div><div className="text-xs text-zinc-500 mb-1">Yes</div><PriceFlowIndicator value={generatePriceMovement(yesOdds, `${gameId}-${prop.player}-yes`)} seed={`${gameId}-${prop.player}-yes`} size="small" /></div>) : null}
+                      <div className="text-center py-2 px-3 rounded border transition-all min-w-[70px] bg-zinc-800/50 border-zinc-700"><div className="text-sm font-medium text-zinc-100">{formatOdds(overOdds)}</div><div className="text-xs text-zinc-500">Over</div></div>
+                      <div className="text-center py-2 px-3 rounded border transition-all min-w-[70px] bg-zinc-800/50 border-zinc-700"><div className="text-sm font-medium text-zinc-100">{formatOdds(underOdds)}</div><div className="text-xs text-zinc-500">Under</div></div>
+                    </>) : yesOdds ? (<div className="text-center py-2 px-3 rounded border transition-all min-w-[70px] bg-zinc-800/50 border-zinc-700"><div className="text-sm font-medium text-zinc-100">{formatOdds(yesOdds)}</div><div className="text-xs text-zinc-500">Yes</div></div>) : null}
                   </div>
                 </div>
               );

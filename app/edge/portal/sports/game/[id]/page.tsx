@@ -65,9 +65,9 @@ async function fetchLineHistory(gameId: string, market: string = 'spread', perio
 
     // Convert to the format expected by the line chart
     return data.map((row: any) => ({
-      timestamp: row.snapshot_time,
-      book: row.book_key,
-      outcome: row.outcome_type,
+      snapshot_time: row.snapshot_time,
+      book_key: row.book_key,
+      outcome_type: row.outcome_type,
       line: row.line,
       odds: row.odds,
     }));

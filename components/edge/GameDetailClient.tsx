@@ -838,8 +838,16 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
   const [selectedProp, setSelectedProp] = useState<any | null>(null);
   const [chartViewMode, setChartViewMode] = useState<ChartViewMode>('line');
 
-  // Check if user is in demo mode (via URL param or demo account email)
-  const isDemoUser = isDemo || (userEmail && DEMO_ACCOUNTS.includes(userEmail.toLowerCase()));
+  // Get user email from localStorage (our custom auth) if not passed via props
+  const [localEmail, setLocalEmail] = useState<string | null>(null);
+  useEffect(() => {
+    const storedEmail = localStorage.getItem('omi_edge_email');
+    if (storedEmail) setLocalEmail(storedEmail);
+  }, []);
+
+  // Check if user is in demo mode (via URL param, Supabase email, or localStorage email)
+  const effectiveEmail = userEmail || localEmail;
+  const isDemoUser = isDemo || (effectiveEmail && DEMO_ACCOUNTS.includes(effectiveEmail.toLowerCase()));
 
   // Check if game is live and if user needs upgrade
   const isLive = isGameLive(gameData.commenceTime);

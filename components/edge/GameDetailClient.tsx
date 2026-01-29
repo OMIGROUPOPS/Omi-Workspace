@@ -775,7 +775,7 @@ function AlternatesSection({ alternates, homeTeam, awayTeam, gameId }: { alterna
 // Demo accounts that get full access to live tracking
 // Add your email and investor demo emails here
 const DEMO_ACCOUNTS: string[] = [
-  // 'your-email@example.com',
+  'omigroup.ops@outlook.com',
   // 'dean@investor.com',
   // 'investor@example.com',
 ];

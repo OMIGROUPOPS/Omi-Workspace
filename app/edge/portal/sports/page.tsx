@@ -96,6 +96,8 @@ async function fetchLiveScores(): Promise<Record<string, any>> {
 }
 
 // Fetch opening lines from odds_snapshots for edge calculation
+// Note: outcome_type contains team names (not 'home'/'away'), so we fetch all spreads
+// and take the first one per game that has a line value
 async function fetchOpeningLines(gameIds: string[]): Promise<Record<string, number>> {
   const openingLines: Record<string, number> = {};
 
@@ -108,7 +110,7 @@ async function fetchOpeningLines(gameIds: string[]): Promise<Record<string, numb
       .select('game_id, line, snapshot_time')
       .in('game_id', gameIds)
       .eq('market', 'spreads')
-      .eq('outcome_type', 'home')
+      .not('line', 'is', null)
       .order('snapshot_time', { ascending: true });
 
     if (!error && data) {

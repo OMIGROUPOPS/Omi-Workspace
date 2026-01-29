@@ -59,19 +59,22 @@ async function fetchSnapshotsForCEQ(gameId: string): Promise<ExtendedOddsSnapsho
 }
 
 // Fetch opening line for a specific game
+// Note: outcome_type contains team names (not 'home'/'away'), so we fetch all spreads
+// and take the first one with a negative line (home team typically has negative spread in favorites)
 async function fetchOpeningLine(gameId: string): Promise<number | undefined> {
   try {
     const supabase = getDirectSupabase();
     const { data, error } = await supabase
       .from('odds_snapshots')
-      .select('line')
+      .select('line, outcome_type')
       .eq('game_id', gameId)
       .eq('market', 'spreads')
-      .eq('outcome_type', 'home')
+      .not('line', 'is', null)
       .order('snapshot_time', { ascending: true })
-      .limit(1);
+      .limit(2);
 
     if (error || !data || data.length === 0) return undefined;
+    // Return the first spread line (either side works for opening line reference)
     return data[0].line;
   } catch (e) {
     console.error('[GameDetail] Opening line fetch error:', e);

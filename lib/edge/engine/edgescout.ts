@@ -580,9 +580,11 @@ export function calculateGameCEQ(
   const result: GameCEQ = { bestEdge: null };
 
   // Filter snapshots by market type
-  const spreadSnapshots = snapshots.filter(s => s.market === 'spreads' && s.outcome_type === 'home');
-  const h2hSnapshots = snapshots.filter(s => s.market === 'h2h' && s.outcome_type === 'home');
-  const totalSnapshots = snapshots.filter(s => s.market === 'totals' && (s.outcome_type === 'Over' || s.outcome_type === 'over'));
+  // Note: outcome_type contains team names (not 'home'/'away'), so we include all outcomes for that market
+  // MMI (momentum) calculation uses line movement which works with any side's data
+  const spreadSnapshots = snapshots.filter(s => s.market === 'spreads');
+  const h2hSnapshots = snapshots.filter(s => s.market === 'h2h');
+  const totalSnapshots = snapshots.filter(s => s.market === 'totals' && (s.outcome_type === 'Over' || s.outcome_type === 'Under'));
 
   // Calculate spreads CEQ
   if (gameOdds.spreads) {

@@ -206,10 +206,23 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     }
   };
 
-  // Chart title based on view mode
-  const chartTitle = effectiveViewMode === 'price'
-    ? `${selection.label} - Price`
-    : selection.label;
+  // Chart title based on view mode - include line context for price view on spreads/totals
+  const getChartTitle = () => {
+    if (effectiveViewMode !== 'price') return selection.label;
+
+    // For price view, show the line value for context
+    if (selection.type === 'market' && selection.line !== undefined) {
+      if (marketType === 'spread') {
+        const lineStr = selection.line > 0 ? `+${selection.line}` : selection.line.toString();
+        return `${selection.label} Price @ ${lineStr}`;
+      }
+      if (marketType === 'total') {
+        return `${selection.label} Price @ ${selection.line}`;
+      }
+    }
+    return `${selection.label} - Price`;
+  };
+  const chartTitle = getChartTitle();
 
   // Time range selector component
   const TimeRangeSelector = () => (
@@ -320,24 +333,64 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   const movementColor = movement > 0 ? 'text-emerald-400' : movement < 0 ? 'text-red-400' : 'text-zinc-400';
 
-  // Y-axis labels: use actual data range with padding
-  // For all chart types, higher values are at TOP (smaller y), lower values at BOTTOM (larger y)
-  // This means: better prices (less negative or more positive) at TOP
+  // Y-axis labels: Generate granular labels based on data type
+  // For betting, every half-point matters - show fine increments
   const isPrice = effectiveViewMode === 'price';
-  const roundLabel = (val: number) => isPrice || marketType === 'moneyline' ? Math.round(val) : Math.round(val * 2) / 2;
 
-  // Calculate proper min/max with padding for labels
-  const labelMax = roundLabel(maxVal + padding * 0.5);
-  const labelMin = roundLabel(minVal - padding * 0.5);
-  const labelMid = roundLabel((maxVal + minVal) / 2);
+  // Determine step size based on data type and range
+  const getStepSize = () => {
+    if (isPrice || marketType === 'moneyline') {
+      // For prices: use 2-5 point increments depending on range
+      if (range <= 10) return 2;
+      if (range <= 20) return 5;
+      return 10;
+    }
+    // For lines (spreads, totals, props): use 0.5 or 1 point increments
+    if (range <= 3) return 0.5;
+    if (range <= 8) return 1;
+    return 2;
+  };
 
-  // Y-axis labels: Standard for all (higher values at top)
-  // For prices: less negative (-106) at top, more negative (-115) at bottom
-  const yLabels = [
-    { value: labelMax, y: paddingTop },  // Higher value at top
-    { value: labelMid, y: paddingTop + chartHeight / 2 },
-    { value: labelMin, y: paddingTop + chartHeight }  // Lower value at bottom
-  ];
+  const stepSize = getStepSize();
+
+  // Round to nearest step
+  const roundToStep = (val: number, step: number) => Math.round(val / step) * step;
+
+  // Generate Y-axis labels with granular steps
+  const generateYLabels = () => {
+    const labels: { value: number; y: number }[] = [];
+
+    // Calculate the visual range bounds
+    const visualMin = minVal - padding;
+    const visualMax = maxVal + padding;
+    const visualRange = visualMax - visualMin;
+
+    // Start from a nice round number below min
+    const startValue = roundToStep(visualMin, stepSize);
+    const endValue = roundToStep(visualMax, stepSize) + stepSize;
+
+    // Generate labels at each step
+    for (let val = startValue; val <= endValue; val += stepSize) {
+      // Calculate Y position (higher values at top)
+      const normalizedY = (val - visualMin) / visualRange;
+      const y = paddingTop + chartHeight - normalizedY * chartHeight;
+
+      // Only include if within chart bounds
+      if (y >= paddingTop - 5 && y <= paddingTop + chartHeight + 5) {
+        labels.push({ value: val, y });
+      }
+    }
+
+    // Limit to max 7 labels to avoid clutter
+    if (labels.length > 7) {
+      const step = Math.ceil(labels.length / 6);
+      return labels.filter((_, i) => i % step === 0 || i === labels.length - 1);
+    }
+
+    return labels;
+  };
+
+  const yLabels = generateYLabels();
   const xLabels = data.length > 0 ? [0, Math.floor(data.length / 2), data.length - 1].map(i => ({
     x: chartPoints[i]?.x || 0,
     label: data[i]?.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) || ''
@@ -429,6 +482,12 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
             </div>
           ) : (
             <span className="px-1.5 py-0.5 bg-zinc-800/50 rounded text-[10px] font-medium text-zinc-300">{trackingLabel}</span>
+          )}
+          {/* Show line value context when viewing price chart for spreads/totals */}
+          {effectiveViewMode === 'price' && selection.type === 'market' && selection.line !== undefined && (marketType === 'spread' || marketType === 'total') && (
+            <span className="px-1.5 py-0.5 bg-amber-500/20 border border-amber-500/30 rounded text-[10px] font-medium text-amber-400">
+              @ {marketType === 'spread' ? (selection.line > 0 ? `+${selection.line}` : selection.line) : selection.line}
+            </span>
           )}
         </div>
         {/* Movement summary */}

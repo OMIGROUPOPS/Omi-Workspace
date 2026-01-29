@@ -651,14 +651,14 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   return (
     <div className="py-6">
       <div className="mb-6">
-        <Link 
-          href={`/edge/portal/sports/${fullSportKey}`}
+        <Link
+          href="/edge/portal/sports"
           className="inline-flex items-center gap-2 text-zinc-400 hover:text-zinc-100 transition-colors mb-4"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
           </svg>
-          Back to {sportConfig?.name || 'games'}
+          Back to Dashboard
         </Link>
         
         <div className="flex items-center justify-between">

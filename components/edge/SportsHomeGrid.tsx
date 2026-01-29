@@ -260,11 +260,11 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
       {/* Status Bar - Bloomberg-style ticker */}
       <div className="flex items-center gap-3 mb-5 px-1">
         <div className="flex items-center gap-4 flex-1 overflow-x-auto">
-          {/* System Status */}
+          {/* System Status - User-friendly label */}
           <div className="flex items-center gap-1.5 flex-shrink-0">
-            <div className={`w-1.5 h-1.5 rounded-full ${dataSource === 'backend' ? 'bg-emerald-400 shadow-sm shadow-emerald-400/50' : dataSource === 'odds_api' ? 'bg-amber-400 shadow-sm shadow-amber-400/50' : 'bg-red-400 shadow-sm shadow-red-400/50'}`} />
+            <div className={`w-1.5 h-1.5 rounded-full ${dataSource !== 'none' ? 'bg-emerald-400 shadow-sm shadow-emerald-400/50 animate-pulse' : 'bg-red-400 shadow-sm shadow-red-400/50'}`} />
             <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">
-              {dataSource === 'backend' ? 'EDGE ENGINE' : dataSource === 'odds_api' ? 'ODDS API' : 'OFFLINE'}
+              {dataSource !== 'none' ? 'LIVE' : 'OFFLINE'}
             </span>
           </div>
 
@@ -509,6 +509,12 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                           }`}>
                             {countdown}
                           </span>
+                          {/* Live Score Display */}
+                          {countdown === 'LIVE' && game.scores && (
+                            <span className="text-[10px] font-mono font-semibold text-zinc-100 bg-zinc-800 px-1.5 py-0.5 rounded">
+                              {game.scores.away} - {game.scores.home}
+                            </span>
+                          )}
                         </div>
                         {edgeBadge && (
                           <span className={`text-[9px] font-semibold font-mono px-1.5 py-0.5 rounded border ${edgeBadge.bg} ${edgeBadge.color}`}>
@@ -525,55 +531,55 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                         <span className="text-[9px] text-zinc-600 uppercase text-center font-mono tracking-wider">O/U</span>
                       </div>
 
-                      {/* Away Row */}
-                      <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
-                        <div className="flex items-center gap-2 min-w-0">
-                          <TeamLogo teamName={game.awayTeam} sportKey={game.sportKey} />
-                          <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.awayTeam, game.sportKey)}</span>
-                        </div>
-                        {game.consensus?.spreads ? (
-                          <OddsCell
-                            line={-game.consensus.spreads.line}
-                            price={game.consensus.spreads.awayPrice}
-                          />
-                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                        {game.consensus?.h2h ? (
-                          <MoneylineCell
-                            price={game.consensus.h2h.awayPrice}
-                          />
-                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                        {game.consensus?.totals ? (
-                          <OddsCell
-                            line={`O${game.consensus.totals.line}`}
-                            price={game.consensus.totals.overPrice}
-                          />
-                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                      </div>
+                      {/* Away Row - Use selected book's odds or fall back to consensus */}
+                      {(() => {
+                        const bookOdds = game.bookmakers?.[selectedBook];
+                        const spreads = bookOdds?.spreads || game.consensus?.spreads;
+                        const h2h = bookOdds?.h2h || game.consensus?.h2h;
+                        const totals = bookOdds?.totals || game.consensus?.totals;
+                        return (
+                          <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <TeamLogo teamName={game.awayTeam} sportKey={game.sportKey} />
+                              <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.awayTeam, game.sportKey)}</span>
+                            </div>
+                            {spreads?.line !== undefined ? (
+                              <OddsCell line={-spreads.line} price={spreads.awayPrice} />
+                            ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
+                            {h2h?.awayPrice !== undefined ? (
+                              <MoneylineCell price={h2h.awayPrice} />
+                            ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
+                            {totals?.line !== undefined ? (
+                              <OddsCell line={`O${totals.line}`} price={totals.overPrice} />
+                            ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
+                          </div>
+                        );
+                      })()}
 
-                      {/* Home Row */}
-                      <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
-                        <div className="flex items-center gap-2 min-w-0">
-                          <TeamLogo teamName={game.homeTeam} sportKey={game.sportKey} />
-                          <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.homeTeam, game.sportKey)}</span>
-                        </div>
-                        {game.consensus?.spreads ? (
-                          <OddsCell
-                            line={game.consensus.spreads.line}
-                            price={game.consensus.spreads.homePrice}
-                          />
-                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                        {game.consensus?.h2h ? (
-                          <MoneylineCell
-                            price={game.consensus.h2h.homePrice}
-                          />
-                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                        {game.consensus?.totals ? (
-                          <OddsCell
-                            line={`U${game.consensus.totals.line}`}
-                            price={game.consensus.totals.underPrice}
-                          />
-                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                      </div>
+                      {/* Home Row - Use selected book's odds or fall back to consensus */}
+                      {(() => {
+                        const bookOdds = game.bookmakers?.[selectedBook];
+                        const spreads = bookOdds?.spreads || game.consensus?.spreads;
+                        const h2h = bookOdds?.h2h || game.consensus?.h2h;
+                        const totals = bookOdds?.totals || game.consensus?.totals;
+                        return (
+                          <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <TeamLogo teamName={game.homeTeam} sportKey={game.sportKey} />
+                              <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.homeTeam, game.sportKey)}</span>
+                            </div>
+                            {spreads?.line !== undefined ? (
+                              <OddsCell line={spreads.line} price={spreads.homePrice} />
+                            ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
+                            {h2h?.homePrice !== undefined ? (
+                              <MoneylineCell price={h2h.homePrice} />
+                            ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
+                            {totals?.line !== undefined ? (
+                              <OddsCell line={`U${totals.line}`} price={totals.underPrice} />
+                            ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
+                          </div>
+                        );
+                      })()}
 
                       {/* Card Footer - Composite Score */}
                       {game.composite_score != null && (

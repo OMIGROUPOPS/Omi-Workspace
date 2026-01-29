@@ -103,8 +103,12 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const baseValue = selection.line ?? (selection.type === 'market' ? selection.price : 0) ?? 0;
 
   // Parse game start time for live cutoff indicator
+  // A game is "live" if it started within the last 4 hours (typical game duration)
   const gameStartTime = commenceTime ? new Date(commenceTime) : null;
-  const isGameLive = gameStartTime && new Date() > gameStartTime;
+  const now = new Date();
+  const gameStarted = gameStartTime && now > gameStartTime;
+  const hoursSinceStart = gameStartTime ? (now.getTime() - gameStartTime.getTime()) / (1000 * 60 * 60) : 0;
+  const isGameLive = gameStarted && hoursSinceStart < 4; // Game is live if started within last 4 hours
 
   // Auto-select time range for live games on mount
   useEffect(() => {

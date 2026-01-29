@@ -160,6 +160,32 @@ function processOddsApiGame(game: any) {
     }
   }
 
+  // Extract per-bookmaker odds for sportsbook filtering
+  const bookmakers: Record<string, any> = {};
+  if (game.bookmakers) {
+    for (const bookmaker of game.bookmakers) {
+      const bookOdds: any = {};
+      for (const market of bookmaker.markets) {
+        if (market.key === 'h2h') {
+          const home = market.outcomes.find((o: any) => o.name === game.home_team);
+          const away = market.outcomes.find((o: any) => o.name === game.away_team);
+          bookOdds.h2h = { homePrice: home?.price, awayPrice: away?.price };
+        }
+        if (market.key === 'spreads') {
+          const home = market.outcomes.find((o: any) => o.name === game.home_team);
+          const away = market.outcomes.find((o: any) => o.name === game.away_team);
+          bookOdds.spreads = { line: home?.point, homePrice: home?.price, awayPrice: away?.price };
+        }
+        if (market.key === 'totals') {
+          const over = market.outcomes.find((o: any) => o.name === 'Over');
+          const under = market.outcomes.find((o: any) => o.name === 'Under');
+          bookOdds.totals = { line: over?.point, overPrice: over?.price, underPrice: under?.price };
+        }
+      }
+      bookmakers[bookmaker.key] = bookOdds;
+    }
+  }
+
   return {
     id: game.id,
     sportKey: game.sport_key,
@@ -167,6 +193,7 @@ function processOddsApiGame(game: any) {
     awayTeam: game.away_team,
     commenceTime: game.commence_time,
     consensus,
+    bookmakers, // Per-book odds for sportsbook filtering
     bookmakerCount: game.bookmakers?.length || 0,
   };
 }

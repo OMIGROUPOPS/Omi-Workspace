@@ -117,11 +117,14 @@ function BookIcon({ bookKey, size = 24 }: { bookKey: string; size?: number }) {
   );
 }
 
-function getEdgeBadge(game: any): { label: string; color: string; bg: string } | null {
-  if (game.overall_confidence === 'RARE') return { label: 'RARE', color: 'text-purple-300', bg: 'bg-purple-500/20 border-purple-500/30' };
-  if (game.overall_confidence === 'STRONG_EDGE') return { label: 'STRONG', color: 'text-emerald-300', bg: 'bg-emerald-500/20 border-emerald-500/30' };
-  if (game.overall_confidence === 'EDGE') return { label: 'EDGE', color: 'text-blue-300', bg: 'bg-blue-500/20 border-blue-500/30' };
-  if (game.overall_confidence === 'WATCH') return { label: 'WATCH', color: 'text-amber-300', bg: 'bg-amber-500/20 border-amber-500/30' };
+function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number } | null {
+  const confidence = game.overall_confidence || game.calculatedEdge?.confidence;
+  const score = game.calculatedEdge?.score || (game.composite_score ? Math.round(game.composite_score * 100) : null);
+
+  if (confidence === 'RARE') return { label: 'RARE', color: 'text-purple-300', bg: 'bg-purple-500/20 border-purple-500/30', score };
+  if (confidence === 'STRONG_EDGE' || confidence === 'STRONG') return { label: 'STRONG', color: 'text-emerald-300', bg: 'bg-emerald-500/20 border-emerald-500/30', score };
+  if (confidence === 'EDGE') return { label: 'EDGE', color: 'text-blue-300', bg: 'bg-blue-500/20 border-blue-500/30', score };
+  if (confidence === 'WATCH') return { label: 'WATCH', color: 'text-amber-300', bg: 'bg-amber-500/20 border-amber-500/30', score };
   return null;
 }
 
@@ -487,24 +490,35 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                       <div className="px-3 py-2 bg-zinc-900/40 border-b border-zinc-800/50 flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="text-[10px] font-mono text-zinc-500" suppressHydrationWarning>{timeStr}</span>
-                          <span suppressHydrationWarning className={`text-[9px] font-mono px-1.5 py-0.5 rounded ${
-                            countdown === 'LIVE' ? 'bg-red-500/20 text-red-400 animate-pulse' :
-                            countdown === 'FINAL' ? 'bg-zinc-800 text-zinc-500' :
-                            'bg-zinc-800/80 text-zinc-400'
-                          }`}>
-                            {countdown}
-                          </span>
-                          {/* Live Score Display */}
-                          {countdown === 'LIVE' && game.scores && (
-                            <span className="text-[10px] font-mono font-semibold text-zinc-100 bg-zinc-800 px-1.5 py-0.5 rounded">
+                          {countdown === 'LIVE' ? (
+                            <span className="flex items-center gap-1.5 text-[10px] font-semibold text-red-400 bg-red-500/20 px-2 py-0.5 rounded-full">
+                              <span className="relative flex h-1.5 w-1.5">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
+                              </span>
+                              LIVE
+                            </span>
+                          ) : countdown === 'FINAL' ? (
+                            <span className="text-[10px] font-semibold text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded-full">FINAL</span>
+                          ) : (
+                            <span className="text-[10px] font-mono text-zinc-500 bg-zinc-800/50 px-2 py-0.5 rounded">{countdown}</span>
+                          )}
+                          {/* Live Score Display - Show prominently */}
+                          {(countdown === 'LIVE' || countdown === 'FINAL') && game.scores && (
+                            <span className="text-sm font-bold font-mono text-zinc-100 bg-zinc-800/80 px-2 py-0.5 rounded border border-zinc-700/50">
                               {game.scores.away} - {game.scores.home}
                             </span>
                           )}
                         </div>
                         {edgeBadge && (
-                          <span className={`text-[9px] font-semibold font-mono px-1.5 py-0.5 rounded border ${edgeBadge.bg} ${edgeBadge.color}`}>
-                            {edgeBadge.label}
-                          </span>
+                          <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-full border ${edgeBadge.bg} ${edgeBadge.color}`}>
+                            <span className="text-[9px] font-bold">
+                              {edgeBadge.label === 'RARE' && '★ '}{edgeBadge.label}
+                            </span>
+                            {edgeBadge.score && (
+                              <span className="text-[9px] font-mono">{edgeBadge.score}%</span>
+                            )}
+                          </div>
                         )}
                       </div>
 
@@ -566,27 +580,42 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                         );
                       })()}
 
-                      {/* Card Footer - Composite Score */}
-                      {game.composite_score != null && (
-                        <div className="px-3 py-1.5 border-t border-zinc-800/30 flex items-center justify-between">
-                          <span className="text-[9px] font-mono text-zinc-600">COMPOSITE</span>
-                          <div className="flex items-center gap-2">
-                            <div className="w-16 h-1 bg-zinc-800 rounded-full overflow-hidden">
-                              <div
-                                className={`h-full rounded-full ${
-                                  game.composite_score > 0.7 ? 'bg-emerald-400' :
-                                  game.composite_score > 0.5 ? 'bg-amber-400' : 'bg-zinc-600'
-                                }`}
-                                style={{ width: `${Math.min(game.composite_score * 100, 100)}%` }}
-                              />
+                      {/* Card Footer - Edge Score */}
+                      {(game.composite_score != null || game.calculatedEdge) && (
+                        <div className="px-3 py-2 border-t border-zinc-800/50 bg-zinc-900/50">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-wider">Edge Score</span>
+                            <div className="flex items-center gap-2">
+                              {/* Edge Bar */}
+                              <div className="w-20 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                                <div
+                                  className={`h-full rounded-full transition-all ${
+                                    (game.calculatedEdge?.score || game.composite_score * 100) >= 65 ? 'bg-emerald-400' :
+                                    (game.calculatedEdge?.score || game.composite_score * 100) >= 55 ? 'bg-blue-400' :
+                                    (game.calculatedEdge?.score || game.composite_score * 100) >= 45 ? 'bg-amber-400' : 'bg-zinc-600'
+                                  }`}
+                                  style={{ width: `${Math.min(game.calculatedEdge?.score || game.composite_score * 100, 100)}%` }}
+                                />
+                              </div>
+                              {/* Edge Percentage */}
+                              <span className={`text-xs font-mono font-bold ${
+                                (game.calculatedEdge?.score || game.composite_score * 100) >= 65 ? 'text-emerald-400' :
+                                (game.calculatedEdge?.score || game.composite_score * 100) >= 55 ? 'text-blue-400' :
+                                (game.calculatedEdge?.score || game.composite_score * 100) >= 45 ? 'text-amber-400' : 'text-zinc-500'
+                              }`}>
+                                {game.calculatedEdge?.score || Math.round(game.composite_score * 100)}%
+                              </span>
                             </div>
-                            <span className={`text-[10px] font-mono font-semibold ${
-                              game.composite_score > 0.7 ? 'text-emerald-400' :
-                              game.composite_score > 0.5 ? 'text-amber-400' : 'text-zinc-500'
-                            }`}>
-                              {(game.composite_score * 100).toFixed(0)}
-                            </span>
                           </div>
+                          {/* Edge Side Indicator */}
+                          {game.calculatedEdge?.side && game.calculatedEdge.confidence !== 'PASS' && (
+                            <div className="mt-1 flex items-center gap-1">
+                              <span className="text-[9px] text-zinc-600">Favoring:</span>
+                              <span className="text-[9px] font-medium text-emerald-400">
+                                {game.calculatedEdge.side === 'home' ? game.homeTeam.split(' ').pop() : game.awayTeam.split(' ').pop()}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       )}
                     </Link>

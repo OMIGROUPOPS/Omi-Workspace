@@ -1,8 +1,12 @@
 import { SportsHomeGrid } from '@/components/edge/SportsHomeGrid';
 import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
+import { createClient } from '@supabase/supabase-js';
+import { calculateQuickEdge } from '@/lib/edge/engine/edge-calculator';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
+const ODDS_API_KEY = process.env.ODDS_API_KEY || '';
+const ODDS_API_BASE = 'https://api.the-odds-api.com/v4';
 
 const SPORT_MAPPING: Record<string, string> = {
   'NFL': 'americanfootball_nfl',
@@ -34,6 +38,93 @@ function getSupabase() {
   );
 }
 
+// Direct Supabase client for non-cookie operations
+function getDirectSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
+
+// Fetch live scores from The Odds API
+async function fetchLiveScores(): Promise<Record<string, any>> {
+  const scores: Record<string, any> = {};
+
+  if (!ODDS_API_KEY) return scores;
+
+  const sportKeys = [
+    'americanfootball_nfl', 'basketball_nba', 'icehockey_nhl',
+    'americanfootball_ncaaf', 'basketball_ncaab', 'baseball_mlb', 'basketball_wnba'
+  ];
+
+  try {
+    // Fetch scores for each sport in parallel
+    const results = await Promise.all(
+      sportKeys.map(async (sportKey) => {
+        try {
+          const url = `${ODDS_API_BASE}/sports/${sportKey}/scores?apiKey=${ODDS_API_KEY}&daysFrom=1`;
+          const res = await fetch(url, { cache: 'no-store' });
+          if (!res.ok) return [];
+          return res.json();
+        } catch {
+          return [];
+        }
+      })
+    );
+
+    // Process all scores into a map by game ID
+    for (const sportScores of results) {
+      for (const game of sportScores) {
+        if (game.scores && game.scores.length >= 2) {
+          const homeScore = game.scores.find((s: any) => s.name === game.home_team);
+          const awayScore = game.scores.find((s: any) => s.name === game.away_team);
+          scores[game.id] = {
+            home: parseInt(homeScore?.score || '0'),
+            away: parseInt(awayScore?.score || '0'),
+            completed: game.completed,
+            lastUpdate: game.last_update,
+          };
+        }
+      }
+    }
+  } catch (e) {
+    console.error('[Scores] Fetch failed:', e);
+  }
+
+  return scores;
+}
+
+// Fetch opening lines from odds_snapshots for edge calculation
+async function fetchOpeningLines(gameIds: string[]): Promise<Record<string, number>> {
+  const openingLines: Record<string, number> = {};
+
+  if (gameIds.length === 0) return openingLines;
+
+  try {
+    const supabase = getDirectSupabase();
+    const { data, error } = await supabase
+      .from('odds_snapshots')
+      .select('game_id, line, snapshot_time')
+      .in('game_id', gameIds)
+      .eq('market', 'spreads')
+      .eq('outcome_type', 'home')
+      .order('snapshot_time', { ascending: true });
+
+    if (!error && data) {
+      // Get first snapshot (opening line) for each game
+      for (const row of data) {
+        if (!openingLines[row.game_id] && row.line !== null) {
+          openingLines[row.game_id] = row.line;
+        }
+      }
+    }
+  } catch (e) {
+    console.error('[OpeningLines] Fetch failed:', e);
+  }
+
+  return openingLines;
+}
+
 async function fetchEdgesFromBackend(sport: string) {
   try {
     const controller = new AbortController();
@@ -51,7 +142,7 @@ async function fetchEdgesFromBackend(sport: string) {
   }
 }
 
-function processBackendGame(game: any, sport: string) {
+function processBackendGame(game: any, sport: string, scores: Record<string, any>, openingLines: Record<string, number>) {
   const consensus: any = {};
 
   if (game.consensus_odds?.h2h) {
@@ -77,6 +168,25 @@ function processBackendGame(game: any, sport: string) {
     };
   }
 
+  // Calculate edge if not provided by backend
+  let edgeData = null;
+  if (game.composite_score && game.overall_confidence) {
+    edgeData = {
+      score: Math.round(game.composite_score * 100),
+      confidence: game.overall_confidence,
+      side: game.best_bet?.side || null,
+    };
+  } else {
+    // Calculate using our edge calculator
+    const calculated = calculateQuickEdge(
+      openingLines[game.game_id],
+      consensus.spreads?.line,
+      consensus.spreads?.homePrice,
+      consensus.spreads?.awayPrice
+    );
+    edgeData = calculated;
+  }
+
   return {
     id: game.game_id,
     sportKey: SPORT_MAPPING[sport] || game.sport,
@@ -86,18 +196,19 @@ function processBackendGame(game: any, sport: string) {
     consensus,
     edges: game.edges,
     pillars: game.pillars,
-    composite_score: game.composite_score,
-    overall_confidence: game.overall_confidence,
+    composite_score: game.composite_score || (edgeData.score / 100),
+    overall_confidence: game.overall_confidence || edgeData.confidence,
     best_bet: game.best_bet,
     best_edge: game.best_edge,
+    calculatedEdge: edgeData,
+    scores: scores[game.game_id] || null,
   };
 }
 
-function processOddsApiGame(game: any) {
+function processOddsApiGame(game: any, scores: Record<string, any>, openingLines: Record<string, number>) {
   const consensus: any = {};
 
   if (game.bookmakers && game.bookmakers.length > 0) {
-    // Aggregate consensus from all bookmakers
     const h2hPrices: { home: number[]; away: number[] } = { home: [], away: [] };
     const spreadData: { line: number[]; homePrice: number[]; awayPrice: number[] } = { line: [], homePrice: [], awayPrice: [] };
     const totalData: { line: number[]; overPrice: number[]; underPrice: number[] } = { line: [], overPrice: [], underPrice: [] };
@@ -160,7 +271,7 @@ function processOddsApiGame(game: any) {
     }
   }
 
-  // Extract per-bookmaker odds for sportsbook filtering
+  // Extract per-bookmaker odds
   const bookmakers: Record<string, any> = {};
   if (game.bookmakers) {
     for (const bookmaker of game.bookmakers) {
@@ -186,6 +297,14 @@ function processOddsApiGame(game: any) {
     }
   }
 
+  // Calculate edge
+  const calculated = calculateQuickEdge(
+    openingLines[game.id],
+    consensus.spreads?.line,
+    consensus.spreads?.homePrice,
+    consensus.spreads?.awayPrice
+  );
+
   return {
     id: game.id,
     sportKey: game.sport_key,
@@ -193,12 +312,16 @@ function processOddsApiGame(game: any) {
     awayTeam: game.away_team,
     commenceTime: game.commence_time,
     consensus,
-    bookmakers, // Per-book odds for sportsbook filtering
+    bookmakers,
     bookmakerCount: game.bookmakers?.length || 0,
+    composite_score: calculated.score / 100,
+    overall_confidence: calculated.confidence,
+    calculatedEdge: calculated,
+    scores: scores[game.id] || null,
   };
 }
 
-async function fetchFromCache(sportKey: string) {
+async function fetchFromCache(sportKey: string, scores: Record<string, any>, openingLines: Record<string, number>) {
   try {
     const supabase = getSupabase();
     const { data, error } = await supabase
@@ -209,7 +332,7 @@ async function fetchFromCache(sportKey: string) {
     if (error || !data) return [];
 
     return data
-      .map((row: any) => processOddsApiGame(row.game_data))
+      .map((row: any) => processOddsApiGame(row.game_data, scores, openingLines))
       .filter(Boolean);
   } catch (e) {
     console.error(`[Cache] Failed to fetch ${sportKey}:`, e);
@@ -218,28 +341,40 @@ async function fetchFromCache(sportKey: string) {
 }
 
 export default async function SportsPage() {
-  const sports = ['NFL', 'NBA', 'NHL', 'NCAAF', 'NCAAB', 'MLB', 'MMA', 'TENNIS_AO', 'TENNIS_FO', 'TENNIS_USO', 'TENNIS_WIM'];
+  const sports = ['NFL', 'NBA', 'NHL', 'NCAAF', 'NCAAB', 'MLB', 'WNBA', 'MMA', 'TENNIS_AO', 'TENNIS_FO', 'TENNIS_USO', 'TENNIS_WIM'];
   const allGames: Record<string, any[]> = {};
   let dataSource: 'backend' | 'odds_api' | 'none' = 'none';
   let totalGames = 0;
   let totalEdges = 0;
   const fetchedAt = new Date().toISOString();
 
-  // Try backend first (parallel fetch)
-  const backendResults = await Promise.all(
-    sports.map(async (sport) => {
+  // Fetch live scores in parallel with game data
+  const [scoresData, backendResults] = await Promise.all([
+    fetchLiveScores(),
+    Promise.all(sports.map(async (sport) => {
       const games = await fetchEdgesFromBackend(sport);
       return { sport, games };
-    })
-  );
+    }))
+  ]);
 
   const hasBackendData = backendResults.some(r => r.games.length > 0);
+
+  // Collect all game IDs for opening line lookup
+  const allGameIds: string[] = [];
+  for (const { games } of backendResults) {
+    for (const game of games) {
+      if (game.game_id) allGameIds.push(game.game_id);
+    }
+  }
+
+  // Fetch opening lines for edge calculation
+  const openingLines = await fetchOpeningLines(allGameIds);
 
   if (hasBackendData) {
     dataSource = 'backend';
     for (const { sport, games } of backendResults) {
       const processed = games
-        .map((g: any) => processBackendGame(g, sport))
+        .map((g: any) => processBackendGame(g, sport, scoresData, openingLines))
         .filter(Boolean)
         .sort((a: any, b: any) => new Date(a.commenceTime).getTime() - new Date(b.commenceTime).getTime());
 
@@ -258,7 +393,7 @@ export default async function SportsPage() {
       sports.map(async (sport) => {
         const sportKey = SPORT_MAPPING[sport];
         if (!sportKey) return { sport, games: [] };
-        const games = await fetchFromCache(sportKey);
+        const games = await fetchFromCache(sportKey, scoresData, openingLines);
         return { sport, games };
       })
     );
@@ -269,14 +404,16 @@ export default async function SportsPage() {
     for (const { sport, games } of cacheResults) {
       const frontendKey = SPORT_MAPPING[sport];
       if (games.length > 0 && frontendKey) {
-        // Filter to upcoming games only
         const now = new Date();
         const upcoming = games
-          .filter((g: any) => new Date(g.commenceTime).getTime() > now.getTime() - 3 * 60 * 60 * 1000)
+          .filter((g: any) => new Date(g.commenceTime).getTime() > now.getTime() - 4 * 60 * 60 * 1000)
           .sort((a: any, b: any) => new Date(a.commenceTime).getTime() - new Date(b.commenceTime).getTime());
         if (upcoming.length > 0) {
           allGames[frontendKey] = upcoming;
           totalGames += upcoming.length;
+          totalEdges += upcoming.filter((g: any) =>
+            g.overall_confidence && g.overall_confidence !== 'PASS'
+          ).length;
         }
       }
     }

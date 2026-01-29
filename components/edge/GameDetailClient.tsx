@@ -85,9 +85,10 @@ interface LineMovementChartProps {
   awayTeam?: string;
   viewMode: ChartViewMode;
   onViewModeChange: (mode: ChartViewMode) => void;
+  commenceTime?: string;
 }
 
-function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, awayTeam, viewMode, onViewModeChange }: LineMovementChartProps) {
+function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, awayTeam, viewMode, onViewModeChange, commenceTime }: LineMovementChartProps) {
   const [hoveredPoint, setHoveredPoint] = useState<{ x: number; y: number; value: number; timestamp: Date; index: number } | null>(null);
   // Track which side to show: 'home'/'away' for spreads/ML, 'over'/'under' for totals
   const [trackingSide, setTrackingSide] = useState<'home' | 'away' | 'over' | 'under'>('home');
@@ -95,6 +96,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const isProp = selection.type === 'prop';
   const marketType = selection.type === 'market' ? selection.market : 'line';
   const baseValue = selection.line ?? (selection.type === 'market' ? selection.price : 0) ?? 0;
+
+  // Parse game start time for live cutoff indicator
+  const gameStartTime = commenceTime ? new Date(commenceTime) : null;
 
   // For price view, determine which side to show
   const isShowingPrice = viewMode === 'price';
@@ -290,6 +294,20 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     label: data[i]?.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) || ''
   })) : [];
 
+  // Calculate game start cutoff position if game has started and we have data
+  let gameStartX: number | null = null;
+  const isGameLive = gameStartTime && new Date() > gameStartTime;
+  if (gameStartTime && data.length >= 2) {
+    const startTs = gameStartTime.getTime();
+    const firstTs = data[0].timestamp.getTime();
+    const lastTs = data[data.length - 1].timestamp.getTime();
+    // Only show if game start is within the data range
+    if (startTs >= firstTs && startTs <= lastTs) {
+      const ratio = (startTs - firstTs) / (lastTs - firstTs);
+      gameStartX = paddingLeft + ratio * chartWidth;
+    }
+  }
+
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
     const svg = e.currentTarget;
     const rect = svg.getBoundingClientRect();
@@ -442,6 +460,35 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
                   <circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="6" fill={chartColor} stroke="#fff" strokeWidth="2" />
                 </>
               )}
+            </>
+          )}
+          {/* Game start cutoff indicator */}
+          {gameStartX !== null && (
+            <>
+              {/* Shaded area for live portion */}
+              <rect
+                x={gameStartX}
+                y={paddingTop}
+                width={width - paddingRight - gameStartX}
+                height={chartHeight}
+                fill="#ef4444"
+                opacity="0.08"
+              />
+              {/* Vertical dashed line at game start */}
+              <line
+                x1={gameStartX}
+                y1={paddingTop - 5}
+                x2={gameStartX}
+                y2={paddingTop + chartHeight}
+                stroke="#ef4444"
+                strokeWidth="2"
+                strokeDasharray="4 3"
+              />
+              {/* LIVE label */}
+              <g transform={`translate(${gameStartX}, ${paddingTop - 8})`}>
+                <rect x="-16" y="-10" width="32" height="14" rx="2" fill="#ef4444" />
+                <text x="0" y="0" textAnchor="middle" fill="white" fontSize="8" fontWeight="bold">LIVE</text>
+              </g>
             </>
           )}
         </svg>
@@ -916,7 +963,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         <div className="relative">
           {!selectedProp && (<div className="flex gap-2 mb-3">{['spread', 'total', 'moneyline'].map((market) => (<button key={market} onClick={() => handleSelectMarket(market as any)} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${chartMarket === market ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>{market.charAt(0).toUpperCase() + market.slice(1)}</button>))}</div>)}
           {selectedProp && (<div className="flex gap-2 mb-3 items-center"><button onClick={() => setSelectedProp(null)} className="px-3 py-1.5 rounded text-xs font-medium bg-zinc-800 text-zinc-400 hover:bg-zinc-700 flex items-center gap-1"><svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>Back to Markets</button><span className="px-3 py-1.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400">{selectedProp.player}</span><span className="text-xs text-zinc-500">via {selectedProp.book}</span></div>)}
-          <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} viewMode={chartViewMode} onViewModeChange={setChartViewMode} />
+          <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} viewMode={chartViewMode} onViewModeChange={setChartViewMode} commenceTime={gameData.commenceTime} />
           {/* Lock overlay for tier 1 users viewing live games */}
           {showLiveLock && <LiveLockOverlay />}
           {/* Demo mode banner for demo users viewing live games */}

@@ -345,7 +345,6 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   // Calculate game start cutoff position if game has started and we have data
   let gameStartX: number | null = null;
-  const isGameLive = gameStartTime && new Date() > gameStartTime;
   if (gameStartTime && data.length >= 2) {
     const startTs = gameStartTime.getTime();
     const firstTs = data[0].timestamp.getTime();

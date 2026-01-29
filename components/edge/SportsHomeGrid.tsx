@@ -245,44 +245,50 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
 
   return (
     <div>
-      {/* Status Bar - Bloomberg-style ticker */}
-      <div className="flex items-center gap-3 mb-5 px-1">
-        <div className="flex items-center gap-4 flex-1 overflow-x-auto">
-          {/* System Status - User-friendly label */}
-          <div className="flex items-center gap-1.5 flex-shrink-0">
-            <div className={`w-1.5 h-1.5 rounded-full ${dataSource !== 'none' ? 'bg-emerald-400 shadow-sm shadow-emerald-400/50 animate-pulse' : 'bg-red-400 shadow-sm shadow-red-400/50'}`} />
-            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">
-              {dataSource !== 'none' ? 'LIVE' : 'OFFLINE'}
-            </span>
-          </div>
-
-          <div className="w-px h-3 bg-zinc-800 flex-shrink-0" />
-
-          {/* Stats */}
-          <div className="flex items-center gap-1 flex-shrink-0">
-            <span className="text-[10px] font-mono text-zinc-600">GAMES</span>
-            <span className="text-[10px] font-mono text-zinc-300 font-semibold">{totalGames || Object.values(games).reduce((a, g) => a + g.length, 0)}</span>
-          </div>
-
-          <div className="flex items-center gap-1 flex-shrink-0">
-            <span className="text-[10px] font-mono text-zinc-600">SPORTS</span>
-            <span className="text-[10px] font-mono text-zinc-300 font-semibold">{activeSportsCount}</span>
-          </div>
-
-          {totalEdges > 0 && (
-            <div className="flex items-center gap-1 flex-shrink-0">
-              <span className="text-[10px] font-mono text-zinc-600">EDGES</span>
-              <span className="text-[10px] font-mono text-emerald-400 font-semibold">{totalEdges}</span>
+      {/* Premium Status Bar */}
+      <div className="mb-6 p-4 bg-gradient-to-r from-zinc-900/80 to-zinc-900/40 rounded-xl border border-zinc-800/60">
+        <div className="flex items-center justify-between flex-wrap gap-4">
+          {/* Left: System Status */}
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2">
+              <div className={`w-2 h-2 rounded-full ${dataSource !== 'none' ? 'bg-emerald-400 shadow-lg shadow-emerald-400/50 animate-pulse' : 'bg-red-400 shadow-lg shadow-red-400/50'}`} />
+              <span className={`text-xs font-semibold ${dataSource !== 'none' ? 'text-emerald-400' : 'text-red-400'}`}>
+                {dataSource !== 'none' ? 'LIVE FEED' : 'OFFLINE'}
+              </span>
             </div>
-          )}
 
-          <div className="w-px h-3 bg-zinc-800 flex-shrink-0" />
+            <div className="h-4 w-px bg-zinc-800" />
 
-          {/* Clock */}
-          <div className="flex items-center gap-1 flex-shrink-0">
-            <span className="text-[10px] font-mono text-zinc-600" suppressHydrationWarning>
-              {currentTime ? currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) + ' ET' : '\u00A0'}
+            {/* Stats Badges */}
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 bg-zinc-800/60 rounded-lg">
+                <span className="text-[10px] font-mono text-zinc-500">GAMES</span>
+                <span className="text-xs font-mono font-bold text-zinc-200">{totalGames || Object.values(games).reduce((a, g) => a + g.length, 0)}</span>
+              </div>
+
+              <div className="flex items-center gap-1.5 px-2.5 py-1 bg-zinc-800/60 rounded-lg">
+                <span className="text-[10px] font-mono text-zinc-500">MARKETS</span>
+                <span className="text-xs font-mono font-bold text-zinc-200">{activeSportsCount}</span>
+              </div>
+
+              {totalEdges > 0 && (
+                <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
+                  <span className="text-[10px] font-mono text-emerald-500">EDGES</span>
+                  <span className="text-xs font-mono font-bold text-emerald-400">{totalEdges}</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Right: Clock */}
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/40 rounded-lg" suppressHydrationWarning>
+            <svg className="w-3.5 h-3.5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="text-xs font-mono text-zinc-400">
+              {currentTime ? currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) : '--:--:--'}
             </span>
+            <span className="text-[10px] font-mono text-zinc-600">ET</span>
           </div>
         </div>
       </div>

@@ -20,48 +20,40 @@ interface LineMovementChartProps {
 
 type ChartType = 'spread' | 'total' | 'ml';
 
+// Premium TradingView-inspired chart
 export function LineMovementChart({ data, homeTeam, awayTeam, gameTime }: LineMovementChartProps) {
   const [chartType, setChartType] = useState<ChartType>('spread');
+  const [hoveredPoint, setHoveredPoint] = useState<number | null>(null);
 
-  // Only use real data - no mock/fake data for enterprise product
   const chartData = data && data.length > 0 ? data : [];
 
-  const getLabel = (type: ChartType) => {
-    switch (type) {
-      case 'spread': return 'Spread';
-      case 'total': return 'Total';
-      case 'ml': return 'Moneyline';
-    }
+  const chartConfig = {
+    spread: { label: 'Spread', color: '#10b981', gradientId: 'spreadGrad' },
+    total: { label: 'Total', color: '#3b82f6', gradientId: 'totalGrad' },
+    ml: { label: 'Moneyline', color: '#a855f7', gradientId: 'mlGrad' },
   };
 
-  // Show empty state when no data is available
+  const config = chartConfig[chartType];
+
+  // Empty state
   if (chartData.length === 0) {
     return (
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
-        <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800 flex items-center justify-between">
-          <h2 className="font-semibold text-zinc-100">Line Movement</h2>
-          <div className="flex gap-1">
-            {(['spread', 'total', 'ml'] as ChartType[]).map((type) => (
-              <button
-                key={type}
-                onClick={() => setChartType(type)}
-                className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
-                  chartType === type
-                    ? 'bg-emerald-500/20 text-emerald-400'
-                    : 'text-zinc-400 hover:text-zinc-200'
-                }`}
-              >
-                {getLabel(type)}
-              </button>
-            ))}
+      <div className="bg-[#0c0c0c] border border-zinc-800/80 rounded-xl overflow-hidden">
+        <div className="px-5 py-4 border-b border-zinc-800/60 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-1 h-6 bg-emerald-500 rounded-full" />
+            <h2 className="text-base font-semibold text-zinc-100">Line Movement</h2>
           </div>
+          <ChartTypeTabs chartType={chartType} onChange={setChartType} />
         </div>
-        <div className="p-8 flex flex-col items-center justify-center text-center">
-          <svg className="w-12 h-12 text-zinc-700 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-          </svg>
-          <p className="text-zinc-400 text-sm font-medium mb-1">No Line Movement Data</p>
-          <p className="text-zinc-600 text-xs">Historical line data will appear once snapshots are collected</p>
+        <div className="p-12 flex flex-col items-center justify-center text-center">
+          <div className="w-16 h-16 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-4">
+            <svg className="w-8 h-8 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+            </svg>
+          </div>
+          <p className="text-zinc-300 text-sm font-medium mb-1">No Line Movement Data</p>
+          <p className="text-zinc-600 text-xs max-w-xs">Historical line data will appear once the system begins collecting snapshots for this game</p>
         </div>
       </div>
     );
@@ -79,121 +71,329 @@ export function LineMovementChart({ data, homeTeam, awayTeam, gameTime }: LineMo
   const minVal = Math.min(...values);
   const maxVal = Math.max(...values);
   const range = maxVal - minVal || 1;
-  const padding = range * 0.1;
+  const padding = range * 0.15;
 
-  const width = 600;
-  const height = 200;
-  const paddingLeft = 50;
-  const paddingRight = 20;
-  const paddingTop = 20;
-  const paddingBottom = 40;
+  // Chart dimensions
+  const width = 700;
+  const height = 280;
+  const paddingLeft = 60;
+  const paddingRight = 30;
+  const paddingTop = 30;
+  const paddingBottom = 50;
   const chartWidth = width - paddingLeft - paddingRight;
   const chartHeight = height - paddingTop - paddingBottom;
 
+  // Calculate points
   const points = values.map((val, i) => {
-    const x = paddingLeft + (i / (values.length - 1)) * chartWidth;
+    const x = paddingLeft + (i / Math.max(values.length - 1, 1)) * chartWidth;
     const y = paddingTop + chartHeight - ((val - minVal + padding) / (range + 2 * padding)) * chartHeight;
     return { x, y, value: val, timestamp: chartData[i].timestamp };
   });
 
-  const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+  // Smooth curve path using bezier curves
+  const createSmoothPath = (pts: typeof points) => {
+    if (pts.length < 2) return `M ${pts[0]?.x || 0} ${pts[0]?.y || 0}`;
 
-  const yLabels = [
-    { value: maxVal + padding * 0.5, y: paddingTop },
-    { value: (maxVal + minVal) / 2, y: paddingTop + chartHeight / 2 },
-    { value: minVal - padding * 0.5, y: paddingTop + chartHeight },
-  ];
+    let path = `M ${pts[0].x} ${pts[0].y}`;
+    for (let i = 1; i < pts.length; i++) {
+      const prev = pts[i - 1];
+      const curr = pts[i];
+      const cpx = (prev.x + curr.x) / 2;
+      path += ` Q ${prev.x + (cpx - prev.x) * 0.5} ${prev.y}, ${cpx} ${(prev.y + curr.y) / 2}`;
+      path += ` Q ${cpx + (curr.x - cpx) * 0.5} ${curr.y}, ${curr.x} ${curr.y}`;
+    }
+    return path;
+  };
 
-  const xLabels = [0, Math.floor(points.length / 2), points.length - 1].map(i => ({
-    x: points[i].x,
-    label: chartData[i].timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-  }));
+  const smoothPath = createSmoothPath(points);
+
+  // Y-axis labels (5 levels)
+  const yLabelCount = 5;
+  const yLabels = Array.from({ length: yLabelCount }, (_, i) => {
+    const ratio = i / (yLabelCount - 1);
+    const value = maxVal + padding - ratio * (range + 2 * padding);
+    const y = paddingTop + ratio * chartHeight;
+    return { value, y };
+  });
+
+  // X-axis labels (smart time formatting)
+  const xLabelIndices = chartData.length <= 5
+    ? chartData.map((_, i) => i)
+    : [0, Math.floor(chartData.length * 0.25), Math.floor(chartData.length * 0.5), Math.floor(chartData.length * 0.75), chartData.length - 1];
+
+  const formatTimestamp = (ts: Date) => {
+    const now = new Date();
+    const diffHours = (now.getTime() - ts.getTime()) / (1000 * 60 * 60);
+    if (diffHours < 24) {
+      return ts.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+    }
+    return ts.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  };
 
   const openValue = values[0];
   const currentValue = values[values.length - 1];
   const movement = currentValue - openValue;
+  const movementPct = openValue !== 0 ? ((movement / Math.abs(openValue)) * 100) : 0;
 
   const formatValue = (val: number, type: ChartType) => {
     switch (type) {
-      case 'spread': return val > 0 ? `+${val}` : val.toString();
-      case 'total': return val.toString();
+      case 'spread': return val > 0 ? `+${val.toFixed(1)}` : val.toFixed(1);
+      case 'total': return val.toFixed(1);
       case 'ml': return val > 0 ? `+${val}` : val.toString();
     }
   };
 
+  // Hover tooltip point
+  const activePoint = hoveredPoint !== null ? points[hoveredPoint] : points[points.length - 1];
+
   return (
-    <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
-      <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800 flex items-center justify-between">
-        <h2 className="font-semibold text-zinc-100">Line Movement</h2>
-        <div className="flex gap-1">
-          {(['spread', 'total', 'ml'] as ChartType[]).map((type) => (
-            <button
-              key={type}
-              onClick={() => setChartType(type)}
-              className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
-                chartType === type
-                  ? 'bg-emerald-500/20 text-emerald-400'
-                  : 'text-zinc-400 hover:text-zinc-200'
-              }`}
+    <div className="bg-[#0c0c0c] border border-zinc-800/80 rounded-xl overflow-hidden">
+      {/* Header */}
+      <div className="px-5 py-4 border-b border-zinc-800/60 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-1 h-6 rounded-full" style={{ backgroundColor: config.color }} />
+          <h2 className="text-base font-semibold text-zinc-100">Line Movement</h2>
+          <span className="text-xs text-zinc-600 font-mono">
+            {awayTeam.split(' ').pop()} @ {homeTeam.split(' ').pop()}
+          </span>
+        </div>
+        <ChartTypeTabs chartType={chartType} onChange={setChartType} />
+      </div>
+
+      {/* Stats Bar */}
+      <div className="px-5 py-3 border-b border-zinc-800/40 bg-zinc-900/30 grid grid-cols-4 gap-4">
+        <StatBox label="Open" value={formatValue(openValue, chartType)} />
+        <StatBox label="Current" value={formatValue(currentValue, chartType)} highlight />
+        <StatBox
+          label="Movement"
+          value={`${movement >= 0 ? '+' : ''}${movement.toFixed(1)}`}
+          color={movement > 0 ? 'emerald' : movement < 0 ? 'red' : 'zinc'}
+        />
+        <StatBox label="Data Points" value={chartData.length.toString()} muted />
+      </div>
+
+      {/* Chart */}
+      <div className="p-4 relative">
+        <svg
+          viewBox={`0 0 ${width} ${height}`}
+          className="w-full h-auto"
+          style={{ maxHeight: '280px' }}
+          onMouseLeave={() => setHoveredPoint(null)}
+        >
+          <defs>
+            {/* Gradient for area fill */}
+            <linearGradient id={config.gradientId} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={config.color} stopOpacity="0.25" />
+              <stop offset="50%" stopColor={config.color} stopOpacity="0.1" />
+              <stop offset="100%" stopColor={config.color} stopOpacity="0" />
+            </linearGradient>
+            {/* Glow filter */}
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          {/* Grid lines */}
+          {yLabels.map((label, i) => (
+            <line
+              key={`grid-${i}`}
+              x1={paddingLeft}
+              y1={label.y}
+              x2={width - paddingRight}
+              y2={label.y}
+              stroke="#27272a"
+              strokeWidth="1"
+            />
+          ))}
+
+          {/* Y-axis labels */}
+          {yLabels.map((label, i) => (
+            <text
+              key={`y-${i}`}
+              x={paddingLeft - 12}
+              y={label.y + 4}
+              textAnchor="end"
+              fill="#52525b"
+              fontSize="11"
+              fontFamily="ui-monospace, monospace"
             >
-              {getLabel(type)}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="px-4 py-3 border-b border-zinc-800/50 flex gap-6">
-        <div>
-          <span className="text-xs text-zinc-500">Open</span>
-          <p className="text-sm font-medium text-zinc-300">{formatValue(openValue, chartType)}</p>
-        </div>
-        <div>
-          <span className="text-xs text-zinc-500">Current</span>
-          <p className="text-sm font-medium text-zinc-100">{formatValue(currentValue, chartType)}</p>
-        </div>
-        <div>
-          <span className="text-xs text-zinc-500">Movement</span>
-          <p className={`text-sm font-medium ${movement > 0 ? 'text-emerald-400' : movement < 0 ? 'text-red-400' : 'text-zinc-400'}`}>
-            {movement > 0 ? '+' : ''}{movement.toFixed(1)}
-          </p>
-        </div>
-      </div>
-
-      <div className="p-4">
-        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto" style={{ maxHeight: '200px' }}>
-          {yLabels.map((label, i) => (
-            <line key={i} x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#3f3f46" strokeWidth="1" strokeDasharray="4 4" />
-          ))}
-          {yLabels.map((label, i) => (
-            <text key={i} x={paddingLeft - 8} y={label.y + 4} textAnchor="end" className="text-xs fill-zinc-500" fontSize="11">
               {formatValue(label.value, chartType)}
             </text>
           ))}
-          {xLabels.map((label, i) => (
-            <text key={i} x={label.x} y={height - 10} textAnchor="middle" className="text-xs fill-zinc-500" fontSize="11">
-              {label.label}
+
+          {/* X-axis labels */}
+          {xLabelIndices.map((idx) => (
+            <text
+              key={`x-${idx}`}
+              x={points[idx]?.x || 0}
+              y={height - 15}
+              textAnchor="middle"
+              fill="#52525b"
+              fontSize="10"
+              fontFamily="ui-monospace, monospace"
+            >
+              {formatTimestamp(chartData[idx].timestamp)}
             </text>
           ))}
-          <defs>
-            <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#10b981" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          <path d={`${pathD} L ${points[points.length - 1].x} ${paddingTop + chartHeight} L ${paddingLeft} ${paddingTop + chartHeight} Z`} fill="url(#lineGradient)" />
-          <path d={pathD} fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx={points[points.length - 1].x} cy={points[points.length - 1].y} r="4" fill="#10b981" stroke="#0d9488" strokeWidth="2" />
-          <circle cx={points[0].x} cy={points[0].y} r="3" fill="#71717a" stroke="#52525b" strokeWidth="2" />
+
+          {/* Area fill */}
+          <path
+            d={`${smoothPath} L ${points[points.length - 1].x} ${paddingTop + chartHeight} L ${paddingLeft} ${paddingTop + chartHeight} Z`}
+            fill={`url(#${config.gradientId})`}
+          />
+
+          {/* Line */}
+          <path
+            d={smoothPath}
+            fill="none"
+            stroke={config.color}
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            filter="url(#glow)"
+          />
+
+          {/* Interactive hover areas */}
+          {points.map((point, i) => (
+            <rect
+              key={`hover-${i}`}
+              x={point.x - chartWidth / points.length / 2}
+              y={paddingTop}
+              width={chartWidth / points.length}
+              height={chartHeight}
+              fill="transparent"
+              onMouseEnter={() => setHoveredPoint(i)}
+              style={{ cursor: 'crosshair' }}
+            />
+          ))}
+
+          {/* Hover line */}
+          {hoveredPoint !== null && (
+            <line
+              x1={points[hoveredPoint].x}
+              y1={paddingTop}
+              x2={points[hoveredPoint].x}
+              y2={paddingTop + chartHeight}
+              stroke={config.color}
+              strokeWidth="1"
+              strokeDasharray="4 2"
+              opacity="0.5"
+            />
+          )}
+
+          {/* Opening point */}
+          <circle
+            cx={points[0].x}
+            cy={points[0].y}
+            r="5"
+            fill="#18181b"
+            stroke="#52525b"
+            strokeWidth="2"
+          />
+
+          {/* Current/Active point */}
+          <circle
+            cx={activePoint.x}
+            cy={activePoint.y}
+            r="6"
+            fill="#0c0c0c"
+            stroke={config.color}
+            strokeWidth="3"
+            filter="url(#glow)"
+          />
+          <circle
+            cx={activePoint.x}
+            cy={activePoint.y}
+            r="3"
+            fill={config.color}
+          />
+
+          {/* Tooltip */}
+          {hoveredPoint !== null && (
+            <g transform={`translate(${points[hoveredPoint].x}, ${points[hoveredPoint].y - 45})`}>
+              <rect x="-45" y="-10" width="90" height="36" rx="6" fill="#18181b" stroke="#3f3f46" />
+              <text x="0" y="6" textAnchor="middle" fill="#fafafa" fontSize="12" fontWeight="600" fontFamily="ui-monospace, monospace">
+                {formatValue(points[hoveredPoint].value, chartType)}
+              </text>
+              <text x="0" y="20" textAnchor="middle" fill="#71717a" fontSize="9" fontFamily="ui-monospace, monospace">
+                {formatTimestamp(chartData[hoveredPoint].timestamp)}
+              </text>
+            </g>
+          )}
         </svg>
       </div>
 
-      <div className="px-4 py-2 bg-zinc-800/30 text-xs text-zinc-500 flex items-center gap-2">
-        <span className="w-3 h-3 rounded-full bg-zinc-500 inline-block"></span>
-        <span>Opening line</span>
-        <span className="mx-2">•</span>
-        <span className="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
-        <span>Current line</span>
+      {/* Footer Legend */}
+      <div className="px-5 py-3 bg-zinc-900/40 border-t border-zinc-800/40 flex items-center justify-between">
+        <div className="flex items-center gap-4 text-xs">
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-zinc-600 border border-zinc-500" />
+            <span className="text-zinc-500 font-medium">Opening</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: config.color }} />
+            <span className="text-zinc-400 font-medium">Current</span>
+          </div>
+        </div>
+        <div className="text-[10px] font-mono text-zinc-600">
+          Updated {formatTimestamp(chartData[chartData.length - 1].timestamp)}
+        </div>
       </div>
+    </div>
+  );
+}
+
+// Chart type toggle tabs
+function ChartTypeTabs({ chartType, onChange }: { chartType: ChartType; onChange: (t: ChartType) => void }) {
+  const tabs: { key: ChartType; label: string; color: string }[] = [
+    { key: 'spread', label: 'Spread', color: '#10b981' },
+    { key: 'total', label: 'Total', color: '#3b82f6' },
+    { key: 'ml', label: 'ML', color: '#a855f7' },
+  ];
+
+  return (
+    <div className="flex bg-zinc-900/80 rounded-lg p-0.5 border border-zinc-800/60">
+      {tabs.map((tab) => (
+        <button
+          key={tab.key}
+          onClick={() => onChange(tab.key)}
+          className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
+            chartType === tab.key
+              ? 'bg-zinc-800 text-zinc-100 shadow-sm'
+              : 'text-zinc-500 hover:text-zinc-300'
+          }`}
+        >
+          {chartType === tab.key && (
+            <span className="inline-block w-1.5 h-1.5 rounded-full mr-1.5" style={{ backgroundColor: tab.color }} />
+          )}
+          {tab.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// Stat box component
+function StatBox({ label, value, highlight, color, muted }: {
+  label: string;
+  value: string;
+  highlight?: boolean;
+  color?: 'emerald' | 'red' | 'zinc';
+  muted?: boolean;
+}) {
+  const valueColor = color === 'emerald' ? 'text-emerald-400' :
+                     color === 'red' ? 'text-red-400' :
+                     highlight ? 'text-zinc-100' :
+                     muted ? 'text-zinc-600' : 'text-zinc-300';
+
+  return (
+    <div>
+      <div className="text-[10px] font-mono text-zinc-600 uppercase tracking-wider mb-0.5">{label}</div>
+      <div className={`text-sm font-semibold font-mono ${valueColor}`}>{value}</div>
     </div>
   );
 }

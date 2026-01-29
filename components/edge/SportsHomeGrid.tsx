@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import { formatOdds } from '@/lib/edge/utils/odds-math';
+import { formatOdds, calculateTwoWayEV, formatEV, getEVColor, getEVBgClass } from '@/lib/edge/utils/odds-math';
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
@@ -68,19 +68,14 @@ function getCEQStyles(ceq: number | undefined): { bgTint: string; borderTint: st
   return { bgTint: 'bg-zinc-800/80', borderTint: 'border-zinc-700/50', textColor: 'text-zinc-500' };
 }
 
-function OddsCell({ line, price, edge, ceq, topDrivers }: { line?: number | string; price: number; edge?: number; ceq?: number; topDrivers?: string[] }) {
+function OddsCell({ line, price, ev, ceq, topDrivers }: { line?: number | string; price: number; ev?: number; ceq?: number; topDrivers?: string[] }) {
   const [showTooltip, setShowTooltip] = useState(false);
-  const hasEdge = edge !== undefined && edge !== null;
+  const hasEV = ev !== undefined && Math.abs(ev) >= 0.5;
   const hasCEQ = ceq !== undefined && ceq !== null;
 
-  // Use CEQ for styling if available, otherwise fall back to edge
-  const styles = hasCEQ
-    ? getCEQStyles(ceq)
-    : {
-        bgTint: hasEdge && edge >= 2 ? 'bg-emerald-500/10' : hasEdge && edge <= -2 ? 'bg-red-500/5' : 'bg-zinc-800/80',
-        borderTint: hasEdge && edge >= 3 ? 'border-emerald-500/30' : hasEdge && edge <= -3 ? 'border-red-500/20' : 'border-zinc-700/50',
-        textColor: hasEdge ? (edge >= 0 ? 'text-emerald-400' : 'text-red-400') : 'text-zinc-500',
-      };
+  // Use EV for styling (primary), fall back to CEQ
+  const evBg = hasEV ? getEVBgClass(ev) : 'bg-zinc-800/80 border-zinc-700/50';
+  const evColor = hasEV ? getEVColor(ev) : 'text-zinc-500';
 
   const confidence = hasCEQ
     ? ceq >= 86 ? 'RARE' : ceq >= 76 ? 'STRONG' : ceq >= 66 ? 'EDGE' : ceq >= 56 ? 'WATCH' : 'PASS'
@@ -88,7 +83,7 @@ function OddsCell({ line, price, edge, ceq, topDrivers }: { line?: number | stri
 
   return (
     <div
-      className={`relative flex flex-col items-center justify-center p-1.5 ${styles.bgTint} border ${styles.borderTint} rounded hover:border-zinc-600 transition-all cursor-pointer group`}
+      className={`relative flex flex-col items-center justify-center p-1.5 ${evBg} rounded hover:border-zinc-600 transition-all cursor-pointer group`}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
     >
@@ -97,33 +92,33 @@ function OddsCell({ line, price, edge, ceq, topDrivers }: { line?: number | stri
           {line !== undefined && (typeof line === 'number' ? (line > 0 ? `+${line}` : line) : line)}
         </span>
       </div>
-      <span className={`text-[11px] font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-300'}`}>
-        {formatOdds(price)}
-      </span>
-      {hasCEQ && ceq !== 50 && (
-        <div className="flex items-center gap-0.5 mt-0.5">
-          <span className={`text-[9px] font-mono font-medium ${styles.textColor}`}>
-            {ceq}%
+      <div className="flex items-center gap-1">
+        <span className={`text-[11px] font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-300'}`}>
+          {formatOdds(price)}
+        </span>
+        {hasEV && (
+          <span className={`text-[9px] font-mono font-medium ${evColor}`}>
+            {formatEV(ev)}
           </span>
-        </div>
-      )}
-      {hasEdge && !hasCEQ && (
-        <div className="flex items-center gap-0.5 mt-0.5">
-          <EdgeArrow value={edge} />
-          <span className={`text-[9px] font-mono ${styles.textColor}`}>
-            {edge >= 0 ? '+' : ''}{edge.toFixed(1)}%
-          </span>
-        </div>
-      )}
-      {/* CEQ Tooltip */}
-      {showTooltip && hasCEQ && (
+        )}
+      </div>
+      {/* Tooltip with CEQ details */}
+      {showTooltip && (hasEV || hasCEQ) && (
         <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl p-2 text-left">
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-[10px] text-zinc-500 uppercase">CEQ Score</span>
-            <span className={`text-xs font-bold ${styles.textColor}`}>{ceq}%</span>
-          </div>
+          {hasEV && (
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[10px] text-zinc-500 uppercase">EV</span>
+              <span className={`text-xs font-bold ${evColor}`}>{formatEV(ev)}</span>
+            </div>
+          )}
+          {hasCEQ && (
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[10px] text-zinc-500 uppercase">CEQ Score</span>
+              <span className={`text-xs font-bold ${getCEQStyles(ceq).textColor}`}>{ceq}%</span>
+            </div>
+          )}
           {confidence && confidence !== 'PASS' && (
-            <div className={`text-[10px] font-medium ${styles.textColor} mb-1`}>{confidence}</div>
+            <div className={`text-[10px] font-medium ${getCEQStyles(ceq).textColor} mb-1`}>{confidence}</div>
           )}
           {topDrivers && topDrivers.length > 0 && (
             <div className="border-t border-zinc-800 pt-1 mt-1">
@@ -139,19 +134,14 @@ function OddsCell({ line, price, edge, ceq, topDrivers }: { line?: number | stri
   );
 }
 
-function MoneylineCell({ price, edge, ceq, topDrivers }: { price: number; edge?: number; ceq?: number; topDrivers?: string[] }) {
+function MoneylineCell({ price, ev, ceq, topDrivers }: { price: number; ev?: number; ceq?: number; topDrivers?: string[] }) {
   const [showTooltip, setShowTooltip] = useState(false);
-  const hasEdge = edge !== undefined && edge !== null;
+  const hasEV = ev !== undefined && Math.abs(ev) >= 0.5;
   const hasCEQ = ceq !== undefined && ceq !== null;
 
-  // Use CEQ for styling if available
-  const styles = hasCEQ
-    ? getCEQStyles(ceq)
-    : {
-        bgTint: hasEdge && edge >= 2 ? 'bg-emerald-500/10' : hasEdge && edge <= -2 ? 'bg-red-500/5' : 'bg-zinc-800/80',
-        borderTint: hasEdge && edge >= 3 ? 'border-emerald-500/30' : hasEdge && edge <= -3 ? 'border-red-500/20' : 'border-zinc-700/50',
-        textColor: hasEdge ? (edge >= 0 ? 'text-emerald-400' : 'text-red-400') : 'text-zinc-500',
-      };
+  // Use EV for styling (primary), fall back to CEQ
+  const evBg = hasEV ? getEVBgClass(ev) : 'bg-zinc-800/80 border-zinc-700/50';
+  const evColor = hasEV ? getEVColor(ev) : 'text-zinc-500';
 
   const confidence = hasCEQ
     ? ceq >= 86 ? 'RARE' : ceq >= 76 ? 'STRONG' : ceq >= 66 ? 'EDGE' : ceq >= 56 ? 'WATCH' : 'PASS'
@@ -159,37 +149,37 @@ function MoneylineCell({ price, edge, ceq, topDrivers }: { price: number; edge?:
 
   return (
     <div
-      className={`relative flex flex-col items-center justify-center p-1.5 ${styles.bgTint} border ${styles.borderTint} rounded hover:border-zinc-600 transition-all cursor-pointer group`}
+      className={`relative flex flex-col items-center justify-center p-1.5 ${evBg} rounded hover:border-zinc-600 transition-all cursor-pointer group`}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
     >
-      <span className={`text-xs font-semibold font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-100'}`}>
-        {formatOdds(price)}
-      </span>
-      {hasCEQ && ceq !== 50 && (
-        <div className="flex items-center gap-0.5 mt-0.5">
-          <span className={`text-[9px] font-mono font-medium ${styles.textColor}`}>
-            {ceq}%
+      <div className="flex items-center gap-1">
+        <span className={`text-xs font-semibold font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-100'}`}>
+          {formatOdds(price)}
+        </span>
+        {hasEV && (
+          <span className={`text-[9px] font-mono font-medium ${evColor}`}>
+            {formatEV(ev)}
           </span>
-        </div>
-      )}
-      {hasEdge && !hasCEQ && (
-        <div className="flex items-center gap-0.5 mt-0.5">
-          <EdgeArrow value={edge} />
-          <span className={`text-[9px] font-mono ${styles.textColor}`}>
-            {edge >= 0 ? '+' : ''}{edge.toFixed(1)}%
-          </span>
-        </div>
-      )}
-      {/* CEQ Tooltip */}
-      {showTooltip && hasCEQ && (
+        )}
+      </div>
+      {/* Tooltip with EV and CEQ details */}
+      {showTooltip && (hasEV || hasCEQ) && (
         <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl p-2 text-left">
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-[10px] text-zinc-500 uppercase">CEQ Score</span>
-            <span className={`text-xs font-bold ${styles.textColor}`}>{ceq}%</span>
-          </div>
+          {hasEV && (
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[10px] text-zinc-500 uppercase">EV</span>
+              <span className={`text-xs font-bold ${evColor}`}>{formatEV(ev)}</span>
+            </div>
+          )}
+          {hasCEQ && (
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[10px] text-zinc-500 uppercase">CEQ Score</span>
+              <span className={`text-xs font-bold ${getCEQStyles(ceq).textColor}`}>{ceq}%</span>
+            </div>
+          )}
           {confidence && confidence !== 'PASS' && (
-            <div className={`text-[10px] font-medium ${styles.textColor} mb-1`}>{confidence}</div>
+            <div className={`text-[10px] font-medium ${getCEQStyles(ceq).textColor} mb-1`}>{confidence}</div>
           )}
           {topDrivers && topDrivers.length > 0 && (
             <div className="border-t border-zinc-800 pt-1 mt-1">
@@ -683,6 +673,18 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                         const awaySpreadsData = ceq?.spreads?.away;
                         const awayH2hData = ceq?.h2h?.away;
                         const overTotalsData = ceq?.totals?.over;
+
+                        // Calculate EV for each market
+                        const spreadEV = spreads?.awayPrice && spreads?.homePrice
+                          ? calculateTwoWayEV(spreads.awayPrice, spreads.homePrice, true)
+                          : undefined;
+                        const mlEV = h2h?.awayPrice && h2h?.homePrice
+                          ? calculateTwoWayEV(h2h.awayPrice, h2h.homePrice, true)
+                          : undefined;
+                        const overEV = totals?.overPrice && totals?.underPrice
+                          ? calculateTwoWayEV(totals.overPrice, totals.underPrice, true)
+                          : undefined;
+
                         return (
                           <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
                             <div className="flex items-center gap-2 min-w-0">
@@ -693,6 +695,7 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                               <OddsCell
                                 line={-spreads.line}
                                 price={spreads.awayPrice}
+                                ev={spreadEV}
                                 ceq={awaySpreadsData?.ceq}
                                 topDrivers={awaySpreadsData?.topDrivers}
                               />
@@ -700,6 +703,7 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                             {h2h?.awayPrice !== undefined ? (
                               <MoneylineCell
                                 price={h2h.awayPrice}
+                                ev={mlEV}
                                 ceq={awayH2hData?.ceq}
                                 topDrivers={awayH2hData?.topDrivers}
                               />
@@ -708,6 +712,7 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                               <OddsCell
                                 line={`O${totals.line}`}
                                 price={totals.overPrice}
+                                ev={overEV}
                                 ceq={overTotalsData?.ceq}
                                 topDrivers={overTotalsData?.topDrivers}
                               />
@@ -727,6 +732,18 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                         const homeSpreadsData = ceq?.spreads?.home;
                         const homeH2hData = ceq?.h2h?.home;
                         const underTotalsData = ceq?.totals?.under;
+
+                        // Calculate EV for each market
+                        const spreadEV = spreads?.homePrice && spreads?.awayPrice
+                          ? calculateTwoWayEV(spreads.homePrice, spreads.awayPrice, true)
+                          : undefined;
+                        const mlEV = h2h?.homePrice && h2h?.awayPrice
+                          ? calculateTwoWayEV(h2h.homePrice, h2h.awayPrice, true)
+                          : undefined;
+                        const underEV = totals?.underPrice && totals?.overPrice
+                          ? calculateTwoWayEV(totals.underPrice, totals.overPrice, true)
+                          : undefined;
+
                         return (
                           <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
                             <div className="flex items-center gap-2 min-w-0">
@@ -737,6 +754,7 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                               <OddsCell
                                 line={spreads.line}
                                 price={spreads.homePrice}
+                                ev={spreadEV}
                                 ceq={homeSpreadsData?.ceq}
                                 topDrivers={homeSpreadsData?.topDrivers}
                               />
@@ -744,6 +762,7 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                             {h2h?.homePrice !== undefined ? (
                               <MoneylineCell
                                 price={h2h.homePrice}
+                                ev={mlEV}
                                 ceq={homeH2hData?.ceq}
                                 topDrivers={homeH2hData?.topDrivers}
                               />
@@ -752,6 +771,7 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                               <OddsCell
                                 line={`U${totals.line}`}
                                 price={totals.underPrice}
+                                ev={underEV}
                                 ceq={underTotalsData?.ceq}
                                 topDrivers={underTotalsData?.topDrivers}
                               />

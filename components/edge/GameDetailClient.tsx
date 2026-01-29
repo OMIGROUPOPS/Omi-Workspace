@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { formatOdds, formatSpread } from '@/lib/edge/utils/odds-math';
+import { formatOdds, formatSpread, calculateTwoWayEV, formatEV, getEVColor, getEVBgClass } from '@/lib/edge/utils/odds-math';
 import { isGameLive as checkGameLive, getGameState } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, PillarResult, PillarVariable, CEQConfidence } from '@/lib/edge/engine/edgescout';
 
@@ -802,47 +802,85 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
   );
 }
 
-function MarketCell({ value, subValue, edge, onClick, isSelected }: { value: string | number; subValue?: string; edge: number; onClick?: () => void; isSelected?: boolean }) {
-  // Color based on edge value: positive = green tint, negative = red tint, neutral = no tint
-  // Only show color when edge is meaningful (>1% or <-1%)
-  const hasPositiveEdge = edge > 1;
-  const hasNegativeEdge = edge < -1;
-
-  const edgeBg = hasPositiveEdge
-    ? 'bg-emerald-500/15 border-emerald-500/40 hover:bg-emerald-500/25'
-    : hasNegativeEdge
-    ? 'bg-red-500/10 border-red-500/30 hover:bg-red-500/20'
-    : 'bg-zinc-800/60 border-zinc-700/50 hover:bg-zinc-700/60';
+function MarketCell({
+  value,
+  subValue,
+  ev,
+  onClick,
+  isSelected
+}: {
+  value: string | number;
+  subValue?: string;
+  ev?: number;
+  onClick?: () => void;
+  isSelected?: boolean
+}) {
+  // Color based on EV: positive = green tint, negative = red tint, neutral = no tint
+  const displayEV = ev ?? 0;
+  const bgClass = getEVBgClass(displayEV);
+  const evColorClass = getEVColor(displayEV);
 
   return (
-    <div onClick={onClick} className={`w-full text-center py-2 px-2 rounded border transition-all cursor-pointer ${edgeBg} ${isSelected ? 'ring-2 ring-emerald-500' : ''}`}>
+    <div onClick={onClick} className={`w-full text-center py-1.5 px-2 rounded border transition-all cursor-pointer hover:brightness-110 ${bgClass} ${isSelected ? 'ring-2 ring-emerald-500' : ''}`}>
       <div className="text-sm font-medium text-zinc-100">{value}</div>
-      {subValue && <div className="text-xs text-zinc-400">{subValue}</div>}
+      <div className="flex items-center justify-center gap-1">
+        {subValue && <span className="text-[11px] text-zinc-400">{subValue}</span>}
+        {ev !== undefined && Math.abs(ev) >= 0.5 && (
+          <span className={`text-[10px] font-mono font-medium ${evColorClass}`}>
+            {formatEV(ev)}
+          </span>
+        )}
+      </div>
     </div>
   );
 }
 
 function MarketSection({ title, markets, homeTeam, awayTeam, gameId, onSelectMarket, selectedMarket }: { title: string; markets: any; homeTeam: string; awayTeam: string; gameId?: string; onSelectMarket: (market: 'spread' | 'total' | 'moneyline') => void; selectedMarket: 'spread' | 'total' | 'moneyline' }) {
-  const id = gameId || `${homeTeam}-${awayTeam}`;
   if (!markets || (!markets.h2h && !markets.spreads && !markets.totals)) {
     return (<div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden mb-4"><div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800"><h2 className="font-semibold text-zinc-100">{title}</h2></div><div className="p-8 text-center"><p className="text-zinc-500">No {title.toLowerCase()} markets available</p></div></div>);
   }
+
+  // Calculate EV for each market (using no-vig fair value)
+  const spreadHomeEV = markets.spreads?.home?.price && markets.spreads?.away?.price
+    ? calculateTwoWayEV(markets.spreads.home.price, markets.spreads.away.price, true)
+    : undefined;
+  const spreadAwayEV = markets.spreads?.home?.price && markets.spreads?.away?.price
+    ? calculateTwoWayEV(markets.spreads.away.price, markets.spreads.home.price, true)
+    : undefined;
+  const mlHomeEV = markets.h2h?.home?.price && markets.h2h?.away?.price
+    ? calculateTwoWayEV(markets.h2h.home.price, markets.h2h.away.price, true)
+    : undefined;
+  const mlAwayEV = markets.h2h?.home?.price && markets.h2h?.away?.price
+    ? calculateTwoWayEV(markets.h2h.away.price, markets.h2h.home.price, true)
+    : undefined;
+  const totalOverEV = markets.totals?.over?.price && markets.totals?.under?.price
+    ? calculateTwoWayEV(markets.totals.over.price, markets.totals.under.price, true)
+    : undefined;
+  const totalUnderEV = markets.totals?.over?.price && markets.totals?.under?.price
+    ? calculateTwoWayEV(markets.totals.under.price, markets.totals.over.price, true)
+    : undefined;
+
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden mb-4">
-      <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800"><h2 className="font-semibold text-zinc-100">{title}</h2><p className="text-xs text-zinc-500 mt-1">Click any market to view its line movement</p></div>
+      <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800">
+        <div className="flex items-center justify-between">
+          <h2 className="font-semibold text-zinc-100">{title}</h2>
+          <span className="text-[10px] text-zinc-500">EV% shown per cell</span>
+        </div>
+      </div>
       <div className="p-4">
         <div className="grid grid-cols-[1fr,100px,100px,100px] gap-3 mb-3"><div></div><div className="text-center text-xs text-zinc-500 uppercase tracking-wide">Spread</div><div className="text-center text-xs text-zinc-500 uppercase tracking-wide">ML</div><div className="text-center text-xs text-zinc-500 uppercase tracking-wide">Total</div></div>
         <div className="grid grid-cols-[1fr,100px,100px,100px] gap-3 mb-3 items-center">
           <div className="font-medium text-zinc-100 text-sm">{awayTeam}</div>
-          {markets.spreads ? <MarketCell value={formatSpread(markets.spreads.away.line)} subValue={formatOdds(markets.spreads.away.price)} edge={markets.spreads.away.edge || 0} onClick={() => onSelectMarket('spread')} isSelected={selectedMarket === 'spread'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
-          {markets.h2h ? <MarketCell value={formatOdds(markets.h2h.away.price)} edge={markets.h2h.away.edge || 0} onClick={() => onSelectMarket('moneyline')} isSelected={selectedMarket === 'moneyline'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
-          {markets.totals ? <MarketCell value={`O ${markets.totals.line}`} subValue={formatOdds(markets.totals.over.price)} edge={markets.totals.over.edge || 0} onClick={() => onSelectMarket('total')} isSelected={selectedMarket === 'total'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.spreads ? <MarketCell value={formatSpread(markets.spreads.away.line)} subValue={formatOdds(markets.spreads.away.price)} ev={spreadAwayEV} onClick={() => onSelectMarket('spread')} isSelected={selectedMarket === 'spread'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.h2h ? <MarketCell value={formatOdds(markets.h2h.away.price)} ev={mlAwayEV} onClick={() => onSelectMarket('moneyline')} isSelected={selectedMarket === 'moneyline'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.totals ? <MarketCell value={`O ${markets.totals.line}`} subValue={formatOdds(markets.totals.over.price)} ev={totalOverEV} onClick={() => onSelectMarket('total')} isSelected={selectedMarket === 'total'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
         </div>
         <div className="grid grid-cols-[1fr,100px,100px,100px] gap-3 items-center">
           <div className="font-medium text-zinc-100 text-sm">{homeTeam}</div>
-          {markets.spreads ? <MarketCell value={formatSpread(markets.spreads.home.line)} subValue={formatOdds(markets.spreads.home.price)} edge={markets.spreads.home.edge || 0} onClick={() => onSelectMarket('spread')} isSelected={selectedMarket === 'spread'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
-          {markets.h2h ? <MarketCell value={formatOdds(markets.h2h.home.price)} edge={markets.h2h.home.edge || 0} onClick={() => onSelectMarket('moneyline')} isSelected={selectedMarket === 'moneyline'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
-          {markets.totals ? <MarketCell value={`U ${markets.totals.line}`} subValue={formatOdds(markets.totals.under.price)} edge={markets.totals.under.edge || 0} onClick={() => onSelectMarket('total')} isSelected={selectedMarket === 'total'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.spreads ? <MarketCell value={formatSpread(markets.spreads.home.line)} subValue={formatOdds(markets.spreads.home.price)} ev={spreadHomeEV} onClick={() => onSelectMarket('spread')} isSelected={selectedMarket === 'spread'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.h2h ? <MarketCell value={formatOdds(markets.h2h.home.price)} ev={mlHomeEV} onClick={() => onSelectMarket('moneyline')} isSelected={selectedMarket === 'moneyline'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.totals ? <MarketCell value={`U ${markets.totals.line}`} subValue={formatOdds(markets.totals.under.price)} ev={totalUnderEV} onClick={() => onSelectMarket('total')} isSelected={selectedMarket === 'total'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
         </div>
       </div>
     </div>
@@ -857,19 +895,19 @@ function formatMarketName(market: string): string {
 function PlayerPropsSection({ props, gameId, onSelectProp, selectedProp, selectedBook }: { props: any[]; gameId?: string; onSelectProp: (prop: any) => void; selectedProp: any | null; selectedBook: string }) {
   const [selectedMarket, setSelectedMarket] = useState<string>('all');
   if (!props || props.length === 0) return (<div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden"><div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800"><h2 className="font-semibold text-zinc-100">Player Props</h2></div><div className="p-8 text-center"><p className="text-zinc-500">No player props available for this game</p></div></div>);
-  
+
   const propsToShow = props.filter(p => p.book === selectedBook);
   const grouped = propsToShow.reduce((acc: any, prop: any) => { const key = prop.market || prop.market_type || 'unknown'; if (!acc[key]) acc[key] = []; acc[key].push(prop); return acc; }, {});
   const marketTypes = Object.keys(grouped);
   const filteredMarkets = selectedMarket === 'all' ? marketTypes : [selectedMarket];
-  
+
   return (
     <div className="space-y-4">
       <div className="flex gap-2 flex-wrap">
         <button onClick={() => setSelectedMarket('all')} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${selectedMarket === 'all' ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>All ({propsToShow.length})</button>
         {marketTypes.map((market) => (<button key={market} onClick={() => setSelectedMarket(market)} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${selectedMarket === market ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>{formatMarketName(market)} ({grouped[market].length})</button>))}
       </div>
-      <p className="text-xs text-zinc-500">Click any prop to view its line movement in the chart above</p>
+      <p className="text-xs text-zinc-500">EV% shown on each prop • Click to view line movement</p>
       {filteredMarkets.map((market) => (
         <div key={market} className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
           <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800 flex items-center justify-between"><h2 className="font-semibold text-zinc-100">{formatMarketName(market)}</h2><span className="text-xs text-zinc-500">{grouped[market].length} props</span></div>
@@ -878,13 +916,34 @@ function PlayerPropsSection({ props, gameId, onSelectProp, selectedProp, selecte
               const isSelected = selectedProp?.player === prop.player && selectedProp?.market === (prop.market || prop.market_type) && selectedProp?.book === prop.book;
               const overOdds = prop.over?.odds; const underOdds = prop.under?.odds; const yesOdds = prop.yes?.odds;
               const line = prop.line ?? prop.over?.line ?? prop.under?.line;
+              // Calculate EV for over/under props
+              const overEV = overOdds && underOdds ? calculateTwoWayEV(overOdds, underOdds, true) : undefined;
+              const underEV = overOdds && underOdds ? calculateTwoWayEV(underOdds, overOdds, true) : undefined;
+              const overBg = getEVBgClass(overEV ?? 0);
+              const underBg = getEVBgClass(underEV ?? 0);
               return (
                 <div key={`${prop.player}-${prop.book}-${idx}`} onClick={() => onSelectProp(prop)} className={`px-4 py-3 flex items-center justify-between cursor-pointer hover:bg-zinc-800/50 transition-colors ${isSelected ? 'bg-blue-500/10 ring-1 ring-blue-500/50' : ''}`}>
                   <div className="flex-1"><div className="font-medium text-zinc-100 text-sm">{prop.player}</div>{line !== null && line !== undefined && <span className="text-xs text-zinc-400">Line: {line}</span>}</div>
                   <div className="flex gap-2">
                     {overOdds && underOdds ? (<>
-                      <div className="text-center py-2 px-3 rounded border transition-all min-w-[70px] bg-zinc-800/50 border-zinc-700"><div className="text-sm font-medium text-zinc-100">{formatOdds(overOdds)}</div><div className="text-xs text-zinc-500">Over</div></div>
-                      <div className="text-center py-2 px-3 rounded border transition-all min-w-[70px] bg-zinc-800/50 border-zinc-700"><div className="text-sm font-medium text-zinc-100">{formatOdds(underOdds)}</div><div className="text-xs text-zinc-500">Under</div></div>
+                      <div className={`text-center py-2 px-3 rounded border transition-all min-w-[80px] ${overBg}`}>
+                        <div className="text-sm font-medium text-zinc-100">{formatOdds(overOdds)}</div>
+                        <div className="flex items-center justify-center gap-1">
+                          <span className="text-[10px] text-zinc-500">Over</span>
+                          {overEV !== undefined && Math.abs(overEV) >= 0.5 && (
+                            <span className={`text-[9px] font-mono ${getEVColor(overEV)}`}>{formatEV(overEV)}</span>
+                          )}
+                        </div>
+                      </div>
+                      <div className={`text-center py-2 px-3 rounded border transition-all min-w-[80px] ${underBg}`}>
+                        <div className="text-sm font-medium text-zinc-100">{formatOdds(underOdds)}</div>
+                        <div className="flex items-center justify-center gap-1">
+                          <span className="text-[10px] text-zinc-500">Under</span>
+                          {underEV !== undefined && Math.abs(underEV) >= 0.5 && (
+                            <span className={`text-[9px] font-mono ${getEVColor(underEV)}`}>{formatEV(underEV)}</span>
+                          )}
+                        </div>
+                      </div>
                     </>) : yesOdds ? (<div className="text-center py-2 px-3 rounded border transition-all min-w-[70px] bg-zinc-800/50 border-zinc-700"><div className="text-sm font-medium text-zinc-100">{formatOdds(yesOdds)}</div><div className="text-xs text-zinc-500">Yes</div></div>) : null}
                   </div>
                 </div>
@@ -903,18 +962,37 @@ function TeamTotalsSection({ teamTotals, homeTeam, awayTeam, gameId }: { teamTot
   }
   const renderTeam = (label: string, data: any) => {
     if (!data?.over) return null;
+    // Calculate EV for team totals
+    const overEV = data.over?.price && data.under?.price
+      ? calculateTwoWayEV(data.over.price, data.under.price, true)
+      : undefined;
+    const underEV = data.over?.price && data.under?.price
+      ? calculateTwoWayEV(data.under.price, data.over.price, true)
+      : undefined;
+    const overBg = getEVBgClass(overEV ?? 0);
+    const underBg = getEVBgClass(underEV ?? 0);
     return (
       <div className="flex items-center justify-between py-3">
         <span className="font-medium text-zinc-100 text-sm min-w-[140px]">{label}</span>
         <div className="flex gap-3">
-          <div className="text-center py-2 px-4 rounded border bg-emerald-500/10 border-emerald-500/30 min-w-[100px]">
+          <div className={`text-center py-2 px-4 rounded border min-w-[100px] ${overBg}`}>
             <div className="text-sm font-medium text-zinc-100">O {data.over.line}</div>
-            <div className="text-xs text-zinc-400">{formatOdds(data.over.price)}</div>
+            <div className="flex items-center justify-center gap-1">
+              <span className="text-xs text-zinc-400">{formatOdds(data.over.price)}</span>
+              {overEV !== undefined && Math.abs(overEV) >= 0.5 && (
+                <span className={`text-[10px] font-mono ${getEVColor(overEV)}`}>{formatEV(overEV)}</span>
+              )}
+            </div>
           </div>
           {data.under && (
-            <div className="text-center py-2 px-4 rounded border bg-red-500/10 border-red-500/30 min-w-[100px]">
+            <div className={`text-center py-2 px-4 rounded border min-w-[100px] ${underBg}`}>
               <div className="text-sm font-medium text-zinc-100">U {data.under.line}</div>
-              <div className="text-xs text-zinc-400">{formatOdds(data.under.price)}</div>
+              <div className="flex items-center justify-center gap-1">
+                <span className="text-xs text-zinc-400">{formatOdds(data.under.price)}</span>
+                {underEV !== undefined && Math.abs(underEV) >= 0.5 && (
+                  <span className={`text-[10px] font-mono ${getEVColor(underEV)}`}>{formatEV(underEV)}</span>
+                )}
+              </div>
             </div>
           )}
         </div>
@@ -924,7 +1002,10 @@ function TeamTotalsSection({ teamTotals, homeTeam, awayTeam, gameId }: { teamTot
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
       <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800">
-        <h2 className="font-semibold text-zinc-100">Team Totals</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="font-semibold text-zinc-100">Team Totals</h2>
+          <span className="text-[10px] text-zinc-500">EV% shown</span>
+        </div>
       </div>
       <div className="p-4 divide-y divide-zinc-800/50">
         {renderTeam(awayTeam, teamTotals.away)}
@@ -941,6 +1022,50 @@ function AlternatesSection({ alternates, homeTeam, awayTeam, gameId }: { alterna
   if (altSpreads.length === 0 && altTotals.length === 0) {
     return <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-8 text-center"><p className="text-zinc-500">No alternate lines available</p></div>;
   }
+
+  // Helper to render alt spread cell with EV
+  const renderAltSpreadCell = (row: any, side: 'home' | 'away') => {
+    const data = row[side];
+    if (!data) return <span className="text-zinc-600">-</span>;
+    const opposite = row[side === 'home' ? 'away' : 'home'];
+    const ev = data.price && opposite?.price
+      ? calculateTwoWayEV(data.price, opposite.price, true)
+      : undefined;
+    const bgClass = getEVBgClass(ev ?? 0);
+    return (
+      <div className={`text-center py-1.5 px-2 rounded border ${bgClass}`}>
+        <div className="text-sm font-medium text-zinc-100">{formatSpread(data.line)}</div>
+        <div className="flex items-center justify-center gap-1">
+          <span className="text-xs text-zinc-400">{formatOdds(data.price)}</span>
+          {ev !== undefined && Math.abs(ev) >= 0.5 && (
+            <span className={`text-[9px] font-mono ${getEVColor(ev)}`}>{formatEV(ev)}</span>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  // Helper to render alt total cell with EV
+  const renderAltTotalCell = (row: any, side: 'over' | 'under') => {
+    const data = row[side];
+    if (!data) return <span className="text-zinc-600">-</span>;
+    const opposite = row[side === 'over' ? 'under' : 'over'];
+    const ev = data.price && opposite?.price
+      ? calculateTwoWayEV(data.price, opposite.price, true)
+      : undefined;
+    const bgClass = getEVBgClass(ev ?? 0);
+    return (
+      <div className={`text-center py-1.5 px-2 rounded border ${bgClass}`}>
+        <div className="flex items-center justify-center gap-1">
+          <span className="text-sm font-medium text-zinc-100">{formatOdds(data.price)}</span>
+          {ev !== undefined && Math.abs(ev) >= 0.5 && (
+            <span className={`text-[9px] font-mono ${getEVColor(ev)}`}>{formatEV(ev)}</span>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-4">
       <div className="flex gap-2">
@@ -959,7 +1084,10 @@ function AlternatesSection({ alternates, homeTeam, awayTeam, gameId }: { alterna
       {view === 'spreads' && altSpreads.length > 0 && (
         <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
           <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800">
-            <h2 className="font-semibold text-zinc-100">Alternate Spreads</h2>
+            <div className="flex items-center justify-between">
+              <h2 className="font-semibold text-zinc-100">Alternate Spreads</h2>
+              <span className="text-[10px] text-zinc-500">EV% shown</span>
+            </div>
           </div>
           <div className="p-4">
             <div className="grid grid-cols-[80px,1fr,1fr] gap-2 mb-2">
@@ -971,16 +1099,8 @@ function AlternatesSection({ alternates, homeTeam, awayTeam, gameId }: { alterna
               {altSpreads.map((row: any, i: number) => (
                 <div key={i} className="grid grid-cols-[80px,1fr,1fr] gap-2 items-center">
                   <span className="text-sm font-medium text-zinc-300">{formatSpread(row.homeSpread)}</span>
-                  <div className="text-center py-1.5 px-2 rounded border bg-zinc-800/50 border-zinc-700">
-                    {row.away ? (
-                      <><div className="text-sm font-medium text-zinc-100">{formatSpread(row.away.line)}</div><div className="text-xs text-zinc-400">{formatOdds(row.away.price)}</div></>
-                    ) : <span className="text-zinc-600">-</span>}
-                  </div>
-                  <div className="text-center py-1.5 px-2 rounded border bg-zinc-800/50 border-zinc-700">
-                    {row.home ? (
-                      <><div className="text-sm font-medium text-zinc-100">{formatSpread(row.home.line)}</div><div className="text-xs text-zinc-400">{formatOdds(row.home.price)}</div></>
-                    ) : <span className="text-zinc-600">-</span>}
-                  </div>
+                  {renderAltSpreadCell(row, 'away')}
+                  {renderAltSpreadCell(row, 'home')}
                 </div>
               ))}
             </div>
@@ -991,7 +1111,10 @@ function AlternatesSection({ alternates, homeTeam, awayTeam, gameId }: { alterna
       {view === 'totals' && altTotals.length > 0 && (
         <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
           <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800">
-            <h2 className="font-semibold text-zinc-100">Alternate Totals</h2>
+            <div className="flex items-center justify-between">
+              <h2 className="font-semibold text-zinc-100">Alternate Totals</h2>
+              <span className="text-[10px] text-zinc-500">EV% shown</span>
+            </div>
           </div>
           <div className="p-4">
             <div className="grid grid-cols-[80px,1fr,1fr] gap-2 mb-2">
@@ -1003,16 +1126,8 @@ function AlternatesSection({ alternates, homeTeam, awayTeam, gameId }: { alterna
               {altTotals.map((row: any, i: number) => (
                 <div key={i} className="grid grid-cols-[80px,1fr,1fr] gap-2 items-center">
                   <span className="text-sm font-medium text-zinc-300">{row.line}</span>
-                  <div className="text-center py-1.5 px-2 rounded border bg-emerald-500/10 border-emerald-500/30">
-                    {row.over ? (
-                      <span className="text-sm font-medium text-zinc-100">{formatOdds(row.over.price)}</span>
-                    ) : <span className="text-zinc-600">-</span>}
-                  </div>
-                  <div className="text-center py-1.5 px-2 rounded border bg-red-500/10 border-red-500/30">
-                    {row.under ? (
-                      <span className="text-sm font-medium text-zinc-100">{formatOdds(row.under.price)}</span>
-                    ) : <span className="text-zinc-600">-</span>}
-                  </div>
+                  {renderAltTotalCell(row, 'over')}
+                  {renderAltTotalCell(row, 'under')}
                 </div>
               ))}
             </div>

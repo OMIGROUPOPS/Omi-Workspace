@@ -698,15 +698,10 @@ function AskEdgeAI({ gameId, homeTeam, awayTeam, sportKey, chartSelection }: { g
   );
 }
 
-// CEQ Pillar Breakdown Component
+// CEQ Pillar Breakdown Component - Only shows pillars with actual data
 function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | null; marketLabel: string }) {
   if (!ceqResult) {
-    return (
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-3">EdgeScout Analysis</h3>
-        <p className="text-xs text-zinc-500">No CEQ data available for this market</p>
-      </div>
-    );
+    return null; // Don't show empty panels
   }
 
   const { ceq, confidence, side, pillars, topDrivers } = ceqResult;
@@ -724,106 +719,103 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
 
   const confStyle = getConfidenceStyle(confidence);
 
-  // Render pillar section
-  const renderPillar = (name: string, pillar: PillarResult, isActive: boolean) => {
-    const hasActiveVars = pillar.variables.some(v => v.available);
+  // Only show pillars that have data (weight > 0)
+  const activePillars = [
+    { name: 'Market Efficiency', pillar: pillars.marketEfficiency },
+    { name: 'Sentiment', pillar: pillars.sentiment },
+    { name: 'Player Utilization', pillar: pillars.playerUtilization },
+    { name: 'Game Environment', pillar: pillars.gameEnvironment },
+    { name: 'Matchup Dynamics', pillar: pillars.matchupDynamics },
+  ].filter(p => p.pillar.weight > 0);
+
+  // Render compact pillar section - only for active pillars
+  const renderPillar = (name: string, pillar: PillarResult) => {
+    const availableVars = pillar.variables.filter(v => v.available);
     return (
-      <div className={`rounded-lg border p-3 ${isActive ? 'border-zinc-700 bg-zinc-800/30' : 'border-zinc-800/50 bg-zinc-900/30'}`}>
-        <div className="flex items-center justify-between mb-2">
-          <h4 className={`text-xs font-semibold uppercase tracking-wide ${isActive ? 'text-zinc-300' : 'text-zinc-600'}`}>
-            {name}
-          </h4>
-          <div className="flex items-center gap-2">
-            {isActive && (
-              <span className={`text-xs font-mono ${pillar.score >= 56 ? 'text-emerald-400' : pillar.score <= 44 ? 'text-red-400' : 'text-zinc-400'}`}>
-                {pillar.score}
-              </span>
-            )}
-            {!isActive && (
-              <span className="text-[10px] text-zinc-600 bg-zinc-800 px-1.5 py-0.5 rounded">N/A</span>
-            )}
-          </div>
+      <div className="rounded border border-zinc-700/50 bg-zinc-800/20 p-2">
+        <div className="flex items-center justify-between mb-1.5">
+          <h4 className="text-[10px] font-semibold uppercase tracking-wide text-zinc-400">{name}</h4>
+          <span className={`text-xs font-mono font-medium ${pillar.score >= 56 ? 'text-emerald-400' : pillar.score <= 44 ? 'text-red-400' : 'text-zinc-400'}`}>
+            {pillar.score}
+          </span>
         </div>
-        <div className="space-y-1.5">
-          {pillar.variables.map((variable, idx) => (
-            <div key={idx} className="flex items-start justify-between gap-2">
-              <div className="flex items-center gap-1.5 min-w-0">
-                <span className={`text-[10px] font-mono ${variable.available ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                  {variable.name}:
+        {availableVars.length > 0 && (
+          <div className="space-y-0.5">
+            {availableVars.map((variable, idx) => (
+              <div key={idx} className="flex items-center justify-between text-[9px]">
+                <span className="text-zinc-500">{variable.name}</span>
+                <span className={`font-mono ${variable.score >= 56 ? 'text-emerald-400' : variable.score <= 44 ? 'text-red-400' : 'text-zinc-400'}`}>
+                  {variable.score}
                 </span>
-                {variable.available ? (
-                  <span className={`text-[10px] font-mono ${variable.score >= 56 ? 'text-emerald-400' : variable.score <= 44 ? 'text-red-400' : 'text-zinc-400'}`}>
-                    {variable.score}
-                  </span>
-                ) : (
-                  <span className="text-[10px] text-zinc-600">--</span>
-                )}
               </div>
-              <span className={`text-[9px] truncate max-w-[180px] ${variable.available ? 'text-zinc-500' : 'text-zinc-700'}`}>
-                {variable.reason}
-              </span>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     );
   };
 
+  // Filter out "No significant edge signals detected" message
+  const meaningfulDrivers = topDrivers.filter(d => !d.includes('No significant'));
+
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
-      {/* Header with CEQ Score */}
-      <div className={`px-4 py-3 ${confStyle.bg} border-b ${confStyle.border}`}>
+      {/* Compact Header with CEQ Score */}
+      <div className={`px-3 py-2 ${confStyle.bg} border-b ${confStyle.border}`}>
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-sm font-semibold text-zinc-100">EdgeScout Analysis</h3>
-            <p className="text-[10px] text-zinc-400 mt-0.5">{marketLabel}</p>
+            <h3 className="text-xs font-semibold text-zinc-100">{marketLabel}</h3>
+            {side && confidence !== 'PASS' && (
+              <span className={`text-[10px] ${confStyle.text}`}>Edge: {side}</span>
+            )}
           </div>
-          <div className="text-right">
-            <div className={`text-2xl font-bold font-mono ${confStyle.text}`}>{ceq}%</div>
-            <div className={`text-[10px] font-semibold ${confStyle.text}`}>{confidence}</div>
+          <div className="flex items-center gap-2">
+            <span className={`text-lg font-bold font-mono ${confStyle.text}`}>{ceq}%</span>
+            <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded ${confStyle.bg} ${confStyle.text}`}>{confidence}</span>
           </div>
         </div>
-        {side && confidence !== 'PASS' && (
-          <div className="mt-2 text-xs text-zinc-400">
-            Edge on: <span className={confStyle.text}>{side}</span>
-          </div>
-        )}
       </div>
 
-      {/* Top Drivers */}
-      {topDrivers.length > 0 && (
-        <div className="px-4 py-3 border-b border-zinc-800">
-          <h4 className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wide mb-2">Key Drivers</h4>
-          <div className="space-y-1">
-            {topDrivers.map((driver, idx) => (
-              <div key={idx} className="text-xs text-zinc-300 flex items-start gap-2">
-                <span className="text-emerald-400">→</span>
-                <span>{driver}</span>
+      {/* Key Drivers - only if meaningful */}
+      {meaningfulDrivers.length > 0 && (
+        <div className="px-3 py-2 border-b border-zinc-800/50">
+          <div className="space-y-0.5">
+            {meaningfulDrivers.slice(0, 2).map((driver, idx) => (
+              <div key={idx} className="text-[10px] text-zinc-400 flex items-start gap-1.5">
+                <span className="text-emerald-400 mt-0.5">•</span>
+                <span className="line-clamp-1">{driver}</span>
               </div>
             ))}
           </div>
         </div>
       )}
 
-      {/* Pillar Breakdown */}
-      <div className="p-4 space-y-3">
-        {renderPillar('Market Efficiency', pillars.marketEfficiency, pillars.marketEfficiency.weight > 0)}
-        {renderPillar('Player Utilization', pillars.playerUtilization, pillars.playerUtilization.weight > 0)}
-        {renderPillar('Game Environment', pillars.gameEnvironment, pillars.gameEnvironment.weight > 0)}
-        {renderPillar('Matchup Dynamics', pillars.matchupDynamics, pillars.matchupDynamics.weight > 0)}
-        {renderPillar('Sentiment', pillars.sentiment, pillars.sentiment.weight > 0)}
-      </div>
+      {/* Active Pillars Only */}
+      {activePillars.length > 0 && (
+        <div className="p-2 grid grid-cols-2 gap-1.5">
+          {activePillars.map(({ name, pillar }) => (
+            <div key={name}>{renderPillar(name, pillar)}</div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
 function MarketCell({ value, subValue, edge, onClick, isSelected }: { value: string | number; subValue?: string; edge: number; onClick?: () => void; isSelected?: boolean }) {
-  // Simplified cell: just show line and price, no confusing percentages
-  const edgeColor = edge >= 0 ? 'text-emerald-400' : 'text-red-400';
-  const edgeBg = edge >= 0 ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-red-500/10 border-red-500/30';
+  // Color based on edge value: positive = green tint, negative = red tint, neutral = no tint
+  // Only show color when edge is meaningful (>1% or <-1%)
+  const hasPositiveEdge = edge > 1;
+  const hasNegativeEdge = edge < -1;
+
+  const edgeBg = hasPositiveEdge
+    ? 'bg-emerald-500/15 border-emerald-500/40 hover:bg-emerald-500/25'
+    : hasNegativeEdge
+    ? 'bg-red-500/10 border-red-500/30 hover:bg-red-500/20'
+    : 'bg-zinc-800/60 border-zinc-700/50 hover:bg-zinc-700/60';
 
   return (
-    <div onClick={onClick} className={`w-full text-center py-2 px-2 rounded border transition-all cursor-pointer hover:brightness-110 ${edgeBg} ${isSelected ? 'ring-2 ring-emerald-500' : ''}`}>
+    <div onClick={onClick} className={`w-full text-center py-2 px-2 rounded border transition-all cursor-pointer ${edgeBg} ${isSelected ? 'ring-2 ring-emerald-500' : ''}`}>
       <div className="text-sm font-medium text-zinc-100">{value}</div>
       {subValue && <div className="text-xs text-zinc-400">{subValue}</div>}
     </div>
@@ -1233,61 +1225,31 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         <AskEdgeAI gameId={gameData.id} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} chartSelection={chartSelection} />
       </div>
 
-      {/* EdgeScout Pillar Breakdown */}
-      {ceq && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-          {/* Spread Analysis */}
-          {ceq.spreads && (
-            <PillarBreakdown
-              ceqResult={ceq.spreads.home}
-              marketLabel={`${gameData.homeTeam} Spread`}
-            />
-          )}
-          {/* Moneyline Analysis */}
-          {ceq.h2h && (
-            <PillarBreakdown
-              ceqResult={ceq.h2h.home}
-              marketLabel={`${gameData.homeTeam} Moneyline`}
-            />
-          )}
-          {/* Totals Analysis */}
-          {ceq.totals && (
-            <PillarBreakdown
-              ceqResult={ceq.totals.over}
-              marketLabel="Over Total"
-            />
-          )}
-          {/* Best Edge Summary */}
-          {ceq.bestEdge && (
-            <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
-              <h3 className="text-sm font-semibold text-zinc-300 mb-3">Best Edge Opportunity</h3>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-zinc-400 text-sm">Market:</span>
-                <span className="text-zinc-100 font-medium capitalize">{ceq.bestEdge.market}</span>
-              </div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-zinc-400 text-sm">Side:</span>
-                <span className="text-zinc-100 font-medium capitalize">{ceq.bestEdge.side}</span>
-              </div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-zinc-400 text-sm">CEQ Score:</span>
-                <span className={`font-bold font-mono ${
-                  ceq.bestEdge.ceq >= 76 ? 'text-emerald-400' :
-                  ceq.bestEdge.ceq >= 66 ? 'text-emerald-400' :
-                  ceq.bestEdge.ceq >= 56 ? 'text-blue-400' : 'text-zinc-400'
-                }`}>{ceq.bestEdge.ceq}%</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-zinc-400 text-sm">Confidence:</span>
-                <span className={`font-semibold ${
-                  ceq.bestEdge.confidence === 'RARE' ? 'text-purple-400' :
-                  ceq.bestEdge.confidence === 'STRONG' ? 'text-emerald-400' :
-                  ceq.bestEdge.confidence === 'EDGE' ? 'text-blue-400' :
-                  ceq.bestEdge.confidence === 'WATCH' ? 'text-amber-400' : 'text-zinc-500'
-                }`}>{ceq.bestEdge.confidence}</span>
-              </div>
-            </div>
-          )}
+      {/* EdgeScout Analysis - Compact view showing only markets with edges */}
+      {ceq && ceq.bestEdge && ceq.bestEdge.confidence !== 'PASS' && (
+        <div className="mb-6">
+          {/* Show only the best edge analysis, not all markets */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {/* Best Edge Market Breakdown */}
+            {ceq.bestEdge.market === 'spread' && ceq.spreads && (
+              <PillarBreakdown
+                ceqResult={ceq.bestEdge.side === 'home' ? ceq.spreads.home : ceq.spreads.away}
+                marketLabel={`${ceq.bestEdge.side === 'home' ? gameData.homeTeam : gameData.awayTeam} Spread`}
+              />
+            )}
+            {ceq.bestEdge.market === 'h2h' && ceq.h2h && (
+              <PillarBreakdown
+                ceqResult={ceq.bestEdge.side === 'home' ? ceq.h2h.home : ceq.h2h.away}
+                marketLabel={`${ceq.bestEdge.side === 'home' ? gameData.homeTeam : gameData.awayTeam} ML`}
+              />
+            )}
+            {ceq.bestEdge.market === 'total' && ceq.totals && (
+              <PillarBreakdown
+                ceqResult={ceq.bestEdge.side === 'over' ? ceq.totals.over : ceq.totals.under}
+                marketLabel={ceq.bestEdge.side === 'over' ? 'Over' : 'Under'}
+              />
+            )}
+          </div>
         </div>
       )}
       

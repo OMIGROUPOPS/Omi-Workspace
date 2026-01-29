@@ -218,22 +218,39 @@ function BookIcon({ bookKey, size = 24 }: { bookKey: string; size?: number }) {
   );
 }
 
-function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number; side?: string } | null {
+function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number; context?: string } | null {
   // Prefer CEQ data when available
   const ceq = game.ceq as GameCEQ | undefined;
   if (ceq?.bestEdge) {
     const { confidence, ceq: score, side, market } = ceq.bestEdge;
-    const marketLabel = market === 'spread' ? 'SPRD' : market === 'h2h' ? 'ML' : 'TOT';
-    const sideLabel = side === 'home' ? game.homeTeam?.split(' ').pop() : side === 'away' ? game.awayTeam?.split(' ').pop() : side;
 
-    if (confidence === 'RARE') return { label: 'RARE', color: 'text-purple-300', bg: 'bg-purple-500/20 border-purple-500/30', score, side: `${sideLabel} ${marketLabel}` };
-    if (confidence === 'STRONG') return { label: 'STRONG', color: 'text-emerald-300', bg: 'bg-emerald-500/20 border-emerald-500/30', score, side: `${sideLabel} ${marketLabel}` };
-    if (confidence === 'EDGE') return { label: 'EDGE', color: 'text-blue-300', bg: 'bg-blue-500/20 border-blue-500/30', score, side: `${sideLabel} ${marketLabel}` };
-    if (confidence === 'WATCH') return { label: 'WATCH', color: 'text-amber-300', bg: 'bg-amber-500/20 border-amber-500/30', score, side: `${sideLabel} ${marketLabel}` };
+    // Build context string like "Bucks -4.5" or "Over 222.5" or "Lakers ML"
+    let context = '';
+    const consensus = game.consensus;
+    if (market === 'spread' && consensus?.spreads?.line !== undefined) {
+      const teamName = side === 'home' ? game.homeTeam?.split(' ').pop() : game.awayTeam?.split(' ').pop();
+      const line = side === 'home' ? consensus.spreads.line : -consensus.spreads.line;
+      const lineStr = line > 0 ? `+${line}` : line;
+      context = `${teamName} ${lineStr}`;
+    } else if (market === 'h2h') {
+      const teamName = side === 'home' ? game.homeTeam?.split(' ').pop() : game.awayTeam?.split(' ').pop();
+      context = `${teamName} ML`;
+    } else if (market === 'total' && consensus?.totals?.line !== undefined) {
+      context = side === 'over' ? `O ${consensus.totals.line}` : `U ${consensus.totals.line}`;
+    } else {
+      // Fallback
+      const teamName = side === 'home' ? game.homeTeam?.split(' ').pop() : side === 'away' ? game.awayTeam?.split(' ').pop() : side;
+      context = teamName || side || '';
+    }
+
+    if (confidence === 'RARE') return { label: 'RARE', color: 'text-purple-300', bg: 'bg-purple-500/20 border-purple-500/30', score, context };
+    if (confidence === 'STRONG') return { label: 'STRONG', color: 'text-emerald-300', bg: 'bg-emerald-500/20 border-emerald-500/30', score, context };
+    if (confidence === 'EDGE') return { label: 'EDGE', color: 'text-blue-300', bg: 'bg-blue-500/20 border-blue-500/30', score, context };
+    if (confidence === 'WATCH') return { label: 'WATCH', color: 'text-amber-300', bg: 'bg-amber-500/20 border-amber-500/30', score, context };
     return null;
   }
 
-  // Fallback to old logic
+  // Fallback to old logic (no context available without CEQ)
   const confidence = game.overall_confidence || game.calculatedEdge?.confidence;
   const score = game.calculatedEdge?.score || (game.composite_score ? Math.round(game.composite_score * 100) : null);
 
@@ -633,15 +650,15 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                           )}
                         </div>
                         {edgeBadge && (
-                          <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-full border ${edgeBadge.bg} ${edgeBadge.color}`}>
+                          <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full border ${edgeBadge.bg} ${edgeBadge.color}`}>
                             <span className="text-[9px] font-bold">
-                              {edgeBadge.label === 'RARE' && '★ '}{edgeBadge.label}
+                              {edgeBadge.label === 'RARE' && '★ '}{edgeBadge.label}:
                             </span>
-                            {edgeBadge.score && (
-                              <span className="text-[9px] font-mono">{edgeBadge.score}%</span>
+                            {edgeBadge.context && (
+                              <span className="text-[9px] font-medium">{edgeBadge.context}</span>
                             )}
-                            {edgeBadge.side && (
-                              <span className="text-[8px] font-mono text-zinc-400">{edgeBadge.side}</span>
+                            {edgeBadge.score && (
+                              <span className="text-[9px] font-mono opacity-80">({edgeBadge.score}%)</span>
                             )}
                           </div>
                         )}

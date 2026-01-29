@@ -88,8 +88,8 @@ interface LineMovementChartProps {
   commenceTime?: string;
 }
 
-// Time range options for chart
-type TimeRange = '1H' | '3H' | '6H' | '24H' | 'ALL';
+// Time range options for chart (30M only visible when game is live)
+type TimeRange = '30M' | '1H' | '3H' | '6H' | '24H' | 'ALL';
 
 function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, awayTeam, viewMode, onViewModeChange, commenceTime }: LineMovementChartProps) {
   const [hoveredPoint, setHoveredPoint] = useState<{ x: number; y: number; value: number; timestamp: Date; index: number } | null>(null);
@@ -158,7 +158,8 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     // Apply time range filter
     if (timeRange !== 'ALL' && data.length > 0) {
       const now = new Date();
-      const hoursMap: Record<TimeRange, number> = { '1H': 1, '3H': 3, '6H': 6, '24H': 24, 'ALL': 0 };
+      // Map time ranges to hours (30M = 0.5 hours)
+      const hoursMap: Record<TimeRange, number> = { '30M': 0.5, '1H': 1, '3H': 3, '6H': 6, '24H': 24, 'ALL': 0 };
       const cutoffTime = new Date(now.getTime() - hoursMap[timeRange] * 60 * 60 * 1000);
       const filteredByTime = data.filter(d => d.timestamp >= cutoffTime);
       // Keep at least 2 points for a line
@@ -224,24 +225,30 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   };
   const chartTitle = getChartTitle();
 
-  // Time range selector component
-  const TimeRangeSelector = () => (
-    <div className="flex rounded overflow-hidden border border-zinc-700/50">
-      {(['1H', '3H', '6H', '24H', 'ALL'] as TimeRange[]).map((range) => (
-        <button
-          key={range}
-          onClick={() => setTimeRange(range)}
-          className={`px-2 py-0.5 text-[10px] font-medium transition-colors ${
-            timeRange === range
-              ? 'bg-zinc-600 text-zinc-100'
-              : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-300'
-          }`}
-        >
-          {range}
-        </button>
-      ))}
-    </div>
-  );
+  // Time range selector component - 30M only visible when game is live
+  const TimeRangeSelector = () => {
+    const ranges: TimeRange[] = isGameLive
+      ? ['30M', '1H', '3H', '6H', '24H', 'ALL']
+      : ['1H', '3H', '6H', '24H', 'ALL'];
+
+    return (
+      <div className="flex rounded overflow-hidden border border-zinc-700/50">
+        {ranges.map((range) => (
+          <button
+            key={range}
+            onClick={() => setTimeRange(range)}
+            className={`px-2 py-0.5 text-[10px] font-medium transition-colors ${
+              timeRange === range
+                ? 'bg-zinc-600 text-zinc-100'
+                : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-300'
+            }`}
+          >
+            {range}
+          </button>
+        ))}
+      </div>
+    );
+  };
 
   // If no data or only 1 point, show message
   if (data.length === 0) {
@@ -343,6 +350,8 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const roundToStep = (val: number, step: number) => Math.round(val / step) * step;
 
   // Generate Y-axis labels with proper granularity for betting
+  // Dynamic increments based on time range for line charts:
+  // 30M/1H: 0.5 points, 3H/6H: 1 point, 24H: 2 points, ALL: auto-scale
   const generateYLabels = () => {
     const labels: { value: number; y: number }[] = [];
 
@@ -351,9 +360,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     const visualMax = maxVal + padding;
     const visualRange = visualMax - visualMin;
 
-    // For spreads/totals/props (LINE view): ALWAYS use 1 point increments for labels
-    // For prices: use larger increments
-    // The key is that every 0.5 point movement shows in the chart shape itself
+    // Determine label step based on view mode and time range
     let labelStep: number;
     if (isPrice || marketType === 'moneyline') {
       // For prices: scale based on range
@@ -361,9 +368,29 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       else if (range <= 16) labelStep = 4;
       else labelStep = 5;
     } else {
-      // For lines (spreads, totals, props): ALWAYS 1 point labels, show many
-      // Even if range is 20 points, we want granular labels
-      labelStep = 1;
+      // For lines (spreads, totals, props): dynamic based on time range
+      // Shorter time ranges = more granular labels
+      switch (timeRange) {
+        case '30M':
+        case '1H':
+          labelStep = 0.5; // Most granular for live action
+          break;
+        case '3H':
+        case '6H':
+          labelStep = 1;
+          break;
+        case '24H':
+          labelStep = 2;
+          break;
+        case 'ALL':
+        default:
+          // Auto-scale based on data range
+          if (range <= 5) labelStep = 0.5;
+          else if (range <= 12) labelStep = 1;
+          else if (range <= 25) labelStep = 2;
+          else labelStep = 5;
+          break;
+      }
     }
 
     // Start from a nice round number below min
@@ -913,9 +940,10 @@ function LiveLockOverlay() {
 }
 
 // Demo mode banner shown to demo users viewing live games
+// Positioned ABOVE the chart (not inside) to avoid overlap with LIVE label
 function DemoModeBanner() {
   return (
-    <div className="absolute top-2 left-2 right-2 z-10">
+    <div className="mb-2">
       <div className="px-3 py-1.5 bg-purple-500/20 border border-purple-500/30 rounded text-xs text-purple-300 text-center">
         Demo Mode - Live tracking is a Tier 2 feature
       </div>
@@ -1063,11 +1091,11 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         <div className="relative">
           {!selectedProp && (<div className="flex gap-2 mb-3">{['spread', 'total', 'moneyline'].map((market) => (<button key={market} onClick={() => handleSelectMarket(market as any)} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${chartMarket === market ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>{market.charAt(0).toUpperCase() + market.slice(1)}</button>))}</div>)}
           {selectedProp && (<div className="flex gap-2 mb-3 items-center"><button onClick={() => setSelectedProp(null)} className="px-3 py-1.5 rounded text-xs font-medium bg-zinc-800 text-zinc-400 hover:bg-zinc-700 flex items-center gap-1"><svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>Back to Markets</button><span className="px-3 py-1.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400">{selectedProp.player}</span><span className="text-xs text-zinc-500">via {selectedProp.book}</span></div>)}
+          {/* Demo mode banner ABOVE the chart to avoid overlap */}
+          {showDemoBanner && <DemoModeBanner />}
           <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} viewMode={chartViewMode} onViewModeChange={setChartViewMode} commenceTime={gameData.commenceTime} />
           {/* Lock overlay for tier 1 users viewing live games */}
           {showLiveLock && <LiveLockOverlay />}
-          {/* Demo mode banner for demo users viewing live games */}
-          {showDemoBanner && <DemoModeBanner />}
         </div>
         <AskEdgeAI gameId={gameData.id} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} chartSelection={chartSelection} />
       </div>

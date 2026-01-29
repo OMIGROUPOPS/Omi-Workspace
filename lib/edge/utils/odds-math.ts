@@ -65,3 +65,91 @@ export function formatSpread(point: number): string {
   if (point > 0) return `+${point}`;
   return point.toString();
 }
+
+// ============================================================================
+// EdgeScout Helper Functions
+// ============================================================================
+
+/**
+ * Filter snapshots to a specific time window
+ */
+export function filterSnapshotsByTime<T extends { snapshot_time: string }>(
+  snapshots: T[],
+  hoursToAnalyze: number
+): T[] {
+  const now = new Date();
+  const cutoff = new Date(now.getTime() - hoursToAnalyze * 60 * 60 * 1000);
+  return snapshots.filter(s => new Date(s.snapshot_time) > cutoff);
+}
+
+/**
+ * Calculate line movement statistics from snapshots
+ */
+export function calculateMovements<T extends { snapshot_time: string; line: number | null }>(
+  snapshots: T[]
+): {
+  totalChange: number;
+  timeSpanHours: number;
+  sameDirection: number;
+  total: number;
+  velocity: number;
+  consistency: number;
+} {
+  const sorted = [...snapshots]
+    .filter(s => s.line !== null)
+    .sort((a, b) => new Date(a.snapshot_time).getTime() - new Date(b.snapshot_time).getTime());
+
+  if (sorted.length < 2) {
+    return { totalChange: 0, timeSpanHours: 0, sameDirection: 0, total: 0, velocity: 0, consistency: 0 };
+  }
+
+  const firstLine = sorted[0].line!;
+  const lastLine = sorted[sorted.length - 1].line!;
+  const totalChange = lastLine - firstLine;
+
+  const firstTime = new Date(sorted[0].snapshot_time).getTime();
+  const lastTime = new Date(sorted[sorted.length - 1].snapshot_time).getTime();
+  const timeSpanHours = (lastTime - firstTime) / (1000 * 60 * 60);
+
+  // Count movements in same direction as overall trend
+  let sameDirection = 0;
+  let total = 0;
+  for (let i = 1; i < sorted.length; i++) {
+    const change = sorted[i].line! - sorted[i - 1].line!;
+    if (Math.abs(change) >= 0.25) {
+      total++;
+      if ((totalChange > 0 && change > 0) || (totalChange < 0 && change < 0)) {
+        sameDirection++;
+      }
+    }
+  }
+
+  const velocity = timeSpanHours > 0 ? Math.abs(totalChange) / timeSpanHours : 0;
+  const consistency = total > 0 ? sameDirection / total : 0;
+
+  return { totalChange, timeSpanHours, sameDirection, total, velocity, consistency };
+}
+
+/**
+ * Group items by a key function
+ */
+export function groupBy<T>(items: T[], keyFn: (item: T) => string): Record<string, T[]> {
+  return items.reduce((acc, item) => {
+    const key = keyFn(item);
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push(item);
+    return acc;
+  }, {} as Record<string, T[]>);
+}
+
+/**
+ * Get median value from array of numbers
+ */
+export function median(arr: number[]): number | undefined {
+  if (arr.length === 0) return undefined;
+  const sorted = [...arr].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+}

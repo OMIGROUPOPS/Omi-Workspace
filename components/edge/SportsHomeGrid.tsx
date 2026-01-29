@@ -6,6 +6,7 @@ import { formatOdds } from '@/lib/edge/utils/odds-math';
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
+import type { CEQResult, GameCEQ, CEQConfidence } from '@/lib/edge/engine/edgescout';
 
 const BOOK_CONFIG: Record<string, { name: string; color: string }> = {
   'fanduel': { name: 'FanDuel', color: '#1493ff' },
@@ -53,14 +54,44 @@ function EdgeArrow({ value }: { value: number }) {
   );
 }
 
-function OddsCell({ line, price, edge }: { line?: number | string; price: number; edge?: number }) {
+// CEQ-based styling helper
+function getCEQStyles(ceq: number | undefined): { bgTint: string; borderTint: string; textColor: string } {
+  if (ceq === undefined) {
+    return { bgTint: 'bg-zinc-800/80', borderTint: 'border-zinc-700/50', textColor: 'text-zinc-500' };
+  }
+  // CEQ thresholds: 50 = neutral, >66 = EDGE, >76 = STRONG, >86 = RARE, <45 = edge other side
+  if (ceq >= 76) return { bgTint: 'bg-emerald-500/20', borderTint: 'border-emerald-500/40', textColor: 'text-emerald-400' };
+  if (ceq >= 66) return { bgTint: 'bg-emerald-500/15', borderTint: 'border-emerald-500/30', textColor: 'text-emerald-400' };
+  if (ceq >= 56) return { bgTint: 'bg-emerald-500/10', borderTint: 'border-emerald-500/20', textColor: 'text-emerald-400' };
+  if (ceq <= 35) return { bgTint: 'bg-red-500/15', borderTint: 'border-red-500/30', textColor: 'text-red-400' };
+  if (ceq <= 45) return { bgTint: 'bg-red-500/10', borderTint: 'border-red-500/20', textColor: 'text-red-400' };
+  return { bgTint: 'bg-zinc-800/80', borderTint: 'border-zinc-700/50', textColor: 'text-zinc-500' };
+}
+
+function OddsCell({ line, price, edge, ceq, topDrivers }: { line?: number | string; price: number; edge?: number; ceq?: number; topDrivers?: string[] }) {
+  const [showTooltip, setShowTooltip] = useState(false);
   const hasEdge = edge !== undefined && edge !== null;
-  const edgeColor = hasEdge ? (edge >= 0 ? 'text-emerald-400' : 'text-red-400') : 'text-zinc-500';
-  const bgTint = hasEdge && edge >= 2 ? 'bg-emerald-500/10' : hasEdge && edge <= -2 ? 'bg-red-500/5' : 'bg-zinc-800/80';
-  const borderTint = hasEdge && edge >= 3 ? 'border-emerald-500/30' : hasEdge && edge <= -3 ? 'border-red-500/20' : 'border-zinc-700/50';
+  const hasCEQ = ceq !== undefined && ceq !== null;
+
+  // Use CEQ for styling if available, otherwise fall back to edge
+  const styles = hasCEQ
+    ? getCEQStyles(ceq)
+    : {
+        bgTint: hasEdge && edge >= 2 ? 'bg-emerald-500/10' : hasEdge && edge <= -2 ? 'bg-red-500/5' : 'bg-zinc-800/80',
+        borderTint: hasEdge && edge >= 3 ? 'border-emerald-500/30' : hasEdge && edge <= -3 ? 'border-red-500/20' : 'border-zinc-700/50',
+        textColor: hasEdge ? (edge >= 0 ? 'text-emerald-400' : 'text-red-400') : 'text-zinc-500',
+      };
+
+  const confidence = hasCEQ
+    ? ceq >= 86 ? 'RARE' : ceq >= 76 ? 'STRONG' : ceq >= 66 ? 'EDGE' : ceq >= 56 ? 'WATCH' : 'PASS'
+    : null;
 
   return (
-    <div className={`flex flex-col items-center justify-center p-1.5 ${bgTint} border ${borderTint} rounded hover:border-zinc-600 transition-all cursor-pointer group`}>
+    <div
+      className={`relative flex flex-col items-center justify-center p-1.5 ${styles.bgTint} border ${styles.borderTint} rounded hover:border-zinc-600 transition-all cursor-pointer group`}
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
+    >
       <div className="flex items-center gap-0.5">
         <span className="text-xs font-semibold text-zinc-100 font-mono">
           {line !== undefined && (typeof line === 'number' ? (line > 0 ? `+${line}` : line) : line)}
@@ -69,35 +100,105 @@ function OddsCell({ line, price, edge }: { line?: number | string; price: number
       <span className={`text-[11px] font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-300'}`}>
         {formatOdds(price)}
       </span>
-      {hasEdge && (
+      {hasCEQ && ceq !== 50 && (
+        <div className="flex items-center gap-0.5 mt-0.5">
+          <span className={`text-[9px] font-mono font-medium ${styles.textColor}`}>
+            {ceq}%
+          </span>
+        </div>
+      )}
+      {hasEdge && !hasCEQ && (
         <div className="flex items-center gap-0.5 mt-0.5">
           <EdgeArrow value={edge} />
-          <span className={`text-[9px] font-mono ${edgeColor}`}>
+          <span className={`text-[9px] font-mono ${styles.textColor}`}>
             {edge >= 0 ? '+' : ''}{edge.toFixed(1)}%
           </span>
+        </div>
+      )}
+      {/* CEQ Tooltip */}
+      {showTooltip && hasCEQ && (
+        <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl p-2 text-left">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-[10px] text-zinc-500 uppercase">CEQ Score</span>
+            <span className={`text-xs font-bold ${styles.textColor}`}>{ceq}%</span>
+          </div>
+          {confidence && confidence !== 'PASS' && (
+            <div className={`text-[10px] font-medium ${styles.textColor} mb-1`}>{confidence}</div>
+          )}
+          {topDrivers && topDrivers.length > 0 && (
+            <div className="border-t border-zinc-800 pt-1 mt-1">
+              <div className="text-[9px] text-zinc-500 mb-0.5">Top Drivers:</div>
+              {topDrivers.slice(0, 3).map((driver, i) => (
+                <div key={i} className="text-[9px] text-zinc-400 truncate">{driver}</div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
   );
 }
 
-function MoneylineCell({ price, edge }: { price: number; edge?: number }) {
+function MoneylineCell({ price, edge, ceq, topDrivers }: { price: number; edge?: number; ceq?: number; topDrivers?: string[] }) {
+  const [showTooltip, setShowTooltip] = useState(false);
   const hasEdge = edge !== undefined && edge !== null;
-  const edgeColor = hasEdge ? (edge >= 0 ? 'text-emerald-400' : 'text-red-400') : 'text-zinc-500';
-  const bgTint = hasEdge && edge >= 2 ? 'bg-emerald-500/10' : hasEdge && edge <= -2 ? 'bg-red-500/5' : 'bg-zinc-800/80';
-  const borderTint = hasEdge && edge >= 3 ? 'border-emerald-500/30' : hasEdge && edge <= -3 ? 'border-red-500/20' : 'border-zinc-700/50';
+  const hasCEQ = ceq !== undefined && ceq !== null;
+
+  // Use CEQ for styling if available
+  const styles = hasCEQ
+    ? getCEQStyles(ceq)
+    : {
+        bgTint: hasEdge && edge >= 2 ? 'bg-emerald-500/10' : hasEdge && edge <= -2 ? 'bg-red-500/5' : 'bg-zinc-800/80',
+        borderTint: hasEdge && edge >= 3 ? 'border-emerald-500/30' : hasEdge && edge <= -3 ? 'border-red-500/20' : 'border-zinc-700/50',
+        textColor: hasEdge ? (edge >= 0 ? 'text-emerald-400' : 'text-red-400') : 'text-zinc-500',
+      };
+
+  const confidence = hasCEQ
+    ? ceq >= 86 ? 'RARE' : ceq >= 76 ? 'STRONG' : ceq >= 66 ? 'EDGE' : ceq >= 56 ? 'WATCH' : 'PASS'
+    : null;
 
   return (
-    <div className={`flex flex-col items-center justify-center p-1.5 ${bgTint} border ${borderTint} rounded hover:border-zinc-600 transition-all cursor-pointer group`}>
+    <div
+      className={`relative flex flex-col items-center justify-center p-1.5 ${styles.bgTint} border ${styles.borderTint} rounded hover:border-zinc-600 transition-all cursor-pointer group`}
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
+    >
       <span className={`text-xs font-semibold font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-100'}`}>
         {formatOdds(price)}
       </span>
-      {hasEdge && (
+      {hasCEQ && ceq !== 50 && (
+        <div className="flex items-center gap-0.5 mt-0.5">
+          <span className={`text-[9px] font-mono font-medium ${styles.textColor}`}>
+            {ceq}%
+          </span>
+        </div>
+      )}
+      {hasEdge && !hasCEQ && (
         <div className="flex items-center gap-0.5 mt-0.5">
           <EdgeArrow value={edge} />
-          <span className={`text-[9px] font-mono ${edgeColor}`}>
+          <span className={`text-[9px] font-mono ${styles.textColor}`}>
             {edge >= 0 ? '+' : ''}{edge.toFixed(1)}%
           </span>
+        </div>
+      )}
+      {/* CEQ Tooltip */}
+      {showTooltip && hasCEQ && (
+        <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl p-2 text-left">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-[10px] text-zinc-500 uppercase">CEQ Score</span>
+            <span className={`text-xs font-bold ${styles.textColor}`}>{ceq}%</span>
+          </div>
+          {confidence && confidence !== 'PASS' && (
+            <div className={`text-[10px] font-medium ${styles.textColor} mb-1`}>{confidence}</div>
+          )}
+          {topDrivers && topDrivers.length > 0 && (
+            <div className="border-t border-zinc-800 pt-1 mt-1">
+              <div className="text-[9px] text-zinc-500 mb-0.5">Top Drivers:</div>
+              {topDrivers.slice(0, 3).map((driver, i) => (
+                <div key={i} className="text-[9px] text-zinc-400 truncate">{driver}</div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -117,7 +218,22 @@ function BookIcon({ bookKey, size = 24 }: { bookKey: string; size?: number }) {
   );
 }
 
-function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number } | null {
+function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number; side?: string } | null {
+  // Prefer CEQ data when available
+  const ceq = game.ceq as GameCEQ | undefined;
+  if (ceq?.bestEdge) {
+    const { confidence, ceq: score, side, market } = ceq.bestEdge;
+    const marketLabel = market === 'spread' ? 'SPRD' : market === 'h2h' ? 'ML' : 'TOT';
+    const sideLabel = side === 'home' ? game.homeTeam?.split(' ').pop() : side === 'away' ? game.awayTeam?.split(' ').pop() : side;
+
+    if (confidence === 'RARE') return { label: 'RARE', color: 'text-purple-300', bg: 'bg-purple-500/20 border-purple-500/30', score, side: `${sideLabel} ${marketLabel}` };
+    if (confidence === 'STRONG') return { label: 'STRONG', color: 'text-emerald-300', bg: 'bg-emerald-500/20 border-emerald-500/30', score, side: `${sideLabel} ${marketLabel}` };
+    if (confidence === 'EDGE') return { label: 'EDGE', color: 'text-blue-300', bg: 'bg-blue-500/20 border-blue-500/30', score, side: `${sideLabel} ${marketLabel}` };
+    if (confidence === 'WATCH') return { label: 'WATCH', color: 'text-amber-300', bg: 'bg-amber-500/20 border-amber-500/30', score, side: `${sideLabel} ${marketLabel}` };
+    return null;
+  }
+
+  // Fallback to old logic
   const confidence = game.overall_confidence || game.calculatedEdge?.confidence;
   const score = game.calculatedEdge?.score || (game.composite_score ? Math.round(game.composite_score * 100) : null);
 
@@ -524,6 +640,9 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                             {edgeBadge.score && (
                               <span className="text-[9px] font-mono">{edgeBadge.score}%</span>
                             )}
+                            {edgeBadge.side && (
+                              <span className="text-[8px] font-mono text-zinc-400">{edgeBadge.side}</span>
+                            )}
                           </div>
                         )}
                       </div>
@@ -542,6 +661,11 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                         const spreads = bookOdds?.spreads || game.consensus?.spreads;
                         const h2h = bookOdds?.h2h || game.consensus?.h2h;
                         const totals = bookOdds?.totals || game.consensus?.totals;
+                        // Extract CEQ data for away side
+                        const ceq = game.ceq as GameCEQ | undefined;
+                        const awaySpreadsData = ceq?.spreads?.away;
+                        const awayH2hData = ceq?.h2h?.away;
+                        const overTotalsData = ceq?.totals?.over;
                         return (
                           <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
                             <div className="flex items-center gap-2 min-w-0">
@@ -549,13 +673,27 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                               <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.awayTeam, game.sportKey)}</span>
                             </div>
                             {spreads?.line !== undefined ? (
-                              <OddsCell line={-spreads.line} price={spreads.awayPrice} />
+                              <OddsCell
+                                line={-spreads.line}
+                                price={spreads.awayPrice}
+                                ceq={awaySpreadsData?.ceq}
+                                topDrivers={awaySpreadsData?.topDrivers}
+                              />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                             {h2h?.awayPrice !== undefined ? (
-                              <MoneylineCell price={h2h.awayPrice} />
+                              <MoneylineCell
+                                price={h2h.awayPrice}
+                                ceq={awayH2hData?.ceq}
+                                topDrivers={awayH2hData?.topDrivers}
+                              />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                             {totals?.line !== undefined ? (
-                              <OddsCell line={`O${totals.line}`} price={totals.overPrice} />
+                              <OddsCell
+                                line={`O${totals.line}`}
+                                price={totals.overPrice}
+                                ceq={overTotalsData?.ceq}
+                                topDrivers={overTotalsData?.topDrivers}
+                              />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                           </div>
                         );
@@ -567,6 +705,11 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                         const spreads = bookOdds?.spreads || game.consensus?.spreads;
                         const h2h = bookOdds?.h2h || game.consensus?.h2h;
                         const totals = bookOdds?.totals || game.consensus?.totals;
+                        // Extract CEQ data for home side
+                        const ceq = game.ceq as GameCEQ | undefined;
+                        const homeSpreadsData = ceq?.spreads?.home;
+                        const homeH2hData = ceq?.h2h?.home;
+                        const underTotalsData = ceq?.totals?.under;
                         return (
                           <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
                             <div className="flex items-center gap-2 min-w-0">
@@ -574,56 +717,92 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                               <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.homeTeam, game.sportKey)}</span>
                             </div>
                             {spreads?.line !== undefined ? (
-                              <OddsCell line={spreads.line} price={spreads.homePrice} />
+                              <OddsCell
+                                line={spreads.line}
+                                price={spreads.homePrice}
+                                ceq={homeSpreadsData?.ceq}
+                                topDrivers={homeSpreadsData?.topDrivers}
+                              />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                             {h2h?.homePrice !== undefined ? (
-                              <MoneylineCell price={h2h.homePrice} />
+                              <MoneylineCell
+                                price={h2h.homePrice}
+                                ceq={homeH2hData?.ceq}
+                                topDrivers={homeH2hData?.topDrivers}
+                              />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                             {totals?.line !== undefined ? (
-                              <OddsCell line={`U${totals.line}`} price={totals.underPrice} />
+                              <OddsCell
+                                line={`U${totals.line}`}
+                                price={totals.underPrice}
+                                ceq={underTotalsData?.ceq}
+                                topDrivers={underTotalsData?.topDrivers}
+                              />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                           </div>
                         );
                       })()}
 
-                      {/* Card Footer - Edge Score */}
-                      {(game.composite_score != null || game.calculatedEdge) && (
-                        <div className="px-3 py-2 border-t border-zinc-800/50 bg-zinc-900/50">
-                          <div className="flex items-center justify-between">
-                            <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-wider">Edge Score</span>
-                            <div className="flex items-center gap-2">
-                              {/* Edge Bar */}
-                              <div className="w-20 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
-                                <div
-                                  className={`h-full rounded-full transition-all ${
-                                    (game.calculatedEdge?.score || game.composite_score * 100) >= 65 ? 'bg-emerald-400' :
-                                    (game.calculatedEdge?.score || game.composite_score * 100) >= 55 ? 'bg-blue-400' :
-                                    (game.calculatedEdge?.score || game.composite_score * 100) >= 45 ? 'bg-amber-400' : 'bg-zinc-600'
-                                  }`}
-                                  style={{ width: `${Math.min(game.calculatedEdge?.score || game.composite_score * 100, 100)}%` }}
-                                />
+                      {/* Card Footer - Edge Score (CEQ) */}
+                      {(() => {
+                        const ceq = game.ceq as GameCEQ | undefined;
+                        const bestEdge = ceq?.bestEdge;
+                        const score = bestEdge?.ceq || game.calculatedEdge?.score || (game.composite_score ? Math.round(game.composite_score * 100) : null);
+                        if (score === null) return null;
+
+                        // Determine bar color based on CEQ thresholds
+                        const barColor = score >= 76 ? 'bg-emerald-400' :
+                                        score >= 66 ? 'bg-emerald-400' :
+                                        score >= 56 ? 'bg-blue-400' :
+                                        score <= 35 ? 'bg-red-400' :
+                                        score <= 45 ? 'bg-amber-400' : 'bg-zinc-600';
+
+                        const textColor = score >= 76 ? 'text-emerald-400' :
+                                         score >= 66 ? 'text-emerald-400' :
+                                         score >= 56 ? 'text-blue-400' :
+                                         score <= 35 ? 'text-red-400' :
+                                         score <= 45 ? 'text-amber-400' : 'text-zinc-500';
+
+                        const side = bestEdge?.side || game.calculatedEdge?.side;
+                        const confidence = bestEdge?.confidence || game.calculatedEdge?.confidence;
+
+                        return (
+                          <div className="px-3 py-2 border-t border-zinc-800/50 bg-zinc-900/50">
+                            <div className="flex items-center justify-between">
+                              <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-wider">CEQ Score</span>
+                              <div className="flex items-center gap-2">
+                                {/* Edge Bar */}
+                                <div className="w-20 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                                  <div
+                                    className={`h-full rounded-full transition-all ${barColor}`}
+                                    style={{ width: `${Math.min(score, 100)}%` }}
+                                  />
+                                </div>
+                                {/* Edge Percentage */}
+                                <span className={`text-xs font-mono font-bold ${textColor}`}>
+                                  {score}%
+                                </span>
                               </div>
-                              {/* Edge Percentage */}
-                              <span className={`text-xs font-mono font-bold ${
-                                (game.calculatedEdge?.score || game.composite_score * 100) >= 65 ? 'text-emerald-400' :
-                                (game.calculatedEdge?.score || game.composite_score * 100) >= 55 ? 'text-blue-400' :
-                                (game.calculatedEdge?.score || game.composite_score * 100) >= 45 ? 'text-amber-400' : 'text-zinc-500'
-                              }`}>
-                                {game.calculatedEdge?.score || Math.round(game.composite_score * 100)}%
-                              </span>
                             </div>
+                            {/* Edge Side Indicator */}
+                            {side && confidence !== 'PASS' && (
+                              <div className="mt-1 flex items-center gap-1">
+                                <span className="text-[9px] text-zinc-600">Favoring:</span>
+                                <span className={`text-[9px] font-medium ${score >= 56 ? 'text-emerald-400' : score <= 45 ? 'text-red-400' : 'text-zinc-400'}`}>
+                                  {side === 'home' ? game.homeTeam.split(' ').pop() :
+                                   side === 'away' ? game.awayTeam.split(' ').pop() :
+                                   side === 'over' ? 'Over' : side === 'under' ? 'Under' : side}
+                                </span>
+                                {bestEdge?.market && (
+                                  <span className="text-[8px] text-zinc-500">
+                                    ({bestEdge.market === 'spread' ? 'Spread' : bestEdge.market === 'h2h' ? 'ML' : 'Total'})
+                                  </span>
+                                )}
+                              </div>
+                            )}
                           </div>
-                          {/* Edge Side Indicator */}
-                          {game.calculatedEdge?.side && game.calculatedEdge.confidence !== 'PASS' && (
-                            <div className="mt-1 flex items-center gap-1">
-                              <span className="text-[9px] text-zinc-600">Favoring:</span>
-                              <span className="text-[9px] font-medium text-emerald-400">
-                                {game.calculatedEdge.side === 'home' ? game.homeTeam.split(' ').pop() : game.awayTeam.split(' ').pop()}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      )}
+                        );
+                      })()}
                     </Link>
                   );
                 })}

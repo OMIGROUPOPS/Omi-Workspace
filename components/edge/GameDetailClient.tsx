@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { formatOdds, formatSpread } from '@/lib/edge/utils/odds-math';
 import { isGameLive as checkGameLive, getGameState } from '@/lib/edge/utils/game-state';
+import type { CEQResult, GameCEQ, PillarResult, PillarVariable, CEQConfidence } from '@/lib/edge/engine/edgescout';
 
 // Only FanDuel and DraftKings
 const BOOK_CONFIG: Record<string, { name: string; color: string }> = {
@@ -697,6 +698,125 @@ function AskEdgeAI({ gameId, homeTeam, awayTeam, sportKey, chartSelection }: { g
   );
 }
 
+// CEQ Pillar Breakdown Component
+function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | null; marketLabel: string }) {
+  if (!ceqResult) {
+    return (
+      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
+        <h3 className="text-sm font-semibold text-zinc-300 mb-3">EdgeScout Analysis</h3>
+        <p className="text-xs text-zinc-500">No CEQ data available for this market</p>
+      </div>
+    );
+  }
+
+  const { ceq, confidence, side, pillars, topDrivers } = ceqResult;
+
+  // Get confidence color
+  const getConfidenceStyle = (conf: CEQConfidence) => {
+    switch (conf) {
+      case 'RARE': return { bg: 'bg-purple-500/20', border: 'border-purple-500/40', text: 'text-purple-400' };
+      case 'STRONG': return { bg: 'bg-emerald-500/20', border: 'border-emerald-500/40', text: 'text-emerald-400' };
+      case 'EDGE': return { bg: 'bg-blue-500/20', border: 'border-blue-500/40', text: 'text-blue-400' };
+      case 'WATCH': return { bg: 'bg-amber-500/20', border: 'border-amber-500/40', text: 'text-amber-400' };
+      default: return { bg: 'bg-zinc-800/50', border: 'border-zinc-700/50', text: 'text-zinc-500' };
+    }
+  };
+
+  const confStyle = getConfidenceStyle(confidence);
+
+  // Render pillar section
+  const renderPillar = (name: string, pillar: PillarResult, isActive: boolean) => {
+    const hasActiveVars = pillar.variables.some(v => v.available);
+    return (
+      <div className={`rounded-lg border p-3 ${isActive ? 'border-zinc-700 bg-zinc-800/30' : 'border-zinc-800/50 bg-zinc-900/30'}`}>
+        <div className="flex items-center justify-between mb-2">
+          <h4 className={`text-xs font-semibold uppercase tracking-wide ${isActive ? 'text-zinc-300' : 'text-zinc-600'}`}>
+            {name}
+          </h4>
+          <div className="flex items-center gap-2">
+            {isActive && (
+              <span className={`text-xs font-mono ${pillar.score >= 56 ? 'text-emerald-400' : pillar.score <= 44 ? 'text-red-400' : 'text-zinc-400'}`}>
+                {pillar.score}
+              </span>
+            )}
+            {!isActive && (
+              <span className="text-[10px] text-zinc-600 bg-zinc-800 px-1.5 py-0.5 rounded">N/A</span>
+            )}
+          </div>
+        </div>
+        <div className="space-y-1.5">
+          {pillar.variables.map((variable, idx) => (
+            <div key={idx} className="flex items-start justify-between gap-2">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <span className={`text-[10px] font-mono ${variable.available ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                  {variable.name}:
+                </span>
+                {variable.available ? (
+                  <span className={`text-[10px] font-mono ${variable.score >= 56 ? 'text-emerald-400' : variable.score <= 44 ? 'text-red-400' : 'text-zinc-400'}`}>
+                    {variable.score}
+                  </span>
+                ) : (
+                  <span className="text-[10px] text-zinc-600">--</span>
+                )}
+              </div>
+              <span className={`text-[9px] truncate max-w-[180px] ${variable.available ? 'text-zinc-500' : 'text-zinc-700'}`}>
+                {variable.reason}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+      {/* Header with CEQ Score */}
+      <div className={`px-4 py-3 ${confStyle.bg} border-b ${confStyle.border}`}>
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-sm font-semibold text-zinc-100">EdgeScout Analysis</h3>
+            <p className="text-[10px] text-zinc-400 mt-0.5">{marketLabel}</p>
+          </div>
+          <div className="text-right">
+            <div className={`text-2xl font-bold font-mono ${confStyle.text}`}>{ceq}%</div>
+            <div className={`text-[10px] font-semibold ${confStyle.text}`}>{confidence}</div>
+          </div>
+        </div>
+        {side && confidence !== 'PASS' && (
+          <div className="mt-2 text-xs text-zinc-400">
+            Edge on: <span className={confStyle.text}>{side}</span>
+          </div>
+        )}
+      </div>
+
+      {/* Top Drivers */}
+      {topDrivers.length > 0 && (
+        <div className="px-4 py-3 border-b border-zinc-800">
+          <h4 className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wide mb-2">Key Drivers</h4>
+          <div className="space-y-1">
+            {topDrivers.map((driver, idx) => (
+              <div key={idx} className="text-xs text-zinc-300 flex items-start gap-2">
+                <span className="text-emerald-400">→</span>
+                <span>{driver}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Pillar Breakdown */}
+      <div className="p-4 space-y-3">
+        {renderPillar('Market Efficiency', pillars.marketEfficiency, pillars.marketEfficiency.weight > 0)}
+        {renderPillar('Player Utilization', pillars.playerUtilization, pillars.playerUtilization.weight > 0)}
+        {renderPillar('Game Environment', pillars.gameEnvironment, pillars.gameEnvironment.weight > 0)}
+        {renderPillar('Matchup Dynamics', pillars.matchupDynamics, pillars.matchupDynamics.weight > 0)}
+        {renderPillar('Sentiment', pillars.sentiment, pillars.sentiment.weight > 0)}
+      </div>
+    </div>
+  );
+}
+
 function MarketCell({ value, subValue, edge, onClick, isSelected }: { value: string | number; subValue?: string; edge: number; onClick?: () => void; isSelected?: boolean }) {
   // Simplified cell: just show line and price, no confusing percentages
   const edgeColor = edge >= 0 ? 'text-emerald-400' : 'text-red-400';
@@ -927,6 +1047,7 @@ interface GameDetailClientProps {
   userTier?: 'tier_1' | 'tier_2';
   userEmail?: string;
   isDemo?: boolean;
+  ceq?: GameCEQ | null;
 }
 
 // Game state detection now uses shared utility from @/lib/edge/utils/game-state
@@ -963,7 +1084,7 @@ function DemoModeBanner() {
   );
 }
 
-export function GameDetailClient({ gameData, bookmakers, availableBooks, availableTabs, userTier = 'tier_2', userEmail, isDemo = false }: GameDetailClientProps) {
+export function GameDetailClient({ gameData, bookmakers, availableBooks, availableTabs, userTier = 'tier_2', userEmail, isDemo = false, ceq }: GameDetailClientProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('full');
   const [chartMarket, setChartMarket] = useState<'spread' | 'total' | 'moneyline'>('spread');
@@ -1111,6 +1232,64 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         </div>
         <AskEdgeAI gameId={gameData.id} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} chartSelection={chartSelection} />
       </div>
+
+      {/* EdgeScout Pillar Breakdown */}
+      {ceq && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+          {/* Spread Analysis */}
+          {ceq.spreads && (
+            <PillarBreakdown
+              ceqResult={ceq.spreads.home}
+              marketLabel={`${gameData.homeTeam} Spread`}
+            />
+          )}
+          {/* Moneyline Analysis */}
+          {ceq.h2h && (
+            <PillarBreakdown
+              ceqResult={ceq.h2h.home}
+              marketLabel={`${gameData.homeTeam} Moneyline`}
+            />
+          )}
+          {/* Totals Analysis */}
+          {ceq.totals && (
+            <PillarBreakdown
+              ceqResult={ceq.totals.over}
+              marketLabel="Over Total"
+            />
+          )}
+          {/* Best Edge Summary */}
+          {ceq.bestEdge && (
+            <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
+              <h3 className="text-sm font-semibold text-zinc-300 mb-3">Best Edge Opportunity</h3>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-zinc-400 text-sm">Market:</span>
+                <span className="text-zinc-100 font-medium capitalize">{ceq.bestEdge.market}</span>
+              </div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-zinc-400 text-sm">Side:</span>
+                <span className="text-zinc-100 font-medium capitalize">{ceq.bestEdge.side}</span>
+              </div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-zinc-400 text-sm">CEQ Score:</span>
+                <span className={`font-bold font-mono ${
+                  ceq.bestEdge.ceq >= 76 ? 'text-emerald-400' :
+                  ceq.bestEdge.ceq >= 66 ? 'text-emerald-400' :
+                  ceq.bestEdge.ceq >= 56 ? 'text-blue-400' : 'text-zinc-400'
+                }`}>{ceq.bestEdge.ceq}%</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-zinc-400 text-sm">Confidence:</span>
+                <span className={`font-semibold ${
+                  ceq.bestEdge.confidence === 'RARE' ? 'text-purple-400' :
+                  ceq.bestEdge.confidence === 'STRONG' ? 'text-emerald-400' :
+                  ceq.bestEdge.confidence === 'EDGE' ? 'text-blue-400' :
+                  ceq.bestEdge.confidence === 'WATCH' ? 'text-amber-400' : 'text-zinc-500'
+                }`}>{ceq.bestEdge.confidence}</span>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
       
       <div className="relative mb-4" ref={dropdownRef}>
         <button onClick={() => setIsOpen(!isOpen)} className="flex items-center gap-3 px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg hover:bg-zinc-700/70 transition-all min-w-[200px]">

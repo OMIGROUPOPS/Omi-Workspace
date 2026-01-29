@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
 import { calculateQuickEdge } from '@/lib/edge/engine/edge-calculator';
+import { calculateCEQ, calculateGameCEQ, groupSnapshotsByGame, type ExtendedOddsSnapshot, type GameCEQ } from '@/lib/edge/engine/edgescout';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 const ODDS_API_KEY = process.env.ODDS_API_KEY || '';
@@ -125,6 +126,45 @@ async function fetchOpeningLines(gameIds: string[]): Promise<Record<string, numb
   return openingLines;
 }
 
+// Fetch full snapshot history for CEQ calculations
+async function fetchGameSnapshots(gameIds: string[]): Promise<Record<string, ExtendedOddsSnapshot[]>> {
+  const snapshotsMap: Record<string, ExtendedOddsSnapshot[]> = {};
+
+  if (gameIds.length === 0) return snapshotsMap;
+
+  try {
+    const supabase = getDirectSupabase();
+    // Fetch all market types for full CEQ calculation
+    const { data, error } = await supabase
+      .from('odds_snapshots')
+      .select('game_id, market, book_key, outcome_type, line, odds, snapshot_time')
+      .in('game_id', gameIds)
+      .order('snapshot_time', { ascending: true });
+
+    if (!error && data) {
+      // Group by game_id
+      for (const row of data) {
+        if (!snapshotsMap[row.game_id]) {
+          snapshotsMap[row.game_id] = [];
+        }
+        snapshotsMap[row.game_id].push({
+          game_id: row.game_id,
+          market: row.market,
+          book_key: row.book_key,
+          outcome_type: row.outcome_type,
+          line: row.line,
+          odds: row.odds,
+          snapshot_time: row.snapshot_time,
+        });
+      }
+    }
+  } catch (e) {
+    console.error('[GameSnapshots] Fetch failed:', e);
+  }
+
+  return snapshotsMap;
+}
+
 async function fetchEdgesFromBackend(sport: string) {
   try {
     const controller = new AbortController();
@@ -142,7 +182,13 @@ async function fetchEdgesFromBackend(sport: string) {
   }
 }
 
-function processBackendGame(game: any, sport: string, scores: Record<string, any>, openingLines: Record<string, number>) {
+function processBackendGame(
+  game: any,
+  sport: string,
+  scores: Record<string, any>,
+  openingLines: Record<string, number>,
+  snapshotsMap: Record<string, ExtendedOddsSnapshot[]>
+) {
   const consensus: any = {};
 
   if (game.consensus_odds?.h2h) {
@@ -168,16 +214,66 @@ function processBackendGame(game: any, sport: string, scores: Record<string, any
     };
   }
 
+  // Calculate CEQ using EdgeScout framework
+  const gameSnapshots = snapshotsMap[game.game_id] || [];
+  let ceqData: GameCEQ | null = null;
+
+  // Build odds data for CEQ calculation
+  const gameOdds = {
+    spreads: consensus.spreads?.line !== undefined ? {
+      home: { line: consensus.spreads.line, odds: consensus.spreads.homePrice || -110 },
+      away: { line: -consensus.spreads.line, odds: consensus.spreads.awayPrice || -110 },
+    } : undefined,
+    h2h: consensus.h2h ? {
+      home: consensus.h2h.homePrice,
+      away: consensus.h2h.awayPrice,
+    } : undefined,
+    totals: consensus.totals?.line !== undefined ? {
+      line: consensus.totals.line,
+      over: consensus.totals.overPrice || -110,
+      under: consensus.totals.underPrice || -110,
+    } : undefined,
+  };
+
+  // Opening lines for CEQ (use spread home line as baseline)
+  const openingData = {
+    spreads: openingLines[game.game_id] !== undefined ? {
+      home: openingLines[game.game_id],
+      away: -openingLines[game.game_id],
+    } : undefined,
+  };
+
+  // Calculate CEQ
+  if (gameOdds.spreads || gameOdds.h2h || gameOdds.totals) {
+    ceqData = calculateGameCEQ(
+      gameOdds,
+      openingData,
+      gameSnapshots,
+      {}, // allBooksOdds - would need to aggregate from bookmakers
+      {
+        spreads: consensus.spreads ? { home: consensus.spreads.homePrice, away: consensus.spreads.awayPrice } : undefined,
+        h2h: consensus.h2h ? { home: consensus.h2h.homePrice, away: consensus.h2h.awayPrice } : undefined,
+        totals: consensus.totals ? { over: consensus.totals.overPrice, under: consensus.totals.underPrice } : undefined,
+      }
+    );
+  }
+
   // Calculate edge if not provided by backend
   let edgeData = null;
-  if (game.composite_score && game.overall_confidence) {
+  if (ceqData?.bestEdge) {
+    edgeData = {
+      score: ceqData.bestEdge.ceq,
+      confidence: ceqData.bestEdge.confidence,
+      side: ceqData.bestEdge.side,
+    };
+  } else if (game.composite_score && game.overall_confidence) {
     edgeData = {
       score: Math.round(game.composite_score * 100),
       confidence: game.overall_confidence,
       side: game.best_bet?.side || null,
     };
   } else {
-    // Calculate using our edge calculator
+    // Fallback to quick edge calculator
     const calculated = calculateQuickEdge(
       openingLines[game.game_id],
       consensus.spreads?.line,
@@ -201,12 +297,23 @@ function processBackendGame(game: any, sport: string, scores: Record<string, any
     best_bet: game.best_bet,
     best_edge: game.best_edge,
     calculatedEdge: edgeData,
+    ceq: ceqData, // Full CEQ data for UI
     scores: scores[game.game_id] || null,
   };
 }
 
-function processOddsApiGame(game: any, scores: Record<string, any>, openingLines: Record<string, number>) {
+function processOddsApiGame(
+  game: any,
+  scores: Record<string, any>,
+  openingLines: Record<string, number>,
+  snapshotsMap: Record<string, ExtendedOddsSnapshot[]>
+) {
   const consensus: any = {};
+  const allBooksOdds: {
+    spreads?: { home: number[]; away: number[] };
+    h2h?: { home: number[]; away: number[] };
+    totals?: { over: number[]; under: number[] };
+  } = {};
 
   if (game.bookmakers && game.bookmakers.length > 0) {
     const h2hPrices: { home: number[]; away: number[] } = { home: [], away: [] };
@@ -241,6 +348,11 @@ function processOddsApiGame(game: any, scores: Record<string, any>, openingLines
         }
       }
     }
+
+    // Store all books odds for CEQ calculation
+    allBooksOdds.spreads = { home: spreadData.homePrice, away: spreadData.awayPrice };
+    allBooksOdds.h2h = { home: h2hPrices.home, away: h2hPrices.away };
+    allBooksOdds.totals = { over: totalData.overPrice, under: totalData.underPrice };
 
     const median = (arr: number[]) => {
       if (arr.length === 0) return undefined;
@@ -297,13 +409,67 @@ function processOddsApiGame(game: any, scores: Record<string, any>, openingLines
     }
   }
 
-  // Calculate edge
-  const calculated = calculateQuickEdge(
-    openingLines[game.id],
-    consensus.spreads?.line,
-    consensus.spreads?.homePrice,
-    consensus.spreads?.awayPrice
-  );
+  // Calculate CEQ using EdgeScout framework
+  const gameSnapshots = snapshotsMap[game.id] || [];
+  let ceqData: GameCEQ | null = null;
+
+  // Build odds data for CEQ calculation
+  const gameOdds = {
+    spreads: consensus.spreads?.line !== undefined ? {
+      home: { line: consensus.spreads.line, odds: consensus.spreads.homePrice || -110 },
+      away: { line: -consensus.spreads.line, odds: consensus.spreads.awayPrice || -110 },
+    } : undefined,
+    h2h: consensus.h2h ? {
+      home: consensus.h2h.homePrice,
+      away: consensus.h2h.awayPrice,
+    } : undefined,
+    totals: consensus.totals?.line !== undefined ? {
+      line: consensus.totals.line,
+      over: consensus.totals.overPrice || -110,
+      under: consensus.totals.underPrice || -110,
+    } : undefined,
+  };
+
+  // Opening lines for CEQ
+  const openingData = {
+    spreads: openingLines[game.id] !== undefined ? {
+      home: openingLines[game.id],
+      away: -openingLines[game.id],
+    } : undefined,
+  };
+
+  // Calculate CEQ
+  if (gameOdds.spreads || gameOdds.h2h || gameOdds.totals) {
+    ceqData = calculateGameCEQ(
+      gameOdds,
+      openingData,
+      gameSnapshots,
+      allBooksOdds,
+      {
+        spreads: consensus.spreads ? { home: consensus.spreads.homePrice, away: consensus.spreads.awayPrice } : undefined,
+        h2h: consensus.h2h ? { home: consensus.h2h.homePrice, away: consensus.h2h.awayPrice } : undefined,
+        totals: consensus.totals ? { over: consensus.totals.overPrice, under: consensus.totals.underPrice } : undefined,
+      }
+    );
+  }
+
+  // Determine edge data - prioritize CEQ
+  let edgeData;
+  if (ceqData?.bestEdge) {
+    edgeData = {
+      score: ceqData.bestEdge.ceq,
+      confidence: ceqData.bestEdge.confidence,
+      side: ceqData.bestEdge.side,
+    };
+  } else {
+    // Fallback to quick edge calculator
+    edgeData = calculateQuickEdge(
+      openingLines[game.id],
+      consensus.spreads?.line,
+      consensus.spreads?.homePrice,
+      consensus.spreads?.awayPrice
+    );
+  }
 
   return {
     id: game.id,
@@ -314,14 +480,20 @@ function processOddsApiGame(game: any, scores: Record<string, any>, openingLines
     consensus,
     bookmakers,
     bookmakerCount: game.bookmakers?.length || 0,
-    composite_score: calculated.score / 100,
-    overall_confidence: calculated.confidence,
-    calculatedEdge: calculated,
+    composite_score: edgeData.score / 100,
+    overall_confidence: edgeData.confidence,
+    calculatedEdge: edgeData,
+    ceq: ceqData, // Full CEQ data for UI
     scores: scores[game.id] || null,
   };
 }
 
-async function fetchFromCache(sportKey: string, scores: Record<string, any>, openingLines: Record<string, number>) {
+async function fetchFromCache(
+  sportKey: string,
+  scores: Record<string, any>,
+  openingLines: Record<string, number>,
+  snapshotsMap: Record<string, ExtendedOddsSnapshot[]>
+) {
   try {
     const supabase = getSupabase();
     const { data, error } = await supabase
@@ -332,7 +504,7 @@ async function fetchFromCache(sportKey: string, scores: Record<string, any>, ope
     if (error || !data) return [];
 
     return data
-      .map((row: any) => processOddsApiGame(row.game_data, scores, openingLines))
+      .map((row: any) => processOddsApiGame(row.game_data, scores, openingLines, snapshotsMap))
       .filter(Boolean);
   } catch (e) {
     console.error(`[Cache] Failed to fetch ${sportKey}:`, e);
@@ -359,7 +531,7 @@ export default async function SportsPage() {
 
   const hasBackendData = backendResults.some(r => r.games.length > 0);
 
-  // Collect all game IDs for opening line lookup
+  // Collect all game IDs for opening line and snapshot lookup
   const allGameIds: string[] = [];
   for (const { games } of backendResults) {
     for (const game of games) {
@@ -367,14 +539,17 @@ export default async function SportsPage() {
     }
   }
 
-  // Fetch opening lines for edge calculation
-  const openingLines = await fetchOpeningLines(allGameIds);
+  // Fetch opening lines and full snapshots for CEQ calculation
+  const [openingLines, snapshotsMap] = await Promise.all([
+    fetchOpeningLines(allGameIds),
+    fetchGameSnapshots(allGameIds),
+  ]);
 
   if (hasBackendData) {
     dataSource = 'backend';
     for (const { sport, games } of backendResults) {
       const processed = games
-        .map((g: any) => processBackendGame(g, sport, scoresData, openingLines))
+        .map((g: any) => processBackendGame(g, sport, scoresData, openingLines, snapshotsMap))
         .filter(Boolean)
         .sort((a: any, b: any) => new Date(a.commenceTime).getTime() - new Date(b.commenceTime).getTime());
 
@@ -389,11 +564,34 @@ export default async function SportsPage() {
     }
   } else {
     // Fallback: read from cached_odds table
+    // First collect game IDs from cache to fetch snapshots
+    const supabase = getSupabase();
+    const cachedGameIds: string[] = [];
+    for (const sport of sports) {
+      const sportKey = SPORT_MAPPING[sport];
+      if (sportKey) {
+        const { data } = await supabase
+          .from('cached_odds')
+          .select('game_data')
+          .eq('sport_key', sportKey);
+        if (data) {
+          for (const row of data) {
+            if (row.game_data?.id) cachedGameIds.push(row.game_data.id);
+          }
+        }
+      }
+    }
+
+    // Fetch snapshots for cached games
+    const cachedSnapshotsMap = cachedGameIds.length > 0
+      ? await fetchGameSnapshots(cachedGameIds)
+      : {};
+
     const cacheResults = await Promise.all(
       sports.map(async (sport) => {
         const sportKey = SPORT_MAPPING[sport];
         if (!sportKey) return { sport, games: [] };
-        const games = await fetchFromCache(sportKey, scoresData, openingLines);
+        const games = await fetchFromCache(sportKey, scoresData, openingLines, cachedSnapshotsMap);
         return { sport, games };
       })
     );

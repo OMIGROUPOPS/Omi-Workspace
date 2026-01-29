@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { GameDetailClient } from '@/components/edge/GameDetailClient';
 import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
+import { createClient } from '@supabase/supabase-js';
+import { calculateGameCEQ, type ExtendedOddsSnapshot, type GameCEQ } from '@/lib/edge/engine/edgescout';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 
@@ -19,6 +21,62 @@ function getSupabase() {
       },
     }
   );
+}
+
+// Direct Supabase client for non-cookie operations
+function getDirectSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
+
+// Fetch all snapshots for CEQ calculation
+async function fetchSnapshotsForCEQ(gameId: string): Promise<ExtendedOddsSnapshot[]> {
+  try {
+    const supabase = getDirectSupabase();
+    const { data, error } = await supabase
+      .from('odds_snapshots')
+      .select('game_id, market, book_key, outcome_type, line, odds, snapshot_time')
+      .eq('game_id', gameId)
+      .order('snapshot_time', { ascending: true });
+
+    if (error || !data) return [];
+
+    return data.map(row => ({
+      game_id: row.game_id,
+      market: row.market,
+      book_key: row.book_key,
+      outcome_type: row.outcome_type,
+      line: row.line,
+      odds: row.odds,
+      snapshot_time: row.snapshot_time,
+    }));
+  } catch (e) {
+    console.error('[GameDetail] Snapshots for CEQ fetch error:', e);
+    return [];
+  }
+}
+
+// Fetch opening line for a specific game
+async function fetchOpeningLine(gameId: string): Promise<number | undefined> {
+  try {
+    const supabase = getDirectSupabase();
+    const { data, error } = await supabase
+      .from('odds_snapshots')
+      .select('line')
+      .eq('game_id', gameId)
+      .eq('market', 'spreads')
+      .eq('outcome_type', 'home')
+      .order('snapshot_time', { ascending: true })
+      .limit(1);
+
+    if (error || !data || data.length === 0) return undefined;
+    return data[0].line;
+  } catch (e) {
+    console.error('[GameDetail] Opening line fetch error:', e);
+    return undefined;
+  }
 }
 
 interface PageProps {
@@ -525,6 +583,12 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     h2: { spread: spreadH2History, total: totalH2History },
   };
 
+  // Fetch data for CEQ calculation
+  const [ceqSnapshots, openingLine] = await Promise.all([
+    fetchSnapshotsForCEQ(gameId),
+    fetchOpeningLine(gameId),
+  ]);
+
   // Use per-book odds if available, otherwise fall back to consensus
   let bookmakers: Record<string, any> = {};
   let availableBooks: string[] = [];
@@ -623,8 +687,54 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   const fullSportKey = sportKey;
   const sportConfig = SUPPORTED_SPORTS.find(s => s.key === fullSportKey);
 
-  const scoreColor = compositeScore >= 0.5 ? 'text-emerald-400' : 'text-red-400';
-  const scoreBg = compositeScore >= 0.5 ? 'bg-emerald-500/10' : 'bg-red-500/10';
+  // Calculate CEQ (Composite Edge Quotient) using EdgeScout framework
+  let ceqData: GameCEQ | null = null;
+  const consensus = gameData.consensus_odds || {};
+
+  if (consensus.spreads || consensus.h2h || consensus.totals) {
+    const gameOdds = {
+      spreads: consensus.spreads?.home ? {
+        home: { line: consensus.spreads.home.line || consensus.spreads.home, odds: consensus.spreads.home.odds || -110 },
+        away: { line: consensus.spreads.away?.line || -(consensus.spreads.home.line || 0), odds: consensus.spreads.away?.odds || -110 },
+      } : undefined,
+      h2h: consensus.h2h ? {
+        home: consensus.h2h.home,
+        away: consensus.h2h.away,
+      } : undefined,
+      totals: consensus.totals?.over ? {
+        line: consensus.totals.over.line,
+        over: consensus.totals.over.odds || -110,
+        under: consensus.totals.under?.odds || -110,
+      } : undefined,
+    };
+
+    const openingData = {
+      spreads: openingLine !== undefined ? {
+        home: openingLine,
+        away: -openingLine,
+      } : undefined,
+    };
+
+    ceqData = calculateGameCEQ(
+      gameOdds,
+      openingData,
+      ceqSnapshots,
+      {}, // allBooksOdds - would need to aggregate
+      {
+        spreads: consensus.spreads?.home ? { home: consensus.spreads.home.odds || -110, away: consensus.spreads.away?.odds || -110 } : undefined,
+        h2h: consensus.h2h ? { home: consensus.h2h.home, away: consensus.h2h.away } : undefined,
+        totals: consensus.totals?.over ? { over: consensus.totals.over.odds || -110, under: consensus.totals.under?.odds || -110 } : undefined,
+      }
+    );
+  }
+
+  // Use CEQ for display if available
+  const ceqBestScore = ceqData?.bestEdge?.ceq;
+  const displayScore = ceqBestScore !== undefined ? ceqBestScore / 100 : compositeScore;
+  const displayConfidence = ceqData?.bestEdge?.confidence || confidence;
+
+  const scoreColor = displayScore >= 0.5 ? 'text-emerald-400' : 'text-red-400';
+  const scoreBg = displayScore >= 0.5 ? 'bg-emerald-500/10' : 'bg-red-500/10';
 
   const hasProps = (propsData && propsData.length > 0) ||
     Object.values(bookmakers).some((b: any) => b.marketGroups?.playerProps?.length > 0);
@@ -676,19 +786,25 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
           
           <div className="flex items-center gap-3">
             <div className={`px-3 py-1.5 rounded-lg ${scoreBg} flex items-center gap-2`}>
-              <span className="text-xs text-zinc-400">Edge Score</span>
+              <span className="text-xs text-zinc-400">CEQ Score</span>
               <span className={`text-lg font-bold ${scoreColor}`}>
-                {(compositeScore * 100).toFixed(0)}%
+                {(displayScore * 100).toFixed(0)}%
               </span>
             </div>
             <span className={`text-xs font-medium px-2 py-1 rounded ${
-              confidence === 'STRONG_EDGE' ? 'bg-emerald-500/20 text-emerald-400' :
-              confidence === 'EDGE' ? 'bg-emerald-500/10 text-emerald-300' :
-              confidence === 'WATCH' ? 'bg-yellow-500/10 text-yellow-400' :
+              displayConfidence === 'RARE' ? 'bg-purple-500/20 text-purple-400' :
+              displayConfidence === 'STRONG' || displayConfidence === 'STRONG_EDGE' ? 'bg-emerald-500/20 text-emerald-400' :
+              displayConfidence === 'EDGE' ? 'bg-blue-500/20 text-blue-300' :
+              displayConfidence === 'WATCH' ? 'bg-amber-500/10 text-amber-400' :
               'bg-zinc-800 text-zinc-500'
             }`}>
-              {confidence}
+              {displayConfidence}
             </span>
+            {ceqData?.bestEdge && (
+              <span className="text-[10px] text-zinc-500">
+                {ceqData.bestEdge.side} {ceqData.bestEdge.market}
+              </span>
+            )}
           </div>
         </div>
       </div>
@@ -700,6 +816,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
         userTier="tier_1"
         userEmail={userEmail}
         isDemo={isDemo}
+        ceq={ceqData}
         availableTabs={{
           fullGame: true,
           firstHalf: hasFirstHalf || isFootball || isBasketball || isNHL,

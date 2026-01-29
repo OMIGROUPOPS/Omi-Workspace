@@ -16,11 +16,17 @@ function getDemoAccounts(): string[] {
   return envAccounts.split(',').map(e => e.trim().toLowerCase()).filter(Boolean);
 }
 
-// Beta accounts loaded from environment variable
-// Format: BETA_ACCOUNTS="email1:password1,email2:password2"
+// Beta accounts - hardcoded for client-side auth during beta period
+// This is a closed beta with limited access, proper auth (Supabase) coming soon
+const BETA_CREDENTIALS: Record<string, string> = {
+  'omigroup.ops@outlook.com': 'Druids08',
+};
+
+// Additional accounts from environment variable (NEXT_PUBLIC_ required for client)
+// Format: NEXT_PUBLIC_BETA_ACCOUNTS="email1:password1,email2:password2"
 function getBetaAccounts(): Record<string, string> {
-  const envAccounts = process.env.BETA_ACCOUNTS || '';
-  const accounts: Record<string, string> = {};
+  const envAccounts = process.env.NEXT_PUBLIC_BETA_ACCOUNTS || '';
+  const accounts: Record<string, string> = { ...BETA_CREDENTIALS };
 
   envAccounts.split(',').forEach(pair => {
     const [email, password] = pair.split(':').map(s => s.trim());

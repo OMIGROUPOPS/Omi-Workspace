@@ -88,10 +88,15 @@ interface LineMovementChartProps {
   commenceTime?: string;
 }
 
+// Time range options for chart
+type TimeRange = '1H' | '3H' | '6H' | '24H' | 'ALL';
+
 function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, awayTeam, viewMode, onViewModeChange, commenceTime }: LineMovementChartProps) {
   const [hoveredPoint, setHoveredPoint] = useState<{ x: number; y: number; value: number; timestamp: Date; index: number } | null>(null);
   // Track which side to show: 'home'/'away' for spreads/ML, 'over'/'under' for totals
   const [trackingSide, setTrackingSide] = useState<'home' | 'away' | 'over' | 'under'>('home');
+  // Time range for chart - auto-select based on game state
+  const [timeRange, setTimeRange] = useState<TimeRange>('ALL');
 
   const isProp = selection.type === 'prop';
   const marketType = selection.type === 'market' ? selection.market : 'line';
@@ -99,6 +104,14 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   // Parse game start time for live cutoff indicator
   const gameStartTime = commenceTime ? new Date(commenceTime) : null;
+  const isGameLive = gameStartTime && new Date() > gameStartTime;
+
+  // Auto-select time range for live games on mount
+  useEffect(() => {
+    if (isGameLive && timeRange === 'ALL') {
+      setTimeRange('3H'); // Default to 3H for live games to show recent action
+    }
+  }, [isGameLive]);
 
   // For price view, determine which side to show
   const isShowingPrice = viewMode === 'price';
@@ -141,6 +154,18 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
     // Sort by timestamp
     data.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
+
+    // Apply time range filter
+    if (timeRange !== 'ALL' && data.length > 0) {
+      const now = new Date();
+      const hoursMap: Record<TimeRange, number> = { '1H': 1, '3H': 3, '6H': 6, '24H': 24, 'ALL': 0 };
+      const cutoffTime = new Date(now.getTime() - hoursMap[timeRange] * 60 * 60 * 1000);
+      const filteredByTime = data.filter(d => d.timestamp >= cutoffTime);
+      // Keep at least 2 points for a line
+      if (filteredByTime.length >= 2) {
+        data = filteredByTime;
+      }
+    }
   }
 
   // Determine which side we're tracking for clear labeling
@@ -186,10 +211,29 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     ? `${selection.label} - Price`
     : selection.label;
 
+  // Time range selector component
+  const TimeRangeSelector = () => (
+    <div className="flex rounded overflow-hidden border border-zinc-700/50">
+      {(['1H', '3H', '6H', '24H', 'ALL'] as TimeRange[]).map((range) => (
+        <button
+          key={range}
+          onClick={() => setTimeRange(range)}
+          className={`px-2 py-0.5 text-[10px] font-medium transition-colors ${
+            timeRange === range
+              ? 'bg-zinc-600 text-zinc-100'
+              : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-300'
+          }`}
+        >
+          {range}
+        </button>
+      ))}
+    </div>
+  );
+
   // If no data or only 1 point, show message
   if (data.length === 0) {
     return (
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
+      <div className="bg-zinc-900/80 border border-zinc-800/50 rounded-lg p-4">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium text-zinc-100">{chartTitle}</h3>
           <div className="flex items-center gap-2">
@@ -246,15 +290,13 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const chartWidth = width - paddingLeft - paddingRight;
   const chartHeight = height - paddingTop - paddingBottom;
 
-  // For price charts, INVERT so worse prices (more negative) are at TOP
-  // This way line going UP = price getting worse (more juice) = bad
-  // For line charts, higher values at TOP (standard)
+  // For both line and price charts, higher values at TOP (standard)
+  // For price charts: less negative = better = higher on chart
+  // This way line going UP = price getting better (less juice) = good
   const chartPoints = data.map((d, i) => {
     const normalizedY = (d.value - minVal + padding) / (range + 2 * padding);
-    // For price view: invert Y so worse (more negative) is at top
-    const y = effectiveViewMode === 'price'
-      ? paddingTop + normalizedY * chartHeight  // Inverted: lower value = top
-      : paddingTop + chartHeight - normalizedY * chartHeight;  // Standard: higher value = top
+    // Standard for all: higher value = top of chart
+    const y = paddingTop + chartHeight - normalizedY * chartHeight;
     return {
       x: paddingLeft + (i / Math.max(data.length - 1, 1)) * chartWidth,
       y,
@@ -289,13 +331,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const labelMin = roundLabel(minVal - padding * 0.5);
   const labelMid = roundLabel((maxVal + minVal) / 2);
 
-  // Y-axis labels: For price view, invert (worse/more negative at top)
-  // For line view, standard (higher at top)
-  const yLabels = isPrice ? [
-    { value: labelMin, y: paddingTop },  // Worse price (more negative) at top
-    { value: labelMid, y: paddingTop + chartHeight / 2 },
-    { value: labelMax, y: paddingTop + chartHeight }  // Better price (less negative) at bottom
-  ] : [
+  // Y-axis labels: Standard for all (higher values at top)
+  // For prices: less negative (-106) at top, more negative (-115) at bottom
+  const yLabels = [
     { value: labelMax, y: paddingTop },  // Higher value at top
     { value: labelMid, y: paddingTop + chartHeight / 2 },
     { value: labelMin, y: paddingTop + chartHeight }  // Lower value at bottom
@@ -339,136 +377,111 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const gradientId = `chart-grad-${gameId}-${effectiveViewMode}`;
 
   return (
-    <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
-      <div className="flex items-center justify-between mb-4">
+    <div className="bg-zinc-900/80 border border-zinc-800/50 rounded-lg p-4">
+      <div className="flex items-center justify-between mb-3">
         <h3 className="text-sm font-medium text-zinc-100">{chartTitle}</h3>
         <div className="flex items-center gap-2">
+          <TimeRangeSelector />
           {marketType !== 'moneyline' && (
-            <div className="flex rounded-lg overflow-hidden border border-zinc-700">
+            <div className="flex rounded overflow-hidden border border-zinc-700/50">
               <button
                 onClick={() => onViewModeChange('line')}
-                className={`px-2.5 py-1 text-xs font-medium transition-colors ${viewMode === 'line' ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200'}`}
+                className={`px-2 py-0.5 text-[10px] font-medium transition-colors ${viewMode === 'line' ? 'bg-emerald-500 text-white' : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-300'}`}
               >
                 Line
               </button>
               <button
                 onClick={() => onViewModeChange('price')}
-                className={`px-2.5 py-1 text-xs font-medium transition-colors ${viewMode === 'price' ? 'bg-amber-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200'}`}
+                className={`px-2 py-0.5 text-[10px] font-medium transition-colors ${viewMode === 'price' ? 'bg-amber-500 text-white' : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-300'}`}
               >
                 Price
               </button>
             </div>
           )}
-          <span className="text-xs text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Live Data</span>
         </div>
       </div>
 
-      {/* Tracking indicator - clickable to toggle between sides */}
-      <div className="flex items-center gap-2 mb-3 pb-3 border-b border-zinc-800">
-        <span className="text-xs text-zinc-500">Tracking:</span>
-        {!isProp && oppositeSideLabel ? (
-          <div className="flex rounded overflow-hidden border border-zinc-700">
-            <button
-              onClick={() => marketType === 'total' ? setTrackingSide('over') : setTrackingSide('home')}
-              className={`px-2 py-0.5 text-xs font-medium transition-colors ${
-                (marketType === 'total' ? trackingSide === 'over' : trackingSide === 'home')
-                  ? 'bg-zinc-700 text-zinc-100'
-                  : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-300'
-              }`}
-            >
-              {marketType === 'total' ? 'Over' : (homeTeam || 'Home')}
-            </button>
-            <button
-              onClick={() => marketType === 'total' ? setTrackingSide('under') : setTrackingSide('away')}
-              className={`px-2 py-0.5 text-xs font-medium transition-colors ${
-                (marketType === 'total' ? trackingSide === 'under' : trackingSide === 'away')
-                  ? 'bg-zinc-700 text-zinc-100'
-                  : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-300'
-              }`}
-            >
-              {marketType === 'total' ? 'Under' : (awayTeam || 'Away')}
-            </button>
-          </div>
-        ) : (
-          <span className="px-2 py-0.5 bg-zinc-800 rounded text-sm font-medium text-zinc-100">{trackingLabel}</span>
-        )}
-        {marketType === 'spread' && selection.line !== undefined && (
-          <span className="text-xs text-zinc-400">
-            ({trackingSide === 'away' ? formatSpread(-(selection.line)) : formatSpread(selection.line)})
-          </span>
-        )}
-        {marketType === 'total' && selection.line !== undefined && (
-          <span className="text-xs text-zinc-400">({selection.line})</span>
-        )}
-      </div>
-
-      {/* Movement summary - clear format: "opened → current (delta)" */}
-      <div className="flex items-center gap-4 mb-4">
+      {/* Compact tracking + movement row */}
+      <div className="flex items-center justify-between mb-3 pb-2 border-b border-zinc-800/50">
         <div className="flex items-center gap-2">
-          <span className="text-zinc-300 text-sm">{formatValue(openValue)}</span>
-          <span className="text-zinc-500">→</span>
-          <span className="text-zinc-100 text-sm font-semibold">{formatValue(currentValue)}</span>
-          <span className={`text-sm font-medium ${movementColor}`}>
-            ({movement > 0 ? '+' : ''}{effectiveViewMode === 'price' ? Math.round(movement) : movement.toFixed(1)})
+          <span className="text-[10px] text-zinc-500 uppercase tracking-wide">Tracking</span>
+          {!isProp && oppositeSideLabel ? (
+            <div className="flex rounded overflow-hidden border border-zinc-700/50">
+              <button
+                onClick={() => marketType === 'total' ? setTrackingSide('over') : setTrackingSide('home')}
+                className={`px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
+                  (marketType === 'total' ? trackingSide === 'over' : trackingSide === 'home')
+                    ? 'bg-zinc-700 text-zinc-100'
+                    : 'bg-zinc-800/30 text-zinc-500 hover:text-zinc-300'
+                }`}
+              >
+                {marketType === 'total' ? 'O' : (homeTeam?.slice(0, 3).toUpperCase() || 'HM')}
+              </button>
+              <button
+                onClick={() => marketType === 'total' ? setTrackingSide('under') : setTrackingSide('away')}
+                className={`px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
+                  (marketType === 'total' ? trackingSide === 'under' : trackingSide === 'away')
+                    ? 'bg-zinc-700 text-zinc-100'
+                    : 'bg-zinc-800/30 text-zinc-500 hover:text-zinc-300'
+                }`}
+              >
+                {marketType === 'total' ? 'U' : (awayTeam?.slice(0, 3).toUpperCase() || 'AW')}
+              </button>
+            </div>
+          ) : (
+            <span className="px-1.5 py-0.5 bg-zinc-800/50 rounded text-[10px] font-medium text-zinc-300">{trackingLabel}</span>
+          )}
+        </div>
+        {/* Movement summary */}
+        <div className="flex items-center gap-1.5">
+          <span className="text-zinc-400 text-xs">{formatValue(openValue)}</span>
+          <span className="text-zinc-600 text-[10px]">→</span>
+          <span className="text-zinc-100 text-xs font-semibold">{formatValue(currentValue)}</span>
+          <span className={`text-[10px] font-medium ${movementColor}`}>
+            {movement > 0 ? '+' : ''}{effectiveViewMode === 'price' ? Math.round(movement) : movement.toFixed(1)}
           </span>
         </div>
-        {effectiveViewMode === 'price' && selection.line !== undefined && (
-          <div className="ml-auto text-xs text-zinc-500">
-            Line: {marketType === 'spread' ? formatSpread(selection.line) : selection.line}
-          </div>
-        )}
       </div>
 
       <div className="relative">
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto cursor-crosshair" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
           {yLabels.map((label, i) => (
             <g key={i}>
-              <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#3f3f46" strokeWidth="1" strokeDasharray="4 4" />
-              <text x={paddingLeft - 8} y={label.y + 4} textAnchor="end" fill="#71717a" fontSize="10">{formatValue(label.value)}</text>
+              <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#27272a" strokeWidth="1" />
+              <text x={paddingLeft - 6} y={label.y + 3} textAnchor="end" fill="#52525b" fontSize="9">{formatValue(label.value)}</text>
             </g>
           ))}
-          {xLabels.map((label, i) => (<text key={i} x={label.x} y={height - 5} textAnchor="middle" fill="#71717a" fontSize="10">{label.label}</text>))}
+          {xLabels.map((label, i) => (<text key={i} x={label.x} y={height - 5} textAnchor="middle" fill="#52525b" fontSize="9">{label.label}</text>))}
           <defs>
             <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={chartColor} stopOpacity="0.3" />
+              <stop offset="0%" stopColor={chartColor} stopOpacity="0.15" />
               <stop offset="100%" stopColor={chartColor} stopOpacity="0" />
             </linearGradient>
           </defs>
           {chartPoints.length > 0 && (
             <>
-              {/* For price view: thin line with small dots. For line view: filled area chart */}
+              {/* For price view: thin line with small dots. For line view: subtle filled area chart */}
               {effectiveViewMode === 'price' ? (
                 <>
                   {/* Thin connecting line */}
-                  <path d={pathD} fill="none" stroke={chartColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
-                  {/* Small dots at each point */}
-                  {chartPoints.map((point, i) => (
-                    <circle
-                      key={i}
-                      cx={point.x}
-                      cy={point.y}
-                      r={i === 0 || i === chartPoints.length - 1 ? 3 : 2}
-                      fill={chartColor}
-                      stroke="none"
-                    />
-                  ))}
-                  {/* Highlight first and last */}
-                  <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="4" fill="#71717a" stroke="#52525b" strokeWidth="1" />
-                  <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="4" fill={chartColor} stroke="#fff" strokeWidth="1" />
+                  <path d={pathD} fill="none" stroke={chartColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  {/* Highlight first and last only */}
+                  <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="2.5" fill="#52525b" stroke="#3f3f46" strokeWidth="1" />
+                  <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="2.5" fill={chartColor} stroke="#18181b" strokeWidth="1" />
                 </>
               ) : (
                 <>
-                  {/* Connected line with fill for line view */}
+                  {/* Connected line with subtle fill for line view */}
                   <path d={`${pathD} L ${chartPoints[chartPoints.length - 1].x} ${paddingTop + chartHeight} L ${paddingLeft} ${paddingTop + chartHeight} Z`} fill={`url(#${gradientId})`} />
-                  <path d={pathD} fill="none" stroke={chartColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="3" fill="#71717a" stroke="#3f3f46" strokeWidth="2" />
-                  <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="4" fill={chartColor} stroke={isProp ? '#1e3a5f' : '#064e3b'} strokeWidth="2" />
+                  <path d={pathD} fill="none" stroke={chartColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="2.5" fill="#52525b" stroke="#3f3f46" strokeWidth="1" />
+                  <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="2.5" fill={chartColor} stroke="#18181b" strokeWidth="1" />
                 </>
               )}
               {hoveredPoint && (
                 <>
-                  <line x1={hoveredPoint.x} y1={paddingTop} x2={hoveredPoint.x} y2={paddingTop + chartHeight} stroke="#a1a1aa" strokeWidth="1" strokeDasharray="3 3" />
-                  <circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="6" fill={chartColor} stroke="#fff" strokeWidth="2" />
+                  <line x1={hoveredPoint.x} y1={paddingTop} x2={hoveredPoint.x} y2={paddingTop + chartHeight} stroke="#3f3f46" strokeWidth="1" />
+                  <circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="4" fill={chartColor} stroke="#18181b" strokeWidth="1.5" />
                 </>
               )}
             </>
@@ -476,47 +489,52 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           {/* Game start cutoff indicator */}
           {gameStartX !== null && (
             <>
-              {/* Shaded area for live portion */}
+              {/* Subtle shaded area for live portion */}
               <rect
                 x={gameStartX}
                 y={paddingTop}
                 width={width - paddingRight - gameStartX}
                 height={chartHeight}
                 fill="#ef4444"
-                opacity="0.08"
+                opacity="0.05"
               />
-              {/* Vertical dashed line at game start */}
+              {/* Vertical line at game start */}
               <line
                 x1={gameStartX}
-                y1={paddingTop - 5}
+                y1={paddingTop}
                 x2={gameStartX}
                 y2={paddingTop + chartHeight}
                 stroke="#ef4444"
-                strokeWidth="2"
-                strokeDasharray="4 3"
+                strokeWidth="1"
+                strokeDasharray="3 2"
+                opacity="0.6"
               />
-              {/* LIVE label - positioned above chart area */}
-              <g transform={`translate(${gameStartX}, ${paddingTop - 2})`}>
-                <rect x="-16" y="-14" width="32" height="12" rx="2" fill="#ef4444" />
-                <text x="0" y="-5" textAnchor="middle" fill="white" fontSize="7" fontWeight="bold">LIVE</text>
-              </g>
             </>
           )}
         </svg>
+        {/* LIVE badge positioned outside SVG to avoid overlap */}
+        {gameStartX !== null && (
+          <div
+            className="absolute top-0 -translate-y-full px-1.5 py-0.5 bg-red-500 rounded text-[8px] font-bold text-white"
+            style={{ left: `${(gameStartX / width) * 100}%`, transform: 'translateX(-50%) translateY(-2px)' }}
+          >
+            LIVE
+          </div>
+        )}
         {hoveredPoint && (
-          <div className="absolute bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-xs pointer-events-none shadow-lg z-10" style={{ left: `${(hoveredPoint.x / width) * 100}%`, top: `${(hoveredPoint.y / height) * 100 - 15}%`, transform: 'translate(-50%, -100%)' }}>
+          <div className="absolute bg-zinc-800/95 border border-zinc-700/50 rounded px-2 py-1.5 text-[10px] pointer-events-none shadow-lg z-10 backdrop-blur-sm" style={{ left: `${(hoveredPoint.x / width) * 100}%`, top: `${(hoveredPoint.y / height) * 100 - 10}%`, transform: 'translate(-50%, -100%)' }}>
             <div className="font-semibold text-zinc-100">{formatValue(hoveredPoint.value)}</div>
-            <div className="text-zinc-400">{hoveredPoint.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}</div>
+            <div className="text-zinc-500">{hoveredPoint.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}</div>
           </div>
         )}
       </div>
 
-      <div className="flex items-center justify-between mt-2 text-xs text-zinc-500">
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-zinc-500"></span><span>Open</span></div>
-          <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full" style={{ backgroundColor: chartColor }}></span><span>Current</span></div>
+      <div className="flex items-center justify-between mt-1.5 text-[10px] text-zinc-600">
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-zinc-600"></span><span>Open</span></div>
+          <div className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: chartColor }}></span><span>Current</span></div>
         </div>
-        <span className="text-zinc-600">{filteredHistory.length} snapshots</span>
+        <span>{filteredHistory.length} pts</span>
       </div>
     </div>
   );

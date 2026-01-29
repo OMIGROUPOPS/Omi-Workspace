@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { formatOdds, formatSpread } from '@/lib/edge/utils/odds-math';
+import { isGameLive as checkGameLive, getGameState } from '@/lib/edge/utils/game-state';
 
 // Only FanDuel and DraftKings
 const BOOK_CONFIG: Record<string, { name: string; color: string }> = {
@@ -103,12 +104,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const baseValue = selection.line ?? (selection.type === 'market' ? selection.price : 0) ?? 0;
 
   // Parse game start time for live cutoff indicator
-  // A game is "live" if it started within the last 4 hours (typical game duration)
+  // Using shared game-state utility for consistent state detection across app
   const gameStartTime = commenceTime ? new Date(commenceTime) : null;
-  const now = new Date();
-  const gameStarted = gameStartTime && now > gameStartTime;
-  const hoursSinceStart = gameStartTime ? (now.getTime() - gameStartTime.getTime()) / (1000 * 60 * 60) : 0;
-  const isGameLive = gameStarted && hoursSinceStart < 4; // Game is live if started within last 4 hours
+  const isGameLive = commenceTime ? checkGameLive(commenceTime) : false;
 
   // Auto-select time range for live games on mount
   useEffect(() => {
@@ -159,17 +157,15 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     // Sort by timestamp
     data.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
 
-    // Apply time range filter
+    // Apply time range filter - strict filtering, no silent fallback
     if (timeRange !== 'ALL' && data.length > 0) {
       const now = new Date();
       // Map time ranges to hours (30M = 0.5 hours)
       const hoursMap: Record<TimeRange, number> = { '30M': 0.5, '1H': 1, '3H': 3, '6H': 6, '24H': 24, 'ALL': 0 };
       const cutoffTime = new Date(now.getTime() - hoursMap[timeRange] * 60 * 60 * 1000);
       const filteredByTime = data.filter(d => d.timestamp >= cutoffTime);
-      // Keep at least 2 points for a line
-      if (filteredByTime.length >= 2) {
-        data = filteredByTime;
-      }
+      // Always use filtered data - show empty state if no data in range
+      data = filteredByTime;
     }
   }
 
@@ -254,36 +250,54 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     );
   };
 
-  // If no data or only 1 point, show message
+  // Check if we have any data at all (for determining empty state message)
+  const hasAnyData = hasRealData && filteredHistory.length > 0;
+  const isFilteredEmpty = hasAnyData && data.length === 0;
+
+  // If no data, show appropriate message
   if (data.length === 0) {
     return (
       <div className="bg-zinc-900/80 border border-zinc-800/50 rounded-lg p-4">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium text-zinc-100">{chartTitle}</h3>
           <div className="flex items-center gap-2">
+            <TimeRangeSelector />
             {marketType !== 'moneyline' && (
-              <div className="flex rounded-lg overflow-hidden border border-zinc-700">
+              <div className="flex rounded overflow-hidden border border-zinc-700/50">
                 <button
                   onClick={() => onViewModeChange('line')}
-                  className={`px-2.5 py-1 text-xs font-medium transition-colors ${viewMode === 'line' ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200'}`}
+                  className={`px-2 py-0.5 text-[10px] font-medium transition-colors ${viewMode === 'line' ? 'bg-emerald-500 text-white' : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-300'}`}
                 >
                   Line
                 </button>
                 <button
                   onClick={() => onViewModeChange('price')}
-                  className={`px-2.5 py-1 text-xs font-medium transition-colors ${viewMode === 'price' ? 'bg-amber-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200'}`}
+                  className={`px-2 py-0.5 text-[10px] font-medium transition-colors ${viewMode === 'price' ? 'bg-amber-500 text-white' : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-300'}`}
                 >
                   Price
                 </button>
               </div>
             )}
-            <span className="text-xs text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Collecting Data</span>
           </div>
         </div>
         <div className="flex items-center justify-center h-32 text-zinc-500 text-sm">
           <div className="text-center">
-            <p>No snapshots yet for {BOOK_CONFIG[selectedBook]?.name || selectedBook}</p>
-            <p className="text-xs text-zinc-600 mt-1">Data will appear after polling cycles</p>
+            {isFilteredEmpty ? (
+              <>
+                <p>No data in the last {timeRange === '30M' ? '30 minutes' : timeRange === '1H' ? 'hour' : timeRange}</p>
+                <button
+                  onClick={() => setTimeRange('ALL')}
+                  className="text-xs text-emerald-400 hover:text-emerald-300 mt-2"
+                >
+                  View all available data
+                </button>
+              </>
+            ) : (
+              <>
+                <p>No snapshots yet for {BOOK_CONFIG[selectedBook]?.name || selectedBook}</p>
+                <p className="text-xs text-zinc-600 mt-1">Data syncs every 15 minutes</p>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -647,17 +661,25 @@ function AskEdgeAI({ gameId, homeTeam, awayTeam, sportKey, chartSelection }: { g
     setInput('');
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     setIsLoading(true);
-    try {
-      const sport = sportKey?.includes('nfl') ? 'NFL' : sportKey?.includes('nba') ? 'NBA' : sportKey?.includes('nhl') ? 'NHL' : sportKey?.includes('ncaaf') ? 'NCAAF' : sportKey?.includes('ncaab') ? 'NCAAB' : 'NFL';
-      const res = await fetch(`http://localhost:8000/api/chat/${sport}/${gameId}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: userMessage }) });
-      if (res.ok) { const data = await res.json(); setMessages(prev => [...prev, { role: 'assistant', content: data.response }]); setIsLoading(false); return; }
-    } catch (e) { console.error('[AskEdgeAI] Backend call failed:', e); }
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+    if (backendUrl) {
+      try {
+        const sport = sportKey?.includes('nfl') ? 'NFL' : sportKey?.includes('nba') ? 'NBA' : sportKey?.includes('nhl') ? 'NHL' : sportKey?.includes('ncaaf') ? 'NCAAF' : sportKey?.includes('ncaab') ? 'NCAAB' : 'NFL';
+        const res = await fetch(`${backendUrl}/api/chat/${sport}/${gameId}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: userMessage }) });
+        if (res.ok) { const data = await res.json(); setMessages(prev => [...prev, { role: 'assistant', content: data.response }]); setIsLoading(false); return; }
+      } catch (e) { /* Backend unavailable, use contextual response */ }
+    }
+    // Contextual response when AI backend is unavailable
     setTimeout(() => {
-      let response = `Regarding ${chartSelection.label} for ${homeTeam} vs ${awayTeam}: `;
-      response += chartSelection.type === 'prop' ? `This prop has a line of ${chartSelection.line}. Line movement on props often indicates sharp action or injury news.` : `Line movement indicates betting action. Sharp money typically moves lines early.`;
+      const responses = [
+        `For ${chartSelection.label}: Line movement typically indicates where sharp money is going. A move toward ${homeTeam} suggests professional action on the home side.`,
+        `${awayTeam} @ ${homeTeam}: Watch for reverse line movement where the line moves opposite to public betting percentages - this often signals sharp action.`,
+        `Key factors for this ${chartSelection.type === 'prop' ? 'prop' : 'market'}: injury reports, weather (outdoor sports), and late-breaking news can cause significant line movement.`,
+      ];
+      const response = responses[Math.floor(Math.random() * responses.length)];
       setMessages(prev => [...prev, { role: 'assistant', content: response }]);
       setIsLoading(false);
-    }, 800);
+    }, 600);
   };
 
   return (
@@ -913,15 +935,7 @@ interface GameDetailClientProps {
   isDemo?: boolean;
 }
 
-// Check if game is currently live
-function isGameLive(commenceTime?: string): boolean {
-  if (!commenceTime) return false;
-  const now = new Date();
-  const gameStart = new Date(commenceTime);
-  const diff = now.getTime() - gameStart.getTime();
-  const hoursElapsed = diff / (1000 * 60 * 60);
-  return diff > 0 && hoursElapsed < 4;
-}
+// Game state detection now uses shared utility from @/lib/edge/utils/game-state
 
 // Lock overlay for tier-restricted content
 function LiveLockOverlay() {
@@ -974,7 +988,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
   const isDemoUser = isDemo || (effectiveEmail && DEMO_ACCOUNTS.includes(effectiveEmail.toLowerCase()));
 
   // Check if game is live and if user needs upgrade
-  const isLive = isGameLive(gameData.commenceTime);
+  const isLive = gameData.commenceTime ? checkGameLive(gameData.commenceTime) : false;
   // Show lock for tier_1 users, unless they're in demo mode
   const showLiveLock = isLive && userTier === 'tier_1' && !isDemoUser;
   // Show demo banner for demo users viewing live games

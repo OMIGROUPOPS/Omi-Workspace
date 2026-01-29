@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { formatOdds } from '@/lib/edge/utils/odds-math';
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
+import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
 
 const BOOK_CONFIG: Record<string, { name: string; color: string }> = {
   'fanduel': { name: 'FanDuel', color: '#1493ff' },
@@ -124,23 +125,7 @@ function getEdgeBadge(game: any): { label: string; color: string; bg: string } |
   return null;
 }
 
-function getTimeUntil(date: Date): string {
-  const now = new Date();
-  const diff = date.getTime() - now.getTime();
-  if (diff < 0) {
-    const hoursAgo = Math.abs(diff) / (1000 * 60 * 60);
-    if (hoursAgo < 3) return 'LIVE';
-    return 'FINAL';
-  }
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  if (hours > 24) {
-    const days = Math.floor(hours / 24);
-    return `${days}d ${hours % 24}h`;
-  }
-  if (hours > 0) return `${hours}h ${mins}m`;
-  return `${mins}m`;
-}
+// Using shared getTimeDisplay from game-state.ts for consistent game state detection
 
 const SPORT_PILLS = [
   { key: 'americanfootball_nfl', label: 'NFL', icon: 'football' },
@@ -489,7 +474,7 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                   const timeStr = mounted
                     ? gameTime.toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })
                     : '';
-                  const countdown = mounted ? getTimeUntil(gameTime) : '';
+                  const countdown = mounted ? getTimeDisplay(gameTime, game.sportKey) : '';
                   const edgeBadge = getEdgeBadge(game);
 
                   return (

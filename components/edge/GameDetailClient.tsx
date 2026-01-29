@@ -246,17 +246,23 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const chartWidth = width - paddingLeft - paddingRight;
   const chartHeight = height - paddingTop - paddingBottom;
 
-  // For price charts, "better" prices should be at TOP:
-  // - Negative odds: less negative is better (e.g., -106 > -114), so higher value = TOP ✓
-  // - Positive odds: more positive is better (e.g., +150 > +120), so higher value = TOP ✓
-  // Standard formula already handles this correctly
-  const chartPoints = data.map((d, i) => ({
-    x: paddingLeft + (i / Math.max(data.length - 1, 1)) * chartWidth,
-    y: paddingTop + chartHeight - ((d.value - minVal + padding) / (range + 2 * padding)) * chartHeight,
-    value: d.value,
-    timestamp: d.timestamp,
-    index: i
-  }));
+  // For price charts, INVERT so worse prices (more negative) are at TOP
+  // This way line going UP = price getting worse (more juice) = bad
+  // For line charts, higher values at TOP (standard)
+  const chartPoints = data.map((d, i) => {
+    const normalizedY = (d.value - minVal + padding) / (range + 2 * padding);
+    // For price view: invert Y so worse (more negative) is at top
+    const y = effectiveViewMode === 'price'
+      ? paddingTop + normalizedY * chartHeight  // Inverted: lower value = top
+      : paddingTop + chartHeight - normalizedY * chartHeight;  // Standard: higher value = top
+    return {
+      x: paddingLeft + (i / Math.max(data.length - 1, 1)) * chartWidth,
+      y,
+      value: d.value,
+      timestamp: d.timestamp,
+      index: i
+    };
+  });
 
   const pathD = chartPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
 
@@ -283,11 +289,16 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const labelMin = roundLabel(minVal - padding * 0.5);
   const labelMid = roundLabel((maxVal + minVal) / 2);
 
-  // Y-axis: TOP = higher value (better price for odds), BOTTOM = lower value (worse price)
-  const yLabels = [
-    { value: labelMax, y: paddingTop },
+  // Y-axis labels: For price view, invert (worse/more negative at top)
+  // For line view, standard (higher at top)
+  const yLabels = isPrice ? [
+    { value: labelMin, y: paddingTop },  // Worse price (more negative) at top
     { value: labelMid, y: paddingTop + chartHeight / 2 },
-    { value: labelMin, y: paddingTop + chartHeight }
+    { value: labelMax, y: paddingTop + chartHeight }  // Better price (less negative) at bottom
+  ] : [
+    { value: labelMax, y: paddingTop },  // Higher value at top
+    { value: labelMid, y: paddingTop + chartHeight / 2 },
+    { value: labelMin, y: paddingTop + chartHeight }  // Lower value at bottom
   ];
   const xLabels = data.length > 0 ? [0, Math.floor(data.length / 2), data.length - 1].map(i => ({
     x: chartPoints[i]?.x || 0,
@@ -484,10 +495,10 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
                 strokeWidth="2"
                 strokeDasharray="4 3"
               />
-              {/* LIVE label */}
-              <g transform={`translate(${gameStartX}, ${paddingTop - 8})`}>
-                <rect x="-16" y="-10" width="32" height="14" rx="2" fill="#ef4444" />
-                <text x="0" y="0" textAnchor="middle" fill="white" fontSize="8" fontWeight="bold">LIVE</text>
+              {/* LIVE label - positioned above chart area */}
+              <g transform={`translate(${gameStartX}, ${paddingTop - 2})`}>
+                <rect x="-16" y="-14" width="32" height="12" rx="2" fill="#ef4444" />
+                <text x="0" y="-5" textAnchor="middle" fill="white" fontSize="7" fontWeight="bold">LIVE</text>
               </g>
             </>
           )}

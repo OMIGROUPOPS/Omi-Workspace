@@ -296,10 +296,12 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const minVal = Math.min(...values);
   const maxVal = Math.max(...values);
   const range = maxVal - minVal || 1;
-  const padding = range * 0.2;
+  // Smaller padding = more dramatic visual movement
+  const padding = range * 0.1;
 
-  const width = 400, height = 140;
-  const paddingLeft = 50, paddingRight = 15, paddingTop = 15, paddingBottom = 25;
+  // Taller chart for more granular Y-axis labels
+  const width = 400, height = 180;
+  const paddingLeft = 45, paddingRight = 10, paddingTop = 12, paddingBottom = 22;
   const chartWidth = width - paddingLeft - paddingRight;
   const chartHeight = height - paddingTop - paddingBottom;
 
@@ -333,30 +335,14 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   const movementColor = movement > 0 ? 'text-emerald-400' : movement < 0 ? 'text-red-400' : 'text-zinc-400';
 
-  // Y-axis labels: Generate granular labels based on data type
-  // For betting, every half-point matters - show fine increments
+  // Y-axis labels: Generate granular labels
+  // For betting lines (spreads, totals, props), ALWAYS use 0.5 or 1 point steps - every half point matters!
   const isPrice = effectiveViewMode === 'price';
-
-  // Determine step size based on data type and range
-  const getStepSize = () => {
-    if (isPrice || marketType === 'moneyline') {
-      // For prices: use 2-5 point increments depending on range
-      if (range <= 10) return 2;
-      if (range <= 20) return 5;
-      return 10;
-    }
-    // For lines (spreads, totals, props): use 0.5 or 1 point increments
-    if (range <= 3) return 0.5;
-    if (range <= 8) return 1;
-    return 2;
-  };
-
-  const stepSize = getStepSize();
 
   // Round to nearest step
   const roundToStep = (val: number, step: number) => Math.round(val / step) * step;
 
-  // Generate Y-axis labels with granular steps
+  // Generate Y-axis labels with proper granularity for betting
   const generateYLabels = () => {
     const labels: { value: number; y: number }[] = [];
 
@@ -365,26 +351,45 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     const visualMax = maxVal + padding;
     const visualRange = visualMax - visualMin;
 
+    // For spreads/totals/props (LINE view): ALWAYS use 1 point increments for labels
+    // For prices: use larger increments
+    // The key is that every 0.5 point movement shows in the chart shape itself
+    let labelStep: number;
+    if (isPrice || marketType === 'moneyline') {
+      // For prices: scale based on range
+      if (range <= 8) labelStep = 2;
+      else if (range <= 16) labelStep = 4;
+      else labelStep = 5;
+    } else {
+      // For lines (spreads, totals, props): ALWAYS 1 point labels, show many
+      // Even if range is 20 points, we want granular labels
+      labelStep = 1;
+    }
+
     // Start from a nice round number below min
-    const startValue = roundToStep(visualMin, stepSize);
-    const endValue = roundToStep(visualMax, stepSize) + stepSize;
+    const startValue = roundToStep(Math.floor(visualMin), labelStep);
+    const endValue = roundToStep(Math.ceil(visualMax), labelStep) + labelStep;
 
     // Generate labels at each step
-    for (let val = startValue; val <= endValue; val += stepSize) {
+    for (let val = startValue; val <= endValue; val += labelStep) {
       // Calculate Y position (higher values at top)
       const normalizedY = (val - visualMin) / visualRange;
       const y = paddingTop + chartHeight - normalizedY * chartHeight;
 
       // Only include if within chart bounds
-      if (y >= paddingTop - 5 && y <= paddingTop + chartHeight + 5) {
+      if (y >= paddingTop - 2 && y <= paddingTop + chartHeight + 2) {
         labels.push({ value: val, y });
       }
     }
 
-    // Limit to max 7 labels to avoid clutter
-    if (labels.length > 7) {
-      const step = Math.ceil(labels.length / 6);
-      return labels.filter((_, i) => i % step === 0 || i === labels.length - 1);
+    // For line charts (spreads/totals), allow up to 12 labels for granularity
+    // For price charts, limit to 8
+    const maxLabels = isPrice ? 8 : 12;
+
+    if (labels.length > maxLabels) {
+      // Thin out labels but keep granular (every 2nd label)
+      const keepEvery = Math.ceil(labels.length / maxLabels);
+      return labels.filter((_, i) => i % keepEvery === 0);
     }
 
     return labels;

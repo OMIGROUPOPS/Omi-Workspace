@@ -29,22 +29,6 @@ export function calculateOmiProbability(
   return Math.max(0.01, Math.min(0.99, adjusted));
 }
 
-export function generateMockPillarScores(gameId: string): PillarScores {
-  const seed = gameId.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-  const seededRandom = (offset: number) => {
-    const x = Math.sin(seed + offset) * 10000;
-    return 0.5 + (x - Math.floor(x) - 0.5) * 0.4;
-  };
-
-  return {
-    execution: seededRandom(1),
-    incentives: seededRandom(2),
-    shocks: seededRandom(3),
-    timeDecay: seededRandom(4),
-    flow: seededRandom(5),
-  };
-}
-
 export function calculateEdge(
   bookImpliedProb: number,
   pillarScores: PillarScores

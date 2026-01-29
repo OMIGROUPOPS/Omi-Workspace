@@ -667,19 +667,13 @@ function AskEdgeAI({ gameId, homeTeam, awayTeam, sportKey, chartSelection }: { g
         const sport = sportKey?.includes('nfl') ? 'NFL' : sportKey?.includes('nba') ? 'NBA' : sportKey?.includes('nhl') ? 'NHL' : sportKey?.includes('ncaaf') ? 'NCAAF' : sportKey?.includes('ncaab') ? 'NCAAB' : 'NFL';
         const res = await fetch(`${backendUrl}/api/chat/${sport}/${gameId}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: userMessage }) });
         if (res.ok) { const data = await res.json(); setMessages(prev => [...prev, { role: 'assistant', content: data.response }]); setIsLoading(false); return; }
-      } catch (e) { /* Backend unavailable, use contextual response */ }
+      } catch (e) {
+        console.error('[AskEdgeAI] Backend error:', e);
+      }
     }
-    // Contextual response when AI backend is unavailable
-    setTimeout(() => {
-      const responses = [
-        `For ${chartSelection.label}: Line movement typically indicates where sharp money is going. A move toward ${homeTeam} suggests professional action on the home side.`,
-        `${awayTeam} @ ${homeTeam}: Watch for reverse line movement where the line moves opposite to public betting percentages - this often signals sharp action.`,
-        `Key factors for this ${chartSelection.type === 'prop' ? 'prop' : 'market'}: injury reports, weather (outdoor sports), and late-breaking news can cause significant line movement.`,
-      ];
-      const response = responses[Math.floor(Math.random() * responses.length)];
-      setMessages(prev => [...prev, { role: 'assistant', content: response }]);
-      setIsLoading(false);
-    }, 600);
+    // Show unavailable message when AI backend is not configured or unavailable
+    setMessages(prev => [...prev, { role: 'assistant', content: 'AI analysis is currently unavailable. The analysis backend is being configured.' }]);
+    setIsLoading(false);
   };
 
   return (

@@ -52,18 +52,28 @@ export function AIAssistant({ gameContext }: AIAssistantProps) {
     setInput('');
     setIsLoading(true);
     
-    setTimeout(() => {
+    try {
+      const response = await fetchAIResponse(userMessage.content, gameContext);
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: generateMockResponse(userMessage.content, gameContext),
+        content: response,
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, assistantMessage]);
+    } catch (e) {
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: 'Failed to get response. Please try again.',
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
-  
+
   const handlePromptClick = (prompt: string) => {
     setInput(prompt);
   };
@@ -217,27 +227,41 @@ export function AIAssistant({ gameContext }: AIAssistantProps) {
   );
 }
 
-// Mock response generator (replace with actual AI integration)
-function generateMockResponse(question: string, context?: AIAssistantProps['gameContext']): string {
-  const q = question.toLowerCase();
-  
-  if (q.includes('line') && q.includes('mov')) {
-    return `The line has moved because of a combination of factors:\n\n1. **Sharp Money**: Early sharp bettors hit the opener hard\n2. **Injury News**: Key player status changed\n3. **Public Betting**: 70% of public bets are on one side\n\nThis 1.5-point move from the opener suggests professional money came in early.`;
+// AI backend URL from environment
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+
+// Fetch response from AI backend
+async function fetchAIResponse(question: string, context?: AIAssistantProps['gameContext']): Promise<string> {
+  if (!BACKEND_URL) {
+    return 'AI analysis is currently unavailable. The analysis backend is being configured.';
   }
-  
-  if (q.includes('edge')) {
-    return `The edge calculation is based on our 5-pillar framework:\n\n• **Execution Risk**: Who decides the outcome\n• **Incentives**: Strategic behavior analysis\n• **Structural Shocks**: Recent news impact\n• **Time Decay**: Timing asymmetries\n• **Flow Analysis**: Sharp vs public money\n\nThe current +2.3% edge indicates the true probability exceeds what the book odds imply.`;
+
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/ai/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        question,
+        context: context ? {
+          homeTeam: context.homeTeam,
+          awayTeam: context.awayTeam,
+          spread: context.spread,
+          total: context.total,
+          edge: context.edge,
+        } : null,
+      }),
+    });
+
+    if (!res.ok) {
+      return 'Unable to get AI response. Please try again later.';
+    }
+
+    const data = await res.json();
+    return data.response || 'No response received from AI.';
+  } catch (e) {
+    console.error('[AIAssistant] Error:', e);
+    return 'AI analysis is temporarily unavailable. Please try again later.';
   }
-  
-  if (q.includes('sharp')) {
-    return `Based on line movement patterns:\n\n• Opening line: -3.5\n• Current line: -5\n• Movement: 1.5 points\n\nThis reverse line movement (line moving opposite to public betting %) suggests sharp money came in on the favorite. Typically indicates professional handicappers see value.`;
-  }
-  
-  if (q.includes('injury')) {
-    return `I don't have real-time injury data yet, but here's how injuries typically affect edges:\n\n1. **Star Players**: 2-4 point swing on spread\n2. **Key Role Players**: 0.5-1.5 point impact\n3. **Late Scratches**: Often create inefficiencies\n\nCheck the official injury report for the latest updates.`;
-  }
-  
-  return `I can help you analyze:\n\n• Line movement and why lines move\n• Edge calculations and what they mean\n• Sharp vs public money indicators\n• How to interpret our pillar scores\n\nWhat would you like to know more about?`;
 }
 
 // Inline chat version for embedding in pages
@@ -261,18 +285,28 @@ export function AIAssistantInline({ gameContext }: AIAssistantProps) {
     setInput('');
     setIsLoading(true);
     
-    setTimeout(() => {
+    try {
+      const response = await fetchAIResponse(userMessage.content, gameContext);
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: generateMockResponse(userMessage.content, gameContext),
+        content: response,
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, assistantMessage]);
+    } catch (e) {
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: 'Failed to get response. Please try again.',
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
-  
+
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
       <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800 flex items-center gap-2">

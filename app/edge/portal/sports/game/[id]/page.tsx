@@ -377,12 +377,8 @@ function buildPerBookFromCache(game: any): Record<string, { marketGroups: any }>
   return result;
 }
 
-// Generate deterministic mock edge based on game ID
-function generateMockEdge(id: string, offset: number = 0): number {
-  const seed = id.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + offset;
-  const x = Math.sin(seed) * 10000;
-  return (x - Math.floor(x) - 0.5) * 0.08;
-}
+// Edge values are only shown when real data is available from the backend
+// No mock/fake edges - this is an enterprise product where data integrity matters
 
 export default async function GameDetailPage({ params, searchParams }: PageProps) {
   const { id: gameId } = await params;
@@ -579,21 +575,21 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
         const result: any = { h2h: null, spreads: null, totals: null };
         if (marketData.spreads?.home) {
           result.spreads = {
-            home: { line: marketData.spreads.home.line, price: marketData.spreads.home.odds, edge: edges[`${prefix}spread_home`]?.edge_pct || generateMockEdge(gameId, prefix.length + 3) },
-            away: { line: marketData.spreads.away?.line, price: marketData.spreads.away?.odds, edge: edges[`${prefix}spread_away`]?.edge_pct || generateMockEdge(gameId, prefix.length + 4) },
+            home: { line: marketData.spreads.home.line, price: marketData.spreads.home.odds, edge: edges[`${prefix}spread_home`]?.edge_pct || null },
+            away: { line: marketData.spreads.away?.line, price: marketData.spreads.away?.odds, edge: edges[`${prefix}spread_away`]?.edge_pct || null },
           };
         }
         if (marketData.h2h?.home !== undefined) {
           result.h2h = {
-            home: { price: marketData.h2h.home, edge: edges[`${prefix}ml_home`]?.edge_pct || generateMockEdge(gameId, prefix.length + 1) },
-            away: { price: marketData.h2h.away, edge: edges[`${prefix}ml_away`]?.edge_pct || generateMockEdge(gameId, prefix.length + 2) },
+            home: { price: marketData.h2h.home, edge: edges[`${prefix}ml_home`]?.edge_pct || null },
+            away: { price: marketData.h2h.away, edge: edges[`${prefix}ml_away`]?.edge_pct || null },
           };
         }
         if (marketData.totals?.over) {
           result.totals = {
             line: marketData.totals.over.line,
-            over: { price: marketData.totals.over.odds, edge: edges[`${prefix}total_over`]?.edge_pct || generateMockEdge(gameId, prefix.length + 5) },
-            under: { price: marketData.totals.under?.odds, edge: edges[`${prefix}total_under`]?.edge_pct || generateMockEdge(gameId, prefix.length + 6) },
+            over: { price: marketData.totals.over.odds, edge: edges[`${prefix}total_over`]?.edge_pct || null },
+            under: { price: marketData.totals.under?.odds, edge: edges[`${prefix}total_under`]?.edge_pct || null },
           };
         }
         return result;

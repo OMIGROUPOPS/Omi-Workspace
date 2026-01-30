@@ -1372,21 +1372,6 @@ function MarketCEQBadge({
   awayTeam: string;
   marketGroups: any;
 }) {
-  // DEBUG: Log what props we're receiving
-  console.log('MarketCEQBadge render:', {
-    selectedMarket,
-    hasCeq: !!ceq,
-    hasSpreads: !!ceq?.spreads,
-    hasH2h: !!ceq?.h2h,
-    hasTotals: !!ceq?.totals,
-    spreadHomeCEQ: ceq?.spreads?.home?.ceq,
-    spreadAwayCEQ: ceq?.spreads?.away?.ceq,
-    h2hHomeCEQ: ceq?.h2h?.home?.ceq,
-    h2hAwayCEQ: ceq?.h2h?.away?.ceq,
-    totalsOverCEQ: ceq?.totals?.over?.ceq,
-    totalsUnderCEQ: ceq?.totals?.under?.ceq,
-  });
-
   if (!ceq) return null;
 
   // Get CEQ data for the SPECIFIC selected market - NO fallback to bestEdge
@@ -1457,7 +1442,6 @@ function MarketCEQBadge({
   };
 
   const marketCEQ = getMarketCEQ();
-  console.log('MarketCEQBadge getMarketCEQ result:', { selectedMarket, marketCEQ });
   if (!marketCEQ) return null;
 
   const { ceq: ceqValue, confidence, label, available } = marketCEQ;

@@ -915,18 +915,6 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                         const ceq = game.ceq as GameCEQ | undefined;
                         if (!ceq) return null;
 
-                        // DEBUG: Log all CEQ values for this game
-                        const debugEdges = {
-                          game: `${game.awayTeam} @ ${game.homeTeam}`,
-                          spreadHome: ceq.spreads?.home ? { ceq: ceq.spreads.home.ceq, conf: ceq.spreads.home.confidence } : null,
-                          spreadAway: ceq.spreads?.away ? { ceq: ceq.spreads.away.ceq, conf: ceq.spreads.away.confidence } : null,
-                          h2hHome: ceq.h2h?.home ? { ceq: ceq.h2h.home.ceq, conf: ceq.h2h.home.confidence } : null,
-                          h2hAway: ceq.h2h?.away ? { ceq: ceq.h2h.away.ceq, conf: ceq.h2h.away.confidence } : null,
-                          totalsOver: ceq.totals?.over ? { ceq: ceq.totals.over.ceq, conf: ceq.totals.over.confidence } : null,
-                          totalsUnder: ceq.totals?.under ? { ceq: ceq.totals.under.ceq, conf: ceq.totals.under.confidence } : null,
-                        };
-                        console.log('CEQ Debug:', debugEdges);
-
                         // Count all actionable edges (CEQ >= 56, confidence != PASS)
                         const edges: { market: string; side: string; ceq: number; confidence: string }[] = [];
 
@@ -960,15 +948,11 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                           edges.push({ market: 'Total', side: 'under', ceq: totalsUnder.ceq, confidence: totalsUnder.confidence });
                         }
 
-                        // DEBUG: Log edges found
-                        console.log(`Edges found for ${game.awayTeam} @ ${game.homeTeam}:`, edges.length, edges);
-
                         // Only show if multiple edges exist (more than just bestEdge)
                         if (edges.length <= 1) return null;
 
                         // Get unique markets with edges
                         const marketsWithEdges = [...new Set(edges.map(e => e.market))];
-                        console.log('Markets with edges:', marketsWithEdges);
 
                         // Count strong edges (EDGE, STRONG, RARE)
                         const strongEdges = edges.filter(e => e.confidence !== 'WATCH').length;

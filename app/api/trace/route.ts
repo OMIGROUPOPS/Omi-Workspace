@@ -153,6 +153,31 @@ export async function GET() {
     );
   }
 
+  // Step 7: Check what the dashboard flow sees
+  // The dashboard first tries the backend, then falls back to cached_odds
+  const BACKEND_URL = process.env.BACKEND_URL || "https://api.omigroup.io";
+  let backendGame = null;
+  let backendGameId = null;
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/edges/NBA`, { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      const games = data.games || [];
+      backendGame = games.find((g: any) =>
+        (g.home_team?.includes("Lakers") || g.home_team?.includes("Wizards")) &&
+        (g.away_team?.includes("Lakers") || g.away_team?.includes("Wizards"))
+      );
+      if (backendGame) {
+        backendGameId = backendGame.game_id;
+      }
+    }
+  } catch (e) {
+    // Backend not available
+  }
+
+  // Step 8: If backend path is used, check if its game_id matches cached_odds
+  const idMismatch = backendGameId && backendGameId !== gameId;
+
   return NextResponse.json({
     step1_game_found: {
       game_id: gameId,
@@ -164,11 +189,25 @@ export async function GET() {
     step3_snapshot_sample: snapshots?.slice(0, 5),
     step4_opening_line: openingLine,
     step5_consensus: consensus,
-    step6_ceq_result: ceqResult,
-    diagnosis: snapshotCount === 0
-      ? "BROKEN: No snapshots for this game_id. Sync is not saving snapshots for current games."
-      : ceqResult?.bestEdge
-        ? `CEQ calculated: ${ceqResult.bestEdge.ceq}% ${ceqResult.bestEdge.confidence}`
-        : "CEQ returned null/neutral - check calculator logic"
+    step6_ceq_result: {
+      bestEdge: ceqResult?.bestEdge,
+      spreads_home_ceq: ceqResult?.spreads?.home?.ceq,
+      h2h_home_ceq: ceqResult?.h2h?.home?.ceq,
+      totals_over_ceq: ceqResult?.totals?.over?.ceq,
+    },
+    step7_backend_check: {
+      backend_url: BACKEND_URL,
+      backend_found_game: !!backendGame,
+      backend_game_id: backendGameId,
+      cached_game_id: gameId,
+      ID_MISMATCH: idMismatch,
+    },
+    diagnosis: idMismatch
+      ? `CRITICAL: Backend game_id (${backendGameId}) != cached_odds game_id (${gameId}). Dashboard uses backend ID but snapshots use cached ID!`
+      : snapshotCount === 0
+        ? "BROKEN: No snapshots for this game_id."
+        : ceqResult?.bestEdge
+          ? `CEQ works: ${ceqResult.bestEdge.ceq}% ${ceqResult.bestEdge.confidence}. If dashboard shows different value, check which code path it takes.`
+          : "CEQ returned null/neutral"
   });
 }

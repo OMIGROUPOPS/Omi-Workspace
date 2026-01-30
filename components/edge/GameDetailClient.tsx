@@ -983,9 +983,9 @@ function PlayerPropsSection({ props, gameId, onSelectProp, selectedProp, selecte
               const isSelected = selectedProp?.player === prop.player && selectedProp?.market === (prop.market || prop.market_type) && selectedProp?.book === prop.book;
               const overOdds = prop.over?.odds; const underOdds = prop.under?.odds; const yesOdds = prop.yes?.odds;
               const line = prop.line ?? prop.over?.line ?? prop.under?.line;
-              // Calculate EV for over/under props
-              const overEV = overOdds && underOdds ? calculateTwoWayEV(overOdds, underOdds, true) : undefined;
-              const underEV = overOdds && underOdds ? calculateTwoWayEV(underOdds, overOdds, true) : undefined;
+              // Calculate EV for over/under props (no consensus available for props)
+              const overEV = overOdds && underOdds ? calculateTwoWayEV(overOdds, underOdds) : undefined;
+              const underEV = overOdds && underOdds ? calculateTwoWayEV(underOdds, overOdds) : undefined;
               const overBg = getEVBgClass(overEV ?? 0);
               const underBg = getEVBgClass(underEV ?? 0);
               return (
@@ -1029,12 +1029,12 @@ function TeamTotalsSection({ teamTotals, homeTeam, awayTeam, gameId }: { teamTot
   }
   const renderTeam = (label: string, data: any) => {
     if (!data?.over) return null;
-    // Calculate EV for team totals
+    // Calculate EV for team totals (no consensus available)
     const overEV = data.over?.price && data.under?.price
-      ? calculateTwoWayEV(data.over.price, data.under.price, true)
+      ? calculateTwoWayEV(data.over.price, data.under.price)
       : undefined;
     const underEV = data.over?.price && data.under?.price
-      ? calculateTwoWayEV(data.under.price, data.over.price, true)
+      ? calculateTwoWayEV(data.under.price, data.over.price)
       : undefined;
     const overBg = getEVBgClass(overEV ?? 0);
     const underBg = getEVBgClass(underEV ?? 0);
@@ -1096,7 +1096,7 @@ function AlternatesSection({ alternates, homeTeam, awayTeam, gameId }: { alterna
     if (!data) return <span className="text-zinc-600">-</span>;
     const opposite = row[side === 'home' ? 'away' : 'home'];
     const ev = data.price && opposite?.price
-      ? calculateTwoWayEV(data.price, opposite.price, true)
+      ? calculateTwoWayEV(data.price, opposite.price)
       : undefined;
     const bgClass = getEVBgClass(ev ?? 0);
     return (
@@ -1118,7 +1118,7 @@ function AlternatesSection({ alternates, homeTeam, awayTeam, gameId }: { alterna
     if (!data) return <span className="text-zinc-600">-</span>;
     const opposite = row[side === 'over' ? 'under' : 'over'];
     const ev = data.price && opposite?.price
-      ? calculateTwoWayEV(data.price, opposite.price, true)
+      ? calculateTwoWayEV(data.price, opposite.price)
       : undefined;
     const bgClass = getEVBgClass(ev ?? 0);
     return (

@@ -408,6 +408,9 @@ async function runSync() {
 
       // Save snapshots to odds_snapshots
       const snapshotRows = buildSnapshotRows(games, sportKey, snapshotTime);
+      let snapshotsSaved = 0;
+      let snapshotErrors: string[] = [];
+
       if (snapshotRows.length > 0) {
         // Batch insert in chunks of 500 to avoid payload limits
         for (let i = 0; i < snapshotRows.length; i += 500) {
@@ -416,10 +419,17 @@ async function runSync() {
             .from("odds_snapshots")
             .insert(chunk);
           if (snapError) {
-            console.error(`[Odds Sync] ${sport} snapshot save failed:`, snapError.message);
+            const errMsg = `${sport} snapshot chunk ${i}-${i + chunk.length} failed: ${snapError.message}`;
+            console.error(`[Odds Sync] ${errMsg}`);
+            snapshotErrors.push(errMsg);
+            errors.push(errMsg);  // ADD TO ERRORS ARRAY!
+          } else {
+            snapshotsSaved += chunk.length;
           }
         }
       }
+
+      console.log(`[Odds Sync] ${sport}: ${games.length} games, ${snapshotRows.length} snapshot rows built, ${snapshotsSaved} saved`);
 
       // Trigger edge detection for each game
       let edgesDetected = 0;

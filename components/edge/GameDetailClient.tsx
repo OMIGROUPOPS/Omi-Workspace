@@ -1434,17 +1434,17 @@ function MarketCEQBadge({
 
   const confStyle = {
     bg: confidence === 'RARE' ? 'bg-purple-500/10' :
-        confidence === 'STRONG' || confidence === 'STRONG_EDGE' ? 'bg-emerald-500/10' :
+        confidence === 'STRONG' ? 'bg-emerald-500/10' :
         confidence === 'EDGE' ? 'bg-blue-500/10' :
         confidence === 'WATCH' ? 'bg-amber-500/10' :
         'bg-zinc-800',
     text: confidence === 'RARE' ? 'text-purple-400' :
-          confidence === 'STRONG' || confidence === 'STRONG_EDGE' ? 'text-emerald-400' :
+          confidence === 'STRONG' ? 'text-emerald-400' :
           confidence === 'EDGE' ? 'text-blue-400' :
           confidence === 'WATCH' ? 'text-amber-400' :
           'text-zinc-500',
     border: confidence === 'RARE' ? 'border-purple-500/30' :
-            confidence === 'STRONG' || confidence === 'STRONG_EDGE' ? 'border-emerald-500/30' :
+            confidence === 'STRONG' ? 'border-emerald-500/30' :
             confidence === 'EDGE' ? 'border-blue-500/30' :
             confidence === 'WATCH' ? 'border-amber-500/30' :
             'border-zinc-700',

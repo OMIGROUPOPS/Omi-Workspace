@@ -13,51 +13,52 @@ function getSupabase() {
 export async function GET() {
   const supabase = getSupabase();
 
-  // Get game IDs from odds_snapshots
+  // Get game IDs from cached_odds (these are CURRENT games)
+  const { data: cachedGames } = await supabase
+    .from("cached_odds")
+    .select("game_id, game_data, updated_at")
+    .limit(10);
+
+  const cachedIds = (cachedGames || []).map(r => r.game_id);
+
+  // For each cached game, check if it has snapshots
+  const gamesWithSnapshots: any[] = [];
+  for (const game of cachedGames || []) {
+    const { count } = await supabase
+      .from("odds_snapshots")
+      .select("*", { count: "exact", head: true })
+      .eq("game_id", game.game_id);
+
+    gamesWithSnapshots.push({
+      game_id: game.game_id,
+      teams: `${game.game_data?.away_team} @ ${game.game_data?.home_team}`,
+      updated_at: game.updated_at,
+      snapshot_count: count || 0
+    });
+  }
+
+  // Get all unique game IDs from snapshots
   const { data: snapshotIds } = await supabase
     .from("odds_snapshots")
     .select("game_id")
-    .limit(10);
+    .limit(1000);
 
   const uniqueSnapshotIds = [...new Set((snapshotIds || []).map(r => r.game_id))];
 
-  // Get game IDs from cached_odds (Odds API format)
-  const { data: cachedGames } = await supabase
-    .from("cached_odds")
-    .select("game_id, game_data")
-    .limit(5);
-
-  const cachedIds = (cachedGames || []).map(r => ({
-    game_id: r.game_id,
-    game_data_id: r.game_data?.id,
-    teams: `${r.game_data?.away_team} @ ${r.game_data?.home_team}`
-  }));
-
-  // Try to fetch from backend to see their ID format
-  let backendIds: any[] = [];
-  try {
-    const res = await fetch(`${BACKEND_URL}/api/edges/NBA`, {
-      cache: 'no-store',
-      signal: AbortSignal.timeout(3000)
-    });
-    if (res.ok) {
-      const data = await res.json();
-      backendIds = (data.games || []).slice(0, 5).map((g: any) => ({
-        game_id: g.game_id,
-        teams: `${g.away_team} @ ${g.home_team}`
-      }));
-    }
-  } catch (e) {
-    backendIds = [{ error: "Backend unreachable" }];
-  }
+  // Check how many snapshot game_ids match cached_odds game_ids
+  const matchingIds = uniqueSnapshotIds.filter(id => cachedIds.includes(id));
+  const orphanedSnapshotIds = uniqueSnapshotIds.filter(id => !cachedIds.includes(id));
 
   return NextResponse.json({
-    snapshot_game_ids: uniqueSnapshotIds.slice(0, 5),
-    cached_odds_ids: cachedIds,
-    backend_ids: backendIds,
-    diagnosis: {
-      snapshot_format: uniqueSnapshotIds[0]?.length === 32 ? "hash (Odds API)" : "other",
-      match_check: "Compare backend_ids.game_id with snapshot_game_ids - they must match!"
-    }
+    current_games: gamesWithSnapshots,
+    snapshot_stats: {
+      total_unique_game_ids: uniqueSnapshotIds.length,
+      matching_current_games: matchingIds.length,
+      orphaned_old_games: orphanedSnapshotIds.length,
+      orphaned_ids_sample: orphanedSnapshotIds.slice(0, 3)
+    },
+    diagnosis: matchingIds.length === 0
+      ? "CRITICAL: No snapshots exist for current games! Sync may be failing to save snapshots."
+      : `OK: ${matchingIds.length} current games have snapshots.`
   });
 }

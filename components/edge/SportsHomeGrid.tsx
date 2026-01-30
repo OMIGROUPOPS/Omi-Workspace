@@ -844,6 +844,10 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                         const score = bestEdge?.ceq || game.calculatedEdge?.score || (game.composite_score ? Math.round(game.composite_score * 100) : null);
                         if (score === null) return null;
 
+                        // Get market label for display
+                        const market = bestEdge?.market || game.calculatedEdge?.market;
+                        const marketLabel = market === 'spread' ? 'spread' : market === 'h2h' ? 'ML' : market === 'totals' ? 'total' : '';
+
                         // Determine bar color based on CEQ thresholds
                         const barColor = score >= 76 ? 'bg-emerald-400' :
                                         score >= 66 ? 'bg-emerald-400' :
@@ -860,21 +864,34 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                         const side = bestEdge?.side || game.calculatedEdge?.side;
                         const confidence = bestEdge?.confidence || game.calculatedEdge?.confidence;
 
+                        // Confidence label for display
+                        const confidenceLabel = confidence === 'RARE' ? 'RARE' :
+                                               confidence === 'STRONG' ? 'STRONG' :
+                                               confidence === 'EDGE' ? 'EDGE' :
+                                               confidence === 'WATCH' ? 'WATCH' : '';
+
                         return (
                           <div className="px-3 py-2 border-t border-zinc-800/50 bg-zinc-900/50">
                             <div className="flex items-center justify-between">
-                              <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-wider">CEQ Score</span>
+                              <div className="flex items-center gap-1">
+                                {confidenceLabel && (
+                                  <span className={`text-[9px] font-mono font-bold ${textColor} uppercase`}>{confidenceLabel}:</span>
+                                )}
+                                {!confidenceLabel && (
+                                  <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-wider">CEQ:</span>
+                                )}
+                              </div>
                               <div className="flex items-center gap-2">
                                 {/* Edge Bar */}
-                                <div className="w-20 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                                <div className="w-16 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
                                   <div
                                     className={`h-full rounded-full transition-all ${barColor}`}
                                     style={{ width: `${Math.min(score, 100)}%` }}
                                   />
                                 </div>
-                                {/* Edge Percentage */}
+                                {/* Edge Percentage with Market */}
                                 <span className={`text-xs font-mono font-bold ${textColor}`}>
-                                  {score}%
+                                  {score}%{marketLabel && <span className="text-zinc-500 font-normal"> ({marketLabel})</span>}
                                 </span>
                               </div>
                             </div>
@@ -887,13 +904,88 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                                    side === 'away' ? game.awayTeam.split(' ').pop() :
                                    side === 'over' ? 'Over' : side === 'under' ? 'Under' : side}
                                 </span>
-                                {bestEdge?.market && (
-                                  <span className="text-[8px] text-zinc-500">
-                                    ({bestEdge.market === 'spread' ? 'Spread' : bestEdge.market === 'h2h' ? 'ML' : 'Total'})
-                                  </span>
-                                )}
                               </div>
                             )}
+                          </div>
+                        );
+                      })()}
+
+                      {/* Multi-Edge Indicator Strip */}
+                      {(() => {
+                        const ceq = game.ceq as GameCEQ | undefined;
+                        if (!ceq) return null;
+
+                        // Count all actionable edges (CEQ >= 56, confidence != PASS)
+                        const edges: { market: string; side: string; ceq: number; confidence: string }[] = [];
+
+                        // Check spreads
+                        const spreadHome = ceq.spreads?.home;
+                        const spreadAway = ceq.spreads?.away;
+                        if (spreadHome && spreadHome.ceq >= 56 && spreadHome.confidence !== 'PASS') {
+                          edges.push({ market: 'Spread', side: 'home', ceq: spreadHome.ceq, confidence: spreadHome.confidence });
+                        }
+                        if (spreadAway && spreadAway.ceq >= 56 && spreadAway.confidence !== 'PASS') {
+                          edges.push({ market: 'Spread', side: 'away', ceq: spreadAway.ceq, confidence: spreadAway.confidence });
+                        }
+
+                        // Check h2h (moneyline)
+                        const h2hHome = ceq.h2h?.home;
+                        const h2hAway = ceq.h2h?.away;
+                        if (h2hHome && h2hHome.ceq >= 56 && h2hHome.confidence !== 'PASS') {
+                          edges.push({ market: 'ML', side: 'home', ceq: h2hHome.ceq, confidence: h2hHome.confidence });
+                        }
+                        if (h2hAway && h2hAway.ceq >= 56 && h2hAway.confidence !== 'PASS') {
+                          edges.push({ market: 'ML', side: 'away', ceq: h2hAway.ceq, confidence: h2hAway.confidence });
+                        }
+
+                        // Check totals
+                        const totalsOver = ceq.totals?.over;
+                        const totalsUnder = ceq.totals?.under;
+                        if (totalsOver && totalsOver.ceq >= 56 && totalsOver.confidence !== 'PASS') {
+                          edges.push({ market: 'Total', side: 'over', ceq: totalsOver.ceq, confidence: totalsOver.confidence });
+                        }
+                        if (totalsUnder && totalsUnder.ceq >= 56 && totalsUnder.confidence !== 'PASS') {
+                          edges.push({ market: 'Total', side: 'under', ceq: totalsUnder.ceq, confidence: totalsUnder.confidence });
+                        }
+
+                        // Only show if multiple edges exist (more than just bestEdge)
+                        if (edges.length <= 1) return null;
+
+                        // Get unique markets with edges
+                        const marketsWithEdges = [...new Set(edges.map(e => e.market))];
+
+                        // Count strong edges (EDGE, STRONG, RARE)
+                        const strongEdges = edges.filter(e => e.confidence !== 'WATCH').length;
+
+                        // Color coding based on edge count
+                        const isHotGame = edges.length >= 5;
+                        const isWarmGame = edges.length >= 3;
+
+                        const bgColor = isHotGame ? 'bg-gradient-to-r from-amber-500/10 via-yellow-500/10 to-amber-500/10' :
+                                       isWarmGame ? 'bg-emerald-500/10' : 'bg-zinc-800/50';
+                        const borderColor = isHotGame ? 'border-amber-500/30' :
+                                           isWarmGame ? 'border-emerald-500/30' : 'border-zinc-700/50';
+                        const textColor = isHotGame ? 'text-amber-400' :
+                                         isWarmGame ? 'text-emerald-400' : 'text-zinc-400';
+                        const iconColor = isHotGame ? 'text-amber-400' :
+                                         isWarmGame ? 'text-emerald-400' : 'text-zinc-500';
+
+                        return (
+                          <div className={`px-3 py-1.5 border-t ${borderColor} ${bgColor} ${isHotGame ? 'animate-pulse' : ''}`}>
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-1.5">
+                                <span className={`text-[10px] ${iconColor}`}>
+                                  {isHotGame ? '🔥' : '⚡'}
+                                </span>
+                                <span className={`text-[9px] font-mono font-medium ${textColor}`}>
+                                  {edges.length} edges
+                                </span>
+                                <span className="text-[9px] text-zinc-500">
+                                  in {marketsWithEdges.join(', ')}
+                                </span>
+                              </div>
+                              <span className={`text-[9px] ${textColor}`}>→</span>
+                            </div>
                           </div>
                         );
                       })()}

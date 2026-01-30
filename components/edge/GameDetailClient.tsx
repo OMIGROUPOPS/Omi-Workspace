@@ -1465,6 +1465,11 @@ function MarketCEQBadge({
             'border-zinc-700',
   };
 
+  // Market label for display (matches dashboard format)
+  const marketLabel = selectedMarket === 'spread' ? 'spread' :
+                      selectedMarket === 'moneyline' ? 'ML' :
+                      selectedMarket === 'total' ? 'total' : '';
+
   return (
     <div className={`flex items-center gap-3 px-4 py-2.5 rounded-lg ${confStyle.bg} border ${confStyle.border} mb-4`}>
       <div className="flex-1">
@@ -1482,7 +1487,10 @@ function MarketCEQBadge({
       </div>
       <div className="text-right">
         {available ? (
-          <span className={`text-2xl font-bold font-mono ${confStyle.text}`}>{ceqValue}%</span>
+          <div className="flex flex-col items-end">
+            <span className={`text-2xl font-bold font-mono ${confStyle.text}`}>{ceqValue}%</span>
+            <span className="text-[10px] text-zinc-500">({marketLabel})</span>
+          </div>
         ) : (
           <span className="text-lg font-mono text-zinc-600">--</span>
         )}

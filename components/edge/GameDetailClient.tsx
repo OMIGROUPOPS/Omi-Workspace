@@ -1374,63 +1374,78 @@ function MarketCEQBadge({
 }) {
   if (!ceq) return null;
 
-  // Get CEQ data for the selected market
-  const getMarketCEQ = () => {
-    if (selectedMarket === 'spread' && ceq.spreads) {
+  // Get CEQ data for the SPECIFIC selected market - NO fallback to bestEdge
+  // This ensures the badge updates when clicking different market tabs
+  const getMarketCEQ = (): { ceq: number; confidence: CEQConfidence; label: string; available: boolean } | null => {
+    const marketLabels: Record<string, string> = {
+      'spread': 'Spread',
+      'total': 'Total',
+      'moneyline': 'Moneyline'
+    };
+
+    if (selectedMarket === 'spread') {
+      if (!ceq.spreads) {
+        return { ceq: 50, confidence: 'PASS', label: `${marketLabels[selectedMarket]}`, available: false };
+      }
       const homeCEQ = ceq.spreads.home;
       const awayCEQ = ceq.spreads.away;
       // Pick the better edge
       if (homeCEQ.ceq >= awayCEQ.ceq) {
         const line = marketGroups?.fullGame?.spreads?.home?.line;
+        const lineStr = line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : '';
         return {
           ceq: homeCEQ.ceq,
           confidence: homeCEQ.confidence,
-          label: `${homeTeam} ${line !== undefined ? (line > 0 ? '+' : '') + line : ''} Spread`
+          label: `${homeTeam} ${lineStr} Spread`,
+          available: true
         };
       } else {
         const line = marketGroups?.fullGame?.spreads?.away?.line;
+        const lineStr = line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : '';
         return {
           ceq: awayCEQ.ceq,
           confidence: awayCEQ.confidence,
-          label: `${awayTeam} ${line !== undefined ? (line > 0 ? '+' : '') + line : ''} Spread`
+          label: `${awayTeam} ${lineStr} Spread`,
+          available: true
         };
       }
     }
-    if (selectedMarket === 'moneyline' && ceq.h2h) {
+
+    if (selectedMarket === 'moneyline') {
+      if (!ceq.h2h) {
+        return { ceq: 50, confidence: 'PASS', label: `${marketLabels[selectedMarket]}`, available: false };
+      }
       const homeCEQ = ceq.h2h.home;
       const awayCEQ = ceq.h2h.away;
       if (homeCEQ.ceq >= awayCEQ.ceq) {
-        return { ceq: homeCEQ.ceq, confidence: homeCEQ.confidence, label: `${homeTeam} ML` };
+        return { ceq: homeCEQ.ceq, confidence: homeCEQ.confidence, label: `${homeTeam} ML`, available: true };
       } else {
-        return { ceq: awayCEQ.ceq, confidence: awayCEQ.confidence, label: `${awayTeam} ML` };
+        return { ceq: awayCEQ.ceq, confidence: awayCEQ.confidence, label: `${awayTeam} ML`, available: true };
       }
     }
-    if (selectedMarket === 'total' && ceq.totals) {
+
+    if (selectedMarket === 'total') {
+      if (!ceq.totals) {
+        return { ceq: 50, confidence: 'PASS', label: `${marketLabels[selectedMarket]}`, available: false };
+      }
       const overCEQ = ceq.totals.over;
       const underCEQ = ceq.totals.under;
       const line = marketGroups?.fullGame?.totals?.line;
       if (overCEQ.ceq >= underCEQ.ceq) {
-        return { ceq: overCEQ.ceq, confidence: overCEQ.confidence, label: `Over ${line || ''}` };
+        return { ceq: overCEQ.ceq, confidence: overCEQ.confidence, label: `Over ${line || ''}`, available: true };
       } else {
-        return { ceq: underCEQ.ceq, confidence: underCEQ.confidence, label: `Under ${line || ''}` };
+        return { ceq: underCEQ.ceq, confidence: underCEQ.confidence, label: `Under ${line || ''}`, available: true };
       }
     }
-    // Fallback to best edge
-    if (ceq.bestEdge) {
-      return {
-        ceq: ceq.bestEdge.ceq,
-        confidence: ceq.bestEdge.confidence,
-        label: `${ceq.bestEdge.side} ${ceq.bestEdge.market}`
-      };
-    }
+
     return null;
   };
 
   const marketCEQ = getMarketCEQ();
   if (!marketCEQ) return null;
 
-  const { ceq: ceqValue, confidence, label } = marketCEQ;
-  const isEdge = confidence !== 'PASS' && ceqValue >= 50;
+  const { ceq: ceqValue, confidence, label, available } = marketCEQ;
+  const isEdge = confidence !== 'PASS' && ceqValue >= 56;
 
   const confStyle = {
     bg: confidence === 'RARE' ? 'bg-purple-500/10' :
@@ -1451,20 +1466,26 @@ function MarketCEQBadge({
   };
 
   return (
-    <div className={`flex items-center gap-3 px-4 py-2 rounded-lg ${confStyle.bg} border ${confStyle.border} mb-4`}>
+    <div className={`flex items-center gap-3 px-4 py-2.5 rounded-lg ${confStyle.bg} border ${confStyle.border} mb-4`}>
       <div className="flex-1">
         <div className="flex items-center gap-2">
-          <span className={`text-sm font-semibold ${confStyle.text}`}>{label}</span>
-          {isEdge && (
+          <span className={`text-sm font-bold ${available ? confStyle.text : 'text-zinc-500'}`}>{label}</span>
+          {isEdge && available && (
             <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${confStyle.bg} ${confStyle.text} border ${confStyle.border}`}>
               {confidence}
             </span>
           )}
         </div>
-        <span className="text-[10px] text-zinc-500">CEQ Score for selected market</span>
+        <span className="text-[10px] text-zinc-500">
+          {available ? 'CEQ Score for selected market' : 'No CEQ data for this market'}
+        </span>
       </div>
       <div className="text-right">
-        <span className={`text-2xl font-bold font-mono ${confStyle.text}`}>{ceqValue}%</span>
+        {available ? (
+          <span className={`text-2xl font-bold font-mono ${confStyle.text}`}>{ceqValue}%</span>
+        ) : (
+          <span className="text-lg font-mono text-zinc-600">--</span>
+        )}
       </div>
     </div>
   );

@@ -827,23 +827,45 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   const sportConfig = SUPPORTED_SPORTS.find(s => s.key === fullSportKey);
 
   // Calculate CEQ (Composite Edge Quotient) using EdgeScout framework
+  // IMPORTANT: Match the exact same calculation as dashboard (sports/page.tsx)
   let ceqData: GameCEQ | null = null;
   const consensus = gameData.consensus_odds || {};
 
-  if (consensus.spreads || consensus.h2h || consensus.totals) {
+  // Normalize consensus structure - handle both backend format and cached format
+  // Backend: { spreads: { home: {line, odds}, away: {line, odds} } }
+  // Cached/Dashboard: { spreads: { line, homePrice, awayPrice } }
+  const getSpreadLine = () => {
+    if (consensus.spreads?.home?.line !== undefined) return consensus.spreads.home.line;
+    if (consensus.spreads?.line !== undefined) return consensus.spreads.line;
+    return undefined;
+  };
+  const getSpreadHomeOdds = () => consensus.spreads?.home?.odds || consensus.spreads?.homePrice || -110;
+  const getSpreadAwayOdds = () => consensus.spreads?.away?.odds || consensus.spreads?.awayPrice || -110;
+  const getH2hHome = () => consensus.h2h?.home?.price || consensus.h2h?.home || consensus.h2h?.homePrice;
+  const getH2hAway = () => consensus.h2h?.away?.price || consensus.h2h?.away || consensus.h2h?.awayPrice;
+  const getTotalLine = () => consensus.totals?.over?.line || consensus.totals?.line;
+  const getTotalOverOdds = () => consensus.totals?.over?.odds || consensus.totals?.overPrice || -110;
+  const getTotalUnderOdds = () => consensus.totals?.under?.odds || consensus.totals?.underPrice || -110;
+
+  const spreadLine = getSpreadLine();
+  const hasSpread = spreadLine !== undefined;
+  const hasH2h = getH2hHome() !== undefined;
+  const hasTotals = getTotalLine() !== undefined;
+
+  if (hasSpread || hasH2h || hasTotals) {
     const gameOdds = {
-      spreads: consensus.spreads?.home ? {
-        home: { line: consensus.spreads.home.line || consensus.spreads.home, odds: consensus.spreads.home.odds || -110 },
-        away: { line: consensus.spreads.away?.line || -(consensus.spreads.home.line || 0), odds: consensus.spreads.away?.odds || -110 },
+      spreads: hasSpread ? {
+        home: { line: spreadLine, odds: getSpreadHomeOdds() },
+        away: { line: -spreadLine, odds: getSpreadAwayOdds() },
       } : undefined,
-      h2h: consensus.h2h ? {
-        home: consensus.h2h.home,
-        away: consensus.h2h.away,
+      h2h: hasH2h ? {
+        home: getH2hHome(),
+        away: getH2hAway(),
       } : undefined,
-      totals: consensus.totals?.over ? {
-        line: consensus.totals.over.line,
-        over: consensus.totals.over.odds || -110,
-        under: consensus.totals.under?.odds || -110,
+      totals: hasTotals ? {
+        line: getTotalLine(),
+        over: getTotalOverOdds(),
+        under: getTotalUnderOdds(),
       } : undefined,
     };
 
@@ -858,11 +880,11 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
       gameOdds,
       openingData,
       ceqSnapshots,
-      {}, // allBooksOdds - would need to aggregate
+      {}, // allBooksOdds - would need to aggregate from bookmakers
       {
-        spreads: consensus.spreads?.home ? { home: consensus.spreads.home.odds || -110, away: consensus.spreads.away?.odds || -110 } : undefined,
-        h2h: consensus.h2h ? { home: consensus.h2h.home, away: consensus.h2h.away } : undefined,
-        totals: consensus.totals?.over ? { over: consensus.totals.over.odds || -110, under: consensus.totals.under?.odds || -110 } : undefined,
+        spreads: hasSpread ? { home: getSpreadHomeOdds(), away: getSpreadAwayOdds() } : undefined,
+        h2h: hasH2h ? { home: getH2hHome(), away: getH2hAway() } : undefined,
+        totals: hasTotals ? { over: getTotalOverOdds(), under: getTotalUnderOdds() } : undefined,
       },
       gameContext  // Pass team stats + weather for Game Environment & Matchup Dynamics pillars
     );

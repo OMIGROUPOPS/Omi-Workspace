@@ -163,7 +163,7 @@ export class EdgeLifecycleManager {
     if (error) {
       console.error('[EdgeLifecycle] Error transitioning edge:', error);
     } else {
-      console.log(`[EdgeLifecycle] Edge ${edge.id} transitioned: ${edge.status} → ${newStatus}`);
+      // Edge status transition tracked silently
     }
   }
 

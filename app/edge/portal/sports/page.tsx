@@ -184,7 +184,8 @@ async function fetchAllTeamStats(): Promise<Map<string, TeamStatsData>> {
     const { data, error } = await supabase
       .from('team_stats')
       .select('*')
-      .order('updated_at', { ascending: false });
+      .order('updated_at', { ascending: false })
+      .limit(500); // Limit to 500 teams (more than enough for all major sports)
 
     if (error || !data) return teamStatsMap;
 

@@ -61,7 +61,7 @@ export function createOddsApiClient(apiKey: string) {
     }
 
     const remaining = res.headers.get('x-requests-remaining');
-    console.log(`[Odds API] Requests remaining: ${remaining}`);
+    // API usage tracked silently
 
     return res.json();
   }
@@ -107,7 +107,7 @@ export function createOddsApiClient(apiKey: string) {
     }
 
     const remaining = res.headers.get('x-requests-remaining');
-    console.log(`[Odds API] Requests remaining: ${remaining}`);
+    // API usage tracked silently
 
     return res.json();
   }

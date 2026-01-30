@@ -3,6 +3,10 @@
     {
       "path": "/api/odds/sync",
       "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/odds/sync-exchanges",
+      "schedule": "*/15 * * * *"
     }
   ]
 }

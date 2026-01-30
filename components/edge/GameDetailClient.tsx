@@ -5,14 +5,16 @@ import { formatOdds, formatSpread, calculateTwoWayEV, formatEV, getEVColor, getE
 import { isGameLive as checkGameLive, getGameState } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, PillarResult, PillarVariable, CEQConfidence } from '@/lib/edge/engine/edgescout';
 
-// Only FanDuel and DraftKings
-const BOOK_CONFIG: Record<string, { name: string; color: string }> = {
-  'fanduel': { name: 'FanDuel', color: '#1493ff' },
-  'draftkings': { name: 'DraftKings', color: '#53d337' },
+// Sportsbooks and Prediction Exchanges
+const BOOK_CONFIG: Record<string, { name: string; color: string; type: 'sportsbook' | 'exchange' }> = {
+  'fanduel': { name: 'FanDuel', color: '#1493ff', type: 'sportsbook' },
+  'draftkings': { name: 'DraftKings', color: '#53d337', type: 'sportsbook' },
+  'kalshi': { name: 'Kalshi', color: '#0ea5e9', type: 'exchange' },
+  'polymarket': { name: 'Polymarket', color: '#8b5cf6', type: 'exchange' },
 };
 
-// Allowed books for dropdown
-const ALLOWED_BOOKS = ['fanduel', 'draftkings'];
+// Allowed books for dropdown (sportsbooks + exchanges)
+const ALLOWED_BOOKS = ['fanduel', 'draftkings', 'kalshi', 'polymarket'];
 
 function getEdgeColor(delta: number): string {
   return delta >= 0 ? 'text-emerald-400' : 'text-red-400';
@@ -959,6 +961,100 @@ function formatMarketName(market: string): string {
   return marketNames[market] || market.replace('player_', '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 }
 
+// Exchange Markets Section - for Kalshi/Polymarket prediction markets
+function ExchangeMarketsSection({ exchangeMarkets, exchange, homeTeam, awayTeam }: { exchangeMarkets: any[]; exchange: 'kalshi' | 'polymarket'; homeTeam: string; awayTeam: string }) {
+  if (!exchangeMarkets || exchangeMarkets.length === 0) {
+    return (
+      <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden mb-4">
+        <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800">
+          <div className="flex items-center gap-2">
+            <div className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold text-white ${exchange === 'kalshi' ? 'bg-sky-500' : 'bg-violet-500'}`}>
+              {exchange === 'kalshi' ? 'K' : 'PM'}
+            </div>
+            <h2 className="font-semibold text-zinc-100">{exchange === 'kalshi' ? 'Kalshi' : 'Polymarket'} Markets</h2>
+          </div>
+        </div>
+        <div className="p-8 text-center">
+          <p className="text-zinc-500">No matching prediction markets found for this game</p>
+        </div>
+      </div>
+    );
+  }
+
+  const formatPrice = (price: number | null) => price !== null ? `${price}¢` : '-';
+  const formatVolume = (vol: number | null) => {
+    if (vol === null) return '-';
+    if (vol >= 1000000) return `$${(vol / 1000000).toFixed(1)}M`;
+    if (vol >= 1000) return `$${(vol / 1000).toFixed(1)}K`;
+    return `$${vol.toFixed(0)}`;
+  };
+
+  return (
+    <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden mb-4">
+      <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold text-white ${exchange === 'kalshi' ? 'bg-sky-500' : 'bg-violet-500'}`}>
+              {exchange === 'kalshi' ? 'K' : 'PM'}
+            </div>
+            <h2 className="font-semibold text-zinc-100">{exchange === 'kalshi' ? 'Kalshi' : 'Polymarket'} Markets</h2>
+          </div>
+          <span className="text-[10px] text-zinc-500">{exchangeMarkets.length} market{exchangeMarkets.length !== 1 ? 's' : ''}</span>
+        </div>
+      </div>
+      <div className="divide-y divide-zinc-800/50">
+        {exchangeMarkets.map((market, idx) => (
+          <div key={market.market_id || idx} className="p-4 hover:bg-zinc-800/30 transition-colors">
+            <div className="mb-3">
+              <h3 className="text-sm font-medium text-zinc-100 leading-snug">{market.market_title}</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-3 mb-3">
+              <div className="bg-zinc-800/50 rounded-lg p-3">
+                <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider mb-1">YES</div>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-xl font-mono font-semibold text-emerald-400">{formatPrice(market.yes_price)}</span>
+                  {market.yes_bid !== null && market.yes_ask !== null && (
+                    <span className="text-[10px] font-mono text-zinc-600">{market.yes_bid}/{market.yes_ask}</span>
+                  )}
+                </div>
+              </div>
+              <div className="bg-zinc-800/50 rounded-lg p-3">
+                <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider mb-1">NO</div>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-xl font-mono font-semibold text-red-400">{formatPrice(market.no_price)}</span>
+                  {market.no_bid !== null && market.no_ask !== null && (
+                    <span className="text-[10px] font-mono text-zinc-600">{market.no_bid}/{market.no_ask}</span>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 text-[11px]">
+              <div className="flex items-center gap-1">
+                <span className="text-zinc-600">Volume:</span>
+                <span className="font-mono text-zinc-400">{formatVolume(market.volume_24h)}</span>
+              </div>
+              {market.spread !== null && (
+                <div className="flex items-center gap-1">
+                  <span className="text-zinc-600">Spread:</span>
+                  <span className={`font-mono ${market.spread <= 3 ? 'text-emerald-400' : market.spread <= 6 ? 'text-amber-400' : 'text-red-400'}`}>
+                    {market.spread}¢
+                  </span>
+                </div>
+              )}
+              {market.open_interest !== null && (
+                <div className="flex items-center gap-1">
+                  <span className="text-zinc-600">OI:</span>
+                  <span className="font-mono text-zinc-400">{market.open_interest.toLocaleString()}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function PlayerPropsSection({ props, gameId, onSelectProp, selectedProp, selectedBook }: { props: any[]; gameId?: string; onSelectProp: (prop: any) => void; selectedProp: any | null; selectedBook: string }) {
   const [selectedMarket, setSelectedMarket] = useState<string>('all');
   if (!props || props.length === 0) return (<div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden"><div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800"><h2 className="font-semibold text-zinc-100">Player Props</h2></div><div className="p-8 text-center"><p className="text-zinc-500">No player props available for this game</p></div></div>);
@@ -1442,21 +1538,39 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         {isOpen && (<div className="absolute z-50 mt-2 w-64 bg-zinc-800 border border-zinc-700 rounded-lg shadow-xl overflow-hidden"><div className="max-h-80 overflow-y-auto">{filteredBooks.map((book) => { const config = BOOK_CONFIG[book] || { name: book, color: '#6b7280' }; const isSelected = book === selectedBook; return (<button key={book} onClick={() => { setSelectedBook(book); setIsOpen(false); }} className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all ${isSelected ? 'bg-emerald-500/10 text-emerald-400' : 'hover:bg-zinc-700/50 text-zinc-300'}`}><BookIcon bookKey={book} size={28} /><span className="font-medium">{config.name}</span>{isSelected && (<svg className="w-4 h-4 ml-auto text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>)}</button>); })}</div></div>)}
       </div>
       
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-2">{tabs.map((tab) => (<button key={tab.key} onClick={() => handleTabChange(tab.key)} className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${activeTab === tab.key ? 'bg-zinc-700 text-zinc-100' : 'bg-zinc-800/50 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300'}`}>{tab.label}</button>))}</div>
-      
-      {activeTab === 'full' && <MarketSection title="Full Game" markets={marketGroups.fullGame} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="fullGame" />}
-      {activeTab === '1h' && <MarketSection title="1st Half" markets={marketGroups.firstHalf} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="firstHalf" />}
-      {activeTab === '2h' && <MarketSection title="2nd Half" markets={marketGroups.secondHalf} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="secondHalf" />}
-      {activeTab === '1q' && <MarketSection title="1st Quarter" markets={marketGroups.q1} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q1" />}
-      {activeTab === '2q' && <MarketSection title="2nd Quarter" markets={marketGroups.q2} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q2" />}
-      {activeTab === '3q' && <MarketSection title="3rd Quarter" markets={marketGroups.q3} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q3" />}
-      {activeTab === '4q' && <MarketSection title="4th Quarter" markets={marketGroups.q4} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q4" />}
-      {activeTab === '1p' && <MarketSection title="1st Period" markets={marketGroups.p1} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p1" />}
-      {activeTab === '2p' && <MarketSection title="2nd Period" markets={marketGroups.p2} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p2" />}
-      {activeTab === '3p' && <MarketSection title="3rd Period" markets={marketGroups.p3} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p3" />}
-      {activeTab === 'team' && <TeamTotalsSection teamTotals={marketGroups.teamTotals} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} />}
-      {activeTab === 'props' && <PlayerPropsSection props={marketGroups.playerProps} gameId={gameData.id} onSelectProp={handleSelectProp} selectedProp={selectedProp} selectedBook={selectedBook} />}
-      {activeTab === 'alt' && <AlternatesSection alternates={marketGroups.alternates} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} />}
+      {/* Period tabs - hide for exchanges which only have full game */}
+      {!(selectedBook === 'kalshi' || selectedBook === 'polymarket') && (
+        <div className="flex gap-2 mb-4 overflow-x-auto pb-2">{tabs.map((tab) => (<button key={tab.key} onClick={() => handleTabChange(tab.key)} className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${activeTab === tab.key ? 'bg-zinc-700 text-zinc-100' : 'bg-zinc-800/50 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300'}`}>{tab.label}</button>))}</div>
+      )}
+
+      {/* Exchange Markets View (Kalshi/Polymarket) */}
+      {(selectedBook === 'kalshi' || selectedBook === 'polymarket') && (
+        <ExchangeMarketsSection
+          exchangeMarkets={marketGroups.exchangeMarkets || []}
+          exchange={selectedBook as 'kalshi' | 'polymarket'}
+          homeTeam={gameData.homeTeam}
+          awayTeam={gameData.awayTeam}
+        />
+      )}
+
+      {/* Sportsbook Markets View */}
+      {!(selectedBook === 'kalshi' || selectedBook === 'polymarket') && (
+        <>
+          {activeTab === 'full' && <MarketSection title="Full Game" markets={marketGroups.fullGame} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="fullGame" />}
+          {activeTab === '1h' && <MarketSection title="1st Half" markets={marketGroups.firstHalf} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="firstHalf" />}
+          {activeTab === '2h' && <MarketSection title="2nd Half" markets={marketGroups.secondHalf} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="secondHalf" />}
+          {activeTab === '1q' && <MarketSection title="1st Quarter" markets={marketGroups.q1} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q1" />}
+          {activeTab === '2q' && <MarketSection title="2nd Quarter" markets={marketGroups.q2} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q2" />}
+          {activeTab === '3q' && <MarketSection title="3rd Quarter" markets={marketGroups.q3} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q3" />}
+          {activeTab === '4q' && <MarketSection title="4th Quarter" markets={marketGroups.q4} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q4" />}
+          {activeTab === '1p' && <MarketSection title="1st Period" markets={marketGroups.p1} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p1" />}
+          {activeTab === '2p' && <MarketSection title="2nd Period" markets={marketGroups.p2} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p2" />}
+          {activeTab === '3p' && <MarketSection title="3rd Period" markets={marketGroups.p3} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p3" />}
+          {activeTab === 'team' && <TeamTotalsSection teamTotals={marketGroups.teamTotals} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} />}
+          {activeTab === 'props' && <PlayerPropsSection props={marketGroups.playerProps} gameId={gameData.id} onSelectProp={handleSelectProp} selectedProp={selectedProp} selectedBook={selectedBook} />}
+          {activeTab === 'alt' && <AlternatesSection alternates={marketGroups.alternates} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} />}
+        </>
+      )}
     </div>
   );
 }

@@ -8,6 +8,21 @@ import { calculateGameCEQ, type ExtendedOddsSnapshot, type GameCEQ } from '@/lib
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 
+interface ExchangeMarket {
+  exchange: 'kalshi' | 'polymarket';
+  market_id: string;
+  market_title: string;
+  yes_price: number | null;
+  no_price: number | null;
+  yes_bid: number | null;
+  yes_ask: number | null;
+  no_bid: number | null;
+  no_ask: number | null;
+  spread: number | null;
+  volume_24h: number | null;
+  liquidity_depth: any;
+}
+
 function getSupabase() {
   const cookieStore = cookies();
   return createServerClient(
@@ -202,6 +217,111 @@ async function fetchGameFromCache(gameId: string) {
     console.error('[GameDetail] Cache fetch error:', e);
     return null;
   }
+}
+
+// Fetch exchange markets (Kalshi/Polymarket) that match this game
+async function fetchExchangeMarkets(homeTeam: string, awayTeam: string, sportKey: string): Promise<ExchangeMarket[]> {
+  try {
+    const supabase = getDirectSupabase();
+
+    // Get latest snapshot time
+    const { data: latestSnapshot } = await supabase
+      .from('exchange_snapshots')
+      .select('snapshot_time')
+      .order('snapshot_time', { ascending: false })
+      .limit(1)
+      .single();
+
+    if (!latestSnapshot) return [];
+
+    // Map sport key to exchange sport format
+    const sportMap: Record<string, string> = {
+      'americanfootball_nfl': 'americanfootball_nfl',
+      'basketball_nba': 'basketball_nba',
+      'icehockey_nhl': 'icehockey_nhl',
+      'baseball_mlb': 'baseball_mlb',
+    };
+    const exchangeSport = sportMap[sportKey];
+
+    // Query exchange markets for this sport
+    let query = supabase
+      .from('exchange_snapshots')
+      .select('*')
+      .eq('snapshot_time', latestSnapshot.snapshot_time)
+      .eq('category', 'sports');
+
+    if (exchangeSport) {
+      query = query.eq('sport', exchangeSport);
+    }
+
+    const { data, error } = await query;
+    if (error || !data) return [];
+
+    // Filter to markets that mention either team
+    const homeKeywords = homeTeam.toLowerCase().split(' ');
+    const awayKeywords = awayTeam.toLowerCase().split(' ');
+
+    return data.filter((market: any) => {
+      const title = market.market_title.toLowerCase();
+      const homeMatch = homeKeywords.some(kw => kw.length > 3 && title.includes(kw));
+      const awayMatch = awayKeywords.some(kw => kw.length > 3 && title.includes(kw));
+      return homeMatch || awayMatch;
+    });
+  } catch (e) {
+    console.error('[GameDetail] Exchange markets fetch error:', e);
+    return [];
+  }
+}
+
+// Transform exchange market to bookmaker-compatible format
+function buildExchangeMarketGroups(markets: ExchangeMarket[], homeTeam: string, awayTeam: string) {
+  // Group markets by exchange
+  const kalshiMarkets = markets.filter(m => m.exchange === 'kalshi');
+  const polymarketMarkets = markets.filter(m => m.exchange === 'polymarket');
+
+  const buildMarketGroup = (exchangeMarkets: ExchangeMarket[]) => {
+    if (exchangeMarkets.length === 0) return null;
+
+    // Find moneyline-style markets (who will win)
+    const winMarket = exchangeMarkets.find(m =>
+      m.market_title.toLowerCase().includes('win') ||
+      m.market_title.toLowerCase().includes('winner')
+    );
+
+    // Build h2h from YES price (YES = team wins)
+    let h2h: any = null;
+    if (winMarket && winMarket.yes_price !== null) {
+      // YES price represents probability, convert to American odds
+      const yesProb = winMarket.yes_price / 100;
+      const noProb = (winMarket.no_price || (100 - winMarket.yes_price)) / 100;
+
+      const probToAmerican = (prob: number) => {
+        if (prob >= 0.5) return Math.round(-100 * prob / (1 - prob));
+        return Math.round(100 * (1 - prob) / prob);
+      };
+
+      h2h = {
+        home: { price: probToAmerican(yesProb), edge: 0, exchangePrice: winMarket.yes_price },
+        away: { price: probToAmerican(noProb), edge: 0, exchangePrice: winMarket.no_price },
+      };
+    }
+
+    return {
+      fullGame: { h2h, spreads: null, totals: null },
+      firstHalf: { h2h: null, spreads: null, totals: null },
+      secondHalf: { h2h: null, spreads: null, totals: null },
+      teamTotals: null,
+      playerProps: [],
+      alternates: { spreads: [], totals: [] },
+      lineHistory: {},
+      exchangeMarkets: exchangeMarkets, // Include raw exchange data
+    };
+  };
+
+  return {
+    kalshi: kalshiMarkets.length > 0 ? { marketGroups: buildMarketGroup(kalshiMarkets) } : null,
+    polymarket: polymarketMarkets.length > 0 ? { marketGroups: buildMarketGroup(polymarketMarkets) } : null,
+  };
 }
 
 function buildConsensusFromBookmakers(game: any) {
@@ -684,6 +804,20 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
       availableBooks.forEach(book => {
         bookmakers[book] = { marketGroups };
       });
+    }
+  }
+
+  // Fetch and merge exchange markets (Kalshi/Polymarket)
+  const exchangeMarkets = await fetchExchangeMarkets(homeTeam, awayTeam, sportKey);
+  if (exchangeMarkets.length > 0) {
+    const exchangeData = buildExchangeMarketGroups(exchangeMarkets, homeTeam, awayTeam);
+    if (exchangeData.kalshi) {
+      bookmakers['kalshi'] = exchangeData.kalshi;
+      if (!availableBooks.includes('kalshi')) availableBooks.push('kalshi');
+    }
+    if (exchangeData.polymarket) {
+      bookmakers['polymarket'] = exchangeData.polymarket;
+      if (!availableBooks.includes('polymarket')) availableBooks.push('polymarket');
     }
   }
 

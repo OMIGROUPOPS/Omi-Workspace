@@ -187,16 +187,33 @@ export function getFairProbTwoWay(odds1: number, odds2: number): { fair1: number
 
 /**
  * Calculate EV% for a two-way market (spread, ML, total O/U)
- * Uses no-vig fair odds from the same book
+ *
+ * IMPORTANT: When using same-book odds only, both sides will show negative EV
+ * (the vig split equally). For real +EV detection, pass consensus odds.
+ *
+ * @param targetOdds - The odds you're evaluating
+ * @param oppositeOdds - The opposite side's odds at this book
+ * @param consensusTarget - Optional: market consensus odds for target side
+ * @param consensusOpposite - Optional: market consensus odds for opposite side
  */
 export function calculateTwoWayEV(
   targetOdds: number,
   oppositeOdds: number,
-  isFirstSide: boolean = true
+  consensusTarget?: number,
+  consensusOpposite?: number
 ): number {
-  const { fair1, fair2 } = getFairProbTwoWay(targetOdds, oppositeOdds);
-  const fairProb = isFirstSide ? fair1 : fair2;
-  return calculateEV(targetOdds, fairProb);
+  // If we have consensus odds, use them as fair value (more accurate for finding +EV)
+  if (consensusTarget !== undefined && consensusOpposite !== undefined) {
+    const { fair1 } = getFairProbTwoWay(consensusTarget, consensusOpposite);
+    // Compare this book's implied prob vs market's fair prob
+    const impliedProb = americanToImplied(targetOdds);
+    // Positive EV = fair prob > implied prob (you're getting better odds than fair)
+    return (fair1 - impliedProb) * 100;
+  }
+
+  // Fallback: use same-book odds (will show vig as negative EV on both sides)
+  const { fair1 } = getFairProbTwoWay(targetOdds, oppositeOdds);
+  return calculateEV(targetOdds, fair1);
 }
 
 /**

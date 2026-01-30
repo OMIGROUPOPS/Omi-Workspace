@@ -36,6 +36,12 @@ export interface CEQResult {
     sentiment: PillarResult;
   };
   topDrivers: string[];           // Top 3 reasons for the score
+  dataQuality: {
+    pillarsWithData: number;      // 0-5, how many pillars have real data
+    totalVariables: number;       // Total variables with data
+    displayCEQ: boolean;          // Should CEQ be shown? (requires 2+ pillars)
+    confidenceLabel: 'Low' | 'Medium' | 'High' | 'Insufficient';
+  };
 }
 
 // Extended snapshot with game_id for grouping
@@ -72,6 +78,10 @@ function getCEQConfidence(ceq: number): CEQConfidence {
  * FDV (Fair Delta Value)
  * Measures difference between opening line and current line
  * Positive delta = line moved against this side = edge signal
+ *
+ * More sensitive scoring for real variance in output:
+ * - Even 0.5pt movement is meaningful in sports betting
+ * - Scale continuously rather than in large buckets
  */
 function calculateFDV(openingLine: number | undefined, currentLine: number | undefined): PillarVariable {
   if (openingLine === undefined || currentLine === undefined) {
@@ -87,35 +97,36 @@ function calculateFDV(openingLine: number | undefined, currentLine: number | und
   const delta = currentLine - openingLine;
   const absDelta = Math.abs(delta);
 
-  // Map delta to 0-100 score
-  // Positive delta = line moved against this side (getting more points)
-  // This means sharps bet the OTHER side
+  // More granular scoring for real variance
+  // Each 0.5 point of movement = ~8 points away from 50
   let score: number;
   let reason: string;
 
-  if (absDelta < 0.5) {
+  if (absDelta < 0.25) {
     score = 50;
-    reason = 'Line stable (no significant movement)';
-  } else if (delta >= 2) {
-    // Line moved 2+ pts against this side - strong edge on opposite
-    score = 80;
-    reason = `Line moved +${delta.toFixed(1)} pts - strong sharp action opposite`;
-  } else if (delta >= 1) {
-    score = 65;
-    reason = `Line moved +${delta.toFixed(1)} pts - moderate sharp signal`;
-  } else if (delta >= 0.5) {
-    score = 57;
-    reason = `Line moved +${delta.toFixed(1)} pts - slight movement`;
-  } else if (delta <= -2) {
-    // Line moved 2+ pts toward this side - edge on THIS side
-    score = 20;
-    reason = `Line moved ${delta.toFixed(1)} pts toward this side - strong edge`;
-  } else if (delta <= -1) {
-    score = 35;
-    reason = `Line moved ${delta.toFixed(1)} pts - moderate edge this side`;
+    reason = 'Line stable (no movement)';
   } else {
-    score = 43;
-    reason = `Line moved ${delta.toFixed(1)} pts - slight edge this side`;
+    // Continuous scaling: each point of movement = 15 score points
+    const baseScore = 50 + (delta * 15);
+    score = Math.max(10, Math.min(90, Math.round(baseScore)));
+
+    if (delta >= 2) {
+      reason = `Line moved +${delta.toFixed(1)} pts - strong sharp action opposite`;
+    } else if (delta >= 1) {
+      reason = `Line moved +${delta.toFixed(1)} pts - moderate sharp signal`;
+    } else if (delta >= 0.5) {
+      reason = `Line moved +${delta.toFixed(1)} pts - some movement detected`;
+    } else if (delta > 0) {
+      reason = `Line moved +${delta.toFixed(1)} pts - slight movement`;
+    } else if (delta <= -2) {
+      reason = `Line moved ${delta.toFixed(1)} pts - strong edge this side`;
+    } else if (delta <= -1) {
+      reason = `Line moved ${delta.toFixed(1)} pts - moderate edge this side`;
+    } else if (delta <= -0.5) {
+      reason = `Line moved ${delta.toFixed(1)} pts - some edge this side`;
+    } else {
+      reason = `Line moved ${delta.toFixed(1)} pts - slight edge this side`;
+    }
   }
 
   return {
@@ -206,14 +217,16 @@ function calculateMMI(
   const consistency = movements.length > 0 ? sameDirection / movements.length : 0;
 
   // Calculate score: high velocity + high consistency = strong momentum signal
-  const velocityScore = Math.min(velocity * 15, 30); // Cap at 30 pts
-  const consistencyBonus = consistency * velocityScore;
-  const rawScore = 50 + velocityScore + consistencyBonus;
-  const score = Math.min(Math.max(Math.round(rawScore), 0), 100);
+  // More aggressive scaling for real variance
+  const velocityScore = Math.min(velocity * 25, 40); // Cap at 40 pts
+  const consistencyBonus = consistency * velocityScore * 0.5;
+  const directionSign = totalChange > 0 ? 1 : -1; // Positive = line moved up
+  const rawScore = 50 + (velocityScore + consistencyBonus) * directionSign;
+  const score = Math.min(Math.max(Math.round(rawScore), 10), 90);
 
   const direction = totalChange > 0 ? 'up' : 'down';
-  const reason = velocity > 0.5
-    ? `Strong momentum ${direction} (${velocity.toFixed(2)} pts/hr, ${Math.round(consistency * 100)}% consistent)`
+  const reason = velocity > 0.3
+    ? `${velocity > 0.5 ? 'Strong' : 'Moderate'} momentum ${direction} (${velocity.toFixed(2)} pts/hr, ${Math.round(consistency * 100)}% consistent)`
     : `Mild movement ${direction} over ${hoursToAnalyze}h`;
 
   return {
@@ -483,18 +496,34 @@ export function calculateCEQ(
     edgeSide = side;
   }
 
+  // Calculate data quality metrics
+  const pillarsWithData = pillars.filter(p => p.weight > 0).length;
+  const allVariables = [
+    ...marketEfficiency.variables,
+    ...playerUtilization.variables,
+    ...gameEnvironment.variables,
+    ...matchupDynamics.variables,
+    ...sentiment.variables,
+  ];
+  const totalVariables = allVariables.filter(v => v.available).length;
+
+  // Determine if CEQ should be displayed (need at least 2 pillars with data)
+  const displayCEQ = pillarsWithData >= 2;
+  const confidenceLabel: 'Low' | 'Medium' | 'High' | 'Insufficient' =
+    pillarsWithData < 2 ? 'Insufficient' :
+    pillarsWithData === 2 ? 'Low' :
+    pillarsWithData === 3 ? 'Medium' : 'High';
+
   // Collect top drivers (reasons with significant scores)
   const topDrivers: string[] = [];
-  const allVars = [
-    ...marketEfficiency.variables,
-    ...sentiment.variables,
-  ].filter(v => v.available && Math.abs(v.score - 50) >= 5);
+  const significantVars = allVariables
+    .filter(v => v.available && Math.abs(v.score - 50) >= 5);
 
   // Sort by deviation from neutral (50)
-  allVars.sort((a, b) => Math.abs(b.score - 50) - Math.abs(a.score - 50));
+  significantVars.sort((a, b) => Math.abs(b.score - 50) - Math.abs(a.score - 50));
 
   // Take top 3
-  for (const v of allVars.slice(0, 3)) {
+  for (const v of significantVars.slice(0, 3)) {
     topDrivers.push(`${v.name}: ${v.reason}`);
   }
 
@@ -514,6 +543,12 @@ export function calculateCEQ(
       sentiment,
     },
     topDrivers,
+    dataQuality: {
+      pillarsWithData,
+      totalVariables,
+      displayCEQ,
+      confidenceLabel,
+    },
   };
 }
 

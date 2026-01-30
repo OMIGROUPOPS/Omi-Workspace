@@ -674,15 +674,31 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                         const awayH2hData = ceq?.h2h?.away;
                         const overTotalsData = ceq?.totals?.over;
 
-                        // Calculate EV for each market
+                        // Calculate EV for each market using consensus as fair value
+                        const consensus = game.consensus;
                         const spreadEV = spreads?.awayPrice && spreads?.homePrice
-                          ? calculateTwoWayEV(spreads.awayPrice, spreads.homePrice, true)
+                          ? calculateTwoWayEV(
+                              spreads.awayPrice,
+                              spreads.homePrice,
+                              consensus?.spreads?.awayPrice,
+                              consensus?.spreads?.homePrice
+                            )
                           : undefined;
                         const mlEV = h2h?.awayPrice && h2h?.homePrice
-                          ? calculateTwoWayEV(h2h.awayPrice, h2h.homePrice, true)
+                          ? calculateTwoWayEV(
+                              h2h.awayPrice,
+                              h2h.homePrice,
+                              consensus?.h2h?.awayPrice,
+                              consensus?.h2h?.homePrice
+                            )
                           : undefined;
                         const overEV = totals?.overPrice && totals?.underPrice
-                          ? calculateTwoWayEV(totals.overPrice, totals.underPrice, true)
+                          ? calculateTwoWayEV(
+                              totals.overPrice,
+                              totals.underPrice,
+                              consensus?.totals?.overPrice,
+                              consensus?.totals?.underPrice
+                            )
                           : undefined;
 
                         return (
@@ -733,15 +749,31 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                         const homeH2hData = ceq?.h2h?.home;
                         const underTotalsData = ceq?.totals?.under;
 
-                        // Calculate EV for each market
+                        // Calculate EV for each market using consensus as fair value
+                        const consensus = game.consensus;
                         const spreadEV = spreads?.homePrice && spreads?.awayPrice
-                          ? calculateTwoWayEV(spreads.homePrice, spreads.awayPrice, true)
+                          ? calculateTwoWayEV(
+                              spreads.homePrice,
+                              spreads.awayPrice,
+                              consensus?.spreads?.homePrice,
+                              consensus?.spreads?.awayPrice
+                            )
                           : undefined;
                         const mlEV = h2h?.homePrice && h2h?.awayPrice
-                          ? calculateTwoWayEV(h2h.homePrice, h2h.awayPrice, true)
+                          ? calculateTwoWayEV(
+                              h2h.homePrice,
+                              h2h.awayPrice,
+                              consensus?.h2h?.homePrice,
+                              consensus?.h2h?.awayPrice
+                            )
                           : undefined;
                         const underEV = totals?.underPrice && totals?.overPrice
-                          ? calculateTwoWayEV(totals.underPrice, totals.overPrice, true)
+                          ? calculateTwoWayEV(
+                              totals.underPrice,
+                              totals.overPrice,
+                              consensus?.totals?.underPrice,
+                              consensus?.totals?.overPrice
+                            )
                           : undefined;
 
                         return (

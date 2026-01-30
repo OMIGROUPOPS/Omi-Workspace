@@ -6,68 +6,189 @@ const ODDS_API_KEY = process.env.ODDS_API_KEY || "";
 const ODDS_API_BASE = "https://api.the-odds-api.com/v4";
 
 const SPORT_KEYS: Record<string, string> = {
+  // American Football
   NFL: "americanfootball_nfl",
   NCAAF: "americanfootball_ncaaf",
+
+  // Basketball
   NBA: "basketball_nba",
-  NHL: "icehockey_nhl",
   NCAAB: "basketball_ncaab",
-  MLB: "baseball_mlb",
   WNBA: "basketball_wnba",
-  MMA: "mma_mixed_martial_arts",
+  WNCAAB: "basketball_wncaab",
+  EUROLEAGUE: "basketball_euroleague",
+  NBL: "basketball_nbl",
+
+  // Baseball
+  MLB: "baseball_mlb",
+
+  // Ice Hockey
+  NHL: "icehockey_nhl",
+  AHL: "icehockey_ahl",
+  SHL: "icehockey_sweden_hockey_league",
+  LIIGA: "icehockey_liiga",
+  MESTIS: "icehockey_mestis",
+
+  // Tennis - Grand Slams
   TENNIS_AO: "tennis_atp_australian_open",
   TENNIS_FO: "tennis_atp_french_open",
   TENNIS_USO: "tennis_atp_us_open",
   TENNIS_WIM: "tennis_atp_wimbledon",
+
+  // Combat Sports
+  MMA: "mma_mixed_martial_arts",
+  BOXING: "boxing_boxing",
+
+  // Soccer - England
+  EPL: "soccer_epl",
+  EFL_CHAMP: "soccer_efl_champ",
+  FA_CUP: "soccer_fa_cup",
+
+  // Soccer - Europe Top Leagues
+  LA_LIGA: "soccer_spain_la_liga",
+  BUNDESLIGA: "soccer_germany_bundesliga",
+  SERIE_A: "soccer_italy_serie_a",
+  LIGUE_1: "soccer_france_ligue_one",
+  EREDIVISIE: "soccer_netherlands_eredivisie",
+
+  // Soccer - International
+  UCL: "soccer_uefa_champs_league",
+  EUROPA: "soccer_uefa_europa_league",
+
+  // Soccer - Americas
+  MLS: "soccer_usa_mls",
+  LIGA_MX: "soccer_mexico_ligamx",
+
+  // Cricket
+  IPL: "cricket_ipl",
+  BIG_BASH: "cricket_big_bash",
+  CRICKET_TEST: "cricket_test_match",
+
+  // Rugby
+  NRL: "rugbyleague_nrl",
+
+  // Golf (outrights only)
+  MASTERS: "golf_masters_tournament_winner",
+  PGA_CHAMP: "golf_pga_championship_winner",
+  US_OPEN: "golf_us_open_winner",
+  THE_OPEN: "golf_the_open_championship_winner",
+
+  // Aussie Rules
+  AFL: "aussierules_afl",
 };
 
 // Core markets fetched via /sports/{sport}/odds (all sports)
 const CORE_MARKETS = "h2h,spreads,totals";
 
 // Per-event additional markets fetched via /sports/{sport}/events/{id}/odds
-// Only for pro sports — college/MMA use core only to conserve quota
+// Pro sports get full enrichment; others get basic enrichment to conserve quota
 const EVENT_MARKETS: Record<string, string[]> = {
+  // American Football
   americanfootball_nfl: [
-    // Halves
     "h2h_h1", "spreads_h1", "totals_h1",
     "h2h_h2", "spreads_h2", "totals_h2",
-    // Alternates & team totals
     "alternate_spreads", "alternate_totals", "team_totals",
-    // Player props
     "player_pass_yds", "player_rush_yds", "player_reception_yds",
     "player_receptions", "player_pass_tds", "player_anytime_td",
-  ], // 15 markets
+  ],
+  americanfootball_ncaaf: [
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals", "team_totals",
+  ],
+
+  // Basketball
   basketball_nba: [
     "h2h_h1", "spreads_h1", "totals_h1",
     "h2h_h2", "spreads_h2", "totals_h2",
+    "h2h_q1", "spreads_q1", "totals_q1",
+    "h2h_q2", "spreads_q2", "totals_q2",
+    "h2h_q3", "spreads_q3", "totals_q3",
+    "h2h_q4", "spreads_q4", "totals_q4",
     "alternate_spreads", "alternate_totals", "team_totals",
     "player_points", "player_rebounds", "player_assists",
     "player_threes", "player_blocks", "player_steals",
-  ], // 15 markets
-  icehockey_nhl: [
+  ],
+  basketball_ncaab: [
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
     "alternate_spreads", "alternate_totals", "team_totals",
-    "player_points", "player_assists", "player_shots_on_goal",
-    "player_blocked_shots",
-  ], // 7 markets
-  baseball_mlb: [
-    "alternate_spreads", "alternate_totals", "team_totals",
-    "pitcher_strikeouts", "batter_total_bases", "batter_hits",
-    "batter_home_runs", "batter_rbis",
-  ], // 8 markets
+  ],
   basketball_wnba: [
     "h2h_h1", "spreads_h1", "totals_h1",
     "h2h_h2", "spreads_h2", "totals_h2",
     "alternate_spreads", "alternate_totals", "team_totals",
     "player_points", "player_rebounds", "player_assists",
     "player_threes",
-  ], // 13 markets
+  ],
+  basketball_euroleague: [
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals",
+  ],
+
+  // Ice Hockey
+  icehockey_nhl: [
+    "h2h_p1", "spreads_p1", "totals_p1",
+    "h2h_p2", "spreads_p2", "totals_p2",
+    "h2h_p3", "spreads_p3", "totals_p3",
+    "alternate_spreads", "alternate_totals", "team_totals",
+    "player_points", "player_assists", "player_shots_on_goal",
+    "player_blocked_shots",
+  ],
+  icehockey_sweden_hockey_league: [
+    "alternate_spreads", "alternate_totals",
+  ],
+  icehockey_liiga: [
+    "alternate_spreads", "alternate_totals",
+  ],
+
+  // Baseball
+  baseball_mlb: [
+    "alternate_spreads", "alternate_totals", "team_totals",
+    "pitcher_strikeouts", "batter_total_bases", "batter_hits",
+    "batter_home_runs", "batter_rbis",
+  ],
+
+  // Soccer (top leagues get more markets)
+  soccer_epl: [
+    "alternate_spreads", "alternate_totals",
+    "btts", "draw_no_bet",
+  ],
+  soccer_uefa_champs_league: [
+    "alternate_spreads", "alternate_totals",
+  ],
+  soccer_spain_la_liga: [
+    "alternate_spreads", "alternate_totals",
+  ],
+  soccer_germany_bundesliga: [
+    "alternate_spreads", "alternate_totals",
+  ],
+  soccer_italy_serie_a: [
+    "alternate_spreads", "alternate_totals",
+  ],
+  soccer_france_ligue_one: [
+    "alternate_spreads", "alternate_totals",
+  ],
 };
 
-// Market keys to snapshot for line movement charts (includes halves and props)
+// Market keys to snapshot for line movement charts (includes halves, quarters, periods, and props)
 const SNAPSHOT_MARKETS = [
   // Core game markets
   "h2h", "spreads", "totals",
+  // Halves
   "h2h_h1", "spreads_h1", "totals_h1",
   "h2h_h2", "spreads_h2", "totals_h2",
+  // Quarters (basketball)
+  "h2h_q1", "spreads_q1", "totals_q1",
+  "h2h_q2", "spreads_q2", "totals_q2",
+  "h2h_q3", "spreads_q3", "totals_q3",
+  "h2h_q4", "spreads_q4", "totals_q4",
+  // Periods (hockey)
+  "h2h_p1", "spreads_p1", "totals_p1",
+  "h2h_p2", "spreads_p2", "totals_p2",
+  "h2h_p3", "spreads_p3", "totals_p3",
+  // Alternates
+  "alternate_spreads", "alternate_totals", "team_totals",
   // Player props - NBA/WNBA/NCAAB
   "player_points", "player_rebounds", "player_assists", "player_threes",
   "player_blocks", "player_steals", "player_points_rebounds_assists",
@@ -82,6 +203,8 @@ const SNAPSHOT_MARKETS = [
   // Player props - MLB
   "pitcher_strikeouts", "batter_total_bases", "batter_hits",
   "batter_home_runs", "batter_rbis",
+  // Soccer props
+  "btts", "draw_no_bet",
 ];
 
 // Use direct Supabase client (no cookies needed — cron/API context, not browser)

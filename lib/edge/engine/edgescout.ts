@@ -392,34 +392,390 @@ function calculatePlayerUtilizationPillar(): PillarResult {
 }
 
 // ============================================================================
-// PILLAR 3: GAME ENVIRONMENT (N/A initially)
+// PILLAR 3: GAME ENVIRONMENT (ESPN + Weather data)
 // ============================================================================
 
-function calculateGameEnvironmentPillar(): PillarResult {
+export interface TeamStatsData {
+  team_id: string;
+  team_name: string;
+  pace?: number | null;
+  offensive_rating?: number | null;
+  defensive_rating?: number | null;
+  net_rating?: number | null;
+  wins?: number | null;
+  losses?: number | null;
+  win_pct?: number | null;
+  home_wins?: number | null;
+  home_losses?: number | null;
+  away_wins?: number | null;
+  away_losses?: number | null;
+  streak?: number | null;
+  points_per_game?: number | null;
+  points_allowed_per_game?: number | null;
+  injuries?: Array<{ player: string; type: string; status: string }>;
+}
+
+export interface WeatherData {
+  temperature_f?: number | null;
+  wind_speed_mph?: number | null;
+  wind_gust_mph?: number | null;
+  precipitation_pct?: number | null;
+  conditions?: string | null;
+  weather_impact_score?: number | null;
+  is_dome?: boolean;
+}
+
+function calculatePaceVariable(
+  homePace: number | null | undefined,
+  awayPace: number | null | undefined,
+  league: string = 'nba'
+): PillarVariable {
+  if (homePace === null || homePace === undefined || awayPace === null || awayPace === undefined) {
+    return { name: 'PVI', value: 0, score: 50, available: false, reason: 'Pace data not available' };
+  }
+
+  const avgPace = (homePace + awayPace) / 2;
+
+  // NBA average pace ~100, NFL ~65, MLB varies
+  const leaguePace = league === 'nba' ? 100 : league === 'nfl' ? 65 : 70;
+  const paceDeviation = avgPace - leaguePace;
+
+  let score: number;
+  let reason: string;
+
+  if (paceDeviation > 5) {
+    score = 65; // High pace = more possessions = more scoring variance
+    reason = `High pace matchup (${avgPace.toFixed(1)}) - favors overs/variance`;
+  } else if (paceDeviation > 2) {
+    score = 58;
+    reason = `Above-avg pace (${avgPace.toFixed(1)}) - slight over lean`;
+  } else if (paceDeviation < -5) {
+    score = 35;
+    reason = `Low pace matchup (${avgPace.toFixed(1)}) - favors unders`;
+  } else if (paceDeviation < -2) {
+    score = 42;
+    reason = `Below-avg pace (${avgPace.toFixed(1)}) - slight under lean`;
+  } else {
+    score = 50;
+    reason = `Average pace matchup (${avgPace.toFixed(1)})`;
+  }
+
   return {
-    score: 50,
-    weight: 0,
-    variables: [
-      { name: 'PVI', value: 0, score: 50, available: false, reason: 'Pace data not available' },
-      { name: 'TIR', value: 0, score: 50, available: false, reason: 'Tempo data not available' },
-      { name: 'EPA', value: 0, score: 50, available: false, reason: 'Play-by-play not available' },
-    ],
+    name: 'PVI',
+    value: avgPace,
+    score,
+    available: true,
+    reason,
+  };
+}
+
+function calculateWeatherVariable(weather: WeatherData | undefined): PillarVariable {
+  if (!weather || weather.is_dome) {
+    return {
+      name: 'WEA',
+      value: 0,
+      score: 50,
+      available: weather?.is_dome === true,
+      reason: weather?.is_dome ? 'Dome stadium - no weather impact' : 'Weather data not available',
+    };
+  }
+
+  const impactScore = weather.weather_impact_score || 0;
+  const wind = weather.wind_speed_mph || 0;
+  const temp = weather.temperature_f || 70;
+  const precip = weather.precipitation_pct || 0;
+
+  let score = 50;
+  let reasons: string[] = [];
+
+  // High wind affects passing games (under-lean for totals)
+  if (wind > 20) {
+    score -= 15;
+    reasons.push(`high wind (${wind}mph)`);
+  } else if (wind > 12) {
+    score -= 8;
+    reasons.push(`moderate wind (${wind}mph)`);
+  }
+
+  // Cold weather affects scoring
+  if (temp < 32) {
+    score -= 10;
+    reasons.push(`freezing (${temp}°F)`);
+  } else if (temp < 45) {
+    score -= 5;
+    reasons.push(`cold (${temp}°F)`);
+  }
+
+  // Precipitation affects gameplay
+  if (precip > 70) {
+    score -= 10;
+    reasons.push(`${precip}% rain chance`);
+  }
+
+  const reason = reasons.length > 0
+    ? `Weather impact: ${reasons.join(', ')} - favors unders`
+    : weather.conditions || 'Good weather conditions';
+
+  return {
+    name: 'WEA',
+    value: impactScore,
+    score: Math.max(25, Math.min(75, score)),
+    available: true,
+    reason,
+  };
+}
+
+function calculateStreakVariable(
+  homeStreak: number | null | undefined,
+  awayStreak: number | null | undefined
+): PillarVariable {
+  if ((homeStreak === null || homeStreak === undefined) &&
+      (awayStreak === null || awayStreak === undefined)) {
+    return { name: 'STK', value: 0, score: 50, available: false, reason: 'Streak data not available' };
+  }
+
+  const hStreak = homeStreak || 0;
+  const aStreak = awayStreak || 0;
+  const streakDiff = hStreak - aStreak;
+
+  let score: number;
+  let reason: string;
+
+  if (Math.abs(streakDiff) < 2) {
+    score = 50;
+    reason = `Similar momentum (home: ${hStreak > 0 ? `W${hStreak}` : `L${Math.abs(hStreak)}`}, away: ${aStreak > 0 ? `W${aStreak}` : `L${Math.abs(aStreak)}`})`;
+  } else if (streakDiff >= 3) {
+    score = 62;
+    reason = `Home on ${hStreak > 0 ? `${hStreak}-game win streak` : 'hot streak'} vs cold away team`;
+  } else if (streakDiff >= 2) {
+    score = 56;
+    reason = `Home momentum advantage (${hStreak > 0 ? `W${hStreak}` : 'coming off wins'})`;
+  } else if (streakDiff <= -3) {
+    score = 38;
+    reason = `Away on ${aStreak > 0 ? `${aStreak}-game win streak` : 'hot streak'} vs cold home team`;
+  } else {
+    score = 44;
+    reason = `Away momentum advantage (${aStreak > 0 ? `W${aStreak}` : 'coming off wins'})`;
+  }
+
+  return {
+    name: 'STK',
+    value: streakDiff,
+    score,
+    available: true,
+    reason,
+  };
+}
+
+function calculateGameEnvironmentPillar(
+  homeTeam?: TeamStatsData,
+  awayTeam?: TeamStatsData,
+  weather?: WeatherData,
+  league: string = 'nba'
+): PillarResult {
+  const pvi = calculatePaceVariable(homeTeam?.pace, awayTeam?.pace, league);
+  const wea = calculateWeatherVariable(weather);
+  const stk = calculateStreakVariable(homeTeam?.streak, awayTeam?.streak);
+
+  const variables = [pvi, wea, stk];
+  const availableVars = variables.filter(v => v.available);
+
+  let weight = 0;
+  if (availableVars.length >= 2) weight = 0.6;
+  else if (availableVars.length === 1) weight = 0.3;
+
+  let score = 50;
+  if (availableVars.length > 0) {
+    score = availableVars.reduce((acc, v) => acc + v.score, 0) / availableVars.length;
+  }
+
+  return {
+    score: Math.round(score),
+    weight,
+    variables,
   };
 }
 
 // ============================================================================
-// PILLAR 4: MATCHUP DYNAMICS (N/A initially)
+// PILLAR 4: MATCHUP DYNAMICS (Team Stats from ESPN)
 // ============================================================================
 
-function calculateMatchupDynamicsPillar(): PillarResult {
+function calculateDefenseVariable(
+  homeDefRtg: number | null | undefined,
+  awayDefRtg: number | null | undefined,
+  homeOffRtg: number | null | undefined,
+  awayOffRtg: number | null | undefined
+): PillarVariable {
+  // Check if we have any rating data
+  const hasDefense = homeDefRtg !== null && homeDefRtg !== undefined &&
+                     awayDefRtg !== null && awayDefRtg !== undefined;
+  const hasOffense = homeOffRtg !== null && homeOffRtg !== undefined &&
+                     awayOffRtg !== null && awayOffRtg !== undefined;
+
+  if (!hasDefense && !hasOffense) {
+    return { name: 'DVA', value: 0, score: 50, available: false, reason: 'Efficiency data not available' };
+  }
+
+  // Lower defensive rating = better defense
+  // Higher offensive rating = better offense
+  let score = 50;
+  const reasons: string[] = [];
+
+  if (hasDefense && homeDefRtg !== null && awayDefRtg !== null) {
+    const defDiff = awayDefRtg - homeDefRtg; // Positive = home defense better
+    if (defDiff > 3) {
+      score += 8;
+      reasons.push(`home D elite (+${defDiff.toFixed(1)} rating edge)`);
+    } else if (defDiff > 1.5) {
+      score += 4;
+      reasons.push('home D advantage');
+    } else if (defDiff < -3) {
+      score -= 8;
+      reasons.push(`away D elite (+${Math.abs(defDiff).toFixed(1)} rating edge)`);
+    } else if (defDiff < -1.5) {
+      score -= 4;
+      reasons.push('away D advantage');
+    }
+  }
+
+  if (hasOffense && homeOffRtg !== null && awayOffRtg !== null) {
+    const offDiff = homeOffRtg - awayOffRtg; // Positive = home offense better
+    if (offDiff > 3) {
+      score += 6;
+      reasons.push(`home O efficient (+${offDiff.toFixed(1)})`);
+    } else if (offDiff < -3) {
+      score -= 6;
+      reasons.push(`away O efficient (+${Math.abs(offDiff).toFixed(1)})`);
+    }
+  }
+
+  const reason = reasons.length > 0 ? reasons.join(', ') : 'Evenly matched efficiency';
+
   return {
-    score: 50,
-    weight: 0,
-    variables: [
-      { name: 'DVA', value: 0, score: 50, available: false, reason: 'Defense stats not available' },
-      { name: 'HPR', value: 0, score: 50, available: false, reason: 'Historical patterns not available' },
-      { name: 'OVI', value: 0, score: 50, available: false, reason: 'Outcome volatility not available' },
-    ],
+    name: 'DVA',
+    value: score - 50,
+    score: Math.max(30, Math.min(70, score)),
+    available: true,
+    reason,
+  };
+}
+
+function calculateWinPctVariable(
+  homeWinPct: number | null | undefined,
+  awayWinPct: number | null | undefined,
+  isHome: boolean = true
+): PillarVariable {
+  if (homeWinPct === null || homeWinPct === undefined ||
+      awayWinPct === null || awayWinPct === undefined) {
+    return { name: 'WPD', value: 0, score: 50, available: false, reason: 'Win % data not available' };
+  }
+
+  const winPctDiff = (homeWinPct - awayWinPct) * 100; // Convert to percentage points
+  let score: number;
+  let reason: string;
+
+  if (Math.abs(winPctDiff) < 5) {
+    score = 50;
+    reason = `Even matchup (${(homeWinPct * 100).toFixed(0)}% vs ${(awayWinPct * 100).toFixed(0)}%)`;
+  } else if (winPctDiff >= 15) {
+    score = 68;
+    reason = `Home heavily favored (${(homeWinPct * 100).toFixed(0)}% vs ${(awayWinPct * 100).toFixed(0)}%)`;
+  } else if (winPctDiff >= 10) {
+    score = 60;
+    reason = `Home edge on record (${(homeWinPct * 100).toFixed(0)}% vs ${(awayWinPct * 100).toFixed(0)}%)`;
+  } else if (winPctDiff >= 5) {
+    score = 55;
+    reason = `Slight home edge by record`;
+  } else if (winPctDiff <= -15) {
+    score = 32;
+    reason = `Away heavily favored (${(awayWinPct * 100).toFixed(0)}% vs ${(homeWinPct * 100).toFixed(0)}%)`;
+  } else if (winPctDiff <= -10) {
+    score = 40;
+    reason = `Away edge on record (${(awayWinPct * 100).toFixed(0)}% vs ${(homeWinPct * 100).toFixed(0)}%)`;
+  } else {
+    score = 45;
+    reason = `Slight away edge by record`;
+  }
+
+  return {
+    name: 'WPD',
+    value: winPctDiff,
+    score,
+    available: true,
+    reason,
+  };
+}
+
+function calculateInjuryVariable(
+  homeInjuries: Array<{ player: string; type: string; status: string }> | undefined,
+  awayInjuries: Array<{ player: string; type: string; status: string }> | undefined
+): PillarVariable {
+  const homeCount = homeInjuries?.filter(i => i.status === 'Out' || i.status === 'Doubtful').length || 0;
+  const awayCount = awayInjuries?.filter(i => i.status === 'Out' || i.status === 'Doubtful').length || 0;
+
+  if (homeCount === 0 && awayCount === 0) {
+    return { name: 'INJ', value: 0, score: 50, available: true, reason: 'No significant injuries reported' };
+  }
+
+  const injuryDiff = awayCount - homeCount; // Positive = away has more injuries = home advantage
+  let score: number;
+  let reason: string;
+
+  if (injuryDiff >= 3) {
+    score = 65;
+    reason = `Away team depleted (${awayCount} out vs ${homeCount})`;
+  } else if (injuryDiff >= 1) {
+    score = 57;
+    reason = `Injury edge to home (${homeCount} vs ${awayCount} out)`;
+  } else if (injuryDiff <= -3) {
+    score = 35;
+    reason = `Home team depleted (${homeCount} out vs ${awayCount})`;
+  } else if (injuryDiff <= -1) {
+    score = 43;
+    reason = `Injury edge to away (${awayCount} vs ${homeCount} out)`;
+  } else {
+    score = 50;
+    reason = `Similar injury situations (${homeCount} vs ${awayCount} out)`;
+  }
+
+  return {
+    name: 'INJ',
+    value: injuryDiff,
+    score,
+    available: true,
+    reason,
+  };
+}
+
+function calculateMatchupDynamicsPillar(
+  homeTeam?: TeamStatsData,
+  awayTeam?: TeamStatsData
+): PillarResult {
+  const dva = calculateDefenseVariable(
+    homeTeam?.defensive_rating,
+    awayTeam?.defensive_rating,
+    homeTeam?.offensive_rating,
+    awayTeam?.offensive_rating
+  );
+  const wpd = calculateWinPctVariable(homeTeam?.win_pct, awayTeam?.win_pct);
+  const inj = calculateInjuryVariable(homeTeam?.injuries, awayTeam?.injuries);
+
+  const variables = [dva, wpd, inj];
+  const availableVars = variables.filter(v => v.available);
+
+  let weight = 0;
+  if (availableVars.length >= 2) weight = 0.5;
+  else if (availableVars.length === 1) weight = 0.25;
+
+  let score = 50;
+  if (availableVars.length > 0) {
+    score = availableVars.reduce((acc, v) => acc + v.score, 0) / availableVars.length;
+  }
+
+  return {
+    score: Math.round(score),
+    weight,
+    variables,
   };
 }
 
@@ -464,6 +820,13 @@ function calculateSentimentPillar(
 // MAIN CEQ CALCULATION
 // ============================================================================
 
+export interface GameContextData {
+  homeTeam?: TeamStatsData;
+  awayTeam?: TeamStatsData;
+  weather?: WeatherData;
+  league?: string;
+}
+
 export function calculateCEQ(
   marketType: 'spread' | 'h2h' | 'total',
   side: MarketSide,
@@ -472,7 +835,8 @@ export function calculateCEQ(
   currentLine: number | undefined,
   snapshots: ExtendedOddsSnapshot[],
   allBooksOdds: number[],
-  consensusOdds: number | undefined
+  consensusOdds: number | undefined,
+  gameContext?: GameContextData
 ): CEQResult {
   // Calculate all pillars
   const marketEfficiency = calculateMarketEfficiencyPillar(
@@ -485,8 +849,16 @@ export function calculateCEQ(
     marketType
   );
   const playerUtilization = calculatePlayerUtilizationPillar();
-  const gameEnvironment = calculateGameEnvironmentPillar();
-  const matchupDynamics = calculateMatchupDynamicsPillar();
+  const gameEnvironment = calculateGameEnvironmentPillar(
+    gameContext?.homeTeam,
+    gameContext?.awayTeam,
+    gameContext?.weather,
+    gameContext?.league
+  );
+  const matchupDynamics = calculateMatchupDynamicsPillar(
+    gameContext?.homeTeam,
+    gameContext?.awayTeam
+  );
   const sentiment = calculateSentimentPillar(snapshots, bookOdds, consensusOdds, allBooksOdds);
 
   // Calculate weighted CEQ from all pillars
@@ -637,7 +1009,8 @@ export function calculateGameCEQ(
     spreads?: { home: number; away: number };
     h2h?: { home: number; away: number };
     totals?: { over: number; under: number };
-  }
+  },
+  gameContext?: GameContextData
 ): GameCEQ {
   const result: GameCEQ = { bestEdge: null };
 
@@ -659,7 +1032,8 @@ export function calculateGameCEQ(
         gameOdds.spreads.home.line,
         spreadSnapshots,
         allBooksOdds.spreads?.home || [],
-        consensusOdds.spreads?.home
+        consensusOdds.spreads?.home,
+        gameContext
       ),
       away: calculateCEQ(
         'spread',
@@ -669,7 +1043,8 @@ export function calculateGameCEQ(
         gameOdds.spreads.away.line,
         spreadSnapshots,
         allBooksOdds.spreads?.away || [],
-        consensusOdds.spreads?.away
+        consensusOdds.spreads?.away,
+        gameContext
       ),
     };
   }
@@ -685,7 +1060,8 @@ export function calculateGameCEQ(
         undefined,
         h2hSnapshots,
         allBooksOdds.h2h?.home || [],
-        consensusOdds.h2h?.home
+        consensusOdds.h2h?.home,
+        gameContext
       ),
       away: calculateCEQ(
         'h2h',
@@ -695,7 +1071,8 @@ export function calculateGameCEQ(
         undefined,
         h2hSnapshots,
         allBooksOdds.h2h?.away || [],
-        consensusOdds.h2h?.away
+        consensusOdds.h2h?.away,
+        gameContext
       ),
     };
   }
@@ -711,7 +1088,8 @@ export function calculateGameCEQ(
         gameOdds.totals.line,
         totalSnapshots,
         allBooksOdds.totals?.over || [],
-        consensusOdds.totals?.over
+        consensusOdds.totals?.over,
+        gameContext
       ),
       under: calculateCEQ(
         'total',
@@ -721,7 +1099,8 @@ export function calculateGameCEQ(
         gameOdds.totals.line,
         totalSnapshots,
         allBooksOdds.totals?.under || [],
-        consensusOdds.totals?.under
+        consensusOdds.totals?.under,
+        gameContext
       ),
     };
   }
@@ -791,4 +1170,147 @@ export function groupSnapshotsByGame(snapshots: ExtendedOddsSnapshot[]): Record<
     acc[gameId].push(snapshot);
     return acc;
   }, {} as Record<string, ExtendedOddsSnapshot[]>);
+}
+
+// ============================================================================
+// Helper: Fetch game context from Supabase
+// ============================================================================
+
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+
+let supabaseClient: SupabaseClient | null = null;
+
+function getSupabase(): SupabaseClient | null {
+  if (typeof window !== 'undefined') {
+    // Client-side - skip for now (data should be passed from server)
+    return null;
+  }
+
+  if (!supabaseClient) {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (url && key) {
+      supabaseClient = createClient(url, key);
+    }
+  }
+  return supabaseClient;
+}
+
+/**
+ * Fetch game context data (team stats + weather) for EdgeScout pillar calculations
+ * Call this on the server side to populate GameContextData
+ */
+export async function fetchGameContext(
+  gameId: string,
+  homeTeamName: string,
+  awayTeamName: string,
+  sport: string
+): Promise<GameContextData> {
+  const supabase = getSupabase();
+  if (!supabase) {
+    return {};
+  }
+
+  try {
+    // Fetch team stats for both teams
+    const { data: teamStats } = await supabase
+      .from('team_stats')
+      .select('*')
+      .eq('sport', sport.split('_')[0] || sport)
+      .or(`team_name.ilike.%${homeTeamName}%,team_name.ilike.%${awayTeamName}%`)
+      .order('updated_at', { ascending: false })
+      .limit(10);
+
+    // Find home and away team stats
+    let homeTeam: TeamStatsData | undefined;
+    let awayTeam: TeamStatsData | undefined;
+
+    if (teamStats) {
+      for (const stat of teamStats) {
+        const name = stat.team_name?.toLowerCase() || '';
+        if (name.includes(homeTeamName.toLowerCase()) || homeTeamName.toLowerCase().includes(name)) {
+          if (!homeTeam) {
+            homeTeam = {
+              team_id: stat.team_id,
+              team_name: stat.team_name,
+              pace: stat.pace,
+              offensive_rating: stat.offensive_rating,
+              defensive_rating: stat.defensive_rating,
+              net_rating: stat.net_rating,
+              wins: stat.wins,
+              losses: stat.losses,
+              win_pct: stat.win_pct,
+              home_wins: stat.home_wins,
+              home_losses: stat.home_losses,
+              away_wins: stat.away_wins,
+              away_losses: stat.away_losses,
+              streak: stat.streak,
+              points_per_game: stat.points_per_game,
+              points_allowed_per_game: stat.points_allowed_per_game,
+              injuries: stat.injuries || [],
+            };
+          }
+        }
+        if (name.includes(awayTeamName.toLowerCase()) || awayTeamName.toLowerCase().includes(name)) {
+          if (!awayTeam) {
+            awayTeam = {
+              team_id: stat.team_id,
+              team_name: stat.team_name,
+              pace: stat.pace,
+              offensive_rating: stat.offensive_rating,
+              defensive_rating: stat.defensive_rating,
+              net_rating: stat.net_rating,
+              wins: stat.wins,
+              losses: stat.losses,
+              win_pct: stat.win_pct,
+              home_wins: stat.home_wins,
+              home_losses: stat.home_losses,
+              away_wins: stat.away_wins,
+              away_losses: stat.away_losses,
+              streak: stat.streak,
+              points_per_game: stat.points_per_game,
+              points_allowed_per_game: stat.points_allowed_per_game,
+              injuries: stat.injuries || [],
+            };
+          }
+        }
+      }
+    }
+
+    // Fetch weather for outdoor games
+    let weather: WeatherData | undefined;
+
+    if (sport.includes('football') || sport.includes('baseball') || sport.includes('soccer')) {
+      const { data: weatherData } = await supabase
+        .from('game_weather')
+        .select('*')
+        .eq('game_id', gameId)
+        .single();
+
+      if (weatherData) {
+        weather = {
+          temperature_f: weatherData.temperature_f,
+          wind_speed_mph: weatherData.wind_speed_mph,
+          wind_gust_mph: weatherData.wind_gust_mph,
+          precipitation_pct: weatherData.precipitation_pct,
+          conditions: weatherData.conditions,
+          weather_impact_score: weatherData.weather_impact_score,
+          is_dome: weatherData.is_dome,
+        };
+      }
+    }
+
+    // Determine league from sport
+    const league = sport.split('_')[1] || sport;
+
+    return {
+      homeTeam,
+      awayTeam,
+      weather,
+      league,
+    };
+  } catch (error) {
+    console.error('Error fetching game context:', error);
+    return {};
+  }
 }

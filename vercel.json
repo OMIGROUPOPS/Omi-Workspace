@@ -7,6 +7,14 @@
     {
       "path": "/api/odds/sync-exchanges",
       "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/stats/sync-espn",
+      "schedule": "0 */6 * * *"
+    },
+    {
+      "path": "/api/weather/sync",
+      "schedule": "0 */3 * * *"
     }
   ]
 }

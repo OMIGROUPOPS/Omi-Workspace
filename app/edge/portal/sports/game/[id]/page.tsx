@@ -4,7 +4,7 @@ import { GameDetailClient } from '@/components/edge/GameDetailClient';
 import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
-import { calculateGameCEQ, type ExtendedOddsSnapshot, type GameCEQ } from '@/lib/edge/engine/edgescout';
+import { calculateGameCEQ, fetchGameContext, type ExtendedOddsSnapshot, type GameCEQ } from '@/lib/edge/engine/edgescout';
 import { calculateQuickEdge } from '@/lib/edge/engine/edge-calculator';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
@@ -707,10 +707,11 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     h2: { spread: spreadH2History, total: totalH2History },
   };
 
-  // Fetch data for CEQ calculation
-  const [ceqSnapshots, openingLine] = await Promise.all([
+  // Fetch data for CEQ calculation (including team stats and weather for Game Environment pillar)
+  const [ceqSnapshots, openingLine, gameContext] = await Promise.all([
     fetchSnapshotsForCEQ(gameId),
     fetchOpeningLine(gameId),
+    fetchGameContext(gameId, homeTeam, awayTeam, sportKey),
   ]);
 
   // Use per-book odds if available, otherwise fall back to consensus
@@ -862,7 +863,8 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
         spreads: consensus.spreads?.home ? { home: consensus.spreads.home.odds || -110, away: consensus.spreads.away?.odds || -110 } : undefined,
         h2h: consensus.h2h ? { home: consensus.h2h.home, away: consensus.h2h.away } : undefined,
         totals: consensus.totals?.over ? { over: consensus.totals.over.odds || -110, under: consensus.totals.under?.odds || -110 } : undefined,
-      }
+      },
+      gameContext  // Pass team stats + weather for Game Environment & Matchup Dynamics pillars
     );
   }
 

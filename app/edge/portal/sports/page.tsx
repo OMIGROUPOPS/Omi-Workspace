@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
 import { calculateQuickEdge } from '@/lib/edge/engine/edge-calculator';
-import { calculateCEQ, calculateGameCEQ, groupSnapshotsByGame, type ExtendedOddsSnapshot, type GameCEQ } from '@/lib/edge/engine/edgescout';
+import { calculateCEQ, calculateGameCEQ, groupSnapshotsByGame, type ExtendedOddsSnapshot, type GameCEQ, type GameContextData, type TeamStatsData } from '@/lib/edge/engine/edgescout';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 const ODDS_API_KEY = process.env.ODDS_API_KEY || '';
@@ -167,6 +167,88 @@ async function fetchGameSnapshots(gameIds: string[]): Promise<Record<string, Ext
   return snapshotsMap;
 }
 
+// Fetch all team stats for CEQ Game Environment and Matchup Dynamics pillars
+async function fetchAllTeamStats(): Promise<Map<string, TeamStatsData>> {
+  const teamStatsMap = new Map<string, TeamStatsData>();
+  try {
+    const supabase = getDirectSupabase();
+    const { data, error } = await supabase
+      .from('team_stats')
+      .select('*')
+      .order('updated_at', { ascending: false });
+
+    if (error || !data) return teamStatsMap;
+
+    // Index by team name (lowercase for matching)
+    for (const stat of data) {
+      const key = stat.team_name?.toLowerCase();
+      if (key && !teamStatsMap.has(key)) {
+        teamStatsMap.set(key, {
+          team_id: stat.team_id,
+          team_name: stat.team_name,
+          pace: stat.pace,
+          offensive_rating: stat.offensive_rating,
+          defensive_rating: stat.defensive_rating,
+          net_rating: stat.net_rating,
+          wins: stat.wins,
+          losses: stat.losses,
+          win_pct: stat.win_pct,
+          home_wins: stat.home_wins,
+          home_losses: stat.home_losses,
+          away_wins: stat.away_wins,
+          away_losses: stat.away_losses,
+          streak: stat.streak,
+          points_per_game: stat.points_per_game,
+          points_allowed_per_game: stat.points_allowed_per_game,
+          injuries: stat.injuries || [],
+        });
+      }
+    }
+  } catch (e) {
+    console.error('[TeamStats] Fetch failed:', e);
+  }
+  return teamStatsMap;
+}
+
+// Build game context from team stats map
+function buildGameContext(
+  homeTeam: string,
+  awayTeam: string,
+  sportKey: string,
+  teamStatsMap: Map<string, TeamStatsData>
+): GameContextData {
+  const homeKey = homeTeam?.toLowerCase();
+  const awayKey = awayTeam?.toLowerCase();
+
+  // Try exact match first, then partial match
+  let homeStats = teamStatsMap.get(homeKey);
+  let awayStats = teamStatsMap.get(awayKey);
+
+  // Partial match fallback (e.g., "Los Angeles Lakers" matches "lakers")
+  if (!homeStats) {
+    for (const [key, stats] of teamStatsMap) {
+      if (homeKey?.includes(key) || key.includes(homeKey || '')) {
+        homeStats = stats;
+        break;
+      }
+    }
+  }
+  if (!awayStats) {
+    for (const [key, stats] of teamStatsMap) {
+      if (awayKey?.includes(key) || key.includes(awayKey || '')) {
+        awayStats = stats;
+        break;
+      }
+    }
+  }
+
+  return {
+    homeTeam: homeStats,
+    awayTeam: awayStats,
+    league: sportKey?.split('_')[1] || sportKey,
+  };
+}
+
 async function fetchEdgesFromBackend(sport: string) {
   try {
     const controller = new AbortController();
@@ -189,7 +271,8 @@ function processBackendGame(
   sport: string,
   scores: Record<string, any>,
   openingLines: Record<string, number>,
-  snapshotsMap: Record<string, ExtendedOddsSnapshot[]>
+  snapshotsMap: Record<string, ExtendedOddsSnapshot[]>,
+  teamStatsMap: Map<string, TeamStatsData>
 ) {
   const consensus: any = {};
 
@@ -245,6 +328,14 @@ function processBackendGame(
     } : undefined,
   };
 
+  // Build game context from team stats for CEQ pillars
+  const gameContext = buildGameContext(
+    game.home_team,
+    game.away_team,
+    SPORT_MAPPING[sport] || game.sport,
+    teamStatsMap
+  );
+
   // Calculate CEQ
   if (gameOdds.spreads || gameOdds.h2h || gameOdds.totals) {
     ceqData = calculateGameCEQ(
@@ -256,7 +347,8 @@ function processBackendGame(
         spreads: consensus.spreads ? { home: consensus.spreads.homePrice, away: consensus.spreads.awayPrice } : undefined,
         h2h: consensus.h2h ? { home: consensus.h2h.homePrice, away: consensus.h2h.awayPrice } : undefined,
         totals: consensus.totals ? { over: consensus.totals.overPrice, under: consensus.totals.underPrice } : undefined,
-      }
+      },
+      gameContext
     );
   }
 
@@ -308,7 +400,8 @@ function processOddsApiGame(
   game: any,
   scores: Record<string, any>,
   openingLines: Record<string, number>,
-  snapshotsMap: Record<string, ExtendedOddsSnapshot[]>
+  snapshotsMap: Record<string, ExtendedOddsSnapshot[]>,
+  teamStatsMap: Map<string, TeamStatsData>
 ) {
   const consensus: any = {};
   const allBooksOdds: {
@@ -440,6 +533,14 @@ function processOddsApiGame(
     } : undefined,
   };
 
+  // Build game context from team stats for CEQ pillars
+  const gameContext = buildGameContext(
+    game.home_team,
+    game.away_team,
+    game.sport_key,
+    teamStatsMap
+  );
+
   // Calculate CEQ
   if (gameOdds.spreads || gameOdds.h2h || gameOdds.totals) {
     ceqData = calculateGameCEQ(
@@ -451,7 +552,8 @@ function processOddsApiGame(
         spreads: consensus.spreads ? { home: consensus.spreads.homePrice, away: consensus.spreads.awayPrice } : undefined,
         h2h: consensus.h2h ? { home: consensus.h2h.homePrice, away: consensus.h2h.awayPrice } : undefined,
         totals: consensus.totals ? { over: consensus.totals.overPrice, under: consensus.totals.underPrice } : undefined,
-      }
+      },
+      gameContext
     );
   }
 
@@ -494,7 +596,8 @@ async function fetchFromCache(
   sportKey: string,
   scores: Record<string, any>,
   openingLines: Record<string, number>,
-  snapshotsMap: Record<string, ExtendedOddsSnapshot[]>
+  snapshotsMap: Record<string, ExtendedOddsSnapshot[]>,
+  teamStatsMap: Map<string, TeamStatsData>
 ) {
   try {
     const supabase = getSupabase();
@@ -506,7 +609,7 @@ async function fetchFromCache(
     if (error || !data) return [];
 
     return data
-      .map((row: any) => processOddsApiGame(row.game_data, scores, openingLines, snapshotsMap))
+      .map((row: any) => processOddsApiGame(row.game_data, scores, openingLines, snapshotsMap, teamStatsMap))
       .filter(Boolean);
   } catch (e) {
     console.error(`[Cache] Failed to fetch ${sportKey}:`, e);
@@ -541,17 +644,18 @@ export default async function SportsPage() {
     }
   }
 
-  // Fetch opening lines and full snapshots for CEQ calculation
-  const [openingLines, snapshotsMap] = await Promise.all([
+  // Fetch opening lines, snapshots, and team stats for CEQ calculation
+  const [openingLines, snapshotsMap, teamStatsMap] = await Promise.all([
     fetchOpeningLines(allGameIds),
     fetchGameSnapshots(allGameIds),
+    fetchAllTeamStats(),
   ]);
 
   if (hasBackendData) {
     dataSource = 'backend';
     for (const { sport, games } of backendResults) {
       const processed = games
-        .map((g: any) => processBackendGame(g, sport, scoresData, openingLines, snapshotsMap))
+        .map((g: any) => processBackendGame(g, sport, scoresData, openingLines, snapshotsMap, teamStatsMap))
         .filter(Boolean)
         .sort((a: any, b: any) => new Date(a.commenceTime).getTime() - new Date(b.commenceTime).getTime());
 
@@ -593,7 +697,7 @@ export default async function SportsPage() {
       sports.map(async (sport) => {
         const sportKey = SPORT_MAPPING[sport];
         if (!sportKey) return { sport, games: [] };
-        const games = await fetchFromCache(sportKey, scoresData, openingLines, cachedSnapshotsMap);
+        const games = await fetchFromCache(sportKey, scoresData, openingLines, cachedSnapshotsMap, teamStatsMap);
         return { sport, games };
       })
     );

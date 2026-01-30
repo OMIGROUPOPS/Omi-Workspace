@@ -700,6 +700,34 @@ function AskEdgeAI({ gameId, homeTeam, awayTeam, sportKey, chartSelection }: { g
   );
 }
 
+// Variable name mappings for clearer display
+const VARIABLE_LABELS: Record<string, string> = {
+  'FDV': 'Fair Delta Value',
+  'MMI': 'Market Momentum',
+  'SBI': 'Sentiment Bias',
+  'PVI': 'Pace Variance',
+  'WEA': 'Weather Impact',
+  'STK': 'Streak Momentum',
+  'DVA': 'Defense vs Attack',
+  'WPD': 'Win % Diff',
+  'INJ': 'Injury Impact',
+  'UVI': 'Utilization',
+  'RER': 'Regression',
+  'Z-Score': 'Z-Score',
+  'Liquidity': 'Liquidity',
+};
+
+// Score interpretation
+function getScoreContext(score: number): { label: string; color: string } {
+  if (score >= 75) return { label: 'Strong edge signal', color: 'text-emerald-400' };
+  if (score >= 60) return { label: 'Moderate edge', color: 'text-emerald-400' };
+  if (score >= 56) return { label: 'Slight edge', color: 'text-blue-400' };
+  if (score >= 45) return { label: 'Neutral', color: 'text-zinc-400' };
+  if (score >= 40) return { label: 'Slight concern', color: 'text-amber-400' };
+  if (score >= 25) return { label: 'Moderate concern', color: 'text-red-400' };
+  return { label: 'Strong fade signal', color: 'text-red-400' };
+}
+
 // CEQ Pillar Breakdown Component - Only shows pillars with actual data
 function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | null; marketLabel: string }) {
   if (!ceqResult) {
@@ -711,7 +739,8 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
   // Check if we should display CEQ (need 2+ pillars with data)
   const shouldDisplayCEQ = dataQuality?.displayCEQ ?? true;
   const pillarsWithData = dataQuality?.pillarsWithData ?? 0;
-  const confidenceLabel = dataQuality?.confidenceLabel ?? 'Insufficient';
+  // Confidence label is based on pillars with data, NOT the CEQ score
+  const confidenceLabel = pillarsWithData >= 4 ? 'High' : pillarsWithData >= 3 ? 'Medium' : pillarsWithData >= 2 ? 'Low' : 'Insufficient';
 
   // Get confidence color
   const getConfidenceStyle = (conf: CEQConfidence) => {
@@ -738,19 +767,25 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
   // Render compact pillar section - only for active pillars
   const renderPillar = (name: string, pillar: PillarResult) => {
     const availableVars = pillar.variables.filter(v => v.available);
+    const scoreContext = getScoreContext(pillar.score);
     return (
       <div className="rounded border border-zinc-700/50 bg-zinc-800/20 p-2">
         <div className="flex items-center justify-between mb-1.5">
           <h4 className="text-[10px] font-semibold uppercase tracking-wide text-zinc-400">{name}</h4>
-          <span className={`text-xs font-mono font-medium ${pillar.score >= 56 ? 'text-emerald-400' : pillar.score <= 44 ? 'text-red-400' : 'text-zinc-400'}`}>
-            {pillar.score}
-          </span>
+          <div className="flex items-center gap-1">
+            <span className={`text-xs font-mono font-medium ${pillar.score >= 56 ? 'text-emerald-400' : pillar.score <= 44 ? 'text-red-400' : 'text-zinc-400'}`}>
+              {pillar.score}/100
+            </span>
+          </div>
         </div>
+        <div className={`text-[9px] mb-1 ${scoreContext.color}`}>{scoreContext.label}</div>
         {availableVars.length > 0 && (
           <div className="space-y-0.5">
             {availableVars.map((variable, idx) => (
-              <div key={idx} className="flex items-center justify-between text-[9px]">
-                <span className="text-zinc-500">{variable.name}</span>
+              <div key={idx} className="flex items-center justify-between text-[9px] group relative">
+                <span className="text-zinc-500 cursor-help" title={`${VARIABLE_LABELS[variable.name] || variable.name}: ${variable.reason}`}>
+                  {VARIABLE_LABELS[variable.name] || variable.name}
+                </span>
                 <span className={`font-mono ${variable.score >= 56 ? 'text-emerald-400' : variable.score <= 44 ? 'text-red-400' : 'text-zinc-400'}`}>
                   {variable.score}
                 </span>
@@ -1503,30 +1538,86 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         <AskEdgeAI gameId={gameData.id} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} chartSelection={chartSelection} />
       </div>
 
-      {/* EdgeScout Analysis - Compact view showing only markets with edges */}
-      {ceq && ceq.bestEdge && ceq.bestEdge.confidence !== 'PASS' && (
+      {/* EdgeScout Analysis - Shows analysis for SELECTED market, not just best edge */}
+      {ceq && (
         <div className="mb-6">
-          {/* Show only the best edge analysis, not all markets */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {/* Best Edge Market Breakdown */}
-            {ceq.bestEdge.market === 'spread' && ceq.spreads && (
-              <PillarBreakdown
-                ceqResult={ceq.bestEdge.side === 'home' ? ceq.spreads.home : ceq.spreads.away}
-                marketLabel={`${ceq.bestEdge.side === 'home' ? gameData.homeTeam : gameData.awayTeam} Spread`}
-              />
-            )}
-            {ceq.bestEdge.market === 'h2h' && ceq.h2h && (
-              <PillarBreakdown
-                ceqResult={ceq.bestEdge.side === 'home' ? ceq.h2h.home : ceq.h2h.away}
-                marketLabel={`${ceq.bestEdge.side === 'home' ? gameData.homeTeam : gameData.awayTeam} ML`}
-              />
-            )}
-            {ceq.bestEdge.market === 'total' && ceq.totals && (
-              <PillarBreakdown
-                ceqResult={ceq.bestEdge.side === 'over' ? ceq.totals.over : ceq.totals.under}
-                marketLabel={ceq.bestEdge.side === 'over' ? 'Over' : 'Under'}
-              />
-            )}
+            {/* Show analysis based on selected market/prop */}
+            {selectedProp ? (
+              // Player prop selected - show info message
+              <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-semibold text-zinc-100">{selectedProp.player} - {selectedProp.market}</span>
+                </div>
+                <p className="text-[11px] text-zinc-400">
+                  EdgeScout analysis focuses on main game markets (spread, moneyline, total).
+                  Player prop edges are calculated from line movement and book comparison.
+                </p>
+                {selectedProp.line && (
+                  <div className="mt-2 text-xs text-zinc-300">
+                    Line: <span className="font-mono text-emerald-400">{selectedProp.line}</span>
+                  </div>
+                )}
+              </div>
+            ) : chartMarket === 'spread' && ceq.spreads ? (
+              // Spread market selected - show both sides
+              <>
+                <PillarBreakdown
+                  ceqResult={ceq.spreads.home}
+                  marketLabel={`${gameData.homeTeam} Spread`}
+                />
+                <PillarBreakdown
+                  ceqResult={ceq.spreads.away}
+                  marketLabel={`${gameData.awayTeam} Spread`}
+                />
+              </>
+            ) : chartMarket === 'moneyline' && ceq.h2h ? (
+              // Moneyline selected - show both sides
+              <>
+                <PillarBreakdown
+                  ceqResult={ceq.h2h.home}
+                  marketLabel={`${gameData.homeTeam} ML`}
+                />
+                <PillarBreakdown
+                  ceqResult={ceq.h2h.away}
+                  marketLabel={`${gameData.awayTeam} ML`}
+                />
+              </>
+            ) : chartMarket === 'total' && ceq.totals ? (
+              // Total selected - show over/under
+              <>
+                <PillarBreakdown
+                  ceqResult={ceq.totals.over}
+                  marketLabel="Over"
+                />
+                <PillarBreakdown
+                  ceqResult={ceq.totals.under}
+                  marketLabel="Under"
+                />
+              </>
+            ) : ceq.bestEdge && ceq.bestEdge.confidence !== 'PASS' ? (
+              // Fallback to best edge if no specific selection
+              <>
+                {ceq.bestEdge.market === 'spread' && ceq.spreads && (
+                  <PillarBreakdown
+                    ceqResult={ceq.bestEdge.side === 'home' ? ceq.spreads.home : ceq.spreads.away}
+                    marketLabel={`${ceq.bestEdge.side === 'home' ? gameData.homeTeam : gameData.awayTeam} Spread`}
+                  />
+                )}
+                {ceq.bestEdge.market === 'h2h' && ceq.h2h && (
+                  <PillarBreakdown
+                    ceqResult={ceq.bestEdge.side === 'home' ? ceq.h2h.home : ceq.h2h.away}
+                    marketLabel={`${ceq.bestEdge.side === 'home' ? gameData.homeTeam : gameData.awayTeam} ML`}
+                  />
+                )}
+                {ceq.bestEdge.market === 'total' && ceq.totals && (
+                  <PillarBreakdown
+                    ceqResult={ceq.bestEdge.side === 'over' ? ceq.totals.over : ceq.totals.under}
+                    marketLabel={ceq.bestEdge.side === 'over' ? 'Over' : 'Under'}
+                  />
+                )}
+              </>
+            ) : null}
           </div>
         </div>
       )}

@@ -768,12 +768,11 @@ export function calculateGameCEQ(
     }
   }
 
-  // Sort by CEQ (highest first) and take best - but only include those with sufficient data
+  // Sort by CEQ (highest first) and take best
+  // Include dataQuality so UI can decide whether to show the badge
   candidates.sort((a, b) => b.ceq - a.ceq);
-  // Filter to only candidates with sufficient data (displayCEQ = true)
-  const validCandidates = candidates.filter(c => c.dataQuality.displayCEQ);
-  if (validCandidates.length > 0) {
-    result.bestEdge = validCandidates[0];
+  if (candidates.length > 0) {
+    result.bestEdge = candidates[0];
   }
 
   return result;

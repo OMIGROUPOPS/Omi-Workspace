@@ -5,6 +5,7 @@ import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
 import { calculateGameCEQ, type ExtendedOddsSnapshot, type GameCEQ } from '@/lib/edge/engine/edgescout';
+import { calculateQuickEdge } from '@/lib/edge/engine/edge-calculator';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 
@@ -865,10 +866,28 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     );
   }
 
-  // Use CEQ for display if available
-  const ceqBestScore = ceqData?.bestEdge?.ceq;
-  const displayScore = ceqBestScore !== undefined ? ceqBestScore / 100 : compositeScore;
-  const displayConfidence = ceqData?.bestEdge?.confidence || confidence;
+  // Use CEQ for display if available, with consistent fallback logic matching dashboard
+  // Priority: 1. CEQ bestEdge  2. Backend composite_score  3. calculateQuickEdge
+  let displayScore: number;
+  let displayConfidence: string;
+
+  if (ceqData?.bestEdge) {
+    displayScore = ceqData.bestEdge.ceq / 100;
+    displayConfidence = ceqData.bestEdge.confidence;
+  } else if (gameData.composite_score && gameData.overall_confidence) {
+    displayScore = gameData.composite_score;
+    displayConfidence = gameData.overall_confidence;
+  } else {
+    // Fallback: calculate quick edge from consensus data (same as dashboard)
+    const quickEdge = calculateQuickEdge(
+      openingLine,
+      consensus.spreads?.home?.line || consensus.spreads?.line,
+      consensus.spreads?.home?.odds || consensus.spreads?.homePrice,
+      consensus.spreads?.away?.odds || consensus.spreads?.awayPrice
+    );
+    displayScore = quickEdge.score / 100;
+    displayConfidence = quickEdge.confidence;
+  }
 
   const scoreColor = displayScore >= 0.5 ? 'text-emerald-400' : 'text-red-400';
   const scoreBg = displayScore >= 0.5 ? 'bg-emerald-500/10' : 'bg-red-500/10';

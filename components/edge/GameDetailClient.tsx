@@ -1387,55 +1387,35 @@ function MarketCEQBadge({
       if (!ceq.spreads) {
         return { ceq: 50, confidence: 'PASS', label: `${marketLabels[selectedMarket]}`, available: false };
       }
+      // Show home spread (first in pillar breakdown) - user sees both, header shows first
       const homeCEQ = ceq.spreads.home;
-      const awayCEQ = ceq.spreads.away;
-      // Pick the better edge
-      if (homeCEQ.ceq >= awayCEQ.ceq) {
-        const line = marketGroups?.fullGame?.spreads?.home?.line;
-        const lineStr = line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : '';
-        return {
-          ceq: homeCEQ.ceq,
-          confidence: homeCEQ.confidence,
-          label: `${homeTeam} ${lineStr} Spread`,
-          available: true
-        };
-      } else {
-        const line = marketGroups?.fullGame?.spreads?.away?.line;
-        const lineStr = line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : '';
-        return {
-          ceq: awayCEQ.ceq,
-          confidence: awayCEQ.confidence,
-          label: `${awayTeam} ${lineStr} Spread`,
-          available: true
-        };
-      }
+      const line = marketGroups?.fullGame?.spreads?.home?.line;
+      const lineStr = line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : '';
+      return {
+        ceq: homeCEQ.ceq,
+        confidence: homeCEQ.confidence,
+        label: `${homeTeam} ${lineStr} Spread`,
+        available: true
+      };
     }
 
     if (selectedMarket === 'moneyline') {
       if (!ceq.h2h) {
         return { ceq: 50, confidence: 'PASS', label: `${marketLabels[selectedMarket]}`, available: false };
       }
+      // Show home ML (first in pillar breakdown)
       const homeCEQ = ceq.h2h.home;
-      const awayCEQ = ceq.h2h.away;
-      if (homeCEQ.ceq >= awayCEQ.ceq) {
-        return { ceq: homeCEQ.ceq, confidence: homeCEQ.confidence, label: `${homeTeam} ML`, available: true };
-      } else {
-        return { ceq: awayCEQ.ceq, confidence: awayCEQ.confidence, label: `${awayTeam} ML`, available: true };
-      }
+      return { ceq: homeCEQ.ceq, confidence: homeCEQ.confidence, label: `${homeTeam} ML`, available: true };
     }
 
     if (selectedMarket === 'total') {
       if (!ceq.totals) {
         return { ceq: 50, confidence: 'PASS', label: `${marketLabels[selectedMarket]}`, available: false };
       }
+      // Show over (first in pillar breakdown)
       const overCEQ = ceq.totals.over;
-      const underCEQ = ceq.totals.under;
       const line = marketGroups?.fullGame?.totals?.line;
-      if (overCEQ.ceq >= underCEQ.ceq) {
-        return { ceq: overCEQ.ceq, confidence: overCEQ.confidence, label: `Over ${line || ''}`, available: true };
-      } else {
-        return { ceq: underCEQ.ceq, confidence: underCEQ.confidence, label: `Under ${line || ''}`, available: true };
-      }
+      return { ceq: overCEQ.ceq, confidence: overCEQ.confidence, label: `Over ${line || ''}`, available: true };
     }
 
     return null;

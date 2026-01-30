@@ -178,6 +178,35 @@ export async function GET() {
     // Backend not available
   }
 
+  // Step 8: Simulate EXACT dashboard cache flow
+  // Dashboard: collects game_data.id from cached_odds, fetches snapshots, processes games
+  const { data: allCached } = await supabase
+    .from("cached_odds")
+    .select("game_data")
+    .eq("sport_key", "basketball_nba");
+
+  const cachedGameIds = (allCached || []).map((r: any) => r.game_data?.id).filter(Boolean);
+
+  // Fetch snapshots for those IDs (same as dashboard)
+  const { data: dashboardSnapshots } = await supabase
+    .from("odds_snapshots")
+    .select("game_id")
+    .in("game_id", cachedGameIds.slice(0, 20))
+    .limit(100);
+
+  const dashboardSnapshotGameIds = [...new Set((dashboardSnapshots || []).map((r: any) => r.game_id))];
+
+  // Find our specific game in the cached list
+  const lakersInCache = (allCached || []).find((r: any) => {
+    const home = r.game_data?.home_team || "";
+    const away = r.game_data?.away_team || "";
+    return (home.includes("Lakers") || home.includes("Wizards")) &&
+           (away.includes("Lakers") || away.includes("Wizards"));
+  });
+
+  const lakersGameDataId = lakersInCache?.game_data?.id;
+  const lakersHasSnapshotsInDashboardFlow = dashboardSnapshotGameIds.includes(lakersGameDataId);
+
   // Step 8: If backend path is used, check if its game_id matches cached_odds
   const idMismatch = backendGameId && backendGameId !== gameId;
 
@@ -210,8 +239,16 @@ export async function GET() {
       backend_url: BACKEND_URL,
       backend_found_game: !!backendGame,
       backend_game_id: backendGameId,
-      cached_game_id: gameId,
-      ID_MISMATCH: idMismatch,
+    },
+    step8_dashboard_simulation: {
+      total_nba_games_in_cache: cachedGameIds.length,
+      sample_cached_game_ids: cachedGameIds.slice(0, 3),
+      snapshots_found_for_game_ids: dashboardSnapshotGameIds.length,
+      lakers_game_data_id: lakersGameDataId,
+      lakers_has_snapshots_in_dashboard_flow: lakersHasSnapshotsInDashboardFlow,
+      CRITICAL_ISSUE: !lakersHasSnapshotsInDashboardFlow && lakersGameDataId
+        ? `Dashboard fetches snapshots for ID ${lakersGameDataId} but none found!`
+        : null,
     },
     diagnosis: idMismatch
       ? `CRITICAL: Backend game_id (${backendGameId}) != cached_odds game_id (${gameId}). Dashboard uses backend ID but snapshots use cached ID!`

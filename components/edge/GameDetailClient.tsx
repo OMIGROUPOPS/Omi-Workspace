@@ -743,9 +743,16 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
     { name: 'Sentiment', pillar: pillars.sentiment },
   ];
 
+  // Calculate pillar alignment - count pillars that agree (score >= 56 for edge, <= 44 for fade)
+  const alignedPillars = allPillars.filter(p => p.pillar.weight > 0 && p.pillar.score >= 56).length;
+  const fadePillars = allPillars.filter(p => p.pillar.weight > 0 && p.pillar.score <= 44).length;
+  const activePillarCount = allPillars.filter(p => p.pillar.weight > 0).length;
+  const maxAlignment = Math.max(alignedPillars, fadePillars);
+  const alignmentLabel = maxAlignment >= 4 ? 'High Confidence' : maxAlignment >= 3 ? 'Moderate Confidence' : maxAlignment >= 2 ? 'Mixed Signals' : 'Neutral';
+
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
-      {/* Header with CEQ Score */}
+      {/* Header with CEQ Score and Alignment */}
       <div className={`px-3 py-2 ${confStyle.bg} border-b ${confStyle.border}`}>
         <div className="flex items-center justify-between">
           <div>
@@ -768,15 +775,16 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
             )}
           </div>
         </div>
-        {shouldDisplayCEQ && (
-          <div className="mt-1">
+        {/* Pillar Alignment Score */}
+        {shouldDisplayCEQ && activePillarCount >= 2 && (
+          <div className="mt-1.5 flex items-center gap-2">
             <span className={`text-[9px] px-1.5 py-0.5 rounded ${
-              confidenceLabel === 'High' ? 'bg-emerald-500/20 text-emerald-400' :
-              confidenceLabel === 'Medium' ? 'bg-blue-500/20 text-blue-400' :
-              confidenceLabel === 'Low' ? 'bg-amber-500/20 text-amber-400' :
+              maxAlignment >= 4 ? 'bg-emerald-500/20 text-emerald-400' :
+              maxAlignment >= 3 ? 'bg-blue-500/20 text-blue-400' :
+              maxAlignment >= 2 ? 'bg-amber-500/20 text-amber-400' :
               'bg-zinc-700 text-zinc-500'
             }`}>
-              {confidenceLabel} Confidence
+              {alignmentLabel} ({maxAlignment}/{activePillarCount})
             </span>
           </div>
         )}

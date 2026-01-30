@@ -187,14 +187,18 @@ export async function GET() {
 
   const cachedGameIds = (allCached || []).map((r: any) => r.game_data?.id).filter(Boolean);
 
-  // Fetch snapshots for those IDs (same as dashboard)
-  const { data: dashboardSnapshots } = await supabase
+  // Test: Check if Lakers game_id has snapshots when queried directly
+  const { count: directLakersCount } = await supabase
+    .from("odds_snapshots")
+    .select("*", { count: "exact", head: true })
+    .eq("game_id", gameId);
+
+  // Test: Check if Lakers game_id has snapshots when queried via .in()
+  const { data: inQueryTest, error: inQueryError } = await supabase
     .from("odds_snapshots")
     .select("game_id")
-    .in("game_id", cachedGameIds.slice(0, 20))
-    .limit(100);
-
-  const dashboardSnapshotGameIds = [...new Set((dashboardSnapshots || []).map((r: any) => r.game_id))];
+    .in("game_id", [gameId])
+    .limit(5);
 
   // Find our specific game in the cached list
   const lakersInCache = (allCached || []).find((r: any) => {
@@ -205,7 +209,9 @@ export async function GET() {
   });
 
   const lakersGameDataId = lakersInCache?.game_data?.id;
-  const lakersHasSnapshotsInDashboardFlow = dashboardSnapshotGameIds.includes(lakersGameDataId);
+
+  // Check if the game_data.id is in the list of cached IDs
+  const lakersInCachedIds = cachedGameIds.includes(lakersGameDataId);
 
   // Step 8: If backend path is used, check if its game_id matches cached_odds
   const idMismatch = backendGameId && backendGameId !== gameId;
@@ -242,12 +248,14 @@ export async function GET() {
     },
     step8_dashboard_simulation: {
       total_nba_games_in_cache: cachedGameIds.length,
-      sample_cached_game_ids: cachedGameIds.slice(0, 3),
-      snapshots_found_for_game_ids: dashboardSnapshotGameIds.length,
+      sample_cached_game_ids: cachedGameIds.slice(0, 5),
       lakers_game_data_id: lakersGameDataId,
-      lakers_has_snapshots_in_dashboard_flow: lakersHasSnapshotsInDashboardFlow,
-      CRITICAL_ISSUE: !lakersHasSnapshotsInDashboardFlow && lakersGameDataId
-        ? `Dashboard fetches snapshots for ID ${lakersGameDataId} but none found!`
+      lakers_in_cached_ids_array: lakersInCachedIds,
+      direct_query_count: directLakersCount,
+      in_query_results: inQueryTest?.length || 0,
+      in_query_error: inQueryError?.message || null,
+      diagnosis: directLakersCount && directLakersCount > 0 && (!inQueryTest || inQueryTest.length === 0)
+        ? "BUG: Direct query finds snapshots but .in() query does not! Check Supabase RLS or query syntax."
         : null,
     },
     diagnosis: idMismatch

@@ -701,49 +701,18 @@ function AskEdgeAI({ gameId, homeTeam, awayTeam, sportKey, chartSelection }: { g
   );
 }
 
-// Variable name mappings for clearer display
-const VARIABLE_LABELS: Record<string, string> = {
-  'FDV': 'Fair Delta Value',
-  'MMI': 'Market Momentum',
-  'SBI': 'Sentiment Bias',
-  'PVI': 'Pace Variance',
-  'WEA': 'Weather Impact',
-  'STK': 'Streak Momentum',
-  'DVA': 'Defense vs Attack',
-  'WPD': 'Win % Diff',
-  'INJ': 'Injury Impact',
-  'UVI': 'Utilization',
-  'RER': 'Regression',
-  'Z-Score': 'Z-Score',
-  'Liquidity': 'Liquidity',
-};
-
-// Score interpretation
-function getScoreContext(score: number): { label: string; color: string } {
-  if (score >= 75) return { label: 'Strong edge signal', color: 'text-emerald-400' };
-  if (score >= 60) return { label: 'Moderate edge', color: 'text-emerald-400' };
-  if (score >= 56) return { label: 'Slight edge', color: 'text-blue-400' };
-  if (score >= 45) return { label: 'Neutral', color: 'text-zinc-400' };
-  if (score >= 40) return { label: 'Slight concern', color: 'text-amber-400' };
-  if (score >= 25) return { label: 'Moderate concern', color: 'text-red-400' };
-  return { label: 'Strong fade signal', color: 'text-red-400' };
-}
-
-// CEQ Pillar Breakdown Component - Only shows pillars with actual data
+// CEQ Pillar Breakdown Component - Shows strength bars only (no raw values)
 function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | null; marketLabel: string }) {
   if (!ceqResult) {
-    return null; // Don't show empty panels
+    return null;
   }
 
-  const { ceq, confidence, side, pillars, topDrivers, dataQuality } = ceqResult;
+  const { ceq, confidence, side, pillars, dataQuality } = ceqResult;
 
-  // Check if we should display CEQ (need 2+ pillars with data)
   const shouldDisplayCEQ = dataQuality?.displayCEQ ?? true;
   const pillarsWithData = dataQuality?.pillarsWithData ?? 0;
-  // Confidence label is based on pillars with data, NOT the CEQ score
   const confidenceLabel = pillarsWithData >= 4 ? 'High' : pillarsWithData >= 3 ? 'Medium' : pillarsWithData >= 2 ? 'Low' : 'Insufficient';
 
-  // Get confidence color
   const getConfidenceStyle = (conf: CEQConfidence) => {
     switch (conf) {
       case 'RARE': return { bg: 'bg-purple-500/20', border: 'border-purple-500/40', text: 'text-purple-400' };
@@ -756,54 +725,27 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
 
   const confStyle = shouldDisplayCEQ ? getConfidenceStyle(confidence) : { bg: 'bg-zinc-800/50', border: 'border-zinc-700/50', text: 'text-zinc-500' };
 
-  // Only show pillars that have data (weight > 0)
-  const activePillars = [
+  // Get strength label from score
+  const getStrengthLabel = (score: number) => {
+    if (score >= 80) return { label: 'Very Strong', color: 'text-emerald-400', barColor: 'bg-emerald-400' };
+    if (score >= 65) return { label: 'Strong', color: 'text-emerald-400', barColor: 'bg-emerald-400' };
+    if (score >= 50) return { label: 'Moderate', color: 'text-blue-400', barColor: 'bg-blue-400' };
+    if (score >= 35) return { label: 'Weak', color: 'text-amber-400', barColor: 'bg-amber-400' };
+    return { label: 'Very Weak', color: 'text-red-400', barColor: 'bg-red-400' };
+  };
+
+  // All 5 pillars with their data
+  const allPillars = [
     { name: 'Market Efficiency', pillar: pillars.marketEfficiency },
-    { name: 'Sentiment', pillar: pillars.sentiment },
     { name: 'Player Utilization', pillar: pillars.playerUtilization },
     { name: 'Game Environment', pillar: pillars.gameEnvironment },
     { name: 'Matchup Dynamics', pillar: pillars.matchupDynamics },
-  ].filter(p => p.pillar.weight > 0);
-
-  // Render compact pillar section - only for active pillars
-  const renderPillar = (name: string, pillar: PillarResult) => {
-    const availableVars = pillar.variables.filter(v => v.available);
-    const scoreContext = getScoreContext(pillar.score);
-    return (
-      <div className="rounded border border-zinc-700/50 bg-zinc-800/20 p-2">
-        <div className="flex items-center justify-between mb-1.5">
-          <h4 className="text-[10px] font-semibold uppercase tracking-wide text-zinc-400">{name}</h4>
-          <div className="flex items-center gap-1">
-            <span className={`text-xs font-mono font-medium ${pillar.score >= 56 ? 'text-emerald-400' : pillar.score <= 44 ? 'text-red-400' : 'text-zinc-400'}`}>
-              {pillar.score}/100
-            </span>
-          </div>
-        </div>
-        <div className={`text-[9px] mb-1 ${scoreContext.color}`}>{scoreContext.label}</div>
-        {availableVars.length > 0 && (
-          <div className="space-y-0.5">
-            {availableVars.map((variable, idx) => (
-              <div key={idx} className="flex items-center justify-between text-[9px] group relative">
-                <span className="text-zinc-500 cursor-help" title={`${VARIABLE_LABELS[variable.name] || variable.name}: ${variable.reason}`}>
-                  {VARIABLE_LABELS[variable.name] || variable.name}
-                </span>
-                <span className={`font-mono ${variable.score >= 56 ? 'text-emerald-400' : variable.score <= 44 ? 'text-red-400' : 'text-zinc-400'}`}>
-                  {variable.score}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    );
-  };
-
-  // Filter out "No significant edge signals detected" message
-  const meaningfulDrivers = topDrivers.filter(d => !d.includes('No significant'));
+    { name: 'Sentiment', pillar: pillars.sentiment },
+  ];
 
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
-      {/* Compact Header with CEQ Score */}
+      {/* Header with CEQ Score */}
       <div className={`px-3 py-2 ${confStyle.bg} border-b ${confStyle.border}`}>
         <div className="flex items-center justify-between">
           <div>
@@ -812,7 +754,7 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
               <span className={`text-[10px] ${confStyle.text}`}>Edge: {side}</span>
             )}
             {!shouldDisplayCEQ && (
-              <span className="text-[10px] text-zinc-500">Insufficient data for CEQ</span>
+              <span className="text-[10px] text-zinc-500">Insufficient data</span>
             )}
           </div>
           <div className="flex items-center gap-2">
@@ -826,10 +768,8 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
             )}
           </div>
         </div>
-        {/* Data quality indicator */}
-        <div className="flex items-center gap-2 mt-1">
-          <span className="text-[9px] text-zinc-500">Based on {pillarsWithData}/5 pillars</span>
-          {shouldDisplayCEQ && (
+        {shouldDisplayCEQ && (
+          <div className="mt-1">
             <span className={`text-[9px] px-1.5 py-0.5 rounded ${
               confidenceLabel === 'High' ? 'bg-emerald-500/20 text-emerald-400' :
               confidenceLabel === 'Medium' ? 'bg-blue-500/20 text-blue-400' :
@@ -838,32 +778,33 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
             }`}>
               {confidenceLabel} Confidence
             </span>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
-      {/* Key Drivers - only if meaningful */}
-      {meaningfulDrivers.length > 0 && (
-        <div className="px-3 py-2 border-b border-zinc-800/50">
-          <div className="space-y-0.5">
-            {meaningfulDrivers.slice(0, 2).map((driver, idx) => (
-              <div key={idx} className="text-[10px] text-zinc-400 flex items-start gap-1.5">
-                <span className="text-emerald-400 mt-0.5">•</span>
-                <span className="line-clamp-1">{driver}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* 5 Pillar Strength Bars */}
+      <div className="p-3 space-y-2">
+        {allPillars.map(({ name, pillar }) => {
+          const hasData = pillar.weight > 0;
+          const strength = getStrengthLabel(pillar.score);
+          const barWidth = Math.max(5, Math.min(100, pillar.score));
 
-      {/* Active Pillars Only */}
-      {activePillars.length > 0 && (
-        <div className="p-2 grid grid-cols-2 gap-1.5">
-          {activePillars.map(({ name, pillar }) => (
-            <div key={name}>{renderPillar(name, pillar)}</div>
-          ))}
-        </div>
-      )}
+          return (
+            <div key={name} className="flex items-center gap-3">
+              <span className="text-[10px] text-zinc-400 w-28 truncate">{name}</span>
+              <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <div
+                  className={`h-full rounded-full transition-all ${hasData ? strength.barColor : 'bg-zinc-700'}`}
+                  style={{ width: `${hasData ? barWidth : 0}%` }}
+                />
+              </div>
+              <span className={`text-[9px] w-16 text-right ${hasData ? strength.color : 'text-zinc-600'}`}>
+                {hasData ? strength.label : 'No data'}
+              </span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

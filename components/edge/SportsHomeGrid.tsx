@@ -212,6 +212,16 @@ function getEdgeBadge(game: any): { label: string; color: string; bg: string; sc
   // Prefer CEQ data when available
   const ceq = game.ceq as GameCEQ | undefined;
   if (ceq?.bestEdge) {
+    // Check if we have sufficient data to display CEQ (need 2+ pillars with data)
+    // If displayCEQ is false, don't show the badge to avoid contradiction
+    const displayCEQ = ceq.bestEdge.dataQuality?.displayCEQ ??
+      (ceq.bestEdge.dataQuality?.pillarsWithData ?? 0) >= 2;
+
+    if (!displayCEQ) {
+      // Insufficient data - don't show CEQ badge
+      return null;
+    }
+
     const { confidence, ceq: score, side, market } = ceq.bestEdge;
 
     // Build context string like "Bucks -4.5" or "Over 222.5" or "Lakers ML"

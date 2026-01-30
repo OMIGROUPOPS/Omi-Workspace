@@ -83,7 +83,11 @@ function getCEQConfidence(ceq: number): CEQConfidence {
  * - Even 0.5pt movement is meaningful in sports betting
  * - Scale continuously rather than in large buckets
  */
-function calculateFDV(openingLine: number | undefined, currentLine: number | undefined): PillarVariable {
+function calculateFDV(
+  openingLine: number | undefined,
+  currentLine: number | undefined,
+  marketType: 'spread' | 'h2h' | 'total' = 'spread'
+): PillarVariable {
   if (openingLine === undefined || currentLine === undefined) {
     return {
       name: 'FDV',
@@ -97,6 +101,19 @@ function calculateFDV(openingLine: number | undefined, currentLine: number | und
   const delta = currentLine - openingLine;
   const absDelta = Math.abs(delta);
 
+  // Format line values based on market type
+  const formatLine = (val: number) => {
+    if (marketType === 'spread') {
+      return val >= 0 ? `+${val}` : `${val}`;
+    }
+    return `${val}`;
+  };
+
+  const marketLabel = marketType === 'spread' ? 'Spread' : marketType === 'total' ? 'Total' : 'ML';
+  const openStr = formatLine(openingLine);
+  const currentStr = formatLine(currentLine);
+  const deltaStr = delta >= 0 ? `+${delta.toFixed(1)}` : delta.toFixed(1);
+
   // More granular scoring for real variance
   // Each 0.5 point of movement = ~8 points away from 50
   let score: number;
@@ -104,28 +121,30 @@ function calculateFDV(openingLine: number | undefined, currentLine: number | und
 
   if (absDelta < 0.25) {
     score = 50;
-    reason = 'Line stable (no movement)';
+    reason = `${marketLabel} stable at ${currentStr} (no movement)`;
   } else {
     // Continuous scaling: each point of movement = 15 score points
     const baseScore = 50 + (delta * 15);
     score = Math.max(10, Math.min(90, Math.round(baseScore)));
 
+    const moveDesc = `${marketLabel} ${openStr} → ${currentStr} (${deltaStr})`;
+
     if (delta >= 2) {
-      reason = `Line moved +${delta.toFixed(1)} pts - strong sharp action opposite`;
+      reason = `${moveDesc} - strong sharp action opposite`;
     } else if (delta >= 1) {
-      reason = `Line moved +${delta.toFixed(1)} pts - moderate sharp signal`;
+      reason = `${moveDesc} - moderate sharp signal`;
     } else if (delta >= 0.5) {
-      reason = `Line moved +${delta.toFixed(1)} pts - some movement detected`;
+      reason = `${moveDesc} - some movement detected`;
     } else if (delta > 0) {
-      reason = `Line moved +${delta.toFixed(1)} pts - slight movement`;
+      reason = `${moveDesc} - slight movement`;
     } else if (delta <= -2) {
-      reason = `Line moved ${delta.toFixed(1)} pts - strong edge this side`;
+      reason = `${moveDesc} - strong edge this side`;
     } else if (delta <= -1) {
-      reason = `Line moved ${delta.toFixed(1)} pts - moderate edge this side`;
+      reason = `${moveDesc} - moderate edge this side`;
     } else if (delta <= -0.5) {
-      reason = `Line moved ${delta.toFixed(1)} pts - some edge this side`;
+      reason = `${moveDesc} - some edge this side`;
     } else {
-      reason = `Line moved ${delta.toFixed(1)} pts - slight edge this side`;
+      reason = `${moveDesc} - slight edge this side`;
     }
   }
 
@@ -314,9 +333,10 @@ function calculateMarketEfficiencyPillar(
   snapshots: ExtendedOddsSnapshot[],
   bookOdds: number | undefined,
   consensusOdds: number | undefined,
-  allBooksOdds: number[]
+  allBooksOdds: number[],
+  marketType: 'spread' | 'h2h' | 'total' = 'spread'
 ): PillarResult {
-  const fdv = calculateFDV(openingLine, currentLine);
+  const fdv = calculateFDV(openingLine, currentLine, marketType);
   const mmi = calculateMMI(snapshots);
   const sbi = calculateSBI(bookOdds, consensusOdds, allBooksOdds);
 
@@ -461,7 +481,8 @@ export function calculateCEQ(
     snapshots,
     bookOdds,
     consensusOdds,
-    allBooksOdds
+    allBooksOdds,
+    marketType
   );
   const playerUtilization = calculatePlayerUtilizationPillar();
   const gameEnvironment = calculateGameEnvironmentPillar();
@@ -574,6 +595,12 @@ export interface GameCEQ {
     side: MarketSide;
     ceq: number;
     confidence: CEQConfidence;
+    dataQuality: {
+      pillarsWithData: number;
+      totalVariables: number;
+      displayCEQ: boolean;
+      confidenceLabel: 'Low' | 'Medium' | 'High' | 'Insufficient';
+    };
   } | null;
 }
 
@@ -700,39 +727,53 @@ export function calculateGameCEQ(
   }
 
   // Find best edge across all markets
-  const candidates: { market: 'spread' | 'h2h' | 'total'; side: MarketSide; ceq: number; confidence: CEQConfidence }[] = [];
+  type BestEdgeCandidate = {
+    market: 'spread' | 'h2h' | 'total';
+    side: MarketSide;
+    ceq: number;
+    confidence: CEQConfidence;
+    dataQuality: {
+      pillarsWithData: number;
+      totalVariables: number;
+      displayCEQ: boolean;
+      confidenceLabel: 'Low' | 'Medium' | 'High' | 'Insufficient';
+    };
+  };
+  const candidates: BestEdgeCandidate[] = [];
 
   if (result.spreads) {
     if (result.spreads.home.confidence !== 'PASS') {
-      candidates.push({ market: 'spread', side: 'home', ceq: result.spreads.home.ceq, confidence: result.spreads.home.confidence });
+      candidates.push({ market: 'spread', side: 'home', ceq: result.spreads.home.ceq, confidence: result.spreads.home.confidence, dataQuality: result.spreads.home.dataQuality });
     }
     if (result.spreads.away.confidence !== 'PASS') {
-      candidates.push({ market: 'spread', side: 'away', ceq: result.spreads.away.ceq, confidence: result.spreads.away.confidence });
+      candidates.push({ market: 'spread', side: 'away', ceq: result.spreads.away.ceq, confidence: result.spreads.away.confidence, dataQuality: result.spreads.away.dataQuality });
     }
   }
 
   if (result.h2h) {
     if (result.h2h.home.confidence !== 'PASS') {
-      candidates.push({ market: 'h2h', side: 'home', ceq: result.h2h.home.ceq, confidence: result.h2h.home.confidence });
+      candidates.push({ market: 'h2h', side: 'home', ceq: result.h2h.home.ceq, confidence: result.h2h.home.confidence, dataQuality: result.h2h.home.dataQuality });
     }
     if (result.h2h.away.confidence !== 'PASS') {
-      candidates.push({ market: 'h2h', side: 'away', ceq: result.h2h.away.ceq, confidence: result.h2h.away.confidence });
+      candidates.push({ market: 'h2h', side: 'away', ceq: result.h2h.away.ceq, confidence: result.h2h.away.confidence, dataQuality: result.h2h.away.dataQuality });
     }
   }
 
   if (result.totals) {
     if (result.totals.over.confidence !== 'PASS') {
-      candidates.push({ market: 'total', side: 'over', ceq: result.totals.over.ceq, confidence: result.totals.over.confidence });
+      candidates.push({ market: 'total', side: 'over', ceq: result.totals.over.ceq, confidence: result.totals.over.confidence, dataQuality: result.totals.over.dataQuality });
     }
     if (result.totals.under.confidence !== 'PASS') {
-      candidates.push({ market: 'total', side: 'under', ceq: result.totals.under.ceq, confidence: result.totals.under.confidence });
+      candidates.push({ market: 'total', side: 'under', ceq: result.totals.under.ceq, confidence: result.totals.under.confidence, dataQuality: result.totals.under.dataQuality });
     }
   }
 
-  // Sort by CEQ (highest first) and take best
+  // Sort by CEQ (highest first) and take best - but only include those with sufficient data
   candidates.sort((a, b) => b.ceq - a.ceq);
-  if (candidates.length > 0) {
-    result.bestEdge = candidates[0];
+  // Filter to only candidates with sufficient data (displayCEQ = true)
+  const validCandidates = candidates.filter(c => c.dataQuality.displayCEQ);
+  if (validCandidates.length > 0) {
+    result.bestEdge = validCandidates[0];
   }
 
   return result;

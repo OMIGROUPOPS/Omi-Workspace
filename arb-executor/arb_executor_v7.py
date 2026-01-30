@@ -54,6 +54,76 @@ SLIPPAGE_RECOVERY_LEVELS = [1, 2, 3, 5, 10]  # Cents of slippage to try for reco
 UNHEDGED_POSITIONS_FILE = 'unhedged_positions.json'
 HEDGE_KILL_SWITCH_ACTIVE = False  # Set True to stop all trading
 
+# ============================================================================
+# EXECUTION SPEED & SIZING CONFIG
+# ============================================================================
+LIQUIDITY_UTILIZATION = 0.66      # Use 66% of available liquidity (conservative)
+PRICE_BUFFER_CENTS = 1            # Add 1c buffer on limit orders
+MIN_EXECUTION_SPREAD = 2          # Minimum spread in cents to execute
+EXECUTION_STATS_FILE = 'execution_stats.json'
+SLOW_EXECUTION_THRESHOLD_MS = 500 # Alert if avg execution > 500ms
+
+# Execution stats tracking
+EXECUTION_STATS = {
+    'recent_executions': [],      # List of {timestamp, kalshi_ms, pm_ms, total_ms, success}
+    'max_history': 100,           # Keep last 100 executions
+    'total_executions': 0,
+    'successful_executions': 0,
+    'avg_execution_ms': 0,
+    'avg_kalshi_ms': 0,
+    'avg_pm_ms': 0,
+}
+
+def load_execution_stats():
+    """Load execution stats from file"""
+    global EXECUTION_STATS
+    try:
+        if os.path.exists(EXECUTION_STATS_FILE):
+            with open(EXECUTION_STATS_FILE, 'r') as f:
+                loaded = json.load(f)
+                EXECUTION_STATS.update(loaded)
+    except Exception as e:
+        print(f"[EXEC STATS] Error loading: {e}")
+
+def save_execution_stats():
+    """Save execution stats to file"""
+    try:
+        with open(EXECUTION_STATS_FILE, 'w') as f:
+            json.dump(EXECUTION_STATS, f, indent=2)
+    except Exception as e:
+        print(f"[EXEC STATS] Error saving: {e}")
+
+def record_execution(kalshi_ms: float, pm_ms: float, total_ms: float, success: bool):
+    """Record an execution and update averages"""
+    EXECUTION_STATS['recent_executions'].append({
+        'timestamp': datetime.now().isoformat(),
+        'kalshi_ms': kalshi_ms,
+        'pm_ms': pm_ms,
+        'total_ms': total_ms,
+        'success': success
+    })
+
+    # Keep only last N executions
+    if len(EXECUTION_STATS['recent_executions']) > EXECUTION_STATS['max_history']:
+        EXECUTION_STATS['recent_executions'] = EXECUTION_STATS['recent_executions'][-EXECUTION_STATS['max_history']:]
+
+    EXECUTION_STATS['total_executions'] += 1
+    if success:
+        EXECUTION_STATS['successful_executions'] += 1
+
+    # Update averages
+    recent = EXECUTION_STATS['recent_executions']
+    if recent:
+        EXECUTION_STATS['avg_execution_ms'] = sum(e['total_ms'] for e in recent) / len(recent)
+        EXECUTION_STATS['avg_kalshi_ms'] = sum(e['kalshi_ms'] for e in recent) / len(recent)
+        EXECUTION_STATS['avg_pm_ms'] = sum(e['pm_ms'] for e in recent) / len(recent)
+
+        # Alert if slow
+        if EXECUTION_STATS['avg_execution_ms'] > SLOW_EXECUTION_THRESHOLD_MS:
+            print(f"[!!! SLOW EXECUTION !!!] Avg {EXECUTION_STATS['avg_execution_ms']:.0f}ms > {SLOW_EXECUTION_THRESHOLD_MS}ms threshold")
+
+    save_execution_stats()
+
 @dataclass
 class HedgeState:
     """Track hedge state for a trade"""
@@ -263,6 +333,7 @@ class ActiveArb:
     initial_spread: int       # cents
     initial_size: int
     initial_profit_cents: int
+    initial_at_risk_cents: int  # Capital at risk (buy side price * contracts)
     current_spread: int
     current_size: int
     current_profit_cents: int
@@ -297,8 +368,12 @@ TAM_STATS: Dict[str, Any] = {
     'unique_arbs_reopen': 0,     # Reopened after cooldown
     'flicker_ignored': 0,        # Reopened within cooldown (API noise)
     'unique_arbs_executed': 0,   # Paper "executed" once per unique arb
-    'total_profit_if_captured': 0,
-    'total_contracts': 0,
+    'total_profit_if_captured': 0,  # TAM: 100% liquidity (cents)
+    'total_contracts': 0,           # TAM: 100% liquidity
+    'total_at_risk': 0,             # TAM: capital at risk (cents)
+    'realistic_profit': 0,          # Realistic: 66% liquidity (cents)
+    'realistic_contracts': 0,       # Realistic: 66% liquidity
+    'realistic_at_risk': 0,         # Realistic: capital at risk (cents)
 }
 
 # ============================================================================
@@ -1235,48 +1310,253 @@ async def validate_pre_trade(session, kalshi_api, pm_api, arb: 'ArbOpportunity')
     return True, "OK", fresh
 
 
+async def calculate_conservative_size(
+    session, kalshi_api, pm_api, arb: 'ArbOpportunity',
+    kalshi_balance: float, pm_balance: float
+) -> Tuple[int, Dict]:
+    """
+    Calculate conservative position size based on:
+    - 66% of available liquidity (not 100%)
+    - Balance limits on both sides
+    - Max contracts limit
+
+    Returns (size, sizing_details)
+    """
+    details = {}
+
+    # Get fresh order book data
+    pm_orderbook = await pm_api.get_orderbook(session, arb.pm_slug)
+
+    if arb.direction == 'BUY_PM_SELL_K':
+        # Buying on PM (need ask), selling on Kalshi (need bid)
+        pm_price = arb.pm_ask
+        pm_size = pm_orderbook.get('ask_size', 0) if pm_orderbook else arb.pm_ask_size
+        k_price = arb.k_bid
+        # For Kalshi sell: we receive k_bid, risk is (100 - k_bid) per contract
+        k_cost_per = 100 - k_price  # cents
+        pm_cost_per = pm_price  # cents (what we pay to buy)
+    else:
+        # Buying on Kalshi (need ask), selling on PM (need bid)
+        pm_price = arb.pm_bid
+        pm_size = pm_orderbook.get('bid_size', 0) if pm_orderbook else arb.pm_bid_size
+        k_price = arb.k_ask
+        k_cost_per = k_price  # cents (what we pay to buy)
+        pm_cost_per = 100 - pm_price  # cents (collateral for sell)
+
+    details['kalshi_liquidity'] = f"@ {k_price}c"
+    details['pm_liquidity'] = f"{pm_size} @ {pm_price}c"
+
+    # Apply 66% conservative factor to PM liquidity
+    pm_conservative = int(pm_size * LIQUIDITY_UTILIZATION)
+    details['pm_66_pct'] = pm_conservative
+
+    # Calculate max affordable on each side based on balance
+    kalshi_balance_cents = int(kalshi_balance * 100)
+    pm_balance_cents = int(pm_balance * 100)
+
+    max_kalshi_by_balance = kalshi_balance_cents // k_cost_per if k_cost_per > 0 else 0
+    max_pm_by_balance = pm_balance_cents // pm_cost_per if pm_cost_per > 0 else 0
+
+    details['kalshi_max_by_balance'] = max_kalshi_by_balance
+    details['pm_max_by_balance'] = max_pm_by_balance
+    details['kalshi_balance'] = f"${kalshi_balance:.2f}"
+    details['pm_balance'] = f"${pm_balance:.2f}"
+
+    # Final size is minimum of all constraints
+    final_size = min(
+        pm_conservative,           # 66% of PM liquidity
+        MAX_CONTRACTS,             # Hard limit
+        max_kalshi_by_balance,     # Kalshi balance limit
+        max_pm_by_balance,         # PM balance limit
+    )
+
+    details['final_size'] = final_size
+    details['limiting_factor'] = 'unknown'
+
+    if final_size == pm_conservative:
+        details['limiting_factor'] = 'pm_liquidity_66%'
+    elif final_size == MAX_CONTRACTS:
+        details['limiting_factor'] = 'max_contracts'
+    elif final_size == max_kalshi_by_balance:
+        details['limiting_factor'] = 'kalshi_balance'
+    elif final_size == max_pm_by_balance:
+        details['limiting_factor'] = 'pm_balance'
+
+    return final_size, details
+
+
+async def fresh_price_validation(
+    session, kalshi_api, pm_api, arb: 'ArbOpportunity', intended_size: int
+) -> Tuple[bool, str, Dict]:
+    """
+    Immediately before execution, re-fetch order books and validate:
+    - Spread still >= MIN_EXECUTION_SPREAD
+    - Liquidity still >= intended_size
+
+    Returns (is_valid, reason, fresh_prices)
+    """
+    start_time = time.time()
+
+    # Fetch fresh PM orderbook
+    pm_orderbook = await pm_api.get_orderbook(session, arb.pm_slug)
+    if not pm_orderbook:
+        return False, "Failed to fetch PM orderbook", {}
+
+    pm_fetch_ms = (time.time() - start_time) * 1000
+
+    # Get fresh prices
+    if arb.direction == 'BUY_PM_SELL_K':
+        fresh_pm_ask = int(pm_orderbook.get('best_ask', 0) * 100)
+        fresh_pm_ask_size = pm_orderbook.get('ask_size', 0)
+        fresh_pm_bid = int(pm_orderbook.get('best_bid', 0) * 100)
+
+        # For BUY_PM_SELL_K: spread = k_bid - pm_ask
+        fresh_spread = arb.k_bid - fresh_pm_ask
+        available_size = fresh_pm_ask_size
+        execution_pm_price = fresh_pm_ask
+    else:
+        fresh_pm_bid = int(pm_orderbook.get('best_bid', 0) * 100)
+        fresh_pm_bid_size = pm_orderbook.get('bid_size', 0)
+        fresh_pm_ask = int(pm_orderbook.get('best_ask', 0) * 100)
+
+        # For BUY_K_SELL_PM: spread = pm_bid - k_ask
+        fresh_spread = fresh_pm_bid - arb.k_ask
+        available_size = fresh_pm_bid_size
+        execution_pm_price = fresh_pm_bid
+
+    fresh_prices = {
+        'pm_bid': fresh_pm_bid if arb.direction == 'BUY_K_SELL_PM' else int(pm_orderbook.get('best_bid', 0) * 100),
+        'pm_ask': fresh_pm_ask if arb.direction == 'BUY_PM_SELL_K' else int(pm_orderbook.get('best_ask', 0) * 100),
+        'pm_bid_size': pm_orderbook.get('bid_size', 0),
+        'pm_ask_size': pm_orderbook.get('ask_size', 0),
+        'spread': fresh_spread,
+        'fetch_ms': pm_fetch_ms,
+        'execution_pm_price': execution_pm_price,
+    }
+
+    # Check staleness
+    if pm_fetch_ms > MAX_PRICE_STALENESS_MS:
+        return False, f"Price fetch too slow ({pm_fetch_ms:.0f}ms > {MAX_PRICE_STALENESS_MS}ms)", fresh_prices
+
+    # Check spread
+    if fresh_spread < MIN_EXECUTION_SPREAD:
+        return False, f"Spread closed ({fresh_spread}c < {MIN_EXECUTION_SPREAD}c min)", fresh_prices
+
+    # Check liquidity (use 66% of available)
+    conservative_available = int(available_size * LIQUIDITY_UTILIZATION)
+    if conservative_available < intended_size:
+        return False, f"Liquidity dropped ({conservative_available} < {intended_size} needed)", fresh_prices
+
+    return True, "OK", fresh_prices
+
+
 async def execute_parallel_orders(
     session, kalshi_api, pm_api, arb: 'ArbOpportunity',
     kalshi_price: int, pm_price: float, quantity: int
-) -> Tuple[Dict, Dict]:
+) -> Tuple[Dict, Dict, Dict]:
     """
-    Execute orders on both platforms simultaneously.
-    Returns (kalshi_result, pm_result)
+    Execute orders on both platforms simultaneously with detailed timing.
+    Returns (kalshi_result, pm_result, execution_timing)
     """
-    print(f"\n[EXECUTE] Sending parallel orders...")
-    start_time = time.time()
-
-    # Determine Kalshi action
+    # Determine Kalshi action and add price buffer
     k_action = 'buy' if arb.direction == 'BUY_K_SELL_PM' else 'sell'
 
-    # Determine PM intent
+    # Apply price buffer for limit orders:
+    # - If buying: bid at ask + buffer (willing to pay more)
+    # - If selling: ask at bid - buffer (willing to receive less)
+    if k_action == 'buy':
+        k_limit_price = kalshi_price + PRICE_BUFFER_CENTS
+    else:
+        k_limit_price = kalshi_price - PRICE_BUFFER_CENTS
+    k_limit_price = max(1, min(99, k_limit_price))  # Clamp to valid range
+
+    # For PM: similar buffer logic
     pm_intent, _ = get_pm_execution_params(arb)
+    if pm_intent in [1, 3]:  # BUY_YES or BUY_NO
+        pm_limit_price = pm_price + (PRICE_BUFFER_CENTS / 100)
+    else:  # SELL
+        pm_limit_price = pm_price - (PRICE_BUFFER_CENTS / 100)
+    pm_limit_price = max(0.01, min(0.99, pm_limit_price))
+
+    intent_names = {1: 'BUY_YES', 2: 'SELL_YES', 3: 'BUY_NO', 4: 'SELL_NO'}
+
+    print(f"\n[EXEC] Starting parallel execution for {quantity} contracts...")
+    print(f"[EXEC] Kalshi: {k_action.upper()} {quantity} @ {k_limit_price}c (limit) - sending...")
+    print(f"[EXEC] PM US: {intent_names[pm_intent]} {quantity} @ ${pm_limit_price:.2f} (limit) - sending...")
+
+    overall_start = time.time()
+    kalshi_timing = {'start': 0, 'end': 0, 'ms': 0}
+    pm_timing = {'start': 0, 'end': 0, 'ms': 0}
 
     async def execute_kalshi():
+        kalshi_timing['start'] = time.time()
         try:
             result = await kalshi_api.place_order(
-                session, arb.kalshi_ticker, 'yes', k_action, quantity, kalshi_price
+                session, arb.kalshi_ticker, 'yes', k_action, quantity, k_limit_price
             )
+            kalshi_timing['end'] = time.time()
+            kalshi_timing['ms'] = (kalshi_timing['end'] - kalshi_timing['start']) * 1000
+            result['execution_ms'] = kalshi_timing['ms']
             return result
         except Exception as e:
-            return {'success': False, 'error': str(e), 'fill_count': 0}
+            kalshi_timing['end'] = time.time()
+            kalshi_timing['ms'] = (kalshi_timing['end'] - kalshi_timing['start']) * 1000
+            return {'success': False, 'error': str(e), 'fill_count': 0, 'execution_ms': kalshi_timing['ms']}
 
     async def execute_pm():
+        pm_timing['start'] = time.time()
         try:
             result = await pm_api.place_order(
-                session, arb.pm_slug, pm_intent, pm_price, quantity, tif=3, sync=True
+                session, arb.pm_slug, pm_intent, pm_limit_price, quantity, tif=3, sync=True
             )
+            pm_timing['end'] = time.time()
+            pm_timing['ms'] = (pm_timing['end'] - pm_timing['start']) * 1000
+            result['execution_ms'] = pm_timing['ms']
             return result
         except Exception as e:
-            return {'success': False, 'error': str(e), 'fill_count': 0}
+            pm_timing['end'] = time.time()
+            pm_timing['ms'] = (pm_timing['end'] - pm_timing['start']) * 1000
+            return {'success': False, 'error': str(e), 'fill_count': 0, 'execution_ms': pm_timing['ms']}
 
     # Execute both orders simultaneously
     kalshi_result, pm_result = await asyncio.gather(execute_kalshi(), execute_pm())
 
-    elapsed_ms = (time.time() - start_time) * 1000
-    print(f"[EXECUTE] Both orders submitted in {elapsed_ms:.0f}ms")
+    overall_end = time.time()
+    total_ms = (overall_end - overall_start) * 1000
 
-    return kalshi_result, pm_result
+    # Log execution results
+    k_fill = kalshi_result.get('fill_count', 0)
+    k_fill_price = kalshi_result.get('fill_price', k_limit_price)
+    pm_fill = pm_result.get('fill_count', 0)
+    pm_fill_price = pm_result.get('fill_price', pm_limit_price)
+
+    k_status = f"{k_fill} @ {k_fill_price}c in {kalshi_timing['ms']:.0f}ms" + (" OK" if k_fill > 0 else " NO FILL")
+    pm_status = f"{pm_fill} @ ${pm_fill_price:.2f} in {pm_timing['ms']:.0f}ms" + (" OK" if pm_fill > 0 else " NO FILL")
+
+    print(f"[EXEC] Kalshi filled: {k_status}")
+    print(f"[EXEC] PM US filled: {pm_status}")
+
+    both_matched = k_fill > 0 and pm_fill > 0 and k_fill == pm_fill
+    if both_matched:
+        print(f"[EXEC] Total execution: {total_ms:.0f}ms | Both sides matched OK")
+    elif k_fill > 0 and pm_fill > 0:
+        print(f"[EXEC] Total execution: {total_ms:.0f}ms | QUANTITY MISMATCH: K={k_fill}, PM={pm_fill}")
+    else:
+        print(f"[EXEC] Total execution: {total_ms:.0f}ms | PARTIAL FILL - hedge needed")
+
+    # Record execution stats
+    record_execution(kalshi_timing['ms'], pm_timing['ms'], total_ms, both_matched)
+
+    execution_timing = {
+        'kalshi_ms': kalshi_timing['ms'],
+        'pm_ms': pm_timing['ms'],
+        'total_ms': total_ms,
+        'both_matched': both_matched,
+        'k_limit_price': k_limit_price,
+        'pm_limit_price': pm_limit_price,
+    }
+
+    return kalshi_result, pm_result, execution_timing
 
 
 async def attempt_hedge_recovery(
@@ -1907,8 +2187,9 @@ async def run_preflight_checks(session, kalshi_api, pm_api) -> Tuple[bool, List[
     return all_blocking_passed, results
 
 
-def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str):
-    """Log trade details"""
+def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
+               execution_time_ms: float = 0):
+    """Log trade details with all important fields"""
     global TRADE_LOG
 
     # Determine display status
@@ -1919,34 +2200,73 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str)
     else:
         display_status = status
 
+    # Calculate at-risk (capital deployed on buy side)
+    # BUY_K_SELL_PM: risk = k_ask * contracts (we buy on Kalshi)
+    # BUY_PM_SELL_K: risk = pm_ask * contracts (we buy on PM)
+    k_fill = k_result.get('fill_count', 0)
+    pm_fill = pm_result.get('fill_count', 0)
+    actual_contracts = min(k_fill, pm_fill) if (k_fill > 0 and pm_fill > 0) else max(k_fill, pm_fill)
+
+    if arb.direction == 'BUY_K_SELL_PM':
+        buy_price_cents = arb.k_ask
+    else:  # BUY_PM_SELL_K
+        buy_price_cents = arb.pm_ask
+    at_risk_cents = buy_price_cents * actual_contracts
+    at_risk_dollars = at_risk_cents / 100
+
+    # Calculate spread in cents
+    spread_cents = arb.net_spread
+
+    # Determine if fully hedged
+    hedged = (k_fill > 0 and pm_fill > 0 and k_fill == pm_fill) or status == 'RECOVERED'
+
     trade = {
+        # Core identifiers
         'timestamp': datetime.now().isoformat(),
-        'sport': arb.sport,
-        'game': arb.game,
+        'game_id': arb.game,
         'team': arb.team,
+        'sport': arb.sport,
         'direction': arb.direction,
-        'intended_size': arb.size,
-        'k_fill_count': k_result.get('fill_count', 0),
-        'k_fill_price': k_result.get('fill_price'),
-        'k_order_id': k_result.get('order_id'),
-        'pm_fill_count': pm_result.get('fill_count', 0),
-        'pm_fill_price': pm_result.get('fill_price'),
-        'pm_order_id': pm_result.get('order_id'),
-        'pm_slug': arb.pm_slug,
-        'pm_success': pm_result.get('success', False),
-        'pm_error': pm_result.get('error'),
-        'status': display_status,
-        'raw_status': status,
-        'execution_mode': EXECUTION_MODE.value,
-        'needs_review': arb.needs_review,
-        'review_reason': arb.review_reason if arb.needs_review else None,
-        'is_live_game': arb.is_live_game,
-        'expected_profit': arb.profit,
-        'roi': arb.roi,
+
+        # Sizing
+        'contracts_intended': arb.size,
+        'contracts_filled': actual_contracts,
+        'kalshi_fill': k_fill,
+        'pm_fill': pm_fill,
+
+        # Prices (cents)
+        'k_price': k_result.get('fill_price') or (arb.k_ask if arb.direction == 'BUY_K_SELL_PM' else arb.k_bid),
+        'pm_price': pm_result.get('fill_price') or (arb.pm_ask if arb.direction == 'BUY_PM_SELL_K' else arb.pm_bid),
         'k_bid': arb.k_bid,
         'k_ask': arb.k_ask,
         'pm_bid': arb.pm_bid,
-        'pm_ask': arb.pm_ask
+        'pm_ask': arb.pm_ask,
+
+        # Financials
+        'spread_cents': spread_cents,
+        'profit_dollars': arb.profit,
+        'at_risk_dollars': at_risk_dollars,
+        'roi_percent': round(arb.roi, 2),
+
+        # Execution
+        'execution_time_ms': round(execution_time_ms, 1),
+        'hedged': hedged,
+        'paper_mode': EXECUTION_MODE == ExecutionMode.PAPER,
+
+        # Status
+        'status': display_status,
+        'raw_status': status,
+
+        # Additional context
+        'pm_slug': arb.pm_slug,
+        'kalshi_ticker': arb.kalshi_ticker,
+        'k_order_id': k_result.get('order_id'),
+        'pm_order_id': pm_result.get('order_id'),
+        'pm_success': pm_result.get('success', False),
+        'pm_error': pm_result.get('error'),
+        'needs_review': arb.needs_review,
+        'review_reason': arb.review_reason if arb.needs_review else None,
+        'is_live_game': arb.is_live_game,
     }
     TRADE_LOG.append(trade)
 
@@ -5091,13 +5411,15 @@ async def run_executor():
                 # Total Addressable Market stats (paper unlimited mode)
                 if EXECUTION_MODE == ExecutionMode.PAPER and PAPER_NO_LIMITS and TAM_STATS['scan_count'] > 0:
                     total_unique = TAM_STATS['unique_arbs_new'] + TAM_STATS['unique_arbs_reopen']
+                    tam_roi = (TAM_STATS['total_profit_if_captured'] / TAM_STATS['total_at_risk'] * 100) if TAM_STATS['total_at_risk'] > 0 else 0
+                    realistic_roi = (TAM_STATS['realistic_profit'] / TAM_STATS['realistic_at_risk'] * 100) if TAM_STATS['realistic_at_risk'] > 0 else 0
                     print(f"\n  [TOTAL ADDRESSABLE MARKET]")
                     print(f"    Scans: {TAM_STATS['scan_count']}")
                     print(f"    Unique Arbs: {total_unique} ({TAM_STATS['unique_arbs_new']} NEW + {TAM_STATS['unique_arbs_reopen']} REOPEN)")
                     print(f"    Flicker Ignored: {TAM_STATS['flicker_ignored']}")
                     print(f"    Executed: {TAM_STATS['unique_arbs_executed']}")
-                    print(f"    Total Profit (if captured once): ${TAM_STATS['total_profit_if_captured']/100:.2f}")
-                    print(f"    Total Contracts: {TAM_STATS['total_contracts']:,}")
+                    print(f"    Full liquidity (TAM): ${TAM_STATS['total_profit_if_captured']/100:.2f} profit from ${TAM_STATS['total_at_risk']/100:.0f} at risk ({tam_roi:.1f}% ROI)")
+                    print(f"    66% realistic:        ${TAM_STATS['realistic_profit']/100:.2f} profit from ${TAM_STATS['realistic_at_risk']/100:.0f} at risk ({realistic_roi:.1f}% ROI)")
                     print(f"    Active: {len(ACTIVE_ARBS)} | Recently Closed: {len(RECENTLY_CLOSED)} | Perm Closed: {len(CLOSED_ARBS)}")
 
                     # Show arb persistence breakdown
@@ -5169,6 +5491,21 @@ async def run_executor():
                     seen_this_scan.add(arb_key)
                     profit_cents = arb.net_spread * arb.size
 
+                    # Calculate at-risk (capital required on buy side)
+                    # BUY_K_SELL_PM: risk = k_ask * contracts (we buy on Kalshi)
+                    # BUY_PM_SELL_K: risk = pm_ask * contracts (we buy on PM)
+                    if arb.direction == 'BUY_K_SELL_PM':
+                        buy_price = arb.k_ask  # cents
+                    else:  # BUY_PM_SELL_K
+                        buy_price = arb.pm_ask  # cents
+                    at_risk_cents = buy_price * arb.size
+
+                    # Calculate realistic (66%) values
+                    realistic_size = int(arb.size * LIQUIDITY_UTILIZATION)
+                    realistic_profit = arb.net_spread * realistic_size
+                    realistic_at_risk = buy_price * realistic_size
+                    implied_roi = (profit_cents / at_risk_cents * 100) if at_risk_cents > 0 else 0
+
                     if arb_key in ACTIVE_ARBS:
                         # PERSISTING arb - already active
                         active = ACTIVE_ARBS[arb_key]
@@ -5179,8 +5516,8 @@ async def run_executor():
                         active.current_profit_cents = profit_cents
 
                         duration = format_duration(now - active.first_seen)
-                        roi_info = f" | ROI:{arb.roi:.0f}%" if arb.roi > 20 else ""
-                        print(f"  [PERSIST] {arb.sport} {arb.team}: {arb.net_spread}c spread | {arb.size} contracts | ${profit_cents/100:.2f}{roi_info} (open {duration})")
+                        print(f"  [PERSIST] {arb.sport} {arb.team}: {arb.net_spread}c spread | {arb.size} avail | ${profit_cents/100:.2f} profit | ${at_risk_cents/100:.0f} at risk (TAM)")
+                        print(f"            -> Realistic: {realistic_size} @ 66% | ${realistic_profit/100:.2f} profit | ${realistic_at_risk/100:.0f} at risk | ROI:{implied_roi:.1f}% (open {duration})")
 
                     elif arb_key in RECENTLY_CLOSED:
                         # Was recently closed - check if flicker or real reopen
@@ -5206,6 +5543,7 @@ async def run_executor():
                                 initial_spread=arb.net_spread,
                                 initial_size=arb.size,
                                 initial_profit_cents=profit_cents,
+                                initial_at_risk_cents=at_risk_cents,
                                 current_spread=arb.net_spread,
                                 current_size=arb.size,
                                 current_profit_cents=profit_cents,
@@ -5220,8 +5558,8 @@ async def run_executor():
                             # Remove from recently closed
                             del RECENTLY_CLOSED[arb_key]
 
-                            roi_info = f" | ROI:{arb.roi:.0f}%" if arb.roi > 20 else ""
-                            print(f"  [REOPEN] {arb.sport} {arb.team}: {arb.net_spread}c spread | {arb.size} contracts | ${profit_cents/100:.2f}{roi_info}")
+                            print(f"  [REOPEN] {arb.sport} {arb.team}: {arb.net_spread}c spread | {arb.size} avail | ${profit_cents/100:.2f} profit | ${at_risk_cents/100:.0f} at risk (TAM)")
+                            print(f"           -> Realistic: {realistic_size} @ 66% | ${realistic_profit/100:.2f} profit | ${realistic_at_risk/100:.0f} at risk | ROI:{implied_roi:.1f}%")
                     else:
                         # NEW arb - first time seeing it ever
                         active = ActiveArb(
@@ -5236,6 +5574,7 @@ async def run_executor():
                             initial_spread=arb.net_spread,
                             initial_size=arb.size,
                             initial_profit_cents=profit_cents,
+                            initial_at_risk_cents=at_risk_cents,
                             current_spread=arb.net_spread,
                             current_size=arb.size,
                             current_profit_cents=profit_cents,
@@ -5248,8 +5587,8 @@ async def run_executor():
                         new_arbs.append(active)
                         TAM_STATS['unique_arbs_new'] += 1
 
-                        roi_info = f" | ROI:{arb.roi:.0f}%" if arb.roi > 20 else ""
-                        print(f"  [NEW] {arb.sport} {arb.team}: {arb.net_spread}c spread | {arb.size} contracts | ${profit_cents/100:.2f}{roi_info}")
+                        print(f"  [NEW] {arb.sport} {arb.team}: {arb.net_spread}c spread | {arb.size} avail | ${profit_cents/100:.2f} profit | ${at_risk_cents/100:.0f} at risk (TAM)")
+                        print(f"        -> Realistic: {realistic_size} @ 66% | ${realistic_profit/100:.2f} profit | ${realistic_at_risk/100:.0f} at risk | ROI:{implied_roi:.1f}%")
 
                 # Check for CLOSED arbs (were active but not seen this scan)
                 closed_keys = []
@@ -5279,22 +5618,36 @@ async def run_executor():
                     if not active.executed:
                         active.executed = True
                         TAM_STATS['unique_arbs_executed'] += 1
+                        # Track TAM (100% liquidity)
                         TAM_STATS['total_profit_if_captured'] += active.initial_profit_cents
                         TAM_STATS['total_contracts'] += active.initial_size
+                        TAM_STATS['total_at_risk'] += active.initial_at_risk_cents
+                        # Track realistic (66% liquidity)
+                        realistic_size = int(active.initial_size * LIQUIDITY_UTILIZATION)
+                        realistic_profit = active.initial_spread * realistic_size
+                        # At risk scales proportionally with size
+                        realistic_at_risk = int(active.initial_at_risk_cents * LIQUIDITY_UTILIZATION)
+                        TAM_STATS['realistic_profit'] += realistic_profit
+                        TAM_STATS['realistic_contracts'] += realistic_size
+                        TAM_STATS['realistic_at_risk'] += realistic_at_risk
                         tag = "REOPEN" if active.is_reopen else "NEW"
-                        print(f"    -> [PAPER EXECUTE {tag}] ${active.initial_profit_cents/100:.2f} captured")
+                        print(f"    -> [PAPER EXECUTE {tag}] ${active.initial_profit_cents/100:.2f} profit / ${active.initial_at_risk_cents/100:.0f} risk (TAM)")
 
-                # Summary
+                # Summary with at-risk and ROI
                 total_unique = TAM_STATS['unique_arbs_new'] + TAM_STATS['unique_arbs_reopen']
                 total_active = len(ACTIVE_ARBS)
                 total_recently_closed = len(RECENTLY_CLOSED)
                 total_perm_closed = len(CLOSED_ARBS)
 
+                tam_roi = (TAM_STATS['total_profit_if_captured'] / TAM_STATS['total_at_risk'] * 100) if TAM_STATS['total_at_risk'] > 0 else 0
+                realistic_roi = (TAM_STATS['realistic_profit'] / TAM_STATS['realistic_at_risk'] * 100) if TAM_STATS['realistic_at_risk'] > 0 else 0
+
                 print(f"\n  [TAM SUMMARY] Unique: {total_unique} ({TAM_STATS['unique_arbs_new']} NEW + {TAM_STATS['unique_arbs_reopen']} REOPEN)")
                 print(f"  Flicker ignored: {TAM_STATS['flicker_ignored']}")
                 print(f"  Active: {total_active} | Recently Closed: {total_recently_closed} | Perm Closed: {total_perm_closed}")
                 print(f"  Scans: {TAM_STATS['scan_count']} | Executed: {TAM_STATS['unique_arbs_executed']}")
-                print(f"  If captured once each: ${TAM_STATS['total_profit_if_captured']/100:.2f} from {TAM_STATS['total_contracts']:,} contracts")
+                print(f"  Full liquidity (TAM): ${TAM_STATS['total_profit_if_captured']/100:.2f} profit from ${TAM_STATS['total_at_risk']/100:.0f} at risk ({tam_roi:.1f}% ROI)")
+                print(f"  66% realistic:        ${TAM_STATS['realistic_profit']/100:.2f} profit from ${TAM_STATS['realistic_at_risk']/100:.0f} at risk ({realistic_roi:.1f}% ROI)")
 
             # Execute if we have arbs and cooldown passed (skip in paper unlimited - handled above)
             if not paper_unlimited:
@@ -5362,158 +5715,128 @@ async def run_executor():
                 continue
 
             # =========================================================
-            # HEDGE PROTECTION: Pre-Trade Validation
+            # STEP 1: CONSERVATIVE SIZING CALCULATION
             # =========================================================
-            is_valid, reason, fresh_prices = await validate_pre_trade(
-                session, kalshi_api, pm_api, best
-            )
-
-            if not is_valid:
-                print(f"[ABORT] Pre-trade validation failed: {reason}")
-                log_skipped_arb(best, 'validation_failed', reason)
-                await asyncio.sleep(1.0)
-                continue
-
             print(f"\n[!] BEST ARB: {best.sport} {best.game} {best.team}")
             print(f"    Direction: {best.direction}")
             print(f"    K: {best.k_bid}/{best.k_ask}c | PM: {best.pm_bid}/{best.pm_ask}c")
-            print(f"    Size: {best.size} | Profit: ${best.profit:.2f} | ROI: {best.roi:.1f}%")
+            print(f"    Size (raw): {best.size} | Profit: ${best.profit:.2f} | ROI: {best.roi:.1f}%")
             print(f"    PM Slug: {best.pm_slug} | Outcome Index: {best.pm_outcome_index}")
 
-            # Determine Kalshi order params
+            # Get balances for sizing calculation
+            kalshi_balance = await kalshi_api.get_balance(session) or 0
+            pm_balance = await pm_api.get_balance(session) or 0
+
+            trade_size, sizing_details = await calculate_conservative_size(
+                session, kalshi_api, pm_api, best, kalshi_balance, pm_balance
+            )
+
+            # Output sizing calculation
+            print(f"\n[SIZE] ===== CONSERVATIVE SIZING =====")
+            print(f"[SIZE] Kalshi balance: {sizing_details['kalshi_balance']} ({sizing_details['kalshi_max_by_balance']} contracts max)")
+            print(f"[SIZE] PM US balance: {sizing_details['pm_balance']} ({sizing_details['pm_max_by_balance']} contracts max)")
+            print(f"[SIZE] PM US liquidity: {sizing_details['pm_liquidity']}")
+            print(f"[SIZE] Using {int(LIQUIDITY_UTILIZATION*100)}%: {sizing_details['pm_66_pct']} contracts")
+            print(f"[SIZE] Final size: {trade_size} contracts (limited by: {sizing_details['limiting_factor']})")
+            print(f"[SIZE] ===================================")
+
+            if trade_size < 1:
+                print(f"[ABORT] Insufficient size after conservative calculation")
+                log_skipped_arb(best, 'insufficient_size', f"Size {trade_size} < 1 after sizing")
+                await asyncio.sleep(1.0)
+                continue
+
+            # =========================================================
+            # STEP 2: FRESH PRICE VALIDATION (immediately before execution)
+            # =========================================================
+            is_valid, reason, fresh_prices = await fresh_price_validation(
+                session, kalshi_api, pm_api, best, trade_size
+            )
+
+            if not is_valid:
+                print(f"[ABORT] Fresh price validation failed: {reason}")
+                log_skipped_arb(best, 'fresh_validation_failed', reason)
+                await asyncio.sleep(1.0)
+                continue
+
+            print(f"[FRESH] Spread confirmed: {fresh_prices['spread']}c (fetch: {fresh_prices['fetch_ms']:.0f}ms)")
+
+            # Also run the hedge protection pre-trade validation
+            is_valid2, reason2, hedge_prices = await validate_pre_trade(
+                session, kalshi_api, pm_api, best
+            )
+
+            if not is_valid2:
+                print(f"[ABORT] Hedge pre-trade validation failed: {reason2}")
+                log_skipped_arb(best, 'validation_failed', reason2)
+                await asyncio.sleep(1.0)
+                continue
+
+            # =========================================================
+            # STEP 3: PARALLEL EXECUTION WITH TIMING
+            # =========================================================
+            # Determine execution prices
             if best.direction == 'BUY_PM_SELL_K':
-                k_action = 'sell'
-                k_price = best.k_bid
+                k_price = best.k_bid  # Sell on Kalshi at bid
+                pm_price = fresh_prices['execution_pm_price'] / 100  # Buy on PM at ask
             else:
-                k_action = 'buy'
-                k_price = best.k_ask
+                k_price = best.k_ask  # Buy on Kalshi at ask
+                pm_price = fresh_prices['execution_pm_price'] / 100  # Sell on PM at bid
 
-            # Get position BEFORE order
+            # Get position BEFORE order for verification
             pre_position = await kalshi_api.get_position_for_ticker(session, best.kalshi_ticker)
-            print(f"\n[>>] PRE-TRADE: Kalshi Position = {pre_position}")
+            print(f"\n[PRE-TRADE] Kalshi Position = {pre_position}")
 
-            # =============================================================
-            # BULLETPROOF ORDER BOOK SWEEP (Kalshi side - same as v6)
-            # =============================================================
-            MAX_PRICE_LEVELS = 10
-            actual_fill = 0
-            fill_price = k_price
-            k_result = {}
-            placed_order_ids = []
-            sweep_break_reason = None  # Track why sweep ended
-            final_adjusted_roi = 0
+            # Execute both sides in parallel
+            k_result, pm_result, execution_timing = await execute_parallel_orders(
+                session, kalshi_api, pm_api, best,
+                k_price, pm_price, trade_size
+            )
 
-            try:
-                for price_offset in range(MAX_PRICE_LEVELS + 1):
-                    if k_action == 'buy':
-                        try_price = k_price + price_offset
-                    else:
-                        try_price = k_price - price_offset
-
-                    if try_price < 1 or try_price > 99:
-                        print(f"   [X] Price {try_price}c out of bounds, stopping sweep")
-                        sweep_break_reason = 'price_bounds'
-                        break
-
-                    if k_action == 'buy':
-                        adjusted_profit = best.profit - (price_offset * best.size / 100)
-                        adjusted_capital = best.size * (try_price / 100)
-                    else:
-                        adjusted_profit = best.profit - (price_offset * best.size / 100)
-                        adjusted_capital = best.size * ((100 - try_price) / 100)
-
-                    adjusted_roi = (adjusted_profit / adjusted_capital * 100) if adjusted_capital > 0 else 0
-                    final_adjusted_roi = adjusted_roi
-
-                    if adjusted_roi < MIN_SWEEP_ROI:
-                        print(f"   [X] ROI {adjusted_roi:.1f}% < {MIN_SWEEP_ROI}% at {try_price}c, stopping sweep")
-                        sweep_break_reason = 'roi_too_low'
-                        break
-
-                    print(f"[>>] SWEEP {price_offset}: {k_action} {best.size} YES @ {try_price}c (ROI: {adjusted_roi:.1f}%)")
-                    k_result = await kalshi_api.place_order(
-                        session, best.kalshi_ticker, 'yes', k_action, best.size, try_price
-                    )
-
-                    api_fill_count = k_result.get('fill_count', 0)
-                    order_id = k_result.get('order_id')
-
-                    if order_id:
-                        placed_order_ids.append(order_id)
-                        print(f"   [ORDER PLACED] {order_id[:12]}...")
-
-                    if api_fill_count > 0:
-                        actual_fill = api_fill_count
-                        fill_price = try_price
-                        print(f"   [OK] Got fill at {try_price}c!")
-                        break
-                    else:
-                        if order_id:
-                            cancelled = await kalshi_api.cancel_order(session, order_id)
-                            if not cancelled:
-                                print(f"   [!] WARNING: Cancel may have failed for {order_id[:12]}")
-                        print(f"   [.] No fill at {try_price}c, trying next level...")
-                        await asyncio.sleep(0.1)
-
-            finally:
-                # CRITICAL CLEANUP: Cancel ALL Kalshi orders for this ticker
-                print(f"\n[SWEEP CLEANUP] Ensuring no resting Kalshi orders for {best.kalshi_ticker}...")
-                cleanup_count = await kalshi_api.cancel_all_orders_for_ticker(session, best.kalshi_ticker)
-                if cleanup_count > 0:
-                    print(f"[SWEEP CLEANUP] Cancelled {cleanup_count} resting orders")
-
-            # Verify with position check
+            # =========================================================
+            # STEP 4: FILL VERIFICATION
+            # =========================================================
             await asyncio.sleep(0.3)
             post_position = await kalshi_api.get_position_for_ticker(session, best.kalshi_ticker)
-            print(f"[>>] POST-TRADE: Kalshi Position = {post_position}")
+            print(f"[POST-TRADE] Kalshi Position = {post_position}")
 
+            # Get actual fills from results
+            k_fill = k_result.get('fill_count', 0)
+            pm_fill = pm_result.get('fill_count', 0)
+
+            # Cross-check with position change
             position_change = 0
             if pre_position is not None and post_position is not None:
                 position_change = abs(post_position - pre_position)
 
-            if actual_fill == 0 and position_change > 0:
-                actual_fill = position_change
-                print(f"[>>] Position changed by {position_change}, using as fill count")
+            # If API says 0 but position changed, use position change
+            actual_k_fill = k_fill if k_fill > 0 else position_change
+            if actual_k_fill != k_fill and actual_k_fill > 0:
+                print(f"[VERIFY] Position changed by {position_change}, overriding API fill {k_fill}")
+                k_fill = actual_k_fill
 
-            print(f"[>>] Final: API fill={k_result.get('fill_count', 0)}, Position change={position_change}, Using={actual_fill}")
+            print(f"[VERIFY] Final fills: Kalshi={k_fill}, PM={pm_fill}, Position change={position_change}")
 
-            # =============================================================
-            # EXECUTE PM US SIDE (replaces partner webhook)
-            # =============================================================
-            if actual_fill > 0:
-                print(f"\n[OK] KALSHI FILLED: {actual_fill} contracts @ {fill_price}c")
+            # =========================================================
+            # STEP 5: HEDGE RECONCILIATION
+            # =========================================================
+            if k_fill > 0 or pm_fill > 0:
+                # Compute actual fill for hedge reconciliation
+                actual_fill = min(k_fill, pm_fill) if (k_fill > 0 and pm_fill > 0) else max(k_fill, pm_fill)
 
-                # Compute PM US execution parameters
-                pm_intent, pm_price = get_pm_execution_params(best)
-                intent_names = {1: 'BUY_YES', 2: 'SELL_YES', 3: 'BUY_NO', 4: 'SELL_NO'}
-
-                print(f"[>>] Executing PM US: {intent_names[pm_intent]} {actual_fill} @ ${pm_price:.2f} on {best.pm_slug}")
-
-                pm_result = await pm_api.place_order(
-                    session,
-                    market_slug=best.pm_slug,
-                    intent=pm_intent,
-                    price=pm_price,
-                    quantity=actual_fill,
-                    tif=3,   # IOC
-                    sync=True
-                )
-
-                # =========================================================
-                # HEDGE PROTECTION: Reconciliation with Recovery
-                # =========================================================
+                # Run hedge reconciliation with recovery if needed
                 hedge_state = await reconcile_hedge(
                     session, kalshi_api, pm_api, best,
                     k_result, pm_result, actual_fill
                 )
 
-                pm_fill = hedge_state.pm_filled
+                fill_price = execution_timing.get('k_limit_price', k_price)
                 pm_fill_price = pm_result.get('fill_price')
 
                 if pm_fill > 0:
                     print(f"[OK] PM US FILLED: {pm_fill} contracts" + (f" @ ${pm_fill_price:.2f}" if pm_fill_price else ""))
 
-                # Calculate actual profit (accounting for any recovery slippage)
+                # Calculate actual profit
                 price_diff = abs(fill_price - k_price)
                 slippage_cost = hedge_state.recovery_slippage * hedge_state.pm_filled / 100 if hedge_state.recovery_slippage else 0
                 actual_profit = best.profit - (price_diff * actual_fill / 100) - slippage_cost
@@ -5524,12 +5847,18 @@ async def run_executor():
                     SCAN_STATS['total_executed'] += 1
                     total_profit += actual_profit
 
+                    exec_time_ms = execution_timing.get('total_ms', 0)
                     if hedge_state.recovery_slippage > 0:
                         print(f"[$] Trade #{total_trades} | +${actual_profit:.2f} (reduced due to {hedge_state.recovery_slippage}c recovery slippage)")
-                        log_trade(best, k_result, pm_result, 'RECOVERED')
+                        log_trade(best, k_result, pm_result, 'RECOVERED', execution_time_ms=exec_time_ms)
                     else:
-                        print(f"[$] Trade #{total_trades} | +${actual_profit:.2f} | Total: ${total_profit:.2f}")
-                        log_trade(best, k_result, pm_result, 'SUCCESS')
+                        print(f"[$] Trade #{total_trades} | +${actual_profit:.2f} | Total: ${total_profit:.2f} | Exec: {exec_time_ms:.0f}ms")
+                        log_trade(best, k_result, pm_result, 'SUCCESS', execution_time_ms=exec_time_ms)
+
+                    # Check for slow execution warning
+                    avg_exec = EXECUTION_STATS.get('avg_execution_ms', 0)
+                    if avg_exec > SLOW_EXECUTION_THRESHOLD_MS:
+                        print(f"[!] SLOW EXEC WARNING: Avg {avg_exec:.0f}ms > {SLOW_EXECUTION_THRESHOLD_MS}ms threshold")
 
                     # Track paper stats
                     if EXECUTION_MODE == ExecutionMode.PAPER:
@@ -5548,7 +5877,7 @@ async def run_executor():
                     unhedged_qty = hedge_state.kalshi_filled - hedge_state.pm_filled
                     print(f"[!!!] UNHEDGED POSITION: {unhedged_qty} contracts on {best.kalshi_ticker}")
 
-                    log_trade(best, k_result, pm_result, 'UNHEDGED')
+                    log_trade(best, k_result, pm_result, 'UNHEDGED', execution_time_ms=exec_time_ms)
 
                     # Mark as traded to avoid retrying
                     TRADED_GAMES.add(best.game)
@@ -5569,14 +5898,11 @@ async def run_executor():
                 last_trade_time = time.time()
 
             else:
-                # Log the skipped arb with appropriate reason
-                if sweep_break_reason == 'roi_too_low':
-                    log_skipped_arb(best, 'sweep_roi_too_low', f"ROI dropped to {final_adjusted_roi:.1f}% during sweep")
-                    print(f"\n[X] NO FILL - ROI dropped to {final_adjusted_roi:.1f}% during sweep")
-                else:
-                    log_skipped_arb(best, 'no_fill', f"No fill after sweeping {MAX_PRICE_LEVELS} price levels")
-                    print(f"\n[X] NO FILL after sweeping {MAX_PRICE_LEVELS} price levels")
-                log_trade(best, k_result, {}, 'NO_FILL')
+                # No fill on either side
+                exec_time_ms = execution_timing.get('total_ms', 0)
+                print(f"\n[X] NO FILL on either side (K={k_fill}, PM={pm_fill})")
+                log_skipped_arb(best, 'no_fill', f"Parallel execution: K={k_fill}, PM={pm_fill}")
+                log_trade(best, k_result, pm_result, 'NO_FILL', execution_time_ms=exec_time_ms)
 
             await asyncio.sleep(1.0)
 

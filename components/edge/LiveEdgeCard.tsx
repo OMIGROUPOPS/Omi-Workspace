@@ -68,10 +68,47 @@ function getEdgeTypeBg(edgeType: string): string {
   return bgMap[config.color] || 'bg-zinc-800';
 }
 
+// Parse outcome_key for player props: "PLAYER_NAME|OVER" -> { player: "Player Name", side: "Over" }
+function parseOutcomeKey(outcomeKey: string | null | undefined): { player: string | null; side: string | null } {
+  if (!outcomeKey) return { player: null, side: null };
+
+  // Handle player prop format: "COOPER_KUPP|OVER" or "COOPER KUPP|OVER"
+  if (outcomeKey.includes('|')) {
+    const [playerPart, side] = outcomeKey.split('|');
+    // Convert COOPER_KUPP to Cooper Kupp
+    const player = playerPart
+      .replace(/_/g, ' ')
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+    return { player, side: side ? side.charAt(0).toUpperCase() + side.slice(1).toLowerCase() : null };
+  }
+
+  return { player: null, side: outcomeKey };
+}
+
+// Format market type for display
+function formatMarketTypeDisplay(marketType: string | null | undefined): string {
+  if (!marketType) return '';
+  return marketType
+    .replace(/_/g, ' ')
+    .replace(/player props?/i, '')
+    .replace(/^player /i, '')
+    .trim()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+}
+
 export function LiveEdgeCard({ edge, showGameLink = true, compact = false }: LiveEdgeCardProps) {
   const typeConfig = EDGE_TYPE_CONFIG[edge.edge_type as keyof typeof EDGE_TYPE_CONFIG];
   const statusConfig = EDGE_STATUS_CONFIG[edge.status];
   const IconComponent = iconMap[typeConfig?.icon as keyof typeof iconMap] || TrendingUp;
+
+  // Parse player info from outcome_key
+  const { player, side } = parseOutcomeKey(edge.outcome_key);
+  const isPlayerProp = !!player || (edge.market_type?.toLowerCase().includes('player') ?? false);
+  const marketDisplay = formatMarketTypeDisplay(edge.market_type);
 
   const content = (
     <div
@@ -85,12 +122,18 @@ export function LiveEdgeCard({ edge, showGameLink = true, compact = false }: Liv
     >
       {/* Header Row */}
       <div className="flex items-start justify-between gap-2 mb-2">
-        {/* Edge Type Badge */}
-        <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-full ${getEdgeTypeBg(edge.edge_type)}`}>
-          <IconComponent className={`w-3 h-3 ${getEdgeTypeColor(edge.edge_type)}`} />
-          <span className={`text-xs font-medium ${getEdgeTypeColor(edge.edge_type)}`}>
-            {typeConfig?.shortLabel || edge.edge_type}
-          </span>
+        <div className="flex items-center gap-2 flex-wrap">
+          {/* Edge Type Badge */}
+          <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-full ${getEdgeTypeBg(edge.edge_type)}`}>
+            <IconComponent className={`w-3 h-3 ${getEdgeTypeColor(edge.edge_type)}`} />
+            <span className={`text-xs font-medium ${getEdgeTypeColor(edge.edge_type)}`}>
+              {typeConfig?.shortLabel || edge.edge_type}
+            </span>
+          </div>
+          {/* Market type badge for non-prop edges */}
+          {!isPlayerProp && marketDisplay && (
+            <span className="text-[10px] text-zinc-500 uppercase">{marketDisplay}</span>
+          )}
         </div>
 
         {/* Status Badge */}
@@ -107,13 +150,31 @@ export function LiveEdgeCard({ edge, showGameLink = true, compact = false }: Liv
         </div>
       </div>
 
+      {/* Player Prop Headline - Make player name prominent */}
+      {isPlayerProp && player && (
+        <div className="mb-2">
+          <div className="flex items-baseline gap-2">
+            <span className="text-sm font-bold text-zinc-100">{player}</span>
+            {side && <span className="text-xs text-emerald-400 font-medium">{side}</span>}
+          </div>
+          {marketDisplay && (
+            <span className="text-[11px] text-zinc-400">{marketDisplay}</span>
+          )}
+        </div>
+      )}
+
       {/* Main Content */}
       <div className="space-y-1.5">
-        {/* Magnitude Display */}
-        <div className="flex items-baseline gap-2">
+        {/* Magnitude + Description combined for clarity */}
+        <div className="flex items-baseline gap-2 flex-wrap">
           <span className="text-lg font-bold text-zinc-100 font-mono">
             {formatEdgeMagnitude(edge)}
           </span>
+          {!compact && (
+            <span className="text-xs text-zinc-400">
+              {formatEdgeDescription(edge)}
+            </span>
+          )}
           {edge.confidence && (
             <span className="text-xs text-zinc-500 font-mono">
               {edge.confidence.toFixed(0)}% conf
@@ -121,23 +182,16 @@ export function LiveEdgeCard({ edge, showGameLink = true, compact = false }: Liv
           )}
         </div>
 
-        {/* Description */}
-        {!compact && (
-          <p className="text-xs text-zinc-400 line-clamp-2">
-            {formatEdgeDescription(edge)}
-          </p>
-        )}
-
-        {/* Book Info */}
-        <div className="flex items-center gap-3 text-[10px]">
+        {/* Book Info - Clearer wording */}
+        <div className="flex items-center gap-2 text-[10px] flex-wrap">
           {edge.best_current_book && (
-            <span className="text-zinc-500">
-              Best: <span className="text-zinc-300 capitalize">{edge.best_current_book}</span>
+            <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium capitalize">
+              Best: {edge.best_current_book}
             </span>
           )}
           {edge.triggering_book && edge.triggering_book !== edge.best_current_book && (
             <span className="text-zinc-500">
-              From: <span className="text-zinc-400 capitalize">{edge.triggering_book}</span>
+              Triggered by <span className="text-zinc-400 capitalize">{edge.triggering_book}</span> move
             </span>
           )}
         </div>
@@ -149,9 +203,10 @@ export function LiveEdgeCard({ edge, showGameLink = true, compact = false }: Liv
             <span>{formatTimeAgo(edge.detected_at)}</span>
           </div>
 
-          {edge.market_type && (
-            <span className="text-[10px] text-zinc-600 uppercase">
-              {edge.market_type} • {edge.outcome_key}
+          {/* Only show market/outcome for non-player-props (already shown above) */}
+          {!isPlayerProp && edge.outcome_key && (
+            <span className="text-[10px] text-zinc-600">
+              {edge.outcome_key}
             </span>
           )}
         </div>

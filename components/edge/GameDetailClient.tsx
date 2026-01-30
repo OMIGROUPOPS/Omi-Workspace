@@ -1358,6 +1358,118 @@ interface GameDetailClientProps {
 
 // Game state detection now uses shared utility from @/lib/edge/utils/game-state
 
+// Dynamic CEQ Badge that updates based on selected market
+function MarketCEQBadge({
+  ceq,
+  selectedMarket,
+  homeTeam,
+  awayTeam,
+  marketGroups
+}: {
+  ceq: GameCEQ | null | undefined;
+  selectedMarket: 'spread' | 'total' | 'moneyline';
+  homeTeam: string;
+  awayTeam: string;
+  marketGroups: any;
+}) {
+  if (!ceq) return null;
+
+  // Get CEQ data for the selected market
+  const getMarketCEQ = () => {
+    if (selectedMarket === 'spread' && ceq.spreads) {
+      const homeCEQ = ceq.spreads.home;
+      const awayCEQ = ceq.spreads.away;
+      // Pick the better edge
+      if (homeCEQ.ceq >= awayCEQ.ceq) {
+        const line = marketGroups?.fullGame?.spreads?.home?.line;
+        return {
+          ceq: homeCEQ.ceq,
+          confidence: homeCEQ.confidence,
+          label: `${homeTeam} ${line !== undefined ? (line > 0 ? '+' : '') + line : ''} Spread`
+        };
+      } else {
+        const line = marketGroups?.fullGame?.spreads?.away?.line;
+        return {
+          ceq: awayCEQ.ceq,
+          confidence: awayCEQ.confidence,
+          label: `${awayTeam} ${line !== undefined ? (line > 0 ? '+' : '') + line : ''} Spread`
+        };
+      }
+    }
+    if (selectedMarket === 'moneyline' && ceq.h2h) {
+      const homeCEQ = ceq.h2h.home;
+      const awayCEQ = ceq.h2h.away;
+      if (homeCEQ.ceq >= awayCEQ.ceq) {
+        return { ceq: homeCEQ.ceq, confidence: homeCEQ.confidence, label: `${homeTeam} ML` };
+      } else {
+        return { ceq: awayCEQ.ceq, confidence: awayCEQ.confidence, label: `${awayTeam} ML` };
+      }
+    }
+    if (selectedMarket === 'total' && ceq.totals) {
+      const overCEQ = ceq.totals.over;
+      const underCEQ = ceq.totals.under;
+      const line = marketGroups?.fullGame?.totals?.line;
+      if (overCEQ.ceq >= underCEQ.ceq) {
+        return { ceq: overCEQ.ceq, confidence: overCEQ.confidence, label: `Over ${line || ''}` };
+      } else {
+        return { ceq: underCEQ.ceq, confidence: underCEQ.confidence, label: `Under ${line || ''}` };
+      }
+    }
+    // Fallback to best edge
+    if (ceq.bestEdge) {
+      return {
+        ceq: ceq.bestEdge.ceq,
+        confidence: ceq.bestEdge.confidence,
+        label: `${ceq.bestEdge.side} ${ceq.bestEdge.market}`
+      };
+    }
+    return null;
+  };
+
+  const marketCEQ = getMarketCEQ();
+  if (!marketCEQ) return null;
+
+  const { ceq: ceqValue, confidence, label } = marketCEQ;
+  const isEdge = confidence !== 'PASS' && ceqValue >= 50;
+
+  const confStyle = {
+    bg: confidence === 'RARE' ? 'bg-purple-500/10' :
+        confidence === 'STRONG' || confidence === 'STRONG_EDGE' ? 'bg-emerald-500/10' :
+        confidence === 'EDGE' ? 'bg-blue-500/10' :
+        confidence === 'WATCH' ? 'bg-amber-500/10' :
+        'bg-zinc-800',
+    text: confidence === 'RARE' ? 'text-purple-400' :
+          confidence === 'STRONG' || confidence === 'STRONG_EDGE' ? 'text-emerald-400' :
+          confidence === 'EDGE' ? 'text-blue-400' :
+          confidence === 'WATCH' ? 'text-amber-400' :
+          'text-zinc-500',
+    border: confidence === 'RARE' ? 'border-purple-500/30' :
+            confidence === 'STRONG' || confidence === 'STRONG_EDGE' ? 'border-emerald-500/30' :
+            confidence === 'EDGE' ? 'border-blue-500/30' :
+            confidence === 'WATCH' ? 'border-amber-500/30' :
+            'border-zinc-700',
+  };
+
+  return (
+    <div className={`flex items-center gap-3 px-4 py-2 rounded-lg ${confStyle.bg} border ${confStyle.border} mb-4`}>
+      <div className="flex-1">
+        <div className="flex items-center gap-2">
+          <span className={`text-sm font-semibold ${confStyle.text}`}>{label}</span>
+          {isEdge && (
+            <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${confStyle.bg} ${confStyle.text} border ${confStyle.border}`}>
+              {confidence}
+            </span>
+          )}
+        </div>
+        <span className="text-[10px] text-zinc-500">CEQ Score for selected market</span>
+      </div>
+      <div className="text-right">
+        <span className={`text-2xl font-bold font-mono ${confStyle.text}`}>{ceqValue}%</span>
+      </div>
+    </div>
+  );
+}
+
 // Lock overlay for tier-restricted content
 function LiveLockOverlay() {
   return (
@@ -1634,7 +1746,18 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         </button>
         {isOpen && (<div className="absolute z-50 mt-2 w-64 bg-zinc-800 border border-zinc-700 rounded-lg shadow-xl overflow-hidden"><div className="max-h-80 overflow-y-auto">{filteredBooks.map((book) => { const config = BOOK_CONFIG[book] || { name: book, color: '#6b7280' }; const isSelected = book === selectedBook; return (<button key={book} onClick={() => { setSelectedBook(book); setIsOpen(false); }} className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all ${isSelected ? 'bg-emerald-500/10 text-emerald-400' : 'hover:bg-zinc-700/50 text-zinc-300'}`}><BookIcon bookKey={book} size={28} /><span className="font-medium">{config.name}</span>{isSelected && (<svg className="w-4 h-4 ml-auto text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>)}</button>); })}</div></div>)}
       </div>
-      
+
+      {/* Dynamic CEQ Badge - updates based on selected market */}
+      {ceq && !(selectedBook === 'kalshi' || selectedBook === 'polymarket') && (
+        <MarketCEQBadge
+          ceq={ceq}
+          selectedMarket={chartMarket}
+          homeTeam={gameData.homeTeam}
+          awayTeam={gameData.awayTeam}
+          marketGroups={marketGroups}
+        />
+      )}
+
       {/* Period tabs - hide for exchanges which only have full game */}
       {!(selectedBook === 'kalshi' || selectedBook === 'polymarket') && (
         <div className="flex gap-2 mb-4 overflow-x-auto pb-2">{tabs.map((tab) => (<button key={tab.key} onClick={() => handleTabChange(tab.key)} className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${activeTab === tab.key ? 'bg-zinc-700 text-zinc-100' : 'bg-zinc-800/50 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300'}`}>{tab.label}</button>))}</div>

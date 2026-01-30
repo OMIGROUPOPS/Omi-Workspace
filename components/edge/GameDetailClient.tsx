@@ -1795,6 +1795,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
       {/* Dynamic CEQ Badge - updates based on selected market */}
       {ceq && !(selectedBook === 'kalshi' || selectedBook === 'polymarket') && (
         <MarketCEQBadge
+          key={`ceq-badge-${chartMarket}`}
           ceq={ceq}
           selectedMarket={chartMarket}
           homeTeam={gameData.homeTeam}

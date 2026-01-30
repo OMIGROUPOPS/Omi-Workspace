@@ -97,6 +97,66 @@ async function fetchESPNTeams(sport: string, league: string): Promise<ESPNTeam[]
   }
 }
 
+// Fetch detailed team info including record from team detail endpoint
+async function fetchTeamDetail(sport: string, league: string, teamId: string): Promise<any> {
+  try {
+    const url = `${ESPN_BASE}/${sport}/${league}/teams/${teamId}`;
+    const response = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0' },
+      next: { revalidate: 0 }
+    });
+
+    if (!response.ok) return null;
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching team detail ${teamId}:`, error);
+    return null;
+  }
+}
+
+// Fetch standings for a league to get win/loss records
+async function fetchStandings(sport: string, league: string): Promise<Map<string, any>> {
+  const standingsMap = new Map();
+  try {
+    const url = `${ESPN_BASE}/${sport}/${league}/standings`;
+    console.log(`Fetching standings: ${url}`);
+
+    const response = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0' },
+      next: { revalidate: 0 }
+    });
+
+    if (!response.ok) return standingsMap;
+
+    const data = await response.json();
+
+    // Parse standings - structure varies by sport
+    const children = data.children || [];
+    for (const group of children) {
+      const standings = group.standings?.entries || [];
+      for (const entry of standings) {
+        const teamId = entry.team?.id;
+        if (teamId) {
+          // Extract stats from the entry
+          const stats: Record<string, any> = {};
+          for (const stat of entry.stats || []) {
+            stats[stat.name?.toLowerCase() || stat.type?.toLowerCase()] = stat.value;
+          }
+          standingsMap.set(teamId, {
+            ...stats,
+            streak: entry.streak?.value || null,
+          });
+        }
+      }
+    }
+
+    console.log(`Found standings for ${standingsMap.size} teams in ${league}`);
+  } catch (error) {
+    console.error(`Error fetching standings for ${league}:`, error);
+  }
+  return standingsMap;
+}
+
 async function fetchTeamStats(sport: string, league: string, teamId: string): Promise<Record<string, number | null>> {
   try {
     const url = `${ESPN_BASE}/${sport}/${league}/teams/${teamId}/statistics`;
@@ -136,31 +196,87 @@ function parseRecord(summary: string): { wins: number; losses: number } | null {
   return null;
 }
 
-function extractTeamStats(team: ESPNTeam, sport: string, league: string, advancedStats: Record<string, number | null>): TeamStatsRow {
+function extractTeamStats(
+  team: ESPNTeam,
+  sport: string,
+  league: string,
+  advancedStats: Record<string, number | null>,
+  standingsData?: Record<string, any>,
+  teamDetail?: any
+): TeamStatsRow {
   const season = new Date().getFullYear().toString();
 
-  // Parse record from ESPN data
+  // Parse record from ESPN data - try multiple sources
   let wins: number | null = null;
   let losses: number | null = null;
   let homeWins: number | null = null;
   let homeLosses: number | null = null;
   let awayWins: number | null = null;
   let awayLosses: number | null = null;
+  let streak: number | null = null;
 
-  const records = team.record?.items || [];
-  for (const record of records) {
-    const parsed = parseRecord(record.summary);
-    if (!parsed) continue;
+  // Source 1: Standings data (most reliable for records)
+  if (standingsData) {
+    wins = standingsData.wins ?? standingsData.w ?? null;
+    losses = standingsData.losses ?? standingsData.l ?? null;
 
-    if (record.type === 'total') {
-      wins = parsed.wins;
-      losses = parsed.losses;
-    } else if (record.type === 'home') {
-      homeWins = parsed.wins;
-      homeLosses = parsed.losses;
-    } else if (record.type === 'road' || record.type === 'away') {
-      awayWins = parsed.wins;
-      awayLosses = parsed.losses;
+    // Parse streak (e.g., "W3" -> 3, "L2" -> -2)
+    const streakStr = standingsData.streak;
+    if (typeof streakStr === 'string') {
+      const match = streakStr.match(/([WL])(\d+)/i);
+      if (match) {
+        streak = parseInt(match[2]) * (match[1].toUpperCase() === 'W' ? 1 : -1);
+      }
+    } else if (typeof streakStr === 'number') {
+      streak = streakStr;
+    }
+
+    // Home/away from standings
+    if (standingsData.home) {
+      const homeParsed = parseRecord(standingsData.home);
+      if (homeParsed) {
+        homeWins = homeParsed.wins;
+        homeLosses = homeParsed.losses;
+      }
+    }
+    if (standingsData.road || standingsData.away) {
+      const awayParsed = parseRecord(standingsData.road || standingsData.away);
+      if (awayParsed) {
+        awayWins = awayParsed.wins;
+        awayLosses = awayParsed.losses;
+      }
+    }
+  }
+
+  // Source 2: Team record items (fallback)
+  if (wins === null) {
+    const records = team.record?.items || teamDetail?.team?.record?.items || [];
+    for (const record of records) {
+      const parsed = parseRecord(record.summary);
+      if (!parsed) continue;
+
+      if (record.type === 'total') {
+        wins = parsed.wins;
+        losses = parsed.losses;
+      } else if (record.type === 'home') {
+        homeWins = parsed.wins;
+        homeLosses = parsed.losses;
+      } else if (record.type === 'road' || record.type === 'away') {
+        awayWins = parsed.wins;
+        awayLosses = parsed.losses;
+      }
+    }
+  }
+
+  // Source 3: Team detail record string
+  if (wins === null && teamDetail?.team?.record) {
+    const recordStr = teamDetail.team.record;
+    if (typeof recordStr === 'string') {
+      const parsed = parseRecord(recordStr);
+      if (parsed) {
+        wins = parsed.wins;
+        losses = parsed.losses;
+      }
     }
   }
 
@@ -169,20 +285,33 @@ function extractTeamStats(team: ESPNTeam, sport: string, league: string, advance
     ? wins / (wins + losses)
     : null;
 
-  // Parse injuries
-  const injuries = (team.injuries || []).map(inj => ({
-    player: inj.athlete?.displayName || 'Unknown',
-    type: inj.type?.description || 'Unknown',
+  // Parse injuries from team detail
+  const injuries = (teamDetail?.team?.injuries || team.injuries || []).map((inj: any) => ({
+    player: inj.athlete?.displayName || inj.displayName || 'Unknown',
+    type: inj.type?.description || inj.description || 'Unknown',
     status: inj.status || 'Unknown'
   }));
 
-  // Map ESPN stats to our schema
-  // NBA specific mappings
-  const pace = advancedStats['pace'] || advancedStats['possessions'] || null;
-  const offRtg = advancedStats['offensiverating'] || advancedStats['ortg'] || null;
-  const defRtg = advancedStats['defensiverating'] || advancedStats['drtg'] || null;
-  const ppg = advancedStats['pointspergame'] || advancedStats['avgpoints'] || advancedStats['pts'] || null;
-  const oppPpg = advancedStats['opponentpointspergame'] || advancedStats['opppts'] || null;
+  // Map ESPN stats to our schema - try multiple field names
+  const pace = advancedStats['pace'] || advancedStats['possessions'] || standingsData?.pace || null;
+  const offRtg = advancedStats['offensiverating'] || advancedStats['ortg'] || standingsData?.offensiverating || null;
+  const defRtg = advancedStats['defensiverating'] || advancedStats['drtg'] || standingsData?.defensiverating || null;
+  const ppg = advancedStats['pointspergame'] || advancedStats['avgpoints'] || advancedStats['pts'] ||
+              standingsData?.pointsfor || standingsData?.avgpointsfor || null;
+  const oppPpg = advancedStats['opponentpointspergame'] || advancedStats['opppts'] ||
+                 standingsData?.pointsagainst || standingsData?.avgpointsagainst || null;
+
+  // Calculate PPG from standings total points if needed
+  let calcPpg = ppg;
+  let calcOppPpg = oppPpg;
+  const gamesPlayed = wins !== null && losses !== null ? wins + losses : null;
+
+  if (calcPpg === null && standingsData?.pointsfor && gamesPlayed && gamesPlayed > 0) {
+    calcPpg = standingsData.pointsfor / gamesPlayed;
+  }
+  if (calcOppPpg === null && standingsData?.pointsagainst && gamesPlayed && gamesPlayed > 0) {
+    calcOppPpg = standingsData.pointsagainst / gamesPlayed;
+  }
 
   return {
     team_id: team.id,
@@ -202,10 +331,10 @@ function extractTeamStats(team: ESPNTeam, sport: string, league: string, advance
     home_losses: homeLosses,
     away_wins: awayWins,
     away_losses: awayLosses,
-    streak: null, // Would need separate API call
-    points_per_game: ppg,
-    points_allowed_per_game: oppPpg,
-    point_differential: ppg !== null && oppPpg !== null ? ppg - oppPpg : null,
+    streak,
+    points_per_game: calcPpg,
+    points_allowed_per_game: calcOppPpg,
+    point_differential: calcPpg !== null && calcOppPpg !== null ? calcPpg - calcOppPpg : null,
     true_shooting_pct: advancedStats['trueshootingpercentage'] || advancedStats['ts%'] || null,
     assist_ratio: advancedStats['assistratio'] || advancedStats['astratio'] || null,
     rebound_pct: advancedStats['reboundpercentage'] || advancedStats['reb%'] || null,
@@ -219,10 +348,11 @@ function extractTeamStats(team: ESPNTeam, sport: string, league: string, advance
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const sportFilter = searchParams.get('sport');
+  const detailed = searchParams.get('detailed') !== 'false'; // Default to true for detailed fetching
 
-  console.log('Starting ESPN team stats sync...');
+  console.log(`Starting ESPN team stats sync... (detailed=${detailed})`);
 
-  const results: { sport: string; league: string; synced: number; errors: number }[] = [];
+  const results: { sport: string; league: string; synced: number; errors: number; withStats: number }[] = [];
 
   for (const config of SPORT_CONFIGS) {
     // Apply sport filter if provided
@@ -230,16 +360,47 @@ export async function GET(request: Request) {
       continue;
     }
 
+    // Fetch standings first (contains win/loss records for all teams)
+    const standingsMap = await fetchStandings(config.sport, config.league);
+
     const teams = await fetchESPNTeams(config.sport, config.league);
     let synced = 0;
     let errors = 0;
+    let withStats = 0;
 
     for (const team of teams) {
       try {
-        // Fetch advanced stats for each team
-        const advancedStats = await fetchTeamStats(config.sport, config.league, team.id);
+        // Get standings data for this team
+        const standingsData = standingsMap.get(team.id);
 
-        const teamStats = extractTeamStats(team, config.sport, config.league, advancedStats);
+        // Fetch detailed team info and advanced stats if detailed mode
+        let advancedStats: Record<string, number | null> = {};
+        let teamDetail: any = null;
+
+        if (detailed) {
+          // Fetch team detail (includes injuries, record)
+          teamDetail = await fetchTeamDetail(config.sport, config.league, team.id);
+
+          // Fetch advanced stats
+          advancedStats = await fetchTeamStats(config.sport, config.league, team.id);
+
+          // Small delay between API calls
+          await new Promise(resolve => setTimeout(resolve, 50));
+        }
+
+        const teamStats = extractTeamStats(
+          team,
+          config.sport,
+          config.league,
+          advancedStats,
+          standingsData,
+          teamDetail
+        );
+
+        // Track if we got actual stats
+        if (teamStats.wins !== null || teamStats.points_per_game !== null) {
+          withStats++;
+        }
 
         // Upsert to Supabase
         const { error } = await supabase
@@ -256,7 +417,7 @@ export async function GET(request: Request) {
         }
 
         // Small delay to be nice to ESPN API
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 50));
       } catch (error) {
         console.error(`Error processing ${team.displayName}:`, error);
         errors++;
@@ -267,18 +428,20 @@ export async function GET(request: Request) {
       sport: config.sport,
       league: config.league,
       synced,
-      errors
+      errors,
+      withStats
     });
 
-    console.log(`${config.league}: Synced ${synced} teams, ${errors} errors`);
+    console.log(`${config.league}: Synced ${synced} teams (${withStats} with stats), ${errors} errors`);
   }
 
   return NextResponse.json({
     success: true,
     timestamp: new Date().toISOString(),
+    detailed,
     results
   });
 }
 
 export const dynamic = 'force-dynamic';
-export const maxDuration = 60;
+export const maxDuration = 300; // 5 minutes for detailed sync

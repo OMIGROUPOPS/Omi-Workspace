@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { EdgeDetector } from "@/lib/edge/engine/edge-detector";
+import { EdgeLifecycleManager, upsertEdge } from "@/lib/edge/engine/edge-lifecycle";
 
 const CRON_SECRET = process.env.CRON_SECRET || "";
 const ODDS_API_KEY = process.env.ODDS_API_KEY || "";
@@ -338,7 +340,7 @@ async function runSync() {
   const errors: string[] = [];
   const sportSummary: Record<
     string,
-    { games: number; enriched: number; cost: number }
+    { games: number; enriched: number; cost: number; edges?: number }
   > = {};
   const snapshotTime = new Date().toISOString();
 
@@ -419,20 +421,51 @@ async function runSync() {
         }
       }
 
+      // Trigger edge detection for each game
+      let edgesDetected = 0;
+      const detector = new EdgeDetector();
+      for (const game of games) {
+        try {
+          const gameSnapshots = snapshotRows.filter(r => r.game_id === game.id);
+          if (gameSnapshots.length >= 2) {
+            const edges = await detector.detectAllEdges(game.id, sportKey, gameSnapshots);
+            for (const edge of edges) {
+              await upsertEdge(game.id, sportKey, edge, game.commence_time);
+              edgesDetected++;
+            }
+          }
+        } catch (e) {
+          console.error(`[Odds Sync] Edge detection failed for ${game.id}:`, e);
+        }
+      }
+
       sportSummary[sport] = {
         games: games.length,
         enriched: enrichedCount,
         cost: sportCost,
+        edges: edgesDetected,
       };
 
       console.log(
-        `[Odds Sync] ${sport}: ${games.length} games, ${enrichedCount} enriched (${sportCost} reqs)`
+        `[Odds Sync] ${sport}: ${games.length} games, ${enrichedCount} enriched, ${edgesDetected} edges (${sportCost} reqs)`
       );
     } catch (e: any) {
       const msg = e?.message || String(e);
       console.error(`[Odds Sync] ${sport} failed:`, msg);
       errors.push(`${sport}: ${msg}`);
     }
+  }
+
+  // Update edge lifecycle (expire started games, update fading edges)
+  let lifecycleStats = { updated: 0, expired: 0, fading: 0 };
+  try {
+    const lifecycle = new EdgeLifecycleManager();
+    lifecycleStats = await lifecycle.updateEdgeStatuses();
+    const expiredGames = await lifecycle.expireStartedGames();
+    lifecycleStats.expired += expiredGames;
+    console.log(`[Odds Sync] Edge lifecycle: ${lifecycleStats.updated} updated, ${lifecycleStats.expired} expired, ${lifecycleStats.fading} fading`);
+  } catch (e) {
+    console.error('[Odds Sync] Edge lifecycle update failed:', e);
   }
 
   console.log(
@@ -444,6 +477,7 @@ async function runSync() {
     requestsUsed: totalCost,
     remaining: lastRemaining,
     sports: sportSummary,
+    edgeLifecycle: lifecycleStats,
     errors: errors.length > 0 ? errors : undefined,
   });
 }

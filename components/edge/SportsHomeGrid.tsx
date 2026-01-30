@@ -7,6 +7,7 @@ import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, CEQConfidence } from '@/lib/edge/engine/edgescout';
+import { LiveEdgeFeed } from './LiveEdgeFeed';
 
 const BOOK_CONFIG: Record<string, { name: string; color: string }> = {
   'fanduel': { name: 'FanDuel', color: '#1493ff' },
@@ -311,6 +312,7 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
   const [searchQuery, setSearchQuery] = useState('');
   const [mounted, setMounted] = useState(false);
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
+  const [liveEdgeCount, setLiveEdgeCount] = useState(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -408,6 +410,17 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
                 <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
                   <span className="text-[10px] font-mono text-emerald-500">EDGES</span>
                   <span className="text-xs font-mono font-bold text-emerald-400">{totalEdges}</span>
+                </div>
+              )}
+
+              {liveEdgeCount > 0 && (
+                <div className="flex items-center gap-1.5 px-2.5 py-1 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                  </span>
+                  <span className="text-[10px] font-mono text-blue-500">LIVE</span>
+                  <span className="text-xs font-mono font-bold text-blue-400">{liveEdgeCount}</span>
                 </div>
               )}
             </div>
@@ -575,8 +588,10 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
         </div>
       )}
 
-      {/* Games Grid */}
-      <div className="space-y-8">
+      {/* Main Content with Sidebar */}
+      <div className="flex gap-6">
+        {/* Games Grid */}
+        <div className="flex-1 space-y-8">
         {Object.entries(filteredGames).map(([sportKey, sportGames]) => {
           if (!sportGames || sportGames.length === 0) return null;
 
@@ -900,6 +915,20 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
             </div>
           );
         })}
+        </div>
+
+        {/* Live Edge Feed Sidebar - Hidden on mobile, shown on lg+ screens */}
+        <div className="hidden lg:block w-80 flex-shrink-0">
+          <div className="sticky top-4 h-[calc(100vh-8rem)] bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
+            <LiveEdgeFeed
+              sport={activeSport || undefined}
+              maxEdges={15}
+              showFilters={true}
+              autoRefresh={true}
+              onEdgeCount={setLiveEdgeCount}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

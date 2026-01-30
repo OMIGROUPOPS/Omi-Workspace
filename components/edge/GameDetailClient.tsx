@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { formatOdds, formatSpread, calculateTwoWayEV, formatEV, getEVColor, getEVBgClass } from '@/lib/edge/utils/odds-math';
 import { isGameLive as checkGameLive, getGameState } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, PillarResult, PillarVariable, CEQConfidence } from '@/lib/edge/engine/edgescout';
+import { GameEdgesPanel } from './GameEdgesPanel';
 
 // Sportsbooks and Prediction Exchanges
 const BOOK_CONFIG: Record<string, { name: string; color: string; type: 'sportsbook' | 'exchange' }> = {
@@ -1621,7 +1622,12 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
           </div>
         </div>
       )}
-      
+
+      {/* Live Edge Detection Panel */}
+      <div className="mb-6">
+        <GameEdgesPanel gameId={gameData.id} sport={gameData.sportKey} />
+      </div>
+
       <div className="relative mb-4" ref={dropdownRef}>
         <button onClick={() => setIsOpen(!isOpen)} className="flex items-center gap-3 px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg hover:bg-zinc-700/70 transition-all min-w-[200px]">
           <BookIcon bookKey={selectedBook} size={28} /><span className="font-medium text-zinc-100">{selectedConfig.name}</span><svg className={`w-4 h-4 text-zinc-400 ml-auto transition-transform ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>

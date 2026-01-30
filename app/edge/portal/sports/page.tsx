@@ -337,6 +337,9 @@ function processBackendGame(
   );
 
   // Calculate CEQ
+  // DEBUG: Log snapshot count per game
+  console.log(`[CEQ Debug] ${game.home_team} vs ${game.away_team}: ${gameSnapshots.length} snapshots, hasOdds: spreads=${!!gameOdds.spreads}, h2h=${!!gameOdds.h2h}, totals=${!!gameOdds.totals}`);
+
   if (gameOdds.spreads || gameOdds.h2h || gameOdds.totals) {
     ceqData = calculateGameCEQ(
       gameOdds,
@@ -350,6 +353,13 @@ function processBackendGame(
       },
       gameContext
     );
+
+    // DEBUG: Log CEQ result
+    if (ceqData?.bestEdge) {
+      console.log(`[CEQ Debug] ${game.home_team} bestEdge: CEQ=${ceqData.bestEdge.ceq}, conf=${ceqData.bestEdge.confidence}, pillars=${ceqData.bestEdge.dataQuality?.pillarsWithData}`);
+    } else {
+      console.log(`[CEQ Debug] ${game.home_team}: No bestEdge calculated`);
+    }
   }
 
   // Calculate edge if not provided by backend

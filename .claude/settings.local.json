@@ -38,7 +38,16 @@
       "Bash(source .env.local)",
       "Bash(DeMar DeRozan\", now correctly creates\n\"DeMar DeRozan)",
       "Bash(Over\" to match prop-history query format.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(git status:*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(git restore:*)",
+      "Bash(dir \"C:\\\\Users\\\\omigr\\\\OMI-Workspace\\\\app\\\\api\")",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(git stash:*)"
     ]
   }
 }

@@ -19,6 +19,9 @@ export async function GET() {
     .or("game_data->>home_team.ilike.%Lakers%,game_data->>home_team.ilike.%Wizards%")
     .limit(10);
 
+  // CRITICAL: Check if game_data.id exists and matches game_id column
+  // The dashboard uses game_data.id for snapshot lookup, not game_id column!
+
   if (cacheError) {
     return NextResponse.json({ error: "Cache query failed", details: cacheError.message });
   }
@@ -178,9 +181,17 @@ export async function GET() {
   // Step 8: If backend path is used, check if its game_id matches cached_odds
   const idMismatch = backendGameId && backendGameId !== gameId;
 
+  // CRITICAL CHECK: Does game_data.id match the game_id column?
+  // Dashboard uses game_data.id for snapshot lookup!
+  const gameDataId = gameData?.id;
+  const columnGameId = lakersWizards.game_id;
+  const idMismatchInternal = gameDataId !== columnGameId;
+
   return NextResponse.json({
     step1_game_found: {
-      game_id: gameId,
+      game_id_column: columnGameId,
+      game_data_id: gameDataId,
+      INTERNAL_ID_MISMATCH: idMismatchInternal,
       matchup: `${gameData.away_team} @ ${gameData.home_team}`,
       sport_key: lakersWizards.sport_key,
       updated_at: lakersWizards.updated_at

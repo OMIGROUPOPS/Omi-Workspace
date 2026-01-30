@@ -226,7 +226,7 @@ async function fetchCoreOdds(
     regions: "us",
     markets: CORE_MARKETS,
     oddsFormat: "american",
-    bookmakers: "fanduel,draftkings",
+    bookmakers: "fanduel,draftkings,pinnacle",
   });
 
   const url = `${ODDS_API_BASE}/sports/${sportKey}/odds?${params}`;
@@ -258,7 +258,7 @@ async function fetchEventMarkets(
     regions: "us",
     markets: markets.join(","),
     oddsFormat: "american",
-    bookmakers: "fanduel,draftkings",
+    bookmakers: "fanduel,draftkings,pinnacle",
   });
 
   const url = `${ODDS_API_BASE}/sports/${sportKey}/events/${eventId}/odds?${params}`;

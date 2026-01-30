@@ -128,7 +128,8 @@ async function fetchOpeningLines(gameIds: string[]): Promise<Record<string, numb
   return openingLines;
 }
 
-// Fetch full snapshot history for CEQ calculations
+// Fetch snapshot history for CEQ calculations
+// Only fetches recent snapshots (last 24h) to keep query manageable
 async function fetchGameSnapshots(gameIds: string[]): Promise<Record<string, ExtendedOddsSnapshot[]>> {
   const snapshotsMap: Record<string, ExtendedOddsSnapshot[]> = {};
 
@@ -136,28 +137,36 @@ async function fetchGameSnapshots(gameIds: string[]): Promise<Record<string, Ext
 
   try {
     const supabase = getDirectSupabase();
-    // Fetch all market types for full CEQ calculation
-    const { data, error } = await supabase
-      .from('odds_snapshots')
-      .select('game_id, market, book_key, outcome_type, line, odds, snapshot_time')
-      .in('game_id', gameIds)
-      .order('snapshot_time', { ascending: true });
+    // Only fetch last 24 hours of snapshots - enough for CEQ calculation
+    const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
 
-    if (!error && data) {
-      // Group by game_id
-      for (const row of data) {
-        if (!snapshotsMap[row.game_id]) {
-          snapshotsMap[row.game_id] = [];
+    // Batch by game to avoid hitting row limits
+    // Each game may have thousands of snapshots
+    for (let i = 0; i < gameIds.length; i += 10) {
+      const batchIds = gameIds.slice(i, i + 10);
+      const { data, error } = await supabase
+        .from('odds_snapshots')
+        .select('game_id, market, book_key, outcome_type, line, odds, snapshot_time')
+        .in('game_id', batchIds)
+        .gte('snapshot_time', oneDayAgo)
+        .order('snapshot_time', { ascending: true })
+        .limit(5000); // 5000 per batch of 10 games
+
+      if (!error && data) {
+        for (const row of data) {
+          if (!snapshotsMap[row.game_id]) {
+            snapshotsMap[row.game_id] = [];
+          }
+          snapshotsMap[row.game_id].push({
+            game_id: row.game_id,
+            market: row.market,
+            book_key: row.book_key,
+            outcome_type: row.outcome_type,
+            line: row.line,
+            odds: row.odds,
+            snapshot_time: row.snapshot_time,
+          });
         }
-        snapshotsMap[row.game_id].push({
-          game_id: row.game_id,
-          market: row.market,
-          book_key: row.book_key,
-          outcome_type: row.outcome_type,
-          line: row.line,
-          odds: row.odds,
-          snapshot_time: row.snapshot_time,
-        });
       }
     }
   } catch (e) {

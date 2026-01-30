@@ -49,19 +49,31 @@ export async function GET(
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
+  // Deduplicate edges by game_id + market_type + outcome_key + edge_type
+  // Keep the most recent edge (first since ordered by detected_at desc)
+  const seenKeys = new Set<string>();
+  const dedupedEdges = (data || []).filter((edge) => {
+    const key = `${edge.game_id}|${edge.market_type}|${edge.outcome_key}|${edge.edge_type}`;
+    if (seenKeys.has(key)) {
+      return false; // Skip duplicate
+    }
+    seenKeys.add(key);
+    return true;
+  });
+
   // Group edges by status for easier consumption
-  const active = (data || []).filter((e) => e.status === 'active');
-  const fading = (data || []).filter((e) => e.status === 'fading');
-  const expired = (data || []).filter((e) => e.status === 'expired');
+  const active = dedupedEdges.filter((e) => e.status === 'active');
+  const fading = dedupedEdges.filter((e) => e.status === 'fading');
+  const expired = dedupedEdges.filter((e) => e.status === 'expired');
 
   return NextResponse.json({
     gameId,
-    edges: data || [],
+    edges: dedupedEdges,
     summary: {
       active: active.length,
       fading: fading.length,
       expired: expired.length,
-      total: (data || []).length,
+      total: dedupedEdges.length,
     },
     grouped: {
       active,

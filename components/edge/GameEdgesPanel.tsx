@@ -21,6 +21,7 @@ export function GameEdgesPanel({ gameId, sport }: GameEdgesPanelProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showExpired, setShowExpired] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false); // Start expanded, collapse if many edges
 
   // Fetch edges for this game
   const fetchEdges = useCallback(async () => {
@@ -118,34 +119,48 @@ export function GameEdgesPanel({ gameId, sport }: GameEdgesPanelProps) {
 
   return (
     <div className="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-zinc-800/50 border-b border-zinc-800">
+      {/* Header - Clickable to toggle collapse */}
+      <button
+        onClick={() => setIsCollapsed(!isCollapsed)}
+        className="w-full flex items-center justify-between px-4 py-3 bg-zinc-800/50 border-b border-zinc-800 hover:bg-zinc-800/70 transition-colors"
+      >
         <div className="flex items-center gap-2">
           <Zap className="w-4 h-4 text-emerald-400" />
           <h3 className="text-sm font-semibold text-zinc-100">Detected Edges</h3>
-        </div>
-        {hasActiveEdges && (
-          <div className="flex items-center gap-2">
-            {activeEdges.length > 0 && (
-              <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+          {hasActiveEdges && (
+            <div className="flex items-center gap-2">
+              {activeEdges.length > 0 && (
+                <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                  </span>
+                  {activeEdges.length}
                 </span>
-                {activeEdges.length} active
-              </span>
-            )}
-            {fadingEdges.length > 0 && (
-              <span className="px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-400 text-xs font-medium">
-                {fadingEdges.length} fading
-              </span>
-            )}
-          </div>
-        )}
-      </div>
+              )}
+              {fadingEdges.length > 0 && (
+                <span className="px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-400 text-xs font-medium">
+                  {fadingEdges.length} fading
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+        <div className="flex items-center gap-2 text-zinc-500">
+          {isCollapsed && hasActiveEdges && (
+            <span className="text-xs">Click to expand</span>
+          )}
+          {isCollapsed ? (
+            <ChevronDown className="w-4 h-4" />
+          ) : (
+            <ChevronUp className="w-4 h-4" />
+          )}
+        </div>
+      </button>
 
-      {/* Content */}
-      <div className="p-4">
+      {/* Content - Collapsible with max-height */}
+      {!isCollapsed && (
+        <div className="p-4 max-h-64 overflow-y-auto">
         {!hasEdges ? (
           <div className="flex flex-col items-center justify-center py-6 text-center">
             <Activity className="w-8 h-8 text-zinc-700 mb-2" />
@@ -213,9 +228,10 @@ export function GameEdgesPanel({ gameId, sport }: GameEdgesPanelProps) {
             )}
           </div>
         )}
-      </div>
+        </div>
+      )}
 
-      {/* Summary Footer */}
+      {/* Summary Footer - always visible when there are active edges */}
       {hasActiveEdges && (
         <div className="px-4 py-2 bg-zinc-800/30 border-t border-zinc-800/50">
           <div className="flex items-center gap-4 text-[10px] text-zinc-500">

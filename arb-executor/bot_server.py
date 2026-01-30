@@ -41,7 +41,7 @@ from cryptography.hazmat.backends import default_backend
 # ============================================================================
 # CONFIGURATION
 # ============================================================================
-KALSHI_API_KEY = 'c9121f7f-c56f-4940-95b2-f604ffb0a23f'
+KALSHI_API_KEY = 'f3b064d1-a02e-42a4-b2b1-132834694d23'
 KALSHI_PRIVATE_KEY_PATH = 'kalshi.pem'
 KALSHI_BASE_URL = 'https://api.elections.kalshi.com'
 
@@ -253,7 +253,7 @@ async def broadcast_state():
 # ============================================================================
 import subprocess
 
-async def start_bot():
+async def start_bot(clear: bool = False):
     """Start the arb executor as a subprocess"""
     global bot_state, bot_process, session_start_time
 
@@ -265,39 +265,24 @@ async def start_bot():
     await broadcast_state()
 
     # Log session start separator
+    clear_msg = " (CLEARED)" if clear else ""
     session_log = {
         "time": datetime.now().strftime("%H:%M:%S"),
-        "message": f"\n{'='*50}\n=== NEW SESSION STARTED ({execution_mode.value.upper()}) ===\n{'='*50}"
+        "message": f"\n{'='*50}\n=== NEW SESSION STARTED ({execution_mode.value.upper()}){clear_msg} ===\n{'='*50}"
     }
     await broadcast_log(session_log)
 
     try:
-        # Modify the executor mode before starting
-        executor_path = os.path.join(os.path.dirname(__file__), 'arb_executor_v6.py')
+        executor_path = os.path.join(os.path.dirname(__file__), 'arb_executor_v7.py')
 
-        # Read and modify execution mode
-        with open(executor_path, 'r') as f:
-            content = f.read()
+        # Build command line args
+        mode_flag = '--live' if execution_mode == ExecutionMode.LIVE else '--paper'
+        cmd_args = [sys.executable, executor_path, '--start', mode_flag]
+        if clear:
+            cmd_args.append('--clear')
 
-        # Update the execution mode line
-        if execution_mode == ExecutionMode.LIVE:
-            new_mode_line = "EXECUTION_MODE = ExecutionMode.LIVE"
-        else:
-            new_mode_line = "EXECUTION_MODE = ExecutionMode.PAPER"
-
-        import re
-        content = re.sub(
-            r'EXECUTION_MODE\s*=\s*ExecutionMode\.\w+',
-            new_mode_line,
-            content
-        )
-
-        with open(executor_path, 'w') as f:
-            f.write(content)
-
-        # Start the executor process
         bot_process = await asyncio.create_subprocess_exec(
-            sys.executable, executor_path,
+            *cmd_args,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.STDOUT,
             cwd=os.path.dirname(__file__)
@@ -402,6 +387,9 @@ app.add_middleware(
 class ModeRequest(BaseModel):
     mode: str
 
+class StartRequest(BaseModel):
+    clear: bool = False  # Clear trades.json before starting
+
 @app.get("/")
 async def root():
     return {"status": "OMI Edge Bot Server", "version": "1.0"}
@@ -491,11 +479,12 @@ async def clear_data():
     return {"success": True, "message": "All data cleared", "session_start": session_start_time}
 
 @app.post("/start")
-async def start():
-    """Start the bot"""
-    success, message = await start_bot()
+async def start(request: StartRequest = None):
+    """Start the bot. Optional: POST {"clear": true} to clear old trades first."""
+    clear = request.clear if request else False
+    success, message = await start_bot(clear=clear)
     if success:
-        return {"success": True, "message": message, "state": bot_state.value}
+        return {"success": True, "message": message, "state": bot_state.value, "cleared": clear}
     raise HTTPException(status_code=400, detail=message)
 
 @app.post("/stop")

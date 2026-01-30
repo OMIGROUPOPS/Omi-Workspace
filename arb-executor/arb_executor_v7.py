@@ -44,6 +44,95 @@ COOLDOWN_SECONDS = 10       # Seconds between trade attempts
 # High ROI on illiquid prices is misleading (240% ROI on 5c ask = only $2 profit)
 # ============================================================================
 
+# ============================================================================
+# HEDGE PROTECTION SYSTEM
+# ============================================================================
+MAX_PRICE_STALENESS_MS = 200    # Max time since price fetch before refresh required
+MIN_HEDGE_SPREAD_CENTS = 1      # Minimum spread required to proceed with trade
+UNHEDGED_EXPOSURE_LIMIT = 1000  # Max unhedged exposure in cents ($10) before kill switch
+SLIPPAGE_RECOVERY_LEVELS = [1, 2, 3, 5, 10]  # Cents of slippage to try for recovery
+UNHEDGED_POSITIONS_FILE = 'unhedged_positions.json'
+HEDGE_KILL_SWITCH_ACTIVE = False  # Set True to stop all trading
+
+@dataclass
+class HedgeState:
+    """Track hedge state for a trade"""
+    kalshi_ticker: str
+    pm_slug: str
+    target_qty: int
+    kalshi_filled: int = 0
+    pm_filled: int = 0
+    kalshi_price: int = 0  # cents
+    pm_price: float = 0.0  # dollars
+    is_hedged: bool = False
+    recovery_attempted: bool = False
+    recovery_slippage: int = 0  # cents of slippage used in recovery
+
+@dataclass
+class PositionState:
+    """Track positions across platforms"""
+    kalshi_positions: Dict[str, int] = field(default_factory=dict)  # ticker -> qty
+    pm_positions: Dict[str, int] = field(default_factory=dict)      # slug -> qty
+    expected_kalshi: Dict[str, int] = field(default_factory=dict)   # what we think we have
+    expected_pm: Dict[str, int] = field(default_factory=dict)
+    last_sync: float = 0.0
+
+# Global position state
+POSITION_STATE = PositionState()
+
+def load_unhedged_positions() -> List[Dict]:
+    """Load unhedged positions from file"""
+    try:
+        if os.path.exists(UNHEDGED_POSITIONS_FILE):
+            with open(UNHEDGED_POSITIONS_FILE, 'r') as f:
+                return json.load(f)
+    except Exception as e:
+        print(f"[HEDGE] Error loading unhedged positions: {e}")
+    return []
+
+def save_unhedged_position(hedge_state: HedgeState, reason: str):
+    """Save unhedged position to file for manual recovery"""
+    positions = load_unhedged_positions()
+    positions.append({
+        'timestamp': datetime.now().isoformat(),
+        'kalshi_ticker': hedge_state.kalshi_ticker,
+        'pm_slug': hedge_state.pm_slug,
+        'kalshi_filled': hedge_state.kalshi_filled,
+        'pm_filled': hedge_state.pm_filled,
+        'unhedged_qty': hedge_state.kalshi_filled - hedge_state.pm_filled,
+        'kalshi_price': hedge_state.kalshi_price,
+        'pm_price': hedge_state.pm_price,
+        'reason': reason,
+        'recovery_attempted': hedge_state.recovery_attempted,
+        'recovery_slippage': hedge_state.recovery_slippage
+    })
+    try:
+        with open(UNHEDGED_POSITIONS_FILE, 'w') as f:
+            json.dump(positions, f, indent=2)
+        print(f"[HEDGE] Saved unhedged position to {UNHEDGED_POSITIONS_FILE}")
+    except Exception as e:
+        print(f"[HEDGE] ERROR saving unhedged position: {e}")
+
+def check_kill_switch() -> bool:
+    """Check if kill switch is active"""
+    global HEDGE_KILL_SWITCH_ACTIVE
+    if HEDGE_KILL_SWITCH_ACTIVE:
+        print("[!!! KILL SWITCH !!!] Trading halted due to unhedged position")
+        return True
+    return False
+
+def activate_kill_switch(reason: str):
+    """Activate the kill switch to stop all trading"""
+    global HEDGE_KILL_SWITCH_ACTIVE
+    HEDGE_KILL_SWITCH_ACTIVE = True
+    print(f"\n{'='*60}")
+    print("[!!! KILL SWITCH ACTIVATED !!!]")
+    print(f"Reason: {reason}")
+    print("All trading has been halted.")
+    print("Manual intervention required to restart.")
+    print(f"Use --force flag to override (for recovery only)")
+    print(f"{'='*60}\n")
+
 # ROI distribution tracking
 ROI_BUCKETS = {
     '0-1%': 0,
@@ -137,9 +226,11 @@ SKIPPED_ARBS: List[Dict] = []
 SKIP_STATS: Dict[str, int] = {
     'high_roi': 0,
     'low_liquidity': 0,
+    'illiquid_price': 0,
     'live_game': 0,
     'already_traded': 0,
     'cooldown': 0,
+    'validation_failed': 0,
     'sweep_roi_too_low': 0,
     'no_fill': 0
 }
@@ -1027,6 +1118,793 @@ def get_pm_execution_params(arb: ArbOpportunity) -> tuple:
         price = (100 - arb.pm_bid) / 100
 
     return intent, price
+
+
+# ============================================================================
+# HEDGE PROTECTION FUNCTIONS
+# ============================================================================
+
+async def fetch_fresh_prices(session, kalshi_api, pm_api, kalshi_ticker: str, pm_slug: str) -> Dict:
+    """
+    Fetch fresh prices from both platforms simultaneously.
+    Returns dict with kalshi_bid, kalshi_ask, pm_bid, pm_ask, timestamp, is_fresh
+    """
+    start_time = time.time()
+
+    async def get_kalshi_price():
+        try:
+            path = f'/trade-api/v2/markets/{kalshi_ticker}'
+            async with session.get(
+                f'{kalshi_api.BASE_URL}{path}',
+                headers=kalshi_api._headers('GET', path),
+                timeout=aiohttp.ClientTimeout(total=2)
+            ) as r:
+                if r.status == 200:
+                    data = await r.json()
+                    market = data.get('market', {})
+                    return {
+                        'bid': market.get('yes_bid', 0),
+                        'ask': market.get('yes_ask', 100),
+                        'success': True
+                    }
+        except Exception as e:
+            print(f"[VALIDATE] Kalshi price fetch failed: {e}")
+        return {'bid': 0, 'ask': 100, 'success': False}
+
+    async def get_pm_price():
+        try:
+            orderbook = await pm_api.get_orderbook(session, pm_slug, debug=False)
+            if orderbook:
+                bids = orderbook.get('bids', [])
+                asks = orderbook.get('asks', [])
+                best_bid = bids[0]['price'] * 100 if bids else 0
+                best_ask = asks[0]['price'] * 100 if asks else 100
+                bid_size = bids[0]['size'] if bids else 0
+                ask_size = asks[0]['size'] if asks else 0
+                return {
+                    'bid': best_bid,
+                    'ask': best_ask,
+                    'bid_size': bid_size,
+                    'ask_size': ask_size,
+                    'success': True
+                }
+        except Exception as e:
+            print(f"[VALIDATE] PM price fetch failed: {e}")
+        return {'bid': 0, 'ask': 100, 'bid_size': 0, 'ask_size': 0, 'success': False}
+
+    # Fetch both prices in parallel
+    k_result, pm_result = await asyncio.gather(get_kalshi_price(), get_pm_price())
+
+    elapsed_ms = (time.time() - start_time) * 1000
+    is_fresh = elapsed_ms < MAX_PRICE_STALENESS_MS
+
+    return {
+        'kalshi_bid': k_result['bid'],
+        'kalshi_ask': k_result['ask'],
+        'pm_bid': pm_result['bid'],
+        'pm_ask': pm_result['ask'],
+        'pm_bid_size': pm_result.get('bid_size', 0),
+        'pm_ask_size': pm_result.get('ask_size', 0),
+        'timestamp': time.time(),
+        'fetch_time_ms': elapsed_ms,
+        'is_fresh': is_fresh,
+        'kalshi_success': k_result['success'],
+        'pm_success': pm_result['success']
+    }
+
+
+async def validate_pre_trade(session, kalshi_api, pm_api, arb: 'ArbOpportunity') -> Tuple[bool, str, Dict]:
+    """
+    Pre-trade validation: fetch fresh prices and verify spread still exists.
+    Returns (is_valid, reason, fresh_prices)
+    """
+    print(f"\n[VALIDATE] Fetching fresh prices...")
+
+    fresh = await fetch_fresh_prices(session, kalshi_api, pm_api, arb.kalshi_ticker, arb.pm_slug)
+
+    # Check if we got valid prices
+    if not fresh['kalshi_success'] or not fresh['pm_success']:
+        return False, "Failed to fetch fresh prices", fresh
+
+    # Check freshness
+    if not fresh['is_fresh']:
+        return False, f"Prices stale ({fresh['fetch_time_ms']:.0f}ms > {MAX_PRICE_STALENESS_MS}ms)", fresh
+
+    # Calculate fresh spread
+    if arb.direction == 'BUY_PM_SELL_K':
+        # Buy on PM (pay ask), Sell on Kalshi (get bid)
+        fresh_spread = fresh['kalshi_bid'] - fresh['pm_ask']
+        available_size = fresh['pm_ask_size']
+    else:
+        # Buy on Kalshi (pay ask), Sell on PM (get bid)
+        fresh_spread = fresh['pm_bid'] - fresh['kalshi_ask']
+        available_size = fresh['pm_bid_size']
+
+    print(f"[VALIDATE] Fresh prices: K={fresh['kalshi_bid']}/{fresh['kalshi_ask']}c, PM={fresh['pm_bid']:.0f}/{fresh['pm_ask']:.0f}c")
+    print(f"[VALIDATE] Fresh spread={fresh_spread}c, liquidity={available_size}")
+
+    # Verify spread still exists
+    if fresh_spread < MIN_HEDGE_SPREAD_CENTS:
+        return False, f"Spread gone ({fresh_spread}c < {MIN_HEDGE_SPREAD_CENTS}c)", fresh
+
+    # Verify liquidity
+    if available_size < arb.size:
+        return False, f"Insufficient liquidity ({available_size} < {arb.size})", fresh
+
+    print(f"[VALIDATE] Pre-trade validation PASSED ✓")
+    return True, "OK", fresh
+
+
+async def execute_parallel_orders(
+    session, kalshi_api, pm_api, arb: 'ArbOpportunity',
+    kalshi_price: int, pm_price: float, quantity: int
+) -> Tuple[Dict, Dict]:
+    """
+    Execute orders on both platforms simultaneously.
+    Returns (kalshi_result, pm_result)
+    """
+    print(f"\n[EXECUTE] Sending parallel orders...")
+    start_time = time.time()
+
+    # Determine Kalshi action
+    k_action = 'buy' if arb.direction == 'BUY_K_SELL_PM' else 'sell'
+
+    # Determine PM intent
+    pm_intent, _ = get_pm_execution_params(arb)
+
+    async def execute_kalshi():
+        try:
+            result = await kalshi_api.place_order(
+                session, arb.kalshi_ticker, 'yes', k_action, quantity, kalshi_price
+            )
+            return result
+        except Exception as e:
+            return {'success': False, 'error': str(e), 'fill_count': 0}
+
+    async def execute_pm():
+        try:
+            result = await pm_api.place_order(
+                session, arb.pm_slug, pm_intent, pm_price, quantity, tif=3, sync=True
+            )
+            return result
+        except Exception as e:
+            return {'success': False, 'error': str(e), 'fill_count': 0}
+
+    # Execute both orders simultaneously
+    kalshi_result, pm_result = await asyncio.gather(execute_kalshi(), execute_pm())
+
+    elapsed_ms = (time.time() - start_time) * 1000
+    print(f"[EXECUTE] Both orders submitted in {elapsed_ms:.0f}ms")
+
+    return kalshi_result, pm_result
+
+
+async def attempt_hedge_recovery(
+    session, pm_api, arb: 'ArbOpportunity',
+    unhedged_qty: int, original_pm_price: float, hedge_state: HedgeState
+) -> bool:
+    """
+    Attempt to complete hedge with slippage.
+    Returns True if hedge completed, False otherwise.
+    """
+    print(f"\n[RECOVERY] Attempting to hedge {unhedged_qty} contracts...")
+    hedge_state.recovery_attempted = True
+
+    pm_intent, _ = get_pm_execution_params(arb)
+
+    for slippage in SLIPPAGE_RECOVERY_LEVELS:
+        # Adjust price with slippage (pay more to buy, accept less to sell)
+        if pm_intent in [1, 3]:  # BUY_YES or BUY_NO
+            try_price = original_pm_price + (slippage / 100)
+        else:  # SELL
+            try_price = original_pm_price - (slippage / 100)
+
+        try_price = max(0.01, min(0.99, try_price))  # Clamp to valid range
+
+        print(f"[RECOVERY] Trying PM at ${try_price:.2f} (slippage: {slippage}c)...")
+
+        try:
+            result = await pm_api.place_order(
+                session, arb.pm_slug, pm_intent, try_price, unhedged_qty, tif=3, sync=True
+            )
+
+            fill_count = result.get('fill_count', 0)
+
+            if fill_count >= unhedged_qty:
+                hedge_state.pm_filled += fill_count
+                hedge_state.recovery_slippage = slippage
+                print(f"[RECOVERY] SUCCESS! Filled {fill_count} @ ${try_price:.2f} ✓")
+                return True
+            elif fill_count > 0:
+                hedge_state.pm_filled += fill_count
+                unhedged_qty -= fill_count
+                print(f"[RECOVERY] Partial: {fill_count} filled, {unhedged_qty} remaining")
+        except Exception as e:
+            print(f"[RECOVERY] Error at {slippage}c slippage: {e}")
+
+        await asyncio.sleep(0.1)  # Brief pause between attempts
+
+    print(f"[RECOVERY] FAILED - {unhedged_qty} contracts still unhedged")
+    return False
+
+
+async def reconcile_hedge(
+    session, kalshi_api, pm_api, arb: 'ArbOpportunity',
+    kalshi_result: Dict, pm_result: Dict, target_qty: int
+) -> HedgeState:
+    """
+    Post-trade reconciliation: verify fills match, attempt recovery if needed.
+    """
+    hedge_state = HedgeState(
+        kalshi_ticker=arb.kalshi_ticker,
+        pm_slug=arb.pm_slug,
+        target_qty=target_qty,
+        kalshi_filled=kalshi_result.get('fill_count', 0),
+        pm_filled=pm_result.get('fill_count', 0),
+        kalshi_price=kalshi_result.get('fill_price', 0),
+        pm_price=pm_result.get('fill_price', 0)
+    )
+
+    print(f"\n[HEDGE CHECK] Kalshi={hedge_state.kalshi_filled}, PM={hedge_state.pm_filled}")
+
+    # Check if perfectly hedged
+    if hedge_state.kalshi_filled == hedge_state.pm_filled:
+        hedge_state.is_hedged = True
+        print(f"[HEDGE CHECK] MATCHED ✓")
+        return hedge_state
+
+    # Calculate unhedged quantity
+    if hedge_state.kalshi_filled > hedge_state.pm_filled:
+        unhedged_qty = hedge_state.kalshi_filled - hedge_state.pm_filled
+        print(f"[!!! UNHEDGED !!!] {unhedged_qty} contracts on Kalshi")
+
+        # Attempt recovery
+        pm_intent, pm_price = get_pm_execution_params(arb)
+        recovery_success = await attempt_hedge_recovery(
+            session, pm_api, arb, unhedged_qty, pm_price, hedge_state
+        )
+
+        if recovery_success:
+            hedge_state.is_hedged = True
+            print(f"[HEDGE CHECK] RECOVERED ✓ (with {hedge_state.recovery_slippage}c slippage)")
+        else:
+            # Save unhedged position for manual intervention
+            save_unhedged_position(hedge_state, "PM recovery failed")
+
+            # Calculate exposure
+            exposure_cents = unhedged_qty * hedge_state.kalshi_price
+            print(f"[!!! EXPOSURE !!!] ${exposure_cents/100:.2f} unhedged")
+
+            if exposure_cents > UNHEDGED_EXPOSURE_LIMIT:
+                activate_kill_switch(f"Unhedged exposure ${exposure_cents/100:.2f} > ${UNHEDGED_EXPOSURE_LIMIT/100:.2f} limit")
+
+    elif hedge_state.pm_filled > hedge_state.kalshi_filled:
+        # PM filled more than Kalshi (unusual but possible)
+        unhedged_qty = hedge_state.pm_filled - hedge_state.kalshi_filled
+        print(f"[!!! UNHEDGED !!!] {unhedged_qty} contracts on PM (Kalshi underfilled)")
+        save_unhedged_position(hedge_state, "Kalshi underfilled")
+
+    return hedge_state
+
+
+async def sync_positions(session, kalshi_api, pm_api) -> PositionState:
+    """
+    Sync position state with both platforms.
+    """
+    global POSITION_STATE
+
+    print("[POSITIONS] Syncing positions with platforms...")
+
+    # Fetch Kalshi positions
+    try:
+        k_positions = await kalshi_api.get_positions(session)
+        POSITION_STATE.kalshi_positions = {
+            ticker: pos.position for ticker, pos in k_positions.items()
+        } if k_positions else {}
+    except Exception as e:
+        print(f"[POSITIONS] Kalshi sync error: {e}")
+
+    # Fetch PM positions
+    try:
+        pm_positions = await pm_api.get_positions(session)
+        if pm_positions and 'positions' in pm_positions:
+            POSITION_STATE.pm_positions = {
+                p.get('market', {}).get('slug', ''): p.get('quantity', 0)
+                for p in pm_positions.get('positions', [])
+            }
+    except Exception as e:
+        print(f"[POSITIONS] PM sync error: {e}")
+
+    POSITION_STATE.last_sync = time.time()
+
+    k_count = len(POSITION_STATE.kalshi_positions)
+    pm_count = len(POSITION_STATE.pm_positions)
+    print(f"[POSITIONS] Synced: Kalshi={k_count}, PM={pm_count}")
+
+    return POSITION_STATE
+
+
+async def check_position_mismatch(session, kalshi_api, pm_api) -> List[Dict]:
+    """
+    Check for mismatches between expected and actual positions.
+    Returns list of mismatches.
+    """
+    await sync_positions(session, kalshi_api, pm_api)
+
+    mismatches = []
+
+    # Compare Kalshi expected vs actual
+    for ticker, expected in POSITION_STATE.expected_kalshi.items():
+        actual = POSITION_STATE.kalshi_positions.get(ticker, 0)
+        if expected != actual:
+            mismatches.append({
+                'platform': 'kalshi',
+                'ticker': ticker,
+                'expected': expected,
+                'actual': actual,
+                'diff': actual - expected
+            })
+
+    # Compare PM expected vs actual
+    for slug, expected in POSITION_STATE.expected_pm.items():
+        actual = POSITION_STATE.pm_positions.get(slug, 0)
+        if expected != actual:
+            mismatches.append({
+                'platform': 'pm',
+                'slug': slug,
+                'expected': expected,
+                'actual': actual,
+                'diff': actual - expected
+            })
+
+    if mismatches:
+        print(f"\n[!!! POSITION MISMATCH !!!]")
+        for m in mismatches:
+            print(f"  {m['platform']}: expected={m['expected']}, actual={m['actual']}, diff={m['diff']}")
+
+    return mismatches
+
+
+async def run_recovery_mode(session, kalshi_api, pm_api):
+    """
+    Recovery mode: show positions and offer recovery options.
+    """
+    print("\n" + "="*60)
+    print("[RECOVERY MODE]")
+    print("="*60)
+
+    # Sync positions
+    await sync_positions(session, kalshi_api, pm_api)
+
+    # Show current positions
+    print("\n[KALSHI POSITIONS]")
+    if POSITION_STATE.kalshi_positions:
+        for ticker, qty in POSITION_STATE.kalshi_positions.items():
+            print(f"  {ticker}: {qty} contracts")
+    else:
+        print("  (none)")
+
+    print("\n[PM US POSITIONS]")
+    if POSITION_STATE.pm_positions:
+        for slug, qty in POSITION_STATE.pm_positions.items():
+            if qty != 0:
+                print(f"  {slug}: {qty} contracts")
+    else:
+        print("  (none)")
+
+    # Show unhedged positions from file
+    unhedged = load_unhedged_positions()
+    if unhedged:
+        print(f"\n[UNHEDGED POSITIONS FROM FILE]")
+        for u in unhedged:
+            print(f"  {u['timestamp']}: K={u['kalshi_ticker']}, unhedged={u['unhedged_qty']}")
+            print(f"    Reason: {u['reason']}")
+
+    print("\n[RECOVERY OPTIONS]")
+    print("  1. Close Kalshi positions manually")
+    print("  2. Complete hedge on PM at market price")
+    print("  3. Exit recovery mode")
+    print("\nReview positions above and take manual action if needed.")
+    print("Use --force to restart trading after recovery.")
+    print("="*60 + "\n")
+
+
+# ============================================================================
+# PREFLIGHT CHECK SYSTEM
+# ============================================================================
+@dataclass
+class PreflightResult:
+    """Result of a single preflight check"""
+    name: str
+    passed: bool
+    blocking: bool  # If True, failure blocks live trading
+    message: str
+    details: Optional[str] = None
+
+async def run_preflight_checks(session, kalshi_api, pm_api) -> Tuple[bool, List[PreflightResult]]:
+    """
+    Run comprehensive preflight checks before live trading.
+    Returns (all_passed, list_of_results)
+    """
+    results: List[PreflightResult] = []
+
+    print("\n" + "="*70)
+    print("PREFLIGHT CHECKS - Validating system readiness")
+    print("="*70 + "\n")
+
+    # =========================================================================
+    # 1. API CREDENTIALS - Test authentication
+    # =========================================================================
+    print("[1/6] API CREDENTIALS")
+
+    # Test Kalshi auth
+    kalshi_auth_ok = False
+    kalshi_auth_msg = ""
+    try:
+        start_time = time.time()
+        balance = await kalshi_api.get_balance(session)
+        latency = (time.time() - start_time) * 1000
+        if balance is not None:
+            kalshi_auth_ok = True
+            kalshi_auth_msg = f"Authenticated ({latency:.0f}ms)"
+        else:
+            kalshi_auth_msg = "Failed to get balance"
+    except Exception as e:
+        kalshi_auth_msg = f"Auth error: {str(e)[:50]}"
+
+    results.append(PreflightResult(
+        name="Kalshi API Auth",
+        passed=kalshi_auth_ok,
+        blocking=True,
+        message=kalshi_auth_msg
+    ))
+    print(f"  {'[PASS]' if kalshi_auth_ok else '[FAIL]'} Kalshi: {kalshi_auth_msg}")
+
+    # Test PM US auth
+    pm_auth_ok = False
+    pm_auth_msg = ""
+    try:
+        start_time = time.time()
+        balance = await pm_api.get_balance(session)
+        latency = (time.time() - start_time) * 1000
+        if balance is not None:
+            pm_auth_ok = True
+            pm_auth_msg = f"Authenticated ({latency:.0f}ms)"
+        else:
+            pm_auth_msg = "Failed to get balance"
+    except Exception as e:
+        pm_auth_msg = f"Auth error: {str(e)[:50]}"
+
+    results.append(PreflightResult(
+        name="PM US API Auth",
+        passed=pm_auth_ok,
+        blocking=True,
+        message=pm_auth_msg
+    ))
+    print(f"  {'[PASS]' if pm_auth_ok else '[FAIL]'} PM US:  {pm_auth_msg}")
+
+    # =========================================================================
+    # 2. ACCOUNT BALANCES - Verify sufficient funds
+    # =========================================================================
+    print("\n[2/6] ACCOUNT BALANCES")
+
+    MIN_KALSHI_BALANCE = 50.0   # $50 minimum
+    MIN_PM_BALANCE = 50.0       # $50 minimum
+
+    # Kalshi balance
+    kalshi_balance = None
+    kalshi_bal_ok = False
+    if kalshi_auth_ok:
+        try:
+            kalshi_balance = await kalshi_api.get_balance(session)
+            if kalshi_balance is not None:
+                kalshi_bal_ok = kalshi_balance >= MIN_KALSHI_BALANCE
+        except:
+            pass
+
+    kalshi_bal_msg = f"${kalshi_balance:.2f}" if kalshi_balance is not None else "Unable to fetch"
+    if kalshi_balance is not None and kalshi_balance < MIN_KALSHI_BALANCE:
+        kalshi_bal_msg += f" (min ${MIN_KALSHI_BALANCE:.0f} required)"
+
+    results.append(PreflightResult(
+        name="Kalshi Balance",
+        passed=kalshi_bal_ok,
+        blocking=True,
+        message=kalshi_bal_msg
+    ))
+    print(f"  {'[PASS]' if kalshi_bal_ok else '[FAIL]'} Kalshi: {kalshi_bal_msg}")
+
+    # PM US balance
+    pm_balance = None
+    pm_bal_ok = False
+    if pm_auth_ok:
+        try:
+            pm_balance = await pm_api.get_balance(session)
+            if pm_balance is not None:
+                pm_bal_ok = pm_balance >= MIN_PM_BALANCE
+        except:
+            pass
+
+    pm_bal_msg = f"${pm_balance:.2f}" if pm_balance is not None else "Unable to fetch"
+    if pm_balance is not None and pm_balance < MIN_PM_BALANCE:
+        pm_bal_msg += f" (min ${MIN_PM_BALANCE:.0f} required)"
+
+    results.append(PreflightResult(
+        name="PM US Balance",
+        passed=pm_bal_ok,
+        blocking=True,
+        message=pm_bal_msg
+    ))
+    print(f"  {'[PASS]' if pm_bal_ok else '[FAIL]'} PM US:  {pm_bal_msg}")
+
+    # =========================================================================
+    # 3. EXISTING POSITIONS - Check for open/unhedged positions
+    # =========================================================================
+    print("\n[3/6] EXISTING POSITIONS")
+
+    # Check for unhedged positions from file
+    unhedged = load_unhedged_positions()
+    unhedged_ok = len(unhedged) == 0
+    unhedged_msg = "No unhedged positions" if unhedged_ok else f"{len(unhedged)} unhedged position(s) detected!"
+
+    results.append(PreflightResult(
+        name="Unhedged Positions",
+        passed=unhedged_ok,
+        blocking=True,
+        message=unhedged_msg,
+        details=f"Run --recover to review" if not unhedged_ok else None
+    ))
+    print(f"  {'[PASS]' if unhedged_ok else '[FAIL]'} Unhedged: {unhedged_msg}")
+
+    # Check for open Kalshi positions
+    kalshi_positions = {}
+    if kalshi_auth_ok:
+        try:
+            kalshi_positions = await kalshi_api.get_positions(session)
+        except:
+            pass
+
+    kalshi_pos_ok = True  # Open positions are OK, just informational
+    kalshi_pos_msg = f"{len(kalshi_positions)} open position(s)" if kalshi_positions else "No open positions"
+
+    results.append(PreflightResult(
+        name="Kalshi Positions",
+        passed=kalshi_pos_ok,
+        blocking=False,  # Open positions are not blocking
+        message=kalshi_pos_msg
+    ))
+    print(f"  [INFO] Kalshi: {kalshi_pos_msg}")
+
+    # Check for open PM US positions
+    pm_positions = {}
+    if pm_auth_ok:
+        try:
+            pm_positions = await pm_api.get_positions(session)
+        except:
+            pass
+
+    pm_pos_msg = f"{len([p for p in pm_positions.values() if p])} open position(s)" if pm_positions else "No open positions"
+
+    results.append(PreflightResult(
+        name="PM US Positions",
+        passed=True,  # Informational only
+        blocking=False,
+        message=pm_pos_msg
+    ))
+    print(f"  [INFO] PM US:  {pm_pos_msg}")
+
+    # Check kill switch
+    kill_switch_ok = not HEDGE_KILL_SWITCH_ACTIVE
+    kill_msg = "Active - trading blocked!" if HEDGE_KILL_SWITCH_ACTIVE else "Inactive"
+
+    results.append(PreflightResult(
+        name="Kill Switch",
+        passed=kill_switch_ok,
+        blocking=True,
+        message=kill_msg,
+        details="Use --force to override" if not kill_switch_ok else None
+    ))
+    print(f"  {'[PASS]' if kill_switch_ok else '[FAIL]'} Kill Switch: {kill_msg}")
+
+    # =========================================================================
+    # 4. MARKET CONNECTIVITY - Test API latency and data fetching
+    # =========================================================================
+    print("\n[4/6] MARKET CONNECTIVITY")
+
+    MAX_ACCEPTABLE_LATENCY_MS = 2000
+
+    # Test Kalshi market fetch
+    kalshi_latency_ok = False
+    kalshi_market_count = 0
+    kalshi_latency = 0
+    if kalshi_auth_ok:
+        try:
+            start_time = time.time()
+            # Fetch NBA markets as a test
+            path = '/trade-api/v2/markets?series_ticker=KXNBAGAME&status=open&limit=10'
+            async with session.get(
+                f'{kalshi_api.BASE_URL}{path}',
+                headers=kalshi_api._headers('GET', path),
+                timeout=aiohttp.ClientTimeout(total=10)
+            ) as r:
+                if r.status == 200:
+                    data = await r.json()
+                    kalshi_market_count = len(data.get('markets', []))
+                    kalshi_latency = (time.time() - start_time) * 1000
+                    kalshi_latency_ok = kalshi_latency < MAX_ACCEPTABLE_LATENCY_MS
+        except Exception as e:
+            pass
+
+    kalshi_conn_msg = f"{kalshi_market_count} markets in {kalshi_latency:.0f}ms" if kalshi_latency > 0 else "Failed to fetch"
+    if kalshi_latency >= MAX_ACCEPTABLE_LATENCY_MS:
+        kalshi_conn_msg += " (HIGH LATENCY!)"
+
+    results.append(PreflightResult(
+        name="Kalshi Markets",
+        passed=kalshi_latency_ok and kalshi_market_count > 0,
+        blocking=True,
+        message=kalshi_conn_msg
+    ))
+    print(f"  {'[PASS]' if kalshi_latency_ok and kalshi_market_count > 0 else '[FAIL]'} Kalshi: {kalshi_conn_msg}")
+
+    # Test PM US market fetch
+    pm_latency_ok = False
+    pm_market_count = 0
+    pm_latency = 0
+    if pm_auth_ok:
+        try:
+            start_time = time.time()
+            markets = await pm_api.get_moneyline_markets(session)
+            pm_market_count = len(markets)
+            pm_latency = (time.time() - start_time) * 1000
+            pm_latency_ok = pm_latency < MAX_ACCEPTABLE_LATENCY_MS
+        except:
+            pass
+
+    pm_conn_msg = f"{pm_market_count} markets in {pm_latency:.0f}ms" if pm_latency > 0 else "Failed to fetch"
+    if pm_latency >= MAX_ACCEPTABLE_LATENCY_MS:
+        pm_conn_msg += " (HIGH LATENCY!)"
+
+    results.append(PreflightResult(
+        name="PM US Markets",
+        passed=pm_latency_ok and pm_market_count >= 0,  # 0 markets OK outside game hours
+        blocking=True,
+        message=pm_conn_msg
+    ))
+    print(f"  {'[PASS]' if pm_latency_ok else '[FAIL]'} PM US:  {pm_conn_msg}")
+
+    # Test order book fetch (if markets available)
+    orderbook_ok = True
+    orderbook_msg = "Skipped (no markets)"
+    if pm_market_count > 0 and pm_auth_ok:
+        try:
+            # Get first market slug and test orderbook
+            test_markets = await pm_api.get_moneyline_markets(session)
+            if test_markets:
+                test_slug = test_markets[0].get('slug')
+                if test_slug:
+                    start_time = time.time()
+                    orderbook = await pm_api.get_orderbook(session, test_slug)
+                    ob_latency = (time.time() - start_time) * 1000
+                    if orderbook:
+                        orderbook_ok = True
+                        orderbook_msg = f"OK ({ob_latency:.0f}ms)"
+                    else:
+                        orderbook_ok = False
+                        orderbook_msg = "Failed to fetch order book"
+        except Exception as e:
+            orderbook_ok = False
+            orderbook_msg = f"Error: {str(e)[:30]}"
+
+    results.append(PreflightResult(
+        name="Order Book Access",
+        passed=orderbook_ok,
+        blocking=False,  # Might fail outside market hours
+        message=orderbook_msg
+    ))
+    print(f"  {'[PASS]' if orderbook_ok else '[WARN]'} Orderbook: {orderbook_msg}")
+
+    # =========================================================================
+    # 5. CONFIGURATION - Validate all settings are sane
+    # =========================================================================
+    print("\n[5/6] CONFIGURATION")
+
+    config_issues = []
+
+    # Check trading limits
+    if MAX_CONTRACTS <= 0 or MAX_CONTRACTS > 1000:
+        config_issues.append(f"MAX_CONTRACTS={MAX_CONTRACTS} out of range")
+    if MAX_COST_CENTS <= 0 or MAX_COST_CENTS > 100000:
+        config_issues.append(f"MAX_COST_CENTS={MAX_COST_CENTS} out of range")
+    if MIN_CONTRACTS < 1:
+        config_issues.append(f"MIN_CONTRACTS={MIN_CONTRACTS} must be >= 1")
+    if MIN_SPREAD_CENTS < 1 or MIN_SPREAD_CENTS > 50:
+        config_issues.append(f"MIN_SPREAD_CENTS={MIN_SPREAD_CENTS} out of range")
+    if COOLDOWN_SECONDS < 0 or COOLDOWN_SECONDS > 300:
+        config_issues.append(f"COOLDOWN_SECONDS={COOLDOWN_SECONDS} out of range")
+
+    # Check hedge protection settings
+    if UNHEDGED_EXPOSURE_LIMIT <= 0:
+        config_issues.append(f"UNHEDGED_EXPOSURE_LIMIT={UNHEDGED_EXPOSURE_LIMIT} must be > 0")
+    if MAX_PRICE_STALENESS_MS < 50 or MAX_PRICE_STALENESS_MS > 5000:
+        config_issues.append(f"MAX_PRICE_STALENESS_MS={MAX_PRICE_STALENESS_MS} out of range")
+
+    config_ok = len(config_issues) == 0
+    config_msg = "All settings valid" if config_ok else f"{len(config_issues)} issue(s)"
+
+    results.append(PreflightResult(
+        name="Trading Limits",
+        passed=config_ok,
+        blocking=True,
+        message=config_msg,
+        details="; ".join(config_issues) if config_issues else None
+    ))
+    print(f"  {'[PASS]' if config_ok else '[FAIL]'} Limits: {config_msg}")
+    if config_issues:
+        for issue in config_issues:
+            print(f"         - {issue}")
+
+    # Display current config
+    print(f"  [INFO] Config: MAX_CONTRACTS={MAX_CONTRACTS}, MAX_COST=${MAX_COST_CENTS/100:.0f}, MIN_SPREAD={MIN_SPREAD_CENTS}c, COOLDOWN={COOLDOWN_SECONDS}s")
+
+    # =========================================================================
+    # 6. DATA FILES - Verify trade log, price history are writable
+    # =========================================================================
+    print("\n[6/6] DATA FILES")
+
+    files_to_check = [
+        ('trades.json', True),           # Blocking
+        ('skipped_arbs.json', False),    # Non-blocking
+        ('price_history.csv', False),    # Non-blocking
+        (UNHEDGED_POSITIONS_FILE, True), # Blocking
+    ]
+
+    for filename, is_blocking in files_to_check:
+        file_ok = False
+        file_msg = ""
+        try:
+            # Try to open file for append (creates if not exists)
+            with open(filename, 'a') as f:
+                file_ok = True
+                file_msg = "Writable"
+        except PermissionError:
+            file_msg = "Permission denied!"
+        except Exception as e:
+            file_msg = f"Error: {str(e)[:30]}"
+
+        results.append(PreflightResult(
+            name=f"File: {filename}",
+            passed=file_ok,
+            blocking=is_blocking,
+            message=file_msg
+        ))
+        status = '[PASS]' if file_ok else ('[FAIL]' if is_blocking else '[WARN]')
+        print(f"  {status} {filename}: {file_msg}")
+
+    # =========================================================================
+    # SUMMARY
+    # =========================================================================
+    print("\n" + "="*70)
+
+    blocking_failures = [r for r in results if not r.passed and r.blocking]
+    warnings = [r for r in results if not r.passed and not r.blocking]
+
+    all_blocking_passed = len(blocking_failures) == 0
+
+    if all_blocking_passed:
+        print("[PREFLIGHT PASSED] All critical checks passed")
+        if warnings:
+            print(f"  ({len(warnings)} non-blocking warning(s))")
+    else:
+        print("[PREFLIGHT FAILED] Critical issues must be resolved before live trading:")
+        for failure in blocking_failures:
+            print(f"  [BLOCKING] {failure.name}: {failure.message}")
+            if failure.details:
+                print(f"             {failure.details}")
+
+    print("="*70 + "\n")
+
+    return all_blocking_passed, results
 
 
 def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str):
@@ -2012,37 +2890,37 @@ SLUG_TO_KALSHI = {
     # CBB - Mappings from deep compare Jan 30
     'BROWN': 'BRWN',    # Brown
     'HARVRD': 'HARV',   # Harvard
-    'KENTST': 'KEN',    # Kent State
-    'AKRON': 'TAKR',    # Akron (Kalshi uses TAKR)
+    'KENTST': 'KENT',   # Kent State (Kalshi: KENT in KENTAKR)
+    'AKRON': 'AKR',     # Akron (Kalshi: AKR)
     'CHARLT': 'CHAR',   # Charlotte
-    'CLVST': 'CLE',     # Cleveland State (Kalshi: CLE in CLEVGB)
-    'GB': 'VGB',        # Green Bay (Kalshi: VGB)
+    'CLVST': 'CLEV',    # Cleveland State (Kalshi: CLEV in CLEVGB)
+    'GB': 'GB',         # Green Bay (Kalshi: GB, not VGB)
     'COLMB': 'CLMB',    # Columbia
-    'PRNCE': 'PRI',     # Princeton
-    'CORNEL': 'NCOR',   # Cornell
+    'PRNCE': 'PRIN',    # Princeton (Kalshi: PRIN)
+    'CORNEL': 'COR',    # Cornell (Kalshi: COR)
     'STLOU': 'SLU',     # Saint Louis
     'NKENT': 'NKU',     # Northern Kentucky
-    'YNGST': 'NYSU',    # Youngstown State
-    'IUPUI': 'IUI',     # IU Indianapolis
-    'LOYCH': 'LCH',     # Loyola Chicago (note: VCU is IVCU on Kalshi)
-    'VCU': 'IVCU',      # VCU
+    'YNGST': 'YSU',     # Youngstown State (Kalshi: YSU)
+    'IUPUI': 'IUIN',    # IU Indianapolis (Kalshi: IUIN)
+    'LOYCH': 'LCHI',    # Loyola Chicago (Kalshi: LCHI)
+    'VCU': 'VCU',       # VCU (Kalshi: VCU, not IVCU)
     'MANH': 'MAN',      # Manhattan
-    'MST': 'HMSU',      # Michigan State (Kalshi uses HMSU)
-    'MICH': 'MIC',      # Michigan (Kalshi uses MIC, not MICH)
+    'MST': 'MSU',       # Michigan State (Kalshi: MSU)
+    'MICH': 'MICH',     # Michigan (Kalshi: MICH)
     'STPETE': 'SPC',    # Saint Peter's
     'MSTM': 'MSM',      # Mount St. Mary's
     'SACRED': 'SHU',    # Sacred Heart
     'QUIN': 'QUIN',     # Quinnipiac (already correct)
-    'BOISE': 'BS',      # Boise State
-    'GCAN': 'UGC',      # Grand Canyon
+    'BOISE': 'BSU',     # Boise State (Kalshi: BSU)
+    'GCAN': 'GC',       # Grand Canyon (Kalshi: GC)
     'SIENA': 'SIE',     # Siena
     'NIAGRA': 'NIAG',   # Niagara
     'WRGHT': 'WRST',    # Wright State (Kalshi: WRST in MILWWRST)
     'WBD': 'MILW',      # Milwaukee (PM uses WBD?)
-    'MARIST': 'MRS',    # Marist
-    'CANS': 'TCAN',     # Canisius
-    'NEVADA': 'VNEV',   # Nevada (Kalshi: VNEV)
-    'UNLV': 'UNL',      # UNLV (Kalshi: UNL)
+    'MARIST': 'MRST',   # Marist (Kalshi: MRST)
+    'CANS': 'CAN',      # Canisius (Kalshi: CAN)
+    'NEVADA': 'NEV',    # Nevada (Kalshi: NEV)
+    'UNLV': 'UNLV',     # UNLV (Kalshi: UNLV)
     'RIDER': 'RID',     # Rider
 }
 
@@ -2285,19 +3163,33 @@ async def run_match_debug():
                 })
 
         # Print results
+        total_pm = len(PM_US_MARKET_CACHE)
+        match_rate = (len(matched) / total_pm * 100) if total_pm > 0 else 0
+
         print("=" * 70)
-        print(f"[MATCH DEBUG] PM US: {len(PM_US_MARKET_CACHE)} markets | Kalshi: {total_kalshi} games")
+        print(f"[MATCH DEBUG] PM US: {total_pm} active markets | Kalshi: {total_kalshi} games")
         print("=" * 70)
 
-        # Matched markets
-        print(f"\n[MATCHED] {len(matched)} markets:")
-        for m in matched[:20]:  # Show first 20
-            print(f"  [OK] {m['pm_slug']} -> {m['cache_key']}")
-        if len(matched) > 20:
-            print(f"  ... and {len(matched) - 20} more")
+        # Summary with match rate
+        print(f"\n[MATCHED] {len(matched)} markets ({match_rate:.0f}%)")
+        if len(unmatched) > 0:
+            # Categorize unmatched
+            coverage_gaps = [u for u in unmatched if u['diagnosis'].get('reason_type') == 'coverage_gap']
+            mapping_issues = [u for u in unmatched if u['diagnosis'].get('reason_type') != 'coverage_gap']
+            print(f"[UNMATCHED] {len(unmatched)} markets ({len(coverage_gaps)} coverage gaps, {len(mapping_issues)} mapping issues)")
+        else:
+            print(f"[UNMATCHED] 0 markets")
+
+        # Show matched markets (first 10 only to reduce noise)
+        if matched:
+            print(f"\nMatched markets (showing first 10):")
+            for m in matched[:10]:
+                print(f"  [OK] {m['pm_slug']} -> {m['cache_key']}")
+            if len(matched) > 10:
+                print(f"  ... and {len(matched) - 10} more")
 
         # Unmatched markets with diagnosis
-        print(f"\n[UNMATCHED] {len(unmatched)} markets:")
+        print(f"\n[UNMATCHED DETAILS] {len(unmatched)} markets:")
         for u in unmatched:
             print(f"\n  [X] {u['pm_slug']}")
             print(f"      PM teams: {u['pm_teams']} -> {u['pm_team_codes']}")
@@ -2979,9 +3871,59 @@ async def fetch_pm_us_markets(session, pm_api, debug: bool = False):
     # CRITICAL: Clear cache on every scan to avoid stale data
     PM_US_MARKET_CACHE.clear()
 
-    markets = await pm_api.get_moneyline_markets(session, debug=debug)
-    if not markets:
+    raw_markets = await pm_api.get_moneyline_markets(session, debug=debug)
+    if not raw_markets:
         return 0
+
+    # =========================================================================
+    # FILTER: Remove old/settled games - we only care about tradeable markets
+    # =========================================================================
+    # Use timezone-naive comparison - PM US game times are in UTC
+    # We convert everything to naive UTC for comparison
+    from datetime import timezone
+    now_utc = datetime.now(timezone.utc).replace(tzinfo=None)
+    cutoff_time = now_utc - timedelta(hours=24)  # Games > 24h old are definitely settled
+
+    markets = []
+    filtered_count = 0
+    filter_reasons = {'old': 0, 'settled': 0, 'closed': 0}
+
+    for m in raw_markets:
+        game_time_str = m.get('gameStartTime', '')
+        market_status = m.get('status', '').lower()
+        is_closed = m.get('closed', False)
+        is_active = m.get('active', True)
+
+        # Skip settled or closed markets
+        if market_status in ['settled', 'resolved', 'closed']:
+            filtered_count += 1
+            filter_reasons['settled'] += 1
+            continue
+        if is_closed:
+            filtered_count += 1
+            filter_reasons['closed'] += 1
+            continue
+
+        # Skip old games (> 24 hours past start time)
+        if game_time_str:
+            try:
+                # Parse ISO format with Z suffix (UTC)
+                game_time = datetime.fromisoformat(game_time_str.replace('Z', '+00:00'))
+                # Convert to naive UTC for comparison
+                if game_time.tzinfo:
+                    game_time = game_time.replace(tzinfo=None)
+                if game_time < cutoff_time:
+                    filtered_count += 1
+                    filter_reasons['old'] += 1
+                    continue
+            except (ValueError, TypeError):
+                pass  # Keep markets with unparseable dates
+
+        markets.append(m)
+
+    if debug or filtered_count > 0:
+        reasons_str = ', '.join(f"{v} {k}" for k, v in filter_reasons.items() if v > 0)
+        print(f"[PM US] Fetched {len(raw_markets)} markets, filtered to {len(markets)} active ({reasons_str})")
 
     # PHASE 1: Match markets to teams and collect slugs
     matched_markets = []  # List of {cache_key, slug, team_0, team_1, outcome_idx_0, outcome_idx_1, volume}
@@ -3022,7 +3964,12 @@ async def fetch_pm_us_markets(session, pm_api, debug: bool = False):
             'tried_sports': []
         }
 
-        # Try to extract team codes from slug for CBB (e.g., aec-cbb-samf-furman-2026-01-29)
+        # =====================================================================
+        # CRITICAL: Extract team codes from SLUG for CBB
+        # The slug format is: aec-{sport}-{team1}-{team2}-{date}
+        # Slug is the SOURCE OF TRUTH - never trust mascot names for CBB!
+        # Mascot matching causes bugs like "Harvard Crimson" -> BAMA (crimson tide)
+        # =====================================================================
         slug_teams = None
         slug_sport = None
         slug_parts = slug.lower().split('-')
@@ -3030,14 +3977,30 @@ async def fetch_pm_us_markets(session, pm_api, debug: bool = False):
             # Check for sport identifier in slug
             if 'cbb' in slug_parts or 'ncaab' in slug_parts:
                 slug_sport = 'cbb'
-                # Try to find team codes after sport identifier
+                # Extract team codes from slug positions after sport
                 sport_idx = slug_parts.index('cbb') if 'cbb' in slug_parts else slug_parts.index('ncaab')
                 if sport_idx + 2 < len(slug_parts):
-                    slug_teams = (slug_parts[sport_idx + 1].upper(), slug_parts[sport_idx + 2].upper())
+                    raw_team1 = slug_parts[sport_idx + 1].upper()
+                    raw_team2 = slug_parts[sport_idx + 2].upper()
+                    # Validate they look like team codes (not dates like "2026")
+                    if not raw_team1.isdigit() and not raw_team2.isdigit():
+                        slug_teams = (raw_team1, raw_team2)
             elif 'nba' in slug_parts:
                 slug_sport = 'nba'
+                sport_idx = slug_parts.index('nba')
+                if sport_idx + 2 < len(slug_parts):
+                    raw_team1 = slug_parts[sport_idx + 1].upper()
+                    raw_team2 = slug_parts[sport_idx + 2].upper()
+                    if not raw_team1.isdigit() and not raw_team2.isdigit():
+                        slug_teams = (raw_team1, raw_team2)
             elif 'nhl' in slug_parts:
                 slug_sport = 'nhl'
+                sport_idx = slug_parts.index('nhl')
+                if sport_idx + 2 < len(slug_parts):
+                    raw_team1 = slug_parts[sport_idx + 1].upper()
+                    raw_team2 = slug_parts[sport_idx + 2].upper()
+                    if not raw_team1.isdigit() and not raw_team2.isdigit():
+                        slug_teams = (raw_team1, raw_team2)
 
         # Try to match outcomes to known teams across all sports
         matched_this_market = False
@@ -3048,29 +4011,56 @@ async def fetch_pm_us_markets(session, pm_api, debug: bool = False):
             print(f"\n[DEBUG PM OUTCOMES] {slug}")
             print(f"  outcomes array: {outcomes}")
             print(f"  prices array: {prices}")
+            print(f"  slug_teams: {slug_teams}")
 
-        for cfg in SPORTS_CONFIG:
-            team_0 = map_outcome_to_kalshi(outcomes[0], cfg['pm2k'], cfg['sport'])
-            team_1 = map_outcome_to_kalshi(outcomes[1], cfg['pm2k'], cfg['sport'])
+        # =====================================================================
+        # CRITICAL: When slug tells us the sport, ONLY process that sport!
+        # Otherwise NHL mascot matching ("Sharks" -> SJ) hijacks CBB markets.
+        # =====================================================================
+        configs_to_try = SPORTS_CONFIG
+        if slug_sport:
+            # Filter to only the sport detected from slug
+            configs_to_try = [cfg for cfg in SPORTS_CONFIG if cfg['sport'] == slug_sport]
+            if not configs_to_try:
+                # Fallback if sport not in config (shouldn't happen)
+                configs_to_try = SPORTS_CONFIG
+
+        for cfg in configs_to_try:
+            team_0 = None
+            team_1 = None
+
+            # =====================================================================
+            # CBB: ALWAYS use slug extraction - mascot names are unreliable!
+            # Mascot matching causes bugs like:
+            #   "Harvard Crimson" -> BAMA (because "crimson" matches "crimson tide")
+            #   "Brown Bears" -> BAY (because "bears" matches Baylor)
+            #   "Sharks" -> SJ (NHL San Jose instead of CBB LIU)
+            # =====================================================================
+            if cfg['sport'] == 'cbb' and slug_teams:
+                raw_0, raw_1 = slug_teams[0], slug_teams[1]
+                # Apply SLUG_TO_KALSHI mapping to normalize codes
+                team_0 = SLUG_TO_KALSHI.get(raw_0, raw_0)
+                team_1 = SLUG_TO_KALSHI.get(raw_1, raw_1)
+                if debug:
+                    if raw_0 != team_0 or raw_1 != team_1:
+                        print(f"[CBB SLUG->KALSHI] {slug}: {raw_0}->{team_0}, {raw_1}->{team_1}")
+                    else:
+                        print(f"[CBB SLUG] {slug}: {team_0} vs {team_1}")
+            elif cfg['sport'] in ['nba', 'nhl'] and slug_teams:
+                # NBA/NHL: Also prefer slug extraction when available
+                raw_0, raw_1 = slug_teams[0], slug_teams[1]
+                team_0 = SLUG_TO_KALSHI.get(raw_0, raw_0)
+                team_1 = SLUG_TO_KALSHI.get(raw_1, raw_1)
+                if debug:
+                    print(f"[{cfg['sport'].upper()} SLUG] {slug}: {team_0} vs {team_1}")
+            else:
+                # Fallback: Use mascot matching (only when no slug teams)
+                team_0 = map_outcome_to_kalshi(outcomes[0], cfg['pm2k'], cfg['sport'])
+                team_1 = map_outcome_to_kalshi(outcomes[1], cfg['pm2k'], cfg['sport'])
 
             if is_debug_market and debug and cfg['sport'] == 'nhl':
                 print(f"  [{cfg['sport']}] '{outcomes[0]}' -> '{team_0}'")
                 print(f"  [{cfg['sport']}] '{outcomes[1]}' -> '{team_1}'")
-
-            # For CBB: If standard matching fails but we extracted from slug, use those
-            if cfg['sport'] == 'cbb' and slug_sport == 'cbb' and slug_teams:
-                if not team_0 or not team_1:
-                    # Use slug-extracted teams if they look valid
-                    if 2 <= len(slug_teams[0]) <= 8 and 2 <= len(slug_teams[1]) <= 8:
-                        # Apply SLUG_TO_KALSHI mapping to normalize codes
-                        raw_0, raw_1 = slug_teams[0], slug_teams[1]
-                        team_0 = SLUG_TO_KALSHI.get(raw_0, raw_0)
-                        team_1 = SLUG_TO_KALSHI.get(raw_1, raw_1)
-                        if debug:
-                            if raw_0 != team_0 or raw_1 != team_1:
-                                print(f"[CBB SLUG] {slug}: {raw_0}->{team_0}, {raw_1}->{team_1}")
-                            else:
-                                print(f"[CBB SLUG] Extracted from slug {slug}: {team_0} vs {team_1}")
 
             market_info['tried_sports'].append({
                 'sport': cfg['sport'],
@@ -4332,6 +5322,19 @@ async def run_executor():
                         print(f"\n[.] All {len(exec_arbs)} arbs already traded - skipping")
                         await asyncio.sleep(1.0)
                         continue
+                elif exec_arbs:
+                    # Have arbs but cooldown hasn't passed
+                    cooldown_remaining = COOLDOWN_SECONDS - (time.time() - last_trade_time)
+                    for a in exec_arbs:
+                        log_skipped_arb(a, 'cooldown', f"{cooldown_remaining:.0f}s remaining in cooldown")
+                    print(f"\n[.] Cooldown: {cooldown_remaining:.0f}s remaining")
+                    await asyncio.sleep(1.0)
+                    continue
+                else:
+                    # No executable arbs
+                    print(f"\n[.] No executable arbs")
+                    await asyncio.sleep(1.0)
+                    continue
             else:
                 # In paper unlimited, skip the execution block below
                 await asyncio.sleep(1.0)
@@ -4350,209 +5353,230 @@ async def run_executor():
                 await asyncio.sleep(1.0)
                 continue
 
-                print(f"\n[!] BEST ARB: {best.sport} {best.game} {best.team}")
-                print(f"    Direction: {best.direction}")
-                print(f"    K: {best.k_bid}/{best.k_ask}c | PM: {best.pm_bid}/{best.pm_ask}c")
-                print(f"    Size: {best.size} | Profit: ${best.profit:.2f} | ROI: {best.roi:.1f}%")
-                print(f"    PM Slug: {best.pm_slug} | Outcome Index: {best.pm_outcome_index}")
+            # =========================================================
+            # HEDGE PROTECTION: Kill Switch Check
+            # =========================================================
+            if check_kill_switch():
+                print("[BLOCKED] Trading halted by kill switch")
+                await asyncio.sleep(5.0)
+                continue
 
-                # Determine Kalshi order params
-                if best.direction == 'BUY_PM_SELL_K':
-                    k_action = 'sell'
-                    k_price = best.k_bid
-                else:
-                    k_action = 'buy'
-                    k_price = best.k_ask
+            # =========================================================
+            # HEDGE PROTECTION: Pre-Trade Validation
+            # =========================================================
+            is_valid, reason, fresh_prices = await validate_pre_trade(
+                session, kalshi_api, pm_api, best
+            )
 
-                # Get position BEFORE order
-                pre_position = await kalshi_api.get_position_for_ticker(session, best.kalshi_ticker)
-                print(f"\n[>>] PRE-TRADE: Kalshi Position = {pre_position}")
+            if not is_valid:
+                print(f"[ABORT] Pre-trade validation failed: {reason}")
+                log_skipped_arb(best, 'validation_failed', reason)
+                await asyncio.sleep(1.0)
+                continue
 
-                # =============================================================
-                # BULLETPROOF ORDER BOOK SWEEP (Kalshi side - same as v6)
-                # =============================================================
-                MAX_PRICE_LEVELS = 10
-                actual_fill = 0
-                fill_price = k_price
-                k_result = {}
-                placed_order_ids = []
-                sweep_break_reason = None  # Track why sweep ended
-                final_adjusted_roi = 0
+            print(f"\n[!] BEST ARB: {best.sport} {best.game} {best.team}")
+            print(f"    Direction: {best.direction}")
+            print(f"    K: {best.k_bid}/{best.k_ask}c | PM: {best.pm_bid}/{best.pm_ask}c")
+            print(f"    Size: {best.size} | Profit: ${best.profit:.2f} | ROI: {best.roi:.1f}%")
+            print(f"    PM Slug: {best.pm_slug} | Outcome Index: {best.pm_outcome_index}")
 
-                try:
-                    for price_offset in range(MAX_PRICE_LEVELS + 1):
-                        if k_action == 'buy':
-                            try_price = k_price + price_offset
-                        else:
-                            try_price = k_price - price_offset
+            # Determine Kalshi order params
+            if best.direction == 'BUY_PM_SELL_K':
+                k_action = 'sell'
+                k_price = best.k_bid
+            else:
+                k_action = 'buy'
+                k_price = best.k_ask
 
-                        if try_price < 1 or try_price > 99:
-                            print(f"   [X] Price {try_price}c out of bounds, stopping sweep")
-                            sweep_break_reason = 'price_bounds'
-                            break
+            # Get position BEFORE order
+            pre_position = await kalshi_api.get_position_for_ticker(session, best.kalshi_ticker)
+            print(f"\n[>>] PRE-TRADE: Kalshi Position = {pre_position}")
 
-                        if k_action == 'buy':
-                            adjusted_profit = best.profit - (price_offset * best.size / 100)
-                            adjusted_capital = best.size * (try_price / 100)
-                        else:
-                            adjusted_profit = best.profit - (price_offset * best.size / 100)
-                            adjusted_capital = best.size * ((100 - try_price) / 100)
+            # =============================================================
+            # BULLETPROOF ORDER BOOK SWEEP (Kalshi side - same as v6)
+            # =============================================================
+            MAX_PRICE_LEVELS = 10
+            actual_fill = 0
+            fill_price = k_price
+            k_result = {}
+            placed_order_ids = []
+            sweep_break_reason = None  # Track why sweep ended
+            final_adjusted_roi = 0
 
-                        adjusted_roi = (adjusted_profit / adjusted_capital * 100) if adjusted_capital > 0 else 0
-                        final_adjusted_roi = adjusted_roi
+            try:
+                for price_offset in range(MAX_PRICE_LEVELS + 1):
+                    if k_action == 'buy':
+                        try_price = k_price + price_offset
+                    else:
+                        try_price = k_price - price_offset
 
-                        if adjusted_roi < MIN_SWEEP_ROI:
-                            print(f"   [X] ROI {adjusted_roi:.1f}% < {MIN_SWEEP_ROI}% at {try_price}c, stopping sweep")
-                            sweep_break_reason = 'roi_too_low'
-                            break
+                    if try_price < 1 or try_price > 99:
+                        print(f"   [X] Price {try_price}c out of bounds, stopping sweep")
+                        sweep_break_reason = 'price_bounds'
+                        break
 
-                        print(f"[>>] SWEEP {price_offset}: {k_action} {best.size} YES @ {try_price}c (ROI: {adjusted_roi:.1f}%)")
-                        k_result = await kalshi_api.place_order(
-                            session, best.kalshi_ticker, 'yes', k_action, best.size, try_price
-                        )
+                    if k_action == 'buy':
+                        adjusted_profit = best.profit - (price_offset * best.size / 100)
+                        adjusted_capital = best.size * (try_price / 100)
+                    else:
+                        adjusted_profit = best.profit - (price_offset * best.size / 100)
+                        adjusted_capital = best.size * ((100 - try_price) / 100)
 
-                        api_fill_count = k_result.get('fill_count', 0)
-                        order_id = k_result.get('order_id')
+                    adjusted_roi = (adjusted_profit / adjusted_capital * 100) if adjusted_capital > 0 else 0
+                    final_adjusted_roi = adjusted_roi
 
-                        if order_id:
-                            placed_order_ids.append(order_id)
-                            print(f"   [ORDER PLACED] {order_id[:12]}...")
+                    if adjusted_roi < MIN_SWEEP_ROI:
+                        print(f"   [X] ROI {adjusted_roi:.1f}% < {MIN_SWEEP_ROI}% at {try_price}c, stopping sweep")
+                        sweep_break_reason = 'roi_too_low'
+                        break
 
-                        if api_fill_count > 0:
-                            actual_fill = api_fill_count
-                            fill_price = try_price
-                            print(f"   [OK] Got fill at {try_price}c!")
-                            break
-                        else:
-                            if order_id:
-                                cancelled = await kalshi_api.cancel_order(session, order_id)
-                                if not cancelled:
-                                    print(f"   [!] WARNING: Cancel may have failed for {order_id[:12]}")
-                            print(f"   [.] No fill at {try_price}c, trying next level...")
-                            await asyncio.sleep(0.1)
-
-                finally:
-                    # CRITICAL CLEANUP: Cancel ALL Kalshi orders for this ticker
-                    print(f"\n[SWEEP CLEANUP] Ensuring no resting Kalshi orders for {best.kalshi_ticker}...")
-                    cleanup_count = await kalshi_api.cancel_all_orders_for_ticker(session, best.kalshi_ticker)
-                    if cleanup_count > 0:
-                        print(f"[SWEEP CLEANUP] Cancelled {cleanup_count} resting orders")
-
-                # Verify with position check
-                await asyncio.sleep(0.3)
-                post_position = await kalshi_api.get_position_for_ticker(session, best.kalshi_ticker)
-                print(f"[>>] POST-TRADE: Kalshi Position = {post_position}")
-
-                position_change = 0
-                if pre_position is not None and post_position is not None:
-                    position_change = abs(post_position - pre_position)
-
-                if actual_fill == 0 and position_change > 0:
-                    actual_fill = position_change
-                    print(f"[>>] Position changed by {position_change}, using as fill count")
-
-                print(f"[>>] Final: API fill={k_result.get('fill_count', 0)}, Position change={position_change}, Using={actual_fill}")
-
-                # =============================================================
-                # EXECUTE PM US SIDE (replaces partner webhook)
-                # =============================================================
-                if actual_fill > 0:
-                    print(f"\n[OK] KALSHI FILLED: {actual_fill} contracts @ {fill_price}c")
-
-                    # Compute PM US execution parameters
-                    pm_intent, pm_price = get_pm_execution_params(best)
-                    intent_names = {1: 'BUY_YES', 2: 'SELL_YES', 3: 'BUY_NO', 4: 'SELL_NO'}
-
-                    print(f"[>>] Executing PM US: {intent_names[pm_intent]} {actual_fill} @ ${pm_price:.2f} on {best.pm_slug}")
-
-                    pm_result = await pm_api.place_order(
-                        session,
-                        market_slug=best.pm_slug,
-                        intent=pm_intent,
-                        price=pm_price,
-                        quantity=actual_fill,
-                        tif=3,   # IOC
-                        sync=True
+                    print(f"[>>] SWEEP {price_offset}: {k_action} {best.size} YES @ {try_price}c (ROI: {adjusted_roi:.1f}%)")
+                    k_result = await kalshi_api.place_order(
+                        session, best.kalshi_ticker, 'yes', k_action, best.size, try_price
                     )
 
-                    if pm_result.get('success'):
-                        pm_fill = pm_result.get('fill_count', 0)
-                        pm_fill_price = pm_result.get('fill_price')
+                    api_fill_count = k_result.get('fill_count', 0)
+                    order_id = k_result.get('order_id')
 
-                        print(f"[OK] PM US FILLED: {pm_fill} contracts @ ${pm_fill_price:.2f}" if pm_fill_price else f"[OK] PM US FILLED: {pm_fill} contracts")
+                    if order_id:
+                        placed_order_ids.append(order_id)
+                        print(f"   [ORDER PLACED] {order_id[:12]}...")
 
-                        if pm_fill < actual_fill:
-                            unfilled = actual_fill - pm_fill
-                            print(f"[!] PARTIAL PM FILL: {unfilled} contracts UNHEDGED on Kalshi")
-
-                        total_trades += 1
-                        SCAN_STATS['total_executed'] += 1
-                        price_diff = abs(fill_price - k_price)
-                        actual_profit = best.profit - (price_diff * actual_fill / 100)
-                        total_profit += actual_profit
-                        print(f"[$] Trade #{total_trades} | +${actual_profit:.2f} | Total: ${total_profit:.2f}")
-
-                        # Track paper stats
-                        if EXECUTION_MODE == ExecutionMode.PAPER:
-                            PAPER_STATS['total_arbs_executed'] += 1
-                            PAPER_STATS['total_theoretical_profit'] += actual_profit
-                            PAPER_STATS['total_contracts'] += actual_fill
-
-                        if pm_fill < actual_fill:
-                            log_trade(best, k_result, pm_result, 'PARTIAL_HEDGE')
-                            # Still mark as traded to avoid retrying
-                            TRADED_GAMES.add(best.game)
-                            if best.pm_slug:
-                                TRADED_GAMES.add(best.pm_slug)
-                            print(f"[POSITION TRACKING] Added {best.game} to traded games (partial hedge)")
-                            print(f"[!!!] PARTIALLY UNHEDGED - {actual_fill - pm_fill} contracts on {best.kalshi_ticker}")
-                            if EXECUTION_MODE == ExecutionMode.PAPER and PAPER_NO_LIMITS:
-                                print(f"[PAPER] Continuing despite partial hedge (no-limits mode)")
-                            else:
-                                print(f"[STOP] Bot stopping due to PARTIALLY UNHEDGED position")
-                                raise SystemExit("PARTIALLY UNHEDGED POSITION - Bot stopped for safety")
-                        else:
-                            log_trade(best, k_result, pm_result, 'SUCCESS')
-                            # Mark game as traded to prevent re-trading
-                            TRADED_GAMES.add(best.game)
-                            if best.pm_slug:
-                                TRADED_GAMES.add(best.pm_slug)
-                            print(f"[POSITION TRACKING] Added {best.game} to traded games ({len(TRADED_GAMES)} total)")
+                    if api_fill_count > 0:
+                        actual_fill = api_fill_count
+                        fill_price = try_price
+                        print(f"   [OK] Got fill at {try_price}c!")
+                        break
                     else:
-                        print(f"[X] PM US FAILED: {pm_result.get('error')}")
-                        print(f"[!!!] UNHEDGED POSITION - CLOSE MANUALLY: {actual_fill} contracts on {best.kalshi_ticker}")
-                        # Still mark as traded to avoid retrying on restart
-                        TRADED_GAMES.add(best.game)
-                        if best.pm_slug:
-                            TRADED_GAMES.add(best.pm_slug)
-                        print(f"[POSITION TRACKING] Added {best.game} to traded games (unhedged)")
-                        log_trade(best, k_result, pm_result, 'UNHEDGED')
-                        if EXECUTION_MODE == ExecutionMode.PAPER and PAPER_NO_LIMITS:
-                            print(f"[PAPER] Continuing despite unhedged position (no-limits mode)")
-                        else:
-                            print(f"[STOP] Bot stopping due to UNHEDGED position - manual intervention required")
-                            raise SystemExit("UNHEDGED POSITION - Bot stopped for safety")
+                        if order_id:
+                            cancelled = await kalshi_api.cancel_order(session, order_id)
+                            if not cancelled:
+                                print(f"   [!] WARNING: Cancel may have failed for {order_id[:12]}")
+                        print(f"   [.] No fill at {try_price}c, trying next level...")
+                        await asyncio.sleep(0.1)
 
-                    last_trade_time = time.time()
+            finally:
+                # CRITICAL CLEANUP: Cancel ALL Kalshi orders for this ticker
+                print(f"\n[SWEEP CLEANUP] Ensuring no resting Kalshi orders for {best.kalshi_ticker}...")
+                cleanup_count = await kalshi_api.cancel_all_orders_for_ticker(session, best.kalshi_ticker)
+                if cleanup_count > 0:
+                    print(f"[SWEEP CLEANUP] Cancelled {cleanup_count} resting orders")
+
+            # Verify with position check
+            await asyncio.sleep(0.3)
+            post_position = await kalshi_api.get_position_for_ticker(session, best.kalshi_ticker)
+            print(f"[>>] POST-TRADE: Kalshi Position = {post_position}")
+
+            position_change = 0
+            if pre_position is not None and post_position is not None:
+                position_change = abs(post_position - pre_position)
+
+            if actual_fill == 0 and position_change > 0:
+                actual_fill = position_change
+                print(f"[>>] Position changed by {position_change}, using as fill count")
+
+            print(f"[>>] Final: API fill={k_result.get('fill_count', 0)}, Position change={position_change}, Using={actual_fill}")
+
+            # =============================================================
+            # EXECUTE PM US SIDE (replaces partner webhook)
+            # =============================================================
+            if actual_fill > 0:
+                print(f"\n[OK] KALSHI FILLED: {actual_fill} contracts @ {fill_price}c")
+
+                # Compute PM US execution parameters
+                pm_intent, pm_price = get_pm_execution_params(best)
+                intent_names = {1: 'BUY_YES', 2: 'SELL_YES', 3: 'BUY_NO', 4: 'SELL_NO'}
+
+                print(f"[>>] Executing PM US: {intent_names[pm_intent]} {actual_fill} @ ${pm_price:.2f} on {best.pm_slug}")
+
+                pm_result = await pm_api.place_order(
+                    session,
+                    market_slug=best.pm_slug,
+                    intent=pm_intent,
+                    price=pm_price,
+                    quantity=actual_fill,
+                    tif=3,   # IOC
+                    sync=True
+                )
+
+                # =========================================================
+                # HEDGE PROTECTION: Reconciliation with Recovery
+                # =========================================================
+                hedge_state = await reconcile_hedge(
+                    session, kalshi_api, pm_api, best,
+                    k_result, pm_result, actual_fill
+                )
+
+                pm_fill = hedge_state.pm_filled
+                pm_fill_price = pm_result.get('fill_price')
+
+                if pm_fill > 0:
+                    print(f"[OK] PM US FILLED: {pm_fill} contracts" + (f" @ ${pm_fill_price:.2f}" if pm_fill_price else ""))
+
+                # Calculate actual profit (accounting for any recovery slippage)
+                price_diff = abs(fill_price - k_price)
+                slippage_cost = hedge_state.recovery_slippage * hedge_state.pm_filled / 100 if hedge_state.recovery_slippage else 0
+                actual_profit = best.profit - (price_diff * actual_fill / 100) - slippage_cost
+
+                if hedge_state.is_hedged:
+                    # Successfully hedged (possibly with recovery)
+                    total_trades += 1
+                    SCAN_STATS['total_executed'] += 1
+                    total_profit += actual_profit
+
+                    if hedge_state.recovery_slippage > 0:
+                        print(f"[$] Trade #{total_trades} | +${actual_profit:.2f} (reduced due to {hedge_state.recovery_slippage}c recovery slippage)")
+                        log_trade(best, k_result, pm_result, 'RECOVERED')
+                    else:
+                        print(f"[$] Trade #{total_trades} | +${actual_profit:.2f} | Total: ${total_profit:.2f}")
+                        log_trade(best, k_result, pm_result, 'SUCCESS')
+
+                    # Track paper stats
+                    if EXECUTION_MODE == ExecutionMode.PAPER:
+                        PAPER_STATS['total_arbs_executed'] += 1
+                        PAPER_STATS['total_theoretical_profit'] += actual_profit
+                        PAPER_STATS['total_contracts'] += actual_fill
+
+                    # Mark game as traded
+                    TRADED_GAMES.add(best.game)
+                    if best.pm_slug:
+                        TRADED_GAMES.add(best.pm_slug)
+                    print(f"[POSITION TRACKING] Added {best.game} to traded games ({len(TRADED_GAMES)} total)")
 
                 else:
-                    # Log the skipped arb with appropriate reason
-                    if sweep_break_reason == 'roi_too_low':
-                        log_skipped_arb(best, 'sweep_roi_too_low', f"ROI dropped to {final_adjusted_roi:.1f}% during sweep")
-                        print(f"\n[X] NO FILL - ROI dropped to {final_adjusted_roi:.1f}% during sweep")
-                    else:
-                        log_skipped_arb(best, 'no_fill', f"No fill after sweeping {MAX_PRICE_LEVELS} price levels")
-                        print(f"\n[X] NO FILL after sweeping {MAX_PRICE_LEVELS} price levels")
-                    log_trade(best, k_result, {}, 'NO_FILL')
+                    # UNHEDGED - recovery failed
+                    unhedged_qty = hedge_state.kalshi_filled - hedge_state.pm_filled
+                    print(f"[!!!] UNHEDGED POSITION: {unhedged_qty} contracts on {best.kalshi_ticker}")
 
-            elif exec_arbs:
-                cooldown_remaining = COOLDOWN_SECONDS - (time.time() - last_trade_time)
-                # Log all skipped due to cooldown
-                for a in exec_arbs:
-                    log_skipped_arb(a, 'cooldown', f"{cooldown_remaining:.0f}s remaining in cooldown")
-                print(f"\n[.] Cooldown: {cooldown_remaining:.0f}s remaining")
+                    log_trade(best, k_result, pm_result, 'UNHEDGED')
+
+                    # Mark as traded to avoid retrying
+                    TRADED_GAMES.add(best.game)
+                    if best.pm_slug:
+                        TRADED_GAMES.add(best.pm_slug)
+
+                    if EXECUTION_MODE == ExecutionMode.PAPER and PAPER_NO_LIMITS:
+                        print(f"[PAPER] Continuing despite unhedged position (no-limits mode)")
+                    elif check_kill_switch():
+                        # Kill switch was activated by reconciliation
+                        print(f"[STOP] Bot stopping due to kill switch")
+                        raise SystemExit("KILL SWITCH ACTIVATED - Manual intervention required")
+                    else:
+                        # Exposure under limit, continue with warning
+                        exposure = unhedged_qty * hedge_state.kalshi_price
+                        print(f"[WARNING] Exposure ${exposure/100:.2f} under limit, continuing...")
+
+                last_trade_time = time.time()
+
             else:
-                print(f"\n[.] No executable arbs")
+                # Log the skipped arb with appropriate reason
+                if sweep_break_reason == 'roi_too_low':
+                    log_skipped_arb(best, 'sweep_roi_too_low', f"ROI dropped to {final_adjusted_roi:.1f}% during sweep")
+                    print(f"\n[X] NO FILL - ROI dropped to {final_adjusted_roi:.1f}% during sweep")
+                else:
+                    log_skipped_arb(best, 'no_fill', f"No fill after sweeping {MAX_PRICE_LEVELS} price levels")
+                    print(f"\n[X] NO FILL after sweeping {MAX_PRICE_LEVELS} price levels")
+                log_trade(best, k_result, {}, 'NO_FILL')
 
             await asyncio.sleep(1.0)
 
@@ -4584,6 +5608,14 @@ if __name__ == "__main__":
                         help='Show detailed market matching analysis and exit (no trading)')
     parser.add_argument('--verify-games', action='store_true', dest='verify_games',
                         help='Search Kalshi by team names to find missing mappings and exit')
+    parser.add_argument('--recover', action='store_true',
+                        help='Enter recovery mode: show positions, check for mismatches')
+    parser.add_argument('--force', action='store_true',
+                        help='Force override kill switch (for manual recovery only)')
+    parser.add_argument('--preflight', action='store_true',
+                        help='Run preflight checks and exit (validates system before live trading)')
+    parser.add_argument('--skip-preflight', action='store_true', dest='skip_preflight',
+                        help='Skip preflight checks in live mode (NOT RECOMMENDED)')
     args = parser.parse_args()
 
     # Override execution mode if specified
@@ -4660,6 +5692,45 @@ if __name__ == "__main__":
         asyncio.run(run_verify_games())
         sys.exit(0)
 
+    # Handle --preflight flag (run checks and exit)
+    if args.preflight:
+        async def preflight_main():
+            pm_api = PolymarketUSAPI(PM_US_API_KEY, PM_US_SECRET_KEY)
+            kalshi_api = KalshiAPI(KALSHI_API_KEY, KALSHI_PRIVATE_KEY)
+            async with aiohttp.ClientSession() as session:
+                passed, results = await run_preflight_checks(session, kalshi_api, pm_api)
+                return passed
+        passed = asyncio.run(preflight_main())
+        sys.exit(0 if passed else 1)
+
+    # Handle --recover flag (recovery mode)
+    if args.recover:
+        print("\n[ENTERING RECOVERY MODE]")
+        async def recovery_main():
+            pm_api = PolymarketUSAPI(PM_US_API_KEY, PM_US_SECRET_KEY)
+            kalshi_api = KalshiAPI(KALSHI_API_KEY, KALSHI_PRIVATE_KEY)
+            async with aiohttp.ClientSession() as session:
+                await run_recovery_mode(session, kalshi_api, pm_api)
+        asyncio.run(recovery_main())
+        sys.exit(0)
+
+    # Handle --force flag (reset kill switch)
+    if args.force:
+        HEDGE_KILL_SWITCH_ACTIVE = False
+        print("[FORCE] Kill switch overridden - trading enabled")
+        print("[WARNING] Use only for manual recovery - ensure positions are balanced!")
+
+    # Check for unhedged positions on startup
+    unhedged = load_unhedged_positions()
+    if unhedged and not args.force:
+        print("\n[!!! WARNING !!!] Unhedged positions detected:")
+        for u in unhedged[-3:]:  # Show last 3
+            print(f"  {u['timestamp']}: {u['kalshi_ticker']} - {u['unhedged_qty']} unhedged")
+        print("\nRun with --recover to review positions")
+        print("Run with --force to override and continue trading")
+        print("Exiting for safety...")
+        sys.exit(1)
+
     print("\n" + "="*70)
     print("ARB EXECUTOR v7 - DIRECT US EXECUTION")
     print("Kalshi + Polymarket US | No partner webhook")
@@ -4683,12 +5754,48 @@ if __name__ == "__main__":
         print("  python arb_executor_v7.py --start")
         print("  python arb_executor_v7.py --start --paper         # Paper mode, no limits (default)")
         print("  python arb_executor_v7.py --start --paper --with-limits  # Paper with capital limits")
-        print("  python arb_executor_v7.py --start --live")
+        print("  python arb_executor_v7.py --start --live          # Live mode (requires preflight)")
         print("  python arb_executor_v7.py --start --clear         # Clear old trades first")
         print("  python arb_executor_v7.py --start --debug         # Extra debug logging")
+        print("\nValidation & Recovery:")
+        print("  python arb_executor_v7.py --preflight             # Run preflight checks")
+        print("  python arb_executor_v7.py --recover               # Recovery mode for unhedged positions")
         print("  python arb_executor_v7.py --discover              # Find Kalshi series tickers")
         print("=" * 60)
         sys.exit(0)
+
+    # =========================================================================
+    # LIVE MODE: Require preflight checks before trading real money
+    # =========================================================================
+    if EXECUTION_MODE == ExecutionMode.LIVE and not args.skip_preflight:
+        print("\n[LIVE MODE] Running mandatory preflight checks...")
+        async def live_preflight():
+            pm_api = PolymarketUSAPI(PM_US_API_KEY, PM_US_SECRET_KEY)
+            kalshi_api = KalshiAPI(KALSHI_API_KEY, KALSHI_PRIVATE_KEY)
+            async with aiohttp.ClientSession() as session:
+                passed, results = await run_preflight_checks(session, kalshi_api, pm_api)
+                return passed
+
+        preflight_passed = asyncio.run(live_preflight())
+
+        if not preflight_passed:
+            print("\n" + "="*70)
+            print("[BLOCKED] LIVE TRADING NOT ALLOWED - Preflight checks failed!")
+            print("="*70)
+            print("\nResolve all blocking issues above before live trading.")
+            print("To run preflight checks only:  python arb_executor_v7.py --preflight")
+            print("To skip preflight (DANGER):    python arb_executor_v7.py --start --live --skip-preflight")
+            print("\nSwitching to PAPER mode for safety...")
+            EXECUTION_MODE = ExecutionMode.PAPER
+            PAPER_NO_LIMITS = True
+            print("[MODE CHANGED] Now running in PAPER mode with no limits")
+        else:
+            print("\n[LIVE MODE APPROVED] All preflight checks passed - proceeding with live trading")
+
+    if args.skip_preflight and EXECUTION_MODE == ExecutionMode.LIVE:
+        print("\n" + "!"*70)
+        print("[WARNING] PREFLIGHT CHECKS SKIPPED - LIVE TRADING AT YOUR OWN RISK!")
+        print("!"*70 + "\n")
 
     # Reload traded games now that EXECUTION_MODE may have changed
     if EXECUTION_MODE == ExecutionMode.LIVE:

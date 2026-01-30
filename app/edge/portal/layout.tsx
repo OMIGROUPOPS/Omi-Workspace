@@ -112,7 +112,7 @@ const NAV_SECTIONS: NavSection[] = [
 
 function Logo() {
   return (
-    <Link href="/edge/portal/sports" className="flex items-center gap-2.5">
+    <a href="/edge/portal/sports" className="flex items-center gap-2.5 cursor-pointer">
       <div className="w-7 h-7 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded flex items-center justify-center flex-shrink-0">
         <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -124,7 +124,7 @@ function Logo() {
         </span>
         <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-widest leading-tight">Terminal</span>
       </div>
-    </Link>
+    </a>
   );
 }
 

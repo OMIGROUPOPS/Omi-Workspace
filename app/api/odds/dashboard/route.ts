@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { calculateGameCEQ, type ExtendedOddsSnapshot, type GameCEQ, type GameContextData, type TeamStatsData } from '@/lib/edge/engine/edgescout';
 import { calculateQuickEdge } from '@/lib/edge/engine/edge-calculator';
+import { calculateTwoWayEV } from '@/lib/edge/utils/odds-math';
 
 const ODDS_API_KEY = process.env.ODDS_API_KEY || '';
 const ODDS_API_BASE = 'https://api.the-odds-api.com/v4';
@@ -397,6 +398,52 @@ function processGame(
     );
   }
 
+  // Calculate EV for edge validation - edge only valid if EV is not negative
+  // Check all markets and see if any have valid edge (CEQ >= 56 AND EV >= 0)
+  let hasValidEdge = false;
+
+  if (ceqData) {
+    // Check spreads
+    if (ceqData.spreads?.home?.ceq !== undefined && ceqData.spreads.home.ceq >= 56) {
+      const ev = consensus.spreads?.homePrice && consensus.spreads?.awayPrice
+        ? calculateTwoWayEV(consensus.spreads.homePrice, consensus.spreads.awayPrice)
+        : undefined;
+      if (ev === undefined || ev >= 0) hasValidEdge = true;
+    }
+    if (!hasValidEdge && ceqData.spreads?.away?.ceq !== undefined && ceqData.spreads.away.ceq >= 56) {
+      const ev = consensus.spreads?.awayPrice && consensus.spreads?.homePrice
+        ? calculateTwoWayEV(consensus.spreads.awayPrice, consensus.spreads.homePrice)
+        : undefined;
+      if (ev === undefined || ev >= 0) hasValidEdge = true;
+    }
+    // Check h2h
+    if (!hasValidEdge && ceqData.h2h?.home?.ceq !== undefined && ceqData.h2h.home.ceq >= 56) {
+      const ev = consensus.h2h?.homePrice && consensus.h2h?.awayPrice
+        ? calculateTwoWayEV(consensus.h2h.homePrice, consensus.h2h.awayPrice)
+        : undefined;
+      if (ev === undefined || ev >= 0) hasValidEdge = true;
+    }
+    if (!hasValidEdge && ceqData.h2h?.away?.ceq !== undefined && ceqData.h2h.away.ceq >= 56) {
+      const ev = consensus.h2h?.awayPrice && consensus.h2h?.homePrice
+        ? calculateTwoWayEV(consensus.h2h.awayPrice, consensus.h2h.homePrice)
+        : undefined;
+      if (ev === undefined || ev >= 0) hasValidEdge = true;
+    }
+    // Check totals
+    if (!hasValidEdge && ceqData.totals?.over?.ceq !== undefined && ceqData.totals.over.ceq >= 56) {
+      const ev = consensus.totals?.overPrice && consensus.totals?.underPrice
+        ? calculateTwoWayEV(consensus.totals.overPrice, consensus.totals.underPrice)
+        : undefined;
+      if (ev === undefined || ev >= 0) hasValidEdge = true;
+    }
+    if (!hasValidEdge && ceqData.totals?.under?.ceq !== undefined && ceqData.totals.under.ceq >= 56) {
+      const ev = consensus.totals?.underPrice && consensus.totals?.overPrice
+        ? calculateTwoWayEV(consensus.totals.underPrice, consensus.totals.overPrice)
+        : undefined;
+      if (ev === undefined || ev >= 0) hasValidEdge = true;
+    }
+  }
+
   return {
     id: game.id,
     sportKey: game.sport_key,
@@ -411,6 +458,7 @@ function processGame(
     calculatedEdge: edgeData,
     ceq: ceqData,
     scores: scores[game.id] || null,
+    hasValidEdge, // True only if CEQ >= 56 AND EV >= 0
   };
 }
 
@@ -465,7 +513,8 @@ export async function GET() {
       if (games.length > 0) {
         allGames[sportKey] = games;
         totalGames += games.length;
-        totalEdges += games.filter((g: any) => g.overall_confidence && g.overall_confidence !== 'PASS').length;
+        // Count only valid edges: CEQ >= 56 AND EV >= 0
+        totalEdges += games.filter((g: any) => g.hasValidEdge === true).length;
       }
     }
 

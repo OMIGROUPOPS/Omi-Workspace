@@ -73,9 +73,13 @@ function OddsCell({ line, price, ev, ceq, topDrivers }: { line?: number | string
   const [showTooltip, setShowTooltip] = useState(false);
   const hasEV = ev !== undefined && Math.abs(ev) >= 0.5;
   const hasCEQ = ceq !== undefined && ceq !== null;
-  const hasEdge = hasCEQ && ceq >= 56;
+  const evIsPositive = ev !== undefined && ev >= 0; // EV must be non-negative for edge
 
-  // CEQ-based styling for edges (takes priority over EV)
+  // CRITICAL: Only show edge when BOTH CEQ >= 56% AND EV is not negative
+  // A high CEQ with negative EV is NOT an edge - it's a trap
+  const hasEdge = hasCEQ && ceq >= 56 && evIsPositive;
+
+  // Edge styling only when we have a real edge (CEQ high + EV non-negative)
   const getCellStyles = () => {
     if (hasEdge) {
       if (ceq >= 86) return 'bg-purple-500/20 border-2 border-purple-500/50 ring-1 ring-purple-500/30';
@@ -88,7 +92,7 @@ function OddsCell({ line, price, ev, ceq, topDrivers }: { line?: number | string
   };
 
   const evColor = hasEV ? getEVColor(ev) : 'text-zinc-500';
-  const confidence = hasCEQ
+  const confidence = (hasCEQ && evIsPositive)
     ? ceq >= 86 ? 'RARE' : ceq >= 76 ? 'STRONG' : ceq >= 66 ? 'EDGE' : ceq >= 56 ? 'WATCH' : 'PASS'
     : null;
 
@@ -160,9 +164,12 @@ function MoneylineCell({ price, ev, ceq, topDrivers }: { price: number; ev?: num
   const [showTooltip, setShowTooltip] = useState(false);
   const hasEV = ev !== undefined && Math.abs(ev) >= 0.5;
   const hasCEQ = ceq !== undefined && ceq !== null;
-  const hasEdge = hasCEQ && ceq >= 56;
+  const evIsPositive = ev !== undefined && ev >= 0; // EV must be non-negative for edge
 
-  // CEQ-based styling for edges (takes priority over EV)
+  // CRITICAL: Only show edge when BOTH CEQ >= 56% AND EV is not negative
+  const hasEdge = hasCEQ && ceq >= 56 && evIsPositive;
+
+  // Edge styling only when we have a real edge (CEQ high + EV non-negative)
   const getCellStyles = () => {
     if (hasEdge) {
       if (ceq >= 86) return 'bg-purple-500/20 border-2 border-purple-500/50 ring-1 ring-purple-500/30';
@@ -175,7 +182,7 @@ function MoneylineCell({ price, ev, ceq, topDrivers }: { price: number; ev?: num
   };
 
   const evColor = hasEV ? getEVColor(ev) : 'text-zinc-500';
-  const confidence = hasCEQ
+  const confidence = (hasCEQ && evIsPositive)
     ? ceq >= 86 ? 'RARE' : ceq >= 76 ? 'STRONG' : ceq >= 66 ? 'EDGE' : ceq >= 56 ? 'WATCH' : 'PASS'
     : null;
 
@@ -256,38 +263,74 @@ interface EdgeCandidate {
   confidence: string;
   side: string;
   market: string;
+  ev?: number;
 }
 
 function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number; context?: string; market?: string } | null {
-  // Show edge badge ONLY when CEQ >= 56% (actual edge exists)
+  // Show edge badge ONLY when CEQ >= 56% AND EV is not negative
   const ceq = game.ceq as GameCEQ | undefined;
   if (!ceq) return null;
 
-  // Collect all qualifying edges, then find the best
+  const consensus = game.consensus;
+
+  // Calculate EV for each market to verify it's not negative
+  // We need positive or neutral EV to consider it a real edge
+  const spreadHomeEV = consensus?.spreads?.homePrice && consensus?.spreads?.awayPrice
+    ? calculateTwoWayEV(consensus.spreads.homePrice, consensus.spreads.awayPrice, consensus.spreads.homePrice, consensus.spreads.awayPrice)
+    : undefined;
+  const spreadAwayEV = consensus?.spreads?.awayPrice && consensus?.spreads?.homePrice
+    ? calculateTwoWayEV(consensus.spreads.awayPrice, consensus.spreads.homePrice, consensus.spreads.awayPrice, consensus.spreads.homePrice)
+    : undefined;
+  const h2hHomeEV = consensus?.h2h?.homePrice && consensus?.h2h?.awayPrice
+    ? calculateTwoWayEV(consensus.h2h.homePrice, consensus.h2h.awayPrice, consensus.h2h.homePrice, consensus.h2h.awayPrice)
+    : undefined;
+  const h2hAwayEV = consensus?.h2h?.awayPrice && consensus?.h2h?.homePrice
+    ? calculateTwoWayEV(consensus.h2h.awayPrice, consensus.h2h.homePrice, consensus.h2h.awayPrice, consensus.h2h.homePrice)
+    : undefined;
+  const totalsOverEV = consensus?.totals?.overPrice && consensus?.totals?.underPrice
+    ? calculateTwoWayEV(consensus.totals.overPrice, consensus.totals.underPrice, consensus.totals.overPrice, consensus.totals.underPrice)
+    : undefined;
+  const totalsUnderEV = consensus?.totals?.underPrice && consensus?.totals?.overPrice
+    ? calculateTwoWayEV(consensus.totals.underPrice, consensus.totals.overPrice, consensus.totals.underPrice, consensus.totals.overPrice)
+    : undefined;
+
+  // Collect edges only when BOTH CEQ >= 56 AND EV >= 0
   const edges: EdgeCandidate[] = [];
 
-  // Check spreads
+  // Check spreads - require non-negative EV
   if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 56 && ceq.spreads.home.confidence) {
-    edges.push({ ceq: ceq.spreads.home.ceq, confidence: ceq.spreads.home.confidence, side: 'home', market: 'spread' });
+    if (spreadHomeEV === undefined || spreadHomeEV >= 0) {
+      edges.push({ ceq: ceq.spreads.home.ceq, confidence: ceq.spreads.home.confidence, side: 'home', market: 'spread', ev: spreadHomeEV });
+    }
   }
   if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 56 && ceq.spreads.away.confidence) {
-    edges.push({ ceq: ceq.spreads.away.ceq, confidence: ceq.spreads.away.confidence, side: 'away', market: 'spread' });
+    if (spreadAwayEV === undefined || spreadAwayEV >= 0) {
+      edges.push({ ceq: ceq.spreads.away.ceq, confidence: ceq.spreads.away.confidence, side: 'away', market: 'spread', ev: spreadAwayEV });
+    }
   }
 
-  // Check h2h (moneyline)
+  // Check h2h (moneyline) - require non-negative EV
   if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 56 && ceq.h2h.home.confidence) {
-    edges.push({ ceq: ceq.h2h.home.ceq, confidence: ceq.h2h.home.confidence, side: 'home', market: 'h2h' });
+    if (h2hHomeEV === undefined || h2hHomeEV >= 0) {
+      edges.push({ ceq: ceq.h2h.home.ceq, confidence: ceq.h2h.home.confidence, side: 'home', market: 'h2h', ev: h2hHomeEV });
+    }
   }
   if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 56 && ceq.h2h.away.confidence) {
-    edges.push({ ceq: ceq.h2h.away.ceq, confidence: ceq.h2h.away.confidence, side: 'away', market: 'h2h' });
+    if (h2hAwayEV === undefined || h2hAwayEV >= 0) {
+      edges.push({ ceq: ceq.h2h.away.ceq, confidence: ceq.h2h.away.confidence, side: 'away', market: 'h2h', ev: h2hAwayEV });
+    }
   }
 
-  // Check totals
+  // Check totals - require non-negative EV
   if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 56 && ceq.totals.over.confidence) {
-    edges.push({ ceq: ceq.totals.over.ceq, confidence: ceq.totals.over.confidence, side: 'over', market: 'total' });
+    if (totalsOverEV === undefined || totalsOverEV >= 0) {
+      edges.push({ ceq: ceq.totals.over.ceq, confidence: ceq.totals.over.confidence, side: 'over', market: 'total', ev: totalsOverEV });
+    }
   }
   if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 56 && ceq.totals.under.confidence) {
-    edges.push({ ceq: ceq.totals.under.ceq, confidence: ceq.totals.under.confidence, side: 'under', market: 'total' });
+    if (totalsUnderEV === undefined || totalsUnderEV >= 0) {
+      edges.push({ ceq: ceq.totals.under.ceq, confidence: ceq.totals.under.confidence, side: 'under', market: 'total', ev: totalsUnderEV });
+    }
   }
 
   // Find the best edge (highest CEQ)
@@ -296,9 +339,8 @@ function getEdgeBadge(game: any): { label: string; color: string; bg: string; sc
 
   if (bestEdge.confidence === 'PASS') return null;
 
-  // Build context string
+  // Build context string (consensus already defined above)
   let context = '';
-  const consensus = game.consensus;
   if (bestEdge.market === 'spread' && consensus?.spreads?.line !== undefined) {
     const teamName = bestEdge.side === 'home' ? game.homeTeam?.split(' ').pop() : game.awayTeam?.split(' ').pop();
     const line = bestEdge.side === 'home' ? consensus.spreads.line : -consensus.spreads.line;

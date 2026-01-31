@@ -1726,57 +1726,64 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
             // Build CEQ edges from the calculated CEQ data
             const edges: { market: 'spread' | 'h2h' | 'total'; side: 'home' | 'away' | 'over' | 'under'; ceq: number; confidence: string; sideLabel: string; lineValue?: string }[] = [];
             if (ceq) {
-              // Spreads
-              const spreadHomeCeq = ceq.spreads?.home?.ceq;
+              // SPREADS: Only ONE side can have edge - pick the BETTER side
+              const spreadHomeCeq = ceq.spreads?.home?.ceq ?? 0;
+              const spreadAwayCeq = ceq.spreads?.away?.ceq ?? 0;
               const spreadHomeConf = ceq.spreads?.home?.confidence;
-              if (spreadHomeCeq !== undefined && spreadHomeCeq >= 56 && spreadHomeConf) {
-                const line = marketGroups.fullGame?.spreads?.home?.line;
-                edges.push({
-                  market: 'spread',
-                  side: 'home',
-                  ceq: spreadHomeCeq,
-                  confidence: spreadHomeConf,
-                  sideLabel: gameData.homeTeam,
-                  lineValue: line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : undefined,
-                });
-              }
-              const spreadAwayCeq = ceq.spreads?.away?.ceq;
               const spreadAwayConf = ceq.spreads?.away?.confidence;
-              if (spreadAwayCeq !== undefined && spreadAwayCeq >= 56 && spreadAwayConf) {
-                const line = marketGroups.fullGame?.spreads?.away?.line || (marketGroups.fullGame?.spreads?.home?.line ? -marketGroups.fullGame.spreads.home.line : undefined);
-                edges.push({
-                  market: 'spread',
-                  side: 'away',
-                  ceq: spreadAwayCeq,
-                  confidence: spreadAwayConf,
-                  sideLabel: gameData.awayTeam,
-                  lineValue: line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : undefined,
-                });
+
+              if (spreadHomeCeq >= 56 || spreadAwayCeq >= 56) {
+                if (spreadHomeCeq > spreadAwayCeq && spreadHomeCeq >= 56 && spreadHomeConf) {
+                  const line = marketGroups.fullGame?.spreads?.home?.line;
+                  edges.push({
+                    market: 'spread',
+                    side: 'home',
+                    ceq: spreadHomeCeq,
+                    confidence: spreadHomeConf,
+                    sideLabel: gameData.homeTeam,
+                    lineValue: line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : undefined,
+                  });
+                } else if (spreadAwayCeq >= 56 && spreadAwayConf) {
+                  const line = marketGroups.fullGame?.spreads?.away?.line ||
+                    (marketGroups.fullGame?.spreads?.home?.line ? -marketGroups.fullGame.spreads.home.line : undefined);
+                  edges.push({
+                    market: 'spread',
+                    side: 'away',
+                    ceq: spreadAwayCeq,
+                    confidence: spreadAwayConf,
+                    sideLabel: gameData.awayTeam,
+                    lineValue: line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : undefined,
+                  });
+                }
               }
-              // H2H (Moneyline)
-              const h2hHomeCeq = ceq.h2h?.home?.ceq;
+
+              // H2H (MONEYLINE): Only ONE side can have edge - pick the BETTER side
+              const h2hHomeCeq = ceq.h2h?.home?.ceq ?? 0;
+              const h2hAwayCeq = ceq.h2h?.away?.ceq ?? 0;
               const h2hHomeConf = ceq.h2h?.home?.confidence;
-              if (h2hHomeCeq !== undefined && h2hHomeCeq >= 56 && h2hHomeConf) {
-                edges.push({
-                  market: 'h2h',
-                  side: 'home',
-                  ceq: h2hHomeCeq,
-                  confidence: h2hHomeConf,
-                  sideLabel: `${gameData.homeTeam} ML`,
-                });
-              }
-              const h2hAwayCeq = ceq.h2h?.away?.ceq;
               const h2hAwayConf = ceq.h2h?.away?.confidence;
-              if (h2hAwayCeq !== undefined && h2hAwayCeq >= 56 && h2hAwayConf) {
-                edges.push({
-                  market: 'h2h',
-                  side: 'away',
-                  ceq: h2hAwayCeq,
-                  confidence: h2hAwayConf,
-                  sideLabel: `${gameData.awayTeam} ML`,
-                });
+
+              if (h2hHomeCeq >= 56 || h2hAwayCeq >= 56) {
+                if (h2hHomeCeq > h2hAwayCeq && h2hHomeCeq >= 56 && h2hHomeConf) {
+                  edges.push({
+                    market: 'h2h',
+                    side: 'home',
+                    ceq: h2hHomeCeq,
+                    confidence: h2hHomeConf,
+                    sideLabel: `${gameData.homeTeam} ML`,
+                  });
+                } else if (h2hAwayCeq >= 56 && h2hAwayConf) {
+                  edges.push({
+                    market: 'h2h',
+                    side: 'away',
+                    ceq: h2hAwayCeq,
+                    confidence: h2hAwayConf,
+                    sideLabel: `${gameData.awayTeam} ML`,
+                  });
+                }
               }
-              // Totals
+
+              // TOTALS: Over/under CAN both have edges (different bet dynamics)
               const totalsOverCeq = ceq.totals?.over?.ceq;
               const totalsOverConf = ceq.totals?.over?.confidence;
               if (totalsOverCeq !== undefined && totalsOverCeq >= 56 && totalsOverConf) {

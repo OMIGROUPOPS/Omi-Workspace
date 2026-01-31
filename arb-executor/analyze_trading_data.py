@@ -1,420 +1,467 @@
 #!/usr/bin/env python3
 """
-Comprehensive analysis of trading data to find optimization opportunities.
-Analyzes price history, trades, skipped arbs, and TAM data.
+Analyze price history data from CSV files to generate trading insights report.
 """
-import pandas as pd
-import json
+
+import csv
+import glob
+import os
 from datetime import datetime, timedelta
 from collections import defaultdict
+from dataclasses import dataclass, field
+from typing import List, Dict, Tuple, Optional
 import statistics
 
-def analyze_trading_data():
-    report = []
-    report.append("# Trading Data Analysis Report - January 29-30, 2026")
-    report.append(f"\n**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+@dataclass
+class ArbEvent:
+    game_key: str
+    sport: str
+    game_id: str
+    team: str
+    start_time: float
+    end_time: float
+    max_spread: float
+    direction: str  # "sell_k" or "sell_pm"
+    spreads: List[float] = field(default_factory=list)
 
-    # ================================================================
-    # LOAD DATA
-    # ================================================================
-    print("Loading data...")
+    @property
+    def duration_seconds(self) -> float:
+        return self.end_time - self.start_time
 
-    # Load price history
-    df = pd.read_csv('price_history_20260130_081111.csv')
-    print(f"  Price history: {len(df):,} rows")
+    @property
+    def duration_str(self) -> str:
+        secs = int(self.duration_seconds)
+        if secs < 60:
+            return f"{secs}s"
+        elif secs < 3600:
+            return f"{secs // 60}m {secs % 60}s"
+        else:
+            return f"{secs // 3600}h {(secs % 3600) // 60}m"
 
-    # Load TAM snapshot
-    with open('tam_snapshot.json', 'r') as f:
-        tam = json.load(f)
-    print(f"  TAM snapshot loaded")
+    @property
+    def avg_spread(self) -> float:
+        return statistics.mean(self.spreads) if self.spreads else 0
 
-    # Load trades
-    with open('trades.json', 'r') as f:
-        trades = json.load(f)
-    print(f"  Trades: {len(trades):,} records")
 
-    # Load skipped arbs
-    with open('skipped_arbs.json', 'r') as f:
-        skipped = json.load(f)
-    print(f"  Skipped arbs: {len(skipped):,} records")
+def load_all_csvs(pattern: str) -> List[dict]:
+    """Load all CSV files matching pattern and return combined rows."""
+    all_rows = []
+    files = sorted(glob.glob(pattern))
 
-    # ================================================================
-    # EXECUTIVE SUMMARY
-    # ================================================================
-    report.append("## Executive Summary\n")
+    print(f"Found {len(files)} CSV files to analyze")
 
-    tam_stats = tam['tam_stats']
-    report.append(f"- **Total Scans:** {tam_stats['scan_count']:,}")
-    report.append(f"- **Unique Arbs Found:** {tam_stats['unique_arbs_new']} new + {tam_stats['unique_arbs_reopen']} reopened = {tam_stats['unique_arbs_executed']} total")
-    report.append(f"- **Flickers Ignored:** {tam_stats['flicker_ignored']}")
-    report.append(f"- **TAM (Total Addressable Market):** ${tam_stats['total_profit_if_captured']/100:,.2f}")
-    report.append(f"- **Total Contracts Available:** {tam_stats['total_contracts']:,}")
-    report.append(f"- **Games Tracked:** {tam['price_history_games']}")
-    report.append(f"- **Price Data Points:** {tam['price_history_rows']:,}\n")
+    for filepath in files:
+        try:
+            size_mb = os.path.getsize(filepath) / (1024 * 1024)
+            print(f"  Loading {os.path.basename(filepath)} ({size_mb:.1f} MB)...")
 
-    # ================================================================
-    # 1. ARB TIMING PATTERNS
-    # ================================================================
-    report.append("---\n## 1. Arb Timing Patterns\n")
+            with open(filepath, 'r') as f:
+                reader = csv.DictReader(f)
+                count = 0
+                for row in reader:
+                    all_rows.append(row)
+                    count += 1
+                print(f"    -> {count:,} rows")
+        except Exception as e:
+            print(f"  Error loading {filepath}: {e}")
 
-    # Convert timestamp to datetime and calculate EST hour
-    df['datetime'] = pd.to_datetime(df['timestamp'], unit='s')
-    df['hour'] = (df['datetime'].dt.hour - 5) % 24  # Convert UTC to EST
-    df['minute'] = df['datetime'].dt.minute
+    return all_rows
 
-    # Calculate spread early (needed for arb analysis)
-    df['spread'] = df[['spread_buy_pm', 'spread_buy_k']].max(axis=1)
 
-    # Find rows with arbs
-    arb_rows = df[df['has_arb'] == True].copy()
-    non_arb_rows = df[df['has_arb'] == False].copy()
+def analyze_data(rows: List[dict]) -> dict:
+    """Analyze the price history data and return statistics."""
 
-    report.append(f"### Arb Frequency\n")
-    report.append(f"- **Total price snapshots:** {len(df):,}")
-    report.append(f"- **Snapshots with arb:** {len(arb_rows):,} ({100*len(arb_rows)/len(df):.2f}%)")
-    report.append(f"- **Snapshots without arb:** {len(non_arb_rows):,}\n")
+    # Basic stats
+    total_rows = len(rows)
+    if total_rows == 0:
+        return {"error": "No data found"}
 
-    # Arbs by hour
-    report.append("### Arbs by Hour (EST)\n")
-    report.append("| Hour | Arb Snapshots | Total Snapshots | Arb Rate |")
-    report.append("|------|---------------|-----------------|----------|")
+    # Parse timestamps
+    timestamps = []
+    for row in rows:
+        try:
+            ts = float(row.get('timestamp', 0))
+            if ts > 0:
+                timestamps.append(ts)
+        except:
+            pass
 
-    hourly_arbs = arb_rows.groupby('hour').size()
-    hourly_total = df.groupby('hour').size()
+    min_ts = min(timestamps) if timestamps else 0
+    max_ts = max(timestamps) if timestamps else 0
+    time_span_hours = (max_ts - min_ts) / 3600 if max_ts > min_ts else 0
 
-    for hour in sorted(hourly_total.index):
-        arb_count = hourly_arbs.get(hour, 0)
-        total = hourly_total[hour]
-        rate = 100 * arb_count / total if total > 0 else 0
-        report.append(f"| {hour:02d}:00 | {arb_count:,} | {total:,} | {rate:.2f}% |")
+    # Unique games and sports
+    games = set()
+    sports_games = defaultdict(set)
+    sports_rows = defaultdict(list)
 
-    # Arb duration analysis
-    report.append("\n### Arb Duration Analysis\n")
+    for row in rows:
+        game_key = row.get('game_key', '')
+        sport = row.get('sport', '').upper()
+        game_id = row.get('game_id', '')
 
-    # Group consecutive arb periods by game_key
-    arb_durations = []
-    for game_key in df['game_key'].unique():
-        game_df = df[df['game_key'] == game_key].sort_values('timestamp')
+        if game_key:
+            games.add(game_key)
+            sports_games[sport].add(game_key)
+            sports_rows[sport].append(row)
 
-        in_arb = False
-        arb_start = None
+    # Arb analysis
+    arb_rows = []
+    arb_events = []
+    current_arb = None
 
-        for _, row in game_df.iterrows():
-            if row['has_arb'] and not in_arb:
-                in_arb = True
-                arb_start = row['timestamp']
-            elif not row['has_arb'] and in_arb:
-                in_arb = False
-                duration = row['timestamp'] - arb_start
-                arb_durations.append(duration)
+    # Sort rows by timestamp for proper arb duration analysis
+    sorted_rows = sorted(rows, key=lambda r: float(r.get('timestamp', 0)))
 
-    if arb_durations:
-        report.append(f"- **Number of arb periods:** {len(arb_durations)}")
-        report.append(f"- **Average duration:** {statistics.mean(arb_durations):.1f} seconds")
-        report.append(f"- **Median duration:** {statistics.median(arb_durations):.1f} seconds")
-        report.append(f"- **Min duration:** {min(arb_durations):.1f} seconds")
-        report.append(f"- **Max duration:** {max(arb_durations):.1f} seconds")
+    for row in sorted_rows:
+        try:
+            k_bid = float(row.get('kalshi_bid', 0))
+            k_ask = float(row.get('kalshi_ask', 0))
+            pm_bid = float(row.get('pm_bid', 0))
+            pm_ask = float(row.get('pm_ask', 0))
+            ts = float(row.get('timestamp', 0))
+            game_key = row.get('game_key', '')
+            sport = row.get('sport', '').upper()
+            game_id = row.get('game_id', '')
+            team = row.get('team', '')
 
-        # Duration distribution
-        dur_buckets = {'<10s': 0, '10-30s': 0, '30-60s': 0, '1-5min': 0, '5-30min': 0, '>30min': 0}
-        for d in arb_durations:
-            if d < 10:
-                dur_buckets['<10s'] += 1
-            elif d < 30:
-                dur_buckets['10-30s'] += 1
-            elif d < 60:
-                dur_buckets['30-60s'] += 1
-            elif d < 300:
-                dur_buckets['1-5min'] += 1
-            elif d < 1800:
-                dur_buckets['5-30min'] += 1
+            # Check for arb
+            sell_k_spread = k_bid - pm_ask  # Sell Kalshi, Buy PM
+            sell_pm_spread = pm_bid - k_ask  # Sell PM, Buy Kalshi
+
+            has_arb = sell_k_spread > 0 or sell_pm_spread > 0
+
+            if has_arb:
+                spread = max(sell_k_spread, sell_pm_spread)
+                direction = "sell_k" if sell_k_spread > sell_pm_spread else "sell_pm"
+                arb_rows.append(row)
+
+                # Track arb event
+                if current_arb is None or current_arb.game_key != game_key:
+                    # New arb event
+                    if current_arb:
+                        arb_events.append(current_arb)
+                    current_arb = ArbEvent(
+                        game_key=game_key,
+                        sport=sport,
+                        game_id=game_id,
+                        team=team,
+                        start_time=ts,
+                        end_time=ts,
+                        max_spread=spread,
+                        direction=direction,
+                        spreads=[spread]
+                    )
+                else:
+                    # Continue existing arb
+                    current_arb.end_time = ts
+                    current_arb.max_spread = max(current_arb.max_spread, spread)
+                    current_arb.spreads.append(spread)
             else:
-                dur_buckets['>30min'] += 1
+                if current_arb:
+                    arb_events.append(current_arb)
+                    current_arb = None
 
-        report.append("\n**Duration Distribution:**")
-        report.append("| Duration | Count | Percentage |")
-        report.append("|----------|-------|------------|")
-        for bucket, count in dur_buckets.items():
-            pct = 100 * count / len(arb_durations) if arb_durations else 0
-            report.append(f"| {bucket} | {count} | {pct:.1f}% |")
+        except Exception as e:
+            continue
 
-    # ================================================================
-    # 2. SPREAD ANALYSIS
-    # ================================================================
-    report.append("\n---\n## 2. Spread Analysis\n")
+    if current_arb:
+        arb_events.append(current_arb)
 
-    # Overall spread distribution
-    report.append("### Spread Distribution (All Snapshots)\n")
+    # Time of day analysis
+    hourly_arbs = defaultdict(int)
+    hourly_total = defaultdict(int)
 
-    spread_buckets = {
-        'Negative (no arb)': len(df[df['spread'] <= 0]),
-        '1-2c': len(df[(df['spread'] > 0) & (df['spread'] <= 2)]),
-        '2-3c': len(df[(df['spread'] > 2) & (df['spread'] <= 3)]),
-        '3-5c': len(df[(df['spread'] > 3) & (df['spread'] <= 5)]),
-        '5-10c': len(df[(df['spread'] > 5) & (df['spread'] <= 10)]),
-        '10c+': len(df[df['spread'] > 10]),
+    for row in sorted_rows:
+        try:
+            ts = float(row.get('timestamp', 0))
+            if ts > 0:
+                dt = datetime.fromtimestamp(ts)
+                hour = dt.hour
+                hourly_total[hour] += 1
+
+                k_bid = float(row.get('kalshi_bid', 0))
+                pm_ask = float(row.get('pm_ask', 0))
+                pm_bid = float(row.get('pm_bid', 0))
+                k_ask = float(row.get('kalshi_ask', 0))
+
+                if k_bid > pm_ask or pm_bid > k_ask:
+                    hourly_arbs[hour] += 1
+        except:
+            pass
+
+    # Sport-specific analysis
+    sport_stats = {}
+    for sport, sport_rows_list in sports_rows.items():
+        arb_count = 0
+        spreads = []
+
+        for row in sport_rows_list:
+            try:
+                k_bid = float(row.get('kalshi_bid', 0))
+                pm_ask = float(row.get('pm_ask', 0))
+                pm_bid = float(row.get('pm_bid', 0))
+                k_ask = float(row.get('kalshi_ask', 0))
+
+                sell_k = k_bid - pm_ask
+                sell_pm = pm_bid - k_ask
+
+                if sell_k > 0 or sell_pm > 0:
+                    arb_count += 1
+                    spreads.append(max(sell_k, sell_pm))
+            except:
+                pass
+
+        sport_stats[sport] = {
+            'games': len(sports_games[sport]),
+            'rows': len(sport_rows_list),
+            'arb_count': arb_count,
+            'arb_pct': (arb_count / len(sport_rows_list) * 100) if sport_rows_list else 0,
+            'avg_spread': statistics.mean(spreads) if spreads else 0,
+            'max_spread': max(spreads) if spreads else 0,
+        }
+
+    # Top arb events
+    top_arbs = sorted(arb_events, key=lambda e: e.max_spread, reverse=True)[:20]
+
+    # Games with most arbs
+    game_arb_counts = defaultdict(int)
+    for event in arb_events:
+        game_arb_counts[event.game_key] += 1
+    top_games = sorted(game_arb_counts.items(), key=lambda x: x[1], reverse=True)[:10]
+
+    return {
+        'total_rows': total_rows,
+        'time_span_hours': time_span_hours,
+        'start_time': datetime.fromtimestamp(min_ts) if min_ts > 0 else None,
+        'end_time': datetime.fromtimestamp(max_ts) if max_ts > 0 else None,
+        'unique_games': len(games),
+        'sports_games': {k: len(v) for k, v in sports_games.items()},
+        'arb_rows': len(arb_rows),
+        'arb_events': arb_events,
+        'arb_pct': (len(arb_rows) / total_rows * 100) if total_rows > 0 else 0,
+        'avg_arb_spread': statistics.mean([e.avg_spread for e in arb_events]) if arb_events else 0,
+        'max_arb_spread': max([e.max_spread for e in arb_events]) if arb_events else 0,
+        'avg_arb_duration': statistics.mean([e.duration_seconds for e in arb_events]) if arb_events else 0,
+        'hourly_arbs': dict(hourly_arbs),
+        'hourly_total': dict(hourly_total),
+        'sport_stats': sport_stats,
+        'top_arbs': top_arbs,
+        'top_games': top_games,
     }
 
-    report.append("| Spread | Count | Percentage |")
-    report.append("|--------|-------|------------|")
-    for bucket, count in spread_buckets.items():
-        pct = 100 * count / len(df)
-        report.append(f"| {bucket} | {count:,} | {pct:.2f}% |")
 
-    # Spreads by sport
-    report.append("\n### Spreads by Sport (Arb Snapshots Only)\n")
+def generate_report(stats: dict) -> str:
+    """Generate markdown report from stats."""
 
-    for sport in ['nba', 'nhl', 'cbb']:
-        sport_arbs = arb_rows[arb_rows['sport'] == sport]
-        if len(sport_arbs) > 0:
-            avg_spread = sport_arbs['spread'].mean()
-            max_spread = sport_arbs['spread'].max()
-            report.append(f"- **{sport.upper()}:** {len(sport_arbs):,} arb snapshots, avg spread: {avg_spread:.1f}c, max: {max_spread:.0f}c")
+    lines = []
+    lines.append("# Trading Data Analysis Report")
+    lines.append(f"\nGenerated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    lines.append("")
 
-    # Top games by arb frequency
-    report.append("\n### Top 10 Games by Arb Frequency\n")
+    # Overview
+    lines.append("## 1. OVERVIEW")
+    lines.append("")
+    lines.append(f"- **Total data points collected:** {stats['total_rows']:,}")
+    lines.append(f"- **Time span covered:** {stats['time_span_hours']:.1f} hours")
+    if stats.get('start_time'):
+        lines.append(f"- **Start time:** {stats['start_time'].strftime('%Y-%m-%d %H:%M:%S')}")
+    if stats.get('end_time'):
+        lines.append(f"- **End time:** {stats['end_time'].strftime('%Y-%m-%d %H:%M:%S')}")
+    lines.append(f"- **Number of games tracked:** {stats['unique_games']}")
+    lines.append("")
+    lines.append("### Sports Breakdown")
+    lines.append("| Sport | Games |")
+    lines.append("|-------|-------|")
+    for sport, count in sorted(stats['sports_games'].items(), key=lambda x: x[1], reverse=True):
+        lines.append(f"| {sport} | {count} |")
+    lines.append("")
 
-    game_arb_counts = arb_rows.groupby(['game_key', 'sport']).agg({
-        'spread': ['count', 'mean', 'max']
-    }).reset_index()
-    game_arb_counts.columns = ['game_key', 'sport', 'arb_count', 'avg_spread', 'max_spread']
-    game_arb_counts = game_arb_counts.sort_values('arb_count', ascending=False).head(10)
+    # Arb Opportunities
+    lines.append("## 2. ARB OPPORTUNITIES")
+    lines.append("")
+    lines.append(f"- **Total arb data points:** {stats['arb_rows']:,}")
+    lines.append(f"- **Arb frequency:** {stats['arb_pct']:.2f}% of all data points")
+    lines.append(f"- **Total arb events:** {len(stats['arb_events']):,}")
+    lines.append(f"- **Average spread when arb existed:** {stats['avg_arb_spread']:.1f}¢")
+    lines.append(f"- **Maximum spread seen:** {stats['max_arb_spread']:.0f}¢")
 
-    report.append("| Game | Sport | Arb Snapshots | Avg Spread | Max Spread |")
-    report.append("|------|-------|---------------|------------|------------|")
-    for _, row in game_arb_counts.iterrows():
-        game_id = row['game_key'].split(':')[1] if ':' in row['game_key'] else row['game_key']
-        report.append(f"| {game_id} | {row['sport'].upper()} | {row['arb_count']:,} | {row['avg_spread']:.1f}c | {row['max_spread']:.0f}c |")
-
-    # ================================================================
-    # 3. LIQUIDITY ANALYSIS
-    # ================================================================
-    report.append("\n---\n## 3. Liquidity Analysis\n")
-
-    # Analyze skipped arbs
-    skip_reasons = defaultdict(int)
-    skip_by_game = defaultdict(list)
-    low_liq_sizes = []
-
-    for arb in skipped:
-        reason = arb.get('reason', 'unknown')
-        skip_reasons[reason] += 1
-
-        game_key = arb.get('game_key', 'unknown')
-        skip_by_game[game_key].append(arb)
-
-        if reason == 'low_liquidity':
-            # Extract contract size
-            size = arb.get('contracts', 0)
-            if size > 0:
-                low_liq_sizes.append(size)
-
-    report.append("### Skip Reasons\n")
-    report.append("| Reason | Count | Percentage |")
-    report.append("|--------|-------|------------|")
-    for reason, count in sorted(skip_reasons.items(), key=lambda x: -x[1]):
-        pct = 100 * count / len(skipped) if skipped else 0
-        report.append(f"| {reason} | {count:,} | {pct:.1f}% |")
-
-    if low_liq_sizes:
-        report.append(f"\n### Low Liquidity Skip Analysis\n")
-        report.append(f"- **Low liquidity skips:** {len(low_liq_sizes):,}")
-        report.append(f"- **Average contract size when skipped:** {statistics.mean(low_liq_sizes):.0f}")
-        report.append(f"- **Median contract size when skipped:** {statistics.median(low_liq_sizes):.0f}")
-
-    # Analyze trades for execution sizes
-    report.append("\n### Trade Execution Sizes\n")
-
-    trade_sizes = []
-    for trade in trades:
-        size = trade.get('contracts', 0)
-        if size > 0:
-            trade_sizes.append(size)
-
-    if trade_sizes:
-        report.append(f"- **Trades executed:** {len(trade_sizes):,}")
-        report.append(f"- **Average trade size:** {statistics.mean(trade_sizes):.0f} contracts")
-        report.append(f"- **Median trade size:** {statistics.median(trade_sizes):.0f} contracts")
-        report.append(f"- **Max trade size:** {max(trade_sizes):,} contracts")
-        report.append(f"- **Total contracts traded:** {sum(trade_sizes):,}")
-
-    # ================================================================
-    # 4. EXECUTION OPTIMIZATION
-    # ================================================================
-    report.append("\n---\n## 4. Execution Optimization\n")
-
-    # Total profit potential
-    total_profit = tam_stats['total_profit_if_captured'] / 100
-    total_contracts = tam_stats['total_contracts']
-
-    report.append(f"### TAM Analysis\n")
-    report.append(f"- **Total Addressable Market:** ${total_profit:,.2f}")
-    report.append(f"- **Total contracts available:** {total_contracts:,}")
-    report.append(f"- **Average profit per contract:** ${total_profit/total_contracts:.4f}" if total_contracts > 0 else "")
-    report.append(f"- **Unique arbs found:** {tam_stats['unique_arbs_executed']}")
-    report.append(f"- **Average profit per arb:** ${total_profit/tam_stats['unique_arbs_executed']:.2f}" if tam_stats['unique_arbs_executed'] > 0 else "")
-
-    # ROI analysis from trades
-    report.append("\n### Executed Trades Analysis\n")
-
-    roi_values = []
-    spreads_executed = []
-    for trade in trades:
-        spread = trade.get('spread_cents', 0)
-        if spread > 0:
-            spreads_executed.append(spread)
-            # ROI = spread / cost, assuming cost ~50c average
-            roi = spread  # In cents
-            roi_values.append(roi)
-
-    if spreads_executed:
-        report.append(f"- **Trades with positive spread:** {len(spreads_executed):,}")
-        report.append(f"- **Average spread captured:** {statistics.mean(spreads_executed):.1f}c")
-        report.append(f"- **Median spread captured:** {statistics.median(spreads_executed):.1f}c")
-
-        # Spread buckets for executed trades
-        report.append("\n**Spread Distribution of Executed Trades:**")
-        report.append("| Spread | Count | Percentage |")
-        report.append("|--------|-------|------------|")
-
-        spread_exec_buckets = {'1-2c': 0, '2-3c': 0, '3-5c': 0, '5-10c': 0, '10c+': 0}
-        for s in spreads_executed:
-            if s <= 2:
-                spread_exec_buckets['1-2c'] += 1
-            elif s <= 3:
-                spread_exec_buckets['2-3c'] += 1
-            elif s <= 5:
-                spread_exec_buckets['3-5c'] += 1
-            elif s <= 10:
-                spread_exec_buckets['5-10c'] += 1
-            else:
-                spread_exec_buckets['10c+'] += 1
-
-        for bucket, count in spread_exec_buckets.items():
-            pct = 100 * count / len(spreads_executed)
-            report.append(f"| {bucket} | {count:,} | {pct:.1f}% |")
-
-    # Live games analysis
-    report.append("\n### Live Games Analysis\n")
-
-    live_skips = skip_reasons.get('live_game', 0)
-    report.append(f"- **Arbs skipped due to live game:** {live_skips:,}")
-    report.append(f"- **Percentage of skips:** {100*live_skips/len(skipped):.1f}%" if skipped else "N/A")
-
-    # ================================================================
-    # 5. FLICKER ANALYSIS
-    # ================================================================
-    report.append("\n---\n## 5. Flicker Analysis\n")
-
-    flicker_count = tam_stats.get('flicker_ignored', 0)
-    total_arbs = tam_stats.get('unique_arbs_executed', 0)
-
-    report.append(f"- **Flickers ignored:** {flicker_count}")
-    report.append(f"- **Unique arbs captured:** {total_arbs}")
-    report.append(f"- **Flicker rate:** {100*flicker_count/(flicker_count+total_arbs):.1f}%" if (flicker_count+total_arbs) > 0 else "N/A")
-
-    # Analyze arb durations for flicker patterns
-    if arb_durations:
-        short_arbs = len([d for d in arb_durations if d < 30])
-        report.append(f"\n### Short-lived Arbs (<30 seconds)\n")
-        report.append(f"- **Count:** {short_arbs}")
-        report.append(f"- **Percentage of all arb periods:** {100*short_arbs/len(arb_durations):.1f}%")
-        report.append(f"\nThese short-lived arbs may be API noise or genuine fleeting opportunities.")
-        report.append(f"The 30-second cooldown helps avoid chasing these.")
-
-    # ================================================================
-    # 6. RECOMMENDATIONS
-    # ================================================================
-    report.append("\n---\n## 6. Recommendations\n")
-
-    report.append("### Optimal Trading Hours\n")
-
-    # Find hours with highest arb rates
-    best_hours = []
-    for hour in sorted(hourly_total.index):
-        if hourly_total[hour] > 100:  # Enough data
-            rate = hourly_arbs.get(hour, 0) / hourly_total[hour]
-            best_hours.append((hour, rate))
-
-    best_hours.sort(key=lambda x: -x[1])
-    if best_hours:
-        report.append(f"Based on arb frequency, the best trading hours are:")
-        for hour, rate in best_hours[:5]:
-            report.append(f"- **{hour:02d}:00 EST:** {100*rate:.2f}% arb rate")
-
-    report.append("\n### Optimal ROI Threshold\n")
-
-    if spreads_executed:
-        avg_spread = statistics.mean(spreads_executed)
-        median_spread = statistics.median(spreads_executed)
-        report.append(f"- Average spread captured: {avg_spread:.1f}c ({avg_spread/50*100:.1f}% ROI on 50c position)")
-        report.append(f"- Median spread captured: {median_spread:.1f}c ({median_spread/50*100:.1f}% ROI)")
-        report.append(f"- **Recommendation:** Set minimum spread to 2c (4% ROI) to filter noise while capturing most opportunities")
-
-    report.append("\n### Optimal Position Sizing\n")
-
-    if trade_sizes:
-        report.append(f"- Current average position: {statistics.mean(trade_sizes):.0f} contracts")
-        report.append(f"- Consider dynamic sizing based on spread: larger positions for wider spreads")
-        report.append(f"- **Recommendation:** 50-100 contracts for 2-3c spreads, 100-200 for 3-5c, 200+ for 5c+")
-
-    report.append("\n### Sport Prioritization\n")
-
-    for sport in ['nba', 'nhl', 'cbb']:
-        sport_arbs = arb_rows[arb_rows['sport'] == sport]
-        sport_total = df[df['sport'] == sport]
-        if len(sport_total) > 0:
-            arb_rate = 100 * len(sport_arbs) / len(sport_total)
-            avg_spread = sport_arbs['spread'].mean() if len(sport_arbs) > 0 else 0
-            report.append(f"- **{sport.upper()}:** {arb_rate:.2f}% arb rate, {avg_spread:.1f}c avg spread")
-
-    report.append("\n### Live Games\n")
-
-    report.append(f"- {live_skips:,} arbs skipped due to live game status")
-    report.append(f"- Live games often have wider spreads but faster price movement")
-    report.append(f"- **Recommendation:** Continue avoiding live games for safety, but consider monitoring for large spreads (>5c)")
-
-    report.append("\n### Flicker Cooldown\n")
-
-    report.append(f"- Current cooldown: 15 seconds (reduced from 30s)")
-    if (flicker_count + total_arbs) > 0:
-        report.append(f"- {flicker_count} flickers ignored ({100*flicker_count/(flicker_count+total_arbs):.1f}% of potential arbs)")
-    else:
-        report.append(f"- {flicker_count} flickers ignored")
-    if arb_durations:
-        median_dur = statistics.median(arb_durations)
-        report.append(f"- Median arb duration: {median_dur:.1f}s")
-        if median_dur > 60:
-            report.append(f"- **Recommendation:** 30s cooldown is appropriate - most arbs last longer")
+    if stats['avg_arb_duration'] > 0:
+        avg_dur = int(stats['avg_arb_duration'])
+        if avg_dur < 60:
+            dur_str = f"{avg_dur}s"
+        elif avg_dur < 3600:
+            dur_str = f"{avg_dur // 60}m {avg_dur % 60}s"
         else:
-            report.append(f"- **Recommendation:** Consider reducing cooldown to 15-20s to capture more short-lived opportunities")
+            dur_str = f"{avg_dur // 3600}h {(avg_dur % 3600) // 60}m"
+        lines.append(f"- **Average arb duration:** {dur_str}")
+    lines.append("")
 
-    # ================================================================
-    # SUMMARY TABLE
-    # ================================================================
-    report.append("\n---\n## Summary: Key Metrics\n")
+    # Games with most arbs
+    lines.append("### Games with Most Arb Events")
+    lines.append("| Game | Arb Events |")
+    lines.append("|------|------------|")
+    for game, count in stats['top_games'][:10]:
+        lines.append(f"| {game} | {count} |")
+    lines.append("")
 
-    report.append("| Metric | Value |")
-    report.append("|--------|-------|")
-    report.append(f"| Total Scans | {tam_stats['scan_count']:,} |")
-    report.append(f"| Runtime | ~{tam_stats['scan_count']/60:.0f} minutes |")
-    report.append(f"| Unique Arbs | {tam_stats['unique_arbs_executed']} |")
-    report.append(f"| TAM | ${total_profit:,.2f} |")
-    report.append(f"| Avg Profit/Arb | ${total_profit/tam_stats['unique_arbs_executed']:.2f} |" if tam_stats['unique_arbs_executed'] > 0 else "| Avg Profit/Arb | N/A |")
-    report.append(f"| Total Contracts | {total_contracts:,} |")
-    report.append(f"| Flickers Ignored | {flicker_count} |")
-    report.append(f"| Low Liquidity Skips | {skip_reasons.get('low_liquidity', 0):,} |")
-    report.append(f"| Live Game Skips | {live_skips:,} |")
+    # By Sport
+    lines.append("## 3. BY SPORT")
+    lines.append("")
+    for sport, ss in sorted(stats['sport_stats'].items()):
+        lines.append(f"### {sport}")
+        lines.append(f"- Games tracked: {ss['games']}")
+        lines.append(f"- Data points: {ss['rows']:,}")
+        lines.append(f"- Arb frequency: {ss['arb_pct']:.2f}%")
+        lines.append(f"- Average spread: {ss['avg_spread']:.1f}¢")
+        lines.append(f"- Max spread: {ss['max_spread']:.0f}¢")
+        lines.append("")
 
-    # Write report
-    report_text = '\n'.join(report)
-    with open('analysis_report_20260130.md', 'w') as f:
-        f.write(report_text)
+    # Time Analysis
+    lines.append("## 4. TIME ANALYSIS")
+    lines.append("")
+    lines.append("### Arb Frequency by Hour")
+    lines.append("| Hour | Arb Points | Total Points | Arb % |")
+    lines.append("|------|------------|--------------|-------|")
 
-    print(f"\nReport written to: analysis_report_20260130.md")
-    print(f"Report length: {len(report_text):,} characters")
+    for hour in sorted(stats['hourly_total'].keys()):
+        arbs = stats['hourly_arbs'].get(hour, 0)
+        total = stats['hourly_total'][hour]
+        pct = (arbs / total * 100) if total > 0 else 0
+        hour_str = f"{hour:02d}:00"
+        lines.append(f"| {hour_str} | {arbs:,} | {total:,} | {pct:.2f}% |")
+    lines.append("")
 
-    return report_text
+    # Best hours
+    if stats['hourly_arbs']:
+        best_hours = sorted(
+            [(h, stats['hourly_arbs'].get(h, 0) / stats['hourly_total'][h] * 100)
+             for h in stats['hourly_total'] if stats['hourly_total'][h] > 100],
+            key=lambda x: x[1],
+            reverse=True
+        )[:5]
+        if best_hours:
+            lines.append("### Best Hours for Arbs")
+            for hour, pct in best_hours:
+                lines.append(f"- **{hour:02d}:00**: {pct:.2f}% arb frequency")
+            lines.append("")
 
-if __name__ == '__main__':
-    analyze_trading_data()
+    # Top 10 Arb Opportunities
+    lines.append("## 5. TOP 10 ARB OPPORTUNITIES")
+    lines.append("")
+    lines.append("| Rank | Game | Time | Max Spread | Avg Spread | Duration | Direction |")
+    lines.append("|------|------|------|------------|------------|----------|-----------|")
+
+    for i, arb in enumerate(stats['top_arbs'][:10], 1):
+        try:
+            time_str = datetime.fromtimestamp(arb.start_time).strftime('%m/%d %H:%M')
+        except:
+            time_str = "N/A"
+        direction = "Sell K / Buy PM" if arb.direction == "sell_k" else "Sell PM / Buy K"
+        lines.append(f"| {i} | {arb.game_key} | {time_str} | {arb.max_spread:.0f}¢ | {arb.avg_spread:.1f}¢ | {arb.duration_str} | {direction} |")
+    lines.append("")
+
+    # Recommendations
+    lines.append("## 6. RECOMMENDATIONS")
+    lines.append("")
+
+    # Best times
+    if stats['hourly_arbs']:
+        best_hours = sorted(
+            [(h, stats['hourly_arbs'].get(h, 0) / stats['hourly_total'][h] * 100)
+             for h in stats['hourly_total'] if stats['hourly_total'][h] > 1000],
+            key=lambda x: x[1],
+            reverse=True
+        )[:3]
+        if best_hours:
+            hours_str = ", ".join([f"{h:02d}:00" for h, _ in best_hours])
+            lines.append(f"### Best Times to Run Bot")
+            lines.append(f"Based on arb frequency, prioritize: **{hours_str}**")
+            lines.append("")
+
+    # Best sports
+    if stats['sport_stats']:
+        best_sports = sorted(
+            [(s, ss['arb_pct']) for s, ss in stats['sport_stats'].items() if ss['rows'] > 1000],
+            key=lambda x: x[1],
+            reverse=True
+        )
+        if best_sports:
+            lines.append("### Sports to Prioritize")
+            for sport, pct in best_sports[:3]:
+                lines.append(f"- **{sport}**: {pct:.2f}% arb frequency")
+            lines.append("")
+
+    # Spread threshold
+    if stats['top_arbs']:
+        profitable_arbs = [a for a in stats['arb_events'] if a.max_spread >= 2]
+        if profitable_arbs:
+            avg_profitable = statistics.mean([a.max_spread for a in profitable_arbs])
+            lines.append("### Optimal Spread Threshold")
+            lines.append(f"- Arbs with 2¢+ spread: {len(profitable_arbs):,}")
+            lines.append(f"- Average spread of profitable arbs: {avg_profitable:.1f}¢")
+            lines.append(f"- **Recommendation:** Set MIN_SPREAD to 2¢ for consistent profits")
+            lines.append("")
+
+    # Summary stats
+    lines.append("## 7. SUMMARY STATISTICS")
+    lines.append("")
+    lines.append("```")
+    lines.append(f"Total Data Points:     {stats['total_rows']:>12,}")
+    lines.append(f"Unique Games:          {stats['unique_games']:>12,}")
+    lines.append(f"Time Span:             {stats['time_span_hours']:>11.1f}h")
+    lines.append(f"Arb Data Points:       {stats['arb_rows']:>12,}")
+    lines.append(f"Arb Events:            {len(stats['arb_events']):>12,}")
+    lines.append(f"Arb Frequency:         {stats['arb_pct']:>11.2f}%")
+    lines.append(f"Avg Arb Spread:        {stats['avg_arb_spread']:>11.1f}¢")
+    lines.append(f"Max Arb Spread:        {stats['max_arb_spread']:>11.0f}¢")
+    lines.append("```")
+    lines.append("")
+
+    return "\n".join(lines)
+
+
+def main():
+    print("=" * 60)
+    print("Trading Data Analysis")
+    print("=" * 60)
+    print()
+
+    # Load all CSV files
+    pattern = "price_history*.csv"
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+    print("Loading CSV files...")
+    rows = load_all_csvs(pattern)
+
+    if not rows:
+        print("No data found!")
+        return
+
+    print(f"\nTotal rows loaded: {len(rows):,}")
+    print("\nAnalyzing data...")
+
+    stats = analyze_data(rows)
+
+    print("\nGenerating report...")
+    report = generate_report(stats)
+
+    # Save report
+    report_path = "data_analysis_report.md"
+    with open(report_path, 'w') as f:
+        f.write(report)
+
+    print(f"\nReport saved to: {report_path}")
+    print("\n" + "=" * 60)
+    print("QUICK SUMMARY")
+    print("=" * 60)
+    print(f"Total data points: {stats['total_rows']:,}")
+    print(f"Unique games: {stats['unique_games']}")
+    print(f"Arb events: {len(stats['arb_events']):,}")
+    print(f"Arb frequency: {stats['arb_pct']:.2f}%")
+    print(f"Max spread: {stats['max_arb_spread']:.0f}¢")
+    print(f"Avg arb spread: {stats['avg_arb_spread']:.1f}¢")
+
+
+if __name__ == "__main__":
+    main()

@@ -3,116 +3,105 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { LiveEdge, EDGE_TYPE_CONFIG, formatEdgeDescription } from '@/lib/edge/types/edge';
-import { LiveEdgeCard } from './LiveEdgeCard';
-import { Activity, RefreshCw, Volume2, VolumeX, ChevronDown, Clock } from 'lucide-react';
+import { Activity, RefreshCw, ChevronDown, Clock, ExternalLink } from 'lucide-react';
+import Link from 'next/link';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-// Session history with timestamps for tracking when edges were seen
-interface EdgeHistoryItem {
-  edge: LiveEdge;
-  seenAt: Date;
-  isNew: boolean;
-}
+// League tabs configuration
+const LEAGUE_TABS = [
+  { key: 'all', label: 'All', emoji: '' },
+  { key: 'basketball_nba', label: 'NBA', emoji: '' },
+  { key: 'americanfootball_nfl', label: 'NFL', emoji: '' },
+  { key: 'icehockey_nhl', label: 'NHL', emoji: '' },
+  { key: 'basketball_ncaab', label: 'NCAAB', emoji: '' },
+  { key: 'soccer', label: 'Soccer', emoji: '' },
+  { key: 'tennis', label: 'Tennis', emoji: '' },
+];
 
 interface LiveEdgeFeedProps {
   sport?: string;
+  selectedBook?: string;
   maxEdges?: number;
-  maxHistory?: number; // Max edges to keep in history
-  showFilters?: boolean;
-  autoRefresh?: boolean;
   onEdgeCount?: (count: number) => void;
 }
 
 export function LiveEdgeFeed({
   sport,
-  maxEdges = 20,
-  maxHistory = 75, // Keep last 75 edges in history
-  showFilters = true,
-  autoRefresh = true,
+  selectedBook,
+  maxEdges = 30,
   onEdgeCount,
 }: LiveEdgeFeedProps) {
-  // Session history - accumulates all edges seen this session
-  const [edgeHistory, setEdgeHistory] = useState<EdgeHistoryItem[]>([]);
+  const [edges, setEdges] = useState<LiveEdge[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [filterType, setFilterType] = useState<string | null>(null);
-  const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'fading'>('active');
-  const [soundEnabled, setSoundEnabled] = useState(false);
+  const [filterLeague, setFilterLeague] = useState<string>('all');
   const [expandedEdgeId, setExpandedEdgeId] = useState<string | null>(null);
-  const [showScrollHint, setShowScrollHint] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
-  const seenEdgeIds = useRef<Set<string>>(new Set());
 
-  // Add edge to history (accumulating, not replacing)
-  const addEdgeToHistory = useCallback((edge: LiveEdge, isNew: boolean = false) => {
-    if (seenEdgeIds.current.has(edge.id)) {
-      // Update existing edge in history
-      setEdgeHistory(prev =>
-        prev.map(item =>
-          item.edge.id === edge.id
-            ? { ...item, edge, isNew: false }
-            : item
-        )
-      );
-      return;
-    }
-
-    seenEdgeIds.current.add(edge.id);
-
-    setEdgeHistory(prev => {
-      const newItem: EdgeHistoryItem = {
-        edge,
-        seenAt: new Date(),
-        isNew,
-      };
-      // Prepend new edge, keep only maxHistory items
-      const updated = [newItem, ...prev].slice(0, maxHistory);
-      return updated;
+  // Format exact timestamp
+  const formatExactTime = (dateString: string): string => {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+      timeZoneName: 'short',
     });
+  };
 
-    // Clear "new" flag after animation
-    if (isNew) {
-      setTimeout(() => {
-        setEdgeHistory(prev =>
-          prev.map(item =>
-            item.edge.id === edge.id ? { ...item, isNew: false } : item
-          )
-        );
-      }, 3000);
+  // Format countdown (precise)
+  const formatTimeAgo = (dateString: string): string => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffSecs = Math.floor(diffMs / 1000);
+
+    if (diffSecs < 60) return `${diffSecs} seconds ago`;
+    if (diffSecs < 3600) {
+      const mins = Math.floor(diffSecs / 60);
+      const secs = diffSecs % 60;
+      return `${mins}m ${secs}s ago`;
     }
-  }, [maxHistory]);
+    const hours = Math.floor(diffSecs / 3600);
+    const mins = Math.floor((diffSecs % 3600) / 60);
+    return `${hours}h ${mins}m ago`;
+  };
 
-  // Fetch edges from API - merges with history instead of replacing
+  // Fetch edges from API
   const fetchEdges = useCallback(async () => {
     try {
       const params = new URLSearchParams();
       if (sport) params.set('sport', sport);
-      params.set('status', filterStatus === 'all' ? 'active,fading' : filterStatus);
+      params.set('status', 'active');
       params.set('limit', maxEdges.toString());
-      if (filterType) params.set('edge_type', filterType);
 
       const res = await fetch(`/api/edges/live?${params}`);
       if (!res.ok) throw new Error('Failed to fetch edges');
 
       const data = await res.json();
-      const fetchedEdges: LiveEdge[] = data.edges || [];
+      let fetchedEdges: LiveEdge[] = data.edges || [];
 
-      // Add fetched edges to history (without "new" animation on initial load)
-      fetchedEdges.forEach(edge => addEdgeToHistory(edge, false));
+      // Filter by book if selected
+      if (selectedBook) {
+        fetchedEdges = fetchedEdges.filter(
+          (e) => e.best_current_book === selectedBook || e.triggering_book === selectedBook
+        );
+      }
 
+      setEdges(fetchedEdges);
       onEdgeCount?.(fetchedEdges.length);
       setError(null);
     } catch (e: any) {
-      console.error('[LiveEdgeFeed] Error:', e);
       setError(e?.message || 'Failed to load edges');
     } finally {
       setLoading(false);
     }
-  }, [sport, maxEdges, filterType, filterStatus, onEdgeCount, addEdgeToHistory]);
+  }, [sport, maxEdges, selectedBook, onEdgeCount]);
 
   // Initial fetch
   useEffect(() => {
@@ -121,8 +110,6 @@ export function LiveEdgeFeed({
 
   // Realtime subscription
   useEffect(() => {
-    if (!autoRefresh) return;
-
     const channel = supabase
       .channel('live-edges-feed')
       .on(
@@ -133,44 +120,8 @@ export function LiveEdgeFeed({
           table: 'live_edges',
           filter: sport ? `sport=eq.${sport}` : undefined,
         },
-        (payload) => {
-          if (payload.eventType === 'INSERT') {
-            const newEdge = payload.new as LiveEdge;
-
-            // Add to history with "new" animation
-            addEdgeToHistory(newEdge, true);
-
-            // Show scroll hint if user has scrolled down
-            if (listRef.current && listRef.current.scrollTop > 50) {
-              setShowScrollHint(true);
-              setTimeout(() => setShowScrollHint(false), 3000);
-            }
-
-            // Play sound if enabled
-            if (soundEnabled) {
-              playNotificationSound();
-            }
-          } else if (payload.eventType === 'UPDATE') {
-            const updatedEdge = payload.new as LiveEdge;
-            // Update in history
-            setEdgeHistory(prev =>
-              prev.map(item =>
-                item.edge.id === updatedEdge.id
-                  ? { ...item, edge: updatedEdge }
-                  : item
-              )
-            );
-          } else if (payload.eventType === 'DELETE') {
-            // Mark as expired but keep in history
-            const deletedId = payload.old.id;
-            setEdgeHistory(prev =>
-              prev.map(item =>
-                item.edge.id === deletedId
-                  ? { ...item, edge: { ...item.edge, status: 'expired' as const } }
-                  : item
-              )
-            );
-          }
+        () => {
+          fetchEdges();
         }
       )
       .subscribe();
@@ -178,79 +129,57 @@ export function LiveEdgeFeed({
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [autoRefresh, sport, soundEnabled, addEdgeToHistory]);
+  }, [sport, fetchEdges]);
 
-  // Simple notification sound
-  function playNotificationSound() {
-    try {
-      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-
-      oscillator.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-
-      oscillator.frequency.value = 800;
-      oscillator.type = 'sine';
-      gainNode.gain.value = 0.1;
-
-      oscillator.start();
-      oscillator.stop(audioContext.currentTime + 0.15);
-    } catch (e) {
-      // Audio not supported
-    }
-  }
-
-  // Filter history based on current filters
-  const filteredHistory = edgeHistory.filter(item => {
-    const edge = item.edge;
-    if (filterStatus !== 'all' && edge.status !== filterStatus) return false;
-    if (filterType && edge.edge_type !== filterType) return false;
-    if (sport && edge.sport !== sport) return false;
-    return true;
-  });
-
-  // Group filtered edges by sport
-  const groupedBySport = filteredHistory.reduce((acc, item) => {
-    const sportKey = item.edge.sport;
-    if (!acc[sportKey]) acc[sportKey] = [];
-    acc[sportKey].push(item);
-    return acc;
-  }, {} as Record<string, EdgeHistoryItem[]>);
-
-  // Counts from full history (not just filtered)
-  const activeCount = edgeHistory.filter((item) => item.edge.status === 'active').length;
-  const fadingCount = edgeHistory.filter((item) => item.edge.status === 'fading').length;
-  const totalHistory = edgeHistory.length;
-
-  // Scroll to top helper
-  const scrollToTop = () => {
-    listRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
-    setShowScrollHint(false);
-  };
-
-  // Format relative time for history
-  const formatSeenAgo = (date: Date): string => {
-    const now = new Date();
-    const diffMs = now.getTime() - date.getTime();
-    const diffSecs = Math.floor(diffMs / 1000);
-
-    if (diffSecs < 5) return 'just now';
-    if (diffSecs < 60) return `${diffSecs}s ago`;
-
-    const diffMins = Math.floor(diffSecs / 60);
-    if (diffMins < 60) return `${diffMins}m ago`;
-
-    const diffHours = Math.floor(diffMins / 60);
-    return `${diffHours}h ago`;
-  };
-
-  // Update relative times every 10 seconds
+  // Update times every 5 seconds for precise countdowns
   const [, setTick] = useState(0);
   useEffect(() => {
-    const interval = setInterval(() => setTick(t => t + 1), 10000);
+    const interval = setInterval(() => setTick((t) => t + 1), 5000);
     return () => clearInterval(interval);
   }, []);
+
+  // Filter by league tab
+  const filteredEdges = edges.filter((edge) => {
+    if (filterLeague === 'all') return true;
+    if (filterLeague === 'soccer') return edge.sport?.includes('soccer');
+    if (filterLeague === 'tennis') return edge.sport?.includes('tennis');
+    return edge.sport === filterLeague;
+  });
+
+  // Count edges per league for badges
+  const leagueCounts = LEAGUE_TABS.reduce((acc, tab) => {
+    if (tab.key === 'all') {
+      acc[tab.key] = edges.length;
+    } else if (tab.key === 'soccer') {
+      acc[tab.key] = edges.filter((e) => e.sport?.includes('soccer')).length;
+    } else if (tab.key === 'tennis') {
+      acc[tab.key] = edges.filter((e) => e.sport?.includes('tennis')).length;
+    } else {
+      acc[tab.key] = edges.filter((e) => e.sport === tab.key).length;
+    }
+    return acc;
+  }, {} as Record<string, number>);
+
+  // Get human-readable market label
+  const getMarketLabel = (edge: LiveEdge): string => {
+    if (edge.market_type === 'h2h') return 'Moneyline';
+    if (edge.market_type === 'spreads') return 'Spread';
+    if (edge.market_type === 'totals') return 'Total';
+    if (edge.market_type === 'player_props') return 'Player Prop';
+    return edge.market_type || 'Unknown';
+  };
+
+  // Get sport emoji
+  const getSportEmoji = (sport: string): string => {
+    if (sport?.includes('basketball')) return '\u{1F3C0}';
+    if (sport?.includes('football')) return '\u{1F3C8}';
+    if (sport?.includes('hockey')) return '\u{1F3D2}';
+    if (sport?.includes('baseball')) return '\u{26BE}';
+    if (sport?.includes('soccer')) return '\u{26BD}';
+    if (sport?.includes('tennis')) return '\u{1F3BE}';
+    if (sport?.includes('mma')) return '\u{1F94A}';
+    return '\u{1F3C6}';
+  };
 
   return (
     <div className="flex flex-col h-full">
@@ -259,124 +188,67 @@ export function LiveEdgeFeed({
         <div className="flex items-center gap-2">
           <Activity className="w-4 h-4 text-emerald-400" />
           <h3 className="text-sm font-semibold text-zinc-100">Live Edges</h3>
-          {activeCount > 0 && (
+          {edges.length > 0 && (
             <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
               </span>
-              {activeCount}
-            </span>
-          )}
-          {totalHistory > 0 && (
-            <span className="text-[10px] text-zinc-500">
-              ({totalHistory} in history)
+              {edges.length}
             </span>
           )}
         </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setSoundEnabled(!soundEnabled)}
-            className={`p-1.5 rounded-md transition-colors ${
-              soundEnabled
-                ? 'bg-emerald-500/20 text-emerald-400'
-                : 'bg-zinc-800 text-zinc-500 hover:text-zinc-400'
-            }`}
-            title={soundEnabled ? 'Mute notifications' : 'Enable sound notifications'}
-          >
-            {soundEnabled ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
-          </button>
-          <button
-            onClick={fetchEdges}
-            className="p-1.5 rounded-md bg-zinc-800 text-zinc-500 hover:text-zinc-400 transition-colors"
-            title="Refresh"
-          >
-            <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
-          </button>
+        <button
+          onClick={fetchEdges}
+          className="p-1.5 rounded-md bg-zinc-800 text-zinc-500 hover:text-zinc-400 transition-colors"
+          title="Refresh"
+        >
+          <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
+        </button>
+      </div>
+
+      {/* League Tabs */}
+      <div className="px-2 py-2 border-b border-zinc-800/50 overflow-x-auto">
+        <div className="flex gap-1">
+          {LEAGUE_TABS.map((tab) => {
+            const count = leagueCounts[tab.key] || 0;
+            // Hide tabs with 0 edges (except "All")
+            if (count === 0 && tab.key !== 'all') return null;
+
+            return (
+              <button
+                key={tab.key}
+                onClick={() => setFilterLeague(tab.key)}
+                className={`px-2 py-1 text-xs rounded-md whitespace-nowrap transition-colors flex items-center gap-1 ${
+                  filterLeague === tab.key
+                    ? 'bg-emerald-500/20 text-emerald-400'
+                    : 'bg-zinc-800 text-zinc-500 hover:text-zinc-400'
+                }`}
+              >
+                {tab.label}
+                {count > 0 && (
+                  <span className="text-[10px] opacity-70">({count})</span>
+                )}
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {/* Filters */}
-      {showFilters && (
-        <div className="px-4 py-2 border-b border-zinc-800/50 space-y-2">
-          {/* Status Filter */}
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => setFilterStatus('active')}
-              className={`px-2 py-1 text-xs rounded-md transition-colors ${
-                filterStatus === 'active'
-                  ? 'bg-emerald-500/20 text-emerald-400'
-                  : 'bg-zinc-800 text-zinc-500 hover:text-zinc-400'
-              }`}
-            >
-              Active ({activeCount})
-            </button>
-            <button
-              onClick={() => setFilterStatus('fading')}
-              className={`px-2 py-1 text-xs rounded-md transition-colors ${
-                filterStatus === 'fading'
-                  ? 'bg-yellow-500/20 text-yellow-400'
-                  : 'bg-zinc-800 text-zinc-500 hover:text-zinc-400'
-              }`}
-            >
-              Fading ({fadingCount})
-            </button>
-            <button
-              onClick={() => setFilterStatus('all')}
-              className={`px-2 py-1 text-xs rounded-md transition-colors ${
-                filterStatus === 'all'
-                  ? 'bg-zinc-700 text-zinc-300'
-                  : 'bg-zinc-800 text-zinc-500 hover:text-zinc-400'
-              }`}
-            >
-              All
-            </button>
-          </div>
-
-          {/* Type Filter */}
-          <div className="flex items-center gap-1 flex-wrap">
-            <button
-              onClick={() => setFilterType(null)}
-              className={`px-2 py-0.5 text-[10px] rounded-md transition-colors ${
-                !filterType
-                  ? 'bg-zinc-700 text-zinc-300'
-                  : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-400'
-              }`}
-            >
-              All Types
-            </button>
-            {Object.entries(EDGE_TYPE_CONFIG).map(([key, config]) => (
-              <button
-                key={key}
-                onClick={() => setFilterType(filterType === key ? null : key)}
-                className={`px-2 py-0.5 text-[10px] rounded-md transition-colors ${
-                  filterType === key
-                    ? `bg-${config.color}-500/20 text-${config.color}-400`
-                    : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-400'
-                }`}
-              >
-                {config.shortLabel}
-              </button>
-            ))}
-          </div>
+      {/* Book Filter Indicator */}
+      {selectedBook && (
+        <div className="px-4 py-2 bg-zinc-800/30 border-b border-zinc-800/50">
+          <span className="text-[10px] text-zinc-500">
+            Showing edges for{' '}
+            <span className="text-zinc-300 capitalize font-medium">{selectedBook}</span>
+          </span>
         </div>
       )}
 
       {/* Edge List */}
-      <div className="flex-1 overflow-y-auto relative" ref={listRef}>
-        {/* New edge scroll hint */}
-        {showScrollHint && (
-          <button
-            onClick={scrollToTop}
-            className="absolute top-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500 text-white text-xs font-medium shadow-lg animate-bounce"
-          >
-            <ChevronDown className="w-3 h-3 rotate-180" />
-            New edge detected
-          </button>
-        )}
-
-        {loading && edgeHistory.length === 0 ? (
+      <div className="flex-1 overflow-y-auto" ref={listRef}>
+        {loading && edges.length === 0 ? (
           <div className="flex items-center justify-center h-32">
             <div className="flex items-center gap-2 text-zinc-500">
               <RefreshCw className="w-4 h-4 animate-spin" />
@@ -387,56 +259,29 @@ export function LiveEdgeFeed({
           <div className="flex items-center justify-center h-32">
             <p className="text-sm text-red-400">{error}</p>
           </div>
-        ) : filteredHistory.length === 0 ? (
+        ) : filteredEdges.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-32 text-center px-4">
             <Activity className="w-8 h-8 text-zinc-700 mb-2" />
-            <p className="text-sm text-zinc-500">No edges detected</p>
+            <p className="text-sm text-zinc-500">No active edges</p>
             <p className="text-xs text-zinc-600 mt-1">
-              Edges will appear here when detected
+              {selectedBook ? `No edges on ${selectedBook}` : 'Waiting for edge detection'}
             </p>
           </div>
-        ) : sport ? (
-          // Single sport view - flat list
-          <div className="p-3 space-y-2">
-            {filteredHistory.map((item) => (
-              <EdgeHistoryCard
-                key={item.edge.id}
-                item={item}
-                isExpanded={expandedEdgeId === item.edge.id}
-                onToggleExpand={() =>
-                  setExpandedEdgeId(expandedEdgeId === item.edge.id ? null : item.edge.id)
-                }
-                formatSeenAgo={formatSeenAgo}
-              />
-            ))}
-          </div>
         ) : (
-          // Multi-sport view - grouped
-          <div className="p-3 space-y-4">
-            {Object.entries(groupedBySport).map(([sportKey, sportItems]) => (
-              <div key={sportKey}>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-medium text-zinc-400 uppercase tracking-wider">
-                    {sportKey.replace(/_/g, ' ')}
-                  </span>
-                  <span className="text-[10px] text-zinc-600">
-                    ({sportItems.length})
-                  </span>
-                </div>
-                <div className="space-y-2">
-                  {sportItems.map((item) => (
-                    <EdgeHistoryCard
-                      key={item.edge.id}
-                      item={item}
-                      isExpanded={expandedEdgeId === item.edge.id}
-                      onToggleExpand={() =>
-                        setExpandedEdgeId(expandedEdgeId === item.edge.id ? null : item.edge.id)
-                      }
-                      formatSeenAgo={formatSeenAgo}
-                    />
-                  ))}
-                </div>
-              </div>
+          <div className="p-3 space-y-2">
+            {filteredEdges.map((edge) => (
+              <EdgeCard
+                key={edge.id}
+                edge={edge}
+                isExpanded={expandedEdgeId === edge.id}
+                onToggle={() =>
+                  setExpandedEdgeId(expandedEdgeId === edge.id ? null : edge.id)
+                }
+                formatExactTime={formatExactTime}
+                formatTimeAgo={formatTimeAgo}
+                getMarketLabel={getMarketLabel}
+                getSportEmoji={getSportEmoji}
+              />
             ))}
           </div>
         )}
@@ -445,92 +290,183 @@ export function LiveEdgeFeed({
   );
 }
 
-// Individual edge card with expand/collapse and history info
-interface EdgeHistoryCardProps {
-  item: EdgeHistoryItem;
+// Individual edge card with full context
+interface EdgeCardProps {
+  edge: LiveEdge;
   isExpanded: boolean;
-  onToggleExpand: () => void;
-  formatSeenAgo: (date: Date) => string;
+  onToggle: () => void;
+  formatExactTime: (date: string) => string;
+  formatTimeAgo: (date: string) => string;
+  getMarketLabel: (edge: LiveEdge) => string;
+  getSportEmoji: (sport: string) => string;
 }
 
-function EdgeHistoryCard({ item, isExpanded, onToggleExpand, formatSeenAgo }: EdgeHistoryCardProps) {
-  const { edge, seenAt, isNew } = item;
+function EdgeCard({
+  edge,
+  isExpanded,
+  onToggle,
+  formatExactTime,
+  formatTimeAgo,
+  getMarketLabel,
+  getSportEmoji,
+}: EdgeCardProps) {
+  const typeConfig = EDGE_TYPE_CONFIG[edge.edge_type as keyof typeof EDGE_TYPE_CONFIG];
+
+  // Build full headline with teams context
+  const getHeadline = (): string => {
+    const market = getMarketLabel(edge);
+    const outcome = edge.outcome_key || '';
+
+    // For player props
+    if (edge.market_type === 'player_props') {
+      const parts = outcome.split('|');
+      const player = parts[0]?.replace(/_/g, ' ')?.split(' ').map(w =>
+        w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()
+      ).join(' ');
+      const side = parts[1] || '';
+      return `${player} ${side}`;
+    }
+
+    // For game markets
+    if (edge.market_type === 'totals') {
+      const side = outcome.toLowerCase() === 'over' ? 'Over' : 'Under';
+      return `${side} ${edge.initial_value || edge.current_value || ''}`;
+    }
+
+    // Default
+    return `${outcome} ${market}`;
+  };
+
+  // Get edge value description
+  const getEdgeValue = (): string => {
+    if (edge.edge_type === 'juice_improvement') {
+      return `${Math.round(edge.edge_magnitude)}¢ savings`;
+    }
+    if (edge.market_type === 'h2h') {
+      return `${edge.edge_magnitude > 0 ? '+' : ''}${Math.round(edge.edge_magnitude)}¢ value`;
+    }
+    return `${edge.edge_magnitude > 0 ? '+' : ''}${edge.edge_magnitude.toFixed(1)} pts`;
+  };
+
+  // Confidence color
+  const getConfidenceColor = (conf: number): string => {
+    if (conf >= 70) return 'text-emerald-400';
+    if (conf >= 50) return 'text-blue-400';
+    if (conf >= 35) return 'text-amber-400';
+    return 'text-zinc-400';
+  };
+
+  const confidenceColor = edge.confidence ? getConfidenceColor(edge.confidence) : 'text-zinc-400';
 
   return (
     <div
-      className={`transition-all duration-500 ${
-        isNew
-          ? 'ring-2 ring-emerald-500 ring-offset-2 ring-offset-zinc-900 animate-pulse'
-          : ''
+      className={`rounded-lg border transition-all ${
+        edge.status === 'active'
+          ? 'bg-zinc-900 border-zinc-700 hover:border-zinc-600'
+          : 'bg-zinc-900/50 border-yellow-500/20'
       }`}
     >
-      <div
-        onClick={onToggleExpand}
-        className={`cursor-pointer transition-all duration-200 ${
-          isExpanded ? 'scale-[1.01]' : ''
-        }`}
-      >
-        <LiveEdgeCard edge={edge} compact={!isExpanded} showGameLink={false} />
+      {/* Main Card - Click to expand */}
+      <div className="p-3 cursor-pointer" onClick={onToggle}>
+        {/* Sport + Type Row */}
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2">
+            <span className="text-sm">{getSportEmoji(edge.sport)}</span>
+            <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+              typeConfig?.color === 'blue' ? 'bg-blue-500/15 text-blue-400' :
+              typeConfig?.color === 'green' ? 'bg-emerald-500/15 text-emerald-400' :
+              typeConfig?.color === 'purple' ? 'bg-purple-500/15 text-purple-400' :
+              'bg-orange-500/15 text-orange-400'
+            }`}>
+              {typeConfig?.label || edge.edge_type}
+            </span>
+          </div>
+          <div className={`text-xs font-mono font-bold ${confidenceColor}`}>
+            {edge.confidence?.toFixed(0)}%
+          </div>
+        </div>
+
+        {/* Headline */}
+        <div className="text-sm font-semibold text-zinc-100 mb-1">
+          {getHeadline()}
+        </div>
+
+        {/* Value + Book */}
+        <div className="flex items-center justify-between text-xs">
+          <span className="text-emerald-400 font-medium">{getEdgeValue()}</span>
+          {edge.best_current_book && (
+            <span className="text-zinc-500">
+              @ <span className="capitalize text-zinc-400">{edge.best_current_book}</span>
+            </span>
+          )}
+        </div>
+
+        {/* Timestamp */}
+        <div className="flex items-center gap-1 mt-2 text-[10px] text-zinc-500">
+          <Clock className="w-3 h-3" />
+          <span>{formatTimeAgo(edge.detected_at)}</span>
+          <span className="text-zinc-700">|</span>
+          <span>{formatExactTime(edge.detected_at)}</span>
+        </div>
       </div>
 
-      {/* Expanded details panel */}
+      {/* Expanded Details */}
       {isExpanded && (
-        <div className="mt-1 p-3 rounded-lg bg-zinc-800/50 border border-zinc-700/50 space-y-2 animate-in slide-in-from-top-2 duration-200">
+        <div className="px-3 pb-3 pt-2 border-t border-zinc-800 space-y-2">
           {/* Full description */}
-          <p className="text-xs text-zinc-300 leading-relaxed">
-            {formatEdgeDescription(edge)}
-          </p>
+          <p className="text-xs text-zinc-300">{formatEdgeDescription(edge)}</p>
 
-          {/* Metadata grid */}
+          {/* Details grid */}
           <div className="grid grid-cols-2 gap-2 text-[10px]">
             <div>
               <span className="text-zinc-500">Market:</span>{' '}
-              <span className="text-zinc-300">{edge.market_type || 'N/A'}</span>
+              <span className="text-zinc-300">{getMarketLabel(edge)}</span>
             </div>
             <div>
               <span className="text-zinc-500">Outcome:</span>{' '}
-              <span className="text-zinc-300">{edge.outcome_key || 'N/A'}</span>
+              <span className="text-zinc-300">{edge.outcome_key}</span>
             </div>
-            <div>
-              <span className="text-zinc-500">Confidence:</span>{' '}
-              <span className="text-zinc-300">{edge.confidence?.toFixed(1)}%</span>
-            </div>
-            <div>
-              <span className="text-zinc-500">Books:</span>{' '}
-              <span className="text-zinc-300 capitalize">
-                {edge.triggering_book} → {edge.best_current_book}
-              </span>
-            </div>
-          </div>
-
-          {/* Timestamps */}
-          <div className="flex items-center justify-between pt-2 border-t border-zinc-700/50">
-            <div className="flex items-center gap-1 text-[10px] text-zinc-500">
-              <Clock className="w-3 h-3" />
-              <span>Seen {formatSeenAgo(seenAt)}</span>
-            </div>
-            {edge.game_id && (
-              <a
-                href={`/edge/portal/sports/game/${edge.game_id}?sport=${edge.sport}`}
-                className="text-[10px] text-emerald-400 hover:text-emerald-300 hover:underline"
-                onClick={(e) => e.stopPropagation()}
-              >
-                View Game →
-              </a>
+            {edge.sharp_book_line !== null && (
+              <div>
+                <span className="text-zinc-500">Pinnacle Line:</span>{' '}
+                <span className="text-zinc-300">{edge.sharp_book_line}</span>
+              </div>
             )}
+            <div>
+              <span className="text-zinc-500">Best Book:</span>{' '}
+              <span className="text-zinc-300 capitalize">{edge.best_current_book}</span>
+            </div>
           </div>
-        </div>
-      )}
 
-      {/* Seen timestamp (when collapsed) */}
-      {!isExpanded && (
-        <div className="flex items-center justify-between px-2 py-1">
-          <span className="text-[9px] text-zinc-600">
-            Seen {formatSeenAgo(seenAt)}
-          </span>
-          <span className="text-[9px] text-zinc-600">
-            Click to expand
-          </span>
+          {/* Confidence bar */}
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] text-zinc-500 w-16">Confidence</span>
+            <div className="flex-1 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+              <div
+                className={`h-full rounded-full ${
+                  edge.confidence && edge.confidence >= 70 ? 'bg-emerald-500' :
+                  edge.confidence && edge.confidence >= 50 ? 'bg-blue-500' :
+                  'bg-amber-500'
+                }`}
+                style={{ width: `${edge.confidence || 0}%` }}
+              />
+            </div>
+            <span className={`text-[10px] font-mono ${confidenceColor}`}>
+              {edge.confidence?.toFixed(0)}%
+            </span>
+          </div>
+
+          {/* Game link */}
+          {edge.game_id && (
+            <Link
+              href={`/edge/portal/sports/game/${edge.game_id}?sport=${edge.sport}`}
+              className="flex items-center gap-1 text-[10px] text-emerald-400 hover:text-emerald-300"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <ExternalLink className="w-3 h-3" />
+              View Game Details
+            </Link>
+          )}
         </div>
       )}
     </div>

@@ -815,9 +815,8 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
           <div className="sticky top-4 h-[calc(100vh-8rem)] bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
             <LiveEdgeFeed
               sport={activeSport || undefined}
-              maxEdges={15}
-              showFilters={true}
-              autoRefresh={true}
+              selectedBook={selectedBook}
+              maxEdges={20}
               onEdgeCount={setLiveEdgeCount}
             />
           </div>

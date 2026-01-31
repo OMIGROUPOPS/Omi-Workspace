@@ -1727,66 +1727,78 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
             const edges: { market: 'spread' | 'h2h' | 'total'; side: 'home' | 'away' | 'over' | 'under'; ceq: number; confidence: string; sideLabel: string; lineValue?: string }[] = [];
             if (ceq) {
               // Spreads
-              if (ceq.spreads?.home?.ceq >= 56) {
+              const spreadHomeCeq = ceq.spreads?.home?.ceq;
+              const spreadHomeConf = ceq.spreads?.home?.confidence;
+              if (spreadHomeCeq !== undefined && spreadHomeCeq >= 56 && spreadHomeConf) {
                 const line = marketGroups.fullGame?.spreads?.home?.line;
                 edges.push({
                   market: 'spread',
                   side: 'home',
-                  ceq: ceq.spreads.home.ceq,
-                  confidence: ceq.spreads.home.confidence,
+                  ceq: spreadHomeCeq,
+                  confidence: spreadHomeConf,
                   sideLabel: gameData.homeTeam,
                   lineValue: line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : undefined,
                 });
               }
-              if (ceq.spreads?.away?.ceq >= 56) {
+              const spreadAwayCeq = ceq.spreads?.away?.ceq;
+              const spreadAwayConf = ceq.spreads?.away?.confidence;
+              if (spreadAwayCeq !== undefined && spreadAwayCeq >= 56 && spreadAwayConf) {
                 const line = marketGroups.fullGame?.spreads?.away?.line || (marketGroups.fullGame?.spreads?.home?.line ? -marketGroups.fullGame.spreads.home.line : undefined);
                 edges.push({
                   market: 'spread',
                   side: 'away',
-                  ceq: ceq.spreads.away.ceq,
-                  confidence: ceq.spreads.away.confidence,
+                  ceq: spreadAwayCeq,
+                  confidence: spreadAwayConf,
                   sideLabel: gameData.awayTeam,
                   lineValue: line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : undefined,
                 });
               }
               // H2H (Moneyline)
-              if (ceq.h2h?.home?.ceq >= 56) {
+              const h2hHomeCeq = ceq.h2h?.home?.ceq;
+              const h2hHomeConf = ceq.h2h?.home?.confidence;
+              if (h2hHomeCeq !== undefined && h2hHomeCeq >= 56 && h2hHomeConf) {
                 edges.push({
                   market: 'h2h',
                   side: 'home',
-                  ceq: ceq.h2h.home.ceq,
-                  confidence: ceq.h2h.home.confidence,
+                  ceq: h2hHomeCeq,
+                  confidence: h2hHomeConf,
                   sideLabel: `${gameData.homeTeam} ML`,
                 });
               }
-              if (ceq.h2h?.away?.ceq >= 56) {
+              const h2hAwayCeq = ceq.h2h?.away?.ceq;
+              const h2hAwayConf = ceq.h2h?.away?.confidence;
+              if (h2hAwayCeq !== undefined && h2hAwayCeq >= 56 && h2hAwayConf) {
                 edges.push({
                   market: 'h2h',
                   side: 'away',
-                  ceq: ceq.h2h.away.ceq,
-                  confidence: ceq.h2h.away.confidence,
+                  ceq: h2hAwayCeq,
+                  confidence: h2hAwayConf,
                   sideLabel: `${gameData.awayTeam} ML`,
                 });
               }
               // Totals
-              if (ceq.totals?.over?.ceq >= 56) {
+              const totalsOverCeq = ceq.totals?.over?.ceq;
+              const totalsOverConf = ceq.totals?.over?.confidence;
+              if (totalsOverCeq !== undefined && totalsOverCeq >= 56 && totalsOverConf) {
                 const line = marketGroups.fullGame?.totals?.line;
                 edges.push({
                   market: 'total',
                   side: 'over',
-                  ceq: ceq.totals.over.ceq,
-                  confidence: ceq.totals.over.confidence,
+                  ceq: totalsOverCeq,
+                  confidence: totalsOverConf,
                   sideLabel: 'Over',
                   lineValue: line !== undefined ? `${line}` : undefined,
                 });
               }
-              if (ceq.totals?.under?.ceq >= 56) {
+              const totalsUnderCeq = ceq.totals?.under?.ceq;
+              const totalsUnderConf = ceq.totals?.under?.confidence;
+              if (totalsUnderCeq !== undefined && totalsUnderCeq >= 56 && totalsUnderConf) {
                 const line = marketGroups.fullGame?.totals?.line;
                 edges.push({
                   market: 'total',
                   side: 'under',
-                  ceq: ceq.totals.under.ceq,
-                  confidence: ceq.totals.under.confidence,
+                  ceq: totalsUnderCeq,
+                  confidence: totalsUnderConf,
                   sideLabel: 'Under',
                   lineValue: line !== undefined ? `${line}` : undefined,
                 });

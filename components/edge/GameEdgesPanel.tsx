@@ -11,12 +11,22 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
+interface CEQEdge {
+  market: 'spread' | 'h2h' | 'total';
+  side: 'home' | 'away' | 'over' | 'under';
+  ceq: number;
+  confidence: string;
+  sideLabel: string;
+  lineValue?: string;
+}
+
 interface GameEdgesPanelProps {
   gameId: string;
   sport: string;
+  ceqEdges?: CEQEdge[];
 }
 
-export function GameEdgesPanel({ gameId, sport }: GameEdgesPanelProps) {
+export function GameEdgesPanel({ gameId, sport, ceqEdges = [] }: GameEdgesPanelProps) {
   const [edges, setEdges] = useState<LiveEdge[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -114,8 +124,10 @@ export function GameEdgesPanel({ gameId, sport }: GameEdgesPanelProps) {
     );
   }
 
-  const hasEdges = edges.length > 0;
-  const hasActiveEdges = activeEdges.length > 0 || fadingEdges.length > 0;
+  // Filter CEQ edges to only show those with actual edge (>= 56%)
+  const validCEQEdges = ceqEdges.filter(e => e.ceq >= 56);
+  const hasEdges = edges.length > 0 || validCEQEdges.length > 0;
+  const hasActiveEdges = activeEdges.length > 0 || fadingEdges.length > 0 || validCEQEdges.length > 0;
 
   return (
     <div className="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
@@ -171,7 +183,70 @@ export function GameEdgesPanel({ gameId, sport }: GameEdgesPanelProps) {
           </div>
         ) : (
           <div className="space-y-4">
-            {/* Active Edges */}
+            {/* CEQ-Calculated Edges (from pillar analysis) */}
+            {validCEQEdges.length > 0 && (
+              <div>
+                <h4 className="text-xs font-medium text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  CEQ Analysis Edges
+                </h4>
+                <div className="space-y-2">
+                  {validCEQEdges
+                    .sort((a, b) => b.ceq - a.ceq)
+                    .map((ceqEdge, idx) => (
+                    <div
+                      key={`ceq-${idx}`}
+                      className={`p-3 rounded-lg border ${
+                        ceqEdge.ceq >= 86 ? 'bg-purple-500/10 border-purple-500/30' :
+                        ceqEdge.ceq >= 76 ? 'bg-emerald-500/10 border-emerald-500/30' :
+                        ceqEdge.ceq >= 66 ? 'bg-blue-500/10 border-blue-500/30' :
+                        'bg-amber-500/10 border-amber-500/30'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center gap-2">
+                          <TrendingUp className={`w-4 h-4 ${
+                            ceqEdge.ceq >= 86 ? 'text-purple-400' :
+                            ceqEdge.ceq >= 76 ? 'text-emerald-400' :
+                            ceqEdge.ceq >= 66 ? 'text-blue-400' :
+                            'text-amber-400'
+                          }`} />
+                          <span className="text-sm font-semibold text-zinc-100">
+                            {ceqEdge.sideLabel} {ceqEdge.lineValue && `${ceqEdge.lineValue}`}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className={`text-lg font-bold font-mono ${
+                            ceqEdge.ceq >= 86 ? 'text-purple-400' :
+                            ceqEdge.ceq >= 76 ? 'text-emerald-400' :
+                            ceqEdge.ceq >= 66 ? 'text-blue-400' :
+                            'text-amber-400'
+                          }`}>
+                            {ceqEdge.ceq}%
+                          </span>
+                          <span className={`text-xs font-bold px-2 py-0.5 rounded ${
+                            ceqEdge.ceq >= 86 ? 'bg-purple-500/20 text-purple-300' :
+                            ceqEdge.ceq >= 76 ? 'bg-emerald-500/20 text-emerald-300' :
+                            ceqEdge.ceq >= 66 ? 'bg-blue-500/20 text-blue-300' :
+                            'bg-amber-500/20 text-amber-300'
+                          }`}>
+                            {ceqEdge.confidence}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="text-xs text-zinc-400">
+                        {ceqEdge.market === 'spread' ? 'Spread' : ceqEdge.market === 'h2h' ? 'Moneyline' : 'Total'} market
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Active Edges from Database */}
             {activeEdges.length > 0 && (
               <div>
                 <h4 className="text-xs font-medium text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
@@ -179,7 +254,7 @@ export function GameEdgesPanel({ gameId, sport }: GameEdgesPanelProps) {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                   </span>
-                  Active Edges
+                  Line Movement Edges
                 </h4>
                 <div className="space-y-2">
                   {activeEdges.map((edge) => (

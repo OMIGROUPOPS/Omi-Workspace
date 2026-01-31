@@ -73,21 +73,42 @@ function OddsCell({ line, price, ev, ceq, topDrivers }: { line?: number | string
   const [showTooltip, setShowTooltip] = useState(false);
   const hasEV = ev !== undefined && Math.abs(ev) >= 0.5;
   const hasCEQ = ceq !== undefined && ceq !== null;
+  const hasEdge = hasCEQ && ceq >= 56;
 
-  // Use EV for styling (primary), fall back to CEQ
-  const evBg = hasEV ? getEVBgClass(ev) : 'bg-zinc-800/80 border-zinc-700/50';
+  // CEQ-based styling for edges (takes priority over EV)
+  const getCellStyles = () => {
+    if (hasEdge) {
+      if (ceq >= 86) return 'bg-purple-500/20 border-2 border-purple-500/50 ring-1 ring-purple-500/30';
+      if (ceq >= 76) return 'bg-emerald-500/20 border-2 border-emerald-500/50 ring-1 ring-emerald-500/30';
+      if (ceq >= 66) return 'bg-blue-500/20 border-2 border-blue-500/50 ring-1 ring-blue-500/30';
+      return 'bg-amber-500/15 border-2 border-amber-500/40 ring-1 ring-amber-500/20';
+    }
+    if (hasEV) return getEVBgClass(ev);
+    return 'bg-zinc-800/80 border border-zinc-700/50';
+  };
+
   const evColor = hasEV ? getEVColor(ev) : 'text-zinc-500';
-
   const confidence = hasCEQ
     ? ceq >= 86 ? 'RARE' : ceq >= 76 ? 'STRONG' : ceq >= 66 ? 'EDGE' : ceq >= 56 ? 'WATCH' : 'PASS'
     : null;
 
   return (
     <div
-      className={`relative flex flex-col items-center justify-center p-1.5 ${evBg} rounded hover:border-zinc-600 transition-all cursor-pointer group`}
+      className={`relative flex flex-col items-center justify-center p-1.5 ${getCellStyles()} rounded hover:brightness-110 transition-all cursor-pointer group`}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
     >
+      {/* Edge indicator badge */}
+      {hasEdge && (
+        <div className={`absolute -top-1 -right-1 px-1 py-0.5 rounded text-[8px] font-bold ${
+          ceq >= 86 ? 'bg-purple-500 text-white' :
+          ceq >= 76 ? 'bg-emerald-500 text-white' :
+          ceq >= 66 ? 'bg-blue-500 text-white' :
+          'bg-amber-500 text-black'
+        }`}>
+          {ceq}%
+        </div>
+      )}
       <div className="flex items-center gap-0.5">
         <span className="text-xs font-semibold text-zinc-100 font-mono">
           {line !== undefined && (typeof line === 'number' ? (line > 0 ? `+${line}` : line) : line)}
@@ -106,12 +127,6 @@ function OddsCell({ line, price, ev, ceq, topDrivers }: { line?: number | string
       {/* Tooltip with CEQ details */}
       {showTooltip && (hasEV || hasCEQ) && (
         <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl p-2 text-left">
-          {hasEV && (
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] text-zinc-500 uppercase">EV</span>
-              <span className={`text-xs font-bold ${evColor}`}>{formatEV(ev)}</span>
-            </div>
-          )}
           {hasCEQ && (
             <div className="flex items-center justify-between mb-1">
               <span className="text-[10px] text-zinc-500 uppercase">CEQ Score</span>
@@ -119,7 +134,13 @@ function OddsCell({ line, price, ev, ceq, topDrivers }: { line?: number | string
             </div>
           )}
           {confidence && confidence !== 'PASS' && (
-            <div className={`text-[10px] font-medium ${getCEQStyles(ceq).textColor} mb-1`}>{confidence}</div>
+            <div className={`text-[10px] font-semibold ${getCEQStyles(ceq).textColor} mb-1`}>{confidence} EDGE</div>
+          )}
+          {hasEV && (
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[10px] text-zinc-500 uppercase">EV</span>
+              <span className={`text-xs font-bold ${evColor}`}>{formatEV(ev)}</span>
+            </div>
           )}
           {topDrivers && topDrivers.length > 0 && (
             <div className="border-t border-zinc-800 pt-1 mt-1">
@@ -139,21 +160,42 @@ function MoneylineCell({ price, ev, ceq, topDrivers }: { price: number; ev?: num
   const [showTooltip, setShowTooltip] = useState(false);
   const hasEV = ev !== undefined && Math.abs(ev) >= 0.5;
   const hasCEQ = ceq !== undefined && ceq !== null;
+  const hasEdge = hasCEQ && ceq >= 56;
 
-  // Use EV for styling (primary), fall back to CEQ
-  const evBg = hasEV ? getEVBgClass(ev) : 'bg-zinc-800/80 border-zinc-700/50';
+  // CEQ-based styling for edges (takes priority over EV)
+  const getCellStyles = () => {
+    if (hasEdge) {
+      if (ceq >= 86) return 'bg-purple-500/20 border-2 border-purple-500/50 ring-1 ring-purple-500/30';
+      if (ceq >= 76) return 'bg-emerald-500/20 border-2 border-emerald-500/50 ring-1 ring-emerald-500/30';
+      if (ceq >= 66) return 'bg-blue-500/20 border-2 border-blue-500/50 ring-1 ring-blue-500/30';
+      return 'bg-amber-500/15 border-2 border-amber-500/40 ring-1 ring-amber-500/20';
+    }
+    if (hasEV) return getEVBgClass(ev);
+    return 'bg-zinc-800/80 border border-zinc-700/50';
+  };
+
   const evColor = hasEV ? getEVColor(ev) : 'text-zinc-500';
-
   const confidence = hasCEQ
     ? ceq >= 86 ? 'RARE' : ceq >= 76 ? 'STRONG' : ceq >= 66 ? 'EDGE' : ceq >= 56 ? 'WATCH' : 'PASS'
     : null;
 
   return (
     <div
-      className={`relative flex flex-col items-center justify-center p-1.5 ${evBg} rounded hover:border-zinc-600 transition-all cursor-pointer group`}
+      className={`relative flex flex-col items-center justify-center p-1.5 ${getCellStyles()} rounded hover:brightness-110 transition-all cursor-pointer group`}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
     >
+      {/* Edge indicator badge */}
+      {hasEdge && (
+        <div className={`absolute -top-1 -right-1 px-1 py-0.5 rounded text-[8px] font-bold ${
+          ceq >= 86 ? 'bg-purple-500 text-white' :
+          ceq >= 76 ? 'bg-emerald-500 text-white' :
+          ceq >= 66 ? 'bg-blue-500 text-white' :
+          'bg-amber-500 text-black'
+        }`}>
+          {ceq}%
+        </div>
+      )}
       <div className="flex items-center gap-1">
         <span className={`text-xs font-semibold font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-100'}`}>
           {formatOdds(price)}
@@ -164,15 +206,9 @@ function MoneylineCell({ price, ev, ceq, topDrivers }: { price: number; ev?: num
           </span>
         )}
       </div>
-      {/* Tooltip with EV and CEQ details */}
+      {/* Tooltip with CEQ details */}
       {showTooltip && (hasEV || hasCEQ) && (
         <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl p-2 text-left">
-          {hasEV && (
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] text-zinc-500 uppercase">EV</span>
-              <span className={`text-xs font-bold ${evColor}`}>{formatEV(ev)}</span>
-            </div>
-          )}
           {hasCEQ && (
             <div className="flex items-center justify-between mb-1">
               <span className="text-[10px] text-zinc-500 uppercase">CEQ Score</span>
@@ -180,7 +216,13 @@ function MoneylineCell({ price, ev, ceq, topDrivers }: { price: number; ev?: num
             </div>
           )}
           {confidence && confidence !== 'PASS' && (
-            <div className={`text-[10px] font-medium ${getCEQStyles(ceq).textColor} mb-1`}>{confidence}</div>
+            <div className={`text-[10px] font-semibold ${getCEQStyles(ceq).textColor} mb-1`}>{confidence} EDGE</div>
+          )}
+          {hasEV && (
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[10px] text-zinc-500 uppercase">EV</span>
+              <span className={`text-xs font-bold ${evColor}`}>{formatEV(ev)}</span>
+            </div>
           )}
           {topDrivers && topDrivers.length > 0 && (
             <div className="border-t border-zinc-800 pt-1 mt-1">
@@ -209,9 +251,67 @@ function BookIcon({ bookKey, size = 24 }: { bookKey: string; size?: number }) {
   );
 }
 
-function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number; context?: string } | null {
-  // Dashboard cards should be clean - no edge badges
-  // Users click through to game detail page to see CEQ analysis
+function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number; context?: string; market?: string } | null {
+  // Show edge badge ONLY when CEQ >= 56% (actual edge exists)
+  const ceq = game.ceq as GameCEQ | undefined;
+  if (!ceq) return null;
+
+  // Find the best edge across all markets
+  let bestEdge: { ceq: number; confidence: string; side: string; market: string } | null = null;
+
+  // Check spreads
+  if (ceq.spreads) {
+    if (ceq.spreads.home?.ceq >= 56 && (!bestEdge || ceq.spreads.home.ceq > bestEdge.ceq)) {
+      bestEdge = { ceq: ceq.spreads.home.ceq, confidence: ceq.spreads.home.confidence, side: 'home', market: 'spread' };
+    }
+    if (ceq.spreads.away?.ceq >= 56 && (!bestEdge || ceq.spreads.away.ceq > bestEdge.ceq)) {
+      bestEdge = { ceq: ceq.spreads.away.ceq, confidence: ceq.spreads.away.confidence, side: 'away', market: 'spread' };
+    }
+  }
+
+  // Check h2h (moneyline)
+  if (ceq.h2h) {
+    if (ceq.h2h.home?.ceq >= 56 && (!bestEdge || ceq.h2h.home.ceq > bestEdge.ceq)) {
+      bestEdge = { ceq: ceq.h2h.home.ceq, confidence: ceq.h2h.home.confidence, side: 'home', market: 'h2h' };
+    }
+    if (ceq.h2h.away?.ceq >= 56 && (!bestEdge || ceq.h2h.away.ceq > bestEdge.ceq)) {
+      bestEdge = { ceq: ceq.h2h.away.ceq, confidence: ceq.h2h.away.confidence, side: 'away', market: 'h2h' };
+    }
+  }
+
+  // Check totals
+  if (ceq.totals) {
+    if (ceq.totals.over?.ceq >= 56 && (!bestEdge || ceq.totals.over.ceq > bestEdge.ceq)) {
+      bestEdge = { ceq: ceq.totals.over.ceq, confidence: ceq.totals.over.confidence, side: 'over', market: 'total' };
+    }
+    if (ceq.totals.under?.ceq >= 56 && (!bestEdge || ceq.totals.under.ceq > bestEdge.ceq)) {
+      bestEdge = { ceq: ceq.totals.under.ceq, confidence: ceq.totals.under.confidence, side: 'under', market: 'total' };
+    }
+  }
+
+  if (!bestEdge || bestEdge.confidence === 'PASS') return null;
+
+  // Build context string
+  let context = '';
+  const consensus = game.consensus;
+  if (bestEdge.market === 'spread' && consensus?.spreads?.line !== undefined) {
+    const teamName = bestEdge.side === 'home' ? game.homeTeam?.split(' ').pop() : game.awayTeam?.split(' ').pop();
+    const line = bestEdge.side === 'home' ? consensus.spreads.line : -consensus.spreads.line;
+    const lineStr = line > 0 ? `+${line}` : `${line}`;
+    context = `${teamName} ${lineStr}`;
+  } else if (bestEdge.market === 'h2h') {
+    const teamName = bestEdge.side === 'home' ? game.homeTeam?.split(' ').pop() : game.awayTeam?.split(' ').pop();
+    context = `${teamName} ML`;
+  } else if (bestEdge.market === 'total' && consensus?.totals?.line !== undefined) {
+    context = bestEdge.side === 'over' ? `O ${consensus.totals.line}` : `U ${consensus.totals.line}`;
+  }
+
+  const conf = bestEdge.confidence;
+  if (conf === 'RARE') return { label: 'RARE', color: 'text-purple-300', bg: 'bg-purple-500/20 border-purple-500/30', score: bestEdge.ceq, context, market: bestEdge.market };
+  if (conf === 'STRONG') return { label: 'STRONG', color: 'text-emerald-300', bg: 'bg-emerald-500/20 border-emerald-500/30', score: bestEdge.ceq, context, market: bestEdge.market };
+  if (conf === 'EDGE') return { label: 'EDGE', color: 'text-blue-300', bg: 'bg-blue-500/20 border-blue-500/30', score: bestEdge.ceq, context, market: bestEdge.market };
+  if (conf === 'WATCH') return { label: 'WATCH', color: 'text-amber-300', bg: 'bg-amber-500/20 border-amber-500/30', score: bestEdge.ceq, context, market: bestEdge.market };
+
   return null;
 }
 

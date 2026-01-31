@@ -821,22 +821,46 @@ function MarketCell({
   value,
   subValue,
   ev,
+  ceq,
   onClick,
   isSelected
 }: {
   value: string | number;
   subValue?: string;
   ev?: number;
+  ceq?: number;
   onClick?: () => void;
   isSelected?: boolean
 }) {
-  // Color based on EV: positive = green tint, negative = red tint, neutral = no tint
   const displayEV = ev ?? 0;
-  const bgClass = getEVBgClass(displayEV);
+  const hasEdge = ceq !== undefined && ceq >= 56;
+
+  // CEQ-based styling for edges (takes priority)
+  const getCellStyles = () => {
+    if (hasEdge) {
+      if (ceq >= 86) return 'bg-purple-500/20 border-2 border-purple-500/50 ring-1 ring-purple-500/30';
+      if (ceq >= 76) return 'bg-emerald-500/20 border-2 border-emerald-500/50 ring-1 ring-emerald-500/30';
+      if (ceq >= 66) return 'bg-blue-500/20 border-2 border-blue-500/50 ring-1 ring-blue-500/30';
+      return 'bg-amber-500/15 border-2 border-amber-500/40 ring-1 ring-amber-500/20';
+    }
+    return getEVBgClass(displayEV);
+  };
+
   const evColorClass = getEVColor(displayEV);
 
   return (
-    <div onClick={onClick} className={`w-full text-center py-1.5 px-2 rounded border transition-all cursor-pointer hover:brightness-110 ${bgClass} ${isSelected ? 'ring-2 ring-emerald-500' : ''}`}>
+    <div onClick={onClick} className={`relative w-full text-center py-1.5 px-2 rounded transition-all cursor-pointer hover:brightness-110 ${getCellStyles()} ${isSelected ? 'ring-2 ring-white/50' : ''}`}>
+      {/* Edge indicator badge */}
+      {hasEdge && (
+        <div className={`absolute -top-1.5 -right-1.5 px-1 py-0.5 rounded text-[9px] font-bold z-10 ${
+          ceq >= 86 ? 'bg-purple-500 text-white' :
+          ceq >= 76 ? 'bg-emerald-500 text-white' :
+          ceq >= 66 ? 'bg-blue-500 text-white' :
+          'bg-amber-500 text-black'
+        }`}>
+          {ceq}%
+        </div>
+      )}
       <div className="text-sm font-medium text-zinc-100">{value}</div>
       <div className="flex items-center justify-center gap-1">
         {subValue && <span className="text-[11px] text-zinc-400">{subValue}</span>}
@@ -850,7 +874,7 @@ function MarketCell({
   );
 }
 
-function MarketSection({ title, markets, homeTeam, awayTeam, gameId, onSelectMarket, selectedMarket, allBookmakers, periodKey }: { title: string; markets: any; homeTeam: string; awayTeam: string; gameId?: string; onSelectMarket: (market: 'spread' | 'total' | 'moneyline') => void; selectedMarket: 'spread' | 'total' | 'moneyline'; allBookmakers?: Record<string, any>; periodKey?: string }) {
+function MarketSection({ title, markets, homeTeam, awayTeam, gameId, onSelectMarket, selectedMarket, allBookmakers, periodKey, ceqData }: { title: string; markets: any; homeTeam: string; awayTeam: string; gameId?: string; onSelectMarket: (market: 'spread' | 'total' | 'moneyline') => void; selectedMarket: 'spread' | 'total' | 'moneyline'; allBookmakers?: Record<string, any>; periodKey?: string; ceqData?: GameCEQ | null }) {
   if (!markets || (!markets.h2h && !markets.spreads && !markets.totals)) {
     return (<div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden mb-4"><div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800"><h2 className="font-semibold text-zinc-100">{title}</h2></div><div className="p-8 text-center"><p className="text-zinc-500">No {title.toLowerCase()} markets available</p></div></div>);
   }
@@ -926,15 +950,15 @@ function MarketSection({ title, markets, homeTeam, awayTeam, gameId, onSelectMar
         <div className="grid grid-cols-[1fr,100px,100px,100px] gap-3 mb-3"><div></div><div className="text-center text-xs text-zinc-500 uppercase tracking-wide">Spread</div><div className="text-center text-xs text-zinc-500 uppercase tracking-wide">ML</div><div className="text-center text-xs text-zinc-500 uppercase tracking-wide">Total</div></div>
         <div className="grid grid-cols-[1fr,100px,100px,100px] gap-3 mb-3 items-center">
           <div className="font-medium text-zinc-100 text-sm">{awayTeam}</div>
-          {markets.spreads ? <MarketCell value={formatSpread(markets.spreads.away.line)} subValue={formatOdds(markets.spreads.away.price)} ev={spreadAwayEV} onClick={() => onSelectMarket('spread')} isSelected={selectedMarket === 'spread'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
-          {markets.h2h ? <MarketCell value={formatOdds(markets.h2h.away.price)} ev={mlAwayEV} onClick={() => onSelectMarket('moneyline')} isSelected={selectedMarket === 'moneyline'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
-          {markets.totals ? <MarketCell value={`O ${markets.totals.line}`} subValue={formatOdds(markets.totals.over.price)} ev={totalOverEV} onClick={() => onSelectMarket('total')} isSelected={selectedMarket === 'total'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.spreads ? <MarketCell value={formatSpread(markets.spreads.away.line)} subValue={formatOdds(markets.spreads.away.price)} ev={spreadAwayEV} ceq={ceqData?.spreads?.away?.ceq} onClick={() => onSelectMarket('spread')} isSelected={selectedMarket === 'spread'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.h2h ? <MarketCell value={formatOdds(markets.h2h.away.price)} ev={mlAwayEV} ceq={ceqData?.h2h?.away?.ceq} onClick={() => onSelectMarket('moneyline')} isSelected={selectedMarket === 'moneyline'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.totals ? <MarketCell value={`O ${markets.totals.line}`} subValue={formatOdds(markets.totals.over.price)} ev={totalOverEV} ceq={ceqData?.totals?.over?.ceq} onClick={() => onSelectMarket('total')} isSelected={selectedMarket === 'total'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
         </div>
         <div className="grid grid-cols-[1fr,100px,100px,100px] gap-3 items-center">
           <div className="font-medium text-zinc-100 text-sm">{homeTeam}</div>
-          {markets.spreads ? <MarketCell value={formatSpread(markets.spreads.home.line)} subValue={formatOdds(markets.spreads.home.price)} ev={spreadHomeEV} onClick={() => onSelectMarket('spread')} isSelected={selectedMarket === 'spread'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
-          {markets.h2h ? <MarketCell value={formatOdds(markets.h2h.home.price)} ev={mlHomeEV} onClick={() => onSelectMarket('moneyline')} isSelected={selectedMarket === 'moneyline'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
-          {markets.totals ? <MarketCell value={`U ${markets.totals.line}`} subValue={formatOdds(markets.totals.under.price)} ev={totalUnderEV} onClick={() => onSelectMarket('total')} isSelected={selectedMarket === 'total'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.spreads ? <MarketCell value={formatSpread(markets.spreads.home.line)} subValue={formatOdds(markets.spreads.home.price)} ev={spreadHomeEV} ceq={ceqData?.spreads?.home?.ceq} onClick={() => onSelectMarket('spread')} isSelected={selectedMarket === 'spread'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.h2h ? <MarketCell value={formatOdds(markets.h2h.home.price)} ev={mlHomeEV} ceq={ceqData?.h2h?.home?.ceq} onClick={() => onSelectMarket('moneyline')} isSelected={selectedMarket === 'moneyline'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
+          {markets.totals ? <MarketCell value={`U ${markets.totals.line}`} subValue={formatOdds(markets.totals.under.price)} ev={totalUnderEV} ceq={ceqData?.totals?.under?.ceq} onClick={() => onSelectMarket('total')} isSelected={selectedMarket === 'total'} /> : <div className="text-center py-2 text-zinc-600">-</div>}
         </div>
       </div>
     </div>
@@ -1695,7 +1719,82 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
 
       {/* Live Edge Detection Panel */}
       <div className="mb-6">
-        <GameEdgesPanel gameId={gameData.id} sport={gameData.sportKey} />
+        <GameEdgesPanel
+          gameId={gameData.id}
+          sport={gameData.sportKey}
+          ceqEdges={(() => {
+            // Build CEQ edges from the calculated CEQ data
+            const edges: { market: 'spread' | 'h2h' | 'total'; side: 'home' | 'away' | 'over' | 'under'; ceq: number; confidence: string; sideLabel: string; lineValue?: string }[] = [];
+            if (ceq) {
+              // Spreads
+              if (ceq.spreads?.home?.ceq >= 56) {
+                const line = marketGroups.fullGame?.spreads?.home?.line;
+                edges.push({
+                  market: 'spread',
+                  side: 'home',
+                  ceq: ceq.spreads.home.ceq,
+                  confidence: ceq.spreads.home.confidence,
+                  sideLabel: gameData.homeTeam,
+                  lineValue: line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : undefined,
+                });
+              }
+              if (ceq.spreads?.away?.ceq >= 56) {
+                const line = marketGroups.fullGame?.spreads?.away?.line || (marketGroups.fullGame?.spreads?.home?.line ? -marketGroups.fullGame.spreads.home.line : undefined);
+                edges.push({
+                  market: 'spread',
+                  side: 'away',
+                  ceq: ceq.spreads.away.ceq,
+                  confidence: ceq.spreads.away.confidence,
+                  sideLabel: gameData.awayTeam,
+                  lineValue: line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : undefined,
+                });
+              }
+              // H2H (Moneyline)
+              if (ceq.h2h?.home?.ceq >= 56) {
+                edges.push({
+                  market: 'h2h',
+                  side: 'home',
+                  ceq: ceq.h2h.home.ceq,
+                  confidence: ceq.h2h.home.confidence,
+                  sideLabel: `${gameData.homeTeam} ML`,
+                });
+              }
+              if (ceq.h2h?.away?.ceq >= 56) {
+                edges.push({
+                  market: 'h2h',
+                  side: 'away',
+                  ceq: ceq.h2h.away.ceq,
+                  confidence: ceq.h2h.away.confidence,
+                  sideLabel: `${gameData.awayTeam} ML`,
+                });
+              }
+              // Totals
+              if (ceq.totals?.over?.ceq >= 56) {
+                const line = marketGroups.fullGame?.totals?.line;
+                edges.push({
+                  market: 'total',
+                  side: 'over',
+                  ceq: ceq.totals.over.ceq,
+                  confidence: ceq.totals.over.confidence,
+                  sideLabel: 'Over',
+                  lineValue: line !== undefined ? `${line}` : undefined,
+                });
+              }
+              if (ceq.totals?.under?.ceq >= 56) {
+                const line = marketGroups.fullGame?.totals?.line;
+                edges.push({
+                  market: 'total',
+                  side: 'under',
+                  ceq: ceq.totals.under.ceq,
+                  confidence: ceq.totals.under.confidence,
+                  sideLabel: 'Under',
+                  lineValue: line !== undefined ? `${line}` : undefined,
+                });
+              }
+            }
+            return edges;
+          })()}
+        />
       </div>
 
       <div className="relative mb-4" ref={dropdownRef}>
@@ -1735,7 +1834,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
       {/* Sportsbook Markets View */}
       {!(selectedBook === 'kalshi' || selectedBook === 'polymarket') && (
         <>
-          {activeTab === 'full' && <MarketSection title="Full Game" markets={marketGroups.fullGame} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="fullGame" />}
+          {activeTab === 'full' && <MarketSection title="Full Game" markets={marketGroups.fullGame} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="fullGame" ceqData={ceq} />}
           {activeTab === '1h' && <MarketSection title="1st Half" markets={marketGroups.firstHalf} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="firstHalf" />}
           {activeTab === '2h' && <MarketSection title="2nd Half" markets={marketGroups.secondHalf} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="secondHalf" />}
           {activeTab === '1q' && <MarketSection title="1st Quarter" markets={marketGroups.q1} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q1" />}

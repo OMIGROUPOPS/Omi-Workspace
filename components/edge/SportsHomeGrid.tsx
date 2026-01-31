@@ -74,9 +74,9 @@ function OddsCell({ line, price, ev, ceq, topDrivers }: { line?: number | string
   const hasEV = ev !== undefined && Math.abs(ev) >= 0.5;
   const hasCEQ = ceq !== undefined && ceq !== null;
 
-  // Show edge when CEQ >= 56% and EV is not severely negative (>= -3% allows for vig)
-  // CEQ is the primary edge indicator; EV is supplementary info
-  const evAcceptable = ev === undefined || ev >= -3;
+  // Show edge when CEQ >= 56% and EV is POSITIVE (or undefined)
+  // Negative EV = losing bet = no edge
+  const evAcceptable = ev === undefined || ev >= 0;
   const hasEdge = hasCEQ && ceq >= 56 && evAcceptable;
 
   // Edge styling only when we have a real edge (CEQ high + EV non-negative)
@@ -165,11 +165,12 @@ function MoneylineCell({ price, ev, ceq, topDrivers }: { price: number; ev?: num
   const hasEV = ev !== undefined && Math.abs(ev) >= 0.5;
   const hasCEQ = ceq !== undefined && ceq !== null;
 
-  // Show edge when CEQ >= 56% and EV is not severely negative (>= -3% allows for vig)
-  const evAcceptable = ev === undefined || ev >= -3;
+  // Show edge when CEQ >= 56% and EV is POSITIVE (or undefined)
+  // Negative EV = losing bet = no edge
+  const evAcceptable = ev === undefined || ev >= 0;
   const hasEdge = hasCEQ && ceq >= 56 && evAcceptable;
 
-  // Edge styling only when we have a real edge (CEQ high + EV non-negative)
+  // Edge styling only when we have a real edge (CEQ high + EV positive)
   const getCellStyles = () => {
     if (hasEdge) {
       if (ceq >= 86) return 'bg-purple-500/20 border-2 border-purple-500/50 ring-1 ring-purple-500/30';
@@ -285,26 +286,32 @@ function getEdgeBadge(game: any): { label: string; color: string; bg: string; sc
 
   if (ceq) {
     // SPREADS: Only ONE side can have edge - pick the BETTER side
+    // Must have CEQ >= 56% AND EV >= 0%
     const homeSpreadCeq = ceq.spreads?.home?.ceq ?? 0;
     const awaySpreadCeq = ceq.spreads?.away?.ceq ?? 0;
+    const homeSpreadEv = (ceq.spreads?.home as any)?.ev ?? undefined;
+    const awaySpreadEv = (ceq.spreads?.away as any)?.ev ?? undefined;
     if (homeSpreadCeq >= 56 || awaySpreadCeq >= 56) {
-      if (homeSpreadCeq > awaySpreadCeq && homeSpreadCeq >= 56) {
+      if (homeSpreadCeq > awaySpreadCeq && homeSpreadCeq >= 56 && (homeSpreadEv === undefined || homeSpreadEv >= 0)) {
         const conf = ceq.spreads?.home?.confidence || getConfidenceFromCEQ(homeSpreadCeq);
         edges.push({ ceq: homeSpreadCeq, confidence: conf, side: 'home', market: 'spread' });
-      } else if (awaySpreadCeq >= 56) {
+      } else if (awaySpreadCeq >= 56 && (awaySpreadEv === undefined || awaySpreadEv >= 0)) {
         const conf = ceq.spreads?.away?.confidence || getConfidenceFromCEQ(awaySpreadCeq);
         edges.push({ ceq: awaySpreadCeq, confidence: conf, side: 'away', market: 'spread' });
       }
     }
 
     // H2H (MONEYLINE): Only ONE side can have edge - pick the BETTER side
+    // Must have CEQ >= 56% AND EV >= 0%
     const homeH2hCeq = ceq.h2h?.home?.ceq ?? 0;
     const awayH2hCeq = ceq.h2h?.away?.ceq ?? 0;
+    const homeH2hEv = (ceq.h2h?.home as any)?.ev ?? undefined;
+    const awayH2hEv = (ceq.h2h?.away as any)?.ev ?? undefined;
     if (homeH2hCeq >= 56 || awayH2hCeq >= 56) {
-      if (homeH2hCeq > awayH2hCeq && homeH2hCeq >= 56) {
+      if (homeH2hCeq > awayH2hCeq && homeH2hCeq >= 56 && (homeH2hEv === undefined || homeH2hEv >= 0)) {
         const conf = ceq.h2h?.home?.confidence || getConfidenceFromCEQ(homeH2hCeq);
         edges.push({ ceq: homeH2hCeq, confidence: conf, side: 'home', market: 'h2h' });
-      } else if (awayH2hCeq >= 56) {
+      } else if (awayH2hCeq >= 56 && (awayH2hEv === undefined || awayH2hEv >= 0)) {
         const conf = ceq.h2h?.away?.confidence || getConfidenceFromCEQ(awayH2hCeq);
         edges.push({ ceq: awayH2hCeq, confidence: conf, side: 'away', market: 'h2h' });
       }

@@ -78,27 +78,28 @@ export const EDGE_THRESHOLDS = {
   FADING_THRESHOLD: 0.5, // 50% of edge remaining = fading status
 } as const;
 
-// Confidence scoring weights
+// Confidence scoring weights - RECALIBRATED for realistic values
+// Only sharp divergence and reverse line should hit 70%+
 export const EDGE_CONFIDENCE_WEIGHTS = {
   line_movement: {
-    base: 60,
-    perHalfPoint: 10,    // +10 per 0.5 points moved
-    max: 95,
+    base: 35,            // 0.5pt = 43%, 1pt = 51%, 1.5pt = 59%
+    perHalfPoint: 8,
+    max: 70,             // Cap at 70% - line movement alone isn't definitive
   },
   juice_improvement: {
-    base: 55,
-    perCent: 5,          // +5 per cent improved
-    max: 85,
+    base: 20,            // Minor edge, starts low: 5¢ = 35%, 10¢ = 50%
+    perCent: 3,
+    max: 55,             // Juice alone is small edge, cap at 55%
   },
   exchange_divergence: {
-    base: 70,            // Sharp divergence starts higher
-    perPoint: 8,         // +8 per point divergence
-    max: 95,
+    base: 55,            // Sharp divergence is strong signal
+    perPoint: 5,         // 1pt = 60%, 2pt = 65%, 3pt = 70%
+    max: 80,             // Can hit 80% with significant divergence
   },
   reverse_line: {
-    base: 75,            // Reverse line movement is strong signal
-    perHalfPoint: 5,
-    max: 95,
+    base: 65,            // Reverse line (sharp action) is strong
+    perHalfPoint: 4,
+    max: 85,             // Only reverse line can hit 85%
   },
 } as const;
 
@@ -182,10 +183,15 @@ export const EDGE_STATUS_CONFIG = {
 export function formatEdgeMagnitude(edge: LiveEdge): string {
   const magnitude = edge.edge_magnitude;
 
+  // Juice improvement is always in cents, not points
+  if (edge.edge_type === 'juice_improvement') {
+    return `${Math.round(magnitude)}¢ juice`;
+  }
+
   switch (edge.market_type) {
     case 'h2h':
       // Moneyline: show as cents
-      return `${magnitude > 0 ? '+' : ''}${magnitude}c`;
+      return `${magnitude > 0 ? '+' : ''}${Math.round(magnitude)}¢`;
     case 'spreads':
     case 'totals':
     case 'player_props':
@@ -199,17 +205,26 @@ export function formatEdgeMagnitude(edge: LiveEdge): string {
 // Helper to format edge for display
 export function formatEdgeDescription(edge: LiveEdge): string {
   const config = EDGE_TYPE_CONFIG[edge.edge_type];
-  const magnitude = formatEdgeMagnitude(edge);
 
   switch (edge.edge_type) {
-    case 'line_movement':
-      return `Line moved ${magnitude} from ${edge.initial_value} to ${edge.current_value}`;
-    case 'juice_improvement':
-      return `Juice improved by ${magnitude} (${edge.initial_value} to ${edge.current_value})`;
-    case 'exchange_divergence':
-      return `${magnitude} off sharp line (${edge.sharp_book_line})`;
-    case 'reverse_line':
-      return `Contrarian move: ${magnitude} against public`;
+    case 'line_movement': {
+      const pts = edge.edge_magnitude.toFixed(1);
+      return `Line moved ${pts} pts (${edge.initial_value} → ${edge.current_value})`;
+    }
+    case 'juice_improvement': {
+      const cents = Math.round(edge.edge_magnitude);
+      const from = edge.initial_value;
+      const to = edge.current_value;
+      return `${cents}¢ savings (${from} → ${to})`;
+    }
+    case 'exchange_divergence': {
+      const pts = edge.edge_magnitude.toFixed(1);
+      return `${pts} pts off Pinnacle (sharp: ${edge.sharp_book_line})`;
+    }
+    case 'reverse_line': {
+      const pts = edge.edge_magnitude.toFixed(1);
+      return `Sharp money move: ${pts} pts against public`;
+    }
     default:
       return config.description;
   }

@@ -272,8 +272,9 @@ function getConfidenceFromCEQ(ceq: number): string {
   return 'PASS';
 }
 
-function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number; context?: string; market?: string; edgeCount?: number } | null {
-  const ceq = game.ceq as GameCEQ | undefined;
+function getEdgeBadge(game: any, selectedBook: string): { label: string; color: string; bg: string; score?: number; context?: string; market?: string; edgeCount?: number } | null {
+  // Use per-book CEQ if available, fall back to consensus CEQ
+  const ceq = (game.ceqByBook?.[selectedBook] || game.ceq) as GameCEQ | undefined;
   const consensus = game.consensus;
   const edges: EdgeCandidate[] = [];
 
@@ -877,7 +878,7 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                     ? gameTime.toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })
                     : '';
                   const countdown = mounted ? getTimeDisplay(gameTime, game.sportKey) : '';
-                  const edgeBadge = getEdgeBadge(game);
+                  const edgeBadge = getEdgeBadge(game, selectedBook);
 
                   const getCardStyle = () => {
                     if (!edgeBadge) return 'bg-[#0f0f0f] border border-zinc-800/80 hover:border-zinc-700';
@@ -957,24 +958,12 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
 
                       {/* Away Row */}
                       {(() => {
-                        if (game.homeTeam?.includes('Spurs') || game.homeTeam?.includes('Hornets')) {
-                          console.log('[Cell CEQ Debug]', {
-                            gameId: game.id,
-                            homeTeam: game.homeTeam,
-                            awayTeam: game.awayTeam,
-                            hasCeq: !!game.ceq,
-                            ceqData: game.ceq,
-                            homeSpreadsData: (game.ceq as any)?.spreads?.home,
-                            awaySpreadsData: (game.ceq as any)?.spreads?.away,
-                            overTotalsData: (game.ceq as any)?.totals?.over,
-                            underTotalsData: (game.ceq as any)?.totals?.under,
-                          });
-                        }
                         const bookOdds = game.bookmakers?.[selectedBook];
                         const spreads = bookOdds?.spreads || game.consensus?.spreads;
                         const h2h = bookOdds?.h2h || game.consensus?.h2h;
                         const totals = bookOdds?.totals || game.consensus?.totals;
-                        const ceq = game.ceq as GameCEQ | undefined;
+                        // Use per-book CEQ if available, fall back to consensus CEQ
+                        const ceq = (game.ceqByBook?.[selectedBook] || game.ceq) as GameCEQ | undefined;
                         const awaySpreadsData = ceq?.spreads?.away;
                         const awayH2hData = ceq?.h2h?.away;
                         const overTotalsData = ceq?.totals?.over;
@@ -1015,7 +1004,8 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                         const spreads = bookOdds?.spreads || game.consensus?.spreads;
                         const h2h = bookOdds?.h2h || game.consensus?.h2h;
                         const totals = bookOdds?.totals || game.consensus?.totals;
-                        const ceq = game.ceq as GameCEQ | undefined;
+                        // Use per-book CEQ if available, fall back to consensus CEQ
+                        const ceq = (game.ceqByBook?.[selectedBook] || game.ceq) as GameCEQ | undefined;
                         const homeSpreadsData = ceq?.spreads?.home;
                         const homeH2hData = ceq?.h2h?.home;
                         const underTotalsData = ceq?.totals?.under;

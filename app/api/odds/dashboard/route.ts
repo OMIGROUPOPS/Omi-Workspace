@@ -334,23 +334,6 @@ function processGame(
 
   // Calculate CEQ
   const gameSnapshots = snapshotsMap[game.id] || [];
-  let ceqData: GameCEQ | null = null;
-
-  const gameOdds = {
-    spreads: consensus.spreads?.line !== undefined ? {
-      home: { line: consensus.spreads.line, odds: consensus.spreads.homePrice || -110 },
-      away: { line: -consensus.spreads.line, odds: consensus.spreads.awayPrice || -110 },
-    } : undefined,
-    h2h: consensus.h2h ? {
-      home: consensus.h2h.homePrice,
-      away: consensus.h2h.awayPrice,
-    } : undefined,
-    totals: consensus.totals?.line !== undefined ? {
-      line: consensus.totals.line,
-      over: consensus.totals.overPrice || -110,
-      under: consensus.totals.underPrice || -110,
-    } : undefined,
-  };
 
   const openingData = {
     spreads: openingLines[game.id] !== undefined ? {
@@ -366,12 +349,70 @@ function processGame(
     teamStatsMap
   );
 
-  if (gameOdds.spreads || gameOdds.h2h || gameOdds.totals) {
+  // Calculate CEQ PER BOOK - each book gets its own CEQ based on its prices
+  const ceqByBook: Record<string, GameCEQ | null> = {};
+
+  for (const [bookKey, bookOddsData] of Object.entries(bookmakers)) {
+    const bookData = bookOddsData as any;
+
+    // Build gameOdds using THIS BOOK's prices (not consensus)
+    const bookGameOdds = {
+      spreads: bookData.spreads?.line !== undefined ? {
+        home: { line: bookData.spreads.line, odds: bookData.spreads.homePrice || -110 },
+        away: { line: -bookData.spreads.line, odds: bookData.spreads.awayPrice || -110 },
+      } : undefined,
+      h2h: bookData.h2h?.homePrice !== undefined ? {
+        home: bookData.h2h.homePrice,
+        away: bookData.h2h.awayPrice,
+      } : undefined,
+      totals: bookData.totals?.line !== undefined ? {
+        line: bookData.totals.line,
+        over: bookData.totals.overPrice || -110,
+        under: bookData.totals.underPrice || -110,
+      } : undefined,
+    };
+
+    if (bookGameOdds.spreads || bookGameOdds.h2h || bookGameOdds.totals) {
+      ceqByBook[bookKey] = calculateGameCEQ(
+        bookGameOdds,
+        openingData,
+        gameSnapshots,
+        allBooksOdds,  // Pass all books for SBI comparison
+        {
+          // consensusOdds stays as consensus (for SBI to compare book vs market)
+          spreads: consensus.spreads ? { home: consensus.spreads.homePrice, away: consensus.spreads.awayPrice } : undefined,
+          h2h: consensus.h2h ? { home: consensus.h2h.homePrice, away: consensus.h2h.awayPrice } : undefined,
+          totals: consensus.totals ? { over: consensus.totals.overPrice, under: consensus.totals.underPrice } : undefined,
+        },
+        gameContext
+      );
+    }
+  }
+
+  // Also calculate consensus CEQ for fallback/default view
+  let ceqData: GameCEQ | null = null;
+  const consensusGameOdds = {
+    spreads: consensus.spreads?.line !== undefined ? {
+      home: { line: consensus.spreads.line, odds: consensus.spreads.homePrice || -110 },
+      away: { line: -consensus.spreads.line, odds: consensus.spreads.awayPrice || -110 },
+    } : undefined,
+    h2h: consensus.h2h ? {
+      home: consensus.h2h.homePrice,
+      away: consensus.h2h.awayPrice,
+    } : undefined,
+    totals: consensus.totals?.line !== undefined ? {
+      line: consensus.totals.line,
+      over: consensus.totals.overPrice || -110,
+      under: consensus.totals.underPrice || -110,
+    } : undefined,
+  };
+
+  if (consensusGameOdds.spreads || consensusGameOdds.h2h || consensusGameOdds.totals) {
     ceqData = calculateGameCEQ(
-      gameOdds,
+      consensusGameOdds,
       openingData,
       gameSnapshots,
-      allBooksOdds,
+      {},  // Empty for consensus (no SBI comparison needed - would compare to itself)
       {
         spreads: consensus.spreads ? { home: consensus.spreads.homePrice, away: consensus.spreads.awayPrice } : undefined,
         h2h: consensus.h2h ? { home: consensus.h2h.homePrice, away: consensus.h2h.awayPrice } : undefined,
@@ -457,6 +498,7 @@ function processGame(
     overall_confidence: edgeData.confidence,
     calculatedEdge: edgeData,
     ceq: ceqData,
+    ceqByBook,  // Per-book CEQ for selected book display
     scores: scores[game.id] || null,
     hasValidEdge, // True only if CEQ >= 56 AND EV >= 0
   };

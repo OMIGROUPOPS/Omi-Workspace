@@ -1021,87 +1021,95 @@ export function calculateGameCEQ(
   const h2hSnapshots = snapshots.filter(s => s.market === 'h2h');
   const totalSnapshots = snapshots.filter(s => s.market === 'totals' && (s.outcome_type === 'Over' || s.outcome_type === 'Under'));
 
-  // Calculate spreads CEQ
+  // Calculate spreads CEQ - ONLY ONE SIDE CAN HAVE EDGE
+  // We calculate for home, then derive away as inverse (100 - home)
   if (gameOdds.spreads) {
+    const homeCEQ = calculateCEQ(
+      'spread',
+      'home',
+      gameOdds.spreads.home.odds,
+      openingLines.spreads?.home,
+      gameOdds.spreads.home.line,
+      spreadSnapshots,
+      allBooksOdds.spreads?.home || [],
+      consensusOdds.spreads?.home,
+      gameContext
+    );
+
+    // Away CEQ is the inverse: if home is 78%, away is 22% (100 - 78)
+    // This enforces mutual exclusivity - only one side can have edge
+    const awayCEQValue = 100 - homeCEQ.ceq;
+    const awayConfidence = getCEQConfidence(awayCEQValue);
+
     result.spreads = {
-      home: calculateCEQ(
-        'spread',
-        'home',
-        gameOdds.spreads.home.odds,
-        openingLines.spreads?.home,
-        gameOdds.spreads.home.line,
-        spreadSnapshots,
-        allBooksOdds.spreads?.home || [],
-        consensusOdds.spreads?.home,
-        gameContext
-      ),
-      away: calculateCEQ(
-        'spread',
-        'away',
-        gameOdds.spreads.away.odds,
-        openingLines.spreads?.away,
-        gameOdds.spreads.away.line,
-        spreadSnapshots,
-        allBooksOdds.spreads?.away || [],
-        consensusOdds.spreads?.away,
-        gameContext
-      ),
+      home: homeCEQ,
+      away: {
+        ...homeCEQ,
+        ceq: awayCEQValue,
+        confidence: awayConfidence,
+        side: awayCEQValue >= 56 ? 'away' : awayCEQValue <= 44 ? 'home' : null,
+        topDrivers: awayCEQValue >= 56 ? homeCEQ.topDrivers : ['No edge on this side'],
+      },
     };
   }
 
-  // Calculate h2h CEQ
+  // Calculate h2h CEQ - ONLY ONE SIDE CAN HAVE EDGE
   if (gameOdds.h2h) {
+    const homeCEQ = calculateCEQ(
+      'h2h',
+      'home',
+      gameOdds.h2h.home,
+      openingLines.h2h?.home,
+      undefined,
+      h2hSnapshots,
+      allBooksOdds.h2h?.home || [],
+      consensusOdds.h2h?.home,
+      gameContext
+    );
+
+    // Away CEQ is the inverse
+    const awayCEQValue = 100 - homeCEQ.ceq;
+    const awayConfidence = getCEQConfidence(awayCEQValue);
+
     result.h2h = {
-      home: calculateCEQ(
-        'h2h',
-        'home',
-        gameOdds.h2h.home,
-        openingLines.h2h?.home,
-        undefined,
-        h2hSnapshots,
-        allBooksOdds.h2h?.home || [],
-        consensusOdds.h2h?.home,
-        gameContext
-      ),
-      away: calculateCEQ(
-        'h2h',
-        'away',
-        gameOdds.h2h.away,
-        openingLines.h2h?.away,
-        undefined,
-        h2hSnapshots,
-        allBooksOdds.h2h?.away || [],
-        consensusOdds.h2h?.away,
-        gameContext
-      ),
+      home: homeCEQ,
+      away: {
+        ...homeCEQ,
+        ceq: awayCEQValue,
+        confidence: awayConfidence,
+        side: awayCEQValue >= 56 ? 'away' : awayCEQValue <= 44 ? 'home' : null,
+        topDrivers: awayCEQValue >= 56 ? homeCEQ.topDrivers : ['No edge on this side'],
+      },
     };
   }
 
-  // Calculate totals CEQ
+  // Calculate totals CEQ - ONLY ONE SIDE CAN HAVE EDGE
   if (gameOdds.totals) {
+    const overCEQ = calculateCEQ(
+      'total',
+      'over',
+      gameOdds.totals.over,
+      openingLines.totals?.over,
+      gameOdds.totals.line,
+      totalSnapshots,
+      allBooksOdds.totals?.over || [],
+      consensusOdds.totals?.over,
+      gameContext
+    );
+
+    // Under CEQ is the inverse
+    const underCEQValue = 100 - overCEQ.ceq;
+    const underConfidence = getCEQConfidence(underCEQValue);
+
     result.totals = {
-      over: calculateCEQ(
-        'total',
-        'over',
-        gameOdds.totals.over,
-        openingLines.totals?.over,
-        gameOdds.totals.line,
-        totalSnapshots,
-        allBooksOdds.totals?.over || [],
-        consensusOdds.totals?.over,
-        gameContext
-      ),
-      under: calculateCEQ(
-        'total',
-        'under',
-        gameOdds.totals.under,
-        openingLines.totals?.under,
-        gameOdds.totals.line,
-        totalSnapshots,
-        allBooksOdds.totals?.under || [],
-        consensusOdds.totals?.under,
-        gameContext
-      ),
+      over: overCEQ,
+      under: {
+        ...overCEQ,
+        ceq: underCEQValue,
+        confidence: underConfidence,
+        side: underCEQValue >= 56 ? 'under' : underCEQValue <= 44 ? 'over' : null,
+        topDrivers: underCEQValue >= 56 ? overCEQ.topDrivers : ['No edge on this side'],
+      },
     };
   }
 

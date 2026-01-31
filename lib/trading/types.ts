@@ -170,6 +170,63 @@ export interface MarketData {
   total_volume: TotalVolume;
 }
 
+// Game Price History for drill-down charts
+export interface GamePricePoint {
+  timestamp: string;
+  kalshi_bid: number;
+  kalshi_ask: number;
+  pm_bid: number;
+  pm_ask: number;
+  spread: number;
+}
+
+export interface GamePriceHistory {
+  game_id: string;
+  sport: string;
+  game: string;
+  team: string;
+  ticker: string;
+  pm_slug: string;
+  is_live: boolean;
+  start_time: string | null;
+  prices: GamePricePoint[];
+  current_spread: number;
+  arb_status: "ARB" | "CLOSE" | "NO_EDGE";
+  data_points?: number;
+  total_data_points?: number;
+  game_duration_hours?: number;
+  time_filter_hours?: number;
+  error?: string;
+}
+
+export type TimeRange = "1H" | "3H" | "6H" | "ALL";
+
+export interface LeagueStats {
+  sport: string;
+  matched: number;
+  total: number;
+  rate: number;
+  live_count: number;
+  arb_count: number;
+}
+
+export interface MatchupInfo {
+  game_id: string;
+  sport: string;
+  game: string;
+  teams: string[];
+  kalshi_price: number;
+  pm_price: number;
+  spread: number;
+  status: "ARB" | "CLOSE" | "NO_EDGE";
+  is_live: boolean;
+  start_time: string | null;
+  ticker: string;
+  pm_slug: string;
+}
+
+export type MarketView = "leagues" | "matchups" | "game";
+
 export interface FullAnalytics {
   liveTrades: Trade[];
   paperTrades: Trade[];

@@ -570,6 +570,237 @@ async def get_volume():
     except:
         return {"volume_by_sport": {}, "volume_history": [], "total_volume": {"kalshi": 0, "pm": 0, "total": 0}, "timestamp": None}
 
+@app.get("/matchups/{sport}")
+async def get_matchups(sport: str):
+    """Get all matchups for a specific sport"""
+    try:
+        with open('market_data.json', 'r') as f:
+            data = json.load(f)
+
+        spreads = data.get("spreads", [])
+        sport_spreads = [s for s in spreads if s.get("sport", "").upper() == sport.upper()]
+
+        # Group by game
+        game_map = {}
+        for s in sport_spreads:
+            game = s.get("game", "")
+            if game not in game_map:
+                game_map[game] = {
+                    "game_id": f"{game}-{s.get('team', '')}",
+                    "sport": s.get("sport", ""),
+                    "game": game,
+                    "teams": [s.get("team", "")],
+                    "kalshi_price": s.get("k_bid", 0),
+                    "pm_price": s.get("pm_ask", 0),
+                    "spread": s.get("spread", 0),
+                    "status": s.get("status", "NO_EDGE"),
+                    "is_live": False,  # Could be enhanced with live game detection
+                    "start_time": None,
+                    "ticker": s.get("ticker", ""),
+                    "pm_slug": s.get("pm_slug", ""),
+                }
+            else:
+                # Add team to existing game
+                if s.get("team") not in game_map[game]["teams"]:
+                    game_map[game]["teams"].append(s.get("team", ""))
+                # Update spread if this one is better
+                if abs(s.get("spread", 0)) > abs(game_map[game]["spread"]):
+                    game_map[game]["spread"] = s.get("spread", 0)
+                    game_map[game]["status"] = s.get("status", "NO_EDGE")
+
+        return {"matchups": list(game_map.values()), "sport": sport}
+    except Exception as e:
+        return {"matchups": [], "sport": sport, "error": str(e)}
+
+@app.get("/game/{game_id}/prices")
+async def get_game_prices(game_id: str, hours: float = 0, max_points: int = 500):
+    """Get price history for a specific game from ALL CSV data files.
+
+    CSV format: game_key,sport,game_id,team,timestamp,scan_num,kalshi_bid,kalshi_ask,pm_bid,pm_ask,spread_buy_pm,spread_buy_k,has_arb
+    Example: nba:26JAN30BKNUTA:BKN,nba,26JAN30BKNUTA,BKN,1769787376.21,2032,57,58,55,57,0,-2,False
+
+    UI sends game_id like: "26JAN30BKNUTA-BKN" (game-team format)
+
+    Query params:
+    - hours: Filter to last N hours (0 = all data)
+    - max_points: Maximum points to return (for performance)
+    """
+    import csv
+    import glob
+
+    try:
+        # Parse game_id from UI (format: "GAMEID-TEAM" or just "GAMEID")
+        parts = game_id.rsplit("-", 1)
+        search_game_id = parts[0] if parts else game_id
+        search_team = parts[1] if len(parts) > 1 else ""
+
+        print(f"[API] Loading prices for game_id={search_game_id}, team={search_team}, hours={hours}")
+
+        # Get current market data for metadata
+        matching_spread = None
+        try:
+            with open('market_data.json', 'r') as f:
+                market_data = json.load(f)
+            spreads = market_data.get("spreads", [])
+            for s in spreads:
+                s_game = s.get("game", "")
+                s_team = s.get("team", "")
+                if (search_game_id in s_game or s_game in search_game_id) and \
+                   (not search_team or search_team == s_team):
+                    matching_spread = s
+                    break
+        except Exception as e:
+            print(f"[API] Could not load market_data.json: {e}")
+
+        # Calculate time filter
+        now = time.time()
+        min_timestamp = now - (hours * 3600) if hours > 0 else 0
+
+        # Load price history from ALL CSV files
+        all_prices = []
+        try:
+            # Get all price history files (current + historical)
+            csv_files = []
+
+            # Main current session file
+            if os.path.exists('price_history.csv'):
+                csv_files.append('price_history.csv')
+
+            # All timestamped historical files
+            historical_files = sorted(glob.glob('price_history_*.csv'))
+            csv_files.extend(historical_files)
+
+            print(f"[API] Found {len(csv_files)} CSV files to scan")
+
+            total_rows = 0
+            total_matches = 0
+
+            for csv_file in csv_files:
+                try:
+                    with open(csv_file, 'r') as f:
+                        reader = csv.DictReader(f)
+                        for row in reader:
+                            total_rows += 1
+                            row_game_id = row.get('game_id', '')
+                            row_team = row.get('team', '')
+
+                            # Match game_id and optionally team
+                            if row_game_id == search_game_id and (not search_team or row_team == search_team):
+                                ts = float(row.get('timestamp', 0))
+
+                                # Apply time filter
+                                if min_timestamp > 0 and ts < min_timestamp:
+                                    continue
+
+                                total_matches += 1
+                                ts_str = datetime.fromtimestamp(ts).isoformat() if ts > 0 else datetime.now().isoformat()
+
+                                all_prices.append({
+                                    "timestamp": ts_str,
+                                    "unix_ts": ts,
+                                    "kalshi_bid": float(row.get('kalshi_bid', 0)),
+                                    "kalshi_ask": float(row.get('kalshi_ask', 0)),
+                                    "pm_bid": float(row.get('pm_bid', 0)),
+                                    "pm_ask": float(row.get('pm_ask', 0)),
+                                    "spread": float(row.get('spread_buy_pm', 0)),
+                                })
+                except Exception as file_err:
+                    print(f"[API] Error reading {csv_file}: {file_err}")
+                    continue
+
+            print(f"[API] Scanned {total_rows} total rows, found {total_matches} matches for {search_game_id}")
+
+        except Exception as csv_err:
+            print(f"[API] CSV read error: {csv_err}")
+
+        # Sort by timestamp and remove duplicates
+        all_prices.sort(key=lambda x: x.get('unix_ts', 0))
+
+        # Remove near-duplicate timestamps (within 0.5 seconds)
+        if all_prices:
+            deduped = [all_prices[0]]
+            for p in all_prices[1:]:
+                if p['unix_ts'] - deduped[-1]['unix_ts'] > 0.5:
+                    deduped.append(p)
+            all_prices = deduped
+            print(f"[API] After dedup: {len(all_prices)} points")
+
+        # Smart downsampling based on requested max_points
+        prices = all_prices
+        if len(prices) > max_points:
+            step = len(prices) // max_points
+            sampled = prices[::step]
+            # Always keep first and last points
+            if prices[0] not in sampled:
+                sampled.insert(0, prices[0])
+            if prices[-1] not in sampled:
+                sampled.append(prices[-1])
+            prices = sampled
+            print(f"[API] Downsampled to {len(prices)} points (max={max_points})")
+
+        # Remove unix_ts from output (was only for sorting)
+        for p in prices:
+            p.pop('unix_ts', None)
+
+        # If no CSV data, create single point from current spread data
+        if not prices and matching_spread:
+            prices = [{
+                "timestamp": datetime.now().isoformat(),
+                "kalshi_bid": matching_spread.get("k_bid", 0),
+                "kalshi_ask": matching_spread.get("k_ask", matching_spread.get("k_bid", 0) + 1),
+                "pm_bid": matching_spread.get("pm_bid", matching_spread.get("pm_ask", 0) - 1),
+                "pm_ask": matching_spread.get("pm_ask", 0),
+                "spread": matching_spread.get("spread", 0),
+            }]
+            print(f"[API] Using fallback from market_data.json")
+
+        # Calculate stats
+        current_spread = 0
+        arb_status = "NO_EDGE"
+        game_start = None
+        game_duration_hours = 0
+
+        if prices:
+            latest = prices[-1]
+            k_bid = latest.get("kalshi_bid", 0)
+            pm_ask = latest.get("pm_ask", 0)
+            current_spread = k_bid - pm_ask
+            if current_spread > 0:
+                arb_status = "ARB"
+            elif current_spread >= -2:
+                arb_status = "CLOSE"
+
+            # Calculate game duration
+            game_start = prices[0]["timestamp"]
+            try:
+                start_dt = datetime.fromisoformat(prices[0]["timestamp"])
+                end_dt = datetime.fromisoformat(prices[-1]["timestamp"])
+                game_duration_hours = (end_dt - start_dt).total_seconds() / 3600
+            except:
+                pass
+
+        return {
+            "game_id": game_id,
+            "sport": matching_spread.get("sport", "") if matching_spread else "",
+            "game": search_game_id,
+            "team": search_team or (matching_spread.get("team", "") if matching_spread else ""),
+            "ticker": matching_spread.get("ticker", "") if matching_spread else "",
+            "pm_slug": matching_spread.get("pm_slug", "") if matching_spread else "",
+            "is_live": len(prices) > 10,
+            "start_time": game_start,
+            "prices": prices,
+            "current_spread": current_spread,
+            "arb_status": arb_status,
+            "data_points": len(prices),
+            "total_data_points": len(all_prices),
+            "game_duration_hours": round(game_duration_hours, 2),
+            "time_filter_hours": hours,
+        }
+    except Exception as e:
+        import traceback
+        print(f"[API] Error: {e}\n{traceback.format_exc()}")
+        return {"error": str(e), "game_id": game_id, "prices": []}
+
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     """WebSocket endpoint for real-time updates"""

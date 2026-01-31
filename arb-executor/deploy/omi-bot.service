@@ -1,0 +1,17 @@
+[Unit]
+Description=OMI Edge Arb Bot Server
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/omi-bot
+Environment=PATH=/opt/omi-bot/venv/bin:/usr/bin:/bin
+ExecStart=/opt/omi-bot/venv/bin/python bot_server.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/var/log/omi-bot/server.log
+StandardError=append:/var/log/omi-bot/error.log
+
+[Install]
+WantedBy=multi-user.target

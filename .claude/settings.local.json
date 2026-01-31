@@ -48,7 +48,9 @@
       "Bash(findstr:*)",
       "Bash(taskkill:*)",
       "Bash(git stash:*)",
-      "WebFetch(domain:omi-workspace.vercel.app)"
+      "WebFetch(domain:omi-workspace.vercel.app)",
+      "Bash(vercel --prod:*)",
+      "Bash(npx vercel --prod)"
     ]
   }
 }

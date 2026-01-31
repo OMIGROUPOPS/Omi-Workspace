@@ -909,6 +909,20 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     if (h2hPrices.home.length > 0) allBooksOdds.h2h = h2hPrices;
     if (totalPrices.over.length > 0) allBooksOdds.totals = totalPrices;
 
+    // DEBUG: Log allBooksOdds aggregation
+    console.log('[Detail Page CEQ Debug]', {
+      gameId: id,
+      homeTeam,
+      awayTeam,
+      booksFound: Object.keys(bookmakers),
+      allBooksOdds,
+      consensusOdds: {
+        spreads: hasSpread ? { home: getSpreadHomeOdds(), away: getSpreadAwayOdds() } : undefined,
+        h2h: hasH2h ? { home: getH2hHome(), away: getH2hAway() } : undefined,
+        totals: hasTotals ? { over: getTotalOverOdds(), under: getTotalUnderOdds() } : undefined,
+      },
+    });
+
     ceqData = calculateGameCEQ(
       gameOdds,
       openingData,

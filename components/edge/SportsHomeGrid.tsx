@@ -957,6 +957,19 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
 
                       {/* Away Row */}
                       {(() => {
+                        if (game.homeTeam?.includes('Spurs') || game.homeTeam?.includes('Hornets')) {
+                          console.log('[Cell CEQ Debug]', {
+                            gameId: game.id,
+                            homeTeam: game.homeTeam,
+                            awayTeam: game.awayTeam,
+                            hasCeq: !!game.ceq,
+                            ceqData: game.ceq,
+                            homeSpreadsData: (game.ceq as any)?.spreads?.home,
+                            awaySpreadsData: (game.ceq as any)?.spreads?.away,
+                            overTotalsData: (game.ceq as any)?.totals?.over,
+                            underTotalsData: (game.ceq as any)?.totals?.under,
+                          });
+                        }
                         const bookOdds = game.bookmakers?.[selectedBook];
                         const spreads = bookOdds?.spreads || game.consensus?.spreads;
                         const h2h = bookOdds?.h2h || game.consensus?.h2h;

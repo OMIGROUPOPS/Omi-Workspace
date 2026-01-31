@@ -875,11 +875,45 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
       } : undefined,
     };
 
+    // Aggregate odds from all books (same as dashboard API does)
+    // This is critical for Market Efficiency and Sentiment pillars
+    const allBooksOdds: {
+      spreads?: { home: number[]; away: number[] };
+      h2h?: { home: number[]; away: number[] };
+      totals?: { over: number[]; under: number[] };
+    } = {};
+
+    const spreadPrices: { home: number[]; away: number[] } = { home: [], away: [] };
+    const h2hPrices: { home: number[]; away: number[] } = { home: [], away: [] };
+    const totalPrices: { over: number[]; under: number[] } = { over: [], under: [] };
+
+    for (const bookKey of Object.keys(bookmakers)) {
+      const book = bookmakers[bookKey] as any;
+      const fullGame = book?.marketGroups?.fullGame;
+      if (!fullGame) continue;
+
+      // Spreads
+      if (fullGame.spreads?.home?.price) spreadPrices.home.push(fullGame.spreads.home.price);
+      if (fullGame.spreads?.away?.price) spreadPrices.away.push(fullGame.spreads.away.price);
+
+      // H2H (Moneyline)
+      if (fullGame.h2h?.home?.price) h2hPrices.home.push(fullGame.h2h.home.price);
+      if (fullGame.h2h?.away?.price) h2hPrices.away.push(fullGame.h2h.away.price);
+
+      // Totals
+      if (fullGame.totals?.over?.price) totalPrices.over.push(fullGame.totals.over.price);
+      if (fullGame.totals?.under?.price) totalPrices.under.push(fullGame.totals.under.price);
+    }
+
+    if (spreadPrices.home.length > 0) allBooksOdds.spreads = spreadPrices;
+    if (h2hPrices.home.length > 0) allBooksOdds.h2h = h2hPrices;
+    if (totalPrices.over.length > 0) allBooksOdds.totals = totalPrices;
+
     ceqData = calculateGameCEQ(
       gameOdds,
       openingData,
       ceqSnapshots,
-      {}, // allBooksOdds - would need to aggregate from bookmakers
+      allBooksOdds, // Now properly aggregated from all books!
       {
         spreads: hasSpread ? { home: getSpreadHomeOdds(), away: getSpreadAwayOdds() } : undefined,
         h2h: hasH2h ? { home: getH2hHome(), away: getH2hAway() } : undefined,

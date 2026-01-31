@@ -251,60 +251,50 @@ function BookIcon({ bookKey, size = 24 }: { bookKey: string; size?: number }) {
   );
 }
 
+interface EdgeCandidate {
+  ceq: number;
+  confidence: string;
+  side: string;
+  market: string;
+}
+
 function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number; context?: string; market?: string } | null {
   // Show edge badge ONLY when CEQ >= 56% (actual edge exists)
   const ceq = game.ceq as GameCEQ | undefined;
   if (!ceq) return null;
 
-  // Find the best edge across all markets
-  let bestEdge: { ceq: number; confidence: string; side: string; market: string } | null = null;
+  // Collect all qualifying edges, then find the best
+  const edges: EdgeCandidate[] = [];
 
-  // Check spreads - extract values for TypeScript type narrowing
-  const spreadHomeCeq = ceq.spreads?.home?.ceq;
-  const spreadHomeConf = ceq.spreads?.home?.confidence;
-  const spreadAwayCeq = ceq.spreads?.away?.ceq;
-  const spreadAwayConf = ceq.spreads?.away?.confidence;
-
-  if (spreadHomeCeq !== undefined && spreadHomeCeq >= 56 && spreadHomeConf) {
-    if (!bestEdge || spreadHomeCeq > bestEdge.ceq) {
-      bestEdge = { ceq: spreadHomeCeq, confidence: spreadHomeConf, side: 'home', market: 'spread' };
-    }
+  // Check spreads
+  if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 56 && ceq.spreads.home.confidence) {
+    edges.push({ ceq: ceq.spreads.home.ceq, confidence: ceq.spreads.home.confidence, side: 'home', market: 'spread' });
   }
-  if (spreadAwayCeq !== undefined && spreadAwayCeq >= 56 && spreadAwayConf) {
-    if (!bestEdge || spreadAwayCeq > bestEdge.ceq) {
-      bestEdge = { ceq: spreadAwayCeq, confidence: spreadAwayConf, side: 'away', market: 'spread' };
-    }
+  if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 56 && ceq.spreads.away.confidence) {
+    edges.push({ ceq: ceq.spreads.away.ceq, confidence: ceq.spreads.away.confidence, side: 'away', market: 'spread' });
   }
 
   // Check h2h (moneyline)
-  const h2hHomeCeq = ceq.h2h?.home?.ceq;
-  const h2hHomeConf = ceq.h2h?.home?.confidence;
-  const h2hAwayCeq = ceq.h2h?.away?.ceq;
-  const h2hAwayConf = ceq.h2h?.away?.confidence;
-
-  if (h2hHomeCeq !== undefined && h2hHomeCeq >= 56 && h2hHomeConf) {
-    if (!bestEdge || h2hHomeCeq > bestEdge.ceq) {
-      bestEdge = { ceq: h2hHomeCeq, confidence: h2hHomeConf, side: 'home', market: 'h2h' };
-    }
+  if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 56 && ceq.h2h.home.confidence) {
+    edges.push({ ceq: ceq.h2h.home.ceq, confidence: ceq.h2h.home.confidence, side: 'home', market: 'h2h' });
   }
-  if (h2hAwayCeq !== undefined && h2hAwayCeq >= 56 && h2hAwayConf) {
-    if (!bestEdge || h2hAwayCeq > bestEdge.ceq) {
-      bestEdge = { ceq: h2hAwayCeq, confidence: h2hAwayConf, side: 'away', market: 'h2h' };
-    }
+  if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 56 && ceq.h2h.away.confidence) {
+    edges.push({ ceq: ceq.h2h.away.ceq, confidence: ceq.h2h.away.confidence, side: 'away', market: 'h2h' });
   }
 
-  if (totalsOverCeq !== undefined && totalsOverCeq >= 56 && totalsOverConf) {
-    if (!bestEdge || totalsOverCeq > bestEdge.ceq) {
-      bestEdge = { ceq: totalsOverCeq, confidence: totalsOverConf, side: 'over', market: 'total' };
-    }
+  // Check totals
+  if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 56 && ceq.totals.over.confidence) {
+    edges.push({ ceq: ceq.totals.over.ceq, confidence: ceq.totals.over.confidence, side: 'over', market: 'total' });
   }
-  if (totalsUnderCeq !== undefined && totalsUnderCeq >= 56 && totalsUnderConf) {
-    if (!bestEdge || totalsUnderCeq > bestEdge.ceq) {
-      bestEdge = { ceq: totalsUnderCeq, confidence: totalsUnderConf, side: 'under', market: 'total' };
-    }
+  if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 56 && ceq.totals.under.confidence) {
+    edges.push({ ceq: ceq.totals.under.ceq, confidence: ceq.totals.under.confidence, side: 'under', market: 'total' });
   }
 
-  if (!bestEdge || bestEdge.confidence === 'PASS') return null;
+  // Find the best edge (highest CEQ)
+  if (edges.length === 0) return null;
+  const bestEdge = edges.reduce((best, current) => current.ceq > best.ceq ? current : best);
+
+  if (bestEdge.confidence === 'PASS') return null;
 
   // Build context string
   let context = '';

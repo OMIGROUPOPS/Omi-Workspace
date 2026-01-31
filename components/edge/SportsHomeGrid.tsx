@@ -60,7 +60,6 @@ function getCEQStyles(ceq: number | undefined): { bgTint: string; borderTint: st
   if (ceq === undefined) {
     return { bgTint: 'bg-zinc-800/80', borderTint: 'border-zinc-700/50', textColor: 'text-zinc-500' };
   }
-  // CEQ thresholds: 50 = neutral, >66 = EDGE, >76 = STRONG, >86 = RARE, <45 = edge other side
   if (ceq >= 76) return { bgTint: 'bg-emerald-500/20', borderTint: 'border-emerald-500/40', textColor: 'text-emerald-400' };
   if (ceq >= 66) return { bgTint: 'bg-emerald-500/15', borderTint: 'border-emerald-500/30', textColor: 'text-emerald-400' };
   if (ceq >= 56) return { bgTint: 'bg-emerald-500/10', borderTint: 'border-emerald-500/20', textColor: 'text-emerald-400' };
@@ -166,11 +165,9 @@ function MoneylineCell({ price, ev, ceq, topDrivers }: { price: number; ev?: num
   const hasCEQ = ceq !== undefined && ceq !== null;
 
   // Show edge when CEQ >= 56% and EV is POSITIVE (or undefined)
-  // Negative EV = losing bet = no edge
   const evAcceptable = ev === undefined || ev >= 0;
   const hasEdge = hasCEQ && ceq >= 56 && evAcceptable;
 
-  // Edge styling only when we have a real edge (CEQ high + EV positive)
   const getCellStyles = () => {
     if (hasEdge) {
       if (ceq >= 86) return 'bg-purple-500/20 border-2 border-purple-500/50 ring-1 ring-purple-500/30';
@@ -193,7 +190,6 @@ function MoneylineCell({ price, ev, ceq, topDrivers }: { price: number; ev?: num
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
     >
-      {/* Edge indicator badge */}
       {hasEdge && (
         <div className={`absolute -top-1 -right-1 px-1 py-0.5 rounded text-[8px] font-bold ${
           ceq >= 86 ? 'bg-purple-500 text-white' :
@@ -214,7 +210,6 @@ function MoneylineCell({ price, ev, ceq, topDrivers }: { price: number; ev?: num
           </span>
         )}
       </div>
-      {/* Tooltip with CEQ details */}
       {showTooltip && (hasEV || hasCEQ) && (
         <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl p-2 text-left">
           {hasCEQ && (
@@ -262,12 +257,13 @@ function BookIcon({ bookKey, size = 24 }: { bookKey: string; size?: number }) {
 interface EdgeCandidate {
   ceq: number;
   confidence: string;
-  side: string;
-  market: string;
+  side: 'home' | 'away' | 'over' | 'under';
+  market: 'spread' | 'h2h' | 'total';
   ev?: number;
+  teamName?: string;
+  line?: number;
 }
 
-// Helper to get confidence label from CEQ score
 function getConfidenceFromCEQ(ceq: number): string {
   if (ceq >= 86) return 'RARE';
   if (ceq >= 76) return 'STRONG';
@@ -277,89 +273,132 @@ function getConfidenceFromCEQ(ceq: number): string {
 }
 
 function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number; context?: string; market?: string; edgeCount?: number } | null {
-  // Show edge badge when CEQ >= 56% (CEQ is the composite edge quality score)
-  // CEQ already factors in market efficiency, matchup dynamics, sentiment etc.
   const ceq = game.ceq as GameCEQ | undefined;
-
-  // Collect all qualifying edges (CEQ >= 56)
+  const consensus = game.consensus;
   const edges: EdgeCandidate[] = [];
 
   if (ceq) {
     // SPREADS: Only ONE side can have edge - pick the BETTER side
-    // Must have CEQ >= 56% AND EV >= 0%
     const homeSpreadCeq = ceq.spreads?.home?.ceq ?? 0;
     const awaySpreadCeq = ceq.spreads?.away?.ceq ?? 0;
     const homeSpreadEv = (ceq.spreads?.home as any)?.ev ?? undefined;
     const awaySpreadEv = (ceq.spreads?.away as any)?.ev ?? undefined;
+    
+    // Get the spread line from consensus
+    const spreadLine = consensus?.spreads?.line; // This is the HOME team's line
+    
     if (homeSpreadCeq >= 56 || awaySpreadCeq >= 56) {
-      if (homeSpreadCeq > awaySpreadCeq && homeSpreadCeq >= 56 && (homeSpreadEv === undefined || homeSpreadEv >= 0)) {
+      // FIXED: Determine which side has the better edge with positive EV
+      const homeQualifies = homeSpreadCeq >= 56 && (homeSpreadEv === undefined || homeSpreadEv >= 0);
+      const awayQualifies = awaySpreadCeq >= 56 && (awaySpreadEv === undefined || awaySpreadEv >= 0);
+      
+      if (homeQualifies && (!awayQualifies || homeSpreadCeq > awaySpreadCeq)) {
+        // HOME team has the edge
         const conf = ceq.spreads?.home?.confidence || getConfidenceFromCEQ(homeSpreadCeq);
-        edges.push({ ceq: homeSpreadCeq, confidence: conf, side: 'home', market: 'spread' });
-      } else if (awaySpreadCeq >= 56 && (awaySpreadEv === undefined || awaySpreadEv >= 0)) {
+        edges.push({ 
+          ceq: homeSpreadCeq, 
+          confidence: conf, 
+          side: 'home', 
+          market: 'spread',
+          teamName: game.homeTeam?.split(' ').pop(),
+          line: spreadLine // Home team's line (e.g., -11.5)
+        });
+      } else if (awayQualifies) {
+        // AWAY team has the edge
         const conf = ceq.spreads?.away?.confidence || getConfidenceFromCEQ(awaySpreadCeq);
-        edges.push({ ceq: awaySpreadCeq, confidence: conf, side: 'away', market: 'spread' });
+        edges.push({ 
+          ceq: awaySpreadCeq, 
+          confidence: conf, 
+          side: 'away', 
+          market: 'spread',
+          teamName: game.awayTeam?.split(' ').pop(),
+          line: spreadLine ? -spreadLine : undefined // Away team's line is opposite (e.g., +11.5)
+        });
       }
     }
 
-    // H2H (MONEYLINE): Only ONE side can have edge - pick the BETTER side
-    // Must have CEQ >= 56% AND EV >= 0%
+    // H2H (MONEYLINE): Only ONE side can have edge
     const homeH2hCeq = ceq.h2h?.home?.ceq ?? 0;
     const awayH2hCeq = ceq.h2h?.away?.ceq ?? 0;
     const homeH2hEv = (ceq.h2h?.home as any)?.ev ?? undefined;
     const awayH2hEv = (ceq.h2h?.away as any)?.ev ?? undefined;
+    
     if (homeH2hCeq >= 56 || awayH2hCeq >= 56) {
-      if (homeH2hCeq > awayH2hCeq && homeH2hCeq >= 56 && (homeH2hEv === undefined || homeH2hEv >= 0)) {
+      const homeQualifies = homeH2hCeq >= 56 && (homeH2hEv === undefined || homeH2hEv >= 0);
+      const awayQualifies = awayH2hCeq >= 56 && (awayH2hEv === undefined || awayH2hEv >= 0);
+      
+      if (homeQualifies && (!awayQualifies || homeH2hCeq > awayH2hCeq)) {
         const conf = ceq.h2h?.home?.confidence || getConfidenceFromCEQ(homeH2hCeq);
-        edges.push({ ceq: homeH2hCeq, confidence: conf, side: 'home', market: 'h2h' });
-      } else if (awayH2hCeq >= 56 && (awayH2hEv === undefined || awayH2hEv >= 0)) {
+        edges.push({ 
+          ceq: homeH2hCeq, 
+          confidence: conf, 
+          side: 'home', 
+          market: 'h2h',
+          teamName: game.homeTeam?.split(' ').pop()
+        });
+      } else if (awayQualifies) {
         const conf = ceq.h2h?.away?.confidence || getConfidenceFromCEQ(awayH2hCeq);
-        edges.push({ ceq: awayH2hCeq, confidence: conf, side: 'away', market: 'h2h' });
+        edges.push({ 
+          ceq: awayH2hCeq, 
+          confidence: conf, 
+          side: 'away', 
+          market: 'h2h',
+          teamName: game.awayTeam?.split(' ').pop()
+        });
       }
     }
 
-    // TOTALS: Over/under CAN both have edges (different market dynamics), so check both
-    if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 56) {
-      const conf = ceq.totals.over.confidence || getConfidenceFromCEQ(ceq.totals.over.ceq);
-      edges.push({ ceq: ceq.totals.over.ceq, confidence: conf, side: 'over', market: 'total' });
+    // TOTALS: Over/under CAN both have edges
+    const overCeq = ceq.totals?.over?.ceq ?? 0;
+    const underCeq = ceq.totals?.under?.ceq ?? 0;
+    const overEv = (ceq.totals?.over as any)?.ev ?? undefined;
+    const underEv = (ceq.totals?.under as any)?.ev ?? undefined;
+    const totalLine = consensus?.totals?.line;
+    
+    if (overCeq >= 56 && (overEv === undefined || overEv >= 0)) {
+      const conf = ceq.totals?.over?.confidence || getConfidenceFromCEQ(overCeq);
+      edges.push({ ceq: overCeq, confidence: conf, side: 'over', market: 'total', line: totalLine });
     }
-    if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 56) {
-      const conf = ceq.totals.under.confidence || getConfidenceFromCEQ(ceq.totals.under.ceq);
-      edges.push({ ceq: ceq.totals.under.ceq, confidence: conf, side: 'under', market: 'total' });
+    if (underCeq >= 56 && (underEv === undefined || underEv >= 0)) {
+      const conf = ceq.totals?.under?.confidence || getConfidenceFromCEQ(underCeq);
+      edges.push({ ceq: underCeq, confidence: conf, side: 'under', market: 'total', line: totalLine });
     }
   }
 
-  // Also check the legacy calculatedEdge field as fallback
+  // Fallback to legacy calculatedEdge
   if (edges.length === 0 && game.calculatedEdge) {
     const calcEdge = game.calculatedEdge;
     if (calcEdge.score >= 56 && calcEdge.confidence && calcEdge.confidence !== 'PASS') {
-      edges.push({
-        ceq: calcEdge.score,
-        confidence: calcEdge.confidence,
-        side: calcEdge.side || 'home',
-        market: 'spread',
-      });
+      const ev = calcEdge.ev ?? undefined;
+      if (ev === undefined || ev >= 0) {
+        edges.push({
+          ceq: calcEdge.score,
+          confidence: calcEdge.confidence,
+          side: calcEdge.side || 'home',
+          market: 'spread',
+        });
+      }
     }
   }
 
-  // Find the best edge (highest CEQ)
   if (edges.length === 0) return null;
+  
+  // Find the best edge (highest CEQ)
   const bestEdge = edges.reduce((best, current) => current.ceq > best.ceq ? current : best);
-
   if (bestEdge.confidence === 'PASS') return null;
 
-  // Build context string using game.consensus
-  const consensus = game.consensus;
+  // FIXED: Build context string using the pre-calculated team name and line
   let context = '';
-  if (bestEdge.market === 'spread' && consensus?.spreads?.line !== undefined) {
-    const teamName = bestEdge.side === 'home' ? game.homeTeam?.split(' ').pop() : game.awayTeam?.split(' ').pop();
-    const line = bestEdge.side === 'home' ? consensus.spreads.line : -consensus.spreads.line;
-    const lineStr = line > 0 ? `+${line}` : `${line}`;
-    context = `${teamName} ${lineStr}`;
+  if (bestEdge.market === 'spread') {
+    const lineStr = bestEdge.line !== undefined 
+      ? (bestEdge.line > 0 ? `+${bestEdge.line}` : `${bestEdge.line}`)
+      : '';
+    context = bestEdge.teamName ? `${bestEdge.teamName} ${lineStr}` : lineStr;
   } else if (bestEdge.market === 'h2h') {
-    const teamName = bestEdge.side === 'home' ? game.homeTeam?.split(' ').pop() : game.awayTeam?.split(' ').pop();
-    context = `${teamName} ML`;
-  } else if (bestEdge.market === 'total' && consensus?.totals?.line !== undefined) {
-    context = bestEdge.side === 'over' ? `O ${consensus.totals.line}` : `U ${consensus.totals.line}`;
+    context = bestEdge.teamName ? `${bestEdge.teamName} ML` : 'ML';
+  } else if (bestEdge.market === 'total') {
+    const lineStr = bestEdge.line !== undefined ? bestEdge.line : '';
+    context = bestEdge.side === 'over' ? `O ${lineStr}` : `U ${lineStr}`;
   }
 
   const conf = bestEdge.confidence;
@@ -372,8 +411,6 @@ function getEdgeBadge(game: any): { label: string; color: string; bg: string; sc
 
   return null;
 }
-
-// Using shared getTimeDisplay from game-state.ts for consistent game state detection
 
 const SPORT_PILLS = [
   { key: 'americanfootball_nfl', label: 'NFL', icon: 'football' },
@@ -426,7 +463,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
   const [liveEdgeCount, setLiveEdgeCount] = useState(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Live data refresh state
   const [games, setGames] = useState(initialGames);
   const [dataSource, setDataSource] = useState(initialDataSource);
   const [totalGames, setTotalGames] = useState(initialTotalGames);
@@ -435,7 +471,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [secondsSinceUpdate, setSecondsSinceUpdate] = useState(0);
 
-  // Refresh function to fetch latest data with recalculated EV/CEQ
   const refreshData = useCallback(async (showSpinner = true) => {
     if (showSpinner) setIsRefreshing(true);
     try {
@@ -474,13 +509,11 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Check if any games are live
   const hasLiveGames = useMemo(() => {
     const now = Date.now();
     for (const sportGames of Object.values(games)) {
       for (const game of sportGames) {
         const startTime = new Date(game.commenceTime).getTime();
-        // Game is live if it started within last 4 hours and not marked completed
         if (startTime <= now && startTime > now - 4 * 60 * 60 * 1000 && !game.scores?.completed) {
           return true;
         }
@@ -489,17 +522,15 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     return false;
   }, [games]);
 
-  // Auto-refresh - faster for live games (20s), normal for pre-game (45s)
   useEffect(() => {
     if (!mounted) return;
     const interval = hasLiveGames ? 20000 : 45000;
     const refreshTimer = setInterval(() => {
-      refreshData(false); // Silent refresh
+      refreshData(false);
     }, interval);
     return () => clearInterval(refreshTimer);
   }, [mounted, refreshData, hasLiveGames]);
 
-  // Update "seconds since update" counter every second
   useEffect(() => {
     if (!mounted) return;
     const timer = setInterval(() => {
@@ -524,7 +555,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     return result;
   }, [games]);
 
-  // Apply search filter
   const filteredGames = useMemo(() => {
     if (!searchQuery.trim()) {
       return activeSport ? { [activeSport]: games[activeSport] || [] } : orderedGames;
@@ -545,8 +575,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
 
   const isAllView = activeSport === null;
   const selectedBookConfig = BOOK_CONFIG[selectedBook];
-
-  // Count active sports with data
   const activeSportsCount = Object.keys(games).filter(k => games[k]?.length > 0).length;
   const hasAnyGames = totalGames > 0 || Object.values(games).some(g => g.length > 0);
 
@@ -555,7 +583,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
       {/* Premium Status Bar */}
       <div className="mb-6 p-4 bg-gradient-to-r from-zinc-900/80 to-zinc-900/40 rounded-xl border border-zinc-800/60">
         <div className="flex items-center justify-between flex-wrap gap-4">
-          {/* Left: System Status */}
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <div className={`w-2 h-2 rounded-full ${dataSource !== 'none' ? 'bg-emerald-400 shadow-lg shadow-emerald-400/50 animate-pulse' : 'bg-red-400 shadow-lg shadow-red-400/50'}`} />
@@ -566,7 +593,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
 
             <div className="h-4 w-px bg-zinc-800" />
 
-            {/* Stats Badges */}
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5 px-2.5 py-1 bg-zinc-800/60 rounded-lg">
                 <span className="text-[10px] font-mono text-zinc-500">GAMES</span>
@@ -598,9 +624,7 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
             </div>
           </div>
 
-          {/* Right: Last Updated + Refresh + Clock */}
           <div className="flex items-center gap-3">
-            {/* Last Updated indicator */}
             <div className="flex items-center gap-2 px-2.5 py-1 bg-zinc-800/40 rounded-lg" suppressHydrationWarning>
               {hasLiveGames && (
                 <span className="relative flex h-1.5 w-1.5">
@@ -614,7 +638,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
               </span>
             </div>
 
-            {/* Refresh Button */}
             <button
               onClick={() => refreshData(true)}
               disabled={isRefreshing}
@@ -634,7 +657,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
               </span>
             </button>
 
-            {/* Clock */}
             <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/40 rounded-lg" suppressHydrationWarning>
               <svg className="w-3.5 h-3.5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -843,7 +865,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                   const countdown = mounted ? getTimeDisplay(gameTime, game.sportKey) : '';
                   const edgeBadge = getEdgeBadge(game);
 
-                  // Determine card styling based on edge quality
                   const getCardStyle = () => {
                     if (!edgeBadge) return 'bg-[#0f0f0f] border border-zinc-800/80 hover:border-zinc-700';
                     if (edgeBadge.label === 'RARE') return 'bg-purple-950/20 border-2 border-purple-500/40 hover:border-purple-500/60 ring-1 ring-purple-500/20';
@@ -876,7 +897,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                           ) : (
                             <span className="text-[10px] font-mono text-zinc-500 bg-zinc-800/50 px-2 py-0.5 rounded">{countdown}</span>
                           )}
-                          {/* Live Score Display - Show prominently */}
                           {(countdown === 'LIVE' || countdown === 'FINAL') && game.scores && (
                             <span className="text-sm font-bold font-mono text-zinc-100 bg-zinc-800/80 px-2 py-0.5 rounded border border-zinc-700/50">
                               {game.scores.away} - {game.scores.home}
@@ -885,7 +905,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                         </div>
                         {edgeBadge && (
                           <div className="flex items-center gap-1.5">
-                            {/* Edge Count Badge */}
                             {edgeBadge.edgeCount && edgeBadge.edgeCount > 0 && (
                               <div className={`flex items-center gap-1 px-1.5 py-0.5 rounded ${
                                 edgeBadge.label === 'RARE' ? 'bg-purple-500 text-white' :
@@ -899,7 +918,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                                 <span className="text-[10px] font-bold">{edgeBadge.edgeCount}</span>
                               </div>
                             )}
-                            {/* Main Edge Badge */}
                             <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full border ${edgeBadge.bg} ${edgeBadge.color}`}>
                               <span className="text-[9px] font-bold">
                                 {edgeBadge.label === 'RARE' && '★ '}{edgeBadge.label}:
@@ -923,43 +941,26 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                         <span className="text-[9px] text-zinc-600 uppercase text-center font-mono tracking-wider">O/U</span>
                       </div>
 
-                      {/* Away Row - Use selected book's odds or fall back to consensus */}
+                      {/* Away Row */}
                       {(() => {
                         const bookOdds = game.bookmakers?.[selectedBook];
                         const spreads = bookOdds?.spreads || game.consensus?.spreads;
                         const h2h = bookOdds?.h2h || game.consensus?.h2h;
                         const totals = bookOdds?.totals || game.consensus?.totals;
-                        // Extract CEQ data for away side
                         const ceq = game.ceq as GameCEQ | undefined;
                         const awaySpreadsData = ceq?.spreads?.away;
                         const awayH2hData = ceq?.h2h?.away;
                         const overTotalsData = ceq?.totals?.over;
 
-                        // Calculate EV for each market using consensus as fair value
                         const consensus = game.consensus;
                         const spreadEV = spreads?.awayPrice && spreads?.homePrice
-                          ? calculateTwoWayEV(
-                              spreads.awayPrice,
-                              spreads.homePrice,
-                              consensus?.spreads?.awayPrice,
-                              consensus?.spreads?.homePrice
-                            )
+                          ? calculateTwoWayEV(spreads.awayPrice, spreads.homePrice, consensus?.spreads?.awayPrice, consensus?.spreads?.homePrice)
                           : undefined;
                         const mlEV = h2h?.awayPrice && h2h?.homePrice
-                          ? calculateTwoWayEV(
-                              h2h.awayPrice,
-                              h2h.homePrice,
-                              consensus?.h2h?.awayPrice,
-                              consensus?.h2h?.homePrice
-                            )
+                          ? calculateTwoWayEV(h2h.awayPrice, h2h.homePrice, consensus?.h2h?.awayPrice, consensus?.h2h?.homePrice)
                           : undefined;
                         const overEV = totals?.overPrice && totals?.underPrice
-                          ? calculateTwoWayEV(
-                              totals.overPrice,
-                              totals.underPrice,
-                              consensus?.totals?.overPrice,
-                              consensus?.totals?.underPrice
-                            )
+                          ? calculateTwoWayEV(totals.overPrice, totals.underPrice, consensus?.totals?.overPrice, consensus?.totals?.underPrice)
                           : undefined;
 
                         return (
@@ -969,72 +970,38 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                               <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.awayTeam, game.sportKey)}</span>
                             </div>
                             {spreads?.line !== undefined ? (
-                              <OddsCell
-                                line={-spreads.line}
-                                price={spreads.awayPrice}
-                                ev={spreadEV}
-                                ceq={awaySpreadsData?.ceq}
-                                topDrivers={awaySpreadsData?.topDrivers}
-                              />
+                              <OddsCell line={-spreads.line} price={spreads.awayPrice} ev={spreadEV} ceq={awaySpreadsData?.ceq} topDrivers={awaySpreadsData?.topDrivers} />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                             {h2h?.awayPrice !== undefined ? (
-                              <MoneylineCell
-                                price={h2h.awayPrice}
-                                ev={mlEV}
-                                ceq={awayH2hData?.ceq}
-                                topDrivers={awayH2hData?.topDrivers}
-                              />
+                              <MoneylineCell price={h2h.awayPrice} ev={mlEV} ceq={awayH2hData?.ceq} topDrivers={awayH2hData?.topDrivers} />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                             {totals?.line !== undefined ? (
-                              <OddsCell
-                                line={`O${totals.line}`}
-                                price={totals.overPrice}
-                                ev={overEV}
-                                ceq={overTotalsData?.ceq}
-                                topDrivers={overTotalsData?.topDrivers}
-                              />
+                              <OddsCell line={`O${totals.line}`} price={totals.overPrice} ev={overEV} ceq={overTotalsData?.ceq} topDrivers={overTotalsData?.topDrivers} />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                           </div>
                         );
                       })()}
 
-                      {/* Home Row - Use selected book's odds or fall back to consensus */}
+                      {/* Home Row */}
                       {(() => {
                         const bookOdds = game.bookmakers?.[selectedBook];
                         const spreads = bookOdds?.spreads || game.consensus?.spreads;
                         const h2h = bookOdds?.h2h || game.consensus?.h2h;
                         const totals = bookOdds?.totals || game.consensus?.totals;
-                        // Extract CEQ data for home side
                         const ceq = game.ceq as GameCEQ | undefined;
                         const homeSpreadsData = ceq?.spreads?.home;
                         const homeH2hData = ceq?.h2h?.home;
                         const underTotalsData = ceq?.totals?.under;
 
-                        // Calculate EV for each market using consensus as fair value
                         const consensus = game.consensus;
                         const spreadEV = spreads?.homePrice && spreads?.awayPrice
-                          ? calculateTwoWayEV(
-                              spreads.homePrice,
-                              spreads.awayPrice,
-                              consensus?.spreads?.homePrice,
-                              consensus?.spreads?.awayPrice
-                            )
+                          ? calculateTwoWayEV(spreads.homePrice, spreads.awayPrice, consensus?.spreads?.homePrice, consensus?.spreads?.awayPrice)
                           : undefined;
                         const mlEV = h2h?.homePrice && h2h?.awayPrice
-                          ? calculateTwoWayEV(
-                              h2h.homePrice,
-                              h2h.awayPrice,
-                              consensus?.h2h?.homePrice,
-                              consensus?.h2h?.awayPrice
-                            )
+                          ? calculateTwoWayEV(h2h.homePrice, h2h.awayPrice, consensus?.h2h?.homePrice, consensus?.h2h?.awayPrice)
                           : undefined;
                         const underEV = totals?.underPrice && totals?.overPrice
-                          ? calculateTwoWayEV(
-                              totals.underPrice,
-                              totals.overPrice,
-                              consensus?.totals?.underPrice,
-                              consensus?.totals?.overPrice
-                            )
+                          ? calculateTwoWayEV(totals.underPrice, totals.overPrice, consensus?.totals?.underPrice, consensus?.totals?.overPrice)
                           : undefined;
 
                         return (
@@ -1044,35 +1011,17 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                               <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.homeTeam, game.sportKey)}</span>
                             </div>
                             {spreads?.line !== undefined ? (
-                              <OddsCell
-                                line={spreads.line}
-                                price={spreads.homePrice}
-                                ev={spreadEV}
-                                ceq={homeSpreadsData?.ceq}
-                                topDrivers={homeSpreadsData?.topDrivers}
-                              />
+                              <OddsCell line={spreads.line} price={spreads.homePrice} ev={spreadEV} ceq={homeSpreadsData?.ceq} topDrivers={homeSpreadsData?.topDrivers} />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                             {h2h?.homePrice !== undefined ? (
-                              <MoneylineCell
-                                price={h2h.homePrice}
-                                ev={mlEV}
-                                ceq={homeH2hData?.ceq}
-                                topDrivers={homeH2hData?.topDrivers}
-                              />
+                              <MoneylineCell price={h2h.homePrice} ev={mlEV} ceq={homeH2hData?.ceq} topDrivers={homeH2hData?.topDrivers} />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                             {totals?.line !== undefined ? (
-                              <OddsCell
-                                line={`U${totals.line}`}
-                                price={totals.underPrice}
-                                ev={underEV}
-                                ceq={underTotalsData?.ceq}
-                                topDrivers={underTotalsData?.topDrivers}
-                              />
+                              <OddsCell line={`U${totals.line}`} price={totals.underPrice} ev={underEV} ceq={underTotalsData?.ceq} topDrivers={underTotalsData?.topDrivers} />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                           </div>
                         );
                       })()}
-
                     </Link>
                   );
                 })}
@@ -1093,7 +1042,7 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
         })}
         </div>
 
-        {/* Live Edge Feed Sidebar - Hidden on mobile, shown on lg+ screens */}
+        {/* Live Edge Feed Sidebar */}
         <div className="hidden lg:block w-80 flex-shrink-0">
           <div className="sticky top-4 h-[calc(100vh-8rem)] bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
             <LiveEdgeFeed

@@ -266,37 +266,66 @@ interface EdgeCandidate {
   ev?: number;
 }
 
+// Helper to get confidence label from CEQ score
+function getConfidenceFromCEQ(ceq: number): string {
+  if (ceq >= 86) return 'RARE';
+  if (ceq >= 76) return 'STRONG';
+  if (ceq >= 66) return 'EDGE';
+  if (ceq >= 56) return 'WATCH';
+  return 'PASS';
+}
+
 function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number; context?: string; market?: string; edgeCount?: number } | null {
   // Show edge badge when CEQ >= 56% (CEQ is the composite edge quality score)
   // CEQ already factors in market efficiency, matchup dynamics, sentiment etc.
   const ceq = game.ceq as GameCEQ | undefined;
-  if (!ceq) return null;
 
   // Collect all qualifying edges (CEQ >= 56)
   const edges: EdgeCandidate[] = [];
 
-  // Check spreads
-  if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 56 && ceq.spreads.home.confidence) {
-    edges.push({ ceq: ceq.spreads.home.ceq, confidence: ceq.spreads.home.confidence, side: 'home', market: 'spread' });
-  }
-  if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 56 && ceq.spreads.away.confidence) {
-    edges.push({ ceq: ceq.spreads.away.ceq, confidence: ceq.spreads.away.confidence, side: 'away', market: 'spread' });
+  if (ceq) {
+    // Check spreads - don't require confidence, derive it from CEQ
+    if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 56) {
+      const conf = ceq.spreads.home.confidence || getConfidenceFromCEQ(ceq.spreads.home.ceq);
+      edges.push({ ceq: ceq.spreads.home.ceq, confidence: conf, side: 'home', market: 'spread' });
+    }
+    if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 56) {
+      const conf = ceq.spreads.away.confidence || getConfidenceFromCEQ(ceq.spreads.away.ceq);
+      edges.push({ ceq: ceq.spreads.away.ceq, confidence: conf, side: 'away', market: 'spread' });
+    }
+
+    // Check h2h (moneyline)
+    if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 56) {
+      const conf = ceq.h2h.home.confidence || getConfidenceFromCEQ(ceq.h2h.home.ceq);
+      edges.push({ ceq: ceq.h2h.home.ceq, confidence: conf, side: 'home', market: 'h2h' });
+    }
+    if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 56) {
+      const conf = ceq.h2h.away.confidence || getConfidenceFromCEQ(ceq.h2h.away.ceq);
+      edges.push({ ceq: ceq.h2h.away.ceq, confidence: conf, side: 'away', market: 'h2h' });
+    }
+
+    // Check totals
+    if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 56) {
+      const conf = ceq.totals.over.confidence || getConfidenceFromCEQ(ceq.totals.over.ceq);
+      edges.push({ ceq: ceq.totals.over.ceq, confidence: conf, side: 'over', market: 'total' });
+    }
+    if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 56) {
+      const conf = ceq.totals.under.confidence || getConfidenceFromCEQ(ceq.totals.under.ceq);
+      edges.push({ ceq: ceq.totals.under.ceq, confidence: conf, side: 'under', market: 'total' });
+    }
   }
 
-  // Check h2h (moneyline)
-  if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 56 && ceq.h2h.home.confidence) {
-    edges.push({ ceq: ceq.h2h.home.ceq, confidence: ceq.h2h.home.confidence, side: 'home', market: 'h2h' });
-  }
-  if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 56 && ceq.h2h.away.confidence) {
-    edges.push({ ceq: ceq.h2h.away.ceq, confidence: ceq.h2h.away.confidence, side: 'away', market: 'h2h' });
-  }
-
-  // Check totals
-  if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 56 && ceq.totals.over.confidence) {
-    edges.push({ ceq: ceq.totals.over.ceq, confidence: ceq.totals.over.confidence, side: 'over', market: 'total' });
-  }
-  if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 56 && ceq.totals.under.confidence) {
-    edges.push({ ceq: ceq.totals.under.ceq, confidence: ceq.totals.under.confidence, side: 'under', market: 'total' });
+  // Also check the legacy calculatedEdge field as fallback
+  if (edges.length === 0 && game.calculatedEdge) {
+    const calcEdge = game.calculatedEdge;
+    if (calcEdge.score >= 56 && calcEdge.confidence && calcEdge.confidence !== 'PASS') {
+      edges.push({
+        ceq: calcEdge.score,
+        confidence: calcEdge.confidence,
+        side: calcEdge.side || 'home',
+        market: 'spread',
+      });
+    }
   }
 
   // Find the best edge (highest CEQ)
@@ -801,14 +830,24 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                   const countdown = mounted ? getTimeDisplay(gameTime, game.sportKey) : '';
                   const edgeBadge = getEdgeBadge(game);
 
+                  // Determine card styling based on edge quality
+                  const getCardStyle = () => {
+                    if (!edgeBadge) return 'bg-[#0f0f0f] border border-zinc-800/80 hover:border-zinc-700';
+                    if (edgeBadge.label === 'RARE') return 'bg-purple-950/20 border-2 border-purple-500/40 hover:border-purple-500/60 ring-1 ring-purple-500/20';
+                    if (edgeBadge.label === 'STRONG') return 'bg-emerald-950/20 border-2 border-emerald-500/40 hover:border-emerald-500/60 ring-1 ring-emerald-500/20';
+                    if (edgeBadge.label === 'EDGE') return 'bg-blue-950/20 border-2 border-blue-500/40 hover:border-blue-500/60 ring-1 ring-blue-500/20';
+                    if (edgeBadge.label === 'WATCH') return 'bg-amber-950/20 border-2 border-amber-500/30 hover:border-amber-500/50 ring-1 ring-amber-500/10';
+                    return 'bg-[#0f0f0f] border border-zinc-800/80 hover:border-zinc-700';
+                  };
+
                   return (
                     <Link
                       key={game.id}
                       href={`/edge/portal/sports/game/${game.id}?sport=${game.sportKey}`}
-                      className="bg-[#0f0f0f] border border-zinc-800/80 rounded-lg overflow-hidden hover:border-zinc-700 hover:bg-[#111111] transition-all group"
+                      className={`${getCardStyle()} rounded-lg overflow-hidden hover:bg-[#111111] transition-all group`}
                     >
                       {/* Card Header */}
-                      <div className="px-3 py-2 bg-zinc-900/40 border-b border-zinc-800/50 flex items-center justify-between">
+                      <div className={`px-3 py-2 border-b flex items-center justify-between ${edgeBadge ? 'bg-zinc-900/60 border-zinc-700/50' : 'bg-zinc-900/40 border-zinc-800/50'}`}>
                         <div className="flex items-center gap-2">
                           <span className="text-[10px] font-mono text-zinc-500" suppressHydrationWarning>{timeStr}</span>
                           {countdown === 'LIVE' ? (
@@ -832,21 +871,33 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                           )}
                         </div>
                         {edgeBadge && (
-                          <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full border ${edgeBadge.bg} ${edgeBadge.color}`}>
-                            <span className="text-[9px] font-bold">
-                              {edgeBadge.label === 'RARE' && '★ '}{edgeBadge.label}:
-                            </span>
-                            {edgeBadge.context && (
-                              <span className="text-[9px] font-medium">{edgeBadge.context}</span>
+                          <div className="flex items-center gap-1.5">
+                            {/* Edge Count Badge */}
+                            {edgeBadge.edgeCount && edgeBadge.edgeCount > 0 && (
+                              <div className={`flex items-center gap-1 px-1.5 py-0.5 rounded ${
+                                edgeBadge.label === 'RARE' ? 'bg-purple-500 text-white' :
+                                edgeBadge.label === 'STRONG' ? 'bg-emerald-500 text-white' :
+                                edgeBadge.label === 'EDGE' ? 'bg-blue-500 text-white' :
+                                'bg-amber-500 text-black'
+                              }`}>
+                                <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
+                                  <path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/>
+                                </svg>
+                                <span className="text-[10px] font-bold">{edgeBadge.edgeCount}</span>
+                              </div>
                             )}
-                            {edgeBadge.score && (
-                              <span className="text-[9px] font-mono opacity-80">({edgeBadge.score}%)</span>
-                            )}
-                            {edgeBadge.edgeCount && edgeBadge.edgeCount > 1 && (
-                              <span className="text-[8px] font-medium bg-white/10 px-1 py-0.5 rounded ml-0.5">
-                                +{edgeBadge.edgeCount - 1}
+                            {/* Main Edge Badge */}
+                            <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full border ${edgeBadge.bg} ${edgeBadge.color}`}>
+                              <span className="text-[9px] font-bold">
+                                {edgeBadge.label === 'RARE' && '★ '}{edgeBadge.label}:
                               </span>
-                            )}
+                              {edgeBadge.context && (
+                                <span className="text-[9px] font-medium">{edgeBadge.context}</span>
+                              )}
+                              {edgeBadge.score && (
+                                <span className="text-[9px] font-mono opacity-80">({edgeBadge.score}%)</span>
+                              )}
+                            </div>
                           </div>
                         )}
                       </div>

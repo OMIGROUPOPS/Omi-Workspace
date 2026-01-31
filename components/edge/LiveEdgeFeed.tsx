@@ -98,43 +98,37 @@ export function LiveEdgeFeed({
       const data = await res.json();
       let fetchedEdges: LiveEdge[] = data.edges || [];
 
-      // Filter by book if selected - show edges where this retail book offers value
+      // Filter by selected book - ONLY show edges for the selected book
       if (selectedBook) {
         const selectedBookLower = selectedBook.toLowerCase();
         fetchedEdges = fetchedEdges.filter((e) => {
           const bestBook = e.best_current_book?.toLowerCase();
           const triggeringBook = e.triggering_book?.toLowerCase();
 
-          // If the selected book is the best current book for this edge, show it
+          // Show if this book is the best current book
           if (bestBook === selectedBookLower) return true;
 
-          // If the selected book triggered this edge (they moved first), show it
+          // Show if this book triggered the edge
           if (triggeringBook === selectedBookLower) return true;
 
-          // For sharp divergence edges, show if the selected book is involved
-          // and the best_current_book is a sharp book (means the retail book has value)
-          if (SHARP_BOOKS.includes(bestBook || '')) {
-            // Show this edge for any retail book since it indicates retail books have edge vs sharp
-            return true;
-          }
-
+          // Don't show edges from other books
           return false;
         });
       }
 
-      // Also filter out edges where sharp books are shown as "destination"
-      // Re-assign best_current_book to nearest retail book if it's a sharp book
-      fetchedEdges = fetchedEdges.map((e) => {
-        if (SHARP_BOOKS.includes(e.best_current_book?.toLowerCase() || '')) {
-          // Use triggering book as the retail destination if available and retail
-          if (e.triggering_book && isRetailBook(e.triggering_book)) {
-            return { ...e, best_current_book: e.triggering_book };
+      // Transform edges to show the selected book as destination when applicable
+      if (selectedBook) {
+        const selectedBookLower = selectedBook.toLowerCase();
+        fetchedEdges = fetchedEdges.map((e) => {
+          // If sharp book is best, but selected retail book triggered, show selected book
+          if (SHARP_BOOKS.includes(e.best_current_book?.toLowerCase() || '')) {
+            if (e.triggering_book?.toLowerCase() === selectedBookLower) {
+              return { ...e, best_current_book: selectedBook };
+            }
           }
-          // Otherwise default to FanDuel (most common retail book)
-          return { ...e, best_current_book: 'fanduel' };
-        }
-        return e;
-      });
+          return e;
+        });
+      }
 
       setEdges(fetchedEdges);
       onEdgeCount?.(fetchedEdges.length);

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import { formatOdds, calculateTwoWayEV, formatEV, getEVColor, getEVBgClass } from '@/lib/edge/utils/odds-math';
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
@@ -363,7 +363,7 @@ interface SportsHomeGridProps {
   fetchedAt?: string;
 }
 
-export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, totalEdges = 0, fetchedAt }: SportsHomeGridProps) {
+export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSource = 'none', totalGames: initialTotalGames = 0, totalEdges: initialTotalEdges = 0, fetchedAt: initialFetchedAt }: SportsHomeGridProps) {
   const [activeSport, setActiveSport] = useState<string | null>(null);
   const [selectedBook, setSelectedBook] = useState<string>('fanduel');
   const [isBookDropdownOpen, setIsBookDropdownOpen] = useState(false);
@@ -373,10 +373,43 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
   const [liveEdgeCount, setLiveEdgeCount] = useState(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Live data refresh state
+  const [games, setGames] = useState(initialGames);
+  const [dataSource, setDataSource] = useState(initialDataSource);
+  const [totalGames, setTotalGames] = useState(initialTotalGames);
+  const [totalEdges, setTotalEdges] = useState(initialTotalEdges);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(initialFetchedAt ? new Date(initialFetchedAt) : null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [secondsSinceUpdate, setSecondsSinceUpdate] = useState(0);
+
+  // Refresh function to fetch latest data with recalculated EV/CEQ
+  const refreshData = useCallback(async (showSpinner = true) => {
+    if (showSpinner) setIsRefreshing(true);
+    try {
+      const res = await fetch('/api/odds/dashboard');
+      if (!res.ok) throw new Error('Refresh failed');
+      const data = await res.json();
+
+      setGames(data.games || {});
+      setTotalGames(data.totalGames || 0);
+      setTotalEdges(data.totalEdges || 0);
+      setLastUpdated(new Date());
+      setSecondsSinceUpdate(0);
+      if (data.games && Object.keys(data.games).length > 0) {
+        setDataSource('odds_api');
+      }
+    } catch (e) {
+      console.error('[SportsHomeGrid] Refresh error:', e);
+    } finally {
+      if (showSpinner) setIsRefreshing(false);
+    }
+  }, []);
+
   useEffect(() => {
     setMounted(true);
     setCurrentTime(new Date());
-  }, []);
+    setLastUpdated(initialFetchedAt ? new Date(initialFetchedAt) : new Date());
+  }, [initialFetchedAt]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -388,10 +421,38 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Update clock every 30 seconds
+  // Check if any games are live
+  const hasLiveGames = useMemo(() => {
+    const now = Date.now();
+    for (const sportGames of Object.values(games)) {
+      for (const game of sportGames) {
+        const startTime = new Date(game.commenceTime).getTime();
+        // Game is live if it started within last 4 hours and not marked completed
+        if (startTime <= now && startTime > now - 4 * 60 * 60 * 1000 && !game.scores?.completed) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }, [games]);
+
+  // Auto-refresh - faster for live games (20s), normal for pre-game (45s)
   useEffect(() => {
     if (!mounted) return;
-    const timer = setInterval(() => setCurrentTime(new Date()), 30000);
+    const interval = hasLiveGames ? 20000 : 45000;
+    const refreshTimer = setInterval(() => {
+      refreshData(false); // Silent refresh
+    }, interval);
+    return () => clearInterval(refreshTimer);
+  }, [mounted, refreshData, hasLiveGames]);
+
+  // Update "seconds since update" counter every second
+  useEffect(() => {
+    if (!mounted) return;
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+      setSecondsSinceUpdate(prev => prev + 1);
+    }, 1000);
     return () => clearInterval(timer);
   }, [mounted]);
 
@@ -484,15 +545,52 @@ export function SportsHomeGrid({ games, dataSource = 'none', totalGames = 0, tot
             </div>
           </div>
 
-          {/* Right: Clock */}
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/40 rounded-lg" suppressHydrationWarning>
-            <svg className="w-3.5 h-3.5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span className="text-xs font-mono text-zinc-400">
-              {currentTime ? currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) : '--:--:--'}
-            </span>
-            <span className="text-[10px] font-mono text-zinc-600">ET</span>
+          {/* Right: Last Updated + Refresh + Clock */}
+          <div className="flex items-center gap-3">
+            {/* Last Updated indicator */}
+            <div className="flex items-center gap-2 px-2.5 py-1 bg-zinc-800/40 rounded-lg" suppressHydrationWarning>
+              {hasLiveGames && (
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-500"></span>
+                </span>
+              )}
+              <span className={`text-[10px] font-mono ${secondsSinceUpdate > 60 ? 'text-amber-500' : 'text-zinc-500'}`}>
+                {hasLiveGames && <span className="text-amber-400 mr-1">LIVE</span>}
+                Updated {secondsSinceUpdate < 60 ? `${secondsSinceUpdate}s` : `${Math.floor(secondsSinceUpdate / 60)}m`} ago
+              </span>
+            </div>
+
+            {/* Refresh Button */}
+            <button
+              onClick={() => refreshData(true)}
+              disabled={isRefreshing}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 bg-zinc-800/60 hover:bg-zinc-700/60 border border-zinc-700/50 rounded-lg transition-colors disabled:opacity-50"
+              title="Refresh odds and recalculate edges"
+            >
+              <svg
+                className={`w-3.5 h-3.5 text-zinc-400 ${isRefreshing ? 'animate-spin' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              <span className="text-[10px] font-medium text-zinc-400">
+                {isRefreshing ? 'Updating...' : 'Refresh'}
+              </span>
+            </button>
+
+            {/* Clock */}
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/40 rounded-lg" suppressHydrationWarning>
+              <svg className="w-3.5 h-3.5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-xs font-mono text-zinc-400">
+                {currentTime ? currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) : '--:--:--'}
+              </span>
+              <span className="text-[10px] font-mono text-zinc-600">ET</span>
+            </div>
           </div>
         </div>
       </div>

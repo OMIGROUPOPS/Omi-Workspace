@@ -381,8 +381,22 @@ function getEdgeBadge(game: any): { label: string; color: string; bg: string; sc
     }
   }
 
+  console.log('[getEdgeBadge Debug]', {
+    gameId: game.id,
+    homeTeam: game.homeTeam,
+    awayTeam: game.awayTeam,
+    consensusSpreadsLine: game.consensus?.spreads?.line,
+    edgesCollected: edges.map(e => ({
+      side: e.side,
+      market: e.market,
+      teamName: e.teamName,
+      line: e.line,
+      ceq: e.ceq
+    }))
+  });
+
   if (edges.length === 0) return null;
-  
+
   // Find the best edge (highest CEQ)
   const bestEdge = edges.reduce((best, current) => current.ceq > best.ceq ? current : best);
   if (bestEdge.confidence === 'PASS') return null;

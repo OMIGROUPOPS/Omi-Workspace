@@ -32,7 +32,7 @@ from cryptography.hazmat.backends import default_backend
 # ============================================================================
 MAX_CONTRACTS = 20          # Absolute max contracts per trade
 MAX_COST_CENTS = 1000       # Absolute max cost in cents ($10)
-MIN_CONTRACTS = 50          # Minimum contracts for meaningful profit
+MIN_CONTRACTS = 20          # Minimum contracts for meaningful profit
 MIN_LIQUIDITY = 50          # Minimum bid/ask size on both sides
 MIN_PM_PRICE = 10           # Skip arbs where PM price < 10c (likely illiquid/thin)
 MIN_SPREAD_CENTS = 1        # Minimum spread to consider (after fees)
@@ -5266,9 +5266,9 @@ async def run_executor():
                 # FILTER 2: Skip low contract count (not worth the effort)
                 if pm_size < MIN_CONTRACTS:
                     skipped_low_liquidity += 1
+                    potential_profit = a.net_spread * pm_size / 100
                     log_skipped_arb(a, 'low_liquidity', f"PM size {pm_size} < {MIN_CONTRACTS} contracts")
-                    if skipped_low_liquidity <= 3:
-                        print(f"[SKIP] Low liquidity: {a.game} {a.team} - {pm_size} contracts < {MIN_CONTRACTS}")
+                    print(f"[SKIP] {a.sport} {a.team}: {a.net_spread:.0f}c spread | {pm_size} contracts | ${potential_profit:.2f} profit (below {MIN_CONTRACTS} min)")
                     continue
 
                 # FILTER 3: Skip live games in LIVE mode (prices change too fast)

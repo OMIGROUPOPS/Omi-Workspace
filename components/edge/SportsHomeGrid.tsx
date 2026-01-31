@@ -284,27 +284,33 @@ function getEdgeBadge(game: any): { label: string; color: string; bg: string; sc
   const edges: EdgeCandidate[] = [];
 
   if (ceq) {
-    // Check spreads - don't require confidence, derive it from CEQ
-    if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 56) {
-      const conf = ceq.spreads.home.confidence || getConfidenceFromCEQ(ceq.spreads.home.ceq);
-      edges.push({ ceq: ceq.spreads.home.ceq, confidence: conf, side: 'home', market: 'spread' });
-    }
-    if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 56) {
-      const conf = ceq.spreads.away.confidence || getConfidenceFromCEQ(ceq.spreads.away.ceq);
-      edges.push({ ceq: ceq.spreads.away.ceq, confidence: conf, side: 'away', market: 'spread' });
-    }
-
-    // Check h2h (moneyline)
-    if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 56) {
-      const conf = ceq.h2h.home.confidence || getConfidenceFromCEQ(ceq.h2h.home.ceq);
-      edges.push({ ceq: ceq.h2h.home.ceq, confidence: conf, side: 'home', market: 'h2h' });
-    }
-    if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 56) {
-      const conf = ceq.h2h.away.confidence || getConfidenceFromCEQ(ceq.h2h.away.ceq);
-      edges.push({ ceq: ceq.h2h.away.ceq, confidence: conf, side: 'away', market: 'h2h' });
+    // SPREADS: Only ONE side can have edge - pick the BETTER side
+    const homeSpreadCeq = ceq.spreads?.home?.ceq ?? 0;
+    const awaySpreadCeq = ceq.spreads?.away?.ceq ?? 0;
+    if (homeSpreadCeq >= 56 || awaySpreadCeq >= 56) {
+      if (homeSpreadCeq > awaySpreadCeq && homeSpreadCeq >= 56) {
+        const conf = ceq.spreads?.home?.confidence || getConfidenceFromCEQ(homeSpreadCeq);
+        edges.push({ ceq: homeSpreadCeq, confidence: conf, side: 'home', market: 'spread' });
+      } else if (awaySpreadCeq >= 56) {
+        const conf = ceq.spreads?.away?.confidence || getConfidenceFromCEQ(awaySpreadCeq);
+        edges.push({ ceq: awaySpreadCeq, confidence: conf, side: 'away', market: 'spread' });
+      }
     }
 
-    // Check totals
+    // H2H (MONEYLINE): Only ONE side can have edge - pick the BETTER side
+    const homeH2hCeq = ceq.h2h?.home?.ceq ?? 0;
+    const awayH2hCeq = ceq.h2h?.away?.ceq ?? 0;
+    if (homeH2hCeq >= 56 || awayH2hCeq >= 56) {
+      if (homeH2hCeq > awayH2hCeq && homeH2hCeq >= 56) {
+        const conf = ceq.h2h?.home?.confidence || getConfidenceFromCEQ(homeH2hCeq);
+        edges.push({ ceq: homeH2hCeq, confidence: conf, side: 'home', market: 'h2h' });
+      } else if (awayH2hCeq >= 56) {
+        const conf = ceq.h2h?.away?.confidence || getConfidenceFromCEQ(awayH2hCeq);
+        edges.push({ ceq: awayH2hCeq, confidence: conf, side: 'away', market: 'h2h' });
+      }
+    }
+
+    // TOTALS: Over/under CAN both have edges (different market dynamics), so check both
     if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 56) {
       const conf = ceq.totals.over.confidence || getConfidenceFromCEQ(ceq.totals.over.ceq);
       edges.push({ ceq: ceq.totals.over.ceq, confidence: conf, side: 'over', market: 'total' });

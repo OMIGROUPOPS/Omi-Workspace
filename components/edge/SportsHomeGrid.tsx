@@ -276,6 +276,19 @@ function getEdgeBadge(game: any, selectedBook: string): { label: string; color: 
   // Use per-book CEQ if available, fall back to consensus CEQ
   const ceq = (game.ceqByBook?.[selectedBook] || game.ceq) as GameCEQ | undefined;
   const consensus = game.consensus;
+
+  console.log('[getEdgeBadge data check]', {
+    gameId: game.id,
+    homeTeam: game.homeTeam,
+    awayTeam: game.awayTeam,
+    home_team: game.home_team,
+    away_team: game.away_team,
+    consensusSpreadsLine: consensus?.spreads?.line,
+    hasConsensus: !!consensus,
+    hasCeqByBook: !!game.ceqByBook,
+    selectedBook: selectedBook,
+  });
+
   const edges: EdgeCandidate[] = [];
 
   if (ceq) {

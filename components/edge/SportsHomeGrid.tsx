@@ -73,11 +73,11 @@ function OddsCell({ line, price, ev, ceq, topDrivers }: { line?: number | string
   const [showTooltip, setShowTooltip] = useState(false);
   const hasEV = ev !== undefined && Math.abs(ev) >= 0.5;
   const hasCEQ = ceq !== undefined && ceq !== null;
-  const evIsPositive = ev !== undefined && ev >= 0; // EV must be non-negative for edge
 
-  // CRITICAL: Only show edge when BOTH CEQ >= 56% AND EV is not negative
-  // A high CEQ with negative EV is NOT an edge - it's a trap
-  const hasEdge = hasCEQ && ceq >= 56 && evIsPositive;
+  // Show edge when CEQ >= 56% and EV is not severely negative (>= -3% allows for vig)
+  // CEQ is the primary edge indicator; EV is supplementary info
+  const evAcceptable = ev === undefined || ev >= -3;
+  const hasEdge = hasCEQ && ceq >= 56 && evAcceptable;
 
   // Edge styling only when we have a real edge (CEQ high + EV non-negative)
   const getCellStyles = () => {
@@ -92,7 +92,7 @@ function OddsCell({ line, price, ev, ceq, topDrivers }: { line?: number | string
   };
 
   const evColor = hasEV ? getEVColor(ev) : 'text-zinc-500';
-  const confidence = (hasCEQ && evIsPositive)
+  const confidence = (hasCEQ && evAcceptable)
     ? ceq >= 86 ? 'RARE' : ceq >= 76 ? 'STRONG' : ceq >= 66 ? 'EDGE' : ceq >= 56 ? 'WATCH' : 'PASS'
     : null;
 
@@ -164,10 +164,10 @@ function MoneylineCell({ price, ev, ceq, topDrivers }: { price: number; ev?: num
   const [showTooltip, setShowTooltip] = useState(false);
   const hasEV = ev !== undefined && Math.abs(ev) >= 0.5;
   const hasCEQ = ceq !== undefined && ceq !== null;
-  const evIsPositive = ev !== undefined && ev >= 0; // EV must be non-negative for edge
 
-  // CRITICAL: Only show edge when BOTH CEQ >= 56% AND EV is not negative
-  const hasEdge = hasCEQ && ceq >= 56 && evIsPositive;
+  // Show edge when CEQ >= 56% and EV is not severely negative (>= -3% allows for vig)
+  const evAcceptable = ev === undefined || ev >= -3;
+  const hasEdge = hasCEQ && ceq >= 56 && evAcceptable;
 
   // Edge styling only when we have a real edge (CEQ high + EV non-negative)
   const getCellStyles = () => {
@@ -182,7 +182,7 @@ function MoneylineCell({ price, ev, ceq, topDrivers }: { price: number; ev?: num
   };
 
   const evColor = hasEV ? getEVColor(ev) : 'text-zinc-500';
-  const confidence = (hasCEQ && evIsPositive)
+  const confidence = (hasCEQ && evAcceptable)
     ? ceq >= 86 ? 'RARE' : ceq >= 76 ? 'STRONG' : ceq >= 66 ? 'EDGE' : ceq >= 56 ? 'WATCH' : 'PASS'
     : null;
 
@@ -266,71 +266,37 @@ interface EdgeCandidate {
   ev?: number;
 }
 
-function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number; context?: string; market?: string } | null {
-  // Show edge badge ONLY when CEQ >= 56% AND EV is not negative
+function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number; context?: string; market?: string; edgeCount?: number } | null {
+  // Show edge badge when CEQ >= 56% (CEQ is the composite edge quality score)
+  // CEQ already factors in market efficiency, matchup dynamics, sentiment etc.
   const ceq = game.ceq as GameCEQ | undefined;
   if (!ceq) return null;
 
-  const consensus = game.consensus;
-
-  // Calculate EV for each market to verify it's not negative
-  // We need positive or neutral EV to consider it a real edge
-  const spreadHomeEV = consensus?.spreads?.homePrice && consensus?.spreads?.awayPrice
-    ? calculateTwoWayEV(consensus.spreads.homePrice, consensus.spreads.awayPrice, consensus.spreads.homePrice, consensus.spreads.awayPrice)
-    : undefined;
-  const spreadAwayEV = consensus?.spreads?.awayPrice && consensus?.spreads?.homePrice
-    ? calculateTwoWayEV(consensus.spreads.awayPrice, consensus.spreads.homePrice, consensus.spreads.awayPrice, consensus.spreads.homePrice)
-    : undefined;
-  const h2hHomeEV = consensus?.h2h?.homePrice && consensus?.h2h?.awayPrice
-    ? calculateTwoWayEV(consensus.h2h.homePrice, consensus.h2h.awayPrice, consensus.h2h.homePrice, consensus.h2h.awayPrice)
-    : undefined;
-  const h2hAwayEV = consensus?.h2h?.awayPrice && consensus?.h2h?.homePrice
-    ? calculateTwoWayEV(consensus.h2h.awayPrice, consensus.h2h.homePrice, consensus.h2h.awayPrice, consensus.h2h.homePrice)
-    : undefined;
-  const totalsOverEV = consensus?.totals?.overPrice && consensus?.totals?.underPrice
-    ? calculateTwoWayEV(consensus.totals.overPrice, consensus.totals.underPrice, consensus.totals.overPrice, consensus.totals.underPrice)
-    : undefined;
-  const totalsUnderEV = consensus?.totals?.underPrice && consensus?.totals?.overPrice
-    ? calculateTwoWayEV(consensus.totals.underPrice, consensus.totals.overPrice, consensus.totals.underPrice, consensus.totals.overPrice)
-    : undefined;
-
-  // Collect edges only when BOTH CEQ >= 56 AND EV >= 0
+  // Collect all qualifying edges (CEQ >= 56)
   const edges: EdgeCandidate[] = [];
 
-  // Check spreads - require non-negative EV
+  // Check spreads
   if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 56 && ceq.spreads.home.confidence) {
-    if (spreadHomeEV === undefined || spreadHomeEV >= 0) {
-      edges.push({ ceq: ceq.spreads.home.ceq, confidence: ceq.spreads.home.confidence, side: 'home', market: 'spread', ev: spreadHomeEV });
-    }
+    edges.push({ ceq: ceq.spreads.home.ceq, confidence: ceq.spreads.home.confidence, side: 'home', market: 'spread' });
   }
   if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 56 && ceq.spreads.away.confidence) {
-    if (spreadAwayEV === undefined || spreadAwayEV >= 0) {
-      edges.push({ ceq: ceq.spreads.away.ceq, confidence: ceq.spreads.away.confidence, side: 'away', market: 'spread', ev: spreadAwayEV });
-    }
+    edges.push({ ceq: ceq.spreads.away.ceq, confidence: ceq.spreads.away.confidence, side: 'away', market: 'spread' });
   }
 
-  // Check h2h (moneyline) - require non-negative EV
+  // Check h2h (moneyline)
   if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 56 && ceq.h2h.home.confidence) {
-    if (h2hHomeEV === undefined || h2hHomeEV >= 0) {
-      edges.push({ ceq: ceq.h2h.home.ceq, confidence: ceq.h2h.home.confidence, side: 'home', market: 'h2h', ev: h2hHomeEV });
-    }
+    edges.push({ ceq: ceq.h2h.home.ceq, confidence: ceq.h2h.home.confidence, side: 'home', market: 'h2h' });
   }
   if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 56 && ceq.h2h.away.confidence) {
-    if (h2hAwayEV === undefined || h2hAwayEV >= 0) {
-      edges.push({ ceq: ceq.h2h.away.ceq, confidence: ceq.h2h.away.confidence, side: 'away', market: 'h2h', ev: h2hAwayEV });
-    }
+    edges.push({ ceq: ceq.h2h.away.ceq, confidence: ceq.h2h.away.confidence, side: 'away', market: 'h2h' });
   }
 
-  // Check totals - require non-negative EV
+  // Check totals
   if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 56 && ceq.totals.over.confidence) {
-    if (totalsOverEV === undefined || totalsOverEV >= 0) {
-      edges.push({ ceq: ceq.totals.over.ceq, confidence: ceq.totals.over.confidence, side: 'over', market: 'total', ev: totalsOverEV });
-    }
+    edges.push({ ceq: ceq.totals.over.ceq, confidence: ceq.totals.over.confidence, side: 'over', market: 'total' });
   }
   if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 56 && ceq.totals.under.confidence) {
-    if (totalsUnderEV === undefined || totalsUnderEV >= 0) {
-      edges.push({ ceq: ceq.totals.under.ceq, confidence: ceq.totals.under.confidence, side: 'under', market: 'total', ev: totalsUnderEV });
-    }
+    edges.push({ ceq: ceq.totals.under.ceq, confidence: ceq.totals.under.confidence, side: 'under', market: 'total' });
   }
 
   // Find the best edge (highest CEQ)
@@ -339,7 +305,8 @@ function getEdgeBadge(game: any): { label: string; color: string; bg: string; sc
 
   if (bestEdge.confidence === 'PASS') return null;
 
-  // Build context string (consensus already defined above)
+  // Build context string using game.consensus
+  const consensus = game.consensus;
   let context = '';
   if (bestEdge.market === 'spread' && consensus?.spreads?.line !== undefined) {
     const teamName = bestEdge.side === 'home' ? game.homeTeam?.split(' ').pop() : game.awayTeam?.split(' ').pop();
@@ -354,10 +321,12 @@ function getEdgeBadge(game: any): { label: string; color: string; bg: string; sc
   }
 
   const conf = bestEdge.confidence;
-  if (conf === 'RARE') return { label: 'RARE', color: 'text-purple-300', bg: 'bg-purple-500/20 border-purple-500/30', score: bestEdge.ceq, context, market: bestEdge.market };
-  if (conf === 'STRONG') return { label: 'STRONG', color: 'text-emerald-300', bg: 'bg-emerald-500/20 border-emerald-500/30', score: bestEdge.ceq, context, market: bestEdge.market };
-  if (conf === 'EDGE') return { label: 'EDGE', color: 'text-blue-300', bg: 'bg-blue-500/20 border-blue-500/30', score: bestEdge.ceq, context, market: bestEdge.market };
-  if (conf === 'WATCH') return { label: 'WATCH', color: 'text-amber-300', bg: 'bg-amber-500/20 border-amber-500/30', score: bestEdge.ceq, context, market: bestEdge.market };
+  const edgeCount = edges.length;
+
+  if (conf === 'RARE') return { label: 'RARE', color: 'text-purple-300', bg: 'bg-purple-500/20 border-purple-500/30', score: bestEdge.ceq, context, market: bestEdge.market, edgeCount };
+  if (conf === 'STRONG') return { label: 'STRONG', color: 'text-emerald-300', bg: 'bg-emerald-500/20 border-emerald-500/30', score: bestEdge.ceq, context, market: bestEdge.market, edgeCount };
+  if (conf === 'EDGE') return { label: 'EDGE', color: 'text-blue-300', bg: 'bg-blue-500/20 border-blue-500/30', score: bestEdge.ceq, context, market: bestEdge.market, edgeCount };
+  if (conf === 'WATCH') return { label: 'WATCH', color: 'text-amber-300', bg: 'bg-amber-500/20 border-amber-500/30', score: bestEdge.ceq, context, market: bestEdge.market, edgeCount };
 
   return null;
 }
@@ -872,6 +841,11 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                             )}
                             {edgeBadge.score && (
                               <span className="text-[9px] font-mono opacity-80">({edgeBadge.score}%)</span>
+                            )}
+                            {edgeBadge.edgeCount && edgeBadge.edgeCount > 1 && (
+                              <span className="text-[8px] font-medium bg-white/10 px-1 py-0.5 rounded ml-0.5">
+                                +{edgeBadge.edgeCount - 1}
+                              </span>
                             )}
                           </div>
                         )}

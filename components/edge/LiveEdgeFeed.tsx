@@ -22,6 +22,18 @@ const LEAGUE_TABS = [
   { key: 'tennis', label: 'Tennis', emoji: '' },
 ];
 
+// Sharp/baseline books that users CANNOT bet on (used for comparison only)
+const SHARP_BOOKS = ['pinnacle', 'pinnacle_dpi', 'betcris', 'bookmaker'];
+
+// Retail books users CAN bet on
+const RETAIL_BOOKS = ['fanduel', 'draftkings', 'betmgm', 'caesars', 'pointsbet', 'bet365', 'wynnbet', 'unibet'];
+
+// Check if a book is a retail book (bettable)
+const isRetailBook = (book: string | null): boolean => {
+  if (!book) return false;
+  return RETAIL_BOOKS.includes(book.toLowerCase()) || !SHARP_BOOKS.includes(book.toLowerCase());
+};
+
 interface LiveEdgeFeedProps {
   sport?: string;
   selectedBook?: string;
@@ -86,12 +98,43 @@ export function LiveEdgeFeed({
       const data = await res.json();
       let fetchedEdges: LiveEdge[] = data.edges || [];
 
-      // Filter by book if selected
+      // Filter by book if selected - show edges where this retail book offers value
       if (selectedBook) {
-        fetchedEdges = fetchedEdges.filter(
-          (e) => e.best_current_book === selectedBook || e.triggering_book === selectedBook
-        );
+        const selectedBookLower = selectedBook.toLowerCase();
+        fetchedEdges = fetchedEdges.filter((e) => {
+          const bestBook = e.best_current_book?.toLowerCase();
+          const triggeringBook = e.triggering_book?.toLowerCase();
+
+          // If the selected book is the best current book for this edge, show it
+          if (bestBook === selectedBookLower) return true;
+
+          // If the selected book triggered this edge (they moved first), show it
+          if (triggeringBook === selectedBookLower) return true;
+
+          // For sharp divergence edges, show if the selected book is involved
+          // and the best_current_book is a sharp book (means the retail book has value)
+          if (SHARP_BOOKS.includes(bestBook || '')) {
+            // Show this edge for any retail book since it indicates retail books have edge vs sharp
+            return true;
+          }
+
+          return false;
+        });
       }
+
+      // Also filter out edges where sharp books are shown as "destination"
+      // Re-assign best_current_book to nearest retail book if it's a sharp book
+      fetchedEdges = fetchedEdges.map((e) => {
+        if (SHARP_BOOKS.includes(e.best_current_book?.toLowerCase() || '')) {
+          // Use triggering book as the retail destination if available and retail
+          if (e.triggering_book && isRetailBook(e.triggering_book)) {
+            return { ...e, best_current_book: e.triggering_book };
+          }
+          // Otherwise default to FanDuel (most common retail book)
+          return { ...e, best_current_book: 'fanduel' };
+        }
+        return e;
+      });
 
       setEdges(fetchedEdges);
       onEdgeCount?.(fetchedEdges.length);
@@ -391,14 +434,21 @@ function EdgeCard({
           {getHeadline()}
         </div>
 
-        {/* Value + Book */}
+        {/* Value + Book + Sharp Comparison */}
         <div className="flex items-center justify-between text-xs">
           <span className="text-emerald-400 font-medium">{getEdgeValue()}</span>
-          {edge.best_current_book && (
-            <span className="text-zinc-500">
-              @ <span className="capitalize text-zinc-400">{edge.best_current_book}</span>
-            </span>
-          )}
+          <div className="flex items-center gap-1 text-zinc-500">
+            {edge.best_current_book && (
+              <span>
+                <span className="capitalize text-emerald-400 font-medium">{edge.best_current_book}</span>
+              </span>
+            )}
+            {edge.sharp_book_line !== null && (
+              <span className="text-zinc-600">
+                vs sharp {edge.sharp_book_line > 0 ? '+' : ''}{edge.sharp_book_line}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Timestamp */}

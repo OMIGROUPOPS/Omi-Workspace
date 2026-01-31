@@ -358,13 +358,103 @@ function processBackendGame(
     teamStatsMap
   );
 
-  // Calculate CEQ
+  // Build per-book odds data if bookmakers available
+  const bookmakers: Record<string, any> = {};
+  const allBooksOdds: {
+    spreads?: { home: number[]; away: number[] };
+    h2h?: { home: number[]; away: number[] };
+    totals?: { over: number[]; under: number[] };
+  } = {};
+
+  if (game.bookmakers && game.bookmakers.length > 0) {
+    const h2hPrices: { home: number[]; away: number[] } = { home: [], away: [] };
+    const spreadData: { line: number[]; homePrice: number[]; awayPrice: number[] } = { line: [], homePrice: [], awayPrice: [] };
+    const totalData: { line: number[]; overPrice: number[]; underPrice: number[] } = { line: [], overPrice: [], underPrice: [] };
+
+    for (const bookmaker of game.bookmakers) {
+      const bookOdds: any = {};
+      for (const market of bookmaker.markets || []) {
+        if (market.key === 'h2h') {
+          const home = market.outcomes?.find((o: any) => o.name === game.home_team);
+          const away = market.outcomes?.find((o: any) => o.name === game.away_team);
+          if (home) h2hPrices.home.push(home.price);
+          if (away) h2hPrices.away.push(away.price);
+          bookOdds.h2h = { homePrice: home?.price, awayPrice: away?.price };
+        }
+        if (market.key === 'spreads') {
+          const home = market.outcomes?.find((o: any) => o.name === game.home_team);
+          const away = market.outcomes?.find((o: any) => o.name === game.away_team);
+          if (home?.point !== undefined) {
+            spreadData.line.push(home.point);
+            spreadData.homePrice.push(home.price);
+          }
+          if (away) spreadData.awayPrice.push(away.price);
+          bookOdds.spreads = { line: home?.point, homePrice: home?.price, awayPrice: away?.price };
+        }
+        if (market.key === 'totals') {
+          const over = market.outcomes?.find((o: any) => o.name === 'Over');
+          const under = market.outcomes?.find((o: any) => o.name === 'Under');
+          if (over?.point !== undefined) {
+            totalData.line.push(over.point);
+            totalData.overPrice.push(over.price);
+          }
+          if (under) totalData.underPrice.push(under.price);
+          bookOdds.totals = { line: over?.point, overPrice: over?.price, underPrice: under?.price };
+        }
+      }
+      bookmakers[bookmaker.key] = bookOdds;
+    }
+
+    if (spreadData.homePrice.length > 0) allBooksOdds.spreads = { home: spreadData.homePrice, away: spreadData.awayPrice };
+    if (h2hPrices.home.length > 0) allBooksOdds.h2h = h2hPrices;
+    if (totalData.overPrice.length > 0) allBooksOdds.totals = { over: totalData.overPrice, under: totalData.underPrice };
+  }
+
+  // Calculate CEQ PER BOOK - each book gets its own CEQ based on its prices
+  const ceqByBook: Record<string, GameCEQ | null> = {};
+
+  for (const [bookKey, bookOddsData] of Object.entries(bookmakers)) {
+    const bookData = bookOddsData as any;
+
+    const bookGameOdds = {
+      spreads: bookData.spreads?.line !== undefined ? {
+        home: { line: bookData.spreads.line, odds: bookData.spreads.homePrice || -110 },
+        away: { line: -bookData.spreads.line, odds: bookData.spreads.awayPrice || -110 },
+      } : undefined,
+      h2h: bookData.h2h?.homePrice !== undefined ? {
+        home: bookData.h2h.homePrice,
+        away: bookData.h2h.awayPrice,
+      } : undefined,
+      totals: bookData.totals?.line !== undefined ? {
+        line: bookData.totals.line,
+        over: bookData.totals.overPrice || -110,
+        under: bookData.totals.underPrice || -110,
+      } : undefined,
+    };
+
+    if (bookGameOdds.spreads || bookGameOdds.h2h || bookGameOdds.totals) {
+      ceqByBook[bookKey] = calculateGameCEQ(
+        bookGameOdds,
+        openingData,
+        gameSnapshots,
+        allBooksOdds,
+        {
+          spreads: consensus.spreads ? { home: consensus.spreads.homePrice, away: consensus.spreads.awayPrice } : undefined,
+          h2h: consensus.h2h ? { home: consensus.h2h.homePrice, away: consensus.h2h.awayPrice } : undefined,
+          totals: consensus.totals ? { over: consensus.totals.overPrice, under: consensus.totals.underPrice } : undefined,
+        },
+        gameContext
+      );
+    }
+  }
+
+  // Calculate consensus CEQ (fallback)
   if (gameOdds.spreads || gameOdds.h2h || gameOdds.totals) {
     ceqData = calculateGameCEQ(
       gameOdds,
       openingData,
       gameSnapshots,
-      {}, // allBooksOdds - would need to aggregate from bookmakers
+      {},  // Empty for consensus (no SBI comparison needed)
       {
         spreads: consensus.spreads ? { home: consensus.spreads.homePrice, away: consensus.spreads.awayPrice } : undefined,
         h2h: consensus.h2h ? { home: consensus.h2h.homePrice, away: consensus.h2h.awayPrice } : undefined,
@@ -406,6 +496,8 @@ function processBackendGame(
     awayTeam: game.away_team,
     commenceTime: game.commence_time,
     consensus,
+    bookmakers,
+    bookmakerCount: game.bookmakers?.length || 0,
     edges: game.edges,
     pillars: game.pillars,
     composite_score: game.composite_score || (edgeData.score / 100),
@@ -413,7 +505,8 @@ function processBackendGame(
     best_bet: game.best_bet,
     best_edge: game.best_edge,
     calculatedEdge: edgeData,
-    ceq: ceqData, // Full CEQ data for UI
+    ceq: ceqData,
+    ceqByBook,  // Per-book CEQ for selected book display
     scores: scores[game.game_id] || null,
   };
 }
@@ -563,13 +656,51 @@ function processOddsApiGame(
     teamStatsMap
   );
 
-  // Calculate CEQ
+  // Calculate CEQ PER BOOK - each book gets its own CEQ based on its prices
+  const ceqByBook: Record<string, GameCEQ | null> = {};
+
+  for (const [bookKey, bookOddsData] of Object.entries(bookmakers)) {
+    const bookData = bookOddsData as any;
+
+    const bookGameOdds = {
+      spreads: bookData.spreads?.line !== undefined ? {
+        home: { line: bookData.spreads.line, odds: bookData.spreads.homePrice || -110 },
+        away: { line: -bookData.spreads.line, odds: bookData.spreads.awayPrice || -110 },
+      } : undefined,
+      h2h: bookData.h2h?.homePrice !== undefined ? {
+        home: bookData.h2h.homePrice,
+        away: bookData.h2h.awayPrice,
+      } : undefined,
+      totals: bookData.totals?.line !== undefined ? {
+        line: bookData.totals.line,
+        over: bookData.totals.overPrice || -110,
+        under: bookData.totals.underPrice || -110,
+      } : undefined,
+    };
+
+    if (bookGameOdds.spreads || bookGameOdds.h2h || bookGameOdds.totals) {
+      ceqByBook[bookKey] = calculateGameCEQ(
+        bookGameOdds,
+        openingData,
+        gameSnapshots,
+        allBooksOdds,
+        {
+          spreads: consensus.spreads ? { home: consensus.spreads.homePrice, away: consensus.spreads.awayPrice } : undefined,
+          h2h: consensus.h2h ? { home: consensus.h2h.homePrice, away: consensus.h2h.awayPrice } : undefined,
+          totals: consensus.totals ? { over: consensus.totals.overPrice, under: consensus.totals.underPrice } : undefined,
+        },
+        gameContext
+      );
+    }
+  }
+
+  // Calculate consensus CEQ (fallback)
   if (gameOdds.spreads || gameOdds.h2h || gameOdds.totals) {
     ceqData = calculateGameCEQ(
       gameOdds,
       openingData,
       gameSnapshots,
-      allBooksOdds,
+      {},  // Empty for consensus (no SBI comparison needed)
       {
         spreads: consensus.spreads ? { home: consensus.spreads.homePrice, away: consensus.spreads.awayPrice } : undefined,
         h2h: consensus.h2h ? { home: consensus.h2h.homePrice, away: consensus.h2h.awayPrice } : undefined,
@@ -609,7 +740,8 @@ function processOddsApiGame(
     composite_score: edgeData.score / 100,
     overall_confidence: edgeData.confidence,
     calculatedEdge: edgeData,
-    ceq: ceqData, // Full CEQ data for UI
+    ceq: ceqData,
+    ceqByBook,  // Per-book CEQ for selected book display
     scores: scores[game.id] || null,
   };
 }

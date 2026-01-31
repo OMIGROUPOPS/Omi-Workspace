@@ -105,13 +105,15 @@ async function fetchOpeningLines(gameIds: string[]): Promise<Record<string, numb
 
   try {
     const supabase = getDirectSupabase();
+    // Limit query to improve performance
     const { data, error } = await supabase
       .from('odds_snapshots')
       .select('game_id, line, snapshot_time')
       .in('game_id', gameIds)
       .eq('market', 'spreads')
       .not('line', 'is', null)
-      .order('snapshot_time', { ascending: true });
+      .order('snapshot_time', { ascending: true })
+      .limit(500); // Only need first snapshot per game
 
     if (!error && data) {
       // Get first snapshot (opening line) for each game
@@ -129,7 +131,7 @@ async function fetchOpeningLines(gameIds: string[]): Promise<Record<string, numb
 }
 
 // Fetch snapshot history for CEQ calculations
-// Only fetches recent snapshots (last 24h) to keep query manageable
+// Only fetches recent snapshots (last 6h) to keep query fast
 async function fetchGameSnapshots(gameIds: string[]): Promise<Record<string, ExtendedOddsSnapshot[]>> {
   const snapshotsMap: Record<string, ExtendedOddsSnapshot[]> = {};
 
@@ -137,36 +139,46 @@ async function fetchGameSnapshots(gameIds: string[]): Promise<Record<string, Ext
 
   try {
     const supabase = getDirectSupabase();
-    // Only fetch last 24 hours of snapshots - enough for CEQ calculation
-    const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    // Only fetch last 6 hours of snapshots - enough for CEQ calculation, much faster
+    const sixHoursAgo = new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString();
 
-    // Batch by game to avoid hitting row limits
-    // Each game may have thousands of snapshots
-    for (let i = 0; i < gameIds.length; i += 10) {
-      const batchIds = gameIds.slice(i, i + 10);
-      const { data, error } = await supabase
-        .from('odds_snapshots')
-        .select('game_id, market, book_key, outcome_type, line, odds, snapshot_time')
-        .in('game_id', batchIds)
-        .gte('snapshot_time', oneDayAgo)
-        .order('snapshot_time', { ascending: true })
-        .limit(5000); // 5000 per batch of 10 games
+    // Create batches of 20 games each
+    const batches: string[][] = [];
+    for (let i = 0; i < gameIds.length; i += 20) {
+      batches.push(gameIds.slice(i, i + 20));
+    }
 
-      if (!error && data) {
-        for (const row of data) {
-          if (!snapshotsMap[row.game_id]) {
-            snapshotsMap[row.game_id] = [];
-          }
-          snapshotsMap[row.game_id].push({
-            game_id: row.game_id,
-            market: row.market,
-            book_key: row.book_key,
-            outcome_type: row.outcome_type,
-            line: row.line,
-            odds: row.odds,
-            snapshot_time: row.snapshot_time,
-          });
+    // Run ALL batches in parallel instead of sequentially
+    const results = await Promise.all(
+      batches.map(async (batchIds) => {
+        const { data, error } = await supabase
+          .from('odds_snapshots')
+          .select('game_id, market, book_key, outcome_type, line, odds, snapshot_time')
+          .in('game_id', batchIds)
+          .gte('snapshot_time', sixHoursAgo)
+          .order('snapshot_time', { ascending: true })
+          .limit(2000); // 2000 per batch, reduced for speed
+
+        if (error) return [];
+        return data || [];
+      })
+    );
+
+    // Merge all results
+    for (const data of results) {
+      for (const row of data) {
+        if (!snapshotsMap[row.game_id]) {
+          snapshotsMap[row.game_id] = [];
         }
+        snapshotsMap[row.game_id].push({
+          game_id: row.game_id,
+          market: row.market,
+          book_key: row.book_key,
+          outcome_type: row.outcome_type,
+          line: row.line,
+          odds: row.odds,
+          snapshot_time: row.snapshot_time,
+        });
       }
     }
   } catch (e) {
@@ -680,37 +692,40 @@ export default async function SportsPage() {
     }
   } else {
     // Fallback: read from cached_odds table
-    // First collect game IDs from cache to fetch snapshots
+    // Fetch all cached odds in a single query (no sport filter, do filtering after)
     const supabase = getSupabase();
+    const sportKeys = sports.map(s => SPORT_MAPPING[s]).filter(Boolean);
+
+    // Single query for all sports
+    const { data: allCachedData } = await supabase
+      .from('cached_odds')
+      .select('sport_key, game_data')
+      .in('sport_key', sportKeys);
+
+    // Collect all game IDs
     const cachedGameIds: string[] = [];
-    for (const sport of sports) {
-      const sportKey = SPORT_MAPPING[sport];
-      if (sportKey) {
-        const { data } = await supabase
-          .from('cached_odds')
-          .select('game_data')
-          .eq('sport_key', sportKey);
-        if (data) {
-          for (const row of data) {
-            if (row.game_data?.id) cachedGameIds.push(row.game_data.id);
-          }
-        }
+    if (allCachedData) {
+      for (const row of allCachedData) {
+        if (row.game_data?.id) cachedGameIds.push(row.game_data.id);
       }
     }
 
-    // Fetch snapshots for cached games
+    // Fetch snapshots for cached games (already parallelized)
     const cachedSnapshotsMap = cachedGameIds.length > 0
       ? await fetchGameSnapshots(cachedGameIds)
       : {};
 
-    const cacheResults = await Promise.all(
-      sports.map(async (sport) => {
-        const sportKey = SPORT_MAPPING[sport];
-        if (!sportKey) return { sport, games: [] };
-        const games = await fetchFromCache(sportKey, scoresData, openingLines, cachedSnapshotsMap, teamStatsMap);
-        return { sport, games };
-      })
-    );
+    // Process all games directly from the single query result
+    const cacheResults: { sport: string; games: any[] }[] = sports.map(sport => {
+      const sportKey = SPORT_MAPPING[sport];
+      if (!sportKey) return { sport, games: [] };
+
+      const sportData = allCachedData?.filter((row: any) => row.sport_key === sportKey) || [];
+      const games = sportData
+        .map((row: any) => processOddsApiGame(row.game_data, scoresData, openingLines, cachedSnapshotsMap, teamStatsMap))
+        .filter(Boolean);
+      return { sport, games };
+    });
 
     const hasCachedData = cacheResults.some(r => r.games.length > 0);
     if (hasCachedData) dataSource = 'odds_api';

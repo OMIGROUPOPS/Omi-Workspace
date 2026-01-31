@@ -108,7 +108,48 @@ export function LiveEdgeCard({ edge, showGameLink = true, compact = false }: Liv
   // Parse player info from outcome_key
   const { player, side } = parseOutcomeKey(edge.outcome_key);
   const isPlayerProp = !!player || (edge.market_type?.toLowerCase().includes('player') ?? false);
-  const marketDisplay = formatMarketTypeDisplay(edge.market_type);
+
+  // Human-readable market type
+  const getMarketLabel = () => {
+    if (edge.market_type === 'h2h') return 'Moneyline';
+    if (edge.market_type === 'spreads') return 'Spread';
+    if (edge.market_type === 'totals') return 'Total';
+    return formatMarketTypeDisplay(edge.market_type);
+  };
+
+  // Human-readable outcome
+  const getOutcomeLabel = () => {
+    if (!edge.outcome_key) return '';
+    const key = edge.outcome_key.toLowerCase();
+    if (key === 'home') return 'Home';
+    if (key === 'away') return 'Away';
+    if (key === 'over') return 'Over';
+    if (key === 'under') return 'Under';
+    // If it's a team name, capitalize nicely
+    return edge.outcome_key.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+  };
+
+  // Human-readable magnitude description
+  const getMagnitudeDescription = () => {
+    const mag = edge.edge_magnitude;
+    if (edge.market_type === 'h2h') {
+      return `${mag > 0 ? '+' : ''}${mag}¢ value`;
+    }
+    return `${mag > 0 ? '+' : ''}${mag.toFixed(1)} points`;
+  };
+
+  // Full human-readable headline
+  const getHeadline = () => {
+    const market = getMarketLabel();
+    const outcome = getOutcomeLabel();
+    const magnitude = getMagnitudeDescription();
+
+    if (isPlayerProp && player) {
+      return `${player} ${side || ''} - ${magnitude}`;
+    }
+
+    return `${outcome} ${market} - ${magnitude}`;
+  };
 
   const content = (
     <div
@@ -123,17 +164,13 @@ export function LiveEdgeCard({ edge, showGameLink = true, compact = false }: Liv
       {/* Header Row */}
       <div className="flex items-start justify-between gap-2 mb-2">
         <div className="flex items-center gap-2 flex-wrap">
-          {/* Edge Type Badge */}
+          {/* Edge Type Badge - Full label, not abbreviation */}
           <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-full ${getEdgeTypeBg(edge.edge_type)}`}>
             <IconComponent className={`w-3 h-3 ${getEdgeTypeColor(edge.edge_type)}`} />
             <span className={`text-xs font-medium ${getEdgeTypeColor(edge.edge_type)}`}>
-              {typeConfig?.shortLabel || edge.edge_type}
+              {typeConfig?.label || edge.edge_type}
             </span>
           </div>
-          {/* Market type badge for non-prop edges */}
-          {!isPlayerProp && marketDisplay && (
-            <span className="text-[10px] text-zinc-500 uppercase">{marketDisplay}</span>
-          )}
         </div>
 
         {/* Status Badge */}
@@ -150,65 +187,54 @@ export function LiveEdgeCard({ edge, showGameLink = true, compact = false }: Liv
         </div>
       </div>
 
-      {/* Player Prop Headline - Make player name prominent */}
-      {isPlayerProp && player && (
-        <div className="mb-2">
-          <div className="flex items-baseline gap-2">
-            <span className="text-sm font-bold text-zinc-100">{player}</span>
-            {side && <span className="text-xs text-emerald-400 font-medium">{side}</span>}
-          </div>
-          {marketDisplay && (
-            <span className="text-[11px] text-zinc-400">{marketDisplay}</span>
-          )}
-        </div>
-      )}
-
-      {/* Main Content */}
+      {/* Main Content - Human readable headline */}
       <div className="space-y-1.5">
-        {/* Magnitude + Description combined for clarity */}
-        <div className="flex items-baseline gap-2 flex-wrap">
-          <span className="text-lg font-bold text-zinc-100 font-mono">
-            {formatEdgeMagnitude(edge)}
-          </span>
-          {!compact && (
-            <span className="text-xs text-zinc-400">
-              {formatEdgeDescription(edge)}
-            </span>
-          )}
-          {edge.confidence && (
-            <span className="text-xs text-zinc-500 font-mono">
-              {edge.confidence.toFixed(0)}% conf
-            </span>
-          )}
+        <div className="text-sm font-semibold text-zinc-100">
+          {getHeadline()}
         </div>
 
-        {/* Book Info - Clearer wording */}
+        {/* Confidence as percentage bar */}
+        {edge.confidence && (
+          <div className="flex items-center gap-2">
+            <div className="flex-1 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+              <div
+                className={`h-full rounded-full ${
+                  edge.confidence >= 80 ? 'bg-emerald-500' :
+                  edge.confidence >= 60 ? 'bg-blue-500' :
+                  'bg-amber-500'
+                }`}
+                style={{ width: `${edge.confidence}%` }}
+              />
+            </div>
+            <span className="text-xs text-zinc-400 font-mono w-10">
+              {edge.confidence.toFixed(0)}%
+            </span>
+          </div>
+        )}
+
+        {/* Book Info */}
         <div className="flex items-center gap-2 text-[10px] flex-wrap">
           {edge.best_current_book && (
             <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium capitalize">
               Best: {edge.best_current_book}
             </span>
           )}
-          {edge.triggering_book && edge.triggering_book !== edge.best_current_book && (
+          {edge.sharp_book_line !== null && edge.sharp_book_line !== undefined && (
             <span className="text-zinc-500">
-              Triggered by <span className="text-zinc-400 capitalize">{edge.triggering_book}</span> move
+              Sharp line: <span className="text-zinc-400">{edge.sharp_book_line}</span>
             </span>
           )}
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between pt-1">
+        <div className="flex items-center justify-between pt-1 border-t border-zinc-800/50">
           <div className="flex items-center gap-1 text-[10px] text-zinc-500">
             <Clock className="w-3 h-3" />
             <span>{formatTimeAgo(edge.detected_at)}</span>
           </div>
-
-          {/* Only show market/outcome for non-player-props (already shown above) */}
-          {!isPlayerProp && edge.outcome_key && (
-            <span className="text-[10px] text-zinc-600">
-              {edge.outcome_key}
-            </span>
-          )}
+          <span className="text-[10px] text-zinc-600 capitalize">
+            {edge.sport?.replace('_', ' ')}
+          </span>
         </div>
       </div>
     </div>
@@ -232,13 +258,22 @@ export function LiveEdgeCard({ edge, showGameLink = true, compact = false }: Liv
 export function LiveEdgeMini({ edge }: { edge: LiveEdge }) {
   const typeConfig = EDGE_TYPE_CONFIG[edge.edge_type as keyof typeof EDGE_TYPE_CONFIG];
 
+  // Human-readable mini description
+  const getMiniLabel = () => {
+    const mag = edge.edge_magnitude;
+    if (edge.market_type === 'h2h') return `ML ${mag > 0 ? '+' : ''}${mag}¢`;
+    if (edge.market_type === 'spreads') return `Spread ${mag > 0 ? '+' : ''}${mag.toFixed(1)}`;
+    if (edge.market_type === 'totals') return `Total ${mag > 0 ? '+' : ''}${mag.toFixed(1)}`;
+    return formatEdgeMagnitude(edge);
+  };
+
   return (
     <div className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full ${getEdgeTypeBg(edge.edge_type)} border border-zinc-700/50`}>
-      <span className={`text-xs font-bold ${getEdgeTypeColor(edge.edge_type)}`}>
-        {typeConfig?.shortLabel}
+      <span className={`text-xs font-medium ${getEdgeTypeColor(edge.edge_type)}`}>
+        {typeConfig?.label}
       </span>
-      <span className="text-xs text-zinc-300 font-mono">
-        {formatEdgeMagnitude(edge)}
+      <span className="text-xs text-zinc-300">
+        {getMiniLabel()}
       </span>
     </div>
   );

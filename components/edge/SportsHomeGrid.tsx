@@ -210,55 +210,8 @@ function BookIcon({ bookKey, size = 24 }: { bookKey: string; size?: number }) {
 }
 
 function getEdgeBadge(game: any): { label: string; color: string; bg: string; score?: number; context?: string } | null {
-  // Prefer CEQ data when available
-  const ceq = game.ceq as GameCEQ | undefined;
-  if (ceq?.bestEdge) {
-    // Check if we have sufficient data to display CEQ (need 2+ pillars with data)
-    // If displayCEQ is false, don't show the badge to avoid contradiction
-    const displayCEQ = ceq.bestEdge.dataQuality?.displayCEQ ??
-      (ceq.bestEdge.dataQuality?.pillarsWithData ?? 0) >= 2;
-
-    if (!displayCEQ) {
-      // Insufficient data - don't show CEQ badge
-      return null;
-    }
-
-    const { confidence, ceq: score, side, market } = ceq.bestEdge;
-
-    // Build context string like "Bucks -4.5" or "Over 222.5" or "Lakers ML"
-    let context = '';
-    const consensus = game.consensus;
-    if (market === 'spread' && consensus?.spreads?.line !== undefined) {
-      const teamName = side === 'home' ? game.homeTeam?.split(' ').pop() : game.awayTeam?.split(' ').pop();
-      const line = side === 'home' ? consensus.spreads.line : -consensus.spreads.line;
-      const lineStr = line > 0 ? `+${line}` : line;
-      context = `${teamName} ${lineStr}`;
-    } else if (market === 'h2h') {
-      const teamName = side === 'home' ? game.homeTeam?.split(' ').pop() : game.awayTeam?.split(' ').pop();
-      context = `${teamName} ML`;
-    } else if (market === 'total' && consensus?.totals?.line !== undefined) {
-      context = side === 'over' ? `O ${consensus.totals.line}` : `U ${consensus.totals.line}`;
-    } else {
-      // Fallback
-      const teamName = side === 'home' ? game.homeTeam?.split(' ').pop() : side === 'away' ? game.awayTeam?.split(' ').pop() : side;
-      context = teamName || side || '';
-    }
-
-    if (confidence === 'RARE') return { label: 'RARE', color: 'text-purple-300', bg: 'bg-purple-500/20 border-purple-500/30', score, context };
-    if (confidence === 'STRONG') return { label: 'STRONG', color: 'text-emerald-300', bg: 'bg-emerald-500/20 border-emerald-500/30', score, context };
-    if (confidence === 'EDGE') return { label: 'EDGE', color: 'text-blue-300', bg: 'bg-blue-500/20 border-blue-500/30', score, context };
-    if (confidence === 'WATCH') return { label: 'WATCH', color: 'text-amber-300', bg: 'bg-amber-500/20 border-amber-500/30', score, context };
-    return null;
-  }
-
-  // Fallback to old logic (no context available without CEQ)
-  const confidence = game.overall_confidence || game.calculatedEdge?.confidence;
-  const score = game.calculatedEdge?.score || (game.composite_score ? Math.round(game.composite_score * 100) : null);
-
-  if (confidence === 'RARE') return { label: 'RARE', color: 'text-purple-300', bg: 'bg-purple-500/20 border-purple-500/30', score };
-  if (confidence === 'STRONG_EDGE' || confidence === 'STRONG') return { label: 'STRONG', color: 'text-emerald-300', bg: 'bg-emerald-500/20 border-emerald-500/30', score };
-  if (confidence === 'EDGE') return { label: 'EDGE', color: 'text-blue-300', bg: 'bg-blue-500/20 border-blue-500/30', score };
-  if (confidence === 'WATCH') return { label: 'WATCH', color: 'text-amber-300', bg: 'bg-amber-500/20 border-amber-500/30', score };
+  // Dashboard cards should be clean - no edge badges
+  // Users click through to game detail page to see CEQ analysis
   return null;
 }
 

@@ -158,27 +158,12 @@ export function calculateJuiceAdjustment(
   consensusOdds: number | undefined,
   allBooksOdds: number[]
 ): { adjustment: number; reason: string } {
-  if (bookOdds === undefined || allBooksOdds.length === 0) {
+  if (bookOdds === undefined || consensusOdds === undefined || allBooksOdds.length === 0) {
     return { adjustment: 0, reason: 'No odds data for juice comparison' };
   }
 
-  // Calculate consensus from allBooksOdds if not provided
-  // Use median for robustness against outliers
-  let effectiveConsensus = consensusOdds;
-  if (effectiveConsensus === undefined && allBooksOdds.length > 0) {
-    const sorted = [...allBooksOdds].sort((a, b) => a - b);
-    const mid = Math.floor(sorted.length / 2);
-    effectiveConsensus = sorted.length % 2 === 0
-      ? (sorted[mid - 1] + sorted[mid]) / 2
-      : sorted[mid];
-  }
-
-  if (effectiveConsensus === undefined) {
-    return { adjustment: 0, reason: 'No consensus odds available' };
-  }
-
   const bookImplied = americanToImpliedProbability(bookOdds);
-  const consensusImplied = americanToImpliedProbability(effectiveConsensus);
+  const consensusImplied = americanToImpliedProbability(consensusOdds);
 
   // Implied probability difference (negative = book has better odds)
   // For betting: LOWER implied probability at our book = BETTER for us
@@ -194,7 +179,7 @@ export function calculateJuiceAdjustment(
   // Generate reason
   let reason: string;
   const bookOddsStr = bookOdds >= 0 ? `+${bookOdds}` : `${bookOdds}`;
-  const consensusOddsStr = effectiveConsensus >= 0 ? `+${Math.round(effectiveConsensus)}` : `${Math.round(effectiveConsensus)}`;
+  const consensusOddsStr = consensusOdds >= 0 ? `+${Math.round(consensusOdds)}` : `${Math.round(consensusOdds)}`;
 
   if (Math.abs(cappedAdjustment) < 0.5) {
     reason = `Juice aligned with market (${bookOddsStr})`;

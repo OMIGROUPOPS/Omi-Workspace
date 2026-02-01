@@ -538,4 +538,58 @@ class ESPNClient:
         }
 
 
+    def get_team_scoring_stats(self, sport: str, team_name: str) -> dict:
+        """
+        Get team scoring statistics from ESPN scoreboard data.
+
+        Returns points per game, rebounds, assists for pace analysis.
+        """
+        default = {
+            "points_per_game": None,
+            "rebounds_per_game": None,
+            "assists_per_game": None,
+            "field_goal_pct": None,
+        }
+
+        sport_type, league = self._get_sport_path(sport)
+        if not sport_type:
+            return default
+
+        # Get scoreboard which includes team stats
+        data = self._request(f"{sport_type}/{league}/scoreboard", f"scoreboard_{sport}_stats")
+        if not data:
+            return default
+
+        # Search for team in any game
+        for event in data.get("events", []):
+            for comp in event.get("competitions", []):
+                for competitor in comp.get("competitors", []):
+                    team_info = competitor.get("team", {})
+                    team_display = team_info.get("displayName", "")
+
+                    if team_name and team_name.lower() in team_display.lower():
+                        stats = competitor.get("statistics", [])
+                        result = default.copy()
+
+                        for stat in stats:
+                            name = stat.get("name", "")
+                            value = stat.get("displayValue", "0")
+
+                            try:
+                                if name == "avgPoints":
+                                    result["points_per_game"] = float(value)
+                                elif name == "avgRebounds":
+                                    result["rebounds_per_game"] = float(value)
+                                elif name == "avgAssists" or name == "assistsPerGame":
+                                    result["assists_per_game"] = float(value)
+                                elif name == "fieldGoalPct":
+                                    result["field_goal_pct"] = float(value)
+                            except (ValueError, TypeError):
+                                pass
+
+                        return result
+
+        return default
+
+
 espn_client = ESPNClient()

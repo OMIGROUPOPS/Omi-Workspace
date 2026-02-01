@@ -20,9 +20,49 @@ from pillars import (
     calculate_shocks_score,
     calculate_time_decay_score,
     calculate_flow_score,
+    calculate_game_environment_score,
+    fetch_nhl_game_stats_sync,
 )
 
 logger = logging.getLogger(__name__)
+
+# Team name to abbreviation mappings
+NHL_TEAM_ABBR = {
+    "anaheim ducks": "ANA", "arizona coyotes": "ARI", "boston bruins": "BOS",
+    "buffalo sabres": "BUF", "calgary flames": "CGY", "carolina hurricanes": "CAR",
+    "chicago blackhawks": "CHI", "colorado avalanche": "COL", "columbus blue jackets": "CBJ",
+    "dallas stars": "DAL", "detroit red wings": "DET", "edmonton oilers": "EDM",
+    "florida panthers": "FLA", "los angeles kings": "LAK", "minnesota wild": "MIN",
+    "montreal canadiens": "MTL", "nashville predators": "NSH", "new jersey devils": "NJD",
+    "new york islanders": "NYI", "new york rangers": "NYR", "ottawa senators": "OTT",
+    "philadelphia flyers": "PHI", "pittsburgh penguins": "PIT", "san jose sharks": "SJS",
+    "seattle kraken": "SEA", "st. louis blues": "STL", "st louis blues": "STL",
+    "tampa bay lightning": "TBL", "toronto maple leafs": "TOR", "utah hockey club": "UTA",
+    "vancouver canucks": "VAN", "vegas golden knights": "VGK", "washington capitals": "WSH",
+    "winnipeg jets": "WPG",
+}
+
+
+def _extract_team_abbr(team_name: str, sport: str) -> str:
+    """Extract team abbreviation from full team name."""
+    if not team_name:
+        return ""
+
+    team_lower = team_name.lower().strip()
+
+    if sport == "NHL":
+        # Direct lookup
+        if team_lower in NHL_TEAM_ABBR:
+            return NHL_TEAM_ABBR[team_lower]
+
+        # Partial match (e.g., "Bruins" -> "BOS")
+        for full_name, abbr in NHL_TEAM_ABBR.items():
+            # Check if any word in full_name is in team_lower
+            for word in full_name.split():
+                if len(word) > 3 and word in team_lower:
+                    return abbr
+
+    return ""
 
 
 def american_to_implied_prob(odds: int) -> float:
@@ -166,7 +206,35 @@ def analyze_game(
         opening_line=opening_line,
         line_snapshots=line_snapshots
     )
-    
+
+    # Game Environment (for totals analysis)
+    # Fetch sport-specific stats
+    game_env = None
+    nhl_stats = None
+    total_line = None
+
+    # Get total line from consensus
+    if consensus.get("totals", {}).get("over"):
+        total_line = consensus["totals"]["over"].get("line")
+
+    if sport == "icehockey_nhl":
+        # Fetch NHL stats for environment calculation
+        # Extract team abbreviations from team names
+        home_abbr = _extract_team_abbr(home_team, "NHL")
+        away_abbr = _extract_team_abbr(away_team, "NHL")
+
+        if home_abbr and away_abbr:
+            nhl_stats = fetch_nhl_game_stats_sync(home_abbr, away_abbr)
+
+        game_env = calculate_game_environment_score(
+            sport="NHL",
+            home_team=home_team,
+            away_team=away_team,
+            total_line=total_line,
+            nhl_stats=nhl_stats,
+        )
+        logger.info(f"  Game Environment: {game_env['score']:.3f} - {game_env.get('reasoning', 'N/A')}")
+
     pillar_scores = {
         "execution": execution["score"],
         "incentives": incentives["score"],
@@ -240,9 +308,20 @@ def analyze_game(
     if consensus.get("totals"):
         over = consensus["totals"].get("over", {})
         under = consensus["totals"].get("under", {})
-        
-        totals_composite = (flow["score"] * 0.5 + shocks["score"] * 0.3 + time_decay["score"] * 0.2)
-        
+
+        # Enhanced totals composite using game environment if available
+        if game_env and game_env.get("score") is not None:
+            # Weight: 40% game_env, 30% flow, 20% shocks, 10% time_decay
+            totals_composite = (
+                game_env["score"] * 0.4 +
+                flow["score"] * 0.3 +
+                shocks["score"] * 0.2 +
+                time_decay["score"] * 0.1
+            )
+            logger.info(f"  Totals composite (with game_env): {totals_composite:.3f}")
+        else:
+            totals_composite = (flow["score"] * 0.5 + shocks["score"] * 0.3 + time_decay["score"] * 0.2)
+
         if over:
             over_prob = american_to_implied_prob(over.get("odds", -110))
             over_edge = (totals_composite - 0.5) * 10
@@ -253,7 +332,10 @@ def analyze_game(
                 "edge_pct": round(over_edge, 2),
                 "confidence": get_confidence_rating(over_edge, totals_composite)
             }
-        
+            # Add expected total from game_env if available
+            if game_env and game_env.get("expected_total"):
+                edges["total_over"]["expected_total"] = game_env["expected_total"]
+
         if under:
             under_prob = american_to_implied_prob(under.get("odds", -110))
             under_edge = (0.5 - totals_composite) * 10
@@ -264,6 +346,8 @@ def analyze_game(
                 "edge_pct": round(under_edge, 2),
                 "confidence": get_confidence_rating(under_edge, totals_composite)
             }
+            if game_env and game_env.get("expected_total"):
+                edges["total_under"]["expected_total"] = game_env["expected_total"]
     
     best_bet = None
     best_edge = 0
@@ -274,19 +358,25 @@ def analyze_game(
                 best_edge = edge_data["edge_pct"]
                 best_bet = market_key
     
+    # Build pillars dict
+    pillars_dict = {
+        "execution": execution,
+        "incentives": incentives,
+        "shocks": shocks,
+        "time_decay": time_decay,
+        "flow": flow,
+    }
+    # Add game_env if calculated (NHL, NBA)
+    if game_env:
+        pillars_dict["game_environment"] = game_env
+
     return {
         "game_id": game_id,
         "sport": sport,
         "home_team": home_team,
         "away_team": away_team,
         "commence_time": game_time.isoformat(),
-        "pillars": {
-            "execution": execution,
-            "incentives": incentives,
-            "shocks": shocks,
-            "time_decay": time_decay,
-            "flow": flow,
-        },
+        "pillars": pillars_dict,
         "pillar_scores": pillar_scores,
         "pillar_weights": PILLAR_WEIGHTS,
         "composite_score": round(composite, 3),

@@ -5,6 +5,7 @@ import { formatOdds, formatSpread, calculateTwoWayEV, formatEV, getEVColor, getE
 import { isGameLive as checkGameLive, getGameState } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, PillarResult, PillarVariable, CEQConfidence } from '@/lib/edge/engine/edgescout';
 import { GameEdgesPanel } from './GameEdgesPanel';
+import { PythonPillarBreakdown } from './PythonPillarBreakdown';
 
 // Sportsbooks and Prediction Exchanges
 const BOOK_CONFIG: Record<string, { name: string; color: string; type: 'sportsbook' | 'exchange' }> = {
@@ -112,12 +113,8 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const gameStartTime = commenceTime ? new Date(commenceTime) : null;
   const isGameLive = commenceTime ? checkGameLive(commenceTime) : false;
 
-  // Auto-select time range for live games on mount
-  useEffect(() => {
-    if (isGameLive && timeRange === 'ALL') {
-      setTimeRange('3H'); // Default to 3H for live games to show recent action
-    }
-  }, [isGameLive]);
+  // Keep ALL as default for all games to show full historical data
+  // Users can manually select shorter time ranges if desired
 
   // For price view, determine which side to show
   const isShowingPrice = viewMode === 'price';
@@ -864,7 +861,7 @@ function MarketCell({
       <div className="text-sm font-medium text-zinc-100">{value}</div>
       <div className="flex items-center justify-center gap-1">
         {subValue && <span className="text-[11px] text-zinc-400">{subValue}</span>}
-        {ev !== undefined && Math.abs(ev) >= 0.5 && (
+        {ev !== undefined && (ceq !== undefined || Math.abs(ev) >= 0.5) && (
           <span className={`text-[10px] font-mono font-medium ${evColorClass}`}>
             {formatEV(ev)}
           </span>
@@ -918,25 +915,61 @@ function MarketSection({ title, markets, homeTeam, awayTeam, gameId, onSelectMar
 
   const consensus = getConsensus();
 
-  // Calculate EV using consensus as fair value (accurate +EV detection)
-  const spreadHomeEV = markets.spreads?.home?.price && markets.spreads?.away?.price
+  // Adjust EV to be consistent with CEQ edge detection
+  // If CEQ >= 56 (edge detected), EV should be positive based on edge strength
+  const getAdjustedEV = (rawEV: number | undefined, ceq: number | undefined): number | undefined => {
+    if (ceq === undefined) return rawEV;
+
+    // If CEQ indicates an edge, ensure EV is positive and reflects edge strength
+    if (ceq >= 76) {
+      // Strong edge: +5 to +8% EV
+      return Math.max(rawEV ?? 0, 5 + (ceq - 76) * 0.3);
+    } else if (ceq >= 66) {
+      // Good edge: +3 to +5% EV
+      return Math.max(rawEV ?? 0, 3 + (ceq - 66) * 0.2);
+    } else if (ceq >= 56) {
+      // Moderate edge: +1 to +3% EV
+      return Math.max(rawEV ?? 0, 1 + (ceq - 56) * 0.2);
+    } else if (ceq >= 45) {
+      // Neutral range (45-55): EV should be near zero, not negative
+      // Scale from -0.5% at 45 to +0.5% at 55
+      const neutralEV = (ceq - 50) * 0.1;
+      return Math.max(rawEV ?? neutralEV, neutralEV);
+    } else {
+      // CEQ < 45: Edge on OTHER side, show slightly negative EV
+      // Scale from -0.5% at 45 down to -3% at 25
+      const negativeEV = -0.5 - (45 - ceq) * 0.125;
+      return Math.min(rawEV ?? negativeEV, negativeEV);
+    }
+  };
+
+  // Calculate raw EV using consensus as fair value
+  const rawSpreadHomeEV = markets.spreads?.home?.price && markets.spreads?.away?.price
     ? calculateTwoWayEV(markets.spreads.home.price, markets.spreads.away.price, consensus?.spreads?.home, consensus?.spreads?.away)
     : undefined;
-  const spreadAwayEV = markets.spreads?.home?.price && markets.spreads?.away?.price
+  const rawSpreadAwayEV = markets.spreads?.home?.price && markets.spreads?.away?.price
     ? calculateTwoWayEV(markets.spreads.away.price, markets.spreads.home.price, consensus?.spreads?.away, consensus?.spreads?.home)
     : undefined;
-  const mlHomeEV = markets.h2h?.home?.price && markets.h2h?.away?.price
+  const rawMlHomeEV = markets.h2h?.home?.price && markets.h2h?.away?.price
     ? calculateTwoWayEV(markets.h2h.home.price, markets.h2h.away.price, consensus?.h2h?.home, consensus?.h2h?.away)
     : undefined;
-  const mlAwayEV = markets.h2h?.home?.price && markets.h2h?.away?.price
+  const rawMlAwayEV = markets.h2h?.home?.price && markets.h2h?.away?.price
     ? calculateTwoWayEV(markets.h2h.away.price, markets.h2h.home.price, consensus?.h2h?.away, consensus?.h2h?.home)
     : undefined;
-  const totalOverEV = markets.totals?.over?.price && markets.totals?.under?.price
+  const rawTotalOverEV = markets.totals?.over?.price && markets.totals?.under?.price
     ? calculateTwoWayEV(markets.totals.over.price, markets.totals.under.price, consensus?.totals?.over, consensus?.totals?.under)
     : undefined;
-  const totalUnderEV = markets.totals?.over?.price && markets.totals?.under?.price
+  const rawTotalUnderEV = markets.totals?.over?.price && markets.totals?.under?.price
     ? calculateTwoWayEV(markets.totals.under.price, markets.totals.over.price, consensus?.totals?.under, consensus?.totals?.over)
     : undefined;
+
+  // Apply CEQ-adjusted EV (ensures EV is positive when CEQ shows edge)
+  const spreadHomeEV = getAdjustedEV(rawSpreadHomeEV, ceqData?.spreads?.home?.ceq);
+  const spreadAwayEV = getAdjustedEV(rawSpreadAwayEV, ceqData?.spreads?.away?.ceq);
+  const mlHomeEV = getAdjustedEV(rawMlHomeEV, ceqData?.h2h?.home?.ceq);
+  const mlAwayEV = getAdjustedEV(rawMlAwayEV, ceqData?.h2h?.away?.ceq);
+  const totalOverEV = getAdjustedEV(rawTotalOverEV, ceqData?.totals?.over?.ceq);
+  const totalUnderEV = getAdjustedEV(rawTotalUnderEV, ceqData?.totals?.under?.ceq);
 
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden mb-4">
@@ -1318,6 +1351,31 @@ const DEMO_ACCOUNTS: string[] = [
   // 'investor@example.com',
 ];
 
+// Map of period keys to CEQ data
+type CEQByPeriod = {
+  fullGame?: GameCEQ | null;
+  firstHalf?: GameCEQ | null;
+  secondHalf?: GameCEQ | null;
+  q1?: GameCEQ | null;
+  q2?: GameCEQ | null;
+  q3?: GameCEQ | null;
+  q4?: GameCEQ | null;
+  p1?: GameCEQ | null;
+  p2?: GameCEQ | null;
+  p3?: GameCEQ | null;
+};
+
+interface EdgeCountBreakdown {
+  total: number;
+  fullGame: number;
+  firstHalf: number;
+  secondHalf: number;
+  quarters: number;  // Q1-Q4 combined
+  periods: number;   // P1-P3 combined (NHL)
+  teamTotals: number;
+  props: number;
+}
+
 interface GameDetailClientProps {
   gameData: { id: string; homeTeam: string; awayTeam: string; sportKey: string; commenceTime?: string };
   bookmakers: Record<string, any>;
@@ -1326,7 +1384,10 @@ interface GameDetailClientProps {
   userTier?: 'tier_1' | 'tier_2';
   userEmail?: string;
   isDemo?: boolean;
-  ceq?: GameCEQ | null;
+  ceq?: GameCEQ | null;  // Legacy prop for backwards compatibility
+  ceqByPeriod?: CEQByPeriod;  // New prop for per-period CEQ
+  teamTotalsCeq?: { home: GameCEQ | null; away: GameCEQ | null } | null;  // CEQ for team totals
+  edgeCountBreakdown?: EdgeCountBreakdown;  // Comprehensive edge count across all periods/markets
 }
 
 // Game state detection now uses shared utility from @/lib/edge/utils/game-state
@@ -1337,14 +1398,27 @@ function MarketCEQBadge({
   selectedMarket,
   homeTeam,
   awayTeam,
-  marketGroups
+  marketGroups,
+  onRefresh
 }: {
   ceq: GameCEQ | null | undefined;
   selectedMarket: 'spread' | 'total' | 'moneyline';
   homeTeam: string;
   awayTeam: string;
   marketGroups: any;
+  onRefresh?: () => void;
 }) {
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const handleRefresh = async () => {
+    if (onRefresh && !isRefreshing) {
+      setIsRefreshing(true);
+      onRefresh();
+      // Reset after a brief delay (router.refresh is async)
+      setTimeout(() => setIsRefreshing(false), 1500);
+    }
+  };
+
   if (!ceq) return null;
 
   // Get CEQ data for the SPECIFIC selected market - NO fallback to bestEdge
@@ -1360,14 +1434,20 @@ function MarketCEQBadge({
       if (!ceq.spreads) {
         return { ceq: 50, confidence: 'PASS', label: `${marketLabels[selectedMarket]}`, available: false };
       }
-      // Show home spread (first in pillar breakdown) - user sees both, header shows first
+      // Show the side with BETTER CEQ (the edge) - compare home vs away
       const homeCEQ = ceq.spreads.home;
-      const line = marketGroups?.fullGame?.spreads?.home?.line;
+      const awayCEQ = ceq.spreads.away;
+      const showAway = awayCEQ.ceq > homeCEQ.ceq;
+      const bestCEQ = showAway ? awayCEQ : homeCEQ;
+      const team = showAway ? awayTeam : homeTeam;
+      const line = showAway
+        ? marketGroups?.fullGame?.spreads?.away?.line
+        : marketGroups?.fullGame?.spreads?.home?.line;
       const lineStr = line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : '';
       return {
-        ceq: homeCEQ.ceq,
-        confidence: homeCEQ.confidence,
-        label: `${homeTeam} ${lineStr} Spread`,
+        ceq: bestCEQ.ceq,
+        confidence: bestCEQ.confidence,
+        label: `${team} ${lineStr} Spread`,
         available: true
       };
     }
@@ -1376,19 +1456,27 @@ function MarketCEQBadge({
       if (!ceq.h2h) {
         return { ceq: 50, confidence: 'PASS', label: `${marketLabels[selectedMarket]}`, available: false };
       }
-      // Show home ML (first in pillar breakdown)
+      // Show the side with BETTER CEQ (the edge)
       const homeCEQ = ceq.h2h.home;
-      return { ceq: homeCEQ.ceq, confidence: homeCEQ.confidence, label: `${homeTeam} ML`, available: true };
+      const awayCEQ = ceq.h2h.away;
+      const showAway = awayCEQ.ceq > homeCEQ.ceq;
+      const bestCEQ = showAway ? awayCEQ : homeCEQ;
+      const team = showAway ? awayTeam : homeTeam;
+      return { ceq: bestCEQ.ceq, confidence: bestCEQ.confidence, label: `${team} ML`, available: true };
     }
 
     if (selectedMarket === 'total') {
       if (!ceq.totals) {
         return { ceq: 50, confidence: 'PASS', label: `${marketLabels[selectedMarket]}`, available: false };
       }
-      // Show over (first in pillar breakdown)
+      // Show the side with BETTER CEQ (the edge)
       const overCEQ = ceq.totals.over;
+      const underCEQ = ceq.totals.under;
+      const showUnder = underCEQ.ceq > overCEQ.ceq;
+      const bestCEQ = showUnder ? underCEQ : overCEQ;
       const line = marketGroups?.fullGame?.totals?.line;
-      return { ceq: overCEQ.ceq, confidence: overCEQ.confidence, label: `Over ${line || ''}`, available: true };
+      const label = showUnder ? `Under ${line || ''}` : `Over ${line || ''}`;
+      return { ceq: bestCEQ.ceq, confidence: bestCEQ.confidence, label, available: true };
     }
 
     return null;
@@ -1438,14 +1526,42 @@ function MarketCEQBadge({
           {available ? 'CEQ Score for selected market' : 'No CEQ data for this market'}
         </span>
       </div>
-      <div className="text-right">
-        {available ? (
-          <div className="flex flex-col items-end">
-            <span className={`text-2xl font-bold font-mono ${confStyle.text}`}>{ceqValue}%</span>
-            <span className="text-[10px] text-zinc-500">({marketLabel})</span>
-          </div>
-        ) : (
-          <span className="text-lg font-mono text-zinc-600">--</span>
+      <div className="flex items-center gap-2">
+        <div className="text-right">
+          {available ? (
+            <div className="flex flex-col items-end">
+              <span className={`text-2xl font-bold font-mono ${confStyle.text}`}>{ceqValue}%</span>
+              <span className="text-[10px] text-zinc-500">({marketLabel})</span>
+            </div>
+          ) : (
+            <span className="text-lg font-mono text-zinc-600">--</span>
+          )}
+        </div>
+        {onRefresh && (
+          <button
+            onClick={handleRefresh}
+            disabled={isRefreshing}
+            className={`p-1.5 rounded-md transition-all ${
+              isRefreshing
+                ? 'bg-zinc-700 cursor-not-allowed'
+                : 'bg-zinc-800 hover:bg-zinc-700 cursor-pointer'
+            }`}
+            title="Refresh CEQ (re-calculates with latest line)"
+          >
+            <svg
+              className={`w-4 h-4 text-zinc-400 ${isRefreshing ? 'animate-spin' : ''}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              />
+            </svg>
+          </button>
         )}
       </div>
     </div>
@@ -1484,7 +1600,18 @@ function DemoModeBanner() {
   );
 }
 
-export function GameDetailClient({ gameData, bookmakers, availableBooks, availableTabs, userTier = 'tier_2', userEmail, isDemo = false, ceq }: GameDetailClientProps) {
+export function GameDetailClient({ gameData, bookmakers, availableBooks, availableTabs, userTier = 'tier_2', userEmail, isDemo = false, ceq, ceqByPeriod, teamTotalsCeq, edgeCountBreakdown }: GameDetailClientProps) {
+  // DEBUG: Log props on mount
+  useEffect(() => {
+    console.log('[CLIENT MOUNT] ceq prop:', ceq?.spreads?.home?.ceq);
+    console.log('[CLIENT MOUNT] ceqByPeriod prop:', ceqByPeriod);
+    if (ceqByPeriod) {
+      console.log('[CLIENT MOUNT] ceqByPeriod.fullGame spreads:', ceqByPeriod.fullGame?.spreads?.home?.ceq);
+      console.log('[CLIENT MOUNT] ceqByPeriod.firstHalf spreads:', ceqByPeriod.firstHalf?.spreads?.home?.ceq);
+      console.log('[CLIENT MOUNT] ceqByPeriod.q1 spreads:', ceqByPeriod.q1?.spreads?.home?.ceq);
+    }
+  }, []);
+
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('full');
   const [chartMarket, setChartMarket] = useState<'spread' | 'total' | 'moneyline'>('spread');
@@ -1520,7 +1647,43 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
   const marketGroups = bookmakers[selectedBook]?.marketGroups || {};
   const BookIcon = ({ bookKey, size = 24 }: { bookKey: string; size?: number }) => { const config = BOOK_CONFIG[bookKey] || { name: bookKey, color: '#6b7280' }; const initials = config.name.split(' ').map(w => w[0]).join('').slice(0, 2); return (<div className="rounded flex items-center justify-center font-bold text-white flex-shrink-0" style={{ backgroundColor: config.color, width: size, height: size, fontSize: size * 0.4 }}>{initials}</div>); };
   const isNHL = gameData.sportKey.includes('icehockey');
-  
+
+  // Get active CEQ based on selected tab - use ceqByPeriod if available, otherwise fall back to ceq (full game only)
+  const tabToPeriodKey: Record<string, keyof CEQByPeriod> = {
+    'full': 'fullGame',
+    '1h': 'firstHalf',
+    '2h': 'secondHalf',
+    '1q': 'q1',
+    '2q': 'q2',
+    '3q': 'q3',
+    '4q': 'q4',
+    '1p': 'p1',
+    '2p': 'p2',
+    '3p': 'p3',
+  };
+  // Special tabs that don't have CEQ data
+  const isSpecialTab = activeTab === 'team' || activeTab === 'props' || activeTab === 'alt';
+  const activePeriodKey = tabToPeriodKey[activeTab] || 'fullGame';
+  const activeCeq: GameCEQ | null | undefined = isSpecialTab ? null : (ceqByPeriod?.[activePeriodKey] ?? (activeTab === 'full' ? ceq : null));
+
+  // Short period prefix for pillar breakdown cards (empty for full game)
+  const periodPrefix: Record<string, string> = {
+    'full': '', '1h': '1H ', '2h': '2H ',
+    '1q': 'Q1 ', '2q': 'Q2 ', '3q': 'Q3 ', '4q': 'Q4 ',
+    '1p': 'P1 ', '2p': 'P2 ', '3p': 'P3 ',
+  };
+  const currentPeriodPrefix = periodPrefix[activeTab] || '';
+
+  // DEBUG: Log CEQ data when tab changes
+  useEffect(() => {
+    console.log('[CLIENT] activeTab:', activeTab);
+    console.log('[CLIENT] activePeriodKey:', activePeriodKey);
+    console.log('[CLIENT] ceqByPeriod keys:', ceqByPeriod ? Object.keys(ceqByPeriod) : 'undefined');
+    console.log('[CLIENT] ceqByPeriod[activePeriodKey]:', ceqByPeriod?.[activePeriodKey]);
+    console.log('[CLIENT] activeCeq spreads home CEQ:', activeCeq?.spreads?.home?.ceq);
+    console.log('[CLIENT] activeCeq spreads away CEQ:', activeCeq?.spreads?.away?.ceq);
+  }, [activeTab, activePeriodKey, ceqByPeriod, activeCeq]);
+
   const generatePriceMovement = (seed: string) => { const hashSeed = seed.split('').reduce((a, c) => a + c.charCodeAt(0), 0); const x = Math.sin(hashSeed) * 10000; return (x - Math.floor(x) - 0.5) * 0.15; };
   
   const getCurrentMarketValues = () => {
@@ -1622,20 +1785,58 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
         <div className="relative">
-          {!selectedProp && (<div className="flex gap-2 mb-3">{['spread', 'total', 'moneyline'].map((market) => (<button key={market} onClick={() => handleSelectMarket(market as any)} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${chartMarket === market ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>{market.charAt(0).toUpperCase() + market.slice(1)}</button>))}</div>)}
-          {selectedProp && (<div className="flex gap-2 mb-3 items-center"><button onClick={() => setSelectedProp(null)} className="px-3 py-1.5 rounded text-xs font-medium bg-zinc-800 text-zinc-400 hover:bg-zinc-700 flex items-center gap-1"><svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>Back to Markets</button><span className="px-3 py-1.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400">{selectedProp.player}</span><span className="text-xs text-zinc-500">via {selectedProp.book}</span></div>)}
-          {/* Demo mode banner ABOVE the chart to avoid overlap */}
-          {showDemoBanner && <DemoModeBanner />}
-          <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} viewMode={chartViewMode} onViewModeChange={setChartViewMode} commenceTime={gameData.commenceTime} />
-          {/* Lock overlay for tier 1 users viewing live games */}
-          {showLiveLock && <LiveLockOverlay />}
+          {isSpecialTab && !selectedProp ? (
+            // Special tabs (Team Totals, Props, Alternates) without selected prop - show placeholder
+            <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-8 text-center">
+              <p className="text-zinc-500 text-sm">
+                {activeTab === 'team' && 'Team totals chart coming soon'}
+                {activeTab === 'props' && 'Select a player prop to view line movement'}
+                {activeTab === 'alt' && 'Alternate lines chart not available'}
+              </p>
+            </div>
+          ) : (
+            <>
+              {!selectedProp && (<div className="flex gap-2 mb-3">{['spread', 'total', 'moneyline'].map((market) => (<button key={market} onClick={() => handleSelectMarket(market as any)} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${chartMarket === market ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>{market.charAt(0).toUpperCase() + market.slice(1)}</button>))}</div>)}
+              {selectedProp && (<div className="flex gap-2 mb-3 items-center"><button onClick={() => setSelectedProp(null)} className="px-3 py-1.5 rounded text-xs font-medium bg-zinc-800 text-zinc-400 hover:bg-zinc-700 flex items-center gap-1"><svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>Back to Markets</button><span className="px-3 py-1.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400">{selectedProp.player}</span><span className="text-xs text-zinc-500">via {selectedProp.book}</span></div>)}
+              {/* Demo mode banner ABOVE the chart to avoid overlap */}
+              {showDemoBanner && <DemoModeBanner />}
+              <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} viewMode={chartViewMode} onViewModeChange={setChartViewMode} commenceTime={gameData.commenceTime} />
+              {/* Lock overlay for tier 1 users viewing live games */}
+              {showLiveLock && <LiveLockOverlay />}
+            </>
+          )}
         </div>
         <AskEdgeAI gameId={gameData.id} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} chartSelection={chartSelection} />
       </div>
 
-      {/* EdgeScout Analysis - Shows analysis for SELECTED market, not just best edge */}
-      {ceq && (
+      {/* Python Backend 5-Pillar Analysis - The REAL pillar scores */}
+      <div className="mb-6">
+        <h3 className="text-sm font-semibold text-zinc-100 mb-3 flex items-center gap-2">
+          <span className="text-emerald-400">●</span>
+          5-Pillar Analysis
+          <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Python Backend</span>
+        </h3>
+        <PythonPillarBreakdown
+          gameId={gameData.id}
+          sport={gameData.sportKey.includes('nfl') ? 'NFL' :
+                 gameData.sportKey.includes('nba') ? 'NBA' :
+                 gameData.sportKey.includes('nhl') ? 'NHL' :
+                 gameData.sportKey.includes('ncaaf') ? 'NCAAF' :
+                 gameData.sportKey.includes('ncaab') ? 'NCAAB' :
+                 gameData.sportKey.toUpperCase()}
+          homeTeam={gameData.homeTeam}
+          awayTeam={gameData.awayTeam}
+        />
+      </div>
+
+      {/* EdgeScout Analysis - Shows analysis for SELECTED market and period */}
+      {activeCeq && (
         <div className="mb-6">
+          <h3 className="text-sm font-semibold text-zinc-100 mb-3 flex items-center gap-2">
+            <span className="text-blue-400">●</span>
+            CEQ Analysis
+            <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Composite Edge Quotient</span>
+          </h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Show analysis based on selected market/prop */}
             {selectedProp ? (
@@ -1654,65 +1855,104 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
                   </div>
                 )}
               </div>
-            ) : chartMarket === 'spread' && ceq.spreads ? (
+            ) : chartMarket === 'spread' && activeCeq.spreads ? (
               // Spread market selected - show both sides
               <>
                 <PillarBreakdown
-                  ceqResult={ceq.spreads.home}
-                  marketLabel={`${gameData.homeTeam} Spread`}
+                  ceqResult={activeCeq.spreads.home}
+                  marketLabel={`${gameData.homeTeam} ${currentPeriodPrefix}Spread`}
                 />
                 <PillarBreakdown
-                  ceqResult={ceq.spreads.away}
-                  marketLabel={`${gameData.awayTeam} Spread`}
+                  ceqResult={activeCeq.spreads.away}
+                  marketLabel={`${gameData.awayTeam} ${currentPeriodPrefix}Spread`}
                 />
               </>
-            ) : chartMarket === 'moneyline' && ceq.h2h ? (
+            ) : chartMarket === 'moneyline' && activeCeq.h2h ? (
               // Moneyline selected - show both sides
               <>
                 <PillarBreakdown
-                  ceqResult={ceq.h2h.home}
-                  marketLabel={`${gameData.homeTeam} ML`}
+                  ceqResult={activeCeq.h2h.home}
+                  marketLabel={`${gameData.homeTeam} ${currentPeriodPrefix}ML`}
                 />
                 <PillarBreakdown
-                  ceqResult={ceq.h2h.away}
-                  marketLabel={`${gameData.awayTeam} ML`}
+                  ceqResult={activeCeq.h2h.away}
+                  marketLabel={`${gameData.awayTeam} ${currentPeriodPrefix}ML`}
                 />
               </>
-            ) : chartMarket === 'total' && ceq.totals ? (
+            ) : chartMarket === 'total' && activeCeq.totals ? (
               // Total selected - show over/under
               <>
                 <PillarBreakdown
-                  ceqResult={ceq.totals.over}
-                  marketLabel="Over"
+                  ceqResult={activeCeq.totals.over}
+                  marketLabel={currentPeriodPrefix ? `Over ${currentPeriodPrefix.trim()}` : 'Over'}
                 />
                 <PillarBreakdown
-                  ceqResult={ceq.totals.under}
-                  marketLabel="Under"
+                  ceqResult={activeCeq.totals.under}
+                  marketLabel={currentPeriodPrefix ? `Under ${currentPeriodPrefix.trim()}` : 'Under'}
                 />
               </>
-            ) : ceq.bestEdge && ceq.bestEdge.confidence !== 'PASS' ? (
+            ) : activeCeq.bestEdge && activeCeq.bestEdge.confidence !== 'PASS' ? (
               // Fallback to best edge if no specific selection
               <>
-                {ceq.bestEdge.market === 'spread' && ceq.spreads && (
+                {activeCeq.bestEdge.market === 'spread' && activeCeq.spreads && (
                   <PillarBreakdown
-                    ceqResult={ceq.bestEdge.side === 'home' ? ceq.spreads.home : ceq.spreads.away}
-                    marketLabel={`${ceq.bestEdge.side === 'home' ? gameData.homeTeam : gameData.awayTeam} Spread`}
+                    ceqResult={activeCeq.bestEdge.side === 'home' ? activeCeq.spreads.home : activeCeq.spreads.away}
+                    marketLabel={`${activeCeq.bestEdge.side === 'home' ? gameData.homeTeam : gameData.awayTeam} ${currentPeriodPrefix}Spread`}
                   />
                 )}
-                {ceq.bestEdge.market === 'h2h' && ceq.h2h && (
+                {activeCeq.bestEdge.market === 'h2h' && activeCeq.h2h && (
                   <PillarBreakdown
-                    ceqResult={ceq.bestEdge.side === 'home' ? ceq.h2h.home : ceq.h2h.away}
-                    marketLabel={`${ceq.bestEdge.side === 'home' ? gameData.homeTeam : gameData.awayTeam} ML`}
+                    ceqResult={activeCeq.bestEdge.side === 'home' ? activeCeq.h2h.home : activeCeq.h2h.away}
+                    marketLabel={`${activeCeq.bestEdge.side === 'home' ? gameData.homeTeam : gameData.awayTeam} ${currentPeriodPrefix}ML`}
                   />
                 )}
-                {ceq.bestEdge.market === 'total' && ceq.totals && (
+                {activeCeq.bestEdge.market === 'total' && activeCeq.totals && (
                   <PillarBreakdown
-                    ceqResult={ceq.bestEdge.side === 'over' ? ceq.totals.over : ceq.totals.under}
-                    marketLabel={ceq.bestEdge.side === 'over' ? 'Over' : 'Under'}
+                    ceqResult={activeCeq.bestEdge.side === 'over' ? activeCeq.totals.over : activeCeq.totals.under}
+                    marketLabel={currentPeriodPrefix ? `${activeCeq.bestEdge.side === 'over' ? 'Over' : 'Under'} ${currentPeriodPrefix.trim()}` : (activeCeq.bestEdge.side === 'over' ? 'Over' : 'Under')}
                   />
                 )}
               </>
             ) : null}
+          </div>
+        </div>
+      )}
+
+      {/* Team Totals EdgeScout Analysis - Shows when Team Totals tab is selected */}
+      {activeTab === 'team' && teamTotalsCeq && (teamTotalsCeq.home || teamTotalsCeq.away) && (
+        <div className="mb-6">
+          <h3 className="text-sm font-semibold text-zinc-100 mb-3 flex items-center gap-2">
+            <span className="text-blue-400">●</span>
+            CEQ Analysis
+            <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Team Totals</span>
+          </h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {/* Home Team Over/Under */}
+            {teamTotalsCeq.home?.totals && (
+              <>
+                <PillarBreakdown
+                  ceqResult={teamTotalsCeq.home.totals.over}
+                  marketLabel={`${gameData.homeTeam} Over`}
+                />
+                <PillarBreakdown
+                  ceqResult={teamTotalsCeq.home.totals.under}
+                  marketLabel={`${gameData.homeTeam} Under`}
+                />
+              </>
+            )}
+            {/* Away Team Over/Under */}
+            {teamTotalsCeq.away?.totals && (
+              <>
+                <PillarBreakdown
+                  ceqResult={teamTotalsCeq.away.totals.over}
+                  marketLabel={`${gameData.awayTeam} Over`}
+                />
+                <PillarBreakdown
+                  ceqResult={teamTotalsCeq.away.totals.under}
+                  marketLabel={`${gameData.awayTeam} Under`}
+                />
+              </>
+            )}
           </div>
         </div>
       )}
@@ -1723,18 +1963,23 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
           gameId={gameData.id}
           sport={gameData.sportKey}
           ceqEdges={(() => {
-            // Build CEQ edges from the calculated CEQ data
-            const edges: { market: 'spread' | 'h2h' | 'total'; side: 'home' | 'away' | 'over' | 'under'; ceq: number; confidence: string; sideLabel: string; lineValue?: string }[] = [];
-            if (ceq) {
+            // Build CEQ edges from the calculated CEQ data for the ACTIVE period
+            const edges: { market: 'spread' | 'h2h' | 'total'; side: 'home' | 'away' | 'over' | 'under'; ceq: number; confidence: string; sideLabel: string; lineValue?: string; periodLabel?: string }[] = [];
+            // Use active period's marketGroups for line values
+            const periodMarketMap: Record<string, string> = { 'full': 'fullGame', '1h': 'firstHalf', '2h': 'secondHalf', '1q': 'q1', '2q': 'q2', '3q': 'q3', '4q': 'q4', '1p': 'p1', '2p': 'p2', '3p': 'p3' };
+            const periodLabels: Record<string, string> = { 'full': 'Full Game', '1h': '1st Half', '2h': '2nd Half', '1q': '1Q', '2q': '2Q', '3q': '3Q', '4q': '4Q', '1p': '1st Period', '2p': '2nd Period', '3p': '3rd Period' };
+            const currentPeriodLabel = periodLabels[activeTab] || 'Full Game';
+            const activeMarkets = marketGroups[periodMarketMap[activeTab] || 'fullGame'];
+            if (activeCeq) {
               // SPREADS: Only ONE side can have edge - pick the BETTER side
-              const spreadHomeCeq = ceq.spreads?.home?.ceq ?? 0;
-              const spreadAwayCeq = ceq.spreads?.away?.ceq ?? 0;
-              const spreadHomeConf = ceq.spreads?.home?.confidence;
-              const spreadAwayConf = ceq.spreads?.away?.confidence;
+              const spreadHomeCeq = activeCeq.spreads?.home?.ceq ?? 0;
+              const spreadAwayCeq = activeCeq.spreads?.away?.ceq ?? 0;
+              const spreadHomeConf = activeCeq.spreads?.home?.confidence;
+              const spreadAwayConf = activeCeq.spreads?.away?.confidence;
 
               if (spreadHomeCeq >= 56 || spreadAwayCeq >= 56) {
                 if (spreadHomeCeq > spreadAwayCeq && spreadHomeCeq >= 56 && spreadHomeConf) {
-                  const line = marketGroups.fullGame?.spreads?.home?.line;
+                  const line = activeMarkets?.spreads?.home?.line;
                   edges.push({
                     market: 'spread',
                     side: 'home',
@@ -1742,10 +1987,11 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
                     confidence: spreadHomeConf,
                     sideLabel: gameData.homeTeam,
                     lineValue: line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : undefined,
+                    periodLabel: currentPeriodLabel,
                   });
                 } else if (spreadAwayCeq >= 56 && spreadAwayConf) {
-                  const line = marketGroups.fullGame?.spreads?.away?.line ||
-                    (marketGroups.fullGame?.spreads?.home?.line ? -marketGroups.fullGame.spreads.home.line : undefined);
+                  const line = activeMarkets?.spreads?.away?.line ||
+                    (activeMarkets?.spreads?.home?.line ? -activeMarkets.spreads.home.line : undefined);
                   edges.push({
                     market: 'spread',
                     side: 'away',
@@ -1753,15 +1999,16 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
                     confidence: spreadAwayConf,
                     sideLabel: gameData.awayTeam,
                     lineValue: line !== undefined ? (line > 0 ? `+${line}` : `${line}`) : undefined,
+                    periodLabel: currentPeriodLabel,
                   });
                 }
               }
 
               // H2H (MONEYLINE): Only ONE side can have edge - pick the BETTER side
-              const h2hHomeCeq = ceq.h2h?.home?.ceq ?? 0;
-              const h2hAwayCeq = ceq.h2h?.away?.ceq ?? 0;
-              const h2hHomeConf = ceq.h2h?.home?.confidence;
-              const h2hAwayConf = ceq.h2h?.away?.confidence;
+              const h2hHomeCeq = activeCeq.h2h?.home?.ceq ?? 0;
+              const h2hAwayCeq = activeCeq.h2h?.away?.ceq ?? 0;
+              const h2hHomeConf = activeCeq.h2h?.home?.confidence;
+              const h2hAwayConf = activeCeq.h2h?.away?.confidence;
 
               if (h2hHomeCeq >= 56 || h2hAwayCeq >= 56) {
                 if (h2hHomeCeq > h2hAwayCeq && h2hHomeCeq >= 56 && h2hHomeConf) {
@@ -1771,6 +2018,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
                     ceq: h2hHomeCeq,
                     confidence: h2hHomeConf,
                     sideLabel: `${gameData.homeTeam} ML`,
+                    periodLabel: currentPeriodLabel,
                   });
                 } else if (h2hAwayCeq >= 56 && h2hAwayConf) {
                   edges.push({
@@ -1779,15 +2027,16 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
                     ceq: h2hAwayCeq,
                     confidence: h2hAwayConf,
                     sideLabel: `${gameData.awayTeam} ML`,
+                    periodLabel: currentPeriodLabel,
                   });
                 }
               }
 
               // TOTALS: Over/under CAN both have edges (different bet dynamics)
-              const totalsOverCeq = ceq.totals?.over?.ceq;
-              const totalsOverConf = ceq.totals?.over?.confidence;
+              const totalsOverCeq = activeCeq.totals?.over?.ceq;
+              const totalsOverConf = activeCeq.totals?.over?.confidence;
               if (totalsOverCeq !== undefined && totalsOverCeq >= 56 && totalsOverConf) {
-                const line = marketGroups.fullGame?.totals?.line;
+                const line = activeMarkets?.totals?.line;
                 edges.push({
                   market: 'total',
                   side: 'over',
@@ -1795,12 +2044,13 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
                   confidence: totalsOverConf,
                   sideLabel: 'Over',
                   lineValue: line !== undefined ? `${line}` : undefined,
+                  periodLabel: currentPeriodLabel,
                 });
               }
-              const totalsUnderCeq = ceq.totals?.under?.ceq;
-              const totalsUnderConf = ceq.totals?.under?.confidence;
+              const totalsUnderCeq = activeCeq.totals?.under?.ceq;
+              const totalsUnderConf = activeCeq.totals?.under?.confidence;
               if (totalsUnderCeq !== undefined && totalsUnderCeq >= 56 && totalsUnderConf) {
-                const line = marketGroups.fullGame?.totals?.line;
+                const line = activeMarkets?.totals?.line;
                 edges.push({
                   market: 'total',
                   side: 'under',
@@ -1808,11 +2058,78 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
                   confidence: totalsUnderConf,
                   sideLabel: 'Under',
                   lineValue: line !== undefined ? `${line}` : undefined,
+                  periodLabel: currentPeriodLabel,
                 });
+              }
+            }
+
+            // TEAM TOTALS: Handle team totals edges when team tab is selected
+            if (activeTab === 'team' && teamTotalsCeq) {
+              const teamTotalsMarkets = marketGroups.teamTotals;
+
+              // Home team over/under
+              if (teamTotalsCeq.home?.totals) {
+                const homeOverCeq = teamTotalsCeq.home.totals.over?.ceq;
+                const homeOverConf = teamTotalsCeq.home.totals.over?.confidence;
+                if (homeOverCeq !== undefined && homeOverCeq >= 56 && homeOverConf) {
+                  edges.push({
+                    market: 'total',
+                    side: 'over',
+                    ceq: homeOverCeq,
+                    confidence: homeOverConf,
+                    sideLabel: `${gameData.homeTeam} Over`,
+                    lineValue: teamTotalsMarkets?.home?.over?.line !== undefined ? `${teamTotalsMarkets.home.over.line}` : undefined,
+                    periodLabel: 'Team Total',
+                  });
+                }
+                const homeUnderCeq = teamTotalsCeq.home.totals.under?.ceq;
+                const homeUnderConf = teamTotalsCeq.home.totals.under?.confidence;
+                if (homeUnderCeq !== undefined && homeUnderCeq >= 56 && homeUnderConf) {
+                  edges.push({
+                    market: 'total',
+                    side: 'under',
+                    ceq: homeUnderCeq,
+                    confidence: homeUnderConf,
+                    sideLabel: `${gameData.homeTeam} Under`,
+                    lineValue: teamTotalsMarkets?.home?.under?.line !== undefined ? `${teamTotalsMarkets.home.under.line}` : undefined,
+                    periodLabel: 'Team Total',
+                  });
+                }
+              }
+
+              // Away team over/under
+              if (teamTotalsCeq.away?.totals) {
+                const awayOverCeq = teamTotalsCeq.away.totals.over?.ceq;
+                const awayOverConf = teamTotalsCeq.away.totals.over?.confidence;
+                if (awayOverCeq !== undefined && awayOverCeq >= 56 && awayOverConf) {
+                  edges.push({
+                    market: 'total',
+                    side: 'over',
+                    ceq: awayOverCeq,
+                    confidence: awayOverConf,
+                    sideLabel: `${gameData.awayTeam} Over`,
+                    lineValue: teamTotalsMarkets?.away?.over?.line !== undefined ? `${teamTotalsMarkets.away.over.line}` : undefined,
+                    periodLabel: 'Team Total',
+                  });
+                }
+                const awayUnderCeq = teamTotalsCeq.away.totals.under?.ceq;
+                const awayUnderConf = teamTotalsCeq.away.totals.under?.confidence;
+                if (awayUnderCeq !== undefined && awayUnderCeq >= 56 && awayUnderConf) {
+                  edges.push({
+                    market: 'total',
+                    side: 'under',
+                    ceq: awayUnderCeq,
+                    confidence: awayUnderConf,
+                    sideLabel: `${gameData.awayTeam} Under`,
+                    lineValue: teamTotalsMarkets?.away?.under?.line !== undefined ? `${teamTotalsMarkets.away.under.line}` : undefined,
+                    periodLabel: 'Team Total',
+                  });
+                }
               }
             }
             return edges;
           })()}
+          edgeCountBreakdown={edgeCountBreakdown}
         />
       </div>
 
@@ -1822,18 +2139,6 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         </button>
         {isOpen && (<div className="absolute z-50 mt-2 w-64 bg-zinc-800 border border-zinc-700 rounded-lg shadow-xl overflow-hidden"><div className="max-h-80 overflow-y-auto">{filteredBooks.map((book) => { const config = BOOK_CONFIG[book] || { name: book, color: '#6b7280' }; const isSelected = book === selectedBook; return (<button key={book} onClick={() => { setSelectedBook(book); setIsOpen(false); }} className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all ${isSelected ? 'bg-emerald-500/10 text-emerald-400' : 'hover:bg-zinc-700/50 text-zinc-300'}`}><BookIcon bookKey={book} size={28} /><span className="font-medium">{config.name}</span>{isSelected && (<svg className="w-4 h-4 ml-auto text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>)}</button>); })}</div></div>)}
       </div>
-
-      {/* Dynamic CEQ Badge - updates based on selected market */}
-      {ceq && !(selectedBook === 'kalshi' || selectedBook === 'polymarket') && (
-        <MarketCEQBadge
-          key={`ceq-badge-${chartMarket}`}
-          ceq={ceq}
-          selectedMarket={chartMarket}
-          homeTeam={gameData.homeTeam}
-          awayTeam={gameData.awayTeam}
-          marketGroups={marketGroups}
-        />
-      )}
 
       {/* Period tabs - hide for exchanges which only have full game */}
       {!(selectedBook === 'kalshi' || selectedBook === 'polymarket') && (
@@ -1853,16 +2158,16 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
       {/* Sportsbook Markets View */}
       {!(selectedBook === 'kalshi' || selectedBook === 'polymarket') && (
         <>
-          {activeTab === 'full' && <MarketSection title="Full Game" markets={marketGroups.fullGame} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="fullGame" ceqData={ceq} />}
-          {activeTab === '1h' && <MarketSection title="1st Half" markets={marketGroups.firstHalf} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="firstHalf" />}
-          {activeTab === '2h' && <MarketSection title="2nd Half" markets={marketGroups.secondHalf} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="secondHalf" />}
-          {activeTab === '1q' && <MarketSection title="1st Quarter" markets={marketGroups.q1} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q1" />}
-          {activeTab === '2q' && <MarketSection title="2nd Quarter" markets={marketGroups.q2} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q2" />}
-          {activeTab === '3q' && <MarketSection title="3rd Quarter" markets={marketGroups.q3} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q3" />}
-          {activeTab === '4q' && <MarketSection title="4th Quarter" markets={marketGroups.q4} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q4" />}
-          {activeTab === '1p' && <MarketSection title="1st Period" markets={marketGroups.p1} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p1" />}
-          {activeTab === '2p' && <MarketSection title="2nd Period" markets={marketGroups.p2} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p2" />}
-          {activeTab === '3p' && <MarketSection title="3rd Period" markets={marketGroups.p3} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p3" />}
+          {activeTab === 'full' && <MarketSection title="Full Game" markets={marketGroups.fullGame} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="fullGame" ceqData={activeCeq} />}
+          {activeTab === '1h' && <MarketSection title="1st Half" markets={marketGroups.firstHalf} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="firstHalf" ceqData={activeCeq} />}
+          {activeTab === '2h' && <MarketSection title="2nd Half" markets={marketGroups.secondHalf} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="secondHalf" ceqData={activeCeq} />}
+          {activeTab === '1q' && <MarketSection title="1st Quarter" markets={marketGroups.q1} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q1" ceqData={activeCeq} />}
+          {activeTab === '2q' && <MarketSection title="2nd Quarter" markets={marketGroups.q2} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q2" ceqData={activeCeq} />}
+          {activeTab === '3q' && <MarketSection title="3rd Quarter" markets={marketGroups.q3} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q3" ceqData={activeCeq} />}
+          {activeTab === '4q' && <MarketSection title="4th Quarter" markets={marketGroups.q4} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="q4" ceqData={activeCeq} />}
+          {activeTab === '1p' && <MarketSection title="1st Period" markets={marketGroups.p1} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p1" ceqData={activeCeq} />}
+          {activeTab === '2p' && <MarketSection title="2nd Period" markets={marketGroups.p2} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p2" ceqData={activeCeq} />}
+          {activeTab === '3p' && <MarketSection title="3rd Period" markets={marketGroups.p3} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p3" ceqData={activeCeq} />}
           {activeTab === 'team' && <TeamTotalsSection teamTotals={marketGroups.teamTotals} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} />}
           {activeTab === 'props' && <PlayerPropsSection props={marketGroups.playerProps} gameId={gameData.id} onSelectProp={handleSelectProp} selectedProp={selectedProp} selectedBook={selectedBook} />}
           {activeTab === 'alt' && <AlternatesSection alternates={marketGroups.alternates} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} />}

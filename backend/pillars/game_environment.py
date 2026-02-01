@@ -23,6 +23,8 @@ def calculate_game_environment_score(
     total_line: Optional[float] = None,
     nhl_stats: Optional[dict] = None,
     nba_stats: Optional[dict] = None,
+    weather_data: Optional[dict] = None,
+    game_time: Optional[any] = None,
 ) -> dict:
     """
     Calculate game environment score for totals analysis.
@@ -38,8 +40,90 @@ def calculate_game_environment_score(
         return _calculate_nhl_environment(home_team, away_team, total_line, nhl_stats)
     elif sport == "NBA" and nba_stats:
         return _calculate_nba_environment(home_team, away_team, total_line, nba_stats)
+    elif sport in ["NFL", "americanfootball_nfl"]:
+        return _calculate_nfl_environment(home_team, away_team, total_line, weather_data, game_time)
     else:
         return _default_environment()
+
+
+def _calculate_nfl_environment(
+    home_team: str,
+    away_team: str,
+    total_line: Optional[float],
+    weather_data: Optional[dict],
+    game_time: Optional[any]
+) -> dict:
+    """
+    NFL-specific environment calculation including weather.
+
+    Weather factors:
+    - Wind >15mph affects passing game
+    - Rain/snow affects totals (lean under)
+    - Extreme cold affects kicking
+    """
+    reasoning_parts = []
+    score = 0.5
+
+    # Try to fetch weather if not provided
+    if weather_data is None and game_time is not None:
+        try:
+            from data_sources.weather import get_game_weather_sync
+            weather_data = get_game_weather_sync(home_team, game_time)
+        except Exception as e:
+            logger.warning(f"Could not fetch weather: {e}")
+
+    weather_impact = 0
+
+    if weather_data and weather_data.get("available"):
+        if weather_data.get("indoor"):
+            reasoning_parts.append(f"Indoor: {weather_data.get('stadium', 'dome')} - no weather impact")
+        else:
+            # Outdoor stadium with weather data
+            impact = weather_data.get("impact", {})
+            weather_impact = impact.get("total_impact", 0)
+
+            if weather_impact != 0:
+                score += weather_impact
+                reasoning_parts.append(impact.get("reasoning", "Weather affects game"))
+
+            # Add specific weather details
+            weather = weather_data.get("weather", {})
+            if weather:
+                temp = weather.get("temperature", 70)
+                wind = weather.get("wind_speed", 0)
+                conditions = weather.get("conditions", "Clear")
+
+                if not reasoning_parts or weather_impact == 0:
+                    reasoning_parts.append(f"Weather: {temp:.0f}°F, wind {wind:.0f}mph, {conditions}")
+    else:
+        reasoning_parts.append("Weather data unavailable - using neutral baseline")
+
+    # NFL totals typically around 44-48 points
+    # Without detailed team stats, provide general analysis
+    if total_line:
+        league_avg_total = 46.0  # Modern NFL average
+
+        if total_line >= 52:
+            reasoning_parts.append(f"High total ({total_line}) - shootout expected")
+            if weather_impact >= 0:
+                score += 0.03  # Slight over lean in good conditions
+        elif total_line <= 40:
+            reasoning_parts.append(f"Low total ({total_line}) - defensive game expected")
+            if weather_impact <= 0:
+                score -= 0.03  # Slight under lean
+
+    score = max(0.2, min(0.8, score))
+
+    return {
+        "score": round(score, 3),
+        "expected_total": None,  # Would need team stats for this
+        "weather_available": weather_data.get("available", False) if weather_data else False,
+        "breakdown": {
+            "weather_impact": round(weather_impact, 3),
+            "weather_data": weather_data,
+        },
+        "reasoning": "; ".join(reasoning_parts) if reasoning_parts else "Neutral NFL environment"
+    }
 
 
 def _calculate_nhl_environment(

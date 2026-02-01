@@ -235,6 +235,17 @@ def analyze_game(
         )
         logger.info(f"  Game Environment: {game_env['score']:.3f} - {game_env.get('reasoning', 'N/A')}")
 
+    elif sport == "americanfootball_nfl":
+        # NFL game environment with weather
+        game_env = calculate_game_environment_score(
+            sport="NFL",
+            home_team=home_team,
+            away_team=away_team,
+            total_line=total_line,
+            game_time=game_time,
+        )
+        logger.info(f"  Game Environment: {game_env['score']:.3f} - {game_env.get('reasoning', 'N/A')}")
+
     pillar_scores = {
         "execution": execution["score"],
         "incentives": incentives["score"],

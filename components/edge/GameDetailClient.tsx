@@ -200,9 +200,6 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   if (hasRealData) {
     // Use ONLY real data filtered by book - works for both main markets and props
-    // IMPORTANT: line_snapshots only stores HOME side for spreads
-    // When viewing AWAY side, we need to INVERT the line value (multiply by -1)
-    const shouldInvertLine = marketType === 'spread' && trackingSide === 'away';
 
     data = filteredHistory.map(snapshot => {
       let value: number;
@@ -216,9 +213,16 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         // Moneyline has no line, always show odds
         value = snapshot.odds;
       } else if (marketType === 'spread') {
-        // Spread line: invert for away side
-        // Home is stored as e.g. -7.5, Away should show +7.5
-        value = shouldInvertLine ? (snapshot.line * -1) : snapshot.line;
+        // Spread line handling:
+        // - odds_snapshots has outcome_type and correct line per side (home=+4.5, away=-4.5)
+        // - line_snapshots has NO outcome_type and only stores home side
+        if (snapshot.outcome_type) {
+          // Data from odds_snapshots - line is already correct for the filtered side
+          value = snapshot.line;
+        } else {
+          // Data from line_snapshots - only has home side, invert for away
+          value = trackingSide === 'away' ? (snapshot.line * -1) : snapshot.line;
+        }
       } else {
         // Totals: same line for Over and Under (e.g., 215.5)
         value = snapshot.line;

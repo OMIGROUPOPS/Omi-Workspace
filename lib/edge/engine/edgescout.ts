@@ -123,6 +123,76 @@ function getCEQConfidence(ceq: number): CEQConfidence {
 }
 
 // ============================================================================
+// JUICE ADJUSTMENT - Factor in book-specific pricing
+// ============================================================================
+
+/**
+ * Convert American odds to implied probability
+ * -120 = 54.55%, -125 = 55.56%, +150 = 40.00%
+ */
+function americanToImpliedProbability(odds: number): number {
+  if (odds < 0) {
+    return Math.abs(odds) / (Math.abs(odds) + 100);
+  } else {
+    return 100 / (odds + 100);
+  }
+}
+
+/**
+ * Calculate juice adjustment for CEQ based on book's odds vs consensus
+ *
+ * Better odds = positive adjustment (higher CEQ)
+ * Worse odds = negative adjustment (lower CEQ)
+ *
+ * Example:
+ * - DraftKings: -120 = 54.55% implied
+ * - FanDuel: -125 = 55.56% implied
+ * - Consensus: -122.5 = 55.05% implied
+ * - DK adjustment: +0.5% (54.55 - 55.05 = -0.5 difference, inverted = +0.5)
+ * - FD adjustment: -0.5% (55.56 - 55.05 = +0.5 difference, inverted = -0.5)
+ *
+ * The adjustment is scaled: 1% implied prob difference = ~2% CEQ adjustment
+ */
+export function calculateJuiceAdjustment(
+  bookOdds: number | undefined,
+  consensusOdds: number | undefined,
+  allBooksOdds: number[]
+): { adjustment: number; reason: string } {
+  if (bookOdds === undefined || consensusOdds === undefined || allBooksOdds.length === 0) {
+    return { adjustment: 0, reason: 'No odds data for juice comparison' };
+  }
+
+  const bookImplied = americanToImpliedProbability(bookOdds);
+  const consensusImplied = americanToImpliedProbability(consensusOdds);
+
+  // Implied probability difference (negative = book has better odds)
+  // For betting: LOWER implied probability at our book = BETTER for us
+  const impliedDiff = bookImplied - consensusImplied;
+
+  // Scale: 1% implied diff = 2% CEQ adjustment
+  // Invert sign: lower implied (better odds) = positive CEQ adjustment
+  const adjustment = -impliedDiff * 200; // Convert to CEQ scale (0-100)
+
+  // Cap the adjustment at ±5% CEQ
+  const cappedAdjustment = Math.max(-5, Math.min(5, adjustment));
+
+  // Generate reason
+  let reason: string;
+  const bookOddsStr = bookOdds >= 0 ? `+${bookOdds}` : `${bookOdds}`;
+  const consensusOddsStr = consensusOdds >= 0 ? `+${Math.round(consensusOdds)}` : `${Math.round(consensusOdds)}`;
+
+  if (Math.abs(cappedAdjustment) < 0.5) {
+    reason = `Juice aligned with market (${bookOddsStr})`;
+  } else if (cappedAdjustment > 0) {
+    reason = `Better price: ${bookOddsStr} vs market ${consensusOddsStr} (+${cappedAdjustment.toFixed(1)}% edge)`;
+  } else {
+    reason = `Worse price: ${bookOddsStr} vs market ${consensusOddsStr} (${cappedAdjustment.toFixed(1)}% penalty)`;
+  }
+
+  return { adjustment: cappedAdjustment, reason };
+}
+
+// ============================================================================
 // PILLAR 1: MARKET EFFICIENCY (Primary - calculable now)
 // Variables: FDV, MMI, SBI
 // ============================================================================
@@ -1180,6 +1250,11 @@ export function calculateCEQ(
     ceq = ceq * 0.7 + pythonPillars.composite * 0.3;
   }
 
+  // Apply juice adjustment based on book's odds vs market consensus
+  // Better odds = higher CEQ, worse odds = lower CEQ
+  const juiceAdj = calculateJuiceAdjustment(bookOdds, consensusOdds, allBooksOdds);
+  ceq = ceq + juiceAdj.adjustment;
+
   ceq = Math.round(Math.min(Math.max(ceq, 0), 100));
 
   // Determine confidence
@@ -1219,14 +1294,21 @@ export function calculateCEQ(
 
   // Collect top drivers (reasons with significant scores)
   const topDrivers: string[] = [];
+
+  // Add juice adjustment as a top driver if significant (±1% or more)
+  if (Math.abs(juiceAdj.adjustment) >= 1) {
+    topDrivers.push(`Price: ${juiceAdj.reason}`);
+  }
+
   const significantVars = allVariables
     .filter(v => v.available && Math.abs(v.score - 50) >= 5);
 
   // Sort by deviation from neutral (50)
   significantVars.sort((a, b) => Math.abs(b.score - 50) - Math.abs(a.score - 50));
 
-  // Take top 3
-  for (const v of significantVars.slice(0, 3)) {
+  // Take top 3 (or 2 if we already added juice)
+  const remainingSlots = 3 - topDrivers.length;
+  for (const v of significantVars.slice(0, remainingSlots)) {
     topDrivers.push(`${v.name}: ${v.reason}`);
   }
 

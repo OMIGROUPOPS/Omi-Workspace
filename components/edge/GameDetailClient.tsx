@@ -153,16 +153,22 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
     const targetOutcome = getOutcomeFilter();
 
-    // Handle missing outcome_type (from line_snapshots which only stores home side)
+    // Handle missing outcome_type (from line_snapshots which only stores home/over side)
     if (!snapshot.outcome_type) {
-      // For spreads/moneyline: line_snapshots only stores HOME side
-      // Only include when viewing home side
-      if (marketType === 'spread' || marketType === 'moneyline') {
-        return trackingSide === 'home';
+      // Spreads: line_snapshots stores home line, can derive away by inverting
+      // Include for BOTH sides, transformation happens in value mapping
+      if (marketType === 'spread') {
+        return true; // Include for both home and away
       }
-      // For totals: line_snapshots stores OVER side
+      // Totals: line_snapshots stores the total line (same for over/under)
+      // Include for BOTH sides
       if (marketType === 'total') {
-        return trackingSide === 'over';
+        return true; // Include for both over and under
+      }
+      // ML: line_snapshots only stores home odds, can't derive away
+      // Only include for home side
+      if (marketType === 'moneyline') {
+        return trackingSide === 'home';
       }
       return true; // Unknown market, keep it
     }

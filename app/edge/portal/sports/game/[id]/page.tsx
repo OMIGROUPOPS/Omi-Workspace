@@ -5,6 +5,7 @@ import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
 import { calculateGameCEQ, fetchGameContext, type ExtendedOddsSnapshot, type GameCEQ, type PythonPillarScores } from '@/lib/edge/engine/edgescout';
+import { calculateTwoWayEV } from '@/lib/edge/utils/odds-math';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 
@@ -1018,6 +1019,33 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     // This provides some momentum signal even for periods without historical data
     const effectiveSnapshots = periodSnapshots.length > 0 ? periodSnapshots : [];
 
+    // Calculate EV for each market using selected book odds vs consensus
+    // EV = (fair prob - implied prob) * 100
+    // Fair prob from consensus, implied prob from selected book
+    const selectedSpreadHome = selectedBookMarkets?.spreads?.home?.price;
+    const selectedSpreadAway = selectedBookMarkets?.spreads?.away?.price;
+    const selectedH2hHome = selectedBookMarkets?.h2h?.home?.price;
+    const selectedH2hAway = selectedBookMarkets?.h2h?.away?.price;
+    const selectedTotalOver = selectedBookMarkets?.totals?.over?.price;
+    const selectedTotalUnder = selectedBookMarkets?.totals?.under?.price;
+
+    const evData = {
+      spreads: hasSpread && selectedSpreadHome && selectedSpreadAway ? {
+        home: calculateTwoWayEV(selectedSpreadHome, selectedSpreadAway, periodSpreadHomeOdds, periodSpreadAwayOdds),
+        away: calculateTwoWayEV(selectedSpreadAway, selectedSpreadHome, periodSpreadAwayOdds, periodSpreadHomeOdds),
+      } : undefined,
+      h2h: hasH2h && selectedH2hHome && selectedH2hAway ? {
+        home: calculateTwoWayEV(selectedH2hHome, selectedH2hAway, periodH2hHome, periodH2hAway),
+        away: calculateTwoWayEV(selectedH2hAway, selectedH2hHome, periodH2hAway, periodH2hHome),
+      } : undefined,
+      totals: hasTotals && selectedTotalOver && selectedTotalUnder ? {
+        over: calculateTwoWayEV(selectedTotalOver, selectedTotalUnder, periodTotalOverOdds, periodTotalUnderOdds),
+        under: calculateTwoWayEV(selectedTotalUnder, selectedTotalOver, periodTotalUnderOdds, periodTotalOverOdds),
+      } : undefined,
+    };
+
+    console.log(`[CEQ DEBUG] ${periodKey} - EV data:`, evData);
+
     return calculateGameCEQ(
       gameOdds,
       periodOpeningData,
@@ -1043,7 +1071,9 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
       bookSpreadLine !== undefined ? {
         spreads: { home: bookSpreadLine, away: -bookSpreadLine },
         totals: bookTotalLine
-      } : undefined
+      } : undefined,
+      // EV data for CEQ integration
+      evData
     );
   }
 
@@ -1120,7 +1150,8 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
         gameContext,
         pythonPillars || undefined,  // Pass Python pillars if available
         undefined,  // No Pinnacle lines for team totals
-        undefined   // No book lines for team totals
+        undefined,  // No book lines for team totals
+        undefined   // No EV data for team totals
       );
     };
 

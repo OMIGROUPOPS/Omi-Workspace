@@ -146,13 +146,37 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   };
 
   // Filter line history by selected book AND outcome side
+  // Uses flexible matching for team names (handles "Kansas City Chiefs" vs "Chiefs" mismatches)
   const filteredHistory = (lineHistory || []).filter(snapshot => {
     const bookMatch = snapshot.book_key === selectedBook || snapshot.book === selectedBook;
     if (!bookMatch) return false;
     if (!snapshot.outcome_type) return true; // no outcome info, keep it
     const targetOutcome = getOutcomeFilter();
-    if (targetOutcome) return snapshot.outcome_type === targetOutcome;
-    return true;
+    if (!targetOutcome) return true;
+
+    const outcomeType = snapshot.outcome_type.toLowerCase();
+    const target = targetOutcome.toLowerCase();
+
+    // For Over/Under, use exact match
+    if (target === 'over' || target === 'under') {
+      return outcomeType === target;
+    }
+
+    // For team names, use flexible matching:
+    // - Exact match
+    // - One contains the other (handles "Chiefs" vs "Kansas City Chiefs")
+    // - Last word match (e.g., "Chiefs" matches "Kansas City Chiefs")
+    if (outcomeType === target) return true;
+    if (outcomeType.includes(target) || target.includes(outcomeType)) return true;
+
+    // Match last word (team nickname) - most reliable for sports team matching
+    const outcomeWords = outcomeType.split(/\s+/);
+    const targetWords = target.split(/\s+/);
+    const outcomeLast = outcomeWords[outcomeWords.length - 1];
+    const targetLast = targetWords[targetWords.length - 1];
+    if (outcomeLast === targetLast) return true;
+
+    return false;
   });
 
   const hasRealData = filteredHistory.length > 0;

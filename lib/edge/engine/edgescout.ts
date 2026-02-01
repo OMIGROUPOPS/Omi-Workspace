@@ -1123,7 +1123,8 @@ export function calculateCEQ(
   gameContext?: GameContextData,
   pythonPillars?: PythonPillarScores,  // Optional Python backend pillar scores
   pinnacleLine?: number,  // Pinnacle sharp line for FDV baseline
-  bookLine?: number       // Selected book's line for FDV comparison
+  bookLine?: number,      // Selected book's line for FDV comparison
+  ev?: number             // Expected Value percentage (e.g., 5.0 means +5% EV)
 ): CEQResult {
   // Calculate TypeScript pillars (market-specific analysis)
   let marketEfficiency = calculateMarketEfficiencyPillar(
@@ -1236,24 +1237,88 @@ export function calculateCEQ(
     }
   }
 
-  // Calculate weighted CEQ from all pillars
+  // Calculate weighted CEQ from all pillars (30% weight)
   const pillars = [marketEfficiency, playerUtilization, gameEnvironment, matchupDynamics, sentiment];
   const totalWeight = pillars.reduce((acc, p) => acc + p.weight, 0);
 
-  let ceq = 50;
+  let pillarCeq = 50;
   if (totalWeight > 0) {
-    ceq = pillars.reduce((acc, p) => acc + p.score * p.weight, 0) / totalWeight;
+    pillarCeq = pillars.reduce((acc, p) => acc + p.score * p.weight, 0) / totalWeight;
   }
 
-  // If Python pillars available, also blend with Python composite (30% Python, 70% TS)
+  // If Python pillars available, blend with Python composite
   if (pythonPillars && pythonPillars.composite !== 50) {
-    ceq = ceq * 0.7 + pythonPillars.composite * 0.3;
+    pillarCeq = pillarCeq * 0.7 + pythonPillars.composite * 0.3;
   }
 
-  // Apply juice adjustment based on book's odds vs market consensus
-  // Better odds = higher CEQ, worse odds = lower CEQ
-  const juiceAdj = calculateJuiceAdjustment(bookOdds, consensusOdds, allBooksOdds);
-  ceq = ceq + juiceAdj.adjustment;
+  // ============================================================================
+  // EV-BASED CEQ CALCULATION (PRIMARY SIGNAL - 70% WEIGHT)
+  // EV is the most direct measure of market value and should drive CEQ
+  // ============================================================================
+  let evBasedCeq = 50; // Neutral if no EV
+  let evFloor = 50;    // Minimum CEQ based on EV thresholds
+
+  if (ev !== undefined && !isNaN(ev)) {
+    // Convert EV% to CEQ score
+    // EV of 0% = CEQ 50 (neutral)
+    // Each 1% EV = ~3 CEQ points (so +10% EV = 80 CEQ, +15% EV = 95 CEQ)
+    evBasedCeq = 50 + (ev * 3);
+
+    // Enforce minimum CEQ floors based on EV thresholds
+    // These are hard floors - if EV is high, CEQ MUST be high
+    if (ev >= 15) {
+      evFloor = 80;  // 15%+ EV = minimum 80% CEQ
+    } else if (ev >= 10) {
+      evFloor = 70;  // 10%+ EV = minimum 70% CEQ
+    } else if (ev >= 5) {
+      evFloor = 60;  // 5%+ EV = minimum 60% CEQ
+    } else if (ev >= 3) {
+      evFloor = 55;  // 3%+ EV = minimum 55% CEQ (WATCH)
+    } else if (ev <= -5) {
+      // Negative EV should push CEQ down
+      evFloor = 0; // No floor for negative EV
+      evBasedCeq = Math.max(20, 50 + (ev * 3)); // Cap at 20 minimum
+    }
+
+    // EV-based CEQ can't exceed 95 (leave room for RARE designation)
+    evBasedCeq = Math.min(95, Math.max(20, evBasedCeq));
+  }
+
+  // ============================================================================
+  // FINAL CEQ: Blend pillar analysis (30%) with EV signal (70%)
+  // If EV is available, it dominates the calculation
+  // ============================================================================
+  let ceq: number;
+
+  if (ev !== undefined && !isNaN(ev)) {
+    // EV is available - use blended approach with EV as primary
+    ceq = (pillarCeq * 0.3) + (evBasedCeq * 0.7);
+
+    // Apply EV floor - CEQ cannot be below the EV-based minimum
+    ceq = Math.max(ceq, evFloor);
+
+    // Add EV as a variable to market efficiency for transparency
+    if (Math.abs(ev) >= 1) {
+      marketEfficiency.variables.push({
+        name: 'EV',
+        value: ev,
+        score: evBasedCeq,
+        available: true,
+        reason: ev >= 5
+          ? `Strong +EV: ${ev.toFixed(1)}% edge vs consensus`
+          : ev >= 2
+            ? `Positive EV: ${ev.toFixed(1)}% vs consensus`
+            : ev <= -3
+              ? `Negative EV: ${ev.toFixed(1)}% vs consensus`
+              : `EV: ${ev.toFixed(1)}% vs consensus`,
+      });
+    }
+  } else {
+    // No EV available - use pillar-only calculation with juice adjustment
+    ceq = pillarCeq;
+    const juiceAdj = calculateJuiceAdjustment(bookOdds, consensusOdds, allBooksOdds);
+    ceq = ceq + juiceAdj.adjustment;
+  }
 
   ceq = Math.round(Math.min(Math.max(ceq, 0), 100));
 
@@ -1295,13 +1360,24 @@ export function calculateCEQ(
   // Collect top drivers (reasons with significant scores)
   const topDrivers: string[] = [];
 
-  // Add juice adjustment as a top driver if significant (±1% or more)
-  if (Math.abs(juiceAdj.adjustment) >= 1) {
-    topDrivers.push(`Price: ${juiceAdj.reason}`);
+  // Add EV as the PRIMARY driver if significant
+  if (ev !== undefined && !isNaN(ev) && Math.abs(ev) >= 2) {
+    const evSign = ev > 0 ? '+' : '';
+    if (ev >= 10) {
+      topDrivers.push(`EV: Strong edge ${evSign}${ev.toFixed(1)}% vs market`);
+    } else if (ev >= 5) {
+      topDrivers.push(`EV: Good value ${evSign}${ev.toFixed(1)}% vs market`);
+    } else if (ev >= 2) {
+      topDrivers.push(`EV: ${evSign}${ev.toFixed(1)}% vs consensus`);
+    } else if (ev <= -5) {
+      topDrivers.push(`EV: Negative ${ev.toFixed(1)}% - avoid`);
+    } else if (ev <= -2) {
+      topDrivers.push(`EV: Below market ${ev.toFixed(1)}%`);
+    }
   }
 
   const significantVars = allVariables
-    .filter(v => v.available && Math.abs(v.score - 50) >= 5);
+    .filter(v => v.available && Math.abs(v.score - 50) >= 5 && v.name !== 'EV');
 
   // Sort by deviation from neutral (50)
   significantVars.sort((a, b) => Math.abs(b.score - 50) - Math.abs(a.score - 50));
@@ -1411,6 +1487,11 @@ export function calculateGameCEQ(
   bookLines?: {  // Selected book's lines for FDV comparison
     spreads?: { home: number; away: number };
     totals?: number;
+  },
+  evData?: {  // EV percentages for each market/side
+    spreads?: { home: number; away: number };
+    h2h?: { home: number; away: number };
+    totals?: { over: number; under: number };
   }
 ): GameCEQ {
   const result: GameCEQ = { bestEdge: null };
@@ -1437,7 +1518,8 @@ export function calculateGameCEQ(
       gameContext,
       pythonPillars,  // Pass Python pillars
       pinnacleLines?.spreads?.home,  // Pinnacle home spread line
-      bookLines?.spreads?.home       // Selected book's home spread line
+      bookLines?.spreads?.home,      // Selected book's home spread line
+      evData?.spreads?.home          // EV for home spread
     );
 
     // Away CEQ is the inverse: if home is 78%, away is 22% (100 - 78)
@@ -1471,7 +1553,8 @@ export function calculateGameCEQ(
       gameContext,
       pythonPillars,  // Pass Python pillars
       undefined,      // No Pinnacle line for h2h (spreads only)
-      undefined       // No book line for h2h
+      undefined,      // No book line for h2h
+      evData?.h2h?.home  // EV for home ML
     );
 
     // Away CEQ is the inverse
@@ -1504,7 +1587,8 @@ export function calculateGameCEQ(
       gameContext,
       pythonPillars,  // Pass Python pillars
       pinnacleLines?.totals,  // Pinnacle total line
-      bookLines?.totals       // Selected book's total line
+      bookLines?.totals,      // Selected book's total line
+      evData?.totals?.over    // EV for over
     );
 
     // Under CEQ is the inverse

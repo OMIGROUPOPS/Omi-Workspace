@@ -32,6 +32,7 @@ interface SportsGridProps {
   games: Array<{
     game: any;
     bookmakerOdds: Record<string, { consensus: any; edge: any }>;
+    edgeCount?: number;  // Number of edges detected for this game
   }>;
   availableBooks: string[];
 }
@@ -143,7 +144,7 @@ export function SportsGrid({ games, availableBooks }: SportsGridProps) {
 
       {/* Games Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {games.map(({ game, bookmakerOdds }) => {
+        {games.map(({ game, bookmakerOdds, edgeCount }) => {
           const odds = bookmakerOdds[selectedBook];
           return (
             <GameCard
@@ -151,6 +152,7 @@ export function SportsGrid({ games, availableBooks }: SportsGridProps) {
               game={game}
               consensus={odds?.consensus}
               edge={odds?.edge}
+              edgeCount={edgeCount}
             />
           );
         })}

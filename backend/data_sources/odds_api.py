@@ -152,7 +152,10 @@ class OddsAPIClient:
         
         # Alternate lines
         extended_markets.extend(["alternate_spreads", "alternate_totals"])
-        
+
+        # Team totals (per-team over/under)
+        extended_markets.append("team_totals")
+
         return self.get_event_odds(sport, event_id, extended_markets)
     
     def get_all_markets(self, sport: str) -> dict:
@@ -185,7 +188,7 @@ class OddsAPIClient:
             except Exception as e:
                 logger.warning(f"Failed to fetch extended markets for {event_id}: {e}")
         
-        all_markets = MAIN_MARKETS + ["h1", "h2", "quarters", "alternates"]
+        all_markets = MAIN_MARKETS + ["h1", "h2", "quarters", "alternates", "team_totals"]
         
         return {
             "sport": sport,
@@ -369,7 +372,29 @@ class OddsAPIClient:
                             "odds": outcome.get("price"),
                             "book": book_key
                         })
-        
+
+                elif market_key == "team_totals":
+                    # Team totals: per-team over/under
+                    if "team_totals" not in parsed["markets"]:
+                        parsed["markets"]["team_totals"] = {}
+                    if book_key not in parsed["markets"]["team_totals"]:
+                        parsed["markets"]["team_totals"][book_key] = {"home": {}, "away": {}}
+
+                    for outcome in market.get("outcomes", []):
+                        team_name = outcome.get("description")
+                        side = outcome.get("name", "").lower()  # "Over" or "Under"
+                        if team_name == parsed["home_team"]:
+                            team_key = "home"
+                        elif team_name == parsed["away_team"]:
+                            team_key = "away"
+                        else:
+                            continue
+
+                        parsed["markets"]["team_totals"][book_key][team_key][side] = {
+                            "line": outcome.get("point"),
+                            "odds": outcome.get("price")
+                        }
+
         return parsed
     
     def _parse_market_outcomes(self, market: dict, home_team: str, away_team: str) -> dict:

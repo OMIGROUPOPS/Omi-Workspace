@@ -8,7 +8,7 @@ from datetime import datetime, timezone, timedelta
 from typing import Optional
 import logging
 
-from config import ESPN_API_BASE, ESPN_SPORTS
+from config import ESPN_API_BASE, ESPN_API_BASE_V2, ESPN_SPORTS
 
 logger = logging.getLogger(__name__)
 
@@ -32,19 +32,41 @@ class ESPNClient:
             cached_at, data = self._cache[cache_key]
             if (datetime.now() - cached_at).seconds < self._cache_ttl:
                 return data
-        
+
         url = f"{self.base_url}/{endpoint}"
         try:
             response = self.client.get(url)
             response.raise_for_status()
             data = response.json()
-            
+
             if cache_key:
                 self._cache[cache_key] = (datetime.now(), data)
-            
+
             return data
         except httpx.HTTPError as e:
             logger.error(f"ESPN API error: {e}")
+            return None
+
+    def _request_standings(self, endpoint: str, cache_key: str = None) -> Optional[dict]:
+        """Make a request to ESPN v2 API (for standings) with optional caching."""
+        if cache_key and cache_key in self._cache:
+            cached_at, data = self._cache[cache_key]
+            if (datetime.now() - cached_at).seconds < self._cache_ttl:
+                return data
+
+        # Use the v2 base URL for standings
+        url = f"{ESPN_API_BASE_V2}/{endpoint}"
+        try:
+            response = self.client.get(url)
+            response.raise_for_status()
+            data = response.json()
+
+            if cache_key:
+                self._cache[cache_key] = (datetime.now(), data)
+
+            return data
+        except httpx.HTTPError as e:
+            logger.error(f"ESPN v2 API error: {e}")
             return None
     
     def get_injuries(self, sport: str) -> list[dict]:
@@ -52,29 +74,66 @@ class ESPNClient:
         sport_type, league = self._get_sport_path(sport)
         if not sport_type:
             return []
-        
+
         data = self._request(f"{sport_type}/{league}/injuries", f"injuries_{sport}")
         if not data:
             return []
-        
+
         injuries = []
-        for team in data.get("injuries", []):
-            team_info = team.get("team", {})
+
+        # Debug: log top-level keys
+        logger.info(f"[ESPN Injuries] Top-level keys: {list(data.keys())}")
+
+        # ESPN API can return injuries in different structures
+        # Structure 1: {"injuries": [{"team": {...}, "injuries": [...]}]}
+        # Structure 2: Direct list at top level
+        injury_list = data.get("injuries", data if isinstance(data, list) else [])
+
+        for item in injury_list:
+            # Debug first item structure
+            if not injuries:
+                logger.info(f"[ESPN Injuries] First item keys: {list(item.keys()) if isinstance(item, dict) else 'not a dict'}")
+
+            # Try different structures
+            team_info = item.get("team", {})
             team_id = team_info.get("id")
-            team_name = team_info.get("displayName")
-            
-            for injury in team.get("injuries", []):
+            team_name = team_info.get("displayName") or team_info.get("name") or team_info.get("shortDisplayName")
+
+            # If no team info at this level, the item itself might be an injury record
+            team_injuries = item.get("injuries", [item] if "athlete" in item else [])
+
+            # If still no team name, check if it's nested differently
+            if not team_name and "team" not in item:
+                # Try to get team from athlete
+                athlete = item.get("athlete", {})
+                team_info = athlete.get("team", {})
+                team_name = team_info.get("displayName") or team_info.get("name")
+                team_id = team_info.get("id")
+
+            for injury in team_injuries:
                 athlete = injury.get("athlete", {})
+                player_name = athlete.get("displayName") or athlete.get("fullName") or athlete.get("name")
+
+                # Try to get team from athlete if not available at parent level
+                if not team_name:
+                    athlete_team = athlete.get("team", {})
+                    team_name = athlete_team.get("displayName") or athlete_team.get("name")
+                    team_id = athlete_team.get("id")
+
                 injuries.append({
                     "team_id": team_id,
                     "team_name": team_name,
-                    "player_name": athlete.get("displayName"),
-                    "position": athlete.get("position", {}).get("abbreviation"),
+                    "player_name": player_name,
+                    "position": athlete.get("position", {}).get("abbreviation") if isinstance(athlete.get("position"), dict) else athlete.get("position"),
                     "status": injury.get("status"),
-                    "injury_type": injury.get("type", {}).get("text", ""),
-                    "details": injury.get("details", {}).get("detail", "")
+                    "injury_type": injury.get("type", {}).get("text", "") if isinstance(injury.get("type"), dict) else injury.get("type", ""),
+                    "details": injury.get("details", {}).get("detail", "") if isinstance(injury.get("details"), dict) else injury.get("details", "")
                 })
-        
+
+        # Debug: log sample
+        if injuries:
+            logger.info(f"[ESPN Injuries] Sample injury: {injuries[0]}")
+
         return injuries
     
     def get_team_injury_impact(self, sport: str, team_name: str) -> dict:
@@ -85,13 +144,23 @@ class ESPNClient:
             "questionable_count": 0,
             "key_players_out": []
         }
-        
+
         if not team_name:
+            logger.info(f"[ESPN] No team name provided for injury check")
             return default_response
-        
+
         injuries = self.get_injuries(sport)
+        logger.info(f"[ESPN] Found {len(injuries)} total injuries for {sport}")
+
+        # Try to match team name
         team_injuries = [i for i in injuries if i.get("team_name") and team_name.lower() in i["team_name"].lower()]
-        
+        logger.info(f"[ESPN] Matching '{team_name}' - found {len(team_injuries)} injuries")
+
+        # Debug: show available team names if no match
+        if not team_injuries and injuries:
+            available_teams = set(i.get("team_name", "?") for i in injuries[:20])
+            logger.info(f"[ESPN] Available teams (sample): {list(available_teams)[:5]}")
+
         if not team_injuries:
             return default_response
         
@@ -138,34 +207,112 @@ class ESPNClient:
         sport_type, league = self._get_sport_path(sport)
         if not sport_type:
             return []
-        
-        data = self._request(f"{sport_type}/{league}/standings", f"standings_{sport}")
+
+        # Standings require the v2 API endpoint (not site/v2)
+        data = self._request_standings(f"{sport_type}/{league}/standings", f"standings_{sport}")
         if not data:
+            logger.warning(f"[ESPN Standings] No data returned for {sport}")
             return []
-        
+
+        # Debug: log top-level keys
+        logger.info(f"[ESPN Standings] Top-level keys: {list(data.keys())}")
+
         standings = []
-        for group in data.get("children", []):
-            for subgroup in group.get("standings", {}).get("entries", []):
-                team = subgroup.get("team", {})
-                stats = {s["name"]: s["value"] for s in subgroup.get("stats", [])}
-                
-                note = subgroup.get("note", {}).get("description", "").lower() if subgroup.get("note") else ""
-                clinched = "clinched" in note
-                eliminated = "eliminated" in note
-                
-                standings.append({
-                    "team_id": team.get("id"),
-                    "team_name": team.get("displayName"),
-                    "wins": int(stats.get("wins", 0)),
-                    "losses": int(stats.get("losses", 0)),
-                    "win_pct": float(stats.get("winPercent", 0)),
-                    "playoff_seed": int(stats.get("playoffSeed", 0)) or None,
-                    "games_back": float(stats.get("gamesBehind", 0)),
-                    "streak": stats.get("streak", ""),
-                    "clinched_playoff": clinched,
-                    "eliminated": eliminated
-                })
-        
+
+        # ESPN standings can have different structures:
+        # Structure 1: {"children": [{"standings": {"entries": [...]}}]}
+        # Structure 2: {"standings": {"entries": [...]}}
+        # Structure 3: Direct entries list
+
+        # Try to find the entries in various locations
+        def extract_entries(obj, depth=0):
+            """Recursively find standings entries."""
+            entries = []
+            if depth > 5:  # Prevent infinite recursion
+                return entries
+
+            if isinstance(obj, list):
+                for item in obj:
+                    entries.extend(extract_entries(item, depth + 1))
+            elif isinstance(obj, dict):
+                # Check for direct entries
+                if "entries" in obj:
+                    for entry in obj["entries"]:
+                        entries.append(entry)
+
+                # Check common nested paths
+                for key in ["children", "standings", "groups"]:
+                    if key in obj:
+                        entries.extend(extract_entries(obj[key], depth + 1))
+
+            return entries
+
+        all_entries = extract_entries(data)
+        logger.info(f"[ESPN Standings] Found {len(all_entries)} entries")
+
+        if all_entries and len(all_entries) > 0:
+            logger.info(f"[ESPN Standings] First entry keys: {list(all_entries[0].keys()) if isinstance(all_entries[0], dict) else 'not a dict'}")
+
+        for entry in all_entries:
+            if not isinstance(entry, dict):
+                continue
+
+            team = entry.get("team", {})
+            team_name = team.get("displayName") or team.get("name") or team.get("shortDisplayName")
+            team_id = team.get("id")
+
+            # Parse stats - can be list of dicts or direct values
+            stats_list = entry.get("stats", [])
+            if isinstance(stats_list, list):
+                stats = {}
+                for s in stats_list:
+                    if isinstance(s, dict) and "name" in s:
+                        stats[s["name"]] = s.get("value", s.get("displayValue", 0))
+            else:
+                stats = stats_list if isinstance(stats_list, dict) else {}
+
+            # Handle note for clinched/eliminated
+            note_obj = entry.get("note")
+            if isinstance(note_obj, dict):
+                note = note_obj.get("description", "").lower()
+            elif isinstance(note_obj, str):
+                note = note_obj.lower()
+            else:
+                note = ""
+
+            clinched = "clinched" in note
+            eliminated = "eliminated" in note
+
+            # Parse numeric values safely
+            def safe_int(val, default=0):
+                try:
+                    return int(float(val)) if val else default
+                except (ValueError, TypeError):
+                    return default
+
+            def safe_float(val, default=0.0):
+                try:
+                    return float(val) if val else default
+                except (ValueError, TypeError):
+                    return default
+
+            standings.append({
+                "team_id": team_id,
+                "team_name": team_name,
+                "wins": safe_int(stats.get("wins")),
+                "losses": safe_int(stats.get("losses")),
+                "win_pct": safe_float(stats.get("winPercent", stats.get("winPct", 0))),
+                "playoff_seed": safe_int(stats.get("playoffSeed")) or None,
+                "games_back": safe_float(stats.get("gamesBehind", stats.get("gamesBack", 0))),
+                "streak": stats.get("streak", ""),
+                "clinched_playoff": clinched,
+                "eliminated": eliminated
+            })
+
+        # Debug: log sample
+        if standings:
+            logger.info(f"[ESPN Standings] Sample: {standings[0]}")
+
         return standings
     
     def get_team_incentive_score(self, sport: str, team_name: str) -> dict:
@@ -176,18 +323,25 @@ class ESPNClient:
             "games_back": 0,
             "reasoning": "Team not found in standings"
         }
-        
+
         if not team_name:
             return default_response
-        
+
         standings = self.get_standings(sport)
+        logger.info(f"[ESPN] Got {len(standings)} teams in standings for {sport}")
+
         team_standing = None
         for s in standings:
             if s.get("team_name") and team_name.lower() in s["team_name"].lower():
                 team_standing = s
+                logger.info(f"[ESPN] Matched '{team_name}' to '{s.get('team_name')}' - W:{s.get('wins')} L:{s.get('losses')}")
                 break
-        
+
         if not team_standing:
+            # Debug: show available team names
+            if standings:
+                available = [s.get("team_name", "?") for s in standings[:5]]
+                logger.info(f"[ESPN] No match for '{team_name}'. Available: {available}")
             return default_response
         
         motivation = 0.5

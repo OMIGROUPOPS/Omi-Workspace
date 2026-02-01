@@ -160,9 +160,10 @@ interface GameCardProps {
   score?: GameCardScore;
   edge?: GameCardEdge;
   openingSpread?: number;
+  edgeCount?: number;  // Number of edges detected for this game
 }
 
-export function GameCard({ game, consensus, score, edge, openingSpread }: GameCardProps) {
+export function GameCard({ game, consensus, score, edge, openingSpread, edgeCount }: GameCardProps) {
   const commenceTime = typeof game.commenceTime === 'string' ? new Date(game.commenceTime) : game.commenceTime;
   const gameState = getGameState(commenceTime, game.sportKey);
   const isLive = gameState === 'live';
@@ -215,15 +216,25 @@ export function GameCard({ game, consensus, score, edge, openingSpread }: GameCa
           )}
         </div>
 
-        {/* Edge Badge */}
-        {calculatedEdge.confidence !== 'PASS' && (
-          <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-full ${edgeColor.bg} border ${edgeColor.border}`}>
-            <span className={`text-xs font-bold ${edgeColor.text}`}>
-              {calculatedEdge.confidence === 'RARE' && '★ '}{calculatedEdge.confidence}
-            </span>
-            <span className={`text-xs font-mono ${edgeColor.text}`}>{calculatedEdge.score}%</span>
-          </div>
-        )}
+        {/* Edge Count Badge */}
+        <div className="flex items-center gap-2">
+          {edgeCount !== undefined && edgeCount > 0 && (
+            <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30">
+              <span className="text-xs">🔥</span>
+              <span className="text-xs font-bold text-emerald-400">{edgeCount}</span>
+            </div>
+          )}
+
+          {/* Edge Badge */}
+          {calculatedEdge.confidence !== 'PASS' && (
+            <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-full ${edgeColor.bg} border ${edgeColor.border}`}>
+              <span className={`text-xs font-bold ${edgeColor.text}`}>
+                {calculatedEdge.confidence === 'RARE' && '★ '}{calculatedEdge.confidence}
+              </span>
+              <span className={`text-xs font-mono ${edgeColor.text}`}>{calculatedEdge.score}%</span>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Column Headers */}

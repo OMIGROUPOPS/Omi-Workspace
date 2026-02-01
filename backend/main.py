@@ -30,13 +30,15 @@ def main():
     
     logger.info("Starting OMI Edge backend...")
     scheduler = start_scheduler()
-    
-    logger.info("Running initial analysis cycle...")
-    try:
-        run_once()
-    except Exception as e:
-        logger.error(f"Initial analysis failed: {e}")
-    
+
+    # Skip initial analysis - let the scheduler handle it
+    # This ensures the API server starts immediately
+    logger.info("Skipping initial analysis (will run on schedule)...")
+    # try:
+    #     run_once()
+    # except Exception as e:
+    #     logger.error(f"Initial analysis failed: {e}")
+
     logger.info("Starting API server on port 8000...")
     try:
         from api.server import app

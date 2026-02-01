@@ -184,6 +184,7 @@ export default async function SportGamesPage({ params }: PageProps) {
         bookmakerOdds: {
           consensus: { consensus: g.consensus, edge: { status: 'pass', adjustedConfidence: 0, edgeDelta: 0 } }
         },
+        edgeCount: 0,  // Cached games don't have edge calculation yet
       }));
 
       const sorted = cachedWithBooks.sort((a: any, b: any) =>
@@ -253,6 +254,32 @@ export default async function SportGamesPage({ params }: PageProps) {
       edgeDelta: game.best_edge || 0,
     };
 
+    // Calculate edge count - estimate based on backend data
+    // Full detailed edge count is calculated on the game detail page
+    // Here we estimate based on composite_score and pillar_scores
+    let edgeCount = 0;
+    const conf = (game.overall_confidence || '').toLowerCase();
+    const score = game.composite_score || 0;
+
+    if (conf === 'edge' || conf === 'strong' || conf === 'rare' || score >= 0.56) {
+      // Base estimate: each strong pillar contributes potential edges
+      const pillars = game.pillar_scores || {};
+      let strongPillars = 0;
+      for (const [, pillarScore] of Object.entries(pillars)) {
+        if (typeof pillarScore === 'number' && pillarScore >= 0.6) strongPillars++;
+      }
+
+      // Estimate edges based on composite score and pillar strength
+      // Score 0.86+ (RARE): likely 8-12 edges across markets/periods
+      // Score 0.76+ (STRONG): likely 4-8 edges
+      // Score 0.66+ (EDGE): likely 2-4 edges
+      // Score 0.56+ (WATCH): likely 1-2 edges
+      if (score >= 0.86) edgeCount = Math.max(8, strongPillars * 2);
+      else if (score >= 0.76) edgeCount = Math.max(4, strongPillars + 2);
+      else if (score >= 0.66) edgeCount = Math.max(2, strongPillars + 1);
+      else if (score >= 0.56) edgeCount = Math.max(1, strongPillars);
+    }
+
     return {
       game: {
         id: game.game_id,
@@ -269,6 +296,7 @@ export default async function SportGamesPage({ params }: PageProps) {
       pillars: game.pillar_scores,
       composite_score: game.composite_score,
       overall_confidence: game.overall_confidence,
+      edgeCount,
     };
   });
 

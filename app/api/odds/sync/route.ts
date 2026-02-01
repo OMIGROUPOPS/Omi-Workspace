@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { EdgeDetector } from "@/lib/edge/engine/edge-detector";
 import { EdgeLifecycleManager, upsertEdge } from "@/lib/edge/engine/edge-lifecycle";
+import { calculateGameCEQ, type GameCEQ } from "@/lib/edge/engine/edgescout";
 
 const CRON_SECRET = process.env.CRON_SECRET || "";
 const ODDS_API_KEY = process.env.ODDS_API_KEY || "";
@@ -217,10 +218,183 @@ function getSupabase() {
   );
 }
 
+// Count edges from a CEQ result (CEQ >= 56 = edge)
+function countPeriodEdges(ceq: GameCEQ | null): number {
+  if (!ceq) return 0;
+  let count = 0;
+  if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 56) count++;
+  if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 56) count++;
+  if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 56) count++;
+  if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 56) count++;
+  if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 56) count++;
+  if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 56) count++;
+  return count;
+}
+
+// Calculate and store edge counts for a game
+async function calculateAndStoreEdgeCounts(
+  supabase: ReturnType<typeof getSupabase>,
+  game: any,
+  sportKey: string,
+  openingLine: number | undefined,
+  snapshots: any[]
+): Promise<{ total: number; breakdown: Record<string, number> }> {
+  const breakdown: Record<string, number> = {};
+  let total = 0;
+
+  // Build per-book marketGroups from game data
+  const bookmakers = game.bookmakers || [];
+  if (bookmakers.length === 0) return { total: 0, breakdown: {} };
+
+  // Helper to extract markets for a period
+  const extractPeriodMarkets = (h2hKey: string, spreadsKey: string, totalsKey: string) => {
+    const markets: any[] = [];
+    for (const bk of bookmakers) {
+      const marketsByKey: Record<string, any> = {};
+      for (const m of bk.markets || []) marketsByKey[m.key] = m;
+
+      const h2hM = marketsByKey[h2hKey];
+      const spreadsM = marketsByKey[spreadsKey];
+      const totalsM = marketsByKey[totalsKey];
+
+      const extracted: any = {};
+      if (spreadsM) {
+        const home = spreadsM.outcomes?.find((o: any) => o.name === game.home_team);
+        const away = spreadsM.outcomes?.find((o: any) => o.name === game.away_team);
+        if (home && away) {
+          extracted.spreads = {
+            home: { line: home.point, price: home.price },
+            away: { line: away.point, price: away.price },
+          };
+        }
+      }
+      if (h2hM) {
+        const home = h2hM.outcomes?.find((o: any) => o.name === game.home_team);
+        const away = h2hM.outcomes?.find((o: any) => o.name === game.away_team);
+        if (home && away) {
+          extracted.h2h = { home: { price: home.price }, away: { price: away.price } };
+        }
+      }
+      if (totalsM) {
+        const over = totalsM.outcomes?.find((o: any) => o.name === 'Over');
+        const under = totalsM.outcomes?.find((o: any) => o.name === 'Under');
+        if (over) {
+          extracted.totals = { line: over.point, over: { price: over.price }, under: { price: under?.price } };
+        }
+      }
+      if (Object.keys(extracted).length > 0) markets.push(extracted);
+    }
+    return markets;
+  };
+
+  // Calculate CEQ for a period
+  const calculatePeriodCEQ = (periodKey: string, h2hKey: string, spreadsKey: string, totalsKey: string): GameCEQ | null => {
+    const periodMarkets = extractPeriodMarkets(h2hKey, spreadsKey, totalsKey);
+    if (periodMarkets.length === 0) return null;
+
+    const getMedian = (values: number[]) => {
+      if (values.length === 0) return undefined;
+      const sorted = [...values].sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+    };
+
+    const spreadLines: number[] = [];
+    const spreadHomeOdds: number[] = [];
+    const spreadAwayOdds: number[] = [];
+    const h2hHomeOdds: number[] = [];
+    const h2hAwayOdds: number[] = [];
+    const totalLines: number[] = [];
+    const totalOverOdds: number[] = [];
+    const totalUnderOdds: number[] = [];
+
+    for (const m of periodMarkets) {
+      if (m.spreads?.home?.line !== undefined) spreadLines.push(m.spreads.home.line);
+      if (m.spreads?.home?.price !== undefined) spreadHomeOdds.push(m.spreads.home.price);
+      if (m.spreads?.away?.price !== undefined) spreadAwayOdds.push(m.spreads.away.price);
+      if (m.h2h?.home?.price !== undefined) h2hHomeOdds.push(m.h2h.home.price);
+      if (m.h2h?.away?.price !== undefined) h2hAwayOdds.push(m.h2h.away.price);
+      if (m.totals?.line !== undefined) totalLines.push(m.totals.line);
+      if (m.totals?.over?.price !== undefined) totalOverOdds.push(m.totals.over.price);
+      if (m.totals?.under?.price !== undefined) totalUnderOdds.push(m.totals.under.price);
+    }
+
+    const spreadLine = getMedian(spreadLines);
+    const h2hHome = getMedian(h2hHomeOdds);
+    const h2hAway = getMedian(h2hAwayOdds);
+    const totalLine = getMedian(totalLines);
+
+    const hasSpread = spreadLine !== undefined;
+    const hasH2h = h2hHome !== undefined && h2hAway !== undefined;
+    const hasTotals = totalLine !== undefined;
+
+    if (!hasSpread && !hasH2h && !hasTotals) return null;
+
+    const gameOdds = {
+      spreads: hasSpread ? { home: { line: spreadLine!, odds: getMedian(spreadHomeOdds) || -110 }, away: { line: -spreadLine!, odds: getMedian(spreadAwayOdds) || -110 } } : undefined,
+      h2h: hasH2h ? { home: h2hHome!, away: h2hAway! } : undefined,
+      totals: hasTotals ? { line: totalLine!, over: getMedian(totalOverOdds) || -110, under: getMedian(totalUnderOdds) || -110 } : undefined,
+    };
+
+    // Estimate opening for periods
+    let periodOpening: any = {};
+    if (openingLine !== undefined) {
+      const factor = periodKey === 'fullGame' ? 1 : periodKey.includes('Half') ? 0.5 : periodKey.startsWith('q') ? 0.25 : 0.33;
+      periodOpening = { spreads: { home: openingLine * factor, away: -openingLine * factor } };
+    }
+
+    return calculateGameCEQ(gameOdds, periodOpening, [], {
+      spreads: hasSpread ? { home: spreadHomeOdds, away: spreadAwayOdds } : undefined,
+      h2h: hasH2h ? { home: h2hHomeOdds, away: h2hAwayOdds } : undefined,
+      totals: hasTotals ? { over: totalOverOdds, under: totalUnderOdds } : undefined,
+    }, {
+      spreads: hasSpread ? { home: getMedian(spreadHomeOdds) || -110, away: getMedian(spreadAwayOdds) || -110 } : undefined,
+      h2h: hasH2h ? { home: h2hHome, away: h2hAway } : undefined,
+      totals: hasTotals ? { over: getMedian(totalOverOdds) || -110, under: getMedian(totalUnderOdds) || -110 } : undefined,
+    }, {});
+  };
+
+  // Calculate for all periods
+  const periods = [
+    { key: 'fullGame', h2h: 'h2h', spreads: 'spreads', totals: 'totals' },
+    { key: 'firstHalf', h2h: 'h2h_h1', spreads: 'spreads_h1', totals: 'totals_h1' },
+    { key: 'secondHalf', h2h: 'h2h_h2', spreads: 'spreads_h2', totals: 'totals_h2' },
+    { key: 'q1', h2h: 'h2h_q1', spreads: 'spreads_q1', totals: 'totals_q1' },
+    { key: 'q2', h2h: 'h2h_q2', spreads: 'spreads_q2', totals: 'totals_q2' },
+    { key: 'q3', h2h: 'h2h_q3', spreads: 'spreads_q3', totals: 'totals_q3' },
+    { key: 'q4', h2h: 'h2h_q4', spreads: 'spreads_q4', totals: 'totals_q4' },
+    { key: 'p1', h2h: 'h2h_p1', spreads: 'spreads_p1', totals: 'totals_p1' },
+    { key: 'p2', h2h: 'h2h_p2', spreads: 'spreads_p2', totals: 'totals_p2' },
+    { key: 'p3', h2h: 'h2h_p3', spreads: 'spreads_p3', totals: 'totals_p3' },
+  ];
+
+  for (const p of periods) {
+    const ceq = calculatePeriodCEQ(p.key, p.h2h, p.spreads, p.totals);
+    const edges = countPeriodEdges(ceq);
+    if (edges > 0) {
+      breakdown[p.key] = edges;
+      total += edges;
+    }
+  }
+
+  // Upsert to game_edge_counts table
+  await supabase.from('game_edge_counts').upsert({
+    game_id: game.id,
+    sport_key: sportKey,
+    total_edges: total,
+    breakdown,
+    updated_at: new Date().toISOString(),
+  }, { onConflict: 'game_id' });
+
+  return { total, breakdown };
+}
+
 // Pass 1: Fetch all games for a sport with core markets (h2h, spreads, totals)
 async function fetchCoreOdds(
   sportKey: string
 ): Promise<{ games: any[]; cost: number; remaining: string | null }> {
+  // The Odds API /odds endpoint returns all upcoming games by default
+  // No date filtering parameters are supported on this endpoint
   const params = new URLSearchParams({
     apiKey: ODDS_API_KEY,
     regions: "us",
@@ -300,11 +474,13 @@ function buildSnapshotRows(games: any[], sportKey: string, snapshotTime: string)
         const isProp = market.key.startsWith("player_") ||
                        market.key.startsWith("pitcher_") ||
                        market.key.startsWith("batter_");
+        const isTeamTotal = market.key === "team_totals";
         for (const outcome of market.outcomes || []) {
           // For props: outcome.description is player name, outcome.name is "Over"/"Under"
+          // For team_totals: outcome.description is team name, outcome.name is "Over"/"Under"
           // For game markets: outcome.name is team name or "Over"/"Under"
-          const outcomeType = isProp && outcome.description
-            ? `${outcome.description}|${outcome.name}` // e.g., "DeMar DeRozan|Over"
+          const outcomeType = (isProp || isTeamTotal) && outcome.description
+            ? `${outcome.description}|${outcome.name}` // e.g., "DeMar DeRozan|Over" or "Chicago Bulls|Over"
             : outcome.name;
 
           rows.push({
@@ -324,6 +500,27 @@ function buildSnapshotRows(games: any[], sportKey: string, snapshotTime: string)
   return rows;
 }
 
+// Cleanup stale games from cached_odds (games that have already started)
+async function cleanupStaleGames(supabase: ReturnType<typeof getSupabase>): Promise<number> {
+  const now = new Date().toISOString();
+  const { data, error } = await supabase
+    .from("cached_odds")
+    .delete()
+    .lt("game_data->>commence_time", now)
+    .select("game_id");
+
+  if (error) {
+    console.error("[Odds Sync] Cleanup failed:", error.message);
+    return 0;
+  }
+
+  const count = data?.length || 0;
+  if (count > 0) {
+    console.log(`[Odds Sync] Cleaned up ${count} stale games from cached_odds`);
+  }
+  return count;
+}
+
 // Shared sync logic used by both GET (cron) and POST (manual)
 async function runSync() {
   if (!ODDS_API_KEY) {
@@ -334,6 +531,10 @@ async function runSync() {
   }
 
   const supabase = getSupabase();
+
+  // Cleanup stale games before syncing new ones
+  const gamesDeleted = await cleanupStaleGames(supabase);
+
   let totalSynced = 0;
   let totalCost = 0;
   let lastRemaining: string | null = null;
@@ -405,6 +606,49 @@ async function runSync() {
       } else {
         totalSynced += games.length;
       }
+
+      // Calculate and store edge counts for each game
+      // Get opening lines for this sport's games
+      const gameIds = games.map((g: any) => g.id);
+      const { data: openingData } = await supabase
+        .from('odds_snapshots')
+        .select('game_id, line')
+        .in('game_id', gameIds)
+        .eq('market', 'spreads')
+        .not('line', 'is', null)
+        .order('snapshot_time', { ascending: true })
+        .limit(gameIds.length * 2);
+
+      const openingLines: Record<string, number> = {};
+      if (openingData) {
+        for (const row of openingData) {
+          if (!openingLines[row.game_id] && row.line !== null) {
+            openingLines[row.game_id] = row.line;
+          }
+        }
+      }
+
+      // Calculate edge counts in parallel (batched)
+      let totalEdgeCounts = 0;
+      const EDGE_BATCH = 10;
+      for (let i = 0; i < games.length; i += EDGE_BATCH) {
+        const batch = games.slice(i, i + EDGE_BATCH);
+        await Promise.all(batch.map(async (game: any) => {
+          try {
+            const { total } = await calculateAndStoreEdgeCounts(
+              supabase,
+              game,
+              sportKey,
+              openingLines[game.id],
+              [] // snapshots not needed for basic edge counting
+            );
+            totalEdgeCounts += total;
+          } catch (e) {
+            // Silent fail for edge counts - not critical
+          }
+        }));
+      }
+      console.log(`[Odds Sync] ${sport}: Calculated ${totalEdgeCounts} total edges across ${games.length} games`);
 
       // Save snapshots to odds_snapshots
       const snapshotRows = buildSnapshotRows(games, sportKey, snapshotTime);
@@ -484,6 +728,7 @@ async function runSync() {
 
   return NextResponse.json({
     synced: totalSynced,
+    staleGamesDeleted: gamesDeleted,
     requestsUsed: totalCost,
     remaining: lastRemaining,
     sports: sportSummary,

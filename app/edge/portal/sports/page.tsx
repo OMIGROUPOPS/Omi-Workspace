@@ -43,7 +43,12 @@ function getSupabase() {
 function getDirectSupabase() {
   return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      global: {
+        fetch: (url, options) => fetch(url, { ...options, cache: 'no-store' }),
+      },
+    }
   );
 }
 
@@ -232,6 +237,35 @@ async function fetchAllTeamStats(): Promise<Map<string, TeamStatsData>> {
   return teamStatsMap;
 }
 
+// Fetch live edges for all games
+async function fetchLiveEdges(gameIds: string[]): Promise<Record<string, any[]>> {
+  const edgesMap: Record<string, any[]> = {};
+  if (gameIds.length === 0) return edgesMap;
+
+  try {
+    const supabase = getDirectSupabase();
+    const { data, error } = await supabase
+      .from('live_edges')
+      .select('*')
+      .in('game_id', gameIds)
+      .in('status', ['active', 'fading'])
+      .order('detected_at', { ascending: false });
+
+    if (error || !data) return edgesMap;
+
+    for (const edge of data) {
+      if (!edgesMap[edge.game_id]) {
+        edgesMap[edge.game_id] = [];
+      }
+      edgesMap[edge.game_id].push(edge);
+    }
+  } catch (e) {
+    console.error('[LiveEdges] Fetch failed:', e);
+  }
+
+  return edgesMap;
+}
+
 // Build game context from team stats map
 function buildGameContext(
   homeTeam: string,
@@ -294,8 +328,10 @@ function processBackendGame(
   scores: Record<string, any>,
   openingLines: Record<string, number>,
   snapshotsMap: Record<string, ExtendedOddsSnapshot[]>,
-  teamStatsMap: Map<string, TeamStatsData>
+  teamStatsMap: Map<string, TeamStatsData>,
+  edgesMap: Record<string, any[]>
 ) {
+  const liveEdges = edgesMap[game.game_id] || [];
   const consensus: any = {};
 
   if (game.consensus_odds?.h2h) {
@@ -508,6 +544,7 @@ function processBackendGame(
     ceq: ceqData,
     ceqByBook,  // Per-book CEQ for selected book display
     scores: scores[game.game_id] || null,
+    liveEdges,  // Pre-detected edges from live_edges table
   };
 }
 
@@ -516,8 +553,10 @@ function processOddsApiGame(
   scores: Record<string, any>,
   openingLines: Record<string, number>,
   snapshotsMap: Record<string, ExtendedOddsSnapshot[]>,
-  teamStatsMap: Map<string, TeamStatsData>
+  teamStatsMap: Map<string, TeamStatsData>,
+  edgesMap: Record<string, any[]>
 ) {
+  const liveEdges = edgesMap[game.id] || [];
   const consensus: any = {};
   const allBooksOdds: {
     spreads?: { home: number[]; away: number[] };
@@ -743,6 +782,7 @@ function processOddsApiGame(
     ceq: ceqData,
     ceqByBook,  // Per-book CEQ for selected book display
     scores: scores[game.id] || null,
+    liveEdges,  // Pre-detected edges from live_edges table
   };
 }
 
@@ -751,7 +791,8 @@ async function fetchFromCache(
   scores: Record<string, any>,
   openingLines: Record<string, number>,
   snapshotsMap: Record<string, ExtendedOddsSnapshot[]>,
-  teamStatsMap: Map<string, TeamStatsData>
+  teamStatsMap: Map<string, TeamStatsData>,
+  edgesMap: Record<string, any[]>
 ) {
   try {
     const supabase = getSupabase();
@@ -763,7 +804,7 @@ async function fetchFromCache(
     if (error || !data) return [];
 
     return data
-      .map((row: any) => processOddsApiGame(row.game_data, scores, openingLines, snapshotsMap, teamStatsMap))
+      .map((row: any) => processOddsApiGame(row.game_data, scores, openingLines, snapshotsMap, teamStatsMap, edgesMap))
       .filter(Boolean);
   } catch (e) {
     console.error(`[Cache] Failed to fetch ${sportKey}:`, e);
@@ -798,18 +839,19 @@ export default async function SportsPage() {
     }
   }
 
-  // Fetch opening lines, snapshots, and team stats for CEQ calculation
-  const [openingLines, snapshotsMap, teamStatsMap] = await Promise.all([
+  // Fetch opening lines, snapshots, team stats, and live edges for CEQ calculation
+  const [openingLines, snapshotsMap, teamStatsMap, edgesMap] = await Promise.all([
     fetchOpeningLines(allGameIds),
     fetchGameSnapshots(allGameIds),
     fetchAllTeamStats(),
+    fetchLiveEdges(allGameIds),
   ]);
 
   if (hasBackendData) {
     dataSource = 'backend';
     for (const { sport, games } of backendResults) {
       const processed = games
-        .map((g: any) => processBackendGame(g, sport, scoresData, openingLines, snapshotsMap, teamStatsMap))
+        .map((g: any) => processBackendGame(g, sport, scoresData, openingLines, snapshotsMap, teamStatsMap, edgesMap))
         .filter(Boolean)
         .sort((a: any, b: any) => new Date(a.commenceTime).getTime() - new Date(b.commenceTime).getTime());
 
@@ -842,10 +884,14 @@ export default async function SportsPage() {
       }
     }
 
-    // Fetch snapshots for cached games (already parallelized)
-    const cachedSnapshotsMap = cachedGameIds.length > 0
-      ? await fetchGameSnapshots(cachedGameIds)
-      : {};
+    // Fetch snapshots, live edges, AND opening lines for cached games
+    const [cachedSnapshotsMap, cachedEdgesMap, cachedOpeningLines] = cachedGameIds.length > 0
+      ? await Promise.all([
+          fetchGameSnapshots(cachedGameIds),
+          fetchLiveEdges(cachedGameIds),
+          fetchOpeningLines(cachedGameIds),
+        ])
+      : [{}, {}, {}];
 
     // Process all games directly from the single query result
     const cacheResults: { sport: string; games: any[] }[] = sports.map(sport => {
@@ -854,7 +900,7 @@ export default async function SportsPage() {
 
       const sportData = allCachedData?.filter((row: any) => row.sport_key === sportKey) || [];
       const games = sportData
-        .map((row: any) => processOddsApiGame(row.game_data, scoresData, openingLines, cachedSnapshotsMap, teamStatsMap))
+        .map((row: any) => processOddsApiGame(row.game_data, scoresData, cachedOpeningLines, cachedSnapshotsMap, teamStatsMap, cachedEdgesMap))
         .filter(Boolean);
       return { sport, games };
     });

@@ -1,15 +1,7 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import { createClient } from '@supabase/supabase-js';
-import { LiveEdge, EDGE_TYPE_CONFIG, EDGE_STATUS_CONFIG, formatEdgeMagnitude } from '@/lib/edge/types/edge';
-import { LiveEdgeCard } from './LiveEdgeCard';
-import { Activity, ChevronDown, ChevronUp, Zap, TrendingUp, DollarSign, GitBranch, RefreshCw } from 'lucide-react';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { useState } from 'react';
+import { Activity, ChevronDown, ChevronUp, Zap, TrendingUp } from 'lucide-react';
 
 interface CEQEdge {
   market: 'spread' | 'h2h' | 'total';
@@ -18,116 +10,50 @@ interface CEQEdge {
   confidence: string;
   sideLabel: string;
   lineValue?: string;
+  periodLabel?: string;
+}
+
+export interface EdgeCountBreakdown {
+  total: number;
+  fullGame: number;
+  firstHalf: number;
+  secondHalf: number;
+  quarters: number;  // Q1-Q4 combined
+  periods: number;   // P1-P3 combined (NHL)
+  teamTotals: number;
+  props: number;
 }
 
 interface GameEdgesPanelProps {
   gameId: string;
   sport: string;
   ceqEdges?: CEQEdge[];
+  edgeCountBreakdown?: EdgeCountBreakdown;
 }
 
-export function GameEdgesPanel({ gameId, sport, ceqEdges = [] }: GameEdgesPanelProps) {
-  const [edges, setEdges] = useState<LiveEdge[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [showExpired, setShowExpired] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(false); // Start expanded, collapse if many edges
-
-  // Fetch edges for this game
-  const fetchEdges = useCallback(async () => {
-    try {
-      const params = new URLSearchParams();
-      if (showExpired) params.set('include_expired', 'true');
-
-      const res = await fetch(`/api/edges/game/${gameId}?${params}`);
-      if (!res.ok) throw new Error('Failed to fetch edges');
-
-      const data = await res.json();
-      setEdges(data.edges || []);
-      setError(null);
-    } catch (e: any) {
-      console.error('[GameEdgesPanel] Error:', e);
-      setError(e?.message || 'Failed to load edges');
-    } finally {
-      setLoading(false);
-    }
-  }, [gameId, showExpired]);
-
-  // Initial fetch
-  useEffect(() => {
-    fetchEdges();
-  }, [fetchEdges]);
-
-  // Realtime subscription for this game
-  useEffect(() => {
-    const channel = supabase
-      .channel(`game-edges-${gameId}`)
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'live_edges',
-          filter: `game_id=eq.${gameId}`,
-        },
-        (payload) => {
-          if (payload.eventType === 'INSERT') {
-            setEdges((prev) => [payload.new as LiveEdge, ...prev]);
-          } else if (payload.eventType === 'UPDATE') {
-            const updated = payload.new as LiveEdge;
-            setEdges((prev) =>
-              prev.map((e) => (e.id === updated.id ? updated : e))
-            );
-          } else if (payload.eventType === 'DELETE') {
-            setEdges((prev) => prev.filter((e) => e.id !== payload.old.id));
-          }
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, [gameId]);
-
-  // Group edges by status
-  const activeEdges = edges.filter((e) => e.status === 'active');
-  const fadingEdges = edges.filter((e) => e.status === 'fading');
-  const expiredEdges = edges.filter((e) => e.status === 'expired');
-
-  // Group by market type for display
-  const groupByMarket = (edgeList: LiveEdge[]) => {
-    return edgeList.reduce((acc, edge) => {
-      const market = edge.market_type;
-      if (!acc[market]) acc[market] = [];
-      acc[market].push(edge);
-      return acc;
-    }, {} as Record<string, LiveEdge[]>);
-  };
-
-  if (loading) {
-    return (
-      <div className="bg-zinc-900 rounded-lg border border-zinc-800 p-4">
-        <div className="flex items-center gap-2 text-zinc-500">
-          <RefreshCw className="w-4 h-4 animate-spin" />
-          <span className="text-sm">Loading edges...</span>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="bg-zinc-900 rounded-lg border border-zinc-800 p-4">
-        <p className="text-sm text-red-400">{error}</p>
-      </div>
-    );
-  }
+export function GameEdgesPanel({ gameId, sport, ceqEdges = [], edgeCountBreakdown }: GameEdgesPanelProps) {
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   // Filter CEQ edges to only show those with actual edge (>= 56%)
   const validCEQEdges = ceqEdges.filter(e => e.ceq >= 56);
-  const hasEdges = edges.length > 0 || validCEQEdges.length > 0;
-  const hasActiveEdges = activeEdges.length > 0 || fadingEdges.length > 0 || validCEQEdges.length > 0;
+
+  // Use edgeCountBreakdown.total as the source of truth (includes all periods)
+  const totalEdges = edgeCountBreakdown?.total ?? 0;
+  const hasEdges = totalEdges > 0;
+
+  // Build breakdown string for display
+  const buildBreakdownString = () => {
+    if (!edgeCountBreakdown) return '';
+    const parts: string[] = [];
+    if (edgeCountBreakdown.fullGame > 0) parts.push(`Full: ${edgeCountBreakdown.fullGame}`);
+    if (edgeCountBreakdown.firstHalf > 0) parts.push(`1H: ${edgeCountBreakdown.firstHalf}`);
+    if (edgeCountBreakdown.secondHalf > 0) parts.push(`2H: ${edgeCountBreakdown.secondHalf}`);
+    if (edgeCountBreakdown.quarters > 0) parts.push(`Quarters: ${edgeCountBreakdown.quarters}`);
+    if (edgeCountBreakdown.periods > 0) parts.push(`Periods: ${edgeCountBreakdown.periods}`);
+    if (edgeCountBreakdown.teamTotals > 0) parts.push(`Team Totals: ${edgeCountBreakdown.teamTotals}`);
+    if (edgeCountBreakdown.props > 0) parts.push(`Props: ${edgeCountBreakdown.props}`);
+    return parts.length > 0 ? `(${parts.join(', ')})` : '';
+  };
 
   return (
     <div className="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
@@ -136,30 +62,26 @@ export function GameEdgesPanel({ gameId, sport, ceqEdges = [] }: GameEdgesPanelP
         onClick={() => setIsCollapsed(!isCollapsed)}
         className="w-full flex items-center justify-between px-4 py-3 bg-zinc-800/50 border-b border-zinc-800 hover:bg-zinc-800/70 transition-colors"
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <Zap className="w-4 h-4 text-emerald-400" />
           <h3 className="text-sm font-semibold text-zinc-100">Detected Edges</h3>
-          {hasActiveEdges && (
-            <div className="flex items-center gap-2">
-              {activeEdges.length > 0 && (
-                <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium">
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-                  </span>
-                  {activeEdges.length}
-                </span>
-              )}
-              {fadingEdges.length > 0 && (
-                <span className="px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-400 text-xs font-medium">
-                  {fadingEdges.length} fading
-                </span>
-              )}
-            </div>
+          {totalEdges > 0 && (
+            <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+              </span>
+              {totalEdges} total
+            </span>
+          )}
+          {edgeCountBreakdown && totalEdges > 0 && (
+            <span className="text-[10px] text-zinc-500 hidden sm:inline">
+              {buildBreakdownString()}
+            </span>
           )}
         </div>
         <div className="flex items-center gap-2 text-zinc-500">
-          {isCollapsed && hasActiveEdges && (
+          {isCollapsed && totalEdges > 0 && (
             <span className="text-xs">Click to expand</span>
           )}
           {isCollapsed ? (
@@ -178,12 +100,12 @@ export function GameEdgesPanel({ gameId, sport, ceqEdges = [] }: GameEdgesPanelP
             <Activity className="w-8 h-8 text-zinc-700 mb-2" />
             <p className="text-sm text-zinc-500">No edges detected</p>
             <p className="text-xs text-zinc-600 mt-1">
-              Edges will appear when line movements or opportunities are identified
+              Edges appear when CEQ (Composite Edge Quotient) reaches 56% or higher
             </p>
           </div>
         ) : (
           <div className="space-y-4">
-            {/* CEQ-Calculated Edges (from pillar analysis) */}
+            {/* CEQ-Calculated Edges for current period */}
             {validCEQEdges.length > 0 && (
               <div>
                 <h4 className="text-xs font-medium text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
@@ -191,7 +113,7 @@ export function GameEdgesPanel({ gameId, sport, ceqEdges = [] }: GameEdgesPanelP
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                   </span>
-                  CEQ Analysis Edges
+                  Current Period Edges
                 </h4>
                 <div className="space-y-2">
                   {validCEQEdges
@@ -238,7 +160,9 @@ export function GameEdgesPanel({ gameId, sport, ceqEdges = [] }: GameEdgesPanelP
                         </div>
                       </div>
                       <div className="text-xs text-zinc-400">
-                        {ceqEdge.market === 'spread' ? 'Spread' : ceqEdge.market === 'h2h' ? 'Moneyline' : 'Total'} market
+                        {ceqEdge.periodLabel === 'Team Total'
+                          ? 'Team Total market'
+                          : `${ceqEdge.periodLabel || 'Full Game'} ${ceqEdge.market === 'spread' ? 'Spread' : ceqEdge.market === 'h2h' ? 'Moneyline' : 'Total'} market`}
                       </div>
                     </div>
                   ))}
@@ -246,59 +170,15 @@ export function GameEdgesPanel({ gameId, sport, ceqEdges = [] }: GameEdgesPanelP
               </div>
             )}
 
-            {/* Active Edges from Database */}
-            {activeEdges.length > 0 && (
-              <div>
-                <h4 className="text-xs font-medium text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  Line Movement Edges
-                </h4>
-                <div className="space-y-2">
-                  {activeEdges.map((edge) => (
-                    <LiveEdgeCard key={edge.id} edge={edge} showGameLink={false} />
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Fading Edges */}
-            {fadingEdges.length > 0 && (
-              <div>
-                <h4 className="text-xs font-medium text-yellow-400 uppercase tracking-wider mb-2">
-                  Fading Edges
-                </h4>
-                <div className="space-y-2">
-                  {fadingEdges.map((edge) => (
-                    <LiveEdgeCard key={edge.id} edge={edge} showGameLink={false} />
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Expired Edges (Collapsible) */}
-            {expiredEdges.length > 0 && (
-              <div>
-                <button
-                  onClick={() => setShowExpired(!showExpired)}
-                  className="flex items-center gap-2 text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2 hover:text-zinc-400 transition-colors"
-                >
-                  {showExpired ? (
-                    <ChevronUp className="w-3 h-3" />
-                  ) : (
-                    <ChevronDown className="w-3 h-3" />
-                  )}
-                  Expired Edges ({expiredEdges.length})
-                </button>
-                {showExpired && (
-                  <div className="space-y-2">
-                    {expiredEdges.map((edge) => (
-                      <LiveEdgeCard key={edge.id} edge={edge} showGameLink={false} />
-                    ))}
-                  </div>
-                )}
+            {/* Show message when there are edges in other periods but not current */}
+            {validCEQEdges.length === 0 && totalEdges > 0 && (
+              <div className="text-center py-4">
+                <p className="text-sm text-zinc-400">
+                  {totalEdges} edge{totalEdges !== 1 ? 's' : ''} detected in other periods
+                </p>
+                <p className="text-xs text-zinc-500 mt-1">
+                  Switch tabs to view edges in different periods
+                </p>
               </div>
             )}
           </div>
@@ -306,64 +186,20 @@ export function GameEdgesPanel({ gameId, sport, ceqEdges = [] }: GameEdgesPanelP
         </div>
       )}
 
-      {/* Summary Footer - always visible when there are active edges */}
-      {hasActiveEdges && (
+      {/* Summary Footer - always visible when there are edges */}
+      {totalEdges > 0 && (
         <div className="px-4 py-2 bg-zinc-800/30 border-t border-zinc-800/50">
-          <div className="flex items-center gap-4 text-[10px] text-zinc-500">
+          <div className="flex items-center justify-between text-[10px] text-zinc-500">
             <span>
-              Total: {activeEdges.length + fadingEdges.length} active edge{activeEdges.length + fadingEdges.length !== 1 ? 's' : ''}
+              {totalEdges} total edge{totalEdges !== 1 ? 's' : ''} across all periods (CEQ &ge; 56%)
             </span>
-            {activeEdges.length > 0 && (
+            {validCEQEdges.length > 0 && (
               <span className="text-emerald-500">
-                Best: {formatEdgeMagnitude(activeEdges.reduce((best, e) =>
-                  e.edge_magnitude > best.edge_magnitude ? e : best
-                ))}
+                Best CEQ: {Math.max(...validCEQEdges.map(e => e.ceq))}%
               </span>
             )}
           </div>
         </div>
-      )}
-    </div>
-  );
-}
-
-// Summary component for showing edge count inline
-export function GameEdgesSummary({ gameId }: { gameId: string }) {
-  const [edgeCount, setEdgeCount] = useState<{ active: number; fading: number } | null>(null);
-
-  useEffect(() => {
-    async function fetchCount() {
-      try {
-        const res = await fetch(`/api/edges/game/${gameId}`);
-        if (!res.ok) return;
-        const data = await res.json();
-        setEdgeCount({
-          active: data.summary?.active || 0,
-          fading: data.summary?.fading || 0,
-        });
-      } catch {
-        // Ignore errors for summary
-      }
-    }
-    fetchCount();
-  }, [gameId]);
-
-  if (!edgeCount || (edgeCount.active === 0 && edgeCount.fading === 0)) {
-    return null;
-  }
-
-  return (
-    <div className="flex items-center gap-1">
-      {edgeCount.active > 0 && (
-        <span className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-medium">
-          <Zap className="w-2.5 h-2.5" />
-          {edgeCount.active}
-        </span>
-      )}
-      {edgeCount.fading > 0 && (
-        <span className="px-1.5 py-0.5 rounded-full bg-yellow-500/10 text-yellow-400 text-[10px] font-medium">
-          {edgeCount.fading}
-        </span>
       )}
     </div>
   );

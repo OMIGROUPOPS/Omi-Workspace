@@ -107,7 +107,24 @@ async function fetchTeamDetail(sport: string, league: string, teamId: string): P
     });
 
     if (!response.ok) return null;
-    return await response.json();
+    const data = await response.json();
+
+    // Debug: Log team detail structure including record.items
+    const team = data.team;
+    if (team) {
+      const recordItems = team.record?.items || [];
+      console.log(`[ESPN DEBUG] Team detail for ${team.displayName}:`, {
+        hasRecord: !!team.record,
+        recordItems: recordItems.map((item: any) => ({
+          type: item.type,
+          summary: item.summary,
+          stats: item.stats?.slice(0, 5).map((s: any) => ({ name: s.name, value: s.value }))
+        })),
+        standingSummary: team.standingSummary,
+      });
+    }
+
+    return data;
   } catch (error) {
     console.error(`Error fetching team detail ${teamId}:`, error);
     return null;
@@ -130,21 +147,58 @@ async function fetchStandings(sport: string, league: string): Promise<Map<string
 
     const data = await response.json();
 
+    // Debug: Log standings structure
+    console.log(`[ESPN DEBUG] Standings response keys:`, Object.keys(data));
+
     // Parse standings - structure varies by sport
     const children = data.children || [];
+    console.log(`[ESPN DEBUG] Found ${children.length} groups in standings`);
+
     for (const group of children) {
       const standings = group.standings?.entries || [];
       for (const entry of standings) {
         const teamId = entry.team?.id;
+        const teamName = entry.team?.displayName;
         if (teamId) {
           // Extract stats from the entry
           const stats: Record<string, any> = {};
           for (const stat of entry.stats || []) {
-            stats[stat.name?.toLowerCase() || stat.type?.toLowerCase()] = stat.value;
+            const statName = stat.name?.toLowerCase() || stat.type?.toLowerCase() || stat.abbreviation?.toLowerCase();
+            if (statName) {
+              stats[statName] = stat.value ?? stat.displayValue;
+            }
           }
+
+          // Get streak from multiple possible locations
+          let streakValue = entry.streak?.value ||
+                           entry.streak?.displayValue ||
+                           stats.streak ||
+                           stats.strk ||
+                           null;
+
+          // Also check for streak in the stats array with different key names
+          for (const stat of entry.stats || []) {
+            const statName = (stat.name || stat.type || stat.abbreviation || '').toLowerCase();
+            if (statName === 'streak' || statName === 'strk' || statName === 'l10') {
+              if (streakValue === null) {
+                streakValue = stat.displayValue || stat.value || null;
+              }
+            }
+          }
+
+          // Debug first team
+          if (standingsMap.size === 0) {
+            console.log(`[ESPN DEBUG] First standings entry for ${teamName}:`, {
+              entryKeys: Object.keys(entry),
+              streakObj: entry.streak,
+              allStats: (entry.stats || []).map((s: any) => ({ name: s.name, type: s.type, abbr: s.abbreviation, value: s.displayValue || s.value })),
+              streakValue
+            });
+          }
+
           standingsMap.set(teamId, {
             ...stats,
-            streak: entry.streak?.value || null,
+            streak: streakValue,
           });
         }
       }
@@ -160,25 +214,55 @@ async function fetchStandings(sport: string, league: string): Promise<Map<string
 async function fetchTeamStats(sport: string, league: string, teamId: string): Promise<Record<string, number | null>> {
   try {
     const url = `${ESPN_BASE}/${sport}/${league}/teams/${teamId}/statistics`;
+    console.log(`[ESPN DEBUG] Fetching stats: ${url}`);
     const response = await fetch(url, {
       headers: { 'User-Agent': 'Mozilla/5.0' },
       next: { revalidate: 0 }
     });
 
-    if (!response.ok) return {};
+    if (!response.ok) {
+      console.log(`[ESPN DEBUG] Stats endpoint returned ${response.status}`);
+      return {};
+    }
 
     const data = await response.json();
     const stats: Record<string, number | null> = {};
 
-    // Parse statistics from ESPN response
-    const categories = data.results?.stats?.categories || data.stats?.categories || [];
+    // Debug: Log the structure
+    console.log(`[ESPN DEBUG] Stats response keys:`, Object.keys(data));
+
+    // Try multiple paths to find stats
+    const categories = data.results?.stats?.categories ||
+                       data.stats?.categories ||
+                       data.splitCategories?.[0]?.stats ||
+                       data.statistics?.splits?.categories ||
+                       [];
+
+    console.log(`[ESPN DEBUG] Found ${categories.length} categories`);
+
     for (const category of categories) {
-      for (const stat of category.stats || []) {
-        if (stat.name && stat.value !== undefined) {
-          stats[stat.name.toLowerCase()] = parseFloat(stat.value) || null;
+      const catStats = category.stats || category.statistics || [];
+      for (const stat of catStats) {
+        const statName = stat.name || stat.displayName || stat.abbreviation;
+        if (statName && stat.value !== undefined) {
+          stats[statName.toLowerCase()] = parseFloat(stat.value) || null;
         }
       }
     }
+
+    // Also try flat stats array
+    const flatStats = data.stats || data.statistics || [];
+    if (Array.isArray(flatStats)) {
+      for (const stat of flatStats) {
+        const statName = stat.name || stat.displayName || stat.abbreviation;
+        if (statName && stat.value !== undefined) {
+          stats[statName.toLowerCase()] = parseFloat(stat.value) || null;
+        }
+      }
+    }
+
+    console.log(`[ESPN DEBUG] Extracted stats keys:`, Object.keys(stats).slice(0, 20));
+    if (stats['pace']) console.log(`[ESPN DEBUG] Found pace: ${stats['pace']}`);
 
     return stats;
   } catch (error) {
@@ -215,21 +299,25 @@ function extractTeamStats(
   let awayLosses: number | null = null;
   let streak: number | null = null;
 
+  // Helper to parse streak string (e.g., "W3" -> 3, "L2" -> -2)
+  const parseStreak = (streakStr: any): number | null => {
+    if (typeof streakStr === 'number') return streakStr;
+    if (typeof streakStr === 'string') {
+      const match = streakStr.match(/([WL])(\d+)/i);
+      if (match) {
+        return parseInt(match[2]) * (match[1].toUpperCase() === 'W' ? 1 : -1);
+      }
+    }
+    return null;
+  };
+
   // Source 1: Standings data (most reliable for records)
   if (standingsData) {
     wins = standingsData.wins ?? standingsData.w ?? null;
     losses = standingsData.losses ?? standingsData.l ?? null;
 
-    // Parse streak (e.g., "W3" -> 3, "L2" -> -2)
-    const streakStr = standingsData.streak;
-    if (typeof streakStr === 'string') {
-      const match = streakStr.match(/([WL])(\d+)/i);
-      if (match) {
-        streak = parseInt(match[2]) * (match[1].toUpperCase() === 'W' ? 1 : -1);
-      }
-    } else if (typeof streakStr === 'number') {
-      streak = streakStr;
-    }
+    // Parse streak from standings
+    streak = parseStreak(standingsData.streak) ?? parseStreak(standingsData.strk) ?? null;
 
     // Home/away from standings
     if (standingsData.home) {
@@ -280,6 +368,29 @@ function extractTeamStats(
     }
   }
 
+  // Source 4: Streak from team detail record.items (fallback if standings didn't have it)
+  if (streak === null && teamDetail?.team?.record?.items) {
+    const recordItems = teamDetail.team.record.items;
+    for (const item of recordItems) {
+      // Look for streak in stats array within each record item
+      if (item.stats) {
+        for (const stat of item.stats) {
+          const statName = (stat.name || stat.type || '').toLowerCase();
+          if (statName === 'streak' || statName === 'strk') {
+            streak = parseStreak(stat.value) ?? parseStreak(stat.displayValue) ?? null;
+            if (streak !== null) break;
+          }
+        }
+      }
+      if (streak !== null) break;
+    }
+  }
+
+  // Source 5: Try team.streak directly
+  if (streak === null && teamDetail?.team?.streak) {
+    streak = parseStreak(teamDetail.team.streak);
+  }
+
   // Calculate win percentage
   const winPct = wins !== null && losses !== null && (wins + losses) > 0
     ? wins / (wins + losses)
@@ -292,8 +403,29 @@ function extractTeamStats(
     status: inj.status || 'Unknown'
   }));
 
-  // Map ESPN stats to our schema - try multiple field names
-  const pace = advancedStats['pace'] || advancedStats['possessions'] || standingsData?.pace || null;
+  // Map ESPN stats to our schema - try multiple field names for pace
+  // NBA pace is typically ~100 possessions per game
+  // Since ESPN doesn't provide pace directly, we estimate from scoring
+  // Higher scoring teams typically play at faster pace
+  let pace = advancedStats['pace'] ||
+             advancedStats['poss'] ||
+             advancedStats['possessions'] ||
+             advancedStats['possessionspergame'] ||
+             standingsData?.pace ||
+             null;
+
+  // If no pace available, estimate from avgpoints
+  // NBA average is ~115 PPG, normalize to pace scale (centered at 100)
+  if (pace === null) {
+    const avgPts = advancedStats['avgpoints'] || advancedStats['pointspergame'] || advancedStats['pts'] || null;
+    if (avgPts !== null && typeof avgPts === 'number') {
+      // Convert points to estimated pace: ~115 PPG = 100 pace
+      // Every 5 points above/below average = ~2-3 pace difference
+      const leagueAvgPts = league === 'NBA' ? 115 : league === 'NFL' ? 23 : 100;
+      pace = 100 + ((avgPts - leagueAvgPts) * 0.5);
+      pace = Math.round(pace * 10) / 10; // Round to 1 decimal
+    }
+  }
   const offRtg = advancedStats['offensiverating'] || advancedStats['ortg'] || standingsData?.offensiverating || null;
   const defRtg = advancedStats['defensiverating'] || advancedStats['drtg'] || standingsData?.defensiverating || null;
   const ppg = advancedStats['pointspergame'] || advancedStats['avgpoints'] || advancedStats['pts'] ||
@@ -312,6 +444,9 @@ function extractTeamStats(
   if (calcOppPpg === null && standingsData?.pointsagainst && gamesPlayed && gamesPlayed > 0) {
     calcOppPpg = standingsData.pointsagainst / gamesPlayed;
   }
+
+  // Debug log for first few teams
+  console.log(`[ESPN DEBUG] Extracted for ${team.displayName}: pace=${pace}, streak=${streak}, wins=${wins}, losses=${losses}`);
 
   return {
     team_id: team.id,

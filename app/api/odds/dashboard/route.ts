@@ -494,15 +494,6 @@ function processGame(
 
   // Extract per-bookmaker odds
   const bookmakers: Record<string, any> = {};
-  // DEBUG: Log first game's bookmaker structure
-  if (game.home_team && !game._debuggedBookmakers) {
-    console.log(`[Dashboard API] Game ${game.home_team} bookmakers:`, {
-      hasBookmakers: !!game.bookmakers,
-      bookmakerCount: game.bookmakers?.length || 0,
-      bookmakerKeys: game.bookmakers?.map((b: any) => b.key) || [],
-    });
-    game._debuggedBookmakers = true;
-  }
   if (game.bookmakers) {
     for (const bookmaker of game.bookmakers) {
       const bookOdds: any = {};
@@ -790,30 +781,6 @@ export async function GET() {
       .from('cached_odds')
       .select('sport_key, game_data, updated_at', { count: 'exact' })
       .in('sport_key', SPORT_KEYS);
-
-    // Log cache age
-    const oldestUpdate = allCachedData?.reduce((oldest: string | null, row: any) => {
-      if (!oldest || row.updated_at < oldest) return row.updated_at;
-      return oldest;
-    }, null);
-    const newestUpdate = allCachedData?.reduce((newest: string | null, row: any) => {
-      if (!newest || row.updated_at > newest) return row.updated_at;
-      return newest;
-    }, null);
-    console.log(`[Dashboard API] Supabase returned ${allCachedData?.length} rows, count=${count}, error=${error?.message || 'none'}`);
-    console.log(`[Dashboard API] Cache age: oldest=${oldestUpdate}, newest=${newestUpdate}`);
-
-    // Check if first game has bookmakers
-    if (allCachedData?.[0]?.game_data) {
-      const firstGame = allCachedData[0].game_data;
-      console.log(`[Dashboard API] First cached game bookmakers check:`, {
-        gameId: firstGame.id,
-        homeTeam: firstGame.home_team,
-        hasBookmakers: !!firstGame.bookmakers,
-        bookmakerCount: firstGame.bookmakers?.length || 0,
-        firstBookmakerKey: firstGame.bookmakers?.[0]?.key || 'NONE',
-      });
-    }
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });

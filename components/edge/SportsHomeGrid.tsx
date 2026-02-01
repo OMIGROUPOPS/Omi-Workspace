@@ -384,14 +384,8 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     console.trace('[SPORT CHANGE] Stack trace:');
     setActiveSportRaw(newValue);
   };
-  const [selectedBook, setSelectedBookRaw] = useState<string>('fanduel');
+  const [selectedBook, setSelectedBook] = useState<string>('fanduel');
   const [isBookDropdownOpen, setIsBookDropdownOpen] = useState(false);
-
-  // Debug wrapper for book selection
-  const setSelectedBook = (book: string) => {
-    console.log(`[BOOK TOGGLE] Changing from "${selectedBook}" to "${book}"`);
-    setSelectedBookRaw(book);
-  };
   const [searchQuery, setSearchQuery] = useState('');
   const [mounted, setMounted] = useState(false);
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
@@ -439,31 +433,12 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
   }, [activeSport]);
 
   useEffect(() => {
-    console.log('[MOUNT] useEffect triggered, initialFetchedAt:', initialFetchedAt);
     setMounted(true);
     setCurrentTime(new Date());
     setLastUpdated(initialFetchedAt ? new Date(initialFetchedAt) : new Date());
     // Reset to "All Sports" view on mount/navigation to ensure "+ more games" buttons are visible
     setActiveSport(null, 'mount-effect');
   }, [initialFetchedAt]);
-
-  // DEBUG: Log bookmakers when book selection changes
-  useEffect(() => {
-    const allGames = Object.values(games).flat();
-    const firstGame = allGames[0];
-    if (firstGame) {
-      const bookOdds = firstGame.bookmakers?.[selectedBook];
-      console.log(`[BOOK SELECT] selectedBook="${selectedBook}"`, {
-        firstGameTeams: `${firstGame.homeTeam} vs ${firstGame.awayTeam}`,
-        bookmakerKeys: firstGame.bookmakers ? Object.keys(firstGame.bookmakers) : 'NO BOOKMAKERS OBJ',
-        hasSelectedBookOdds: !!bookOdds,
-        selectedBookOdds: bookOdds,
-        consensusSpreads: firstGame.consensus?.spreads,
-      });
-    } else {
-      console.log(`[BOOK SELECT] selectedBook="${selectedBook}" - NO GAMES`);
-    }
-  }, [selectedBook, games]);
 
 
   useEffect(() => {

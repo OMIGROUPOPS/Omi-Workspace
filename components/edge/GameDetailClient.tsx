@@ -185,13 +185,35 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   if (hasRealData) {
     // Use ONLY real data filtered by book - works for both main markets and props
-    data = filteredHistory.map(snapshot => ({
-      timestamp: new Date(snapshot.snapshot_time),
-      // For price view, always use odds; for line view, use line (or odds for moneyline)
-      value: effectiveViewMode === 'price'
-        ? snapshot.odds
-        : (isProp ? snapshot.line : (marketType === 'moneyline' ? snapshot.odds : snapshot.line))
-    })).filter(d => d.value !== null && d.value !== undefined);
+    // IMPORTANT: line_snapshots only stores HOME side for spreads
+    // When viewing AWAY side, we need to INVERT the line value (multiply by -1)
+    const shouldInvertLine = marketType === 'spread' && trackingSide === 'away';
+
+    data = filteredHistory.map(snapshot => {
+      let value: number;
+
+      if (effectiveViewMode === 'price') {
+        // Price view always uses odds
+        value = snapshot.odds;
+      } else if (isProp) {
+        value = snapshot.line;
+      } else if (marketType === 'moneyline') {
+        // Moneyline has no line, always show odds
+        value = snapshot.odds;
+      } else if (marketType === 'spread') {
+        // Spread line: invert for away side
+        // Home is stored as e.g. -7.5, Away should show +7.5
+        value = shouldInvertLine ? (snapshot.line * -1) : snapshot.line;
+      } else {
+        // Totals: same line for Over and Under (e.g., 215.5)
+        value = snapshot.line;
+      }
+
+      return {
+        timestamp: new Date(snapshot.snapshot_time),
+        value
+      };
+    }).filter(d => d.value !== null && d.value !== undefined);
 
     // Sort by timestamp
     data.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());

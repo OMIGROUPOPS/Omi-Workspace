@@ -494,6 +494,15 @@ function processGame(
 
   // Extract per-bookmaker odds
   const bookmakers: Record<string, any> = {};
+  // DEBUG: Log first game's bookmaker structure
+  if (game.home_team && !game._debuggedBookmakers) {
+    console.log(`[Dashboard API] Game ${game.home_team} bookmakers:`, {
+      hasBookmakers: !!game.bookmakers,
+      bookmakerCount: game.bookmakers?.length || 0,
+      bookmakerKeys: game.bookmakers?.map((b: any) => b.key) || [],
+    });
+    game._debuggedBookmakers = true;
+  }
   if (game.bookmakers) {
     for (const bookmaker of game.bookmakers) {
       const bookOdds: any = {};

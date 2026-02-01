@@ -384,8 +384,14 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     console.trace('[SPORT CHANGE] Stack trace:');
     setActiveSportRaw(newValue);
   };
-  const [selectedBook, setSelectedBook] = useState<string>('fanduel');
+  const [selectedBook, setSelectedBookRaw] = useState<string>('fanduel');
   const [isBookDropdownOpen, setIsBookDropdownOpen] = useState(false);
+
+  // Debug wrapper for book selection
+  const setSelectedBook = (book: string) => {
+    console.log(`[BOOK TOGGLE] Changing from "${selectedBook}" to "${book}"`);
+    setSelectedBookRaw(book);
+  };
   const [searchQuery, setSearchQuery] = useState('');
   const [mounted, setMounted] = useState(false);
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
@@ -933,6 +939,17 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                       {/* Away Row */}
                       {(() => {
                         const bookOdds = game.bookmakers?.[selectedBook];
+                        // DEBUG: Log bookmakers data on first game render
+                        if (game.id && !game._debugLogged) {
+                          console.log(`[BOOK DEBUG] Game ${game.homeTeam} vs ${game.awayTeam}:`, {
+                            selectedBook,
+                            bookmakerKeys: game.bookmakers ? Object.keys(game.bookmakers) : 'NO BOOKMAKERS',
+                            hasBookOdds: !!bookOdds,
+                            bookOdds: bookOdds,
+                            consensus: game.consensus,
+                          });
+                          game._debugLogged = true;
+                        }
                         const spreads = bookOdds?.spreads || game.consensus?.spreads;
                         const h2h = bookOdds?.h2h || game.consensus?.h2h;
                         const totals = bookOdds?.totals || game.consensus?.totals;

@@ -144,34 +144,19 @@ interface PageProps {
 }
 
 async function fetchLineHistory(gameId: string, market: string = 'spread', period: string = 'full', book?: string) {
-  // For moneyline, skip backend and use Supabase odds_snapshots directly.
-  // The backend line_snapshots only stores home side odds without outcome_type,
-  // while odds_snapshots has both home AND away with proper outcome_type for filtering.
-  const useSupabaseOnly = market === 'moneyline';
+  // MERGE BOTH DATA SOURCES for complete history:
+  // - odds_snapshots (Supabase): older historical data (Jan 28 → Jan 31)
+  // - line_snapshots (backend): newer data (Jan 31 → present)
 
-  // Try backend first (except for moneyline)
-  if (!useSupabaseOnly) {
-    try {
-      let url = `${BACKEND_URL}/api/lines/${gameId}?market=${market}&period=${period}`;
-      if (book) url += `&book=${book}`;
-      const res = await fetch(url, { cache: 'no-store' });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.snapshots && data.snapshots.length > 0) return data.snapshots;
-      }
-    } catch (e) {
-      // Backend unavailable, fall through to Supabase
-    }
-  }
+  const allSnapshots: any[] = [];
 
-  // Supabase fallback (or primary source for moneyline): query odds_snapshots
+  // 1. Query odds_snapshots from Supabase (older historical data)
   try {
     const marketMap: Record<string, string> = {
       'spread': 'spreads',
       'moneyline': 'h2h',
       'total': 'totals',
     };
-    // Build market key with period suffix (e.g., spreads_h1 for 1st half spread)
     const baseMarket = marketMap[market] || market;
     const snapshotMarket = period === 'full' ? baseMarket : `${baseMarket}_${period}`;
 
@@ -188,20 +173,68 @@ async function fetchLineHistory(gameId: string, market: string = 'spread', perio
     }
 
     const { data, error } = await query;
-    if (error || !data || data.length === 0) return [];
-
-    // Convert to the format expected by the line chart
-    return data.map((row: any) => ({
-      snapshot_time: row.snapshot_time,
-      book_key: row.book_key,
-      outcome_type: row.outcome_type,
-      line: row.line,
-      odds: row.odds,
-    }));
+    if (!error && data && data.length > 0) {
+      // Convert to normalized format
+      data.forEach((row: any) => {
+        allSnapshots.push({
+          snapshot_time: row.snapshot_time,
+          book_key: row.book_key,
+          outcome_type: row.outcome_type, // odds_snapshots has this field
+          line: row.line,
+          odds: row.odds,
+          source: 'odds_snapshots',
+        });
+      });
+    }
   } catch (e) {
-    console.error('[GameDetail] Snapshot fallback error:', e);
-    return [];
+    console.error('[GameDetail] odds_snapshots query error:', e);
   }
+
+  // 2. Query line_snapshots from backend (newer data)
+  // Note: line_snapshots doesn't have outcome_type, only stores home side
+  try {
+    let url = `${BACKEND_URL}/api/lines/${gameId}?market=${market}&period=${period}`;
+    if (book) url += `&book=${book}`;
+    const res = await fetch(url, { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.snapshots && data.snapshots.length > 0) {
+        data.snapshots.forEach((row: any) => {
+          allSnapshots.push({
+            snapshot_time: row.snapshot_time,
+            book_key: row.book_key,
+            outcome_type: row.outcome_type || null, // line_snapshots may not have this
+            line: row.line,
+            odds: row.odds,
+            source: 'line_snapshots',
+          });
+        });
+      }
+    }
+  } catch (e) {
+    // Backend unavailable, continue with what we have
+  }
+
+  // 3. Deduplicate by timestamp + book_key + outcome_type
+  // Prefer odds_snapshots data when there's a conflict (has outcome_type)
+  const seen = new Map<string, any>();
+  for (const snap of allSnapshots) {
+    // Create unique key: timestamp + book + outcome (for deduplication)
+    const key = `${snap.snapshot_time}-${snap.book_key}-${snap.outcome_type || 'home'}`;
+    const existing = seen.get(key);
+
+    // Keep odds_snapshots version if it exists (has outcome_type)
+    if (!existing || (snap.source === 'odds_snapshots' && existing.source === 'line_snapshots')) {
+      seen.set(key, snap);
+    }
+  }
+
+  // 4. Convert to array, sort chronologically, remove source field
+  const merged = Array.from(seen.values())
+    .sort((a, b) => new Date(a.snapshot_time).getTime() - new Date(b.snapshot_time).getTime())
+    .map(({ source, ...rest }) => rest); // Remove internal source field
+
+  return merged;
 }
 
 async function fetchAllGamesForSport(sport: string) {

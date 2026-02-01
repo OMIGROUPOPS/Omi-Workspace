@@ -447,6 +447,24 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     setActiveSport(null, 'mount-effect');
   }, [initialFetchedAt]);
 
+  // DEBUG: Log bookmakers when book selection changes
+  useEffect(() => {
+    const allGames = Object.values(games).flat();
+    const firstGame = allGames[0];
+    if (firstGame) {
+      const bookOdds = firstGame.bookmakers?.[selectedBook];
+      console.log(`[BOOK SELECT] selectedBook="${selectedBook}"`, {
+        firstGameTeams: `${firstGame.homeTeam} vs ${firstGame.awayTeam}`,
+        bookmakerKeys: firstGame.bookmakers ? Object.keys(firstGame.bookmakers) : 'NO BOOKMAKERS OBJ',
+        hasSelectedBookOdds: !!bookOdds,
+        selectedBookOdds: bookOdds,
+        consensusSpreads: firstGame.consensus?.spreads,
+      });
+    } else {
+      console.log(`[BOOK SELECT] selectedBook="${selectedBook}" - NO GAMES`);
+    }
+  }, [selectedBook, games]);
+
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -939,17 +957,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                       {/* Away Row */}
                       {(() => {
                         const bookOdds = game.bookmakers?.[selectedBook];
-                        // DEBUG: Log bookmakers data on first game render
-                        if (game.id && !game._debugLogged) {
-                          console.log(`[BOOK DEBUG] Game ${game.homeTeam} vs ${game.awayTeam}:`, {
-                            selectedBook,
-                            bookmakerKeys: game.bookmakers ? Object.keys(game.bookmakers) : 'NO BOOKMAKERS',
-                            hasBookOdds: !!bookOdds,
-                            bookOdds: bookOdds,
-                            consensus: game.consensus,
-                          });
-                          game._debugLogged = true;
-                        }
                         const spreads = bookOdds?.spreads || game.consensus?.spreads;
                         const h2h = bookOdds?.h2h || game.consensus?.h2h;
                         const totals = bookOdds?.totals || game.consensus?.totals;

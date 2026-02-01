@@ -85,17 +85,32 @@ const CORE_MARKETS = "h2h,spreads,totals";
 // Per-event additional markets fetched via /sports/{sport}/events/{id}/odds
 // Pro sports get full enrichment; others get basic enrichment to conserve quota
 const EVENT_MARKETS: Record<string, string[]> = {
-  // American Football
+  // American Football - Full Game, 1H, 2H, 1Q, 2Q, 3Q, 4Q
   americanfootball_nfl: [
+    // Halves
     "h2h_h1", "spreads_h1", "totals_h1",
     "h2h_h2", "spreads_h2", "totals_h2",
+    // Quarters
+    "h2h_q1", "spreads_q1", "totals_q1",
+    "h2h_q2", "spreads_q2", "totals_q2",
+    "h2h_q3", "spreads_q3", "totals_q3",
+    "h2h_q4", "spreads_q4", "totals_q4",
+    // Alt lines and team totals
     "alternate_spreads", "alternate_totals", "team_totals",
+    // Player props
     "player_pass_yds", "player_rush_yds", "player_reception_yds",
     "player_receptions", "player_pass_tds", "player_anytime_td",
   ],
   americanfootball_ncaaf: [
+    // Halves
     "h2h_h1", "spreads_h1", "totals_h1",
     "h2h_h2", "spreads_h2", "totals_h2",
+    // Quarters
+    "h2h_q1", "spreads_q1", "totals_q1",
+    "h2h_q2", "spreads_q2", "totals_q2",
+    "h2h_q3", "spreads_q3", "totals_q3",
+    "h2h_q4", "spreads_q4", "totals_q4",
+    // Alt lines and team totals
     "alternate_spreads", "alternate_totals", "team_totals",
   ],
 
@@ -152,25 +167,39 @@ const EVENT_MARKETS: Record<string, string[]> = {
     "batter_home_runs", "batter_rbis",
   ],
 
-  // Soccer (top leagues get more markets)
+  // Soccer - Full Game, 1H, 2H (top leagues get more markets)
   soccer_epl: [
-    "alternate_spreads", "alternate_totals",
+    // Halves
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    // Alt lines and special markets
+    "alternate_spreads", "alternate_totals", "team_totals",
     "btts", "draw_no_bet",
   ],
   soccer_uefa_champs_league: [
-    "alternate_spreads", "alternate_totals",
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals", "team_totals",
   ],
   soccer_spain_la_liga: [
-    "alternate_spreads", "alternate_totals",
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals", "team_totals",
   ],
   soccer_germany_bundesliga: [
-    "alternate_spreads", "alternate_totals",
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals", "team_totals",
   ],
   soccer_italy_serie_a: [
-    "alternate_spreads", "alternate_totals",
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals", "team_totals",
   ],
   soccer_france_ligue_one: [
-    "alternate_spreads", "alternate_totals",
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals", "team_totals",
   ],
 };
 

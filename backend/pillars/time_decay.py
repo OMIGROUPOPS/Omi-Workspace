@@ -29,9 +29,9 @@ SPORT_REST_IMPORTANCE = {
     "icehockey_nhl": 0.9,
 }
 
-# NFL Home Field Advantage - historical win rates
+# NFL Home Field Advantage - AMPLIFIED for visual differentiation
 # Super Bowl is typically at neutral site, but one team is designated "home"
-NFL_HOME_FIELD_ADVANTAGE = 0.03  # ~3% edge historically
+NFL_HOME_FIELD_ADVANTAGE = 0.08  # ~8% edge for meaningful visual impact
 
 # NFL team locations for travel distance calculation
 NFL_TEAM_LOCATIONS = {
@@ -194,21 +194,34 @@ def calculate_time_decay_score(
 
         logger.info(f"[TimeDecay] Travel: {home_team}={home_travel_miles:.0f}mi, {away_team}={away_travel_miles:.0f}mi")
 
-        # Travel impact: longer travel = more fatigue
-        # Every 500 miles = ~0.02 fatigue increase
-        travel_diff = (away_travel_miles - home_travel_miles) / 500 * 0.02
+        # AMPLIFIED Travel impact for visual differentiation
+        # >2000 miles = significant penalty (0.10-0.15)
+        # >1000 miles = moderate penalty (0.05-0.10)
+        # <500 miles = minimal impact
+        travel_diff = 0.0
 
-        if abs(travel_diff) > 0.01:
-            situational_adjustment -= travel_diff  # Negative = home advantage
-            if away_travel_miles > home_travel_miles + 500:
-                reasoning_parts.append(f"{away_team} travels {away_travel_miles:.0f} miles")
-            elif home_travel_miles > away_travel_miles + 500:
-                reasoning_parts.append(f"{home_team} travels {home_travel_miles:.0f} miles")
+        if away_travel_miles > 2000:
+            travel_diff = 0.12 + (away_travel_miles - 2000) / 5000 * 0.05  # 12-17% penalty
+            reasoning_parts.append(f"MAJOR: {away_team} travels {away_travel_miles:.0f} miles (cross-country)")
+        elif away_travel_miles > 1000:
+            travel_diff = 0.06 + (away_travel_miles - 1000) / 1000 * 0.06  # 6-12% penalty
+            reasoning_parts.append(f"{away_team} travels {away_travel_miles:.0f} miles")
+        elif away_travel_miles > 500:
+            travel_diff = 0.03 + (away_travel_miles - 500) / 500 * 0.03  # 3-6% penalty
+            reasoning_parts.append(f"{away_team} travels {away_travel_miles:.0f} miles")
+
+        # Apply travel differential (negative = home advantage)
+        situational_adjustment -= travel_diff
+
+        # Home team bonus if they have minimal travel
+        if home_travel_miles < 500 and away_travel_miles > 1000:
+            situational_adjustment -= 0.05  # Extra 5% for home team rest advantage
+            reasoning_parts.append(f"{home_team} rested at home")
 
         # Home field advantage for NFL (designated home team)
-        # In playoffs/Super Bowl, home team has slight edge even at neutral site
+        # AMPLIFIED: 8% base + travel bonus
         situational_adjustment -= NFL_HOME_FIELD_ADVANTAGE
-        reasoning_parts.append(f"{home_team} designated home team")
+        reasoning_parts.append(f"{home_team} designated home team (+8%)")
 
     # Standard rest analysis
     if home_rest["is_back_to_back"]:

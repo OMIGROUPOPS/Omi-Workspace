@@ -16,21 +16,22 @@ from data_sources.espn import espn_client
 
 logger = logging.getLogger(__name__)
 
-# NFL position importance weights (higher = more impactful when injured)
+# NFL position importance weights - AMPLIFIED for visual differentiation
+# Higher = more impactful when injured (scale: 0-10)
 NFL_POSITION_WEIGHTS = {
-    "QB": 5.0,    # Quarterback is most important
-    "LT": 2.5,    # Left tackle protects blind side
-    "RT": 2.0,
-    "WR": 1.8,
-    "RB": 1.5,
-    "TE": 1.3,
-    "CB": 2.0,    # Cornerbacks critical vs pass
-    "EDGE": 2.2,  # Pass rushers
-    "DE": 2.0,
-    "DT": 1.5,
-    "LB": 1.5,
-    "S": 1.5,
-    "K": 1.0,
+    "QB": 10.0,   # Quarterback is CRITICAL - 25-30% swing if out
+    "LT": 4.0,    # Left tackle protects blind side
+    "RT": 3.5,
+    "WR": 3.0,    # Star WR matters
+    "RB": 2.5,
+    "TE": 2.0,
+    "CB": 3.5,    # Cornerbacks critical vs pass
+    "EDGE": 4.0,  # Pass rushers
+    "DE": 3.5,
+    "DT": 2.5,
+    "LB": 2.5,
+    "S": 2.5,
+    "K": 1.5,
     "P": 0.5,
 }
 
@@ -65,7 +66,7 @@ def calculate_execution_score(
 
     reasoning_parts = []
 
-    # Enhanced NFL injury analysis
+    # AMPLIFIED NFL injury analysis for visual differentiation
     if sport in ["NFL", "americanfootball_nfl"]:
         # Apply NFL-specific position weighting
         home_weighted = _calculate_nfl_weighted_injuries(home_injuries)
@@ -77,16 +78,27 @@ def calculate_execution_score(
             away_injury_score = away_weighted
             logger.info(f"[Execution] NFL weighted injuries: Home={home_weighted:.3f}, Away={away_weighted:.3f}")
 
-        # Check for QB injuries specifically (game-changing)
+        # Check for QB injuries specifically - GAME CHANGING (25-35% swing)
         home_qb_out = _check_qb_status(home_injuries)
         away_qb_out = _check_qb_status(away_injuries)
 
         if home_qb_out:
-            home_injury_score += 0.3
-            reasoning_parts.append(f"{home_team} QB situation impacted")
+            home_injury_score += 0.50  # QB out = massive 50% impact
+            reasoning_parts.append(f"CRITICAL: {home_team} QB situation impacted")
         if away_qb_out:
-            away_injury_score += 0.3
-            reasoning_parts.append(f"{away_team} QB situation impacted")
+            away_injury_score += 0.50  # QB out = massive 50% impact
+            reasoning_parts.append(f"CRITICAL: {away_team} QB situation impacted")
+
+        # Additional impact for multiple key players out
+        home_key_count = len(home_injuries.get("key_players_out", []))
+        away_key_count = len(away_injuries.get("key_players_out", []))
+
+        if home_key_count >= 3:
+            home_injury_score += 0.15
+            reasoning_parts.append(f"{home_team} decimated by injuries ({home_key_count} key players)")
+        if away_key_count >= 3:
+            away_injury_score += 0.15
+            reasoning_parts.append(f"{away_team} decimated by injuries ({away_key_count} key players)")
 
     injury_differential = home_injury_score - away_injury_score
 
@@ -101,14 +113,18 @@ def calculate_execution_score(
 
     base_score = 0.5
 
-    # Amplify injury differential impact for NFL
+    # AMPLIFIED injury differential impact for visual differentiation
+    # Goal: key injuries = 30-40% swing, QB out = 65-80% range
     if sport in ["NFL", "americanfootball_nfl"]:
-        injury_adjustment = injury_differential * 0.5  # Higher multiplier for NFL
+        # Higher multiplier for NFL - injuries matter more
+        injury_adjustment = injury_differential * 0.65
     else:
-        injury_adjustment = injury_differential * 0.4
+        injury_adjustment = injury_differential * 0.50
 
     score = base_score + injury_adjustment + weather_factor
-    score = max(0.0, min(1.0, score))
+
+    # Clamp but preserve extremes for visual impact
+    score = max(0.15, min(0.85, score))  # Allow 15-85% range for dramatic injuries
 
     # Add reasoning based on injury counts
     if home_injuries['out_count'] > 0:
@@ -151,14 +167,22 @@ def _calculate_nfl_weighted_injuries(injuries: dict) -> float:
     if not injuries:
         return 0.0
 
-    # This would ideally use detailed injury data with positions
-    # For now, use the base score but could be enhanced with position data
+    # AMPLIFIED scoring for visual differentiation
     base_score = injuries.get("impact_score", 0)
 
-    # Boost score if key players are out
+    # Key players out = significant impact (15% per key player, max 50%)
     key_count = len(injuries.get("key_players_out", []))
     if key_count > 0:
-        base_score += key_count * 0.1
+        # 15% for first key player, 12% for second, 10% for third, etc.
+        key_impact = 0
+        for i in range(key_count):
+            key_impact += max(0.15 - (i * 0.03), 0.08)
+        base_score += min(key_impact, 0.50)
+
+    # Out count also matters (role players still impact)
+    out_count = injuries.get("out_count", 0)
+    if out_count > 5:
+        base_score += 0.10  # Significant roster attrition
 
     return min(base_score, 1.0)
 

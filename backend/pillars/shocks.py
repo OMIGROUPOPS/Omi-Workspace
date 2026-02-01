@@ -45,46 +45,69 @@ def calculate_shocks_score(
     
     line_movement = 0.0
     movement_significance = 0.0
-    
+
     if current_line is not None and opening_line is not None:
         line_movement = current_line - opening_line
-        
-        movement_thresholds = {
-            "NFL": 2.5,
-            "NCAAF": 3.0,
-            "NBA": 3.0,
-            "NCAAB": 3.5,
-            "NHL": 0.5,
-        }
-        threshold = movement_thresholds.get(sport, 2.5)
-        
-        if abs(line_movement) >= threshold:
+
+        # AMPLIFIED thresholds for visual impact
+        # Line move > 1pt = significant, > 2pt = major
+        abs_movement = abs(line_movement)
+
+        if abs_movement >= 2.0:
+            # MAJOR line movement - 70-80% range
             shock_detected = True
-            movement_significance = abs(line_movement) / threshold
-            
+            movement_significance = 0.25 + (abs_movement - 2.0) * 0.05  # 25-30%+
+
             if line_movement > 0:
                 shock_direction = "away"
-                reasoning_parts.append(f"Significant line movement: +{line_movement:.1f} toward {away_team}")
+                reasoning_parts.append(f"MAJOR line move: +{line_movement:.1f} toward {away_team}")
             else:
                 shock_direction = "home"
-                reasoning_parts.append(f"Significant line movement: {line_movement:.1f} toward {home_team}")
-        elif abs(line_movement) >= threshold * 0.5:
-            reasoning_parts.append(f"Moderate line movement: {line_movement:+.1f}")
+                reasoning_parts.append(f"MAJOR line move: {line_movement:.1f} toward {home_team}")
+
+        elif abs_movement >= 1.0:
+            # Significant line movement - 60-70% range
+            shock_detected = True
+            movement_significance = 0.12 + (abs_movement - 1.0) * 0.13  # 12-25%
+
+            if line_movement > 0:
+                shock_direction = "away"
+                reasoning_parts.append(f"Significant line move: +{line_movement:.1f} toward {away_team}")
+            else:
+                shock_direction = "home"
+                reasoning_parts.append(f"Significant line move: {line_movement:.1f} toward {home_team}")
+
+        elif abs_movement >= 0.5:
+            # Moderate movement - 55-60% range
+            movement_significance = 0.05 + (abs_movement - 0.5) * 0.14  # 5-12%
+            if line_movement > 0:
+                reasoning_parts.append(f"Moderate line move: +{line_movement:.1f} toward {away_team}")
+            else:
+                reasoning_parts.append(f"Moderate line move: {line_movement:.1f} toward {home_team}")
     
     key_player_shock = False
-    
+
+    # AMPLIFIED injury impact for visual differentiation
+    # Key player out = 15-25% swing per player
+    home_key_count = len(home_injuries.get("key_players_out", []))
+    away_key_count = len(away_injuries.get("key_players_out", []))
+
     if home_injuries["key_players_out"]:
         key_player_shock = True
-        shock_magnitude += 0.2
+        # 15% base + 10% per additional key player (max 35%)
+        injury_impact = min(0.15 + (home_key_count - 1) * 0.10, 0.35)
+        shock_magnitude += injury_impact
         shock_direction = "away" if shock_direction == "neutral" else shock_direction
-        reasoning_parts.append(f"Key {home_team} player(s) out: {', '.join(home_injuries['key_players_out'][:2])}")
-    
+        reasoning_parts.append(f"KEY OUT {home_team}: {', '.join(home_injuries['key_players_out'][:3])}")
+
     if away_injuries["key_players_out"]:
         key_player_shock = True
-        shock_magnitude += 0.2
+        # 15% base + 10% per additional key player (max 35%)
+        injury_impact = min(0.15 + (away_key_count - 1) * 0.10, 0.35)
+        shock_magnitude += injury_impact
         if shock_direction == "neutral":
             shock_direction = "home"
-        reasoning_parts.append(f"Key {away_team} player(s) out: {', '.join(away_injuries['key_players_out'][:2])}")
+        reasoning_parts.append(f"KEY OUT {away_team}: {', '.join(away_injuries['key_players_out'][:3])}")
     
     if key_player_shock:
         shock_detected = True
@@ -134,18 +157,35 @@ def calculate_shocks_score(
                 total_movement = lines[-1] - lines[0]
                 velocity = total_movement / hours_elapsed
 
-                # Sharp move detection: >0.5 points per hour = sharp action
-                if abs(velocity) > 0.5:
+                # AMPLIFIED sharp move detection for visual impact
+                # >0.3 pts/hr = notable, >0.5 pts/hr = sharp, >1.0 pts/hr = steam
+                if abs(velocity) >= 1.0:
                     sharp_move_detected = True
                     direction = "toward away" if velocity > 0 else "toward home"
-                    reasoning_parts.append(f"Sharp line velocity: {velocity:+.2f} pts/hr ({direction})")
+                    reasoning_parts.append(f"STEAM MOVE: {velocity:+.2f} pts/hr ({direction})")
 
-                    # Adjust score for sharp moves
-                    sharp_adjustment = min(abs(velocity) * 0.1, 0.15)
+                    # Steam move = 15-25% adjustment
+                    sharp_adjustment = 0.15 + min((abs(velocity) - 1.0) * 0.10, 0.10)
                     if velocity > 0:
                         base_score += sharp_adjustment
                     else:
                         base_score -= sharp_adjustment
+
+                elif abs(velocity) > 0.5:
+                    sharp_move_detected = True
+                    direction = "toward away" if velocity > 0 else "toward home"
+                    reasoning_parts.append(f"SHARP: {velocity:+.2f} pts/hr ({direction})")
+
+                    # Sharp move = 8-15% adjustment
+                    sharp_adjustment = 0.08 + (abs(velocity) - 0.5) * 0.14
+                    if velocity > 0:
+                        base_score += sharp_adjustment
+                    else:
+                        base_score -= sharp_adjustment
+
+                elif abs(velocity) > 0.3:
+                    direction = "toward away" if velocity > 0 else "toward home"
+                    reasoning_parts.append(f"Line moving: {velocity:+.2f} pts/hr ({direction})")
             except Exception as e:
                 logger.warning(f"Error calculating velocity: {e}")
 

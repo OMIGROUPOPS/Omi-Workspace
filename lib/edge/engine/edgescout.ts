@@ -477,15 +477,126 @@ function calculateMarketEfficiencyPillar(
 // PILLAR 2: PLAYER UTILIZATION (Props only - N/A initially)
 // ============================================================================
 
-function calculatePlayerUtilizationPillar(): PillarResult {
+function calculatePlayerUtilizationPillar(
+  homeTeam?: TeamStatsData,
+  awayTeam?: TeamStatsData,
+  league: string = 'nfl'
+): PillarResult {
+  const variables: PillarVariable[] = [];
+  let totalScore = 0;
+  let availableCount = 0;
+
+  // UVI (Utilization Variance Index)
+  // For NFL: Estimate from win/loss patterns (consistent teams = more predictable utilization)
+  // For NBA: Use pace data if available
+  let uviScore = 50;
+  let uviAvailable = false;
+  let uviReason = 'Utilization data not available';
+
+  if (homeTeam || awayTeam) {
+    const homeWinPct = homeTeam?.win_pct ?? (homeTeam?.wins && homeTeam?.losses
+      ? homeTeam.wins / (homeTeam.wins + homeTeam.losses)
+      : null);
+    const awayWinPct = awayTeam?.win_pct ?? (awayTeam?.wins && awayTeam?.losses
+      ? awayTeam.wins / (awayTeam.wins + awayTeam.losses)
+      : null);
+
+    if (homeWinPct !== null || awayWinPct !== null) {
+      // Teams with extreme records (very good or very bad) have more consistent utilization
+      const homeConsistency = homeWinPct !== null ? Math.abs(homeWinPct - 0.5) : 0;
+      const awayConsistency = awayWinPct !== null ? Math.abs(awayWinPct - 0.5) : 0;
+      const avgConsistency = ((homeConsistency || 0) + (awayConsistency || 0)) / 2;
+
+      // Higher consistency = more predictable game = slight edge on favorites
+      uviScore = 50 + Math.round(avgConsistency * 30);
+      uviAvailable = true;
+      uviReason = `Team consistency: ${(avgConsistency * 100).toFixed(0)}% deviation from .500`;
+    }
+  }
+
+  variables.push({
+    name: 'UVI',
+    value: uviScore - 50,
+    score: uviScore,
+    available: uviAvailable,
+    reason: uviReason,
+  });
+  if (uviAvailable) {
+    totalScore += uviScore;
+    availableCount++;
+  }
+
+  // RER (Role Efficiency Rating)
+  // Estimate from team scoring patterns
+  let rerScore = 50;
+  let rerAvailable = false;
+  let rerReason = 'Role efficiency data not available';
+
+  if (homeTeam?.points_per_game || awayTeam?.points_per_game) {
+    const homePPG = homeTeam?.points_per_game ?? 22;
+    const awayPPG = awayTeam?.points_per_game ?? 22;
+
+    // Higher scoring teams = more efficient role utilization
+    const avgPPG = (homePPG + awayPPG) / 2;
+    const leagueAvg = league === 'nba' ? 115 : league === 'nfl' ? 22 : 3;
+
+    const deviation = ((avgPPG - leagueAvg) / leagueAvg) * 100;
+    rerScore = Math.round(50 + deviation * 2);
+    rerScore = Math.max(30, Math.min(70, rerScore));
+    rerAvailable = true;
+    rerReason = `Scoring efficiency: ${avgPPG.toFixed(1)} PPG (league avg: ${leagueAvg})`;
+  }
+
+  variables.push({
+    name: 'RER',
+    value: rerScore - 50,
+    score: rerScore,
+    available: rerAvailable,
+    reason: rerReason,
+  });
+  if (rerAvailable) {
+    totalScore += rerScore;
+    availableCount++;
+  }
+
+  // Z-Score (Statistical Baseline Deviation)
+  // Compare team performance to league baseline
+  let zScore = 50;
+  let zAvailable = false;
+  let zReason = 'Baseline stats not available';
+
+  if (homeTeam?.points_allowed_per_game || awayTeam?.points_allowed_per_game) {
+    const homeAllowed = homeTeam?.points_allowed_per_game ?? 22;
+    const awayAllowed = awayTeam?.points_allowed_per_game ?? 22;
+
+    // Lower points allowed = better defense = positive z-score for home
+    const defDiff = awayAllowed - homeAllowed;
+    zScore = Math.round(50 + defDiff * 2);
+    zScore = Math.max(30, Math.min(70, zScore));
+    zAvailable = true;
+    zReason = `Defensive matchup: Home allows ${homeAllowed.toFixed(1)} vs Away ${awayAllowed.toFixed(1)}`;
+  }
+
+  variables.push({
+    name: 'Z-Score',
+    value: zScore - 50,
+    score: zScore,
+    available: zAvailable,
+    reason: zReason,
+  });
+  if (zAvailable) {
+    totalScore += zScore;
+    availableCount++;
+  }
+
+  // Calculate final score
+  const finalScore = availableCount > 0 ? Math.round(totalScore / availableCount) : 50;
+  const weight = availableCount > 0 ? 0.10 : 0;  // Give some weight if we have data
+
   return {
-    score: 50,
-    weight: 0,
-    variables: [
-      { name: 'UVI', value: 0, score: 50, available: false, reason: 'Utilization data not available' },
-      { name: 'RER', value: 0, score: 50, available: false, reason: 'Regression data not available' },
-      { name: 'Z-Score', value: 0, score: 50, available: false, reason: 'Baseline stats not available' },
-    ],
+    score: finalScore,
+    weight,
+    variables,
   };
 }
 
@@ -956,7 +1067,11 @@ export function calculateCEQ(
     pinnacleLine,
     bookLine
   );
-  let playerUtilization = calculatePlayerUtilizationPillar();
+  let playerUtilization = calculatePlayerUtilizationPillar(
+    gameContext?.homeTeam,
+    gameContext?.awayTeam,
+    gameContext?.league
+  );
   let gameEnvironment = calculateGameEnvironmentPillar(
     gameContext?.homeTeam,
     gameContext?.awayTeam,

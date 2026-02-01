@@ -1,0 +1,502 @@
+
+======================================================================
+ARB EXECUTOR v7 - DIRECT US EXECUTION
+Kalshi + Polymarket US | No partner webhook
+Mode: PAPER
+======================================================================
+
+======================================================================
+ARB EXECUTOR v7 - DIRECT US EXECUTION
+Mode: PAPER
+HARD LIMITS: Max 20 contracts, Max $10 per trade
+Cooldown: 10s between trades
+PM US Fee: 0.10% taker | Kalshi Fee: 1%
+======================================================================
+
+*** PAPER TRADING MODE - NO REAL ORDERS ***
+
+[DEBUG PM US] Raw balance response: {"balances": [{"currentBalance": 10, "currency": "USD", "lastUpdated": null, "buyingPower": 10, "assetNotional": 0, "assetAvailable": 0, "pendingCredit": 0, "openOrders": 0, "unsettledFunds": 0, "pendingWithdrawals": [], "marginRequirement": 0, "balanceReservation": 10}]}
+[DEBUG PM US] buyingPower=10, currentBalance=10
+Kalshi Balance: $247.56
+PM US Balance: $10.00
+[DEBUG KALSHI] KXNBAGAME: 44 tradeable markets
+  Sample: KXNBAGAME-26JAN30DETGSW-GSW status=active
+  yes_bid=44 yes_ask=52
+  last_price=51 close_time=2026-02-14T03:00:00Z
+[DEBUG KALSHI] KXNHLGAME: 38 tradeable markets
+  Sample: KXNHLGAME-26JAN31COLDET-DET status=active
+  yes_bid=31 yes_ask=65
+  last_price=0 close_time=2026-02-14T18:00:00Z
+
+[DEBUG PM US] Raw API returned 21 markets
+[DEBUG PM US] Sample 1:
+  slug: aec-cbb-arpb-grmbst-2026-01-28
+  outcomes: ["Golden Lions","Tigers"]
+  outcomePrices: ["0.997","0.997"] (NOTE: this is last/mid price, NOT order book)
+  gameStartTime: 2026-01-28T20:00:00Z
+[DEBUG PM US] Sample 2:
+  slug: aec-cbb-fl-sc-2026-01-28
+  outcomes: ["Gators","Gamecocks"]
+  outcomePrices: ["0","0.019"] (NOTE: this is last/mid price, NOT order book)
+  gameStartTime: 2026-01-29T02:00:00Z
+[DEBUG PM US] Sample 3:
+  slug: aec-cbb-sd-pepp-2026-01-28
+  outcomes: ["Toreros","Waves"]
+  outcomePrices: ["0.486","0.526"] (NOTE: this is last/mid price, NOT order book)
+  gameStartTime: 2026-01-29T02:00:00Z
+[DEBUG TZ] aec-nba-gs-uta-2026-01-28: UTC=2026-01-29T02:00:00Z -> EST=2026-01-28
+[DEBUG TZ] aec-cbb-stan-mia-2026-01-28: UTC=2026-01-29T02:00:00Z -> EST=2026-01-28
+[DEBUG TZ] aec-nba-min-dal-2026-01-28: UTC=2026-01-29T01:30:00Z -> EST=2026-01-28
+[DEBUG TZ] aec-nba-sa-hou-2026-01-28: UTC=2026-01-29T02:30:00Z -> EST=2026-01-28
+[DEBUG TZ] aec-cbb-ucla-ore-2026-01-28: UTC=2026-01-29T04:00:00Z -> EST=2026-01-28
+
+[PM US] Phase 1: Matched 5 markets with exact date matching
+[PM US] Phase 2: Fetching order books for 5 unique markets...
+[DEBUG PM US] Orderbook for aec-nba-min-dal-2026-01-28: {"marketData": {"marketSlug": "aec-nba-min-dal-2026-01-28", "bids": [{"px": {"value": "0.939", "currency": "USD"}, "qty": "684.000"}, {"px": {"value": "0.937", "currency": "USD"}, "qty": "300.000"}, {"px": {"value": "0.936", "currency": "USD"}, "qty": "3000.000"}, {"px": {"value": "0.927", "currency": "USD"}, "qty": "525.000"}, {"px": {"value": "0.926", "currency": "USD"}, "qty": "3000.000"}, {"px": {"value": "0.911", "currency": "USD"}, "qty": "5476.000"}, {"px": {"value": "0.908", "currency": "USD"}, "qty": "1652.000"}, {"px": {"value": "0.900", "currency": "USD"}, "qty": "4444.000"}, {"px": {"value": "0.893", "currency": "USD"}, "qty": "525.000"}, {"px": {"value": "0.892", "currency": "US
+[DEBUG PM US] Parsed: best_bid=0.939, best_ask=0.949, bid_size=684, ask_size=684
+[DEBUG PM US] Orderbook for aec-cbb-stan-mia-2026-01-28: {"marketData": {"marketSlug": "aec-cbb-stan-mia-2026-01-28", "bids": [{"px": {"value": "0.514", "currency": "USD"}, "qty": "84.000"}, {"px": {"value": "0.513", "currency": "USD"}, "qty": "84.000"}, {"px": {"value": "0.511", "currency": "USD"}, "qty": "250.000"}, {"px": {"value": "0.502", "currency": "USD"}, "qty": "525.000"}, {"px": {"value": "0.501", "currency": "USD"}, "qty": "250.000"}, {"px": {"value": "0.492", "currency": "USD"}, "qty": "8000.000"}, {"px": {"value": "0.482", "currency": "USD"}, "qty": "4000.000"}, {"px": {"value": "0.433", "currency": "USD"}, "qty": "525.000"}, {"px": {"value": "0.430", "currency": "USD"}, "qty": "1000.000"}, {"px": {"value": "0.374", "currency": "USD"}
+[DEBUG PM US] Parsed: best_bid=0.514, best_ask=0.526, bid_size=84, ask_size=245
+[PM US] Phase 2: Got 5 order books
+[DEBUG OB] nba:GSW-UTA:2026-01-28: GSW bid/ask=89/90c, UTA bid/ask=10/11c
+[DEBUG OB] nhl:CAR-CAR:2026-01-28: CAR bid/ask=51/52c, CAR bid/ask=48/49c
+[DEBUG OB] nba:DAL-MIN:2026-01-28: MIN bid/ask=93/94c, DAL bid/ask=6/7c
+[PM US] Phase 3: 5 with order book, 0 using mid prices (unreliable)
+
+[DEBUG PM US] 5 unmatched market samples:
+  slug: aec-cbb-arpb-grmbst-2026-01-28
+  outcomes: ['Golden Lions', 'Tigers']
+  slug: aec-cbb-stan-mia-2026-01-28
+  outcomes: ['Cardinal', 'Hurricanes']
+  slug: aec-cbb-illst-murst-2026-01-28
+  outcomes: ['Redbirds', 'Racers']
+  slug: aec-cbb-illst-murst-2026-01-28
+  outcomes: ['Redbirds', 'Racers']
+  slug: aec-cbb-depaul-george-2026-01-28
+  outcomes: ['Blue Demons', 'Hoyas']
+[DEBUG LIVE] 26JAN30DETGSW: game_date=2026-01-30, today=2026-01-28, status=active -> NOT LIVE (future)
+[DEBUG LIVE] 26JAN30DETGSW: game_date=2026-01-30, today=2026-01-28, status=active -> NOT LIVE (future)
+[DEBUG LIVE] 26JAN30BKNUTA: game_date=2026-01-30, today=2026-01-28, status=active -> NOT LIVE (future)
+[DEBUG LIVE] 26JAN30BKNUTA: game_date=2026-01-30, today=2026-01-28, status=active -> NOT LIVE (future)
+[DEBUG LIVE] 26JAN30CLEPHX: game_date=2026-01-30, today=2026-01-28, status=active -> NOT LIVE (future)
+[DEBUG LIVE] 26JAN30CLEPHX: game_date=2026-01-30, today=2026-01-28, status=active -> NOT LIVE (future)
+[DEBUG LIVE] 26JAN30LACDEN: game_date=2026-01-30, today=2026-01-28, status=active -> NOT LIVE (future)
+[DEBUG LIVE] 26JAN30LACDEN: game_date=2026-01-30, today=2026-01-28, status=active -> NOT LIVE (future)
+[DEBUG LIVE] 26JAN30TORORL: game_date=2026-01-30, today=2026-01-28, status=active -> NOT LIVE (future)
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+
+[DEBUG CACHE KEYS] Kalshi: 41 | PM US: 5 | Matched: 3
+[DEBUG] MATCHED keys: ['nba:GSW-UTA:2026-01-28', 'nba:HOU-SAS:2026-01-28', 'nba:DAL-MIN:2026-01-28']
+
+[DEBUG] KALSHI ONLY (no PM match) - 38 keys:
+  2026-01-25: ['nba:DAL-MIL:2026-01-25', 'nba:DEN-MEM:2026-01-25']
+  2026-01-26: ['nhl:CBJ-LA:2026-01-26']
+  2026-01-29: ['nhl:FLA-STL:2026-01-29', 'nhl:EDM-SJ:2026-01-29', 'nhl:DAL-VGK:2026-01-29']
+
+[DEBUG] PM US ONLY (no Kalshi match) - 2 keys:
+  2026-01-28: ['nhl:ANA-BOS:2026-01-28', 'nhl:CAR-CAR:2026-01-28']
+
+[DEBUG] Checking for team matches with different dates...
+======================================================================
+v7 DIRECT US | Scan #1 | 22:17:10 | 454ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #2 | 22:17:11 | 124ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #3 | 22:17:12 | 125ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #4 | 22:17:13 | 145ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #5 | 22:17:14 | 142ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #6 | 22:17:15 | 189ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #7 | 22:17:16 | 120ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #8 | 22:17:18 | 118ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #9 | 22:17:19 | 129ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #10 | 22:17:20 | 131ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #11 | 22:17:21 | 425ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #12 | 22:17:22 | 199ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #13 | 22:17:24 | 197ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #14 | 22:17:25 | 104ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #15 | 22:17:26 | 124ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #16 | 22:17:27 | 143ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #17 | 22:17:28 | 163ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #18 | 22:17:29 | 117ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #19 | 22:17:30 | 105ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #20 | 22:17:32 | 121ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #21 | 22:17:33 | 116ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #22 | 22:17:34 | 132ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #23 | 22:17:35 | 121ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #24 | 22:17:36 | 115ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #25 | 22:17:37 | 108ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 37/38c
+======================================================================
+v7 DIRECT US | Scan #26 | 22:17:38 | 144ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 0 arbs, 0 pass 5.0% ROI threshold
+
+[.] No executable arbs
+
+[!!! LIVE GAMES !!!] 3 games IN PROGRESS - prices changing rapidly!
+  NBA: 26JAN28MINDAL - current bid/ask: 94/95c
+  NBA: 26JAN28GSWUTA - current bid/ask: 10/11c
+  NBA: 26JAN28SASHOU - current bid/ask: 32/33c
+======================================================================
+v7 DIRECT US | Scan #27 | 22:17:40 | 352ms
+Mode: PAPER | Trades: 0 | Profit: $0.00
+======================================================================
+
+[i] Kalshi Games: 41 | PM US Matched: 3 | PM US Markets: 5
+[i] Found 2 arbs, 1 pass 5.0% ROI threshold
+
+[!] BEST ARB: NBA 26JAN28SASHOU SAS
+    Direction: BUY_K_SELL_PM
+    K: 32/33c | PM: 37/39c
+    Size: 20 | Profit: $0.60 | ROI: 9.1%
+    PM Slug: aec-nba-sa-hou-2026-01-28 | Outcome Index: 0
+
+[>>] PRE-TRADE: Kalshi Position = None
+[>>] SWEEP 0: buy 20 YES @ 33c (ROI: 9.1%)
+   [PAPER] Would place: buy 20 yes @ 33c
+   [ORDER PLACED] PAPER-176965...
+   [OK] Got fill at 33c!
+
+[SWEEP CLEANUP] Ensuring no resting Kalshi orders for KXNBAGAME-26JAN28SASHOU-SAS...
+   [!] Get orders failed: HTTP 401
+   [CLEANUP] No open orders for KXNBAGAME-26JAN28SASHOU-SAS
+[>>] POST-TRADE: Kalshi Position = None
+[>>] Final: API fill=20, Position change=0, Using=20
+
+[OK] KALSHI FILLED: 20 contracts @ 33c
+[>>] Executing PM US: BUY_NO 20 @ $0.63 on aec-nba-sa-hou-2026-01-28
+   [SAFETY] PM US: Reduced to 15 contracts
+   [PAPER] PM US: BUY_NO 15 @ $0.63 on aec-nba-sa-hou-2026-01-28
+[OK] PM US FILLED: 15 contracts @ $0.63
+[!] PARTIAL PM FILL: 5 contracts UNHEDGED on Kalshi
+[$] Trade #1 | +$0.60 | Total: $0.60
+[POSITION TRACKING] Added 26JAN28SASHOU to traded games (partial hedge)
+[!!!] PARTIALLY UNHEDGED - 5 contracts on KXNBAGAME-26JAN28SASHOU-SAS
+[STOP] Bot stopping due to PARTIALLY UNHEDGED position

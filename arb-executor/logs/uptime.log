@@ -1,0 +1,4 @@
+2026-02-01 11:05:20 | STARTED | Mode: PAPER (NO_LIMITS) | Scan: 500ms
+2026-02-01 11:05:20 | STOPPED | Reason: KeyboardInterrupt
+2026-02-01 11:05:20 | STOPPED | Reason: CRASH: UnicodeEncodeError: 'charmap' codec can't encode
+2026-02-01 11:05:20 | STOPPED | Reason: CRASH: ConnectionError | {'retry_count': 3}

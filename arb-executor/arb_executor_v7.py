@@ -18,6 +18,7 @@ import base64
 import json
 import re
 import os
+import sys
 import uuid
 from datetime import datetime, timedelta
 from dataclasses import dataclass, field
@@ -28,13 +29,28 @@ from cryptography.hazmat.primitives.asymmetric import padding, ed25519
 from cryptography.hazmat.backends import default_backend
 
 # ============================================================================
+# FIX: Windows Unicode encoding issue (cp1252 can't handle special chars)
+# ============================================================================
+if sys.platform == 'win32':
+    try:
+        # Try to set UTF-8 encoding for stdout/stderr
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except AttributeError:
+        # Python < 3.7 fallback
+        import io
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
+
+# ============================================================================
 # HARD LIMITS - DO NOT CHANGE THESE
 # ============================================================================
-MAX_CONTRACTS = 20          # Absolute max contracts per trade
-MAX_COST_CENTS = 1000       # Absolute max cost in cents ($10)
+MAX_CONTRACTS = 100         # Absolute max contracts per trade
+MAX_COST_CENTS = 5000       # Absolute max cost in cents ($50)
 MIN_CONTRACTS = 20          # Minimum contracts for meaningful profit
 MIN_LIQUIDITY = 50          # Minimum bid/ask size on both sides
 MIN_PM_PRICE = 10           # Skip arbs where PM price < 10c (likely illiquid/thin)
+MIN_BUY_PRICE = 15          # Skip arbs where buy side price < 15c (stale/illiquid data)
 MIN_SPREAD_CENTS = 1        # Minimum spread to consider (after fees)
 MIN_SWEEP_ROI = 1.0         # Minimum ROI during sweep before stopping
 MAX_ROI = 50.0              # Maximum ROI - higher is likely bad data (kept for flagging)
@@ -123,6 +139,62 @@ def record_execution(kalshi_ms: float, pm_ms: float, total_ms: float, success: b
             print(f"[!!! SLOW EXECUTION !!!] Avg {EXECUTION_STATS['avg_execution_ms']:.0f}ms > {SLOW_EXECUTION_THRESHOLD_MS}ms threshold")
 
     save_execution_stats()
+
+# ============================================================================
+# UPTIME LOGGING - Track bot starts/stops for debugging
+# ============================================================================
+UPTIME_LOG_FILE = 'logs/uptime.log'
+
+def log_uptime(event: str, reason: str = "", details: dict = None):
+    """Log bot start/stop events to uptime.log for debugging crashes.
+
+    Args:
+        event: "STARTED" or "STOPPED"
+        reason: Why the bot stopped (e.g., "KeyboardInterrupt", "UnicodeEncodeError")
+        details: Optional dict with extra info (scan_interval, mode, etc.)
+    """
+    try:
+        # Ensure logs directory exists
+        os.makedirs('logs', exist_ok=True)
+
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        # Build log line
+        if event == "STARTED":
+            mode = "PAPER" if EXECUTION_MODE == ExecutionMode.PAPER else "LIVE"
+            limits = "NO_LIMITS" if PAPER_NO_LIMITS else "WITH_LIMITS"
+            scan_info = details.get('scan_interval', 'default') if details else 'default'
+            line = f"{timestamp} | {event} | Mode: {mode} ({limits}) | Scan: {scan_info}"
+        elif event == "STOPPED":
+            line = f"{timestamp} | {event} | Reason: {reason}"
+            if details:
+                line += f" | {details}"
+        else:
+            line = f"{timestamp} | {event} | {reason}"
+
+        # Append to log file
+        with open(UPTIME_LOG_FILE, 'a', encoding='utf-8') as f:
+            f.write(line + '\n')
+
+        print(f"[UPTIME] {line}")
+
+    except Exception as e:
+        print(f"[UPTIME] Error logging: {e}")
+
+def get_uptime_summary():
+    """Read uptime log and return summary of recent sessions."""
+    try:
+        if not os.path.exists(UPTIME_LOG_FILE):
+            return "No uptime log found"
+
+        with open(UPTIME_LOG_FILE, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+
+        # Get last 10 entries
+        recent = lines[-20:] if len(lines) > 20 else lines
+        return ''.join(recent)
+    except Exception as e:
+        return f"Error reading uptime log: {e}"
 
 @dataclass
 class HedgeState:
@@ -297,6 +369,7 @@ SKIP_STATS: Dict[str, int] = {
     'high_roi': 0,
     'low_liquidity': 0,
     'illiquid_price': 0,
+    'low_buy_price': 0,      # Buy side price too low (stale/illiquid data)
     'live_game': 0,
     'already_traded': 0,
     'cooldown': 0,
@@ -368,12 +441,15 @@ TAM_STATS: Dict[str, Any] = {
     'unique_arbs_reopen': 0,     # Reopened after cooldown
     'flicker_ignored': 0,        # Reopened within cooldown (API noise)
     'unique_arbs_executed': 0,   # Paper "executed" once per unique arb
-    'total_profit_if_captured': 0,  # TAM: 100% liquidity (cents)
-    'total_contracts': 0,           # TAM: 100% liquidity
-    'total_at_risk': 0,             # TAM: capital at risk (cents)
-    'realistic_profit': 0,          # Realistic: 66% liquidity (cents)
-    'realistic_contracts': 0,       # Realistic: 66% liquidity
-    'realistic_at_risk': 0,         # Realistic: capital at risk (cents)
+    # TAM: 100% liquidity (uncapped)
+    'total_profit_if_captured': 0,  # cents
+    'total_contracts': 0,
+    'total_at_risk': 0,             # cents
+    # Realistic: min(66% liquidity, MAX_CONTRACTS), skip if < MIN_CONTRACTS
+    'realistic_profit': 0,          # cents
+    'realistic_contracts': 0,
+    'realistic_at_risk': 0,         # cents
+    'realistic_arb_count': 0,       # Arbs that meet MIN_CONTRACTS threshold
 }
 
 # ============================================================================
@@ -5263,6 +5339,18 @@ async def run_executor():
                         print(f"[SKIP] Illiquid price: {a.game} {a.team} - PM={pm_price}c (ROI={a.roi:.0f}% misleading)")
                     continue
 
+                # FILTER 1b: Skip low buy-side prices (stale/illiquid data creating fake high ROI)
+                if a.direction == 'BUY_PM_SELL_K':
+                    buy_price = a.pm_ask  # Buying on PM
+                else:  # BUY_K_SELL_PM
+                    buy_price = a.k_ask   # Buying on Kalshi
+
+                if buy_price < MIN_BUY_PRICE:
+                    skipped_low_price += 1
+                    log_skipped_arb(a, 'low_buy_price', f"Buy price {buy_price}c < {MIN_BUY_PRICE}c - likely stale data")
+                    print(f"[SKIP] {a.sport} {a.team}: {a.net_spread}c spread but buy price {buy_price}c < {MIN_BUY_PRICE}c min (likely stale)")
+                    continue
+
                 # FILTER 2: Skip low contract count (not worth the effort)
                 if pm_size < MIN_CONTRACTS:
                     skipped_low_liquidity += 1
@@ -5418,8 +5506,9 @@ async def run_executor():
                     print(f"    Unique Arbs: {total_unique} ({TAM_STATS['unique_arbs_new']} NEW + {TAM_STATS['unique_arbs_reopen']} REOPEN)")
                     print(f"    Flicker Ignored: {TAM_STATS['flicker_ignored']}")
                     print(f"    Executed: {TAM_STATS['unique_arbs_executed']}")
+                    realistic_count = TAM_STATS.get('realistic_arb_count', 0)
                     print(f"    Full liquidity (TAM): ${TAM_STATS['total_profit_if_captured']/100:.2f} profit from ${TAM_STATS['total_at_risk']/100:.0f} at risk ({tam_roi:.1f}% ROI)")
-                    print(f"    66% realistic:        ${TAM_STATS['realistic_profit']/100:.2f} profit from ${TAM_STATS['realistic_at_risk']/100:.0f} at risk ({realistic_roi:.1f}% ROI)")
+                    print(f"    Realistic ({MAX_CONTRACTS} cap):  ${TAM_STATS['realistic_profit']/100:.2f} profit from ${TAM_STATS['realistic_at_risk']/100:.0f} at risk ({realistic_roi:.1f}% ROI) [{realistic_count} arbs]")
                     print(f"    Active: {len(ACTIVE_ARBS)} | Recently Closed: {len(RECENTLY_CLOSED)} | Perm Closed: {len(CLOSED_ARBS)}")
 
                     # Show arb persistence breakdown
@@ -5500,11 +5589,16 @@ async def run_executor():
                         buy_price = arb.pm_ask  # cents
                     at_risk_cents = buy_price * arb.size
 
-                    # Calculate realistic (66%) values
-                    realistic_size = int(arb.size * LIQUIDITY_UTILIZATION)
+                    # Calculate realistic values with ALL constraints:
+                    # 1. 66% of available liquidity
+                    # 2. Capped at MAX_CONTRACTS (100)
+                    uncapped_size = int(arb.size * LIQUIDITY_UTILIZATION)
+                    realistic_size = min(uncapped_size, MAX_CONTRACTS)
+                    is_capped = uncapped_size > MAX_CONTRACTS
                     realistic_profit = arb.net_spread * realistic_size
                     realistic_at_risk = buy_price * realistic_size
                     implied_roi = (profit_cents / at_risk_cents * 100) if at_risk_cents > 0 else 0
+                    realistic_roi = (realistic_profit / realistic_at_risk * 100) if realistic_at_risk > 0 else 0
 
                     if arb_key in ACTIVE_ARBS:
                         # PERSISTING arb - already active
@@ -5516,8 +5610,9 @@ async def run_executor():
                         active.current_profit_cents = profit_cents
 
                         duration = format_duration(now - active.first_seen)
+                        cap_note = f" [CAPPED from {uncapped_size}]" if is_capped else ""
                         print(f"  [PERSIST] {arb.sport} {arb.team}: {arb.net_spread}c spread | {arb.size} avail | ${profit_cents/100:.2f} profit | ${at_risk_cents/100:.0f} at risk (TAM)")
-                        print(f"            -> Realistic: {realistic_size} @ 66% | ${realistic_profit/100:.2f} profit | ${realistic_at_risk/100:.0f} at risk | ROI:{implied_roi:.1f}% (open {duration})")
+                        print(f"            -> Realistic: {realistic_size} contracts{cap_note} | ${realistic_profit/100:.2f} profit | ${realistic_at_risk/100:.0f} at risk | ROI:{realistic_roi:.1f}% (open {duration})")
 
                     elif arb_key in RECENTLY_CLOSED:
                         # Was recently closed - check if flicker or real reopen
@@ -5558,8 +5653,9 @@ async def run_executor():
                             # Remove from recently closed
                             del RECENTLY_CLOSED[arb_key]
 
+                            cap_note = f" [CAPPED from {uncapped_size}]" if is_capped else ""
                             print(f"  [REOPEN] {arb.sport} {arb.team}: {arb.net_spread}c spread | {arb.size} avail | ${profit_cents/100:.2f} profit | ${at_risk_cents/100:.0f} at risk (TAM)")
-                            print(f"           -> Realistic: {realistic_size} @ 66% | ${realistic_profit/100:.2f} profit | ${realistic_at_risk/100:.0f} at risk | ROI:{implied_roi:.1f}%")
+                            print(f"           -> Realistic: {realistic_size} contracts{cap_note} | ${realistic_profit/100:.2f} profit | ${realistic_at_risk/100:.0f} at risk | ROI:{realistic_roi:.1f}%")
                     else:
                         # NEW arb - first time seeing it ever
                         active = ActiveArb(
@@ -5587,8 +5683,9 @@ async def run_executor():
                         new_arbs.append(active)
                         TAM_STATS['unique_arbs_new'] += 1
 
+                        cap_note = f" [CAPPED from {uncapped_size}]" if is_capped else ""
                         print(f"  [NEW] {arb.sport} {arb.team}: {arb.net_spread}c spread | {arb.size} avail | ${profit_cents/100:.2f} profit | ${at_risk_cents/100:.0f} at risk (TAM)")
-                        print(f"        -> Realistic: {realistic_size} @ 66% | ${realistic_profit/100:.2f} profit | ${realistic_at_risk/100:.0f} at risk | ROI:{implied_roi:.1f}%")
+                        print(f"        -> Realistic: {realistic_size} contracts{cap_note} | ${realistic_profit/100:.2f} profit | ${realistic_at_risk/100:.0f} at risk | ROI:{realistic_roi:.1f}%")
 
                 # Check for CLOSED arbs (were active but not seen this scan)
                 closed_keys = []
@@ -5618,18 +5715,27 @@ async def run_executor():
                     if not active.executed:
                         active.executed = True
                         TAM_STATS['unique_arbs_executed'] += 1
-                        # Track TAM (100% liquidity)
+                        # Track TAM (100% liquidity - uncapped)
                         TAM_STATS['total_profit_if_captured'] += active.initial_profit_cents
                         TAM_STATS['total_contracts'] += active.initial_size
                         TAM_STATS['total_at_risk'] += active.initial_at_risk_cents
-                        # Track realistic (66% liquidity)
-                        realistic_size = int(active.initial_size * LIQUIDITY_UTILIZATION)
-                        realistic_profit = active.initial_spread * realistic_size
-                        # At risk scales proportionally with size
-                        realistic_at_risk = int(active.initial_at_risk_cents * LIQUIDITY_UTILIZATION)
-                        TAM_STATS['realistic_profit'] += realistic_profit
-                        TAM_STATS['realistic_contracts'] += realistic_size
-                        TAM_STATS['realistic_at_risk'] += realistic_at_risk
+
+                        # Track REALISTIC with ALL constraints:
+                        # 1. 66% of available liquidity
+                        # 2. Capped at MAX_CONTRACTS (100)
+                        # 3. Only count if >= MIN_CONTRACTS (20)
+                        realistic_size = min(int(active.initial_size * LIQUIDITY_UTILIZATION), MAX_CONTRACTS)
+
+                        if realistic_size >= MIN_CONTRACTS:
+                            realistic_profit = active.initial_spread * realistic_size
+                            # Recalculate at-risk based on capped size
+                            buy_price_cents = active.initial_at_risk_cents / active.initial_size if active.initial_size > 0 else 0
+                            realistic_at_risk = int(buy_price_cents * realistic_size)
+                            TAM_STATS['realistic_profit'] += realistic_profit
+                            TAM_STATS['realistic_contracts'] += realistic_size
+                            TAM_STATS['realistic_at_risk'] += realistic_at_risk
+                            TAM_STATS['realistic_arb_count'] = TAM_STATS.get('realistic_arb_count', 0) + 1
+
                         tag = "REOPEN" if active.is_reopen else "NEW"
                         print(f"    -> [PAPER EXECUTE {tag}] ${active.initial_profit_cents/100:.2f} profit / ${active.initial_at_risk_cents/100:.0f} risk (TAM)")
 
@@ -5646,8 +5752,9 @@ async def run_executor():
                 print(f"  Flicker ignored: {TAM_STATS['flicker_ignored']}")
                 print(f"  Active: {total_active} | Recently Closed: {total_recently_closed} | Perm Closed: {total_perm_closed}")
                 print(f"  Scans: {TAM_STATS['scan_count']} | Executed: {TAM_STATS['unique_arbs_executed']}")
+                realistic_count = TAM_STATS.get('realistic_arb_count', 0)
                 print(f"  Full liquidity (TAM): ${TAM_STATS['total_profit_if_captured']/100:.2f} profit from ${TAM_STATS['total_at_risk']/100:.0f} at risk ({tam_roi:.1f}% ROI)")
-                print(f"  66% realistic:        ${TAM_STATS['realistic_profit']/100:.2f} profit from ${TAM_STATS['realistic_at_risk']/100:.0f} at risk ({realistic_roi:.1f}% ROI)")
+                print(f"  Realistic ({MAX_CONTRACTS} cap):  ${TAM_STATS['realistic_profit']/100:.2f} profit from ${TAM_STATS['realistic_at_risk']/100:.0f} at risk ({realistic_roi:.1f}% ROI) [{realistic_count} arbs]")
 
             # Execute if we have arbs and cooldown passed (skip in paper unlimited - handled above)
             if not paper_unlimited:
@@ -5942,6 +6049,8 @@ if __name__ == "__main__":
                         help='Run preflight checks and exit (validates system before live trading)')
     parser.add_argument('--skip-preflight', action='store_true', dest='skip_preflight',
                         help='Skip preflight checks in live mode (NOT RECOMMENDED)')
+    parser.add_argument('--restart-on-crash', action='store_true', dest='restart_on_crash',
+                        help='Auto-restart on crash (max 5 restarts per hour)')
     args = parser.parse_args()
 
     # Override execution mode if specified
@@ -6129,10 +6238,106 @@ if __name__ == "__main__":
         if TRADED_GAMES:
             print(f"[POSITION TRACKING] Loaded {len(TRADED_GAMES)} previously traded games")
 
+    # =========================================================================
+    # AUTO-RESTART LOGIC
+    # =========================================================================
+    MAX_RESTARTS_PER_HOUR = 5
+    RESTART_DELAY_SECONDS = 10
+    restart_timestamps = []  # Track restart times
+
+    def should_restart():
+        """Check if we should restart (not exceeded max restarts per hour)."""
+        now = time.time()
+        hour_ago = now - 3600
+        # Remove timestamps older than 1 hour
+        recent = [t for t in restart_timestamps if t > hour_ago]
+        restart_timestamps.clear()
+        restart_timestamps.extend(recent)
+        return len(restart_timestamps) < MAX_RESTARTS_PER_HOUR
+
+    def run_main_loop():
+        """Run the main executor loop once."""
+        # Log bot start for uptime tracking
+        log_uptime("STARTED", details={
+            'scan_interval': f"{SCAN_INTERVAL}ms",
+            'max_contracts': MAX_CONTRACTS,
+            'min_buy_price': MIN_BUY_PRICE,
+            'restart_count': len(restart_timestamps),
+        })
+        asyncio.run(run_executor())
+
+    if args.restart_on_crash:
+        print(f"[AUTO-RESTART] Enabled - max {MAX_RESTARTS_PER_HOUR} restarts per hour")
+
+        while True:
+            try:
+                run_main_loop()
+                break  # Clean exit
+            except KeyboardInterrupt:
+                # User stopped it - don't restart
+                break
+            except SystemExit as e:
+                # Intentional exit (kill switch, etc.) - don't restart
+                log_uptime("STOPPED", f"SystemExit: {e}")
+                raise
+            except Exception as e:
+                import traceback
+                error_type = type(e).__name__
+                error_msg = str(e)
+                tb = traceback.format_exc()
+
+                log_uptime("STOPPED", f"CRASH: {error_type}: {error_msg}")
+
+                # Save crash log
+                crash_file = f"logs/crash_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+                try:
+                    os.makedirs('logs', exist_ok=True)
+                    with open(crash_file, 'w', encoding='utf-8') as f:
+                        f.write(f"Crash at: {datetime.now().isoformat()}\n")
+                        f.write(f"Error: {error_type}: {error_msg}\n\n")
+                        f.write("Traceback:\n")
+                        f.write(tb)
+                    print(f"\n[CRASH] Error logged to {crash_file}")
+                except:
+                    pass
+
+                # Try to save price history
+                if PRICE_HISTORY:
+                    try:
+                        save_price_history()
+                    except:
+                        pass
+
+                # Check if we should restart
+                if should_restart():
+                    restart_timestamps.append(time.time())
+                    restart_count = len(restart_timestamps)
+                    print(f"\n[AUTO-RESTART] Crash detected: {error_type}: {error_msg}")
+                    print(f"[AUTO-RESTART] Restarting in {RESTART_DELAY_SECONDS}s... (attempt {restart_count}/{MAX_RESTARTS_PER_HOUR} this hour)")
+                    time.sleep(RESTART_DELAY_SECONDS)
+                    print(f"[AUTO-RESTART] Restarting now...")
+                    continue
+                else:
+                    print(f"\n[AUTO-RESTART] Max restarts ({MAX_RESTARTS_PER_HOUR}) exceeded in last hour")
+                    print(f"[AUTO-RESTART] Bot stopping to prevent crash loop")
+                    log_uptime("STOPPED", f"Max restarts exceeded - crash loop prevention")
+                    raise
+
+        # If we get here, it was a clean exit or KeyboardInterrupt
+        raise KeyboardInterrupt("Clean shutdown")
+
+    # No auto-restart - run once
     try:
+        # Log bot start for uptime tracking
+        log_uptime("STARTED", details={
+            'scan_interval': f"{SCAN_INTERVAL}ms",
+            'max_contracts': MAX_CONTRACTS,
+            'min_buy_price': MIN_BUY_PRICE,
+        })
         asyncio.run(run_executor())
     except KeyboardInterrupt:
         print("\n\nShutting down...")
+        log_uptime("STOPPED", "KeyboardInterrupt")
         save_skipped_arbs()
         print(f"Trade log saved to trades.json")
         print(f"Skipped arbs saved to skipped_arbs.json ({len(SKIPPED_ARBS)} entries)")
@@ -6192,3 +6397,43 @@ if __name__ == "__main__":
             if GENERATE_CHART_ON_EXIT and csv_file:
                 print("[CHART] Generating price visualization...")
                 generate_price_charts(csv_file)
+
+    except SystemExit as e:
+        # Intentional exit (e.g., kill switch)
+        log_uptime("STOPPED", f"SystemExit: {e}")
+        raise
+
+    except Exception as e:
+        # Unexpected crash - log it!
+        import traceback
+        error_type = type(e).__name__
+        error_msg = str(e)
+        tb = traceback.format_exc()
+
+        log_uptime("STOPPED", f"CRASH: {error_type}: {error_msg}")
+
+        # Also save traceback to a crash log
+        crash_file = f"logs/crash_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+        try:
+            os.makedirs('logs', exist_ok=True)
+            with open(crash_file, 'w', encoding='utf-8') as f:
+                f.write(f"Crash at: {datetime.now().isoformat()}\n")
+                f.write(f"Error: {error_type}: {error_msg}\n\n")
+                f.write("Traceback:\n")
+                f.write(tb)
+            print(f"\n[CRASH] Error logged to {crash_file}")
+        except:
+            pass
+
+        print(f"\n[CRASH] Bot crashed with {error_type}: {error_msg}")
+        print(f"[CRASH] Check logs/uptime.log and {crash_file} for details")
+
+        # Try to save price history even on crash
+        if PRICE_HISTORY:
+            try:
+                print("[CRASH] Attempting to save price history...")
+                save_price_history()
+            except:
+                pass
+
+        raise

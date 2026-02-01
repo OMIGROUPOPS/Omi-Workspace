@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "C:\Users\liamm\Omi-Workspace\arb-executor\arb_executor_v7.py", line 2455, in <module>
+    fill_price = try_price
+    ^^^^^^^
+  File "C:\Users\liamm\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\liamm\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\liamm\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\liamm\Omi-Workspace\arb-executor\arb_executor_v7.py", line 2104, in run_executor
+  File "C:\Users\liamm\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 26-28: character maps to <undefined>

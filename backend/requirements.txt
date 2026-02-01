@@ -13,7 +13,7 @@ supabase==2.3.4
 apscheduler==3.10.4
 
 # Data Processing
-pandas==2.1.4
+pandas==2.0.3
 numpy==1.26.3
 
 # Date/Time

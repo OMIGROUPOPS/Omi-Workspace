@@ -127,7 +127,6 @@ def calculate_shocks_score(
             last_snap = sorted_history[-1]
 
             try:
-                from datetime import datetime
                 t1 = datetime.fromisoformat(first_snap.get("timestamp", "").replace("Z", "+00:00"))
                 t2 = datetime.fromisoformat(last_snap.get("timestamp", "").replace("Z", "+00:00"))
                 hours_elapsed = max((t2 - t1).total_seconds() / 3600, 0.1)

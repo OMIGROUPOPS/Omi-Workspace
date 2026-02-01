@@ -4,9 +4,49 @@ import { GameDetailClient } from '@/components/edge/GameDetailClient';
 import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
-import { calculateGameCEQ, fetchGameContext, type ExtendedOddsSnapshot, type GameCEQ } from '@/lib/edge/engine/edgescout';
+import { calculateGameCEQ, fetchGameContext, type ExtendedOddsSnapshot, type GameCEQ, type PythonPillarScores } from '@/lib/edge/engine/edgescout';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
+
+// Fetch Python pillar scores from backend
+async function fetchPythonPillars(gameId: string, sport: string): Promise<PythonPillarScores | null> {
+  try {
+    // Map sport key to backend format
+    const sportMap: Record<string, string> = {
+      'americanfootball_nfl': 'NFL',
+      'basketball_nba': 'NBA',
+      'icehockey_nhl': 'NHL',
+      'americanfootball_ncaaf': 'NCAAF',
+      'basketball_ncaab': 'NCAAB',
+    };
+    const backendSport = sportMap[sport] || sport.toUpperCase();
+
+    const response = await fetch(
+      `${BACKEND_URL}/api/pillars/${backendSport}/${gameId}`,
+      { cache: 'no-store' }
+    );
+
+    if (!response.ok) {
+      console.log(`[PythonPillars] Backend returned ${response.status} for ${gameId}`);
+      return null;
+    }
+
+    const data = await response.json();
+
+    // Transform from 0-1 scale to 0-100
+    return {
+      execution: Math.round((data.pillar_scores?.execution || 0.5) * 100),
+      incentives: Math.round((data.pillar_scores?.incentives || 0.5) * 100),
+      shocks: Math.round((data.pillar_scores?.shocks || 0.5) * 100),
+      timeDecay: Math.round((data.pillar_scores?.time_decay || 0.5) * 100),
+      flow: Math.round((data.pillar_scores?.flow || 0.5) * 100),
+      composite: Math.round((data.composite_score || 0.5) * 100),
+    };
+  } catch (error) {
+    console.log(`[PythonPillars] Failed to fetch: ${error instanceof Error ? error.message : 'unknown'}`);
+    return null;
+  }
+}
 
 interface ExchangeMarket {
   exchange: 'kalshi' | 'polymarket';
@@ -398,6 +438,14 @@ function buildPerBookFromCache(game: any): Record<string, { marketGroups: any }>
   const result: Record<string, { marketGroups: any }> = {};
   const bookmakers = game.bookmakers || [];
 
+  // DEBUG: Log first bookmaker's available market keys
+  if (bookmakers.length > 0) {
+    const firstBk = bookmakers[0];
+    const marketKeys = (firstBk.markets || []).map((m: any) => m.key);
+    console.log(`[buildPerBookFromCache] Available market keys for ${firstBk.key}:`, marketKeys);
+    console.log(`[buildPerBookFromCache] Has spreads_h1?`, marketKeys.includes('spreads_h1'));
+  }
+
   for (const bk of bookmakers) {
     const bookKey = bk.key;
     const marketsByKey: Record<string, any> = {};
@@ -706,106 +754,58 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     h2: { spread: spreadH2History, total: totalH2History },
   };
 
-  // Fetch data for CEQ calculation (including team stats and weather for Game Environment pillar)
-  const [ceqSnapshots, openingLine, gameContext] = await Promise.all([
+  // Fetch data for CEQ calculation (including team stats, weather, and Python pillars)
+  const [ceqSnapshots, openingLine, gameContext, pythonPillars] = await Promise.all([
     fetchSnapshotsForCEQ(gameId),
     fetchOpeningLine(gameId),
     fetchGameContext(gameId, homeTeam, awayTeam, sportKey),
+    fetchPythonPillars(gameId, sportKey),
   ]);
 
-  // Use per-book odds if available, otherwise fall back to consensus
+  // Log Python pillars status
+  if (pythonPillars) {
+    console.log(`[PAGE] Python pillars available:`, pythonPillars);
+  } else {
+    console.log(`[PAGE] Python pillars not available - using TypeScript-only CEQ`);
+  }
+
+  // ALWAYS use cached_odds from Supabase for odds data (same source as populate-counts)
+  // This ensures dashboard and game detail page show identical edge counts
   let bookmakers: Record<string, any> = {};
   let availableBooks: string[] = [];
 
-  if (perBookOdds && perBookOdds.bookmakers) {
-    // Use real per-book data
-    bookmakers = perBookOdds.bookmakers;
-    availableBooks = perBookOdds.books || Object.keys(bookmakers);
-    
-    // Add line history and props to each book's marketGroups
+  // Get cached odds data from Supabase
+  let rawData = cachedRaw;
+  if (!rawData) {
+    const cached = await fetchGameFromCache(gameId);
+    if (cached) rawData = cached.game_data;
+  }
+
+  if (rawData && rawData.bookmakers && rawData.bookmakers.length > 0) {
+    // Build per-book marketGroups from cached Odds API data
+    console.log('[DATA PATH] Using cached_odds from Supabase via buildPerBookFromCache');
+    const perBook = buildPerBookFromCache(rawData);
+    bookmakers = perBook;
+    availableBooks = Object.keys(perBook);
+
+    // DEBUG: Check what marketGroups look like from cache
+    const firstBook = Object.keys(bookmakers)[0];
+    if (firstBook) {
+      const mg = bookmakers[firstBook]?.marketGroups;
+      console.log('[DATA PATH] Cache marketGroups keys:', mg ? Object.keys(mg) : 'none');
+      console.log('[DATA PATH] Cache firstHalf spreads:', mg?.firstHalf?.spreads);
+    }
+
+    // Inject line history and props into each book
     Object.keys(bookmakers).forEach(book => {
       if (bookmakers[book].marketGroups) {
         bookmakers[book].marketGroups.lineHistory = lineHistory;
-        // Props are already filtered by book in the backend
+        // Add props data
         if (!bookmakers[book].marketGroups.playerProps || bookmakers[book].marketGroups.playerProps.length === 0) {
           bookmakers[book].marketGroups.playerProps = propsData.filter((p: any) => p.book === book);
         }
       }
     });
-  } else {
-    // Try cached raw data for per-book enriched markets (props, alts, halves, team totals)
-    let rawData = cachedRaw;
-    if (!rawData) {
-      // Game came from backend but perBookOdds failed — try cache
-      const cached = await fetchGameFromCache(gameId);
-      if (cached) rawData = cached.game_data;
-    }
-
-    if (rawData && rawData.bookmakers && rawData.bookmakers.length > 0) {
-      // Build per-book marketGroups from cached Odds API data
-      const perBook = buildPerBookFromCache(rawData);
-      bookmakers = perBook;
-      availableBooks = Object.keys(perBook);
-
-      // Inject line history into each book
-      Object.keys(bookmakers).forEach(book => {
-        if (bookmakers[book].marketGroups) {
-          bookmakers[book].marketGroups.lineHistory = lineHistory;
-        }
-      });
-    } else {
-      // Last resort: consensus fallback (only core markets)
-      const consensus = gameData.consensus_odds || consensusData?.consensus || {};
-      const edges = gameData.edges || {};
-
-      const buildMarket = (marketData: any, prefix: string) => {
-        if (!marketData) return { h2h: null, spreads: null, totals: null };
-        const result: any = { h2h: null, spreads: null, totals: null };
-        if (marketData.spreads?.home) {
-          result.spreads = {
-            home: { line: marketData.spreads.home.line, price: marketData.spreads.home.odds, edge: edges[`${prefix}spread_home`]?.edge_pct || null },
-            away: { line: marketData.spreads.away?.line, price: marketData.spreads.away?.odds, edge: edges[`${prefix}spread_away`]?.edge_pct || null },
-          };
-        }
-        if (marketData.h2h?.home !== undefined) {
-          result.h2h = {
-            home: { price: marketData.h2h.home, edge: edges[`${prefix}ml_home`]?.edge_pct || null },
-            away: { price: marketData.h2h.away, edge: edges[`${prefix}ml_away`]?.edge_pct || null },
-          };
-        }
-        if (marketData.totals?.over) {
-          result.totals = {
-            line: marketData.totals.over.line,
-            over: { price: marketData.totals.over.odds, edge: edges[`${prefix}total_over`]?.edge_pct || null },
-            under: { price: marketData.totals.under?.odds, edge: edges[`${prefix}total_under`]?.edge_pct || null },
-          };
-        }
-        return result;
-      };
-
-      const marketGroups: any = {
-        fullGame: buildMarket(consensus, ''),
-        firstHalf: buildMarket(consensus.first_half, 'h1_'),
-        secondHalf: buildMarket(consensus.second_half, 'h2_'),
-        q1: buildMarket(consensus.quarters?.q1, 'q1_'),
-        q2: buildMarket(consensus.quarters?.q2, 'q2_'),
-        q3: buildMarket(consensus.quarters?.q3, 'q3_'),
-        q4: buildMarket(consensus.quarters?.q4, 'q4_'),
-        p1: buildMarket(consensus.periods?.p1, 'p1_'),
-        p2: buildMarket(consensus.periods?.p2, 'p2_'),
-        p3: buildMarket(consensus.periods?.p3, 'p3_'),
-        teamTotals: null,
-        playerProps: propsData,
-        alternates: { spreads: [], totals: [] },
-        lineHistory: lineHistory,
-      };
-
-      const defaultBooks = ['fanduel', 'draftkings'];
-      availableBooks = defaultBooks;
-      availableBooks.forEach(book => {
-        bookmakers[book] = { marketGroups };
-      });
-    }
   }
 
   // Fetch and merge exchange markets (Kalshi/Polymarket)
@@ -825,69 +825,317 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   const fullSportKey = sportKey;
   const sportConfig = SUPPORTED_SPORTS.find(s => s.key === fullSportKey);
 
-  // Calculate CEQ (Composite Edge Quotient) using EdgeScout framework
-  // IMPORTANT: Match the exact same calculation as dashboard (sports/page.tsx)
-  let ceqData: GameCEQ | null = null;
-  const consensus = gameData.consensus_odds || {};
+  // DEBUG: Log gameContext before CEQ calculation
+  console.log(`[PAGE] gameContext received:`, JSON.stringify({
+    homeTeam: gameContext?.homeTeam ? { name: gameContext.homeTeam.team_name, pace: gameContext.homeTeam.pace, streak: gameContext.homeTeam.streak } : 'undefined',
+    awayTeam: gameContext?.awayTeam ? { name: gameContext.awayTeam.team_name, pace: gameContext.awayTeam.pace, streak: gameContext.awayTeam.streak } : 'undefined',
+    weather: gameContext?.weather ? 'present' : 'undefined',
+    league: gameContext?.league
+  }));
 
-  // Normalize consensus structure - handle both backend format and cached format
-  // Backend: { spreads: { home: {line, odds}, away: {line, odds} } }
-  // Cached/Dashboard: { spreads: { line, homePrice, awayPrice } }
-  const getSpreadLine = () => {
-    if (consensus.spreads?.home?.line !== undefined) return consensus.spreads.home.line;
-    if (consensus.spreads?.line !== undefined) return consensus.spreads.line;
-    return undefined;
-  };
-  const getSpreadHomeOdds = () => consensus.spreads?.home?.odds || consensus.spreads?.homePrice || -110;
-  const getSpreadAwayOdds = () => consensus.spreads?.away?.odds || consensus.spreads?.awayPrice || -110;
-  const getH2hHome = () => consensus.h2h?.home?.price || consensus.h2h?.home || consensus.h2h?.homePrice;
-  const getH2hAway = () => consensus.h2h?.away?.price || consensus.h2h?.away || consensus.h2h?.awayPrice;
-  const getTotalLine = () => consensus.totals?.over?.line || consensus.totals?.line;
-  const getTotalOverOdds = () => consensus.totals?.over?.odds || consensus.totals?.overPrice || -110;
-  const getTotalUnderOdds = () => consensus.totals?.under?.odds || consensus.totals?.underPrice || -110;
+  // Extract Pinnacle lines (sharp baseline for FDV calculation)
+  const pinnacleBook = bookmakers['pinnacle'] as any;
+  const pinnacleFullGame = pinnacleBook?.marketGroups?.fullGame;
+  const pinnacleSpreadLine = pinnacleFullGame?.spreads?.home?.line;
+  const pinnacleTotalLine = pinnacleFullGame?.totals?.line;
 
-  const spreadLine = getSpreadLine();
-  const hasSpread = spreadLine !== undefined;
-  const hasH2h = getH2hHome() !== undefined;
-  const hasTotals = getTotalLine() !== undefined;
+  console.log(`[PAGE] Pinnacle data:`, {
+    hasBook: !!pinnacleBook,
+    spreadLine: pinnacleSpreadLine,
+    totalLine: pinnacleTotalLine
+  });
 
-  if (hasSpread || hasH2h || hasTotals) {
+  // Helper to calculate CEQ for any period using bookmaker data
+  function calculatePeriodCEQ(periodKey: string, selectedBookKey: string = 'fanduel'): GameCEQ | null {
+    // Aggregate odds from all bookmakers for this period
+    const periodMarkets = Object.values(bookmakers)
+      .map((b: any) => b.marketGroups?.[periodKey])
+      .filter(Boolean);
+
+    // Get selected book's lines for FDV comparison against Pinnacle
+    const selectedBook = bookmakers[selectedBookKey] as any;
+    const selectedBookMarkets = selectedBook?.marketGroups?.[periodKey];
+    const bookSpreadLine = selectedBookMarkets?.spreads?.home?.line;
+    const bookTotalLine = selectedBookMarkets?.totals?.line;
+
+    // DEBUG: Log what we're finding for each period
+    console.log(`[CEQ DEBUG] Period: ${periodKey}`);
+    console.log(`[CEQ DEBUG] Available books:`, Object.keys(bookmakers));
+    console.log(`[CEQ DEBUG] Period markets found:`, periodMarkets.length);
+    if (periodMarkets.length > 0) {
+      console.log(`[CEQ DEBUG] First period market spreads:`, periodMarkets[0]?.spreads);
+    }
+
+    if (periodMarkets.length === 0) return null;
+
+    // Get median values from all bookmakers
+    const getMedian = (values: number[]) => {
+      if (values.length === 0) return undefined;
+      const sorted = [...values].sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+    };
+
+    // Collect spread data
+    const spreadLines: number[] = [];
+    const spreadHomeOdds: number[] = [];
+    const spreadAwayOdds: number[] = [];
+    // Collect h2h data
+    const h2hHomeOdds: number[] = [];
+    const h2hAwayOdds: number[] = [];
+    // Collect totals data
+    const totalLines: number[] = [];
+    const totalOverOdds: number[] = [];
+    const totalUnderOdds: number[] = [];
+
+    for (const markets of periodMarkets) {
+      if (markets.spreads?.home?.line !== undefined) spreadLines.push(markets.spreads.home.line);
+      if (markets.spreads?.home?.price !== undefined) spreadHomeOdds.push(markets.spreads.home.price);
+      if (markets.spreads?.away?.price !== undefined) spreadAwayOdds.push(markets.spreads.away.price);
+      if (markets.h2h?.home?.price !== undefined) h2hHomeOdds.push(markets.h2h.home.price);
+      if (markets.h2h?.away?.price !== undefined) h2hAwayOdds.push(markets.h2h.away.price);
+      if (markets.totals?.line !== undefined) totalLines.push(markets.totals.line);
+      if (markets.totals?.over?.price !== undefined) totalOverOdds.push(markets.totals.over.price);
+      if (markets.totals?.under?.price !== undefined) totalUnderOdds.push(markets.totals.under.price);
+    }
+
+    const periodSpreadLine = getMedian(spreadLines);
+    const periodSpreadHomeOdds = getMedian(spreadHomeOdds) || -110;
+    const periodSpreadAwayOdds = getMedian(spreadAwayOdds) || -110;
+    const periodH2hHome = getMedian(h2hHomeOdds);
+    const periodH2hAway = getMedian(h2hAwayOdds);
+    const periodTotalLine = getMedian(totalLines);
+    const periodTotalOverOdds = getMedian(totalOverOdds) || -110;
+    const periodTotalUnderOdds = getMedian(totalUnderOdds) || -110;
+
+    // DEBUG: Log calculated values
+    console.log(`[CEQ DEBUG] ${periodKey} - spreadLines:`, spreadLines, `median:`, periodSpreadLine);
+    console.log(`[CEQ DEBUG] ${periodKey} - openingLine for FDV:`, openingLine);
+
+    const hasSpread = periodSpreadLine !== undefined;
+    const hasH2h = periodH2hHome !== undefined && periodH2hAway !== undefined;
+    const hasTotals = periodTotalLine !== undefined;
+
+    if (!hasSpread && !hasH2h && !hasTotals) return null;
+
     const gameOdds = {
       spreads: hasSpread ? {
-        home: { line: spreadLine, odds: getSpreadHomeOdds() },
-        away: { line: -spreadLine, odds: getSpreadAwayOdds() },
+        home: { line: periodSpreadLine!, odds: periodSpreadHomeOdds },
+        away: { line: -periodSpreadLine!, odds: periodSpreadAwayOdds },
       } : undefined,
       h2h: hasH2h ? {
-        home: getH2hHome(),
-        away: getH2hAway(),
+        home: periodH2hHome!,
+        away: periodH2hAway!,
       } : undefined,
       totals: hasTotals ? {
-        line: getTotalLine(),
-        over: getTotalOverOdds(),
-        under: getTotalUnderOdds(),
+        line: periodTotalLine!,
+        over: periodTotalOverOdds,
+        under: periodTotalUnderOdds,
       } : undefined,
     };
 
-    const openingData = {
-      spreads: openingLine !== undefined ? {
-        home: openingLine,
-        away: -openingLine,
-      } : undefined,
-    };
+    // For non-fullGame periods, estimate opening line from full game opening line
+    // This allows CEQ to detect line movement even for period markets
+    let periodOpeningData: any = {};
+    if (openingLine !== undefined) {
+      if (periodKey === 'fullGame') {
+        periodOpeningData = { spreads: { home: openingLine, away: -openingLine } };
+        console.log(`[CEQ DEBUG] ${periodKey} - Using full game opening line:`, openingLine);
+      } else if (periodKey === 'firstHalf' || periodKey === 'secondHalf') {
+        // Half spreads are typically ~50% of full game spread
+        const halfOpeningLine = openingLine * 0.5;
+        periodOpeningData = { spreads: { home: halfOpeningLine, away: -halfOpeningLine } };
+        console.log(`[CEQ DEBUG] ${periodKey} - Estimated half opening line:`, halfOpeningLine, `(from full game:`, openingLine, `)`);
+      } else if (periodKey.startsWith('q')) {
+        // Quarter spreads are typically ~25% of full game spread
+        const quarterOpeningLine = openingLine * 0.25;
+        periodOpeningData = { spreads: { home: quarterOpeningLine, away: -quarterOpeningLine } };
+        console.log(`[CEQ DEBUG] ${periodKey} - Estimated quarter opening line:`, quarterOpeningLine);
+      } else if (periodKey.startsWith('p')) {
+        // NHL period spreads are typically ~33% of full game (3 periods)
+        const periodOpeningLineValue = openingLine * 0.33;
+        periodOpeningData = { spreads: { home: periodOpeningLineValue, away: -periodOpeningLineValue } };
+        console.log(`[CEQ DEBUG] ${periodKey} - Estimated period opening line:`, periodOpeningLineValue);
+      }
+    } else {
+      console.log(`[CEQ DEBUG] ${periodKey} - No opening line available`);
+    }
 
-    ceqData = calculateGameCEQ(
+    // Filter snapshots for this period's market types
+    const marketSuffix = periodKey === 'fullGame' ? '' :
+                        periodKey === 'firstHalf' ? '_h1' :
+                        periodKey === 'secondHalf' ? '_h2' :
+                        periodKey.startsWith('q') ? `_${periodKey}` :
+                        periodKey.startsWith('p') ? `_${periodKey}` : '';
+    const periodSnapshots = marketSuffix
+      ? ceqSnapshots.filter(s => s.market?.endsWith(marketSuffix))
+      : ceqSnapshots.filter(s => !s.market?.includes('_'));
+
+    // If no period-specific snapshots, use full game snapshots scaled by time factor
+    // This provides some momentum signal even for periods without historical data
+    const effectiveSnapshots = periodSnapshots.length > 0 ? periodSnapshots : [];
+
+    return calculateGameCEQ(
       gameOdds,
-      openingData,
-      ceqSnapshots,
-      {}, // allBooksOdds - would need to aggregate from bookmakers
+      periodOpeningData,
+      periodSnapshots,
       {
-        spreads: hasSpread ? { home: getSpreadHomeOdds(), away: getSpreadAwayOdds() } : undefined,
-        h2h: hasH2h ? { home: getH2hHome(), away: getH2hAway() } : undefined,
-        totals: hasTotals ? { over: getTotalOverOdds(), under: getTotalUnderOdds() } : undefined,
+        spreads: hasSpread ? { home: spreadHomeOdds, away: spreadAwayOdds } : undefined,
+        h2h: hasH2h ? { home: h2hHomeOdds, away: h2hAwayOdds } : undefined,
+        totals: hasTotals ? { over: totalOverOdds, under: totalUnderOdds } : undefined,
       },
-      gameContext  // Pass team stats + weather for Game Environment & Matchup Dynamics pillars
+      {
+        spreads: hasSpread ? { home: periodSpreadHomeOdds, away: periodSpreadAwayOdds } : undefined,
+        h2h: hasH2h ? { home: periodH2hHome, away: periodH2hAway } : undefined,
+        totals: hasTotals ? { over: periodTotalOverOdds, under: periodTotalUnderOdds } : undefined,
+      },
+      gameContext,
+      pythonPillars || undefined,  // Pass Python pillars if available
+      // Pinnacle sharp lines (for FDV baseline) - only for full game
+      periodKey === 'fullGame' && pinnacleSpreadLine !== undefined ? {
+        spreads: { home: pinnacleSpreadLine, away: -pinnacleSpreadLine },
+        totals: pinnacleTotalLine
+      } : undefined,
+      // Selected book's lines (for FDV comparison)
+      bookSpreadLine !== undefined ? {
+        spreads: { home: bookSpreadLine, away: -bookSpreadLine },
+        totals: bookTotalLine
+      } : undefined
     );
   }
+
+  // Calculate CEQ for all periods
+  const ceqByPeriod: Record<string, GameCEQ | null> = {
+    fullGame: calculatePeriodCEQ('fullGame'),
+    firstHalf: calculatePeriodCEQ('firstHalf'),
+    secondHalf: calculatePeriodCEQ('secondHalf'),
+    q1: calculatePeriodCEQ('q1'),
+    q2: calculatePeriodCEQ('q2'),
+    q3: calculatePeriodCEQ('q3'),
+    q4: calculatePeriodCEQ('q4'),
+    p1: calculatePeriodCEQ('p1'),
+    p2: calculatePeriodCEQ('p2'),
+    p3: calculatePeriodCEQ('p3'),
+  };
+
+  // Calculate CEQ for team totals (home and away teams separately)
+  function calculateTeamTotalsCEQ(): { home: GameCEQ | null; away: GameCEQ | null } | null {
+    const getMedian = (values: number[]) => {
+      if (values.length === 0) return undefined;
+      const sorted = [...values].sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+    };
+
+    // Collect team totals from all bookmakers
+    const homeLines: number[] = [];
+    const homeOverOdds: number[] = [];
+    const homeUnderOdds: number[] = [];
+    const awayLines: number[] = [];
+    const awayOverOdds: number[] = [];
+    const awayUnderOdds: number[] = [];
+
+    for (const book of Object.values(bookmakers)) {
+      const teamTotals = (book as any).marketGroups?.teamTotals;
+      if (!teamTotals) continue;
+
+      if (teamTotals.home?.over?.line !== undefined) {
+        homeLines.push(teamTotals.home.over.line);
+        if (teamTotals.home.over.price !== undefined) homeOverOdds.push(teamTotals.home.over.price);
+        if (teamTotals.home.under?.price !== undefined) homeUnderOdds.push(teamTotals.home.under.price);
+      }
+      if (teamTotals.away?.over?.line !== undefined) {
+        awayLines.push(teamTotals.away.over.line);
+        if (teamTotals.away.over.price !== undefined) awayOverOdds.push(teamTotals.away.over.price);
+        if (teamTotals.away.under?.price !== undefined) awayUnderOdds.push(teamTotals.away.under.price);
+      }
+    }
+
+    if (homeLines.length === 0 && awayLines.length === 0) return null;
+
+    const calculateTeamCEQ = (
+      lines: number[],
+      overOdds: number[],
+      underOdds: number[]
+    ): GameCEQ | null => {
+      const line = getMedian(lines);
+      const overPrice = getMedian(overOdds) || -110;
+      const underPrice = getMedian(underOdds) || -110;
+
+      if (line === undefined) return null;
+
+      const gameOdds = {
+        totals: { line, over: overPrice, under: underPrice },
+      };
+
+      return calculateGameCEQ(
+        gameOdds,
+        {}, // No opening line for team totals
+        [], // No snapshots for team totals
+        { totals: { over: overOdds, under: underOdds } },
+        { totals: { over: overPrice, under: underPrice } },
+        gameContext,
+        pythonPillars || undefined,  // Pass Python pillars if available
+        undefined,  // No Pinnacle lines for team totals
+        undefined   // No book lines for team totals
+      );
+    };
+
+    return {
+      home: calculateTeamCEQ(homeLines, homeOverOdds, homeUnderOdds),
+      away: calculateTeamCEQ(awayLines, awayOverOdds, awayUnderOdds),
+    };
+  }
+
+  const teamTotalsCeq = calculateTeamTotalsCEQ();
+
+  // Legacy ceqData for backwards compatibility
+  const ceqData = ceqByPeriod.fullGame;
+
+  // Count COMPREHENSIVE edges across ALL periods and ALL markets/sides
+  // Each side is counted separately: spread home, spread away, h2h home, h2h away, total over, total under
+  // This gives up to 6 potential edges per period
+  function countPeriodEdges(ceq: typeof ceqData): number {
+    if (!ceq) return 0;
+    let count = 0;
+    // Spreads: home and away are separate edges
+    if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 56) count++;
+    if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 56) count++;
+    // H2H/Moneyline: home and away are separate edges
+    if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 56) count++;
+    if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 56) count++;
+    // Totals: over and under are separate edges
+    if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 56) count++;
+    if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 56) count++;
+    return count;
+  }
+
+  // Build comprehensive edge count breakdown
+  const edgeCountBreakdown = {
+    total: 0,
+    fullGame: countPeriodEdges(ceqByPeriod.fullGame),
+    firstHalf: countPeriodEdges(ceqByPeriod.firstHalf),
+    secondHalf: countPeriodEdges(ceqByPeriod.secondHalf),
+    quarters: countPeriodEdges(ceqByPeriod.q1) + countPeriodEdges(ceqByPeriod.q2) +
+              countPeriodEdges(ceqByPeriod.q3) + countPeriodEdges(ceqByPeriod.q4),
+    periods: countPeriodEdges(ceqByPeriod.p1) + countPeriodEdges(ceqByPeriod.p2) +
+             countPeriodEdges(ceqByPeriod.p3),
+    teamTotals: 0,
+    props: 0, // TODO: Count prop edges when implemented
+  };
+
+  // Count team total edges (4 possible: home over, home under, away over, away under)
+  if (teamTotalsCeq?.home?.totals?.over?.ceq !== undefined && teamTotalsCeq.home.totals.over.ceq >= 56) edgeCountBreakdown.teamTotals++;
+  if (teamTotalsCeq?.home?.totals?.under?.ceq !== undefined && teamTotalsCeq.home.totals.under.ceq >= 56) edgeCountBreakdown.teamTotals++;
+  if (teamTotalsCeq?.away?.totals?.over?.ceq !== undefined && teamTotalsCeq.away.totals.over.ceq >= 56) edgeCountBreakdown.teamTotals++;
+  if (teamTotalsCeq?.away?.totals?.under?.ceq !== undefined && teamTotalsCeq.away.totals.under.ceq >= 56) edgeCountBreakdown.teamTotals++;
+
+  // Calculate total
+  edgeCountBreakdown.total = edgeCountBreakdown.fullGame + edgeCountBreakdown.firstHalf +
+    edgeCountBreakdown.secondHalf + edgeCountBreakdown.quarters + edgeCountBreakdown.periods +
+    edgeCountBreakdown.teamTotals + edgeCountBreakdown.props;
+
+  const totalEdgeCount = edgeCountBreakdown.total;
 
   const hasProps = (propsData && propsData.length > 0) ||
     Object.values(bookmakers).some((b: any) => b.marketGroups?.playerProps?.length > 0);
@@ -924,7 +1172,15 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
           <div className="flex items-center gap-4">
             <div className="text-3xl">{sportConfig?.icon || '🏆'}</div>
             <div>
-              <h1 className="text-2xl font-bold text-zinc-100">{awayTeam} @ {homeTeam}</h1>
+              <div className="flex items-center gap-3">
+                <h1 className="text-2xl font-bold text-zinc-100">{awayTeam} @ {homeTeam}</h1>
+                {totalEdgeCount > 0 && (
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30">
+                    <span className="text-sm">🔥</span>
+                    <span className="text-sm font-bold text-emerald-400">{totalEdgeCount} Edge{totalEdgeCount !== 1 ? 's' : ''}</span>
+                  </div>
+                )}
+              </div>
               <p className="text-zinc-400">
                 {new Date(commenceTime).toLocaleString('en-US', {
                   weekday: 'long',
@@ -937,7 +1193,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
               </p>
             </div>
           </div>
-          
+
         </div>
       </div>
 
@@ -949,6 +1205,9 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
         userEmail={userEmail}
         isDemo={isDemo}
         ceq={ceqData}
+        ceqByPeriod={ceqByPeriod}
+        teamTotalsCeq={teamTotalsCeq}
+        edgeCountBreakdown={edgeCountBreakdown}
         availableTabs={{
           fullGame: true,
           firstHalf: hasFirstHalf || isFootball || isBasketball || isNHL,

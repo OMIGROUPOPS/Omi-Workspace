@@ -51,6 +51,59 @@ export interface ExtendedOddsSnapshot extends OddsSnapshot {
 }
 
 // ============================================================================
+// Python Backend Pillar Scores (Harmonization)
+// ============================================================================
+// When Python backend is available, we use its pillar scores to boost/adjust
+// the TypeScript CEQ calculation. This combines:
+// - Python's game-level analysis (injuries, motivation, rest, sharp money)
+// - TypeScript's market-specific analysis (per-book odds comparison)
+
+export interface PythonPillarScores {
+  execution: number;    // 0-100: Injuries, weather, lineup (→ Player Utilization)
+  incentives: number;   // 0-100: Playoffs, motivation, rivalries (→ Game Environment)
+  shocks: number;       // 0-100: Breaking news, line movement timing (→ Market Efficiency boost)
+  timeDecay: number;    // 0-100: Rest days, back-to-back, travel (→ Game Environment)
+  flow: number;         // 0-100: Sharp money, book disagreement (→ Sentiment)
+  composite: number;    // 0-100: Weighted average of all pillars
+}
+
+/**
+ * Maps Python pillar scores to TypeScript pillar adjustments
+ * Returns adjustments to be applied to each TypeScript pillar
+ */
+function mapPythonToTypeScriptPillars(pythonPillars: PythonPillarScores): {
+  marketEfficiencyBoost: number;
+  playerUtilizationScore: number;
+  gameEnvironmentScore: number;
+  sentimentScore: number;
+} {
+  // Python Execution (injuries) → TypeScript Player Utilization
+  // Score is 0-100, 50 = neutral
+  const playerUtilizationScore = pythonPillars.execution;
+
+  // Python Incentives + Time Decay → TypeScript Game Environment
+  // Weighted average: incentives 60%, time decay 40%
+  const gameEnvironmentScore = Math.round(
+    pythonPillars.incentives * 0.6 + pythonPillars.timeDecay * 0.4
+  );
+
+  // Python Shocks → Market Efficiency boost
+  // If shocks detected (score != 50), boost market efficiency signal
+  const shockDeviation = Math.abs(pythonPillars.shocks - 50);
+  const marketEfficiencyBoost = shockDeviation > 10 ? shockDeviation * 0.5 : 0;
+
+  // Python Flow (sharp money) → TypeScript Sentiment
+  const sentimentScore = pythonPillars.flow;
+
+  return {
+    marketEfficiencyBoost,
+    playerUtilizationScore,
+    gameEnvironmentScore,
+    sentimentScore,
+  };
+}
+
+// ============================================================================
 // CEQ Confidence Thresholds (from plan)
 // ============================================================================
 // 50% = No edge (market efficient)
@@ -76,31 +129,24 @@ function getCEQConfidence(ceq: number): CEQConfidence {
 
 /**
  * FDV (Fair Delta Value)
- * Measures difference between opening line and current line
- * Positive delta = line moved against this side = edge signal
  *
- * More sensitive scoring for real variance in output:
- * - Even 0.5pt movement is meaningful in sports betting
- * - Scale continuously rather than in large buckets
+ * PRIMARY: Compare selected book's line vs Pinnacle (sharp baseline)
+ * FALLBACK: Compare opening line vs current line
+ *
+ * Scoring (Pinnacle comparison):
+ * - 0 pts diff = 50 (in line with sharp)
+ * - 0.5 pts diff = 60 (slight value)
+ * - 1.0 pts diff = 70 (good value)
+ * - 1.5 pts diff = 78 (strong value)
+ * - 2.0+ pts diff = 85 (excellent value)
  */
 function calculateFDV(
   openingLine: number | undefined,
   currentLine: number | undefined,
-  marketType: 'spread' | 'h2h' | 'total' = 'spread'
+  marketType: 'spread' | 'h2h' | 'total' = 'spread',
+  pinnacleLine?: number,
+  bookLine?: number
 ): PillarVariable {
-  if (openingLine === undefined || currentLine === undefined) {
-    return {
-      name: 'FDV',
-      value: 0,
-      score: 50,
-      available: false,
-      reason: 'No opening line data available',
-    };
-  }
-
-  const delta = currentLine - openingLine;
-  const absDelta = Math.abs(delta);
-
   // Format line values based on market type
   const formatLine = (val: number) => {
     if (marketType === 'spread') {
@@ -110,6 +156,55 @@ function calculateFDV(
   };
 
   const marketLabel = marketType === 'spread' ? 'Spread' : marketType === 'total' ? 'Total' : 'ML';
+
+  // PRIMARY: Pinnacle baseline comparison (sharp vs retail book)
+  if (pinnacleLine !== undefined && bookLine !== undefined) {
+    const diff = Math.abs(bookLine - pinnacleLine);
+
+    // Score based on difference from Pinnacle
+    // More difference = more potential value at the retail book
+    let score: number;
+    if (diff >= 2.0) {
+      score = 85;
+    } else if (diff >= 1.5) {
+      score = 78;
+    } else if (diff >= 1.0) {
+      score = 70;
+    } else if (diff >= 0.5) {
+      score = 60;
+    } else {
+      score = 50;
+    }
+
+    const pinnStr = formatLine(pinnacleLine);
+    const bookStr = formatLine(bookLine);
+    const reason = diff > 0
+      ? `${marketLabel}: Book ${bookStr} vs Pinnacle ${pinnStr} (${diff.toFixed(1)} pts off sharp)`
+      : `${marketLabel}: In line with Pinnacle at ${pinnStr}`;
+
+    return {
+      name: 'FDV',
+      value: diff,
+      score,
+      available: true,
+      reason,
+    };
+  }
+
+  // FALLBACK: Opening vs current line movement
+  if (openingLine === undefined || currentLine === undefined) {
+    return {
+      name: 'FDV',
+      value: 0,
+      score: 50,
+      available: false,
+      reason: 'No Pinnacle or opening line data available',
+    };
+  }
+
+  const delta = currentLine - openingLine;
+  const absDelta = Math.abs(delta);
+
   const openStr = formatLine(openingLine);
   const currentStr = formatLine(currentLine);
   const deltaStr = delta >= 0 ? `+${delta.toFixed(1)}` : delta.toFixed(1);
@@ -326,6 +421,7 @@ function calculateSBI(
 /**
  * Calculate Market Efficiency Pillar
  * Combines FDV, MMI, and SBI
+ * FDV now uses Pinnacle as sharp baseline when available
  */
 function calculateMarketEfficiencyPillar(
   openingLine: number | undefined,
@@ -334,9 +430,11 @@ function calculateMarketEfficiencyPillar(
   bookOdds: number | undefined,
   consensusOdds: number | undefined,
   allBooksOdds: number[],
-  marketType: 'spread' | 'h2h' | 'total' = 'spread'
+  marketType: 'spread' | 'h2h' | 'total' = 'spread',
+  pinnacleLine?: number,
+  bookLine?: number
 ): PillarResult {
-  const fdv = calculateFDV(openingLine, currentLine, marketType);
+  const fdv = calculateFDV(openingLine, currentLine, marketType, pinnacleLine, bookLine);
   const mmi = calculateMMI(snapshots);
   const sbi = calculateSBI(bookOdds, consensusOdds, allBooksOdds);
 
@@ -573,6 +671,11 @@ function calculateGameEnvironmentPillar(
   weather?: WeatherData,
   league: string = 'nba'
 ): PillarResult {
+  console.log(`[GameEnvironment] Inputs: homeTeam=${homeTeam?.team_name || 'undefined'}, awayTeam=${awayTeam?.team_name || 'undefined'}`);
+  console.log(`[GameEnvironment] Pace: home=${homeTeam?.pace}, away=${awayTeam?.pace}`);
+  console.log(`[GameEnvironment] Streak: home=${homeTeam?.streak}, away=${awayTeam?.streak}`);
+  console.log(`[GameEnvironment] Weather: ${weather ? JSON.stringify(weather) : 'undefined'}`);
+
   const pvi = calculatePaceVariable(homeTeam?.pace, awayTeam?.pace, league);
   const wea = calculateWeatherVariable(weather);
   const stk = calculateStreakVariable(homeTeam?.streak, awayTeam?.streak);
@@ -836,30 +939,117 @@ export function calculateCEQ(
   snapshots: ExtendedOddsSnapshot[],
   allBooksOdds: number[],
   consensusOdds: number | undefined,
-  gameContext?: GameContextData
+  gameContext?: GameContextData,
+  pythonPillars?: PythonPillarScores,  // Optional Python backend pillar scores
+  pinnacleLine?: number,  // Pinnacle sharp line for FDV baseline
+  bookLine?: number       // Selected book's line for FDV comparison
 ): CEQResult {
-  // Calculate all pillars
-  const marketEfficiency = calculateMarketEfficiencyPillar(
+  // Calculate TypeScript pillars (market-specific analysis)
+  let marketEfficiency = calculateMarketEfficiencyPillar(
     openingLine,
     currentLine,
     snapshots,
     bookOdds,
     consensusOdds,
     allBooksOdds,
-    marketType
+    marketType,
+    pinnacleLine,
+    bookLine
   );
-  const playerUtilization = calculatePlayerUtilizationPillar();
-  const gameEnvironment = calculateGameEnvironmentPillar(
+  let playerUtilization = calculatePlayerUtilizationPillar();
+  let gameEnvironment = calculateGameEnvironmentPillar(
     gameContext?.homeTeam,
     gameContext?.awayTeam,
     gameContext?.weather,
     gameContext?.league
   );
-  const matchupDynamics = calculateMatchupDynamicsPillar(
+  let matchupDynamics = calculateMatchupDynamicsPillar(
     gameContext?.homeTeam,
     gameContext?.awayTeam
   );
-  const sentiment = calculateSentimentPillar(snapshots, bookOdds, consensusOdds, allBooksOdds);
+  let sentiment = calculateSentimentPillar(snapshots, bookOdds, consensusOdds, allBooksOdds);
+
+  // HARMONIZATION: If Python pillars available, integrate them
+  if (pythonPillars) {
+    const mapped = mapPythonToTypeScriptPillars(pythonPillars);
+
+    // Player Utilization: Use Python's Execution (injuries) if available
+    if (pythonPillars.execution !== 50) {
+      playerUtilization = {
+        score: mapped.playerUtilizationScore,
+        weight: 0.20,  // Now has real weight
+        variables: [{
+          name: 'Injuries',
+          value: pythonPillars.execution - 50,
+          score: mapped.playerUtilizationScore,
+          available: true,
+          reason: `Python: Execution score ${pythonPillars.execution}% (injuries, lineup)`,
+        }],
+      };
+    }
+
+    // Game Environment: Use Python's Incentives + Time Decay
+    if (pythonPillars.incentives !== 50 || pythonPillars.timeDecay !== 50) {
+      const existingScore = gameEnvironment.score;
+      const pythonScore = mapped.gameEnvironmentScore;
+      // Blend: 40% existing, 60% Python
+      gameEnvironment = {
+        score: Math.round(existingScore * 0.4 + pythonScore * 0.6),
+        weight: Math.max(gameEnvironment.weight, 0.15),
+        variables: [
+          ...gameEnvironment.variables,
+          {
+            name: 'Motivation',
+            value: pythonPillars.incentives - 50,
+            score: pythonPillars.incentives,
+            available: true,
+            reason: `Python: Incentives ${pythonPillars.incentives}%`,
+          },
+          {
+            name: 'Rest/Fatigue',
+            value: pythonPillars.timeDecay - 50,
+            score: pythonPillars.timeDecay,
+            available: true,
+            reason: `Python: Time Decay ${pythonPillars.timeDecay}%`,
+          },
+        ],
+      };
+    }
+
+    // Market Efficiency: Boost with Python's Shocks signal
+    if (mapped.marketEfficiencyBoost > 0) {
+      const boostedScore = Math.min(100, marketEfficiency.score + mapped.marketEfficiencyBoost);
+      marketEfficiency = {
+        ...marketEfficiency,
+        score: Math.round(boostedScore),
+        variables: [
+          ...marketEfficiency.variables,
+          {
+            name: 'Shock Signal',
+            value: pythonPillars.shocks - 50,
+            score: pythonPillars.shocks,
+            available: true,
+            reason: `Python: Shocks ${pythonPillars.shocks}% (news, timing)`,
+          },
+        ],
+      };
+    }
+
+    // Sentiment: Use Python's Flow (sharp money)
+    if (pythonPillars.flow !== 50) {
+      sentiment = {
+        score: mapped.sentimentScore,
+        weight: 0.15,  // Now has real weight
+        variables: [{
+          name: 'Sharp Money',
+          value: pythonPillars.flow - 50,
+          score: mapped.sentimentScore,
+          available: true,
+          reason: `Python: Flow ${pythonPillars.flow}% (sharp vs public)`,
+        }],
+      };
+    }
+  }
 
   // Calculate weighted CEQ from all pillars
   const pillars = [marketEfficiency, playerUtilization, gameEnvironment, matchupDynamics, sentiment];
@@ -868,6 +1058,11 @@ export function calculateCEQ(
   let ceq = 50;
   if (totalWeight > 0) {
     ceq = pillars.reduce((acc, p) => acc + p.score * p.weight, 0) / totalWeight;
+  }
+
+  // If Python pillars available, also blend with Python composite (30% Python, 70% TS)
+  if (pythonPillars && pythonPillars.composite !== 50) {
+    ceq = ceq * 0.7 + pythonPillars.composite * 0.3;
   }
 
   ceq = Math.round(Math.min(Math.max(ceq, 0), 100));
@@ -1010,7 +1205,16 @@ export function calculateGameCEQ(
     h2h?: { home: number; away: number };
     totals?: { over: number; under: number };
   },
-  gameContext?: GameContextData
+  gameContext?: GameContextData,
+  pythonPillars?: PythonPillarScores,  // Optional Python backend pillar scores
+  pinnacleLines?: {  // Pinnacle sharp lines for FDV baseline
+    spreads?: { home: number; away: number };
+    totals?: number;
+  },
+  bookLines?: {  // Selected book's lines for FDV comparison
+    spreads?: { home: number; away: number };
+    totals?: number;
+  }
 ): GameCEQ {
   const result: GameCEQ = { bestEdge: null };
 
@@ -1033,7 +1237,10 @@ export function calculateGameCEQ(
       spreadSnapshots,
       allBooksOdds.spreads?.home || [],
       consensusOdds.spreads?.home,
-      gameContext
+      gameContext,
+      pythonPillars,  // Pass Python pillars
+      pinnacleLines?.spreads?.home,  // Pinnacle home spread line
+      bookLines?.spreads?.home       // Selected book's home spread line
     );
 
     // Away CEQ is the inverse: if home is 78%, away is 22% (100 - 78)
@@ -1064,7 +1271,10 @@ export function calculateGameCEQ(
       h2hSnapshots,
       allBooksOdds.h2h?.home || [],
       consensusOdds.h2h?.home,
-      gameContext
+      gameContext,
+      pythonPillars,  // Pass Python pillars
+      undefined,      // No Pinnacle line for h2h (spreads only)
+      undefined       // No book line for h2h
     );
 
     // Away CEQ is the inverse
@@ -1094,7 +1304,10 @@ export function calculateGameCEQ(
       totalSnapshots,
       allBooksOdds.totals?.over || [],
       consensusOdds.totals?.over,
-      gameContext
+      gameContext,
+      pythonPillars,  // Pass Python pillars
+      pinnacleLines?.totals,  // Pinnacle total line
+      bookLines?.totals       // Selected book's total line
     );
 
     // Under CEQ is the inverse
@@ -1215,16 +1428,16 @@ export async function fetchGameContext(
   sport: string
 ): Promise<GameContextData> {
   const supabase = getSupabase();
-  if (!supabase) {
-    return {};
-  }
+  if (!supabase) return {};
 
   try {
+    const sportFilter = sport.split('_')[0] || sport;
+
     // Fetch team stats for both teams
     const { data: teamStats } = await supabase
       .from('team_stats')
       .select('*')
-      .eq('sport', sport.split('_')[0] || sport)
+      .eq('sport', sportFilter)
       .or(`team_name.ilike.%${homeTeamName}%,team_name.ilike.%${awayTeamName}%`)
       .order('updated_at', { ascending: false })
       .limit(10);
@@ -1233,54 +1446,53 @@ export async function fetchGameContext(
     let homeTeam: TeamStatsData | undefined;
     let awayTeam: TeamStatsData | undefined;
 
-    if (teamStats) {
+    if (teamStats && teamStats.length > 0) {
       for (const stat of teamStats) {
         const name = stat.team_name?.toLowerCase() || '';
-        if (name.includes(homeTeamName.toLowerCase()) || homeTeamName.toLowerCase().includes(name)) {
-          if (!homeTeam) {
-            homeTeam = {
-              team_id: stat.team_id,
-              team_name: stat.team_name,
-              pace: stat.pace,
-              offensive_rating: stat.offensive_rating,
-              defensive_rating: stat.defensive_rating,
-              net_rating: stat.net_rating,
-              wins: stat.wins,
-              losses: stat.losses,
-              win_pct: stat.win_pct,
-              home_wins: stat.home_wins,
-              home_losses: stat.home_losses,
-              away_wins: stat.away_wins,
-              away_losses: stat.away_losses,
-              streak: stat.streak,
-              points_per_game: stat.points_per_game,
-              points_allowed_per_game: stat.points_allowed_per_game,
-              injuries: stat.injuries || [],
-            };
-          }
+        const homeNameLower = homeTeamName.toLowerCase();
+        const awayNameLower = awayTeamName.toLowerCase();
+
+        if (!homeTeam && (name.includes(homeNameLower) || homeNameLower.includes(name))) {
+          homeTeam = {
+            team_id: stat.team_id,
+            team_name: stat.team_name,
+            pace: stat.pace,
+            offensive_rating: stat.offensive_rating,
+            defensive_rating: stat.defensive_rating,
+            net_rating: stat.net_rating,
+            wins: stat.wins,
+            losses: stat.losses,
+            win_pct: stat.win_pct,
+            home_wins: stat.home_wins,
+            home_losses: stat.home_losses,
+            away_wins: stat.away_wins,
+            away_losses: stat.away_losses,
+            streak: stat.streak,
+            points_per_game: stat.points_per_game,
+            points_allowed_per_game: stat.points_allowed_per_game,
+            injuries: stat.injuries || [],
+          };
         }
-        if (name.includes(awayTeamName.toLowerCase()) || awayTeamName.toLowerCase().includes(name)) {
-          if (!awayTeam) {
-            awayTeam = {
-              team_id: stat.team_id,
-              team_name: stat.team_name,
-              pace: stat.pace,
-              offensive_rating: stat.offensive_rating,
-              defensive_rating: stat.defensive_rating,
-              net_rating: stat.net_rating,
-              wins: stat.wins,
-              losses: stat.losses,
-              win_pct: stat.win_pct,
-              home_wins: stat.home_wins,
-              home_losses: stat.home_losses,
-              away_wins: stat.away_wins,
-              away_losses: stat.away_losses,
-              streak: stat.streak,
-              points_per_game: stat.points_per_game,
-              points_allowed_per_game: stat.points_allowed_per_game,
-              injuries: stat.injuries || [],
-            };
-          }
+        if (!awayTeam && (name.includes(awayNameLower) || awayNameLower.includes(name))) {
+          awayTeam = {
+            team_id: stat.team_id,
+            team_name: stat.team_name,
+            pace: stat.pace,
+            offensive_rating: stat.offensive_rating,
+            defensive_rating: stat.defensive_rating,
+            net_rating: stat.net_rating,
+            wins: stat.wins,
+            losses: stat.losses,
+            win_pct: stat.win_pct,
+            home_wins: stat.home_wins,
+            home_losses: stat.home_losses,
+            away_wins: stat.away_wins,
+            away_losses: stat.away_losses,
+            streak: stat.streak,
+            points_per_game: stat.points_per_game,
+            points_allowed_per_game: stat.points_allowed_per_game,
+            injuries: stat.injuries || [],
+          };
         }
       }
     }
@@ -1308,7 +1520,6 @@ export async function fetchGameContext(
       }
     }
 
-    // Determine league from sport
     const league = sport.split('_')[1] || sport;
 
     return {
@@ -1318,7 +1529,7 @@ export async function fetchGameContext(
       league,
     };
   } catch (error) {
-    console.error('Error fetching game context:', error);
+    console.error('[fetchGameContext] Error:', error);
     return {};
   }
 }

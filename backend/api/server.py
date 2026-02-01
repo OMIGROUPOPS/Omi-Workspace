@@ -193,7 +193,7 @@ async def get_game_edge(sport: str, game_id: str):
 
 @app.get("/api/active-edges")
 async def get_active_edges(
-    min_confidence: str = Query("WATCH", description="Minimum confidence: PASS, WATCH, EDGE, STRONG_EDGE"),
+    min_confidence: str = Query("WATCH", description="Minimum confidence: PASS, WATCH, EDGE, STRONG, RARE"),
     sport: Optional[str] = Query(None, description="Filter by sport")
 ):
     """Get all active edges across all sports."""
@@ -720,7 +720,7 @@ Key concepts to explain:
   - Time Decay: Rest days, travel, back-to-backs
   - Flow: Sharp vs public money, betting patterns
 - COMPOSITE SCORE: Weighted average of pillars (>0.5 favors home, <0.5 favors away)
-- CONFIDENCE: PASS (no edge), WATCH (monitor), EDGE (bet cautiously), STRONG_EDGE (high conviction)
+- CONFIDENCE: PASS (no edge), WATCH (monitor), EDGE (actionable), STRONG (high confidence), RARE (exceptional)
 - LINE MOVEMENT: How the spread/total has moved since opening
 - EDGES: Where we see value vs the books' odds
 
@@ -774,7 +774,7 @@ def generate_fallback_response(user_message: str, prediction: dict) -> str:
         return f"Line movement for {away_team} @ {home_team} indicates betting action. Our composite score is {composite:.1%}, suggesting {'home team value' if composite > 0.55 else 'away team value' if composite < 0.45 else 'a balanced game'}. Check the line history chart for detailed movement."
     
     elif "edge" in user_lower or "value" in user_lower:
-        return f"Our analysis shows a {confidence} rating for this game. The composite score of {composite:.1%} {'suggests potential value' if confidence in ['EDGE', 'STRONG_EDGE'] else 'does not indicate strong value'}. The best edges typically come from sharp money disagreeing with public sentiment."
+        return f"Our analysis shows a {confidence} rating for this game. The composite score of {composite:.1%} {'suggests potential value' if confidence in ['EDGE', 'STRONG', 'RARE'] else 'does not indicate strong value'}. The best edges typically come from sharp money disagreeing with public sentiment."
     
     elif "sharp" in user_lower or "public" in user_lower:
         return f"Sharp vs public analysis is captured in our Flow pillar. For {away_team} @ {home_team}, watch for reverse line movement (line moving opposite to public betting) as a signal of sharp action."
@@ -935,6 +935,85 @@ async def refresh_live_props():
         }
     except Exception as e:
         logger.error(f"Error during props refresh: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# =============================================================================
+# PILLAR CALCULATION (ON-DEMAND)
+# =============================================================================
+
+@app.get("/api/pillars/{sport}/{game_id}")
+async def calculate_pillars(sport: str, game_id: str, fresh: bool = False):
+    """
+    Calculate 5-pillar scores for a game.
+
+    If fresh=True, recalculates from live data (uses API calls).
+    Otherwise returns cached values from database.
+
+    Returns pillar scores on 0-1 scale:
+    - execution: Injuries, weather, lineup uncertainty
+    - incentives: Playoffs, motivation, rivalries
+    - shocks: Breaking news, line movement timing
+    - time_decay: Rest days, back-to-back, travel
+    - flow: Sharp money, book disagreement
+    - composite: Weighted average of all pillars
+    """
+    sport = sport.upper()
+    if sport not in ODDS_API_SPORTS:
+        raise HTTPException(status_code=400, detail=f"Unknown sport: {sport}")
+
+    try:
+        # ALWAYS do fresh calculation for now to debug pillar scores
+        # TODO: Re-enable caching once pillars are working
+        logger.info(f"[Pillars] Calculating fresh pillars for {game_id} in {sport}")
+
+        # Fresh calculation - need to fetch game data and run analysis
+        from data_sources.odds_api import odds_client
+        from engine.analyzer import analyze_game
+
+        # First, try cached_odds which has full game data with bookmakers
+        game = None
+        result = db.client.table("cached_odds").select("game_data").eq("game_id", game_id).single().execute()
+        if result.data:
+            game = result.data.get("game_data")
+            logger.info(f"[Pillars] Using cached_odds for {game_id}")
+            logger.info(f"[Pillars] Game has {len(game.get('bookmakers', []))} bookmakers")
+            if game.get('bookmakers'):
+                first_book = game['bookmakers'][0]
+                logger.info(f"[Pillars] First book: {first_book.get('key')}, markets: {[m.get('key') for m in first_book.get('markets', [])]}")
+
+        # Fall back to live API if no cached data
+        if not game:
+            games = odds_client.get_upcoming_games(sport)
+            game = next((g for g in games if g.get("id") == game_id), None)
+            if game:
+                logger.info(f"[Pillars] Using live API for {game_id}")
+
+        if not game:
+            raise HTTPException(status_code=404, detail=f"Game {game_id} not found")
+
+        # Run full analysis
+        logger.info(f"[Pillars] Running analyze_game for {game.get('away_team')} @ {game.get('home_team')}")
+        analysis = analyze_game(game, sport)
+
+        return {
+            "game_id": analysis["game_id"],
+            "sport": analysis["sport"],
+            "home_team": analysis["home_team"],
+            "away_team": analysis["away_team"],
+            "pillar_scores": analysis["pillar_scores"],
+            "composite_score": analysis["composite_score"],
+            "overall_confidence": analysis["overall_confidence"],
+            "best_bet": analysis["best_bet"],
+            "best_edge": analysis["best_edge"],
+            "pillars": analysis["pillars"],
+            "source": "live_calculation"
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error calculating pillars: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 

@@ -183,7 +183,7 @@ class Database:
         if not self._is_connected():
             return []
         
-        confidence_levels = ["PASS", "WATCH", "EDGE", "STRONG_EDGE"]
+        confidence_levels = ["PASS", "WATCH", "EDGE", "STRONG", "RARE"]
         min_index = confidence_levels.index(min_confidence)
         valid_confidences = confidence_levels[min_index:]
         
@@ -321,7 +321,47 @@ class Database:
         periods = markets_data.get("periods", {})
         for period_key, period_markets in periods.items():
             saved += self._save_period_snapshots(game_id, sport, period_key, period_markets, american_to_implied_prob)
-        
+
+        # =====================================================================
+        # TEAM TOTALS (per-team over/under)
+        # =====================================================================
+        team_totals = markets_data.get("team_totals", {})
+        for book_key, teams_data in team_totals.items():
+            if not teams_data or not isinstance(teams_data, dict):
+                continue
+            for team_key in ["home", "away"]:
+                team_data = teams_data.get(team_key, {})
+                if not team_data:
+                    continue
+                # Save over line
+                if "over" in team_data and isinstance(team_data["over"], dict):
+                    over = team_data["over"]
+                    if self.save_line_snapshot(
+                        game_id=game_id,
+                        sport=sport,
+                        market_type=f"team_total_{team_key}_over",
+                        book_key=book_key,
+                        line=over.get("line", 0),
+                        odds=over.get("odds", -110),
+                        implied_prob=american_to_implied_prob(over.get("odds", -110)),
+                        market_period="full"
+                    ):
+                        saved += 1
+                # Save under line
+                if "under" in team_data and isinstance(team_data["under"], dict):
+                    under = team_data["under"]
+                    if self.save_line_snapshot(
+                        game_id=game_id,
+                        sport=sport,
+                        market_type=f"team_total_{team_key}_under",
+                        book_key=book_key,
+                        line=under.get("line", 0),
+                        odds=under.get("odds", -110),
+                        implied_prob=american_to_implied_prob(under.get("odds", -110)),
+                        market_period="full"
+                    ):
+                        saved += 1
+
         logger.debug(f"Saved {saved} snapshots for game {game_id}")
         return saved
     

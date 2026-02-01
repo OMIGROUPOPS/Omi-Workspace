@@ -274,7 +274,7 @@ class ResultsTracker:
         
         # By confidence
         by_confidence = {}
-        for conf in ["STRONG_EDGE", "EDGE", "WATCH", "PASS"]:
+        for conf in ["RARE", "STRONG", "EDGE", "WATCH", "PASS"]:
             conf_games = [g for g in games if g.get("confidence_level") == conf]
             w, l, p = calc_record(conf_games, "best_bet_result")
             by_confidence[conf] = {

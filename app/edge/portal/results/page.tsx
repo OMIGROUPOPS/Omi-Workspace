@@ -52,8 +52,9 @@ const SPORT_ICONS: Record<string, string> = {
 };
 
 const CONFIDENCE_COLORS: Record<string, string> = {
-  'STRONG_EDGE': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
-  'EDGE': 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20',
+  'RARE': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+  'STRONG': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+  'EDGE': 'bg-blue-500/10 text-blue-300 border-blue-500/20',
   'WATCH': 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
   'PASS': 'bg-zinc-800 text-zinc-500 border-zinc-700',
 };
@@ -240,7 +241,7 @@ export default function ResultsPage() {
                   <div>Win %</div>
                   <div>Games</div>
                 </div>
-                {['STRONG_EDGE', 'EDGE', 'WATCH', 'PASS'].map((conf) => {
+                {['RARE', 'STRONG', 'EDGE', 'WATCH', 'PASS'].map((conf) => {
                   const data = summary?.by_confidence?.[conf] || { record: '0-0-0', win_pct: 0, games: 0 };
                   return (
                     <div key={conf} className="grid grid-cols-4 gap-4 py-3 border-t border-zinc-800/50 items-center">
@@ -289,7 +290,7 @@ export default function ResultsPage() {
             {/* ROI Note */}
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4 text-sm text-zinc-400">
               <strong className="text-zinc-200">Note:</strong> Win rate above 52.4% on -110 odds indicates positive ROI. 
-              55%+ is considered excellent. Track STRONG_EDGE and EDGE plays separately for best insight into system performance.
+              55%+ is considered excellent. Track RARE, STRONG, and EDGE plays separately for best insight into system performance.
             </div>
           </div>
         ) : (

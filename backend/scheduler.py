@@ -271,7 +271,7 @@ def run_pregame_cycle() -> dict:
             predictions_saved = db.save_predictions_batch(analyses)
             
             # Count edges by confidence
-            edges_by_confidence = {"PASS": 0, "WATCH": 0, "EDGE": 0, "STRONG_EDGE": 0}
+            edges_by_confidence = {"PASS": 0, "WATCH": 0, "EDGE": 0, "STRONG": 0, "RARE": 0}
             for analysis in analyses:
                 conf = analysis.get("overall_confidence", "PASS")
                 edges_by_confidence[conf] = edges_by_confidence.get(conf, 0) + 1

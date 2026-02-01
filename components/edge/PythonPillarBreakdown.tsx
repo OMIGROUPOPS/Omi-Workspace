@@ -1,0 +1,366 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+
+/**
+ * Python Backend Pillar Scores
+ *
+ * These are the REAL 5 pillars calculated by the Python backend:
+ * 1. Execution (20%) - Injuries, weather, lineup uncertainty
+ * 2. Incentives (15%) - Playoffs, motivation, rivalries
+ * 3. Shocks (25%) - Breaking news, line movement timing
+ * 4. Time Decay (15%) - Rest days, back-to-back, travel
+ * 5. Flow (25%) - Sharp money, book disagreement
+ */
+
+interface PillarScores {
+  execution: number;
+  incentives: number;
+  shocks: number;
+  timeDecay: number;
+  flow: number;
+  composite: number;
+}
+
+interface PillarDetail {
+  score: number;
+  reasoning: string;
+  [key: string]: any;
+}
+
+interface PillarData {
+  game_id: string;
+  sport: string;
+  home_team: string;
+  away_team: string;
+  pillar_scores: PillarScores;
+  pillars?: {
+    execution?: PillarDetail;
+    incentives?: PillarDetail;
+    shocks?: PillarDetail;
+    time_decay?: PillarDetail;
+    flow?: PillarDetail;
+  };
+  overall_confidence: 'PASS' | 'WATCH' | 'EDGE' | 'STRONG' | 'RARE';
+  best_bet: string | null;
+  best_edge: number;
+  source: string;
+}
+
+// Pillar weight configuration matching backend
+const PILLAR_CONFIG = {
+  execution: { name: 'Execution', weight: 0.20, description: 'Injuries, weather, lineup' },
+  incentives: { name: 'Incentives', weight: 0.15, description: 'Playoffs, motivation, rivalries' },
+  shocks: { name: 'Shocks', weight: 0.25, description: 'Breaking news, line movement' },
+  timeDecay: { name: 'Time Decay', weight: 0.15, description: 'Rest, travel, fatigue' },
+  flow: { name: 'Flow', weight: 0.25, description: 'Sharp money, book disagreement' },
+};
+
+function getScoreStyle(score: number) {
+  // Score is 0-100 (converted from 0-1)
+  // 50 = neutral, >55 = edge toward away, <45 = edge toward home
+  if (score >= 75) return { bg: 'bg-emerald-500/20', border: 'border-emerald-500/40', text: 'text-emerald-400', label: 'Strong Away' };
+  if (score >= 60) return { bg: 'bg-blue-500/20', border: 'border-blue-500/40', text: 'text-blue-400', label: 'Lean Away' };
+  if (score >= 45 && score <= 55) return { bg: 'bg-zinc-700/50', border: 'border-zinc-600', text: 'text-zinc-400', label: 'Neutral' };
+  if (score >= 25) return { bg: 'bg-amber-500/20', border: 'border-amber-500/40', text: 'text-amber-400', label: 'Lean Home' };
+  return { bg: 'bg-red-500/20', border: 'border-red-500/40', text: 'text-red-400', label: 'Strong Home' };
+}
+
+function getConfidenceStyle(conf: string) {
+  switch (conf) {
+    case 'RARE': return { bg: 'bg-purple-500/20', border: 'border-purple-500/40', text: 'text-purple-400' };
+    case 'STRONG': return { bg: 'bg-emerald-500/20', border: 'border-emerald-500/40', text: 'text-emerald-400' };
+    case 'EDGE': return { bg: 'bg-blue-500/20', border: 'border-blue-500/40', text: 'text-blue-400' };
+    case 'WATCH': return { bg: 'bg-amber-500/20', border: 'border-amber-500/40', text: 'text-amber-400' };
+    default: return { bg: 'bg-zinc-800/50', border: 'border-zinc-700/50', text: 'text-zinc-500' };
+  }
+}
+
+interface PythonPillarBreakdownProps {
+  gameId: string;
+  sport: string;
+  homeTeam: string;
+  awayTeam: string;
+  compact?: boolean;
+}
+
+export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compact = false }: PythonPillarBreakdownProps) {
+  const [pillarData, setPillarData] = useState<PillarData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchPillars() {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(
+          `/api/pillars/calculate?game_id=${encodeURIComponent(gameId)}&sport=${encodeURIComponent(sport)}`
+        );
+
+        if (!response.ok) {
+          const data = await response.json();
+          throw new Error(data.error || `Failed to fetch pillars: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setPillarData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    if (gameId && sport) {
+      fetchPillars();
+    }
+  }, [gameId, sport]);
+
+  if (loading) {
+    return (
+      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
+        <div className="animate-pulse space-y-2">
+          <div className="h-4 bg-zinc-700 rounded w-1/3"></div>
+          <div className="space-y-1">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="h-3 bg-zinc-800 rounded"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    const isConnectionError = error.includes('connect') || error.includes('ECONNREFUSED') || error.includes('fetch');
+    return (
+      <div className="bg-zinc-900 border border-amber-500/30 rounded-lg p-4">
+        <div className="text-center">
+          <p className="text-amber-400 text-sm mb-1">
+            {isConnectionError ? 'Python Backend Offline' : 'Pillar Calculation Error'}
+          </p>
+          <p className="text-zinc-500 text-xs mb-2">{error}</p>
+          {isConnectionError && (
+            <p className="text-zinc-600 text-xs">
+              Run: <code className="bg-zinc-800 px-1 rounded">cd backend && python main.py</code>
+            </p>
+          )}
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-2 text-xs text-emerald-400 hover:text-emerald-300"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!pillarData) {
+    return null;
+  }
+
+  const { pillar_scores, pillars, overall_confidence, best_bet, best_edge } = pillarData;
+  const confStyle = getConfidenceStyle(overall_confidence);
+
+  // Determine edge direction from composite (>55 = away edge, <45 = home edge)
+  const edgeDirection = pillar_scores.composite > 55 ? `${awayTeam}` :
+                        pillar_scores.composite < 45 ? `${homeTeam}` :
+                        'Neutral';
+
+  return (
+    <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+      {/* Header */}
+      <div className={`px-3 py-2 ${confStyle.bg} border-b ${confStyle.border}`}>
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-xs font-semibold text-zinc-100">5-Pillar Analysis</h3>
+            <span className="text-[10px] text-zinc-400">Python Backend</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className={`text-lg font-bold font-mono ${confStyle.text}`}>{pillar_scores.composite}%</span>
+            <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded ${confStyle.bg} ${confStyle.text}`}>
+              {overall_confidence}
+            </span>
+          </div>
+        </div>
+        {overall_confidence !== 'PASS' && (
+          <div className="mt-1 text-[10px] text-zinc-300">
+            Edge Direction: <span className={confStyle.text}>{edgeDirection}</span>
+            {best_bet && best_edge !== 0 && (
+              <span className="ml-2">| Best: {best_bet} ({best_edge > 0 ? '+' : ''}{best_edge.toFixed(1)}%)</span>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Pillar Bars */}
+      <div className="p-3 space-y-2">
+        {Object.entries(PILLAR_CONFIG).map(([key, config]) => {
+          const score = pillar_scores[key as keyof PillarScores];
+          const detail = pillars?.[key === 'timeDecay' ? 'time_decay' : key as keyof typeof pillars];
+          const style = getScoreStyle(score);
+          const hasDetail = detail?.reasoning;
+
+          // Visual: bar from left (home) to right (away), centered at 50
+          const barPosition = score; // 0-100, 50 is center
+
+          return (
+            <div key={key}>
+              <div
+                className={`flex items-center gap-2 ${hasDetail ? 'cursor-pointer hover:bg-zinc-800/50' : ''} rounded px-1 -mx-1`}
+                onClick={() => hasDetail && setExpanded(expanded === key ? null : key)}
+              >
+                <span className="text-[10px] text-zinc-400 w-20 truncate" title={config.description}>
+                  {config.name}
+                  <span className="text-zinc-600 ml-1">({Math.round(config.weight * 100)}%)</span>
+                </span>
+
+                {/* Score bar - visual representation */}
+                <div className="flex-1 h-3 bg-zinc-800 rounded-full overflow-hidden relative">
+                  {/* Center line */}
+                  <div className="absolute left-1/2 top-0 bottom-0 w-px bg-zinc-600"></div>
+
+                  {/* Score indicator */}
+                  <div
+                    className={`absolute top-0 bottom-0 ${style.bg}`}
+                    style={{
+                      left: score >= 50 ? '50%' : `${score}%`,
+                      width: score >= 50 ? `${score - 50}%` : `${50 - score}%`,
+                    }}
+                  ></div>
+
+                  {/* Score dot */}
+                  <div
+                    className={`absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${
+                      score >= 60 ? 'bg-emerald-400' :
+                      score <= 40 ? 'bg-amber-400' :
+                      'bg-zinc-400'
+                    }`}
+                    style={{ left: `${score}%`, transform: 'translateX(-50%) translateY(-50%)' }}
+                  ></div>
+                </div>
+
+                <span className={`text-[10px] w-14 text-right font-mono ${style.text}`}>
+                  {score}%
+                </span>
+
+                {hasDetail && (
+                  <svg
+                    className={`w-3 h-3 text-zinc-500 transition-transform ${expanded === key ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                )}
+              </div>
+
+              {/* Expanded reasoning */}
+              {expanded === key && detail?.reasoning && (
+                <div className={`mt-1 ml-[88px] p-2 rounded ${style.bg} border ${style.border}`}>
+                  <p className="text-[10px] text-zinc-300 leading-relaxed">{detail.reasoning}</p>
+
+                  {/* Show breakdown details if available */}
+                  {key === 'execution' && detail.breakdown && (
+                    <div className="mt-2 text-[9px] text-zinc-400 space-y-0.5">
+                      <div>Home Injuries: {(detail.home_injury_impact * 100).toFixed(0)}%</div>
+                      <div>Away Injuries: {(detail.away_injury_impact * 100).toFixed(0)}%</div>
+                    </div>
+                  )}
+                  {key === 'incentives' && detail.breakdown && (
+                    <div className="mt-2 text-[9px] text-zinc-400 space-y-0.5">
+                      <div>Home Motivation: {(detail.home_motivation * 100).toFixed(0)}%</div>
+                      <div>Away Motivation: {(detail.away_motivation * 100).toFixed(0)}%</div>
+                      {detail.is_rivalry && <div className="text-amber-400">Rivalry Game</div>}
+                    </div>
+                  )}
+                  {key === 'timeDecay' && detail.breakdown && (
+                    <div className="mt-2 text-[9px] text-zinc-400 space-y-0.5">
+                      <div>Home Rest: {detail.home_rest_days} days</div>
+                      <div>Away Rest: {detail.away_rest_days} days</div>
+                    </div>
+                  )}
+                  {key === 'flow' && detail.breakdown && (
+                    <div className="mt-2 text-[9px] text-zinc-400 space-y-0.5">
+                      <div>Consensus Line: {detail.consensus_line}</div>
+                      <div>Sharp Line: {detail.sharpest_line}</div>
+                      <div>Book Agreement: {(detail.book_agreement * 100).toFixed(0)}%</div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Legend */}
+      {!compact && (
+        <div className="px-3 pb-2 border-t border-zinc-800 pt-2">
+          <div className="flex items-center justify-between text-[9px] text-zinc-500">
+            <span className="flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-amber-400"></span>
+              {homeTeam} Edge
+            </span>
+            <span className="text-zinc-600">50 = Neutral</span>
+            <span className="flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+              {awayTeam} Edge
+            </span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Compact version for dashboard cards
+ */
+export function PythonPillarSummary({ gameId, sport }: { gameId: string; sport: string }) {
+  const [pillarData, setPillarData] = useState<PillarData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchPillars() {
+      try {
+        const response = await fetch(
+          `/api/pillars/calculate?game_id=${encodeURIComponent(gameId)}&sport=${encodeURIComponent(sport)}`
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setPillarData(data);
+        }
+      } catch (err) {
+        // Silently fail for summary
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    if (gameId && sport) {
+      fetchPillars();
+    }
+  }, [gameId, sport]);
+
+  if (loading || !pillarData) {
+    return null;
+  }
+
+  const { pillar_scores, overall_confidence } = pillarData;
+  const confStyle = getConfidenceStyle(overall_confidence);
+
+  return (
+    <div className="flex items-center gap-2">
+      <span className={`text-sm font-bold font-mono ${confStyle.text}`}>{pillar_scores.composite}%</span>
+      <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded ${confStyle.bg} ${confStyle.text}`}>
+        {overall_confidence}
+      </span>
+    </div>
+  );
+}

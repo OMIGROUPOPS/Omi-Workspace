@@ -79,15 +79,26 @@ def calculate_edge_percentage(
 
 
 def get_confidence_rating(edge_pct: float, composite_score: float) -> str:
-    """Determine confidence rating based on edge and composite."""
-    abs_edge = abs(edge_pct)
-    composite_strength = abs(composite_score - 0.5) * 2
-    
-    if abs_edge >= 6.0 and composite_strength >= 0.4:
-        return "STRONG_EDGE"
-    elif abs_edge >= 4.0 and composite_strength >= 0.3:
+    """
+    Determine confidence rating based on composite score percentage.
+
+    Aligned with EdgeScout CEQ thresholds:
+    - 86%+ = RARE (exceptional opportunity)
+    - 76-85% = STRONG (high confidence)
+    - 66-75% = EDGE (actionable)
+    - 56-65% = WATCH (monitor for movement)
+    - <56% = PASS (no actionable edge)
+    """
+    # Convert 0-1 scale to 0-100 percentage
+    composite_pct = composite_score * 100
+
+    if composite_pct >= 86:
+        return "RARE"
+    elif composite_pct >= 76:
+        return "STRONG"
+    elif composite_pct >= 66:
         return "EDGE"
-    elif abs_edge >= 2.0 and composite_strength >= 0.2:
+    elif composite_pct >= 56:
         return "WATCH"
     else:
         return "PASS"
@@ -108,9 +119,10 @@ def analyze_game(
     game_id = parsed["game_id"]
     
     logger.info(f"Analyzing: {away_team} @ {home_team}")
-    
+    logger.info(f"  Sport: {sport}, Home: '{home_team}', Away: '{away_team}'")
+
     venue = None
-    
+
     execution = calculate_execution_score(
         sport=sport,
         home_team=home_team,
@@ -162,7 +174,15 @@ def analyze_game(
         "time_decay": time_decay["score"],
         "flow": flow["score"],
     }
-    
+
+    # Debug: Log pillar scores and reasoning
+    logger.info(f"  Pillar scores for {home_team}:")
+    logger.info(f"    Execution: {execution['score']:.3f} - {execution.get('reasoning', 'N/A')}")
+    logger.info(f"    Incentives: {incentives['score']:.3f} - {incentives.get('reasoning', 'N/A')}")
+    logger.info(f"    Shocks: {shocks['score']:.3f} - {shocks.get('reasoning', 'N/A')}")
+    logger.info(f"    Time Decay: {time_decay['score']:.3f} - {time_decay.get('reasoning', 'N/A')}")
+    logger.info(f"    Flow: {flow['score']:.3f} - {flow.get('reasoning', 'N/A')}")
+
     composite = calculate_composite_score(pillar_scores)
     
     edges = {}
@@ -249,7 +269,7 @@ def analyze_game(
     best_edge = 0
     
     for market_key, edge_data in edges.items():
-        if edge_data["confidence"] in ["EDGE", "STRONG_EDGE"]:
+        if edge_data["confidence"] in ["EDGE", "STRONG", "RARE"]:
             if abs(edge_data["edge_pct"]) > abs(best_edge):
                 best_edge = edge_data["edge_pct"]
                 best_bet = market_key

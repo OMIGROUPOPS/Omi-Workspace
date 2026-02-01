@@ -21,6 +21,7 @@ ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 
 # ESPN API (free, no key needed)
 ESPN_API_BASE = "http://site.api.espn.com/apis/site/v2/sports"
+ESPN_API_BASE_V2 = "http://site.api.espn.com/apis/v2/sports"  # Alternate base for standings
 
 # Open-Meteo Weather (free, no key needed)
 OPEN_METEO_BASE = "https://api.open-meteo.com/v1/forecast"
@@ -70,10 +71,12 @@ PILLAR_WEIGHTS = {
 # =============================================================================
 
 EDGE_THRESHOLDS = {
-    "PASS": {"min_edge": 0, "min_composite": 0},
-    "WATCH": {"min_edge": 2.0, "min_composite": 0.55},
-    "EDGE": {"min_edge": 4.0, "min_composite": 0.60},
-    "STRONG_EDGE": {"min_edge": 6.0, "min_composite": 0.65},
+    # Percentage-only thresholds (aligned with EdgeScout CEQ)
+    "PASS": {"min_composite": 0},      # <56%
+    "WATCH": {"min_composite": 0.56},  # 56-65%
+    "EDGE": {"min_composite": 0.66},   # 66-75%
+    "STRONG": {"min_composite": 0.76}, # 76-85%
+    "RARE": {"min_composite": 0.86},   # 86%+
 }
 
 # =============================================================================
@@ -95,6 +98,9 @@ LIVE_PROPS_PER_QUARTER = 2  # Poll props twice per quarter/period
 
 # Main markets (always fetch)
 MAIN_MARKETS = ["h2h", "spreads", "totals"]
+
+# Team totals market (for per-team over/under)
+TEAM_TOTALS_MARKET = "team_totals"
 
 # Extended markets (pre-game only)
 HALF_MARKETS = [

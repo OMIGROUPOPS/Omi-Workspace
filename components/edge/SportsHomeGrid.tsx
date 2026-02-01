@@ -7,7 +7,38 @@ import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, CEQConfidence } from '@/lib/edge/engine/edgescout';
-import { LiveEdgeFeed } from './LiveEdgeFeed';
+
+// LiveEdge from live_edges table (returned by dashboard API)
+interface LiveEdge {
+  id: string;
+  game_id: string;
+  sport: string;
+  market_type: string;       // 'h2h', 'spreads', 'totals'
+  outcome_key: string;       // team name, 'Over', 'Under'
+  edge_type: string;
+  edge_magnitude: number;
+  confidence: number | null;
+  status: string;
+}
+
+// Helper to find live edge confidence for a specific market/outcome
+function findLiveEdgeConfidence(
+  liveEdges: LiveEdge[] | undefined,
+  marketType: 'spreads' | 'h2h' | 'totals',
+  outcomeKey: string
+): number | undefined {
+  if (!liveEdges || liveEdges.length === 0) return undefined;
+
+  // Find matching edge (case-insensitive match for team names)
+  const edge = liveEdges.find(e =>
+    e.market_type === marketType &&
+    (e.outcome_key.toLowerCase() === outcomeKey.toLowerCase() ||
+     outcomeKey.toLowerCase().includes(e.outcome_key.toLowerCase()) ||
+     e.outcome_key.toLowerCase().includes(outcomeKey.toLowerCase()))
+  );
+
+  return edge?.confidence ?? undefined;
+}
 
 const BOOK_CONFIG: Record<string, { name: string; color: string }> = {
   'fanduel': { name: 'FanDuel', color: '#1493ff' },
@@ -68,50 +99,9 @@ function getCEQStyles(ceq: number | undefined): { bgTint: string; borderTint: st
   return { bgTint: 'bg-zinc-800/80', borderTint: 'border-zinc-700/50', textColor: 'text-zinc-500' };
 }
 
-function OddsCell({ line, price, ev, ceq, topDrivers }: { line?: number | string; price: number; ev?: number; ceq?: number; topDrivers?: string[] }) {
-  const [showTooltip, setShowTooltip] = useState(false);
-  const hasEV = ev !== undefined && Math.abs(ev) >= 0.5;
-  const hasCEQ = ceq !== undefined && ceq !== null;
-
-  // Show edge when CEQ >= 56% and EV is POSITIVE (or undefined)
-  // Negative EV = losing bet = no edge
-  const evAcceptable = ev === undefined || ev >= 0;
-  const hasEdge = hasCEQ && ceq >= 56 && evAcceptable;
-
-  // Edge styling only when we have a real edge (CEQ high + EV non-negative)
-  const getCellStyles = () => {
-    if (hasEdge) {
-      if (ceq >= 86) return 'bg-purple-500/20 border-2 border-purple-500/50 ring-1 ring-purple-500/30';
-      if (ceq >= 76) return 'bg-emerald-500/20 border-2 border-emerald-500/50 ring-1 ring-emerald-500/30';
-      if (ceq >= 66) return 'bg-blue-500/20 border-2 border-blue-500/50 ring-1 ring-blue-500/30';
-      return 'bg-amber-500/15 border-2 border-amber-500/40 ring-1 ring-amber-500/20';
-    }
-    if (hasEV) return getEVBgClass(ev);
-    return 'bg-zinc-800/80 border border-zinc-700/50';
-  };
-
-  const evColor = hasEV ? getEVColor(ev) : 'text-zinc-500';
-  const confidence = (hasCEQ && evAcceptable)
-    ? ceq >= 86 ? 'RARE' : ceq >= 76 ? 'STRONG' : ceq >= 66 ? 'EDGE' : ceq >= 56 ? 'WATCH' : 'PASS'
-    : null;
-
+function OddsCell({ line, price }: { line?: number | string; price: number; ev?: number; ceq?: number; topDrivers?: string[] }) {
   return (
-    <div
-      className={`relative flex flex-col items-center justify-center p-1.5 ${getCellStyles()} rounded hover:brightness-110 transition-all cursor-pointer group`}
-      onMouseEnter={() => setShowTooltip(true)}
-      onMouseLeave={() => setShowTooltip(false)}
-    >
-      {/* Edge indicator badge */}
-      {hasEdge && (
-        <div className={`absolute -top-1 -right-1 px-1 py-0.5 rounded text-[8px] font-bold ${
-          ceq >= 86 ? 'bg-purple-500 text-white' :
-          ceq >= 76 ? 'bg-emerald-500 text-white' :
-          ceq >= 66 ? 'bg-blue-500 text-white' :
-          'bg-amber-500 text-black'
-        }`}>
-          {ceq}%
-        </div>
-      )}
+    <div className="flex flex-col items-center justify-center p-1.5 bg-[#1a1f2b] border border-zinc-700/50 rounded hover:brightness-110 transition-all cursor-pointer">
       <div className="flex items-center gap-0.5">
         <span className="text-xs font-semibold text-zinc-100 font-mono">
           {line !== undefined && (typeof line === 'number' ? (line > 0 ? `+${line}` : line) : line)}
@@ -121,122 +111,19 @@ function OddsCell({ line, price, ev, ceq, topDrivers }: { line?: number | string
         <span className={`text-[11px] font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-300'}`}>
           {formatOdds(price)}
         </span>
-        {hasEV && (
-          <span className={`text-[9px] font-mono font-medium ${evColor}`}>
-            {formatEV(ev)}
-          </span>
-        )}
       </div>
-      {/* Tooltip with CEQ details */}
-      {showTooltip && (hasEV || hasCEQ) && (
-        <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl p-2 text-left">
-          {hasCEQ && (
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] text-zinc-500 uppercase">CEQ Score</span>
-              <span className={`text-xs font-bold ${getCEQStyles(ceq).textColor}`}>{ceq}%</span>
-            </div>
-          )}
-          {confidence && confidence !== 'PASS' && (
-            <div className={`text-[10px] font-semibold ${getCEQStyles(ceq).textColor} mb-1`}>{confidence} EDGE</div>
-          )}
-          {hasEV && (
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] text-zinc-500 uppercase">EV</span>
-              <span className={`text-xs font-bold ${evColor}`}>{formatEV(ev)}</span>
-            </div>
-          )}
-          {topDrivers && topDrivers.length > 0 && (
-            <div className="border-t border-zinc-800 pt-1 mt-1">
-              <div className="text-[9px] text-zinc-500 mb-0.5">Top Drivers:</div>
-              {topDrivers.slice(0, 3).map((driver, i) => (
-                <div key={i} className="text-[9px] text-zinc-400 truncate">{driver}</div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 }
 
-function MoneylineCell({ price, ev, ceq, topDrivers }: { price: number; ev?: number; ceq?: number; topDrivers?: string[] }) {
-  const [showTooltip, setShowTooltip] = useState(false);
-  const hasEV = ev !== undefined && Math.abs(ev) >= 0.5;
-  const hasCEQ = ceq !== undefined && ceq !== null;
-
-  // Show edge when CEQ >= 56% and EV is POSITIVE (or undefined)
-  const evAcceptable = ev === undefined || ev >= 0;
-  const hasEdge = hasCEQ && ceq >= 56 && evAcceptable;
-
-  const getCellStyles = () => {
-    if (hasEdge) {
-      if (ceq >= 86) return 'bg-purple-500/20 border-2 border-purple-500/50 ring-1 ring-purple-500/30';
-      if (ceq >= 76) return 'bg-emerald-500/20 border-2 border-emerald-500/50 ring-1 ring-emerald-500/30';
-      if (ceq >= 66) return 'bg-blue-500/20 border-2 border-blue-500/50 ring-1 ring-blue-500/30';
-      return 'bg-amber-500/15 border-2 border-amber-500/40 ring-1 ring-amber-500/20';
-    }
-    if (hasEV) return getEVBgClass(ev);
-    return 'bg-zinc-800/80 border border-zinc-700/50';
-  };
-
-  const evColor = hasEV ? getEVColor(ev) : 'text-zinc-500';
-  const confidence = (hasCEQ && evAcceptable)
-    ? ceq >= 86 ? 'RARE' : ceq >= 76 ? 'STRONG' : ceq >= 66 ? 'EDGE' : ceq >= 56 ? 'WATCH' : 'PASS'
-    : null;
-
+function MoneylineCell({ price }: { price: number; ev?: number; ceq?: number; topDrivers?: string[] }) {
   return (
-    <div
-      className={`relative flex flex-col items-center justify-center p-1.5 ${getCellStyles()} rounded hover:brightness-110 transition-all cursor-pointer group`}
-      onMouseEnter={() => setShowTooltip(true)}
-      onMouseLeave={() => setShowTooltip(false)}
-    >
-      {hasEdge && (
-        <div className={`absolute -top-1 -right-1 px-1 py-0.5 rounded text-[8px] font-bold ${
-          ceq >= 86 ? 'bg-purple-500 text-white' :
-          ceq >= 76 ? 'bg-emerald-500 text-white' :
-          ceq >= 66 ? 'bg-blue-500 text-white' :
-          'bg-amber-500 text-black'
-        }`}>
-          {ceq}%
-        </div>
-      )}
+    <div className="flex flex-col items-center justify-center p-1.5 bg-[#1a1f2b] border border-zinc-700/50 rounded hover:brightness-110 transition-all cursor-pointer">
       <div className="flex items-center gap-1">
         <span className={`text-xs font-semibold font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-100'}`}>
           {formatOdds(price)}
         </span>
-        {hasEV && (
-          <span className={`text-[9px] font-mono font-medium ${evColor}`}>
-            {formatEV(ev)}
-          </span>
-        )}
       </div>
-      {showTooltip && (hasEV || hasCEQ) && (
-        <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl p-2 text-left">
-          {hasCEQ && (
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] text-zinc-500 uppercase">CEQ Score</span>
-              <span className={`text-xs font-bold ${getCEQStyles(ceq).textColor}`}>{ceq}%</span>
-            </div>
-          )}
-          {confidence && confidence !== 'PASS' && (
-            <div className={`text-[10px] font-semibold ${getCEQStyles(ceq).textColor} mb-1`}>{confidence} EDGE</div>
-          )}
-          {hasEV && (
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] text-zinc-500 uppercase">EV</span>
-              <span className={`text-xs font-bold ${evColor}`}>{formatEV(ev)}</span>
-            </div>
-          )}
-          {topDrivers && topDrivers.length > 0 && (
-            <div className="border-t border-zinc-800 pt-1 mt-1">
-              <div className="text-[9px] text-zinc-500 mb-0.5">Top Drivers:</div>
-              {topDrivers.slice(0, 3).map((driver, i) => (
-                <div key={i} className="text-[9px] text-zinc-400 truncate">{driver}</div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 }
@@ -259,7 +146,6 @@ interface EdgeCandidate {
   confidence: string;
   side: 'home' | 'away' | 'over' | 'under';
   market: 'spread' | 'h2h' | 'total';
-  ev?: number;
   teamName?: string;
   line?: number;
 }
@@ -277,87 +163,77 @@ function getEdgeBadge(game: any, selectedBook: string): { label: string; color: 
   const ceq = (game.ceqByBook?.[selectedBook] || game.ceq) as GameCEQ | undefined;
   const consensus = game.consensus;
 
-  console.log('[getEdgeBadge data check]', {
-    gameId: game.id,
-    homeTeam: game.homeTeam,
-    awayTeam: game.awayTeam,
-    home_team: game.home_team,
-    away_team: game.away_team,
-    consensusSpreadsLine: consensus?.spreads?.line,
-    hasConsensus: !!consensus,
-    hasCeqByBook: !!game.ceqByBook,
-    selectedBook: selectedBook,
-  });
-
   const edges: EdgeCandidate[] = [];
 
   if (ceq) {
     // SPREADS: Only ONE side can have edge - pick the BETTER side
     const homeSpreadCeq = ceq.spreads?.home?.ceq ?? 0;
     const awaySpreadCeq = ceq.spreads?.away?.ceq ?? 0;
-    const homeSpreadEv = (ceq.spreads?.home as any)?.ev ?? undefined;
-    const awaySpreadEv = (ceq.spreads?.away as any)?.ev ?? undefined;
-    
+
     // Get the spread line from consensus
     const spreadLine = consensus?.spreads?.line; // This is the HOME team's line
-    
+
     if (homeSpreadCeq >= 56 || awaySpreadCeq >= 56) {
-      // FIXED: Determine which side has the better edge with positive EV
-      const homeQualifies = homeSpreadCeq >= 56 && (homeSpreadEv === undefined || homeSpreadEv >= 0);
-      const awayQualifies = awaySpreadCeq >= 56 && (awaySpreadEv === undefined || awaySpreadEv >= 0);
-      
-      if (homeQualifies && (!awayQualifies || homeSpreadCeq > awaySpreadCeq)) {
+      if (homeSpreadCeq >= 56 && homeSpreadCeq >= awaySpreadCeq) {
         // HOME team has the edge
         const conf = ceq.spreads?.home?.confidence || getConfidenceFromCEQ(homeSpreadCeq);
-        edges.push({ 
-          ceq: homeSpreadCeq, 
-          confidence: conf, 
-          side: 'home', 
+        edges.push({
+          ceq: homeSpreadCeq,
+          confidence: conf,
+          side: 'home',
           market: 'spread',
           teamName: game.homeTeam?.split(' ').pop(),
-          line: spreadLine // Home team's line (e.g., -11.5)
+          line: spreadLine,
         });
-      } else if (awayQualifies) {
+      } else if (awaySpreadCeq >= 56) {
         // AWAY team has the edge
         const conf = ceq.spreads?.away?.confidence || getConfidenceFromCEQ(awaySpreadCeq);
-        edges.push({ 
-          ceq: awaySpreadCeq, 
-          confidence: conf, 
-          side: 'away', 
+        edges.push({
+          ceq: awaySpreadCeq,
+          confidence: conf,
+          side: 'away',
           market: 'spread',
           teamName: game.awayTeam?.split(' ').pop(),
-          line: spreadLine ? -spreadLine : undefined // Away team's line is opposite (e.g., +11.5)
+          line: spreadLine ? -spreadLine : undefined,
         });
       }
     }
 
     // H2H (MONEYLINE): Only ONE side can have edge
+    // No edge for heavy favorites (odds < -300) regardless of CEQ
     const homeH2hCeq = ceq.h2h?.home?.ceq ?? 0;
     const awayH2hCeq = ceq.h2h?.away?.ceq ?? 0;
-    const homeH2hEv = (ceq.h2h?.home as any)?.ev ?? undefined;
-    const awayH2hEv = (ceq.h2h?.away as any)?.ev ?? undefined;
-    
-    if (homeH2hCeq >= 56 || awayH2hCeq >= 56) {
-      const homeQualifies = homeH2hCeq >= 56 && (homeH2hEv === undefined || homeH2hEv >= 0);
-      const awayQualifies = awayH2hCeq >= 56 && (awayH2hEv === undefined || awayH2hEv >= 0);
-      
+    const homeH2hPrice = consensus?.h2h?.homePrice;
+    const awayH2hPrice = consensus?.h2h?.awayPrice;
+
+    // Block heavy favorites entirely (odds worse than -300)
+    const homeIsHeavyFavorite = homeH2hPrice && homeH2hPrice < -300;
+    const awayIsHeavyFavorite = awayH2hPrice && awayH2hPrice < -300;
+
+    // Higher threshold for ML: 66 (was 70)
+    const h2hThreshold = 66;
+
+    if ((homeH2hCeq >= h2hThreshold && !homeIsHeavyFavorite) || (awayH2hCeq >= h2hThreshold && !awayIsHeavyFavorite)) {
+      const homeQualifies = homeH2hCeq >= h2hThreshold && !homeIsHeavyFavorite;
+      const awayQualifies = awayH2hCeq >= h2hThreshold && !awayIsHeavyFavorite;
+
       if (homeQualifies && (!awayQualifies || homeH2hCeq > awayH2hCeq)) {
         const conf = ceq.h2h?.home?.confidence || getConfidenceFromCEQ(homeH2hCeq);
-        edges.push({ 
-          ceq: homeH2hCeq, 
-          confidence: conf, 
-          side: 'home', 
+        edges.push({
+          ceq: homeH2hCeq,
+          confidence: conf,
+          side: 'home',
           market: 'h2h',
-          teamName: game.homeTeam?.split(' ').pop()
+          teamName: game.homeTeam?.split(' ').pop(),
         });
       } else if (awayQualifies) {
         const conf = ceq.h2h?.away?.confidence || getConfidenceFromCEQ(awayH2hCeq);
-        edges.push({ 
-          ceq: awayH2hCeq, 
-          confidence: conf, 
-          side: 'away', 
+        edges.push({
+          ceq: awayH2hCeq,
+          confidence: conf,
+          side: 'away',
           market: 'h2h',
-          teamName: game.awayTeam?.split(' ').pop()
+          teamName: game.awayTeam?.split(' ').pop(),
         });
       }
     }
@@ -365,15 +241,13 @@ function getEdgeBadge(game: any, selectedBook: string): { label: string; color: 
     // TOTALS: Over/under CAN both have edges
     const overCeq = ceq.totals?.over?.ceq ?? 0;
     const underCeq = ceq.totals?.under?.ceq ?? 0;
-    const overEv = (ceq.totals?.over as any)?.ev ?? undefined;
-    const underEv = (ceq.totals?.under as any)?.ev ?? undefined;
     const totalLine = consensus?.totals?.line;
-    
-    if (overCeq >= 56 && (overEv === undefined || overEv >= 0)) {
+
+    if (overCeq >= 56) {
       const conf = ceq.totals?.over?.confidence || getConfidenceFromCEQ(overCeq);
       edges.push({ ceq: overCeq, confidence: conf, side: 'over', market: 'total', line: totalLine });
     }
-    if (underCeq >= 56 && (underEv === undefined || underEv >= 0)) {
+    if (underCeq >= 56) {
       const conf = ceq.totals?.under?.confidence || getConfidenceFromCEQ(underCeq);
       edges.push({ ceq: underCeq, confidence: conf, side: 'under', market: 'total', line: totalLine });
     }
@@ -383,42 +257,61 @@ function getEdgeBadge(game: any, selectedBook: string): { label: string; color: 
   if (edges.length === 0 && game.calculatedEdge) {
     const calcEdge = game.calculatedEdge;
     if (calcEdge.score >= 56 && calcEdge.confidence && calcEdge.confidence !== 'PASS') {
-      const ev = calcEdge.ev ?? undefined;
-      if (ev === undefined || ev >= 0) {
-        edges.push({
-          ceq: calcEdge.score,
-          confidence: calcEdge.confidence,
-          side: calcEdge.side || 'home',
-          market: 'spread',
-        });
-      }
+      const side = calcEdge.side || 'home';
+      const spreadLine = consensus?.spreads?.line;
+      edges.push({
+        ceq: calcEdge.score,
+        confidence: getConfidenceFromCEQ(calcEdge.score),
+        side: side,
+        market: 'spread',
+        teamName: side === 'home' ? game.homeTeam?.split(' ').pop() : game.awayTeam?.split(' ').pop(),
+        line: side === 'home' ? spreadLine : (spreadLine ? -spreadLine : undefined),
+      });
     }
   }
 
-  console.log('[getEdgeBadge Debug]', {
-    gameId: game.id,
-    homeTeam: game.homeTeam,
-    awayTeam: game.awayTeam,
-    consensusSpreadsLine: game.consensus?.spreads?.line,
-    edgesCollected: edges.map(e => ({
-      side: e.side,
-      market: e.market,
-      teamName: e.teamName,
-      line: e.line,
-      ceq: e.ceq
-    }))
-  });
+  // Use database-stored totalEdgeCount if available (includes all periods/markets)
+  const dbEdgeCount = game.totalEdgeCount ?? 0;
 
-  if (edges.length === 0) return null;
+  // If no local edges found but database has edges, show generic badge
+  if (edges.length === 0) {
+    if (dbEdgeCount > 0) {
+      // Database has edges (from halves/quarters/periods) - show generic EDGE badge
+      return {
+        label: 'EDGE',
+        color: 'text-blue-300',
+        bg: 'bg-blue-500/20 border-blue-500/30',
+        score: undefined,
+        context: '',
+        market: undefined,
+        edgeCount: dbEdgeCount
+      };
+    }
+    return null;
+  }
 
   // Find the best edge (highest CEQ)
   const bestEdge = edges.reduce((best, current) => current.ceq > best.ceq ? current : best);
-  if (bestEdge.confidence === 'PASS') return null;
+  if (bestEdge.confidence === 'PASS') {
+    // Local edges are PASS but database might have edges from periods
+    if (dbEdgeCount > 0) {
+      return {
+        label: 'EDGE',
+        color: 'text-blue-300',
+        bg: 'bg-blue-500/20 border-blue-500/30',
+        score: undefined,
+        context: '',
+        market: undefined,
+        edgeCount: dbEdgeCount
+      };
+    }
+    return null;
+  }
 
-  // FIXED: Build context string using the pre-calculated team name and line
+  // Build context string using the pre-calculated team name and line
   let context = '';
   if (bestEdge.market === 'spread') {
-    const lineStr = bestEdge.line !== undefined 
+    const lineStr = bestEdge.line !== undefined
       ? (bestEdge.line > 0 ? `+${bestEdge.line}` : `${bestEdge.line}`)
       : '';
     context = bestEdge.teamName ? `${bestEdge.teamName} ${lineStr}` : lineStr;
@@ -430,7 +323,8 @@ function getEdgeBadge(game: any, selectedBook: string): { label: string; color: 
   }
 
   const conf = bestEdge.confidence;
-  const edgeCount = edges.length;
+  // Use database count (includes all periods) or fall back to local count
+  const edgeCount = dbEdgeCount > 0 ? dbEdgeCount : edges.length;
 
   if (conf === 'RARE') return { label: 'RARE', color: 'text-purple-300', bg: 'bg-purple-500/20 border-purple-500/30', score: bestEdge.ceq, context, market: bestEdge.market, edgeCount };
   if (conf === 'STRONG') return { label: 'STRONG', color: 'text-emerald-300', bg: 'bg-emerald-500/20 border-emerald-500/30', score: bestEdge.ceq, context, market: bestEdge.market, edgeCount };
@@ -482,13 +376,19 @@ interface SportsHomeGridProps {
 }
 
 export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSource = 'none', totalGames: initialTotalGames = 0, totalEdges: initialTotalEdges = 0, fetchedAt: initialFetchedAt }: SportsHomeGridProps) {
-  const [activeSport, setActiveSport] = useState<string | null>(null);
+  const [activeSport, setActiveSportRaw] = useState<string | null>(null);
+
+  // Wrapper to log ALL activeSport changes
+  const setActiveSport = (newValue: string | null, source: string = 'unknown') => {
+    console.log(`[SPORT CHANGE] ${source}: activeSport changing from "${activeSport}" to "${newValue}"`);
+    console.trace('[SPORT CHANGE] Stack trace:');
+    setActiveSportRaw(newValue);
+  };
   const [selectedBook, setSelectedBook] = useState<string>('fanduel');
   const [isBookDropdownOpen, setIsBookDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [mounted, setMounted] = useState(false);
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
-  const [liveEdgeCount, setLiveEdgeCount] = useState(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const [games, setGames] = useState(initialGames);
@@ -498,13 +398,23 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
   const [lastUpdated, setLastUpdated] = useState<Date | null>(initialFetchedAt ? new Date(initialFetchedAt) : null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [secondsSinceUpdate, setSecondsSinceUpdate] = useState(0);
+  const [apiEdgeCounts, setApiEdgeCounts] = useState<Record<string, number>>({});
 
   const refreshData = useCallback(async (showSpinner = true) => {
+    console.log('[REFRESH] Starting refresh, activeSport before:', activeSport);
     if (showSpinner) setIsRefreshing(true);
     try {
       const res = await fetch('/api/odds/dashboard');
       if (!res.ok) throw new Error('Refresh failed');
       const data = await res.json();
+
+      console.log('[REFRESH] Got data:', {
+        sports: Object.keys(data.games || {}),
+        gameCounts: Object.fromEntries(
+          Object.entries(data.games || {}).map(([k, v]: [string, any]) => [k, v?.length || 0])
+        ),
+        totalGames: data.totalGames,
+      });
 
       setGames(data.games || {});
       setTotalGames(data.totalGames || 0);
@@ -514,18 +424,23 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
       if (data.games && Object.keys(data.games).length > 0) {
         setDataSource('odds_api');
       }
+      console.log('[REFRESH] Completed, activeSport after:', activeSport);
     } catch (e) {
       console.error('[SportsHomeGrid] Refresh error:', e);
     } finally {
       if (showSpinner) setIsRefreshing(false);
     }
-  }, []);
+  }, [activeSport]);
 
   useEffect(() => {
+    console.log('[MOUNT] useEffect triggered, initialFetchedAt:', initialFetchedAt);
     setMounted(true);
     setCurrentTime(new Date());
     setLastUpdated(initialFetchedAt ? new Date(initialFetchedAt) : new Date());
+    // Reset to "All Sports" view on mount/navigation to ensure "+ more games" buttons are visible
+    setActiveSport(null, 'mount-effect');
   }, [initialFetchedAt]);
+
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -553,11 +468,16 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
   useEffect(() => {
     if (!mounted) return;
     const interval = hasLiveGames ? 20000 : 45000;
+    console.log('[INTERVAL] Setting up auto-refresh every', interval/1000, 'seconds');
     const refreshTimer = setInterval(() => {
+      console.log('[INTERVAL] Auto-refresh triggered, activeSport:', activeSport);
       refreshData(false);
     }, interval);
-    return () => clearInterval(refreshTimer);
-  }, [mounted, refreshData, hasLiveGames]);
+    return () => {
+      console.log('[INTERVAL] Clearing refresh timer');
+      clearInterval(refreshTimer);
+    };
+  }, [mounted, refreshData, hasLiveGames, activeSport]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -567,6 +487,45 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     }, 1000);
     return () => clearInterval(timer);
   }, [mounted]);
+
+  // Fetch edge counts from database (pre-calculated during odds sync)
+  useEffect(() => {
+    if (!mounted) return;
+
+    // Collect all game IDs
+    const allGameIds: string[] = [];
+    for (const sportGames of Object.values(games)) {
+      for (const game of sportGames) {
+        if (game.id) {
+          allGameIds.push(game.id);
+        }
+      }
+    }
+
+    if (allGameIds.length === 0) return;
+
+    // Fetch pre-calculated edge counts from database via simple API
+    const fetchEdgeCounts = async () => {
+      try {
+        const res = await fetch('/api/edges/stored-counts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ gameIds: allGameIds }),
+        });
+
+        if (!res.ok) return;
+
+        const data = await res.json();
+        if (data.counts) {
+          setApiEdgeCounts(data.counts);
+        }
+      } catch (err) {
+        console.error('[SportsHomeGrid] Error fetching edge counts:', err);
+      }
+    };
+
+    fetchEdgeCounts();
+  }, [mounted, games]);
 
   const orderedGames = useMemo(() => {
     const result: Record<string, any[]> = {};
@@ -606,6 +565,16 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
   const activeSportsCount = Object.keys(games).filter(k => games[k]?.length > 0).length;
   const hasAnyGames = totalGames > 0 || Object.values(games).some(g => g.length > 0);
 
+  // Debug: Log render state
+  console.log('[RENDER]', {
+    activeSport,
+    isAllView,
+    gameCounts: Object.fromEntries(
+      Object.entries(games).map(([k, v]) => [k, v?.length || 0])
+    ),
+    filteredGamesSports: Object.keys(filteredGames),
+  });
+
   return (
     <div>
       {/* Premium Status Bar */}
@@ -639,16 +608,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                 </div>
               )}
 
-              {liveEdgeCount > 0 && (
-                <div className="flex items-center gap-1.5 px-2.5 py-1 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                  </span>
-                  <span className="text-[10px] font-mono text-blue-500">LIVE</span>
-                  <span className="text-xs font-mono font-bold text-blue-400">{liveEdgeCount}</span>
-                </div>
-              )}
             </div>
           </div>
 
@@ -728,7 +687,7 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
       <div className="flex items-center justify-between gap-4 mb-6">
         <div className="flex gap-1.5 overflow-x-auto pb-2 flex-1">
           <button
-            onClick={() => setActiveSport(null)}
+            onClick={() => setActiveSport(null, 'all-button-click')}
             className={`flex-shrink-0 px-3.5 py-1.5 rounded-md text-xs font-medium transition-all border ${
               activeSport === null
                 ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
@@ -742,7 +701,7 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
             return (
               <button
                 key={sport.key}
-                onClick={() => setActiveSport(sport.key)}
+                onClick={() => setActiveSport(sport.key, 'sport-pill-click')}
                 className={`flex-shrink-0 px-3.5 py-1.5 rounded-md text-xs font-medium transition-all border flex items-center gap-1.5 ${
                   activeSport === sport.key
                     ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
@@ -864,6 +823,17 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
 
           const hasMoreGames = isAllView && !searchQuery && sportGames.length > GAMES_PER_SPORT_IN_ALL_VIEW;
 
+          // Debug: Log hasMoreGames calculation for each sport
+          if (sportKey === 'basketball_nba') {
+            console.log('[MORE GAMES] NBA:', {
+              isAllView,
+              searchQuery: !!searchQuery,
+              sportGamesLength: sportGames.length,
+              threshold: GAMES_PER_SPORT_IN_ALL_VIEW,
+              hasMoreGames,
+            });
+          }
+
           return (
             <div key={sportKey}>
               <div className="flex items-center justify-between mb-3">
@@ -891,7 +861,12 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                     ? gameTime.toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })
                     : '';
                   const countdown = mounted ? getTimeDisplay(gameTime, game.sportKey) : '';
-                  const edgeBadge = getEdgeBadge(game, selectedBook);
+                  // Use API edge count if available, otherwise fall back to game.totalEdgeCount
+                  const apiCount = apiEdgeCounts[game.id];
+                  const gameWithApiCount = apiCount !== undefined
+                    ? { ...game, totalEdgeCount: apiCount }
+                    : game;
+                  const edgeBadge = getEdgeBadge(gameWithApiCount, selectedBook);
 
                   const getCardStyle = () => {
                     if (!edgeBadge) return 'bg-[#0f0f0f] border border-zinc-800/80 hover:border-zinc-700';
@@ -932,30 +907,16 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                           )}
                         </div>
                         {edgeBadge && (
-                          <div className="flex items-center gap-1.5">
-                            {edgeBadge.edgeCount && edgeBadge.edgeCount > 0 && (
-                              <div className={`flex items-center gap-1 px-1.5 py-0.5 rounded ${
-                                edgeBadge.label === 'RARE' ? 'bg-purple-500 text-white' :
-                                edgeBadge.label === 'STRONG' ? 'bg-emerald-500 text-white' :
-                                edgeBadge.label === 'EDGE' ? 'bg-blue-500 text-white' :
-                                'bg-amber-500 text-black'
-                              }`}>
-                                <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
-                                  <path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/>
-                                </svg>
-                                <span className="text-[10px] font-bold">{edgeBadge.edgeCount}</span>
-                              </div>
-                            )}
-                            <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full border ${edgeBadge.bg} ${edgeBadge.color}`}>
-                              <span className="text-[9px] font-bold">
-                                {edgeBadge.label === 'RARE' && '★ '}{edgeBadge.label}:
-                              </span>
-                              {edgeBadge.context && (
-                                <span className="text-[9px] font-medium">{edgeBadge.context}</span>
-                              )}
-                              {edgeBadge.score && (
-                                <span className="text-[9px] font-mono opacity-80">({edgeBadge.score}%)</span>
-                              )}
+                          <div className="flex items-center">
+                            {/* Simple flame badge - no count to avoid mismatch with game detail */}
+                            <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full border ${
+                              edgeBadge.label === 'RARE' ? 'bg-purple-500/20 border-purple-500/40 text-purple-300' :
+                              edgeBadge.label === 'STRONG' ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300' :
+                              edgeBadge.label === 'EDGE' ? 'bg-blue-500/20 border-blue-500/40 text-blue-300' :
+                              'bg-amber-500/20 border-amber-500/40 text-amber-300'
+                            }`}>
+                              <span className="text-xs">🔥</span>
+                              <span className="text-[9px] font-semibold uppercase">{edgeBadge.label}</span>
                             </div>
                           </div>
                         )}
@@ -975,22 +936,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                         const spreads = bookOdds?.spreads || game.consensus?.spreads;
                         const h2h = bookOdds?.h2h || game.consensus?.h2h;
                         const totals = bookOdds?.totals || game.consensus?.totals;
-                        // Use per-book CEQ if available, fall back to consensus CEQ
-                        const ceq = (game.ceqByBook?.[selectedBook] || game.ceq) as GameCEQ | undefined;
-                        const awaySpreadsData = ceq?.spreads?.away;
-                        const awayH2hData = ceq?.h2h?.away;
-                        const overTotalsData = ceq?.totals?.over;
-
-                        const consensus = game.consensus;
-                        const spreadEV = spreads?.awayPrice && spreads?.homePrice
-                          ? calculateTwoWayEV(spreads.awayPrice, spreads.homePrice, consensus?.spreads?.awayPrice, consensus?.spreads?.homePrice)
-                          : undefined;
-                        const mlEV = h2h?.awayPrice && h2h?.homePrice
-                          ? calculateTwoWayEV(h2h.awayPrice, h2h.homePrice, consensus?.h2h?.awayPrice, consensus?.h2h?.homePrice)
-                          : undefined;
-                        const overEV = totals?.overPrice && totals?.underPrice
-                          ? calculateTwoWayEV(totals.overPrice, totals.underPrice, consensus?.totals?.overPrice, consensus?.totals?.underPrice)
-                          : undefined;
 
                         return (
                           <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
@@ -999,13 +944,13 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                               <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.awayTeam, game.sportKey)}</span>
                             </div>
                             {spreads?.line !== undefined ? (
-                              <OddsCell line={-spreads.line} price={spreads.awayPrice} ev={spreadEV} ceq={awaySpreadsData?.ceq} topDrivers={awaySpreadsData?.topDrivers} />
+                              <OddsCell line={-spreads.line} price={spreads.awayPrice} />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                             {h2h?.awayPrice !== undefined ? (
-                              <MoneylineCell price={h2h.awayPrice} ev={mlEV} ceq={awayH2hData?.ceq} topDrivers={awayH2hData?.topDrivers} />
+                              <MoneylineCell price={h2h.awayPrice} />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                             {totals?.line !== undefined ? (
-                              <OddsCell line={`O${totals.line}`} price={totals.overPrice} ev={overEV} ceq={overTotalsData?.ceq} topDrivers={overTotalsData?.topDrivers} />
+                              <OddsCell line={`O${totals.line}`} price={totals.overPrice} />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                           </div>
                         );
@@ -1017,22 +962,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                         const spreads = bookOdds?.spreads || game.consensus?.spreads;
                         const h2h = bookOdds?.h2h || game.consensus?.h2h;
                         const totals = bookOdds?.totals || game.consensus?.totals;
-                        // Use per-book CEQ if available, fall back to consensus CEQ
-                        const ceq = (game.ceqByBook?.[selectedBook] || game.ceq) as GameCEQ | undefined;
-                        const homeSpreadsData = ceq?.spreads?.home;
-                        const homeH2hData = ceq?.h2h?.home;
-                        const underTotalsData = ceq?.totals?.under;
-
-                        const consensus = game.consensus;
-                        const spreadEV = spreads?.homePrice && spreads?.awayPrice
-                          ? calculateTwoWayEV(spreads.homePrice, spreads.awayPrice, consensus?.spreads?.homePrice, consensus?.spreads?.awayPrice)
-                          : undefined;
-                        const mlEV = h2h?.homePrice && h2h?.awayPrice
-                          ? calculateTwoWayEV(h2h.homePrice, h2h.awayPrice, consensus?.h2h?.homePrice, consensus?.h2h?.awayPrice)
-                          : undefined;
-                        const underEV = totals?.underPrice && totals?.overPrice
-                          ? calculateTwoWayEV(totals.underPrice, totals.overPrice, consensus?.totals?.underPrice, consensus?.totals?.overPrice)
-                          : undefined;
 
                         return (
                           <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
@@ -1041,13 +970,13 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                               <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.homeTeam, game.sportKey)}</span>
                             </div>
                             {spreads?.line !== undefined ? (
-                              <OddsCell line={spreads.line} price={spreads.homePrice} ev={spreadEV} ceq={homeSpreadsData?.ceq} topDrivers={homeSpreadsData?.topDrivers} />
+                              <OddsCell line={spreads.line} price={spreads.homePrice} />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                             {h2h?.homePrice !== undefined ? (
-                              <MoneylineCell price={h2h.homePrice} ev={mlEV} ceq={homeH2hData?.ceq} topDrivers={homeH2hData?.topDrivers} />
+                              <MoneylineCell price={h2h.homePrice} />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                             {totals?.line !== undefined ? (
-                              <OddsCell line={`U${totals.line}`} price={totals.underPrice} ev={underEV} ceq={underTotalsData?.ceq} topDrivers={underTotalsData?.topDrivers} />
+                              <OddsCell line={`U${totals.line}`} price={totals.underPrice} />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
                           </div>
                         );
@@ -1060,7 +989,7 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
               {hasMoreGames && (
                 <div className="mt-3 text-center">
                   <button
-                    onClick={() => setActiveSport(sportKey)}
+                    onClick={() => setActiveSport(sportKey, 'more-games-click')}
                     className="text-xs text-zinc-500 hover:text-emerald-400 font-mono transition-colors"
                   >
                     + {sportGames.length - GAMES_PER_SPORT_IN_ALL_VIEW} more games
@@ -1072,17 +1001,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
         })}
         </div>
 
-        {/* Live Edge Feed Sidebar */}
-        <div className="hidden lg:block w-80 flex-shrink-0">
-          <div className="sticky top-4 h-[calc(100vh-8rem)] bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
-            <LiveEdgeFeed
-              sport={activeSport || undefined}
-              selectedBook={selectedBook}
-              maxEdges={20}
-              onEdgeCount={setLiveEdgeCount}
-            />
-          </div>
-        </div>
       </div>
     </div>
   );

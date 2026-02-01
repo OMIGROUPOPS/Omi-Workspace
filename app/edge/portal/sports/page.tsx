@@ -402,6 +402,16 @@ function processBackendGame(
     totals?: { over: number[]; under: number[] };
   } = {};
 
+  // DEBUG: Log bookmaker info for first game
+  if (!game._debuggedBookmakers) {
+    console.log(`[Page SSR] Game ${game.home_team} bookmakers:`, {
+      hasBookmakers: !!game.bookmakers,
+      bookmakerCount: game.bookmakers?.length || 0,
+      bookmakerKeys: game.bookmakers?.map((b: any) => b.key) || [],
+    });
+    game._debuggedBookmakers = true;
+  }
+
   if (game.bookmakers && game.bookmakers.length > 0) {
     const h2hPrices: { home: number[]; away: number[] } = { home: [], away: [] };
     const spreadData: { line: number[]; homePrice: number[]; awayPrice: number[] } = { line: [], homePrice: [], awayPrice: [] };

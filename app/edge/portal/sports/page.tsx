@@ -402,16 +402,6 @@ function processBackendGame(
     totals?: { over: number[]; under: number[] };
   } = {};
 
-  // DEBUG: Log bookmaker info for first game
-  if (!game._debuggedBookmakers) {
-    console.log(`[Page SSR] Game ${game.home_team} bookmakers:`, {
-      hasBookmakers: !!game.bookmakers,
-      bookmakerCount: game.bookmakers?.length || 0,
-      bookmakerKeys: game.bookmakers?.map((b: any) => b.key) || [],
-    });
-    game._debuggedBookmakers = true;
-  }
-
   if (game.bookmakers && game.bookmakers.length > 0) {
     const h2hPrices: { home: number[]; away: number[] } = { home: [], away: [] };
     const spreadData: { line: number[]; homePrice: number[]; awayPrice: number[] } = { line: [], homePrice: [], awayPrice: [] };
@@ -857,11 +847,36 @@ export default async function SportsPage() {
     fetchLiveEdges(allGameIds),
   ]);
 
+  // ALWAYS fetch cached_odds for bookmaker data (backend doesn't include it)
+  const supabase = getSupabase();
+  const sportKeys = sports.map(s => SPORT_MAPPING[s]).filter(Boolean);
+  const { data: cachedOddsData } = await supabase
+    .from('cached_odds')
+    .select('game_id, game_data')
+    .in('sport_key', sportKeys);
+
+  // Build map of game_id -> bookmakers from cached_odds
+  const bookmakersByGameId: Record<string, any[]> = {};
+  if (cachedOddsData) {
+    for (const row of cachedOddsData) {
+      if (row.game_data?.bookmakers && row.game_id) {
+        bookmakersByGameId[row.game_id] = row.game_data.bookmakers;
+      }
+    }
+  }
+
   if (hasBackendData) {
     dataSource = 'backend';
     for (const { sport, games } of backendResults) {
       const processed = games
-        .map((g: any) => processBackendGame(g, sport, scoresData, openingLines, snapshotsMap, teamStatsMap, edgesMap))
+        .map((g: any) => {
+          // Inject bookmakers from cached_odds into backend game
+          const cachedBookmakers = bookmakersByGameId[g.game_id];
+          if (cachedBookmakers) {
+            g.bookmakers = cachedBookmakers;
+          }
+          return processBackendGame(g, sport, scoresData, openingLines, snapshotsMap, teamStatsMap, edgesMap);
+        })
         .filter(Boolean)
         .sort((a: any, b: any) => new Date(a.commenceTime).getTime() - new Date(b.commenceTime).getTime());
 

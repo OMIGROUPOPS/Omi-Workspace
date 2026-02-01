@@ -215,12 +215,13 @@ class Database:
         line: float,
         odds: int,
         implied_prob: float,
-        market_period: str = "full"  # full, h1, h2, q1, q2, q3, q4, p1, p2, p3
+        market_period: str = "full",  # full, h1, h2, q1, q2, q3, q4, p1, p2, p3
+        outcome_type: Optional[str] = None  # home, away, over, under, or team name
     ) -> bool:
         """Save a single line snapshot."""
         if not self._is_connected():
             return False
-        
+
         try:
             record = {
                 "game_id": game_id,
@@ -233,10 +234,14 @@ class Database:
                 "implied_prob": implied_prob,
                 "snapshot_time": datetime.now(timezone.utc).isoformat(),
             }
-            
+
+            # Add outcome_type if provided
+            if outcome_type:
+                record["outcome_type"] = outcome_type
+
             self.client.table("line_snapshots").insert(record).execute()
             return True
-            
+
         except Exception as e:
             logger.error(f"Error saving line snapshot: {e}")
             return False
@@ -269,20 +274,38 @@ class Database:
                 ):
                     saved += 1
             
-            # Moneyline
-            if "h2h" in markets and "home" in markets["h2h"]:
-                ml = markets["h2h"]["home"]
-                if self.save_line_snapshot(
-                    game_id=game_id,
-                    sport=sport,
-                    market_type="moneyline",
-                    book_key=book_key,
-                    line=0,
-                    odds=ml,
-                    implied_prob=american_to_implied_prob(ml),
-                    market_period="full"
-                ):
-                    saved += 1
+            # Moneyline - save BOTH home and away
+            if "h2h" in markets:
+                # Save home ML
+                if "home" in markets["h2h"] and markets["h2h"]["home"]:
+                    ml_home = markets["h2h"]["home"]
+                    if self.save_line_snapshot(
+                        game_id=game_id,
+                        sport=sport,
+                        market_type="moneyline",
+                        book_key=book_key,
+                        line=0,
+                        odds=ml_home,
+                        implied_prob=american_to_implied_prob(ml_home),
+                        market_period="full",
+                        outcome_type="home"
+                    ):
+                        saved += 1
+                # Save away ML
+                if "away" in markets["h2h"] and markets["h2h"]["away"]:
+                    ml_away = markets["h2h"]["away"]
+                    if self.save_line_snapshot(
+                        game_id=game_id,
+                        sport=sport,
+                        market_type="moneyline",
+                        book_key=book_key,
+                        line=0,
+                        odds=ml_away,
+                        implied_prob=american_to_implied_prob(ml_away),
+                        market_period="full",
+                        outcome_type="away"
+                    ):
+                        saved += 1
             
             # Totals
             if "totals" in markets and "over" in markets["totals"]:
@@ -379,7 +402,7 @@ class Database:
                 
                 try:
                     if market_type == "h2h":
-                        # Moneyline
+                        # Moneyline - save BOTH home and away
                         if "home" in outcomes and outcomes["home"]:
                             if self.save_line_snapshot(
                                 game_id=game_id,
@@ -389,10 +412,24 @@ class Database:
                                 line=0,
                                 odds=outcomes["home"],
                                 implied_prob=implied_prob_func(outcomes["home"]),
-                                market_period=period_key
+                                market_period=period_key,
+                                outcome_type="home"
                             ):
                                 saved += 1
-                    
+                        if "away" in outcomes and outcomes["away"]:
+                            if self.save_line_snapshot(
+                                game_id=game_id,
+                                sport=sport,
+                                market_type="moneyline",
+                                book_key=book_key,
+                                line=0,
+                                odds=outcomes["away"],
+                                implied_prob=implied_prob_func(outcomes["away"]),
+                                market_period=period_key,
+                                outcome_type="away"
+                            ):
+                                saved += 1
+
                     elif market_type == "spreads":
                         # Spread
                         if "home" in outcomes and isinstance(outcomes["home"], dict):

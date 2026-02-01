@@ -183,7 +183,13 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       return outcomeType === target;
     }
 
-    // For team names, use flexible matching:
+    // Handle "home"/"away" outcome_type from line_snapshots
+    // Match against trackingSide directly
+    if (outcomeType === 'home' || outcomeType === 'away') {
+      return outcomeType === trackingSide;
+    }
+
+    // For team names (from odds_snapshots), use flexible matching:
     // - Exact match
     // - One contains the other (handles "Chiefs" vs "Kansas City Chiefs")
     // - Last word match (e.g., "Chiefs" matches "Kansas City Chiefs")

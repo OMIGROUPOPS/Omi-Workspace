@@ -158,11 +158,7 @@ export function calculateJuiceAdjustment(
   consensusOdds: number | undefined,
   allBooksOdds: number[]
 ): { adjustment: number; reason: string } {
-  // DEBUG: Log inputs to trace juice adjustment
-  console.log(`[JuiceAdj] bookOdds=${bookOdds}, consensusOdds=${consensusOdds}, allBooks=${JSON.stringify(allBooksOdds)}`);
-
   if (bookOdds === undefined || allBooksOdds.length === 0) {
-    console.log(`[JuiceAdj] SKIPPED - missing bookOdds or allBooksOdds`);
     return { adjustment: 0, reason: 'No odds data for juice comparison' };
   }
 
@@ -175,17 +171,14 @@ export function calculateJuiceAdjustment(
     effectiveConsensus = sorted.length % 2 === 0
       ? (sorted[mid - 1] + sorted[mid]) / 2
       : sorted[mid];
-    console.log(`[JuiceAdj] Calculated consensus from allBooks: ${effectiveConsensus}`);
   }
 
   if (effectiveConsensus === undefined) {
-    console.log(`[JuiceAdj] SKIPPED - no consensus available`);
     return { adjustment: 0, reason: 'No consensus odds available' };
   }
 
   const bookImplied = americanToImpliedProbability(bookOdds);
   const consensusImplied = americanToImpliedProbability(effectiveConsensus);
-  console.log(`[JuiceAdj] bookImplied=${(bookImplied*100).toFixed(2)}%, consensusImplied=${(consensusImplied*100).toFixed(2)}%`);
 
   // Implied probability difference (negative = book has better odds)
   // For betting: LOWER implied probability at our book = BETTER for us
@@ -211,7 +204,6 @@ export function calculateJuiceAdjustment(
     reason = `Worse price: ${bookOddsStr} vs market ${consensusOddsStr} (${cappedAdjustment.toFixed(1)}% penalty)`;
   }
 
-  console.log(`[JuiceAdj] RESULT: adjustment=${cappedAdjustment.toFixed(2)}%, reason=${reason}`);
   return { adjustment: cappedAdjustment, reason };
 }
 

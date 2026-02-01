@@ -7,6 +7,7 @@ Measures: Sharp vs public money patterns
 - Cross-book line discrepancies
 - Reverse line movement
 - Steam moves (coordinated sharp action)
+- PINNACLE DIVERGENCE (sharp baseline comparison)
 """
 from datetime import datetime
 from typing import Optional
@@ -16,6 +17,130 @@ import statistics
 from data_sources.odds_api import odds_client
 
 logger = logging.getLogger(__name__)
+
+# Sharp books list - Pinnacle is the gold standard
+SHARP_BOOKS = ["pinnacle", "bookmaker", "betcris", "5dimes"]
+# Retail/Square books - tend to shade lines toward public
+RETAIL_BOOKS = ["draftkings", "fanduel", "betmgm", "caesars", "pointsbet", "wynnbet"]
+
+
+def _analyze_pinnacle_divergence(spreads_by_book: dict, parsed: dict) -> dict:
+    """
+    Analyze Pinnacle line vs retail book consensus.
+
+    Pinnacle is considered the sharpest book - they take large limits
+    and have the most efficient lines. When retail books diverge from
+    Pinnacle, it often indicates value.
+
+    Returns:
+        dict with pinnacle_line, retail_consensus, divergence, signal_direction
+    """
+    pinnacle_line = None
+    retail_lines = []
+
+    for book, line in spreads_by_book.items():
+        book_lower = book.lower()
+        if book_lower in SHARP_BOOKS or "pinnacle" in book_lower:
+            pinnacle_line = line
+        elif book_lower in RETAIL_BOOKS:
+            retail_lines.append(line)
+
+    if pinnacle_line is None or not retail_lines:
+        return {
+            "pinnacle_line": None,
+            "retail_consensus": None,
+            "divergence": 0,
+            "signal_direction": "neutral",
+            "reasoning": None
+        }
+
+    retail_consensus = sum(retail_lines) / len(retail_lines)
+    divergence = pinnacle_line - retail_consensus
+
+    # Interpret divergence:
+    # If Pinnacle has HOME at -3.5 but retail has HOME at -2.5
+    # divergence = -3.5 - (-2.5) = -1.0
+    # This means Pinnacle thinks HOME is stronger than retail does
+    # Signal: HOME value (score < 0.5)
+
+    signal_direction = "neutral"
+    reasoning = None
+
+    if abs(divergence) >= 0.5:
+        if divergence < 0:
+            # Pinnacle has MORE points for home = Pinnacle thinks home is stronger
+            signal_direction = "home"
+            reasoning = f"PINNACLE SHARP: Pinnacle {pinnacle_line:+.1f} vs retail {retail_consensus:+.1f} ({divergence:+.1f}) - favors HOME"
+        else:
+            # Pinnacle has FEWER points for home = Pinnacle thinks away is stronger
+            signal_direction = "away"
+            reasoning = f"PINNACLE SHARP: Pinnacle {pinnacle_line:+.1f} vs retail {retail_consensus:+.1f} ({divergence:+.1f}) - favors AWAY"
+
+    logger.info(f"[Flow] Pinnacle analysis: pinnacle={pinnacle_line}, retail_avg={retail_consensus:.1f}, div={divergence:+.1f}")
+
+    return {
+        "pinnacle_line": pinnacle_line,
+        "retail_consensus": round(retail_consensus, 2),
+        "divergence": round(divergence, 2),
+        "signal_direction": signal_direction,
+        "reasoning": reasoning
+    }
+
+
+def _detect_reverse_line_movement(
+    opening_line: Optional[float],
+    current_line: float,
+    public_side: str = "unknown"
+) -> dict:
+    """
+    Detect reverse line movement - when line moves AGAINST public money.
+
+    This is a strong sharp indicator:
+    - If 70% of bets are on Team A, you'd expect line to move toward A
+    - If line moves toward Team B instead = sharps on Team B
+
+    Args:
+        opening_line: Opening spread
+        current_line: Current spread
+        public_side: Which side public is betting ("home" or "away")
+
+    Returns:
+        dict with rlm_detected, direction, magnitude
+    """
+    if opening_line is None:
+        return {
+            "rlm_detected": False,
+            "direction": "neutral",
+            "magnitude": 0,
+            "reasoning": None
+        }
+
+    movement = current_line - opening_line
+
+    # Without actual betting splits, we can infer from line movement patterns
+    # Large movement with small line change = possible RLM
+    # For now, flag significant movements
+    rlm_detected = False
+    direction = "neutral"
+    reasoning = None
+
+    if abs(movement) >= 1.0:
+        # Significant line movement
+        if movement > 0:
+            # Line moved toward away team (home spread increased)
+            direction = "away"
+            reasoning = f"Line moved {movement:+.1f} toward away - possible sharp action"
+        else:
+            direction = "home"
+            reasoning = f"Line moved {movement:+.1f} toward home - possible sharp action"
+        rlm_detected = True
+
+    return {
+        "rlm_detected": rlm_detected,
+        "direction": direction,
+        "magnitude": round(movement, 2),
+        "reasoning": reasoning
+    }
 
 
 def calculate_flow_score(
@@ -168,6 +293,36 @@ def calculate_flow_score(
                 base_score += divergence_impact * 0.5
                 reasoning_parts.append(f"Price gap: {best_price_book} {max_price:+d} vs {worst_price_book} {min_price:+d} ({price_divergence}c)")
 
+    # === PINNACLE DIVERGENCE ANALYSIS (KEY SHARP SIGNAL) ===
+    pinnacle_analysis = _analyze_pinnacle_divergence(spreads_by_book, parsed)
+    pinnacle_divergence = pinnacle_analysis.get("divergence", 0)
+
+    if pinnacle_analysis["signal_direction"] != "neutral":
+        # Pinnacle divergence is a strong signal
+        divergence_impact = min(abs(pinnacle_divergence) * 0.12, 0.25)
+
+        if pinnacle_analysis["signal_direction"] == "away":
+            base_score += divergence_impact
+        else:  # home
+            base_score -= divergence_impact
+
+        if pinnacle_analysis["reasoning"]:
+            reasoning_parts.append(pinnacle_analysis["reasoning"])
+
+    # === REVERSE LINE MOVEMENT DETECTION ===
+    rlm_analysis = _detect_reverse_line_movement(opening_line, consensus_line)
+
+    if rlm_analysis["rlm_detected"]:
+        rlm_impact = min(abs(rlm_analysis["magnitude"]) * 0.08, 0.15)
+
+        if rlm_analysis["direction"] == "away":
+            base_score += rlm_impact
+        else:  # home
+            base_score -= rlm_impact
+
+        if rlm_analysis["reasoning"]:
+            reasoning_parts.append(rlm_analysis["reasoning"])
+
     # === LINE MOVEMENT ANALYSIS ===
     # Line movement is a strong signal
     if movement_direction == "toward_away":
@@ -175,8 +330,8 @@ def calculate_flow_score(
     elif movement_direction == "toward_home":
         base_score -= min(abs(line_movement) * 0.15, 0.3)
 
-    # Sharp book deviation - even small deviations matter
-    if sharpest_book and sharpest_line != consensus_line:
+    # Sharp book deviation - even small deviations matter (if Pinnacle not available)
+    if sharpest_book and sharpest_line != consensus_line and pinnacle_analysis["pinnacle_line"] is None:
         sharp_deviation = sharpest_line - consensus_line
         if abs(sharp_deviation) >= 0.25:
             base_score += sharp_deviation * 0.15
@@ -207,6 +362,7 @@ def calculate_flow_score(
         "consensus_line": round(consensus_line, 2),
         "sharpest_line": round(sharpest_line, 2),
         "book_agreement": round(book_agreement, 3),
+        "pinnacle_divergence": pinnacle_divergence,
         "breakdown": {
             "spreads_by_book": spreads_by_book,
             "spread_prices_by_book": spread_prices_by_book,
@@ -219,7 +375,9 @@ def calculate_flow_score(
             "line_movement": round(line_movement, 2),
             "movement_direction": movement_direction,
             "velocity": round(velocity, 2),
-            "sharpest_book": sharpest_book
+            "sharpest_book": sharpest_book,
+            "pinnacle_analysis": pinnacle_analysis,
+            "rlm_analysis": rlm_analysis,
         },
         "reasoning": "; ".join(reasoning_parts)
     }

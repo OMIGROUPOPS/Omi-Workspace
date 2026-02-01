@@ -1237,88 +1237,78 @@ export function calculateCEQ(
     }
   }
 
-  // Calculate weighted CEQ from all pillars (30% weight)
+  // ============================================================================
+  // ADD EV AS A VARIABLE IN MARKET EFFICIENCY (not a separate system)
+  // EV is one signal among many - it should BOOST the pillar score, not replace it
+  // ============================================================================
+  if (ev !== undefined && !isNaN(ev)) {
+    // Convert EV% to a 0-100 score (50 = neutral)
+    // Each 1% EV = ~2 score points (so +10% EV = 70 score, +15% EV = 80 score)
+    const evScore = Math.min(90, Math.max(10, 50 + (ev * 2)));
+
+    // Add EV as a variable in Market Efficiency pillar
+    marketEfficiency.variables.push({
+      name: 'EV',
+      value: ev,
+      score: evScore,
+      available: true,
+      reason: ev >= 10
+        ? `Strong +EV: ${ev.toFixed(1)}% edge vs consensus`
+        : ev >= 5
+          ? `Good +EV: ${ev.toFixed(1)}% vs consensus`
+          : ev >= 2
+            ? `Positive EV: ${ev.toFixed(1)}% vs consensus`
+            : ev <= -5
+              ? `Negative EV: ${ev.toFixed(1)}% vs consensus`
+              : ev <= -2
+                ? `Below market: ${ev.toFixed(1)}%`
+                : `EV: ${ev.toFixed(1)}% vs consensus`,
+    });
+
+    // Recalculate Market Efficiency score with EV included
+    // EV gets 25% weight within Market Efficiency (FDV 40%, MMI 20%, SBI 15%, EV 25%)
+    const availableVars = marketEfficiency.variables.filter(v => v.available);
+    if (availableVars.length > 0) {
+      // Weight distribution: FDV=40%, MMI=20%, SBI=15%, EV=25%
+      const fdv = marketEfficiency.variables.find(v => v.name === 'FDV');
+      const mmi = marketEfficiency.variables.find(v => v.name === 'MMI');
+      const sbi = marketEfficiency.variables.find(v => v.name === 'SBI');
+      const evVar = marketEfficiency.variables.find(v => v.name === 'EV');
+
+      let totalWeight = 0;
+      let weightedSum = 0;
+
+      if (fdv?.available) { weightedSum += fdv.score * 0.40; totalWeight += 0.40; }
+      if (mmi?.available) { weightedSum += mmi.score * 0.20; totalWeight += 0.20; }
+      if (sbi?.available) { weightedSum += sbi.score * 0.15; totalWeight += 0.15; }
+      if (evVar?.available) { weightedSum += evVar.score * 0.25; totalWeight += 0.25; }
+
+      if (totalWeight > 0) {
+        marketEfficiency.score = Math.round(weightedSum / totalWeight);
+      }
+    }
+
+    // Increase Market Efficiency weight when EV is available (more confident signal)
+    marketEfficiency.weight = Math.max(marketEfficiency.weight, 1.0);
+  }
+
+  // Calculate weighted CEQ from all pillars
   const pillars = [marketEfficiency, playerUtilization, gameEnvironment, matchupDynamics, sentiment];
   const totalWeight = pillars.reduce((acc, p) => acc + p.weight, 0);
 
-  let pillarCeq = 50;
+  let ceq = 50;
   if (totalWeight > 0) {
-    pillarCeq = pillars.reduce((acc, p) => acc + p.score * p.weight, 0) / totalWeight;
+    ceq = pillars.reduce((acc, p) => acc + p.score * p.weight, 0) / totalWeight;
   }
 
-  // If Python pillars available, blend with Python composite
+  // If Python pillars available, blend with Python composite (30% Python, 70% TS pillars)
   if (pythonPillars && pythonPillars.composite !== 50) {
-    pillarCeq = pillarCeq * 0.7 + pythonPillars.composite * 0.3;
+    ceq = ceq * 0.7 + pythonPillars.composite * 0.3;
   }
 
-  // ============================================================================
-  // EV-BASED CEQ CALCULATION (PRIMARY SIGNAL - 70% WEIGHT)
-  // EV is the most direct measure of market value and should drive CEQ
-  // ============================================================================
-  let evBasedCeq = 50; // Neutral if no EV
-  let evFloor = 50;    // Minimum CEQ based on EV thresholds
-
-  if (ev !== undefined && !isNaN(ev)) {
-    // Convert EV% to CEQ score
-    // EV of 0% = CEQ 50 (neutral)
-    // Each 1% EV = ~3 CEQ points (so +10% EV = 80 CEQ, +15% EV = 95 CEQ)
-    evBasedCeq = 50 + (ev * 3);
-
-    // Enforce minimum CEQ floors based on EV thresholds
-    // These are hard floors - if EV is high, CEQ MUST be high
-    if (ev >= 15) {
-      evFloor = 80;  // 15%+ EV = minimum 80% CEQ
-    } else if (ev >= 10) {
-      evFloor = 70;  // 10%+ EV = minimum 70% CEQ
-    } else if (ev >= 5) {
-      evFloor = 60;  // 5%+ EV = minimum 60% CEQ
-    } else if (ev >= 3) {
-      evFloor = 55;  // 3%+ EV = minimum 55% CEQ (WATCH)
-    } else if (ev <= -5) {
-      // Negative EV should push CEQ down
-      evFloor = 0; // No floor for negative EV
-      evBasedCeq = Math.max(20, 50 + (ev * 3)); // Cap at 20 minimum
-    }
-
-    // EV-based CEQ can't exceed 95 (leave room for RARE designation)
-    evBasedCeq = Math.min(95, Math.max(20, evBasedCeq));
-  }
-
-  // ============================================================================
-  // FINAL CEQ: Blend pillar analysis (30%) with EV signal (70%)
-  // If EV is available, it dominates the calculation
-  // ============================================================================
-  let ceq: number;
-
-  if (ev !== undefined && !isNaN(ev)) {
-    // EV is available - use blended approach with EV as primary
-    ceq = (pillarCeq * 0.3) + (evBasedCeq * 0.7);
-
-    // Apply EV floor - CEQ cannot be below the EV-based minimum
-    ceq = Math.max(ceq, evFloor);
-
-    // Add EV as a variable to market efficiency for transparency
-    if (Math.abs(ev) >= 1) {
-      marketEfficiency.variables.push({
-        name: 'EV',
-        value: ev,
-        score: evBasedCeq,
-        available: true,
-        reason: ev >= 5
-          ? `Strong +EV: ${ev.toFixed(1)}% edge vs consensus`
-          : ev >= 2
-            ? `Positive EV: ${ev.toFixed(1)}% vs consensus`
-            : ev <= -3
-              ? `Negative EV: ${ev.toFixed(1)}% vs consensus`
-              : `EV: ${ev.toFixed(1)}% vs consensus`,
-      });
-    }
-  } else {
-    // No EV available - use pillar-only calculation with juice adjustment
-    ceq = pillarCeq;
-    const juiceAdj = calculateJuiceAdjustment(bookOdds, consensusOdds, allBooksOdds);
-    ceq = ceq + juiceAdj.adjustment;
-  }
+  // Apply juice adjustment based on book's odds vs market consensus
+  const juiceAdj = calculateJuiceAdjustment(bookOdds, consensusOdds, allBooksOdds);
+  ceq = ceq + juiceAdj.adjustment;
 
   ceq = Math.round(Math.min(Math.max(ceq, 0), 100));
 

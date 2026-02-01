@@ -144,20 +144,27 @@ interface PageProps {
 }
 
 async function fetchLineHistory(gameId: string, market: string = 'spread', period: string = 'full', book?: string) {
-  // Try backend first
-  try {
-    let url = `${BACKEND_URL}/api/lines/${gameId}?market=${market}&period=${period}`;
-    if (book) url += `&book=${book}`;
-    const res = await fetch(url, { cache: 'no-store' });
-    if (res.ok) {
-      const data = await res.json();
-      if (data.snapshots && data.snapshots.length > 0) return data.snapshots;
+  // For moneyline, skip backend and use Supabase odds_snapshots directly.
+  // The backend line_snapshots only stores home side odds without outcome_type,
+  // while odds_snapshots has both home AND away with proper outcome_type for filtering.
+  const useSupabaseOnly = market === 'moneyline';
+
+  // Try backend first (except for moneyline)
+  if (!useSupabaseOnly) {
+    try {
+      let url = `${BACKEND_URL}/api/lines/${gameId}?market=${market}&period=${period}`;
+      if (book) url += `&book=${book}`;
+      const res = await fetch(url, { cache: 'no-store' });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.snapshots && data.snapshots.length > 0) return data.snapshots;
+      }
+    } catch (e) {
+      // Backend unavailable, fall through to Supabase
     }
-  } catch (e) {
-    // Backend unavailable, fall through to Supabase
   }
 
-  // Fallback: query odds_snapshots from Supabase
+  // Supabase fallback (or primary source for moneyline): query odds_snapshots
   try {
     const marketMap: Record<string, string> = {
       'spread': 'spreads',

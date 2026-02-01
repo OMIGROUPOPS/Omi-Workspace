@@ -63,6 +63,21 @@ def is_rivalry_game(sport: str, team1: str, team2: str) -> bool:
     return False
 
 
+def _is_championship_game(sport: str, home_team: str, away_team: str, game_time: datetime) -> bool:
+    """Detect if this is likely a championship/Super Bowl game."""
+    # Check if it's late January/early February for Super Bowl
+    if sport in ["NFL", "americanfootball_nfl"]:
+        month = game_time.month
+        day = game_time.day
+        # Super Bowl is typically first Sunday in February
+        if month == 2 and day <= 15:
+            return True
+        # Conference championships are mid-late January
+        if month == 1 and day >= 15:
+            return True
+    return False
+
+
 def calculate_incentives_score(
     sport: str,
     home_team: str,
@@ -71,20 +86,28 @@ def calculate_incentives_score(
 ) -> dict:
     """
     Calculate Pillar 2: Incentives & Strategic Behavior score.
-    
+
     A score > 0.5 means AWAY team has motivation advantage
     A score < 0.5 means HOME team has motivation advantage
     A score = 0.5 means balanced motivation
     """
     home_incentive = espn_client.get_team_incentive_score(sport, home_team)
     away_incentive = espn_client.get_team_incentive_score(sport, away_team)
-    
+
     home_motivation = home_incentive["motivation_score"]
     away_motivation = away_incentive["motivation_score"]
-    
+
     rivalry = is_rivalry_game(sport, home_team, away_team)
     rivalry_boost = 0.1 if rivalry else 0.0
-    
+
+    # Championship game detection
+    is_championship = _is_championship_game(sport, home_team, away_team, game_time)
+
+    if is_championship:
+        # Both teams have maximum motivation in championship games
+        home_motivation = 1.0
+        away_motivation = 1.0
+
     if rivalry:
         home_motivation = min(1.0, home_motivation + rivalry_boost)
         away_motivation = min(1.0, away_motivation + rivalry_boost)
@@ -113,22 +136,26 @@ def calculate_incentives_score(
     score = max(0.0, min(1.0, score))
     
     reasoning_parts = []
-    
+
+    if is_championship:
+        reasoning_parts.append("Championship game: maximum motivation for both teams")
+
     if rivalry:
         reasoning_parts.append("Rivalry game: heightened motivation for both teams")
-    
+
     if tank_alert:
         reasoning_parts.append("Tank/elimination scenario detected")
-    
+
     if rest_alert:
         reasoning_parts.append("Clinched team may rest players")
-    
-    if home_incentive["playoff_status"] == "contending":
-        reasoning_parts.append(f"{home_team} fighting for playoff spot ({home_incentive['games_back']} GB)")
-    
-    if away_incentive["playoff_status"] == "contending":
-        reasoning_parts.append(f"{away_team} fighting for playoff spot ({away_incentive['games_back']} GB)")
-    
+
+    if not is_championship:
+        if home_incentive["playoff_status"] == "contending":
+            reasoning_parts.append(f"{home_team} fighting for playoff spot ({home_incentive['games_back']} GB)")
+
+        if away_incentive["playoff_status"] == "contending":
+            reasoning_parts.append(f"{away_team} fighting for playoff spot ({away_incentive['games_back']} GB)")
+
     if abs(motivation_differential) < 0.1 and not reasoning_parts:
         reasoning_parts.append("No significant motivation asymmetry")
     
@@ -137,12 +164,14 @@ def calculate_incentives_score(
         "home_motivation": round(home_motivation, 3),
         "away_motivation": round(away_motivation, 3),
         "is_rivalry": rivalry,
+        "is_championship": is_championship,
         "breakdown": {
             "home_incentive": home_incentive,
             "away_incentive": away_incentive,
             "motivation_differential": round(motivation_differential, 3),
             "tank_alert": tank_alert,
-            "rest_alert": rest_alert
+            "rest_alert": rest_alert,
+            "is_championship": is_championship
         },
         "reasoning": "; ".join(reasoning_parts) if reasoning_parts else "Balanced motivation levels"
     }

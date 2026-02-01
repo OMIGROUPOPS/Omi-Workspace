@@ -111,14 +111,51 @@ def calculate_shocks_score(
     
     score = max(0.0, min(1.0, base_score))
     
+    # Enhanced line movement velocity analysis
     volatility = 0.0
-    if line_movement_history and len(line_movement_history) >= 3:
-        lines = [snap["line"] for snap in line_movement_history]
-        avg_line = sum(lines) / len(lines)
-        volatility = sum((l - avg_line) ** 2 for l in lines) / len(lines)
-        
-        if volatility > 1.0:
-            reasoning_parts.append(f"High line volatility detected ({volatility:.2f})")
+    velocity = 0.0
+    sharp_move_detected = False
+
+    if line_movement_history and len(line_movement_history) >= 2:
+        # Sort by timestamp
+        sorted_history = sorted(line_movement_history, key=lambda x: x.get("timestamp", ""))
+        lines = [snap.get("line", 0) for snap in sorted_history if snap.get("line") is not None]
+
+        if len(lines) >= 2:
+            # Calculate velocity (points per hour)
+            first_snap = sorted_history[0]
+            last_snap = sorted_history[-1]
+
+            try:
+                from datetime import datetime
+                t1 = datetime.fromisoformat(first_snap.get("timestamp", "").replace("Z", "+00:00"))
+                t2 = datetime.fromisoformat(last_snap.get("timestamp", "").replace("Z", "+00:00"))
+                hours_elapsed = max((t2 - t1).total_seconds() / 3600, 0.1)
+
+                total_movement = lines[-1] - lines[0]
+                velocity = total_movement / hours_elapsed
+
+                # Sharp move detection: >0.5 points per hour = sharp action
+                if abs(velocity) > 0.5:
+                    sharp_move_detected = True
+                    direction = "toward away" if velocity > 0 else "toward home"
+                    reasoning_parts.append(f"Sharp line velocity: {velocity:+.2f} pts/hr ({direction})")
+
+                    # Adjust score for sharp moves
+                    sharp_adjustment = min(abs(velocity) * 0.1, 0.15)
+                    if velocity > 0:
+                        base_score += sharp_adjustment
+                    else:
+                        base_score -= sharp_adjustment
+            except Exception as e:
+                logger.warning(f"Error calculating velocity: {e}")
+
+        if len(lines) >= 3:
+            avg_line = sum(lines) / len(lines)
+            volatility = sum((l - avg_line) ** 2 for l in lines) / len(lines)
+
+            if volatility > 1.0:
+                reasoning_parts.append(f"High line volatility ({volatility:.2f})")
     
     if not reasoning_parts:
         reasoning_parts.append("No significant information shocks detected")
@@ -126,7 +163,7 @@ def calculate_shocks_score(
     return {
         "score": round(score, 3),
         "line_movement": round(line_movement, 2) if line_movement else 0.0,
-        "shock_detected": shock_detected,
+        "shock_detected": shock_detected or sharp_move_detected,
         "shock_direction": shock_direction,
         "breakdown": {
             "movement_significance": round(movement_significance, 3),
@@ -134,6 +171,8 @@ def calculate_shocks_score(
             "time_factor": round(time_factor, 3),
             "time_to_game_hours": round(time_to_game, 1),
             "volatility": round(volatility, 3),
+            "velocity": round(velocity, 3),
+            "sharp_move_detected": sharp_move_detected,
             "home_key_players_out": home_injuries.get("key_players_out", []),
             "away_key_players_out": away_injuries.get("key_players_out", [])
         },

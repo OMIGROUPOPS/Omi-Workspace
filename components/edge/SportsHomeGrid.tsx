@@ -6,7 +6,6 @@ import { formatOdds, calculateTwoWayEV, formatEV, getEVColor, getEVBgClass } fro
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
-import type { CEQResult, GameCEQ, CEQConfidence } from '@/lib/edge/engine/edgescout';
 
 // LiveEdge from live_edges table (returned by dashboard API)
 interface LiveEdge {
@@ -139,199 +138,6 @@ function BookIcon({ bookKey, size = 24 }: { bookKey: string; size?: number }) {
       {initials}
     </div>
   );
-}
-
-interface EdgeCandidate {
-  ceq: number;
-  confidence: string;
-  side: 'home' | 'away' | 'over' | 'under';
-  market: 'spread' | 'h2h' | 'total';
-  teamName?: string;
-  line?: number;
-}
-
-function getConfidenceFromCEQ(ceq: number): string {
-  if (ceq >= 86) return 'RARE';
-  if (ceq >= 76) return 'STRONG';
-  if (ceq >= 66) return 'EDGE';
-  if (ceq >= 56) return 'WATCH';
-  return 'PASS';
-}
-
-function getEdgeBadge(game: any, selectedBook: string): { label: string; color: string; bg: string; score?: number; context?: string; market?: string; edgeCount?: number } | null {
-  // Use per-book CEQ if available, fall back to consensus CEQ
-  const ceq = (game.ceqByBook?.[selectedBook] || game.ceq) as GameCEQ | undefined;
-  const consensus = game.consensus;
-
-  const edges: EdgeCandidate[] = [];
-
-  if (ceq) {
-    // SPREADS: Only ONE side can have edge - pick the BETTER side
-    const homeSpreadCeq = ceq.spreads?.home?.ceq ?? 0;
-    const awaySpreadCeq = ceq.spreads?.away?.ceq ?? 0;
-
-    // Get the spread line from consensus
-    const spreadLine = consensus?.spreads?.line; // This is the HOME team's line
-
-    if (homeSpreadCeq >= 56 || awaySpreadCeq >= 56) {
-      if (homeSpreadCeq >= 56 && homeSpreadCeq >= awaySpreadCeq) {
-        // HOME team has the edge
-        const conf = ceq.spreads?.home?.confidence || getConfidenceFromCEQ(homeSpreadCeq);
-        edges.push({
-          ceq: homeSpreadCeq,
-          confidence: conf,
-          side: 'home',
-          market: 'spread',
-          teamName: game.homeTeam?.split(' ').pop(),
-          line: spreadLine,
-        });
-      } else if (awaySpreadCeq >= 56) {
-        // AWAY team has the edge
-        const conf = ceq.spreads?.away?.confidence || getConfidenceFromCEQ(awaySpreadCeq);
-        edges.push({
-          ceq: awaySpreadCeq,
-          confidence: conf,
-          side: 'away',
-          market: 'spread',
-          teamName: game.awayTeam?.split(' ').pop(),
-          line: spreadLine ? -spreadLine : undefined,
-        });
-      }
-    }
-
-    // H2H (MONEYLINE): Only ONE side can have edge
-    // No edge for heavy favorites (odds < -300) regardless of CEQ
-    const homeH2hCeq = ceq.h2h?.home?.ceq ?? 0;
-    const awayH2hCeq = ceq.h2h?.away?.ceq ?? 0;
-    const homeH2hPrice = consensus?.h2h?.homePrice;
-    const awayH2hPrice = consensus?.h2h?.awayPrice;
-
-    // Block heavy favorites entirely (odds worse than -300)
-    const homeIsHeavyFavorite = homeH2hPrice && homeH2hPrice < -300;
-    const awayIsHeavyFavorite = awayH2hPrice && awayH2hPrice < -300;
-
-    // Higher threshold for ML: 66 (was 70)
-    const h2hThreshold = 66;
-
-    if ((homeH2hCeq >= h2hThreshold && !homeIsHeavyFavorite) || (awayH2hCeq >= h2hThreshold && !awayIsHeavyFavorite)) {
-      const homeQualifies = homeH2hCeq >= h2hThreshold && !homeIsHeavyFavorite;
-      const awayQualifies = awayH2hCeq >= h2hThreshold && !awayIsHeavyFavorite;
-
-      if (homeQualifies && (!awayQualifies || homeH2hCeq > awayH2hCeq)) {
-        const conf = ceq.h2h?.home?.confidence || getConfidenceFromCEQ(homeH2hCeq);
-        edges.push({
-          ceq: homeH2hCeq,
-          confidence: conf,
-          side: 'home',
-          market: 'h2h',
-          teamName: game.homeTeam?.split(' ').pop(),
-        });
-      } else if (awayQualifies) {
-        const conf = ceq.h2h?.away?.confidence || getConfidenceFromCEQ(awayH2hCeq);
-        edges.push({
-          ceq: awayH2hCeq,
-          confidence: conf,
-          side: 'away',
-          market: 'h2h',
-          teamName: game.awayTeam?.split(' ').pop(),
-        });
-      }
-    }
-
-    // TOTALS: Over/under CAN both have edges
-    const overCeq = ceq.totals?.over?.ceq ?? 0;
-    const underCeq = ceq.totals?.under?.ceq ?? 0;
-    const totalLine = consensus?.totals?.line;
-
-    if (overCeq >= 56) {
-      const conf = ceq.totals?.over?.confidence || getConfidenceFromCEQ(overCeq);
-      edges.push({ ceq: overCeq, confidence: conf, side: 'over', market: 'total', line: totalLine });
-    }
-    if (underCeq >= 56) {
-      const conf = ceq.totals?.under?.confidence || getConfidenceFromCEQ(underCeq);
-      edges.push({ ceq: underCeq, confidence: conf, side: 'under', market: 'total', line: totalLine });
-    }
-  }
-
-  // Fallback to legacy calculatedEdge
-  if (edges.length === 0 && game.calculatedEdge) {
-    const calcEdge = game.calculatedEdge;
-    if (calcEdge.score >= 56 && calcEdge.confidence && calcEdge.confidence !== 'PASS') {
-      const side = calcEdge.side || 'home';
-      const spreadLine = consensus?.spreads?.line;
-      edges.push({
-        ceq: calcEdge.score,
-        confidence: getConfidenceFromCEQ(calcEdge.score),
-        side: side,
-        market: 'spread',
-        teamName: side === 'home' ? game.homeTeam?.split(' ').pop() : game.awayTeam?.split(' ').pop(),
-        line: side === 'home' ? spreadLine : (spreadLine ? -spreadLine : undefined),
-      });
-    }
-  }
-
-  // Use database-stored totalEdgeCount if available (includes all periods/markets)
-  const dbEdgeCount = game.totalEdgeCount ?? 0;
-
-  // If no local edges found but database has edges, show generic badge
-  if (edges.length === 0) {
-    if (dbEdgeCount > 0) {
-      // Database has edges (from halves/quarters/periods) - show generic EDGE badge
-      return {
-        label: 'EDGE',
-        color: 'text-blue-300',
-        bg: 'bg-blue-500/20 border-blue-500/30',
-        score: undefined,
-        context: '',
-        market: undefined,
-        edgeCount: dbEdgeCount
-      };
-    }
-    return null;
-  }
-
-  // Find the best edge (highest CEQ)
-  const bestEdge = edges.reduce((best, current) => current.ceq > best.ceq ? current : best);
-  if (bestEdge.confidence === 'PASS') {
-    // Local edges are PASS but database might have edges from periods
-    if (dbEdgeCount > 0) {
-      return {
-        label: 'EDGE',
-        color: 'text-blue-300',
-        bg: 'bg-blue-500/20 border-blue-500/30',
-        score: undefined,
-        context: '',
-        market: undefined,
-        edgeCount: dbEdgeCount
-      };
-    }
-    return null;
-  }
-
-  // Build context string using the pre-calculated team name and line
-  let context = '';
-  if (bestEdge.market === 'spread') {
-    const lineStr = bestEdge.line !== undefined
-      ? (bestEdge.line > 0 ? `+${bestEdge.line}` : `${bestEdge.line}`)
-      : '';
-    context = bestEdge.teamName ? `${bestEdge.teamName} ${lineStr}` : lineStr;
-  } else if (bestEdge.market === 'h2h') {
-    context = bestEdge.teamName ? `${bestEdge.teamName} ML` : 'ML';
-  } else if (bestEdge.market === 'total') {
-    const lineStr = bestEdge.line !== undefined ? bestEdge.line : '';
-    context = bestEdge.side === 'over' ? `O ${lineStr}` : `U ${lineStr}`;
-  }
-
-  const conf = bestEdge.confidence;
-  // Use database count (includes all periods) or fall back to local count
-  const edgeCount = dbEdgeCount > 0 ? dbEdgeCount : edges.length;
-
-  if (conf === 'RARE') return { label: 'RARE', color: 'text-purple-300', bg: 'bg-purple-500/20 border-purple-500/30', score: bestEdge.ceq, context, market: bestEdge.market, edgeCount };
-  if (conf === 'STRONG') return { label: 'STRONG', color: 'text-emerald-300', bg: 'bg-emerald-500/20 border-emerald-500/30', score: bestEdge.ceq, context, market: bestEdge.market, edgeCount };
-  if (conf === 'EDGE') return { label: 'EDGE', color: 'text-blue-300', bg: 'bg-blue-500/20 border-blue-500/30', score: bestEdge.ceq, context, market: bestEdge.market, edgeCount };
-  if (conf === 'WATCH') return { label: 'WATCH', color: 'text-amber-300', bg: 'bg-amber-500/20 border-amber-500/30', score: bestEdge.ceq, context, market: bestEdge.market, edgeCount };
-
-  return null;
 }
 
 const SPORT_PILLS = [
@@ -862,28 +668,14 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                   const countdown = mounted ? getTimeDisplay(gameTime, game.sportKey) : '';
                   // Use API edge count if available, otherwise fall back to game.totalEdgeCount
                   const apiCount = apiEdgeCounts[game.id];
-                  const gameWithApiCount = apiCount !== undefined
-                    ? { ...game, totalEdgeCount: apiCount }
-                    : game;
-                  const edgeBadge = getEdgeBadge(gameWithApiCount, selectedBook);
-
-                  const getCardStyle = () => {
-                    if (!edgeBadge) return 'bg-[#0f0f0f] border border-zinc-800/80 hover:border-zinc-700';
-                    if (edgeBadge.label === 'RARE') return 'bg-purple-950/20 border-2 border-purple-500/40 hover:border-purple-500/60 ring-1 ring-purple-500/20';
-                    if (edgeBadge.label === 'STRONG') return 'bg-emerald-950/20 border-2 border-emerald-500/40 hover:border-emerald-500/60 ring-1 ring-emerald-500/20';
-                    if (edgeBadge.label === 'EDGE') return 'bg-blue-950/20 border-2 border-blue-500/40 hover:border-blue-500/60 ring-1 ring-blue-500/20';
-                    if (edgeBadge.label === 'WATCH') return 'bg-amber-950/20 border-2 border-amber-500/30 hover:border-amber-500/50 ring-1 ring-amber-500/10';
-                    return 'bg-[#0f0f0f] border border-zinc-800/80 hover:border-zinc-700';
-                  };
-
                   return (
                     <Link
                       key={game.id}
                       href={`/edge/portal/sports/game/${game.id}?sport=${game.sportKey}`}
-                      className={`${getCardStyle()} rounded-lg overflow-hidden hover:bg-[#111111] transition-all group`}
+                      className="bg-[#0f0f0f] border border-zinc-800/80 hover:border-zinc-700 rounded-lg overflow-hidden hover:bg-[#111111] transition-all group"
                     >
                       {/* Card Header */}
-                      <div className={`px-3 py-2 border-b flex items-center justify-between ${edgeBadge ? 'bg-zinc-900/60 border-zinc-700/50' : 'bg-zinc-900/40 border-zinc-800/50'}`}>
+                      <div className="px-3 py-2 border-b flex items-center justify-between bg-zinc-900/40 border-zinc-800/50">
                         <div className="flex items-center gap-2">
                           <span className="text-[10px] font-mono text-zinc-500" suppressHydrationWarning>{timeStr}</span>
                           {countdown === 'LIVE' ? (
@@ -905,20 +697,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                             </span>
                           )}
                         </div>
-                        {edgeBadge && (
-                          <div className="flex items-center">
-                            {/* Simple flame badge - no count to avoid mismatch with game detail */}
-                            <div className={`flex items-center gap-1 px-2 py-0.5 rounded-full border ${
-                              edgeBadge.label === 'RARE' ? 'bg-purple-500/20 border-purple-500/40 text-purple-300' :
-                              edgeBadge.label === 'STRONG' ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300' :
-                              edgeBadge.label === 'EDGE' ? 'bg-blue-500/20 border-blue-500/40 text-blue-300' :
-                              'bg-amber-500/20 border-amber-500/40 text-amber-300'
-                            }`}>
-                              <span className="text-xs">🔥</span>
-                              <span className="text-[9px] font-semibold uppercase">{edgeBadge.label}</span>
-                            </div>
-                          </div>
-                        )}
                       </div>
 
                       {/* Column Headers */}

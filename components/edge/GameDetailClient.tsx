@@ -150,8 +150,23 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const filteredHistory = (lineHistory || []).filter(snapshot => {
     const bookMatch = snapshot.book_key === selectedBook || snapshot.book === selectedBook;
     if (!bookMatch) return false;
-    if (!snapshot.outcome_type) return true; // no outcome info, keep it
+
     const targetOutcome = getOutcomeFilter();
+
+    // Handle missing outcome_type (from line_snapshots which only stores home side)
+    if (!snapshot.outcome_type) {
+      // For spreads/moneyline: line_snapshots only stores HOME side
+      // Only include when viewing home side
+      if (marketType === 'spread' || marketType === 'moneyline') {
+        return trackingSide === 'home';
+      }
+      // For totals: line_snapshots stores OVER side
+      if (marketType === 'total') {
+        return trackingSide === 'over';
+      }
+      return true; // Unknown market, keep it
+    }
+
     if (!targetOutcome) return true;
 
     const outcomeType = snapshot.outcome_type.toLowerCase();

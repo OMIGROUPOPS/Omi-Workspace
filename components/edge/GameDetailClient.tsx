@@ -61,6 +61,8 @@ type ChartSelection = {
   period: string;
   label: string;
   line?: number;
+  homeLine?: number;  // For spreads: home team's line
+  awayLine?: number;  // For spreads: away team's line
   price?: number;
   homePrice?: number;
   awayPrice?: number;
@@ -106,7 +108,19 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   const isProp = selection.type === 'prop';
   const marketType = selection.type === 'market' ? selection.market : 'line';
-  const baseValue = selection.line ?? (selection.type === 'market' ? selection.price : 0) ?? 0;
+
+  // For spreads, use the correct line based on trackingSide
+  const getDisplayLine = () => {
+    if (selection.type === 'prop') return selection.line;
+    if (marketType === 'spread') {
+      const homeLine = selection.homeLine;
+      const awayLine = selection.awayLine;
+      return trackingSide === 'away' ? awayLine : homeLine;
+    }
+    return selection.line;
+  };
+  const displayLine = getDisplayLine();
+  const baseValue = displayLine ?? (selection.type === 'market' ? selection.price : 0) ?? 0;
 
   // Parse game start time for live cutoff indicator
   // Using shared game-state utility for consistent state detection across app
@@ -212,14 +226,14 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const getChartTitle = () => {
     if (effectiveViewMode !== 'price') return selection.label;
 
-    // For price view, show the line value for context
-    if (selection.type === 'market' && selection.line !== undefined) {
+    // For price view, show the line value for context (use displayLine for correct side)
+    if (selection.type === 'market' && displayLine !== undefined) {
       if (marketType === 'spread') {
-        const lineStr = selection.line > 0 ? `+${selection.line}` : selection.line.toString();
+        const lineStr = displayLine > 0 ? `+${displayLine}` : displayLine.toString();
         return `${selection.label} Price @ ${lineStr}`;
       }
       if (marketType === 'total') {
-        return `${selection.label} Price @ ${selection.line}`;
+        return `${selection.label} Price @ ${displayLine}`;
       }
     }
     return `${selection.label} - Price`;
@@ -535,9 +549,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
             <span className="px-1.5 py-0.5 bg-zinc-800/50 rounded text-[10px] font-medium text-zinc-300">{trackingLabel}</span>
           )}
           {/* Show line value context when viewing price chart for spreads/totals */}
-          {effectiveViewMode === 'price' && selection.type === 'market' && selection.line !== undefined && (marketType === 'spread' || marketType === 'total') && (
+          {effectiveViewMode === 'price' && selection.type === 'market' && displayLine !== undefined && (marketType === 'spread' || marketType === 'total') && (
             <span className="px-1.5 py-0.5 bg-amber-500/20 border border-amber-500/30 rounded text-[10px] font-medium text-amber-400">
-              @ {marketType === 'spread' ? (selection.line > 0 ? `+${selection.line}` : selection.line) : selection.line}
+              @ {marketType === 'spread' ? (displayLine > 0 ? `+${displayLine}` : displayLine) : displayLine}
             </span>
           )}
         </div>
@@ -830,32 +844,59 @@ function MarketCell({
   isSelected?: boolean
 }) {
   const displayEV = ev ?? 0;
-  const hasEdge = ceq !== undefined && ceq >= 56;
+  const hasCEQEdge = ceq !== undefined && ceq >= 56;
+  // Also flag high EV markets even if CEQ doesn't detect edge
+  const hasHighEV = displayEV >= 5;  // 5%+ EV is significant
+  const hasEdge = hasCEQEdge || hasHighEV;
 
-  // CEQ-based styling for edges (takes priority)
+  // CEQ-based styling for edges (takes priority), then EV-based
   const getCellStyles = () => {
-    if (hasEdge) {
+    if (hasCEQEdge) {
       if (ceq >= 86) return 'bg-purple-500/20 border-2 border-purple-500/50 ring-1 ring-purple-500/30';
       if (ceq >= 76) return 'bg-emerald-500/20 border-2 border-emerald-500/50 ring-1 ring-emerald-500/30';
       if (ceq >= 66) return 'bg-blue-500/20 border-2 border-blue-500/50 ring-1 ring-blue-500/30';
       return 'bg-amber-500/15 border-2 border-amber-500/40 ring-1 ring-amber-500/20';
+    }
+    // High EV but no CEQ edge - show EV-based styling
+    if (hasHighEV) {
+      if (displayEV >= 10) return 'bg-emerald-500/15 border-2 border-emerald-500/40 ring-1 ring-emerald-500/20';
+      return 'bg-emerald-500/10 border-2 border-emerald-500/30';
     }
     return getEVBgClass(displayEV);
   };
 
   const evColorClass = getEVColor(displayEV);
 
+  // Determine badge content and style
+  const getBadge = () => {
+    if (hasCEQEdge) {
+      return {
+        show: true,
+        text: `${ceq}%`,
+        className: ceq >= 86 ? 'bg-purple-500 text-white' :
+                   ceq >= 76 ? 'bg-emerald-500 text-white' :
+                   ceq >= 66 ? 'bg-blue-500 text-white' :
+                   'bg-amber-500 text-black'
+      };
+    }
+    if (hasHighEV) {
+      return {
+        show: true,
+        text: `+${displayEV.toFixed(0)}%`,
+        className: displayEV >= 10 ? 'bg-emerald-500 text-white' : 'bg-emerald-600 text-white'
+      };
+    }
+    return { show: false, text: '', className: '' };
+  };
+
+  const badge = getBadge();
+
   return (
     <div onClick={onClick} className={`relative w-full text-center py-1.5 px-2 rounded transition-all cursor-pointer hover:brightness-110 ${getCellStyles()} ${isSelected ? 'ring-2 ring-white/50' : ''}`}>
-      {/* Edge indicator badge */}
-      {hasEdge && (
-        <div className={`absolute -top-1.5 -right-1.5 px-1 py-0.5 rounded text-[9px] font-bold z-10 ${
-          ceq >= 86 ? 'bg-purple-500 text-white' :
-          ceq >= 76 ? 'bg-emerald-500 text-white' :
-          ceq >= 66 ? 'bg-blue-500 text-white' :
-          'bg-amber-500 text-black'
-        }`}>
-          {ceq}%
+      {/* Edge/Value indicator badge */}
+      {badge.show && (
+        <div className={`absolute -top-1.5 -right-1.5 px-1 py-0.5 rounded text-[9px] font-bold z-10 ${badge.className}`}>
+          {badge.text}
         </div>
       )}
       <div className="text-sm font-medium text-zinc-100">{value}</div>
@@ -1689,9 +1730,41 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
   const getCurrentMarketValues = () => {
     const periodMap: Record<string, string> = { 'full': 'fullGame', '1h': 'firstHalf', '2h': 'secondHalf', '1q': 'q1', '2q': 'q2', '3q': 'q3', '4q': 'q4', '1p': 'p1', '2p': 'p2', '3p': 'p3' };
     const markets = marketGroups[periodMap[activeTab] || 'fullGame'];
-    if (chartMarket === 'spread') return { line: markets?.spreads?.home?.line, price: markets?.spreads?.home?.price, homePrice: markets?.spreads?.home?.price, awayPrice: markets?.spreads?.away?.price, homePriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-spread-home`), awayPriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-spread-away`) };
-    if (chartMarket === 'total') return { line: markets?.totals?.line, price: markets?.totals?.over?.price, overPrice: markets?.totals?.over?.price, underPrice: markets?.totals?.under?.price, overPriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-total-over`), underPriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-total-under`) };
-    return { line: undefined, price: markets?.h2h?.home?.price, homePrice: markets?.h2h?.home?.price, awayPrice: markets?.h2h?.away?.price, homePriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-ml-home`), awayPriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-ml-away`) };
+
+    if (chartMarket === 'spread') {
+      // Pass BOTH lines so the chart can display the correct one based on trackingSide
+      return {
+        line: markets?.spreads?.home?.line,  // Default to home line
+        homeLine: markets?.spreads?.home?.line,
+        awayLine: markets?.spreads?.away?.line,
+        price: markets?.spreads?.home?.price,
+        homePrice: markets?.spreads?.home?.price,
+        awayPrice: markets?.spreads?.away?.price,
+        homePriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-spread-home`),
+        awayPriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-spread-away`)
+      };
+    }
+
+    if (chartMarket === 'total') {
+      return {
+        line: markets?.totals?.line,
+        price: markets?.totals?.over?.price,
+        overPrice: markets?.totals?.over?.price,
+        underPrice: markets?.totals?.under?.price,
+        overPriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-total-over`),
+        underPriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-total-under`)
+      };
+    }
+
+    // Moneyline
+    return {
+      line: undefined,
+      price: markets?.h2h?.home?.price,
+      homePrice: markets?.h2h?.home?.price,
+      awayPrice: markets?.h2h?.away?.price,
+      homePriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-ml-home`),
+      awayPriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-ml-away`)
+    };
   };
   
   const getChartSelection = (): ChartSelection => {
@@ -1744,10 +1817,23 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
     }
   }, [selectedProp, selectedBook, gameData.id]);
   
-  const getLineHistory = () => { 
-    if (selectedProp) return propHistory; 
-    const periodKey = activeTab === 'full' ? 'full' : activeTab === '1h' ? 'h1' : activeTab === '2h' ? 'h2' : 'full'; 
-    return marketGroups.lineHistory?.[periodKey]?.[chartMarket] || []; 
+  const getLineHistory = () => {
+    if (selectedProp) return propHistory;
+    // Map tab keys to line history period keys
+    const periodKeyMap: Record<string, string> = {
+      'full': 'full',
+      '1h': 'h1',
+      '2h': 'h2',
+      '1q': 'q1',
+      '2q': 'q2',
+      '3q': 'q3',
+      '4q': 'q4',
+      '1p': 'p1',
+      '2p': 'p2',
+      '3p': 'p3',
+    };
+    const periodKey = periodKeyMap[activeTab] || 'full';
+    return marketGroups.lineHistory?.[periodKey]?.[chartMarket] || [];
   };
   const handleSelectProp = (prop: any) => { setSelectedProp(prop); setChartViewMode('line'); };
   const handleSelectMarket = (market: 'spread' | 'total' | 'moneyline') => { setChartMarket(market); setSelectedProp(null); setChartViewMode('line'); };

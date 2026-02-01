@@ -726,19 +726,53 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   // Fetch consensus data as fallback
   const consensusData = await fetchConsensus(backendSportKey, gameId);
 
-  // Fetch line history for all periods
+  // Fetch line history for all periods including quarters and hockey periods
   const [
     spreadHistory, mlHistory, totalHistory,
-    spreadH1History, totalH1History,
-    spreadH2History, totalH2History
+    spreadH1History, mlH1History, totalH1History,
+    spreadH2History, mlH2History, totalH2History,
+    // Quarters
+    spreadQ1History, mlQ1History, totalQ1History,
+    spreadQ2History, mlQ2History, totalQ2History,
+    spreadQ3History, mlQ3History, totalQ3History,
+    spreadQ4History, mlQ4History, totalQ4History,
+    // Hockey periods
+    spreadP1History, mlP1History, totalP1History,
+    spreadP2History, mlP2History, totalP2History,
+    spreadP3History, mlP3History, totalP3History,
   ] = await Promise.all([
     fetchLineHistory(gameId, 'spread', 'full'),
     fetchLineHistory(gameId, 'moneyline', 'full'),
     fetchLineHistory(gameId, 'total', 'full'),
     fetchLineHistory(gameId, 'spread', 'h1'),
+    fetchLineHistory(gameId, 'moneyline', 'h1'),
     fetchLineHistory(gameId, 'total', 'h1'),
     fetchLineHistory(gameId, 'spread', 'h2'),
+    fetchLineHistory(gameId, 'moneyline', 'h2'),
     fetchLineHistory(gameId, 'total', 'h2'),
+    // Quarters
+    fetchLineHistory(gameId, 'spread', 'q1'),
+    fetchLineHistory(gameId, 'moneyline', 'q1'),
+    fetchLineHistory(gameId, 'total', 'q1'),
+    fetchLineHistory(gameId, 'spread', 'q2'),
+    fetchLineHistory(gameId, 'moneyline', 'q2'),
+    fetchLineHistory(gameId, 'total', 'q2'),
+    fetchLineHistory(gameId, 'spread', 'q3'),
+    fetchLineHistory(gameId, 'moneyline', 'q3'),
+    fetchLineHistory(gameId, 'total', 'q3'),
+    fetchLineHistory(gameId, 'spread', 'q4'),
+    fetchLineHistory(gameId, 'moneyline', 'q4'),
+    fetchLineHistory(gameId, 'total', 'q4'),
+    // Hockey periods
+    fetchLineHistory(gameId, 'spread', 'p1'),
+    fetchLineHistory(gameId, 'moneyline', 'p1'),
+    fetchLineHistory(gameId, 'total', 'p1'),
+    fetchLineHistory(gameId, 'spread', 'p2'),
+    fetchLineHistory(gameId, 'moneyline', 'p2'),
+    fetchLineHistory(gameId, 'total', 'p2'),
+    fetchLineHistory(gameId, 'spread', 'p3'),
+    fetchLineHistory(gameId, 'moneyline', 'p3'),
+    fetchLineHistory(gameId, 'total', 'p3'),
   ]);
 
   const homeTeam = gameData.home_team;
@@ -748,10 +782,19 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   const confidence = gameData.overall_confidence || 'PASS';
 
   // Build line history object
-  const lineHistory = {
+  const lineHistory: Record<string, Record<string, any[]>> = {
     full: { spread: spreadHistory, moneyline: mlHistory, total: totalHistory },
-    h1: { spread: spreadH1History, total: totalH1History },
-    h2: { spread: spreadH2History, total: totalH2History },
+    h1: { spread: spreadH1History, moneyline: mlH1History, total: totalH1History },
+    h2: { spread: spreadH2History, moneyline: mlH2History, total: totalH2History },
+    // Quarters
+    q1: { spread: spreadQ1History, moneyline: mlQ1History, total: totalQ1History },
+    q2: { spread: spreadQ2History, moneyline: mlQ2History, total: totalQ2History },
+    q3: { spread: spreadQ3History, moneyline: mlQ3History, total: totalQ3History },
+    q4: { spread: spreadQ4History, moneyline: mlQ4History, total: totalQ4History },
+    // Hockey periods
+    p1: { spread: spreadP1History, moneyline: mlP1History, total: totalP1History },
+    p2: { spread: spreadP2History, moneyline: mlP2History, total: totalP2History },
+    p3: { spread: spreadP3History, moneyline: mlP3History, total: totalP3History },
   };
 
   // Fetch data for CEQ calculation (including team stats, weather, and Python pillars)
@@ -1137,22 +1180,34 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
 
   const totalEdgeCount = edgeCountBreakdown.total;
 
+  // Only check books that users can actually select (fanduel, draftkings, kalshi, polymarket)
+  const SELECTABLE_BOOKS = ['fanduel', 'draftkings', 'kalshi', 'polymarket'];
+  const selectableBookmakers = Object.entries(bookmakers)
+    .filter(([key]) => SELECTABLE_BOOKS.includes(key))
+    .map(([, value]) => value);
+
   const hasProps = (propsData && propsData.length > 0) ||
-    Object.values(bookmakers).some((b: any) => b.marketGroups?.playerProps?.length > 0);
-  const hasAlternates = Object.values(bookmakers).some((b: any) =>
+    selectableBookmakers.some((b: any) => b.marketGroups?.playerProps?.length > 0);
+  const hasAlternates = selectableBookmakers.some((b: any) =>
     (b.marketGroups?.alternates?.spreads?.length > 0) || (b.marketGroups?.alternates?.totals?.length > 0));
-  const hasTeamTotals = Object.values(bookmakers).some((b: any) =>
+  const hasTeamTotals = selectableBookmakers.some((b: any) =>
     b.marketGroups?.teamTotals?.home?.over || b.marketGroups?.teamTotals?.away?.over);
   const isNHL = fullSportKey.includes('icehockey');
   const isFootball = fullSportKey.includes('football');
   const isBasketball = fullSportKey.includes('basketball');
 
-  // Check if we have any half/quarter data
-  const hasFirstHalf = Object.values(bookmakers).some((b: any) =>
+  // Check if we have any half/quarter data from selectable books
+  const hasFirstHalf = selectableBookmakers.some((b: any) =>
     b.marketGroups?.firstHalf?.spreads || b.marketGroups?.firstHalf?.h2h || b.marketGroups?.firstHalf?.totals
   );
-  const hasSecondHalf = Object.values(bookmakers).some((b: any) =>
+  const hasSecondHalf = selectableBookmakers.some((b: any) =>
     b.marketGroups?.secondHalf?.spreads || b.marketGroups?.secondHalf?.h2h || b.marketGroups?.secondHalf?.totals
+  );
+  const hasQuarters = selectableBookmakers.some((b: any) =>
+    b.marketGroups?.q1?.spreads || b.marketGroups?.q1?.h2h || b.marketGroups?.q1?.totals
+  );
+  const hasHockeyPeriods = selectableBookmakers.some((b: any) =>
+    b.marketGroups?.p1?.spreads || b.marketGroups?.p1?.h2h || b.marketGroups?.p1?.totals
   );
 
   return (
@@ -1212,13 +1267,15 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
           fullGame: true,
           firstHalf: hasFirstHalf || isFootball || isBasketball || isNHL,
           secondHalf: hasSecondHalf || isFootball || isBasketball,
-          q1: isFootball || isBasketball,
-          q2: isFootball || isBasketball,
-          q3: isFootball || isBasketball,
-          q4: isFootball || isBasketball,
-          p1: isNHL,
-          p2: isNHL,
-          p3: isNHL,
+          // Use actual data availability for quarters, not just sport type
+          q1: hasQuarters || ((isFootball || isBasketball) && !isNHL),
+          q2: hasQuarters || ((isFootball || isBasketball) && !isNHL),
+          q3: hasQuarters || ((isFootball || isBasketball) && !isNHL),
+          q4: hasQuarters || ((isFootball || isBasketball) && !isNHL),
+          // Use actual data availability for hockey periods
+          p1: hasHockeyPeriods || isNHL,
+          p2: hasHockeyPeriods || isNHL,
+          p3: hasHockeyPeriods || isNHL,
           props: hasProps,
           alternates: hasAlternates,
           teamTotals: hasTeamTotals,

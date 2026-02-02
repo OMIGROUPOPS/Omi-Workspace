@@ -201,6 +201,54 @@ const EVENT_MARKETS: Record<string, string[]> = {
     "h2h_h2", "spreads_h2", "totals_h2",
     "alternate_spreads", "alternate_totals", "team_totals",
   ],
+  soccer_uefa_europa_league: [
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals", "team_totals",
+  ],
+  soccer_usa_mls: [
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals", "team_totals",
+  ],
+  soccer_mexico_ligamx: [
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals", "team_totals",
+  ],
+  soccer_netherlands_eredivisie: [
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals",
+  ],
+  soccer_efl_champ: [
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals",
+  ],
+  soccer_fa_cup: [
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals",
+  ],
+  // Combat Sports
+  mma_mixed_martial_arts: [
+    "alternate_spreads", "alternate_totals",
+  ],
+  boxing_boxing: [
+    "alternate_spreads", "alternate_totals",
+  ],
+  // Rugby/AFL
+  rugbyleague_nrl: [
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals",
+  ],
+  aussierules_afl: [
+    "h2h_h1", "spreads_h1", "totals_h1",
+    "h2h_h2", "spreads_h2", "totals_h2",
+    "alternate_spreads", "alternate_totals",
+  ],
 };
 
 // Market keys to snapshot for line movement charts (includes halves, quarters, periods, and props)

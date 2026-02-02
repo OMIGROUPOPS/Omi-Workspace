@@ -91,7 +91,7 @@ _football_data_import_error = None
 _api_football_import_error = None
 
 try:
-    from data_sources.football_data import get_epl_standings
+    from data_sources.football_data import get_epl_standings, get_standings_for_sport
     _football_data_available = True
     logger.info("[Incentives INIT] football_data module imported successfully")
 except Exception as e:
@@ -232,11 +232,12 @@ def calculate_incentives_score(
 
     if is_soccer_sport and soccer_source:
         try:
-            logger.info(f"[Incentives] Fetching soccer standings for {home_team} vs {away_team} (using={soccer_source})...")
+            logger.info(f"[Incentives] Fetching soccer standings for {home_team} vs {away_team} (using={soccer_source}, sport={sport})...")
 
             standings = None
             if soccer_source == "football_data":
-                standings = get_epl_standings()
+                # Use sport-aware function to get correct league standings
+                standings = get_standings_for_sport(sport)
             elif soccer_source == "api_football":
                 standings = get_league_standings_sync()
 

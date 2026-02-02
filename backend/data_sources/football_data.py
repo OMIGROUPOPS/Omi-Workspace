@@ -101,10 +101,13 @@ def get_headers() -> Dict[str, str]:
     }
 
 
-def get_epl_standings() -> Optional[Dict[str, Any]]:
+def get_standings(competition: str = "PL") -> Optional[Dict[str, Any]]:
     """
-    Fetch EPL standings including team positions, points, and form.
+    Fetch standings for a competition.
     SYNCHRONOUS - safe to call from FastAPI/async context.
+
+    Args:
+        competition: Competition code (PL=Premier League, ELC=Championship, etc.)
 
     Returns:
         Dict with standings data or None if request fails
@@ -114,9 +117,9 @@ def get_epl_standings() -> Optional[Dict[str, Any]]:
         return None
 
     try:
-        print(f"[FOOTBALL-DATA] Fetching EPL standings...")
+        print(f"[FOOTBALL-DATA] Fetching {competition} standings...")
         response = requests.get(
-            f"{BASE_URL}/competitions/PL/standings",
+            f"{BASE_URL}/competitions/{competition}/standings",
             headers=get_headers(),
             timeout=10.0
         )
@@ -156,6 +159,58 @@ def get_epl_standings() -> Optional[Dict[str, Any]]:
     except Exception as e:
         print(f"[FOOTBALL-DATA] Error fetching standings: {e}")
         return None
+
+
+def get_epl_standings() -> Optional[Dict[str, Any]]:
+    """Fetch Premier League standings."""
+    return get_standings("PL")
+
+
+def get_championship_standings() -> Optional[Dict[str, Any]]:
+    """Fetch Championship standings."""
+    return get_standings("ELC")
+
+
+def get_standings_for_sport(sport_key: str) -> Optional[Dict[str, Any]]:
+    """
+    Get standings based on sport key.
+    Maps Odds API sport keys to Football-Data competition codes.
+
+    Args:
+        sport_key: e.g., "soccer_epl", "soccer_england_efl_champ"
+
+    Returns:
+        Standings dict or None
+    """
+    # Map sport keys to Football-Data competition codes
+    sport_to_competition = {
+        "soccer_epl": "PL",                      # Premier League
+        "soccer_england_efl_champ": "ELC",       # Championship
+        "soccer_england_league1": "EL1",         # League One
+        "soccer_england_league2": "EL2",         # League Two
+        "soccer_germany_bundesliga": "BL1",      # Bundesliga
+        "soccer_spain_la_liga": "PD",            # La Liga
+        "soccer_italy_serie_a": "SA",            # Serie A
+        "soccer_france_ligue_one": "FL1",        # Ligue 1
+    }
+
+    competition = sport_to_competition.get(sport_key)
+    if competition:
+        print(f"[FOOTBALL-DATA] Sport '{sport_key}' -> competition '{competition}'")
+        return get_standings(competition)
+
+    # Fallback: try to guess from sport key
+    if "efl_champ" in sport_key or "championship" in sport_key.lower():
+        return get_standings("ELC")
+    elif "epl" in sport_key or "premier" in sport_key.lower():
+        return get_standings("PL")
+    elif "league1" in sport_key.lower():
+        return get_standings("EL1")
+    elif "league2" in sport_key.lower():
+        return get_standings("EL2")
+
+    print(f"[FOOTBALL-DATA] Unknown sport key: {sport_key}, defaulting to PL")
+    return get_standings("PL")
 
 
 def get_epl_matches(days_ahead: int = 7) -> Optional[List[Dict[str, Any]]]:

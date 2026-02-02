@@ -25,20 +25,26 @@ import os
 # This handles cases where env vars are set after module import (Railway/Docker)
 _football_data_available = False
 _api_football_available = False
+_football_data_import_error = None
+_api_football_import_error = None
 
 try:
     from data_sources.football_data import get_epl_standings
     _football_data_available = True
-    print("[Execution INIT] football_data module imported successfully")
-except ImportError as e:
-    print(f"[Execution INIT] football_data import failed: {e}")
+    logger.info("[Execution INIT] football_data module imported successfully")
+except Exception as e:
+    _football_data_import_error = str(e)
+    logger.error(f"[Execution INIT] football_data import FAILED: {e}")
 
 try:
     from data_sources.api_football import get_league_standings_sync
     _api_football_available = True
-    print("[Execution INIT] api_football module imported successfully")
-except ImportError as e:
-    print(f"[Execution INIT] api_football import failed: {e}")
+    logger.info("[Execution INIT] api_football module imported successfully")
+except Exception as e:
+    _api_football_import_error = str(e)
+    logger.error(f"[Execution INIT] api_football import FAILED: {e}")
+
+logger.info(f"[Execution INIT] _football_data_available={_football_data_available}, _api_football_available={_api_football_available}")
 
 
 def _get_soccer_data_source():
@@ -46,10 +52,23 @@ def _get_soccer_data_source():
     Determine which soccer data source to use at runtime.
     Checks env vars each time to handle late-loaded environment variables.
     """
-    if _football_data_available and os.getenv("FOOTBALL_DATA_API_KEY"):
+    has_fd_key = bool(os.getenv("FOOTBALL_DATA_API_KEY"))
+    has_af_key = bool(os.getenv("API_FOOTBALL_KEY"))
+
+    logger.info(f"[Execution] _get_soccer_data_source: _football_data_available={_football_data_available}, has_fd_key={has_fd_key}")
+    logger.info(f"[Execution] _get_soccer_data_source: _api_football_available={_api_football_available}, has_af_key={has_af_key}")
+
+    if _football_data_available and has_fd_key:
         return "football_data"
-    if _api_football_available and os.getenv("API_FOOTBALL_KEY"):
+    if _api_football_available and has_af_key:
         return "api_football"
+
+    # Log why we're returning None
+    if not _football_data_available and _football_data_import_error:
+        logger.warning(f"[Execution] football_data not available: {_football_data_import_error}")
+    if not _api_football_available and _api_football_import_error:
+        logger.warning(f"[Execution] api_football not available: {_api_football_import_error}")
+
     return None
 
 # NFL position importance weights - AMPLIFIED for visual differentiation

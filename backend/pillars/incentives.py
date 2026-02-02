@@ -87,20 +87,26 @@ import os
 # This handles cases where env vars are set after module import (Railway/Docker)
 _football_data_available = False
 _api_football_available = False
+_football_data_import_error = None
+_api_football_import_error = None
 
 try:
     from data_sources.football_data import get_epl_standings
     _football_data_available = True
-    logger.info("[Incentives] football_data module imported successfully")
-except ImportError as e:
-    logger.warning(f"[Incentives] Football-Data not available: {e}")
+    logger.info("[Incentives INIT] football_data module imported successfully")
+except Exception as e:
+    _football_data_import_error = str(e)
+    logger.error(f"[Incentives INIT] football_data import FAILED: {e}")
 
 try:
     from data_sources.api_football import get_league_standings_sync
     _api_football_available = True
-    logger.info("[Incentives] api_football module imported successfully")
-except ImportError as e:
-    logger.warning(f"[Incentives] API-Football not available: {e}")
+    logger.info("[Incentives INIT] api_football module imported successfully")
+except Exception as e:
+    _api_football_import_error = str(e)
+    logger.error(f"[Incentives INIT] api_football import FAILED: {e}")
+
+logger.info(f"[Incentives INIT] _football_data_available={_football_data_available}, _api_football_available={_api_football_available}")
 
 
 def _get_soccer_data_source():
@@ -108,9 +114,12 @@ def _get_soccer_data_source():
     Determine which soccer data source to use at runtime.
     Checks env vars each time to handle late-loaded environment variables.
     """
-    if _football_data_available and os.getenv("FOOTBALL_DATA_API_KEY"):
+    has_fd_key = bool(os.getenv("FOOTBALL_DATA_API_KEY"))
+    has_af_key = bool(os.getenv("API_FOOTBALL_KEY"))
+
+    if _football_data_available and has_fd_key:
         return "football_data"
-    if _api_football_available and os.getenv("API_FOOTBALL_KEY"):
+    if _api_football_available and has_af_key:
         return "api_football"
     return None
 

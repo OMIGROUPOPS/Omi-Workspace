@@ -23,18 +23,24 @@ import os
 # Import modules at module level, but check API keys at runtime
 # This handles cases where env vars are set after module import (Railway/Docker)
 _api_football_available = False
+_api_football_import_error = None
 
 try:
     from data_sources.api_football import get_team_injuries, get_team_id
     _api_football_available = True
-    logger.info("[Shocks] api_football module imported successfully")
-except ImportError as e:
-    logger.warning(f"[Shocks] API-Football not available: {e}")
+    logger.info("[Shocks INIT] api_football module imported successfully")
+except Exception as e:
+    _api_football_import_error = str(e)
+    logger.error(f"[Shocks INIT] api_football import FAILED: {e}")
+
+logger.info(f"[Shocks INIT] _api_football_available={_api_football_available}")
 
 
 def _is_soccer_injuries_available():
     """Check if soccer injury data is available at runtime."""
-    return _api_football_available and bool(os.getenv("API_FOOTBALL_KEY"))
+    has_key = bool(os.getenv("API_FOOTBALL_KEY"))
+    logger.info(f"[Shocks] _is_soccer_injuries_available: _api_football_available={_api_football_available}, has_key={has_key}")
+    return _api_football_available and has_key
 
 
 def calculate_shocks_score(

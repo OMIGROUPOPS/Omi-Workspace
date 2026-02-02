@@ -170,6 +170,7 @@ def calculate_execution_score(
     # SOCCER-SPECIFIC: Use league standings and form
     # Match any soccer sport key (soccer_epl, soccer_england_efl_champ, etc.)
     is_soccer_sport = sport and ("soccer" in sport.lower() or sport.lower().startswith("soccer"))
+    soccer_adjustment = 0.0  # Initialize outside try block
     logger.info(f"[Execution] Sport check: sport={sport}, is_soccer={is_soccer_sport}, soccer_source={soccer_source}")
 
     if is_soccer_sport and soccer_source:
@@ -227,10 +228,10 @@ def calculate_execution_score(
                     # Weight: Position 50%, GD 25%, Form 25%
                     soccer_adjustment = (pos_adjustment * 0.50) + (gd_adjustment * 0.25) + (form_adjustment * 0.25)
 
-                    # Store for later application to final score
-                    # Positive adjustment = HOME team advantage (score < 0.5)
-                    # We need to SUBTRACT because score > 0.5 means AWAY advantage
-                    home_injury_score += soccer_adjustment  # This will reduce final score (favor home)
+                    # soccer_adjustment is NEGATIVE when home is better (lower score = home advantage)
+                    # Positive adjustment = away is better (higher score = away advantage)
+                    # Will be applied directly to final score below
+                    logger.info(f"[Execution] soccer_adjustment calculated: {soccer_adjustment:.3f}")
 
                     # Build detailed reasoning
                     reasoning_parts.append(f"Position: {home_team} {home_pos}th vs {away_team} {away_pos}th")
@@ -291,7 +292,13 @@ def calculate_execution_score(
     else:
         injury_adjustment = injury_differential * 0.50
 
-    score = base_score + injury_adjustment + weather_factor
+    # Apply all adjustments to score
+    # soccer_adjustment: negative = home advantage, positive = away advantage
+    # We SUBTRACT because lower score = home advantage
+    score = base_score + injury_adjustment + weather_factor - soccer_adjustment
+
+    logger.info(f"[Execution] Score calc: base={base_score}, injury_adj={injury_adjustment:.3f}, weather={weather_factor}, soccer_adj={soccer_adjustment:.3f}")
+    logger.info(f"[Execution] Final score before clamp: {score:.3f}")
 
     # Clamp but preserve extremes for visual impact
     score = max(0.15, min(0.85, score))  # Allow 15-85% range for dramatic injuries

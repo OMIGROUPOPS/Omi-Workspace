@@ -70,7 +70,8 @@ def _analyze_pinnacle_divergence(spreads_by_book: dict, parsed: dict) -> dict:
             pinnacle_line = retail_consensus
             logger.info(f"[Flow] Pinnacle estimated same as retail for close game: {pinnacle_line:+.1f}")
 
-    if pinnacle_line is None or not retail_lines:
+    # Case 1: No Pinnacle AND no retail lines - truly no data
+    if pinnacle_line is None and not retail_lines:
         return {
             "pinnacle_line": None,
             "retail_consensus": None,
@@ -79,6 +80,49 @@ def _analyze_pinnacle_divergence(spreads_by_book: dict, parsed: dict) -> dict:
             "reasoning": None
         }
 
+    # Case 2: We have Pinnacle but no retail lines (common for soccer)
+    # Use Pinnacle line as THE sharp signal - home favored if negative
+    if pinnacle_line is not None and not retail_lines:
+        signal_direction = "neutral"
+        reasoning = None
+
+        # Pinnacle line IS the sharp signal
+        # Negative line = home favored by Pinnacle
+        # Positive line = away favored by Pinnacle
+        if pinnacle_line <= -1.0:
+            signal_direction = "home"
+            reasoning = f"PINNACLE SHARP: Home favored at {pinnacle_line:+.2f} handicap"
+        elif pinnacle_line >= 1.0:
+            signal_direction = "away"
+            reasoning = f"PINNACLE SHARP: Away favored, home at {pinnacle_line:+.2f} handicap"
+        elif pinnacle_line < 0:
+            signal_direction = "home"
+            reasoning = f"Pinnacle: slight home edge at {pinnacle_line:+.2f}"
+        elif pinnacle_line > 0:
+            signal_direction = "away"
+            reasoning = f"Pinnacle: slight away edge, home at {pinnacle_line:+.2f}"
+
+        logger.info(f"[Flow] Pinnacle-only analysis: line={pinnacle_line:+.2f}, signal={signal_direction}")
+
+        return {
+            "pinnacle_line": pinnacle_line,
+            "retail_consensus": None,
+            "divergence": abs(pinnacle_line),  # Use line magnitude as "divergence"
+            "signal_direction": signal_direction,
+            "reasoning": reasoning
+        }
+
+    # Case 3: No Pinnacle but have retail lines
+    if pinnacle_line is None and retail_lines:
+        return {
+            "pinnacle_line": None,
+            "retail_consensus": sum(retail_lines) / len(retail_lines),
+            "divergence": 0,
+            "signal_direction": "neutral",
+            "reasoning": "No sharp book data available"
+        }
+
+    # Case 4: Have both Pinnacle and retail - compare them
     retail_consensus = sum(retail_lines) / len(retail_lines)
     divergence = pinnacle_line - retail_consensus
 
@@ -444,12 +488,18 @@ def calculate_flow_score(
 def _analyze_moneyline_flow(bookmakers: dict, parsed: dict) -> dict:
     """Fallback flow analysis using moneyline odds when spreads unavailable."""
     home_odds_list = []
-    
+    away_odds_list = []
+    draw_odds_list = []
+
     for book_key, markets in bookmakers.items():
         if "h2h" in markets:
             if "home" in markets["h2h"]:
                 home_odds_list.append(markets["h2h"]["home"])
-    
+            if "away" in markets["h2h"]:
+                away_odds_list.append(markets["h2h"]["away"])
+            if "draw" in markets["h2h"]:
+                draw_odds_list.append(markets["h2h"]["draw"])
+
     if not home_odds_list:
         return {
             "score": 0.5,
@@ -460,25 +510,67 @@ def _analyze_moneyline_flow(bookmakers: dict, parsed: dict) -> dict:
             "breakdown": {},
             "reasoning": "Insufficient data for flow analysis"
         }
-    
+
     def american_to_prob(odds):
         if odds > 0:
             return 100 / (odds + 100)
         else:
             return abs(odds) / (abs(odds) + 100)
-    
+
     home_probs = [american_to_prob(o) for o in home_odds_list]
+    away_probs = [american_to_prob(o) for o in away_odds_list] if away_odds_list else []
+
     avg_home_prob = sum(home_probs) / len(home_probs)
-    
+    avg_away_prob = sum(away_probs) / len(away_probs) if away_probs else 0
+
     if len(home_probs) >= 2:
         prob_variance = statistics.variance(home_probs)
     else:
         prob_variance = 0
-    
-    score = 0.5
-    if prob_variance > 0.01:
-        score += 0.1 if avg_home_prob > 0.5 else -0.1
-    
+
+    reasoning_parts = []
+    base_score = 0.5
+
+    # AMPLIFIED moneyline analysis for soccer
+    # If home is heavily favored (>55% implied prob), lean toward away (contrarian)
+    # If away is heavily favored (>55% implied prob), lean toward home (contrarian)
+    # Market usually overvalues favorites
+
+    if avg_home_prob >= 0.55:
+        # Home heavily favored - slight contrarian lean to away
+        adjustment = (avg_home_prob - 0.50) * 0.3
+        base_score += adjustment
+        reasoning_parts.append(f"Home favored ({avg_home_prob:.1%}) - market may overvalue")
+    elif avg_away_prob >= 0.55:
+        # Away heavily favored - slight contrarian lean to home
+        adjustment = (avg_away_prob - 0.50) * 0.3
+        base_score -= adjustment
+        reasoning_parts.append(f"Away favored ({avg_away_prob:.1%}) - market may overvalue")
+    elif avg_home_prob > 0.45 and avg_home_prob < 0.55:
+        # Close to pick'em - no strong edge
+        reasoning_parts.append(f"Close matchup: home {avg_home_prob:.1%}, away {avg_away_prob:.1%}")
+
+    # Book disagreement indicates opportunity
+    if prob_variance > 0.005:  # Lowered threshold
+        variance_adjustment = min(prob_variance * 20, 0.15)  # Up to 15% adjustment
+        base_score += variance_adjustment if avg_home_prob > 0.5 else -variance_adjustment
+        reasoning_parts.append(f"Book disagreement detected (var={prob_variance:.4f})")
+
+    # If we have draw odds, factor that in (soccer-specific)
+    if draw_odds_list:
+        avg_draw_prob = sum([american_to_prob(o) for o in draw_odds_list]) / len(draw_odds_list)
+        if avg_draw_prob > 0.30:
+            # High draw probability = game likely to be close
+            reasoning_parts.append(f"Draw likely ({avg_draw_prob:.1%}) - game expected to be tight")
+        elif avg_draw_prob < 0.22:
+            # Low draw probability = likely decisive result
+            reasoning_parts.append(f"Draw unlikely ({avg_draw_prob:.1%}) - clear favorite")
+
+    score = max(0.15, min(0.85, base_score))
+
+    if not reasoning_parts:
+        reasoning_parts.append(f"Moneyline: home {avg_home_prob:.1%}, away {avg_away_prob:.1%}")
+
     return {
         "score": round(score, 3),
         "spread_variance": 0.0,
@@ -487,10 +579,13 @@ def _analyze_moneyline_flow(bookmakers: dict, parsed: dict) -> dict:
         "book_agreement": round(1 - min(prob_variance * 10, 1), 3),
         "breakdown": {
             "home_odds_list": home_odds_list,
+            "away_odds_list": away_odds_list,
+            "draw_odds_list": draw_odds_list,
             "avg_home_prob": round(avg_home_prob, 4),
+            "avg_away_prob": round(avg_away_prob, 4),
             "prob_variance": round(prob_variance, 4)
         },
-        "reasoning": f"Moneyline flow analysis: avg home prob {avg_home_prob:.1%}"
+        "reasoning": "; ".join(reasoning_parts)
     }
 
 

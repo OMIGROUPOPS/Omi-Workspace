@@ -27,6 +27,11 @@ SPORT_REST_IMPORTANCE = {
     "basketball_ncaab": 0.8,
     "NHL": 0.9,
     "icehockey_nhl": 0.9,
+    # Soccer - rest matters but less than basketball
+    "soccer_epl": 0.6,
+    "soccer_england_efl_champ": 0.6,
+    "soccer_england_league1": 0.6,
+    "soccer_england_league2": 0.6,
 }
 
 # NFL Home Field Advantage - AMPLIFIED for visual differentiation
@@ -182,6 +187,33 @@ def calculate_time_decay_score(
 
     situational_adjustment = 0.0
     reasoning_parts = []
+    soccer_adjustment = 0.0
+
+    # SOCCER-SPECIFIC: Midweek vs weekend games and home advantage
+    is_soccer_sport = sport and ("soccer" in sport.lower() or sport.lower().startswith("soccer"))
+    if is_soccer_sport:
+        # Check if game is midweek (Tue-Thu) vs weekend (Sat-Sun)
+        game_day = game_time.weekday()  # 0=Monday, 6=Sunday
+
+        if game_day in [1, 2, 3]:  # Tuesday, Wednesday, Thursday
+            # Midweek game = potential congestion for both teams
+            reasoning_parts.append("Midweek fixture: potential fixture congestion")
+            # Slightly favor home team in midweek (less travel)
+            soccer_adjustment -= 0.05
+        elif game_day in [5, 6]:  # Saturday, Sunday
+            reasoning_parts.append("Weekend fixture: standard rest")
+
+        # Home advantage in soccer is SIGNIFICANT (about 55-60% home win rate historically)
+        # Apply a baseline home advantage of 8%
+        soccer_adjustment -= 0.08
+        reasoning_parts.append(f"{home_team} home advantage (+8%)")
+
+        # If ESPN data is unavailable, use defaults
+        if home_fatigue == 0 and away_fatigue == 0:
+            # Default to neutral but with home advantage applied
+            reasoning_parts.append("Fixture data unavailable - using home advantage baseline")
+
+        logger.info(f"[TimeDecay] Soccer: day={game_day}, soccer_adjustment={soccer_adjustment:.3f}")
 
     # NFL-specific: Travel distance and home field advantage
     home_travel_miles = 0
@@ -256,7 +288,8 @@ def calculate_time_decay_score(
         situational_adjustment -= 0.03
 
     base_score = 0.5
-    score = base_score + fatigue_differential + situational_adjustment
+    score = base_score + fatigue_differential + situational_adjustment + soccer_adjustment
+    logger.info(f"[TimeDecay] Score calc: base={base_score}, fatigue={fatigue_differential:.3f}, situational={situational_adjustment:.3f}, soccer={soccer_adjustment:.3f}")
     score = max(0.0, min(1.0, score))
 
     if not reasoning_parts:

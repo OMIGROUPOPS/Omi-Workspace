@@ -96,6 +96,11 @@ ODDS_API_SPORTS = {
     "SOCCER_NETHERLANDS_EREDIVISIE": "soccer_netherlands_eredivisie",
     "SOCCER_MEXICO_LIGAMX": "soccer_mexico_ligamx",
     "SOCCER_FA_CUP": "soccer_fa_cup",
+    # Soccer - Full Odds API format with country codes (as stored in database)
+    "SOCCER_ENGLAND_LEAGUE1": "soccer_england_league1",
+    "SOCCER_ENGLAND_EFL_CUP": "soccer_england_efl_cup",
+    "SOCCER_ENGLAND_LEAGUE2": "soccer_england_league2",
+    "SOCCER_ENGLAND_EFL_CHAMP": "soccer_england_efl_champ",  # Championship
 
     # Tennis - short format
     "TENNIS_AO": "tennis_atp_australian_open",
@@ -171,6 +176,11 @@ ESPN_SPORTS = {
     "soccer_efl_champ": ("soccer", "eng.2"),
     "soccer_netherlands_eredivisie": ("soccer", "ned.1"),
     "soccer_mexico_ligamx": ("soccer", "mex.1"),
+    # Additional Odds API format - English lower leagues
+    "soccer_england_efl_champ": ("soccer", "eng.2"),  # Championship
+    "soccer_england_league1": ("soccer", "eng.3"),
+    "soccer_england_league2": ("soccer", "eng.4"),
+    "soccer_england_efl_cup": ("soccer", "eng.league_cup"),
 
     # Odds API format - Combat Sports
     "mma_mixed_martial_arts": ("mma", "ufc"),

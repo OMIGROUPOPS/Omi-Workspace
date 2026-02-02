@@ -95,19 +95,26 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
       setLoading(true);
       setError(null);
 
+      console.log(`[PythonPillarBreakdown] Fetching pillars for gameId=${gameId}, sport=${sport}`);
+
       try {
-        const response = await fetch(
-          `/api/pillars/calculate?game_id=${encodeURIComponent(gameId)}&sport=${encodeURIComponent(sport)}`
-        );
+        const url = `/api/pillars/calculate?game_id=${encodeURIComponent(gameId)}&sport=${encodeURIComponent(sport)}`;
+        console.log(`[PythonPillarBreakdown] Calling: ${url}`);
+
+        const response = await fetch(url);
+        console.log(`[PythonPillarBreakdown] Response status: ${response.status}`);
 
         if (!response.ok) {
           const data = await response.json();
+          console.error(`[PythonPillarBreakdown] Error response:`, data);
           throw new Error(data.error || `Failed to fetch pillars: ${response.status}`);
         }
 
         const data = await response.json();
+        console.log(`[PythonPillarBreakdown] Got pillar data:`, data);
         setPillarData(data);
       } catch (err) {
+        console.error(`[PythonPillarBreakdown] Fetch error:`, err);
         setError(err instanceof Error ? err.message : 'Unknown error');
       } finally {
         setLoading(false);
@@ -116,6 +123,8 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
 
     if (gameId && sport) {
       fetchPillars();
+    } else {
+      console.log(`[PythonPillarBreakdown] Skipping fetch - gameId=${gameId}, sport=${sport}`);
     }
   }, [gameId, sport]);
 

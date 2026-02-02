@@ -21,7 +21,6 @@ export interface EdgeCountBreakdown {
   quarters: number;  // Q1-Q4 combined
   periods: number;   // P1-P3 combined (NHL)
   teamTotals: number;
-  props: number;
 }
 
 interface GameEdgesPanelProps {
@@ -51,7 +50,6 @@ export function GameEdgesPanel({ gameId, sport, ceqEdges = [], edgeCountBreakdow
     if (edgeCountBreakdown.quarters > 0) parts.push(`Quarters: ${edgeCountBreakdown.quarters}`);
     if (edgeCountBreakdown.periods > 0) parts.push(`Periods: ${edgeCountBreakdown.periods}`);
     if (edgeCountBreakdown.teamTotals > 0) parts.push(`Team Totals: ${edgeCountBreakdown.teamTotals}`);
-    if (edgeCountBreakdown.props > 0) parts.push(`Props: ${edgeCountBreakdown.props}`);
     return parts.length > 0 ? `(${parts.join(', ')})` : '';
   };
 

@@ -1235,7 +1235,6 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     periods: countPeriodEdges(ceqByPeriod.p1) + countPeriodEdges(ceqByPeriod.p2) +
              countPeriodEdges(ceqByPeriod.p3),
     teamTotals: 0,
-    props: 0, // TODO: Count prop edges when implemented
   };
 
   // Count team total edges (4 possible: home over, home under, away over, away under)
@@ -1247,7 +1246,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   // Calculate total
   edgeCountBreakdown.total = edgeCountBreakdown.fullGame + edgeCountBreakdown.firstHalf +
     edgeCountBreakdown.secondHalf + edgeCountBreakdown.quarters + edgeCountBreakdown.periods +
-    edgeCountBreakdown.teamTotals + edgeCountBreakdown.props;
+    edgeCountBreakdown.teamTotals;
 
   const totalEdgeCount = edgeCountBreakdown.total;
 
@@ -1347,7 +1346,6 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
           p1: hasHockeyPeriods || isNHL,
           p2: hasHockeyPeriods || isNHL,
           p3: hasHockeyPeriods || isNHL,
-          props: hasProps,
           alternates: hasAlternates,
           teamTotals: hasTeamTotals,
         }}

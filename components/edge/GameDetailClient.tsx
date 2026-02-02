@@ -1215,70 +1215,6 @@ function ExchangeMarketsSection({ exchangeMarkets, exchange, homeTeam, awayTeam 
   );
 }
 
-function PlayerPropsSection({ props, gameId, onSelectProp, selectedProp, selectedBook }: { props: any[]; gameId?: string; onSelectProp: (prop: any) => void; selectedProp: any | null; selectedBook: string }) {
-  const [selectedMarket, setSelectedMarket] = useState<string>('all');
-  if (!props || props.length === 0) return (<div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden"><div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800"><h2 className="font-semibold text-zinc-100">Player Props</h2></div><div className="p-8 text-center"><p className="text-zinc-500">No player props available for this game</p></div></div>);
-
-  const propsToShow = props.filter(p => p.book === selectedBook);
-  const grouped = propsToShow.reduce((acc: any, prop: any) => { const key = prop.market || prop.market_type || 'unknown'; if (!acc[key]) acc[key] = []; acc[key].push(prop); return acc; }, {});
-  const marketTypes = Object.keys(grouped);
-  const filteredMarkets = selectedMarket === 'all' ? marketTypes : [selectedMarket];
-
-  return (
-    <div className="space-y-4">
-      <div className="flex gap-2 flex-wrap">
-        <button onClick={() => setSelectedMarket('all')} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${selectedMarket === 'all' ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>All ({propsToShow.length})</button>
-        {marketTypes.map((market) => (<button key={market} onClick={() => setSelectedMarket(market)} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${selectedMarket === market ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>{formatMarketName(market)} ({grouped[market].length})</button>))}
-      </div>
-      <p className="text-xs text-zinc-500">EV% shown on each prop • Click to view line movement</p>
-      {filteredMarkets.map((market) => (
-        <div key={market} className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
-          <div className="px-4 py-3 bg-zinc-800/50 border-b border-zinc-800 flex items-center justify-between"><h2 className="font-semibold text-zinc-100">{formatMarketName(market)}</h2><span className="text-xs text-zinc-500">{grouped[market].length} props</span></div>
-          <div className="divide-y divide-zinc-800/50">
-            {grouped[market].map((prop: any, idx: number) => {
-              const isSelected = selectedProp?.player === prop.player && selectedProp?.market === (prop.market || prop.market_type) && selectedProp?.book === prop.book;
-              const overOdds = prop.over?.odds; const underOdds = prop.under?.odds; const yesOdds = prop.yes?.odds;
-              const line = prop.line ?? prop.over?.line ?? prop.under?.line;
-              // Calculate EV for over/under props (no consensus available for props)
-              const overEV = overOdds && underOdds ? calculateTwoWayEV(overOdds, underOdds) : undefined;
-              const underEV = overOdds && underOdds ? calculateTwoWayEV(underOdds, overOdds) : undefined;
-              const overBg = getEVBgClass(overEV ?? 0);
-              const underBg = getEVBgClass(underEV ?? 0);
-              return (
-                <div key={`${prop.player}-${prop.book}-${idx}`} onClick={() => onSelectProp(prop)} className={`px-4 py-3 flex items-center justify-between cursor-pointer hover:bg-zinc-800/50 transition-colors ${isSelected ? 'bg-blue-500/10 ring-1 ring-blue-500/50' : ''}`}>
-                  <div className="flex-1"><div className="font-medium text-zinc-100 text-sm">{prop.player}</div>{line !== null && line !== undefined && <span className="text-xs text-zinc-400">Line: {line}</span>}</div>
-                  <div className="flex gap-2">
-                    {overOdds && underOdds ? (<>
-                      <div className={`text-center py-2 px-3 rounded border transition-all min-w-[80px] ${overBg}`}>
-                        <div className="text-sm font-medium text-zinc-100">{formatOdds(overOdds)}</div>
-                        <div className="flex items-center justify-center gap-1">
-                          <span className="text-[10px] text-zinc-500">Over</span>
-                          {overEV !== undefined && Math.abs(overEV) >= 0.5 && (
-                            <span className={`text-[9px] font-mono ${getEVColor(overEV)}`}>{formatEV(overEV)}</span>
-                          )}
-                        </div>
-                      </div>
-                      <div className={`text-center py-2 px-3 rounded border transition-all min-w-[80px] ${underBg}`}>
-                        <div className="text-sm font-medium text-zinc-100">{formatOdds(underOdds)}</div>
-                        <div className="flex items-center justify-center gap-1">
-                          <span className="text-[10px] text-zinc-500">Under</span>
-                          {underEV !== undefined && Math.abs(underEV) >= 0.5 && (
-                            <span className={`text-[9px] font-mono ${getEVColor(underEV)}`}>{formatEV(underEV)}</span>
-                          )}
-                        </div>
-                      </div>
-                    </>) : yesOdds ? (<div className="text-center py-2 px-3 rounded border transition-all min-w-[70px] bg-zinc-800/50 border-zinc-700"><div className="text-sm font-medium text-zinc-100">{formatOdds(yesOdds)}</div><div className="text-xs text-zinc-500">Yes</div></div>) : null}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function TeamTotalsSection({ teamTotals, homeTeam, awayTeam, gameId }: { teamTotals: any; homeTeam: string; awayTeam: string; gameId?: string }) {
   if (!teamTotals || (!teamTotals.home?.over && !teamTotals.away?.over)) {
     return <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-8 text-center"><p className="text-zinc-500">No team totals available</p></div>;
@@ -1491,14 +1427,13 @@ interface EdgeCountBreakdown {
   quarters: number;  // Q1-Q4 combined
   periods: number;   // P1-P3 combined (NHL)
   teamTotals: number;
-  props: number;
 }
 
 interface GameDetailClientProps {
   gameData: { id: string; homeTeam: string; awayTeam: string; sportKey: string; commenceTime?: string };
   bookmakers: Record<string, any>;
   availableBooks: string[];
-  availableTabs?: { fullGame?: boolean; firstHalf?: boolean; secondHalf?: boolean; q1?: boolean; q2?: boolean; q3?: boolean; q4?: boolean; p1?: boolean; p2?: boolean; p3?: boolean; props?: boolean; alternates?: boolean; teamTotals?: boolean };
+  availableTabs?: { fullGame?: boolean; firstHalf?: boolean; secondHalf?: boolean; q1?: boolean; q2?: boolean; q3?: boolean; q4?: boolean; p1?: boolean; p2?: boolean; p3?: boolean; alternates?: boolean; teamTotals?: boolean };
   userTier?: 'tier_1' | 'tier_2';
   userEmail?: string;
   isDemo?: boolean;
@@ -1733,7 +1668,6 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('full');
   const [chartMarket, setChartMarket] = useState<'spread' | 'total' | 'moneyline'>('spread');
-  const [selectedProp, setSelectedProp] = useState<any | null>(null);
   const [chartViewMode, setChartViewMode] = useState<ChartViewMode>('line');
 
   // Get user email from localStorage (our custom auth) if not passed via props
@@ -1780,7 +1714,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
     '3p': 'p3',
   };
   // Special tabs that don't have CEQ data
-  const isSpecialTab = activeTab === 'team' || activeTab === 'props' || activeTab === 'alt';
+  const isSpecialTab = activeTab === 'team' || activeTab === 'alt';
   const activePeriodKey = tabToPeriodKey[activeTab] || 'fullGame';
   const activeCeq: GameCEQ | null | undefined = isSpecialTab ? null : (ceqByPeriod?.[activePeriodKey] ?? (activeTab === 'full' ? ceq : null));
 
@@ -1845,57 +1779,15 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
   };
   
   const getChartSelection = (): ChartSelection => {
-    if (selectedProp) {
-      const line = selectedProp.line ?? selectedProp.over?.line ?? selectedProp.under?.line ?? 0;
-      return { type: 'prop', player: selectedProp.player, market: selectedProp.market || selectedProp.market_type, label: `${selectedProp.player} - ${formatMarketName(selectedProp.market || selectedProp.market_type)}`, line, overOdds: selectedProp.over?.odds, underOdds: selectedProp.under?.odds, overPriceMovement: selectedProp.overPriceMovement || generatePriceMovement(`${gameData.id}-${selectedProp.player}-over`), underPriceMovement: selectedProp.underPriceMovement || generatePriceMovement(`${gameData.id}-${selectedProp.player}-under`) };
-    }
     const periodLabels: Record<string, string> = { 'full': 'Full Game', '1h': '1st Half', '2h': '2nd Half', '1q': '1st Quarter', '2q': '2nd Quarter', '3q': '3rd Quarter', '4q': '4th Quarter', '1p': '1st Period', '2p': '2nd Period', '3p': '3rd Period' };
     const marketLabels: Record<string, string> = { 'spread': 'Spread', 'total': 'Total', 'moneyline': 'Moneyline' };
     const values = getCurrentMarketValues();
     return { type: 'market', market: chartMarket, period: activeTab, label: `${periodLabels[activeTab] || 'Full Game'} ${marketLabels[chartMarket]}`, ...values };
   };
-  
+
   const chartSelection = getChartSelection();
-  
-  // State for prop history
-  const [propHistory, setPropHistory] = useState<any[]>([]);
-  const [loadingPropHistory, setLoadingPropHistory] = useState(false);
-  
-  // Fetch prop history when a prop is selected
-  useEffect(() => {
-    if (selectedProp) {
-      setLoadingPropHistory(true);
-      const playerName = encodeURIComponent(selectedProp.player);
-      const marketType = encodeURIComponent(selectedProp.market || selectedProp.market_type);
-      // Use our API route which queries Supabase odds_snapshots
-      fetch(`/api/odds/prop-history?gameId=${gameData.id}&player=${playerName}&market=${marketType}&book=${selectedBook}`)
-        .then(res => res.json())
-        .then(data => {
-          // Transform to format expected by chart (filter to Over side by default)
-          // Don't set outcome_type - it would cause filter mismatch since chart expects team names
-          const overSnapshots = (data.snapshots || [])
-            .filter((s: any) => s.side === 'Over')
-            .map((s: any) => ({
-              snapshot_time: s.snapshot_time,
-              book_key: s.book_key,
-              line: s.line,
-              odds: s.odds,
-            }));
-          setPropHistory(overSnapshots);
-          setLoadingPropHistory(false);
-        })
-        .catch(err => {
-          console.error('Error fetching prop history:', err);
-          setPropHistory([]);
-          setLoadingPropHistory(false);
-        });
-    } else {
-      setPropHistory([]);
-    }
-  }, [selectedProp, selectedBook, gameData.id]);
-  
+
   const getLineHistory = () => {
-    if (selectedProp) return propHistory;
     // Map tab keys to line history period keys
     const periodKeyMap: Record<string, string> = {
       'full': 'full',
@@ -1912,9 +1804,8 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
     const periodKey = periodKeyMap[activeTab] || 'full';
     return marketGroups.lineHistory?.[periodKey]?.[chartMarket] || [];
   };
-  const handleSelectProp = (prop: any) => { setSelectedProp(prop); setChartViewMode('line'); };
-  const handleSelectMarket = (market: 'spread' | 'total' | 'moneyline') => { setChartMarket(market); setSelectedProp(null); setChartViewMode('line'); };
-  const handleTabChange = (tab: string) => { setActiveTab(tab); if (tab !== 'props') setSelectedProp(null); };
+  const handleSelectMarket = (market: 'spread' | 'total' | 'moneyline') => { setChartMarket(market); setChartViewMode('line'); };
+  const handleTabChange = (tab: string) => { setActiveTab(tab); };
   
   const tabs = [
     { key: 'full', label: 'Full Game', available: true },
@@ -1928,7 +1819,6 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
     { key: '2p', label: '2P', available: availableTabs?.p2 && isNHL },
     { key: '3p', label: '3P', available: availableTabs?.p3 && isNHL },
     { key: 'team', label: 'Team Totals', available: availableTabs?.teamTotals },
-    { key: 'props', label: 'Player Props', available: availableTabs?.props },
     { key: 'alt', label: 'Alt Lines', available: availableTabs?.alternates },
   ].filter(tab => tab.available);
 
@@ -1948,19 +1838,17 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
         <div className="relative">
-          {isSpecialTab && !selectedProp ? (
-            // Special tabs (Team Totals, Props, Alternates) without selected prop - show placeholder
+          {isSpecialTab ? (
+            // Special tabs (Team Totals, Alternates) - show placeholder
             <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-8 text-center">
               <p className="text-zinc-500 text-sm">
                 {activeTab === 'team' && 'Team totals chart coming soon'}
-                {activeTab === 'props' && 'Select a player prop to view line movement'}
                 {activeTab === 'alt' && 'Alternate lines chart not available'}
               </p>
             </div>
           ) : (
             <>
-              {!selectedProp && (<div className="flex gap-2 mb-3">{['spread', 'total', 'moneyline'].map((market) => (<button key={market} onClick={() => handleSelectMarket(market as any)} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${chartMarket === market ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>{market.charAt(0).toUpperCase() + market.slice(1)}</button>))}</div>)}
-              {selectedProp && (<div className="flex gap-2 mb-3 items-center"><button onClick={() => setSelectedProp(null)} className="px-3 py-1.5 rounded text-xs font-medium bg-zinc-800 text-zinc-400 hover:bg-zinc-700 flex items-center gap-1"><svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>Back to Markets</button><span className="px-3 py-1.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400">{selectedProp.player}</span><span className="text-xs text-zinc-500">via {selectedProp.book}</span></div>)}
+              <div className="flex gap-2 mb-3">{['spread', 'total', 'moneyline'].map((market) => (<button key={market} onClick={() => handleSelectMarket(market as any)} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${chartMarket === market ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>{market.charAt(0).toUpperCase() + market.slice(1)}</button>))}</div>
               {/* Demo mode banner ABOVE the chart to avoid overlap */}
               {showDemoBanner && <DemoModeBanner />}
               <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} viewMode={chartViewMode} onViewModeChange={setChartViewMode} commenceTime={gameData.commenceTime} />
@@ -2001,24 +1889,8 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
             <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Composite Edge Quotient</span>
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {/* Show analysis based on selected market/prop */}
-            {selectedProp ? (
-              // Player prop selected - show info message
-              <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-semibold text-zinc-100">{selectedProp.player} - {selectedProp.market}</span>
-                </div>
-                <p className="text-[11px] text-zinc-400">
-                  EdgeScout analysis focuses on main game markets (spread, moneyline, total).
-                  Player prop edges are calculated from line movement and book comparison.
-                </p>
-                {selectedProp.line && (
-                  <div className="mt-2 text-xs text-zinc-300">
-                    Line: <span className="font-mono text-emerald-400">{selectedProp.line}</span>
-                  </div>
-                )}
-              </div>
-            ) : chartMarket === 'spread' && activeCeq.spreads ? (
+            {/* Show analysis based on selected market */}
+            {chartMarket === 'spread' && activeCeq.spreads ? (
               // Spread market selected - show both sides
               <>
                 <PillarBreakdown
@@ -2332,7 +2204,6 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
           {activeTab === '2p' && <MarketSection title="2nd Period" markets={marketGroups.p2} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p2" ceqData={activeCeq} />}
           {activeTab === '3p' && <MarketSection title="3rd Period" markets={marketGroups.p3} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} onSelectMarket={handleSelectMarket} selectedMarket={chartMarket} allBookmakers={bookmakers} periodKey="p3" ceqData={activeCeq} />}
           {activeTab === 'team' && <TeamTotalsSection teamTotals={marketGroups.teamTotals} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} />}
-          {activeTab === 'props' && <PlayerPropsSection props={marketGroups.playerProps} gameId={gameData.id} onSelectProp={handleSelectProp} selectedProp={selectedProp} selectedBook={selectedBook} />}
           {activeTab === 'alt' && <AlternatesSection alternates={marketGroups.alternates} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} gameId={gameData.id} />}
         </>
       )}

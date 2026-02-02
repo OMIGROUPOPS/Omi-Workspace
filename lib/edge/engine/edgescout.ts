@@ -1565,80 +1565,109 @@ export function calculateGameCEQ(
 
     // Check if this is a 3-way market (soccer)
     if (gameOdds.h2h.draw !== undefined) {
-      // 3-way market: Calculate draw CEQ independently, then normalize all three
-      const drawCEQ = calculateCEQ(
-        'h2h',
-        'draw',
-        gameOdds.h2h.draw,
-        undefined,  // No opening for draw
-        undefined,
-        h2hSnapshots,
-        [],  // No allBooks data for draw yet
-        undefined,
-        gameContext,
-        pythonPillars,
-        undefined,
-        undefined,
-        undefined
-      );
+      // 3-way market: Calculate EV-based CEQ where only ONE outcome can have edge
+      // Convert American odds to implied probabilities
+      const homeOdds = gameOdds.h2h.home;
+      const awayOdds = gameOdds.h2h.away;
+      const drawOdds = gameOdds.h2h.draw;
 
-      // Calculate raw CEQs for each outcome
-      const rawHome = homeCEQ.ceq;
-      const rawDraw = drawCEQ.ceq;
-      // Away is derived from remaining probability
-      const rawAway = Math.max(0, 100 - rawHome - rawDraw + 50);  // Adjusted base
+      const homeImplied = americanToImpliedProbability(homeOdds);
+      const awayImplied = americanToImpliedProbability(awayOdds);
+      const drawImplied = americanToImpliedProbability(drawOdds);
 
-      // Normalize to ensure one clear edge
-      // The highest raw CEQ gets the edge, others are scaled down
-      const maxRaw = Math.max(rawHome, rawDraw, rawAway);
-      const total = rawHome + rawDraw + rawAway;
+      // Total implied > 100% due to juice
+      const totalImplied = homeImplied + awayImplied + drawImplied;
+      const juice = totalImplied - 1;
 
-      // If home has highest raw value
-      let awayCEQValue: number, drawCEQValue: number;
-      if (rawHome >= rawDraw && rawHome >= rawAway) {
-        // Home has edge, scale down draw and away proportionally
-        const remainder = 100 - homeCEQ.ceq;
-        const drawPct = rawDraw / (rawDraw + rawAway) || 0.5;
-        drawCEQValue = remainder * drawPct;
-        awayCEQValue = remainder * (1 - drawPct);
-      } else if (rawDraw >= rawHome && rawDraw >= rawAway) {
-        // Draw has edge
-        drawCEQValue = drawCEQ.ceq;
-        const remainder = 100 - drawCEQValue;
-        const homePct = rawHome / (rawHome + rawAway) || 0.5;
-        awayCEQValue = remainder * (1 - homePct);
-        // Recalculate homeCEQ value
-        (homeCEQ as any).ceq = remainder * homePct;
-        (homeCEQ as any).confidence = getCEQConfidence(homeCEQ.ceq);
-      } else {
-        // Away has edge
-        awayCEQValue = rawAway;
-        const remainder = 100 - awayCEQValue;
-        const homePct = rawHome / (rawHome + rawDraw) || 0.5;
-        drawCEQValue = remainder * (1 - homePct);
-        (homeCEQ as any).ceq = remainder * homePct;
-        (homeCEQ as any).confidence = getCEQConfidence(homeCEQ.ceq);
-      }
+      // Remove juice to get fair probabilities (normalize to 100%)
+      const homeFair = homeImplied / totalImplied;
+      const awayFair = awayImplied / totalImplied;
+      const drawFair = drawImplied / totalImplied;
 
+      // Calculate edge for each outcome
+      // Positive edge = book implied prob > fair prob (book is offering worse odds than fair)
+      // Wait, that's backwards. Let me think...
+      // If book implied = 57% and fair = 52%, the book thinks home is MORE likely
+      // So betting home gives you LESS value (you're paying for 57% but only getting 52% true prob)
+      // Edge = fair - implied (positive = value bet)
+      const homeEdge = (homeFair - homeImplied) * 100;  // Scale to percentage
+      const awayEdge = (awayFair - awayImplied) * 100;
+      const drawEdge = (drawFair - drawImplied) * 100;
+
+      // Find which outcome has the best edge
+      const edges = [
+        { side: 'home' as const, edge: homeEdge, implied: homeImplied, fair: homeFair },
+        { side: 'away' as const, edge: awayEdge, implied: awayImplied, fair: awayFair },
+        { side: 'draw' as const, edge: drawEdge, implied: drawImplied, fair: drawFair },
+      ];
+      edges.sort((a, b) => b.edge - a.edge);
+      const bestEdge = edges[0];
+
+      // Convert edge to CEQ (50 = neutral, >50 = edge on this side)
+      // Scale: 5% edge = 70 CEQ, 10% edge = 80 CEQ, 15%+ edge = 85+ CEQ
+      const edgeToCEQ = (edge: number): number => {
+        if (edge <= 0) {
+          // Negative edge: scale from 50 down to ~20
+          return Math.max(20, Math.round(50 + edge * 3));
+        } else {
+          // Positive edge: scale from 50 up to ~85
+          return Math.min(85, Math.round(50 + edge * 3));
+        }
+      };
+
+      const homeCEQValue = Math.round(edgeToCEQ(homeEdge));
+      const awayCEQValue = Math.round(edgeToCEQ(awayEdge));
+      const drawCEQValue = Math.round(edgeToCEQ(drawEdge));
+
+      const homeConfidence = getCEQConfidence(homeCEQValue);
       const awayConfidence = getCEQConfidence(awayCEQValue);
       const drawConfidence = getCEQConfidence(drawCEQValue);
 
+      // Build reason strings
+      const buildReason = (side: string, edge: number, implied: number, fair: number): string[] => {
+        const edgeStr = edge > 0 ? `+${edge.toFixed(1)}%` : `${edge.toFixed(1)}%`;
+        if (edge > 5) {
+          return [`Strong value: ${side} (${edgeStr} edge vs fair odds)`];
+        } else if (edge > 2) {
+          return [`Slight value: ${side} (${edgeStr} edge)`];
+        } else if (edge > 0) {
+          return [`Marginal value: ${side} (${edgeStr})`];
+        } else if (edge > -3) {
+          return ['No significant edge on this side'];
+        } else {
+          return [`Negative value: ${edgeStr} (avoid)`];
+        }
+      };
+
+      // Create base CEQ result structure for each outcome
+      const createCEQResult = (ceq: number, confidence: CEQConfidence, side: MarketSide | null, reasons: string[]): CEQResult => ({
+        ceq,
+        confidence,
+        side,
+        pillars: homeCEQ.pillars,  // Use home pillars as base (they're all similar for h2h)
+        topDrivers: reasons,
+        dataQuality: homeCEQ.dataQuality,
+      });
+
       result.h2h = {
-        home: homeCEQ,
-        away: {
-          ...homeCEQ,
-          ceq: awayCEQValue,
-          confidence: awayConfidence,
-          side: awayCEQValue >= 56 ? 'away' : null,
-          topDrivers: awayCEQValue >= 56 ? homeCEQ.topDrivers : ['No edge on this side'],
-        },
-        draw: {
-          ...drawCEQ,
-          ceq: drawCEQValue,
-          confidence: drawConfidence,
-          side: drawCEQValue >= 56 ? 'draw' : null,
-          topDrivers: drawCEQValue >= 56 ? drawCEQ.topDrivers : ['No edge on this side'],
-        },
+        home: createCEQResult(
+          homeCEQValue,
+          homeConfidence,
+          homeCEQValue >= 56 ? 'home' : null,
+          buildReason('Home', homeEdge, homeImplied, homeFair)
+        ),
+        away: createCEQResult(
+          awayCEQValue,
+          awayConfidence,
+          awayCEQValue >= 56 ? 'away' : null,
+          buildReason('Away', awayEdge, awayImplied, awayFair)
+        ),
+        draw: createCEQResult(
+          drawCEQValue,
+          drawConfidence,
+          drawCEQValue >= 56 ? 'draw' : null,
+          buildReason('Draw', drawEdge, drawImplied, drawFair)
+        ),
       };
     } else {
       // 2-way market: Away CEQ is the inverse

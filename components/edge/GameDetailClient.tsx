@@ -94,15 +94,17 @@ interface LineMovementChartProps {
   viewMode: ChartViewMode;
   onViewModeChange: (mode: ChartViewMode) => void;
   commenceTime?: string;
+  sportKey?: string;
 }
 
 // Time range options for chart (30M only visible when game is live)
 type TimeRange = '30M' | '1H' | '3H' | '6H' | '24H' | 'ALL';
 
-function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, awayTeam, viewMode, onViewModeChange, commenceTime }: LineMovementChartProps) {
+function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, awayTeam, viewMode, onViewModeChange, commenceTime, sportKey }: LineMovementChartProps) {
   const [hoveredPoint, setHoveredPoint] = useState<{ x: number; y: number; value: number; timestamp: Date; index: number } | null>(null);
-  // Track which side to show: 'home'/'away' for spreads/ML, 'over'/'under' for totals
-  const [trackingSide, setTrackingSide] = useState<'home' | 'away' | 'over' | 'under'>('home');
+  // Track which side to show: 'home'/'away'/'draw' for spreads/ML, 'over'/'under' for totals
+  const [trackingSide, setTrackingSide] = useState<'home' | 'away' | 'over' | 'under' | 'draw'>('home');
+  const isSoccer = sportKey?.includes('soccer') ?? false;
   // Time range for chart - auto-select based on game state
   const [timeRange, setTimeRange] = useState<TimeRange>('ALL');
 
@@ -140,6 +142,8 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     if (marketType === 'total') {
       return trackingSide === 'under' ? 'Under' : 'Over';
     }
+    // For moneyline with draw option (soccer)
+    if (trackingSide === 'draw') return 'Draw';
     // For spreads/moneyline, use team names
     if (trackingSide === 'away' && awayTeam) return awayTeam;
     return homeTeam;
@@ -611,6 +615,19 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
               >
                 {marketType === 'total' ? 'O' : (homeTeam?.slice(0, 3).toUpperCase() || 'HM')}
               </button>
+              {/* Draw button for soccer moneyline */}
+              {isSoccer && marketType === 'moneyline' && (
+                <button
+                  onClick={() => setTrackingSide('draw')}
+                  className={`px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
+                    trackingSide === 'draw'
+                      ? 'bg-zinc-700 text-zinc-100'
+                      : 'bg-zinc-800/30 text-zinc-500 hover:text-zinc-300'
+                  }`}
+                >
+                  DRW
+                </button>
+              )}
               <button
                 onClick={() => marketType === 'total' ? setTrackingSide('under') : setTrackingSide('away')}
                 className={`px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
@@ -855,7 +872,7 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
           <div className="flex items-center gap-2">
             {shouldDisplayCEQ ? (
               <>
-                <span className={`text-lg font-bold font-mono ${confStyle.text}`}>{ceq}%</span>
+                <span className={`text-lg font-bold font-mono ${confStyle.text}`}>{Math.round(ceq)}%</span>
                 <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded ${confStyle.bg} ${confStyle.text}`}>{confidence}</span>
               </>
             ) : (
@@ -1851,7 +1868,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
               <div className="flex gap-2 mb-3">{['spread', 'total', 'moneyline'].map((market) => (<button key={market} onClick={() => handleSelectMarket(market as any)} className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${chartMarket === market ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}>{market.charAt(0).toUpperCase() + market.slice(1)}</button>))}</div>
               {/* Demo mode banner ABOVE the chart to avoid overlap */}
               {showDemoBanner && <DemoModeBanner />}
-              <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} viewMode={chartViewMode} onViewModeChange={setChartViewMode} commenceTime={gameData.commenceTime} />
+              <LineMovementChart gameId={gameData.id} selection={chartSelection} lineHistory={getLineHistory()} selectedBook={selectedBook} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} viewMode={chartViewMode} onViewModeChange={setChartViewMode} commenceTime={gameData.commenceTime} sportKey={gameData.sportKey} />
               {/* Lock overlay for tier 1 users viewing live games */}
               {showLiveLock && <LiveLockOverlay />}
             </>

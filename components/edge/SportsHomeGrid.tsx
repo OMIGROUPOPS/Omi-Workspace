@@ -248,6 +248,20 @@ const SPORT_ORDER = [
 
 const AVAILABLE_BOOKS = ['fanduel', 'draftkings'];
 
+// Core sports that should ALWAYS be visible and enabled (even with 0 games)
+const CORE_SPORTS = [
+  'americanfootball_nfl',
+  'basketball_nba',
+  'icehockey_nhl',
+  'baseball_mlb',
+  'americanfootball_ncaaf',
+  'basketball_ncaab',
+  'basketball_wnba',
+  'soccer_epl',
+  'soccer_usa_mls',
+  'mma_mixed_martial_arts',
+];
+
 interface SportsHomeGridProps {
   games: Record<string, any[]>;
   dataSource?: 'backend' | 'odds_api' | 'none';
@@ -597,18 +611,21 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
           </button>
           {SPORT_PILLS.map((sport) => {
             const gameCount = games[sport.key]?.length || 0;
+            const isCoreSport = CORE_SPORTS.includes(sport.key);
+            // Core sports are always enabled, others only if they have games
+            const isEnabled = isCoreSport || gameCount > 0;
             return (
               <button
                 key={sport.key}
-                onClick={() => setActiveSport(sport.key, 'sport-pill-click')}
+                onClick={() => isEnabled && setActiveSport(sport.key, 'sport-pill-click')}
                 className={`flex-shrink-0 px-3.5 py-1.5 rounded-md text-xs font-medium transition-all border flex items-center gap-1.5 ${
                   activeSport === sport.key
                     ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
-                    : gameCount > 0
+                    : isEnabled
                     ? 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700 hover:text-zinc-300'
                     : 'bg-zinc-900/50 text-zinc-600 border-zinc-800/50 cursor-default'
                 }`}
-                disabled={gameCount === 0}
+                disabled={!isEnabled}
               >
                 {sport.label}
                 {gameCount > 0 && (

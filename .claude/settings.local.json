@@ -51,7 +51,8 @@
       "WebFetch(domain:omi-workspace.vercel.app)",
       "Bash(vercel --prod:*)",
       "Bash(npx vercel --prod)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(vercel env ls:*)"
     ]
   }
 }

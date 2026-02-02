@@ -844,6 +844,29 @@ async function fetchFromCache(
   }
 }
 
+// Helper: Supabase query with timeout and retry
+async function withRetry<T>(
+  fn: () => Promise<T>,
+  timeoutMs: number = 15000,
+  retries: number = 1
+): Promise<T | null> {
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const result = await Promise.race([
+        fn(),
+        new Promise<never>((_, reject) =>
+          setTimeout(() => reject(new Error('Timeout')), timeoutMs)
+        ),
+      ]);
+      return result;
+    } catch (e) {
+      console.error(`[Supabase] Attempt ${attempt + 1} failed:`, e instanceof Error ? e.message : e);
+      if (attempt === retries) return null;
+    }
+  }
+  return null;
+}
+
 export default async function SportsPage() {
   // All sports that have mappings in SPORT_MAPPING
   const sports = Object.keys(SPORT_MAPPING);
@@ -852,6 +875,13 @@ export default async function SportsPage() {
   let totalGames = 0;
   let totalEdges = 0;
   const fetchedAt = new Date().toISOString();
+
+  // Track individual service connection status
+  const connectionStatus = {
+    supabase: true,
+    backend: true,
+    oddsApi: true,
+  };
 
   // Fetch live scores in parallel with game data
   const [scoresData, backendResults] = await Promise.all([
@@ -864,6 +894,12 @@ export default async function SportsPage() {
 
   const hasBackendData = backendResults.some(r => r.games.length > 0);
 
+  // Track backend connection - if ALL sports returned empty, backend might be down
+  // (vs just no games scheduled)
+  if (!hasBackendData) {
+    connectionStatus.backend = false;
+  }
+
   // Collect all game IDs for opening line and snapshot lookup
   const allGameIds: string[] = [];
   for (const { games } of backendResults) {
@@ -873,20 +909,41 @@ export default async function SportsPage() {
   }
 
   // Fetch opening lines, snapshots, team stats, and live edges for CEQ calculation
-  const [openingLines, snapshotsMap, teamStatsMap, edgesMap] = await Promise.all([
-    fetchOpeningLines(allGameIds),
-    fetchGameSnapshots(allGameIds),
-    fetchAllTeamStats(),
-    fetchLiveEdges(allGameIds),
+  // Use retry wrapper for Supabase queries (15s timeout, 1 retry)
+  const [openingLinesResult, snapshotsMapResult, teamStatsMapResult, edgesMapResult] = await Promise.all([
+    withRetry(() => fetchOpeningLines(allGameIds)),
+    withRetry(() => fetchGameSnapshots(allGameIds)),
+    withRetry(() => fetchAllTeamStats()),
+    withRetry(() => fetchLiveEdges(allGameIds)),
   ]);
+
+  // Provide fallback empty values if queries failed
+  const openingLines = openingLinesResult || {};
+  const snapshotsMap = snapshotsMapResult || {};
+  const teamStatsMap = teamStatsMapResult || new Map();
+  const edgesMap = edgesMapResult || {};
+
+  // Track if Supabase queries failed
+  if (!openingLinesResult && !snapshotsMapResult && !teamStatsMapResult && !edgesMapResult) {
+    connectionStatus.supabase = false;
+  }
 
   // ALWAYS fetch cached_odds for bookmaker data (backend doesn't include it)
   const supabase = getSupabase();
   const sportKeys = sports.map(s => SPORT_MAPPING[s]).filter(Boolean);
-  const { data: cachedOddsData } = await supabase
-    .from('cached_odds')
-    .select('game_id, game_data')
-    .in('sport_key', sportKeys);
+  const cachedOddsResult = await withRetry(async () => {
+    const { data, error } = await supabase
+      .from('cached_odds')
+      .select('game_id, game_data')
+      .in('sport_key', sportKeys);
+    if (error) throw error;
+    return data;
+  });
+  const cachedOddsData = cachedOddsResult;
+
+  if (!cachedOddsData) {
+    connectionStatus.supabase = false;
+  }
 
   // Build map of game_id -> bookmakers from cached_odds
   const bookmakersByGameId: Record<string, any[]> = {};
@@ -934,11 +991,15 @@ export default async function SportsPage() {
     const supabase = getSupabase();
     const sportKeys = sports.map(s => SPORT_MAPPING[s]).filter(Boolean);
 
-    // Single query for all sports
-    const { data: allCachedData } = await supabase
-      .from('cached_odds')
-      .select('sport_key, game_data')
-      .in('sport_key', sportKeys);
+    // Single query for all sports (with retry)
+    const allCachedData = await withRetry(async () => {
+      const { data, error } = await supabase
+        .from('cached_odds')
+        .select('sport_key, game_data')
+        .in('sport_key', sportKeys);
+      if (error) throw error;
+      return data;
+    });
 
     // Collect all game IDs
     const cachedGameIds: string[] = [];
@@ -999,6 +1060,7 @@ export default async function SportsPage() {
         totalGames={totalGames}
         totalEdges={totalEdges}
         fetchedAt={fetchedAt}
+        connectionStatus={connectionStatus}
       />
     </div>
   );

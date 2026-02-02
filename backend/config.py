@@ -48,14 +48,41 @@ ESPN_SPORTS = {
     "NFL": ("football", "nfl"),
     "NBA": ("basketball", "nba"),
     "NHL": ("hockey", "nhl"),
+    "MLB": ("baseball", "mlb"),
     "NCAAF": ("football", "college-football"),
     "NCAAB": ("basketball", "mens-college-basketball"),
-    # Odds API format (used by analyzer)
+    "WNBA": ("basketball", "wnba"),
+    "MLS": ("soccer", "usa.1"),
+
+    # Odds API format - American Sports
     "americanfootball_nfl": ("football", "nfl"),
     "basketball_nba": ("basketball", "nba"),
     "icehockey_nhl": ("hockey", "nhl"),
+    "baseball_mlb": ("baseball", "mlb"),
     "americanfootball_ncaaf": ("football", "college-football"),
     "basketball_ncaab": ("basketball", "mens-college-basketball"),
+    "basketball_wnba": ("basketball", "wnba"),
+
+    # Odds API format - Soccer
+    "soccer_usa_mls": ("soccer", "usa.1"),
+    "soccer_epl": ("soccer", "eng.1"),
+    "soccer_spain_la_liga": ("soccer", "esp.1"),
+    "soccer_germany_bundesliga": ("soccer", "ger.1"),
+    "soccer_italy_serie_a": ("soccer", "ita.1"),
+    "soccer_france_ligue_one": ("soccer", "fra.1"),
+    "soccer_uefa_champs_league": ("soccer", "uefa.champions"),
+    "soccer_uefa_europa_league": ("soccer", "uefa.europa"),
+    "soccer_efl_champ": ("soccer", "eng.2"),
+    "soccer_netherlands_eredivisie": ("soccer", "ned.1"),
+    "soccer_mexico_ligamx": ("soccer", "mex.1"),
+
+    # Odds API format - Combat Sports
+    "mma_mixed_martial_arts": ("mma", "ufc"),
+    "boxing_boxing": ("boxing", "boxing"),
+
+    # Odds API format - Other
+    "rugbyleague_nrl": ("rugby-league", "9"),
+    "aussierules_afl": ("australian-football", "afl"),
 }
 
 # Sports that play outdoors (need weather data)

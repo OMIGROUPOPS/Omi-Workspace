@@ -51,6 +51,16 @@ const PROP_TYPE_ORDER = [
   'player_anytime_td',
   'player_goals',
   'player_shots_on_goal',
+  // MLB
+  'pitcher_strikeouts',
+  'batter_hits',
+  'batter_home_runs',
+  'batter_total_bases',
+  'batter_rbis',
+  // Soccer
+  'player_goal_scorer_anytime',
+  'player_shots',
+  'player_tackles',
 ];
 
 const PROP_TYPE_LABELS: Record<string, string> = {
@@ -88,6 +98,12 @@ const PROP_TYPE_LABELS: Record<string, string> = {
   pitcher_strikeouts: 'Strikeouts',
   pitcher_hits_allowed: 'Hits Allowed',
   pitcher_outs: 'Outs',
+  // Soccer
+  player_goal_scorer_anytime: 'Anytime Scorer',
+  player_shots: 'Shots',
+  player_tackles: 'Tackles',
+  player_fouls: 'Fouls',
+  player_cards: 'Cards',
 };
 
 // Sharp book for benchmark (used internally, NOT displayed)

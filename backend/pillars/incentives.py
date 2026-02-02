@@ -47,7 +47,44 @@ RIVALRIES = {
         ("Kentucky Wildcats", "Louisville Cardinals"),
         ("Kansas Jayhawks", "Missouri Tigers"),
     ],
+    # Soccer rivalries
+    "soccer": [
+        ("Manchester United", "Manchester City"),
+        ("Manchester United", "Liverpool"),
+        ("Liverpool", "Everton"),
+        ("Arsenal", "Tottenham"),
+        ("Chelsea", "Arsenal"),
+        ("Chelsea", "Tottenham"),
+        ("Newcastle", "Sunderland"),  # Tyne-Wear derby
+        ("Aston Villa", "Birmingham"),
+        ("West Ham", "Millwall"),
+        ("Leeds", "Manchester United"),
+        ("Nottingham Forest", "Derby"),
+    ],
+    "soccer_epl": [
+        ("Manchester United", "Manchester City"),
+        ("Manchester United", "Liverpool"),
+        ("Liverpool", "Everton"),
+        ("Arsenal", "Tottenham"),
+        ("Chelsea", "Arsenal"),
+        ("Chelsea", "Tottenham"),
+    ],
+    "soccer_england_championship": [
+        ("Newcastle", "Sunderland"),
+        ("Leeds", "Sheffield United"),
+        ("Nottingham Forest", "Derby"),
+        ("Bristol City", "Cardiff"),
+        ("Birmingham", "Aston Villa"),
+        ("West Brom", "Wolverhampton"),
+    ],
 }
+
+# Try to import soccer data sources
+try:
+    from data_sources.api_football import get_league_standings_sync
+    SOCCER_DATA_AVAILABLE = True
+except ImportError:
+    SOCCER_DATA_AVAILABLE = False
 
 
 def is_rivalry_game(sport: str, team1: str, team2: str) -> bool:
@@ -141,6 +178,63 @@ def calculate_incentives_score(
         rest_alert = True
         motivation_differential -= 0.1
 
+    # SOCCER-SPECIFIC: Title race (top 4) vs relegation battle (bottom 3)
+    title_race_alert = False
+    relegation_battle_alert = False
+    if sport in ["soccer", "soccer_epl", "soccer_england_championship"] and SOCCER_DATA_AVAILABLE:
+        try:
+            standings = get_league_standings_sync()
+            if standings:
+                home_pos = None
+                away_pos = None
+                for name, data in standings.items():
+                    if home_team.lower() in name.lower() or name.lower() in home_team.lower():
+                        home_pos = data.get("position", 12)
+                    if away_team.lower() in name.lower() or name.lower() in away_team.lower():
+                        away_pos = data.get("position", 12)
+
+                if home_pos and away_pos:
+                    # Top 4 race (Champions League spots)
+                    home_in_top_4 = home_pos <= 4
+                    away_in_top_4 = away_pos <= 4
+                    home_chasing_top_4 = 5 <= home_pos <= 7
+                    away_chasing_top_4 = 5 <= away_pos <= 7
+
+                    # Relegation zone (bottom 3)
+                    home_in_relegation = home_pos >= 18
+                    away_in_relegation = away_pos >= 18
+                    home_above_relegation = 15 <= home_pos <= 17
+                    away_above_relegation = 15 <= away_pos <= 17
+
+                    # Title race motivation
+                    if home_in_top_4 and away_chasing_top_4:
+                        title_race_alert = True
+                        motivation_differential -= 0.12  # Home defending position
+                    elif away_in_top_4 and home_chasing_top_4:
+                        title_race_alert = True
+                        motivation_differential += 0.12  # Away defending position
+
+                    # Relegation battle motivation (DESPERATE games)
+                    if home_in_relegation:
+                        relegation_battle_alert = True
+                        motivation_differential -= 0.20  # Home DESPERATE to stay up
+                        home_motivation = min(1.0, home_motivation + 0.3)
+                    if away_in_relegation:
+                        relegation_battle_alert = True
+                        motivation_differential += 0.20  # Away DESPERATE to stay up
+                        away_motivation = min(1.0, away_motivation + 0.3)
+
+                    # Mid-table vs relegation/top 4
+                    if 8 <= home_pos <= 14 and (away_in_relegation or away_in_top_4):
+                        motivation_differential += 0.10  # Away has more to play for
+                    elif 8 <= away_pos <= 14 and (home_in_relegation or home_in_top_4):
+                        motivation_differential -= 0.10  # Home has more to play for
+
+                    logger.info(f"[Incentives] Soccer positions: Home={home_pos}, Away={away_pos}")
+
+        except Exception as e:
+            logger.warning(f"[Incentives] Soccer data fetch failed: {e}")
+
     # Motivation edge based on playoff position
     # Teams actively fighting for playoffs have stronger motivation than:
     # - Teams out of the race (>5 GB, nothing to play for)
@@ -187,6 +281,13 @@ def calculate_incentives_score(
 
     if rest_alert:
         reasoning_parts.append("Clinched team may rest players")
+
+    # Soccer-specific reasoning
+    if title_race_alert:
+        reasoning_parts.append("Top 4 race: Champions League qualification at stake")
+
+    if relegation_battle_alert:
+        reasoning_parts.append("RELEGATION BATTLE: Survival on the line - maximum desperation")
 
     if not is_championship:
         if home_status == "contending":

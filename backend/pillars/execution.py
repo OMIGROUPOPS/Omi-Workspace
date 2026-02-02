@@ -7,12 +7,21 @@ Measures: Who/what determines the outcome
 - Weather conditions (outdoor sports)
 - Lineup uncertainty
 - NFL position importance weighting
+- Soccer: League position, form, goal difference
 """
 from datetime import datetime
 from typing import Optional
 import logging
 
 from data_sources.espn import espn_client
+
+# Try to import soccer data sources (optional - may not have API keys)
+try:
+    from data_sources.football_data import get_team_standings_data_sync
+    from data_sources.api_football import get_league_standings_sync, get_team_injuries
+    SOCCER_DATA_AVAILABLE = True
+except ImportError:
+    SOCCER_DATA_AVAILABLE = False
 
 logger = logging.getLogger(__name__)
 
@@ -101,6 +110,64 @@ def calculate_execution_score(
             reasoning_parts.append(f"{away_team} decimated by injuries ({away_key_count} key players)")
 
     injury_differential = home_injury_score - away_injury_score
+
+    # SOCCER-SPECIFIC: Use league standings and form
+    if sport in ["soccer", "soccer_epl", "soccer_england_championship"] and SOCCER_DATA_AVAILABLE:
+        try:
+            standings = get_league_standings_sync()
+            if standings:
+                home_standing = None
+                away_standing = None
+                for name, data in standings.items():
+                    if home_team.lower() in name.lower() or name.lower() in home_team.lower():
+                        home_standing = data
+                    if away_team.lower() in name.lower() or name.lower() in away_team.lower():
+                        away_standing = data
+
+                if home_standing and away_standing:
+                    # Position differential (lower position = better)
+                    home_pos = home_standing.get("position", 12)
+                    away_pos = away_standing.get("position", 12)
+                    pos_diff = (away_pos - home_pos) / 20  # Normalize to -0.5 to 0.5
+
+                    # Goal difference differential
+                    home_gd = home_standing.get("goal_difference", 0)
+                    away_gd = away_standing.get("goal_difference", 0)
+                    gd_diff = (home_gd - away_gd) / 30  # Normalize
+
+                    # Form analysis (recent 5 games)
+                    home_form = home_standing.get("form", "")
+                    away_form = away_standing.get("form", "")
+                    home_form_score = _calculate_soccer_form_score(home_form)
+                    away_form_score = _calculate_soccer_form_score(away_form)
+                    form_diff = (home_form_score - away_form_score) / 15  # Normalize
+
+                    # Combine factors
+                    soccer_adjustment = (pos_diff * 0.4) + (gd_diff * 0.3) + (form_diff * 0.3)
+
+                    # Adjust injury scores based on soccer data
+                    home_injury_score -= soccer_adjustment * 0.3
+                    away_injury_score += soccer_adjustment * 0.3
+
+                    if home_pos <= 4:
+                        reasoning_parts.append(f"{home_team} in top 4 (pos {home_pos})")
+                    elif home_pos >= 18:
+                        reasoning_parts.append(f"{home_team} in relegation zone (pos {home_pos})")
+
+                    if away_pos <= 4:
+                        reasoning_parts.append(f"{away_team} in top 4 (pos {away_pos})")
+                    elif away_pos >= 18:
+                        reasoning_parts.append(f"{away_team} in relegation zone (pos {away_pos})")
+
+                    if home_form:
+                        reasoning_parts.append(f"{home_team} form: {home_form}")
+                    if away_form:
+                        reasoning_parts.append(f"{away_team} form: {away_form}")
+
+                    logger.info(f"[Execution] Soccer context: Home pos={home_pos}, Away pos={away_pos}, adjustment={soccer_adjustment:.3f}")
+
+        except Exception as e:
+            logger.warning(f"[Execution] Soccer data fetch failed: {e}")
 
     weather_factor = 0.0
     is_outdoor = False
@@ -196,6 +263,20 @@ def _check_qb_status(injuries: dict) -> bool:
         if "QB" in str(player).upper():
             return True
     return False
+
+
+def _calculate_soccer_form_score(form: str) -> int:
+    """Calculate form score from form string (e.g., 'WWDLW')."""
+    if not form:
+        return 0
+    score = 0
+    for char in form.upper():
+        if char == 'W':
+            score += 3
+        elif char == 'D':
+            score += 1
+        # L = 0
+    return score
 
 
 def get_execution_edge_direction(score: float) -> str:

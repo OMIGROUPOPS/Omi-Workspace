@@ -6,6 +6,7 @@ Measures: New information the market hasn't fully digested
 - Breaking news (injury updates, lineup changes)
 - Time since news broke vs time until game
 - Line movement since news
+- Soccer: Key player injuries from API-Football
 """
 from datetime import datetime, timezone
 from typing import Optional
@@ -14,6 +15,13 @@ import logging
 from data_sources.espn import espn_client
 
 logger = logging.getLogger(__name__)
+
+# Try to import soccer data sources
+try:
+    from data_sources.api_football import get_team_injuries, get_team_id
+    SOCCER_DATA_AVAILABLE = True
+except ImportError:
+    SOCCER_DATA_AVAILABLE = False
 
 
 def calculate_shocks_score(
@@ -86,6 +94,41 @@ def calculate_shocks_score(
                 reasoning_parts.append(f"Moderate line move: {line_movement:.1f} toward {home_team}")
     
     key_player_shock = False
+
+    # SOCCER-SPECIFIC: Fetch injuries from API-Football
+    soccer_injury_shock = False
+    if sport in ["soccer", "soccer_epl", "soccer_england_championship"] and SOCCER_DATA_AVAILABLE:
+        try:
+            import asyncio
+            home_team_id = get_team_id(home_team)
+            away_team_id = get_team_id(away_team)
+
+            if home_team_id or away_team_id:
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+
+                if home_team_id:
+                    home_soccer_injuries = loop.run_until_complete(get_team_injuries(home_team_id)) or []
+                    if home_soccer_injuries:
+                        soccer_injury_shock = True
+                        shock_magnitude += len(home_soccer_injuries) * 0.05
+                        if shock_direction == "neutral":
+                            shock_direction = "away"
+                        reasoning_parts.append(f"{home_team}: {len(home_soccer_injuries)} injuries reported")
+
+                if away_team_id:
+                    away_soccer_injuries = loop.run_until_complete(get_team_injuries(away_team_id)) or []
+                    if away_soccer_injuries:
+                        soccer_injury_shock = True
+                        shock_magnitude += len(away_soccer_injuries) * 0.05
+                        if shock_direction == "neutral":
+                            shock_direction = "home"
+                        reasoning_parts.append(f"{away_team}: {len(away_soccer_injuries)} injuries reported")
+
+                loop.close()
+
+        except Exception as e:
+            logger.warning(f"[Shocks] Soccer injury fetch failed: {e}")
 
     # AMPLIFIED injury impact for visual differentiation
     # Key player out = 15-25% swing per player

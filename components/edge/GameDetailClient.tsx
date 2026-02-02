@@ -1696,6 +1696,11 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
   const [chartMarket, setChartMarket] = useState<'spread' | 'total' | 'moneyline'>(isSoccerGame ? 'moneyline' : 'spread');
   const [chartViewMode, setChartViewMode] = useState<ChartViewMode>('line');
 
+  // PERFORMANCE: Lazy-load line history for non-full-game periods
+  // Cache loaded periods to avoid re-fetching on tab switches
+  const [lazyLineHistory, setLazyLineHistory] = useState<Record<string, Record<string, any[]>>>({});
+  const [loadingPeriods, setLoadingPeriods] = useState<Set<string>>(new Set());
+
   // Get user email from localStorage (our custom auth) if not passed via props
   const [localEmail, setLocalEmail] = useState<string | null>(null);
   useEffect(() => {
@@ -1828,10 +1833,61 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
       '3p': 'p3',
     };
     const periodKey = periodKeyMap[activeTab] || 'full';
+
+    // PERFORMANCE: Check lazy-loaded data first, then fall back to server data
+    const lazyData = lazyLineHistory[periodKey]?.[chartMarket];
+    if (lazyData && lazyData.length > 0) return lazyData;
+
     return marketGroups.lineHistory?.[periodKey]?.[chartMarket] || [];
   };
   const handleSelectMarket = (market: 'spread' | 'total' | 'moneyline') => { setChartMarket(market); setChartViewMode('line'); };
-  const handleTabChange = (tab: string) => { setActiveTab(tab); };
+
+  // PERFORMANCE: Lazy-load line history when switching to non-full periods
+  const handleTabChange = async (tab: string) => {
+    setActiveTab(tab);
+
+    // Map tab to API period key
+    const tabToPeriod: Record<string, string> = {
+      'full': 'full', '1h': 'h1', '2h': 'h2',
+      '1q': 'q1', '2q': 'q2', '3q': 'q3', '4q': 'q4',
+      '1p': 'p1', '2p': 'p2', '3p': 'p3',
+    };
+    const periodKey = tabToPeriod[tab];
+
+    // Skip if full (already loaded), special tab, already loaded, or currently loading
+    if (!periodKey || tab === 'full' || tab === 'team' || tab === 'alt') return;
+    if (lazyLineHistory[periodKey]) return; // Already cached
+    if (loadingPeriods.has(periodKey)) return; // Already loading
+
+    // Check if server-side data exists (non-empty arrays)
+    const serverData = marketGroups.lineHistory?.[periodKey];
+    if (serverData?.spread?.length > 0 || serverData?.moneyline?.length > 0 || serverData?.total?.length > 0) return;
+
+    // Fetch line history for this period
+    setLoadingPeriods(prev => new Set(prev).add(periodKey));
+    try {
+      const res = await fetch(`/api/lines/${gameData.id}?period=${periodKey}`);
+      if (res.ok) {
+        const data = await res.json();
+        setLazyLineHistory(prev => ({
+          ...prev,
+          [periodKey]: {
+            spread: data.spread || [],
+            moneyline: data.moneyline || [],
+            total: data.total || [],
+          }
+        }));
+      }
+    } catch (e) {
+      console.error(`[CLIENT] Failed to lazy-load line history for ${periodKey}:`, e);
+    } finally {
+      setLoadingPeriods(prev => {
+        const next = new Set(prev);
+        next.delete(periodKey);
+        return next;
+      });
+    }
+  };
   
   const tabs = [
     { key: 'full', label: 'Full Game', available: true },

@@ -766,63 +766,23 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     );
   }
 
-  // Fetch per-book odds data
-  const perBookOdds = await fetchPerBookOdds(backendSportKey, gameId);
-  
-  // Fetch props
-  const propsData = await fetchProps(backendSportKey, gameId);
-  
-  // Fetch consensus data as fallback
-  const consensusData = await fetchConsensus(backendSportKey, gameId);
+  // Fetch per-book odds data and consensus (critical for initial render)
+  const [perBookOdds, consensusData] = await Promise.all([
+    fetchPerBookOdds(backendSportKey, gameId),
+    fetchConsensus(backendSportKey, gameId),
+  ]);
 
-  // Fetch line history for all periods including quarters and hockey periods
-  const [
-    spreadHistory, mlHistory, totalHistory,
-    spreadH1History, mlH1History, totalH1History,
-    spreadH2History, mlH2History, totalH2History,
-    // Quarters
-    spreadQ1History, mlQ1History, totalQ1History,
-    spreadQ2History, mlQ2History, totalQ2History,
-    spreadQ3History, mlQ3History, totalQ3History,
-    spreadQ4History, mlQ4History, totalQ4History,
-    // Hockey periods
-    spreadP1History, mlP1History, totalP1History,
-    spreadP2History, mlP2History, totalP2History,
-    spreadP3History, mlP3History, totalP3History,
-  ] = await Promise.all([
+  // PERFORMANCE: Only fetch Full Game line history on initial load (3 calls instead of 30)
+  // Other periods (1H, 2H, Q1-Q4, P1-P3) are lazy-loaded when user clicks tab
+  const [spreadHistory, mlHistory, totalHistory] = await Promise.all([
     fetchLineHistory(gameId, 'spread', 'full'),
     fetchLineHistory(gameId, 'moneyline', 'full'),
     fetchLineHistory(gameId, 'total', 'full'),
-    fetchLineHistory(gameId, 'spread', 'h1'),
-    fetchLineHistory(gameId, 'moneyline', 'h1'),
-    fetchLineHistory(gameId, 'total', 'h1'),
-    fetchLineHistory(gameId, 'spread', 'h2'),
-    fetchLineHistory(gameId, 'moneyline', 'h2'),
-    fetchLineHistory(gameId, 'total', 'h2'),
-    // Quarters
-    fetchLineHistory(gameId, 'spread', 'q1'),
-    fetchLineHistory(gameId, 'moneyline', 'q1'),
-    fetchLineHistory(gameId, 'total', 'q1'),
-    fetchLineHistory(gameId, 'spread', 'q2'),
-    fetchLineHistory(gameId, 'moneyline', 'q2'),
-    fetchLineHistory(gameId, 'total', 'q2'),
-    fetchLineHistory(gameId, 'spread', 'q3'),
-    fetchLineHistory(gameId, 'moneyline', 'q3'),
-    fetchLineHistory(gameId, 'total', 'q3'),
-    fetchLineHistory(gameId, 'spread', 'q4'),
-    fetchLineHistory(gameId, 'moneyline', 'q4'),
-    fetchLineHistory(gameId, 'total', 'q4'),
-    // Hockey periods
-    fetchLineHistory(gameId, 'spread', 'p1'),
-    fetchLineHistory(gameId, 'moneyline', 'p1'),
-    fetchLineHistory(gameId, 'total', 'p1'),
-    fetchLineHistory(gameId, 'spread', 'p2'),
-    fetchLineHistory(gameId, 'moneyline', 'p2'),
-    fetchLineHistory(gameId, 'total', 'p2'),
-    fetchLineHistory(gameId, 'spread', 'p3'),
-    fetchLineHistory(gameId, 'moneyline', 'p3'),
-    fetchLineHistory(gameId, 'total', 'p3'),
   ]);
+
+  // PERFORMANCE: These are loaded async after page renders (non-blocking)
+  // Props, pillars, and exchange markets don't block initial render
+  const propsData: any[] = []; // Loaded client-side
 
   const homeTeam = gameData.home_team;
   const awayTeam = gameData.away_team;
@@ -830,20 +790,20 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   const compositeScore = gameData.composite_score || 0.5;
   const confidence = gameData.overall_confidence || 'PASS';
 
-  // Build line history object
+  // Build line history object - only Full Game on initial load
+  // Other periods are lazy-loaded client-side when user clicks tab
   const lineHistory: Record<string, Record<string, any[]>> = {
     full: { spread: spreadHistory, moneyline: mlHistory, total: totalHistory },
-    h1: { spread: spreadH1History, moneyline: mlH1History, total: totalH1History },
-    h2: { spread: spreadH2History, moneyline: mlH2History, total: totalH2History },
-    // Quarters
-    q1: { spread: spreadQ1History, moneyline: mlQ1History, total: totalQ1History },
-    q2: { spread: spreadQ2History, moneyline: mlQ2History, total: totalQ2History },
-    q3: { spread: spreadQ3History, moneyline: mlQ3History, total: totalQ3History },
-    q4: { spread: spreadQ4History, moneyline: mlQ4History, total: totalQ4History },
-    // Hockey periods
-    p1: { spread: spreadP1History, moneyline: mlP1History, total: totalP1History },
-    p2: { spread: spreadP2History, moneyline: mlP2History, total: totalP2History },
-    p3: { spread: spreadP3History, moneyline: mlP3History, total: totalP3History },
+    // Empty arrays for other periods - will be populated client-side on demand
+    h1: { spread: [], moneyline: [], total: [] },
+    h2: { spread: [], moneyline: [], total: [] },
+    q1: { spread: [], moneyline: [], total: [] },
+    q2: { spread: [], moneyline: [], total: [] },
+    q3: { spread: [], moneyline: [], total: [] },
+    q4: { spread: [], moneyline: [], total: [] },
+    p1: { spread: [], moneyline: [], total: [] },
+    p2: { spread: [], moneyline: [], total: [] },
+    p3: { spread: [], moneyline: [], total: [] },
   };
 
   // Fetch data for CEQ calculation (including team stats, weather, and Python pillars)

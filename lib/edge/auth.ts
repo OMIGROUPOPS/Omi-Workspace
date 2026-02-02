@@ -20,6 +20,7 @@ function getDemoAccounts(): string[] {
 // This is a closed beta with limited access, proper auth (Supabase) coming soon
 const BETA_CREDENTIALS: Record<string, string> = {
   'omigroup.ops@outlook.com': 'Druids08',
+  'tonyos378@gmail.com': 'Druids08',
 };
 
 // Additional accounts from environment variable (NEXT_PUBLIC_ required for client)

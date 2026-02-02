@@ -409,7 +409,7 @@ function buildConsensusFromBookmakers(game: any) {
   const bookmakers = game.bookmakers;
   if (!bookmakers || bookmakers.length === 0) return {};
 
-  const h2h: { home: number[]; away: number[] } = { home: [], away: [] };
+  const h2h: { home: number[]; away: number[]; draw: number[] } = { home: [], away: [], draw: [] };
   const spreads: { homeLine: number[]; homeOdds: number[]; awayLine: number[]; awayOdds: number[] } = { homeLine: [], homeOdds: [], awayLine: [], awayOdds: [] };
   const totals: { line: number[]; overOdds: number[]; underOdds: number[] } = { line: [], overOdds: [], underOdds: [] };
 
@@ -418,8 +418,10 @@ function buildConsensusFromBookmakers(game: any) {
       if (market.key === 'h2h') {
         const home = market.outcomes.find((o: any) => o.name === game.home_team);
         const away = market.outcomes.find((o: any) => o.name === game.away_team);
+        const draw = market.outcomes.find((o: any) => o.name === 'Draw');
         if (home) h2h.home.push(home.price);
         if (away) h2h.away.push(away.price);
+        if (draw) h2h.draw.push(draw.price);
       }
       if (market.key === 'spreads') {
         const home = market.outcomes.find((o: any) => o.name === game.home_team);
@@ -455,7 +457,11 @@ function buildConsensusFromBookmakers(game: any) {
   const consensus: any = {};
 
   if (h2h.home.length > 0) {
-    consensus.h2h = { home: median(h2h.home), away: median(h2h.away) };
+    consensus.h2h = {
+      home: median(h2h.home),
+      away: median(h2h.away),
+      draw: h2h.draw.length > 0 ? median(h2h.draw) : undefined,
+    };
   }
   if (spreads.homeLine.length > 0) {
     consensus.spreads = {
@@ -503,10 +509,12 @@ function buildPerBookFromCache(game: any): Record<string, { marketGroups: any }>
       if (h2hM) {
         const home = h2hM.outcomes.find((o: any) => o.name === game.home_team);
         const away = h2hM.outcomes.find((o: any) => o.name === game.away_team);
+        const draw = h2hM.outcomes.find((o: any) => o.name === 'Draw');
         if (home && away) {
           out.h2h = {
             home: { price: home.price, edge: 0 },
             away: { price: away.price, edge: 0 },
+            draw: draw ? { price: draw.price, edge: 0 } : undefined,
           };
         }
       }
@@ -967,6 +975,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     // Collect h2h data
     const h2hHomeOdds: number[] = [];
     const h2hAwayOdds: number[] = [];
+    const h2hDrawOdds: number[] = [];
     // Collect totals data
     const totalLines: number[] = [];
     const totalOverOdds: number[] = [];
@@ -978,6 +987,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
       if (markets.spreads?.away?.price !== undefined) spreadAwayOdds.push(markets.spreads.away.price);
       if (markets.h2h?.home?.price !== undefined) h2hHomeOdds.push(markets.h2h.home.price);
       if (markets.h2h?.away?.price !== undefined) h2hAwayOdds.push(markets.h2h.away.price);
+      if (markets.h2h?.draw?.price !== undefined) h2hDrawOdds.push(markets.h2h.draw.price);
       if (markets.totals?.line !== undefined) totalLines.push(markets.totals.line);
       if (markets.totals?.over?.price !== undefined) totalOverOdds.push(markets.totals.over.price);
       if (markets.totals?.under?.price !== undefined) totalUnderOdds.push(markets.totals.under.price);
@@ -988,6 +998,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     const periodSpreadAwayOdds = getMedian(spreadAwayOdds) || -110;
     const periodH2hHome = getMedian(h2hHomeOdds);
     const periodH2hAway = getMedian(h2hAwayOdds);
+    const periodH2hDraw = getMedian(h2hDrawOdds);
     const periodTotalLine = getMedian(totalLines);
     const periodTotalOverOdds = getMedian(totalOverOdds) || -110;
     const periodTotalUnderOdds = getMedian(totalUnderOdds) || -110;
@@ -995,6 +1006,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     // DEBUG: Log calculated values
     console.log(`[CEQ DEBUG] ${periodKey} - spreadLines:`, spreadLines, `median:`, periodSpreadLine);
     console.log(`[CEQ DEBUG] ${periodKey} - openingLine for FDV:`, openingLine);
+    console.log(`[CEQ DEBUG] ${periodKey} - h2hDrawOdds:`, h2hDrawOdds, `median:`, periodH2hDraw);
 
     const hasSpread = periodSpreadLine !== undefined;
     const hasH2h = periodH2hHome !== undefined && periodH2hAway !== undefined;
@@ -1010,6 +1022,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
       h2h: hasH2h ? {
         home: periodH2hHome!,
         away: periodH2hAway!,
+        draw: periodH2hDraw,  // Include draw for soccer 3-way markets
       } : undefined,
       totals: hasTotals ? {
         line: periodTotalLine!,
@@ -1215,9 +1228,10 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     // Spreads: home and away are separate edges
     if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 56) count++;
     if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 56) count++;
-    // H2H/Moneyline: home and away are separate edges
+    // H2H/Moneyline: home, away, and draw (for soccer) are separate edges
     if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 56) count++;
     if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 56) count++;
+    if (ceq.h2h?.draw?.ceq !== undefined && ceq.h2h.draw.ceq >= 56) count++;
     // Totals: over and under are separate edges
     if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 56) count++;
     if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 56) count++;

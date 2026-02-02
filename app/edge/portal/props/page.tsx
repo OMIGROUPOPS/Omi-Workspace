@@ -19,7 +19,30 @@ const SPORTS = [
   { key: 'basketball_ncaab', label: 'NCAAB', emoji: '\u{1F3C0}' },
 ];
 
-// Prop type labels for clarity
+// Prop type labels and display order
+const PROP_TYPE_ORDER = [
+  'player_points',
+  'player_rebounds',
+  'player_assists',
+  'player_threes',
+  'player_steals',
+  'player_blocks',
+  'player_points_rebounds_assists',
+  'player_points_rebounds',
+  'player_points_assists',
+  'player_rebounds_assists',
+  'player_double_double',
+  'player_triple_double',
+  'player_pass_yds',
+  'player_pass_tds',
+  'player_rush_yds',
+  'player_reception_yds',
+  'player_receptions',
+  'player_anytime_td',
+  'player_goals',
+  'player_shots_on_goal',
+];
+
 const PROP_TYPE_LABELS: Record<string, string> = {
   player_points: 'Points',
   player_assists: 'Assists',
@@ -57,9 +80,11 @@ const PROP_TYPE_LABELS: Record<string, string> = {
   pitcher_outs: 'Outs',
 };
 
-// Preferred books for CEQ calculation
-const SHARP_BOOKS = ['pinnacle', 'betcris', 'bookmaker'];
-const RETAIL_BOOKS = ['fanduel', 'draftkings', 'betmgm', 'caesars'];
+// Sharp book for benchmark (used internally, NOT displayed)
+const SHARP_BOOK = 'pinnacle';
+
+// Retail books to display
+const RETAIL_BOOKS = ['fanduel', 'draftkings'];
 
 interface PropOutcome {
   player: string;
@@ -75,14 +100,20 @@ interface ParsedProp {
   propType: string;
   propTypeLabel: string;
   line: number;
-  overOdds: { book: string; odds: number }[];
-  underOdds: { book: string; odds: number }[];
+  // Sharp benchmark (Pinnacle) - used for calculation only
+  pinnacleOverOdds: number | null;
+  pinnacleUnderOdds: number | null;
+  // Retail odds (FanDuel, DraftKings) - displayed
+  retailOverOdds: { book: string; odds: number }[];
+  retailUnderOdds: { book: string; odds: number }[];
+  // CEQ for each side
   overCEQ: number;
   underCEQ: number;
-  bestOverBook: string;
-  bestUnderBook: string;
-  bestOverOdds: number;
-  bestUnderOdds: number;
+  // The edge side (only one can have edge)
+  edgeSide: 'Over' | 'Under' | null;
+  edgeCEQ: number;
+  edgeOdds: number;
+  edgeBook: string;
 }
 
 interface GameWithProps {
@@ -91,7 +122,7 @@ interface GameWithProps {
   awayTeam: string;
   sport: string;
   commenceTime: string;
-  props: ParsedProp[];
+  propsByType: Map<string, ParsedProp[]>;
 }
 
 // Convert American odds to implied probability
@@ -103,60 +134,26 @@ function oddsToProb(americanOdds: number): number {
   }
 }
 
-// Calculate CEQ for a prop side based on odds comparison
-// CEQ represents edge confidence: 50 = neutral, higher = more confident edge
+// Calculate CEQ by comparing retail odds to sharp (Pinnacle) odds
+// If retail has better odds than sharp → positive EV → edge
 function calculatePropCEQ(
-  sideOdds: { book: string; odds: number }[],
-  oppositeSideOdds: { book: string; odds: number }[]
+  retailOdds: number | null,
+  sharpOdds: number | null
 ): number {
-  if (sideOdds.length === 0) return 50;
+  if (retailOdds === null || sharpOdds === null) return 50;
 
-  // Get best odds for this side
-  const bestOdds = Math.max(...sideOdds.map(o => o.odds));
-  const bestProb = oddsToProb(bestOdds);
+  const retailProb = oddsToProb(retailOdds);
+  const sharpProb = oddsToProb(sharpOdds);
 
-  // Calculate consensus probability from all books
-  const allProbs = sideOdds.map(o => oddsToProb(o.odds));
-  const avgProb = allProbs.reduce((a, b) => a + b, 0) / allProbs.length;
+  // Edge = sharp probability - retail probability
+  // If retail offers better odds (lower implied prob), we have an edge
+  const edge = sharpProb - retailProb;
 
-  // Calculate fair value using opposite side (removes vig)
-  let fairProb = 0.5; // default
-  if (oppositeSideOdds.length > 0) {
-    const oppProbs = oppositeSideOdds.map(o => oddsToProb(o.odds));
-    const avgOppProb = oppProbs.reduce((a, b) => a + b, 0) / oppProbs.length;
-    // Fair value: normalize to remove vig
-    const totalProb = avgProb + avgOppProb;
-    if (totalProb > 0) {
-      fairProb = avgProb / totalProb;
-    }
-  }
+  // Convert edge to CEQ (50 = neutral, higher = more edge)
+  // Scale: 1% edge = ~6 CEQ points
+  const ceq = 50 + (edge * 100 * 6);
 
-  // Check for sharp book line
-  const sharpOdds = sideOdds.filter(o => SHARP_BOOKS.includes(o.book.toLowerCase()));
-  let sharpProb = avgProb;
-  if (sharpOdds.length > 0) {
-    sharpProb = sharpOdds.map(o => oddsToProb(o.odds)).reduce((a, b) => a + b, 0) / sharpOdds.length;
-  }
-
-  // CEQ Calculation:
-  // 1. Base: 50 (neutral)
-  // 2. Edge from best odds vs consensus (retail vs market)
-  // 3. Edge from sharp line disagreement
-
-  let ceq = 50;
-
-  // Odds edge: if best odds imply lower probability than average, that's value
-  const oddsEdge = (avgProb - bestProb) * 100; // positive = edge
-  ceq += oddsEdge * 3; // Scale up the edge
-
-  // Sharp disagreement: if sharp books have worse odds, retail has value
-  const sharpEdge = (sharpProb - bestProb) * 100;
-  ceq += sharpEdge * 2;
-
-  // Normalize to 0-100 range
-  ceq = Math.max(0, Math.min(100, ceq));
-
-  return Math.round(ceq);
+  return Math.max(0, Math.min(100, Math.round(ceq)));
 }
 
 export default function PlayerPropsPage() {
@@ -166,10 +163,8 @@ export default function PlayerPropsPage() {
   const [selectedSport, setSelectedSport] = useState('all');
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [expandedGames, setExpandedGames] = useState<Set<string>>(new Set());
-  const [expandedPlayers, setExpandedPlayers] = useState<Set<string>>(new Set());
-  const [minCEQ, setMinCEQ] = useState(56); // Minimum CEQ to show
+  const [minCEQ, setMinCEQ] = useState(56);
 
-  // Fetch games with prop markets
   const fetchPropsFromCachedOdds = useCallback(async () => {
     setLoading(true);
     try {
@@ -196,7 +191,6 @@ export default function PlayerPropsPage() {
 
         for (const bookmaker of game.bookmakers) {
           for (const market of bookmaker.markets || []) {
-            // Check if this is a prop market
             const isProp = market.key.startsWith('player_') ||
                           market.key.startsWith('pitcher_') ||
                           market.key.startsWith('batter_');
@@ -225,8 +219,10 @@ export default function PlayerPropsPage() {
           player: string;
           propType: string;
           line: number;
-          overOdds: { book: string; odds: number }[];
-          underOdds: { book: string; odds: number }[];
+          pinnacleOver: number | null;
+          pinnacleUnder: number | null;
+          retailOver: { book: string; odds: number }[];
+          retailUnder: { book: string; odds: number }[];
         }>();
 
         for (const outcome of propOutcomes) {
@@ -237,54 +233,103 @@ export default function PlayerPropsPage() {
               player: outcome.player,
               propType: outcome.propType,
               line: outcome.line,
-              overOdds: [],
-              underOdds: [],
+              pinnacleOver: null,
+              pinnacleUnder: null,
+              retailOver: [],
+              retailUnder: [],
             });
           }
 
           const prop = groupedProps.get(key)!;
-          if (outcome.side === 'Over') {
-            prop.overOdds.push({ book: outcome.book, odds: outcome.odds });
-          } else {
-            prop.underOdds.push({ book: outcome.book, odds: outcome.odds });
+          const bookLower = outcome.book.toLowerCase();
+
+          if (bookLower === SHARP_BOOK) {
+            // Store Pinnacle odds for benchmark (not displayed)
+            if (outcome.side === 'Over') {
+              prop.pinnacleOver = outcome.odds;
+            } else {
+              prop.pinnacleUnder = outcome.odds;
+            }
+          } else if (RETAIL_BOOKS.includes(bookLower)) {
+            // Store retail odds (displayed)
+            if (outcome.side === 'Over') {
+              prop.retailOver.push({ book: outcome.book, odds: outcome.odds });
+            } else {
+              prop.retailUnder.push({ book: outcome.book, odds: outcome.odds });
+            }
           }
         }
 
-        // Calculate CEQ for each prop and create ParsedProp objects
-        const parsedProps: ParsedProp[] = [];
+        // Calculate CEQ for each prop and determine edge side
+        const propsByType = new Map<string, ParsedProp[]>();
 
         for (const [, prop] of groupedProps) {
-          const overCEQ = calculatePropCEQ(prop.overOdds, prop.underOdds);
-          const underCEQ = calculatePropCEQ(prop.underOdds, prop.overOdds);
+          // Skip if no retail odds
+          if (prop.retailOver.length === 0 && prop.retailUnder.length === 0) continue;
 
-          // Find best odds
-          const bestOverOdds = prop.overOdds.length > 0
-            ? Math.max(...prop.overOdds.map(o => o.odds))
-            : 0;
-          const bestUnderOdds = prop.underOdds.length > 0
-            ? Math.max(...prop.underOdds.map(o => o.odds))
-            : 0;
-          const bestOverBook = prop.overOdds.find(o => o.odds === bestOverOdds)?.book || '';
-          const bestUnderBook = prop.underOdds.find(o => o.odds === bestUnderOdds)?.book || '';
+          // Find best retail odds for each side
+          const bestRetailOver = prop.retailOver.length > 0
+            ? prop.retailOver.reduce((best, curr) => curr.odds > best.odds ? curr : best)
+            : null;
+          const bestRetailUnder = prop.retailUnder.length > 0
+            ? prop.retailUnder.reduce((best, curr) => curr.odds > best.odds ? curr : best)
+            : null;
 
-          parsedProps.push({
+          // Calculate CEQ for each side (comparing best retail to Pinnacle)
+          const overCEQ = calculatePropCEQ(bestRetailOver?.odds ?? null, prop.pinnacleOver);
+          const underCEQ = calculatePropCEQ(bestRetailUnder?.odds ?? null, prop.pinnacleUnder);
+
+          // ONLY ONE SIDE CAN HAVE EDGE - the one with higher CEQ
+          let edgeSide: 'Over' | 'Under' | null = null;
+          let edgeCEQ = 50;
+          let edgeOdds = 0;
+          let edgeBook = '';
+
+          if (overCEQ > underCEQ && overCEQ >= minCEQ && bestRetailOver) {
+            edgeSide = 'Over';
+            edgeCEQ = overCEQ;
+            edgeOdds = bestRetailOver.odds;
+            edgeBook = bestRetailOver.book;
+          } else if (underCEQ > overCEQ && underCEQ >= minCEQ && bestRetailUnder) {
+            edgeSide = 'Under';
+            edgeCEQ = underCEQ;
+            edgeOdds = bestRetailUnder.odds;
+            edgeBook = bestRetailUnder.book;
+          }
+
+          // Only include props with an edge
+          if (edgeSide === null) continue;
+
+          const parsedProp: ParsedProp = {
             player: prop.player,
             propType: prop.propType,
             propTypeLabel: PROP_TYPE_LABELS[prop.propType] || prop.propType.replace('player_', '').replace(/_/g, ' '),
             line: prop.line,
-            overOdds: prop.overOdds,
-            underOdds: prop.underOdds,
+            pinnacleOverOdds: prop.pinnacleOver,
+            pinnacleUnderOdds: prop.pinnacleUnder,
+            retailOverOdds: prop.retailOver,
+            retailUnderOdds: prop.retailUnder,
             overCEQ,
             underCEQ,
-            bestOverBook,
-            bestUnderBook,
-            bestOverOdds,
-            bestUnderOdds,
-          });
+            edgeSide,
+            edgeCEQ,
+            edgeOdds,
+            edgeBook,
+          };
+
+          // Group by prop type
+          if (!propsByType.has(prop.propType)) {
+            propsByType.set(prop.propType, []);
+          }
+          propsByType.get(prop.propType)!.push(parsedProp);
         }
 
-        // Sort props by highest CEQ
-        parsedProps.sort((a, b) => Math.max(b.overCEQ, b.underCEQ) - Math.max(a.overCEQ, a.underCEQ));
+        // Sort players alphabetically within each prop type
+        for (const [, props] of propsByType) {
+          props.sort((a, b) => a.player.localeCompare(b.player));
+        }
+
+        if (propsByType.size === 0) continue;
 
         gamesData.push({
           gameId: game.id,
@@ -292,28 +337,23 @@ export default function PlayerPropsPage() {
           awayTeam: game.away_team,
           sport: game.sport_key,
           commenceTime: game.commence_time,
-          props: parsedProps,
+          propsByType,
         });
       }
 
-      // Sort games by number of high-CEQ props
+      // Sort games by total number of edges
       gamesData.sort((a, b) => {
-        const aHighCEQ = a.props.filter(p => p.overCEQ >= 56 || p.underCEQ >= 56).length;
-        const bHighCEQ = b.props.filter(p => p.overCEQ >= 56 || p.underCEQ >= 56).length;
-        return bHighCEQ - aHighCEQ;
+        const aEdges = Array.from(a.propsByType.values()).reduce((sum, arr) => sum + arr.length, 0);
+        const bEdges = Array.from(b.propsByType.values()).reduce((sum, arr) => sum + arr.length, 0);
+        return bEdges - aEdges;
       });
 
       setGamesWithProps(gamesData);
       setLastUpdated(new Date());
       setError(null);
 
-      // Auto-expand games with edges
-      const gamesWithEdges = new Set(
-        gamesData
-          .filter(g => g.props.some(p => p.overCEQ >= minCEQ || p.underCEQ >= minCEQ))
-          .slice(0, 3)
-          .map(g => g.gameId)
-      );
+      // Auto-expand first 3 games with edges
+      const gamesWithEdges = new Set(gamesData.slice(0, 3).map(g => g.gameId));
       setExpandedGames(gamesWithEdges);
 
     } catch (e: any) {
@@ -327,7 +367,6 @@ export default function PlayerPropsPage() {
     fetchPropsFromCachedOdds();
   }, [fetchPropsFromCachedOdds]);
 
-  // Format time
   const formatTime = (dateString: string): string => {
     const date = new Date(dateString);
     const now = new Date();
@@ -341,17 +380,20 @@ export default function PlayerPropsPage() {
     });
   };
 
-  // Format odds display
   const formatOdds = (odds: number): string => {
     return odds > 0 ? `+${odds}` : `${odds}`;
   };
 
-  // Get sport emoji
+  const formatBook = (book: string): string => {
+    if (book.toLowerCase() === 'fanduel') return 'FD';
+    if (book.toLowerCase() === 'draftkings') return 'DK';
+    return book.slice(0, 2).toUpperCase();
+  };
+
   const getSportEmoji = (sport: string): string => {
     return SPORTS.find((s) => s.key === sport)?.emoji || '\u{1F3C6}';
   };
 
-  // Toggle game expansion
   const toggleGame = (gameId: string) => {
     const newExpanded = new Set(expandedGames);
     if (newExpanded.has(gameId)) {
@@ -362,18 +404,6 @@ export default function PlayerPropsPage() {
     setExpandedGames(newExpanded);
   };
 
-  // Toggle player expansion
-  const togglePlayer = (playerId: string) => {
-    const newExpanded = new Set(expandedPlayers);
-    if (newExpanded.has(playerId)) {
-      newExpanded.delete(playerId);
-    } else {
-      newExpanded.add(playerId);
-    }
-    setExpandedPlayers(newExpanded);
-  };
-
-  // Get CEQ color class
   const getCEQColor = (ceq: number): string => {
     if (ceq >= 70) return 'text-emerald-400';
     if (ceq >= 60) return 'text-blue-400';
@@ -381,7 +411,6 @@ export default function PlayerPropsPage() {
     return 'text-zinc-500';
   };
 
-  // Get CEQ badge color class
   const getCEQBadgeColor = (ceq: number): string => {
     if (ceq >= 70) return 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30';
     if (ceq >= 60) return 'bg-blue-500/15 text-blue-400 border-blue-500/30';
@@ -389,19 +418,29 @@ export default function PlayerPropsPage() {
     return 'bg-zinc-800/50 text-zinc-500 border-zinc-700';
   };
 
-  // Count props with edges
+  // Get sorted prop types for a game
+  const getSortedPropTypes = (propsByType: Map<string, ParsedProp[]>): string[] => {
+    const types = Array.from(propsByType.keys());
+    return types.sort((a, b) => {
+      const aIndex = PROP_TYPE_ORDER.indexOf(a);
+      const bIndex = PROP_TYPE_ORDER.indexOf(b);
+      if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
+      if (aIndex === -1) return 1;
+      if (bIndex === -1) return -1;
+      return aIndex - bIndex;
+    });
+  };
+
   const totalPropsWithEdges = gamesWithProps.reduce(
-    (acc, game) => acc + game.props.filter(p => p.overCEQ >= minCEQ || p.underCEQ >= minCEQ).length,
+    (acc, game) => acc + Array.from(game.propsByType.values()).reduce((sum, arr) => sum + arr.length, 0),
     0
   );
 
   const totalPlayers = new Set(
-    gamesWithProps.flatMap(g => g.props.filter(p => p.overCEQ >= minCEQ || p.underCEQ >= minCEQ).map(p => p.player))
+    gamesWithProps.flatMap(g =>
+      Array.from(g.propsByType.values()).flat().map(p => p.player)
+    )
   ).size;
-
-  const gamesWithEdges = gamesWithProps.filter(
-    g => g.props.some(p => p.overCEQ >= minCEQ || p.underCEQ >= minCEQ)
-  ).length;
 
   return (
     <div className="py-4 px-4 max-w-[1600px] mx-auto">
@@ -413,7 +452,7 @@ export default function PlayerPropsPage() {
             Player Props
           </h1>
           <p className="text-sm text-zinc-500 mt-1">
-            Find edges on player prop markets across all games
+            Edges on player prop markets (FanDuel & DraftKings vs Sharp Line)
           </p>
         </div>
 
@@ -437,7 +476,6 @@ export default function PlayerPropsPage() {
 
       {/* Filters Row */}
       <div className="flex flex-wrap items-center gap-4 mb-6">
-        {/* Sport Filter */}
         <div className="flex items-center gap-2">
           <Filter className="w-4 h-4 text-zinc-500" />
           <div className="flex gap-1">
@@ -457,7 +495,6 @@ export default function PlayerPropsPage() {
           </div>
         </div>
 
-        {/* Min CEQ Filter */}
         <div className="flex items-center gap-2 ml-auto">
           <span className="text-xs text-zinc-500">Min CEQ:</span>
           <div className="flex gap-1">
@@ -489,7 +526,7 @@ export default function PlayerPropsPage() {
           <div className="text-xs text-zinc-500">Players</div>
         </div>
         <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
-          <div className="text-2xl font-bold text-emerald-400">{gamesWithEdges}</div>
+          <div className="text-2xl font-bold text-emerald-400">{gamesWithProps.length}</div>
           <div className="text-xs text-zinc-500">Games with Edges</div>
         </div>
       </div>
@@ -514,7 +551,7 @@ export default function PlayerPropsPage() {
           <TrendingUp className="w-12 h-12 text-zinc-700 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-zinc-400 mb-2">No Player Props Edges</h3>
           <p className="text-sm text-zinc-600">
-            No player prop edges detected above {minCEQ}% CEQ. Try lowering the threshold or check back later.
+            No player prop edges detected above {minCEQ}% CEQ. This means FanDuel/DraftKings odds are not better than the sharp line.
           </p>
         </div>
       )}
@@ -522,142 +559,134 @@ export default function PlayerPropsPage() {
       {/* Games List */}
       {!loading && gamesWithProps.length > 0 && (
         <div className="space-y-4">
-          {gamesWithProps
-            .filter(game => game.props.some(p => p.overCEQ >= minCEQ || p.underCEQ >= minCEQ))
-            .map((game) => {
-              const propsWithEdges = game.props.filter(p => p.overCEQ >= minCEQ || p.underCEQ >= minCEQ);
-              const isExpanded = expandedGames.has(game.gameId);
-              const bestCEQ = Math.max(...propsWithEdges.map(p => Math.max(p.overCEQ, p.underCEQ)));
+          {gamesWithProps.map((game) => {
+            const isExpanded = expandedGames.has(game.gameId);
+            const totalEdges = Array.from(game.propsByType.values()).reduce((sum, arr) => sum + arr.length, 0);
+            const bestCEQ = Math.max(
+              ...Array.from(game.propsByType.values()).flat().map(p => p.edgeCEQ)
+            );
 
-              return (
-                <div
-                  key={game.gameId}
-                  className="bg-zinc-900/50 border border-zinc-800 rounded-lg overflow-hidden"
+            return (
+              <div
+                key={game.gameId}
+                className="bg-zinc-900/50 border border-zinc-800 rounded-lg overflow-hidden"
+              >
+                {/* Game Header */}
+                <button
+                  onClick={() => toggleGame(game.gameId)}
+                  className="w-full px-4 py-3 bg-zinc-800/50 border-b border-zinc-800 hover:bg-zinc-800/70 transition-colors"
                 >
-                  {/* Game Header */}
-                  <button
-                    onClick={() => toggleGame(game.gameId)}
-                    className="w-full px-4 py-3 bg-zinc-800/50 border-b border-zinc-800 hover:bg-zinc-800/70 transition-colors"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        {isExpanded ? (
-                          <ChevronDown className="w-4 h-4 text-zinc-500" />
-                        ) : (
-                          <ChevronRight className="w-4 h-4 text-zinc-500" />
-                        )}
-                        <span className="text-lg">{getSportEmoji(game.sport)}</span>
-                        <span className="font-semibold text-zinc-100">
-                          {game.awayTeam} @ {game.homeTeam}
-                        </span>
-                        <span className={`text-xs px-2 py-0.5 rounded border ${getCEQBadgeColor(bestCEQ)}`}>
-                          {propsWithEdges.length} edges
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className={`text-xs font-medium ${formatTime(game.commenceTime) === 'LIVE' ? 'text-red-400' : 'text-zinc-500'}`}>
-                          {formatTime(game.commenceTime)}
-                        </span>
-                        <Link
-                          href={`/edge/portal/sports/game/${game.gameId}?sport=${game.sport}`}
-                          onClick={(e) => e.stopPropagation()}
-                          className="text-zinc-500 hover:text-emerald-400 transition-colors"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </Link>
-                      </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      {isExpanded ? (
+                        <ChevronDown className="w-4 h-4 text-zinc-500" />
+                      ) : (
+                        <ChevronRight className="w-4 h-4 text-zinc-500" />
+                      )}
+                      <span className="text-lg">{getSportEmoji(game.sport)}</span>
+                      <span className="font-semibold text-zinc-100">
+                        {game.awayTeam} @ {game.homeTeam}
+                      </span>
+                      <span className={`text-xs px-2 py-0.5 rounded border ${getCEQBadgeColor(bestCEQ)}`}>
+                        {totalEdges} edge{totalEdges !== 1 ? 's' : ''}
+                      </span>
                     </div>
-                  </button>
-
-                  {/* Props Table */}
-                  {isExpanded && (
-                    <div className="p-3">
-                      {/* Table Header */}
-                      <div className="grid grid-cols-12 gap-2 px-3 py-2 text-xs text-zinc-500 font-medium border-b border-zinc-800 mb-2">
-                        <div className="col-span-3">Player</div>
-                        <div className="col-span-2">Prop Type</div>
-                        <div className="col-span-1 text-center">Line</div>
-                        <div className="col-span-3 text-center">Over</div>
-                        <div className="col-span-3 text-center">Under</div>
-                      </div>
-
-                      {/* Props Rows */}
-                      <div className="space-y-1">
-                        {propsWithEdges.map((prop, idx) => {
-                          const showOver = prop.overCEQ >= minCEQ;
-                          const showUnder = prop.underCEQ >= minCEQ;
-
-                          return (
-                            <div
-                              key={`${prop.player}-${prop.propType}-${prop.line}-${idx}`}
-                              className="grid grid-cols-12 gap-2 px-3 py-2 bg-zinc-800/30 rounded-lg hover:bg-zinc-800/50 transition-colors items-center"
-                            >
-                              {/* Player */}
-                              <div className="col-span-3 flex items-center gap-2">
-                                <User className="w-3 h-3 text-purple-400 flex-shrink-0" />
-                                <span className="text-sm font-medium text-zinc-100 truncate">
-                                  {prop.player}
-                                </span>
-                              </div>
-
-                              {/* Prop Type */}
-                              <div className="col-span-2">
-                                <span className="text-xs text-zinc-400">{prop.propTypeLabel}</span>
-                              </div>
-
-                              {/* Line */}
-                              <div className="col-span-1 text-center">
-                                <span className="text-sm font-mono text-zinc-200">{prop.line}</span>
-                              </div>
-
-                              {/* Over */}
-                              <div className="col-span-3">
-                                {prop.overOdds.length > 0 ? (
-                                  <div className={`flex items-center justify-center gap-2 ${showOver ? '' : 'opacity-40'}`}>
-                                    <span className="text-xs text-emerald-400">O</span>
-                                    <span className="text-sm font-mono text-zinc-200">
-                                      {formatOdds(prop.bestOverOdds)}
-                                    </span>
-                                    <span className="text-[10px] text-zinc-500 capitalize">
-                                      @{prop.bestOverBook.slice(0, 3)}
-                                    </span>
-                                    <span className={`text-xs font-bold ${getCEQColor(prop.overCEQ)}`}>
-                                      {prop.overCEQ}%
-                                    </span>
-                                  </div>
-                                ) : (
-                                  <span className="text-xs text-zinc-600 text-center block">-</span>
-                                )}
-                              </div>
-
-                              {/* Under */}
-                              <div className="col-span-3">
-                                {prop.underOdds.length > 0 ? (
-                                  <div className={`flex items-center justify-center gap-2 ${showUnder ? '' : 'opacity-40'}`}>
-                                    <span className="text-xs text-red-400">U</span>
-                                    <span className="text-sm font-mono text-zinc-200">
-                                      {formatOdds(prop.bestUnderOdds)}
-                                    </span>
-                                    <span className="text-[10px] text-zinc-500 capitalize">
-                                      @{prop.bestUnderBook.slice(0, 3)}
-                                    </span>
-                                    <span className={`text-xs font-bold ${getCEQColor(prop.underCEQ)}`}>
-                                      {prop.underCEQ}%
-                                    </span>
-                                  </div>
-                                ) : (
-                                  <span className="text-xs text-zinc-600 text-center block">-</span>
-                                )}
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
+                    <div className="flex items-center gap-3">
+                      <span className={`text-xs font-medium ${formatTime(game.commenceTime) === 'LIVE' ? 'text-red-400' : 'text-zinc-500'}`}>
+                        {formatTime(game.commenceTime)}
+                      </span>
+                      <Link
+                        href={`/edge/portal/sports/game/${game.gameId}?sport=${game.sport}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-zinc-500 hover:text-emerald-400 transition-colors"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </Link>
                     </div>
-                  )}
-                </div>
-              );
-            })}
+                  </div>
+                </button>
+
+                {/* Props by Type */}
+                {isExpanded && (
+                  <div className="p-3 space-y-4">
+                    {getSortedPropTypes(game.propsByType).map((propType) => {
+                      const props = game.propsByType.get(propType)!;
+                      const propLabel = PROP_TYPE_LABELS[propType] || propType;
+
+                      return (
+                        <div key={propType}>
+                          {/* Prop Type Header */}
+                          <div className="flex items-center gap-2 mb-2 px-2">
+                            <TrendingUp className="w-3.5 h-3.5 text-purple-400" />
+                            <span className="text-sm font-semibold text-zinc-300">{propLabel}</span>
+                            <span className="text-xs text-zinc-600">({props.length})</span>
+                          </div>
+
+                          {/* Table Header */}
+                          <div className="grid grid-cols-12 gap-2 px-3 py-1.5 text-[10px] text-zinc-500 font-medium uppercase tracking-wide">
+                            <div className="col-span-4">Player</div>
+                            <div className="col-span-2 text-center">Line</div>
+                            <div className="col-span-2 text-center">Side</div>
+                            <div className="col-span-2 text-center">Odds</div>
+                            <div className="col-span-2 text-center">CEQ</div>
+                          </div>
+
+                          {/* Props Rows */}
+                          <div className="space-y-1">
+                            {props.map((prop, idx) => (
+                              <div
+                                key={`${prop.player}-${prop.line}-${idx}`}
+                                className="grid grid-cols-12 gap-2 px-3 py-2 bg-zinc-800/30 rounded-lg hover:bg-zinc-800/50 transition-colors items-center"
+                              >
+                                {/* Player */}
+                                <div className="col-span-4 flex items-center gap-2">
+                                  <User className="w-3 h-3 text-purple-400 flex-shrink-0" />
+                                  <span className="text-sm font-medium text-zinc-100 truncate">
+                                    {prop.player}
+                                  </span>
+                                </div>
+
+                                {/* Line */}
+                                <div className="col-span-2 text-center">
+                                  <span className="text-sm font-mono text-zinc-200">{prop.line}</span>
+                                </div>
+
+                                {/* Edge Side */}
+                                <div className="col-span-2 text-center">
+                                  <span className={`text-sm font-semibold ${
+                                    prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'
+                                  }`}>
+                                    {prop.edgeSide === 'Over' ? 'O' : 'U'}
+                                  </span>
+                                </div>
+
+                                {/* Odds @ Book */}
+                                <div className="col-span-2 text-center">
+                                  <span className="text-sm font-mono text-zinc-200">
+                                    {formatOdds(prop.edgeOdds)}
+                                  </span>
+                                  <span className="text-[10px] text-zinc-500 ml-1">
+                                    @{formatBook(prop.edgeBook)}
+                                  </span>
+                                </div>
+
+                                {/* CEQ */}
+                                <div className="col-span-2 text-center">
+                                  <span className={`text-sm font-bold ${getCEQColor(prop.edgeCEQ)}`}>
+                                    {prop.edgeCEQ}%
+                                  </span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

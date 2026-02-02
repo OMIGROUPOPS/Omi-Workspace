@@ -13,6 +13,8 @@ from datetime import datetime
 from typing import Optional
 import logging
 
+logger = logging.getLogger(__name__)
+
 from data_sources.espn import espn_client
 
 # Try to import soccer data sources (optional - may not have API keys)
@@ -44,8 +46,6 @@ if not SOCCER_DATA_AVAILABLE:
 
 if not SOCCER_DATA_AVAILABLE:
     logger.warning("[Execution] No soccer data sources available - need FOOTBALL_DATA_API_KEY or API_FOOTBALL_KEY")
-
-logger = logging.getLogger(__name__)
 
 # NFL position importance weights - AMPLIFIED for visual differentiation
 # Higher = more impactful when injured (scale: 0-10)

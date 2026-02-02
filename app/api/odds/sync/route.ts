@@ -529,13 +529,15 @@ function buildSnapshotRows(games: any[], sportKey: string, snapshotTime: string)
   return rows;
 }
 
-// Cleanup stale games from cached_odds (games that have already started)
+// Cleanup finished games from cached_odds (games that ended 5+ hours ago)
+// We keep live/in-progress games so they continue to be polled
 async function cleanupStaleGames(supabase: ReturnType<typeof getSupabase>): Promise<number> {
-  const now = new Date().toISOString();
+  // Only delete games that started more than 5 hours ago (definitely finished)
+  const fiveHoursAgo = new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString();
   const { data, error } = await supabase
     .from("cached_odds")
     .delete()
-    .lt("game_data->>commence_time", now)
+    .lt("game_data->>commence_time", fiveHoursAgo)
     .select("game_id");
 
   if (error) {
@@ -545,7 +547,7 @@ async function cleanupStaleGames(supabase: ReturnType<typeof getSupabase>): Prom
 
   const count = data?.length || 0;
   if (count > 0) {
-    console.log(`[Odds Sync] Cleaned up ${count} stale games from cached_odds`);
+    console.log(`[Odds Sync] Cleaned up ${count} finished games from cached_odds`);
   }
   return count;
 }

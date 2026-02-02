@@ -1302,8 +1302,22 @@ export function calculateCEQ(
   }
 
   // If Python pillars available, blend with Python composite (30% Python, 70% TS pillars)
+  // CRITICAL: Python composite > 50 = AWAY edge, < 50 = HOME edge
+  // When calculating HOME-side CEQ, we must INVERT the Python composite
+  // so that a Python away-edge (71%) results in a LOW home CEQ, not high
   if (pythonPillars && pythonPillars.composite !== 50) {
-    ceq = ceq * 0.7 + pythonPillars.composite * 0.3;
+    // Only apply composite blend for spread/h2h (home vs away direction)
+    // Totals (over/under) use different signals, not the home/away composite
+    if (marketType !== 'total') {
+      // For HOME side: invert Python composite
+      // Python 71% (away edge) → home gets (100-71)=29% influence → pushes home CEQ DOWN
+      // Python 30% (home edge) → home gets (100-30)=70% influence → pushes home CEQ UP
+      const pythonScore = side === 'home'
+        ? (100 - pythonPillars.composite)  // Invert for home-side calculation
+        : pythonPillars.composite;          // Direct for away (not typically called)
+      ceq = ceq * 0.7 + pythonScore * 0.3;
+    }
+    // For totals, skip composite blend - individual pillar mappings provide totals signals
   }
 
   // Apply juice adjustment based on book's odds vs market consensus

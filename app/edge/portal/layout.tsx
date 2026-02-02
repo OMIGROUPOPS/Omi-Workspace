@@ -120,7 +120,7 @@ function Logo() {
 
 function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; onClose: () => void; onLogout: () => void; userEmail: string | null }) {
   const pathname = usePathname();
-  const userTier = 1;
+  const userTier = 2; // Allow access to Tier 2 features (Live Markets, ARB Trading)
 
   return (
     <>

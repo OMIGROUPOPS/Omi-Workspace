@@ -330,11 +330,31 @@ class ESPNClient:
         standings = self.get_standings(sport)
         logger.info(f"[ESPN] Got {len(standings)} teams in standings for {sport}")
 
+        # Normalize team name for matching
+        def normalize_name(name: str) -> str:
+            """Normalize team name for flexible matching."""
+            n = name.lower().strip()
+            # Common abbreviation expansions
+            n = n.replace("la ", "los angeles ")
+            n = n.replace("ny ", "new york ")
+            return n
+
+        input_normalized = normalize_name(team_name)
+
         team_standing = None
         for s in standings:
-            if s.get("team_name") and team_name.lower() in s["team_name"].lower():
+            espn_name = s.get("team_name", "")
+            if not espn_name:
+                continue
+            espn_normalized = normalize_name(espn_name)
+
+            # Match if either contains the other, or if they share a key part (city or mascot)
+            if (input_normalized in espn_normalized or
+                espn_normalized in input_normalized or
+                # Also check if mascot matches (last word)
+                input_normalized.split()[-1] == espn_normalized.split()[-1]):
                 team_standing = s
-                logger.info(f"[ESPN] Matched '{team_name}' to '{s.get('team_name')}' - W:{s.get('wins')} L:{s.get('losses')}")
+                logger.info(f"[ESPN] Matched '{team_name}' to '{espn_name}' - W:{s.get('wins')} L:{s.get('losses')}")
                 break
 
         if not team_standing:

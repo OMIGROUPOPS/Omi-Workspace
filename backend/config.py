@@ -42,13 +42,20 @@ ODDS_API_SPORTS = {
     "NCAAB": "basketball_ncaab",
 }
 
-# ESPN API paths
+# ESPN API paths (supports both short format and Odds API format)
 ESPN_SPORTS = {
+    # Short format (used internally)
     "NFL": ("football", "nfl"),
     "NBA": ("basketball", "nba"),
     "NHL": ("hockey", "nhl"),
     "NCAAF": ("football", "college-football"),
     "NCAAB": ("basketball", "mens-college-basketball"),
+    # Odds API format (used by analyzer)
+    "americanfootball_nfl": ("football", "nfl"),
+    "basketball_nba": ("basketball", "nba"),
+    "icehockey_nhl": ("hockey", "nhl"),
+    "americanfootball_ncaaf": ("football", "college-football"),
+    "basketball_ncaab": ("basketball", "mens-college-basketball"),
 }
 
 # Sports that play outdoors (need weather data)

@@ -47,6 +47,56 @@ except Exception as e:
 logger.info(f"[Execution INIT] _football_data_available={_football_data_available}, _api_football_available={_api_football_available}")
 
 
+def _normalize_team_name(name: str) -> str:
+    """Normalize team name for matching by removing common suffixes."""
+    name = name.lower().strip()
+    # Remove common suffixes
+    suffixes = [' fc', ' afc', ' united', ' city', ' town', ' wanderers', ' rovers', ' albion']
+    for suffix in suffixes:
+        if name.endswith(suffix):
+            name = name[:-len(suffix)]
+    # Remove leading prefixes
+    prefixes = ['afc ', 'fc ']
+    for prefix in prefixes:
+        if name.startswith(prefix):
+            name = name[len(prefix):]
+    return name.strip()
+
+
+def _teams_match(search_name: str, standing_name: str) -> bool:
+    """Check if two team names match, handling variations."""
+    search_lower = search_name.lower().strip()
+    standing_lower = standing_name.lower().strip()
+
+    # Direct match
+    if search_lower == standing_lower:
+        return True
+
+    # Substring match (either direction)
+    if search_lower in standing_lower or standing_lower in search_lower:
+        return True
+
+    # Normalized match (remove FC, AFC, etc.)
+    search_norm = _normalize_team_name(search_name)
+    standing_norm = _normalize_team_name(standing_name)
+
+    if search_norm == standing_norm:
+        return True
+
+    # Partial normalized match
+    if search_norm in standing_norm or standing_norm in search_norm:
+        return True
+
+    # Handle specific edge cases
+    # "Nott'm Forest" vs "Nottingham Forest"
+    if "nott" in search_norm and "nott" in standing_norm:
+        return True
+    if "forest" in search_norm and "forest" in standing_norm:
+        return True
+
+    return False
+
+
 def _get_soccer_data_source():
     """
     Determine which soccer data source to use at runtime.
@@ -190,22 +240,22 @@ def calculate_execution_score(
             if standings:
                 # Log available team names for debugging
                 logger.info(f"[Execution] Looking for: home='{home_team}', away='{away_team}'")
-                logger.info(f"[Execution] Available teams: {list(standings.keys())[:10]}...")
+                logger.info(f"[Execution] Available teams: {list(standings.keys())}")
 
                 home_standing = None
                 away_standing = None
                 for name, data in standings.items():
-                    if home_team.lower() in name.lower() or name.lower() in home_team.lower():
+                    if _teams_match(home_team, name):
                         home_standing = data
-                        logger.info(f"[Execution] MATCHED home: '{name}' -> pos {data.get('position')}")
-                    if away_team.lower() in name.lower() or name.lower() in away_team.lower():
+                        logger.info(f"[Execution] MATCHED home: '{home_team}' -> '{name}' (pos {data.get('position')})")
+                    if _teams_match(away_team, name):
                         away_standing = data
-                        logger.info(f"[Execution] MATCHED away: '{name}' -> pos {data.get('position')}")
+                        logger.info(f"[Execution] MATCHED away: '{away_team}' -> '{name}' (pos {data.get('position')})")
 
                 if not home_standing:
-                    logger.warning(f"[Execution] NO MATCH for home team: '{home_team}'")
+                    logger.warning(f"[Execution] NO MATCH for home team: '{home_team}' (normalized: '{_normalize_team_name(home_team)}')")
                 if not away_standing:
-                    logger.warning(f"[Execution] NO MATCH for away team: '{away_team}'")
+                    logger.warning(f"[Execution] NO MATCH for away team: '{away_team}' (normalized: '{_normalize_team_name(away_team)}')")
 
                 if home_standing and away_standing:
                     # Position differential (lower position = better)

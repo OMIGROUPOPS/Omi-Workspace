@@ -109,6 +109,49 @@ except Exception as e:
 logger.info(f"[Incentives INIT] _football_data_available={_football_data_available}, _api_football_available={_api_football_available}")
 
 
+def _normalize_team_name(name: str) -> str:
+    """Normalize team name for matching by removing common suffixes."""
+    name = name.lower().strip()
+    # Remove common suffixes
+    suffixes = [' fc', ' afc', ' united', ' city', ' town', ' wanderers', ' rovers', ' albion']
+    for suffix in suffixes:
+        if name.endswith(suffix):
+            name = name[:-len(suffix)]
+    # Remove leading prefixes
+    prefixes = ['afc ', 'fc ']
+    for prefix in prefixes:
+        if name.startswith(prefix):
+            name = name[len(prefix):]
+    return name.strip()
+
+
+def _teams_match(search_name: str, standing_name: str) -> bool:
+    """Check if two team names match, handling variations."""
+    search_lower = search_name.lower().strip()
+    standing_lower = standing_name.lower().strip()
+
+    # Direct match
+    if search_lower == standing_lower:
+        return True
+
+    # Substring match (either direction)
+    if search_lower in standing_lower or standing_lower in search_lower:
+        return True
+
+    # Normalized match (remove FC, AFC, etc.)
+    search_norm = _normalize_team_name(search_name)
+    standing_norm = _normalize_team_name(standing_name)
+
+    if search_norm == standing_norm:
+        return True
+
+    # Partial normalized match
+    if search_norm in standing_norm or standing_norm in search_norm:
+        return True
+
+    return False
+
+
 def _get_soccer_data_source():
     """
     Determine which soccer data source to use at runtime.
@@ -227,6 +270,7 @@ def calculate_incentives_score(
     title_race_alert = False
     relegation_battle_alert = False
     soccer_motivation_adjustment = 0.0  # Direct adjustment to final score
+    reasoning_parts = []  # Initialize early so soccer section can append
     is_soccer_sport = sport and ("soccer" in sport.lower() or sport.lower().startswith("soccer"))
     logger.info(f"[Incentives] Sport check: sport={sport}, is_soccer={is_soccer_sport}, soccer_source={soccer_source}")
 
@@ -250,12 +294,12 @@ def calculate_incentives_score(
                 home_pos = None
                 away_pos = None
                 for name, data in standings.items():
-                    if home_team.lower() in name.lower() or name.lower() in home_team.lower():
+                    if _teams_match(home_team, name):
                         home_pos = data.get("position", 12)
-                        logger.info(f"[Incentives] MATCHED home: '{name}' -> pos {home_pos}")
-                    if away_team.lower() in name.lower() or name.lower() in away_team.lower():
+                        logger.info(f"[Incentives] MATCHED home: '{home_team}' -> '{name}' (pos {home_pos})")
+                    if _teams_match(away_team, name):
                         away_pos = data.get("position", 12)
-                        logger.info(f"[Incentives] MATCHED away: '{name}' -> pos {away_pos}")
+                        logger.info(f"[Incentives] MATCHED away: '{away_team}' -> '{name}' (pos {away_pos})")
 
                 if not home_pos:
                     logger.warning(f"[Incentives] NO MATCH for home team: '{home_team}'")
@@ -387,8 +431,6 @@ def calculate_incentives_score(
     score = max(0.15, min(0.85, score))
 
     logger.info(f"[Incentives] Final score: {score:.3f}")
-
-    reasoning_parts = []
 
     if is_championship:
         reasoning_parts.append("Championship game: maximum motivation for both teams")

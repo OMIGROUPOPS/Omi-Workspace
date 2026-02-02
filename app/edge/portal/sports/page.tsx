@@ -10,18 +10,52 @@ const ODDS_API_KEY = process.env.ODDS_API_KEY || '';
 const ODDS_API_BASE = 'https://api.the-odds-api.com/v4';
 
 const SPORT_MAPPING: Record<string, string> = {
+  // American Football
   'NFL': 'americanfootball_nfl',
   'NCAAF': 'americanfootball_ncaaf',
+  // Basketball
   'NBA': 'basketball_nba',
-  'NHL': 'icehockey_nhl',
   'NCAAB': 'basketball_ncaab',
-  'MLB': 'baseball_mlb',
   'WNBA': 'basketball_wnba',
-  'MMA': 'mma_mixed_martial_arts',
+  'EUROLEAGUE': 'basketball_euroleague',
+  // Hockey
+  'NHL': 'icehockey_nhl',
+  'AHL': 'icehockey_ahl',
+  'SHL': 'icehockey_sweden_hockey_league',
+  'LIIGA': 'icehockey_liiga',
+  // Baseball
+  'MLB': 'baseball_mlb',
+  // Soccer
+  'MLS': 'soccer_usa_mls',
+  'EPL': 'soccer_epl',
+  'LA_LIGA': 'soccer_spain_la_liga',
+  'BUNDESLIGA': 'soccer_germany_bundesliga',
+  'SERIE_A': 'soccer_italy_serie_a',
+  'LIGUE_1': 'soccer_france_ligue_one',
+  'UCL': 'soccer_uefa_champs_league',
+  'EUROPA': 'soccer_uefa_europa_league',
+  'EFL_CHAMP': 'soccer_efl_champ',
+  'EREDIVISIE': 'soccer_netherlands_eredivisie',
+  'LIGA_MX': 'soccer_mexico_ligamx',
+  'FA_CUP': 'soccer_fa_cup',
+  // Tennis
   'TENNIS_AO': 'tennis_atp_australian_open',
   'TENNIS_FO': 'tennis_atp_french_open',
   'TENNIS_USO': 'tennis_atp_us_open',
   'TENNIS_WIM': 'tennis_atp_wimbledon',
+  // Golf
+  'MASTERS': 'golf_masters_tournament_winner',
+  'PGA_CHAMP': 'golf_pga_championship_winner',
+  'US_OPEN': 'golf_us_open_winner',
+  'THE_OPEN': 'golf_the_open_championship_winner',
+  // Combat Sports
+  'MMA': 'mma_mixed_martial_arts',
+  'BOXING': 'boxing_boxing',
+  // Other
+  'NRL': 'rugbyleague_nrl',
+  'AFL': 'aussierules_afl',
+  'IPL': 'cricket_ipl',
+  'BIG_BASH': 'cricket_big_bash',
 };
 
 function getSupabase() {
@@ -58,10 +92,8 @@ async function fetchLiveScores(): Promise<Record<string, any>> {
 
   if (!ODDS_API_KEY) return scores;
 
-  const sportKeys = [
-    'americanfootball_nfl', 'basketball_nba', 'icehockey_nhl',
-    'americanfootball_ncaaf', 'basketball_ncaab', 'baseball_mlb', 'basketball_wnba'
-  ];
+  // All sports that can have live scores
+  const sportKeys = Object.values(SPORT_MAPPING);
 
   try {
     // Fetch scores for each sport in parallel
@@ -813,7 +845,8 @@ async function fetchFromCache(
 }
 
 export default async function SportsPage() {
-  const sports = ['NFL', 'NBA', 'NHL', 'NCAAF', 'NCAAB', 'MLB', 'WNBA', 'MMA', 'TENNIS_AO', 'TENNIS_FO', 'TENNIS_USO', 'TENNIS_WIM'];
+  // All sports that have mappings in SPORT_MAPPING
+  const sports = Object.keys(SPORT_MAPPING);
   const allGames: Record<string, any[]> = {};
   let dataSource: 'backend' | 'odds_api' | 'none' = 'none';
   let totalGames = 0;

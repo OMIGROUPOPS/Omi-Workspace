@@ -862,7 +862,7 @@ export async function GET() {
         .filter((g: any) => new Date(g.commenceTime).getTime() > fourHoursAgo)
         .sort((a: any, b: any) => new Date(a.commenceTime).getTime() - new Date(b.commenceTime).getTime());
 
-      // Debug logging for NBA (minimal)
+      // Debug logging for NBA
       if (sportKey === 'basketball_nba') {
         console.log(`[Dashboard API] NBA: ${sportData.length} cached -> ${processedGames.length} processed -> ${games.length} after filter`);
       }

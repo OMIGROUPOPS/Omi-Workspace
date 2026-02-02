@@ -91,7 +91,7 @@ function buildPerBookMarketGroups(gameData: any): Record<string, any> {
       marketsByKey[market.key] = market;
     }
 
-    const isSoccer = sportKey.includes('soccer');
+    const isSoccer = (gameData.sport_key || '').includes('soccer');
 
     const extractMarket = (h2hKey: string, spreadsKey: string, totalsKey: string) => {
       const h2hM = marketsByKey[h2hKey];

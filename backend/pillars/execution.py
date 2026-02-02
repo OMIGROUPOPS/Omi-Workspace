@@ -161,15 +161,10 @@ def calculate_execution_score(
             logger.info(f"[Execution] Fetching soccer standings for {home_team} vs {away_team} (using={'Football-Data' if USING_FOOTBALL_DATA else 'API-Football'})...")
 
             # Use the appropriate API based on which key is available
+            # All functions are now synchronous - no asyncio needed
             standings = None
             if USING_FOOTBALL_DATA:
-                import asyncio
-                try:
-                    loop = asyncio.get_event_loop()
-                except RuntimeError:
-                    loop = asyncio.new_event_loop()
-                    asyncio.set_event_loop(loop)
-                standings = loop.run_until_complete(get_epl_standings())
+                standings = get_epl_standings()
             elif USING_API_FOOTBALL:
                 standings = get_league_standings_sync()
 

@@ -2,10 +2,12 @@
 API-Football (RapidAPI) integration for EPL data
 API: https://v3.football.api-sports.io/
 Auth: x-rapidapi-key header
+
+Uses synchronous requests to avoid async event loop conflicts with FastAPI.
 """
 
 import os
-import httpx
+import requests
 from typing import Optional, Dict, Any, List
 from datetime import datetime
 
@@ -102,9 +104,10 @@ def get_headers() -> Dict[str, str]:
     }
 
 
-async def get_league_standings(league_id: int = EPL_LEAGUE_ID, season: int = CURRENT_SEASON) -> Optional[Dict[str, Any]]:
+def get_league_standings(league_id: int = EPL_LEAGUE_ID, season: int = CURRENT_SEASON) -> Optional[Dict[str, Any]]:
     """
     Fetch league standings.
+    SYNCHRONOUS - safe to call from FastAPI/async context.
 
     Args:
         league_id: League ID (default: EPL)
@@ -118,59 +121,59 @@ async def get_league_standings(league_id: int = EPL_LEAGUE_ID, season: int = CUR
         return None
 
     try:
-        async with httpx.AsyncClient() as client:
-            response = await client.get(
-                f"{BASE_URL}/standings",
-                headers=get_headers(),
-                params={
-                    "league": league_id,
-                    "season": season
-                },
-                timeout=10.0
-            )
+        response = requests.get(
+            f"{BASE_URL}/standings",
+            headers=get_headers(),
+            params={
+                "league": league_id,
+                "season": season
+            },
+            timeout=10.0
+        )
 
-            if response.status_code != 200:
-                print(f"[API-FOOTBALL] Standings request failed: {response.status_code}")
-                return None
+        if response.status_code != 200:
+            print(f"[API-FOOTBALL] Standings request failed: {response.status_code}")
+            return None
 
-            data = response.json()
+        data = response.json()
 
-            if data.get("errors"):
-                print(f"[API-FOOTBALL] API errors: {data['errors']}")
-                return None
+        if data.get("errors"):
+            print(f"[API-FOOTBALL] API errors: {data['errors']}")
+            return None
 
-            standings = {}
-            response_data = data.get("response", [])
-            if response_data:
-                for league in response_data:
-                    for standing in league.get("league", {}).get("standings", [[]])[0]:
-                        team = standing.get("team", {})
-                        team_name = team.get("name", "")
-                        standings[team_name] = {
-                            "position": standing.get("rank"),
-                            "points": standing.get("points"),
-                            "played": standing.get("all", {}).get("played"),
-                            "won": standing.get("all", {}).get("win"),
-                            "draw": standing.get("all", {}).get("draw"),
-                            "lost": standing.get("all", {}).get("lose"),
-                            "goals_for": standing.get("all", {}).get("goals", {}).get("for"),
-                            "goals_against": standing.get("all", {}).get("goals", {}).get("against"),
-                            "goal_difference": standing.get("goalsDiff"),
-                            "form": standing.get("form", ""),  # e.g., "WWDLW"
-                            "team_id": team.get("id"),
-                            "logo": team.get("logo"),
-                        }
+        standings = {}
+        response_data = data.get("response", [])
+        if response_data:
+            for league in response_data:
+                for standing in league.get("league", {}).get("standings", [[]])[0]:
+                    team = standing.get("team", {})
+                    team_name = team.get("name", "")
+                    standings[team_name] = {
+                        "position": standing.get("rank"),
+                        "points": standing.get("points"),
+                        "played": standing.get("all", {}).get("played"),
+                        "won": standing.get("all", {}).get("win"),
+                        "draw": standing.get("all", {}).get("draw"),
+                        "lost": standing.get("all", {}).get("lose"),
+                        "goals_for": standing.get("all", {}).get("goals", {}).get("for"),
+                        "goals_against": standing.get("all", {}).get("goals", {}).get("against"),
+                        "goal_difference": standing.get("goalsDiff"),
+                        "form": standing.get("form", ""),  # e.g., "WWDLW"
+                        "team_id": team.get("id"),
+                        "logo": team.get("logo"),
+                    }
 
-            return standings
+        return standings
 
     except Exception as e:
         print(f"[API-FOOTBALL] Error fetching standings: {e}")
         return None
 
 
-async def get_team_injuries(team_id: int, season: int = CURRENT_SEASON) -> Optional[List[Dict[str, Any]]]:
+def get_team_injuries(team_id: int, season: int = CURRENT_SEASON) -> Optional[List[Dict[str, Any]]]:
     """
     Fetch injuries for a specific team.
+    SYNCHRONOUS - safe to call from FastAPI/async context.
 
     Args:
         team_id: API-Football team ID
@@ -184,51 +187,51 @@ async def get_team_injuries(team_id: int, season: int = CURRENT_SEASON) -> Optio
         return None
 
     try:
-        async with httpx.AsyncClient() as client:
-            response = await client.get(
-                f"{BASE_URL}/injuries",
-                headers=get_headers(),
-                params={
-                    "team": team_id,
-                    "season": season
-                },
-                timeout=10.0
-            )
+        response = requests.get(
+            f"{BASE_URL}/injuries",
+            headers=get_headers(),
+            params={
+                "team": team_id,
+                "season": season
+            },
+            timeout=10.0
+        )
 
-            if response.status_code != 200:
-                print(f"[API-FOOTBALL] Injuries request failed: {response.status_code}")
-                return None
+        if response.status_code != 200:
+            print(f"[API-FOOTBALL] Injuries request failed: {response.status_code}")
+            return None
 
-            data = response.json()
+        data = response.json()
 
-            if data.get("errors"):
-                print(f"[API-FOOTBALL] API errors: {data['errors']}")
-                return None
+        if data.get("errors"):
+            print(f"[API-FOOTBALL] API errors: {data['errors']}")
+            return None
 
-            injuries = []
-            for item in data.get("response", []):
-                player = item.get("player", {})
-                fixture = item.get("fixture", {})
-                injuries.append({
-                    "player_name": player.get("name"),
-                    "player_id": player.get("id"),
-                    "player_photo": player.get("photo"),
-                    "type": player.get("type"),  # e.g., "Knee Injury"
-                    "reason": player.get("reason"),
-                    "fixture_id": fixture.get("id"),
-                    "fixture_date": fixture.get("date"),
-                })
+        injuries = []
+        for item in data.get("response", []):
+            player = item.get("player", {})
+            fixture = item.get("fixture", {})
+            injuries.append({
+                "player_name": player.get("name"),
+                "player_id": player.get("id"),
+                "player_photo": player.get("photo"),
+                "type": player.get("type"),  # e.g., "Knee Injury"
+                "reason": player.get("reason"),
+                "fixture_id": fixture.get("id"),
+                "fixture_date": fixture.get("date"),
+            })
 
-            return injuries
+        return injuries
 
     except Exception as e:
         print(f"[API-FOOTBALL] Error fetching injuries: {e}")
         return None
 
 
-async def get_head_to_head(team1_id: int, team2_id: int, last: int = 10) -> Optional[List[Dict[str, Any]]]:
+def get_head_to_head(team1_id: int, team2_id: int, last: int = 10) -> Optional[List[Dict[str, Any]]]:
     """
     Fetch head-to-head record between two teams.
+    SYNCHRONOUS - safe to call from FastAPI/async context.
 
     Args:
         team1_id: First team's API-Football ID
@@ -243,57 +246,57 @@ async def get_head_to_head(team1_id: int, team2_id: int, last: int = 10) -> Opti
         return None
 
     try:
-        async with httpx.AsyncClient() as client:
-            response = await client.get(
-                f"{BASE_URL}/fixtures/headtohead",
-                headers=get_headers(),
-                params={
-                    "h2h": f"{team1_id}-{team2_id}",
-                    "last": last
-                },
-                timeout=10.0
-            )
+        response = requests.get(
+            f"{BASE_URL}/fixtures/headtohead",
+            headers=get_headers(),
+            params={
+                "h2h": f"{team1_id}-{team2_id}",
+                "last": last
+            },
+            timeout=10.0
+        )
 
-            if response.status_code != 200:
-                print(f"[API-FOOTBALL] H2H request failed: {response.status_code}")
-                return None
+        if response.status_code != 200:
+            print(f"[API-FOOTBALL] H2H request failed: {response.status_code}")
+            return None
 
-            data = response.json()
+        data = response.json()
 
-            if data.get("errors"):
-                print(f"[API-FOOTBALL] API errors: {data['errors']}")
-                return None
+        if data.get("errors"):
+            print(f"[API-FOOTBALL] API errors: {data['errors']}")
+            return None
 
-            matches = []
-            for fixture in data.get("response", []):
-                teams = fixture.get("teams", {})
-                goals = fixture.get("goals", {})
-                score = fixture.get("score", {})
+        matches = []
+        for fixture in data.get("response", []):
+            teams = fixture.get("teams", {})
+            goals = fixture.get("goals", {})
+            score = fixture.get("score", {})
 
-                matches.append({
-                    "fixture_id": fixture.get("fixture", {}).get("id"),
-                    "date": fixture.get("fixture", {}).get("date"),
-                    "venue": fixture.get("fixture", {}).get("venue", {}).get("name"),
-                    "home_team": teams.get("home", {}).get("name"),
-                    "away_team": teams.get("away", {}).get("name"),
-                    "home_goals": goals.get("home"),
-                    "away_goals": goals.get("away"),
-                    "home_winner": teams.get("home", {}).get("winner"),
-                    "away_winner": teams.get("away", {}).get("winner"),
-                    "fulltime": score.get("fulltime"),
-                    "halftime": score.get("halftime"),
-                })
+            matches.append({
+                "fixture_id": fixture.get("fixture", {}).get("id"),
+                "date": fixture.get("fixture", {}).get("date"),
+                "venue": fixture.get("fixture", {}).get("venue", {}).get("name"),
+                "home_team": teams.get("home", {}).get("name"),
+                "away_team": teams.get("away", {}).get("name"),
+                "home_goals": goals.get("home"),
+                "away_goals": goals.get("away"),
+                "home_winner": teams.get("home", {}).get("winner"),
+                "away_winner": teams.get("away", {}).get("winner"),
+                "fulltime": score.get("fulltime"),
+                "halftime": score.get("halftime"),
+            })
 
-            return matches
+        return matches
 
     except Exception as e:
         print(f"[API-FOOTBALL] Error fetching H2H: {e}")
         return None
 
 
-async def get_team_statistics(team_id: int, league_id: int = EPL_LEAGUE_ID, season: int = CURRENT_SEASON) -> Optional[Dict[str, Any]]:
+def get_team_statistics(team_id: int, league_id: int = EPL_LEAGUE_ID, season: int = CURRENT_SEASON) -> Optional[Dict[str, Any]]:
     """
     Fetch team statistics for the season.
+    SYNCHRONOUS - safe to call from FastAPI/async context.
 
     Args:
         team_id: API-Football team ID
@@ -308,54 +311,53 @@ async def get_team_statistics(team_id: int, league_id: int = EPL_LEAGUE_ID, seas
         return None
 
     try:
-        async with httpx.AsyncClient() as client:
-            response = await client.get(
-                f"{BASE_URL}/teams/statistics",
-                headers=get_headers(),
-                params={
-                    "team": team_id,
-                    "league": league_id,
-                    "season": season
-                },
-                timeout=10.0
-            )
+        response = requests.get(
+            f"{BASE_URL}/teams/statistics",
+            headers=get_headers(),
+            params={
+                "team": team_id,
+                "league": league_id,
+                "season": season
+            },
+            timeout=10.0
+        )
 
-            if response.status_code != 200:
-                print(f"[API-FOOTBALL] Stats request failed: {response.status_code}")
-                return None
+        if response.status_code != 200:
+            print(f"[API-FOOTBALL] Stats request failed: {response.status_code}")
+            return None
 
-            data = response.json()
+        data = response.json()
 
-            if data.get("errors"):
-                print(f"[API-FOOTBALL] API errors: {data['errors']}")
-                return None
+        if data.get("errors"):
+            print(f"[API-FOOTBALL] API errors: {data['errors']}")
+            return None
 
-            response_data = data.get("response", {})
-            if not response_data:
-                return None
+        response_data = data.get("response", {})
+        if not response_data:
+            return None
 
-            fixtures = response_data.get("fixtures", {})
-            goals = response_data.get("goals", {})
+        fixtures = response_data.get("fixtures", {})
+        goals = response_data.get("goals", {})
 
-            return {
-                "team": response_data.get("team", {}).get("name"),
-                "form": response_data.get("form"),
-                "played_home": fixtures.get("played", {}).get("home"),
-                "played_away": fixtures.get("played", {}).get("away"),
-                "wins_home": fixtures.get("wins", {}).get("home"),
-                "wins_away": fixtures.get("wins", {}).get("away"),
-                "draws_home": fixtures.get("draws", {}).get("home"),
-                "draws_away": fixtures.get("draws", {}).get("away"),
-                "loses_home": fixtures.get("loses", {}).get("home"),
-                "loses_away": fixtures.get("loses", {}).get("away"),
-                "goals_for_home": goals.get("for", {}).get("total", {}).get("home"),
-                "goals_for_away": goals.get("for", {}).get("total", {}).get("away"),
-                "goals_against_home": goals.get("against", {}).get("total", {}).get("home"),
-                "goals_against_away": goals.get("against", {}).get("total", {}).get("away"),
-                "clean_sheets": response_data.get("clean_sheet", {}),
-                "failed_to_score": response_data.get("failed_to_score", {}),
-                "biggest_streak": response_data.get("biggest", {}).get("streak", {}),
-            }
+        return {
+            "team": response_data.get("team", {}).get("name"),
+            "form": response_data.get("form"),
+            "played_home": fixtures.get("played", {}).get("home"),
+            "played_away": fixtures.get("played", {}).get("away"),
+            "wins_home": fixtures.get("wins", {}).get("home"),
+            "wins_away": fixtures.get("wins", {}).get("away"),
+            "draws_home": fixtures.get("draws", {}).get("home"),
+            "draws_away": fixtures.get("draws", {}).get("away"),
+            "loses_home": fixtures.get("loses", {}).get("home"),
+            "loses_away": fixtures.get("loses", {}).get("away"),
+            "goals_for_home": goals.get("for", {}).get("total", {}).get("home"),
+            "goals_for_away": goals.get("for", {}).get("total", {}).get("away"),
+            "goals_against_home": goals.get("against", {}).get("total", {}).get("home"),
+            "goals_against_away": goals.get("against", {}).get("total", {}).get("away"),
+            "clean_sheets": response_data.get("clean_sheet", {}),
+            "failed_to_score": response_data.get("failed_to_score", {}),
+            "biggest_streak": response_data.get("biggest", {}).get("streak", {}),
+        }
 
     except Exception as e:
         print(f"[API-FOOTBALL] Error fetching team statistics: {e}")
@@ -390,9 +392,10 @@ def get_team_id(team_name: str) -> Optional[int]:
     return None
 
 
-async def get_match_context(home_team: str, away_team: str) -> Dict[str, Any]:
+def get_match_context(home_team: str, away_team: str) -> Dict[str, Any]:
     """
     Get comprehensive match context for a fixture.
+    SYNCHRONOUS - safe to call from FastAPI/async context.
 
     Args:
         home_team: Home team name
@@ -414,7 +417,7 @@ async def get_match_context(home_team: str, away_team: str) -> Dict[str, Any]:
     }
 
     # Get standings
-    standings = await get_league_standings()
+    standings = get_league_standings()
     if standings:
         home_standing = None
         away_standing = None
@@ -430,35 +433,23 @@ async def get_match_context(home_team: str, away_team: str) -> Dict[str, Any]:
 
     # Get injuries
     if home_id:
-        context["home_injuries"] = await get_team_injuries(home_id) or []
+        context["home_injuries"] = get_team_injuries(home_id) or []
     if away_id:
-        context["away_injuries"] = await get_team_injuries(away_id) or []
+        context["away_injuries"] = get_team_injuries(away_id) or []
 
     # Get H2H
     if home_id and away_id:
-        context["h2h"] = await get_head_to_head(home_id, away_id) or []
+        context["h2h"] = get_head_to_head(home_id, away_id) or []
 
     return context
 
 
-# Sync wrappers for use in non-async contexts
+# Legacy aliases for backwards compatibility (all functions are now synchronous)
 def get_league_standings_sync(league_id: int = EPL_LEAGUE_ID, season: int = CURRENT_SEASON) -> Optional[Dict[str, Any]]:
-    """Synchronous wrapper for get_league_standings."""
-    import asyncio
-    try:
-        loop = asyncio.get_event_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-    return loop.run_until_complete(get_league_standings(league_id, season))
+    """Alias for get_league_standings (now synchronous)."""
+    return get_league_standings(league_id, season)
 
 
 def get_match_context_sync(home_team: str, away_team: str) -> Dict[str, Any]:
-    """Synchronous wrapper for get_match_context."""
-    import asyncio
-    try:
-        loop = asyncio.get_event_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-    return loop.run_until_complete(get_match_context(home_team, away_team))
+    """Alias for get_match_context (now synchronous)."""
+    return get_match_context(home_team, away_team)

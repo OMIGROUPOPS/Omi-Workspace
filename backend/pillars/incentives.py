@@ -80,16 +80,41 @@ RIVALRIES = {
 }
 
 # Try to import soccer data sources
+# Priority: Football-Data.org (FOOTBALL_DATA_API_KEY) then API-Football (API_FOOTBALL_KEY)
+SOCCER_DATA_AVAILABLE = False
+USING_FOOTBALL_DATA = False
+USING_API_FOOTBALL = False
+
 try:
-    from data_sources.api_football import get_league_standings_sync
-    SOCCER_DATA_AVAILABLE = True
-except ImportError:
-    SOCCER_DATA_AVAILABLE = False
+    from data_sources.football_data import get_epl_standings
+    import os
+    if os.getenv("FOOTBALL_DATA_API_KEY"):
+        SOCCER_DATA_AVAILABLE = True
+        USING_FOOTBALL_DATA = True
+        logger.info("[Incentives] Football-Data.org API key found - using Football-Data")
+except ImportError as e:
+    logger.warning(f"[Incentives] Football-Data not available: {e}")
+
+if not SOCCER_DATA_AVAILABLE:
+    try:
+        from data_sources.api_football import get_league_standings_sync
+        import os
+        if os.getenv("API_FOOTBALL_KEY"):
+            SOCCER_DATA_AVAILABLE = True
+            USING_API_FOOTBALL = True
+            logger.info("[Incentives] API-Football key found - using API-Football")
+    except ImportError as e:
+        logger.warning(f"[Incentives] API-Football not available: {e}")
 
 
 def is_rivalry_game(sport: str, team1: str, team2: str) -> bool:
     """Check if this matchup is a known rivalry."""
     sport_rivalries = RIVALRIES.get(sport, [])
+
+    # For soccer, also check the generic "soccer" rivalries
+    if sport and "soccer" in sport.lower():
+        sport_rivalries = sport_rivalries + RIVALRIES.get("soccer", [])
+
     for r1, r2 in sport_rivalries:
         if (team1.lower() in r1.lower() or r1.lower() in team1.lower()) and \
            (team2.lower() in r2.lower() or r2.lower() in team2.lower()):
@@ -181,9 +206,27 @@ def calculate_incentives_score(
     # SOCCER-SPECIFIC: Title race (top 4) vs relegation battle (bottom 3)
     title_race_alert = False
     relegation_battle_alert = False
-    if sport in ["soccer", "soccer_epl", "soccer_england_championship"] and SOCCER_DATA_AVAILABLE:
+    is_soccer_sport = sport and ("soccer" in sport.lower() or sport.lower().startswith("soccer"))
+    logger.info(f"[Incentives] Sport check: sport={sport}, is_soccer={is_soccer_sport}, SOCCER_DATA_AVAILABLE={SOCCER_DATA_AVAILABLE}")
+
+    if is_soccer_sport and SOCCER_DATA_AVAILABLE:
         try:
-            standings = get_league_standings_sync()
+            logger.info(f"[Incentives] Fetching soccer standings for {home_team} vs {away_team} (using={'Football-Data' if USING_FOOTBALL_DATA else 'API-Football'})...")
+
+            # Use the appropriate API based on which key is available
+            standings = None
+            if USING_FOOTBALL_DATA:
+                import asyncio
+                try:
+                    loop = asyncio.get_event_loop()
+                except RuntimeError:
+                    loop = asyncio.new_event_loop()
+                    asyncio.set_event_loop(loop)
+                standings = loop.run_until_complete(get_epl_standings())
+            elif USING_API_FOOTBALL:
+                standings = get_league_standings_sync()
+
+            logger.info(f"[Incentives] Got standings: {len(standings) if standings else 0} teams")
             if standings:
                 home_pos = None
                 away_pos = None

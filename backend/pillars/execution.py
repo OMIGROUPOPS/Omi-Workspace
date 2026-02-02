@@ -16,12 +16,34 @@ import logging
 from data_sources.espn import espn_client
 
 # Try to import soccer data sources (optional - may not have API keys)
+# Priority: Football-Data.org (FOOTBALL_DATA_API_KEY) then API-Football (API_FOOTBALL_KEY)
+SOCCER_DATA_AVAILABLE = False
+USING_FOOTBALL_DATA = False
+USING_API_FOOTBALL = False
+
 try:
-    from data_sources.football_data import get_team_standings_data_sync
-    from data_sources.api_football import get_league_standings_sync, get_team_injuries
-    SOCCER_DATA_AVAILABLE = True
-except ImportError:
-    SOCCER_DATA_AVAILABLE = False
+    from data_sources.football_data import get_epl_standings, get_team_standings_data_sync
+    import os
+    if os.getenv("FOOTBALL_DATA_API_KEY"):
+        SOCCER_DATA_AVAILABLE = True
+        USING_FOOTBALL_DATA = True
+        logger.info("[Execution] Football-Data.org API key found - using Football-Data")
+except ImportError as e:
+    logger.warning(f"[Execution] Football-Data not available: {e}")
+
+if not SOCCER_DATA_AVAILABLE:
+    try:
+        from data_sources.api_football import get_league_standings_sync
+        import os
+        if os.getenv("API_FOOTBALL_KEY"):
+            SOCCER_DATA_AVAILABLE = True
+            USING_API_FOOTBALL = True
+            logger.info("[Execution] API-Football key found - using API-Football")
+    except ImportError as e:
+        logger.warning(f"[Execution] API-Football not available: {e}")
+
+if not SOCCER_DATA_AVAILABLE:
+    logger.warning("[Execution] No soccer data sources available - need FOOTBALL_DATA_API_KEY or API_FOOTBALL_KEY")
 
 logger = logging.getLogger(__name__)
 
@@ -112,9 +134,28 @@ def calculate_execution_score(
     injury_differential = home_injury_score - away_injury_score
 
     # SOCCER-SPECIFIC: Use league standings and form
-    if sport in ["soccer", "soccer_epl", "soccer_england_championship"] and SOCCER_DATA_AVAILABLE:
+    # Match any soccer sport key (soccer_epl, soccer_england_efl_champ, etc.)
+    is_soccer_sport = sport and ("soccer" in sport.lower() or sport.lower().startswith("soccer"))
+    logger.info(f"[Execution] Sport check: sport={sport}, is_soccer={is_soccer_sport}, SOCCER_DATA_AVAILABLE={SOCCER_DATA_AVAILABLE}")
+
+    if is_soccer_sport and SOCCER_DATA_AVAILABLE:
         try:
-            standings = get_league_standings_sync()
+            logger.info(f"[Execution] Fetching soccer standings for {home_team} vs {away_team} (using={'Football-Data' if USING_FOOTBALL_DATA else 'API-Football'})...")
+
+            # Use the appropriate API based on which key is available
+            standings = None
+            if USING_FOOTBALL_DATA:
+                import asyncio
+                try:
+                    loop = asyncio.get_event_loop()
+                except RuntimeError:
+                    loop = asyncio.new_event_loop()
+                    asyncio.set_event_loop(loop)
+                standings = loop.run_until_complete(get_epl_standings())
+            elif USING_API_FOOTBALL:
+                standings = get_league_standings_sync()
+
+            logger.info(f"[Execution] Got standings: {len(standings) if standings else 0} teams")
             if standings:
                 home_standing = None
                 away_standing = None

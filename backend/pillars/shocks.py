@@ -17,11 +17,18 @@ from data_sources.espn import espn_client
 logger = logging.getLogger(__name__)
 
 # Try to import soccer data sources
+# For injuries, we need API-Football (Football-Data doesn't have injury data)
+SOCCER_DATA_AVAILABLE = False
 try:
     from data_sources.api_football import get_team_injuries, get_team_id
-    SOCCER_DATA_AVAILABLE = True
-except ImportError:
-    SOCCER_DATA_AVAILABLE = False
+    import os
+    if os.getenv("API_FOOTBALL_KEY"):
+        SOCCER_DATA_AVAILABLE = True
+        logger.info("[Shocks] API-Football key found - injuries available")
+    else:
+        logger.info("[Shocks] No API_FOOTBALL_KEY - soccer injury data not available")
+except ImportError as e:
+    logger.warning(f"[Shocks] API-Football not available: {e}")
 
 
 def calculate_shocks_score(
@@ -97,11 +104,15 @@ def calculate_shocks_score(
 
     # SOCCER-SPECIFIC: Fetch injuries from API-Football
     soccer_injury_shock = False
-    if sport in ["soccer", "soccer_epl", "soccer_england_championship"] and SOCCER_DATA_AVAILABLE:
+    is_soccer_sport = sport and ("soccer" in sport.lower() or sport.lower().startswith("soccer"))
+    logger.info(f"[Shocks] Sport check: sport={sport}, is_soccer={is_soccer_sport}, SOCCER_DATA_AVAILABLE={SOCCER_DATA_AVAILABLE}")
+
+    if is_soccer_sport and SOCCER_DATA_AVAILABLE:
         try:
             import asyncio
             home_team_id = get_team_id(home_team)
             away_team_id = get_team_id(away_team)
+            logger.info(f"[Shocks] Soccer team IDs: home={home_team_id}, away={away_team_id}")
 
             if home_team_id or away_team_id:
                 loop = asyncio.new_event_loop()

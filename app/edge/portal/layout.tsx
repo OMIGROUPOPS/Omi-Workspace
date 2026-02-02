@@ -159,7 +159,7 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
                   const isLocked = item.tier && item.tier > userTier;
 
                   return (
-                    <Link
+                    <a
                       key={item.key}
                       href={isLocked ? '/edge/pricing' : item.href}
                       className={`
@@ -179,7 +179,7 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
                       {isActive && (
                         <div className="w-1 h-1 rounded-full bg-emerald-400 flex-shrink-0" />
                       )}
-                    </Link>
+                    </a>
                   );
                 })}
               </div>

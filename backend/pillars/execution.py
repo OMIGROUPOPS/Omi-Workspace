@@ -196,45 +196,78 @@ def calculate_execution_score(
 
                 if home_standing and away_standing:
                     # Position differential (lower position = better)
+                    # Positive = home team better, negative = away team better
                     home_pos = home_standing.get("position", 12)
                     away_pos = away_standing.get("position", 12)
-                    pos_diff = (away_pos - home_pos) / 20  # Normalize to -0.5 to 0.5
+                    pos_gap = away_pos - home_pos  # Positive if home is higher in table
 
-                    # Goal difference differential
+                    # AMPLIFIED position impact: 8 position gap = 20% swing
+                    # Scale: each position difference = 2.5% swing
+                    pos_adjustment = pos_gap * 0.025
+
+                    # Goal difference differential - secondary factor
                     home_gd = home_standing.get("goal_difference", 0)
                     away_gd = away_standing.get("goal_difference", 0)
-                    gd_diff = (home_gd - away_gd) / 30  # Normalize
+                    gd_gap = home_gd - away_gd  # Positive if home has better GD
 
-                    # Form analysis (recent 5 games)
+                    # GD impact: 10 GD difference = 10% swing
+                    gd_adjustment = min(max(gd_gap / 100, -0.15), 0.15)
+
+                    # Form analysis (recent 5 games) - W=3, D=1, L=0
                     home_form = home_standing.get("form", "")
                     away_form = away_standing.get("form", "")
                     home_form_score = _calculate_soccer_form_score(home_form)
                     away_form_score = _calculate_soccer_form_score(away_form)
-                    form_diff = (home_form_score - away_form_score) / 15  # Normalize
+                    form_gap = home_form_score - away_form_score  # Max 15 (all W vs all L)
 
-                    # Combine factors
-                    soccer_adjustment = (pos_diff * 0.4) + (gd_diff * 0.3) + (form_diff * 0.3)
+                    # Form impact: 15 point form gap = 15% swing
+                    form_adjustment = form_gap * 0.01
 
-                    # Adjust injury scores based on soccer data
-                    home_injury_score -= soccer_adjustment * 0.3
-                    away_injury_score += soccer_adjustment * 0.3
+                    # DIRECT soccer adjustment to final score
+                    # Weight: Position 50%, GD 25%, Form 25%
+                    soccer_adjustment = (pos_adjustment * 0.50) + (gd_adjustment * 0.25) + (form_adjustment * 0.25)
 
-                    if home_pos <= 4:
-                        reasoning_parts.append(f"{home_team} in top 4 (pos {home_pos})")
+                    # Store for later application to final score
+                    # Positive adjustment = HOME team advantage (score < 0.5)
+                    # We need to SUBTRACT because score > 0.5 means AWAY advantage
+                    home_injury_score += soccer_adjustment  # This will reduce final score (favor home)
+
+                    # Build detailed reasoning
+                    reasoning_parts.append(f"Position: {home_team} {home_pos}th vs {away_team} {away_pos}th")
+
+                    if abs(pos_gap) >= 5:
+                        if pos_gap > 0:
+                            reasoning_parts.append(f"SIGNIFICANT: {away_team} {abs(pos_gap)} places lower")
+                        else:
+                            reasoning_parts.append(f"SIGNIFICANT: {home_team} {abs(pos_gap)} places lower")
+
+                    if home_pos <= 6:
+                        reasoning_parts.append(f"{home_team} in promotion/European zone")
                     elif home_pos >= 18:
-                        reasoning_parts.append(f"{home_team} in relegation zone (pos {home_pos})")
+                        reasoning_parts.append(f"{home_team} in RELEGATION ZONE")
+                    elif home_pos >= 15:
+                        reasoning_parts.append(f"{home_team} in relegation danger")
 
-                    if away_pos <= 4:
-                        reasoning_parts.append(f"{away_team} in top 4 (pos {away_pos})")
+                    if away_pos <= 6:
+                        reasoning_parts.append(f"{away_team} in promotion/European zone")
                     elif away_pos >= 18:
-                        reasoning_parts.append(f"{away_team} in relegation zone (pos {away_pos})")
+                        reasoning_parts.append(f"{away_team} in RELEGATION ZONE")
+                    elif away_pos >= 15:
+                        reasoning_parts.append(f"{away_team} in relegation danger")
 
-                    if home_form:
+                    if home_form and away_form:
+                        reasoning_parts.append(f"Form: {home_team} {home_form} ({home_form_score}pts) vs {away_team} {away_form} ({away_form_score}pts)")
+                    elif home_form:
                         reasoning_parts.append(f"{home_team} form: {home_form}")
-                    if away_form:
+                    elif away_form:
                         reasoning_parts.append(f"{away_team} form: {away_form}")
 
-                    logger.info(f"[Execution] Soccer context: Home pos={home_pos}, Away pos={away_pos}, adjustment={soccer_adjustment:.3f}")
+                    if gd_gap != 0:
+                        reasoning_parts.append(f"GD: {home_team} {home_gd:+d} vs {away_team} {away_gd:+d}")
+
+                    logger.info(f"[Execution] Soccer: pos_gap={pos_gap}, gd_gap={gd_gap}, form_gap={form_gap}")
+                    logger.info(f"[Execution] Adjustments: pos={pos_adjustment:.3f}, gd={gd_adjustment:.3f}, form={form_adjustment:.3f}")
+                    logger.info(f"[Execution] Total soccer_adjustment={soccer_adjustment:.3f}")
 
         except Exception as e:
             logger.warning(f"[Execution] Soccer data fetch failed: {e}")

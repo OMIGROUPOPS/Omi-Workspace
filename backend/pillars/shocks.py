@@ -116,6 +116,7 @@ def calculate_shocks_score(
 
     # SOCCER-SPECIFIC: Fetch injuries from API-Football
     soccer_injury_shock = False
+    soccer_injury_adjustment = 0.0
     is_soccer_sport = sport and ("soccer" in sport.lower() or sport.lower().startswith("soccer"))
     soccer_injuries_available = _is_soccer_injuries_available()
     logger.info(f"[Shocks] Sport check: sport={sport}, is_soccer={is_soccer_sport}, soccer_injuries_available={soccer_injuries_available}")
@@ -126,24 +127,42 @@ def calculate_shocks_score(
             away_team_id = get_team_id(away_team)
             logger.info(f"[Shocks] Soccer team IDs: home={home_team_id}, away={away_team_id}")
 
+            home_soccer_injuries = []
+            away_soccer_injuries = []
+
             # All functions are now synchronous - no asyncio needed
             if home_team_id:
                 home_soccer_injuries = get_team_injuries(home_team_id) or []
-                if home_soccer_injuries:
-                    soccer_injury_shock = True
-                    shock_magnitude += len(home_soccer_injuries) * 0.05
-                    if shock_direction == "neutral":
-                        shock_direction = "away"
-                    reasoning_parts.append(f"{home_team}: {len(home_soccer_injuries)} injuries reported")
-
             if away_team_id:
                 away_soccer_injuries = get_team_injuries(away_team_id) or []
-                if away_soccer_injuries:
-                    soccer_injury_shock = True
-                    shock_magnitude += len(away_soccer_injuries) * 0.05
-                    if shock_direction == "neutral":
-                        shock_direction = "home"
-                    reasoning_parts.append(f"{away_team}: {len(away_soccer_injuries)} injuries reported")
+
+            home_injury_count = len(home_soccer_injuries)
+            away_injury_count = len(away_soccer_injuries)
+            injury_diff = home_injury_count - away_injury_count
+
+            logger.info(f"[Shocks] Soccer injuries: home={home_injury_count}, away={away_injury_count}, diff={injury_diff}")
+
+            # Only count as shock if there's a meaningful difference
+            if abs(injury_diff) >= 3:
+                soccer_injury_shock = True
+
+                # More injuries = disadvantage for that team
+                # Positive diff (home has more) = away advantage (score > 0.5)
+                # Scale: 10 injury difference = 10% swing, max 20%
+                soccer_injury_adjustment = min(max(injury_diff / 100, -0.20), 0.20)
+
+                if injury_diff > 0:
+                    shock_direction = "away"  # Home has more injuries, favors away
+                    reasoning_parts.append(f"INJURY EDGE: {home_team} has {injury_diff} more injuries than {away_team}")
+                else:
+                    shock_direction = "home"  # Away has more injuries, favors home
+                    reasoning_parts.append(f"INJURY EDGE: {away_team} has {abs(injury_diff)} more injuries than {home_team}")
+
+                reasoning_parts.append(f"Injuries: {home_team} {home_injury_count} vs {away_team} {away_injury_count}")
+
+            elif home_injury_count > 0 or away_injury_count > 0:
+                # Minor note if injuries exist but no significant difference
+                reasoning_parts.append(f"Injuries similar: {home_team} {home_injury_count} vs {away_team} {away_injury_count}")
 
         except Exception as e:
             logger.warning(f"[Shocks] Soccer injury fetch failed: {e}")
@@ -172,7 +191,11 @@ def calculate_shocks_score(
     
     if key_player_shock:
         shock_detected = True
-    
+
+    # Soccer injury differential also counts as a shock
+    if soccer_injury_shock:
+        shock_detected = True
+
     time_factor = 1.0
     if time_to_game < 1:
         time_factor = 1.5
@@ -183,16 +206,22 @@ def calculate_shocks_score(
         time_factor = 0.7
         if shock_detected:
             reasoning_parts.append("Game is 24+ hours away - market has time to adjust")
-    
+
     base_score = 0.5
-    
+
+    # Apply standard shock adjustments
     if shock_detected:
         direction_multiplier = 1.0 if shock_direction == "away" else -1.0
         adjustment = min(shock_magnitude + movement_significance * 0.15, 0.4)
         adjustment *= direction_multiplier
         adjustment *= time_factor
         base_score += adjustment
-    
+
+    # Apply soccer-specific injury adjustment (already accounts for direction)
+    if soccer_injury_adjustment != 0:
+        base_score += soccer_injury_adjustment
+        logger.info(f"[Shocks] Applied soccer_injury_adjustment={soccer_injury_adjustment:.3f}")
+
     score = max(0.0, min(1.0, base_score))
     
     # Enhanced line movement velocity analysis

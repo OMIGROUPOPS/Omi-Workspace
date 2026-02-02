@@ -226,6 +226,7 @@ def calculate_incentives_score(
     # SOCCER-SPECIFIC: Title race (top 4) vs relegation battle (bottom 3)
     title_race_alert = False
     relegation_battle_alert = False
+    soccer_motivation_adjustment = 0.0  # Direct adjustment to final score
     is_soccer_sport = sport and ("soccer" in sport.lower() or sport.lower().startswith("soccer"))
     logger.info(f"[Incentives] Sport check: sport={sport}, is_soccer={is_soccer_sport}, soccer_source={soccer_source}")
 
@@ -233,8 +234,6 @@ def calculate_incentives_score(
         try:
             logger.info(f"[Incentives] Fetching soccer standings for {home_team} vs {away_team} (using={soccer_source})...")
 
-            # Use the appropriate API based on which key is available
-            # All functions are now synchronous - no asyncio needed
             standings = None
             if soccer_source == "football_data":
                 standings = get_epl_standings()
@@ -252,43 +251,84 @@ def calculate_incentives_score(
                         away_pos = data.get("position", 12)
 
                 if home_pos and away_pos:
-                    # Top 4 race (Champions League spots)
-                    home_in_top_4 = home_pos <= 4
-                    away_in_top_4 = away_pos <= 4
-                    home_chasing_top_4 = 5 <= home_pos <= 7
-                    away_chasing_top_4 = 5 <= away_pos <= 7
+                    logger.info(f"[Incentives] Positions: {home_team}={home_pos}, {away_team}={away_pos}")
 
-                    # Relegation zone (bottom 3)
+                    # Calculate motivation levels based on league position
+                    # Higher score = more desperate/motivated
+                    def get_position_motivation(pos):
+                        if pos <= 2:  # Title race
+                            return 0.95
+                        elif pos <= 4:  # CL spots
+                            return 0.90
+                        elif pos <= 7:  # Europa race
+                            return 0.80
+                        elif pos <= 14:  # Mid-table (nothing to play for)
+                            return 0.50
+                        elif pos <= 17:  # Above relegation (nervous)
+                            return 0.75
+                        else:  # Relegation zone (DESPERATE)
+                            return 1.0
+
+                    home_pos_motivation = get_position_motivation(home_pos)
+                    away_pos_motivation = get_position_motivation(away_pos)
+
+                    # Relegation zone detection
                     home_in_relegation = home_pos >= 18
                     away_in_relegation = away_pos >= 18
-                    home_above_relegation = 15 <= home_pos <= 17
-                    away_above_relegation = 15 <= away_pos <= 17
+                    home_mid_table = 8 <= home_pos <= 14
+                    away_mid_table = 8 <= away_pos <= 14
 
-                    # Title race motivation
-                    if home_in_top_4 and away_chasing_top_4:
-                        title_race_alert = True
-                        motivation_differential -= 0.12  # Home defending position
-                    elif away_in_top_4 and home_chasing_top_4:
-                        title_race_alert = True
-                        motivation_differential += 0.12  # Away defending position
-
-                    # Relegation battle motivation (DESPERATE games)
-                    if home_in_relegation:
+                    # CASE 1: Relegation team vs mid-table (HUGE motivation gap)
+                    # Mid-table has ADVANTAGE because relegation team is under pressure
+                    if home_in_relegation and away_mid_table:
                         relegation_battle_alert = True
-                        motivation_differential -= 0.20  # Home DESPERATE to stay up
-                        home_motivation = min(1.0, home_motivation + 0.3)
-                    if away_in_relegation:
+                        # Away (mid-table) has psychological edge - no pressure
+                        soccer_motivation_adjustment = 0.15  # Push score toward away
+                        reasoning_parts.append(f"RELEGATION PRESSURE: {home_team} ({home_pos}th) in survival mode")
+                        reasoning_parts.append(f"{away_team} ({away_pos}th) plays with freedom - no pressure")
+
+                    elif away_in_relegation and home_mid_table:
                         relegation_battle_alert = True
-                        motivation_differential += 0.20  # Away DESPERATE to stay up
-                        away_motivation = min(1.0, away_motivation + 0.3)
+                        # Home (mid-table) has psychological edge
+                        soccer_motivation_adjustment = -0.15  # Push score toward home
+                        reasoning_parts.append(f"RELEGATION PRESSURE: {away_team} ({away_pos}th) in survival mode")
+                        reasoning_parts.append(f"{home_team} ({home_pos}th) plays with freedom - no pressure")
 
-                    # Mid-table vs relegation/top 4
-                    if 8 <= home_pos <= 14 and (away_in_relegation or away_in_top_4):
-                        motivation_differential += 0.10  # Away has more to play for
-                    elif 8 <= away_pos <= 14 and (home_in_relegation or home_in_top_4):
-                        motivation_differential -= 0.10  # Home has more to play for
+                    # CASE 2: Both in relegation zone (both desperate, neutral)
+                    elif home_in_relegation and away_in_relegation:
+                        relegation_battle_alert = True
+                        soccer_motivation_adjustment = 0.0  # Both desperate = neutral
+                        reasoning_parts.append(f"RELEGATION SIX-POINTER: Both teams fighting for survival")
+                        reasoning_parts.append(f"{home_team} {home_pos}th vs {away_team} {away_pos}th")
 
-                    logger.info(f"[Incentives] Soccer positions: Home={home_pos}, Away={away_pos}")
+                    # CASE 3: Top 4/6 race
+                    elif home_pos <= 6 and away_pos <= 6:
+                        title_race_alert = True
+                        soccer_motivation_adjustment = 0.0  # Both motivated
+                        reasoning_parts.append(f"TOP OF TABLE CLASH: Both chasing European spots")
+
+                    # CASE 4: Top team vs relegation team (top team should win but less motivated)
+                    elif home_pos <= 6 and away_in_relegation:
+                        relegation_battle_alert = True
+                        soccer_motivation_adjustment = 0.08  # Slight away edge (desperation factor)
+                        reasoning_parts.append(f"{away_team} DESPERATE ({away_pos}th) vs comfortable {home_team} ({home_pos}th)")
+
+                    elif away_pos <= 6 and home_in_relegation:
+                        relegation_battle_alert = True
+                        soccer_motivation_adjustment = -0.08  # Slight home edge
+                        reasoning_parts.append(f"{home_team} DESPERATE ({home_pos}th) vs comfortable {away_team} ({away_pos}th)")
+
+                    # CASE 5: General position-based motivation
+                    else:
+                        motivation_gap = away_pos_motivation - home_pos_motivation
+                        # Scale: 0.5 motivation gap = 10% score adjustment
+                        soccer_motivation_adjustment = motivation_gap * 0.20
+                        if abs(motivation_gap) > 0.2:
+                            more_motivated = home_team if motivation_gap < 0 else away_team
+                            reasoning_parts.append(f"{more_motivated} more motivated based on league position")
+
+                    logger.info(f"[Incentives] Motivation: home={home_pos_motivation:.2f}, away={away_pos_motivation:.2f}")
+                    logger.info(f"[Incentives] soccer_motivation_adjustment={soccer_motivation_adjustment:.3f}")
 
         except Exception as e:
             logger.warning(f"[Incentives] Soccer data fetch failed: {e}")
@@ -321,11 +361,21 @@ def calculate_incentives_score(
         motivation_differential += 0.05  # Slight away edge (better team, seeding)
 
     logger.info(f"[Incentives] Final differential: {motivation_differential:.3f}")
-    
+    logger.info(f"[Incentives] Soccer motivation adjustment: {soccer_motivation_adjustment:.3f}")
+
     base_score = 0.5
-    score = base_score + (motivation_differential * 0.5)
-    score = max(0.0, min(1.0, score))
-    
+
+    # Apply standard motivation differential (increased multiplier from 0.5 to 0.8)
+    score = base_score + (motivation_differential * 0.8)
+
+    # Apply soccer-specific motivation adjustment DIRECTLY
+    score += soccer_motivation_adjustment
+
+    # Clamp to valid range but allow strong edges
+    score = max(0.15, min(0.85, score))
+
+    logger.info(f"[Incentives] Final score: {score:.3f}")
+
     reasoning_parts = []
 
     if is_championship:

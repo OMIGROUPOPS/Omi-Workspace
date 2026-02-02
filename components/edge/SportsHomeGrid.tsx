@@ -140,35 +140,110 @@ function BookIcon({ bookKey, size = 24 }: { bookKey: string; size?: number }) {
   );
 }
 
+// Sport pills grouped by category
 const SPORT_PILLS = [
-  { key: 'americanfootball_nfl', label: 'NFL', icon: 'football' },
-  { key: 'basketball_nba', label: 'NBA', icon: 'basketball' },
-  { key: 'icehockey_nhl', label: 'NHL', icon: 'hockey' },
-  { key: 'americanfootball_ncaaf', label: 'NCAAF', icon: 'football' },
-  { key: 'basketball_ncaab', label: 'NCAAB', icon: 'basketball' },
-  { key: 'baseball_mlb', label: 'MLB', icon: 'baseball' },
-  { key: 'basketball_wnba', label: 'WNBA', icon: 'basketball' },
-  { key: 'mma_mixed_martial_arts', label: 'MMA', icon: 'mma' },
-  { key: 'tennis_atp_australian_open', label: 'AUS Open', icon: 'tennis' },
-  { key: 'tennis_atp_french_open', label: 'FR Open', icon: 'tennis' },
-  { key: 'tennis_atp_us_open', label: 'US Open', icon: 'tennis' },
-  { key: 'tennis_atp_wimbledon', label: 'Wimbledon', icon: 'tennis' },
-  { key: 'soccer_epl', label: 'Soccer', icon: 'soccer' },
+  // American Football
+  { key: 'americanfootball_nfl', label: 'NFL', icon: 'football', group: 'Football' },
+  { key: 'americanfootball_ncaaf', label: 'NCAAF', icon: 'football', group: 'Football' },
+
+  // Basketball
+  { key: 'basketball_nba', label: 'NBA', icon: 'basketball', group: 'Basketball' },
+  { key: 'basketball_ncaab', label: 'NCAAB', icon: 'basketball', group: 'Basketball' },
+  { key: 'basketball_wnba', label: 'WNBA', icon: 'basketball', group: 'Basketball' },
+  { key: 'basketball_euroleague', label: 'EuroLg', icon: 'basketball', group: 'Basketball' },
+
+  // Hockey
+  { key: 'icehockey_nhl', label: 'NHL', icon: 'hockey', group: 'Hockey' },
+  { key: 'icehockey_ahl', label: 'AHL', icon: 'hockey', group: 'Hockey' },
+  { key: 'icehockey_sweden_hockey_league', label: 'SHL', icon: 'hockey', group: 'Hockey' },
+  { key: 'icehockey_liiga', label: 'Liiga', icon: 'hockey', group: 'Hockey' },
+
+  // Baseball
+  { key: 'baseball_mlb', label: 'MLB', icon: 'baseball', group: 'Baseball' },
+
+  // Soccer - Major
+  { key: 'soccer_usa_mls', label: 'MLS', icon: 'soccer', group: 'Soccer' },
+  { key: 'soccer_epl', label: 'EPL', icon: 'soccer', group: 'Soccer' },
+  { key: 'soccer_spain_la_liga', label: 'La Liga', icon: 'soccer', group: 'Soccer' },
+  { key: 'soccer_germany_bundesliga', label: 'Bundes', icon: 'soccer', group: 'Soccer' },
+  { key: 'soccer_italy_serie_a', label: 'Serie A', icon: 'soccer', group: 'Soccer' },
+  { key: 'soccer_france_ligue_one', label: 'Ligue 1', icon: 'soccer', group: 'Soccer' },
+  { key: 'soccer_uefa_champs_league', label: 'UCL', icon: 'soccer', group: 'Soccer' },
+  { key: 'soccer_uefa_europa_league', label: 'Europa', icon: 'soccer', group: 'Soccer' },
+  { key: 'soccer_efl_champ', label: 'EFL Ch', icon: 'soccer', group: 'Soccer' },
+  { key: 'soccer_netherlands_eredivisie', label: 'Erediv', icon: 'soccer', group: 'Soccer' },
+  { key: 'soccer_mexico_ligamx', label: 'Liga MX', icon: 'soccer', group: 'Soccer' },
+  { key: 'soccer_fa_cup', label: 'FA Cup', icon: 'soccer', group: 'Soccer' },
+
+  // Tennis
+  { key: 'tennis_atp_australian_open', label: 'AUS Open', icon: 'tennis', group: 'Tennis' },
+  { key: 'tennis_atp_french_open', label: 'FR Open', icon: 'tennis', group: 'Tennis' },
+  { key: 'tennis_atp_us_open', label: 'US Open', icon: 'tennis', group: 'Tennis' },
+  { key: 'tennis_atp_wimbledon', label: 'Wimbledon', icon: 'tennis', group: 'Tennis' },
+
+  // Golf
+  { key: 'golf_masters_tournament_winner', label: 'Masters', icon: 'golf', group: 'Golf' },
+  { key: 'golf_pga_championship_winner', label: 'PGA', icon: 'golf', group: 'Golf' },
+  { key: 'golf_us_open_winner', label: 'US Open', icon: 'golf', group: 'Golf' },
+  { key: 'golf_the_open_championship_winner', label: 'The Open', icon: 'golf', group: 'Golf' },
+
+  // Combat Sports
+  { key: 'mma_mixed_martial_arts', label: 'UFC', icon: 'mma', group: 'Combat' },
+  { key: 'boxing_boxing', label: 'Boxing', icon: 'boxing', group: 'Combat' },
+
+  // Other
+  { key: 'rugbyleague_nrl', label: 'NRL', icon: 'rugby', group: 'Other' },
+  { key: 'aussierules_afl', label: 'AFL', icon: 'afl', group: 'Other' },
+  { key: 'cricket_ipl', label: 'IPL', icon: 'cricket', group: 'Other' },
+  { key: 'cricket_big_bash', label: 'Big Bash', icon: 'cricket', group: 'Other' },
 ];
 
 const SPORT_ORDER = [
+  // US Major Sports first
   'americanfootball_nfl',
   'basketball_nba',
   'icehockey_nhl',
+  'baseball_mlb',
   'americanfootball_ncaaf',
   'basketball_ncaab',
-  'baseball_mlb',
   'basketball_wnba',
+  // Soccer
+  'soccer_usa_mls',
+  'soccer_epl',
+  'soccer_spain_la_liga',
+  'soccer_germany_bundesliga',
+  'soccer_italy_serie_a',
+  'soccer_france_ligue_one',
+  'soccer_uefa_champs_league',
+  'soccer_uefa_europa_league',
+  'soccer_efl_champ',
+  'soccer_netherlands_eredivisie',
+  'soccer_mexico_ligamx',
+  'soccer_fa_cup',
+  // Combat Sports
   'mma_mixed_martial_arts',
+  'boxing_boxing',
+  // Tennis
   'tennis_atp_australian_open',
   'tennis_atp_french_open',
   'tennis_atp_us_open',
   'tennis_atp_wimbledon',
+  // Golf
+  'golf_masters_tournament_winner',
+  'golf_pga_championship_winner',
+  'golf_us_open_winner',
+  'golf_the_open_championship_winner',
+  // Hockey - Other
+  'icehockey_ahl',
+  'icehockey_sweden_hockey_league',
+  'icehockey_liiga',
+  // Basketball - Other
+  'basketball_euroleague',
+  // Other Sports
+  'rugbyleague_nrl',
+  'aussierules_afl',
+  'cricket_ipl',
+  'cricket_big_bash',
 ];
 
 const AVAILABLE_BOOKS = ['fanduel', 'draftkings'];

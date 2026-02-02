@@ -12,11 +12,21 @@ const supabase = createClient(
 
 const SPORTS = [
   { key: 'all', label: 'All Sports', emoji: '' },
-  { key: 'basketball_nba', label: 'NBA', emoji: '\u{1F3C0}' },
+  // US Major Sports
   { key: 'americanfootball_nfl', label: 'NFL', emoji: '\u{1F3C8}' },
+  { key: 'basketball_nba', label: 'NBA', emoji: '\u{1F3C0}' },
   { key: 'icehockey_nhl', label: 'NHL', emoji: '\u{1F3D2}' },
   { key: 'baseball_mlb', label: 'MLB', emoji: '\u{26BE}' },
+  { key: 'americanfootball_ncaaf', label: 'NCAAF', emoji: '\u{1F3C8}' },
   { key: 'basketball_ncaab', label: 'NCAAB', emoji: '\u{1F3C0}' },
+  { key: 'basketball_wnba', label: 'WNBA', emoji: '\u{1F3C0}' },
+  // Soccer
+  { key: 'soccer_epl', label: 'EPL', emoji: '\u{26BD}' },
+  { key: 'soccer_usa_mls', label: 'MLS', emoji: '\u{26BD}' },
+  { key: 'soccer_spain_la_liga', label: 'La Liga', emoji: '\u{26BD}' },
+  // Combat
+  { key: 'mma_mixed_martial_arts', label: 'UFC', emoji: '\u{1F94A}' },
+  { key: 'boxing_boxing', label: 'Boxing', emoji: '\u{1F94A}' },
 ];
 
 // Prop type labels and display order

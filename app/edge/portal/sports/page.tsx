@@ -898,9 +898,12 @@ export default async function SportsPage() {
     }
   }
 
+  // Process backend data for sports that have it
   if (hasBackendData) {
     dataSource = 'backend';
     for (const { sport, games } of backendResults) {
+      if (games.length === 0) continue; // Skip sports with no backend data - will get from cache below
+
       const processed = games
         .map((g: any) => {
           // Inject bookmakers from cached_odds into backend game
@@ -922,7 +925,10 @@ export default async function SportsPage() {
         ).length;
       }
     }
-  } else {
+  }
+
+  // ALWAYS fetch cached_odds for sports not covered by backend (soccer, golf, cricket, etc.)
+  {
     // Fallback: read from cached_odds table
     // Fetch all cached odds in a single query (no sport filter, do filtering after)
     const supabase = getSupabase();
@@ -964,11 +970,12 @@ export default async function SportsPage() {
     });
 
     const hasCachedData = cacheResults.some(r => r.games.length > 0);
-    if (hasCachedData) dataSource = 'odds_api';
+    if (hasCachedData && dataSource === 'none') dataSource = 'odds_api';
 
     for (const { sport, games } of cacheResults) {
       const frontendKey = SPORT_MAPPING[sport];
-      if (games.length > 0 && frontendKey) {
+      // Only add if not already populated from backend
+      if (games.length > 0 && frontendKey && !allGames[frontendKey]) {
         const now = new Date();
         const upcoming = games
           .filter((g: any) => new Date(g.commenceTime).getTime() > now.getTime() - 4 * 60 * 60 * 1000)

@@ -69,6 +69,46 @@ async def get_status():
     }
 
 
+@app.get("/api/test-football-data")
+async def test_football_data():
+    """Test Football-Data.org API connectivity for EPL."""
+    import os
+    result = {
+        "api_key_set": bool(os.getenv("FOOTBALL_DATA_API_KEY")),
+        "api_key_length": len(os.getenv("FOOTBALL_DATA_API_KEY", "")),
+    }
+
+    try:
+        from data_sources.football_data import get_epl_standings
+        result["import_success"] = True
+
+        standings = await get_epl_standings()
+        if standings:
+            result["standings_fetched"] = True
+            result["team_count"] = len(standings)
+            # Get sample of 3 teams
+            sample = []
+            for name, data in list(standings.items())[:3]:
+                sample.append({
+                    "name": name,
+                    "position": data.get("position"),
+                    "points": data.get("points"),
+                    "form": data.get("form"),
+                })
+            result["sample_teams"] = sample
+        else:
+            result["standings_fetched"] = False
+            result["error"] = "get_epl_standings returned None"
+
+    except ImportError as e:
+        result["import_success"] = False
+        result["error"] = f"Import failed: {str(e)}"
+    except Exception as e:
+        result["error"] = f"API call failed: {str(e)}"
+
+    return result
+
+
 @app.get("/api/sports")
 async def get_sports():
     """Get list of supported sports."""

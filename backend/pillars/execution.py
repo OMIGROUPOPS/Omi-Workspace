@@ -19,33 +19,43 @@ from data_sources.espn import espn_client
 
 # Try to import soccer data sources (optional - may not have API keys)
 # Priority: Football-Data.org (FOOTBALL_DATA_API_KEY) then API-Football (API_FOOTBALL_KEY)
+import os
 SOCCER_DATA_AVAILABLE = False
 USING_FOOTBALL_DATA = False
 USING_API_FOOTBALL = False
 
+print(f"[Execution INIT] Checking FOOTBALL_DATA_API_KEY: {bool(os.getenv('FOOTBALL_DATA_API_KEY'))}")
+print(f"[Execution INIT] Checking API_FOOTBALL_KEY: {bool(os.getenv('API_FOOTBALL_KEY'))}")
+
 try:
     from data_sources.football_data import get_epl_standings, get_team_standings_data_sync
-    import os
+    print("[Execution INIT] football_data module imported successfully")
     if os.getenv("FOOTBALL_DATA_API_KEY"):
         SOCCER_DATA_AVAILABLE = True
         USING_FOOTBALL_DATA = True
-        logger.info("[Execution] Football-Data.org API key found - using Football-Data")
+        print("[Execution INIT] FOOTBALL_DATA_API_KEY found - using Football-Data.org")
+    else:
+        print("[Execution INIT] FOOTBALL_DATA_API_KEY NOT SET")
 except ImportError as e:
-    logger.warning(f"[Execution] Football-Data not available: {e}")
+    print(f"[Execution INIT] football_data import failed: {e}")
 
 if not SOCCER_DATA_AVAILABLE:
     try:
         from data_sources.api_football import get_league_standings_sync
-        import os
+        print("[Execution INIT] api_football module imported successfully")
         if os.getenv("API_FOOTBALL_KEY"):
             SOCCER_DATA_AVAILABLE = True
             USING_API_FOOTBALL = True
-            logger.info("[Execution] API-Football key found - using API-Football")
+            print("[Execution INIT] API_FOOTBALL_KEY found - using API-Football")
+        else:
+            print("[Execution INIT] API_FOOTBALL_KEY NOT SET")
     except ImportError as e:
-        logger.warning(f"[Execution] API-Football not available: {e}")
+        print(f"[Execution INIT] api_football import failed: {e}")
+
+print(f"[Execution INIT] Final: SOCCER_DATA_AVAILABLE={SOCCER_DATA_AVAILABLE}, USING_FOOTBALL_DATA={USING_FOOTBALL_DATA}")
 
 if not SOCCER_DATA_AVAILABLE:
-    logger.warning("[Execution] No soccer data sources available - need FOOTBALL_DATA_API_KEY or API_FOOTBALL_KEY")
+    print("[Execution INIT] WARNING: No soccer data sources available!")
 
 # NFL position importance weights - AMPLIFIED for visual differentiation
 # Higher = more impactful when injured (scale: 0-10)
@@ -89,6 +99,14 @@ def calculate_execution_score(
     A score < 0.5 means the HOME team has execution advantages
     A score = 0.5 means neutral/balanced
     """
+    import os
+    # Comprehensive debug logging
+    logger.info(f"[Execution] ===== CALLED =====")
+    logger.info(f"[Execution] sport={sport}, home={home_team}, away={away_team}")
+    logger.info(f"[Execution] SOCCER_DATA_AVAILABLE={SOCCER_DATA_AVAILABLE}, USING_FOOTBALL_DATA={USING_FOOTBALL_DATA}, USING_API_FOOTBALL={USING_API_FOOTBALL}")
+    logger.info(f"[Execution] FOOTBALL_DATA_API_KEY exists: {bool(os.getenv('FOOTBALL_DATA_API_KEY'))}")
+    logger.info(f"[Execution] API_FOOTBALL_KEY exists: {bool(os.getenv('API_FOOTBALL_KEY'))}")
+
     home_injuries = espn_client.get_team_injury_impact(sport, home_team)
     away_injuries = espn_client.get_team_injury_impact(sport, away_team)
 

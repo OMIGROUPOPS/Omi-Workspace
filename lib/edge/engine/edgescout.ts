@@ -22,7 +22,7 @@ export interface PillarResult {
 }
 
 export type CEQConfidence = 'PASS' | 'WATCH' | 'EDGE' | 'STRONG' | 'RARE';
-export type MarketSide = 'home' | 'away' | 'over' | 'under';
+export type MarketSide = 'home' | 'away' | 'over' | 'under' | 'draw';
 
 export interface CEQResult {
   ceq: number;                    // 0-100, 50 = no edge
@@ -1429,6 +1429,7 @@ export interface GameCEQ {
   h2h?: {
     home: CEQResult;
     away: CEQResult;
+    draw?: CEQResult;  // 3-way for soccer
   };
   totals?: {
     over: CEQResult;
@@ -1456,6 +1457,7 @@ export interface GameOddsData {
   h2h?: {
     home: number;
     away: number;
+    draw?: number;  // 3-way for soccer
   };
   totals?: {
     line: number;
@@ -1561,20 +1563,99 @@ export function calculateGameCEQ(
       evData?.h2h?.home  // EV for home ML
     );
 
-    // Away CEQ is the inverse
-    const awayCEQValue = 100 - homeCEQ.ceq;
-    const awayConfidence = getCEQConfidence(awayCEQValue);
+    // Check if this is a 3-way market (soccer)
+    if (gameOdds.h2h.draw !== undefined) {
+      // 3-way market: Calculate draw CEQ independently, then normalize all three
+      const drawCEQ = calculateCEQ(
+        'h2h',
+        'draw',
+        gameOdds.h2h.draw,
+        undefined,  // No opening for draw
+        undefined,
+        h2hSnapshots,
+        [],  // No allBooks data for draw yet
+        undefined,
+        gameContext,
+        pythonPillars,
+        undefined,
+        undefined,
+        undefined
+      );
 
-    result.h2h = {
-      home: homeCEQ,
-      away: {
-        ...homeCEQ,
-        ceq: awayCEQValue,
-        confidence: awayConfidence,
-        side: awayCEQValue >= 56 ? 'away' : awayCEQValue <= 44 ? 'home' : null,
-        topDrivers: awayCEQValue >= 56 ? homeCEQ.topDrivers : ['No edge on this side'],
-      },
-    };
+      // Calculate raw CEQs for each outcome
+      const rawHome = homeCEQ.ceq;
+      const rawDraw = drawCEQ.ceq;
+      // Away is derived from remaining probability
+      const rawAway = Math.max(0, 100 - rawHome - rawDraw + 50);  // Adjusted base
+
+      // Normalize to ensure one clear edge
+      // The highest raw CEQ gets the edge, others are scaled down
+      const maxRaw = Math.max(rawHome, rawDraw, rawAway);
+      const total = rawHome + rawDraw + rawAway;
+
+      // If home has highest raw value
+      let awayCEQValue: number, drawCEQValue: number;
+      if (rawHome >= rawDraw && rawHome >= rawAway) {
+        // Home has edge, scale down draw and away proportionally
+        const remainder = 100 - homeCEQ.ceq;
+        const drawPct = rawDraw / (rawDraw + rawAway) || 0.5;
+        drawCEQValue = remainder * drawPct;
+        awayCEQValue = remainder * (1 - drawPct);
+      } else if (rawDraw >= rawHome && rawDraw >= rawAway) {
+        // Draw has edge
+        drawCEQValue = drawCEQ.ceq;
+        const remainder = 100 - drawCEQValue;
+        const homePct = rawHome / (rawHome + rawAway) || 0.5;
+        awayCEQValue = remainder * (1 - homePct);
+        // Recalculate homeCEQ value
+        (homeCEQ as any).ceq = remainder * homePct;
+        (homeCEQ as any).confidence = getCEQConfidence(homeCEQ.ceq);
+      } else {
+        // Away has edge
+        awayCEQValue = rawAway;
+        const remainder = 100 - awayCEQValue;
+        const homePct = rawHome / (rawHome + rawDraw) || 0.5;
+        drawCEQValue = remainder * (1 - homePct);
+        (homeCEQ as any).ceq = remainder * homePct;
+        (homeCEQ as any).confidence = getCEQConfidence(homeCEQ.ceq);
+      }
+
+      const awayConfidence = getCEQConfidence(awayCEQValue);
+      const drawConfidence = getCEQConfidence(drawCEQValue);
+
+      result.h2h = {
+        home: homeCEQ,
+        away: {
+          ...homeCEQ,
+          ceq: awayCEQValue,
+          confidence: awayConfidence,
+          side: awayCEQValue >= 56 ? 'away' : null,
+          topDrivers: awayCEQValue >= 56 ? homeCEQ.topDrivers : ['No edge on this side'],
+        },
+        draw: {
+          ...drawCEQ,
+          ceq: drawCEQValue,
+          confidence: drawConfidence,
+          side: drawCEQValue >= 56 ? 'draw' : null,
+          topDrivers: drawCEQValue >= 56 ? drawCEQ.topDrivers : ['No edge on this side'],
+        },
+      };
+    } else {
+      // 2-way market: Away CEQ is the inverse
+      const awayCEQValue = 100 - homeCEQ.ceq;
+      const awayConfidence = getCEQConfidence(awayCEQValue);
+
+      result.h2h = {
+        home: homeCEQ,
+        away: {
+          ...homeCEQ,
+          ceq: awayCEQValue,
+          confidence: awayConfidence,
+          side: awayCEQValue >= 56 ? 'away' : awayCEQValue <= 44 ? 'home' : null,
+          topDrivers: awayCEQValue >= 56 ? homeCEQ.topDrivers : ['No edge on this side'],
+        },
+      };
+    }
   }
 
   // Calculate totals CEQ - ONLY ONE SIDE CAN HAVE EDGE
@@ -1641,6 +1722,10 @@ export function calculateGameCEQ(
     }
     if (result.h2h.away.confidence !== 'PASS') {
       candidates.push({ market: 'h2h', side: 'away', ceq: result.h2h.away.ceq, confidence: result.h2h.away.confidence, dataQuality: result.h2h.away.dataQuality });
+    }
+    // Include draw for 3-way markets (soccer)
+    if (result.h2h.draw && result.h2h.draw.confidence !== 'PASS') {
+      candidates.push({ market: 'h2h', side: 'draw', ceq: result.h2h.draw.ceq, confidence: result.h2h.draw.confidence, dataQuality: result.h2h.draw.dataQuality });
     }
   }
 

@@ -33,24 +33,44 @@ ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 # SPORT MAPPINGS
 # =============================================================================
 
-# Odds API sport keys - maps short names to Odds API format
+# Odds API sport keys - maps both short names AND Odds API format to canonical format
+# The backend uppercases input, so "soccer_epl" becomes "SOCCER_EPL"
 ODDS_API_SPORTS = {
-    # American Football
+    # American Football - short format
     "NFL": "americanfootball_nfl",
     "NCAAF": "americanfootball_ncaaf",
-    # Basketball
+    # American Football - Odds API format (uppercased)
+    "AMERICANFOOTBALL_NFL": "americanfootball_nfl",
+    "AMERICANFOOTBALL_NCAAF": "americanfootball_ncaaf",
+
+    # Basketball - short format
     "NBA": "basketball_nba",
     "NCAAB": "basketball_ncaab",
     "WNBA": "basketball_wnba",
     "EUROLEAGUE": "basketball_euroleague",
-    # Hockey
+    # Basketball - Odds API format
+    "BASKETBALL_NBA": "basketball_nba",
+    "BASKETBALL_NCAAB": "basketball_ncaab",
+    "BASKETBALL_WNBA": "basketball_wnba",
+    "BASKETBALL_EUROLEAGUE": "basketball_euroleague",
+
+    # Hockey - short format
     "NHL": "icehockey_nhl",
     "AHL": "icehockey_ahl",
     "SHL": "icehockey_sweden_hockey_league",
     "LIIGA": "icehockey_liiga",
-    # Baseball
+    # Hockey - Odds API format
+    "ICEHOCKEY_NHL": "icehockey_nhl",
+    "ICEHOCKEY_AHL": "icehockey_ahl",
+    "ICEHOCKEY_SWEDEN_HOCKEY_LEAGUE": "icehockey_sweden_hockey_league",
+    "ICEHOCKEY_LIIGA": "icehockey_liiga",
+
+    # Baseball - short format
     "MLB": "baseball_mlb",
-    # Soccer
+    # Baseball - Odds API format
+    "BASEBALL_MLB": "baseball_mlb",
+
+    # Soccer - short format
     "MLS": "soccer_usa_mls",
     "EPL": "soccer_epl",
     "LA_LIGA": "soccer_spain_la_liga",
@@ -63,24 +83,59 @@ ODDS_API_SPORTS = {
     "EREDIVISIE": "soccer_netherlands_eredivisie",
     "LIGA_MX": "soccer_mexico_ligamx",
     "FA_CUP": "soccer_fa_cup",
-    # Tennis
+    # Soccer - Odds API format
+    "SOCCER_USA_MLS": "soccer_usa_mls",
+    "SOCCER_EPL": "soccer_epl",
+    "SOCCER_SPAIN_LA_LIGA": "soccer_spain_la_liga",
+    "SOCCER_GERMANY_BUNDESLIGA": "soccer_germany_bundesliga",
+    "SOCCER_ITALY_SERIE_A": "soccer_italy_serie_a",
+    "SOCCER_FRANCE_LIGUE_ONE": "soccer_france_ligue_one",
+    "SOCCER_UEFA_CHAMPS_LEAGUE": "soccer_uefa_champs_league",
+    "SOCCER_UEFA_EUROPA_LEAGUE": "soccer_uefa_europa_league",
+    "SOCCER_EFL_CHAMP": "soccer_efl_champ",
+    "SOCCER_NETHERLANDS_EREDIVISIE": "soccer_netherlands_eredivisie",
+    "SOCCER_MEXICO_LIGAMX": "soccer_mexico_ligamx",
+    "SOCCER_FA_CUP": "soccer_fa_cup",
+
+    # Tennis - short format
     "TENNIS_AO": "tennis_atp_australian_open",
     "TENNIS_FO": "tennis_atp_french_open",
     "TENNIS_USO": "tennis_atp_us_open",
     "TENNIS_WIM": "tennis_atp_wimbledon",
-    # Golf
+    # Tennis - Odds API format
+    "TENNIS_ATP_AUSTRALIAN_OPEN": "tennis_atp_australian_open",
+    "TENNIS_ATP_FRENCH_OPEN": "tennis_atp_french_open",
+    "TENNIS_ATP_US_OPEN": "tennis_atp_us_open",
+    "TENNIS_ATP_WIMBLEDON": "tennis_atp_wimbledon",
+
+    # Golf - short format
     "MASTERS": "golf_masters_tournament_winner",
     "PGA_CHAMP": "golf_pga_championship_winner",
     "US_OPEN": "golf_us_open_winner",
     "THE_OPEN": "golf_the_open_championship_winner",
-    # Combat Sports
+    # Golf - Odds API format
+    "GOLF_MASTERS_TOURNAMENT_WINNER": "golf_masters_tournament_winner",
+    "GOLF_PGA_CHAMPIONSHIP_WINNER": "golf_pga_championship_winner",
+    "GOLF_US_OPEN_WINNER": "golf_us_open_winner",
+    "GOLF_THE_OPEN_CHAMPIONSHIP_WINNER": "golf_the_open_championship_winner",
+
+    # Combat Sports - short format
     "MMA": "mma_mixed_martial_arts",
     "BOXING": "boxing_boxing",
-    # Other
+    # Combat Sports - Odds API format
+    "MMA_MIXED_MARTIAL_ARTS": "mma_mixed_martial_arts",
+    "BOXING_BOXING": "boxing_boxing",
+
+    # Other - short format
     "NRL": "rugbyleague_nrl",
     "AFL": "aussierules_afl",
     "IPL": "cricket_ipl",
     "BIG_BASH": "cricket_big_bash",
+    # Other - Odds API format
+    "RUGBYLEAGUE_NRL": "rugbyleague_nrl",
+    "AUSSIERULES_AFL": "aussierules_afl",
+    "CRICKET_IPL": "cricket_ipl",
+    "CRICKET_BIG_BASH": "cricket_big_bash",
 }
 
 # ESPN API paths (supports both short format and Odds API format)

@@ -1903,17 +1903,36 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
                 />
               </>
             ) : chartMarket === 'moneyline' && activeCeq.h2h ? (
-              // Moneyline selected - show both sides
-              <>
-                <PillarBreakdown
-                  ceqResult={activeCeq.h2h.home}
-                  marketLabel={`${gameData.homeTeam} ${currentPeriodPrefix}ML`}
-                />
-                <PillarBreakdown
-                  ceqResult={activeCeq.h2h.away}
-                  marketLabel={`${gameData.awayTeam} ${currentPeriodPrefix}ML`}
-                />
-              </>
+              // Moneyline selected - show sides (3 for soccer, 2 for others)
+              gameData.sportKey.includes('soccer') && activeCeq.h2h.draw ? (
+                // Soccer 3-way: Home / Draw / Away
+                <div className="col-span-2 grid grid-cols-1 lg:grid-cols-3 gap-4">
+                  <PillarBreakdown
+                    ceqResult={activeCeq.h2h.home}
+                    marketLabel={`${gameData.homeTeam} Win`}
+                  />
+                  <PillarBreakdown
+                    ceqResult={activeCeq.h2h.draw}
+                    marketLabel="Draw"
+                  />
+                  <PillarBreakdown
+                    ceqResult={activeCeq.h2h.away}
+                    marketLabel={`${gameData.awayTeam} Win`}
+                  />
+                </div>
+              ) : (
+                // 2-way market (US sports)
+                <>
+                  <PillarBreakdown
+                    ceqResult={activeCeq.h2h.home}
+                    marketLabel={`${gameData.homeTeam} ${currentPeriodPrefix}ML`}
+                  />
+                  <PillarBreakdown
+                    ceqResult={activeCeq.h2h.away}
+                    marketLabel={`${gameData.awayTeam} ${currentPeriodPrefix}ML`}
+                  />
+                </>
+              )
             ) : chartMarket === 'total' && activeCeq.totals ? (
               // Total selected - show over/under
               <>
@@ -1937,8 +1956,16 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
                 )}
                 {activeCeq.bestEdge.market === 'h2h' && activeCeq.h2h && (
                   <PillarBreakdown
-                    ceqResult={activeCeq.bestEdge.side === 'home' ? activeCeq.h2h.home : activeCeq.h2h.away}
-                    marketLabel={`${activeCeq.bestEdge.side === 'home' ? gameData.homeTeam : gameData.awayTeam} ${currentPeriodPrefix}ML`}
+                    ceqResult={
+                      activeCeq.bestEdge.side === 'home' ? activeCeq.h2h.home :
+                      activeCeq.bestEdge.side === 'draw' && activeCeq.h2h.draw ? activeCeq.h2h.draw :
+                      activeCeq.h2h.away
+                    }
+                    marketLabel={
+                      activeCeq.bestEdge.side === 'home' ? `${gameData.homeTeam} ${currentPeriodPrefix}ML` :
+                      activeCeq.bestEdge.side === 'draw' ? 'Draw' :
+                      `${gameData.awayTeam} ${currentPeriodPrefix}ML`
+                    }
                   />
                 )}
                 {activeCeq.bestEdge.market === 'total' && activeCeq.totals && (
@@ -2039,29 +2066,37 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
                 }
               }
 
-              // H2H (MONEYLINE): Only ONE side can have edge - pick the BETTER side
+              // H2H (MONEYLINE): For soccer 3-way, check home/draw/away; for others, home/away
               const h2hHomeCeq = activeCeq.h2h?.home?.ceq ?? 0;
               const h2hAwayCeq = activeCeq.h2h?.away?.ceq ?? 0;
+              const h2hDrawCeq = activeCeq.h2h?.draw?.ceq ?? 0;
               const h2hHomeConf = activeCeq.h2h?.home?.confidence;
               const h2hAwayConf = activeCeq.h2h?.away?.confidence;
+              const h2hDrawConf = activeCeq.h2h?.draw?.confidence;
+              const isSoccerGame = gameData.sportKey.includes('soccer');
 
-              if (h2hHomeCeq >= 56 || h2hAwayCeq >= 56) {
-                if (h2hHomeCeq > h2hAwayCeq && h2hHomeCeq >= 56 && h2hHomeConf) {
+              if (h2hHomeCeq >= 56 || h2hAwayCeq >= 56 || (isSoccerGame && h2hDrawCeq >= 56)) {
+                // Find the best edge among all options
+                const h2hOptions = [
+                  { side: 'home', ceq: h2hHomeCeq, conf: h2hHomeConf, label: isSoccerGame ? `${gameData.homeTeam} Win` : `${gameData.homeTeam} ML` },
+                  { side: 'away', ceq: h2hAwayCeq, conf: h2hAwayConf, label: isSoccerGame ? `${gameData.awayTeam} Win` : `${gameData.awayTeam} ML` },
+                ];
+                if (isSoccerGame) {
+                  h2hOptions.push({ side: 'draw', ceq: h2hDrawCeq, conf: h2hDrawConf, label: 'Draw' });
+                }
+
+                // Pick the best edge
+                const bestH2h = h2hOptions
+                  .filter(o => o.ceq >= 56 && o.conf)
+                  .sort((a, b) => b.ceq - a.ceq)[0];
+
+                if (bestH2h) {
                   edges.push({
                     market: 'h2h',
-                    side: 'home',
-                    ceq: h2hHomeCeq,
-                    confidence: h2hHomeConf,
-                    sideLabel: `${gameData.homeTeam} ML`,
-                    periodLabel: currentPeriodLabel,
-                  });
-                } else if (h2hAwayCeq >= 56 && h2hAwayConf) {
-                  edges.push({
-                    market: 'h2h',
-                    side: 'away',
-                    ceq: h2hAwayCeq,
-                    confidence: h2hAwayConf,
-                    sideLabel: `${gameData.awayTeam} ML`,
+                    side: bestH2h.side as 'home' | 'away',
+                    ceq: bestH2h.ceq,
+                    confidence: bestH2h.conf!,
+                    sideLabel: bestH2h.label,
                     periodLabel: currentPeriodLabel,
                   });
                 }

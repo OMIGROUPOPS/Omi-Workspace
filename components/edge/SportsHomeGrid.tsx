@@ -257,33 +257,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const hasLiveGames = useMemo(() => {
-    const now = Date.now();
-    for (const sportGames of Object.values(games)) {
-      for (const game of sportGames) {
-        const startTime = new Date(game.commenceTime).getTime();
-        if (startTime <= now && startTime > now - 4 * 60 * 60 * 1000 && !game.scores?.completed) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }, [games]);
-
-  useEffect(() => {
-    if (!mounted) return;
-    const interval = hasLiveGames ? 20000 : 45000;
-    console.log('[INTERVAL] Setting up auto-refresh every', interval/1000, 'seconds');
-    const refreshTimer = setInterval(() => {
-      console.log('[INTERVAL] Auto-refresh triggered, activeSport:', activeSport);
-      refreshData(false);
-    }, interval);
-    return () => {
-      console.log('[INTERVAL] Clearing refresh timer');
-      clearInterval(refreshTimer);
-    };
-  }, [mounted, refreshData, hasLiveGames, activeSport]);
-
   useEffect(() => {
     if (!mounted) return;
     const timer = setInterval(() => {
@@ -347,13 +320,59 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     return result;
   }, [games]);
 
-  const filteredGames = useMemo(() => {
-    if (!searchQuery.trim()) {
-      return activeSport ? { [activeSport]: games[activeSport] || [] } : orderedGames;
+  // Separate live games from pregame games
+  const { liveGames: allLiveGames, pregameGames } = useMemo(() => {
+    const live: any[] = [];
+    const pregame: Record<string, any[]> = {};
+
+    for (const [sportKey, sportGames] of Object.entries(orderedGames)) {
+      const pregameForSport: any[] = [];
+      for (const game of sportGames) {
+        const state = getGameState(game.commenceTime, game.sportKey);
+        if (state === 'live') {
+          live.push({ ...game, sportKey });
+        } else if (state === 'upcoming') {
+          pregameForSport.push(game);
+        }
+        // Skip 'final' games from dashboard
+      }
+      if (pregameForSport.length > 0) {
+        pregame[sportKey] = pregameForSport;
+      }
     }
+
+    return { liveGames: live, pregameGames: pregame };
+  }, [orderedGames]);
+
+  const hasLiveGames = allLiveGames.length > 0;
+
+  // Faster refresh when live games are present
+  useEffect(() => {
+    if (!mounted) return;
+    const interval = hasLiveGames ? 20000 : 45000; // 20s for live, 45s otherwise
+    console.log('[INTERVAL] Setting up live-aware refresh every', interval/1000, 'seconds, hasLiveGames:', hasLiveGames);
+    const refreshTimer = setInterval(() => {
+      console.log('[INTERVAL] Auto-refresh triggered (live-aware), activeSport:', activeSport);
+      refreshData(false);
+    }, interval);
+    return () => {
+      console.log('[INTERVAL] Clearing live-aware refresh timer');
+      clearInterval(refreshTimer);
+    };
+  }, [mounted, refreshData, hasLiveGames, activeSport]);
+
+  const filteredGames = useMemo(() => {
+    // Use pregameGames instead of orderedGames to exclude live games
+    const source = activeSport
+      ? { [activeSport]: pregameGames[activeSport] || [] }
+      : pregameGames;
+
+    if (!searchQuery.trim()) {
+      return source;
+    }
+
     const query = searchQuery.toLowerCase();
     const result: Record<string, any[]> = {};
-    const source = activeSport ? { [activeSport]: games[activeSport] || [] } : orderedGames;
 
     for (const [sportKey, sportGames] of Object.entries(source)) {
       const matched = sportGames.filter((g: any) =>
@@ -363,7 +382,7 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
       if (matched.length > 0) result[sportKey] = matched;
     }
     return result;
-  }, [searchQuery, activeSport, games, orderedGames]);
+  }, [searchQuery, activeSport, pregameGames]);
 
   const isAllView = activeSport === null;
   const selectedBookConfig = BOOK_CONFIG[selectedBook];
@@ -613,7 +632,7 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
 
       {/* Main Content with Sidebar */}
       <div className="flex gap-6">
-        {/* Games Grid */}
+        {/* Games Grid - Pregame Only */}
         <div className="flex-1 space-y-8">
         {Object.entries(filteredGames).map(([sportKey, sportGames]) => {
           if (!sportGames || sportGames.length === 0) return null;

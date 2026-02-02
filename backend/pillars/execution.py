@@ -187,13 +187,24 @@ def calculate_execution_score(
 
             logger.info(f"[Execution] Got standings: {len(standings) if standings else 0} teams")
             if standings:
+                # Log available team names for debugging
+                logger.info(f"[Execution] Looking for: home='{home_team}', away='{away_team}'")
+                logger.info(f"[Execution] Available teams: {list(standings.keys())[:10]}...")
+
                 home_standing = None
                 away_standing = None
                 for name, data in standings.items():
                     if home_team.lower() in name.lower() or name.lower() in home_team.lower():
                         home_standing = data
+                        logger.info(f"[Execution] MATCHED home: '{name}' -> pos {data.get('position')}")
                     if away_team.lower() in name.lower() or name.lower() in away_team.lower():
                         away_standing = data
+                        logger.info(f"[Execution] MATCHED away: '{name}' -> pos {data.get('position')}")
+
+                if not home_standing:
+                    logger.warning(f"[Execution] NO MATCH for home team: '{home_team}'")
+                if not away_standing:
+                    logger.warning(f"[Execution] NO MATCH for away team: '{away_team}'")
 
                 if home_standing and away_standing:
                     # Position differential (lower position = better)
@@ -324,16 +335,20 @@ def calculate_execution_score(
         else:
             reasoning_parts.append("Minor injury situations for both teams")
 
+    logger.info(f"[Execution] FINAL RETURN: score={score:.3f}, soccer_adj={soccer_adjustment:.3f}")
+
     return {
         "score": round(score, 3),
         "home_injury_impact": round(home_injury_score, 3),
         "away_injury_impact": round(away_injury_score, 3),
         "weather_factor": weather_factor,
+        "soccer_adjustment": round(soccer_adjustment, 3),
         "breakdown": {
             "home_injuries": home_injuries,
             "away_injuries": away_injuries,
             "injury_differential": round(injury_differential, 3),
-            "is_outdoor": is_outdoor
+            "is_outdoor": is_outdoor,
+            "soccer_adjustment": round(soccer_adjustment, 3)
         },
         "reasoning": "; ".join(reasoning_parts)
     }

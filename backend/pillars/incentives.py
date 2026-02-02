@@ -242,13 +242,24 @@ def calculate_incentives_score(
 
             logger.info(f"[Incentives] Got standings: {len(standings) if standings else 0} teams")
             if standings:
+                # Log what we're looking for
+                logger.info(f"[Incentives] Looking for: home='{home_team}', away='{away_team}'")
+                logger.info(f"[Incentives] Available teams: {list(standings.keys())[:10]}...")
+
                 home_pos = None
                 away_pos = None
                 for name, data in standings.items():
                     if home_team.lower() in name.lower() or name.lower() in home_team.lower():
                         home_pos = data.get("position", 12)
+                        logger.info(f"[Incentives] MATCHED home: '{name}' -> pos {home_pos}")
                     if away_team.lower() in name.lower() or name.lower() in away_team.lower():
                         away_pos = data.get("position", 12)
+                        logger.info(f"[Incentives] MATCHED away: '{name}' -> pos {away_pos}")
+
+                if not home_pos:
+                    logger.warning(f"[Incentives] NO MATCH for home team: '{home_team}'")
+                if not away_pos:
+                    logger.warning(f"[Incentives] NO MATCH for away team: '{away_team}'")
 
                 if home_pos and away_pos:
                     logger.info(f"[Incentives] Positions: {home_team}={home_pos}, {away_team}={away_pos}")
@@ -418,17 +429,21 @@ def calculate_incentives_score(
 
     if abs(motivation_differential) < 0.1 and not reasoning_parts:
         reasoning_parts.append("No significant motivation asymmetry")
-    
+
+    logger.info(f"[Incentives] FINAL RETURN: score={score:.3f}, soccer_adj={soccer_motivation_adjustment:.3f}")
+
     return {
         "score": round(score, 3),
         "home_motivation": round(home_motivation, 3),
         "away_motivation": round(away_motivation, 3),
         "is_rivalry": rivalry,
         "is_championship": is_championship,
+        "soccer_motivation_adjustment": round(soccer_motivation_adjustment, 3),
         "breakdown": {
             "home_incentive": home_incentive,
             "away_incentive": away_incentive,
             "motivation_differential": round(motivation_differential, 3),
+            "soccer_motivation_adjustment": round(soccer_motivation_adjustment, 3),
             "tank_alert": tank_alert,
             "rest_alert": rest_alert,
             "is_championship": is_championship

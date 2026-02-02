@@ -305,7 +305,12 @@ async function calculateGameEdgeCount(gameId: string): Promise<number> {
         h2h: hasH2h ? { home: periodH2hHome, away: periodH2hAway } : undefined,
         totals: hasTotals ? { over: periodTotalOverOdds, under: periodTotalUnderOdds } : undefined,
       },
-      gameContext
+      gameContext,
+      undefined, // pythonPillars
+      undefined, // pinnacleLines
+      undefined, // bookLines
+      undefined, // evData
+      gameData.sport_key // sportKey - to skip spreads for soccer
     );
   };
 

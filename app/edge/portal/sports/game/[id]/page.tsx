@@ -1126,7 +1126,9 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
         totals: bookTotalLine
       } : undefined,
       // EV data for CEQ integration
-      evData
+      evData,
+      // sportKey - to skip spreads for soccer
+      sportKey
     );
   }
 

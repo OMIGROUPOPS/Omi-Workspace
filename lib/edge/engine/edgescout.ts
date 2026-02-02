@@ -1498,9 +1498,13 @@ export function calculateGameCEQ(
     spreads?: { home: number; away: number };
     h2h?: { home: number; away: number };
     totals?: { over: number; under: number };
-  }
+  },
+  sportKey?: string  // Sport key to determine market availability (e.g., soccer has no spreads)
 ): GameCEQ {
   const result: GameCEQ = { bestEdge: null };
+
+  // Soccer doesn't have spreads - only moneyline (3-way) and totals
+  const isSoccer = sportKey?.includes('soccer') ?? false;
 
   // Filter snapshots by market type
   // Note: outcome_type contains team names (not 'home'/'away'), so we include all outcomes for that market
@@ -1510,8 +1514,9 @@ export function calculateGameCEQ(
   const totalSnapshots = snapshots.filter(s => s.market === 'totals' && (s.outcome_type === 'Over' || s.outcome_type === 'Under'));
 
   // Calculate spreads CEQ - ONLY ONE SIDE CAN HAVE EDGE
+  // Skip spreads entirely for soccer (no spreads in soccer)
   // We calculate for home, then derive away as inverse (100 - home)
-  if (gameOdds.spreads) {
+  if (gameOdds.spreads && !isSoccer) {
     const homeCEQ = calculateCEQ(
       'spread',
       'home',
@@ -1736,7 +1741,8 @@ export function calculateGameCEQ(
   };
   const candidates: BestEdgeCandidate[] = [];
 
-  if (result.spreads) {
+  // Skip spread candidates for soccer (no spreads in soccer)
+  if (result.spreads && !isSoccer) {
     if (result.spreads.home.confidence !== 'PASS') {
       candidates.push({ market: 'spread', side: 'home', ceq: result.spreads.home.ceq, confidence: result.spreads.home.confidence, dataQuality: result.spreads.home.dataQuality });
     }

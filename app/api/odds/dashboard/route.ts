@@ -638,7 +638,12 @@ function processGame(
         h2h: hasH2h ? { home: getH2hHome(), away: getH2hAway() } : undefined,
         totals: hasTotals ? { over: getTotalOverOdds(), under: getTotalUnderOdds() } : undefined,
       },
-      gameContext
+      gameContext,
+      undefined, // pythonPillars
+      undefined, // pinnacleLines
+      undefined, // bookLines
+      undefined, // evData
+      game.sport_key // sportKey - to skip spreads for soccer
     );
   }
 
@@ -708,7 +713,12 @@ function processGame(
         h2h: hasH2h ? { home: periodConsensus.h2h.homePrice, away: periodConsensus.h2h.awayPrice } : undefined,
         totals: hasTotals ? { over: periodConsensus.totals.overPrice || -110, under: periodConsensus.totals.underPrice || -110 } : undefined,
       },
-      gameContext
+      gameContext,
+      undefined, // pythonPillars
+      undefined, // pinnacleLines
+      undefined, // bookLines
+      undefined, // evData
+      game.sport_key // sportKey - to skip spreads for soccer
     );
   };
 

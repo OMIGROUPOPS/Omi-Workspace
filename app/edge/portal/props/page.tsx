@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import { RefreshCw, User, TrendingUp, Filter, ExternalLink, Clock, ChevronDown, ChevronRight } from 'lucide-react';
+import { RefreshCw, User, TrendingUp, Filter, ExternalLink, Clock, ChevronDown, ChevronRight, Info } from 'lucide-react';
 import Link from 'next/link';
 
 const supabase = createClient(
@@ -83,8 +83,11 @@ const PROP_TYPE_LABELS: Record<string, string> = {
 // Sharp book for benchmark (used internally, NOT displayed)
 const SHARP_BOOK = 'pinnacle';
 
-// Retail books to display
+// Retail books to display and compare
 const RETAIL_BOOKS = ['fanduel', 'draftkings'];
+
+// Edge signal types
+type EdgeSignal = 'sharp_div' | 'juice_edge';
 
 interface PropOutcome {
   player: string;
@@ -114,6 +117,9 @@ interface ParsedProp {
   edgeCEQ: number;
   edgeOdds: number;
   edgeBook: string;
+  // Edge signal info
+  edgeSignal: EdgeSignal;
+  edgeSignalDetail: string;
 }
 
 interface GameWithProps {
@@ -134,14 +140,12 @@ function oddsToProb(americanOdds: number): number {
   }
 }
 
-// Calculate CEQ by comparing retail odds to sharp (Pinnacle) odds
-// If retail has better odds than sharp → positive EV → edge
-function calculatePropCEQ(
-  retailOdds: number | null,
-  sharpOdds: number | null
-): number {
-  if (retailOdds === null || sharpOdds === null) return 50;
-
+// Calculate CEQ comparing retail odds to sharp (Pinnacle) odds
+// Returns: { ceq, signal, detail }
+function calculateSharpDivCEQ(
+  retailOdds: number,
+  sharpOdds: number
+): { ceq: number; detail: string } {
   const retailProb = oddsToProb(retailOdds);
   const sharpProb = oddsToProb(sharpOdds);
 
@@ -152,8 +156,35 @@ function calculatePropCEQ(
   // Convert edge to CEQ (50 = neutral, higher = more edge)
   // Scale: 1% edge = ~6 CEQ points
   const ceq = 50 + (edge * 100 * 6);
+  const clampedCeq = Math.max(0, Math.min(100, Math.round(ceq)));
 
-  return Math.max(0, Math.min(100, Math.round(ceq)));
+  const detail = `Sharp: ${sharpOdds > 0 ? '+' : ''}${sharpOdds}, Retail: ${retailOdds > 0 ? '+' : ''}${retailOdds}`;
+
+  return { ceq: clampedCeq, detail };
+}
+
+// Calculate CEQ comparing FanDuel to DraftKings (cross-book)
+// When Pinnacle isn't available, we compare retail books
+function calculateJuiceEdgeCEQ(
+  bestOdds: number,
+  worstOdds: number,
+  bestBook: string
+): { ceq: number; detail: string } {
+  const bestProb = oddsToProb(bestOdds);
+  const worstProb = oddsToProb(worstOdds);
+
+  // Edge = how much better the best odds are vs worst
+  const edge = worstProb - bestProb;
+
+  // Scale: smaller edges for cross-book (less reliable than sharp div)
+  // 1% edge = ~4 CEQ points
+  const ceq = 50 + (edge * 100 * 4);
+  const clampedCeq = Math.max(0, Math.min(100, Math.round(ceq)));
+
+  const otherBook = bestBook.toLowerCase() === 'fanduel' ? 'DK' : 'FD';
+  const detail = `${bestBook.toLowerCase() === 'fanduel' ? 'FD' : 'DK'}: ${bestOdds > 0 ? '+' : ''}${bestOdds} vs ${otherBook}: ${worstOdds > 0 ? '+' : ''}${worstOdds}`;
+
+  return { ceq: clampedCeq, detail };
 }
 
 export default function PlayerPropsPage() {
@@ -267,34 +298,80 @@ export default function PlayerPropsPage() {
           // Skip if no retail odds
           if (prop.retailOver.length === 0 && prop.retailUnder.length === 0) continue;
 
-          // Find best retail odds for each side
+          // Find best and worst retail odds for each side
           const bestRetailOver = prop.retailOver.length > 0
             ? prop.retailOver.reduce((best, curr) => curr.odds > best.odds ? curr : best)
+            : null;
+          const worstRetailOver = prop.retailOver.length > 1
+            ? prop.retailOver.reduce((worst, curr) => curr.odds < worst.odds ? curr : worst)
             : null;
           const bestRetailUnder = prop.retailUnder.length > 0
             ? prop.retailUnder.reduce((best, curr) => curr.odds > best.odds ? curr : best)
             : null;
+          const worstRetailUnder = prop.retailUnder.length > 1
+            ? prop.retailUnder.reduce((worst, curr) => curr.odds < worst.odds ? curr : worst)
+            : null;
 
-          // Calculate CEQ for each side (comparing best retail to Pinnacle)
-          const overCEQ = calculatePropCEQ(bestRetailOver?.odds ?? null, prop.pinnacleOver);
-          const underCEQ = calculatePropCEQ(bestRetailUnder?.odds ?? null, prop.pinnacleUnder);
+          // Determine which CEQ method to use
+          const hasPinnacle = prop.pinnacleOver !== null || prop.pinnacleUnder !== null;
+
+          let overCEQ = 50;
+          let underCEQ = 50;
+          let overSignal: EdgeSignal = 'juice_edge';
+          let underSignal: EdgeSignal = 'juice_edge';
+          let overDetail = '';
+          let underDetail = '';
+
+          if (hasPinnacle && prop.pinnacleOver !== null && bestRetailOver) {
+            // Sharp divergence method for Over
+            const result = calculateSharpDivCEQ(bestRetailOver.odds, prop.pinnacleOver);
+            overCEQ = result.ceq;
+            overSignal = 'sharp_div';
+            overDetail = result.detail;
+          } else if (bestRetailOver && worstRetailOver && bestRetailOver.odds !== worstRetailOver.odds) {
+            // Cross-book (juice edge) method for Over
+            const result = calculateJuiceEdgeCEQ(bestRetailOver.odds, worstRetailOver.odds, bestRetailOver.book);
+            overCEQ = result.ceq;
+            overSignal = 'juice_edge';
+            overDetail = result.detail;
+          }
+
+          if (hasPinnacle && prop.pinnacleUnder !== null && bestRetailUnder) {
+            // Sharp divergence method for Under
+            const result = calculateSharpDivCEQ(bestRetailUnder.odds, prop.pinnacleUnder);
+            underCEQ = result.ceq;
+            underSignal = 'sharp_div';
+            underDetail = result.detail;
+          } else if (bestRetailUnder && worstRetailUnder && bestRetailUnder.odds !== worstRetailUnder.odds) {
+            // Cross-book (juice edge) method for Under
+            const result = calculateJuiceEdgeCEQ(bestRetailUnder.odds, worstRetailUnder.odds, bestRetailUnder.book);
+            underCEQ = result.ceq;
+            underSignal = 'juice_edge';
+            underDetail = result.detail;
+          }
 
           // ONLY ONE SIDE CAN HAVE EDGE - the one with higher CEQ
           let edgeSide: 'Over' | 'Under' | null = null;
           let edgeCEQ = 50;
           let edgeOdds = 0;
           let edgeBook = '';
+          let edgeSignal: EdgeSignal = 'juice_edge';
+          let edgeSignalDetail = '';
 
           if (overCEQ > underCEQ && overCEQ >= minCEQ && bestRetailOver) {
             edgeSide = 'Over';
             edgeCEQ = overCEQ;
             edgeOdds = bestRetailOver.odds;
             edgeBook = bestRetailOver.book;
+            edgeSignal = overSignal;
+            edgeSignalDetail = overDetail;
           } else if (underCEQ > overCEQ && underCEQ >= minCEQ && bestRetailUnder) {
             edgeSide = 'Under';
             edgeCEQ = underCEQ;
             edgeOdds = bestRetailUnder.odds;
             edgeBook = bestRetailUnder.book;
+            edgeSignal = underSignal;
+            edgeSignalDetail = underDetail;
           }
 
           // Only include props with an edge
@@ -315,6 +392,8 @@ export default function PlayerPropsPage() {
             edgeCEQ,
             edgeOdds,
             edgeBook,
+            edgeSignal,
+            edgeSignalDetail,
           };
 
           // Group by prop type
@@ -418,6 +497,13 @@ export default function PlayerPropsPage() {
     return 'bg-zinc-800/50 text-zinc-500 border-zinc-700';
   };
 
+  const getSignalBadge = (signal: EdgeSignal): { label: string; color: string; icon: string } => {
+    if (signal === 'sharp_div') {
+      return { label: 'Sharp', color: 'text-purple-400', icon: '📊' };
+    }
+    return { label: 'Juice', color: 'text-blue-400', icon: '💧' };
+  };
+
   // Get sorted prop types for a game
   const getSortedPropTypes = (propsByType: Map<string, ParsedProp[]>): string[] => {
     const types = Array.from(propsByType.keys());
@@ -452,7 +538,7 @@ export default function PlayerPropsPage() {
             Player Props
           </h1>
           <p className="text-sm text-zinc-500 mt-1">
-            Edges on player prop markets (FanDuel & DraftKings vs Sharp Line)
+            Edges on player prop markets (FanDuel & DraftKings)
           </p>
         </div>
 
@@ -515,6 +601,20 @@ export default function PlayerPropsPage() {
         </div>
       </div>
 
+      {/* Signal Legend */}
+      <div className="flex items-center gap-4 mb-4 text-xs text-zinc-500">
+        <span className="flex items-center gap-1">
+          <span>📊</span>
+          <span className="text-purple-400">Sharp</span>
+          <span>= vs Pinnacle line</span>
+        </span>
+        <span className="flex items-center gap-1">
+          <span>💧</span>
+          <span className="text-blue-400">Juice</span>
+          <span>= FD vs DK odds</span>
+        </span>
+      </div>
+
       {/* Stats Bar */}
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
@@ -551,7 +651,7 @@ export default function PlayerPropsPage() {
           <TrendingUp className="w-12 h-12 text-zinc-700 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-zinc-400 mb-2">No Player Props Edges</h3>
           <p className="text-sm text-zinc-600">
-            No player prop edges detected above {minCEQ}% CEQ. This means FanDuel/DraftKings odds are not better than the sharp line.
+            No player prop edges detected above {minCEQ}% CEQ. Try lowering the threshold or check back later.
           </p>
         </div>
       )}
@@ -633,51 +733,64 @@ export default function PlayerPropsPage() {
 
                           {/* Props Rows */}
                           <div className="space-y-1">
-                            {props.map((prop, idx) => (
-                              <div
-                                key={`${prop.player}-${prop.line}-${idx}`}
-                                className="grid grid-cols-12 gap-2 px-3 py-2 bg-zinc-800/30 rounded-lg hover:bg-zinc-800/50 transition-colors items-center"
-                              >
-                                {/* Player */}
-                                <div className="col-span-4 flex items-center gap-2">
-                                  <User className="w-3 h-3 text-purple-400 flex-shrink-0" />
-                                  <span className="text-sm font-medium text-zinc-100 truncate">
-                                    {prop.player}
-                                  </span>
-                                </div>
+                            {props.map((prop, idx) => {
+                              const signalInfo = getSignalBadge(prop.edgeSignal);
 
-                                {/* Line */}
-                                <div className="col-span-2 text-center">
-                                  <span className="text-sm font-mono text-zinc-200">{prop.line}</span>
-                                </div>
+                              return (
+                                <div
+                                  key={`${prop.player}-${prop.line}-${idx}`}
+                                  className="grid grid-cols-12 gap-2 px-3 py-2 bg-zinc-800/30 rounded-lg hover:bg-zinc-800/50 transition-colors items-center group"
+                                >
+                                  {/* Player */}
+                                  <div className="col-span-4 flex items-center gap-2">
+                                    <User className="w-3 h-3 text-purple-400 flex-shrink-0" />
+                                    <span className="text-sm font-medium text-zinc-100 truncate">
+                                      {prop.player}
+                                    </span>
+                                  </div>
 
-                                {/* Edge Side */}
-                                <div className="col-span-2 text-center">
-                                  <span className={`text-sm font-semibold ${
-                                    prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'
-                                  }`}>
-                                    {prop.edgeSide === 'Over' ? 'O' : 'U'}
-                                  </span>
-                                </div>
+                                  {/* Line */}
+                                  <div className="col-span-2 text-center">
+                                    <span className="text-sm font-mono text-zinc-200">{prop.line}</span>
+                                  </div>
 
-                                {/* Odds @ Book */}
-                                <div className="col-span-2 text-center">
-                                  <span className="text-sm font-mono text-zinc-200">
-                                    {formatOdds(prop.edgeOdds)}
-                                  </span>
-                                  <span className="text-[10px] text-zinc-500 ml-1">
-                                    @{formatBook(prop.edgeBook)}
-                                  </span>
-                                </div>
+                                  {/* Edge Side */}
+                                  <div className="col-span-2 text-center">
+                                    <span className={`text-sm font-semibold ${
+                                      prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'
+                                    }`}>
+                                      {prop.edgeSide === 'Over' ? 'O' : 'U'}
+                                    </span>
+                                  </div>
 
-                                {/* CEQ */}
-                                <div className="col-span-2 text-center">
-                                  <span className={`text-sm font-bold ${getCEQColor(prop.edgeCEQ)}`}>
-                                    {prop.edgeCEQ}%
-                                  </span>
+                                  {/* Odds @ Book */}
+                                  <div className="col-span-2 text-center">
+                                    <span className="text-sm font-mono text-zinc-200">
+                                      {formatOdds(prop.edgeOdds)}
+                                    </span>
+                                    <span className="text-[10px] text-zinc-500 ml-1">
+                                      @{formatBook(prop.edgeBook)}
+                                    </span>
+                                  </div>
+
+                                  {/* CEQ + Signal */}
+                                  <div className="col-span-2 text-center relative">
+                                    <div className="flex items-center justify-center gap-1">
+                                      <span className={`text-sm font-bold ${getCEQColor(prop.edgeCEQ)}`}>
+                                        {prop.edgeCEQ}%
+                                      </span>
+                                      <span className="text-[10px]" title={prop.edgeSignalDetail}>
+                                        {signalInfo.icon}
+                                      </span>
+                                    </div>
+                                    {/* Tooltip on hover */}
+                                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-zinc-700 rounded text-[10px] text-zinc-300 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                                      {prop.edgeSignalDetail}
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                            ))}
+                              );
+                            })}
                           </div>
                         </div>
                       );

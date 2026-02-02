@@ -9,11 +9,19 @@ export interface AuthState {
   email: string | null;
 }
 
+// Tier 2 accounts - hardcoded accounts that bypass Live In-Game paywall
+const TIER2_ACCOUNTS: string[] = [
+  'omigroup.ops@outlook.com',
+  'deankardamis@gmail.com',
+];
+
 // Demo accounts that bypass Tier 2 restrictions (from env var)
 // Format: comma-separated emails in DEMO_ACCOUNTS env var
 function getDemoAccounts(): string[] {
   const envAccounts = process.env.NEXT_PUBLIC_DEMO_ACCOUNTS || '';
-  return envAccounts.split(',').map(e => e.trim().toLowerCase()).filter(Boolean);
+  const envList = envAccounts.split(',').map(e => e.trim().toLowerCase()).filter(Boolean);
+  // Combine env accounts with hardcoded Tier 2 accounts
+  return [...new Set([...envList, ...TIER2_ACCOUNTS.map(e => e.toLowerCase())])];
 }
 
 // Beta accounts - hardcoded for client-side auth during beta period

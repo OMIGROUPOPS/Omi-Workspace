@@ -276,22 +276,15 @@ const CORE_SPORTS = [
   'mma_mixed_martial_arts',
 ];
 
-interface ConnectionStatus {
-  supabase: boolean;
-  backend: boolean;
-  oddsApi: boolean;
-}
-
 interface SportsHomeGridProps {
   games: Record<string, any[]>;
   dataSource?: 'backend' | 'odds_api' | 'none';
   totalGames?: number;
   totalEdges?: number;
   fetchedAt?: string;
-  connectionStatus?: ConnectionStatus;
 }
 
-export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSource = 'none', totalGames: initialTotalGames = 0, totalEdges: initialTotalEdges = 0, fetchedAt: initialFetchedAt, connectionStatus = { supabase: true, backend: true, oddsApi: true } }: SportsHomeGridProps) {
+export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSource = 'none', totalGames: initialTotalGames = 0, totalEdges: initialTotalEdges = 0, fetchedAt: initialFetchedAt }: SportsHomeGridProps) {
   const [activeSport, setActiveSportRaw] = useState<string | null>(null);
 
   // Wrapper to log ALL activeSport changes
@@ -719,27 +712,15 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
           <h3 className="text-lg font-semibold text-zinc-300 mb-2">No Active Markets</h3>
           <p className="text-sm text-zinc-500 text-center max-w-md mb-1">
             {dataSource === 'none'
-              ? !connectionStatus.supabase
-                ? 'Database connection issue. Unable to fetch game data from Supabase.'
-                : !connectionStatus.backend
-                  ? 'Edge Engine backend is unreachable. Odds analysis unavailable.'
-                  : !connectionStatus.oddsApi
-                    ? 'Odds API is unreachable. Unable to fetch live odds.'
-                    : 'Unable to connect to data sources.'
+              ? 'Unable to connect to data sources. The Edge Engine backend and Odds API are both unreachable.'
               : 'No upcoming games found across monitored sports. Markets will populate when games are scheduled.'}
           </p>
           <div className="flex items-center gap-3 mt-4">
             <div className="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-md">
-              <div className={`w-1.5 h-1.5 rounded-full ${connectionStatus.supabase ? 'bg-emerald-400' : 'bg-red-400'}`} />
-              <span className="text-[10px] font-mono text-zinc-500">DB</span>
-            </div>
-            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-md">
-              <div className={`w-1.5 h-1.5 rounded-full ${connectionStatus.backend ? 'bg-emerald-400' : 'bg-red-400'}`} />
-              <span className="text-[10px] font-mono text-zinc-500">BACKEND</span>
-            </div>
-            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-md">
-              <div className={`w-1.5 h-1.5 rounded-full ${connectionStatus.oddsApi ? 'bg-emerald-400' : 'bg-red-400'}`} />
-              <span className="text-[10px] font-mono text-zinc-500">ODDS</span>
+              <div className={`w-1.5 h-1.5 rounded-full ${dataSource !== 'none' ? 'bg-emerald-400' : 'bg-red-400'}`} />
+              <span className="text-[10px] font-mono text-zinc-500">
+                {dataSource === 'backend' ? 'BACKEND OK' : dataSource === 'odds_api' ? 'API OK' : 'NO CONNECTION'}
+              </span>
             </div>
           </div>
         </div>

@@ -20,42 +20,37 @@ from data_sources.espn import espn_client
 # Try to import soccer data sources (optional - may not have API keys)
 # Priority: Football-Data.org (FOOTBALL_DATA_API_KEY) then API-Football (API_FOOTBALL_KEY)
 import os
-SOCCER_DATA_AVAILABLE = False
-USING_FOOTBALL_DATA = False
-USING_API_FOOTBALL = False
 
-print(f"[Execution INIT] Checking FOOTBALL_DATA_API_KEY: {bool(os.getenv('FOOTBALL_DATA_API_KEY'))}")
-print(f"[Execution INIT] Checking API_FOOTBALL_KEY: {bool(os.getenv('API_FOOTBALL_KEY'))}")
+# Import modules at module level, but check API keys at runtime
+# This handles cases where env vars are set after module import (Railway/Docker)
+_football_data_available = False
+_api_football_available = False
 
 try:
-    from data_sources.football_data import get_epl_standings, get_team_standings_data_sync
+    from data_sources.football_data import get_epl_standings
+    _football_data_available = True
     print("[Execution INIT] football_data module imported successfully")
-    if os.getenv("FOOTBALL_DATA_API_KEY"):
-        SOCCER_DATA_AVAILABLE = True
-        USING_FOOTBALL_DATA = True
-        print("[Execution INIT] FOOTBALL_DATA_API_KEY found - using Football-Data.org")
-    else:
-        print("[Execution INIT] FOOTBALL_DATA_API_KEY NOT SET")
 except ImportError as e:
     print(f"[Execution INIT] football_data import failed: {e}")
 
-if not SOCCER_DATA_AVAILABLE:
-    try:
-        from data_sources.api_football import get_league_standings_sync
-        print("[Execution INIT] api_football module imported successfully")
-        if os.getenv("API_FOOTBALL_KEY"):
-            SOCCER_DATA_AVAILABLE = True
-            USING_API_FOOTBALL = True
-            print("[Execution INIT] API_FOOTBALL_KEY found - using API-Football")
-        else:
-            print("[Execution INIT] API_FOOTBALL_KEY NOT SET")
-    except ImportError as e:
-        print(f"[Execution INIT] api_football import failed: {e}")
+try:
+    from data_sources.api_football import get_league_standings_sync
+    _api_football_available = True
+    print("[Execution INIT] api_football module imported successfully")
+except ImportError as e:
+    print(f"[Execution INIT] api_football import failed: {e}")
 
-print(f"[Execution INIT] Final: SOCCER_DATA_AVAILABLE={SOCCER_DATA_AVAILABLE}, USING_FOOTBALL_DATA={USING_FOOTBALL_DATA}")
 
-if not SOCCER_DATA_AVAILABLE:
-    print("[Execution INIT] WARNING: No soccer data sources available!")
+def _get_soccer_data_source():
+    """
+    Determine which soccer data source to use at runtime.
+    Checks env vars each time to handle late-loaded environment variables.
+    """
+    if _football_data_available and os.getenv("FOOTBALL_DATA_API_KEY"):
+        return "football_data"
+    if _api_football_available and os.getenv("API_FOOTBALL_KEY"):
+        return "api_football"
+    return None
 
 # NFL position importance weights - AMPLIFIED for visual differentiation
 # Higher = more impactful when injured (scale: 0-10)
@@ -99,11 +94,13 @@ def calculate_execution_score(
     A score < 0.5 means the HOME team has execution advantages
     A score = 0.5 means neutral/balanced
     """
-    import os
-    # Comprehensive debug logging
+    # Determine soccer data source at runtime (handles late-loaded env vars)
+    soccer_source = _get_soccer_data_source()
+
+    # Debug logging
     logger.info(f"[Execution] ===== CALLED =====")
     logger.info(f"[Execution] sport={sport}, home={home_team}, away={away_team}")
-    logger.info(f"[Execution] SOCCER_DATA_AVAILABLE={SOCCER_DATA_AVAILABLE}, USING_FOOTBALL_DATA={USING_FOOTBALL_DATA}, USING_API_FOOTBALL={USING_API_FOOTBALL}")
+    logger.info(f"[Execution] soccer_source={soccer_source}")
     logger.info(f"[Execution] FOOTBALL_DATA_API_KEY exists: {bool(os.getenv('FOOTBALL_DATA_API_KEY'))}")
     logger.info(f"[Execution] API_FOOTBALL_KEY exists: {bool(os.getenv('API_FOOTBALL_KEY'))}")
 
@@ -154,18 +151,18 @@ def calculate_execution_score(
     # SOCCER-SPECIFIC: Use league standings and form
     # Match any soccer sport key (soccer_epl, soccer_england_efl_champ, etc.)
     is_soccer_sport = sport and ("soccer" in sport.lower() or sport.lower().startswith("soccer"))
-    logger.info(f"[Execution] Sport check: sport={sport}, is_soccer={is_soccer_sport}, SOCCER_DATA_AVAILABLE={SOCCER_DATA_AVAILABLE}")
+    logger.info(f"[Execution] Sport check: sport={sport}, is_soccer={is_soccer_sport}, soccer_source={soccer_source}")
 
-    if is_soccer_sport and SOCCER_DATA_AVAILABLE:
+    if is_soccer_sport and soccer_source:
         try:
-            logger.info(f"[Execution] Fetching soccer standings for {home_team} vs {away_team} (using={'Football-Data' if USING_FOOTBALL_DATA else 'API-Football'})...")
+            logger.info(f"[Execution] Fetching soccer standings for {home_team} vs {away_team} (using={soccer_source})...")
 
             # Use the appropriate API based on which key is available
             # All functions are now synchronous - no asyncio needed
             standings = None
-            if USING_FOOTBALL_DATA:
+            if soccer_source == "football_data":
                 standings = get_epl_standings()
-            elif USING_API_FOOTBALL:
+            elif soccer_source == "api_football":
                 standings = get_league_standings_sync()
 
             logger.info(f"[Execution] Got standings: {len(standings) if standings else 0} teams")

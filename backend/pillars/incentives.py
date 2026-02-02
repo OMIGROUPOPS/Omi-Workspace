@@ -79,32 +79,40 @@ RIVALRIES = {
     ],
 }
 
-# Try to import soccer data sources
+# Try to import soccer data sources (optional - may not have API keys)
 # Priority: Football-Data.org (FOOTBALL_DATA_API_KEY) then API-Football (API_FOOTBALL_KEY)
-SOCCER_DATA_AVAILABLE = False
-USING_FOOTBALL_DATA = False
-USING_API_FOOTBALL = False
+import os
+
+# Import modules at module level, but check API keys at runtime
+# This handles cases where env vars are set after module import (Railway/Docker)
+_football_data_available = False
+_api_football_available = False
 
 try:
     from data_sources.football_data import get_epl_standings
-    import os
-    if os.getenv("FOOTBALL_DATA_API_KEY"):
-        SOCCER_DATA_AVAILABLE = True
-        USING_FOOTBALL_DATA = True
-        logger.info("[Incentives] Football-Data.org API key found - using Football-Data")
+    _football_data_available = True
+    logger.info("[Incentives] football_data module imported successfully")
 except ImportError as e:
     logger.warning(f"[Incentives] Football-Data not available: {e}")
 
-if not SOCCER_DATA_AVAILABLE:
-    try:
-        from data_sources.api_football import get_league_standings_sync
-        import os
-        if os.getenv("API_FOOTBALL_KEY"):
-            SOCCER_DATA_AVAILABLE = True
-            USING_API_FOOTBALL = True
-            logger.info("[Incentives] API-Football key found - using API-Football")
-    except ImportError as e:
-        logger.warning(f"[Incentives] API-Football not available: {e}")
+try:
+    from data_sources.api_football import get_league_standings_sync
+    _api_football_available = True
+    logger.info("[Incentives] api_football module imported successfully")
+except ImportError as e:
+    logger.warning(f"[Incentives] API-Football not available: {e}")
+
+
+def _get_soccer_data_source():
+    """
+    Determine which soccer data source to use at runtime.
+    Checks env vars each time to handle late-loaded environment variables.
+    """
+    if _football_data_available and os.getenv("FOOTBALL_DATA_API_KEY"):
+        return "football_data"
+    if _api_football_available and os.getenv("API_FOOTBALL_KEY"):
+        return "api_football"
+    return None
 
 
 def is_rivalry_game(sport: str, team1: str, team2: str) -> bool:
@@ -153,6 +161,9 @@ def calculate_incentives_score(
     A score < 0.5 means HOME team has motivation advantage
     A score = 0.5 means balanced motivation
     """
+    # Determine soccer data source at runtime (handles late-loaded env vars)
+    soccer_source = _get_soccer_data_source()
+
     home_incentive = espn_client.get_team_incentive_score(sport, home_team)
     away_incentive = espn_client.get_team_incentive_score(sport, away_team)
 
@@ -207,18 +218,18 @@ def calculate_incentives_score(
     title_race_alert = False
     relegation_battle_alert = False
     is_soccer_sport = sport and ("soccer" in sport.lower() or sport.lower().startswith("soccer"))
-    logger.info(f"[Incentives] Sport check: sport={sport}, is_soccer={is_soccer_sport}, SOCCER_DATA_AVAILABLE={SOCCER_DATA_AVAILABLE}")
+    logger.info(f"[Incentives] Sport check: sport={sport}, is_soccer={is_soccer_sport}, soccer_source={soccer_source}")
 
-    if is_soccer_sport and SOCCER_DATA_AVAILABLE:
+    if is_soccer_sport and soccer_source:
         try:
-            logger.info(f"[Incentives] Fetching soccer standings for {home_team} vs {away_team} (using={'Football-Data' if USING_FOOTBALL_DATA else 'API-Football'})...")
+            logger.info(f"[Incentives] Fetching soccer standings for {home_team} vs {away_team} (using={soccer_source})...")
 
             # Use the appropriate API based on which key is available
             # All functions are now synchronous - no asyncio needed
             standings = None
-            if USING_FOOTBALL_DATA:
+            if soccer_source == "football_data":
                 standings = get_epl_standings()
-            elif USING_API_FOOTBALL:
+            elif soccer_source == "api_football":
                 standings = get_league_standings_sync()
 
             logger.info(f"[Incentives] Got standings: {len(standings) if standings else 0} teams")

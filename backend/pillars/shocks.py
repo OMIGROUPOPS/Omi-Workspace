@@ -18,17 +18,23 @@ logger = logging.getLogger(__name__)
 
 # Try to import soccer data sources
 # For injuries, we need API-Football (Football-Data doesn't have injury data)
-SOCCER_DATA_AVAILABLE = False
+import os
+
+# Import modules at module level, but check API keys at runtime
+# This handles cases where env vars are set after module import (Railway/Docker)
+_api_football_available = False
+
 try:
     from data_sources.api_football import get_team_injuries, get_team_id
-    import os
-    if os.getenv("API_FOOTBALL_KEY"):
-        SOCCER_DATA_AVAILABLE = True
-        logger.info("[Shocks] API-Football key found - injuries available")
-    else:
-        logger.info("[Shocks] No API_FOOTBALL_KEY - soccer injury data not available")
+    _api_football_available = True
+    logger.info("[Shocks] api_football module imported successfully")
 except ImportError as e:
     logger.warning(f"[Shocks] API-Football not available: {e}")
+
+
+def _is_soccer_injuries_available():
+    """Check if soccer injury data is available at runtime."""
+    return _api_football_available and bool(os.getenv("API_FOOTBALL_KEY"))
 
 
 def calculate_shocks_score(
@@ -105,9 +111,10 @@ def calculate_shocks_score(
     # SOCCER-SPECIFIC: Fetch injuries from API-Football
     soccer_injury_shock = False
     is_soccer_sport = sport and ("soccer" in sport.lower() or sport.lower().startswith("soccer"))
-    logger.info(f"[Shocks] Sport check: sport={sport}, is_soccer={is_soccer_sport}, SOCCER_DATA_AVAILABLE={SOCCER_DATA_AVAILABLE}")
+    soccer_injuries_available = _is_soccer_injuries_available()
+    logger.info(f"[Shocks] Sport check: sport={sport}, is_soccer={is_soccer_sport}, soccer_injuries_available={soccer_injuries_available}")
 
-    if is_soccer_sport and SOCCER_DATA_AVAILABLE:
+    if is_soccer_sport and soccer_injuries_available:
         try:
             home_team_id = get_team_id(home_team)
             away_team_id = get_team_id(away_team)

@@ -1315,7 +1315,7 @@ export function calculateCEQ(
       const pythonScore = side === 'home'
         ? (100 - pythonPillars.composite)  // Invert for home-side calculation
         : pythonPillars.composite;          // Direct for away (not typically called)
-      ceq = ceq * 0.7 + pythonScore * 0.3;
+      ceq = ceq * 0.6 + pythonScore * 0.4;
     }
     // For totals, skip composite blend - individual pillar mappings provide totals signals
   }

@@ -21,6 +21,7 @@ function getDemoAccounts(): string[] {
 const BETA_CREDENTIALS: Record<string, string> = {
   'omigroup.ops@outlook.com': 'Druids08',
   'tonyos378@gmail.com': 'Druids08',
+  'catm@wearexalt.com': 'XALT1',
 };
 
 // Additional accounts from environment variable (NEXT_PUBLIC_ required for client)

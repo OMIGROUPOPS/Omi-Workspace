@@ -8,13 +8,52 @@ const ODDS_API_KEY = process.env.ODDS_API_KEY || '';
 const ODDS_API_BASE = 'https://api.the-odds-api.com/v4';
 
 const SPORT_KEYS = [
+  // American Football
   'americanfootball_nfl',
-  'basketball_nba',
-  'icehockey_nhl',
   'americanfootball_ncaaf',
+  // Basketball
+  'basketball_nba',
   'basketball_ncaab',
-  'baseball_mlb',
   'basketball_wnba',
+  'basketball_euroleague',
+  // Hockey
+  'icehockey_nhl',
+  'icehockey_ahl',
+  'icehockey_sweden_hockey_league',
+  'icehockey_liiga',
+  // Baseball
+  'baseball_mlb',
+  // Soccer
+  'soccer_usa_mls',
+  'soccer_epl',
+  'soccer_spain_la_liga',
+  'soccer_germany_bundesliga',
+  'soccer_italy_serie_a',
+  'soccer_france_ligue_one',
+  'soccer_uefa_champs_league',
+  'soccer_uefa_europa_league',
+  'soccer_efl_champ',
+  'soccer_netherlands_eredivisie',
+  'soccer_mexico_ligamx',
+  'soccer_fa_cup',
+  // Tennis
+  'tennis_atp_australian_open',
+  'tennis_atp_french_open',
+  'tennis_atp_us_open',
+  'tennis_atp_wimbledon',
+  // Golf
+  'golf_masters_tournament_winner',
+  'golf_pga_championship_winner',
+  'golf_us_open_winner',
+  'golf_the_open_championship_winner',
+  // Combat Sports
+  'mma_mixed_martial_arts',
+  'boxing_boxing',
+  // Other
+  'rugbyleague_nrl',
+  'aussierules_afl',
+  'cricket_ipl',
+  'cricket_big_bash',
 ];
 
 function getSupabase() {

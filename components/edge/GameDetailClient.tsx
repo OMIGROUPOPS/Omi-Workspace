@@ -1907,7 +1907,10 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
       </div>
 
       {/* EdgeScout Analysis - Shows analysis for SELECTED market and period */}
-      {activeCeq && (
+      {(() => {
+        const periodKey = {'full':'fullGame','1h':'firstHalf','2h':'secondHalf','1q':'q1','2q':'q2','3q':'q3','4q':'q4','1p':'p1','2p':'p2','3p':'p3'}[activeTab] || 'fullGame';
+        const currentSpreads = marketGroups[periodKey]?.spreads;
+        return activeCeq && (
         <div className="mb-6">
           <h3 className="text-sm font-semibold text-zinc-100 mb-3 flex items-center gap-2">
             <span className="text-blue-400">●</span>
@@ -1921,11 +1924,11 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
               <>
                 <PillarBreakdown
                   ceqResult={activeCeq.spreads.home}
-                  marketLabel={`${gameData.homeTeam} ${currentPeriodPrefix}Spread`}
+                  marketLabel={`${gameData.homeTeam} ${currentPeriodPrefix}Spread ${formatSpread(currentSpreads?.home?.line)}`}
                 />
                 <PillarBreakdown
                   ceqResult={activeCeq.spreads.away}
-                  marketLabel={`${gameData.awayTeam} ${currentPeriodPrefix}Spread`}
+                  marketLabel={`${gameData.awayTeam} ${currentPeriodPrefix}Spread ${formatSpread(currentSpreads?.away?.line)}`}
                 />
               </>
             ) : chartMarket === 'moneyline' && activeCeq.h2h ? (
@@ -1978,7 +1981,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
                 {activeCeq.bestEdge.market === 'spread' && activeCeq.spreads && !isSoccerGame && (
                   <PillarBreakdown
                     ceqResult={activeCeq.bestEdge.side === 'home' ? activeCeq.spreads.home : activeCeq.spreads.away}
-                    marketLabel={`${activeCeq.bestEdge.side === 'home' ? gameData.homeTeam : gameData.awayTeam} ${currentPeriodPrefix}Spread`}
+                    marketLabel={`${activeCeq.bestEdge.side === 'home' ? gameData.homeTeam : gameData.awayTeam} ${currentPeriodPrefix}Spread ${formatSpread(activeCeq.bestEdge.side === 'home' ? currentSpreads?.home?.line : currentSpreads?.away?.line)}`}
                   />
                 )}
                 {activeCeq.bestEdge.market === 'h2h' && activeCeq.h2h && (
@@ -2005,7 +2008,8 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
             ) : null}
           </div>
         </div>
-      )}
+      );
+      })()}
 
       {/* Team Totals EdgeScout Analysis - Shows when Team Totals tab is selected */}
       {activeTab === 'team' && teamTotalsCeq && (teamTotalsCeq.home || teamTotalsCeq.away) && (

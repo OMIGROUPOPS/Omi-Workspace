@@ -379,12 +379,16 @@ class ESPNClient:
                 pass
         
         motivation = max(0.0, min(1.0, motivation))
-        
+
+        # Determine playoff status based on actual position
         playoff_status = "contending"
         if team_standing["clinched_playoff"]:
             playoff_status = "clinched"
         elif team_standing["eliminated"]:
             playoff_status = "eliminated"
+        elif team_standing["games_back"] > 5:
+            # More than 5 GB = effectively out of playoff race (but not mathematically eliminated)
+            playoff_status = "out_of_race"
         
         return {
             "motivation_score": round(motivation, 3),

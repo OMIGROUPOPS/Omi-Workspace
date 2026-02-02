@@ -123,13 +123,19 @@ def calculate_incentives_score(
     elif away_incentive["playoff_status"] == "eliminated" and home_incentive["playoff_status"] == "contending":
         tank_alert = True
         motivation_differential -= 0.15
-    
+
     if home_incentive["playoff_status"] == "clinched":
         rest_alert = True
         motivation_differential += 0.1
     if away_incentive["playoff_status"] == "clinched":
         rest_alert = True
         motivation_differential -= 0.1
+
+    # Contending vs out_of_race: clear motivation edge to the team fighting for playoffs
+    if home_incentive["playoff_status"] == "contending" and away_incentive["playoff_status"] == "out_of_race":
+        motivation_differential -= 0.12  # Home team has motivation edge
+    elif away_incentive["playoff_status"] == "contending" and home_incentive["playoff_status"] == "out_of_race":
+        motivation_differential += 0.12  # Away team has motivation edge
     
     base_score = 0.5
     score = base_score + (motivation_differential * 0.5)
@@ -152,9 +158,13 @@ def calculate_incentives_score(
     if not is_championship:
         if home_incentive["playoff_status"] == "contending":
             reasoning_parts.append(f"{home_team} fighting for playoff spot ({home_incentive['games_back']} GB)")
+        elif home_incentive["playoff_status"] == "out_of_race":
+            reasoning_parts.append(f"{home_team} out of playoff race ({home_incentive['games_back']} GB)")
 
         if away_incentive["playoff_status"] == "contending":
             reasoning_parts.append(f"{away_team} fighting for playoff spot ({away_incentive['games_back']} GB)")
+        elif away_incentive["playoff_status"] == "out_of_race":
+            reasoning_parts.append(f"{away_team} out of playoff race ({away_incentive['games_back']} GB)")
 
     if abs(motivation_differential) < 0.1 and not reasoning_parts:
         reasoning_parts.append("No significant motivation asymmetry")

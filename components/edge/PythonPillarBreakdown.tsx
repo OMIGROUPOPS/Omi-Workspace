@@ -163,13 +163,8 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
     return null;
   }
 
-  const { pillar_scores, pillars, overall_confidence, best_bet, best_edge } = pillarData;
+  const { pillar_scores, pillars, overall_confidence } = pillarData;
   const confStyle = getConfidenceStyle(overall_confidence);
-
-  // Determine edge direction from composite (>55 = away edge, <45 = home edge)
-  const edgeDirection = pillar_scores.composite > 55 ? `${awayTeam}` :
-                        pillar_scores.composite < 45 ? `${homeTeam}` :
-                        'Neutral';
 
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
@@ -187,14 +182,6 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
             </span>
           </div>
         </div>
-        {overall_confidence !== 'PASS' && (
-          <div className="mt-1 text-[10px] text-zinc-300">
-            Edge Direction: <span className={confStyle.text}>{edgeDirection}</span>
-            {best_bet && best_edge !== 0 && (
-              <span className="ml-2">| Best: {best_bet} ({best_edge > 0 ? '+' : ''}{best_edge.toFixed(1)}%)</span>
-            )}
-          </div>
-        )}
       </div>
 
       {/* Pillar Bars */}

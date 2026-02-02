@@ -47,9 +47,23 @@ const BOOK_CONFIG: Record<string, { name: string; color: string }> = {
 const GAMES_PER_SPORT_IN_ALL_VIEW = 6;
 
 function getDisplayTeamName(teamName: string, sportKey: string): string {
+  // College sports - show full name
   if (sportKey.includes('ncaa')) {
     return teamName;
   }
+  // Soccer - show full name (teams like "Manchester United", "Nottingham Forest" need full names)
+  if (sportKey.includes('soccer')) {
+    return teamName;
+  }
+  // Combat sports - show full name (fighter names)
+  if (sportKey.includes('mma') || sportKey.includes('boxing')) {
+    return teamName;
+  }
+  // Tennis - show full name
+  if (sportKey.includes('tennis')) {
+    return teamName;
+  }
+  // US pro sports - show last word (Lakers, Chiefs, etc.)
   const words = teamName.split(' ');
   return words[words.length - 1];
 }
@@ -840,6 +854,29 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                             {totals?.line !== undefined ? (
                               <OddsCell line={`O${totals.line}`} price={totals.overPrice} />
                             ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
+                          </div>
+                        );
+                      })()}
+
+                      {/* Draw Row - Soccer only */}
+                      {game.sportKey?.includes('soccer') && (() => {
+                        const bookOdds = game.bookmakers?.[selectedBook];
+                        const h2h = bookOdds?.h2h || game.consensus?.h2h;
+                        const drawPrice = h2h?.drawPrice ?? h2h?.draw;
+
+                        if (!drawPrice) return null;
+
+                        return (
+                          <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1 items-center bg-zinc-900/30">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <div className="w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold text-zinc-400 bg-zinc-800 flex-shrink-0">
+                                X
+                              </div>
+                              <span className="text-xs text-zinc-400 font-medium">Draw</span>
+                            </div>
+                            <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>
+                            <MoneylineCell price={drawPrice} />
+                            <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>
                           </div>
                         );
                       })()}

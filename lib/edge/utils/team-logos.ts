@@ -69,6 +69,15 @@ export const EPL_TEAMS: Record<string, number> = {
   'Manchester United': 360, 'Newcastle': 361, 'Newcastle United': 361, 'Nottingham Forest': 393,
   'Southampton': 376, 'Tottenham': 367, 'Tottenham Hotspur': 367, 'West Ham': 371, 'West Ham United': 371,
   'Wolverhampton': 379, 'Wolverhampton Wanderers': 379, 'Wolves': 379,
+  // Championship teams (for EFL Champ data that may come as EPL)
+  'Burnley': 379, 'Leeds': 357, 'Leeds United': 357, 'Sunderland': 366,
+  'Sheffield United': 398, 'Middlesbrough': 374, 'Blackburn': 340, 'Blackburn Rovers': 340,
+  'Bristol City': 338, 'Coventry': 351, 'Coventry City': 351, 'Derby': 352, 'Derby County': 352,
+  'Hull': 306, 'Hull City': 306, 'Luton': 389, 'Luton Town': 389, 'Millwall': 390,
+  'Norwich': 381, 'Norwich City': 381, 'Plymouth': 329, 'Plymouth Argyle': 329,
+  'Preston': 394, 'Preston North End': 394, 'QPR': 396, 'Queens Park Rangers': 396,
+  'Sheffield Wednesday': 399, 'Stoke': 336, 'Stoke City': 336, 'Swansea': 318, 'Swansea City': 318,
+  'Watford': 395, 'West Brom': 383, 'West Bromwich Albion': 383,
 };
 
 // La Liga team IDs
@@ -223,6 +232,16 @@ export function getTeamLogo(teamName: string, sportKey: string): string | null {
   }
   // EPL
   if (sportKey === 'soccer_epl') {
+    const espnId = EPL_TEAMS[teamName];
+    if (espnId) return `https://a.espncdn.com/i/teamlogos/soccer/500/${espnId}.png`;
+  }
+  // EFL Championship (uses same team map as EPL since many teams move between leagues)
+  if (sportKey === 'soccer_efl_champ') {
+    const espnId = EPL_TEAMS[teamName];
+    if (espnId) return `https://a.espncdn.com/i/teamlogos/soccer/500/${espnId}.png`;
+  }
+  // FA Cup (uses EPL teams map)
+  if (sportKey === 'soccer_fa_cup') {
     const espnId = EPL_TEAMS[teamName];
     if (espnId) return `https://a.espncdn.com/i/teamlogos/soccer/500/${espnId}.png`;
   }

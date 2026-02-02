@@ -282,7 +282,7 @@ function buildConsensusFromBookmakers(game: any) {
   const bookmakers = game.bookmakers;
   if (!bookmakers || bookmakers.length === 0) return {};
 
-  const h2h: { home: number[]; away: number[] } = { home: [], away: [] };
+  const h2h: { home: number[]; away: number[]; draw: number[] } = { home: [], away: [], draw: [] };
   const spreads: { homeLine: number[]; homeOdds: number[]; awayLine: number[]; awayOdds: number[] } = { homeLine: [], homeOdds: [], awayLine: [], awayOdds: [] };
   const totals: { line: number[]; overOdds: number[]; underOdds: number[] } = { line: [], overOdds: [], underOdds: [] };
 
@@ -291,8 +291,10 @@ function buildConsensusFromBookmakers(game: any) {
       if (market.key === 'h2h') {
         const home = market.outcomes.find((o: any) => o.name === game.home_team);
         const away = market.outcomes.find((o: any) => o.name === game.away_team);
+        const draw = market.outcomes.find((o: any) => o.name === 'Draw');
         if (home) h2h.home.push(home.price);
         if (away) h2h.away.push(away.price);
+        if (draw) h2h.draw.push(draw.price);
       }
       if (market.key === 'spreads') {
         const home = market.outcomes.find((o: any) => o.name === game.home_team);
@@ -328,7 +330,11 @@ function buildConsensusFromBookmakers(game: any) {
   const consensus: any = {};
 
   if (h2h.home.length > 0) {
-    consensus.h2h = { home: median(h2h.home), away: median(h2h.away) };
+    consensus.h2h = {
+      home: median(h2h.home),
+      away: median(h2h.away),
+      draw: h2h.draw.length > 0 ? median(h2h.draw) : undefined,
+    };
   }
   if (spreads.homeLine.length > 0) {
     consensus.spreads = {
@@ -540,7 +546,8 @@ function processGame(
         if (market.key === 'h2h') {
           const home = market.outcomes.find((o: any) => o.name === game.home_team);
           const away = market.outcomes.find((o: any) => o.name === game.away_team);
-          bookOdds.h2h = { homePrice: home?.price, awayPrice: away?.price };
+          const draw = market.outcomes.find((o: any) => o.name === 'Draw');
+          bookOdds.h2h = { homePrice: home?.price, awayPrice: away?.price, drawPrice: draw?.price };
         }
         if (market.key === 'spreads') {
           const home = market.outcomes.find((o: any) => o.name === game.home_team);

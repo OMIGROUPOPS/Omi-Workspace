@@ -33,13 +33,54 @@ ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 # SPORT MAPPINGS
 # =============================================================================
 
-# Odds API sport keys
+# Odds API sport keys - maps short names to Odds API format
 ODDS_API_SPORTS = {
+    # American Football
     "NFL": "americanfootball_nfl",
-    "NBA": "basketball_nba",
-    "NHL": "icehockey_nhl",
     "NCAAF": "americanfootball_ncaaf",
+    # Basketball
+    "NBA": "basketball_nba",
     "NCAAB": "basketball_ncaab",
+    "WNBA": "basketball_wnba",
+    "EUROLEAGUE": "basketball_euroleague",
+    # Hockey
+    "NHL": "icehockey_nhl",
+    "AHL": "icehockey_ahl",
+    "SHL": "icehockey_sweden_hockey_league",
+    "LIIGA": "icehockey_liiga",
+    # Baseball
+    "MLB": "baseball_mlb",
+    # Soccer
+    "MLS": "soccer_usa_mls",
+    "EPL": "soccer_epl",
+    "LA_LIGA": "soccer_spain_la_liga",
+    "BUNDESLIGA": "soccer_germany_bundesliga",
+    "SERIE_A": "soccer_italy_serie_a",
+    "LIGUE_1": "soccer_france_ligue_one",
+    "UCL": "soccer_uefa_champs_league",
+    "EUROPA": "soccer_uefa_europa_league",
+    "EFL_CHAMP": "soccer_efl_champ",
+    "EREDIVISIE": "soccer_netherlands_eredivisie",
+    "LIGA_MX": "soccer_mexico_ligamx",
+    "FA_CUP": "soccer_fa_cup",
+    # Tennis
+    "TENNIS_AO": "tennis_atp_australian_open",
+    "TENNIS_FO": "tennis_atp_french_open",
+    "TENNIS_USO": "tennis_atp_us_open",
+    "TENNIS_WIM": "tennis_atp_wimbledon",
+    # Golf
+    "MASTERS": "golf_masters_tournament_winner",
+    "PGA_CHAMP": "golf_pga_championship_winner",
+    "US_OPEN": "golf_us_open_winner",
+    "THE_OPEN": "golf_the_open_championship_winner",
+    # Combat Sports
+    "MMA": "mma_mixed_martial_arts",
+    "BOXING": "boxing_boxing",
+    # Other
+    "NRL": "rugbyleague_nrl",
+    "AFL": "aussierules_afl",
+    "IPL": "cricket_ipl",
+    "BIG_BASH": "cricket_big_bash",
 }
 
 # ESPN API paths (supports both short format and Odds API format)

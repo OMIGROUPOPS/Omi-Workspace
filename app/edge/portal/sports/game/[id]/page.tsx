@@ -6,6 +6,7 @@ import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
 import { calculateGameCEQ, fetchGameContext, type ExtendedOddsSnapshot, type GameCEQ, type PythonPillarScores } from '@/lib/edge/engine/edgescout';
 import { calculateTwoWayEV } from '@/lib/edge/utils/odds-math';
+import { isTier2Account } from '@/lib/edge/auth';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 
@@ -1302,7 +1303,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
         gameData={{ id: gameId, homeTeam, awayTeam, sportKey: fullSportKey, commenceTime }}
         bookmakers={bookmakers}
         availableBooks={availableBooks}
-        userTier="tier_1"
+        userTier={isTier2Account(userEmail) ? "tier_2" : "tier_1"}
         userEmail={userEmail}
         isDemo={isDemo}
         ceq={ceqData}

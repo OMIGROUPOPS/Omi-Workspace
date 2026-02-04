@@ -207,11 +207,12 @@ OUTDOOR_SPORTS = ["NFL", "NCAAF"]
 # =============================================================================
 
 PILLAR_WEIGHTS = {
-    "execution": 0.20,
-    "incentives": 0.15,
-    "shocks": 0.25,
-    "time_decay": 0.15,
-    "flow": 0.25,
+    "execution": 0.20,       # Injuries, lineup availability
+    "incentives": 0.10,      # Motivation, playoff positioning
+    "shocks": 0.25,          # Line movement, velocity, steam moves
+    "time_decay": 0.10,      # Rest, travel, schedule fatigue
+    "flow": 0.25,            # Sharp money, book disagreement
+    "game_environment": 0.10, # Pace, weather, expected totals
 }
 
 # =============================================================================

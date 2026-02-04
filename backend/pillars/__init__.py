@@ -1,13 +1,13 @@
 """
-OMI Edge - 5 Pillar Analysis Framework
+OMI Edge - 6 Pillar Analysis Framework
 
 Each pillar analyzes a different dimension of edge detection:
-- Pillar 1 (Execution): Player availability, weather, lineup certainty
-- Pillar 2 (Incentives): Motivation, playoff positioning, tank scenarios
-- Pillar 3 (Shocks): News events, information digestion timing
-- Pillar 4 (Time Decay): Rest, travel, schedule fatigue
-- Pillar 5 (Flow): Sharp money, line movement, book disagreement
-- Game Environment (Totals): Sport-specific pace and scoring analysis
+- Pillar 1 (Execution): Player availability, injuries, lineup certainty (0.20)
+- Pillar 2 (Incentives): Motivation, playoff positioning, tank scenarios (0.10)
+- Pillar 3 (Shocks): Line movement, velocity, steam moves (0.25)
+- Pillar 4 (Time Decay): Rest, travel, schedule fatigue (0.10)
+- Pillar 5 (Flow): Sharp money, book disagreement (0.25)
+- Pillar 6 (Game Environment): Pace, weather, expected totals (0.10)
 """
 
 from .execution import calculate_execution_score, get_execution_edge_direction

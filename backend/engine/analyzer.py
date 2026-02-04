@@ -10,6 +10,7 @@ The core engine that:
 from datetime import datetime, timezone
 from typing import Optional
 import logging
+import json
 
 from config import PILLAR_WEIGHTS, EDGE_THRESHOLDS
 from data_sources.odds_api import odds_client
@@ -314,9 +315,8 @@ def analyze_game(
         line_snapshots=line_snapshots
     )
 
-    # Game Environment (for totals analysis)
-    # Fetch sport-specific stats
-    game_env = None
+    # Game Environment (for totals analysis and composite)
+    # Now included in 6-pillar composite calculation
     nhl_stats = None
     total_line = None
 
@@ -326,7 +326,6 @@ def analyze_game(
 
     if sport == "icehockey_nhl":
         # Fetch NHL stats for environment calculation
-        # Extract team abbreviations from team names
         home_abbr = _extract_team_abbr(home_team, "NHL")
         away_abbr = _extract_team_abbr(away_team, "NHL")
 
@@ -340,7 +339,6 @@ def analyze_game(
             total_line=total_line,
             nhl_stats=nhl_stats,
         )
-        logger.info(f"  Game Environment: {game_env['score']:.3f} - {game_env.get('reasoning', 'N/A')}")
 
     elif sport == "americanfootball_nfl":
         # NFL game environment with weather
@@ -351,7 +349,26 @@ def analyze_game(
             total_line=total_line,
             game_time=game_time,
         )
-        logger.info(f"  Game Environment: {game_env['score']:.3f} - {game_env.get('reasoning', 'N/A')}")
+
+    elif sport in ["basketball_nba", "basketball_ncaab"]:
+        # NBA/NCAAB - basic environment (pace data would need ESPN fetch)
+        game_env = calculate_game_environment_score(
+            sport="NBA",
+            home_team=home_team,
+            away_team=away_team,
+            total_line=total_line,
+        )
+
+    else:
+        # Soccer, Tennis, other sports - neutral baseline
+        game_env = {
+            "score": 0.5,
+            "expected_total": None,
+            "breakdown": {},
+            "reasoning": "No sport-specific environment data available"
+        }
+
+    logger.info(f"  Game Environment: {game_env['score']:.3f} - {game_env.get('reasoning', 'N/A')}")
 
     pillar_scores = {
         "execution": execution["score"],
@@ -359,6 +376,7 @@ def analyze_game(
         "shocks": shocks["score"],
         "time_decay": time_decay["score"],
         "flow": flow["score"],
+        "game_environment": game_env["score"],
     }
 
     # Debug: Log pillar scores and reasoning
@@ -368,6 +386,7 @@ def analyze_game(
     logger.info(f"    Shocks: {shocks['score']:.3f} - {shocks.get('reasoning', 'N/A')}")
     logger.info(f"    Time Decay: {time_decay['score']:.3f} - {time_decay.get('reasoning', 'N/A')}")
     logger.info(f"    Flow: {flow['score']:.3f} - {flow.get('reasoning', 'N/A')}")
+    logger.info(f"    Game Environment: {game_env['score']:.3f} - {game_env.get('reasoning', 'N/A')}")
 
     composite = calculate_composite_score(pillar_scores)
     
@@ -476,17 +495,38 @@ def analyze_game(
                 best_edge = edge_data["edge_pct"]
                 best_bet = market_key
     
-    # Build pillars dict
+    # Build pillars dict (all 6 pillars)
     pillars_dict = {
         "execution": execution,
         "incentives": incentives,
         "shocks": shocks,
         "time_decay": time_decay,
         "flow": flow,
+        "game_environment": game_env,
     }
-    # Add game_env if calculated (NHL, NBA)
-    if game_env:
-        pillars_dict["game_environment"] = game_env
+
+    overall_confidence = get_confidence_rating(best_edge, composite) if best_bet else "PASS"
+    analyzed_at = datetime.now(timezone.utc).isoformat()
+
+    # === CALIBRATION LOG ===
+    # JSON-formatted single-line output for batch analysis of score distributions
+    calibration_data = {
+        "game_id": game_id,
+        "sport": sport,
+        "composite": round(composite, 3),
+        "confidence": overall_confidence,
+        "edge_pct": best_edge,
+        "pillars": {
+            "execution": round(execution["score"], 3),
+            "incentives": round(incentives["score"], 3),
+            "shocks": round(shocks["score"], 3),
+            "time_decay": round(time_decay["score"], 3),
+            "flow": round(flow["score"], 3),
+            "game_environment": round(game_env["score"], 3),
+        },
+        "timestamp": analyzed_at,
+    }
+    logger.info(f"CALIBRATION: {json.dumps(calibration_data)}")
 
     return {
         "game_id": game_id,
@@ -502,8 +542,8 @@ def analyze_game(
         "edges": edges,
         "best_bet": best_bet,
         "best_edge": best_edge,
-        "overall_confidence": get_confidence_rating(best_edge, composite) if best_bet else "PASS",
-        "analyzed_at": datetime.now(timezone.utc).isoformat(),
+        "overall_confidence": overall_confidence,
+        "analyzed_at": analyzed_at,
     }
 
 

@@ -9,11 +9,10 @@ export interface AuthState {
   email: string | null;
 }
 
-// Tier 2 accounts - hardcoded accounts that bypass Live In-Game paywall
-const TIER2_ACCOUNTS: string[] = [
-  'omigroup.ops@outlook.com',
-  'deankardamis@gmail.com',
-];
+// Import and re-export server-safe tier functions from auth-tier
+import { TIER2_ACCOUNTS as _TIER2_ACCOUNTS, isTier2Account as _isTier2Account } from './auth-tier';
+export const TIER2_ACCOUNTS = _TIER2_ACCOUNTS;
+export const isTier2Account = _isTier2Account;
 
 // Demo accounts that bypass Tier 2 restrictions (from env var)
 // Format: comma-separated emails in DEMO_ACCOUNTS env var

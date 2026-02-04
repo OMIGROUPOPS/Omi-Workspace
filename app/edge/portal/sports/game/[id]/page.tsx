@@ -6,7 +6,7 @@ import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
 import { calculateGameCEQ, fetchGameContext, type ExtendedOddsSnapshot, type GameCEQ, type PythonPillarScores } from '@/lib/edge/engine/edgescout';
 import { calculateTwoWayEV } from '@/lib/edge/utils/odds-math';
-import { isTier2Account } from '@/lib/edge/auth';
+import { isTier2Account } from '@/lib/edge/auth-tier';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 

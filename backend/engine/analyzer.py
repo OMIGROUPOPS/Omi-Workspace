@@ -26,6 +26,78 @@ from pillars import (
 
 logger = logging.getLogger(__name__)
 
+
+def fetch_line_context(game_id: str, sport_key: str) -> dict:
+    """
+    Fetch opening line, current line, and line movement history from database.
+
+    Args:
+        game_id: The game identifier
+        sport_key: The sport key (can be lowercase like 'americanfootball_nfl')
+
+    Returns:
+        dict with:
+            - opening_line: float or None (earliest spread line)
+            - current_line: float or None (most recent spread line)
+            - line_snapshots: list of {timestamp, line} dicts for shocks/flow pillars
+    """
+    from database import db
+
+    result = {
+        "opening_line": None,
+        "current_line": None,
+        "line_snapshots": []
+    }
+
+    if not db._is_connected():
+        logger.warning("Database not connected, cannot fetch line context")
+        return result
+
+    try:
+        # Query line_snapshots for spread market, full game
+        # Note: game_id is unique across sports from Odds API, so no sport_key filter needed
+        query_result = db.client.table("line_snapshots").select(
+            "line, snapshot_time"
+        ).eq(
+            "game_id", game_id
+        ).eq(
+            "market_type", "spread"
+        ).eq(
+            "market_period", "full"
+        ).order(
+            "snapshot_time", desc=False
+        ).execute()
+
+        snapshots = query_result.data or []
+
+        if snapshots:
+            # Opening line = earliest snapshot
+            result["opening_line"] = snapshots[0].get("line")
+
+            # Current line = most recent snapshot
+            result["current_line"] = snapshots[-1].get("line")
+
+            # Build line_snapshots list for shocks/flow pillars
+            # Format: list of {timestamp, line} dicts
+            result["line_snapshots"] = [
+                {
+                    "timestamp": snap.get("snapshot_time"),
+                    "line": snap.get("line")
+                }
+                for snap in snapshots
+                if snap.get("line") is not None
+            ]
+
+            logger.info(f"  Line context for {game_id}: opening={result['opening_line']}, "
+                       f"current={result['current_line']}, {len(result['line_snapshots'])} snapshots")
+        else:
+            logger.debug(f"  No line snapshots found for {game_id}")
+
+    except Exception as e:
+        logger.error(f"Error fetching line context for {game_id}: {e}")
+
+    return result
+
 # Team name to abbreviation mappings
 NHL_TEAM_ABBR = {
     "anaheim ducks": "ANA", "arizona coyotes": "ARI", "boston bruins": "BOS",
@@ -152,14 +224,23 @@ def analyze_game(
 ) -> dict:
     """Full analysis of a single game using all 5 pillars."""
     parsed = odds_client.parse_game_odds(game)
-    
+
     home_team = parsed["home_team"]
     away_team = parsed["away_team"]
     game_time = parsed["commence_time"]
     game_id = parsed["game_id"]
-    
+
     logger.info(f"Analyzing: {away_team} @ {home_team}")
     logger.info(f"  Sport: {sport}, Home: '{home_team}', Away: '{away_team}'")
+
+    # Fetch line context from database if not provided
+    # This powers the Shocks (0.25 weight) and Flow (0.25 weight) pillars
+    if opening_line is None or line_snapshots is None:
+        line_context = fetch_line_context(game_id, sport)
+        if opening_line is None:
+            opening_line = line_context.get("opening_line")
+        if line_snapshots is None:
+            line_snapshots = line_context.get("line_snapshots", [])
 
     venue = None
 

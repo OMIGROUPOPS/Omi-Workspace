@@ -9,6 +9,10 @@ const ODDS_API_KEY = process.env.ODDS_API_KEY || "";
 const ODDS_API_BASE = "https://api.the-odds-api.com/v4";
 
 const SPORT_KEYS: Record<string, string> = {
+  // ============================================================================
+  // ACTIVE SPORTS (7 total) - Synced on 15-minute cron cycle
+  // ============================================================================
+
   // American Football
   NFL: "americanfootball_nfl",
   NCAAF: "americanfootball_ncaaf",
@@ -16,20 +20,12 @@ const SPORT_KEYS: Record<string, string> = {
   // Basketball
   NBA: "basketball_nba",
   NCAAB: "basketball_ncaab",
-  WNBA: "basketball_wnba",
-  WNCAAB: "basketball_wncaab",
-  EUROLEAGUE: "basketball_euroleague",
-  NBL: "basketball_nbl",
-
-  // Baseball
-  MLB: "baseball_mlb",
 
   // Ice Hockey
   NHL: "icehockey_nhl",
-  AHL: "icehockey_ahl",
-  SHL: "icehockey_sweden_hockey_league",
-  LIIGA: "icehockey_liiga",
-  MESTIS: "icehockey_mestis",
+
+  // Soccer - England
+  EPL: "soccer_epl",
 
   // Tennis - Grand Slams
   TENNIS_AO: "tennis_atp_australian_open",
@@ -37,54 +33,70 @@ const SPORT_KEYS: Record<string, string> = {
   TENNIS_USO: "tennis_atp_us_open",
   TENNIS_WIM: "tennis_atp_wimbledon",
 
-  // Combat Sports
-  MMA: "mma_mixed_martial_arts",
-  BOXING: "boxing_boxing",
+  // ============================================================================
+  // PAUSED SPORTS - Re-enable when in season or budget allows
+  // ============================================================================
 
-  // Soccer - England
-  EPL: "soccer_epl",
-  EFL_CHAMP: "soccer_efl_champ",
-  FA_CUP: "soccer_fa_cup",
+  // PAUSED: Re-enable when in season or budget allows
+  // WNBA: "basketball_wnba",
+  // WNCAAB: "basketball_wncaab",
+  // EUROLEAGUE: "basketball_euroleague",
+  // NBL: "basketball_nbl",
 
-  // Soccer - Europe Top Leagues
-  LA_LIGA: "soccer_spain_la_liga",
-  BUNDESLIGA: "soccer_germany_bundesliga",
-  SERIE_A: "soccer_italy_serie_a",
-  LIGUE_1: "soccer_france_ligue_one",
-  EREDIVISIE: "soccer_netherlands_eredivisie",
+  // PAUSED: Re-enable when in season or budget allows
+  // MLB: "baseball_mlb",
 
-  // Soccer - International
-  UCL: "soccer_uefa_champs_league",
-  EUROPA: "soccer_uefa_europa_league",
+  // PAUSED: Re-enable when in season or budget allows
+  // AHL: "icehockey_ahl",
+  // SHL: "icehockey_sweden_hockey_league",
+  // LIIGA: "icehockey_liiga",
+  // MESTIS: "icehockey_mestis",
 
-  // Soccer - Americas
-  MLS: "soccer_usa_mls",
-  LIGA_MX: "soccer_mexico_ligamx",
+  // PAUSED: Re-enable when in season or budget allows
+  // MMA: "mma_mixed_martial_arts",
+  // BOXING: "boxing_boxing",
 
-  // Cricket
-  IPL: "cricket_ipl",
-  BIG_BASH: "cricket_big_bash",
-  CRICKET_TEST: "cricket_test_match",
+  // PAUSED: Re-enable when in season or budget allows
+  // EFL_CHAMP: "soccer_efl_champ",
+  // FA_CUP: "soccer_fa_cup",
+  // LA_LIGA: "soccer_spain_la_liga",
+  // BUNDESLIGA: "soccer_germany_bundesliga",
+  // SERIE_A: "soccer_italy_serie_a",
+  // LIGUE_1: "soccer_france_ligue_one",
+  // EREDIVISIE: "soccer_netherlands_eredivisie",
+  // UCL: "soccer_uefa_champs_league",
+  // EUROPA: "soccer_uefa_europa_league",
+  // MLS: "soccer_usa_mls",
+  // LIGA_MX: "soccer_mexico_ligamx",
 
-  // Rugby
-  NRL: "rugbyleague_nrl",
+  // PAUSED: Re-enable when in season or budget allows
+  // IPL: "cricket_ipl",
+  // BIG_BASH: "cricket_big_bash",
+  // CRICKET_TEST: "cricket_test_match",
 
-  // Golf (outrights only)
-  MASTERS: "golf_masters_tournament_winner",
-  PGA_CHAMP: "golf_pga_championship_winner",
-  US_OPEN: "golf_us_open_winner",
-  THE_OPEN: "golf_the_open_championship_winner",
+  // PAUSED: Re-enable when in season or budget allows
+  // NRL: "rugbyleague_nrl",
 
-  // Aussie Rules
-  AFL: "aussierules_afl",
+  // PAUSED: Re-enable when in season or budget allows
+  // MASTERS: "golf_masters_tournament_winner",
+  // PGA_CHAMP: "golf_pga_championship_winner",
+  // US_OPEN: "golf_us_open_winner",
+  // THE_OPEN: "golf_the_open_championship_winner",
+
+  // PAUSED: Re-enable when in season or budget allows
+  // AFL: "aussierules_afl",
 };
 
 // Core markets fetched via /sports/{sport}/odds (all sports)
 const CORE_MARKETS = "h2h,spreads,totals";
 
 // Per-event additional markets fetched via /sports/{sport}/events/{id}/odds
-// Pro sports get full enrichment; others get basic enrichment to conserve quota
+// Only active sports get enrichment to conserve API quota
 const EVENT_MARKETS: Record<string, string[]> = {
+  // ============================================================================
+  // ACTIVE SPORTS - Full enrichment (halves, quarters, alternates, props)
+  // ============================================================================
+
   // American Football - Full Game, 1H, 2H, 1Q, 2Q, 3Q, 4Q
   americanfootball_nfl: [
     // Halves
@@ -131,18 +143,6 @@ const EVENT_MARKETS: Record<string, string[]> = {
     "h2h_h2", "spreads_h2", "totals_h2",
     "alternate_spreads", "alternate_totals", "team_totals",
   ],
-  basketball_wnba: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals", "team_totals",
-    "player_points", "player_rebounds", "player_assists",
-    "player_threes",
-  ],
-  basketball_euroleague: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals",
-  ],
 
   // Ice Hockey
   icehockey_nhl: [
@@ -153,21 +153,8 @@ const EVENT_MARKETS: Record<string, string[]> = {
     "player_points", "player_assists", "player_shots_on_goal",
     "player_blocked_shots",
   ],
-  icehockey_sweden_hockey_league: [
-    "alternate_spreads", "alternate_totals",
-  ],
-  icehockey_liiga: [
-    "alternate_spreads", "alternate_totals",
-  ],
 
-  // Baseball
-  baseball_mlb: [
-    "alternate_spreads", "alternate_totals", "team_totals",
-    "pitcher_strikeouts", "batter_total_bases", "batter_hits",
-    "batter_home_runs", "batter_rbis",
-  ],
-
-  // Soccer - Full Game, 1H, 2H (top leagues get more markets)
+  // Soccer - EPL only
   soccer_epl: [
     // Halves
     "h2h_h1", "spreads_h1", "totals_h1",
@@ -176,79 +163,146 @@ const EVENT_MARKETS: Record<string, string[]> = {
     "alternate_spreads", "alternate_totals", "team_totals",
     "btts", "draw_no_bet",
   ],
-  soccer_uefa_champs_league: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals", "team_totals",
-  ],
-  soccer_spain_la_liga: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals", "team_totals",
-  ],
-  soccer_germany_bundesliga: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals", "team_totals",
-  ],
-  soccer_italy_serie_a: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals", "team_totals",
-  ],
-  soccer_france_ligue_one: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals", "team_totals",
-  ],
-  soccer_uefa_europa_league: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals", "team_totals",
-  ],
-  soccer_usa_mls: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals", "team_totals",
-  ],
-  soccer_mexico_ligamx: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals", "team_totals",
-  ],
-  soccer_netherlands_eredivisie: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals",
-  ],
-  soccer_efl_champ: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals",
-  ],
-  soccer_fa_cup: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals",
-  ],
-  // Combat Sports
-  mma_mixed_martial_arts: [
-    "alternate_spreads", "alternate_totals",
-  ],
-  boxing_boxing: [
-    "alternate_spreads", "alternate_totals",
-  ],
-  // Rugby/AFL
-  rugbyleague_nrl: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals",
-  ],
-  aussierules_afl: [
-    "h2h_h1", "spreads_h1", "totals_h1",
-    "h2h_h2", "spreads_h2", "totals_h2",
-    "alternate_spreads", "alternate_totals",
-  ],
+
+  // Tennis - No per-event enrichment (core markets only)
+
+  // ============================================================================
+  // PAUSED SPORTS - Re-enable when in season or budget allows
+  // ============================================================================
+
+  // PAUSED: basketball_wnba
+  // basketball_wnba: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals", "team_totals",
+  //   "player_points", "player_rebounds", "player_assists",
+  //   "player_threes",
+  // ],
+
+  // PAUSED: basketball_euroleague
+  // basketball_euroleague: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals",
+  // ],
+
+  // PAUSED: icehockey_sweden_hockey_league
+  // icehockey_sweden_hockey_league: [
+  //   "alternate_spreads", "alternate_totals",
+  // ],
+
+  // PAUSED: icehockey_liiga
+  // icehockey_liiga: [
+  //   "alternate_spreads", "alternate_totals",
+  // ],
+
+  // PAUSED: baseball_mlb
+  // baseball_mlb: [
+  //   "alternate_spreads", "alternate_totals", "team_totals",
+  //   "pitcher_strikeouts", "batter_total_bases", "batter_hits",
+  //   "batter_home_runs", "batter_rbis",
+  // ],
+
+  // PAUSED: soccer_uefa_champs_league
+  // soccer_uefa_champs_league: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals", "team_totals",
+  // ],
+
+  // PAUSED: soccer_spain_la_liga
+  // soccer_spain_la_liga: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals", "team_totals",
+  // ],
+
+  // PAUSED: soccer_germany_bundesliga
+  // soccer_germany_bundesliga: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals", "team_totals",
+  // ],
+
+  // PAUSED: soccer_italy_serie_a
+  // soccer_italy_serie_a: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals", "team_totals",
+  // ],
+
+  // PAUSED: soccer_france_ligue_one
+  // soccer_france_ligue_one: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals", "team_totals",
+  // ],
+
+  // PAUSED: soccer_uefa_europa_league
+  // soccer_uefa_europa_league: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals", "team_totals",
+  // ],
+
+  // PAUSED: soccer_usa_mls
+  // soccer_usa_mls: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals", "team_totals",
+  // ],
+
+  // PAUSED: soccer_mexico_ligamx
+  // soccer_mexico_ligamx: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals", "team_totals",
+  // ],
+
+  // PAUSED: soccer_netherlands_eredivisie
+  // soccer_netherlands_eredivisie: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals",
+  // ],
+
+  // PAUSED: soccer_efl_champ
+  // soccer_efl_champ: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals",
+  // ],
+
+  // PAUSED: soccer_fa_cup
+  // soccer_fa_cup: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals",
+  // ],
+
+  // PAUSED: mma_mixed_martial_arts
+  // mma_mixed_martial_arts: [
+  //   "alternate_spreads", "alternate_totals",
+  // ],
+
+  // PAUSED: boxing_boxing
+  // boxing_boxing: [
+  //   "alternate_spreads", "alternate_totals",
+  // ],
+
+  // PAUSED: rugbyleague_nrl
+  // rugbyleague_nrl: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals",
+  // ],
+
+  // PAUSED: aussierules_afl
+  // aussierules_afl: [
+  //   "h2h_h1", "spreads_h1", "totals_h1",
+  //   "h2h_h2", "spreads_h2", "totals_h2",
+  //   "alternate_spreads", "alternate_totals",
+  // ],
 };
 
 // Market keys to snapshot for line movement charts (includes halves, quarters, periods, and props)

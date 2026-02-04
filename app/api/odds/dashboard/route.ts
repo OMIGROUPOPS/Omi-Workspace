@@ -7,6 +7,7 @@ import { calculateTwoWayEV } from '@/lib/edge/utils/odds-math';
 const ODDS_API_KEY = process.env.ODDS_API_KEY || '';
 const ODDS_API_BASE = 'https://api.the-odds-api.com/v4';
 
+// ACTIVE SPORTS - Must match app/api/odds/sync/route.ts SPORT_KEYS
 const SPORT_KEYS = [
   // American Football
   'americanfootball_nfl',
@@ -14,46 +15,15 @@ const SPORT_KEYS = [
   // Basketball
   'basketball_nba',
   'basketball_ncaab',
-  'basketball_wnba',
-  'basketball_euroleague',
   // Hockey
   'icehockey_nhl',
-  'icehockey_ahl',
-  'icehockey_sweden_hockey_league',
-  'icehockey_liiga',
-  // Baseball
-  'baseball_mlb',
   // Soccer
-  'soccer_usa_mls',
   'soccer_epl',
-  'soccer_spain_la_liga',
-  'soccer_germany_bundesliga',
-  'soccer_italy_serie_a',
-  'soccer_france_ligue_one',
-  'soccer_uefa_champs_league',
-  'soccer_uefa_europa_league',
-  'soccer_efl_champ',
-  'soccer_netherlands_eredivisie',
-  'soccer_mexico_ligamx',
-  'soccer_fa_cup',
   // Tennis
   'tennis_atp_australian_open',
   'tennis_atp_french_open',
   'tennis_atp_us_open',
   'tennis_atp_wimbledon',
-  // Golf
-  'golf_masters_tournament_winner',
-  'golf_pga_championship_winner',
-  'golf_us_open_winner',
-  'golf_the_open_championship_winner',
-  // Combat Sports
-  'mma_mixed_martial_arts',
-  'boxing_boxing',
-  // Other
-  'rugbyleague_nrl',
-  'aussierules_afl',
-  'cricket_ipl',
-  'cricket_big_bash',
 ];
 
 function getSupabase() {
@@ -68,44 +38,51 @@ function getSupabase() {
   );
 }
 
-// Fetch live scores
+// DISABLED: Live scores fetching - was consuming ~37 API calls per dashboard load
+// The dashboard should use cached data only. Re-enable when budget allows.
+//
+// async function fetchLiveScores(): Promise<Record<string, any>> {
+//   const scores: Record<string, any> = {};
+//   if (!ODDS_API_KEY) return scores;
+//
+//   try {
+//     const results = await Promise.all(
+//       SPORT_KEYS.map(async (sportKey) => {
+//         try {
+//           const url = `${ODDS_API_BASE}/sports/${sportKey}/scores?apiKey=${ODDS_API_KEY}&daysFrom=1`;
+//           const res = await fetch(url, { cache: 'no-store' });
+//           if (!res.ok) return [];
+//           return res.json();
+//         } catch {
+//           return [];
+//         }
+//       })
+//     );
+//
+//     for (const sportScores of results) {
+//       for (const game of sportScores) {
+//         if (game.scores && game.scores.length >= 2) {
+//           const homeScore = game.scores.find((s: any) => s.name === game.home_team);
+//           const awayScore = game.scores.find((s: any) => s.name === game.away_team);
+//           scores[game.id] = {
+//             home: parseInt(homeScore?.score || '0'),
+//             away: parseInt(awayScore?.score || '0'),
+//             completed: game.completed,
+//             lastUpdate: game.last_update,
+//           };
+//         }
+//       }
+//     }
+//   } catch (e) {
+//     console.error('[Dashboard API] Scores fetch failed:', e);
+//   }
+//
+//   return scores;
+// }
+
+// Stub function - returns empty scores (no API calls)
 async function fetchLiveScores(): Promise<Record<string, any>> {
-  const scores: Record<string, any> = {};
-  if (!ODDS_API_KEY) return scores;
-
-  try {
-    const results = await Promise.all(
-      SPORT_KEYS.map(async (sportKey) => {
-        try {
-          const url = `${ODDS_API_BASE}/sports/${sportKey}/scores?apiKey=${ODDS_API_KEY}&daysFrom=1`;
-          const res = await fetch(url, { cache: 'no-store' });
-          if (!res.ok) return [];
-          return res.json();
-        } catch {
-          return [];
-        }
-      })
-    );
-
-    for (const sportScores of results) {
-      for (const game of sportScores) {
-        if (game.scores && game.scores.length >= 2) {
-          const homeScore = game.scores.find((s: any) => s.name === game.home_team);
-          const awayScore = game.scores.find((s: any) => s.name === game.away_team);
-          scores[game.id] = {
-            home: parseInt(homeScore?.score || '0'),
-            away: parseInt(awayScore?.score || '0'),
-            completed: game.completed,
-            lastUpdate: game.last_update,
-          };
-        }
-      }
-    }
-  } catch (e) {
-    console.error('[Dashboard API] Scores fetch failed:', e);
-  }
-
-  return scores;
+  return {};
 }
 
 // Fetch opening lines

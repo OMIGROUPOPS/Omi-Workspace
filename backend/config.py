@@ -33,6 +33,9 @@ ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 # SPORT MAPPINGS
 # =============================================================================
 
+# =============================================================================
+# ACTIVE SPORTS ONLY - PAUSED sports commented out to reduce API usage
+# =============================================================================
 # Odds API sport keys - maps both short names AND Odds API format to canonical format
 # The backend uppercases input, so "soccer_epl" becomes "SOCCER_EPL"
 ODDS_API_SPORTS = {
@@ -46,61 +49,19 @@ ODDS_API_SPORTS = {
     # Basketball - short format
     "NBA": "basketball_nba",
     "NCAAB": "basketball_ncaab",
-    "WNBA": "basketball_wnba",
-    "EUROLEAGUE": "basketball_euroleague",
     # Basketball - Odds API format
     "BASKETBALL_NBA": "basketball_nba",
     "BASKETBALL_NCAAB": "basketball_ncaab",
-    "BASKETBALL_WNBA": "basketball_wnba",
-    "BASKETBALL_EUROLEAGUE": "basketball_euroleague",
 
     # Hockey - short format
     "NHL": "icehockey_nhl",
-    "AHL": "icehockey_ahl",
-    "SHL": "icehockey_sweden_hockey_league",
-    "LIIGA": "icehockey_liiga",
     # Hockey - Odds API format
     "ICEHOCKEY_NHL": "icehockey_nhl",
-    "ICEHOCKEY_AHL": "icehockey_ahl",
-    "ICEHOCKEY_SWEDEN_HOCKEY_LEAGUE": "icehockey_sweden_hockey_league",
-    "ICEHOCKEY_LIIGA": "icehockey_liiga",
 
-    # Baseball - short format
-    "MLB": "baseball_mlb",
-    # Baseball - Odds API format
-    "BASEBALL_MLB": "baseball_mlb",
-
-    # Soccer - short format
-    "MLS": "soccer_usa_mls",
+    # Soccer - short format (EPL only)
     "EPL": "soccer_epl",
-    "LA_LIGA": "soccer_spain_la_liga",
-    "BUNDESLIGA": "soccer_germany_bundesliga",
-    "SERIE_A": "soccer_italy_serie_a",
-    "LIGUE_1": "soccer_france_ligue_one",
-    "UCL": "soccer_uefa_champs_league",
-    "EUROPA": "soccer_uefa_europa_league",
-    "EFL_CHAMP": "soccer_efl_champ",
-    "EREDIVISIE": "soccer_netherlands_eredivisie",
-    "LIGA_MX": "soccer_mexico_ligamx",
-    "FA_CUP": "soccer_fa_cup",
     # Soccer - Odds API format
-    "SOCCER_USA_MLS": "soccer_usa_mls",
     "SOCCER_EPL": "soccer_epl",
-    "SOCCER_SPAIN_LA_LIGA": "soccer_spain_la_liga",
-    "SOCCER_GERMANY_BUNDESLIGA": "soccer_germany_bundesliga",
-    "SOCCER_ITALY_SERIE_A": "soccer_italy_serie_a",
-    "SOCCER_FRANCE_LIGUE_ONE": "soccer_france_ligue_one",
-    "SOCCER_UEFA_CHAMPS_LEAGUE": "soccer_uefa_champs_league",
-    "SOCCER_UEFA_EUROPA_LEAGUE": "soccer_uefa_europa_league",
-    "SOCCER_EFL_CHAMP": "soccer_efl_champ",
-    "SOCCER_NETHERLANDS_EREDIVISIE": "soccer_netherlands_eredivisie",
-    "SOCCER_MEXICO_LIGAMX": "soccer_mexico_ligamx",
-    "SOCCER_FA_CUP": "soccer_fa_cup",
-    # Soccer - Full Odds API format with country codes (as stored in database)
-    "SOCCER_ENGLAND_LEAGUE1": "soccer_england_league1",
-    "SOCCER_ENGLAND_EFL_CUP": "soccer_england_efl_cup",
-    "SOCCER_ENGLAND_LEAGUE2": "soccer_england_league2",
-    "SOCCER_ENGLAND_EFL_CHAMP": "soccer_england_efl_champ",  # Championship
 
     # Tennis - short format
     "TENNIS_AO": "tennis_atp_australian_open",
@@ -113,34 +74,81 @@ ODDS_API_SPORTS = {
     "TENNIS_ATP_US_OPEN": "tennis_atp_us_open",
     "TENNIS_ATP_WIMBLEDON": "tennis_atp_wimbledon",
 
-    # Golf - short format
-    "MASTERS": "golf_masters_tournament_winner",
-    "PGA_CHAMP": "golf_pga_championship_winner",
-    "US_OPEN": "golf_us_open_winner",
-    "THE_OPEN": "golf_the_open_championship_winner",
-    # Golf - Odds API format
-    "GOLF_MASTERS_TOURNAMENT_WINNER": "golf_masters_tournament_winner",
-    "GOLF_PGA_CHAMPIONSHIP_WINNER": "golf_pga_championship_winner",
-    "GOLF_US_OPEN_WINNER": "golf_us_open_winner",
-    "GOLF_THE_OPEN_CHAMPIONSHIP_WINNER": "golf_the_open_championship_winner",
+    # ==========================================================================
+    # PAUSED SPORTS - Re-enable when in season or budget allows
+    # ==========================================================================
 
-    # Combat Sports - short format
-    "MMA": "mma_mixed_martial_arts",
-    "BOXING": "boxing_boxing",
-    # Combat Sports - Odds API format
-    "MMA_MIXED_MARTIAL_ARTS": "mma_mixed_martial_arts",
-    "BOXING_BOXING": "boxing_boxing",
+    # PAUSED: Basketball
+    # "WNBA": "basketball_wnba",
+    # "EUROLEAGUE": "basketball_euroleague",
+    # "BASKETBALL_WNBA": "basketball_wnba",
+    # "BASKETBALL_EUROLEAGUE": "basketball_euroleague",
 
-    # Other - short format
-    "NRL": "rugbyleague_nrl",
-    "AFL": "aussierules_afl",
-    "IPL": "cricket_ipl",
-    "BIG_BASH": "cricket_big_bash",
-    # Other - Odds API format
-    "RUGBYLEAGUE_NRL": "rugbyleague_nrl",
-    "AUSSIERULES_AFL": "aussierules_afl",
-    "CRICKET_IPL": "cricket_ipl",
-    "CRICKET_BIG_BASH": "cricket_big_bash",
+    # PAUSED: Hockey
+    # "AHL": "icehockey_ahl",
+    # "SHL": "icehockey_sweden_hockey_league",
+    # "LIIGA": "icehockey_liiga",
+    # "ICEHOCKEY_AHL": "icehockey_ahl",
+    # "ICEHOCKEY_SWEDEN_HOCKEY_LEAGUE": "icehockey_sweden_hockey_league",
+    # "ICEHOCKEY_LIIGA": "icehockey_liiga",
+
+    # PAUSED: Baseball
+    # "MLB": "baseball_mlb",
+    # "BASEBALL_MLB": "baseball_mlb",
+
+    # PAUSED: Soccer (all except EPL)
+    # "MLS": "soccer_usa_mls",
+    # "LA_LIGA": "soccer_spain_la_liga",
+    # "BUNDESLIGA": "soccer_germany_bundesliga",
+    # "SERIE_A": "soccer_italy_serie_a",
+    # "LIGUE_1": "soccer_france_ligue_one",
+    # "UCL": "soccer_uefa_champs_league",
+    # "EUROPA": "soccer_uefa_europa_league",
+    # "EFL_CHAMP": "soccer_efl_champ",
+    # "EREDIVISIE": "soccer_netherlands_eredivisie",
+    # "LIGA_MX": "soccer_mexico_ligamx",
+    # "FA_CUP": "soccer_fa_cup",
+    # "SOCCER_USA_MLS": "soccer_usa_mls",
+    # "SOCCER_SPAIN_LA_LIGA": "soccer_spain_la_liga",
+    # "SOCCER_GERMANY_BUNDESLIGA": "soccer_germany_bundesliga",
+    # "SOCCER_ITALY_SERIE_A": "soccer_italy_serie_a",
+    # "SOCCER_FRANCE_LIGUE_ONE": "soccer_france_ligue_one",
+    # "SOCCER_UEFA_CHAMPS_LEAGUE": "soccer_uefa_champs_league",
+    # "SOCCER_UEFA_EUROPA_LEAGUE": "soccer_uefa_europa_league",
+    # "SOCCER_EFL_CHAMP": "soccer_efl_champ",
+    # "SOCCER_NETHERLANDS_EREDIVISIE": "soccer_netherlands_eredivisie",
+    # "SOCCER_MEXICO_LIGAMX": "soccer_mexico_ligamx",
+    # "SOCCER_FA_CUP": "soccer_fa_cup",
+    # "SOCCER_ENGLAND_LEAGUE1": "soccer_england_league1",
+    # "SOCCER_ENGLAND_EFL_CUP": "soccer_england_efl_cup",
+    # "SOCCER_ENGLAND_LEAGUE2": "soccer_england_league2",
+    # "SOCCER_ENGLAND_EFL_CHAMP": "soccer_england_efl_champ",
+
+    # PAUSED: Golf
+    # "MASTERS": "golf_masters_tournament_winner",
+    # "PGA_CHAMP": "golf_pga_championship_winner",
+    # "US_OPEN": "golf_us_open_winner",
+    # "THE_OPEN": "golf_the_open_championship_winner",
+    # "GOLF_MASTERS_TOURNAMENT_WINNER": "golf_masters_tournament_winner",
+    # "GOLF_PGA_CHAMPIONSHIP_WINNER": "golf_pga_championship_winner",
+    # "GOLF_US_OPEN_WINNER": "golf_us_open_winner",
+    # "GOLF_THE_OPEN_CHAMPIONSHIP_WINNER": "golf_the_open_championship_winner",
+
+    # PAUSED: Combat Sports
+    # "MMA": "mma_mixed_martial_arts",
+    # "BOXING": "boxing_boxing",
+    # "MMA_MIXED_MARTIAL_ARTS": "mma_mixed_martial_arts",
+    # "BOXING_BOXING": "boxing_boxing",
+
+    # PAUSED: Other
+    # "NRL": "rugbyleague_nrl",
+    # "AFL": "aussierules_afl",
+    # "IPL": "cricket_ipl",
+    # "BIG_BASH": "cricket_big_bash",
+    # "RUGBYLEAGUE_NRL": "rugbyleague_nrl",
+    # "AUSSIERULES_AFL": "aussierules_afl",
+    # "CRICKET_IPL": "cricket_ipl",
+    # "CRICKET_BIG_BASH": "cricket_big_bash",
 }
 
 # ESPN API paths (supports both short format and Odds API format)

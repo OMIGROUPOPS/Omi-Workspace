@@ -842,7 +842,7 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
   // All 5 pillars with their data
   const allPillars = [
     { name: 'Market Efficiency', pillar: pillars.marketEfficiency },
-    { name: 'Player Utilization', pillar: pillars.playerUtilization },
+    { name: 'Lineup Impact', pillar: pillars.lineupImpact },
     { name: 'Game Environment', pillar: pillars.gameEnvironment },
     { name: 'Matchup Dynamics', pillar: pillars.matchupDynamics },
     { name: 'Sentiment', pillar: pillars.sentiment },

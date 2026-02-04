@@ -192,28 +192,54 @@ def calculate_edge_percentage(
 
 def get_confidence_rating(edge_pct: float, composite_score: float) -> str:
     """
-    Determine confidence rating based on composite score percentage.
+    Determine confidence rating based on composite score AND actual edge percentage.
 
-    Aligned with EdgeScout CEQ thresholds:
+    Primary tier selection (from composite score):
     - 86%+ = RARE (exceptional opportunity)
     - 76-85% = STRONG (high confidence)
     - 66-75% = EDGE (actionable)
     - 56-65% = WATCH (monitor for movement)
     - <56% = PASS (no actionable edge)
+
+    Secondary adjustments (from edge_pct):
+    - If abs(edge_pct) < 0.5: cap at WATCH max (market already priced it in)
+    - If abs(edge_pct) < 1.0: downgrade by one tier
     """
     # Convert 0-1 scale to 0-100 percentage
     composite_pct = composite_score * 100
 
+    # Primary tier from composite score
     if composite_pct >= 86:
-        return "RARE"
+        tier = "RARE"
     elif composite_pct >= 76:
-        return "STRONG"
+        tier = "STRONG"
     elif composite_pct >= 66:
-        return "EDGE"
+        tier = "EDGE"
     elif composite_pct >= 56:
-        return "WATCH"
+        tier = "WATCH"
     else:
-        return "PASS"
+        return "PASS"  # Can't downgrade below PASS
+
+    # Secondary check: edge_pct magnitude
+    abs_edge = abs(edge_pct)
+
+    # If edge is negligible (<0.5%), cap at WATCH regardless of composite
+    if abs_edge < 0.5:
+        if tier in ("RARE", "STRONG", "EDGE"):
+            return "WATCH"
+        return tier
+
+    # If edge is small (<1.0%), downgrade by one tier
+    if abs_edge < 1.0:
+        downgrade_map = {
+            "RARE": "STRONG",
+            "STRONG": "EDGE",
+            "EDGE": "WATCH",
+            "WATCH": "WATCH",  # Can't go below WATCH via this rule
+        }
+        return downgrade_map.get(tier, tier)
+
+    return tier
 
 
 def analyze_game(

@@ -30,7 +30,7 @@ export interface CEQResult {
   side: MarketSide | null;        // Favored side
   pillars: {
     marketEfficiency: PillarResult;
-    playerUtilization: PillarResult;
+    lineupImpact: PillarResult;
     gameEnvironment: PillarResult;
     matchupDynamics: PillarResult;
     sentiment: PillarResult;
@@ -59,7 +59,7 @@ export interface ExtendedOddsSnapshot extends OddsSnapshot {
 // - TypeScript's market-specific analysis (per-book odds comparison)
 
 export interface PythonPillarScores {
-  execution: number;    // 0-100: Injuries, weather, lineup (→ Player Utilization)
+  execution: number;    // 0-100: Injuries, weather, lineup (→ Lineup Impact)
   incentives: number;   // 0-100: Playoffs, motivation, rivalries (→ Game Environment)
   shocks: number;       // 0-100: Breaking news, line movement timing (→ Market Efficiency boost)
   timeDecay: number;    // 0-100: Rest days, back-to-back, travel (→ Game Environment)
@@ -73,13 +73,13 @@ export interface PythonPillarScores {
  */
 function mapPythonToTypeScriptPillars(pythonPillars: PythonPillarScores): {
   marketEfficiencyBoost: number;
-  playerUtilizationScore: number;
+  lineupImpactScore: number;
   gameEnvironmentScore: number;
   sentimentScore: number;
 } {
-  // Python Execution (injuries) → TypeScript Player Utilization
+  // Python Execution (injuries) → TypeScript Lineup Impact
   // Score is 0-100, 50 = neutral
-  const playerUtilizationScore = pythonPillars.execution;
+  const lineupImpactScore = pythonPillars.execution;
 
   // Python Incentives + Time Decay → TypeScript Game Environment
   // Weighted average: incentives 60%, time decay 40%
@@ -97,7 +97,7 @@ function mapPythonToTypeScriptPillars(pythonPillars: PythonPillarScores): {
 
   return {
     marketEfficiencyBoost,
-    playerUtilizationScore,
+    lineupImpactScore,
     gameEnvironmentScore,
     sentimentScore,
   };
@@ -544,10 +544,10 @@ function calculateMarketEfficiencyPillar(
 }
 
 // ============================================================================
-// PILLAR 2: PLAYER UTILIZATION (Props only - N/A initially)
+// PILLAR 2: LINEUP IMPACT (Injuries, lineup availability)
 // ============================================================================
 
-function calculatePlayerUtilizationPillar(
+function calculateLineupImpactPillar(
   homeTeam?: TeamStatsData,
   awayTeam?: TeamStatsData,
   league: string = 'nfl'
@@ -1138,7 +1138,7 @@ export function calculateCEQ(
     pinnacleLine,
     bookLine
   );
-  let playerUtilization = calculatePlayerUtilizationPillar(
+  let lineupImpact = calculateLineupImpactPillar(
     gameContext?.homeTeam,
     gameContext?.awayTeam,
     gameContext?.league
@@ -1159,15 +1159,15 @@ export function calculateCEQ(
   if (pythonPillars) {
     const mapped = mapPythonToTypeScriptPillars(pythonPillars);
 
-    // Player Utilization: Use Python's Execution (injuries) if available
+    // Lineup Impact: Use Python's Execution (injuries) if available
     if (pythonPillars.execution !== 50) {
-      playerUtilization = {
-        score: mapped.playerUtilizationScore,
+      lineupImpact = {
+        score: mapped.lineupImpactScore,
         weight: 0.20,  // Now has real weight
         variables: [{
           name: 'Injuries',
           value: pythonPillars.execution - 50,
-          score: mapped.playerUtilizationScore,
+          score: mapped.lineupImpactScore,
           available: true,
           reason: `Python: Execution score ${pythonPillars.execution}% (injuries, lineup)`,
         }],
@@ -1293,7 +1293,7 @@ export function calculateCEQ(
   }
 
   // Calculate weighted CEQ from all pillars
-  const pillars = [marketEfficiency, playerUtilization, gameEnvironment, matchupDynamics, sentiment];
+  const pillars = [marketEfficiency, lineupImpact, gameEnvironment, matchupDynamics, sentiment];
   const totalWeight = pillars.reduce((acc, p) => acc + p.weight, 0);
 
   let ceq = 50;
@@ -1347,7 +1347,7 @@ export function calculateCEQ(
   const pillarsWithData = pillars.filter(p => p.weight > 0).length;
   const allVariables = [
     ...marketEfficiency.variables,
-    ...playerUtilization.variables,
+    ...lineupImpact.variables,
     ...gameEnvironment.variables,
     ...matchupDynamics.variables,
     ...sentiment.variables,
@@ -1402,7 +1402,7 @@ export function calculateCEQ(
     side: edgeSide,
     pillars: {
       marketEfficiency,
-      playerUtilization,
+      lineupImpact,
       gameEnvironment,
       matchupDynamics,
       sentiment,

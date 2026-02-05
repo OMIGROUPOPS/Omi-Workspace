@@ -66,15 +66,18 @@ interface TeamStatsRow {
 }
 
 const SPORT_CONFIGS = [
-  { sport: 'basketball', league: 'nba', sportKey: 'basketball_nba' },
-  { sport: 'football', league: 'nfl', sportKey: 'americanfootball_nfl' },
-  { sport: 'baseball', league: 'mlb', sportKey: 'baseball_mlb' },
-  { sport: 'hockey', league: 'nhl', sportKey: 'icehockey_nhl' },
+  { sport: 'basketball', league: 'nba', dbLeague: 'NBA', sportKey: 'basketball_nba', limit: 50, skipDetail: false },
+  { sport: 'football', league: 'nfl', dbLeague: 'NFL', sportKey: 'americanfootball_nfl', limit: 50, skipDetail: false },
+  { sport: 'baseball', league: 'mlb', dbLeague: 'MLB', sportKey: 'baseball_mlb', limit: 50, skipDetail: false },
+  { sport: 'hockey', league: 'nhl', dbLeague: 'NHL', sportKey: 'icehockey_nhl', limit: 50, skipDetail: false },
+  { sport: 'basketball', league: 'mens-college-basketball', dbLeague: 'NCAAB', sportKey: 'basketball_ncaab', limit: 200, skipDetail: true },
+  { sport: 'football', league: 'college-football', dbLeague: 'NCAAF', sportKey: 'americanfootball_ncaaf', limit: 200, skipDetail: true },
+  { sport: 'soccer', league: 'eng.1', dbLeague: 'EPL', sportKey: 'soccer_epl', limit: 30, skipDetail: false },
 ];
 
-async function fetchESPNTeams(sport: string, league: string): Promise<ESPNTeam[]> {
+async function fetchESPNTeams(sport: string, league: string, limit: number = 50): Promise<ESPNTeam[]> {
   try {
-    const url = `${ESPN_BASE}/${sport}/${league}/teams?limit=50`;
+    const url = `${ESPN_BASE}/${sport}/${league}/teams?limit=${limit}`;
     console.log(`Fetching: ${url}`);
 
     const response = await fetch(url, {
@@ -247,6 +250,33 @@ async function fetchTeamStats(sport: string, league: string, teamId: string): Pr
         if (statName && stat.value !== undefined) {
           stats[statName.toLowerCase()] = parseFloat(stat.value) || null;
         }
+        // Capture perGameValue (NHL goals/game, shots/game, etc.)
+        if (statName && stat.perGameValue !== undefined && stat.perGameValue !== null) {
+          const pgVal = parseFloat(String(stat.perGameValue));
+          if (!isNaN(pgVal)) {
+            stats[statName.toLowerCase() + '_pergame'] = pgVal;
+          }
+        }
+      }
+    }
+
+    // Parse opponent stats (NFL/NCAAF: data.results.opponent array)
+    const oppCategories = data.results?.opponent || [];
+    if (Array.isArray(oppCategories)) {
+      for (const category of oppCategories) {
+        const catStats = category.stats || category.statistics || [];
+        for (const stat of catStats) {
+          const statName = stat.name || stat.displayName || stat.abbreviation;
+          if (statName && stat.value !== undefined) {
+            stats['opp_' + statName.toLowerCase()] = parseFloat(stat.value) || null;
+          }
+          if (statName && stat.perGameValue !== undefined && stat.perGameValue !== null) {
+            const pgVal = parseFloat(String(stat.perGameValue));
+            if (!isNaN(pgVal)) {
+              stats['opp_' + statName.toLowerCase() + '_pergame'] = pgVal;
+            }
+          }
+        }
       }
     }
 
@@ -261,8 +291,8 @@ async function fetchTeamStats(sport: string, league: string, teamId: string): Pr
       }
     }
 
-    console.log(`[ESPN DEBUG] Extracted stats keys:`, Object.keys(stats).slice(0, 20));
-    if (stats['pace']) console.log(`[ESPN DEBUG] Found pace: ${stats['pace']}`);
+    const allKeys = Object.keys(stats);
+    console.log(`[ESPN SYNC] Stats for team ${teamId}: ${allKeys.length} keys, sample: ${allKeys.slice(0, 15).join(', ')}`);
 
     return stats;
   } catch (error) {
@@ -284,6 +314,7 @@ function extractTeamStats(
   team: ESPNTeam,
   sport: string,
   league: string,
+  dbLeague: string,
   advancedStats: Record<string, number | null>,
   standingsData?: Record<string, any>,
   teamDetail?: any
@@ -414,46 +445,63 @@ function extractTeamStats(
              standingsData?.pace ||
              null;
 
-  // If no pace available, estimate from avgpoints
-  // NBA average is ~115 PPG, normalize to pace scale (centered at 100)
-  if (pace === null) {
-    const avgPts = advancedStats['avgpoints'] || advancedStats['pointspergame'] || advancedStats['pts'] || null;
+  // If no pace available, estimate from avgpoints (basketball only)
+  if (pace === null && sport === 'basketball') {
+    const avgPts = advancedStats['avgpoints'] || advancedStats['pointspergame'] || null;
     if (avgPts !== null && typeof avgPts === 'number') {
-      // Convert points to estimated pace: ~115 PPG = 100 pace
-      // Every 5 points above/below average = ~2-3 pace difference
-      const leagueAvgPts = league === 'NBA' ? 115 : league === 'NFL' ? 23 : 100;
+      // NBA/NCAAB average is ~115/75 PPG, normalize to pace scale (centered at 100)
+      const leagueAvgPts = dbLeague === 'NCAAB' ? 75 : 115;
       pace = 100 + ((avgPts - leagueAvgPts) * 0.5);
-      pace = Math.round(pace * 10) / 10; // Round to 1 decimal
+      pace = Math.round(pace * 10) / 10;
     }
   }
+
   const offRtg = advancedStats['offensiverating'] || advancedStats['ortg'] || standingsData?.offensiverating || null;
   const defRtg = advancedStats['defensiverating'] || advancedStats['drtg'] || standingsData?.defensiverating || null;
-  const ppg = advancedStats['pointspergame'] || advancedStats['avgpoints'] || advancedStats['pts'] ||
-              standingsData?.pointsfor || standingsData?.avgpointsfor || null;
-  const oppPpg = advancedStats['opponentpointspergame'] || advancedStats['opppts'] ||
-                 standingsData?.pointsagainst || standingsData?.avgpointsagainst || null;
 
-  // Calculate PPG from standings total points if needed
-  let calcPpg = ppg;
-  let calcOppPpg = oppPpg;
+  // Sport-specific PPG and opponent PPG mapping
   const gamesPlayed = wins !== null && losses !== null ? wins + losses : null;
+  let calcPpg: number | null = null;
+  let calcOppPpg: number | null = null;
 
-  if (calcPpg === null && standingsData?.pointsfor && gamesPlayed && gamesPlayed > 0) {
-    calcPpg = standingsData.pointsfor / gamesPlayed;
-  }
-  if (calcOppPpg === null && standingsData?.pointsagainst && gamesPlayed && gamesPlayed > 0) {
-    calcOppPpg = standingsData.pointsagainst / gamesPlayed;
+  if (sport === 'football') {
+    // NFL/NCAAF: ESPN uses "totalPointsPerGame" in scoring category
+    calcPpg = advancedStats['totalpointspergame'] ?? null;
+    // Opponent PPG from opponent stats section
+    calcOppPpg = advancedStats['opp_totalpointspergame'] ?? null;
+  } else if (sport === 'hockey') {
+    // NHL: goals per game from perGameValue capture
+    calcPpg = advancedStats['goals_pergame'] ?? null;
+    // Goals against: avgGoalsAgainst is a direct per-game stat, or use perGameValue
+    calcOppPpg = advancedStats['avggoalsagainst'] ?? advancedStats['goalsagainst_pergame'] ?? null;
+  } else {
+    // NBA/NCAAB/default: avgPoints for PPG
+    calcPpg = advancedStats['avgpoints'] ?? advancedStats['pointspergame'] ?? null;
+    calcOppPpg = advancedStats['opponentpointspergame'] ?? advancedStats['opppts'] ?? null;
   }
 
-  // Debug log for first few teams
-  console.log(`[ESPN DEBUG] Extracted for ${team.displayName}: pace=${pace}, streak=${streak}, wins=${wins}, losses=${losses}`);
+  // Standings-based fallbacks (all sports)
+  if (calcPpg === null) {
+    const ptsFor = standingsData?.pointsfor ?? standingsData?.pf ?? null;
+    if (ptsFor && gamesPlayed && gamesPlayed > 0) {
+      calcPpg = ptsFor / gamesPlayed;
+    }
+  }
+  if (calcOppPpg === null) {
+    const ptsAgainst = standingsData?.pointsagainst ?? standingsData?.pa ?? null;
+    if (ptsAgainst && gamesPlayed && gamesPlayed > 0) {
+      calcOppPpg = ptsAgainst / gamesPlayed;
+    }
+  }
+
+  console.log(`[ESPN SYNC] ${dbLeague} ${team.displayName}: ppg=${calcPpg?.toFixed(1) ?? 'NULL'}, papg=${calcOppPpg?.toFixed(1) ?? 'NULL'}, pace=${pace ?? 'NULL'}, wins=${wins}, losses=${losses}`);
 
   return {
     team_id: team.id,
     team_name: team.displayName,
     team_abbrev: team.abbreviation,
-    sport: sport,
-    league: league.toUpperCase(),
+    sport: dbLeague,
+    league: dbLeague,
     season: season,
     pace: pace,
     offensive_rating: offRtg,
@@ -491,14 +539,14 @@ export async function GET(request: Request) {
 
   for (const config of SPORT_CONFIGS) {
     // Apply sport filter if provided
-    if (sportFilter && config.sportKey !== sportFilter && config.league !== sportFilter) {
+    if (sportFilter && config.sportKey !== sportFilter && config.league !== sportFilter && config.dbLeague.toLowerCase() !== sportFilter.toLowerCase()) {
       continue;
     }
 
     // Fetch standings first (contains win/loss records for all teams)
     const standingsMap = await fetchStandings(config.sport, config.league);
 
-    const teams = await fetchESPNTeams(config.sport, config.league);
+    const teams = await fetchESPNTeams(config.sport, config.league, config.limit);
     let synced = 0;
     let errors = 0;
     let withStats = 0;
@@ -513,20 +561,23 @@ export async function GET(request: Request) {
         let teamDetail: any = null;
 
         if (detailed) {
-          // Fetch team detail (includes injuries, record)
-          teamDetail = await fetchTeamDetail(config.sport, config.league, team.id);
+          // Fetch team detail (injuries, record) — skip for college to save API calls
+          if (!config.skipDetail) {
+            teamDetail = await fetchTeamDetail(config.sport, config.league, team.id);
+          }
 
           // Fetch advanced stats
           advancedStats = await fetchTeamStats(config.sport, config.league, team.id);
 
           // Small delay between API calls
-          await new Promise(resolve => setTimeout(resolve, 50));
+          await new Promise(resolve => setTimeout(resolve, config.skipDetail ? 30 : 50));
         }
 
         const teamStats = extractTeamStats(
           team,
           config.sport,
           config.league,
+          config.dbLeague,
           advancedStats,
           standingsData,
           teamDetail
@@ -567,7 +618,21 @@ export async function GET(request: Request) {
       withStats
     });
 
-    console.log(`${config.league}: Synced ${synced} teams (${withStats} with stats), ${errors} errors`);
+    console.log(`ESPN_SYNC: ${config.dbLeague} — synced ${synced} teams (${withStats} with stats), ${errors} errors`);
+  }
+
+  // Clean up legacy rows that used generic sport names (e.g., 'basketball' instead of 'NBA')
+  // New rows use dbLeague as sport value to avoid team_id collisions between leagues
+  const legacySports = ['basketball', 'football', 'hockey', 'baseball', 'soccer'];
+  const { error: cleanupError } = await supabase
+    .from('team_stats')
+    .delete()
+    .in('sport', legacySports);
+
+  if (cleanupError) {
+    console.warn('Legacy row cleanup failed:', cleanupError.message);
+  } else {
+    console.log('ESPN_SYNC: Cleaned up legacy rows with old sport format');
   }
 
   return NextResponse.json({

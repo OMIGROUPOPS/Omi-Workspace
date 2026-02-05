@@ -135,10 +135,14 @@ async function fetchTeamDetail(sport: string, league: string, teamId: string): P
 }
 
 // Fetch standings for a league to get win/loss records
+// NOTE: The /apis/site/v2/ standings endpoint returns empty data (just fullViewLink).
+// The /apis/v2/ endpoint returns actual standings with stats.
+const ESPN_STANDINGS_BASE = 'https://site.api.espn.com/apis/v2/sports';
+
 async function fetchStandings(sport: string, league: string): Promise<Map<string, any>> {
   const standingsMap = new Map();
   try {
-    const url = `${ESPN_BASE}/${sport}/${league}/standings`;
+    const url = `${ESPN_STANDINGS_BASE}/${sport}/${league}/standings`;
     console.log(`Fetching standings: ${url}`);
 
     const response = await fetch(url, {
@@ -478,6 +482,13 @@ function extractTeamStats(
     // NBA/NCAAB/default: avgPoints for PPG
     calcPpg = advancedStats['avgpoints'] ?? advancedStats['pointspergame'] ?? null;
     calcOppPpg = advancedStats['opponentpointspergame'] ?? advancedStats['opppts'] ?? null;
+    // Standings-based avg (NBA v2 standings provide avgPointsFor/avgPointsAgainst directly)
+    if (calcPpg === null && standingsData?.avgpointsfor) {
+      calcPpg = parseFloat(standingsData.avgpointsfor);
+    }
+    if (calcOppPpg === null && standingsData?.avgpointsagainst) {
+      calcOppPpg = parseFloat(standingsData.avgpointsagainst);
+    }
   }
 
   // Standings-based fallbacks (all sports)
@@ -756,15 +767,30 @@ export async function GET(request: Request) {
   // Clean up legacy rows that used generic sport names (e.g., 'basketball' instead of 'NBA')
   // New rows use dbLeague as sport value to avoid team_id collisions between leagues
   const legacySports = ['basketball', 'football', 'hockey', 'baseball', 'soccer'];
-  const { error: cleanupError } = await supabase
+  const { data: deletedLegacy, error: cleanupError } = await supabase
     .from('team_stats')
     .delete()
-    .in('sport', legacySports);
+    .in('sport', legacySports)
+    .select('sport');
 
   if (cleanupError) {
     console.warn('Legacy row cleanup failed:', cleanupError.message);
   } else {
-    console.log('ESPN_SYNC: Cleaned up legacy rows with old sport format');
+    console.log(`ESPN_SYNC: Deleted ${deletedLegacy?.length || 0} legacy rows with old sport format`);
+  }
+
+  // Clean up old ESPN EPL rows (replaced by Football-Data.org)
+  const { data: deletedEplEspn, error: eplCleanupError } = await supabase
+    .from('team_stats')
+    .delete()
+    .eq('sport', 'EPL')
+    .eq('source', 'espn')
+    .select('sport');
+
+  if (eplCleanupError) {
+    console.warn('ESPN EPL cleanup failed:', eplCleanupError.message);
+  } else if (deletedEplEspn?.length) {
+    console.log(`ESPN_SYNC: Deleted ${deletedEplEspn.length} old ESPN EPL rows`);
   }
 
   return NextResponse.json({

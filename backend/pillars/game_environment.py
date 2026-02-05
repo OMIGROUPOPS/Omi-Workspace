@@ -81,6 +81,8 @@ def calculate_game_environment_score(
         return _calculate_nba_environment(home_team, away_team, total_line, nba_stats)
     elif sport in ("NFL", "NCAAF"):
         return _calculate_nfl_environment(home_team, away_team, total_line, weather_data, game_time, team_stats)
+    elif sport == "EPL" and team_stats:
+        return _calculate_epl_environment(home_team, away_team, total_line, team_stats)
     else:
         return _default_environment()
 
@@ -388,6 +390,77 @@ def _calculate_nba_environment(
             "away_def_rating": away_def,
         },
         "reasoning": "; ".join(reasoning_parts) if reasoning_parts else "Standard pace matchup"
+    }
+
+
+def _calculate_epl_environment(
+    home_team: str,
+    away_team: str,
+    total_line: Optional[float],
+    team_stats: dict
+) -> dict:
+    """
+    EPL environment calculation using goals per game from Football-Data.org.
+
+    Similar to NHL - uses goals for/against per game to estimate expected total.
+    EPL average is ~2.8 goals per game.
+    """
+    home = team_stats.get("home", {})
+    away = team_stats.get("away", {})
+
+    if not home and not away:
+        return _default_environment()
+
+    # Goals per game (stored as points_per_game in team_stats)
+    home_gf = home.get("points_per_game") or 1.4  # EPL avg ~1.4 goals/game home
+    home_ga = home.get("points_allowed_per_game") or 1.4
+    away_gf = away.get("points_per_game") or 1.4
+    away_ga = away.get("points_allowed_per_game") or 1.4
+
+    # Expected goals: (Home GF + Away GA) / 2 for home, (Away GF + Home GA) / 2 for away
+    expected_home_goals = (home_gf + away_ga) / 2
+    expected_away_goals = (away_gf + home_ga) / 2
+    expected_total = expected_home_goals + expected_away_goals
+
+    reasoning_parts = []
+    score = 0.5
+
+    if total_line:
+        line_diff = expected_total - total_line
+
+        # ±0.5 goals vs line is significant in soccer
+        score_adjustment = line_diff * 0.2  # ±0.2 per goal difference
+        score = 0.5 + score_adjustment
+        score = max(0.2, min(0.8, score))
+
+        if line_diff >= 0.3:
+            reasoning_parts.append(f"Expected {expected_total:.1f} vs line {total_line} = OVER lean")
+        elif line_diff <= -0.3:
+            reasoning_parts.append(f"Expected {expected_total:.1f} vs line {total_line} = UNDER lean")
+        else:
+            reasoning_parts.append(f"Expected {expected_total:.1f} close to line {total_line}")
+    else:
+        # No line - analyze scoring environment
+        league_avg_total = 2.8  # EPL average
+        if expected_total >= league_avg_total + 0.3:
+            score = 0.6
+            reasoning_parts.append(f"High-scoring matchup ({expected_total:.1f} expected)")
+        elif expected_total <= league_avg_total - 0.3:
+            score = 0.4
+            reasoning_parts.append(f"Low-scoring matchup ({expected_total:.1f} expected)")
+
+    return {
+        "score": round(score, 3),
+        "expected_total": round(expected_total, 2),
+        "expected_home_goals": round(expected_home_goals, 2),
+        "expected_away_goals": round(expected_away_goals, 2),
+        "breakdown": {
+            "home_gf_per_game": home_gf,
+            "home_ga_per_game": home_ga,
+            "away_gf_per_game": away_gf,
+            "away_ga_per_game": away_ga,
+        },
+        "reasoning": "; ".join(reasoning_parts) if reasoning_parts else "Standard scoring environment"
     }
 
 

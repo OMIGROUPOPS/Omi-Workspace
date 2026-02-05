@@ -139,12 +139,27 @@ def _extract_team_abbr(team_name: str, sport: str) -> str:
 
 
 SPORT_KEY_TO_LEAGUE = {
+    # Lowercase Odds API format
     "basketball_nba": "NBA",
     "basketball_ncaab": "NCAAB",
     "americanfootball_nfl": "NFL",
     "americanfootball_ncaaf": "NCAAF",
     "icehockey_nhl": "NHL",
     "soccer_epl": "EPL",
+    # Uppercase short format (used by scheduler)
+    "NBA": "NBA",
+    "NCAAB": "NCAAB",
+    "NFL": "NFL",
+    "NCAAF": "NCAAF",
+    "NHL": "NHL",
+    "EPL": "EPL",
+    # Uppercase Odds API format
+    "BASKETBALL_NBA": "NBA",
+    "BASKETBALL_NCAAB": "NCAAB",
+    "AMERICANFOOTBALL_NFL": "NFL",
+    "AMERICANFOOTBALL_NCAAF": "NCAAF",
+    "ICEHOCKEY_NHL": "NHL",
+    "SOCCER_EPL": "EPL",
 }
 
 
@@ -442,7 +457,15 @@ def analyze_game(
     # Fetch team stats from Supabase for environment analysis
     env_team_stats = fetch_team_environment_stats(home_team, away_team, sport)
 
-    if sport == "icehockey_nhl":
+    # Sport key sets - accept both short format (NBA) and Odds API format (basketball_nba)
+    NHL_KEYS = {"NHL", "icehockey_nhl", "ICEHOCKEY_NHL"}
+    NFL_KEYS = {"NFL", "americanfootball_nfl", "AMERICANFOOTBALL_NFL"}
+    NCAAF_KEYS = {"NCAAF", "americanfootball_ncaaf", "AMERICANFOOTBALL_NCAAF"}
+    NBA_KEYS = {"NBA", "basketball_nba", "BASKETBALL_NBA"}
+    NCAAB_KEYS = {"NCAAB", "basketball_ncaab", "BASKETBALL_NCAAB"}
+    EPL_KEYS = {"EPL", "soccer_epl", "SOCCER_EPL"}
+
+    if sport in NHL_KEYS:
         # Try NHL-specific API first, fall back to Supabase team_stats
         home_abbr = _extract_team_abbr(home_team, "NHL")
         away_abbr = _extract_team_abbr(away_team, "NHL")
@@ -462,10 +485,10 @@ def analyze_game(
             team_stats=env_team_stats,
         )
 
-    elif sport in ["americanfootball_nfl", "americanfootball_ncaaf"]:
+    elif sport in NFL_KEYS or sport in NCAAF_KEYS:
         # NFL/NCAAF game environment with weather + team scoring stats
         game_env = calculate_game_environment_score(
-            sport="NFL" if sport == "americanfootball_nfl" else "NCAAF",
+            sport="NFL" if sport in NFL_KEYS else "NCAAF",
             home_team=home_team,
             away_team=away_team,
             total_line=total_line,
@@ -473,10 +496,20 @@ def analyze_game(
             team_stats=env_team_stats,
         )
 
-    elif sport in ["basketball_nba", "basketball_ncaab"]:
+    elif sport in NBA_KEYS or sport in NCAAB_KEYS:
         # NBA/NCAAB - pace, offensive/defensive ratings from Supabase
         game_env = calculate_game_environment_score(
-            sport="NBA" if sport == "basketball_nba" else "NCAAB",
+            sport="NBA" if sport in NBA_KEYS else "NCAAB",
+            home_team=home_team,
+            away_team=away_team,
+            total_line=total_line,
+            team_stats=env_team_stats,
+        )
+
+    elif sport in EPL_KEYS:
+        # EPL - goals per game from Football-Data.org via team_stats
+        game_env = calculate_game_environment_score(
+            sport="EPL",
             home_team=home_team,
             away_team=away_team,
             total_line=total_line,
@@ -484,8 +517,7 @@ def analyze_game(
         )
 
     else:
-        # Soccer, Tennis, other sports
-        # TODO: Wire in EPL team stats when available in team_stats table
+        # Tennis, other sports without team_stats data
         game_env = {
             "score": 0.5,
             "expected_total": None,

@@ -677,6 +677,7 @@ function calculateLineupImpactPillar(
 export interface TeamStatsData {
   team_id: string;
   team_name: string;
+  team_abbrev?: string;
   pace?: number | null;
   offensive_rating?: number | null;
   defensive_rating?: number | null;

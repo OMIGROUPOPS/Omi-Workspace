@@ -176,14 +176,25 @@ async function fetchAllTeamStats(): Promise<Map<string, TeamStatsData>> {
       .order('updated_at', { ascending: false })
       .limit(500);
 
-    if (error || !data) return teamStatsMap;
+    if (error) {
+      console.error('[Dashboard API] Team stats query error:', error);
+      return teamStatsMap;
+    }
+
+    if (!data || data.length === 0) {
+      console.warn('[Dashboard API] Team stats table is empty or returned no data');
+      return teamStatsMap;
+    }
+
+    console.log(`[Dashboard API] Loaded ${data.length} team stats from database`);
 
     for (const stat of data) {
       const key = stat.team_name?.toLowerCase();
       if (key && !teamStatsMap.has(key)) {
-        teamStatsMap.set(key, {
+        const teamData: TeamStatsData = {
           team_id: stat.team_id,
           team_name: stat.team_name,
+          team_abbrev: stat.team_abbrev,
           pace: stat.pace,
           offensive_rating: stat.offensive_rating,
           defensive_rating: stat.defensive_rating,
@@ -199,9 +210,31 @@ async function fetchAllTeamStats(): Promise<Map<string, TeamStatsData>> {
           points_per_game: stat.points_per_game,
           points_allowed_per_game: stat.points_allowed_per_game,
           injuries: stat.injuries || [],
-        });
+        };
+        teamStatsMap.set(key, teamData);
+
+        // Also index by abbreviation for better matching
+        if (stat.team_abbrev) {
+          const abbrevKey = stat.team_abbrev.toLowerCase();
+          if (!teamStatsMap.has(abbrevKey)) {
+            teamStatsMap.set(abbrevKey, teamData);
+          }
+        }
+
+        // Also index by team nickname (last word of name)
+        const words = stat.team_name?.split(' ') || [];
+        if (words.length > 1) {
+          const nickname = words[words.length - 1].toLowerCase();
+          if (!teamStatsMap.has(nickname) && nickname.length > 3) {
+            teamStatsMap.set(nickname, teamData);
+          }
+        }
       }
     }
+
+    // Log sample of team names for debugging
+    const sampleNames = Array.from(teamStatsMap.keys()).slice(0, 5);
+    console.log(`[Dashboard API] Team stats map sample keys: ${sampleNames.join(', ')}`);
   } catch (e) {
     console.error('[Dashboard API] Team stats fetch failed:', e);
   }
@@ -341,6 +374,9 @@ function buildGameContext(
   let homeStats = teamStatsMap.get(homeKey);
   let awayStats = teamStatsMap.get(awayKey);
 
+  // Debug: log first few misses
+  const logMiss = !homeStats || !awayStats;
+
   if (!homeStats) {
     for (const [key, stats] of teamStatsMap) {
       if (homeKey?.includes(key) || key.includes(homeKey || '')) {
@@ -356,6 +392,11 @@ function buildGameContext(
         break;
       }
     }
+  }
+
+  // Log misses for debugging team name matching
+  if (logMiss && teamStatsMap.size > 0) {
+    console.log(`[GameContext] Team lookup: home="${homeTeam}" (${homeStats ? 'found' : 'NOT FOUND'}), away="${awayTeam}" (${awayStats ? 'found' : 'NOT FOUND'})`);
   }
 
   return {

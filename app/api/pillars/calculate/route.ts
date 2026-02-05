@@ -8,6 +8,7 @@
  * - Shocks (news, line movement timing)
  * - Time Decay (rest days, back-to-back, travel)
  * - Flow (sharp money, book disagreement)
+ * - Game Environment (pace, expected totals, weather)
  *
  * These are the ACTUAL working pillar calculations, not the frontend placeholders.
  */
@@ -21,6 +22,7 @@ export interface PillarScores {
   shocks: number;
   timeDecay: number;
   flow: number;
+  gameEnvironment: number;
   composite: number;
 }
 
@@ -60,6 +62,12 @@ export interface PillarBreakdown {
     consensus_line: number;
     sharpest_line: number;
     book_agreement: number;
+    reasoning: string;
+  };
+  game_environment: {
+    score: number;
+    expected_total: number | null;
+    breakdown: Record<string, any>;
     reasoning: string;
   };
 }
@@ -126,12 +134,14 @@ export async function GET(request: NextRequest) {
 
     // Transform Python backend response to frontend format
     // Python uses 0-1 scale, frontend displays as percentage
+    // Note: Python uses snake_case (time_decay, game_environment), frontend uses camelCase
     const pillarScores: PillarScores = {
       execution: Math.round((data.pillar_scores?.execution || 0.5) * 100),
       incentives: Math.round((data.pillar_scores?.incentives || 0.5) * 100),
       shocks: Math.round((data.pillar_scores?.shocks || 0.5) * 100),
       timeDecay: Math.round((data.pillar_scores?.time_decay || 0.5) * 100),
       flow: Math.round((data.pillar_scores?.flow || 0.5) * 100),
+      gameEnvironment: Math.round((data.pillar_scores?.game_environment || 0.5) * 100),
       composite: Math.round((data.composite_score || 0.5) * 100),
     };
 

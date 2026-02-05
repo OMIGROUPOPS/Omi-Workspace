@@ -1,7 +1,7 @@
 /**
  * API Route: /api/pillars/calculate
  *
- * Fetches the REAL 5-pillar scores from the Python backend.
+ * Fetches the REAL 6-pillar scores from the Python backend.
  * The Python backend calculates:
  * - Execution (injuries, weather, lineup)
  * - Incentives (playoffs, motivation, rivalries)

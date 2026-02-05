@@ -839,7 +839,7 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
     return { label: 'Very Weak', color: 'text-red-400', barColor: 'bg-red-400' };
   };
 
-  // All 5 pillars with their data
+  // All 6 pillars with their data
   const allPillars = [
     { name: 'Market Efficiency', pillar: pillars.marketEfficiency },
     { name: 'Lineup Impact', pillar: pillars.lineupImpact },
@@ -895,7 +895,7 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
         )}
       </div>
 
-      {/* 5 Pillar Strength Bars */}
+      {/* 6 Pillar Strength Bars */}
       <div className="p-3 space-y-2">
         {allPillars.map(({ name, pillar }) => {
           const hasData = pillar.weight > 0;
@@ -1942,11 +1942,11 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         <AskEdgeAI gameId={gameData.id} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} chartSelection={chartSelection} />
       </div>
 
-      {/* Python Backend 5-Pillar Analysis - The REAL pillar scores */}
+      {/* Python Backend 6-Pillar Analysis - The REAL pillar scores */}
       <div className="mb-6">
         <h3 className="text-sm font-semibold text-zinc-100 mb-3 flex items-center gap-2">
           <span className="text-emerald-400">●</span>
-          5-Pillar Analysis
+          6-Pillar Analysis
           <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Python Backend</span>
         </h3>
         <PythonPillarBreakdown

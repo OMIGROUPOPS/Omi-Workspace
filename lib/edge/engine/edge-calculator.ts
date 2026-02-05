@@ -1,4 +1,4 @@
-// EdgeScout 5-Pillar Edge Calculation Engine
+// EdgeScout 6-Pillar Edge Calculation Engine
 // This is the core intelligence layer of OMI Edge
 
 export interface PillarScore {

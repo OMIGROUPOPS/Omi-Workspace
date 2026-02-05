@@ -1,4 +1,4 @@
-// EdgeScout 5-Pillar Framework - CEQ (Composite Edge Quotient) Calculator
+// EdgeScout 6-Pillar Framework - CEQ (Composite Edge Quotient) Calculator
 // This is the core edge detection engine for OMI Edge
 
 import type { OddsSnapshot } from './edge-calculator';

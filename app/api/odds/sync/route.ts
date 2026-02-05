@@ -7,6 +7,10 @@ import { calculateGameCEQ, type GameCEQ, type TeamStatsData, type GameContextDat
 const CRON_SECRET = process.env.CRON_SECRET || "";
 const ODDS_API_KEY = process.env.ODDS_API_KEY || "";
 const ODDS_API_BASE = "https://api.the-odds-api.com/v4";
+const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8000";
+
+// Line movement threshold for triggering pillar recalculation (in points)
+const MOVEMENT_THRESHOLD = 0.5;
 
 const SPORT_KEYS: Record<string, string> = {
   // ============================================================================
@@ -843,6 +847,122 @@ async function cleanupStaleGames(supabase: ReturnType<typeof getSupabase>): Prom
   return count;
 }
 
+// Get the most recent spread line for a game from line_snapshots
+async function getPreviousSpreadLine(
+  supabase: ReturnType<typeof getSupabase>,
+  gameId: string
+): Promise<number | null> {
+  const { data, error } = await supabase
+    .from('line_snapshots')
+    .select('line')
+    .eq('game_id', gameId)
+    .eq('market_type', 'spread')
+    .eq('market_period', 'full')
+    .order('snapshot_time', { ascending: false })
+    .limit(1)
+    .single();
+
+  if (error || !data) return null;
+  return data.line;
+}
+
+// Trigger pillar recalculation via Python backend
+async function triggerPillarRecalculation(
+  gameId: string,
+  sport: string
+): Promise<{ composite: number | null; error?: string }> {
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/pillars/${sport}/${gameId}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      signal: AbortSignal.timeout(10000), // 10s timeout
+    });
+
+    if (!res.ok) {
+      return { composite: null, error: `HTTP ${res.status}` };
+    }
+
+    const data = await res.json();
+    return { composite: data.composite_score ?? null };
+  } catch (e: any) {
+    return { composite: null, error: e?.message || 'Unknown error' };
+  }
+}
+
+// Check line movement and trigger recalculation if needed
+async function checkLineMovementAndRecalculate(
+  supabase: ReturnType<typeof getSupabase>,
+  game: any,
+  sport: string,
+  sportKey: string
+): Promise<{ triggered: boolean; delta?: number; oldComposite?: number; newComposite?: number }> {
+  // Extract current spread line from game data
+  const bookmakers = game.bookmakers || [];
+  let currentLine: number | null = null;
+
+  for (const bk of bookmakers) {
+    const spreadsMarket = bk.markets?.find((m: any) => m.key === 'spreads');
+    if (spreadsMarket?.outcomes) {
+      const homeOutcome = spreadsMarket.outcomes.find((o: any) => o.name === game.home_team);
+      if (homeOutcome?.point !== undefined) {
+        currentLine = homeOutcome.point;
+        break;
+      }
+    }
+  }
+
+  if (currentLine === null) {
+    return { triggered: false };
+  }
+
+  // Get previous line
+  const previousLine = await getPreviousSpreadLine(supabase, game.id);
+  if (previousLine === null) {
+    return { triggered: false };
+  }
+
+  // Check if movement exceeds threshold
+  const delta = Math.abs(currentLine - previousLine);
+  if (delta < MOVEMENT_THRESHOLD) {
+    return { triggered: false };
+  }
+
+  console.log(`[ODDS_SYNC] Game ${game.id} line moved ${delta.toFixed(1)} pts (${previousLine} -> ${currentLine}) - recalculating pillars`);
+
+  // Get current composite from cached_odds or game_edge_counts
+  const { data: edgeData } = await supabase
+    .from('game_edge_counts')
+    .select('composite_score')
+    .eq('game_id', game.id)
+    .single();
+  const oldComposite = edgeData?.composite_score ?? null;
+
+  // Trigger recalculation
+  const result = await triggerPillarRecalculation(game.id, sport);
+
+  if (result.error) {
+    console.error(`[ODDS_SYNC] Game ${game.id} pillar recalculation failed: ${result.error}`);
+    return { triggered: true, delta };
+  }
+
+  if (result.composite !== null) {
+    // Store updated composite in game_edge_counts
+    await supabase
+      .from('game_edge_counts')
+      .upsert({
+        game_id: game.id,
+        sport_key: sportKey,
+        composite_score: result.composite,
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'game_id' });
+
+    console.log(`[ODDS_SYNC] Game ${game.id} composite updated: ${oldComposite?.toFixed(3) ?? 'null'} -> ${result.composite.toFixed(3)}`);
+    return { triggered: true, delta, oldComposite: oldComposite ?? undefined, newComposite: result.composite };
+  }
+
+  return { triggered: true, delta };
+}
+
 // Shared sync logic used by both GET (cron) and POST (manual)
 async function runSync() {
   if (!ODDS_API_KEY) {
@@ -866,7 +986,7 @@ async function runSync() {
   const errors: string[] = [];
   const sportSummary: Record<
     string,
-    { games: number; enriched: number; cost: number; edges?: number }
+    { games: number; enriched: number; cost: number; edges?: number; recalcs?: number }
   > = {};
   const snapshotTime = new Date().toISOString();
 
@@ -930,6 +1050,22 @@ async function runSync() {
         errors.push(`${sport}: ${error.message}`);
       } else {
         totalSynced += games.length;
+      }
+
+      // Check for significant line movements and trigger pillar recalculation
+      // Use Promise.allSettled so slow/failed calls don't block the sync
+      let recalcTriggered = 0;
+      const recalcPromises = games.map((game: any) =>
+        checkLineMovementAndRecalculate(supabase, game, sport, sportKey)
+      );
+      const recalcResults = await Promise.allSettled(recalcPromises);
+      for (const result of recalcResults) {
+        if (result.status === 'fulfilled' && result.value.triggered) {
+          recalcTriggered++;
+        }
+      }
+      if (recalcTriggered > 0) {
+        console.log(`[ODDS_SYNC] ${sport}: Triggered ${recalcTriggered} pillar recalculations due to line movement`);
       }
 
       // Calculate and store edge counts for each game
@@ -1024,10 +1160,11 @@ async function runSync() {
         enriched: enrichedCount,
         cost: sportCost,
         edges: edgesDetected,
+        recalcs: recalcTriggered,
       };
 
       console.log(
-        `[Odds Sync] ${sport}: ${games.length} games, ${enrichedCount} enriched, ${edgesDetected} edges (${sportCost} reqs)`
+        `[Odds Sync] ${sport}: ${games.length} games, ${enrichedCount} enriched, ${edgesDetected} edges, ${recalcTriggered} recalcs (${sportCost} reqs)`
       );
     } catch (e: any) {
       const msg = e?.message || String(e);

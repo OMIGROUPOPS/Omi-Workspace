@@ -12,7 +12,7 @@ from typing import Optional
 import logging
 import json
 
-from config import PILLAR_WEIGHTS, EDGE_THRESHOLDS
+from config import SPORT_WEIGHTS, DEFAULT_WEIGHTS, PILLAR_WEIGHTS, EDGE_THRESHOLDS
 from data_sources.odds_api import odds_client
 from data_sources.espn import espn_client
 from pillars import (
@@ -286,20 +286,29 @@ def implied_prob_to_american(prob: float) -> int:
         return int(100 * (1 - prob) / prob)
 
 
-def calculate_composite_score(pillar_scores: dict) -> float:
-    """Calculate weighted composite score from all pillars."""
+def calculate_composite_score(pillar_scores: dict, sport: str = "NBA") -> float:
+    """Calculate weighted composite score from all pillars using sport-specific weights."""
+    # Normalize sport key to uppercase short format
+    sport_upper = sport.upper()
+    sport_normalized = SPORT_KEY_TO_LEAGUE.get(sport, sport_upper)
+
+    # Get sport-specific weights, fall back to default
+    weights = SPORT_WEIGHTS.get(sport_normalized, DEFAULT_WEIGHTS)
+
+    logger.info(f"  CALIBRATION_DEBUG: Using {sport_normalized} weights: {weights}")
+
     composite = 0.0
     total_weight = 0.0
-    
-    for pillar, weight in PILLAR_WEIGHTS.items():
+
+    for pillar, weight in weights.items():
         if pillar in pillar_scores:
             composite += pillar_scores[pillar] * weight
             total_weight += weight
-    
+
     if total_weight == 0:
         return 0.5
-    
-    return composite / total_weight * (sum(PILLAR_WEIGHTS.values()) / total_weight)
+
+    return composite / total_weight * (sum(weights.values()) / total_weight)
 
 
 def calculate_edge_percentage(
@@ -545,7 +554,7 @@ def analyze_game(
     logger.info(f"    Flow: {flow['score']:.3f} - {flow.get('reasoning', 'N/A')}")
     logger.info(f"    Game Environment: {game_env['score']:.3f} - {game_env.get('reasoning', 'N/A')}")
 
-    composite = calculate_composite_score(pillar_scores)
+    composite = calculate_composite_score(pillar_scores, sport)
     
     edges = {}
     
@@ -685,6 +694,10 @@ def analyze_game(
     }
     logger.info(f"CALIBRATION: {json.dumps(calibration_data)}")
 
+    # Get sport-specific weights for return value
+    sport_normalized = SPORT_KEY_TO_LEAGUE.get(sport, sport.upper())
+    sport_weights = SPORT_WEIGHTS.get(sport_normalized, DEFAULT_WEIGHTS)
+
     return {
         "game_id": game_id,
         "sport": sport,
@@ -693,7 +706,7 @@ def analyze_game(
         "commence_time": game_time.isoformat(),
         "pillars": pillars_dict,
         "pillar_scores": pillar_scores,
-        "pillar_weights": PILLAR_WEIGHTS,
+        "pillar_weights": sport_weights,
         "composite_score": round(composite, 3),
         "consensus_odds": consensus,
         "edges": edges,

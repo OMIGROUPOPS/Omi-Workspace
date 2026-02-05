@@ -203,17 +203,73 @@ ESPN_SPORTS = {
 OUTDOOR_SPORTS = ["NFL", "NCAAF"]
 
 # =============================================================================
-# PILLAR WEIGHTS (default - will be tuned by accuracy tracking)
+# PILLAR WEIGHTS - Sport-Specific (will be tuned by accuracy tracking)
 # =============================================================================
 
-PILLAR_WEIGHTS = {
-    "execution": 0.20,       # Injuries, lineup availability
-    "incentives": 0.10,      # Motivation, playoff positioning
-    "shocks": 0.25,          # Line movement, velocity, steam moves
-    "time_decay": 0.10,      # Rest, travel, schedule fatigue
-    "flow": 0.25,            # Sharp money, book disagreement
-    "game_environment": 0.10, # Pace, weather, expected totals
+# Sport-specific pillar weights - each set must sum to 1.0
+SPORT_WEIGHTS = {
+    "NBA": {
+        "execution": 0.20,       # Injuries matter but deep rosters
+        "incentives": 0.10,      # Load management, tank positioning
+        "shocks": 0.20,          # Line moves meaningful
+        "time_decay": 0.20,      # Back-to-backs, travel huge
+        "flow": 0.20,            # Sharp action on spreads
+        "game_environment": 0.10, # Pace matchups
+    },
+    "NCAAB": {
+        "execution": 0.15,       # Smaller rosters, injuries matter
+        "incentives": 0.15,      # Conference play, bubble teams
+        "shocks": 0.25,          # Inefficient market, steam moves
+        "time_decay": 0.10,      # Less grueling schedule
+        "flow": 0.25,            # Public money fades valuable
+        "game_environment": 0.10, # Tempo matchups
+    },
+    "NFL": {
+        "execution": 0.15,       # Key injuries (QB) massive
+        "incentives": 0.15,      # Playoff seeding, division games
+        "shocks": 0.25,          # News breaks, injury reports
+        "time_decay": 0.05,      # Weekly schedule, less relevant
+        "flow": 0.25,            # Sharp money very meaningful
+        "game_environment": 0.15, # Weather, dome vs outdoor
+    },
+    "NCAAF": {
+        "execution": 0.15,       # Transfer portal, key players
+        "incentives": 0.15,      # Rivalry games, bowl eligibility
+        "shocks": 0.25,          # Injury news, starter changes
+        "time_decay": 0.10,      # Bye weeks matter
+        "flow": 0.25,            # Public money on big names
+        "game_environment": 0.10, # Weather effects
+    },
+    "NHL": {
+        "execution": 0.15,       # Goalie starts crucial
+        "incentives": 0.10,      # Playoff races
+        "shocks": 0.25,          # Goalie announcements move lines
+        "time_decay": 0.15,      # Back-to-backs, travel
+        "flow": 0.25,            # Sharp money on totals
+        "game_environment": 0.10, # Home ice advantage
+    },
+    "EPL": {
+        "execution": 0.20,       # Squad rotation, injuries
+        "incentives": 0.25,      # Relegation, European spots, derbies
+        "shocks": 0.20,          # Lineup leaks, manager news
+        "time_decay": 0.15,      # Midweek fixtures, cup runs
+        "flow": 0.15,            # Less sharp action available
+        "game_environment": 0.05, # Weather less impactful
+    },
 }
+
+# Default fallback for unknown sports (original weights)
+DEFAULT_WEIGHTS = {
+    "execution": 0.20,
+    "incentives": 0.10,
+    "shocks": 0.25,
+    "time_decay": 0.10,
+    "flow": 0.25,
+    "game_environment": 0.10,
+}
+
+# Legacy alias for backwards compatibility
+PILLAR_WEIGHTS = DEFAULT_WEIGHTS
 
 # =============================================================================
 # EDGE THRESHOLDS

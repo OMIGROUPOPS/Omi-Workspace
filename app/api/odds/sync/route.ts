@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { EdgeDetector } from "@/lib/edge/engine/edge-detector";
 import { EdgeLifecycleManager, upsertEdge } from "@/lib/edge/engine/edge-lifecycle";
-import { calculateGameCEQ, type GameCEQ } from "@/lib/edge/engine/edgescout";
+import { calculateGameCEQ, type GameCEQ, type TeamStatsData, type GameContextData } from "@/lib/edge/engine/edgescout";
 
 const CRON_SECRET = process.env.CRON_SECRET || "";
 const ODDS_API_KEY = process.env.ODDS_API_KEY || "";
@@ -349,6 +349,119 @@ function getSupabase() {
   );
 }
 
+// Fetch all team stats for CEQ calculation
+async function fetchAllTeamStats(supabase: ReturnType<typeof getSupabase>): Promise<Map<string, TeamStatsData>> {
+  const teamStatsMap = new Map<string, TeamStatsData>();
+  try {
+    const { data, error } = await supabase
+      .from('team_stats')
+      .select('*')
+      .order('updated_at', { ascending: false })
+      .limit(500);
+
+    if (error) {
+      console.error('[Odds Sync] Team stats query error:', error);
+      return teamStatsMap;
+    }
+
+    if (!data || data.length === 0) {
+      console.warn('[Odds Sync] Team stats table is empty - GameEnvironment pillar will use defaults');
+      return teamStatsMap;
+    }
+
+    console.log(`[Odds Sync] Loaded ${data.length} team stats from database`);
+
+    for (const stat of data) {
+      const key = stat.team_name?.toLowerCase();
+      if (key && !teamStatsMap.has(key)) {
+        const teamData: TeamStatsData = {
+          team_id: stat.team_id,
+          team_name: stat.team_name,
+          team_abbrev: stat.team_abbrev,
+          pace: stat.pace,
+          offensive_rating: stat.offensive_rating,
+          defensive_rating: stat.defensive_rating,
+          net_rating: stat.net_rating,
+          wins: stat.wins,
+          losses: stat.losses,
+          win_pct: stat.win_pct,
+          home_wins: stat.home_wins,
+          home_losses: stat.home_losses,
+          away_wins: stat.away_wins,
+          away_losses: stat.away_losses,
+          streak: stat.streak,
+          points_per_game: stat.points_per_game,
+          points_allowed_per_game: stat.points_allowed_per_game,
+          injuries: stat.injuries || [],
+        };
+        teamStatsMap.set(key, teamData);
+
+        // Also index by abbreviation for better matching
+        if (stat.team_abbrev) {
+          const abbrevKey = stat.team_abbrev.toLowerCase();
+          if (!teamStatsMap.has(abbrevKey)) {
+            teamStatsMap.set(abbrevKey, teamData);
+          }
+        }
+
+        // Also index by team nickname (last word of name)
+        const words = stat.team_name?.split(' ') || [];
+        if (words.length > 1) {
+          const nickname = words[words.length - 1].toLowerCase();
+          if (!teamStatsMap.has(nickname) && nickname.length > 3) {
+            teamStatsMap.set(nickname, teamData);
+          }
+        }
+      }
+    }
+
+    // Log sample of team names for debugging
+    const sampleNames = Array.from(teamStatsMap.keys()).slice(0, 5);
+    console.log(`[Odds Sync] Team stats map sample keys: ${sampleNames.join(', ')}`);
+  } catch (e) {
+    console.error('[Odds Sync] Team stats fetch failed:', e);
+  }
+  return teamStatsMap;
+}
+
+// Build game context from team names
+function buildGameContext(
+  homeTeam: string,
+  awayTeam: string,
+  sportKey: string,
+  teamStatsMap: Map<string, TeamStatsData>
+): GameContextData {
+  const homeKey = homeTeam?.toLowerCase();
+  const awayKey = awayTeam?.toLowerCase();
+
+  let homeStats = teamStatsMap.get(homeKey);
+  let awayStats = teamStatsMap.get(awayKey);
+
+  // Fallback: partial matching
+  if (!homeStats) {
+    for (const [key, stats] of teamStatsMap) {
+      if (homeKey?.includes(key) || key.includes(homeKey || '')) {
+        homeStats = stats;
+        break;
+      }
+    }
+  }
+  if (!awayStats) {
+    for (const [key, stats] of teamStatsMap) {
+      if (awayKey?.includes(key) || key.includes(awayKey || '')) {
+        awayStats = stats;
+        break;
+      }
+    }
+  }
+
+  return {
+    homeTeam: homeStats,
+    awayTeam: awayStats,
+    league: sportKey?.split('_')[1] || sportKey,
+  };
+}
+
 // Count edges from a CEQ result (CEQ >= 56 = edge)
 function countPeriodEdges(ceq: GameCEQ | null): number {
   if (!ceq) return 0;
@@ -368,10 +481,14 @@ async function calculateAndStoreEdgeCounts(
   game: any,
   sportKey: string,
   openingLine: number | undefined,
-  snapshots: any[]
+  snapshots: any[],
+  teamStatsMap: Map<string, TeamStatsData>
 ): Promise<{ total: number; breakdown: Record<string, number> }> {
   const breakdown: Record<string, number> = {};
   let total = 0;
+
+  // Build game context for CEQ calculation
+  const gameContext = buildGameContext(game.home_team, game.away_team, sportKey, teamStatsMap);
 
   // Build per-book marketGroups from game data
   const bookmakers = game.bookmakers || [];
@@ -482,7 +599,7 @@ async function calculateAndStoreEdgeCounts(
       spreads: hasSpread ? { home: getMedian(spreadHomeOdds) || -110, away: getMedian(spreadAwayOdds) || -110 } : undefined,
       h2h: hasH2h ? { home: h2hHome, away: h2hAway } : undefined,
       totals: hasTotals ? { over: getMedian(totalOverOdds) || -110, under: getMedian(totalUnderOdds) || -110 } : undefined,
-    }, {});
+    }, gameContext);
   };
 
   // Calculate for all periods
@@ -665,6 +782,9 @@ async function runSync() {
 
   const supabase = getSupabase();
 
+  // Fetch team stats once for all games (used by GameEnvironment pillar)
+  const teamStatsMap = await fetchAllTeamStats(supabase);
+
   // Cleanup stale games before syncing new ones
   const gamesDeleted = await cleanupStaleGames(supabase);
 
@@ -773,7 +893,8 @@ async function runSync() {
               game,
               sportKey,
               openingLines[game.id],
-              [] // snapshots not needed for basic edge counting
+              [], // snapshots not needed for basic edge counting
+              teamStatsMap
             );
             totalEdgeCounts += total;
           } catch (e) {

@@ -1320,8 +1320,8 @@ export function calculateCEQ(
         ? (100 - pythonPillars.composite)  // Invert for home-side calculation
         : pythonPillars.composite;          // Direct for away (not typically called)
       const tsRaw = ceq;
-      ceq = ceq * 0.6 + pythonScore * 0.4;
-      console.log(`CALIBRATION_DEBUG: CEQ blend - ts_raw=${tsRaw.toFixed(1)} py_raw=${pythonPillars.composite.toFixed(1)} py_adjusted=${pythonScore.toFixed(1)} blended=${ceq.toFixed(1)} ratio=60/40 side=${side} market=${marketType}`);
+      ceq = ceq * 0.5 + pythonScore * 0.5;
+      console.log(`CALIBRATION_DEBUG: CEQ blend - ts_raw=${tsRaw.toFixed(1)} py_raw=${pythonPillars.composite.toFixed(1)} py_adjusted=${pythonScore.toFixed(1)} blended=${ceq.toFixed(1)} ratio=50/50 side=${side} market=${marketType}`);
     }
     // For totals, skip composite blend - individual pillar mappings provide totals signals
   }

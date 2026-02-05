@@ -72,7 +72,7 @@ const SPORT_CONFIGS = [
   { sport: 'hockey', league: 'nhl', dbLeague: 'NHL', sportKey: 'icehockey_nhl', limit: 50, skipDetail: false },
   { sport: 'basketball', league: 'mens-college-basketball', dbLeague: 'NCAAB', sportKey: 'basketball_ncaab', limit: 200, skipDetail: true },
   { sport: 'football', league: 'college-football', dbLeague: 'NCAAF', sportKey: 'americanfootball_ncaaf', limit: 200, skipDetail: true },
-  { sport: 'soccer', league: 'eng.1', dbLeague: 'EPL', sportKey: 'soccer_epl', limit: 30, skipDetail: false },
+  // EPL synced separately via Football-Data.org (ESPN returns empty stats for soccer)
 ];
 
 async function fetchESPNTeams(sport: string, league: string, limit: number = 50): Promise<ESPNTeam[]> {
@@ -528,6 +528,126 @@ function extractTeamStats(
   };
 }
 
+// === FOOTBALL-DATA.ORG EPL SYNC ===
+// ESPN returns empty stats for soccer, so EPL uses Football-Data.org instead
+const FOOTBALL_DATA_BASE = 'https://api.football-data.org/v4';
+
+async function syncFootballDataEPL(): Promise<{ synced: number; errors: number; withStats: number }> {
+  const apiKey = process.env.FOOTBALL_DATA_API_KEY;
+
+  if (!apiKey) {
+    console.log('EPL_SYNC: FOOTBALL_DATA_API_KEY not set, skipping');
+    return { synced: 0, errors: 0, withStats: 0 };
+  }
+
+  const headers: Record<string, string> = { 'X-Auth-Token': apiKey };
+  let synced = 0;
+  let errors = 0;
+  let withStats = 0;
+
+  try {
+    // Single call gets all standings including home/away splits
+    const res = await fetch(`${FOOTBALL_DATA_BASE}/competitions/PL/standings`, { headers });
+    if (!res.ok) {
+      console.error(`EPL_SYNC: Football-Data.org returned ${res.status}`);
+      return { synced: 0, errors: 1, withStats: 0 };
+    }
+
+    const data = await res.json();
+    const totalTable = data.standings?.find((s: any) => s.type === 'TOTAL')?.table;
+    const homeTable = data.standings?.find((s: any) => s.type === 'HOME')?.table;
+    const awayTable = data.standings?.find((s: any) => s.type === 'AWAY')?.table;
+
+    if (!totalTable || totalTable.length === 0) {
+      console.error('EPL_SYNC: No standings table in response');
+      return { synced: 0, errors: 1, withStats: 0 };
+    }
+
+    const season = new Date().getFullYear().toString();
+
+    for (const entry of totalTable) {
+      try {
+        const team = entry.team;
+        const gp = entry.playedGames || 0;
+        const goalsForPG = gp > 0 ? entry.goalsFor / gp : null;
+        const goalsAgainstPG = gp > 0 ? entry.goalsAgainst / gp : null;
+
+        // Home/away records
+        const homeEntry = homeTable?.find((h: any) => h.team.id === team.id);
+        const awayEntry = awayTable?.find((a: any) => a.team.id === team.id);
+
+        // Parse streak from form string (e.g., "W,D,L,W,W")
+        let streak: number | null = null;
+        if (entry.form) {
+          const results = entry.form.split(',');
+          let count = 0;
+          const last = results[results.length - 1];
+          for (let i = results.length - 1; i >= 0; i--) {
+            if (results[i] === last) count++;
+            else break;
+          }
+          streak = last === 'W' ? count : last === 'L' ? -count : 0;
+        }
+
+        const teamStats: TeamStatsRow = {
+          team_id: `fd_${team.id}`,
+          team_name: team.name,
+          team_abbrev: team.shortName || team.tla || '',
+          sport: 'EPL',
+          league: 'EPL',
+          season,
+          pace: null,
+          offensive_rating: null,
+          defensive_rating: null,
+          net_rating: null,
+          wins: entry.won,
+          losses: entry.lost,
+          win_pct: gp > 0 ? entry.won / gp : null,
+          home_wins: homeEntry?.won ?? null,
+          home_losses: homeEntry?.lost ?? null,
+          away_wins: awayEntry?.won ?? null,
+          away_losses: awayEntry?.lost ?? null,
+          streak,
+          points_per_game: goalsForPG,
+          points_allowed_per_game: goalsAgainstPG,
+          point_differential: goalsForPG !== null && goalsAgainstPG !== null ? goalsForPG - goalsAgainstPG : null,
+          true_shooting_pct: null,
+          assist_ratio: null,
+          rebound_pct: null,
+          turnover_ratio: null,
+          injuries: [],
+          source: 'football-data.org',
+          updated_at: new Date().toISOString()
+        };
+
+        const { error } = await supabase
+          .from('team_stats')
+          .upsert(teamStats, { onConflict: 'team_id,sport,season' });
+
+        if (error) {
+          console.error(`EPL_SYNC: Error upserting ${team.name}:`, error.message);
+          errors++;
+        } else {
+          synced++;
+          if (entry.won !== null || goalsForPG !== null) withStats++;
+        }
+
+        console.log(`[EPL SYNC] ${team.name} (${team.tla}): pos=${entry.position}, W${entry.won}-D${entry.draw}-L${entry.lost}, GF/g=${goalsForPG?.toFixed(2)}, GA/g=${goalsAgainstPG?.toFixed(2)}, form=${entry.form}`);
+      } catch (err) {
+        console.error('EPL_SYNC: Error processing team:', err);
+        errors++;
+      }
+    }
+
+    console.log(`EPL_SYNC: Football-Data.org — synced ${synced} teams (${withStats} with stats), ${errors} errors`);
+  } catch (err) {
+    console.error('EPL_SYNC: Football-Data.org fetch failed:', err);
+    errors++;
+  }
+
+  return { synced, errors, withStats };
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const sportFilter = searchParams.get('sport');
@@ -619,6 +739,18 @@ export async function GET(request: Request) {
     });
 
     console.log(`ESPN_SYNC: ${config.dbLeague} — synced ${synced} teams (${withStats} with stats), ${errors} errors`);
+  }
+
+  // === EPL via Football-Data.org ===
+  if (!sportFilter || sportFilter === 'soccer_epl' || sportFilter.toLowerCase() === 'epl') {
+    const eplResult = await syncFootballDataEPL();
+    results.push({
+      sport: 'soccer',
+      league: 'EPL',
+      synced: eplResult.synced,
+      errors: eplResult.errors,
+      withStats: eplResult.withStats
+    });
   }
 
   // Clean up legacy rows that used generic sport names (e.g., 'basketball' instead of 'NBA')

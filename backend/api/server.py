@@ -82,7 +82,7 @@ async def test_football_data():
         from data_sources.football_data import get_epl_standings
         result["import_success"] = True
 
-        standings = await get_epl_standings()
+        standings = get_epl_standings()
         if standings:
             result["standings_fetched"] = True
             result["team_count"] = len(standings)

@@ -138,6 +138,121 @@ def _extract_team_abbr(team_name: str, sport: str) -> str:
     return ""
 
 
+SPORT_KEY_TO_LEAGUE = {
+    "basketball_nba": "NBA",
+    "basketball_ncaab": "NCAAB",
+    "americanfootball_nfl": "NFL",
+    "americanfootball_ncaaf": "NCAAF",
+    "icehockey_nhl": "NHL",
+    "soccer_epl": "EPL",
+}
+
+
+def fetch_team_environment_stats(
+    home_team: str, away_team: str, sport_key: str
+) -> Optional[dict]:
+    """
+    Fetch team stats from Supabase team_stats table for game environment pillar.
+
+    Returns dict:
+        {"home": {pace, offensive_rating, defensive_rating, points_per_game, ...},
+         "away": {pace, offensive_rating, defensive_rating, points_per_game, ...}}
+    or None if fetch fails / no data.
+    """
+    from database import db
+
+    if not db._is_connected():
+        logger.debug("Database not connected, skipping team_environment stats fetch")
+        return None
+
+    league = SPORT_KEY_TO_LEAGUE.get(sport_key, "")
+    if not league:
+        return None
+
+    try:
+        # Fetch stats filtered by league
+        result = db.client.table("team_stats").select(
+            "team_name, team_abbrev, pace, offensive_rating, defensive_rating, "
+            "points_per_game, points_allowed_per_game, net_rating, wins, losses, "
+            "win_pct, streak"
+        ).eq(
+            "league", league
+        ).execute()
+
+        rows = result.data or []
+        if not rows:
+            logger.info(f"CALIBRATION_DEBUG: game_environment no team_stats rows for league={league}")
+            return None
+
+        # Build lookup by lowercase team name + abbreviation
+        lookup: dict[str, dict] = {}
+        for row in rows:
+            name = row.get("team_name", "").lower()
+            abbr = (row.get("team_abbrev") or "").lower()
+            if name:
+                lookup[name] = row
+            if abbr:
+                lookup[abbr] = row
+            # Also index by nickname (last word)
+            words = name.split()
+            if len(words) > 1 and len(words[-1]) > 3:
+                nickname = words[-1]
+                if nickname not in lookup:
+                    lookup[nickname] = row
+
+        # Match home team
+        home_key = home_team.lower()
+        home_row = lookup.get(home_key)
+        if not home_row:
+            for k, v in lookup.items():
+                if home_key in k or k in home_key:
+                    home_row = v
+                    break
+
+        # Match away team
+        away_key = away_team.lower()
+        away_row = lookup.get(away_key)
+        if not away_row:
+            for k, v in lookup.items():
+                if away_key in k or k in away_key:
+                    away_row = v
+                    break
+
+        if not home_row and not away_row:
+            logger.info(
+                f"CALIBRATION_DEBUG: game_environment no match for "
+                f"home='{home_team}' away='{away_team}' league={league} "
+                f"(db has {len(rows)} teams)"
+            )
+            return None
+
+        if not home_row:
+            logger.info(f"CALIBRATION_DEBUG: game_environment home NOT FOUND: '{home_team}' league={league}")
+        if not away_row:
+            logger.info(f"CALIBRATION_DEBUG: game_environment away NOT FOUND: '{away_team}' league={league}")
+
+        stats = {
+            "home": home_row or {},
+            "away": away_row or {},
+        }
+
+        logger.info(
+            f"CALIBRATION_DEBUG: game_environment fetched stats for "
+            f"{home_team}: pace={home_row.get('pace') if home_row else None}, "
+            f"off_rtg={home_row.get('offensive_rating') if home_row else None}, "
+            f"ppg={home_row.get('points_per_game') if home_row else None} | "
+            f"{away_team}: pace={away_row.get('pace') if away_row else None}, "
+            f"off_rtg={away_row.get('offensive_rating') if away_row else None}, "
+            f"ppg={away_row.get('points_per_game') if away_row else None}"
+        )
+
+        return stats
+
+    except Exception as e:
+        logger.error(f"Error fetching team_environment stats: {e}")
+        return None
+
+
 def american_to_implied_prob(odds: int) -> float:
     """Convert American odds to implied probability."""
     if odds > 0:
@@ -324,13 +439,19 @@ def analyze_game(
     if consensus.get("totals", {}).get("over"):
         total_line = consensus["totals"]["over"].get("line")
 
+    # Fetch team stats from Supabase for environment analysis
+    env_team_stats = fetch_team_environment_stats(home_team, away_team, sport)
+
     if sport == "icehockey_nhl":
-        # Fetch NHL stats for environment calculation
+        # Try NHL-specific API first, fall back to Supabase team_stats
         home_abbr = _extract_team_abbr(home_team, "NHL")
         away_abbr = _extract_team_abbr(away_team, "NHL")
 
         if home_abbr and away_abbr:
-            nhl_stats = fetch_nhl_game_stats_sync(home_abbr, away_abbr)
+            try:
+                nhl_stats = fetch_nhl_game_stats_sync(home_abbr, away_abbr)
+            except Exception as e:
+                logger.warning(f"NHL stats API failed ({e}), using Supabase fallback")
 
         game_env = calculate_game_environment_score(
             sport="NHL",
@@ -338,29 +459,33 @@ def analyze_game(
             away_team=away_team,
             total_line=total_line,
             nhl_stats=nhl_stats,
+            team_stats=env_team_stats,
         )
 
-    elif sport == "americanfootball_nfl":
-        # NFL game environment with weather
+    elif sport in ["americanfootball_nfl", "americanfootball_ncaaf"]:
+        # NFL/NCAAF game environment with weather + team scoring stats
         game_env = calculate_game_environment_score(
-            sport="NFL",
+            sport="NFL" if sport == "americanfootball_nfl" else "NCAAF",
             home_team=home_team,
             away_team=away_team,
             total_line=total_line,
             game_time=game_time,
+            team_stats=env_team_stats,
         )
 
     elif sport in ["basketball_nba", "basketball_ncaab"]:
-        # NBA/NCAAB - basic environment (pace data would need ESPN fetch)
+        # NBA/NCAAB - pace, offensive/defensive ratings from Supabase
         game_env = calculate_game_environment_score(
-            sport="NBA",
+            sport="NBA" if sport == "basketball_nba" else "NCAAB",
             home_team=home_team,
             away_team=away_team,
             total_line=total_line,
+            team_stats=env_team_stats,
         )
 
     else:
-        # Soccer, Tennis, other sports - neutral baseline
+        # Soccer, Tennis, other sports
+        # TODO: Wire in EPL team stats when available in team_stats table
         game_env = {
             "score": 0.5,
             "expected_total": None,

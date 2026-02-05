@@ -25,9 +25,15 @@ def calculate_game_environment_score(
     nba_stats: Optional[dict] = None,
     weather_data: Optional[dict] = None,
     game_time: Optional[any] = None,
+    team_stats: Optional[dict] = None,
 ) -> dict:
     """
     Calculate game environment score for totals analysis.
+
+    Args:
+        team_stats: Generic stats from Supabase team_stats table.
+            Format: {"home": {...supabase row...}, "away": {...supabase row...}}
+            Used as fallback when sport-specific stats not provided.
 
     Returns:
     - score > 0.5: Lean OVER (high-scoring environment expected)
@@ -36,12 +42,45 @@ def calculate_game_environment_score(
 
     Also returns expected_total for line comparison.
     """
+    # Build sport-specific stats from generic team_stats if needed
+    if not nba_stats and team_stats and sport in ("NBA", "NCAAB"):
+        home = team_stats.get("home", {})
+        away = team_stats.get("away", {})
+        if home or away:
+            nba_stats = {
+                "home": {
+                    "pace": home.get("pace") or 100,
+                    "off_rating": home.get("offensive_rating") or 110,
+                    "def_rating": home.get("defensive_rating") or 110,
+                },
+                "away": {
+                    "pace": away.get("pace") or 100,
+                    "off_rating": away.get("offensive_rating") or 110,
+                    "def_rating": away.get("defensive_rating") or 110,
+                },
+            }
+
+    if not nhl_stats and team_stats and sport == "NHL":
+        home = team_stats.get("home", {})
+        away = team_stats.get("away", {})
+        if home or away:
+            nhl_stats = {
+                "home": {
+                    "goals_for_per_game": home.get("points_per_game") or 3.0,
+                    "goals_against_per_game": home.get("points_allowed_per_game") or 3.0,
+                },
+                "away": {
+                    "goals_for_per_game": away.get("points_per_game") or 3.0,
+                    "goals_against_per_game": away.get("points_allowed_per_game") or 3.0,
+                },
+            }
+
     if sport == "NHL" and nhl_stats:
         return _calculate_nhl_environment(home_team, away_team, total_line, nhl_stats)
-    elif sport == "NBA" and nba_stats:
+    elif sport in ("NBA", "NCAAB") and nba_stats:
         return _calculate_nba_environment(home_team, away_team, total_line, nba_stats)
-    elif sport in ["NFL", "americanfootball_nfl"]:
-        return _calculate_nfl_environment(home_team, away_team, total_line, weather_data, game_time)
+    elif sport in ("NFL", "NCAAF"):
+        return _calculate_nfl_environment(home_team, away_team, total_line, weather_data, game_time, team_stats)
     else:
         return _default_environment()
 
@@ -51,15 +90,19 @@ def _calculate_nfl_environment(
     away_team: str,
     total_line: Optional[float],
     weather_data: Optional[dict],
-    game_time: Optional[any]
+    game_time: Optional[any],
+    team_stats: Optional[dict] = None,
 ) -> dict:
     """
-    NFL-specific environment calculation including weather.
+    NFL/NCAAF environment calculation including weather and team scoring stats.
 
     Weather factors:
     - Wind >15mph affects passing game
     - Rain/snow affects totals (lean under)
     - Extreme cold affects kicking
+
+    Team stats:
+    - points_per_game + points_allowed_per_game → expected total
     """
     reasoning_parts = []
     score = 0.5
@@ -96,33 +139,63 @@ def _calculate_nfl_environment(
                 if not reasoning_parts or weather_impact == 0:
                     reasoning_parts.append(f"Weather: {temp:.0f}°F, wind {wind:.0f}mph, {conditions}")
     else:
-        reasoning_parts.append("Weather data unavailable - using neutral baseline")
+        reasoning_parts.append("Weather data unavailable")
 
-    # NFL totals typically around 44-48 points
-    # Without detailed team stats, provide general analysis
-    if total_line:
+    # Calculate expected total from team stats if available
+    expected_total = None
+    if team_stats:
+        home = team_stats.get("home", {})
+        away = team_stats.get("away", {})
+        home_ppg = home.get("points_per_game")
+        home_papg = home.get("points_allowed_per_game")
+        away_ppg = away.get("points_per_game")
+        away_papg = away.get("points_allowed_per_game")
+
+        if home_ppg and away_papg and away_ppg and home_papg:
+            # Expected home score = (home off + away def) / 2
+            exp_home = (home_ppg + away_papg) / 2
+            exp_away = (away_ppg + home_papg) / 2
+            expected_total = exp_home + exp_away
+
+            if total_line:
+                line_diff = expected_total - total_line
+                score_adjustment = line_diff * 0.02  # ±0.10 per 5-point diff
+                score += score_adjustment
+
+                if line_diff >= 3:
+                    reasoning_parts.append(f"Expected {expected_total:.0f} vs line {total_line} = OVER lean")
+                elif line_diff <= -3:
+                    reasoning_parts.append(f"Expected {expected_total:.0f} vs line {total_line} = UNDER lean")
+                else:
+                    reasoning_parts.append(f"Expected {expected_total:.0f} close to line {total_line}")
+            else:
+                reasoning_parts.append(f"Expected total: {expected_total:.0f}")
+
+    # General total line analysis (fallback if no team stats)
+    if total_line and not expected_total:
         league_avg_total = 46.0  # Modern NFL average
 
         if total_line >= 52:
             reasoning_parts.append(f"High total ({total_line}) - shootout expected")
             if weather_impact >= 0:
-                score += 0.03  # Slight over lean in good conditions
+                score += 0.03
         elif total_line <= 40:
             reasoning_parts.append(f"Low total ({total_line}) - defensive game expected")
             if weather_impact <= 0:
-                score -= 0.03  # Slight under lean
+                score -= 0.03
 
     score = max(0.2, min(0.8, score))
 
     return {
         "score": round(score, 3),
-        "expected_total": None,  # Would need team stats for this
+        "expected_total": round(expected_total, 1) if expected_total else None,
         "weather_available": weather_data.get("available", False) if weather_data else False,
         "breakdown": {
             "weather_impact": round(weather_impact, 3),
             "weather_data": weather_data,
+            "expected_total": round(expected_total, 1) if expected_total else None,
         },
-        "reasoning": "; ".join(reasoning_parts) if reasoning_parts else "Neutral NFL environment"
+        "reasoning": "; ".join(reasoning_parts) if reasoning_parts else "Neutral environment"
     }
 
 

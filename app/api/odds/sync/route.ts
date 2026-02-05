@@ -349,9 +349,43 @@ function getSupabase() {
   );
 }
 
-// Fetch all team stats for CEQ calculation
-async function fetchAllTeamStats(supabase: ReturnType<typeof getSupabase>): Promise<Map<string, TeamStatsData>> {
-  const teamStatsMap = new Map<string, TeamStatsData>();
+// Map Odds API sport_key to ESPN league for filtering
+const SPORT_KEY_TO_LEAGUE: Record<string, string> = {
+  'basketball_nba': 'NBA',
+  'basketball_ncaab': 'NCAAB',
+  'basketball_wnba': 'WNBA',
+  'americanfootball_nfl': 'NFL',
+  'americanfootball_ncaaf': 'NCAAF',
+  'icehockey_nhl': 'NHL',
+  'baseball_mlb': 'MLB',
+  'soccer_epl': 'EPL',
+  'soccer_usa_mls': 'MLS',
+};
+
+// Common team name aliases (Odds API name -> ESPN name)
+const TEAM_NAME_ALIASES: Record<string, string> = {
+  // NBA
+  'la clippers': 'los angeles clippers',
+  'la lakers': 'los angeles lakers',
+  'ny knicks': 'new york knicks',
+  // NFL
+  'la rams': 'los angeles rams',
+  'la chargers': 'los angeles chargers',
+  'ny giants': 'new york giants',
+  'ny jets': 'new york jets',
+  // NHL
+  'la kings': 'los angeles kings',
+  'ny rangers': 'new york rangers',
+  'ny islanders': 'new york islanders',
+  // Soccer
+  'man united': 'manchester united',
+  'man city': 'manchester city',
+};
+
+// Fetch all team stats for CEQ calculation, organized by league
+async function fetchAllTeamStats(supabase: ReturnType<typeof getSupabase>): Promise<Map<string, Map<string, TeamStatsData>>> {
+  // Nested map: league -> teamName -> stats
+  const teamStatsByLeague = new Map<string, Map<string, TeamStatsData>>();
   try {
     const { data, error } = await supabase
       .from('team_stats')
@@ -361,19 +395,29 @@ async function fetchAllTeamStats(supabase: ReturnType<typeof getSupabase>): Prom
 
     if (error) {
       console.error('[Odds Sync] Team stats query error:', error);
-      return teamStatsMap;
+      return teamStatsByLeague;
     }
 
     if (!data || data.length === 0) {
       console.warn('[Odds Sync] Team stats table is empty - GameEnvironment pillar will use defaults');
-      return teamStatsMap;
+      return teamStatsByLeague;
     }
 
     console.log(`[Odds Sync] Loaded ${data.length} team stats from database`);
 
     for (const stat of data) {
+      const league = stat.league?.toUpperCase() || 'UNKNOWN';
       const key = stat.team_name?.toLowerCase();
-      if (key && !teamStatsMap.has(key)) {
+
+      if (!key) continue;
+
+      // Get or create league map
+      if (!teamStatsByLeague.has(league)) {
+        teamStatsByLeague.set(league, new Map<string, TeamStatsData>());
+      }
+      const leagueMap = teamStatsByLeague.get(league)!;
+
+      if (!leagueMap.has(key)) {
         const teamData: TeamStatsData = {
           team_id: stat.team_id,
           team_name: stat.team_name,
@@ -394,13 +438,13 @@ async function fetchAllTeamStats(supabase: ReturnType<typeof getSupabase>): Prom
           points_allowed_per_game: stat.points_allowed_per_game,
           injuries: stat.injuries || [],
         };
-        teamStatsMap.set(key, teamData);
+        leagueMap.set(key, teamData);
 
-        // Also index by abbreviation for better matching
+        // Also index by abbreviation
         if (stat.team_abbrev) {
           const abbrevKey = stat.team_abbrev.toLowerCase();
-          if (!teamStatsMap.has(abbrevKey)) {
-            teamStatsMap.set(abbrevKey, teamData);
+          if (!leagueMap.has(abbrevKey)) {
+            leagueMap.set(abbrevKey, teamData);
           }
         }
 
@@ -408,57 +452,85 @@ async function fetchAllTeamStats(supabase: ReturnType<typeof getSupabase>): Prom
         const words = stat.team_name?.split(' ') || [];
         if (words.length > 1) {
           const nickname = words[words.length - 1].toLowerCase();
-          if (!teamStatsMap.has(nickname) && nickname.length > 3) {
-            teamStatsMap.set(nickname, teamData);
+          if (!leagueMap.has(nickname) && nickname.length > 3) {
+            leagueMap.set(nickname, teamData);
           }
         }
       }
     }
 
-    // Log sample of team names for debugging
-    const sampleNames = Array.from(teamStatsMap.keys()).slice(0, 5);
-    console.log(`[Odds Sync] Team stats map sample keys: ${sampleNames.join(', ')}`);
+    // Log stats per league
+    for (const [league, map] of teamStatsByLeague) {
+      console.log(`[Odds Sync] ${league}: ${map.size} team entries`);
+    }
   } catch (e) {
     console.error('[Odds Sync] Team stats fetch failed:', e);
   }
-  return teamStatsMap;
+  return teamStatsByLeague;
 }
 
-// Build game context from team names
+// Build game context from team names, filtered by sport
 function buildGameContext(
   homeTeam: string,
   awayTeam: string,
   sportKey: string,
-  teamStatsMap: Map<string, TeamStatsData>
+  teamStatsByLeague: Map<string, Map<string, TeamStatsData>>
 ): GameContextData {
-  const homeKey = homeTeam?.toLowerCase();
-  const awayKey = awayTeam?.toLowerCase();
+  // Map sport_key to ESPN league
+  const league = SPORT_KEY_TO_LEAGUE[sportKey] || sportKey.split('_')[1]?.toUpperCase() || 'UNKNOWN';
+  const leagueMap = teamStatsByLeague.get(league);
 
-  let homeStats = teamStatsMap.get(homeKey);
-  let awayStats = teamStatsMap.get(awayKey);
+  if (!leagueMap || leagueMap.size === 0) {
+    // No stats for this league - skip silently (e.g., tennis, soccer)
+    return { homeTeam: undefined, awayTeam: undefined, league };
+  }
 
-  // Fallback: partial matching
-  if (!homeStats) {
-    for (const [key, stats] of teamStatsMap) {
-      if (homeKey?.includes(key) || key.includes(homeKey || '')) {
+  // Normalize team names and apply aliases
+  let homeKey = homeTeam?.toLowerCase();
+  let awayKey = awayTeam?.toLowerCase();
+
+  // Apply aliases if they exist
+  if (homeKey && TEAM_NAME_ALIASES[homeKey]) {
+    homeKey = TEAM_NAME_ALIASES[homeKey];
+  }
+  if (awayKey && TEAM_NAME_ALIASES[awayKey]) {
+    awayKey = TEAM_NAME_ALIASES[awayKey];
+  }
+
+  // Direct lookup
+  let homeStats = leagueMap.get(homeKey || '');
+  let awayStats = leagueMap.get(awayKey || '');
+
+  // Fallback: partial matching within the same league only
+  if (!homeStats && homeKey) {
+    for (const [key, stats] of leagueMap) {
+      if (homeKey.includes(key) || key.includes(homeKey)) {
         homeStats = stats;
         break;
       }
     }
   }
-  if (!awayStats) {
-    for (const [key, stats] of teamStatsMap) {
-      if (awayKey?.includes(key) || key.includes(awayKey || '')) {
+  if (!awayStats && awayKey) {
+    for (const [key, stats] of leagueMap) {
+      if (awayKey.includes(key) || key.includes(awayKey)) {
         awayStats = stats;
         break;
       }
     }
   }
 
+  // Log NOT FOUND teams for debugging (only for major sports with stats)
+  if (!homeStats && homeKey) {
+    console.log(`[Odds Sync] Team NOT FOUND: '${homeTeam}' for sport ${sportKey} (league=${league})`);
+  }
+  if (!awayStats && awayKey) {
+    console.log(`[Odds Sync] Team NOT FOUND: '${awayTeam}' for sport ${sportKey} (league=${league})`);
+  }
+
   return {
     homeTeam: homeStats,
     awayTeam: awayStats,
-    league: sportKey?.split('_')[1] || sportKey,
+    league,
   };
 }
 
@@ -482,13 +554,13 @@ async function calculateAndStoreEdgeCounts(
   sportKey: string,
   openingLine: number | undefined,
   snapshots: any[],
-  teamStatsMap: Map<string, TeamStatsData>
+  teamStatsByLeague: Map<string, Map<string, TeamStatsData>>
 ): Promise<{ total: number; breakdown: Record<string, number> }> {
   const breakdown: Record<string, number> = {};
   let total = 0;
 
-  // Build game context for CEQ calculation
-  const gameContext = buildGameContext(game.home_team, game.away_team, sportKey, teamStatsMap);
+  // Build game context for CEQ calculation (filtered by sport/league)
+  const gameContext = buildGameContext(game.home_team, game.away_team, sportKey, teamStatsByLeague);
 
   // Build per-book marketGroups from game data
   const bookmakers = game.bookmakers || [];
@@ -783,7 +855,7 @@ async function runSync() {
   const supabase = getSupabase();
 
   // Fetch team stats once for all games (used by GameEnvironment pillar)
-  const teamStatsMap = await fetchAllTeamStats(supabase);
+  const teamStatsByLeague = await fetchAllTeamStats(supabase);
 
   // Cleanup stale games before syncing new ones
   const gamesDeleted = await cleanupStaleGames(supabase);
@@ -894,7 +966,7 @@ async function runSync() {
               sportKey,
               openingLines[game.id],
               [], // snapshots not needed for basic edge counting
-              teamStatsMap
+              teamStatsByLeague
             );
             totalEdgeCounts += total;
           } catch (e) {

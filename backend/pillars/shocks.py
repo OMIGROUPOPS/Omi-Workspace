@@ -46,17 +46,34 @@ def calculate_shocks_score(
     movement_significance = 0.0
 
     # === LINE MOVEMENT MAGNITUDE (opening vs current) ===
+    # Calibrated thresholds for spread movements:
+    # 0-1 pt:   barely notable (50-55%)
+    # 1-3 pt:   moderate (55-65%)
+    # 3-5 pt:   significant (65-75%)
+    # 5-10 pt:  major (75-85%)
+    # 10+ pt:   extreme (85-95%) - very rare, usually injury/news driven
     if current_line is not None and opening_line is not None:
         line_movement = current_line - opening_line
-
-        # Thresholds for line movement significance
-        # Line move > 1pt = significant, > 2pt = major
         abs_movement = abs(line_movement)
 
-        if abs_movement >= 2.0:
-            # MAJOR line movement - 70-80% range
+        if abs_movement >= 10.0:
+            # EXTREME line movement (10+ pts) - 85-95% range
             shock_detected = True
-            movement_significance = 0.25 + (abs_movement - 2.0) * 0.05  # 25-30%+
+            # 10pt = 0.35, 15pt = 0.40, 20pt = 0.45 (capped)
+            movement_significance = 0.35 + min((abs_movement - 10.0) * 0.02, 0.10)
+
+            if line_movement > 0:
+                shock_direction = "away"
+                reasoning_parts.append(f"EXTREME line move: +{line_movement:.1f} toward {away_team}")
+            else:
+                shock_direction = "home"
+                reasoning_parts.append(f"EXTREME line move: {line_movement:.1f} toward {home_team}")
+
+        elif abs_movement >= 5.0:
+            # MAJOR line movement (5-10 pts) - 75-85% range
+            shock_detected = True
+            # 5pt = 0.25, 7.5pt = 0.30, 10pt = 0.35
+            movement_significance = 0.25 + (abs_movement - 5.0) * 0.02
 
             if line_movement > 0:
                 shock_direction = "away"
@@ -65,10 +82,11 @@ def calculate_shocks_score(
                 shock_direction = "home"
                 reasoning_parts.append(f"MAJOR line move: {line_movement:.1f} toward {home_team}")
 
-        elif abs_movement >= 1.0:
-            # Significant line movement - 60-70% range
+        elif abs_movement >= 3.0:
+            # Significant line movement (3-5 pts) - 65-75% range
             shock_detected = True
-            movement_significance = 0.12 + (abs_movement - 1.0) * 0.13  # 12-25%
+            # 3pt = 0.15, 4pt = 0.20, 5pt = 0.25
+            movement_significance = 0.15 + (abs_movement - 3.0) * 0.05
 
             if line_movement > 0:
                 shock_direction = "away"
@@ -77,13 +95,26 @@ def calculate_shocks_score(
                 shock_direction = "home"
                 reasoning_parts.append(f"Significant line move: {line_movement:.1f} toward {home_team}")
 
-        elif abs_movement >= 0.5:
-            # Moderate movement - 55-60% range
-            movement_significance = 0.05 + (abs_movement - 0.5) * 0.14  # 5-12%
+        elif abs_movement >= 1.0:
+            # Moderate line movement (1-3 pts) - 55-65% range
+            shock_detected = True
+            # 1pt = 0.05, 2pt = 0.10, 3pt = 0.15
+            movement_significance = 0.05 + (abs_movement - 1.0) * 0.05
+
             if line_movement > 0:
+                shock_direction = "away"
                 reasoning_parts.append(f"Moderate line move: +{line_movement:.1f} toward {away_team}")
             else:
+                shock_direction = "home"
                 reasoning_parts.append(f"Moderate line move: {line_movement:.1f} toward {home_team}")
+
+        elif abs_movement >= 0.5:
+            # Slight movement (0.5-1 pts) - 52-55% range
+            movement_significance = 0.02 + (abs_movement - 0.5) * 0.06  # 2-5%
+            if line_movement > 0:
+                reasoning_parts.append(f"Slight line move: +{line_movement:.1f} toward {away_team}")
+            else:
+                reasoning_parts.append(f"Slight line move: {line_movement:.1f} toward {home_team}")
 
     # === TIME FACTOR (hours until game) ===
     time_factor = 1.0
@@ -102,9 +133,10 @@ def calculate_shocks_score(
     base_score = 0.5
 
     # Apply line movement adjustments
+    # Cap at 0.45 to allow extreme moves to reach 95% max
     if shock_detected:
         direction_multiplier = 1.0 if shock_direction == "away" else -1.0
-        adjustment = min(movement_significance, 0.4)
+        adjustment = min(movement_significance, 0.45)
         adjustment *= direction_multiplier
         adjustment *= time_factor
         base_score += adjustment

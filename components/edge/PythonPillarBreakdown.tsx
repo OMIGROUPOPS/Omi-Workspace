@@ -5,12 +5,13 @@ import { useState, useEffect } from 'react';
 /**
  * Python Backend Pillar Scores
  *
- * These are the REAL 5 pillars calculated by the Python backend:
- * 1. Execution (20%) - Injuries, weather, lineup uncertainty
- * 2. Incentives (15%) - Playoffs, motivation, rivalries
- * 3. Shocks (25%) - Breaking news, line movement timing
- * 4. Time Decay (15%) - Rest days, back-to-back, travel
+ * These are the REAL 6 pillars calculated by the Python backend:
+ * 1. Execution (20%) - Injuries, lineup uncertainty
+ * 2. Incentives (10%) - Playoffs, motivation, rivalries
+ * 3. Shocks (25%) - Line movement, velocity, steam moves
+ * 4. Time Decay (10%) - Rest days, back-to-back, travel
  * 5. Flow (25%) - Sharp money, book disagreement
+ * 6. Game Environment (10%) - Pace, weather, expected totals
  */
 
 interface PillarScores {
@@ -19,6 +20,7 @@ interface PillarScores {
   shocks: number;
   timeDecay: number;
   flow: number;
+  gameEnvironment: number;
   composite: number;
 }
 
@@ -40,6 +42,7 @@ interface PillarData {
     shocks?: PillarDetail;
     time_decay?: PillarDetail;
     flow?: PillarDetail;
+    game_environment?: PillarDetail;
   };
   overall_confidence: 'PASS' | 'WATCH' | 'EDGE' | 'STRONG' | 'RARE';
   best_bet: string | null;
@@ -47,13 +50,14 @@ interface PillarData {
   source: string;
 }
 
-// Pillar weight configuration matching backend
+// Pillar weight configuration matching backend config.py
 const PILLAR_CONFIG = {
-  execution: { name: 'Execution', weight: 0.20, description: 'Injuries, weather, lineup' },
-  incentives: { name: 'Incentives', weight: 0.15, description: 'Playoffs, motivation, rivalries' },
-  shocks: { name: 'Shocks', weight: 0.25, description: 'Breaking news, line movement' },
-  timeDecay: { name: 'Time Decay', weight: 0.15, description: 'Rest, travel, fatigue' },
+  execution: { name: 'Execution', weight: 0.20, description: 'Injuries, lineup availability' },
+  incentives: { name: 'Incentives', weight: 0.10, description: 'Playoffs, motivation, rivalries' },
+  shocks: { name: 'Shocks', weight: 0.25, description: 'Line movement, velocity, steam' },
+  timeDecay: { name: 'Time Decay', weight: 0.10, description: 'Rest, travel, fatigue' },
   flow: { name: 'Flow', weight: 0.25, description: 'Sharp money, book disagreement' },
+  gameEnvironment: { name: 'Game Env', weight: 0.10, description: 'Pace, weather, totals' },
 };
 
 function getScoreStyle(score: number) {
@@ -181,7 +185,7 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
       <div className={`px-3 py-2 ${confStyle.bg} border-b ${confStyle.border}`}>
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-xs font-semibold text-zinc-100">5-Pillar Analysis</h3>
+            <h3 className="text-xs font-semibold text-zinc-100">6-Pillar Analysis</h3>
             <span className="text-[10px] text-zinc-400">Python Backend</span>
           </div>
           <div className="flex items-center gap-2">
@@ -196,8 +200,10 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
       {/* Pillar Bars */}
       <div className="p-3 space-y-2">
         {Object.entries(PILLAR_CONFIG).map(([key, config]) => {
-          const score = pillar_scores[key as keyof PillarScores];
-          const detail = pillars?.[key === 'timeDecay' ? 'time_decay' : key as keyof typeof pillars];
+          const score = pillar_scores[key as keyof PillarScores] ?? 50;
+          // Map camelCase keys to snake_case for pillar details
+          const detailKey = key === 'timeDecay' ? 'time_decay' : key === 'gameEnvironment' ? 'game_environment' : key;
+          const detail = pillars?.[detailKey as keyof typeof pillars];
           const style = getScoreStyle(score);
           const hasDetail = detail?.reasoning;
 
@@ -286,6 +292,13 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
                       <div>Consensus Line: {detail.consensus_line}</div>
                       <div>Sharp Line: {detail.sharpest_line}</div>
                       <div>Book Agreement: {(detail.book_agreement * 100).toFixed(0)}%</div>
+                    </div>
+                  )}
+                  {key === 'gameEnvironment' && detail.breakdown && (
+                    <div className="mt-2 text-[9px] text-zinc-400 space-y-0.5">
+                      {detail.breakdown.pace_factor && <div>Pace Factor: {detail.breakdown.pace_factor}</div>}
+                      {detail.breakdown.expected_total && <div>Expected Total: {detail.breakdown.expected_total}</div>}
+                      {detail.breakdown.weather_impact && <div>Weather: {detail.breakdown.weather_impact}</div>}
                     </div>
                   )}
                 </div>

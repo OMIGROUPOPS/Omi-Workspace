@@ -1839,19 +1839,48 @@ export async function fetchGameContext(
   sport: string
 ): Promise<GameContextData> {
   const supabase = getSupabase();
-  if (!supabase) return {};
+  if (!supabase) {
+    console.log(`[fetchGameContext] No supabase client`);
+    return {};
+  }
 
   try {
-    const sportFilter = sport.split('_')[0] || sport;
+    // Map sport key to league format used in team_stats table
+    // team_stats uses uppercase league names (NBA, NFL, NHL, etc.)
+    const sportToLeague: Record<string, string> = {
+      'basketball_nba': 'NBA',
+      'basketball_ncaab': 'NCAAB',
+      'americanfootball_nfl': 'NFL',
+      'americanfootball_ncaaf': 'NCAAF',
+      'icehockey_nhl': 'NHL',
+      'soccer_epl': 'EPL',
+      'baseball_mlb': 'MLB',
+      // Also handle uppercase short format
+      'NBA': 'NBA',
+      'NCAAB': 'NCAAB',
+      'NFL': 'NFL',
+      'NCAAF': 'NCAAF',
+      'NHL': 'NHL',
+      'EPL': 'EPL',
+      'MLB': 'MLB',
+    };
+    const league = sportToLeague[sport] || sport.toUpperCase();
+
+    console.log(`[fetchGameContext] sport=${sport} -> league=${league}, home="${homeTeamName}", away="${awayTeamName}"`);
 
     // Fetch team stats for both teams
-    const { data: teamStats } = await supabase
+    const { data: teamStats, error } = await supabase
       .from('team_stats')
       .select('*')
-      .eq('sport', sportFilter)
+      .eq('league', league)
       .or(`team_name.ilike.%${homeTeamName}%,team_name.ilike.%${awayTeamName}%`)
       .order('updated_at', { ascending: false })
       .limit(10);
+
+    if (error) {
+      console.log(`[fetchGameContext] Supabase error:`, error.message);
+    }
+    console.log(`[fetchGameContext] Found ${teamStats?.length || 0} team_stats rows`);
 
     // Find home and away team stats
     let homeTeam: TeamStatsData | undefined;
@@ -1931,13 +1960,13 @@ export async function fetchGameContext(
       }
     }
 
-    const league = sport.split('_')[1] || sport;
+    console.log(`[fetchGameContext] Result: homeTeam=${homeTeam?.team_name || 'NOT FOUND'}, awayTeam=${awayTeam?.team_name || 'NOT FOUND'}, weather=${weather ? 'present' : 'none'}`);
 
     return {
       homeTeam,
       awayTeam,
       weather,
-      league,
+      league,  // Use the league we calculated at the top
     };
   } catch (error) {
     console.error('[fetchGameContext] Error:', error);

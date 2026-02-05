@@ -1302,7 +1302,7 @@ export function calculateCEQ(
     ceq = pillars.reduce((acc, p) => acc + p.score * p.weight, 0) / totalWeight;
   }
 
-  // If Python pillars available, blend with Python composite (30% Python, 70% TS pillars)
+  // If Python pillars available, blend with Python composite (60% TS, 40% Python)
   // CRITICAL: Python composite > 50 = AWAY edge, < 50 = HOME edge
   // When calculating HOME-side CEQ, we must INVERT the Python composite
   // so that a Python away-edge (71%) results in a LOW home CEQ, not high
@@ -1316,7 +1316,9 @@ export function calculateCEQ(
       const pythonScore = side === 'home'
         ? (100 - pythonPillars.composite)  // Invert for home-side calculation
         : pythonPillars.composite;          // Direct for away (not typically called)
+      const tsRaw = ceq;
       ceq = ceq * 0.6 + pythonScore * 0.4;
+      console.log(`CALIBRATION_DEBUG: CEQ blend - ts_raw=${tsRaw.toFixed(1)} py_raw=${pythonPillars.composite.toFixed(1)} py_adjusted=${pythonScore.toFixed(1)} blended=${ceq.toFixed(1)} ratio=60/40 side=${side} market=${marketType}`);
     }
     // For totals, skip composite blend - individual pillar mappings provide totals signals
   }

@@ -1302,6 +1302,9 @@ export function calculateCEQ(
     ceq = pillars.reduce((acc, p) => acc + p.score * p.weight, 0) / totalWeight;
   }
 
+  // Debug: Log pythonPillars state before blend decision
+  console.log(`CALIBRATION_DEBUG: CEQ pre-blend - ts_ceq=${ceq.toFixed(1)} pythonPillars=${pythonPillars ? `composite=${pythonPillars.composite}` : 'null'} market=${marketType} side=${side}`);
+
   // If Python pillars available, blend with Python composite (60% TS, 40% Python)
   // CRITICAL: Python composite > 50 = AWAY edge, < 50 = HOME edge
   // When calculating HOME-side CEQ, we must INVERT the Python composite

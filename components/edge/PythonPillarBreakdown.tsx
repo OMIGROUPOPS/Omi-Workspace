@@ -299,15 +299,26 @@ export function PythonPillarBreakdown({
     return null;
   }
 
-  const { pillar_scores, pillars, overall_confidence } = pillarData;
-  const confStyle = getConfidenceStyle(overall_confidence);
+  const { pillar_scores, pillars, pillars_by_market } = pillarData;
 
-  // For TOTALS: use gameEnvironment pillar (what CEQ actually uses)
-  // For SPREADS/ML: use composite (weighted avg of all pillars)
-  const headerScore = marketType === 'total'
-    ? pillar_scores.gameEnvironment
-    : pillar_scores.composite;
-  const headerMetric = marketType === 'total' ? 'Game Env' : 'Composite';
+  // Map frontend marketType to backend key
+  const backendMarketKey = marketType === 'total' ? 'totals' : marketType;
+
+  // Get market/period-specific data from pillars_by_market
+  const marketPeriodData = pillars_by_market?.[backendMarketKey]?.[period];
+
+  // Use market/period-specific composite and confidence if available
+  const headerScore = marketPeriodData?.composite ?? (
+    marketType === 'total' ? pillar_scores.gameEnvironment : pillar_scores.composite
+  );
+  const marketConfidence = marketPeriodData?.confidence ?? pillarData.overall_confidence;
+  const confStyle = getConfidenceStyle(marketConfidence);
+
+  // Log for debugging
+  console.log(`[PythonPillarBreakdown] Using pillars_by_market[${backendMarketKey}][${period}]:`, marketPeriodData);
+  console.log(`[PythonPillarBreakdown] headerScore=${headerScore}, confidence=${marketConfidence}`);
+
+  const headerMetric = `${backendMarketKey}/${period}`;
 
   // Get directional display for the relevant score
   const headerDir = getDirectionalDisplay(headerScore, marketType);
@@ -339,7 +350,7 @@ export function PythonPillarBreakdown({
               </span>
             </div>
             <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded ${confStyle.bg} ${confStyle.text}`}>
-              {overall_confidence}
+              {marketConfidence}
             </span>
           </div>
         </div>
@@ -360,10 +371,13 @@ export function PythonPillarBreakdown({
       <div className="p-3 space-y-2">
         {Object.entries(PILLAR_CONFIG).map(([key, config]) => {
           const rawScore = pillar_scores[key as keyof PillarScores] ?? 50;
-          // Map camelCase keys to snake_case for pillar details
-          const detailKey = key === 'timeDecay' ? 'time_decay' : key === 'gameEnvironment' ? 'game_environment' : key;
-          const detail = pillars?.[detailKey as keyof typeof pillars];
+          // Map camelCase keys to snake_case for pillar details and weights
+          const snakeKey = key === 'timeDecay' ? 'time_decay' : key === 'gameEnvironment' ? 'game_environment' : key;
+          const detail = pillars?.[snakeKey as keyof typeof pillars];
           const hasDetail = detail?.reasoning;
+
+          // Get market/period-specific weight (fallback to default config weight)
+          const dynamicWeight = marketPeriodData?.weights?.[snakeKey] ?? config.weight;
 
           // Get directional display
           const dir = getDirectionalDisplay(rawScore, marketType);
@@ -382,7 +396,7 @@ export function PythonPillarBreakdown({
               >
                 <span className="text-[10px] text-zinc-400 w-20 truncate" title={config.description}>
                   {config.name}
-                  <span className="text-zinc-600 ml-1">({Math.round(config.weight * 100)}%)</span>
+                  <span className="text-zinc-600 ml-1">({Math.round(dynamicWeight * 100)}%)</span>
                 </span>
 
                 {/* Score bar - visual representation */}

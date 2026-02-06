@@ -148,7 +148,15 @@ export async function GET(request: NextRequest) {
     }
 
     const data = await response.json();
-    console.log(`[Pillars API] Got data:`, JSON.stringify(data).slice(0, 300));
+    console.log(`[Pillars API] Got data keys:`, Object.keys(data));
+    console.log(`[Pillars API] pillars_by_market exists:`, !!data.pillars_by_market);
+    if (data.pillars_by_market) {
+      console.log(`[Pillars API] pillars_by_market markets:`, Object.keys(data.pillars_by_market));
+      if (data.pillars_by_market.totals) {
+        console.log(`[Pillars API] pillars_by_market.totals periods:`, Object.keys(data.pillars_by_market.totals));
+        console.log(`[Pillars API] pillars_by_market.totals.full:`, data.pillars_by_market.totals.full);
+      }
+    }
 
     // Transform Python backend response to frontend format
     // Python uses 0-1 scale, frontend displays as percentage
@@ -184,6 +192,8 @@ export async function GET(request: NextRequest) {
       }
     }
 
+    console.log(`[Pillars API] Transformed pillars_by_market:`, JSON.stringify(pillarsByMarket).slice(0, 500));
+
     const result: PillarResponse = {
       game_id: data.game_id,
       sport: data.sport,
@@ -200,6 +210,11 @@ export async function GET(request: NextRequest) {
       best_edge: data.best_edge || 0,
       source: 'python_backend',
     };
+
+    console.log(`[Pillars API] Final result for market=${marketType} period=${period}:`,
+      `composite=${result.pillar_scores.composite}`,
+      `confidence=${result.overall_confidence}`,
+      `pillarsByMarket[totals][full]=`, result.pillars_by_market?.totals?.full);
 
     return NextResponse.json(result);
   } catch (error) {

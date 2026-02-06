@@ -307,21 +307,27 @@ export function PythonPillarBreakdown({
   // Get market/period-specific data from pillars_by_market
   const marketPeriodData = pillars_by_market?.[backendMarketKey]?.[period];
 
-  // DEBUG: Log the exact data we're working with
-  console.log(`[Pillars] market=${backendMarketKey} period=${period}`);
-  console.log(`[Pillars] pillars_by_market exists:`, !!pillars_by_market);
-  console.log(`[Pillars] pillars_by_market[${backendMarketKey}] exists:`, !!pillars_by_market?.[backendMarketKey]);
+  // DEBUG: Log full data structure
+  console.log(`[Pillars] === Rendering for market=${backendMarketKey} period=${period} ===`);
+  console.log(`[Pillars] pillar_scores (base):`, pillar_scores);
+  console.log(`[Pillars] pillars_by_market keys:`, pillars_by_market ? Object.keys(pillars_by_market) : 'undefined');
+  if (pillars_by_market?.[backendMarketKey]) {
+    console.log(`[Pillars] pillars_by_market[${backendMarketKey}] periods:`, Object.keys(pillars_by_market[backendMarketKey]));
+  }
   console.log(`[Pillars] marketPeriodData:`, marketPeriodData);
-  console.log(`[Pillars] marketPeriodData?.composite:`, marketPeriodData?.composite, typeof marketPeriodData?.composite);
 
   // Use market/period-specific composite and confidence if available
-  const headerScore = marketPeriodData?.composite ?? (
-    marketType === 'total' ? pillar_scores.gameEnvironment : pillar_scores.composite
-  );
+  // IMPORTANT: marketPeriodData.composite is the market-specific weighted score
+  // pillar_scores.composite is the BASE score (default spread/full)
+  const hasMarketSpecificData = marketPeriodData?.composite !== undefined;
+  const headerScore = hasMarketSpecificData
+    ? marketPeriodData.composite
+    : (marketType === 'total' ? pillar_scores.gameEnvironment : pillar_scores.composite);
   const marketConfidence = marketPeriodData?.confidence ?? pillarData.overall_confidence;
   const confStyle = getConfidenceStyle(marketConfidence);
 
-  console.log(`[Pillars] RESULT: headerScore=${headerScore} (used ${marketPeriodData?.composite !== undefined ? 'market-specific' : 'FALLBACK'})`);
+  console.log(`[Pillars] DECISION: hasMarketSpecificData=${hasMarketSpecificData}`);
+  console.log(`[Pillars] RESULT: headerScore=${headerScore} from ${hasMarketSpecificData ? `marketPeriodData.composite` : `FALLBACK (composite=${pillar_scores.composite}, gameEnv=${pillar_scores.gameEnvironment})`}`);
   console.log(`[Pillars] weights:`, marketPeriodData?.weights);
 
   const headerMetric = `${backendMarketKey}/${period}`;

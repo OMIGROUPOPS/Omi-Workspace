@@ -41,8 +41,29 @@ class Database:
         if not self._is_connected():
             logger.warning("Database not connected, skipping save")
             return None
-        
+
         try:
+            # Check if new consensus_odds is empty - if so, preserve existing data
+            new_consensus = analysis.get("consensus_odds", {})
+            consensus_has_data = bool(new_consensus.get("h2h") or new_consensus.get("spreads") or new_consensus.get("totals"))
+
+            consensus_to_save = new_consensus
+            if not consensus_has_data:
+                # Try to preserve existing consensus_odds_json if it has data
+                existing = self.client.table("predictions").select("consensus_odds_json").eq(
+                    "game_id", analysis["game_id"]
+                ).eq("sport_key", analysis["sport"]).limit(1).execute()
+
+                if existing.data:
+                    existing_json = existing.data[0].get("consensus_odds_json", "{}")
+                    try:
+                        existing_consensus = json.loads(existing_json) if isinstance(existing_json, str) else existing_json
+                        if existing_consensus.get("h2h") or existing_consensus.get("spreads") or existing_consensus.get("totals"):
+                            consensus_to_save = existing_consensus
+                            logger.debug(f"Preserving existing consensus_odds for {analysis['game_id']}")
+                    except:
+                        pass
+
             record = {
                 "game_id": analysis["game_id"],
                 "sport_key": analysis["sport"],
@@ -60,7 +81,7 @@ class Database:
                 "overall_confidence": analysis.get("overall_confidence", "PASS"),
                 "edges_json": json.dumps(analysis.get("edges", {})),
                 "pillars_json": json.dumps(analysis.get("pillars", {})),
-                "consensus_odds_json": json.dumps(analysis.get("consensus_odds", {})),
+                "consensus_odds_json": json.dumps(consensus_to_save),
                 "predicted_at": datetime.now(timezone.utc).isoformat(),
             }
             

@@ -895,29 +895,42 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
         )}
       </div>
 
-      {/* 6 Pillar Strength Bars */}
+      {/* CEQ Variables with Percentages */}
       <div className="p-3 space-y-2">
         {allPillars.map(({ name, pillar }) => {
           const hasData = pillar.weight > 0;
           const strength = getStrengthLabel(pillar.score);
           const barWidth = Math.max(5, Math.min(100, pillar.score));
+          const scoreDisplay = hasData ? `${Math.round(pillar.score)}%` : '--';
 
           return (
             <div key={name} className="flex items-center gap-3">
-              <span className="text-[10px] text-zinc-400 w-28 truncate">{name}</span>
+              <span className="text-[10px] text-zinc-400 w-28 truncate" title={name}>{name}</span>
               <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
                 <div
                   className={`h-full rounded-full transition-all ${hasData ? strength.barColor : 'bg-zinc-700'}`}
                   style={{ width: `${hasData ? barWidth : 0}%` }}
                 />
               </div>
-              <span className={`text-[9px] w-16 text-right ${hasData ? strength.color : 'text-zinc-600'}`}>
-                {hasData ? strength.label : 'No data'}
+              <span className={`text-[10px] font-mono w-10 text-right ${hasData ? strength.color : 'text-zinc-600'}`}>
+                {scoreDisplay}
               </span>
             </div>
           );
         })}
       </div>
+
+      {/* Final Answer Banner */}
+      {shouldDisplayCEQ && confidence !== 'PASS' && (
+        <div className={`px-3 py-2 border-t ${confStyle.border} ${confStyle.bg}`}>
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] text-zinc-400">CEQ Edge:</span>
+            <span className={`text-xs font-semibold ${confStyle.text}`}>
+              {Math.round(ceq)}% {side} ({confidence})
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -1942,13 +1955,16 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         <AskEdgeAI gameId={gameData.id} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} chartSelection={chartSelection} />
       </div>
 
-      {/* Python Backend 6-Pillar Analysis - The REAL pillar scores */}
+      {/* Python Backend 6-Pillar Analysis - Individual factors that inform the edge */}
       <div className="mb-6">
-        <h3 className="text-sm font-semibold text-zinc-100 mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-zinc-100 mb-1 flex items-center gap-2">
           <span className="text-emerald-400">●</span>
           6-Pillar Analysis
-          <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Python Backend</span>
+          <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Individual Factors</span>
         </h3>
+        <p className="text-[10px] text-zinc-500 mb-3">
+          How each factor leans. CEQ below combines these into the final edge.
+        </p>
         <PythonPillarBreakdown
           gameId={gameData.id}
           sport={gameData.sportKey.includes('nfl') ? 'NFL' :
@@ -1972,11 +1988,14 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         const currentSpreads = marketGroups[periodKey]?.spreads;
         return activeCeq && (
         <div className="mb-6">
-          <h3 className="text-sm font-semibold text-zinc-100 mb-3 flex items-center gap-2">
+          <h3 className="text-sm font-semibold text-zinc-100 mb-1 flex items-center gap-2">
             <span className="text-blue-400">●</span>
             CEQ Analysis
-            <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Composite Edge Quotient</span>
+            <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Final Edge</span>
           </h3>
+          <p className="text-[10px] text-zinc-500 mb-3">
+            Weighted blend of all factors + market data. This is the actionable edge.
+          </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Show analysis based on selected market */}
             {chartMarket === 'spread' && activeCeq.spreads ? (
@@ -2074,11 +2093,14 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
       {/* Team Totals EdgeScout Analysis - Shows when Team Totals tab is selected */}
       {activeTab === 'team' && teamTotalsCeq && (teamTotalsCeq.home || teamTotalsCeq.away) && (
         <div className="mb-6">
-          <h3 className="text-sm font-semibold text-zinc-100 mb-3 flex items-center gap-2">
+          <h3 className="text-sm font-semibold text-zinc-100 mb-1 flex items-center gap-2">
             <span className="text-blue-400">●</span>
             CEQ Analysis
             <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Team Totals</span>
           </h3>
+          <p className="text-[10px] text-zinc-500 mb-3">
+            Individual player scoring edges. This is the actionable edge.
+          </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Home Team Over/Under */}
             {teamTotalsCeq.home?.totals && (

@@ -351,26 +351,18 @@ export function PythonPillarBreakdown({
 
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
-      {/* Header */}
-      <div className={`px-3 py-2 ${confStyle.bg} border-b ${confStyle.border}`}>
+      {/* Header - No composite score, just title. CEQ section shows the final answer. */}
+      <div className="px-3 py-2 bg-zinc-800/50 border-b border-zinc-700">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-xs font-semibold text-zinc-100">6-Pillar Analysis</h3>
-            <span className="text-[10px] text-zinc-400">
-              {marketType === 'total' ? 'Totals' : marketType === 'moneyline' ? 'Moneyline' : 'Spread'}
-              <span className="text-zinc-600 ml-1">({headerMetric})</span>
+            <span className="text-[10px] text-zinc-500">
+              Individual factors for {marketType === 'total' ? 'Totals' : marketType === 'moneyline' ? 'Moneyline' : 'Spread'}
             </span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="text-right">
-              <span className={`text-lg font-bold font-mono ${headerColor.text}`}>
-                {getHeaderLabel()}
-              </span>
-            </div>
-            <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded ${confStyle.bg} ${confStyle.text}`}>
-              {marketConfidence}
-            </span>
-          </div>
+          <span className="text-[9px] text-zinc-500 italic">
+            See CEQ for final edge →
+          </span>
         </div>
       </div>
 

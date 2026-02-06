@@ -1334,7 +1334,7 @@ export function calculateCEQ(
     // Try to get market-specific composite from pillarsByMarket (if available)
     // Default to 'full' period for now (period can be passed separately in future)
     const marketSpecific = pythonPillars.pillarsByMarket?.[marketKey]?.['full'];
-    const pyComposite = marketSpecific?.composite ?? pythonPillars.composite;
+    const pyComposite = marketSpecific?.composite ?? pythonPillars.composite ?? 50;
 
     if (marketType === 'total') {
       // TOTALS: Use market-specific composite or fall back to gameEnvironment
@@ -1346,7 +1346,7 @@ export function calculateCEQ(
         ceq = ceq * 0.5 + totalsScore * 0.5;
         console.log(`CALIBRATION_DEBUG: Totals CEQ blend - ts_raw=${tsRaw.toFixed(1)} py_totals=${totalsScore.toFixed(1)} blended=${ceq.toFixed(1)} ratio=50/50 side=${side} hasMarketSpecific=${!!marketSpecific}`);
       }
-    } else if (pyComposite !== 50) {
+    } else if (pyComposite !== undefined && pyComposite !== 50) {
       // SPREADS/H2H: Use market-specific composite with proper home/away inversion
       // CRITICAL: Python composite > 50 = AWAY edge, < 50 = HOME edge
       // When calculating HOME-side CEQ, we must INVERT the Python composite

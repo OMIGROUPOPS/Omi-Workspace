@@ -307,6 +307,13 @@ export function PythonPillarBreakdown({
   // Get market/period-specific data from pillars_by_market
   const marketPeriodData = pillars_by_market?.[backendMarketKey]?.[period];
 
+  // DEBUG: Log the exact data we're working with
+  console.log(`[Pillars] market=${backendMarketKey} period=${period}`);
+  console.log(`[Pillars] pillars_by_market exists:`, !!pillars_by_market);
+  console.log(`[Pillars] pillars_by_market[${backendMarketKey}] exists:`, !!pillars_by_market?.[backendMarketKey]);
+  console.log(`[Pillars] marketPeriodData:`, marketPeriodData);
+  console.log(`[Pillars] marketPeriodData?.composite:`, marketPeriodData?.composite, typeof marketPeriodData?.composite);
+
   // Use market/period-specific composite and confidence if available
   const headerScore = marketPeriodData?.composite ?? (
     marketType === 'total' ? pillar_scores.gameEnvironment : pillar_scores.composite
@@ -314,9 +321,8 @@ export function PythonPillarBreakdown({
   const marketConfidence = marketPeriodData?.confidence ?? pillarData.overall_confidence;
   const confStyle = getConfidenceStyle(marketConfidence);
 
-  // Log for debugging
-  console.log(`[PythonPillarBreakdown] Using pillars_by_market[${backendMarketKey}][${period}]:`, marketPeriodData);
-  console.log(`[PythonPillarBreakdown] headerScore=${headerScore}, confidence=${marketConfidence}`);
+  console.log(`[Pillars] RESULT: headerScore=${headerScore} (used ${marketPeriodData?.composite !== undefined ? 'market-specific' : 'FALLBACK'})`);
+  console.log(`[Pillars] weights:`, marketPeriodData?.weights);
 
   const headerMetric = `${backendMarketKey}/${period}`;
 

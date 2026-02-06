@@ -60,14 +60,75 @@ const PILLAR_CONFIG = {
   gameEnvironment: { name: 'Game Env', weight: 0.10, description: 'Pace, weather, totals' },
 };
 
-function getScoreStyle(score: number) {
-  // Score is 0-100 (converted from 0-1)
-  // 50 = neutral, >55 = edge toward away, <45 = edge toward home
-  if (score >= 75) return { bg: 'bg-emerald-500/20', border: 'border-emerald-500/40', text: 'text-emerald-400', label: 'Strong Away' };
-  if (score >= 60) return { bg: 'bg-blue-500/20', border: 'border-blue-500/40', text: 'text-blue-400', label: 'Lean Away' };
-  if (score >= 45 && score <= 55) return { bg: 'bg-zinc-700/50', border: 'border-zinc-600', text: 'text-zinc-400', label: 'Neutral' };
-  if (score >= 25) return { bg: 'bg-amber-500/20', border: 'border-amber-500/40', text: 'text-amber-400', label: 'Lean Home' };
-  return { bg: 'bg-red-500/20', border: 'border-red-500/40', text: 'text-red-400', label: 'Strong Home' };
+type MarketType = 'spread' | 'total' | 'moneyline';
+
+/**
+ * Transform pillar score to directional display
+ *
+ * For spreads/moneyline: <50% = home edge, >50% = away edge
+ * For totals: <50% = under edge, >50% = over edge
+ *
+ * Returns: { displayPct, direction, barPosition }
+ * - displayPct: The strength percentage (always shows how strong the lean is)
+ * - direction: 'left' (home/under) or 'right' (away/over) or 'neutral'
+ * - barPosition: 0-100 position for the visual bar
+ */
+function getDirectionalDisplay(rawScore: number, marketType: MarketType): {
+  displayPct: number;
+  direction: 'left' | 'right' | 'neutral';
+  barPosition: number;
+  strengthLabel: string;
+} {
+  // For totals, the interpretation is:
+  // rawScore < 50 = under lean (display as left/under edge)
+  // rawScore > 50 = over lean (display as right/over edge)
+
+  // For spreads/moneyline:
+  // rawScore < 50 = home edge (display as left/home edge)
+  // rawScore > 50 = away edge (display as right/away edge)
+
+  const deviation = Math.abs(rawScore - 50);
+
+  if (deviation < 5) {
+    return { displayPct: rawScore, direction: 'neutral', barPosition: rawScore, strengthLabel: 'Neutral' };
+  }
+
+  if (rawScore < 50) {
+    // Left side (home/under)
+    const strength = 50 + deviation; // Convert 35% to "65% edge"
+    return {
+      displayPct: strength,
+      direction: 'left',
+      barPosition: rawScore,
+      strengthLabel: deviation >= 25 ? 'Strong' : deviation >= 10 ? 'Lean' : 'Slight'
+    };
+  } else {
+    // Right side (away/over)
+    const strength = rawScore; // 65% stays as 65%
+    return {
+      displayPct: strength,
+      direction: 'right',
+      barPosition: rawScore,
+      strengthLabel: deviation >= 25 ? 'Strong' : deviation >= 10 ? 'Lean' : 'Slight'
+    };
+  }
+}
+
+function getScoreColor(direction: 'left' | 'right' | 'neutral', strength: number) {
+  if (direction === 'neutral') {
+    return { bg: 'bg-zinc-700/50', border: 'border-zinc-600', text: 'text-zinc-400', dot: 'bg-zinc-400' };
+  }
+  if (strength >= 70) {
+    return direction === 'left'
+      ? { bg: 'bg-amber-500/20', border: 'border-amber-500/40', text: 'text-amber-400', dot: 'bg-amber-400' }
+      : { bg: 'bg-emerald-500/20', border: 'border-emerald-500/40', text: 'text-emerald-400', dot: 'bg-emerald-400' };
+  }
+  if (strength >= 58) {
+    return direction === 'left'
+      ? { bg: 'bg-amber-500/10', border: 'border-amber-500/30', text: 'text-amber-300', dot: 'bg-amber-300' }
+      : { bg: 'bg-blue-500/20', border: 'border-blue-500/40', text: 'text-blue-400', dot: 'bg-blue-400' };
+  }
+  return { bg: 'bg-zinc-700/30', border: 'border-zinc-600', text: 'text-zinc-400', dot: 'bg-zinc-400' };
 }
 
 function getConfidenceStyle(conf: string) {
@@ -85,10 +146,22 @@ interface PythonPillarBreakdownProps {
   sport: string;
   homeTeam: string;
   awayTeam: string;
+  marketType?: MarketType;
+  spreadLine?: number;  // e.g., -5.5 for home team
+  totalLine?: number;   // e.g., 220.5
   compact?: boolean;
 }
 
-export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compact = false }: PythonPillarBreakdownProps) {
+export function PythonPillarBreakdown({
+  gameId,
+  sport,
+  homeTeam,
+  awayTeam,
+  marketType = 'spread',
+  spreadLine,
+  totalLine,
+  compact = false
+}: PythonPillarBreakdownProps) {
   const [pillarData, setPillarData] = useState<PillarData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -132,13 +205,40 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
     }
   }, [gameId, sport]);
 
+  // Generate labels based on market type
+  const getLabels = () => {
+    if (marketType === 'total') {
+      return {
+        left: 'Under',
+        right: 'Over',
+        leftFull: totalLine ? `Under ${totalLine}` : 'Under',
+        rightFull: totalLine ? `Over ${totalLine}` : 'Over',
+      };
+    }
+    // For spread and moneyline
+    const homeLabel = spreadLine !== undefined && marketType === 'spread'
+      ? `${homeTeam} ${spreadLine > 0 ? '+' : ''}${spreadLine}`
+      : homeTeam;
+    const awayLabel = spreadLine !== undefined && marketType === 'spread'
+      ? `${awayTeam} ${spreadLine > 0 ? -spreadLine : '+' + Math.abs(spreadLine)}`
+      : awayTeam;
+    return {
+      left: homeTeam.slice(0, 8),
+      right: awayTeam.slice(0, 8),
+      leftFull: marketType === 'moneyline' ? `${homeTeam} ML` : homeLabel,
+      rightFull: marketType === 'moneyline' ? `${awayTeam} ML` : awayLabel,
+    };
+  };
+
+  const labels = getLabels();
+
   if (loading) {
     return (
       <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
         <div className="animate-pulse space-y-2">
           <div className="h-4 bg-zinc-700 rounded w-1/3"></div>
           <div className="space-y-1">
-            {[...Array(5)].map((_, i) => (
+            {[...Array(6)].map((_, i) => (
               <div key={i} className="h-3 bg-zinc-800 rounded"></div>
             ))}
           </div>
@@ -179,6 +279,17 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
   const { pillar_scores, pillars, overall_confidence } = pillarData;
   const confStyle = getConfidenceStyle(overall_confidence);
 
+  // Get directional display for composite
+  const compositeDir = getDirectionalDisplay(pillar_scores.composite, marketType);
+  const compositeColor = getScoreColor(compositeDir.direction, compositeDir.displayPct);
+
+  // Build composite direction label
+  const getCompositeLabel = () => {
+    if (compositeDir.direction === 'neutral') return 'Neutral';
+    const side = compositeDir.direction === 'left' ? labels.left : labels.right;
+    return `${compositeDir.displayPct}% ${side}`;
+  };
+
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
       {/* Header */}
@@ -186,10 +297,16 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-xs font-semibold text-zinc-100">6-Pillar Analysis</h3>
-            <span className="text-[10px] text-zinc-400">Python Backend</span>
+            <span className="text-[10px] text-zinc-400">
+              {marketType === 'total' ? 'Totals' : marketType === 'moneyline' ? 'Moneyline' : 'Spread'}
+            </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className={`text-lg font-bold font-mono ${confStyle.text}`}>{pillar_scores.composite}%</span>
+            <div className="text-right">
+              <span className={`text-lg font-bold font-mono ${compositeColor.text}`}>
+                {getCompositeLabel()}
+              </span>
+            </div>
             <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded ${confStyle.bg} ${confStyle.text}`}>
               {overall_confidence}
             </span>
@@ -197,18 +314,34 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
         </div>
       </div>
 
+      {/* Column Headers */}
+      <div className="px-3 py-1.5 border-b border-zinc-800 flex items-center text-[9px] text-zinc-500">
+        <span className="w-20"></span>
+        <div className="flex-1 flex justify-between px-1">
+          <span className="text-amber-400/70">{labels.leftFull}</span>
+          <span className="text-zinc-600">50%</span>
+          <span className="text-emerald-400/70">{labels.rightFull}</span>
+        </div>
+        <span className="w-20 text-right">Edge</span>
+      </div>
+
       {/* Pillar Bars */}
       <div className="p-3 space-y-2">
         {Object.entries(PILLAR_CONFIG).map(([key, config]) => {
-          const score = pillar_scores[key as keyof PillarScores] ?? 50;
+          const rawScore = pillar_scores[key as keyof PillarScores] ?? 50;
           // Map camelCase keys to snake_case for pillar details
           const detailKey = key === 'timeDecay' ? 'time_decay' : key === 'gameEnvironment' ? 'game_environment' : key;
           const detail = pillars?.[detailKey as keyof typeof pillars];
-          const style = getScoreStyle(score);
           const hasDetail = detail?.reasoning;
 
-          // Visual: bar from left (home) to right (away), centered at 50
-          const barPosition = score; // 0-100, 50 is center
+          // Get directional display
+          const dir = getDirectionalDisplay(rawScore, marketType);
+          const color = getScoreColor(dir.direction, dir.displayPct);
+
+          // Build edge label
+          const edgeLabel = dir.direction === 'neutral'
+            ? 'Neutral'
+            : `${dir.displayPct}% ${dir.direction === 'left' ? labels.left : labels.right}`;
 
           return (
             <div key={key}>
@@ -222,32 +355,44 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
                 </span>
 
                 {/* Score bar - visual representation */}
-                <div className="flex-1 h-3 bg-zinc-800 rounded-full overflow-hidden relative">
-                  {/* Center line */}
-                  <div className="absolute left-1/2 top-0 bottom-0 w-px bg-zinc-600"></div>
+                <div className="flex-1 h-4 bg-zinc-800 rounded-full overflow-hidden relative">
+                  {/* Center line at 50% */}
+                  <div className="absolute left-1/2 top-0 bottom-0 w-px bg-zinc-600 z-10"></div>
 
-                  {/* Score indicator */}
-                  <div
-                    className={`absolute top-0 bottom-0 ${style.bg}`}
-                    style={{
-                      left: score >= 50 ? '50%' : `${score}%`,
-                      width: score >= 50 ? `${score - 50}%` : `${50 - score}%`,
-                    }}
-                  ></div>
+                  {/* Left zone background (subtle) */}
+                  <div className="absolute left-0 top-0 bottom-0 w-1/2 bg-amber-500/5"></div>
+
+                  {/* Right zone background (subtle) */}
+                  <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-emerald-500/5"></div>
+
+                  {/* Score fill - from center to position */}
+                  {dir.direction !== 'neutral' && (
+                    <div
+                      className={`absolute top-0 bottom-0 ${
+                        dir.direction === 'left' ? 'bg-amber-500/30' : 'bg-emerald-500/30'
+                      }`}
+                      style={{
+                        left: dir.direction === 'left' ? `${dir.barPosition}%` : '50%',
+                        width: dir.direction === 'left'
+                          ? `${50 - dir.barPosition}%`
+                          : `${dir.barPosition - 50}%`,
+                      }}
+                    ></div>
+                  )}
 
                   {/* Score dot */}
                   <div
-                    className={`absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${
-                      score >= 60 ? 'bg-emerald-400' :
-                      score <= 40 ? 'bg-amber-400' :
-                      'bg-zinc-400'
-                    }`}
-                    style={{ left: `${score}%`, transform: 'translateX(-50%) translateY(-50%)' }}
+                    className={`absolute top-1/2 w-3 h-3 rounded-full border-2 border-zinc-900 ${color.dot} z-20`}
+                    style={{
+                      left: `${dir.barPosition}%`,
+                      transform: 'translateX(-50%) translateY(-50%)'
+                    }}
                   ></div>
                 </div>
 
-                <span className={`text-[10px] w-14 text-right font-mono ${style.text}`}>
-                  {score}%
+                {/* Edge label */}
+                <span className={`text-[10px] w-20 text-right font-mono ${color.text}`}>
+                  {edgeLabel}
                 </span>
 
                 {hasDetail && (
@@ -264,7 +409,7 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
 
               {/* Expanded reasoning */}
               {expanded === key && detail?.reasoning && (
-                <div className={`mt-1 ml-[88px] p-2 rounded ${style.bg} border ${style.border}`}>
+                <div className={`mt-1 ml-[88px] p-2 rounded ${color.bg} border ${color.border}`}>
                   <p className="text-[10px] text-zinc-300 leading-relaxed">{detail.reasoning}</p>
 
                   {/* Show breakdown details if available */}
@@ -314,12 +459,12 @@ export function PythonPillarBreakdown({ gameId, sport, homeTeam, awayTeam, compa
           <div className="flex items-center justify-between text-[9px] text-zinc-500">
             <span className="flex items-center gap-1">
               <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-              {homeTeam} Edge
+              {labels.leftFull}
             </span>
-            <span className="text-zinc-600">50 = Neutral</span>
+            <span className="text-zinc-600">50% = No Edge</span>
             <span className="flex items-center gap-1">
               <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-              {awayTeam} Edge
+              {labels.rightFull}
             </span>
           </div>
         </div>

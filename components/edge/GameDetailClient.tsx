@@ -1959,6 +1959,9 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
                  gameData.sportKey.toUpperCase()}
           homeTeam={gameData.homeTeam}
           awayTeam={gameData.awayTeam}
+          marketType={chartMarket}
+          spreadLine={marketGroups.fullGame?.spreads?.home?.line}
+          totalLine={marketGroups.fullGame?.totals?.line}
         />
       </div>
 

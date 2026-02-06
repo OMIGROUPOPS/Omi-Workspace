@@ -26,21 +26,26 @@ def calculate_game_environment_score(
     weather_data: Optional[dict] = None,
     game_time: Optional[any] = None,
     team_stats: Optional[dict] = None,
+    market_type: str = "totals",
 ) -> dict:
     """
-    Calculate game environment score for totals analysis.
+    Calculate game environment score.
+
+    For TOTALS (default):
+    - score > 0.5: Lean OVER (high-scoring environment expected)
+    - score < 0.5: Lean UNDER (low-scoring environment expected)
+
+    For SPREAD/MONEYLINE:
+    - score > 0.5: Environment favors AWAY (fast pace suits away team)
+    - score < 0.5: Environment favors HOME (slow pace, weather advantage)
 
     Args:
         team_stats: Generic stats from Supabase team_stats table.
             Format: {"home": {...supabase row...}, "away": {...supabase row...}}
             Used as fallback when sport-specific stats not provided.
+        market_type: "totals", "spread", or "moneyline"
 
-    Returns:
-    - score > 0.5: Lean OVER (high-scoring environment expected)
-    - score < 0.5: Lean UNDER (low-scoring environment expected)
-    - score = 0.5: Neutral
-
-    Also returns expected_total for line comparison.
+    Returns dict with score, expected_total, and breakdown.
     """
     # Build sport-specific stats from generic team_stats if needed
     if not nba_stats and team_stats and sport in ("NBA", "NCAAB"):
@@ -188,8 +193,26 @@ def _calculate_nfl_environment(
 
     score = max(0.2, min(0.8, score))
 
+    # Calculate market-specific scores
+    # TOTALS: How does environment affect scoring? (score as calculated - primary use)
+    # SPREAD/MONEYLINE: How does environment affect who wins? (weather advantage)
+    market_scores = {}
+    market_scores["totals"] = score  # Primary use case
+
+    # SPREAD: Weather/environment can favor home team (familiar conditions)
+    # Bad weather generally benefits defensive teams and home teams
+    spread_score = 0.5
+    if weather_impact < 0:  # Bad weather = under = defensive = home edge
+        spread_score -= abs(weather_impact) * 0.5
+    spread_score = max(0.2, min(0.8, spread_score))
+    market_scores["spread"] = spread_score
+    market_scores["moneyline"] = spread_score
+
+    logger.info(f"[GameEnv NFL] Market scores: spread={spread_score:.3f}, totals={score:.3f}")
+
     return {
         "score": round(score, 3),
+        "market_scores": {k: round(v, 3) for k, v in market_scores.items()},
         "expected_total": round(expected_total, 1) if expected_total else None,
         "weather_available": weather_data.get("available", False) if weather_data else False,
         "breakdown": {
@@ -288,8 +311,27 @@ def _calculate_nhl_environment(
         else:
             reasoning_parts.append(f"Strong PK matchup limits scoring")
 
+    # Calculate market-specific scores
+    # TOTALS: Over/under scoring environment (score as calculated - primary use)
+    # SPREAD: Better offensive team has edge
+    market_scores = {}
+    market_scores["totals"] = score  # Primary use case
+
+    # SPREAD: Compare offensive/defensive matchups for winner prediction
+    # Higher home GF vs away GA = home edge, and vice versa
+    home_matchup = (home_gf / max(away_ga, 0.1)) if away_ga else 1.0
+    away_matchup = (away_gf / max(home_ga, 0.1)) if home_ga else 1.0
+    matchup_diff = home_matchup - away_matchup
+    spread_score = 0.5 - (matchup_diff * 0.15)  # Home better matchup = lower score
+    spread_score = max(0.2, min(0.8, spread_score))
+    market_scores["spread"] = spread_score
+    market_scores["moneyline"] = spread_score
+
+    logger.info(f"[GameEnv NHL] Market scores: spread={spread_score:.3f}, totals={score:.3f}")
+
     return {
         "score": round(score, 3),
+        "market_scores": {k: round(v, 3) for k, v in market_scores.items()},
         "expected_total": round(expected_total, 2),
         "expected_home_goals": round(expected_home_goals, 2),
         "expected_away_goals": round(expected_away_goals, 2),
@@ -377,8 +419,27 @@ def _calculate_nba_environment(
     elif expected_pace <= 97:
         reasoning_parts.append(f"Slow-paced matchup ({expected_pace:.1f} pace)")
 
+    # Calculate market-specific scores
+    # TOTALS: Over/under scoring environment (score as calculated - primary use)
+    # SPREAD: Compare efficiency matchups for winner prediction
+    market_scores = {}
+    market_scores["totals"] = score  # Primary use case
+
+    # SPREAD: Net rating comparison indicates likely winner
+    # Home off vs away def, away off vs home def
+    home_net = home_off - away_def  # How home scores vs away D
+    away_net = away_off - home_def  # How away scores vs home D
+    net_diff = home_net - away_net  # Positive = home has edge
+    spread_score = 0.5 - (net_diff * 0.015)  # Scale appropriately
+    spread_score = max(0.2, min(0.8, spread_score))
+    market_scores["spread"] = spread_score
+    market_scores["moneyline"] = spread_score
+
+    logger.info(f"[GameEnv NBA] Market scores: spread={spread_score:.3f}, totals={score:.3f}")
+
     return {
         "score": round(score, 3),
+        "market_scores": {k: round(v, 3) for k, v in market_scores.items()},
         "expected_total": round(expected_total, 1),
         "breakdown": {
             "home_pace": home_pace,
@@ -449,8 +510,25 @@ def _calculate_epl_environment(
             score = 0.4
             reasoning_parts.append(f"Low-scoring matchup ({expected_total:.1f} expected)")
 
+    # Calculate market-specific scores
+    # TOTALS: Over/under scoring environment (score as calculated - primary use)
+    # SPREAD: Compare goals for/against for winner prediction
+    market_scores = {}
+    market_scores["totals"] = score  # Primary use case
+
+    # SPREAD: Goal difference indicates team quality
+    # Higher home expected vs away expected = home edge
+    goal_edge = expected_home_goals - expected_away_goals
+    spread_score = 0.5 - (goal_edge * 0.15)  # Positive edge = home better = lower score
+    spread_score = max(0.2, min(0.8, spread_score))
+    market_scores["spread"] = spread_score
+    market_scores["moneyline"] = spread_score
+
+    logger.info(f"[GameEnv EPL] Market scores: spread={spread_score:.3f}, totals={score:.3f}")
+
     return {
         "score": round(score, 3),
+        "market_scores": {k: round(v, 3) for k, v in market_scores.items()},
         "expected_total": round(expected_total, 2),
         "expected_home_goals": round(expected_home_goals, 2),
         "expected_away_goals": round(expected_away_goals, 2),
@@ -468,6 +546,7 @@ def _default_environment() -> dict:
     """Default response when no sport-specific stats available."""
     return {
         "score": 0.5,
+        "market_scores": {"spread": 0.5, "moneyline": 0.5, "totals": 0.5},
         "expected_total": None,
         "breakdown": {},
         "reasoning": "No advanced stats available - using baseline"

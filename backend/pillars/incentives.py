@@ -204,13 +204,20 @@ def calculate_incentives_score(
     sport: str,
     home_team: str,
     away_team: str,
-    game_time: datetime
+    game_time: datetime,
+    market_type: str = "spread"
 ) -> dict:
     """
     Calculate Pillar 2: Incentives & Strategic Behavior score.
 
-    A score > 0.5 means AWAY team has motivation advantage
-    A score < 0.5 means HOME team has motivation advantage
+    For SPREAD/MONEYLINE:
+    - score > 0.5: AWAY team has motivation advantage
+    - score < 0.5: HOME team has motivation advantage
+
+    For TOTALS:
+    - score > 0.5: High-stakes/rivalry = intense play = OVER lean (more action)
+    - score < 0.5: Low motivation = slower pace = UNDER lean
+
     A score = 0.5 means balanced motivation
     """
     # Determine soccer data source at runtime (handles late-loaded env vars)
@@ -475,8 +482,45 @@ def calculate_incentives_score(
 
     logger.info(f"[Incentives] FINAL RETURN: score={score:.3f}, soccer_adj={soccer_motivation_adjustment:.3f}")
 
+    # Calculate market-specific scores
+    # SPREAD/MONEYLINE: Who has the motivation edge? (score as calculated above)
+    # TOTALS: High-stakes = intense play = OVER lean, low motivation = UNDER lean
+    market_scores = {}
+    market_scores["spread"] = score
+    market_scores["moneyline"] = score  # Same logic for ML
+
+    # TOTALS: High motivation games tend to be higher scoring (more intensity)
+    # Use average motivation (rivalry, championship, playoff race = higher scoring)
+    avg_motivation = (home_motivation + away_motivation) / 2
+    totals_base = 0.5
+
+    if is_championship:
+        # Championship games: high intensity but often defensive = slight under lean
+        totals_base += -0.05  # Slight under lean
+    elif rivalry:
+        # Rivalry games: intense but unpredictable, lean slightly over
+        totals_base += 0.08
+    elif tank_alert:
+        # Tank scenario: one team not trying = lower scoring
+        totals_base -= 0.10
+    elif rest_alert:
+        # Resting players: lower scoring
+        totals_base -= 0.08
+    elif avg_motivation > 0.7:
+        # Both teams motivated: higher scoring
+        totals_base += (avg_motivation - 0.5) * 0.20
+    elif avg_motivation < 0.4:
+        # Low motivation: lower scoring
+        totals_base -= (0.5 - avg_motivation) * 0.15
+
+    totals_score = max(0.15, min(0.85, totals_base))
+    market_scores["totals"] = totals_score
+
+    logger.info(f"[Incentives] Market scores: spread={score:.3f}, totals={totals_score:.3f}")
+
     return {
         "score": round(score, 3),
+        "market_scores": {k: round(v, 3) for k, v in market_scores.items()},
         "home_motivation": round(home_motivation, 3),
         "away_motivation": round(away_motivation, 3),
         "is_rivalry": rivalry,

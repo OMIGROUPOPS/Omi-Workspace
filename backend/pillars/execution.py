@@ -154,13 +154,20 @@ def calculate_execution_score(
     home_team: str,
     away_team: str,
     game_time: datetime,
-    venue: Optional[dict] = None
+    venue: Optional[dict] = None,
+    market_type: str = "spread"
 ) -> dict:
     """
     Calculate Pillar 1: Execution & Resolution Risk score.
 
-    A score > 0.5 means the AWAY team has execution advantages
-    A score < 0.5 means the HOME team has execution advantages
+    For SPREAD/MONEYLINE:
+        A score > 0.5 means the AWAY team has execution advantages
+        A score < 0.5 means the HOME team has execution advantages
+
+    For TOTALS:
+        A score > 0.5 means OVER lean (injuries favor higher scoring)
+        A score < 0.5 means UNDER lean (injuries favor lower scoring)
+
     A score = 0.5 means neutral/balanced
     """
     # Determine soccer data source at runtime (handles late-loaded env vars)
@@ -346,21 +353,33 @@ def calculate_execution_score(
 
     base_score = 0.5
 
-    # AMPLIFIED injury differential impact for visual differentiation
-    # Goal: key injuries = 30-40% swing, QB out = 65-80% range
+    # Calculate scores for ALL markets efficiently (data already fetched)
+    market_scores = {}
+
+    # SPREAD/MONEYLINE: Who has the execution advantage?
     if sport in ["NFL", "americanfootball_nfl"]:
-        # Higher multiplier for NFL - injuries matter more
-        injury_adjustment = injury_differential * 0.65
+        spread_injury_adj = injury_differential * 0.65
     else:
-        injury_adjustment = injury_differential * 0.50
+        spread_injury_adj = injury_differential * 0.50
+    spread_score = base_score + spread_injury_adj + weather_factor - soccer_adjustment
+    spread_score = max(0.15, min(0.85, spread_score))
+    market_scores["spread"] = spread_score
+    market_scores["moneyline"] = spread_score  # Same logic for ML
 
-    # Apply all adjustments to score
-    # soccer_adjustment: negative = home advantage, positive = away advantage
-    # We SUBTRACT because lower score = home advantage
-    score = base_score + injury_adjustment + weather_factor - soccer_adjustment
+    # TOTALS: How do injuries affect SCORING?
+    total_injury_impact = (home_injury_score + away_injury_score) / 2
+    totals_injury_adj = -total_injury_impact * 0.50  # More injuries = under lean
+    # For soccer totals, close matchups = more goals
+    totals_soccer_adj = -abs(soccer_adjustment) * 0.3 if is_soccer_sport and soccer_adjustment != 0 else 0
+    totals_score = base_score + totals_injury_adj + weather_factor - totals_soccer_adj
+    totals_score = max(0.15, min(0.85, totals_score))
+    market_scores["totals"] = totals_score
 
-    logger.info(f"[Execution] Score calc: base={base_score}, injury_adj={injury_adjustment:.3f}, weather={weather_factor}, soccer_adj={soccer_adjustment:.3f}")
-    logger.info(f"[Execution] Final score before clamp: {score:.3f}")
+    # Use market_type parameter to select which score to return as primary
+    score = market_scores.get(market_type, spread_score)
+
+    logger.info(f"[Execution] Market scores: spread={spread_score:.3f}, totals={totals_score:.3f}")
+    logger.info(f"[Execution] Selected score for {market_type}: {score:.3f}")
 
     # Clamp but preserve extremes for visual impact
     score = max(0.15, min(0.85, score))  # Allow 15-85% range for dramatic injuries
@@ -390,6 +409,7 @@ def calculate_execution_score(
 
     return {
         "score": round(score, 3),
+        "market_scores": {k: round(v, 3) for k, v in market_scores.items()},
         "home_injury_impact": round(home_injury_score, 3),
         "away_injury_impact": round(away_injury_score, 3),
         "weather_factor": weather_factor,

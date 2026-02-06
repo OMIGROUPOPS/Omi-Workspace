@@ -549,8 +549,25 @@ def analyze_game(
         "game_environment": game_env["score"],
     }
 
+    # Extract market-specific pillar scores from each pillar
+    # Each pillar now returns market_scores: {spread: x, totals: y, moneyline: z}
+    pillar_market_scores = {
+        "execution": execution.get("market_scores", {"spread": execution["score"], "totals": execution["score"], "moneyline": execution["score"]}),
+        "incentives": incentives.get("market_scores", {"spread": incentives["score"], "totals": incentives["score"], "moneyline": incentives["score"]}),
+        "shocks": shocks.get("market_scores", {"spread": shocks["score"], "totals": shocks["score"], "moneyline": shocks["score"]}),
+        "time_decay": time_decay.get("market_scores", {"spread": time_decay["score"], "totals": time_decay["score"], "moneyline": time_decay["score"]}),
+        "flow": flow.get("market_scores", {"spread": flow["score"], "totals": flow["score"], "moneyline": flow["score"]}),
+        "game_environment": game_env.get("market_scores", {"spread": game_env["score"], "totals": game_env["score"], "moneyline": game_env["score"]}),
+    }
+
+    # Log market-specific pillar scores for debugging
+    logger.info(f"  Market-specific pillar scores:")
+    for pillar, ms in pillar_market_scores.items():
+        logger.info(f"    {pillar}: spread={ms.get('spread', 'N/A'):.3f}, totals={ms.get('totals', 'N/A'):.3f}")
+
     # Calculate all market/period composite combinations (3 markets x 7 periods = up to 21)
-    pillars_by_market = calculate_all_composites(pillar_scores, sport)
+    # Now uses market-specific pillar scores for different pillar values per market
+    pillars_by_market = calculate_all_composites(pillar_scores, sport, pillar_market_scores)
     logger.info(f"  Generated {sum(len(p) for p in pillars_by_market.values())} market/period composites")
 
     # Debug: Log pillar scores and reasoning

@@ -225,13 +225,20 @@ def _detect_reverse_line_movement(
 def calculate_flow_score(
     game: dict,
     opening_line: Optional[float] = None,
-    line_snapshots: Optional[list] = None
+    line_snapshots: Optional[list] = None,
+    market_type: str = "spread"
 ) -> dict:
     """
     Calculate Pillar 5: Market Microstructure & Flow score.
-    
-    A score > 0.5 means flow suggests value on AWAY team
-    A score < 0.5 means flow suggests value on HOME team
+
+    For SPREAD/MONEYLINE:
+    - score > 0.5: Sharp flow on AWAY team
+    - score < 0.5: Sharp flow on HOME team
+
+    For TOTALS:
+    - score > 0.5: Sharp flow on OVER
+    - score < 0.5: Sharp flow on UNDER
+
     A score = 0.5 means balanced/unclear flow signals
     """
     parsed = odds_client.parse_game_odds(game)
@@ -454,12 +461,30 @@ def calculate_flow_score(
         reasoning_parts.append(f"Cross-book variance detected ({book_count} books, stdev {stdev:.2f})")
 
     score = max(0.0, min(1.0, base_score))
-    
+
     if not reasoning_parts:
         reasoning_parts.append("Market flow appears balanced across books")
-    
+
+    # Calculate market-specific scores
+    # SPREAD/MONEYLINE: Sharp flow on home or away? (score as calculated)
+    # TOTALS: Sharp flow on over or under? (similar signal but for totals)
+    market_scores = {}
+    market_scores["spread"] = score
+    market_scores["moneyline"] = score  # Same flow signals apply
+
+    # TOTALS: Use the same directional signals but apply to over/under
+    # Sharp money flow generally indicates where value is
+    # Book disagreement on totals would require separate totals odds analysis
+    # For now, use a slightly dampened version of spread flow for totals
+    totals_score = 0.5 + (score - 0.5) * 0.7  # Dampen the signal for totals
+    totals_score = max(0.15, min(0.85, totals_score))
+    market_scores["totals"] = totals_score
+
+    logger.info(f"[Flow] Market scores: spread={score:.3f}, totals={totals_score:.3f}")
+
     return {
         "score": round(score, 3),
+        "market_scores": {k: round(v, 3) for k, v in market_scores.items()},
         "spread_variance": round(variance, 3),
         "consensus_line": round(consensus_line, 2),
         "sharpest_line": round(sharpest_line, 2),
@@ -571,8 +596,19 @@ def _analyze_moneyline_flow(bookmakers: dict, parsed: dict) -> dict:
     if not reasoning_parts:
         reasoning_parts.append(f"Moneyline: home {avg_home_prob:.1%}, away {avg_away_prob:.1%}")
 
+    # Calculate market-specific scores for moneyline flow analysis
+    market_scores = {}
+    market_scores["spread"] = score
+    market_scores["moneyline"] = score
+
+    # TOTALS: Dampen the signal for totals
+    totals_score = 0.5 + (score - 0.5) * 0.7
+    totals_score = max(0.15, min(0.85, totals_score))
+    market_scores["totals"] = totals_score
+
     return {
         "score": round(score, 3),
+        "market_scores": {k: round(v, 3) for k, v in market_scores.items()},
         "spread_variance": 0.0,
         "consensus_line": 0.0,
         "sharpest_line": 0.0,

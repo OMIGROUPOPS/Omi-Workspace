@@ -177,27 +177,30 @@ def apply_market_period_weights(
 
 def calculate_all_composites(
     base_scores: Dict[str, float],
-    sport: str
+    sport: str,
+    pillar_market_scores: Dict[str, Dict[str, float]] = None
 ) -> Dict[str, Dict[str, Dict]]:
     """
     Generate all market/period combination composites for a game.
 
     Args:
-        base_scores: Dict of pillar name -> score (0.0-1.0 scale)
+        base_scores: Dict of pillar name -> score (0.0-1.0 scale) - default/spread scores
         sport: Sport key
+        pillar_market_scores: Optional dict of pillar name -> {market_type -> score}
+            If provided, uses market-specific pillar scores instead of base_scores
 
     Returns:
-        Nested dict: market_type -> period -> {composite, confidence, weights}
+        Nested dict: market_type -> period -> {composite, confidence, weights, pillar_scores}
 
     Example return:
         {
             "spread": {
-                "full": {"composite": 0.62, "confidence": "EDGE", "weights": {...}},
-                "h1": {"composite": 0.58, "confidence": "WATCH", "weights": {...}},
+                "full": {"composite": 0.62, "confidence": "EDGE", "weights": {...}, "pillar_scores": {...}},
+                "h1": {"composite": 0.58, "confidence": "WATCH", "weights": {...}, "pillar_scores": {...}},
                 ...
             },
             "totals": {
-                "full": {"composite": 0.71, "confidence": "STRONG", "weights": {...}},
+                "full": {"composite": 0.71, "confidence": "STRONG", "weights": {...}, "pillar_scores": {...}},
                 ...
             },
             "moneyline": {...}
@@ -211,12 +214,24 @@ def calculate_all_composites(
 
     for market in market_types:
         results[market] = {}
+
+        # Get market-specific pillar scores if available
+        if pillar_market_scores:
+            market_scores = {}
+            for pillar in PILLAR_KEYS:
+                pillar_ms = pillar_market_scores.get(pillar, {})
+                # Use market-specific score if available, else fall back to base score
+                market_scores[pillar] = pillar_ms.get(market, base_scores.get(pillar, 0.5))
+        else:
+            market_scores = base_scores
+
         for period in available_periods:
-            result = apply_market_period_weights(base_scores, sport, market, period)
+            result = apply_market_period_weights(market_scores, sport, market, period)
             results[market][period] = {
                 "composite": result["composite"],
                 "confidence": result["confidence"],
                 "weights": result["weights"],
+                "pillar_scores": {k: round(v, 3) for k, v in market_scores.items()},
             }
 
     logger.info(

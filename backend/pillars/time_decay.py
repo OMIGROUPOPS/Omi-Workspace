@@ -166,13 +166,20 @@ def calculate_time_decay_score(
     sport: str,
     home_team: str,
     away_team: str,
-    game_time: datetime
+    game_time: datetime,
+    market_type: str = "spread"
 ) -> dict:
     """
     Calculate Pillar 4: Time, Fatigue & Attention Decay score.
 
-    A score > 0.5 means AWAY team has rest/timing advantage
-    A score < 0.5 means HOME team has rest/timing advantage
+    For SPREAD/MONEYLINE:
+    - score > 0.5: AWAY team has rest/timing advantage
+    - score < 0.5: HOME team has rest/timing advantage
+
+    For TOTALS:
+    - score > 0.5: Both teams rested = higher scoring = OVER lean
+    - score < 0.5: One/both teams fatigued = lower scoring = UNDER lean
+
     A score = 0.5 means balanced rest situation
     """
     home_rest = espn_client.calculate_rest_and_travel(sport, home_team, game_time)
@@ -300,8 +307,45 @@ def calculate_time_decay_score(
         else:
             reasoning_parts.append(f"{home_team} has slight rest advantage")
 
+    # Calculate market-specific scores
+    # SPREAD/MONEYLINE: Who has rest advantage? (score as calculated)
+    # TOTALS: Both teams rested = higher scoring, fatigued = lower scoring
+    market_scores = {}
+    market_scores["spread"] = score
+    market_scores["moneyline"] = score  # Same logic for ML
+
+    # TOTALS: Fatigue affects scoring output
+    # Both teams well-rested = higher scoring (over lean)
+    # One or both fatigued = lower scoring (under lean)
+    combined_fatigue = (home_fatigue + away_fatigue) / 2
+    totals_base = 0.5
+
+    # Well-rested teams score more
+    if combined_fatigue < 0.3:
+        # Both teams fresh = over lean
+        totals_base += (0.3 - combined_fatigue) * 0.40
+    elif combined_fatigue > 0.6:
+        # Both teams tired = under lean
+        totals_base -= (combined_fatigue - 0.5) * 0.35
+
+    # Back-to-back impacts scoring
+    if home_rest["is_back_to_back"] and away_rest["is_back_to_back"]:
+        totals_base -= 0.15  # Both tired = under
+    elif home_rest["is_back_to_back"] or away_rest["is_back_to_back"]:
+        totals_base -= 0.08  # One tired = slight under
+
+    # 3rd in 4 nights
+    if home_rest["is_third_in_four"] or away_rest["is_third_in_four"]:
+        totals_base -= 0.10  # Schedule fatigue = under
+
+    totals_score = max(0.15, min(0.85, totals_base))
+    market_scores["totals"] = totals_score
+
+    logger.info(f"[TimeDecay] Market scores: spread={score:.3f}, totals={totals_score:.3f}")
+
     return {
         "score": round(score, 3),
+        "market_scores": {k: round(v, 3) for k, v in market_scores.items()},
         "home_fatigue": round(home_fatigue, 3),
         "away_fatigue": round(away_fatigue, 3),
         "home_rest_days": home_rest["days_rest"],

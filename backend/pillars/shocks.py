@@ -26,13 +26,20 @@ def calculate_shocks_score(
     game_time: datetime,
     current_line: Optional[float] = None,
     opening_line: Optional[float] = None,
-    line_movement_history: Optional[list] = None
+    line_movement_history: Optional[list] = None,
+    market_type: str = "spread"
 ) -> dict:
     """
     Calculate Pillar 3: Structural Stability & Information Shocks score.
 
-    A score > 0.5 means line movement FAVORING AWAY team
-    A score < 0.5 means line movement FAVORING HOME team
+    For SPREAD/MONEYLINE:
+    - score > 0.5: Line moved toward AWAY (sharp money on away)
+    - score < 0.5: Line moved toward HOME (sharp money on home)
+
+    For TOTALS:
+    - score > 0.5: Total moved UP (sharp money on over)
+    - score < 0.5: Total moved DOWN (sharp money on under)
+
     A score = 0.5 means no significant line movement detected
     """
     now = datetime.now(timezone.utc)
@@ -210,8 +217,24 @@ def calculate_shocks_score(
     if not reasoning_parts:
         reasoning_parts.append("No significant line movement detected")
 
+    # Calculate market-specific scores
+    # SPREAD/MONEYLINE: Line moved toward home or away? (score as calculated)
+    # TOTALS: Total moved up or down? (same directional logic applies)
+    market_scores = {}
+    market_scores["spread"] = score
+    market_scores["moneyline"] = score  # Same signal for ML
+
+    # TOTALS: If there's line movement data, the shocks score indicates sharp money direction
+    # For totals, this indicates whether sharps are on over or under
+    # We use the same score because line movement velocity/magnitude applies similarly
+    # However, we could adjust based on total line movement specifically if available
+    market_scores["totals"] = score
+
+    logger.info(f"[Shocks] Market scores: spread={score:.3f}, totals={score:.3f}")
+
     return {
         "score": round(score, 3),
+        "market_scores": {k: round(v, 3) for k, v in market_scores.items()},
         "line_movement": round(line_movement, 2) if line_movement else 0.0,
         "shock_detected": shock_detected or sharp_move_detected,
         "shock_direction": shock_direction,

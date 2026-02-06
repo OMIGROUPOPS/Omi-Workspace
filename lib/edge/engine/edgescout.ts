@@ -58,6 +58,18 @@ export interface ExtendedOddsSnapshot extends OddsSnapshot {
 // - Python's game-level analysis (injuries, motivation, rest, sharp money)
 // - TypeScript's market-specific analysis (per-book odds comparison)
 
+interface MarketPeriodComposite {
+  composite: number;       // 0-100: Market/period-specific weighted composite
+  confidence: string;      // PASS, WATCH, EDGE, STRONG, RARE
+  weights: Record<string, number>;
+}
+
+interface PillarsByMarket {
+  spread: Record<string, MarketPeriodComposite>;
+  totals: Record<string, MarketPeriodComposite>;
+  moneyline: Record<string, MarketPeriodComposite>;
+}
+
 export interface PythonPillarScores {
   execution: number;       // 0-100: Injuries, weather, lineup (→ Lineup Impact)
   incentives: number;      // 0-100: Playoffs, motivation, rivalries
@@ -65,7 +77,8 @@ export interface PythonPillarScores {
   timeDecay: number;       // 0-100: Rest days, back-to-back, travel
   flow: number;            // 0-100: Sharp money, book disagreement (→ Sentiment)
   gameEnvironment: number; // 0-100: Expected total vs line (→ Totals CEQ). <50 = UNDER lean, >50 = OVER lean
-  composite: number;       // 0-100: Weighted average of all pillars
+  composite: number;       // 0-100: Weighted average of all pillars (default spread/full)
+  pillarsByMarket?: PillarsByMarket; // Market×Period-specific composites
 }
 
 /**
@@ -1315,32 +1328,34 @@ export function calculateCEQ(
 
   // If Python pillars available, blend with Python scores
   if (pythonPillars) {
+    // Map marketType to pillarsByMarket key
+    const marketKey = marketType === 'h2h' ? 'moneyline' : marketType === 'total' ? 'totals' : 'spread';
+
+    // Try to get market-specific composite from pillarsByMarket (if available)
+    // Default to 'full' period for now (period can be passed separately in future)
+    const marketSpecific = pythonPillars.pillarsByMarket?.[marketKey]?.['full'];
+    const pyComposite = marketSpecific?.composite ?? pythonPillars.composite;
+
     if (marketType === 'total') {
-      // TOTALS: Use Python's gameEnvironment score directly
-      // gameEnvironment < 50 = UNDER lean (low scoring expected)
-      // gameEnvironment > 50 = OVER lean (high scoring expected)
-      // For the Over CEQ: use gameEnvironment directly (high = Over edge)
-      const gameEnvScore = pythonPillars.gameEnvironment ?? 50;
-      if (gameEnvScore !== 50) {
+      // TOTALS: Use market-specific composite or fall back to gameEnvironment
+      // Market-specific totals composite already weights game_environment highly
+      const totalsScore = marketSpecific?.composite ?? pythonPillars.gameEnvironment ?? 50;
+      if (totalsScore !== 50) {
         const tsRaw = ceq;
-        // Blend: 50% TypeScript, 50% Python game environment
-        ceq = ceq * 0.5 + gameEnvScore * 0.5;
-        console.log(`CALIBRATION_DEBUG: Totals CEQ blend - ts_raw=${tsRaw.toFixed(1)} py_gameEnv=${gameEnvScore.toFixed(1)} blended=${ceq.toFixed(1)} ratio=50/50 side=${side}`);
+        // Blend: 50% TypeScript, 50% Python totals composite
+        ceq = ceq * 0.5 + totalsScore * 0.5;
+        console.log(`CALIBRATION_DEBUG: Totals CEQ blend - ts_raw=${tsRaw.toFixed(1)} py_totals=${totalsScore.toFixed(1)} blended=${ceq.toFixed(1)} ratio=50/50 side=${side} hasMarketSpecific=${!!marketSpecific}`);
       }
-    } else if (pythonPillars.composite !== 50) {
-      // SPREADS/H2H: Use Python composite with proper home/away inversion
+    } else if (pyComposite !== 50) {
+      // SPREADS/H2H: Use market-specific composite with proper home/away inversion
       // CRITICAL: Python composite > 50 = AWAY edge, < 50 = HOME edge
       // When calculating HOME-side CEQ, we must INVERT the Python composite
-      // so that a Python away-edge (71%) results in a LOW home CEQ, not high
-      // For HOME side: invert Python composite
-      // Python 71% (away edge) → home gets (100-71)=29% influence → pushes home CEQ DOWN
-      // Python 30% (home edge) → home gets (100-30)=70% influence → pushes home CEQ UP
       const pythonScore = side === 'home'
-        ? (100 - pythonPillars.composite)  // Invert for home-side calculation
-        : pythonPillars.composite;          // Direct for away (not typically called)
+        ? (100 - pyComposite)  // Invert for home-side calculation
+        : pyComposite;          // Direct for away (not typically called)
       const tsRaw = ceq;
       ceq = ceq * 0.5 + pythonScore * 0.5;
-      console.log(`CALIBRATION_DEBUG: CEQ blend - ts_raw=${tsRaw.toFixed(1)} py_raw=${pythonPillars.composite.toFixed(1)} py_adjusted=${pythonScore.toFixed(1)} blended=${ceq.toFixed(1)} ratio=50/50 side=${side} market=${marketType}`);
+      console.log(`CALIBRATION_DEBUG: CEQ blend - ts_raw=${tsRaw.toFixed(1)} py_raw=${pyComposite.toFixed(1)} py_adjusted=${pythonScore.toFixed(1)} blended=${ceq.toFixed(1)} ratio=50/50 side=${side} market=${marketType} hasMarketSpecific=${!!marketSpecific}`);
     }
   }
 

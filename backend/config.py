@@ -272,6 +272,174 @@ DEFAULT_WEIGHTS = {
 PILLAR_WEIGHTS = DEFAULT_WEIGHTS
 
 # =============================================================================
+# MARKET-SPECIFIC WEIGHT ADJUSTMENTS
+# =============================================================================
+# Multipliers applied to base SPORT_WEIGHTS for each market type.
+# Values > 1.0 increase importance, < 1.0 decrease importance.
+# After applying, weights are re-normalized to sum to 1.0.
+
+MARKET_ADJUSTMENTS = {
+    "spread": {
+        # Spread: Will favorite cover the point spread?
+        # Balanced weights, slightly lower game_environment (margin less affected by pace)
+        "execution": 1.0,
+        "incentives": 1.0,
+        "shocks": 1.0,
+        "time_decay": 1.0,
+        "flow": 1.0,
+        "game_environment": 0.8,
+    },
+    "totals": {
+        # Totals: Over or under the total?
+        # Game environment is CRITICAL (pace, weather, expected scoring)
+        # Execution matters for high-scoring player injuries
+        # Incentives/time_decay less relevant to total points
+        "execution": 0.8,
+        "incentives": 0.6,
+        "shocks": 0.9,
+        "time_decay": 0.7,
+        "flow": 0.8,
+        "game_environment": 2.0,  # Highest - pace/weather critical for totals
+    },
+    "moneyline": {
+        # Moneyline: Who wins straight up?
+        # Execution amplified (no spread cushion, star injuries more impactful)
+        # Game environment less important (just need to win)
+        "execution": 1.2,
+        "incentives": 1.1,
+        "shocks": 1.0,
+        "time_decay": 1.0,
+        "flow": 1.0,
+        "game_environment": 0.7,
+    },
+}
+
+# =============================================================================
+# PERIOD-SPECIFIC WEIGHT ADJUSTMENTS
+# =============================================================================
+# Multipliers applied to base weights for each game period.
+# These capture how pillar importance changes throughout a game.
+
+PERIOD_ADJUSTMENTS = {
+    "full": {
+        # Full game: baseline weights (no adjustment)
+        "execution": 1.0,
+        "incentives": 1.0,
+        "shocks": 1.0,
+        "time_decay": 1.0,
+        "flow": 1.0,
+        "game_environment": 1.0,
+    },
+    "h1": {
+        # 1st Half: Starters play ~80%, opening schemes matter
+        # Execution amplified (schemes, starters), Time decay minimal (fatigue hasn't set in)
+        "execution": 1.5,
+        "incentives": 0.8,
+        "shocks": 0.9,
+        "time_decay": 0.5,
+        "flow": 0.8,
+        "game_environment": 1.0,
+    },
+    "h2": {
+        # 2nd Half: Fatigue compounds, coaching adjustments
+        # Shocks higher (halftime adjustments reduce predictability)
+        # Time decay higher (fatigue accumulates)
+        "execution": 0.8,
+        "incentives": 1.2,
+        "shocks": 1.3,
+        "time_decay": 1.5,
+        "flow": 1.2,
+        "game_environment": 1.0,
+    },
+    "q1": {
+        # Q1: Highest correlation to talent/starters
+        # Execution highest (opening schemes)
+        # Time decay minimal, Flow less reliable (not enough data yet)
+        "execution": 1.8,
+        "incentives": 0.7,
+        "shocks": 0.7,
+        "time_decay": 0.3,
+        "flow": 0.6,
+        "game_environment": 1.2,
+    },
+    "q2": {
+        # Q2: Rotation players enter, more variance
+        # Execution drops (bench players), adjust for role player injuries
+        "execution": 0.9,
+        "incentives": 0.8,
+        "shocks": 0.9,
+        "time_decay": 0.5,
+        "flow": 0.7,
+        "game_environment": 1.0,
+    },
+    "q3": {
+        # Q3: Halftime adjustments kick in
+        # Shocks highest (teams come out differently)
+        # Historical Q3 trends per team matter
+        "execution": 0.9,
+        "incentives": 1.0,
+        "shocks": 1.5,
+        "time_decay": 1.0,
+        "flow": 1.0,
+        "game_environment": 1.0,
+    },
+    "q4": {
+        # Q4: Clutch factor, pace changes drastically
+        # Incentives highest (desperation), Time decay highest (fatigue)
+        # Execution drops if blowout (stars rest)
+        # Game env volatile (intentional fouling affects totals)
+        "execution": 0.7,
+        "incentives": 1.5,
+        "shocks": 1.2,
+        "time_decay": 1.8,
+        "flow": 1.3,
+        "game_environment": 1.3,
+    },
+    # Hockey periods (for NHL)
+    "p1": {
+        # 1st Period: Similar to Q1
+        "execution": 1.6,
+        "incentives": 0.8,
+        "shocks": 0.8,
+        "time_decay": 0.4,
+        "flow": 0.7,
+        "game_environment": 1.1,
+    },
+    "p2": {
+        # 2nd Period: Middle period, adjustments made
+        "execution": 1.0,
+        "incentives": 1.0,
+        "shocks": 1.2,
+        "time_decay": 1.0,
+        "flow": 1.0,
+        "game_environment": 1.0,
+    },
+    "p3": {
+        # 3rd Period: Clutch, pulling goalies
+        "execution": 0.8,
+        "incentives": 1.4,
+        "shocks": 1.3,
+        "time_decay": 1.5,
+        "flow": 1.2,
+        "game_environment": 1.2,
+    },
+}
+
+# =============================================================================
+# SPORT PERIOD AVAILABILITY
+# =============================================================================
+# Which periods are valid for each sport (used to generate all combinations)
+
+SPORT_PERIOD_AVAILABILITY = {
+    "NBA": ["full", "h1", "h2", "q1", "q2", "q3", "q4"],
+    "NCAAB": ["full", "h1", "h2"],  # College basketball uses halves
+    "NFL": ["full", "h1", "h2", "q1", "q2", "q3", "q4"],
+    "NCAAF": ["full", "h1", "h2", "q1", "q2", "q3", "q4"],
+    "NHL": ["full", "p1", "p2", "p3"],  # Hockey uses periods
+    "EPL": ["full", "h1", "h2"],  # Soccer uses halves only
+}
+
+# =============================================================================
 # EDGE THRESHOLDS
 # =============================================================================
 

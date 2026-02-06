@@ -30,12 +30,25 @@ interface PillarDetail {
   [key: string]: any;
 }
 
+interface MarketPeriodComposite {
+  composite: number;
+  confidence: string;
+  weights: Record<string, number>;
+}
+
+interface PillarsByMarket {
+  spread: Record<string, MarketPeriodComposite>;
+  totals: Record<string, MarketPeriodComposite>;
+  moneyline: Record<string, MarketPeriodComposite>;
+}
+
 interface PillarData {
   game_id: string;
   sport: string;
   home_team: string;
   away_team: string;
   pillar_scores: PillarScores;
+  pillar_weights?: Record<string, number>;
   pillars?: {
     execution?: PillarDetail;
     incentives?: PillarDetail;
@@ -44,6 +57,9 @@ interface PillarData {
     flow?: PillarDetail;
     game_environment?: PillarDetail;
   };
+  pillars_by_market?: PillarsByMarket;
+  market_type?: string;
+  period?: string;
   overall_confidence: 'PASS' | 'WATCH' | 'EDGE' | 'STRONG' | 'RARE';
   best_bet: string | null;
   best_edge: number;
@@ -141,12 +157,15 @@ function getConfidenceStyle(conf: string) {
   }
 }
 
+type PeriodType = 'full' | 'h1' | 'h2' | 'q1' | 'q2' | 'q3' | 'q4' | 'p1' | 'p2' | 'p3';
+
 interface PythonPillarBreakdownProps {
   gameId: string;
   sport: string;
   homeTeam: string;
   awayTeam: string;
   marketType?: MarketType;
+  period?: PeriodType;  // Game period: full, h1, h2, q1-q4, p1-p3
   spreadLine?: number;  // e.g., -5.5 for home team
   totalLine?: number;   // e.g., 220.5
   compact?: boolean;
@@ -158,6 +177,7 @@ export function PythonPillarBreakdown({
   homeTeam,
   awayTeam,
   marketType = 'spread',
+  period = 'full',
   spreadLine,
   totalLine,
   compact = false
@@ -172,10 +192,13 @@ export function PythonPillarBreakdown({
       setLoading(true);
       setError(null);
 
-      console.log(`[PythonPillarBreakdown] Fetching pillars for gameId=${gameId}, sport=${sport}`);
+      // Map frontend marketType to backend format
+      const backendMarket = marketType === 'total' ? 'totals' : marketType;
+
+      console.log(`[PythonPillarBreakdown] Fetching pillars for gameId=${gameId}, sport=${sport}, market=${backendMarket}, period=${period}`);
 
       try {
-        const url = `/api/pillars/calculate?game_id=${encodeURIComponent(gameId)}&sport=${encodeURIComponent(sport)}`;
+        const url = `/api/pillars/calculate?game_id=${encodeURIComponent(gameId)}&sport=${encodeURIComponent(sport)}&market_type=${backendMarket}&period=${period}`;
         console.log(`[PythonPillarBreakdown] Calling: ${url}`);
 
         const response = await fetch(url);
@@ -203,7 +226,7 @@ export function PythonPillarBreakdown({
     } else {
       console.log(`[PythonPillarBreakdown] Skipping fetch - gameId=${gameId}, sport=${sport}`);
     }
-  }, [gameId, sport]);
+  }, [gameId, sport, marketType, period]);
 
   // Generate labels based on market type
   const getLabels = () => {

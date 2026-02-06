@@ -3,9 +3,9 @@ OMI Edge Analysis Engine
 
 The core engine that:
 1. Fetches data from all sources
-2. Calculates all 5 pillar scores
-3. Computes composite score and edge percentage
-4. Determines confidence rating
+2. Calculates all 6 pillar scores (execution, incentives, shocks, time_decay, flow, game_environment)
+3. Computes market-specific and period-specific composite scores (3 markets x 7 periods = 21 combinations)
+4. Determines confidence rating based on composite and edge percentage
 """
 from datetime import datetime, timezone
 from typing import Optional
@@ -24,6 +24,7 @@ from pillars import (
     calculate_game_environment_score,
     fetch_nhl_game_stats_sync,
 )
+from engine.weight_calculator import calculate_all_composites
 
 logger = logging.getLogger(__name__)
 
@@ -388,7 +389,10 @@ def analyze_game(
     opening_line: Optional[float] = None,
     line_snapshots: Optional[list] = None
 ) -> dict:
-    """Full analysis of a single game using all 5 pillars."""
+    """Full analysis of a single game using all 6 pillars.
+
+    Returns pillars_by_market with market-specific AND period-specific composites.
+    """
     parsed = odds_client.parse_game_odds(game)
 
     home_team = parsed["home_team"]
@@ -544,6 +548,10 @@ def analyze_game(
         "flow": flow["score"],
         "game_environment": game_env["score"],
     }
+
+    # Calculate all market/period composite combinations (3 markets x 7 periods = up to 21)
+    pillars_by_market = calculate_all_composites(pillar_scores, sport)
+    logger.info(f"  Generated {sum(len(p) for p in pillars_by_market.values())} market/period composites")
 
     # Debug: Log pillar scores and reasoning
     logger.info(f"  Pillar scores for {home_team}:")
@@ -707,6 +715,7 @@ def analyze_game(
         "pillars": pillars_dict,
         "pillar_scores": pillar_scores,
         "pillar_weights": sport_weights,
+        "pillars_by_market": pillars_by_market,  # Market×Period specific composites
         "composite_score": round(composite, 3),
         "consensus_odds": consensus,
         "edges": edges,

@@ -983,12 +983,22 @@ async def refresh_live_props():
 # =============================================================================
 
 @app.get("/api/pillars/{sport}/{game_id}")
-async def calculate_pillars(sport: str, game_id: str, fresh: bool = False):
+async def calculate_pillars(
+    sport: str,
+    game_id: str,
+    market_type: str = Query("spread", description="Market type: spread, totals, moneyline"),
+    period: str = Query("full", description="Period: full, h1, h2, q1-q4, p1-p3"),
+    fresh: bool = False
+):
     """
-    Calculate 5-pillar scores for a game.
+    Calculate 6-pillar scores for a game with market/period-specific composites.
 
     If fresh=True, recalculates from live data (uses API calls).
     Otherwise returns cached values from database.
+
+    Query Parameters:
+    - market_type: spread, totals, or moneyline (default: spread)
+    - period: full, h1, h2, q1-q4, p1-p3 (default: full)
 
     Returns pillar scores on 0-1 scale:
     - execution: Injuries, weather, lineup uncertainty
@@ -996,16 +1006,21 @@ async def calculate_pillars(sport: str, game_id: str, fresh: bool = False):
     - shocks: Breaking news, line movement timing
     - time_decay: Rest days, back-to-back, travel
     - flow: Sharp money, book disagreement
-    - composite: Weighted average of all pillars
+    - game_environment: Pace, weather, expected totals
+    - composite_score: Market/period-specific weighted composite
+    - pillars_by_market: All market×period composites (up to 21 combinations)
     """
     sport = sport.upper()
     if sport not in ODDS_API_SPORTS:
         raise HTTPException(status_code=400, detail=f"Unknown sport: {sport}")
 
+    # Validate market_type
+    valid_markets = ["spread", "totals", "moneyline"]
+    if market_type not in valid_markets:
+        raise HTTPException(status_code=400, detail=f"Invalid market_type: {market_type}. Must be one of: {valid_markets}")
+
     try:
-        # ALWAYS do fresh calculation for now to debug pillar scores
-        # TODO: Re-enable caching once pillars are working
-        logger.info(f"[Pillars] Calculating fresh pillars for {game_id} in {sport}")
+        logger.info(f"[Pillars] Calculating pillars for {game_id} in {sport}, market={market_type}, period={period}")
 
         # Fresh calculation - need to fetch game data and run analysis
         from data_sources.odds_api import odds_client
@@ -1017,10 +1032,6 @@ async def calculate_pillars(sport: str, game_id: str, fresh: bool = False):
         if result.data:
             game = result.data.get("game_data")
             logger.info(f"[Pillars] Using cached_odds for {game_id}")
-            logger.info(f"[Pillars] Game has {len(game.get('bookmakers', []))} bookmakers")
-            if game.get('bookmakers'):
-                first_book = game['bookmakers'][0]
-                logger.info(f"[Pillars] First book: {first_book.get('key')}, markets: {[m.get('key') for m in first_book.get('markets', [])]}")
 
         # Fall back to live API if no cached data
         if not game:
@@ -1032,9 +1043,23 @@ async def calculate_pillars(sport: str, game_id: str, fresh: bool = False):
         if not game:
             raise HTTPException(status_code=404, detail=f"Game {game_id} not found")
 
-        # Run full analysis
+        # Run full analysis (calculates all market/period composites)
         logger.info(f"[Pillars] Running analyze_game for {game.get('away_team')} @ {game.get('home_team')}")
         analysis = analyze_game(game, sport)
+
+        # Get the market/period-specific composite from pillars_by_market
+        pillars_by_market = analysis.get("pillars_by_market", {})
+        specific_data = pillars_by_market.get(market_type, {}).get(period, {})
+
+        # If period not available for this sport, fall back to "full"
+        if not specific_data and period != "full":
+            specific_data = pillars_by_market.get(market_type, {}).get("full", {})
+            period = "full"  # Update to reflect actual period used
+
+        # Use specific composite if available, otherwise default
+        composite_score = specific_data.get("composite", analysis["composite_score"])
+        pillar_weights = specific_data.get("weights", analysis["pillar_weights"])
+        overall_confidence = specific_data.get("confidence", analysis["overall_confidence"])
 
         return {
             "game_id": analysis["game_id"],
@@ -1042,11 +1067,15 @@ async def calculate_pillars(sport: str, game_id: str, fresh: bool = False):
             "home_team": analysis["home_team"],
             "away_team": analysis["away_team"],
             "pillar_scores": analysis["pillar_scores"],
-            "composite_score": analysis["composite_score"],
-            "overall_confidence": analysis["overall_confidence"],
+            "pillar_weights": pillar_weights,
+            "composite_score": composite_score,
+            "overall_confidence": overall_confidence,
+            "market_type": market_type,
+            "period": period,
             "best_bet": analysis["best_bet"],
             "best_edge": analysis["best_edge"],
             "pillars": analysis["pillars"],
+            "pillars_by_market": pillars_by_market,
             "source": "live_calculation"
         }
 

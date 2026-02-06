@@ -72,13 +72,29 @@ export interface PillarBreakdown {
   };
 }
 
+export interface MarketPeriodComposite {
+  composite: number;
+  confidence: string;
+  weights: Record<string, number>;
+}
+
+export interface PillarsByMarket {
+  spread: Record<string, MarketPeriodComposite>;
+  totals: Record<string, MarketPeriodComposite>;
+  moneyline: Record<string, MarketPeriodComposite>;
+}
+
 export interface PillarResponse {
   game_id: string;
   sport: string;
   home_team: string;
   away_team: string;
   pillar_scores: PillarScores;
+  pillar_weights: Record<string, number>;
   pillars: PillarBreakdown;
+  pillars_by_market: PillarsByMarket;
+  market_type: string;
+  period: string;
   overall_confidence: 'PASS' | 'WATCH' | 'EDGE' | 'STRONG' | 'RARE';
   best_bet: string | null;
   best_edge: number;
@@ -89,6 +105,8 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const gameId = searchParams.get('game_id');
   const sport = searchParams.get('sport');
+  const marketType = searchParams.get('market_type') || 'spread';
+  const period = searchParams.get('period') || 'full';
 
   if (!gameId || !sport) {
     return NextResponse.json(
@@ -98,11 +116,11 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    console.log(`[Pillars API] Fetching pillars for game=${gameId} sport=${sport}`);
+    console.log(`[Pillars API] Fetching pillars for game=${gameId} sport=${sport} market=${marketType} period=${period}`);
 
-    // Try the dedicated pillar endpoint first
+    // Try the dedicated pillar endpoint with market/period params
     let response = await fetch(
-      `${BACKEND_URL}/api/pillars/${sport.toUpperCase()}/${gameId}`,
+      `${BACKEND_URL}/api/pillars/${sport.toUpperCase()}/${gameId}?market_type=${marketType}&period=${period}`,
       { cache: 'no-store' }
     ).catch(err => {
       console.log(`[Pillars API] Pillar endpoint failed: ${err.message}`);
@@ -130,7 +148,7 @@ export async function GET(request: NextRequest) {
     }
 
     const data = await response.json();
-    console.log(`[Pillars API] Got data:`, JSON.stringify(data).slice(0, 200));
+    console.log(`[Pillars API] Got data:`, JSON.stringify(data).slice(0, 300));
 
     // Transform Python backend response to frontend format
     // Python uses 0-1 scale, frontend displays as percentage
@@ -145,13 +163,38 @@ export async function GET(request: NextRequest) {
       composite: Math.round((data.composite_score || 0.5) * 100),
     };
 
+    // Transform pillars_by_market (convert 0-1 to 0-100 for composites)
+    const pillarsByMarket: PillarsByMarket = {
+      spread: {},
+      totals: {},
+      moneyline: {},
+    };
+
+    if (data.pillars_by_market) {
+      for (const market of ['spread', 'totals', 'moneyline'] as const) {
+        const marketData = data.pillars_by_market[market] || {};
+        for (const [periodKey, periodData] of Object.entries(marketData)) {
+          const pd = periodData as { composite: number; confidence: string; weights: Record<string, number> };
+          pillarsByMarket[market][periodKey] = {
+            composite: Math.round((pd.composite || 0.5) * 100),
+            confidence: pd.confidence || 'PASS',
+            weights: pd.weights || {},
+          };
+        }
+      }
+    }
+
     const result: PillarResponse = {
       game_id: data.game_id,
       sport: data.sport,
       home_team: data.home_team,
       away_team: data.away_team,
       pillar_scores: pillarScores,
+      pillar_weights: data.pillar_weights || {},
       pillars: data.pillars || {},
+      pillars_by_market: pillarsByMarket,
+      market_type: data.market_type || marketType,
+      period: data.period || period,
       overall_confidence: data.overall_confidence || 'PASS',
       best_bet: data.best_bet,
       best_edge: data.best_edge || 0,

@@ -1960,6 +1960,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
           homeTeam={gameData.homeTeam}
           awayTeam={gameData.awayTeam}
           marketType={chartMarket}
+          period={({'full':'full','1h':'h1','2h':'h2','1q':'q1','2q':'q2','3q':'q3','4q':'q4','1p':'p1','2p':'p2','3p':'p3'} as Record<string, 'full'|'h1'|'h2'|'q1'|'q2'|'q3'|'q4'|'p1'|'p2'|'p3'>)[activeTab] || 'full'}
           spreadLine={marketGroups.fullGame?.spreads?.home?.line}
           totalLine={marketGroups.fullGame?.totals?.line}
         />

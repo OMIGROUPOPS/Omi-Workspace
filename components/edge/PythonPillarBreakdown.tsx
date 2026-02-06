@@ -279,15 +279,22 @@ export function PythonPillarBreakdown({
   const { pillar_scores, pillars, overall_confidence } = pillarData;
   const confStyle = getConfidenceStyle(overall_confidence);
 
-  // Get directional display for composite
-  const compositeDir = getDirectionalDisplay(pillar_scores.composite, marketType);
-  const compositeColor = getScoreColor(compositeDir.direction, compositeDir.displayPct);
+  // For TOTALS: use gameEnvironment pillar (what CEQ actually uses)
+  // For SPREADS/ML: use composite (weighted avg of all pillars)
+  const headerScore = marketType === 'total'
+    ? pillar_scores.gameEnvironment
+    : pillar_scores.composite;
+  const headerMetric = marketType === 'total' ? 'Game Env' : 'Composite';
 
-  // Build composite direction label
-  const getCompositeLabel = () => {
-    if (compositeDir.direction === 'neutral') return 'Neutral';
-    const side = compositeDir.direction === 'left' ? labels.left : labels.right;
-    return `${compositeDir.displayPct}% ${side}`;
+  // Get directional display for the relevant score
+  const headerDir = getDirectionalDisplay(headerScore, marketType);
+  const headerColor = getScoreColor(headerDir.direction, headerDir.displayPct);
+
+  // Build header direction label
+  const getHeaderLabel = () => {
+    if (headerDir.direction === 'neutral') return 'Neutral';
+    const side = headerDir.direction === 'left' ? labels.left : labels.right;
+    return `${headerDir.displayPct}% ${side}`;
   };
 
   return (
@@ -299,12 +306,13 @@ export function PythonPillarBreakdown({
             <h3 className="text-xs font-semibold text-zinc-100">6-Pillar Analysis</h3>
             <span className="text-[10px] text-zinc-400">
               {marketType === 'total' ? 'Totals' : marketType === 'moneyline' ? 'Moneyline' : 'Spread'}
+              <span className="text-zinc-600 ml-1">({headerMetric})</span>
             </span>
           </div>
           <div className="flex items-center gap-2">
             <div className="text-right">
-              <span className={`text-lg font-bold font-mono ${compositeColor.text}`}>
-                {getCompositeLabel()}
+              <span className={`text-lg font-bold font-mono ${headerColor.text}`}>
+                {getHeaderLabel()}
               </span>
             </div>
             <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded ${confStyle.bg} ${confStyle.text}`}>

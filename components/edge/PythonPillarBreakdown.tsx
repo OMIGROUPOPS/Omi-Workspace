@@ -34,6 +34,7 @@ interface MarketPeriodComposite {
   composite: number;
   confidence: string;
   weights: Record<string, number>;
+  pillar_scores?: Record<string, number>;  // Market-specific pillar scores
 }
 
 interface PillarsByMarket {

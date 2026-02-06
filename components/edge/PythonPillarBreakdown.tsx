@@ -329,6 +329,11 @@ export function PythonPillarBreakdown({
   console.log(`[Pillars] DECISION: hasMarketSpecificData=${hasMarketSpecificData}`);
   console.log(`[Pillars] RESULT: headerScore=${headerScore} from ${hasMarketSpecificData ? `marketPeriodData.composite` : `FALLBACK (composite=${pillar_scores.composite}, gameEnv=${pillar_scores.gameEnvironment})`}`);
   console.log(`[Pillars] weights:`, marketPeriodData?.weights);
+  console.log(`[Pillars] market-specific pillar_scores:`, marketPeriodData?.pillar_scores);
+
+  // Get market-specific pillar scores if available, otherwise use base scores
+  const effectivePillarScores = marketPeriodData?.pillar_scores || pillar_scores;
+  console.log(`[Pillars] Using effectivePillarScores:`, effectivePillarScores);
 
   const headerMetric = `${backendMarketKey}/${period}`;
 
@@ -382,7 +387,8 @@ export function PythonPillarBreakdown({
       {/* Pillar Bars */}
       <div className="p-3 space-y-2">
         {Object.entries(PILLAR_CONFIG).map(([key, config]) => {
-          const rawScore = pillar_scores[key as keyof PillarScores] ?? 50;
+          // Use market-specific pillar scores if available
+          const rawScore = (effectivePillarScores as Record<string, number>)[key] ?? pillar_scores[key as keyof PillarScores] ?? 50;
           // Map camelCase keys to snake_case for pillar details and weights
           const snakeKey = key === 'timeDecay' ? 'time_decay' : key === 'gameEnvironment' ? 'game_environment' : key;
           const detail = pillars?.[snakeKey as keyof typeof pillars];

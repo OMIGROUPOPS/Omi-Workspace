@@ -76,6 +76,7 @@ export interface MarketPeriodComposite {
   composite: number;
   confidence: string;
   weights: Record<string, number>;
+  pillar_scores?: Record<string, number>;  // Market-specific pillar scores
 }
 
 export interface PillarsByMarket {
@@ -182,15 +183,39 @@ export async function GET(request: NextRequest) {
       for (const market of ['spread', 'totals', 'moneyline'] as const) {
         const marketData = data.pillars_by_market[market] || {};
         for (const [periodKey, periodData] of Object.entries(marketData)) {
-          const pd = periodData as { composite: number; confidence: string; weights: Record<string, number> };
+          const pd = periodData as {
+            composite: number;
+            confidence: string;
+            weights: Record<string, number>;
+            pillar_scores?: Record<string, number>;
+          };
+
+          // Convert pillar_scores from 0-1 to 0-100 (using camelCase keys for frontend)
+          const marketPillarScores: Record<string, number> = {};
+          if (pd.pillar_scores) {
+            marketPillarScores.execution = Math.round((pd.pillar_scores.execution || 0.5) * 100);
+            marketPillarScores.incentives = Math.round((pd.pillar_scores.incentives || 0.5) * 100);
+            marketPillarScores.shocks = Math.round((pd.pillar_scores.shocks || 0.5) * 100);
+            marketPillarScores.timeDecay = Math.round((pd.pillar_scores.time_decay || 0.5) * 100);
+            marketPillarScores.flow = Math.round((pd.pillar_scores.flow || 0.5) * 100);
+            marketPillarScores.gameEnvironment = Math.round((pd.pillar_scores.game_environment || 0.5) * 100);
+          }
+
           pillarsByMarket[market][periodKey] = {
             composite: Math.round((pd.composite || 0.5) * 100),
             confidence: pd.confidence || 'PASS',
             weights: pd.weights || {},
+            pillar_scores: Object.keys(marketPillarScores).length > 0 ? marketPillarScores : undefined,
           };
         }
       }
     }
+
+    // Log market-specific pillar scores for debugging
+    console.log(`[Pillars API] Market-specific pillar_scores:`, {
+      spread_full: pillarsByMarket.spread?.full?.pillar_scores,
+      totals_full: pillarsByMarket.totals?.full?.pillar_scores,
+    });
 
     console.log(`[Pillars API] Transformed pillars_by_market:`, JSON.stringify(pillarsByMarket).slice(0, 500));
 

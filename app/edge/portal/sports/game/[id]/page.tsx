@@ -36,12 +36,14 @@ async function fetchPythonPillars(gameId: string, sport: string): Promise<Python
     const data = await response.json();
 
     // Transform from 0-1 scale to 0-100
+    // Note: Python uses snake_case (time_decay, game_environment)
     return {
       execution: Math.round((data.pillar_scores?.execution || 0.5) * 100),
       incentives: Math.round((data.pillar_scores?.incentives || 0.5) * 100),
       shocks: Math.round((data.pillar_scores?.shocks || 0.5) * 100),
       timeDecay: Math.round((data.pillar_scores?.time_decay || 0.5) * 100),
       flow: Math.round((data.pillar_scores?.flow || 0.5) * 100),
+      gameEnvironment: Math.round((data.pillar_scores?.game_environment || 0.5) * 100),
       composite: Math.round((data.composite_score || 0.5) * 100),
     };
   } catch (error) {

@@ -59,12 +59,13 @@ export interface ExtendedOddsSnapshot extends OddsSnapshot {
 // - TypeScript's market-specific analysis (per-book odds comparison)
 
 export interface PythonPillarScores {
-  execution: number;    // 0-100: Injuries, weather, lineup (→ Lineup Impact)
-  incentives: number;   // 0-100: Playoffs, motivation, rivalries (→ Game Environment)
-  shocks: number;       // 0-100: Breaking news, line movement timing (→ Market Efficiency boost)
-  timeDecay: number;    // 0-100: Rest days, back-to-back, travel (→ Game Environment)
-  flow: number;         // 0-100: Sharp money, book disagreement (→ Sentiment)
-  composite: number;    // 0-100: Weighted average of all pillars
+  execution: number;       // 0-100: Injuries, weather, lineup (→ Lineup Impact)
+  incentives: number;      // 0-100: Playoffs, motivation, rivalries
+  shocks: number;          // 0-100: Breaking news, line movement timing (→ Market Efficiency boost)
+  timeDecay: number;       // 0-100: Rest days, back-to-back, travel
+  flow: number;            // 0-100: Sharp money, book disagreement (→ Sentiment)
+  gameEnvironment: number; // 0-100: Expected total vs line (→ Totals CEQ). <50 = UNDER lean, >50 = OVER lean
+  composite: number;       // 0-100: Weighted average of all pillars
 }
 
 /**
@@ -75,17 +76,23 @@ function mapPythonToTypeScriptPillars(pythonPillars: PythonPillarScores): {
   marketEfficiencyBoost: number;
   lineupImpactScore: number;
   gameEnvironmentScore: number;
+  totalsEnvironmentScore: number;  // Specifically for totals (over/under)
   sentimentScore: number;
 } {
   // Python Execution (injuries) → TypeScript Lineup Impact
   // Score is 0-100, 50 = neutral
   const lineupImpactScore = pythonPillars.execution;
 
-  // Python Incentives + Time Decay → TypeScript Game Environment
+  // Python Incentives + Time Decay → TypeScript Game Environment (for spreads/h2h)
   // Weighted average: incentives 60%, time decay 40%
   const gameEnvironmentScore = Math.round(
     pythonPillars.incentives * 0.6 + pythonPillars.timeDecay * 0.4
   );
+
+  // Python game_environment → For TOTALS markets
+  // This score is based on expected total vs the line:
+  // <50 = expects UNDER the line, >50 = expects OVER the line
+  const totalsEnvironmentScore = pythonPillars.gameEnvironment ?? 50;
 
   // Python Shocks → Market Efficiency boost
   // If shocks detected (score != 50), boost market efficiency signal
@@ -99,6 +106,7 @@ function mapPythonToTypeScriptPillars(pythonPillars: PythonPillarScores): {
     marketEfficiencyBoost,
     lineupImpactScore,
     gameEnvironmentScore,
+    totalsEnvironmentScore,
     sentimentScore,
   };
 }
@@ -1305,14 +1313,25 @@ export function calculateCEQ(
   // Debug: Log pythonPillars state before blend decision
   console.log(`CALIBRATION_DEBUG: CEQ pre-blend - ts_ceq=${ceq.toFixed(1)} pythonPillars=${pythonPillars ? `composite=${pythonPillars.composite}` : 'null'} market=${marketType} side=${side}`);
 
-  // If Python pillars available, blend with Python composite (60% TS, 40% Python)
-  // CRITICAL: Python composite > 50 = AWAY edge, < 50 = HOME edge
-  // When calculating HOME-side CEQ, we must INVERT the Python composite
-  // so that a Python away-edge (71%) results in a LOW home CEQ, not high
-  if (pythonPillars && pythonPillars.composite !== 50) {
-    // Only apply composite blend for spread/h2h (home vs away direction)
-    // Totals (over/under) use different signals, not the home/away composite
-    if (marketType !== 'total') {
+  // If Python pillars available, blend with Python scores
+  if (pythonPillars) {
+    if (marketType === 'total') {
+      // TOTALS: Use Python's gameEnvironment score directly
+      // gameEnvironment < 50 = UNDER lean (low scoring expected)
+      // gameEnvironment > 50 = OVER lean (high scoring expected)
+      // For the Over CEQ: use gameEnvironment directly (high = Over edge)
+      const gameEnvScore = pythonPillars.gameEnvironment ?? 50;
+      if (gameEnvScore !== 50) {
+        const tsRaw = ceq;
+        // Blend: 50% TypeScript, 50% Python game environment
+        ceq = ceq * 0.5 + gameEnvScore * 0.5;
+        console.log(`CALIBRATION_DEBUG: Totals CEQ blend - ts_raw=${tsRaw.toFixed(1)} py_gameEnv=${gameEnvScore.toFixed(1)} blended=${ceq.toFixed(1)} ratio=50/50 side=${side}`);
+      }
+    } else if (pythonPillars.composite !== 50) {
+      // SPREADS/H2H: Use Python composite with proper home/away inversion
+      // CRITICAL: Python composite > 50 = AWAY edge, < 50 = HOME edge
+      // When calculating HOME-side CEQ, we must INVERT the Python composite
+      // so that a Python away-edge (71%) results in a LOW home CEQ, not high
       // For HOME side: invert Python composite
       // Python 71% (away edge) → home gets (100-71)=29% influence → pushes home CEQ DOWN
       // Python 30% (home edge) → home gets (100-30)=70% influence → pushes home CEQ UP
@@ -1323,7 +1342,6 @@ export function calculateCEQ(
       ceq = ceq * 0.5 + pythonScore * 0.5;
       console.log(`CALIBRATION_DEBUG: CEQ blend - ts_raw=${tsRaw.toFixed(1)} py_raw=${pythonPillars.composite.toFixed(1)} py_adjusted=${pythonScore.toFixed(1)} blended=${ceq.toFixed(1)} ratio=50/50 side=${side} market=${marketType}`);
     }
-    // For totals, skip composite blend - individual pillar mappings provide totals signals
   }
 
   // Apply juice adjustment based on book's odds vs market consensus

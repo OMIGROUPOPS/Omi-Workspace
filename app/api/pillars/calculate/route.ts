@@ -227,6 +227,7 @@ export async function POST(request: NextRequest) {
               shocks: Math.round((data.pillar_scores?.shocks || 0.5) * 100),
               timeDecay: Math.round((data.pillar_scores?.time_decay || 0.5) * 100),
               flow: Math.round((data.pillar_scores?.flow || 0.5) * 100),
+              gameEnvironment: Math.round((data.pillar_scores?.game_environment || 0.5) * 100),
               composite: Math.round((data.composite_score || 0.5) * 100),
             },
             overall_confidence: data.overall_confidence || 'PASS',

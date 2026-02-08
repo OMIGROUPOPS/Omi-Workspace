@@ -116,6 +116,39 @@ export function calculateFairMoneyline(
   return { homeOdds: probToAmerican(homeProb), awayOdds: probToAmerican(awayProb) };
 }
 
+/**
+ * Remove vig/overround from book odds to get true fair probabilities.
+ * Both sides' implied probabilities sum to >100% (the vig).
+ * Normalize so they sum to exactly 100%.
+ */
+export function removeVig(
+  homeOdds: number,
+  awayOdds: number
+): { fairHomeProb: number; fairAwayProb: number; vig: number } {
+  const homeImplied = homeOdds < 0
+    ? Math.abs(homeOdds) / (Math.abs(homeOdds) + 100)
+    : 100 / (homeOdds + 100);
+  const awayImplied = awayOdds < 0
+    ? Math.abs(awayOdds) / (Math.abs(awayOdds) + 100)
+    : 100 / (awayOdds + 100);
+  const totalImplied = homeImplied + awayImplied;
+  const vig = totalImplied - 1; // overround as decimal (e.g., 0.045 = 4.5%)
+  return {
+    fairHomeProb: homeImplied / totalImplied,
+    fairAwayProb: awayImplied / totalImplied,
+    vig,
+  };
+}
+
+/**
+ * Key numbers by sport — crossing these amplifies spread signal.
+ * NFL: 3, 7, 10, 14 are common margins of victory.
+ */
+export const SPORT_KEY_NUMBERS: Record<string, number[]> = {
+  'americanfootball_nfl': [3, 7, 10, 14],
+  'americanfootball_ncaaf': [3, 7, 10, 14],
+};
+
 // ============================================================================
 // Python Backend Pillar Scores (Harmonization)
 // ============================================================================

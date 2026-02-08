@@ -1995,7 +1995,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
             <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Market Validation</span>
           </h3>
           <p className="text-[10px] text-zinc-500 mb-3">
-            Whether there's actual value to exploit. Validates if the market has priced in the pillar thesis.
+            Whether there&apos;s actual value to exploit. Validates if the market has priced in the pillar thesis.
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Show analysis based on selected market */}

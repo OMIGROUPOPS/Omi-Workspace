@@ -351,17 +351,17 @@ export function PythonPillarBreakdown({
 
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
-      {/* Header - No composite score, just title. CEQ section shows the final answer. */}
+      {/* Header - Fundamental Analysis sets the direction, CEQ validates */}
       <div className="px-3 py-2 bg-zinc-800/50 border-b border-zinc-700">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-xs font-semibold text-zinc-100">6-Pillar Analysis</h3>
             <span className="text-[10px] text-zinc-500">
-              Individual factors for {marketType === 'total' ? 'Totals' : marketType === 'moneyline' ? 'Moneyline' : 'Spread'}
+              Fundamental Analysis — {marketType === 'total' ? 'Totals' : marketType === 'moneyline' ? 'Moneyline' : 'Spread'}
             </span>
           </div>
           <span className="text-[9px] text-zinc-500 italic">
-            See CEQ for final edge →
+            CEQ validates edge →
           </span>
         </div>
       </div>

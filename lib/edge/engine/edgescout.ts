@@ -125,22 +125,88 @@ function mapPythonToTypeScriptPillars(pythonPillars: PythonPillarScores): {
 }
 
 // ============================================================================
-// CEQ Confidence Thresholds (from plan)
+// CEQ Confidence Thresholds (NEW FRAMEWORK)
 // ============================================================================
-// 50% = No edge (market efficient)
-// <45% = Edge on OTHER side
-// 45-55% = PASS (no actionable edge)
-// 56-65% = WATCH (monitor for movement)
-// 66-75% = EDGE (actionable)
-// 76-85% = STRONG (high confidence)
-// 86%+ = RARE (exceptional opportunity)
+// CEQ now represents pillar direction VALIDATED by market efficiency
+// 50% = Neutral (no clear thesis)
+// 55-59% = Slight lean (don't show as edge)
+// 60-64% = WATCH (moderate edge, monitor)
+// 65-69% = EDGE (actionable)
+// 70%+ = STRONG (high conviction)
 
 function getCEQConfidence(ceq: number): CEQConfidence {
-  if (ceq >= 86) return 'RARE';
-  if (ceq >= 76) return 'STRONG';
-  if (ceq >= 66) return 'EDGE';
-  if (ceq >= 56) return 'WATCH';
+  // CEQ represents distance from 50% (neutral)
+  // Higher = stronger validated edge in pillar direction
+  if (ceq >= 75) return 'STRONG';
+  if (ceq >= 65) return 'EDGE';
+  if (ceq >= 60) return 'WATCH';
   return 'PASS';
+}
+
+// ============================================================================
+// MARKET VALIDATION MULTIPLIER
+// ============================================================================
+// CEQ factors determine if market has already priced in the pillar thesis
+// Returns a multiplier: 0.7-1.3
+// >1.0 = Market inefficient, amplify pillar signal
+// =1.0 = Market neutral
+// <1.0 = Market efficient, dampen pillar signal
+
+interface MarketValidation {
+  multiplier: number;  // 0.7 to 1.3
+  reason: string;
+  isEfficient: boolean;  // Has market priced in the thesis?
+}
+
+function calculateMarketValidation(
+  marketEfficiencyScore: number,
+  lineupImpactScore: number,
+  sentimentScore: number,
+  pillarDirection: 'home' | 'away' | 'over' | 'under'
+): MarketValidation {
+  // Market Efficiency: How much has the line moved? (50 = stable, >50 = moved)
+  // If line moved in SAME direction as pillars suggest, market already priced it → dampen
+  // If line moved OPPOSITE or stable, market hasn't priced it → amplify
+
+  // Calculate average of CEQ factors (all on 0-100 scale, 50 = neutral)
+  const avgCeqSignal = (marketEfficiencyScore + lineupImpactScore + sentimentScore) / 3;
+
+  // Convert to multiplier
+  // If CEQ factors strongly agree with pillar direction (>65), market is inefficient → amplify
+  // If CEQ factors disagree or neutral, market may have priced it → dampen
+  let multiplier = 1.0;
+  let reason = '';
+  let isEfficient = false;
+
+  if (avgCeqSignal >= 70) {
+    // Strong market inefficiency - amplify pillar signal
+    multiplier = 1.15 + (avgCeqSignal - 70) * 0.005; // 1.15 to 1.30
+    multiplier = Math.min(1.30, multiplier);
+    reason = 'Market hasn\'t fully adjusted - edge amplified';
+    isEfficient = false;
+  } else if (avgCeqSignal >= 60) {
+    // Moderate inefficiency - slight amplification
+    multiplier = 1.0 + (avgCeqSignal - 60) * 0.015; // 1.0 to 1.15
+    reason = 'Some market inefficiency detected';
+    isEfficient = false;
+  } else if (avgCeqSignal >= 40) {
+    // Market neutral - keep pillar signal as-is
+    multiplier = 1.0;
+    reason = 'Market fairly priced';
+    isEfficient = true;
+  } else if (avgCeqSignal >= 30) {
+    // Market efficient - dampen pillar signal
+    multiplier = 0.85 + (avgCeqSignal - 30) * 0.015; // 0.85 to 1.0
+    reason = 'Market already priced this in - reduced conviction';
+    isEfficient = true;
+  } else {
+    // Strongly efficient - significant dampening
+    multiplier = 0.70 + (avgCeqSignal) * 0.005; // 0.70 to 0.85
+    reason = 'Market has fully adjusted - minimal edge remains';
+    isEfficient = true;
+  }
+
+  return { multiplier, reason, isEfficient };
 }
 
 // ============================================================================
@@ -1314,48 +1380,106 @@ export function calculateCEQ(
     marketEfficiency.weight = Math.max(marketEfficiency.weight, 1.0);
   }
 
-  // Calculate weighted CEQ from all pillars
-  const pillars = [marketEfficiency, lineupImpact, gameEnvironment, matchupDynamics, sentiment];
-  const totalWeight = pillars.reduce((acc, p) => acc + p.weight, 0);
+  // ============================================================================
+  // NEW FRAMEWORK: Pillars Set Direction, CEQ Validates Edge
+  // ============================================================================
+  // 1. Python pillars determine the BASE DIRECTION (the thesis)
+  // 2. TypeScript CEQ factors determine MARKET VALIDATION (efficiency check)
+  // 3. Final CEQ = 50 + (pillarDeviation * validationMultiplier)
+  // 4. CEQ can NEVER flip the direction - only strengthen or weaken conviction
 
-  let ceq = 50;
-  if (totalWeight > 0) {
-    ceq = pillars.reduce((acc, p) => acc + p.score * p.weight, 0) / totalWeight;
+  // Calculate TypeScript CEQ score from local pillars (for market validation)
+  const tsPillars = [marketEfficiency, lineupImpact, gameEnvironment, matchupDynamics, sentiment];
+  const tsTotalWeight = tsPillars.reduce((acc, p) => acc + p.weight, 0);
+
+  let tsCeq = 50;
+  if (tsTotalWeight > 0) {
+    tsCeq = tsPillars.reduce((acc, p) => acc + p.score * p.weight, 0) / tsTotalWeight;
   }
 
-  // Debug: Log pythonPillars state before blend decision
-  console.log(`CALIBRATION_DEBUG: CEQ pre-blend - ts_ceq=${ceq.toFixed(1)} pythonPillars=${pythonPillars ? `composite=${pythonPillars.composite}` : 'null'} market=${marketType} side=${side}`);
+  // Get the BASE DIRECTION from Python pillars (the thesis)
+  let basePillarScore = 50; // Neutral if no Python data
+  let pillarDirection: 'home' | 'away' | 'over' | 'under' | null = null;
 
-  // If Python pillars available, blend with Python scores
   if (pythonPillars) {
     // Map marketType to pillarsByMarket key
     const marketKey = marketType === 'h2h' ? 'moneyline' : marketType === 'total' ? 'totals' : 'spread';
-
-    // Try to get market-specific composite from pillarsByMarket (if available)
-    // Default to 'full' period for now (period can be passed separately in future)
     const marketSpecific = pythonPillars.pillarsByMarket?.[marketKey]?.['full'];
-    const pyComposite = marketSpecific?.composite ?? pythonPillars.composite ?? 50;
 
     if (marketType === 'total') {
-      // TOTALS: Use market-specific composite or fall back to gameEnvironment
-      // Market-specific totals composite already weights game_environment highly
-      const totalsScore = marketSpecific?.composite ?? pythonPillars.gameEnvironment ?? 50;
-      if (totalsScore !== 50) {
-        const tsRaw = ceq;
-        // Blend: 50% TypeScript, 50% Python totals composite
-        ceq = ceq * 0.5 + totalsScore * 0.5;
-        console.log(`CALIBRATION_DEBUG: Totals CEQ blend - ts_raw=${tsRaw.toFixed(1)} py_totals=${totalsScore.toFixed(1)} blended=${ceq.toFixed(1)} ratio=50/50 side=${side} hasMarketSpecific=${!!marketSpecific}`);
-      }
-    } else if (pyComposite !== undefined && pyComposite !== 50) {
-      // SPREADS/H2H: Use market-specific composite with proper home/away inversion
-      // CRITICAL: Python composite > 50 = AWAY edge, < 50 = HOME edge
-      // When calculating HOME-side CEQ, we must INVERT the Python composite
-      const pythonScore = side === 'home'
-        ? (100 - pyComposite)  // Invert for home-side calculation
-        : pyComposite;          // Direct for away (not typically called)
-      const tsRaw = ceq;
-      ceq = ceq * 0.5 + pythonScore * 0.5;
-      console.log(`CALIBRATION_DEBUG: CEQ blend - ts_raw=${tsRaw.toFixed(1)} py_raw=${pyComposite.toFixed(1)} py_adjusted=${pythonScore.toFixed(1)} blended=${ceq.toFixed(1)} ratio=50/50 side=${side} market=${marketType} hasMarketSpecific=${!!marketSpecific}`);
+      // TOTALS: Use market-specific composite or gameEnvironment
+      // >50 = OVER lean, <50 = UNDER lean
+      basePillarScore = marketSpecific?.composite ?? pythonPillars.gameEnvironment ?? 50;
+      if (basePillarScore > 52) pillarDirection = 'over';
+      else if (basePillarScore < 48) pillarDirection = 'under';
+    } else {
+      // SPREADS/H2H: Use market-specific composite
+      // Python: >50 = AWAY edge, <50 = HOME edge
+      // For HOME-side calculation, we invert
+      const rawPyComposite = marketSpecific?.composite ?? pythonPillars.composite ?? 50;
+      basePillarScore = side === 'home' ? (100 - rawPyComposite) : rawPyComposite;
+      if (basePillarScore > 52) pillarDirection = side === 'home' ? 'home' : 'away';
+      else if (basePillarScore < 48) pillarDirection = side === 'home' ? 'away' : 'home';
+    }
+
+    console.log(`CALIBRATION_DEBUG: Pillar direction - market=${marketType} side=${side} rawPy=${marketSpecific?.composite ?? pythonPillars.composite ?? 50} basePillar=${basePillarScore.toFixed(1)} direction=${pillarDirection}`);
+  }
+
+  // Calculate MARKET VALIDATION multiplier from TypeScript CEQ factors
+  // This checks if the market has already priced in the pillar thesis
+  const validation = calculateMarketValidation(
+    marketEfficiency.score,
+    lineupImpact.score,
+    sentiment.score,
+    pillarDirection || (side as 'home' | 'away' | 'over' | 'under')
+  );
+
+  // APPLY THE FRAMEWORK: Final CEQ = 50 + (pillarDeviation * validationMultiplier)
+  // pillarDeviation = how far from neutral (50) the pillars lean
+  // validationMultiplier = 0.7-1.3 based on market efficiency
+  const pillarDeviation = basePillarScore - 50;
+  let ceq = 50 + (pillarDeviation * validation.multiplier);
+
+  console.log(`CALIBRATION_DEBUG: CEQ calculation - basePillar=${basePillarScore.toFixed(1)} deviation=${pillarDeviation.toFixed(1)} multiplier=${validation.multiplier.toFixed(2)} result=${ceq.toFixed(1)} reason="${validation.reason}"`);
+
+  // BLEND with TypeScript signals if significant and Python is weak
+  // If Python pillars are neutral (45-55), give more weight to TypeScript
+  const pythonStrength = Math.abs(basePillarScore - 50);
+  const tsStrength = Math.abs(tsCeq - 50);
+
+  if (pythonStrength < 5 && tsStrength > 5) {
+    // Python neutral, TypeScript has signal - blend 70/30 (TS/Py)
+    const blendedCeq = tsCeq * 0.7 + ceq * 0.3;
+    console.log(`CALIBRATION_DEBUG: Weak pillar blend - tsCeq=${tsCeq.toFixed(1)} pillars=${ceq.toFixed(1)} blended=${blendedCeq.toFixed(1)}`);
+    ceq = blendedCeq;
+  } else if (pythonStrength > 10) {
+    // Strong Python signal - trust pillars more (blend 30/70)
+    const blendedCeq = tsCeq * 0.3 + ceq * 0.7;
+    console.log(`CALIBRATION_DEBUG: Strong pillar blend - tsCeq=${tsCeq.toFixed(1)} pillars=${ceq.toFixed(1)} blended=${blendedCeq.toFixed(1)}`);
+    ceq = blendedCeq;
+  } else {
+    // Moderate Python signal - blend 50/50
+    const blendedCeq = tsCeq * 0.5 + ceq * 0.5;
+    console.log(`CALIBRATION_DEBUG: Moderate blend - tsCeq=${tsCeq.toFixed(1)} pillars=${ceq.toFixed(1)} blended=${blendedCeq.toFixed(1)}`);
+    ceq = blendedCeq;
+  }
+
+  // ============================================================================
+  // NO-FLIP GUARANTEE: CEQ can dampen pillar signal toward 50, but NEVER cross it
+  // ============================================================================
+  // If pillars have a clear direction (deviation >= 2), CEQ must not flip to other side
+  // This prevents contradictions like: Pillars say Over, CEQ says Under
+  if (pillarDirection && Math.abs(pillarDeviation) >= 2) {
+    const preClamp = ceq;
+    if (pillarDeviation > 0 && ceq < 50) {
+      // Pillars lean positive (over/away) - CEQ can't go below 50
+      ceq = 50;
+    } else if (pillarDeviation < 0 && ceq > 50) {
+      // Pillars lean negative (under/home) - CEQ can't go above 50
+      ceq = 50;
+    }
+    if (ceq !== preClamp) {
+      console.log(`CALIBRATION_DEBUG: NO-FLIP clamp - pillarDir=${pillarDirection} deviation=${pillarDeviation.toFixed(1)} pre=${preClamp.toFixed(1)} clamped=${ceq.toFixed(1)}`);
     }
   }
 
@@ -1369,21 +1493,22 @@ export function calculateCEQ(
   const confidence = getCEQConfidence(ceq);
 
   // Determine side (if CEQ indicates edge)
+  // Aligned with getCEQConfidence: 60+ = WATCH/EDGE/STRONG, <40 = OTHER side, 40-59 = PASS
   let edgeSide: MarketSide | null = null;
-  if (ceq < 45) {
-    // Edge on OTHER side
+  if (ceq < 40) {
+    // Strong signal on OTHER side (inverse calculation will show this)
     if (marketType === 'total') {
       edgeSide = side === 'over' ? 'under' : 'over';
     } else {
       edgeSide = side === 'home' ? 'away' : 'home';
     }
-  } else if (ceq >= 56) {
-    // Edge on THIS side
+  } else if (ceq >= 60) {
+    // Edge on THIS side (matches WATCH threshold)
     edgeSide = side;
   }
 
   // Calculate data quality metrics
-  const pillarsWithData = pillars.filter(p => p.weight > 0).length;
+  const pillarsWithData = tsPillars.filter((p: PillarResult) => p.weight > 0).length;
   const allVariables = [
     ...marketEfficiency.variables,
     ...lineupImpact.variables,

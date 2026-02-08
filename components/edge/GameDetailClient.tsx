@@ -806,7 +806,8 @@ function AskEdgeAI({ gameId, homeTeam, awayTeam, sportKey, chartSelection }: { g
   );
 }
 
-// CEQ Pillar Breakdown Component - Shows strength bars only (no raw values)
+// CEQ Pillar Breakdown Component - Shows market validation factors
+// NEW FRAMEWORK: Pillars set direction, CEQ validates if market has priced it in
 function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | null; marketLabel: string }) {
   if (!ceqResult) {
     return null;
@@ -830,16 +831,16 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
 
   const confStyle = shouldDisplayCEQ ? getConfidenceStyle(confidence) : { bg: 'bg-zinc-800/50', border: 'border-zinc-700/50', text: 'text-zinc-500' };
 
-  // Get strength label from score
-  const getStrengthLabel = (score: number) => {
-    if (score >= 80) return { label: 'Very Strong', color: 'text-emerald-400', barColor: 'bg-emerald-400' };
-    if (score >= 65) return { label: 'Strong', color: 'text-emerald-400', barColor: 'bg-emerald-400' };
-    if (score >= 50) return { label: 'Moderate', color: 'text-blue-400', barColor: 'bg-blue-400' };
-    if (score >= 35) return { label: 'Weak', color: 'text-amber-400', barColor: 'bg-amber-400' };
-    return { label: 'Very Weak', color: 'text-red-400', barColor: 'bg-red-400' };
+  // Get validation label from score (how efficient is the market?)
+  const getValidationLabel = (score: number) => {
+    if (score >= 70) return { label: 'Inefficient', color: 'text-emerald-400', barColor: 'bg-emerald-400' };
+    if (score >= 60) return { label: 'Some Edge', color: 'text-blue-400', barColor: 'bg-blue-400' };
+    if (score >= 40) return { label: 'Neutral', color: 'text-zinc-400', barColor: 'bg-zinc-500' };
+    if (score >= 30) return { label: 'Efficient', color: 'text-amber-400', barColor: 'bg-amber-400' };
+    return { label: 'Priced In', color: 'text-red-400', barColor: 'bg-red-400' };
   };
 
-  // All 6 pillars with their data
+  // All validation factors with their data
   const allPillars = [
     { name: 'Market Efficiency', pillar: pillars.marketEfficiency },
     { name: 'Lineup Impact', pillar: pillars.lineupImpact },
@@ -848,22 +849,22 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
     { name: 'Sentiment', pillar: pillars.sentiment },
   ];
 
-  // Calculate pillar alignment - count pillars that agree (score >= 56 for edge, <= 44 for fade)
-  const alignedPillars = allPillars.filter(p => p.pillar.weight > 0 && p.pillar.score >= 56).length;
-  const fadePillars = allPillars.filter(p => p.pillar.weight > 0 && p.pillar.score <= 44).length;
+  // Calculate market validation - do factors suggest market is inefficient?
+  const inefficientFactors = allPillars.filter(p => p.pillar.weight > 0 && p.pillar.score >= 60).length;
+  const efficientFactors = allPillars.filter(p => p.pillar.weight > 0 && p.pillar.score <= 40).length;
   const activePillarCount = allPillars.filter(p => p.pillar.weight > 0).length;
-  const maxAlignment = Math.max(alignedPillars, fadePillars);
-  const alignmentLabel = maxAlignment >= 4 ? 'High Confidence' : maxAlignment >= 3 ? 'Moderate Confidence' : maxAlignment >= 2 ? 'Mixed Signals' : 'Neutral';
+  const maxAlignment = Math.max(inefficientFactors, efficientFactors);
+  const alignmentLabel = inefficientFactors >= 3 ? 'Edge Amplified' : inefficientFactors >= 2 ? 'Market Inefficient' : efficientFactors >= 3 ? 'Edge Dampened' : 'Market Neutral';
 
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
-      {/* Header with CEQ Score and Alignment */}
+      {/* Header with Validated Edge Score */}
       <div className={`px-3 py-2 ${confStyle.bg} border-b ${confStyle.border}`}>
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-xs font-semibold text-zinc-100">{marketLabel}</h3>
             {shouldDisplayCEQ && side && confidence !== 'PASS' && (
-              <span className={`text-[10px] ${confStyle.text}`}>Edge: {side}</span>
+              <span className={`text-[10px] ${confStyle.text}`}>Validated: {side}</span>
             )}
             {!shouldDisplayCEQ && (
               <span className="text-[10px] text-zinc-500">Insufficient data</span>
@@ -880,26 +881,26 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
             )}
           </div>
         </div>
-        {/* Pillar Alignment Score */}
+        {/* Market Validation Status */}
         {shouldDisplayCEQ && activePillarCount >= 2 && (
           <div className="mt-1.5 flex items-center gap-2">
             <span className={`text-[9px] px-1.5 py-0.5 rounded ${
-              maxAlignment >= 4 ? 'bg-emerald-500/20 text-emerald-400' :
-              maxAlignment >= 3 ? 'bg-blue-500/20 text-blue-400' :
-              maxAlignment >= 2 ? 'bg-amber-500/20 text-amber-400' :
+              inefficientFactors >= 3 ? 'bg-emerald-500/20 text-emerald-400' :
+              inefficientFactors >= 2 ? 'bg-blue-500/20 text-blue-400' :
+              efficientFactors >= 3 ? 'bg-amber-500/20 text-amber-400' :
               'bg-zinc-700 text-zinc-500'
             }`}>
-              {alignmentLabel} ({maxAlignment}/{activePillarCount})
+              {alignmentLabel}
             </span>
           </div>
         )}
       </div>
 
-      {/* CEQ Variables with Percentages */}
+      {/* Market Validation Factors */}
       <div className="p-3 space-y-2">
         {allPillars.map(({ name, pillar }) => {
           const hasData = pillar.weight > 0;
-          const strength = getStrengthLabel(pillar.score);
+          const validation = getValidationLabel(pillar.score);
           const barWidth = Math.max(5, Math.min(100, pillar.score));
           const scoreDisplay = hasData ? `${Math.round(pillar.score)}%` : '--';
 
@@ -908,11 +909,11 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
               <span className="text-[10px] text-zinc-400 w-28 truncate" title={name}>{name}</span>
               <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
                 <div
-                  className={`h-full rounded-full transition-all ${hasData ? strength.barColor : 'bg-zinc-700'}`}
+                  className={`h-full rounded-full transition-all ${hasData ? validation.barColor : 'bg-zinc-700'}`}
                   style={{ width: `${hasData ? barWidth : 0}%` }}
                 />
               </div>
-              <span className={`text-[10px] font-mono w-10 text-right ${hasData ? strength.color : 'text-zinc-600'}`}>
+              <span className={`text-[10px] font-mono w-10 text-right ${hasData ? validation.color : 'text-zinc-600'}`}>
                 {scoreDisplay}
               </span>
             </div>
@@ -920,11 +921,11 @@ function PillarBreakdown({ ceqResult, marketLabel }: { ceqResult: CEQResult | nu
         })}
       </div>
 
-      {/* Final Answer Banner */}
+      {/* Final Validated Edge Banner */}
       {shouldDisplayCEQ && confidence !== 'PASS' && (
         <div className={`px-3 py-2 border-t ${confStyle.border} ${confStyle.bg}`}>
           <div className="flex items-center justify-between">
-            <span className="text-[10px] text-zinc-400">CEQ Edge:</span>
+            <span className="text-[10px] text-zinc-400">Validated Edge:</span>
             <span className={`text-xs font-semibold ${confStyle.text}`}>
               {Math.round(ceq)}% {side} ({confidence})
             </span>
@@ -1960,10 +1961,10 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
         <h3 className="text-sm font-semibold text-zinc-100 mb-1 flex items-center gap-2">
           <span className="text-emerald-400">●</span>
           6-Pillar Analysis
-          <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Individual Factors</span>
+          <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Fundamental Analysis</span>
         </h3>
         <p className="text-[10px] text-zinc-500 mb-3">
-          How each factor leans. CEQ below combines these into the final edge.
+          What the factors say should happen. Sets the direction of the thesis.
         </p>
         <PythonPillarBreakdown
           gameId={gameData.id}
@@ -1991,10 +1992,10 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
           <h3 className="text-sm font-semibold text-zinc-100 mb-1 flex items-center gap-2">
             <span className="text-blue-400">●</span>
             CEQ Analysis
-            <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Final Edge</span>
+            <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Market Validation</span>
           </h3>
           <p className="text-[10px] text-zinc-500 mb-3">
-            Weighted blend of all factors + market data. This is the actionable edge.
+            Whether there's actual value to exploit. Validates if the market has priced in the pillar thesis.
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Show analysis based on selected market */}
@@ -2099,7 +2100,7 @@ export function GameDetailClient({ gameData, bookmakers, availableBooks, availab
             <span className="text-[10px] font-normal text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">Team Totals</span>
           </h3>
           <p className="text-[10px] text-zinc-500 mb-3">
-            Individual player scoring edges. This is the actionable edge.
+            Individual team scoring analysis. Validates if the market has priced in team-level thesis.
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Home Team Over/Under */}

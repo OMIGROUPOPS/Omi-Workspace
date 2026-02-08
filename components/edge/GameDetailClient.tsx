@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { formatOdds, formatSpread, calculateTwoWayEV, formatEV, getEVColor, getEVBgClass } from '@/lib/edge/utils/odds-math';
+import { formatOdds, formatSpread } from '@/lib/edge/utils/odds-math';
 import { isGameLive as checkGameLive } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, CEQConfidence, PythonPillarScores } from '@/lib/edge/engine/edgescout';
-import { calculateFairSpread, calculateFairTotal } from '@/lib/edge/engine/edgescout';
+import { calculateFairSpread, calculateFairTotal, calculateFairMoneyline } from '@/lib/edge/engine/edgescout';
 
 // ============================================================================
 // Constants
@@ -18,6 +18,12 @@ const BOOK_CONFIG: Record<string, { name: string; color: string; type: 'sportsbo
 };
 
 const ALLOWED_BOOKS = ['fanduel', 'draftkings', 'kalshi', 'polymarket'];
+
+const PERIOD_MAP: Record<string, string> = {
+  'full': 'fullGame', '1h': 'firstHalf', '2h': 'secondHalf',
+  '1q': 'q1', '2q': 'q2', '3q': 'q3', '4q': 'q4',
+  '1p': 'p1', '2p': 'p2', '3p': 'p3',
+};
 
 // ============================================================================
 // Types
@@ -95,7 +101,28 @@ interface GameDetailClientProps {
 }
 
 // ============================================================================
-// LineMovementChart (kept, modified with compact prop)
+// Utilities
+// ============================================================================
+
+const abbrev = (name: string) => {
+  const words = name.trim().split(/\s+/);
+  return words[words.length - 1].slice(0, 3).toUpperCase();
+};
+
+const calcMedian = (arr: number[]): number | undefined => {
+  if (arr.length === 0) return undefined;
+  const sorted = [...arr].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+};
+
+const americanToImplied = (odds: number): number => {
+  if (odds < 0) return Math.abs(odds) / (Math.abs(odds) + 100);
+  return 100 / (odds + 100);
+};
+
+// ============================================================================
+// LineMovementChart — with OMI fair line overlay
 // ============================================================================
 
 interface LineMovementChartProps {
@@ -110,9 +137,10 @@ interface LineMovementChartProps {
   commenceTime?: string;
   sportKey?: string;
   compact?: boolean;
+  omiFairLine?: number;
 }
 
-function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, awayTeam, viewMode, onViewModeChange, commenceTime, sportKey, compact = false }: LineMovementChartProps) {
+function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, awayTeam, viewMode, onViewModeChange, commenceTime, sportKey, compact = false, omiFairLine }: LineMovementChartProps) {
   const [hoveredPoint, setHoveredPoint] = useState<{ x: number; y: number; value: number; timestamp: Date; index: number } | null>(null);
   const [trackingSide, setTrackingSide] = useState<'home' | 'away' | 'over' | 'under' | 'draw'>('home');
   const isSoccer = sportKey?.includes('soccer') ?? false;
@@ -204,14 +232,15 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const currentValue = data[data.length - 1]?.value || baseValue;
   const movement = currentValue - openValue;
   const values = data.map(d => d.value);
+  // Include OMI fair line in min/max so the Y axis accommodates it
+  if (omiFairLine !== undefined) values.push(omiFairLine);
   const minVal = Math.min(...values);
   const maxVal = Math.max(...values);
   const range = maxVal - minVal || 1;
   const padding = range * 0.1;
 
-  // Compact chart dimensions
   const width = 400;
-  const height = compact ? 100 : 180;
+  const height = compact ? 120 : 180;
   const paddingLeft = compact ? 35 : 45;
   const paddingRight = 8;
   const paddingTop = compact ? 6 : 12;
@@ -219,6 +248,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const chartWidth = width - paddingLeft - paddingRight;
   const chartHeight = height - paddingTop - paddingBottom;
 
+  const dataValues = data.map(d => d.value); // original data values (without OMI line)
   const chartPoints = data.map((d, i) => {
     const normalizedY = (d.value - minVal + padding) / (range + 2 * padding);
     const y = paddingTop + chartHeight - normalizedY * chartHeight;
@@ -235,12 +265,16 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   };
 
   const movementColor = movement > 0 ? 'text-emerald-400' : movement < 0 ? 'text-red-400' : 'text-zinc-400';
-  const chartColor = effectiveViewMode === 'price' ? '#f59e0b' : (isProp ? '#3b82f6' : '#10b981');
+  const chartColor = '#e4e4e7'; // zinc-200 — book line is white/light
   const gradientId = `chart-grad-${gameId}-${effectiveViewMode}`;
 
-  // Minimal Y labels for compact mode
+  // OMI fair line Y position
+  const omiLineY = omiFairLine !== undefined
+    ? paddingTop + chartHeight - ((omiFairLine - minVal + padding) / (range + 2 * padding)) * chartHeight
+    : null;
+
   const yLabels = compact ? [
-    { value: minVal, y: paddingTop + chartHeight - (0) },
+    { value: minVal, y: paddingTop + chartHeight },
     { value: maxVal, y: paddingTop },
   ] : (() => {
     const labels: { value: number; y: number }[] = [];
@@ -279,7 +313,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   return (
     <div className="h-full flex flex-col">
-      {/* Compact header: tracking + movement in one line */}
+      {/* Header: tracking side + movement */}
       <div className="flex items-center justify-between px-1 mb-1">
         <div className="flex items-center gap-1.5">
           {!isProp && (
@@ -307,15 +341,13 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
               </button>
             </div>
           )}
-          {!compact && (
-            <div className="flex rounded overflow-hidden border border-zinc-700/50">
-              {(isGameLive ? ['30M', '1H', '3H', '6H', '24H', 'ALL'] as TimeRange[] : ['1H', '3H', '6H', '24H', 'ALL'] as TimeRange[]).map(r => (
-                <button key={r} onClick={() => setTimeRange(r)} className={`px-1 py-0 text-[8px] font-medium ${timeRange === r ? 'bg-zinc-600 text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>{r}</button>
-              ))}
-            </div>
-          )}
+          <div className="flex rounded overflow-hidden border border-zinc-700/50">
+            {(isGameLive ? ['30M', '1H', '3H', '6H', '24H', 'ALL'] as TimeRange[] : ['1H', '3H', '6H', '24H', 'ALL'] as TimeRange[]).map(r => (
+              <button key={r} onClick={() => setTimeRange(r)} className={`px-1 py-0 text-[8px] font-medium ${timeRange === r ? 'bg-zinc-600 text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>{r}</button>
+            ))}
+          </div>
         </div>
-        <div className="flex items-center gap-1 text-[10px]">
+        <div className="flex items-center gap-1 text-[10px]" style={{ fontVariantNumeric: 'tabular-nums' }}>
           <span className="text-zinc-500">{formatValue(openValue)}</span>
           <span className="text-zinc-600">&rarr;</span>
           <span className="text-zinc-100 font-semibold">{formatValue(currentValue)}</span>
@@ -334,10 +366,22 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           ))}
           <defs>
             <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={chartColor} stopOpacity="0.15" />
+              <stop offset="0%" stopColor={chartColor} stopOpacity="0.08" />
               <stop offset="100%" stopColor={chartColor} stopOpacity="0" />
             </linearGradient>
           </defs>
+
+          {/* OMI fair line — horizontal dashed cyan */}
+          {omiLineY !== null && (
+            <>
+              <line
+                x1={paddingLeft} y1={omiLineY} x2={width - paddingRight} y2={omiLineY}
+                stroke="#22d3ee" strokeWidth="1" strokeDasharray="4 3" opacity="0.7"
+              />
+              <text x={width - paddingRight - 2} y={omiLineY - 4} textAnchor="end" fill="#22d3ee" fontSize="8" fontWeight="bold">OMI</text>
+            </>
+          )}
+
           {chartPoints.length > 0 && (
             <>
               <path d={`${pathD} L ${chartPoints[chartPoints.length - 1].x} ${paddingTop + chartHeight} L ${paddingLeft} ${paddingTop + chartHeight} Z`} fill={`url(#${gradientId})`} />
@@ -365,14 +409,13 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 }
 
 // ============================================================================
-// TerminalHeader - 36px bar
+// TerminalHeader — 36px bar (modified: no edges, shows active market)
 // ============================================================================
 
 function TerminalHeader({
-  awayTeam, homeTeam, commenceTime, totalEdgeCount, bestEdge, selectedBook, filteredBooks, onSelectBook, isLive,
+  awayTeam, homeTeam, commenceTime, activeMarket, selectedBook, filteredBooks, onSelectBook, isLive,
 }: {
-  awayTeam: string; homeTeam: string; commenceTime?: string; totalEdgeCount: number;
-  bestEdge: { ceq: number; side: string; market: string } | null;
+  awayTeam: string; homeTeam: string; commenceTime?: string; activeMarket: string;
   selectedBook: string; filteredBooks: string[]; onSelectBook: (book: string) => void; isLive: boolean;
 }) {
   const [bookOpen, setBookOpen] = useState(false);
@@ -383,14 +426,11 @@ function TerminalHeader({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const abbrev = (name: string) => {
-    const words = name.trim().split(/\s+/);
-    return words[words.length - 1].slice(0, 3).toUpperCase();
-  };
-
   const dateStr = commenceTime
     ? new Date(commenceTime).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) + ' ET'
     : '';
+
+  const marketLabels: Record<string, string> = { 'spread': 'Spread', 'total': 'Total', 'moneyline': 'Moneyline' };
 
   return (
     <div className="bg-[#0a0a0a] flex items-center justify-between px-3 h-[36px] min-h-[36px]" style={{ gridArea: 'header', borderBottom: '2px solid rgba(6, 78, 59, 0.3)', boxShadow: '0 1px 8px rgba(16, 185, 129, 0.06)' }}>
@@ -398,7 +438,7 @@ function TerminalHeader({
         <a href="/edge/portal/sports" className="text-zinc-500 hover:text-zinc-300 transition-colors">
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
         </a>
-        <span className="text-[13px] font-bold text-zinc-100 tracking-tight font-mono" style={{ fontVariantNumeric: 'tabular-nums' }}>
+        <span className="text-[13px] font-bold text-zinc-100 tracking-tight font-mono">
           {abbrev(awayTeam)} @ {abbrev(homeTeam)}
         </span>
         <span className="text-[10px] text-zinc-500 hidden sm:inline" title={`${awayTeam} @ ${homeTeam}`}>
@@ -413,12 +453,7 @@ function TerminalHeader({
         <span className="text-[10px] text-zinc-500">{dateStr}</span>
       </div>
       <div className="flex items-center gap-3">
-        {totalEdgeCount > 0 && (
-          <span className="text-[10px] font-bold text-emerald-400">{totalEdgeCount} Edge{totalEdgeCount !== 1 ? 's' : ''}</span>
-        )}
-        {bestEdge && bestEdge.ceq >= 60 && (
-          <span className="text-[10px] text-cyan-400 font-mono">Best: {bestEdge.ceq}% {bestEdge.side} {bestEdge.market}</span>
-        )}
+        <span className="text-[10px] text-zinc-400">Viewing: <span className="text-cyan-400 font-medium">{marketLabels[activeMarket] || activeMarket}</span></span>
         {/* Book selector */}
         <div className="relative" ref={dropdownRef}>
           <button onClick={() => setBookOpen(!bookOpen)} className="flex items-center gap-1.5 px-2 py-0.5 bg-zinc-800/80 border border-zinc-700/50 rounded text-[11px] text-zinc-300 hover:bg-zinc-700/80">
@@ -446,117 +481,273 @@ function TerminalHeader({
 }
 
 // ============================================================================
-// FairLinePanel - YOUR LINE vs BOOK LINE
+// OmiFairPricing — the centerpiece
 // ============================================================================
 
-function FairLinePanel({
-  pythonPillars, marketGroups, homeTeam, awayTeam, sportKey,
+type ActiveMarket = 'spread' | 'total' | 'moneyline';
+
+interface BookRow {
+  key: string;
+  name: string;
+  color: string;
+  line: string;
+  juice: string;
+  gap: number;
+  signal: 'MISPRICED' | 'VALUE' | 'FAIR' | 'SHARP';
+}
+
+function OmiFairPricing({
+  pythonPillars, bookmakers, gameData, sportKey, availableTabs,
+  activeMarket, activePeriod, onMarketChange, onPeriodChange,
 }: {
   pythonPillars: PythonPillarScores | null | undefined;
-  marketGroups: any; homeTeam: string; awayTeam: string; sportKey: string;
+  bookmakers: Record<string, any>;
+  gameData: { id: string; homeTeam: string; awayTeam: string; sportKey: string };
+  sportKey: string;
+  availableTabs?: GameDetailClientProps['availableTabs'];
+  activeMarket: ActiveMarket;
+  activePeriod: string;
+  onMarketChange: (m: ActiveMarket) => void;
+  onPeriodChange: (p: string) => void;
 }) {
   const isSoccer = sportKey?.includes('soccer') ?? false;
-  const spreadLine = marketGroups?.fullGame?.spreads?.home?.line;
-  const totalLine = marketGroups?.fullGame?.totals?.line;
-  const mlHome = marketGroups?.fullGame?.h2h?.home?.price;
-  const mlAway = marketGroups?.fullGame?.h2h?.away?.price;
+  const isNHL = sportKey?.includes('icehockey') ?? false;
+  const periodKey = PERIOD_MAP[activePeriod] || 'fullGame';
 
-  const fairSpread = pythonPillars && spreadLine !== undefined
-    ? calculateFairSpread(spreadLine, pythonPillars.composite)
-    : null;
-  const fairTotal = pythonPillars && totalLine !== undefined
-    ? calculateFairTotal(totalLine, pythonPillars.gameEnvironment)
-    : null;
+  // Collect all sportsbook data for this period
+  const allBooks = Object.entries(bookmakers)
+    .filter(([key]) => {
+      const config = BOOK_CONFIG[key];
+      return !config || config.type === 'sportsbook'; // include unknown books as sportsbooks
+    })
+    .map(([key, data]) => ({
+      key,
+      name: BOOK_CONFIG[key]?.name || key.charAt(0).toUpperCase() + key.slice(1),
+      color: BOOK_CONFIG[key]?.color || '#6b7280',
+      markets: (data as any).marketGroups?.[periodKey],
+    }))
+    .filter(b => b.markets);
 
-  const fmtSpread = (v: number) => v > 0 ? `+${v}` : `${v}`;
+  // Calculate consensus lines
+  const spreadLines = allBooks.map(b => b.markets?.spreads?.home?.line).filter((v): v is number => v !== undefined);
+  const totalLines = allBooks.map(b => b.markets?.totals?.line).filter((v): v is number => v !== undefined);
+  const consensusSpread = calcMedian(spreadLines);
+  const consensusTotal = calcMedian(totalLines);
 
-  const renderCard = (label: string, bookVal: string, fairVal: string | null, gap: number | null, edgeSide: string | null) => {
-    const hasEdge = gap !== null && Math.abs(gap) >= 0.5 && edgeSide;
-    const gapColor = hasEdge ? 'text-emerald-400' : (gap !== null ? 'text-zinc-500' : 'text-zinc-600');
-    return (
-      <div className={`rounded px-2 py-1.5 ${hasEdge ? 'bg-emerald-500/5 border border-emerald-500/15' : 'bg-zinc-800/40 border border-zinc-800/60'}`}>
-        <div className="text-[9px] text-zinc-500 uppercase tracking-wider mb-0.5">{label}</div>
-        <div className="flex items-baseline justify-between gap-2">
-          <div className="flex items-baseline gap-2">
-            <span className="text-[11px] text-zinc-300 font-mono" style={{ fontVariantNumeric: 'tabular-nums' }}>{bookVal}</span>
-            {fairVal ? (
-              <span className="text-[11px] text-cyan-400 font-mono font-semibold" style={{ fontVariantNumeric: 'tabular-nums' }}>{fairVal}</span>
-            ) : (
-              <span className="text-[10px] text-zinc-600 font-mono italic">N/A</span>
-            )}
-          </div>
-          <span className={`text-[10px] font-mono font-semibold ${gapColor}`} style={{ fontVariantNumeric: 'tabular-nums' }}>
-            {gap !== null ? (gap > 0 ? `+${gap}` : `${gap}`) : '--'}
-          </span>
-        </div>
-      </div>
-    );
+  // OMI fair lines
+  const omiFairSpread = pythonPillars && consensusSpread !== undefined
+    ? calculateFairSpread(consensusSpread, pythonPillars.composite) : null;
+  const omiFairTotal = pythonPillars && consensusTotal !== undefined
+    ? calculateFairTotal(consensusTotal, pythonPillars.gameEnvironment) : null;
+  const omiFairML = pythonPillars
+    ? calculateFairMoneyline(pythonPillars.composite) : null;
+
+  // Signal determination
+  const getSignal = (gap: number, market: ActiveMarket): BookRow['signal'] => {
+    const thresholds = market === 'moneyline'
+      ? { mispriced: 5, value: 2, sharp: 0.5 }
+      : { mispriced: 1.0, value: 0.5, sharp: 0.25 };
+    if (gap <= thresholds.sharp) return 'SHARP';
+    if (gap < thresholds.value) return 'FAIR';
+    if (gap < thresholds.mispriced) return 'VALUE';
+    return 'MISPRICED';
   };
 
+  const signalConfig: Record<BookRow['signal'], { badge: string; border: string; icon: string }> = {
+    'MISPRICED': { badge: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30', border: 'border-l-emerald-400', icon: '\u25CF' },
+    'VALUE': { badge: 'bg-amber-500/20 text-amber-400 border-amber-500/30', border: 'border-l-amber-400', icon: '\u25CF' },
+    'FAIR': { badge: 'bg-zinc-700/50 text-zinc-400 border-zinc-600/30', border: 'border-l-zinc-600', icon: '\u25CB' },
+    'SHARP': { badge: 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30', border: 'border-l-cyan-400', icon: '\u25C6' },
+  };
+
+  // Build book rows for the active market
+  const buildBookRows = (): BookRow[] => {
+    const rows: BookRow[] = [];
+    for (const book of allBooks) {
+      if (activeMarket === 'spread') {
+        const bookLine = book.markets?.spreads?.home?.line;
+        const bookPrice = book.markets?.spreads?.home?.price;
+        if (bookLine === undefined || !omiFairSpread) continue;
+        const gap = Math.abs(Math.round((bookLine - omiFairSpread.fairLine) * 10) / 10);
+        rows.push({
+          key: book.key, name: book.name, color: book.color,
+          line: formatSpread(bookLine),
+          juice: bookPrice !== undefined ? formatOdds(bookPrice) : '--',
+          gap,
+          signal: getSignal(gap, 'spread'),
+        });
+      } else if (activeMarket === 'total') {
+        const bookLine = book.markets?.totals?.line;
+        const bookOverPrice = book.markets?.totals?.over?.price;
+        if (bookLine === undefined || !omiFairTotal) continue;
+        const gap = Math.abs(Math.round((bookLine - omiFairTotal.fairLine) * 10) / 10);
+        rows.push({
+          key: book.key, name: book.name, color: book.color,
+          line: `${bookLine}`,
+          juice: bookOverPrice !== undefined ? formatOdds(bookOverPrice) : '--',
+          gap,
+          signal: getSignal(gap, 'total'),
+        });
+      } else {
+        // Moneyline
+        const bookHomeOdds = book.markets?.h2h?.home?.price;
+        if (bookHomeOdds === undefined || !omiFairML) continue;
+        const bookImplied = americanToImplied(bookHomeOdds) * 100;
+        const omiImplied = americanToImplied(omiFairML.homeOdds) * 100;
+        const gap = Math.abs(Math.round((bookImplied - omiImplied) * 10) / 10);
+        rows.push({
+          key: book.key, name: book.name, color: book.color,
+          line: formatOdds(bookHomeOdds),
+          juice: '--',
+          gap,
+          signal: getSignal(gap, 'moneyline'),
+        });
+      }
+    }
+    return rows.sort((a, b) => b.gap - a.gap);
+  };
+
+  const bookRows = buildBookRows();
+
+  // Format OMI fair line display
+  const getOmiFairLineDisplay = (): string => {
+    if (!pythonPillars) return 'N/A';
+    if (activeMarket === 'spread') {
+      return omiFairSpread ? formatSpread(omiFairSpread.fairLine) : 'N/A';
+    }
+    if (activeMarket === 'total') {
+      return omiFairTotal ? `${omiFairTotal.fairLine}` : 'N/A';
+    }
+    if (omiFairML) {
+      return `${abbrev(gameData.homeTeam)} ${formatOdds(omiFairML.homeOdds)} / ${abbrev(gameData.awayTeam)} ${formatOdds(omiFairML.awayOdds)}`;
+    }
+    return 'N/A';
+  };
+
+  const gapUnit = activeMarket === 'moneyline' ? '%' : 'pts';
+
+  // Period tabs
+  const periodTabs = [
+    { key: 'full', label: 'Full' },
+    ...(availableTabs?.firstHalf ? [{ key: '1h', label: '1H' }] : []),
+    ...(availableTabs?.secondHalf ? [{ key: '2h', label: '2H' }] : []),
+    ...(availableTabs?.q1 && !isNHL ? [{ key: '1q', label: '1Q' }] : []),
+    ...(availableTabs?.q2 && !isNHL ? [{ key: '2q', label: '2Q' }] : []),
+    ...(availableTabs?.q3 && !isNHL ? [{ key: '3q', label: '3Q' }] : []),
+    ...(availableTabs?.q4 && !isNHL ? [{ key: '4q', label: '4Q' }] : []),
+    ...(availableTabs?.p1 && isNHL ? [{ key: '1p', label: '1P' }] : []),
+    ...(availableTabs?.p2 && isNHL ? [{ key: '2p', label: '2P' }] : []),
+    ...(availableTabs?.p3 && isNHL ? [{ key: '3p', label: '3P' }] : []),
+  ];
+
   return (
-    <div className="bg-[#0a0a0a] p-2 h-full flex flex-col" style={{ gridArea: 'fairline' }}>
-      <div className="flex items-center justify-between mb-1.5">
-        <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-widest">Fair Line vs Book</span>
-        <div className="flex items-center gap-2">
-          <span className="text-[9px] text-zinc-600">{pythonPillars ? 'Pillar-derived' : 'No pillar data'}</span>
-          <div className="flex items-center gap-1 text-[8px]">
-            <span className="text-zinc-500">BOOK</span>
-            <span className="text-cyan-500">FAIR</span>
-            <span className="text-zinc-500">GAP</span>
-          </div>
+    <div className="bg-[#0a0a0a] p-3 h-full flex flex-col overflow-auto" style={{ gridArea: 'pricing' }}>
+      {/* Market tabs */}
+      <div className="flex items-center justify-between mb-3 flex-shrink-0">
+        <div className="flex gap-0 border-b border-zinc-800">
+          {(['spread', 'total', 'moneyline'] as const).filter(m => !isSoccer || m !== 'spread').map(m => (
+            <button key={m} onClick={() => onMarketChange(m)}
+              className={`px-3 py-1.5 text-[11px] font-medium transition-all relative ${activeMarket === m ? 'text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>
+              {m.charAt(0).toUpperCase() + m.slice(1)}
+              {activeMarket === m && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" style={{ boxShadow: '0 1px 4px rgba(34,211,238,0.3)' }} />}
+            </button>
+          ))}
+        </div>
+        {/* Period sub-tabs */}
+        <div className="flex gap-0">
+          {periodTabs.map(tab => (
+            <button key={tab.key} onClick={() => onPeriodChange(tab.key)}
+              className={`px-2 py-1 text-[9px] font-medium transition-all ${activePeriod === tab.key ? 'text-zinc-100 bg-zinc-800/80 rounded' : 'text-zinc-600 hover:text-zinc-400'}`}>
+              {tab.label}
+            </button>
+          ))}
         </div>
       </div>
-      <div className="flex-1 min-h-0 flex flex-col gap-1">
-        {!isSoccer && renderCard(
-          'Spread',
-          spreadLine !== undefined ? fmtSpread(spreadLine) : '--',
-          fairSpread ? fmtSpread(fairSpread.fairLine) : null,
-          fairSpread?.gap ?? null,
-          fairSpread?.edgeSide ?? null
-        )}
-        {renderCard(
-          'Total',
-          totalLine !== undefined ? `${totalLine}` : '--',
-          fairTotal ? `${fairTotal.fairLine}` : null,
-          fairTotal?.gap ?? null,
-          fairTotal?.edgeSide ?? null
-        )}
-        {renderCard(
-          `${awayTeam.split(/\s+/).pop()?.slice(0, 3).toUpperCase() || 'AWY'} ML`,
-          mlAway !== undefined ? formatOdds(mlAway) : '--',
-          null, null, null
-        )}
-        {renderCard(
-          `${homeTeam.split(/\s+/).pop()?.slice(0, 3).toUpperCase() || 'HME'} ML`,
-          mlHome !== undefined ? formatOdds(mlHome) : '--',
-          null, null, null
-        )}
 
-        {/* Edge summary */}
-        {(fairSpread?.edgeSide || fairTotal?.edgeSide) && (
-          <div className="mt-auto pt-1 border-t border-zinc-800/50">
-            {fairSpread?.edgeSide && (
-              <div className="text-[10px] text-emerald-400">
-                Spread edge: <span className="font-semibold">{fairSpread.edgeSide === 'home' ? homeTeam : awayTeam}</span> ({fairSpread.gap > 0 ? '+' : ''}{fairSpread.gap} pts)
-              </div>
-            )}
-            {fairTotal?.edgeSide && (
-              <div className="text-[10px] text-emerald-400">
-                Total edge: <span className="font-semibold">{fairTotal.edgeSide === 'over' ? 'Over' : 'Under'}</span> ({fairTotal.gap > 0 ? '+' : ''}{fairTotal.gap} pts)
-              </div>
-            )}
-          </div>
-        )}
+      {/* OMI Fair Line — the anchor */}
+      <div className="mb-3 flex-shrink-0">
+        <div className="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">OMI Fair Line</div>
+        <div className="text-[22px] font-bold font-mono text-cyan-400" style={{ fontVariantNumeric: 'tabular-nums' }}>
+          {getOmiFairLineDisplay()}
+        </div>
+        <div className="text-[10px] text-zinc-500 mt-0.5">
+          {pythonPillars
+            ? `Based on 6-pillar composite (${pythonPillars.composite}) and market analysis`
+            : 'Pillar data unavailable — fair line cannot be calculated'}
+        </div>
       </div>
+
+      {/* Book comparison table */}
+      {bookRows.length > 0 ? (
+        <div className="flex-1 min-h-0" style={{ fontVariantNumeric: 'tabular-nums' }}>
+          {/* Table header */}
+          <div className="grid grid-cols-[2px_120px_80px_60px_60px_90px] gap-px text-[9px] text-zinc-500 uppercase tracking-widest font-medium mb-px">
+            <div />
+            <div className="bg-[#0a0a0a] px-2 py-1">Book</div>
+            <div className="bg-[#0a0a0a] px-1 py-1 text-center">Their Line</div>
+            <div className="bg-[#0a0a0a] px-1 py-1 text-center">Juice</div>
+            <div className="bg-[#0a0a0a] px-1 py-1 text-center">Gap</div>
+            <div className="bg-[#0a0a0a] px-1 py-1 text-center">Signal</div>
+          </div>
+          {/* Book rows */}
+          {bookRows.map((row, idx) => {
+            const sc = signalConfig[row.signal];
+            const gapColor = row.signal === 'MISPRICED' ? 'text-emerald-400' :
+              row.signal === 'VALUE' ? 'text-amber-400' :
+              row.signal === 'SHARP' ? 'text-cyan-400' : 'text-zinc-500';
+            return (
+              <div key={row.key} className={`grid grid-cols-[2px_120px_80px_60px_60px_90px] gap-px mb-px group ${idx % 2 === 1 ? '' : ''}`}>
+                {/* Left accent border */}
+                <div className={`${sc.border.replace('border-l-', 'bg-').replace('-400', '-400')}`} style={{ backgroundColor: row.signal === 'MISPRICED' ? '#34d399' : row.signal === 'VALUE' ? '#fbbf24' : row.signal === 'SHARP' ? '#22d3ee' : '#52525b' }} />
+                {/* Book name */}
+                <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-2 py-1.5 flex items-center gap-1.5 transition-colors">
+                  <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ backgroundColor: row.color }} />
+                  <span className="text-[11px] font-medium text-zinc-200 truncate">{row.name}</span>
+                </div>
+                {/* Their line */}
+                <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 text-center transition-colors">
+                  <span className="text-[11px] font-mono text-zinc-100">{row.line}</span>
+                </div>
+                {/* Juice */}
+                <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 text-center transition-colors">
+                  <span className="text-[10px] font-mono text-zinc-400">{row.juice}</span>
+                </div>
+                {/* Gap */}
+                <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 text-center transition-colors">
+                  <span className={`text-[11px] font-mono font-semibold ${gapColor}`}>
+                    {row.gap > 0 ? row.gap.toFixed(1) : '0'}
+                  </span>
+                </div>
+                {/* Signal badge */}
+                <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 flex items-center justify-center transition-colors">
+                  <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${sc.badge}`}>
+                    {row.signal} {sc.icon}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="flex-1 flex items-center justify-center text-zinc-500 text-[11px]">
+          {!pythonPillars ? 'Pillar data needed for fair pricing' : 'No sportsbook data available for this market'}
+        </div>
+      )}
     </div>
   );
 }
 
 // ============================================================================
-// PillarBarsCompact - 6 inline horizontal bars
+// PillarBarsCompact — dual-sided bars (center at 50%)
 // ============================================================================
 
-function PillarBarsCompact({ pythonPillars }: { pythonPillars: PythonPillarScores | null | undefined }) {
+function PillarBarsCompact({
+  pythonPillars, homeTeam, awayTeam,
+}: {
+  pythonPillars: PythonPillarScores | null | undefined;
+  homeTeam: string;
+  awayTeam: string;
+}) {
   const pillars = [
     { key: 'execution', label: 'EXEC', weight: '20%', fullLabel: 'Execution' },
     { key: 'incentives', label: 'INCV', weight: '10%', fullLabel: 'Incentives' },
@@ -567,18 +758,11 @@ function PillarBarsCompact({ pythonPillars }: { pythonPillars: PythonPillarScore
   ];
 
   const getBarColor = (score: number) => {
-    if (score >= 65) return 'bg-emerald-400';
-    if (score >= 55) return 'bg-emerald-600';
-    if (score >= 45) return 'bg-zinc-500';
-    if (score >= 35) return 'bg-amber-500';
-    return 'bg-red-400';
-  };
-
-  const getBarGlow = (score: number) => {
-    if (score >= 65) return '0 0 6px rgba(52, 211, 153, 0.3)';
-    if (score >= 55) return '0 0 4px rgba(5, 150, 105, 0.2)';
-    if (score <= 35) return '0 0 6px rgba(239, 68, 68, 0.25)';
-    return 'none';
+    if (score >= 65) return '#34d399'; // emerald-400
+    if (score >= 55) return '#059669'; // emerald-600
+    if (score >= 45) return '#71717a'; // zinc-500
+    if (score >= 35) return '#f59e0b'; // amber-500
+    return '#f87171'; // red-400
   };
 
   const getTextColor = (score: number) => {
@@ -589,640 +773,126 @@ function PillarBarsCompact({ pythonPillars }: { pythonPillars: PythonPillarScore
     return 'text-red-400';
   };
 
-  return (
-    <div className="bg-[#0a0a0a] p-2 h-full flex flex-col" style={{ gridArea: 'pillars' }}>
-      <div className="flex items-center justify-between mb-1.5">
-        <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-widest">6-Pillar Analysis</span>
-        {pythonPillars && (
-          <span className={`text-[14px] font-bold font-mono ${getTextColor(pythonPillars.composite)}`} style={{ fontVariantNumeric: 'tabular-nums' }}>
-            {pythonPillars.composite}
-            <span className="text-[9px] text-zinc-600 ml-0.5">composite</span>
-          </span>
-        )}
-      </div>
-      {!pythonPillars ? (
-        <div className="flex-1 flex items-center justify-center text-[10px] text-zinc-600">No pillar data available</div>
-      ) : (
-        <div className="flex-1 min-h-0 flex flex-col justify-between">
-          {pillars.map(p => {
-            const score = (pythonPillars as any)[p.key] as number;
-            return (
-              <div key={p.key} className="flex items-center gap-1.5">
-                <span className="text-[9px] text-zinc-500 w-16 font-mono truncate" title={p.fullLabel}>
-                  {p.label} <span className="text-zinc-600">({p.weight})</span>
-                </span>
-                <div className="flex-1 h-[6px] bg-zinc-800 rounded-sm overflow-hidden relative">
-                  {/* Center line at 50% */}
-                  <div className="absolute left-1/2 top-0 w-px h-full bg-zinc-600/50 z-10" />
-                  <div
-                    className={`h-full rounded-sm transition-all ${getBarColor(score)}`}
-                    style={{ width: `${score}%`, boxShadow: getBarGlow(score) }}
-                  />
-                </div>
-                <span className={`text-[9px] font-mono w-6 text-right font-semibold ${getTextColor(score)}`} style={{ fontVariantNumeric: 'tabular-nums' }}>{score}</span>
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
-}
+  const homeAbbrev = abbrev(homeTeam);
+  const awayAbbrev = abbrev(awayTeam);
 
-// ============================================================================
-// CEQBarsCompact - 5 inline CEQ factor bars
-// ============================================================================
-
-function CEQBarsCompact({ ceq }: { ceq: GameCEQ | null | undefined }) {
-  // Extract active CEQ result for best market
-  const getCeqResult = (): CEQResult | null => {
-    if (!ceq) return null;
-    if (ceq.bestEdge) {
-      const { market, side } = ceq.bestEdge;
-      if (market === 'spread') return side === 'home' ? ceq.spreads?.home ?? null : ceq.spreads?.away ?? null;
-      if (market === 'h2h') return side === 'home' ? ceq.h2h?.home ?? null : ceq.h2h?.away ?? null;
-      if (market === 'total') return side === 'over' ? ceq.totals?.over ?? null : ceq.totals?.under ?? null;
-    }
-    // Fallback: pick first available
-    return ceq.spreads?.home ?? ceq.h2h?.home ?? ceq.totals?.over ?? null;
-  };
-
-  const ceqResult = getCeqResult();
-
-  const factors = ceqResult ? [
-    { label: 'Mkt Eff', score: ceqResult.pillars.marketEfficiency.score, weight: ceqResult.pillars.marketEfficiency.weight },
-    { label: 'Lineup', score: ceqResult.pillars.lineupImpact.score, weight: ceqResult.pillars.lineupImpact.weight },
-    { label: 'GameEnv', score: ceqResult.pillars.gameEnvironment.score, weight: ceqResult.pillars.gameEnvironment.weight },
-    { label: 'Matchup', score: ceqResult.pillars.matchupDynamics.score, weight: ceqResult.pillars.matchupDynamics.weight },
-    { label: 'Sentmnt', score: ceqResult.pillars.sentiment.score, weight: ceqResult.pillars.sentiment.weight },
-  ] : [];
-
-  const getBarColor = (score: number, weight: number) => {
-    if (weight === 0) return 'bg-zinc-700';
-    if (score >= 70) return 'bg-emerald-400';
-    if (score >= 60) return 'bg-blue-400';
-    if (score >= 40) return 'bg-zinc-500';
-    if (score >= 30) return 'bg-amber-400';
-    return 'bg-red-400';
-  };
-
-  const getBarGlow = (score: number, weight: number) => {
-    if (weight === 0) return 'none';
-    if (score >= 70) return '0 0 6px rgba(52, 211, 153, 0.3)';
-    if (score >= 60) return '0 0 4px rgba(96, 165, 250, 0.25)';
-    if (score <= 30) return '0 0 6px rgba(239, 68, 68, 0.25)';
-    return 'none';
-  };
-
-  const getTextColor = (score: number, weight: number) => {
-    if (weight === 0) return 'text-zinc-600';
-    if (score >= 70) return 'text-emerald-400';
-    if (score >= 60) return 'text-blue-400';
-    if (score >= 40) return 'text-zinc-400';
-    if (score >= 30) return 'text-amber-400';
-    return 'text-red-400';
-  };
-
-  const confBadgeStyle = ceqResult ? (() => {
-    switch (ceqResult.confidence) {
-      case 'STRONG': return 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
-      case 'EDGE': return 'bg-blue-500/20 text-blue-400 border border-blue-500/30';
-      case 'WATCH': return 'bg-amber-500/20 text-amber-400 border border-amber-500/30';
-      default: return 'bg-zinc-800 text-zinc-500 border border-zinc-700';
-    }
-  })() : '';
-
-  const confTextColor = ceqResult ? (
-    ceqResult.confidence === 'STRONG' ? 'text-emerald-400' :
-    ceqResult.confidence === 'EDGE' ? 'text-blue-400' :
-    ceqResult.confidence === 'WATCH' ? 'text-amber-400' : 'text-zinc-500'
-  ) : 'text-zinc-500';
-
-  // Build thesis line
-  const getThesis = () => {
-    if (!ceqResult || !ceq?.bestEdge) return null;
-    const { market, side, ceq: ceqVal } = ceq.bestEdge;
-    const marketLabel = market === 'h2h' ? 'Moneyline' : market === 'spread' ? 'Spread' : 'Total';
-    const sideLabel = side.charAt(0).toUpperCase() + side.slice(1);
-    if (ceqVal < 60) return null;
-    return `${sideLabel} ${marketLabel} validated at ${ceqVal}%`;
-  };
-  const thesis = getThesis();
+  if (!pythonPillars) {
+    return <div className="flex items-center justify-center text-[10px] text-zinc-600 py-2">No pillar data</div>;
+  }
 
   return (
-    <div className="bg-[#0a0a0a] p-2 h-full flex flex-col" style={{ gridArea: 'ceqfactors' }}>
-      <div className="flex items-center justify-between mb-1.5">
-        <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-widest">CEQ Validation</span>
-        {ceqResult && (
-          <div className="flex items-center gap-1.5">
-            <span className={`text-[14px] font-bold font-mono ${confTextColor}`} style={{ fontVariantNumeric: 'tabular-nums' }}>{Math.round(ceqResult.ceq)}%</span>
-            <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded ${confBadgeStyle}`}>{ceqResult.confidence}</span>
-          </div>
-        )}
+    <div className="flex flex-col gap-1">
+      {/* Team labels row */}
+      <div className="flex items-center mb-0.5">
+        <span className="text-[8px] text-zinc-500 font-mono w-16" />
+        <span className="text-[8px] text-zinc-500 font-mono w-6 text-right">{awayAbbrev}</span>
+        <div className="flex-1" />
+        <span className="text-[8px] text-zinc-500 font-mono w-6">{homeAbbrev}</span>
+        <span className="w-6" />
       </div>
-      {!ceqResult ? (
-        <div className="flex-1 flex items-center justify-center text-[10px] text-zinc-600">No CEQ data available</div>
-      ) : (
-        <div className="flex-1 min-h-0 flex flex-col justify-between">
-          {factors.map(f => (
-            <div key={f.label} className="flex items-center gap-1.5">
-              <span className="text-[9px] text-zinc-500 w-16 font-mono truncate">
-                {f.label} <span className="text-zinc-600">({Math.round(f.weight * 100)}%)</span>
-              </span>
-              <div className="flex-1 h-[6px] bg-zinc-800 rounded-sm overflow-hidden relative">
-                {/* Center line at 50% */}
-                <div className="absolute left-1/2 top-0 w-px h-full bg-zinc-600/50 z-10" />
+      {pillars.map(p => {
+        const score = (pythonPillars as any)[p.key] as number;
+        const barColor = getBarColor(score);
+        // Dual-sided: bar extends from center (50%)
+        // score > 50: bar fills right (home-favored)
+        // score < 50: bar fills left (away-favored)
+        const barWidth = Math.abs(score - 50); // 0-50 range
+        const isRight = score >= 50;
+        return (
+          <div key={p.key} className="flex items-center gap-1">
+            <span className="text-[9px] text-zinc-500 w-16 font-mono truncate" title={p.fullLabel}>
+              {p.label} <span className="text-zinc-600">({p.weight})</span>
+            </span>
+            <div className="flex-1 h-[6px] bg-zinc-800 rounded-sm relative overflow-hidden">
+              {/* Center line */}
+              <div className="absolute left-1/2 top-0 w-px h-full bg-zinc-600 z-10" />
+              {isRight ? (
                 <div
-                  className={`h-full rounded-sm transition-all ${getBarColor(f.score, f.weight)}`}
-                  style={{ width: `${f.weight > 0 ? Math.max(5, f.score) : 0}%`, boxShadow: getBarGlow(f.score, f.weight) }}
+                  className="absolute top-0 h-full rounded-sm"
+                  style={{ left: '50%', width: `${barWidth}%`, backgroundColor: barColor }}
                 />
-              </div>
-              <span className={`text-[9px] font-mono w-6 text-right font-semibold ${getTextColor(f.score, f.weight)}`} style={{ fontVariantNumeric: 'tabular-nums' }}>{f.weight > 0 ? Math.round(f.score) : '--'}</span>
+              ) : (
+                <div
+                  className="absolute top-0 h-full rounded-sm"
+                  style={{ left: `${score}%`, width: `${barWidth}%`, backgroundColor: barColor }}
+                />
+              )}
             </div>
-          ))}
-          {/* Thesis line */}
-          {thesis && (
-            <div className="mt-1 pt-1 border-t border-zinc-800/50">
-              <span className={`text-[9px] ${confTextColor}`}>{thesis}</span>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ============================================================================
-// MarketsTable - Period tabs + dense table + EDGE column
-// ============================================================================
-
-function MarketsTable({
-  gameData, marketGroups, bookmakers, activeTab, onTabChange, tabs,
-  chartMarket, onSelectMarket, ceq, teamTotalsCeq, sportKey, selectedBook,
-}: {
-  gameData: { id: string; homeTeam: string; awayTeam: string; sportKey: string };
-  marketGroups: any; bookmakers: Record<string, any>;
-  activeTab: string; onTabChange: (tab: string) => void;
-  tabs: { key: string; label: string }[];
-  chartMarket: 'spread' | 'total' | 'moneyline';
-  onSelectMarket: (m: 'spread' | 'total' | 'moneyline') => void;
-  ceq: GameCEQ | null | undefined;
-  teamTotalsCeq?: { home: GameCEQ | null; away: GameCEQ | null } | null;
-  sportKey: string; selectedBook: string;
-}) {
-  const isSoccer = sportKey?.includes('soccer') ?? false;
-  const periodMap: Record<string, string> = { 'full': 'fullGame', '1h': 'firstHalf', '2h': 'secondHalf', '1q': 'q1', '2q': 'q2', '3q': 'q3', '4q': 'q4', '1p': 'p1', '2p': 'p2', '3p': 'p3' };
-  const periodKey = periodMap[activeTab] || 'fullGame';
-  const markets = marketGroups[periodKey];
-
-  // Calculate consensus for EV
-  const getConsensus = () => {
-    const books = Object.values(bookmakers);
-    const spreadHomePrices: number[] = [], spreadAwayPrices: number[] = [];
-    const mlHomePrices: number[] = [], mlAwayPrices: number[] = [];
-    const overPrices: number[] = [], underPrices: number[] = [];
-    for (const book of books) {
-      const mg = (book as any).marketGroups?.[periodKey];
-      if (mg?.spreads?.home?.price) spreadHomePrices.push(mg.spreads.home.price);
-      if (mg?.spreads?.away?.price) spreadAwayPrices.push(mg.spreads.away.price);
-      if (mg?.h2h?.home?.price) mlHomePrices.push(mg.h2h.home.price);
-      if (mg?.h2h?.away?.price) mlAwayPrices.push(mg.h2h.away.price);
-      if (mg?.totals?.over?.price) overPrices.push(mg.totals.over.price);
-      if (mg?.totals?.under?.price) underPrices.push(mg.totals.under.price);
-    }
-    const median = (arr: number[]) => {
-      if (arr.length === 0) return undefined;
-      const sorted = [...arr].sort((a, b) => a - b);
-      const mid = Math.floor(sorted.length / 2);
-      return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
-    };
-    return {
-      spreads: { home: median(spreadHomePrices), away: median(spreadAwayPrices) },
-      h2h: { home: median(mlHomePrices), away: median(mlAwayPrices) },
-      totals: { over: median(overPrices), under: median(underPrices) },
-    };
-  };
-
-  const consensus = getConsensus();
-
-  // Adjusted EV (same logic as old MarketSection)
-  const getAdjustedEV = (rawEV: number | undefined, ceqVal: number | undefined): number | undefined => {
-    if (ceqVal === undefined) return rawEV;
-    if (ceqVal >= 76) return Math.max(rawEV ?? 0, 5 + (ceqVal - 76) * 0.3);
-    if (ceqVal >= 66) return Math.max(rawEV ?? 0, 3 + (ceqVal - 66) * 0.2);
-    if (ceqVal >= 56) return Math.max(rawEV ?? 0, 1 + (ceqVal - 56) * 0.2);
-    if (ceqVal >= 45) { const nev = (ceqVal - 50) * 0.1; return Math.max(rawEV ?? nev, nev); }
-    const negEV = -0.5 - (45 - ceqVal) * 0.125;
-    return Math.min(rawEV ?? negEV, negEV);
-  };
-
-  // Calculate EVs
-  const rawSpreadHomeEV = markets?.spreads?.home?.price && markets?.spreads?.away?.price
-    ? calculateTwoWayEV(markets.spreads.home.price, markets.spreads.away.price, consensus?.spreads?.home, consensus?.spreads?.away) : undefined;
-  const rawSpreadAwayEV = markets?.spreads?.home?.price && markets?.spreads?.away?.price
-    ? calculateTwoWayEV(markets.spreads.away.price, markets.spreads.home.price, consensus?.spreads?.away, consensus?.spreads?.home) : undefined;
-  const rawMlHomeEV = markets?.h2h?.home?.price && markets?.h2h?.away?.price
-    ? calculateTwoWayEV(markets.h2h.home.price, markets.h2h.away.price, consensus?.h2h?.home, consensus?.h2h?.away) : undefined;
-  const rawMlAwayEV = markets?.h2h?.home?.price && markets?.h2h?.away?.price
-    ? calculateTwoWayEV(markets.h2h.away.price, markets.h2h.home.price, consensus?.h2h?.away, consensus?.h2h?.home) : undefined;
-  const rawOverEV = markets?.totals?.over?.price && markets?.totals?.under?.price
-    ? calculateTwoWayEV(markets.totals.over.price, markets.totals.under.price, consensus?.totals?.over, consensus?.totals?.under) : undefined;
-  const rawUnderEV = markets?.totals?.over?.price && markets?.totals?.under?.price
-    ? calculateTwoWayEV(markets.totals.under.price, markets.totals.over.price, consensus?.totals?.under, consensus?.totals?.over) : undefined;
-
-  const spreadHomeEV = getAdjustedEV(rawSpreadHomeEV, ceq?.spreads?.home?.ceq);
-  const spreadAwayEV = getAdjustedEV(rawSpreadAwayEV, ceq?.spreads?.away?.ceq);
-  const mlHomeEV = getAdjustedEV(rawMlHomeEV, ceq?.h2h?.home?.ceq);
-  const mlAwayEV = getAdjustedEV(rawMlAwayEV, ceq?.h2h?.away?.ceq);
-  const overEV = getAdjustedEV(rawOverEV, ceq?.totals?.over?.ceq);
-  const underEV = getAdjustedEV(rawUnderEV, ceq?.totals?.under?.ceq);
-
-  // Find best edge for each team row
-  const findBestEdge = (side: 'away' | 'home'): { ceq: number; label: string; confidence: string } | null => {
-    const candidates: { ceq: number; label: string; confidence: string }[] = [];
-    if (side === 'away') {
-      if (ceq?.spreads?.away?.ceq && ceq.spreads.away.ceq >= 60) candidates.push({ ceq: ceq.spreads.away.ceq, label: 'Spread', confidence: ceq.spreads.away.confidence });
-      if (ceq?.h2h?.away?.ceq && ceq.h2h.away.ceq >= 60) candidates.push({ ceq: ceq.h2h.away.ceq, label: 'ML', confidence: ceq.h2h.away.confidence });
-      if (ceq?.totals?.over?.ceq && ceq.totals.over.ceq >= 60) candidates.push({ ceq: ceq.totals.over.ceq, label: 'Over', confidence: ceq.totals.over.confidence });
-    } else {
-      if (ceq?.spreads?.home?.ceq && ceq.spreads.home.ceq >= 60) candidates.push({ ceq: ceq.spreads.home.ceq, label: 'Spread', confidence: ceq.spreads.home.confidence });
-      if (ceq?.h2h?.home?.ceq && ceq.h2h.home.ceq >= 60) candidates.push({ ceq: ceq.h2h.home.ceq, label: 'ML', confidence: ceq.h2h.home.confidence });
-      if (ceq?.totals?.under?.ceq && ceq.totals.under.ceq >= 60) candidates.push({ ceq: ceq.totals.under.ceq, label: 'Under', confidence: ceq.totals.under.confidence });
-    }
-    if (candidates.length === 0) return null;
-    return candidates.sort((a, b) => b.ceq - a.ceq)[0];
-  };
-
-  const awayEdge = findBestEdge('away');
-  const homeEdge = findBestEdge('home');
-
-  const getEdgeBadgeColor = (ceqVal: number) => {
-    if (ceqVal >= 75) return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
-    if (ceqVal >= 65) return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
-    return 'bg-amber-500/20 text-amber-400 border-amber-500/30';
-  };
-
-  const getCellBg = (ev: number | undefined, ceqVal: number | undefined) => {
-    if (ceqVal && ceqVal >= 60) {
-      if (ceqVal >= 75) return 'bg-emerald-500/10';
-      if (ceqVal >= 65) return 'bg-blue-500/10';
-      return 'bg-amber-500/5';
-    }
-    return '';
-  };
-
-  // Is this an exchange view?
-  const isExchange = selectedBook === 'kalshi' || selectedBook === 'polymarket';
-
-  // For team totals and alternates, render special content
-  if (activeTab === 'team') {
-    return (
-      <div className="bg-[#0a0a0a] p-2 h-full flex flex-col overflow-auto" style={{ gridArea: 'markets' }}>
-        <div className="flex gap-0 mb-2 overflow-x-auto flex-shrink-0 border-b border-zinc-800">
-          {tabs.map(tab => (
-            <button key={tab.key} onClick={() => onTabChange(tab.key)}
-              className={`px-2.5 py-1 text-[10px] font-medium whitespace-nowrap transition-all relative ${activeTab === tab.key ? 'text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>
-              {tab.label}
-              {activeTab === tab.key && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-emerald-400" style={{ boxShadow: '0 1px 4px rgba(16,185,129,0.3)' }} />}
-            </button>
-          ))}
-        </div>
-        <TeamTotalsSection teamTotals={marketGroups.teamTotals} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
-      </div>
-    );
-  }
-
-  if (activeTab === 'alt') {
-    return (
-      <div className="bg-[#0a0a0a] p-2 h-full flex flex-col overflow-auto" style={{ gridArea: 'markets' }}>
-        <div className="flex gap-0 mb-2 overflow-x-auto flex-shrink-0 border-b border-zinc-800">
-          {tabs.map(tab => (
-            <button key={tab.key} onClick={() => onTabChange(tab.key)}
-              className={`px-2.5 py-1 text-[10px] font-medium whitespace-nowrap transition-all relative ${activeTab === tab.key ? 'text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>
-              {tab.label}
-              {activeTab === tab.key && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-emerald-400" style={{ boxShadow: '0 1px 4px rgba(16,185,129,0.3)' }} />}
-            </button>
-          ))}
-        </div>
-        <AlternatesSection alternates={marketGroups.alternates} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
-      </div>
-    );
-  }
-
-  if (isExchange) {
-    return (
-      <div className="bg-[#0a0a0a] p-2 h-full flex flex-col overflow-auto" style={{ gridArea: 'markets' }}>
-        <div className="flex gap-0 mb-2 overflow-x-auto flex-shrink-0 border-b border-zinc-800">
-          {tabs.map(tab => (
-            <button key={tab.key} onClick={() => onTabChange(tab.key)}
-              className={`px-2.5 py-1 text-[10px] font-medium whitespace-nowrap transition-all relative ${activeTab === tab.key ? 'text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>
-              {tab.label}
-              {activeTab === tab.key && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-emerald-400" style={{ boxShadow: '0 1px 4px rgba(16,185,129,0.3)' }} />}
-            </button>
-          ))}
-        </div>
-        <ExchangeMarketsSection
-          exchangeMarkets={marketGroups.exchangeMarkets || []}
-          exchange={selectedBook as 'kalshi' | 'polymarket'}
-          homeTeam={gameData.homeTeam}
-          awayTeam={gameData.awayTeam}
-        />
-      </div>
-    );
-  }
-
-  // Edge progress bar renderer
-  const renderEdgeCell = (edge: { ceq: number; label: string; confidence: string } | null) => {
-    if (!edge) return null;
-    const pct = Math.min(100, Math.max(0, ((edge.ceq - 50) / 50) * 100));
-    const barColor = edge.ceq >= 75 ? 'bg-emerald-400' : edge.ceq >= 65 ? 'bg-blue-400' : 'bg-amber-400';
-    const barGlow = edge.ceq >= 75 ? '0 0 6px rgba(52,211,153,0.3)' : edge.ceq >= 65 ? '0 0 4px rgba(96,165,250,0.25)' : 'none';
-    return (
-      <div className="flex items-center gap-1 w-full">
-        <div className="flex-1 h-[5px] bg-zinc-800 rounded-sm overflow-hidden">
-          <div className={`h-full rounded-sm ${barColor}`} style={{ width: `${pct}%`, boxShadow: barGlow }} />
-        </div>
-        <span className={`text-[9px] font-bold font-mono whitespace-nowrap ${getEdgeBadgeColor(edge.ceq).split(' ').find(c => c.startsWith('text-'))}`} style={{ fontVariantNumeric: 'tabular-nums' }}>
-          {edge.ceq}%
+            <span className={`text-[9px] font-mono w-6 text-right font-semibold ${getTextColor(score)}`} style={{ fontVariantNumeric: 'tabular-nums' }}>{score}</span>
+          </div>
+        );
+      })}
+      {/* Composite */}
+      <div className="flex items-center justify-between mt-1 pt-1 border-t border-zinc-800/50">
+        <span className="text-[9px] text-zinc-500 font-mono">COMPOSITE</span>
+        <span className={`text-[13px] font-bold font-mono ${getTextColor(pythonPillars.composite)}`} style={{ fontVariantNumeric: 'tabular-nums' }}>
+          {pythonPillars.composite}
         </span>
       </div>
-    );
+    </div>
+  );
+}
+
+// ============================================================================
+// WhyThisPrice — analysis panel (pillars + CEQ summary)
+// ============================================================================
+
+function WhyThisPrice({
+  pythonPillars, ceq, homeTeam, awayTeam,
+}: {
+  pythonPillars: PythonPillarScores | null | undefined;
+  ceq: GameCEQ | null | undefined;
+  homeTeam: string;
+  awayTeam: string;
+}) {
+  // CEQ summary
+  const getCeqSummary = () => {
+    if (!ceq?.bestEdge) return null;
+    const { ceq: ceqVal, confidence, market, side } = ceq.bestEdge;
+    const marketLabel = market === 'h2h' ? 'Moneyline' : market.charAt(0).toUpperCase() + market.slice(1);
+    const sideLabel = side === 'home' ? homeTeam : side === 'away' ? awayTeam : side === 'over' ? 'Over' : side === 'under' ? 'Under' : side;
+    const confDesc: Record<string, string> = {
+      'STRONG': 'Market strongly validates thesis',
+      'EDGE': 'Market validates thesis',
+      'WATCH': 'Market partially validates thesis',
+      'PASS': 'Market does not validate thesis',
+      'RARE': 'Exceptional edge detected',
+    };
+    return {
+      ceq: ceqVal,
+      confidence,
+      text: `CEQ: ${ceqVal}% ${confidence} — ${confDesc[confidence] || 'Unknown'}`,
+      detail: `${sideLabel} ${marketLabel}`,
+    };
   };
 
-  // Grid col template
-  const gridCols = isSoccer
-    ? 'grid-cols-[1fr_80px_80px_minmax(80px,auto)]'
-    : 'grid-cols-[1fr_80px_80px_80px_minmax(80px,auto)]';
+  const ceqSummary = getCeqSummary();
+
+  const confColor = ceqSummary ? (
+    ceqSummary.confidence === 'STRONG' || ceqSummary.confidence === 'RARE' ? 'text-emerald-400' :
+    ceqSummary.confidence === 'EDGE' ? 'text-blue-400' :
+    ceqSummary.confidence === 'WATCH' ? 'text-amber-400' : 'text-zinc-500'
+  ) : 'text-zinc-500';
 
   return (
-    <div className="bg-[#0a0a0a] p-2 h-full flex flex-col overflow-auto" style={{ gridArea: 'markets' }}>
-      {/* Period tabs - terminal style with emerald underline */}
-      <div className="flex gap-0 mb-2 overflow-x-auto flex-shrink-0 border-b border-zinc-800">
-        {tabs.map(tab => (
-          <button key={tab.key} onClick={() => onTabChange(tab.key)}
-            className={`px-2.5 py-1 text-[10px] font-medium whitespace-nowrap transition-all relative ${activeTab === tab.key ? 'text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>
-            {tab.label}
-            {activeTab === tab.key && (
-              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-emerald-400" style={{ boxShadow: '0 1px 4px rgba(16,185,129,0.3)' }} />
-            )}
-          </button>
-        ))}
+    <div className="bg-[#0a0a0a] p-2 h-full flex flex-col" style={{ gridArea: 'analysis' }}>
+      <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-2">Why This Price</span>
+      <div className="flex-1 min-h-0 overflow-auto">
+        <PillarBarsCompact pythonPillars={pythonPillars} homeTeam={homeTeam} awayTeam={awayTeam} />
+        {/* CEQ summary line */}
+        {ceqSummary ? (
+          <div className="mt-2 pt-1.5 border-t border-zinc-800/50">
+            <div className={`text-[10px] font-mono ${confColor}`}>
+              {ceqSummary.text}
+            </div>
+            <div className="text-[9px] text-zinc-600 mt-0.5">{ceqSummary.detail}</div>
+          </div>
+        ) : (
+          <div className="mt-2 pt-1.5 border-t border-zinc-800/50">
+            <div className="text-[10px] text-zinc-600">No CEQ validation data</div>
+          </div>
+        )}
       </div>
-
-      {/* Market type pills */}
-      <div className="flex gap-1 mb-2 flex-shrink-0">
-        {(['spread', 'total', 'moneyline'] as const).filter(m => !isSoccer || m !== 'spread').map(m => (
-          <button key={m} onClick={() => onSelectMarket(m)}
-            className={`px-2 py-0.5 rounded-full text-[9px] font-medium transition-all border ${
-              chartMarket === m
-                ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
-                : 'bg-zinc-800/50 text-zinc-500 border-zinc-700/30 hover:text-zinc-300 hover:border-zinc-600/50'
-            }`}>
-            {m.charAt(0).toUpperCase() + m.slice(1)}
-          </button>
-        ))}
-      </div>
-
-      {/* Dense table */}
-      {markets ? (
-        <div className="flex-1 min-h-0" style={{ fontVariantNumeric: 'tabular-nums' }}>
-          {/* Header row */}
-          <div className={`grid ${gridCols} gap-px text-[9px] text-zinc-500 uppercase tracking-widest font-medium mb-px`} style={{ background: '#27272a' }}>
-            <div className="bg-[#0a0a0a] px-2 py-1">Team</div>
-            {!isSoccer && <div className="bg-[#0a0a0a] px-1 py-1 text-center">Spread</div>}
-            <div className="bg-[#0a0a0a] px-1 py-1 text-center">ML</div>
-            <div className="bg-[#0a0a0a] px-1 py-1 text-center">Total</div>
-            <div className="bg-[#0a0a0a] px-1 py-1 text-center">Edge</div>
-          </div>
-
-          {/* Away row */}
-          <div className={`grid ${gridCols} gap-px mb-px group`} style={{ background: '#27272a' }}>
-            <div className="bg-[#0a0a0a] group-hover:bg-zinc-900/80 px-2 py-1.5 flex items-center transition-colors">
-              <span className="text-[11px] font-medium text-zinc-200 truncate">{gameData.awayTeam}</span>
-            </div>
-            {!isSoccer && (
-              <div className={`bg-[#0a0a0a] group-hover:bg-zinc-900/80 px-1 py-0.5 text-center cursor-pointer transition-colors ${getCellBg(spreadAwayEV, ceq?.spreads?.away?.ceq)}`} onClick={() => onSelectMarket('spread')}>
-                {markets.spreads ? (
-                  <>
-                    <div className="text-[11px] font-medium text-zinc-100 font-mono">{formatSpread(markets.spreads.away.line)}</div>
-                    <div className="flex items-center justify-center gap-0.5">
-                      <span className="text-[10px] text-zinc-400 font-mono">{formatOdds(markets.spreads.away.price)}</span>
-                      {spreadAwayEV !== undefined && <span className={`text-[9px] font-mono ${getEVColor(spreadAwayEV)}`}>{formatEV(spreadAwayEV)}</span>}
-                    </div>
-                  </>
-                ) : <span className="text-zinc-600 text-[10px]">-</span>}
-              </div>
-            )}
-            <div className={`bg-[#0a0a0a] group-hover:bg-zinc-900/80 px-1 py-0.5 text-center cursor-pointer transition-colors ${getCellBg(mlAwayEV, ceq?.h2h?.away?.ceq)}`} onClick={() => onSelectMarket('moneyline')}>
-              {markets.h2h ? (
-                <>
-                  <div className="text-[11px] font-medium text-zinc-100 font-mono">{formatOdds(markets.h2h.away.price)}</div>
-                  {mlAwayEV !== undefined && <div className={`text-[9px] font-mono ${getEVColor(mlAwayEV)}`}>{formatEV(mlAwayEV)}</div>}
-                </>
-              ) : <span className="text-zinc-600 text-[10px]">-</span>}
-            </div>
-            <div className={`bg-[#0a0a0a] group-hover:bg-zinc-900/80 px-1 py-0.5 text-center cursor-pointer transition-colors ${getCellBg(overEV, ceq?.totals?.over?.ceq)}`} onClick={() => onSelectMarket('total')}>
-              {markets.totals ? (
-                <>
-                  <div className="text-[11px] font-medium text-zinc-100 font-mono">O {markets.totals.line}</div>
-                  <div className="flex items-center justify-center gap-0.5">
-                    <span className="text-[10px] text-zinc-400 font-mono">{formatOdds(markets.totals.over.price)}</span>
-                    {overEV !== undefined && <span className={`text-[9px] font-mono ${getEVColor(overEV)}`}>{formatEV(overEV)}</span>}
-                  </div>
-                </>
-              ) : <span className="text-zinc-600 text-[10px]">-</span>}
-            </div>
-            {/* Edge column with progress bar */}
-            <div className="bg-[#0a0a0a] group-hover:bg-zinc-900/80 px-1.5 py-0.5 flex items-center transition-colors">
-              {renderEdgeCell(awayEdge)}
-            </div>
-          </div>
-
-          {/* Home row - alternating slightly lighter bg */}
-          <div className={`grid ${gridCols} gap-px group`} style={{ background: '#27272a' }}>
-            <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-2 py-1.5 flex items-center transition-colors">
-              <span className="text-[11px] font-medium text-zinc-200 truncate">{gameData.homeTeam}</span>
-            </div>
-            {!isSoccer && (
-              <div className={`bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-0.5 text-center cursor-pointer transition-colors ${getCellBg(spreadHomeEV, ceq?.spreads?.home?.ceq)}`} onClick={() => onSelectMarket('spread')}>
-                {markets.spreads ? (
-                  <>
-                    <div className="text-[11px] font-medium text-zinc-100 font-mono">{formatSpread(markets.spreads.home.line)}</div>
-                    <div className="flex items-center justify-center gap-0.5">
-                      <span className="text-[10px] text-zinc-400 font-mono">{formatOdds(markets.spreads.home.price)}</span>
-                      {spreadHomeEV !== undefined && <span className={`text-[9px] font-mono ${getEVColor(spreadHomeEV)}`}>{formatEV(spreadHomeEV)}</span>}
-                    </div>
-                  </>
-                ) : <span className="text-zinc-600 text-[10px]">-</span>}
-              </div>
-            )}
-            <div className={`bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-0.5 text-center cursor-pointer transition-colors ${getCellBg(mlHomeEV, ceq?.h2h?.home?.ceq)}`} onClick={() => onSelectMarket('moneyline')}>
-              {markets.h2h ? (
-                <>
-                  <div className="text-[11px] font-medium text-zinc-100 font-mono">{formatOdds(markets.h2h.home.price)}</div>
-                  {mlHomeEV !== undefined && <div className={`text-[9px] font-mono ${getEVColor(mlHomeEV)}`}>{formatEV(mlHomeEV)}</div>}
-                </>
-              ) : <span className="text-zinc-600 text-[10px]">-</span>}
-            </div>
-            <div className={`bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-0.5 text-center cursor-pointer transition-colors ${getCellBg(underEV, ceq?.totals?.under?.ceq)}`} onClick={() => onSelectMarket('total')}>
-              {markets.totals ? (
-                <>
-                  <div className="text-[11px] font-medium text-zinc-100 font-mono">U {markets.totals.line}</div>
-                  <div className="flex items-center justify-center gap-0.5">
-                    <span className="text-[10px] text-zinc-400 font-mono">{formatOdds(markets.totals.under.price)}</span>
-                    {underEV !== undefined && <span className={`text-[9px] font-mono ${getEVColor(underEV)}`}>{formatEV(underEV)}</span>}
-                  </div>
-                </>
-              ) : <span className="text-zinc-600 text-[10px]">-</span>}
-            </div>
-            {/* Edge column with progress bar */}
-            <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1.5 py-0.5 flex items-center transition-colors">
-              {renderEdgeCell(homeEdge)}
-            </div>
-          </div>
-
-          {/* Soccer draw row */}
-          {isSoccer && markets?.h2h?.draw && (
-            <div className={`grid grid-cols-[1fr_80px_80px_minmax(80px,auto)] gap-px mt-px group`} style={{ background: '#27272a' }}>
-              <div className="bg-[#0a0a0a] group-hover:bg-zinc-900/80 px-2 py-1 transition-colors"><span className="text-[11px] font-medium text-zinc-400">Draw</span></div>
-              <div className="bg-[#0a0a0a] group-hover:bg-zinc-900/80 px-1 py-0.5 text-center cursor-pointer transition-colors" onClick={() => onSelectMarket('moneyline')}>
-                <div className="text-[11px] font-medium text-zinc-100 font-mono">{formatOdds(markets.h2h.draw.price)}</div>
-              </div>
-              <div className="bg-[#0a0a0a] group-hover:bg-zinc-900/80 px-1 py-0.5 transition-colors"></div>
-              <div className="bg-[#0a0a0a] group-hover:bg-zinc-900/80 px-1.5 py-0.5 flex items-center transition-colors">
-                {ceq?.h2h?.draw?.ceq && ceq.h2h.draw.ceq >= 60 ? renderEdgeCell({ ceq: ceq.h2h.draw.ceq, label: 'Draw', confidence: ceq.h2h.draw.confidence }) : null}
-              </div>
-            </div>
-          )}
-        </div>
-      ) : (
-        <div className="flex-1 flex items-center justify-center text-zinc-500 text-[11px]">
-          No market data available
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ============================================================================
-// TeamTotalsSection (kept, slightly simplified)
-// ============================================================================
-
-function TeamTotalsSection({ teamTotals, homeTeam, awayTeam }: { teamTotals: any; homeTeam: string; awayTeam: string }) {
-  if (!teamTotals || (!teamTotals.home?.over && !teamTotals.away?.over)) {
-    return <div className="flex-1 flex items-center justify-center text-zinc-500 text-[11px]">No team totals available</div>;
-  }
-  const renderTeam = (label: string, data: any) => {
-    if (!data?.over) return null;
-    const overEV = data.over?.price && data.under?.price ? calculateTwoWayEV(data.over.price, data.under.price) : undefined;
-    const underEV = data.over?.price && data.under?.price ? calculateTwoWayEV(data.under.price, data.over.price) : undefined;
-    return (
-      <div className="flex items-center justify-between py-1.5 border-b border-zinc-800/50 last:border-0">
-        <span className="text-[11px] font-medium text-zinc-200 min-w-[100px]">{label}</span>
-        <div className="flex gap-2">
-          <div className={`text-center py-1 px-2 rounded border ${getEVBgClass(overEV ?? 0)}`}>
-            <div className="text-[11px] font-medium text-zinc-100">O {data.over.line}</div>
-            <div className="flex items-center justify-center gap-0.5">
-              <span className="text-[10px] text-zinc-400">{formatOdds(data.over.price)}</span>
-              {overEV !== undefined && Math.abs(overEV) >= 0.5 && <span className={`text-[9px] font-mono ${getEVColor(overEV)}`}>{formatEV(overEV)}</span>}
-            </div>
-          </div>
-          {data.under && (
-            <div className={`text-center py-1 px-2 rounded border ${getEVBgClass(underEV ?? 0)}`}>
-              <div className="text-[11px] font-medium text-zinc-100">U {data.under.line}</div>
-              <div className="flex items-center justify-center gap-0.5">
-                <span className="text-[10px] text-zinc-400">{formatOdds(data.under.price)}</span>
-                {underEV !== undefined && Math.abs(underEV) >= 0.5 && <span className={`text-[9px] font-mono ${getEVColor(underEV)}`}>{formatEV(underEV)}</span>}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    );
-  };
-  return (
-    <div className="flex-1 min-h-0">
-      {renderTeam(awayTeam, teamTotals.away)}
-      {renderTeam(homeTeam, teamTotals.home)}
-    </div>
-  );
-}
-
-// ============================================================================
-// AlternatesSection (kept)
-// ============================================================================
-
-function AlternatesSection({ alternates, homeTeam, awayTeam }: { alternates: any; homeTeam: string; awayTeam: string }) {
-  const [view, setView] = useState<'spreads' | 'totals'>('spreads');
-  const altSpreads = alternates?.spreads || [];
-  const altTotals = alternates?.totals || [];
-  if (altSpreads.length === 0 && altTotals.length === 0) {
-    return <div className="flex-1 flex items-center justify-center text-zinc-500 text-[11px]">No alternate lines available</div>;
-  }
-
-  return (
-    <div className="flex-1 min-h-0 overflow-auto">
-      <div className="flex gap-1 mb-2">
-        {altSpreads.length > 0 && <button onClick={() => setView('spreads')} className={`px-2 py-0.5 rounded text-[10px] font-medium ${view === 'spreads' ? 'bg-emerald-500/80 text-white' : 'bg-zinc-800 text-zinc-400'}`}>Alt Spreads</button>}
-        {altTotals.length > 0 && <button onClick={() => setView('totals')} className={`px-2 py-0.5 rounded text-[10px] font-medium ${view === 'totals' ? 'bg-emerald-500/80 text-white' : 'bg-zinc-800 text-zinc-400'}`}>Alt Totals</button>}
-      </div>
-      {view === 'spreads' && altSpreads.length > 0 && (
-        <div className="space-y-0.5">
-          <div className="grid grid-cols-[60px,1fr,1fr] gap-1 text-[9px] text-zinc-500 uppercase">
-            <div>Spread</div><div className="text-center">{awayTeam}</div><div className="text-center">{homeTeam}</div>
-          </div>
-          {altSpreads.map((row: any, i: number) => (
-            <div key={i} className="grid grid-cols-[60px,1fr,1fr] gap-1 items-center">
-              <span className="text-[10px] font-medium text-zinc-300">{formatSpread(row.homeSpread)}</span>
-              <div className="text-center text-[10px]">
-                {row.away ? <><span className="text-zinc-100">{formatSpread(row.away.line)}</span> <span className="text-zinc-500">{formatOdds(row.away.price)}</span></> : '-'}
-              </div>
-              <div className="text-center text-[10px]">
-                {row.home ? <><span className="text-zinc-100">{formatSpread(row.home.line)}</span> <span className="text-zinc-500">{formatOdds(row.home.price)}</span></> : '-'}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-      {view === 'totals' && altTotals.length > 0 && (
-        <div className="space-y-0.5">
-          <div className="grid grid-cols-[60px,1fr,1fr] gap-1 text-[9px] text-zinc-500 uppercase">
-            <div>Line</div><div className="text-center">Over</div><div className="text-center">Under</div>
-          </div>
-          {altTotals.map((row: any, i: number) => (
-            <div key={i} className="grid grid-cols-[60px,1fr,1fr] gap-1 items-center">
-              <span className="text-[10px] font-medium text-zinc-300">{row.line}</span>
-              <div className="text-center text-[10px]">{row.over ? <span className="text-zinc-100">{formatOdds(row.over.price)}</span> : '-'}</div>
-              <div className="text-center text-[10px]">{row.under ? <span className="text-zinc-100">{formatOdds(row.under.price)}</span> : '-'}</div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ============================================================================
-// ExchangeMarketsSection (kept, simplified for terminal)
-// ============================================================================
-
-function ExchangeMarketsSection({ exchangeMarkets, exchange, homeTeam, awayTeam }: { exchangeMarkets: any[]; exchange: 'kalshi' | 'polymarket'; homeTeam: string; awayTeam: string }) {
-  if (!exchangeMarkets || exchangeMarkets.length === 0) {
-    return <div className="flex-1 flex items-center justify-center text-zinc-500 text-[11px]">No matching prediction markets</div>;
-  }
-  const formatPrice = (price: number | null) => price !== null ? `${price}c` : '-';
-  return (
-    <div className="flex-1 min-h-0 overflow-auto space-y-1">
-      {exchangeMarkets.map((market, idx) => (
-        <div key={market.market_id || idx} className="border border-zinc-800/50 rounded p-2">
-          <div className="text-[10px] font-medium text-zinc-200 mb-1 truncate">{market.market_title}</div>
-          <div className="flex gap-3 text-[10px]">
-            <span className="text-emerald-400 font-mono">YES {formatPrice(market.yes_price)}</span>
-            <span className="text-red-400 font-mono">NO {formatPrice(market.no_price)}</span>
-            {market.spread !== null && <span className="text-zinc-500">Spread: {market.spread}c</span>}
-          </div>
-        </div>
-      ))}
     </div>
   );
 }
@@ -1249,7 +919,7 @@ function LiveLockOverlay() {
 }
 
 // ============================================================================
-// Main GameDetailClient Component - Bloomberg Terminal Layout
+// Main GameDetailClient Component — OMI Fair Pricing Layout
 // ============================================================================
 
 export function GameDetailClient({
@@ -1258,9 +928,9 @@ export function GameDetailClient({
   ceq, ceqByPeriod, teamTotalsCeq, edgeCountBreakdown,
   pythonPillarScores, totalEdgeCount = 0,
 }: GameDetailClientProps) {
-  const [activeTab, setActiveTab] = useState('full');
   const isSoccerGame = gameData.sportKey?.includes('soccer') ?? false;
-  const [chartMarket, setChartMarket] = useState<'spread' | 'total' | 'moneyline'>(isSoccerGame ? 'moneyline' : 'spread');
+  const [activeMarket, setActiveMarket] = useState<ActiveMarket>(isSoccerGame ? 'moneyline' : 'spread');
+  const [activePeriod, setActivePeriod] = useState('full');
   const [chartViewMode, setChartViewMode] = useState<ChartViewMode>('line');
   const [lazyLineHistory, setLazyLineHistory] = useState<Record<string, Record<string, any[]>>>({});
   const [loadingPeriods, setLoadingPeriods] = useState<Set<string>>(new Set());
@@ -1278,8 +948,7 @@ export function GameDetailClient({
 
   const filteredBooks = availableBooks.filter(book => ALLOWED_BOOKS.includes(book));
   const [selectedBook, setSelectedBook] = useState(filteredBooks[0] || 'fanduel');
-  const marketGroups = bookmakers[selectedBook]?.marketGroups || {};
-  const isNHL = gameData.sportKey.includes('icehockey');
+  const selectedBookMarkets = bookmakers[selectedBook]?.marketGroups || {};
 
   // CEQ by period
   const tabToPeriodKey: Record<string, keyof CEQByPeriod> = {
@@ -1287,53 +956,50 @@ export function GameDetailClient({
     '1q': 'q1', '2q': 'q2', '3q': 'q3', '4q': 'q4',
     '1p': 'p1', '2p': 'p2', '3p': 'p3',
   };
-  const isSpecialTab = activeTab === 'team' || activeTab === 'alt';
-  const activePeriodKey = tabToPeriodKey[activeTab] || 'fullGame';
-  const activeCeq: GameCEQ | null | undefined = isSpecialTab ? null : (ceqByPeriod?.[activePeriodKey] ?? (activeTab === 'full' ? ceq : null));
+  const activePeriodKey = tabToPeriodKey[activePeriod] || 'fullGame';
+  const activeCeq: GameCEQ | null | undefined = ceqByPeriod?.[activePeriodKey] ?? (activePeriod === 'full' ? ceq : null);
 
-  // Chart selection
+  // Chart selection (synced with activeMarket + activePeriod)
   const generatePriceMovement = (seed: string) => { const hashSeed = seed.split('').reduce((a, c) => a + c.charCodeAt(0), 0); const x = Math.sin(hashSeed) * 10000; return (x - Math.floor(x) - 0.5) * 0.15; };
 
   const getCurrentMarketValues = () => {
-    const periodMap: Record<string, string> = { 'full': 'fullGame', '1h': 'firstHalf', '2h': 'secondHalf', '1q': 'q1', '2q': 'q2', '3q': 'q3', '4q': 'q4', '1p': 'p1', '2p': 'p2', '3p': 'p3' };
-    const markets = marketGroups[periodMap[activeTab] || 'fullGame'];
-    if (chartMarket === 'spread') {
-      return { line: markets?.spreads?.home?.line, homeLine: markets?.spreads?.home?.line, awayLine: markets?.spreads?.away?.line, price: markets?.spreads?.home?.price, homePrice: markets?.spreads?.home?.price, awayPrice: markets?.spreads?.away?.price, homePriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-spread-home`), awayPriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-spread-away`) };
+    const periodMapped = PERIOD_MAP[activePeriod] || 'fullGame';
+    const markets = selectedBookMarkets[periodMapped];
+    if (activeMarket === 'spread') {
+      return { line: markets?.spreads?.home?.line, homeLine: markets?.spreads?.home?.line, awayLine: markets?.spreads?.away?.line, price: markets?.spreads?.home?.price, homePrice: markets?.spreads?.home?.price, awayPrice: markets?.spreads?.away?.price, homePriceMovement: generatePriceMovement(`${gameData.id}-${activePeriod}-spread-home`), awayPriceMovement: generatePriceMovement(`${gameData.id}-${activePeriod}-spread-away`) };
     }
-    if (chartMarket === 'total') {
-      return { line: markets?.totals?.line, price: markets?.totals?.over?.price, overPrice: markets?.totals?.over?.price, underPrice: markets?.totals?.under?.price, overPriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-total-over`), underPriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-total-under`) };
+    if (activeMarket === 'total') {
+      return { line: markets?.totals?.line, price: markets?.totals?.over?.price, overPrice: markets?.totals?.over?.price, underPrice: markets?.totals?.under?.price, overPriceMovement: generatePriceMovement(`${gameData.id}-${activePeriod}-total-over`), underPriceMovement: generatePriceMovement(`${gameData.id}-${activePeriod}-total-under`) };
     }
-    return { line: undefined, price: markets?.h2h?.home?.price, homePrice: markets?.h2h?.home?.price, awayPrice: markets?.h2h?.away?.price, homePriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-ml-home`), awayPriceMovement: generatePriceMovement(`${gameData.id}-${activeTab}-ml-away`) };
+    return { line: undefined, price: markets?.h2h?.home?.price, homePrice: markets?.h2h?.home?.price, awayPrice: markets?.h2h?.away?.price, homePriceMovement: generatePriceMovement(`${gameData.id}-${activePeriod}-ml-home`), awayPriceMovement: generatePriceMovement(`${gameData.id}-${activePeriod}-ml-away`) };
   };
 
   const getChartSelection = (): ChartSelection => {
     const periodLabels: Record<string, string> = { 'full': 'Full Game', '1h': '1st Half', '2h': '2nd Half', '1q': '1Q', '2q': '2Q', '3q': '3Q', '4q': '4Q', '1p': '1P', '2p': '2P', '3p': '3P' };
     const marketLabels: Record<string, string> = { 'spread': 'Spread', 'total': 'Total', 'moneyline': 'ML' };
     const values = getCurrentMarketValues();
-    return { type: 'market', market: chartMarket, period: activeTab, label: `${periodLabels[activeTab] || 'Full'} ${marketLabels[chartMarket]}`, ...values };
+    return { type: 'market', market: activeMarket, period: activePeriod, label: `${periodLabels[activePeriod] || 'Full'} ${marketLabels[activeMarket]}`, ...values };
   };
 
   const chartSelection = getChartSelection();
 
   const getLineHistory = () => {
     const periodKeyMap: Record<string, string> = { 'full': 'full', '1h': 'h1', '2h': 'h2', '1q': 'q1', '2q': 'q2', '3q': 'q3', '4q': 'q4', '1p': 'p1', '2p': 'p2', '3p': 'p3' };
-    const periodKey = periodKeyMap[activeTab] || 'full';
-    const lazyData = lazyLineHistory[periodKey]?.[chartMarket];
+    const periodKey = periodKeyMap[activePeriod] || 'full';
+    const lazyData = lazyLineHistory[periodKey]?.[activeMarket];
     if (lazyData && lazyData.length > 0) return lazyData;
-    return marketGroups.lineHistory?.[periodKey]?.[chartMarket] || [];
+    return selectedBookMarkets.lineHistory?.[periodKey]?.[activeMarket] || [];
   };
 
-  const handleSelectMarket = (market: 'spread' | 'total' | 'moneyline') => { setChartMarket(market); setChartViewMode('line'); };
-
-  // Lazy-load line history
-  const handleTabChange = async (tab: string) => {
-    setActiveTab(tab);
+  // Lazy-load line history for non-full-game periods
+  const handlePeriodChange = async (period: string) => {
+    setActivePeriod(period);
     const tabToPeriod: Record<string, string> = { 'full': 'full', '1h': 'h1', '2h': 'h2', '1q': 'q1', '2q': 'q2', '3q': 'q3', '4q': 'q4', '1p': 'p1', '2p': 'p2', '3p': 'p3' };
-    const periodKey = tabToPeriod[tab];
-    if (!periodKey || tab === 'full' || tab === 'team' || tab === 'alt') return;
+    const periodKey = tabToPeriod[period];
+    if (!periodKey || period === 'full') return;
     if (lazyLineHistory[periodKey]) return;
     if (loadingPeriods.has(periodKey)) return;
-    const serverData = marketGroups.lineHistory?.[periodKey];
+    const serverData = selectedBookMarkets.lineHistory?.[periodKey];
     if (serverData?.spread?.length > 0 || serverData?.moneyline?.length > 0 || serverData?.total?.length > 0) return;
     setLoadingPeriods(prev => new Set(prev).add(periodKey));
     try {
@@ -1349,38 +1015,43 @@ export function GameDetailClient({
     }
   };
 
-  const tabs = [
-    { key: 'full', label: 'Full' },
-    ...(availableTabs?.firstHalf ? [{ key: '1h', label: '1H' }] : []),
-    ...(availableTabs?.secondHalf ? [{ key: '2h', label: '2H' }] : []),
-    ...(availableTabs?.q1 && !isNHL ? [{ key: '1q', label: '1Q' }] : []),
-    ...(availableTabs?.q2 && !isNHL ? [{ key: '2q', label: '2Q' }] : []),
-    ...(availableTabs?.q3 && !isNHL ? [{ key: '3q', label: '3Q' }] : []),
-    ...(availableTabs?.q4 && !isNHL ? [{ key: '4q', label: '4Q' }] : []),
-    ...(availableTabs?.p1 && isNHL ? [{ key: '1p', label: '1P' }] : []),
-    ...(availableTabs?.p2 && isNHL ? [{ key: '2p', label: '2P' }] : []),
-    ...(availableTabs?.p3 && isNHL ? [{ key: '3p', label: '3P' }] : []),
-    ...(availableTabs?.teamTotals ? [{ key: 'team', label: 'Team Tot' }] : []),
-    ...(availableTabs?.alternates ? [{ key: 'alt', label: 'Alt Lines' }] : []),
-  ];
+  // Compute OMI fair line for the convergence chart overlay
+  const getOmiFairLineForChart = (): number | undefined => {
+    if (!pythonPillarScores) return undefined;
+    const periodMapped = PERIOD_MAP[activePeriod] || 'fullGame';
+    // Get consensus from all sportsbooks for this period
+    const allBooksForPeriod = Object.entries(bookmakers)
+      .filter(([key]) => { const c = BOOK_CONFIG[key]; return !c || c.type === 'sportsbook'; })
+      .map(([, data]) => (data as any).marketGroups?.[periodMapped])
+      .filter(Boolean);
 
-  // Best edge for header
-  const getBestEdge = () => {
-    if (!activeCeq?.bestEdge || activeCeq.bestEdge.ceq < 60) return null;
-    const be = activeCeq.bestEdge;
-    const sideLabel = be.side === 'home' ? gameData.homeTeam : be.side === 'away' ? gameData.awayTeam : be.side === 'over' ? 'Over' : be.side === 'under' ? 'Under' : be.side;
-    return { ceq: be.ceq, side: sideLabel, market: be.market === 'h2h' ? 'ML' : be.market };
+    if (activeMarket === 'spread') {
+      const lines = allBooksForPeriod.map(m => m?.spreads?.home?.line).filter((v): v is number => v !== undefined);
+      const consensus = calcMedian(lines);
+      if (consensus === undefined) return undefined;
+      return calculateFairSpread(consensus, pythonPillarScores.composite).fairLine;
+    }
+    if (activeMarket === 'total') {
+      const lines = allBooksForPeriod.map(m => m?.totals?.line).filter((v): v is number => v !== undefined);
+      const consensus = calcMedian(lines);
+      if (consensus === undefined) return undefined;
+      return calculateFairTotal(consensus, pythonPillarScores.gameEnvironment).fairLine;
+    }
+    // Moneyline: return fair home odds
+    return calculateFairMoneyline(pythonPillarScores.composite).homeOdds;
   };
+
+  const omiFairLineForChart = getOmiFairLineForChart();
 
   return (
     <>
-      {/* Desktop: Bloomberg Terminal Grid */}
+      {/* Desktop: OMI Fair Pricing Grid */}
       <div
         className="hidden lg:grid h-full relative"
         style={{
-          gridTemplateRows: '36px minmax(140px, 1fr) minmax(120px, 1fr) minmax(180px, 2fr)',
+          gridTemplateRows: '36px 1fr minmax(180px, auto)',
           gridTemplateColumns: '2fr 3fr',
-          gridTemplateAreas: `"header header" "chart fairline" "pillars ceqfactors" "markets markets"`,
+          gridTemplateAreas: `"header header" "pricing pricing" "analysis chart"`,
           gap: '1px',
           background: '#27272a',
           fontVariantNumeric: 'tabular-nums',
@@ -1391,26 +1062,96 @@ export function GameDetailClient({
           backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px)',
           mixBlendMode: 'multiply',
         }} />
+
         <TerminalHeader
           awayTeam={gameData.awayTeam}
           homeTeam={gameData.homeTeam}
           commenceTime={gameData.commenceTime}
-          totalEdgeCount={totalEdgeCount}
-          bestEdge={getBestEdge()}
+          activeMarket={activeMarket}
           selectedBook={selectedBook}
           filteredBooks={filteredBooks}
           onSelectBook={setSelectedBook}
           isLive={isLive}
         />
 
-        {/* Chart cell */}
+        <OmiFairPricing
+          pythonPillars={pythonPillarScores}
+          bookmakers={bookmakers}
+          gameData={gameData}
+          sportKey={gameData.sportKey}
+          availableTabs={availableTabs}
+          activeMarket={activeMarket}
+          activePeriod={activePeriod}
+          onMarketChange={setActiveMarket}
+          onPeriodChange={handlePeriodChange}
+        />
+
+        <WhyThisPrice
+          pythonPillars={pythonPillarScores}
+          ceq={activeCeq}
+          homeTeam={gameData.homeTeam}
+          awayTeam={gameData.awayTeam}
+        />
+
+        {/* Convergence chart */}
         <div className="bg-[#0a0a0a] p-2 relative" style={{ gridArea: 'chart' }}>
-          {isSpecialTab ? (
-            <div className="h-full flex items-center justify-center text-zinc-500 text-[11px]">
-              {activeTab === 'team' ? 'Team totals' : 'Alt lines'}
-            </div>
-          ) : (
-            <>
+          <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-1 block">Line Convergence</span>
+          <div className="h-[calc(100%-20px)]">
+            <LineMovementChart
+              gameId={gameData.id}
+              selection={chartSelection}
+              lineHistory={getLineHistory()}
+              selectedBook={selectedBook}
+              homeTeam={gameData.homeTeam}
+              awayTeam={gameData.awayTeam}
+              viewMode={chartViewMode}
+              onViewModeChange={setChartViewMode}
+              commenceTime={gameData.commenceTime}
+              sportKey={gameData.sportKey}
+              compact
+              omiFairLine={omiFairLineForChart}
+            />
+          </div>
+          {showLiveLock && <LiveLockOverlay />}
+        </div>
+      </div>
+
+      {/* Mobile: Single-column scrollable fallback */}
+      <div className="lg:hidden h-auto overflow-y-auto bg-[#0a0a0a]">
+        <TerminalHeader
+          awayTeam={gameData.awayTeam}
+          homeTeam={gameData.homeTeam}
+          commenceTime={gameData.commenceTime}
+          activeMarket={activeMarket}
+          selectedBook={selectedBook}
+          filteredBooks={filteredBooks}
+          onSelectBook={setSelectedBook}
+          isLive={isLive}
+        />
+
+        <div className="p-2 space-y-2">
+          <OmiFairPricing
+            pythonPillars={pythonPillarScores}
+            bookmakers={bookmakers}
+            gameData={gameData}
+            sportKey={gameData.sportKey}
+            availableTabs={availableTabs}
+            activeMarket={activeMarket}
+            activePeriod={activePeriod}
+            onMarketChange={setActiveMarket}
+            onPeriodChange={handlePeriodChange}
+          />
+
+          <WhyThisPrice
+            pythonPillars={pythonPillarScores}
+            ceq={activeCeq}
+            homeTeam={gameData.homeTeam}
+            awayTeam={gameData.awayTeam}
+          />
+
+          <div className="h-[200px] relative bg-zinc-900/50 rounded p-2">
+            <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-1 block">Line Convergence</span>
+            <div className="h-[calc(100%-20px)]">
               <LineMovementChart
                 gameId={gameData.id}
                 selection={chartSelection}
@@ -1422,110 +1163,10 @@ export function GameDetailClient({
                 onViewModeChange={setChartViewMode}
                 commenceTime={gameData.commenceTime}
                 sportKey={gameData.sportKey}
-                compact
+                omiFairLine={omiFairLineForChart}
               />
-              {showLiveLock && <LiveLockOverlay />}
-            </>
-          )}
-        </div>
-
-        <FairLinePanel
-          pythonPillars={pythonPillarScores}
-          marketGroups={marketGroups}
-          homeTeam={gameData.homeTeam}
-          awayTeam={gameData.awayTeam}
-          sportKey={gameData.sportKey}
-        />
-
-        <PillarBarsCompact pythonPillars={pythonPillarScores} />
-
-        <CEQBarsCompact ceq={activeCeq} />
-
-        <MarketsTable
-          gameData={gameData}
-          marketGroups={marketGroups}
-          bookmakers={bookmakers}
-          activeTab={activeTab}
-          onTabChange={handleTabChange}
-          tabs={tabs}
-          chartMarket={chartMarket}
-          onSelectMarket={handleSelectMarket}
-          ceq={activeCeq}
-          teamTotalsCeq={teamTotalsCeq}
-          sportKey={gameData.sportKey}
-          selectedBook={selectedBook}
-        />
-      </div>
-
-      {/* Mobile: Single-column scrollable fallback */}
-      <div className="lg:hidden h-auto overflow-y-auto">
-        <TerminalHeader
-          awayTeam={gameData.awayTeam}
-          homeTeam={gameData.homeTeam}
-          commenceTime={gameData.commenceTime}
-          totalEdgeCount={totalEdgeCount}
-          bestEdge={getBestEdge()}
-          selectedBook={selectedBook}
-          filteredBooks={filteredBooks}
-          onSelectBook={setSelectedBook}
-          isLive={isLive}
-        />
-
-        <div className="p-2 space-y-2 bg-[#0a0a0a]">
-          {/* Chart */}
-          <div className="h-[200px] relative bg-zinc-900/50 rounded p-2">
-            {!isSpecialTab ? (
-              <>
-                <LineMovementChart
-                  gameId={gameData.id}
-                  selection={chartSelection}
-                  lineHistory={getLineHistory()}
-                  selectedBook={selectedBook}
-                  homeTeam={gameData.homeTeam}
-                  awayTeam={gameData.awayTeam}
-                  viewMode={chartViewMode}
-                  onViewModeChange={setChartViewMode}
-                  commenceTime={gameData.commenceTime}
-                  sportKey={gameData.sportKey}
-                />
-                {showLiveLock && <LiveLockOverlay />}
-              </>
-            ) : (
-              <div className="h-full flex items-center justify-center text-zinc-500 text-[11px]">No chart for this tab</div>
-            )}
-          </div>
-
-          {/* Fair Line */}
-          <FairLinePanel
-            pythonPillars={pythonPillarScores}
-            marketGroups={marketGroups}
-            homeTeam={gameData.homeTeam}
-            awayTeam={gameData.awayTeam}
-            sportKey={gameData.sportKey}
-          />
-
-          {/* Pillars */}
-          <PillarBarsCompact pythonPillars={pythonPillarScores} />
-
-          {/* CEQ */}
-          <CEQBarsCompact ceq={activeCeq} />
-
-          {/* Markets */}
-          <div className="min-h-[300px]">
-            <MarketsTable
-              gameData={gameData}
-              marketGroups={marketGroups}
-              bookmakers={bookmakers}
-              activeTab={activeTab}
-              onTabChange={handleTabChange}
-              tabs={tabs}
-              chartMarket={chartMarket}
-              onSelectMarket={handleSelectMarket}
-              ceq={activeCeq}
-              teamTotalsCeq={teamTotalsCeq}
-              sportKey={gameData.sportKey}
-              selectedBook={selectedBook}
-            />
+            </div>
+            {showLiveLock && <LiveLockOverlay />}
           </div>
         </div>
       </div>

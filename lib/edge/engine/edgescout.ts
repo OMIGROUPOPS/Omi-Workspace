@@ -58,6 +58,7 @@ export interface ExtendedOddsSnapshot extends OddsSnapshot {
 
 export const FAIR_LINE_SPREAD_FACTOR = 0.15; // 10-point deviation ≈ 1.5 spread points
 export const FAIR_LINE_TOTAL_FACTOR = 0.20;  // 10-point deviation ≈ 2.0 total points
+export const FAIR_LINE_ML_FACTOR = 0.01;     // 1% implied probability shift per composite point
 
 /**
  * Calculate a fair spread based on book spread + pillar composite deviation.
@@ -94,6 +95,25 @@ export function calculateFairTotal(
   const gap = Math.round((fairLine - bookTotal) * 10) / 10;
   const edgeSide = Math.abs(gap) < 0.5 ? null : gap > 0 ? 'over' : 'under';
   return { fairLine, gap, edgeSide };
+}
+
+/**
+ * Calculate fair moneyline odds from pillar composite.
+ * Composite 50 = pick'em (-100/+100 fair, no vig).
+ * Each point from 50 shifts implied probability by FAIR_LINE_ML_FACTOR (1%).
+ * Composite 60 → home 60% implied → home -150, away +167.
+ */
+export function calculateFairMoneyline(
+  pillarComposite: number
+): { homeOdds: number; awayOdds: number } {
+  const deviation = pillarComposite - 50;
+  const homeProb = Math.max(0.05, Math.min(0.95, 0.50 + deviation * FAIR_LINE_ML_FACTOR));
+  const awayProb = 1 - homeProb;
+  const probToAmerican = (prob: number) => {
+    if (prob >= 0.5) return Math.round(-100 * prob / (1 - prob));
+    return Math.round(100 * (1 - prob) / prob);
+  };
+  return { homeOdds: probToAmerican(homeProb), awayOdds: probToAmerican(awayProb) };
 }
 
 // ============================================================================

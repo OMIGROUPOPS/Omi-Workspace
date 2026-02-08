@@ -51,6 +51,52 @@ export interface ExtendedOddsSnapshot extends OddsSnapshot {
 }
 
 // ============================================================================
+// Fair Line Scale Factors
+// ============================================================================
+// Convert pillar composite deviation (from 50 = neutral) to point adjustments
+// Easy to tune: change these constants to adjust fair line sensitivity
+
+export const FAIR_LINE_SPREAD_FACTOR = 0.15; // 10-point deviation ≈ 1.5 spread points
+export const FAIR_LINE_TOTAL_FACTOR = 0.20;  // 10-point deviation ≈ 2.0 total points
+
+/**
+ * Calculate a fair spread based on book spread + pillar composite deviation.
+ * Pillar composite is 0-100, 50 = neutral.
+ * Deviation from 50 is scaled by FAIR_LINE_SPREAD_FACTOR to get point adjustment.
+ * Positive deviation (>50) → home favored more → fair line more negative.
+ */
+export function calculateFairSpread(
+  bookSpread: number,
+  pillarComposite: number
+): { fairLine: number; gap: number; edgeSide: string | null } {
+  const deviation = pillarComposite - 50;
+  const adjustment = deviation * FAIR_LINE_SPREAD_FACTOR;
+  // Positive pillar deviation = home-favored thesis → subtract from spread (more negative)
+  const fairLine = Math.round((bookSpread - adjustment) * 2) / 2; // Round to 0.5
+  const gap = Math.round((bookSpread - fairLine) * 10) / 10;
+  const edgeSide = Math.abs(gap) < 0.5 ? null : gap > 0 ? 'away' : 'home';
+  return { fairLine, gap, edgeSide };
+}
+
+/**
+ * Calculate a fair total based on book total + game environment deviation.
+ * Game environment score is 0-100, 50 = neutral.
+ * >50 = expects OVER, <50 = expects UNDER.
+ */
+export function calculateFairTotal(
+  bookTotal: number,
+  gameEnvScore: number
+): { fairLine: number; gap: number; edgeSide: string | null } {
+  const deviation = gameEnvScore - 50;
+  const adjustment = deviation * FAIR_LINE_TOTAL_FACTOR;
+  // Positive deviation = over-favored → fair total is higher
+  const fairLine = Math.round((bookTotal + adjustment) * 2) / 2; // Round to 0.5
+  const gap = Math.round((fairLine - bookTotal) * 10) / 10;
+  const edgeSide = Math.abs(gap) < 0.5 ? null : gap > 0 ? 'over' : 'under';
+  return { fairLine, gap, edgeSide };
+}
+
+// ============================================================================
 // Python Backend Pillar Scores (Harmonization)
 // ============================================================================
 // When Python backend is available, we use its pillar scores to boost/adjust

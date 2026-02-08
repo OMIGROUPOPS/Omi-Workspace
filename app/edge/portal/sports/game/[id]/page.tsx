@@ -1,4 +1,3 @@
-import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import Link from 'next/link';
 import { GameDetailClient } from '@/components/edge/GameDetailClient';
 import { cookies } from 'next/headers';
@@ -878,7 +877,6 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   }
 
   const fullSportKey = sportKey;
-  const sportConfig = SUPPORTED_SPORTS.find(s => s.key === fullSportKey);
 
   // DEBUG: Log gameContext before CEQ calculation
   console.log(`[PAGE] gameContext received:`, JSON.stringify({
@@ -1260,47 +1258,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   );
 
   return (
-    <div className="py-6">
-      <div className="mb-6">
-        <a
-          href="/edge/portal/sports"
-          className="inline-flex items-center gap-2 text-zinc-400 hover:text-zinc-100 transition-colors mb-4 cursor-pointer"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-          </svg>
-          Back to Dashboard
-        </a>
-        
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="text-3xl">{sportConfig?.icon || '🏆'}</div>
-            <div>
-              <div className="flex items-center gap-3">
-                <h1 className="text-2xl font-bold text-zinc-100">{awayTeam} @ {homeTeam}</h1>
-                {totalEdgeCount > 0 && (
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30">
-                    <span className="text-sm">🔥</span>
-                    <span className="text-sm font-bold text-emerald-400">{totalEdgeCount} Edge{totalEdgeCount !== 1 ? 's' : ''}</span>
-                  </div>
-                )}
-              </div>
-              <p className="text-zinc-400">
-                {new Date(commenceTime).toLocaleString('en-US', {
-                  weekday: 'long',
-                  month: 'long',
-                  day: 'numeric',
-                  hour: 'numeric',
-                  minute: '2-digit',
-                  timeZone: 'America/New_York',
-                })} ET
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
+    <div className="h-[calc(100vh-56px)] overflow-hidden">
       <GameDetailClient
         gameData={{ id: gameId, homeTeam, awayTeam, sportKey: fullSportKey, commenceTime }}
         bookmakers={bookmakers}
@@ -1312,16 +1270,16 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
         ceqByPeriod={ceqByPeriod}
         teamTotalsCeq={teamTotalsCeq}
         edgeCountBreakdown={edgeCountBreakdown}
+        pythonPillarScores={pythonPillars}
+        totalEdgeCount={totalEdgeCount}
         availableTabs={{
           fullGame: true,
           firstHalf: hasFirstHalf || isFootball || isBasketball || isNHL,
           secondHalf: hasSecondHalf || isFootball || isBasketball,
-          // Use actual data availability for quarters, not just sport type
           q1: hasQuarters || ((isFootball || isBasketball) && !isNHL),
           q2: hasQuarters || ((isFootball || isBasketball) && !isNHL),
           q3: hasQuarters || ((isFootball || isBasketball) && !isNHL),
           q4: hasQuarters || ((isFootball || isBasketball) && !isNHL),
-          // Use actual data availability for hockey periods
           p1: hasHockeyPeriods || isNHL,
           p2: hasHockeyPeriods || isNHL,
           p3: hasHockeyPeriods || isNHL,

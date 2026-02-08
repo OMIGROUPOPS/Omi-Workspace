@@ -499,6 +499,7 @@ interface BookRow {
 function OmiFairPricing({
   pythonPillars, bookmakers, gameData, sportKey, availableTabs,
   activeMarket, activePeriod, onMarketChange, onPeriodChange,
+  chartViewMode, onViewModeChange,
 }: {
   pythonPillars: PythonPillarScores | null | undefined;
   bookmakers: Record<string, any>;
@@ -509,6 +510,8 @@ function OmiFairPricing({
   activePeriod: string;
   onMarketChange: (m: ActiveMarket) => void;
   onPeriodChange: (p: string) => void;
+  chartViewMode: ChartViewMode;
+  onViewModeChange: (mode: ChartViewMode) => void;
 }) {
   const isSoccer = sportKey?.includes('soccer') ?? false;
   const isNHL = sportKey?.includes('icehockey') ?? false;
@@ -545,7 +548,7 @@ function OmiFairPricing({
   // Signal determination
   const getSignal = (gap: number, market: ActiveMarket): BookRow['signal'] => {
     const thresholds = market === 'moneyline'
-      ? { mispriced: 5, value: 2, sharp: 0.5 }
+      ? { mispriced: 10, value: 5, sharp: 1 }
       : { mispriced: 1.0, value: 0.5, sharp: 0.25 };
     if (gap <= thresholds.sharp) return 'SHARP';
     if (gap < thresholds.value) return 'FAIR';
@@ -589,16 +592,23 @@ function OmiFairPricing({
           signal: getSignal(gap, 'total'),
         });
       } else {
-        // Moneyline
+        // Moneyline — show both sides, gap = implied prob diff, juice = vig%
         const bookHomeOdds = book.markets?.h2h?.home?.price;
+        const bookAwayOdds = book.markets?.h2h?.away?.price;
         if (bookHomeOdds === undefined || !omiFairML) continue;
         const bookImplied = americanToImplied(bookHomeOdds) * 100;
         const omiImplied = americanToImplied(omiFairML.homeOdds) * 100;
         const gap = Math.abs(Math.round((bookImplied - omiImplied) * 10) / 10);
+        // Vig = sum of implied probabilities - 100%
+        const vig = bookAwayOdds !== undefined
+          ? Math.round((americanToImplied(bookHomeOdds) + americanToImplied(bookAwayOdds) - 1) * 1000) / 10
+          : undefined;
         rows.push({
           key: book.key, name: book.name, color: book.color,
-          line: formatOdds(bookHomeOdds),
-          juice: '--',
+          line: bookAwayOdds !== undefined
+            ? `${formatOdds(bookHomeOdds)} / ${formatOdds(bookAwayOdds)}`
+            : formatOdds(bookHomeOdds),
+          juice: vig !== undefined ? `${vig.toFixed(1)}%` : '--',
           gap,
           signal: getSignal(gap, 'moneyline'),
         });
@@ -642,18 +652,33 @@ function OmiFairPricing({
 
   return (
     <div className="bg-[#0a0a0a] p-3 h-full flex flex-col overflow-auto" style={{ gridArea: 'pricing' }}>
-      {/* Market tabs */}
-      <div className="flex items-center justify-between mb-3 flex-shrink-0">
-        <div className="flex gap-0 border-b border-zinc-800">
-          {(['spread', 'total', 'moneyline'] as const).filter(m => !isSoccer || m !== 'spread').map(m => (
-            <button key={m} onClick={() => onMarketChange(m)}
-              className={`px-3 py-1.5 text-[11px] font-medium transition-all relative ${activeMarket === m ? 'text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>
-              {m.charAt(0).toUpperCase() + m.slice(1)}
-              {activeMarket === m && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" style={{ boxShadow: '0 1px 4px rgba(34,211,238,0.3)' }} />}
-            </button>
-          ))}
+      {/* Market tabs + Period sub-tabs + Line/Price toggle */}
+      <div className="flex flex-col gap-1.5 mb-3 flex-shrink-0">
+        <div className="flex items-center justify-between">
+          <div className="flex gap-0 border-b border-zinc-800">
+            {(['spread', 'total', 'moneyline'] as const).filter(m => !isSoccer || m !== 'spread').map(m => (
+              <button key={m} onClick={() => onMarketChange(m)}
+                className={`px-3 py-1.5 text-[11px] font-medium transition-all relative ${activeMarket === m ? 'text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>
+                {m.charAt(0).toUpperCase() + m.slice(1)}
+                {activeMarket === m && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" style={{ boxShadow: '0 1px 4px rgba(34,211,238,0.3)' }} />}
+              </button>
+            ))}
+          </div>
+          {/* Line / Price toggle */}
+          {activeMarket !== 'moneyline' && (
+            <div className="flex rounded overflow-hidden border border-zinc-700/50">
+              <button
+                onClick={() => onViewModeChange('line')}
+                className={`px-2 py-0.5 text-[9px] font-medium transition-colors ${chartViewMode === 'line' ? 'bg-zinc-700 text-zinc-100' : 'bg-transparent text-zinc-500 hover:text-zinc-300'}`}
+              >Line</button>
+              <button
+                onClick={() => onViewModeChange('price')}
+                className={`px-2 py-0.5 text-[9px] font-medium transition-colors ${chartViewMode === 'price' ? 'bg-zinc-700 text-zinc-100' : 'bg-transparent text-zinc-500 hover:text-zinc-300'}`}
+              >Price</button>
+            </div>
+          )}
         </div>
-        {/* Period sub-tabs */}
+        {/* Period sub-tabs — left-aligned below market tabs */}
         <div className="flex gap-0">
           {periodTabs.map(tab => (
             <button key={tab.key} onClick={() => onPeriodChange(tab.key)}
@@ -681,52 +706,61 @@ function OmiFairPricing({
       {bookRows.length > 0 ? (
         <div className="flex-1 min-h-0" style={{ fontVariantNumeric: 'tabular-nums' }}>
           {/* Table header */}
-          <div className="grid grid-cols-[2px_120px_80px_60px_60px_90px] gap-px text-[9px] text-zinc-500 uppercase tracking-widest font-medium mb-px">
-            <div />
-            <div className="bg-[#0a0a0a] px-2 py-1">Book</div>
-            <div className="bg-[#0a0a0a] px-1 py-1 text-center">Their Line</div>
-            <div className="bg-[#0a0a0a] px-1 py-1 text-center">Juice</div>
-            <div className="bg-[#0a0a0a] px-1 py-1 text-center">Gap</div>
-            <div className="bg-[#0a0a0a] px-1 py-1 text-center">Signal</div>
-          </div>
-          {/* Book rows */}
-          {bookRows.map((row, idx) => {
-            const sc = signalConfig[row.signal];
-            const gapColor = row.signal === 'MISPRICED' ? 'text-emerald-400' :
-              row.signal === 'VALUE' ? 'text-amber-400' :
-              row.signal === 'SHARP' ? 'text-cyan-400' : 'text-zinc-500';
+          {(() => {
+            const gridCols = activeMarket === 'moneyline'
+              ? 'grid-cols-[2px_100px_130px_50px_60px_80px]'
+              : 'grid-cols-[2px_120px_80px_60px_60px_90px]';
             return (
-              <div key={row.key} className={`grid grid-cols-[2px_120px_80px_60px_60px_90px] gap-px mb-px group ${idx % 2 === 1 ? '' : ''}`}>
-                {/* Left accent border */}
-                <div className={`${sc.border.replace('border-l-', 'bg-').replace('-400', '-400')}`} style={{ backgroundColor: row.signal === 'MISPRICED' ? '#34d399' : row.signal === 'VALUE' ? '#fbbf24' : row.signal === 'SHARP' ? '#22d3ee' : '#52525b' }} />
-                {/* Book name */}
-                <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-2 py-1.5 flex items-center gap-1.5 transition-colors">
-                  <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ backgroundColor: row.color }} />
-                  <span className="text-[11px] font-medium text-zinc-200 truncate">{row.name}</span>
+              <>
+                <div className={`grid ${gridCols} gap-px text-[9px] text-zinc-500 uppercase tracking-widest font-medium mb-px`}>
+                  <div />
+                  <div className="bg-[#0a0a0a] px-2 py-1">Book</div>
+                  <div className="bg-[#0a0a0a] px-1 py-1 text-center">{activeMarket === 'moneyline' ? 'Odds' : 'Their Line'}</div>
+                  <div className="bg-[#0a0a0a] px-1 py-1 text-center">{activeMarket === 'moneyline' ? 'Vig' : 'Juice'}</div>
+                  <div className="bg-[#0a0a0a] px-1 py-1 text-center">Gap{activeMarket === 'moneyline' ? '%' : ''}</div>
+                  <div className="bg-[#0a0a0a] px-1 py-1 text-center">Signal</div>
                 </div>
-                {/* Their line */}
-                <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 text-center transition-colors">
-                  <span className="text-[11px] font-mono text-zinc-100">{row.line}</span>
-                </div>
-                {/* Juice */}
-                <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 text-center transition-colors">
-                  <span className="text-[10px] font-mono text-zinc-400">{row.juice}</span>
-                </div>
-                {/* Gap */}
-                <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 text-center transition-colors">
-                  <span className={`text-[11px] font-mono font-semibold ${gapColor}`}>
-                    {row.gap > 0 ? row.gap.toFixed(1) : '0'}
-                  </span>
-                </div>
-                {/* Signal badge */}
-                <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 flex items-center justify-center transition-colors">
-                  <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${sc.badge}`}>
-                    {row.signal} {sc.icon}
-                  </span>
-                </div>
-              </div>
+                {/* Book rows */}
+                {bookRows.map((row, idx) => {
+                  const sc = signalConfig[row.signal];
+                  const gapColor = row.signal === 'MISPRICED' ? 'text-emerald-400' :
+                    row.signal === 'VALUE' ? 'text-amber-400' :
+                    row.signal === 'SHARP' ? 'text-cyan-400' : 'text-zinc-500';
+                  return (
+                    <div key={row.key} className={`grid ${gridCols} gap-px mb-px group`}>
+                      {/* Left accent border */}
+                      <div style={{ backgroundColor: row.signal === 'MISPRICED' ? '#34d399' : row.signal === 'VALUE' ? '#fbbf24' : row.signal === 'SHARP' ? '#22d3ee' : '#52525b' }} />
+                      {/* Book name */}
+                      <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-2 py-1.5 flex items-center gap-1.5 transition-colors">
+                        <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ backgroundColor: row.color }} />
+                        <span className="text-[11px] font-medium text-zinc-200 truncate">{row.name}</span>
+                      </div>
+                      {/* Their line / Odds */}
+                      <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 text-center transition-colors">
+                        <span className="text-[11px] font-mono text-zinc-100">{row.line}</span>
+                      </div>
+                      {/* Juice / Vig */}
+                      <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 text-center transition-colors">
+                        <span className="text-[10px] font-mono text-zinc-400">{row.juice}</span>
+                      </div>
+                      {/* Gap */}
+                      <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 text-center transition-colors">
+                        <span className={`text-[11px] font-mono font-semibold ${gapColor}`}>
+                          {row.gap > 0 ? row.gap.toFixed(1) : '0'}{activeMarket === 'moneyline' ? '%' : ''}
+                        </span>
+                      </div>
+                      {/* Signal badge */}
+                      <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 flex items-center justify-center transition-colors">
+                        <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${sc.badge}`}>
+                          {row.signal} {sc.icon}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
             );
-          })}
+          })()}
         </div>
       ) : (
         <div className="flex-1 flex items-center justify-center text-zinc-500 text-[11px]">
@@ -845,28 +879,88 @@ function WhyThisPrice({
   homeTeam: string;
   awayTeam: string;
 }) {
-  // CEQ summary
+  const homeAbbr = abbrev(homeTeam);
+  const awayAbbr = abbrev(awayTeam);
+
+  // CEQ summary — show bestEdge if available, otherwise show highest market CEQ
   const getCeqSummary = () => {
-    if (!ceq?.bestEdge) return null;
-    const { ceq: ceqVal, confidence, market, side } = ceq.bestEdge;
-    const marketLabel = market === 'h2h' ? 'Moneyline' : market.charAt(0).toUpperCase() + market.slice(1);
-    const sideLabel = side === 'home' ? homeTeam : side === 'away' ? awayTeam : side === 'over' ? 'Over' : side === 'under' ? 'Under' : side;
-    const confDesc: Record<string, string> = {
-      'STRONG': 'Market strongly validates thesis',
-      'EDGE': 'Market validates thesis',
-      'WATCH': 'Market partially validates thesis',
-      'PASS': 'Market does not validate thesis',
-      'RARE': 'Exceptional edge detected',
-    };
+    if (ceq?.bestEdge) {
+      const { ceq: ceqVal, confidence, market, side } = ceq.bestEdge;
+      const marketLabel = market === 'h2h' ? 'Moneyline' : market.charAt(0).toUpperCase() + market.slice(1);
+      const sideLabel = side === 'home' ? homeTeam : side === 'away' ? awayTeam : side === 'over' ? 'Over' : side === 'under' ? 'Under' : side;
+      const confDesc: Record<string, string> = {
+        'STRONG': 'Market strongly validates thesis',
+        'EDGE': 'Market validates thesis',
+        'WATCH': 'Market partially validates thesis',
+        'PASS': 'Market does not validate thesis',
+        'RARE': 'Exceptional edge detected',
+      };
+      return {
+        ceq: ceqVal, confidence,
+        text: `CEQ: ${ceqVal}% ${confidence} — ${confDesc[confidence] || 'Unknown'}`,
+        detail: `${sideLabel} ${marketLabel}`,
+      };
+    }
+    // No bestEdge — find highest CEQ across all markets
+    if (!ceq) return null;
+    const candidates: { ceq: number; confidence: string; label: string }[] = [];
+    if (ceq.spreads?.home) candidates.push({ ceq: ceq.spreads.home.ceq, confidence: ceq.spreads.home.confidence, label: `${homeTeam} Spread` });
+    if (ceq.spreads?.away) candidates.push({ ceq: ceq.spreads.away.ceq, confidence: ceq.spreads.away.confidence, label: `${awayTeam} Spread` });
+    if (ceq.h2h?.home) candidates.push({ ceq: ceq.h2h.home.ceq, confidence: ceq.h2h.home.confidence, label: `${homeTeam} ML` });
+    if (ceq.h2h?.away) candidates.push({ ceq: ceq.h2h.away.ceq, confidence: ceq.h2h.away.confidence, label: `${awayTeam} ML` });
+    if (ceq.totals?.over) candidates.push({ ceq: ceq.totals.over.ceq, confidence: ceq.totals.over.confidence, label: 'Over' });
+    if (ceq.totals?.under) candidates.push({ ceq: ceq.totals.under.ceq, confidence: ceq.totals.under.confidence, label: 'Under' });
+    if (candidates.length === 0) return null;
+    const best = candidates.sort((a, b) => b.ceq - a.ceq)[0];
     return {
-      ceq: ceqVal,
-      confidence,
-      text: `CEQ: ${ceqVal}% ${confidence} — ${confDesc[confidence] || 'Unknown'}`,
-      detail: `${sideLabel} ${marketLabel}`,
+      ceq: best.ceq, confidence: best.confidence,
+      text: `CEQ: ${best.ceq}% ${best.confidence} — No strong edge detected`,
+      detail: best.label,
     };
   };
 
+  // Generate plain-English pillar summary
+  const generatePillarSummary = (): string[] => {
+    if (!pythonPillars) return [];
+    const lines: string[] = [];
+    const comp = pythonPillars.composite;
+    const homeFavored = comp > 52;
+    const awayFavored = comp < 48;
+    const team = homeFavored ? homeAbbr : awayAbbr;
+
+    // Main thesis line
+    if (homeFavored || awayFavored) {
+      const strength = Math.abs(comp - 50) > 10 ? 'strongly' : 'slightly';
+      lines.push(`Pillars ${strength} favor ${team} (composite ${comp}).`);
+    } else {
+      lines.push(`No strong lean — composite near neutral (${comp}).`);
+    }
+
+    // Top driver(s)
+    const pillarData = [
+      { key: 'execution', label: 'Execution', score: pythonPillars.execution },
+      { key: 'flow', label: 'Sharp flow', score: pythonPillars.flow },
+      { key: 'shocks', label: 'Shocks', score: pythonPillars.shocks },
+      { key: 'incentives', label: 'Incentives', score: pythonPillars.incentives },
+      { key: 'timeDecay', label: 'Time decay', score: pythonPillars.timeDecay },
+      { key: 'gameEnvironment', label: 'Game environment', score: pythonPillars.gameEnvironment },
+    ];
+    const extreme = pillarData
+      .map(p => ({ ...p, deviation: Math.abs(p.score - 50) }))
+      .sort((a, b) => b.deviation - a.deviation)
+      .filter(p => p.deviation > 5);
+
+    if (extreme.length > 0) {
+      const top = extreme[0];
+      const direction = top.score > 50 ? homeAbbr : awayAbbr;
+      lines.push(`${top.label} (${top.score}) is the top driver, leaning ${direction}.`);
+    }
+
+    return lines;
+  };
+
   const ceqSummary = getCeqSummary();
+  const pillarSummary = generatePillarSummary();
 
   const confColor = ceqSummary ? (
     ceqSummary.confidence === 'STRONG' || ceqSummary.confidence === 'RARE' ? 'text-emerald-400' :
@@ -879,6 +973,14 @@ function WhyThisPrice({
       <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-2">Why This Price</span>
       <div className="flex-1 min-h-0 overflow-auto">
         <PillarBarsCompact pythonPillars={pythonPillars} homeTeam={homeTeam} awayTeam={awayTeam} />
+        {/* Generated pillar summary */}
+        {pillarSummary.length > 0 && (
+          <div className="mt-1.5 space-y-0.5">
+            {pillarSummary.map((line, i) => (
+              <p key={i} className="text-[10px] text-zinc-400 leading-tight">{line}</p>
+            ))}
+          </div>
+        )}
         {/* CEQ summary line */}
         {ceqSummary ? (
           <div className="mt-2 pt-1.5 border-t border-zinc-800/50">
@@ -889,7 +991,9 @@ function WhyThisPrice({
           </div>
         ) : (
           <div className="mt-2 pt-1.5 border-t border-zinc-800/50">
-            <div className="text-[10px] text-zinc-600">No CEQ validation data</div>
+            <div className="text-[10px] text-zinc-600">
+              {ceq === undefined ? 'CEQ loading...' : 'No market data for CEQ validation'}
+            </div>
           </div>
         )}
       </div>
@@ -1049,7 +1153,7 @@ export function GameDetailClient({
       <div
         className="hidden lg:grid h-full relative"
         style={{
-          gridTemplateRows: '36px 1fr minmax(180px, auto)',
+          gridTemplateRows: '36px auto 1fr',
           gridTemplateColumns: '2fr 3fr',
           gridTemplateAreas: `"header header" "pricing pricing" "analysis chart"`,
           gap: '1px',
@@ -1084,6 +1188,8 @@ export function GameDetailClient({
           activePeriod={activePeriod}
           onMarketChange={setActiveMarket}
           onPeriodChange={handlePeriodChange}
+          chartViewMode={chartViewMode}
+          onViewModeChange={setChartViewMode}
         />
 
         <WhyThisPrice
@@ -1140,6 +1246,8 @@ export function GameDetailClient({
             activePeriod={activePeriod}
             onMarketChange={setActiveMarket}
             onPeriodChange={handlePeriodChange}
+            chartViewMode={chartViewMode}
+            onViewModeChange={setChartViewMode}
           />
 
           <WhyThisPrice

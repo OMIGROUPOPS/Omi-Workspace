@@ -620,6 +620,18 @@ function OmiFairPricing({
   const selBook = allBooks.find(b => b.key === selectedBook);
   const selBookName = BOOK_CONFIG[selectedBook]?.name || selectedBook;
 
+  // DEBUG: Log market data availability per book (helps diagnose empty blocks)
+  if (typeof window !== 'undefined') {
+    console.log(`[OmiFairPricing] allBooks(${allBooks.length}):`, allBooks.map(b => b.key));
+    console.log(`[OmiFairPricing] selBook="${selectedBook}" found=${!!selBook}`);
+    if (selBook) {
+      console.log(`[OmiFairPricing] selBook.markets keys:`, selBook.markets ? Object.keys(selBook.markets) : 'none');
+      console.log(`[OmiFairPricing] spreads:`, selBook.markets?.spreads ? { homeLine: selBook.markets.spreads.home?.line, awayLine: selBook.markets.spreads.away?.line } : null);
+      console.log(`[OmiFairPricing] totals:`, selBook.markets?.totals ? { line: selBook.markets.totals.line, overPrice: selBook.markets.totals.over?.price } : null);
+      console.log(`[OmiFairPricing] h2h:`, selBook.markets?.h2h ? { homePrice: selBook.markets.h2h.home?.price, awayPrice: selBook.markets.h2h.away?.price } : null);
+    }
+  }
+
   // Calculate consensus lines (median across all sportsbooks)
   const spreadLines = allBooks.map(b => b.markets?.spreads?.home?.line).filter((v): v is number => v !== undefined);
   const totalLines = allBooks.map(b => b.markets?.totals?.line).filter((v): v is number => v !== undefined);

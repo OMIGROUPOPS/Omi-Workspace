@@ -893,31 +893,6 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
       });
     }
 
-    // Merge per-book odds from backend (line_snapshots) to fill gaps in cache
-    if (perBookOdds?.bookmakers) {
-      const backendBooks = perBookOdds.bookmakers as Record<string, any>;
-      for (const [bookKey, bookData] of Object.entries(backendBooks)) {
-        if (!bookmakers[bookKey]) {
-          bookmakers[bookKey] = bookData;
-          if (!availableBooks.includes(bookKey)) availableBooks.push(bookKey);
-        } else if (bookmakers[bookKey]?.marketGroups) {
-          const mg = bookmakers[bookKey].marketGroups;
-          const bmg = (bookData as any).marketGroups;
-          if (bmg) {
-            const periods = ['fullGame', 'firstHalf', 'secondHalf', 'q1', 'q2', 'q3', 'q4', 'p1', 'p2', 'p3'];
-            for (const p of periods) {
-              if (mg[p] && bmg[p]) {
-                if (!mg[p].h2h && bmg[p].h2h) mg[p].h2h = bmg[p].h2h;
-                if (!mg[p].totals && bmg[p].totals) mg[p].totals = bmg[p].totals;
-                if (!mg[p].spreads && bmg[p].spreads) mg[p].spreads = bmg[p].spreads;
-              }
-            }
-          }
-        }
-      }
-      console.log('[DATA PATH] Merged perBookOdds from backend line_snapshots');
-    }
-
     // Inject line history and props into each book
     Object.keys(bookmakers).forEach(book => {
       if (bookmakers[book].marketGroups) {

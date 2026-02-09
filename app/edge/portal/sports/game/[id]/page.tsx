@@ -36,14 +36,16 @@ async function fetchPythonPillars(gameId: string, sport: string): Promise<Python
 
     // Transform from 0-1 scale to 0-100
     // Note: Python uses snake_case (time_decay, game_environment)
+    // Use ?? (nullish coalescing) not || to preserve valid 0 scores
+    const ps = data.pillar_scores ?? {};
     return {
-      execution: Math.round((data.pillar_scores?.execution || 0.5) * 100),
-      incentives: Math.round((data.pillar_scores?.incentives || 0.5) * 100),
-      shocks: Math.round((data.pillar_scores?.shocks || 0.5) * 100),
-      timeDecay: Math.round((data.pillar_scores?.time_decay || 0.5) * 100),
-      flow: Math.round((data.pillar_scores?.flow || 0.5) * 100),
-      gameEnvironment: Math.round((data.pillar_scores?.game_environment || 0.5) * 100),
-      composite: Math.round((data.composite_score || 0.5) * 100),
+      execution: Math.round((ps.execution ?? 0.5) * 100),
+      incentives: Math.round((ps.incentives ?? 0.5) * 100),
+      shocks: Math.round((ps.shocks ?? 0.5) * 100),
+      timeDecay: Math.round((ps.time_decay ?? 0.5) * 100),
+      flow: Math.round((ps.flow ?? 0.5) * 100),
+      gameEnvironment: Math.round((ps.game_environment ?? 0.5) * 100),
+      composite: Math.round((data.composite_score ?? 0.5) * 100),
     };
   } catch (error) {
     console.log(`[PythonPillars] Failed to fetch: ${error instanceof Error ? error.message : 'unknown'}`);

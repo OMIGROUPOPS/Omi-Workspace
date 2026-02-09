@@ -521,31 +521,25 @@ interface BookRow {
 }
 
 function OmiFairPricing({
-  pythonPillars, bookmakers, gameData, sportKey, availableTabs,
-  activeMarket, activePeriod, onMarketChange, onPeriodChange,
-  chartViewMode, onViewModeChange,
+  pythonPillars, bookmakers, gameData, sportKey,
+  activeMarket, activePeriod, selectedBook,
 }: {
   pythonPillars: PythonPillarScores | null | undefined;
   bookmakers: Record<string, any>;
   gameData: { id: string; homeTeam: string; awayTeam: string; sportKey: string };
   sportKey: string;
-  availableTabs?: GameDetailClientProps['availableTabs'];
   activeMarket: ActiveMarket;
   activePeriod: string;
-  onMarketChange: (m: ActiveMarket) => void;
-  onPeriodChange: (p: string) => void;
-  chartViewMode: ChartViewMode;
-  onViewModeChange: (mode: ChartViewMode) => void;
+  selectedBook: string;
 }) {
-  const isSoccer = sportKey?.includes('soccer') ?? false;
-  const isNHL = sportKey?.includes('icehockey') ?? false;
   const periodKey = PERIOD_MAP[activePeriod] || 'fullGame';
 
-  // Collect all sportsbook data for this period
+  // Collect all sportsbook data for this period (exclude pinnacle + exchanges)
   const allBooks = Object.entries(bookmakers)
     .filter(([key]) => {
+      if (key === 'pinnacle') return false; // internal sharp baseline only
       const config = BOOK_CONFIG[key];
-      return !config || config.type === 'sportsbook'; // include unknown books as sportsbooks
+      return !config || config.type === 'sportsbook';
     })
     .map(([key, data]) => ({
       key,
@@ -555,19 +549,31 @@ function OmiFairPricing({
     }))
     .filter(b => b.markets);
 
-  // Calculate consensus lines
+  // The selected book's data
+  const selBook = allBooks.find(b => b.key === selectedBook);
+  const selBookName = BOOK_CONFIG[selectedBook]?.name || selectedBook;
+
+  // Calculate consensus lines (median across all sportsbooks)
   const spreadLines = allBooks.map(b => b.markets?.spreads?.home?.line).filter((v): v is number => v !== undefined);
   const totalLines = allBooks.map(b => b.markets?.totals?.line).filter((v): v is number => v !== undefined);
   const consensusSpread = calcMedian(spreadLines);
   const consensusTotal = calcMedian(totalLines);
 
-  // OMI fair lines
-  const omiFairSpread = pythonPillars && consensusSpread !== undefined
-    ? calculateFairSpread(consensusSpread, pythonPillars.composite) : null;
-  const omiFairTotal = pythonPillars && consensusTotal !== undefined
-    ? calculateFairTotal(consensusTotal, pythonPillars.gameEnvironment) : null;
+  // OMI fair lines — with consensus fallback when pillars unavailable
+  const hasPillars = !!pythonPillars;
+  const omiFairSpread = consensusSpread !== undefined
+    ? (pythonPillars ? calculateFairSpread(consensusSpread, pythonPillars.composite) : { fairLine: consensusSpread, adjustment: 0 })
+    : null;
+  const omiFairTotal = consensusTotal !== undefined
+    ? (pythonPillars ? calculateFairTotal(consensusTotal, pythonPillars.gameEnvironment) : { fairLine: consensusTotal, adjustment: 0 })
+    : null;
   const omiFairML = pythonPillars
     ? calculateFairMoneyline(pythonPillars.composite) : null;
+  // ML consensus fallback: median of all book odds
+  const mlHomeOdds = allBooks.map(b => b.markets?.h2h?.home?.price).filter((v): v is number => v !== undefined);
+  const mlAwayOdds = allBooks.map(b => b.markets?.h2h?.away?.price).filter((v): v is number => v !== undefined);
+  const consensusHomeML = calcMedian(mlHomeOdds);
+  const consensusAwayML = calcMedian(mlAwayOdds);
 
   // Signal determination with key number crossing upgrade
   const getSignal = (gap: number, market: ActiveMarket, bookLine?: number, fairLine?: number): BookRow['signal'] => {
@@ -601,148 +607,74 @@ function OmiFairPricing({
   };
 
   // OMI fair ML implied probabilities (no-vig)
-  const omiFairHomeProb = omiFairML ? americanToImplied(omiFairML.homeOdds) : undefined;
-  const omiFairAwayProb = omiFairML ? americanToImplied(omiFairML.awayOdds) : undefined;
+  const effectiveHomeML = omiFairML ? omiFairML.homeOdds : (consensusHomeML ?? undefined);
+  const effectiveAwayML = omiFairML ? omiFairML.awayOdds : (consensusAwayML ?? undefined);
+  const omiFairHomeProb = effectiveHomeML !== undefined ? americanToImplied(effectiveHomeML) : undefined;
+  const omiFairAwayProb = effectiveAwayML !== undefined ? americanToImplied(effectiveAwayML) : undefined;
 
-  // Build two side blocks for the active market
-  type SideBlock = { label: string; fair: string; rows: BookRow[]; hasMispricing: boolean };
+  // Build single-book comparison per side
+  type SideBlock = { label: string; fair: string; bookLine: string; bookJuice: string; gap: number; signal: BookRow['signal']; bookColor: string; bookName: string; hasData: boolean };
 
   const [leftBlock, rightBlock]: [SideBlock, SideBlock] = (() => {
+    const noData: SideBlock = { label: '', fair: 'N/A', bookLine: '--', bookJuice: '--', gap: 0, signal: 'FAIR', bookColor: '#6b7280', bookName: selBookName, hasData: false };
+
     if (activeMarket === 'spread') {
-      const awayRows: BookRow[] = [];
-      const homeRows: BookRow[] = [];
-      const awayFair = omiFairSpread ? -omiFairSpread.fairLine : undefined;
-      for (const book of allBooks) {
-        const homeBookLine = book.markets?.spreads?.home?.line;
-        const homePrice = book.markets?.spreads?.home?.price;
-        if (homeBookLine !== undefined && omiFairSpread) {
-          const gap = Math.abs(Math.round((homeBookLine - omiFairSpread.fairLine) * 10) / 10);
-          homeRows.push({ key: book.key, name: book.name, color: book.color, line: formatSpread(homeBookLine), juice: homePrice !== undefined ? formatOdds(homePrice) : '--', gap, signal: getSignal(gap, 'spread', homeBookLine, omiFairSpread.fairLine) });
-        }
-        const awayBookLine = book.markets?.spreads?.away?.line;
-        const awayPrice = book.markets?.spreads?.away?.price;
-        if (awayBookLine !== undefined && awayFair !== undefined) {
-          const gap = Math.abs(Math.round((awayBookLine - awayFair) * 10) / 10);
-          awayRows.push({ key: book.key, name: book.name, color: book.color, line: formatSpread(awayBookLine), juice: awayPrice !== undefined ? formatOdds(awayPrice) : '--', gap, signal: getSignal(gap, 'spread', awayBookLine, awayFair) });
-        }
-      }
-      awayRows.sort((a, b) => b.gap - a.gap);
-      homeRows.sort((a, b) => b.gap - a.gap);
+      const homeBookLine = selBook?.markets?.spreads?.home?.line;
+      const homePrice = selBook?.markets?.spreads?.home?.price;
+      const awayBookLine = selBook?.markets?.spreads?.away?.line;
+      const awayPrice = selBook?.markets?.spreads?.away?.price;
+      const fairHomeLine = omiFairSpread?.fairLine;
+      const fairAwayLine = omiFairSpread ? -omiFairSpread.fairLine : undefined;
+
+      const homeGap = homeBookLine !== undefined && fairHomeLine !== undefined ? Math.abs(Math.round((homeBookLine - fairHomeLine) * 10) / 10) : 0;
+      const awayGap = awayBookLine !== undefined && fairAwayLine !== undefined ? Math.abs(Math.round((awayBookLine - fairAwayLine) * 10) / 10) : 0;
+
       return [
-        { label: abbrev(gameData.awayTeam), fair: omiFairSpread ? formatSpread(-omiFairSpread.fairLine) : 'N/A', rows: awayRows, hasMispricing: awayRows.some(r => r.signal === 'MISPRICED') },
-        { label: abbrev(gameData.homeTeam), fair: omiFairSpread ? formatSpread(omiFairSpread.fairLine) : 'N/A', rows: homeRows, hasMispricing: homeRows.some(r => r.signal === 'MISPRICED') },
+        { label: abbrev(gameData.awayTeam), fair: fairAwayLine !== undefined ? formatSpread(fairAwayLine) : 'N/A', bookLine: awayBookLine !== undefined ? formatSpread(awayBookLine) : '--', bookJuice: awayPrice !== undefined ? formatOdds(awayPrice) : '--', gap: awayGap, signal: awayBookLine !== undefined && fairAwayLine !== undefined ? getSignal(awayGap, 'spread', awayBookLine, fairAwayLine) : 'FAIR', bookColor: BOOK_CONFIG[selectedBook]?.color || '#6b7280', bookName: selBookName, hasData: awayBookLine !== undefined },
+        { label: abbrev(gameData.homeTeam), fair: fairHomeLine !== undefined ? formatSpread(fairHomeLine) : 'N/A', bookLine: homeBookLine !== undefined ? formatSpread(homeBookLine) : '--', bookJuice: homePrice !== undefined ? formatOdds(homePrice) : '--', gap: homeGap, signal: homeBookLine !== undefined && fairHomeLine !== undefined ? getSignal(homeGap, 'spread', homeBookLine, fairHomeLine) : 'FAIR', bookColor: BOOK_CONFIG[selectedBook]?.color || '#6b7280', bookName: selBookName, hasData: homeBookLine !== undefined },
       ];
     }
     if (activeMarket === 'total') {
-      const overRows: BookRow[] = [];
-      const underRows: BookRow[] = [];
-      for (const book of allBooks) {
-        const bookLine = book.markets?.totals?.line;
-        const overPrice = book.markets?.totals?.over?.price;
-        const underPrice = book.markets?.totals?.under?.price;
-        if (bookLine === undefined || !omiFairTotal) continue;
-        const gap = Math.abs(Math.round((bookLine - omiFairTotal.fairLine) * 10) / 10);
-        overRows.push({ key: book.key, name: book.name, color: book.color, line: `${bookLine}`, juice: overPrice !== undefined ? formatOdds(overPrice) : '--', gap, signal: getSignal(gap, 'total') });
-        underRows.push({ key: book.key, name: book.name, color: book.color, line: `${bookLine}`, juice: underPrice !== undefined ? formatOdds(underPrice) : '--', gap, signal: getSignal(gap, 'total') });
-      }
-      overRows.sort((a, b) => b.gap - a.gap);
-      underRows.sort((a, b) => b.gap - a.gap);
+      const bookLine = selBook?.markets?.totals?.line;
+      const overPrice = selBook?.markets?.totals?.over?.price;
+      const underPrice = selBook?.markets?.totals?.under?.price;
+      const fairLine = omiFairTotal?.fairLine;
+      const gap = bookLine !== undefined && fairLine !== undefined ? Math.abs(Math.round((bookLine - fairLine) * 10) / 10) : 0;
+      const sig = bookLine !== undefined && fairLine !== undefined ? getSignal(gap, 'total') : 'FAIR';
       return [
-        { label: 'OVER', fair: omiFairTotal ? `${omiFairTotal.fairLine}` : 'N/A', rows: overRows, hasMispricing: overRows.some(r => r.signal === 'MISPRICED') },
-        { label: 'UNDER', fair: omiFairTotal ? `${omiFairTotal.fairLine}` : 'N/A', rows: underRows, hasMispricing: underRows.some(r => r.signal === 'MISPRICED') },
+        { label: 'OVER', fair: fairLine !== undefined ? `${fairLine}` : 'N/A', bookLine: bookLine !== undefined ? `${bookLine}` : '--', bookJuice: overPrice !== undefined ? formatOdds(overPrice) : '--', gap, signal: sig, bookColor: BOOK_CONFIG[selectedBook]?.color || '#6b7280', bookName: selBookName, hasData: bookLine !== undefined },
+        { label: 'UNDER', fair: fairLine !== undefined ? `${fairLine}` : 'N/A', bookLine: bookLine !== undefined ? `${bookLine}` : '--', bookJuice: underPrice !== undefined ? formatOdds(underPrice) : '--', gap, signal: sig, bookColor: BOOK_CONFIG[selectedBook]?.color || '#6b7280', bookName: selBookName, hasData: bookLine !== undefined },
       ];
     }
-    // Moneyline — vig-adjusted per side
-    const awayRows: BookRow[] = [];
-    const homeRows: BookRow[] = [];
-    for (const book of allBooks) {
-      const bookHomeOdds = book.markets?.h2h?.home?.price;
-      const bookAwayOdds = book.markets?.h2h?.away?.price;
-      if (!omiFairML) continue;
-      let vigPct = '--';
-      let bookFairHomeProb: number | undefined;
-      let bookFairAwayProb: number | undefined;
-      if (bookHomeOdds !== undefined && bookAwayOdds !== undefined) {
-        const stripped = removeVig(bookHomeOdds, bookAwayOdds);
-        bookFairHomeProb = stripped.fairHomeProb;
-        bookFairAwayProb = stripped.fairAwayProb;
-        vigPct = `${(stripped.vig * 100).toFixed(1)}%`;
-      } else {
-        if (bookHomeOdds !== undefined) bookFairHomeProb = americanToImplied(bookHomeOdds);
-        if (bookAwayOdds !== undefined) bookFairAwayProb = americanToImplied(bookAwayOdds);
-      }
-      if (bookHomeOdds !== undefined && bookFairHomeProb !== undefined && omiFairHomeProb !== undefined) {
-        const gap = Math.abs(Math.round((bookFairHomeProb - omiFairHomeProb) * 1000) / 10);
-        homeRows.push({ key: book.key, name: book.name, color: book.color, line: formatOdds(bookHomeOdds), juice: vigPct, gap, signal: getSignal(gap, 'moneyline') });
-      }
-      if (bookAwayOdds !== undefined && bookFairAwayProb !== undefined && omiFairAwayProb !== undefined) {
-        const gap = Math.abs(Math.round((bookFairAwayProb - omiFairAwayProb) * 1000) / 10);
-        awayRows.push({ key: book.key, name: book.name, color: book.color, line: formatOdds(bookAwayOdds), juice: vigPct, gap, signal: getSignal(gap, 'moneyline') });
-      }
+    // Moneyline
+    const bookHomeOdds = selBook?.markets?.h2h?.home?.price;
+    const bookAwayOdds = selBook?.markets?.h2h?.away?.price;
+    let vigPct = '--';
+    let homeGap = 0;
+    let awayGap = 0;
+    if (bookHomeOdds !== undefined && bookAwayOdds !== undefined) {
+      const stripped = removeVig(bookHomeOdds, bookAwayOdds);
+      vigPct = `${(stripped.vig * 100).toFixed(1)}%`;
+      if (omiFairHomeProb !== undefined) homeGap = Math.abs(Math.round((stripped.fairHomeProb - omiFairHomeProb) * 1000) / 10);
+      if (omiFairAwayProb !== undefined) awayGap = Math.abs(Math.round((stripped.fairAwayProb - omiFairAwayProb) * 1000) / 10);
     }
-    homeRows.sort((a, b) => b.gap - a.gap);
-    awayRows.sort((a, b) => b.gap - a.gap);
     return [
-      { label: abbrev(gameData.awayTeam), fair: omiFairML ? formatOdds(omiFairML.awayOdds) : 'N/A', rows: awayRows, hasMispricing: awayRows.some(r => r.signal === 'MISPRICED') },
-      { label: abbrev(gameData.homeTeam), fair: omiFairML ? formatOdds(omiFairML.homeOdds) : 'N/A', rows: homeRows, hasMispricing: homeRows.some(r => r.signal === 'MISPRICED') },
+      { label: abbrev(gameData.awayTeam), fair: effectiveAwayML !== undefined ? formatOdds(effectiveAwayML) : 'N/A', bookLine: bookAwayOdds !== undefined ? formatOdds(bookAwayOdds) : '--', bookJuice: vigPct, gap: awayGap, signal: bookAwayOdds !== undefined ? getSignal(awayGap, 'moneyline') : 'FAIR', bookColor: BOOK_CONFIG[selectedBook]?.color || '#6b7280', bookName: selBookName, hasData: bookAwayOdds !== undefined },
+      { label: abbrev(gameData.homeTeam), fair: effectiveHomeML !== undefined ? formatOdds(effectiveHomeML) : 'N/A', bookLine: bookHomeOdds !== undefined ? formatOdds(bookHomeOdds) : '--', bookJuice: vigPct, gap: homeGap, signal: bookHomeOdds !== undefined ? getSignal(homeGap, 'moneyline') : 'FAIR', bookColor: BOOK_CONFIG[selectedBook]?.color || '#6b7280', bookName: selBookName, hasData: bookHomeOdds !== undefined },
     ];
   })();
 
-  const allRows = [...leftBlock.rows, ...rightBlock.rows];
-
-  // Period tabs
-  const periodTabs = [
-    { key: 'full', label: 'Full' },
-    ...(availableTabs?.firstHalf ? [{ key: '1h', label: '1H' }] : []),
-    ...(availableTabs?.secondHalf ? [{ key: '2h', label: '2H' }] : []),
-    ...(availableTabs?.q1 && !isNHL ? [{ key: '1q', label: '1Q' }] : []),
-    ...(availableTabs?.q2 && !isNHL ? [{ key: '2q', label: '2Q' }] : []),
-    ...(availableTabs?.q3 && !isNHL ? [{ key: '3q', label: '3Q' }] : []),
-    ...(availableTabs?.q4 && !isNHL ? [{ key: '4q', label: '4Q' }] : []),
-    ...(availableTabs?.p1 && isNHL ? [{ key: '1p', label: '1P' }] : []),
-    ...(availableTabs?.p2 && isNHL ? [{ key: '2p', label: '2P' }] : []),
-    ...(availableTabs?.p3 && isNHL ? [{ key: '3p', label: '3P' }] : []),
-  ];
+  // All books quick-scan line for compact summary
+  const allBooksQuickScan = allBooks.filter(b => b.key !== 'pinnacle').map(b => {
+    let line = '--';
+    if (activeMarket === 'spread') line = b.markets?.spreads?.home?.line !== undefined ? formatSpread(b.markets.spreads.home.line) : '--';
+    else if (activeMarket === 'total') line = b.markets?.totals?.line !== undefined ? `${b.markets.totals.line}` : '--';
+    else line = b.markets?.h2h?.home?.price !== undefined ? formatOdds(b.markets.h2h.home.price) : '--';
+    return { key: b.key, name: BOOK_CONFIG[b.key]?.name || b.key, line, color: b.color, isSelected: b.key === selectedBook };
+  });
 
   return (
     <div className="bg-[#0a0a0a] p-3 h-full flex flex-col overflow-auto" style={{ gridArea: 'pricing' }}>
-      {/* Market tabs + Period sub-tabs + Line/Price toggle */}
-      <div className="flex flex-col gap-1.5 mb-3 flex-shrink-0">
-        <div className="flex items-center justify-between">
-          <div className="flex gap-0 border-b border-zinc-800">
-            {(['spread', 'total', 'moneyline'] as const).filter(m => !isSoccer || m !== 'spread').map(m => (
-              <button key={m} onClick={() => onMarketChange(m)}
-                className={`px-3 py-1.5 text-[11px] font-medium transition-all relative ${activeMarket === m ? 'text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>
-                {m.charAt(0).toUpperCase() + m.slice(1)}
-                {activeMarket === m && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" style={{ boxShadow: '0 1px 4px rgba(34,211,238,0.3)' }} />}
-              </button>
-            ))}
-          </div>
-          {/* Line / Price toggle */}
-          {activeMarket !== 'moneyline' && (
-            <div className="flex rounded overflow-hidden border border-zinc-700/50">
-              <button
-                onClick={() => onViewModeChange('line')}
-                className={`px-2 py-0.5 text-[9px] font-medium transition-colors ${chartViewMode === 'line' ? 'bg-zinc-700 text-zinc-100' : 'bg-transparent text-zinc-500 hover:text-zinc-300'}`}
-              >Line</button>
-              <button
-                onClick={() => onViewModeChange('price')}
-                className={`px-2 py-0.5 text-[9px] font-medium transition-colors ${chartViewMode === 'price' ? 'bg-zinc-700 text-zinc-100' : 'bg-transparent text-zinc-500 hover:text-zinc-300'}`}
-              >Price</button>
-            </div>
-          )}
-        </div>
-        {/* Period sub-tabs — left-aligned below market tabs */}
-        <div className="flex gap-0">
-          {periodTabs.map(tab => (
-            <button key={tab.key} onClick={() => onPeriodChange(tab.key)}
-              className={`px-2 py-1 text-[9px] font-medium transition-all ${activePeriod === tab.key ? 'text-zinc-100 bg-zinc-800/80 rounded' : 'text-zinc-600 hover:text-zinc-400'}`}>
-              {tab.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* OMI Fair Line — split display for both sides */}
       <div className="mb-3 flex-shrink-0">
         <div className="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">OMI Fair Line</div>
@@ -758,95 +690,103 @@ function OmiFairPricing({
           </div>
         </div>
         <div className="text-[10px] text-zinc-500 mt-0.5">
-          {pythonPillars
-            ? `Based on 6-pillar composite (${pythonPillars.composite}) and market analysis`
-            : 'Pillar data unavailable — fair line cannot be calculated'}
+          {hasPillars
+            ? `Based on 6-pillar composite (${pythonPillars!.composite}) and market analysis`
+            : `Based on market consensus (${allBooks.length} books)`}
         </div>
         {/* Narrative one-liner */}
-        {pythonPillars && (() => {
-          const comp = pythonPillars.composite;
+        {(() => {
           const homeAbbr = abbrev(gameData.homeTeam);
           const awayAbbr = abbrev(gameData.awayTeam);
-          const mispricedCount = allRows.filter(r => r.signal === 'MISPRICED' || r.signal === 'VALUE').length;
-          const avgGap = allRows.length > 0 ? (allRows.reduce((s, r) => s + r.gap, 0) / allRows.length) : 0;
-          const allSharp = allRows.length > 0 && allRows.every(r => r.signal === 'FAIR' || r.signal === 'SHARP');
-
           let narrative: string;
           if (activeMarket === 'total') {
-            // Totals use gameEnvironment, not composite
-            const envScore = pythonPillars.gameEnvironment;
-            const lean = envScore > 52 ? 'Over' : envScore < 48 ? 'Under' : 'neutral';
-            if (lean === 'neutral') {
-              narrative = `No strong Over/Under lean. Fair total at ${omiFairTotal?.fairLine ?? 'N/A'}.`;
+            if (hasPillars) {
+              const envScore = pythonPillars!.gameEnvironment;
+              const lean = envScore > 52 ? 'Over' : envScore < 48 ? 'Under' : 'neutral';
+              if (lean === 'neutral') {
+                narrative = `No strong Over/Under lean. Fair total at ${omiFairTotal?.fairLine ?? 'N/A'}.`;
+              } else {
+                const bookTotal = consensusTotal ?? 0;
+                const fairTotal = omiFairTotal?.fairLine ?? bookTotal;
+                const diff = Math.abs(fairTotal - bookTotal).toFixed(1);
+                narrative = `Model leans ${lean} at ${fairTotal} vs book ${bookTotal}. ${diff}-point difference.`;
+              }
             } else {
-              const bookTotal = consensusTotal ?? 0;
-              const fairTotal = omiFairTotal?.fairLine ?? bookTotal;
-              const diff = Math.abs(fairTotal - bookTotal).toFixed(1);
-              narrative = `Model leans ${lean} at ${fairTotal} vs book ${bookTotal}. ${diff}-point difference.`;
+              narrative = `Consensus total: ${consensusTotal ?? 'N/A'}. Comparing ${selBookName} against market median.`;
             }
-          } else if (comp >= 48 && comp <= 52) {
-            const favTeam = activeMarket === 'spread' && omiFairSpread ? (omiFairSpread.fairLine < 0 ? homeAbbr : awayAbbr) : homeAbbr;
-            narrative = `Near pick'em. Books have ${favTeam} as favorite — look for value if line is inflated.`;
-          } else if (allSharp) {
-            narrative = 'Books are efficiently priced. No significant mispricing detected.';
-          } else if (Math.abs(comp - 50) > 15) {
-            const team = comp > 50 ? homeAbbr : awayAbbr;
-            narrative = `Strong lean toward ${team}. Significant disagreement with market pricing.`;
-          } else if (mispricedCount > 0) {
-            const team = comp > 50 ? homeAbbr : awayAbbr;
-            const gapStr = activeMarket === 'moneyline' ? `${avgGap.toFixed(1)}%` : `${avgGap.toFixed(1)}+ pts`;
-            narrative = `Model favors ${team}. ${mispricedCount} of ${allRows.length} books mispriced by ${gapStr}.`;
+          } else if (hasPillars) {
+            const comp = pythonPillars!.composite;
+            if (comp >= 48 && comp <= 52) {
+              narrative = `Near pick'em. Look for value if ${selBookName}'s line differs from consensus.`;
+            } else {
+              const team = comp > 50 ? homeAbbr : awayAbbr;
+              const sc = signalConfig[leftBlock.signal];
+              narrative = `Model favors ${team}. ${selBookName}: ${leftBlock.signal} signal (${leftBlock.gap.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ' pts'} gap).`;
+            }
           } else {
-            const team = comp > 50 ? homeAbbr : awayAbbr;
-            narrative = `Slight lean toward ${team}. Market is mostly in agreement.`;
+            narrative = `Comparing ${selBookName} against market consensus of ${allBooks.length} sportsbooks.`;
           }
           return <div className="text-[12px] text-zinc-200 mt-1.5 leading-snug">{narrative}</div>;
         })()}
       </div>
 
-      {/* Two side-by-side blocks */}
-      {allRows.length > 0 ? (
-        <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-2 gap-2" style={{ fontVariantNumeric: 'tabular-nums' }}>
-          {[leftBlock, rightBlock].map((block, blockIdx) => (
-            <div key={blockIdx} className={`border border-zinc-800 rounded overflow-hidden flex flex-col ${block.hasMispricing ? 'border-l-2 border-l-emerald-400' : ''}`}>
-              {/* Block header */}
-              <div className="bg-zinc-900 px-2 py-1.5 flex items-center justify-between border-b border-zinc-800">
-                <span className="text-[11px] font-bold text-zinc-100">{block.label}</span>
-                <span className="text-[10px] font-mono text-cyan-400">OMI: {block.fair}</span>
+      {/* Single-book comparison — two side-by-side blocks */}
+      <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2" style={{ fontVariantNumeric: 'tabular-nums' }}>
+        {[leftBlock, rightBlock].map((block, blockIdx) => {
+          const sc = signalConfig[block.signal];
+          const gapColor = block.signal === 'MISPRICED' ? 'text-emerald-400' : block.signal === 'VALUE' ? 'text-amber-400' : block.signal === 'SHARP' ? 'text-cyan-400' : 'text-zinc-500';
+          return (
+            <div key={blockIdx} className={`border border-zinc-800 rounded overflow-hidden ${block.signal === 'MISPRICED' ? 'border-l-2 border-l-emerald-400' : ''}`}>
+              {/* Block header — team/side label */}
+              <div className="bg-zinc-900 px-3 py-1.5 border-b border-zinc-800">
+                <span className="text-[12px] font-bold text-zinc-100">{block.label}</span>
               </div>
-              {/* Column headers */}
-              <div className="flex items-center px-2 py-0.5 text-[8px] text-zinc-500 uppercase tracking-widest bg-zinc-900/50">
-                <span className="flex-1">Book</span>
-                <span className="w-12 text-right">Line</span>
-                <span className="w-10 text-right">Juice</span>
-                <span className="w-8 text-right">Gap</span>
-                <span className="w-16 text-center">Signal</span>
-              </div>
-              {/* Book rows */}
-              <div className="flex-1 overflow-auto">
-                {block.rows.length > 0 ? block.rows.map((row) => {
-                  const sc = signalConfig[row.signal];
-                  const gapColor = row.signal === 'MISPRICED' ? 'text-emerald-400' : row.signal === 'VALUE' ? 'text-amber-400' : row.signal === 'SHARP' ? 'text-cyan-400' : 'text-zinc-500';
-                  return (
-                    <div key={row.key} className="flex items-center px-2 py-1 border-b border-zinc-800/30 hover:bg-zinc-900/50">
-                      <span className="w-2 h-2 rounded-sm mr-1.5 flex-shrink-0" style={{ backgroundColor: row.color }} />
-                      <span className="flex-1 text-[10px] text-zinc-200 truncate">{row.name}</span>
-                      <span className="text-[10px] font-mono text-zinc-100 w-12 text-right">{row.line}</span>
-                      <span className="text-[9px] font-mono text-zinc-400 w-10 text-right">{row.juice}</span>
-                      <span className={`text-[10px] font-mono font-semibold w-8 text-right ${gapColor}`}>{row.gap > 0 ? row.gap.toFixed(1) : '0'}</span>
-                      <span className={`text-[8px] font-bold px-1 py-0.5 rounded ml-1 w-16 text-center ${sc.badge}`}>{row.signal}</span>
+              {/* Comparison: OMI vs Book vs Gap */}
+              <div className="px-3 py-3">
+                <div className="flex items-end justify-between gap-3">
+                  {/* OMI Fair */}
+                  <div>
+                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest mb-0.5">{hasPillars ? 'OMI Fair' : 'Consensus'}</div>
+                    <div className="text-[22px] font-bold font-mono text-cyan-400">{block.fair}</div>
+                  </div>
+                  {/* Book line */}
+                  <div className="text-right">
+                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest mb-0.5">{block.bookName}</div>
+                    <div className="text-[22px] font-bold font-mono text-zinc-100">{block.bookLine}</div>
+                  </div>
+                  {/* Gap */}
+                  <div className="text-right">
+                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest mb-0.5">Gap</div>
+                    <div className={`text-[22px] font-bold font-mono ${gapColor}`}>
+                      {block.hasData ? (block.gap > 0 ? block.gap.toFixed(1) : '0') : '--'}
                     </div>
-                  );
-                }) : (
-                  <div className="flex items-center justify-center py-3 text-zinc-500 text-[10px]">No data</div>
-                )}
+                  </div>
+                </div>
+                {/* Footer: Juice + Signal */}
+                <div className="flex items-center justify-between mt-2 pt-2 border-t border-zinc-800/50">
+                  <span className="text-[10px] text-zinc-400 font-mono">Juice: {block.bookJuice}</span>
+                  <span className={`text-[9px] font-bold px-2 py-0.5 rounded ${sc.badge}`}>
+                    {block.signal} {sc.icon}
+                  </span>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
-      ) : (
-        <div className="flex-1 flex items-center justify-center text-zinc-500 text-[11px]">
-          {!pythonPillars ? 'Pillar data needed for fair pricing' : 'No sportsbook data available for this market'}
+          );
+        })}
+      </div>
+
+      {/* All Books quick-scan row */}
+      {allBooksQuickScan.length > 1 && (
+        <div className="flex-shrink-0 border-t border-zinc-800/50 pt-2">
+          <div className="text-[8px] text-zinc-600 uppercase tracking-widest mb-1">All Books</div>
+          <div className="flex flex-wrap gap-2">
+            {allBooksQuickScan.map(b => (
+              <span key={b.key} className={`text-[10px] font-mono ${b.isSelected ? 'text-cyan-400 font-semibold' : 'text-zinc-400'}`}>
+                <span className="inline-block w-1.5 h-1.5 rounded-sm mr-0.5" style={{ backgroundColor: b.color }} />
+                {b.name}: {b.line}
+              </span>
+            ))}
+          </div>
         </div>
       )}
     </div>
@@ -1080,58 +1020,71 @@ function WhyThisPrice({
             </div>
           </div>
         )}
-        {/* CEQ Factor Bars — 5 factors from best CEQ result */}
-        {(() => {
-          // Find a CEQResult with pillar data
-          const findCeqPillars = (): { marketEfficiency: PillarResult; lineupImpact: PillarResult; gameEnvironment: PillarResult; matchupDynamics: PillarResult; sentiment: PillarResult } | null => {
-            if (!ceq) return null;
-            const results: CEQResult[] = [];
-            if (ceq.spreads?.home) results.push(ceq.spreads.home);
-            if (ceq.spreads?.away) results.push(ceq.spreads.away);
-            if (ceq.h2h?.home) results.push(ceq.h2h.home);
-            if (ceq.h2h?.away) results.push(ceq.h2h.away);
-            if (ceq.totals?.over) results.push(ceq.totals.over);
-            if (ceq.totals?.under) results.push(ceq.totals.under);
-            // Pick highest CEQ result that has pillar data
-            const withPillars = results.filter(r => r.pillars && r.pillars.marketEfficiency);
-            if (withPillars.length === 0) return null;
-            withPillars.sort((a, b) => b.ceq - a.ceq);
-            return withPillars[0].pillars;
-          };
-          const ceqPillars = findCeqPillars();
-          if (!ceqPillars) return null;
-          const factors = [
-            { key: 'marketEfficiency' as const, label: 'Mkt Eff', weight: ceqPillars.marketEfficiency.weight },
-            { key: 'lineupImpact' as const, label: 'Lineup', weight: ceqPillars.lineupImpact.weight },
-            { key: 'gameEnvironment' as const, label: 'Game Env', weight: ceqPillars.gameEnvironment.weight },
-            { key: 'matchupDynamics' as const, label: 'Matchup', weight: ceqPillars.matchupDynamics.weight },
-            { key: 'sentiment' as const, label: 'Sentiment', weight: ceqPillars.sentiment.weight },
-          ];
-          const getStrength = (s: number) => s >= 75 ? 'Strong' : s >= 60 ? 'Moderate' : s >= 40 ? 'Weak' : 'Low';
-          const getBarColor = (s: number) => s >= 75 ? '#34d399' : s >= 60 ? '#22d3ee' : s >= 40 ? '#fbbf24' : '#71717a';
-          const getTextColor = (s: number) => s >= 75 ? 'text-emerald-400' : s >= 60 ? 'text-cyan-400' : s >= 40 ? 'text-amber-400' : 'text-zinc-500';
-          return (
-            <div className="mt-2 pt-1.5 border-t border-zinc-800/50">
-              <span className="text-[8px] text-zinc-600 uppercase tracking-widest">CEQ Factors</span>
-              <div className="mt-1 flex flex-col gap-0.5">
-                {factors.map(f => {
-                  const score = ceqPillars[f.key].score;
-                  const wPct = Math.round(f.weight * 100);
-                  return (
-                    <div key={f.key} className="flex items-center gap-1">
-                      <span className="text-[8px] text-zinc-500 font-mono w-14 truncate">{f.label} ({wPct}%)</span>
-                      <div className="flex-1 h-[4px] bg-zinc-800 rounded-sm overflow-hidden">
-                        <div className="h-full rounded-sm" style={{ width: `${score}%`, backgroundColor: getBarColor(score) }} />
-                      </div>
-                      <span className={`text-[8px] font-mono w-4 text-right ${getTextColor(score)}`}>{score}</span>
-                      <span className={`text-[7px] w-10 text-right ${getTextColor(score)}`}>{getStrength(score)}</span>
-                    </div>
-                  );
-                })}
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
+// CeqFactors — CEQ factor bars for the "ceq" grid area
+// ============================================================================
+
+function CeqFactors({ ceq }: { ceq: GameCEQ | null | undefined }) {
+  const findCeqPillars = (): { marketEfficiency: PillarResult; lineupImpact: PillarResult; gameEnvironment: PillarResult; matchupDynamics: PillarResult; sentiment: PillarResult } | null => {
+    if (!ceq) return null;
+    const results: CEQResult[] = [];
+    if (ceq.spreads?.home) results.push(ceq.spreads.home);
+    if (ceq.spreads?.away) results.push(ceq.spreads.away);
+    if (ceq.h2h?.home) results.push(ceq.h2h.home);
+    if (ceq.h2h?.away) results.push(ceq.h2h.away);
+    if (ceq.totals?.over) results.push(ceq.totals.over);
+    if (ceq.totals?.under) results.push(ceq.totals.under);
+    const withPillars = results.filter(r => r.pillars && r.pillars.marketEfficiency);
+    if (withPillars.length === 0) return null;
+    withPillars.sort((a, b) => b.ceq - a.ceq);
+    return withPillars[0].pillars;
+  };
+
+  const ceqPillars = findCeqPillars();
+  if (!ceqPillars) {
+    return (
+      <div className="bg-[#0a0a0a] p-2 h-full flex items-center justify-center" style={{ gridArea: 'ceq' }}>
+        <span className="text-[10px] text-zinc-600">No CEQ factor data</span>
+      </div>
+    );
+  }
+
+  const factors = [
+    { key: 'marketEfficiency' as const, label: 'Mkt Eff', weight: ceqPillars.marketEfficiency.weight },
+    { key: 'lineupImpact' as const, label: 'Lineup', weight: ceqPillars.lineupImpact.weight },
+    { key: 'gameEnvironment' as const, label: 'Game Env', weight: ceqPillars.gameEnvironment.weight },
+    { key: 'matchupDynamics' as const, label: 'Matchup', weight: ceqPillars.matchupDynamics.weight },
+    { key: 'sentiment' as const, label: 'Sentiment', weight: ceqPillars.sentiment.weight },
+  ];
+  const getStrength = (s: number) => s >= 75 ? 'Strong' : s >= 60 ? 'Moderate' : s >= 40 ? 'Weak' : 'Low';
+  const getBarColor = (s: number) => s >= 75 ? '#34d399' : s >= 60 ? '#22d3ee' : s >= 40 ? '#fbbf24' : '#71717a';
+  const getTextColor = (s: number) => s >= 75 ? 'text-emerald-400' : s >= 60 ? 'text-cyan-400' : s >= 40 ? 'text-amber-400' : 'text-zinc-500';
+
+  return (
+    <div className="bg-[#0a0a0a] p-2 h-full flex flex-col" style={{ gridArea: 'ceq' }}>
+      <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-2">CEQ Factors</span>
+      <div className="flex-1 min-h-0 overflow-auto">
+        <div className="flex flex-col gap-1">
+          {factors.map(f => {
+            const score = ceqPillars[f.key].score;
+            const wPct = Math.round(f.weight * 100);
+            return (
+              <div key={f.key} className="flex items-center gap-1">
+                <span className="text-[9px] text-zinc-500 font-mono w-16 truncate">{f.label} ({wPct}%)</span>
+                <div className="flex-1 h-[5px] bg-zinc-800 rounded-sm overflow-hidden">
+                  <div className="h-full rounded-sm" style={{ width: `${score}%`, backgroundColor: getBarColor(score) }} />
+                </div>
+                <span className={`text-[9px] font-mono w-5 text-right ${getTextColor(score)}`}>{score}</span>
+                <span className={`text-[8px] w-12 text-right ${getTextColor(score)}`}>{getStrength(score)}</span>
               </div>
-            </div>
-          );
-        })()}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
@@ -1289,9 +1242,9 @@ export function GameDetailClient({
       <div
         className="hidden lg:grid h-full relative"
         style={{
-          gridTemplateRows: '36px auto 1fr',
+          gridTemplateRows: '36px auto 1fr auto',
           gridTemplateColumns: '2fr 3fr',
-          gridTemplateAreas: `"header header" "pricing pricing" "analysis chart"`,
+          gridTemplateAreas: `"header header" "tabs chart" "pricing pricing" "analysis ceq"`,
           gap: '1px',
           background: '#27272a',
           fontVariantNumeric: 'tabular-nums',
@@ -1314,28 +1267,63 @@ export function GameDetailClient({
           isLive={isLive}
         />
 
-        <OmiFairPricing
-          pythonPillars={pythonPillarScores}
-          bookmakers={bookmakers}
-          gameData={gameData}
-          sportKey={gameData.sportKey}
-          availableTabs={availableTabs}
-          activeMarket={activeMarket}
-          activePeriod={activePeriod}
-          onMarketChange={setActiveMarket}
-          onPeriodChange={handlePeriodChange}
-          chartViewMode={chartViewMode}
-          onViewModeChange={setChartViewMode}
-        />
+        {/* Tabs area — market + period + view mode */}
+        <div className="bg-[#0a0a0a] p-2 flex flex-col justify-center" style={{ gridArea: 'tabs' }}>
+          {/* Market tabs */}
+          <div className="flex items-center gap-0.5 mb-1.5">
+            {(['spread', 'total', 'moneyline'] as ActiveMarket[])
+              .filter(m => m !== 'spread' || !isSoccerGame)
+              .map(m => (
+                <button
+                  key={m}
+                  onClick={() => setActiveMarket(m)}
+                  className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
+                    activeMarket === m
+                      ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                      : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
+                  }`}
+                >
+                  {m === 'spread' ? 'Spread' : m === 'total' ? 'Total' : 'Moneyline'}
+                </button>
+              ))}
+            {/* Line/Price toggle */}
+            {activeMarket !== 'moneyline' && (
+              <div className="ml-auto flex rounded overflow-hidden border border-zinc-700/50">
+                <button onClick={() => setChartViewMode('line')} className={`px-1.5 py-0.5 text-[9px] font-medium ${chartViewMode === 'line' ? 'bg-zinc-700 text-zinc-100' : 'text-zinc-500'}`}>Line</button>
+                <button onClick={() => setChartViewMode('price')} className={`px-1.5 py-0.5 text-[9px] font-medium ${chartViewMode === 'price' ? 'bg-zinc-700 text-zinc-100' : 'text-zinc-500'}`}>Price</button>
+              </div>
+            )}
+          </div>
+          {/* Period sub-tabs */}
+          <div className="flex items-center gap-0.5 flex-wrap">
+            {[
+              { key: 'full', label: 'Full' },
+              ...(availableTabs?.firstHalf ? [{ key: '1h', label: '1H' }] : []),
+              ...(availableTabs?.secondHalf ? [{ key: '2h', label: '2H' }] : []),
+              ...(availableTabs?.q1 ? [{ key: '1q', label: 'Q1' }] : []),
+              ...(availableTabs?.q2 ? [{ key: '2q', label: 'Q2' }] : []),
+              ...(availableTabs?.q3 ? [{ key: '3q', label: 'Q3' }] : []),
+              ...(availableTabs?.q4 ? [{ key: '4q', label: 'Q4' }] : []),
+              ...(availableTabs?.p1 ? [{ key: '1p', label: 'P1' }] : []),
+              ...(availableTabs?.p2 ? [{ key: '2p', label: 'P2' }] : []),
+              ...(availableTabs?.p3 ? [{ key: '3p', label: 'P3' }] : []),
+            ].map(tab => (
+              <button
+                key={tab.key}
+                onClick={() => handlePeriodChange(tab.key)}
+                className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-colors ${
+                  activePeriod === tab.key
+                    ? 'bg-zinc-700 text-zinc-100'
+                    : 'text-zinc-600 hover:text-zinc-400'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
 
-        <WhyThisPrice
-          pythonPillars={pythonPillarScores}
-          ceq={activeCeq}
-          homeTeam={gameData.homeTeam}
-          awayTeam={gameData.awayTeam}
-        />
-
-        {/* Convergence chart */}
+        {/* Convergence chart — compact, next to tabs */}
         <div className="bg-[#0a0a0a] p-2 relative flex flex-col" style={{ gridArea: 'chart' }}>
           <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-1 block">Line Convergence</span>
           <div className="flex-1 min-h-0">
@@ -1350,11 +1338,31 @@ export function GameDetailClient({
               onViewModeChange={setChartViewMode}
               commenceTime={gameData.commenceTime}
               sportKey={gameData.sportKey}
+              compact
               omiFairLine={omiFairLineForChart}
             />
           </div>
           {showLiveLock && <LiveLockOverlay />}
         </div>
+
+        <OmiFairPricing
+          pythonPillars={pythonPillarScores}
+          bookmakers={bookmakers}
+          gameData={gameData}
+          sportKey={gameData.sportKey}
+          activeMarket={activeMarket}
+          activePeriod={activePeriod}
+          selectedBook={selectedBook}
+        />
+
+        <WhyThisPrice
+          pythonPillars={pythonPillarScores}
+          ceq={activeCeq}
+          homeTeam={gameData.homeTeam}
+          awayTeam={gameData.awayTeam}
+        />
+
+        <CeqFactors ceq={activeCeq} />
       </div>
 
       {/* Mobile: Single-column scrollable fallback */}
@@ -1371,30 +1379,57 @@ export function GameDetailClient({
         />
 
         <div className="p-2 space-y-2">
-          <OmiFairPricing
-            pythonPillars={pythonPillarScores}
-            bookmakers={bookmakers}
-            gameData={gameData}
-            sportKey={gameData.sportKey}
-            availableTabs={availableTabs}
-            activeMarket={activeMarket}
-            activePeriod={activePeriod}
-            onMarketChange={setActiveMarket}
-            onPeriodChange={handlePeriodChange}
-            chartViewMode={chartViewMode}
-            onViewModeChange={setChartViewMode}
-          />
+          {/* Market + Period tabs */}
+          <div className="bg-zinc-900/50 rounded p-2">
+            <div className="flex items-center gap-0.5 mb-1.5 flex-wrap">
+              {(['spread', 'total', 'moneyline'] as ActiveMarket[])
+                .filter(m => m !== 'spread' || !isSoccerGame)
+                .map(m => (
+                  <button
+                    key={m}
+                    onClick={() => setActiveMarket(m)}
+                    className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
+                      activeMarket === m
+                        ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                        : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
+                    }`}
+                  >
+                    {m === 'spread' ? 'Spread' : m === 'total' ? 'Total' : 'Moneyline'}
+                  </button>
+                ))}
+            </div>
+            <div className="flex items-center gap-0.5 flex-wrap">
+              {[
+                { key: 'full', label: 'Full' },
+                ...(availableTabs?.firstHalf ? [{ key: '1h', label: '1H' }] : []),
+                ...(availableTabs?.secondHalf ? [{ key: '2h', label: '2H' }] : []),
+                ...(availableTabs?.q1 ? [{ key: '1q', label: 'Q1' }] : []),
+                ...(availableTabs?.q2 ? [{ key: '2q', label: 'Q2' }] : []),
+                ...(availableTabs?.q3 ? [{ key: '3q', label: 'Q3' }] : []),
+                ...(availableTabs?.q4 ? [{ key: '4q', label: 'Q4' }] : []),
+                ...(availableTabs?.p1 ? [{ key: '1p', label: 'P1' }] : []),
+                ...(availableTabs?.p2 ? [{ key: '2p', label: 'P2' }] : []),
+                ...(availableTabs?.p3 ? [{ key: '3p', label: 'P3' }] : []),
+              ].map(tab => (
+                <button
+                  key={tab.key}
+                  onClick={() => handlePeriodChange(tab.key)}
+                  className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-colors ${
+                    activePeriod === tab.key
+                      ? 'bg-zinc-700 text-zinc-100'
+                      : 'text-zinc-600 hover:text-zinc-400'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
 
-          <WhyThisPrice
-            pythonPillars={pythonPillarScores}
-            ceq={activeCeq}
-            homeTeam={gameData.homeTeam}
-            awayTeam={gameData.awayTeam}
-          />
-
+          {/* Convergence chart — compact */}
           <div className="h-[200px] relative bg-zinc-900/50 rounded p-2">
             <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-1 block">Line Convergence</span>
-            <div className="h-[calc(100%-20px)]">
+            <div className="flex-1 min-h-0 h-[calc(100%-20px)]">
               <LineMovementChart
                 gameId={gameData.id}
                 selection={chartSelection}
@@ -1406,11 +1441,31 @@ export function GameDetailClient({
                 onViewModeChange={setChartViewMode}
                 commenceTime={gameData.commenceTime}
                 sportKey={gameData.sportKey}
+                compact
                 omiFairLine={omiFairLineForChart}
               />
             </div>
             {showLiveLock && <LiveLockOverlay />}
           </div>
+
+          <OmiFairPricing
+            pythonPillars={pythonPillarScores}
+            bookmakers={bookmakers}
+            gameData={gameData}
+            sportKey={gameData.sportKey}
+            activeMarket={activeMarket}
+            activePeriod={activePeriod}
+            selectedBook={selectedBook}
+          />
+
+          <WhyThisPrice
+            pythonPillars={pythonPillarScores}
+            ceq={activeCeq}
+            homeTeam={gameData.homeTeam}
+            awayTeam={gameData.awayTeam}
+          />
+
+          <CeqFactors ceq={activeCeq} />
         </div>
       </div>
     </>

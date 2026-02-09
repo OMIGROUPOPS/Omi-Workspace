@@ -234,15 +234,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     data = [data[0], { timestamp: new Date(), value: data[0].value }];
   }
 
-  // For ML, convert to implied probability % for the chart
+  // ML chart: show raw American odds (not probability conversion)
   const isMLChart = marketType === 'moneyline' && effectiveViewMode === 'line';
   let chartOmiFairLine = omiFairLine;
-  if (isMLChart) {
-    data = data.map(d => ({ ...d, value: americanToImplied(d.value) * 100 }));
-    if (chartOmiFairLine !== undefined) {
-      chartOmiFairLine = americanToImplied(chartOmiFairLine) * 100;
-    }
-  }
 
   const openValue = data[0]?.value || baseValue;
   const currentValue = data[data.length - 1]?.value || baseValue;
@@ -274,7 +268,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const areaD = `${pathD} L ${chartPoints[chartPoints.length - 1].x} ${paddingTop + chartHeight} L ${chartPoints[0].x} ${paddingTop + chartHeight} Z`;
 
   const formatValue = (val: number) => {
-    if (isMLChart) return `${val.toFixed(1)}%`;
+    if (isMLChart) return val > 0 ? `+${Math.round(val)}` : `${Math.round(val)}`;
     if (effectiveViewMode === 'price') return val > 0 ? `+${val}` : val.toString();
     if (isProp) return val.toString();
     if (marketType === 'spread') return val > 0 ? `+${val}` : val.toString();
@@ -305,9 +299,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     const gapOpen = Math.abs(openValue - chartOmiFairLine);
     const gapCurrent = Math.abs(currentValue - chartOmiFairLine);
     const diff = Math.abs(gapOpen - gapCurrent);
-    if (diff < 0.1) return null;
+    if (diff < (isMLChart ? 1 : 0.1)) return null;
     if (isConverging) {
-      return { text: `Book moved ${isMLChart ? diff.toFixed(1) + '%' : diff.toFixed(1)} toward OMI`, color: 'text-emerald-400' };
+      return { text: `Book moved ${isMLChart ? Math.round(diff) + ' odds pts' : diff.toFixed(1)} toward OMI`, color: 'text-emerald-400' };
     }
     return { text: `Book diverging from OMI fair value`, color: 'text-amber-400' };
   })();
@@ -319,7 +313,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     const visualMax = maxVal + padding;
     const visualRange = visualMax - visualMin;
     let labelStep: number;
-    if (isMLChart) { labelStep = range <= 5 ? 1 : range <= 12 ? 2 : 5; }
+    if (isMLChart) { labelStep = range <= 20 ? 5 : range <= 50 ? 10 : range <= 150 ? 25 : 50; }
     else if (marketType === 'spread' && effectiveViewMode === 'line') { labelStep = 0.5; }
     else if (effectiveViewMode === 'price') { labelStep = range <= 8 ? 2 : range <= 16 ? 4 : 5; }
     else { labelStep = range <= 5 ? 0.5 : range <= 12 ? 1 : range <= 25 ? 2 : 5; }
@@ -443,7 +437,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           <span className="text-zinc-500">{formatValue(openValue)}</span>
           <span className="text-zinc-600">&rarr;</span>
           <span className="text-zinc-100 font-semibold">{formatValue(currentValue)}</span>
-          <span className={`font-semibold ${movementColor}`}>{movement > 0 ? '+' : ''}{isMLChart ? movement.toFixed(1) + '%' : effectiveViewMode === 'price' ? Math.round(movement) : movement.toFixed(1)}</span>
+          <span className={`font-semibold ${movementColor}`}>{movement > 0 ? '+' : ''}{isMLChart ? Math.round(movement) : effectiveViewMode === 'price' ? Math.round(movement) : movement.toFixed(1)}</span>
         </div>
       </div>
 
@@ -1267,9 +1261,27 @@ function WhyThisPrice({
 // CeqFactors — CEQ factor bars for the "ceq" grid area
 // ============================================================================
 
-function CeqFactors({ ceq }: { ceq: GameCEQ | null | undefined }) {
+function CeqFactors({ ceq, activeMarket }: { ceq: GameCEQ | null | undefined; activeMarket?: ActiveMarket }) {
   const findCeqPillars = (): { marketEfficiency: PillarResult; lineupImpact: PillarResult; gameEnvironment: PillarResult; matchupDynamics: PillarResult; sentiment: PillarResult } | null => {
     if (!ceq) return null;
+    // First try to get CEQ results for the active market
+    const marketResults: CEQResult[] = [];
+    if (activeMarket === 'spread' && ceq.spreads) {
+      if (ceq.spreads.home) marketResults.push(ceq.spreads.home);
+      if (ceq.spreads.away) marketResults.push(ceq.spreads.away);
+    } else if (activeMarket === 'moneyline' && ceq.h2h) {
+      if (ceq.h2h.home) marketResults.push(ceq.h2h.home);
+      if (ceq.h2h.away) marketResults.push(ceq.h2h.away);
+    } else if (activeMarket === 'total' && ceq.totals) {
+      if (ceq.totals.over) marketResults.push(ceq.totals.over);
+      if (ceq.totals.under) marketResults.push(ceq.totals.under);
+    }
+    const marketWithPillars = marketResults.filter(r => r.pillars && r.pillars.marketEfficiency);
+    if (marketWithPillars.length > 0) {
+      marketWithPillars.sort((a, b) => b.ceq - a.ceq);
+      return marketWithPillars[0].pillars;
+    }
+    // Fallback: highest across all markets
     const results: CEQResult[] = [];
     if (ceq.spreads?.home) results.push(ceq.spreads.home);
     if (ceq.spreads?.away) results.push(ceq.spreads.away);
@@ -1305,7 +1317,7 @@ function CeqFactors({ ceq }: { ceq: GameCEQ | null | undefined }) {
 
   return (
     <div className="bg-[#0a0a0a] p-2 h-full flex flex-col" style={{ gridArea: 'ceq' }}>
-      <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-2">CEQ Factors</span>
+      <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-2">CEQ Factors{activeMarket ? ` — ${activeMarket === 'moneyline' ? 'ML' : activeMarket.charAt(0).toUpperCase() + activeMarket.slice(1)}` : ''}</span>
       <div className="flex-1 min-h-0 overflow-auto">
         <div className="flex flex-col gap-1">
           {factors.map(f => {
@@ -1350,6 +1362,46 @@ function LiveLockOverlay() {
 }
 
 // ============================================================================
+// ExchangePlaceholder — placeholder for Exchange Markets tab
+// ============================================================================
+
+type MarketMode = 'sportsbook' | 'exchange';
+
+function ExchangePlaceholder({ homeTeam, awayTeam }: { homeTeam: string; awayTeam: string }) {
+  const exchanges = [
+    { name: 'Kalshi', color: '#0ea5e9', icon: 'K' },
+    { name: 'Polymarket', color: '#8b5cf6', icon: 'P' },
+  ];
+  return (
+    <div className="bg-[#0a0a0a] p-4 h-full flex flex-col" style={{ gridArea: 'pricing' }}>
+      <div className="text-[12px] font-semibold text-zinc-300 mb-1">Exchange Markets — Prediction Market Pricing</div>
+      <div className="text-[10px] text-zinc-500 mb-4">Probability-based contracts from prediction markets</div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 flex-1">
+        {exchanges.map(ex => (
+          <div key={ex.name} className="border border-zinc-800 rounded p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold text-white" style={{ backgroundColor: ex.color }}>{ex.icon}</span>
+              <span className="text-[13px] font-semibold text-zinc-200">{ex.name}</span>
+            </div>
+            {[homeTeam, awayTeam].map(team => (
+              <div key={team} className="mb-3 border-t border-zinc-800/50 pt-2">
+                <div className="text-[10px] text-zinc-400 mb-1">Market: <span className="text-zinc-300">{team} to win</span></div>
+                <div className="grid grid-cols-3 gap-2">
+                  <div><div className="text-[8px] text-zinc-600 uppercase">Price</div><div className="text-[14px] font-mono text-zinc-500">--</div></div>
+                  <div><div className="text-[8px] text-zinc-600 uppercase">Volume</div><div className="text-[14px] font-mono text-zinc-500">--</div></div>
+                  <div><div className="text-[8px] text-zinc-600 uppercase">Depth</div><div className="text-[14px] font-mono text-zinc-500">--</div></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+      <div className="text-[10px] text-zinc-600 mt-3 text-center">Exchange data integration coming soon</div>
+    </div>
+  );
+}
+
+// ============================================================================
 // Main GameDetailClient Component — OMI Fair Pricing Layout
 // ============================================================================
 
@@ -1365,6 +1417,7 @@ export function GameDetailClient({
   const [chartViewMode, setChartViewMode] = useState<ChartViewMode>('line');
   const [lazyLineHistory, setLazyLineHistory] = useState<Record<string, Record<string, any[]>>>({});
   const [loadingPeriods, setLoadingPeriods] = useState<Set<string>>(new Set());
+  const [marketMode, setMarketMode] = useState<MarketMode>('sportsbook');
 
   // User/demo state
   const [localEmail, setLocalEmail] = useState<string | null>(null);
@@ -1480,9 +1533,9 @@ export function GameDetailClient({
       <div
         className="hidden lg:grid h-full relative"
         style={{
-          gridTemplateRows: '36px auto 1fr auto',
+          gridTemplateRows: '36px auto auto 1fr auto',
           gridTemplateColumns: '1fr 1fr',
-          gridTemplateAreas: `"header header" "chart chart" "pricing pricing" "analysis ceq"`,
+          gridTemplateAreas: `"header header" "modetabs modetabs" "chart chart" "pricing pricing" "analysis ceq"`,
           gap: '1px',
           background: '#27272a',
           fontVariantNumeric: 'tabular-nums',
@@ -1504,6 +1557,30 @@ export function GameDetailClient({
           onSelectBook={setSelectedBook}
           isLive={isLive}
         />
+
+        {/* Sportsbook / Exchange mode tabs */}
+        <div className="bg-[#0a0a0a] flex items-center gap-1 px-3 py-1" style={{ gridArea: 'modetabs' }}>
+          <button
+            onClick={() => setMarketMode('sportsbook')}
+            className={`px-3 py-1 text-[11px] font-medium rounded transition-colors ${
+              marketMode === 'sportsbook'
+                ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
+            }`}
+          >
+            Sportsbook Markets
+          </button>
+          <button
+            onClick={() => setMarketMode('exchange')}
+            className={`px-3 py-1 text-[11px] font-medium rounded transition-colors ${
+              marketMode === 'exchange'
+                ? 'bg-violet-500/15 text-violet-400 border border-violet-500/30'
+                : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
+            }`}
+          >
+            Exchange Markets
+          </button>
+        </div>
 
         {/* Combined tabs + chart — single full-width cell */}
         <div className="bg-[#0a0a0a] p-2 relative flex flex-col" style={{ gridArea: 'chart', minHeight: '240px' }}>
@@ -1573,27 +1650,41 @@ export function GameDetailClient({
           {showLiveLock && <LiveLockOverlay />}
         </div>
 
-        <OmiFairPricing
-          pythonPillars={pythonPillarScores}
-          bookmakers={bookmakers}
-          gameData={gameData}
-          sportKey={gameData.sportKey}
-          activeMarket={activeMarket}
-          activePeriod={activePeriod}
-          selectedBook={selectedBook}
-          commenceTime={gameData.commenceTime}
-        />
+        {marketMode === 'sportsbook' ? (
+          <>
+            <OmiFairPricing
+              pythonPillars={pythonPillarScores}
+              bookmakers={bookmakers}
+              gameData={gameData}
+              sportKey={gameData.sportKey}
+              activeMarket={activeMarket}
+              activePeriod={activePeriod}
+              selectedBook={selectedBook}
+              commenceTime={gameData.commenceTime}
+            />
 
-        <WhyThisPrice
-          pythonPillars={pythonPillarScores}
-          ceq={activeCeq}
-          homeTeam={gameData.homeTeam}
-          awayTeam={gameData.awayTeam}
-          activeMarket={activeMarket}
-          activePeriod={activePeriod}
-        />
+            <WhyThisPrice
+              pythonPillars={pythonPillarScores}
+              ceq={activeCeq}
+              homeTeam={gameData.homeTeam}
+              awayTeam={gameData.awayTeam}
+              activeMarket={activeMarket}
+              activePeriod={activePeriod}
+            />
 
-        <CeqFactors ceq={activeCeq} />
+            <CeqFactors ceq={activeCeq} activeMarket={activeMarket} />
+          </>
+        ) : (
+          <>
+            <ExchangePlaceholder homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
+            <div className="bg-[#0a0a0a] p-2 flex items-center justify-center" style={{ gridArea: 'analysis' }}>
+              <span className="text-[10px] text-zinc-600">Exchange analysis coming soon</span>
+            </div>
+            <div className="bg-[#0a0a0a] p-2 flex items-center justify-center" style={{ gridArea: 'ceq' }}>
+              <span className="text-[10px] text-zinc-600">Exchange CEQ coming soon</span>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Mobile: Single-column scrollable fallback */}
@@ -1610,6 +1701,30 @@ export function GameDetailClient({
         />
 
         <div className="p-2 space-y-2">
+          {/* Sportsbook / Exchange mode tabs (mobile) */}
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setMarketMode('sportsbook')}
+              className={`px-3 py-1 text-[11px] font-medium rounded transition-colors ${
+                marketMode === 'sportsbook'
+                  ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                  : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
+              }`}
+            >
+              Sportsbook
+            </button>
+            <button
+              onClick={() => setMarketMode('exchange')}
+              className={`px-3 py-1 text-[11px] font-medium rounded transition-colors ${
+                marketMode === 'exchange'
+                  ? 'bg-violet-500/15 text-violet-400 border border-violet-500/30'
+                  : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
+              }`}
+            >
+              Exchange
+            </button>
+          </div>
+
           {/* Market + Period tabs */}
           <div className="bg-zinc-900/50 rounded p-2">
             <div className="flex items-center gap-0.5 mb-1.5 flex-wrap">
@@ -1679,27 +1794,33 @@ export function GameDetailClient({
             {showLiveLock && <LiveLockOverlay />}
           </div>
 
-          <OmiFairPricing
-            pythonPillars={pythonPillarScores}
-            bookmakers={bookmakers}
-            gameData={gameData}
-            sportKey={gameData.sportKey}
-            activeMarket={activeMarket}
-            activePeriod={activePeriod}
-            selectedBook={selectedBook}
-            commenceTime={gameData.commenceTime}
-          />
+          {marketMode === 'sportsbook' ? (
+            <>
+              <OmiFairPricing
+                pythonPillars={pythonPillarScores}
+                bookmakers={bookmakers}
+                gameData={gameData}
+                sportKey={gameData.sportKey}
+                activeMarket={activeMarket}
+                activePeriod={activePeriod}
+                selectedBook={selectedBook}
+                commenceTime={gameData.commenceTime}
+              />
 
-          <WhyThisPrice
-            pythonPillars={pythonPillarScores}
-            ceq={activeCeq}
-            homeTeam={gameData.homeTeam}
-            awayTeam={gameData.awayTeam}
-            activeMarket={activeMarket}
-            activePeriod={activePeriod}
-          />
+              <WhyThisPrice
+                pythonPillars={pythonPillarScores}
+                ceq={activeCeq}
+                homeTeam={gameData.homeTeam}
+                awayTeam={gameData.awayTeam}
+                activeMarket={activeMarket}
+                activePeriod={activePeriod}
+              />
 
-          <CeqFactors ceq={activeCeq} />
+              <CeqFactors ceq={activeCeq} activeMarket={activeMarket} />
+            </>
+          ) : (
+            <ExchangePlaceholder homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
+          )}
         </div>
       </div>
     </>

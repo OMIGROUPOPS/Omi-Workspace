@@ -269,6 +269,7 @@ def run_pregame_cycle() -> dict:
             # Run analysis
             analyses = analyze_all_games(sport)
             predictions_saved = db.save_predictions_batch(analyses)
+            logger.info(f"[PREGAME] {sport}: {len(analyses)} games analyzed, {predictions_saved} predictions saved")
             
             # Count edges by confidence
             edges_by_confidence = {"PASS": 0, "WATCH": 0, "EDGE": 0, "STRONG": 0, "RARE": 0}
@@ -311,58 +312,129 @@ def run_pregame_cycle() -> dict:
 # LIVE POLLING (Every 2 minutes)
 # =============================================================================
 
+def _detect_line_movement(game: dict, sport: str) -> list[dict]:
+    """Detect significant line movements (>0.5 pts spread/total, >10 ML) for a game.
+    Returns list of movements with game_id, market_type, old_line, new_line, diff."""
+    from engine.analyzer import fetch_line_context
+    parsed = odds_client.parse_game_odds(game)
+    game_id = parsed["game_id"]
+    movements = []
+
+    line_ctx = fetch_line_context(game_id, sport)
+    prev_line = line_ctx.get("current_line")
+
+    # Check spread movement
+    for book_key, markets in parsed.get("bookmakers", {}).items():
+        spread = markets.get("spreads", {}).get("home", {})
+        if spread and prev_line is not None:
+            new_line = spread.get("line")
+            if new_line is not None:
+                diff = abs(new_line - prev_line)
+                if diff > 0.5:
+                    movements.append({
+                        "game_id": game_id, "market": "spread", "book": book_key,
+                        "old": prev_line, "new": new_line, "diff": diff
+                    })
+                break  # Only check one book for movement trigger
+    return movements
+
+
 def run_live_cycle() -> dict:
     """
     Live polling cycle:
     - Only fetch main markets (h2h, spreads, totals)
     - Only for games currently in progress
     - Save snapshots for line movement tracking
+    - Detect >0.5 point movements and trigger pillar recalculation
     """
+    from engine import analyze_all_games
+    from engine.analyzer import analyze_game, fetch_line_context
+
     start_time = datetime.now(timezone.utc)
     logger.info(f"Starting LIVE cycle at {start_time.isoformat()}")
-    
+
     results = {
         "type": "live",
         "started_at": start_time.isoformat(),
         "sports": {},
         "total_live_games": 0,
         "total_snapshots": 0,
+        "recalcs_triggered": 0,
         "errors": []
     }
-    
+
     for sport in ODDS_API_SPORTS.keys():
         try:
             # Get live games only
             live_games = odds_client.get_live_games(sport)
-            
+
             if not live_games:
                 continue
-            
+
             logger.info(f"[LIVE] Found {len(live_games)} live games for {sport}")
-            
+
             snapshots_saved = 0
+            recalcs = 0
             for game in live_games:
+                # Detect line movement BEFORE saving new snapshots
+                movements = _detect_line_movement(game, sport)
+
+                # Save snapshots
                 snapshots_saved += db.save_game_snapshots(game, sport)
-            
+
+                # If significant movement detected, trigger recalculation
+                if movements:
+                    for mv in movements:
+                        logger.info(
+                            f"RECALC TRIGGERED for game {mv['game_id']}: "
+                            f"{mv['market']} line moved from {mv['old']} to {mv['new']} "
+                            f"(diff={mv['diff']:.1f}, book={mv['book']})"
+                        )
+                    try:
+                        game_id = movements[0]["game_id"]
+                        line_ctx = fetch_line_context(game_id, sport)
+                        old_pred = db.get_prediction(game_id, sport)
+                        old_composite = old_pred.get("composite", 0) if old_pred else 0
+
+                        analysis = analyze_game(
+                            game, sport,
+                            opening_line=line_ctx.get("opening_line"),
+                            line_snapshots=line_ctx.get("line_snapshots")
+                        )
+                        db.save_predictions_batch([analysis])
+                        new_composite = analysis.get("composite", 0)
+                        logger.info(
+                            f"RECALC COMPLETE for game {game_id}: "
+                            f"new composite = {new_composite:.3f}, old = {old_composite:.3f}"
+                        )
+                        recalcs += 1
+                    except Exception as e:
+                        logger.error(f"[LIVE] Recalc failed for game {movements[0]['game_id']}: {e}")
+
             results["sports"][sport] = {
                 "live_games": len(live_games),
-                "snapshots_saved": snapshots_saved
+                "snapshots_saved": snapshots_saved,
+                "recalcs_triggered": recalcs
             }
             results["total_live_games"] += len(live_games)
             results["total_snapshots"] += snapshots_saved
-            
+            results["recalcs_triggered"] += recalcs
+
         except Exception as e:
             error_msg = f"[LIVE] Error processing {sport}: {str(e)}"
             logger.error(error_msg)
             results["errors"].append(error_msg)
-    
+
     end_time = datetime.now(timezone.utc)
     results["completed_at"] = end_time.isoformat()
     results["duration_seconds"] = (end_time - start_time).total_seconds()
-    
+
     if results["total_live_games"] > 0:
-        logger.info(f"[LIVE] Cycle completed: {results['total_live_games']} games, {results['total_snapshots']} snapshots")
-    
+        logger.info(
+            f"[LIVE] Cycle completed: {results['total_live_games']} games, "
+            f"{results['total_snapshots']} snapshots, {results['recalcs_triggered']} recalcs"
+        )
+
     return results
 
 

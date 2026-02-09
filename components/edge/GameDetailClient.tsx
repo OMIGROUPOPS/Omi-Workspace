@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { formatOdds, formatSpread } from '@/lib/edge/utils/odds-math';
 import { isGameLive as checkGameLive } from '@/lib/edge/utils/game-state';
-import type { CEQResult, GameCEQ, CEQConfidence, PythonPillarScores } from '@/lib/edge/engine/edgescout';
+import type { CEQResult, GameCEQ, CEQConfidence, PythonPillarScores, PillarResult } from '@/lib/edge/engine/edgescout';
 import { calculateFairSpread, calculateFairTotal, calculateFairMoneyline, removeVig, SPORT_KEY_NUMBERS } from '@/lib/edge/engine/edgescout';
 
 // ============================================================================
@@ -383,7 +383,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
       {/* Chart SVG */}
       <div className="relative flex-1 min-h-0">
-        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="none" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
+        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="xMidYMid meet" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
           {yLabels.map((label, i) => (
             <g key={i}>
               <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#27272a" strokeWidth="0.5" />
@@ -600,89 +600,95 @@ function OmiFairPricing({
     'SHARP': { badge: 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30', border: 'border-l-cyan-400', icon: '\u25C6' },
   };
 
-  // OMI fair ML as implied probability (no-vig, these already sum to 100%)
-  const omiFairHomeProb = omiFairML
-    ? americanToImplied(omiFairML.homeOdds)
-    : undefined;
+  // OMI fair ML implied probabilities (no-vig)
+  const omiFairHomeProb = omiFairML ? americanToImplied(omiFairML.homeOdds) : undefined;
+  const omiFairAwayProb = omiFairML ? americanToImplied(omiFairML.awayOdds) : undefined;
 
-  // Build book rows for the active market
-  const buildBookRows = (): BookRow[] => {
-    const rows: BookRow[] = [];
-    for (const book of allBooks) {
-      if (activeMarket === 'spread') {
-        const bookLine = book.markets?.spreads?.home?.line;
-        const bookPrice = book.markets?.spreads?.home?.price;
-        if (bookLine === undefined || !omiFairSpread) continue;
-        const gap = Math.abs(Math.round((bookLine - omiFairSpread.fairLine) * 10) / 10);
-        rows.push({
-          key: book.key, name: book.name, color: book.color,
-          line: formatSpread(bookLine),
-          juice: bookPrice !== undefined ? formatOdds(bookPrice) : '--',
-          gap,
-          signal: getSignal(gap, 'spread', bookLine, omiFairSpread.fairLine),
-        });
-      } else if (activeMarket === 'total') {
-        const bookLine = book.markets?.totals?.line;
-        const bookOverPrice = book.markets?.totals?.over?.price;
-        if (bookLine === undefined || !omiFairTotal) continue;
-        const gap = Math.abs(Math.round((bookLine - omiFairTotal.fairLine) * 10) / 10);
-        rows.push({
-          key: book.key, name: book.name, color: book.color,
-          line: `${bookLine}`,
-          juice: bookOverPrice !== undefined ? formatOdds(bookOverPrice) : '--',
-          gap,
-          signal: getSignal(gap, 'total'),
-        });
-      } else {
-        // Moneyline — vig-adjusted comparison
-        const bookHomeOdds = book.markets?.h2h?.home?.price;
-        const bookAwayOdds = book.markets?.h2h?.away?.price;
-        if (bookHomeOdds === undefined || !omiFairML || omiFairHomeProb === undefined) continue;
-        // Strip vig from book odds to get true fair probability
-        let bookFairHomeProb: number;
-        let vigPct: string;
-        if (bookAwayOdds !== undefined) {
-          const stripped = removeVig(bookHomeOdds, bookAwayOdds);
-          bookFairHomeProb = stripped.fairHomeProb;
-          vigPct = `${(stripped.vig * 100).toFixed(1)}%`;
-        } else {
-          bookFairHomeProb = americanToImplied(bookHomeOdds);
-          vigPct = '--';
-        }
-        // Gap = difference in vig-free implied probabilities (percentage points)
-        const gap = Math.abs(Math.round((bookFairHomeProb - omiFairHomeProb) * 1000) / 10);
-        rows.push({
-          key: book.key, name: book.name, color: book.color,
-          line: bookAwayOdds !== undefined
-            ? `${formatOdds(bookHomeOdds)} / ${formatOdds(bookAwayOdds)}`
-            : formatOdds(bookHomeOdds),
-          juice: vigPct,
-          gap,
-          signal: getSignal(gap, 'moneyline'),
-        });
-      }
-    }
-    return rows.sort((a, b) => b.gap - a.gap);
-  };
+  // Build two side blocks for the active market
+  type SideBlock = { label: string; fair: string; rows: BookRow[]; hasMispricing: boolean };
 
-  const bookRows = buildBookRows();
-
-  // Format OMI fair line display
-  const getOmiFairLineDisplay = (): string => {
-    if (!pythonPillars) return 'N/A';
+  const [leftBlock, rightBlock]: [SideBlock, SideBlock] = (() => {
     if (activeMarket === 'spread') {
-      return omiFairSpread ? formatSpread(omiFairSpread.fairLine) : 'N/A';
+      const awayRows: BookRow[] = [];
+      const homeRows: BookRow[] = [];
+      const awayFair = omiFairSpread ? -omiFairSpread.fairLine : undefined;
+      for (const book of allBooks) {
+        const homeBookLine = book.markets?.spreads?.home?.line;
+        const homePrice = book.markets?.spreads?.home?.price;
+        if (homeBookLine !== undefined && omiFairSpread) {
+          const gap = Math.abs(Math.round((homeBookLine - omiFairSpread.fairLine) * 10) / 10);
+          homeRows.push({ key: book.key, name: book.name, color: book.color, line: formatSpread(homeBookLine), juice: homePrice !== undefined ? formatOdds(homePrice) : '--', gap, signal: getSignal(gap, 'spread', homeBookLine, omiFairSpread.fairLine) });
+        }
+        const awayBookLine = book.markets?.spreads?.away?.line;
+        const awayPrice = book.markets?.spreads?.away?.price;
+        if (awayBookLine !== undefined && awayFair !== undefined) {
+          const gap = Math.abs(Math.round((awayBookLine - awayFair) * 10) / 10);
+          awayRows.push({ key: book.key, name: book.name, color: book.color, line: formatSpread(awayBookLine), juice: awayPrice !== undefined ? formatOdds(awayPrice) : '--', gap, signal: getSignal(gap, 'spread', awayBookLine, awayFair) });
+        }
+      }
+      awayRows.sort((a, b) => b.gap - a.gap);
+      homeRows.sort((a, b) => b.gap - a.gap);
+      return [
+        { label: abbrev(gameData.awayTeam), fair: omiFairSpread ? formatSpread(-omiFairSpread.fairLine) : 'N/A', rows: awayRows, hasMispricing: awayRows.some(r => r.signal === 'MISPRICED') },
+        { label: abbrev(gameData.homeTeam), fair: omiFairSpread ? formatSpread(omiFairSpread.fairLine) : 'N/A', rows: homeRows, hasMispricing: homeRows.some(r => r.signal === 'MISPRICED') },
+      ];
     }
     if (activeMarket === 'total') {
-      return omiFairTotal ? `${omiFairTotal.fairLine}` : 'N/A';
+      const overRows: BookRow[] = [];
+      const underRows: BookRow[] = [];
+      for (const book of allBooks) {
+        const bookLine = book.markets?.totals?.line;
+        const overPrice = book.markets?.totals?.over?.price;
+        const underPrice = book.markets?.totals?.under?.price;
+        if (bookLine === undefined || !omiFairTotal) continue;
+        const gap = Math.abs(Math.round((bookLine - omiFairTotal.fairLine) * 10) / 10);
+        overRows.push({ key: book.key, name: book.name, color: book.color, line: `${bookLine}`, juice: overPrice !== undefined ? formatOdds(overPrice) : '--', gap, signal: getSignal(gap, 'total') });
+        underRows.push({ key: book.key, name: book.name, color: book.color, line: `${bookLine}`, juice: underPrice !== undefined ? formatOdds(underPrice) : '--', gap, signal: getSignal(gap, 'total') });
+      }
+      overRows.sort((a, b) => b.gap - a.gap);
+      underRows.sort((a, b) => b.gap - a.gap);
+      return [
+        { label: 'OVER', fair: omiFairTotal ? `${omiFairTotal.fairLine}` : 'N/A', rows: overRows, hasMispricing: overRows.some(r => r.signal === 'MISPRICED') },
+        { label: 'UNDER', fair: omiFairTotal ? `${omiFairTotal.fairLine}` : 'N/A', rows: underRows, hasMispricing: underRows.some(r => r.signal === 'MISPRICED') },
+      ];
     }
-    if (omiFairML) {
-      return `${abbrev(gameData.homeTeam)} ${formatOdds(omiFairML.homeOdds)} / ${abbrev(gameData.awayTeam)} ${formatOdds(omiFairML.awayOdds)}`;
+    // Moneyline — vig-adjusted per side
+    const awayRows: BookRow[] = [];
+    const homeRows: BookRow[] = [];
+    for (const book of allBooks) {
+      const bookHomeOdds = book.markets?.h2h?.home?.price;
+      const bookAwayOdds = book.markets?.h2h?.away?.price;
+      if (!omiFairML) continue;
+      let vigPct = '--';
+      let bookFairHomeProb: number | undefined;
+      let bookFairAwayProb: number | undefined;
+      if (bookHomeOdds !== undefined && bookAwayOdds !== undefined) {
+        const stripped = removeVig(bookHomeOdds, bookAwayOdds);
+        bookFairHomeProb = stripped.fairHomeProb;
+        bookFairAwayProb = stripped.fairAwayProb;
+        vigPct = `${(stripped.vig * 100).toFixed(1)}%`;
+      } else {
+        if (bookHomeOdds !== undefined) bookFairHomeProb = americanToImplied(bookHomeOdds);
+        if (bookAwayOdds !== undefined) bookFairAwayProb = americanToImplied(bookAwayOdds);
+      }
+      if (bookHomeOdds !== undefined && bookFairHomeProb !== undefined && omiFairHomeProb !== undefined) {
+        const gap = Math.abs(Math.round((bookFairHomeProb - omiFairHomeProb) * 1000) / 10);
+        homeRows.push({ key: book.key, name: book.name, color: book.color, line: formatOdds(bookHomeOdds), juice: vigPct, gap, signal: getSignal(gap, 'moneyline') });
+      }
+      if (bookAwayOdds !== undefined && bookFairAwayProb !== undefined && omiFairAwayProb !== undefined) {
+        const gap = Math.abs(Math.round((bookFairAwayProb - omiFairAwayProb) * 1000) / 10);
+        awayRows.push({ key: book.key, name: book.name, color: book.color, line: formatOdds(bookAwayOdds), juice: vigPct, gap, signal: getSignal(gap, 'moneyline') });
+      }
     }
-    return 'N/A';
-  };
+    homeRows.sort((a, b) => b.gap - a.gap);
+    awayRows.sort((a, b) => b.gap - a.gap);
+    return [
+      { label: abbrev(gameData.awayTeam), fair: omiFairML ? formatOdds(omiFairML.awayOdds) : 'N/A', rows: awayRows, hasMispricing: awayRows.some(r => r.signal === 'MISPRICED') },
+      { label: abbrev(gameData.homeTeam), fair: omiFairML ? formatOdds(omiFairML.homeOdds) : 'N/A', rows: homeRows, hasMispricing: homeRows.some(r => r.signal === 'MISPRICED') },
+    ];
+  })();
 
-  const gapUnit = activeMarket === 'moneyline' ? '%' : 'pts';
+  const allRows = [...leftBlock.rows, ...rightBlock.rows];
 
   // Period tabs
   const periodTabs = [
@@ -737,28 +743,48 @@ function OmiFairPricing({
         </div>
       </div>
 
-      {/* OMI Fair Line — the anchor */}
+      {/* OMI Fair Line — split display for both sides */}
       <div className="mb-3 flex-shrink-0">
         <div className="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">OMI Fair Line</div>
-        <div className="text-[22px] font-bold font-mono text-cyan-400" style={{ fontVariantNumeric: 'tabular-nums' }}>
-          {getOmiFairLineDisplay()}
+        <div className="flex items-baseline gap-4" style={{ fontVariantNumeric: 'tabular-nums' }}>
+          <div>
+            <span className="text-[10px] text-zinc-500 mr-1">{leftBlock.label}</span>
+            <span className="text-[20px] font-bold font-mono text-cyan-400">{leftBlock.fair}</span>
+          </div>
+          <span className="text-zinc-600 text-[12px]">vs</span>
+          <div>
+            <span className="text-[10px] text-zinc-500 mr-1">{rightBlock.label}</span>
+            <span className="text-[20px] font-bold font-mono text-cyan-400">{rightBlock.fair}</span>
+          </div>
         </div>
         <div className="text-[10px] text-zinc-500 mt-0.5">
           {pythonPillars
             ? `Based on 6-pillar composite (${pythonPillars.composite}) and market analysis`
             : 'Pillar data unavailable — fair line cannot be calculated'}
         </div>
-        {/* Narrative one-liner — the thesis */}
+        {/* Narrative one-liner */}
         {pythonPillars && (() => {
           const comp = pythonPillars.composite;
           const homeAbbr = abbrev(gameData.homeTeam);
           const awayAbbr = abbrev(gameData.awayTeam);
-          const mispricedCount = bookRows.filter(r => r.signal === 'MISPRICED' || r.signal === 'VALUE').length;
-          const avgGap = bookRows.length > 0 ? (bookRows.reduce((s, r) => s + r.gap, 0) / bookRows.length) : 0;
-          const allSharp = bookRows.length > 0 && bookRows.every(r => r.signal === 'FAIR' || r.signal === 'SHARP');
+          const mispricedCount = allRows.filter(r => r.signal === 'MISPRICED' || r.signal === 'VALUE').length;
+          const avgGap = allRows.length > 0 ? (allRows.reduce((s, r) => s + r.gap, 0) / allRows.length) : 0;
+          const allSharp = allRows.length > 0 && allRows.every(r => r.signal === 'FAIR' || r.signal === 'SHARP');
 
           let narrative: string;
-          if (comp >= 48 && comp <= 52) {
+          if (activeMarket === 'total') {
+            // Totals use gameEnvironment, not composite
+            const envScore = pythonPillars.gameEnvironment;
+            const lean = envScore > 52 ? 'Over' : envScore < 48 ? 'Under' : 'neutral';
+            if (lean === 'neutral') {
+              narrative = `No strong Over/Under lean. Fair total at ${omiFairTotal?.fairLine ?? 'N/A'}.`;
+            } else {
+              const bookTotal = consensusTotal ?? 0;
+              const fairTotal = omiFairTotal?.fairLine ?? bookTotal;
+              const diff = Math.abs(fairTotal - bookTotal).toFixed(1);
+              narrative = `Model leans ${lean} at ${fairTotal} vs book ${bookTotal}. ${diff}-point difference.`;
+            }
+          } else if (comp >= 48 && comp <= 52) {
             const favTeam = activeMarket === 'spread' && omiFairSpread ? (omiFairSpread.fairLine < 0 ? homeAbbr : awayAbbr) : homeAbbr;
             narrative = `Near pick'em. Books have ${favTeam} as favorite — look for value if line is inflated.`;
           } else if (allSharp) {
@@ -769,7 +795,7 @@ function OmiFairPricing({
           } else if (mispricedCount > 0) {
             const team = comp > 50 ? homeAbbr : awayAbbr;
             const gapStr = activeMarket === 'moneyline' ? `${avgGap.toFixed(1)}%` : `${avgGap.toFixed(1)}+ pts`;
-            narrative = `Model favors ${team}. ${mispricedCount} of ${bookRows.length} books are mispriced by ${gapStr}.`;
+            narrative = `Model favors ${team}. ${mispricedCount} of ${allRows.length} books mispriced by ${gapStr}.`;
           } else {
             const team = comp > 50 ? homeAbbr : awayAbbr;
             narrative = `Slight lean toward ${team}. Market is mostly in agreement.`;
@@ -778,65 +804,45 @@ function OmiFairPricing({
         })()}
       </div>
 
-      {/* Book comparison table */}
-      {bookRows.length > 0 ? (
-        <div className="flex-1 min-h-0" style={{ fontVariantNumeric: 'tabular-nums' }}>
-          {/* Table header */}
-          {(() => {
-            const gridCols = activeMarket === 'moneyline'
-              ? 'grid-cols-[2px_100px_130px_50px_60px_80px]'
-              : 'grid-cols-[2px_120px_80px_60px_60px_90px]';
-            return (
-              <>
-                <div className={`grid ${gridCols} gap-px text-[9px] text-zinc-500 uppercase tracking-widest font-medium mb-px`}>
-                  <div />
-                  <div className="bg-[#0a0a0a] px-2 py-1">Book</div>
-                  <div className="bg-[#0a0a0a] px-1 py-1 text-center">{activeMarket === 'moneyline' ? 'Odds' : 'Their Line'}</div>
-                  <div className="bg-[#0a0a0a] px-1 py-1 text-center">{activeMarket === 'moneyline' ? 'Vig' : 'Juice'}</div>
-                  <div className="bg-[#0a0a0a] px-1 py-1 text-center">Gap{activeMarket === 'moneyline' ? '%' : ''}</div>
-                  <div className="bg-[#0a0a0a] px-1 py-1 text-center">Signal</div>
-                </div>
-                {/* Book rows */}
-                {bookRows.map((row, idx) => {
+      {/* Two side-by-side blocks */}
+      {allRows.length > 0 ? (
+        <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-2 gap-2" style={{ fontVariantNumeric: 'tabular-nums' }}>
+          {[leftBlock, rightBlock].map((block, blockIdx) => (
+            <div key={blockIdx} className={`border border-zinc-800 rounded overflow-hidden flex flex-col ${block.hasMispricing ? 'border-l-2 border-l-emerald-400' : ''}`}>
+              {/* Block header */}
+              <div className="bg-zinc-900 px-2 py-1.5 flex items-center justify-between border-b border-zinc-800">
+                <span className="text-[11px] font-bold text-zinc-100">{block.label}</span>
+                <span className="text-[10px] font-mono text-cyan-400">OMI: {block.fair}</span>
+              </div>
+              {/* Column headers */}
+              <div className="flex items-center px-2 py-0.5 text-[8px] text-zinc-500 uppercase tracking-widest bg-zinc-900/50">
+                <span className="flex-1">Book</span>
+                <span className="w-12 text-right">Line</span>
+                <span className="w-10 text-right">Juice</span>
+                <span className="w-8 text-right">Gap</span>
+                <span className="w-16 text-center">Signal</span>
+              </div>
+              {/* Book rows */}
+              <div className="flex-1 overflow-auto">
+                {block.rows.length > 0 ? block.rows.map((row) => {
                   const sc = signalConfig[row.signal];
-                  const gapColor = row.signal === 'MISPRICED' ? 'text-emerald-400' :
-                    row.signal === 'VALUE' ? 'text-amber-400' :
-                    row.signal === 'SHARP' ? 'text-cyan-400' : 'text-zinc-500';
+                  const gapColor = row.signal === 'MISPRICED' ? 'text-emerald-400' : row.signal === 'VALUE' ? 'text-amber-400' : row.signal === 'SHARP' ? 'text-cyan-400' : 'text-zinc-500';
                   return (
-                    <div key={row.key} className={`grid ${gridCols} gap-px mb-px group`}>
-                      {/* Left accent border */}
-                      <div style={{ backgroundColor: row.signal === 'MISPRICED' ? '#34d399' : row.signal === 'VALUE' ? '#fbbf24' : row.signal === 'SHARP' ? '#22d3ee' : '#52525b' }} />
-                      {/* Book name */}
-                      <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-2 py-1.5 flex items-center gap-1.5 transition-colors">
-                        <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ backgroundColor: row.color }} />
-                        <span className="text-[11px] font-medium text-zinc-200 truncate">{row.name}</span>
-                      </div>
-                      {/* Their line / Odds */}
-                      <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 text-center transition-colors">
-                        <span className="text-[11px] font-mono text-zinc-100">{row.line}</span>
-                      </div>
-                      {/* Juice / Vig */}
-                      <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 text-center transition-colors">
-                        <span className="text-[10px] font-mono text-zinc-400">{row.juice}</span>
-                      </div>
-                      {/* Gap */}
-                      <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 text-center transition-colors">
-                        <span className={`text-[11px] font-mono font-semibold ${gapColor}`}>
-                          {row.gap > 0 ? row.gap.toFixed(1) : '0'}{activeMarket === 'moneyline' ? '%' : ''}
-                        </span>
-                      </div>
-                      {/* Signal badge */}
-                      <div className="bg-zinc-900/30 group-hover:bg-zinc-900/60 px-1 py-1.5 flex items-center justify-center transition-colors">
-                        <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${sc.badge}`}>
-                          {row.signal} {sc.icon}
-                        </span>
-                      </div>
+                    <div key={row.key} className="flex items-center px-2 py-1 border-b border-zinc-800/30 hover:bg-zinc-900/50">
+                      <span className="w-2 h-2 rounded-sm mr-1.5 flex-shrink-0" style={{ backgroundColor: row.color }} />
+                      <span className="flex-1 text-[10px] text-zinc-200 truncate">{row.name}</span>
+                      <span className="text-[10px] font-mono text-zinc-100 w-12 text-right">{row.line}</span>
+                      <span className="text-[9px] font-mono text-zinc-400 w-10 text-right">{row.juice}</span>
+                      <span className={`text-[10px] font-mono font-semibold w-8 text-right ${gapColor}`}>{row.gap > 0 ? row.gap.toFixed(1) : '0'}</span>
+                      <span className={`text-[8px] font-bold px-1 py-0.5 rounded ml-1 w-16 text-center ${sc.badge}`}>{row.signal}</span>
                     </div>
                   );
-                })}
-              </>
-            );
-          })()}
+                }) : (
+                  <div className="flex items-center justify-center py-3 text-zinc-500 text-[10px]">No data</div>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       ) : (
         <div className="flex-1 flex items-center justify-center text-zinc-500 text-[11px]">
@@ -1074,6 +1080,58 @@ function WhyThisPrice({
             </div>
           </div>
         )}
+        {/* CEQ Factor Bars — 5 factors from best CEQ result */}
+        {(() => {
+          // Find a CEQResult with pillar data
+          const findCeqPillars = (): { marketEfficiency: PillarResult; lineupImpact: PillarResult; gameEnvironment: PillarResult; matchupDynamics: PillarResult; sentiment: PillarResult } | null => {
+            if (!ceq) return null;
+            const results: CEQResult[] = [];
+            if (ceq.spreads?.home) results.push(ceq.spreads.home);
+            if (ceq.spreads?.away) results.push(ceq.spreads.away);
+            if (ceq.h2h?.home) results.push(ceq.h2h.home);
+            if (ceq.h2h?.away) results.push(ceq.h2h.away);
+            if (ceq.totals?.over) results.push(ceq.totals.over);
+            if (ceq.totals?.under) results.push(ceq.totals.under);
+            // Pick highest CEQ result that has pillar data
+            const withPillars = results.filter(r => r.pillars && r.pillars.marketEfficiency);
+            if (withPillars.length === 0) return null;
+            withPillars.sort((a, b) => b.ceq - a.ceq);
+            return withPillars[0].pillars;
+          };
+          const ceqPillars = findCeqPillars();
+          if (!ceqPillars) return null;
+          const factors = [
+            { key: 'marketEfficiency' as const, label: 'Mkt Eff', weight: ceqPillars.marketEfficiency.weight },
+            { key: 'lineupImpact' as const, label: 'Lineup', weight: ceqPillars.lineupImpact.weight },
+            { key: 'gameEnvironment' as const, label: 'Game Env', weight: ceqPillars.gameEnvironment.weight },
+            { key: 'matchupDynamics' as const, label: 'Matchup', weight: ceqPillars.matchupDynamics.weight },
+            { key: 'sentiment' as const, label: 'Sentiment', weight: ceqPillars.sentiment.weight },
+          ];
+          const getStrength = (s: number) => s >= 75 ? 'Strong' : s >= 60 ? 'Moderate' : s >= 40 ? 'Weak' : 'Low';
+          const getBarColor = (s: number) => s >= 75 ? '#34d399' : s >= 60 ? '#22d3ee' : s >= 40 ? '#fbbf24' : '#71717a';
+          const getTextColor = (s: number) => s >= 75 ? 'text-emerald-400' : s >= 60 ? 'text-cyan-400' : s >= 40 ? 'text-amber-400' : 'text-zinc-500';
+          return (
+            <div className="mt-2 pt-1.5 border-t border-zinc-800/50">
+              <span className="text-[8px] text-zinc-600 uppercase tracking-widest">CEQ Factors</span>
+              <div className="mt-1 flex flex-col gap-0.5">
+                {factors.map(f => {
+                  const score = ceqPillars[f.key].score;
+                  const wPct = Math.round(f.weight * 100);
+                  return (
+                    <div key={f.key} className="flex items-center gap-1">
+                      <span className="text-[8px] text-zinc-500 font-mono w-14 truncate">{f.label} ({wPct}%)</span>
+                      <div className="flex-1 h-[4px] bg-zinc-800 rounded-sm overflow-hidden">
+                        <div className="h-full rounded-sm" style={{ width: `${score}%`, backgroundColor: getBarColor(score) }} />
+                      </div>
+                      <span className={`text-[8px] font-mono w-4 text-right ${getTextColor(score)}`}>{score}</span>
+                      <span className={`text-[7px] w-10 text-right ${getTextColor(score)}`}>{getStrength(score)}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
       </div>
     </div>
   );
@@ -1278,9 +1336,9 @@ export function GameDetailClient({
         />
 
         {/* Convergence chart */}
-        <div className="bg-[#0a0a0a] p-2 relative" style={{ gridArea: 'chart' }}>
+        <div className="bg-[#0a0a0a] p-2 relative flex flex-col" style={{ gridArea: 'chart' }}>
           <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-1 block">Line Convergence</span>
-          <div className="h-[calc(100%-20px)]">
+          <div className="flex-1 min-h-0">
             <LineMovementChart
               gameId={gameData.id}
               selection={chartSelection}
@@ -1292,7 +1350,6 @@ export function GameDetailClient({
               onViewModeChange={setChartViewMode}
               commenceTime={gameData.commenceTime}
               sportKey={gameData.sportKey}
-              compact
               omiFairLine={omiFairLineForChart}
             />
           </div>

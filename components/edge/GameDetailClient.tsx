@@ -105,8 +105,7 @@ interface GameDetailClientProps {
 // ============================================================================
 
 const abbrev = (name: string) => {
-  const words = name.trim().split(/\s+/);
-  return words[words.length - 1].slice(0, 3).toUpperCase();
+  return name.trim().slice(0, 3).toUpperCase();
 };
 
 const calcMedian = (arr: number[]): number | undefined => {
@@ -915,11 +914,12 @@ function OmiFairPricing({
           } else if (hasPillars) {
             const comp = pythonPillars!.composite;
             if (comp >= 48 && comp <= 52) {
-              narrative = `Near pick'em. Look for value if ${selBookName}'s line differs from consensus.`;
+              narrative = `Near pick'em (${homeAbbr}/${awayAbbr}). Look for value if ${selBookName}'s line differs from consensus.`;
             } else {
-              const team = comp > 50 ? homeAbbr : awayAbbr;
+              const favored = comp > 50 ? homeAbbr : awayAbbr;
+              const underdog = comp > 50 ? awayAbbr : homeAbbr;
               const edgeVal = activeMarket === 'moneyline' ? leftBlock.edgePct : leftBlock.edgePts;
-              narrative = `Model favors ${team}. ${selBookName}: ${edgeVal.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ' pts'} edge.`;
+              narrative = `Model favors ${favored} over ${underdog}. ${selBookName}: ${edgeVal.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ' pts'} edge.`;
             }
           } else {
             narrative = `Comparing ${selBookName} against market consensus of ${allBooks.length} sportsbooks.`;
@@ -1175,12 +1175,14 @@ function WhyThisPrice({
     const awayFavored = comp < 48;
     const team = homeFavored ? homeAbbr : awayAbbr;
 
-    // Main thesis line
+    // Main thesis line — mention both teams
     if (homeFavored || awayFavored) {
+      const favored = homeFavored ? homeAbbr : awayAbbr;
+      const underdog = homeFavored ? awayAbbr : homeAbbr;
       const strength = Math.abs(comp - 50) > 10 ? 'strongly' : 'slightly';
-      lines.push(`Pillars ${strength} favor ${team} (composite ${comp}).`);
+      lines.push(`Pillars ${strength} favor ${favored} (${comp}). ${underdog} at disadvantage.`);
     } else {
-      lines.push(`No strong lean — composite near neutral (${comp}).`);
+      lines.push(`No strong lean — ${homeAbbr}/${awayAbbr} near neutral (${comp}).`);
     }
 
     // Top driver(s) — use market-specific scores when available
@@ -1304,12 +1306,29 @@ function CeqFactors({ ceq, activeMarket }: { ceq: GameCEQ | null | undefined; ac
     );
   }
 
+  // Market-specific weight profiles — each market emphasizes different factors
+  const marketWeights: Record<string, Record<string, number>> = {
+    spread:    { marketEfficiency: 0.30, lineupImpact: 0.15, gameEnvironment: 0.10, matchupDynamics: 0.30, sentiment: 0.15 },
+    moneyline: { marketEfficiency: 0.25, lineupImpact: 0.30, gameEnvironment: 0.10, matchupDynamics: 0.20, sentiment: 0.15 },
+    total:     { marketEfficiency: 0.20, lineupImpact: 0.10, gameEnvironment: 0.35, matchupDynamics: 0.15, sentiment: 0.20 },
+  };
+  const weights = marketWeights[activeMarket || 'spread'] || marketWeights.spread;
+
+  // Apply market-specific relevance: amplify deviation from 50 based on market weight
+  const adjustScore = (baseScore: number, factor: string): number => {
+    const w = weights[factor] || 0.20;
+    const baseWeight = 0.20; // neutral weight
+    const amplification = w / baseWeight; // >1 amplifies, <1 dampens
+    const deviation = baseScore - 50;
+    return Math.round(Math.max(0, Math.min(100, 50 + deviation * amplification)));
+  };
+
   const factors = [
-    { key: 'marketEfficiency' as const, label: 'Mkt Eff', weight: ceqPillars.marketEfficiency.weight },
-    { key: 'lineupImpact' as const, label: 'Lineup', weight: ceqPillars.lineupImpact.weight },
-    { key: 'gameEnvironment' as const, label: 'Game Env', weight: ceqPillars.gameEnvironment.weight },
-    { key: 'matchupDynamics' as const, label: 'Matchup', weight: ceqPillars.matchupDynamics.weight },
-    { key: 'sentiment' as const, label: 'Sentiment', weight: ceqPillars.sentiment.weight },
+    { key: 'marketEfficiency' as const, label: 'Mkt Eff', weight: weights.marketEfficiency },
+    { key: 'lineupImpact' as const, label: 'Lineup', weight: weights.lineupImpact },
+    { key: 'gameEnvironment' as const, label: 'Game Env', weight: weights.gameEnvironment },
+    { key: 'matchupDynamics' as const, label: 'Matchup', weight: weights.matchupDynamics },
+    { key: 'sentiment' as const, label: 'Sentiment', weight: weights.sentiment },
   ];
   const getStrength = (s: number) => s >= 75 ? 'Strong' : s >= 60 ? 'Moderate' : s >= 40 ? 'Weak' : 'Low';
   const getBarColor = (s: number) => s >= 75 ? '#34d399' : s >= 60 ? '#22d3ee' : s >= 40 ? '#fbbf24' : '#71717a';
@@ -1321,7 +1340,8 @@ function CeqFactors({ ceq, activeMarket }: { ceq: GameCEQ | null | undefined; ac
       <div className="flex-1 min-h-0 overflow-auto">
         <div className="flex flex-col gap-1">
           {factors.map(f => {
-            const score = ceqPillars[f.key].score;
+            const rawScore = ceqPillars[f.key].score;
+            const score = adjustScore(rawScore, f.key);
             const wPct = Math.round(f.weight * 100);
             return (
               <div key={f.key} className="flex items-center gap-1">

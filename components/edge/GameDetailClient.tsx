@@ -708,8 +708,11 @@ function OmiFairPricing({
     return null;
   };
 
-  // Confidence from pillar composite: favored side = composite, unfavored = 100-composite
-  const composite = pythonPillars?.composite ?? 50;
+  // Market-specific confidence: use pillarsByMarket composite when available
+  const marketKeyForPillars = activeMarket === 'total' ? 'totals' : activeMarket;
+  const pillarPeriodKey = activePeriod === 'full' ? 'full' : (activePeriod === '1h' ? 'h1' : activePeriod === '2h' ? 'h2' : activePeriod?.replace(/(\d)([a-z])/, '$2$1') || 'full');
+  const marketPillarData = pythonPillars?.pillarsByMarket?.[marketKeyForPillars as keyof NonNullable<PythonPillarScores['pillarsByMarket']>]?.[pillarPeriodKey] as any;
+  const composite = marketPillarData?.composite ?? pythonPillars?.composite ?? 50;
 
   // Build side blocks with edge story data
   type SideBlock = {
@@ -753,15 +756,16 @@ function OmiFairPricing({
 
       const mkContext = (side: string, bookL: number | undefined, fairL: number | undefined, signedGap: number) => {
         if (bookL === undefined || fairL === undefined) return '';
-        if (Math.abs(signedGap) < 0.3) return `${selBookName}: ${formatSpread(bookL)} | OMI fair: ${formatSpread(fairL)} — No edge`;
+        if (Math.abs(signedGap) < 0.3) return 'No significant edge';
         return signedGap > 0
           ? `${selBookName} underprices ${side} by ${Math.abs(signedGap).toFixed(1)} pts — value on ${side}`
-          : `${selBookName} overprices ${side} by ${Math.abs(signedGap).toFixed(1)} pts — no value on ${side}`;
+          : `No value on ${side}`;
       };
 
       const mkEvLine = (signedGap: number, cross: number | null) => {
-        if (Math.abs(signedGap) < 0.3) return 'No edge';
+        if (Math.abs(signedGap) < 0.3) return '';
         const sign = signedGap > 0 ? '+' : '\u2212';
+        if (signedGap <= 0) return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)} pts`;
         return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)} pts${cross ? ` | Crosses key number ${cross}` : ''}`;
       };
 
@@ -797,10 +801,10 @@ function OmiFairPricing({
         ? Math.round((fairLine - bookLine) * 10) / 10 : 0;
       const underSignedGap = -overSignedGap;
 
-      // Confidence for totals: gameEnvironment >50 = over-lean
-      const envScore = pythonPillars?.gameEnvironment ?? 50;
-      const overConf = envScore;
-      const underConf = 100 - envScore;
+      // Confidence for totals: use market-specific composite (falls back to gameEnvironment)
+      const totalsConf = composite; // already resolved via pillarsByMarket for totals
+      const overConf = totalsConf;
+      const underConf = 100 - totalsConf;
 
       // EV for over side
       const overEv = Math.abs(overSignedGap) > 0.3 && overPrice !== undefined && bookLine ? (() => {
@@ -816,16 +820,17 @@ function OmiFairPricing({
 
       const mkTotalContext = (side: string, signedGap: number) => {
         if (bookLine === undefined || fairLine === undefined) return '';
-        if (Math.abs(signedGap) < 0.3) return `${selBookName}: ${bookLine} | OMI fair: ${fairLine} — No edge`;
+        if (Math.abs(signedGap) < 0.3) return 'No significant edge';
         return signedGap > 0
           ? `${selBookName} underprices ${side} by ${Math.abs(signedGap).toFixed(1)} pts — value on ${side}`
-          : `${selBookName} overprices ${side} by ${Math.abs(signedGap).toFixed(1)} pts — no value on ${side}`;
+          : `No value on ${side}`;
       };
 
       const mkTotalEv = (signedGap: number, ev: number) => {
-        if (Math.abs(signedGap) < 0.3) return 'No edge';
+        if (Math.abs(signedGap) < 0.3) return '';
         const sign = signedGap > 0 ? '+' : '\u2212';
-        return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)} pts${ev !== 0 ? ` | EV: ${ev > 0 ? '+' : ''}$${ev}/1K` : ''}`;
+        if (signedGap <= 0) return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)} pts`;
+        return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)} pts${ev > 0 ? ` | EV: +$${ev}/1K` : ''}`;
       };
 
       return [
@@ -879,16 +884,17 @@ function OmiFairPricing({
 
     const mkMLContext = (side: string, bookProb: number | undefined, fairProb: number | undefined, signedGap: number) => {
       if (bookProb === undefined || fairProb === undefined) return '';
-      if (Math.abs(signedGap) < 1) return `${selBookName} implies ${(bookProb * 100).toFixed(0)}% | OMI fair: ${(fairProb * 100).toFixed(0)}% — No edge`;
+      if (Math.abs(signedGap) < 2) return 'No significant edge';
       return signedGap > 0
         ? `${selBookName} underprices ${side} by ${Math.abs(signedGap).toFixed(1)}% — value on ${side} ML`
-        : `${selBookName} overprices ${side} by ${Math.abs(signedGap).toFixed(1)}% — no value on ${side} ML`;
+        : `No value on ${side} ML`;
     };
 
     const mkMLEvLine = (signedGap: number, ev: number) => {
-      if (Math.abs(signedGap) < 1) return 'No edge';
+      if (Math.abs(signedGap) < 2) return '';
       const sign = signedGap > 0 ? '+' : '\u2212';
-      return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)}%${ev !== 0 ? ` | EV: ${ev > 0 ? '+' : ''}$${ev}/1K` : ''}`;
+      if (signedGap <= 0) return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)}%`;
+      return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)}%${ev > 0 ? ` | EV: +$${ev}/1K` : ''}`;
     };
 
     return [
@@ -1047,7 +1053,7 @@ function OmiFairPricing({
           const absEdge = Math.abs(edgeVal);
           const isPositiveEdge = edgeVal > 0;
           const isHighEdge = activeMarket === 'moneyline' ? (isPositiveEdge && absEdge >= 10) : (isPositiveEdge && absEdge >= 1.0);
-          const isNearZero = activeMarket === 'moneyline' ? absEdge < 1 : absEdge < 0.3;
+          const isNearZero = activeMarket === 'moneyline' ? absEdge < 2 : absEdge < 0.3;
 
           // Format edge display
           const edgeDisplay = (() => {
@@ -1396,7 +1402,7 @@ function WhyThisPrice({
 // CeqFactors — CEQ factor bars for the "ceq" grid area
 // ============================================================================
 
-function CeqFactors({ ceq, activeMarket }: { ceq: GameCEQ | null | undefined; activeMarket?: ActiveMarket }) {
+function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | null | undefined; activeMarket?: ActiveMarket; homeTeam?: string; awayTeam?: string }) {
   const findCeqPillars = (): { marketEfficiency: PillarResult; lineupImpact: PillarResult; gameEnvironment: PillarResult; matchupDynamics: PillarResult; sentiment: PillarResult } | null => {
     if (!ceq) return null;
     // First try to get CEQ results for the active market
@@ -1456,6 +1462,40 @@ function CeqFactors({ ceq, activeMarket }: { ceq: GameCEQ | null | undefined; ac
     return Math.round(Math.max(0, Math.min(100, 50 + deviation * amplification)));
   };
 
+  const homeAbbr = homeTeam ? abbrev(homeTeam) : 'HOME';
+  const awayAbbr = awayTeam ? abbrev(awayTeam) : 'AWAY';
+  const favAbbr = (pythonPillars: any) => homeAbbr; // composite >50 = home-favored by convention
+  const unfavAbbr = awayAbbr;
+
+  // Detail text generators per factor
+  const getDetailText = (key: string, score: number): string => {
+    const fav = homeAbbr;
+    const unfav = awayAbbr;
+    switch (key) {
+      case 'marketEfficiency':
+        return score > 60 ? 'Market is efficient — books are well-calibrated on this line'
+          : score < 40 ? 'Market appears inefficient — significant pricing gaps between books'
+          : 'Mixed signals — some market inefficiency detected';
+      case 'lineupImpact':
+        return score > 60 ? `Lineup advantage confirmed — key player availability favors ${fav}`
+          : score < 40 ? `Lineup disadvantage — missing key players weakens ${fav}`
+          : 'Lineup impact is neutral — no major availability edge';
+      case 'gameEnvironment':
+        return score > 60 ? 'Environment favors higher scoring — pace/conditions lean Over'
+          : score < 40 ? 'Environment favors lower scoring — pace/conditions lean Under'
+          : 'Neutral environment — no strong pace or conditions lean';
+      case 'matchupDynamics':
+        return score > 60 ? `Matchup favors ${fav} — stylistic advantage`
+          : score < 40 ? `Matchup favors ${unfav} — stylistic disadvantage`
+          : 'Even matchup — no clear stylistic edge';
+      case 'sentiment':
+        return score > 60 ? 'Public/sharp sentiment aligns with model — market agrees'
+          : score < 40 ? 'Contrarian signal — model disagrees with market sentiment'
+          : 'Mixed sentiment — public and sharp money diverge';
+      default: return '';
+    }
+  };
+
   const factors = [
     { key: 'marketEfficiency' as const, label: 'Mkt Eff', weight: weights.marketEfficiency },
     { key: 'lineupImpact' as const, label: 'Lineup', weight: weights.lineupImpact },
@@ -1467,26 +1507,48 @@ function CeqFactors({ ceq, activeMarket }: { ceq: GameCEQ | null | undefined; ac
   const getBarColor = (s: number) => s >= 75 ? '#34d399' : s >= 60 ? '#22d3ee' : s >= 40 ? '#fbbf24' : '#71717a';
   const getTextColor = (s: number) => s >= 75 ? 'text-emerald-400' : s >= 60 ? 'text-cyan-400' : s >= 40 ? 'text-amber-400' : 'text-zinc-500';
 
+  // Compute scores for composite summary
+  const scoredFactors = factors.map(f => {
+    const rawScore = ceqPillars[f.key].score;
+    const score = adjustScore(rawScore, f.key);
+    return { ...f, score, rawScore };
+  });
+  const compositeAvg = Math.round(scoredFactors.reduce((sum, f) => sum + f.score * f.weight, 0) / scoredFactors.reduce((sum, f) => sum + f.weight, 0));
+  const strongest = [...scoredFactors].sort((a, b) => Math.abs(b.score - 50) - Math.abs(a.score - 50))[0];
+
   return (
     <div className="bg-[#0a0a0a] p-2 h-full flex flex-col" style={{ gridArea: 'ceq' }}>
       <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-2">CEQ Factors{activeMarket ? ` — ${activeMarket === 'moneyline' ? 'ML' : activeMarket.charAt(0).toUpperCase() + activeMarket.slice(1)}` : ''}</span>
       <div className="flex-1 min-h-0 overflow-auto">
-        <div className="flex flex-col gap-1">
-          {factors.map(f => {
-            const rawScore = ceqPillars[f.key].score;
-            const score = adjustScore(rawScore, f.key);
+        <div className="flex flex-col gap-0.5">
+          {scoredFactors.map(f => {
             const wPct = Math.round(f.weight * 100);
             return (
-              <div key={f.key} className="flex items-center gap-1">
-                <span className="text-[9px] text-zinc-500 font-mono w-16 truncate">{f.label} ({wPct}%)</span>
-                <div className="flex-1 h-[5px] bg-zinc-800 rounded-sm overflow-hidden">
-                  <div className="h-full rounded-sm" style={{ width: `${score}%`, backgroundColor: getBarColor(score) }} />
+              <div key={f.key}>
+                <div className="flex items-center gap-1">
+                  <span className="text-[9px] text-zinc-500 font-mono w-16 truncate">{f.label} ({wPct}%)</span>
+                  <div className="flex-1 h-[5px] bg-zinc-800 rounded-sm overflow-hidden">
+                    <div className="h-full rounded-sm" style={{ width: `${f.score}%`, backgroundColor: getBarColor(f.score) }} />
+                  </div>
+                  <span className={`text-[9px] font-mono w-5 text-right ${getTextColor(f.score)}`}>{f.score}</span>
+                  <span className={`text-[8px] w-12 text-right ${getTextColor(f.score)}`}>{getStrength(f.score)}</span>
                 </div>
-                <span className={`text-[9px] font-mono w-5 text-right ${getTextColor(score)}`}>{score}</span>
-                <span className={`text-[8px] w-12 text-right ${getTextColor(score)}`}>{getStrength(score)}</span>
+                <div className="text-[10px] text-zinc-500 ml-[68px] leading-tight mb-0.5">{getDetailText(f.key, f.score)}</div>
               </div>
             );
           })}
+        </div>
+        {/* Composite summary */}
+        <div className="mt-1.5 pt-1.5 border-t border-zinc-800/50">
+          <div className="text-[10px] text-zinc-400">
+            <span className="font-semibold text-zinc-300">CEQ COMPOSITE: {compositeAvg}%</span>
+            {' — '}
+            {compositeAvg >= 65 ? 'Market strongly validates thesis.'
+              : compositeAvg >= 55 ? 'Market partially validates thesis.'
+              : compositeAvg >= 45 ? 'Mixed market validation.'
+              : 'Market does not validate thesis.'}
+            {strongest && ` ${strongest.label} (${strongest.score}) is the ${strongest.score > 50 ? 'strongest validation' : 'weakest'} signal.`}
+          </div>
         </div>
       </div>
     </div>
@@ -1825,7 +1887,7 @@ export function GameDetailClient({
               activePeriod={activePeriod}
             />
 
-            <CeqFactors ceq={activeCeq} activeMarket={activeMarket} />
+            <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
           </>
         ) : (
           <>
@@ -1969,7 +2031,7 @@ export function GameDetailClient({
                 activePeriod={activePeriod}
               />
 
-              <CeqFactors ceq={activeCeq} activeMarket={activeMarket} />
+              <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
             </>
           ) : (
             <ExchangePlaceholder homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />

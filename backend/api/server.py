@@ -21,6 +21,7 @@ from config import ODDS_API_SPORTS, ANTHROPIC_API_KEY, PROP_MARKETS
 from database import db
 from results_tracker import ResultsTracker
 from espn_scores import ESPNScoreFetcher, AutoGrader
+from internal_grader import InternalGrader
 
 logging.basicConfig(
     level=logging.INFO,
@@ -1084,6 +1085,34 @@ async def calculate_pillars(
     except Exception as e:
         logger.error(f"Error calculating pillars: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# =============================================================================
+# INTERNAL TOOLS
+# =============================================================================
+
+@app.post("/api/internal/grade-games")
+async def internal_grade_games(sport: str = None):
+    """Grade completed games and generate prediction_grades rows."""
+    grader = InternalGrader()
+    return grader.grade_games(sport.upper() if sport else None)
+
+
+@app.get("/api/internal/edge/performance")
+async def internal_edge_performance(
+    sport: str = None,
+    days: int = 30,
+    market: str = None,
+    confidence_tier: int = None,
+):
+    """Get Edge performance metrics from prediction_grades."""
+    grader = InternalGrader()
+    return grader.get_performance(
+        sport.upper() if sport else None,
+        days,
+        market,
+        confidence_tier,
+    )
 
 
 if __name__ == "__main__":

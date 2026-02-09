@@ -620,18 +620,6 @@ function OmiFairPricing({
   const selBook = allBooks.find(b => b.key === selectedBook);
   const selBookName = BOOK_CONFIG[selectedBook]?.name || selectedBook;
 
-  // DEBUG: Log market data availability per book (helps diagnose empty blocks)
-  if (typeof window !== 'undefined') {
-    console.log(`[OmiFairPricing] allBooks(${allBooks.length}):`, allBooks.map(b => b.key));
-    console.log(`[OmiFairPricing] selBook="${selectedBook}" found=${!!selBook}`);
-    if (selBook) {
-      console.log(`[OmiFairPricing] selBook.markets keys:`, selBook.markets ? Object.keys(selBook.markets) : 'none');
-      console.log(`[OmiFairPricing] spreads:`, selBook.markets?.spreads ? { homeLine: selBook.markets.spreads.home?.line, awayLine: selBook.markets.spreads.away?.line } : null);
-      console.log(`[OmiFairPricing] totals:`, selBook.markets?.totals ? { line: selBook.markets.totals.line, overPrice: selBook.markets.totals.over?.price } : null);
-      console.log(`[OmiFairPricing] h2h:`, selBook.markets?.h2h ? { homePrice: selBook.markets.h2h.home?.price, awayPrice: selBook.markets.h2h.away?.price } : null);
-    }
-  }
-
   // Calculate consensus lines (median across all sportsbooks)
   const spreadLines = allBooks.map(b => b.markets?.spreads?.home?.line).filter((v): v is number => v !== undefined);
   const totalLines = allBooks.map(b => b.markets?.totals?.line).filter((v): v is number => v !== undefined);
@@ -711,7 +699,8 @@ function OmiFairPricing({
   // Market-specific confidence: use pillarsByMarket composite when available
   const marketKeyForPillars = activeMarket === 'total' ? 'totals' : activeMarket;
   const pillarPeriodKey = activePeriod === 'full' ? 'full' : (activePeriod === '1h' ? 'h1' : activePeriod === '2h' ? 'h2' : activePeriod?.replace(/(\d)([a-z])/, '$2$1') || 'full');
-  const marketPillarData = pythonPillars?.pillarsByMarket?.[marketKeyForPillars as keyof NonNullable<PythonPillarScores['pillarsByMarket']>]?.[pillarPeriodKey] as any;
+  const pbm = pythonPillars?.pillarsByMarket;
+  const marketPillarData = pbm ? (pbm as any)[marketKeyForPillars]?.[pillarPeriodKey] : undefined;
   const composite = marketPillarData?.composite ?? pythonPillars?.composite ?? 50;
 
   // Build side blocks with edge story data
@@ -791,9 +780,17 @@ function OmiFairPricing({
       ];
     }
     if (activeMarket === 'total') {
-      const bookLine = selBook?.markets?.totals?.line;
-      const overPrice = selBook?.markets?.totals?.over?.price;
-      const underPrice = selBook?.markets?.totals?.under?.price;
+      // Fallback: if selected book doesn't have totals, use first book that does
+      let effBook = selBook;
+      let effBookName = selBookName;
+      if (!selBook?.markets?.totals?.line && selBook?.markets?.totals?.line !== 0) {
+        const fallback = allBooks.find(b => b.markets?.totals?.line !== undefined);
+        if (fallback) { effBook = fallback; effBookName = BOOK_CONFIG[fallback.key]?.name || fallback.key; }
+      }
+
+      const bookLine = effBook?.markets?.totals?.line;
+      const overPrice = effBook?.markets?.totals?.over?.price;
+      const underPrice = effBook?.markets?.totals?.under?.price;
       const fairLine = omiFairTotal?.fairLine;
 
       // Directional: if fair > book, Over has positive edge, Under has negative
@@ -822,7 +819,7 @@ function OmiFairPricing({
         if (bookLine === undefined || fairLine === undefined) return '';
         if (Math.abs(signedGap) < 0.3) return 'No significant edge';
         return signedGap > 0
-          ? `${selBookName} underprices ${side} by ${Math.abs(signedGap).toFixed(1)} pts — value on ${side}`
+          ? `${effBookName} underprices ${side} by ${Math.abs(signedGap).toFixed(1)} pts — value on ${side}`
           : `No value on ${side}`;
       };
 
@@ -840,7 +837,7 @@ function OmiFairPricing({
           edgePct: 0, edgePts: overSignedGap, edgeColor: getEdgeColor(overSignedGap, 'total'),
           contextLine: mkTotalContext('Over', overSignedGap),
           evLine: mkTotalEv(overSignedGap, overEv),
-          bookName: selBookName, hasData: bookLine !== undefined,
+          bookName: effBookName, hasData: bookLine !== undefined,
           confidence: overConf, confColor: getConfColor(overConf),
         },
         {
@@ -849,14 +846,20 @@ function OmiFairPricing({
           edgePct: 0, edgePts: underSignedGap, edgeColor: getEdgeColor(underSignedGap, 'total'),
           contextLine: mkTotalContext('Under', underSignedGap),
           evLine: mkTotalEv(underSignedGap, underEv),
-          bookName: selBookName, hasData: bookLine !== undefined,
+          bookName: effBookName, hasData: bookLine !== undefined,
           confidence: underConf, confColor: getConfColor(underConf),
         },
       ];
     }
-    // Moneyline
-    const bookHomeOdds = selBook?.markets?.h2h?.home?.price;
-    const bookAwayOdds = selBook?.markets?.h2h?.away?.price;
+    // Moneyline — fallback: if selected book doesn't have h2h, use first book that does
+    let mlEffBook = selBook;
+    let mlEffBookName = selBookName;
+    if (!selBook?.markets?.h2h?.home?.price) {
+      const fallback = allBooks.find(b => b.markets?.h2h?.home?.price !== undefined);
+      if (fallback) { mlEffBook = fallback; mlEffBookName = BOOK_CONFIG[fallback.key]?.name || fallback.key; }
+    }
+    const bookHomeOdds = mlEffBook?.markets?.h2h?.home?.price;
+    const bookAwayOdds = mlEffBook?.markets?.h2h?.away?.price;
     let vigPct = '--';
     let homeSignedGap = 0;
     let awaySignedGap = 0;
@@ -886,7 +889,7 @@ function OmiFairPricing({
       if (bookProb === undefined || fairProb === undefined) return '';
       if (Math.abs(signedGap) < 2) return 'No significant edge';
       return signedGap > 0
-        ? `${selBookName} underprices ${side} by ${Math.abs(signedGap).toFixed(1)}% — value on ${side} ML`
+        ? `${mlEffBookName} underprices ${side} by ${Math.abs(signedGap).toFixed(1)}% — value on ${side} ML`
         : `No value on ${side} ML`;
     };
 
@@ -904,7 +907,7 @@ function OmiFairPricing({
         edgePct: awaySignedGap, edgePts: 0, edgeColor: getEdgeColor(awaySignedGap, 'moneyline'),
         contextLine: mkMLContext(awayAbbr, bookAwayProb, omiFairAwayProb, awaySignedGap),
         evLine: mkMLEvLine(awaySignedGap, awayEv),
-        bookName: selBookName, hasData: bookAwayOdds !== undefined, vigPct,
+        bookName: mlEffBookName, hasData: bookAwayOdds !== undefined, vigPct,
         rawBookOdds: bookAwayOdds, rawFairProb: omiFairAwayProb, rawBookProb: bookAwayProb,
         confidence: awayConf, confColor: getConfColor(awayConf),
       },
@@ -914,7 +917,7 @@ function OmiFairPricing({
         edgePct: homeSignedGap, edgePts: 0, edgeColor: getEdgeColor(homeSignedGap, 'moneyline'),
         contextLine: mkMLContext(homeAbbr, bookHomeProb, omiFairHomeProb, homeSignedGap),
         evLine: mkMLEvLine(homeSignedGap, homeEv),
-        bookName: selBookName, hasData: bookHomeOdds !== undefined, vigPct,
+        bookName: mlEffBookName, hasData: bookHomeOdds !== undefined, vigPct,
         rawBookOdds: bookHomeOdds, rawFairProb: omiFairHomeProb, rawBookProb: bookHomeProb,
         confidence: homeConf, confColor: getConfColor(homeConf),
       },

@@ -520,20 +520,6 @@ function buildPerBookFromCache(game: any): Record<string, { marketGroups: any }>
   const result: Record<string, { marketGroups: any }> = {};
   const bookmakers = game.bookmakers || [];
 
-  // DEBUG: Log bookmaker market keys and data
-  if (bookmakers.length > 0) {
-    const firstBk = bookmakers[0];
-    const marketKeys = (firstBk.markets || []).map((m: any) => m.key);
-    console.log(`[buildPerBookFromCache] ${firstBk.key} market keys (${marketKeys.length}):`, marketKeys);
-    console.log(`[buildPerBookFromCache] Core markets present: h2h=${marketKeys.includes('h2h')}, spreads=${marketKeys.includes('spreads')}, totals=${marketKeys.includes('totals')}`);
-    // Log team names for matching verification
-    console.log(`[buildPerBookFromCache] home_team="${game.home_team}", away_team="${game.away_team}"`);
-    const h2hMarket = (firstBk.markets || []).find((m: any) => m.key === 'h2h');
-    if (h2hMarket) {
-      console.log(`[buildPerBookFromCache] h2h outcome names:`, h2hMarket.outcomes?.map((o: any) => o.name));
-    }
-  }
-
   for (const bk of bookmakers) {
     const bookKey = bk.key;
     const marketsByKey: Record<string, any> = {};
@@ -855,13 +841,6 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     fetchPythonPillars(gameId, sportKey),
   ]);
 
-  // Log Python pillars status
-  if (pythonPillars) {
-    console.log(`[PAGE] Python pillars available:`, pythonPillars);
-  } else {
-    console.log(`[PAGE] Python pillars not available - using TypeScript-only CEQ`);
-  }
-
   // ALWAYS use cached_odds from Supabase for odds data (same source as populate-counts)
   // This ensures dashboard and game detail page show identical edge counts
   let bookmakers: Record<string, any> = {};
@@ -876,22 +855,9 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
 
   if (rawData && rawData.bookmakers && rawData.bookmakers.length > 0) {
     // Build per-book marketGroups from cached Odds API data
-    console.log('[DATA PATH] Using cached_odds from Supabase via buildPerBookFromCache');
     const perBook = buildPerBookFromCache(rawData);
     bookmakers = perBook;
     availableBooks = Object.keys(perBook);
-
-    // DEBUG: Check what marketGroups look like from cache
-    const firstBook = Object.keys(bookmakers)[0];
-    if (firstBook) {
-      const mg = bookmakers[firstBook]?.marketGroups;
-      const fg = mg?.fullGame;
-      console.log('[DATA PATH] Cache marketGroups keys:', mg ? Object.keys(mg) : 'none');
-      console.log('[DATA PATH] Cache fullGame markets:', {
-        hasH2h: !!fg?.h2h, hasSpreads: !!fg?.spreads, hasTotals: !!fg?.totals,
-        h2hHome: fg?.h2h?.home?.price, spreadsHome: fg?.spreads?.home?.line, totalsLine: fg?.totals?.line,
-      });
-    }
 
     // Inject line history and props into each book
     Object.keys(bookmakers).forEach(book => {
@@ -921,25 +887,11 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
 
   const fullSportKey = sportKey;
 
-  // DEBUG: Log gameContext before CEQ calculation
-  console.log(`[PAGE] gameContext received:`, JSON.stringify({
-    homeTeam: gameContext?.homeTeam ? { name: gameContext.homeTeam.team_name, pace: gameContext.homeTeam.pace, streak: gameContext.homeTeam.streak } : 'undefined',
-    awayTeam: gameContext?.awayTeam ? { name: gameContext.awayTeam.team_name, pace: gameContext.awayTeam.pace, streak: gameContext.awayTeam.streak } : 'undefined',
-    weather: gameContext?.weather ? 'present' : 'undefined',
-    league: gameContext?.league
-  }));
-
   // Extract Pinnacle lines (sharp baseline for FDV calculation)
   const pinnacleBook = bookmakers['pinnacle'] as any;
   const pinnacleFullGame = pinnacleBook?.marketGroups?.fullGame;
   const pinnacleSpreadLine = pinnacleFullGame?.spreads?.home?.line;
   const pinnacleTotalLine = pinnacleFullGame?.totals?.line;
-
-  console.log(`[PAGE] Pinnacle data:`, {
-    hasBook: !!pinnacleBook,
-    spreadLine: pinnacleSpreadLine,
-    totalLine: pinnacleTotalLine
-  });
 
   // Helper to calculate CEQ for any period using bookmaker data
   function calculatePeriodCEQ(periodKey: string, selectedBookKey: string = 'fanduel'): GameCEQ | null {
@@ -953,14 +905,6 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     const selectedBookMarkets = selectedBook?.marketGroups?.[periodKey];
     const bookSpreadLine = selectedBookMarkets?.spreads?.home?.line;
     const bookTotalLine = selectedBookMarkets?.totals?.line;
-
-    // DEBUG: Log what we're finding for each period
-    console.log(`[CEQ DEBUG] Period: ${periodKey}`);
-    console.log(`[CEQ DEBUG] Available books:`, Object.keys(bookmakers));
-    console.log(`[CEQ DEBUG] Period markets found:`, periodMarkets.length);
-    if (periodMarkets.length > 0) {
-      console.log(`[CEQ DEBUG] First period market spreads:`, periodMarkets[0]?.spreads);
-    }
 
     if (periodMarkets.length === 0) return null;
 
@@ -1007,11 +951,6 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     const periodTotalOverOdds = getMedian(totalOverOdds) || -110;
     const periodTotalUnderOdds = getMedian(totalUnderOdds) || -110;
 
-    // DEBUG: Log calculated values
-    console.log(`[CEQ DEBUG] ${periodKey} - spreadLines:`, spreadLines, `median:`, periodSpreadLine);
-    console.log(`[CEQ DEBUG] ${periodKey} - openingLine for FDV:`, openingLine);
-    console.log(`[CEQ DEBUG] ${periodKey} - h2hDrawOdds:`, h2hDrawOdds, `median:`, periodH2hDraw);
-
     const hasSpread = periodSpreadLine !== undefined;
     const hasH2h = periodH2hHome !== undefined && periodH2hAway !== undefined;
     const hasTotals = periodTotalLine !== undefined;
@@ -1041,25 +980,19 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     if (openingLine !== undefined) {
       if (periodKey === 'fullGame') {
         periodOpeningData = { spreads: { home: openingLine, away: -openingLine } };
-        console.log(`[CEQ DEBUG] ${periodKey} - Using full game opening line:`, openingLine);
       } else if (periodKey === 'firstHalf' || periodKey === 'secondHalf') {
         // Half spreads are typically ~50% of full game spread
         const halfOpeningLine = openingLine * 0.5;
         periodOpeningData = { spreads: { home: halfOpeningLine, away: -halfOpeningLine } };
-        console.log(`[CEQ DEBUG] ${periodKey} - Estimated half opening line:`, halfOpeningLine, `(from full game:`, openingLine, `)`);
       } else if (periodKey.startsWith('q')) {
         // Quarter spreads are typically ~25% of full game spread
         const quarterOpeningLine = openingLine * 0.25;
         periodOpeningData = { spreads: { home: quarterOpeningLine, away: -quarterOpeningLine } };
-        console.log(`[CEQ DEBUG] ${periodKey} - Estimated quarter opening line:`, quarterOpeningLine);
       } else if (periodKey.startsWith('p')) {
         // NHL period spreads are typically ~33% of full game (3 periods)
         const periodOpeningLineValue = openingLine * 0.33;
         periodOpeningData = { spreads: { home: periodOpeningLineValue, away: -periodOpeningLineValue } };
-        console.log(`[CEQ DEBUG] ${periodKey} - Estimated period opening line:`, periodOpeningLineValue);
       }
-    } else {
-      console.log(`[CEQ DEBUG] ${periodKey} - No opening line available`);
     }
 
     // Filter snapshots for this period's market types
@@ -1100,8 +1033,6 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
         under: calculateTwoWayEV(selectedTotalUnder, selectedTotalOver, periodTotalUnderOdds, periodTotalOverOdds),
       } : undefined,
     };
-
-    console.log(`[CEQ DEBUG] ${periodKey} - EV data:`, evData);
 
     return calculateGameCEQ(
       gameOdds,

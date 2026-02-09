@@ -216,6 +216,12 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   const isFilteredEmpty = hasRealData && filteredHistory.length > 0 && data.length === 0;
 
+  // Color theming: emerald for line mode, amber for price mode
+  const isPrice = effectiveViewMode === 'price';
+  const lineColor = isPrice ? '#fbbf24' : '#34d399'; // amber-400 or emerald-400
+  const gradientId = `grad-${gameId}-${isPrice ? 'price' : 'line'}`;
+  const gradientColorRgb = isPrice ? '251,191,36' : '52,211,153';
+
   if (data.length === 0) {
     return (
       <div className="flex items-center justify-center h-full text-zinc-500 text-[11px]">
@@ -242,19 +248,18 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const currentValue = data[data.length - 1]?.value || baseValue;
   const movement = currentValue - openValue;
   const values = data.map(d => d.value);
-  // Include OMI fair line in min/max so the Y axis accommodates it
   if (chartOmiFairLine !== undefined) values.push(chartOmiFairLine);
   const minVal = Math.min(...values);
   const maxVal = Math.max(...values);
   const range = maxVal - minVal || 1;
   const padding = range * 0.15;
 
-  const width = 400;
-  const height = compact ? 120 : 180;
-  const paddingLeft = compact ? 35 : 45;
-  const paddingRight = 8;
-  const paddingTop = compact ? 6 : 12;
-  const paddingBottom = compact ? 14 : 22;
+  const width = 600;
+  const height = 200;
+  const paddingLeft = 42;
+  const paddingRight = 12;
+  const paddingTop = 10;
+  const paddingBottom = 24;
   const chartWidth = width - paddingLeft - paddingRight;
   const chartHeight = height - paddingTop - paddingBottom;
 
@@ -265,52 +270,59 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   });
 
   const pathD = chartPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+  // Gradient fill area path — line path + bottom close
+  const areaD = `${pathD} L ${chartPoints[chartPoints.length - 1].x} ${paddingTop + chartHeight} L ${chartPoints[0].x} ${paddingTop + chartHeight} Z`;
 
   const formatValue = (val: number) => {
-    if (isMLChart) return `${val.toFixed(1)}%`; // implied probability
+    if (isMLChart) return `${val.toFixed(1)}%`;
     if (effectiveViewMode === 'price') return val > 0 ? `+${val}` : val.toString();
     if (isProp) return val.toString();
     if (marketType === 'spread') return val > 0 ? `+${val}` : val.toString();
     return val.toString();
   };
 
+  // Line badge: current tracking value
+  const lineBadge = displayLine !== undefined ? (marketType === 'spread' ? formatSpread(displayLine) : `${displayLine}`) : null;
+
   const movementColor = movement > 0 ? 'text-emerald-400' : movement < 0 ? 'text-red-400' : 'text-zinc-400';
-  const chartColor = '#a1a1aa'; // zinc-400 — book line
-  const convergeFillId = `converge-fill-${gameId}`;
 
   // OMI fair line Y position
   const omiLineY = chartOmiFairLine !== undefined
     ? paddingTop + chartHeight - ((chartOmiFairLine - minVal + padding) / (range + 2 * padding)) * chartHeight
     : null;
 
-  // Convergence fill: area between book line and OMI line
+  // Convergence fill
   const convergeFillPath = omiLineY !== null && chartPoints.length > 1
     ? `${pathD} L ${chartPoints[chartPoints.length - 1].x} ${omiLineY} L ${chartPoints[0].x} ${omiLineY} Z`
     : null;
-  // Determine if converging (gap decreasing) or diverging
   const isConverging = chartOmiFairLine !== undefined && chartPoints.length > 1
     ? Math.abs(currentValue - chartOmiFairLine) < Math.abs(openValue - chartOmiFairLine)
     : false;
 
-  const yLabels = compact ? [
-    { value: minVal, y: paddingTop + chartHeight },
-    { value: maxVal, y: paddingTop },
-  ] : (() => {
+  // Convergence/divergence label
+  const convergenceLabel = (() => {
+    if (chartOmiFairLine === undefined || chartPoints.length < 2) return null;
+    const gapOpen = Math.abs(openValue - chartOmiFairLine);
+    const gapCurrent = Math.abs(currentValue - chartOmiFairLine);
+    const diff = Math.abs(gapOpen - gapCurrent);
+    if (diff < 0.1) return null;
+    if (isConverging) {
+      return { text: `Book moved ${isMLChart ? diff.toFixed(1) + '%' : diff.toFixed(1)} toward OMI`, color: 'text-emerald-400' };
+    }
+    return { text: `Book diverging from OMI fair value`, color: 'text-amber-400' };
+  })();
+
+  // Y-axis labels
+  const yLabels = (() => {
     const labels: { value: number; y: number }[] = [];
     const visualMin = minVal - padding;
     const visualMax = maxVal + padding;
     const visualRange = visualMax - visualMin;
-    // Spreads: every 0.5 pts; ML (now implied %): every 2-5%; totals/price: existing logic
     let labelStep: number;
-    if (isMLChart) {
-      labelStep = range <= 5 ? 1 : range <= 12 ? 2 : 5;
-    } else if (marketType === 'spread' && effectiveViewMode === 'line') {
-      labelStep = 0.5;
-    } else if (effectiveViewMode === 'price') {
-      labelStep = range <= 8 ? 2 : range <= 16 ? 4 : 5;
-    } else {
-      labelStep = range <= 5 ? 0.5 : range <= 12 ? 1 : range <= 25 ? 2 : 5;
-    }
+    if (isMLChart) { labelStep = range <= 5 ? 1 : range <= 12 ? 2 : 5; }
+    else if (marketType === 'spread' && effectiveViewMode === 'line') { labelStep = 0.5; }
+    else if (effectiveViewMode === 'price') { labelStep = range <= 8 ? 2 : range <= 16 ? 4 : 5; }
+    else { labelStep = range <= 5 ? 0.5 : range <= 12 ? 1 : range <= 25 ? 2 : 5; }
     const startValue = Math.floor(visualMin / labelStep) * labelStep;
     const endValue = Math.ceil(visualMax / labelStep) * labelStep + labelStep;
     for (let val = startValue; val <= endValue; val += labelStep) {
@@ -321,6 +333,27 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       }
     }
     return labels.length > 8 ? labels.filter((_, i) => i % Math.ceil(labels.length / 8) === 0) : labels;
+  })();
+
+  // X-axis date labels
+  const xLabels = (() => {
+    if (data.length < 2) return [];
+    const labels: { x: number; label: string }[] = [];
+    const timeSpan = data[data.length - 1].timestamp.getTime() - data[0].timestamp.getTime();
+    const count = Math.min(5, data.length);
+    const step = Math.max(1, Math.floor(data.length / count));
+    const seen = new Set<string>();
+    for (let i = 0; i < data.length; i += step) {
+      const d = data[i];
+      const dateStr = timeSpan > 48 * 3600000
+        ? d.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+        : d.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      if (seen.has(dateStr)) continue;
+      seen.add(dateStr);
+      const x = paddingLeft + (i / Math.max(data.length - 1, 1)) * chartWidth;
+      labels.push({ x, label: dateStr });
+    }
+    return labels;
   })();
 
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
@@ -337,111 +370,143 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     setHoveredPoint(minDist < 20 ? nearestPoint : null);
   };
 
-  // Convergence/divergence label (Issue 4D)
-  const convergenceLabel = (() => {
-    if (chartOmiFairLine === undefined || chartPoints.length < 2) return null;
-    const gapOpen = Math.abs(openValue - chartOmiFairLine);
-    const gapCurrent = Math.abs(currentValue - chartOmiFairLine);
-    const diff = Math.abs(gapOpen - gapCurrent);
-    if (diff < 0.1) return null;
-    if (isConverging) {
-      return { text: `Book moved ${isMLChart ? diff.toFixed(1) + '%' : diff.toFixed(1)} toward OMI`, color: 'text-emerald-400' };
-    }
-    return { text: `Book diverging from OMI fair value`, color: 'text-amber-400' };
-  })();
+  // Chart title
+  const periodLabels: Record<string, string> = { 'full': 'Full Game', '1h': '1st Half', '2h': '2nd Half', '1q': '1Q', '2q': '2Q', '3q': '3Q', '4q': '4Q', '1p': '1P', '2p': '2P', '3p': '3P' };
+  const marketLabels: Record<string, string> = { 'spread': 'Spread', 'total': 'Total', 'moneyline': 'ML' };
+  const period = selection.type === 'market' ? selection.period : 'full';
+  const chartTitle = `${periodLabels[period] || 'Full Game'} ${marketLabels[marketType] || marketType}${isPrice ? ' Price' : ''}`;
+
+  const homeAbbr = homeTeam?.slice(0, 3).toUpperCase() || 'HM';
+  const awayAbbr = awayTeam?.slice(0, 3).toUpperCase() || 'AW';
 
   return (
     <div className="h-full flex flex-col">
-      {/* Header: tracking side + movement */}
-      <div className="flex items-center justify-between px-1 mb-1">
-        <div className="flex items-center gap-1.5">
-          {!isProp && (
-            <div className="flex rounded overflow-hidden border border-zinc-700/50">
-              <button
-                onClick={() => marketType === 'total' ? setTrackingSide('over') : setTrackingSide('home')}
-                className={`px-1 py-0 text-[9px] font-medium transition-colors ${
-                  (marketType === 'total' ? trackingSide === 'over' : trackingSide === 'home')
-                    ? 'bg-zinc-700 text-zinc-100' : 'bg-transparent text-zinc-500 hover:text-zinc-300'
-                }`}
-              >
-                {marketType === 'total' ? 'O' : (homeTeam?.slice(0, 3).toUpperCase() || 'HM')}
-              </button>
-              {isSoccer && marketType === 'moneyline' && (
-                <button onClick={() => setTrackingSide('draw')} className={`px-1 py-0 text-[9px] font-medium transition-colors ${trackingSide === 'draw' ? 'bg-zinc-700 text-zinc-100' : 'bg-transparent text-zinc-500'}`}>DRW</button>
-              )}
-              <button
-                onClick={() => marketType === 'total' ? setTrackingSide('under') : setTrackingSide('away')}
-                className={`px-1 py-0 text-[9px] font-medium transition-colors ${
-                  (marketType === 'total' ? trackingSide === 'under' : trackingSide === 'away')
-                    ? 'bg-zinc-700 text-zinc-100' : 'bg-transparent text-zinc-500 hover:text-zinc-300'
-                }`}
-              >
-                {marketType === 'total' ? 'U' : (awayTeam?.slice(0, 3).toUpperCase() || 'AW')}
-              </button>
-            </div>
+      {/* Row 1: Chart title + time range + Line/Price toggle */}
+      <div className="flex items-center justify-between px-2 mb-0.5">
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] font-semibold text-zinc-300">{chartTitle}</span>
+          {lineBadge && (
+            <span className="text-[9px] font-mono font-bold text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 rounded px-1.5 py-0">
+              @{lineBadge}
+            </span>
           )}
+        </div>
+        <div className="flex items-center gap-1.5">
           <div className="flex rounded overflow-hidden border border-zinc-700/50">
             {(isGameLive ? ['30M', '1H', '3H', '6H', '24H', 'ALL'] as TimeRange[] : ['1H', '3H', '6H', '24H', 'ALL'] as TimeRange[]).map(r => (
-              <button key={r} onClick={() => setTimeRange(r)} className={`px-1 py-0 text-[8px] font-medium ${timeRange === r ? 'bg-zinc-600 text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>{r}</button>
+              <button key={r} onClick={() => setTimeRange(r)} className={`px-1.5 py-0.5 text-[8px] font-medium ${timeRange === r ? 'bg-zinc-600 text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>{r}</button>
             ))}
           </div>
-        </div>
-        <div className="flex items-center gap-1 text-[10px]" style={{ fontVariantNumeric: 'tabular-nums' }}>
-          <span className="text-zinc-500">{formatValue(openValue)}</span>
-          <span className="text-zinc-600">&rarr;</span>
-          <span className="text-zinc-100 font-semibold">{formatValue(currentValue)}</span>
-          <span className={`font-medium ${movementColor}`}>{movement > 0 ? '+' : ''}{isMLChart ? movement.toFixed(1) + '%' : effectiveViewMode === 'price' ? Math.round(movement) : movement.toFixed(1)}</span>
+          {marketType !== 'moneyline' && (
+            <div className="flex rounded overflow-hidden border border-zinc-700/50">
+              <button onClick={() => onViewModeChange('line')} className={`px-1.5 py-0.5 text-[9px] font-medium ${viewMode === 'line' ? 'bg-zinc-700 text-zinc-100' : 'text-zinc-500'}`}>Line</button>
+              <button onClick={() => onViewModeChange('price')} className={`px-1.5 py-0.5 text-[9px] font-medium ${viewMode === 'price' ? 'bg-zinc-700 text-zinc-100' : 'text-zinc-500'}`}>Price</button>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Convergence/divergence label */}
-      {convergenceLabel && (
-        <div className={`px-1 mb-0.5 text-[8px] ${convergenceLabel.color}`}>{convergenceLabel.text}</div>
-      )}
+      {/* Row 2: Tracking pills + movement */}
+      <div className="flex items-center justify-between px-2 mb-1">
+        <div className="flex items-center gap-1.5">
+          <span className="text-[8px] text-zinc-500 uppercase tracking-wider">Tracking</span>
+          {!isProp && (
+            <div className="flex gap-0.5">
+              <button
+                onClick={() => marketType === 'total' ? setTrackingSide('over') : setTrackingSide('home')}
+                className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
+                  (marketType === 'total' ? trackingSide === 'over' : trackingSide === 'home')
+                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300'
+                }`}
+              >
+                {marketType === 'total' ? 'OVR' : homeAbbr}
+              </button>
+              {isSoccer && marketType === 'moneyline' && (
+                <button onClick={() => setTrackingSide('draw')} className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${trackingSide === 'draw' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50'}`}>DRW</button>
+              )}
+              <button
+                onClick={() => marketType === 'total' ? setTrackingSide('under') : setTrackingSide('away')}
+                className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
+                  (marketType === 'total' ? trackingSide === 'under' : trackingSide === 'away')
+                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300'
+                }`}
+              >
+                {marketType === 'total' ? 'UND' : awayAbbr}
+              </button>
+            </div>
+          )}
+          {convergenceLabel && (
+            <span className={`text-[8px] ${convergenceLabel.color}`}>{convergenceLabel.text}</span>
+          )}
+        </div>
+        <div className="flex items-center gap-1.5 text-[10px] font-mono" style={{ fontVariantNumeric: 'tabular-nums' }}>
+          <span className="text-zinc-500">{formatValue(openValue)}</span>
+          <span className="text-zinc-600">&rarr;</span>
+          <span className="text-zinc-100 font-semibold">{formatValue(currentValue)}</span>
+          <span className={`font-semibold ${movementColor}`}>{movement > 0 ? '+' : ''}{isMLChart ? movement.toFixed(1) + '%' : effectiveViewMode === 'price' ? Math.round(movement) : movement.toFixed(1)}</span>
+        </div>
+      </div>
 
       {/* Chart SVG */}
       <div className="relative flex-1 min-h-0">
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="xMidYMid meet" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
+          <defs>
+            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={`rgb(${gradientColorRgb})`} stopOpacity="0.15" />
+              <stop offset="100%" stopColor={`rgb(${gradientColorRgb})`} stopOpacity="0" />
+            </linearGradient>
+          </defs>
+
+          {/* Y-axis gridlines + labels */}
           {yLabels.map((label, i) => (
             <g key={i}>
-              <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#27272a" strokeWidth="0.5" />
-              <text x={paddingLeft - 4} y={label.y + 3} textAnchor="end" fill="#52525b" fontSize={compact ? "8" : "9"}>{formatValue(label.value)}</text>
+              <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#27272a" strokeWidth="0.5" opacity="0.3" />
+              <text x={paddingLeft - 5} y={label.y + 3} textAnchor="end" fill="#52525b" fontSize="9" fontFamily="monospace">{formatValue(label.value)}</text>
             </g>
           ))}
+
+          {/* X-axis date labels */}
+          {xLabels.map((label, i) => (
+            <text key={i} x={label.x} y={height - 4} textAnchor="middle" fill="#3f3f46" fontSize="8" fontFamily="monospace">{label.label}</text>
+          ))}
+
           {/* Convergence fill between book line and OMI fair line */}
           {convergeFillPath && (
-            <path d={convergeFillPath} fill={isConverging ? 'rgba(16,185,129,0.08)' : 'rgba(239,68,68,0.06)'} />
+            <path d={convergeFillPath} fill={isConverging ? 'rgba(16,185,129,0.06)' : 'rgba(239,68,68,0.04)'} />
           )}
+
+          {/* Gradient fill under book line */}
+          <path d={areaD} fill={`url(#${gradientId})`} />
 
           {/* OMI fair line — horizontal dashed cyan */}
           {omiLineY !== null && (
             <>
-              <line
-                x1={paddingLeft} y1={omiLineY} x2={width - paddingRight} y2={omiLineY}
-                stroke="#22d3ee" strokeWidth="1" strokeDasharray="4 3" opacity="0.7"
-              />
-              <text x={width - paddingRight - 2} y={omiLineY - 4} textAnchor="end" fill="#22d3ee" fontSize="8" fontWeight="bold">OMI</text>
+              <line x1={paddingLeft} y1={omiLineY} x2={width - paddingRight} y2={omiLineY} stroke="#22d3ee" strokeWidth="1" strokeDasharray="4 3" opacity="0.7" />
+              <text x={width - paddingRight - 2} y={omiLineY - 4} textAnchor="end" fill="#22d3ee" fontSize="8" fontWeight="bold" fontFamily="monospace">OMI</text>
             </>
           )}
 
-          {/* Book line — clean 2px stroke, no area fill */}
+          {/* Book line — 2px emerald/amber stroke */}
           {chartPoints.length > 0 && (
             <>
-              <path d={pathD} fill="none" stroke={chartColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="2" fill="#52525b" stroke="#3f3f46" strokeWidth="0.5" />
-              <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="2.5" fill={chartColor} stroke="#18181b" strokeWidth="0.5" />
+              <path d={pathD} fill="none" stroke={lineColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              {/* Open dot — gray */}
+              <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="3" fill="#3f3f46" stroke="#52525b" strokeWidth="1" />
+              {/* Current dot — colored */}
+              <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="3.5" fill={lineColor} stroke="#18181b" strokeWidth="1" />
+              {/* Hover crosshair + dot */}
               {hoveredPoint && (
                 <>
-                  <line x1={hoveredPoint.x} y1={paddingTop} x2={hoveredPoint.x} y2={paddingTop + chartHeight} stroke="#3f3f46" strokeWidth="1" />
-                  <circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="3" fill={chartColor} stroke="#18181b" strokeWidth="1" />
+                  <line x1={hoveredPoint.x} y1={paddingTop} x2={hoveredPoint.x} y2={paddingTop + chartHeight} stroke="#52525b" strokeWidth="0.5" strokeDasharray="2 2" />
+                  <circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="4" fill={lineColor} stroke="#18181b" strokeWidth="1.5" />
                 </>
               )}
             </>
           )}
         </svg>
         {hoveredPoint && (
-          <div className="absolute bg-zinc-800/95 border border-zinc-700/50 rounded px-1.5 py-1 text-[9px] pointer-events-none shadow-lg z-10" style={{ left: `${(hoveredPoint.x / width) * 100}%`, top: `${(hoveredPoint.y / height) * 100 - 8}%`, transform: 'translate(-50%, -100%)' }}>
-            <div className="font-semibold text-zinc-100">{formatValue(hoveredPoint.value)}</div>
+          <div className="absolute bg-zinc-800/95 border border-zinc-700/50 rounded px-2 py-1 text-[9px] pointer-events-none shadow-lg z-10" style={{ left: `${(hoveredPoint.x / width) * 100}%`, top: `${(hoveredPoint.y / height) * 100 - 8}%`, transform: 'translate(-50%, -100%)' }}>
+            <div className="font-semibold text-zinc-100 font-mono">{formatValue(hoveredPoint.value)}</div>
             <div className="text-zinc-500">{hoveredPoint.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}</div>
           </div>
         )}
@@ -1416,8 +1481,8 @@ export function GameDetailClient({
         className="hidden lg:grid h-full relative"
         style={{
           gridTemplateRows: '36px auto 1fr auto',
-          gridTemplateColumns: '2fr 3fr',
-          gridTemplateAreas: `"header header" "tabs chart" "pricing pricing" "analysis ceq"`,
+          gridTemplateColumns: '1fr 1fr',
+          gridTemplateAreas: `"header header" "chart chart" "pricing pricing" "analysis ceq"`,
           gap: '1px',
           background: '#27272a',
           fontVariantNumeric: 'tabular-nums',
@@ -1440,65 +1505,56 @@ export function GameDetailClient({
           isLive={isLive}
         />
 
-        {/* Tabs area — market + period + view mode */}
-        <div className="bg-[#0a0a0a] p-2 flex flex-col justify-center" style={{ gridArea: 'tabs' }}>
-          {/* Market tabs */}
-          <div className="flex items-center gap-0.5 mb-1.5">
-            {(['spread', 'total', 'moneyline'] as ActiveMarket[])
-              .filter(m => m !== 'spread' || !isSoccerGame)
-              .map(m => (
+        {/* Combined tabs + chart — single full-width cell */}
+        <div className="bg-[#0a0a0a] p-2 relative flex flex-col" style={{ gridArea: 'chart', minHeight: '240px' }}>
+          {/* Market tabs + period sub-tabs */}
+          <div className="flex items-center justify-between mb-1 flex-shrink-0">
+            <div className="flex items-center gap-1">
+              {/* Market tabs */}
+              {(['spread', 'total', 'moneyline'] as ActiveMarket[])
+                .filter(m => m !== 'spread' || !isSoccerGame)
+                .map(m => (
+                  <button
+                    key={m}
+                    onClick={() => setActiveMarket(m)}
+                    className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
+                      activeMarket === m
+                        ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                        : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
+                    }`}
+                  >
+                    {m === 'spread' ? 'Spread' : m === 'total' ? 'Total' : 'Moneyline'}
+                  </button>
+                ))}
+              <span className="w-px h-4 bg-zinc-700/50 mx-1" />
+              {/* Period sub-tabs */}
+              {[
+                { key: 'full', label: 'Full' },
+                ...(availableTabs?.firstHalf ? [{ key: '1h', label: '1H' }] : []),
+                ...(availableTabs?.secondHalf ? [{ key: '2h', label: '2H' }] : []),
+                ...(availableTabs?.q1 ? [{ key: '1q', label: 'Q1' }] : []),
+                ...(availableTabs?.q2 ? [{ key: '2q', label: 'Q2' }] : []),
+                ...(availableTabs?.q3 ? [{ key: '3q', label: 'Q3' }] : []),
+                ...(availableTabs?.q4 ? [{ key: '4q', label: 'Q4' }] : []),
+                ...(availableTabs?.p1 ? [{ key: '1p', label: 'P1' }] : []),
+                ...(availableTabs?.p2 ? [{ key: '2p', label: 'P2' }] : []),
+                ...(availableTabs?.p3 ? [{ key: '3p', label: 'P3' }] : []),
+              ].map(tab => (
                 <button
-                  key={m}
-                  onClick={() => setActiveMarket(m)}
-                  className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
-                    activeMarket === m
-                      ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                      : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
+                  key={tab.key}
+                  onClick={() => handlePeriodChange(tab.key)}
+                  className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-colors ${
+                    activePeriod === tab.key
+                      ? 'bg-zinc-700 text-zinc-100'
+                      : 'text-zinc-600 hover:text-zinc-400'
                   }`}
                 >
-                  {m === 'spread' ? 'Spread' : m === 'total' ? 'Total' : 'Moneyline'}
+                  {tab.label}
                 </button>
               ))}
-            {/* Line/Price toggle */}
-            {activeMarket !== 'moneyline' && (
-              <div className="ml-auto flex rounded overflow-hidden border border-zinc-700/50">
-                <button onClick={() => setChartViewMode('line')} className={`px-1.5 py-0.5 text-[9px] font-medium ${chartViewMode === 'line' ? 'bg-zinc-700 text-zinc-100' : 'text-zinc-500'}`}>Line</button>
-                <button onClick={() => setChartViewMode('price')} className={`px-1.5 py-0.5 text-[9px] font-medium ${chartViewMode === 'price' ? 'bg-zinc-700 text-zinc-100' : 'text-zinc-500'}`}>Price</button>
-              </div>
-            )}
+            </div>
           </div>
-          {/* Period sub-tabs */}
-          <div className="flex items-center gap-0.5 flex-wrap">
-            {[
-              { key: 'full', label: 'Full' },
-              ...(availableTabs?.firstHalf ? [{ key: '1h', label: '1H' }] : []),
-              ...(availableTabs?.secondHalf ? [{ key: '2h', label: '2H' }] : []),
-              ...(availableTabs?.q1 ? [{ key: '1q', label: 'Q1' }] : []),
-              ...(availableTabs?.q2 ? [{ key: '2q', label: 'Q2' }] : []),
-              ...(availableTabs?.q3 ? [{ key: '3q', label: 'Q3' }] : []),
-              ...(availableTabs?.q4 ? [{ key: '4q', label: 'Q4' }] : []),
-              ...(availableTabs?.p1 ? [{ key: '1p', label: 'P1' }] : []),
-              ...(availableTabs?.p2 ? [{ key: '2p', label: 'P2' }] : []),
-              ...(availableTabs?.p3 ? [{ key: '3p', label: 'P3' }] : []),
-            ].map(tab => (
-              <button
-                key={tab.key}
-                onClick={() => handlePeriodChange(tab.key)}
-                className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-colors ${
-                  activePeriod === tab.key
-                    ? 'bg-zinc-700 text-zinc-100'
-                    : 'text-zinc-600 hover:text-zinc-400'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Convergence chart — compact, next to tabs */}
-        <div className="bg-[#0a0a0a] p-2 relative flex flex-col" style={{ gridArea: 'chart' }}>
-          <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-1 block">Line Convergence</span>
+          {/* Chart fills remaining space */}
           <div className="flex-1 min-h-0">
             <LineMovementChart
               gameId={gameData.id}
@@ -1511,7 +1567,6 @@ export function GameDetailClient({
               onViewModeChange={setChartViewMode}
               commenceTime={gameData.commenceTime}
               sportKey={gameData.sportKey}
-              compact
               omiFairLine={omiFairLineForChart}
             />
           </div>

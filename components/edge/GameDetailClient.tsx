@@ -648,17 +648,34 @@ function OmiFairPricing({
   const omiFairHomeProb = effectiveHomeML !== undefined ? americanToImplied(effectiveHomeML) : undefined;
   const omiFairAwayProb = effectiveAwayML !== undefined ? americanToImplied(effectiveAwayML) : undefined;
 
-  // Edge color by magnitude
+  // Edge color by signed magnitude (positive = value, negative = no value)
   const getEdgeColor = (gap: number, market: ActiveMarket): string => {
-    if (market === 'moneyline') {
-      if (gap >= 10) return 'text-emerald-400';
-      if (gap >= 5) return 'text-amber-400';
+    const abs = Math.abs(gap);
+    if (gap > 0) {
+      // Positive edge — value side
+      if (market === 'moneyline') {
+        if (abs >= 10) return 'text-emerald-400';
+        if (abs >= 5) return 'text-amber-400';
+        return 'text-zinc-500';
+      }
+      if (abs >= 1.0) return 'text-emerald-400';
+      if (abs >= 0.5) return 'text-amber-400';
       return 'text-zinc-500';
+    } else if (gap < 0) {
+      // Negative edge — no value side
+      if (market === 'moneyline') return abs >= 5 ? 'text-red-400' : 'text-zinc-500';
+      return abs >= 0.5 ? 'text-red-400' : 'text-zinc-500';
     }
-    // spread/total (pts)
-    if (gap >= 1.0) return 'text-emerald-400';
-    if (gap >= 0.5) return 'text-amber-400';
     return 'text-zinc-500';
+  };
+
+  // Confidence color
+  const getConfColor = (conf: number): string => {
+    if (conf >= 65) return 'text-emerald-400';
+    if (conf >= 60) return 'text-emerald-400/70';
+    if (conf >= 55) return 'text-amber-400';
+    if (conf >= 50) return 'text-zinc-500';
+    return 'text-red-400';
   };
 
   // EV calculation
@@ -679,6 +696,9 @@ function OmiFairPricing({
     return null;
   };
 
+  // Confidence from pillar composite: favored side = composite, unfavored = 100-composite
+  const composite = pythonPillars?.composite ?? 50;
+
   // Build side blocks with edge story data
   type SideBlock = {
     label: string; fair: string; bookLine: string; bookOdds: string;
@@ -687,10 +707,11 @@ function OmiFairPricing({
     bookName: string; hasData: boolean;
     rawBookOdds?: number; rawFairProb?: number; rawBookProb?: number;
     vigPct?: string; crossedKey?: number | null;
+    confidence: number; confColor: string;
   };
 
   const [leftBlock, rightBlock]: [SideBlock, SideBlock] = (() => {
-    const noData: SideBlock = { label: '', fair: 'N/A', bookLine: '--', bookOdds: '--', edgePct: 0, edgePts: 0, edgeColor: 'text-zinc-500', contextLine: '', evLine: '', bookName: selBookName, hasData: false };
+    const noData: SideBlock = { label: '', fair: 'N/A', bookLine: '--', bookOdds: '--', edgePct: 0, edgePts: 0, edgeColor: 'text-zinc-500', contextLine: '', evLine: '', bookName: selBookName, hasData: false, confidence: 50, confColor: 'text-zinc-500' };
 
     if (activeMarket === 'spread') {
       const homeBookLine = selBook?.markets?.spreads?.home?.line;
@@ -700,28 +721,57 @@ function OmiFairPricing({
       const fairHomeLine = omiFairSpread?.fairLine;
       const fairAwayLine = omiFairSpread ? -omiFairSpread.fairLine : undefined;
 
-      const homeGap = homeBookLine !== undefined && fairHomeLine !== undefined ? Math.abs(Math.round((homeBookLine - fairHomeLine) * 10) / 10) : 0;
-      const awayGap = awayBookLine !== undefined && fairAwayLine !== undefined ? Math.abs(Math.round((awayBookLine - fairAwayLine) * 10) / 10) : 0;
+      // Directional edge: positive = book gives you MORE than fair (value), negative = book gives LESS
+      // For home spread: if book is -2.5 and fair is -1.0, home bettor gets 1.5 worse → negative edge on home
+      // The bettor on home side WANTS a more positive (less negative) number
+      // homeSignedGap > 0 means book is MORE favorable to home bettor than fair
+      const homeSignedGap = homeBookLine !== undefined && fairHomeLine !== undefined
+        ? Math.round((fairHomeLine - homeBookLine) * 10) / 10 : 0; // fair more negative = home value
+      const awaySignedGap = awayBookLine !== undefined && fairAwayLine !== undefined
+        ? Math.round((fairAwayLine - awayBookLine) * 10) / 10 : 0;
 
       const homeCross = homeBookLine !== undefined && fairHomeLine !== undefined ? crossesKeyNumber(homeBookLine, fairHomeLine) : null;
       const awayCross = awayBookLine !== undefined && fairAwayLine !== undefined ? crossesKeyNumber(awayBookLine, fairAwayLine) : null;
 
+      // Confidence: composite >50 = home-favored
+      const homeConf = composite;
+      const awayConf = 100 - composite;
+
+      const homeAbbr = abbrev(gameData.homeTeam);
+      const awayAbbr = abbrev(gameData.awayTeam);
+
+      const mkContext = (side: string, bookL: number | undefined, fairL: number | undefined, signedGap: number) => {
+        if (bookL === undefined || fairL === undefined) return '';
+        if (Math.abs(signedGap) < 0.3) return `${selBookName}: ${formatSpread(bookL)} | OMI fair: ${formatSpread(fairL)} — No edge`;
+        return signedGap > 0
+          ? `${selBookName} underprices ${side} by ${Math.abs(signedGap).toFixed(1)} pts — value on ${side}`
+          : `${selBookName} overprices ${side} by ${Math.abs(signedGap).toFixed(1)} pts — no value on ${side}`;
+      };
+
+      const mkEvLine = (signedGap: number, cross: number | null) => {
+        if (Math.abs(signedGap) < 0.3) return 'No edge';
+        const sign = signedGap > 0 ? '+' : '\u2212';
+        return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)} pts${cross ? ` | Crosses key number ${cross}` : ''}`;
+      };
+
       return [
         {
-          label: abbrev(gameData.awayTeam), fair: fairAwayLine !== undefined ? formatSpread(fairAwayLine) : 'N/A',
+          label: awayAbbr, fair: fairAwayLine !== undefined ? formatSpread(fairAwayLine) : 'N/A',
           bookLine: awayBookLine !== undefined ? formatSpread(awayBookLine) : '--', bookOdds: awayPrice !== undefined ? formatOdds(awayPrice) : '--',
-          edgePct: 0, edgePts: awayGap, edgeColor: getEdgeColor(awayGap, 'spread'),
-          contextLine: awayBookLine !== undefined && fairAwayLine !== undefined ? `${selBookName}: ${formatSpread(awayBookLine)} | OMI fair: ${formatSpread(fairAwayLine)}` : '',
-          evLine: awayGap > 0 ? `Edge: ${awayGap.toFixed(1)} pts${awayCross ? ` | Crosses key number ${awayCross}` : ''}` : '',
+          edgePct: 0, edgePts: awaySignedGap, edgeColor: getEdgeColor(awaySignedGap, 'spread'),
+          contextLine: mkContext(awayAbbr, awayBookLine, fairAwayLine, awaySignedGap),
+          evLine: mkEvLine(awaySignedGap, awayCross),
           bookName: selBookName, hasData: awayBookLine !== undefined, crossedKey: awayCross,
+          confidence: awayConf, confColor: getConfColor(awayConf),
         },
         {
-          label: abbrev(gameData.homeTeam), fair: fairHomeLine !== undefined ? formatSpread(fairHomeLine) : 'N/A',
+          label: homeAbbr, fair: fairHomeLine !== undefined ? formatSpread(fairHomeLine) : 'N/A',
           bookLine: homeBookLine !== undefined ? formatSpread(homeBookLine) : '--', bookOdds: homePrice !== undefined ? formatOdds(homePrice) : '--',
-          edgePct: 0, edgePts: homeGap, edgeColor: getEdgeColor(homeGap, 'spread'),
-          contextLine: homeBookLine !== undefined && fairHomeLine !== undefined ? `${selBookName}: ${formatSpread(homeBookLine)} | OMI fair: ${formatSpread(fairHomeLine)}` : '',
-          evLine: homeGap > 0 ? `Edge: ${homeGap.toFixed(1)} pts${homeCross ? ` | Crosses key number ${homeCross}` : ''}` : '',
+          edgePct: 0, edgePts: homeSignedGap, edgeColor: getEdgeColor(homeSignedGap, 'spread'),
+          contextLine: mkContext(homeAbbr, homeBookLine, fairHomeLine, homeSignedGap),
+          evLine: mkEvLine(homeSignedGap, homeCross),
           bookName: selBookName, hasData: homeBookLine !== undefined, crossedKey: homeCross,
+          confidence: homeConf, confColor: getConfColor(homeConf),
         },
       ];
     }
@@ -730,32 +780,61 @@ function OmiFairPricing({
       const overPrice = selBook?.markets?.totals?.over?.price;
       const underPrice = selBook?.markets?.totals?.under?.price;
       const fairLine = omiFairTotal?.fairLine;
-      const gap = bookLine !== undefined && fairLine !== undefined ? Math.abs(Math.round((bookLine - fairLine) * 10) / 10) : 0;
-      const edgeColor = getEdgeColor(gap, 'total');
 
-      // EV for totals — approximate fair prob from gap magnitude
-      const overEv = gap > 0 && overPrice !== undefined ? (() => {
-        const edgeFrac = gap / (bookLine || 1) * 0.5; // rough edge
-        const fairProb = 0.5 + (fairLine !== undefined && bookLine !== undefined && fairLine > bookLine ? edgeFrac : -edgeFrac);
+      // Directional: if fair > book, Over has positive edge, Under has negative
+      const overSignedGap = bookLine !== undefined && fairLine !== undefined
+        ? Math.round((fairLine - bookLine) * 10) / 10 : 0;
+      const underSignedGap = -overSignedGap;
+
+      // Confidence for totals: gameEnvironment >50 = over-lean
+      const envScore = pythonPillars?.gameEnvironment ?? 50;
+      const overConf = envScore;
+      const underConf = 100 - envScore;
+
+      // EV for over side
+      const overEv = Math.abs(overSignedGap) > 0.3 && overPrice !== undefined && bookLine ? (() => {
+        const edgeFrac = Math.abs(overSignedGap) / bookLine * 0.5;
+        const fairProb = 0.5 + (overSignedGap > 0 ? edgeFrac : -edgeFrac);
         return calcEV(Math.max(0.01, Math.min(0.99, fairProb)), overPrice);
       })() : 0;
+      const underEv = Math.abs(underSignedGap) > 0.3 && underPrice !== undefined && bookLine ? (() => {
+        const edgeFrac = Math.abs(underSignedGap) / bookLine * 0.5;
+        const fairProb = 0.5 + (underSignedGap > 0 ? edgeFrac : -edgeFrac);
+        return calcEV(Math.max(0.01, Math.min(0.99, fairProb)), underPrice);
+      })() : 0;
+
+      const mkTotalContext = (side: string, signedGap: number) => {
+        if (bookLine === undefined || fairLine === undefined) return '';
+        if (Math.abs(signedGap) < 0.3) return `${selBookName}: ${bookLine} | OMI fair: ${fairLine} — No edge`;
+        return signedGap > 0
+          ? `${selBookName} underprices ${side} by ${Math.abs(signedGap).toFixed(1)} pts — value on ${side}`
+          : `${selBookName} overprices ${side} by ${Math.abs(signedGap).toFixed(1)} pts — no value on ${side}`;
+      };
+
+      const mkTotalEv = (signedGap: number, ev: number) => {
+        if (Math.abs(signedGap) < 0.3) return 'No edge';
+        const sign = signedGap > 0 ? '+' : '\u2212';
+        return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)} pts${ev !== 0 ? ` | EV: ${ev > 0 ? '+' : ''}$${ev}/1K` : ''}`;
+      };
 
       return [
         {
           label: 'OVER', fair: fairLine !== undefined ? `${fairLine}` : 'N/A',
           bookLine: bookLine !== undefined ? `${bookLine}` : '--', bookOdds: overPrice !== undefined ? formatOdds(overPrice) : '--',
-          edgePct: 0, edgePts: gap, edgeColor,
-          contextLine: bookLine !== undefined && fairLine !== undefined ? `${selBookName}: O ${bookLine} | OMI fair: ${fairLine}` : '',
-          evLine: gap > 0 ? `Edge: ${gap.toFixed(1)} pts${overEv !== 0 ? ` | EV: ${overEv > 0 ? '+' : ''}$${overEv}/1K` : ''}` : '',
+          edgePct: 0, edgePts: overSignedGap, edgeColor: getEdgeColor(overSignedGap, 'total'),
+          contextLine: mkTotalContext('Over', overSignedGap),
+          evLine: mkTotalEv(overSignedGap, overEv),
           bookName: selBookName, hasData: bookLine !== undefined,
+          confidence: overConf, confColor: getConfColor(overConf),
         },
         {
           label: 'UNDER', fair: fairLine !== undefined ? `${fairLine}` : 'N/A',
           bookLine: bookLine !== undefined ? `${bookLine}` : '--', bookOdds: underPrice !== undefined ? formatOdds(underPrice) : '--',
-          edgePct: 0, edgePts: gap, edgeColor,
-          contextLine: bookLine !== undefined && fairLine !== undefined ? `${selBookName}: U ${bookLine} | OMI fair: ${fairLine}` : '',
-          evLine: gap > 0 ? `Edge: ${gap.toFixed(1)} pts` : '',
+          edgePct: 0, edgePts: underSignedGap, edgeColor: getEdgeColor(underSignedGap, 'total'),
+          contextLine: mkTotalContext('Under', underSignedGap),
+          evLine: mkTotalEv(underSignedGap, underEv),
           bookName: selBookName, hasData: bookLine !== undefined,
+          confidence: underConf, confColor: getConfColor(underConf),
         },
       ];
     }
@@ -763,8 +842,8 @@ function OmiFairPricing({
     const bookHomeOdds = selBook?.markets?.h2h?.home?.price;
     const bookAwayOdds = selBook?.markets?.h2h?.away?.price;
     let vigPct = '--';
-    let homeGap = 0;
-    let awayGap = 0;
+    let homeSignedGap = 0;
+    let awaySignedGap = 0;
     let bookHomeProb: number | undefined;
     let bookAwayProb: number | undefined;
     if (bookHomeOdds !== undefined && bookAwayOdds !== undefined) {
@@ -772,33 +851,55 @@ function OmiFairPricing({
       vigPct = `${(stripped.vig * 100).toFixed(1)}%`;
       bookHomeProb = stripped.fairHomeProb;
       bookAwayProb = stripped.fairAwayProb;
-      if (omiFairHomeProb !== undefined) homeGap = Math.abs(Math.round((stripped.fairHomeProb - omiFairHomeProb) * 1000) / 10);
-      if (omiFairAwayProb !== undefined) awayGap = Math.abs(Math.round((stripped.fairAwayProb - omiFairAwayProb) * 1000) / 10);
+      // Positive = OMI thinks this side is MORE likely than book implies (value)
+      // Negative = OMI thinks this side is LESS likely than book implies (no value)
+      if (omiFairHomeProb !== undefined) homeSignedGap = Math.round((omiFairHomeProb - stripped.fairHomeProb) * 1000) / 10;
+      if (omiFairAwayProb !== undefined) awaySignedGap = Math.round((omiFairAwayProb - stripped.fairAwayProb) * 1000) / 10;
     }
 
     const homeEv = omiFairHomeProb !== undefined && bookHomeOdds !== undefined ? calcEV(omiFairHomeProb, bookHomeOdds) : 0;
     const awayEv = omiFairAwayProb !== undefined && bookAwayOdds !== undefined ? calcEV(omiFairAwayProb, bookAwayOdds) : 0;
 
+    // Confidence: composite >50 favors home
+    const homeConf = composite;
+    const awayConf = 100 - composite;
+    const homeAbbr = abbrev(gameData.homeTeam);
+    const awayAbbr = abbrev(gameData.awayTeam);
+
+    const mkMLContext = (side: string, bookProb: number | undefined, fairProb: number | undefined, signedGap: number) => {
+      if (bookProb === undefined || fairProb === undefined) return '';
+      if (Math.abs(signedGap) < 1) return `${selBookName} implies ${(bookProb * 100).toFixed(0)}% | OMI fair: ${(fairProb * 100).toFixed(0)}% — No edge`;
+      return signedGap > 0
+        ? `${selBookName} underprices ${side} by ${Math.abs(signedGap).toFixed(1)}% — value on ${side} ML`
+        : `${selBookName} overprices ${side} by ${Math.abs(signedGap).toFixed(1)}% — no value on ${side} ML`;
+    };
+
+    const mkMLEvLine = (signedGap: number, ev: number) => {
+      if (Math.abs(signedGap) < 1) return 'No edge';
+      const sign = signedGap > 0 ? '+' : '\u2212';
+      return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)}%${ev !== 0 ? ` | EV: ${ev > 0 ? '+' : ''}$${ev}/1K` : ''}`;
+    };
+
     return [
       {
-        label: abbrev(gameData.awayTeam), fair: effectiveAwayML !== undefined ? formatOdds(effectiveAwayML) : 'N/A',
+        label: awayAbbr, fair: effectiveAwayML !== undefined ? formatOdds(effectiveAwayML) : 'N/A',
         bookLine: bookAwayOdds !== undefined ? formatOdds(bookAwayOdds) : '--', bookOdds: vigPct,
-        edgePct: awayGap, edgePts: 0, edgeColor: getEdgeColor(awayGap, 'moneyline'),
-        contextLine: bookAwayProb !== undefined && omiFairAwayProb !== undefined
-          ? `${selBookName} implies ${(bookAwayProb * 100).toFixed(0)}% | OMI fair: ${(omiFairAwayProb * 100).toFixed(0)}%` : '',
-        evLine: awayGap > 0 ? `Edge: ${awayGap.toFixed(1)}%${awayEv !== 0 ? ` | EV: ${awayEv > 0 ? '+' : ''}$${awayEv}/1K` : ''}` : '',
+        edgePct: awaySignedGap, edgePts: 0, edgeColor: getEdgeColor(awaySignedGap, 'moneyline'),
+        contextLine: mkMLContext(awayAbbr, bookAwayProb, omiFairAwayProb, awaySignedGap),
+        evLine: mkMLEvLine(awaySignedGap, awayEv),
         bookName: selBookName, hasData: bookAwayOdds !== undefined, vigPct,
         rawBookOdds: bookAwayOdds, rawFairProb: omiFairAwayProb, rawBookProb: bookAwayProb,
+        confidence: awayConf, confColor: getConfColor(awayConf),
       },
       {
-        label: abbrev(gameData.homeTeam), fair: effectiveHomeML !== undefined ? formatOdds(effectiveHomeML) : 'N/A',
+        label: homeAbbr, fair: effectiveHomeML !== undefined ? formatOdds(effectiveHomeML) : 'N/A',
         bookLine: bookHomeOdds !== undefined ? formatOdds(bookHomeOdds) : '--', bookOdds: vigPct,
-        edgePct: homeGap, edgePts: 0, edgeColor: getEdgeColor(homeGap, 'moneyline'),
-        contextLine: bookHomeProb !== undefined && omiFairHomeProb !== undefined
-          ? `${selBookName} implies ${(bookHomeProb * 100).toFixed(0)}% | OMI fair: ${(omiFairHomeProb * 100).toFixed(0)}%` : '',
-        evLine: homeGap > 0 ? `Edge: ${homeGap.toFixed(1)}%${homeEv !== 0 ? ` | EV: ${homeEv > 0 ? '+' : ''}$${homeEv}/1K` : ''}` : '',
+        edgePct: homeSignedGap, edgePts: 0, edgeColor: getEdgeColor(homeSignedGap, 'moneyline'),
+        contextLine: mkMLContext(homeAbbr, bookHomeProb, omiFairHomeProb, homeSignedGap),
+        evLine: mkMLEvLine(homeSignedGap, homeEv),
         bookName: selBookName, hasData: bookHomeOdds !== undefined, vigPct,
         rawBookOdds: bookHomeOdds, rawFairProb: omiFairHomeProb, rawBookProb: bookHomeProb,
+        confidence: homeConf, confColor: getConfColor(homeConf),
       },
     ];
   })();
@@ -891,7 +992,7 @@ function OmiFairPricing({
         {lineMovementNotice && (
           <div className="text-[10px] text-amber-400 mt-1">{lineMovementNotice}</div>
         )}
-        {/* Narrative one-liner */}
+        {/* Narrative one-liner — combining confidence + edge */}
         {(() => {
           const homeAbbr = abbrev(gameData.homeTeam);
           const awayAbbr = abbrev(gameData.awayTeam);
@@ -901,12 +1002,11 @@ function OmiFairPricing({
               const envScore = pythonPillars!.gameEnvironment;
               const lean = envScore > 52 ? 'Over' : envScore < 48 ? 'Under' : 'neutral';
               if (lean === 'neutral') {
-                narrative = `No strong Over/Under lean. Fair total at ${omiFairTotal?.fairLine ?? 'N/A'}.`;
+                narrative = `No strong Over/Under lean (${envScore}% conf). Fair total at ${omiFairTotal?.fairLine ?? 'N/A'}.`;
               } else {
-                const bookTotal = consensusTotal ?? 0;
-                const fairTotal = omiFairTotal?.fairLine ?? bookTotal;
-                const diff = Math.abs(fairTotal - bookTotal).toFixed(1);
-                narrative = `Model leans ${lean} at ${fairTotal} vs book ${bookTotal}. ${diff}-point difference.`;
+                const overEdge = leftBlock.edgePts;
+                const evStr = leftBlock.evLine.includes('EV') ? leftBlock.evLine.split('|').pop()?.trim() || '' : '';
+                narrative = `Model leans ${lean} (${envScore}% conf). ${selBookName}: ${overEdge > 0 ? '+' : ''}${overEdge.toFixed(1)} pts edge${evStr ? `, ${evStr}` : ''}.`;
               }
             } else {
               narrative = `Consensus total: ${consensusTotal ?? 'N/A'}. Comparing ${selBookName} against market median.`;
@@ -914,12 +1014,13 @@ function OmiFairPricing({
           } else if (hasPillars) {
             const comp = pythonPillars!.composite;
             if (comp >= 48 && comp <= 52) {
-              narrative = `Near pick'em (${homeAbbr}/${awayAbbr}). Look for value if ${selBookName}'s line differs from consensus.`;
+              narrative = `Near pick'em — ${homeAbbr}/${awayAbbr} (${comp}% conf). Look for line value vs consensus.`;
             } else {
               const favored = comp > 50 ? homeAbbr : awayAbbr;
-              const underdog = comp > 50 ? awayAbbr : homeAbbr;
-              const edgeVal = activeMarket === 'moneyline' ? leftBlock.edgePct : leftBlock.edgePts;
-              narrative = `Model favors ${favored} over ${underdog}. ${selBookName}: ${edgeVal.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ' pts'} edge.`;
+              const favoredBlock = comp > 50 ? rightBlock : leftBlock; // right=home, left=away
+              const edgeVal = activeMarket === 'moneyline' ? favoredBlock.edgePct : favoredBlock.edgePts;
+              const evStr = favoredBlock.evLine.includes('EV') ? favoredBlock.evLine.split('|').pop()?.trim() || '' : '';
+              narrative = `Model favors ${favored} (${comp}% conf). ${selBookName}: ${edgeVal > 0 ? '+' : ''}${edgeVal.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ' pts'} edge${evStr ? `, ${evStr}` : ''}.`;
             }
           } else {
             narrative = `Comparing ${selBookName} against market consensus of ${allBooks.length} sportsbooks.`;
@@ -932,16 +1033,28 @@ function OmiFairPricing({
       <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2" style={{ fontVariantNumeric: 'tabular-nums' }}>
         {[leftBlock, rightBlock].map((block, blockIdx) => {
           const edgeVal = activeMarket === 'moneyline' ? block.edgePct : block.edgePts;
-          const isHighEdge = activeMarket === 'moneyline' ? edgeVal >= 10 : edgeVal >= 1.0;
+          const absEdge = Math.abs(edgeVal);
+          const isPositiveEdge = edgeVal > 0;
+          const isHighEdge = activeMarket === 'moneyline' ? (isPositiveEdge && absEdge >= 10) : (isPositiveEdge && absEdge >= 1.0);
+          const isNearZero = activeMarket === 'moneyline' ? absEdge < 1 : absEdge < 0.3;
+
+          // Format edge display
+          const edgeDisplay = (() => {
+            if (!block.hasData) return '--';
+            if (isNearZero) return 'None';
+            const sign = isPositiveEdge ? '+' : '\u2212';
+            return `${sign}${absEdge.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ''}`;
+          })();
+
           return (
             <div key={blockIdx} className={`border border-zinc-800 rounded overflow-hidden ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`}>
               {/* Block header — team/side label */}
               <div className="bg-zinc-900 px-3 py-1.5 border-b border-zinc-800">
                 <span className="text-[12px] font-bold text-zinc-100">{block.label}</span>
               </div>
-              {/* Comparison: OMI Fair vs Book vs Edge */}
+              {/* Comparison: OMI Fair vs Book vs Edge vs Confidence */}
               <div className="px-3 py-3">
-                <div className="flex items-end justify-between gap-3">
+                <div className="flex items-end justify-between gap-2">
                   {/* OMI Fair */}
                   <div>
                     <div className="text-[8px] text-zinc-500 uppercase tracking-widest mb-0.5">{hasPillars ? 'OMI Fair' : 'Consensus'}</div>
@@ -956,9 +1069,18 @@ function OmiFairPricing({
                   <div className="text-right">
                     <div className="text-[8px] text-zinc-500 uppercase tracking-widest mb-0.5">Edge</div>
                     <div className={`text-[22px] font-bold font-mono ${block.edgeColor}`}>
-                      {block.hasData ? (edgeVal > 0 ? `${edgeVal.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ''}` : '0') : '--'}
+                      {edgeDisplay}
                     </div>
                   </div>
+                  {/* Confidence */}
+                  {hasPillars && (
+                    <div className="text-right">
+                      <div className="text-[8px] text-zinc-500 uppercase tracking-widest mb-0.5">Conf</div>
+                      <div className={`text-[22px] font-bold font-mono ${block.confColor}`}>
+                        {block.confidence}%
+                      </div>
+                    </div>
+                  )}
                 </div>
                 {/* Edge context line + EV */}
                 {block.contextLine && (

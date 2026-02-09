@@ -363,24 +363,28 @@ async def get_per_book_odds(sport: str, game_id: str):
         # Group by book, then by period, get latest per market type
         books_data: dict = {}
         seen: set = set()  # Track what we've already added
-        
+
         for snapshot in snapshots:
             book = snapshot.get("book_key", "consensus")
             period = snapshot.get("market_period", "full")
             market_type = snapshot.get("market_type")  # spread, moneyline, total
-            
-            key = f"{book}_{period}_{market_type}"
+            outcome_type = snapshot.get("outcome_type", "")
+
+            # Include outcome_type in key for moneyline (home vs away are distinct)
+            key = f"{book}_{period}_{market_type}_{outcome_type}" if market_type == "moneyline" else f"{book}_{period}_{market_type}"
             if key in seen:
                 continue  # Skip older snapshots
             seen.add(key)
-            
+
             if book not in books_data:
                 books_data[book] = {}
-            
+
             if period not in books_data[book]:
                 books_data[book][period] = {}
-            
-            books_data[book][period][market_type] = {
+
+            # Store moneyline home/away separately
+            store_key = f"{market_type}_{outcome_type}" if market_type == "moneyline" and outcome_type else market_type
+            books_data[book][period][store_key] = {
                 "line": snapshot.get("line"),
                 "odds": snapshot.get("odds"),
                 "implied_prob": snapshot.get("implied_prob"),
@@ -397,11 +401,12 @@ async def get_per_book_odds(sport: str, game_id: str):
             
             result: dict = {"h2h": None, "spreads": None, "totals": None}
             
-            if "moneyline" in period_data:
-                ml = period_data["moneyline"]
+            ml_home = period_data.get("moneyline_home") or period_data.get("moneyline")
+            ml_away = period_data.get("moneyline_away")
+            if ml_home or ml_away:
                 result["h2h"] = {
-                    "home": {"price": ml.get("odds"), "edge": 0},
-                    "away": {"price": None, "edge": 0},
+                    "home": {"price": ml_home.get("odds") if ml_home else None, "edge": 0},
+                    "away": {"price": ml_away.get("odds") if ml_away else None, "edge": 0},
                 }
             
             if "spread" in period_data:

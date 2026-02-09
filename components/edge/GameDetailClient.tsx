@@ -722,13 +722,12 @@ function OmiFairPricing({
       const fairAwayLine = omiFairSpread ? -omiFairSpread.fairLine : undefined;
 
       // Directional edge: positive = book gives you MORE than fair (value), negative = book gives LESS
-      // For home spread: if book is -2.5 and fair is -1.0, home bettor gets 1.5 worse → negative edge on home
-      // The bettor on home side WANTS a more positive (less negative) number
+      // For home spread: if book is -2.5 and fair is -3.5, home bettor covers 2.5 vs fair 3.5 → +1.0 edge
       // homeSignedGap > 0 means book is MORE favorable to home bettor than fair
       const homeSignedGap = homeBookLine !== undefined && fairHomeLine !== undefined
-        ? Math.round((fairHomeLine - homeBookLine) * 10) / 10 : 0; // fair more negative = home value
+        ? Math.round((homeBookLine - fairHomeLine) * 10) / 10 : 0;
       const awaySignedGap = awayBookLine !== undefined && fairAwayLine !== undefined
-        ? Math.round((fairAwayLine - awayBookLine) * 10) / 10 : 0;
+        ? Math.round((awayBookLine - fairAwayLine) * 10) / 10 : 0;
 
       const homeCross = homeBookLine !== undefined && fairHomeLine !== undefined ? crossesKeyNumber(homeBookLine, fairHomeLine) : null;
       const awayCross = awayBookLine !== undefined && fairAwayLine !== undefined ? crossesKeyNumber(awayBookLine, fairAwayLine) : null;

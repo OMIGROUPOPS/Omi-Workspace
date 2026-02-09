@@ -38,6 +38,32 @@ async function fetchPythonPillars(gameId: string, sport: string): Promise<Python
     // Note: Python uses snake_case (time_decay, game_environment)
     // Use ?? (nullish coalescing) not || to preserve valid 0 scores
     const ps = data.pillar_scores ?? {};
+
+    // Transform per-market/period pillar data (also 0-1 → 0-100)
+    const transformMarketPeriods = (marketData: Record<string, any> | undefined) => {
+      if (!marketData) return {};
+      const result: Record<string, any> = {};
+      for (const [periodKey, periodData] of Object.entries(marketData)) {
+        const pd = periodData as any;
+        const pillarScores: Record<string, number> = {};
+        if (pd.pillar_scores) {
+          pillarScores.execution = Math.round((pd.pillar_scores.execution ?? 0.5) * 100);
+          pillarScores.incentives = Math.round((pd.pillar_scores.incentives ?? 0.5) * 100);
+          pillarScores.shocks = Math.round((pd.pillar_scores.shocks ?? 0.5) * 100);
+          pillarScores.timeDecay = Math.round((pd.pillar_scores.time_decay ?? 0.5) * 100);
+          pillarScores.flow = Math.round((pd.pillar_scores.flow ?? 0.5) * 100);
+          pillarScores.gameEnvironment = Math.round((pd.pillar_scores.game_environment ?? 0.5) * 100);
+        }
+        result[periodKey] = {
+          composite: Math.round((pd.composite ?? 0.5) * 100),
+          confidence: pd.confidence || 'PASS',
+          weights: pd.weights || {},
+          pillar_scores: Object.keys(pillarScores).length > 0 ? pillarScores : undefined,
+        };
+      }
+      return result;
+    };
+
     return {
       execution: Math.round((ps.execution ?? 0.5) * 100),
       incentives: Math.round((ps.incentives ?? 0.5) * 100),
@@ -46,6 +72,11 @@ async function fetchPythonPillars(gameId: string, sport: string): Promise<Python
       flow: Math.round((ps.flow ?? 0.5) * 100),
       gameEnvironment: Math.round((ps.game_environment ?? 0.5) * 100),
       composite: Math.round((data.composite_score ?? 0.5) * 100),
+      pillarsByMarket: data.pillars_by_market ? {
+        spread: transformMarketPeriods(data.pillars_by_market.spread),
+        totals: transformMarketPeriods(data.pillars_by_market.totals),
+        moneyline: transformMarketPeriods(data.pillars_by_market.moneyline),
+      } : undefined,
     };
   } catch (error) {
     console.log(`[PythonPillars] Failed to fetch: ${error instanceof Error ? error.message : 'unknown'}`);

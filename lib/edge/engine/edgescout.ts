@@ -161,6 +161,7 @@ interface MarketPeriodComposite {
   composite: number;       // 0-100: Market/period-specific weighted composite
   confidence: string;      // PASS, WATCH, EDGE, STRONG, RARE
   weights: Record<string, number>;
+  pillar_scores?: Record<string, number>; // Market-specific pillar scores (0-100)
 }
 
 interface PillarsByMarket {

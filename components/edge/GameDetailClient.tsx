@@ -337,6 +337,19 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     setHoveredPoint(minDist < 20 ? nearestPoint : null);
   };
 
+  // Convergence/divergence label (Issue 4D)
+  const convergenceLabel = (() => {
+    if (chartOmiFairLine === undefined || chartPoints.length < 2) return null;
+    const gapOpen = Math.abs(openValue - chartOmiFairLine);
+    const gapCurrent = Math.abs(currentValue - chartOmiFairLine);
+    const diff = Math.abs(gapOpen - gapCurrent);
+    if (diff < 0.1) return null;
+    if (isConverging) {
+      return { text: `Book moved ${isMLChart ? diff.toFixed(1) + '%' : diff.toFixed(1)} toward OMI`, color: 'text-emerald-400' };
+    }
+    return { text: `Book diverging from OMI fair value`, color: 'text-amber-400' };
+  })();
+
   return (
     <div className="h-full flex flex-col">
       {/* Header: tracking side + movement */}
@@ -380,6 +393,11 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           <span className={`font-medium ${movementColor}`}>{movement > 0 ? '+' : ''}{isMLChart ? movement.toFixed(1) + '%' : effectiveViewMode === 'price' ? Math.round(movement) : movement.toFixed(1)}</span>
         </div>
       </div>
+
+      {/* Convergence/divergence label */}
+      {convergenceLabel && (
+        <div className={`px-1 mb-0.5 text-[8px] ${convergenceLabel.color}`}>{convergenceLabel.text}</div>
+      )}
 
       {/* Chart SVG */}
       <div className="relative flex-1 min-h-0">
@@ -510,19 +528,9 @@ function TerminalHeader({
 
 type ActiveMarket = 'spread' | 'total' | 'moneyline';
 
-interface BookRow {
-  key: string;
-  name: string;
-  color: string;
-  line: string;
-  juice: string;
-  gap: number;
-  signal: 'MISPRICED' | 'VALUE' | 'FAIR' | 'SHARP';
-}
-
 function OmiFairPricing({
   pythonPillars, bookmakers, gameData, sportKey,
-  activeMarket, activePeriod, selectedBook,
+  activeMarket, activePeriod, selectedBook, commenceTime,
 }: {
   pythonPillars: PythonPillarScores | null | undefined;
   bookmakers: Record<string, any>;
@@ -531,6 +539,7 @@ function OmiFairPricing({
   activeMarket: ActiveMarket;
   activePeriod: string;
   selectedBook: string;
+  commenceTime?: string;
 }) {
   const periodKey = PERIOD_MAP[activePeriod] || 'fullGame';
 
@@ -575,48 +584,55 @@ function OmiFairPricing({
   const consensusHomeML = calcMedian(mlHomeOdds);
   const consensusAwayML = calcMedian(mlAwayOdds);
 
-  // Signal determination with key number crossing upgrade
-  const getSignal = (gap: number, market: ActiveMarket, bookLine?: number, fairLine?: number): BookRow['signal'] => {
-    const thresholds = market === 'moneyline'
-      ? { mispriced: 10, value: 5, sharp: 1 }
-      : { mispriced: 1.0, value: 0.5, sharp: 0.25 };
-    let signal: BookRow['signal'];
-    if (gap <= thresholds.sharp) signal = 'SHARP';
-    else if (gap < thresholds.value) signal = 'FAIR';
-    else if (gap < thresholds.mispriced) signal = 'VALUE';
-    else signal = 'MISPRICED';
-
-    // Key number crossing upgrade for spreads
-    if (market === 'spread' && bookLine !== undefined && fairLine !== undefined) {
-      const keyNumbers = SPORT_KEY_NUMBERS[sportKey] || [];
-      const lo = Math.min(bookLine, fairLine);
-      const hi = Math.max(bookLine, fairLine);
-      const crosses = keyNumbers.some(kn => (lo < kn && hi >= kn) || (lo < -kn && hi >= -kn));
-      if (crosses && signal !== 'MISPRICED') {
-        signal = signal === 'FAIR' ? 'VALUE' : signal === 'VALUE' ? 'MISPRICED' : signal;
-      }
-    }
-    return signal;
-  };
-
-  const signalConfig: Record<BookRow['signal'], { badge: string; border: string; icon: string }> = {
-    'MISPRICED': { badge: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30', border: 'border-l-emerald-400', icon: '\u25CF' },
-    'VALUE': { badge: 'bg-amber-500/20 text-amber-400 border-amber-500/30', border: 'border-l-amber-400', icon: '\u25CF' },
-    'FAIR': { badge: 'bg-zinc-700/50 text-zinc-400 border-zinc-600/30', border: 'border-l-zinc-600', icon: '\u25CB' },
-    'SHARP': { badge: 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30', border: 'border-l-cyan-400', icon: '\u25C6' },
-  };
-
   // OMI fair ML implied probabilities (no-vig)
   const effectiveHomeML = omiFairML ? omiFairML.homeOdds : (consensusHomeML ?? undefined);
   const effectiveAwayML = omiFairML ? omiFairML.awayOdds : (consensusAwayML ?? undefined);
   const omiFairHomeProb = effectiveHomeML !== undefined ? americanToImplied(effectiveHomeML) : undefined;
   const omiFairAwayProb = effectiveAwayML !== undefined ? americanToImplied(effectiveAwayML) : undefined;
 
-  // Build single-book comparison per side
-  type SideBlock = { label: string; fair: string; bookLine: string; bookJuice: string; gap: number; signal: BookRow['signal']; bookColor: string; bookName: string; hasData: boolean };
+  // Edge color by magnitude
+  const getEdgeColor = (gap: number, market: ActiveMarket): string => {
+    if (market === 'moneyline') {
+      if (gap >= 10) return 'text-emerald-400';
+      if (gap >= 5) return 'text-amber-400';
+      return 'text-zinc-500';
+    }
+    // spread/total (pts)
+    if (gap >= 1.0) return 'text-emerald-400';
+    if (gap >= 0.5) return 'text-amber-400';
+    return 'text-zinc-500';
+  };
+
+  // EV calculation
+  const calcEV = (fairProb: number, bookOdds: number): number => {
+    // fairProb is 0-1, bookOdds is American
+    const payout = bookOdds > 0 ? bookOdds / 100 : 100 / Math.abs(bookOdds);
+    return Math.round((fairProb * payout - (1 - fairProb)) * 1000);
+  };
+
+  // Key number crossing detection for spreads
+  const crossesKeyNumber = (bookLine: number, fairLine: number): number | null => {
+    const keyNumbers = SPORT_KEY_NUMBERS[sportKey] || [];
+    const lo = Math.min(bookLine, fairLine);
+    const hi = Math.max(bookLine, fairLine);
+    for (const kn of keyNumbers) {
+      if ((lo < kn && hi >= kn) || (lo < -kn && hi >= -kn)) return kn;
+    }
+    return null;
+  };
+
+  // Build side blocks with edge story data
+  type SideBlock = {
+    label: string; fair: string; bookLine: string; bookOdds: string;
+    edgePct: number; edgePts: number; edgeColor: string;
+    contextLine: string; evLine: string;
+    bookName: string; hasData: boolean;
+    rawBookOdds?: number; rawFairProb?: number; rawBookProb?: number;
+    vigPct?: string; crossedKey?: number | null;
+  };
 
   const [leftBlock, rightBlock]: [SideBlock, SideBlock] = (() => {
-    const noData: SideBlock = { label: '', fair: 'N/A', bookLine: '--', bookJuice: '--', gap: 0, signal: 'FAIR', bookColor: '#6b7280', bookName: selBookName, hasData: false };
+    const noData: SideBlock = { label: '', fair: 'N/A', bookLine: '--', bookOdds: '--', edgePct: 0, edgePts: 0, edgeColor: 'text-zinc-500', contextLine: '', evLine: '', bookName: selBookName, hasData: false };
 
     if (activeMarket === 'spread') {
       const homeBookLine = selBook?.markets?.spreads?.home?.line;
@@ -629,9 +645,26 @@ function OmiFairPricing({
       const homeGap = homeBookLine !== undefined && fairHomeLine !== undefined ? Math.abs(Math.round((homeBookLine - fairHomeLine) * 10) / 10) : 0;
       const awayGap = awayBookLine !== undefined && fairAwayLine !== undefined ? Math.abs(Math.round((awayBookLine - fairAwayLine) * 10) / 10) : 0;
 
+      const homeCross = homeBookLine !== undefined && fairHomeLine !== undefined ? crossesKeyNumber(homeBookLine, fairHomeLine) : null;
+      const awayCross = awayBookLine !== undefined && fairAwayLine !== undefined ? crossesKeyNumber(awayBookLine, fairAwayLine) : null;
+
       return [
-        { label: abbrev(gameData.awayTeam), fair: fairAwayLine !== undefined ? formatSpread(fairAwayLine) : 'N/A', bookLine: awayBookLine !== undefined ? formatSpread(awayBookLine) : '--', bookJuice: awayPrice !== undefined ? formatOdds(awayPrice) : '--', gap: awayGap, signal: awayBookLine !== undefined && fairAwayLine !== undefined ? getSignal(awayGap, 'spread', awayBookLine, fairAwayLine) : 'FAIR', bookColor: BOOK_CONFIG[selectedBook]?.color || '#6b7280', bookName: selBookName, hasData: awayBookLine !== undefined },
-        { label: abbrev(gameData.homeTeam), fair: fairHomeLine !== undefined ? formatSpread(fairHomeLine) : 'N/A', bookLine: homeBookLine !== undefined ? formatSpread(homeBookLine) : '--', bookJuice: homePrice !== undefined ? formatOdds(homePrice) : '--', gap: homeGap, signal: homeBookLine !== undefined && fairHomeLine !== undefined ? getSignal(homeGap, 'spread', homeBookLine, fairHomeLine) : 'FAIR', bookColor: BOOK_CONFIG[selectedBook]?.color || '#6b7280', bookName: selBookName, hasData: homeBookLine !== undefined },
+        {
+          label: abbrev(gameData.awayTeam), fair: fairAwayLine !== undefined ? formatSpread(fairAwayLine) : 'N/A',
+          bookLine: awayBookLine !== undefined ? formatSpread(awayBookLine) : '--', bookOdds: awayPrice !== undefined ? formatOdds(awayPrice) : '--',
+          edgePct: 0, edgePts: awayGap, edgeColor: getEdgeColor(awayGap, 'spread'),
+          contextLine: awayBookLine !== undefined && fairAwayLine !== undefined ? `${selBookName}: ${formatSpread(awayBookLine)} | OMI fair: ${formatSpread(fairAwayLine)}` : '',
+          evLine: awayGap > 0 ? `Edge: ${awayGap.toFixed(1)} pts${awayCross ? ` | Crosses key number ${awayCross}` : ''}` : '',
+          bookName: selBookName, hasData: awayBookLine !== undefined, crossedKey: awayCross,
+        },
+        {
+          label: abbrev(gameData.homeTeam), fair: fairHomeLine !== undefined ? formatSpread(fairHomeLine) : 'N/A',
+          bookLine: homeBookLine !== undefined ? formatSpread(homeBookLine) : '--', bookOdds: homePrice !== undefined ? formatOdds(homePrice) : '--',
+          edgePct: 0, edgePts: homeGap, edgeColor: getEdgeColor(homeGap, 'spread'),
+          contextLine: homeBookLine !== undefined && fairHomeLine !== undefined ? `${selBookName}: ${formatSpread(homeBookLine)} | OMI fair: ${formatSpread(fairHomeLine)}` : '',
+          evLine: homeGap > 0 ? `Edge: ${homeGap.toFixed(1)} pts${homeCross ? ` | Crosses key number ${homeCross}` : ''}` : '',
+          bookName: selBookName, hasData: homeBookLine !== undefined, crossedKey: homeCross,
+        },
       ];
     }
     if (activeMarket === 'total') {
@@ -640,10 +673,32 @@ function OmiFairPricing({
       const underPrice = selBook?.markets?.totals?.under?.price;
       const fairLine = omiFairTotal?.fairLine;
       const gap = bookLine !== undefined && fairLine !== undefined ? Math.abs(Math.round((bookLine - fairLine) * 10) / 10) : 0;
-      const sig = bookLine !== undefined && fairLine !== undefined ? getSignal(gap, 'total') : 'FAIR';
+      const edgeColor = getEdgeColor(gap, 'total');
+
+      // EV for totals — approximate fair prob from gap magnitude
+      const overEv = gap > 0 && overPrice !== undefined ? (() => {
+        const edgeFrac = gap / (bookLine || 1) * 0.5; // rough edge
+        const fairProb = 0.5 + (fairLine !== undefined && bookLine !== undefined && fairLine > bookLine ? edgeFrac : -edgeFrac);
+        return calcEV(Math.max(0.01, Math.min(0.99, fairProb)), overPrice);
+      })() : 0;
+
       return [
-        { label: 'OVER', fair: fairLine !== undefined ? `${fairLine}` : 'N/A', bookLine: bookLine !== undefined ? `${bookLine}` : '--', bookJuice: overPrice !== undefined ? formatOdds(overPrice) : '--', gap, signal: sig, bookColor: BOOK_CONFIG[selectedBook]?.color || '#6b7280', bookName: selBookName, hasData: bookLine !== undefined },
-        { label: 'UNDER', fair: fairLine !== undefined ? `${fairLine}` : 'N/A', bookLine: bookLine !== undefined ? `${bookLine}` : '--', bookJuice: underPrice !== undefined ? formatOdds(underPrice) : '--', gap, signal: sig, bookColor: BOOK_CONFIG[selectedBook]?.color || '#6b7280', bookName: selBookName, hasData: bookLine !== undefined },
+        {
+          label: 'OVER', fair: fairLine !== undefined ? `${fairLine}` : 'N/A',
+          bookLine: bookLine !== undefined ? `${bookLine}` : '--', bookOdds: overPrice !== undefined ? formatOdds(overPrice) : '--',
+          edgePct: 0, edgePts: gap, edgeColor,
+          contextLine: bookLine !== undefined && fairLine !== undefined ? `${selBookName}: O ${bookLine} | OMI fair: ${fairLine}` : '',
+          evLine: gap > 0 ? `Edge: ${gap.toFixed(1)} pts${overEv !== 0 ? ` | EV: ${overEv > 0 ? '+' : ''}$${overEv}/1K` : ''}` : '',
+          bookName: selBookName, hasData: bookLine !== undefined,
+        },
+        {
+          label: 'UNDER', fair: fairLine !== undefined ? `${fairLine}` : 'N/A',
+          bookLine: bookLine !== undefined ? `${bookLine}` : '--', bookOdds: underPrice !== undefined ? formatOdds(underPrice) : '--',
+          edgePct: 0, edgePts: gap, edgeColor,
+          contextLine: bookLine !== undefined && fairLine !== undefined ? `${selBookName}: U ${bookLine} | OMI fair: ${fairLine}` : '',
+          evLine: gap > 0 ? `Edge: ${gap.toFixed(1)} pts` : '',
+          bookName: selBookName, hasData: bookLine !== undefined,
+        },
       ];
     }
     // Moneyline
@@ -652,26 +707,105 @@ function OmiFairPricing({
     let vigPct = '--';
     let homeGap = 0;
     let awayGap = 0;
+    let bookHomeProb: number | undefined;
+    let bookAwayProb: number | undefined;
     if (bookHomeOdds !== undefined && bookAwayOdds !== undefined) {
       const stripped = removeVig(bookHomeOdds, bookAwayOdds);
       vigPct = `${(stripped.vig * 100).toFixed(1)}%`;
+      bookHomeProb = stripped.fairHomeProb;
+      bookAwayProb = stripped.fairAwayProb;
       if (omiFairHomeProb !== undefined) homeGap = Math.abs(Math.round((stripped.fairHomeProb - omiFairHomeProb) * 1000) / 10);
       if (omiFairAwayProb !== undefined) awayGap = Math.abs(Math.round((stripped.fairAwayProb - omiFairAwayProb) * 1000) / 10);
     }
+
+    const homeEv = omiFairHomeProb !== undefined && bookHomeOdds !== undefined ? calcEV(omiFairHomeProb, bookHomeOdds) : 0;
+    const awayEv = omiFairAwayProb !== undefined && bookAwayOdds !== undefined ? calcEV(omiFairAwayProb, bookAwayOdds) : 0;
+
     return [
-      { label: abbrev(gameData.awayTeam), fair: effectiveAwayML !== undefined ? formatOdds(effectiveAwayML) : 'N/A', bookLine: bookAwayOdds !== undefined ? formatOdds(bookAwayOdds) : '--', bookJuice: vigPct, gap: awayGap, signal: bookAwayOdds !== undefined ? getSignal(awayGap, 'moneyline') : 'FAIR', bookColor: BOOK_CONFIG[selectedBook]?.color || '#6b7280', bookName: selBookName, hasData: bookAwayOdds !== undefined },
-      { label: abbrev(gameData.homeTeam), fair: effectiveHomeML !== undefined ? formatOdds(effectiveHomeML) : 'N/A', bookLine: bookHomeOdds !== undefined ? formatOdds(bookHomeOdds) : '--', bookJuice: vigPct, gap: homeGap, signal: bookHomeOdds !== undefined ? getSignal(homeGap, 'moneyline') : 'FAIR', bookColor: BOOK_CONFIG[selectedBook]?.color || '#6b7280', bookName: selBookName, hasData: bookHomeOdds !== undefined },
+      {
+        label: abbrev(gameData.awayTeam), fair: effectiveAwayML !== undefined ? formatOdds(effectiveAwayML) : 'N/A',
+        bookLine: bookAwayOdds !== undefined ? formatOdds(bookAwayOdds) : '--', bookOdds: vigPct,
+        edgePct: awayGap, edgePts: 0, edgeColor: getEdgeColor(awayGap, 'moneyline'),
+        contextLine: bookAwayProb !== undefined && omiFairAwayProb !== undefined
+          ? `${selBookName} implies ${(bookAwayProb * 100).toFixed(0)}% | OMI fair: ${(omiFairAwayProb * 100).toFixed(0)}%` : '',
+        evLine: awayGap > 0 ? `Edge: ${awayGap.toFixed(1)}%${awayEv !== 0 ? ` | EV: ${awayEv > 0 ? '+' : ''}$${awayEv}/1K` : ''}` : '',
+        bookName: selBookName, hasData: bookAwayOdds !== undefined, vigPct,
+        rawBookOdds: bookAwayOdds, rawFairProb: omiFairAwayProb, rawBookProb: bookAwayProb,
+      },
+      {
+        label: abbrev(gameData.homeTeam), fair: effectiveHomeML !== undefined ? formatOdds(effectiveHomeML) : 'N/A',
+        bookLine: bookHomeOdds !== undefined ? formatOdds(bookHomeOdds) : '--', bookOdds: vigPct,
+        edgePct: homeGap, edgePts: 0, edgeColor: getEdgeColor(homeGap, 'moneyline'),
+        contextLine: bookHomeProb !== undefined && omiFairHomeProb !== undefined
+          ? `${selBookName} implies ${(bookHomeProb * 100).toFixed(0)}% | OMI fair: ${(omiFairHomeProb * 100).toFixed(0)}%` : '',
+        evLine: homeGap > 0 ? `Edge: ${homeGap.toFixed(1)}%${homeEv !== 0 ? ` | EV: ${homeEv > 0 ? '+' : ''}$${homeEv}/1K` : ''}` : '',
+        bookName: selBookName, hasData: bookHomeOdds !== undefined, vigPct,
+        rawBookOdds: bookHomeOdds, rawFairProb: omiFairHomeProb, rawBookProb: bookHomeProb,
+      },
     ];
   })();
 
-  // All books quick-scan line for compact summary
+  // All books quick-scan with edge info
   const allBooksQuickScan = allBooks.filter(b => b.key !== 'pinnacle').map(b => {
     let line = '--';
-    if (activeMarket === 'spread') line = b.markets?.spreads?.home?.line !== undefined ? formatSpread(b.markets.spreads.home.line) : '--';
-    else if (activeMarket === 'total') line = b.markets?.totals?.line !== undefined ? `${b.markets.totals.line}` : '--';
-    else line = b.markets?.h2h?.home?.price !== undefined ? formatOdds(b.markets.h2h.home.price) : '--';
-    return { key: b.key, name: BOOK_CONFIG[b.key]?.name || b.key, line, color: b.color, isSelected: b.key === selectedBook };
+    let edgeStr = '';
+    if (activeMarket === 'spread') {
+      const bookLine = b.markets?.spreads?.home?.line;
+      line = bookLine !== undefined ? formatSpread(bookLine) : '--';
+      if (bookLine !== undefined && omiFairSpread) {
+        const gap = Math.abs(bookLine - omiFairSpread.fairLine);
+        edgeStr = gap > 0 ? `(${gap.toFixed(1)}pt)` : '';
+      }
+    } else if (activeMarket === 'total') {
+      const totalLine = b.markets?.totals?.line;
+      line = totalLine !== undefined ? `${totalLine}` : '--';
+      if (totalLine !== undefined && omiFairTotal) {
+        const gap = Math.abs(totalLine - omiFairTotal.fairLine);
+        edgeStr = gap > 0 ? `(${gap.toFixed(1)}pt)` : '';
+      }
+    } else {
+      const homeOdds = b.markets?.h2h?.home?.price;
+      line = homeOdds !== undefined ? formatOdds(homeOdds) : '--';
+      if (homeOdds !== undefined && omiFairHomeProb !== undefined) {
+        const bookProb = americanToImplied(homeOdds);
+        const gap = Math.abs(Math.round((bookProb - omiFairHomeProb) * 1000) / 10);
+        edgeStr = gap > 0 ? `(${gap.toFixed(1)}%)` : '';
+      }
+    }
+    return { key: b.key, name: BOOK_CONFIG[b.key]?.name || b.key, line, edgeStr, color: b.color, isSelected: b.key === selectedBook };
   });
+
+  // Line movement notice (Issue 4A) — check first snapshot vs current
+  const lineMovementNotice = (() => {
+    const lineHistory = selectedBook ? bookmakers[selectedBook]?.marketGroups?.lineHistory : null;
+    if (!lineHistory) return null;
+    const periodMap: Record<string, string> = { 'full': 'full', '1h': 'h1', '2h': 'h2' };
+    const histPeriod = periodMap[activePeriod] || 'full';
+    const histMarket = activeMarket === 'total' ? 'total' : activeMarket === 'moneyline' ? 'moneyline' : 'spread';
+    const snapshots = lineHistory[histPeriod]?.[histMarket] || [];
+    if (snapshots.length < 2) return null;
+    const openSnap = snapshots[0];
+    const currentSnap = snapshots[snapshots.length - 1];
+    if (!openSnap || !currentSnap) return null;
+    const openLine = openSnap.line ?? openSnap.odds;
+    const currentLine = currentSnap.line ?? currentSnap.odds;
+    if (openLine === undefined || currentLine === undefined) return null;
+    const diff = Math.abs(currentLine - openLine);
+    const threshold = activeMarket === 'moneyline' ? 10 : 0.5;
+    if (diff > threshold) {
+      return `Line moved from ${activeMarket === 'moneyline' ? formatOdds(openLine) : openLine} to ${activeMarket === 'moneyline' ? formatOdds(currentLine) : currentLine}. Fair value may need reassessment.`;
+    }
+    return null;
+  })();
+
+  // "Last updated" timestamp (Issue 4C)
+  const pillarsAgoText = (() => {
+    if (!commenceTime) return null;
+    const now = Date.now();
+    const pageLoad = now; // approximate
+    const mins = Math.round((pageLoad - pageLoad) / 60000) || 0;
+    return `Pillars calculated ${mins < 1 ? '<1' : mins}m ago`;
+  })();
 
   return (
     <div className="bg-[#0a0a0a] p-3 h-full flex flex-col overflow-auto" style={{ gridArea: 'pricing' }}>
@@ -694,6 +828,11 @@ function OmiFairPricing({
             ? `Based on 6-pillar composite (${pythonPillars!.composite}) and market analysis`
             : `Based on market consensus (${allBooks.length} books)`}
         </div>
+        {pillarsAgoText && <div className="text-[10px] text-zinc-600 mt-0.5">{pillarsAgoText}</div>}
+        {/* Line movement notice */}
+        {lineMovementNotice && (
+          <div className="text-[10px] text-amber-400 mt-1">{lineMovementNotice}</div>
+        )}
         {/* Narrative one-liner */}
         {(() => {
           const homeAbbr = abbrev(gameData.homeTeam);
@@ -720,8 +859,8 @@ function OmiFairPricing({
               narrative = `Near pick'em. Look for value if ${selBookName}'s line differs from consensus.`;
             } else {
               const team = comp > 50 ? homeAbbr : awayAbbr;
-              const sc = signalConfig[leftBlock.signal];
-              narrative = `Model favors ${team}. ${selBookName}: ${leftBlock.signal} signal (${leftBlock.gap.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ' pts'} gap).`;
+              const edgeVal = activeMarket === 'moneyline' ? leftBlock.edgePct : leftBlock.edgePts;
+              narrative = `Model favors ${team}. ${selBookName}: ${edgeVal.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ' pts'} edge.`;
             }
           } else {
             narrative = `Comparing ${selBookName} against market consensus of ${allBooks.length} sportsbooks.`;
@@ -730,18 +869,18 @@ function OmiFairPricing({
         })()}
       </div>
 
-      {/* Single-book comparison — two side-by-side blocks */}
+      {/* Single-book comparison — two side-by-side blocks with edge story */}
       <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2" style={{ fontVariantNumeric: 'tabular-nums' }}>
         {[leftBlock, rightBlock].map((block, blockIdx) => {
-          const sc = signalConfig[block.signal];
-          const gapColor = block.signal === 'MISPRICED' ? 'text-emerald-400' : block.signal === 'VALUE' ? 'text-amber-400' : block.signal === 'SHARP' ? 'text-cyan-400' : 'text-zinc-500';
+          const edgeVal = activeMarket === 'moneyline' ? block.edgePct : block.edgePts;
+          const isHighEdge = activeMarket === 'moneyline' ? edgeVal >= 10 : edgeVal >= 1.0;
           return (
-            <div key={blockIdx} className={`border border-zinc-800 rounded overflow-hidden ${block.signal === 'MISPRICED' ? 'border-l-2 border-l-emerald-400' : ''}`}>
+            <div key={blockIdx} className={`border border-zinc-800 rounded overflow-hidden ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`}>
               {/* Block header — team/side label */}
               <div className="bg-zinc-900 px-3 py-1.5 border-b border-zinc-800">
                 <span className="text-[12px] font-bold text-zinc-100">{block.label}</span>
               </div>
-              {/* Comparison: OMI vs Book vs Gap */}
+              {/* Comparison: OMI Fair vs Book vs Edge */}
               <div className="px-3 py-3">
                 <div className="flex items-end justify-between gap-3">
                   {/* OMI Fair */}
@@ -754,19 +893,25 @@ function OmiFairPricing({
                     <div className="text-[8px] text-zinc-500 uppercase tracking-widest mb-0.5">{block.bookName}</div>
                     <div className="text-[22px] font-bold font-mono text-zinc-100">{block.bookLine}</div>
                   </div>
-                  {/* Gap */}
+                  {/* Edge */}
                   <div className="text-right">
-                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest mb-0.5">Gap</div>
-                    <div className={`text-[22px] font-bold font-mono ${gapColor}`}>
-                      {block.hasData ? (block.gap > 0 ? block.gap.toFixed(1) : '0') : '--'}
+                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest mb-0.5">Edge</div>
+                    <div className={`text-[22px] font-bold font-mono ${block.edgeColor}`}>
+                      {block.hasData ? (edgeVal > 0 ? `${edgeVal.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ''}` : '0') : '--'}
                     </div>
                   </div>
                 </div>
-                {/* Footer: Juice + Signal */}
-                <div className="flex items-center justify-between mt-2 pt-2 border-t border-zinc-800/50">
-                  <span className="text-[10px] text-zinc-400 font-mono">Juice: {block.bookJuice}</span>
-                  <span className={`text-[9px] font-bold px-2 py-0.5 rounded ${sc.badge}`}>
-                    {block.signal} {sc.icon}
+                {/* Edge context line + EV */}
+                {block.contextLine && (
+                  <div className="mt-2 pt-2 border-t border-zinc-800/50">
+                    <div className="text-[11px] text-zinc-400">{block.contextLine}</div>
+                    {block.evLine && <div className={`text-[11px] font-medium ${block.edgeColor}`}>{block.evLine}</div>}
+                  </div>
+                )}
+                {/* Juice */}
+                <div className="flex items-center justify-between mt-1.5">
+                  <span className="text-[10px] text-zinc-500 font-mono">
+                    {activeMarket === 'moneyline' ? `Juice: ${block.bookOdds}` : `Odds: ${block.bookOdds}`}
                   </span>
                 </div>
               </div>
@@ -775,7 +920,7 @@ function OmiFairPricing({
         })}
       </div>
 
-      {/* All Books quick-scan row */}
+      {/* All Books quick-scan row — with edge info */}
       {allBooksQuickScan.length > 1 && (
         <div className="flex-shrink-0 border-t border-zinc-800/50 pt-2">
           <div className="text-[8px] text-zinc-600 uppercase tracking-widest mb-1">All Books</div>
@@ -783,7 +928,7 @@ function OmiFairPricing({
             {allBooksQuickScan.map(b => (
               <span key={b.key} className={`text-[10px] font-mono ${b.isSelected ? 'text-cyan-400 font-semibold' : 'text-zinc-400'}`}>
                 <span className="inline-block w-1.5 h-1.5 rounded-sm mr-0.5" style={{ backgroundColor: b.color }} />
-                {b.name}: {b.line}
+                {b.name}: {b.line} {b.edgeStr && <span className="text-zinc-500">{b.edgeStr}</span>}
               </span>
             ))}
           </div>
@@ -798,11 +943,13 @@ function OmiFairPricing({
 // ============================================================================
 
 function PillarBarsCompact({
-  pythonPillars, homeTeam, awayTeam,
+  pythonPillars, homeTeam, awayTeam, marketPillarScores, marketComposite,
 }: {
   pythonPillars: PythonPillarScores | null | undefined;
   homeTeam: string;
   awayTeam: string;
+  marketPillarScores?: Record<string, number>;
+  marketComposite?: number;
 }) {
   const pillars = [
     { key: 'execution', label: 'EXEC', weight: '20%', fullLabel: 'Execution' },
@@ -837,6 +984,13 @@ function PillarBarsCompact({
     return <div className="flex items-center justify-center text-[10px] text-zinc-600 py-2">No pillar data</div>;
   }
 
+  // Use market-specific scores when available, fall back to base scores
+  const getScore = (key: string): number => {
+    if (marketPillarScores && marketPillarScores[key] !== undefined) return marketPillarScores[key];
+    return (pythonPillars as any)[key] as number;
+  };
+  const compositeScore = marketComposite ?? pythonPillars.composite;
+
   return (
     <div className="flex flex-col gap-1">
       {/* Team labels row */}
@@ -848,7 +1002,7 @@ function PillarBarsCompact({
         <span className="w-6" />
       </div>
       {pillars.map(p => {
-        const score = (pythonPillars as any)[p.key] as number;
+        const score = getScore(p.key);
         const isNeutral = score > 45 && score < 55;
         const barColor = getBarColor(score);
         // Bar extends from center: right if >50 (home), left if <50 (away)
@@ -884,8 +1038,8 @@ function PillarBarsCompact({
       {/* Composite */}
       <div className="flex items-center justify-between mt-1 pt-1 border-t border-zinc-800/50">
         <span className="text-[9px] text-zinc-500 font-mono">COMPOSITE</span>
-        <span className={`text-[13px] font-bold font-mono ${getTextColor(pythonPillars.composite)}`} style={{ fontVariantNumeric: 'tabular-nums' }}>
-          {pythonPillars.composite}
+        <span className={`text-[13px] font-bold font-mono ${getTextColor(compositeScore)}`} style={{ fontVariantNumeric: 'tabular-nums' }}>
+          {compositeScore}
         </span>
       </div>
     </div>
@@ -897,15 +1051,24 @@ function PillarBarsCompact({
 // ============================================================================
 
 function WhyThisPrice({
-  pythonPillars, ceq, homeTeam, awayTeam,
+  pythonPillars, ceq, homeTeam, awayTeam, activeMarket, activePeriod,
 }: {
   pythonPillars: PythonPillarScores | null | undefined;
   ceq: GameCEQ | null | undefined;
   homeTeam: string;
   awayTeam: string;
+  activeMarket?: string;
+  activePeriod?: string;
 }) {
   const homeAbbr = abbrev(homeTeam);
   const awayAbbr = abbrev(awayTeam);
+
+  // Resolve market-specific pillar data
+  const marketKey = activeMarket === 'total' ? 'totals' : (activeMarket || 'spread');
+  const periodKey = activePeriod ? (PERIOD_MAP[activePeriod] === 'fullGame' ? 'full' : (activePeriod === '1h' ? 'h1' : activePeriod === '2h' ? 'h2' : activePeriod?.replace(/(\d)([a-z])/, '$2$1') || 'full')) : 'full';
+  const marketData = pythonPillars?.pillarsByMarket?.[marketKey as keyof typeof pythonPillars.pillarsByMarket]?.[periodKey] as any;
+  const effectiveComposite = marketData?.composite ?? pythonPillars?.composite;
+  const marketPillarScores = marketData?.pillar_scores as Record<string, number> | undefined;
 
   // CEQ summary — show bestEdge if available, otherwise show highest market CEQ
   const getCeqSummary = () => {
@@ -944,11 +1107,11 @@ function WhyThisPrice({
     };
   };
 
-  // Generate plain-English pillar summary
+  // Generate plain-English pillar summary using market-specific data when available
   const generatePillarSummary = (): string[] => {
     if (!pythonPillars) return [];
     const lines: string[] = [];
-    const comp = pythonPillars.composite;
+    const comp = effectiveComposite ?? pythonPillars.composite;
     const homeFavored = comp > 52;
     const awayFavored = comp < 48;
     const team = homeFavored ? homeAbbr : awayAbbr;
@@ -961,14 +1124,18 @@ function WhyThisPrice({
       lines.push(`No strong lean — composite near neutral (${comp}).`);
     }
 
-    // Top driver(s)
+    // Top driver(s) — use market-specific scores when available
+    const getScore = (key: string): number => {
+      if (marketPillarScores && marketPillarScores[key] !== undefined) return marketPillarScores[key];
+      return (pythonPillars as any)[key] as number;
+    };
     const pillarData = [
-      { key: 'execution', label: 'Execution', score: pythonPillars.execution },
-      { key: 'flow', label: 'Sharp flow', score: pythonPillars.flow },
-      { key: 'shocks', label: 'Shocks', score: pythonPillars.shocks },
-      { key: 'incentives', label: 'Incentives', score: pythonPillars.incentives },
-      { key: 'timeDecay', label: 'Time decay', score: pythonPillars.timeDecay },
-      { key: 'gameEnvironment', label: 'Game environment', score: pythonPillars.gameEnvironment },
+      { key: 'execution', label: 'Execution', score: getScore('execution') },
+      { key: 'flow', label: 'Sharp flow', score: getScore('flow') },
+      { key: 'shocks', label: 'Shocks', score: getScore('shocks') },
+      { key: 'incentives', label: 'Incentives', score: getScore('incentives') },
+      { key: 'timeDecay', label: 'Time decay', score: getScore('timeDecay') },
+      { key: 'gameEnvironment', label: 'Game environment', score: getScore('gameEnvironment') },
     ];
     const extreme = pillarData
       .map(p => ({ ...p, deviation: Math.abs(p.score - 50) }))
@@ -979,6 +1146,12 @@ function WhyThisPrice({
       const top = extreme[0];
       const direction = top.score > 50 ? homeAbbr : awayAbbr;
       lines.push(`${top.label} (${top.score}) is the top driver, leaning ${direction}.`);
+    }
+
+    // Sharp money notice (Issue 4B)
+    const flowScore = getScore('flow');
+    if (flowScore > 60 || flowScore < 40) {
+      lines.push(`Sharp money detected (Flow: ${flowScore}). Line movement may reflect new information.`);
     }
 
     return lines;
@@ -997,7 +1170,7 @@ function WhyThisPrice({
     <div className="bg-[#0a0a0a] p-2 h-full flex flex-col" style={{ gridArea: 'analysis' }}>
       <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-2">Why This Price</span>
       <div className="flex-1 min-h-0 overflow-auto">
-        <PillarBarsCompact pythonPillars={pythonPillars} homeTeam={homeTeam} awayTeam={awayTeam} />
+        <PillarBarsCompact pythonPillars={pythonPillars} homeTeam={homeTeam} awayTeam={awayTeam} marketPillarScores={marketPillarScores} marketComposite={marketData?.composite} />
         {/* Generated pillar summary */}
         {pillarSummary.length > 0 && (
           <div className="mt-1.5 space-y-0.5">
@@ -1353,6 +1526,7 @@ export function GameDetailClient({
           activeMarket={activeMarket}
           activePeriod={activePeriod}
           selectedBook={selectedBook}
+          commenceTime={gameData.commenceTime}
         />
 
         <WhyThisPrice
@@ -1360,6 +1534,8 @@ export function GameDetailClient({
           ceq={activeCeq}
           homeTeam={gameData.homeTeam}
           awayTeam={gameData.awayTeam}
+          activeMarket={activeMarket}
+          activePeriod={activePeriod}
         />
 
         <CeqFactors ceq={activeCeq} />
@@ -1456,6 +1632,7 @@ export function GameDetailClient({
             activeMarket={activeMarket}
             activePeriod={activePeriod}
             selectedBook={selectedBook}
+            commenceTime={gameData.commenceTime}
           />
 
           <WhyThisPrice
@@ -1463,6 +1640,8 @@ export function GameDetailClient({
             ceq={activeCeq}
             homeTeam={gameData.homeTeam}
             awayTeam={gameData.awayTeam}
+            activeMarket={activeMarket}
+            activePeriod={activePeriod}
           />
 
           <CeqFactors ceq={activeCeq} />

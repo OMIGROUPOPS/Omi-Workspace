@@ -6,8 +6,6 @@ import { calculateQuickEdge } from '@/lib/edge/engine/edge-calculator';
 import { calculateCEQ, calculateGameCEQ, groupSnapshotsByGame, type ExtendedOddsSnapshot, type GameCEQ, type GameContextData, type TeamStatsData } from '@/lib/edge/engine/edgescout';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
-const ODDS_API_KEY = process.env.ODDS_API_KEY || '';
-const ODDS_API_BASE = 'https://api.the-odds-api.com/v4';
 
 const SPORT_MAPPING: Record<string, string> = {
   // American Football
@@ -86,47 +84,109 @@ function getDirectSupabase() {
   );
 }
 
-// Fetch live scores from The Odds API
+// ESPN scoreboard endpoints (free, no API key)
+// Only in-season sports — avoids wasted calls
+const ESPN_SCORE_ENDPOINTS: Record<string, string> = {
+  NBA: 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
+  NHL: 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
+  NCAAB: 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard',
+  EPL: 'https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard',
+};
+
+// Map ESPN team names to Odds API game IDs via cached_odds
+// Returns scores keyed by Odds API game_id for compatibility
 async function fetchLiveScores(): Promise<Record<string, any>> {
   const scores: Record<string, any> = {};
 
-  if (!ODDS_API_KEY) return scores;
-
-  // All sports that can have live scores
-  const sportKeys = Object.values(SPORT_MAPPING);
-
   try {
-    // Fetch scores for each sport in parallel
+    // Fetch ESPN scoreboards in parallel (free, cached 5 min)
+    const entries = Object.entries(ESPN_SCORE_ENDPOINTS);
     const results = await Promise.all(
-      sportKeys.map(async (sportKey) => {
+      entries.map(async ([, url]) => {
         try {
-          const url = `${ODDS_API_BASE}/sports/${sportKey}/scores?apiKey=${ODDS_API_KEY}&daysFrom=1`;
-          const res = await fetch(url, { cache: 'no-store' });
+          const res = await fetch(url, { next: { revalidate: 300 } });
           if (!res.ok) return [];
-          return res.json();
+          const data = await res.json();
+          return data.events || [];
         } catch {
           return [];
         }
       })
     );
 
-    // Process all scores into a map by game ID
-    for (const sportScores of results) {
-      for (const game of sportScores) {
-        if (game.scores && game.scores.length >= 2) {
-          const homeScore = game.scores.find((s: any) => s.name === game.home_team);
-          const awayScore = game.scores.find((s: any) => s.name === game.away_team);
-          scores[game.id] = {
-            home: parseInt(homeScore?.score || '0'),
-            away: parseInt(awayScore?.score || '0'),
-            completed: game.completed,
-            lastUpdate: game.last_update,
-          };
+    // Build team-name-to-score lookup from ESPN data
+    // Key: "hometeam_normalized|awayteam_normalized" -> score data
+    const teamScores = new Map<string, { home: number; away: number; completed: boolean }>();
+
+    for (const events of results) {
+      for (const event of events) {
+        try {
+          const comp = event.competitions?.[0];
+          if (!comp) continue;
+          const statusName = comp.status?.type?.name || '';
+          const isFinal = statusName === 'STATUS_FINAL';
+          const isLive = statusName === 'STATUS_IN_PROGRESS';
+          if (!isFinal && !isLive) continue;
+
+          const competitors = comp.competitors || [];
+          if (competitors.length !== 2) continue;
+
+          let homeTeam = '', awayTeam = '';
+          let homeScore = 0, awayScore = 0;
+
+          for (const c of competitors) {
+            const name = (c.team?.displayName || '').toLowerCase().trim();
+            const score = parseInt(c.score || '0') || 0;
+            if (c.homeAway === 'home') { homeTeam = name; homeScore = score; }
+            else { awayTeam = name; awayScore = score; }
+          }
+
+          if (homeTeam && awayTeam) {
+            teamScores.set(`${homeTeam}|${awayTeam}`, { home: homeScore, away: awayScore, completed: isFinal });
+          }
+        } catch { /* skip malformed event */ }
+      }
+    }
+
+    // Match against cached_odds by team names
+    const supabase = getDirectSupabase();
+    const { data: cachedGames } = await supabase
+      .from('cached_odds')
+      .select('game_id, game_data')
+      .limit(500);
+
+    for (const row of cachedGames || []) {
+      const gd = row.game_data;
+      if (!gd?.home_team || !gd?.away_team) continue;
+      const home = gd.home_team.toLowerCase().trim();
+      const away = gd.away_team.toLowerCase().trim();
+
+      // Direct match
+      let match = teamScores.get(`${home}|${away}`);
+      // Try partial: ESPN "Indiana Pacers" vs Odds API "Indiana Pacers" should direct-match,
+      // but for "Wolverhampton Wanderers" vs "Wolves" we need fuzzy
+      if (!match) {
+        for (const [key, val] of teamScores) {
+          const [espnHome, espnAway] = key.split('|');
+          if ((espnHome.includes(home) || home.includes(espnHome)) &&
+              (espnAway.includes(away) || away.includes(espnAway))) {
+            match = val;
+            break;
+          }
         }
+      }
+
+      if (match) {
+        scores[row.game_id] = {
+          home: match.home,
+          away: match.away,
+          completed: match.completed,
+          lastUpdate: null,
+        };
       }
     }
   } catch (e) {
-    console.error('[Scores] Fetch failed:', e);
+    console.error('[Scores] ESPN fetch failed:', e);
   }
 
   return scores;

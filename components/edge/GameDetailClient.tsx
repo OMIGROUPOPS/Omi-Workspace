@@ -218,8 +218,6 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   // Color theming: emerald for line mode, amber for price mode
   const isPrice = effectiveViewMode === 'price';
   const lineColor = isPrice ? '#fbbf24' : '#34d399'; // amber-400 or emerald-400
-  const gradientId = `grad-${gameId}-${isPrice ? 'price' : 'line'}`;
-  const gradientColorRgb = isPrice ? '251,191,36' : '52,211,153';
 
   if (data.length === 0) {
     return (
@@ -276,8 +274,6 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   });
 
   const pathD = chartPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
-  // Gradient fill area path — line path + bottom close
-  const areaD = `${pathD} L ${chartPoints[chartPoints.length - 1].x} ${paddingTop + chartHeight} L ${chartPoints[0].x} ${paddingTop + chartHeight} Z`;
 
   const formatValue = (val: number) => {
     if (isMLChart) return val > 0 ? `+${Math.round(val)}` : `${Math.round(val)}`;
@@ -456,34 +452,24 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
       {/* Chart SVG */}
       <div className="relative flex-1 min-h-0">
-        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="xMidYMid meet" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
-          <defs>
-            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={`rgb(${gradientColorRgb})`} stopOpacity="0.25" />
-              <stop offset="100%" stopColor={`rgb(${gradientColorRgb})`} stopOpacity="0.02" />
-            </linearGradient>
-          </defs>
-
+        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="none" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
           {/* Y-axis gridlines + labels */}
           {yLabels.map((label, i) => (
             <g key={i}>
               <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#27272a" strokeWidth="0.5" opacity="0.5" />
-              <text x={paddingLeft - 5} y={label.y + 3} textAnchor="end" fill="#52525b" fontSize="9" fontFamily="monospace">{formatValue(label.value)}</text>
+              <text x={paddingLeft - 5} y={label.y + 4} textAnchor="end" fill="#a1a1aa" fontSize="12" fontFamily="monospace">{formatValue(label.value)}</text>
             </g>
           ))}
 
           {/* X-axis date labels */}
           {xLabels.map((label, i) => (
-            <text key={i} x={label.x} y={height - 4} textAnchor="middle" fill="#3f3f46" fontSize="8" fontFamily="monospace">{label.label}</text>
+            <text key={i} x={label.x} y={height - 4} textAnchor="middle" fill="#71717a" fontSize="11" fontFamily="monospace">{label.label}</text>
           ))}
 
-          {/* Convergence fill between book line and OMI fair line */}
+          {/* Gap fill between OMI fair line and book line — THE story */}
           {convergeFillPath && (
-            <path d={convergeFillPath} fill={isConverging ? 'rgba(16,185,129,0.20)' : 'rgba(239,68,68,0.15)'} />
+            <path d={convergeFillPath} fill={currentValue > (chartOmiFairLine ?? currentValue) ? 'rgba(16,185,129,0.22)' : 'rgba(239,68,68,0.18)'} />
           )}
-
-          {/* Gradient fill under book line */}
-          <path d={areaD} fill={`url(#${gradientId})`} />
 
           {/* OMI fair line — horizontal dashed cyan */}
           {omiLineY !== null && (
@@ -762,10 +748,12 @@ function OmiFairPricing({
 
       const mkContext = (side: string, bookL: number | undefined, fairL: number | undefined, signedGap: number) => {
         if (bookL === undefined || fairL === undefined) return '';
-        if (Math.abs(signedGap) < 0.3) return 'No significant edge';
+        const abs = Math.abs(signedGap);
+        if (abs < 0.3) return `${selBookName} is at fair value on ${side}`;
+        if (abs < 1.0) return `${selBookName} is close to fair value — only ${abs.toFixed(1)} pts from OMI line`;
         return signedGap > 0
-          ? `${selBookName} underprices ${side} by ${Math.abs(signedGap).toFixed(1)} pts — value on ${side}`
-          : `No value on ${side}`;
+          ? `${selBookName} offers ${abs.toFixed(1)} pts more than fair value on ${side}`
+          : `${selBookName} prices ${side} ${abs.toFixed(1)} pts tighter than fair`;
       };
 
       const mkEvLine = (signedGap: number, cross: number | null) => {
@@ -835,10 +823,12 @@ function OmiFairPricing({
 
       const mkTotalContext = (side: string, signedGap: number) => {
         if (bookLine === undefined || fairLine === undefined) return '';
-        if (Math.abs(signedGap) < 0.3) return 'No significant edge';
+        const abs = Math.abs(signedGap);
+        if (abs < 0.3) return `${effBookName} is at fair value on ${side}`;
+        if (abs < 1.0) return `${effBookName} is close to fair value — only ${abs.toFixed(1)} pts from OMI line`;
         return signedGap > 0
-          ? `${effBookName} underprices ${side} by ${Math.abs(signedGap).toFixed(1)} pts — value on ${side}`
-          : `No value on ${side}`;
+          ? `${effBookName} offers ${abs.toFixed(1)} pts more than fair value on ${side}`
+          : `${effBookName} prices ${side} ${abs.toFixed(1)} pts tighter than fair`;
       };
 
       const mkTotalEv = (signedGap: number, ev: number) => {
@@ -906,10 +896,12 @@ function OmiFairPricing({
 
     const mkMLContext = (side: string, bookProb: number | undefined, fairProb: number | undefined, signedGap: number) => {
       if (bookProb === undefined || fairProb === undefined) return '';
-      if (Math.abs(signedGap) < 2) return 'No significant edge';
+      const abs = Math.abs(signedGap);
+      if (abs < 2) return `${mlEffBookName} is at fair value on ${side} ML`;
+      if (abs < 5) return `${mlEffBookName} is close to fair value — only ${abs.toFixed(1)}% from OMI`;
       return signedGap > 0
-        ? `${mlEffBookName} underprices ${side} by ${Math.abs(signedGap).toFixed(1)}% — value on ${side} ML`
-        : `No value on ${side} ML`;
+        ? `${mlEffBookName} offers ${abs.toFixed(1)}% more than fair value on ${side} ML`
+        : `${mlEffBookName} prices ${side} ML ${abs.toFixed(1)}% tighter than fair`;
     };
 
     const mkMLEvLine = (signedGap: number, ev: number) => {
@@ -943,35 +935,39 @@ function OmiFairPricing({
     ];
   })();
 
-  // All books quick-scan with edge info
+  // All books quick-scan with signed edge (positive = value)
   const allBooksQuickScan = allBooks.filter(b => b.key !== 'pinnacle').map(b => {
     let line = '--';
-    let edgeStr = '';
+    let signedEdge = 0;
+    let edgeUnit = 'pt';
     if (activeMarket === 'spread') {
       const bookLine = b.markets?.spreads?.home?.line;
       line = bookLine !== undefined ? formatSpread(bookLine) : '--';
       if (bookLine !== undefined && omiFairSpread) {
-        const gap = Math.abs(bookLine - omiFairSpread.fairLine);
-        edgeStr = gap > 0 ? `(${gap.toFixed(1)}pt)` : '';
+        // Positive = book gives more than fair (value on home)
+        signedEdge = Math.round((bookLine - omiFairSpread.fairLine) * 10) / 10;
       }
     } else if (activeMarket === 'total') {
       const totalLine = b.markets?.totals?.line;
       line = totalLine !== undefined ? `${totalLine}` : '--';
       if (totalLine !== undefined && omiFairTotal) {
-        const gap = Math.abs(totalLine - omiFairTotal.fairLine);
-        edgeStr = gap > 0 ? `(${gap.toFixed(1)}pt)` : '';
+        signedEdge = Math.round((omiFairTotal.fairLine - totalLine) * 10) / 10;
       }
     } else {
       const homeOdds = b.markets?.h2h?.home?.price;
       line = homeOdds !== undefined ? formatOdds(homeOdds) : '--';
+      edgeUnit = '%';
       if (homeOdds !== undefined && omiFairHomeProb !== undefined) {
         const bookProb = americanToImplied(homeOdds);
-        const gap = Math.abs(Math.round((bookProb - omiFairHomeProb) * 1000) / 10);
-        edgeStr = gap > 0 ? `(${gap.toFixed(1)}%)` : '';
+        signedEdge = Math.round((omiFairHomeProb - bookProb) * 1000) / 10;
       }
     }
-    return { key: b.key, name: BOOK_CONFIG[b.key]?.name || b.key, line, edgeStr, color: b.color, isSelected: b.key === selectedBook };
+    const absEdge = Math.abs(signedEdge);
+    const edgeStr = absEdge > 0.1 ? `(${signedEdge > 0 ? '+' : ''}${signedEdge.toFixed(1)}${edgeUnit})` : '';
+    return { key: b.key, name: BOOK_CONFIG[b.key]?.name || b.key, line, edgeStr, signedEdge, absEdge, color: b.color, isSelected: b.key === selectedBook };
   });
+  // Find best-value book
+  const bestValueBook = allBooksQuickScan.reduce((best, b) => b.signedEdge > best.signedEdge ? b : best, allBooksQuickScan[0]);
 
   // Line movement notice (Issue 4A) — check first snapshot vs current
   const lineMovementNotice = (() => {
@@ -1044,8 +1040,13 @@ function OmiFairPricing({
                 narrative = `No strong Over/Under lean (${totalConf}% conf). Fair total at ${omiFairTotal?.fairLine ?? 'N/A'}.`;
               } else {
                 const overEdge = leftBlock.edgePts;
-                const evStr = leftBlock.evLine.includes('EV') ? leftBlock.evLine.split('|').pop()?.trim() || '' : '';
-                narrative = `Model leans ${lean} (${totalConf}% conf). ${selBookName}: ${overEdge > 0 ? '+' : ''}${overEdge.toFixed(1)} pts edge${evStr ? `, ${evStr}` : ''}.`;
+                const absOverEdge = Math.abs(overEdge);
+                if (absOverEdge < 1.0) {
+                  narrative = `Model leans ${lean} (${totalConf}% conf). ${selBookName} total is near fair value (${absOverEdge.toFixed(1)} pts from OMI).`;
+                } else {
+                  const evStr = leftBlock.evLine.includes('EV') ? leftBlock.evLine.split('|').pop()?.trim() || '' : '';
+                  narrative = `Model leans ${lean} (${totalConf}% conf). ${selBookName}: ${overEdge > 0 ? '+' : ''}${overEdge.toFixed(1)} pts edge${evStr ? `, ${evStr}` : ''}.`;
+                }
               }
             } else {
               narrative = `Consensus total: ${consensusTotal ?? 'N/A'}. Comparing ${selBookName} against market median.`;
@@ -1058,8 +1059,14 @@ function OmiFairPricing({
               const favored = comp > 50 ? homeAbbr : awayAbbr;
               const favoredBlock = comp > 50 ? rightBlock : leftBlock; // right=home, left=away
               const edgeVal = activeMarket === 'moneyline' ? favoredBlock.edgePct : favoredBlock.edgePts;
-              const evStr = favoredBlock.evLine.includes('EV') ? favoredBlock.evLine.split('|').pop()?.trim() || '' : '';
-              narrative = `Model favors ${favored} (${comp}% conf). ${selBookName}: ${edgeVal > 0 ? '+' : ''}${edgeVal.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ' pts'} edge${evStr ? `, ${evStr}` : ''}.`;
+              const absEdge = Math.abs(edgeVal);
+              const isSmallEdge = activeMarket === 'moneyline' ? absEdge < 5 : absEdge < 1.0;
+              if (isSmallEdge) {
+                narrative = `Model favors ${favored} (${comp}% conf). ${selBookName} line is near fair value (${absEdge.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ' pts'} from OMI).`;
+              } else {
+                const evStr = favoredBlock.evLine.includes('EV') ? favoredBlock.evLine.split('|').pop()?.trim() || '' : '';
+                narrative = `Model favors ${favored} (${comp}% conf). ${selBookName}: ${edgeVal > 0 ? '+' : ''}${edgeVal.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ' pts'} edge${evStr ? `, ${evStr}` : ''}.`;
+              }
             }
           } else {
             narrative = `Comparing ${selBookName} against market consensus of ${allBooks.length} sportsbooks.`;
@@ -1069,7 +1076,7 @@ function OmiFairPricing({
       </div>
 
       {/* Single-book comparison — two side-by-side blocks with edge story */}
-      <div key={`blocks-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`} className="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2" style={{ fontVariantNumeric: 'tabular-nums', minHeight: '200px', visibility: 'visible' as const, opacity: 1 }}>
+      <div key={`blocks-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`} className="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-1" style={{ fontVariantNumeric: 'tabular-nums', visibility: 'visible' as const, opacity: 1 }}>
         {[leftBlock, rightBlock].map((block, blockIdx) => {
           const edgeVal = activeMarket === 'moneyline' ? block.edgePct : block.edgePts;
           const absEdge = Math.abs(edgeVal);
@@ -1140,17 +1147,28 @@ function OmiFairPricing({
         })}
       </div>
 
-      {/* All Books quick-scan row — with edge info */}
+      {/* All Books quick-scan row — with edge direction and best value */}
       {allBooksQuickScan.length > 1 && (
-        <div className="flex-shrink-0 border-t border-zinc-800/50 pt-2">
-          <div className="text-[8px] text-zinc-600 uppercase tracking-widest mb-1">All Books</div>
-          <div className="flex flex-wrap gap-2">
-            {allBooksQuickScan.map(b => (
-              <span key={b.key} className={`text-[10px] font-mono ${b.isSelected ? 'text-cyan-400 font-semibold' : 'text-zinc-400'}`}>
-                <span className="inline-block w-1.5 h-1.5 rounded-sm mr-0.5" style={{ backgroundColor: b.color }} />
-                {b.name}: {b.line} {b.edgeStr && <span className="text-zinc-500">{b.edgeStr}</span>}
+        <div className="flex-shrink-0 border-t border-zinc-800/50 pt-1.5 pb-0">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[8px] text-zinc-600 uppercase tracking-widest">All Books</span>
+            {bestValueBook && bestValueBook.signedEdge > (activeMarket === 'moneyline' ? 3 : 0.5) && (
+              <span className="text-[10px] font-mono text-emerald-400 font-semibold">
+                Best value: {bestValueBook.name} {bestValueBook.line} {bestValueBook.edgeStr}
               </span>
-            ))}
+            )}
+          </div>
+          <div className="flex flex-wrap gap-x-3 gap-y-0.5">
+            {allBooksQuickScan.map(b => {
+              const isBest = b.key === bestValueBook?.key && b.signedEdge > (activeMarket === 'moneyline' ? 3 : 0.5);
+              const edgeColor = isBest ? 'text-emerald-400 font-semibold' : b.absEdge < (activeMarket === 'moneyline' ? 3 : 0.5) ? 'text-zinc-500' : b.signedEdge > 0 ? 'text-emerald-400/70' : 'text-zinc-500';
+              return (
+                <span key={b.key} className={`text-[10px] font-mono ${b.isSelected ? 'text-cyan-400 font-semibold' : 'text-zinc-400'}`}>
+                  <span className="inline-block w-1.5 h-1.5 rounded-sm mr-0.5" style={{ backgroundColor: b.color }} />
+                  {b.name}: {b.line} {b.edgeStr && <span className={edgeColor}>{b.edgeStr}</span>}
+                </span>
+              );
+            })}
           </div>
         </div>
       )}
@@ -1235,8 +1253,8 @@ function PillarBarsCompact({
               {p.label} <span className="text-zinc-600">({p.weight})</span>
             </span>
             <div className="flex-1 h-[6px] bg-zinc-800 rounded-sm relative">
-              {/* Center line */}
-              <div className="absolute left-1/2 top-0 w-px h-full bg-zinc-600 z-10" />
+              {/* Center line — dashed for visibility at neutral */}
+              <div className="absolute left-1/2 top-0 w-0 h-full z-10" style={{ borderLeft: '1px dashed #71717a' }} />
               {isHomeSide ? (
                 /* Bar grows RIGHT from center (50%) */
                 <div
@@ -1837,7 +1855,7 @@ export function GameDetailClient({
         </div>
 
         {/* Combined tabs + chart — single full-width cell */}
-        <div className="bg-[#0a0a0a] p-2 relative flex flex-col" style={{ gridArea: 'chart', minHeight: '300px', maxHeight: '350px' }}>
+        <div className="bg-[#0a0a0a] p-2 relative flex flex-col" style={{ gridArea: 'chart', minHeight: '300px' }}>
           {/* Market tabs + period sub-tabs */}
           <div className="flex items-center justify-between mb-1 flex-shrink-0">
             <div className="flex items-center gap-1">

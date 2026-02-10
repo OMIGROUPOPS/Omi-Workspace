@@ -366,7 +366,7 @@ class ESPNClient:
         
         motivation = 0.5
         reasoning = []
-        
+
         if team_standing["clinched_playoff"]:
             motivation -= 0.15
             reasoning.append("Already clinched - may rest players")
@@ -379,14 +379,44 @@ class ESPNClient:
         elif team_standing["games_back"] <= 5:
             motivation += 0.1
             reasoning.append(f"Still in contention ({team_standing['games_back']} GB)")
-        
+
+        # Win percentage adds granularity — two "contending" teams at 0 GB
+        # can still have very different records (e.g., 35-20 vs 28-27)
+        win_pct = team_standing.get("win_pct", 0)
+        if win_pct > 0:
+            # Map win% to motivation adjustment: .600+ = +0.12, .500 = 0, .400 = -0.10
+            win_pct_adj = (win_pct - 0.50) * 0.24
+            motivation += win_pct_adj
+            wins = team_standing.get("wins", 0)
+            losses = team_standing.get("losses", 0)
+            if abs(win_pct_adj) >= 0.03:
+                reasoning.append(f"Record {wins}-{losses} ({win_pct:.3f})")
+
+        # Playoff seed differentiates top-4 vs play-in teams
+        seed = team_standing.get("playoff_seed")
+        if seed and isinstance(seed, (int, float)) and seed > 0:
+            if seed <= 4:
+                motivation += 0.05
+                reasoning.append(f"Top-4 seed ({int(seed)})")
+            elif seed <= 6:
+                # Seeds 5-6: solid but not locked in
+                motivation += 0.02
+            elif seed <= 10:
+                # Play-in range: desperate
+                motivation += 0.08
+                reasoning.append(f"Play-in seed ({int(seed)}) - fighting for spot")
+
+        # Streak matters — lower thresholds for more differentiation
         streak = team_standing.get("streak", "")
         if streak and "W" in str(streak):
             try:
                 win_streak = int(str(streak).replace("W", ""))
                 if win_streak >= 5:
-                    motivation += 0.1
+                    motivation += 0.10
                     reasoning.append(f"Hot streak ({streak})")
+                elif win_streak >= 3:
+                    motivation += 0.05
+                    reasoning.append(f"Winning streak ({streak})")
             except ValueError:
                 pass
         elif streak and "L" in str(streak):
@@ -395,9 +425,12 @@ class ESPNClient:
                 if loss_streak >= 5:
                     motivation += 0.05
                     reasoning.append(f"Cold streak - desperate ({streak})")
+                elif loss_streak >= 3:
+                    motivation += 0.02
+                    reasoning.append(f"Losing streak ({streak})")
             except ValueError:
                 pass
-        
+
         motivation = max(0.0, min(1.0, motivation))
 
         # Determine playoff status based on actual position
@@ -414,6 +447,11 @@ class ESPNClient:
             "motivation_score": round(motivation, 3),
             "playoff_status": playoff_status,
             "games_back": team_standing["games_back"],
+            "win_pct": round(win_pct, 3) if win_pct else 0,
+            "wins": team_standing.get("wins", 0),
+            "losses": team_standing.get("losses", 0),
+            "playoff_seed": team_standing.get("playoff_seed"),
+            "streak": streak,
             "reasoning": "; ".join(reasoning) if reasoning else "Neutral positioning"
         }
     

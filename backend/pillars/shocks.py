@@ -217,6 +217,16 @@ def calculate_shocks_score(
     if not reasoning_parts:
         reasoning_parts.append("No significant line movement detected")
 
+    # Diagnostic: warn when returning default 50 due to missing data
+    if score == 0.5:
+        if current_line is None and opening_line is None:
+            logger.warning(f"[Shocks] WARNING: Returning default 0.5 — no opening_line or current_line available for {away_team} @ {home_team}")
+            logger.warning(f"[Shocks]   line_movement_history has {len(line_movement_history) if line_movement_history else 0} snapshots")
+        elif not line_movement_history or len(line_movement_history) < 2:
+            logger.warning(f"[Shocks] WARNING: Returning 0.5 — only {len(line_movement_history) if line_movement_history else 0} snapshots (need >=2 for velocity)")
+        else:
+            logger.info(f"[Shocks] Score 0.5 with data present — genuinely balanced line movement")
+
     # Calculate market-specific scores
     # SPREAD/MONEYLINE: Line moved toward home or away? (score as calculated)
     # TOTALS: Total moved up or down? (same directional logic applies)

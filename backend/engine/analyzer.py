@@ -93,7 +93,8 @@ def fetch_line_context(game_id: str, sport_key: str) -> dict:
             logger.info(f"  Line context for {game_id}: opening={result['opening_line']}, "
                        f"current={result['current_line']}, {len(result['line_snapshots'])} snapshots")
         else:
-            logger.debug(f"  No line snapshots found for {game_id}")
+            logger.warning(f"  WARNING: No line snapshots found for {game_id} — Shocks and Flow will return default 0.5")
+            logger.warning(f"  This means 50% of the composite (Shocks 25% + Flow 25%) is fake/neutral")
 
     except Exception as e:
         logger.error(f"Error fetching line context for {game_id}: {e}")

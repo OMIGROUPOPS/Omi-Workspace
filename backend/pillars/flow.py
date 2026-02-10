@@ -253,6 +253,9 @@ def calculate_flow_score(
             logger.info(f"[Flow]     spreads: {markets['spreads']}")
 
     if not bookmakers:
+        logger.warning(f"[Flow] WARNING: Returning default 0.5 — no bookmaker data available for game")
+        logger.warning(f"[Flow]   game keys: {list(game.keys()) if isinstance(game, dict) else 'not a dict'}")
+        logger.warning(f"[Flow]   game.bookmakers length: {len(game.get('bookmakers', []))}")
         return {
             "score": 0.5,
             "spread_variance": 0.0,
@@ -464,6 +467,15 @@ def calculate_flow_score(
 
     if not reasoning_parts:
         reasoning_parts.append("Market flow appears balanced across books")
+
+    # Diagnostic: log when Flow returns near-default with data present
+    if abs(score - 0.5) < 0.01:
+        logger.warning(f"[Flow] WARNING: Returning ~0.5 despite having {len(spreads_by_book)} books")
+        logger.warning(f"[Flow]   opening_line={'present' if opening_line is not None else 'MISSING'}, "
+                       f"snapshots={len(line_snapshots) if line_snapshots else 0}")
+        logger.warning(f"[Flow]   spreads: {spreads_by_book}")
+        logger.warning(f"[Flow]   pinnacle_div={pinnacle_divergence}, book_agreement={book_agreement:.3f}, "
+                       f"stdev={stdev:.3f}, velocity={velocity:.2f}")
 
     # Calculate market-specific scores
     # SPREAD/MONEYLINE: Sharp flow on home or away? (score as calculated)

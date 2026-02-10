@@ -439,6 +439,15 @@ def calculate_incentives_score(
 
     logger.info(f"[Incentives] Final score: {score:.3f}")
 
+    # Diagnostic: warn when returning default-like 0.5
+    if abs(score - 0.5) < 0.02:
+        logger.warning(f"[Incentives] WARNING: Returning ~0.5 for {away_team} @ {home_team}")
+        logger.warning(f"[Incentives]   home: status={home_status}, GB={home_gb}, motivation={home_motivation:.3f}")
+        logger.warning(f"[Incentives]   away: status={away_status}, GB={away_gb}, motivation={away_motivation:.3f}")
+        logger.warning(f"[Incentives]   differential={motivation_differential:.3f}, soccer_adj={soccer_motivation_adjustment:.3f}")
+        if home_motivation == 0.5 and away_motivation == 0.5:
+            logger.warning(f"[Incentives]   LIKELY CAUSE: ESPN returned default 0.5 motivation for both teams (no standings data)")
+
     if is_championship:
         reasoning_parts.append("Championship game: maximum motivation for both teams")
 

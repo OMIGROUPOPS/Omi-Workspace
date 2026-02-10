@@ -824,6 +824,64 @@ function buildSnapshotRows(games: any[], sportKey: string, snapshotTime: string)
   return rows;
 }
 
+/**
+ * Build rows for the line_snapshots table (used by Python analyzer pillars).
+ *
+ * The analyzer's fetch_line_context() queries line_snapshots for:
+ *   market_type = "spread", market_period = "full"
+ * Shocks uses opening_line vs current_line + velocity from snapshot history.
+ * Flow uses opening_line for movement detection.
+ *
+ * Schema: game_id, sport_key, market_type, market_period, book_key, line, odds,
+ *         implied_prob, outcome_type, snapshot_time
+ */
+function buildLineSnapshotRows(games: any[], sportKey: string, snapshotTime: string) {
+  const rows: any[] = [];
+
+  function americanToImpliedProb(odds: number): number {
+    if (odds > 0) return 100 / (odds + 100);
+    return Math.abs(odds) / (Math.abs(odds) + 100);
+  }
+
+  for (const game of games) {
+    if (!game.bookmakers) continue;
+    for (const bk of game.bookmakers) {
+      for (const market of bk.markets || []) {
+        // Only write core full-game markets (what the analyzer actually reads)
+        if (!["h2h", "spreads", "totals"].includes(market.key)) continue;
+
+        const marketType = market.key === "h2h" ? "moneyline"
+          : market.key === "spreads" ? "spread"
+          : "total";
+
+        for (const outcome of market.outcomes || []) {
+          // Determine outcome_type: home, away, over, under
+          let outcomeType: string;
+          if (market.key === "totals") {
+            outcomeType = outcome.name === "Over" ? "over" : "under";
+          } else {
+            outcomeType = outcome.name === game.home_team ? "home" : "away";
+          }
+
+          rows.push({
+            game_id: game.id,
+            sport_key: sportKey,
+            market_type: marketType,
+            market_period: "full",
+            book_key: bk.key,
+            line: outcome.point ?? null,
+            odds: outcome.price,
+            implied_prob: americanToImpliedProb(outcome.price),
+            outcome_type: outcomeType,
+            snapshot_time: snapshotTime,
+          });
+        }
+      }
+    }
+  }
+  return rows;
+}
+
 // Cleanup finished games from cached_odds (games that ended 5+ hours ago)
 // We keep live/in-progress games so they continue to be polled
 async function cleanupStaleGames(supabase: ReturnType<typeof getSupabase>): Promise<number> {
@@ -1136,6 +1194,28 @@ async function runSync() {
       }
 
       console.log(`[Odds Sync] ${sport}: ${games.length} games, ${snapshotRows.length} snapshot rows built, ${snapshotsSaved} saved`);
+
+      // ================================================================
+      // BRIDGE: Write to line_snapshots for Python analyzer pillars
+      // The analyzer's Shocks (0.25 weight) and Flow (0.25 weight) pillars
+      // read from line_snapshots. Without this, 50% of the model defaults to 50.
+      // ================================================================
+      const lineSnapshotRows = buildLineSnapshotRows(games, sportKey, snapshotTime);
+      if (lineSnapshotRows.length > 0) {
+        let lineSaved = 0;
+        for (let i = 0; i < lineSnapshotRows.length; i += 500) {
+          const chunk = lineSnapshotRows.slice(i, i + 500);
+          const { error: lineErr } = await supabase
+            .from("line_snapshots")
+            .insert(chunk);
+          if (lineErr) {
+            console.error(`[Odds Sync] line_snapshots insert failed: ${lineErr.message}`);
+          } else {
+            lineSaved += chunk.length;
+          }
+        }
+        console.log(`[Odds Sync] ${sport}: ${lineSaved}/${lineSnapshotRows.length} line_snapshots saved`);
+      }
 
       // Trigger edge detection for each game
       let edgesDetected = 0;

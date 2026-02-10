@@ -781,10 +781,11 @@ function OmiFairPricing({
     }
     if (activeMarket === 'total') {
       // Fallback: if selected book doesn't have totals, use first book that does
+      const hasTotals = (b: typeof selBook) => b?.markets?.totals?.line !== undefined && b?.markets?.totals?.line !== null;
       let effBook = selBook;
       let effBookName = selBookName;
-      if (!selBook?.markets?.totals?.line && selBook?.markets?.totals?.line !== 0) {
-        const fallback = allBooks.find(b => b.markets?.totals?.line !== undefined);
+      if (!hasTotals(selBook)) {
+        const fallback = allBooks.find(b => hasTotals(b));
         if (fallback) { effBook = fallback; effBookName = BOOK_CONFIG[fallback.key]?.name || fallback.key; }
       }
 
@@ -852,10 +853,11 @@ function OmiFairPricing({
       ];
     }
     // Moneyline — fallback: if selected book doesn't have h2h, use first book that does
+    const hasH2h = (b: typeof selBook) => b?.markets?.h2h?.home?.price !== undefined && b?.markets?.h2h?.home?.price !== null;
     let mlEffBook = selBook;
     let mlEffBookName = selBookName;
-    if (!selBook?.markets?.h2h?.home?.price) {
-      const fallback = allBooks.find(b => b.markets?.h2h?.home?.price !== undefined);
+    if (!hasH2h(selBook)) {
+      const fallback = allBooks.find(b => hasH2h(b));
       if (fallback) { mlEffBook = fallback; mlEffBookName = BOOK_CONFIG[fallback.key]?.name || fallback.key; }
     }
     const bookHomeOdds = mlEffBook?.markets?.h2h?.home?.price;
@@ -1050,7 +1052,7 @@ function OmiFairPricing({
       </div>
 
       {/* Single-book comparison — two side-by-side blocks with edge story */}
-      <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2" style={{ fontVariantNumeric: 'tabular-nums' }}>
+      <div key={`blocks-${activeMarket}-${activePeriod}-${selectedBook}`} className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2" style={{ fontVariantNumeric: 'tabular-nums' }}>
         {[leftBlock, rightBlock].map((block, blockIdx) => {
           const edgeVal = activeMarket === 'moneyline' ? block.edgePct : block.edgePts;
           const absEdge = Math.abs(edgeVal);
@@ -1751,7 +1753,7 @@ export function GameDetailClient({
       <div
         className="hidden lg:grid h-full relative"
         style={{
-          gridTemplateRows: '36px auto auto 1fr auto',
+          gridTemplateRows: '36px auto auto minmax(180px, 1fr) auto',
           gridTemplateColumns: '1fr 1fr',
           gridTemplateAreas: `"header header" "modetabs modetabs" "chart chart" "pricing pricing" "analysis ceq"`,
           gap: '1px',
@@ -1871,6 +1873,7 @@ export function GameDetailClient({
         {marketMode === 'sportsbook' ? (
           <>
             <OmiFairPricing
+              key={`desktop-pricing-${activeMarket}-${activePeriod}-${selectedBook}`}
               pythonPillars={pythonPillarScores}
               bookmakers={bookmakers}
               gameData={gameData}
@@ -2015,6 +2018,7 @@ export function GameDetailClient({
           {marketMode === 'sportsbook' ? (
             <>
               <OmiFairPricing
+                key={`mobile-pricing-${activeMarket}-${activePeriod}-${selectedBook}`}
                 pythonPillars={pythonPillarScores}
                 bookmakers={bookmakers}
                 gameData={gameData}

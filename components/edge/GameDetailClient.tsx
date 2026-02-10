@@ -233,7 +233,12 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   // ML chart: show raw American odds (not probability conversion)
   const isMLChart = marketType === 'moneyline' && effectiveViewMode === 'line';
+  // Align OMI fair line basis with tracked side: fair line is always HOME spread,
+  // so negate when tracking AWAY to match the book data (which also negates for away)
   let chartOmiFairLine = omiFairLine;
+  if (marketType === 'spread' && trackingSide === 'away' && chartOmiFairLine !== undefined) {
+    chartOmiFairLine = -chartOmiFairLine;
+  }
 
   const openValue = data[0]?.value || baseValue;
   const currentValue = data[data.length - 1]?.value || baseValue;
@@ -322,8 +327,8 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     const visualRange = visualMax - visualMin;
     let labelStep: number;
     if (isMLChart) { labelStep = range <= 30 ? 10 : 25; }
-    else if (marketType === 'spread' && effectiveViewMode === 'line') { labelStep = 0.5; }
-    else if (marketType === 'total' && effectiveViewMode === 'line') { labelStep = 1.0; }
+    else if (marketType === 'spread' && effectiveViewMode === 'line') { labelStep = range <= 5 ? 0.5 : range <= 15 ? 1.0 : 2.0; }
+    else if (marketType === 'total' && effectiveViewMode === 'line') { labelStep = range <= 5 ? 0.5 : range <= 15 ? 1.0 : 2.0; }
     else if (effectiveViewMode === 'price') { labelStep = range <= 8 ? 2 : range <= 16 ? 4 : 5; }
     else { labelStep = range <= 5 ? 0.5 : range <= 12 ? 1 : range <= 25 ? 2 : 5; }
     const startValue = Math.floor(visualMin / labelStep) * labelStep;

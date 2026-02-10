@@ -99,17 +99,17 @@ class ResultsTracker:
             # Composite
             "composite_score": pred.get("composite_score"),
             "confidence_level": pred.get("overall_confidence"),
-            
+
             # Pillars
             "pillar_execution": pred.get("pillar_execution"),
             "pillar_incentives": pred.get("pillar_incentives"),
             "pillar_shocks": pred.get("pillar_shocks"),
             "pillar_time_decay": pred.get("pillar_time_decay"),
             "pillar_flow": pred.get("pillar_flow"),
-            
+
             # Best bet
             "best_bet_market": pred.get("best_bet_market"),
-            "best_bet_edge": pred.get("best_edge_pct"),
+            "best_bet_edge": pred.get("best_edge_pct") if not isinstance(pred.get("best_edge_pct"), str) else None,
         }
         
         # Upsert to game_results

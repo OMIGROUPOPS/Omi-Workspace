@@ -124,6 +124,14 @@ const americanToImplied = (odds: number): number => {
 // LineMovementChart — with OMI fair line overlay
 // ============================================================================
 
+interface CompositeHistoryPoint {
+  timestamp: string;
+  fair_spread: number | null;
+  fair_total: number | null;
+  fair_ml_home: number | null;
+  fair_ml_away: number | null;
+}
+
 interface LineMovementChartProps {
   gameId: string;
   selection: ChartSelection;
@@ -137,13 +145,25 @@ interface LineMovementChartProps {
   sportKey?: string;
   compact?: boolean;
   omiFairLine?: number;
+  activeMarket?: string;
 }
 
-function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, awayTeam, viewMode, onViewModeChange, commenceTime, sportKey, compact = false, omiFairLine }: LineMovementChartProps) {
+function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, awayTeam, viewMode, onViewModeChange, commenceTime, sportKey, compact = false, omiFairLine, activeMarket: activeMarketProp }: LineMovementChartProps) {
   const [hoveredPoint, setHoveredPoint] = useState<{ x: number; y: number; value: number; timestamp: Date; index: number } | null>(null);
   const [trackingSide, setTrackingSide] = useState<'home' | 'away' | 'over' | 'under' | 'draw'>('home');
   const isSoccer = sportKey?.includes('soccer') ?? false;
   const [timeRange, setTimeRange] = useState<TimeRange>('ALL');
+  const [compositeHistory, setCompositeHistory] = useState<CompositeHistoryPoint[]>([]);
+
+  // Fetch composite history for dynamic OMI fair line
+  useEffect(() => {
+    if (!gameId) return;
+    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://omi-workspace-production.up.railway.app';
+    fetch(`${BACKEND_URL}/api/composite-history/${gameId}`)
+      .then(res => res.ok ? res.json() : [])
+      .then((data: CompositeHistoryPoint[]) => setCompositeHistory(Array.isArray(data) ? data : []))
+      .catch(() => setCompositeHistory([]));
+  }, [gameId]);
 
   const isProp = selection.type === 'prop';
   const marketType = selection.type === 'market' ? selection.market : 'line';
@@ -240,11 +260,29 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     chartOmiFairLine = -chartOmiFairLine;
   }
 
+  // Build dynamic OMI fair line data from composite_history
+  const resolvedMarket = activeMarketProp || (selection.type === 'market' ? selection.market : 'spread');
+  const omiFairLineData: { timestamp: Date; value: number }[] = compositeHistory
+    .map(pt => {
+      let val: number | null = null;
+      if (resolvedMarket === 'spread') val = pt.fair_spread;
+      else if (resolvedMarket === 'total') val = pt.fair_total;
+      else if (resolvedMarket === 'moneyline') val = pt.fair_ml_home;
+      if (val === null || val === undefined) return null;
+      // Negate spread for away side tracking
+      if (resolvedMarket === 'spread' && trackingSide === 'away') val = -val;
+      return { timestamp: new Date(pt.timestamp), value: val };
+    })
+    .filter((d): d is { timestamp: Date; value: number } => d !== null);
+  const hasOmiTimeSeries = omiFairLineData.length >= 1;
+
   const openValue = data[0]?.value || baseValue;
   const currentValue = data[data.length - 1]?.value || baseValue;
   const movement = currentValue - openValue;
   const values = data.map(d => d.value);
   if (chartOmiFairLine !== undefined) values.push(chartOmiFairLine);
+  // Include all OMI fair line history points in Y-axis scaling
+  for (const pt of omiFairLineData) values.push(pt.value);
   const minVal = Math.min(...values);
   const maxVal = Math.max(...values);
   const range = maxVal - minVal || 1;
@@ -293,24 +331,84 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   const movementColor = movement > 0 ? 'text-emerald-400' : movement < 0 ? 'text-red-400' : 'text-zinc-400';
 
-  // OMI fair line Y position
-  const omiLineY = chartOmiFairLine !== undefined
-    ? paddingTop + chartHeight - ((chartOmiFairLine - minVal + padding) / (range + 2 * padding)) * chartHeight
+  // Helper: convert a value to SVG Y coordinate
+  const valueToY = (val: number) =>
+    paddingTop + chartHeight - ((val - minVal + padding) / (range + 2 * padding)) * chartHeight;
+
+  // OMI fair line: build SVG points aligned to the book line X-axis
+  // When we have time-series data (>=2 pts), interpolate onto the book line's time range.
+  // When only 1 pt or no history, fall back to flat horizontal line.
+  const omiChartPoints: { x: number; y: number; value: number }[] = (() => {
+    if (hasOmiTimeSeries && omiFairLineData.length >= 2 && data.length >= 2) {
+      // Map OMI timestamps onto the book line's X-axis (time-proportional)
+      const bookStartTime = data[0].timestamp.getTime();
+      const bookEndTime = data[data.length - 1].timestamp.getTime();
+      const bookTimeRange = bookEndTime - bookStartTime || 1;
+      return omiFairLineData
+        .filter(pt => pt.timestamp.getTime() >= bookStartTime && pt.timestamp.getTime() <= bookEndTime)
+        .map(pt => {
+          const tFrac = (pt.timestamp.getTime() - bookStartTime) / bookTimeRange;
+          const x = paddingLeft + tFrac * chartWidth;
+          return { x, y: valueToY(pt.value), value: pt.value };
+        });
+    }
+    // Fallback: single composite_history point or static omiFairLine → flat line
+    const flatValue = omiFairLineData.length === 1 ? omiFairLineData[0].value : chartOmiFairLine;
+    if (flatValue === undefined) return [];
+    const y = valueToY(flatValue);
+    return [
+      { x: paddingLeft, y, value: flatValue },
+      { x: paddingLeft + chartWidth, y, value: flatValue },
+    ];
+  })();
+
+  const hasOmiLine = omiChartPoints.length >= 2;
+  const omiPathD = hasOmiLine
+    ? omiChartPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ')
     : null;
 
-  // Convergence fill
-  const convergeFillPath = omiLineY !== null && chartPoints.length > 1
-    ? `${pathD} L ${chartPoints[chartPoints.length - 1].x} ${omiLineY} L ${chartPoints[0].x} ${omiLineY} Z`
-    : null;
-  const isConverging = chartOmiFairLine !== undefined && chartPoints.length > 1
-    ? Math.abs(currentValue - chartOmiFairLine) < Math.abs(openValue - chartOmiFairLine)
+  // OMI fair line Y position (for flat fallback and convergence label)
+  const omiLineY = hasOmiLine ? omiChartPoints[omiChartPoints.length - 1].y : null;
+  const currentOmiFairValue = hasOmiLine ? omiChartPoints[omiChartPoints.length - 1].value : chartOmiFairLine;
+
+  // Convergence fill: area between book line and OMI fair line
+  // Build a closed polygon: book path forward → OMI path backward
+  const convergeFillPath = (() => {
+    if (!hasOmiLine || chartPoints.length < 2) return null;
+    // Forward: book line path
+    const bookForward = chartPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+    // We need to interpolate OMI Y values at each book X position
+    const omiAtBookX = chartPoints.map(bp => {
+      // Find the two OMI points that bracket this X
+      if (omiChartPoints.length === 0) return bp.y;
+      if (bp.x <= omiChartPoints[0].x) return omiChartPoints[0].y;
+      if (bp.x >= omiChartPoints[omiChartPoints.length - 1].x) return omiChartPoints[omiChartPoints.length - 1].y;
+      for (let j = 0; j < omiChartPoints.length - 1; j++) {
+        if (bp.x >= omiChartPoints[j].x && bp.x <= omiChartPoints[j + 1].x) {
+          const frac = (bp.x - omiChartPoints[j].x) / (omiChartPoints[j + 1].x - omiChartPoints[j].x || 1);
+          return omiChartPoints[j].y + frac * (omiChartPoints[j + 1].y - omiChartPoints[j].y);
+        }
+      }
+      return omiChartPoints[omiChartPoints.length - 1].y;
+    });
+    // Backward: OMI values at book X positions, reversed
+    const omiBackward = [...omiAtBookX].reverse().map((y, i) => {
+      const bp = chartPoints[chartPoints.length - 1 - i];
+      return `L ${bp.x} ${y}`;
+    }).join(' ');
+    return `${bookForward} ${omiBackward} Z`;
+  })();
+
+  const isConverging = currentOmiFairValue !== undefined && chartPoints.length > 1
+    ? Math.abs(currentValue - currentOmiFairValue) < Math.abs(openValue - (hasOmiLine ? omiChartPoints[0].value : currentOmiFairValue))
     : false;
 
   // Convergence/divergence label
   const convergenceLabel = (() => {
-    if (chartOmiFairLine === undefined || chartPoints.length < 2) return null;
-    const gapOpen = Math.abs(openValue - chartOmiFairLine);
-    const gapCurrent = Math.abs(currentValue - chartOmiFairLine);
+    if (currentOmiFairValue === undefined || chartPoints.length < 2) return null;
+    const openOmiValue = hasOmiLine ? omiChartPoints[0].value : currentOmiFairValue;
+    const gapOpen = Math.abs(openValue - openOmiValue);
+    const gapCurrent = Math.abs(currentValue - currentOmiFairValue);
     const diff = Math.abs(gapOpen - gapCurrent);
     if (diff < (isMLChart ? 1 : 0.1)) return null;
     if (isConverging) {
@@ -473,14 +571,16 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
           {/* Gap fill between OMI fair line and book line — THE story */}
           {convergeFillPath && (
-            <path d={convergeFillPath} fill={currentValue > (chartOmiFairLine ?? currentValue) ? 'rgba(16,185,129,0.22)' : 'rgba(239,68,68,0.18)'} />
+            <path d={convergeFillPath} fill={currentValue > (currentOmiFairValue ?? currentValue) ? 'rgba(16,185,129,0.22)' : 'rgba(239,68,68,0.18)'} />
           )}
 
-          {/* OMI fair line — horizontal dashed cyan */}
-          {omiLineY !== null && (
+          {/* OMI fair line — dashed cyan (dynamic or flat) */}
+          {omiPathD && (
             <>
-              <line x1={paddingLeft} y1={omiLineY} x2={width - paddingRight} y2={omiLineY} stroke="#22d3ee" strokeWidth="1" strokeDasharray="4 3" opacity="0.7" />
-              <text x={width - paddingRight - 2} y={omiLineY - 4} textAnchor="end" fill="#22d3ee" fontSize="8" fontWeight="bold" fontFamily="monospace">OMI</text>
+              <path d={omiPathD} fill="none" stroke="#22d3ee" strokeWidth="1" strokeDasharray="4 3" opacity="0.7" />
+              {omiChartPoints.length > 0 && (
+                <text x={omiChartPoints[omiChartPoints.length - 1].x - 2} y={omiChartPoints[omiChartPoints.length - 1].y - 4} textAnchor="end" fill="#22d3ee" fontSize="8" fontWeight="bold" fontFamily="monospace">OMI</text>
+              )}
             </>
           )}
 
@@ -1874,6 +1974,7 @@ export function GameDetailClient({
               commenceTime={gameData.commenceTime}
               sportKey={gameData.sportKey}
               omiFairLine={omiFairLineForChart}
+              activeMarket={activeMarket}
             />
           </div>
           {showLiveLock && <LiveLockOverlay />}
@@ -1982,6 +2083,7 @@ export function GameDetailClient({
                 sportKey={gameData.sportKey}
                 compact
                 omiFairLine={omiFairLineForChart}
+                activeMarket={activeMarket}
               />
             </div>
             {showLiveLock && <LiveLockOverlay />}

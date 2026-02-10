@@ -9,12 +9,17 @@ from typing import Optional
 import re
 
 # ESPN API endpoints (completely free, no auth needed)
+# Keys must match sport_key values stored in game_results/predictions tables
 ESPN_ENDPOINTS = {
     "NFL": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
     "NBA": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
     "NHL": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard",
     "NCAAF": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard",
     "NCAAB": "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard",
+    # Soccer — predictions may store sport_key as EPL or SOCCER_EPL
+    "EPL": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
+    "SOCCER_EPL": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
+    "soccer_epl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
 }
 
 # Team name normalization (ESPN name -> common variations)
@@ -118,6 +123,28 @@ TEAM_ALIASES = {
     "Vegas Golden Knights": ["Golden Knights", "Vegas"],
     "Washington Capitals": ["Capitals", "Washington"],
     "Winnipeg Jets": ["Jets", "Winnipeg"],
+
+    # EPL — Odds API name → ESPN name + common aliases
+    "Arsenal": ["Arsenal FC", "Arsenal London"],
+    "Aston Villa": ["Aston Villa FC"],
+    "AFC Bournemouth": ["Bournemouth", "Bournemouth FC"],
+    "Brentford": ["Brentford FC"],
+    "Brighton & Hove Albion": ["Brighton", "Brighton and Hove Albion", "Brighton FC"],
+    "Chelsea": ["Chelsea FC"],
+    "Crystal Palace": ["Crystal Palace FC"],
+    "Everton": ["Everton FC"],
+    "Fulham": ["Fulham FC"],
+    "Ipswich Town": ["Ipswich", "Ipswich Town FC"],
+    "Leicester City": ["Leicester", "Leicester City FC"],
+    "Liverpool": ["Liverpool FC"],
+    "Manchester City": ["Man City", "Manchester City FC"],
+    "Manchester United": ["Man United", "Man Utd", "Manchester United FC"],
+    "Newcastle United": ["Newcastle", "Newcastle Utd", "Newcastle United FC"],
+    "Nottingham Forest": ["Nott'ham Forest", "Nottm Forest", "Nottingham Forest FC"],
+    "Southampton": ["Southampton FC"],
+    "Tottenham Hotspur": ["Tottenham", "Spurs", "Tottenham Hotspur FC"],
+    "West Ham United": ["West Ham", "West Ham Utd", "West Ham United FC"],
+    "Wolverhampton Wanderers": ["Wolves", "Wolverhampton", "Wolverhampton Wanderers FC"],
 }
 
 

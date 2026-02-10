@@ -174,7 +174,7 @@ TRADE_PARAMS = {
         'pm_is_buy_short': True,
         'k_result': 'SHORT',
         'pm_result': 'LONG',
-        'executable': True,              # NOW EXECUTABLE with BUY_SHORT!
+        'executable': True,              # RE-ENABLED: price now converted to YES frame
     },
 
     # ==========================================================================
@@ -193,7 +193,7 @@ TRADE_PARAMS = {
         'pm_is_buy_short': True,
         'k_result': 'LONG',
         'pm_result': 'SHORT',            # SHORT favorite = LONG underdog
-        'executable': True,              # NOW EXECUTABLE with BUY_SHORT!
+        'executable': True,              # RE-ENABLED: price now converted to YES frame
     },
 
     # ==========================================================================
@@ -518,8 +518,18 @@ async def execute_arb(
     else:
         pm_buffer = 2
 
-    pm_price_buffered = min(pm_price_cents + pm_buffer, 99)
-    pm_price = pm_price_buffered / 100.0
+    if params.get('pm_is_buy_short', False):
+        # BUY_SHORT: PM interprets price as MIN YES sell price (favorite frame)
+        # pm_price_cents = underdog cost (what we want to pay for SHORT)
+        # Buffer adds to underdog cost (willing to pay slightly more for fill)
+        max_underdog_cost = min(pm_price_cents + pm_buffer, 99)
+        # Convert to YES frame: min_yes_sell = 100 - max_underdog_cost
+        pm_price_buffered = max(100 - max_underdog_cost, 1)
+        pm_price = pm_price_buffered / 100.0
+    else:
+        # BUY_LONG: PM interprets price as MAX YES buy price (favorite frame)
+        pm_price_buffered = min(pm_price_cents + pm_buffer, 99)
+        pm_price = pm_price_buffered / 100.0
 
     # Add buffer to Kalshi price for better fill
     if params['k_action'] == 'sell':

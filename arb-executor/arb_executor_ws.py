@@ -28,6 +28,8 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.backends import default_backend
 
+from dashboard_push import DashboardPusher
+
 # Shared configuration - single source of truth
 from config import Config, ExecutionMode
 
@@ -1531,6 +1533,18 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
         k_ws_task = asyncio.create_task(k_ws.listen())
         pm_ws_task = asyncio.create_task(pm_ws.listen())
 
+        # Start dashboard push (if DASHBOARD_URL is set in .env)
+        pusher = DashboardPusher()
+        pusher.set_state_sources(
+            local_books=local_books,
+            pm_prices=pm_prices,
+            ticker_to_cache_key=ticker_to_cache_key,
+            cache_key_to_tickers=cache_key_to_tickers,
+            stats=stats,
+            executor_version="ws-v8",
+        )
+        pusher.start(interval=5)
+
         # Status logging loop
         try:
             while not shutdown_requested:
@@ -1542,6 +1556,7 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
             shutdown_requested = True
 
         # Cleanup
+        pusher.stop()
         k_ws_task.cancel()
         pm_ws_task.cancel()
         await k_ws.close()

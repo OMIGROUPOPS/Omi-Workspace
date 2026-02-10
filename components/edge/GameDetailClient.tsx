@@ -588,7 +588,7 @@ type ActiveMarket = 'spread' | 'total' | 'moneyline';
 
 function OmiFairPricing({
   pythonPillars, bookmakers, gameData, sportKey,
-  activeMarket, activePeriod, selectedBook, commenceTime,
+  activeMarket, activePeriod, selectedBook, commenceTime, renderKey = 0,
 }: {
   pythonPillars: PythonPillarScores | null | undefined;
   bookmakers: Record<string, any>;
@@ -598,6 +598,7 @@ function OmiFairPricing({
   activePeriod: string;
   selectedBook: string;
   commenceTime?: string;
+  renderKey?: number;
 }) {
   const periodKey = PERIOD_MAP[activePeriod] || 'fullGame';
 
@@ -989,7 +990,7 @@ function OmiFairPricing({
   })();
 
   return (
-    <div className="bg-[#0a0a0a] p-3 h-full flex flex-col overflow-auto" style={{ gridArea: 'pricing' }}>
+    <div className="bg-[#0a0a0a] p-3 flex flex-col" style={{ gridArea: 'pricing', minHeight: '300px', overflow: 'visible' }}>
       {/* OMI Fair Line — split display for both sides */}
       <div className="mb-3 flex-shrink-0">
         <div className="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">OMI Fair Line</div>
@@ -1052,7 +1053,7 @@ function OmiFairPricing({
       </div>
 
       {/* Single-book comparison — two side-by-side blocks with edge story */}
-      <div key={`blocks-${activeMarket}-${activePeriod}-${selectedBook}`} className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2" style={{ fontVariantNumeric: 'tabular-nums' }}>
+      <div key={`blocks-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`} className="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2" style={{ fontVariantNumeric: 'tabular-nums', minHeight: '200px', visibility: 'visible' as const, opacity: 1 }}>
         {[leftBlock, rightBlock].map((block, blockIdx) => {
           const edgeVal = activeMarket === 'moneyline' ? block.edgePct : block.edgePts;
           const absEdge = Math.abs(edgeVal);
@@ -1069,7 +1070,7 @@ function OmiFairPricing({
           })();
 
           return (
-            <div key={blockIdx} className={`border border-zinc-800 rounded overflow-hidden ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`}>
+            <div key={blockIdx} className={`rounded overflow-hidden ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`} style={{ border: '2px solid red', minHeight: '100px' }}>
               {/* Block header — team/side label */}
               <div className="bg-zinc-900 px-3 py-1.5 border-b border-zinc-800">
                 <span className="text-[12px] font-bold text-zinc-100">{block.label}</span>
@@ -1639,6 +1640,12 @@ export function GameDetailClient({
   const [loadingPeriods, setLoadingPeriods] = useState<Set<string>>(new Set());
   const [marketMode, setMarketMode] = useState<MarketMode>('sportsbook');
 
+  // Force re-render when market/period changes to fix blank blocks
+  const [renderKey, setRenderKey] = useState(0);
+  useEffect(() => {
+    setRenderKey(prev => prev + 1);
+  }, [activeMarket, activePeriod]);
+
   // User/demo state
   const [localEmail, setLocalEmail] = useState<string | null>(null);
   useEffect(() => {
@@ -1873,7 +1880,7 @@ export function GameDetailClient({
         {marketMode === 'sportsbook' ? (
           <>
             <OmiFairPricing
-              key={`desktop-pricing-${activeMarket}-${activePeriod}-${selectedBook}`}
+              key={`desktop-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
               pythonPillars={pythonPillarScores}
               bookmakers={bookmakers}
               gameData={gameData}
@@ -1882,6 +1889,7 @@ export function GameDetailClient({
               activePeriod={activePeriod}
               selectedBook={selectedBook}
               commenceTime={gameData.commenceTime}
+              renderKey={renderKey}
             />
 
             <WhyThisPrice
@@ -2018,7 +2026,7 @@ export function GameDetailClient({
           {marketMode === 'sportsbook' ? (
             <>
               <OmiFairPricing
-                key={`mobile-pricing-${activeMarket}-${activePeriod}-${selectedBook}`}
+                key={`mobile-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
                 pythonPillars={pythonPillarScores}
                 bookmakers={bookmakers}
                 gameData={gameData}
@@ -2027,6 +2035,7 @@ export function GameDetailClient({
                 activePeriod={activePeriod}
                 selectedBook={selectedBook}
                 commenceTime={gameData.commenceTime}
+                renderKey={renderKey}
               />
 
               <WhyThisPrice

@@ -1643,46 +1643,6 @@ function LiveLockOverlay() {
 }
 
 // ============================================================================
-// ExchangePlaceholder — placeholder for Exchange Markets tab
-// ============================================================================
-
-type MarketMode = 'sportsbook' | 'exchange';
-
-function ExchangePlaceholder({ homeTeam, awayTeam }: { homeTeam: string; awayTeam: string }) {
-  const exchanges = [
-    { name: 'Kalshi', color: '#0ea5e9', icon: 'K' },
-    { name: 'Polymarket', color: '#8b5cf6', icon: 'P' },
-  ];
-  return (
-    <div className="bg-[#0a0a0a] p-4 h-full flex flex-col" style={{ gridArea: 'pricing' }}>
-      <div className="text-[12px] font-semibold text-zinc-300 mb-1">Exchange Markets — Prediction Market Pricing</div>
-      <div className="text-[10px] text-zinc-500 mb-4">Probability-based contracts from prediction markets</div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 flex-1">
-        {exchanges.map(ex => (
-          <div key={ex.name} className="border border-zinc-800 rounded p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold text-white" style={{ backgroundColor: ex.color }}>{ex.icon}</span>
-              <span className="text-[13px] font-semibold text-zinc-200">{ex.name}</span>
-            </div>
-            {[homeTeam, awayTeam].map(team => (
-              <div key={team} className="mb-3 border-t border-zinc-800/50 pt-2">
-                <div className="text-[10px] text-zinc-400 mb-1">Market: <span className="text-zinc-300">{team} to win</span></div>
-                <div className="grid grid-cols-3 gap-2">
-                  <div><div className="text-[8px] text-zinc-600 uppercase">Price</div><div className="text-[14px] font-mono text-zinc-500">--</div></div>
-                  <div><div className="text-[8px] text-zinc-600 uppercase">Volume</div><div className="text-[14px] font-mono text-zinc-500">--</div></div>
-                  <div><div className="text-[8px] text-zinc-600 uppercase">Depth</div><div className="text-[14px] font-mono text-zinc-500">--</div></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-      <div className="text-[10px] text-zinc-600 mt-3 text-center">Exchange data integration coming soon</div>
-    </div>
-  );
-}
-
-// ============================================================================
 // Main GameDetailClient Component — OMI Fair Pricing Layout
 // ============================================================================
 
@@ -1698,7 +1658,7 @@ export function GameDetailClient({
   const [chartViewMode, setChartViewMode] = useState<ChartViewMode>('line');
   const [lazyLineHistory, setLazyLineHistory] = useState<Record<string, Record<string, any[]>>>({});
   const [loadingPeriods, setLoadingPeriods] = useState<Set<string>>(new Set());
-  const [marketMode, setMarketMode] = useState<MarketMode>('sportsbook');
+
 
   // Force re-render when market/period changes to fix blank blocks
   const [renderKey, setRenderKey] = useState(0);
@@ -1826,9 +1786,9 @@ export function GameDetailClient({
       <div
         className="hidden lg:grid h-full relative"
         style={{
-          gridTemplateRows: '36px auto auto minmax(180px, 1fr) auto',
+          gridTemplateRows: '36px auto minmax(180px, 1fr) auto',
           gridTemplateColumns: '1fr 1fr',
-          gridTemplateAreas: `"header header" "modetabs modetabs" "chart chart" "pricing pricing" "analysis ceq"`,
+          gridTemplateAreas: `"header header" "chart chart" "pricing pricing" "analysis ceq"`,
           gap: '1px',
           background: '#27272a',
           fontVariantNumeric: 'tabular-nums',
@@ -1850,30 +1810,6 @@ export function GameDetailClient({
           onSelectBook={setSelectedBook}
           isLive={isLive}
         />
-
-        {/* Sportsbook / Exchange mode tabs */}
-        <div className="bg-[#0a0a0a] flex items-center gap-1 px-3 py-1" style={{ gridArea: 'modetabs' }}>
-          <button
-            onClick={() => setMarketMode('sportsbook')}
-            className={`px-3 py-1 text-[11px] font-medium rounded transition-colors ${
-              marketMode === 'sportsbook'
-                ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
-            }`}
-          >
-            Sportsbook Markets
-          </button>
-          <button
-            onClick={() => setMarketMode('exchange')}
-            className={`px-3 py-1 text-[11px] font-medium rounded transition-colors ${
-              marketMode === 'exchange'
-                ? 'bg-violet-500/15 text-violet-400 border border-violet-500/30'
-                : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
-            }`}
-          >
-            Exchange Markets
-          </button>
-        </div>
 
         {/* Combined tabs + chart — single full-width cell */}
         <div className="bg-[#0a0a0a] p-2 relative flex flex-col" style={{ gridArea: 'chart', minHeight: '300px' }}>
@@ -1943,43 +1879,29 @@ export function GameDetailClient({
           {showLiveLock && <LiveLockOverlay />}
         </div>
 
-        {marketMode === 'sportsbook' ? (
-          <>
-            <OmiFairPricing
-              key={`desktop-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
-              pythonPillars={pythonPillarScores}
-              bookmakers={bookmakers}
-              gameData={gameData}
-              sportKey={gameData.sportKey}
-              activeMarket={activeMarket}
-              activePeriod={activePeriod}
-              selectedBook={selectedBook}
-              commenceTime={gameData.commenceTime}
-              renderKey={renderKey}
-            />
+        <OmiFairPricing
+          key={`desktop-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
+          pythonPillars={pythonPillarScores}
+          bookmakers={bookmakers}
+          gameData={gameData}
+          sportKey={gameData.sportKey}
+          activeMarket={activeMarket}
+          activePeriod={activePeriod}
+          selectedBook={selectedBook}
+          commenceTime={gameData.commenceTime}
+          renderKey={renderKey}
+        />
 
-            <WhyThisPrice
-              pythonPillars={pythonPillarScores}
-              ceq={activeCeq}
-              homeTeam={gameData.homeTeam}
-              awayTeam={gameData.awayTeam}
-              activeMarket={activeMarket}
-              activePeriod={activePeriod}
-            />
+        <WhyThisPrice
+          pythonPillars={pythonPillarScores}
+          ceq={activeCeq}
+          homeTeam={gameData.homeTeam}
+          awayTeam={gameData.awayTeam}
+          activeMarket={activeMarket}
+          activePeriod={activePeriod}
+        />
 
-            <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
-          </>
-        ) : (
-          <>
-            <ExchangePlaceholder homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
-            <div className="bg-[#0a0a0a] p-2 flex items-center justify-center" style={{ gridArea: 'analysis' }}>
-              <span className="text-[10px] text-zinc-600">Exchange analysis coming soon</span>
-            </div>
-            <div className="bg-[#0a0a0a] p-2 flex items-center justify-center" style={{ gridArea: 'ceq' }}>
-              <span className="text-[10px] text-zinc-600">Exchange CEQ coming soon</span>
-            </div>
-          </>
-        )}
+        <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
       </div>
 
       {/* Mobile: Single-column scrollable fallback */}
@@ -1996,30 +1918,6 @@ export function GameDetailClient({
         />
 
         <div className="p-2 space-y-2">
-          {/* Sportsbook / Exchange mode tabs (mobile) */}
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => setMarketMode('sportsbook')}
-              className={`px-3 py-1 text-[11px] font-medium rounded transition-colors ${
-                marketMode === 'sportsbook'
-                  ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                  : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
-              }`}
-            >
-              Sportsbook
-            </button>
-            <button
-              onClick={() => setMarketMode('exchange')}
-              className={`px-3 py-1 text-[11px] font-medium rounded transition-colors ${
-                marketMode === 'exchange'
-                  ? 'bg-violet-500/15 text-violet-400 border border-violet-500/30'
-                  : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
-              }`}
-            >
-              Exchange
-            </button>
-          </div>
-
           {/* Market + Period tabs */}
           <div className="bg-zinc-900/50 rounded p-2">
             <div className="flex items-center gap-0.5 mb-1.5 flex-wrap">
@@ -2089,35 +1987,29 @@ export function GameDetailClient({
             {showLiveLock && <LiveLockOverlay />}
           </div>
 
-          {marketMode === 'sportsbook' ? (
-            <>
-              <OmiFairPricing
-                key={`mobile-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
-                pythonPillars={pythonPillarScores}
-                bookmakers={bookmakers}
-                gameData={gameData}
-                sportKey={gameData.sportKey}
-                activeMarket={activeMarket}
-                activePeriod={activePeriod}
-                selectedBook={selectedBook}
-                commenceTime={gameData.commenceTime}
-                renderKey={renderKey}
-              />
+          <OmiFairPricing
+            key={`mobile-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
+            pythonPillars={pythonPillarScores}
+            bookmakers={bookmakers}
+            gameData={gameData}
+            sportKey={gameData.sportKey}
+            activeMarket={activeMarket}
+            activePeriod={activePeriod}
+            selectedBook={selectedBook}
+            commenceTime={gameData.commenceTime}
+            renderKey={renderKey}
+          />
 
-              <WhyThisPrice
-                pythonPillars={pythonPillarScores}
-                ceq={activeCeq}
-                homeTeam={gameData.homeTeam}
-                awayTeam={gameData.awayTeam}
-                activeMarket={activeMarket}
-                activePeriod={activePeriod}
-              />
+          <WhyThisPrice
+            pythonPillars={pythonPillarScores}
+            ceq={activeCeq}
+            homeTeam={gameData.homeTeam}
+            awayTeam={gameData.awayTeam}
+            activeMarket={activeMarket}
+            activePeriod={activePeriod}
+          />
 
-              <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
-            </>
-          ) : (
-            <ExchangePlaceholder homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
-          )}
+          <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
         </div>
       </div>
     </>

@@ -1120,6 +1120,43 @@ async def internal_edge_performance(
     )
 
 
+# =============================================================================
+# COMPOSITE HISTORY
+# =============================================================================
+
+@app.post("/api/recalculate-composites")
+async def recalculate_composites():
+    """Recalculate composite scores and fair lines for all active games."""
+    try:
+        from composite_tracker import CompositeTracker
+        tracker = CompositeTracker()
+        return tracker.recalculate_all()
+    except Exception as e:
+        logger.error(f"Error recalculating composites: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/composite-history/{game_id}")
+async def get_composite_history(game_id: str):
+    """Get composite score history for a game, ordered by timestamp ascending."""
+    try:
+        if not db._is_connected():
+            raise HTTPException(status_code=500, detail="Database not connected")
+
+        result = db.client.table("composite_history").select("*").eq(
+            "game_id", game_id
+        ).order(
+            "timestamp", desc=False
+        ).execute()
+
+        return result.data or []
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting composite history: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

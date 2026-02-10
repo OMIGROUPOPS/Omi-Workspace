@@ -1265,6 +1265,14 @@ async function runSync() {
     console.error('[Odds Sync] Edge lifecycle update failed:', e);
   }
 
+  // Trigger composite history recalculation (fire-and-forget)
+  try {
+    await fetch(`${BACKEND_URL}/api/recalculate-composites`, { method: 'POST' });
+    console.log('[Odds Sync] Composite recalculation triggered');
+  } catch (e) {
+    console.error('[Odds Sync] Composite recalculation failed:', e);
+  }
+
   console.log(
     `[Odds Sync] Done: ${totalSynced} games, ${totalCost} reqs used, ${lastRemaining} remaining`
   );

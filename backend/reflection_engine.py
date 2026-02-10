@@ -112,33 +112,37 @@ class ReflectionEngine:
                         pillar_favors_home = not pillar_favors_home
                         pillar_favors_over = not pillar_favors_over
 
-                    # Spread result
-                    sr = g.get("spread_result")
-                    if sr and sr != "push":
-                        decided += 1
-                        if pillar_favors_home and sr == "home_covered":
-                            hits += 1
-                        elif not pillar_favors_home and sr == "away_covered":
-                            hits += 1
-
-                    # ML result
-                    mr = g.get("ml_result")
-                    if mr and mr != "push":
-                        decided += 1
-                        if pillar_favors_home and mr == "home_win":
-                            hits += 1
-                        elif not pillar_favors_home and mr == "away_win":
-                            hits += 1
-
-                    # Total result (only game_environment directly predicts totals)
-                    if is_totals_pillar:
-                        tr = g.get("total_result")
-                        if tr and tr != "push":
+                    # Spread: use raw final_spread vs closing_spread_home
+                    final_spread = g.get("final_spread")
+                    closing_spread = g.get("closing_spread_home")
+                    if final_spread is not None and closing_spread is not None:
+                        final_spread, closing_spread = float(final_spread), float(closing_spread)
+                        if final_spread != closing_spread:  # not a push
                             decided += 1
-                            if pillar_favors_over and tr == "over":
+                            home_covered = final_spread > closing_spread
+                            if pillar_favors_home == home_covered:
                                 hits += 1
-                            elif not pillar_favors_over and tr == "under":
-                                hits += 1
+
+                    # ML: use winner column ("home"/"away"/"push")
+                    winner = g.get("winner")
+                    if winner and winner != "push":
+                        decided += 1
+                        if pillar_favors_home and winner == "home":
+                            hits += 1
+                        elif not pillar_favors_home and winner == "away":
+                            hits += 1
+
+                    # Total: use raw final_total vs closing_total_line
+                    if is_totals_pillar:
+                        final_total = g.get("final_total")
+                        closing_total = g.get("closing_total_line")
+                        if final_total is not None and closing_total is not None:
+                            final_total, closing_total = float(final_total), float(closing_total)
+                            if final_total != closing_total:  # not a push
+                                decided += 1
+                                went_over = final_total > closing_total
+                                if pillar_favors_over == went_over:
+                                    hits += 1
 
                 pillar_result[bucket_name] = {
                     "count": len(bucket_games),
@@ -269,6 +273,7 @@ class ReflectionEngine:
         """Detect systematic biases in predictions."""
 
         # Home/away bias from game_results
+        # spread_result is "win"/"loss"/"push" relative to our edge direction
         home_picks, home_hits = 0, 0
         away_picks, away_hits = 0, 0
         for g in games:
@@ -279,11 +284,11 @@ class ReflectionEngine:
             edge_home = float(edge_home)
             if edge_home > 0:
                 home_picks += 1
-                if sr == "home_covered":
+                if sr == "win":
                     home_hits += 1
             elif edge_home < 0:
                 away_picks += 1
-                if sr == "away_covered":
+                if sr == "win":
                     away_hits += 1
 
         home_away = {
@@ -342,20 +347,20 @@ class ReflectionEngine:
             if edge_home > 0:  # We picked home
                 if home_is_fav:
                     fav_picks += 1
-                    if sr == "home_covered":
+                    if sr == "win":
                         fav_hits += 1
                 else:
                     dog_picks += 1
-                    if sr == "home_covered":
+                    if sr == "win":
                         dog_hits += 1
             elif edge_home < 0:  # We picked away
                 if not home_is_fav:  # Away is favorite
                     fav_picks += 1
-                    if sr == "away_covered":
+                    if sr == "win":
                         fav_hits += 1
                 else:
                     dog_picks += 1
-                    if sr == "away_covered":
+                    if sr == "win":
                         dog_hits += 1
 
         fav_dog = {

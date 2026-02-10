@@ -66,6 +66,8 @@ def fetch_line_context(game_id: str, sport_key: str) -> dict:
             "market_type", "spread"
         ).eq(
             "market_period", "full"
+        ).eq(
+            "outcome_type", "home"
         ).order(
             "snapshot_time", desc=False
         ).execute()

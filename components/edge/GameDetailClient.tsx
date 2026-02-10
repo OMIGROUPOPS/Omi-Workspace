@@ -245,14 +245,27 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const minVal = Math.min(...values);
   const maxVal = Math.max(...values);
   const range = maxVal - minVal || 1;
-  const padding = range * 0.15;
+  // Tight Y-axis padding: fixed per market, with minimum range enforcement
+  let padding: number;
+  if (isMLChart) {
+    padding = Math.max(range * 0.08, 10);
+  } else if (marketType === 'spread' || marketType === 'total') {
+    padding = 1.0;
+  } else {
+    padding = range * 0.1;
+  }
+  // Enforce minimum visual range so small moves don't look flat
+  const minVisualRange = isMLChart ? 50 : 3;
+  if (range + 2 * padding < minVisualRange) {
+    padding = (minVisualRange - range) / 2;
+  }
 
   const width = 600;
-  const height = 200;
+  const height = 300;
   const paddingLeft = 42;
   const paddingRight = 12;
-  const paddingTop = 10;
-  const paddingBottom = 24;
+  const paddingTop = 14;
+  const paddingBottom = 28;
   const chartWidth = width - paddingLeft - paddingRight;
   const chartHeight = height - paddingTop - paddingBottom;
 
@@ -312,8 +325,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     const visualMax = maxVal + padding;
     const visualRange = visualMax - visualMin;
     let labelStep: number;
-    if (isMLChart) { labelStep = range <= 20 ? 5 : range <= 50 ? 10 : range <= 150 ? 25 : 50; }
+    if (isMLChart) { labelStep = range <= 30 ? 10 : 25; }
     else if (marketType === 'spread' && effectiveViewMode === 'line') { labelStep = 0.5; }
+    else if (marketType === 'total' && effectiveViewMode === 'line') { labelStep = 1.0; }
     else if (effectiveViewMode === 'price') { labelStep = range <= 8 ? 2 : range <= 16 ? 4 : 5; }
     else { labelStep = range <= 5 ? 0.5 : range <= 12 ? 1 : range <= 25 ? 2 : 5; }
     const startValue = Math.floor(visualMin / labelStep) * labelStep;
@@ -445,15 +459,15 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="xMidYMid meet" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
           <defs>
             <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={`rgb(${gradientColorRgb})`} stopOpacity="0.15" />
-              <stop offset="100%" stopColor={`rgb(${gradientColorRgb})`} stopOpacity="0" />
+              <stop offset="0%" stopColor={`rgb(${gradientColorRgb})`} stopOpacity="0.25" />
+              <stop offset="100%" stopColor={`rgb(${gradientColorRgb})`} stopOpacity="0.02" />
             </linearGradient>
           </defs>
 
           {/* Y-axis gridlines + labels */}
           {yLabels.map((label, i) => (
             <g key={i}>
-              <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#27272a" strokeWidth="0.5" opacity="0.3" />
+              <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#27272a" strokeWidth="0.5" opacity="0.5" />
               <text x={paddingLeft - 5} y={label.y + 3} textAnchor="end" fill="#52525b" fontSize="9" fontFamily="monospace">{formatValue(label.value)}</text>
             </g>
           ))}
@@ -465,7 +479,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
           {/* Convergence fill between book line and OMI fair line */}
           {convergeFillPath && (
-            <path d={convergeFillPath} fill={isConverging ? 'rgba(16,185,129,0.06)' : 'rgba(239,68,68,0.04)'} />
+            <path d={convergeFillPath} fill={isConverging ? 'rgba(16,185,129,0.20)' : 'rgba(239,68,68,0.15)'} />
           )}
 
           {/* Gradient fill under book line */}
@@ -1823,7 +1837,7 @@ export function GameDetailClient({
         </div>
 
         {/* Combined tabs + chart — single full-width cell */}
-        <div className="bg-[#0a0a0a] p-2 relative flex flex-col" style={{ gridArea: 'chart', minHeight: '240px' }}>
+        <div className="bg-[#0a0a0a] p-2 relative flex flex-col" style={{ gridArea: 'chart', minHeight: '300px', maxHeight: '350px' }}>
           {/* Market tabs + period sub-tabs */}
           <div className="flex items-center justify-between mb-1 flex-shrink-0">
             <div className="flex items-center gap-1">

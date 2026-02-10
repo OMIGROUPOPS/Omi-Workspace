@@ -893,9 +893,10 @@ function OmiFairPricing({
     const homeEv = omiFairHomeProb !== undefined && bookHomeOdds !== undefined ? calcEV(omiFairHomeProb, bookHomeOdds) : 0;
     const awayEv = omiFairAwayProb !== undefined && bookAwayOdds !== undefined ? calcEV(omiFairAwayProb, bookAwayOdds) : 0;
 
-    // Confidence: composite >50 favors home
-    const homeConf = composite;
-    const awayConf = 100 - composite;
+    // ML confidence: use spread-derived implied probability (not raw composite)
+    // so confidence aligns with the fair ML odds
+    const homeConf = omiFairHomeProb !== undefined ? Math.round(omiFairHomeProb * 100) : composite;
+    const awayConf = omiFairAwayProb !== undefined ? Math.round(omiFairAwayProb * 100) : (100 - composite);
     const homeAbbr = abbrev(gameData.homeTeam);
     const awayAbbr = abbrev(gameData.awayTeam);
 
@@ -1056,6 +1057,22 @@ function OmiFairPricing({
             } else {
               narrative = `Consensus total: ${consensusTotal ?? 'N/A'}. Comparing ${selBookName} against market median.`;
             }
+          } else if (activeMarket === 'moneyline' && omiFairHomeProb !== undefined) {
+            // ML narrative uses spread-derived implied probability for consistency with fair ML odds
+            const homeImplied = Math.round(omiFairHomeProb * 100);
+            const awayImplied = 100 - homeImplied;
+            const favored = homeImplied >= awayImplied ? homeAbbr : awayAbbr;
+            const favoredPct = Math.max(homeImplied, awayImplied);
+            const strength = favoredPct >= 70 ? 'strongly ' : favoredPct >= 60 ? '' : 'slightly ';
+            const favoredBlock = homeImplied >= awayImplied ? rightBlock : leftBlock;
+            const edgeVal = favoredBlock.edgePct;
+            const absEdge = Math.abs(edgeVal);
+            if (absEdge < 5) {
+              narrative = `Model ${strength}favors ${favored} (${favoredPct}% implied). ${selBookName} is near fair value.`;
+            } else {
+              const evStr = favoredBlock.evLine.includes('EV') ? favoredBlock.evLine.split('|').pop()?.trim() || '' : '';
+              narrative = `Model ${strength}favors ${favored} (${favoredPct}% implied). ${selBookName}: ${edgeVal > 0 ? '+' : ''}${edgeVal.toFixed(1)}% edge${evStr ? `, ${evStr}` : ''}.`;
+            }
           } else if (hasPillars) {
             const comp = pythonPillars!.composite;
             if (comp >= 48 && comp <= 52) {
@@ -1063,14 +1080,13 @@ function OmiFairPricing({
             } else {
               const favored = comp > 50 ? homeAbbr : awayAbbr;
               const favoredBlock = comp > 50 ? rightBlock : leftBlock; // right=home, left=away
-              const edgeVal = activeMarket === 'moneyline' ? favoredBlock.edgePct : favoredBlock.edgePts;
+              const edgeVal = favoredBlock.edgePts;
               const absEdge = Math.abs(edgeVal);
-              const isSmallEdge = activeMarket === 'moneyline' ? absEdge < 5 : absEdge < 1.0;
-              if (isSmallEdge) {
-                narrative = `Model favors ${favored} (${comp}% conf). ${selBookName} line is near fair value (${absEdge.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ' pts'} from OMI).`;
+              if (absEdge < 1.0) {
+                narrative = `Model favors ${favored} (${comp}% conf). ${selBookName} line is near fair value (${absEdge.toFixed(1)} pts from OMI).`;
               } else {
                 const evStr = favoredBlock.evLine.includes('EV') ? favoredBlock.evLine.split('|').pop()?.trim() || '' : '';
-                narrative = `Model favors ${favored} (${comp}% conf). ${selBookName}: ${edgeVal > 0 ? '+' : ''}${edgeVal.toFixed(1)}${activeMarket === 'moneyline' ? '%' : ' pts'} edge${evStr ? `, ${evStr}` : ''}.`;
+                narrative = `Model favors ${favored} (${comp}% conf). ${selBookName}: ${edgeVal > 0 ? '+' : ''}${edgeVal.toFixed(1)} pts edge${evStr ? `, ${evStr}` : ''}.`;
               }
             }
           } else {

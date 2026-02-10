@@ -1120,6 +1120,18 @@ async def internal_edge_performance(
     )
 
 
+@app.get("/api/internal/edge/reflection")
+async def internal_edge_reflection(sport: str = None):
+    """Deep reflection analysis on prediction accuracy and pillar effectiveness."""
+    try:
+        from reflection_engine import ReflectionEngine
+        engine = ReflectionEngine()
+        return engine.analyze(sport.lower() if sport else None)
+    except Exception as e:
+        logger.error(f"Error running reflection analysis: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # =============================================================================
 # COMPOSITE HISTORY
 # =============================================================================

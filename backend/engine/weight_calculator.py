@@ -18,6 +18,7 @@ Periods:
 """
 
 import logging
+from datetime import datetime, timezone
 from typing import Dict, Optional
 
 import sys
@@ -37,6 +38,49 @@ logger = logging.getLogger(__name__)
 
 # Pillar keys (for iteration)
 PILLAR_KEYS = ["execution", "incentives", "shocks", "time_decay", "flow", "game_environment"]
+
+# DB-backed weight cache: sport_key -> (weights_dict, timestamp)
+_weight_cache: Dict[str, tuple] = {}
+CACHE_TTL_SECONDS = 300  # 5 minutes
+
+
+def _fetch_db_weights(sport: str) -> Optional[Dict[str, float]]:
+    """Try to load pillar weights from calibration_config table.
+    Returns None on miss, error, or if table doesn't exist yet."""
+    cache_key = sport.upper()
+    now = datetime.now(timezone.utc).timestamp()
+
+    # Check cache first
+    if cache_key in _weight_cache:
+        cached_weights, cached_at = _weight_cache[cache_key]
+        if now - cached_at < CACHE_TTL_SECONDS:
+            return cached_weights
+
+    try:
+        from database import db
+        if not db._is_connected():
+            return None
+        result = db.client.table("calibration_config").select("config_data").eq(
+            "sport_key", cache_key
+        ).eq(
+            "config_type", "pillar_weights"
+        ).eq(
+            "active", True
+        ).limit(1).execute()
+
+        if result.data and len(result.data) > 0:
+            weights = result.data[0]["config_data"]
+            # Validate: must have all 6 pillar keys
+            if all(k in weights for k in PILLAR_KEYS):
+                _weight_cache[cache_key] = (weights, now)
+                logger.info(f"[WeightCalc] Loaded DB weights for {cache_key}")
+                return weights
+            else:
+                logger.warning(f"[WeightCalc] DB weights for {cache_key} missing pillar keys")
+    except Exception as e:
+        logger.warning(f"[WeightCalc] Failed to fetch DB weights for {sport}: {e}")
+
+    return None
 
 
 def get_effective_weights(
@@ -59,9 +103,10 @@ def get_effective_weights(
     Returns:
         Dict of pillar weights that sum to 1.0
     """
-    # Get base weights for sport
+    # Get base weights for sport (try DB first, fall back to hardcoded)
     sport_upper = sport.upper()
-    base_weights = SPORT_WEIGHTS.get(sport_upper, DEFAULT_WEIGHTS)
+    db_weights = _fetch_db_weights(sport)
+    base_weights = db_weights if db_weights else SPORT_WEIGHTS.get(sport_upper, DEFAULT_WEIGHTS)
 
     # Get market adjustments (default to spread if unknown)
     market_adj = MARKET_ADJUSTMENTS.get(market_type, MARKET_ADJUSTMENTS.get("spread", {}))

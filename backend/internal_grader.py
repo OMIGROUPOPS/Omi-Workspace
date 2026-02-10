@@ -79,9 +79,17 @@ class InternalGrader:
         """
         Grade completed games and generate prediction_grades rows.
 
-        1. Call AutoGrader to grade game_results
-        2. For each newly graded game, generate prediction_grades rows
+        1. Bootstrap game_results from predictions (if not already present)
+        2. Call AutoGrader to grade game_results
+        3. For each newly graded game, generate prediction_grades rows
         """
+        # Step 0: Bootstrap game_results from predictions table.
+        # The scheduler creates predictions but never calls snapshot_prediction_at_close,
+        # so game_results may be empty. We need to create game_results rows for
+        # completed games that have predictions but no game_results entry.
+        bootstrapped = self._bootstrap_game_results(sport)
+        logger.info(f"[InternalGrader] Bootstrapped {bootstrapped} game_results from predictions")
+
         # Step 1: Run existing auto-grader
         grader = AutoGrader(self.tracker)
         auto_result = grader.grade_completed_games(sport)
@@ -102,8 +110,64 @@ class InternalGrader:
         return {
             "auto_grader": auto_result,
             "prediction_grades_created": graded_count,
+            "bootstrapped_game_results": bootstrapped,
             "errors": errors,
         }
+
+    def _bootstrap_game_results(self, sport: Optional[str] = None) -> int:
+        """
+        Create game_results rows from predictions for completed games.
+
+        The scheduler writes to the predictions table but never calls
+        snapshot_prediction_at_close(), so game_results stays empty.
+        This method bridges that gap by snapshotting predictions for
+        games that have already started (commence_time in the past).
+        """
+        cutoff = datetime.now(timezone.utc).isoformat()
+        count = 0
+
+        try:
+            # Find predictions for completed games
+            query = self.client.table("predictions").select(
+                "game_id, sport_key"
+            ).lt("commence_time", cutoff)
+
+            if sport:
+                query = query.eq("sport_key", sport)
+
+            result = query.execute()
+            predictions = result.data or []
+
+            if not predictions:
+                logger.info("[InternalGrader] No completed predictions to bootstrap")
+                return 0
+
+            # Check which ones already have game_results
+            game_ids = [p["game_id"] for p in predictions]
+
+            # Query in batches of 50 to avoid URL length issues
+            existing_ids = set()
+            for i in range(0, len(game_ids), 50):
+                batch = game_ids[i:i+50]
+                existing = self.client.table("game_results").select(
+                    "game_id"
+                ).in_("game_id", batch).execute()
+                existing_ids.update(r["game_id"] for r in (existing.data or []))
+
+            # Snapshot predictions that don't have game_results yet
+            for pred in predictions:
+                gid = pred["game_id"]
+                if gid not in existing_ids:
+                    try:
+                        self.tracker.snapshot_prediction_at_close(gid, pred["sport_key"])
+                        count += 1
+                    except Exception as e:
+                        logger.warning(f"[InternalGrader] Failed to bootstrap {gid}: {e}")
+
+        except Exception as e:
+            logger.error(f"[InternalGrader] Bootstrap error: {e}")
+
+        return count
 
     def _generate_prediction_grades(self, game_id: str) -> int:
         """Generate prediction_grades rows for a graded game."""

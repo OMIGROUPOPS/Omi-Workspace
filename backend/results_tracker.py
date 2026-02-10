@@ -45,6 +45,24 @@ class ResultsTracker:
         edges = pred.get("edges_json", {}) or {}
         pillars = pred.get("pillars_json", {}) or {}
         consensus = pred.get("consensus_odds_json", {}) or {}
+
+        # Handle JSON stored as string (text column) vs dict (jsonb column)
+        import json as _json
+        if isinstance(edges, str):
+            try:
+                edges = _json.loads(edges)
+            except (ValueError, TypeError):
+                edges = {}
+        if isinstance(pillars, str):
+            try:
+                pillars = _json.loads(pillars)
+            except (ValueError, TypeError):
+                pillars = {}
+        if isinstance(consensus, str):
+            try:
+                consensus = _json.loads(consensus)
+            except (ValueError, TypeError):
+                consensus = {}
         
         # Get closing lines
         closing_spread = consensus.get("spreads", {}).get("home", {}).get("line")

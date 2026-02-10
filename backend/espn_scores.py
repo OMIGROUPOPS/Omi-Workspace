@@ -303,15 +303,10 @@ class AutoGrader:
     def grade_completed_games(self, sport: Optional[str] = None) -> dict:
         """
         Find and grade all completed games that haven't been graded yet.
-        
-        Args:
-            sport: Optional sport to filter by. If None, checks all sports.
-        
-        Returns:
-            Dict with counts of graded games
+        Fetches ESPN scores for each unique game date (last 30 days).
         """
         sports_to_check = [sport] if sport else list(ESPN_ENDPOINTS.keys())
-        
+
         results = {
             "checked": 0,
             "graded": 0,
@@ -320,81 +315,97 @@ class AutoGrader:
             "errors": 0,
             "details": [],
         }
-        
+
         for sport_key in sports_to_check:
-            # Get ungraded games from our database
             ungraded = self._get_ungraded_games(sport_key)
             results["checked"] += len(ungraded)
-            
+
             if not ungraded:
                 continue
-            
-            # Get today's and yesterday's scores from ESPN
-            today = datetime.now().strftime("%Y%m%d")
-            yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y%m%d")
-            
-            espn_games_today = self.espn.get_final_scores(sport_key, today)
-            espn_games_yesterday = self.espn.get_final_scores(sport_key, yesterday)
-            espn_games = espn_games_today + espn_games_yesterday
-            
+
+            # Group ungraded games by their commence date
+            games_by_date: dict[str, list[dict]] = {}
             for game in ungraded:
-                game_id = game.get("game_id")
-                home_team = game.get("home_team")
-                away_team = game.get("away_team")
-                
-                # Find matching ESPN game
-                espn_match = None
-                for eg in espn_games:
-                    if teams_match(eg["home_team"], home_team) and teams_match(eg["away_team"], away_team):
-                        espn_match = eg
-                        break
-                    # Check swapped
-                    if teams_match(eg["home_team"], away_team) and teams_match(eg["away_team"], home_team):
-                        espn_match = {
-                            **eg,
-                            "home_score": eg["away_score"],
-                            "away_score": eg["home_score"],
-                        }
-                        break
-                
-                if not espn_match:
-                    results["not_found"] += 1
+                ct = game.get("commence_time")
+                if not ct:
                     continue
-                
-                if not espn_match["is_final"]:
-                    continue
-                
-                # Grade the game
+                # Parse commence_time to date string YYYYMMDD
                 try:
-                    graded = self.tracker.grade_game(
-                        game_id,
-                        espn_match["home_score"],
-                        espn_match["away_score"]
-                    )
-                    
-                    if graded:
-                        results["graded"] += 1
-                        results["details"].append({
-                            "game_id": game_id,
-                            "matchup": f"{away_team} @ {home_team}",
-                            "score": f"{espn_match['away_score']}-{espn_match['home_score']}",
-                            "best_bet_result": graded.get("best_bet_result"),
-                        })
-                except Exception as e:
-                    print(f"[AutoGrader] Error grading {game_id}: {e}")
-                    results["errors"] += 1
-        
+                    if isinstance(ct, str):
+                        # Handle ISO format: 2026-02-08T01:00:00+00:00
+                        game_date = ct[:10].replace("-", "")
+                    else:
+                        game_date = ct.strftime("%Y%m%d")
+                except Exception:
+                    continue
+                games_by_date.setdefault(game_date, []).append(game)
+
+            # Fetch ESPN scores per unique date, cache to avoid duplicate calls
+            espn_cache: dict[str, list[dict]] = {}
+            for date_str in games_by_date:
+                if date_str not in espn_cache:
+                    espn_cache[date_str] = self.espn.get_final_scores(sport_key, date_str)
+
+            # Match and grade
+            for date_str, games in games_by_date.items():
+                espn_games = espn_cache.get(date_str, [])
+
+                for game in games:
+                    game_id = game.get("game_id")
+                    home_team = game.get("home_team")
+                    away_team = game.get("away_team")
+
+                    espn_match = None
+                    for eg in espn_games:
+                        if teams_match(eg["home_team"], home_team) and teams_match(eg["away_team"], away_team):
+                            espn_match = eg
+                            break
+                        if teams_match(eg["home_team"], away_team) and teams_match(eg["away_team"], home_team):
+                            espn_match = {
+                                **eg,
+                                "home_score": eg["away_score"],
+                                "away_score": eg["home_score"],
+                            }
+                            break
+
+                    if not espn_match:
+                        results["not_found"] += 1
+                        continue
+
+                    if not espn_match["is_final"]:
+                        continue
+
+                    try:
+                        graded = self.tracker.grade_game(
+                            game_id,
+                            espn_match["home_score"],
+                            espn_match["away_score"]
+                        )
+
+                        if graded:
+                            results["graded"] += 1
+                            results["details"].append({
+                                "game_id": game_id,
+                                "matchup": f"{away_team} @ {home_team}",
+                                "score": f"{espn_match['away_score']}-{espn_match['home_score']}",
+                                "best_bet_result": graded.get("best_bet_result"),
+                            })
+                    except Exception as e:
+                        print(f"[AutoGrader] Error grading {game_id}: {e}")
+                        results["errors"] += 1
+
         return results
-    
+
     def _get_ungraded_games(self, sport: str) -> list[dict]:
-        """Get games that need grading (have predictions but no final score)."""
-        # Games where commence_time is in the past and graded_at is null
-        cutoff = datetime.now(timezone.utc).isoformat()
-        
+        """Get games that need scoring — home_score is NULL, last 30 days."""
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
+
         result = self.tracker.client.table("game_results").select("*").eq(
             "sport_key", sport
-        ).is_("graded_at", "null").lt("commence_time", cutoff).execute()
-        
+        ).is_("home_score", "null").gte("commence_time", cutoff).lt(
+            "commence_time", datetime.now(timezone.utc).isoformat()
+        ).execute()
+
         return result.data or []
     
     def snapshot_upcoming_games(self, sport: Optional[str] = None, minutes_before: int = 30) -> dict:

@@ -60,6 +60,17 @@ export const FAIR_LINE_SPREAD_FACTOR = 0.15; // 10-point deviation ≈ 1.5 sprea
 export const FAIR_LINE_TOTAL_FACTOR = 0.20;  // 10-point deviation ≈ 2.0 total points
 export const FAIR_LINE_ML_FACTOR = 0.01;     // 1% implied probability shift per composite point
 
+// Sport-specific: how much win probability each spread point represents
+// Used to convert fair spread → fair moneyline for cross-market consistency
+export const SPREAD_TO_PROB_RATE: Record<string, number> = {
+  'basketball_nba': 0.033,           // ~3.3% per point
+  'basketball_ncaab': 0.030,         // ~3.0% per point
+  'americanfootball_nfl': 0.027,     // ~2.7% per point
+  'americanfootball_ncaaf': 0.025,   // ~2.5% per point
+  'icehockey_nhl': 0.08,             // ~8% per goal
+  'baseball_mlb': 0.09,              // ~9% per run
+};
+
 /**
  * Calculate a fair spread based on book spread + pillar composite deviation.
  * Pillar composite is 0-100, 50 = neutral.
@@ -108,6 +119,27 @@ export function calculateFairMoneyline(
 ): { homeOdds: number; awayOdds: number } {
   const deviation = pillarComposite - 50;
   const homeProb = Math.max(0.05, Math.min(0.95, 0.50 + deviation * FAIR_LINE_ML_FACTOR));
+  const awayProb = 1 - homeProb;
+  const probToAmerican = (prob: number) => {
+    if (prob >= 0.5) return Math.round(-100 * prob / (1 - prob));
+    return Math.round(100 * (1 - prob) / prob);
+  };
+  return { homeOdds: probToAmerican(homeProb), awayOdds: probToAmerican(awayProb) };
+}
+
+/**
+ * Derive fair moneyline from a fair spread using sport-specific conversion rates.
+ * This ensures ML and spread tell the same story for the same game.
+ * fairSpread is from the HOME perspective (negative = home favored).
+ * Example: fairSpread = +5.5 (home is 5.5pt underdog) → home ~31% / away ~69%
+ */
+export function spreadToMoneyline(
+  fairSpread: number,
+  sportKey: string
+): { homeOdds: number; awayOdds: number } {
+  const rate = SPREAD_TO_PROB_RATE[sportKey] || 0.03;
+  // Negative fairSpread = home favored → higher home win prob
+  const homeProb = Math.max(0.05, Math.min(0.95, 0.50 + (-fairSpread) * rate));
   const awayProb = 1 - homeProb;
   const probToAmerican = (prob: number) => {
     if (prob >= 0.5) return Math.round(-100 * prob / (1 - prob));

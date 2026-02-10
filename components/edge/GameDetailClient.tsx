@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { formatOdds, formatSpread } from '@/lib/edge/utils/odds-math';
 import { isGameLive as checkGameLive } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, CEQConfidence, PythonPillarScores, PillarResult } from '@/lib/edge/engine/edgescout';
-import { calculateFairSpread, calculateFairTotal, calculateFairMoneyline, removeVig, SPORT_KEY_NUMBERS } from '@/lib/edge/engine/edgescout';
+import { calculateFairSpread, calculateFairTotal, calculateFairMoneyline, spreadToMoneyline, removeVig, SPORT_KEY_NUMBERS } from '@/lib/edge/engine/edgescout';
 
 // ============================================================================
 // Constants
@@ -635,8 +635,10 @@ function OmiFairPricing({
   const omiFairTotal = consensusTotal !== undefined
     ? (pythonPillars ? calculateFairTotal(consensusTotal, pythonPillars.gameEnvironment) : { fairLine: consensusTotal, adjustment: 0 })
     : null;
-  const omiFairML = pythonPillars
-    ? calculateFairMoneyline(pythonPillars.composite) : null;
+  // ML derived from fair spread for cross-market consistency; fallback to composite-only
+  const omiFairML = omiFairSpread
+    ? spreadToMoneyline(omiFairSpread.fairLine, sportKey)
+    : (pythonPillars ? calculateFairMoneyline(pythonPillars.composite) : null);
   // ML consensus fallback: median of all book odds
   const mlHomeOdds = allBooks.map(b => b.markets?.h2h?.home?.price).filter((v): v is number => v !== undefined);
   const mlAwayOdds = allBooks.map(b => b.markets?.h2h?.away?.price).filter((v): v is number => v !== undefined);
@@ -1753,7 +1755,13 @@ export function GameDetailClient({
       if (consensus === undefined) return undefined;
       return calculateFairTotal(consensus, pythonPillarScores.gameEnvironment).fairLine;
     }
-    // Moneyline: return fair home odds
+    // Moneyline: derive from fair spread for consistency; fallback to composite-only
+    const spreadLines = allBooksForPeriod.map(m => m?.spreads?.home?.line).filter((v): v is number => v !== undefined);
+    const spreadConsensus = calcMedian(spreadLines);
+    if (spreadConsensus !== undefined) {
+      const fairSpread = calculateFairSpread(spreadConsensus, pythonPillarScores.composite).fairLine;
+      return spreadToMoneyline(fairSpread, gameData.sportKey).homeOdds;
+    }
     return calculateFairMoneyline(pythonPillarScores.composite).homeOdds;
   };
 

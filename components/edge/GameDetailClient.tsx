@@ -1022,14 +1022,14 @@ function OmiFairPricing({
           let narrative: string;
           if (activeMarket === 'total') {
             if (hasPillars) {
-              const envScore = pythonPillars!.gameEnvironment;
-              const lean = envScore > 52 ? 'Over' : envScore < 48 ? 'Under' : 'neutral';
+              const totalConf = composite; // market-specific composite (same source as block CONF)
+              const lean = totalConf > 52 ? 'Over' : totalConf < 48 ? 'Under' : 'neutral';
               if (lean === 'neutral') {
-                narrative = `No strong Over/Under lean (${envScore}% conf). Fair total at ${omiFairTotal?.fairLine ?? 'N/A'}.`;
+                narrative = `No strong Over/Under lean (${totalConf}% conf). Fair total at ${omiFairTotal?.fairLine ?? 'N/A'}.`;
               } else {
                 const overEdge = leftBlock.edgePts;
                 const evStr = leftBlock.evLine.includes('EV') ? leftBlock.evLine.split('|').pop()?.trim() || '' : '';
-                narrative = `Model leans ${lean} (${envScore}% conf). ${selBookName}: ${overEdge > 0 ? '+' : ''}${overEdge.toFixed(1)} pts edge${evStr ? `, ${evStr}` : ''}.`;
+                narrative = `Model leans ${lean} (${totalConf}% conf). ${selBookName}: ${overEdge > 0 ? '+' : ''}${overEdge.toFixed(1)} pts edge${evStr ? `, ${evStr}` : ''}.`;
               }
             } else {
               narrative = `Consensus total: ${consensusTotal ?? 'N/A'}. Comparing ${selBookName} against market median.`;
@@ -1070,7 +1070,7 @@ function OmiFairPricing({
           })();
 
           return (
-            <div key={blockIdx} className={`rounded overflow-hidden ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`} style={{ border: '2px solid red', minHeight: '100px' }}>
+            <div key={blockIdx} className={`rounded overflow-hidden border border-zinc-800 ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`} style={{ minHeight: '100px' }}>
               {/* Block header — team/side label */}
               <div className="bg-zinc-900 px-3 py-1.5 border-b border-zinc-800">
                 <span className="text-[12px] font-bold text-zinc-100">{block.label}</span>
@@ -1284,7 +1284,7 @@ function WhyThisPrice({
         'STRONG': 'Market strongly validates thesis',
         'EDGE': 'Market validates thesis',
         'WATCH': 'Market partially validates thesis',
-        'PASS': 'Market does not validate thesis',
+        'PASS': 'Below edge threshold — check book pricing for gaps',
         'RARE': 'Exceptional edge detected',
       };
       return {
@@ -1304,9 +1304,14 @@ function WhyThisPrice({
     if (ceq.totals?.under) candidates.push({ ceq: ceq.totals.under.ceq, confidence: ceq.totals.under.confidence, label: 'Under' });
     if (candidates.length === 0) return null;
     const best = candidates.sort((a, b) => b.ceq - a.ceq)[0];
+    const fallbackDesc = best.ceq >= 50
+      ? 'Near neutral — book-specific pricing gaps may offer value'
+      : best.ceq >= 40
+        ? 'Weak signal — check pricing for book-specific edge'
+        : 'No strong edge detected';
     return {
       ceq: best.ceq, confidence: best.confidence,
-      text: `CEQ: ${best.ceq}% ${best.confidence} — No strong edge detected`,
+      text: `CEQ: ${best.ceq}% ${best.confidence} — ${fallbackDesc}`,
       detail: best.label,
     };
   };

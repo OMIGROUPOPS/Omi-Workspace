@@ -161,8 +161,12 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://omi-workspace-production.up.railway.app';
     fetch(`${BACKEND_URL}/api/composite-history/${gameId}`)
       .then(res => res.ok ? res.json() : [])
-      .then((data: CompositeHistoryPoint[]) => setCompositeHistory(Array.isArray(data) ? data : []))
-      .catch(() => setCompositeHistory([]));
+      .then((rows: CompositeHistoryPoint[]) => {
+        const arr = Array.isArray(rows) ? rows : [];
+        if (arr.length > 0) console.log(`[OMI Chart] composite_history: ${arr.length} pts for ${gameId}`, arr[0]);
+        setCompositeHistory(arr);
+      })
+      .catch((err) => { console.warn('[OMI Chart] fetch failed:', err); setCompositeHistory([]); });
   }, [gameId]);
 
   const isProp = selection.type === 'prop';
@@ -336,24 +340,37 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     paddingTop + chartHeight - ((val - minVal + padding) / (range + 2 * padding)) * chartHeight;
 
   // OMI fair line: build SVG points aligned to the book line X-axis
-  // When we have time-series data (>=2 pts), interpolate onto the book line's time range.
+  // When we have time-series data (>=2 pts), map onto the chart's time span.
+  // Clamp X to chart bounds so points before/after book data still render.
   // When only 1 pt or no history, fall back to flat horizontal line.
   const omiChartPoints: { x: number; y: number; value: number }[] = (() => {
     if (hasOmiTimeSeries && omiFairLineData.length >= 2 && data.length >= 2) {
-      // Map OMI timestamps onto the book line's X-axis (time-proportional)
       const bookStartTime = data[0].timestamp.getTime();
       const bookEndTime = data[data.length - 1].timestamp.getTime();
       const bookTimeRange = bookEndTime - bookStartTime || 1;
-      return omiFairLineData
-        .filter(pt => pt.timestamp.getTime() >= bookStartTime && pt.timestamp.getTime() <= bookEndTime)
-        .map(pt => {
-          const tFrac = (pt.timestamp.getTime() - bookStartTime) / bookTimeRange;
-          const x = paddingLeft + tFrac * chartWidth;
-          return { x, y: valueToY(pt.value), value: pt.value };
-        });
+      const mapped = omiFairLineData.map(pt => {
+        const tFrac = (pt.timestamp.getTime() - bookStartTime) / bookTimeRange;
+        // Clamp to chart bounds — OMI points outside book time range still plot at edges
+        const x = Math.max(paddingLeft, Math.min(paddingLeft + chartWidth, paddingLeft + tFrac * chartWidth));
+        return { x, y: valueToY(pt.value), value: pt.value };
+      });
+      // Extend to chart edges: prepend first value at left edge, append last value at right edge
+      if (mapped.length >= 2) {
+        const first = mapped[0];
+        const last = mapped[mapped.length - 1];
+        const extended: typeof mapped = [];
+        if (first.x > paddingLeft + 1) {
+          extended.push({ x: paddingLeft, y: first.y, value: first.value });
+        }
+        extended.push(...mapped);
+        if (last.x < paddingLeft + chartWidth - 1) {
+          extended.push({ x: paddingLeft + chartWidth, y: last.y, value: last.value });
+        }
+        return extended;
+      }
     }
     // Fallback: single composite_history point or static omiFairLine → flat line
-    const flatValue = omiFairLineData.length === 1 ? omiFairLineData[0].value : chartOmiFairLine;
+    const flatValue = omiFairLineData.length >= 1 ? omiFairLineData[omiFairLineData.length - 1].value : chartOmiFairLine;
     if (flatValue === undefined) return [];
     const y = valueToY(flatValue);
     return [

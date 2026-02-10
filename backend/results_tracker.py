@@ -109,9 +109,15 @@ class ResultsTracker:
 
             # Best bet
             "best_bet_market": pred.get("best_bet_market"),
-            "best_bet_edge": pred.get("best_edge_pct") if not isinstance(pred.get("best_edge_pct"), str) else None,
+            "best_bet_edge": pred.get("best_edge_pct"),
         }
-        
+
+        # Guard: strip signal strings from numeric columns
+        _SIGNALS = {"PASS", "EDGE", "WATCH", "STRONG", "MISPRICED", "VALUE", "FAIR", "SHARP", "RARE"}
+        for k in record:
+            if isinstance(record[k], str) and record[k].upper() in _SIGNALS:
+                record[k] = None
+
         # Upsert to game_results
         self.client.table("game_results").upsert(record).execute()
         print(f"[Results] Snapshotted prediction for {game_id}")

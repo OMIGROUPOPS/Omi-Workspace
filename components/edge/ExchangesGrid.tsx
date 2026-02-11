@@ -1,26 +1,30 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
+import Link from 'next/link';
 
 interface ExchangeMarket {
   id: string;
   exchange: 'kalshi' | 'polymarket';
-  market_id: string;
-  market_title: string;
-  category: string;
-  sport: string | null;
+  event_id: string;
+  event_title: string;
+  contract_ticker: string | null;
   yes_price: number | null;
   no_price: number | null;
   yes_bid: number | null;
   yes_ask: number | null;
   no_bid: number | null;
   no_ask: number | null;
-  spread: number | null;
-  volume_24h: number | null;
+  volume: number | null;
   open_interest: number | null;
-  liquidity_depth: any;
+  last_price: number | null;
+  previous_yes_price: number | null;
+  price_change: number | null;
   snapshot_time: string;
-  expires_at: string | null;
+  mapped_game_id: string | null;
+  mapped_sport_key: string | null;
+  expiration_time: string | null;
+  status: string;
 }
 
 interface ExchangeStats {
@@ -28,78 +32,9 @@ interface ExchangeStats {
   kalshi: number;
   polymarket: number;
   totalVolume: number;
-  categories: Record<string, number>;
 }
 
-type Category = 'all' | 'sports' | 'politics' | 'economics' | 'crypto' | 'entertainment' | 'other';
 type Exchange = 'all' | 'kalshi' | 'polymarket';
-
-const CATEGORY_CONFIG: Record<Category, { label: string; icon: JSX.Element; color: string }> = {
-  all: {
-    label: 'All Markets',
-    icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-      </svg>
-    ),
-    color: 'zinc',
-  },
-  sports: {
-    label: 'Sports',
-    icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10" strokeWidth="1.5" />
-        <path strokeLinecap="round" strokeWidth="1.5" d="M12 2c-2.5 3-4 6.5-4 10s1.5 7 4 10M12 2c2.5 3 4 6.5 4 10s-1.5 7-4 10M2 12h20" />
-      </svg>
-    ),
-    color: 'emerald',
-  },
-  politics: {
-    label: 'Politics',
-    icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-      </svg>
-    ),
-    color: 'blue',
-  },
-  economics: {
-    label: 'Economics',
-    icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-      </svg>
-    ),
-    color: 'amber',
-  },
-  crypto: {
-    label: 'Crypto',
-    icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    color: 'purple',
-  },
-  entertainment: {
-    label: 'Entertainment',
-    icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
-      </svg>
-    ),
-    color: 'pink',
-  },
-  other: {
-    label: 'Other',
-    icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-      </svg>
-    ),
-    color: 'zinc',
-  },
-};
 
 const EXCHANGE_CONFIG: Record<Exchange, { label: string; color: string; bgColor: string }> = {
   all: { label: 'All Exchanges', color: 'text-zinc-400', bgColor: 'bg-zinc-800' },
@@ -116,12 +51,7 @@ function formatVolume(volume: number | null): string {
 
 function formatPrice(price: number | null): string {
   if (price === null || price === undefined) return '-';
-  return `${price}¢`;
-}
-
-function formatSpread(spread: number | null): string {
-  if (spread === null || spread === undefined) return '-';
-  return `${spread}¢`;
+  return `${price.toFixed(0)}\u00A2`;
 }
 
 function formatTimeUntil(dateStr: string | null): string {
@@ -141,55 +71,32 @@ function formatTimeUntil(dateStr: string | null): string {
   return '<1h';
 }
 
-function OrderBookMini({ depth }: { depth: any }) {
-  if (!depth?.yes) return null;
-
-  const yesBids = depth.yes.bids?.slice(0, 3) || [];
-  const yesAsks = depth.yes.asks?.slice(0, 3) || [];
-
-  const maxSize = Math.max(
-    ...yesBids.map((b: number[]) => b[1] || 0),
-    ...yesAsks.map((a: number[]) => a[1] || 0),
-    1
-  );
-
+function PriceChangeIndicator({ change }: { change: number | null }) {
+  if (change === null || change === undefined || change === 0) return null;
+  const isUp = change > 0;
   return (
-    <div className="flex gap-1 h-6">
-      {/* Bids */}
-      <div className="flex gap-0.5 items-end">
-        {yesBids.map((bid: number[], i: number) => (
-          <div
-            key={`bid-${i}`}
-            className="w-1.5 bg-emerald-500/60 rounded-t-sm"
-            style={{ height: `${Math.max(20, (bid[1] / maxSize) * 100)}%` }}
-            title={`Bid: ${bid[0]}¢ × ${bid[1]}`}
-          />
-        ))}
-      </div>
-      <div className="w-px bg-zinc-700" />
-      {/* Asks */}
-      <div className="flex gap-0.5 items-end">
-        {yesAsks.map((ask: number[], i: number) => (
-          <div
-            key={`ask-${i}`}
-            className="w-1.5 bg-red-500/60 rounded-t-sm"
-            style={{ height: `${Math.max(20, (ask[1] / maxSize) * 100)}%` }}
-            title={`Ask: ${ask[0]}¢ × ${ask[1]}`}
-          />
-        ))}
-      </div>
-    </div>
+    <span className={`inline-flex items-center gap-0.5 text-[10px] font-mono ${isUp ? 'text-emerald-400' : 'text-red-400'}`}>
+      <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
+        {isUp ? (
+          <path fillRule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
+        ) : (
+          <path fillRule="evenodd" d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z" clipRule="evenodd" />
+        )}
+      </svg>
+      {Math.abs(change).toFixed(1)}
+    </span>
   );
 }
 
 function MarketCard({ market }: { market: ExchangeMarket }) {
   const isKalshi = market.exchange === 'kalshi';
-  const hasSpread = market.spread !== null && market.spread > 0;
-  const hasDepth = market.liquidity_depth?.yes;
-
-  // Determine implied probability edge
   const yesPrice = market.yes_price || 0;
   const hasPricing = yesPrice > 0 && yesPrice < 100;
+
+  // Calculate spread from bid/ask if available
+  const spread = (market.yes_bid !== null && market.yes_ask !== null)
+    ? Math.round((market.yes_ask - market.yes_bid) * 10) / 10
+    : null;
 
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4 hover:border-zinc-700 transition-all group">
@@ -197,7 +104,7 @@ function MarketCard({ market }: { market: ExchangeMarket }) {
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex-1 min-w-0">
           <h3 className="text-[13px] font-medium text-zinc-100 leading-tight line-clamp-2 group-hover:text-white transition-colors">
-            {market.market_title}
+            {market.event_title}
           </h3>
         </div>
         <div className={`px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wide flex-shrink-0 ${
@@ -215,12 +122,13 @@ function MarketCard({ market }: { market: ExchangeMarket }) {
             <span className="text-lg font-mono font-semibold text-emerald-400">
               {formatPrice(market.yes_price)}
             </span>
-            {market.yes_bid !== null && market.yes_ask !== null && (
-              <span className="text-[10px] font-mono text-zinc-600">
-                {market.yes_bid}/{market.yes_ask}
-              </span>
-            )}
+            <PriceChangeIndicator change={market.price_change} />
           </div>
+          {market.yes_bid !== null && market.yes_ask !== null && (
+            <div className="text-[10px] font-mono text-zinc-600 mt-0.5">
+              {market.yes_bid}/{market.yes_ask}
+            </div>
+          )}
         </div>
         <div className="bg-zinc-800/50 rounded-md p-2.5">
           <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider mb-1">NO</div>
@@ -228,12 +136,12 @@ function MarketCard({ market }: { market: ExchangeMarket }) {
             <span className="text-lg font-mono font-semibold text-red-400">
               {formatPrice(market.no_price)}
             </span>
-            {market.no_bid !== null && market.no_ask !== null && (
-              <span className="text-[10px] font-mono text-zinc-600">
-                {market.no_bid}/{market.no_ask}
-              </span>
-            )}
           </div>
+          {market.no_bid !== null && market.no_ask !== null && (
+            <div className="text-[10px] font-mono text-zinc-600 mt-0.5">
+              {market.no_bid}/{market.no_ask}
+            </div>
+          )}
         </div>
       </div>
 
@@ -244,15 +152,15 @@ function MarketCard({ market }: { market: ExchangeMarket }) {
           <svg className="w-3.5 h-3.5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
           </svg>
-          <span className="font-mono text-zinc-400">{formatVolume(market.volume_24h)}</span>
+          <span className="font-mono text-zinc-400">{formatVolume(market.volume)}</span>
         </div>
 
         {/* Spread */}
-        {hasSpread && (
+        {spread !== null && spread > 0 && (
           <div className="flex items-center gap-1">
             <span className="text-zinc-600">Spread:</span>
-            <span className={`font-mono ${market.spread! <= 3 ? 'text-emerald-400' : market.spread! <= 6 ? 'text-amber-400' : 'text-red-400'}`}>
-              {formatSpread(market.spread)}
+            <span className={`font-mono ${spread <= 3 ? 'text-emerald-400' : spread <= 6 ? 'text-amber-400' : 'text-red-400'}`}>
+              {spread}\u00A2
             </span>
           </div>
         )}
@@ -270,17 +178,25 @@ function MarketCard({ market }: { market: ExchangeMarket }) {
           <svg className="w-3.5 h-3.5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <span className="font-mono text-zinc-500">{formatTimeUntil(market.expires_at)}</span>
+          <span className="font-mono text-zinc-500">{formatTimeUntil(market.expiration_time)}</span>
         </div>
       </div>
 
-      {/* Order Book Mini-Visualization */}
-      {hasDepth && (
+      {/* Game Link — shown when contract is matched to a sportsbook game */}
+      {market.mapped_game_id && (
         <div className="mt-3 pt-3 border-t border-zinc-800/60">
-          <div className="flex items-center justify-between">
-            <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-wider">Depth</span>
-            <OrderBookMini depth={market.liquidity_depth} />
-          </div>
+          <Link
+            href={`/edge/portal/sports/game/${market.mapped_game_id}`}
+            className="flex items-center gap-1.5 text-[10px] font-mono text-cyan-400 hover:text-cyan-300 transition-colors"
+          >
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            </svg>
+            Linked to sportsbook game
+            {market.mapped_sport_key && (
+              <span className="text-zinc-600 uppercase">{market.mapped_sport_key.split('_').pop()}</span>
+            )}
+          </Link>
         </div>
       )}
     </div>
@@ -318,10 +234,8 @@ function StatCard({ label, value, subValue, icon, color = 'emerald' }: {
 export function ExchangesGrid() {
   const [markets, setMarkets] = useState<ExchangeMarket[]>([]);
   const [stats, setStats] = useState<ExchangeStats | null>(null);
-  const [snapshotTime, setSnapshotTime] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [category, setCategory] = useState<Category>('all');
   const [exchange, setExchange] = useState<Exchange>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -331,7 +245,6 @@ export function ExchangesGrid() {
       setError(null);
       try {
         const params = new URLSearchParams();
-        if (category !== 'all') params.set('category', category);
         if (exchange !== 'all') params.set('exchange', exchange);
 
         const res = await fetch(`/api/exchanges?${params.toString()}`);
@@ -340,7 +253,6 @@ export function ExchangesGrid() {
         const data = await res.json();
         setMarkets(data.markets || []);
         setStats(data.stats || null);
-        setSnapshotTime(data.snapshot_time);
       } catch (e: any) {
         setError(e.message || 'Failed to load');
       } finally {
@@ -348,19 +260,18 @@ export function ExchangesGrid() {
       }
     }
     fetchData();
-  }, [category, exchange]);
+  }, [exchange]);
 
   // Filter by search query
   const filteredMarkets = useMemo(() => {
     if (!searchQuery.trim()) return markets;
     const q = searchQuery.toLowerCase();
     return markets.filter(m =>
-      m.market_title.toLowerCase().includes(q) ||
-      m.market_id.toLowerCase().includes(q)
+      m.event_title.toLowerCase().includes(q) ||
+      (m.contract_ticker || '').toLowerCase().includes(q)
     );
   }, [markets, searchQuery]);
 
-  const categories: Category[] = ['all', 'sports', 'politics', 'economics', 'crypto', 'entertainment', 'other'];
   const exchanges: Exchange[] = ['all', 'kalshi', 'polymarket'];
 
   return (
@@ -369,7 +280,7 @@ export function ExchangesGrid() {
       {stats && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <StatCard
-            label="Total Markets"
+            label="Sports Markets"
             value={stats.total}
             icon={<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>}
             color="emerald"
@@ -387,7 +298,7 @@ export function ExchangesGrid() {
             color="violet"
           />
           <StatCard
-            label="24h Volume"
+            label="Total Volume"
             value={formatVolume(stats.totalVolume)}
             icon={<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
             color="amber"
@@ -397,29 +308,8 @@ export function ExchangesGrid() {
 
       {/* Filters Row */}
       <div className="flex flex-col sm:flex-row gap-3">
-        {/* Category Pills */}
-        <div className="flex flex-wrap gap-1.5">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setCategory(cat)}
-              className={`px-3 py-1.5 rounded-md text-[11px] font-medium transition-all flex items-center gap-1.5 ${
-                category === cat
-                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                  : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800 border border-transparent'
-              }`}
-            >
-              {CATEGORY_CONFIG[cat].icon}
-              {CATEGORY_CONFIG[cat].label}
-              {stats?.categories[cat] && cat !== 'all' && (
-                <span className="text-[9px] font-mono opacity-60">({stats.categories[cat]})</span>
-              )}
-            </button>
-          ))}
-        </div>
-
         {/* Exchange Toggle + Search */}
-        <div className="flex gap-2 sm:ml-auto">
+        <div className="flex gap-2">
           <div className="flex bg-zinc-800/50 rounded-md p-0.5">
             {exchanges.map((ex) => (
               <button
@@ -452,14 +342,6 @@ export function ExchangesGrid() {
         </div>
       </div>
 
-      {/* Last Updated */}
-      {snapshotTime && (
-        <div className="flex items-center gap-2 text-[11px] text-zinc-600">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Last sync: {new Date(snapshotTime).toLocaleString()}</span>
-        </div>
-      )}
-
       {/* Loading State */}
       {loading && (
         <div className="flex items-center justify-center py-20">
@@ -485,8 +367,8 @@ export function ExchangesGrid() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
             </svg>
           </div>
-          <p className="text-sm text-zinc-500 mb-1">No markets found</p>
-          <p className="text-xs text-zinc-600">Try adjusting your filters or run the exchange sync</p>
+          <p className="text-sm text-zinc-500 mb-1">No sports markets found</p>
+          <p className="text-xs text-zinc-600">Exchange data syncs every 15 minutes with odds updates</p>
         </div>
       )}
 
@@ -494,7 +376,7 @@ export function ExchangesGrid() {
       {!loading && !error && filteredMarkets.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredMarkets.map((market) => (
-            <MarketCard key={`${market.exchange}-${market.market_id}`} market={market} />
+            <MarketCard key={`${market.exchange}-${market.event_id}`} market={market} />
           ))}
         </div>
       )}

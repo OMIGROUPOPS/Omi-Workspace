@@ -1,102 +1,68 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 
-function getSupabase() {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
-}
+const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8000";
 
 export interface ExchangeMarket {
   id: string;
   exchange: "kalshi" | "polymarket";
-  market_id: string;
-  market_title: string;
-  category: string;
-  sport: string | null;
+  event_id: string;
+  event_title: string;
+  contract_ticker: string | null;
   yes_price: number | null;
   no_price: number | null;
   yes_bid: number | null;
   yes_ask: number | null;
   no_bid: number | null;
   no_ask: number | null;
-  spread: number | null;
-  volume_24h: number | null;
+  volume: number | null;
   open_interest: number | null;
-  liquidity_depth: any;
+  last_price: number | null;
+  previous_yes_price: number | null;
+  price_change: number | null;
   snapshot_time: string;
-  expires_at: string | null;
+  mapped_game_id: string | null;
+  mapped_sport_key: string | null;
+  expiration_time: string | null;
+  status: string;
 }
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const category = searchParams.get("category");
     const exchange = searchParams.get("exchange");
-    const limit = parseInt(searchParams.get("limit") || "200");
+    const search = searchParams.get("search");
+    const limit = searchParams.get("limit") || "200";
 
-    const supabase = getSupabase();
+    const params = new URLSearchParams();
+    if (exchange && exchange !== "all") params.set("exchange", exchange);
+    if (search) params.set("search", search);
+    params.set("limit", limit);
 
-    // Get most recent snapshot time
-    const { data: latestSnapshot } = await supabase
-      .from("exchange_snapshots")
-      .select("snapshot_time")
-      .order("snapshot_time", { ascending: false })
-      .limit(1)
-      .single();
+    const res = await fetch(
+      `${BACKEND_URL}/api/exchange/markets?${params.toString()}`,
+      { cache: "no-store" }
+    );
 
-    if (!latestSnapshot) {
-      return NextResponse.json({
-        markets: [],
-        snapshot_time: null,
-        stats: { total: 0, kalshi: 0, polymarket: 0, categories: {} },
-      });
+    if (!res.ok) {
+      console.error("[Exchanges API] Backend error:", res.status);
+      return NextResponse.json(
+        { error: `Backend returned ${res.status}` },
+        { status: 502 }
+      );
     }
 
-    // Build query for latest snapshot data
-    let query = supabase
-      .from("exchange_snapshots")
-      .select("*")
-      .eq("snapshot_time", latestSnapshot.snapshot_time)
-      .order("volume_24h", { ascending: false, nullsFirst: false })
-      .limit(limit);
+    const data = await res.json();
+    const markets: ExchangeMarket[] = data.markets || [];
 
-    if (category && category !== "all") {
-      query = query.eq("category", category);
-    }
-
-    if (exchange && exchange !== "all") {
-      query = query.eq("exchange", exchange);
-    }
-
-    const { data, error } = await query;
-
-    if (error) {
-      console.error("[Exchanges API] Query error:", error.message);
-      return NextResponse.json({ error: error.message }, { status: 500 });
-    }
-
-    // Calculate stats
-    const markets = data || [];
+    // Calculate stats from returned markets
     const stats = {
       total: markets.length,
       kalshi: markets.filter((m) => m.exchange === "kalshi").length,
       polymarket: markets.filter((m) => m.exchange === "polymarket").length,
-      totalVolume: markets.reduce((sum, m) => sum + (m.volume_24h || 0), 0),
-      categories: {} as Record<string, number>,
+      totalVolume: markets.reduce((sum, m) => sum + (m.volume || 0), 0),
     };
 
-    for (const market of markets) {
-      stats.categories[market.category] =
-        (stats.categories[market.category] || 0) + 1;
-    }
-
-    return NextResponse.json({
-      markets,
-      snapshot_time: latestSnapshot.snapshot_time,
-      stats,
-    });
+    return NextResponse.json({ markets, stats });
   } catch (error: any) {
     console.error("[Exchanges API] Fatal error:", error?.message || error);
     return NextResponse.json(

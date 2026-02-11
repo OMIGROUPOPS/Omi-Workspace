@@ -222,6 +222,53 @@ def _detect_reverse_line_movement(
     }
 
 
+def _blend_exchange_signal(
+    game_id: str, score: float, reasoning_parts: list
+) -> float:
+    """
+    Blend exchange implied probability into flow score (30% weight).
+    Returns updated score. Zero-regression: if no data or error, returns original.
+    """
+    try:
+        from exchange_tracker import ExchangeTracker
+        if not game_id:
+            return score
+        tracker = ExchangeTracker()
+        contracts = tracker.get_game_exchange_data(game_id)
+        if not contracts:
+            return score
+        # Average exchange implied prob (yes_price is home win probability in cents)
+        exchange_probs = [
+            c["yes_price"] / 100.0
+            for c in contracts
+            if c.get("yes_price") is not None and c["yes_price"] > 0
+        ]
+        if not exchange_probs:
+            return score
+        exchange_prob = sum(exchange_probs) / len(exchange_probs)
+        # Convert to flow scale: flow >0.5 = away edge, so invert exchange home prob
+        exchange_flow = 1 - exchange_prob
+        old_score = score
+        score = 0.7 * score + 0.3 * exchange_flow
+        score = max(0.15, min(0.85, score))
+        # Summarize price movement direction
+        price_changes = [c.get("price_change", 0) or 0 for c in contracts]
+        net_change = sum(price_changes)
+        direction = "rising" if net_change > 0 else "falling" if net_change < 0 else "flat"
+        reasoning_parts.append(
+            f"Exchange signal: {exchange_prob:.1%} implied home "
+            f"(contracts: {len(contracts)}, {direction})"
+        )
+        logger.info(
+            f"[Flow] Exchange blend for {game_id}: {old_score:.3f} → {score:.3f} "
+            f"(exchange_prob={exchange_prob:.3f}, contracts={len(contracts)})"
+        )
+        return score
+    except Exception as e:
+        logger.debug(f"[Flow] No exchange data for game {game_id}: {e}")
+        return score
+
+
 def calculate_flow_score(
     game: dict,
     opening_line: Optional[float] = None,
@@ -494,6 +541,16 @@ def calculate_flow_score(
 
     logger.info(f"[Flow] Market scores: spread={score:.3f}, totals={totals_score:.3f}")
 
+    # Blend exchange signal if available (30% weight within Flow)
+    game_id = game.get("id", "")
+    score = _blend_exchange_signal(game_id, score, reasoning_parts)
+    # Recompute market scores after exchange blend
+    market_scores["spread"] = score
+    market_scores["moneyline"] = score
+    totals_score = 0.5 + (score - 0.5) * 0.7
+    totals_score = max(0.15, min(0.85, totals_score))
+    market_scores["totals"] = totals_score
+
     return {
         "score": round(score, 3),
         "market_scores": {k: round(v, 3) for k, v in market_scores.items()},
@@ -612,6 +669,10 @@ def _analyze_moneyline_flow(bookmakers: dict, parsed: dict) -> dict:
     market_scores = {}
     market_scores["spread"] = score
     market_scores["moneyline"] = score
+
+    # Blend exchange signal if available (30% weight within Flow)
+    game_id = game.get("id", "")
+    score = _blend_exchange_signal(game_id, score, reasoning_parts)
 
     # TOTALS: Dampen the signal for totals
     totals_score = 0.5 + (score - 0.5) * 0.7

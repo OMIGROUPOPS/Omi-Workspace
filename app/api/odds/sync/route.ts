@@ -1273,6 +1273,14 @@ async function runSync() {
     console.error('[Odds Sync] Composite recalculation failed:', e);
   }
 
+  // Trigger exchange data sync (fire-and-forget)
+  try {
+    await fetch(`${BACKEND_URL}/api/exchange/sync`, { method: 'POST' });
+    console.log('[Odds Sync] Exchange sync triggered');
+  } catch (e) {
+    console.error('[Odds Sync] Exchange sync failed:', e);
+  }
+
   console.log(
     `[Odds Sync] Done: ${totalSynced} games, ${totalCost} reqs used, ${lastRemaining} remaining`
   );

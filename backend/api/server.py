@@ -1169,6 +1169,52 @@ async def get_composite_history(game_id: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+# =========================================================================
+# EXCHANGE DATA
+# =========================================================================
+
+@app.post("/api/exchange/sync")
+async def sync_exchanges():
+    """Sync sports markets from Kalshi and Polymarket."""
+    try:
+        from exchange_tracker import ExchangeTracker
+        tracker = ExchangeTracker()
+        return tracker.sync_all()
+    except Exception as e:
+        logger.error(f"Error syncing exchanges: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/exchange/markets")
+async def get_exchange_markets(
+    exchange: Optional[str] = Query(None, description="Filter by exchange: kalshi or polymarket"),
+    search: Optional[str] = Query(None, description="Search event titles"),
+    limit: int = Query(200, description="Max results"),
+):
+    """Get latest sports exchange markets."""
+    try:
+        from exchange_tracker import ExchangeTracker
+        tracker = ExchangeTracker()
+        markets = tracker.get_markets(exchange=exchange, search=search, limit=limit)
+        return {"markets": markets, "count": len(markets)}
+    except Exception as e:
+        logger.error(f"Error getting exchange markets: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/exchange/game/{game_id}")
+async def get_game_exchange_data(game_id: str):
+    """Get exchange contracts matched to a specific game."""
+    try:
+        from exchange_tracker import ExchangeTracker
+        tracker = ExchangeTracker()
+        contracts = tracker.get_game_exchange_data(game_id)
+        return {"contracts": contracts, "count": len(contracts)}
+    except Exception as e:
+        logger.error(f"Error getting game exchange data: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

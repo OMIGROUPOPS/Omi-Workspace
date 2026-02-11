@@ -29,7 +29,10 @@ SPREAD_TO_PROB_RATE = {
     "americanfootball_ncaaf": 0.025,
     "icehockey_nhl": 0.08,
     "baseball_mlb": 0.09,
+    "soccer_epl": 0.20,
 }
+
+FAIR_LINE_ML_FACTOR = 0.01  # 1% implied probability shift per composite point
 
 
 def _round_to_half(value: float) -> float:
@@ -66,6 +69,27 @@ def _calculate_fair_ml(fair_spread: float, sport_key: str) -> tuple[int, int]:
     home_prob = max(0.05, min(0.95, 0.50 + (-fair_spread) * rate))
     away_prob = 1 - home_prob
     return (implied_prob_to_american(home_prob), implied_prob_to_american(away_prob))
+
+
+def _calculate_fair_ml_from_book(
+    book_ml_home: int, book_ml_away: int, composite_ml: float
+) -> tuple[int, int]:
+    """
+    Book-anchored fair ML: adjust consensus book ML by composite deviation.
+    Mirrors edgescout.ts calculateFairMLFromBook.
+    composite_ml is on 0-1 scale from analyzer.
+    """
+    # Remove vig from book odds
+    home_implied = abs(book_ml_home) / (abs(book_ml_home) + 100) if book_ml_home < 0 else 100 / (book_ml_home + 100)
+    away_implied = abs(book_ml_away) / (abs(book_ml_away) + 100) if book_ml_away < 0 else 100 / (book_ml_away + 100)
+    total = home_implied + away_implied
+    fair_home = home_implied / total
+    # Shift by composite deviation
+    deviation = composite_ml * 100 - 50
+    shift = deviation * FAIR_LINE_ML_FACTOR
+    adjusted_home = max(0.05, min(0.95, fair_home + shift))
+    adjusted_away = 1 - adjusted_home
+    return (implied_prob_to_american(adjusted_home), implied_prob_to_american(adjusted_away))
 
 
 def _extract_median_lines(game_data: dict) -> dict:
@@ -180,6 +204,11 @@ class CompositeTracker:
                 if book_spread is not None and composite_spread is not None:
                     fair_spread = _calculate_fair_spread(book_spread, composite_spread)
                     fair_ml_home, fair_ml_away = _calculate_fair_ml(fair_spread, sport_key)
+                elif book_ml_home is not None and book_ml_away is not None and composite_ml is not None:
+                    # No spread data — use book-anchored ML adjustment
+                    fair_ml_home, fair_ml_away = _calculate_fair_ml_from_book(
+                        book_ml_home, book_ml_away, composite_ml
+                    )
 
                 if book_total is not None:
                     fair_total = _calculate_fair_total(book_total, game_env_score)

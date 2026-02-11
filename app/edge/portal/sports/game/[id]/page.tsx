@@ -720,6 +720,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     'tennis_atp_french_open': 'TENNIS_FO',
     'tennis_atp_us_open': 'TENNIS_USO',
     'tennis_atp_wimbledon': 'TENNIS_WIM',
+    'soccer_epl': 'EPL',
   };
 
   if (querySport) {
@@ -732,7 +733,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   }
 
   if (!gameData) {
-    const sportsToSearch = ['NFL', 'NBA', 'NHL', 'NCAAF', 'NCAAB', 'MLB', 'WNBA', 'MMA', 'TENNIS_AO', 'TENNIS_FO', 'TENNIS_USO', 'TENNIS_WIM'];
+    const sportsToSearch = ['NFL', 'NBA', 'NHL', 'NCAAF', 'NCAAB', 'MLB', 'EPL', 'WNBA', 'MMA', 'TENNIS_AO', 'TENNIS_FO', 'TENNIS_USO', 'TENNIS_WIM'];
     const reverseMap: Record<string, string> = {
       'NFL': 'americanfootball_nfl',
       'NBA': 'basketball_nba',
@@ -746,6 +747,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
       'TENNIS_FO': 'tennis_atp_french_open',
       'TENNIS_USO': 'tennis_atp_us_open',
       'TENNIS_WIM': 'tennis_atp_wimbledon',
+      'EPL': 'soccer_epl',
     };
     
     for (const sport of sportsToSearch) {

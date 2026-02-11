@@ -69,6 +69,7 @@ export const SPREAD_TO_PROB_RATE: Record<string, number> = {
   'americanfootball_ncaaf': 0.025,   // ~2.5% per point
   'icehockey_nhl': 0.08,             // ~8% per goal
   'baseball_mlb': 0.09,              // ~9% per run
+  'soccer_epl': 0.20,               // ~20% per goal (rare-scoring sport)
 };
 
 /**
@@ -125,6 +126,31 @@ export function calculateFairMoneyline(
     return Math.round(100 * (1 - prob) / prob);
   };
   return { homeOdds: probToAmerican(homeProb), awayOdds: probToAmerican(awayProb) };
+}
+
+/**
+ * Calculate fair ML by adjusting consensus book ML with pillar composite deviation.
+ * Unlike calculateFairMoneyline (composite-only), this ANCHORS to the book odds.
+ * Composite 50 = no adjustment. Each point from 50 shifts by FAIR_LINE_ML_FACTOR (1%).
+ * Example: Book -150/+700, composite 40 → shift 10% toward away → ~-120/+550
+ */
+export function calculateFairMLFromBook(
+  bookHomeOdds: number,
+  bookAwayOdds: number,
+  pillarComposite: number
+): { homeOdds: number; awayOdds: number } {
+  // Remove vig to get true 2-way fair probabilities
+  const { fairHomeProb, fairAwayProb } = removeVig(bookHomeOdds, bookAwayOdds);
+  // Shift by composite deviation
+  const deviation = pillarComposite - 50;
+  const shift = deviation * FAIR_LINE_ML_FACTOR;
+  const adjustedHome = Math.max(0.05, Math.min(0.95, fairHomeProb + shift));
+  const adjustedAway = 1 - adjustedHome;
+  const probToAmerican = (prob: number) => {
+    if (prob >= 0.5) return Math.round(-100 * prob / (1 - prob));
+    return Math.round(100 * (1 - prob) / prob);
+  };
+  return { homeOdds: probToAmerican(adjustedHome), awayOdds: probToAmerican(adjustedAway) };
 }
 
 /**

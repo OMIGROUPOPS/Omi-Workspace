@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { formatOdds, formatSpread } from '@/lib/edge/utils/odds-math';
 import { isGameLive as checkGameLive } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, CEQConfidence, PythonPillarScores, PillarResult } from '@/lib/edge/engine/edgescout';
-import { calculateFairSpread, calculateFairTotal, calculateFairMoneyline, spreadToMoneyline, removeVig, SPORT_KEY_NUMBERS } from '@/lib/edge/engine/edgescout';
+import { calculateFairSpread, calculateFairTotal, calculateFairMoneyline, calculateFairMLFromBook, spreadToMoneyline, removeVig, SPORT_KEY_NUMBERS } from '@/lib/edge/engine/edgescout';
 
 // ============================================================================
 // Constants
@@ -587,7 +587,8 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           ))}
 
           {/* Gap fill between OMI fair line and book line — THE story */}
-          {convergeFillPath && (
+          {/* Suppress fill when ML gap is extreme (>200 pts) — just show both lines */}
+          {convergeFillPath && !(isMLChart && currentOmiFairValue !== undefined && Math.abs(currentValue - currentOmiFairValue) > 200) && (
             <path d={convergeFillPath} fill={currentValue > (currentOmiFairValue ?? currentValue) ? 'rgba(16,185,129,0.22)' : 'rgba(239,68,68,0.18)'} />
           )}
 
@@ -757,15 +758,17 @@ function OmiFairPricing({
   const omiFairTotal = consensusTotal !== undefined
     ? (pythonPillars ? calculateFairTotal(consensusTotal, pythonPillars.gameEnvironment) : { fairLine: consensusTotal, adjustment: 0 })
     : null;
-  // ML derived from fair spread for cross-market consistency; fallback to composite-only
-  const omiFairML = omiFairSpread
-    ? spreadToMoneyline(omiFairSpread.fairLine, sportKey)
-    : (pythonPillars ? calculateFairMoneyline(pythonPillars.composite) : null);
-  // ML consensus fallback: median of all book odds
+  // ML consensus: median of all book odds (needed before fair ML calc)
   const mlHomeOdds = allBooks.map(b => b.markets?.h2h?.home?.price).filter((v): v is number => v !== undefined);
   const mlAwayOdds = allBooks.map(b => b.markets?.h2h?.away?.price).filter((v): v is number => v !== undefined);
   const consensusHomeML = calcMedian(mlHomeOdds);
   const consensusAwayML = calcMedian(mlAwayOdds);
+  // ML derived from fair spread for cross-market consistency; fallback to book-anchored adjustment
+  const omiFairML = omiFairSpread
+    ? spreadToMoneyline(omiFairSpread.fairLine, sportKey)
+    : (pythonPillars && consensusHomeML !== undefined && consensusAwayML !== undefined
+      ? calculateFairMLFromBook(consensusHomeML, consensusAwayML, pythonPillars.composite)
+      : (pythonPillars ? calculateFairMoneyline(pythonPillars.composite) : null));
 
   // OMI fair ML implied probabilities (no-vig)
   const effectiveHomeML = omiFairML ? omiFairML.homeOdds : (consensusHomeML ?? undefined);

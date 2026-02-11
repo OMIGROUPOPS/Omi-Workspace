@@ -36,3 +36,34 @@ CREATE INDEX idx_exchange_data_mapped_game
 
 -- RLS enabled but no policies = open access with service role key
 ALTER TABLE exchange_data ENABLE ROW LEVEL SECURITY;
+
+-- Fast deduplicated query: latest snapshot per (exchange, event_id)
+CREATE OR REPLACE FUNCTION get_latest_exchange_markets(
+  p_exchange text DEFAULT NULL,
+  p_search text DEFAULT NULL,
+  p_limit integer DEFAULT 50
+)
+RETURNS SETOF exchange_data
+LANGUAGE sql STABLE
+AS $$
+  SELECT DISTINCT ON (exchange, event_id) *
+  FROM exchange_data
+  WHERE status = 'open'
+    AND (p_exchange IS NULL OR exchange = p_exchange)
+    AND (p_search IS NULL OR event_title ILIKE '%' || p_search || '%')
+  ORDER BY exchange, event_id, snapshot_time DESC
+$$;
+
+-- Wrapper that also sorts by volume and applies limit
+CREATE OR REPLACE FUNCTION get_exchange_markets(
+  p_exchange text DEFAULT NULL,
+  p_search text DEFAULT NULL,
+  p_limit integer DEFAULT 50
+)
+RETURNS SETOF exchange_data
+LANGUAGE sql STABLE
+AS $$
+  SELECT * FROM get_latest_exchange_markets(p_exchange, p_search, p_limit)
+  ORDER BY volume DESC NULLS LAST
+  LIMIT p_limit
+$$;

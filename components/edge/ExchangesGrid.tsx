@@ -245,6 +245,7 @@ export function ExchangesGrid() {
       setError(null);
       try {
         const params = new URLSearchParams();
+        params.set('limit', '50');
         if (exchange !== 'all') params.set('exchange', exchange);
 
         const res = await fetch(`/api/exchanges?${params.toString()}`);

@@ -31,7 +31,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const exchange = searchParams.get("exchange");
     const search = searchParams.get("search");
-    const limit = searchParams.get("limit") || "200";
+    const limit = searchParams.get("limit") || "50";
 
     const params = new URLSearchParams();
     if (exchange && exchange !== "all") params.set("exchange", exchange);

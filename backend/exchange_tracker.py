@@ -493,52 +493,28 @@ class ExchangeTracker:
         self,
         exchange: Optional[str] = None,
         search: Optional[str] = None,
-        limit: int = 200,
+        limit: int = 50,
     ) -> list:
         """
-        Get latest exchange markets, deduplicated by (exchange, event_id).
+        Get latest exchange markets, deduplicated by (exchange, event_id) in SQL.
         Returns most recent snapshot per event, ordered by volume DESC.
         """
         if not db._is_connected():
             return []
 
+        # Cap limit to prevent excessive queries
+        limit = min(max(1, limit), 200)
+
         try:
-            query = (
-                db.client.table("exchange_data")
-                .select("*")
-                .eq("status", "open")
-                .order("snapshot_time", desc=True)
-                .limit(1000)  # fetch more to deduplicate
-            )
-
-            if exchange:
-                query = query.eq("exchange", exchange)
-
-            result = query.execute()
-            rows = result.data or []
-
-            # Deduplicate by (exchange, event_id) — keep latest snapshot
-            seen = set()
-            deduped = []
-            for row in rows:
-                key = (row["exchange"], row["event_id"])
-                if key not in seen:
-                    seen.add(key)
-                    deduped.append(row)
-
-            # Filter by search query
-            if search:
-                search_lower = search.lower()
-                deduped = [
-                    r for r in deduped
-                    if search_lower in (r.get("event_title", "") or "").lower()
-                    or search_lower in (r.get("contract_ticker", "") or "").lower()
-                ]
-
-            # Sort by volume DESC (nulls last)
-            deduped.sort(key=lambda r: r.get("volume") or 0, reverse=True)
-
-            return deduped[:limit]
+            result = db.client.rpc(
+                "get_exchange_markets",
+                {
+                    "p_exchange": exchange,
+                    "p_search": search,
+                    "p_limit": limit,
+                },
+            ).execute()
+            return result.data or []
 
         except Exception as e:
             logger.error(f"[ExchangeTracker] get_markets error: {e}")

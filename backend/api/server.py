@@ -1189,7 +1189,7 @@ async def sync_exchanges():
 async def get_exchange_markets(
     exchange: Optional[str] = Query(None, description="Filter by exchange: kalshi or polymarket"),
     search: Optional[str] = Query(None, description="Search event titles"),
-    limit: int = Query(200, description="Max results"),
+    limit: int = Query(50, description="Max results (max 200)"),
 ):
     """Get latest sports exchange markets."""
     try:

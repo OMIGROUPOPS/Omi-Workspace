@@ -278,6 +278,15 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       return { timestamp: new Date(snapshot.snapshot_time), value };
     }).filter(d => d.value !== null && d.value !== undefined);
     data.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
+    // Deduplicate: keep only the latest value at each timestamp (prevents vertical bar artifacts)
+    if (data.length > 1) {
+      const deduped: typeof data = [];
+      for (let i = 0; i < data.length; i++) {
+        if (i < data.length - 1 && data[i].timestamp.getTime() === data[i + 1].timestamp.getTime()) continue;
+        deduped.push(data[i]);
+      }
+      data = deduped;
+    }
     if (timeRange !== 'ALL' && data.length > 0) {
       const now = new Date();
       const hoursMap: Record<TimeRange, number> = { '30M': 0.5, '1H': 1, '3H': 3, '6H': 6, '24H': 24, 'ALL': 0 };
@@ -288,9 +297,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   const isFilteredEmpty = hasRealData && data.length === 0;
 
-  // Color theming: emerald for line mode, amber for price mode
+  // Color theming: emerald for all chart types
   const isPrice = effectiveViewMode === 'price';
-  const lineColor = isPrice ? '#fbbf24' : '#34d399'; // amber-400 or emerald-400
+  const lineColor = '#34d399'; // emerald-400 for all views
 
   if (data.length === 0) {
     return (
@@ -338,8 +347,10 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const movement = currentValue - openValue;
   const values = data.map(d => d.value);
   // Only include OMI fair line in Y-axis scaling when NOT in price mode
+  // For ML: skip static chartOmiFairLine (it's HOME-only, wrong when tracking away/draw)
+  // — composite_history omiFairLineData already uses correct trackingSide
   if (!isPrice) {
-    if (chartOmiFairLine !== undefined) values.push(chartOmiFairLine);
+    if (chartOmiFairLine !== undefined && marketType !== 'moneyline') values.push(chartOmiFairLine);
     for (const pt of omiFairLineData) values.push(pt.value);
   }
   // For soccer 3-way single-select, only include tracked side in Y-axis bounds
@@ -351,20 +362,22 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const minVal = Math.min(...values);
   const maxVal = Math.max(...values);
   const range = maxVal - minVal || 1;
-  // Tight Y-axis padding: 3-5% of data range (Bloomberg-tight)
+  // Tight Y-axis padding: 5% of data range — data should fill 70-80% of chart height
+  const isMLAny = marketType === 'moneyline'; // ML in any view mode
   let padding: number;
-  if (isPrice) {
-    // Price mode: American odds (-110, -108, etc.) — tight padding
+  if (isMLAny) {
+    // ML: 5% padding, min 5 pts (a 10pt move is significant)
+    padding = Math.max(range * 0.05, 5);
+  } else if (isPrice) {
+    // Price/juice: tight, 1 point minimum
     padding = Math.max(range * 0.05, 1);
-  } else if (isMLChart) {
-    padding = Math.max(range * 0.05, 3);
   } else if (marketType === 'spread' || marketType === 'total') {
     padding = Math.max(range * 0.05, 0.2);
   } else {
     padding = Math.max(range * 0.05, 0.5);
   }
   // Minimum visual range — just enough to avoid a flat line
-  const minVisualRange = isPrice ? 4 : (isMLChart ? 10 : 1);
+  const minVisualRange = isMLAny ? 20 : (isPrice ? 4 : 1);
   if (range + 2 * padding < minVisualRange) {
     padding = (minVisualRange - range) / 2;
   }
@@ -470,11 +483,21 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     const visualMax = maxVal + padding;
     const visualRange = visualMax - visualMin;
     let labelStep: number;
-    if (isMLChart) { labelStep = range <= 30 ? 10 : 25; }
-    else if (marketType === 'spread' && effectiveViewMode === 'line') { labelStep = range <= 5 ? 0.5 : range <= 15 ? 1.0 : 2.0; }
-    else if (marketType === 'total' && effectiveViewMode === 'line') { labelStep = range <= 5 ? 0.5 : range <= 15 ? 1.0 : 2.0; }
-    else if (effectiveViewMode === 'price') { labelStep = range <= 8 ? 2 : range <= 16 ? 4 : 5; }
-    else { labelStep = range <= 5 ? 0.5 : range <= 12 ? 1 : range <= 25 ? 2 : 5; }
+    if (isMLAny) {
+      // ML: always 10pt ticks — every 10pt move is significant
+      labelStep = 10;
+    } else if (marketType === 'spread' && effectiveViewMode === 'line') {
+      // Spread line: 0.5pt ticks
+      labelStep = 0.5;
+    } else if (marketType === 'total' && effectiveViewMode === 'line') {
+      // Total line: 0.5pt ticks
+      labelStep = 0.5;
+    } else if (effectiveViewMode === 'price') {
+      // Juice/price: every integer when range < 15, else every 2
+      labelStep = range < 15 ? 1 : 2;
+    } else {
+      labelStep = range <= 5 ? 0.5 : range <= 12 ? 1 : range <= 25 ? 2 : 5;
+    }
     const startValue = Math.floor(visualMin / labelStep) * labelStep;
     const endValue = Math.ceil(visualMax / labelStep) * labelStep + labelStep;
     for (let val = startValue; val <= endValue; val += labelStep) {
@@ -484,7 +507,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         labels.push({ value: Math.round(val * 100) / 100, y });
       }
     }
-    return labels.length > 8 ? labels.filter((_, i) => i % Math.ceil(labels.length / 8) === 0) : labels;
+    return labels.length > 12 ? labels.filter((_, i) => i % Math.ceil(labels.length / 10) === 0) : labels;
   })();
 
   // X-axis date labels

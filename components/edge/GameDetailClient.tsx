@@ -297,9 +297,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   const isFilteredEmpty = hasRealData && data.length === 0;
 
-  // Color theming: emerald for all chart types
+  // Color theming: emerald for line view, amber for price view
   const isPrice = effectiveViewMode === 'price';
-  const lineColor = '#34d399'; // emerald-400 for all views
+  const lineColor = isPrice ? '#fbbf24' : '#34d399';
 
   if (data.length === 0) {
     return (
@@ -622,8 +622,8 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="none" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
           <defs>
             <linearGradient id={`grad-${gameId}`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#34d399" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="#34d399" stopOpacity="0.02" />
+              <stop offset="0%" stopColor={lineColor} stopOpacity="0.25" />
+              <stop offset="100%" stopColor={lineColor} stopOpacity="0.02" />
             </linearGradient>
           </defs>
 

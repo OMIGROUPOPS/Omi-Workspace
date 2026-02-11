@@ -349,27 +349,27 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const minVal = Math.min(...values);
   const maxVal = Math.max(...values);
   const range = maxVal - minVal || 1;
-  // Tight Y-axis padding: 5-10% of data range
+  // Tight Y-axis padding: 3-5% of data range (Bloomberg-tight)
   let padding: number;
   if (isMLChart) {
-    padding = Math.max(range * 0.08, 5);
+    padding = Math.max(range * 0.05, 3);
   } else if (marketType === 'spread' || marketType === 'total') {
-    padding = 1.0;
+    padding = Math.max(range * 0.05, 0.2);
   } else {
-    padding = range * 0.1;
+    padding = Math.max(range * 0.05, 0.5);
   }
-  // Minimum visual range (small so chart stays tight to data)
-  const minVisualRange = isMLChart ? 15 : 3;
+  // Minimum visual range — just enough to avoid a flat line
+  const minVisualRange = isMLChart ? 10 : 1;
   if (range + 2 * padding < minVisualRange) {
     padding = (minVisualRange - range) / 2;
   }
 
   const width = 600;
-  const height = 300;
-  const paddingLeft = 42;
-  const paddingRight = 12;
-  const paddingTop = 14;
-  const paddingBottom = 28;
+  const height = 200;
+  const paddingLeft = 36;
+  const paddingRight = 6;
+  const paddingTop = 8;
+  const paddingBottom = 20;
   const chartWidth = width - paddingLeft - paddingRight;
   const chartHeight = height - paddingTop - paddingBottom;
 
@@ -527,9 +527,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const awayAbbr = awayTeam?.slice(0, 3).toUpperCase() || 'AW';
 
   return (
-    <div>
+    <div className="flex flex-col h-full">
       {/* Row 1: Chart title + time range + Line/Price toggle */}
-      <div className="flex items-center justify-between px-2 mb-0.5">
+      <div className="flex items-center justify-between px-1 flex-shrink-0">
         <div className="flex items-center gap-2">
           <span className="text-[11px] font-semibold text-zinc-300">{chartTitle}</span>
         </div>
@@ -549,7 +549,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       </div>
 
       {/* Row 2: Tracking pills + movement */}
-      <div className="flex items-center justify-between px-2 mb-1">
+      <div className="flex items-center justify-between px-1 flex-shrink-0">
         <div className="flex items-center gap-1.5">
           <span className="text-[8px] text-zinc-500 uppercase tracking-wider">Tracking</span>
           {!isProp && (
@@ -595,9 +595,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         </div>
       </div>
 
-      {/* Chart SVG — fixed height, step-line rendering */}
-      <div className="relative" style={{ height: '200px' }}>
-        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="xMidYMid meet" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
+      {/* Chart SVG — fills available space, step-line rendering */}
+      <div className="relative flex-1 min-h-0">
+        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="none" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
           <defs>
             <linearGradient id={`grad-${gameId}`} x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#34d399" stopOpacity="0.25" />
@@ -609,13 +609,13 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           {yLabels.map((label, i) => (
             <g key={i}>
               <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#333333" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.4" />
-              <text x={paddingLeft - 5} y={label.y + 4} textAnchor="end" fill="#a1a1aa" fontSize="12" fontFamily="monospace">{formatValue(label.value)}</text>
+              <text x={paddingLeft - 4} y={label.y + 3} textAnchor="end" fill="#a1a1aa" fontSize="10" fontFamily="monospace">{formatValue(label.value)}</text>
             </g>
           ))}
 
           {/* X-axis date labels */}
           {xLabels.map((label, i) => (
-            <text key={i} x={label.x} y={height - 4} textAnchor="middle" fill="#71717a" fontSize="11" fontFamily="monospace">{label.label}</text>
+            <text key={i} x={label.x} y={height - 2} textAnchor="middle" fill="#71717a" fontSize="9" fontFamily="monospace">{label.label}</text>
           ))}
 
           {/* Green gradient fill below step-line */}
@@ -660,7 +660,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         )}
       </div>
       {/* Legend */}
-      <div className="flex items-center justify-between px-2 py-0.5 text-[8px] text-zinc-500">
+      <div className="flex items-center justify-between px-1 flex-shrink-0 text-[8px] text-zinc-500">
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Open</span>
           <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full" style={{ backgroundColor: lineColor }}></span>Current</span>
@@ -2134,9 +2134,9 @@ export function GameDetailClient({
         </div>
 
         {/* Two-column: Chart (60%) + Ask Edge AI (40%) */}
-        <div className="flex border-b border-zinc-800/50" style={{ height: '280px' }}>
+        <div className="flex border-b border-zinc-800/50" style={{ height: '260px' }}>
           {/* Left: Chart */}
-          <div className="relative p-2" style={{ width: '60%' }}>
+          <div className="relative flex flex-col px-1 py-1" style={{ width: '60%' }}>
             <LineMovementChart
               gameId={gameData.id}
               selection={chartSelection}
@@ -2154,7 +2154,7 @@ export function GameDetailClient({
             {showLiveLock && <LiveLockOverlay />}
           </div>
           {/* Right: Ask Edge AI */}
-          <div style={{ width: '40%' }}>
+          <div className="h-full" style={{ width: '40%' }}>
             <AskEdgeAI activeMarket={activeMarket} activePeriod={activePeriod} />
           </div>
         </div>

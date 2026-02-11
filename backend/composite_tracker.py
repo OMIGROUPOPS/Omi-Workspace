@@ -92,10 +92,49 @@ def _calculate_fair_ml_from_book(
     return (implied_prob_to_american(adjusted_home), implied_prob_to_american(adjusted_away))
 
 
+def _calculate_fair_ml_from_book_3way(
+    book_ml_home: int, book_ml_draw: int, book_ml_away: int, composite_ml: float
+) -> tuple[int, int, int]:
+    """
+    3-way fair ML for soccer. Mirrors edgescout.ts calculateFairMLFromBook3Way.
+    Returns (fair_ml_home, fair_ml_draw, fair_ml_away).
+    """
+    def to_implied(odds: int) -> float:
+        return abs(odds) / (abs(odds) + 100) if odds < 0 else 100 / (odds + 100)
+
+    home_imp = to_implied(book_ml_home)
+    draw_imp = to_implied(book_ml_draw)
+    away_imp = to_implied(book_ml_away)
+    total = home_imp + draw_imp + away_imp
+    fair_home = home_imp / total
+    fair_draw = draw_imp / total
+    fair_away = away_imp / total
+
+    deviation = composite_ml * 100 - 50
+    shift = deviation * FAIR_LINE_ML_FACTOR
+    adj_home = fair_home + shift
+    adj_away = fair_away - shift
+    adj_draw = 1 - adj_home - adj_away
+
+    adj_home = max(0.02, adj_home)
+    adj_away = max(0.02, adj_away)
+    adj_draw = max(0.02, adj_draw)
+    s = adj_home + adj_away + adj_draw
+    adj_home /= s
+    adj_away /= s
+    adj_draw /= s
+
+    return (
+        implied_prob_to_american(adj_home),
+        implied_prob_to_american(adj_draw),
+        implied_prob_to_american(adj_away),
+    )
+
+
 def _extract_median_lines(game_data: dict) -> dict:
     """
     Extract median book lines from game_data bookmakers (Odds API format).
-    Returns {book_spread, book_total, book_ml_home, book_ml_away}.
+    Returns {book_spread, book_total, book_ml_home, book_ml_away, book_ml_draw}.
     """
     home_team = game_data.get("home_team", "")
     bookmakers = game_data.get("bookmakers", [])
@@ -104,6 +143,7 @@ def _extract_median_lines(game_data: dict) -> dict:
     total_lines = []
     ml_home_odds = []
     ml_away_odds = []
+    ml_draw_odds = []
 
     for bk in bookmakers:
         for market in bk.get("markets", []):
@@ -124,7 +164,9 @@ def _extract_median_lines(game_data: dict) -> dict:
                 for o in outcomes:
                     if o.get("name") == home_team:
                         ml_home_odds.append(o["price"])
-                    elif o.get("name") != "Draw":
+                    elif o.get("name") == "Draw":
+                        ml_draw_odds.append(o["price"])
+                    else:
                         ml_away_odds.append(o["price"])
 
     return {
@@ -132,6 +174,7 @@ def _extract_median_lines(game_data: dict) -> dict:
         "book_total": statistics.median(total_lines) if total_lines else None,
         "book_ml_home": round(statistics.median(ml_home_odds)) if ml_home_odds else None,
         "book_ml_away": round(statistics.median(ml_away_odds)) if ml_away_odds else None,
+        "book_ml_draw": round(statistics.median(ml_draw_odds)) if ml_draw_odds else None,
     }
 
 
@@ -194,18 +237,27 @@ class CompositeTracker:
                 book_total = book_lines["book_total"]
                 book_ml_home = book_lines["book_ml_home"]
                 book_ml_away = book_lines["book_ml_away"]
+                book_ml_draw = book_lines["book_ml_draw"]
+
+                is_soccer = "soccer" in sport_key
 
                 # 5. Calculate fair lines
                 fair_spread = None
                 fair_total = None
                 fair_ml_home = None
                 fair_ml_away = None
+                fair_ml_draw = None
 
                 if book_spread is not None and composite_spread is not None:
                     fair_spread = _calculate_fair_spread(book_spread, composite_spread)
                     fair_ml_home, fair_ml_away = _calculate_fair_ml(fair_spread, sport_key)
+                elif is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None and composite_ml is not None:
+                    # Soccer 3-way ML
+                    fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
+                        book_ml_home, book_ml_draw, book_ml_away, composite_ml
+                    )
                 elif book_ml_home is not None and book_ml_away is not None and composite_ml is not None:
-                    # No spread data — use book-anchored ML adjustment
+                    # No spread data — use book-anchored 2-way ML adjustment
                     fair_ml_home, fair_ml_away = _calculate_fair_ml_from_book(
                         book_ml_home, book_ml_away, composite_ml
                     )
@@ -214,7 +266,7 @@ class CompositeTracker:
                     fair_total = _calculate_fair_total(book_total, game_env_score)
 
                 # 6. Insert row
-                db.client.table("composite_history").insert({
+                row_data = {
                     "game_id": game_id,
                     "sport_key": sport_key,
                     "timestamp": now,
@@ -229,7 +281,12 @@ class CompositeTracker:
                     "book_total": book_total,
                     "book_ml_home": book_ml_home,
                     "book_ml_away": book_ml_away,
-                }).execute()
+                }
+                if fair_ml_draw is not None:
+                    row_data["fair_ml_draw"] = fair_ml_draw
+                if book_ml_draw is not None:
+                    row_data["book_ml_draw"] = book_ml_draw
+                db.client.table("composite_history").insert(row_data).execute()
 
                 games_processed += 1
 

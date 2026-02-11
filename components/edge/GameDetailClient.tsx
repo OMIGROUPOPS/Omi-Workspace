@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { formatOdds, formatSpread } from '@/lib/edge/utils/odds-math';
 import { isGameLive as checkGameLive } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, CEQConfidence, PythonPillarScores, PillarResult } from '@/lib/edge/engine/edgescout';
-import { calculateFairSpread, calculateFairTotal, calculateFairMoneyline, calculateFairMLFromBook, spreadToMoneyline, removeVig, SPORT_KEY_NUMBERS } from '@/lib/edge/engine/edgescout';
+import { calculateFairSpread, calculateFairTotal, calculateFairMoneyline, calculateFairMLFromBook, calculateFairMLFromBook3Way, spreadToMoneyline, removeVig, removeVig3Way, SPORT_KEY_NUMBERS } from '@/lib/edge/engine/edgescout';
 
 // ============================================================================
 // Constants
@@ -130,6 +130,7 @@ interface CompositeHistoryPoint {
   fair_total: number | null;
   fair_ml_home: number | null;
   fair_ml_away: number | null;
+  fair_ml_draw: number | null;
 }
 
 interface LineMovementChartProps {
@@ -154,6 +155,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const isSoccer = sportKey?.includes('soccer') ?? false;
   const [timeRange, setTimeRange] = useState<TimeRange>('ALL');
   const [compositeHistory, setCompositeHistory] = useState<CompositeHistoryPoint[]>([]);
+  const [visibleSoccerLines, setVisibleSoccerLines] = useState<Set<string>>(new Set(['home', 'draw', 'away']));
 
   // Fetch composite history for dynamic OMI fair line
   useEffect(() => {
@@ -191,6 +193,49 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     return homeTeam;
   };
 
+  // Helper: filter lineHistory by outcome name
+  const filterByOutcome = (target: string) => {
+    return (lineHistory || []).filter(snapshot => {
+      const bookMatch = snapshot.book_key === selectedBook || snapshot.book === selectedBook;
+      if (!bookMatch) return false;
+      if (!snapshot.outcome_type) return false;
+      const outcomeType = snapshot.outcome_type.toLowerCase();
+      const tgt = target.toLowerCase();
+      if (outcomeType === tgt) return true;
+      // Match generic 'home'/'away' outcome_type (from line_snapshots) to team names
+      if (outcomeType === 'home' && homeTeam && tgt === homeTeam.toLowerCase()) return true;
+      if (outcomeType === 'away' && awayTeam && tgt === awayTeam.toLowerCase()) return true;
+      if (outcomeType.includes(tgt) || tgt.includes(outcomeType)) return true;
+      const outcomeLast = outcomeType.split(/\s+/).pop();
+      const targetLast = tgt.split(/\s+/).pop();
+      return outcomeLast === targetLast;
+    });
+  };
+
+  // Helper: build data array from snapshots
+  const buildDataArray = (snapshots: any[]) => {
+    let arr = snapshots.map(s => ({
+      timestamp: new Date(s.snapshot_time),
+      value: marketType === 'moneyline' ? s.odds : s.line,
+    })).filter(d => d.value !== null && d.value !== undefined);
+    arr.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
+    if (timeRange !== 'ALL' && arr.length > 0) {
+      const now = new Date();
+      const hoursMap: Record<TimeRange, number> = { '30M': 0.5, '1H': 1, '3H': 3, '6H': 6, '24H': 24, 'ALL': 0 };
+      const cutoffTime = new Date(now.getTime() - hoursMap[timeRange] * 60 * 60 * 1000);
+      arr = arr.filter(d => d.timestamp >= cutoffTime);
+    }
+    return arr;
+  };
+
+  // Soccer 3-way ML: build separate data arrays for home/draw/away
+  const isSoccer3Way = isSoccer && marketType === 'moneyline';
+  const soccer3WayData = isSoccer3Way ? {
+    home: buildDataArray(filterByOutcome(homeTeam || 'home')),
+    draw: buildDataArray(filterByOutcome('Draw')),
+    away: buildDataArray(filterByOutcome(awayTeam || 'away')),
+  } : null;
+
   const filteredHistory = (lineHistory || []).filter(snapshot => {
     const bookMatch = snapshot.book_key === selectedBook || snapshot.book === selectedBook;
     if (!bookMatch) return false;
@@ -213,10 +258,14 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     return false;
   });
 
-  const hasRealData = filteredHistory.length > 0;
+  const hasRealData = filteredHistory.length > 0 || (soccer3WayData && (soccer3WayData.home.length > 0 || soccer3WayData.draw.length > 0 || soccer3WayData.away.length > 0));
   let data: { timestamp: Date; value: number }[] = [];
 
-  if (hasRealData) {
+  if (isSoccer3Way && soccer3WayData) {
+    // For soccer 3-way, primary data is the focused (trackingSide) line
+    const sideData = trackingSide === 'draw' ? soccer3WayData.draw : trackingSide === 'away' ? soccer3WayData.away : soccer3WayData.home;
+    data = sideData.length > 0 ? sideData : soccer3WayData.home;
+  } else if (hasRealData) {
     data = filteredHistory.map(snapshot => {
       let value: number;
       if (effectiveViewMode === 'price') { value = snapshot.odds; }
@@ -237,7 +286,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     }
   }
 
-  const isFilteredEmpty = hasRealData && filteredHistory.length > 0 && data.length === 0;
+  const isFilteredEmpty = hasRealData && data.length === 0;
 
   // Color theming: emerald for line mode, amber for price mode
   const isPrice = effectiveViewMode === 'price';
@@ -271,7 +320,11 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       let val: number | null = null;
       if (resolvedMarket === 'spread') val = pt.fair_spread;
       else if (resolvedMarket === 'total') val = pt.fair_total;
-      else if (resolvedMarket === 'moneyline') val = pt.fair_ml_home;
+      else if (resolvedMarket === 'moneyline') {
+        if (trackingSide === 'draw') val = pt.fair_ml_draw;
+        else if (trackingSide === 'away') val = pt.fair_ml_away;
+        else val = pt.fair_ml_home;
+      }
       if (val === null || val === undefined) return null;
       // Negate spread for away side tracking
       if (resolvedMarket === 'spread' && trackingSide === 'away') val = -val;
@@ -287,20 +340,28 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   if (chartOmiFairLine !== undefined) values.push(chartOmiFairLine);
   // Include all OMI fair line history points in Y-axis scaling
   for (const pt of omiFairLineData) values.push(pt.value);
+  // For soccer 3-way, include only visible lines in Y-axis bounds
+  if (soccer3WayData) {
+    const sideMap: Record<string, typeof soccer3WayData.home> = { home: soccer3WayData.home, draw: soccer3WayData.draw, away: soccer3WayData.away };
+    for (const [side, arr] of Object.entries(sideMap)) {
+      if (!visibleSoccerLines.has(side)) continue;
+      for (const pt of arr) values.push(pt.value);
+    }
+  }
   const minVal = Math.min(...values);
   const maxVal = Math.max(...values);
   const range = maxVal - minVal || 1;
-  // Tight Y-axis padding: fixed per market, with minimum range enforcement
+  // Tight Y-axis padding: 5-10% of data range
   let padding: number;
   if (isMLChart) {
-    padding = Math.max(range * 0.08, 10);
+    padding = Math.max(range * 0.08, 5);
   } else if (marketType === 'spread' || marketType === 'total') {
     padding = 1.0;
   } else {
     padding = range * 0.1;
   }
-  // Enforce minimum visual range so small moves don't look flat
-  const minVisualRange = isMLChart ? 50 : 3;
+  // Minimum visual range (small so chart stays tight to data)
+  const minVisualRange = isMLChart ? 15 : 3;
   if (range + 2 * padding < minVisualRange) {
     padding = (minVisualRange - range) / 2;
   }
@@ -321,6 +382,24 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   });
 
   const pathD = chartPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+
+  // Soccer 3-way: build chart points + paths for each outcome
+  const soccer3WayChartLines = soccer3WayData ? (() => {
+    const buildLine = (arr: { timestamp: Date; value: number }[]) => {
+      if (arr.length === 0) return { points: [] as typeof chartPoints, pathD: '' };
+      const pts = arr.map((d, i) => {
+        const normalizedY = (d.value - minVal + padding) / (range + 2 * padding);
+        const y = paddingTop + chartHeight - normalizedY * chartHeight;
+        return { x: paddingLeft + (i / Math.max(arr.length - 1, 1)) * chartWidth, y, value: d.value, timestamp: d.timestamp, index: i };
+      });
+      return { points: pts, pathD: pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ') };
+    };
+    return {
+      home: { ...buildLine(soccer3WayData.home), color: '#34d399', label: 'H' },   // emerald
+      draw: { ...buildLine(soccer3WayData.draw), color: '#fbbf24', label: 'D' },   // amber
+      away: { ...buildLine(soccer3WayData.away), color: '#22d3ee', label: 'A' },   // cyan
+    };
+  })() : null;
 
   const formatValue = (val: number) => {
     if (isMLChart) return val > 0 ? `+${Math.round(val)}` : `${Math.round(val)}`;
@@ -536,22 +615,71 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           {!isProp && (
             <div className="flex gap-0.5">
               <button
-                onClick={() => marketType === 'total' ? setTrackingSide('over') : setTrackingSide('home')}
+                onClick={() => {
+                  if (isSoccer3Way) {
+                    setVisibleSoccerLines(prev => {
+                      const next = new Set(prev);
+                      if (next.has('home')) { if (next.size > 1) next.delete('home'); }
+                      else { next.add('home'); }
+                      return next;
+                    });
+                    setTrackingSide('home');
+                  } else {
+                    marketType === 'total' ? setTrackingSide('over') : setTrackingSide('home');
+                  }
+                }}
                 className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
-                  (marketType === 'total' ? trackingSide === 'over' : trackingSide === 'home')
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300'
+                  isSoccer3Way
+                    ? (visibleSoccerLines.has('home')
+                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                      : 'bg-zinc-800 text-zinc-600 border border-zinc-700/30 line-through')
+                    : ((marketType === 'total' ? trackingSide === 'over' : trackingSide === 'home')
+                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                      : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300')
                 }`}
               >
                 {marketType === 'total' ? 'OVR' : homeAbbr}
               </button>
               {isSoccer && marketType === 'moneyline' && (
-                <button onClick={() => setTrackingSide('draw')} className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${trackingSide === 'draw' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50'}`}>DRW</button>
+                <button
+                  onClick={() => {
+                    setVisibleSoccerLines(prev => {
+                      const next = new Set(prev);
+                      if (next.has('draw')) { if (next.size > 1) next.delete('draw'); }
+                      else { next.add('draw'); }
+                      return next;
+                    });
+                    setTrackingSide('draw');
+                  }}
+                  className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
+                    visibleSoccerLines.has('draw')
+                      ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                      : 'bg-zinc-800 text-zinc-600 border border-zinc-700/30 line-through'
+                  }`}
+                >DRW</button>
               )}
               <button
-                onClick={() => marketType === 'total' ? setTrackingSide('under') : setTrackingSide('away')}
+                onClick={() => {
+                  if (isSoccer3Way) {
+                    setVisibleSoccerLines(prev => {
+                      const next = new Set(prev);
+                      if (next.has('away')) { if (next.size > 1) next.delete('away'); }
+                      else { next.add('away'); }
+                      return next;
+                    });
+                    setTrackingSide('away');
+                  } else {
+                    marketType === 'total' ? setTrackingSide('under') : setTrackingSide('away');
+                  }
+                }}
                 className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
-                  (marketType === 'total' ? trackingSide === 'under' : trackingSide === 'away')
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300'
+                  isSoccer3Way
+                    ? (visibleSoccerLines.has('away')
+                      ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
+                      : 'bg-zinc-800 text-zinc-600 border border-zinc-700/30 line-through')
+                    : ((marketType === 'total' ? trackingSide === 'under' : trackingSide === 'away')
+                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                      : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300')
                 }`}
               >
                 {marketType === 'total' ? 'UND' : awayAbbr}
@@ -576,7 +704,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           {/* Y-axis gridlines + labels */}
           {yLabels.map((label, i) => (
             <g key={i}>
-              <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#27272a" strokeWidth="0.5" opacity="0.5" />
+              <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#333333" strokeWidth="0.5" opacity="0.5" />
               <text x={paddingLeft - 5} y={label.y + 4} textAnchor="end" fill="#a1a1aa" fontSize="12" fontFamily="monospace">{formatValue(label.value)}</text>
             </g>
           ))}
@@ -602,12 +730,39 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
             </>
           )}
 
-          {/* Book line — 2px emerald/amber stroke */}
-          {chartPoints.length > 0 && (
+          {/* Book line(s) */}
+          {soccer3WayChartLines ? (
+            /* Soccer 3-way: render visible lines with focus highlight */
+            <>
+              {(['home', 'draw', 'away'] as const).map(side => {
+                const line = soccer3WayChartLines[side];
+                if (line.points.length === 0) return null;
+                if (!visibleSoccerLines.has(side)) return null;
+                const isFocused = side === trackingSide;
+                return (
+                  <g key={side}>
+                    <path d={line.pathD} fill="none" stroke={line.color} strokeWidth={isFocused ? '2' : '1.5'} strokeLinecap="round" strokeLinejoin="round" opacity={isFocused ? 1 : 0.7} />
+                    {/* Open dot */}
+                    <circle cx={line.points[0].x} cy={line.points[0].y} r={isFocused ? 3 : 2} fill="#34d399" stroke="#18181b" strokeWidth="1" />
+                    {/* Current dot */}
+                    <circle cx={line.points[line.points.length - 1].x} cy={line.points[line.points.length - 1].y} r={isFocused ? 3.5 : 2.5} fill={line.color} stroke="#18181b" strokeWidth="1" />
+                  </g>
+                );
+              })}
+              {/* Hover crosshair + dot (on focused line only) */}
+              {hoveredPoint && (
+                <>
+                  <line x1={hoveredPoint.x} y1={paddingTop} x2={hoveredPoint.x} y2={paddingTop + chartHeight} stroke="#52525b" strokeWidth="0.5" strokeDasharray="2 2" />
+                  <circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="4" fill={soccer3WayChartLines[trackingSide as 'home' | 'draw' | 'away']?.color || lineColor} stroke="#18181b" strokeWidth="1.5" />
+                </>
+              )}
+            </>
+          ) : chartPoints.length > 0 ? (
+            /* Standard 2-way: single book line */
             <>
               <path d={pathD} fill="none" stroke={lineColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              {/* Open dot — gray */}
-              <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="3" fill="#3f3f46" stroke="#52525b" strokeWidth="1" />
+              {/* Open dot — green */}
+              <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="3" fill="#34d399" stroke="#18181b" strokeWidth="1" />
               {/* Current dot — colored */}
               <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="3.5" fill={lineColor} stroke="#18181b" strokeWidth="1" />
               {/* Hover crosshair + dot */}
@@ -618,13 +773,27 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
                 </>
               )}
             </>
-          )}
+          ) : null}
         </svg>
         {hoveredPoint && (
-          <div className="absolute bg-zinc-800/95 border border-zinc-700/50 rounded px-2 py-1 text-[9px] pointer-events-none shadow-lg z-10" style={{ left: `${(hoveredPoint.x / width) * 100}%`, top: `${(hoveredPoint.y / height) * 100 - 8}%`, transform: 'translate(-50%, -100%)' }}>
-            <div className="font-semibold text-zinc-100 font-mono">{formatValue(hoveredPoint.value)}</div>
-            <div className="text-zinc-500">{hoveredPoint.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}</div>
+          <div className="absolute bg-zinc-800/95 border border-zinc-700/50 rounded px-2 py-0.5 text-[9px] pointer-events-none shadow-lg z-10 whitespace-nowrap" style={{ left: `${(hoveredPoint.x / width) * 100}%`, top: `${(hoveredPoint.y / height) * 100 - 8}%`, transform: 'translate(-50%, -100%)' }}>
+            <span className="font-semibold text-zinc-100 font-mono">{formatValue(hoveredPoint.value)}</span>
+            <span className="text-zinc-500 mx-1">/</span>
+            <span className="text-zinc-400">{hoveredPoint.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}, {hoveredPoint.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</span>
           </div>
+        )}
+      </div>
+      {/* Legend */}
+      <div className="flex items-center justify-center gap-3 px-2 py-0.5 text-[8px] text-zinc-500">
+        <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Open</span>
+        <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full" style={{ backgroundColor: lineColor }}></span>Current</span>
+        {hasOmiLine && <span className="flex items-center gap-1"><span className="inline-block w-3 border-t border-dashed border-cyan-400"></span>OMI Fair</span>}
+        {soccer3WayChartLines && (
+          <>
+            {visibleSoccerLines.has('home') && <span className="flex items-center gap-1"><span className="inline-block w-3 border-t-2" style={{ borderColor: '#34d399' }}></span>{homeTeam?.split(' ').pop()?.slice(0, 3).toUpperCase() || 'HM'}</span>}
+            {visibleSoccerLines.has('draw') && <span className="flex items-center gap-1"><span className="inline-block w-3 border-t-2" style={{ borderColor: '#fbbf24' }}></span>DRW</span>}
+            {visibleSoccerLines.has('away') && <span className="flex items-center gap-1"><span className="inline-block w-3 border-t-2" style={{ borderColor: '#22d3ee' }}></span>{awayTeam?.split(' ').pop()?.slice(0, 3).toUpperCase() || 'AW'}</span>}
+          </>
         )}
       </div>
     </div>
@@ -724,6 +893,7 @@ function OmiFairPricing({
   renderKey?: number;
 }) {
   const periodKey = PERIOD_MAP[activePeriod] || 'fullGame';
+  const isSoccerGame = sportKey?.includes('soccer') ?? false;
 
   // Collect all sportsbook data for this period (exclude pinnacle + exchanges)
   const allBooks = Object.entries(bookmakers)
@@ -761,20 +931,32 @@ function OmiFairPricing({
   // ML consensus: median of all book odds (needed before fair ML calc)
   const mlHomeOdds = allBooks.map(b => b.markets?.h2h?.home?.price).filter((v): v is number => v !== undefined);
   const mlAwayOdds = allBooks.map(b => b.markets?.h2h?.away?.price).filter((v): v is number => v !== undefined);
+  const mlDrawOdds = allBooks.map(b => b.markets?.h2h?.draw?.price).filter((v): v is number => v !== undefined);
   const consensusHomeML = calcMedian(mlHomeOdds);
   const consensusAwayML = calcMedian(mlAwayOdds);
+  const consensusDrawML = calcMedian(mlDrawOdds);
+
+  // 3-way fair ML for soccer (home/draw/away)
+  const omiFairML3Way = (isSoccerGame && pythonPillars && consensusHomeML !== undefined && consensusDrawML !== undefined && consensusAwayML !== undefined)
+    ? calculateFairMLFromBook3Way(consensusHomeML, consensusDrawML, consensusAwayML, pythonPillars.composite)
+    : null;
+
   // ML derived from fair spread for cross-market consistency; fallback to book-anchored adjustment
-  const omiFairML = omiFairSpread
-    ? spreadToMoneyline(omiFairSpread.fairLine, sportKey)
-    : (pythonPillars && consensusHomeML !== undefined && consensusAwayML !== undefined
-      ? calculateFairMLFromBook(consensusHomeML, consensusAwayML, pythonPillars.composite)
-      : (pythonPillars ? calculateFairMoneyline(pythonPillars.composite) : null));
+  const omiFairML = omiFairML3Way
+    ? { homeOdds: omiFairML3Way.homeOdds, awayOdds: omiFairML3Way.awayOdds }
+    : (omiFairSpread
+      ? spreadToMoneyline(omiFairSpread.fairLine, sportKey)
+      : (pythonPillars && consensusHomeML !== undefined && consensusAwayML !== undefined
+        ? calculateFairMLFromBook(consensusHomeML, consensusAwayML, pythonPillars.composite)
+        : (pythonPillars ? calculateFairMoneyline(pythonPillars.composite) : null)));
 
   // OMI fair ML implied probabilities (no-vig)
   const effectiveHomeML = omiFairML ? omiFairML.homeOdds : (consensusHomeML ?? undefined);
   const effectiveAwayML = omiFairML ? omiFairML.awayOdds : (consensusAwayML ?? undefined);
+  const effectiveDrawML = omiFairML3Way ? omiFairML3Way.drawOdds : (consensusDrawML ?? undefined);
   const omiFairHomeProb = effectiveHomeML !== undefined ? americanToImplied(effectiveHomeML) : undefined;
   const omiFairAwayProb = effectiveAwayML !== undefined ? americanToImplied(effectiveAwayML) : undefined;
+  const omiFairDrawProb = effectiveDrawML !== undefined ? americanToImplied(effectiveDrawML) : undefined;
 
   // Edge color by signed magnitude (positive = value, negative = no value)
   const getEdgeColor = (gap: number, market: ActiveMarket): string => {
@@ -842,7 +1024,7 @@ function OmiFairPricing({
     confidence: number; confColor: string;
   };
 
-  const [leftBlock, rightBlock]: [SideBlock, SideBlock] = (() => {
+  const sideBlocks: SideBlock[] = (() => {
     const noData: SideBlock = { label: '', fair: 'N/A', bookLine: '--', bookOdds: '--', edgePct: 0, edgePts: 0, edgeColor: 'text-zinc-500', contextLine: '', evLine: '', bookName: selBookName, hasData: false, confidence: 50, confColor: 'text-zinc-500' };
 
     if (activeMarket === 'spread') {
@@ -994,29 +1176,41 @@ function OmiFairPricing({
     }
     const bookHomeOdds = mlEffBook?.markets?.h2h?.home?.price;
     const bookAwayOdds = mlEffBook?.markets?.h2h?.away?.price;
+    const bookDrawOdds = mlEffBook?.markets?.h2h?.draw?.price;
     let vigPct = '--';
     let homeSignedGap = 0;
     let awaySignedGap = 0;
+    let drawSignedGap = 0;
     let bookHomeProb: number | undefined;
     let bookAwayProb: number | undefined;
-    if (bookHomeOdds !== undefined && bookAwayOdds !== undefined) {
+    let bookDrawProb: number | undefined;
+
+    // 3-way vig removal for soccer, 2-way for everything else
+    if (isSoccerGame && bookHomeOdds !== undefined && bookDrawOdds !== undefined && bookAwayOdds !== undefined) {
+      const stripped = removeVig3Way(bookHomeOdds, bookDrawOdds, bookAwayOdds);
+      vigPct = `${(stripped.vig * 100).toFixed(1)}%`;
+      bookHomeProb = stripped.fairHomeProb;
+      bookAwayProb = stripped.fairAwayProb;
+      bookDrawProb = stripped.fairDrawProb;
+      if (omiFairHomeProb !== undefined) homeSignedGap = Math.round((omiFairHomeProb - stripped.fairHomeProb) * 1000) / 10;
+      if (omiFairAwayProb !== undefined) awaySignedGap = Math.round((omiFairAwayProb - stripped.fairAwayProb) * 1000) / 10;
+      if (omiFairDrawProb !== undefined) drawSignedGap = Math.round((omiFairDrawProb - stripped.fairDrawProb) * 1000) / 10;
+    } else if (bookHomeOdds !== undefined && bookAwayOdds !== undefined) {
       const stripped = removeVig(bookHomeOdds, bookAwayOdds);
       vigPct = `${(stripped.vig * 100).toFixed(1)}%`;
       bookHomeProb = stripped.fairHomeProb;
       bookAwayProb = stripped.fairAwayProb;
-      // Positive = OMI thinks this side is MORE likely than book implies (value)
-      // Negative = OMI thinks this side is LESS likely than book implies (no value)
       if (omiFairHomeProb !== undefined) homeSignedGap = Math.round((omiFairHomeProb - stripped.fairHomeProb) * 1000) / 10;
       if (omiFairAwayProb !== undefined) awaySignedGap = Math.round((omiFairAwayProb - stripped.fairAwayProb) * 1000) / 10;
     }
 
     const homeEv = omiFairHomeProb !== undefined && bookHomeOdds !== undefined ? calcEV(omiFairHomeProb, bookHomeOdds) : 0;
     const awayEv = omiFairAwayProb !== undefined && bookAwayOdds !== undefined ? calcEV(omiFairAwayProb, bookAwayOdds) : 0;
+    const drawEv = omiFairDrawProb !== undefined && bookDrawOdds !== undefined ? calcEV(omiFairDrawProb, bookDrawOdds) : 0;
 
-    // ML confidence: use spread-derived implied probability (not raw composite)
-    // so confidence aligns with the fair ML odds
     const homeConf = omiFairHomeProb !== undefined ? Math.round(omiFairHomeProb * 100) : composite;
     const awayConf = omiFairAwayProb !== undefined ? Math.round(omiFairAwayProb * 100) : (100 - composite);
+    const drawConf = omiFairDrawProb !== undefined ? Math.round(omiFairDrawProb * 100) : 25;
     const homeAbbr = abbrev(gameData.homeTeam);
     const awayAbbr = abbrev(gameData.awayTeam);
 
@@ -1037,7 +1231,7 @@ function OmiFairPricing({
       return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)}%${ev > 0 ? ` | EV: +$${ev}/1K` : ''}`;
     };
 
-    return [
+    const blocks: SideBlock[] = [
       {
         label: awayAbbr, fair: effectiveAwayML !== undefined ? formatOdds(effectiveAwayML) : 'N/A',
         bookLine: bookAwayOdds !== undefined ? formatOdds(bookAwayOdds) : '--', bookOdds: vigPct,
@@ -1048,17 +1242,34 @@ function OmiFairPricing({
         rawBookOdds: bookAwayOdds, rawFairProb: omiFairAwayProb, rawBookProb: bookAwayProb,
         confidence: awayConf, confColor: getConfColor(awayConf),
       },
-      {
-        label: homeAbbr, fair: effectiveHomeML !== undefined ? formatOdds(effectiveHomeML) : 'N/A',
-        bookLine: bookHomeOdds !== undefined ? formatOdds(bookHomeOdds) : '--', bookOdds: vigPct,
-        edgePct: homeSignedGap, edgePts: 0, edgeColor: getEdgeColor(homeSignedGap, 'moneyline'),
-        contextLine: mkMLContext(homeAbbr, bookHomeProb, omiFairHomeProb, homeSignedGap),
-        evLine: mkMLEvLine(homeSignedGap, homeEv),
-        bookName: mlEffBookName, hasData: bookHomeOdds !== undefined, vigPct,
-        rawBookOdds: bookHomeOdds, rawFairProb: omiFairHomeProb, rawBookProb: bookHomeProb,
-        confidence: homeConf, confColor: getConfColor(homeConf),
-      },
     ];
+
+    // Insert draw block for soccer 3-way
+    if (isSoccerGame && bookDrawOdds !== undefined) {
+      blocks.push({
+        label: 'DRW', fair: effectiveDrawML !== undefined ? formatOdds(effectiveDrawML) : 'N/A',
+        bookLine: formatOdds(bookDrawOdds), bookOdds: vigPct,
+        edgePct: drawSignedGap, edgePts: 0, edgeColor: getEdgeColor(drawSignedGap, 'moneyline'),
+        contextLine: mkMLContext('Draw', bookDrawProb, omiFairDrawProb, drawSignedGap),
+        evLine: mkMLEvLine(drawSignedGap, drawEv),
+        bookName: mlEffBookName, hasData: true, vigPct,
+        rawBookOdds: bookDrawOdds, rawFairProb: omiFairDrawProb, rawBookProb: bookDrawProb,
+        confidence: drawConf, confColor: getConfColor(drawConf),
+      });
+    }
+
+    blocks.push({
+      label: homeAbbr, fair: effectiveHomeML !== undefined ? formatOdds(effectiveHomeML) : 'N/A',
+      bookLine: bookHomeOdds !== undefined ? formatOdds(bookHomeOdds) : '--', bookOdds: vigPct,
+      edgePct: homeSignedGap, edgePts: 0, edgeColor: getEdgeColor(homeSignedGap, 'moneyline'),
+      contextLine: mkMLContext(homeAbbr, bookHomeProb, omiFairHomeProb, homeSignedGap),
+      evLine: mkMLEvLine(homeSignedGap, homeEv),
+      bookName: mlEffBookName, hasData: bookHomeOdds !== undefined, vigPct,
+      rawBookOdds: bookHomeOdds, rawFairProb: omiFairHomeProb, rawBookProb: bookHomeProb,
+      confidence: homeConf, confColor: getConfColor(homeConf),
+    });
+
+    return blocks;
   })();
 
   // All books quick-scan with signed edge (positive = value)
@@ -1133,15 +1344,13 @@ function OmiFairPricing({
       <div className="mb-3 flex-shrink-0">
         <div className="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">OMI Fair Line</div>
         <div className="flex items-baseline gap-4" style={{ fontVariantNumeric: 'tabular-nums' }}>
-          <div>
-            <span className="text-[10px] text-zinc-500 mr-1">{leftBlock.label}</span>
-            <span className="text-[20px] font-bold font-mono text-cyan-400">{leftBlock.fair}</span>
-          </div>
-          <span className="text-zinc-600 text-[12px]">vs</span>
-          <div>
-            <span className="text-[10px] text-zinc-500 mr-1">{rightBlock.label}</span>
-            <span className="text-[20px] font-bold font-mono text-cyan-400">{rightBlock.fair}</span>
-          </div>
+          {sideBlocks.map((block, i) => (
+            <div key={i} className="flex items-baseline">
+              {i > 0 && <span className="text-zinc-600 text-[12px] mr-4">vs</span>}
+              <span className="text-[10px] text-zinc-500 mr-1">{block.label}</span>
+              <span className="text-[20px] font-bold font-mono text-cyan-400">{block.fair}</span>
+            </div>
+          ))}
         </div>
         <div className="text-[10px] text-zinc-500 mt-0.5">
           {hasPillars
@@ -1165,12 +1374,12 @@ function OmiFairPricing({
               if (lean === 'neutral') {
                 narrative = `No strong Over/Under lean (${totalConf}% conf). Fair total at ${omiFairTotal?.fairLine ?? 'N/A'}.`;
               } else {
-                const overEdge = leftBlock.edgePts;
+                const overEdge = sideBlocks[0].edgePts;
                 const absOverEdge = Math.abs(overEdge);
                 if (absOverEdge < 1.0) {
                   narrative = `Model leans ${lean} (${totalConf}% conf). ${selBookName} total is near fair value (${absOverEdge.toFixed(1)} pts from OMI).`;
                 } else {
-                  const evStr = leftBlock.evLine.includes('EV') ? leftBlock.evLine.split('|').pop()?.trim() || '' : '';
+                  const evStr = sideBlocks[0].evLine.includes('EV') ? sideBlocks[0].evLine.split('|').pop()?.trim() || '' : '';
                   narrative = `Model leans ${lean} (${totalConf}% conf). ${selBookName}: ${overEdge > 0 ? '+' : ''}${overEdge.toFixed(1)} pts edge${evStr ? `, ${evStr}` : ''}.`;
                 }
               }
@@ -1184,7 +1393,7 @@ function OmiFairPricing({
             const favored = homeImplied >= awayImplied ? homeAbbr : awayAbbr;
             const favoredPct = Math.max(homeImplied, awayImplied);
             const strength = favoredPct >= 70 ? 'strongly ' : favoredPct >= 60 ? '' : 'slightly ';
-            const favoredBlock = homeImplied >= awayImplied ? rightBlock : leftBlock;
+            const favoredBlock = homeImplied >= awayImplied ? sideBlocks[sideBlocks.length - 1] : sideBlocks[0];
             const edgeVal = favoredBlock.edgePct;
             const absEdge = Math.abs(edgeVal);
             if (absEdge < 5) {
@@ -1199,7 +1408,7 @@ function OmiFairPricing({
               narrative = `Near pick'em — ${homeAbbr}/${awayAbbr} (${comp}% conf). Look for line value vs consensus.`;
             } else {
               const favored = comp > 50 ? homeAbbr : awayAbbr;
-              const favoredBlock = comp > 50 ? rightBlock : leftBlock; // right=home, left=away
+              const favoredBlock = comp > 50 ? sideBlocks[sideBlocks.length - 1] : sideBlocks[0]; // last=home, first=away
               const edgeVal = favoredBlock.edgePts;
               const absEdge = Math.abs(edgeVal);
               if (absEdge < 1.0) {
@@ -1217,8 +1426,8 @@ function OmiFairPricing({
       </div>
 
       {/* Single-book comparison — two side-by-side blocks with edge story */}
-      <div key={`blocks-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`} className="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-1" style={{ fontVariantNumeric: 'tabular-nums', visibility: 'visible' as const, opacity: 1 }}>
-        {[leftBlock, rightBlock].map((block, blockIdx) => {
+      <div key={`blocks-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`} className={`grid grid-cols-1 gap-2 mb-1 ${sideBlocks.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-2'}`} style={{ fontVariantNumeric: 'tabular-nums', visibility: 'visible' as const, opacity: 1 }}>
+        {sideBlocks.map((block, blockIdx) => {
           const edgeVal = activeMarket === 'moneyline' ? block.edgePct : block.edgePts;
           const absEdge = Math.abs(edgeVal);
           const isPositiveEdge = edgeVal > 0;
@@ -1842,6 +2051,46 @@ export function GameDetailClient({
     return selectedBookMarkets.lineHistory?.[periodKey]?.[activeMarket] || [];
   };
 
+  // Append current book odds from cached_odds as the latest chart data point
+  // This ensures the chart always ends at the actual current book price, not stale snapshots
+  const getLineHistoryWithCurrentOdds = () => {
+    const base = getLineHistory();
+    const periodMapped = PERIOD_MAP[activePeriod] || 'fullGame';
+    const markets = bookmakers[selectedBook]?.marketGroups?.[periodMapped];
+    if (!markets) return base;
+
+    const now = new Date().toISOString();
+    const syntheticPoints: any[] = [];
+
+    if (activeMarket === 'moneyline' && markets.h2h) {
+      if (markets.h2h.home?.price !== undefined) {
+        syntheticPoints.push({ book_key: selectedBook, snapshot_time: now, outcome_type: gameData.homeTeam, odds: markets.h2h.home.price, line: 0 });
+      }
+      if (markets.h2h.away?.price !== undefined) {
+        syntheticPoints.push({ book_key: selectedBook, snapshot_time: now, outcome_type: gameData.awayTeam, odds: markets.h2h.away.price, line: 0 });
+      }
+      if (markets.h2h.draw?.price !== undefined) {
+        syntheticPoints.push({ book_key: selectedBook, snapshot_time: now, outcome_type: 'Draw', odds: markets.h2h.draw.price, line: 0 });
+      }
+    } else if (activeMarket === 'spread' && markets.spreads) {
+      if (markets.spreads.home?.line !== undefined) {
+        syntheticPoints.push({ book_key: selectedBook, snapshot_time: now, outcome_type: gameData.homeTeam, line: markets.spreads.home.line, odds: markets.spreads.home.price });
+      }
+      if (markets.spreads.away?.line !== undefined) {
+        syntheticPoints.push({ book_key: selectedBook, snapshot_time: now, outcome_type: gameData.awayTeam, line: markets.spreads.away.line, odds: markets.spreads.away.price });
+      }
+    } else if (activeMarket === 'total' && markets.totals) {
+      if (markets.totals.over?.price !== undefined) {
+        syntheticPoints.push({ book_key: selectedBook, snapshot_time: now, outcome_type: 'Over', line: markets.totals.line, odds: markets.totals.over.price });
+      }
+      if (markets.totals.under?.price !== undefined) {
+        syntheticPoints.push({ book_key: selectedBook, snapshot_time: now, outcome_type: 'Under', line: markets.totals.line, odds: markets.totals.under.price });
+      }
+    }
+
+    return [...base, ...syntheticPoints];
+  };
+
   // Lazy-load line history for non-full-game periods
   const handlePeriodChange = async (period: string) => {
     setActivePeriod(period);
@@ -1906,7 +2155,7 @@ export function GameDetailClient({
       <div
         className="hidden lg:grid h-full relative"
         style={{
-          gridTemplateRows: '36px auto minmax(180px, 1fr) auto',
+          gridTemplateRows: '36px minmax(0, 280px) minmax(180px, 1fr) auto',
           gridTemplateColumns: '1fr 1fr',
           gridTemplateAreas: `"header header" "chart chart" "pricing pricing" "analysis ceq"`,
           gap: '1px',
@@ -1932,7 +2181,7 @@ export function GameDetailClient({
         />
 
         {/* Combined tabs + chart — single full-width cell */}
-        <div className="bg-[#0a0a0a] p-2 relative flex flex-col" style={{ gridArea: 'chart', minHeight: '300px' }}>
+        <div className="bg-[#0a0a0a] p-2 relative flex flex-col" style={{ gridArea: 'chart', maxHeight: '280px' }}>
           {/* Market tabs + period sub-tabs */}
           <div className="flex items-center justify-between mb-1 flex-shrink-0">
             <div className="flex items-center gap-1">
@@ -1985,7 +2234,7 @@ export function GameDetailClient({
             <LineMovementChart
               gameId={gameData.id}
               selection={chartSelection}
-              lineHistory={getLineHistory()}
+              lineHistory={getLineHistoryWithCurrentOdds()}
               selectedBook={selectedBook}
               homeTeam={gameData.homeTeam}
               awayTeam={gameData.awayTeam}
@@ -2093,7 +2342,7 @@ export function GameDetailClient({
               <LineMovementChart
                 gameId={gameData.id}
                 selection={chartSelection}
-                lineHistory={getLineHistory()}
+                lineHistory={getLineHistoryWithCurrentOdds()}
                 selectedBook={selectedBook}
                 homeTeam={gameData.homeTeam}
                 awayTeam={gameData.awayTeam}

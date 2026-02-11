@@ -154,6 +154,63 @@ export function calculateFairMLFromBook(
 }
 
 /**
+ * Remove vig from 3-way odds (soccer: home/draw/away).
+ * All 3 implied probabilities sum to >100%; normalize to 100%.
+ */
+export function removeVig3Way(
+  homeOdds: number,
+  drawOdds: number,
+  awayOdds: number
+): { fairHomeProb: number; fairDrawProb: number; fairAwayProb: number; vig: number } {
+  const toImplied = (odds: number) =>
+    odds < 0 ? Math.abs(odds) / (Math.abs(odds) + 100) : 100 / (odds + 100);
+  const homeImplied = toImplied(homeOdds);
+  const drawImplied = toImplied(drawOdds);
+  const awayImplied = toImplied(awayOdds);
+  const total = homeImplied + drawImplied + awayImplied;
+  return {
+    fairHomeProb: homeImplied / total,
+    fairDrawProb: drawImplied / total,
+    fairAwayProb: awayImplied / total,
+    vig: total - 1,
+  };
+}
+
+/**
+ * 3-way book-anchored fair ML for soccer (home/draw/away).
+ * Composite adjustment shifts between home and away; draw absorbs residual.
+ */
+export function calculateFairMLFromBook3Way(
+  bookHomeOdds: number,
+  bookDrawOdds: number,
+  bookAwayOdds: number,
+  pillarComposite: number
+): { homeOdds: number; drawOdds: number; awayOdds: number } {
+  const { fairHomeProb, fairDrawProb, fairAwayProb } = removeVig3Way(bookHomeOdds, bookDrawOdds, bookAwayOdds);
+  const deviation = pillarComposite - 50;
+  const shift = deviation * FAIR_LINE_ML_FACTOR;
+  let adjHome = fairHomeProb + shift;
+  let adjAway = fairAwayProb - shift;
+  let adjDraw = 1 - adjHome - adjAway;
+  // Clamp all ≥ 2%
+  adjHome = Math.max(0.02, adjHome);
+  adjAway = Math.max(0.02, adjAway);
+  adjDraw = Math.max(0.02, adjDraw);
+  // Normalize to sum to 1.0
+  const sum = adjHome + adjAway + adjDraw;
+  adjHome /= sum; adjAway /= sum; adjDraw /= sum;
+  const probToAmerican = (prob: number) => {
+    if (prob >= 0.5) return Math.round(-100 * prob / (1 - prob));
+    return Math.round(100 * (1 - prob) / prob);
+  };
+  return {
+    homeOdds: probToAmerican(adjHome),
+    drawOdds: probToAmerican(adjDraw),
+    awayOdds: probToAmerican(adjAway),
+  };
+}
+
+/**
  * Derive fair moneyline from a fair spread using sport-specific conversion rates.
  * This ensures ML and spread tell the same story for the same game.
  * fairSpread is from the HOME perspective (negative = home favored).

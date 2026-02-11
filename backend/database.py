@@ -327,7 +327,22 @@ class Database:
                         outcome_type="away"
                     ):
                         saved += 1
-            
+                # Save draw ML (soccer 3-way)
+                if "draw" in markets["h2h"] and markets["h2h"]["draw"]:
+                    ml_draw = markets["h2h"]["draw"]
+                    if self.save_line_snapshot(
+                        game_id=game_id,
+                        sport=sport,
+                        market_type="moneyline",
+                        book_key=book_key,
+                        line=0,
+                        odds=ml_draw,
+                        implied_prob=american_to_implied_prob(ml_draw),
+                        market_period="full",
+                        outcome_type="Draw"
+                    ):
+                        saved += 1
+
             # Totals
             if "totals" in markets and "over" in markets["totals"]:
                 total = markets["totals"]["over"]
@@ -448,6 +463,20 @@ class Database:
                                 implied_prob=implied_prob_func(outcomes["away"]),
                                 market_period=period_key,
                                 outcome_type="away"
+                            ):
+                                saved += 1
+                        # Draw ML (soccer 3-way)
+                        if "draw" in outcomes and outcomes["draw"]:
+                            if self.save_line_snapshot(
+                                game_id=game_id,
+                                sport=sport,
+                                market_type="moneyline",
+                                book_key=book_key,
+                                line=0,
+                                odds=outcomes["draw"],
+                                implied_prob=implied_prob_func(outcomes["draw"]),
+                                market_period=period_key,
+                                outcome_type="Draw"
                             ):
                                 saved += 1
 

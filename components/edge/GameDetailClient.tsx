@@ -1211,10 +1211,10 @@ function OmiFairPricing({
   })();
 
   return (
-    <div className="bg-[#0a0a0a] p-3 flex flex-col" style={{ gridArea: 'pricing', minHeight: '300px', overflow: 'visible' }}>
+    <div className="bg-[#0a0a0a] px-3 py-2 flex flex-col" style={{ overflow: 'visible' }}>
       {/* OMI Fair Line — split display for both sides */}
-      <div className="mb-3 flex-shrink-0">
-        <div className="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">OMI Fair Line</div>
+      <div className="mb-1.5 flex-shrink-0">
+        <div className="text-[10px] text-zinc-500 uppercase tracking-widest mb-0.5">OMI Fair Line</div>
         <div className="flex items-baseline gap-4" style={{ fontVariantNumeric: 'tabular-nums' }}>
           {sideBlocks.map((block, i) => (
             <div key={i} className="flex items-baseline">
@@ -1229,12 +1229,10 @@ function OmiFairPricing({
             ? `Based on 6-pillar composite (${pythonPillars!.composite}) and market analysis`
             : `Based on market consensus (${allBooks.length} books)`}
         </div>
-        {pillarsAgoText && <div className="text-[10px] text-zinc-600 mt-0.5">{pillarsAgoText}</div>}
-        {/* Line movement notice */}
+        {pillarsAgoText && <div className="text-[10px] text-zinc-600">{pillarsAgoText}</div>}
         {lineMovementNotice && (
-          <div className="text-[10px] text-amber-400 mt-1">{lineMovementNotice}</div>
+          <div className="text-[10px] text-amber-400 mt-0.5">{lineMovementNotice}</div>
         )}
-        {/* Narrative one-liner — combining confidence + edge */}
         {(() => {
           const homeAbbr = abbrev(gameData.homeTeam);
           const awayAbbr = abbrev(gameData.awayTeam);
@@ -1293,12 +1291,12 @@ function OmiFairPricing({
           } else {
             narrative = `Comparing ${selBookName} against market consensus of ${allBooks.length} sportsbooks.`;
           }
-          return <div className="text-[12px] text-zinc-200 mt-1.5 leading-snug">{narrative}</div>;
+          return <div className="text-[11px] text-zinc-200 mt-1 leading-snug">{narrative}</div>;
         })()}
       </div>
 
       {/* Single-book comparison — two side-by-side blocks with edge story */}
-      <div key={`blocks-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`} className={`grid grid-cols-1 gap-2 mb-1 ${sideBlocks.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-2'}`} style={{ fontVariantNumeric: 'tabular-nums', visibility: 'visible' as const, opacity: 1 }}>
+      <div key={`blocks-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`} className={`grid grid-cols-1 gap-1.5 mb-1 ${sideBlocks.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-2'}`} style={{ fontVariantNumeric: 'tabular-nums', visibility: 'visible' as const, opacity: 1 }}>
         {sideBlocks.map((block, blockIdx) => {
           const edgeVal = activeMarket === 'moneyline' ? block.edgePct : block.edgePts;
           const absEdge = Math.abs(edgeVal);
@@ -1315,51 +1313,45 @@ function OmiFairPricing({
           })();
 
           return (
-            <div key={blockIdx} className={`rounded overflow-hidden border border-zinc-800 ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`} style={{ minHeight: '100px' }}>
+            <div key={blockIdx} className={`rounded overflow-hidden border border-zinc-800 ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`}>
               {/* Block header — team/side label */}
-              <div className="bg-zinc-900 px-3 py-1.5 border-b border-zinc-800">
-                <span className="text-[12px] font-bold text-zinc-100">{block.label}</span>
+              <div className="bg-zinc-900 px-2 py-1 border-b border-zinc-800">
+                <span className="text-[11px] font-bold text-zinc-100">{block.label}</span>
               </div>
               {/* Comparison: OMI Fair vs Book vs Edge vs Confidence */}
-              <div className="px-3 py-3">
-                <div className="flex items-end justify-between gap-2">
-                  {/* OMI Fair */}
+              <div className="px-2 py-1.5">
+                <div className="flex items-end justify-between gap-1.5">
                   <div>
-                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest mb-0.5">{hasPillars ? 'OMI Fair' : 'Consensus'}</div>
-                    <div className="text-[22px] font-bold font-mono text-cyan-400">{block.fair}</div>
+                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest">{hasPillars ? 'OMI Fair' : 'Consensus'}</div>
+                    <div className="text-[18px] font-bold font-mono text-cyan-400">{block.fair}</div>
                   </div>
-                  {/* Book line */}
                   <div className="text-right">
-                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest mb-0.5">{block.bookName}</div>
-                    <div className="text-[22px] font-bold font-mono text-zinc-100">{block.bookLine}</div>
+                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest">{block.bookName}</div>
+                    <div className="text-[18px] font-bold font-mono text-zinc-100">{block.bookLine}</div>
                   </div>
-                  {/* Edge */}
                   <div className="text-right">
-                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest mb-0.5">Edge</div>
-                    <div className={`text-[22px] font-bold font-mono ${block.edgeColor}`}>
+                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest">Edge</div>
+                    <div className={`text-[18px] font-bold font-mono ${block.edgeColor}`}>
                       {edgeDisplay}
                     </div>
                   </div>
-                  {/* Confidence */}
                   {hasPillars && (
                     <div className="text-right">
-                      <div className="text-[8px] text-zinc-500 uppercase tracking-widest mb-0.5">Conf</div>
-                      <div className={`text-[22px] font-bold font-mono ${block.confColor}`}>
+                      <div className="text-[8px] text-zinc-500 uppercase tracking-widest">Conf</div>
+                      <div className={`text-[18px] font-bold font-mono ${block.confColor}`}>
                         {block.confidence}%
                       </div>
                     </div>
                   )}
                 </div>
-                {/* Edge context line + EV */}
                 {block.contextLine && (
-                  <div className="mt-2 pt-2 border-t border-zinc-800/50">
-                    <div className="text-[11px] text-zinc-400">{block.contextLine}</div>
-                    {block.evLine && <div className={`text-[11px] font-medium ${block.edgeColor}`}>{block.evLine}</div>}
+                  <div className="mt-1 pt-1 border-t border-zinc-800/50">
+                    <div className="text-[10px] text-zinc-400">{block.contextLine}</div>
+                    {block.evLine && <div className={`text-[10px] font-medium ${block.edgeColor}`}>{block.evLine}</div>}
                   </div>
                 )}
-                {/* Juice */}
-                <div className="flex items-center justify-between mt-1.5">
-                  <span className="text-[10px] text-zinc-500 font-mono">
+                <div className="flex items-center justify-between mt-1">
+                  <span className="text-[9px] text-zinc-500 font-mono">
                     {activeMarket === 'moneyline' ? `Juice: ${block.bookOdds}` : `Odds: ${block.bookOdds}`}
                   </span>
                 </div>
@@ -1371,8 +1363,8 @@ function OmiFairPricing({
 
       {/* All Books quick-scan row — with edge direction and best value */}
       {allBooksQuickScan.length > 1 && (
-        <div className="flex-shrink-0 border-t border-zinc-800/50 pt-1.5 pb-0">
-          <div className="flex items-center gap-2 mb-1">
+        <div className="flex-shrink-0 border-t border-zinc-800/50 pt-1 pb-0">
+          <div className="flex items-center gap-2 mb-0.5">
             <span className="text-[8px] text-zinc-600 uppercase tracking-widest">All Books</span>
             {bestValueBook && bestValueBook.signedEdge > (activeMarket === 'moneyline' ? 3 : 0.5) && (
               <span className="text-[10px] font-mono text-emerald-400 font-semibold">
@@ -1634,9 +1626,9 @@ function WhyThisPrice({
   ) : 'text-zinc-500';
 
   return (
-    <div className="bg-[#0a0a0a] p-2 h-full flex flex-col" style={{ gridArea: 'analysis' }}>
-      <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-2">Why This Price</span>
-      <div className="flex-1 min-h-0 overflow-auto">
+    <div className="bg-[#0a0a0a] px-2 py-1.5 flex flex-col">
+      <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-1">Why This Price</span>
+      <div>
         <PillarBarsCompact pythonPillars={pythonPillars} homeTeam={homeTeam} awayTeam={awayTeam} marketPillarScores={marketPillarScores} marketComposite={marketData?.composite} />
         {/* Generated pillar summary */}
         {pillarSummary.length > 0 && (
@@ -1706,7 +1698,7 @@ function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | 
   const ceqPillars = findCeqPillars();
   if (!ceqPillars) {
     return (
-      <div className="bg-[#0a0a0a] p-2 h-full flex items-center justify-center" style={{ gridArea: 'ceq' }}>
+      <div className="bg-[#0a0a0a] px-2 py-1.5 flex items-center justify-center">
         <span className="text-[10px] text-zinc-600">No CEQ factor data</span>
       </div>
     );
@@ -1784,9 +1776,9 @@ function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | 
   const strongest = [...scoredFactors].sort((a, b) => Math.abs(b.score - 50) - Math.abs(a.score - 50))[0];
 
   return (
-    <div className="bg-[#0a0a0a] p-2 h-full flex flex-col" style={{ gridArea: 'ceq' }}>
-      <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-2">CEQ Factors{activeMarket ? ` — ${activeMarket === 'moneyline' ? 'ML' : activeMarket.charAt(0).toUpperCase() + activeMarket.slice(1)}` : ''}</span>
-      <div className="flex-1 min-h-0 overflow-auto">
+    <div className="bg-[#0a0a0a] px-2 py-1.5 flex flex-col">
+      <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-1">CEQ Factors{activeMarket ? ` — ${activeMarket === 'moneyline' ? 'ML' : activeMarket.charAt(0).toUpperCase() + activeMarket.slice(1)}` : ''}</span>
+      <div>
         <div className="flex flex-col gap-0.5">
           {scoredFactors.map(f => {
             const wPct = Math.round(f.weight * 100);
@@ -1800,14 +1792,14 @@ function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | 
                   <span className={`text-[9px] font-mono w-5 text-right ${getTextColor(f.score)}`}>{f.score}</span>
                   <span className={`text-[8px] w-12 text-right ${getTextColor(f.score)}`}>{getStrength(f.score)}</span>
                 </div>
-                <div className="text-[10px] text-zinc-500 ml-[68px] leading-tight mb-0.5">{getDetailText(f.key, f.score)}</div>
+                <div className="text-[9px] text-zinc-500 ml-[68px] leading-tight">{getDetailText(f.key, f.score)}</div>
               </div>
             );
           })}
         </div>
         {/* Composite summary */}
-        <div className="mt-1.5 pt-1.5 border-t border-zinc-800/50">
-          <div className="text-[10px] text-zinc-400">
+        <div className="mt-1 pt-1 border-t border-zinc-800/50">
+          <div className="text-[9px] text-zinc-400">
             <span className="font-semibold text-zinc-300">CEQ COMPOSITE: {compositeAvg}%</span>
             {' — '}
             {compositeAvg >= 65 ? 'Market strongly validates thesis.'
@@ -2180,16 +2172,22 @@ export function GameDetailClient({
           renderKey={renderKey}
         />
 
-        <WhyThisPrice
-          pythonPillars={pythonPillarScores}
-          ceq={activeCeq}
-          homeTeam={gameData.homeTeam}
-          awayTeam={gameData.awayTeam}
-          activeMarket={activeMarket}
-          activePeriod={activePeriod}
-        />
-
-        <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
+        {/* Why This Price + CEQ Factors — side by side */}
+        <div className="flex border-t border-zinc-800/50">
+          <div className="w-1/2 border-r border-zinc-800/50">
+            <WhyThisPrice
+              pythonPillars={pythonPillarScores}
+              ceq={activeCeq}
+              homeTeam={gameData.homeTeam}
+              awayTeam={gameData.awayTeam}
+              activeMarket={activeMarket}
+              activePeriod={activePeriod}
+            />
+          </div>
+          <div className="w-1/2">
+            <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
+          </div>
+        </div>
       </div>
 
       {/* Mobile: Single-column scrollable fallback */}

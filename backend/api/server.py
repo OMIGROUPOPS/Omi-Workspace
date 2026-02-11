@@ -1120,37 +1120,6 @@ async def internal_edge_performance(
     )
 
 
-@app.get("/api/internal/soccer-debug")
-async def internal_soccer_debug():
-    """Diagnostic: check soccer data source availability."""
-    import os
-    result = {
-        "FOOTBALL_DATA_API_KEY_set": bool(os.getenv("FOOTBALL_DATA_API_KEY")),
-        "API_FOOTBALL_KEY_set": bool(os.getenv("API_FOOTBALL_KEY")),
-    }
-    try:
-        from pillars.execution import _football_data_available, _api_football_available
-        from pillars.execution import _football_data_import_error, _api_football_import_error
-        from pillars.execution import _get_soccer_data_source
-        result["execution_football_data_available"] = _football_data_available
-        result["execution_api_football_available"] = _api_football_available
-        result["execution_football_data_import_error"] = _football_data_import_error
-        result["execution_api_football_import_error"] = _api_football_import_error
-        result["execution_soccer_source"] = _get_soccer_data_source()
-    except Exception as e:
-        result["execution_import_error"] = str(e)
-    try:
-        from data_sources.football_data import _get_api_key, get_standings
-        result["football_data_api_key_at_runtime"] = bool(_get_api_key())
-        standings = get_standings("PL")
-        result["standings_teams"] = len(standings) if standings else 0
-        if standings:
-            result["sample_teams"] = list(standings.keys())[:5]
-    except Exception as e:
-        result["football_data_error"] = str(e)
-    return result
-
-
 @app.get("/api/internal/edge/reflection")
 async def internal_edge_reflection(sport: str = None):
     """Deep reflection analysis on prediction accuracy and pillar effectiveness."""

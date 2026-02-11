@@ -17,6 +17,9 @@ logger = logging.getLogger(__name__)
 
 from data_sources.espn import espn_client
 
+# Short sport keys that represent soccer but don't contain "soccer" in the name
+SOCCER_SHORT_KEYS = {"EPL"}
+
 # Try to import soccer data sources (optional - may not have API keys)
 # Priority: Football-Data.org (FOOTBALL_DATA_API_KEY) then API-Football (API_FOOTBALL_KEY)
 import os
@@ -226,7 +229,7 @@ def calculate_execution_score(
 
     # SOCCER-SPECIFIC: Use league standings and form
     # Match any soccer sport key (soccer_epl, soccer_england_efl_champ, etc.)
-    is_soccer_sport = sport and ("soccer" in sport.lower() or sport.lower().startswith("soccer"))
+    is_soccer_sport = sport and ("soccer" in sport.lower() or sport.upper() in SOCCER_SHORT_KEYS)
     soccer_adjustment = 0.0  # Initialize outside try block
     logger.info(f"[Execution] Sport check: sport={sport}, is_soccer={is_soccer_sport}, soccer_source={soccer_source}")
 

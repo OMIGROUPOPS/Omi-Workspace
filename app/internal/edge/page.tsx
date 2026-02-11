@@ -156,6 +156,7 @@ export default function EdgeInternalPage() {
           <option value="NHL">NHL</option>
           <option value="NCAAF">NCAAF</option>
           <option value="NCAAB">NCAAB</option>
+          <option value="EPL">EPL</option>
         </select>
 
         <select

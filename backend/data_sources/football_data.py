@@ -185,6 +185,8 @@ def get_standings_for_sport(sport_key: str) -> Optional[Dict[str, Any]]:
     # Map sport keys to Football-Data competition codes
     sport_to_competition = {
         "soccer_epl": "PL",                      # Premier League
+        "EPL": "PL",                             # Short key (from server/cron)
+        "SOCCER_EPL": "PL",                      # Uppercased Odds API key
         "soccer_england_efl_champ": "ELC",       # Championship
         "soccer_england_league1": "EL1",         # League One
         "soccer_england_league2": "EL2",         # League Two

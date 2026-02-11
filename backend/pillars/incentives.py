@@ -14,6 +14,9 @@ from data_sources.espn import espn_client
 
 logger = logging.getLogger(__name__)
 
+# Short sport keys that represent soccer but don't contain "soccer" in the name
+SOCCER_SHORT_KEYS = {"EPL"}
+
 RIVALRIES = {
     "NFL": [
         ("Dallas Cowboys", "Washington Commanders"),
@@ -278,7 +281,7 @@ def calculate_incentives_score(
     relegation_battle_alert = False
     soccer_motivation_adjustment = 0.0  # Direct adjustment to final score
     reasoning_parts = []  # Initialize early so soccer section can append
-    is_soccer_sport = sport and ("soccer" in sport.lower() or sport.lower().startswith("soccer"))
+    is_soccer_sport = sport and ("soccer" in sport.lower() or sport.upper() in SOCCER_SHORT_KEYS)
     logger.info(f"[Incentives] Sport check: sport={sport}, is_soccer={is_soccer_sport}, soccer_source={soccer_source}")
 
     if is_soccer_sport and soccer_source:

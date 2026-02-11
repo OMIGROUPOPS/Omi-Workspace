@@ -2133,10 +2133,10 @@ export function GameDetailClient({
           </div>
         </div>
 
-        {/* Two-column: Chart (60%) + Ask Edge AI (40%) */}
+        {/* Two-column: Chart (55%) + Ask Edge AI (45%) */}
         <div className="flex border-b border-zinc-800/50" style={{ height: '260px' }}>
           {/* Left: Chart */}
-          <div className="relative flex flex-col px-1 py-1" style={{ width: '60%' }}>
+          <div className="relative flex flex-col px-1 py-1" style={{ width: '55%' }}>
             <LineMovementChart
               gameId={gameData.id}
               selection={chartSelection}
@@ -2154,7 +2154,7 @@ export function GameDetailClient({
             {showLiveLock && <LiveLockOverlay />}
           </div>
           {/* Right: Ask Edge AI */}
-          <div className="h-full" style={{ width: '40%' }}>
+          <div className="h-full" style={{ width: '45%' }}>
             <AskEdgeAI activeMarket={activeMarket} activePeriod={activePeriod} />
           </div>
         </div>

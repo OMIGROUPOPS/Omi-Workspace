@@ -70,7 +70,7 @@ export default function LandingPage() {
               <h2 className="text-2xl font-semibold text-white mb-1">OMI Trading</h2>
               <p className="text-amber-400 text-sm font-medium mb-6">Automated Arbitrage Trading</p>
               <Link
-                href="/edge/trading"
+                href="/internal"
                 className="inline-flex px-6 py-3 bg-amber-600 text-white font-medium rounded-lg hover:bg-amber-700 transition-colors"
               >
                 Trading Bot

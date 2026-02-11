@@ -337,9 +337,11 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const currentValue = data[data.length - 1]?.value || baseValue;
   const movement = currentValue - openValue;
   const values = data.map(d => d.value);
-  if (chartOmiFairLine !== undefined) values.push(chartOmiFairLine);
-  // Include all OMI fair line history points in Y-axis scaling
-  for (const pt of omiFairLineData) values.push(pt.value);
+  // Only include OMI fair line in Y-axis scaling when NOT in price mode
+  if (!isPrice) {
+    if (chartOmiFairLine !== undefined) values.push(chartOmiFairLine);
+    for (const pt of omiFairLineData) values.push(pt.value);
+  }
   // For soccer 3-way single-select, only include tracked side in Y-axis bounds
   if (soccer3WayData) {
     const sideKey = trackingSide === 'draw' ? 'draw' : trackingSide === 'away' ? 'away' : 'home';
@@ -351,7 +353,10 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const range = maxVal - minVal || 1;
   // Tight Y-axis padding: 3-5% of data range (Bloomberg-tight)
   let padding: number;
-  if (isMLChart) {
+  if (isPrice) {
+    // Price mode: American odds (-110, -108, etc.) — tight padding
+    padding = Math.max(range * 0.05, 1);
+  } else if (isMLChart) {
     padding = Math.max(range * 0.05, 3);
   } else if (marketType === 'spread' || marketType === 'total') {
     padding = Math.max(range * 0.05, 0.2);
@@ -359,7 +364,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     padding = Math.max(range * 0.05, 0.5);
   }
   // Minimum visual range — just enough to avoid a flat line
-  const minVisualRange = isMLChart ? 10 : 1;
+  const minVisualRange = isPrice ? 4 : (isMLChart ? 10 : 1);
   if (range + 2 * padding < minVisualRange) {
     padding = (minVisualRange - range) / 2;
   }
@@ -623,8 +628,8 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
             <path d={gradientFillPath} fill={`url(#grad-${gameId})`} />
           )}
 
-          {/* OMI fair line — dashed cyan (dynamic or flat) */}
-          {omiPathD && (
+          {/* OMI fair line — dashed cyan (dynamic or flat) — Line view only */}
+          {!isPrice && omiPathD && (
             <>
               <path d={omiPathD} fill="none" stroke="#22d3ee" strokeWidth="1" strokeDasharray="4 3" opacity="0.7" />
               {omiChartPoints.length > 0 && (
@@ -664,7 +669,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Open</span>
           <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full" style={{ backgroundColor: lineColor }}></span>Current</span>
-          {hasOmiLine && <span className="flex items-center gap-1"><span className="inline-block w-3 border-t border-dashed border-cyan-400"></span>OMI Fair</span>}
+          {!isPrice && hasOmiLine && <span className="flex items-center gap-1"><span className="inline-block w-3 border-t border-dashed border-cyan-400"></span>OMI Fair</span>}
         </div>
         <span className="font-mono">{Math.abs(movement) > 0.05 ? `${Math.abs(isMLChart ? Math.round(movement) : Number(movement.toFixed(1)))} pts` : ''}</span>
       </div>

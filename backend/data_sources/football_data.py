@@ -11,10 +11,12 @@ import requests
 from typing import Optional, Dict, Any, List
 from datetime import datetime, timedelta
 
-FOOTBALL_DATA_API_KEY = os.getenv("FOOTBALL_DATA_API_KEY", "")
 BASE_URL = "https://api.football-data.org/v4"
 
-print(f"[football_data] Module loaded, API key set: {bool(FOOTBALL_DATA_API_KEY)}")
+
+def _get_api_key() -> str:
+    """Read API key fresh each time (handles late-loaded env vars in Railway/Docker)."""
+    return os.getenv("FOOTBALL_DATA_API_KEY", "")
 
 # EPL team name mappings from Odds API names to Football-Data team IDs
 # Note: These IDs are for the 2024-25 EPL season
@@ -96,7 +98,7 @@ EPL_TEAM_MAPPINGS: Dict[str, int] = {
 def get_headers() -> Dict[str, str]:
     """Get headers for Football-Data API requests."""
     return {
-        "X-Auth-Token": FOOTBALL_DATA_API_KEY,
+        "X-Auth-Token": _get_api_key(),
         "Content-Type": "application/json"
     }
 
@@ -112,8 +114,8 @@ def get_standings(competition: str = "PL") -> Optional[Dict[str, Any]]:
     Returns:
         Dict with standings data or None if request fails
     """
-    if not FOOTBALL_DATA_API_KEY:
-        print("[FOOTBALL-DATA] No API key configured")
+    if not _get_api_key():
+        print("[FOOTBALL-DATA] No API key configured (FOOTBALL_DATA_API_KEY not set)")
         return None
 
     try:
@@ -226,8 +228,8 @@ def get_epl_matches(days_ahead: int = 7) -> Optional[List[Dict[str, Any]]]:
     Returns:
         List of match data or None if request fails
     """
-    if not FOOTBALL_DATA_API_KEY:
-        print("[FOOTBALL-DATA] No API key configured")
+    if not _get_api_key():
+        print("[FOOTBALL-DATA] No API key configured (FOOTBALL_DATA_API_KEY not set)")
         return None
 
     try:
@@ -282,8 +284,8 @@ def get_team_info(team_id: int) -> Optional[Dict[str, Any]]:
     Returns:
         Team data or None if request fails
     """
-    if not FOOTBALL_DATA_API_KEY:
-        print("[FOOTBALL-DATA] No API key configured")
+    if not _get_api_key():
+        print("[FOOTBALL-DATA] No API key configured (FOOTBALL_DATA_API_KEY not set)")
         return None
 
     try:

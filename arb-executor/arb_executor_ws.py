@@ -128,6 +128,11 @@ pm_slug_to_cache_keys: Dict[str, List[str]] = {}
 # Verified mappings
 VERIFIED_MAPS: Dict = {}
 
+# Signal file for hot-reload (written by auto_mapper.py)
+MAPPINGS_SIGNAL_FILE = os.path.join(os.path.dirname(__file__) or '.', 'mappings_updated.flag')
+_last_signal_check: float = 0
+SIGNAL_CHECK_INTERVAL = 60  # Check every 60 seconds
+
 # Statistics
 stats = {
     'k_ws_connected': False,
@@ -1338,12 +1343,88 @@ def print_spread_snapshot():
 
 
 # ============================================================================
+# HOT-RELOAD
+# ============================================================================
+
+async def check_and_reload_mappings(k_ws, pm_ws) -> bool:
+    """Check for signal file from auto_mapper.py and hot-reload mappings.
+    Returns True if mappings were reloaded."""
+    global VERIFIED_MAPS, _last_signal_check
+
+    now = time.time()
+    if now - _last_signal_check < SIGNAL_CHECK_INTERVAL:
+        return False
+    _last_signal_check = now
+
+    if not os.path.exists(MAPPINGS_SIGNAL_FILE):
+        return False
+
+    # Read and remove signal file
+    try:
+        with open(MAPPINGS_SIGNAL_FILE, "r") as f:
+            signal = json.load(f)
+        os.remove(MAPPINGS_SIGNAL_FILE)
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"[RELOAD] Bad signal file: {e}", flush=True)
+        try:
+            os.remove(MAPPINGS_SIGNAL_FILE)
+        except OSError:
+            pass
+        return False
+
+    prev_count = signal.get("prev_count", "?")
+    new_count = signal.get("new_count", "?")
+    added = signal.get("added_games", [])
+    print(f"\n[RELOAD] Signal detected: {prev_count} -> {new_count} mappings", flush=True)
+    if added:
+        for g in added:
+            print(f"[RELOAD]   + {g}", flush=True)
+
+    # Reload mappings from disk
+    old_keys = set(VERIFIED_MAPS.keys())
+    new_maps = load_verified_mappings()
+    if not new_maps:
+        print("[RELOAD] Failed to load new mappings, keeping old ones", flush=True)
+        return False
+
+    VERIFIED_MAPS = new_maps
+
+    # Rebuild ticker lookup tables
+    old_tickers = set(ticker_to_cache_key.keys())
+    old_slugs = set(pm_slug_to_cache_keys.keys())
+    build_ticker_mappings()
+    new_tickers = set(ticker_to_cache_key.keys())
+    new_slugs = set(pm_slug_to_cache_keys.keys())
+
+    print(f"[RELOAD] Mappings reloaded: {len(VERIFIED_MAPS)} games, {len(new_tickers)} tickers", flush=True)
+
+    # Subscribe to new tickers/slugs that weren't there before
+    added_tickers = sorted(new_tickers - old_tickers)
+    added_slugs = sorted(new_slugs - old_slugs)
+
+    if added_tickers:
+        print(f"[RELOAD] Subscribing to {len(added_tickers)} new Kalshi tickers", flush=True)
+        await k_ws.subscribe(added_tickers)
+
+    if added_slugs:
+        print(f"[RELOAD] Subscribing to {len(added_slugs)} new PM slugs", flush=True)
+        await pm_ws.subscribe(added_slugs)
+
+    return True
+
+
+# ============================================================================
 # INITIALIZATION
 # ============================================================================
 
 def build_ticker_mappings():
     """Build mapping from Kalshi tickers to cache keys and PM slugs to cache keys"""
     global ticker_to_cache_key, cache_key_to_tickers, pm_slug_to_cache_keys
+
+    # Clear old mappings so reloads don't accumulate stale entries
+    ticker_to_cache_key = {}
+    cache_key_to_tickers = {}
+    pm_slug_to_cache_keys = {}
 
     # Use local time for date filtering (games are stored with local dates)
     # Include yesterday, today, and tomorrow to handle timezone edge cases
@@ -1550,6 +1631,7 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
             while not shutdown_requested:
                 log_status()
                 print_spread_snapshot()  # One-time snapshot after data loads
+                await check_and_reload_mappings(k_ws, pm_ws)
                 await asyncio.sleep(1)
         except KeyboardInterrupt:
             print("\n[SHUTDOWN] Received interrupt, stopping...")
@@ -1584,6 +1666,8 @@ def main():
                        help='Stop after N successful trades (0 = unlimited)')
     parser.add_argument('--clear-traded', action='store_true', dest='clear_traded',
                        help='Clear traded_games.json (use for new trading day)')
+    parser.add_argument('--max-positions', type=int, default=None, dest='max_positions',
+                       help='Max concurrent positions (default: 15)')
 
     args = parser.parse_args()
 

@@ -130,8 +130,8 @@ def _normalize_team_name(name: str) -> str:
 
 def _teams_match(search_name: str, standing_name: str) -> bool:
     """Check if two team names match, handling variations."""
-    search_lower = search_name.lower().strip()
-    standing_lower = standing_name.lower().strip()
+    search_lower = search_name.lower().strip().replace("&", "and")
+    standing_lower = standing_name.lower().strip().replace("&", "and")
 
     # Direct match
     if search_lower == standing_lower:

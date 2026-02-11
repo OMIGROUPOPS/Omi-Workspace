@@ -155,7 +155,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const isSoccer = sportKey?.includes('soccer') ?? false;
   const [timeRange, setTimeRange] = useState<TimeRange>('ALL');
   const [compositeHistory, setCompositeHistory] = useState<CompositeHistoryPoint[]>([]);
-  const [visibleSoccerLines, setVisibleSoccerLines] = useState<Set<string>>(new Set(['home', 'draw', 'away']));
+  // Soccer 3-way: single-select (one line at a time, toggle switches)
 
   // Fetch composite history for dynamic OMI fair line
   useEffect(() => {
@@ -340,13 +340,11 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   if (chartOmiFairLine !== undefined) values.push(chartOmiFairLine);
   // Include all OMI fair line history points in Y-axis scaling
   for (const pt of omiFairLineData) values.push(pt.value);
-  // For soccer 3-way, include only visible lines in Y-axis bounds
+  // For soccer 3-way single-select, only include tracked side in Y-axis bounds
   if (soccer3WayData) {
-    const sideMap: Record<string, typeof soccer3WayData.home> = { home: soccer3WayData.home, draw: soccer3WayData.draw, away: soccer3WayData.away };
-    for (const [side, arr] of Object.entries(sideMap)) {
-      if (!visibleSoccerLines.has(side)) continue;
-      for (const pt of arr) values.push(pt.value);
-    }
+    const sideKey = trackingSide === 'draw' ? 'draw' : trackingSide === 'away' ? 'away' : 'home';
+    const sideArr = soccer3WayData[sideKey as keyof typeof soccer3WayData];
+    for (const pt of sideArr) values.push(pt.value);
   }
   const minVal = Math.min(...values);
   const maxVal = Math.max(...values);
@@ -381,25 +379,17 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     return { x: paddingLeft + (i / Math.max(data.length - 1, 1)) * chartWidth, y, value: d.value, timestamp: d.timestamp, index: i };
   });
 
-  const pathD = chartPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+  // Step-line path: horizontal then vertical between each point (how sportsbook lines actually move)
+  const pathD = chartPoints.map((p, i) => {
+    if (i === 0) return `M ${p.x} ${p.y}`;
+    return `H ${p.x} V ${p.y}`;
+  }).join(' ');
 
-  // Soccer 3-way: build chart points + paths for each outcome
-  const soccer3WayChartLines = soccer3WayData ? (() => {
-    const buildLine = (arr: { timestamp: Date; value: number }[]) => {
-      if (arr.length === 0) return { points: [] as typeof chartPoints, pathD: '' };
-      const pts = arr.map((d, i) => {
-        const normalizedY = (d.value - minVal + padding) / (range + 2 * padding);
-        const y = paddingTop + chartHeight - normalizedY * chartHeight;
-        return { x: paddingLeft + (i / Math.max(arr.length - 1, 1)) * chartWidth, y, value: d.value, timestamp: d.timestamp, index: i };
-      });
-      return { points: pts, pathD: pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ') };
-    };
-    return {
-      home: { ...buildLine(soccer3WayData.home), color: '#34d399', label: 'H' },   // emerald
-      draw: { ...buildLine(soccer3WayData.draw), color: '#fbbf24', label: 'D' },   // amber
-      away: { ...buildLine(soccer3WayData.away), color: '#22d3ee', label: 'A' },   // cyan
-    };
-  })() : null;
+  // Gradient fill path: step-line path + close to bottom of chart area
+  const chartBottom = paddingTop + chartHeight;
+  const gradientFillPath = chartPoints.length >= 2
+    ? `${pathD} V ${chartBottom} H ${chartPoints[0].x} Z`
+    : null;
 
   const formatValue = (val: number) => {
     if (isMLChart) return val > 0 ? `+${Math.round(val)}` : `${Math.round(val)}`;
@@ -467,51 +457,6 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const omiLineY = hasOmiLine ? omiChartPoints[omiChartPoints.length - 1].y : null;
   const currentOmiFairValue = hasOmiLine ? omiChartPoints[omiChartPoints.length - 1].value : chartOmiFairLine;
 
-  // Convergence fill: area between book line and OMI fair line
-  // Build a closed polygon: book path forward → OMI path backward
-  const convergeFillPath = (() => {
-    if (!hasOmiLine || chartPoints.length < 2) return null;
-    // Forward: book line path
-    const bookForward = chartPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
-    // We need to interpolate OMI Y values at each book X position
-    const omiAtBookX = chartPoints.map(bp => {
-      // Find the two OMI points that bracket this X
-      if (omiChartPoints.length === 0) return bp.y;
-      if (bp.x <= omiChartPoints[0].x) return omiChartPoints[0].y;
-      if (bp.x >= omiChartPoints[omiChartPoints.length - 1].x) return omiChartPoints[omiChartPoints.length - 1].y;
-      for (let j = 0; j < omiChartPoints.length - 1; j++) {
-        if (bp.x >= omiChartPoints[j].x && bp.x <= omiChartPoints[j + 1].x) {
-          const frac = (bp.x - omiChartPoints[j].x) / (omiChartPoints[j + 1].x - omiChartPoints[j].x || 1);
-          return omiChartPoints[j].y + frac * (omiChartPoints[j + 1].y - omiChartPoints[j].y);
-        }
-      }
-      return omiChartPoints[omiChartPoints.length - 1].y;
-    });
-    // Backward: OMI values at book X positions, reversed
-    const omiBackward = [...omiAtBookX].reverse().map((y, i) => {
-      const bp = chartPoints[chartPoints.length - 1 - i];
-      return `L ${bp.x} ${y}`;
-    }).join(' ');
-    return `${bookForward} ${omiBackward} Z`;
-  })();
-
-  const isConverging = currentOmiFairValue !== undefined && chartPoints.length > 1
-    ? Math.abs(currentValue - currentOmiFairValue) < Math.abs(openValue - (hasOmiLine ? omiChartPoints[0].value : currentOmiFairValue))
-    : false;
-
-  // Convergence/divergence label
-  const convergenceLabel = (() => {
-    if (currentOmiFairValue === undefined || chartPoints.length < 2) return null;
-    const openOmiValue = hasOmiLine ? omiChartPoints[0].value : currentOmiFairValue;
-    const gapOpen = Math.abs(openValue - openOmiValue);
-    const gapCurrent = Math.abs(currentValue - currentOmiFairValue);
-    const diff = Math.abs(gapOpen - gapCurrent);
-    if (diff < (isMLChart ? 1 : 0.1)) return null;
-    if (isConverging) {
-      return { text: `Book moved ${isMLChart ? Math.round(diff) + ' odds pts' : diff.toFixed(1)} toward OMI`, color: 'text-emerald-400' };
-    }
-    return { text: `Book diverging from OMI fair value`, color: 'text-amber-400' };
-  })();
 
   // Y-axis labels
   const yLabels = (() => {
@@ -582,16 +527,11 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const awayAbbr = awayTeam?.slice(0, 3).toUpperCase() || 'AW';
 
   return (
-    <div className="h-full flex flex-col">
+    <div>
       {/* Row 1: Chart title + time range + Line/Price toggle */}
       <div className="flex items-center justify-between px-2 mb-0.5">
         <div className="flex items-center gap-2">
           <span className="text-[11px] font-semibold text-zinc-300">{chartTitle}</span>
-          {lineBadge && (
-            <span className="text-[9px] font-mono font-bold text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 rounded px-1.5 py-0">
-              @{lineBadge}
-            </span>
-          )}
         </div>
         <div className="flex items-center gap-1.5">
           <div className="flex rounded overflow-hidden border border-zinc-700/50">
@@ -615,79 +555,36 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           {!isProp && (
             <div className="flex gap-0.5">
               <button
-                onClick={() => {
-                  if (isSoccer3Way) {
-                    setVisibleSoccerLines(prev => {
-                      const next = new Set(prev);
-                      if (next.has('home')) { if (next.size > 1) next.delete('home'); }
-                      else { next.add('home'); }
-                      return next;
-                    });
-                    setTrackingSide('home');
-                  } else {
-                    marketType === 'total' ? setTrackingSide('over') : setTrackingSide('home');
-                  }
-                }}
+                onClick={() => marketType === 'total' ? setTrackingSide('over') : setTrackingSide('home')}
                 className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
-                  isSoccer3Way
-                    ? (visibleSoccerLines.has('home')
-                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                      : 'bg-zinc-800 text-zinc-600 border border-zinc-700/30 line-through')
-                    : ((marketType === 'total' ? trackingSide === 'over' : trackingSide === 'home')
-                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                      : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300')
+                  (marketType === 'total' ? trackingSide === 'over' : trackingSide === 'home')
+                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                    : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300'
                 }`}
               >
                 {marketType === 'total' ? 'OVR' : homeAbbr}
               </button>
               {isSoccer && marketType === 'moneyline' && (
                 <button
-                  onClick={() => {
-                    setVisibleSoccerLines(prev => {
-                      const next = new Set(prev);
-                      if (next.has('draw')) { if (next.size > 1) next.delete('draw'); }
-                      else { next.add('draw'); }
-                      return next;
-                    });
-                    setTrackingSide('draw');
-                  }}
+                  onClick={() => setTrackingSide('draw')}
                   className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
-                    visibleSoccerLines.has('draw')
-                      ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
-                      : 'bg-zinc-800 text-zinc-600 border border-zinc-700/30 line-through'
+                    trackingSide === 'draw'
+                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                      : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300'
                   }`}
                 >DRW</button>
               )}
               <button
-                onClick={() => {
-                  if (isSoccer3Way) {
-                    setVisibleSoccerLines(prev => {
-                      const next = new Set(prev);
-                      if (next.has('away')) { if (next.size > 1) next.delete('away'); }
-                      else { next.add('away'); }
-                      return next;
-                    });
-                    setTrackingSide('away');
-                  } else {
-                    marketType === 'total' ? setTrackingSide('under') : setTrackingSide('away');
-                  }
-                }}
+                onClick={() => marketType === 'total' ? setTrackingSide('under') : setTrackingSide('away')}
                 className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
-                  isSoccer3Way
-                    ? (visibleSoccerLines.has('away')
-                      ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
-                      : 'bg-zinc-800 text-zinc-600 border border-zinc-700/30 line-through')
-                    : ((marketType === 'total' ? trackingSide === 'under' : trackingSide === 'away')
-                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                      : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300')
+                  (marketType === 'total' ? trackingSide === 'under' : trackingSide === 'away')
+                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                    : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300'
                 }`}
               >
                 {marketType === 'total' ? 'UND' : awayAbbr}
               </button>
             </div>
-          )}
-          {convergenceLabel && (
-            <span className={`text-[8px] ${convergenceLabel.color}`}>{convergenceLabel.text}</span>
           )}
         </div>
         <div className="flex items-center gap-1.5 text-[10px] font-mono" style={{ fontVariantNumeric: 'tabular-nums' }}>
@@ -698,13 +595,20 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         </div>
       </div>
 
-      {/* Chart SVG */}
-      <div className="relative flex-1 min-h-0">
-        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="none" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
-          {/* Y-axis gridlines + labels */}
+      {/* Chart SVG — fixed height, step-line rendering */}
+      <div className="relative" style={{ height: '200px' }}>
+        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="xMidYMid meet" onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredPoint(null)}>
+          <defs>
+            <linearGradient id={`grad-${gameId}`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#34d399" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#34d399" stopOpacity="0.02" />
+            </linearGradient>
+          </defs>
+
+          {/* Y-axis gridlines + labels — horizontal dashed only */}
           {yLabels.map((label, i) => (
             <g key={i}>
-              <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#333333" strokeWidth="0.5" opacity="0.5" />
+              <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#333333" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.4" />
               <text x={paddingLeft - 5} y={label.y + 4} textAnchor="end" fill="#a1a1aa" fontSize="12" fontFamily="monospace">{formatValue(label.value)}</text>
             </g>
           ))}
@@ -714,10 +618,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
             <text key={i} x={label.x} y={height - 4} textAnchor="middle" fill="#71717a" fontSize="11" fontFamily="monospace">{label.label}</text>
           ))}
 
-          {/* Gap fill between OMI fair line and book line — THE story */}
-          {/* Suppress fill when ML gap is extreme (>200 pts) — just show both lines */}
-          {convergeFillPath && !(isMLChart && currentOmiFairValue !== undefined && Math.abs(currentValue - currentOmiFairValue) > 200) && (
-            <path d={convergeFillPath} fill={currentValue > (currentOmiFairValue ?? currentValue) ? 'rgba(16,185,129,0.22)' : 'rgba(239,68,68,0.18)'} />
+          {/* Green gradient fill below step-line */}
+          {gradientFillPath && (
+            <path d={gradientFillPath} fill={`url(#grad-${gameId})`} />
           )}
 
           {/* OMI fair line — dashed cyan (dynamic or flat) */}
@@ -730,37 +633,10 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
             </>
           )}
 
-          {/* Book line(s) */}
-          {soccer3WayChartLines ? (
-            /* Soccer 3-way: render visible lines with focus highlight */
+          {/* Book line — single step-line */}
+          {chartPoints.length > 0 && (
             <>
-              {(['home', 'draw', 'away'] as const).map(side => {
-                const line = soccer3WayChartLines[side];
-                if (line.points.length === 0) return null;
-                if (!visibleSoccerLines.has(side)) return null;
-                const isFocused = side === trackingSide;
-                return (
-                  <g key={side}>
-                    <path d={line.pathD} fill="none" stroke={line.color} strokeWidth={isFocused ? '2' : '1.5'} strokeLinecap="round" strokeLinejoin="round" opacity={isFocused ? 1 : 0.7} />
-                    {/* Open dot */}
-                    <circle cx={line.points[0].x} cy={line.points[0].y} r={isFocused ? 3 : 2} fill="#34d399" stroke="#18181b" strokeWidth="1" />
-                    {/* Current dot */}
-                    <circle cx={line.points[line.points.length - 1].x} cy={line.points[line.points.length - 1].y} r={isFocused ? 3.5 : 2.5} fill={line.color} stroke="#18181b" strokeWidth="1" />
-                  </g>
-                );
-              })}
-              {/* Hover crosshair + dot (on focused line only) */}
-              {hoveredPoint && (
-                <>
-                  <line x1={hoveredPoint.x} y1={paddingTop} x2={hoveredPoint.x} y2={paddingTop + chartHeight} stroke="#52525b" strokeWidth="0.5" strokeDasharray="2 2" />
-                  <circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="4" fill={soccer3WayChartLines[trackingSide as 'home' | 'draw' | 'away']?.color || lineColor} stroke="#18181b" strokeWidth="1.5" />
-                </>
-              )}
-            </>
-          ) : chartPoints.length > 0 ? (
-            /* Standard 2-way: single book line */
-            <>
-              <path d={pathD} fill="none" stroke={lineColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d={pathD} fill="none" stroke={lineColor} strokeWidth="2" />
               {/* Open dot — green */}
               <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="3" fill="#34d399" stroke="#18181b" strokeWidth="1" />
               {/* Current dot — colored */}
@@ -773,7 +649,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
                 </>
               )}
             </>
-          ) : null}
+          )}
         </svg>
         {hoveredPoint && (
           <div className="absolute bg-zinc-800/95 border border-zinc-700/50 rounded px-2 py-0.5 text-[9px] pointer-events-none shadow-lg z-10 whitespace-nowrap" style={{ left: `${(hoveredPoint.x / width) * 100}%`, top: `${(hoveredPoint.y / height) * 100 - 8}%`, transform: 'translate(-50%, -100%)' }}>
@@ -784,17 +660,13 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         )}
       </div>
       {/* Legend */}
-      <div className="flex items-center justify-center gap-3 px-2 py-0.5 text-[8px] text-zinc-500">
-        <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Open</span>
-        <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full" style={{ backgroundColor: lineColor }}></span>Current</span>
-        {hasOmiLine && <span className="flex items-center gap-1"><span className="inline-block w-3 border-t border-dashed border-cyan-400"></span>OMI Fair</span>}
-        {soccer3WayChartLines && (
-          <>
-            {visibleSoccerLines.has('home') && <span className="flex items-center gap-1"><span className="inline-block w-3 border-t-2" style={{ borderColor: '#34d399' }}></span>{homeTeam?.split(' ').pop()?.slice(0, 3).toUpperCase() || 'HM'}</span>}
-            {visibleSoccerLines.has('draw') && <span className="flex items-center gap-1"><span className="inline-block w-3 border-t-2" style={{ borderColor: '#fbbf24' }}></span>DRW</span>}
-            {visibleSoccerLines.has('away') && <span className="flex items-center gap-1"><span className="inline-block w-3 border-t-2" style={{ borderColor: '#22d3ee' }}></span>{awayTeam?.split(' ').pop()?.slice(0, 3).toUpperCase() || 'AW'}</span>}
-          </>
-        )}
+      <div className="flex items-center justify-between px-2 py-0.5 text-[8px] text-zinc-500">
+        <div className="flex items-center gap-3">
+          <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Open</span>
+          <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full" style={{ backgroundColor: lineColor }}></span>Current</span>
+          {hasOmiLine && <span className="flex items-center gap-1"><span className="inline-block w-3 border-t border-dashed border-cyan-400"></span>OMI Fair</span>}
+        </div>
+        <span className="font-mono">{Math.abs(movement) > 0.05 ? `${Math.abs(isMLChart ? Math.round(movement) : Number(movement.toFixed(1)))} pts` : ''}</span>
       </div>
     </div>
   );
@@ -1972,6 +1844,54 @@ function LiveLockOverlay() {
 }
 
 // ============================================================================
+// AskEdgeAI — placeholder chatbot panel (right column)
+// ============================================================================
+
+function AskEdgeAI({ activeMarket, activePeriod }: { activeMarket: string; activePeriod: string }) {
+  const periodLabels: Record<string, string> = { 'full': 'Full Game', '1h': '1st Half', '2h': '2nd Half', '1q': '1Q', '2q': '2Q', '3q': '3Q', '4q': '4Q' };
+  const marketLabels: Record<string, string> = { 'spread': 'Spread', 'total': 'Total', 'moneyline': 'Moneyline' };
+  const viewingLabel = `${periodLabels[activePeriod] || 'Full Game'} ${marketLabels[activeMarket] || activeMarket}`;
+
+  return (
+    <div className="flex flex-col h-full bg-[#0a0a0a] border-l border-zinc-800">
+      {/* Header */}
+      <div className="flex items-center justify-between px-3 py-2 border-b border-zinc-800/50">
+        <div className="flex items-center gap-1.5">
+          <span className="text-[13px]">&#10022;</span>
+          <span className="text-[12px] font-semibold text-zinc-200">Ask Edge AI</span>
+        </div>
+        <span className="text-[9px] text-zinc-500">Viewing: {viewingLabel}</span>
+      </div>
+      {/* Body */}
+      <div className="flex-1 px-3 py-3 overflow-y-auto">
+        <p className="text-[11px] text-zinc-400 mb-2">I can help you analyze:</p>
+        <ul className="text-[11px] text-zinc-500 space-y-1.5 mb-3">
+          <li className="flex items-start gap-1.5"><span className="text-zinc-600 mt-0.5">&#8226;</span>Line movement and why lines move</li>
+          <li className="flex items-start gap-1.5"><span className="text-zinc-600 mt-0.5">&#8226;</span>Edge calculations and what they mean</li>
+          <li className="flex items-start gap-1.5"><span className="text-zinc-600 mt-0.5">&#8226;</span>Sharp vs public money indicators</li>
+          <li className="flex items-start gap-1.5"><span className="text-zinc-600 mt-0.5">&#8226;</span>How to interpret our pillar scores</li>
+        </ul>
+        <p className="text-[11px] text-zinc-400">What would you like to know more about?</p>
+      </div>
+      {/* Input */}
+      <div className="px-3 pb-3 pt-1">
+        <div className="flex gap-1.5">
+          <input
+            type="text"
+            placeholder={`Ask about ${viewingLabel}...`}
+            className="flex-1 bg-zinc-900 border border-zinc-700/50 rounded px-2.5 py-1.5 text-[11px] text-zinc-300 placeholder-zinc-600 focus:outline-none focus:border-zinc-600"
+            disabled
+          />
+          <button className="px-3 py-1.5 bg-zinc-800 border border-zinc-700/50 rounded text-[11px] text-zinc-400 hover:text-zinc-200 transition-colors" disabled>
+            Ask
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
 // Main GameDetailClient Component — OMI Fair Pricing Layout
 // ============================================================================
 
@@ -2151,17 +2071,10 @@ export function GameDetailClient({
 
   return (
     <>
-      {/* Desktop: OMI Fair Pricing Grid */}
+      {/* Desktop: OMI Fair Pricing Layout */}
       <div
-        className="hidden lg:grid h-full relative"
-        style={{
-          gridTemplateRows: '36px minmax(0, 280px) minmax(180px, 1fr) auto',
-          gridTemplateColumns: '1fr 1fr',
-          gridTemplateAreas: `"header header" "chart chart" "pricing pricing" "analysis ceq"`,
-          gap: '1px',
-          background: '#27272a',
-          fontVariantNumeric: 'tabular-nums',
-        }}
+        className="hidden lg:block h-full relative overflow-y-auto"
+        style={{ background: '#0a0a0a', fontVariantNumeric: 'tabular-nums' }}
       >
         {/* Subtle scanline overlay */}
         <div className="pointer-events-none absolute inset-0 z-50" style={{
@@ -2169,68 +2082,69 @@ export function GameDetailClient({
           mixBlendMode: 'multiply',
         }} />
 
-        <TerminalHeader
-          awayTeam={gameData.awayTeam}
-          homeTeam={gameData.homeTeam}
-          commenceTime={gameData.commenceTime}
-          activeMarket={activeMarket}
-          selectedBook={selectedBook}
-          filteredBooks={filteredBooks}
-          onSelectBook={setSelectedBook}
-          isLive={isLive}
-        />
+        <div style={{ borderBottom: '1px solid #27272a' }}>
+          <TerminalHeader
+            awayTeam={gameData.awayTeam}
+            homeTeam={gameData.homeTeam}
+            commenceTime={gameData.commenceTime}
+            activeMarket={activeMarket}
+            selectedBook={selectedBook}
+            filteredBooks={filteredBooks}
+            onSelectBook={setSelectedBook}
+            isLive={isLive}
+          />
+        </div>
 
-        {/* Combined tabs + chart — single full-width cell */}
-        <div className="bg-[#0a0a0a] p-2 relative flex flex-col" style={{ gridArea: 'chart', maxHeight: '280px' }}>
-          {/* Market tabs + period sub-tabs */}
-          <div className="flex items-center justify-between mb-1 flex-shrink-0">
-            <div className="flex items-center gap-1">
-              {/* Market tabs */}
-              {(['spread', 'total', 'moneyline'] as ActiveMarket[])
-                .filter(m => m !== 'spread' || !isSoccerGame)
-                .map(m => (
-                  <button
-                    key={m}
-                    onClick={() => setActiveMarket(m)}
-                    className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
-                      activeMarket === m
-                        ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                        : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
-                    }`}
-                  >
-                    {m === 'spread' ? 'Spread' : m === 'total' ? 'Total' : 'Moneyline'}
-                  </button>
-                ))}
-              <span className="w-px h-4 bg-zinc-700/50 mx-1" />
-              {/* Period sub-tabs */}
-              {[
-                { key: 'full', label: 'Full' },
-                ...(availableTabs?.firstHalf ? [{ key: '1h', label: '1H' }] : []),
-                ...(availableTabs?.secondHalf ? [{ key: '2h', label: '2H' }] : []),
-                ...(availableTabs?.q1 ? [{ key: '1q', label: 'Q1' }] : []),
-                ...(availableTabs?.q2 ? [{ key: '2q', label: 'Q2' }] : []),
-                ...(availableTabs?.q3 ? [{ key: '3q', label: 'Q3' }] : []),
-                ...(availableTabs?.q4 ? [{ key: '4q', label: 'Q4' }] : []),
-                ...(availableTabs?.p1 ? [{ key: '1p', label: 'P1' }] : []),
-                ...(availableTabs?.p2 ? [{ key: '2p', label: 'P2' }] : []),
-                ...(availableTabs?.p3 ? [{ key: '3p', label: 'P3' }] : []),
-              ].map(tab => (
+        {/* Market tabs + period sub-tabs */}
+        <div className="flex items-center justify-between px-3 py-1.5 border-b border-zinc-800/50">
+          <div className="flex items-center gap-1">
+            {(['spread', 'total', 'moneyline'] as ActiveMarket[])
+              .filter(m => m !== 'spread' || !isSoccerGame)
+              .map(m => (
                 <button
-                  key={tab.key}
-                  onClick={() => handlePeriodChange(tab.key)}
-                  className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-colors ${
-                    activePeriod === tab.key
-                      ? 'bg-zinc-700 text-zinc-100'
-                      : 'text-zinc-600 hover:text-zinc-400'
+                  key={m}
+                  onClick={() => setActiveMarket(m)}
+                  className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
+                    activeMarket === m
+                      ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                      : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
                   }`}
                 >
-                  {tab.label}
+                  {m === 'spread' ? 'Spread' : m === 'total' ? 'Total' : 'Moneyline'}
                 </button>
               ))}
-            </div>
+            <span className="w-px h-4 bg-zinc-700/50 mx-1" />
+            {[
+              { key: 'full', label: 'Full' },
+              ...(availableTabs?.firstHalf ? [{ key: '1h', label: '1H' }] : []),
+              ...(availableTabs?.secondHalf ? [{ key: '2h', label: '2H' }] : []),
+              ...(availableTabs?.q1 ? [{ key: '1q', label: 'Q1' }] : []),
+              ...(availableTabs?.q2 ? [{ key: '2q', label: 'Q2' }] : []),
+              ...(availableTabs?.q3 ? [{ key: '3q', label: 'Q3' }] : []),
+              ...(availableTabs?.q4 ? [{ key: '4q', label: 'Q4' }] : []),
+              ...(availableTabs?.p1 ? [{ key: '1p', label: 'P1' }] : []),
+              ...(availableTabs?.p2 ? [{ key: '2p', label: 'P2' }] : []),
+              ...(availableTabs?.p3 ? [{ key: '3p', label: 'P3' }] : []),
+            ].map(tab => (
+              <button
+                key={tab.key}
+                onClick={() => handlePeriodChange(tab.key)}
+                className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-colors ${
+                  activePeriod === tab.key
+                    ? 'bg-zinc-700 text-zinc-100'
+                    : 'text-zinc-600 hover:text-zinc-400'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
-          {/* Chart fills remaining space */}
-          <div className="flex-1 min-h-0">
+        </div>
+
+        {/* Two-column: Chart (60%) + Ask Edge AI (40%) */}
+        <div className="flex border-b border-zinc-800/50" style={{ height: '280px' }}>
+          {/* Left: Chart */}
+          <div className="relative p-2" style={{ width: '60%' }}>
             <LineMovementChart
               gameId={gameData.id}
               selection={chartSelection}
@@ -2245,8 +2159,12 @@ export function GameDetailClient({
               omiFairLine={omiFairLineForChart}
               activeMarket={activeMarket}
             />
+            {showLiveLock && <LiveLockOverlay />}
           </div>
-          {showLiveLock && <LiveLockOverlay />}
+          {/* Right: Ask Edge AI */}
+          <div style={{ width: '40%' }}>
+            <AskEdgeAI activeMarket={activeMarket} activePeriod={activePeriod} />
+          </div>
         </div>
 
         <OmiFairPricing

@@ -23,6 +23,26 @@ logger = logging.getLogger(__name__)
 KALSHI_API_BASE = "https://api.elections.kalshi.com/trade-api/v2"
 POLYMARKET_API_BASE = "https://gamma-api.polymarket.com"
 
+# Kalshi sports series tickers: (series_ticker, market_type)
+# Each series = one sport + one market type. Events endpoint returns single-game events.
+KALSHI_SPORTS_SERIES = [
+    ("KXNBAGAME", "moneyline"),
+    ("KXNBASPREAD", "spread"),
+    ("KXNBATOTAL", "total"),
+    ("KXNFLGAME", "moneyline"),
+    ("KXNFLSPREAD", "spread"),
+    ("KXNFLTOTAL", "total"),
+    ("KXNCAAMBGAME", "moneyline"),
+    ("KXNCAAMBSPREAD", "spread"),
+    ("KXNCAAMBTOTAL", "total"),
+    ("KXNHLGAME", "moneyline"),
+    ("KXNHLSPREAD", "spread"),
+    ("KXNHLTOTAL", "total"),
+    ("KXEPLGAME", "moneyline"),
+    ("KXEPLSPREAD", "spread"),
+    ("KXEPLTOTAL", "total"),
+]
+
 # Keywords to identify sports markets from exchange titles/categories
 SPORTS_LEAGUE_KEYWORDS = [
     "nfl", "nba", "nhl", "mlb", "ncaaf", "ncaab", "nascar",
@@ -232,7 +252,13 @@ class ExchangeTracker:
     # =========================================================================
 
     def sync_kalshi(self) -> dict:
-        """Fetch sports markets from Kalshi and store in exchange_data."""
+        """Fetch single-game sports markets from Kalshi using the events endpoint.
+
+        Iterates known sports series tickers (KXNBAGAME, KXNBASPREAD, etc.)
+        and fetches events with nested markets. Each sub-market (team ML,
+        spread line, total line) is stored as a separate row with market_type
+        and subtitle for clean frontend grouping.
+        """
         if not db._is_connected():
             return {"error": "Database not connected", "markets_synced": 0, "errors": 0}
 
@@ -240,98 +266,134 @@ class ExchangeTracker:
         markets_synced = 0
         sports_matched = 0
         errors = 0
-        cursor = None
+        series_fetched = 0
 
-        try:
-            while True:
-                params: dict = {"status": "open", "limit": 200}
-                if cursor:
-                    params["cursor"] = cursor
+        for series_ticker, market_type in KALSHI_SPORTS_SERIES:
+            cursor = None
+            try:
+                while True:
+                    params: dict = {
+                        "series_ticker": series_ticker,
+                        "status": "open",
+                        "with_nested_markets": "true",
+                        "limit": 200,
+                    }
+                    if cursor:
+                        params["cursor"] = cursor
 
-                resp = requests.get(
-                    f"{KALSHI_API_BASE}/markets",
-                    params=params,
-                    timeout=30,
-                )
-                resp.raise_for_status()
-                data = resp.json()
+                    resp = requests.get(
+                        f"{KALSHI_API_BASE}/events",
+                        params=params,
+                        timeout=30,
+                    )
+                    resp.raise_for_status()
+                    data = resp.json()
 
-                markets = data.get("markets", [])
-                if not markets:
-                    break
+                    events = data.get("events", [])
+                    if not events:
+                        break
 
-                for m in markets:
-                    try:
-                        title = m.get("title", "") or m.get("subtitle", "")
-                        category = m.get("category", "")
-                        tags = m.get("tags", [])
+                    series_fetched += 1
 
-                        if not _is_sports_market(title, category, tags):
-                            continue
+                    for event in events:
+                        try:
+                            event_ticker = event.get("event_ticker", "")
+                            event_title = event.get("title", "")
 
-                        event_id = m.get("ticker", m.get("id", ""))
-                        yes_price = m.get("yes_price")  # already cents
-                        no_price = m.get("no_price")
-                        yes_bid = m.get("yes_bid")
-                        yes_ask = m.get("yes_ask")
-                        no_bid = m.get("no_bid")
-                        no_ask = m.get("no_ask")
-                        volume = m.get("volume")
-                        open_interest = m.get("open_interest")
-                        last_price = m.get("last_price")
-                        close_time = m.get("close_time") or m.get("expiration_time")
-                        status = m.get("status", "open")
-                        ticker = m.get("ticker", "")
+                            # Fuzzy match once per event
+                            game_id, sport_key = self._fuzzy_match_game(event_title)
 
-                        prev = self._get_previous_price(event_id, "kalshi")
-                        price_change = None
-                        if prev is not None and yes_price is not None:
-                            price_change = round(yes_price - prev, 2)
+                            nested_markets = event.get("markets", [])
+                            for m in nested_markets:
+                                try:
+                                    ticker = m.get("ticker", "")
+                                    status = m.get("status", "open")
+                                    if status != "active" and status != "open":
+                                        continue
 
-                        game_id, sport_key = self._fuzzy_match_game(title)
-                        if game_id:
-                            sports_matched += 1
+                                    yes_bid = m.get("yes_bid")
+                                    yes_ask = m.get("yes_ask")
+                                    no_bid = m.get("no_bid")
+                                    no_ask = m.get("no_ask")
+                                    last_price = m.get("last_price")
+                                    volume = m.get("volume")
+                                    open_interest = m.get("open_interest")
+                                    subtitle = m.get("yes_sub_title", "")
+                                    floor_strike = m.get("floor_strike")
 
-                        row = {
-                            "exchange": "kalshi",
-                            "event_id": event_id,
-                            "event_title": title,
-                            "contract_ticker": ticker,
-                            "yes_price": yes_price,
-                            "no_price": no_price,
-                            "yes_bid": yes_bid,
-                            "yes_ask": yes_ask,
-                            "no_bid": no_bid,
-                            "no_ask": no_ask,
-                            "volume": volume,
-                            "open_interest": open_interest,
-                            "last_price": last_price,
-                            "previous_yes_price": prev,
-                            "price_change": price_change,
-                            "snapshot_time": now,
-                            "mapped_game_id": game_id,
-                            "mapped_sport_key": sport_key,
-                            "expiration_time": close_time,
-                            "status": status,
-                        }
-                        db.client.table("exchange_data").insert(row).execute()
-                        markets_synced += 1
+                                    # Derive yes/no price from bid/ask midpoint
+                                    yes_price = None
+                                    no_price = None
+                                    if yes_bid is not None and yes_ask is not None:
+                                        yes_price = round((yes_bid + yes_ask) / 2, 1)
+                                    elif last_price is not None:
+                                        yes_price = last_price
+                                    if no_bid is not None and no_ask is not None:
+                                        no_price = round((no_bid + no_ask) / 2, 1)
+                                    elif yes_price is not None:
+                                        no_price = 100 - yes_price
 
-                    except Exception as e:
-                        logger.error(f"[ExchangeTracker] Kalshi market error: {e}")
-                        errors += 1
+                                    close_time = (
+                                        m.get("close_time")
+                                        or m.get("expiration_time")
+                                        or m.get("expected_expiration_time")
+                                    )
 
-                cursor = data.get("cursor")
-                if not cursor:
-                    break
+                                    prev = self._get_previous_price(event_ticker, "kalshi")
+                                    price_change = None
+                                    if prev is not None and yes_price is not None:
+                                        price_change = round(yes_price - prev, 2)
 
-        except requests.RequestException as e:
-            logger.error(f"[ExchangeTracker] Kalshi API error: {e}")
-            errors += 1
+                                    if game_id:
+                                        sports_matched += 1
+
+                                    row = {
+                                        "exchange": "kalshi",
+                                        "event_id": event_ticker,
+                                        "event_title": event_title,
+                                        "contract_ticker": ticker,
+                                        "market_type": market_type,
+                                        "subtitle": subtitle,
+                                        "yes_price": yes_price,
+                                        "no_price": no_price,
+                                        "yes_bid": yes_bid,
+                                        "yes_ask": yes_ask,
+                                        "no_bid": no_bid,
+                                        "no_ask": no_ask,
+                                        "volume": volume,
+                                        "open_interest": open_interest,
+                                        "last_price": last_price,
+                                        "previous_yes_price": prev,
+                                        "price_change": price_change,
+                                        "snapshot_time": now,
+                                        "mapped_game_id": game_id,
+                                        "mapped_sport_key": sport_key,
+                                        "expiration_time": close_time,
+                                        "status": status,
+                                    }
+                                    db.client.table("exchange_data").insert(row).execute()
+                                    markets_synced += 1
+
+                                except Exception as e:
+                                    logger.error(f"[ExchangeTracker] Kalshi market error ({ticker}): {e}")
+                                    errors += 1
+
+                        except Exception as e:
+                            logger.error(f"[ExchangeTracker] Kalshi event error: {e}")
+                            errors += 1
+
+                    cursor = data.get("cursor")
+                    if not cursor:
+                        break
+
+            except requests.RequestException as e:
+                logger.warning(f"[ExchangeTracker] Kalshi series {series_ticker}: {e}")
+                # Continue to next series even if one fails
 
         summary = {
             "markets_synced": markets_synced,
             "sports_matched": sports_matched,
+            "series_fetched": series_fetched,
             "errors": errors,
         }
         logger.info(f"[ExchangeTracker] Kalshi sync: {summary}")
@@ -571,11 +633,11 @@ class ExchangeTracker:
             )
             rows = result.data or []
 
-            # Deduplicate
+            # Deduplicate by contract_ticker (unique per sub-market)
             seen = set()
             deduped = []
             for row in rows:
-                key = (row["exchange"], row["event_id"])
+                key = (row["exchange"], row.get("contract_ticker") or row["event_id"])
                 if key not in seen:
                     seen.add(key)
                     deduped.append(row)

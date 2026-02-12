@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS exchange_data (
   event_id text NOT NULL,                    -- exchange-specific event identifier
   event_title text NOT NULL,                 -- human-readable title
   contract_ticker text,                      -- exchange contract ticker/slug
+  market_type text,                          -- 'moneyline', 'spread', 'total' (Kalshi)
+  subtitle text,                             -- sub-market description (team name, line, etc.)
   yes_price numeric,                         -- 0-100 cents
   no_price numeric,                          -- 0-100 cents
   yes_bid numeric,
@@ -37,7 +39,8 @@ CREATE INDEX idx_exchange_data_mapped_game
 -- RLS enabled but no policies = open access with service role key
 ALTER TABLE exchange_data ENABLE ROW LEVEL SECURITY;
 
--- Fast deduplicated query: latest snapshot per (exchange, event_id)
+-- Fast deduplicated query: latest snapshot per (exchange, contract_ticker)
+-- Uses contract_ticker to keep separate sub-markets (ML, spread, total) distinct
 CREATE OR REPLACE FUNCTION get_latest_exchange_markets(
   p_exchange text DEFAULT NULL,
   p_search text DEFAULT NULL,
@@ -46,12 +49,12 @@ CREATE OR REPLACE FUNCTION get_latest_exchange_markets(
 RETURNS SETOF exchange_data
 LANGUAGE sql STABLE
 AS $$
-  SELECT DISTINCT ON (exchange, event_id) *
+  SELECT DISTINCT ON (exchange, contract_ticker) *
   FROM exchange_data
-  WHERE status = 'open'
+  WHERE (status = 'open' OR status = 'active')
     AND (p_exchange IS NULL OR exchange = p_exchange)
     AND (p_search IS NULL OR event_title ILIKE '%' || p_search || '%')
-  ORDER BY exchange, event_id, snapshot_time DESC
+  ORDER BY exchange, contract_ticker, snapshot_time DESC
 $$;
 
 -- Wrapper that also sorts by volume and applies limit

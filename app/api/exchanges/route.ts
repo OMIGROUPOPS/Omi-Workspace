@@ -24,6 +24,8 @@ export interface ExchangeMarket {
   mapped_sport_key: string | null;
   expiration_time: string | null;
   status: string;
+  market_type: string | null;
+  subtitle: string | null;
 }
 
 export async function GET(request: Request) {

@@ -613,8 +613,54 @@ class InternalGrader:
         return {"purged": deleted, "games": len(game_ids), "created": created, "errors": errors}
 
     # ------------------------------------------------------------------
-    # Graded Games — one row per game × market, FD/DK side by side
+    # Graded Games — one row per game × market, per-book edge details
     # ------------------------------------------------------------------
+
+    @staticmethod
+    def _edge_signal(edge: float, market: str) -> str:
+        """Display signal tier based on edge size against a specific book."""
+        ae = abs(edge)
+        if market == "moneyline":
+            # ML edge is in implied-prob percentage points
+            if ae >= 8:
+                return "MISPRICED"
+            if ae >= 4:
+                return "VALUE"
+            if ae >= 2:
+                return "FAIR"
+            return "SHARP"
+        # Spread / total: edge in points
+        if ae >= 4:
+            return "MISPRICED"
+        if ae >= 2:
+            return "VALUE"
+        if ae >= 0.5:
+            return "FAIR"
+        return "SHARP"
+
+    def _book_call(self, market: str, edge: float, book_line: float,
+                   home: str, away: str) -> str:
+        """Build an actionable call string for one book.
+
+        For spreads the edge sign tells us the side:
+          edge > 0 (fair > book) → away side bet
+          edge < 0 (fair < book) → home side bet
+        """
+        bl = float(book_line)
+        if market == "spread":
+            if edge > 0:
+                # Bet away: away spread = -book_line
+                away_spread = -bl
+                sign = "+" if away_spread > 0 else ""
+                return f"{away} {sign}{away_spread:.1f}"
+            else:
+                sign = "+" if bl > 0 else ""
+                return f"{home} {sign}{bl:.1f}"
+        elif market == "total":
+            return f"{'Over' if edge > 0 else 'Under'} {bl:.1f}"
+        elif market == "moneyline":
+            return f"{'Home' if edge > 0 else 'Away'} ML"
+        return ""
 
     def get_graded_games(
         self,
@@ -625,10 +671,7 @@ class InternalGrader:
         days: int = 30,
         limit: int = 500,
     ) -> dict:
-        """Return graded predictions aggregated to one row per game×market.
-
-        Each row shows FD and DK lines side by side with best edge.
-        """
+        """Return graded predictions: one row per game×market, per-book edges."""
         cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
 
         # Pre-filter game_ids by commence_time if `since` is set
@@ -654,7 +697,6 @@ class InternalGrader:
         result = query.execute()
         rows = result.data or []
 
-        # Apply since filter
         if valid_game_ids is not None:
             rows = [r for r in rows if r.get("game_id") in valid_game_ids]
 
@@ -669,79 +711,66 @@ class InternalGrader:
             for g in (gr.data or []):
                 game_map[g["game_id"]] = g
 
-        # Group by (game_id, market_type) → aggregate FD/DK
-        groups: dict = {}  # key: (game_id, market_type)
+        # Group by (game_id, market_type)
+        groups: dict = {}
         for row in rows:
-            gid = row["game_id"]
-            mtype = row.get("market_type", "")
-            key = (gid, mtype)
+            key = (row["game_id"], row.get("market_type", ""))
             if key not in groups:
                 groups[key] = {"rows_by_book": {}, "first": row}
             book = row.get("book_name", "")
-            # Keep best (first = most recent) per book
             if book not in groups[key]["rows_by_book"]:
                 groups[key]["rows_by_book"][book] = row
 
-        # Build merged rows — one per game × market
+        # Build merged rows
         merged = []
         for (gid, mtype), grp in groups.items():
             game = game_map.get(gid, {})
             first = grp["first"]
-            fd = grp["rows_by_book"].get("fanduel")
-            dk = grp["rows_by_book"].get("draftkings")
+            fd_row = grp["rows_by_book"].get("fanduel")
+            dk_row = grp["rows_by_book"].get("draftkings")
 
             fair = first.get("omi_fair_line")
-            fd_line = fd.get("book_line") if fd else None
-            dk_line = dk.get("book_line") if dk else None
+            home = game.get("home_team", "?")
+            away = game.get("away_team", "?")
 
-            # Compute edges (skip if data error: abs > 15 for spread/total)
-            fd_edge = None
-            dk_edge = None
-            if fair is not None and fd_line is not None:
-                fd_edge = round(float(fair) - float(fd_line), 2)
-                if mtype in ("spread", "total") and abs(fd_edge) > 15:
-                    fd_edge = None  # data error
-            if fair is not None and dk_line is not None:
-                dk_edge = round(float(fair) - float(dk_line), 2)
-                if mtype in ("spread", "total") and abs(dk_edge) > 15:
-                    dk_edge = None  # data error
+            def _book_detail(brow):
+                """Extract per-book edge detail from a prediction_grades row."""
+                if brow is None or fair is None:
+                    return None
+                bl = brow.get("book_line")
+                if bl is None:
+                    return None
+                edge = round(float(fair) - float(bl), 2)
+                if mtype in ("spread", "total") and abs(edge) > 15:
+                    return None  # data error
+                return {
+                    "line": float(bl),
+                    "edge": edge,
+                    "signal": self._edge_signal(edge, mtype),
+                    "call": self._book_call(mtype, edge, bl, home, away),
+                    "side": brow.get("prediction_side", ""),
+                    "correct": brow.get("is_correct"),
+                }
+
+            fd = _book_detail(fd_row)
+            dk = _book_detail(dk_row)
 
             # Best edge
             best_edge = None
             best_book = None
-            if fd_edge is not None and dk_edge is not None:
-                if abs(fd_edge) >= abs(dk_edge):
-                    best_edge = fd_edge
-                    best_book = "FD"
+            if fd and dk:
+                if abs(fd["edge"]) >= abs(dk["edge"]):
+                    best_edge, best_book = fd["edge"], "FD"
                 else:
-                    best_edge = dk_edge
-                    best_book = "DK"
-            elif fd_edge is not None:
-                best_edge = fd_edge
-                best_book = "FD"
-            elif dk_edge is not None:
-                best_edge = dk_edge
-                best_book = "DK"
+                    best_edge, best_book = dk["edge"], "DK"
+            elif fd:
+                best_edge, best_book = fd["edge"], "FD"
+            elif dk:
+                best_edge, best_book = dk["edge"], "DK"
 
-            # Use the best-book row for verdict/side
-            best_row = (fd if best_book == "FD" else dk) or first
+            # Overall verdict from best-book row
+            best_row = (fd_row if best_book == "FD" else dk_row) or first
             is_correct = best_row.get("is_correct")
-            prediction_side = best_row.get("prediction_side", "")
-            actual_result = best_row.get("actual_result", "")
-            composite = first.get("pillar_composite")
-
-            # Build actionable call description
-            home = game.get("home_team", "?")
-            away = game.get("away_team", "?")
-            home_score = game.get("home_score")
-            away_score = game.get("away_score")
-            call = self._build_call(mtype, prediction_side, home, away, fair)
-            edge_desc = self._build_edge_desc(mtype, fd_edge, dk_edge)
-            result_desc = self._build_result_desc(
-                mtype, is_correct, home_score, away_score,
-                best_row.get("book_line"), prediction_side
-            )
-            signal = best_row.get("signal", "")
 
             row_out = {
                 "game_id": gid,
@@ -749,25 +778,18 @@ class InternalGrader:
                 "home_team": home,
                 "away_team": away,
                 "commence_time": game.get("commence_time", ""),
-                "home_score": home_score,
-                "away_score": away_score,
+                "home_score": game.get("home_score"),
+                "away_score": game.get("away_score"),
                 "market_type": mtype,
                 "omi_fair_line": fair,
-                "fd_line": fd_line,
-                "dk_line": dk_line,
-                "fd_edge": fd_edge,
-                "dk_edge": dk_edge,
+                "confidence_tier": first.get("confidence_tier"),
+                "pillar_composite": first.get("pillar_composite"),
                 "best_edge": best_edge,
                 "best_book": best_book,
-                "signal": signal,
-                "confidence_tier": first.get("confidence_tier"),
-                "pillar_composite": composite,
-                "prediction_side": prediction_side,
-                "actual_result": actual_result,
                 "is_correct": is_correct,
-                "call": call,
-                "edge_desc": edge_desc,
-                "result_desc": result_desc,
+                # Per-book details (null if book unavailable)
+                "fd": fd,
+                "dk": dk,
             }
             merged.append(row_out)
 
@@ -810,58 +832,6 @@ class InternalGrader:
             },
             "count": len(merged),
         }
-
-    # ------------------------------------------------------------------
-    # Helpers for actionable descriptions
-    # ------------------------------------------------------------------
-
-    def _build_call(self, market: str, side: str, home: str, away: str,
-                    fair_line: Optional[float]) -> str:
-        if fair_line is None:
-            return ""
-        fl = float(fair_line)
-        if market == "spread":
-            team = home if side == "home" else away
-            sign = "+" if fl > 0 else ""
-            return f"Take {team} {sign}{fl:.1f}"
-        elif market == "total":
-            direction = "Over" if side == "over" else "Under"
-            return f"{direction} {fl:.1f}"
-        elif market == "moneyline":
-            team = home if side == "home" else away
-            return f"{team} ML"
-        return ""
-
-    def _build_edge_desc(self, market: str, fd_edge: Optional[float],
-                         dk_edge: Optional[float]) -> str:
-        parts = []
-        unit = "%" if market == "moneyline" else "pts"
-        if fd_edge is not None:
-            parts.append(f"{abs(fd_edge):.1f}{unit} vs FD")
-        if dk_edge is not None:
-            parts.append(f"{abs(dk_edge):.1f}{unit} vs DK")
-        return ", ".join(parts)
-
-    def _build_result_desc(self, market: str, is_correct: Optional[bool],
-                           home_score: Optional[int], away_score: Optional[int],
-                           book_line: Optional[float], side: str) -> str:
-        if is_correct is None:
-            return "PUSH"
-        verdict = "WIN" if is_correct else "LOSS"
-        if home_score is None or away_score is None:
-            return verdict
-        if market == "spread" and book_line is not None:
-            actual_spread = home_score - away_score
-            margin = abs(actual_spread - float(book_line))
-            return f"{verdict} by {margin:.1f}"
-        elif market == "total" and book_line is not None:
-            actual_total = home_score + away_score
-            margin = abs(actual_total - float(book_line))
-            return f"{verdict} by {margin:.1f}"
-        elif market == "moneyline":
-            margin = abs(home_score - away_score)
-            return f"{verdict} by {margin}"
-        return verdict
 
     def _best_group(self, rows: list, field: str, min_sample: int = 5) -> Optional[dict]:
         """Find the group with the highest hit rate (min sample size)."""

@@ -46,6 +46,15 @@ interface PerformanceData {
   calibration: CalibrationPoint[];
 }
 
+interface BookDetail {
+  line: number;
+  edge: number;
+  signal: string;
+  call: string;
+  side: string;
+  correct: boolean | null;
+}
+
 interface GradedGameRow {
   game_id: string;
   sport_key: string;
@@ -56,21 +65,13 @@ interface GradedGameRow {
   away_score: number | null;
   market_type: string;
   omi_fair_line: number | null;
-  fd_line: number | null;
-  dk_line: number | null;
-  fd_edge: number | null;
-  dk_edge: number | null;
-  best_edge: number | null;
-  best_book: string | null;
-  signal: string;
   confidence_tier: number;
   pillar_composite: number | null;
-  prediction_side: string;
-  actual_result: string;
+  best_edge: number | null;
+  best_book: string | null;
   is_correct: boolean | null;
-  call: string;
-  edge_desc: string;
-  result_desc: string;
+  fd: BookDetail | null;
+  dk: BookDetail | null;
 }
 
 interface GradedGamesSummary {
@@ -298,8 +299,19 @@ export default function EdgeInternalPage() {
   const sortedRows = useMemo(() => {
     if (!gradedData?.rows) return [];
     return [...gradedData.rows].sort((a, b) => {
-      const aVal = a[sortField as keyof GradedGameRow];
-      const bVal = b[sortField as keyof GradedGameRow];
+      // Handle nested book fields like "fd.edge", "dk.edge"
+      let aVal: string | number | boolean | null | undefined;
+      let bVal: string | number | boolean | null | undefined;
+      if (sortField === "fd_edge") {
+        aVal = a.fd?.edge;
+        bVal = b.fd?.edge;
+      } else if (sortField === "dk_edge") {
+        aVal = a.dk?.edge;
+        bVal = b.dk?.edge;
+      } else {
+        aVal = a[sortField as keyof GradedGameRow] as string | number | boolean | null;
+        bVal = b[sortField as keyof GradedGameRow] as string | number | boolean | null;
+      }
       if (aVal == null && bVal == null) return 0;
       if (aVal == null) return 1;
       if (bVal == null) return -1;
@@ -946,17 +958,18 @@ export default function EdgeInternalPage() {
                         <th className="text-left px-3 py-2">Sport</th>
                         <SortHeader field="home_team" label="Matchup" />
                         <SortHeader field="market_type" label="Market" />
-                        <th className="text-right px-3 py-2">FD Line</th>
-                        <th className="text-right px-3 py-2">DK Line</th>
                         <th className="text-right px-3 py-2">OMI Fair</th>
                         <SortHeader
-                          field="best_edge"
-                          label="Best Edge"
-                          align="right"
+                          field="fd_edge"
+                          label="FD Edge"
+                          align="left"
                         />
-                        <th className="text-left px-3 py-2">Call</th>
+                        <SortHeader
+                          field="dk_edge"
+                          label="DK Edge"
+                          align="left"
+                        />
                         <th className="text-center px-3 py-2">Verdict</th>
-                        <SortHeader field="signal" label="Signal" />
                       </tr>
                     </thead>
                     <tbody>
@@ -1019,55 +1032,68 @@ export default function EdgeInternalPage() {
                             </span>
                           </td>
 
-                          {/* FD Line */}
-                          <td className="px-3 py-2.5 text-right font-mono text-xs text-zinc-300">
-                            {fmtLine(row.fd_line, row.market_type)}
-                          </td>
-
-                          {/* DK Line */}
-                          <td className="px-3 py-2.5 text-right font-mono text-xs text-zinc-300">
-                            {fmtLine(row.dk_line, row.market_type)}
-                          </td>
-
                           {/* OMI Fair */}
                           <td className="px-3 py-2.5 text-right font-mono text-xs text-cyan-400">
                             {fmtLine(row.omi_fair_line, row.market_type)}
                           </td>
 
-                          {/* Best Edge */}
-                          <td className="px-3 py-2.5 text-right font-mono text-xs">
-                            {row.best_edge != null ? (
-                              <span className="flex items-center justify-end gap-1.5">
-                                <span
-                                  className={
-                                    SIGNAL_COLORS[row.signal] ||
-                                    "text-zinc-400"
-                                  }
-                                >
-                                  {fmtEdge(row.best_edge, row.market_type)}
-                                </span>
-                                {row.best_book && (
-                                  <span className="px-1 py-px rounded text-[10px] bg-zinc-700 text-zinc-300">
-                                    {row.best_book}
+                          {/* FD Edge */}
+                          <td className="px-3 py-2.5 text-xs whitespace-nowrap">
+                            {row.fd ? (
+                              <div
+                                className={
+                                  row.fd.correct === true
+                                    ? "text-emerald-400"
+                                    : row.fd.correct === false
+                                      ? "text-red-400"
+                                      : "text-zinc-300"
+                                }
+                              >
+                                <div className="font-medium">
+                                  {row.fd.call}
+                                </div>
+                                <div className="flex items-center gap-1.5 mt-0.5">
+                                  <span className="font-mono">
+                                    {fmtEdge(row.fd.edge, row.market_type)}
                                   </span>
-                                )}
-                              </span>
+                                  <span
+                                    className={`text-[10px] font-mono font-bold ${SIGNAL_COLORS[row.fd.signal] || "text-zinc-500"}`}
+                                  >
+                                    {row.fd.signal}
+                                  </span>
+                                </div>
+                              </div>
                             ) : (
                               <span className="text-zinc-600">—</span>
                             )}
                           </td>
 
-                          {/* Call + Edge desc */}
-                          <td className="px-3 py-2.5 text-xs max-w-[220px]">
-                            {row.call ? (
-                              <>
-                                <div className="text-white font-medium truncate">
-                                  {row.call}
+                          {/* DK Edge */}
+                          <td className="px-3 py-2.5 text-xs whitespace-nowrap">
+                            {row.dk ? (
+                              <div
+                                className={
+                                  row.dk.correct === true
+                                    ? "text-emerald-400"
+                                    : row.dk.correct === false
+                                      ? "text-red-400"
+                                      : "text-zinc-300"
+                                }
+                              >
+                                <div className="font-medium">
+                                  {row.dk.call}
                                 </div>
-                                <div className="text-zinc-500 truncate">
-                                  {row.edge_desc}
+                                <div className="flex items-center gap-1.5 mt-0.5">
+                                  <span className="font-mono">
+                                    {fmtEdge(row.dk.edge, row.market_type)}
+                                  </span>
+                                  <span
+                                    className={`text-[10px] font-mono font-bold ${SIGNAL_COLORS[row.dk.signal] || "text-zinc-500"}`}
+                                  >
+                                    {row.dk.signal}
+                                  </span>
                                 </div>
-                              </>
+                              </div>
                             ) : (
                               <span className="text-zinc-600">—</span>
                             )}
@@ -1076,41 +1102,18 @@ export default function EdgeInternalPage() {
                           {/* Verdict */}
                           <td className="px-3 py-2.5 text-center">
                             {row.is_correct === true ? (
-                              <div>
-                                <span className="px-2 py-0.5 rounded text-xs font-bold bg-emerald-500/20 text-emerald-400">
-                                  WIN
-                                </span>
-                                {row.result_desc && (
-                                  <div className="text-[10px] text-zinc-500 mt-0.5">
-                                    {row.result_desc.replace("WIN ", "")}
-                                  </div>
-                                )}
-                              </div>
+                              <span className="px-2 py-0.5 rounded text-xs font-bold bg-emerald-500/20 text-emerald-400">
+                                WIN
+                              </span>
                             ) : row.is_correct === false ? (
-                              <div>
-                                <span className="px-2 py-0.5 rounded text-xs font-bold bg-red-500/20 text-red-400">
-                                  LOSS
-                                </span>
-                                {row.result_desc && (
-                                  <div className="text-[10px] text-zinc-500 mt-0.5">
-                                    {row.result_desc.replace("LOSS ", "")}
-                                  </div>
-                                )}
-                              </div>
+                              <span className="px-2 py-0.5 rounded text-xs font-bold bg-red-500/20 text-red-400">
+                                LOSS
+                              </span>
                             ) : (
                               <span className="px-2 py-0.5 rounded text-xs font-bold bg-yellow-500/20 text-yellow-400">
                                 PUSH
                               </span>
                             )}
-                          </td>
-
-                          {/* Signal */}
-                          <td className="px-3 py-2.5">
-                            <span
-                              className={`text-xs font-mono font-bold ${SIGNAL_COLORS[row.signal] || "text-zinc-500"}`}
-                            >
-                              {row.signal}
-                            </span>
                           </td>
                         </tr>
                       ))}

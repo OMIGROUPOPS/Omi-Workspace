@@ -1,8 +1,8 @@
 """
 OMI Edge - Internal Grader
 Enhanced grading with prediction_grades table for per-market/period/book granularity.
-Uses point-to-probability edge model: each point of OMI-vs-book disagreement ≈ 3% win
-probability, minus book juice.
+Edge model: each point of OMI-vs-book disagreement ≈ 3% win probability.
+Book odds are display-only — not used in edge math.
 """
 
 import math
@@ -100,23 +100,14 @@ def implied_to_american(prob: float) -> int:
     return int(100 * (1 - prob) / prob)
 
 
-def calc_edge_pct(fair_value: float, book_line: float, book_odds: int) -> float:
+def calc_edge_pct(fair_value: float, book_line: float) -> float:
     """Calculate edge as implied probability percentage.
 
-    Each point of OMI-vs-book disagreement ≈ 3% win probability.
-    Subtract book juice (how much above 50% the book charges) so that
-    a standard -110 line with minimal point difference reads as SHARP.
+    Industry standard: 1 point of spread/total difference ≈ 3% win probability.
+    Book odds are display-only and NOT used in edge math.
     """
     point_diff = abs(fair_value - book_line)
-    edge = point_diff * PROB_PER_POINT * 100  # percentage
-
-    # Subtract book juice
-    if book_odds and book_odds != 0:
-        book_implied = american_to_implied(book_odds)
-        juice = (book_implied - 0.50) * 100  # typically ~2.4% for -110
-        edge = max(0, edge - juice)
-
-    return round(edge, 1)
+    return round(point_diff * PROB_PER_POINT * 100, 1)
 
 
 def calc_fair_price(fair_value: float, book_line: float) -> int:
@@ -267,6 +258,9 @@ class InternalGrader:
                         books[book]["spread"]["home_odds"] = snap.get("odds")
                     elif outcome == "away":
                         books[book]["spread"]["away_odds"] = snap.get("odds")
+                        # If no home-perspective line yet, derive from away
+                        if books[book]["spread"]["line"] is None:
+                            books[book]["spread"]["line"] = -snap.get("line", 0)
 
                 elif mtype == "total":
                     if "total" not in books[book]:
@@ -380,8 +374,13 @@ class InternalGrader:
                     is_correct = None
 
                 # Edge as implied probability %
-                edge_pct = calc_edge_pct(fair_spread, book_spread, book_odds)
+                edge_pct = calc_edge_pct(fair_spread, book_spread)
                 signal = determine_signal(edge_pct)
+                logger.info(
+                    f"Edge: game={game_id} market=spread book={book_name} "
+                    f"fair={fair_spread:.2f} book_raw={book_spread} "
+                    f"diff={abs(fair_spread - book_spread):.2f} edge_pct={edge_pct}%"
+                )
 
                 self._upsert_prediction_grade({
                     "game_id": game_id,
@@ -425,8 +424,13 @@ class InternalGrader:
                 else:
                     actual_result = "over" if final_total > book_total else "under"
 
-                edge_pct = calc_edge_pct(fair_total, book_total, book_odds)
+                edge_pct = calc_edge_pct(fair_total, book_total)
                 signal = determine_signal(edge_pct)
+                logger.info(
+                    f"Edge: game={game_id} market=total book={book_name} "
+                    f"fair={fair_total:.2f} book_raw={book_total} "
+                    f"diff={abs(fair_total - book_total):.2f} edge_pct={edge_pct}%"
+                )
 
                 self._upsert_prediction_grade({
                     "game_id": game_id,
@@ -698,34 +702,33 @@ class InternalGrader:
 
     @staticmethod
     def _omi_fair_display(fair_value: float, mtype: str, home: str, away: str) -> str:
-        """Build OMI fair display string: 'O 242.5 (-134)' or 'Spurs +11.5 (-120)'."""
+        """Build OMI fair display string.
+
+        Spreads always shown from home team perspective: 'HOU -8.0'
+        Totals shown as direction from nearest half: 'O 242.5 (-106)'
+        """
         if fair_value is None:
             return "—"
 
-        # Find the nearest half-point as reference
         ref_half = round(fair_value * 2) / 2
-
-        # Calculate fair price at the nearest half-point using point-to-prob model
         fp = calc_fair_price(fair_value, ref_half)
 
         if mtype == "total":
-            direction = "O" if fair_value >= ref_half else "U"
             if abs(fair_value - ref_half) < 0.01:
                 return f"PK {ref_half:.1f}"
+            direction = "O" if fair_value > ref_half else "U"
             return f"{direction} {ref_half:.1f} ({fp:+d})" if fp != 0 else f"{direction} {ref_half:.1f}"
         elif mtype == "spread":
-            if abs(fair_value - ref_half) < 0.01:
-                sign = "+" if ref_half > 0 else ""
-                return f"PK {sign}{ref_half:.1f}"
-            if fair_value < ref_half:
-                sign = "+" if ref_half > 0 else ""
-                return f"{home} {sign}{ref_half:.1f} ({fp:+d})" if fp != 0 else f"{home} {sign}{ref_half:.1f}"
-            else:
-                away_half = -ref_half
-                sign = "+" if away_half > 0 else ""
-                return f"{away} {sign}{away_half:.1f} ({fp:+d})" if fp != 0 else f"{away} {sign}{away_half:.1f}"
+            # Always home team perspective — fair_value IS home spread
+            sign = "+" if fair_value > 0 else ""
+            return f"{home} {sign}{fair_value:.1f}"
         elif mtype == "moneyline":
-            return f"{fair_value:.1f}% ({fp:+d})" if fp != 0 else f"{fair_value:.1f}%"
+            fp_ml = implied_to_american(fair_value / 100) if fair_value > 0 else 0
+            if fp_ml < -ODDS_CAP:
+                fp_ml = -ODDS_CAP
+            elif fp_ml > ODDS_CAP:
+                fp_ml = ODDS_CAP
+            return f"{fair_value:.1f}% ({fp_ml:+d})" if fp_ml != 0 else f"{fair_value:.1f}%"
 
         return f"{fair_value:.1f}"
 
@@ -757,7 +760,7 @@ class InternalGrader:
             book_offer = f"{call_team} ML {book_odds:+d}"
         else:
             # Spread / Total: point-to-probability model
-            edge_pct = calc_edge_pct(float(fair), float(bl), book_odds)
+            edge_pct = calc_edge_pct(float(fair), float(bl))
             fp = calc_fair_price(float(fair), float(bl))
 
             if mtype == "total":

@@ -97,13 +97,30 @@ class DashboardPusher:
         if not self.url:
             return False
 
+        spreads = self._build_spreads()
+        trades = self._build_trades()
+        positions = self._build_positions()
+        balances = self._build_balances()
+        system = self._build_system()
+
         payload = {
-            "spreads": self._build_spreads(),
-            "trades": self._build_trades(),
-            "positions": self._build_positions(),
-            "balances": self._build_balances(),
-            "system": self._build_system(),
+            "spreads": spreads,
+            "trades": trades,
+            "positions": positions,
+            "balances": balances,
+            "system": system,
         }
+
+        # Debug: log payload summary every push
+        bal_k = balances.get("kalshi_balance", 0)
+        bal_p = balances.get("pm_balance", 0)
+        print(
+            f"[DASH] Push: {len(spreads)} spreads, {len(trades)} trades, "
+            f"{len(positions)} positions, bal K=${bal_k} PM=${bal_p}, "
+            f"{system.get('games_monitored', 0)} games, "
+            f"tickers_ref={len(self.ticker_to_cache_key)} books_ref={len(self.local_books)}",
+            flush=True,
+        )
 
         headers = {"Content-Type": "application/json"}
         if self.token:
@@ -113,9 +130,11 @@ class DashboardPusher:
             resp = requests.post(
                 self.url, json=payload, headers=headers, timeout=5
             )
+            if resp.status_code != 200:
+                print(f"[DASH] Push failed: {resp.status_code} {resp.text[:200]}", flush=True)
             return resp.status_code == 200
         except requests.RequestException as e:
-            logger.debug(f"Dashboard push failed: {e}")
+            print(f"[DASH] Push error: {e}", flush=True)
             return False
 
     # ── Spreads ────────────────────────────────────────────────────────────
@@ -231,8 +250,10 @@ class DashboardPusher:
                 trades = json.load(f)
 
             for t in trades:
-                filled = t.get("contracts_filled", 0)
-                if filled <= 0:
+                # Check individual platform fills (contracts_filled may be 0 if only one side filled)
+                kalshi_fill = t.get("kalshi_fill", 0)
+                pm_fill = t.get("pm_fill", 0)
+                if kalshi_fill <= 0 and pm_fill <= 0:
                     continue
 
                 status = t.get("status", "")
@@ -247,8 +268,6 @@ class DashboardPusher:
                 else:  # BUY_K_SELL_PM
                     pm_side, k_side = "SHORT", "LONG"
 
-                kalshi_fill = t.get("kalshi_fill", 0)
-                pm_fill = t.get("pm_fill", 0)
                 hedged = status in ("SUCCESS", "HEDGED") and t.get("hedged", False)
                 pair_id = f"{game_id}-{team}" if hedged else None
 

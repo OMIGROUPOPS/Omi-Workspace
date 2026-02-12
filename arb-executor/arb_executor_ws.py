@@ -114,8 +114,8 @@ STATUS_LOG_INTERVAL = 30  # Log status every 30 seconds
 # Structure: ticker -> {yes_bids: {price: size}, yes_asks: {price: size}, best_bid, best_ask, ...}
 local_books: Dict[str, Dict] = {}
 
-# Latest PM prices - updated by polling loop
-# Structure: cache_key -> {bid, ask, bid_size, ask_size, timestamp_ms, pm_slug, outcome_index}
+# Latest PM prices - updated by WebSocket
+# Structure: "{cache_key}_{team}" -> {bid, ask, bid_size, ask_size, timestamp_ms, pm_slug, outcome_index}
 pm_prices: Dict[str, Dict] = {}
 
 # Mapping from Kalshi ticker -> cache_key (for spread detection)
@@ -1374,7 +1374,7 @@ async def refresh_balances(session, kalshi_api, pm_api):
 # HOT-RELOAD
 # ============================================================================
 
-async def check_and_reload_mappings(k_ws, pm_ws) -> bool:
+async def check_and_reload_mappings(k_ws, pm_ws, pusher=None) -> bool:
     """Check for signal file from auto_mapper.py and hot-reload mappings.
     Returns True if mappings were reloaded."""
     global VERIFIED_MAPS, _last_signal_check
@@ -1417,6 +1417,10 @@ async def check_and_reload_mappings(k_ws, pm_ws) -> bool:
 
     VERIFIED_MAPS = new_maps
 
+    # Update pusher's reference to the new VERIFIED_MAPS (it was reassigned above)
+    if pusher:
+        pusher.verified_maps = VERIFIED_MAPS
+
     # Rebuild ticker lookup tables
     old_tickers = set(ticker_to_cache_key.keys())
     old_slugs = set(pm_slug_to_cache_keys.keys())
@@ -1450,9 +1454,10 @@ def build_ticker_mappings():
     global ticker_to_cache_key, cache_key_to_tickers, pm_slug_to_cache_keys
 
     # Clear old mappings so reloads don't accumulate stale entries
-    ticker_to_cache_key = {}
-    cache_key_to_tickers = {}
-    pm_slug_to_cache_keys = {}
+    # Use .clear() to preserve dict identity (pusher thread holds references)
+    ticker_to_cache_key.clear()
+    cache_key_to_tickers.clear()
+    pm_slug_to_cache_keys.clear()
 
     # Use local time for date filtering (games are stored with local dates)
     # Include yesterday, today, and tomorrow to handle timezone edge cases
@@ -1667,7 +1672,7 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
                 log_status()
                 print_spread_snapshot()  # One-time snapshot after data loads
                 await refresh_balances(session, kalshi_api, pm_api)
-                await check_and_reload_mappings(k_ws, pm_ws)
+                await check_and_reload_mappings(k_ws, pm_ws, pusher=pusher)
                 await asyncio.sleep(1)
         except KeyboardInterrupt:
             print("\n[SHUTDOWN] Received interrupt, stopping...")

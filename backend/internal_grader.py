@@ -422,11 +422,25 @@ class InternalGrader:
         days: int = 30,
         market: Optional[str] = None,
         confidence_tier: Optional[int] = None,
+        since: Optional[str] = None,
     ) -> dict:
         """
         Query prediction_grades and aggregate performance metrics.
+
+        Args:
+            since: Optional ISO date string. When provided, only include
+                   prediction_grades whose game commenced on or after this date.
+                   Used by the "Clean Data Only" toggle (since=2026-02-10).
         """
         cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+
+        # If `since` is provided, pre-filter to game_ids with commence_time >= since
+        valid_game_ids: Optional[set] = None
+        if since:
+            gr_result = self.client.table("game_results").select("game_id").gte(
+                "commence_time", since
+            ).execute()
+            valid_game_ids = {r["game_id"] for r in (gr_result.data or [])}
 
         query = self.client.table("prediction_grades").select("*").not_.is_(
             "graded_at", "null"
@@ -442,6 +456,10 @@ class InternalGrader:
         result = query.execute()
         rows = result.data or []
 
+        # Apply since filter if needed
+        if valid_game_ids is not None:
+            rows = [r for r in rows if r.get("game_id") in valid_game_ids]
+
         return {
             "total_predictions": len(rows),
             "days": days,
@@ -449,6 +467,7 @@ class InternalGrader:
                 "sport": sport,
                 "market": market,
                 "confidence_tier": confidence_tier,
+                "since": since,
             },
             "by_confidence_tier": self._aggregate_by_field(rows, "confidence_tier"),
             "by_market": self._aggregate_by_field(rows, "market_type"),

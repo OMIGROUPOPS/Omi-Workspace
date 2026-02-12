@@ -1230,6 +1230,7 @@ async def internal_edge_performance(
     days: int = 30,
     market: str = None,
     confidence_tier: int = None,
+    since: str = None,
 ):
     """Get Edge performance metrics from prediction_grades."""
     grader = InternalGrader()
@@ -1238,6 +1239,7 @@ async def internal_edge_performance(
         days,
         market,
         confidence_tier,
+        since,
     )
 
 

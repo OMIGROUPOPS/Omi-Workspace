@@ -40,11 +40,20 @@ interface PerformanceData {
   calibration: CalibrationPoint[];
 }
 
-function calibrationLabel(predicted: number, actual: number): { text: string; color: string } {
-  const diff = actual - predicted;
-  if (diff > 0) return { text: "Underconfident", color: "text-cyan-400" };
-  if (Math.abs(diff) <= 3) return { text: "Calibrated", color: "text-emerald-400" };
-  if (Math.abs(diff) <= 8) return { text: "Overconfident", color: "text-amber-400" };
+function calibrationLabel(
+  predicted: number,
+  actual: number,
+  sampleSize: number
+): { text: string; color: string } {
+  if (sampleSize < 20)
+    return { text: "Insufficient Data", color: "text-zinc-500" };
+  if (sampleSize < 50)
+    return { text: `Early (${actual.toFixed(1)}%)`, color: "text-zinc-400" };
+
+  const diff = Math.abs(actual - predicted);
+  if (diff <= 5) return { text: "Strong", color: "text-emerald-400" };
+  if (diff <= 10) return { text: "Good", color: "text-cyan-400" };
+  if (diff <= 15) return { text: "Weak", color: "text-amber-400" };
   return { text: "Broken", color: "text-red-400" };
 }
 
@@ -72,6 +81,7 @@ export default function EdgeInternalPage() {
   const [market, setMarket] = useState("");
   const [days, setDays] = useState(30);
   const [tier, setTier] = useState("");
+  const [cleanDataOnly, setCleanDataOnly] = useState(true);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -81,6 +91,7 @@ export default function EdgeInternalPage() {
       if (market) params.set("market", market);
       if (days !== 30) params.set("days", String(days));
       if (tier) params.set("confidence_tier", tier);
+      if (cleanDataOnly) params.set("since", "2026-02-10T00:00:00+00:00");
 
       const res = await fetch(
         `${BACKEND_URL}/api/internal/edge/performance?${params.toString()}`
@@ -93,7 +104,7 @@ export default function EdgeInternalPage() {
     } finally {
       setLoading(false);
     }
-  }, [sport, market, days, tier]);
+  }, [sport, market, days, tier, cleanDataOnly]);
 
   useEffect(() => {
     fetchData();
@@ -194,6 +205,17 @@ export default function EdgeInternalPage() {
           <option value="70">70%</option>
         </select>
 
+        <label className="flex items-center gap-2 cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={cleanDataOnly}
+            onChange={(e) => setCleanDataOnly(e.target.checked)}
+            className="accent-cyan-500 w-4 h-4"
+          />
+          <span className="text-sm text-zinc-300">Clean Data Only</span>
+          <span className="text-xs text-zinc-600">(Feb 10+)</span>
+        </label>
+
         <div className="ml-auto flex items-center gap-3">
           {gradeResult && (
             <span className="text-xs text-zinc-400">{gradeResult}</span>
@@ -245,7 +267,9 @@ export default function EdgeInternalPage() {
                   const d = data.by_confidence_tier[t];
                   if (!d) return null;
                   const cal = data.calibration.find((c) => c.predicted === Number(t));
-                  const calLabel = cal ? calibrationLabel(cal.predicted, cal.actual) : null;
+                  const calLabel = cal
+                    ? calibrationLabel(cal.predicted, cal.actual, cal.sample_size)
+                    : null;
                   return (
                     <tr key={t} className="border-b border-zinc-800/50 text-white">
                       <td className="px-4 py-2 font-mono">{t}%</td>
@@ -420,15 +444,21 @@ export default function EdgeInternalPage() {
                     if (point.sample_size === 0) return null;
                     const x = 50 + (point.predicted / 100) * 240;
                     const y = 250 - (point.actual / 100) * 240;
-                    const cal = calibrationLabel(point.predicted, point.actual);
+                    const cal = calibrationLabel(
+                      point.predicted,
+                      point.actual,
+                      point.sample_size
+                    );
                     const color =
-                      cal.text === "Calibrated"
+                      cal.text === "Strong"
                         ? "#34d399"
-                        : cal.text === "Overconfident"
-                          ? "#fbbf24"
-                          : cal.text === "Broken"
-                            ? "#f87171"
-                            : "#22d3ee";
+                        : cal.text === "Good"
+                          ? "#22d3ee"
+                          : cal.text === "Weak"
+                            ? "#fbbf24"
+                            : cal.text === "Broken"
+                              ? "#f87171"
+                              : "#71717a"; // Insufficient Data / Early
                     return (
                       <g key={i}>
                         <circle cx={x} cy={y} r="6" fill={color} opacity="0.8" />

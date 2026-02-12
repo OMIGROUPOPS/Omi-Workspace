@@ -509,8 +509,9 @@ async def execute_arb(
     if params.get('pm_invert_price', False):
         pm_price_cents = 100 - pm_price_cents
 
-    # Spread-proportional PM buffer: 25% of spread, minimum 1c
-    pm_buffer = max(1, int(spread * 0.25))
+    # Aggressive PM buffer: 50% of spread to overcome IOC latency
+    # Crosses deeper into the book for fills against non-top-of-book liquidity
+    pm_buffer = max(2, int(spread * 0.50))
 
     if params.get('pm_is_buy_short', False):
         # BUY_SHORT: PM interprets price as MIN YES sell price (favorite frame)

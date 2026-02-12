@@ -48,9 +48,12 @@ interface PerformanceData {
 
 interface BookDetail {
   line: number;
+  odds: number | null;
+  fair_price: number;
   edge: number;
   signal: string;
   call: string;
+  book_offer: string;
   side: string;
   correct: boolean | null;
 }
@@ -65,6 +68,7 @@ interface GradedGameRow {
   away_score: number | null;
   market_type: string;
   omi_fair_line: number | null;
+  omi_fair_display: string;
   confidence_tier: number;
   pillar_composite: number | null;
   best_edge: number | null;
@@ -165,12 +169,18 @@ function fmtLine(val: number | null, market: string): string {
   return n.toFixed(1);
 }
 
-function fmtEdge(val: number | null, market: string): string {
+function fmtEdgePct(val: number | null): string {
   if (val == null) return "—";
   const n = Number(val);
   const sign = n >= 0 ? "+" : "";
-  if (market === "moneyline") return `${sign}${n.toFixed(1)}%`;
-  return `${sign}${n.toFixed(1)}`;
+  return `${sign}${n.toFixed(1)}%`;
+}
+
+function fmtOdds(val: number | null): string {
+  if (val == null) return "—";
+  const n = Number(val);
+  if (n > 0) return `+${n}`;
+  return String(n);
 }
 
 // ---------------------------------------------------------------------------
@@ -910,7 +920,9 @@ export default function EdgeInternalPage() {
                   </div>
                 </div>
                 <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
-                  <div className="text-xs text-zinc-500 font-mono">ROI</div>
+                  <div className="text-xs text-zinc-500 font-mono">
+                    ROI (1u flat)
+                  </div>
                   <div
                     className={`text-xl font-bold mt-1 ${roiColor(gradedData.summary.roi)}`}
                   >
@@ -957,8 +969,8 @@ export default function EdgeInternalPage() {
                         <SortHeader field="commence_time" label="Date" />
                         <th className="text-left px-3 py-2">Sport</th>
                         <SortHeader field="home_team" label="Matchup" />
-                        <SortHeader field="market_type" label="Market" />
-                        <th className="text-right px-3 py-2">OMI Fair</th>
+                        <SortHeader field="market_type" label="Mkt" />
+                        <th className="text-left px-3 py-2">OMI Fair</th>
                         <SortHeader
                           field="fd_edge"
                           label="FD Edge"
@@ -968,6 +980,11 @@ export default function EdgeInternalPage() {
                           field="dk_edge"
                           label="DK Edge"
                           align="left"
+                        />
+                        <SortHeader
+                          field="confidence_tier"
+                          label="Tier"
+                          align="center"
                         />
                         <th className="text-center px-3 py-2">Verdict</th>
                       </tr>
@@ -1033,8 +1050,8 @@ export default function EdgeInternalPage() {
                           </td>
 
                           {/* OMI Fair */}
-                          <td className="px-3 py-2.5 text-right font-mono text-xs text-cyan-400">
-                            {fmtLine(row.omi_fair_line, row.market_type)}
+                          <td className="px-3 py-2.5 text-xs whitespace-nowrap text-cyan-400 font-mono">
+                            {row.omi_fair_display || fmtLine(row.omi_fair_line, row.market_type)}
                           </td>
 
                           {/* FD Edge */}
@@ -1053,8 +1070,11 @@ export default function EdgeInternalPage() {
                                   {row.fd.call}
                                 </div>
                                 <div className="flex items-center gap-1.5 mt-0.5">
+                                  <span className="text-zinc-500">
+                                    FD {fmtOdds(row.fd.odds)}
+                                  </span>
                                   <span className="font-mono">
-                                    {fmtEdge(row.fd.edge, row.market_type)}
+                                    {fmtEdgePct(row.fd.edge)}
                                   </span>
                                   <span
                                     className={`text-[10px] font-mono font-bold ${SIGNAL_COLORS[row.fd.signal] || "text-zinc-500"}`}
@@ -1084,8 +1104,11 @@ export default function EdgeInternalPage() {
                                   {row.dk.call}
                                 </div>
                                 <div className="flex items-center gap-1.5 mt-0.5">
+                                  <span className="text-zinc-500">
+                                    DK {fmtOdds(row.dk.odds)}
+                                  </span>
                                   <span className="font-mono">
-                                    {fmtEdge(row.dk.edge, row.market_type)}
+                                    {fmtEdgePct(row.dk.edge)}
                                   </span>
                                   <span
                                     className={`text-[10px] font-mono font-bold ${SIGNAL_COLORS[row.dk.signal] || "text-zinc-500"}`}
@@ -1097,6 +1120,11 @@ export default function EdgeInternalPage() {
                             ) : (
                               <span className="text-zinc-600">—</span>
                             )}
+                          </td>
+
+                          {/* Tier */}
+                          <td className="px-3 py-2.5 text-center text-xs font-mono text-zinc-400">
+                            {row.confidence_tier ? `${row.confidence_tier}%` : "—"}
                           </td>
 
                           {/* Verdict */}

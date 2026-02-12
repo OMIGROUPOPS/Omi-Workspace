@@ -4,7 +4,8 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+const BACKEND_URL =
+  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -54,16 +55,22 @@ interface GradedGameRow {
   home_score: number | null;
   away_score: number | null;
   market_type: string;
-  book_name: string;
   omi_fair_line: number | null;
-  book_line: number | null;
-  gap: number | null;
+  fd_line: number | null;
+  dk_line: number | null;
+  fd_edge: number | null;
+  dk_edge: number | null;
+  best_edge: number | null;
+  best_book: string | null;
   signal: string;
   confidence_tier: number;
   pillar_composite: number | null;
   prediction_side: string;
   actual_result: string;
   is_correct: boolean | null;
+  call: string;
+  edge_desc: string;
+  result_desc: string;
 }
 
 interface GradedGamesSummary {
@@ -125,7 +132,6 @@ function calibrationLabel(
     return { text: "Insufficient Data", color: "text-zinc-500" };
   if (sampleSize < 50)
     return { text: `Early (${actual.toFixed(1)}%)`, color: "text-zinc-400" };
-
   const diff = Math.abs(actual - predicted);
   if (diff <= 5) return { text: "Strong", color: "text-emerald-400" };
   if (diff <= 10) return { text: "Good", color: "text-cyan-400" };
@@ -151,10 +157,19 @@ function roiColor(roi: number): string {
 }
 
 function fmtLine(val: number | null, market: string): string {
-  if (val == null) return "-";
+  if (val == null) return "—";
   const n = Number(val);
   if (market === "moneyline") return `${n.toFixed(1)}%`;
-  return n >= 0 ? `+${n.toFixed(1)}` : n.toFixed(1);
+  if (n > 0) return `+${n.toFixed(1)}`;
+  return n.toFixed(1);
+}
+
+function fmtEdge(val: number | null, market: string): string {
+  if (val == null) return "—";
+  const n = Number(val);
+  const sign = n >= 0 ? "+" : "";
+  if (market === "moneyline") return `${sign}${n.toFixed(1)}%`;
+  return `${sign}${n.toFixed(1)}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -201,13 +216,10 @@ export default function EdgeInternalPage() {
       if (days !== 30) params.set("days", String(days));
       if (tier) params.set("confidence_tier", tier);
       if (cleanDataOnly) params.set("since", "2026-02-10T00:00:00+00:00");
-
       const res = await fetch(
         `${BACKEND_URL}/api/internal/edge/performance?${params.toString()}`
       );
-      if (res.ok) {
-        setData(await res.json());
-      }
+      if (res.ok) setData(await res.json());
     } catch (e) {
       console.error("Failed to fetch performance data:", e);
     } finally {
@@ -229,13 +241,10 @@ export default function EdgeInternalPage() {
       if (days !== 30) params.set("days", String(days));
       if (verdictFilter) params.set("verdict", verdictFilter);
       if (cleanDataOnly) params.set("since", "2026-02-10T00:00:00+00:00");
-
       const res = await fetch(
         `${BACKEND_URL}/api/internal/edge/graded-games?${params.toString()}`
       );
-      if (res.ok) {
-        setGradedData(await res.json());
-      }
+      if (res.ok) setGradedData(await res.json());
     } catch (e) {
       console.error("Failed to fetch graded games:", e);
     } finally {
@@ -336,8 +345,6 @@ export default function EdgeInternalPage() {
   );
 
   // =====================================================================
-  // RENDER
-  // =====================================================================
   return (
     <div className="px-6 py-8 max-w-7xl mx-auto">
       {/* Header */}
@@ -421,7 +428,6 @@ export default function EdgeInternalPage() {
           <option value="365">All time</option>
         </select>
 
-        {/* Performance-only: tier filter */}
         {activeTab === "performance" && (
           <select
             value={tier}
@@ -436,7 +442,6 @@ export default function EdgeInternalPage() {
           </select>
         )}
 
-        {/* Graded-only: verdict filter */}
         {activeTab === "graded" && (
           <select
             value={verdictFilter}
@@ -491,12 +496,11 @@ export default function EdgeInternalPage() {
             </div>
           ) : (
             <>
-              {/* Summary */}
               <div className="mt-4 text-sm text-zinc-500">
                 {data.total_predictions} predictions over {data.days} days
               </div>
 
-              {/* A) Confidence Tier Table */}
+              {/* Confidence Tier Table */}
               <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
                 <div className="px-4 py-3 border-b border-zinc-800">
                   <h2 className="text-sm font-semibold text-zinc-300 font-mono">
@@ -565,9 +569,8 @@ export default function EdgeInternalPage() {
                 </table>
               </div>
 
-              {/* B + C: Market Breakdown + Pillar Performance */}
+              {/* Market + Pillar */}
               <div className="mt-6 grid md:grid-cols-2 gap-6">
-                {/* Market Breakdown */}
                 <div className="bg-zinc-900 border border-zinc-800 rounded-lg">
                   <div className="px-4 py-3 border-b border-zinc-800">
                     <h2 className="text-sm font-semibold text-zinc-300 font-mono">
@@ -602,8 +605,6 @@ export default function EdgeInternalPage() {
                     )}
                   </div>
                 </div>
-
-                {/* Pillar Performance */}
                 <div className="bg-zinc-900 border border-zinc-800 rounded-lg">
                   <div className="px-4 py-3 border-b border-zinc-800">
                     <h2 className="text-sm font-semibold text-zinc-300 font-mono">
@@ -685,7 +686,7 @@ export default function EdgeInternalPage() {
                 </div>
               )}
 
-              {/* D) Calibration Chart (SVG) */}
+              {/* Calibration Chart */}
               {data.calibration.length > 0 && (
                 <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-lg">
                   <div className="px-4 py-3 border-b border-zinc-800">
@@ -914,9 +915,7 @@ export default function EdgeInternalPage() {
                       {gradedData.summary.best_sport.key}
                     </div>
                     <div className="text-xs text-zinc-600">
-                      {(gradedData.summary.best_sport.hit_rate * 100).toFixed(
-                        1
-                      )}
+                      {(gradedData.summary.best_sport.hit_rate * 100).toFixed(1)}
                       % ({gradedData.summary.best_sport.count})
                     </div>
                   </div>
@@ -930,9 +929,7 @@ export default function EdgeInternalPage() {
                       {gradedData.summary.best_market.key}
                     </div>
                     <div className="text-xs text-zinc-600">
-                      {(gradedData.summary.best_market.hit_rate * 100).toFixed(
-                        1
-                      )}
+                      {(gradedData.summary.best_market.hit_rate * 100).toFixed(1)}
                       % ({gradedData.summary.best_market.count})
                     </div>
                   </div>
@@ -949,27 +946,15 @@ export default function EdgeInternalPage() {
                         <th className="text-left px-3 py-2">Sport</th>
                         <SortHeader field="home_team" label="Matchup" />
                         <SortHeader field="market_type" label="Market" />
+                        <th className="text-right px-3 py-2">FD Line</th>
+                        <th className="text-right px-3 py-2">DK Line</th>
+                        <th className="text-right px-3 py-2">OMI Fair</th>
                         <SortHeader
-                          field="book_line"
-                          label="Book Line"
+                          field="best_edge"
+                          label="Best Edge"
                           align="right"
                         />
-                        <SortHeader
-                          field="omi_fair_line"
-                          label="OMI Fair"
-                          align="right"
-                        />
-                        <SortHeader
-                          field="gap"
-                          label="Edge"
-                          align="right"
-                        />
-                        <SortHeader
-                          field="pillar_composite"
-                          label="CEQ"
-                          align="right"
-                        />
-                        <th className="text-left px-3 py-2">Result</th>
+                        <th className="text-left px-3 py-2">Call</th>
                         <th className="text-center px-3 py-2">Verdict</th>
                         <SortHeader field="signal" label="Signal" />
                       </tr>
@@ -977,7 +962,7 @@ export default function EdgeInternalPage() {
                     <tbody>
                       {sortedRows.map((row, i) => (
                         <tr
-                          key={`${row.game_id}-${row.market_type}-${row.book_name}-${i}`}
+                          key={`${row.game_id}-${row.market_type}-${i}`}
                           onClick={() =>
                             router.push(
                               `/edge/portal/sports/game/${row.game_id}?sport=${SPORT_TO_ODDS_KEY[row.sport_key] || row.sport_key.toLowerCase()}`
@@ -992,7 +977,7 @@ export default function EdgeInternalPage() {
                           }`}
                         >
                           {/* Date */}
-                          <td className="px-3 py-2 text-zinc-400 whitespace-nowrap text-xs">
+                          <td className="px-3 py-2.5 text-zinc-400 whitespace-nowrap text-xs">
                             {row.commence_time
                               ? new Date(
                                   row.commence_time
@@ -1000,11 +985,11 @@ export default function EdgeInternalPage() {
                                   month: "short",
                                   day: "numeric",
                                 })
-                              : "-"}
+                              : "—"}
                           </td>
 
-                          {/* Sport Badge */}
-                          <td className="px-3 py-2">
+                          {/* Sport */}
+                          <td className="px-3 py-2.5">
                             <span
                               className={`px-1.5 py-0.5 rounded text-xs font-mono ${SPORT_BADGE_COLORS[row.sport_key] || "bg-zinc-800 text-zinc-400"}`}
                             >
@@ -1013,72 +998,105 @@ export default function EdgeInternalPage() {
                           </td>
 
                           {/* Matchup */}
-                          <td className="px-3 py-2 whitespace-nowrap">
+                          <td className="px-3 py-2.5 whitespace-nowrap">
                             <div className="text-white text-xs">
-                              {row.away_team || "—"}
+                              {row.away_team || "—"}{" "}
+                              <span className="text-zinc-600">@</span>{" "}
+                              {row.home_team || "—"}
                             </div>
-                            <div className="text-zinc-500 text-xs">
-                              @ {row.home_team || "—"}
-                            </div>
+                            {row.home_score != null &&
+                              row.away_score != null && (
+                                <div className="text-zinc-500 text-xs font-mono">
+                                  {row.away_score}–{row.home_score}
+                                </div>
+                              )}
                           </td>
 
-                          {/* Market + Book */}
-                          <td className="px-3 py-2 whitespace-nowrap">
-                            <div className="text-white text-xs capitalize">
+                          {/* Market */}
+                          <td className="px-3 py-2.5 whitespace-nowrap">
+                            <span className="text-white text-xs capitalize">
                               {row.market_type}
-                            </div>
-                            <div className="text-zinc-600 text-xs">
-                              {row.book_name}
-                            </div>
-                          </td>
-
-                          {/* Book Line */}
-                          <td className="px-3 py-2 text-right font-mono text-xs text-zinc-300">
-                            {fmtLine(row.book_line, row.market_type)}
-                          </td>
-
-                          {/* OMI Fair Line */}
-                          <td className="px-3 py-2 text-right font-mono text-xs text-cyan-400">
-                            {fmtLine(row.omi_fair_line, row.market_type)}
-                          </td>
-
-                          {/* Edge (Gap) */}
-                          <td className="px-3 py-2 text-right font-mono text-xs">
-                            <span
-                              className={
-                                SIGNAL_COLORS[row.signal] || "text-zinc-400"
-                              }
-                            >
-                              {row.gap != null
-                                ? `${Number(row.gap) >= 0 ? "+" : ""}${Number(row.gap).toFixed(1)}${row.market_type === "moneyline" ? "%" : ""}`
-                                : "-"}
                             </span>
                           </td>
 
-                          {/* CEQ / Composite */}
-                          <td className="px-3 py-2 text-right font-mono text-xs text-zinc-300">
-                            {row.pillar_composite != null
-                              ? (Number(row.pillar_composite) * 100).toFixed(0)
-                              : "-"}
+                          {/* FD Line */}
+                          <td className="px-3 py-2.5 text-right font-mono text-xs text-zinc-300">
+                            {fmtLine(row.fd_line, row.market_type)}
                           </td>
 
-                          {/* Result */}
-                          <td className="px-3 py-2 text-xs text-zinc-400 whitespace-nowrap">
-                            {row.home_score != null && row.away_score != null
-                              ? `${row.away_score}-${row.home_score}`
-                              : "-"}
+                          {/* DK Line */}
+                          <td className="px-3 py-2.5 text-right font-mono text-xs text-zinc-300">
+                            {fmtLine(row.dk_line, row.market_type)}
+                          </td>
+
+                          {/* OMI Fair */}
+                          <td className="px-3 py-2.5 text-right font-mono text-xs text-cyan-400">
+                            {fmtLine(row.omi_fair_line, row.market_type)}
+                          </td>
+
+                          {/* Best Edge */}
+                          <td className="px-3 py-2.5 text-right font-mono text-xs">
+                            {row.best_edge != null ? (
+                              <span className="flex items-center justify-end gap-1.5">
+                                <span
+                                  className={
+                                    SIGNAL_COLORS[row.signal] ||
+                                    "text-zinc-400"
+                                  }
+                                >
+                                  {fmtEdge(row.best_edge, row.market_type)}
+                                </span>
+                                {row.best_book && (
+                                  <span className="px-1 py-px rounded text-[10px] bg-zinc-700 text-zinc-300">
+                                    {row.best_book}
+                                  </span>
+                                )}
+                              </span>
+                            ) : (
+                              <span className="text-zinc-600">—</span>
+                            )}
+                          </td>
+
+                          {/* Call + Edge desc */}
+                          <td className="px-3 py-2.5 text-xs max-w-[220px]">
+                            {row.call ? (
+                              <>
+                                <div className="text-white font-medium truncate">
+                                  {row.call}
+                                </div>
+                                <div className="text-zinc-500 truncate">
+                                  {row.edge_desc}
+                                </div>
+                              </>
+                            ) : (
+                              <span className="text-zinc-600">—</span>
+                            )}
                           </td>
 
                           {/* Verdict */}
-                          <td className="px-3 py-2 text-center">
+                          <td className="px-3 py-2.5 text-center">
                             {row.is_correct === true ? (
-                              <span className="px-2 py-0.5 rounded text-xs font-bold bg-emerald-500/20 text-emerald-400">
-                                WIN
-                              </span>
+                              <div>
+                                <span className="px-2 py-0.5 rounded text-xs font-bold bg-emerald-500/20 text-emerald-400">
+                                  WIN
+                                </span>
+                                {row.result_desc && (
+                                  <div className="text-[10px] text-zinc-500 mt-0.5">
+                                    {row.result_desc.replace("WIN ", "")}
+                                  </div>
+                                )}
+                              </div>
                             ) : row.is_correct === false ? (
-                              <span className="px-2 py-0.5 rounded text-xs font-bold bg-red-500/20 text-red-400">
-                                LOSS
-                              </span>
+                              <div>
+                                <span className="px-2 py-0.5 rounded text-xs font-bold bg-red-500/20 text-red-400">
+                                  LOSS
+                                </span>
+                                {row.result_desc && (
+                                  <div className="text-[10px] text-zinc-500 mt-0.5">
+                                    {row.result_desc.replace("LOSS ", "")}
+                                  </div>
+                                )}
+                              </div>
                             ) : (
                               <span className="px-2 py-0.5 rounded text-xs font-bold bg-yellow-500/20 text-yellow-400">
                                 PUSH
@@ -1087,7 +1105,7 @@ export default function EdgeInternalPage() {
                           </td>
 
                           {/* Signal */}
-                          <td className="px-3 py-2">
+                          <td className="px-3 py-2.5">
                             <span
                               className={`text-xs font-mono font-bold ${SIGNAL_COLORS[row.signal] || "text-zinc-500"}`}
                             >

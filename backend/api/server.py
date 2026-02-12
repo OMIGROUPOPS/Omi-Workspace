@@ -1097,9 +1097,15 @@ async def calculate_pillars(
 # =============================================================================
 
 @app.post("/api/internal/grade-games")
-async def internal_grade_games(sport: str = None):
-    """Grade completed games and generate prediction_grades rows."""
+async def internal_grade_games(sport: str = None, regrade: bool = False):
+    """Grade completed games and generate prediction_grades rows.
+
+    Pass ?regrade=true to purge all prediction_grades and regenerate
+    from scratch (fixes bad edge calculations from sign-convention bug).
+    """
     grader = InternalGrader()
+    if regrade:
+        return grader.regrade_all()
     return grader.grade_games(sport.upper() if sport else None)
 
 

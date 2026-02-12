@@ -23,6 +23,9 @@ FAIR_LINE_SPREAD_FACTOR = 0.15
 FAIR_LINE_TOTAL_FACTOR = 0.20
 FAIR_LINE_ML_FACTOR = 0.01
 
+# Only grade against books where users actually place bets
+GRADING_BOOKS = {"fanduel", "draftkings"}
+
 
 def composite_to_confidence_tier(composite: float) -> Optional[int]:
     """Map composite score (0-1) to confidence tier."""
@@ -214,13 +217,15 @@ class InternalGrader:
             adjustment = (game_env - 0.5) * FAIR_LINE_TOTAL_FACTOR * 10
             fair_total = closing_total + adjustment
 
-        # Get per-book lines from cached_odds
+        # Get per-book lines from line_snapshots
         book_lines = self._get_book_lines(game_id)
 
         rows_created = 0
 
-        # Generate rows for each market + book
+        # Generate rows only for user-facing books (FanDuel, DraftKings)
         for book_name, book_data in book_lines.items():
+            if book_name not in GRADING_BOOKS:
+                continue
             # Spread
             if fair_spread is not None and "spread" in book_data:
                 book_spread = book_data["spread"]
@@ -361,7 +366,12 @@ class InternalGrader:
         return rows_created
 
     def _get_book_lines(self, game_id: str) -> dict:
-        """Get closing lines per book from line_snapshots."""
+        """Get closing lines per book from line_snapshots.
+
+        IMPORTANT: For spreads, only use outcome_type='home' (or NULL)
+        so the line is always from the home-team perspective, matching
+        the fair_spread convention (closing_spread_home).
+        """
         try:
             result = self.client.table("line_snapshots").select(
                 "book_key, market_type, line, odds, outcome_type"
@@ -377,20 +387,30 @@ class InternalGrader:
                 book = snap.get("book_key", "consensus")
                 mtype = snap.get("market_type")
                 outcome = snap.get("outcome_type", "")
-                key = f"{book}_{mtype}_{outcome}"
-
-                if key in seen:
-                    continue
-                seen.add(key)
 
                 if book not in books:
                     books[book] = {}
 
                 if mtype == "spread":
+                    # Only accept home-perspective spread to match fair_spread sign
+                    if outcome == "away":
+                        continue
+                    key = f"{book}_spread"
+                    if key in seen:
+                        continue
+                    seen.add(key)
                     books[book]["spread"] = snap.get("line", 0)
                 elif mtype == "total":
+                    key = f"{book}_total"
+                    if key in seen:
+                        continue
+                    seen.add(key)
                     books[book]["total"] = snap.get("line", 0)
                 elif mtype == "moneyline":
+                    key = f"{book}_ml_{outcome}"
+                    if key in seen:
+                        continue
+                    seen.add(key)
                     if outcome == "home":
                         books[book]["moneyline_home"] = snap.get("odds", 0)
                     elif outcome == "away":
@@ -559,7 +579,41 @@ class InternalGrader:
         return calibration
 
     # ------------------------------------------------------------------
-    # Graded Games — individual prediction rows with game context
+    # Regrade — purge + regenerate all prediction_grades
+    # ------------------------------------------------------------------
+
+    def regrade_all(self) -> dict:
+        """Delete all prediction_grades and regenerate from graded game_results."""
+        # Purge
+        deleted = 0
+        while True:
+            batch = self.client.table("prediction_grades").select("id").limit(500).execute()
+            ids = [r["id"] for r in (batch.data or [])]
+            if not ids:
+                break
+            self.client.table("prediction_grades").delete().in_("id", ids).execute()
+            deleted += len(ids)
+
+        # Fetch all graded game_results
+        graded = self.client.table("game_results").select("game_id").not_.is_(
+            "home_score", "null"
+        ).execute()
+        game_ids = [r["game_id"] for r in (graded.data or [])]
+
+        created = 0
+        errors = 0
+        for gid in game_ids:
+            try:
+                created += self._generate_prediction_grades(gid)
+            except Exception as e:
+                logger.error(f"[Regrade] Error for {gid}: {e}")
+                errors += 1
+
+        logger.info(f"[Regrade] Purged {deleted}, regenerated {created} from {len(game_ids)} games")
+        return {"purged": deleted, "games": len(game_ids), "created": created, "errors": errors}
+
+    # ------------------------------------------------------------------
+    # Graded Games — one row per game × market, FD/DK side by side
     # ------------------------------------------------------------------
 
     def get_graded_games(
@@ -571,7 +625,10 @@ class InternalGrader:
         days: int = 30,
         limit: int = 500,
     ) -> dict:
-        """Return individual graded prediction rows merged with game context."""
+        """Return graded predictions aggregated to one row per game×market.
+
+        Each row shows FD and DK lines side by side with best edge.
+        """
         cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
 
         # Pre-filter game_ids by commence_time if `since` is set
@@ -582,10 +639,12 @@ class InternalGrader:
             ).execute()
             valid_game_ids = {r["game_id"] for r in (gr_result.data or [])}
 
-        # Query prediction_grades
+        # Query prediction_grades — only FD/DK
         query = self.client.table("prediction_grades").select("*").not_.is_(
             "graded_at", "null"
-        ).gte("created_at", cutoff).order("graded_at", desc=True).limit(limit)
+        ).gte("created_at", cutoff).in_(
+            "book_name", list(GRADING_BOOKS)
+        ).order("graded_at", desc=True).limit(limit)
 
         if sport:
             query = query.eq("sport_key", sport)
@@ -599,15 +658,7 @@ class InternalGrader:
         if valid_game_ids is not None:
             rows = [r for r in rows if r.get("game_id") in valid_game_ids]
 
-        # Apply verdict filter
-        if verdict == "win":
-            rows = [r for r in rows if r.get("is_correct") is True]
-        elif verdict == "loss":
-            rows = [r for r in rows if r.get("is_correct") is False]
-        elif verdict == "push":
-            rows = [r for r in rows if r.get("is_correct") is None]
-
-        # Fetch game context from game_results
+        # Fetch game context
         game_ids = list({r["game_id"] for r in rows})
         game_map: dict = {}
         for i in range(0, len(game_ids), 50):
@@ -618,30 +669,124 @@ class InternalGrader:
             for g in (gr.data or []):
                 game_map[g["game_id"]] = g
 
-        # Merge rows
-        merged = []
+        # Group by (game_id, market_type) → aggregate FD/DK
+        groups: dict = {}  # key: (game_id, market_type)
         for row in rows:
-            game = game_map.get(row["game_id"], {})
-            merged.append({
-                "game_id": row["game_id"],
-                "sport_key": row.get("sport_key"),
-                "home_team": game.get("home_team", ""),
-                "away_team": game.get("away_team", ""),
+            gid = row["game_id"]
+            mtype = row.get("market_type", "")
+            key = (gid, mtype)
+            if key not in groups:
+                groups[key] = {"rows_by_book": {}, "first": row}
+            book = row.get("book_name", "")
+            # Keep best (first = most recent) per book
+            if book not in groups[key]["rows_by_book"]:
+                groups[key]["rows_by_book"][book] = row
+
+        # Build merged rows — one per game × market
+        merged = []
+        for (gid, mtype), grp in groups.items():
+            game = game_map.get(gid, {})
+            first = grp["first"]
+            fd = grp["rows_by_book"].get("fanduel")
+            dk = grp["rows_by_book"].get("draftkings")
+
+            fair = first.get("omi_fair_line")
+            fd_line = fd.get("book_line") if fd else None
+            dk_line = dk.get("book_line") if dk else None
+
+            # Compute edges (skip if data error: abs > 15 for spread/total)
+            fd_edge = None
+            dk_edge = None
+            if fair is not None and fd_line is not None:
+                fd_edge = round(float(fair) - float(fd_line), 2)
+                if mtype in ("spread", "total") and abs(fd_edge) > 15:
+                    fd_edge = None  # data error
+            if fair is not None and dk_line is not None:
+                dk_edge = round(float(fair) - float(dk_line), 2)
+                if mtype in ("spread", "total") and abs(dk_edge) > 15:
+                    dk_edge = None  # data error
+
+            # Best edge
+            best_edge = None
+            best_book = None
+            if fd_edge is not None and dk_edge is not None:
+                if abs(fd_edge) >= abs(dk_edge):
+                    best_edge = fd_edge
+                    best_book = "FD"
+                else:
+                    best_edge = dk_edge
+                    best_book = "DK"
+            elif fd_edge is not None:
+                best_edge = fd_edge
+                best_book = "FD"
+            elif dk_edge is not None:
+                best_edge = dk_edge
+                best_book = "DK"
+
+            # Use the best-book row for verdict/side
+            best_row = (fd if best_book == "FD" else dk) or first
+            is_correct = best_row.get("is_correct")
+            prediction_side = best_row.get("prediction_side", "")
+            actual_result = best_row.get("actual_result", "")
+            composite = first.get("pillar_composite")
+
+            # Build actionable call description
+            home = game.get("home_team", "?")
+            away = game.get("away_team", "?")
+            home_score = game.get("home_score")
+            away_score = game.get("away_score")
+            call = self._build_call(mtype, prediction_side, home, away, fair)
+            edge_desc = self._build_edge_desc(mtype, fd_edge, dk_edge)
+            result_desc = self._build_result_desc(
+                mtype, is_correct, home_score, away_score,
+                best_row.get("book_line"), prediction_side
+            )
+            signal = best_row.get("signal", "")
+
+            row_out = {
+                "game_id": gid,
+                "sport_key": first.get("sport_key", ""),
+                "home_team": home,
+                "away_team": away,
                 "commence_time": game.get("commence_time", ""),
-                "home_score": game.get("home_score"),
-                "away_score": game.get("away_score"),
-                "market_type": row.get("market_type"),
-                "book_name": row.get("book_name"),
-                "omi_fair_line": row.get("omi_fair_line"),
-                "book_line": row.get("book_line"),
-                "gap": row.get("gap"),
-                "signal": row.get("signal"),
-                "confidence_tier": row.get("confidence_tier"),
-                "pillar_composite": row.get("pillar_composite"),
-                "prediction_side": row.get("prediction_side"),
-                "actual_result": row.get("actual_result"),
-                "is_correct": row.get("is_correct"),
-            })
+                "home_score": home_score,
+                "away_score": away_score,
+                "market_type": mtype,
+                "omi_fair_line": fair,
+                "fd_line": fd_line,
+                "dk_line": dk_line,
+                "fd_edge": fd_edge,
+                "dk_edge": dk_edge,
+                "best_edge": best_edge,
+                "best_book": best_book,
+                "signal": signal,
+                "confidence_tier": first.get("confidence_tier"),
+                "pillar_composite": composite,
+                "prediction_side": prediction_side,
+                "actual_result": actual_result,
+                "is_correct": is_correct,
+                "call": call,
+                "edge_desc": edge_desc,
+                "result_desc": result_desc,
+            }
+            merged.append(row_out)
+
+        # Apply verdict filter
+        if verdict == "win":
+            merged = [r for r in merged if r["is_correct"] is True]
+        elif verdict == "loss":
+            merged = [r for r in merged if r["is_correct"] is False]
+        elif verdict == "push":
+            merged = [r for r in merged if r["is_correct"] is None]
+
+        # Sort: date desc, then abs(best_edge) desc
+        merged.sort(
+            key=lambda r: (
+                r.get("commence_time") or "",
+                abs(r.get("best_edge") or 0),
+            ),
+            reverse=True,
+        )
 
         # Summary stats
         wins = sum(1 for r in merged if r["is_correct"] is True)
@@ -666,7 +811,59 @@ class InternalGrader:
             "count": len(merged),
         }
 
-    def _best_group(self, rows: list, field: str, min_sample: int = 10) -> Optional[dict]:
+    # ------------------------------------------------------------------
+    # Helpers for actionable descriptions
+    # ------------------------------------------------------------------
+
+    def _build_call(self, market: str, side: str, home: str, away: str,
+                    fair_line: Optional[float]) -> str:
+        if fair_line is None:
+            return ""
+        fl = float(fair_line)
+        if market == "spread":
+            team = home if side == "home" else away
+            sign = "+" if fl > 0 else ""
+            return f"Take {team} {sign}{fl:.1f}"
+        elif market == "total":
+            direction = "Over" if side == "over" else "Under"
+            return f"{direction} {fl:.1f}"
+        elif market == "moneyline":
+            team = home if side == "home" else away
+            return f"{team} ML"
+        return ""
+
+    def _build_edge_desc(self, market: str, fd_edge: Optional[float],
+                         dk_edge: Optional[float]) -> str:
+        parts = []
+        unit = "%" if market == "moneyline" else "pts"
+        if fd_edge is not None:
+            parts.append(f"{abs(fd_edge):.1f}{unit} vs FD")
+        if dk_edge is not None:
+            parts.append(f"{abs(dk_edge):.1f}{unit} vs DK")
+        return ", ".join(parts)
+
+    def _build_result_desc(self, market: str, is_correct: Optional[bool],
+                           home_score: Optional[int], away_score: Optional[int],
+                           book_line: Optional[float], side: str) -> str:
+        if is_correct is None:
+            return "PUSH"
+        verdict = "WIN" if is_correct else "LOSS"
+        if home_score is None or away_score is None:
+            return verdict
+        if market == "spread" and book_line is not None:
+            actual_spread = home_score - away_score
+            margin = abs(actual_spread - float(book_line))
+            return f"{verdict} by {margin:.1f}"
+        elif market == "total" and book_line is not None:
+            actual_total = home_score + away_score
+            margin = abs(actual_total - float(book_line))
+            return f"{verdict} by {margin:.1f}"
+        elif market == "moneyline":
+            margin = abs(home_score - away_score)
+            return f"{verdict} by {margin}"
+        return verdict
+
+    def _best_group(self, rows: list, field: str, min_sample: int = 5) -> Optional[dict]:
         """Find the group with the highest hit rate (min sample size)."""
         groups: dict = {}
         for r in rows:

@@ -9,17 +9,29 @@ from typing import Optional
 import re
 
 # ESPN API endpoints (completely free, no auth needed)
-# Keys must match sport_key values stored in game_results/predictions tables
 ESPN_ENDPOINTS = {
     "NFL": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
     "NBA": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
     "NHL": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard",
     "NCAAF": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard",
     "NCAAB": "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard",
-    # Soccer — predictions may store sport_key as EPL or SOCCER_EPL
     "EPL": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
-    "SOCCER_EPL": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
-    "soccer_epl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
+}
+
+# Canonical ESPN sports to iterate (avoids duplicate fetches)
+ESPN_SPORTS = list(ESPN_ENDPOINTS.keys())
+
+# All sport_key variants that map to each ESPN sport.
+# game_results/predictions may store keys in short format (NBA) or
+# Odds API format (BASKETBALL_NBA, basketball_nba). The AutoGrader
+# must query all variants to find ungraded games.
+SPORT_KEY_VARIANTS: dict[str, list[str]] = {
+    "NFL": ["NFL", "AMERICANFOOTBALL_NFL", "americanfootball_nfl"],
+    "NBA": ["NBA", "BASKETBALL_NBA", "basketball_nba"],
+    "NHL": ["NHL", "ICEHOCKEY_NHL", "icehockey_nhl"],
+    "NCAAF": ["NCAAF", "AMERICANFOOTBALL_NCAAF", "americanfootball_ncaaf"],
+    "NCAAB": ["NCAAB", "BASKETBALL_NCAAB", "basketball_ncaab"],
+    "EPL": ["EPL", "SOCCER_EPL", "soccer_epl"],
 }
 
 # Team name normalization (ESPN name -> common variations)
@@ -332,7 +344,7 @@ class AutoGrader:
         Find and grade all completed games that haven't been graded yet.
         Fetches ESPN scores for each unique game date (last 30 days).
         """
-        sports_to_check = [sport] if sport else list(ESPN_ENDPOINTS.keys())
+        sports_to_check = [sport] if sport else ESPN_SPORTS
 
         results = {
             "checked": 0,
@@ -424,11 +436,16 @@ class AutoGrader:
         return results
 
     def _get_ungraded_games(self, sport: str) -> list[dict]:
-        """Get games that need scoring — home_score is NULL, last 30 days."""
-        cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
+        """Get games that need scoring — home_score is NULL, last 30 days.
 
-        result = self.tracker.client.table("game_results").select("*").eq(
-            "sport_key", sport
+        Queries all sport_key variants (NBA, BASKETBALL_NBA, basketball_nba)
+        so both old-format and Odds-API-format game_results are found.
+        """
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
+        variants = SPORT_KEY_VARIANTS.get(sport, [sport])
+
+        result = self.tracker.client.table("game_results").select("*").in_(
+            "sport_key", variants
         ).is_("home_score", "null").gte("commence_time", cutoff).lt(
             "commence_time", datetime.now(timezone.utc).isoformat()
         ).execute()
@@ -438,31 +455,32 @@ class AutoGrader:
     def snapshot_upcoming_games(self, sport: Optional[str] = None, minutes_before: int = 30) -> dict:
         """
         Snapshot predictions for games starting soon.
-        
+
         Args:
             sport: Optional sport filter
             minutes_before: How many minutes before game time to snapshot
-        
+
         Returns:
             Dict with counts
         """
-        sports_to_check = [sport] if sport else list(ESPN_ENDPOINTS.keys())
-        
+        sports_to_check = [sport] if sport else ESPN_SPORTS
+
         results = {
             "checked": 0,
             "snapshotted": 0,
             "already_exists": 0,
             "errors": 0,
         }
-        
+
         now = datetime.now(timezone.utc)
         window_start = now
         window_end = now + timedelta(minutes=minutes_before)
-        
+
         for sport_key in sports_to_check:
-            # Get predictions for games starting soon
-            preds = self.tracker.client.table("predictions").select("*").eq(
-                "sport_key", sport_key
+            # Query all sport_key variants for this ESPN sport
+            variants = SPORT_KEY_VARIANTS.get(sport_key, [sport_key])
+            preds = self.tracker.client.table("predictions").select("*").in_(
+                "sport_key", variants
             ).gte("commence_time", window_start.isoformat()).lte(
                 "commence_time", window_end.isoformat()
             ).execute()

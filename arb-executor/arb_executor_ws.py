@@ -1379,13 +1379,31 @@ async def refresh_balances(session, kalshi_api, pm_api):
     try:
         positions = []
 
+        # ── Load trades.json for hedge cross-reference ──
+        # trades.json is the SOURCE OF TRUTH for hedge status
+        hedged_by_slug: Dict[str, dict] = {}   # pm_slug -> trade
+        hedged_by_ticker: Dict[str, dict] = {}  # kalshi_ticker -> trade
+        trades_file = os.path.join(os.path.dirname(__file__) or ".", "trades.json")
+        try:
+            if os.path.exists(trades_file):
+                with open(trades_file, "r") as f:
+                    all_trades = json.load(f)
+                for t in all_trades:
+                    if (t.get("hedged") and t.get("status") == "SUCCESS"
+                            and t.get("contracts_filled", 0) > 0):
+                        if t.get("pm_slug"):
+                            hedged_by_slug[t["pm_slug"]] = t
+                        if t.get("kalshi_ticker"):
+                            hedged_by_ticker[t["kalshi_ticker"]] = t
+        except Exception as e:
+            print(f"[POSITIONS] Error loading trades.json for hedge check: {e}", flush=True)
+
         # Kalshi positions
         k_positions = await kalshi_api.get_positions(session)
         for ticker, pos in (k_positions or {}).items():
             qty = pos.position if hasattr(pos, 'position') else pos.get('position', 0)
             if qty == 0:
                 continue
-            # Look up game info from ticker mapping
             cache_key = ticker_to_cache_key.get(ticker, "")
             parts = ticker.split("-")
             team = parts[-1] if len(parts) >= 3 else ""
@@ -1401,14 +1419,13 @@ async def refresh_balances(session, kalshi_api, pm_api):
                 "avg_price": 0,
                 "current_value": 0,
                 "hedged_with": None,
-                "_ticker": ticker,  # internal: used for settled detection
+                "_ticker": ticker,
             })
 
         # PM US positions
         pm_positions = await pm_api.get_positions(session)
         if isinstance(pm_positions, dict):
             for slug, pos_data in pm_positions.items():
-                # pos_data may be a dict with quantity/side info
                 qty = 0
                 side = ""
                 if isinstance(pos_data, dict):
@@ -1420,7 +1437,6 @@ async def refresh_balances(session, kalshi_api, pm_api):
                         side = p.get("side", side)
                 if qty == 0:
                     continue
-                # Map slug to game info via pm_slug_to_cache_keys
                 cache_keys = pm_slug_to_cache_keys.get(slug, [])
                 sport = ""
                 game_id = slug
@@ -1429,6 +1445,16 @@ async def refresh_balances(session, kalshi_api, pm_api):
                     ck = cache_keys[0]
                     sport = ck.split(":")[0].upper()
                     game_id = ck.split(":")[1] if ":" in ck else slug
+
+                # ── Remap PM game_id to Kalshi format using trades.json ──
+                # PM game_id (e.g. "SILL-INDST") != Kalshi game_id ("26FEB09SIUINST")
+                # Use trades.json to find the Kalshi game_id for this PM slug
+                trade = hedged_by_slug.get(slug)
+                if trade:
+                    game_id = trade["game_id"]
+                    team = trade.get("team", team)
+                    sport = trade.get("sport", sport) or sport
+
                 positions.append({
                     "platform": "PM",
                     "game_id": game_id,
@@ -1439,9 +1465,10 @@ async def refresh_balances(session, kalshi_api, pm_api):
                     "avg_price": 0,
                     "current_value": 0,
                     "hedged_with": None,
+                    "_pm_slug": slug,
                 })
 
-        # Match hedged pairs: same game_id with both PM and Kalshi
+        # ── Match hedged pairs by game_id (now aligned via trades.json) ──
         by_game: Dict[str, list] = {}
         for p in positions:
             gkey = p["game_id"]
@@ -1453,7 +1480,7 @@ async def refresh_balances(session, kalshi_api, pm_api):
         for gkey, group in by_game.items():
             platforms = {p["platform"] for p in group}
             if "PM" in platforms and "Kalshi" in platforms:
-                # Hedged pair — combine into one row
+                # Hedged pair — both APIs show positions
                 pm_pos = next(p for p in group if p["platform"] == "PM")
                 k_pos = next(p for p in group if p["platform"] == "Kalshi")
                 matched.append({
@@ -1466,11 +1493,15 @@ async def refresh_balances(session, kalshi_api, pm_api):
                     "avg_price": pm_pos["avg_price"],
                     "current_value": k_pos["avg_price"],
                     "hedged_with": "HEDGED",
+                    "hedge_source": "API_MATCHED",
                 })
             else:
-                # Unhedged — check if game looks settled (bid >= 99 or ask <= 1)
+                # Only one platform visible — check trades.json before calling it UNHEDGED
                 skip = False
+                confirmed_hedged = False
+
                 for p in group:
+                    # Check settled markets (skip display)
                     if p["platform"] == "Kalshi" and p.get("_ticker"):
                         book = local_books.get(p["_ticker"])
                         if book:
@@ -1479,11 +1510,45 @@ async def refresh_balances(session, kalshi_api, pm_api):
                             if bid >= 99 or (ask > 0 and ask <= 1):
                                 skip = True
                                 break
-                if not skip:
-                    # Strip internal fields before exposing
+                        # Check trades.json: is this Kalshi position confirmed hedged?
+                        if p["_ticker"] in hedged_by_ticker:
+                            confirmed_hedged = True
+
+                    if p["platform"] == "PM" and p.get("_pm_slug"):
+                        # Check trades.json: is this PM position confirmed hedged?
+                        if p["_pm_slug"] in hedged_by_slug:
+                            confirmed_hedged = True
+
+                if skip:
+                    continue
+
+                if confirmed_hedged:
+                    # trades.json says HEDGED — trust it over API mismatch
+                    rep = group[0]
+                    matched.append({
+                        "platform": rep["platform"],
+                        "game_id": gkey,
+                        "team": rep["team"],
+                        "sport": rep["sport"],
+                        "side": rep["side"],
+                        "quantity": rep["quantity"],
+                        "avg_price": rep["avg_price"],
+                        "current_value": rep["current_value"],
+                        "hedged_with": "HEDGED",
+                        "hedge_source": "CONFIRMED",
+                    })
+                else:
+                    # Truly unhedged — no trades.json confirmation
                     for p in group:
                         p.pop("_ticker", None)
+                        p.pop("_pm_slug", None)
+                        p["hedge_source"] = "UNHEDGED"
                     matched.extend(group)
+
+        # Strip remaining internal fields
+        for p in matched:
+            p.pop("_ticker", None)
+            p.pop("_pm_slug", None)
 
         # Update global live_positions in-place
         live_positions.clear()

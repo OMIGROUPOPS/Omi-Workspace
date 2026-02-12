@@ -48,6 +48,7 @@ interface Position {
   avg_price: number;
   current_value: number;
   hedged_with: string | null;
+  hedge_source?: "API_MATCHED" | "CONFIRMED" | "UNHEDGED" | null;
 }
 
 interface Balances {
@@ -124,7 +125,9 @@ function sportBadge(sport: string): string {
 
 function timeAgo(iso: string): string {
   if (!iso) return "never";
-  const diff = Date.now() - new Date(iso).getTime();
+  // Normalize UTC timestamps missing Z suffix
+  const s = iso.endsWith("Z") || iso.includes("+") ? iso : iso + "Z";
+  const diff = Date.now() - new Date(s).getTime();
   const secs = Math.floor(diff / 1000);
   if (secs < 60) return `${secs}s ago`;
   const mins = Math.floor(secs / 60);
@@ -146,7 +149,9 @@ function formatUptime(seconds: number): string {
 function formatTime(iso: string): string {
   if (!iso) return "-";
   try {
-    return new Date(iso).toLocaleTimeString("en-US", {
+    // Normalize UTC timestamps missing Z suffix
+    const s = iso.endsWith("Z") || iso.includes("+") ? iso : iso + "Z";
+    return new Date(s).toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
@@ -166,7 +171,9 @@ function isToday(dateStr: string | undefined): boolean {
 function toDateStr(iso: string): string {
   if (!iso) return "";
   try {
-    return new Date(iso).toISOString().slice(0, 10);
+    // Executor timestamps are UTC but lack Z suffix — normalize before parsing
+    const s = iso.endsWith("Z") || iso.includes("+") ? iso : iso + "Z";
+    return new Date(s).toISOString().slice(0, 10);
   } catch {
     return "";
   }
@@ -174,7 +181,7 @@ function toDateStr(iso: string): string {
 
 function yesterdayStr(): string {
   const d = new Date();
-  d.setDate(d.getDate() - 1);
+  d.setUTCDate(d.getUTCDate() - 1);
   return d.toISOString().slice(0, 10);
 }
 
@@ -736,16 +743,16 @@ export default function ArbDashboard() {
               </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0 divide-x divide-gray-800/50">
-              {/* Unhedged first */}
+              {/* Unhedged first (RED) */}
               {unhedgedPositions.map((p, i) => (
                 <div
                   key={`uh-${i}`}
-                  className="px-3 py-2 bg-red-500/5"
+                  className="px-3 py-2 bg-red-500/5 border-l-2 border-red-500"
                 >
                   <div className="flex items-center justify-between">
                     <div>
                       <span className="text-white font-medium text-xs">
-                        {p.team}
+                        {p.team || p.game_id}
                       </span>
                       <span className="ml-1 text-[10px] text-gray-500">
                         {p.platform}
@@ -757,7 +764,7 @@ export default function ArbDashboard() {
                   </div>
                   <div className="mt-0.5 flex items-center gap-2 text-[10px] text-gray-400">
                     <span>{p.side} x{p.quantity}</span>
-                    <span>@ {p.avg_price}c</span>
+                    {p.avg_price > 0 && <span>@ {p.avg_price}c</span>}
                     <span className={sportBadge(p.sport).split(" ").pop()}>
                       {p.sport}
                     </span>
@@ -765,34 +772,47 @@ export default function ArbDashboard() {
                 </div>
               ))}
               {/* Hedged pairs — single row per game+team */}
-              {hedgedPositions.map((p, i) => (
-                <div key={`h-${i}`} className="px-3 py-2">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-white font-medium text-xs">
-                        {p.team}
-                      </span>
-                      <span
-                        className={`ml-1 inline-block rounded px-0.5 text-[9px] font-medium ${sportBadge(
-                          p.sport
-                        )}`}
-                      >
-                        {p.sport}
+              {hedgedPositions.map((p, i) => {
+                const isConfirmed = p.hedge_source === "CONFIRMED";
+                return (
+                  <div key={`h-${i}`} className="px-3 py-2">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="text-white font-medium text-xs">
+                          {p.team || p.game_id}
+                        </span>
+                        <span
+                          className={`ml-1 inline-block rounded px-0.5 text-[9px] font-medium ${sportBadge(
+                            p.sport
+                          )}`}
+                        >
+                          {p.sport}
+                        </span>
+                      </div>
+                      <span className="text-[9px] font-medium rounded px-1 py-0.5 bg-emerald-500/20 text-emerald-400">
+                        HEDGED
+                        {isConfirmed && (
+                          <span className="ml-0.5 text-[8px] opacity-70" title="Confirmed by trades.json">
+                            ✓
+                          </span>
+                        )}
                       </span>
                     </div>
-                    <span className="text-[9px] font-medium rounded px-1 py-0.5 bg-emerald-500/20 text-emerald-400">
-                      HEDGED
-                    </span>
+                    <div className="mt-0.5 flex items-center gap-2 text-[10px] text-gray-400">
+                      <span>{p.side} x{p.quantity}</span>
+                      {p.avg_price > 0 && <span>PM@{p.avg_price}c</span>}
+                      {p.current_value > 0 && (
+                        <span>K@{p.current_value}c</span>
+                      )}
+                      {isConfirmed && (
+                        <span className="text-[9px] text-emerald-500/50">
+                          via trades.json
+                        </span>
+                      )}
+                    </div>
                   </div>
-                  <div className="mt-0.5 flex items-center gap-2 text-[10px] text-gray-400">
-                    <span>{p.side} x{p.quantity}</span>
-                    <span>PM@{p.avg_price}c</span>
-                    {p.current_value > 0 && (
-                      <span>K@{p.current_value}c</span>
-                    )}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         ) : (

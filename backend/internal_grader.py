@@ -557,3 +557,138 @@ class InternalGrader:
             })
 
         return calibration
+
+    # ------------------------------------------------------------------
+    # Graded Games — individual prediction rows with game context
+    # ------------------------------------------------------------------
+
+    def get_graded_games(
+        self,
+        sport: Optional[str] = None,
+        market: Optional[str] = None,
+        verdict: Optional[str] = None,
+        since: Optional[str] = None,
+        days: int = 30,
+        limit: int = 500,
+    ) -> dict:
+        """Return individual graded prediction rows merged with game context."""
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+
+        # Pre-filter game_ids by commence_time if `since` is set
+        valid_game_ids: Optional[set] = None
+        if since:
+            gr_result = self.client.table("game_results").select("game_id").gte(
+                "commence_time", since
+            ).execute()
+            valid_game_ids = {r["game_id"] for r in (gr_result.data or [])}
+
+        # Query prediction_grades
+        query = self.client.table("prediction_grades").select("*").not_.is_(
+            "graded_at", "null"
+        ).gte("created_at", cutoff).order("graded_at", desc=True).limit(limit)
+
+        if sport:
+            query = query.eq("sport_key", sport)
+        if market:
+            query = query.eq("market_type", market)
+
+        result = query.execute()
+        rows = result.data or []
+
+        # Apply since filter
+        if valid_game_ids is not None:
+            rows = [r for r in rows if r.get("game_id") in valid_game_ids]
+
+        # Apply verdict filter
+        if verdict == "win":
+            rows = [r for r in rows if r.get("is_correct") is True]
+        elif verdict == "loss":
+            rows = [r for r in rows if r.get("is_correct") is False]
+        elif verdict == "push":
+            rows = [r for r in rows if r.get("is_correct") is None]
+
+        # Fetch game context from game_results
+        game_ids = list({r["game_id"] for r in rows})
+        game_map: dict = {}
+        for i in range(0, len(game_ids), 50):
+            batch = game_ids[i : i + 50]
+            gr = self.client.table("game_results").select(
+                "game_id, home_team, away_team, commence_time, home_score, away_score"
+            ).in_("game_id", batch).execute()
+            for g in (gr.data or []):
+                game_map[g["game_id"]] = g
+
+        # Merge rows
+        merged = []
+        for row in rows:
+            game = game_map.get(row["game_id"], {})
+            merged.append({
+                "game_id": row["game_id"],
+                "sport_key": row.get("sport_key"),
+                "home_team": game.get("home_team", ""),
+                "away_team": game.get("away_team", ""),
+                "commence_time": game.get("commence_time", ""),
+                "home_score": game.get("home_score"),
+                "away_score": game.get("away_score"),
+                "market_type": row.get("market_type"),
+                "book_name": row.get("book_name"),
+                "omi_fair_line": row.get("omi_fair_line"),
+                "book_line": row.get("book_line"),
+                "gap": row.get("gap"),
+                "signal": row.get("signal"),
+                "confidence_tier": row.get("confidence_tier"),
+                "pillar_composite": row.get("pillar_composite"),
+                "prediction_side": row.get("prediction_side"),
+                "actual_result": row.get("actual_result"),
+                "is_correct": row.get("is_correct"),
+            })
+
+        # Summary stats
+        wins = sum(1 for r in merged if r["is_correct"] is True)
+        losses = sum(1 for r in merged if r["is_correct"] is False)
+        pushes = sum(1 for r in merged if r["is_correct"] is None)
+        decided = wins + losses
+        hit_rate = wins / decided if decided > 0 else 0
+        roi = (wins * 0.91 - losses) / len(merged) if merged else 0
+
+        return {
+            "rows": merged,
+            "summary": {
+                "total_graded": len(merged),
+                "wins": wins,
+                "losses": losses,
+                "pushes": pushes,
+                "hit_rate": round(hit_rate, 4),
+                "roi": round(roi, 4),
+                "best_sport": self._best_group(merged, "sport_key"),
+                "best_market": self._best_group(merged, "market_type"),
+            },
+            "count": len(merged),
+        }
+
+    def _best_group(self, rows: list, field: str, min_sample: int = 10) -> Optional[dict]:
+        """Find the group with the highest hit rate (min sample size)."""
+        groups: dict = {}
+        for r in rows:
+            key = r.get(field)
+            if not key:
+                continue
+            if key not in groups:
+                groups[key] = {"wins": 0, "losses": 0}
+            if r.get("is_correct") is True:
+                groups[key]["wins"] += 1
+            elif r.get("is_correct") is False:
+                groups[key]["losses"] += 1
+
+        best = None
+        best_rate = 0.0
+        for key, g in groups.items():
+            decided = g["wins"] + g["losses"]
+            if decided < min_sample:
+                continue
+            rate = g["wins"] / decided
+            if rate > best_rate:
+                best_rate = rate
+                best = {"key": key, "hit_rate": round(rate, 4), "count": decided}
+
+        return best

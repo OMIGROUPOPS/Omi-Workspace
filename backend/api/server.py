@@ -1243,6 +1243,27 @@ async def internal_edge_performance(
     )
 
 
+@app.get("/api/internal/edge/graded-games")
+async def internal_graded_games(
+    sport: str = None,
+    market: str = None,
+    verdict: str = None,
+    days: int = 30,
+    since: str = None,
+    limit: int = 500,
+):
+    """Get individual graded prediction rows with game context."""
+    grader = InternalGrader()
+    return grader.get_graded_games(
+        sport=sport.upper() if sport else None,
+        market=market,
+        verdict=verdict,
+        since=since,
+        days=days,
+        limit=min(limit, 1000),
+    )
+
+
 @app.get("/api/internal/edge/reflection")
 async def internal_edge_reflection(sport: str = None):
     """Deep reflection analysis on prediction accuracy and pillar effectiveness."""

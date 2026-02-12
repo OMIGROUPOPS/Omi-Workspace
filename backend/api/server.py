@@ -1103,6 +1103,127 @@ async def internal_grade_games(sport: str = None):
     return grader.grade_games(sport.upper() if sport else None)
 
 
+@app.post("/api/internal/backfill-scores")
+async def backfill_scores():
+    """One-time backfill: fetch ESPN scores for Feb 10+ games, grade them.
+
+    1. Purge pre-Feb-10 game_results and prediction_grades (broken pillars)
+    2. Fetch ESPN scores for all unscored Feb 10+ game_results
+    3. Grade newly scored games → create prediction_grades rows
+    """
+    from espn_scores import ESPNScoreFetcher, AutoGrader, SPORT_KEY_VARIANTS, ESPN_SPORTS, teams_match
+    from results_tracker import ResultsTracker
+    from internal_grader import InternalGrader
+    from supabase import create_client
+    import os
+
+    url = os.getenv("NEXT_PUBLIC_SUPABASE_URL")
+    key = os.getenv("NEXT_PUBLIC_SUPABASE_ANON_KEY")
+    client = create_client(url, key)
+    cutoff = "2026-02-10T00:00:00+00:00"
+
+    # --- Step 1: Purge pre-Feb-10 data ---
+    # Delete old prediction_grades (joined via game_id)
+    old_gr = client.table("game_results").select("game_id").lt("commence_time", cutoff).execute()
+    old_ids = [r["game_id"] for r in (old_gr.data or [])]
+
+    pg_deleted = 0
+    for i in range(0, len(old_ids), 50):
+        batch = old_ids[i:i+50]
+        res = client.table("prediction_grades").delete().in_("game_id", batch).execute()
+        pg_deleted += len(res.data or [])
+
+    # Delete old game_results
+    gr_deleted_res = client.table("game_results").delete().lt("commence_time", cutoff).execute()
+    gr_deleted = len(gr_deleted_res.data or [])
+
+    logger.info(f"[Backfill] Purged {gr_deleted} game_results and {pg_deleted} prediction_grades before {cutoff}")
+
+    # --- Step 2: Fetch ESPN scores for unscored Feb 10+ games ---
+    now = datetime.now(timezone.utc).isoformat()
+    espn = ESPNScoreFetcher()
+    tracker = ResultsTracker()
+    scores_filled = 0
+    not_found = 0
+    errors = 0
+    scored_game_ids = []
+
+    for sport in ESPN_SPORTS:
+        variants = SPORT_KEY_VARIANTS.get(sport, [sport])
+        unscored = client.table("game_results").select(
+            "game_id, home_team, away_team, commence_time, sport_key"
+        ).in_("sport_key", variants).is_("home_score", "null").gte(
+            "commence_time", cutoff
+        ).lt("commence_time", now).execute()
+
+        games = unscored.data or []
+        if not games:
+            continue
+
+        # Group by date for efficient ESPN fetching
+        by_date: dict[str, list[dict]] = {}
+        for g in games:
+            ct = g.get("commence_time", "")
+            if ct:
+                d = ct[:10].replace("-", "")
+                by_date.setdefault(d, []).append(g)
+
+        espn_cache: dict[str, list[dict]] = {}
+        for date_str in by_date:
+            if date_str not in espn_cache:
+                espn_cache[date_str] = espn.get_final_scores(sport, date_str)
+
+        for date_str, date_games in by_date.items():
+            espn_games = espn_cache.get(date_str, [])
+            for g in date_games:
+                home = g.get("home_team", "")
+                away = g.get("away_team", "")
+                match = None
+                for eg in espn_games:
+                    if teams_match(eg["home_team"], home) and teams_match(eg["away_team"], away):
+                        match = eg
+                        break
+                    if teams_match(eg["home_team"], away) and teams_match(eg["away_team"], home):
+                        match = {"home_score": eg["away_score"], "away_score": eg["home_score"], "is_final": eg["is_final"]}
+                        break
+
+                if not match or not match.get("is_final"):
+                    not_found += 1
+                    continue
+
+                try:
+                    tracker.grade_game(g["game_id"], match["home_score"], match["away_score"])
+                    scores_filled += 1
+                    scored_game_ids.append(g["game_id"])
+                except Exception as e:
+                    logger.error(f"[Backfill] grade_game error {g['game_id']}: {e}")
+                    errors += 1
+
+        logger.info(f"[Backfill] {sport}: {len(games)} unscored, {scores_filled} filled so far")
+
+    # --- Step 3: Generate prediction_grades for newly scored games ---
+    grades_created = 0
+    ig = InternalGrader()
+    for gid in scored_game_ids:
+        try:
+            count = ig._generate_prediction_grades(gid)
+            grades_created += count
+        except Exception as e:
+            logger.error(f"[Backfill] prediction_grades error {gid}: {e}")
+
+    result = {
+        "purged_game_results": gr_deleted,
+        "purged_prediction_grades": pg_deleted,
+        "games_found": len(scored_game_ids) + not_found + errors,
+        "scores_filled": scores_filled,
+        "not_found_on_espn": not_found,
+        "grades_created": grades_created,
+        "errors": errors,
+    }
+    logger.info(f"[Backfill] Complete: {result}")
+    return result
+
+
 @app.get("/api/internal/edge/performance")
 async def internal_edge_performance(
     sport: str = None,

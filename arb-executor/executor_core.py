@@ -435,8 +435,8 @@ async def execute_arb(
     if not safe:
         return TradeResult(success=False, abort_reason=f"Safety: {reason}")
 
-    # Mark as traded IMMEDIATELY (before any order attempt)
-    traded_games.add(game_id)
+    # NOTE: traded_games is only updated AFTER PM fills (see Step 5.5 below).
+    # This allows retries on PM_NO_FILL — the game stays tradeable.
 
     # -------------------------------------------------------------------------
     # Step 1.5: Runtime pm_long_team verification
@@ -449,7 +449,6 @@ async def execute_arb(
     if not pm_valid:
         # MISMATCH - abort trade to prevent unhedged positions
         print(f"[ABORT] {pm_reason}")
-        traded_games.discard(game_id)  # Allow retry with correct mapping
         return TradeResult(success=False, abort_reason=pm_reason)
 
     # Log verification result
@@ -571,6 +570,11 @@ async def execute_arb(
             abort_reason="PM: no fill (safe exit)",
             pm_order_ms=pm_order_ms
         )
+
+    # -------------------------------------------------------------------------
+    # Step 5.5: PM filled — NOW lock the game to prevent duplicate trades
+    # -------------------------------------------------------------------------
+    traded_games.add(game_id)
 
     # -------------------------------------------------------------------------
     # Step 6: Place Kalshi order (only if PM filled - reliable leg)

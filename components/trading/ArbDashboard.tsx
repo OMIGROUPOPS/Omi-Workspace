@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 
 // ── Types (mirrors API) ────────────────────────────────────────────────────
 
@@ -163,6 +163,25 @@ function isToday(dateStr: string | undefined): boolean {
   return dateStr === today;
 }
 
+function toDateStr(iso: string): string {
+  if (!iso) return "";
+  try {
+    return new Date(iso).toISOString().slice(0, 10);
+  } catch {
+    return "";
+  }
+}
+
+function yesterdayStr(): string {
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  return d.toISOString().slice(0, 10);
+}
+
+function todayStr(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
 // ── Components ─────────────────────────────────────────────────────────────
 
 function Pulse({ active }: { active: boolean }) {
@@ -192,19 +211,20 @@ function MetricCard({
   accent?: string;
 }) {
   return (
-    <div className="rounded-lg border border-gray-800 bg-[#111] p-4">
-      <p className="text-xs font-medium uppercase tracking-wide text-gray-500">
+    <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2.5">
+      <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500">
         {label}
       </p>
-      <p className={`mt-1 text-2xl font-bold ${accent || "text-white"}`}>
+      <p className={`mt-0.5 text-xl font-bold ${accent || "text-white"}`}>
         {value}
       </p>
-      {sub && <p className="mt-0.5 text-xs text-gray-500">{sub}</p>}
+      {sub && <p className="text-[10px] text-gray-500">{sub}</p>}
     </div>
   );
 }
 
 type TradeFilter = "all" | "live" | "paper";
+type DateFilter = "today" | "yesterday" | "all";
 
 // ── Main Component ──────────────────────────────────────────────────────────
 
@@ -214,6 +234,8 @@ export default function ArbDashboard() {
   const [fetchError, setFetchError] = useState(false);
   const [paused, setPaused] = useState(false);
   const [tradeFilter, setTradeFilter] = useState<TradeFilter>("all");
+  const [dateFilter, setDateFilter] = useState<DateFilter>("today");
+  const [showAllSpreads, setShowAllSpreads] = useState(false);
 
   const fetchData = useCallback(async () => {
     try {
@@ -243,29 +265,55 @@ export default function ArbDashboard() {
     state?.updated_at &&
     Date.now() - new Date(state.updated_at).getTime() > 60_000;
 
-  // ── Sort spreads: best spread descending ──────────────────────────────
-  const sortedSpreads = [...(state?.spreads || [])].sort((a, b) => {
-    if (a.is_executable !== b.is_executable)
-      return a.is_executable ? -1 : 1;
-    const aMax = Math.max(a.spread_buy_pm, a.spread_buy_k);
-    const bMax = Math.max(b.spread_buy_pm, b.spread_buy_k);
-    return bMax - aMax;
-  });
+  // ── Spreads: filter + sort ──────────────────────────────────────────
+  const sortedSpreads = useMemo(() => {
+    const raw = state?.spreads || [];
+    const filtered = showAllSpreads
+      ? raw
+      : raw.filter(
+          (s) => s.spread_buy_pm > 0 || s.spread_buy_k > 0
+        );
+    return [...filtered].sort((a, b) => {
+      const aMax = Math.max(a.spread_buy_pm, a.spread_buy_k);
+      const bMax = Math.max(b.spread_buy_pm, b.spread_buy_k);
+      return bMax - aMax;
+    });
+  }, [state?.spreads, showAllSpreads]);
 
-  // ── Filter + sort trades (newest first) ───────────────────────────────
-  const allTrades = [...(state?.trades || [])]
-    .sort(
-      (a, b) =>
-        new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-    )
-    .slice(0, 50);
+  const totalSpreadCount = state?.spreads?.length || 0;
 
-  const filteredTrades =
-    tradeFilter === "all"
-      ? allTrades
-      : tradeFilter === "paper"
-      ? allTrades.filter((t) => t.paper_mode)
-      : allTrades.filter((t) => !t.paper_mode);
+  // ── Trades: filter by mode + date, sort newest first ────────────────
+  const allTrades = useMemo(() => {
+    return [...(state?.trades || [])]
+      .sort(
+        (a, b) =>
+          new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+      )
+      .slice(0, 50);
+  }, [state?.trades]);
+
+  const filteredTrades = useMemo(() => {
+    const today = todayStr();
+    const yesterday = yesterdayStr();
+
+    let trades = allTrades;
+
+    // Date filter
+    if (dateFilter === "today") {
+      trades = trades.filter((t) => toDateStr(t.timestamp) === today);
+    } else if (dateFilter === "yesterday") {
+      trades = trades.filter((t) => toDateStr(t.timestamp) === yesterday);
+    }
+
+    // Mode filter
+    if (tradeFilter === "paper") {
+      trades = trades.filter((t) => t.paper_mode);
+    } else if (tradeFilter === "live") {
+      trades = trades.filter((t) => !t.paper_mode);
+    }
+
+    return trades;
+  }, [allTrades, dateFilter, tradeFilter]);
 
   // ── P&L summary ──────────────────────────────────────────────────────
   const executedTrades = allTrades.filter((t) => t.contracts_filled > 0);
@@ -274,23 +322,25 @@ export default function ArbDashboard() {
     0
   );
   const hedgedCount = executedTrades.filter((t) => t.hedged).length;
-  const unhedgedCount = executedTrades.filter((t) => !t.hedged && t.contracts_filled > 0).length;
+  const unhedgedCount = executedTrades.filter(
+    (t) => !t.hedged && t.contracts_filled > 0
+  ).length;
 
-  // ── Group positions by hedged pairs ───────────────────────────────────
-  const hedgedPositions = (state?.positions || []).filter(
-    (p) => p.hedged_with
-  );
-  const unhedgedPositions = (state?.positions || []).filter(
-    (p) => !p.hedged_with
-  );
+  // ── Positions: only active (quantity > 0) ───────────────────────────
+  const activePositions = useMemo(() => {
+    return (state?.positions || []).filter((p) => p.quantity > 0);
+  }, [state?.positions]);
+
+  const unhedgedPositions = activePositions.filter((p) => !p.hedged_with);
+  const hedgedPositions = activePositions.filter((p) => p.hedged_with);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-gray-200">
       {/* Header */}
       <div className="border-b border-gray-800 bg-[#0f0f0f]">
-        <div className="flex items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-4">
-            <h1 className="text-xl font-bold text-white">Arb Monitor</h1>
+        <div className="flex items-center justify-between px-4 py-3">
+          <div className="flex items-center gap-3">
+            <h1 className="text-lg font-bold text-white">Arb Monitor</h1>
             <div className="flex items-center gap-2">
               <Pulse active={!!hasData && !isStale && !fetchError} />
               <span className="text-xs text-gray-500">
@@ -304,10 +354,10 @@ export default function ArbDashboard() {
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => setPaused(!paused)}
-              className={`rounded px-3 py-1.5 text-xs font-medium transition-colors ${
+              className={`rounded px-2.5 py-1 text-xs font-medium transition-colors ${
                 paused
                   ? "bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30"
                   : "bg-gray-800 text-gray-400 hover:bg-gray-700"
@@ -317,7 +367,7 @@ export default function ArbDashboard() {
             </button>
             <button
               onClick={fetchData}
-              className="rounded bg-gray-800 px-3 py-1.5 text-xs font-medium text-gray-400 hover:bg-gray-700 transition-colors"
+              className="rounded bg-gray-800 px-2.5 py-1 text-xs font-medium text-gray-400 hover:bg-gray-700 transition-colors"
             >
               Refresh
             </button>
@@ -325,9 +375,9 @@ export default function ArbDashboard() {
         </div>
       </div>
 
-      <div className="p-6 space-y-6">
-        {/* ── Top Metrics Row ────────────────────────────────────────────── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <div className="p-4 space-y-4">
+        {/* ── Top: Balances + P&L Row ──────────────────────────────────── */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
           <MetricCard
             label="Kalshi Balance"
             value={
@@ -354,12 +404,36 @@ export default function ArbDashboard() {
             accent="text-emerald-400"
           />
           <MetricCard
-            label="Games Monitored"
+            label="Est. P&L"
+            value={
+              executedTrades.length > 0
+                ? `${totalPnlCents >= 0 ? "+" : ""}${totalPnlCents.toFixed(1)}c`
+                : "-"
+            }
+            sub={
+              executedTrades.length > 0
+                ? `${executedTrades.length} exec, ${hedgedCount} hedged${unhedgedCount > 0 ? `, ${unhedgedCount} unhedged` : ""}`
+                : undefined
+            }
+            accent={
+              totalPnlCents > 0
+                ? "text-emerald-400"
+                : totalPnlCents < 0
+                ? "text-red-400"
+                : "text-white"
+            }
+          />
+          <MetricCard
+            label="Games"
             value={String(state?.system.games_monitored || 0)}
           />
           <MetricCard
             label="WS Messages"
-            value={String(state?.system.ws_messages_processed || 0)}
+            value={
+              (state?.system.ws_messages_processed || 0) > 1000
+                ? `${((state?.system.ws_messages_processed || 0) / 1000).toFixed(1)}k`
+                : String(state?.system.ws_messages_processed || 0)
+            }
           />
           <MetricCard
             label="Uptime"
@@ -368,332 +442,146 @@ export default function ArbDashboard() {
           />
         </div>
 
-        {/* ── P&L Summary ──────────────────────────────────────────────── */}
-        {executedTrades.length > 0 && (
-          <div className="rounded-lg border border-gray-800 bg-[#111] px-4 py-3">
-            <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
-              <div>
-                <span className="text-xs font-medium uppercase tracking-wide text-gray-500">
-                  Est. P&L
-                </span>
-                <span
-                  className={`ml-2 text-lg font-bold font-mono ${
-                    totalPnlCents > 0
-                      ? "text-emerald-400"
-                      : totalPnlCents < 0
-                      ? "text-red-400"
-                      : "text-gray-400"
-                  }`}
-                >
-                  {totalPnlCents >= 0 ? "+" : ""}
-                  {totalPnlCents.toFixed(1)}c
-                </span>
-                <span className="ml-1 text-xs text-gray-500">
-                  (${(totalPnlCents / 100).toFixed(3)})
-                </span>
-              </div>
-              <div className="flex items-center gap-4 text-xs text-gray-400">
-                <span>
-                  <span className="font-medium text-white">
-                    {executedTrades.length}
-                  </span>{" "}
-                  executed
-                </span>
-                <span>
-                  <span className="font-medium text-emerald-400">
-                    {hedgedCount}
-                  </span>{" "}
-                  hedged
-                </span>
-                {unhedgedCount > 0 && (
-                  <span>
-                    <span className="font-medium text-red-400">
-                      {unhedgedCount}
-                    </span>{" "}
-                    unhedged
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ── System Status Banner ───────────────────────────────────────── */}
+        {/* ── Error Banner ─────────────────────────────────────────────── */}
         {state?.system.error_count ? (
-          <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="text-red-400 text-sm font-medium">
-                {state.system.error_count} error
-                {state.system.error_count > 1 ? "s" : ""}
+          <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 flex items-center gap-2">
+            <span className="text-red-400 text-xs font-medium">
+              {state.system.error_count} error
+              {state.system.error_count > 1 ? "s" : ""}
+            </span>
+            {state.system.last_error && (
+              <span className="text-red-400/70 text-xs truncate max-w-xl">
+                {state.system.last_error}
               </span>
-              {state.system.last_error && (
-                <span className="text-red-400/70 text-xs truncate max-w-xl">
-                  {state.system.last_error}
-                </span>
-              )}
-            </div>
+            )}
           </div>
         ) : null}
 
-        {/* ── Live Spread Table ──────────────────────────────────────────── */}
-        <div className="rounded-lg border border-gray-800 bg-[#111]">
-          <div className="flex items-center justify-between border-b border-gray-800 px-4 py-3">
-            <h2 className="text-sm font-semibold text-white">
-              Live Spreads
-              {sortedSpreads.length > 0 && (
-                <span className="ml-2 text-xs text-gray-500">
-                  ({sortedSpreads.length} games)
-                </span>
-              )}
-            </h2>
-            <div className="flex items-center gap-3 text-xs text-gray-500">
-              <span className="flex items-center gap-1">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" /> 4c+
-              </span>
-              <span className="flex items-center gap-1">
-                <span className="h-2 w-2 rounded-full bg-yellow-500" /> 3-4c
-              </span>
-              <span className="flex items-center gap-1">
-                <span className="h-2 w-2 rounded-full bg-gray-500" /> &lt;3c
-              </span>
-            </div>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-gray-800 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                  <th className="px-4 py-2">Game</th>
-                  <th className="px-3 py-2">Sport</th>
-                  <th className="px-3 py-2">Team</th>
-                  <th className="px-3 py-2 text-right">K Bid</th>
-                  <th className="px-3 py-2 text-right">K Ask</th>
-                  <th className="px-3 py-2 text-right">PM Bid</th>
-                  <th className="px-3 py-2 text-right">PM Ask</th>
-                  <th className="px-3 py-2 text-right">BUY_PM</th>
-                  <th className="px-3 py-2 text-right">BUY_K</th>
-                  <th className="px-3 py-2 text-right">Size</th>
-                  <th className="px-3 py-2 text-center">Exec</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortedSpreads.length === 0 ? (
-                  <tr>
-                    <td
-                      colSpan={11}
-                      className="px-4 py-8 text-center text-gray-600"
-                    >
-                      {hasData
-                        ? "No spreads currently monitored"
-                        : "Waiting for executor data..."}
-                    </td>
-                  </tr>
-                ) : (
-                  sortedSpreads.map((s) => {
-                    const best = Math.max(s.spread_buy_pm, s.spread_buy_k);
-                    const today = isToday(s.game_date);
-                    return (
-                      <tr
-                        key={`${s.game_id}-${s.team}`}
-                        className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors ${
-                          s.is_executable ? "bg-emerald-500/5" : ""
-                        } ${spreadBg(best)}`}
-                      >
-                        <td className="px-4 py-2 font-medium text-white whitespace-nowrap">
-                          {s.game_name || s.game_id}
-                          {s.game_date && (
-                            <span
-                              className={`ml-1.5 inline-block rounded px-1 py-0.5 text-[10px] font-medium ${
-                                today
-                                  ? "bg-emerald-500/20 text-emerald-400"
-                                  : "bg-gray-500/20 text-gray-500"
-                              }`}
-                            >
-                              {today ? "TODAY" : s.game_date}
-                            </span>
-                          )}
-                        </td>
-                        <td className="px-3 py-2">
-                          <span
-                            className={`inline-block rounded px-1.5 py-0.5 text-xs font-medium ${sportBadge(
-                              s.sport
-                            )}`}
-                          >
-                            {s.sport}
-                          </span>
-                        </td>
-                        <td className="px-3 py-2 font-mono text-xs">
-                          {s.team}
-                        </td>
-                        <td className="px-3 py-2 text-right font-mono">
-                          {s.k_bid}
-                        </td>
-                        <td className="px-3 py-2 text-right font-mono">
-                          {s.k_ask}
-                        </td>
-                        <td className="px-3 py-2 text-right font-mono">
-                          {s.pm_bid.toFixed(1)}
-                        </td>
-                        <td className="px-3 py-2 text-right font-mono">
-                          {s.pm_ask.toFixed(1)}
-                        </td>
-                        <td
-                          className={`px-3 py-2 text-right font-mono font-bold ${spreadColor(
-                            s.spread_buy_pm
-                          )}`}
-                        >
-                          {s.spread_buy_pm.toFixed(1)}c
-                        </td>
-                        <td
-                          className={`px-3 py-2 text-right font-mono font-bold ${spreadColor(
-                            s.spread_buy_k
-                          )}`}
-                        >
-                          {s.spread_buy_k.toFixed(1)}c
-                        </td>
-                        <td className="px-3 py-2 text-right font-mono text-gray-400">
-                          {s.pm_size}
-                        </td>
-                        <td className="px-3 py-2 text-center">
-                          {s.is_executable ? (
-                            <span className="inline-block h-5 w-5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs leading-5">
-                              ✓
-                            </span>
-                          ) : (
-                            <span className="text-gray-600">-</span>
-                          )}
-                        </td>
-                      </tr>
-                    );
-                  })
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* ── Bottom Grid: Trades + Positions ───────────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Trade Log (2/3 width) */}
-          <div className="lg:col-span-2 rounded-lg border border-gray-800 bg-[#111]">
-            <div className="border-b border-gray-800 px-4 py-3 flex items-center justify-between">
+        {/* ── Middle: Spreads (60%) + Trades (40%) ─────────────────────── */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+          {/* Live Spreads (3/5 = 60%) */}
+          <div className="lg:col-span-3 rounded-lg border border-gray-800 bg-[#111] flex flex-col" style={{ maxHeight: "440px" }}>
+            <div className="flex items-center justify-between border-b border-gray-800 px-3 py-2 shrink-0">
               <h2 className="text-sm font-semibold text-white">
-                Trade Log
-                {filteredTrades.length > 0 && (
-                  <span className="ml-2 text-xs text-gray-500">
-                    (last {filteredTrades.length})
-                  </span>
-                )}
+                Live Spreads
+                <span className="ml-1.5 text-xs text-gray-500">
+                  {sortedSpreads.length}
+                  {!showAllSpreads && totalSpreadCount > sortedSpreads.length && (
+                    <span>/{totalSpreadCount}</span>
+                  )}
+                </span>
               </h2>
-              <div className="flex items-center gap-1">
-                {(["all", "live", "paper"] as TradeFilter[]).map((f) => (
-                  <button
-                    key={f}
-                    onClick={() => setTradeFilter(f)}
-                    className={`rounded px-2.5 py-1 text-xs font-medium transition-colors ${
-                      tradeFilter === f
-                        ? f === "live"
-                          ? "bg-emerald-500/20 text-emerald-400"
-                          : f === "paper"
-                          ? "bg-purple-500/20 text-purple-400"
-                          : "bg-gray-700 text-white"
-                        : "text-gray-500 hover:text-gray-300"
-                    }`}
-                  >
-                    {f.toUpperCase()}
-                  </button>
-                ))}
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setShowAllSpreads(!showAllSpreads)}
+                  className={`rounded px-2 py-0.5 text-[10px] font-medium transition-colors ${
+                    showAllSpreads
+                      ? "bg-gray-700 text-white"
+                      : "bg-emerald-500/20 text-emerald-400"
+                  }`}
+                >
+                  {showAllSpreads ? "All" : "Opps only"}
+                </button>
+                <div className="flex items-center gap-2 text-[10px] text-gray-500">
+                  <span className="flex items-center gap-0.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> 4c+
+                  </span>
+                  <span className="flex items-center gap-0.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-yellow-500" /> 3-4c
+                  </span>
+                </div>
               </div>
             </div>
-            <div className="overflow-x-auto max-h-96 overflow-y-auto">
-              <table className="w-full text-sm">
-                <thead className="sticky top-0 bg-[#111]">
-                  <tr className="border-b border-gray-800 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                    <th className="px-4 py-2">Time</th>
-                    <th className="px-3 py-2">Game</th>
-                    <th className="px-3 py-2">Dir</th>
-                    <th className="px-3 py-2 text-right">Spread</th>
-                    <th className="px-3 py-2 text-right">Net</th>
-                    <th className="px-3 py-2 text-center">Hedged</th>
-                    <th className="px-3 py-2">Status</th>
+
+            <div className="overflow-auto flex-1">
+              <table className="w-full text-xs">
+                <thead className="sticky top-0 bg-[#111] z-10">
+                  <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-2 py-1.5">Game</th>
+                    <th className="px-2 py-1.5">Team</th>
+                    <th className="px-2 py-1.5 text-right">K Bid</th>
+                    <th className="px-2 py-1.5 text-right">K Ask</th>
+                    <th className="px-2 py-1.5 text-right">PM Bid</th>
+                    <th className="px-2 py-1.5 text-right">PM Ask</th>
+                    <th className="px-2 py-1.5 text-right">BUY_PM</th>
+                    <th className="px-2 py-1.5 text-right">BUY_K</th>
+                    <th className="px-2 py-1.5 text-right">Size</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredTrades.length === 0 ? (
+                  {sortedSpreads.length === 0 ? (
                     <tr>
                       <td
-                        colSpan={7}
-                        className="px-4 py-8 text-center text-gray-600"
+                        colSpan={9}
+                        className="px-3 py-6 text-center text-gray-600 text-xs"
                       >
-                        No trades recorded
+                        {hasData
+                          ? showAllSpreads
+                            ? "No spreads monitored"
+                            : "No positive spreads"
+                          : "Waiting for executor data..."}
                       </td>
                     </tr>
                   ) : (
-                    filteredTrades.map((t, i) => {
-                      const badge = statusBadge(t.status);
+                    sortedSpreads.map((s) => {
+                      const best = Math.max(s.spread_buy_pm, s.spread_buy_k);
+                      const today = isToday(s.game_date);
                       return (
                         <tr
-                          key={`${t.timestamp}-${i}`}
-                          className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors"
+                          key={`${s.game_id}-${s.team}`}
+                          className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors ${spreadBg(best)}`}
                         >
-                          <td className="px-4 py-2 font-mono text-xs text-gray-400 whitespace-nowrap">
-                            {formatTime(t.timestamp)}
+                          <td className="px-2 py-1 text-white whitespace-nowrap">
+                            <span className="font-medium">{s.game_id}</span>
+                            {s.game_date && (
+                              <span
+                                className={`ml-1 inline-block rounded px-0.5 text-[9px] font-medium ${
+                                  today
+                                    ? "bg-emerald-500/20 text-emerald-400"
+                                    : "bg-gray-500/20 text-gray-500"
+                                }`}
+                              >
+                                {today ? "LIVE" : s.game_date.slice(5)}
+                              </span>
+                            )}
                           </td>
-                          <td className="px-3 py-2 whitespace-nowrap">
-                            <span className="text-white font-medium">
-                              {t.team}
-                            </span>
+                          <td className="px-2 py-1 font-mono">
                             <span
-                              className={`ml-1.5 inline-block rounded px-1 py-0.5 text-[10px] font-medium ${sportBadge(
-                                t.sport
+                              className={`inline-block rounded px-1 py-0.5 text-[10px] font-medium ${sportBadge(
+                                s.sport
                               )}`}
                             >
-                              {t.sport}
+                              {s.team}
                             </span>
-                            {t.paper_mode && (
-                              <span className="ml-1 inline-block rounded px-1 py-0.5 text-[10px] font-medium bg-purple-500/20 text-purple-400">
-                                PAPER
-                              </span>
-                            )}
                           </td>
-                          <td className="px-3 py-2 text-xs font-mono">
-                            {t.direction === "BUY_PM_SELL_K" ? (
-                              <span className="text-blue-400">BUY_PM</span>
-                            ) : (
-                              <span className="text-orange-400">BUY_K</span>
-                            )}
+                          <td className="px-2 py-1 text-right font-mono">
+                            {s.k_bid}
+                          </td>
+                          <td className="px-2 py-1 text-right font-mono">
+                            {s.k_ask}
+                          </td>
+                          <td className="px-2 py-1 text-right font-mono">
+                            {s.pm_bid.toFixed(1)}
+                          </td>
+                          <td className="px-2 py-1 text-right font-mono">
+                            {s.pm_ask.toFixed(1)}
                           </td>
                           <td
-                            className={`px-3 py-2 text-right font-mono ${spreadColor(
-                              t.spread_cents
+                            className={`px-2 py-1 text-right font-mono font-bold ${spreadColor(
+                              s.spread_buy_pm
                             )}`}
                           >
-                            {t.spread_cents.toFixed(1)}c
+                            {s.spread_buy_pm.toFixed(1)}
                           </td>
                           <td
-                            className={`px-3 py-2 text-right font-mono font-medium ${netColor(
-                              t.estimated_net_profit_cents
+                            className={`px-2 py-1 text-right font-mono font-bold ${spreadColor(
+                              s.spread_buy_k
                             )}`}
                           >
-                            {t.estimated_net_profit_cents != null
-                              ? `${t.estimated_net_profit_cents > 0 ? "+" : ""}${t.estimated_net_profit_cents.toFixed(1)}c`
-                              : "-"}
+                            {s.spread_buy_k.toFixed(1)}
                           </td>
-                          <td className="px-3 py-2 text-center">
-                            {t.hedged ? (
-                              <span className="text-emerald-400 text-xs">
-                                ✓
-                              </span>
-                            ) : (
-                              <span className="text-red-400 text-xs">✗</span>
-                            )}
-                          </td>
-                          <td className="px-3 py-2">
-                            <span
-                              className={`inline-block rounded px-1.5 py-0.5 text-[10px] font-medium ${badge.bg} ${badge.text}`}
-                            >
-                              {t.status}
-                            </span>
+                          <td className="px-2 py-1 text-right font-mono text-gray-500">
+                            {s.pm_size}
                           </td>
                         </tr>
                       );
@@ -704,103 +592,223 @@ export default function ArbDashboard() {
             </div>
           </div>
 
-          {/* Positions (1/3 width) */}
-          <div className="rounded-lg border border-gray-800 bg-[#111]">
-            <div className="border-b border-gray-800 px-4 py-3">
+          {/* Trade Log (2/5 = 40%) */}
+          <div className="lg:col-span-2 rounded-lg border border-gray-800 bg-[#111] flex flex-col" style={{ maxHeight: "440px" }}>
+            <div className="border-b border-gray-800 px-3 py-2 flex items-center justify-between shrink-0">
               <h2 className="text-sm font-semibold text-white">
-                Positions
-                <span className="ml-2 text-xs text-gray-500">
-                  ({(state?.positions || []).length} open)
+                Trades
+                <span className="ml-1.5 text-xs text-gray-500">
+                  {filteredTrades.length}
                 </span>
               </h2>
+              <div className="flex items-center gap-1.5">
+                {/* Date filters */}
+                {(["today", "yesterday", "all"] as DateFilter[]).map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setDateFilter(f)}
+                    className={`rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
+                      dateFilter === f
+                        ? "bg-gray-700 text-white"
+                        : "text-gray-500 hover:text-gray-300"
+                    }`}
+                  >
+                    {f === "today" ? "Today" : f === "yesterday" ? "Yest" : "All"}
+                  </button>
+                ))}
+                <span className="text-gray-700">|</span>
+                {/* Mode filters */}
+                {(["all", "live", "paper"] as TradeFilter[]).map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setTradeFilter(f)}
+                    className={`rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
+                      tradeFilter === f
+                        ? f === "live"
+                          ? "bg-emerald-500/20 text-emerald-400"
+                          : f === "paper"
+                          ? "bg-purple-500/20 text-purple-400"
+                          : "bg-gray-700 text-white"
+                        : "text-gray-500 hover:text-gray-300"
+                    }`}
+                  >
+                    {f === "all" ? "All" : f === "live" ? "Live" : "Paper"}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className="max-h-96 overflow-y-auto">
-              {(state?.positions || []).length === 0 ? (
-                <div className="px-4 py-8 text-center text-gray-600 text-sm">
-                  No open positions
-                </div>
-              ) : (
-                <div className="divide-y divide-gray-800/50">
-                  {/* Unhedged positions first (with warning) */}
-                  {unhedgedPositions.map((p, i) => (
-                    <div
-                      key={`uh-${i}`}
-                      className="px-4 py-3 bg-red-500/5"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <span className="text-white font-medium text-sm">
-                            {p.team}
-                          </span>
-                          <span className="ml-1.5 text-xs text-gray-500">
-                            {p.platform}
-                          </span>
-                        </div>
-                        <span className="text-[10px] font-medium rounded px-1.5 py-0.5 bg-red-500/20 text-red-400">
-                          UNHEDGED
-                        </span>
-                      </div>
-                      <div className="mt-1 flex items-center gap-3 text-xs text-gray-400">
-                        <span>
-                          {p.side} x{p.quantity}
-                        </span>
-                        <span>@ {p.avg_price}c</span>
-                        <span
-                          className={`font-medium ${sportBadge(p.sport)
-                            .split(" ")
-                            .pop()}`}
+            <div className="overflow-auto flex-1">
+              <table className="w-full text-xs">
+                <thead className="sticky top-0 bg-[#111] z-10">
+                  <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-2 py-1.5">Time</th>
+                    <th className="px-2 py-1.5">Game</th>
+                    <th className="px-2 py-1.5 text-right">Spread</th>
+                    <th className="px-2 py-1.5 text-right">Net</th>
+                    <th className="px-2 py-1.5">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredTrades.length === 0 ? (
+                    <tr>
+                      <td
+                        colSpan={5}
+                        className="px-3 py-6 text-center text-gray-600 text-xs"
+                      >
+                        No trades {dateFilter === "today" ? "today" : dateFilter === "yesterday" ? "yesterday" : "recorded"}
+                      </td>
+                    </tr>
+                  ) : (
+                    filteredTrades.map((t, i) => {
+                      const badge = statusBadge(t.status);
+                      return (
+                        <tr
+                          key={`${t.timestamp}-${i}`}
+                          className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors"
                         >
-                          {p.sport}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-
-                  {/* Hedged positions */}
-                  {hedgedPositions.map((p, i) => (
-                    <div key={`h-${i}`} className="px-4 py-3">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <span className="text-white font-medium text-sm">
-                            {p.team}
-                          </span>
-                          <span className="ml-1.5 text-xs text-gray-500">
-                            {p.platform}
-                          </span>
-                        </div>
-                        <span className="text-[10px] font-medium rounded px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400">
-                          HEDGED
-                        </span>
-                      </div>
-                      <div className="mt-1 flex items-center gap-3 text-xs text-gray-400">
-                        <span>
-                          {p.side} x{p.quantity}
-                        </span>
-                        <span>@ {p.avg_price}c</span>
-                        <span className="text-gray-600">
-                          pair: {p.hedged_with}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+                          <td className="px-2 py-1 font-mono text-gray-400 whitespace-nowrap">
+                            {formatTime(t.timestamp)}
+                          </td>
+                          <td className="px-2 py-1 whitespace-nowrap">
+                            <span className="text-white font-medium">
+                              {t.team}
+                            </span>
+                            <span
+                              className={`ml-1 inline-block rounded px-0.5 text-[9px] font-medium ${sportBadge(
+                                t.sport
+                              )}`}
+                            >
+                              {t.sport}
+                            </span>
+                            {t.paper_mode && (
+                              <span className="ml-0.5 text-[9px] text-purple-400">
+                                P
+                              </span>
+                            )}
+                          </td>
+                          <td
+                            className={`px-2 py-1 text-right font-mono ${spreadColor(
+                              t.spread_cents
+                            )}`}
+                          >
+                            {t.spread_cents.toFixed(1)}
+                          </td>
+                          <td
+                            className={`px-2 py-1 text-right font-mono font-medium ${netColor(
+                              t.estimated_net_profit_cents
+                            )}`}
+                          >
+                            {t.estimated_net_profit_cents != null
+                              ? `${t.estimated_net_profit_cents > 0 ? "+" : ""}${t.estimated_net_profit_cents.toFixed(1)}`
+                              : "-"}
+                          </td>
+                          <td className="px-2 py-1">
+                            <span
+                              className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${badge.bg} ${badge.text}`}
+                            >
+                              {t.status}
+                            </span>
+                            {t.hedged && (
+                              <span className="ml-0.5 text-emerald-400 text-[9px]">
+                                H
+                              </span>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })
+                  )}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
-        {/* ── Connection Details Footer ──────────────────────────────────── */}
-        <div className="rounded-lg border border-gray-800 bg-[#111] px-4 py-3">
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-gray-500">
-            <div className="flex items-center gap-2">
-              <span className="font-medium text-gray-400">WebSocket</span>
+        {/* ── Bottom: Positions (only if active) ───────────────────────── */}
+        {activePositions.length > 0 ? (
+          <div className="rounded-lg border border-gray-800 bg-[#111]">
+            <div className="border-b border-gray-800 px-3 py-2">
+              <h2 className="text-sm font-semibold text-white">
+                Open Positions
+                <span className="ml-1.5 text-xs text-gray-500">
+                  {activePositions.length}
+                </span>
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0 divide-x divide-gray-800/50">
+              {/* Unhedged first */}
+              {unhedgedPositions.map((p, i) => (
+                <div
+                  key={`uh-${i}`}
+                  className="px-3 py-2 bg-red-500/5"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-white font-medium text-xs">
+                        {p.team}
+                      </span>
+                      <span className="ml-1 text-[10px] text-gray-500">
+                        {p.platform}
+                      </span>
+                    </div>
+                    <span className="text-[9px] font-medium rounded px-1 py-0.5 bg-red-500/20 text-red-400">
+                      UNHEDGED
+                    </span>
+                  </div>
+                  <div className="mt-0.5 flex items-center gap-2 text-[10px] text-gray-400">
+                    <span>{p.side} x{p.quantity}</span>
+                    <span>@ {p.avg_price}c</span>
+                    <span className={sportBadge(p.sport).split(" ").pop()}>
+                      {p.sport}
+                    </span>
+                  </div>
+                </div>
+              ))}
+              {/* Hedged */}
+              {hedgedPositions.map((p, i) => (
+                <div key={`h-${i}`} className="px-3 py-2">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-white font-medium text-xs">
+                        {p.team}
+                      </span>
+                      <span className="ml-1 text-[10px] text-gray-500">
+                        {p.platform}
+                      </span>
+                    </div>
+                    <span className="text-[9px] font-medium rounded px-1 py-0.5 bg-emerald-500/20 text-emerald-400">
+                      HEDGED
+                    </span>
+                  </div>
+                  <div className="mt-0.5 flex items-center gap-2 text-[10px] text-gray-400">
+                    <span>{p.side} x{p.quantity}</span>
+                    <span>@ {p.avg_price}c</span>
+                    <span className="text-gray-600 truncate">
+                      {p.hedged_with}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="text-center py-1">
+            <span className="text-[10px] text-gray-600">No open positions</span>
+          </div>
+        )}
+
+        {/* ── Connection Footer ────────────────────────────────────────── */}
+        <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[10px] text-gray-500">
+            <div className="flex items-center gap-1.5">
+              <span className="font-medium text-gray-400">WS</span>
               <Pulse active={state?.system.ws_connected ?? false} />
               <span>
                 {state?.system.ws_connected ? "Connected" : "Disconnected"}
               </span>
             </div>
             <div>
-              <span className="font-medium text-gray-400">Last Scan</span>{" "}
+              <span className="font-medium text-gray-400">Scan</span>{" "}
               {state?.system.last_scan_at
                 ? timeAgo(state.system.last_scan_at)
                 : "-"}
@@ -818,12 +826,12 @@ export default function ArbDashboard() {
               </span>
             </div>
             <div>
-              <span className="font-medium text-gray-400">Dashboard Poll</span>{" "}
+              <span className="font-medium text-gray-400">Poll</span>{" "}
               {lastFetch ? `${timeAgo(lastFetch.toISOString())}` : "-"}
               {paused && " (paused)"}
             </div>
             <div>
-              <span className="font-medium text-gray-400">Version</span>{" "}
+              <span className="font-medium text-gray-400">Ver</span>{" "}
               {state?.system.executor_version || "-"}
             </div>
           </div>

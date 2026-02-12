@@ -342,7 +342,13 @@ class ExchangeTracker:
     # =========================================================================
 
     def sync_polymarket(self) -> dict:
-        """Fetch sports markets from Polymarket and store in exchange_data."""
+        """Fetch sports markets from Polymarket and store in exchange_data.
+
+        Uses the /events endpoint (not /markets) because:
+        - Tags (Sports, NBA, etc.) only exist on event objects, not market objects
+        - Events group related markets (moneyline, spread, total) together
+        - We filter by tag label to find sports events, then process nested markets
+        """
         if not db._is_connected():
             return {"error": "Database not connected", "markets_synced": 0, "errors": 0}
 
@@ -351,109 +357,135 @@ class ExchangeTracker:
         sports_matched = 0
         errors = 0
         offset = 0
-        limit = 100
+        limit = 200
 
         try:
             while True:
                 resp = requests.get(
-                    f"{POLYMARKET_API_BASE}/markets",
+                    f"{POLYMARKET_API_BASE}/events",
                     params={
                         "active": "true",
                         "closed": "false",
                         "limit": limit,
                         "offset": offset,
+                        "order": "volume24hr",
+                        "ascending": "false",
                     },
                     timeout=30,
                 )
                 resp.raise_for_status()
-                markets = resp.json()
+                events = resp.json()
 
-                if not markets:
+                if not events:
                     break
 
-                for m in markets:
+                for event in events:
                     try:
-                        title = m.get("question", "") or m.get("title", "")
-                        tags_raw = m.get("tags", [])
-                        tags = tags_raw if isinstance(tags_raw, list) else []
+                        event_title = event.get("title", "")
+                        # Tags are objects: [{"id": "1", "label": "Sports"}, ...]
+                        tags_raw = event.get("tags", [])
+                        tag_labels = []
+                        if isinstance(tags_raw, list):
+                            for t in tags_raw:
+                                if isinstance(t, dict):
+                                    tag_labels.append(t.get("label", ""))
+                                elif isinstance(t, str):
+                                    tag_labels.append(t)
 
-                        if not _is_sports_market(title, tags=tags):
+                        # Check if this event is sports-related
+                        if not _is_sports_market(event_title, tags=tag_labels):
                             continue
 
-                        event_id = m.get("conditionId", m.get("id", ""))
-                        slug = m.get("slug", "")
+                        # Fuzzy match the event title to our games (once per event)
+                        game_id, sport_key = self._fuzzy_match_game(event_title)
 
-                        # Parse prices from outcomePrices JSON string
-                        yes_price = None
-                        no_price = None
-                        try:
-                            prices_str = m.get("outcomePrices", "")
-                            if prices_str:
-                                prices = json.loads(prices_str)
-                                if len(prices) >= 2:
-                                    yes_price = round(float(prices[0]) * 100, 1)
-                                    no_price = round(float(prices[1]) * 100, 1)
-                        except (json.JSONDecodeError, ValueError, IndexError):
-                            pass
+                        # Process each market (contract) within this event
+                        event_markets = event.get("markets", [])
+                        if not event_markets:
+                            continue
 
-                        # Polymarket doesn't expose bid/ask in the markets endpoint
-                        volume = m.get("volume")
-                        if volume is not None:
+                        for m in event_markets:
                             try:
-                                volume = int(float(volume))
-                            except (ValueError, TypeError):
-                                volume = None
+                                question = m.get("question", "") or m.get("groupItemTitle", "") or event_title
+                                event_id = m.get("conditionId", m.get("id", ""))
+                                slug = m.get("slug", "")
 
-                        open_interest = m.get("liquidity")
-                        if open_interest is not None:
-                            try:
-                                open_interest = int(float(open_interest))
-                            except (ValueError, TypeError):
-                                open_interest = None
+                                # Parse prices from outcomePrices JSON string
+                                yes_price = None
+                                no_price = None
+                                try:
+                                    prices_str = m.get("outcomePrices", "")
+                                    if prices_str:
+                                        prices = json.loads(prices_str)
+                                        if len(prices) >= 2:
+                                            yes_price = round(float(prices[0]) * 100, 1)
+                                            no_price = round(float(prices[1]) * 100, 1)
+                                except (json.JSONDecodeError, ValueError, IndexError):
+                                    pass
 
-                        close_time = m.get("endDate") or m.get("expirationDate")
-                        status = "open" if m.get("active") else "closed"
+                                volume = m.get("volume")
+                                if volume is not None:
+                                    try:
+                                        volume = int(float(volume))
+                                    except (ValueError, TypeError):
+                                        volume = None
 
-                        prev = self._get_previous_price(event_id, "polymarket")
-                        price_change = None
-                        if prev is not None and yes_price is not None:
-                            price_change = round(yes_price - prev, 2)
+                                open_interest = m.get("liquidity")
+                                if open_interest is not None:
+                                    try:
+                                        open_interest = int(float(open_interest))
+                                    except (ValueError, TypeError):
+                                        open_interest = None
 
-                        game_id, sport_key = self._fuzzy_match_game(title)
-                        if game_id:
-                            sports_matched += 1
+                                close_time = m.get("endDate") or m.get("expirationDate") or event.get("endDate")
+                                status = "open" if m.get("active") else "closed"
 
-                        row = {
-                            "exchange": "polymarket",
-                            "event_id": event_id,
-                            "event_title": title,
-                            "contract_ticker": slug,
-                            "yes_price": yes_price,
-                            "no_price": no_price,
-                            "yes_bid": None,
-                            "yes_ask": None,
-                            "no_bid": None,
-                            "no_ask": None,
-                            "volume": volume,
-                            "open_interest": open_interest,
-                            "last_price": yes_price,  # best approximation
-                            "previous_yes_price": prev,
-                            "price_change": price_change,
-                            "snapshot_time": now,
-                            "mapped_game_id": game_id,
-                            "mapped_sport_key": sport_key,
-                            "expiration_time": close_time,
-                            "status": status,
-                        }
-                        db.client.table("exchange_data").insert(row).execute()
-                        markets_synced += 1
+                                prev = self._get_previous_price(event_id, "polymarket")
+                                price_change = None
+                                if prev is not None and yes_price is not None:
+                                    price_change = round(yes_price - prev, 2)
+
+                                if game_id:
+                                    sports_matched += 1
+
+                                # Use event title + market question for display
+                                display_title = question if question != event_title else event_title
+
+                                row = {
+                                    "exchange": "polymarket",
+                                    "event_id": event_id,
+                                    "event_title": display_title,
+                                    "contract_ticker": slug,
+                                    "yes_price": yes_price,
+                                    "no_price": no_price,
+                                    "yes_bid": None,
+                                    "yes_ask": None,
+                                    "no_bid": None,
+                                    "no_ask": None,
+                                    "volume": volume,
+                                    "open_interest": open_interest,
+                                    "last_price": yes_price,
+                                    "previous_yes_price": prev,
+                                    "price_change": price_change,
+                                    "snapshot_time": now,
+                                    "mapped_game_id": game_id,
+                                    "mapped_sport_key": sport_key,
+                                    "expiration_time": close_time,
+                                    "status": status,
+                                }
+                                db.client.table("exchange_data").insert(row).execute()
+                                markets_synced += 1
+
+                            except Exception as e:
+                                logger.error(f"[ExchangeTracker] Polymarket market error: {e}")
+                                errors += 1
 
                     except Exception as e:
-                        logger.error(f"[ExchangeTracker] Polymarket market error: {e}")
+                        logger.error(f"[ExchangeTracker] Polymarket event error: {e}")
                         errors += 1
 
-                # Polymarket uses offset-based pagination
-                if len(markets) < limit:
+                # Offset-based pagination
+                if len(events) < limit:
                     break
                 offset += limit
 

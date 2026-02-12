@@ -55,20 +55,101 @@ function formatPrice(price: number | null): string {
 }
 
 function formatTimeUntil(dateStr: string | null): string {
-  if (!dateStr) return '-';
+  if (!dateStr) return '';
   const date = new Date(dateStr);
+  if (isNaN(date.getTime())) return '';
   const now = new Date();
   const diff = date.getTime() - now.getTime();
-
   if (diff < 0) return 'Expired';
-
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
   if (days > 30) return `${Math.floor(days / 30)}mo`;
   if (days > 0) return `${days}d`;
   if (hours > 0) return `${hours}h`;
   return '<1h';
+}
+
+/** Derive a usable YES/NO price from whatever fields are available */
+function derivePrice(market: ExchangeMarket): { yes: number | null; no: number | null } {
+  // Priority: yes_price > midpoint of bid/ask > last_price
+  let yes = market.yes_price;
+  let no = market.no_price;
+
+  if (yes === null || yes === undefined) {
+    // Try bid/ask midpoint
+    if (market.yes_bid !== null && market.yes_ask !== null && market.yes_ask > 0) {
+      yes = Math.round((market.yes_bid + market.yes_ask) / 2);
+    } else if (market.last_price !== null && market.last_price > 0) {
+      yes = market.last_price;
+    }
+  }
+
+  if (no === null || no === undefined) {
+    if (market.no_bid !== null && market.no_ask !== null && market.no_ask > 0) {
+      no = Math.round((market.no_bid + market.no_ask) / 2);
+    } else if (yes !== null && yes > 0) {
+      no = 100 - yes;
+    }
+  }
+
+  // If only no exists, derive yes
+  if ((yes === null || yes === 0) && no !== null && no > 0) {
+    yes = 100 - no;
+  }
+
+  return { yes, no };
+}
+
+/** Clean up multi-leg Kalshi titles into readable format */
+function cleanTitle(title: string): { display: string; isMultiLeg: boolean; legCount: number } {
+  if (!title) return { display: title, isMultiLeg: false, legCount: 0 };
+
+  // Split comma-separated legs
+  const legs = title.split(',').map(s => s.trim()).filter(Boolean);
+  if (legs.length <= 1) return { display: title, isMultiLeg: false, legCount: 1 };
+
+  // Multi-leg parlay — extract meaningful info
+  const cleanLegs: string[] = [];
+  const teams = new Set<string>();
+
+  for (const leg of legs) {
+    // Remove "yes "/"no " prefix
+    const cleaned = leg.replace(/^(yes|no)\s+/i, '').trim();
+    if (!cleaned) continue;
+
+    // Extract team names (before "wins by" or standalone city/team)
+    const winMatch = cleaned.match(/^(.+?)\s+wins?\s+by/i);
+    const overMatch = cleaned.match(/^Over\s+[\d.]+\s+points/i);
+    if (winMatch) {
+      teams.add(winMatch[1]);
+    } else if (overMatch) {
+      // totals leg
+    } else if (cleaned.includes(':')) {
+      // Player prop like "James Harden: 6+"
+    } else {
+      // Standalone team name
+      teams.add(cleaned);
+    }
+
+    if (cleanLegs.length < 3) {
+      cleanLegs.push(cleaned);
+    }
+  }
+
+  // Build display: if we found teams, lead with them
+  const teamArr = Array.from(teams);
+  let display: string;
+  if (teamArr.length >= 2) {
+    display = `${legs.length}-leg parlay: ${teamArr.slice(0, 4).join(', ')}`;
+  } else if (cleanLegs.length > 0) {
+    display = cleanLegs.slice(0, 2).join(' + ');
+    if (legs.length > 2) display += ` +${legs.length - 2} more`;
+  } else {
+    display = title.slice(0, 80);
+    if (title.length > 80) display += '...';
+  }
+
+  return { display, isMultiLeg: true, legCount: legs.length };
 }
 
 function PriceChangeIndicator({ change }: { change: number | null }) {
@@ -90,11 +171,14 @@ function PriceChangeIndicator({ change }: { change: number | null }) {
 
 function MarketCard({ market }: { market: ExchangeMarket }) {
   const isKalshi = market.exchange === 'kalshi';
-  const yesPrice = market.yes_price || 0;
-  const hasPricing = yesPrice > 0 && yesPrice < 100;
+  const { display: cleanedTitle, isMultiLeg, legCount } = cleanTitle(market.event_title);
+  const { yes: yesPrice, no: noPrice } = derivePrice(market);
+  const hasPrice = yesPrice !== null && yesPrice > 0 && yesPrice < 100;
+  const impliedPct = hasPrice ? yesPrice : null;
+  const expiryStr = formatTimeUntil(market.expiration_time);
 
   // Calculate spread from bid/ask if available
-  const spread = (market.yes_bid !== null && market.yes_ask !== null)
+  const spread = (market.yes_bid !== null && market.yes_ask !== null && market.yes_ask > market.yes_bid)
     ? Math.round((market.yes_ask - market.yes_bid) * 10) / 10
     : null;
 
@@ -103,9 +187,17 @@ function MarketCard({ market }: { market: ExchangeMarket }) {
       {/* Header */}
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex-1 min-w-0">
-          <h3 className="text-[13px] font-medium text-zinc-100 leading-tight line-clamp-2 group-hover:text-white transition-colors">
-            {market.event_title}
+          <h3
+            className="text-[13px] font-medium text-zinc-100 leading-tight line-clamp-2 group-hover:text-white transition-colors"
+            title={market.event_title}
+          >
+            {cleanedTitle}
           </h3>
+          {isMultiLeg && (
+            <span className="text-[9px] font-mono text-zinc-600 mt-0.5 inline-block">
+              {legCount} legs
+            </span>
+          )}
         </div>
         <div className={`px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wide flex-shrink-0 ${
           isKalshi ? 'bg-sky-500/20 text-sky-400' : 'bg-violet-500/20 text-violet-400'
@@ -120,13 +212,13 @@ function MarketCard({ market }: { market: ExchangeMarket }) {
           <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider mb-1">YES</div>
           <div className="flex items-baseline gap-1.5">
             <span className="text-lg font-mono font-semibold text-emerald-400">
-              {formatPrice(market.yes_price)}
+              {formatPrice(yesPrice)}
             </span>
             <PriceChangeIndicator change={market.price_change} />
           </div>
-          {market.yes_bid !== null && market.yes_ask !== null && (
-            <div className="text-[10px] font-mono text-zinc-600 mt-0.5">
-              {market.yes_bid}/{market.yes_ask}
+          {hasPrice && (
+            <div className="text-[10px] font-mono text-emerald-400/50 mt-0.5">
+              {impliedPct}% implied
             </div>
           )}
         </div>
@@ -134,12 +226,12 @@ function MarketCard({ market }: { market: ExchangeMarket }) {
           <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider mb-1">NO</div>
           <div className="flex items-baseline gap-1.5">
             <span className="text-lg font-mono font-semibold text-red-400">
-              {formatPrice(market.no_price)}
+              {formatPrice(noPrice)}
             </span>
           </div>
-          {market.no_bid !== null && market.no_ask !== null && (
-            <div className="text-[10px] font-mono text-zinc-600 mt-0.5">
-              {market.no_bid}/{market.no_ask}
+          {noPrice !== null && noPrice > 0 && noPrice < 100 && (
+            <div className="text-[10px] font-mono text-red-400/50 mt-0.5">
+              {noPrice.toFixed(0)}% implied
             </div>
           )}
         </div>
@@ -166,36 +258,35 @@ function MarketCard({ market }: { market: ExchangeMarket }) {
         )}
 
         {/* Open Interest */}
-        {market.open_interest !== null && (
+        {market.open_interest !== null && market.open_interest > 0 && (
           <div className="flex items-center gap-1">
             <span className="text-zinc-600">OI:</span>
             <span className="font-mono text-zinc-400">{market.open_interest.toLocaleString()}</span>
           </div>
         )}
 
-        {/* Time until expiry */}
-        <div className="flex items-center gap-1 ml-auto">
-          <svg className="w-3.5 h-3.5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <span className="font-mono text-zinc-500">{formatTimeUntil(market.expiration_time)}</span>
-        </div>
+        {/* Time until expiry — only show if we have real data */}
+        {expiryStr && (
+          <div className="flex items-center gap-1 ml-auto">
+            <svg className="w-3.5 h-3.5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="font-mono text-zinc-500">{expiryStr}</span>
+          </div>
+        )}
       </div>
 
-      {/* Game Link — shown when contract is matched to a sportsbook game */}
+      {/* Game Link — prominent button when matched */}
       {market.mapped_game_id && (
         <div className="mt-3 pt-3 border-t border-zinc-800/60">
           <Link
             href={`/edge/portal/sports/game/${market.mapped_game_id}`}
-            className="flex items-center gap-1.5 text-[10px] font-mono text-cyan-400 hover:text-cyan-300 transition-colors"
+            className="flex items-center justify-center gap-2 w-full px-3 py-2 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 hover:bg-cyan-500/20 hover:text-cyan-300 transition-all text-[11px] font-medium"
           >
-            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            View Game Analysis
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
-            Linked to sportsbook game
-            {market.mapped_sport_key && (
-              <span className="text-zinc-600 uppercase">{market.mapped_sport_key.split('_').pop()}</span>
-            )}
           </Link>
         </div>
       )}
@@ -309,7 +400,6 @@ export function ExchangesGrid() {
 
       {/* Filters Row */}
       <div className="flex flex-col sm:flex-row gap-3">
-        {/* Exchange Toggle + Search */}
         <div className="flex gap-2">
           <div className="flex bg-zinc-800/50 rounded-md p-0.5">
             {exchanges.map((ex) => (

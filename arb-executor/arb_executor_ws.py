@@ -135,6 +135,8 @@ SIGNAL_CHECK_INTERVAL = 60  # Check every 60 seconds
 
 # Live balances (refreshed periodically, read by dashboard pusher)
 live_balances: Dict = {"kalshi_balance": 0, "pm_balance": 0, "updated_at": ""}
+# Live positions fetched from platform APIs (list of Position dicts for dashboard)
+live_positions: list = []
 _last_balance_refresh: float = 0
 BALANCE_REFRESH_INTERVAL = 60  # seconds
 
@@ -1352,7 +1354,7 @@ def print_spread_snapshot():
 # ============================================================================
 
 async def refresh_balances(session, kalshi_api, pm_api):
-    """Periodically fetch balances from both platforms."""
+    """Periodically fetch balances and positions from both platforms."""
     global _last_balance_refresh
 
     now = time.time()
@@ -1368,6 +1370,108 @@ async def refresh_balances(session, kalshi_api, pm_api):
         live_balances["updated_at"] = datetime.now(timezone.utc).isoformat()
     except Exception as e:
         print(f"[BALANCE] Refresh failed: {e}", flush=True)
+
+    # Fetch real positions from both APIs
+    try:
+        positions = []
+
+        # Kalshi positions
+        k_positions = await kalshi_api.get_positions(session)
+        for ticker, pos in (k_positions or {}).items():
+            qty = pos.position if hasattr(pos, 'position') else pos.get('position', 0)
+            if qty == 0:
+                continue
+            # Look up game info from ticker mapping
+            cache_key = ticker_to_cache_key.get(ticker, "")
+            parts = ticker.split("-")
+            team = parts[-1] if len(parts) >= 3 else ""
+            game_id = parts[1] if len(parts) >= 2 else ticker
+            sport = cache_key.split(":")[0].upper() if cache_key else ""
+            positions.append({
+                "platform": "Kalshi",
+                "game_id": game_id,
+                "team": team,
+                "sport": sport,
+                "side": "LONG" if qty > 0 else "SHORT",
+                "quantity": abs(qty),
+                "avg_price": 0,
+                "current_value": 0,
+                "hedged_with": None,
+            })
+
+        # PM US positions
+        pm_positions = await pm_api.get_positions(session)
+        if isinstance(pm_positions, dict):
+            for slug, pos_data in pm_positions.items():
+                # pos_data may be a dict with quantity/side info
+                qty = 0
+                side = ""
+                if isinstance(pos_data, dict):
+                    qty = pos_data.get("quantity", 0) or pos_data.get("size", 0)
+                    side = pos_data.get("side", "")
+                elif isinstance(pos_data, list):
+                    for p in pos_data:
+                        qty += p.get("quantity", 0) or p.get("size", 0)
+                        side = p.get("side", side)
+                if qty == 0:
+                    continue
+                # Map slug to game info via pm_slug_to_cache_keys
+                cache_keys = pm_slug_to_cache_keys.get(slug, [])
+                sport = ""
+                game_id = slug
+                team = ""
+                if cache_keys:
+                    ck = cache_keys[0]
+                    sport = ck.split(":")[0].upper()
+                    game_id = ck.split(":")[1] if ":" in ck else slug
+                positions.append({
+                    "platform": "PM",
+                    "game_id": game_id,
+                    "team": team,
+                    "sport": sport,
+                    "side": side.upper() if side else "LONG",
+                    "quantity": abs(qty) if isinstance(qty, (int, float)) else 0,
+                    "avg_price": 0,
+                    "current_value": 0,
+                    "hedged_with": None,
+                })
+
+        # Match hedged pairs: same game_id with both PM and Kalshi
+        by_game: Dict[str, list] = {}
+        for p in positions:
+            gkey = p["game_id"]
+            if gkey not in by_game:
+                by_game[gkey] = []
+            by_game[gkey].append(p)
+
+        matched = []
+        for gkey, group in by_game.items():
+            platforms = {p["platform"] for p in group}
+            if "PM" in platforms and "Kalshi" in platforms:
+                # Hedged pair — combine into one row
+                pm_pos = next(p for p in group if p["platform"] == "PM")
+                k_pos = next(p for p in group if p["platform"] == "Kalshi")
+                matched.append({
+                    "platform": "PM+Kalshi",
+                    "game_id": gkey,
+                    "team": k_pos["team"] or pm_pos["team"],
+                    "sport": k_pos["sport"] or pm_pos["sport"],
+                    "side": f"PM {pm_pos['side']} / K {k_pos['side']}",
+                    "quantity": min(pm_pos["quantity"], k_pos["quantity"]),
+                    "avg_price": pm_pos["avg_price"],
+                    "current_value": k_pos["avg_price"],
+                    "hedged_with": "HEDGED",
+                })
+            else:
+                # Unhedged
+                matched.extend(group)
+
+        # Update global live_positions in-place
+        live_positions.clear()
+        live_positions.extend(matched)
+
+    except Exception as e:
+        print(f"[POSITIONS] Refresh failed: {e}", flush=True)
 
 
 # ============================================================================
@@ -1661,6 +1765,7 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
             cache_key_to_tickers=cache_key_to_tickers,
             stats=stats,
             balances=live_balances,
+            live_positions=live_positions,
             verified_maps=VERIFIED_MAPS,
             executor_version="ws-v8",
         )

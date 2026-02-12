@@ -764,7 +764,7 @@ export default function ArbDashboard() {
                   </div>
                 </div>
               ))}
-              {/* Hedged */}
+              {/* Hedged pairs — single row per game+team */}
               {hedgedPositions.map((p, i) => (
                 <div key={`h-${i}`} className="px-3 py-2">
                   <div className="flex items-center justify-between">
@@ -772,8 +772,12 @@ export default function ArbDashboard() {
                       <span className="text-white font-medium text-xs">
                         {p.team}
                       </span>
-                      <span className="ml-1 text-[10px] text-gray-500">
-                        {p.platform}
+                      <span
+                        className={`ml-1 inline-block rounded px-0.5 text-[9px] font-medium ${sportBadge(
+                          p.sport
+                        )}`}
+                      >
+                        {p.sport}
                       </span>
                     </div>
                     <span className="text-[9px] font-medium rounded px-1 py-0.5 bg-emerald-500/20 text-emerald-400">
@@ -782,10 +786,10 @@ export default function ArbDashboard() {
                   </div>
                   <div className="mt-0.5 flex items-center gap-2 text-[10px] text-gray-400">
                     <span>{p.side} x{p.quantity}</span>
-                    <span>@ {p.avg_price}c</span>
-                    <span className="text-gray-600 truncate">
-                      {p.hedged_with}
-                    </span>
+                    <span>PM@{p.avg_price}c</span>
+                    {p.current_value > 0 && (
+                      <span>K@{p.current_value}c</span>
+                    )}
                   </div>
                 </div>
               ))}

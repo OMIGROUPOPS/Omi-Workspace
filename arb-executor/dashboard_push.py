@@ -240,65 +240,157 @@ class DashboardPusher:
 
     # ── Positions ──────────────────────────────────────────────────────────
 
+    @staticmethod
+    def _parse_game_date(game_id: str) -> Optional[str]:
+        """Parse date from game_id like '26FEB09SIUINST' -> '2026-02-09'."""
+        MONTHS = {
+            "JAN": "01", "FEB": "02", "MAR": "03", "APR": "04",
+            "MAY": "05", "JUN": "06", "JUL": "07", "AUG": "08",
+            "SEP": "09", "OCT": "10", "NOV": "11", "DEC": "12",
+        }
+        if len(game_id) < 7:
+            return None
+        try:
+            year = "20" + game_id[:2]
+            month = MONTHS.get(game_id[2:5].upper())
+            day = game_id[5:7]
+            if month and day.isdigit():
+                return f"{year}-{month}-{day}"
+        except (ValueError, KeyError):
+            pass
+        return None
+
     def _build_positions(self) -> list:
-        """Derive open positions from trades.json fills."""
-        positions = []
+        """Derive open positions from trades.json fills.
+
+        Aggregates by game+team, matches hedged pairs (PM + Kalshi on
+        opposite sides), filters out paper trades and settled games.
+        """
         try:
             if not os.path.exists(TRADES_FILE):
                 return []
             with open(TRADES_FILE, "r") as f:
                 trades = json.load(f)
+        except Exception as e:
+            logger.debug(f"Error loading trades for positions: {e}")
+            return []
 
-            for t in trades:
-                # Check individual platform fills (contracts_filled may be 0 if only one side filled)
-                kalshi_fill = t.get("kalshi_fill", 0)
-                pm_fill = t.get("pm_fill", 0)
-                if kalshi_fill <= 0 and pm_fill <= 0:
-                    continue
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-                status = t.get("status", "")
-                direction = t.get("direction", "")
-                game_id = t.get("game_id", "")
-                team = t.get("team", "")
-                sport = t.get("sport", "")
+        # Aggregate fills by (game_id, team)
+        # Each key -> {pm_fill, k_fill, pm_side, k_side, pm_price, k_price, sport, game_date}
+        agg: Dict[str, Dict] = {}
 
-                # Determine sides from direction
-                if direction == "BUY_PM_SELL_K":
-                    pm_side, k_side = "LONG", "SHORT"
-                else:  # BUY_K_SELL_PM
-                    pm_side, k_side = "SHORT", "LONG"
+        for t in trades:
+            # Skip paper trades
+            if t.get("paper_mode", False):
+                continue
 
-                hedged = status in ("SUCCESS", "HEDGED") and t.get("hedged", False)
-                pair_id = f"{game_id}-{team}" if hedged else None
+            kalshi_fill = t.get("kalshi_fill", 0)
+            pm_fill = t.get("pm_fill", 0)
+            if kalshi_fill <= 0 and pm_fill <= 0:
+                continue
 
-                if pm_fill > 0:
+            game_id = t.get("game_id", "")
+            team = t.get("team", "")
+            key = f"{game_id}:{team}"
+
+            if key not in agg:
+                game_date = self._parse_game_date(game_id)
+                agg[key] = {
+                    "game_id": game_id,
+                    "team": team,
+                    "sport": t.get("sport", ""),
+                    "game_date": game_date,
+                    "pm_fill": 0,
+                    "k_fill": 0,
+                    "pm_side": "",
+                    "k_side": "",
+                    "pm_price_sum": 0.0,
+                    "k_price_sum": 0.0,
+                    "pm_trades": 0,
+                    "k_trades": 0,
+                }
+
+            direction = t.get("direction", "")
+            if direction == "BUY_PM_SELL_K":
+                pm_side, k_side = "LONG", "SHORT"
+            else:
+                pm_side, k_side = "SHORT", "LONG"
+
+            rec = agg[key]
+            if pm_fill > 0:
+                rec["pm_fill"] += pm_fill
+                rec["pm_side"] = pm_side
+                pm_price = t.get("pm_price", 0)
+                # Normalize: if price < 10 it's in dollar form, convert to cents
+                if isinstance(pm_price, float) and pm_price < 10:
+                    pm_price = round(pm_price * 100, 1)
+                rec["pm_price_sum"] += pm_price * pm_fill
+                rec["pm_trades"] += 1
+
+            if kalshi_fill > 0:
+                rec["k_fill"] += kalshi_fill
+                rec["k_side"] = k_side
+                rec["k_price_sum"] += t.get("k_price", 0) * kalshi_fill
+                rec["k_trades"] += 1
+
+        # Build position list from aggregated data
+        positions = []
+        for rec in agg.values():
+            game_date = rec["game_date"]
+
+            # Filter settled games: game date is before today
+            if game_date and game_date < today:
+                continue
+
+            has_pm = rec["pm_fill"] > 0
+            has_k = rec["k_fill"] > 0
+            is_hedged = has_pm and has_k
+
+            pm_avg = round(rec["pm_price_sum"] / rec["pm_fill"], 1) if has_pm else 0
+            k_avg = round(rec["k_price_sum"] / rec["k_fill"], 1) if has_k else 0
+
+            if is_hedged:
+                # Single hedged row showing both sides
+                positions.append({
+                    "platform": "PM+Kalshi",
+                    "game_id": rec["game_id"],
+                    "team": rec["team"],
+                    "sport": rec["sport"],
+                    "side": f"PM {rec['pm_side']} / K {rec['k_side']}",
+                    "quantity": min(rec["pm_fill"], rec["k_fill"]),
+                    "avg_price": pm_avg,
+                    "current_value": k_avg,  # reuse field for K price display
+                    "hedged_with": "HEDGED",
+                })
+            else:
+                # Unhedged: only one side filled
+                if has_pm:
                     positions.append({
                         "platform": "PM",
-                        "game_id": game_id,
-                        "team": team,
-                        "sport": sport,
-                        "side": pm_side,
-                        "quantity": pm_fill,
-                        "avg_price": round(t.get("pm_price", 0) * 100, 1) if isinstance(t.get("pm_price"), float) and t.get("pm_price", 0) < 10 else t.get("pm_price", 0),
+                        "game_id": rec["game_id"],
+                        "team": rec["team"],
+                        "sport": rec["sport"],
+                        "side": rec["pm_side"],
+                        "quantity": rec["pm_fill"],
+                        "avg_price": pm_avg,
                         "current_value": 0,
-                        "hedged_with": f"Kalshi-{pair_id}" if hedged else None,
+                        "hedged_with": None,
                     })
-
-                if kalshi_fill > 0:
+                if has_k:
                     positions.append({
                         "platform": "Kalshi",
-                        "game_id": game_id,
-                        "team": team,
-                        "sport": sport,
-                        "side": k_side,
-                        "quantity": kalshi_fill,
-                        "avg_price": t.get("k_price", 0),
+                        "game_id": rec["game_id"],
+                        "team": rec["team"],
+                        "sport": rec["sport"],
+                        "side": rec["k_side"],
+                        "quantity": rec["k_fill"],
+                        "avg_price": k_avg,
                         "current_value": 0,
-                        "hedged_with": f"PM-{pair_id}" if hedged else None,
+                        "hedged_with": None,
                     })
 
-        except Exception as e:
-            logger.debug(f"Error building positions: {e}")
         return positions
 
     # ── Balances ───────────────────────────────────────────────────────────

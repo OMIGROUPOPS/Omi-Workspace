@@ -6,7 +6,24 @@ Fetches final scores from ESPN (FREE) and auto-grades games
 import httpx
 from datetime import datetime, timezone, timedelta
 from typing import Optional
+from zoneinfo import ZoneInfo
 import re
+
+# ESPN organises its scoreboard by US Eastern date
+_US_EASTERN = ZoneInfo("America/New_York")
+
+
+def utc_to_espn_date(commence_time: str) -> str:
+    """Convert a UTC commence_time ISO string to an ESPN date (YYYYMMDD).
+
+    ESPN's scoreboard API lists games under the US-Eastern calendar date,
+    so a game at 2026-02-12T02:10:00+00:00 (Feb 11 9:10 PM ET) must be
+    looked up on 20260211, not 20260212.
+    """
+    dt = datetime.fromisoformat(commence_time)
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(_US_EASTERN).strftime("%Y%m%d")
 
 # ESPN API endpoints (completely free, no auth needed)
 ESPN_ENDPOINTS = {
@@ -362,19 +379,17 @@ class AutoGrader:
             if not ungraded:
                 continue
 
-            # Group ungraded games by their commence date
+            # Group ungraded games by their ESPN (US-Eastern) date
             games_by_date: dict[str, list[dict]] = {}
             for game in ungraded:
                 ct = game.get("commence_time")
                 if not ct:
                     continue
-                # Parse commence_time to date string YYYYMMDD
                 try:
                     if isinstance(ct, str):
-                        # Handle ISO format: 2026-02-08T01:00:00+00:00
-                        game_date = ct[:10].replace("-", "")
+                        game_date = utc_to_espn_date(ct)
                     else:
-                        game_date = ct.strftime("%Y%m%d")
+                        game_date = utc_to_espn_date(ct.isoformat())
                 except Exception:
                     continue
                 games_by_date.setdefault(game_date, []).append(game)

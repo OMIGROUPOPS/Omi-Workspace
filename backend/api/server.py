@@ -1111,7 +1111,7 @@ async def backfill_scores():
     2. Fetch ESPN scores for all unscored Feb 10+ game_results
     3. Grade newly scored games → create prediction_grades rows
     """
-    from espn_scores import ESPNScoreFetcher, AutoGrader, SPORT_KEY_VARIANTS, ESPN_SPORTS, teams_match
+    from espn_scores import ESPNScoreFetcher, AutoGrader, SPORT_KEY_VARIANTS, ESPN_SPORTS, teams_match, utc_to_espn_date
     from results_tracker import ResultsTracker
     from internal_grader import InternalGrader
     from supabase import create_client
@@ -1160,12 +1160,12 @@ async def backfill_scores():
         if not games:
             continue
 
-        # Group by date for efficient ESPN fetching
+        # Group by ESPN (US-Eastern) date for efficient fetching
         by_date: dict[str, list[dict]] = {}
         for g in games:
             ct = g.get("commence_time", "")
             if ct:
-                d = ct[:10].replace("-", "")
+                d = utc_to_espn_date(ct)
                 by_date.setdefault(d, []).append(g)
 
         espn_cache: dict[str, list[dict]] = {}

@@ -1102,7 +1102,6 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
     # Execute via executor_core (clean execution engine)
     # -------------------------------------------------------------------------
     async with EXECUTION_LOCK:
-        last_trade_time = time.time()
         print(f"[EXEC] Executing 1 contract via executor_core...")
 
         result = await execute_arb(
@@ -1114,7 +1113,11 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             pm_outcome_idx=arb.pm_outcome_index,
         )
 
-        # Handle result
+        # Handle result — only apply cooldown when PM order was actually sent
+        pm_was_sent = result.pm_order_ms > 0 or result.success or result.unhedged
+        if pm_was_sent:
+            last_trade_time = time.time()
+
         if result.success:
             # Show timing breakdown: PM first (unreliable) → K second (reliable)
             timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
@@ -1160,15 +1163,16 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             except Exception as e:
                 print(f"[ERROR] Failed to save unhedged position: {e}")
 
-        elif result.pm_filled == 0:
-            # PM didn't fill - safe exit, no position taken
-            print(f"[EXEC] PM NO FILL (safe): {result.abort_reason} | pm={result.pm_order_ms}ms")
+        elif result.pm_filled == 0 and result.pm_order_ms > 0:
+            # Real PM no-fill: order was sent to PM API but IOC expired
+            print(f"[EXEC] PM NO FILL: {result.abort_reason} | pm={result.pm_order_ms}ms")
             k_result = {'fill_count': 0, 'fill_price': result.kalshi_price}
             pm_result = {'fill_count': 0, 'fill_price': result.pm_price}
             log_trade(arb, k_result, pm_result, 'PM_NO_FILL', execution_time_ms=result.execution_time_ms)
 
         else:
-            print(f"[EXEC] ABORTED: {result.abort_reason}")
+            # Early abort — never reached PM API (safety, phantom, pm_long_team, etc.)
+            print(f"[EXEC] SKIPPED: {result.abort_reason}")
 
         # One-trade test mode: stop after first trade attempt
         if ONE_TRADE_TEST_MODE:

@@ -1175,14 +1175,21 @@ async def get_composite_history(game_id: str):
 
 @app.post("/api/exchange/sync")
 async def sync_exchanges():
-    """Sync sports markets from Kalshi and Polymarket."""
-    try:
-        from exchange_tracker import ExchangeTracker
-        tracker = ExchangeTracker()
-        return tracker.sync_all()
-    except Exception as e:
-        logger.error(f"Error syncing exchanges: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+    """Sync sports markets from Kalshi and Polymarket (background thread)."""
+    import threading
+
+    def _run_sync():
+        try:
+            from exchange_tracker import ExchangeTracker
+            tracker = ExchangeTracker()
+            result = tracker.sync_all()
+            logger.info(f"[Exchange Sync] Complete: {result}")
+        except Exception as e:
+            logger.error(f"[Exchange Sync] Error: {e}")
+
+    thread = threading.Thread(target=_run_sync, daemon=True)
+    thread.start()
+    return {"status": "sync_started", "message": "Exchange sync running in background"}
 
 
 @app.get("/api/exchange/markets")

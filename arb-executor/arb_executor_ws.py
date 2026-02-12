@@ -133,6 +133,11 @@ MAPPINGS_SIGNAL_FILE = os.path.join(os.path.dirname(__file__) or '.', 'mappings_
 _last_signal_check: float = 0
 SIGNAL_CHECK_INTERVAL = 60  # Check every 60 seconds
 
+# Live balances (refreshed periodically, read by dashboard pusher)
+live_balances: Dict = {"kalshi_balance": 0, "pm_balance": 0, "updated_at": ""}
+_last_balance_refresh: float = 0
+BALANCE_REFRESH_INTERVAL = 60  # seconds
+
 # Statistics
 stats = {
     'k_ws_connected': False,
@@ -1343,6 +1348,29 @@ def print_spread_snapshot():
 
 
 # ============================================================================
+# BALANCE REFRESH
+# ============================================================================
+
+async def refresh_balances(session, kalshi_api, pm_api):
+    """Periodically fetch balances from both platforms."""
+    global _last_balance_refresh
+
+    now = time.time()
+    if now - _last_balance_refresh < BALANCE_REFRESH_INTERVAL:
+        return
+    _last_balance_refresh = now
+
+    try:
+        k_bal = await kalshi_api.get_balance(session)
+        pm_bal = await pm_api.get_balance(session)
+        live_balances["kalshi_balance"] = round(k_bal or 0, 2)
+        live_balances["pm_balance"] = round(pm_bal or 0, 2)
+        live_balances["updated_at"] = datetime.now(timezone.utc).isoformat()
+    except Exception as e:
+        print(f"[BALANCE] Refresh failed: {e}", flush=True)
+
+
+# ============================================================================
 # HOT-RELOAD
 # ============================================================================
 
@@ -1561,6 +1589,11 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
         pm_bal = pm_bal or 0
         print(f"\n[CAPITAL] Kalshi: ${k_bal:.2f} | PM US: ${pm_bal:.2f}")
 
+        # Seed live_balances for dashboard
+        live_balances["kalshi_balance"] = round(k_bal, 2)
+        live_balances["pm_balance"] = round(pm_bal, 2)
+        live_balances["updated_at"] = datetime.now(timezone.utc).isoformat()
+
         # Create Kalshi WebSocket connection
         kalshi_pk_pem = None
         try:
@@ -1622,6 +1655,8 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
             ticker_to_cache_key=ticker_to_cache_key,
             cache_key_to_tickers=cache_key_to_tickers,
             stats=stats,
+            balances=live_balances,
+            verified_maps=VERIFIED_MAPS,
             executor_version="ws-v8",
         )
         pusher.start(interval=5)
@@ -1631,6 +1666,7 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
             while not shutdown_requested:
                 log_status()
                 print_spread_snapshot()  # One-time snapshot after data loads
+                await refresh_balances(session, kalshi_api, pm_api)
                 await check_and_reload_mappings(k_ws, pm_ws)
                 await asyncio.sleep(1)
         except KeyboardInterrupt:

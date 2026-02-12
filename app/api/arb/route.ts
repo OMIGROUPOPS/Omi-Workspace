@@ -15,6 +15,7 @@ export interface SpreadRow {
   spread_buy_k: number;
   pm_size: number;
   is_executable: boolean;
+  game_date?: string;
   updated_at: string;
 }
 

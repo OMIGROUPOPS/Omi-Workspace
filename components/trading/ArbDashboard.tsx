@@ -17,6 +17,7 @@ interface SpreadRow {
   spread_buy_k: number;
   pm_size: number;
   is_executable: boolean;
+  game_date?: string;
   updated_at: string;
 }
 
@@ -79,24 +80,31 @@ interface ArbState {
 // ── Helpers ────────────────────────────────────────────────────────────────
 
 function spreadColor(cents: number): string {
-  if (cents >= 3) return "text-emerald-400";
-  if (cents >= 2) return "text-yellow-400";
+  if (cents >= 4) return "text-emerald-400";
+  if (cents >= 3) return "text-yellow-400";
   if (cents > 0) return "text-gray-400";
   return "text-red-400";
 }
 
 function spreadBg(cents: number): string {
-  if (cents >= 3) return "bg-emerald-500/10";
-  if (cents >= 2) return "bg-yellow-500/10";
+  if (cents >= 4) return "bg-emerald-500/10";
+  if (cents >= 3) return "bg-yellow-500/10";
   return "";
 }
 
+function netColor(cents: number | null | undefined): string {
+  if (cents == null) return "text-gray-500";
+  if (cents > 0) return "text-emerald-400";
+  if (cents < 0) return "text-red-400";
+  return "text-gray-400";
+}
+
 function statusBadge(status: string): { bg: string; text: string } {
-  if (status === "HEDGED" || status === "FILLED")
+  if (status === "HEDGED" || status === "FILLED" || status === "SUCCESS")
     return { bg: "bg-emerald-500/20", text: "text-emerald-400" };
   if (status.includes("NO_FILL"))
     return { bg: "bg-yellow-500/20", text: "text-yellow-400" };
-  if (status === "FAILED" || status === "ERROR")
+  if (status === "FAILED" || status === "ERROR" || status === "UNHEDGED")
     return { bg: "bg-red-500/20", text: "text-red-400" };
   return { bg: "bg-gray-500/20", text: "text-gray-400" };
 }
@@ -149,6 +157,12 @@ function formatTime(iso: string): string {
   }
 }
 
+function isToday(dateStr: string | undefined): boolean {
+  if (!dateStr) return false;
+  const today = new Date().toISOString().slice(0, 10);
+  return dateStr === today;
+}
+
 // ── Components ─────────────────────────────────────────────────────────────
 
 function Pulse({ active }: { active: boolean }) {
@@ -190,6 +204,8 @@ function MetricCard({
   );
 }
 
+type TradeFilter = "all" | "live" | "paper";
+
 // ── Main Component ──────────────────────────────────────────────────────────
 
 export default function ArbDashboard() {
@@ -197,6 +213,7 @@ export default function ArbDashboard() {
   const [lastFetch, setLastFetch] = useState<Date | null>(null);
   const [fetchError, setFetchError] = useState(false);
   const [paused, setPaused] = useState(false);
+  const [tradeFilter, setTradeFilter] = useState<TradeFilter>("all");
 
   const fetchData = useCallback(async () => {
     try {
@@ -226,7 +243,7 @@ export default function ArbDashboard() {
     state?.updated_at &&
     Date.now() - new Date(state.updated_at).getTime() > 60_000;
 
-  // ── Sort spreads: executable first, then by best spread desc ───────────
+  // ── Sort spreads: best spread descending ──────────────────────────────
   const sortedSpreads = [...(state?.spreads || [])].sort((a, b) => {
     if (a.is_executable !== b.is_executable)
       return a.is_executable ? -1 : 1;
@@ -235,13 +252,29 @@ export default function ArbDashboard() {
     return bMax - aMax;
   });
 
-  // ── Recent trades (newest first) ──────────────────────────────────────
-  const recentTrades = [...(state?.trades || [])]
+  // ── Filter + sort trades (newest first) ───────────────────────────────
+  const allTrades = [...(state?.trades || [])]
     .sort(
       (a, b) =>
         new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
     )
     .slice(0, 50);
+
+  const filteredTrades =
+    tradeFilter === "all"
+      ? allTrades
+      : tradeFilter === "paper"
+      ? allTrades.filter((t) => t.paper_mode)
+      : allTrades.filter((t) => !t.paper_mode);
+
+  // ── P&L summary ──────────────────────────────────────────────────────
+  const executedTrades = allTrades.filter((t) => t.contracts_filled > 0);
+  const totalPnlCents = executedTrades.reduce(
+    (sum, t) => sum + (t.estimated_net_profit_cents ?? 0),
+    0
+  );
+  const hedgedCount = executedTrades.filter((t) => t.hedged).length;
+  const unhedgedCount = executedTrades.filter((t) => !t.hedged && t.contracts_filled > 0).length;
 
   // ── Group positions by hedged pairs ───────────────────────────────────
   const hedgedPositions = (state?.positions || []).filter(
@@ -335,6 +368,56 @@ export default function ArbDashboard() {
           />
         </div>
 
+        {/* ── P&L Summary ──────────────────────────────────────────────── */}
+        {executedTrades.length > 0 && (
+          <div className="rounded-lg border border-gray-800 bg-[#111] px-4 py-3">
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
+              <div>
+                <span className="text-xs font-medium uppercase tracking-wide text-gray-500">
+                  Est. P&L
+                </span>
+                <span
+                  className={`ml-2 text-lg font-bold font-mono ${
+                    totalPnlCents > 0
+                      ? "text-emerald-400"
+                      : totalPnlCents < 0
+                      ? "text-red-400"
+                      : "text-gray-400"
+                  }`}
+                >
+                  {totalPnlCents >= 0 ? "+" : ""}
+                  {totalPnlCents.toFixed(1)}c
+                </span>
+                <span className="ml-1 text-xs text-gray-500">
+                  (${(totalPnlCents / 100).toFixed(3)})
+                </span>
+              </div>
+              <div className="flex items-center gap-4 text-xs text-gray-400">
+                <span>
+                  <span className="font-medium text-white">
+                    {executedTrades.length}
+                  </span>{" "}
+                  executed
+                </span>
+                <span>
+                  <span className="font-medium text-emerald-400">
+                    {hedgedCount}
+                  </span>{" "}
+                  hedged
+                </span>
+                {unhedgedCount > 0 && (
+                  <span>
+                    <span className="font-medium text-red-400">
+                      {unhedgedCount}
+                    </span>{" "}
+                    unhedged
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* ── System Status Banner ───────────────────────────────────────── */}
         {state?.system.error_count ? (
           <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 flex items-center justify-between">
@@ -365,13 +448,13 @@ export default function ArbDashboard() {
             </h2>
             <div className="flex items-center gap-3 text-xs text-gray-500">
               <span className="flex items-center gap-1">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" /> 3c+
+                <span className="h-2 w-2 rounded-full bg-emerald-500" /> 4c+
               </span>
               <span className="flex items-center gap-1">
-                <span className="h-2 w-2 rounded-full bg-yellow-500" /> 2-3c
+                <span className="h-2 w-2 rounded-full bg-yellow-500" /> 3-4c
               </span>
               <span className="flex items-center gap-1">
-                <span className="h-2 w-2 rounded-full bg-gray-500" /> &lt;2c
+                <span className="h-2 w-2 rounded-full bg-gray-500" /> &lt;3c
               </span>
             </div>
           </div>
@@ -408,6 +491,7 @@ export default function ArbDashboard() {
                 ) : (
                   sortedSpreads.map((s) => {
                     const best = Math.max(s.spread_buy_pm, s.spread_buy_k);
+                    const today = isToday(s.game_date);
                     return (
                       <tr
                         key={`${s.game_id}-${s.team}`}
@@ -417,6 +501,17 @@ export default function ArbDashboard() {
                       >
                         <td className="px-4 py-2 font-medium text-white whitespace-nowrap">
                           {s.game_name || s.game_id}
+                          {s.game_date && (
+                            <span
+                              className={`ml-1.5 inline-block rounded px-1 py-0.5 text-[10px] font-medium ${
+                                today
+                                  ? "bg-emerald-500/20 text-emerald-400"
+                                  : "bg-gray-500/20 text-gray-500"
+                              }`}
+                            >
+                              {today ? "TODAY" : s.game_date}
+                            </span>
+                          )}
                         </td>
                         <td className="px-3 py-2">
                           <span
@@ -481,15 +576,34 @@ export default function ArbDashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Trade Log (2/3 width) */}
           <div className="lg:col-span-2 rounded-lg border border-gray-800 bg-[#111]">
-            <div className="border-b border-gray-800 px-4 py-3">
+            <div className="border-b border-gray-800 px-4 py-3 flex items-center justify-between">
               <h2 className="text-sm font-semibold text-white">
                 Trade Log
-                {recentTrades.length > 0 && (
+                {filteredTrades.length > 0 && (
                   <span className="ml-2 text-xs text-gray-500">
-                    (last {recentTrades.length})
+                    (last {filteredTrades.length})
                   </span>
                 )}
               </h2>
+              <div className="flex items-center gap-1">
+                {(["all", "live", "paper"] as TradeFilter[]).map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setTradeFilter(f)}
+                    className={`rounded px-2.5 py-1 text-xs font-medium transition-colors ${
+                      tradeFilter === f
+                        ? f === "live"
+                          ? "bg-emerald-500/20 text-emerald-400"
+                          : f === "paper"
+                          ? "bg-purple-500/20 text-purple-400"
+                          : "bg-gray-700 text-white"
+                        : "text-gray-500 hover:text-gray-300"
+                    }`}
+                  >
+                    {f.toUpperCase()}
+                  </button>
+                ))}
+              </div>
             </div>
             <div className="overflow-x-auto max-h-96 overflow-y-auto">
               <table className="w-full text-sm">
@@ -505,7 +619,7 @@ export default function ArbDashboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  {recentTrades.length === 0 ? (
+                  {filteredTrades.length === 0 ? (
                     <tr>
                       <td
                         colSpan={7}
@@ -515,7 +629,7 @@ export default function ArbDashboard() {
                       </td>
                     </tr>
                   ) : (
-                    recentTrades.map((t, i) => {
+                    filteredTrades.map((t, i) => {
                       const badge = statusBadge(t.status);
                       return (
                         <tr
@@ -556,9 +670,13 @@ export default function ArbDashboard() {
                           >
                             {t.spread_cents.toFixed(1)}c
                           </td>
-                          <td className="px-3 py-2 text-right font-mono text-gray-400">
+                          <td
+                            className={`px-3 py-2 text-right font-mono font-medium ${netColor(
+                              t.estimated_net_profit_cents
+                            )}`}
+                          >
                             {t.estimated_net_profit_cents != null
-                              ? `${t.estimated_net_profit_cents.toFixed(1)}c`
+                              ? `${t.estimated_net_profit_cents > 0 ? "+" : ""}${t.estimated_net_profit_cents.toFixed(1)}c`
                               : "-"}
                           </td>
                           <td className="px-3 py-2 text-center">

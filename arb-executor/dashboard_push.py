@@ -12,8 +12,10 @@ Usage:
         local_books=local_books,
         pm_prices=pm_prices,
         ticker_to_cache_key=ticker_to_cache_key,
+        cache_key_to_tickers=cache_key_to_tickers,
         stats=stats,
-        trades_file="trades.json",
+        balances=live_balances,
+        verified_maps=VERIFIED_MAPS,
     )
 """
 
@@ -54,12 +56,9 @@ class DashboardPusher:
         self.ticker_to_cache_key: Dict = {}
         self.cache_key_to_tickers: Dict = {}
         self.stats: Dict = {}
-        self.positions: list = []
         self.balances: Dict = {}
+        self.verified_maps: Dict = {}
         self.executor_version: str = ""
-
-        # Optional callable for extra spread info
-        self.get_game_name: Optional[Callable] = None
 
     def set_state_sources(self, **kwargs: Any) -> None:
         """Set references to live executor state dicts."""
@@ -101,8 +100,8 @@ class DashboardPusher:
         payload = {
             "spreads": self._build_spreads(),
             "trades": self._build_trades(),
-            "positions": self.positions,
-            "balances": self.balances,
+            "positions": self._build_positions(),
+            "balances": self._build_balances(),
             "system": self._build_system(),
         }
 
@@ -119,58 +118,56 @@ class DashboardPusher:
             logger.debug(f"Dashboard push failed: {e}")
             return False
 
+    # ── Spreads ────────────────────────────────────────────────────────────
+
     def _build_spreads(self) -> list:
         """Build spread rows from live orderbook state."""
         rows = []
-        seen = set()
 
         for ticker, cache_key in self.ticker_to_cache_key.items():
-            if cache_key in seen:
+            # Extract team from ticker (e.g. KXNBAGAME-26FEB09ATLMIN-ATL -> ATL)
+            ticker_parts = ticker.split("-")
+            if len(ticker_parts) < 3:
                 continue
-            seen.add(cache_key)
+            team = ticker_parts[-1]
+            game_id = ticker_parts[1] if len(ticker_parts) >= 2 else ticker
 
+            # Kalshi orderbook
             book = self.local_books.get(ticker)
-            pm = self.pm_prices.get(cache_key)
-            if not book or not pm:
+            if not book:
                 continue
+            k_bid = book.get("best_bid") or 0
+            k_ask = book.get("best_ask") or 0
 
-            k_bid = book.get("best_bid", 0) or 0
-            k_ask = book.get("best_ask", 0) or 0
-            pm_bid = pm.get("bid", 0) or 0
-            pm_ask = pm.get("ask", 0) or 0
+            # PM price (keyed by cache_key_team)
+            pm_key = f"{cache_key}_{team}"
+            pm = self.pm_prices.get(pm_key)
+            if not pm:
+                continue
+            pm_bid = pm.get("bid") or 0
+            pm_ask = pm.get("ask") or 0
+            pm_ask_size = pm.get("ask_size") or 0
+            pm_bid_size = pm.get("bid_size") or 0
+            pm_long_team = pm.get("pm_long_team", "")
 
+            # Spread calculation (prices already inverted for non-long team in pm_prices)
             spread_buy_pm = k_bid - pm_ask
             spread_buy_k = pm_bid - k_ask
 
-            # Parse game info from cache_key (format: GAMEID_TEAM)
-            parts = cache_key.rsplit("_", 1)
-            game_id = parts[0] if len(parts) == 2 else cache_key
-            team = parts[1] if len(parts) == 2 else ""
-
-            game_name = game_id
-            if self.get_game_name:
-                try:
-                    game_name = self.get_game_name(game_id) or game_id
-                except Exception:
-                    pass
-
-            # Infer sport from ticker pattern
-            sport = "?"
-            ticker_upper = ticker.upper()
-            if "NBA" in ticker_upper:
-                sport = "NBA"
-            elif "NCAAM" in ticker_upper or "CBB" in cache_key.upper():
+            # Parse sport and date from cache_key (format: sport:TEAM1-TEAM2:YYYY-MM-DD)
+            ck_parts = cache_key.split(":")
+            sport = ck_parts[0].upper() if ck_parts else "?"
+            if sport == "CBB":
                 sport = "CBB"
-            elif "NHL" in ticker_upper:
-                sport = "NHL"
+            game_date = ck_parts[2] if len(ck_parts) >= 3 else ""
 
             best = max(spread_buy_pm, spread_buy_k)
-            is_exec = best >= 4  # matches Config.spread_min_cents default
+            is_exec = best >= 4
 
             rows.append(
                 {
                     "game_id": game_id,
-                    "game_name": game_name,
+                    "game_name": game_id,
                     "sport": sport,
                     "team": team,
                     "k_bid": k_bid,
@@ -179,13 +176,16 @@ class DashboardPusher:
                     "pm_ask": round(pm_ask, 1),
                     "spread_buy_pm": round(spread_buy_pm, 1),
                     "spread_buy_k": round(spread_buy_k, 1),
-                    "pm_size": pm.get("ask_size", 0) or 0,
+                    "pm_size": max(pm_ask_size, pm_bid_size),
                     "is_executable": is_exec,
+                    "game_date": game_date,
                     "updated_at": datetime.now(timezone.utc).isoformat(),
                 }
             )
 
         return rows
+
+    # ── Trades ─────────────────────────────────────────────────────────────
 
     def _build_trades(self) -> list:
         """Load recent trades from trades.json."""
@@ -193,7 +193,6 @@ class DashboardPusher:
             if os.path.exists(TRADES_FILE):
                 with open(TRADES_FILE, "r") as f:
                     trades = json.load(f)
-                # Return last 50 trades with only the fields the dashboard needs
                 recent = trades[-50:] if len(trades) > 50 else trades
                 return [
                     {
@@ -219,6 +218,84 @@ class DashboardPusher:
         except Exception as e:
             logger.debug(f"Error loading trades: {e}")
         return []
+
+    # ── Positions ──────────────────────────────────────────────────────────
+
+    def _build_positions(self) -> list:
+        """Derive open positions from trades.json fills."""
+        positions = []
+        try:
+            if not os.path.exists(TRADES_FILE):
+                return []
+            with open(TRADES_FILE, "r") as f:
+                trades = json.load(f)
+
+            for t in trades:
+                filled = t.get("contracts_filled", 0)
+                if filled <= 0:
+                    continue
+
+                status = t.get("status", "")
+                direction = t.get("direction", "")
+                game_id = t.get("game_id", "")
+                team = t.get("team", "")
+                sport = t.get("sport", "")
+
+                # Determine sides from direction
+                if direction == "BUY_PM_SELL_K":
+                    pm_side, k_side = "LONG", "SHORT"
+                else:  # BUY_K_SELL_PM
+                    pm_side, k_side = "SHORT", "LONG"
+
+                kalshi_fill = t.get("kalshi_fill", 0)
+                pm_fill = t.get("pm_fill", 0)
+                hedged = status in ("SUCCESS", "HEDGED") and t.get("hedged", False)
+                pair_id = f"{game_id}-{team}" if hedged else None
+
+                if pm_fill > 0:
+                    positions.append({
+                        "platform": "PM",
+                        "game_id": game_id,
+                        "team": team,
+                        "sport": sport,
+                        "side": pm_side,
+                        "quantity": pm_fill,
+                        "avg_price": round(t.get("pm_price", 0) * 100, 1) if isinstance(t.get("pm_price"), float) and t.get("pm_price", 0) < 10 else t.get("pm_price", 0),
+                        "current_value": 0,
+                        "hedged_with": f"Kalshi-{pair_id}" if hedged else None,
+                    })
+
+                if kalshi_fill > 0:
+                    positions.append({
+                        "platform": "Kalshi",
+                        "game_id": game_id,
+                        "team": team,
+                        "sport": sport,
+                        "side": k_side,
+                        "quantity": kalshi_fill,
+                        "avg_price": t.get("k_price", 0),
+                        "current_value": 0,
+                        "hedged_with": f"PM-{pair_id}" if hedged else None,
+                    })
+
+        except Exception as e:
+            logger.debug(f"Error building positions: {e}")
+        return positions
+
+    # ── Balances ───────────────────────────────────────────────────────────
+
+    def _build_balances(self) -> dict:
+        """Return current balance snapshot."""
+        k = self.balances.get("kalshi_balance", 0)
+        p = self.balances.get("pm_balance", 0)
+        return {
+            "kalshi_balance": k,
+            "pm_balance": p,
+            "total_portfolio": round(k + p, 2),
+            "updated_at": self.balances.get("updated_at", ""),
+        }
+
+    # ── System ─────────────────────────────────────────────────────────────
 
     def _build_system(self) -> dict:
         """Build system status from stats dict."""

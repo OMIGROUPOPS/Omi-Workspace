@@ -1281,6 +1281,22 @@ async function runSync() {
     console.error('[Odds Sync] Exchange sync failed:', e);
   }
 
+  // Snapshot predictions for upcoming games (so there's something to grade later)
+  try {
+    await fetch(`${BACKEND_URL}/api/results/snapshot-upcoming`, { method: 'POST' });
+    console.log('[Odds Sync] Prediction snapshots triggered');
+  } catch (e) {
+    console.error('[Odds Sync] Prediction snapshots failed:', e);
+  }
+
+  // Auto-grade completed games and generate prediction_grades rows
+  try {
+    await fetch(`${BACKEND_URL}/api/internal/grade-games`, { method: 'POST' });
+    console.log('[Odds Sync] Auto-grade triggered');
+  } catch (e) {
+    console.error('[Odds Sync] Auto-grade failed:', e);
+  }
+
   console.log(
     `[Odds Sync] Done: ${totalSynced} games, ${totalCost} reqs used, ${lastRemaining} remaining`
   );

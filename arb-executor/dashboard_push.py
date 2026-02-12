@@ -159,6 +159,10 @@ class DashboardPusher:
             k_bid = book.get("best_bid") or 0
             k_ask = book.get("best_ask") or 0
 
+            # Skip empty/settled orderbooks
+            if k_bid == 0 or k_ask == 0:
+                continue
+
             # PM price (keyed by cache_key_team)
             pm_key = f"{cache_key}_{team}"
             pm = self.pm_prices.get(pm_key)

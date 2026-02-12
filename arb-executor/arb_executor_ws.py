@@ -1397,6 +1397,7 @@ async def refresh_balances(session, kalshi_api, pm_api):
                 "avg_price": 0,
                 "current_value": 0,
                 "hedged_with": None,
+                "_ticker": ticker,  # internal: used for settled detection
             })
 
         # PM US positions
@@ -1463,8 +1464,22 @@ async def refresh_balances(session, kalshi_api, pm_api):
                     "hedged_with": "HEDGED",
                 })
             else:
-                # Unhedged
-                matched.extend(group)
+                # Unhedged — check if game looks settled (bid >= 99 or ask <= 1)
+                skip = False
+                for p in group:
+                    if p["platform"] == "Kalshi" and p.get("_ticker"):
+                        book = local_books.get(p["_ticker"])
+                        if book:
+                            bid = book.get("best_bid") or 0
+                            ask = book.get("best_ask") or 0
+                            if bid >= 99 or (ask > 0 and ask <= 1):
+                                skip = True
+                                break
+                if not skip:
+                    # Strip internal fields before exposing
+                    for p in group:
+                        p.pop("_ticker", None)
+                    matched.extend(group)
 
         # Update global live_positions in-place
         live_positions.clear()

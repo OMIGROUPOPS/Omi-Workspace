@@ -3544,6 +3544,16 @@ async def run_preflight_checks(session, kalshi_api, pm_api) -> Tuple[bool, List[
     return all_blocking_passed, results
 
 
+def _pm_price_cents(fill_price: float, arb) -> float:
+    """Normalize PM price to cents. API returns dollars (0.72), arb fields are cents (72)."""
+    if fill_price and 0 < fill_price < 1:
+        return round(fill_price * 100, 1)
+    if fill_price and fill_price >= 1:
+        return fill_price
+    # No fill price — use raw ask/bid from arb opportunity
+    return arb.pm_ask if arb.direction == 'BUY_PM_SELL_K' else arb.pm_bid
+
+
 def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
                execution_time_ms: float = 0):
     """Log trade details with all important fields"""
@@ -3591,9 +3601,9 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
         'kalshi_fill': k_fill,
         'pm_fill': pm_fill,
 
-        # Prices (cents)
+        # Prices (cents) — PM fill_price comes from API in dollars, convert to cents
         'k_price': k_result.get('fill_price') or (arb.k_ask if arb.direction == 'BUY_K_SELL_PM' else arb.k_bid),
-        'pm_price': pm_result.get('fill_price') or (arb.pm_ask if arb.direction == 'BUY_PM_SELL_K' else arb.pm_bid),
+        'pm_price': _pm_price_cents(pm_result.get('fill_price', 0), arb),
         'k_bid': arb.k_bid,
         'k_ask': arb.k_ask,
         'pm_bid': arb.pm_bid,

@@ -509,14 +509,8 @@ async def execute_arb(
     if params.get('pm_invert_price', False):
         pm_price_cents = 100 - pm_price_cents
 
-    # Adaptive PM buffer based on spread size
-    # Larger spreads can afford more buffer for better fills
-    if spread >= 8:
-        pm_buffer = 5
-    elif spread >= 6:
-        pm_buffer = 3
-    else:
-        pm_buffer = 2
+    # Spread-proportional PM buffer: 25% of spread, minimum 1c
+    pm_buffer = max(1, int(spread * 0.25))
 
     if params.get('pm_is_buy_short', False):
         # BUY_SHORT: PM interprets price as MIN YES sell price (favorite frame)

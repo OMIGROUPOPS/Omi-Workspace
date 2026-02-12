@@ -1,8 +1,8 @@
 """
 OMI Edge - Internal Grader
 Enhanced grading with prediction_grades table for per-market/period/book granularity.
-Uses implied probability edge model: OMI fair value → position between half-points →
-fair implied probability → compare against actual book price.
+Uses point-to-probability edge model: each point of OMI-vs-book disagreement ≈ 3% win
+probability, minus book juice.
 """
 
 import math
@@ -26,10 +26,11 @@ FAIR_LINE_SPREAD_FACTOR = 0.15
 FAIR_LINE_TOTAL_FACTOR = 0.20
 FAIR_LINE_ML_FACTOR = 0.01
 
-# Half-point lean: max implied probability shift at 0.5 distance from half-point
-# At 0.5 distance (full half-point): 50% + 9% = 59% implied (fair price ~ -144)
-# At 0.4 distance (80% lean):        50% + 7.2% = 57.2% (fair price ~ -134)
-HALF_POINT_LEAN = 0.09
+# Industry standard: ~3% win probability per point of spread/total difference
+PROB_PER_POINT = 0.03
+
+# Cap displayed American odds to avoid absurd values
+ODDS_CAP = 500  # max ±500
 
 # Only grade against books where users actually place bets
 GRADING_BOOKS = {"fanduel", "draftkings"}
@@ -99,16 +100,42 @@ def implied_to_american(prob: float) -> int:
     return int(100 * (1 - prob) / prob)
 
 
-def fair_implied_at_line(fair_value: float, book_line: float) -> float:
-    """Calculate OMI's fair implied probability for the favored side at a book's line.
+def calc_edge_pct(fair_value: float, book_line: float, book_odds: int) -> float:
+    """Calculate edge as implied probability percentage.
 
-    The distance from fair value to the book's line determines the lean.
-    Positive distance = over/away favored; negative = under/home favored.
-    Returns implied probability for the FAVORED side (always >= 0.50).
+    Each point of OMI-vs-book disagreement ≈ 3% win probability.
+    Subtract book juice (how much above 50% the book charges) so that
+    a standard -110 line with minimal point difference reads as SHARP.
     """
-    distance = abs(fair_value - book_line)
-    lean = min(0.45, (distance / 0.5) * HALF_POINT_LEAN)
-    return 0.50 + lean
+    point_diff = abs(fair_value - book_line)
+    edge = point_diff * PROB_PER_POINT * 100  # percentage
+
+    # Subtract book juice
+    if book_odds and book_odds != 0:
+        book_implied = american_to_implied(book_odds)
+        juice = (book_implied - 0.50) * 100  # typically ~2.4% for -110
+        edge = max(0, edge - juice)
+
+    return round(edge, 1)
+
+
+def calc_fair_price(fair_value: float, book_line: float) -> int:
+    """Convert OMI fair value at a book's line to capped American odds.
+
+    Uses point difference → probability, then converts to American.
+    Caps at ±ODDS_CAP to avoid absurd display values.
+    """
+    point_diff = abs(fair_value - book_line)
+    fair_prob = 0.50 + point_diff * PROB_PER_POINT
+    fair_prob = min(0.95, max(0.05, fair_prob))
+    raw = implied_to_american(fair_prob)
+    if raw == 0:
+        return 0
+    if raw < -ODDS_CAP:
+        return -ODDS_CAP
+    if raw > ODDS_CAP:
+        return ODDS_CAP
+    return raw
 
 
 class InternalGrader:
@@ -352,10 +379,8 @@ class InternalGrader:
                     actual_result = "push"
                     is_correct = None
 
-                # Implied probability edge for signal
-                fi = fair_implied_at_line(fair_spread, book_spread)
-                bi = american_to_implied(book_odds)
-                edge_pct = (fi - bi) * 100
+                # Edge as implied probability %
+                edge_pct = calc_edge_pct(fair_spread, book_spread, book_odds)
                 signal = determine_signal(edge_pct)
 
                 self._upsert_prediction_grade({
@@ -400,9 +425,7 @@ class InternalGrader:
                 else:
                     actual_result = "over" if final_total > book_total else "under"
 
-                fi = fair_implied_at_line(fair_total, book_total)
-                bi = american_to_implied(book_odds)
-                edge_pct = (fi - bi) * 100
+                edge_pct = calc_edge_pct(fair_total, book_total, book_odds)
                 signal = determine_signal(edge_pct)
 
                 self._upsert_prediction_grade({
@@ -679,47 +702,26 @@ class InternalGrader:
         if fair_value is None:
             return "—"
 
-        # Find the nearest half-point
+        # Find the nearest half-point as reference
         ref_half = round(fair_value * 2) / 2
-        distance = fair_value - ref_half
 
-        # If very close to a half-point, it's pick'em
-        if abs(distance) < 0.01:
-            if mtype == "total":
-                return f"PK {ref_half:.1f}"
-            elif mtype == "spread":
-                sign = "+" if ref_half > 0 else ""
-                return f"PK {sign}{ref_half:.1f}"
-            return f"{fair_value:.1f}"
-
-        # Determine the half-point where the edge exists
-        # Use the half-point that creates the larger lean
-        lower = math.floor(fair_value * 2) / 2
-        upper = lower + 0.5
-        dist_lower = abs(fair_value - lower)
-        dist_upper = abs(fair_value - upper)
-
-        if dist_lower >= dist_upper:
-            half = lower
-            lean_dist = dist_lower
-        else:
-            half = upper
-            lean_dist = dist_upper
-
-        lean = min(0.45, (lean_dist / 0.5) * HALF_POINT_LEAN)
-        fi = 0.50 + lean
-        fp = implied_to_american(fi)
+        # Calculate fair price at the nearest half-point using point-to-prob model
+        fp = calc_fair_price(fair_value, ref_half)
 
         if mtype == "total":
-            direction = "O" if fair_value > half else "U"
-            return f"{direction} {half:.1f} ({fp:+d})" if fp != 0 else f"{direction} {half:.1f}"
+            direction = "O" if fair_value >= ref_half else "U"
+            if abs(fair_value - ref_half) < 0.01:
+                return f"PK {ref_half:.1f}"
+            return f"{direction} {ref_half:.1f} ({fp:+d})" if fp != 0 else f"{direction} {ref_half:.1f}"
         elif mtype == "spread":
-            if fair_value < half:
-                # Home side favored (more negative = home stronger)
-                sign = "+" if half > 0 else ""
-                return f"{home} {sign}{half:.1f} ({fp:+d})" if fp != 0 else f"{home} {sign}{half:.1f}"
+            if abs(fair_value - ref_half) < 0.01:
+                sign = "+" if ref_half > 0 else ""
+                return f"PK {sign}{ref_half:.1f}"
+            if fair_value < ref_half:
+                sign = "+" if ref_half > 0 else ""
+                return f"{home} {sign}{ref_half:.1f} ({fp:+d})" if fp != 0 else f"{home} {sign}{ref_half:.1f}"
             else:
-                away_half = -half
+                away_half = -ref_half
                 sign = "+" if away_half > 0 else ""
                 return f"{away} {sign}{away_half:.1f} ({fp:+d})" if fp != 0 else f"{away} {sign}{away_half:.1f}"
         elif mtype == "moneyline":
@@ -728,7 +730,7 @@ class InternalGrader:
         return f"{fair_value:.1f}"
 
     def _book_detail_implied(self, brow, fair, mtype, home, away):
-        """Extract per-book edge detail using implied probability model."""
+        """Extract per-book edge detail using point-to-probability model."""
         if brow is None or fair is None:
             return None
         bl = brow.get("book_line")
@@ -737,29 +739,26 @@ class InternalGrader:
 
         book_odds = brow.get("book_odds") or -110
         gap = float(fair) - float(bl)
+        side = brow.get("prediction_side", "")
 
         if mtype == "moneyline":
             # ML: fair and book_line are already in implied probability %
-            # edge is stored gap (already in pct points)
             edge_pct = round(abs(gap), 1)
             fi_pct = float(fair)
             fp = implied_to_american(fi_pct / 100)
-            side = brow.get("prediction_side", "")
+            # Cap odds
+            if fp < -ODDS_CAP:
+                fp = -ODDS_CAP
+            elif fp > ODDS_CAP:
+                fp = ODDS_CAP
 
             call_team = home if side == "home" else away
             call = f"{call_team} ML ({fp:+d})" if fp != 0 else f"{call_team} ML"
             book_offer = f"{call_team} ML {book_odds:+d}"
         else:
-            # Spread / Total: use half-point lean model
-            point_gap = abs(gap)
-            if point_gap > 15:
-                return None  # data error
-
-            fi = fair_implied_at_line(float(fair), float(bl))
-            bi = american_to_implied(book_odds)
-            edge_pct = round((fi - bi) * 100, 1)
-            fp = implied_to_american(fi)
-            side = brow.get("prediction_side", "")
+            # Spread / Total: point-to-probability model
+            edge_pct = calc_edge_pct(float(fair), float(bl), book_odds)
+            fp = calc_fair_price(float(fair), float(bl))
 
             if mtype == "total":
                 direction = "O" if gap > 0 else "U"

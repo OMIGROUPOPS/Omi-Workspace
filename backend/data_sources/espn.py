@@ -13,9 +13,57 @@ from config import ESPN_API_BASE, ESPN_API_BASE_V2, ESPN_SPORTS
 logger = logging.getLogger(__name__)
 
 
+def _match_team_name(search_name: str, candidate_name: str) -> bool:
+    """
+    Match team names robustly — prioritize school/city, NOT mascot.
+
+    Matching priority:
+    1. Exact match (case-insensitive)
+    2. Either name is a substring of the other
+    3. School/city prefix match (all words except the last mascot word)
+    4. NEVER match on mascot alone (avoids Bears↔Bears, Eagles↔Eagles)
+    """
+    if not search_name or not candidate_name:
+        return False
+
+    s = search_name.lower().strip()
+    c = candidate_name.lower().strip()
+
+    # 1. Exact match
+    if s == c:
+        return True
+
+    # 2. Substring match (either direction)
+    if s in c or c in s:
+        return True
+
+    # 3. School/city prefix match — compare everything EXCEPT the last word (mascot)
+    s_parts = s.split()
+    c_parts = c.split()
+
+    if len(s_parts) >= 2 and len(c_parts) >= 2:
+        # Extract school/city portion (all but last word)
+        s_school = " ".join(s_parts[:-1])
+        c_school = " ".join(c_parts[:-1])
+
+        # Exact school match (e.g., "baylor" == "baylor")
+        if s_school == c_school:
+            return True
+
+        # School substring match (e.g., "boston college" in "boston college")
+        if s_school in c_school or c_school in s_school:
+            return True
+
+        # First word match for single-word schools (e.g., "baylor" vs "baylor")
+        if s_parts[0] == c_parts[0] and len(s_parts[0]) >= 4:
+            return True
+
+    return False
+
+
 class ESPNClient:
     """Client for ESPN's free API endpoints."""
-    
+
     def __init__(self):
         self.base_url = ESPN_API_BASE
         self.client = httpx.Client(timeout=30.0)
@@ -153,7 +201,7 @@ class ESPNClient:
         logger.info(f"[ESPN] Found {len(injuries)} total injuries for {sport}")
 
         # Try to match team name
-        team_injuries = [i for i in injuries if i.get("team_name") and team_name.lower() in i["team_name"].lower()]
+        team_injuries = [i for i in injuries if i.get("team_name") and _match_team_name(team_name, i["team_name"])]
         logger.info(f"[ESPN] Matching '{team_name}' - found {len(team_injuries)} injuries")
 
         # Debug: show available team names if no match
@@ -330,29 +378,12 @@ class ESPNClient:
         standings = self.get_standings(sport)
         logger.info(f"[ESPN] Got {len(standings)} teams in standings for {sport}")
 
-        # Normalize team name for matching
-        def normalize_name(name: str) -> str:
-            """Normalize team name for flexible matching."""
-            n = name.lower().strip()
-            # Common abbreviation expansions
-            n = n.replace("la ", "los angeles ")
-            n = n.replace("ny ", "new york ")
-            return n
-
-        input_normalized = normalize_name(team_name)
-
         team_standing = None
         for s in standings:
             espn_name = s.get("team_name", "")
             if not espn_name:
                 continue
-            espn_normalized = normalize_name(espn_name)
-
-            # Match if either contains the other, or if they share a key part (city or mascot)
-            if (input_normalized in espn_normalized or
-                espn_normalized in input_normalized or
-                # Also check if mascot matches (last word)
-                input_normalized.split()[-1] == espn_normalized.split()[-1]):
+            if _match_team_name(team_name, espn_name):
                 team_standing = s
                 logger.info(f"[ESPN] Matched '{team_name}' to '{espn_name}' - W:{s.get('wins')} L:{s.get('losses')}")
                 break
@@ -536,7 +567,7 @@ class ESPNClient:
         standings = self.get_standings(sport)
         team_id = None
         for s in standings:
-            if s.get("team_name") and team_name.lower() in s["team_name"].lower():
+            if s.get("team_name") and _match_team_name(team_name, s["team_name"]):
                 team_id = s["team_id"]
                 break
         

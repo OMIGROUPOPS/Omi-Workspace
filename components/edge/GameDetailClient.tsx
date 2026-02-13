@@ -849,9 +849,11 @@ function OmiFairPricing({
     return Math.round(Math.abs(pts) * rate * 1000) / 10; // e.g. 0.5 pts * 0.033 = 1.65%
   };
 
-  // Edge color by IP edge signal tier
+  // Edge color: positive = emerald (value), negative = red (wrong side)
   const getEdgeColor = (pctGap: number): string => {
-    return getEdgeSignalColor(getEdgeSignal(pctGap));
+    const abs = Math.abs(pctGap);
+    if (abs < 0.5) return 'text-zinc-500';
+    return pctGap > 0 ? 'text-emerald-400' : 'text-red-400';
   };
 
   // Confidence color (derived from edge-based confidence)
@@ -1342,7 +1344,7 @@ function OmiFairPricing({
                     <div className="text-[18px] font-bold font-mono text-zinc-100">{block.bookLine}</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest">IP Edge</div>
+                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest">Edge</div>
                     <div className={`text-[18px] font-bold font-mono ${block.edgeColor}`}>
                       {edgeDisplay}
                     </div>
@@ -1896,20 +1898,22 @@ function AskEdgeAI({ activeMarket, activePeriod }: { activeMarket: string; activ
 }
 
 // ============================================================================
-// Exchange Signals — complementary exchange intelligence panel
+// Exchange Signals — dynamic, market-tab-aware exchange intelligence panel
 // ============================================================================
 
-function ExchangeSignals({ exchangeData, bookmakers, gameData }: {
+function ExchangeSignals({ exchangeData, bookmakers, gameData, activeMarket }: {
   exchangeData: {
     by_market: Record<string, Array<{
       exchange: string; subtitle: string; yes_price: number | null; no_price: number | null;
       volume: number | null; open_interest: number | null; snapshot_time: string;
+      contract_ticker?: string; event_title?: string;
     }>>;
     divergence: Record<string, any>;
     count: number;
   };
   bookmakers: Record<string, any>;
   gameData: { homeTeam: string; awayTeam: string; sportKey: string };
+  activeMarket: string;
 }) {
   const fmtCents = (v: number | null) => v != null ? `${Math.round(v)}¢` : '—';
   const fmtPct = (v: number | null) => v != null ? `${v.toFixed(1)}%` : '—';
@@ -1927,179 +1931,250 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData }: {
   const hasSpread = (markets.spread?.length ?? 0) > 0;
   const hasTotal = (markets.total?.length ?? 0) > 0;
 
+  const homeAbbr = abbrev(gameData.homeTeam);
+  const awayAbbr = abbrev(gameData.awayTeam);
+
+  // Map activeMarket to exchange market keys
+  const marketToExKey: Record<string, string> = { spread: 'spread', total: 'total', moneyline: 'moneyline' };
+  const activeExKey = marketToExKey[activeMarket] || 'moneyline';
+
+  // Find most recent snapshot_time across all contracts
+  const allContracts = Object.values(markets).flat();
+  const latestSnapshot = allContracts.reduce((latest, c) => {
+    if (!c.snapshot_time) return latest;
+    return !latest || c.snapshot_time > latest ? c.snapshot_time : latest;
+  }, '');
+  const lastSyncedAgo = (() => {
+    if (!latestSnapshot) return null;
+    const diffMs = Date.now() - new Date(latestSnapshot).getTime();
+    const mins = Math.floor(diffMs / 60000);
+    if (mins < 1) return 'just now';
+    if (mins < 60) return `${mins} min ago`;
+    const hrs = Math.floor(mins / 60);
+    return `${hrs}h ${mins % 60}m ago`;
+  })();
+
+  // Volume confidence label
+  const getVolConf = (vol: number) => {
+    if (vol >= 50000) return { label: 'High volume — strong signal', color: 'text-emerald-400' };
+    if (vol >= 10000) return { label: 'Moderate volume', color: 'text-zinc-400' };
+    return { label: 'Low volume — treat signal with caution', color: 'text-amber-400' };
+  };
+
+  // Divergence explanation one-liner
+  const getDivExplanation = (divPct: number, teamName: string): string => {
+    const absPct = Math.abs(divPct).toFixed(1);
+    if (Math.abs(divPct) < 1) return 'Exchange and sportsbooks are aligned on pricing';
+    if (divPct > 0) return `Exchange prices ${teamName} ${absPct}% higher than sportsbooks — exchange may be leading a line move toward ${teamName}`;
+    return `Exchange prices ${teamName} ${absPct}% lower than sportsbooks — exchange suggests books may be overvaluing ${teamName}`;
+  };
+
   // Get FD book data for comparison
   const fdMarkets = bookmakers.fanduel?.marketGroups?.fullGame;
+
+  // Match ML contracts to home/away using subtitle
+  const homeLower = gameData.homeTeam.toLowerCase();
+  const homeWords = homeLower.split(' ').filter((w: string) => w.length > 3);
+  const matchHome = (subtitle: string) => {
+    const sub = (subtitle || '').toLowerCase();
+    return homeWords.some((w: string) => sub.includes(w));
+  };
+
+  // Order: active market first, then the rest
+  const marketOrder = [activeExKey, ...['moneyline', 'spread', 'total'].filter(k => k !== activeExKey)];
 
   return (
     <div className="border-t border-cyan-500/20 bg-[#0c0c0c]">
       <div className="px-4 py-2.5 flex items-center gap-2 border-b border-zinc-800/50">
         <span className="text-[10px] font-semibold tracking-widest text-cyan-500/70 uppercase">Exchange Signals</span>
         <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-sky-500/15 text-sky-400 border border-sky-500/30">Kalshi</span>
-        {exchangeData.count > 0 && (
-          <span className="text-[10px] text-zinc-600 ml-auto">{exchangeData.count} contracts</span>
-        )}
+        <span className="text-[10px] text-zinc-600 ml-auto">
+          {exchangeData.count > 0 && `${exchangeData.count} contracts`}
+          {lastSyncedAgo && <> · Synced {lastSyncedAgo}</>}
+        </span>
       </div>
 
       <div className="px-4 py-3 space-y-3">
-        {/* Moneyline */}
-        {hasML && (() => {
-          const contracts = markets.moneyline;
-          const totalVol = contracts.reduce((s, c) => s + (c.volume || 0), 0);
-          const mlDiv = div.moneyline;
+        {marketOrder.map(mktKey => {
+          const isActive = mktKey === activeExKey;
+          const mktContracts = markets[mktKey];
+          const hasMkt = (mktContracts?.length ?? 0) > 0;
+          const mktLabel = mktKey === 'moneyline' ? 'Moneyline' : mktKey === 'spread' ? 'Spread' : 'Total';
 
-          // Match contracts to home/away using subtitle
-          const homeLower = gameData.homeTeam.toLowerCase();
-          const homeWords = homeLower.split(' ').filter(w => w.length > 3);
-          let homeContract: typeof contracts[0] | null = null;
-          let awayContract: typeof contracts[0] | null = null;
-          for (const c of contracts) {
-            const sub = (c.subtitle || '').toLowerCase();
-            if (homeWords.some(w => sub.includes(w))) {
-              homeContract = c;
-            } else {
-              awayContract = c;
-            }
+          if (!hasMkt) {
+            return (
+              <div key={mktKey} className={isActive ? '' : 'opacity-40'}>
+                <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1">{mktLabel}</div>
+                <div className="text-[10px] text-zinc-600 italic">No exchange coverage</div>
+              </div>
+            );
           }
 
-          const homeYes = homeContract?.yes_price ?? null;
-          const awayYes = awayContract?.yes_price ?? (homeYes != null ? 100 - homeYes : null);
+          const totalVol = mktContracts.reduce((s: number, c: any) => s + (c.volume || 0), 0);
+          const volConf = getVolConf(totalVol);
+          const ticker = mktContracts[0]?.contract_ticker;
 
-          // FD book odds for comparison
-          const fdHome = fdMarkets?.h2h?.home?.price;
-          const fdAway = fdMarkets?.h2h?.away?.price;
-          const fdHomeProb = fdHome ? americanToImplied(fdHome) * 100 : null;
-          const fdAwayProb = fdAway ? americanToImplied(fdAway) * 100 : null;
+          // Moneyline rendering
+          if (mktKey === 'moneyline') {
+            let homeContract: typeof mktContracts[0] | null = null;
+            let awayContract: typeof mktContracts[0] | null = null;
+            for (const c of mktContracts) {
+              if (matchHome(c.subtitle)) homeContract = c;
+              else awayContract = c;
+            }
+            const homeYes = homeContract?.yes_price ?? null;
+            const awayYes = awayContract?.yes_price ?? (homeYes != null ? 100 - homeYes : null);
+            const mlDiv = div.moneyline;
+            const fdHome = fdMarkets?.h2h?.home?.price;
+            const fdAway = fdMarkets?.h2h?.away?.price;
+            const fdHomeProb = fdHome ? americanToImplied(fdHome) * 100 : null;
+            const fdAwayProb = fdAway ? americanToImplied(fdAway) * 100 : null;
+            const contractLabel = awayContract?.subtitle
+              ? `${awayContract.subtitle} / ${homeContract?.subtitle || gameData.homeTeam}`
+              : homeContract?.subtitle || '';
 
-          return (
-            <div>
-              <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">Moneyline</div>
-              <table className="w-full text-[11px]">
-                <thead>
-                  <tr className="text-zinc-600">
-                    <th className="text-left py-1 font-normal">Source</th>
-                    <th className="text-right py-1 font-normal">Home</th>
-                    <th className="text-right py-1 font-normal">Away</th>
-                    <th className="text-right py-1 font-normal">Volume</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="text-zinc-300">
-                    <td className="py-1 text-sky-400 font-medium">Kalshi</td>
-                    <td className="py-1 text-right font-mono">{fmtCents(homeYes)} <span className="text-zinc-500">({fmtPct(homeYes)})</span></td>
-                    <td className="py-1 text-right font-mono">{fmtCents(awayYes)} <span className="text-zinc-500">({fmtPct(awayYes)})</span></td>
-                    <td className="py-1 text-right text-zinc-500">{fmtVol(totalVol)}</td>
-                  </tr>
-                  {fdHome && fdAway && (
-                    <tr className="text-zinc-400">
-                      <td className="py-1 font-medium" style={{ color: '#1493ff' }}>FanDuel</td>
-                      <td className="py-1 text-right font-mono">{fdHome > 0 ? '+' : ''}{fdHome} <span className="text-zinc-600">({fmtPct(fdHomeProb)})</span></td>
-                      <td className="py-1 text-right font-mono">{fdAway > 0 ? '+' : ''}{fdAway} <span className="text-zinc-600">({fmtPct(fdAwayProb)})</span></td>
-                      <td className="py-1 text-right text-zinc-600">—</td>
+            return (
+              <div key={mktKey} className={isActive ? '' : 'opacity-40'}>
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">{mktLabel}</div>
+                  {isActive && <span className="text-[8px] px-1 py-0.5 rounded bg-cyan-500/10 text-cyan-400 font-medium">Active</span>}
+                </div>
+                {ticker && <div className="text-[9px] text-zinc-600 font-mono mb-1 truncate">{contractLabel}</div>}
+                <table className="w-full text-[11px]">
+                  <thead>
+                    <tr className="text-zinc-600">
+                      <th className="text-left py-1 font-normal">Source</th>
+                      <th className="text-right py-1 font-normal">{awayAbbr}</th>
+                      <th className="text-right py-1 font-normal">{homeAbbr}</th>
+                      <th className="text-right py-1 font-normal">Volume</th>
                     </tr>
-                  )}
-                  {mlDiv && (
-                    <tr>
-                      <td className="py-1 text-zinc-500 font-medium">Divergence</td>
-                      <td className={`py-1 text-right font-mono font-bold ${divColor(mlDiv.divergence_pct)}`}>
-                        {mlDiv.divergence_pct > 0 ? '+' : ''}{mlDiv.divergence_pct.toFixed(1)}%
-                      </td>
-                      <td className="py-1"></td>
-                      <td className="py-1"></td>
+                  </thead>
+                  <tbody>
+                    <tr className="text-zinc-300">
+                      <td className="py-1 text-sky-400 font-medium">Kalshi</td>
+                      <td className="py-1 text-right font-mono">{fmtCents(awayYes)} <span className="text-zinc-500">({fmtPct(awayYes)})</span></td>
+                      <td className="py-1 text-right font-mono">{fmtCents(homeYes)} <span className="text-zinc-500">({fmtPct(homeYes)})</span></td>
+                      <td className="py-1 text-right text-zinc-500">{fmtVol(totalVol)}</td>
                     </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          );
-        })()}
+                    {fdHome && fdAway && (
+                      <tr className="text-zinc-400">
+                        <td className="py-1 font-medium" style={{ color: '#1493ff' }}>FanDuel</td>
+                        <td className="py-1 text-right font-mono">{fdAway > 0 ? '+' : ''}{fdAway} <span className="text-zinc-600">({fmtPct(fdAwayProb)})</span></td>
+                        <td className="py-1 text-right font-mono">{fdHome > 0 ? '+' : ''}{fdHome} <span className="text-zinc-600">({fmtPct(fdHomeProb)})</span></td>
+                        <td className="py-1 text-right text-zinc-600">—</td>
+                      </tr>
+                    )}
+                    {mlDiv && (
+                      <tr>
+                        <td className="py-1 text-zinc-500 font-medium">Divergence</td>
+                        <td className="py-1"></td>
+                        <td className={`py-1 text-right font-mono font-bold ${divColor(mlDiv.divergence_pct)}`}>
+                          {mlDiv.divergence_pct > 0 ? '+' : ''}{mlDiv.divergence_pct.toFixed(1)}%
+                        </td>
+                        <td className="py-1"></td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+                {isActive && mlDiv && (
+                  <div className="mt-1.5 text-[10px] text-zinc-500 italic">{getDivExplanation(mlDiv.divergence_pct, gameData.homeTeam)}</div>
+                )}
+                {isActive && <div className={`mt-1 text-[9px] ${volConf.color}`}>{volConf.label}</div>}
+              </div>
+            );
+          }
 
-        {/* Spread */}
-        {hasSpread && (() => {
-          const contracts = markets.spread;
-          const spDiv = div.spread;
+          // Spread rendering
+          if (mktKey === 'spread') {
+            const spDiv = div.spread;
+            return (
+              <div key={mktKey} className={isActive ? '' : 'opacity-40'}>
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">{mktLabel}</div>
+                  {isActive && <span className="text-[8px] px-1 py-0.5 rounded bg-cyan-500/10 text-cyan-400 font-medium">Active</span>}
+                </div>
+                <table className="w-full text-[11px]">
+                  <thead>
+                    <tr className="text-zinc-600">
+                      <th className="text-left py-1 font-normal">Contract</th>
+                      <th className="text-right py-1 font-normal">Price</th>
+                      <th className="text-right py-1 font-normal">Implied</th>
+                      <th className="text-right py-1 font-normal">Volume</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {mktContracts.map((c: any, i: number) => (
+                      <tr key={i} className="text-zinc-300">
+                        <td className="py-1 text-zinc-400 text-[10px] truncate max-w-[180px]" title={c.contract_ticker || ''}>{c.subtitle || c.contract_ticker || '—'}</td>
+                        <td className="py-1 text-right font-mono">{fmtCents(c.yes_price)}</td>
+                        <td className="py-1 text-right font-mono text-zinc-400">{fmtPct(c.yes_price)}</td>
+                        <td className="py-1 text-right text-zinc-500">{fmtVol(c.volume)}</td>
+                      </tr>
+                    ))}
+                    {spDiv && (
+                      <tr>
+                        <td className="py-1 text-zinc-500 font-medium">Divergence (Book: {spDiv.book_spread})</td>
+                        <td className="py-1"></td>
+                        <td className={`py-1 text-right font-mono font-bold ${divColor(spDiv.divergence_pct)}`}>
+                          {spDiv.divergence_pct > 0 ? '+' : ''}{spDiv.divergence_pct.toFixed(1)}%
+                        </td>
+                        <td className="py-1"></td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+                {isActive && spDiv && (
+                  <div className="mt-1.5 text-[10px] text-zinc-500 italic">{getDivExplanation(spDiv.divergence_pct, gameData.homeTeam)}</div>
+                )}
+                {isActive && <div className={`mt-1 text-[9px] ${volConf.color}`}>{volConf.label}</div>}
+              </div>
+            );
+          }
 
-          return (
-            <div>
-              <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">Spread</div>
-              <table className="w-full text-[11px]">
-                <thead>
-                  <tr className="text-zinc-600">
-                    <th className="text-left py-1 font-normal">Source</th>
-                    <th className="text-left py-1 font-normal">Contract</th>
-                    <th className="text-right py-1 font-normal">Price</th>
-                    <th className="text-right py-1 font-normal">Implied</th>
-                    <th className="text-right py-1 font-normal">Volume</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {contracts.map((c, i) => (
-                    <tr key={i} className="text-zinc-300">
-                      <td className="py-1 text-sky-400 font-medium">{i === 0 ? 'Kalshi' : ''}</td>
-                      <td className="py-1 text-zinc-400 text-[10px] truncate max-w-[140px]">{c.subtitle || '—'}</td>
-                      <td className="py-1 text-right font-mono">{fmtCents(c.yes_price)}</td>
-                      <td className="py-1 text-right font-mono text-zinc-400">{fmtPct(c.yes_price)}</td>
-                      <td className="py-1 text-right text-zinc-500">{fmtVol(c.volume)}</td>
+          // Total rendering
+          if (mktKey === 'total') {
+            const totDiv = div.total;
+            return (
+              <div key={mktKey} className={isActive ? '' : 'opacity-40'}>
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">{mktLabel}</div>
+                  {isActive && <span className="text-[8px] px-1 py-0.5 rounded bg-cyan-500/10 text-cyan-400 font-medium">Active</span>}
+                </div>
+                <table className="w-full text-[11px]">
+                  <thead>
+                    <tr className="text-zinc-600">
+                      <th className="text-left py-1 font-normal">Contract</th>
+                      <th className="text-right py-1 font-normal">Over</th>
+                      <th className="text-right py-1 font-normal">Under</th>
+                      <th className="text-right py-1 font-normal">Volume</th>
                     </tr>
-                  ))}
-                  {spDiv && (
-                    <tr>
-                      <td className="py-1 text-zinc-500 font-medium">Divergence</td>
-                      <td className="py-1"></td>
-                      <td className="py-1"></td>
-                      <td className={`py-1 text-right font-mono font-bold ${divColor(spDiv.divergence_pct)}`}>
-                        {spDiv.divergence_pct > 0 ? '+' : ''}{spDiv.divergence_pct.toFixed(1)}%
-                      </td>
-                      <td className="py-1"></td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          );
-        })()}
+                  </thead>
+                  <tbody>
+                    {mktContracts.map((c: any, i: number) => (
+                      <tr key={i} className="text-zinc-300">
+                        <td className="py-1 text-zinc-400 text-[10px] truncate max-w-[180px]" title={c.contract_ticker || ''}>{c.subtitle || c.contract_ticker || '—'}</td>
+                        <td className="py-1 text-right font-mono">{fmtCents(c.yes_price)}</td>
+                        <td className="py-1 text-right font-mono">{fmtCents(c.no_price)}</td>
+                        <td className="py-1 text-right text-zinc-500">{fmtVol(c.volume)}</td>
+                      </tr>
+                    ))}
+                    {totDiv && (
+                      <tr>
+                        <td className="py-1 text-zinc-500 font-medium">vs Book ({totDiv.book_total})</td>
+                        <td className="py-1 text-right font-mono text-zinc-400">{fmtPct(totDiv.exchange_over_prob)}</td>
+                        <td className="py-1 text-right font-mono text-zinc-400">{totDiv.exchange_over_prob != null ? fmtPct(100 - totDiv.exchange_over_prob) : '—'}</td>
+                        <td className="py-1"></td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+                {isActive && <div className={`mt-1 text-[9px] ${volConf.color}`}>{volConf.label}</div>}
+              </div>
+            );
+          }
 
-        {/* Total */}
-        {hasTotal && (() => {
-          const contracts = markets.total;
-          const totDiv = div.total;
-
-          return (
-            <div>
-              <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">Total</div>
-              <table className="w-full text-[11px]">
-                <thead>
-                  <tr className="text-zinc-600">
-                    <th className="text-left py-1 font-normal">Source</th>
-                    <th className="text-left py-1 font-normal">Contract</th>
-                    <th className="text-right py-1 font-normal">Over</th>
-                    <th className="text-right py-1 font-normal">Under</th>
-                    <th className="text-right py-1 font-normal">Volume</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {contracts.map((c, i) => (
-                    <tr key={i} className="text-zinc-300">
-                      <td className="py-1 text-sky-400 font-medium">{i === 0 ? 'Kalshi' : ''}</td>
-                      <td className="py-1 text-zinc-400 text-[10px] truncate max-w-[140px]">{c.subtitle || '—'}</td>
-                      <td className="py-1 text-right font-mono">{fmtCents(c.yes_price)}</td>
-                      <td className="py-1 text-right font-mono">{fmtCents(c.no_price)}</td>
-                      <td className="py-1 text-right text-zinc-500">{fmtVol(c.volume)}</td>
-                    </tr>
-                  ))}
-                  {totDiv && (
-                    <tr>
-                      <td className="py-1 text-zinc-500 font-medium">Exchange</td>
-                      <td className="py-1 text-zinc-600 text-[10px]">Book: {totDiv.book_total}</td>
-                      <td className="py-1 text-right font-mono text-zinc-400">{fmtPct(totDiv.exchange_over_prob)}</td>
-                      <td className="py-1 text-right font-mono text-zinc-400">{totDiv.exchange_over_prob != null ? fmtPct(100 - totDiv.exchange_over_prob) : '—'}</td>
-                      <td className="py-1"></td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          );
-        })()}
+          return null;
+        })}
       </div>
     </div>
   );
@@ -2288,6 +2363,7 @@ export function GameDetailClient({
     by_market: Record<string, Array<{
       exchange: string; subtitle: string; yes_price: number | null; no_price: number | null;
       volume: number | null; open_interest: number | null; snapshot_time: string;
+      contract_ticker?: string; event_title?: string;
     }>>;
     divergence: Record<string, {
       exchange_home_prob?: number; book_home_prob?: number; divergence_pct?: number;
@@ -2436,7 +2512,7 @@ export function GameDetailClient({
 
         {/* Exchange Signals — complementary intelligence */}
         {exchangeData && (
-          <ExchangeSignals exchangeData={exchangeData} bookmakers={bookmakers} gameData={gameData} />
+          <ExchangeSignals exchangeData={exchangeData} bookmakers={bookmakers} gameData={gameData} activeMarket={activeMarket} />
         )}
       </div>
 
@@ -2550,7 +2626,7 @@ export function GameDetailClient({
 
           {/* Exchange Signals — complementary intelligence */}
           {exchangeData && (
-            <ExchangeSignals exchangeData={exchangeData} bookmakers={bookmakers} gameData={gameData} />
+            <ExchangeSignals exchangeData={exchangeData} bookmakers={bookmakers} gameData={gameData} activeMarket={activeMarket} />
           )}
         </div>
       </div>

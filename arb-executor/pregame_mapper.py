@@ -123,7 +123,7 @@ KALSHI_TO_PM_ABBREV = {
     "DUKE": "duke", "UNC": "unc", "KU": "kan", "UK": "ken",
     "GONZ": "gonz", "HOU": "hou", "PURDUE": "pur", "TENN": "ten",
     "AUBURN": "aub", "IOWA": "iowa", "BAY": "bay",  # Kalshi uses BAY, not BAYLOR
-    "CONN": "conn", "ARIZ": "ariz", "CREIGH": "crei",
+    "CONN": "conn", "ARIZ": "ariz", "CREI": "crei",
     "MARQ": "marq", "ISU": "isu", "MONT": "mont",  # Montana
 }
 
@@ -390,7 +390,7 @@ CBB_PM_TO_KALSHI = {
     "stmry": "SMC",      # Saint Mary's
     "pacfc": "PAC",      # Pacific
     "portst": "PRST",    # Portland State
-    "tamu": "AMCC",      # Texas A&M Corpus Christi
+    "tamu": "TXAM",      # Texas A&M (main campus, not Corpus Christi)
     "soumis": "USM",     # Southern Miss
     "stmn": "UST",       # St. Thomas Minnesota
     "sutah": "SUU",      # Southern Utah
@@ -457,7 +457,7 @@ PM_DISPLAY_ABBREV_TO_KALSHI = {
     "neu": "NE",       # Northeastern
     "spu": "SPC",      # Saint Peter's
     "oma": "NEOM",     # Nebraska Omaha
-    "unh": "NHC",      # New Haven
+    "unh": "UNH",      # New Hampshire (NOT New Haven NHC - nhvn slug handles NHC)
     "csun": "CSN",     # Cal State Northridge
     "ue": "EVAN",      # Evansville
     "sto": "STNH",     # Stonehill
@@ -490,6 +490,33 @@ PM_DISPLAY_ABBREV_TO_KALSHI = {
     "msst": "MSST",    # Mississippi State
     "ariz": "ARIZ",    # Arizona
     "okst": "OKST",    # Oklahoma State
+    # --- Round 2: displayAbbreviation fixes (2026-02-13) ---
+    "colum": "CLMB",   # Columbia
+    "corn": "COR",     # Cornell
+    "creigh": "CREI",  # Creighton
+    "nova": "VILL",    # Villanova
+    "etamu": "ETAM",   # East Texas A&M
+    "most": "MOSU",    # Missouri State
+    "sbu": "SBON",     # St. Bonaventure
+    "gsu": "GAST",     # Georgia State
+    "gcu": "GC",       # Grand Canyon
+    "hpu": "HP",       # High Point
+    "uca": "CARK",     # Central Arkansas
+    "upst": "SCUS",    # SC Upstate
+    "ncsu": "NCST",    # NC State
+    "mtsu": "MTU",     # Middle Tennessee State
+    "sdksu": "SDST",   # South Dakota State
+    "kc": "UMKC",      # Kansas City (UMKC)
+    "tom": "UST",      # St. Thomas Minnesota
+    "m-oh": "MOH",     # Miami Ohio
+    "ut": "UTU",       # Utah Tech (formerly Dixie State)
+    "sfu": "SFPA",     # St. Francis PA
+    "merc": "MHU",     # Mount Saint Mary's (PM uses MERC displayAbbrev)
+    "tamu": "TXAM",    # Texas A&M (override slug tamu→AMCC for displayAbbrev)
+    "haw": "HAW",      # Hawaii (identity - prevent fallthrough)
+    "wcu": "WCU",      # Western Carolina (identity)
+    "liu": "LIU",      # LIU (identity)
+    "crei": "CREI",    # Creighton (override reverse mapping crei→CREIGH)
 }
 
 PM_TO_KALSHI_ABBREV.update(PM_DISPLAY_ABBREV_TO_KALSHI)
@@ -606,7 +633,7 @@ PM_NAME_KEYWORDS = {
     "aztecs": "SDSU",              # San Diego State (UNIQUE)
     "hokies": "VT",                # Virginia Tech (UNIQUE)
     "yellow jackets": "GT",        # Georgia Tech (UNIQUE)
-    "orange": "CUSE",              # Syracuse (UNIQUE)
+    "orange": "SYR",               # Syracuse (Kalshi uses SYR)
     "spiders": "RICH",             # Richmond (UNIQUE)
     "flyers": "DAY",               # Dayton (UNIQUE)
     "musketeers": "XAV",           # Xavier (UNIQUE)
@@ -644,7 +671,7 @@ PM_NAME_KEYWORDS = {
     "ospreys": "UNF",              # North Florida (UNIQUE)
     "quakers": "PENN",             # Penn (UNIQUE)
     "black bears": "ME",           # Maine (UNIQUE)
-    "catamounts": "UVM",           # Vermont (UNIQUE)
+    # REMOVED: "catamounts" - shared by Vermont (UVM) AND Western Carolina (WCU)
     "skyhawks": "UTM",             # UT Martin (UNIQUE)
     "colonels": "EKY",             # Eastern Kentucky (UNIQUE)
     "bobcats": "MTST",             # Montana State (UNIQUE for MTST)
@@ -653,6 +680,20 @@ PM_NAME_KEYWORDS = {
     # Let crossref fallback handle these using PM marketSides data
 }
 # fmt: on
+
+# Pro-sport abbreviations (NBA + NHL) used to prevent cross-sport keyword
+# matching. When identifying teams for a CBB game, reject any match that
+# resolves to an NBA/NHL abbreviation — let the marketSides fallback handle it.
+_PRO_SPORT_ABBREVS = {
+    # NBA
+    "ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW",
+    "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK",
+    "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WSH",
+    # NHL
+    "ANA", "ARI", "BUF", "CAR", "CBJ", "CGY", "COL", "EDM", "FLA", "LAK",
+    "MTL", "NJD", "NSH", "NYI", "NYR", "OTT", "PIT", "SEA", "SJS", "STL",
+    "TBL", "VAN", "VGK", "WPG",
+}
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -905,6 +946,12 @@ def identify_team_from_outcome(outcome_name: str, sport: str) -> Optional[str]:
             best_match_len = len(keyword)
 
     if best_match:
+        # Prevent cross-sport matching: don't return NBA/NHL abbreviations
+        # for CBB games (e.g. "warriors" in "Rainbow Warriors" → GSW is wrong)
+        if sport == "cbb" and best_match in _PRO_SPORT_ABBREVS:
+            return None
+        if sport in ("nba", "nhl") and best_match not in _PRO_SPORT_ABBREVS:
+            return None
         return best_match
 
     # Check full team names
@@ -1325,6 +1372,7 @@ class PreGameMapper:
                     verification_details = []
 
                     # Build a map of team name -> kalshi abbrev from marketSides
+                    sport_overrides = SPORT_PM_OVERRIDES.get(k_game["sport"], {})
                     marketside_teams = {}
                     for side in market_sides[:2]:
                         team_info = side.get("team", {}) if isinstance(side, dict) else {}
@@ -1334,7 +1382,9 @@ class PreGameMapper:
                                   or team_info.get("abbreviation", ""))
                         team_name = team_info.get("name", "")
                         if team_name and abbrev:
-                            kalshi_abbrev = PM_TO_KALSHI_ABBREV.get(abbrev.lower())
+                            kalshi_abbrev = sport_overrides.get(abbrev.lower())
+                            if not kalshi_abbrev:
+                                kalshi_abbrev = PM_TO_KALSHI_ABBREV.get(abbrev.lower())
                             if not kalshi_abbrev and HAS_EXECUTOR:
                                 kalshi_abbrev = normalize_team_abbrev(abbrev.upper())
                             if not kalshi_abbrev:
@@ -1344,29 +1394,49 @@ class PreGameMapper:
                     # Now match outcomes array to marketSides teams
                     # Outcome names are often just mascots ("Bulldogs") while
                     # marketSides has full names ("Mississippi State Bulldogs")
-                    for idx, outcome_name in enumerate(outcomes[:2]):
-                        outcome_str = str(outcome_name).strip().lower()
-                        matched_kalshi = None
 
-                        # Try exact match first
-                        if outcome_str in marketside_teams:
-                            matched_kalshi = marketside_teams[outcome_str]
-                        else:
-                            # Try substring match: is the mascot contained in full team name?
-                            for full_name, kalshi_abbr in marketside_teams.items():
-                                if outcome_str in full_name:
-                                    matched_kalshi = kalshi_abbr
-                                    break
-
-                        if matched_kalshi:
-                            outcome_map[idx] = {"team": matched_kalshi, "name": str(outcome_name)}
+                    # Check for identical outcomes (e.g., "Rams" vs "Rams")
+                    # When outcomes are identical, substring matching can't distinguish them.
+                    # Fall back to positional mapping: marketSides[i] -> outcomes[i].
+                    outcome_strs = [str(o).strip().lower() for o in outcomes[:2]]
+                    if (len(outcome_strs) == 2 and outcome_strs[0] == outcome_strs[1]
+                            and len(marketside_teams) == 2):
+                        # Identical mascots — use marketSides order as positional mapping
+                        logger.warning(f"  {cache_key}: Identical outcomes {outcomes[:2]}, using positional mapping")
+                        ms_abbrevs = list(marketside_teams.values())
+                        for idx in range(2):
+                            outcome_map[idx] = {"team": ms_abbrevs[idx], "name": str(outcomes[idx])}
                             verification_details.append({
                                 "index": idx,
-                                "pm_name": str(outcome_name),
-                                "mapped_to": matched_kalshi,
-                                "full_name": TEAM_FULL_NAMES.get(matched_kalshi, "?"),
-                                "method": "marketSides_crossref",
+                                "pm_name": str(outcomes[idx]),
+                                "mapped_to": ms_abbrevs[idx],
+                                "full_name": TEAM_FULL_NAMES.get(ms_abbrevs[idx], "?"),
+                                "method": "marketSides_positional",
                             })
+                    else:
+                        for idx, outcome_name in enumerate(outcomes[:2]):
+                            outcome_str = str(outcome_name).strip().lower()
+                            matched_kalshi = None
+
+                            # Try exact match first
+                            if outcome_str in marketside_teams:
+                                matched_kalshi = marketside_teams[outcome_str]
+                            else:
+                                # Try substring match: is the mascot contained in full team name?
+                                for full_name, kalshi_abbr in marketside_teams.items():
+                                    if outcome_str in full_name:
+                                        matched_kalshi = kalshi_abbr
+                                        break
+
+                            if matched_kalshi:
+                                outcome_map[idx] = {"team": matched_kalshi, "name": str(outcome_name)}
+                                verification_details.append({
+                                    "index": idx,
+                                    "pm_name": str(outcome_name),
+                                    "mapped_to": matched_kalshi,
+                                    "full_name": TEAM_FULL_NAMES.get(matched_kalshi, "?"),
+                                    "method": "marketSides_crossref",
+                                })
 
                 # Validate: both teams in the game should be mapped
                 k_teams = set(k_teams_normalized.keys())
@@ -1420,7 +1490,10 @@ class PreGameMapper:
                                           or team_info.get("abbreviation", ""))
                                 if abbrev:
                                     # Map PM abbreviation to Kalshi abbreviation
-                                    kalshi = PM_TO_KALSHI_ABBREV.get(abbrev.lower())
+                                    sport_ov = SPORT_PM_OVERRIDES.get(k_game["sport"], {})
+                                    kalshi = sport_ov.get(abbrev.lower())
+                                    if not kalshi:
+                                        kalshi = PM_TO_KALSHI_ABBREV.get(abbrev.lower())
                                     if not kalshi and HAS_EXECUTOR:
                                         kalshi = normalize_team_abbrev(abbrev.upper())
                                     if not kalshi:

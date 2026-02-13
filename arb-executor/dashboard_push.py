@@ -384,7 +384,7 @@ class DashboardPusher:
         except Exception:
             pass
 
-        games = self.verified_maps.get("games", {})
+        games = self.verified_maps  # already the games dict (load_verified_mappings extracts it)
         rows = []
         for cache_key, g in games.items():
             game_id = g.get("game_id", "")

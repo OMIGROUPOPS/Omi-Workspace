@@ -1399,6 +1399,7 @@ async def refresh_balances(session, kalshi_api, pm_api):
             print(f"[POSITIONS] Error loading trades.json for hedge check: {e}", flush=True)
 
         # Kalshi positions (skip settled: market_exposure == 0 means resolved)
+        settled_kalshi_games: set = set()  # Track settled game_ids to filter PM side too
         k_positions = await kalshi_api.get_positions(session)
         for ticker, pos in (k_positions or {}).items():
             qty = pos.position if hasattr(pos, 'position') else pos.get('position', 0)
@@ -1406,6 +1407,9 @@ async def refresh_balances(session, kalshi_api, pm_api):
                 continue
             exposure = pos.market_exposure if hasattr(pos, 'market_exposure') else pos.get('market_exposure', 0)
             if exposure == 0:
+                parts = ticker.split("-")
+                settled_gid = parts[1] if len(parts) >= 2 else ticker
+                settled_kalshi_games.add(settled_gid)
                 continue  # Settled market — position pending payout
             cache_key = ticker_to_cache_key.get(ticker, "")
             parts = ticker.split("-")
@@ -1457,6 +1461,10 @@ async def refresh_balances(session, kalshi_api, pm_api):
                     game_id = trade["game_id"]
                     team = trade.get("team", team)
                     sport = trade.get("sport", sport) or sport
+
+                # Skip PM positions whose Kalshi counterpart already settled
+                if game_id in settled_kalshi_games:
+                    continue
 
                 positions.append({
                     "platform": "PM",

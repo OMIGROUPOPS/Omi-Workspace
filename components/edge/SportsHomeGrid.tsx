@@ -124,8 +124,8 @@ function OddsCell({ line, price, edgePct }: { line?: number | string; price: num
         <span className={`text-[11px] font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-300'}`}>
           {formatOdds(price)}
         </span>
-        {edgePct !== undefined && edgePct > 0.5 && (
-          <span className="text-[9px] font-mono text-emerald-400">+{edgePct.toFixed(1)}%</span>
+        {edgePct !== undefined && Math.abs(edgePct) >= 1.0 && (
+          <span className={`text-[9px] font-mono ${edgePct > 0 ? 'text-emerald-400' : 'text-red-400'}`}>{edgePct > 0 ? '+' : ''}{edgePct.toFixed(1)}%</span>
         )}
       </div>
     </div>
@@ -139,8 +139,8 @@ function MoneylineCell({ price, edgePct }: { price: number; ev?: number; ceq?: n
         <span className={`text-xs font-semibold font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-100'}`}>
           {formatOdds(price)}
         </span>
-        {edgePct !== undefined && edgePct > 0.5 && (
-          <span className="text-[9px] font-mono text-emerald-400">+{edgePct.toFixed(1)}%</span>
+        {edgePct !== undefined && Math.abs(edgePct) >= 1.0 && (
+          <span className={`text-[9px] font-mono ${edgePct > 0 ? 'text-emerald-400' : 'text-red-400'}`}>{edgePct > 0 ? '+' : ''}{edgePct.toFixed(1)}%</span>
         )}
       </div>
     </div>
@@ -826,35 +826,32 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                   const h2h = bookOdds?.h2h || game.consensus?.h2h;
                   const totals = bookOdds?.totals || game.consensus?.totals;
 
-                  // Spread edge: gap * 3.0 (PROB_PER_POINT * 100)
-                  let homeSpreadEdge = 0, awaySpreadEdge = 0;
+                  // Spread edge: signed, both sides (positive = value on that side)
+                  let homeSpreadEdge: number | undefined, awaySpreadEdge: number | undefined;
                   if (fair?.fair_spread != null && spreads?.line !== undefined) {
-                    const gap = spreads.line - fair.fair_spread; // positive = home side value
-                    homeSpreadEdge = gap > 0 ? Math.abs(gap) * 3.0 : 0;
-                    awaySpreadEdge = gap < 0 ? Math.abs(gap) * 3.0 : 0;
+                    homeSpreadEdge = (spreads.line - fair.fair_spread) * 3.0;
+                    awaySpreadEdge = -homeSpreadEdge;
                   }
 
-                  // ML edge: compare implied probabilities
-                  let homeMLEdge = 0, awayMLEdge = 0;
+                  // ML edge: signed implied probability gap
+                  let homeMLEdge: number | undefined, awayMLEdge: number | undefined;
                   if (fair?.fair_ml_home != null && fair?.fair_ml_away != null && h2h?.homePrice !== undefined && h2h?.awayPrice !== undefined) {
                     const toProb = (o: number) => o < 0 ? Math.abs(o) / (Math.abs(o) + 100) : 100 / (o + 100);
                     const fairHomeProb = toProb(fair.fair_ml_home);
+                    const fairAwayProb = toProb(fair.fair_ml_away);
                     const bookHomeProb = toProb(h2h.homePrice);
                     const bookAwayProb = toProb(h2h.awayPrice);
-                    const fairAwayProb = toProb(fair.fair_ml_away);
-                    // Positive edge = book undervalues (book prob < fair prob)
-                    const homeGap = (fairHomeProb - bookHomeProb / (bookHomeProb + bookAwayProb)) * 100;
-                    const awayGap = (fairAwayProb - bookAwayProb / (bookHomeProb + bookAwayProb)) * 100;
-                    homeMLEdge = homeGap > 0 ? homeGap : 0;
-                    awayMLEdge = awayGap > 0 ? awayGap : 0;
+                    const normBHP = bookHomeProb / (bookHomeProb + bookAwayProb);
+                    const normBAP = bookAwayProb / (bookHomeProb + bookAwayProb);
+                    homeMLEdge = (fairHomeProb - normBHP) * 100;
+                    awayMLEdge = (fairAwayProb - normBAP) * 100;
                   }
 
-                  // Total edge: gap * 3.0
-                  let overEdge = 0, underEdge = 0;
+                  // Total edge: signed, both sides (positive over = fair higher than book)
+                  let overEdge: number | undefined, underEdge: number | undefined;
                   if (fair?.fair_total != null && totals?.line !== undefined) {
-                    const gap = fair.fair_total - totals.line; // positive = fair is higher = over value
-                    overEdge = gap > 0 ? Math.abs(gap) * 3.0 : 0;
-                    underEdge = gap < 0 ? Math.abs(gap) * 3.0 : 0;
+                    overEdge = (fair.fair_total - totals.line) * 3.0;
+                    underEdge = -overEdge;
                   }
 
                   // Check if card has any odds data

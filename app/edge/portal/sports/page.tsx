@@ -981,7 +981,7 @@ export default async function SportsPage() {
         allGames[frontendKey] = processed;
         totalGames += processed.length;
         totalEdges += processed.filter((g: any) =>
-          g.overall_confidence && g.overall_confidence !== 'PASS'
+          g.overall_confidence === 'STRONG' || g.overall_confidence === 'RARE'
         ).length;
       }
     }
@@ -1044,7 +1044,7 @@ export default async function SportsPage() {
           allGames[frontendKey] = upcoming;
           totalGames += upcoming.length;
           totalEdges += upcoming.filter((g: any) =>
-            g.overall_confidence && g.overall_confidence !== 'PASS'
+            g.overall_confidence === 'STRONG' || g.overall_confidence === 'RARE'
           ).length;
         }
       }

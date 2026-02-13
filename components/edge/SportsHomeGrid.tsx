@@ -460,18 +460,63 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     fetchFairLines();
   }, [mounted, games]);
 
+  // Smart sport ordering: games today first, then this week, then rest
   const orderedGames = useMemo(() => {
+    const now = new Date();
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const todayEnd = new Date(todayStart.getTime() + 24 * 60 * 60 * 1000);
+    const weekEnd = new Date(todayStart.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+    // Collect all sport keys (SPORT_ORDER first, then any extras)
+    const allSportKeys = [...SPORT_ORDER];
+    Object.keys(games).forEach(key => {
+      if (!allSportKeys.includes(key)) allSportKeys.push(key);
+    });
+
+    // Build metadata per sport
+    const sportMeta: { key: string; games: any[]; gamesToday: number; gamesWithOdds: number }[] = [];
+
+    for (const sportKey of allSportKeys) {
+      const sportGames = games[sportKey];
+      if (!sportGames || sportGames.length === 0) continue;
+
+      let gamesToday = 0;
+      let gamesWithOdds = 0;
+
+      for (const g of sportGames) {
+        const t = new Date(g.commenceTime);
+        if (t >= todayStart && t < todayEnd) gamesToday++;
+        const hasOdds = g.consensus?.spreads?.line !== undefined ||
+                       g.consensus?.h2h?.homePrice !== undefined ||
+                       g.consensus?.totals?.line !== undefined;
+        if (hasOdds) gamesWithOdds++;
+      }
+
+      sportMeta.push({ key: sportKey, games: sportGames, gamesToday, gamesWithOdds });
+    }
+
+    // Sort: (1) has games today with odds, (2) has games today no odds, (3) future games with odds, (4) rest
+    sportMeta.sort((a, b) => {
+      const aTier = a.gamesToday > 0 && a.gamesWithOdds > 0 ? 0
+                  : a.gamesToday > 0 ? 1
+                  : a.gamesWithOdds > 0 ? 2 : 3;
+      const bTier = b.gamesToday > 0 && b.gamesWithOdds > 0 ? 0
+                  : b.gamesToday > 0 ? 1
+                  : b.gamesWithOdds > 0 ? 2 : 3;
+      if (aTier !== bTier) return aTier - bTier;
+      // Within same tier, keep SPORT_ORDER priority
+      const aOrder = SPORT_ORDER.indexOf(a.key);
+      const bOrder = SPORT_ORDER.indexOf(b.key);
+      if (aOrder !== -1 && bOrder !== -1) return aOrder - bOrder;
+      if (aOrder !== -1) return -1;
+      if (bOrder !== -1) return 1;
+      return b.gamesWithOdds - a.gamesWithOdds;
+    });
+
     const result: Record<string, any[]> = {};
-    SPORT_ORDER.forEach(sportKey => {
-      if (games[sportKey] && games[sportKey].length > 0) {
-        result[sportKey] = games[sportKey];
-      }
-    });
-    Object.keys(games).forEach(sportKey => {
-      if (!result[sportKey] && games[sportKey] && games[sportKey].length > 0) {
-        result[sportKey] = games[sportKey];
-      }
-    });
+    for (const entry of sportMeta) {
+      result[entry.key] = entry.games;
+    }
     return result;
   }, [games]);
 
@@ -539,6 +584,46 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     return result;
   }, [searchQuery, activeSport, pregameGames]);
 
+  // Client-side edge count from fair lines (6%+ threshold = HIGH EDGE / MAX EDGE)
+  const computedEdgeCount = useMemo(() => {
+    if (Object.keys(fairLines).length === 0) return null; // not loaded yet, use server fallback
+    const toProb = (o: number) => o < 0 ? Math.abs(o) / (Math.abs(o) + 100) : 100 / (o + 100);
+    let count = 0;
+    for (const sportGames of Object.values(games)) {
+      for (const game of sportGames) {
+        const fair = fairLines[game.id];
+        if (!fair) continue;
+        const bookOdds = game.bookmakers?.[selectedBook];
+        const spreads = bookOdds?.spreads || game.consensus?.spreads;
+        const h2h = bookOdds?.h2h || game.consensus?.h2h;
+        const totals = bookOdds?.totals || game.consensus?.totals;
+        let maxEdge = 0;
+        // Spread edge
+        if (fair.fair_spread != null && spreads?.line !== undefined) {
+          maxEdge = Math.max(maxEdge, Math.abs(spreads.line - fair.fair_spread) * 3.0);
+        }
+        // ML edge
+        if (fair.fair_ml_home != null && fair.fair_ml_away != null && h2h?.homePrice !== undefined && h2h?.awayPrice !== undefined) {
+          const fairHP = toProb(fair.fair_ml_home);
+          const fairAP = toProb(fair.fair_ml_away);
+          const bookHP = toProb(h2h.homePrice);
+          const bookAP = toProb(h2h.awayPrice);
+          const normBHP = bookHP / (bookHP + bookAP);
+          const normBAP = bookAP / (bookHP + bookAP);
+          maxEdge = Math.max(maxEdge, Math.max((fairHP - normBHP) * 100, 0), Math.max((fairAP - normBAP) * 100, 0));
+        }
+        // Total edge
+        if (fair.fair_total != null && totals?.line !== undefined) {
+          maxEdge = Math.max(maxEdge, Math.abs(fair.fair_total - totals.line) * 3.0);
+        }
+        if (maxEdge >= 6.0) count++;
+      }
+    }
+    return count;
+  }, [games, fairLines, selectedBook]);
+
+  const displayEdgeCount = computedEdgeCount !== null ? computedEdgeCount : totalEdges;
+
   const isAllView = activeSport === null;
   const selectedBookConfig = BOOK_CONFIG[selectedBook];
   const activeSportsCount = Object.keys(games).filter(k => games[k]?.length > 0).length;
@@ -580,10 +665,10 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                 <span className="text-xs font-mono font-bold text-zinc-200">{activeSportsCount}</span>
               </div>
 
-              {totalEdges > 0 && (
+              {displayEdgeCount > 0 && (
                 <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
                   <span className="text-[10px] font-mono text-emerald-500">EDGES</span>
-                  <span className="text-xs font-mono font-bold text-emerald-400">{totalEdges}</span>
+                  <span className="text-xs font-mono font-bold text-emerald-400">{displayEdgeCount}</span>
                 </div>
               )}
 
@@ -799,22 +884,39 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
           const sportLabel = SPORT_PILLS.find(s => s.key === sportKey)?.label;
           const sportName = sportLabel || sportInfo?.name || sportKey;
 
+          // Check if ANY game in this sport has odds
+          const gamesWithOdds = sportGames.filter((g: any) =>
+            g.consensus?.spreads?.line !== undefined ||
+            g.consensus?.h2h?.homePrice !== undefined ||
+            g.consensus?.totals?.line !== undefined
+          ).length;
+
+          // Collapsed single-line for sports with 0 odds-loaded games
+          if (gamesWithOdds === 0) {
+            return (
+              <div key={sportKey} className="flex items-center justify-between py-2.5 px-3 bg-zinc-900/40 border border-zinc-800/40 rounded-lg opacity-50">
+                <div className="flex items-center gap-2">
+                  <h2 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">{sportName}</h2>
+                  <span className="text-[10px] font-mono text-zinc-600">&middot;</span>
+                  <span className="text-[10px] font-mono text-zinc-600">{sportGames.length} game{sportGames.length !== 1 ? 's' : ''}</span>
+                  <span className="text-[10px] font-mono text-zinc-600">&middot;</span>
+                  <span className="text-[10px] font-mono text-zinc-600">No odds available</span>
+                </div>
+                <Link
+                  href={`/edge/portal/sports/${sportKey}`}
+                  className="text-[10px] text-zinc-600 hover:text-zinc-400 font-mono transition-colors"
+                >
+                  View
+                </Link>
+              </div>
+            );
+          }
+
           const gamesToShow = isAllView && !searchQuery
             ? sportGames.slice(0, GAMES_PER_SPORT_IN_ALL_VIEW)
             : sportGames;
 
           const hasMoreGames = isAllView && !searchQuery && sportGames.length > GAMES_PER_SPORT_IN_ALL_VIEW;
-
-          // Debug: Log hasMoreGames calculation for each sport
-          if (sportKey === 'basketball_nba') {
-            console.log('[MORE GAMES] NBA:', {
-              isAllView,
-              searchQuery: !!searchQuery,
-              sportGamesLength: sportGames.length,
-              threshold: GAMES_PER_SPORT_IN_ALL_VIEW,
-              hasMoreGames,
-            });
-          }
 
           return (
             <div key={sportKey}>

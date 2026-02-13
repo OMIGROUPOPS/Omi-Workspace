@@ -32,7 +32,7 @@ const BETA_CREDENTIALS: Record<string, string> = {
   'deankardamis@gmail.com': 'Dean1',
   'sneary1996@gmail.com': 'Sam1996!',
   'harleyburke12@yahoo.com': 'Harley12!',
-  'jack.vaughn@klgates.com': 'Password123',
+  'jack.vaughan@klgates.com': 'Password123',
 };
 
 // Additional accounts from environment variable (NEXT_PUBLIC_ required for client)

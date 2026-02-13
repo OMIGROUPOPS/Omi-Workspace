@@ -7,7 +7,7 @@ export const TIER2_ACCOUNTS: string[] = [
   'deankardamis@gmail.com',
   'sneary1996@gmail.com',
   'harleyburke12@yahoo.com',
-  'jack.vaughn@klgates.com',
+  'jack.vaughan@klgates.com',
 ];
 
 // Check if an email has Tier 2 access

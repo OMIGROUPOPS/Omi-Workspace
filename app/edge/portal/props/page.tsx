@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import { RefreshCw, User, TrendingUp, Filter, ExternalLink, Clock, ChevronDown, ChevronRight, Info } from 'lucide-react';
+import { RefreshCw, User, TrendingUp, Filter, ExternalLink, Clock, ChevronDown, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
 const supabase = createClient(
@@ -146,6 +146,7 @@ interface ParsedProp {
   // Edge signal info
   edgeSignal: EdgeSignal;
   edgeSignalDetail: string;
+  edgePct: number;  // Raw edge percentage (e.g. 3.2 means 3.2%)
 }
 
 interface GameWithProps {
@@ -171,7 +172,7 @@ function oddsToProb(americanOdds: number): number {
 function calculateSharpDivCEQ(
   retailOdds: number,
   sharpOdds: number
-): { ceq: number; detail: string } {
+): { ceq: number; edgePct: number; detail: string } {
   const retailProb = oddsToProb(retailOdds);
   const sharpProb = oddsToProb(sharpOdds);
 
@@ -186,7 +187,7 @@ function calculateSharpDivCEQ(
 
   const detail = `Sharp: ${sharpOdds > 0 ? '+' : ''}${sharpOdds}, Retail: ${retailOdds > 0 ? '+' : ''}${retailOdds}`;
 
-  return { ceq: clampedCeq, detail };
+  return { ceq: clampedCeq, edgePct: Math.abs(edge * 100), detail };
 }
 
 // Calculate CEQ comparing FanDuel to DraftKings (cross-book)
@@ -195,7 +196,7 @@ function calculateJuiceEdgeCEQ(
   bestOdds: number,
   worstOdds: number,
   bestBook: string
-): { ceq: number; detail: string } {
+): { ceq: number; edgePct: number; detail: string } {
   const bestProb = oddsToProb(bestOdds);
   const worstProb = oddsToProb(worstOdds);
 
@@ -210,7 +211,70 @@ function calculateJuiceEdgeCEQ(
   const otherBook = bestBook.toLowerCase() === 'fanduel' ? 'DK' : 'FD';
   const detail = `${bestBook.toLowerCase() === 'fanduel' ? 'FD' : 'DK'}: ${bestOdds > 0 ? '+' : ''}${bestOdds} vs ${otherBook}: ${worstOdds > 0 ? '+' : ''}${worstOdds}`;
 
-  return { ceq: clampedCeq, detail };
+  return { ceq: clampedCeq, edgePct: Math.abs(edge * 100), detail };
+}
+
+// Inline SVG step-line chart for prop history
+function PropLineChart({ data }: { data: any[] }) {
+  const W = 600, H = 120, PAD_X = 40, PAD_Y = 16;
+  const lines = data.map(d => Number(d.line)).filter(n => !isNaN(n));
+  if (lines.length < 2) return null;
+
+  const minLine = Math.min(...lines);
+  const maxLine = Math.max(...lines);
+  const range = maxLine - minLine || 1;
+
+  const xStep = (W - PAD_X * 2) / (lines.length - 1);
+
+  // Build step-line path points
+  const points: string[] = [];
+  lines.forEach((val, i) => {
+    const x = PAD_X + i * xStep;
+    const y = PAD_Y + (1 - (val - minLine) / range) * (H - PAD_Y * 2);
+    if (i === 0) {
+      points.push(`M ${x} ${y}`);
+    } else {
+      points.push(`H ${x}`);
+      points.push(`V ${y}`);
+    }
+  });
+
+  const pathD = points.join(' ');
+
+  // Y-axis labels
+  const yLabels = [minLine, (minLine + maxLine) / 2, maxLine];
+
+  // X-axis: first and last timestamps
+  const firstTime = data[0]?.snapshot_time ? new Date(data[0].snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
+  const lastTime = data[data.length - 1]?.snapshot_time ? new Date(data[data.length - 1].snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-[600px]" style={{ height: '120px' }}>
+      {/* Grid lines */}
+      {yLabels.map((val, i) => {
+        const y = PAD_Y + (1 - (val - minLine) / range) * (H - PAD_Y * 2);
+        return (
+          <g key={i}>
+            <line x1={PAD_X} y1={y} x2={W - PAD_X} y2={y} stroke="#27272a" strokeWidth="1" />
+            <text x={PAD_X - 4} y={y + 3} textAnchor="end" fill="#52525b" fontSize="9" fontFamily="monospace">
+              {Number.isInteger(val) ? val : val.toFixed(1)}
+            </text>
+          </g>
+        );
+      })}
+      {/* Step-line path */}
+      <path d={pathD} fill="none" stroke="#10b981" strokeWidth="2" />
+      {/* Dot on last point */}
+      <circle
+        cx={PAD_X + (lines.length - 1) * xStep}
+        cy={PAD_Y + (1 - (lines[lines.length - 1] - minLine) / range) * (H - PAD_Y * 2)}
+        r="3" fill="#10b981"
+      />
+      {/* X-axis labels */}
+      <text x={PAD_X} y={H - 2} fill="#52525b" fontSize="8" fontFamily="monospace">{firstTime}</text>
+      <text x={W - PAD_X} y={H - 2} textAnchor="end" fill="#52525b" fontSize="8" fontFamily="monospace">{lastTime}</text>
+    </svg>
+  );
 }
 
 export default function PlayerPropsPage() {
@@ -220,6 +284,9 @@ export default function PlayerPropsPage() {
   const [selectedSport, setSelectedSport] = useState('all');
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [expandedGames, setExpandedGames] = useState<Set<string>>(new Set());
+  const [expandedProps, setExpandedProps] = useState<Set<string>>(new Set());
+  const [propHistory, setPropHistory] = useState<Record<string, any[]>>({});
+  const [loadingHistory, setLoadingHistory] = useState<Set<string>>(new Set());
   const [minCEQ, setMinCEQ] = useState(56);
 
   const fetchPropsFromCachedOdds = useCallback(async () => {
@@ -343,6 +410,8 @@ export default function PlayerPropsPage() {
 
           let overCEQ = 50;
           let underCEQ = 50;
+          let overEdgePct = 0;
+          let underEdgePct = 0;
           let overSignal: EdgeSignal = 'juice_edge';
           let underSignal: EdgeSignal = 'juice_edge';
           let overDetail = '';
@@ -352,12 +421,14 @@ export default function PlayerPropsPage() {
             // Sharp divergence method for Over
             const result = calculateSharpDivCEQ(bestRetailOver.odds, prop.pinnacleOver);
             overCEQ = result.ceq;
+            overEdgePct = result.edgePct;
             overSignal = 'sharp_div';
             overDetail = result.detail;
           } else if (bestRetailOver && worstRetailOver && bestRetailOver.odds !== worstRetailOver.odds) {
             // Cross-book (juice edge) method for Over
             const result = calculateJuiceEdgeCEQ(bestRetailOver.odds, worstRetailOver.odds, bestRetailOver.book);
             overCEQ = result.ceq;
+            overEdgePct = result.edgePct;
             overSignal = 'juice_edge';
             overDetail = result.detail;
           }
@@ -366,12 +437,14 @@ export default function PlayerPropsPage() {
             // Sharp divergence method for Under
             const result = calculateSharpDivCEQ(bestRetailUnder.odds, prop.pinnacleUnder);
             underCEQ = result.ceq;
+            underEdgePct = result.edgePct;
             underSignal = 'sharp_div';
             underDetail = result.detail;
           } else if (bestRetailUnder && worstRetailUnder && bestRetailUnder.odds !== worstRetailUnder.odds) {
             // Cross-book (juice edge) method for Under
             const result = calculateJuiceEdgeCEQ(bestRetailUnder.odds, worstRetailUnder.odds, bestRetailUnder.book);
             underCEQ = result.ceq;
+            underEdgePct = result.edgePct;
             underSignal = 'juice_edge';
             underDetail = result.detail;
           }
@@ -379,6 +452,7 @@ export default function PlayerPropsPage() {
           // ONLY ONE SIDE CAN HAVE EDGE - the one with higher CEQ
           let edgeSide: 'Over' | 'Under' | null = null;
           let edgeCEQ = 50;
+          let edgePct = 0;
           let edgeOdds = 0;
           let edgeBook = '';
           let edgeSignal: EdgeSignal = 'juice_edge';
@@ -387,6 +461,7 @@ export default function PlayerPropsPage() {
           if (overCEQ > underCEQ && overCEQ >= minCEQ && bestRetailOver) {
             edgeSide = 'Over';
             edgeCEQ = overCEQ;
+            edgePct = overEdgePct;
             edgeOdds = bestRetailOver.odds;
             edgeBook = bestRetailOver.book;
             edgeSignal = overSignal;
@@ -394,6 +469,7 @@ export default function PlayerPropsPage() {
           } else if (underCEQ > overCEQ && underCEQ >= minCEQ && bestRetailUnder) {
             edgeSide = 'Under';
             edgeCEQ = underCEQ;
+            edgePct = underEdgePct;
             edgeOdds = bestRetailUnder.odds;
             edgeBook = bestRetailUnder.book;
             edgeSignal = underSignal;
@@ -420,6 +496,7 @@ export default function PlayerPropsPage() {
             edgeBook,
             edgeSignal,
             edgeSignalDetail,
+            edgePct: Math.round(edgePct * 10) / 10,
           };
 
           // Group by prop type
@@ -521,6 +598,51 @@ export default function PlayerPropsPage() {
     if (ceq >= 60) return 'bg-blue-500/15 text-blue-400 border-blue-500/30';
     if (ceq >= 56) return 'bg-amber-500/15 text-amber-400 border-amber-500/30';
     return 'bg-zinc-800/50 text-zinc-500 border-zinc-700';
+  };
+
+  const getSportBorderColor = (sport: string): string => {
+    if (sport.includes('nba') || sport.includes('ncaab') || sport.includes('wnba')) return '#f97316';
+    if (sport.includes('nfl') || sport.includes('ncaaf')) return '#ef4444';
+    if (sport.includes('nhl')) return '#3b82f6';
+    if (sport.includes('mlb')) return '#22c55e';
+    if (sport.includes('soccer')) return '#a855f7';
+    if (sport.includes('mma') || sport.includes('boxing')) return '#ef4444';
+    return '#71717a';
+  };
+
+  const toggleProp = async (propKey: string, gameId: string, player: string, marketType: string) => {
+    const newExpanded = new Set(expandedProps);
+    if (newExpanded.has(propKey)) {
+      newExpanded.delete(propKey);
+      setExpandedProps(newExpanded);
+      return;
+    }
+    newExpanded.add(propKey);
+    setExpandedProps(newExpanded);
+
+    // Lazy fetch history on first expand
+    if (!propHistory[propKey] && !loadingHistory.has(propKey)) {
+      setLoadingHistory(prev => new Set(prev).add(propKey));
+      try {
+        const { data } = await supabase
+          .from('prop_snapshots')
+          .select('*')
+          .eq('game_id', gameId)
+          .eq('player_name', player)
+          .eq('market_type', marketType)
+          .order('snapshot_time', { ascending: true });
+
+        setPropHistory(prev => ({ ...prev, [propKey]: data || [] }));
+      } catch {
+        setPropHistory(prev => ({ ...prev, [propKey]: [] }));
+      } finally {
+        setLoadingHistory(prev => {
+          const next = new Set(prev);
+          next.delete(propKey);
+          return next;
+        });
+      }
+    }
   };
 
   const getSignalBadge = (signal: EdgeSignal): { label: string; color: string; icon: string } => {
@@ -643,15 +765,15 @@ export default function PlayerPropsPage() {
 
       {/* Stats Bar */}
       <div className="grid grid-cols-3 gap-4 mb-6">
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 rounded-lg p-4" style={{ borderTopColor: '#a855f7', borderTopWidth: '2px' }}>
           <div className="text-2xl font-bold text-zinc-100">{totalPropsWithEdges}</div>
           <div className="text-xs text-zinc-500">Props with Edges</div>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 rounded-lg p-4" style={{ borderTopColor: '#8b5cf6', borderTopWidth: '2px' }}>
           <div className="text-2xl font-bold text-purple-400">{totalPlayers}</div>
           <div className="text-xs text-zinc-500">Players</div>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 rounded-lg p-4" style={{ borderTopColor: '#10b981', borderTopWidth: '2px' }}>
           <div className="text-2xl font-bold text-emerald-400">{gamesWithProps.length}</div>
           <div className="text-xs text-zinc-500">Games with Edges</div>
         </div>
@@ -696,6 +818,7 @@ export default function PlayerPropsPage() {
               <div
                 key={game.gameId}
                 className="bg-zinc-900/50 border border-zinc-800 rounded-lg overflow-hidden"
+                style={{ borderLeftColor: getSportBorderColor(game.sport), borderLeftWidth: '3px' }}
               >
                 {/* Game Header */}
                 <button
@@ -749,71 +872,175 @@ export default function PlayerPropsPage() {
                           </div>
 
                           {/* Table Header */}
-                          <div className="grid grid-cols-12 gap-2 px-3 py-1.5 text-[10px] text-zinc-500 font-medium uppercase tracking-wide">
-                            <div className="col-span-4">Player</div>
-                            <div className="col-span-2 text-center">Line</div>
-                            <div className="col-span-2 text-center">Side</div>
-                            <div className="col-span-2 text-center">Odds</div>
-                            <div className="col-span-2 text-center">CEQ</div>
+                          <div className="hidden lg:grid gap-0 px-3 py-1.5 text-[10px] text-zinc-500 font-medium uppercase tracking-wide" style={{ gridTemplateColumns: '3fr 1fr 2.5fr 2.5fr 2fr 1fr' }}>
+                            <div>Player</div>
+                            <div className="text-center">Line</div>
+                            <div className="text-center">Over (FD / DK)</div>
+                            <div className="text-center">Under (FD / DK)</div>
+                            <div className="text-center">Best Edge</div>
+                            <div className="text-center">CEQ</div>
                           </div>
 
                           {/* Props Rows */}
                           <div>
                             {props.map((prop, idx) => {
                               const signalInfo = getSignalBadge(prop.edgeSignal);
+                              const propKey = `${game.gameId}|${prop.player}|${prop.propType}|${prop.line}`;
+                              const isPropExpanded = expandedProps.has(propKey);
+                              const history = propHistory[propKey];
+                              const isLoadingHist = loadingHistory.has(propKey);
+
+                              // Find FD and DK odds for over and under
+                              const fdOver = prop.retailOverOdds.find(o => o.book.toLowerCase() === 'fanduel');
+                              const dkOver = prop.retailOverOdds.find(o => o.book.toLowerCase() === 'draftkings');
+                              const fdUnder = prop.retailUnderOdds.find(o => o.book.toLowerCase() === 'fanduel');
+                              const dkUnder = prop.retailUnderOdds.find(o => o.book.toLowerCase() === 'draftkings');
+
+                              // Determine best over/under odds for highlighting
+                              const bestOverOdds = fdOver && dkOver ? (fdOver.odds >= dkOver.odds ? 'fd' : 'dk') : fdOver ? 'fd' : dkOver ? 'dk' : null;
+                              const bestUnderOdds = fdUnder && dkUnder ? (fdUnder.odds >= dkUnder.odds ? 'fd' : 'dk') : fdUnder ? 'fd' : dkUnder ? 'dk' : null;
 
                               return (
-                                <div
-                                  key={`${prop.player}-${prop.line}-${idx}`}
-                                  className={`grid grid-cols-12 gap-2 px-3 py-2 hover:bg-zinc-800/50 transition-colors items-center group ${idx % 2 === 0 ? 'bg-zinc-800/30' : ''}`}
-                                >
-                                  {/* Player */}
-                                  <div className="col-span-4 flex items-center gap-2">
-                                    <User className="w-3 h-3 text-purple-400 flex-shrink-0" />
-                                    <span className="text-sm font-medium text-zinc-100 truncate">
-                                      {prop.player}
-                                    </span>
-                                  </div>
+                                <div key={`${prop.player}-${prop.line}-${idx}`}>
+                                  {/* Main row */}
+                                  <div
+                                    onClick={() => toggleProp(propKey, game.gameId, prop.player, prop.propType)}
+                                    className={`cursor-pointer hover:bg-zinc-800/50 transition-colors ${idx % 2 === 0 ? 'bg-zinc-800/30' : ''} ${isPropExpanded ? 'bg-zinc-800/60' : ''}`}
+                                  >
+                                    {/* Desktop layout */}
+                                    <div className="hidden lg:grid gap-0 px-3 py-2 items-center" style={{ gridTemplateColumns: '3fr 1fr 2.5fr 2.5fr 2fr 1fr' }}>
+                                      {/* Player */}
+                                      <div className="flex items-center gap-2">
+                                        <ChevronRight className={`w-3 h-3 text-zinc-500 transition-transform flex-shrink-0 ${isPropExpanded ? 'rotate-90' : ''}`} />
+                                        <span className="text-sm font-semibold text-zinc-100 truncate">
+                                          {prop.player}
+                                        </span>
+                                      </div>
 
-                                  {/* Line */}
-                                  <div className="col-span-2 text-center">
-                                    <span className="text-sm font-mono text-zinc-200">{prop.line}</span>
-                                  </div>
+                                      {/* Line */}
+                                      <div className="text-center">
+                                        <span className="text-sm font-mono text-zinc-200">{prop.line}</span>
+                                      </div>
 
-                                  {/* Edge Side */}
-                                  <div className="col-span-2 text-center">
-                                    <span className={`text-sm font-semibold ${
-                                      prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'
-                                    }`}>
-                                      {prop.edgeSide === 'Over' ? 'Over' : 'Under'}
-                                    </span>
-                                  </div>
+                                      {/* Over (FD / DK) */}
+                                      <div className="text-center flex items-center justify-center gap-2">
+                                        <span className={`text-xs font-mono ${bestOverOdds === 'fd' ? 'text-emerald-400' : 'text-zinc-400'}`}>
+                                          {fdOver ? `FD ${formatOdds(fdOver.odds)}` : <span className="text-zinc-600">FD —</span>}
+                                        </span>
+                                        <span className="text-zinc-600 text-[10px]">/</span>
+                                        <span className={`text-xs font-mono ${bestOverOdds === 'dk' ? 'text-emerald-400' : 'text-zinc-400'}`}>
+                                          {dkOver ? `DK ${formatOdds(dkOver.odds)}` : <span className="text-zinc-600">DK —</span>}
+                                        </span>
+                                      </div>
 
-                                  {/* Odds @ Book */}
-                                  <div className="col-span-2 text-center">
-                                    <span className="text-sm font-mono text-zinc-200">
-                                      {formatOdds(prop.edgeOdds)}
-                                    </span>
-                                    <span className="text-[10px] text-zinc-500 ml-1">
-                                      @{formatBook(prop.edgeBook)}
-                                    </span>
-                                  </div>
+                                      {/* Under (FD / DK) */}
+                                      <div className="text-center flex items-center justify-center gap-2">
+                                        <span className={`text-xs font-mono ${bestUnderOdds === 'fd' ? 'text-emerald-400' : 'text-zinc-400'}`}>
+                                          {fdUnder ? `FD ${formatOdds(fdUnder.odds)}` : <span className="text-zinc-600">FD —</span>}
+                                        </span>
+                                        <span className="text-zinc-600 text-[10px]">/</span>
+                                        <span className={`text-xs font-mono ${bestUnderOdds === 'dk' ? 'text-emerald-400' : 'text-zinc-400'}`}>
+                                          {dkUnder ? `DK ${formatOdds(dkUnder.odds)}` : <span className="text-zinc-600">DK —</span>}
+                                        </span>
+                                      </div>
 
-                                  {/* CEQ + Signal */}
-                                  <div className="col-span-2 text-center relative">
-                                    <div className="flex items-center justify-center gap-1">
-                                      <span className={`text-base font-bold ${getCEQColor(prop.edgeCEQ)}`}>
-                                        {prop.edgeCEQ}%
-                                      </span>
-                                      <span className="text-[10px]" title={prop.edgeSignalDetail}>
-                                        {signalInfo.icon}
-                                      </span>
+                                      {/* Best Edge */}
+                                      <div className="text-center">
+                                        <span className={`text-xs font-semibold ${prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'}`}>
+                                          {prop.edgeSide} {formatOdds(prop.edgeOdds)}
+                                        </span>
+                                        <span className="text-[10px] text-zinc-500 ml-1">@{formatBook(prop.edgeBook)}</span>
+                                      </div>
+
+                                      {/* CEQ */}
+                                      <div className="text-center">
+                                        <div className={`text-sm font-bold ${getCEQColor(prop.edgeCEQ)}`}>
+                                          {prop.edgeCEQ}%
+                                        </div>
+                                        <div className="text-[10px] text-zinc-500">
+                                          {prop.edgePct.toFixed(1)}% edge
+                                        </div>
+                                      </div>
                                     </div>
-                                    {/* Tooltip on hover */}
-                                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-zinc-700 rounded text-[10px] text-zinc-300 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
-                                      {prop.edgeSignalDetail}
+
+                                    {/* Mobile layout */}
+                                    <div className="lg:hidden px-3 py-2">
+                                      <div className="flex items-center justify-between mb-1">
+                                        <div className="flex items-center gap-2">
+                                          <ChevronRight className={`w-3 h-3 text-zinc-500 transition-transform flex-shrink-0 ${isPropExpanded ? 'rotate-90' : ''}`} />
+                                          <span className="text-sm font-semibold text-zinc-100">{prop.player}</span>
+                                        </div>
+                                        <div className={`text-sm font-bold ${getCEQColor(prop.edgeCEQ)}`}>
+                                          {prop.edgeCEQ}%
+                                        </div>
+                                      </div>
+                                      <div className="flex items-center gap-3 text-xs pl-5">
+                                        <span className="font-mono text-zinc-300">{prop.line}</span>
+                                        <span className={`font-semibold ${prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'}`}>
+                                          {prop.edgeSide} {formatOdds(prop.edgeOdds)} @{formatBook(prop.edgeBook)}
+                                        </span>
+                                        <span className="text-zinc-500">{prop.edgePct.toFixed(1)}% edge</span>
+                                      </div>
                                     </div>
                                   </div>
+
+                                  {/* Expandable Detail Panel */}
+                                  {isPropExpanded && (
+                                    <div className="px-4 py-3 bg-zinc-900/80 border-t border-zinc-800/50">
+                                      {/* Line History Chart */}
+                                      <div className="mb-3">
+                                        {isLoadingHist ? (
+                                          <div className="flex items-center justify-center py-6">
+                                            <RefreshCw className="w-4 h-4 text-zinc-500 animate-spin" />
+                                          </div>
+                                        ) : history && history.length > 1 ? (
+                                          <PropLineChart data={history} />
+                                        ) : (
+                                          <div className="text-xs text-zinc-600 py-4 text-center">Line history unavailable</div>
+                                        )}
+                                      </div>
+
+                                      {/* Detail Row */}
+                                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                                        {/* Line movement */}
+                                        {history && history.length > 1 && (
+                                          <div className="text-zinc-400">
+                                            <span className="text-zinc-500">Opened:</span>{' '}
+                                            <span className="text-zinc-200 font-mono">{history[0].line}</span>
+                                            <span className="text-zinc-600 mx-1">&rarr;</span>
+                                            <span className="text-zinc-500">Current:</span>{' '}
+                                            <span className="text-zinc-200 font-mono">{history[history.length - 1].line}</span>
+                                            <span className={`ml-1 font-mono ${history[history.length - 1].line - history[0].line > 0 ? 'text-emerald-400' : history[history.length - 1].line - history[0].line < 0 ? 'text-red-400' : 'text-zinc-500'}`}>
+                                              ({history[history.length - 1].line - history[0].line > 0 ? '+' : ''}{(history[history.length - 1].line - history[0].line).toFixed(1)})
+                                            </span>
+                                          </div>
+                                        )}
+
+                                        {/* Book odds summary */}
+                                        <div className="text-zinc-400">
+                                          <span className="text-zinc-500">FD:</span>{' '}
+                                          <span className="text-emerald-400/80 font-mono">O {fdOver ? formatOdds(fdOver.odds) : '—'}</span>
+                                          <span className="text-zinc-600 mx-1">/</span>
+                                          <span className="text-red-400/80 font-mono">U {fdUnder ? formatOdds(fdUnder.odds) : '—'}</span>
+                                          <span className="text-zinc-700 mx-2">|</span>
+                                          <span className="text-zinc-500">DK:</span>{' '}
+                                          <span className="text-emerald-400/80 font-mono">O {dkOver ? formatOdds(dkOver.odds) : '—'}</span>
+                                          <span className="text-zinc-600 mx-1">/</span>
+                                          <span className="text-red-400/80 font-mono">U {dkUnder ? formatOdds(dkUnder.odds) : '—'}</span>
+                                        </div>
+
+                                        {/* Best edge */}
+                                        <div className="text-zinc-400">
+                                          <span className="text-zinc-500">Best:</span>{' '}
+                                          <span className={`font-semibold ${prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'}`}>
+                                            {formatBook(prop.edgeBook)} {prop.edgeSide} {formatOdds(prop.edgeOdds)}
+                                          </span>
+                                          <span className="text-zinc-500 ml-1">({prop.edgePct.toFixed(1)}% edge)</span>
+                                          <span className="ml-2 text-[10px]" title={prop.edgeSignalDetail}>{signalInfo.icon} {signalInfo.label}</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
                                 </div>
                               );
                             })}

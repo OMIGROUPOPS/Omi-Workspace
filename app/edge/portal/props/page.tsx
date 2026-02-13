@@ -555,7 +555,7 @@ export default function PlayerPropsPage() {
   ).size;
 
   return (
-    <div className="py-4 px-4 max-w-[1600px] mx-auto">
+    <div className="py-4 px-4 max-w-[1600px] mx-auto" style={{ background: '#0a0a0a', minHeight: '100vh' }}>
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -758,14 +758,14 @@ export default function PlayerPropsPage() {
                           </div>
 
                           {/* Props Rows */}
-                          <div className="space-y-1">
+                          <div>
                             {props.map((prop, idx) => {
                               const signalInfo = getSignalBadge(prop.edgeSignal);
 
                               return (
                                 <div
                                   key={`${prop.player}-${prop.line}-${idx}`}
-                                  className="grid grid-cols-12 gap-2 px-3 py-2 bg-zinc-800/30 rounded-lg hover:bg-zinc-800/50 transition-colors items-center group"
+                                  className={`grid grid-cols-12 gap-2 px-3 py-2 hover:bg-zinc-800/50 transition-colors items-center group ${idx % 2 === 0 ? 'bg-zinc-800/30' : ''}`}
                                 >
                                   {/* Player */}
                                   <div className="col-span-4 flex items-center gap-2">
@@ -785,7 +785,7 @@ export default function PlayerPropsPage() {
                                     <span className={`text-sm font-semibold ${
                                       prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'
                                     }`}>
-                                      {prop.edgeSide === 'Over' ? 'O' : 'U'}
+                                      {prop.edgeSide === 'Over' ? 'Over' : 'Under'}
                                     </span>
                                   </div>
 
@@ -802,7 +802,7 @@ export default function PlayerPropsPage() {
                                   {/* CEQ + Signal */}
                                   <div className="col-span-2 text-center relative">
                                     <div className="flex items-center justify-center gap-1">
-                                      <span className={`text-sm font-bold ${getCEQColor(prop.edgeCEQ)}`}>
+                                      <span className={`text-base font-bold ${getCEQColor(prop.edgeCEQ)}`}>
                                         {prop.edgeCEQ}%
                                       </span>
                                       <span className="text-[10px]" title={prop.edgeSignalDetail}>

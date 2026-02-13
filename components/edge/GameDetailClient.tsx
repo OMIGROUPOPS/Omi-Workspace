@@ -2510,10 +2510,11 @@ export function GameDetailClient({
           </div>
         </div>
 
-        {/* Exchange Signals — complementary intelligence */}
+        {/* Exchange Signals — hidden until data cleanup, re-enable later
         {exchangeData && (
           <ExchangeSignals exchangeData={exchangeData} bookmakers={bookmakers} gameData={gameData} activeMarket={activeMarket} />
         )}
+        */}
       </div>
 
       {/* Mobile: Single-column scrollable fallback */}

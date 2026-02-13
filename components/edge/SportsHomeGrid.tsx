@@ -2,10 +2,16 @@
 
 import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import Link from 'next/link';
+import { createClient } from '@supabase/supabase-js';
 import { formatOdds, calculateTwoWayEV, formatEV, getEVColor, getEVBgClass } from '@/lib/edge/utils/odds-math';
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 // LiveEdge from live_edges table (returned by dashboard API)
 interface LiveEdge {
@@ -112,7 +118,7 @@ function getCEQStyles(ceq: number | undefined): { bgTint: string; borderTint: st
   return { bgTint: 'bg-zinc-800/80', borderTint: 'border-zinc-700/50', textColor: 'text-zinc-500' };
 }
 
-function OddsCell({ line, price }: { line?: number | string; price: number; ev?: number; ceq?: number; topDrivers?: string[] }) {
+function OddsCell({ line, price, edgePct }: { line?: number | string; price: number; ev?: number; ceq?: number; topDrivers?: string[]; edgePct?: number }) {
   return (
     <div className="flex flex-col items-center justify-center p-1.5 bg-[#1a1f2b] border border-zinc-700/50 rounded hover:brightness-110 transition-all cursor-pointer">
       <div className="flex items-center gap-0.5">
@@ -124,18 +130,24 @@ function OddsCell({ line, price }: { line?: number | string; price: number; ev?:
         <span className={`text-[11px] font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-300'}`}>
           {formatOdds(price)}
         </span>
+        {edgePct !== undefined && edgePct > 0.5 && (
+          <span className="text-[9px] font-mono text-emerald-400">+{edgePct.toFixed(1)}%</span>
+        )}
       </div>
     </div>
   );
 }
 
-function MoneylineCell({ price }: { price: number; ev?: number; ceq?: number; topDrivers?: string[] }) {
+function MoneylineCell({ price, edgePct }: { price: number; ev?: number; ceq?: number; topDrivers?: string[]; edgePct?: number }) {
   return (
     <div className="flex flex-col items-center justify-center p-1.5 bg-[#1a1f2b] border border-zinc-700/50 rounded hover:brightness-110 transition-all cursor-pointer">
       <div className="flex items-center gap-1">
         <span className={`text-xs font-semibold font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-100'}`}>
           {formatOdds(price)}
         </span>
+        {edgePct !== undefined && edgePct > 0.5 && (
+          <span className="text-[9px] font-mono text-emerald-400">+{edgePct.toFixed(1)}%</span>
+        )}
       </div>
     </div>
   );
@@ -308,6 +320,7 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [secondsSinceUpdate, setSecondsSinceUpdate] = useState(0);
   const [apiEdgeCounts, setApiEdgeCounts] = useState<Record<string, number>>({});
+  const [fairLines, setFairLines] = useState<Record<string, { fair_spread: number | null; fair_total: number | null; fair_ml_home: number | null; fair_ml_away: number | null }>>({});
 
   const refreshData = useCallback(async (showSpinner = true) => {
     console.log('[REFRESH] Starting refresh, activeSport before:', activeSport);
@@ -406,6 +419,45 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     };
 
     fetchEdgeCounts();
+  }, [mounted, games]);
+
+  // Fetch latest fair lines from composite_history for edge display
+  useEffect(() => {
+    if (!mounted) return;
+
+    const allGameIds: string[] = [];
+    for (const sportGames of Object.values(games)) {
+      for (const game of sportGames) {
+        if (game.id) allGameIds.push(game.id);
+      }
+    }
+    if (allGameIds.length === 0) return;
+
+    const fetchFairLines = async () => {
+      try {
+        // Query latest composite_history row per game (most recent timestamp)
+        const { data, error } = await supabase
+          .from('composite_history')
+          .select('game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away')
+          .in('game_id', allGameIds)
+          .order('timestamp', { ascending: false });
+
+        if (error || !data) return;
+
+        // Keep only the latest row per game_id
+        const latest: Record<string, typeof data[0]> = {};
+        for (const row of data) {
+          if (!latest[row.game_id]) {
+            latest[row.game_id] = row;
+          }
+        }
+        setFairLines(latest);
+      } catch (err) {
+        console.error('[SportsHomeGrid] Error fetching fair lines:', err);
+      }
+    };
+
+    fetchFairLines();
   }, [mounted, games]);
 
   const orderedGames = useMemo(() => {
@@ -766,12 +818,11 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
 
           return (
             <div key={sportKey}>
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-1.5">
                   <h2 className="text-sm font-semibold text-zinc-100 uppercase tracking-wider">{sportName}</h2>
-                  <span className="text-[10px] font-mono text-zinc-600 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800">
-                    {sportGames.length}
-                  </span>
+                  <span className="text-[10px] font-mono text-zinc-600">&middot;</span>
+                  <span className="text-[10px] font-mono text-zinc-500">{sportGames.length}</span>
                 </div>
                 <Link
                   href={`/edge/portal/sports/${sportKey}`}
@@ -784,20 +835,60 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
                 {gamesToShow.map((game: any) => {
                   const gameTime = typeof game.commenceTime === 'string' ? new Date(game.commenceTime) : game.commenceTime;
                   const timeStr = mounted
                     ? gameTime.toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })
                     : '';
                   const countdown = mounted ? getTimeDisplay(gameTime, game.sportKey) : '';
-                  // Use API edge count if available, otherwise fall back to game.totalEdgeCount
-                  const apiCount = apiEdgeCounts[game.id];
+
+                  // Calculate edge percentages from fair lines
+                  const fair = fairLines[game.id];
+                  const bookOdds = game.bookmakers?.[selectedBook];
+                  const spreads = bookOdds?.spreads || game.consensus?.spreads;
+                  const h2h = bookOdds?.h2h || game.consensus?.h2h;
+                  const totals = bookOdds?.totals || game.consensus?.totals;
+
+                  // Spread edge: gap * 3.0 (PROB_PER_POINT * 100)
+                  let homeSpreadEdge = 0, awaySpreadEdge = 0;
+                  if (fair?.fair_spread != null && spreads?.line !== undefined) {
+                    const gap = spreads.line - fair.fair_spread; // positive = home side value
+                    homeSpreadEdge = gap > 0 ? Math.abs(gap) * 3.0 : 0;
+                    awaySpreadEdge = gap < 0 ? Math.abs(gap) * 3.0 : 0;
+                  }
+
+                  // ML edge: compare implied probabilities
+                  let homeMLEdge = 0, awayMLEdge = 0;
+                  if (fair?.fair_ml_home != null && fair?.fair_ml_away != null && h2h?.homePrice !== undefined && h2h?.awayPrice !== undefined) {
+                    const toProb = (o: number) => o < 0 ? Math.abs(o) / (Math.abs(o) + 100) : 100 / (o + 100);
+                    const fairHomeProb = toProb(fair.fair_ml_home);
+                    const bookHomeProb = toProb(h2h.homePrice);
+                    const bookAwayProb = toProb(h2h.awayPrice);
+                    const fairAwayProb = toProb(fair.fair_ml_away);
+                    // Positive edge = book undervalues (book prob < fair prob)
+                    const homeGap = (fairHomeProb - bookHomeProb / (bookHomeProb + bookAwayProb)) * 100;
+                    const awayGap = (fairAwayProb - bookAwayProb / (bookHomeProb + bookAwayProb)) * 100;
+                    homeMLEdge = homeGap > 0 ? homeGap : 0;
+                    awayMLEdge = awayGap > 0 ? awayGap : 0;
+                  }
+
+                  // Total edge: gap * 3.0
+                  let overEdge = 0, underEdge = 0;
+                  if (fair?.fair_total != null && totals?.line !== undefined) {
+                    const gap = fair.fair_total - totals.line; // positive = fair is higher = over value
+                    overEdge = gap > 0 ? Math.abs(gap) * 3.0 : 0;
+                    underEdge = gap < 0 ? Math.abs(gap) * 3.0 : 0;
+                  }
+
+                  // Check if card has any odds data
+                  const hasOdds = spreads?.line !== undefined || h2h?.homePrice !== undefined || totals?.line !== undefined;
+
                   return (
                     <Link
                       key={game.id}
                       href={`/edge/portal/sports/game/${game.id}?sport=${game.sportKey}`}
-                      className="bg-[#0f0f0f] border border-zinc-800/80 hover:border-zinc-700 rounded-lg overflow-hidden hover:bg-[#111111] transition-all group"
+                      className={`bg-[#0f0f0f] border border-zinc-800/80 hover:border-zinc-700 rounded-lg overflow-hidden hover:bg-[#111111] transition-all group ${!hasOdds ? 'opacity-30' : ''}`}
                     >
                       {/* Card Header */}
                       <div className="px-3 py-2 border-b flex items-center justify-between bg-zinc-900/40 border-zinc-800/50">
@@ -833,39 +924,26 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                       </div>
 
                       {/* Away Row */}
-                      {(() => {
-                        const bookOdds = game.bookmakers?.[selectedBook];
-                        const spreads = bookOdds?.spreads || game.consensus?.spreads;
-                        const h2h = bookOdds?.h2h || game.consensus?.h2h;
-                        const totals = bookOdds?.totals || game.consensus?.totals;
-
-                        return (
-                          <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
-                            <div className="flex items-center gap-2 min-w-0">
-                              <TeamLogo teamName={game.awayTeam} sportKey={game.sportKey} />
-                              <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.awayTeam, game.sportKey)}</span>
-                            </div>
-                            {spreads?.line !== undefined ? (
-                              <OddsCell line={-spreads.line} price={spreads.awayPrice} />
-                            ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                            {h2h?.awayPrice !== undefined ? (
-                              <MoneylineCell price={h2h.awayPrice} />
-                            ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                            {totals?.line !== undefined ? (
-                              <OddsCell line={`O${totals.line}`} price={totals.overPrice} />
-                            ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                          </div>
-                        );
-                      })()}
+                      <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <TeamLogo teamName={game.awayTeam} sportKey={game.sportKey} />
+                          <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.awayTeam, game.sportKey)}</span>
+                        </div>
+                        {spreads?.line !== undefined ? (
+                          <OddsCell line={-spreads.line} price={spreads.awayPrice} edgePct={awaySpreadEdge} />
+                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
+                        {h2h?.awayPrice !== undefined ? (
+                          <MoneylineCell price={h2h.awayPrice} edgePct={awayMLEdge} />
+                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
+                        {totals?.line !== undefined ? (
+                          <OddsCell line={`O${totals.line}`} price={totals.overPrice} edgePct={overEdge} />
+                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
+                      </div>
 
                       {/* Draw Row - Soccer only */}
                       {game.sportKey?.includes('soccer') && (() => {
-                        const bookOdds = game.bookmakers?.[selectedBook];
-                        const h2h = bookOdds?.h2h || game.consensus?.h2h;
                         const drawPrice = h2h?.drawPrice ?? h2h?.draw;
-
                         if (!drawPrice) return null;
-
                         return (
                           <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1 items-center bg-zinc-900/30">
                             <div className="flex items-center gap-2 min-w-0">
@@ -882,30 +960,21 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                       })()}
 
                       {/* Home Row */}
-                      {(() => {
-                        const bookOdds = game.bookmakers?.[selectedBook];
-                        const spreads = bookOdds?.spreads || game.consensus?.spreads;
-                        const h2h = bookOdds?.h2h || game.consensus?.h2h;
-                        const totals = bookOdds?.totals || game.consensus?.totals;
-
-                        return (
-                          <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
-                            <div className="flex items-center gap-2 min-w-0">
-                              <TeamLogo teamName={game.homeTeam} sportKey={game.sportKey} />
-                              <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.homeTeam, game.sportKey)}</span>
-                            </div>
-                            {spreads?.line !== undefined ? (
-                              <OddsCell line={spreads.line} price={spreads.homePrice} />
-                            ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                            {h2h?.homePrice !== undefined ? (
-                              <MoneylineCell price={h2h.homePrice} />
-                            ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                            {totals?.line !== undefined ? (
-                              <OddsCell line={`U${totals.line}`} price={totals.underPrice} />
-                            ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                          </div>
-                        );
-                      })()}
+                      <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <TeamLogo teamName={game.homeTeam} sportKey={game.sportKey} />
+                          <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.homeTeam, game.sportKey)}</span>
+                        </div>
+                        {spreads?.line !== undefined ? (
+                          <OddsCell line={spreads.line} price={spreads.homePrice} edgePct={homeSpreadEdge} />
+                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
+                        {h2h?.homePrice !== undefined ? (
+                          <MoneylineCell price={h2h.homePrice} edgePct={homeMLEdge} />
+                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
+                        {totals?.line !== undefined ? (
+                          <OddsCell line={`U${totals.line}`} price={totals.underPrice} edgePct={underEdge} />
+                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
+                      </div>
                     </Link>
                   );
                 })}

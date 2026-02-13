@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { RefreshCw, User, TrendingUp, Filter, ExternalLink, Clock, ChevronDown, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
@@ -226,22 +226,29 @@ function getGameCompositeModifier(composite: number | null, edgeSide: 'Over' | '
   return 1.0;
 }
 
-// Inline SVG step-line chart for prop history with OMI fair line overlay
-function PropLineChart({ data, fairLine }: { data: any[]; fairLine: number }) {
-  const W = 680, H = 120, PAD_X = 40, PAD_R = 120, PAD_Y = 16;
+// Inline SVG step-line chart with interactive hover, conditional fair line, and source attribution
+function PropLineChart({ data, fairLine, fairSource }: { data: any[]; fairLine: number; fairSource: 'pinnacle' | 'consensus' }) {
+  const [hoverIdx, setHoverIdx] = useState<number | null>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  const W = 680, H = 140, PAD_X = 40, PAD_R = 120, PAD_Y = 20;
   const lines = data.map(d => Number(d.line)).filter(n => !isNaN(n));
   if (lines.length < 2) return null;
 
-  // Include fair line in range calculation so it's always visible
-  const allValues = [...lines, fairLine];
+  // Show fair line only when it differs from at least one book line (not stagnant)
+  const showFairLine = lines.some(l => Math.abs(l - fairLine) >= 0.25);
+
+  // Include fair line in range only when shown
+  const allValues = showFairLine ? [...lines, fairLine] : lines;
   const minLine = Math.min(...allValues);
   const maxLine = Math.max(...allValues);
   const range = maxLine - minLine || 1;
 
-  const xStep = (W - PAD_X - PAD_R) / (lines.length - 1);
+  const chartW = W - PAD_X - PAD_R;
+  const xStep = chartW / (lines.length - 1);
   const valToY = (val: number) => PAD_Y + (1 - (val - minLine) / range) * (H - PAD_Y * 2);
 
-  // Build step-line path points
+  // Build step-line path
   const points: string[] = [];
   lines.forEach((val, i) => {
     const x = PAD_X + i * xStep;
@@ -253,23 +260,61 @@ function PropLineChart({ data, fairLine }: { data: any[]; fairLine: number }) {
       points.push(`V ${y}`);
     }
   });
-
   const pathD = points.join(' ');
   const fairY = valToY(fairLine);
 
   // Y-axis labels
   const yLabels = [minLine, (minLine + maxLine) / 2, maxLine];
 
-  // X-axis: first and last timestamps
+  // X-axis timestamps
   const firstTime = data[0]?.snapshot_time ? new Date(data[0].snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
   const lastTime = data[data.length - 1]?.snapshot_time ? new Date(data[data.length - 1].snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
 
-  // Fair line label
-  const fairLabel = `OMI Fair: ${Number.isInteger(fairLine) ? fairLine : fairLine.toFixed(1)}`;
+  // Fair line label with source attribution
+  const fairValStr = Number.isInteger(fairLine) ? String(fairLine) : fairLine.toFixed(1);
+  const srcTag = fairSource === 'pinnacle' ? 'PIN' : 'consensus';
+  const fairLabel = `Fair: ${fairValStr} (${srcTag})`;
   const labelX = W - PAD_R + 8;
 
+  // --- Hover logic ---
+  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    const rect = svg.getBoundingClientRect();
+    const mouseX = ((e.clientX - rect.left) / rect.width) * W;
+    const idx = Math.round((mouseX - PAD_X) / xStep);
+    setHoverIdx(Math.max(0, Math.min(lines.length - 1, idx)));
+  };
+  const handleMouseLeave = () => setHoverIdx(null);
+
+  // Hover data
+  const hd = hoverIdx !== null ? data[hoverIdx] : null;
+  const hx = hoverIdx !== null ? PAD_X + hoverIdx * xStep : 0;
+  const hy = hoverIdx !== null ? valToY(lines[hoverIdx]) : 0;
+  const hTime = hd?.snapshot_time
+    ? new Date(hd.snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true })
+    : '';
+  const hLine = hoverIdx !== null ? lines[hoverIdx] : 0;
+  const hBook = hd?.book_key || '';
+  const fmtBk = (b: string) => b.toLowerCase() === 'fanduel' ? 'FD' : b.toLowerCase() === 'draftkings' ? 'DK' : b.slice(0, 3).toUpperCase();
+  const fmtO = (o: number) => o > 0 ? `+${o}` : `${o}`;
+  const tipL1 = hTime;
+  const tipL2 = `Line: ${Number.isInteger(hLine) ? hLine : hLine.toFixed(1)} (${fmtBk(hBook)})`;
+  const tipL3 = hd?.over_odds != null && hd?.under_odds != null
+    ? `O ${fmtO(hd.over_odds)} / U ${fmtO(hd.under_odds)}`
+    : hd?.over_odds != null ? `O ${fmtO(hd.over_odds)}` : '';
+  const tipW = 180;
+  const tipX = hoverIdx !== null && hx + tipW + 10 > W - PAD_R ? hx - tipW - 10 : hx + 10;
+
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-[680px]" style={{ height: '120px' }}>
+    <svg
+      ref={svgRef}
+      viewBox={`0 0 ${W} ${H}`}
+      className="w-full max-w-[680px] cursor-crosshair select-none"
+      style={{ height: '140px' }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
       {/* Grid lines */}
       {yLabels.map((val, i) => {
         const y = valToY(val);
@@ -282,49 +327,51 @@ function PropLineChart({ data, fairLine }: { data: any[]; fairLine: number }) {
           </g>
         );
       })}
-      {/* OMI Fair Line — horizontal dashed teal line */}
-      <line x1={PAD_X} y1={fairY} x2={W - PAD_R} y2={fairY} stroke="#2dd4bf" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.8" />
-      {/* Fair line label — pill background + bold text */}
-      <rect
-        x={labelX - 4}
-        y={fairY - 9}
-        width={108}
-        height={18}
-        rx="4"
-        fill="#0f766e"
-        opacity="0.35"
-      />
-      <text x={labelX} y={fairY + 4} fill="#2dd4bf" fontSize="11" fontFamily="monospace" fontWeight="bold">
-        {fairLabel}
-      </text>
-      {/* Convergence fill between book line and fair line */}
-      {lines.map((val, i) => {
-        if (i === lines.length - 1) return null;
-        const x1 = PAD_X + i * xStep;
-        const x2 = PAD_X + (i + 1) * xStep;
-        const bookY = valToY(val);
-        return (
-          <rect
-            key={i}
-            x={x1}
-            y={Math.min(bookY, fairY)}
-            width={x2 - x1}
-            height={Math.abs(bookY - fairY)}
-            fill={bookY < fairY ? '#10b98120' : '#10b98110'}
-          />
-        );
-      })}
+      {/* Fair line (only when non-stagnant) */}
+      {showFairLine && (
+        <>
+          <line x1={PAD_X} y1={fairY} x2={W - PAD_R} y2={fairY} stroke="#2dd4bf" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.8" />
+          <rect x={labelX - 4} y={fairY - 9} width={tipW - 60} height={18} rx="4" fill="#0f766e" opacity="0.35" />
+          <text x={labelX} y={fairY + 4} fill="#2dd4bf" fontSize="11" fontFamily="monospace" fontWeight="bold">
+            {fairLabel}
+          </text>
+          {/* Convergence fill */}
+          {lines.map((val, i) => {
+            if (i === lines.length - 1) return null;
+            const x1 = PAD_X + i * xStep;
+            const x2 = PAD_X + (i + 1) * xStep;
+            const bookY = valToY(val);
+            return (
+              <rect
+                key={i}
+                x={x1}
+                y={Math.min(bookY, fairY)}
+                width={x2 - x1}
+                height={Math.abs(bookY - fairY)}
+                fill={bookY < fairY ? '#10b98120' : '#10b98110'}
+              />
+            );
+          })}
+        </>
+      )}
       {/* Step-line path (book line) */}
       <path d={pathD} fill="none" stroke="#a1a1aa" strokeWidth="2" />
       {/* Dot on last point */}
-      <circle
-        cx={PAD_X + (lines.length - 1) * xStep}
-        cy={valToY(lines[lines.length - 1])}
-        r="3" fill="#a1a1aa"
-      />
+      <circle cx={PAD_X + (lines.length - 1) * xStep} cy={valToY(lines[lines.length - 1])} r="3" fill="#a1a1aa" />
       {/* X-axis labels */}
       <text x={PAD_X} y={H - 2} fill="#52525b" fontSize="8" fontFamily="monospace">{firstTime}</text>
       <text x={W - PAD_R} y={H - 2} textAnchor="end" fill="#52525b" fontSize="8" fontFamily="monospace">{lastTime}</text>
+      {/* Hover crosshair + tooltip */}
+      {hoverIdx !== null && (
+        <g>
+          <line x1={hx} y1={PAD_Y} x2={hx} y2={H - PAD_Y} stroke="#52525b" strokeWidth="1" strokeDasharray="2 2" />
+          <circle cx={hx} cy={hy} r="4" fill="#e4e4e7" stroke="#0a0a0a" strokeWidth="1.5" />
+          <rect x={tipX} y={8} width={tipW} height={50} rx="4" fill="#18181b" stroke="#3f3f46" strokeWidth="0.5" opacity="0.95" />
+          <text x={tipX + 6} y={22} fill="#a1a1aa" fontSize="9" fontFamily="monospace">{tipL1}</text>
+          <text x={tipX + 6} y={35} fill="#e4e4e7" fontSize="10" fontFamily="monospace" fontWeight="bold">{tipL2}</text>
+          <text x={tipX + 6} y={48} fill="#71717a" fontSize="9" fontFamily="monospace">{tipL3}</text>
+        </g>
+      )}
     </svg>
   );
 }
@@ -856,7 +903,7 @@ export default function PlayerPropsPage() {
         </div>
 
         <div className="flex items-center gap-2 ml-auto">
-          <span className="text-xs text-zinc-500">Min CEQ:</span>
+          <span className="text-xs text-zinc-500">Min Conf:</span>
           <div className="flex gap-1">
             {[50, 55, 60, 66].map((val) => (
               <button
@@ -920,7 +967,7 @@ export default function PlayerPropsPage() {
           <TrendingUp className="w-12 h-12 text-zinc-700 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-zinc-400 mb-2">No Player Props Edges</h3>
           <p className="text-sm text-zinc-600">
-            No player prop edges detected above {minCEQ}% CEQ. Try lowering the threshold or check back later.
+            No player prop edges detected above {minCEQ}% confidence. Try lowering the threshold or check back later.
           </p>
         </div>
       )}
@@ -999,7 +1046,7 @@ export default function PlayerPropsPage() {
                             <div className="text-center">Over (FD / DK)</div>
                             <div className="text-center">Under (FD / DK)</div>
                             <div className="text-center">Best Edge</div>
-                            <div className="text-center">CEQ</div>
+                            <div className="text-center">Conf</div>
                           </div>
 
                           {/* Props Rows */}
@@ -1133,7 +1180,7 @@ export default function PlayerPropsPage() {
                                             <RefreshCw className="w-4 h-4 text-zinc-500 animate-spin" />
                                           </div>
                                         ) : history && history.length > 1 ? (
-                                          <PropLineChart data={history} fairLine={prop.fairLine} />
+                                          <PropLineChart data={history} fairLine={prop.fairLine} fairSource={prop.fairSource} />
                                         ) : (
                                           <div className="text-xs text-zinc-600 py-4 text-center">Line history unavailable</div>
                                         )}
@@ -1193,7 +1240,8 @@ export default function PlayerPropsPage() {
                                       {/* Fair source + contrarian context */}
                                       <div className="flex items-center gap-3 mt-2 text-[10px]">
                                         <span className="text-zinc-600">
-                                          Fair source: <span className="text-zinc-400">{prop.fairSource === 'pinnacle' ? 'Pinnacle (current)' : 'Consensus median'}</span>
+                                          Fair: <span className="text-zinc-400 font-mono">{Number.isInteger(prop.fairLine) ? prop.fairLine : prop.fairLine.toFixed(1)}</span>
+                                          <span className="text-zinc-500 ml-1">({prop.fairSource === 'pinnacle' ? 'PIN current' : 'consensus'})</span>
                                         </span>
                                         {prop.isContrarian && history && history.length > 1 && (
                                           <span className="text-amber-400/80">

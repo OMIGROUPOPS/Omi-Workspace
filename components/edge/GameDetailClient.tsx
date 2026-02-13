@@ -1880,15 +1880,33 @@ function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) 
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const expandedChatEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const expandedInputRef = useRef<HTMLInputElement>(null);
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    expandedChatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  // Close drawer on Escape
+  useEffect(() => {
+    if (!isExpanded) return;
+    const handleEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') setIsExpanded(false); };
+    document.addEventListener('keydown', handleEsc);
+    return () => document.removeEventListener('keydown', handleEsc);
+  }, [isExpanded]);
+
+  // Focus expanded input when drawer opens
+  useEffect(() => {
+    if (isExpanded) expandedInputRef.current?.focus();
+  }, [isExpanded]);
+
   const handleSubmit = useCallback(async () => {
+    const activeInput = isExpanded ? expandedInputRef : inputRef;
     const question = input.trim();
     if (!question || isLoading) return;
 
@@ -1914,7 +1932,6 @@ function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) 
         throw new Error(errData.error || `Request failed (${res.status})`);
       }
 
-      // Stream the response
       const reader = res.body?.getReader();
       if (!reader) throw new Error('No response stream');
 
@@ -1942,13 +1959,12 @@ function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) 
       }
     } catch (e: any) {
       setError(e.message || 'Failed to get response');
-      // Remove the empty assistant placeholder if it was added
       setMessages(prev => prev.filter(m => m.content !== ''));
     } finally {
       setIsLoading(false);
-      inputRef.current?.focus();
+      activeInput.current?.focus();
     }
-  }, [input, messages, isLoading, gameContext]);
+  }, [input, messages, isLoading, gameContext, isExpanded]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -1959,102 +1975,157 @@ function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) 
 
   const hasMessages = messages.length > 0;
 
-  return (
-    <div className="flex flex-col h-full bg-[#0a0a0a] border-l border-zinc-800">
-      {/* Header */}
-      <div className="flex items-center justify-between px-3 py-2 border-b border-zinc-800/50">
-        <div className="flex items-center gap-1.5">
-          <span className="text-[13px]">&#10022;</span>
-          <span className="text-[12px] font-semibold text-zinc-200">Ask Edge AI</span>
-          {isLoading && (
-            <span className="flex items-center gap-1 ml-1">
-              <span className="w-1 h-1 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="text-[9px] text-cyan-500 font-mono">thinking</span>
-            </span>
+  const suggestedQuestions = [
+    'Why is the line different from the book?',
+    'Which pillar is driving the edge?',
+    'Is there sharp money on this game?',
+    'Explain the line movement',
+  ];
+
+  // Shared chat body renderer
+  const renderChatBody = (expanded: boolean) => {
+    const endRef = expanded ? expandedChatEndRef : chatEndRef;
+    const iRef = expanded ? expandedInputRef : inputRef;
+    const textSize = expanded ? 'text-[13px]' : 'text-[11px]';
+    const labelSize = expanded ? 'text-[10px]' : 'text-[9px]';
+    const btnSize = expanded ? 'text-[11px]' : 'text-[10px]';
+
+    return (
+      <>
+        <div className={`flex-1 ${expanded ? 'px-5 py-4' : 'px-3 py-2'} overflow-y-auto space-y-3`} style={{ minHeight: 0 }}>
+          {!hasMessages && (
+            <>
+              <p className={`${textSize} text-zinc-400 mb-2`}>Ask about this game:</p>
+              <div className="space-y-1">
+                {suggestedQuestions.map((q) => (
+                  <button
+                    key={q}
+                    onClick={() => { setInput(q); iRef.current?.focus(); }}
+                    className={`block w-full text-left ${btnSize} text-zinc-500 hover:text-cyan-400 hover:bg-zinc-800/50 px-2.5 py-2 rounded transition-colors font-mono`}
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
+            </>
           )}
+
+          {messages.map((msg, i) => (
+            <div key={i} className={`${textSize} leading-relaxed ${msg.role === 'user' ? 'text-zinc-300' : 'text-zinc-400'}`}>
+              <span className={`${labelSize} font-mono font-bold uppercase tracking-wider ${msg.role === 'user' ? 'text-zinc-500' : 'text-cyan-600'}`}>
+                {msg.role === 'user' ? 'You' : 'OMI'}
+              </span>
+              <div className="mt-0.5 whitespace-pre-wrap">
+                {msg.content || (isLoading && i === messages.length - 1 ? (
+                  <span className="text-zinc-600 animate-pulse">...</span>
+                ) : '')}
+              </div>
+            </div>
+          ))}
+
+          {error && (
+            <div className={`${btnSize} text-red-400/80 bg-red-500/10 px-2 py-1.5 rounded`}>
+              {error}
+            </div>
+          )}
+
+          <div ref={endRef} />
         </div>
-        <div className="flex items-center gap-2">
-          {hasMessages && (
+
+        <div className={`${expanded ? 'px-5 pb-4 pt-2' : 'px-3 pb-2 pt-1'} border-t border-zinc-800/30`}>
+          <div className="flex gap-2">
+            <input
+              ref={iRef}
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder={`Ask about ${viewingLabel}...`}
+              className={`flex-1 bg-zinc-900 border border-zinc-700/50 rounded px-3 ${expanded ? 'py-2.5 text-[13px]' : 'py-1.5 text-[11px]'} text-zinc-300 placeholder-zinc-600 focus:outline-none focus:border-cyan-700/50 transition-colors`}
+              disabled={isLoading}
+            />
             <button
-              onClick={() => { setMessages([]); setError(null); }}
-              className="text-[9px] text-zinc-600 hover:text-zinc-400 font-mono transition-colors"
+              onClick={handleSubmit}
+              disabled={isLoading || !input.trim()}
+              className={`${expanded ? 'px-4 py-2.5 text-[13px]' : 'px-3 py-1.5 text-[11px]'} bg-zinc-800 border border-zinc-700/50 rounded font-medium transition-colors disabled:opacity-30 disabled:cursor-default text-cyan-400 hover:bg-zinc-700 hover:border-cyan-700/30`}
             >
-              Clear
+              {isLoading ? '...' : 'Ask'}
             </button>
-          )}
-          <span className="text-[9px] text-zinc-600 font-mono">{viewingLabel}</span>
+          </div>
         </div>
-      </div>
+      </>
+    );
+  };
 
-      {/* Chat Body */}
-      <div className="flex-1 px-3 py-2 overflow-y-auto space-y-2" style={{ minHeight: 0 }}>
-        {!hasMessages && (
-          <>
-            <p className="text-[11px] text-zinc-400 mb-1.5">Ask about this game:</p>
-            <div className="space-y-1">
-              {[
-                'Why is the line different from the book?',
-                'Which pillar is driving the edge?',
-                'Is there sharp money on this game?',
-                'Explain the line movement',
-              ].map((q) => (
-                <button
-                  key={q}
-                  onClick={() => { setInput(q); inputRef.current?.focus(); }}
-                  className="block w-full text-left text-[10px] text-zinc-500 hover:text-cyan-400 hover:bg-zinc-800/50 px-2 py-1.5 rounded transition-colors font-mono"
-                >
-                  {q}
-                </button>
-              ))}
-            </div>
-          </>
+  // Shared header renderer
+  const renderHeader = (expanded: boolean) => (
+    <div className={`flex items-center justify-between ${expanded ? 'px-5 py-3' : 'px-3 py-2'} border-b border-zinc-800/50`}>
+      <div className="flex items-center gap-1.5">
+        <span className={expanded ? 'text-[15px]' : 'text-[13px]'}>&#10022;</span>
+        <span className={`${expanded ? 'text-[14px]' : 'text-[12px]'} font-semibold text-zinc-200`}>Ask Edge AI</span>
+        {isLoading && (
+          <span className="flex items-center gap-1 ml-1">
+            <span className="w-1 h-1 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="text-[9px] text-cyan-500 font-mono">thinking</span>
+          </span>
         )}
-
-        {messages.map((msg, i) => (
-          <div key={i} className={`text-[11px] leading-relaxed ${msg.role === 'user' ? 'text-zinc-300' : 'text-zinc-400'}`}>
-            <span className={`text-[9px] font-mono font-bold uppercase tracking-wider ${msg.role === 'user' ? 'text-zinc-500' : 'text-cyan-600'}`}>
-              {msg.role === 'user' ? 'You' : 'OMI'}
-            </span>
-            <div className={`mt-0.5 ${msg.role === 'assistant' ? 'pl-0' : ''} whitespace-pre-wrap`}>
-              {msg.content || (isLoading && i === messages.length - 1 ? (
-                <span className="text-zinc-600 animate-pulse">...</span>
-              ) : '')}
-            </div>
-          </div>
-        ))}
-
-        {error && (
-          <div className="text-[10px] text-red-400/80 bg-red-500/10 px-2 py-1.5 rounded">
-            {error}
-          </div>
-        )}
-
-        <div ref={chatEndRef} />
       </div>
-
-      {/* Input */}
-      <div className="px-3 pb-2 pt-1 border-t border-zinc-800/30">
-        <div className="flex gap-1.5">
-          <input
-            ref={inputRef}
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder={`Ask about ${viewingLabel}...`}
-            className="flex-1 bg-zinc-900 border border-zinc-700/50 rounded px-2.5 py-1.5 text-[11px] text-zinc-300 placeholder-zinc-600 focus:outline-none focus:border-cyan-700/50 transition-colors"
-            disabled={isLoading}
-          />
+      <div className="flex items-center gap-2">
+        {hasMessages && (
           <button
-            onClick={handleSubmit}
-            disabled={isLoading || !input.trim()}
-            className="px-3 py-1.5 bg-zinc-800 border border-zinc-700/50 rounded text-[11px] font-medium transition-colors disabled:opacity-30 disabled:cursor-default text-cyan-400 hover:bg-zinc-700 hover:border-cyan-700/30"
+            onClick={() => { setMessages([]); setError(null); }}
+            className="text-[9px] text-zinc-600 hover:text-zinc-400 font-mono transition-colors"
           >
-            {isLoading ? '...' : 'Ask'}
+            Clear
           </button>
-        </div>
+        )}
+        <span className="text-[9px] text-zinc-600 font-mono">{viewingLabel}</span>
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="ml-1 text-zinc-600 hover:text-zinc-300 transition-colors"
+          title={isExpanded ? 'Collapse' : 'Expand'}
+        >
+          {isExpanded ? (
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+            </svg>
+          )}
+        </button>
       </div>
     </div>
+  );
+
+  return (
+    <>
+      {/* Inline panel (always rendered to keep position in layout) */}
+      <div className="flex flex-col h-full bg-[#0a0a0a] border-l border-zinc-800">
+        {renderHeader(false)}
+        {renderChatBody(false)}
+      </div>
+
+      {/* Expanded drawer overlay */}
+      {isExpanded && (
+        <div className="fixed inset-0 z-50 flex justify-end">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setIsExpanded(false)}
+          />
+          {/* Drawer */}
+          <div
+            className="relative flex flex-col bg-[#0a0a0a] border-l border-zinc-700/50 shadow-2xl"
+            style={{ width: '480px', maxWidth: '90vw' }}
+          >
+            {renderHeader(true)}
+            {renderChatBody(true)}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

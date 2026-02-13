@@ -856,11 +856,19 @@ function OmiFairPricing({
     return pctGap > 0 ? 'text-emerald-400' : 'text-red-400';
   };
 
-  // Confidence color (derived from edge-based confidence)
+  // Confidence color (derived from edge-based confidence) — spreads/totals
   const getConfColor = (conf: number): string => {
     if (conf >= 66) return 'text-cyan-400';
     if (conf >= 60) return 'text-amber-400';
     if (conf >= 55) return 'text-zinc-400';
+    return 'text-zinc-500';
+  };
+
+  // Implied probability color — moneylines (shows win probability, not edge)
+  const getImpliedProbColor = (prob: number): string => {
+    if (prob >= 65) return 'text-cyan-400';
+    if (prob >= 55) return 'text-zinc-200';
+    if (prob >= 45) return 'text-zinc-400';
     return 'text-zinc-500';
   };
 
@@ -1094,12 +1102,11 @@ function OmiFairPricing({
     const awayEv = omiFairAwayProb !== undefined && bookAwayOdds !== undefined ? calcEV(omiFairAwayProb, bookAwayOdds) : 0;
     const drawEv = omiFairDrawProb !== undefined && bookDrawOdds !== undefined ? calcEV(omiFairDrawProb, bookDrawOdds) : 0;
 
-    // Confidence: directional — side WITH edge gets full conf, other gets inverse
-    const mlMaxEdge = Math.max(Math.abs(homeSignedGap), Math.abs(awaySignedGap), Math.abs(drawSignedGap));
-    const mlRawConf = edgeToConfidence(mlMaxEdge);
-    const homeConf = homeSignedGap > 0 ? mlRawConf : homeSignedGap < 0 ? 100 - mlRawConf : 50;
-    const awayConf = awaySignedGap > 0 ? mlRawConf : awaySignedGap < 0 ? 100 - mlRawConf : 50;
-    const drawConf = drawSignedGap > 0 ? mlRawConf : drawSignedGap < 0 ? 100 - mlRawConf : 50;
+    // Moneyline confidence = OMI fair implied win probability (not edge-derived)
+    // +135 → 100/235 = 42.6%, -135 → 135/235 = 57.4%
+    const homeConf = omiFairHomeProb !== undefined ? Math.round(omiFairHomeProb * 1000) / 10 : 50;
+    const awayConf = omiFairAwayProb !== undefined ? Math.round(omiFairAwayProb * 1000) / 10 : 50;
+    const drawConf = omiFairDrawProb !== undefined ? Math.round(omiFairDrawProb * 1000) / 10 : 50;
     const homeAbbr = abbrev(gameData.homeTeam);
     const awayAbbr = abbrev(gameData.awayTeam);
 
@@ -1128,7 +1135,7 @@ function OmiFairPricing({
         evLine: mkMLEvLine(awaySignedGap, awayEv),
         bookName: mlEffBookName, hasData: bookAwayOdds !== undefined, vigPct,
         rawBookOdds: bookAwayOdds, rawFairProb: omiFairAwayProb, rawBookProb: bookAwayProb,
-        confidence: awayConf, confColor: awaySignedGap > 0 ? getConfColor(awayConf) : 'text-zinc-600',
+        confidence: awayConf, confColor: getImpliedProbColor(awayConf),
       },
     ];
 
@@ -1141,7 +1148,7 @@ function OmiFairPricing({
         evLine: mkMLEvLine(drawSignedGap, drawEv),
         bookName: mlEffBookName, hasData: true, vigPct,
         rawBookOdds: bookDrawOdds, rawFairProb: omiFairDrawProb, rawBookProb: bookDrawProb,
-        confidence: drawConf, confColor: drawSignedGap > 0 ? getConfColor(drawConf) : 'text-zinc-600',
+        confidence: drawConf, confColor: getImpliedProbColor(drawConf),
       });
     }
 
@@ -1153,7 +1160,7 @@ function OmiFairPricing({
       evLine: mkMLEvLine(homeSignedGap, homeEv),
       bookName: mlEffBookName, hasData: bookHomeOdds !== undefined, vigPct,
       rawBookOdds: bookHomeOdds, rawFairProb: omiFairHomeProb, rawBookProb: bookHomeProb,
-      confidence: homeConf, confColor: homeSignedGap > 0 ? getConfColor(homeConf) : 'text-zinc-600',
+      confidence: homeConf, confColor: getImpliedProbColor(homeConf),
     });
 
     return blocks;
@@ -1351,9 +1358,9 @@ function OmiFairPricing({
                   </div>
                   {hasPillars && (
                     <div className="text-right">
-                      <div className="text-[8px] text-zinc-500 uppercase tracking-widest">Conf</div>
+                      <div className="text-[8px] text-zinc-500 uppercase tracking-widest">{activeMarket === 'moneyline' ? 'Win %' : 'Conf'}</div>
                       <div className={`text-[18px] font-bold font-mono ${block.confColor}`}>
-                        {block.confidence}%
+                        {activeMarket === 'moneyline' ? `${block.confidence.toFixed(1)}%` : `${block.confidence}%`}
                       </div>
                     </div>
                   )}

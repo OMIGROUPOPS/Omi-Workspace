@@ -2447,7 +2447,9 @@ export function GameDetailClient({
   const isLive = gameData.commenceTime ? checkGameLive(gameData.commenceTime) : false;
   const showLiveLock = isLive && userTier === 'tier_1' && !isDemoUser;
 
-  const filteredBooks = availableBooks.filter(book => ALLOWED_BOOKS.includes(book));
+  // Always include core sportsbooks in selector (DK/FD), even if a game lacks data for one
+  const CORE_BOOKS = ['fanduel', 'draftkings'];
+  const filteredBooks = [...new Set([...CORE_BOOKS, ...availableBooks.filter(book => ALLOWED_BOOKS.includes(book))])];
   const [selectedBook, setSelectedBook] = useState(filteredBooks[0] || 'fanduel');
   const selectedBookMarkets = bookmakers[selectedBook]?.marketGroups || {};
 

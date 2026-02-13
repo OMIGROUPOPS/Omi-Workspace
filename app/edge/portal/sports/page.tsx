@@ -414,6 +414,44 @@ async function fetchEdgesFromBackend(sport: string) {
   }
 }
 
+// Edge threshold: game counts as "edge" if max edge >= 3%
+const EDGE_THRESHOLD = 3.0;
+
+// American odds → implied probability
+function toProb(odds: number): number {
+  return odds < 0 ? Math.abs(odds) / (Math.abs(odds) + 100) : 100 / (odds + 100);
+}
+
+// Calculate max edge % for a game using composite fair lines vs book consensus
+// Same formulas as edgescout.ts / GameDetailClient / dashboard API
+function calculateMaxEdge(
+  fairLines: { fair_spread: number | null; fair_total: number | null; fair_ml_home: number | null; fair_ml_away: number | null },
+  consensus: any
+): number {
+  let maxEdge = 0;
+
+  if (fairLines.fair_spread != null && consensus.spreads?.line !== undefined) {
+    maxEdge = Math.max(maxEdge, Math.abs(fairLines.fair_spread - consensus.spreads.line) * 3.0);
+  }
+
+  if (fairLines.fair_ml_home != null && fairLines.fair_ml_away != null &&
+      consensus.h2h?.homePrice !== undefined && consensus.h2h?.awayPrice !== undefined) {
+    const fairHP = toProb(fairLines.fair_ml_home);
+    const fairAP = toProb(fairLines.fair_ml_away);
+    const bookHP = toProb(consensus.h2h.homePrice);
+    const bookAP = toProb(consensus.h2h.awayPrice);
+    const normBHP = bookHP / (bookHP + bookAP);
+    const normBAP = bookAP / (bookHP + bookAP);
+    maxEdge = Math.max(maxEdge, (fairHP - normBHP) * 100, (fairAP - normBAP) * 100);
+  }
+
+  if (fairLines.fair_total != null && consensus.totals?.line !== undefined) {
+    maxEdge = Math.max(maxEdge, Math.abs(fairLines.fair_total - consensus.totals.line) * 3.0);
+  }
+
+  return maxEdge;
+}
+
 function processBackendGame(
   game: any,
   sport: string,
@@ -421,7 +459,8 @@ function processBackendGame(
   openingLines: Record<string, number>,
   snapshotsMap: Record<string, ExtendedOddsSnapshot[]>,
   teamStatsMap: Map<string, TeamStatsData>,
-  edgesMap: Record<string, any[]>
+  edgesMap: Record<string, any[]>,
+  fairLinesMap: Record<string, any>
 ) {
   const liveEdges = edgesMap[game.game_id] || [];
   const consensus: any = {};
@@ -637,6 +676,7 @@ function processBackendGame(
     ceqByBook,  // Per-book CEQ for selected book display
     scores: scores[game.game_id] || null,
     liveEdges,  // Pre-detected edges from live_edges table
+    fairLines: fairLinesMap[game.game_id] || null,
   };
 }
 
@@ -646,7 +686,8 @@ function processOddsApiGame(
   openingLines: Record<string, number>,
   snapshotsMap: Record<string, ExtendedOddsSnapshot[]>,
   teamStatsMap: Map<string, TeamStatsData>,
-  edgesMap: Record<string, any[]>
+  edgesMap: Record<string, any[]>,
+  fairLinesMap: Record<string, any>
 ) {
   const liveEdges = edgesMap[game.id] || [];
   const consensus: any = {};
@@ -875,6 +916,7 @@ function processOddsApiGame(
     ceqByBook,  // Per-book CEQ for selected book display
     scores: scores[game.id] || null,
     liveEdges,  // Pre-detected edges from live_edges table
+    fairLines: fairLinesMap[game.id] || null,
   };
 }
 
@@ -884,7 +926,8 @@ async function fetchFromCache(
   openingLines: Record<string, number>,
   snapshotsMap: Record<string, ExtendedOddsSnapshot[]>,
   teamStatsMap: Map<string, TeamStatsData>,
-  edgesMap: Record<string, any[]>
+  edgesMap: Record<string, any[]>,
+  fairLinesMap: Record<string, any>
 ) {
   try {
     const supabase = getSupabase();
@@ -896,7 +939,7 @@ async function fetchFromCache(
     if (error || !data) return [];
 
     return data
-      .map((row: any) => processOddsApiGame(row.game_data, scores, openingLines, snapshotsMap, teamStatsMap, edgesMap))
+      .map((row: any) => processOddsApiGame(row.game_data, scores, openingLines, snapshotsMap, teamStatsMap, edgesMap, fairLinesMap))
       .filter(Boolean);
   } catch (e) {
     console.error(`[Cache] Failed to fetch ${sportKey}:`, e);
@@ -932,12 +975,43 @@ export default async function SportsPage() {
     }
   }
 
-  // Fetch opening lines, snapshots, team stats, and live edges for CEQ calculation
-  const [openingLines, snapshotsMap, teamStatsMap, edgesMap] = await Promise.all([
+  // Also collect cached game IDs for composite_history fetch
+  const supabaseForFairLines = getDirectSupabase();
+  const allSportKeys = sports.map(s => SPORT_MAPPING[s]).filter(Boolean);
+  const { data: cachedForIds } = await supabaseForFairLines
+    .from('cached_odds')
+    .select('game_data')
+    .in('sport_key', allSportKeys);
+  const cachedIds = (cachedForIds || []).map((r: any) => r.game_data?.id).filter(Boolean);
+  const allKnownGameIds = [...new Set([...allGameIds, ...cachedIds])];
+
+  // Fetch opening lines, snapshots, team stats, live edges, AND composite_history fair lines
+  const [openingLines, snapshotsMap, teamStatsMap, edgesMap, fairLinesMap] = await Promise.all([
     fetchOpeningLines(allGameIds),
     fetchGameSnapshots(allGameIds),
     fetchAllTeamStats(),
     fetchLiveEdges(allGameIds),
+    (async () => {
+      const map: Record<string, any> = {};
+      if (allKnownGameIds.length === 0) return map;
+      const { data, error } = await supabaseForFairLines
+        .from('composite_history')
+        .select('game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away')
+        .in('game_id', allKnownGameIds)
+        .order('timestamp', { ascending: false });
+      if (error || !data) return map;
+      for (const row of data) {
+        if (!map[row.game_id]) {
+          map[row.game_id] = {
+            fair_spread: row.fair_spread != null ? Number(row.fair_spread) : null,
+            fair_total: row.fair_total != null ? Number(row.fair_total) : null,
+            fair_ml_home: row.fair_ml_home != null ? Number(row.fair_ml_home) : null,
+            fair_ml_away: row.fair_ml_away != null ? Number(row.fair_ml_away) : null,
+          };
+        }
+      }
+      return map;
+    })(),
   ]);
 
   // ALWAYS fetch cached_odds for bookmaker data (backend doesn't include it)
@@ -971,7 +1045,7 @@ export default async function SportsPage() {
           if (cachedBookmakers) {
             g.bookmakers = cachedBookmakers;
           }
-          return processBackendGame(g, sport, scoresData, openingLines, snapshotsMap, teamStatsMap, edgesMap);
+          return processBackendGame(g, sport, scoresData, openingLines, snapshotsMap, teamStatsMap, edgesMap, fairLinesMap);
         })
         .filter(Boolean)
         .sort((a: any, b: any) => new Date(a.commenceTime).getTime() - new Date(b.commenceTime).getTime());
@@ -980,9 +1054,12 @@ export default async function SportsPage() {
       if (processed.length > 0 && frontendKey) {
         allGames[frontendKey] = processed;
         totalGames += processed.length;
-        totalEdges += processed.filter((g: any) =>
-          g.overall_confidence === 'STRONG' || g.overall_confidence === 'RARE'
-        ).length;
+        const now7d = Date.now() + 7 * 24 * 60 * 60 * 1000;
+        totalEdges += processed.filter((g: any) => {
+          if (!g.fairLines) return false;
+          if (new Date(g.commenceTime).getTime() > now7d) return false;
+          return calculateMaxEdge(g.fairLines, g.consensus) >= EDGE_THRESHOLD;
+        }).length;
       }
     }
   }
@@ -1024,7 +1101,7 @@ export default async function SportsPage() {
 
       const sportData = allCachedData?.filter((row: any) => row.sport_key === sportKey) || [];
       const games = sportData
-        .map((row: any) => processOddsApiGame(row.game_data, scoresData, cachedOpeningLines, cachedSnapshotsMap, teamStatsMap, cachedEdgesMap))
+        .map((row: any) => processOddsApiGame(row.game_data, scoresData, cachedOpeningLines, cachedSnapshotsMap, teamStatsMap, cachedEdgesMap, fairLinesMap))
         .filter(Boolean);
       return { sport, games };
     });
@@ -1043,9 +1120,12 @@ export default async function SportsPage() {
         if (upcoming.length > 0) {
           allGames[frontendKey] = upcoming;
           totalGames += upcoming.length;
-          totalEdges += upcoming.filter((g: any) =>
-            g.overall_confidence === 'STRONG' || g.overall_confidence === 'RARE'
-          ).length;
+          const now7d = Date.now() + 7 * 24 * 60 * 60 * 1000;
+          totalEdges += upcoming.filter((g: any) => {
+            if (!g.fairLines) return false;
+            if (new Date(g.commenceTime).getTime() > now7d) return false;
+            return calculateMaxEdge(g.fairLines, g.consensus) >= EDGE_THRESHOLD;
+          }).length;
         }
       }
     }

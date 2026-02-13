@@ -2,16 +2,10 @@
 
 import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import Link from 'next/link';
-import { createClient } from '@supabase/supabase-js';
 import { formatOdds, calculateTwoWayEV, formatEV, getEVColor, getEVBgClass } from '@/lib/edge/utils/odds-math';
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
 
 // LiveEdge from live_edges table (returned by dashboard API)
 interface LiveEdge {
@@ -319,8 +313,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
   const [lastUpdated, setLastUpdated] = useState<Date | null>(initialFetchedAt ? new Date(initialFetchedAt) : null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [secondsSinceUpdate, setSecondsSinceUpdate] = useState(0);
-  const [apiEdgeCounts, setApiEdgeCounts] = useState<Record<string, number>>({});
-  const [fairLines, setFairLines] = useState<Record<string, { fair_spread: number | null; fair_total: number | null; fair_ml_home: number | null; fair_ml_away: number | null }>>({});
 
   const refreshData = useCallback(async (showSpinner = true) => {
     console.log('[REFRESH] Starting refresh, activeSport before:', activeSport);
@@ -381,84 +373,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     }, 1000);
     return () => clearInterval(timer);
   }, [mounted]);
-
-  // Fetch edge counts from database (pre-calculated during odds sync)
-  useEffect(() => {
-    if (!mounted) return;
-
-    // Collect all game IDs
-    const allGameIds: string[] = [];
-    for (const sportGames of Object.values(games)) {
-      for (const game of sportGames) {
-        if (game.id) {
-          allGameIds.push(game.id);
-        }
-      }
-    }
-
-    if (allGameIds.length === 0) return;
-
-    // Fetch pre-calculated edge counts from database via simple API
-    const fetchEdgeCounts = async () => {
-      try {
-        const res = await fetch('/api/edges/stored-counts', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ gameIds: allGameIds }),
-        });
-
-        if (!res.ok) return;
-
-        const data = await res.json();
-        if (data.counts) {
-          setApiEdgeCounts(data.counts);
-        }
-      } catch (err) {
-        console.error('[SportsHomeGrid] Error fetching edge counts:', err);
-      }
-    };
-
-    fetchEdgeCounts();
-  }, [mounted, games]);
-
-  // Fetch latest fair lines from composite_history for edge display
-  useEffect(() => {
-    if (!mounted) return;
-
-    const allGameIds: string[] = [];
-    for (const sportGames of Object.values(games)) {
-      for (const game of sportGames) {
-        if (game.id) allGameIds.push(game.id);
-      }
-    }
-    if (allGameIds.length === 0) return;
-
-    const fetchFairLines = async () => {
-      try {
-        // Query latest composite_history row per game (most recent timestamp)
-        const { data, error } = await supabase
-          .from('composite_history')
-          .select('game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away')
-          .in('game_id', allGameIds)
-          .order('timestamp', { ascending: false });
-
-        if (error || !data) return;
-
-        // Keep only the latest row per game_id
-        const latest: Record<string, typeof data[0]> = {};
-        for (const row of data) {
-          if (!latest[row.game_id]) {
-            latest[row.game_id] = row;
-          }
-        }
-        setFairLines(latest);
-      } catch (err) {
-        console.error('[SportsHomeGrid] Error fetching fair lines:', err);
-      }
-    };
-
-    fetchFairLines();
-  }, [mounted, games]);
 
   // Smart sport ordering: games today first, then this week, then rest
   const orderedGames = useMemo(() => {
@@ -584,46 +498,6 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     return result;
   }, [searchQuery, activeSport, pregameGames]);
 
-  // Client-side edge count from fair lines (6%+ threshold = HIGH EDGE / MAX EDGE)
-  const computedEdgeCount = useMemo(() => {
-    if (Object.keys(fairLines).length === 0) return null; // not loaded yet, use server fallback
-    const toProb = (o: number) => o < 0 ? Math.abs(o) / (Math.abs(o) + 100) : 100 / (o + 100);
-    let count = 0;
-    for (const sportGames of Object.values(games)) {
-      for (const game of sportGames) {
-        const fair = fairLines[game.id];
-        if (!fair) continue;
-        const bookOdds = game.bookmakers?.[selectedBook];
-        const spreads = bookOdds?.spreads || game.consensus?.spreads;
-        const h2h = bookOdds?.h2h || game.consensus?.h2h;
-        const totals = bookOdds?.totals || game.consensus?.totals;
-        let maxEdge = 0;
-        // Spread edge
-        if (fair.fair_spread != null && spreads?.line !== undefined) {
-          maxEdge = Math.max(maxEdge, Math.abs(spreads.line - fair.fair_spread) * 3.0);
-        }
-        // ML edge
-        if (fair.fair_ml_home != null && fair.fair_ml_away != null && h2h?.homePrice !== undefined && h2h?.awayPrice !== undefined) {
-          const fairHP = toProb(fair.fair_ml_home);
-          const fairAP = toProb(fair.fair_ml_away);
-          const bookHP = toProb(h2h.homePrice);
-          const bookAP = toProb(h2h.awayPrice);
-          const normBHP = bookHP / (bookHP + bookAP);
-          const normBAP = bookAP / (bookHP + bookAP);
-          maxEdge = Math.max(maxEdge, Math.max((fairHP - normBHP) * 100, 0), Math.max((fairAP - normBAP) * 100, 0));
-        }
-        // Total edge
-        if (fair.fair_total != null && totals?.line !== undefined) {
-          maxEdge = Math.max(maxEdge, Math.abs(fair.fair_total - totals.line) * 3.0);
-        }
-        if (maxEdge >= 6.0) count++;
-      }
-    }
-    return count;
-  }, [games, fairLines, selectedBook]);
-
-  const displayEdgeCount = computedEdgeCount !== null ? computedEdgeCount : totalEdges;
-
   const isAllView = activeSport === null;
   const selectedBookConfig = BOOK_CONFIG[selectedBook];
   const activeSportsCount = Object.keys(games).filter(k => games[k]?.length > 0).length;
@@ -665,10 +539,10 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                 <span className="text-xs font-mono font-bold text-zinc-200">{activeSportsCount}</span>
               </div>
 
-              {displayEdgeCount > 0 && (
+              {totalEdges > 0 && (
                 <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
                   <span className="text-[10px] font-mono text-emerald-500">EDGES</span>
-                  <span className="text-xs font-mono font-bold text-emerald-400">{displayEdgeCount}</span>
+                  <span className="text-xs font-mono font-bold text-emerald-400">{totalEdges}</span>
                 </div>
               )}
 
@@ -946,7 +820,7 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                   const countdown = mounted ? getTimeDisplay(gameTime, game.sportKey) : '';
 
                   // Calculate edge percentages from fair lines
-                  const fair = fairLines[game.id];
+                  const fair = game.fairLines;
                   const bookOdds = game.bookmakers?.[selectedBook];
                   const spreads = bookOdds?.spreads || game.consensus?.spreads;
                   const h2h = bookOdds?.h2h || game.consensus?.h2h;

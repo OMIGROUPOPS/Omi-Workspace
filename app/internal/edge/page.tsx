@@ -79,6 +79,32 @@ interface GradedGameRow {
   dk: BookDetail | null;
 }
 
+interface LiveMarketRow {
+  game_id: string;
+  sport_key: string;
+  home_team: string;
+  away_team: string;
+  commence_time: string;
+  market_type: string;
+  omi_fair: string;
+  omi_fair_line: number;
+  fd_line: number | null;
+  fd_odds: number | null;
+  fd_edge: number | null;
+  fd_signal: string | null;
+  dk_line: number | null;
+  dk_odds: number | null;
+  dk_edge: number | null;
+  dk_signal: string | null;
+  best_edge: number | null;
+  signal: string;
+}
+
+interface LiveMarketsResponse {
+  rows: LiveMarketRow[];
+  count: number;
+}
+
 interface GradedGamesSummary {
   total_graded: number;
   wins: number;
@@ -124,6 +150,7 @@ const SIGNAL_COLORS: Record<string, string> = {
   "MID EDGE": "text-amber-400",
   "LOW EDGE": "text-zinc-400",
   "NO EDGE": "text-zinc-500",
+  "STALE": "text-zinc-600",
   // Legacy fallbacks
   MISPRICED: "text-red-400",
   VALUE: "text-amber-400",
@@ -198,7 +225,7 @@ export default function EdgeInternalPage() {
   const router = useRouter();
 
   // Shared state
-  const [activeTab, setActiveTab] = useState<"performance" | "graded">(
+  const [activeTab, setActiveTab] = useState<"performance" | "graded" | "live">(
     "performance"
   );
   const [grading, setGrading] = useState(false);
@@ -223,6 +250,10 @@ export default function EdgeInternalPage() {
   const [verdictFilter, setVerdictFilter] = useState("");
   const [sortField, setSortField] = useState("commence_time");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
+
+  // Live markets tab state
+  const [liveData, setLiveData] = useState<LiveMarketsResponse | null>(null);
+  const [liveLoading, setLiveLoading] = useState(false);
 
   // ------- Performance fetch -------
   const fetchData = useCallback(async () => {
@@ -273,6 +304,27 @@ export default function EdgeInternalPage() {
   useEffect(() => {
     if (activeTab === "graded") fetchGradedGames();
   }, [activeTab, fetchGradedGames]);
+
+  // ------- Live markets fetch -------
+  const fetchLiveMarkets = useCallback(async () => {
+    setLiveLoading(true);
+    try {
+      const params = new URLSearchParams();
+      if (sport) params.set("sport", sport);
+      const res = await fetch(
+        `${BACKEND_URL}/api/internal/edge/live-markets?${params.toString()}`
+      );
+      if (res.ok) setLiveData(await res.json());
+    } catch (e) {
+      console.error("Failed to fetch live markets:", e);
+    } finally {
+      setLiveLoading(false);
+    }
+  }, [sport]);
+
+  useEffect(() => {
+    if (activeTab === "live") fetchLiveMarkets();
+  }, [activeTab, fetchLiveMarkets]);
 
   // ------- Grade handler -------
   const handleGrade = async () => {
@@ -419,6 +471,16 @@ export default function EdgeInternalPage() {
           }`}
         >
           GRADED GAMES
+        </button>
+        <button
+          onClick={() => setActiveTab("live")}
+          className={`px-4 py-2.5 text-sm font-mono border-b-2 transition-colors ${
+            activeTab === "live"
+              ? "text-cyan-400 border-cyan-400"
+              : "text-zinc-500 border-transparent hover:text-zinc-300"
+          }`}
+        >
+          LIVE MARKETS
         </button>
       </div>
 
@@ -767,10 +829,6 @@ export default function EdgeInternalPage() {
                             <text x={x} y={y - 12} textAnchor="middle" fill={dotColor} fontSize="10" fontFamily="monospace">
                               {point.actual.toFixed(1)}%
                             </text>
-                            {/* Sample size below */}
-                            <text x={x} y={y + 18} textAnchor="middle" fill="#52525b" fontSize="8" fontFamily="monospace">
-                              n={point.sample_size}
-                            </text>
                             {/* X-axis tier label */}
                             <text x={x} y="230" textAnchor="middle" fill={dotColor} fontSize="8" fontFamily="monospace" fontWeight="bold">
                               {tierName.replace(" EDGE", "").replace("NO", "NONE")}
@@ -1005,32 +1063,36 @@ export default function EdgeInternalPage() {
                           {/* FD Edge */}
                           <td className="px-3 py-2.5 text-xs whitespace-nowrap">
                             {row.fd ? (
-                              <div
-                                className={
-                                  row.fd.correct === true
-                                    ? "text-emerald-400"
-                                    : row.fd.correct === false
-                                      ? "text-red-400"
-                                      : "text-zinc-300"
-                                }
-                              >
-                                <div className="font-medium">
-                                  {row.fd.call}
+                              row.fd.signal === "STALE" ? (
+                                <span className="text-zinc-600 font-mono">STALE</span>
+                              ) : (
+                                <div
+                                  className={
+                                    row.fd.correct === true
+                                      ? "text-emerald-400"
+                                      : row.fd.correct === false
+                                        ? "text-red-400"
+                                        : "text-zinc-300"
+                                  }
+                                >
+                                  <div className="font-medium">
+                                    {row.fd.call}
+                                  </div>
+                                  <div className="flex items-center gap-1.5 mt-0.5">
+                                    <span className="text-zinc-500">
+                                      FD {fmtOdds(row.fd.odds)}
+                                    </span>
+                                    <span className="font-mono">
+                                      {fmtEdgePct(row.fd.edge)}
+                                    </span>
+                                    <span
+                                      className={`text-[10px] font-mono font-bold ${SIGNAL_COLORS[row.fd.signal] || "text-zinc-500"}`}
+                                    >
+                                      {row.fd.signal}
+                                    </span>
+                                  </div>
                                 </div>
-                                <div className="flex items-center gap-1.5 mt-0.5">
-                                  <span className="text-zinc-500">
-                                    FD {fmtOdds(row.fd.odds)}
-                                  </span>
-                                  <span className="font-mono">
-                                    {fmtEdgePct(row.fd.edge)}
-                                  </span>
-                                  <span
-                                    className={`text-[10px] font-mono font-bold ${SIGNAL_COLORS[row.fd.signal] || "text-zinc-500"}`}
-                                  >
-                                    {row.fd.signal}
-                                  </span>
-                                </div>
-                              </div>
+                              )
                             ) : (
                               <span className="text-zinc-600">—</span>
                             )}
@@ -1039,32 +1101,36 @@ export default function EdgeInternalPage() {
                           {/* DK Edge */}
                           <td className="px-3 py-2.5 text-xs whitespace-nowrap">
                             {row.dk ? (
-                              <div
-                                className={
-                                  row.dk.correct === true
-                                    ? "text-emerald-400"
-                                    : row.dk.correct === false
-                                      ? "text-red-400"
-                                      : "text-zinc-300"
-                                }
-                              >
-                                <div className="font-medium">
-                                  {row.dk.call}
+                              row.dk.signal === "STALE" ? (
+                                <span className="text-zinc-600 font-mono">STALE</span>
+                              ) : (
+                                <div
+                                  className={
+                                    row.dk.correct === true
+                                      ? "text-emerald-400"
+                                      : row.dk.correct === false
+                                        ? "text-red-400"
+                                        : "text-zinc-300"
+                                  }
+                                >
+                                  <div className="font-medium">
+                                    {row.dk.call}
+                                  </div>
+                                  <div className="flex items-center gap-1.5 mt-0.5">
+                                    <span className="text-zinc-500">
+                                      DK {fmtOdds(row.dk.odds)}
+                                    </span>
+                                    <span className="font-mono">
+                                      {fmtEdgePct(row.dk.edge)}
+                                    </span>
+                                    <span
+                                      className={`text-[10px] font-mono font-bold ${SIGNAL_COLORS[row.dk.signal] || "text-zinc-500"}`}
+                                    >
+                                      {row.dk.signal}
+                                    </span>
+                                  </div>
                                 </div>
-                                <div className="flex items-center gap-1.5 mt-0.5">
-                                  <span className="text-zinc-500">
-                                    DK {fmtOdds(row.dk.odds)}
-                                  </span>
-                                  <span className="font-mono">
-                                    {fmtEdgePct(row.dk.edge)}
-                                  </span>
-                                  <span
-                                    className={`text-[10px] font-mono font-bold ${SIGNAL_COLORS[row.dk.signal] || "text-zinc-500"}`}
-                                  >
-                                    {row.dk.signal}
-                                  </span>
-                                </div>
-                              </div>
+                              )
                             ) : (
                               <span className="text-zinc-600">—</span>
                             )}
@@ -1072,7 +1138,7 @@ export default function EdgeInternalPage() {
 
                           {/* Tier */}
                           <td className="px-3 py-2.5 text-center text-xs font-mono text-zinc-400">
-                            {row.confidence_tier ? `${row.confidence_tier}%` : "—"}
+                            {row.confidence_tier != null ? `${Number(row.confidence_tier).toFixed(1)}%` : "—"}
                           </td>
 
                           {/* Verdict */}
@@ -1093,6 +1159,145 @@ export default function EdgeInternalPage() {
                           </td>
                         </tr>
                       ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </>
+          )}
+        </>
+      )}
+
+      {/* ================================================================= */}
+      {/* LIVE MARKETS TAB                                                  */}
+      {/* ================================================================= */}
+      {activeTab === "live" && (
+        <>
+          {liveLoading ? (
+            <div className="mt-12 text-center text-zinc-500">
+              Loading live markets...
+            </div>
+          ) : !liveData || liveData.count === 0 ? (
+            <div className="mt-12 text-center text-zinc-500">
+              No upcoming games found. Markets populate when composites are calculated.
+            </div>
+          ) : (
+            <>
+              <div className="mt-4 text-sm text-zinc-500">
+                {liveData.count} markets across upcoming games
+              </div>
+
+              <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="text-zinc-500 border-b border-zinc-800 text-xs uppercase tracking-wide">
+                        <th className="text-left px-3 py-2">Time</th>
+                        <th className="text-left px-3 py-2">Sport</th>
+                        <th className="text-left px-3 py-2">Matchup</th>
+                        <th className="text-left px-3 py-2">Mkt</th>
+                        <th className="text-left px-3 py-2">OMI Fair</th>
+                        <th className="text-left px-3 py-2">FD Line</th>
+                        <th className="text-left px-3 py-2">FD Edge</th>
+                        <th className="text-left px-3 py-2">DK Line</th>
+                        <th className="text-left px-3 py-2">DK Edge</th>
+                        <th className="text-center px-3 py-2">Signal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {liveData.rows.map((row, i) => {
+                        const sigColor = SIGNAL_COLORS[row.signal] || "text-zinc-500";
+                        return (
+                          <tr
+                            key={`${row.game_id}-${row.market_type}-${i}`}
+                            onClick={() =>
+                              router.push(
+                                `/edge/portal/sports/game/${row.game_id}?sport=${SPORT_TO_ODDS_KEY[row.sport_key] || row.sport_key.toLowerCase()}`
+                              )
+                            }
+                            className="border-b border-zinc-800/50 cursor-pointer hover:bg-zinc-800/30 transition-colors"
+                          >
+                            {/* Time */}
+                            <td className="px-3 py-2.5 text-zinc-400 whitespace-nowrap text-xs">
+                              {row.commence_time
+                                ? new Date(row.commence_time).toLocaleString("en-US", {
+                                    month: "short", day: "numeric",
+                                    hour: "numeric", minute: "2-digit",
+                                  })
+                                : "—"}
+                            </td>
+
+                            {/* Sport */}
+                            <td className="px-3 py-2.5">
+                              <span className={`px-1.5 py-0.5 rounded text-xs font-mono ${SPORT_BADGE_COLORS[row.sport_key] || "bg-zinc-800 text-zinc-400"}`}>
+                                {row.sport_key}
+                              </span>
+                            </td>
+
+                            {/* Matchup */}
+                            <td className="px-3 py-2.5 whitespace-nowrap text-white text-xs">
+                              {row.away_team} <span className="text-zinc-600">@</span> {row.home_team}
+                            </td>
+
+                            {/* Market */}
+                            <td className="px-3 py-2.5 text-white text-xs capitalize">
+                              {row.market_type}
+                            </td>
+
+                            {/* OMI Fair */}
+                            <td className="px-3 py-2.5 text-cyan-400 font-mono text-xs whitespace-nowrap">
+                              {row.omi_fair}
+                            </td>
+
+                            {/* FD Line */}
+                            <td className="px-3 py-2.5 text-zinc-300 font-mono text-xs whitespace-nowrap">
+                              {row.fd_line != null ? (
+                                row.market_type === "moneyline" ? fmtOdds(row.fd_line) :
+                                row.market_type === "spread" ? (row.fd_line > 0 ? `+${row.fd_line}` : String(row.fd_line)) :
+                                String(row.fd_line)
+                              ) : "—"}
+                            </td>
+
+                            {/* FD Edge */}
+                            <td className="px-3 py-2.5 text-xs whitespace-nowrap">
+                              {row.fd_signal === "STALE" ? (
+                                <span className="text-zinc-600 font-mono">STALE</span>
+                              ) : row.fd_edge != null ? (
+                                <span className={`font-mono ${SIGNAL_COLORS[row.fd_signal || ""] || "text-zinc-400"}`}>
+                                  {fmtEdgePct(row.fd_edge)}
+                                </span>
+                              ) : <span className="text-zinc-600">—</span>}
+                            </td>
+
+                            {/* DK Line */}
+                            <td className="px-3 py-2.5 text-zinc-300 font-mono text-xs whitespace-nowrap">
+                              {row.dk_line != null ? (
+                                row.market_type === "moneyline" ? fmtOdds(row.dk_line) :
+                                row.market_type === "spread" ? (row.dk_line > 0 ? `+${row.dk_line}` : String(row.dk_line)) :
+                                String(row.dk_line)
+                              ) : "—"}
+                            </td>
+
+                            {/* DK Edge */}
+                            <td className="px-3 py-2.5 text-xs whitespace-nowrap">
+                              {row.dk_signal === "STALE" ? (
+                                <span className="text-zinc-600 font-mono">STALE</span>
+                              ) : row.dk_edge != null ? (
+                                <span className={`font-mono ${SIGNAL_COLORS[row.dk_signal || ""] || "text-zinc-400"}`}>
+                                  {fmtEdgePct(row.dk_edge)}
+                                </span>
+                              ) : <span className="text-zinc-600">—</span>}
+                            </td>
+
+                            {/* Signal */}
+                            <td className="px-3 py-2.5 text-center">
+                              <span className={`text-xs font-mono font-bold ${sigColor}`}>
+                                {row.signal}
+                              </span>
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>

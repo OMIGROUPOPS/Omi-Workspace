@@ -71,24 +71,25 @@ def determine_signal(edge_pct: float) -> str:
     return "NO EDGE"
 
 
-def edge_to_confidence(edge_pct: float) -> int:
+def edge_to_confidence(edge_pct: float) -> float:
     """Map edge % to confidence % via linear interpolation within bands.
     < 1%  (NO EDGE)   → 50-54%
     1-3%  (LOW EDGE)  → 55-59%
     3-6%  (MID EDGE)  → 60-65%
     6-10% (HIGH EDGE) → 66-70%
     10%+  (MAX EDGE)  → 71-75% (capped)
+    Returns float with 1 decimal precision.
     """
     ae = abs(edge_pct)
     if ae < 1:
-        return int(50 + ae * 4)            # 0→50, 1→54
+        return round(50 + (ae / 1.0) * 4, 1)
     if ae < 3:
-        return int(55 + (ae - 1) * 2)      # 1→55, 3→59
+        return round(55 + ((ae - 1) / 2.0) * 4, 1)
     if ae < 6:
-        return int(60 + (ae - 3) * 5 / 3)  # 3→60, 6→65
+        return round(60 + ((ae - 3) / 3.0) * 5, 1)
     if ae < 10:
-        return int(66 + (ae - 6))           # 6→66, 10→70
-    return min(75, int(71 + (ae - 10) * 0.5))  # 10→71, capped at 75
+        return round(66 + ((ae - 6) / 4.0) * 4, 1)
+    return round(min(75, 71 + ((ae - 10) / 10.0) * 4), 1)
 
 
 def composite_to_confidence_tier(composite: float) -> Optional[int]:
@@ -907,17 +908,56 @@ class InternalGrader:
             fd = self._book_detail_implied(fd_row, fair, mtype, home, away)
             dk = self._book_detail_implied(dk_row, fair, mtype, home, away)
 
-            # Best edge
+            # Stale data detection — flag books with impossible line divergence
+            if fd and dk:
+                fd_line = fd["line"]
+                dk_line = dk["line"]
+                line_diff = abs(fd_line - dk_line)
+                if mtype == "spread" and line_diff > 5:
+                    # Flag the book that's further from OMI fair as stale
+                    if fair is not None:
+                        fd_dist = abs(float(fair) - fd_line)
+                        dk_dist = abs(float(fair) - dk_line)
+                        if fd_dist > dk_dist:
+                            fd["signal"] = "STALE"
+                            fd["edge"] = 0
+                        else:
+                            dk["signal"] = "STALE"
+                            dk["edge"] = 0
+                elif mtype == "total" and line_diff > 8:
+                    if fair is not None:
+                        fd_dist = abs(float(fair) - fd_line)
+                        dk_dist = abs(float(fair) - dk_line)
+                        if fd_dist > dk_dist:
+                            fd["signal"] = "STALE"
+                            fd["edge"] = 0
+                        else:
+                            dk["signal"] = "STALE"
+                            dk["edge"] = 0
+                elif mtype == "moneyline" and line_diff > 30:
+                    if fair is not None:
+                        fd_dist = abs(float(fair) - fd_line)
+                        dk_dist = abs(float(fair) - dk_line)
+                        if fd_dist > dk_dist:
+                            fd["signal"] = "STALE"
+                            fd["edge"] = 0
+                        else:
+                            dk["signal"] = "STALE"
+                            dk["edge"] = 0
+
+            # Best edge (skip STALE books)
             best_edge = None
             best_book = None
-            if fd and dk:
+            fd_valid = fd and fd.get("signal") != "STALE"
+            dk_valid = dk and dk.get("signal") != "STALE"
+            if fd_valid and dk_valid:
                 if fd["edge"] >= dk["edge"]:
                     best_edge, best_book = fd["edge"], "FD"
                 else:
                     best_edge, best_book = dk["edge"], "DK"
-            elif fd:
+            elif fd_valid:
                 best_edge, best_book = fd["edge"], "FD"
-            elif dk:
+            elif dk_valid:
                 best_edge, best_book = dk["edge"], "DK"
 
             # Overall verdict from best-book row
@@ -925,6 +965,9 @@ class InternalGrader:
             is_correct = best_row.get("is_correct")
 
             sport_normalized = _normalize_sport(first.get("sport_key", ""))
+
+            # Confidence from edge (interpolated, not bucketed)
+            conf = edge_to_confidence(best_edge) if best_edge is not None else 50.0
 
             row_out = {
                 "game_id": gid,
@@ -937,7 +980,7 @@ class InternalGrader:
                 "market_type": mtype,
                 "omi_fair_line": fair,
                 "omi_fair_display": self._omi_fair_display(fair, mtype, home, away),
-                "confidence_tier": first.get("confidence_tier"),
+                "confidence_tier": conf,
                 "pillar_composite": first.get("pillar_composite"),
                 "best_edge": best_edge,
                 "best_book": best_book,
@@ -986,6 +1029,274 @@ class InternalGrader:
             },
             "count": len(merged),
         }
+
+    # ------------------------------------------------------------------
+    # Live Markets — upcoming games with current OMI edges
+    # ------------------------------------------------------------------
+
+    def get_live_markets(self, sport: Optional[str] = None) -> dict:
+        """Return upcoming games with current OMI fair lines and book edges."""
+        now = datetime.now(timezone.utc).isoformat()
+
+        # 1. Get upcoming games from cached_odds
+        query = self.client.table("cached_odds").select(
+            "sport_key, game_id, game_data"
+        ).gte("game_data->>commence_time", now)
+        if sport:
+            # cached_odds uses full sport_key (e.g. basketball_nba)
+            # Accept either short or long form
+            variants = [k for k, v in SPORT_DISPLAY.items() if v == sport.upper()]
+            if variants:
+                query = query.in_("sport_key", variants)
+            else:
+                query = query.eq("sport_key", sport)
+        result = query.execute()
+        games = result.data or []
+
+        if not games:
+            return {"rows": [], "count": 0}
+
+        # 2. Get latest composite_history snapshot per game
+        game_ids = list({g["game_id"] for g in games})
+        ch_map: dict = {}
+        for i in range(0, len(game_ids), 50):
+            batch = game_ids[i:i+50]
+            ch = self.client.table("composite_history").select(
+                "game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away, "
+                "book_spread, book_total, book_ml_home, book_ml_away, timestamp"
+            ).in_("game_id", batch).order("timestamp", desc=True).execute()
+            for row in (ch.data or []):
+                gid = row["game_id"]
+                if gid not in ch_map:
+                    ch_map[gid] = row
+
+        # 3. Build rows — one per game × market
+        rows = []
+        for g in games:
+            gid = g["game_id"]
+            gdata = g.get("game_data") or {}
+            sport_raw = g.get("sport_key", "")
+            sport_short = _normalize_sport(sport_raw)
+            home = gdata.get("home_team", "?")
+            away = gdata.get("away_team", "?")
+            commence = gdata.get("commence_time", "")
+
+            ch = ch_map.get(gid)
+            if not ch:
+                continue
+
+            # Extract current book lines from cached_odds game_data
+            bookmakers = gdata.get("bookmakers") or []
+            fd_lines: dict = {}
+            dk_lines: dict = {}
+            for bm in bookmakers:
+                bkey = (bm.get("key") or "").lower()
+                if bkey not in ("fanduel", "draftkings"):
+                    continue
+                target = fd_lines if bkey == "fanduel" else dk_lines
+                for mkt in (bm.get("markets") or []):
+                    mkey = mkt.get("key", "")
+                    outcomes = mkt.get("outcomes") or []
+                    if mkey == "spreads":
+                        for o in outcomes:
+                            if o.get("name") == home:
+                                target["spread_line"] = o.get("point", 0)
+                                target["spread_odds"] = o.get("price", -110)
+                    elif mkey == "totals":
+                        for o in outcomes:
+                            if o.get("name") == "Over":
+                                target["total_line"] = o.get("point", 0)
+                                target["total_odds"] = o.get("price", -110)
+                    elif mkey == "h2h":
+                        for o in outcomes:
+                            if o.get("name") == home:
+                                target["ml_home"] = o.get("price", 0)
+                            elif o.get("name") == away:
+                                target["ml_away"] = o.get("price", 0)
+
+            fair_spread = ch.get("fair_spread")
+            fair_total = ch.get("fair_total")
+            fair_ml_home = ch.get("fair_ml_home")
+            fair_ml_away = ch.get("fair_ml_away")
+
+            # Spread rows
+            if fair_spread is not None:
+                fair_s = float(fair_spread)
+                for book_key, book_label, blines in [
+                    ("fd", "FD", fd_lines), ("dk", "DK", dk_lines)
+                ]:
+                    bl = blines.get("spread_line")
+                    if bl is not None:
+                        edge = calc_edge_pct(fair_s, float(bl))
+                        signal = determine_signal(edge)
+                    else:
+                        edge = None
+                        signal = None
+
+                sign = "+" if fair_s > 0 else ""
+                fair_display = f"{home} {sign}{fair_s:.1f}"
+
+                fd_bl = fd_lines.get("spread_line")
+                dk_bl = dk_lines.get("spread_line")
+
+                # Stale check between books
+                fd_edge = calc_edge_pct(fair_s, float(fd_bl)) if fd_bl is not None else None
+                dk_edge = calc_edge_pct(fair_s, float(dk_bl)) if dk_bl is not None else None
+                fd_signal = determine_signal(fd_edge) if fd_edge is not None else None
+                dk_signal = determine_signal(dk_edge) if dk_edge is not None else None
+
+                if fd_bl is not None and dk_bl is not None and abs(float(fd_bl) - float(dk_bl)) > 5:
+                    fd_dist = abs(fair_s - float(fd_bl))
+                    dk_dist = abs(fair_s - float(dk_bl))
+                    if fd_dist > dk_dist:
+                        fd_signal = "STALE"
+                        fd_edge = 0
+                    else:
+                        dk_signal = "STALE"
+                        dk_edge = 0
+
+                best_e = max(
+                    fd_edge if fd_signal and fd_signal != "STALE" else 0,
+                    dk_edge if dk_signal and dk_signal != "STALE" else 0,
+                ) if (fd_edge is not None or dk_edge is not None) else None
+                best_sig = determine_signal(best_e) if best_e else "NO EDGE"
+
+                rows.append({
+                    "game_id": gid, "sport_key": sport_short,
+                    "home_team": home, "away_team": away,
+                    "commence_time": commence, "market_type": "spread",
+                    "omi_fair": fair_display, "omi_fair_line": fair_s,
+                    "fd_line": fd_bl, "fd_odds": fd_lines.get("spread_odds"),
+                    "fd_edge": fd_edge, "fd_signal": fd_signal,
+                    "dk_line": dk_bl, "dk_odds": dk_lines.get("spread_odds"),
+                    "dk_edge": dk_edge, "dk_signal": dk_signal,
+                    "best_edge": best_e, "signal": best_sig,
+                })
+
+            # Total rows
+            if fair_total is not None:
+                fair_t = float(fair_total)
+                ref_half = round(fair_t * 2) / 2
+                direction = "O" if fair_t > ref_half else "U" if fair_t < ref_half else "PK"
+                fair_display = f"{direction} {ref_half:.1f}" if direction != "PK" else f"PK {ref_half:.1f}"
+
+                fd_bl = fd_lines.get("total_line")
+                dk_bl = dk_lines.get("total_line")
+
+                fd_edge = calc_edge_pct(fair_t, float(fd_bl)) if fd_bl is not None else None
+                dk_edge = calc_edge_pct(fair_t, float(dk_bl)) if dk_bl is not None else None
+                fd_signal = determine_signal(fd_edge) if fd_edge is not None else None
+                dk_signal = determine_signal(dk_edge) if dk_edge is not None else None
+
+                if fd_bl is not None and dk_bl is not None and abs(float(fd_bl) - float(dk_bl)) > 8:
+                    fd_dist = abs(fair_t - float(fd_bl))
+                    dk_dist = abs(fair_t - float(dk_bl))
+                    if fd_dist > dk_dist:
+                        fd_signal = "STALE"
+                        fd_edge = 0
+                    else:
+                        dk_signal = "STALE"
+                        dk_edge = 0
+
+                best_e = max(
+                    fd_edge if fd_signal and fd_signal != "STALE" else 0,
+                    dk_edge if dk_signal and dk_signal != "STALE" else 0,
+                ) if (fd_edge is not None or dk_edge is not None) else None
+                best_sig = determine_signal(best_e) if best_e else "NO EDGE"
+
+                rows.append({
+                    "game_id": gid, "sport_key": sport_short,
+                    "home_team": home, "away_team": away,
+                    "commence_time": commence, "market_type": "total",
+                    "omi_fair": fair_display, "omi_fair_line": fair_t,
+                    "fd_line": fd_bl, "fd_odds": fd_lines.get("total_odds"),
+                    "fd_edge": fd_edge, "fd_signal": fd_signal,
+                    "dk_line": dk_bl, "dk_odds": dk_lines.get("total_odds"),
+                    "dk_edge": dk_edge, "dk_signal": dk_signal,
+                    "best_edge": best_e, "signal": best_sig,
+                })
+
+            # Moneyline rows
+            if fair_ml_home is not None and fair_ml_away is not None:
+                fh = float(fair_ml_home)
+                fa = float(fair_ml_away)
+                # fair_ml values are American odds — convert to implied prob for display
+                fair_home_prob = american_to_implied(fh) * 100
+                fp_display = f"{fair_home_prob:.1f}% ({int(fh):+d})"
+
+                fd_mlh = fd_lines.get("ml_home")
+                fd_mla = fd_lines.get("ml_away")
+                dk_mlh = dk_lines.get("ml_home")
+                dk_mla = dk_lines.get("ml_away")
+
+                fd_edge = None
+                dk_edge = None
+                fd_signal = None
+                dk_signal = None
+
+                if fd_mlh and fd_mla:
+                    fd_hp = american_to_implied(fd_mlh)
+                    fd_ap = american_to_implied(fd_mla)
+                    fd_total = fd_hp + fd_ap
+                    if fd_total > 0:
+                        fd_hp /= fd_total
+                    fair_hp = american_to_implied(fh)
+                    fair_ap = american_to_implied(fa)
+                    ft = fair_hp + fair_ap
+                    if ft > 0:
+                        fair_hp /= ft
+                    fd_edge = round(abs(fair_hp - fd_hp) * 100, 1)
+                    fd_signal = determine_signal(fd_edge)
+
+                if dk_mlh and dk_mla:
+                    dk_hp = american_to_implied(dk_mlh)
+                    dk_ap = american_to_implied(dk_mla)
+                    dk_total = dk_hp + dk_ap
+                    if dk_total > 0:
+                        dk_hp /= dk_total
+                    fair_hp2 = american_to_implied(fh)
+                    fair_ap2 = american_to_implied(fa)
+                    ft2 = fair_hp2 + fair_ap2
+                    if ft2 > 0:
+                        fair_hp2 /= ft2
+                    dk_edge = round(abs(fair_hp2 - dk_hp) * 100, 1)
+                    dk_signal = determine_signal(dk_edge)
+
+                # ML stale check
+                if fd_edge is not None and dk_edge is not None and fd_mlh and dk_mlh:
+                    fd_imp = american_to_implied(fd_mlh) * 100
+                    dk_imp = american_to_implied(dk_mlh) * 100
+                    if abs(fd_imp - dk_imp) > 30:
+                        fair_imp = american_to_implied(fh) * 100
+                        if abs(fair_imp - fd_imp) > abs(fair_imp - dk_imp):
+                            fd_signal = "STALE"
+                            fd_edge = 0
+                        else:
+                            dk_signal = "STALE"
+                            dk_edge = 0
+
+                best_e = max(
+                    fd_edge if fd_signal and fd_signal != "STALE" else 0,
+                    dk_edge if dk_signal and dk_signal != "STALE" else 0,
+                ) if (fd_edge is not None or dk_edge is not None) else None
+                best_sig = determine_signal(best_e) if best_e else "NO EDGE"
+
+                rows.append({
+                    "game_id": gid, "sport_key": sport_short,
+                    "home_team": home, "away_team": away,
+                    "commence_time": commence, "market_type": "moneyline",
+                    "omi_fair": fp_display, "omi_fair_line": fair_home_prob,
+                    "fd_line": fd_mlh, "fd_odds": fd_mlh,
+                    "fd_edge": fd_edge, "fd_signal": fd_signal,
+                    "dk_line": dk_mlh, "dk_odds": dk_mlh,
+                    "dk_edge": dk_edge, "dk_signal": dk_signal,
+                    "best_edge": best_e, "signal": best_sig,
+                })
+
+        # Sort: sport, then commence_time
+        rows.sort(key=lambda r: (r["sport_key"], r["commence_time"], r["game_id"], r["market_type"]))
+
+        return {"rows": rows, "count": len(rows)}
 
     def _best_group(self, rows: list, field: str, min_sample: int = 5) -> Optional[dict]:
         """Find the group with the highest hit rate (min sample size)."""

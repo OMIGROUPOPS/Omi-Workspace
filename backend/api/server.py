@@ -1272,6 +1272,13 @@ async def internal_graded_games(
     )
 
 
+@app.get("/api/internal/edge/live-markets")
+async def internal_live_markets(sport: str = None):
+    """Get upcoming games with current OMI fair lines and book edges."""
+    grader = InternalGrader()
+    return grader.get_live_markets(sport.upper() if sport else None)
+
+
 @app.get("/api/internal/edge/reflection")
 async def internal_edge_reflection(sport: str = None):
     """Deep reflection analysis on prediction accuracy and pillar effectiveness."""

@@ -553,7 +553,33 @@ function processGame(
   edgesMap: Record<string, LiveEdge[]>
 ) {
   // Use EXACT same consensus building as game detail page
-  const consensus = buildConsensusFromBookmakers(game);
+  const rawConsensus = buildConsensusFromBookmakers(game);
+
+  // Normalize consensus to FLAT format matching server page (processOddsApiGame)
+  // Server page uses: spreads.line, h2h.homePrice, totals.line
+  // buildConsensusFromBookmakers returns: spreads.home.line, h2h.home (number), totals.over.line
+  const consensus: any = {};
+  if (rawConsensus.spreads) {
+    consensus.spreads = {
+      line: rawConsensus.spreads.home?.line,
+      homePrice: rawConsensus.spreads.home?.odds,
+      awayPrice: rawConsensus.spreads.away?.odds,
+    };
+  }
+  if (rawConsensus.h2h) {
+    consensus.h2h = {
+      homePrice: rawConsensus.h2h.home,
+      awayPrice: rawConsensus.h2h.away,
+      drawPrice: rawConsensus.h2h.draw,
+    };
+  }
+  if (rawConsensus.totals) {
+    consensus.totals = {
+      line: rawConsensus.totals.over?.line,
+      overPrice: rawConsensus.totals.over?.odds,
+      underPrice: rawConsensus.totals.under?.odds,
+    };
+  }
 
   // Get live edges for this game
   const liveEdges = edgesMap[game.id] || [];

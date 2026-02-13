@@ -87,7 +87,7 @@ interface LiveMarketRow {
   commence_time: string;
   market_type: string;
   omi_fair: string;
-  omi_fair_line: number;
+  omi_fair_line: number | null;
   fd_line: number | null;
   fd_odds: number | null;
   fd_edge: number | null;
@@ -151,6 +151,7 @@ const SIGNAL_COLORS: Record<string, string> = {
   "LOW EDGE": "text-zinc-400",
   "NO EDGE": "text-zinc-500",
   "STALE": "text-zinc-600",
+  "PENDING": "text-zinc-600",
   // Legacy fallbacks
   MISPRICED: "text-red-400",
   VALUE: "text-amber-400",
@@ -251,7 +252,7 @@ export default function EdgeInternalPage() {
   const [sortField, setSortField] = useState("commence_time");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
 
-  // Live markets tab state
+  // Pregame markets tab state
   const [liveData, setLiveData] = useState<LiveMarketsResponse | null>(null);
   const [liveLoading, setLiveLoading] = useState(false);
 
@@ -305,7 +306,7 @@ export default function EdgeInternalPage() {
     if (activeTab === "graded") fetchGradedGames();
   }, [activeTab, fetchGradedGames]);
 
-  // ------- Live markets fetch -------
+  // ------- Pregame markets fetch -------
   const fetchLiveMarkets = useCallback(async () => {
     setLiveLoading(true);
     try {
@@ -316,7 +317,7 @@ export default function EdgeInternalPage() {
       );
       if (res.ok) setLiveData(await res.json());
     } catch (e) {
-      console.error("Failed to fetch live markets:", e);
+      console.error("Failed to fetch pregame markets:", e);
     } finally {
       setLiveLoading(false);
     }
@@ -480,7 +481,7 @@ export default function EdgeInternalPage() {
               : "text-zinc-500 border-transparent hover:text-zinc-300"
           }`}
         >
-          LIVE MARKETS
+          PREGAME MARKETS
         </button>
       </div>
 
@@ -1169,17 +1170,17 @@ export default function EdgeInternalPage() {
       )}
 
       {/* ================================================================= */}
-      {/* LIVE MARKETS TAB                                                  */}
+      {/* PREGAME MARKETS TAB                                               */}
       {/* ================================================================= */}
       {activeTab === "live" && (
         <>
           {liveLoading ? (
             <div className="mt-12 text-center text-zinc-500">
-              Loading live markets...
+              Loading pregame markets...
             </div>
           ) : !liveData || liveData.count === 0 ? (
             <div className="mt-12 text-center text-zinc-500">
-              No upcoming games found. Markets populate when composites are calculated.
+              No upcoming games found.
             </div>
           ) : (
             <>
@@ -1245,7 +1246,7 @@ export default function EdgeInternalPage() {
                             </td>
 
                             {/* OMI Fair */}
-                            <td className="px-3 py-2.5 text-cyan-400 font-mono text-xs whitespace-nowrap">
+                            <td className={`px-3 py-2.5 font-mono text-xs whitespace-nowrap ${row.omi_fair_line != null ? "text-cyan-400" : "text-zinc-600 italic"}`}>
                               {row.omi_fair}
                             </td>
 

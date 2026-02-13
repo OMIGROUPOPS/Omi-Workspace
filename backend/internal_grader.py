@@ -1082,8 +1082,6 @@ class InternalGrader:
             commence = gdata.get("commence_time", "")
 
             ch = ch_map.get(gid)
-            if not ch:
-                continue
 
             # Extract current book lines from cached_odds game_data
             bookmakers = gdata.get("bookmakers") or []
@@ -1114,10 +1112,61 @@ class InternalGrader:
                             elif o.get("name") == away:
                                 target["ml_away"] = o.get("price", 0)
 
-            fair_spread = ch.get("fair_spread")
-            fair_total = ch.get("fair_total")
-            fair_ml_home = ch.get("fair_ml_home")
-            fair_ml_away = ch.get("fair_ml_away")
+            fair_spread = ch.get("fair_spread") if ch else None
+            fair_total = ch.get("fair_total") if ch else None
+            fair_ml_home = ch.get("fair_ml_home") if ch else None
+            fair_ml_away = ch.get("fair_ml_away") if ch else None
+
+            has_composite = ch is not None
+
+            # If no composite data, emit placeholder rows for any book lines we have
+            if not has_composite:
+                # Spread placeholder
+                fd_bl = fd_lines.get("spread_line")
+                dk_bl = dk_lines.get("spread_line")
+                if fd_bl is not None or dk_bl is not None:
+                    rows.append({
+                        "game_id": gid, "sport_key": sport_short,
+                        "home_team": home, "away_team": away,
+                        "commence_time": commence, "market_type": "spread",
+                        "omi_fair": "Awaiting OMI Fair", "omi_fair_line": None,
+                        "fd_line": fd_bl, "fd_odds": fd_lines.get("spread_odds"),
+                        "fd_edge": None, "fd_signal": None,
+                        "dk_line": dk_bl, "dk_odds": dk_lines.get("spread_odds"),
+                        "dk_edge": None, "dk_signal": None,
+                        "best_edge": None, "signal": "PENDING",
+                    })
+                # Total placeholder
+                fd_bl = fd_lines.get("total_line")
+                dk_bl = dk_lines.get("total_line")
+                if fd_bl is not None or dk_bl is not None:
+                    rows.append({
+                        "game_id": gid, "sport_key": sport_short,
+                        "home_team": home, "away_team": away,
+                        "commence_time": commence, "market_type": "total",
+                        "omi_fair": "Awaiting OMI Fair", "omi_fair_line": None,
+                        "fd_line": fd_bl, "fd_odds": fd_lines.get("total_odds"),
+                        "fd_edge": None, "fd_signal": None,
+                        "dk_line": dk_bl, "dk_odds": dk_lines.get("total_odds"),
+                        "dk_edge": None, "dk_signal": None,
+                        "best_edge": None, "signal": "PENDING",
+                    })
+                # Moneyline placeholder
+                fd_mlh = fd_lines.get("ml_home")
+                dk_mlh = dk_lines.get("ml_home")
+                if fd_mlh is not None or dk_mlh is not None:
+                    rows.append({
+                        "game_id": gid, "sport_key": sport_short,
+                        "home_team": home, "away_team": away,
+                        "commence_time": commence, "market_type": "moneyline",
+                        "omi_fair": "Awaiting OMI Fair", "omi_fair_line": None,
+                        "fd_line": fd_mlh, "fd_odds": fd_mlh,
+                        "fd_edge": None, "fd_signal": None,
+                        "dk_line": dk_mlh, "dk_odds": dk_mlh,
+                        "dk_edge": None, "dk_signal": None,
+                        "best_edge": None, "signal": "PENDING",
+                    })
+                continue
 
             # Spread rows
             if fair_spread is not None:

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback, useMemo } from "react";
 
-// ── Types (mirrors API) ────────────────────────────────────────────────────
+// ── Types ──────────────────────────────────────────────────────────────────
 
 interface SpreadRow {
   game_id: string;
@@ -109,6 +109,20 @@ interface SystemStatus {
   last_error: string | null;
 }
 
+interface MappedGame {
+  cache_key: string;
+  game_id: string;
+  sport: string;
+  date: string;
+  team1: string;
+  team2: string;
+  pm_slug: string;
+  kalshi_tickers: string[];
+  best_spread: number;
+  status: string;
+  traded: boolean;
+}
+
 interface ArbState {
   spreads: SpreadRow[];
   trades: TradeEntry[];
@@ -116,6 +130,7 @@ interface ArbState {
   balances: Balances;
   system: SystemStatus;
   pnl_summary: PnlSummary;
+  mapped_games: MappedGame[];
   updated_at: string;
 }
 
@@ -148,6 +163,8 @@ function statusBadge(status: string): { bg: string; text: string } {
     return { bg: "bg-yellow-500/20", text: "text-yellow-400" };
   if (status === "FAILED" || status === "ERROR" || status === "UNHEDGED")
     return { bg: "bg-red-500/20", text: "text-red-400" };
+  if (status === "SKIPPED")
+    return { bg: "bg-gray-500/20", text: "text-gray-400" };
   return { bg: "bg-gray-500/20", text: "text-gray-400" };
 }
 
@@ -166,15 +183,17 @@ function sportBadge(sport: string): string {
 
 function timeAgo(iso: string): string {
   if (!iso) return "never";
-  // Normalize UTC timestamps missing Z suffix
   const s = iso.endsWith("Z") || iso.includes("+") ? iso : iso + "Z";
   const diff = Date.now() - new Date(s).getTime();
   const secs = Math.floor(diff / 1000);
+  if (secs < 0) return "just now";
   if (secs < 60) return `${secs}s ago`;
   const mins = Math.floor(secs / 60);
   if (mins < 60) return `${mins}m ago`;
   const hrs = Math.floor(mins / 60);
-  return `${hrs}h ago`;
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.floor(hrs / 24);
+  return `${days}d ago`;
 }
 
 function formatUptime(seconds: number): string {
@@ -187,17 +206,20 @@ function formatUptime(seconds: number): string {
   return `${s}s`;
 }
 
-function formatTime(iso: string): string {
+function formatDateTime(iso: string): string {
   if (!iso) return "-";
   try {
-    // Normalize UTC timestamps missing Z suffix
     const s = iso.endsWith("Z") || iso.includes("+") ? iso : iso + "Z";
-    return new Date(s).toLocaleTimeString("en-US", {
+    const d = new Date(s);
+    const mon = d.toLocaleString("en-US", { month: "short" });
+    const day = d.getDate();
+    const time = d.toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
       hour12: false,
     });
+    return `${mon} ${day} ${time}`;
   } catch {
     return iso;
   }
@@ -212,7 +234,6 @@ function isToday(dateStr: string | undefined): boolean {
 function toDateStr(iso: string): string {
   if (!iso) return "";
   try {
-    // Executor timestamps are UTC but lack Z suffix — normalize before parsing
     const s = iso.endsWith("Z") || iso.includes("+") ? iso : iso + "Z";
     return new Date(s).toISOString().slice(0, 10);
   } catch {
@@ -220,14 +241,14 @@ function toDateStr(iso: string): string {
   }
 }
 
-function yesterdayStr(): string {
-  const d = new Date();
-  d.setUTCDate(d.getUTCDate() - 1);
-  return d.toISOString().slice(0, 10);
-}
-
-function todayStr(): string {
-  return new Date().toISOString().slice(0, 10);
+function formatDateLabel(dateStr: string): string {
+  if (!dateStr) return "";
+  try {
+    const d = new Date(dateStr + "T12:00:00Z");
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  } catch {
+    return dateStr;
+  }
 }
 
 // ── Components ─────────────────────────────────────────────────────────────
@@ -271,8 +292,39 @@ function MetricCard({
   );
 }
 
+function FilterButton({
+  active,
+  onClick,
+  children,
+  variant = "default",
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+  variant?: "default" | "green" | "purple" | "red" | "yellow";
+}) {
+  const activeColors = {
+    default: "bg-gray-700 text-white",
+    green: "bg-emerald-500/20 text-emerald-400",
+    purple: "bg-purple-500/20 text-purple-400",
+    red: "bg-red-500/20 text-red-400",
+    yellow: "bg-yellow-500/20 text-yellow-400",
+  };
+  return (
+    <button
+      onClick={onClick}
+      className={`rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
+        active ? activeColors[variant] : "text-gray-500 hover:text-gray-300"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
 type TradeFilter = "all" | "live" | "paper";
-type DateFilter = "today" | "yesterday" | "all";
+type StatusFilter = "all" | "SUCCESS" | "PM_NO_FILL" | "UNHEDGED" | "SKIPPED";
+type BottomTab = "positions" | "mapped_games";
 
 // ── Main Component ──────────────────────────────────────────────────────────
 
@@ -282,8 +334,15 @@ export default function ArbDashboard() {
   const [fetchError, setFetchError] = useState(false);
   const [paused, setPaused] = useState(false);
   const [tradeFilter, setTradeFilter] = useState<TradeFilter>("all");
-  const [dateFilter, setDateFilter] = useState<DateFilter>("today");
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
+  const [dateOffset, setDateOffset] = useState(0);
+  const [dateAll, setDateAll] = useState(false);
   const [showAllSpreads, setShowAllSpreads] = useState(false);
+  const [tradeSearch, setTradeSearch] = useState("");
+  const [bottomTab, setBottomTab] = useState<BottomTab>("positions");
+  const [hiddenPositions, setHiddenPositions] = useState<Set<string>>(
+    new Set()
+  );
 
   const fetchData = useCallback(async () => {
     try {
@@ -313,14 +372,27 @@ export default function ArbDashboard() {
     state?.updated_at &&
     Date.now() - new Date(state.updated_at).getTime() > 60_000;
 
-  // ── Spreads: filter + sort ──────────────────────────────────────────
+  // ── Date navigation ─────────────────────────────────────────────────
+  const selectedDate = useMemo(() => {
+    if (dateAll) return null;
+    const d = new Date();
+    d.setUTCDate(d.getUTCDate() + dateOffset);
+    return d.toISOString().slice(0, 10);
+  }, [dateOffset, dateAll]);
+
+  const dateLabel = useMemo(() => {
+    if (dateAll) return "All Time";
+    if (dateOffset === 0) return "Today";
+    if (dateOffset === -1) return "Yesterday";
+    return formatDateLabel(selectedDate || "");
+  }, [dateAll, dateOffset, selectedDate]);
+
+  // ── Spreads ─────────────────────────────────────────────────────────
   const sortedSpreads = useMemo(() => {
     const raw = state?.spreads || [];
     const filtered = showAllSpreads
       ? raw
-      : raw.filter(
-          (s) => s.spread_buy_pm > 0 || s.spread_buy_k > 0
-        );
+      : raw.filter((s) => s.spread_buy_pm > 0 || s.spread_buy_k > 0);
     return [...filtered].sort((a, b) => {
       const aMax = Math.max(a.spread_buy_pm, a.spread_buy_k);
       const bMax = Math.max(b.spread_buy_pm, b.spread_buy_k);
@@ -330,49 +402,80 @@ export default function ArbDashboard() {
 
   const totalSpreadCount = state?.spreads?.length || 0;
 
-  // ── Trades: filter by mode + date, sort newest first ────────────────
+  // ── Trades ──────────────────────────────────────────────────────────
   const allTrades = useMemo(() => {
-    return [...(state?.trades || [])]
-      .sort(
-        (a, b) =>
-          new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-      )
-      .slice(0, 50);
+    return [...(state?.trades || [])].sort(
+      (a, b) =>
+        new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+    );
   }, [state?.trades]);
 
   const filteredTrades = useMemo(() => {
-    const today = todayStr();
-    const yesterday = yesterdayStr();
-
     let trades = allTrades;
 
-    // Date filter
-    if (dateFilter === "today") {
-      trades = trades.filter((t) => toDateStr(t.timestamp) === today);
-    } else if (dateFilter === "yesterday") {
-      trades = trades.filter((t) => toDateStr(t.timestamp) === yesterday);
+    if (selectedDate) {
+      trades = trades.filter((t) => toDateStr(t.timestamp) === selectedDate);
     }
 
-    // Mode filter
     if (tradeFilter === "paper") {
       trades = trades.filter((t) => t.paper_mode);
     } else if (tradeFilter === "live") {
       trades = trades.filter((t) => !t.paper_mode);
     }
 
-    return trades;
-  }, [allTrades, dateFilter, tradeFilter]);
+    if (statusFilter !== "all") {
+      trades = trades.filter((t) => t.status === statusFilter);
+    }
 
-  // ── P&L summary (exact from pnl_summary, or fallback to trades) ─────
+    if (tradeSearch.trim()) {
+      const q = tradeSearch.trim().toUpperCase();
+      trades = trades.filter(
+        (t) =>
+          t.team.toUpperCase().includes(q) ||
+          t.game_id.toUpperCase().includes(q)
+      );
+    }
+
+    return trades;
+  }, [allTrades, selectedDate, tradeFilter, statusFilter, tradeSearch]);
+
+  const filteredPnl = useMemo(() => {
+    let total = 0;
+    let successes = 0;
+    let fills = 0;
+    for (const t of filteredTrades) {
+      if (t.status === "SUCCESS") successes++;
+      if (t.contracts_filled > 0) fills++;
+      if (t.actual_pnl) {
+        total += t.actual_pnl.net_profit_dollars;
+      } else if (
+        t.status === "SUCCESS" &&
+        t.estimated_net_profit_cents != null
+      ) {
+        total +=
+          (t.estimated_net_profit_cents * (t.contracts_filled || 1)) / 100;
+      }
+    }
+    return { total, successes, fills, count: filteredTrades.length };
+  }, [filteredTrades]);
+
   const pnl = state?.pnl_summary;
 
-  // ── Positions: only active (quantity > 0) ───────────────────────────
+  // ── Positions ───────────────────────────────────────────────────────
   const activePositions = useMemo(() => {
-    return (state?.positions || []).filter((p) => p.quantity > 0);
-  }, [state?.positions]);
+    return (state?.positions || []).filter(
+      (p) => p.quantity > 0 && !hiddenPositions.has(p.game_id)
+    );
+  }, [state?.positions, hiddenPositions]);
 
   const unhedgedPositions = activePositions.filter((p) => !p.hedged_with);
   const hedgedPositions = activePositions.filter((p) => p.hedged_with);
+
+  const mappedGames = state?.mapped_games || [];
+
+  const markSettled = (gameId: string) => {
+    setHiddenPositions((prev) => new Set(prev).add(gameId));
+  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-gray-200">
@@ -416,7 +519,7 @@ export default function ArbDashboard() {
       </div>
 
       <div className="p-4 space-y-4">
-        {/* ── Top: Balances + P&L Row ──────────────────────────────────── */}
+        {/* ── Metrics Row ──────────────────────────────────────────── */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
           <MetricCard
             label="Kalshi Balance"
@@ -482,7 +585,7 @@ export default function ArbDashboard() {
           />
         </div>
 
-        {/* ── Error Banner ─────────────────────────────────────────────── */}
+        {/* ── Error Banner ─────────────────────────────────────────── */}
         {state?.system.error_count ? (
           <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 flex items-center gap-2">
             <span className="text-red-400 text-xs font-medium">
@@ -497,18 +600,22 @@ export default function ArbDashboard() {
           </div>
         ) : null}
 
-        {/* ── Middle: Spreads (60%) + Trades (40%) ─────────────────────── */}
+        {/* ── Spreads (60%) + Trades (40%) ─────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-          {/* Live Spreads (3/5 = 60%) */}
-          <div className="lg:col-span-3 rounded-lg border border-gray-800 bg-[#111] flex flex-col" style={{ maxHeight: "440px" }}>
+          {/* Live Spreads */}
+          <div
+            className="lg:col-span-3 rounded-lg border border-gray-800 bg-[#111] flex flex-col"
+            style={{ maxHeight: "440px" }}
+          >
             <div className="flex items-center justify-between border-b border-gray-800 px-3 py-2 shrink-0">
               <h2 className="text-sm font-semibold text-white">
                 Live Spreads
                 <span className="ml-1.5 text-xs text-gray-500">
                   {sortedSpreads.length}
-                  {!showAllSpreads && totalSpreadCount > sortedSpreads.length && (
-                    <span>/{totalSpreadCount}</span>
-                  )}
+                  {!showAllSpreads &&
+                    totalSpreadCount > sortedSpreads.length && (
+                      <span>/{totalSpreadCount}</span>
+                    )}
                 </span>
               </h2>
               <div className="flex items-center gap-3">
@@ -524,15 +631,16 @@ export default function ArbDashboard() {
                 </button>
                 <div className="flex items-center gap-2 text-[10px] text-gray-500">
                   <span className="flex items-center gap-0.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> 4c+
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />{" "}
+                    4c+
                   </span>
                   <span className="flex items-center gap-0.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-yellow-500" /> 3-4c
+                    <span className="h-1.5 w-1.5 rounded-full bg-yellow-500" />{" "}
+                    3-4c
                   </span>
                 </div>
               </div>
             </div>
-
             <div className="overflow-auto flex-1">
               <table className="w-full text-xs">
                 <thead className="sticky top-0 bg-[#111] z-10">
@@ -587,9 +695,7 @@ export default function ArbDashboard() {
                           </td>
                           <td className="px-2 py-1 font-mono">
                             <span
-                              className={`inline-block rounded px-1 py-0.5 text-[10px] font-medium ${sportBadge(
-                                s.sport
-                              )}`}
+                              className={`inline-block rounded px-1 py-0.5 text-[10px] font-medium ${sportBadge(s.sport)}`}
                             >
                               {s.team}
                             </span>
@@ -607,16 +713,12 @@ export default function ArbDashboard() {
                             {s.pm_ask.toFixed(1)}
                           </td>
                           <td
-                            className={`px-2 py-1 text-right font-mono font-bold ${spreadColor(
-                              s.spread_buy_pm
-                            )}`}
+                            className={`px-2 py-1 text-right font-mono font-bold ${spreadColor(s.spread_buy_pm)}`}
                           >
                             {s.spread_buy_pm.toFixed(1)}
                           </td>
                           <td
-                            className={`px-2 py-1 text-right font-mono font-bold ${spreadColor(
-                              s.spread_buy_k
-                            )}`}
+                            className={`px-2 py-1 text-right font-mono font-bold ${spreadColor(s.spread_buy_k)}`}
                           >
                             {s.spread_buy_k.toFixed(1)}
                           </td>
@@ -632,50 +734,135 @@ export default function ArbDashboard() {
             </div>
           </div>
 
-          {/* Trade Log (2/5 = 40%) */}
-          <div className="lg:col-span-2 rounded-lg border border-gray-800 bg-[#111] flex flex-col" style={{ maxHeight: "440px" }}>
-            <div className="border-b border-gray-800 px-3 py-2 flex items-center justify-between shrink-0">
-              <h2 className="text-sm font-semibold text-white">
-                Trades
-                <span className="ml-1.5 text-xs text-gray-500">
-                  {filteredTrades.length}
-                </span>
-              </h2>
-              <div className="flex items-center gap-1.5">
-                {/* Date filters */}
-                {(["today", "yesterday", "all"] as DateFilter[]).map((f) => (
+          {/* ── Trade Log ──────────────────────────────────────────── */}
+          <div
+            className="lg:col-span-2 rounded-lg border border-gray-800 bg-[#111] flex flex-col"
+            style={{ maxHeight: "440px" }}
+          >
+            <div className="border-b border-gray-800 px-3 py-2 shrink-0 space-y-1.5">
+              <div className="flex items-center justify-between">
+                <h2 className="text-sm font-semibold text-white">
+                  Trades
+                  <span className="ml-1.5 text-xs text-gray-500">
+                    {filteredTrades.length}
+                  </span>
+                </h2>
+                <div className="flex items-center gap-1.5">
                   <button
-                    key={f}
-                    onClick={() => setDateFilter(f)}
+                    onClick={() => {
+                      setDateAll(false);
+                      setDateOffset((d) => d - 1);
+                    }}
+                    className="text-gray-500 hover:text-gray-300 text-[10px] px-1"
+                  >
+                    &lt;
+                  </button>
+                  <button
+                    onClick={() => {
+                      setDateAll(false);
+                      setDateOffset(0);
+                    }}
                     className={`rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
-                      dateFilter === f
+                      !dateAll
                         ? "bg-gray-700 text-white"
                         : "text-gray-500 hover:text-gray-300"
                     }`}
                   >
-                    {f === "today" ? "Today" : f === "yesterday" ? "Yest" : "All"}
+                    {dateLabel}
                   </button>
-                ))}
-                <span className="text-gray-700">|</span>
-                {/* Mode filters */}
-                {(["all", "live", "paper"] as TradeFilter[]).map((f) => (
                   <button
-                    key={f}
-                    onClick={() => setTradeFilter(f)}
-                    className={`rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
-                      tradeFilter === f
-                        ? f === "live"
-                          ? "bg-emerald-500/20 text-emerald-400"
-                          : f === "paper"
-                          ? "bg-purple-500/20 text-purple-400"
-                          : "bg-gray-700 text-white"
-                        : "text-gray-500 hover:text-gray-300"
-                    }`}
+                    onClick={() => {
+                      setDateAll(false);
+                      setDateOffset((d) => Math.min(d + 1, 0));
+                    }}
+                    className="text-gray-500 hover:text-gray-300 text-[10px] px-1"
+                    disabled={dateOffset >= 0 && !dateAll}
                   >
-                    {f === "all" ? "All" : f === "live" ? "Live" : "Paper"}
+                    &gt;
                   </button>
-                ))}
+                  <FilterButton
+                    active={dateAll}
+                    onClick={() => setDateAll(!dateAll)}
+                  >
+                    All
+                  </FilterButton>
+                  <span className="text-gray-700">|</span>
+                  {(["all", "live", "paper"] as TradeFilter[]).map((f) => (
+                    <FilterButton
+                      key={f}
+                      active={tradeFilter === f}
+                      onClick={() => setTradeFilter(f)}
+                      variant={
+                        f === "live"
+                          ? "green"
+                          : f === "paper"
+                          ? "purple"
+                          : "default"
+                      }
+                    >
+                      {f === "all" ? "All" : f === "live" ? "Live" : "Paper"}
+                    </FilterButton>
+                  ))}
+                </div>
               </div>
+              {/* Status filter + search */}
+              <div className="flex items-center gap-1.5">
+                {(
+                  [
+                    "all",
+                    "SUCCESS",
+                    "PM_NO_FILL",
+                    "UNHEDGED",
+                    "SKIPPED",
+                  ] as StatusFilter[]
+                ).map((f) => (
+                  <FilterButton
+                    key={f}
+                    active={statusFilter === f}
+                    onClick={() => setStatusFilter(f)}
+                    variant={
+                      f === "SUCCESS"
+                        ? "green"
+                        : f === "PM_NO_FILL"
+                        ? "yellow"
+                        : f === "UNHEDGED"
+                        ? "red"
+                        : "default"
+                    }
+                  >
+                    {f === "all" ? "Any Status" : f}
+                  </FilterButton>
+                ))}
+                <input
+                  type="text"
+                  placeholder="Search team..."
+                  value={tradeSearch}
+                  onChange={(e) => setTradeSearch(e.target.value)}
+                  className="ml-auto w-20 rounded bg-gray-800 px-1.5 py-0.5 text-[10px] text-gray-300 placeholder-gray-600 border border-gray-700 focus:border-gray-500 focus:outline-none"
+                />
+              </div>
+              {/* Summary */}
+              {filteredTrades.length > 0 && (
+                <div className="flex items-center gap-3 text-[10px] text-gray-500 pt-0.5">
+                  <span>
+                    {filteredPnl.successes} success
+                    {filteredPnl.successes !== 1 ? "es" : ""}
+                  </span>
+                  <span>{filteredPnl.fills} filled</span>
+                  <span
+                    className={
+                      filteredPnl.total > 0
+                        ? "text-emerald-400"
+                        : filteredPnl.total < 0
+                        ? "text-red-400"
+                        : "text-gray-500"
+                    }
+                  >
+                    P&L: {filteredPnl.total >= 0 ? "+" : ""}$
+                    {filteredPnl.total.toFixed(2)}
+                  </span>
+                </div>
+              )}
             </div>
             <div className="overflow-auto flex-1">
               <table className="w-full text-xs">
@@ -695,7 +882,12 @@ export default function ArbDashboard() {
                         colSpan={5}
                         className="px-3 py-6 text-center text-gray-600 text-xs"
                       >
-                        No trades {dateFilter === "today" ? "today" : dateFilter === "yesterday" ? "yesterday" : "recorded"}
+                        No trades{" "}
+                        {selectedDate
+                          ? dateOffset === 0
+                            ? "today"
+                            : `on ${formatDateLabel(selectedDate)}`
+                          : "recorded"}
                       </td>
                     </tr>
                   ) : (
@@ -706,17 +898,15 @@ export default function ArbDashboard() {
                           key={`${t.timestamp}-${i}`}
                           className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors"
                         >
-                          <td className="px-2 py-1 font-mono text-gray-400 whitespace-nowrap">
-                            {formatTime(t.timestamp)}
+                          <td className="px-2 py-1 font-mono text-gray-400 whitespace-nowrap text-[10px]">
+                            {formatDateTime(t.timestamp)}
                           </td>
                           <td className="px-2 py-1 whitespace-nowrap">
                             <span className="text-white font-medium">
                               {t.team}
                             </span>
                             <span
-                              className={`ml-1 inline-block rounded px-0.5 text-[9px] font-medium ${sportBadge(
-                                t.sport
-                              )}`}
+                              className={`ml-1 inline-block rounded px-0.5 text-[9px] font-medium ${sportBadge(t.sport)}`}
                             >
                               {t.sport}
                             </span>
@@ -727,9 +917,7 @@ export default function ArbDashboard() {
                             )}
                           </td>
                           <td
-                            className={`px-2 py-1 text-right font-mono ${spreadColor(
-                              t.spread_cents
-                            )}`}
+                            className={`px-2 py-1 text-right font-mono ${spreadColor(t.spread_cents)}`}
                           >
                             {t.spread_cents.toFixed(1)}
                           </td>
@@ -768,150 +956,351 @@ export default function ArbDashboard() {
           </div>
         </div>
 
-        {/* ── Bottom: Positions (both legs) ─────────────────────────── */}
-        {activePositions.length > 0 ? (
-          <div className="rounded-lg border border-gray-800 bg-[#111]">
-            <div className="border-b border-gray-800 px-3 py-2">
-              <h2 className="text-sm font-semibold text-white">
-                Open Positions
-                <span className="ml-1.5 text-xs text-gray-500">
+        {/* ── Bottom Tabs: Positions / Mapped Games ────────────────── */}
+        <div className="rounded-lg border border-gray-800 bg-[#111]">
+          <div className="flex items-center border-b border-gray-800 px-3">
+            <button
+              onClick={() => setBottomTab("positions")}
+              className={`px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
+                bottomTab === "positions"
+                  ? "border-emerald-500 text-white"
+                  : "border-transparent text-gray-500 hover:text-gray-300"
+              }`}
+            >
+              Open Positions
+              {activePositions.length > 0 && (
+                <span className="ml-1 text-xs text-gray-500">
                   {activePositions.length}
-                  {unhedgedPositions.length > 0 && (
-                    <span className="ml-1 text-red-400">
-                      ({unhedgedPositions.length} unhedged)
-                    </span>
-                  )}
                 </span>
-              </h2>
-            </div>
-            <div className="divide-y divide-gray-800/50">
-              {/* Unhedged first (RED warning) */}
-              {unhedgedPositions.map((p, i) => (
-                <div
-                  key={`uh-${i}`}
-                  className="px-4 py-3 bg-red-500/5 border-l-2 border-red-500"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="text-white font-medium text-xs">
-                        {p.team || p.game_id}
-                      </span>
-                      <span
-                        className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${sportBadge(
-                          p.sport
-                        )}`}
-                      >
-                        {p.sport}
-                      </span>
-                    </div>
-                    <span className="text-[9px] font-medium rounded px-1.5 py-0.5 bg-red-500/20 text-red-400">
-                      UNHEDGED
-                    </span>
-                  </div>
-                  <div className="mt-1.5 flex items-center gap-3 text-[11px]">
-                    <span className="text-gray-400">
-                      {p.platform}: {p.side} x{p.quantity}
-                    </span>
-                    {p.avg_price > 0 && (
-                      <span className="text-gray-500">@{p.avg_price}c</span>
-                    )}
-                    <span className="text-red-400/80 text-[10px]">
-                      Exposure: ${((p.avg_price || 50) * p.quantity / 100).toFixed(2)}
-                    </span>
-                  </div>
+              )}
+            </button>
+            <button
+              onClick={() => setBottomTab("mapped_games")}
+              className={`px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
+                bottomTab === "mapped_games"
+                  ? "border-emerald-500 text-white"
+                  : "border-transparent text-gray-500 hover:text-gray-300"
+              }`}
+            >
+              Mapped Games
+              {mappedGames.length > 0 && (
+                <span className="ml-1 text-xs text-gray-500">
+                  {mappedGames.length}
+                </span>
+              )}
+            </button>
+          </div>
+
+          {/* ── Open Positions ──────────────────────────────────── */}
+          {bottomTab === "positions" && (
+            <div>
+              {activePositions.length === 0 ? (
+                <div className="text-center py-6">
+                  <span className="text-xs text-gray-600">
+                    No open positions
+                  </span>
                 </div>
-              ))}
-
-              {/* Hedged positions — both legs */}
-              {hedgedPositions.map((p, i) => {
-                const dir = p.direction || "";
-                const hasFillData = (p.pm_fill_price ?? 0) > 0 || (p.k_fill_price ?? 0) > 0;
-                const pmDir = dir === "BUY_PM_SELL_K" ? "LONG" : dir === "BUY_K_SELL_PM" ? "SHORT" : "";
-                const kDir = dir === "BUY_PM_SELL_K" ? "SHORT" : dir === "BUY_K_SELL_PM" ? "LONG" : "";
-                const locked = p.locked_profit_cents ?? 0;
-                const netProfit = p.net_profit_cents ?? 0;
-                const pmFill = p.pm_fill_price ?? 0;
-                const kFill = p.k_fill_price ?? 0;
-                const qty = p.contracts || p.quantity || 0;
-
-                return (
-                  <div key={`h-${i}`} className="px-4 py-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="text-white font-medium text-xs">
-                          {p.team || p.game_id}
-                        </span>
-                        <span
-                          className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${sportBadge(
-                            p.sport
-                          )}`}
-                        >
-                          {p.sport}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {hasFillData && (
+              ) : (
+                <div className="divide-y divide-gray-800/50">
+                  {unhedgedPositions.map((p, i) => (
+                    <div
+                      key={`uh-${i}`}
+                      className="px-4 py-3 border-l-2 border-red-500 bg-red-500/5"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-white font-medium text-xs">
+                            {p.team || p.game_id}
+                          </span>
                           <span
-                            className={`text-[10px] font-mono font-bold ${
-                              netProfit > 0
-                                ? "text-emerald-400"
-                                : netProfit < 0
-                                ? "text-red-400"
-                                : "text-gray-400"
-                            }`}
+                            className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${sportBadge(p.sport)}`}
                           >
-                            {netProfit >= 0 ? "+" : ""}
-                            {netProfit.toFixed(1)}c net
+                            {p.sport}
+                          </span>
+                          {p.trade_timestamp && (
+                            <span className="text-[9px] text-gray-600">
+                              {timeAgo(p.trade_timestamp)}
+                            </span>
+                          )}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[9px] font-medium rounded px-1.5 py-0.5 bg-red-500/20 text-red-400">
+                            UNHEDGED
+                          </span>
+                          <button
+                            onClick={() => markSettled(p.game_id)}
+                            className="text-[9px] text-gray-600 hover:text-gray-400 px-1"
+                            title="Hide this position (mark as settled)"
+                          >
+                            Mark Settled
+                          </button>
+                        </div>
+                      </div>
+                      <div className="mt-1.5 flex items-center gap-3 text-[11px]">
+                        <span className="text-gray-400">
+                          {p.platform}: {p.side} x{p.quantity}
+                        </span>
+                        {p.avg_price > 0 && (
+                          <span className="text-gray-500">
+                            @{p.avg_price}c
                           </span>
                         )}
-                        <span className="text-[9px] font-medium rounded px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400">
-                          HEDGED
+                        <span className="text-red-400/80 text-[10px]">
+                          Exposure: $
+                          {(
+                            ((p.avg_price || 50) * p.quantity) /
+                            100
+                          ).toFixed(2)}
                         </span>
                       </div>
                     </div>
+                  ))}
 
-                    {hasFillData ? (
-                      <div className="mt-1.5 flex items-center gap-3 text-[11px] font-mono">
-                        <span className="text-blue-400">
-                          PM: {pmDir} @{pmFill.toFixed(1)}c x{qty}
-                        </span>
-                        <span className="text-gray-700">|</span>
-                        <span className="text-orange-400">
-                          K: {kDir} @{kFill.toFixed(1)}c x{qty}
-                        </span>
-                        <span className="text-gray-700">|</span>
-                        <span
-                          className={`font-bold ${
-                            locked > 0
-                              ? "text-emerald-400"
-                              : locked < 0
-                              ? "text-red-400"
-                              : "text-gray-400"
-                          }`}
-                        >
-                          Locked: {locked >= 0 ? "+" : ""}
-                          {locked.toFixed(1)}c
-                        </span>
+                  {hedgedPositions.map((p, i) => {
+                    const dir = p.direction || "";
+                    const hasFillData =
+                      (p.pm_fill_price ?? 0) > 0 ||
+                      (p.k_fill_price ?? 0) > 0;
+                    const pmDir =
+                      dir === "BUY_PM_SELL_K"
+                        ? "LONG"
+                        : dir === "BUY_K_SELL_PM"
+                        ? "SHORT"
+                        : "";
+                    const kDir =
+                      dir === "BUY_PM_SELL_K"
+                        ? "SHORT"
+                        : dir === "BUY_K_SELL_PM"
+                        ? "LONG"
+                        : "";
+                    const locked = p.locked_profit_cents ?? 0;
+                    const netProfit = p.net_profit_cents ?? 0;
+                    const pmFill = p.pm_fill_price ?? 0;
+                    const kFill = p.k_fill_price ?? 0;
+                    const qty = p.contracts || p.quantity || 0;
+
+                    return (
+                      <div
+                        key={`h-${i}`}
+                        className="px-4 py-3 border-l-2 border-emerald-500"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="text-white font-medium text-xs">
+                              {p.team || p.game_id}
+                            </span>
+                            <span
+                              className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${sportBadge(p.sport)}`}
+                            >
+                              {p.sport}
+                            </span>
+                            {p.trade_timestamp && (
+                              <span className="text-[9px] text-gray-600">
+                                {timeAgo(p.trade_timestamp)}
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {hasFillData && (
+                              <span
+                                className={`text-[10px] font-mono font-bold ${
+                                  netProfit > 0
+                                    ? "text-emerald-400"
+                                    : netProfit < 0
+                                    ? "text-red-400"
+                                    : "text-gray-400"
+                                }`}
+                              >
+                                {netProfit >= 0 ? "+" : ""}
+                                {netProfit.toFixed(1)}c net
+                              </span>
+                            )}
+                            <span className="text-[9px] font-medium rounded px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400">
+                              HEDGED
+                            </span>
+                            <button
+                              onClick={() => markSettled(p.game_id)}
+                              className="text-[9px] text-gray-600 hover:text-gray-400 px-1"
+                              title="Hide this position (mark as settled)"
+                            >
+                              Mark Settled
+                            </button>
+                          </div>
+                        </div>
+
+                        {hasFillData ? (
+                          <div className="mt-2 grid grid-cols-2 gap-3">
+                            <div className="rounded bg-blue-500/5 border border-blue-500/20 px-2.5 py-1.5">
+                              <div className="text-[9px] text-blue-400 font-medium mb-0.5">
+                                PM LEG
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="text-[11px] font-mono text-blue-300">
+                                  {pmDir} x{qty}
+                                </span>
+                                <span className="text-[11px] font-mono text-white">
+                                  @{pmFill.toFixed(1)}c
+                                </span>
+                              </div>
+                            </div>
+                            <div className="rounded bg-orange-500/5 border border-orange-500/20 px-2.5 py-1.5">
+                              <div className="text-[9px] text-orange-400 font-medium mb-0.5">
+                                KALSHI LEG
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="text-[11px] font-mono text-orange-300">
+                                  {kDir} x{qty}
+                                </span>
+                                <span className="text-[11px] font-mono text-white">
+                                  @{kFill.toFixed(1)}c
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="mt-1 flex items-center gap-2 text-[10px] text-gray-400">
+                            <span>
+                              {p.side} x{p.quantity}
+                            </span>
+                            {p.avg_price > 0 && (
+                              <span>PM@{p.avg_price}c</span>
+                            )}
+                            {p.current_value > 0 && (
+                              <span>K@{p.current_value}c</span>
+                            )}
+                          </div>
+                        )}
+
+                        {hasFillData && (
+                          <div className="mt-1.5 flex items-center gap-3 text-[10px]">
+                            <span
+                              className={`font-mono font-bold ${
+                                locked > 0
+                                  ? "text-emerald-400"
+                                  : locked < 0
+                                  ? "text-red-400"
+                                  : "text-gray-400"
+                              }`}
+                            >
+                              Locked: {locked >= 0 ? "+" : ""}
+                              {locked.toFixed(1)}c gross
+                            </span>
+                            <span className="text-gray-600">
+                              ({pmFill.toFixed(1)} + {kFill.toFixed(1)} ={" "}
+                              {(pmFill + kFill).toFixed(1)}c cost)
+                            </span>
+                          </div>
+                        )}
                       </div>
-                    ) : (
-                      <div className="mt-1 flex items-center gap-2 text-[10px] text-gray-400">
-                        <span>{p.side} x{p.quantity}</span>
-                        {p.avg_price > 0 && <span>PM@{p.avg_price}c</span>}
-                        {p.current_value > 0 && <span>K@{p.current_value}c</span>}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          </div>
-        ) : (
-          <div className="text-center py-1">
-            <span className="text-[10px] text-gray-600">No open positions</span>
-          </div>
-        )}
+          )}
 
-        {/* ── Connection Footer ────────────────────────────────────────── */}
+          {/* ── Mapped Games ───────────────────────────────────── */}
+          {bottomTab === "mapped_games" && (
+            <div>
+              {mappedGames.length === 0 ? (
+                <div className="text-center py-6">
+                  <span className="text-xs text-gray-600">
+                    No mapped games data — waiting for executor push
+                  </span>
+                </div>
+              ) : (
+                <div className="overflow-auto" style={{ maxHeight: "400px" }}>
+                  <table className="w-full text-xs">
+                    <thead className="sticky top-0 bg-[#111] z-10">
+                      <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
+                        <th className="px-2 py-1.5">Game</th>
+                        <th className="px-2 py-1.5">Sport</th>
+                        <th className="px-2 py-1.5">Date</th>
+                        <th className="px-2 py-1.5">Status</th>
+                        <th className="px-2 py-1.5 text-right">
+                          Best Spread
+                        </th>
+                        <th className="px-2 py-1.5">Traded</th>
+                        <th className="px-2 py-1.5">PM Slug</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {mappedGames.map((g) => {
+                        const today = isToday(g.date);
+                        return (
+                          <tr
+                            key={g.cache_key}
+                            className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors ${
+                              g.traded ? "bg-emerald-500/5" : ""
+                            }`}
+                          >
+                            <td className="px-2 py-1.5 whitespace-nowrap">
+                              <span className="text-white font-medium">
+                                {g.team1}
+                              </span>
+                              <span className="text-gray-600 mx-1">vs</span>
+                              <span className="text-white font-medium">
+                                {g.team2}
+                              </span>
+                            </td>
+                            <td className="px-2 py-1.5">
+                              <span
+                                className={`inline-block rounded px-1 py-0.5 text-[10px] font-medium ${sportBadge(g.sport)}`}
+                              >
+                                {g.sport}
+                              </span>
+                            </td>
+                            <td className="px-2 py-1.5 font-mono text-gray-400">
+                              {today ? (
+                                <span className="text-emerald-400">Today</span>
+                              ) : (
+                                g.date.slice(5)
+                              )}
+                            </td>
+                            <td className="px-2 py-1.5">
+                              <span
+                                className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${
+                                  g.status === "Active"
+                                    ? "bg-emerald-500/20 text-emerald-400"
+                                    : "bg-gray-500/20 text-gray-500"
+                                }`}
+                              >
+                                {g.status}
+                              </span>
+                            </td>
+                            <td
+                              className={`px-2 py-1.5 text-right font-mono font-bold ${spreadColor(g.best_spread)}`}
+                            >
+                              {g.best_spread > 0
+                                ? g.best_spread.toFixed(1)
+                                : "-"}
+                            </td>
+                            <td className="px-2 py-1.5">
+                              {g.traded ? (
+                                <span className="text-emerald-400 text-[9px] font-medium">
+                                  YES
+                                </span>
+                              ) : (
+                                <span className="text-gray-600 text-[9px]">
+                                  -
+                                </span>
+                              )}
+                            </td>
+                            <td className="px-2 py-1.5 text-[9px] text-gray-600 font-mono truncate max-w-[160px]">
+                              {g.pm_slug}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* ── Footer ──────────────────────────────────────────────── */}
         <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[10px] text-gray-500">
             <div className="flex items-center gap-1.5">

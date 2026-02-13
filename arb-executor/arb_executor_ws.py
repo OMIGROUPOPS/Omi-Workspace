@@ -1398,12 +1398,15 @@ async def refresh_balances(session, kalshi_api, pm_api):
         except Exception as e:
             print(f"[POSITIONS] Error loading trades.json for hedge check: {e}", flush=True)
 
-        # Kalshi positions
+        # Kalshi positions (skip settled: market_exposure == 0 means resolved)
         k_positions = await kalshi_api.get_positions(session)
         for ticker, pos in (k_positions or {}).items():
             qty = pos.position if hasattr(pos, 'position') else pos.get('position', 0)
             if qty == 0:
                 continue
+            exposure = pos.market_exposure if hasattr(pos, 'market_exposure') else pos.get('market_exposure', 0)
+            if exposure == 0:
+                continue  # Settled market — position pending payout
             cache_key = ticker_to_cache_key.get(ticker, "")
             parts = ticker.split("-")
             team = parts[-1] if len(parts) >= 3 else ""
@@ -1474,18 +1477,17 @@ async def refresh_balances(session, kalshi_api, pm_api):
             ticker = p.get("_ticker", "")
             if not ticker:
                 return False
-            # If ticker is no longer monitored (not in local_books), it's settled
             book = local_books.get(ticker)
             if book is None:
-                # Not in our active books — game no longer being tracked
-                # Only treat as settled if the ticker is also not in our mapping
-                if ticker not in ticker_to_cache_key:
-                    return True
-            elif book:
-                bid = book.get("best_bid") or 0
-                ask = book.get("best_ask") or 0
-                if bid >= 99 or (ask > 0 and ask <= 1):
-                    return True
+                # Not in our active books at all — likely settled
+                return True
+            bid = book.get("best_bid") or 0
+            ask = book.get("best_ask") or 0
+            # Settled: no book, or resolved prices
+            if bid == 0 and ask == 0:
+                return True
+            if bid >= 99 or (ask > 0 and ask <= 1):
+                return True
             return False
 
         # ── Match hedged pairs by game_id (now aligned via trades.json) ──

@@ -104,6 +104,7 @@ class DashboardPusher:
         balances = self._build_balances()
         system = self._build_system()
         pnl_summary = self._build_pnl_summary()
+        mapped_games = self._build_mapped_games()
 
         payload = {
             "spreads": spreads,
@@ -112,6 +113,7 @@ class DashboardPusher:
             "balances": balances,
             "system": system,
             "pnl_summary": pnl_summary,
+            "mapped_games": mapped_games,
         }
 
         # Debug: log payload summary every push
@@ -219,7 +221,7 @@ class DashboardPusher:
             if os.path.exists(TRADES_FILE):
                 with open(TRADES_FILE, "r") as f:
                     trades = json.load(f)
-                recent = trades[-50:] if len(trades) > 50 else trades
+                recent = trades[-200:] if len(trades) > 200 else trades
                 return [
                     {
                         "timestamp": t.get("timestamp", ""),
@@ -362,6 +364,98 @@ class DashboardPusher:
         except Exception as e:
             logger.debug(f"Error computing P&L summary: {e}")
             return empty
+
+    # ── Mapped Games ──────────────────────────────────────────────────────
+
+    def _build_mapped_games(self) -> list:
+        """Build mapped games list from verified_maps for the Mapped Games tab."""
+        if not self.verified_maps:
+            return []
+
+        # Load trades.json to check which games have been traded
+        traded_game_ids: set = set()
+        try:
+            if os.path.exists(TRADES_FILE):
+                with open(TRADES_FILE, "r") as f:
+                    all_trades = json.load(f)
+                for t in all_trades:
+                    if t.get("contracts_filled", 0) > 0:
+                        traded_game_ids.add(t.get("game_id", ""))
+        except Exception:
+            pass
+
+        games = self.verified_maps.get("games", {})
+        rows = []
+        for cache_key, g in games.items():
+            game_id = g.get("game_id", "")
+            sport = g.get("sport_display", g.get("sport", "").upper())
+            date = g.get("date", "")
+            pm_slug = g.get("pm_slug", "")
+
+            # Extract team names from cache_key (format: sport:TEAM1-TEAM2:date)
+            ck_parts = cache_key.split(":")
+            teams_str = ck_parts[1] if len(ck_parts) >= 2 else ""
+            teams = teams_str.split("-") if teams_str else []
+            team1 = teams[0] if len(teams) >= 1 else ""
+            team2 = teams[1] if len(teams) >= 2 else ""
+
+            # Kalshi tickers
+            kalshi_tickers = g.get("kalshi_tickers", {})
+            ticker_list = list(kalshi_tickers.values())
+
+            # Current best spread from live data
+            best_spread = 0.0
+            for team_abbr, ticker in kalshi_tickers.items():
+                book = self.local_books.get(ticker)
+                if not book:
+                    continue
+                k_bid = book.get("best_bid") or 0
+                k_ask = book.get("best_ask") or 0
+                if k_bid == 0 or k_ask == 0:
+                    continue
+
+                pm_key = f"{cache_key}_{team_abbr}"
+                pm = self.pm_prices.get(pm_key)
+                if not pm:
+                    continue
+                pm_bid = pm.get("bid") or 0
+                pm_ask = pm.get("ask") or 0
+
+                spread_buy_pm = k_bid - pm_ask
+                spread_buy_k = pm_bid - k_ask
+                best = max(spread_buy_pm, spread_buy_k)
+                if best > best_spread:
+                    best_spread = best
+
+            # Determine status
+            has_books = any(
+                self.local_books.get(t) and
+                (self.local_books[t].get("best_bid") or 0) > 0
+                for t in ticker_list
+            )
+            status = "Active" if has_books else "Inactive"
+
+            rows.append({
+                "cache_key": cache_key,
+                "game_id": game_id,
+                "sport": sport,
+                "date": date,
+                "team1": team1,
+                "team2": team2,
+                "pm_slug": pm_slug,
+                "kalshi_tickers": ticker_list,
+                "best_spread": round(best_spread, 1),
+                "status": status,
+                "traded": game_id in traded_game_ids,
+            })
+
+        # Sort: active games first, then by date, then by best spread
+        rows.sort(key=lambda r: (
+            0 if r["status"] == "Active" else 1,
+            r["date"],
+            -r["best_spread"],
+        ))
+        return rows
 
     # ── Balances ───────────────────────────────────────────────────────────
 

@@ -107,6 +107,20 @@ export interface SystemStatus {
   last_error: string | null;
 }
 
+export interface MappedGame {
+  cache_key: string;
+  game_id: string;
+  sport: string;
+  date: string;
+  team1: string;
+  team2: string;
+  pm_slug: string;
+  kalshi_tickers: string[];
+  best_spread: number;
+  status: string;
+  traded: boolean;
+}
+
 export interface ArbState {
   spreads: SpreadRow[];
   trades: TradeEntry[];
@@ -114,6 +128,7 @@ export interface ArbState {
   balances: Balances;
   system: SystemStatus;
   pnl_summary: PnlSummary;
+  mapped_games: MappedGame[];
   updated_at: string;
 }
 
@@ -149,6 +164,7 @@ const DEFAULT_STATE: ArbState = {
     hedged_count: 0,
     unhedged_filled: 0,
   },
+  mapped_games: [],
   updated_at: "",
 };
 
@@ -182,6 +198,7 @@ export async function POST(req: NextRequest) {
     if (body.balances !== undefined) arbState.balances = body.balances;
     if (body.system !== undefined) arbState.system = body.system;
     if (body.pnl_summary !== undefined) arbState.pnl_summary = body.pnl_summary;
+    if (body.mapped_games !== undefined) arbState.mapped_games = body.mapped_games;
     arbState.updated_at = new Date().toISOString();
 
     return NextResponse.json({ ok: true, updated_at: arbState.updated_at });

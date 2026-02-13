@@ -296,23 +296,56 @@ class CompositeTracker:
         if not db._is_connected():
             return {"error": "Database not connected", "games_processed": 0, "errors": 0}
 
-        now = datetime.now(timezone.utc).isoformat()
+        now_dt = datetime.now(timezone.utc)
+        now = now_dt.isoformat()
 
         try:
+            # Fetch ALL games from cached_odds (no server-side JSONB filter).
+            # The cleanup job keeps this table lean (~active games only).
+            # We filter by commence_time in Python with proper datetime parsing
+            # to avoid text comparison issues (Z vs +00:00 suffixes).
             result = db.client.table("cached_odds").select(
                 "sport_key, game_id, game_data"
-            ).gte(
-                "game_data->>commence_time", now
-            ).execute()
+            ).limit(5000).execute()
         except Exception as e:
             logger.error(f"[CompositeTracker] Failed to query cached_odds: {e}")
             return {"error": str(e), "games_processed": 0, "errors": 1}
 
-        rows = result.data or []
-        logger.info(f"[CompositeTracker] Found {len(rows)} active games to recalculate")
+        all_rows = result.data or []
+
+        # Filter to future games in Python (proper datetime comparison)
+        rows = []
+        skipped_past = 0
+        for row in all_rows:
+            gd = row.get("game_data") or {}
+            ct = gd.get("commence_time")
+            if not ct:
+                continue
+            try:
+                game_dt = datetime.fromisoformat(ct.replace("Z", "+00:00"))
+                if game_dt >= now_dt:
+                    rows.append(row)
+                else:
+                    skipped_past += 1
+            except (ValueError, AttributeError):
+                # Can't parse commence_time — include it anyway to avoid silent drops
+                rows.append(row)
+
+        # Log per-sport breakdown
+        sport_counts: dict[str, int] = {}
+        for row in rows:
+            sk = row.get("sport_key", "unknown")
+            sport_counts[sk] = sport_counts.get(sk, 0) + 1
+        logger.info(
+            f"[CompositeTracker] Found {len(rows)} active games to recalculate "
+            f"(skipped {skipped_past} past games from {len(all_rows)} total). "
+            f"By sport: {sport_counts}"
+        )
 
         games_processed = 0
         errors = 0
+        sport_processed: dict[str, int] = {}
+        sport_errors: dict[str, int] = {}
 
         for row in rows:
             try:
@@ -397,15 +430,23 @@ class CompositeTracker:
                 db.client.table("composite_history").insert(row_data).execute()
 
                 games_processed += 1
+                sport_processed[sport_key] = sport_processed.get(sport_key, 0) + 1
 
             except Exception as e:
-                logger.error(f"[CompositeTracker] Error processing {row.get('game_id', '?')}: {e}")
+                logger.error(
+                    f"[CompositeTracker] Error processing {row.get('game_id', '?')} "
+                    f"(sport={row.get('sport_key', '?')}): {e}"
+                )
                 errors += 1
+                sk = row.get("sport_key", "unknown")
+                sport_errors[sk] = sport_errors.get(sk, 0) + 1
 
         summary = {
             "games_processed": games_processed,
             "errors": errors,
             "timestamp": now,
+            "by_sport": sport_processed,
+            "errors_by_sport": sport_errors if sport_errors else None,
         }
         logger.info(f"[CompositeTracker] Done: {summary}")
         return summary

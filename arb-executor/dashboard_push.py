@@ -32,6 +32,7 @@ import requests
 logger = logging.getLogger("dashboard_push")
 
 TRADES_FILE = os.path.join(os.path.dirname(__file__) or ".", "trades.json")
+VERIFIED_MAPPINGS_FILE = os.path.join(os.path.dirname(__file__) or ".", "verified_mappings.json")
 DASHBOARD_URL = os.environ.get("DASHBOARD_URL", "")
 DASHBOARD_TOKEN = os.environ.get("DASHBOARD_TOKEN", "")
 
@@ -106,6 +107,8 @@ class DashboardPusher:
         pnl_summary = self._build_pnl_summary()
         mapped_games = self._build_mapped_games()
 
+        mappings_refreshed = self._get_mappings_last_refreshed()
+
         payload = {
             "spreads": spreads,
             "trades": trades,
@@ -114,6 +117,7 @@ class DashboardPusher:
             "system": system,
             "pnl_summary": pnl_summary,
             "mapped_games": mapped_games,
+            "mappings_last_refreshed": mappings_refreshed,
         }
 
         # Debug: log payload summary every push
@@ -456,6 +460,18 @@ class DashboardPusher:
             -r["best_spread"],
         ))
         return rows
+
+    # ── Mappings Health ─────────────────────────────────────────────────────
+
+    def _get_mappings_last_refreshed(self) -> str:
+        """Return ISO timestamp of verified_mappings.json last modification."""
+        try:
+            if os.path.exists(VERIFIED_MAPPINGS_FILE):
+                mtime = os.path.getmtime(VERIFIED_MAPPINGS_FILE)
+                return datetime.fromtimestamp(mtime, tz=timezone.utc).isoformat()
+        except Exception:
+            pass
+        return ""
 
     # ── Balances ───────────────────────────────────────────────────────────
 

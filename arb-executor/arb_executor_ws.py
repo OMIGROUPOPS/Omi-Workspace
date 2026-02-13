@@ -29,6 +29,7 @@ from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.backends import default_backend
 
 from dashboard_push import DashboardPusher
+import orderbook_db
 
 # Shared configuration - single source of truth
 from config import Config, ExecutionMode
@@ -339,6 +340,76 @@ def recalculate_best_prices(book: Dict):
     else:
         book['best_ask'] = None
         book['best_ask_size'] = 0
+
+
+# ============================================================================
+# ORDERBOOK SNAPSHOT RECORDING
+# ============================================================================
+
+def _record_kalshi_snapshot(ticker: str):
+    """Record a Kalshi orderbook snapshot to SQLite (throttled by orderbook_db)."""
+    book = local_books.get(ticker)
+    if not book:
+        return
+    best_bid = book.get('best_bid') or 0
+    best_ask = book.get('best_ask') or 0
+    if best_bid == 0 or best_ask == 0:
+        return
+
+    parts = ticker.split("-")
+    game_id = parts[1] if len(parts) >= 2 else ticker
+
+    bids = book.get('yes_bids', {})
+    bid_levels = sorted(bids.items(), key=lambda x: -x[0])[:5]
+    bid_depth = sum(bids.values())
+
+    asks = book.get('yes_asks', {})
+    ask_levels = sorted(asks.items(), key=lambda x: x[0])[:5]
+    ask_depth = sum(asks.values())
+
+    orderbook_db.record_snapshot(
+        game_id=game_id,
+        platform='kalshi',
+        best_bid=best_bid,
+        best_ask=best_ask,
+        bid_depth=bid_depth,
+        ask_depth=ask_depth,
+        bid_levels_json=json.dumps([{"price": p, "size": s} for p, s in bid_levels]),
+        ask_levels_json=json.dumps([{"price": p, "size": s} for p, s in ask_levels]),
+        spread=best_ask - best_bid,
+    )
+
+
+def _record_pm_snapshot(pm_slug: str, market_data: Dict):
+    """Record a PM orderbook snapshot to SQLite (throttled by orderbook_db)."""
+    bids = market_data.get("bids", [])
+    offers = market_data.get("offers", [])
+    if not bids or not offers:
+        return
+
+    sorted_bids = sorted(bids, key=lambda x: float(x["px"]["value"]), reverse=True)
+    sorted_offers = sorted(offers, key=lambda x: float(x["px"]["value"]))
+
+    best_bid = round(float(sorted_bids[0]["px"]["value"]) * 100)
+    best_ask = round(float(sorted_offers[0]["px"]["value"]) * 100)
+
+    bid_depth = sum(int(float(b["qty"])) for b in sorted_bids)
+    ask_depth = sum(int(float(o["qty"])) for o in sorted_offers)
+
+    bid_levels = [{"price": round(float(b["px"]["value"]) * 100), "size": int(float(b["qty"]))} for b in sorted_bids[:5]]
+    ask_levels = [{"price": round(float(o["px"]["value"]) * 100), "size": int(float(o["qty"]))} for o in sorted_offers[:5]]
+
+    orderbook_db.record_snapshot(
+        game_id=pm_slug,
+        platform='pm',
+        best_bid=best_bid,
+        best_ask=best_ask,
+        bid_depth=bid_depth,
+        ask_depth=ask_depth,
+        bid_levels_json=json.dumps(bid_levels),
+        ask_levels_json=json.dumps(ask_levels),
+        spread=best_ask - best_bid,
+    )
 
 
 # ============================================================================
@@ -783,6 +854,7 @@ class KalshiWebSocket:
                     ticker = msg_data.get('market_ticker')
                     if ticker:
                         apply_orderbook_snapshot(ticker, msg_data)
+                        _record_kalshi_snapshot(ticker)
                         # Check for spread after snapshot
                         arb = check_spread_for_ticker(ticker)
                         if arb and self.on_spread_detected:
@@ -792,6 +864,7 @@ class KalshiWebSocket:
                     ticker = msg_data.get('market_ticker')
                     if ticker:
                         apply_orderbook_delta(ticker, msg_data)
+                        _record_kalshi_snapshot(ticker)
                         # Check for spread after every delta - this is the key!
                         arb = check_spread_for_ticker(ticker)
                         if arb and self.on_spread_detected:
@@ -1003,6 +1076,7 @@ class PMWebSocket:
                 if "marketData" in data:
                     pm_slug = data["marketData"].get("marketSlug", "")
                     self._handle_market_data(data)
+                    _record_pm_snapshot(pm_slug, data["marketData"])
                     # Check spreads for all tickers mapped to this PM slug
                     await self._check_spreads_for_slug(pm_slug)
 
@@ -1773,6 +1847,9 @@ async def run_self_test(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI):
 async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: str, args):
     """Main execution loop"""
     global VERIFIED_MAPS, shutdown_requested
+
+    # Initialize orderbook snapshot database
+    orderbook_db.init_db()
 
     # Load verified mappings
     VERIFIED_MAPS = load_verified_mappings()

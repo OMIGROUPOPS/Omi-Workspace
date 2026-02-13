@@ -129,6 +129,7 @@ export interface ArbState {
   system: SystemStatus;
   pnl_summary: PnlSummary;
   mapped_games: MappedGame[];
+  mappings_last_refreshed: string;
   updated_at: string;
 }
 
@@ -165,6 +166,7 @@ const DEFAULT_STATE: ArbState = {
     unhedged_filled: 0,
   },
   mapped_games: [],
+  mappings_last_refreshed: "",
   updated_at: "",
 };
 
@@ -199,6 +201,7 @@ export async function POST(req: NextRequest) {
     if (body.system !== undefined) arbState.system = body.system;
     if (body.pnl_summary !== undefined) arbState.pnl_summary = body.pnl_summary;
     if (body.mapped_games !== undefined) arbState.mapped_games = body.mapped_games;
+    if (body.mappings_last_refreshed !== undefined) arbState.mappings_last_refreshed = body.mappings_last_refreshed;
     arbState.updated_at = new Date().toISOString();
 
     return NextResponse.json({ ok: true, updated_at: arbState.updated_at });

@@ -1,6 +1,18 @@
 "use client";
 
 import { useEffect, useState, useCallback, useMemo } from "react";
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Cell,
+} from "recharts";
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -131,6 +143,7 @@ interface ArbState {
   system: SystemStatus;
   pnl_summary: PnlSummary;
   mapped_games: MappedGame[];
+  mappings_last_refreshed: string;
   updated_at: string;
 }
 
@@ -251,6 +264,25 @@ function formatDateLabel(dateStr: string): string {
   }
 }
 
+function formatShortDate(dateStr: string): string {
+  if (!dateStr) return "";
+  try {
+    const d = new Date(dateStr + "T12:00:00Z");
+    return d.toLocaleDateString("en-US", { month: "numeric", day: "numeric" });
+  } catch {
+    return dateStr;
+  }
+}
+
+function mappingsHealthColor(iso: string): string {
+  if (!iso) return "bg-gray-500";
+  const s = iso.endsWith("Z") || iso.includes("+") ? iso : iso + "Z";
+  const hours = (Date.now() - new Date(s).getTime()) / 3600000;
+  if (hours < 3) return "bg-emerald-500";
+  if (hours < 6) return "bg-yellow-500";
+  return "bg-red-500";
+}
+
 // ── Components ─────────────────────────────────────────────────────────────
 
 function Pulse({ active }: { active: boolean }) {
@@ -322,9 +354,11 @@ function FilterButton({
   );
 }
 
+type TopTab = "monitor" | "pnl_history";
 type TradeFilter = "all" | "live" | "paper";
 type StatusFilter = "all" | "SUCCESS" | "PM_NO_FILL" | "UNHEDGED" | "SKIPPED";
 type BottomTab = "positions" | "mapped_games";
+type TimeHorizon = "1D" | "1W" | "1M" | "YTD" | "ALL";
 
 // ── Main Component ──────────────────────────────────────────────────────────
 
@@ -333,6 +367,7 @@ export default function ArbDashboard() {
   const [lastFetch, setLastFetch] = useState<Date | null>(null);
   const [fetchError, setFetchError] = useState(false);
   const [paused, setPaused] = useState(false);
+  const [topTab, setTopTab] = useState<TopTab>("monitor");
   const [tradeFilter, setTradeFilter] = useState<TradeFilter>("all");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
   const [dateOffset, setDateOffset] = useState(0);
@@ -343,6 +378,8 @@ export default function ArbDashboard() {
   const [hiddenPositions, setHiddenPositions] = useState<Set<string>>(
     new Set()
   );
+  const [pnlHorizon, setPnlHorizon] = useState<TimeHorizon>("ALL");
+  const [pnlSport, setPnlSport] = useState("all");
 
   const fetchData = useCallback(async () => {
     try {
@@ -477,6 +514,180 @@ export default function ArbDashboard() {
     setHiddenPositions((prev) => new Set(prev).add(gameId));
   };
 
+  // ── P&L History data ────────────────────────────────────────────────
+  const availableSports = useMemo(() => {
+    const sports = new Set<string>();
+    for (const t of allTrades) {
+      if (t.sport) sports.add(t.sport);
+    }
+    return ["all", ...Array.from(sports).sort()];
+  }, [allTrades]);
+
+  const pnlTrades = useMemo(() => {
+    // Only SUCCESS trades with actual_pnl data, non-paper
+    let trades = allTrades.filter(
+      (t) =>
+        t.status === "SUCCESS" &&
+        t.actual_pnl &&
+        !t.paper_mode &&
+        t.contracts_filled > 0
+    );
+
+    // Sport filter
+    if (pnlSport !== "all") {
+      trades = trades.filter((t) => t.sport === pnlSport);
+    }
+
+    // Time horizon filter
+    if (pnlHorizon !== "ALL") {
+      const now = new Date();
+      let cutoff: Date;
+      switch (pnlHorizon) {
+        case "1D":
+          cutoff = new Date(now.getTime() - 86400000);
+          break;
+        case "1W":
+          cutoff = new Date(now.getTime() - 7 * 86400000);
+          break;
+        case "1M":
+          cutoff = new Date(now.getTime() - 30 * 86400000);
+          break;
+        case "YTD":
+          cutoff = new Date(now.getFullYear(), 0, 1);
+          break;
+        default:
+          cutoff = new Date(0);
+      }
+      trades = trades.filter(
+        (t) => new Date(t.timestamp).getTime() >= cutoff.getTime()
+      );
+    }
+
+    // Sort chronologically for cumulative chart
+    return [...trades].sort(
+      (a, b) =>
+        new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+    );
+  }, [allTrades, pnlSport, pnlHorizon]);
+
+  // All trades matching horizon + sport (for total counts including non-SUCCESS)
+  const pnlAllFiltered = useMemo(() => {
+    let trades = allTrades.filter((t) => !t.paper_mode);
+    if (pnlSport !== "all") {
+      trades = trades.filter((t) => t.sport === pnlSport);
+    }
+    if (pnlHorizon !== "ALL") {
+      const now = new Date();
+      let cutoff: Date;
+      switch (pnlHorizon) {
+        case "1D":
+          cutoff = new Date(now.getTime() - 86400000);
+          break;
+        case "1W":
+          cutoff = new Date(now.getTime() - 7 * 86400000);
+          break;
+        case "1M":
+          cutoff = new Date(now.getTime() - 30 * 86400000);
+          break;
+        case "YTD":
+          cutoff = new Date(now.getFullYear(), 0, 1);
+          break;
+        default:
+          cutoff = new Date(0);
+      }
+      trades = trades.filter(
+        (t) => new Date(t.timestamp).getTime() >= cutoff.getTime()
+      );
+    }
+    return trades;
+  }, [allTrades, pnlSport, pnlHorizon]);
+
+  const pnlSummaryStats = useMemo(() => {
+    let totalPnl = 0;
+    let wins = 0;
+    let losses = 0;
+    let best = -Infinity;
+    let worst = Infinity;
+
+    for (const t of pnlTrades) {
+      const net = t.actual_pnl!.net_profit_dollars;
+      totalPnl += net;
+      if (net > 0) wins++;
+      else losses++;
+      if (net > best) best = net;
+      if (net < worst) worst = net;
+    }
+
+    const totalAttempts = pnlAllFiltered.length;
+    const noFills = pnlAllFiltered.filter((t) =>
+      t.status.includes("NO_FILL")
+    ).length;
+
+    return {
+      totalTrades: pnlTrades.length,
+      totalAttempts,
+      wins,
+      losses,
+      winRate:
+        pnlTrades.length > 0
+          ? ((wins / pnlTrades.length) * 100).toFixed(1)
+          : "0",
+      totalPnl,
+      avgProfit:
+        pnlTrades.length > 0 ? totalPnl / pnlTrades.length : 0,
+      best: best === -Infinity ? 0 : best,
+      worst: worst === Infinity ? 0 : worst,
+      noFills,
+    };
+  }, [pnlTrades, pnlAllFiltered]);
+
+  const cumulativeChartData = useMemo(() => {
+    let cumulative = 0;
+    return pnlTrades.map((t) => {
+      cumulative += t.actual_pnl!.net_profit_dollars;
+      return {
+        date: toDateStr(t.timestamp),
+        time: formatDateTime(t.timestamp),
+        pnl: Number(cumulative.toFixed(4)),
+        tradePnl: Number(t.actual_pnl!.net_profit_dollars.toFixed(4)),
+        team: t.team,
+      };
+    });
+  }, [pnlTrades]);
+
+  const dailyPnlData = useMemo(() => {
+    const byDay: Record<
+      string,
+      { pnl: number; trades: number; successes: number; noFills: number }
+    > = {};
+
+    for (const t of pnlAllFiltered) {
+      const day = toDateStr(t.timestamp);
+      if (!day) continue;
+      if (!byDay[day])
+        byDay[day] = { pnl: 0, trades: 0, successes: 0, noFills: 0 };
+      byDay[day].trades++;
+      if (t.status === "SUCCESS" && t.actual_pnl) {
+        byDay[day].pnl += t.actual_pnl.net_profit_dollars;
+        byDay[day].successes++;
+      }
+      if (t.status.includes("NO_FILL")) {
+        byDay[day].noFills++;
+      }
+    }
+
+    return Object.entries(byDay)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([date, data]) => ({
+        date,
+        label: formatShortDate(date),
+        pnl: Number(data.pnl.toFixed(4)),
+        trades: data.trades,
+        successes: data.successes,
+        noFills: data.noFills,
+      }));
+  }, [pnlAllFiltered]);
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-gray-200">
       {/* Header */}
@@ -516,573 +727,534 @@ export default function ArbDashboard() {
             </button>
           </div>
         </div>
+        {/* Top-level tabs */}
+        <div className="flex px-4 gap-1">
+          <button
+            onClick={() => setTopTab("monitor")}
+            className={`px-3 py-1.5 text-sm font-medium transition-colors border-b-2 -mb-px ${
+              topTab === "monitor"
+                ? "border-emerald-500 text-white"
+                : "border-transparent text-gray-500 hover:text-gray-300"
+            }`}
+          >
+            Monitor
+          </button>
+          <button
+            onClick={() => setTopTab("pnl_history")}
+            className={`px-3 py-1.5 text-sm font-medium transition-colors border-b-2 -mb-px ${
+              topTab === "pnl_history"
+                ? "border-emerald-500 text-white"
+                : "border-transparent text-gray-500 hover:text-gray-300"
+            }`}
+          >
+            P&L History
+          </button>
+        </div>
       </div>
 
-      <div className="p-4 space-y-4">
-        {/* ── Metrics Row ──────────────────────────────────────────── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
-          <MetricCard
-            label="Kalshi Balance"
-            value={
-              state?.balances.kalshi_balance
-                ? `$${state.balances.kalshi_balance.toFixed(2)}`
-                : "-"
-            }
-          />
-          <MetricCard
-            label="PM Balance"
-            value={
-              state?.balances.pm_balance
-                ? `$${state.balances.pm_balance.toFixed(2)}`
-                : "-"
-            }
-          />
-          <MetricCard
-            label="Total Portfolio"
-            value={
-              state?.balances.total_portfolio
-                ? `$${state.balances.total_portfolio.toFixed(2)}`
-                : "-"
-            }
-            accent="text-emerald-400"
-          />
-          <MetricCard
-            label="P&L"
-            value={
-              pnl && pnl.total_trades > 0
-                ? `${pnl.total_pnl_dollars >= 0 ? "+$" : "-$"}${Math.abs(pnl.total_pnl_dollars).toFixed(2)}`
-                : "-"
-            }
-            sub={
-              pnl && pnl.total_trades > 0
-                ? `${pnl.profitable_count}W / ${pnl.losing_count}L · ${pnl.hedged_count} hedged`
-                : undefined
-            }
-            accent={
-              pnl && pnl.total_pnl_dollars > 0
-                ? "text-emerald-400"
-                : pnl && pnl.total_pnl_dollars < 0
-                ? "text-red-400"
-                : "text-white"
-            }
-          />
-          <MetricCard
-            label="Games"
-            value={String(state?.system.games_monitored || 0)}
-          />
-          <MetricCard
-            label="WS Messages"
-            value={
-              (state?.system.ws_messages_processed || 0) > 1000
-                ? `${((state?.system.ws_messages_processed || 0) / 1000).toFixed(1)}k`
-                : String(state?.system.ws_messages_processed || 0)
-            }
-          />
-          <MetricCard
-            label="Uptime"
-            value={formatUptime(state?.system.uptime_seconds || 0)}
-            sub={state?.system.executor_version || ""}
-          />
-        </div>
+      {/* ══════════ MONITOR TAB ══════════ */}
+      {topTab === "monitor" && (
+        <div className="p-4 space-y-4">
+          {/* ── Metrics Row ──────────────────────────────────────────── */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+            <MetricCard
+              label="Kalshi Balance"
+              value={
+                state?.balances.kalshi_balance
+                  ? `$${state.balances.kalshi_balance.toFixed(2)}`
+                  : "-"
+              }
+            />
+            <MetricCard
+              label="PM Balance"
+              value={
+                state?.balances.pm_balance
+                  ? `$${state.balances.pm_balance.toFixed(2)}`
+                  : "-"
+              }
+            />
+            <MetricCard
+              label="Total Portfolio"
+              value={
+                state?.balances.total_portfolio
+                  ? `$${state.balances.total_portfolio.toFixed(2)}`
+                  : "-"
+              }
+              accent="text-emerald-400"
+            />
+            <MetricCard
+              label="P&L"
+              value={
+                pnl && pnl.total_trades > 0
+                  ? `${pnl.total_pnl_dollars >= 0 ? "+$" : "-$"}${Math.abs(pnl.total_pnl_dollars).toFixed(2)}`
+                  : "-"
+              }
+              sub={
+                pnl && pnl.total_trades > 0
+                  ? `${pnl.profitable_count}W / ${pnl.losing_count}L · ${pnl.hedged_count} hedged`
+                  : undefined
+              }
+              accent={
+                pnl && pnl.total_pnl_dollars > 0
+                  ? "text-emerald-400"
+                  : pnl && pnl.total_pnl_dollars < 0
+                  ? "text-red-400"
+                  : "text-white"
+              }
+            />
+            <MetricCard
+              label="Games"
+              value={String(state?.system.games_monitored || 0)}
+            />
+            <MetricCard
+              label="WS Messages"
+              value={
+                (state?.system.ws_messages_processed || 0) > 1000
+                  ? `${((state?.system.ws_messages_processed || 0) / 1000).toFixed(1)}k`
+                  : String(state?.system.ws_messages_processed || 0)
+              }
+            />
+            <MetricCard
+              label="Uptime"
+              value={formatUptime(state?.system.uptime_seconds || 0)}
+              sub={state?.system.executor_version || ""}
+            />
+          </div>
 
-        {/* ── Error Banner ─────────────────────────────────────────── */}
-        {state?.system.error_count ? (
-          <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 flex items-center gap-2">
-            <span className="text-red-400 text-xs font-medium">
-              {state.system.error_count} error
-              {state.system.error_count > 1 ? "s" : ""}
-            </span>
-            {state.system.last_error && (
-              <span className="text-red-400/70 text-xs truncate max-w-xl">
-                {state.system.last_error}
+          {/* ── Error Banner ─────────────────────────────────────────── */}
+          {state?.system.error_count ? (
+            <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 flex items-center gap-2">
+              <span className="text-red-400 text-xs font-medium">
+                {state.system.error_count} error
+                {state.system.error_count > 1 ? "s" : ""}
               </span>
-            )}
-          </div>
-        ) : null}
-
-        {/* ── Spreads (60%) + Trades (40%) ─────────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-          {/* Live Spreads */}
-          <div
-            className="lg:col-span-3 rounded-lg border border-gray-800 bg-[#111] flex flex-col"
-            style={{ maxHeight: "440px" }}
-          >
-            <div className="flex items-center justify-between border-b border-gray-800 px-3 py-2 shrink-0">
-              <h2 className="text-sm font-semibold text-white">
-                Live Spreads
-                <span className="ml-1.5 text-xs text-gray-500">
-                  {sortedSpreads.length}
-                  {!showAllSpreads &&
-                    totalSpreadCount > sortedSpreads.length && (
-                      <span>/{totalSpreadCount}</span>
-                    )}
+              {state.system.last_error && (
+                <span className="text-red-400/70 text-xs truncate max-w-xl">
+                  {state.system.last_error}
                 </span>
-              </h2>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => setShowAllSpreads(!showAllSpreads)}
-                  className={`rounded px-2 py-0.5 text-[10px] font-medium transition-colors ${
-                    showAllSpreads
-                      ? "bg-gray-700 text-white"
-                      : "bg-emerald-500/20 text-emerald-400"
-                  }`}
-                >
-                  {showAllSpreads ? "All" : "Opps only"}
-                </button>
-                <div className="flex items-center gap-2 text-[10px] text-gray-500">
-                  <span className="flex items-center gap-0.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />{" "}
-                    4c+
-                  </span>
-                  <span className="flex items-center gap-0.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-yellow-500" />{" "}
-                    3-4c
-                  </span>
-                </div>
-              </div>
+              )}
             </div>
-            <div className="overflow-auto flex-1">
-              <table className="w-full text-xs">
-                <thead className="sticky top-0 bg-[#111] z-10">
-                  <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
-                    <th className="px-2 py-1.5">Game</th>
-                    <th className="px-2 py-1.5">Team</th>
-                    <th className="px-2 py-1.5 text-right">K Bid</th>
-                    <th className="px-2 py-1.5 text-right">K Ask</th>
-                    <th className="px-2 py-1.5 text-right">PM Bid</th>
-                    <th className="px-2 py-1.5 text-right">PM Ask</th>
-                    <th className="px-2 py-1.5 text-right">BUY_PM</th>
-                    <th className="px-2 py-1.5 text-right">BUY_K</th>
-                    <th className="px-2 py-1.5 text-right">Size</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {sortedSpreads.length === 0 ? (
-                    <tr>
-                      <td
-                        colSpan={9}
-                        className="px-3 py-6 text-center text-gray-600 text-xs"
-                      >
-                        {hasData
-                          ? showAllSpreads
-                            ? "No spreads monitored"
-                            : "No positive spreads"
-                          : "Waiting for executor data..."}
-                      </td>
-                    </tr>
-                  ) : (
-                    sortedSpreads.map((s) => {
-                      const best = Math.max(s.spread_buy_pm, s.spread_buy_k);
-                      const today = isToday(s.game_date);
-                      return (
-                        <tr
-                          key={`${s.game_id}-${s.team}`}
-                          className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors ${spreadBg(best)}`}
-                        >
-                          <td className="px-2 py-1 text-white whitespace-nowrap">
-                            <span className="font-medium">{s.game_id}</span>
-                            {s.game_date && (
-                              <span
-                                className={`ml-1 inline-block rounded px-0.5 text-[9px] font-medium ${
-                                  today
-                                    ? "bg-emerald-500/20 text-emerald-400"
-                                    : "bg-gray-500/20 text-gray-500"
-                                }`}
-                              >
-                                {today ? "LIVE" : s.game_date.slice(5)}
-                              </span>
-                            )}
-                          </td>
-                          <td className="px-2 py-1 font-mono">
-                            <span
-                              className={`inline-block rounded px-1 py-0.5 text-[10px] font-medium ${sportBadge(s.sport)}`}
-                            >
-                              {s.team}
-                            </span>
-                          </td>
-                          <td className="px-2 py-1 text-right font-mono">
-                            {s.k_bid}
-                          </td>
-                          <td className="px-2 py-1 text-right font-mono">
-                            {s.k_ask}
-                          </td>
-                          <td className="px-2 py-1 text-right font-mono">
-                            {s.pm_bid.toFixed(1)}
-                          </td>
-                          <td className="px-2 py-1 text-right font-mono">
-                            {s.pm_ask.toFixed(1)}
-                          </td>
-                          <td
-                            className={`px-2 py-1 text-right font-mono font-bold ${spreadColor(s.spread_buy_pm)}`}
-                          >
-                            {s.spread_buy_pm.toFixed(1)}
-                          </td>
-                          <td
-                            className={`px-2 py-1 text-right font-mono font-bold ${spreadColor(s.spread_buy_k)}`}
-                          >
-                            {s.spread_buy_k.toFixed(1)}
-                          </td>
-                          <td className="px-2 py-1 text-right font-mono text-gray-500">
-                            {s.pm_size}
-                          </td>
-                        </tr>
-                      );
-                    })
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          ) : null}
 
-          {/* ── Trade Log ──────────────────────────────────────────── */}
-          <div
-            className="lg:col-span-2 rounded-lg border border-gray-800 bg-[#111] flex flex-col"
-            style={{ maxHeight: "440px" }}
-          >
-            <div className="border-b border-gray-800 px-3 py-2 shrink-0 space-y-1.5">
-              <div className="flex items-center justify-between">
+          {/* ── Spreads (60%) + Trades (40%) ─────────────────────────── */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+            {/* Live Spreads */}
+            <div
+              className="lg:col-span-3 rounded-lg border border-gray-800 bg-[#111] flex flex-col"
+              style={{ maxHeight: "440px" }}
+            >
+              <div className="flex items-center justify-between border-b border-gray-800 px-3 py-2 shrink-0">
                 <h2 className="text-sm font-semibold text-white">
-                  Trades
+                  Live Spreads
                   <span className="ml-1.5 text-xs text-gray-500">
-                    {filteredTrades.length}
+                    {sortedSpreads.length}
+                    {!showAllSpreads &&
+                      totalSpreadCount > sortedSpreads.length && (
+                        <span>/{totalSpreadCount}</span>
+                      )}
                   </span>
                 </h2>
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-3">
                   <button
-                    onClick={() => {
-                      setDateAll(false);
-                      setDateOffset((d) => d - 1);
-                    }}
-                    className="text-gray-500 hover:text-gray-300 text-[10px] px-1"
-                  >
-                    &lt;
-                  </button>
-                  <button
-                    onClick={() => {
-                      setDateAll(false);
-                      setDateOffset(0);
-                    }}
-                    className={`rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
-                      !dateAll
+                    onClick={() => setShowAllSpreads(!showAllSpreads)}
+                    className={`rounded px-2 py-0.5 text-[10px] font-medium transition-colors ${
+                      showAllSpreads
                         ? "bg-gray-700 text-white"
-                        : "text-gray-500 hover:text-gray-300"
+                        : "bg-emerald-500/20 text-emerald-400"
                     }`}
                   >
-                    {dateLabel}
+                    {showAllSpreads ? "All" : "Opps only"}
                   </button>
-                  <button
-                    onClick={() => {
-                      setDateAll(false);
-                      setDateOffset((d) => Math.min(d + 1, 0));
-                    }}
-                    className="text-gray-500 hover:text-gray-300 text-[10px] px-1"
-                    disabled={dateOffset >= 0 && !dateAll}
-                  >
-                    &gt;
-                  </button>
-                  <FilterButton
-                    active={dateAll}
-                    onClick={() => setDateAll(!dateAll)}
-                  >
-                    All
-                  </FilterButton>
-                  <span className="text-gray-700">|</span>
-                  {(["all", "live", "paper"] as TradeFilter[]).map((f) => (
+                  <div className="flex items-center gap-2 text-[10px] text-gray-500">
+                    <span className="flex items-center gap-0.5">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />{" "}
+                      4c+
+                    </span>
+                    <span className="flex items-center gap-0.5">
+                      <span className="h-1.5 w-1.5 rounded-full bg-yellow-500" />{" "}
+                      3-4c
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="overflow-auto flex-1">
+                <table className="w-full text-xs">
+                  <thead className="sticky top-0 bg-[#111] z-10">
+                    <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
+                      <th className="px-2 py-1.5">Game</th>
+                      <th className="px-2 py-1.5">Team</th>
+                      <th className="px-2 py-1.5 text-right">K Bid</th>
+                      <th className="px-2 py-1.5 text-right">K Ask</th>
+                      <th className="px-2 py-1.5 text-right">PM Bid</th>
+                      <th className="px-2 py-1.5 text-right">PM Ask</th>
+                      <th className="px-2 py-1.5 text-right">BUY_PM</th>
+                      <th className="px-2 py-1.5 text-right">BUY_K</th>
+                      <th className="px-2 py-1.5 text-right">Size</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sortedSpreads.length === 0 ? (
+                      <tr>
+                        <td
+                          colSpan={9}
+                          className="px-3 py-6 text-center text-gray-600 text-xs"
+                        >
+                          {hasData
+                            ? showAllSpreads
+                              ? "No spreads monitored"
+                              : "No positive spreads"
+                            : "Waiting for executor data..."}
+                        </td>
+                      </tr>
+                    ) : (
+                      sortedSpreads.map((s) => {
+                        const best = Math.max(s.spread_buy_pm, s.spread_buy_k);
+                        const today = isToday(s.game_date);
+                        return (
+                          <tr
+                            key={`${s.game_id}-${s.team}`}
+                            className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors ${spreadBg(best)}`}
+                          >
+                            <td className="px-2 py-1 text-white whitespace-nowrap">
+                              <span className="font-medium">{s.game_id}</span>
+                              {s.game_date && (
+                                <span
+                                  className={`ml-1 inline-block rounded px-0.5 text-[9px] font-medium ${
+                                    today
+                                      ? "bg-emerald-500/20 text-emerald-400"
+                                      : "bg-gray-500/20 text-gray-500"
+                                  }`}
+                                >
+                                  {today ? "LIVE" : s.game_date.slice(5)}
+                                </span>
+                              )}
+                            </td>
+                            <td className="px-2 py-1 font-mono">
+                              <span
+                                className={`inline-block rounded px-1 py-0.5 text-[10px] font-medium ${sportBadge(s.sport)}`}
+                              >
+                                {s.team}
+                              </span>
+                            </td>
+                            <td className="px-2 py-1 text-right font-mono">
+                              {s.k_bid}
+                            </td>
+                            <td className="px-2 py-1 text-right font-mono">
+                              {s.k_ask}
+                            </td>
+                            <td className="px-2 py-1 text-right font-mono">
+                              {s.pm_bid.toFixed(1)}
+                            </td>
+                            <td className="px-2 py-1 text-right font-mono">
+                              {s.pm_ask.toFixed(1)}
+                            </td>
+                            <td
+                              className={`px-2 py-1 text-right font-mono font-bold ${spreadColor(s.spread_buy_pm)}`}
+                            >
+                              {s.spread_buy_pm.toFixed(1)}
+                            </td>
+                            <td
+                              className={`px-2 py-1 text-right font-mono font-bold ${spreadColor(s.spread_buy_k)}`}
+                            >
+                              {s.spread_buy_k.toFixed(1)}
+                            </td>
+                            <td className="px-2 py-1 text-right font-mono text-gray-500">
+                              {s.pm_size}
+                            </td>
+                          </tr>
+                        );
+                      })
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* ── Trade Log ──────────────────────────────────────────── */}
+            <div
+              className="lg:col-span-2 rounded-lg border border-gray-800 bg-[#111] flex flex-col"
+              style={{ maxHeight: "440px" }}
+            >
+              <div className="border-b border-gray-800 px-3 py-2 shrink-0 space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-sm font-semibold text-white">
+                    Trades
+                    <span className="ml-1.5 text-xs text-gray-500">
+                      {filteredTrades.length}
+                    </span>
+                  </h2>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      onClick={() => {
+                        setDateAll(false);
+                        setDateOffset((d) => d - 1);
+                      }}
+                      className="text-gray-500 hover:text-gray-300 text-[10px] px-1"
+                    >
+                      &lt;
+                    </button>
+                    <button
+                      onClick={() => {
+                        setDateAll(false);
+                        setDateOffset(0);
+                      }}
+                      className={`rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
+                        !dateAll
+                          ? "bg-gray-700 text-white"
+                          : "text-gray-500 hover:text-gray-300"
+                      }`}
+                    >
+                      {dateLabel}
+                    </button>
+                    <button
+                      onClick={() => {
+                        setDateAll(false);
+                        setDateOffset((d) => Math.min(d + 1, 0));
+                      }}
+                      className="text-gray-500 hover:text-gray-300 text-[10px] px-1"
+                      disabled={dateOffset >= 0 && !dateAll}
+                    >
+                      &gt;
+                    </button>
+                    <FilterButton
+                      active={dateAll}
+                      onClick={() => setDateAll(!dateAll)}
+                    >
+                      All
+                    </FilterButton>
+                    <span className="text-gray-700">|</span>
+                    {(["all", "live", "paper"] as TradeFilter[]).map((f) => (
+                      <FilterButton
+                        key={f}
+                        active={tradeFilter === f}
+                        onClick={() => setTradeFilter(f)}
+                        variant={
+                          f === "live"
+                            ? "green"
+                            : f === "paper"
+                            ? "purple"
+                            : "default"
+                        }
+                      >
+                        {f === "all" ? "All" : f === "live" ? "Live" : "Paper"}
+                      </FilterButton>
+                    ))}
+                  </div>
+                </div>
+                {/* Status filter + search */}
+                <div className="flex items-center gap-1.5">
+                  {(
+                    [
+                      "all",
+                      "SUCCESS",
+                      "PM_NO_FILL",
+                      "UNHEDGED",
+                      "SKIPPED",
+                    ] as StatusFilter[]
+                  ).map((f) => (
                     <FilterButton
                       key={f}
-                      active={tradeFilter === f}
-                      onClick={() => setTradeFilter(f)}
+                      active={statusFilter === f}
+                      onClick={() => setStatusFilter(f)}
                       variant={
-                        f === "live"
+                        f === "SUCCESS"
                           ? "green"
-                          : f === "paper"
-                          ? "purple"
+                          : f === "PM_NO_FILL"
+                          ? "yellow"
+                          : f === "UNHEDGED"
+                          ? "red"
                           : "default"
                       }
                     >
-                      {f === "all" ? "All" : f === "live" ? "Live" : "Paper"}
+                      {f === "all" ? "Any Status" : f}
                     </FilterButton>
                   ))}
+                  <input
+                    type="text"
+                    placeholder="Search team..."
+                    value={tradeSearch}
+                    onChange={(e) => setTradeSearch(e.target.value)}
+                    className="ml-auto w-20 rounded bg-gray-800 px-1.5 py-0.5 text-[10px] text-gray-300 placeholder-gray-600 border border-gray-700 focus:border-gray-500 focus:outline-none"
+                  />
                 </div>
-              </div>
-              {/* Status filter + search */}
-              <div className="flex items-center gap-1.5">
-                {(
-                  [
-                    "all",
-                    "SUCCESS",
-                    "PM_NO_FILL",
-                    "UNHEDGED",
-                    "SKIPPED",
-                  ] as StatusFilter[]
-                ).map((f) => (
-                  <FilterButton
-                    key={f}
-                    active={statusFilter === f}
-                    onClick={() => setStatusFilter(f)}
-                    variant={
-                      f === "SUCCESS"
-                        ? "green"
-                        : f === "PM_NO_FILL"
-                        ? "yellow"
-                        : f === "UNHEDGED"
-                        ? "red"
-                        : "default"
-                    }
-                  >
-                    {f === "all" ? "Any Status" : f}
-                  </FilterButton>
-                ))}
-                <input
-                  type="text"
-                  placeholder="Search team..."
-                  value={tradeSearch}
-                  onChange={(e) => setTradeSearch(e.target.value)}
-                  className="ml-auto w-20 rounded bg-gray-800 px-1.5 py-0.5 text-[10px] text-gray-300 placeholder-gray-600 border border-gray-700 focus:border-gray-500 focus:outline-none"
-                />
-              </div>
-              {/* Summary */}
-              {filteredTrades.length > 0 && (
-                <div className="flex items-center gap-3 text-[10px] text-gray-500 pt-0.5">
-                  <span>
-                    {filteredPnl.successes} success
-                    {filteredPnl.successes !== 1 ? "es" : ""}
-                  </span>
-                  <span>{filteredPnl.fills} filled</span>
-                  <span
-                    className={
-                      filteredPnl.total > 0
-                        ? "text-emerald-400"
-                        : filteredPnl.total < 0
-                        ? "text-red-400"
-                        : "text-gray-500"
-                    }
-                  >
-                    P&L: {filteredPnl.total >= 0 ? "+" : ""}$
-                    {filteredPnl.total.toFixed(2)}
-                  </span>
-                </div>
-              )}
-            </div>
-            <div className="overflow-auto flex-1">
-              <table className="w-full text-xs">
-                <thead className="sticky top-0 bg-[#111] z-10">
-                  <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
-                    <th className="px-2 py-1.5">Time</th>
-                    <th className="px-2 py-1.5">Game</th>
-                    <th className="px-2 py-1.5 text-right">Spread</th>
-                    <th className="px-2 py-1.5 text-right">Net</th>
-                    <th className="px-2 py-1.5">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredTrades.length === 0 ? (
-                    <tr>
-                      <td
-                        colSpan={5}
-                        className="px-3 py-6 text-center text-gray-600 text-xs"
-                      >
-                        No trades{" "}
-                        {selectedDate
-                          ? dateOffset === 0
-                            ? "today"
-                            : `on ${formatDateLabel(selectedDate)}`
-                          : "recorded"}
-                      </td>
-                    </tr>
-                  ) : (
-                    filteredTrades.map((t, i) => {
-                      const badge = statusBadge(t.status);
-                      return (
-                        <tr
-                          key={`${t.timestamp}-${i}`}
-                          className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors"
-                        >
-                          <td className="px-2 py-1 font-mono text-gray-400 whitespace-nowrap text-[10px]">
-                            {formatDateTime(t.timestamp)}
-                          </td>
-                          <td className="px-2 py-1 whitespace-nowrap">
-                            <span className="text-white font-medium">
-                              {t.team}
-                            </span>
-                            <span
-                              className={`ml-1 inline-block rounded px-0.5 text-[9px] font-medium ${sportBadge(t.sport)}`}
-                            >
-                              {t.sport}
-                            </span>
-                            {t.paper_mode && (
-                              <span className="ml-0.5 text-[9px] text-purple-400">
-                                P
-                              </span>
-                            )}
-                          </td>
-                          <td
-                            className={`px-2 py-1 text-right font-mono ${spreadColor(t.spread_cents)}`}
-                          >
-                            {t.spread_cents.toFixed(1)}
-                          </td>
-                          <td
-                            className={`px-2 py-1 text-right font-mono font-medium ${netColor(
-                              t.actual_pnl
-                                ? t.actual_pnl.per_contract.net
-                                : t.estimated_net_profit_cents
-                            )}`}
-                          >
-                            {t.actual_pnl
-                              ? `${t.actual_pnl.per_contract.net >= 0 ? "+" : ""}${t.actual_pnl.per_contract.net.toFixed(1)}`
-                              : t.estimated_net_profit_cents != null
-                              ? `${t.estimated_net_profit_cents > 0 ? "+" : ""}${t.estimated_net_profit_cents.toFixed(1)}~`
-                              : "-"}
-                          </td>
-                          <td className="px-2 py-1">
-                            <span
-                              className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${badge.bg} ${badge.text}`}
-                            >
-                              {t.status}
-                            </span>
-                            {t.hedged && (
-                              <span className="ml-0.5 text-emerald-400 text-[9px]">
-                                H
-                              </span>
-                            )}
-                          </td>
-                        </tr>
-                      );
-                    })
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        {/* ── Bottom Tabs: Positions / Mapped Games ────────────────── */}
-        <div className="rounded-lg border border-gray-800 bg-[#111]">
-          <div className="flex items-center border-b border-gray-800 px-3">
-            <button
-              onClick={() => setBottomTab("positions")}
-              className={`px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
-                bottomTab === "positions"
-                  ? "border-emerald-500 text-white"
-                  : "border-transparent text-gray-500 hover:text-gray-300"
-              }`}
-            >
-              Open Positions
-              {activePositions.length > 0 && (
-                <span className="ml-1 text-xs text-gray-500">
-                  {activePositions.length}
-                </span>
-              )}
-            </button>
-            <button
-              onClick={() => setBottomTab("mapped_games")}
-              className={`px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
-                bottomTab === "mapped_games"
-                  ? "border-emerald-500 text-white"
-                  : "border-transparent text-gray-500 hover:text-gray-300"
-              }`}
-            >
-              Mapped Games
-              {mappedGames.length > 0 && (
-                <span className="ml-1 text-xs text-gray-500">
-                  {mappedGames.length}
-                </span>
-              )}
-            </button>
-          </div>
-
-          {/* ── Open Positions ──────────────────────────────────── */}
-          {bottomTab === "positions" && (
-            <div>
-              {activePositions.length === 0 ? (
-                <div className="text-center py-6">
-                  <span className="text-xs text-gray-600">
-                    No open positions
-                  </span>
-                </div>
-              ) : (
-                <div className="divide-y divide-gray-800/50">
-                  {unhedgedPositions.map((p, i) => (
-                    <div
-                      key={`uh-${i}`}
-                      className="px-4 py-3 border-l-2 border-red-500 bg-red-500/5"
+                {/* Summary */}
+                {filteredTrades.length > 0 && (
+                  <div className="flex items-center gap-3 text-[10px] text-gray-500 pt-0.5">
+                    <span>
+                      {filteredPnl.successes} success
+                      {filteredPnl.successes !== 1 ? "es" : ""}
+                    </span>
+                    <span>{filteredPnl.fills} filled</span>
+                    <span
+                      className={
+                        filteredPnl.total > 0
+                          ? "text-emerald-400"
+                          : filteredPnl.total < 0
+                          ? "text-red-400"
+                          : "text-gray-500"
+                      }
                     >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="text-white font-medium text-xs">
-                            {p.team || p.game_id}
-                          </span>
-                          <span
-                            className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${sportBadge(p.sport)}`}
+                      P&L: {filteredPnl.total >= 0 ? "+" : ""}$
+                      {filteredPnl.total.toFixed(2)}
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div className="overflow-auto flex-1">
+                <table className="w-full text-xs">
+                  <thead className="sticky top-0 bg-[#111] z-10">
+                    <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
+                      <th className="px-2 py-1.5">Time</th>
+                      <th className="px-2 py-1.5">Game</th>
+                      <th className="px-2 py-1.5 text-right">Spread</th>
+                      <th className="px-2 py-1.5 text-right">Net</th>
+                      <th className="px-2 py-1.5">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredTrades.length === 0 ? (
+                      <tr>
+                        <td
+                          colSpan={5}
+                          className="px-3 py-6 text-center text-gray-600 text-xs"
+                        >
+                          No trades{" "}
+                          {selectedDate
+                            ? dateOffset === 0
+                              ? "today"
+                              : `on ${formatDateLabel(selectedDate)}`
+                            : "recorded"}
+                        </td>
+                      </tr>
+                    ) : (
+                      filteredTrades.map((t, i) => {
+                        const badge = statusBadge(t.status);
+                        return (
+                          <tr
+                            key={`${t.timestamp}-${i}`}
+                            className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors"
                           >
-                            {p.sport}
-                          </span>
-                          {p.trade_timestamp && (
-                            <span className="text-[9px] text-gray-600">
-                              {timeAgo(p.trade_timestamp)}
-                            </span>
-                          )}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[9px] font-medium rounded px-1.5 py-0.5 bg-red-500/20 text-red-400">
-                            UNHEDGED
-                          </span>
-                          <button
-                            onClick={() => markSettled(p.game_id)}
-                            className="text-[9px] text-gray-600 hover:text-gray-400 px-1"
-                            title="Hide this position (mark as settled)"
-                          >
-                            Mark Settled
-                          </button>
-                        </div>
-                      </div>
-                      <div className="mt-1.5 flex items-center gap-3 text-[11px]">
-                        <span className="text-gray-400">
-                          {p.platform}: {p.side} x{p.quantity}
-                        </span>
-                        {p.avg_price > 0 && (
-                          <span className="text-gray-500">
-                            @{p.avg_price}c
-                          </span>
-                        )}
-                        <span className="text-red-400/80 text-[10px]">
-                          Exposure: $
-                          {(
-                            ((p.avg_price || 50) * p.quantity) /
-                            100
-                          ).toFixed(2)}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
+                            <td className="px-2 py-1 font-mono text-gray-400 whitespace-nowrap text-[10px]">
+                              {formatDateTime(t.timestamp)}
+                            </td>
+                            <td className="px-2 py-1 whitespace-nowrap">
+                              <span className="text-white font-medium">
+                                {t.team}
+                              </span>
+                              <span
+                                className={`ml-1 inline-block rounded px-0.5 text-[9px] font-medium ${sportBadge(t.sport)}`}
+                              >
+                                {t.sport}
+                              </span>
+                              {t.paper_mode && (
+                                <span className="ml-0.5 text-[9px] text-purple-400">
+                                  P
+                                </span>
+                              )}
+                            </td>
+                            <td
+                              className={`px-2 py-1 text-right font-mono ${spreadColor(t.spread_cents)}`}
+                            >
+                              {t.spread_cents.toFixed(1)}
+                            </td>
+                            <td
+                              className={`px-2 py-1 text-right font-mono font-medium ${netColor(
+                                t.actual_pnl
+                                  ? t.actual_pnl.per_contract.net
+                                  : t.estimated_net_profit_cents
+                              )}`}
+                            >
+                              {t.actual_pnl
+                                ? `${t.actual_pnl.per_contract.net >= 0 ? "+" : ""}${t.actual_pnl.per_contract.net.toFixed(1)}`
+                                : t.estimated_net_profit_cents != null
+                                ? `${t.estimated_net_profit_cents > 0 ? "+" : ""}${t.estimated_net_profit_cents.toFixed(1)}~`
+                                : "-"}
+                            </td>
+                            <td className="px-2 py-1">
+                              <span
+                                className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${badge.bg} ${badge.text}`}
+                              >
+                                {t.status}
+                              </span>
+                              {t.hedged && (
+                                <span className="ml-0.5 text-emerald-400 text-[9px]">
+                                  H
+                                </span>
+                              )}
+                            </td>
+                          </tr>
+                        );
+                      })
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
 
-                  {hedgedPositions.map((p, i) => {
-                    const dir = p.direction || "";
-                    const hasFillData =
-                      (p.pm_fill_price ?? 0) > 0 ||
-                      (p.k_fill_price ?? 0) > 0;
-                    const pmDir =
-                      dir === "BUY_PM_SELL_K"
-                        ? "LONG"
-                        : dir === "BUY_K_SELL_PM"
-                        ? "SHORT"
-                        : "";
-                    const kDir =
-                      dir === "BUY_PM_SELL_K"
-                        ? "SHORT"
-                        : dir === "BUY_K_SELL_PM"
-                        ? "LONG"
-                        : "";
-                    const locked = p.locked_profit_cents ?? 0;
-                    const netProfit = p.net_profit_cents ?? 0;
-                    const pmFill = p.pm_fill_price ?? 0;
-                    const kFill = p.k_fill_price ?? 0;
-                    const qty = p.contracts || p.quantity || 0;
+          {/* ── Bottom Tabs: Positions / Mapped Games ────────────────── */}
+          <div className="rounded-lg border border-gray-800 bg-[#111]">
+            <div className="flex items-center border-b border-gray-800 px-3">
+              <button
+                onClick={() => setBottomTab("positions")}
+                className={`px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
+                  bottomTab === "positions"
+                    ? "border-emerald-500 text-white"
+                    : "border-transparent text-gray-500 hover:text-gray-300"
+                }`}
+              >
+                Open Positions
+                {activePositions.length > 0 && (
+                  <span className="ml-1 text-xs text-gray-500">
+                    {activePositions.length}
+                  </span>
+                )}
+              </button>
+              <button
+                onClick={() => setBottomTab("mapped_games")}
+                className={`px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
+                  bottomTab === "mapped_games"
+                    ? "border-emerald-500 text-white"
+                    : "border-transparent text-gray-500 hover:text-gray-300"
+                }`}
+              >
+                Mapped Games
+                {mappedGames.length > 0 && (
+                  <span className="ml-1 text-xs text-gray-500">
+                    {mappedGames.length}
+                  </span>
+                )}
+              </button>
+              {/* Mappings health indicator */}
+              {bottomTab === "mapped_games" &&
+                state?.mappings_last_refreshed && (
+                  <div className="ml-auto flex items-center gap-1.5 text-[10px] text-gray-500">
+                    <span
+                      className={`inline-block h-2 w-2 rounded-full ${mappingsHealthColor(state.mappings_last_refreshed)}`}
+                    />
+                    <span>
+                      Last refreshed:{" "}
+                      {timeAgo(state.mappings_last_refreshed)}
+                    </span>
+                  </div>
+                )}
+            </div>
 
-                    return (
+            {/* ── Open Positions ──────────────────────────────────── */}
+            {bottomTab === "positions" && (
+              <div>
+                {activePositions.length === 0 ? (
+                  <div className="text-center py-6">
+                    <span className="text-xs text-gray-600">
+                      No open positions
+                    </span>
+                  </div>
+                ) : (
+                  <div className="divide-y divide-gray-800/50">
+                    {unhedgedPositions.map((p, i) => (
                       <div
-                        key={`h-${i}`}
-                        className="px-4 py-3 border-l-2 border-emerald-500"
+                        key={`uh-${i}`}
+                        className="px-4 py-3 border-l-2 border-red-500 bg-red-500/5"
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
@@ -1101,22 +1273,8 @@ export default function ArbDashboard() {
                             )}
                           </div>
                           <div className="flex items-center gap-2">
-                            {hasFillData && (
-                              <span
-                                className={`text-[10px] font-mono font-bold ${
-                                  netProfit > 0
-                                    ? "text-emerald-400"
-                                    : netProfit < 0
-                                    ? "text-red-400"
-                                    : "text-gray-400"
-                                }`}
-                              >
-                                {netProfit >= 0 ? "+" : ""}
-                                {netProfit.toFixed(1)}c net
-                              </span>
-                            )}
-                            <span className="text-[9px] font-medium rounded px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400">
-                              HEDGED
+                            <span className="text-[9px] font-medium rounded px-1.5 py-0.5 bg-red-500/20 text-red-400">
+                              UNHEDGED
                             </span>
                             <button
                               onClick={() => markSettled(p.game_id)}
@@ -1127,219 +1285,595 @@ export default function ArbDashboard() {
                             </button>
                           </div>
                         </div>
-
-                        {hasFillData ? (
-                          <div className="mt-2 grid grid-cols-2 gap-3">
-                            <div className="rounded bg-blue-500/5 border border-blue-500/20 px-2.5 py-1.5">
-                              <div className="text-[9px] text-blue-400 font-medium mb-0.5">
-                                PM LEG
-                              </div>
-                              <div className="flex items-center justify-between">
-                                <span className="text-[11px] font-mono text-blue-300">
-                                  {pmDir} x{qty}
-                                </span>
-                                <span className="text-[11px] font-mono text-white">
-                                  @{pmFill.toFixed(1)}c
-                                </span>
-                              </div>
-                            </div>
-                            <div className="rounded bg-orange-500/5 border border-orange-500/20 px-2.5 py-1.5">
-                              <div className="text-[9px] text-orange-400 font-medium mb-0.5">
-                                KALSHI LEG
-                              </div>
-                              <div className="flex items-center justify-between">
-                                <span className="text-[11px] font-mono text-orange-300">
-                                  {kDir} x{qty}
-                                </span>
-                                <span className="text-[11px] font-mono text-white">
-                                  @{kFill.toFixed(1)}c
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="mt-1 flex items-center gap-2 text-[10px] text-gray-400">
-                            <span>
-                              {p.side} x{p.quantity}
+                        <div className="mt-1.5 flex items-center gap-3 text-[11px]">
+                          <span className="text-gray-400">
+                            {p.platform}: {p.side} x{p.quantity}
+                          </span>
+                          {p.avg_price > 0 && (
+                            <span className="text-gray-500">
+                              @{p.avg_price}c
                             </span>
-                            {p.avg_price > 0 && (
-                              <span>PM@{p.avg_price}c</span>
-                            )}
-                            {p.current_value > 0 && (
-                              <span>K@{p.current_value}c</span>
-                            )}
-                          </div>
-                        )}
-
-                        {hasFillData && (
-                          <div className="mt-1.5 flex items-center gap-3 text-[10px]">
-                            <span
-                              className={`font-mono font-bold ${
-                                locked > 0
-                                  ? "text-emerald-400"
-                                  : locked < 0
-                                  ? "text-red-400"
-                                  : "text-gray-400"
-                              }`}
-                            >
-                              Locked: {locked >= 0 ? "+" : ""}
-                              {locked.toFixed(1)}c gross
-                            </span>
-                            <span className="text-gray-600">
-                              ({pmFill.toFixed(1)} + {kFill.toFixed(1)} ={" "}
-                              {(pmFill + kFill).toFixed(1)}c cost)
-                            </span>
-                          </div>
-                        )}
+                          )}
+                          <span className="text-red-400/80 text-[10px]">
+                            Exposure: $
+                            {(
+                              ((p.avg_price || 50) * p.quantity) /
+                              100
+                            ).toFixed(2)}
+                          </span>
+                        </div>
                       </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          )}
+                    ))}
 
-          {/* ── Mapped Games ───────────────────────────────────── */}
-          {bottomTab === "mapped_games" && (
-            <div>
-              {mappedGames.length === 0 ? (
-                <div className="text-center py-6">
-                  <span className="text-xs text-gray-600">
-                    No mapped games data — waiting for executor push
-                  </span>
-                </div>
-              ) : (
-                <div className="overflow-auto" style={{ maxHeight: "400px" }}>
-                  <table className="w-full text-xs">
-                    <thead className="sticky top-0 bg-[#111] z-10">
-                      <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
-                        <th className="px-2 py-1.5">Game</th>
-                        <th className="px-2 py-1.5">Sport</th>
-                        <th className="px-2 py-1.5">Date</th>
-                        <th className="px-2 py-1.5">Status</th>
-                        <th className="px-2 py-1.5 text-right">
-                          Best Spread
-                        </th>
-                        <th className="px-2 py-1.5">Traded</th>
-                        <th className="px-2 py-1.5">PM Slug</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {mappedGames.map((g) => {
-                        const today = isToday(g.date);
-                        return (
-                          <tr
-                            key={g.cache_key}
-                            className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors ${
-                              g.traded ? "bg-emerald-500/5" : ""
-                            }`}
-                          >
-                            <td className="px-2 py-1.5 whitespace-nowrap">
-                              <span className="text-white font-medium">
-                                {g.team1}
+                    {hedgedPositions.map((p, i) => {
+                      const dir = p.direction || "";
+                      const hasFillData =
+                        (p.pm_fill_price ?? 0) > 0 ||
+                        (p.k_fill_price ?? 0) > 0;
+                      const pmDir =
+                        dir === "BUY_PM_SELL_K"
+                          ? "LONG"
+                          : dir === "BUY_K_SELL_PM"
+                          ? "SHORT"
+                          : "";
+                      const kDir =
+                        dir === "BUY_PM_SELL_K"
+                          ? "SHORT"
+                          : dir === "BUY_K_SELL_PM"
+                          ? "LONG"
+                          : "";
+                      const locked = p.locked_profit_cents ?? 0;
+                      const netProfit = p.net_profit_cents ?? 0;
+                      const pmFill = p.pm_fill_price ?? 0;
+                      const kFill = p.k_fill_price ?? 0;
+                      const qty = p.contracts || p.quantity || 0;
+
+                      return (
+                        <div
+                          key={`h-${i}`}
+                          className="px-4 py-3 border-l-2 border-emerald-500"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <span className="text-white font-medium text-xs">
+                                {p.team || p.game_id}
                               </span>
-                              <span className="text-gray-600 mx-1">vs</span>
-                              <span className="text-white font-medium">
-                                {g.team2}
-                              </span>
-                            </td>
-                            <td className="px-2 py-1.5">
                               <span
-                                className={`inline-block rounded px-1 py-0.5 text-[10px] font-medium ${sportBadge(g.sport)}`}
+                                className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${sportBadge(p.sport)}`}
                               >
-                                {g.sport}
+                                {p.sport}
                               </span>
-                            </td>
-                            <td className="px-2 py-1.5 font-mono text-gray-400">
-                              {today ? (
-                                <span className="text-emerald-400">Today</span>
-                              ) : (
-                                g.date.slice(5)
+                              {p.trade_timestamp && (
+                                <span className="text-[9px] text-gray-600">
+                                  {timeAgo(p.trade_timestamp)}
+                                </span>
                               )}
-                            </td>
-                            <td className="px-2 py-1.5">
+                            </div>
+                            <div className="flex items-center gap-2">
+                              {hasFillData && (
+                                <span
+                                  className={`text-[10px] font-mono font-bold ${
+                                    netProfit > 0
+                                      ? "text-emerald-400"
+                                      : netProfit < 0
+                                      ? "text-red-400"
+                                      : "text-gray-400"
+                                  }`}
+                                >
+                                  {netProfit >= 0 ? "+" : ""}
+                                  {netProfit.toFixed(1)}c net
+                                </span>
+                              )}
+                              <span className="text-[9px] font-medium rounded px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400">
+                                HEDGED
+                              </span>
+                              <button
+                                onClick={() => markSettled(p.game_id)}
+                                className="text-[9px] text-gray-600 hover:text-gray-400 px-1"
+                                title="Hide this position (mark as settled)"
+                              >
+                                Mark Settled
+                              </button>
+                            </div>
+                          </div>
+
+                          {hasFillData ? (
+                            <div className="mt-2 grid grid-cols-2 gap-3">
+                              <div className="rounded bg-blue-500/5 border border-blue-500/20 px-2.5 py-1.5">
+                                <div className="text-[9px] text-blue-400 font-medium mb-0.5">
+                                  PM LEG
+                                </div>
+                                <div className="flex items-center justify-between">
+                                  <span className="text-[11px] font-mono text-blue-300">
+                                    {pmDir} x{qty}
+                                  </span>
+                                  <span className="text-[11px] font-mono text-white">
+                                    @{pmFill.toFixed(1)}c
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="rounded bg-orange-500/5 border border-orange-500/20 px-2.5 py-1.5">
+                                <div className="text-[9px] text-orange-400 font-medium mb-0.5">
+                                  KALSHI LEG
+                                </div>
+                                <div className="flex items-center justify-between">
+                                  <span className="text-[11px] font-mono text-orange-300">
+                                    {kDir} x{qty}
+                                  </span>
+                                  <span className="text-[11px] font-mono text-white">
+                                    @{kFill.toFixed(1)}c
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="mt-1 flex items-center gap-2 text-[10px] text-gray-400">
+                              <span>
+                                {p.side} x{p.quantity}
+                              </span>
+                              {p.avg_price > 0 && (
+                                <span>PM@{p.avg_price}c</span>
+                              )}
+                              {p.current_value > 0 && (
+                                <span>K@{p.current_value}c</span>
+                              )}
+                            </div>
+                          )}
+
+                          {hasFillData && (
+                            <div className="mt-1.5 flex items-center gap-3 text-[10px]">
                               <span
-                                className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${
-                                  g.status === "Active"
-                                    ? "bg-emerald-500/20 text-emerald-400"
-                                    : "bg-gray-500/20 text-gray-500"
+                                className={`font-mono font-bold ${
+                                  locked > 0
+                                    ? "text-emerald-400"
+                                    : locked < 0
+                                    ? "text-red-400"
+                                    : "text-gray-400"
                                 }`}
                               >
-                                {g.status}
+                                Locked: {locked >= 0 ? "+" : ""}
+                                {locked.toFixed(1)}c gross
                               </span>
-                            </td>
-                            <td
-                              className={`px-2 py-1.5 text-right font-mono font-bold ${spreadColor(g.best_spread)}`}
-                            >
-                              {g.best_spread > 0
-                                ? g.best_spread.toFixed(1)
-                                : "-"}
-                            </td>
-                            <td className="px-2 py-1.5">
-                              {g.traded ? (
-                                <span className="text-emerald-400 text-[9px] font-medium">
-                                  YES
-                                </span>
-                              ) : (
-                                <span className="text-gray-600 text-[9px]">
-                                  -
-                                </span>
-                              )}
-                            </td>
-                            <td className="px-2 py-1.5 text-[9px] text-gray-600 font-mono truncate max-w-[160px]">
-                              {g.pm_slug}
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+                              <span className="text-gray-600">
+                                ({pmFill.toFixed(1)} + {kFill.toFixed(1)} ={" "}
+                                {(pmFill + kFill).toFixed(1)}c cost)
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
 
-        {/* ── Footer ──────────────────────────────────────────────── */}
-        <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[10px] text-gray-500">
-            <div className="flex items-center gap-1.5">
-              <span className="font-medium text-gray-400">WS</span>
-              <Pulse active={state?.system.ws_connected ?? false} />
-              <span>
-                {state?.system.ws_connected ? "Connected" : "Disconnected"}
-              </span>
-            </div>
-            <div>
-              <span className="font-medium text-gray-400">Scan</span>{" "}
-              {state?.system.last_scan_at
-                ? timeAgo(state.system.last_scan_at)
-                : "-"}
-            </div>
-            <div>
-              <span className="font-medium text-gray-400">Errors</span>{" "}
-              <span
-                className={
-                  (state?.system.error_count || 0) > 0
-                    ? "text-red-400"
-                    : "text-gray-500"
-                }
-              >
-                {state?.system.error_count || 0}
-              </span>
-            </div>
-            <div>
-              <span className="font-medium text-gray-400">Poll</span>{" "}
-              {lastFetch ? `${timeAgo(lastFetch.toISOString())}` : "-"}
-              {paused && " (paused)"}
-            </div>
-            <div>
-              <span className="font-medium text-gray-400">Ver</span>{" "}
-              {state?.system.executor_version || "-"}
+            {/* ── Mapped Games ───────────────────────────────────── */}
+            {bottomTab === "mapped_games" && (
+              <div>
+                {mappedGames.length === 0 ? (
+                  <div className="text-center py-6">
+                    <span className="text-xs text-gray-600">
+                      No mapped games data — waiting for executor push
+                    </span>
+                  </div>
+                ) : (
+                  <div
+                    className="overflow-auto"
+                    style={{ maxHeight: "400px" }}
+                  >
+                    <table className="w-full text-xs">
+                      <thead className="sticky top-0 bg-[#111] z-10">
+                        <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
+                          <th className="px-2 py-1.5">Game</th>
+                          <th className="px-2 py-1.5">Sport</th>
+                          <th className="px-2 py-1.5">Date</th>
+                          <th className="px-2 py-1.5">Status</th>
+                          <th className="px-2 py-1.5 text-right">
+                            Best Spread
+                          </th>
+                          <th className="px-2 py-1.5">Traded</th>
+                          <th className="px-2 py-1.5">PM Slug</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {mappedGames.map((g) => {
+                          const today = isToday(g.date);
+                          return (
+                            <tr
+                              key={g.cache_key}
+                              className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors ${
+                                g.traded ? "bg-emerald-500/5" : ""
+                              }`}
+                            >
+                              <td className="px-2 py-1.5 whitespace-nowrap">
+                                <span className="text-white font-medium">
+                                  {g.team1}
+                                </span>
+                                <span className="text-gray-600 mx-1">vs</span>
+                                <span className="text-white font-medium">
+                                  {g.team2}
+                                </span>
+                              </td>
+                              <td className="px-2 py-1.5">
+                                <span
+                                  className={`inline-block rounded px-1 py-0.5 text-[10px] font-medium ${sportBadge(g.sport)}`}
+                                >
+                                  {g.sport}
+                                </span>
+                              </td>
+                              <td className="px-2 py-1.5 font-mono text-gray-400">
+                                {today ? (
+                                  <span className="text-emerald-400">
+                                    Today
+                                  </span>
+                                ) : (
+                                  g.date.slice(5)
+                                )}
+                              </td>
+                              <td className="px-2 py-1.5">
+                                <span
+                                  className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${
+                                    g.status === "Active"
+                                      ? "bg-emerald-500/20 text-emerald-400"
+                                      : "bg-gray-500/20 text-gray-500"
+                                  }`}
+                                >
+                                  {g.status}
+                                </span>
+                              </td>
+                              <td
+                                className={`px-2 py-1.5 text-right font-mono font-bold ${spreadColor(g.best_spread)}`}
+                              >
+                                {g.best_spread > 0
+                                  ? g.best_spread.toFixed(1)
+                                  : "-"}
+                              </td>
+                              <td className="px-2 py-1.5">
+                                {g.traded ? (
+                                  <span className="text-emerald-400 text-[9px] font-medium">
+                                    YES
+                                  </span>
+                                ) : (
+                                  <span className="text-gray-600 text-[9px]">
+                                    -
+                                  </span>
+                                )}
+                              </td>
+                              <td className="px-2 py-1.5 text-[9px] text-gray-600 font-mono truncate max-w-[160px]">
+                                {g.pm_slug}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* ── Footer ──────────────────────────────────────────────── */}
+          <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[10px] text-gray-500">
+              <div className="flex items-center gap-1.5">
+                <span className="font-medium text-gray-400">WS</span>
+                <Pulse active={state?.system.ws_connected ?? false} />
+                <span>
+                  {state?.system.ws_connected ? "Connected" : "Disconnected"}
+                </span>
+              </div>
+              <div>
+                <span className="font-medium text-gray-400">Scan</span>{" "}
+                {state?.system.last_scan_at
+                  ? timeAgo(state.system.last_scan_at)
+                  : "-"}
+              </div>
+              <div>
+                <span className="font-medium text-gray-400">Errors</span>{" "}
+                <span
+                  className={
+                    (state?.system.error_count || 0) > 0
+                      ? "text-red-400"
+                      : "text-gray-500"
+                  }
+                >
+                  {state?.system.error_count || 0}
+                </span>
+              </div>
+              <div>
+                <span className="font-medium text-gray-400">Poll</span>{" "}
+                {lastFetch ? `${timeAgo(lastFetch.toISOString())}` : "-"}
+                {paused && " (paused)"}
+              </div>
+              <div>
+                <span className="font-medium text-gray-400">Ver</span>{" "}
+                {state?.system.executor_version || "-"}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
+
+      {/* ══════════ P&L HISTORY TAB ══════════ */}
+      {topTab === "pnl_history" && (
+        <div className="p-4 space-y-4">
+          {/* ── Filters ──────────────────────────────────────────── */}
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-1">
+              {(["1D", "1W", "1M", "YTD", "ALL"] as TimeHorizon[]).map(
+                (h) => (
+                  <button
+                    key={h}
+                    onClick={() => setPnlHorizon(h)}
+                    className={`rounded px-2 py-1 text-xs font-medium transition-colors ${
+                      pnlHorizon === h
+                        ? "bg-emerald-500/20 text-emerald-400"
+                        : "bg-gray-800 text-gray-500 hover:text-gray-300"
+                    }`}
+                  >
+                    {h}
+                  </button>
+                )
+              )}
+            </div>
+            <span className="text-gray-700">|</span>
+            <div className="flex items-center gap-1">
+              {availableSports.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setPnlSport(s)}
+                  className={`rounded px-2 py-1 text-xs font-medium transition-colors ${
+                    pnlSport === s
+                      ? "bg-blue-500/20 text-blue-400"
+                      : "bg-gray-800 text-gray-500 hover:text-gray-300"
+                  }`}
+                >
+                  {s === "all" ? "All Sports" : s}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Summary Stats ────────────────────────────────────── */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+            <MetricCard
+              label="Total P&L"
+              value={`${pnlSummaryStats.totalPnl >= 0 ? "+$" : "-$"}${Math.abs(pnlSummaryStats.totalPnl).toFixed(2)}`}
+              accent={
+                pnlSummaryStats.totalPnl > 0
+                  ? "text-emerald-400"
+                  : pnlSummaryStats.totalPnl < 0
+                  ? "text-red-400"
+                  : "text-white"
+              }
+            />
+            <MetricCard
+              label="Trades"
+              value={String(pnlSummaryStats.totalTrades)}
+              sub={`of ${pnlSummaryStats.totalAttempts} attempts`}
+            />
+            <MetricCard
+              label="Win Rate"
+              value={`${pnlSummaryStats.winRate}%`}
+              sub={`${pnlSummaryStats.wins}W / ${pnlSummaryStats.losses}L`}
+              accent={
+                Number(pnlSummaryStats.winRate) > 50
+                  ? "text-emerald-400"
+                  : Number(pnlSummaryStats.winRate) < 50
+                  ? "text-red-400"
+                  : "text-white"
+              }
+            />
+            <MetricCard
+              label="Avg Profit"
+              value={`${pnlSummaryStats.avgProfit >= 0 ? "+$" : "-$"}${Math.abs(pnlSummaryStats.avgProfit).toFixed(4)}`}
+              accent={
+                pnlSummaryStats.avgProfit > 0
+                  ? "text-emerald-400"
+                  : pnlSummaryStats.avgProfit < 0
+                  ? "text-red-400"
+                  : "text-white"
+              }
+            />
+            <MetricCard
+              label="Best Trade"
+              value={`+$${pnlSummaryStats.best.toFixed(4)}`}
+              accent="text-emerald-400"
+            />
+            <MetricCard
+              label="Worst Trade"
+              value={`${pnlSummaryStats.worst >= 0 ? "+$" : "-$"}${Math.abs(pnlSummaryStats.worst).toFixed(4)}`}
+              accent="text-red-400"
+            />
+            <MetricCard
+              label="PM No-Fills"
+              value={String(pnlSummaryStats.noFills)}
+            />
+            <MetricCard
+              label="Active Days"
+              value={String(dailyPnlData.length)}
+            />
+          </div>
+
+          {/* ── Cumulative P&L Line Chart ────────────────────────── */}
+          <div className="rounded-lg border border-gray-800 bg-[#111] p-4">
+            <h3 className="text-sm font-semibold text-white mb-3">
+              Cumulative P&L
+            </h3>
+            {cumulativeChartData.length === 0 ? (
+              <div className="text-center py-8 text-xs text-gray-600">
+                No P&L data for selected filters
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height={240}>
+                <LineChart data={cumulativeChartData}>
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke="#1f2937"
+                    vertical={false}
+                  />
+                  <XAxis
+                    dataKey="date"
+                    stroke="#4b5563"
+                    fontSize={10}
+                    tickFormatter={formatShortDate}
+                  />
+                  <YAxis
+                    stroke="#4b5563"
+                    fontSize={10}
+                    tickFormatter={(v: number) => `$${v.toFixed(2)}`}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "#111",
+                      border: "1px solid #374151",
+                      borderRadius: "6px",
+                      fontSize: "11px",
+                    }}
+                    formatter={(value: number | undefined, name: string | undefined) => {
+                      const v = value ?? 0;
+                      if (name === "pnl")
+                        return [`$${v.toFixed(4)}`, "Cumulative"];
+                      return [v, name ?? ""];
+                    }}
+                    labelFormatter={(label) =>
+                      formatDateLabel(String(label))
+                    }
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="pnl"
+                    stroke="#10b981"
+                    strokeWidth={2}
+                    dot={false}
+                    activeDot={{ r: 4, fill: "#10b981" }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+
+          {/* ── Daily P&L Bar Chart ──────────────────────────────── */}
+          <div className="rounded-lg border border-gray-800 bg-[#111] p-4">
+            <h3 className="text-sm font-semibold text-white mb-3">
+              Daily P&L
+            </h3>
+            {dailyPnlData.length === 0 ? (
+              <div className="text-center py-8 text-xs text-gray-600">
+                No daily data for selected filters
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height={200}>
+                <BarChart data={dailyPnlData}>
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke="#1f2937"
+                    vertical={false}
+                  />
+                  <XAxis
+                    dataKey="label"
+                    stroke="#4b5563"
+                    fontSize={10}
+                  />
+                  <YAxis
+                    stroke="#4b5563"
+                    fontSize={10}
+                    tickFormatter={(v: number) => `$${v.toFixed(2)}`}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "#111",
+                      border: "1px solid #374151",
+                      borderRadius: "6px",
+                      fontSize: "11px",
+                    }}
+                    formatter={(value: number | undefined) => [
+                      `$${(value ?? 0).toFixed(4)}`,
+                      "Net P&L",
+                    ]}
+                  />
+                  <Bar dataKey="pnl" radius={[3, 3, 0, 0]}>
+                    {dailyPnlData.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={entry.pnl >= 0 ? "#10b981" : "#ef4444"}
+                        fillOpacity={0.8}
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+
+          {/* ── Daily Breakdown Table ────────────────────────────── */}
+          <div className="rounded-lg border border-gray-800 bg-[#111]">
+            <div className="border-b border-gray-800 px-3 py-2">
+              <h3 className="text-sm font-semibold text-white">
+                Daily Breakdown
+              </h3>
+            </div>
+            <div className="overflow-auto" style={{ maxHeight: "300px" }}>
+              <table className="w-full text-xs">
+                <thead className="sticky top-0 bg-[#111] z-10">
+                  <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-3 py-1.5">Date</th>
+                    <th className="px-3 py-1.5 text-right">Trades</th>
+                    <th className="px-3 py-1.5 text-right">Successes</th>
+                    <th className="px-3 py-1.5 text-right">No-Fills</th>
+                    <th className="px-3 py-1.5 text-right">Net P&L</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {dailyPnlData.length === 0 ? (
+                    <tr>
+                      <td
+                        colSpan={5}
+                        className="px-3 py-6 text-center text-gray-600"
+                      >
+                        No data
+                      </td>
+                    </tr>
+                  ) : (
+                    [...dailyPnlData].reverse().map((d) => (
+                      <tr
+                        key={d.date}
+                        className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors"
+                      >
+                        <td className="px-3 py-1.5 font-mono text-gray-300">
+                          {formatDateLabel(d.date)}
+                        </td>
+                        <td className="px-3 py-1.5 text-right text-gray-400">
+                          {d.trades}
+                        </td>
+                        <td className="px-3 py-1.5 text-right text-emerald-400">
+                          {d.successes}
+                        </td>
+                        <td className="px-3 py-1.5 text-right text-yellow-400">
+                          {d.noFills}
+                        </td>
+                        <td
+                          className={`px-3 py-1.5 text-right font-mono font-bold ${
+                            d.pnl > 0
+                              ? "text-emerald-400"
+                              : d.pnl < 0
+                              ? "text-red-400"
+                              : "text-gray-400"
+                          }`}
+                        >
+                          {d.pnl >= 0 ? "+" : ""}${d.pnl.toFixed(4)}
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

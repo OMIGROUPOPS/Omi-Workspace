@@ -89,8 +89,30 @@ def _calc_exchange_divergence_boost(game_id: str, book_spread: float) -> float:
         if not ml_contracts:
             return 0.0
 
-        # Exchange implied prob = average yes_price / 100
-        exchange_prob = sum(c["yes_price"] / 100.0 for c in ml_contracts) / len(ml_contracts)
+        # Find home team's contract via subtitle matching (NOT averaging all)
+        home_team = ""
+        try:
+            cached = db.client.table("cached_odds").select("game_data").eq(
+                "game_id", game_id
+            ).limit(1).execute()
+            if cached.data:
+                home_team = (cached.data[0].get("game_data") or {}).get("home_team", "")
+        except Exception:
+            pass
+
+        exchange_prob = None
+        if home_team:
+            home_lower = home_team.lower()
+            home_words = [w for w in home_lower.split() if len(w) > 3]
+            for c in ml_contracts:
+                sub = (c.get("subtitle") or "").lower()
+                if any(w in sub for w in home_words):
+                    exchange_prob = c["yes_price"] / 100.0
+                    break
+        if exchange_prob is None:
+            # Fallback: highest yes_price (favorite, better than averaging to 50)
+            best = max(ml_contracts, key=lambda c: c["yes_price"])
+            exchange_prob = best["yes_price"] / 100.0
 
         # Book implied prob from spread: home favored = negative spread
         # P(home) = 0.50 + (-book_spread * 0.03)

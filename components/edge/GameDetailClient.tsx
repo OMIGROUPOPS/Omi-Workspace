@@ -924,9 +924,10 @@ function OmiFairPricing({
       const homeEdgePct = homeSignedGap !== 0 ? (homeSignedGap > 0 ? 1 : -1) * pointsToEdgePct(homeSignedGap) : 0;
       const awayEdgePct = awaySignedGap !== 0 ? (awaySignedGap > 0 ? 1 : -1) * pointsToEdgePct(awaySignedGap) : 0;
 
-      // Confidence derived from IP edge magnitude
-      const homeConf = edgeToConfidence(homeEdgePct);
-      const awayConf = edgeToConfidence(awayEdgePct);
+      // Confidence: directional — side WITH edge gets full conf, other gets inverse
+      const rawConf = edgeToConfidence(Math.max(Math.abs(homeEdgePct), Math.abs(awayEdgePct)));
+      const homeConf = homeEdgePct > 0 ? rawConf : homeEdgePct < 0 ? 100 - rawConf : 50;
+      const awayConf = awayEdgePct > 0 ? rawConf : awayEdgePct < 0 ? 100 - rawConf : 50;
 
       const homeAbbr = abbrev(gameData.homeTeam);
       const awayAbbr = abbrev(gameData.awayTeam);
@@ -957,7 +958,7 @@ function OmiFairPricing({
           contextLine: mkContext(awayAbbr, awayBookLine, fairAwayLine, awayEdgePct, awaySignedGap),
           evLine: mkEvLine(awayEdgePct, awaySignedGap, awayCross),
           bookName: selBookName, hasData: awayBookLine !== undefined, crossedKey: awayCross,
-          confidence: awayConf, confColor: getConfColor(awayConf),
+          confidence: awayConf, confColor: awayEdgePct > 0 ? getConfColor(awayConf) : 'text-zinc-600',
         },
         {
           label: homeAbbr, fair: fairHomeLine !== undefined ? formatSpread(fairHomeLine) : 'N/A',
@@ -966,7 +967,7 @@ function OmiFairPricing({
           contextLine: mkContext(homeAbbr, homeBookLine, fairHomeLine, homeEdgePct, homeSignedGap),
           evLine: mkEvLine(homeEdgePct, homeSignedGap, homeCross),
           bookName: selBookName, hasData: homeBookLine !== undefined, crossedKey: homeCross,
-          confidence: homeConf, confColor: getConfColor(homeConf),
+          confidence: homeConf, confColor: homeEdgePct > 0 ? getConfColor(homeConf) : 'text-zinc-600',
         },
       ];
     }
@@ -994,9 +995,10 @@ function OmiFairPricing({
       const overEdgePct = overSignedGap !== 0 ? (overSignedGap > 0 ? 1 : -1) * pointsToEdgePct(overSignedGap) : 0;
       const underEdgePct = -overEdgePct;
 
-      // Confidence derived from IP edge magnitude
-      const overConf = edgeToConfidence(overEdgePct);
-      const underConf = edgeToConfidence(underEdgePct);
+      // Confidence: directional — side WITH edge gets full conf, other gets inverse
+      const totalRawConf = edgeToConfidence(Math.abs(overEdgePct));
+      const overConf = overEdgePct > 0 ? totalRawConf : overEdgePct < 0 ? 100 - totalRawConf : 50;
+      const underConf = underEdgePct > 0 ? totalRawConf : underEdgePct < 0 ? 100 - totalRawConf : 50;
 
       const overEv = Math.abs(overSignedGap) > 0.3 && overPrice !== undefined && bookLine ? (() => {
         const edgeFrac = Math.abs(overSignedGap) / bookLine * 0.5;
@@ -1035,7 +1037,7 @@ function OmiFairPricing({
           contextLine: mkTotalContext('Over', overEdgePct, overSignedGap),
           evLine: mkTotalEv(overEdgePct, overSignedGap, overEv),
           bookName: effBookName, hasData: bookLine !== undefined,
-          confidence: overConf, confColor: getConfColor(overConf),
+          confidence: overConf, confColor: overEdgePct > 0 ? getConfColor(overConf) : 'text-zinc-600',
         },
         {
           label: 'UNDER', fair: fairLine !== undefined ? `${fairLine}` : 'N/A',
@@ -1044,7 +1046,7 @@ function OmiFairPricing({
           contextLine: mkTotalContext('Under', underEdgePct, underSignedGap),
           evLine: mkTotalEv(underEdgePct, underSignedGap, underEv),
           bookName: effBookName, hasData: bookLine !== undefined,
-          confidence: underConf, confColor: getConfColor(underConf),
+          confidence: underConf, confColor: underEdgePct > 0 ? getConfColor(underConf) : 'text-zinc-600',
         },
       ];
     }
@@ -1090,10 +1092,12 @@ function OmiFairPricing({
     const awayEv = omiFairAwayProb !== undefined && bookAwayOdds !== undefined ? calcEV(omiFairAwayProb, bookAwayOdds) : 0;
     const drawEv = omiFairDrawProb !== undefined && bookDrawOdds !== undefined ? calcEV(omiFairDrawProb, bookDrawOdds) : 0;
 
-    // Confidence derived from IP edge magnitude
-    const homeConf = edgeToConfidence(homeSignedGap);
-    const awayConf = edgeToConfidence(awaySignedGap);
-    const drawConf = edgeToConfidence(drawSignedGap);
+    // Confidence: directional — side WITH edge gets full conf, other gets inverse
+    const mlMaxEdge = Math.max(Math.abs(homeSignedGap), Math.abs(awaySignedGap), Math.abs(drawSignedGap));
+    const mlRawConf = edgeToConfidence(mlMaxEdge);
+    const homeConf = homeSignedGap > 0 ? mlRawConf : homeSignedGap < 0 ? 100 - mlRawConf : 50;
+    const awayConf = awaySignedGap > 0 ? mlRawConf : awaySignedGap < 0 ? 100 - mlRawConf : 50;
+    const drawConf = drawSignedGap > 0 ? mlRawConf : drawSignedGap < 0 ? 100 - mlRawConf : 50;
     const homeAbbr = abbrev(gameData.homeTeam);
     const awayAbbr = abbrev(gameData.awayTeam);
 
@@ -1122,7 +1126,7 @@ function OmiFairPricing({
         evLine: mkMLEvLine(awaySignedGap, awayEv),
         bookName: mlEffBookName, hasData: bookAwayOdds !== undefined, vigPct,
         rawBookOdds: bookAwayOdds, rawFairProb: omiFairAwayProb, rawBookProb: bookAwayProb,
-        confidence: awayConf, confColor: getConfColor(awayConf),
+        confidence: awayConf, confColor: awaySignedGap > 0 ? getConfColor(awayConf) : 'text-zinc-600',
       },
     ];
 
@@ -1135,7 +1139,7 @@ function OmiFairPricing({
         evLine: mkMLEvLine(drawSignedGap, drawEv),
         bookName: mlEffBookName, hasData: true, vigPct,
         rawBookOdds: bookDrawOdds, rawFairProb: omiFairDrawProb, rawBookProb: bookDrawProb,
-        confidence: drawConf, confColor: getConfColor(drawConf),
+        confidence: drawConf, confColor: drawSignedGap > 0 ? getConfColor(drawConf) : 'text-zinc-600',
       });
     }
 
@@ -1147,7 +1151,7 @@ function OmiFairPricing({
       evLine: mkMLEvLine(homeSignedGap, homeEv),
       bookName: mlEffBookName, hasData: bookHomeOdds !== undefined, vigPct,
       rawBookOdds: bookHomeOdds, rawFairProb: omiFairHomeProb, rawBookProb: bookHomeProb,
-      confidence: homeConf, confColor: getConfColor(homeConf),
+      confidence: homeConf, confColor: homeSignedGap > 0 ? getConfColor(homeConf) : 'text-zinc-600',
     });
 
     return blocks;
@@ -1941,9 +1945,24 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData }: {
         {hasML && (() => {
           const contracts = markets.moneyline;
           const totalVol = contracts.reduce((s, c) => s + (c.volume || 0), 0);
-          const avgYes = contracts.reduce((s, c) => s + (c.yes_price || 0), 0) / contracts.length;
-          const avgNo = contracts.reduce((s, c) => s + (c.no_price || 0), 0) / contracts.length;
           const mlDiv = div.moneyline;
+
+          // Match contracts to home/away using subtitle
+          const homeLower = gameData.homeTeam.toLowerCase();
+          const homeWords = homeLower.split(' ').filter(w => w.length > 3);
+          let homeContract: typeof contracts[0] | null = null;
+          let awayContract: typeof contracts[0] | null = null;
+          for (const c of contracts) {
+            const sub = (c.subtitle || '').toLowerCase();
+            if (homeWords.some(w => sub.includes(w))) {
+              homeContract = c;
+            } else {
+              awayContract = c;
+            }
+          }
+
+          const homeYes = homeContract?.yes_price ?? null;
+          const awayYes = awayContract?.yes_price ?? (homeYes != null ? 100 - homeYes : null);
 
           // FD book odds for comparison
           const fdHome = fdMarkets?.h2h?.home?.price;
@@ -1966,8 +1985,8 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData }: {
                 <tbody>
                   <tr className="text-zinc-300">
                     <td className="py-1 text-sky-400 font-medium">Kalshi</td>
-                    <td className="py-1 text-right font-mono">{fmtCents(avgYes)} <span className="text-zinc-500">({fmtPct(avgYes)})</span></td>
-                    <td className="py-1 text-right font-mono">{fmtCents(avgNo)} <span className="text-zinc-500">({fmtPct(avgNo)})</span></td>
+                    <td className="py-1 text-right font-mono">{fmtCents(homeYes)} <span className="text-zinc-500">({fmtPct(homeYes)})</span></td>
+                    <td className="py-1 text-right font-mono">{fmtCents(awayYes)} <span className="text-zinc-500">({fmtPct(awayYes)})</span></td>
                     <td className="py-1 text-right text-zinc-500">{fmtVol(totalVol)}</td>
                   </tr>
                   {fdHome && fdAway && (

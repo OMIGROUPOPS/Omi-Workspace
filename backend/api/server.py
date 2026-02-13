@@ -1449,14 +1449,23 @@ async def get_game_exchange_data(game_id: str):
                         book_home_prob /= total_vig
 
                     ml_contracts = by_market["moneyline"]
-                    exch_probs = [
-                        c["yes_price"] / 100.0 for c in ml_contracts
-                        if c.get("yes_price") and c["yes_price"] > 0
-                    ]
-                    if exch_probs:
-                        exch_home_prob = sum(exch_probs) / len(exch_probs)
+                    # Find home team's contract via subtitle (NOT averaging all)
+                    home_lower = home_team.lower()
+                    home_words = [w for w in home_lower.split() if len(w) > 3]
+                    exch_home_prob = None
+                    exch_away_prob = None
+                    for c in ml_contracts:
+                        if not c.get("yes_price") or c["yes_price"] <= 0:
+                            continue
+                        sub = (c.get("subtitle") or "").lower()
+                        if any(w in sub for w in home_words):
+                            exch_home_prob = c["yes_price"] / 100.0
+                        else:
+                            exch_away_prob = c["yes_price"] / 100.0
+                    if exch_home_prob is not None:
                         divergence["moneyline"] = {
                             "exchange_home_prob": round(exch_home_prob * 100, 1),
+                            "exchange_away_prob": round((exch_away_prob or (1 - exch_home_prob)) * 100, 1),
                             "book_home_prob": round(book_home_prob * 100, 1),
                             "divergence_pct": round((exch_home_prob - book_home_prob) * 100, 1),
                         }

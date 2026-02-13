@@ -237,15 +237,43 @@ def _blend_exchange_signal(
         contracts = tracker.get_game_exchange_data(game_id)
         if not contracts:
             return score
-        # Average exchange implied prob (yes_price is home win probability in cents)
-        exchange_probs = [
-            c["yes_price"] / 100.0
-            for c in contracts
-            if c.get("yes_price") is not None and c["yes_price"] > 0
-        ]
-        if not exchange_probs:
+        # Find home team's moneyline contract via subtitle matching
+        # For moneyline, each team has a separate contract — must NOT average them
+        from database import db
+        home_team = ""
+        try:
+            cached = db.client.table("cached_odds").select("game_data").eq(
+                "game_id", game_id
+            ).limit(1).execute()
+            if cached.data:
+                home_team = (cached.data[0].get("game_data") or {}).get("home_team", "")
+        except Exception:
+            pass
+
+        ml_contracts = [c for c in contracts if c.get("market_type") == "moneyline"
+                        and c.get("yes_price") is not None and c["yes_price"] > 0]
+        other_contracts = [c for c in contracts if c.get("market_type") != "moneyline"
+                          and c.get("yes_price") is not None and c["yes_price"] > 0]
+
+        exchange_prob = None
+        if ml_contracts and home_team:
+            # Match subtitle to home team
+            home_lower = home_team.lower()
+            home_words = [w for w in home_lower.split() if len(w) > 3]
+            for c in ml_contracts:
+                sub = (c.get("subtitle") or "").lower()
+                if any(w in sub for w in home_words):
+                    exchange_prob = c["yes_price"] / 100.0
+                    break
+        if exchange_prob is None and ml_contracts:
+            # Fallback: highest yes_price contract (likely favorite, better than averaging to 50)
+            best = max(ml_contracts, key=lambda c: c["yes_price"])
+            exchange_prob = best["yes_price"] / 100.0
+        if exchange_prob is None and other_contracts:
+            # No moneyline data — average other contract types
+            exchange_prob = sum(c["yes_price"] / 100.0 for c in other_contracts) / len(other_contracts)
+        if exchange_prob is None:
             return score
-        exchange_prob = sum(exchange_probs) / len(exchange_probs)
         # Convert to flow scale: flow >0.5 = away edge, so invert exchange home prob
         exchange_flow = 1 - exchange_prob
         old_score = score

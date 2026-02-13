@@ -1125,7 +1125,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             # Build result dicts for log_trade compatibility
             k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
             pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
-            log_trade(arb, k_result, pm_result, 'SUCCESS', execution_time_ms=result.execution_time_ms)
+            log_trade(arb, k_result, pm_result, 'SUCCESS', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
 
             # Persist traded game to prevent duplicates across restarts
             save_traded_game(arb.game, pm_slug=arb.pm_slug, team=arb.team)
@@ -1146,7 +1146,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             print(f"[EXEC] Reason: {result.abort_reason}")
             k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
             pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
-            log_trade(arb, k_result, pm_result, 'UNHEDGED', execution_time_ms=result.execution_time_ms)
+            log_trade(arb, k_result, pm_result, 'UNHEDGED', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
             # Save unhedged position for recovery
             try:
                 from arb_executor_v7 import HedgeState
@@ -1168,7 +1168,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             print(f"[EXEC] PM NO FILL: {result.abort_reason} | pm={result.pm_order_ms}ms")
             k_result = {'fill_count': 0, 'fill_price': result.kalshi_price}
             pm_result = {'fill_count': 0, 'fill_price': result.pm_price}
-            log_trade(arb, k_result, pm_result, 'PM_NO_FILL', execution_time_ms=result.execution_time_ms)
+            log_trade(arb, k_result, pm_result, 'PM_NO_FILL', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
 
         else:
             # Early abort — never reached PM API (safety, phantom, pm_long_team, etc.)

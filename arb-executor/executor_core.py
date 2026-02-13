@@ -555,20 +555,38 @@ async def execute_arb(
         )
     except Exception as e:
         # PM failed before any position taken - safe exit
-        return TradeResult(success=False, abort_reason=f"PM order failed: {e}")
+        execution_time_ms = int((time.time() - start_time) * 1000)
+        return TradeResult(success=False, abort_reason=f"PM order failed: {e}", execution_time_ms=execution_time_ms)
 
     pm_order_ms = int((time.time() - pm_order_start) * 1000)
     pm_filled = pm_result.get('fill_count', 0)
     pm_fill_price = pm_result.get('fill_price', pm_price)
 
     if pm_filled == 0:
-        # PM didn't fill - no position taken, safe exit
+        execution_time_ms = int((time.time() - start_time) * 1000)
+
+        # Distinguish real no-fills from early aborts / API errors:
+        # Real no-fill: has 'order_id' (PM accepted the order, IOC expired)
+        # Early abort/error: no 'order_id' (validation fail or HTTP error)
+        if 'order_id' not in pm_result:
+            error_msg = pm_result.get('error', 'unknown')
+            return TradeResult(
+                success=False,
+                pm_filled=0,
+                pm_price=pm_price,
+                abort_reason=f"PM order rejected: {error_msg}",
+                pm_order_ms=0,  # Force 0 so caller routes to SKIPPED
+                execution_time_ms=execution_time_ms
+            )
+
+        # Real no-fill: order was accepted but IOC expired without fills
         return TradeResult(
             success=False,
             pm_filled=0,
             pm_price=pm_price,
             abort_reason="PM: no fill (safe exit)",
-            pm_order_ms=pm_order_ms
+            pm_order_ms=pm_order_ms,
+            execution_time_ms=execution_time_ms
         )
 
     # -------------------------------------------------------------------------

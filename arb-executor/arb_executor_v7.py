@@ -3555,7 +3555,7 @@ def _pm_price_cents(fill_price: float, arb) -> float:
 
 
 def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
-               execution_time_ms: float = 0):
+               execution_time_ms: float = 0, pm_order_ms: int = 0):
     """Log trade details with all important fields"""
     global TRADE_LOG
 
@@ -3621,6 +3621,7 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
 
         # Execution
         'execution_time_ms': round(execution_time_ms, 1),
+        'pm_order_ms': pm_order_ms,
         'hedged': hedged,
         'paper_mode': Config.is_paper(),
 

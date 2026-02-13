@@ -112,8 +112,26 @@ const SHARP_BOOK = 'pinnacle';
 // Retail books to display and compare
 const RETAIL_BOOKS = ['fanduel', 'draftkings'];
 
-// Edge signal types
-type EdgeSignal = 'sharp_div' | 'juice_edge';
+// ============================================================================
+// Edge Tier System (matching game markets from edgescout.ts)
+// ============================================================================
+type EdgeTier = 'NO_EDGE' | 'LOW' | 'MID' | 'HIGH' | 'MAX';
+
+const EDGE_TIER_LABELS: Record<EdgeTier, string> = {
+  NO_EDGE: 'NO EDGE',
+  LOW: 'LOW EDGE',
+  MID: 'MID EDGE',
+  HIGH: 'HIGH EDGE',
+  MAX: 'MAX EDGE',
+};
+
+const EDGE_TIER_COLORS: Record<EdgeTier, string> = {
+  NO_EDGE: 'text-zinc-500',
+  LOW: 'text-zinc-400',
+  MID: 'text-amber-400',
+  HIGH: 'text-cyan-400',
+  MAX: 'text-red-400',
+};
 
 interface PropOutcome {
   player: string;
@@ -128,25 +146,24 @@ interface ParsedProp {
   player: string;
   propType: string;
   propTypeLabel: string;
-  line: number;
-  // Sharp benchmark (Pinnacle) - used for calculation only
+  fairLine: number;
+  // Pinnacle reference
   pinnacleOverOdds: number | null;
   pinnacleUnderOdds: number | null;
-  // Retail odds (FanDuel, DraftKings) - displayed
-  retailOverOdds: { book: string; odds: number }[];
-  retailUnderOdds: { book: string; odds: number }[];
-  // CEQ for each side
-  overCEQ: number;
-  underCEQ: number;
-  // The edge side (only one can have edge)
+  // Retail odds per book (may have different lines)
+  retailOverOdds: { book: string; odds: number; line: number }[];
+  retailUnderOdds: { book: string; odds: number; line: number }[];
+  // Edge result
   edgeSide: 'Over' | 'Under' | null;
+  edgePct: number;
   edgeCEQ: number;
+  edgeTier: EdgeTier;
   edgeOdds: number;
   edgeBook: string;
-  // Edge signal info
-  edgeSignal: EdgeSignal;
-  edgeSignalDetail: string;
-  edgePct: number;  // Raw edge percentage (e.g. 3.2 means 3.2%)
+  edgeLine: number;
+  // Game composite
+  gameComposite: number | null;
+  compositeModifier: number;
 }
 
 interface GameWithProps {
@@ -167,51 +184,42 @@ function oddsToProb(americanOdds: number): number {
   }
 }
 
-// Calculate CEQ comparing retail odds to sharp (Pinnacle) odds
-// Returns: { ceq, signal, detail }
-function calculateSharpDivCEQ(
-  retailOdds: number,
-  sharpOdds: number
-): { ceq: number; edgePct: number; detail: string } {
-  const retailProb = oddsToProb(retailOdds);
-  const sharpProb = oddsToProb(sharpOdds);
-
-  // Edge = sharp probability - retail probability
-  // If retail offers better odds (lower implied prob), we have an edge
-  const edge = sharpProb - retailProb;
-
-  // Convert edge to CEQ (50 = neutral, higher = more edge)
-  // Scale: 1% edge = ~6 CEQ points
-  const ceq = 50 + (edge * 100 * 6);
-  const clampedCeq = Math.max(0, Math.min(100, Math.round(ceq)));
-
-  const detail = `Sharp: ${sharpOdds > 0 ? '+' : ''}${sharpOdds}, Retail: ${retailOdds > 0 ? '+' : ''}${retailOdds}`;
-
-  return { ceq: clampedCeq, edgePct: Math.abs(edge * 100), detail };
+function median(values: number[]): number {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
 }
 
-// Calculate CEQ comparing FanDuel to DraftKings (cross-book)
-// When Pinnacle isn't available, we compare retail books
-function calculateJuiceEdgeCEQ(
-  bestOdds: number,
-  worstOdds: number,
-  bestBook: string
-): { ceq: number; edgePct: number; detail: string } {
-  const bestProb = oddsToProb(bestOdds);
-  const worstProb = oddsToProb(worstOdds);
+// Edge % → Confidence % (same mapping as game markets in edgescout.ts)
+function edgeToConfidence(edgePct: number): number {
+  const ae = Math.abs(edgePct);
+  if (ae < 1)  return Math.round(50 + ae * 4);           // 0→50, 1→54
+  if (ae < 3)  return Math.round(55 + (ae - 1) * 2);     // 1→55, 3→59
+  if (ae < 6)  return Math.round(60 + (ae - 3) * 5 / 3); // 3→60, 6→65
+  if (ae < 10) return Math.round(66 + (ae - 6));          // 6→66, 10→70
+  return Math.min(75, Math.round(71 + (ae - 10) * 0.5));  // 10→71, capped at 75
+}
 
-  // Edge = how much better the best odds are vs worst
-  const edge = worstProb - bestProb;
+function getEdgeTier(edgePct: number): EdgeTier {
+  const ae = Math.abs(edgePct);
+  if (ae >= 10) return 'MAX';
+  if (ae >= 6) return 'HIGH';
+  if (ae >= 3) return 'MID';
+  if (ae >= 1) return 'LOW';
+  return 'NO_EDGE';
+}
 
-  // Scale: smaller edges for cross-book (less reliable than sharp div)
-  // 1% edge = ~4 CEQ points
-  const ceq = 50 + (edge * 100 * 4);
-  const clampedCeq = Math.max(0, Math.min(100, Math.round(ceq)));
-
-  const otherBook = bestBook.toLowerCase() === 'fanduel' ? 'DK' : 'FD';
-  const detail = `${bestBook.toLowerCase() === 'fanduel' ? 'FD' : 'DK'}: ${bestOdds > 0 ? '+' : ''}${bestOdds} vs ${otherBook}: ${worstOdds > 0 ? '+' : ''}${worstOdds}`;
-
-  return { ceq: clampedCeq, edgePct: Math.abs(edge * 100), detail };
+// Game composite modifier: boosts edge when pillar analysis agrees with direction
+// composite_total > 55 → game leans toward more scoring → boost Over props
+// composite_total < 45 → game leans toward less scoring → boost Under props
+function getGameCompositeModifier(composite: number | null, edgeSide: 'Over' | 'Under'): number {
+  if (composite === null) return 1.0;
+  if (composite > 60 && edgeSide === 'Over') return 1.2;
+  if (composite > 55 && edgeSide === 'Over') return 1.1;
+  if (composite < 40 && edgeSide === 'Under') return 1.2;
+  if (composite < 45 && edgeSide === 'Under') return 1.1;
+  return 1.0;
 }
 
 // Inline SVG step-line chart for prop history
@@ -287,7 +295,7 @@ export default function PlayerPropsPage() {
   const [expandedProps, setExpandedProps] = useState<Set<string>>(new Set());
   const [propHistory, setPropHistory] = useState<Record<string, any[]>>({});
   const [loadingHistory, setLoadingHistory] = useState<Set<string>>(new Set());
-  const [minCEQ, setMinCEQ] = useState(56);
+  const [minCEQ, setMinCEQ] = useState(55);
 
   const fetchPropsFromCachedOdds = useCallback(async () => {
     setLoading(true);
@@ -303,6 +311,22 @@ export default function PlayerPropsPage() {
       const { data, error: fetchError } = await query;
 
       if (fetchError) throw fetchError;
+
+      // Fetch game composites for all games in one batch
+      const gameIds = (data || []).map((r: any) => r.game_data?.id).filter(Boolean);
+      const compositeMap = new Map<string, number>();
+      if (gameIds.length > 0) {
+        const { data: compData } = await supabase
+          .from('composite_history')
+          .select('game_id, composite_total')
+          .in('game_id', gameIds)
+          .order('timestamp', { ascending: false });
+        for (const row of compData || []) {
+          if (!compositeMap.has(row.game_id) && row.composite_total != null) {
+            compositeMap.set(row.game_id, Number(row.composite_total));
+          }
+        }
+      }
 
       const gamesData: GameWithProps[] = [];
 
@@ -338,177 +362,194 @@ export default function PlayerPropsPage() {
 
         if (propOutcomes.length === 0) continue;
 
-        // Group outcomes by player + propType + line
-        const groupedProps = new Map<string, {
+        // Group by player|propType (NOT including line) for cross-line edge detection
+        const propGroups = new Map<string, {
           player: string;
           propType: string;
-          line: number;
-          pinnacleOver: number | null;
-          pinnacleUnder: number | null;
-          retailOver: { book: string; odds: number }[];
-          retailUnder: { book: string; odds: number }[];
+          entries: Map<string, {
+            book: string;
+            line: number;
+            overOdds: number | null;
+            underOdds: number | null;
+          }>;
         }>();
 
         for (const outcome of propOutcomes) {
-          const key = `${outcome.player}|${outcome.propType}|${outcome.line}`;
-
-          if (!groupedProps.has(key)) {
-            groupedProps.set(key, {
+          const groupKey = `${outcome.player}|${outcome.propType}`;
+          if (!propGroups.has(groupKey)) {
+            propGroups.set(groupKey, {
               player: outcome.player,
               propType: outcome.propType,
-              line: outcome.line,
-              pinnacleOver: null,
-              pinnacleUnder: null,
-              retailOver: [],
-              retailUnder: [],
+              entries: new Map(),
             });
           }
-
-          const prop = groupedProps.get(key)!;
-          const bookLower = outcome.book.toLowerCase();
-
-          if (bookLower === SHARP_BOOK) {
-            // Store Pinnacle odds for benchmark (not displayed)
-            if (outcome.side === 'Over') {
-              prop.pinnacleOver = outcome.odds;
-            } else {
-              prop.pinnacleUnder = outcome.odds;
-            }
-          } else if (RETAIL_BOOKS.includes(bookLower)) {
-            // Store retail odds (displayed)
-            if (outcome.side === 'Over') {
-              prop.retailOver.push({ book: outcome.book, odds: outcome.odds });
-            } else {
-              prop.retailUnder.push({ book: outcome.book, odds: outcome.odds });
-            }
+          const group = propGroups.get(groupKey)!;
+          const entryKey = `${outcome.book}|${outcome.line}`;
+          if (!group.entries.has(entryKey)) {
+            group.entries.set(entryKey, {
+              book: outcome.book,
+              line: outcome.line,
+              overOdds: null,
+              underOdds: null,
+            });
+          }
+          const entry = group.entries.get(entryKey)!;
+          if (outcome.side === 'Over') {
+            entry.overOdds = outcome.odds;
+          } else {
+            entry.underOdds = outcome.odds;
           }
         }
 
-        // Calculate CEQ for each prop and determine edge side
+        // Calculate edge for each prop group using fair-value methodology
+        const gameComposite = compositeMap.get(game.id) ?? null;
         const propsByType = new Map<string, ParsedProp[]>();
 
-        for (const [, prop] of groupedProps) {
-          // Skip if no retail odds
-          if (prop.retailOver.length === 0 && prop.retailUnder.length === 0) continue;
+        for (const [, group] of propGroups) {
+          const entries = Array.from(group.entries.values());
 
-          // Find best and worst retail odds for each side
-          const bestRetailOver = prop.retailOver.length > 0
-            ? prop.retailOver.reduce((best, curr) => curr.odds > best.odds ? curr : best)
-            : null;
-          const worstRetailOver = prop.retailOver.length > 1
-            ? prop.retailOver.reduce((worst, curr) => curr.odds < worst.odds ? curr : worst)
-            : null;
-          const bestRetailUnder = prop.retailUnder.length > 0
-            ? prop.retailUnder.reduce((best, curr) => curr.odds > best.odds ? curr : best)
-            : null;
-          const worstRetailUnder = prop.retailUnder.length > 1
-            ? prop.retailUnder.reduce((worst, curr) => curr.odds < worst.odds ? curr : worst)
-            : null;
+          // Separate Pinnacle (sharp reference) and retail
+          const pinnacleEntry = entries.find(e => e.book.toLowerCase() === SHARP_BOOK);
+          const retailEntries = entries.filter(e => RETAIL_BOOKS.includes(e.book.toLowerCase()));
 
-          // Determine which CEQ method to use
-          const hasPinnacle = prop.pinnacleOver !== null || prop.pinnacleUnder !== null;
+          if (retailEntries.length === 0) continue;
 
-          let overCEQ = 50;
-          let underCEQ = 50;
-          let overEdgePct = 0;
-          let underEdgePct = 0;
-          let overSignal: EdgeSignal = 'juice_edge';
-          let underSignal: EdgeSignal = 'juice_edge';
-          let overDetail = '';
-          let underDetail = '';
+          // Fair line = Pinnacle line (sharp fair value), or median of retail lines
+          const fairLine = pinnacleEntry
+            ? pinnacleEntry.line
+            : median(retailEntries.map(e => e.line));
 
-          if (hasPinnacle && prop.pinnacleOver !== null && bestRetailOver) {
-            // Sharp divergence method for Over
-            const result = calculateSharpDivCEQ(bestRetailOver.odds, prop.pinnacleOver);
-            overCEQ = result.ceq;
-            overEdgePct = result.edgePct;
-            overSignal = 'sharp_div';
-            overDetail = result.detail;
-          } else if (bestRetailOver && worstRetailOver && bestRetailOver.odds !== worstRetailOver.odds) {
-            // Cross-book (juice edge) method for Over
-            const result = calculateJuiceEdgeCEQ(bestRetailOver.odds, worstRetailOver.odds, bestRetailOver.book);
-            overCEQ = result.ceq;
-            overEdgePct = result.edgePct;
-            overSignal = 'juice_edge';
-            overDetail = result.detail;
+          // Find best edge across all retail entries and sides
+          let bestEdgePct = 0;
+          let bestEdgeSide: 'Over' | 'Under' | null = null;
+          let bestEdgeBook = '';
+          let bestEdgeOdds = 0;
+          let bestEdgeLine = 0;
+
+          for (const entry of retailEntries) {
+            const lineDiff = entry.line - fairLine;
+
+            if (Math.abs(lineDiff) >= 0.5) {
+              // Line differs from fair value: edge = |diff| × 3% per point
+              const edgePct = Math.abs(lineDiff) * 3;
+              // book_line < fair → Over is easier to hit → Over edge
+              // book_line > fair → Under is easier to hit → Under edge
+              const side: 'Over' | 'Under' = lineDiff < 0 ? 'Over' : 'Under';
+              const odds = side === 'Over' ? entry.overOdds : entry.underOdds;
+
+              if (odds && edgePct > bestEdgePct) {
+                bestEdgePct = edgePct;
+                bestEdgeSide = side;
+                bestEdgeBook = entry.book;
+                bestEdgeOdds = odds;
+                bestEdgeLine = entry.line;
+              }
+            } else {
+              // Same line — compare implied probabilities
+              if (pinnacleEntry) {
+                // Compare retail odds vs Pinnacle (sharp reference)
+                if (entry.overOdds && pinnacleEntry.overOdds) {
+                  const retailProb = oddsToProb(entry.overOdds);
+                  const sharpProb = oddsToProb(pinnacleEntry.overOdds);
+                  // Positive edge = retail offers better odds than sharp
+                  const edge = (sharpProb - retailProb) * 100;
+                  if (edge > bestEdgePct) {
+                    bestEdgePct = edge;
+                    bestEdgeSide = 'Over';
+                    bestEdgeBook = entry.book;
+                    bestEdgeOdds = entry.overOdds;
+                    bestEdgeLine = entry.line;
+                  }
+                }
+                if (entry.underOdds && pinnacleEntry.underOdds) {
+                  const retailProb = oddsToProb(entry.underOdds);
+                  const sharpProb = oddsToProb(pinnacleEntry.underOdds);
+                  const edge = (sharpProb - retailProb) * 100;
+                  if (edge > bestEdgePct) {
+                    bestEdgePct = edge;
+                    bestEdgeSide = 'Under';
+                    bestEdgeBook = entry.book;
+                    bestEdgeOdds = entry.underOdds;
+                    bestEdgeLine = entry.line;
+                  }
+                }
+              } else if (retailEntries.length > 1) {
+                // No Pinnacle — cross-book comparison on same line
+                for (const side of ['Over', 'Under'] as const) {
+                  const oddsKey = side === 'Over' ? 'overOdds' : 'underOdds';
+                  const sameLineOdds = retailEntries
+                    .filter(e => Math.abs(e.line - entry.line) < 0.25 && e[oddsKey] !== null)
+                    .map(e => ({ book: e.book, odds: e[oddsKey]!, line: e.line }));
+
+                  if (sameLineOdds.length >= 2) {
+                    const best = sameLineOdds.reduce((a, b) => a.odds > b.odds ? a : b);
+                    const worst = sameLineOdds.reduce((a, b) => a.odds < b.odds ? a : b);
+                    const edge = (oddsToProb(worst.odds) - oddsToProb(best.odds)) * 100;
+                    if (edge > bestEdgePct) {
+                      bestEdgePct = edge;
+                      bestEdgeSide = side;
+                      bestEdgeBook = best.book;
+                      bestEdgeOdds = best.odds;
+                      bestEdgeLine = best.line;
+                    }
+                  }
+                }
+              }
+            }
           }
 
-          if (hasPinnacle && prop.pinnacleUnder !== null && bestRetailUnder) {
-            // Sharp divergence method for Under
-            const result = calculateSharpDivCEQ(bestRetailUnder.odds, prop.pinnacleUnder);
-            underCEQ = result.ceq;
-            underEdgePct = result.edgePct;
-            underSignal = 'sharp_div';
-            underDetail = result.detail;
-          } else if (bestRetailUnder && worstRetailUnder && bestRetailUnder.odds !== worstRetailUnder.odds) {
-            // Cross-book (juice edge) method for Under
-            const result = calculateJuiceEdgeCEQ(bestRetailUnder.odds, worstRetailUnder.odds, bestRetailUnder.book);
-            underCEQ = result.ceq;
-            underEdgePct = result.edgePct;
-            underSignal = 'juice_edge';
-            underDetail = result.detail;
-          }
+          // Skip if no meaningful edge found
+          if (bestEdgeSide === null || bestEdgePct < 0.5) continue;
 
-          // ONLY ONE SIDE CAN HAVE EDGE - the one with higher CEQ
-          let edgeSide: 'Over' | 'Under' | null = null;
-          let edgeCEQ = 50;
-          let edgePct = 0;
-          let edgeOdds = 0;
-          let edgeBook = '';
-          let edgeSignal: EdgeSignal = 'juice_edge';
-          let edgeSignalDetail = '';
+          // Apply game composite modifier
+          const modifier = getGameCompositeModifier(gameComposite, bestEdgeSide);
+          const adjustedEdgePct = bestEdgePct * modifier;
 
-          if (overCEQ > underCEQ && overCEQ >= minCEQ && bestRetailOver) {
-            edgeSide = 'Over';
-            edgeCEQ = overCEQ;
-            edgePct = overEdgePct;
-            edgeOdds = bestRetailOver.odds;
-            edgeBook = bestRetailOver.book;
-            edgeSignal = overSignal;
-            edgeSignalDetail = overDetail;
-          } else if (underCEQ > overCEQ && underCEQ >= minCEQ && bestRetailUnder) {
-            edgeSide = 'Under';
-            edgeCEQ = underCEQ;
-            edgePct = underEdgePct;
-            edgeOdds = bestRetailUnder.odds;
-            edgeBook = bestRetailUnder.book;
-            edgeSignal = underSignal;
-            edgeSignalDetail = underDetail;
-          }
+          // Map to confidence and tier (same as game markets)
+          const confidence = edgeToConfidence(adjustedEdgePct);
+          const tier = getEdgeTier(adjustedEdgePct);
 
-          // Only include props with an edge
-          if (edgeSide === null) continue;
+          // Apply min confidence filter
+          if (confidence < minCEQ) continue;
+
+          // Build retail odds arrays for display
+          const retailOverOdds = retailEntries
+            .filter(e => e.overOdds !== null)
+            .map(e => ({ book: e.book, odds: e.overOdds!, line: e.line }));
+          const retailUnderOdds = retailEntries
+            .filter(e => e.underOdds !== null)
+            .map(e => ({ book: e.book, odds: e.underOdds!, line: e.line }));
 
           const parsedProp: ParsedProp = {
-            player: prop.player,
-            propType: prop.propType,
-            propTypeLabel: PROP_TYPE_LABELS[prop.propType] || prop.propType.replace('player_', '').replace(/_/g, ' '),
-            line: prop.line,
-            pinnacleOverOdds: prop.pinnacleOver,
-            pinnacleUnderOdds: prop.pinnacleUnder,
-            retailOverOdds: prop.retailOver,
-            retailUnderOdds: prop.retailUnder,
-            overCEQ,
-            underCEQ,
-            edgeSide,
-            edgeCEQ,
-            edgeOdds,
-            edgeBook,
-            edgeSignal,
-            edgeSignalDetail,
-            edgePct: Math.round(edgePct * 10) / 10,
+            player: group.player,
+            propType: group.propType,
+            propTypeLabel: PROP_TYPE_LABELS[group.propType] || group.propType.replace('player_', '').replace(/_/g, ' '),
+            fairLine,
+            pinnacleOverOdds: pinnacleEntry?.overOdds ?? null,
+            pinnacleUnderOdds: pinnacleEntry?.underOdds ?? null,
+            retailOverOdds,
+            retailUnderOdds,
+            edgeSide: bestEdgeSide,
+            edgePct: Math.round(adjustedEdgePct * 10) / 10,
+            edgeCEQ: confidence,
+            edgeTier: tier,
+            edgeOdds: bestEdgeOdds,
+            edgeBook: bestEdgeBook,
+            edgeLine: bestEdgeLine,
+            gameComposite,
+            compositeModifier: modifier,
           };
 
           // Group by prop type
-          if (!propsByType.has(prop.propType)) {
-            propsByType.set(prop.propType, []);
+          if (!propsByType.has(group.propType)) {
+            propsByType.set(group.propType, []);
           }
-          propsByType.get(prop.propType)!.push(parsedProp);
+          propsByType.get(group.propType)!.push(parsedProp);
         }
 
-        // Sort players alphabetically within each prop type
+        // Sort by edge descending within each prop type
         for (const [, props] of propsByType) {
-          props.sort((a, b) => a.player.localeCompare(b.player));
+          props.sort((a, b) => b.edgePct - a.edgePct);
         }
 
         if (propsByType.size === 0) continue;
@@ -587,16 +628,16 @@ export default function PlayerPropsPage() {
   };
 
   const getCEQColor = (ceq: number): string => {
-    if (ceq >= 70) return 'text-emerald-400';
-    if (ceq >= 60) return 'text-blue-400';
-    if (ceq >= 56) return 'text-amber-400';
-    return 'text-zinc-500';
+    if (ceq >= 66) return 'text-cyan-400';     // HIGH/MAX
+    if (ceq >= 60) return 'text-amber-400';    // MID
+    if (ceq >= 55) return 'text-zinc-400';     // LOW
+    return 'text-zinc-500';                    // NO EDGE
   };
 
   const getCEQBadgeColor = (ceq: number): string => {
-    if (ceq >= 70) return 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30';
-    if (ceq >= 60) return 'bg-blue-500/15 text-blue-400 border-blue-500/30';
-    if (ceq >= 56) return 'bg-amber-500/15 text-amber-400 border-amber-500/30';
+    if (ceq >= 66) return 'bg-cyan-500/15 text-cyan-400 border-cyan-500/30';
+    if (ceq >= 60) return 'bg-amber-500/15 text-amber-400 border-amber-500/30';
+    if (ceq >= 55) return 'bg-zinc-500/15 text-zinc-400 border-zinc-500/30';
     return 'bg-zinc-800/50 text-zinc-500 border-zinc-700';
   };
 
@@ -643,13 +684,6 @@ export default function PlayerPropsPage() {
         });
       }
     }
-  };
-
-  const getSignalBadge = (signal: EdgeSignal): { label: string; color: string; icon: string } => {
-    if (signal === 'sharp_div') {
-      return { label: 'Sharp', color: 'text-purple-400', icon: '📊' };
-    }
-    return { label: 'Juice', color: 'text-blue-400', icon: '💧' };
   };
 
   // Get sorted prop types for a game
@@ -732,7 +766,7 @@ export default function PlayerPropsPage() {
         <div className="flex items-center gap-2 ml-auto">
           <span className="text-xs text-zinc-500">Min CEQ:</span>
           <div className="flex gap-1">
-            {[50, 56, 60, 65].map((val) => (
+            {[50, 55, 60, 66].map((val) => (
               <button
                 key={val}
                 onClick={() => setMinCEQ(val)}
@@ -749,18 +783,13 @@ export default function PlayerPropsPage() {
         </div>
       </div>
 
-      {/* Signal Legend */}
+      {/* Edge Tier Legend */}
       <div className="flex items-center gap-4 mb-4 text-xs text-zinc-500">
-        <span className="flex items-center gap-1">
-          <span>📊</span>
-          <span className="text-purple-400">Sharp</span>
-          <span>= vs Pinnacle line</span>
-        </span>
-        <span className="flex items-center gap-1">
-          <span>💧</span>
-          <span className="text-blue-400">Juice</span>
-          <span>= FD vs DK odds</span>
-        </span>
+        <span className="text-zinc-400">LOW</span>
+        <span className="text-amber-400">MID</span>
+        <span className="text-cyan-400">HIGH</span>
+        <span className="text-red-400">MAX</span>
+        <span className="text-zinc-600 ml-1">= fair value vs book line</span>
       </div>
 
       {/* Stats Bar */}
@@ -884,8 +913,7 @@ export default function PlayerPropsPage() {
                           {/* Props Rows */}
                           <div>
                             {props.map((prop, idx) => {
-                              const signalInfo = getSignalBadge(prop.edgeSignal);
-                              const propKey = `${game.gameId}|${prop.player}|${prop.propType}|${prop.line}`;
+                              const propKey = `${game.gameId}|${prop.player}|${prop.propType}|${prop.fairLine}`;
                               const isPropExpanded = expandedProps.has(propKey);
                               const history = propHistory[propKey];
                               const isLoadingHist = loadingHistory.has(propKey);
@@ -901,7 +929,7 @@ export default function PlayerPropsPage() {
                               const bestUnderOdds = fdUnder && dkUnder ? (fdUnder.odds >= dkUnder.odds ? 'fd' : 'dk') : fdUnder ? 'fd' : dkUnder ? 'dk' : null;
 
                               return (
-                                <div key={`${prop.player}-${prop.line}-${idx}`}>
+                                <div key={`${prop.player}-${prop.fairLine}-${idx}`}>
                                   {/* Main row */}
                                   <div
                                     onClick={() => toggleProp(propKey, game.gameId, prop.player, prop.propType)}
@@ -917,9 +945,9 @@ export default function PlayerPropsPage() {
                                         </span>
                                       </div>
 
-                                      {/* Line */}
+                                      {/* Fair Line */}
                                       <div className="text-center">
-                                        <span className="text-sm font-mono text-zinc-200">{prop.line}</span>
+                                        <span className="text-sm font-mono text-zinc-200">{prop.fairLine}</span>
                                       </div>
 
                                       {/* Over (FD / DK) */}
@@ -946,10 +974,15 @@ export default function PlayerPropsPage() {
 
                                       {/* Best Edge */}
                                       <div className="text-center">
-                                        <span className={`text-xs font-semibold ${prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'}`}>
-                                          {prop.edgeSide} {formatOdds(prop.edgeOdds)}
-                                        </span>
-                                        <span className="text-[10px] text-zinc-500 ml-1">@{formatBook(prop.edgeBook)}</span>
+                                        <div>
+                                          <span className={`text-xs font-semibold ${prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'}`}>
+                                            {prop.edgeSide} {prop.edgeLine}
+                                          </span>
+                                          <span className="text-[10px] text-zinc-500 ml-1">@{formatBook(prop.edgeBook)}</span>
+                                        </div>
+                                        <div className={`text-[10px] ${EDGE_TIER_COLORS[prop.edgeTier]}`}>
+                                          {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
+                                        </div>
                                       </div>
 
                                       {/* CEQ */}
@@ -957,9 +990,11 @@ export default function PlayerPropsPage() {
                                         <div className={`text-sm font-bold ${getCEQColor(prop.edgeCEQ)}`}>
                                           {prop.edgeCEQ}%
                                         </div>
-                                        <div className="text-[10px] text-zinc-500">
-                                          {prop.edgePct.toFixed(1)}% edge
-                                        </div>
+                                        {prop.compositeModifier > 1.0 && (
+                                          <div className="text-[10px] text-cyan-400/60">
+                                            +{Math.round((prop.compositeModifier - 1) * 100)}% boost
+                                          </div>
+                                        )}
                                       </div>
                                     </div>
 
@@ -975,11 +1010,13 @@ export default function PlayerPropsPage() {
                                         </div>
                                       </div>
                                       <div className="flex items-center gap-3 text-xs pl-5">
-                                        <span className="font-mono text-zinc-300">{prop.line}</span>
+                                        <span className="font-mono text-zinc-300">{prop.fairLine}</span>
                                         <span className={`font-semibold ${prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'}`}>
-                                          {prop.edgeSide} {formatOdds(prop.edgeOdds)} @{formatBook(prop.edgeBook)}
+                                          {prop.edgeSide} {prop.edgeLine} @{formatBook(prop.edgeBook)}
                                         </span>
-                                        <span className="text-zinc-500">{prop.edgePct.toFixed(1)}% edge</span>
+                                        <span className={EDGE_TIER_COLORS[prop.edgeTier]}>
+                                          {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
+                                        </span>
                                       </div>
                                     </div>
                                   </div>
@@ -1033,10 +1070,16 @@ export default function PlayerPropsPage() {
                                         <div className="text-zinc-400">
                                           <span className="text-zinc-500">Best:</span>{' '}
                                           <span className={`font-semibold ${prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'}`}>
-                                            {formatBook(prop.edgeBook)} {prop.edgeSide} {formatOdds(prop.edgeOdds)}
+                                            {formatBook(prop.edgeBook)} {prop.edgeSide} {prop.edgeLine} {formatOdds(prop.edgeOdds)}
                                           </span>
-                                          <span className="text-zinc-500 ml-1">({prop.edgePct.toFixed(1)}% edge)</span>
-                                          <span className="ml-2 text-[10px]" title={prop.edgeSignalDetail}>{signalInfo.icon} {signalInfo.label}</span>
+                                          <span className={`ml-1 ${EDGE_TIER_COLORS[prop.edgeTier]}`}>
+                                            {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
+                                          </span>
+                                          {prop.compositeModifier > 1.0 && (
+                                            <span className="ml-1 text-cyan-400/60">
+                                              (game composite boost)
+                                            </span>
+                                          )}
                                         </div>
                                       </div>
                                     </div>

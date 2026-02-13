@@ -58,42 +58,46 @@ def fetch_line_context(game_id: str, sport_key: str) -> dict:
     try:
         # Query line_snapshots for spread market, full game
         # Note: game_id is unique across sports from Odds API, so no sport_key filter needed
+        # Don't filter by outcome_type — spread snapshots were saved without it
         query_result = db.client.table("line_snapshots").select(
-            "line, snapshot_time"
+            "line, snapshot_time, book_key"
         ).eq(
             "game_id", game_id
         ).eq(
             "market_type", "spread"
         ).eq(
             "market_period", "full"
-        ).eq(
-            "outcome_type", "home"
         ).order(
             "snapshot_time", desc=False
         ).execute()
 
-        snapshots = query_result.data or []
+        raw_snapshots = query_result.data or []
 
-        if snapshots:
-            # Opening line = earliest snapshot
-            result["opening_line"] = snapshots[0].get("line")
+        if raw_snapshots:
+            # Deduplicate: median line per snapshot_time (across books)
+            import statistics as _stats
+            from collections import defaultdict
+            by_time: dict = defaultdict(list)
+            for snap in raw_snapshots:
+                t = snap.get("snapshot_time")
+                line_val = snap.get("line")
+                if t and line_val is not None:
+                    by_time[t].append(line_val)
 
-            # Current line = most recent snapshot
-            result["current_line"] = snapshots[-1].get("line")
+            # Build deduplicated list sorted by time
+            deduped = sorted(
+                [{"timestamp": t, "line": _stats.median(lines)} for t, lines in by_time.items()],
+                key=lambda x: x["timestamp"]
+            )
 
-            # Build line_snapshots list for shocks/flow pillars
-            # Format: list of {timestamp, line} dicts
-            result["line_snapshots"] = [
-                {
-                    "timestamp": snap.get("snapshot_time"),
-                    "line": snap.get("line")
-                }
-                for snap in snapshots
-                if snap.get("line") is not None
-            ]
+            if deduped:
+                result["opening_line"] = deduped[0]["line"]
+                result["current_line"] = deduped[-1]["line"]
+                result["line_snapshots"] = deduped
 
             logger.info(f"  Line context for {game_id}: opening={result['opening_line']}, "
-                       f"current={result['current_line']}, {len(result['line_snapshots'])} snapshots")
+                       f"current={result['current_line']}, {len(deduped)} unique timestamps "
+                       f"({len(raw_snapshots)} raw snapshots across books)")
         else:
             logger.warning(f"  WARNING: No line snapshots found for {game_id} — Shocks and Flow will return default 0.5")
             logger.warning(f"  This means 50% of the composite (Shocks 25% + Flow 25%) is fake/neutral")

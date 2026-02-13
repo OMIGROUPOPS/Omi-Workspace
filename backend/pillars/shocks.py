@@ -45,6 +45,12 @@ def calculate_shocks_score(
     now = datetime.now(timezone.utc)
     time_to_game = (game_time - now).total_seconds() / 3600
 
+    # Diagnostic logging
+    snap_count = len(line_movement_history) if line_movement_history else 0
+    logger.info(f"[Shocks] game={away_team}@{home_team} current_line={current_line} "
+                f"opening_line={opening_line} snapshots={snap_count} "
+                f"movement={round(current_line - opening_line, 2) if current_line is not None and opening_line is not None else 'N/A'}")
+
     shock_detected = False
     shock_direction = "neutral"
     reasoning_parts = []

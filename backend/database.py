@@ -291,7 +291,8 @@ class Database:
                     line=spread["line"],
                     odds=spread["odds"],
                     implied_prob=american_to_implied_prob(spread["odds"]),
-                    market_period="full"
+                    market_period="full",
+                    outcome_type="home"
                 ):
                     saved += 1
             

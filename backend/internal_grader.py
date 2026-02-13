@@ -560,6 +560,7 @@ class InternalGrader:
         days: int = 30,
         market: Optional[str] = None,
         confidence_tier: Optional[int] = None,
+        signal: Optional[str] = None,
         since: Optional[str] = None,
     ) -> dict:
         """Query prediction_grades and aggregate performance metrics."""
@@ -582,6 +583,8 @@ class InternalGrader:
             query = query.eq("market_type", market)
         if confidence_tier:
             query = query.eq("confidence_tier", confidence_tier)
+        if signal:
+            query = query.eq("signal", signal)
 
         result = query.execute()
         rows = result.data or []
@@ -600,6 +603,7 @@ class InternalGrader:
                 "sport": sport,
                 "market": market,
                 "confidence_tier": confidence_tier,
+                "signal": signal,
                 "since": since,
             },
             "by_confidence_tier": self._aggregate_by_field(rows, "confidence_tier"),
@@ -607,7 +611,7 @@ class InternalGrader:
             "by_sport": self._aggregate_by_field(rows, "sport_key"),
             "by_signal": self._aggregate_by_field(rows, "signal"),
             "by_pillar": self._pillar_performance(rows),
-            "calibration": self._calibration(rows),
+            "calibration": self._calibration_by_signal(rows),
         }
 
     def _aggregate_by_field(self, rows: list, field: str) -> dict:
@@ -671,21 +675,31 @@ class InternalGrader:
             }
         }
 
-    def _calibration(self, rows: list) -> list:
-        """Calculate calibration: predicted tier vs actual hit rate."""
-        tiers = [55, 60, 65, 70]
+    def _calibration_by_signal(self, rows: list) -> list:
+        """Calculate calibration: edge signal tier vs actual hit rate.
+        Higher edge tiers should produce higher hit rates if calibrated.
+        """
+        # Map each tier to its expected confidence midpoint
+        tier_order = [
+            ("NO EDGE", 52),    # 50-54% midpoint
+            ("LOW EDGE", 57),   # 55-59% midpoint
+            ("MID EDGE", 63),   # 60-65% midpoint
+            ("HIGH EDGE", 68),  # 66-70% midpoint
+            ("MAX EDGE", 73),   # 71-75% midpoint
+        ]
         calibration = []
 
-        for tier in tiers:
-            tier_rows = [r for r in rows if r.get("confidence_tier") == tier]
+        for tier_name, predicted in tier_order:
+            tier_rows = [r for r in rows if r.get("signal") == tier_name]
             decided = [r for r in tier_rows if r.get("is_correct") is not None]
             correct = sum(1 for r in decided if r.get("is_correct") is True)
             actual_rate = correct / len(decided) * 100 if decided else 0
 
             calibration.append({
-                "predicted": tier,
+                "predicted": predicted,
                 "actual": round(actual_rate, 1),
                 "sample_size": len(decided),
+                "tier": tier_name,
             })
 
         return calibration

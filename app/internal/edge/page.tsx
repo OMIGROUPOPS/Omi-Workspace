@@ -24,6 +24,7 @@ interface CalibrationPoint {
   predicted: number;
   actual: number;
   sample_size: number;
+  tier?: string;
 }
 
 interface PillarData {
@@ -231,7 +232,7 @@ export default function EdgeInternalPage() {
       if (sport) params.set("sport", sport);
       if (market) params.set("market", market);
       if (days !== 30) params.set("days", String(days));
-      if (tier) params.set("confidence_tier", tier);
+      if (tier) params.set("signal", tier);
       if (cleanDataOnly) params.set("since", "2026-02-10T00:00:00+00:00");
       const res = await fetch(
         `${BACKEND_URL}/api/internal/edge/performance?${params.toString()}`
@@ -348,7 +349,11 @@ export default function EdgeInternalPage() {
   }, [gradedData?.rows, sortField, sortDir]);
 
   // ------- Render helpers -------
-  const tierOrder = ["55", "60", "65", "70"];
+  const EDGE_TIERS = ["NO EDGE", "LOW EDGE", "MID EDGE", "HIGH EDGE", "MAX EDGE"];
+  const EDGE_TIER_RANGES: Record<string, string> = {
+    "NO EDGE": "<1%", "LOW EDGE": "1-3%", "MID EDGE": "3-6%",
+    "HIGH EDGE": "6-10%", "MAX EDGE": "10%+",
+  };
 
   const SortHeader = ({
     field,
@@ -462,11 +467,12 @@ export default function EdgeInternalPage() {
             onChange={(e) => setTier(e.target.value)}
             className="bg-zinc-800 border border-zinc-700 rounded px-3 py-2 text-sm text-white"
           >
-            <option value="">All Tiers</option>
-            <option value="55">55%</option>
-            <option value="60">60%</option>
-            <option value="65">65%</option>
-            <option value="70">70%</option>
+            <option value="">All Edge Tiers</option>
+            <option value="NO EDGE">No Edge (&lt;1%)</option>
+            <option value="LOW EDGE">Low Edge (1-3%)</option>
+            <option value="MID EDGE">Mid Edge (3-6%)</option>
+            <option value="HIGH EDGE">High Edge (6-10%)</option>
+            <option value="MAX EDGE">Max Edge (10%+)</option>
           </select>
         )}
 
@@ -528,31 +534,31 @@ export default function EdgeInternalPage() {
                 {data.total_predictions} predictions over {data.days} days
               </div>
 
-              {/* Confidence Tier Table */}
-              <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+              {/* Edge Tier Breakdown Table */}
+              <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
                 <div className="px-4 py-3 border-b border-zinc-800">
                   <h2 className="text-sm font-semibold text-zinc-300 font-mono">
-                    CONFIDENCE TIER BREAKDOWN
+                    EDGE TIER BREAKDOWN
                   </h2>
                 </div>
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="text-zinc-500 border-b border-zinc-800">
                       <th className="text-left px-4 py-2">Tier</th>
+                      <th className="text-left px-4 py-2">Range</th>
                       <th className="text-right px-4 py-2">Signals</th>
-                      <th className="text-right px-4 py-2">Correct</th>
-                      <th className="text-right px-4 py-2">Wrong</th>
+                      <th className="text-right px-4 py-2">W-L-P</th>
                       <th className="text-right px-4 py-2">Hit Rate</th>
                       <th className="text-right px-4 py-2">ROI</th>
                       <th className="text-right px-4 py-2">Calibration</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {tierOrder.map((t) => {
-                      const d = data.by_confidence_tier[t];
+                    {EDGE_TIERS.map((t) => {
+                      const d = data.by_signal[t];
                       if (!d) return null;
                       const cal = data.calibration.find(
-                        (c) => c.predicted === Number(t)
+                        (c) => c.tier === t
                       );
                       const calLabel = cal
                         ? calibrationLabel(
@@ -561,24 +567,23 @@ export default function EdgeInternalPage() {
                             cal.sample_size
                           )
                         : null;
+                      const sigColor = SIGNAL_COLORS[t] || "text-zinc-400";
                       return (
                         <tr
                           key={t}
                           className="border-b border-zinc-800/50 text-white"
                         >
-                          <td className="px-4 py-2 font-mono">{t}%</td>
+                          <td className={`px-4 py-2 font-mono font-bold ${sigColor}`}>{t}</td>
+                          <td className="px-4 py-2 text-zinc-500 text-xs">{EDGE_TIER_RANGES[t]}</td>
                           <td className="px-4 py-2 text-right">{d.total}</td>
-                          <td className="px-4 py-2 text-right text-emerald-400">
-                            {d.correct}
+                          <td className="px-4 py-2 text-right text-zinc-400 font-mono">
+                            {d.correct}-{d.wrong}-{d.push}
                           </td>
-                          <td className="px-4 py-2 text-right text-red-400">
-                            {d.wrong}
-                          </td>
-                          <td className="px-4 py-2 text-right">
+                          <td className="px-4 py-2 text-right font-mono">
                             {(d.hit_rate * 100).toFixed(1)}%
                           </td>
                           <td
-                            className={`px-4 py-2 text-right ${roiColor(d.roi)}`}
+                            className={`px-4 py-2 text-right font-mono ${roiColor(d.roi)}`}
                           >
                             {d.roi >= 0 ? "+" : ""}
                             {(d.roi * 100).toFixed(1)}%
@@ -597,8 +602,36 @@ export default function EdgeInternalPage() {
                 </table>
               </div>
 
+              {/* Signal Breakdown Cards */}
+              {Object.keys(data.by_signal).length > 0 && (
+                <div className="mt-4 grid grid-cols-2 md:grid-cols-5 gap-3">
+                  {EDGE_TIERS.map((sig) => {
+                    const d = data.by_signal[sig];
+                    if (!d) return null;
+                    const sigColor = SIGNAL_COLORS[sig] || "text-zinc-400";
+                    return (
+                      <div key={sig} className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 text-center">
+                        <div className={`text-xs font-mono font-bold ${sigColor}`}>
+                          {sig}
+                        </div>
+                        <div className="text-white text-xl font-bold mt-1">
+                          {(d.hit_rate * 100).toFixed(1)}%
+                        </div>
+                        <div className={`text-xs font-mono ${roiColor(d.roi)}`}>
+                          {d.roi >= 0 ? "+" : ""}
+                          {(d.roi * 100).toFixed(1)}% ROI
+                        </div>
+                        <div className="text-zinc-600 text-xs mt-1">
+                          {d.total} signals
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
               {/* Market + Pillar */}
-              <div className="mt-6 grid md:grid-cols-2 gap-6">
+              <div className="mt-4 grid md:grid-cols-2 gap-4">
                 <div className="bg-zinc-900 border border-zinc-800 rounded-lg">
                   <div className="px-4 py-3 border-b border-zinc-800">
                     <h2 className="text-sm font-semibold text-zinc-300 font-mono">
@@ -670,180 +703,96 @@ export default function EdgeInternalPage() {
                 </div>
               </div>
 
-              {/* Signal Breakdown */}
-              {Object.keys(data.by_signal).length > 0 && (
-                <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-lg">
-                  <div className="px-4 py-3 border-b border-zinc-800">
-                    <h2 className="text-sm font-semibold text-zinc-300 font-mono">
-                      SIGNAL BREAKDOWN
-                    </h2>
-                  </div>
-                  <div className="p-4 grid grid-cols-2 md:grid-cols-5 gap-4">
-                    {["MAX EDGE", "HIGH EDGE", "MID EDGE", "LOW EDGE", "NO EDGE"].map((sig) => {
-                      const d = data.by_signal[sig];
-                      if (!d) return null;
-                      const sigColor = SIGNAL_COLORS[sig] || "text-zinc-400";
-                      return (
-                        <div key={sig} className="text-center">
-                          <div
-                            className={`text-sm font-mono font-bold ${sigColor}`}
-                          >
-                            {sig}
-                          </div>
-                          <div className="text-white text-lg mt-1">
-                            {(d.hit_rate * 100).toFixed(1)}%
-                          </div>
-                          <div className={`text-xs ${roiColor(d.roi)}`}>
-                            {d.roi >= 0 ? "+" : ""}
-                            {(d.roi * 100).toFixed(1)}% ROI
-                          </div>
-                          <div className="text-zinc-600 text-xs mt-1">
-                            {d.total} signals
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* Calibration Chart */}
+              {/* Calibration Chart — Edge Tiers on X-axis */}
               {data.calibration.length > 0 && (
-                <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-lg">
+                <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg">
                   <div className="px-4 py-3 border-b border-zinc-800">
                     <h2 className="text-sm font-semibold text-zinc-300 font-mono">
-                      CALIBRATION CHART
+                      CALIBRATION — EDGE TIER vs ACTUAL HIT RATE
                     </h2>
                   </div>
                   <div className="p-4 flex justify-center">
-                    <svg viewBox="0 0 300 300" className="w-full max-w-md">
-                      <rect
-                        x="50"
-                        y="10"
-                        width="240"
-                        height="240"
-                        fill="#18181b"
-                        rx="4"
-                      />
+                    <svg viewBox="0 0 340 260" className="w-full max-w-lg">
+                      <rect x="50" y="10" width="270" height="200" fill="#18181b" rx="4" />
+                      {/* Y-axis gridlines and labels (0% - 100%) */}
                       {[0, 25, 50, 75, 100].map((v) => {
-                        const y = 250 - (v / 100) * 240;
-                        const x = 50 + (v / 100) * 240;
+                        const y = 210 - (v / 100) * 200;
                         return (
-                          <g key={v}>
-                            <line
-                              x1="50"
-                              y1={y}
-                              x2="290"
-                              y2={y}
-                              stroke="#27272a"
-                              strokeWidth="0.5"
-                            />
-                            <line
-                              x1={x}
-                              y1="10"
-                              x2={x}
-                              y2="250"
-                              stroke="#27272a"
-                              strokeWidth="0.5"
-                            />
-                            <text
-                              x="45"
-                              y={y + 4}
-                              textAnchor="end"
-                              fill="#52525b"
-                              fontSize="10"
-                            >
-                              {v}%
-                            </text>
-                            <text
-                              x={x}
-                              y="265"
-                              textAnchor="middle"
-                              fill="#52525b"
-                              fontSize="10"
-                            >
-                              {v}%
-                            </text>
+                          <g key={`y-${v}`}>
+                            <line x1="50" y1={y} x2="320" y2={y} stroke="#27272a" strokeWidth="0.5" />
+                            <text x="45" y={y + 4} textAnchor="end" fill="#52525b" fontSize="10">{v}%</text>
                           </g>
                         );
                       })}
-                      <line
-                        x1="50"
-                        y1="250"
-                        x2="290"
-                        y2="10"
-                        stroke="#3f3f46"
-                        strokeWidth="1"
-                        strokeDasharray="4 4"
-                      />
+                      {/* Perfect calibration dashed line connecting expected confidence midpoints */}
+                      {(() => {
+                        const tierMidpoints = [52, 57, 63, 68, 73]; // NO EDGE→MAX EDGE
+                        const tierXPositions = [0, 1, 2, 3, 4].map((i) => 77 + i * 60);
+                        const points = tierMidpoints.map((mp, i) => {
+                          const x = tierXPositions[i];
+                          const y = 210 - (mp / 100) * 200;
+                          return `${x},${y}`;
+                        });
+                        return (
+                          <polyline
+                            points={points.join(" ")}
+                            fill="none"
+                            stroke="#3f3f46"
+                            strokeWidth="1"
+                            strokeDasharray="4 4"
+                          />
+                        );
+                      })()}
+                      {/* Tier columns with dots */}
                       {data.calibration.map((point, i) => {
                         if (point.sample_size === 0) return null;
-                        const x = 50 + (point.predicted / 100) * 240;
-                        const y = 250 - (point.actual / 100) * 240;
-                        const cal = calibrationLabel(
-                          point.predicted,
-                          point.actual,
-                          point.sample_size
-                        );
-                        const color =
-                          cal.text === "Strong"
-                            ? "#34d399"
-                            : cal.text === "Good"
-                              ? "#22d3ee"
-                              : cal.text === "Weak"
-                                ? "#fbbf24"
-                                : cal.text === "Broken"
-                                  ? "#f87171"
-                                  : "#71717a";
+                        const x = 77 + i * 60; // evenly spaced across 5 tiers
+                        const y = 210 - (point.actual / 100) * 200;
+                        const expectedY = 210 - (point.predicted / 100) * 200;
+                        const tierName = point.tier || EDGE_TIERS[i] || "";
+                        const tierColor = SIGNAL_COLORS[tierName] || "text-zinc-400";
+                        // Map tier color class to hex
+                        const dotColor = tierName === "MAX EDGE" ? "#f87171"
+                          : tierName === "HIGH EDGE" ? "#22d3ee"
+                          : tierName === "MID EDGE" ? "#fbbf24"
+                          : tierName === "LOW EDGE" ? "#a1a1aa"
+                          : "#71717a";
                         return (
                           <g key={i}>
-                            <circle
-                              cx={x}
-                              cy={y}
-                              r="6"
-                              fill={color}
-                              opacity="0.8"
-                            />
-                            <text
-                              x={x}
-                              y={y - 10}
-                              textAnchor="middle"
-                              fill={color}
-                              fontSize="9"
-                              fontFamily="monospace"
-                            >
+                            {/* Expected confidence marker (small hollow circle) */}
+                            <circle cx={x} cy={expectedY} r="3" fill="none" stroke="#3f3f46" strokeWidth="1" />
+                            {/* Actual hit rate dot */}
+                            <circle cx={x} cy={y} r="7" fill={dotColor} opacity="0.9" />
+                            {/* Actual value label */}
+                            <text x={x} y={y - 12} textAnchor="middle" fill={dotColor} fontSize="10" fontFamily="monospace">
                               {point.actual.toFixed(1)}%
+                            </text>
+                            {/* Sample size below */}
+                            <text x={x} y={y + 18} textAnchor="middle" fill="#52525b" fontSize="8" fontFamily="monospace">
+                              n={point.sample_size}
+                            </text>
+                            {/* X-axis tier label */}
+                            <text x={x} y="230" textAnchor="middle" fill={dotColor} fontSize="8" fontFamily="monospace" fontWeight="bold">
+                              {tierName.replace(" EDGE", "").replace("NO", "NONE")}
                             </text>
                           </g>
                         );
                       })}
-                      <text
-                        x="170"
-                        y="285"
-                        textAnchor="middle"
-                        fill="#71717a"
-                        fontSize="11"
-                      >
-                        Predicted
+                      {/* Axis labels */}
+                      <text x="185" y="250" textAnchor="middle" fill="#71717a" fontSize="10">
+                        Edge Tier
                       </text>
-                      <text
-                        x="15"
-                        y="130"
-                        textAnchor="middle"
-                        fill="#71717a"
-                        fontSize="11"
-                        transform="rotate(-90, 15, 130)"
-                      >
-                        Actual
+                      <text x="15" y="110" textAnchor="middle" fill="#71717a" fontSize="10" transform="rotate(-90, 15, 110)">
+                        Actual Hit Rate
                       </text>
                     </svg>
                   </div>
                 </div>
               )}
 
-              {/* Sport Breakdown */}
-              {Object.keys(data.by_sport).length > 1 && (
-                <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-lg">
+              {/* Sport Breakdown — always show if any sports exist */}
+              {Object.keys(data.by_sport).length >= 1 && (
+                <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg">
                   <div className="px-4 py-3 border-b border-zinc-800">
                     <h2 className="text-sm font-semibold text-zinc-300 font-mono">
                       BY SPORT

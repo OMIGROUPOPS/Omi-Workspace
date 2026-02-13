@@ -346,31 +346,51 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const currentValue = data[data.length - 1]?.value || baseValue;
   const movement = currentValue - openValue;
   const values = data.map(d => d.value);
-  // OMI fair line is hidden from chart — don't include in Y-axis scaling
   // For soccer 3-way single-select, only include tracked side in Y-axis bounds
   if (soccer3WayData) {
     const sideKey = trackingSide === 'draw' ? 'draw' : trackingSide === 'away' ? 'away' : 'home';
     const sideArr = soccer3WayData[sideKey as keyof typeof soccer3WayData];
     for (const pt of sideArr) values.push(pt.value);
   }
-  const minVal = Math.min(...values);
-  const maxVal = Math.max(...values);
+
+  // Smart Y-axis scaling: for ML, use percentile-based range to handle outliers
+  const isMLAny = marketType === 'moneyline';
+  let minVal: number;
+  let maxVal: number;
+
+  if (isMLAny && values.length >= 4) {
+    // ML: use 5th-95th percentile to exclude outlier opening prints
+    const sorted = [...values].sort((a, b) => a - b);
+    const p5Idx = Math.floor(sorted.length * 0.05);
+    const p95Idx = Math.min(sorted.length - 1, Math.ceil(sorted.length * 0.95));
+    const p5 = sorted[p5Idx];
+    const p95 = sorted[p95Idx];
+    // Always include the most recent value (it's what the user cares about)
+    const recent = values.slice(-Math.max(3, Math.floor(values.length * 0.25)));
+    const recentMin = Math.min(...recent);
+    const recentMax = Math.max(...recent);
+    minVal = Math.min(p5, recentMin);
+    maxVal = Math.max(p95, recentMax);
+  } else {
+    minVal = Math.min(...values);
+    maxVal = Math.max(...values);
+  }
+
   const range = maxVal - minVal || 1;
-  // Tight Y-axis padding: 5% of data range — data should fill 70-80% of chart height
-  const isMLAny = marketType === 'moneyline'; // ML in any view mode
+
+  // Y-axis padding
   let padding: number;
   if (isMLAny) {
-    // ML: 5% padding, min 5 pts (a 10pt move is significant)
-    padding = Math.max(range * 0.05, 5);
+    // ML: 10% padding, min 5 pts
+    padding = Math.max(range * 0.10, 5);
   } else if (isPrice) {
-    // Price/juice: tight, 1 point minimum
     padding = Math.max(range * 0.05, 1);
   } else if (marketType === 'spread' || marketType === 'total') {
     padding = Math.max(range * 0.05, 0.2);
   } else {
     padding = Math.max(range * 0.05, 0.5);
   }
-  // Minimum visual range — just enough to avoid a flat line
+  // Minimum visual range — avoid flat-looking charts
   const minVisualRange = isMLAny ? 20 : (isPrice ? 4 : 1);
   if (range + 2 * padding < minVisualRange) {
     padding = (minVisualRange - range) / 2;
@@ -387,7 +407,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   const chartPoints = data.map((d, i) => {
     const normalizedY = (d.value - minVal + padding) / (range + 2 * padding);
-    const y = paddingTop + chartHeight - normalizedY * chartHeight;
+    // Clamp Y so outlier values (beyond percentile range) stay within chart bounds
+    const rawY = paddingTop + chartHeight - normalizedY * chartHeight;
+    const y = Math.max(paddingTop - 2, Math.min(paddingTop + chartHeight + 2, rawY));
     return { x: paddingLeft + (i / Math.max(data.length - 1, 1)) * chartWidth, y, value: d.value, timestamp: d.timestamp, index: i };
   });
 
@@ -504,23 +526,49 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     return labels.length > 12 ? labels.filter((_, i) => i % Math.ceil(labels.length / 10) === 0) : labels;
   })();
 
-  // X-axis date labels
+  // X-axis date labels — more granular with time-appropriate formatting
   const xLabels = (() => {
     if (data.length < 2) return [];
     const labels: { x: number; label: string }[] = [];
     const timeSpan = data[data.length - 1].timestamp.getTime() - data[0].timestamp.getTime();
-    const count = Math.min(5, data.length);
+    const maxLabels = 7;
+    const count = Math.min(maxLabels, data.length);
     const step = Math.max(1, Math.floor(data.length / count));
     const seen = new Set<string>();
     for (let i = 0; i < data.length; i += step) {
       const d = data[i];
-      const dateStr = timeSpan > 48 * 3600000
-        ? d.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-        : d.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      let dateStr: string;
+      if (timeSpan > 7 * 24 * 3600000) {
+        // > 7 days: "Feb 12"
+        dateStr = d.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      } else if (timeSpan > 48 * 3600000) {
+        // 2-7 days: "Wed 3p"
+        dateStr = d.timestamp.toLocaleDateString('en-US', { weekday: 'short' }) + ' ' +
+          d.timestamp.toLocaleTimeString('en-US', { hour: 'numeric' });
+      } else if (timeSpan > 6 * 3600000) {
+        // 6h-48h: "3:30 PM"
+        dateStr = d.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      } else {
+        // < 6h: "3:30:15" — show seconds for tight ranges
+        dateStr = d.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      }
       if (seen.has(dateStr)) continue;
       seen.add(dateStr);
       const x = paddingLeft + (i / Math.max(data.length - 1, 1)) * chartWidth;
       labels.push({ x, label: dateStr });
+    }
+    // Always include last data point time
+    if (labels.length > 0 && data.length > 1) {
+      const lastD = data[data.length - 1];
+      const lastX = paddingLeft + chartWidth;
+      const lastLabel = timeSpan > 48 * 3600000
+        ? lastD.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+        : lastD.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      // Only add if not too close to the previous label
+      const prevX = labels[labels.length - 1].x;
+      if (lastX - prevX > chartWidth / (maxLabels + 1) && !seen.has(lastLabel)) {
+        labels.push({ x: lastX, label: lastLabel });
+      }
     }
     return labels;
   })();

@@ -128,9 +128,9 @@ const EDGE_TIER_LABELS: Record<EdgeTier, string> = {
 const EDGE_TIER_COLORS: Record<EdgeTier, string> = {
   NO_EDGE: 'text-zinc-500',
   LOW: 'text-zinc-400',
-  MID: 'text-amber-400',
-  HIGH: 'text-cyan-400',
-  MAX: 'text-red-400',
+  MID: 'text-zinc-300',
+  HIGH: 'text-emerald-400',
+  MAX: 'text-emerald-300',
 };
 
 interface PropOutcome {
@@ -222,23 +222,26 @@ function getGameCompositeModifier(composite: number | null, edgeSide: 'Over' | '
   return 1.0;
 }
 
-// Inline SVG step-line chart for prop history
-function PropLineChart({ data }: { data: any[] }) {
+// Inline SVG step-line chart for prop history with OMI fair line overlay
+function PropLineChart({ data, fairLine }: { data: any[]; fairLine: number }) {
   const W = 600, H = 120, PAD_X = 40, PAD_Y = 16;
   const lines = data.map(d => Number(d.line)).filter(n => !isNaN(n));
   if (lines.length < 2) return null;
 
-  const minLine = Math.min(...lines);
-  const maxLine = Math.max(...lines);
+  // Include fair line in range calculation so it's always visible
+  const allValues = [...lines, fairLine];
+  const minLine = Math.min(...allValues);
+  const maxLine = Math.max(...allValues);
   const range = maxLine - minLine || 1;
 
   const xStep = (W - PAD_X * 2) / (lines.length - 1);
+  const valToY = (val: number) => PAD_Y + (1 - (val - minLine) / range) * (H - PAD_Y * 2);
 
   // Build step-line path points
   const points: string[] = [];
   lines.forEach((val, i) => {
     const x = PAD_X + i * xStep;
-    const y = PAD_Y + (1 - (val - minLine) / range) * (H - PAD_Y * 2);
+    const y = valToY(val);
     if (i === 0) {
       points.push(`M ${x} ${y}`);
     } else {
@@ -248,6 +251,7 @@ function PropLineChart({ data }: { data: any[] }) {
   });
 
   const pathD = points.join(' ');
+  const fairY = valToY(fairLine);
 
   // Y-axis labels
   const yLabels = [minLine, (minLine + maxLine) / 2, maxLine];
@@ -256,11 +260,14 @@ function PropLineChart({ data }: { data: any[] }) {
   const firstTime = data[0]?.snapshot_time ? new Date(data[0].snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
   const lastTime = data[data.length - 1]?.snapshot_time ? new Date(data[data.length - 1].snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
 
+  // Fair line label
+  const fairLabel = `OMI Fair: ${Number.isInteger(fairLine) ? fairLine : fairLine.toFixed(1)}`;
+
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-[600px]" style={{ height: '120px' }}>
       {/* Grid lines */}
       {yLabels.map((val, i) => {
-        const y = PAD_Y + (1 - (val - minLine) / range) * (H - PAD_Y * 2);
+        const y = valToY(val);
         return (
           <g key={i}>
             <line x1={PAD_X} y1={y} x2={W - PAD_X} y2={y} stroke="#27272a" strokeWidth="1" />
@@ -270,13 +277,35 @@ function PropLineChart({ data }: { data: any[] }) {
           </g>
         );
       })}
-      {/* Step-line path */}
-      <path d={pathD} fill="none" stroke="#10b981" strokeWidth="2" />
+      {/* OMI Fair Line — horizontal dashed cyan line */}
+      <line x1={PAD_X} y1={fairY} x2={W - PAD_X} y2={fairY} stroke="#2dd4bf" strokeWidth="1" strokeDasharray="4 3" opacity="0.7" />
+      <text x={W - PAD_X + 3} y={fairY + 3} fill="#2dd4bf" fontSize="8" fontFamily="monospace" opacity="0.8">
+        {fairLabel}
+      </text>
+      {/* Convergence fill between book line and fair line */}
+      {lines.map((val, i) => {
+        if (i === lines.length - 1) return null;
+        const x1 = PAD_X + i * xStep;
+        const x2 = PAD_X + (i + 1) * xStep;
+        const bookY = valToY(val);
+        return (
+          <rect
+            key={i}
+            x={x1}
+            y={Math.min(bookY, fairY)}
+            width={x2 - x1}
+            height={Math.abs(bookY - fairY)}
+            fill={bookY < fairY ? '#10b98120' : '#10b98110'}
+          />
+        );
+      })}
+      {/* Step-line path (book line) */}
+      <path d={pathD} fill="none" stroke="#a1a1aa" strokeWidth="2" />
       {/* Dot on last point */}
       <circle
         cx={PAD_X + (lines.length - 1) * xStep}
-        cy={PAD_Y + (1 - (lines[lines.length - 1] - minLine) / range) * (H - PAD_Y * 2)}
-        r="3" fill="#10b981"
+        cy={valToY(lines[lines.length - 1])}
+        r="3" fill="#a1a1aa"
       />
       {/* X-axis labels */}
       <text x={PAD_X} y={H - 2} fill="#52525b" fontSize="8" fontFamily="monospace">{firstTime}</text>
@@ -295,6 +324,11 @@ export default function PlayerPropsPage() {
   const [expandedProps, setExpandedProps] = useState<Set<string>>(new Set());
   const [propHistory, setPropHistory] = useState<Record<string, any[]>>({});
   const [loadingHistory, setLoadingHistory] = useState<Set<string>>(new Set());
+  const [gamePillars, setGamePillars] = useState<Record<string, {
+    execution: number; incentives: number; shocks: number;
+    timeDecay: number; flow: number; gameEnvironment: number;
+    composite: number;
+  }>>({});
   const [minCEQ, setMinCEQ] = useState(55);
 
   const fetchPropsFromCachedOdds = useCallback(async () => {
@@ -327,6 +361,27 @@ export default function PlayerPropsPage() {
           }
         }
       }
+
+      // Fetch pillar scores from game_results for all games
+      const pillarMap: typeof gamePillars = {};
+      if (gameIds.length > 0) {
+        const { data: pillarData } = await supabase
+          .from('game_results')
+          .select('game_id, pillar_execution, pillar_incentives, pillar_shocks, pillar_time_decay, pillar_flow, pillar_game_environment, composite_score')
+          .in('game_id', gameIds);
+        for (const row of pillarData || []) {
+          pillarMap[row.game_id] = {
+            execution: Math.round((row.pillar_execution ?? 0.5) * 100),
+            incentives: Math.round((row.pillar_incentives ?? 0.5) * 100),
+            shocks: Math.round((row.pillar_shocks ?? 0.5) * 100),
+            timeDecay: Math.round((row.pillar_time_decay ?? 0.5) * 100),
+            flow: Math.round((row.pillar_flow ?? 0.5) * 100),
+            gameEnvironment: Math.round((row.pillar_game_environment ?? 0.5) * 100),
+            composite: Math.round((row.composite_score ?? 50)),
+          };
+        }
+      }
+      setGamePillars(pillarMap);
 
       const gamesData: GameWithProps[] = [];
 
@@ -628,16 +683,16 @@ export default function PlayerPropsPage() {
   };
 
   const getCEQColor = (ceq: number): string => {
-    if (ceq >= 66) return 'text-cyan-400';     // HIGH/MAX
-    if (ceq >= 60) return 'text-amber-400';    // MID
+    if (ceq >= 66) return 'text-emerald-400';  // HIGH/MAX
+    if (ceq >= 60) return 'text-zinc-300';     // MID
     if (ceq >= 55) return 'text-zinc-400';     // LOW
     return 'text-zinc-500';                    // NO EDGE
   };
 
   const getCEQBadgeColor = (ceq: number): string => {
-    if (ceq >= 66) return 'bg-cyan-500/15 text-cyan-400 border-cyan-500/30';
-    if (ceq >= 60) return 'bg-amber-500/15 text-amber-400 border-amber-500/30';
-    if (ceq >= 55) return 'bg-zinc-500/15 text-zinc-400 border-zinc-500/30';
+    if (ceq >= 66) return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+    if (ceq >= 60) return 'bg-zinc-700/30 text-zinc-300 border-zinc-600/30';
+    if (ceq >= 55) return 'bg-zinc-800/30 text-zinc-400 border-zinc-700/30';
     return 'bg-zinc-800/50 text-zinc-500 border-zinc-700';
   };
 
@@ -786,9 +841,9 @@ export default function PlayerPropsPage() {
       {/* Edge Tier Legend */}
       <div className="flex items-center gap-4 mb-4 text-xs text-zinc-500">
         <span className="text-zinc-400">LOW</span>
-        <span className="text-amber-400">MID</span>
-        <span className="text-cyan-400">HIGH</span>
-        <span className="text-red-400">MAX</span>
+        <span className="text-zinc-300">MID</span>
+        <span className="text-emerald-400">HIGH</span>
+        <span className="text-emerald-300">MAX</span>
         <span className="text-zinc-600 ml-1">= fair value vs book line</span>
       </div>
 
@@ -975,7 +1030,7 @@ export default function PlayerPropsPage() {
                                       {/* Best Edge */}
                                       <div className="text-center">
                                         <div>
-                                          <span className={`text-xs font-semibold ${prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'}`}>
+                                          <span className="text-xs font-semibold text-zinc-200">
                                             {prop.edgeSide} {prop.edgeLine}
                                           </span>
                                           <span className="text-[10px] text-zinc-500 ml-1">@{formatBook(prop.edgeBook)}</span>
@@ -991,7 +1046,7 @@ export default function PlayerPropsPage() {
                                           {prop.edgeCEQ}%
                                         </div>
                                         {prop.compositeModifier > 1.0 && (
-                                          <div className="text-[10px] text-cyan-400/60">
+                                          <div className="text-[10px] text-zinc-500">
                                             +{Math.round((prop.compositeModifier - 1) * 100)}% boost
                                           </div>
                                         )}
@@ -1011,7 +1066,7 @@ export default function PlayerPropsPage() {
                                       </div>
                                       <div className="flex items-center gap-3 text-xs pl-5">
                                         <span className="font-mono text-zinc-300">{prop.fairLine}</span>
-                                        <span className={`font-semibold ${prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'}`}>
+                                        <span className="font-semibold text-zinc-200">
                                           {prop.edgeSide} {prop.edgeLine} @{formatBook(prop.edgeBook)}
                                         </span>
                                         <span className={EDGE_TIER_COLORS[prop.edgeTier]}>
@@ -1031,7 +1086,7 @@ export default function PlayerPropsPage() {
                                             <RefreshCw className="w-4 h-4 text-zinc-500 animate-spin" />
                                           </div>
                                         ) : history && history.length > 1 ? (
-                                          <PropLineChart data={history} />
+                                          <PropLineChart data={history} fairLine={prop.fairLine} />
                                         ) : (
                                           <div className="text-xs text-zinc-600 py-4 text-center">Line history unavailable</div>
                                         )}
@@ -1069,19 +1124,51 @@ export default function PlayerPropsPage() {
                                         {/* Best edge */}
                                         <div className="text-zinc-400">
                                           <span className="text-zinc-500">Best:</span>{' '}
-                                          <span className={`font-semibold ${prop.edgeSide === 'Over' ? 'text-emerald-400' : 'text-red-400'}`}>
+                                          <span className="font-semibold text-zinc-200">
                                             {formatBook(prop.edgeBook)} {prop.edgeSide} {prop.edgeLine} {formatOdds(prop.edgeOdds)}
                                           </span>
                                           <span className={`ml-1 ${EDGE_TIER_COLORS[prop.edgeTier]}`}>
                                             {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
                                           </span>
                                           {prop.compositeModifier > 1.0 && (
-                                            <span className="ml-1 text-cyan-400/60">
+                                            <span className="ml-1 text-zinc-500">
                                               (game composite boost)
                                             </span>
                                           )}
                                         </div>
                                       </div>
+
+                                      {/* Compressed Pillar Bar */}
+                                      {gamePillars[game.gameId] && (() => {
+                                        const p = gamePillars[game.gameId];
+                                        const pillars = [
+                                          { key: 'EXEC', val: p.execution },
+                                          { key: 'INCV', val: p.incentives },
+                                          { key: 'SHCK', val: p.shocks },
+                                          { key: 'TIME', val: p.timeDecay },
+                                          { key: 'FLOW', val: p.flow },
+                                          { key: 'ENV', val: p.gameEnvironment },
+                                        ];
+                                        const pillarColor = (v: number) =>
+                                          v >= 60 ? 'text-emerald-400' : v <= 40 ? 'text-red-400' : 'text-zinc-400';
+                                        return (
+                                          <div className="mt-3 pt-2 border-t border-zinc-800/40">
+                                            <div className="flex items-center gap-1 text-[10px] font-mono flex-wrap">
+                                              <span className="text-zinc-600 mr-1">Game Context:</span>
+                                              {pillars.map((pl, i) => (
+                                                <span key={pl.key}>
+                                                  <span className="text-zinc-500">{pl.key}</span>{' '}
+                                                  <span className={pillarColor(pl.val)}>{pl.val}</span>
+                                                  {i < pillars.length - 1 && <span className="text-zinc-700 mx-0.5">&middot;</span>}
+                                                </span>
+                                              ))}
+                                              <span className="text-zinc-600 mx-1">&rarr;</span>
+                                              <span className="text-zinc-500">Composite</span>{' '}
+                                              <span className={pillarColor(p.composite)}>{p.composite}</span>
+                                            </div>
+                                          </div>
+                                        );
+                                      })()}
                                     </div>
                                   )}
                                 </div>

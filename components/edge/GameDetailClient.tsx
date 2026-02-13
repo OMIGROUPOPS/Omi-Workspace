@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { formatOdds, formatSpread } from '@/lib/edge/utils/odds-math';
 import { isGameLive as checkGameLive } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, CEQConfidence, PythonPillarScores, PillarResult } from '@/lib/edge/engine/edgescout';
-import { calculateFairSpread, calculateFairTotal, calculateFairMoneyline, calculateFairMLFromBook, calculateFairMLFromBook3Way, spreadToMoneyline, removeVig, removeVig3Way, SPORT_KEY_NUMBERS, SPREAD_TO_PROB_RATE } from '@/lib/edge/engine/edgescout';
+import { calculateFairSpread, calculateFairTotal, calculateFairMoneyline, calculateFairMLFromBook, calculateFairMLFromBook3Way, spreadToMoneyline, removeVig, removeVig3Way, SPORT_KEY_NUMBERS, SPREAD_TO_PROB_RATE, getEdgeSignal, getEdgeSignalColor, edgeToConfidence, PROB_PER_POINT } from '@/lib/edge/engine/edgescout';
 
 // ============================================================================
 // Constants
@@ -849,26 +849,17 @@ function OmiFairPricing({
     return Math.round(Math.abs(pts) * rate * 1000) / 10; // e.g. 0.5 pts * 0.033 = 1.65%
   };
 
-  // Edge color by percentage (unified across all markets)
+  // Edge color by IP edge signal tier
   const getEdgeColor = (pctGap: number): string => {
-    const abs = Math.abs(pctGap);
-    if (pctGap > 0) {
-      if (abs >= 3) return 'text-emerald-400';
-      if (abs >= 1.5) return 'text-amber-400';
-      return 'text-zinc-500';
-    } else if (pctGap < 0) {
-      return abs >= 1.5 ? 'text-red-400' : 'text-zinc-500';
-    }
-    return 'text-zinc-500';
+    return getEdgeSignalColor(getEdgeSignal(pctGap));
   };
 
-  // Confidence color
+  // Confidence color (derived from edge-based confidence)
   const getConfColor = (conf: number): string => {
-    if (conf >= 65) return 'text-emerald-400';
-    if (conf >= 60) return 'text-emerald-400/70';
-    if (conf >= 55) return 'text-amber-400';
-    if (conf >= 50) return 'text-zinc-500';
-    return 'text-red-400';
+    if (conf >= 66) return 'text-cyan-400';
+    if (conf >= 60) return 'text-amber-400';
+    if (conf >= 55) return 'text-zinc-400';
+    return 'text-zinc-500';
   };
 
   // EV calculation
@@ -933,8 +924,9 @@ function OmiFairPricing({
       const homeEdgePct = homeSignedGap !== 0 ? (homeSignedGap > 0 ? 1 : -1) * pointsToEdgePct(homeSignedGap) : 0;
       const awayEdgePct = awaySignedGap !== 0 ? (awaySignedGap > 0 ? 1 : -1) * pointsToEdgePct(awaySignedGap) : 0;
 
-      const homeConf = composite;
-      const awayConf = 100 - composite;
+      // Confidence derived from IP edge magnitude
+      const homeConf = edgeToConfidence(homeEdgePct);
+      const awayConf = edgeToConfidence(awayEdgePct);
 
       const homeAbbr = abbrev(gameData.homeTeam);
       const awayAbbr = abbrev(gameData.awayTeam);
@@ -1002,9 +994,9 @@ function OmiFairPricing({
       const overEdgePct = overSignedGap !== 0 ? (overSignedGap > 0 ? 1 : -1) * pointsToEdgePct(overSignedGap) : 0;
       const underEdgePct = -overEdgePct;
 
-      const totalsConf = composite;
-      const overConf = totalsConf;
-      const underConf = 100 - totalsConf;
+      // Confidence derived from IP edge magnitude
+      const overConf = edgeToConfidence(overEdgePct);
+      const underConf = edgeToConfidence(underEdgePct);
 
       const overEv = Math.abs(overSignedGap) > 0.3 && overPrice !== undefined && bookLine ? (() => {
         const edgeFrac = Math.abs(overSignedGap) / bookLine * 0.5;
@@ -1098,9 +1090,10 @@ function OmiFairPricing({
     const awayEv = omiFairAwayProb !== undefined && bookAwayOdds !== undefined ? calcEV(omiFairAwayProb, bookAwayOdds) : 0;
     const drawEv = omiFairDrawProb !== undefined && bookDrawOdds !== undefined ? calcEV(omiFairDrawProb, bookDrawOdds) : 0;
 
-    const homeConf = omiFairHomeProb !== undefined ? Math.round(omiFairHomeProb * 100) : composite;
-    const awayConf = omiFairAwayProb !== undefined ? Math.round(omiFairAwayProb * 100) : (100 - composite);
-    const drawConf = omiFairDrawProb !== undefined ? Math.round(omiFairDrawProb * 100) : 25;
+    // Confidence derived from IP edge magnitude
+    const homeConf = edgeToConfidence(homeSignedGap);
+    const awayConf = edgeToConfidence(awaySignedGap);
+    const drawConf = edgeToConfidence(drawSignedGap);
     const homeAbbr = abbrev(gameData.homeTeam);
     const awayAbbr = abbrev(gameData.awayTeam);
 
@@ -1316,7 +1309,7 @@ function OmiFairPricing({
           const edgeVal = block.edgePct;
           const absEdge = Math.abs(edgeVal);
           const isPositiveEdge = edgeVal > 0;
-          const isHighEdge = isPositiveEdge && absEdge >= 3;
+          const isHighEdge = isPositiveEdge && absEdge >= 6;
           const isNearZero = absEdge < 0.5;
 
           // Format edge display — always percentage
@@ -1345,7 +1338,7 @@ function OmiFairPricing({
                     <div className="text-[18px] font-bold font-mono text-zinc-100">{block.bookLine}</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest">Edge</div>
+                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest">IP Edge</div>
                     <div className={`text-[18px] font-bold font-mono ${block.edgeColor}`}>
                       {edgeDisplay}
                     </div>
@@ -1381,7 +1374,7 @@ function OmiFairPricing({
         <div className="flex-shrink-0 border-t border-zinc-800/50 pt-1 pb-0">
           <div className="flex items-center gap-2 mb-0.5">
             <span className="text-[8px] text-zinc-600 uppercase tracking-widest">All Books</span>
-            {bestValueBook && bestValueBook.signedEdge > 1.5 && (
+            {bestValueBook && bestValueBook.signedEdge > 3 && (
               <span className="text-[10px] font-mono text-emerald-400 font-semibold">
                 Best value: {bestValueBook.name} {bestValueBook.line} {bestValueBook.edgeStr}
               </span>

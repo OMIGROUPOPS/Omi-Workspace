@@ -52,21 +52,47 @@ def _normalize_sport(raw: str) -> str:
 
 
 def determine_signal(edge_pct: float) -> str:
-    """Determine signal tier from implied probability edge %.
-    All markets use the same thresholds since edge is already in universal % units.
+    """Determine signal tier from IP edge %.
+    < 1%  = NO EDGE
+    1-3%  = LOW EDGE
+    3-6%  = MID EDGE
+    6-10% = HIGH EDGE
+    10%+  = MAX EDGE
     """
     ae = abs(edge_pct)
+    if ae >= 10:
+        return "MAX EDGE"
     if ae >= 6:
-        return "MISPRICED"
+        return "HIGH EDGE"
     if ae >= 3:
-        return "VALUE"
+        return "MID EDGE"
     if ae >= 1:
-        return "FAIR"
-    return "SHARP"
+        return "LOW EDGE"
+    return "NO EDGE"
+
+
+def edge_to_confidence(edge_pct: float) -> int:
+    """Map edge % to confidence % via linear interpolation within bands.
+    < 1%  (NO EDGE)   → 50-54%
+    1-3%  (LOW EDGE)  → 55-59%
+    3-6%  (MID EDGE)  → 60-65%
+    6-10% (HIGH EDGE) → 66-70%
+    10%+  (MAX EDGE)  → 71-75% (capped)
+    """
+    ae = abs(edge_pct)
+    if ae < 1:
+        return int(50 + ae * 4)            # 0→50, 1→54
+    if ae < 3:
+        return int(55 + (ae - 1) * 2)      # 1→55, 3→59
+    if ae < 6:
+        return int(60 + (ae - 3) * 5 / 3)  # 3→60, 6→65
+    if ae < 10:
+        return int(66 + (ae - 6))           # 6→66, 10→70
+    return min(75, int(71 + (ae - 10) * 0.5))  # 10→71, capped at 75
 
 
 def composite_to_confidence_tier(composite: float) -> Optional[int]:
-    """Map composite score (0-1) to confidence tier."""
+    """Map composite score (0-1) to confidence tier. Returns None if < 55."""
     score = composite * 100
     if score >= 70:
         return 70

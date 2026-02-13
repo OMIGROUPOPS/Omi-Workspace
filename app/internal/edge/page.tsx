@@ -118,10 +118,16 @@ const SPORT_BADGE_COLORS: Record<string, string> = {
 };
 
 const SIGNAL_COLORS: Record<string, string> = {
-  MISPRICED: "text-emerald-400",
+  "MAX EDGE": "text-red-400",
+  "HIGH EDGE": "text-cyan-400",
+  "MID EDGE": "text-amber-400",
+  "LOW EDGE": "text-zinc-400",
+  "NO EDGE": "text-zinc-500",
+  // Legacy fallbacks
+  MISPRICED: "text-red-400",
   VALUE: "text-amber-400",
   FAIR: "text-zinc-400",
-  SHARP: "text-cyan-400",
+  SHARP: "text-zinc-500",
 };
 
 // ---------------------------------------------------------------------------
@@ -672,18 +678,11 @@ export default function EdgeInternalPage() {
                       SIGNAL BREAKDOWN
                     </h2>
                   </div>
-                  <div className="p-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {["MISPRICED", "VALUE", "FAIR", "SHARP"].map((sig) => {
+                  <div className="p-4 grid grid-cols-2 md:grid-cols-5 gap-4">
+                    {["MAX EDGE", "HIGH EDGE", "MID EDGE", "LOW EDGE", "NO EDGE"].map((sig) => {
                       const d = data.by_signal[sig];
                       if (!d) return null;
-                      const sigColor =
-                        sig === "MISPRICED"
-                          ? "text-emerald-400"
-                          : sig === "VALUE"
-                            ? "text-amber-400"
-                            : sig === "SHARP"
-                              ? "text-cyan-400"
-                              : "text-zinc-400";
+                      const sigColor = SIGNAL_COLORS[sig] || "text-zinc-400";
                       return (
                         <div key={sig} className="text-center">
                           <div

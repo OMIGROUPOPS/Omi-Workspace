@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from typing import Optional
 import logging
 import statistics
+import traceback
 
 from database import db
 from engine.analyzer import analyze_game, implied_prob_to_american
@@ -435,7 +436,8 @@ class CompositeTracker:
             except Exception as e:
                 logger.error(
                     f"[CompositeTracker] Error processing {row.get('game_id', '?')} "
-                    f"(sport={row.get('sport_key', '?')}): {e}"
+                    f"(sport={row.get('sport_key', '?')}): {e}\n"
+                    f"{traceback.format_exc()}"
                 )
                 errors += 1
                 sk = row.get("sport_key", "unknown")

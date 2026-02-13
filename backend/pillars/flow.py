@@ -699,7 +699,7 @@ def _analyze_moneyline_flow(bookmakers: dict, parsed: dict) -> dict:
     market_scores["moneyline"] = score
 
     # Blend exchange signal if available (30% weight within Flow)
-    game_id = game.get("id", "")
+    game_id = parsed.get("game_id", "")
     score = _blend_exchange_signal(game_id, score, reasoning_parts)
 
     # TOTALS: Dampen the signal for totals

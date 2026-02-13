@@ -421,129 +421,161 @@ def analyze_game(
 
     venue = None
 
-    execution = calculate_execution_score(
-        sport=sport,
-        home_team=home_team,
-        away_team=away_team,
-        game_time=game_time,
-        venue=venue
-    )
-    
-    incentives = calculate_incentives_score(
-        sport=sport,
-        home_team=home_team,
-        away_team=away_team,
-        game_time=game_time
-    )
-    
+    # Neutral fallback for any pillar that crashes (score=0.5, all markets=0.5)
+    _NEUTRAL_PILLAR = {
+        "score": 0.5,
+        "market_scores": {"spread": 0.5, "moneyline": 0.5, "totals": 0.5},
+        "breakdown": {},
+        "reasoning": "Pillar returned neutral (data unavailable or error)",
+    }
+
+    try:
+        execution = calculate_execution_score(
+            sport=sport,
+            home_team=home_team,
+            away_team=away_team,
+            game_time=game_time,
+            venue=venue
+        )
+    except Exception as e:
+        logger.error(f"[Analyzer] Execution pillar crashed for {away_team}@{home_team} ({sport}): {e}")
+        execution = {**_NEUTRAL_PILLAR, "home_injury_impact": 0, "away_injury_impact": 0, "weather_factor": 0, "soccer_adjustment": 0}
+
+    try:
+        incentives = calculate_incentives_score(
+            sport=sport,
+            home_team=home_team,
+            away_team=away_team,
+            game_time=game_time
+        )
+    except Exception as e:
+        logger.error(f"[Analyzer] Incentives pillar crashed for {away_team}@{home_team} ({sport}): {e}")
+        incentives = {**_NEUTRAL_PILLAR, "home_motivation": 0.5, "away_motivation": 0.5, "is_rivalry": False, "is_championship": False, "soccer_motivation_adjustment": 0}
+
     # Calculate consensus odds (now includes extended markets)
     consensus = odds_client.calculate_consensus_odds(game)
     current_line = None
     if consensus.get("spreads", {}).get("home"):
         current_line = consensus["spreads"]["home"]["line"]
-    
-    shocks = calculate_shocks_score(
-        sport=sport,
-        home_team=home_team,
-        away_team=away_team,
-        game_time=game_time,
-        current_line=current_line,
-        opening_line=opening_line,
-        line_movement_history=line_snapshots
-    )
-    
-    time_decay = calculate_time_decay_score(
-        sport=sport,
-        home_team=home_team,
-        away_team=away_team,
-        game_time=game_time
-    )
-    
-    flow = calculate_flow_score(
-        game=game,
-        opening_line=opening_line,
-        line_snapshots=line_snapshots
-    )
+
+    try:
+        shocks = calculate_shocks_score(
+            sport=sport,
+            home_team=home_team,
+            away_team=away_team,
+            game_time=game_time,
+            current_line=current_line,
+            opening_line=opening_line,
+            line_movement_history=line_snapshots
+        )
+    except Exception as e:
+        logger.error(f"[Analyzer] Shocks pillar crashed for {away_team}@{home_team} ({sport}): {e}")
+        shocks = {**_NEUTRAL_PILLAR, "line_movement": 0, "shock_detected": False, "shock_direction": "neutral"}
+
+    try:
+        time_decay = calculate_time_decay_score(
+            sport=sport,
+            home_team=home_team,
+            away_team=away_team,
+            game_time=game_time
+        )
+    except Exception as e:
+        logger.error(f"[Analyzer] TimeDecay pillar crashed for {away_team}@{home_team} ({sport}): {e}")
+        time_decay = {**_NEUTRAL_PILLAR, "home_fatigue": 0.5, "away_fatigue": 0.5, "home_rest_days": 3, "away_rest_days": 3}
+
+    try:
+        flow = calculate_flow_score(
+            game=game,
+            opening_line=opening_line,
+            line_snapshots=line_snapshots
+        )
+    except Exception as e:
+        logger.error(f"[Analyzer] Flow pillar crashed for {away_team}@{home_team} ({sport}): {e}")
+        flow = {**_NEUTRAL_PILLAR, "spread_variance": 0, "consensus_line": 0, "sharpest_line": 0, "book_agreement": 0}
 
     # Game Environment (for totals analysis and composite)
     # Now included in 6-pillar composite calculation
-    nhl_stats = None
-    total_line = None
+    try:
+        nhl_stats = None
+        total_line = None
 
-    # Get total line from consensus
-    if consensus.get("totals", {}).get("over"):
-        total_line = consensus["totals"]["over"].get("line")
+        # Get total line from consensus
+        if consensus.get("totals", {}).get("over"):
+            total_line = consensus["totals"]["over"].get("line")
 
-    # Fetch team stats from Supabase for environment analysis
-    env_team_stats = fetch_team_environment_stats(home_team, away_team, sport)
+        # Fetch team stats from Supabase for environment analysis
+        env_team_stats = fetch_team_environment_stats(home_team, away_team, sport)
 
-    # Sport key sets - accept both short format (NBA) and Odds API format (basketball_nba)
-    NHL_KEYS = {"NHL", "icehockey_nhl", "ICEHOCKEY_NHL"}
-    NFL_KEYS = {"NFL", "americanfootball_nfl", "AMERICANFOOTBALL_NFL"}
-    NCAAF_KEYS = {"NCAAF", "americanfootball_ncaaf", "AMERICANFOOTBALL_NCAAF"}
-    NBA_KEYS = {"NBA", "basketball_nba", "BASKETBALL_NBA"}
-    NCAAB_KEYS = {"NCAAB", "basketball_ncaab", "BASKETBALL_NCAAB"}
-    EPL_KEYS = {"EPL", "soccer_epl", "SOCCER_EPL"}
+        # Sport key sets - accept both short format (NBA) and Odds API format (basketball_nba)
+        NHL_KEYS = {"NHL", "icehockey_nhl", "ICEHOCKEY_NHL"}
+        NFL_KEYS = {"NFL", "americanfootball_nfl", "AMERICANFOOTBALL_NFL"}
+        NCAAF_KEYS = {"NCAAF", "americanfootball_ncaaf", "AMERICANFOOTBALL_NCAAF"}
+        NBA_KEYS = {"NBA", "basketball_nba", "BASKETBALL_NBA"}
+        NCAAB_KEYS = {"NCAAB", "basketball_ncaab", "BASKETBALL_NCAAB"}
+        EPL_KEYS = {"EPL", "soccer_epl", "SOCCER_EPL"}
 
-    if sport in NHL_KEYS:
-        # Try NHL-specific API first, fall back to Supabase team_stats
-        home_abbr = _extract_team_abbr(home_team, "NHL")
-        away_abbr = _extract_team_abbr(away_team, "NHL")
+        if sport in NHL_KEYS:
+            # Try NHL-specific API first, fall back to Supabase team_stats
+            home_abbr = _extract_team_abbr(home_team, "NHL")
+            away_abbr = _extract_team_abbr(away_team, "NHL")
 
-        if home_abbr and away_abbr:
-            try:
-                nhl_stats = fetch_nhl_game_stats_sync(home_abbr, away_abbr)
-            except Exception as e:
-                logger.warning(f"NHL stats API failed ({e}), using Supabase fallback")
+            if home_abbr and away_abbr:
+                try:
+                    nhl_stats = fetch_nhl_game_stats_sync(home_abbr, away_abbr)
+                except Exception as e:
+                    logger.warning(f"NHL stats API failed ({e}), using Supabase fallback")
 
-        game_env = calculate_game_environment_score(
-            sport="NHL",
-            home_team=home_team,
-            away_team=away_team,
-            total_line=total_line,
-            nhl_stats=nhl_stats,
-            team_stats=env_team_stats,
-        )
+            game_env = calculate_game_environment_score(
+                sport="NHL",
+                home_team=home_team,
+                away_team=away_team,
+                total_line=total_line,
+                nhl_stats=nhl_stats,
+                team_stats=env_team_stats,
+            )
 
-    elif sport in NFL_KEYS or sport in NCAAF_KEYS:
-        # NFL/NCAAF game environment with weather + team scoring stats
-        game_env = calculate_game_environment_score(
-            sport="NFL" if sport in NFL_KEYS else "NCAAF",
-            home_team=home_team,
-            away_team=away_team,
-            total_line=total_line,
-            game_time=game_time,
-            team_stats=env_team_stats,
-        )
+        elif sport in NFL_KEYS or sport in NCAAF_KEYS:
+            # NFL/NCAAF game environment with weather + team scoring stats
+            game_env = calculate_game_environment_score(
+                sport="NFL" if sport in NFL_KEYS else "NCAAF",
+                home_team=home_team,
+                away_team=away_team,
+                total_line=total_line,
+                game_time=game_time,
+                team_stats=env_team_stats,
+            )
 
-    elif sport in NBA_KEYS or sport in NCAAB_KEYS:
-        # NBA/NCAAB - pace, offensive/defensive ratings from Supabase
-        game_env = calculate_game_environment_score(
-            sport="NBA" if sport in NBA_KEYS else "NCAAB",
-            home_team=home_team,
-            away_team=away_team,
-            total_line=total_line,
-            team_stats=env_team_stats,
-        )
+        elif sport in NBA_KEYS or sport in NCAAB_KEYS:
+            # NBA/NCAAB - pace, offensive/defensive ratings from Supabase
+            game_env = calculate_game_environment_score(
+                sport="NBA" if sport in NBA_KEYS else "NCAAB",
+                home_team=home_team,
+                away_team=away_team,
+                total_line=total_line,
+                team_stats=env_team_stats,
+            )
 
-    elif sport in EPL_KEYS:
-        # EPL - goals per game from Football-Data.org via team_stats
-        game_env = calculate_game_environment_score(
-            sport="EPL",
-            home_team=home_team,
-            away_team=away_team,
-            total_line=total_line,
-            team_stats=env_team_stats,
-        )
+        elif sport in EPL_KEYS:
+            # EPL - goals per game from Football-Data.org via team_stats
+            game_env = calculate_game_environment_score(
+                sport="EPL",
+                home_team=home_team,
+                away_team=away_team,
+                total_line=total_line,
+                team_stats=env_team_stats,
+            )
 
-    else:
-        # Tennis, other sports without team_stats data
-        game_env = {
-            "score": 0.5,
-            "expected_total": None,
-            "breakdown": {},
-            "reasoning": "No sport-specific environment data available"
-        }
+        else:
+            # Tennis, other sports without team_stats data
+            game_env = {
+                "score": 0.5,
+                "expected_total": None,
+                "breakdown": {},
+                "reasoning": "No sport-specific environment data available"
+            }
+    except Exception as e:
+        logger.error(f"[Analyzer] GameEnvironment pillar crashed for {away_team}@{home_team} ({sport}): {e}")
+        game_env = {**_NEUTRAL_PILLAR, "expected_total": None}
 
     logger.info(f"  Game Environment: {game_env['score']:.3f} - {game_env.get('reasoning', 'N/A')}")
 

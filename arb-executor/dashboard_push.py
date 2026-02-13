@@ -103,6 +103,7 @@ class DashboardPusher:
         positions = self._build_positions()
         balances = self._build_balances()
         system = self._build_system()
+        pnl_summary = self._build_pnl_summary()
 
         payload = {
             "spreads": spreads,
@@ -110,6 +111,7 @@ class DashboardPusher:
             "positions": positions,
             "balances": balances,
             "system": system,
+            "pnl_summary": pnl_summary,
         }
 
         # Debug: log payload summary every push
@@ -246,8 +248,120 @@ class DashboardPusher:
     # ── Positions ──────────────────────────────────────────────────────────
 
     def _build_positions(self) -> list:
-        """Return live positions fetched from platform APIs by the executor."""
-        return list(self.live_positions)
+        """Return live positions enriched with fill prices from trades.json."""
+        positions = [dict(p) for p in self.live_positions]  # shallow copy each
+
+        try:
+            if os.path.exists(TRADES_FILE):
+                with open(TRADES_FILE, "r") as f:
+                    all_trades = json.load(f)
+
+                # Build lookup: game_id -> most recent SUCCESS+hedged trade
+                trade_by_game: Dict[str, dict] = {}
+                for t in all_trades:
+                    if (
+                        t.get("status") == "SUCCESS"
+                        and t.get("hedged")
+                        and t.get("contracts_filled", 0) > 0
+                    ):
+                        trade_by_game[t["game_id"]] = t
+
+                for pos in positions:
+                    trade = trade_by_game.get(pos.get("game_id", ""))
+                    if not trade:
+                        continue
+
+                    pnl = trade.get("actual_pnl")
+                    if pnl and isinstance(pnl, dict):
+                        pc = pnl.get("per_contract", {})
+                        pos["pm_fill_price"] = pc.get("pm_cost", 0)
+                        pos["k_fill_price"] = pc.get("k_cost", 0)
+                        pos["locked_profit_cents"] = pc.get("gross", 0)
+                        pos["net_profit_cents"] = pc.get("net", 0)
+
+                    pos["direction"] = trade.get("direction", "")
+                    pos["contracts"] = trade.get("contracts_filled", 0)
+                    pos["trade_timestamp"] = trade.get("timestamp", "")
+        except Exception as e:
+            logger.debug(f"Error enriching positions: {e}")
+
+        return positions
+
+    # ── P&L Summary ───────────────────────────────────────────────────────
+
+    def _build_pnl_summary(self) -> dict:
+        """Compute exact P&L from trades.json actual_pnl data."""
+        empty = {
+            "total_pnl_dollars": 0,
+            "profitable_count": 0,
+            "losing_count": 0,
+            "total_trades": 0,
+            "total_attempts": 0,
+            "total_filled": 0,
+            "hedged_count": 0,
+            "unhedged_filled": 0,
+        }
+        try:
+            if not os.path.exists(TRADES_FILE):
+                return empty
+
+            with open(TRADES_FILE, "r") as f:
+                all_trades = json.load(f)
+
+            total_pnl = 0.0
+            profitable = 0
+            losing = 0
+            trades_with_pnl = 0
+            total_filled = 0
+            hedged_count = 0
+            unhedged_filled = 0
+
+            for t in all_trades:
+                filled = t.get("contracts_filled", 0) or 0
+                if filled > 0:
+                    total_filled += 1
+                    if t.get("hedged"):
+                        hedged_count += 1
+                    else:
+                        unhedged_filled += 1
+
+                if t.get("status") != "SUCCESS" or filled == 0:
+                    continue
+
+                pnl = t.get("actual_pnl")
+                if pnl and isinstance(pnl, dict):
+                    net = pnl.get("net_profit_dollars", 0)
+                    total_pnl += net
+                    trades_with_pnl += 1
+                    if pnl.get("is_profitable"):
+                        profitable += 1
+                    else:
+                        losing += 1
+                else:
+                    # Fallback: use estimated_net_profit_cents
+                    est = t.get("estimated_net_profit_cents", 0) or 0
+                    contracts = filled
+                    net = est * contracts / 100
+                    total_pnl += net
+                    trades_with_pnl += 1
+                    if net > 0:
+                        profitable += 1
+                    else:
+                        losing += 1
+
+            return {
+                "total_pnl_dollars": round(total_pnl, 4),
+                "profitable_count": profitable,
+                "losing_count": losing,
+                "total_trades": trades_with_pnl,
+                "total_attempts": len(all_trades),
+                "total_filled": total_filled,
+                "hedged_count": hedged_count,
+                "unhedged_filled": unhedged_filled,
+            }
+        except Exception as e:
+            logger.debug(f"Error computing P&L summary: {e}")
+            return empty
 
     # ── Balances ───────────────────────────────────────────────────────────
 

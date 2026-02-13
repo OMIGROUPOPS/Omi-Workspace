@@ -19,6 +19,28 @@ export interface SpreadRow {
   updated_at: string;
 }
 
+export interface PerContractPnl {
+  k_cost: number;
+  pm_cost: number;
+  total_cost: number;
+  payout: number;
+  gross: number;
+  fees: number;
+  net: number;
+  direction: string;
+}
+
+export interface ActualPnl {
+  contracts: number;
+  total_cost_dollars: number;
+  total_payout_dollars: number;
+  gross_profit_dollars: number;
+  fees_dollars: number;
+  net_profit_dollars: number;
+  per_contract: PerContractPnl;
+  is_profitable: boolean;
+}
+
 export interface TradeEntry {
   timestamp: string;
   game_id: string;
@@ -32,8 +54,19 @@ export interface TradeEntry {
   k_price: number;
   pm_price: number;
   contracts_filled: number;
-  actual_pnl: number | null;
+  actual_pnl: ActualPnl | null;
   paper_mode: boolean;
+}
+
+export interface PnlSummary {
+  total_pnl_dollars: number;
+  profitable_count: number;
+  losing_count: number;
+  total_trades: number;
+  total_attempts: number;
+  total_filled: number;
+  hedged_count: number;
+  unhedged_filled: number;
 }
 
 export interface Position {
@@ -46,6 +79,14 @@ export interface Position {
   avg_price: number;
   current_value: number;
   hedged_with: string | null;
+  hedge_source?: string | null;
+  pm_fill_price?: number;
+  k_fill_price?: number;
+  direction?: string;
+  locked_profit_cents?: number;
+  net_profit_cents?: number;
+  contracts?: number;
+  trade_timestamp?: string;
 }
 
 export interface Balances {
@@ -72,6 +113,7 @@ export interface ArbState {
   positions: Position[];
   balances: Balances;
   system: SystemStatus;
+  pnl_summary: PnlSummary;
   updated_at: string;
 }
 
@@ -96,6 +138,16 @@ const DEFAULT_STATE: ArbState = {
     executor_version: "",
     error_count: 0,
     last_error: null,
+  },
+  pnl_summary: {
+    total_pnl_dollars: 0,
+    profitable_count: 0,
+    losing_count: 0,
+    total_trades: 0,
+    total_attempts: 0,
+    total_filled: 0,
+    hedged_count: 0,
+    unhedged_filled: 0,
   },
   updated_at: "",
 };
@@ -129,6 +181,7 @@ export async function POST(req: NextRequest) {
     if (body.positions !== undefined) arbState.positions = body.positions;
     if (body.balances !== undefined) arbState.balances = body.balances;
     if (body.system !== undefined) arbState.system = body.system;
+    if (body.pnl_summary !== undefined) arbState.pnl_summary = body.pnl_summary;
     arbState.updated_at = new Date().toISOString();
 
     return NextResponse.json({ ok: true, updated_at: arbState.updated_at });

@@ -21,6 +21,28 @@ interface SpreadRow {
   updated_at: string;
 }
 
+interface PerContractPnl {
+  k_cost: number;
+  pm_cost: number;
+  total_cost: number;
+  payout: number;
+  gross: number;
+  fees: number;
+  net: number;
+  direction: string;
+}
+
+interface ActualPnl {
+  contracts: number;
+  total_cost_dollars: number;
+  total_payout_dollars: number;
+  gross_profit_dollars: number;
+  fees_dollars: number;
+  net_profit_dollars: number;
+  per_contract: PerContractPnl;
+  is_profitable: boolean;
+}
+
 interface TradeEntry {
   timestamp: string;
   game_id: string;
@@ -34,8 +56,19 @@ interface TradeEntry {
   k_price: number;
   pm_price: number;
   contracts_filled: number;
-  actual_pnl: number | null;
+  actual_pnl: ActualPnl | null;
   paper_mode: boolean;
+}
+
+interface PnlSummary {
+  total_pnl_dollars: number;
+  profitable_count: number;
+  losing_count: number;
+  total_trades: number;
+  total_attempts: number;
+  total_filled: number;
+  hedged_count: number;
+  unhedged_filled: number;
 }
 
 interface Position {
@@ -49,6 +82,13 @@ interface Position {
   current_value: number;
   hedged_with: string | null;
   hedge_source?: "API_MATCHED" | "CONFIRMED" | "UNHEDGED" | null;
+  pm_fill_price?: number;
+  k_fill_price?: number;
+  direction?: string;
+  locked_profit_cents?: number;
+  net_profit_cents?: number;
+  contracts?: number;
+  trade_timestamp?: string;
 }
 
 interface Balances {
@@ -75,6 +115,7 @@ interface ArbState {
   positions: Position[];
   balances: Balances;
   system: SystemStatus;
+  pnl_summary: PnlSummary;
   updated_at: string;
 }
 
@@ -322,16 +363,8 @@ export default function ArbDashboard() {
     return trades;
   }, [allTrades, dateFilter, tradeFilter]);
 
-  // ── P&L summary ──────────────────────────────────────────────────────
-  const executedTrades = allTrades.filter((t) => t.contracts_filled > 0);
-  const totalPnlCents = executedTrades.reduce(
-    (sum, t) => sum + (t.estimated_net_profit_cents ?? 0),
-    0
-  );
-  const hedgedCount = executedTrades.filter((t) => t.hedged).length;
-  const unhedgedCount = executedTrades.filter(
-    (t) => !t.hedged && t.contracts_filled > 0
-  ).length;
+  // ── P&L summary (exact from pnl_summary, or fallback to trades) ─────
+  const pnl = state?.pnl_summary;
 
   // ── Positions: only active (quantity > 0) ───────────────────────────
   const activePositions = useMemo(() => {
@@ -411,21 +444,21 @@ export default function ArbDashboard() {
             accent="text-emerald-400"
           />
           <MetricCard
-            label="Est. P&L"
+            label="P&L"
             value={
-              executedTrades.length > 0
-                ? `${totalPnlCents >= 0 ? "+" : ""}${totalPnlCents.toFixed(1)}c`
+              pnl && pnl.total_trades > 0
+                ? `${pnl.total_pnl_dollars >= 0 ? "+$" : "-$"}${Math.abs(pnl.total_pnl_dollars).toFixed(2)}`
                 : "-"
             }
             sub={
-              executedTrades.length > 0
-                ? `${executedTrades.length} exec, ${hedgedCount} hedged${unhedgedCount > 0 ? `, ${unhedgedCount} unhedged` : ""}`
+              pnl && pnl.total_trades > 0
+                ? `${pnl.profitable_count}W / ${pnl.losing_count}L · ${pnl.hedged_count} hedged`
                 : undefined
             }
             accent={
-              totalPnlCents > 0
+              pnl && pnl.total_pnl_dollars > 0
                 ? "text-emerald-400"
-                : totalPnlCents < 0
+                : pnl && pnl.total_pnl_dollars < 0
                 ? "text-red-400"
                 : "text-white"
             }
@@ -702,11 +735,15 @@ export default function ArbDashboard() {
                           </td>
                           <td
                             className={`px-2 py-1 text-right font-mono font-medium ${netColor(
-                              t.estimated_net_profit_cents
+                              t.actual_pnl
+                                ? t.actual_pnl.per_contract.net
+                                : t.estimated_net_profit_cents
                             )}`}
                           >
-                            {t.estimated_net_profit_cents != null
-                              ? `${t.estimated_net_profit_cents > 0 ? "+" : ""}${t.estimated_net_profit_cents.toFixed(1)}`
+                            {t.actual_pnl
+                              ? `${t.actual_pnl.per_contract.net >= 0 ? "+" : ""}${t.actual_pnl.per_contract.net.toFixed(1)}`
+                              : t.estimated_net_profit_cents != null
+                              ? `${t.estimated_net_profit_cents > 0 ? "+" : ""}${t.estimated_net_profit_cents.toFixed(1)}~`
                               : "-"}
                           </td>
                           <td className="px-2 py-1">
@@ -731,7 +768,7 @@ export default function ArbDashboard() {
           </div>
         </div>
 
-        {/* ── Bottom: Positions (only if active) ───────────────────────── */}
+        {/* ── Bottom: Positions (both legs) ─────────────────────────── */}
         {activePositions.length > 0 ? (
           <div className="rounded-lg border border-gray-800 bg-[#111]">
             <div className="border-b border-gray-800 px-3 py-2">
@@ -739,77 +776,130 @@ export default function ArbDashboard() {
                 Open Positions
                 <span className="ml-1.5 text-xs text-gray-500">
                   {activePositions.length}
+                  {unhedgedPositions.length > 0 && (
+                    <span className="ml-1 text-red-400">
+                      ({unhedgedPositions.length} unhedged)
+                    </span>
+                  )}
                 </span>
               </h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0 divide-x divide-gray-800/50">
-              {/* Unhedged first (RED) */}
+            <div className="divide-y divide-gray-800/50">
+              {/* Unhedged first (RED warning) */}
               {unhedgedPositions.map((p, i) => (
                 <div
                   key={`uh-${i}`}
-                  className="px-3 py-2 bg-red-500/5 border-l-2 border-red-500"
+                  className="px-4 py-3 bg-red-500/5 border-l-2 border-red-500"
                 >
                   <div className="flex items-center justify-between">
-                    <div>
+                    <div className="flex items-center gap-2">
                       <span className="text-white font-medium text-xs">
                         {p.team || p.game_id}
                       </span>
-                      <span className="ml-1 text-[10px] text-gray-500">
-                        {p.platform}
+                      <span
+                        className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${sportBadge(
+                          p.sport
+                        )}`}
+                      >
+                        {p.sport}
                       </span>
                     </div>
-                    <span className="text-[9px] font-medium rounded px-1 py-0.5 bg-red-500/20 text-red-400">
+                    <span className="text-[9px] font-medium rounded px-1.5 py-0.5 bg-red-500/20 text-red-400">
                       UNHEDGED
                     </span>
                   </div>
-                  <div className="mt-0.5 flex items-center gap-2 text-[10px] text-gray-400">
-                    <span>{p.side} x{p.quantity}</span>
-                    {p.avg_price > 0 && <span>@ {p.avg_price}c</span>}
-                    <span className={sportBadge(p.sport).split(" ").pop()}>
-                      {p.sport}
+                  <div className="mt-1.5 flex items-center gap-3 text-[11px]">
+                    <span className="text-gray-400">
+                      {p.platform}: {p.side} x{p.quantity}
+                    </span>
+                    {p.avg_price > 0 && (
+                      <span className="text-gray-500">@{p.avg_price}c</span>
+                    )}
+                    <span className="text-red-400/80 text-[10px]">
+                      Exposure: ${((p.avg_price || 50) * p.quantity / 100).toFixed(2)}
                     </span>
                   </div>
                 </div>
               ))}
-              {/* Hedged pairs — single row per game+team */}
+
+              {/* Hedged positions — both legs */}
               {hedgedPositions.map((p, i) => {
-                const isConfirmed = p.hedge_source === "CONFIRMED";
+                const dir = p.direction || "";
+                const hasFillData = (p.pm_fill_price ?? 0) > 0 || (p.k_fill_price ?? 0) > 0;
+                const pmDir = dir === "BUY_PM_SELL_K" ? "LONG" : dir === "BUY_K_SELL_PM" ? "SHORT" : "";
+                const kDir = dir === "BUY_PM_SELL_K" ? "SHORT" : dir === "BUY_K_SELL_PM" ? "LONG" : "";
+                const locked = p.locked_profit_cents ?? 0;
+                const netProfit = p.net_profit_cents ?? 0;
+                const pmFill = p.pm_fill_price ?? 0;
+                const kFill = p.k_fill_price ?? 0;
+                const qty = p.contracts || p.quantity || 0;
+
                 return (
-                  <div key={`h-${i}`} className="px-3 py-2">
+                  <div key={`h-${i}`} className="px-4 py-3">
                     <div className="flex items-center justify-between">
-                      <div>
+                      <div className="flex items-center gap-2">
                         <span className="text-white font-medium text-xs">
                           {p.team || p.game_id}
                         </span>
                         <span
-                          className={`ml-1 inline-block rounded px-0.5 text-[9px] font-medium ${sportBadge(
+                          className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${sportBadge(
                             p.sport
                           )}`}
                         >
                           {p.sport}
                         </span>
                       </div>
-                      <span className="text-[9px] font-medium rounded px-1 py-0.5 bg-emerald-500/20 text-emerald-400">
-                        HEDGED
-                        {isConfirmed && (
-                          <span className="ml-0.5 text-[8px] opacity-70" title="Confirmed by trades.json">
-                            ✓
+                      <div className="flex items-center gap-2">
+                        {hasFillData && (
+                          <span
+                            className={`text-[10px] font-mono font-bold ${
+                              netProfit > 0
+                                ? "text-emerald-400"
+                                : netProfit < 0
+                                ? "text-red-400"
+                                : "text-gray-400"
+                            }`}
+                          >
+                            {netProfit >= 0 ? "+" : ""}
+                            {netProfit.toFixed(1)}c net
                           </span>
                         )}
-                      </span>
-                    </div>
-                    <div className="mt-0.5 flex items-center gap-2 text-[10px] text-gray-400">
-                      <span>{p.side} x{p.quantity}</span>
-                      {p.avg_price > 0 && <span>PM@{p.avg_price}c</span>}
-                      {p.current_value > 0 && (
-                        <span>K@{p.current_value}c</span>
-                      )}
-                      {isConfirmed && (
-                        <span className="text-[9px] text-emerald-500/50">
-                          via trades.json
+                        <span className="text-[9px] font-medium rounded px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400">
+                          HEDGED
                         </span>
-                      )}
+                      </div>
                     </div>
+
+                    {hasFillData ? (
+                      <div className="mt-1.5 flex items-center gap-3 text-[11px] font-mono">
+                        <span className="text-blue-400">
+                          PM: {pmDir} @{pmFill.toFixed(1)}c x{qty}
+                        </span>
+                        <span className="text-gray-700">|</span>
+                        <span className="text-orange-400">
+                          K: {kDir} @{kFill.toFixed(1)}c x{qty}
+                        </span>
+                        <span className="text-gray-700">|</span>
+                        <span
+                          className={`font-bold ${
+                            locked > 0
+                              ? "text-emerald-400"
+                              : locked < 0
+                              ? "text-red-400"
+                              : "text-gray-400"
+                          }`}
+                        >
+                          Locked: {locked >= 0 ? "+" : ""}
+                          {locked.toFixed(1)}c
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="mt-1 flex items-center gap-2 text-[10px] text-gray-400">
+                        <span>{p.side} x{p.quantity}</span>
+                        {p.avg_price > 0 && <span>PM@{p.avg_price}c</span>}
+                        {p.current_value > 0 && <span>K@{p.current_value}c</span>}
+                      </div>
+                    )}
                   </div>
                 );
               })}

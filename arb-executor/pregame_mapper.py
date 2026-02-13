@@ -189,14 +189,14 @@ CBB_PM_TO_KALSHI = {
     "jac": "JVST",       # Jacksonville State
     "abchr": "AC",       # Abilene Christian
     "utahv": "UVU",      # Utah Valley
-    "syra": "CUSE",      # Syracuse
+    "syra": "SYR",       # Syracuse (Kalshi ticker uses SYR)
     "uconn": "CONN",     # UConn
     "stjohn": "SJU",     # St. John's
-    "woff": "WEB",       # Wofford → WRONG, let me check
+    "woff": "WOF",       # Wofford
     "wcar": "WCU",       # Western Carolina
     # More PM -> Kalshi mappings
     "ncatst": "NCAT",    # NC A&T
-    "aubrn": "AUBURN",   # Auburn
+    "aubrn": "AUB",      # Auburn
     "mspst": "MSST",     # Mississippi State
     "bowlgr": "BGSU",    # Bowling Green
     "arkst": "ARST",     # Arkansas State
@@ -218,13 +218,13 @@ CBB_PM_TO_KALSHI = {
     "loulaf": "ULL",     # Louisiana Lafayette
     "umass": "MASS",     # UMass
     "coast": "CCU",      # Coastal Carolina
-    "cornel": "CORN",    # Cornell
-    "colmb": "COLM",     # Columbia
-    "prnce": "PRIN",     # Princeton
+    "cornel": "COR",     # Cornell
+    "colmb": "CLMB",     # Columbia
+    "prnce": "PRIN",     # Princeton (Kalshi uses PRIN, not PRINCE)
     "rich": "RICH",      # Richmond (same)
     "ri": "URI",         # Rhode Island
     "geows": "GW",       # George Washington
-    "mtnst": "MTST",     # Montana State
+    "mtnst": "MTU",      # Middle Tennessee State
     "del": "DEL",        # Delaware (same)
     "ndak": "UND",       # North Dakota
     "depaul": "DEP",     # DePaul
@@ -300,7 +300,7 @@ CBB_PM_TO_KALSHI = {
     "nichls": "NICH",    # Nicholls State
     "sfaus": "SFA",      # Stephen F. Austin
     "txamc": "ETAM",     # Texas A&M Commerce (East Texas A&M)
-    "stfpa": "SFP",      # St. Francis PA
+    "stfpa": "SFPA",     # St. Francis PA
     "amcc": "AMCC",      # Texas A&M Corpus Christi
     "uno": "UNO",        # New Orleans
     # --- Additional fixes 2026-02-08 ---
@@ -310,6 +310,126 @@ CBB_PM_TO_KALSHI = {
     "tulane": "TULN",    # Tulane
     "txtech": "TTU",     # Texas Tech
     "chist": "CHS",      # Chicago State
+    # --- Comprehensive CBB match-rate fix (2026-02-13) ---
+    # Fixes ~80 PM→Kalshi abbreviation mismatches found via --debug-keys
+    "airf": "AFA",       # Air Force
+    "frest": "FRES",     # Fresno State
+    "akron": "AKR",      # Akron
+    "sc": "SCAR",        # South Carolina
+    "amercn": "AMER",    # American University
+    "jmad": "JMU",       # James Madison
+    "ausp": "PEAY",      # Austin Peay
+    "toledo": "TOL",     # Toledo
+    "boise": "BSU",      # Boise State
+    "boscol": "BC",      # Boston College
+    "bostu": "BU",       # Boston University
+    "sacred": "SHU",     # Sacred Heart
+    "dxst": "UTU",       # Dixie State / Utah Tech
+    "chsou": "CHSO",     # Charleston Southern
+    "radf": "RAD",       # Radford
+    "clmsn": "CLEM",     # Clemson
+    "nill": "NIU",       # Northern Illinois
+    "george": "GTWN",    # Georgetown
+    "coppst": "COPP",    # Coppin State
+    "creigh": "CREI",    # Creighton
+    "hawaii": "HAW",     # Hawaii
+    "colst": "CSU",      # Colorado State
+    "wyom": "WYO",       # Wyoming
+    "msrst": "MOSU",     # Missouri State
+    "norfst": "NORF",    # Norfolk State
+    "stbon": "SBON",     # St. Bonaventure
+    "ecar": "ECU",       # East Carolina
+    "wmich": "WMU",      # Western Michigan
+    "etnst": "ETSU",     # East Tennessee State
+    "flint": "FIU",      # Florida International
+    "loutch": "LT",      # Louisiana Tech
+    "fl": "FLA",         # Florida
+    "fordm": "FOR",      # Fordham
+    "flst": "FSU",       # Florida State
+    "vtech": "VT",       # Virginia Tech
+    "vamil": "VMI",      # VMI
+    "gas": "GASO",       # Georgia Southern
+    "marsh": "MRSH",     # Marshall
+    "old": "ODU",        # Old Dominion
+    "gcan": "GC",        # Grand Canyon
+    "sjst": "SJSU",      # San Jose State
+    "gmsn": "GMU",       # George Mason
+    "gnzg": "GONZ",      # Gonzaga
+    "sanclr": "SCU",     # Santa Clara
+    "gtech": "GT",       # Georgia Tech
+    "harvrd": "HARV",    # Harvard
+    "kanst": "KSU",      # Kansas State
+    "mdes": "UMES",      # Maryland Eastern Shore
+    "hpnt": "HP",        # High Point
+    "gardwb": "WEBB",    # Gardner-Webb
+    "nmxst": "NMSU",     # New Mexico State
+    "smho": "SHSU",      # Sam Houston State
+    "kenest": "KENN",    # Kennesaw State
+    "lehi": "LEH",       # Lehigh
+    "librty": "LIB",     # Liberty
+    "lipsc": "LIP",      # Lipscomb
+    "longwd": "LONG",    # Longwood
+    "scup": "SCUS",      # SC Upstate
+    "loymry": "LMU",     # Loyola Marymount
+    "niagra": "NIAG",    # Niagara
+    "utahst": "USU",     # Utah State
+    "miaoh": "MOH",      # Miami Ohio
+    "missr": "MIZ",      # Missouri
+    "tx": "TEX",         # Texas
+    "morgst": "MORG",    # Morgan State
+    "scarst": "SCST",    # SC State
+    "sacst": "SAC",      # Sacramento State
+    "ncashe": "UNCA",    # UNC Asheville
+    "presb": "PRE",      # Presbyterian
+    "nevada": "NEV",     # Nevada
+    "sdst": "SDSU",      # San Diego State
+    "nhamp": "UNH",      # New Hampshire
+    "oral": "ORU",       # Oral Roberts
+    "sdkst": "SDST",     # South Dakota State
+    "vir": "UVA",        # Virginia
+    "stmry": "SMC",      # Saint Mary's
+    "pacfc": "PAC",      # Pacific
+    "portst": "PRST",    # Portland State
+    "tamu": "AMCC",      # Texas A&M Corpus Christi
+    "soumis": "USM",     # Southern Miss
+    "stmn": "UST",       # St. Thomas Minnesota
+    "sutah": "SUU",      # Southern Utah
+    "txa": "UTA",        # UT Arlington
+    "mst": "MSU",        # Michigan State
+    "wisc": "WIS",       # Wisconsin
+    "ga": "UGA",         # Georgia
+    "okl": "OU",         # Oklahoma
+    "stlou": "SLU",      # Saint Louis
+    "flatl": "FAU",      # Florida Atlantic
+    "seton": "HALL",     # Seton Hall
+    "butl": "BUTL",      # Butler
+    "rutger": "RUTG",    # Rutgers
+    "det": "DET",        # Detroit Mercy
+    "yngst": "YSU",      # Youngstown State
+    "robms": "RMU",      # Robert Morris
+    "oak": "OAK",        # Oakland
+    "valp": "VALP",      # Valparaiso
+    "ntx": "NTX",        # North Texas
+    "templ": "TMPL",     # Temple
+    "sf": "USF",         # San Francisco
+    "sd": "USD",         # San Diego
+    "pur": "PUR",        # Purdue (override PM_TO_KALSHI reverse mapping)
+    "aub": "AUB",        # Auburn (override PM_TO_KALSHI reverse mapping)
+    "monst": "MTST",     # Montana State (distinct from mtnst=Middle Tennessee)
+    "sala": "USA",       # South Alabama
+    "cah": "CAL",        # California (Cal)
+    "col": "COLO",       # Colorado (CBB; NHL uses COL for Avalanche)
+    # "no" → UNO handled in SPORT_PM_OVERRIDES to avoid clobbering NBA NOP
+    "mrcy": "MHU",       # Mount Saint Mary's (Mercy variant)
+    "kentst": "KENT",    # Kent State
+    "wrght": "WRST",     # Wright State
+    "quin": "QUIN",      # Quinnipiac (same)
+    "utah": "UTAH",      # Utah (same)
+    "utsa": "UTSA",      # UT San Antonio (same)
+    "camp": "CAMP",      # Campbell (same)
+    "uab": "UAB",        # UAB (same)
+    "neom": "NEOM",      # Nebraska Omaha (same)
+    "den": "DEN",        # Denver (same)
 }
 
 # Merge CBB mappings into PM_TO_KALSHI_ABBREV
@@ -373,6 +493,16 @@ PM_DISPLAY_ABBREV_TO_KALSHI = {
 }
 
 PM_TO_KALSHI_ABBREV.update(PM_DISPLAY_ABBREV_TO_KALSHI)
+
+# Sport-specific PM→Kalshi overrides
+# These resolve conflicts where the same PM abbreviation means different
+# teams in different sports (e.g., "no" = NOP in NBA, UNO in CBB).
+# Applied BEFORE the general PM_TO_KALSHI_ABBREV lookup.
+SPORT_PM_OVERRIDES: dict[str, dict[str, str]] = {
+    "cbb": {
+        "no": "UNO",     # New Orleans (vs NBA NOP = Pelicans)
+    },
+}
 
 # Full team names for verification (Kalshi abbreviation -> full name)
 # Used to cross-check against PM outcome names
@@ -927,10 +1057,13 @@ class PreGameMapper:
                 date = parsed["date"]
 
                 # Convert PM team abbreviations to Kalshi abbreviations
-                # Try both PM_TO_KALSHI_ABBREV and CANONICAL_ABBREV for full coverage
+                # Sport-specific overrides first, then general PM_TO_KALSHI_ABBREV
+                sport_overrides = SPORT_PM_OVERRIDES.get(pm_sport, {})
                 kalshi_teams = []
                 for pt in pm_teams:
-                    kt = PM_TO_KALSHI_ABBREV.get(pt)
+                    kt = sport_overrides.get(pt)
+                    if not kt:
+                        kt = PM_TO_KALSHI_ABBREV.get(pt)
                     if not kt and HAS_EXECUTOR:
                         # Try normalizing through executor's canonical map
                         kt = normalize_team_abbrev(pt.upper())

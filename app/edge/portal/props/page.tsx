@@ -51,6 +51,8 @@ const PROP_TYPE_ORDER = [
   'player_anytime_td',
   'player_goals',
   'player_shots_on_goal',
+  'player_blocked_shots',
+  'player_power_play_points',
   // MLB
   'pitcher_strikeouts',
   'batter_hits',
@@ -89,6 +91,7 @@ const PROP_TYPE_LABELS: Record<string, string> = {
   player_goals: 'Goals',
   player_shots_on_goal: 'Shots on Goal',
   player_blocked_shots: 'Blocked Shots',
+  player_power_play_points: 'PP Points',
   batter_hits: 'Hits',
   batter_home_runs: 'Home Runs',
   batter_total_bases: 'Total Bases',

@@ -128,6 +128,9 @@ const EVENT_MARKETS: Record<string, string[]> = {
     "h2h_q4", "spreads_q4", "totals_q4",
     // Alt lines and team totals
     "alternate_spreads", "alternate_totals", "team_totals",
+    // Player props
+    "player_pass_yds", "player_rush_yds", "player_reception_yds",
+    "player_receptions", "player_pass_tds", "player_anytime_td",
   ],
 
   // Basketball
@@ -146,6 +149,8 @@ const EVENT_MARKETS: Record<string, string[]> = {
     "h2h_h1", "spreads_h1", "totals_h1",
     "h2h_h2", "spreads_h2", "totals_h2",
     "alternate_spreads", "alternate_totals", "team_totals",
+    // Player props (FanDuel/DraftKings carry NCAAB props)
+    "player_points", "player_rebounds", "player_assists", "player_threes",
   ],
 
   // Ice Hockey
@@ -154,8 +159,9 @@ const EVENT_MARKETS: Record<string, string[]> = {
     "h2h_p2", "spreads_p2", "totals_p2",
     "h2h_p3", "spreads_p3", "totals_p3",
     "alternate_spreads", "alternate_totals", "team_totals",
-    "player_points", "player_assists", "player_shots_on_goal",
-    "player_blocked_shots",
+    "player_points", "player_goals", "player_assists",
+    "player_shots_on_goal", "player_blocked_shots",
+    "player_power_play_points",
   ],
 
   // Soccer - EPL only
@@ -337,7 +343,8 @@ const SNAPSHOT_MARKETS = [
   "player_rush_attempts", "player_reception_yds", "player_receptions",
   "player_anytime_td",
   // Player props - NHL
-  "player_shots_on_goal", "player_blocked_shots",
+  "player_goals", "player_shots_on_goal", "player_blocked_shots",
+  "player_power_play_points",
   // Player props - MLB
   "pitcher_strikeouts", "batter_total_bases", "batter_hits",
   "batter_home_runs", "batter_rbis",

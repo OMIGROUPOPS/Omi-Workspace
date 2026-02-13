@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { formatOdds, formatSpread } from '@/lib/edge/utils/odds-math';
 import { isGameLive as checkGameLive } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, CEQConfidence, PythonPillarScores, PillarResult } from '@/lib/edge/engine/edgescout';
@@ -1857,13 +1857,107 @@ function LiveLockOverlay() {
 }
 
 // ============================================================================
-// AskEdgeAI — placeholder chatbot panel (right column)
+// AskEdgeAI — interactive AI chat panel (right column)
 // ============================================================================
 
-function AskEdgeAI({ activeMarket, activePeriod }: { activeMarket: string; activePeriod: string }) {
+interface AskEdgeAIProps {
+  activeMarket: string;
+  activePeriod: string;
+  gameContext: string;
+}
+
+interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) {
   const periodLabels: Record<string, string> = { 'full': 'Full Game', '1h': '1st Half', '2h': '2nd Half', '1q': '1Q', '2q': '2Q', '3q': '3Q', '4q': '4Q' };
   const marketLabels: Record<string, string> = { 'spread': 'Spread', 'total': 'Total', 'moneyline': 'Moneyline' };
   const viewingLabel = `${periodLabels[activePeriod] || 'Full Game'} ${marketLabels[activeMarket] || activeMarket}`;
+
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const chatEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Auto-scroll to bottom on new messages
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  const handleSubmit = useCallback(async () => {
+    const question = input.trim();
+    if (!question || isLoading) return;
+
+    setError(null);
+    const userMsg: ChatMessage = { role: 'user', content: question };
+    const updatedMessages = [...messages, userMsg];
+    setMessages(updatedMessages);
+    setInput('');
+    setIsLoading(true);
+
+    try {
+      const res = await fetch('/api/edge/assistant', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: updatedMessages.map(m => ({ role: m.role, content: m.content })),
+          gameContext,
+        }),
+      });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+        throw new Error(errData.error || `Request failed (${res.status})`);
+      }
+
+      // Stream the response
+      const reader = res.body?.getReader();
+      if (!reader) throw new Error('No response stream');
+
+      const decoder = new TextDecoder();
+      let assistantText = '';
+      setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        assistantText += decoder.decode(value, { stream: true });
+        setMessages(prev => {
+          const copy = [...prev];
+          copy[copy.length - 1] = { role: 'assistant', content: assistantText };
+          return copy;
+        });
+      }
+
+      if (!assistantText) {
+        setMessages(prev => {
+          const copy = [...prev];
+          copy[copy.length - 1] = { role: 'assistant', content: 'No response received. Please try again.' };
+          return copy;
+        });
+      }
+    } catch (e: any) {
+      setError(e.message || 'Failed to get response');
+      // Remove the empty assistant placeholder if it was added
+      setMessages(prev => prev.filter(m => m.content !== ''));
+    } finally {
+      setIsLoading(false);
+      inputRef.current?.focus();
+    }
+  }, [input, messages, isLoading, gameContext]);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
+  const hasMessages = messages.length > 0;
 
   return (
     <div className="flex flex-col h-full bg-[#0a0a0a] border-l border-zinc-800">
@@ -1872,31 +1966,91 @@ function AskEdgeAI({ activeMarket, activePeriod }: { activeMarket: string; activ
         <div className="flex items-center gap-1.5">
           <span className="text-[13px]">&#10022;</span>
           <span className="text-[12px] font-semibold text-zinc-200">Ask Edge AI</span>
+          {isLoading && (
+            <span className="flex items-center gap-1 ml-1">
+              <span className="w-1 h-1 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="text-[9px] text-cyan-500 font-mono">thinking</span>
+            </span>
+          )}
         </div>
-        <span className="text-[9px] text-zinc-500">Viewing: {viewingLabel}</span>
+        <div className="flex items-center gap-2">
+          {hasMessages && (
+            <button
+              onClick={() => { setMessages([]); setError(null); }}
+              className="text-[9px] text-zinc-600 hover:text-zinc-400 font-mono transition-colors"
+            >
+              Clear
+            </button>
+          )}
+          <span className="text-[9px] text-zinc-600 font-mono">{viewingLabel}</span>
+        </div>
       </div>
-      {/* Body */}
-      <div className="flex-1 px-3 py-3 overflow-y-auto">
-        <p className="text-[11px] text-zinc-400 mb-2">I can help you analyze:</p>
-        <ul className="text-[11px] text-zinc-500 space-y-1.5 mb-3">
-          <li className="flex items-start gap-1.5"><span className="text-zinc-600 mt-0.5">&#8226;</span>Line movement and why lines move</li>
-          <li className="flex items-start gap-1.5"><span className="text-zinc-600 mt-0.5">&#8226;</span>Edge calculations and what they mean</li>
-          <li className="flex items-start gap-1.5"><span className="text-zinc-600 mt-0.5">&#8226;</span>Sharp vs public money indicators</li>
-          <li className="flex items-start gap-1.5"><span className="text-zinc-600 mt-0.5">&#8226;</span>How to interpret our pillar scores</li>
-        </ul>
-        <p className="text-[11px] text-zinc-400">What would you like to know more about?</p>
+
+      {/* Chat Body */}
+      <div className="flex-1 px-3 py-2 overflow-y-auto space-y-2" style={{ minHeight: 0 }}>
+        {!hasMessages && (
+          <>
+            <p className="text-[11px] text-zinc-400 mb-1.5">Ask about this game:</p>
+            <div className="space-y-1">
+              {[
+                'Why is the line different from the book?',
+                'Which pillar is driving the edge?',
+                'Is there sharp money on this game?',
+                'Explain the line movement',
+              ].map((q) => (
+                <button
+                  key={q}
+                  onClick={() => { setInput(q); inputRef.current?.focus(); }}
+                  className="block w-full text-left text-[10px] text-zinc-500 hover:text-cyan-400 hover:bg-zinc-800/50 px-2 py-1.5 rounded transition-colors font-mono"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+
+        {messages.map((msg, i) => (
+          <div key={i} className={`text-[11px] leading-relaxed ${msg.role === 'user' ? 'text-zinc-300' : 'text-zinc-400'}`}>
+            <span className={`text-[9px] font-mono font-bold uppercase tracking-wider ${msg.role === 'user' ? 'text-zinc-500' : 'text-cyan-600'}`}>
+              {msg.role === 'user' ? 'You' : 'OMI'}
+            </span>
+            <div className={`mt-0.5 ${msg.role === 'assistant' ? 'pl-0' : ''} whitespace-pre-wrap`}>
+              {msg.content || (isLoading && i === messages.length - 1 ? (
+                <span className="text-zinc-600 animate-pulse">...</span>
+              ) : '')}
+            </div>
+          </div>
+        ))}
+
+        {error && (
+          <div className="text-[10px] text-red-400/80 bg-red-500/10 px-2 py-1.5 rounded">
+            {error}
+          </div>
+        )}
+
+        <div ref={chatEndRef} />
       </div>
+
       {/* Input */}
-      <div className="px-3 pb-3 pt-1">
+      <div className="px-3 pb-2 pt-1 border-t border-zinc-800/30">
         <div className="flex gap-1.5">
           <input
+            ref={inputRef}
             type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
             placeholder={`Ask about ${viewingLabel}...`}
-            className="flex-1 bg-zinc-900 border border-zinc-700/50 rounded px-2.5 py-1.5 text-[11px] text-zinc-300 placeholder-zinc-600 focus:outline-none focus:border-zinc-600"
-            disabled
+            className="flex-1 bg-zinc-900 border border-zinc-700/50 rounded px-2.5 py-1.5 text-[11px] text-zinc-300 placeholder-zinc-600 focus:outline-none focus:border-cyan-700/50 transition-colors"
+            disabled={isLoading}
           />
-          <button className="px-3 py-1.5 bg-zinc-800 border border-zinc-700/50 rounded text-[11px] text-zinc-400 hover:text-zinc-200 transition-colors" disabled>
-            Ask
+          <button
+            onClick={handleSubmit}
+            disabled={isLoading || !input.trim()}
+            className="px-3 py-1.5 bg-zinc-800 border border-zinc-700/50 rounded text-[11px] font-medium transition-colors disabled:opacity-30 disabled:cursor-default text-cyan-400 hover:bg-zinc-700 hover:border-cyan-700/30"
+          >
+            {isLoading ? '...' : 'Ask'}
           </button>
         </div>
       </div>
@@ -2365,6 +2519,102 @@ export function GameDetailClient({
 
   const omiFairLineForChart = getOmiFairLineForChart();
 
+  // Build game context string for Edge AI chat
+  const edgeAIGameContext = (() => {
+    const lines: string[] = [];
+    lines.push(`Game: ${gameData.awayTeam} @ ${gameData.homeTeam}`);
+    lines.push(`Sport: ${gameData.sportKey} | Game ID: ${gameData.id}`);
+    if (gameData.commenceTime) lines.push(`Start: ${new Date(gameData.commenceTime).toLocaleString()}`);
+    lines.push(`Active Market: ${activeMarket} | Period: ${activePeriod}`);
+    lines.push(`Selected Book: ${selectedBook}`);
+
+    // Pillar scores
+    if (pythonPillarScores) {
+      const p = pythonPillarScores;
+      lines.push('');
+      lines.push('--- PILLAR SCORES (0-100, 50=neutral) ---');
+      lines.push(`Composite: ${p.composite}`);
+      lines.push(`Execution: ${p.execution} (20%) | Incentives: ${p.incentives} (10%)`);
+      lines.push(`Shocks: ${p.shocks} (25%) | Time Decay: ${p.timeDecay} (10%)`);
+      lines.push(`Flow: ${p.flow} (25%) | Game Environment: ${p.gameEnvironment} (10%)`);
+    }
+
+    // Compute consensus + fair lines from bookmakers (same logic as OmiFairPricing)
+    const allBooks = Object.entries(bookmakers)
+      .filter(([key]) => { const c = BOOK_CONFIG[key]; return !c || c.type === 'sportsbook'; })
+      .map(([, data]) => (data as any).marketGroups?.fullGame)
+      .filter(Boolean);
+
+    const spreadLines = allBooks.map((m: any) => m?.spreads?.home?.line).filter((v: any): v is number => v !== undefined);
+    const totalLines = allBooks.map((m: any) => m?.totals?.line).filter((v: any): v is number => v !== undefined);
+    const mlHomeOdds = allBooks.map((m: any) => m?.h2h?.home?.price).filter((v: any): v is number => v !== undefined);
+    const mlAwayOdds = allBooks.map((m: any) => m?.h2h?.away?.price).filter((v: any): v is number => v !== undefined);
+
+    const consSpread = calcMedian(spreadLines);
+    const consTotal = calcMedian(totalLines);
+    const consHomeML = calcMedian(mlHomeOdds);
+    const consAwayML = calcMedian(mlAwayOdds);
+
+    // OMI fair lines
+    const fairSpread = consSpread !== undefined && pythonPillarScores
+      ? calculateFairSpread(consSpread, pythonPillarScores.composite) : null;
+    const fairTotal = consTotal !== undefined && pythonPillarScores
+      ? calculateFairTotal(consTotal, pythonPillarScores.gameEnvironment) : null;
+    const fairML = fairSpread
+      ? spreadToMoneyline(fairSpread.fairLine, gameData.sportKey)
+      : (pythonPillarScores ? calculateFairMoneyline(pythonPillarScores.composite) : null);
+
+    lines.push('');
+    lines.push('--- OMI FAIR LINES ---');
+    if (fairSpread) lines.push(`Fair Spread: ${fairSpread.fairLine > 0 ? '+' : ''}${fairSpread.fairLine.toFixed(1)} (gap: ${fairSpread.gap > 0 ? '+' : ''}${fairSpread.gap.toFixed(2)})`);
+    if (fairTotal) lines.push(`Fair Total: ${fairTotal.fairLine.toFixed(1)} (gap: ${fairTotal.gap > 0 ? '+' : ''}${fairTotal.gap.toFixed(2)})`);
+    if (fairML) lines.push(`Fair ML: Home ${formatOdds(fairML.homeOdds)} / Away ${formatOdds(fairML.awayOdds)}`);
+    if (fairML) {
+      const hp = americanToImplied(fairML.homeOdds);
+      const ap = americanToImplied(fairML.awayOdds);
+      lines.push(`Fair Win Prob: Home ${(hp * 100).toFixed(1)}% / Away ${(ap * 100).toFixed(1)}%`);
+    }
+
+    // Consensus lines
+    lines.push('');
+    lines.push('--- CONSENSUS (market median) ---');
+    if (consSpread !== undefined) lines.push(`Spread: ${consSpread > 0 ? '+' : ''}${consSpread}`);
+    if (consTotal !== undefined) lines.push(`Total: ${consTotal}`);
+    if (consHomeML !== undefined) lines.push(`ML: Home ${formatOdds(consHomeML)} / Away ${formatOdds(consAwayML!)}`);
+
+    // Selected book lines
+    const bookMkts = selectedBookMarkets.fullGame;
+    if (bookMkts) {
+      lines.push('');
+      lines.push(`--- ${selectedBook.toUpperCase()} LINES ---`);
+      if (bookMkts.spreads?.home) lines.push(`Spread: ${bookMkts.spreads.home.line > 0 ? '+' : ''}${bookMkts.spreads.home.line} (${formatOdds(bookMkts.spreads.home.price)})`);
+      if (bookMkts.totals) lines.push(`Total: ${bookMkts.totals.line} (O: ${formatOdds(bookMkts.totals.over?.price)}, U: ${formatOdds(bookMkts.totals.under?.price)})`);
+      if (bookMkts.h2h?.home) lines.push(`ML: Home ${formatOdds(bookMkts.h2h.home.price)} / Away ${formatOdds(bookMkts.h2h.away?.price)}`);
+    }
+
+    // Edge gaps
+    const rate = SPREAD_TO_PROB_RATE[gameData.sportKey] || 0.03;
+    lines.push('');
+    lines.push('--- EDGE ANALYSIS ---');
+    if (fairSpread && consSpread !== undefined) {
+      const gap = consSpread - fairSpread.fairLine;
+      lines.push(`Spread gap: ${gap > 0 ? '+' : ''}${gap.toFixed(2)} pts → ${(Math.abs(gap) * rate * 100).toFixed(1)}% edge`);
+    }
+    if (fairTotal && consTotal !== undefined) {
+      const gap = consTotal - fairTotal.fairLine;
+      lines.push(`Total gap: ${gap > 0 ? '+' : ''}${gap.toFixed(2)} pts → ${(Math.abs(gap) * rate * 100).toFixed(1)}% edge`);
+    }
+
+    // CEQ summary
+    if (activeCeq?.bestEdge) {
+      lines.push('');
+      lines.push('--- CEQ (Composite Edge Quality) ---');
+      lines.push(`Best Edge: ${activeCeq.bestEdge.market} ${activeCeq.bestEdge.side} | CEQ: ${activeCeq.bestEdge.ceq} | Confidence: ${activeCeq.bestEdge.confidence}`);
+    }
+
+    return lines.join('\n');
+  })();
+
   // Exchange data state
   const [exchangeData, setExchangeData] = useState<{
     by_market: Record<string, Array<{
@@ -2483,7 +2733,7 @@ export function GameDetailClient({
           </div>
           {/* Right: Ask Edge AI */}
           <div className="h-full" style={{ width: '45%' }}>
-            <AskEdgeAI activeMarket={activeMarket} activePeriod={activePeriod} />
+            <AskEdgeAI activeMarket={activeMarket} activePeriod={activePeriod} gameContext={edgeAIGameContext} />
           </div>
         </div>
 

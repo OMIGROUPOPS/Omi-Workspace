@@ -161,9 +161,10 @@ interface GameCardProps {
   edge?: GameCardEdge;
   openingSpread?: number;
   edgeCount?: number;  // Number of edges detected for this game
+  hasExchange?: boolean;  // Whether exchange data (Kalshi/Polymarket) exists for this game
 }
 
-export function GameCard({ game, consensus, score, edge, openingSpread, edgeCount }: GameCardProps) {
+export function GameCard({ game, consensus, score, edge, openingSpread, edgeCount, hasExchange }: GameCardProps) {
   const commenceTime = typeof game.commenceTime === 'string' ? new Date(game.commenceTime) : game.commenceTime;
   const gameState = getGameState(commenceTime, game.sportKey);
   const isLive = gameState === 'live';
@@ -216,8 +217,11 @@ export function GameCard({ game, consensus, score, edge, openingSpread, edgeCoun
           )}
         </div>
 
-        {/* Edge Count Badge */}
+        {/* Badges */}
         <div className="flex items-center gap-2">
+          {hasExchange && (
+            <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-sky-500/15 text-sky-400 border border-sky-500/30">K</span>
+          )}
           {edgeCount !== undefined && edgeCount > 0 && (
             <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30">
               <span className="text-xs">🔥</span>

@@ -146,6 +146,7 @@ export function SportsGrid({ games, availableBooks }: SportsGridProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {games.map(({ game, bookmakerOdds, edgeCount }) => {
           const odds = bookmakerOdds[selectedBook];
+          const hasExchange = !!(bookmakerOdds['kalshi'] || bookmakerOdds['polymarket']);
           return (
             <GameCard
               key={game.id}
@@ -153,6 +154,7 @@ export function SportsGrid({ games, availableBooks }: SportsGridProps) {
               consensus={odds?.consensus}
               edge={odds?.edge}
               edgeCount={edgeCount}
+              hasExchange={hasExchange}
             />
           );
         })}

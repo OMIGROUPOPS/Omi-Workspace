@@ -226,7 +226,7 @@ def _blend_exchange_signal(
     game_id: str, score: float, reasoning_parts: list
 ) -> float:
     """
-    Blend exchange implied probability into flow score (30% weight).
+    Blend exchange implied probability into flow score (45% weight).
     Returns updated score. Zero-regression: if no data or error, returns original.
     """
     try:
@@ -249,7 +249,7 @@ def _blend_exchange_signal(
         # Convert to flow scale: flow >0.5 = away edge, so invert exchange home prob
         exchange_flow = 1 - exchange_prob
         old_score = score
-        score = 0.7 * score + 0.3 * exchange_flow
+        score = 0.55 * score + 0.45 * exchange_flow
         score = max(0.15, min(0.85, score))
         # Summarize price movement direction
         price_changes = [c.get("price_change", 0) or 0 for c in contracts]
@@ -260,8 +260,8 @@ def _blend_exchange_signal(
             f"(contracts: {len(contracts)}, {direction})"
         )
         logger.info(
-            f"[Flow] Exchange blend for {game_id}: {old_score:.3f} → {score:.3f} "
-            f"(exchange_prob={exchange_prob:.3f}, contracts={len(contracts)})"
+            f"Flow: exchange blend for {game_id} | exchange_prob={exchange_prob:.3f} "
+            f"blended={score:.3f} (was {old_score:.3f}, contracts={len(contracts)})"
         )
         return score
     except Exception as e:

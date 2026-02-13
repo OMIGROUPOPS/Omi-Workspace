@@ -34,6 +34,88 @@ SPREAD_TO_PROB_RATE = {
 
 FAIR_LINE_ML_FACTOR = 0.01  # 1% implied probability shift per composite point
 
+# Exchange divergence boost constants
+EXCHANGE_DIVERGENCE_THRESHOLD = 0.03  # 3% minimum divergence to trigger boost
+EXCHANGE_DIVERGENCE_SCALE = 0.30      # Convert divergence to spread points (dampened)
+EXCHANGE_DIVERGENCE_CAP = 2.0         # Max ±2 points adjustment
+
+
+def _get_scale_factor(sport_key: str = "_global") -> float:
+    """Read spread_factor from calibration_config table, fallback to module constant."""
+    try:
+        if not db._is_connected():
+            return FAIR_LINE_SPREAD_FACTOR
+        result = db.client.table("calibration_config").select("config_data").eq(
+            "config_type", "scale_factors"
+        ).eq("active", True).limit(1).execute()
+        rows = result.data or []
+        if rows:
+            data = rows[0].get("config_data", {})
+            return float(data.get("spread_factor", FAIR_LINE_SPREAD_FACTOR))
+    except Exception as e:
+        logger.debug(f"[CompositeTracker] calibration_config read failed: {e}")
+    return FAIR_LINE_SPREAD_FACTOR
+
+
+def _calc_exchange_divergence_boost(game_id: str, book_spread: float) -> float:
+    """
+    Calculate spread adjustment from exchange vs book divergence.
+
+    Approach:
+    - Get moneyline contracts from exchange_data for this game
+    - Average yes_price/100 = exchange implied prob for home win
+    - Derive book implied prob from spread: 0.50 + (book_spread * direction * 0.03)
+    - divergence = exchange_prob - book_implied
+    - Convert to spread points, cap at ±2
+
+    Returns 0.0 on any error (zero-regression).
+    """
+    try:
+        from exchange_tracker import ExchangeTracker
+        if not game_id:
+            return 0.0
+        tracker = ExchangeTracker()
+        contracts = tracker.get_game_exchange_data(game_id)
+        if not contracts:
+            return 0.0
+
+        # Filter to moneyline contracts only
+        ml_contracts = [
+            c for c in contracts
+            if c.get("market_type") == "moneyline"
+            and c.get("yes_price") is not None
+            and c["yes_price"] > 0
+        ]
+        if not ml_contracts:
+            return 0.0
+
+        # Exchange implied prob = average yes_price / 100
+        exchange_prob = sum(c["yes_price"] / 100.0 for c in ml_contracts) / len(ml_contracts)
+
+        # Book implied prob from spread: home favored = negative spread
+        # P(home) = 0.50 + (-book_spread * 0.03)
+        book_implied = 0.50 + (-book_spread) * 0.03
+
+        divergence = exchange_prob - book_implied
+
+        if abs(divergence) < EXCHANGE_DIVERGENCE_THRESHOLD:
+            return 0.0
+
+        # Convert to spread points: divergence * (1/0.03) * dampening, cap at ±2
+        boost = divergence * (1 / 0.03) * EXCHANGE_DIVERGENCE_SCALE
+        boost = max(-EXCHANGE_DIVERGENCE_CAP, min(EXCHANGE_DIVERGENCE_CAP, boost))
+
+        logger.info(
+            f"[CompositeTracker] Exchange divergence boost for {game_id}: "
+            f"exchange_prob={exchange_prob:.3f} book_implied={book_implied:.3f} "
+            f"divergence={divergence:.3f} boost={boost:.2f}pts"
+        )
+        return boost
+
+    except Exception as e:
+        logger.debug(f"[CompositeTracker] Exchange divergence calc failed for {game_id}: {e}")
+        return 0.0
+
 
 def _round_to_half(value: float) -> float:
     """Round to nearest 0.5 — matches Math.round(x * 2) / 2 in edgescout.ts."""
@@ -250,6 +332,10 @@ class CompositeTracker:
 
                 if book_spread is not None and composite_spread is not None:
                     fair_spread = _calculate_fair_spread(book_spread, composite_spread)
+                    # Exchange divergence boost: shift fair spread toward exchange signal
+                    exchange_adj = _calc_exchange_divergence_boost(game_id, book_spread)
+                    if exchange_adj != 0.0:
+                        fair_spread = _round_to_half(fair_spread + exchange_adj)
                     fair_ml_home, fair_ml_away = _calculate_fair_ml(fair_spread, sport_key)
                 elif is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None and composite_ml is not None:
                     # Soccer 3-way ML

@@ -1892,6 +1892,201 @@ function AskEdgeAI({ activeMarket, activePeriod }: { activeMarket: string; activ
 }
 
 // ============================================================================
+// Exchange Signals — complementary exchange intelligence panel
+// ============================================================================
+
+function ExchangeSignals({ exchangeData, bookmakers, gameData }: {
+  exchangeData: {
+    by_market: Record<string, Array<{
+      exchange: string; subtitle: string; yes_price: number | null; no_price: number | null;
+      volume: number | null; open_interest: number | null; snapshot_time: string;
+    }>>;
+    divergence: Record<string, any>;
+    count: number;
+  };
+  bookmakers: Record<string, any>;
+  gameData: { homeTeam: string; awayTeam: string; sportKey: string };
+}) {
+  const fmtCents = (v: number | null) => v != null ? `${Math.round(v)}¢` : '—';
+  const fmtPct = (v: number | null) => v != null ? `${v.toFixed(1)}%` : '—';
+  const fmtVol = (v: number | null) => {
+    if (v == null) return '—';
+    if (v >= 1_000_000) return `$${(v / 1_000_000).toFixed(1)}M`;
+    if (v >= 1_000) return `$${(v / 1_000).toFixed(1)}K`;
+    return `$${v}`;
+  };
+  const divColor = (pct: number) => Math.abs(pct) < 1 ? 'text-zinc-500' : pct > 0 ? 'text-emerald-400' : 'text-red-400';
+
+  const markets = exchangeData.by_market;
+  const div = exchangeData.divergence;
+  const hasML = (markets.moneyline?.length ?? 0) > 0;
+  const hasSpread = (markets.spread?.length ?? 0) > 0;
+  const hasTotal = (markets.total?.length ?? 0) > 0;
+
+  // Get FD book data for comparison
+  const fdMarkets = bookmakers.fanduel?.marketGroups?.fullGame;
+
+  return (
+    <div className="border-t border-cyan-500/20 bg-[#0c0c0c]">
+      <div className="px-4 py-2.5 flex items-center gap-2 border-b border-zinc-800/50">
+        <span className="text-[10px] font-semibold tracking-widest text-cyan-500/70 uppercase">Exchange Signals</span>
+        <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-sky-500/15 text-sky-400 border border-sky-500/30">Kalshi</span>
+        {exchangeData.count > 0 && (
+          <span className="text-[10px] text-zinc-600 ml-auto">{exchangeData.count} contracts</span>
+        )}
+      </div>
+
+      <div className="px-4 py-3 space-y-3">
+        {/* Moneyline */}
+        {hasML && (() => {
+          const contracts = markets.moneyline;
+          const totalVol = contracts.reduce((s, c) => s + (c.volume || 0), 0);
+          const avgYes = contracts.reduce((s, c) => s + (c.yes_price || 0), 0) / contracts.length;
+          const avgNo = contracts.reduce((s, c) => s + (c.no_price || 0), 0) / contracts.length;
+          const mlDiv = div.moneyline;
+
+          // FD book odds for comparison
+          const fdHome = fdMarkets?.h2h?.home?.price;
+          const fdAway = fdMarkets?.h2h?.away?.price;
+          const fdHomeProb = fdHome ? americanToImplied(fdHome) * 100 : null;
+          const fdAwayProb = fdAway ? americanToImplied(fdAway) * 100 : null;
+
+          return (
+            <div>
+              <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">Moneyline</div>
+              <table className="w-full text-[11px]">
+                <thead>
+                  <tr className="text-zinc-600">
+                    <th className="text-left py-1 font-normal">Source</th>
+                    <th className="text-right py-1 font-normal">Home</th>
+                    <th className="text-right py-1 font-normal">Away</th>
+                    <th className="text-right py-1 font-normal">Volume</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="text-zinc-300">
+                    <td className="py-1 text-sky-400 font-medium">Kalshi</td>
+                    <td className="py-1 text-right font-mono">{fmtCents(avgYes)} <span className="text-zinc-500">({fmtPct(avgYes)})</span></td>
+                    <td className="py-1 text-right font-mono">{fmtCents(avgNo)} <span className="text-zinc-500">({fmtPct(avgNo)})</span></td>
+                    <td className="py-1 text-right text-zinc-500">{fmtVol(totalVol)}</td>
+                  </tr>
+                  {fdHome && fdAway && (
+                    <tr className="text-zinc-400">
+                      <td className="py-1 font-medium" style={{ color: '#1493ff' }}>FanDuel</td>
+                      <td className="py-1 text-right font-mono">{fdHome > 0 ? '+' : ''}{fdHome} <span className="text-zinc-600">({fmtPct(fdHomeProb)})</span></td>
+                      <td className="py-1 text-right font-mono">{fdAway > 0 ? '+' : ''}{fdAway} <span className="text-zinc-600">({fmtPct(fdAwayProb)})</span></td>
+                      <td className="py-1 text-right text-zinc-600">—</td>
+                    </tr>
+                  )}
+                  {mlDiv && (
+                    <tr>
+                      <td className="py-1 text-zinc-500 font-medium">Divergence</td>
+                      <td className={`py-1 text-right font-mono font-bold ${divColor(mlDiv.divergence_pct)}`}>
+                        {mlDiv.divergence_pct > 0 ? '+' : ''}{mlDiv.divergence_pct.toFixed(1)}%
+                      </td>
+                      <td className="py-1"></td>
+                      <td className="py-1"></td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          );
+        })()}
+
+        {/* Spread */}
+        {hasSpread && (() => {
+          const contracts = markets.spread;
+          const spDiv = div.spread;
+
+          return (
+            <div>
+              <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">Spread</div>
+              <table className="w-full text-[11px]">
+                <thead>
+                  <tr className="text-zinc-600">
+                    <th className="text-left py-1 font-normal">Source</th>
+                    <th className="text-left py-1 font-normal">Contract</th>
+                    <th className="text-right py-1 font-normal">Price</th>
+                    <th className="text-right py-1 font-normal">Implied</th>
+                    <th className="text-right py-1 font-normal">Volume</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {contracts.map((c, i) => (
+                    <tr key={i} className="text-zinc-300">
+                      <td className="py-1 text-sky-400 font-medium">{i === 0 ? 'Kalshi' : ''}</td>
+                      <td className="py-1 text-zinc-400 text-[10px] truncate max-w-[140px]">{c.subtitle || '—'}</td>
+                      <td className="py-1 text-right font-mono">{fmtCents(c.yes_price)}</td>
+                      <td className="py-1 text-right font-mono text-zinc-400">{fmtPct(c.yes_price)}</td>
+                      <td className="py-1 text-right text-zinc-500">{fmtVol(c.volume)}</td>
+                    </tr>
+                  ))}
+                  {spDiv && (
+                    <tr>
+                      <td className="py-1 text-zinc-500 font-medium">Divergence</td>
+                      <td className="py-1"></td>
+                      <td className="py-1"></td>
+                      <td className={`py-1 text-right font-mono font-bold ${divColor(spDiv.divergence_pct)}`}>
+                        {spDiv.divergence_pct > 0 ? '+' : ''}{spDiv.divergence_pct.toFixed(1)}%
+                      </td>
+                      <td className="py-1"></td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          );
+        })()}
+
+        {/* Total */}
+        {hasTotal && (() => {
+          const contracts = markets.total;
+          const totDiv = div.total;
+
+          return (
+            <div>
+              <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">Total</div>
+              <table className="w-full text-[11px]">
+                <thead>
+                  <tr className="text-zinc-600">
+                    <th className="text-left py-1 font-normal">Source</th>
+                    <th className="text-left py-1 font-normal">Contract</th>
+                    <th className="text-right py-1 font-normal">Over</th>
+                    <th className="text-right py-1 font-normal">Under</th>
+                    <th className="text-right py-1 font-normal">Volume</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {contracts.map((c, i) => (
+                    <tr key={i} className="text-zinc-300">
+                      <td className="py-1 text-sky-400 font-medium">{i === 0 ? 'Kalshi' : ''}</td>
+                      <td className="py-1 text-zinc-400 text-[10px] truncate max-w-[140px]">{c.subtitle || '—'}</td>
+                      <td className="py-1 text-right font-mono">{fmtCents(c.yes_price)}</td>
+                      <td className="py-1 text-right font-mono">{fmtCents(c.no_price)}</td>
+                      <td className="py-1 text-right text-zinc-500">{fmtVol(c.volume)}</td>
+                    </tr>
+                  ))}
+                  {totDiv && (
+                    <tr>
+                      <td className="py-1 text-zinc-500 font-medium">Exchange</td>
+                      <td className="py-1 text-zinc-600 text-[10px]">Book: {totDiv.book_total}</td>
+                      <td className="py-1 text-right font-mono text-zinc-400">{fmtPct(totDiv.exchange_over_prob)}</td>
+                      <td className="py-1 text-right font-mono text-zinc-400">{totDiv.exchange_over_prob != null ? fmtPct(100 - totDiv.exchange_over_prob) : '—'}</td>
+                      <td className="py-1"></td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          );
+        })()}
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
 // Main GameDetailClient Component — OMI Fair Pricing Layout
 // ============================================================================
 
@@ -2069,6 +2264,29 @@ export function GameDetailClient({
 
   const omiFairLineForChart = getOmiFairLineForChart();
 
+  // Exchange data state
+  const [exchangeData, setExchangeData] = useState<{
+    by_market: Record<string, Array<{
+      exchange: string; subtitle: string; yes_price: number | null; no_price: number | null;
+      volume: number | null; open_interest: number | null; snapshot_time: string;
+    }>>;
+    divergence: Record<string, {
+      exchange_home_prob?: number; book_home_prob?: number; divergence_pct?: number;
+      exchange_implied?: number; book_implied?: number; book_spread?: number;
+      exchange_over_prob?: number; book_total?: number;
+    }>;
+    count: number;
+  } | null>(null);
+
+  useEffect(() => {
+    if (!gameData.id) return;
+    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://omi-workspace-production.up.railway.app';
+    fetch(`${BACKEND_URL}/api/exchange/game/${gameData.id}`)
+      .then(res => res.ok ? res.json() : null)
+      .then(data => { if (data && data.count > 0) setExchangeData(data); })
+      .catch(() => {});
+  }, [gameData.id]);
+
   return (
     <>
       {/* Desktop: OMI Fair Pricing Layout */}
@@ -2196,6 +2414,11 @@ export function GameDetailClient({
             <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
           </div>
         </div>
+
+        {/* Exchange Signals — complementary intelligence */}
+        {exchangeData && (
+          <ExchangeSignals exchangeData={exchangeData} bookmakers={bookmakers} gameData={gameData} />
+        )}
       </div>
 
       {/* Mobile: Single-column scrollable fallback */}
@@ -2305,6 +2528,11 @@ export function GameDetailClient({
           />
 
           <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
+
+          {/* Exchange Signals — complementary intelligence */}
+          {exchangeData && (
+            <ExchangeSignals exchangeData={exchangeData} bookmakers={bookmakers} gameData={gameData} />
+          )}
         </div>
       </div>
     </>

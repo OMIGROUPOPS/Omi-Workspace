@@ -1370,12 +1370,138 @@ async def get_exchange_markets(
 
 @app.get("/api/exchange/game/{game_id}")
 async def get_game_exchange_data(game_id: str):
-    """Get exchange contracts matched to a specific game."""
+    """Get exchange contracts matched to a specific game, grouped by market with divergence."""
     try:
         from exchange_tracker import ExchangeTracker
         tracker = ExchangeTracker()
         contracts = tracker.get_game_exchange_data(game_id)
-        return {"contracts": contracts, "count": len(contracts)}
+
+        # Group by market_type
+        by_market: dict = {}
+        for c in contracts:
+            mtype = c.get("market_type") or "unknown"
+            if mtype not in by_market:
+                by_market[mtype] = []
+            by_market[mtype].append({
+                "exchange": c.get("exchange"),
+                "event_title": c.get("event_title"),
+                "subtitle": c.get("subtitle"),
+                "contract_ticker": c.get("contract_ticker"),
+                "yes_price": c.get("yes_price"),
+                "no_price": c.get("no_price"),
+                "volume": c.get("volume"),
+                "open_interest": c.get("open_interest"),
+                "price_change": c.get("price_change"),
+                "snapshot_time": c.get("snapshot_time"),
+                "status": c.get("status"),
+            })
+
+        # Calculate divergence vs book lines for this game
+        divergence = {}
+        try:
+            if not db._is_connected():
+                raise Exception("DB not connected")
+            # Get latest book lines from cached_odds
+            cached = db.client.table("cached_odds").select(
+                "game_data"
+            ).eq("game_id", game_id).limit(1).execute()
+            if cached.data:
+                game_data = cached.data[0].get("game_data", {})
+                home_team = game_data.get("home_team", "")
+                bookmakers_data = game_data.get("bookmakers", [])
+
+                # Extract median book lines
+                import statistics as stats_mod
+                spread_lines, total_lines, ml_home_list, ml_away_list = [], [], [], []
+                for bk in bookmakers_data:
+                    for mkt in bk.get("markets", []):
+                        key = mkt.get("key")
+                        outcomes = mkt.get("outcomes", [])
+                        if key == "spreads":
+                            for o in outcomes:
+                                if o.get("name") == home_team and o.get("point") is not None:
+                                    spread_lines.append(o["point"])
+                        elif key == "totals":
+                            for o in outcomes:
+                                if o.get("name") == "Over" and o.get("point") is not None:
+                                    total_lines.append(o["point"])
+                        elif key == "h2h":
+                            for o in outcomes:
+                                if o.get("name") == home_team:
+                                    ml_home_list.append(o["price"])
+                                elif o.get("name") != "Draw":
+                                    ml_away_list.append(o["price"])
+
+                def _american_to_prob(odds):
+                    odds = int(odds)
+                    if odds < 0:
+                        return abs(odds) / (abs(odds) + 100)
+                    return 100 / (odds + 100)
+
+                # Moneyline divergence
+                if "moneyline" in by_market and ml_home_list and ml_away_list:
+                    med_home = stats_mod.median(ml_home_list)
+                    med_away = stats_mod.median(ml_away_list)
+                    book_home_prob = _american_to_prob(med_home)
+                    book_away_prob = _american_to_prob(med_away)
+                    total_vig = book_home_prob + book_away_prob
+                    if total_vig > 0:
+                        book_home_prob /= total_vig
+
+                    ml_contracts = by_market["moneyline"]
+                    exch_probs = [
+                        c["yes_price"] / 100.0 for c in ml_contracts
+                        if c.get("yes_price") and c["yes_price"] > 0
+                    ]
+                    if exch_probs:
+                        exch_home_prob = sum(exch_probs) / len(exch_probs)
+                        divergence["moneyline"] = {
+                            "exchange_home_prob": round(exch_home_prob * 100, 1),
+                            "book_home_prob": round(book_home_prob * 100, 1),
+                            "divergence_pct": round((exch_home_prob - book_home_prob) * 100, 1),
+                        }
+
+                # Spread divergence
+                if "spread" in by_market and spread_lines:
+                    med_spread = stats_mod.median(spread_lines)
+                    book_impl = 0.50 + (-med_spread) * 0.03
+                    sp_contracts = by_market["spread"]
+                    exch_probs = [
+                        c["yes_price"] / 100.0 for c in sp_contracts
+                        if c.get("yes_price") and c["yes_price"] > 0
+                    ]
+                    if exch_probs:
+                        exch_prob = sum(exch_probs) / len(exch_probs)
+                        divergence["spread"] = {
+                            "exchange_implied": round(exch_prob * 100, 1),
+                            "book_implied": round(book_impl * 100, 1),
+                            "divergence_pct": round((exch_prob - book_impl) * 100, 1),
+                            "book_spread": med_spread,
+                        }
+
+                # Total divergence
+                if "total" in by_market and total_lines:
+                    med_total = stats_mod.median(total_lines)
+                    tot_contracts = by_market["total"]
+                    exch_probs = [
+                        c["yes_price"] / 100.0 for c in tot_contracts
+                        if c.get("yes_price") and c["yes_price"] > 0
+                    ]
+                    if exch_probs:
+                        exch_over_prob = sum(exch_probs) / len(exch_probs)
+                        divergence["total"] = {
+                            "exchange_over_prob": round(exch_over_prob * 100, 1),
+                            "book_total": med_total,
+                        }
+        except Exception as div_err:
+            logger.debug(f"Exchange divergence calc failed for {game_id}: {div_err}")
+
+        return {
+            "contracts": contracts,
+            "by_market": by_market,
+            "divergence": divergence,
+            "count": len(contracts),
+        }
     except Exception as e:
         logger.error(f"Error getting game exchange data: {e}")
         raise HTTPException(status_code=500, detail=str(e))

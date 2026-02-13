@@ -535,11 +535,11 @@ async def execute_arb(
     # Step 5: Place PM order FIRST (unreliable leg - IOC often expires)
     # -------------------------------------------------------------------------
     # CRITICAL FIX: When is_long_team=False, we must trade on the LONG team's
-    # outcome (index 0), not the team's outcome (index 1). This is because:
+    # outcome, not our team's outcome. The long team's index is the complement
+    # of our team's index (1 - pm_outcome_idx). This is because:
     # - BUY_NO on long team's outcome = SHORT long team = LONG our team
     # - BUY_YES on long team's outcome = LONG long team = SHORT our team
-    # So when betting on non-long-team, always use outcome_index = 0
-    actual_pm_outcome_idx = pm_outcome_idx if is_long_team else 0
+    actual_pm_outcome_idx = pm_outcome_idx if is_long_team else (1 - pm_outcome_idx)
 
     pm_order_start = time.time()
     try:

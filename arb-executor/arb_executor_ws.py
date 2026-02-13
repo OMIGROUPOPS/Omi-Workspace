@@ -1468,6 +1468,26 @@ async def refresh_balances(session, kalshi_api, pm_api):
                     "_pm_slug": slug,
                 })
 
+        # ── Helper: check if a Kalshi position looks settled ──
+        def _is_settled_kalshi(p: dict) -> bool:
+            """Return True if this Kalshi position is likely settled/expired."""
+            ticker = p.get("_ticker", "")
+            if not ticker:
+                return False
+            # If ticker is no longer monitored (not in local_books), it's settled
+            book = local_books.get(ticker)
+            if book is None:
+                # Not in our active books — game no longer being tracked
+                # Only treat as settled if the ticker is also not in our mapping
+                if ticker not in ticker_to_cache_key:
+                    return True
+            elif book:
+                bid = book.get("best_bid") or 0
+                ask = book.get("best_ask") or 0
+                if bid >= 99 or (ask > 0 and ask <= 1):
+                    return True
+            return False
+
         # ── Match hedged pairs by game_id (now aligned via trades.json) ──
         by_game: Dict[str, list] = {}
         for p in positions:
@@ -1479,6 +1499,14 @@ async def refresh_balances(session, kalshi_api, pm_api):
         matched = []
         for gkey, group in by_game.items():
             platforms = {p["platform"] for p in group}
+
+            # Skip settled games — check all Kalshi positions in group
+            settled = any(
+                _is_settled_kalshi(p) for p in group if p["platform"] == "Kalshi"
+            )
+            if settled:
+                continue
+
             if "PM" in platforms and "Kalshi" in platforms:
                 # Hedged pair — both APIs show positions
                 pm_pos = next(p for p in group if p["platform"] == "PM")
@@ -1497,30 +1525,16 @@ async def refresh_balances(session, kalshi_api, pm_api):
                 })
             else:
                 # Only one platform visible — check trades.json before calling it UNHEDGED
-                skip = False
                 confirmed_hedged = False
 
                 for p in group:
-                    # Check settled markets (skip display)
                     if p["platform"] == "Kalshi" and p.get("_ticker"):
-                        book = local_books.get(p["_ticker"])
-                        if book:
-                            bid = book.get("best_bid") or 0
-                            ask = book.get("best_ask") or 0
-                            if bid >= 99 or (ask > 0 and ask <= 1):
-                                skip = True
-                                break
-                        # Check trades.json: is this Kalshi position confirmed hedged?
                         if p["_ticker"] in hedged_by_ticker:
                             confirmed_hedged = True
 
                     if p["platform"] == "PM" and p.get("_pm_slug"):
-                        # Check trades.json: is this PM position confirmed hedged?
                         if p["_pm_slug"] in hedged_by_slug:
                             confirmed_hedged = True
-
-                if skip:
-                    continue
 
                 if confirmed_hedged:
                     # trades.json says HEDGED — trust it over API mismatch

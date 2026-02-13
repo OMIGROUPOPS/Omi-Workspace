@@ -960,7 +960,9 @@ class KalshiAPI:
             ) as r:
                 if r.status == 200:
                     data = await r.json()
-                    return data.get('balance', 0) / 100
+                    cash = data.get('balance', 0)
+                    positions_value = data.get('portfolio_value', 0)
+                    return (cash + positions_value) / 100
         except Exception as e:
             print(f"   [!] Balance fetch error: {e}")
         return None

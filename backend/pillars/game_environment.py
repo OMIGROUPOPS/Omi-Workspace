@@ -48,20 +48,23 @@ def calculate_game_environment_score(
     Returns dict with score, expected_total, and breakdown.
     """
     # Build sport-specific stats from generic team_stats if needed
+    # NCAAB uses different baselines: 40-min game, ~68 possessions, ~105 efficiency
     if not nba_stats and team_stats and sport in ("NBA", "NCAAB"):
         home = team_stats.get("home", {})
         away = team_stats.get("away", {})
+        default_pace = 68 if sport == "NCAAB" else 100
+        default_rating = 105 if sport == "NCAAB" else 110
         if home or away:
             nba_stats = {
                 "home": {
-                    "pace": home.get("pace") or 100,
-                    "off_rating": home.get("offensive_rating") or 110,
-                    "def_rating": home.get("defensive_rating") or 110,
+                    "pace": home.get("pace") or default_pace,
+                    "off_rating": home.get("offensive_rating") or default_rating,
+                    "def_rating": home.get("defensive_rating") or default_rating,
                 },
                 "away": {
-                    "pace": away.get("pace") or 100,
-                    "off_rating": away.get("offensive_rating") or 110,
-                    "def_rating": away.get("defensive_rating") or 110,
+                    "pace": away.get("pace") or default_pace,
+                    "off_rating": away.get("offensive_rating") or default_rating,
+                    "def_rating": away.get("defensive_rating") or default_rating,
                 },
             }
 
@@ -83,7 +86,7 @@ def calculate_game_environment_score(
     if sport == "NHL" and nhl_stats:
         return _calculate_nhl_environment(home_team, away_team, total_line, nhl_stats)
     elif sport in ("NBA", "NCAAB") and nba_stats:
-        return _calculate_nba_environment(home_team, away_team, total_line, nba_stats)
+        return _calculate_nba_environment(home_team, away_team, total_line, nba_stats, sport=sport)
     elif sport in ("NFL", "NCAAF"):
         return _calculate_nfl_environment(home_team, away_team, total_line, weather_data, game_time, team_stats)
     elif sport == "EPL" and team_stats:
@@ -354,13 +357,14 @@ def _calculate_nba_environment(
     home_team: str,
     away_team: str,
     total_line: Optional[float],
-    stats: dict
+    stats: dict,
+    sport: str = "NBA"
 ) -> dict:
     """
-    NBA-specific environment calculation.
+    NBA/NCAAB environment calculation.
 
     Key metrics:
-    - Pace: Possessions per 48 minutes
+    - Pace: Possessions per game (NBA ~100, NCAAB ~68)
     - Offensive Rating: Points per 100 possessions
     - Defensive Rating: Points allowed per 100 possessions
     """
@@ -370,30 +374,36 @@ def _calculate_nba_environment(
     if not home or not away:
         return _default_environment()
 
+    # Sport-specific baselines
+    is_ncaab = sport == "NCAAB"
+    default_pace = 68 if is_ncaab else 100
+    default_rating = 105 if is_ncaab else 110
+
     # Extract pace and ratings
-    home_pace = home.get("pace", 100)
-    away_pace = away.get("pace", 100)
-    home_off = home.get("off_rating", 110)
-    home_def = home.get("def_rating", 110)
-    away_off = away.get("off_rating", 110)
-    away_def = away.get("def_rating", 110)
+    home_pace = home.get("pace", default_pace)
+    away_pace = away.get("pace", default_pace)
+    home_off = home.get("off_rating", default_rating)
+    home_def = home.get("def_rating", default_rating)
+    away_off = away.get("off_rating", default_rating)
+    away_def = away.get("def_rating", default_rating)
 
     # Expected game pace (average of both teams)
     expected_pace = (home_pace + away_pace) / 2
-    league_avg_pace = 100.0
+    league_avg_pace = 68.0 if is_ncaab else 100.0
 
     # Expected scoring
     # Home vs Away Def, Away vs Home Def
     home_expected_off = (home_off + away_def) / 2
     away_expected_off = (away_off + home_def) / 2
 
-    # Convert to expected game total (very rough estimate)
-    # Pace * (combined efficiency / 100) * 2 (both teams) / 100 * 48 min
-    # Simplified: use league average as baseline
-    league_avg_total = 225  # Modern NBA average
+    # Sport-specific league average totals
+    # NBA: ~225 points per game (48 minutes, ~100 possessions)
+    # NCAAB: ~140 points per game (40 minutes, ~68 possessions)
+    league_avg_total = 140 if is_ncaab else 225
 
     pace_factor = expected_pace / league_avg_pace
-    efficiency_factor = ((home_expected_off + away_expected_off) / 2) / 110  # 110 is league avg
+    league_avg_rating = 105.0 if is_ncaab else 110.0
+    efficiency_factor = ((home_expected_off + away_expected_off) / 2) / league_avg_rating
 
     expected_total = league_avg_total * pace_factor * efficiency_factor
 
@@ -413,10 +423,12 @@ def _calculate_nba_environment(
         elif line_diff <= -5:
             reasoning_parts.append(f"Expected {expected_total:.0f} vs line {total_line} = UNDER lean")
 
-    # Pace insight
-    if expected_pace >= 103:
+    # Pace insight (thresholds relative to league average)
+    fast_threshold = league_avg_pace * 1.03
+    slow_threshold = league_avg_pace * 0.97
+    if expected_pace >= fast_threshold:
         reasoning_parts.append(f"Fast-paced matchup ({expected_pace:.1f} pace)")
-    elif expected_pace <= 97:
+    elif expected_pace <= slow_threshold:
         reasoning_parts.append(f"Slow-paced matchup ({expected_pace:.1f} pace)")
 
     # Calculate market-specific scores

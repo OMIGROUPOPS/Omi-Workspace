@@ -164,6 +164,10 @@ interface ParsedProp {
   // Game composite
   gameComposite: number | null;
   compositeModifier: number;
+  // Fair value source
+  fairSource: 'pinnacle' | 'consensus';
+  // Contrarian: edge opposes significant line movement direction
+  isContrarian: boolean;
 }
 
 interface GameWithProps {
@@ -224,7 +228,7 @@ function getGameCompositeModifier(composite: number | null, edgeSide: 'Over' | '
 
 // Inline SVG step-line chart for prop history with OMI fair line overlay
 function PropLineChart({ data, fairLine }: { data: any[]; fairLine: number }) {
-  const W = 600, H = 120, PAD_X = 40, PAD_Y = 16;
+  const W = 680, H = 120, PAD_X = 40, PAD_R = 120, PAD_Y = 16;
   const lines = data.map(d => Number(d.line)).filter(n => !isNaN(n));
   if (lines.length < 2) return null;
 
@@ -234,7 +238,7 @@ function PropLineChart({ data, fairLine }: { data: any[]; fairLine: number }) {
   const maxLine = Math.max(...allValues);
   const range = maxLine - minLine || 1;
 
-  const xStep = (W - PAD_X * 2) / (lines.length - 1);
+  const xStep = (W - PAD_X - PAD_R) / (lines.length - 1);
   const valToY = (val: number) => PAD_Y + (1 - (val - minLine) / range) * (H - PAD_Y * 2);
 
   // Build step-line path points
@@ -262,24 +266,35 @@ function PropLineChart({ data, fairLine }: { data: any[]; fairLine: number }) {
 
   // Fair line label
   const fairLabel = `OMI Fair: ${Number.isInteger(fairLine) ? fairLine : fairLine.toFixed(1)}`;
+  const labelX = W - PAD_R + 8;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-[600px]" style={{ height: '120px' }}>
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-[680px]" style={{ height: '120px' }}>
       {/* Grid lines */}
       {yLabels.map((val, i) => {
         const y = valToY(val);
         return (
           <g key={i}>
-            <line x1={PAD_X} y1={y} x2={W - PAD_X} y2={y} stroke="#27272a" strokeWidth="1" />
+            <line x1={PAD_X} y1={y} x2={W - PAD_R} y2={y} stroke="#27272a" strokeWidth="1" />
             <text x={PAD_X - 4} y={y + 3} textAnchor="end" fill="#52525b" fontSize="9" fontFamily="monospace">
               {Number.isInteger(val) ? val : val.toFixed(1)}
             </text>
           </g>
         );
       })}
-      {/* OMI Fair Line — horizontal dashed cyan line */}
-      <line x1={PAD_X} y1={fairY} x2={W - PAD_X} y2={fairY} stroke="#2dd4bf" strokeWidth="1" strokeDasharray="4 3" opacity="0.7" />
-      <text x={W - PAD_X + 3} y={fairY + 3} fill="#2dd4bf" fontSize="8" fontFamily="monospace" opacity="0.8">
+      {/* OMI Fair Line — horizontal dashed teal line */}
+      <line x1={PAD_X} y1={fairY} x2={W - PAD_R} y2={fairY} stroke="#2dd4bf" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.8" />
+      {/* Fair line label — pill background + bold text */}
+      <rect
+        x={labelX - 4}
+        y={fairY - 9}
+        width={108}
+        height={18}
+        rx="4"
+        fill="#0f766e"
+        opacity="0.35"
+      />
+      <text x={labelX} y={fairY + 4} fill="#2dd4bf" fontSize="11" fontFamily="monospace" fontWeight="bold">
         {fairLabel}
       </text>
       {/* Convergence fill between book line and fair line */}
@@ -309,7 +324,7 @@ function PropLineChart({ data, fairLine }: { data: any[]; fairLine: number }) {
       />
       {/* X-axis labels */}
       <text x={PAD_X} y={H - 2} fill="#52525b" fontSize="8" fontFamily="monospace">{firstTime}</text>
-      <text x={W - PAD_X} y={H - 2} textAnchor="end" fill="#52525b" fontSize="8" fontFamily="monospace">{lastTime}</text>
+      <text x={W - PAD_R} y={H - 2} textAnchor="end" fill="#52525b" fontSize="8" fontFamily="monospace">{lastTime}</text>
     </svg>
   );
 }
@@ -362,21 +377,32 @@ export default function PlayerPropsPage() {
         }
       }
 
-      // Fetch pillar scores from game_results for all games
+      // Fetch pillar scores from predictions table (active games)
       const pillarMap: typeof gamePillars = {};
       if (gameIds.length > 0) {
         const { data: pillarData } = await supabase
-          .from('game_results')
-          .select('game_id, pillar_execution, pillar_incentives, pillar_shocks, pillar_time_decay, pillar_flow, pillar_game_environment, composite_score')
+          .from('predictions')
+          .select('game_id, pillar_execution, pillar_incentives, pillar_shocks, pillar_time_decay, pillar_flow, composite_score, pillars_json')
           .in('game_id', gameIds);
         for (const row of pillarData || []) {
+          // game_environment is only in pillars_json, not a dedicated column
+          let gameEnv = 0.5;
+          try {
+            const pillarsObj = typeof row.pillars_json === 'string'
+              ? JSON.parse(row.pillars_json)
+              : row.pillars_json;
+            if (pillarsObj?.game_environment?.score != null) {
+              gameEnv = pillarsObj.game_environment.score;
+            }
+          } catch { /* use default */ }
+
           pillarMap[row.game_id] = {
             execution: Math.round((row.pillar_execution ?? 0.5) * 100),
             incentives: Math.round((row.pillar_incentives ?? 0.5) * 100),
             shocks: Math.round((row.pillar_shocks ?? 0.5) * 100),
             timeDecay: Math.round((row.pillar_time_decay ?? 0.5) * 100),
             flow: Math.round((row.pillar_flow ?? 0.5) * 100),
-            gameEnvironment: Math.round((row.pillar_game_environment ?? 0.5) * 100),
+            gameEnvironment: Math.round(gameEnv * 100),
             composite: Math.round((row.composite_score ?? 50)),
           };
         }
@@ -469,8 +495,9 @@ export default function PlayerPropsPage() {
 
           if (retailEntries.length === 0) continue;
 
-          // Fair line = Pinnacle line (sharp fair value), or median of retail lines
-          const fairLine = pinnacleEntry
+          // Fair line = Pinnacle CURRENT line (sharp fair value), or median of retail CURRENT lines
+          const hasPinnacle = !!pinnacleEntry;
+          const fairLine = hasPinnacle
             ? pinnacleEntry.line
             : median(retailEntries.map(e => e.line));
 
@@ -575,6 +602,14 @@ export default function PlayerPropsPage() {
             .filter(e => e.underOdds !== null)
             .map(e => ({ book: e.book, odds: e.underOdds!, line: e.line }));
 
+          // Contrarian: edge direction opposes significant line movement
+          // If book line moved >=2pts from fair value AND edge opposes that movement
+          const lineDelta = bestEdgeLine - fairLine;
+          const isContrarian = Math.abs(lineDelta) >= 2 && (
+            (lineDelta > 0 && bestEdgeSide === 'Under') || // line moved UP, model says Under
+            (lineDelta < 0 && bestEdgeSide === 'Over')     // line moved DOWN, model says Over
+          );
+
           const parsedProp: ParsedProp = {
             player: group.player,
             propType: group.propType,
@@ -593,6 +628,8 @@ export default function PlayerPropsPage() {
             edgeLine: bestEdgeLine,
             gameComposite,
             compositeModifier: modifier,
+            fairSource: hasPinnacle ? 'pinnacle' : 'consensus',
+            isContrarian,
           };
 
           // Group by prop type
@@ -1029,11 +1066,16 @@ export default function PlayerPropsPage() {
 
                                       {/* Best Edge */}
                                       <div className="text-center">
-                                        <div>
+                                        <div className="flex items-center justify-center gap-1">
                                           <span className="text-xs font-semibold text-zinc-200">
                                             {prop.edgeSide} {prop.edgeLine}
                                           </span>
-                                          <span className="text-[10px] text-zinc-500 ml-1">@{formatBook(prop.edgeBook)}</span>
+                                          <span className="text-[10px] text-zinc-500">@{formatBook(prop.edgeBook)}</span>
+                                          {prop.isContrarian && (
+                                            <span className="text-[9px] font-bold text-amber-400 bg-amber-500/15 border border-amber-500/30 px-1 py-px rounded">
+                                              CTR
+                                            </span>
+                                          )}
                                         </div>
                                         <div className={`text-[10px] ${EDGE_TIER_COLORS[prop.edgeTier]}`}>
                                           {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
@@ -1072,6 +1114,11 @@ export default function PlayerPropsPage() {
                                         <span className={EDGE_TIER_COLORS[prop.edgeTier]}>
                                           {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
                                         </span>
+                                        {prop.isContrarian && (
+                                          <span className="text-[9px] font-bold text-amber-400 bg-amber-500/15 border border-amber-500/30 px-1 py-px rounded">
+                                            CTR
+                                          </span>
+                                        )}
                                       </div>
                                     </div>
                                   </div>
@@ -1121,7 +1168,7 @@ export default function PlayerPropsPage() {
                                           <span className="text-red-400/80 font-mono">U {dkUnder ? formatOdds(dkUnder.odds) : '—'}</span>
                                         </div>
 
-                                        {/* Best edge */}
+                                        {/* Best edge + fair source + contrarian */}
                                         <div className="text-zinc-400">
                                           <span className="text-zinc-500">Best:</span>{' '}
                                           <span className="font-semibold text-zinc-200">
@@ -1130,6 +1177,11 @@ export default function PlayerPropsPage() {
                                           <span className={`ml-1 ${EDGE_TIER_COLORS[prop.edgeTier]}`}>
                                             {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
                                           </span>
+                                          {prop.isContrarian && (
+                                            <span className="ml-1.5 text-[10px] font-bold text-amber-400 bg-amber-500/15 border border-amber-500/30 px-1 py-px rounded">
+                                              CONTRARIAN
+                                            </span>
+                                          )}
                                           {prop.compositeModifier > 1.0 && (
                                             <span className="ml-1 text-zinc-500">
                                               (game composite boost)
@@ -1138,8 +1190,25 @@ export default function PlayerPropsPage() {
                                         </div>
                                       </div>
 
+                                      {/* Fair source + contrarian context */}
+                                      <div className="flex items-center gap-3 mt-2 text-[10px]">
+                                        <span className="text-zinc-600">
+                                          Fair source: <span className="text-zinc-400">{prop.fairSource === 'pinnacle' ? 'Pinnacle (current)' : 'Consensus median'}</span>
+                                        </span>
+                                        {prop.isContrarian && history && history.length > 1 && (
+                                          <span className="text-amber-400/80">
+                                            Line moved {history[history.length - 1].line - history[0].line > 0 ? '+' : ''}{(history[history.length - 1].line - history[0].line).toFixed(1)} but model says {prop.edgeSide}
+                                          </span>
+                                        )}
+                                        {prop.isContrarian && !(history && history.length > 1) && (
+                                          <span className="text-amber-400/80">
+                                            Book line {prop.edgeLine} vs fair {prop.fairLine} ({prop.edgeLine > prop.fairLine ? '+' : ''}{(prop.edgeLine - prop.fairLine).toFixed(1)}), model says {prop.edgeSide}
+                                          </span>
+                                        )}
+                                      </div>
+
                                       {/* Compressed Pillar Bar */}
-                                      {gamePillars[game.gameId] && (() => {
+                                      {gamePillars[game.gameId] ? (() => {
                                         const p = gamePillars[game.gameId];
                                         const pillars = [
                                           { key: 'EXEC', val: p.execution },
@@ -1168,7 +1237,11 @@ export default function PlayerPropsPage() {
                                             </div>
                                           </div>
                                         );
-                                      })()}
+                                      })() : (
+                                        <div className="mt-3 pt-2 border-t border-zinc-800/40">
+                                          <span className="text-[10px] text-zinc-600 font-mono">Game context unavailable</span>
+                                        </div>
+                                      )}
                                     </div>
                                   )}
                                 </div>

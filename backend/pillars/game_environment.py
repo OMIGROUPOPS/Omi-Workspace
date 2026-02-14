@@ -60,11 +60,15 @@ def calculate_game_environment_score(
                     "pace": home.get("pace") or default_pace,
                     "off_rating": home.get("offensive_rating") or default_rating,
                     "def_rating": home.get("defensive_rating") or default_rating,
+                    "ppg": home.get("points_per_game"),
+                    "papg": home.get("points_allowed_per_game"),
                 },
                 "away": {
                     "pace": away.get("pace") or default_pace,
                     "off_rating": away.get("offensive_rating") or default_rating,
                     "def_rating": away.get("defensive_rating") or default_rating,
+                    "ppg": away.get("points_per_game"),
+                    "papg": away.get("points_allowed_per_game"),
                 },
             }
 
@@ -400,21 +404,31 @@ def _calculate_nba_environment(
     expected_pace = (home_pace + away_pace) / 2
     league_avg_pace = 68.0 if is_ncaab else 100.0
 
-    # Expected scoring
-    # Home vs Away Def, Away vs Home Def
-    home_expected_off = (home_off + away_def) / 2
-    away_expected_off = (away_off + home_def) / 2
-
     # Sport-specific league average totals
     # NBA: ~225 points per game (48 minutes, ~100 possessions)
     # NCAAB: ~140 points per game (40 minutes, ~68 possessions)
     league_avg_total = 140 if is_ncaab else 225
 
-    pace_factor = expected_pace / league_avg_pace
-    league_avg_rating = 105.0 if is_ncaab else 110.0
-    efficiency_factor = ((home_expected_off + away_expected_off) / 2) / league_avg_rating
+    # Preferred: use points_per_game (ppg) directly when available.
+    # This is more accurate than pace*efficiency when ratings aren't populated.
+    home_ppg = home.get("ppg")
+    home_papg = home.get("papg")
+    away_ppg = away.get("ppg")
+    away_papg = away.get("papg")
 
-    expected_total = league_avg_total * pace_factor * efficiency_factor
+    if home_ppg and away_ppg and home_papg and away_papg:
+        # Matchup-adjusted: each team's offense vs opponent's defense
+        home_expected_pts = (home_ppg + away_papg) / 2
+        away_expected_pts = (away_ppg + home_papg) / 2
+        expected_total = home_expected_pts + away_expected_pts
+    else:
+        # Fallback: pace * efficiency method
+        home_expected_off = (home_off + away_def) / 2
+        away_expected_off = (away_off + home_def) / 2
+        pace_factor = expected_pace / league_avg_pace
+        league_avg_rating = 105.0 if is_ncaab else 110.0
+        efficiency_factor = ((home_expected_off + away_expected_off) / 2) / league_avg_rating
+        expected_total = league_avg_total * pace_factor * efficiency_factor
 
     # Clamp expected_total to ±25% of league average to prevent runaway values
     min_total = league_avg_total * 0.75

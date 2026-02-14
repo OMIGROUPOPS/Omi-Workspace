@@ -152,6 +152,19 @@ const SPORT_BADGE_COLORS: Record<string, string> = {
   EPL: "bg-purple-500/20 text-purple-400",
 };
 
+// Sport-based market filtering: soccer shows ML+totals, everything else shows spread+totals
+const SOCCER_SPORTS = new Set([
+  "EPL", "SOCCER_EPL", "LA_LIGA", "SERIE_A", "BUNDESLIGA",
+  "LIGUE_1", "MLS", "CHAMPIONS_LEAGUE",
+]);
+
+function isAllowedMarket(sportKey: string, marketType: string): boolean {
+  if (SOCCER_SPORTS.has(sportKey)) {
+    return marketType === "moneyline" || marketType === "h2h" || marketType === "total";
+  }
+  return marketType === "spread" || marketType === "total";
+}
+
 const SIGNAL_COLORS: Record<string, string> = {
   "REVIEW": "text-red-400",
   "HIGH EDGE": "text-cyan-400",
@@ -431,14 +444,16 @@ export default function EdgeInternalPage() {
 
   const sortedLiveRows = useMemo(() => {
     if (!liveData?.rows) return [];
-    // Add hours_to_game to each row for sorting
+    // Add hours_to_game, then filter by sport-appropriate markets
     const now = Date.now();
-    const withHours = liveData.rows.map((r) => ({
-      ...r,
-      hours_to_game: r.commence_time
-        ? (new Date(r.commence_time).getTime() - now) / 3600000
-        : 999,
-    }));
+    const withHours = liveData.rows
+      .filter((r) => isAllowedMarket(r.sport_key, r.market_type))
+      .map((r) => ({
+        ...r,
+        hours_to_game: r.commence_time
+          ? (new Date(r.commence_time).getTime() - now) / 3600000
+          : 999,
+      }));
     return withHours.sort((a, b) => {
       const aVal = a[liveSortField as keyof typeof a] as number | string | null | undefined;
       const bVal = b[liveSortField as keyof typeof b] as number | string | null | undefined;
@@ -1319,7 +1334,7 @@ export default function EdgeInternalPage() {
               {/* Edge counter + market count */}
               <div className="mt-4 flex items-center gap-4 text-sm">
                 <span className="text-zinc-500">
-                  {liveData.count} markets across upcoming games
+                  {sortedLiveRows.length} markets across upcoming games
                 </span>
                 {(() => {
                   const edgeCount = sortedLiveRows.filter(
@@ -1333,9 +1348,9 @@ export default function EdgeInternalPage() {
                 })()}
               </div>
 
-              <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+              <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden min-w-0">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
+                  <table className="w-full text-sm min-w-[1100px]">
                     <thead>
                       <tr className="text-zinc-500 border-b border-zinc-800 text-xs uppercase tracking-wide">
                         <LiveSortHeader field="commence_time" label="Time" />
@@ -1416,8 +1431,12 @@ export default function EdgeInternalPage() {
                             <td className="px-3 py-2.5 text-xs whitespace-nowrap">
                               {row.fd_signal === "STALE" ? (
                                 <span className="text-zinc-600 font-mono">STALE</span>
+                              ) : row.fd_edge != null && row.fd_edge > 0 ? (
+                                <span className="font-mono text-emerald-400">
+                                  {fmtEdgePct(row.fd_edge)}
+                                </span>
                               ) : row.fd_edge != null ? (
-                                <span className={`font-mono ${SIGNAL_COLORS[row.fd_signal || ""] || "text-zinc-400"}`}>
+                                <span className="font-mono text-zinc-500">
                                   {fmtEdgePct(row.fd_edge)}
                                 </span>
                               ) : <span className="text-zinc-600">—</span>}
@@ -1436,8 +1455,12 @@ export default function EdgeInternalPage() {
                             <td className="px-3 py-2.5 text-xs whitespace-nowrap">
                               {row.dk_signal === "STALE" ? (
                                 <span className="text-zinc-600 font-mono">STALE</span>
+                              ) : row.dk_edge != null && row.dk_edge > 0 ? (
+                                <span className="font-mono text-emerald-400">
+                                  {fmtEdgePct(row.dk_edge)}
+                                </span>
                               ) : row.dk_edge != null ? (
-                                <span className={`font-mono ${SIGNAL_COLORS[row.dk_signal || ""] || "text-zinc-400"}`}>
+                                <span className="font-mono text-zinc-500">
                                   {fmtEdgePct(row.dk_edge)}
                                 </span>
                               ) : <span className="text-zinc-600">—</span>}
@@ -1445,11 +1468,11 @@ export default function EdgeInternalPage() {
 
                             {/* Best Edge */}
                             <td className="px-3 py-2.5 text-xs whitespace-nowrap">
-                              {row.best_edge != null ? (
+                              {row.best_edge != null && row.best_edge > 0 ? (
                                 <span className={`font-mono font-bold ${
-                                  Math.abs(row.best_edge) > 6 ? "text-cyan-400" :
-                                  Math.abs(row.best_edge) > 3 ? "text-amber-400" :
-                                  "text-zinc-400"
+                                  row.best_edge > 6 ? "text-emerald-400" :
+                                  row.best_edge > 3 ? "text-emerald-400/80" :
+                                  "text-emerald-400/60"
                                 }`}>
                                   {fmtEdgePct(row.best_edge)}
                                 </span>

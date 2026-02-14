@@ -53,6 +53,15 @@ def _normalize_sport(raw: str) -> str:
     return SPORT_DISPLAY.get(raw, raw)
 
 
+# Soccer sports show ML+totals; everything else shows spread+totals
+SOCCER_SPORTS = {"EPL", "SOCCER_EPL", "LA_LIGA", "SERIE_A", "BUNDESLIGA",
+                 "LIGUE_1", "MLS", "CHAMPIONS_LEAGUE"}
+
+
+def _is_soccer(sport_short: str) -> bool:
+    return sport_short in SOCCER_SPORTS or "soccer" in sport_short.lower()
+
+
 def determine_signal(edge_pct: float) -> str:
     """Determine signal tier from IP edge %.
     < 1%  = NO EDGE
@@ -1237,24 +1246,27 @@ class InternalGrader:
 
             has_composite = ch is not None
 
+            is_soccer_game = _is_soccer(sport_short)
+
             # If no composite data, emit placeholder rows for any book lines we have
             if not has_composite:
-                # Spread placeholder
-                fd_bl = fd_lines.get("spread_line")
-                dk_bl = dk_lines.get("spread_line")
-                if fd_bl is not None or dk_bl is not None:
-                    rows.append({
-                        "game_id": gid, "sport_key": sport_short,
-                        "home_team": home, "away_team": away,
-                        "commence_time": commence, "market_type": "spread",
-                        "omi_fair": "Awaiting OMI Fair", "omi_fair_line": None,
-                        "fd_line": fd_bl, "fd_odds": fd_lines.get("spread_odds"),
-                        "fd_edge": None, "fd_signal": None,
-                        "dk_line": dk_bl, "dk_odds": dk_lines.get("spread_odds"),
-                        "dk_edge": None, "dk_signal": None,
-                        "best_edge": None, "signal": "PENDING",
-                    })
-                # Total placeholder
+                # Spread placeholder (non-soccer only)
+                if not is_soccer_game:
+                    fd_bl = fd_lines.get("spread_line")
+                    dk_bl = dk_lines.get("spread_line")
+                    if fd_bl is not None or dk_bl is not None:
+                        rows.append({
+                            "game_id": gid, "sport_key": sport_short,
+                            "home_team": home, "away_team": away,
+                            "commence_time": commence, "market_type": "spread",
+                            "omi_fair": "Awaiting OMI Fair", "omi_fair_line": None,
+                            "fd_line": fd_bl, "fd_odds": fd_lines.get("spread_odds"),
+                            "fd_edge": None, "fd_signal": None,
+                            "dk_line": dk_bl, "dk_odds": dk_lines.get("spread_odds"),
+                            "dk_edge": None, "dk_signal": None,
+                            "best_edge": None, "signal": "PENDING",
+                        })
+                # Total placeholder (always)
                 fd_bl = fd_lines.get("total_line")
                 dk_bl = dk_lines.get("total_line")
                 if fd_bl is not None or dk_bl is not None:
@@ -1269,25 +1281,26 @@ class InternalGrader:
                         "dk_edge": None, "dk_signal": None,
                         "best_edge": None, "signal": "PENDING",
                     })
-                # Moneyline placeholder
-                fd_mlh = fd_lines.get("ml_home")
-                dk_mlh = dk_lines.get("ml_home")
-                if fd_mlh is not None or dk_mlh is not None:
-                    rows.append({
-                        "game_id": gid, "sport_key": sport_short,
-                        "home_team": home, "away_team": away,
-                        "commence_time": commence, "market_type": "moneyline",
-                        "omi_fair": "Awaiting OMI Fair", "omi_fair_line": None,
-                        "fd_line": fd_mlh, "fd_odds": fd_mlh,
-                        "fd_edge": None, "fd_signal": None,
-                        "dk_line": dk_mlh, "dk_odds": dk_mlh,
-                        "dk_edge": None, "dk_signal": None,
-                        "best_edge": None, "signal": "PENDING",
-                    })
+                # Moneyline placeholder (soccer only)
+                if is_soccer_game:
+                    fd_mlh = fd_lines.get("ml_home")
+                    dk_mlh = dk_lines.get("ml_home")
+                    if fd_mlh is not None or dk_mlh is not None:
+                        rows.append({
+                            "game_id": gid, "sport_key": sport_short,
+                            "home_team": home, "away_team": away,
+                            "commence_time": commence, "market_type": "moneyline",
+                            "omi_fair": "Awaiting OMI Fair", "omi_fair_line": None,
+                            "fd_line": fd_mlh, "fd_odds": fd_mlh,
+                            "fd_edge": None, "fd_signal": None,
+                            "dk_line": dk_mlh, "dk_odds": dk_mlh,
+                            "dk_edge": None, "dk_signal": None,
+                            "best_edge": None, "signal": "PENDING",
+                        })
                 continue
 
-            # Spread rows
-            if fair_spread is not None:
+            # Spread rows (non-soccer only)
+            if fair_spread is not None and not is_soccer_game:
                 fair_s = float(fair_spread)
                 for book_key, book_label, blines in [
                     ("fd", "FD", fd_lines), ("dk", "DK", dk_lines)
@@ -1383,8 +1396,8 @@ class InternalGrader:
                     "best_edge": best_e, "signal": best_sig,
                 })
 
-            # Moneyline rows
-            if fair_ml_home is not None and fair_ml_away is not None:
+            # Moneyline rows (soccer only)
+            if fair_ml_home is not None and fair_ml_away is not None and is_soccer_game:
                 fh = float(fair_ml_home)
                 fa = float(fair_ml_away)
                 # fair_ml values are American odds — convert to implied prob for display

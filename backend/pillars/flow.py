@@ -255,6 +255,10 @@ def _blend_exchange_signal(
         other_contracts = [c for c in contracts if c.get("market_type") != "moneyline"
                           and c.get("yes_price") is not None and c["yes_price"] > 0]
 
+        # Source breakdown: count contracts by exchange
+        kalshi_count = sum(1 for c in contracts if c.get("exchange") == "kalshi")
+        polymarket_count = sum(1 for c in contracts if c.get("exchange") == "polymarket")
+
         exchange_prob = None
         if ml_contracts and home_team:
             # Match subtitle to home team
@@ -288,7 +292,11 @@ def _blend_exchange_signal(
             f"(contracts: {len(contracts)}, {direction})"
         )
         logger.info(
-            f"Flow: exchange blend for {game_id} | exchange_prob={exchange_prob:.3f} "
+            f"[Flow] Exchange data for {game_id}: kalshi={kalshi_count}, "
+            f"polymarket={polymarket_count}, blended_prob={exchange_prob:.3f}"
+        )
+        logger.info(
+            f"[Flow] Exchange blend for {game_id}: "
             f"blended={score:.3f} (was {old_score:.3f}, contracts={len(contracts)})"
         )
         return score

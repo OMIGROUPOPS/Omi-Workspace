@@ -8,7 +8,7 @@ after odds sync writes fresh data to cached_odds and line_snapshots.
 Writes time-series rows to composite_history table for tracking
 how OMI's fair pricing evolves over time.
 """
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Optional
 import logging
 import statistics
@@ -187,6 +187,59 @@ def _round_to_half(value: float) -> float:
     return round(value * 2) / 2
 
 
+# Movement thresholds for triggering recalculation
+SPREAD_MOVEMENT_THRESHOLD = 0.5   # points
+TOTAL_MOVEMENT_THRESHOLD = 1.0    # points
+STALE_RECALC_HOURS = 2            # force recalc if last composite older than this
+
+
+def _should_recalculate(
+    game_id: str,
+    current_book_spread,
+    current_book_total,
+    previous: dict | None,
+    now_dt: datetime,
+) -> tuple:
+    """
+    Determine if a game needs composite recalculation based on line movement.
+    Returns (should_recalc: bool, reason: str).
+    """
+    if previous is None:
+        return True, "first_time"
+
+    # Staleness guard
+    try:
+        prev_ts_str = previous.get("timestamp", "")
+        prev_ts = datetime.fromisoformat(str(prev_ts_str).replace("Z", "+00:00"))
+        age_hours = (now_dt - prev_ts).total_seconds() / 3600
+        if age_hours >= STALE_RECALC_HOURS:
+            return True, f"stale_{age_hours:.1f}h"
+    except (ValueError, AttributeError, TypeError):
+        return True, "unparseable_timestamp"
+
+    # Spread movement check
+    prev_spread = previous.get("book_spread")
+    if current_book_spread is not None and prev_spread is not None:
+        try:
+            spread_delta = abs(float(current_book_spread) - float(prev_spread))
+            if spread_delta >= SPREAD_MOVEMENT_THRESHOLD:
+                return True, f"spread_moved_{prev_spread}->{current_book_spread}"
+        except (ValueError, TypeError):
+            pass
+
+    # Total movement check
+    prev_total = previous.get("book_total")
+    if current_book_total is not None and prev_total is not None:
+        try:
+            total_delta = abs(float(current_book_total) - float(prev_total))
+            if total_delta >= TOTAL_MOVEMENT_THRESHOLD:
+                return True, f"total_moved_{prev_total}->{current_book_total}"
+        except (ValueError, TypeError):
+            pass
+
+    return False, "no_movement"
+
+
 def _calculate_fair_spread(book_spread: float, composite_spread: float) -> float:
     """
     Mirror edgescout.ts calculateFairSpread (lines 80-91).
@@ -328,6 +381,37 @@ def _extract_median_lines(game_data: dict) -> dict:
 class CompositeTracker:
     """Recalculates composites + fair lines for all active games."""
 
+    def _fetch_latest_composites(self, game_ids: list) -> dict:
+        """
+        Batch-fetch the most recent composite_history row per game_id.
+        Returns {game_id: {book_spread, book_total, timestamp}}.
+        Single query + Python dedup avoids N per-game queries.
+        """
+        if not game_ids:
+            return {}
+        try:
+            all_rows = []
+            chunk_size = 200
+            for i in range(0, len(game_ids), chunk_size):
+                chunk = game_ids[i:i + chunk_size]
+                result = db.client.table("composite_history").select(
+                    "game_id, book_spread, book_total, timestamp"
+                ).in_("game_id", chunk).order(
+                    "timestamp", desc=True
+                ).execute()
+                all_rows.extend(result.data or [])
+
+            # Dedup: keep only the first (newest) row per game_id
+            latest = {}
+            for row in all_rows:
+                gid = row["game_id"]
+                if gid not in latest:
+                    latest[gid] = row
+            return latest
+        except Exception as e:
+            logger.error(f"[DynamicRecalc] Failed to batch-fetch latest composites: {e}")
+            return {}
+
     def recalculate_all(self) -> dict:
         """
         Main entry point. For every active (not yet started) game in cached_odds:
@@ -389,9 +473,19 @@ class CompositeTracker:
         bias_cache: dict[str, dict] = {}
 
         games_processed = 0
+        recalculated = 0
+        skipped = 0
         errors = 0
         sport_processed: dict[str, int] = {}
         sport_errors: dict[str, int] = {}
+
+        # Batch-fetch latest composite_history row per game (ONE query, not N)
+        game_ids = [row["game_id"] for row in rows if row.get("game_data")]
+        latest_composites = self._fetch_latest_composites(game_ids)
+        logger.info(
+            f"[DynamicRecalc] Loaded {len(latest_composites)} previous composites "
+            f"for {len(game_ids)} games"
+        )
 
         for row in rows:
             try:
@@ -402,19 +496,7 @@ class CompositeTracker:
                 if not game_data:
                     continue
 
-                # 1. Fresh pillar analysis
-                analysis = analyze_game(game_data, sport_key)
-
-                # 2. Per-market composites from pillars_by_market
-                pbm = analysis.get("pillars_by_market", {})
-                composite_spread = pbm.get("spread", {}).get("full", {}).get("composite")
-                composite_total = pbm.get("totals", {}).get("full", {}).get("composite")
-                composite_ml = pbm.get("moneyline", {}).get("full", {}).get("composite")
-
-                # 3. Game environment pillar score (for fair total)
-                game_env_score = analysis.get("pillar_scores", {}).get("game_environment", 0.5)
-
-                # 4. Median book lines
+                # 1. Median book lines FIRST (cheap, no pillar calc needed)
                 book_lines = _extract_median_lines(game_data)
                 book_spread = book_lines["book_spread"]
                 book_total = book_lines["book_total"]
@@ -422,9 +504,34 @@ class CompositeTracker:
                 book_ml_away = book_lines["book_ml_away"]
                 book_ml_draw = book_lines["book_ml_draw"]
 
+                # 2. Movement check — skip if lines haven't moved
+                previous = latest_composites.get(game_id)
+                should_recalc, reason = _should_recalculate(
+                    game_id, book_spread, book_total, previous, now_dt
+                )
+
+                if not should_recalc:
+                    skipped += 1
+                    continue
+
+                # 3. Log the trigger reason
+                logger.info(f"[DynamicRecalc] {game_id}: {reason}")
+
+                # 4. Fresh pillar analysis (EXPENSIVE — only when movement detected)
+                analysis = analyze_game(game_data, sport_key)
+
+                # 5. Per-market composites from pillars_by_market
+                pbm = analysis.get("pillars_by_market", {})
+                composite_spread = pbm.get("spread", {}).get("full", {}).get("composite")
+                composite_total = pbm.get("totals", {}).get("full", {}).get("composite")
+                composite_ml = pbm.get("moneyline", {}).get("full", {}).get("composite")
+
+                # 6. Game environment pillar score (for fair total)
+                game_env_score = analysis.get("pillar_scores", {}).get("game_environment", 0.5)
+
                 is_soccer = "soccer" in sport_key
 
-                # 5. Calculate fair lines
+                # 7. Calculate fair lines
                 fair_spread = None
                 fair_total = None
                 fair_ml_home = None
@@ -501,6 +608,7 @@ class CompositeTracker:
                 db.client.table("composite_history").insert(row_data).execute()
 
                 games_processed += 1
+                recalculated += 1
                 sport_processed[sport_key] = sport_processed.get(sport_key, 0) + 1
 
             except Exception as e:
@@ -513,8 +621,15 @@ class CompositeTracker:
                 sk = row.get("sport_key", "unknown")
                 sport_errors[sk] = sport_errors.get(sk, 0) + 1
 
+        logger.info(
+            f"[DynamicRecalc] Recalculated {recalculated} games, "
+            f"skipped {skipped} unchanged (errors={errors})"
+        )
+
         summary = {
             "games_processed": games_processed,
+            "recalculated": recalculated,
+            "skipped_unchanged": skipped,
             "errors": errors,
             "timestamp": now,
             "by_sport": sport_processed,

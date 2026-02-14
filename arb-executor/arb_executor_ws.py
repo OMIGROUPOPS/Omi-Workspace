@@ -1371,7 +1371,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 print(f"[EXEC] EXITED: {result.abort_reason} | {timing}")
                 k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
                 pm_result = {'fill_count': 0, 'fill_price': result.pm_price}
-                log_trade(arb, k_result, pm_result, 'EXITED', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
+                log_trade(arb, k_result, pm_result, 'EXITED', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms, unwind_loss_cents=result.unwind_loss_cents)
                 if TRADE_LOG:
                     TRADE_LOG[-1]['sizing_details'] = _sizing_details
                     TRADE_LOG[-1]['execution_phase'] = result.execution_phase
@@ -1379,7 +1379,6 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                     TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
                     TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
                     TRADE_LOG[-1]['is_maker'] = result.is_maker
-                    TRADE_LOG[-1]['unwind_loss_cents'] = result.unwind_loss_cents
 
             elif result.pm_filled == 0 and result.pm_order_ms > 0:
                 # Real PM no-fill: order was sent to PM API but IOC expired

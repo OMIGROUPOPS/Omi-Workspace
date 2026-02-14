@@ -3587,7 +3587,8 @@ def _pm_price_cents(fill_price: float, arb) -> float:
 
 
 def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
-               execution_time_ms: float = 0, pm_order_ms: int = 0):
+               execution_time_ms: float = 0, pm_order_ms: int = 0,
+               unwind_loss_cents: float = None):
     """Log trade details with all important fields"""
     global TRADE_LOG
 
@@ -3671,6 +3672,7 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
         'needs_review': arb.needs_review,
         'review_reason': arb.review_reason if arb.needs_review else None,
         'is_live_game': arb.is_live_game,
+        'unwind_loss_cents': unwind_loss_cents,
 
         # CRITICAL: Log pm_outcome_index for post-hoc auditing
         # This helps diagnose same-direction betting bugs

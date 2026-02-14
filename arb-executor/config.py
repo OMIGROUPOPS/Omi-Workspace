@@ -88,14 +88,20 @@ class Config:
     min_buy_price: int = 5              # Safety floor 5c on buy side
     max_roi: float = 50.0               # Max ROI before flagging as bad data
     unhedged_exposure_limit: int = 1000 # Max unhedged cents before kill switch
-    max_concurrent_positions: int = 5   # Max open positions across all platforms
-    max_contracts_per_game: int = 1     # CRITICAL: Max contracts per game (prevents crash loops)
+    max_concurrent_positions: int = 15  # Max open positions across all platforms
+    max_contracts_per_game: int = 20    # Max contracts per game (sizing algo is real governor)
     max_crashes_per_game: int = 2       # Blacklist game after this many execution crashes
 
     # ==========================================================================
     # LIQUIDITY
     # ==========================================================================
     liquidity_utilization: float = 0.66  # Use 66% of available liquidity
+
+    # ==========================================================================
+    # DEPTH-AWARE SIZING
+    # ==========================================================================
+    depth_cap: float = 0.70              # Fraction of book depth to consume (--depth-factor)
+    min_profit_per_contract: float = 1.0  # Min expected net cents per marginal contract (--min-profit)
 
     # ==========================================================================
     # CLASS METHODS FOR MODE CONTROL
@@ -154,8 +160,20 @@ class Config:
             # If max_contracts is set low, also lower min_contracts
             cls.min_contracts = min(cls.min_contracts, args.contracts)
 
+        if hasattr(args, 'max_positions') and args.max_positions is not None:
+            cls.max_concurrent_positions = args.max_positions
+
         if hasattr(args, 'dry_run') and args.dry_run:
             cls.dry_run_mode = True
+
+        if hasattr(args, 'min_profit') and args.min_profit is not None:
+            cls.min_profit_per_contract = args.min_profit
+
+        if hasattr(args, 'depth_factor') and args.depth_factor is not None:
+            cls.depth_cap = args.depth_factor
+
+        # Sync max_contracts_per_game with max_contracts
+        cls.max_contracts_per_game = cls.max_contracts
 
     @classmethod
     def get_min_execution_spread(cls) -> int:

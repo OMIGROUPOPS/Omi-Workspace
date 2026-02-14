@@ -52,6 +52,7 @@ from arb_executor_v7 import (
     log_trade,
     log_skipped_arb,
     print_pnl_summary,
+    TRADE_LOG,
 
     # Position tracking
     check_kill_switch,
@@ -68,6 +69,7 @@ from arb_executor_v7 import (
 # Clean execution engine - single source of truth for order placement
 from executor_core import (
     execute_arb,
+    calculate_optimal_size,
     TradeResult,
     traded_games,           # Shared state - games traded this session
     blacklisted_games,      # Shared state - games blacklisted after crashes
@@ -118,6 +120,10 @@ local_books: Dict[str, Dict] = {}
 # Latest PM prices - updated by WebSocket
 # Structure: "{cache_key}_{team}" -> {bid, ask, bid_size, ask_size, timestamp_ms, pm_slug, outcome_index}
 pm_prices: Dict[str, Dict] = {}
+
+# Full PM orderbook depth - updated by WebSocket
+# Structure: pm_slug -> {bids: [{price_cents, size}, ...], asks: [{price_cents, size}, ...], timestamp_ms}
+pm_books: Dict[str, Dict] = {}
 
 # Mapping from Kalshi ticker -> cache_key (for spread detection)
 ticker_to_cache_key: Dict[str, str] = {}
@@ -1000,6 +1006,15 @@ class PMWebSocket:
         sorted_bids = sorted(bids, key=lambda x: float(x["px"]["value"]), reverse=True)
         sorted_offers = sorted(offers, key=lambda x: float(x["px"]["value"]))
 
+        # Store full depth for sizing algorithm (raw long-team frame)
+        pm_books[pm_slug] = {
+            'bids': [{'price_cents': round(float(b["px"]["value"]) * 100),
+                      'size': int(float(b["qty"]))} for b in sorted_bids],
+            'asks': [{'price_cents': round(float(o["px"]["value"]) * 100),
+                      'size': int(float(o["qty"]))} for o in sorted_offers],
+            'timestamp_ms': int(time.time() * 1000),
+        }
+
         best_bid = float(sorted_bids[0]["px"]["value"]) * 100  # Convert to cents
         best_bid_size = int(float(sorted_bids[0]["qty"]))
         best_ask = float(sorted_offers[0]["px"]["value"]) * 100  # Convert to cents
@@ -1173,10 +1188,49 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
     print(f"[EXEC] Est. net profit: {net_profit:.1f}c/contract")
 
     # -------------------------------------------------------------------------
+    # Depth-aware sizing
+    # -------------------------------------------------------------------------
+    is_long_team = (arb.team == arb.pm_long_team)
+    kalshi_book = local_books.get(arb.kalshi_ticker, {})
+    pm_depth = pm_books.get(arb.pm_slug, {})
+
+    if pm_depth and pm_depth.get('bids') and pm_depth.get('asks'):
+        sizing = calculate_optimal_size(
+            kalshi_book=kalshi_book, pm_depth=pm_depth,
+            direction=arb.direction, is_long_team=is_long_team,
+            pm_balance_cents=int(live_balances.get('pm_balance', 0) * 100),
+            k_balance_cents=int(live_balances.get('kalshi_balance', 0) * 100),
+            max_contracts=Config.max_contracts,
+        )
+        optimal_size = sizing['size']
+    else:
+        optimal_size = 1  # Fallback: no depth data
+        sizing = {'expected_profit_cents': net_profit, 'avg_spread_cents': arb.net_spread,
+                  'avg_pm_price': 0, 'avg_k_price': 0, 'k_depth': 0, 'pm_depth': 0, 'limit_reason': 'no_depth_data'}
+
+    if optimal_size == 0:
+        log_skipped_arb(arb, 'depth_zero', 'No profitable contracts after depth walk')
+        return
+
+    arb.size = optimal_size  # Update for log_trade's contracts_intended field
+
+    print(f"[EXEC] Sized: {optimal_size} contracts (limit: {sizing.get('limit_reason', '?')}), "
+          f"est ${sizing['expected_profit_cents']/100:.2f} profit")
+
+    # Build sizing_details dict for trade log
+    _sizing_details = {
+        'avg_spread_cents': sizing.get('avg_spread_cents', 0),
+        'expected_profit_cents': sizing.get('expected_profit_cents', 0),
+        'k_depth': sizing.get('k_depth', 0),
+        'pm_depth': sizing.get('pm_depth', 0),
+        'limit_reason': sizing.get('limit_reason', ''),
+    }
+
+    # -------------------------------------------------------------------------
     # Execute via executor_core (clean execution engine)
     # -------------------------------------------------------------------------
     async with EXECUTION_LOCK:
-        print(f"[EXEC] Executing 1 contract via executor_core...")
+        print(f"[EXEC] Executing {optimal_size} contract(s) via executor_core...")
 
         result = await execute_arb(
             arb=arb,
@@ -1185,6 +1239,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             pm_api=pm_api,
             pm_slug=arb.pm_slug,
             pm_outcome_idx=arb.pm_outcome_index,
+            size=optimal_size,
         )
 
         # Handle result — only apply cooldown when PM order was actually sent
@@ -1200,6 +1255,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
             pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
             log_trade(arb, k_result, pm_result, 'SUCCESS', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
+            if TRADE_LOG:
+                TRADE_LOG[-1]['sizing_details'] = _sizing_details
 
             # Persist traded game to prevent duplicates across restarts
             save_traded_game(arb.game, pm_slug=arb.pm_slug, team=arb.team)
@@ -1221,13 +1278,15 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
             pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
             log_trade(arb, k_result, pm_result, 'UNHEDGED', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
+            if TRADE_LOG:
+                TRADE_LOG[-1]['sizing_details'] = _sizing_details
             # Save unhedged position for recovery
             try:
                 from arb_executor_v7 import HedgeState
                 hedge_state = HedgeState(
                     kalshi_ticker=arb.kalshi_ticker,
                     pm_slug=arb.pm_slug,
-                    target_qty=1,
+                    target_qty=optimal_size,
                     kalshi_filled=result.kalshi_filled,
                     pm_filled=result.pm_filled,
                     kalshi_price=result.kalshi_price,
@@ -1243,6 +1302,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             k_result = {'fill_count': 0, 'fill_price': result.kalshi_price}
             pm_result = {'fill_count': 0, 'fill_price': result.pm_price}
             log_trade(arb, k_result, pm_result, 'PM_NO_FILL', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
+            if TRADE_LOG:
+                TRADE_LOG[-1]['sizing_details'] = _sizing_details
 
         else:
             # Early abort — never reached PM API (safety, phantom, pm_long_team, etc.)
@@ -1987,7 +2048,7 @@ def main():
     parser.add_argument('--live', action='store_true', help='Live trading mode')
     parser.add_argument('--paper', action='store_true', help='Paper trading mode (default)')
     parser.add_argument('--spread-min', type=int, default=4, help='Minimum spread in cents')
-    parser.add_argument('--contracts', type=int, default=1, help='Max contracts per trade')
+    parser.add_argument('--contracts', type=int, default=20, help='Max contracts per trade (depth algo governs actual size)')
     parser.add_argument('--self-test', action='store_true', dest='self_test',
                        help='Test connections and exit')
     parser.add_argument('--pnl', action='store_true', help='Show P&L summary and exit')
@@ -1999,6 +2060,10 @@ def main():
                        help='Clear traded_games.json (use for new trading day)')
     parser.add_argument('--max-positions', type=int, default=None, dest='max_positions',
                        help='Max concurrent positions (default: 15)')
+    parser.add_argument('--min-profit', type=float, default=1.0, dest='min_profit',
+                       help='Min expected net profit in cents per marginal contract (default 1.0)')
+    parser.add_argument('--depth-factor', type=float, default=0.70, dest='depth_factor',
+                       help='Fraction of available depth to use (default 0.70)')
 
     args = parser.parse_args()
 

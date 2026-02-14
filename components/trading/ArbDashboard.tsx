@@ -55,6 +55,14 @@ interface ActualPnl {
   is_profitable: boolean;
 }
 
+interface SizingDetails {
+  avg_spread_cents: number;
+  expected_profit_cents: number;
+  k_depth: number;
+  pm_depth: number;
+  limit_reason: string;
+}
+
 interface TradeEntry {
   timestamp: string;
   game_id: string;
@@ -68,8 +76,10 @@ interface TradeEntry {
   k_price: number;
   pm_price: number;
   contracts_filled: number;
+  contracts_intended?: number;
   actual_pnl: ActualPnl | null;
   paper_mode: boolean;
+  sizing_details?: SizingDetails | null;
 }
 
 interface PnlSummary {
@@ -1106,6 +1116,7 @@ export default function ArbDashboard() {
                     <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
                       <th className="px-2 py-1.5">Time</th>
                       <th className="px-2 py-1.5">Game</th>
+                      <th className="px-2 py-1.5 text-right">Qty</th>
                       <th className="px-2 py-1.5 text-right">Spread</th>
                       <th className="px-2 py-1.5 text-right">Net</th>
                       <th className="px-2 py-1.5">Status</th>
@@ -1115,7 +1126,7 @@ export default function ArbDashboard() {
                     {filteredTrades.length === 0 ? (
                       <tr>
                         <td
-                          colSpan={5}
+                          colSpan={6}
                           className="px-3 py-6 text-center text-gray-600 text-xs"
                         >
                           No trades{" "}
@@ -1151,6 +1162,20 @@ export default function ArbDashboard() {
                                   P
                                 </span>
                               )}
+                            </td>
+                            <td
+                              className={`px-2 py-1 text-right font-mono ${
+                                (t.contracts_filled || 1) > 1
+                                  ? "text-white font-bold"
+                                  : "text-gray-500"
+                              }`}
+                              title={
+                                t.sizing_details
+                                  ? `Depth: K=${t.sizing_details.k_depth} PM=${t.sizing_details.pm_depth} | Est: ${(t.sizing_details.expected_profit_cents / 100).toFixed(2)} | Limit: ${t.sizing_details.limit_reason}`
+                                  : undefined
+                              }
+                            >
+                              {t.contracts_filled || 1}
                             </td>
                             <td
                               className={`px-2 py-1 text-right font-mono ${spreadColor(t.spread_cents)}`}

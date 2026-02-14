@@ -20,10 +20,11 @@ EXECUTION ORDER: PM FIRST, THEN KALSHI
 Safety guarantees:
   - Checks position before ordering (no duplicate trades)
   - PM first (unreliable), Kalshi only if PM fills (reliable)
-  - 1 contract only, always
+  - Dynamic sizing via depth-aware algorithm (defaults to 1 if no depth data)
   - Phantom spread rejection (>90c)
   - All 4 trade cases handled explicitly via TRADE_PARAMS lookup
   - Runtime pm_long_team verification against live PM API
+  - Partial hedge handling (unwinds excess PM if K partially fills)
 """
 import asyncio
 import json
@@ -353,6 +354,221 @@ async def refresh_position_cache(session, kalshi_api) -> None:
         print(f"[SAFETY] Failed to refresh positions: {e}")
 
 
+def calculate_optimal_size(
+    kalshi_book: Dict,       # {yes_bids: {price: size}, yes_asks: {price: size}}
+    pm_depth: Dict,          # {bids: [{price_cents, size}], asks: [{price_cents, size}], timestamp_ms}
+    direction: str,          # 'BUY_PM_SELL_K' or 'BUY_K_SELL_PM'
+    is_long_team: bool,
+    pm_balance_cents: int,
+    k_balance_cents: int,
+    max_contracts: int,
+) -> Dict:
+    """
+    Walk both orderbooks to find optimal contract count.
+
+    Returns: {size, expected_profit_cents, avg_spread_cents, avg_pm_price,
+              avg_k_price, k_depth, pm_depth, limit_reason}
+    """
+    import math
+
+    default = {
+        'size': 1, 'expected_profit_cents': 0, 'avg_spread_cents': 0,
+        'avg_pm_price': 0, 'avg_k_price': 0, 'k_depth': 0, 'pm_depth': 0,
+        'limit_reason': 'default',
+    }
+
+    # Validate PM depth freshness (>2s stale -> fallback to 1)
+    if not pm_depth or not pm_depth.get('bids') or not pm_depth.get('asks'):
+        default['limit_reason'] = 'no_pm_depth'
+        return default
+
+    now_ms = int(time.time() * 1000)
+    if now_ms - pm_depth.get('timestamp_ms', 0) > 2000:
+        default['limit_reason'] = 'pm_depth_stale'
+        return default
+
+    # ── Step A: Build Kalshi levels ──
+    # BUY_PM_SELL_K → SELL on Kalshi → walk yes_bids descending (highest first)
+    # BUY_K_SELL_PM → BUY on Kalshi → walk yes_asks ascending (lowest first)
+    k_levels = []
+    if direction == 'BUY_PM_SELL_K':
+        raw = kalshi_book.get('yes_bids', {})
+        for price in sorted(raw.keys(), reverse=True):
+            k_levels.append((int(price), int(raw[price])))
+    else:  # BUY_K_SELL_PM
+        raw = kalshi_book.get('yes_asks', {})
+        for price in sorted(raw.keys()):
+            k_levels.append((int(price), int(raw[price])))
+
+    if not k_levels:
+        default['limit_reason'] = 'no_k_depth'
+        return default
+
+    # ── Step B: Build PM levels (raw long-team frame from pm_books) ──
+    # Cases 1,4: walk PM asks ascending, cost = ask_price
+    # Cases 2,3: walk PM bids descending, cost = 100 - bid_price
+    pm_levels = []  # [(effective_cost_cents, available_size)]
+    walk_asks = (direction == 'BUY_PM_SELL_K' and is_long_team) or \
+                (direction == 'BUY_K_SELL_PM' and not is_long_team)
+
+    if walk_asks:
+        for level in pm_depth['asks']:  # already sorted ascending
+            pm_levels.append((level['price_cents'], level['size']))
+    else:
+        for level in pm_depth['bids']:  # already sorted descending
+            pm_levels.append((100 - level['price_cents'], level['size']))
+
+    if not pm_levels:
+        default['limit_reason'] = 'no_pm_levels'
+        return default
+
+    # ── Step C: Walk both books, compute marginal profit per contract ──
+    k_idx = 0
+    k_remaining = k_levels[0][1] if k_levels else 0
+    pm_idx = 0
+    pm_remaining = pm_levels[0][1] if pm_levels else 0
+
+    contracts = 0
+    total_profit = 0.0
+    total_k_price = 0
+    total_pm_cost = 0
+    total_k_available = sum(s for _, s in k_levels)
+    total_pm_available = sum(s for _, s in pm_levels)
+
+    while contracts < max_contracts:
+        # Get current prices at this depth level
+        if k_idx >= len(k_levels) or pm_idx >= len(pm_levels):
+            break
+        if k_remaining <= 0:
+            k_idx += 1
+            if k_idx >= len(k_levels):
+                break
+            k_remaining = k_levels[k_idx][1]
+        if pm_remaining <= 0:
+            pm_idx += 1
+            if pm_idx >= len(pm_levels):
+                break
+            pm_remaining = pm_levels[pm_idx][1]
+
+        k_price = k_levels[k_idx][0]
+        pm_cost = pm_levels[pm_idx][0]
+
+        # Compute marginal spread
+        if direction == 'BUY_PM_SELL_K':
+            spread = k_price - pm_cost
+        else:  # BUY_K_SELL_PM
+            spread = (100 - pm_cost) - k_price
+
+        # Compute fees for this contract
+        fees = Config.kalshi_fee_cents + (pm_cost * Config.pm_us_fee_rate) + Config.expected_slippage_cents
+        marginal_profit = spread - fees
+
+        if marginal_profit < Config.min_profit_per_contract:
+            break
+
+        # Take 1 contract from both books
+        contracts += 1
+        total_profit += marginal_profit
+        total_k_price += k_price
+        total_pm_cost += pm_cost
+        k_remaining -= 1
+        pm_remaining -= 1
+
+    if contracts == 0:
+        return {
+            'size': 0, 'expected_profit_cents': 0, 'avg_spread_cents': 0,
+            'avg_pm_price': 0, 'avg_k_price': 0,
+            'k_depth': total_k_available, 'pm_depth': total_pm_available,
+            'limit_reason': 'no_profitable_contracts',
+        }
+
+    # ── Step D: Apply safety caps ──
+    depth_limit = min(total_k_available, total_pm_available)
+    safe_depth = math.floor(depth_limit * Config.depth_cap)
+
+    # Capital limits (approximate using best-level cost)
+    best_pm_cost = pm_levels[0][0] if pm_levels else 50
+    best_k_cost = k_levels[0][0] if k_levels else 50
+    if direction == 'BUY_PM_SELL_K':
+        # K cost = 100 - k_bid (risk on short side)
+        k_cost_per = 100 - best_k_cost
+    else:
+        k_cost_per = best_k_cost
+    capital_limit_pm = math.floor(pm_balance_cents / max(best_pm_cost, 1))
+    capital_limit_k = math.floor(k_balance_cents / max(k_cost_per, 1))
+    capital_limit = min(capital_limit_pm, capital_limit_k)
+
+    # Determine limiting factor
+    limit_reason = 'depth_walk'
+    final_size = contracts
+    if safe_depth < final_size:
+        final_size = safe_depth
+        limit_reason = 'depth_cap'
+    if capital_limit < final_size:
+        final_size = capital_limit
+        limit_reason = 'capital'
+    if max_contracts < final_size:
+        final_size = max_contracts
+        limit_reason = 'max_contracts'
+
+    # Always at least 1 if any spread was profitable
+    final_size = max(final_size, 1)
+
+    # Recalculate expected profit at final_size (may be less than full walk)
+    if final_size < contracts:
+        # Re-walk for exact final_size
+        k_idx2 = 0
+        k_rem2 = k_levels[0][1]
+        pm_idx2 = 0
+        pm_rem2 = pm_levels[0][1]
+        total_profit = 0.0
+        total_k_price = 0
+        total_pm_cost = 0
+        for _ in range(final_size):
+            if k_rem2 <= 0:
+                k_idx2 += 1
+                k_rem2 = k_levels[k_idx2][1]
+            if pm_rem2 <= 0:
+                pm_idx2 += 1
+                pm_rem2 = pm_levels[pm_idx2][1]
+            kp = k_levels[k_idx2][0]
+            pc = pm_levels[pm_idx2][0]
+            if direction == 'BUY_PM_SELL_K':
+                sp = kp - pc
+            else:
+                sp = (100 - pc) - kp
+            fees = Config.kalshi_fee_cents + (pc * Config.pm_us_fee_rate) + Config.expected_slippage_cents
+            total_profit += sp - fees
+            total_k_price += kp
+            total_pm_cost += pc
+            k_rem2 -= 1
+            pm_rem2 -= 1
+
+    if total_profit <= 0:
+        return {
+            'size': 0, 'expected_profit_cents': 0, 'avg_spread_cents': 0,
+            'avg_pm_price': 0, 'avg_k_price': 0,
+            'k_depth': total_k_available, 'pm_depth': total_pm_available,
+            'limit_reason': 'negative_total_profit',
+        }
+
+    avg_k = total_k_price / final_size if final_size > 0 else 0
+    avg_pm = total_pm_cost / final_size if final_size > 0 else 0
+    avg_spread = (total_k_price - total_pm_cost) / final_size if direction == 'BUY_PM_SELL_K' and final_size > 0 else \
+                 ((100 * final_size - total_pm_cost - total_k_price) / final_size if final_size > 0 else 0)
+
+    return {
+        'size': final_size,
+        'expected_profit_cents': round(total_profit, 2),
+        'avg_spread_cents': round(avg_spread, 2),
+        'avg_pm_price': round(avg_pm, 2),
+        'avg_k_price': round(avg_k, 2),
+        'k_depth': total_k_available,
+        'pm_depth': total_pm_available,
+        'limit_reason': limit_reason,
+    }
+
+
 async def safe_to_trade(
     session,
     kalshi_api,
@@ -406,9 +622,10 @@ async def execute_arb(
     pm_api,           # PolymarketUSAPI instance
     pm_slug: str,     # PM market slug
     pm_outcome_idx: int,  # PM outcome index (usually 0)
+    size: int = 1,    # Number of contracts (from depth-aware sizing)
 ) -> TradeResult:
     """
-    Execute a single 1-contract hedged arb trade.
+    Execute a hedged arb trade with dynamic sizing.
     Returns TradeResult with status, fills, and details.
 
     EXECUTION ORDER: PM FIRST, THEN KALSHI
@@ -421,7 +638,7 @@ async def execute_arb(
     1. Checks position before ordering (no duplicate trades)
     2. Runtime pm_long_team verification against live PM API
     3. PM first (unreliable), Kalshi only if PM fills (reliable)
-    4. 1 contract only, always
+    4. Size governed by depth-aware sizing algorithm
     5. Phantom spread rejection (>90c)
     6. All 4 trade cases handled explicitly via TRADE_PARAMS lookup
     """
@@ -508,9 +725,15 @@ async def execute_arb(
     if params.get('pm_invert_price', False):
         pm_price_cents = 100 - pm_price_cents
 
-    # Aggressive PM buffer: 50% of spread to overcome IOC latency
-    # Crosses deeper into the book for fills against non-top-of-book liquidity
-    pm_buffer = max(2, int(spread * 0.50))
+    # PM buffer: scale with size to control risk on larger orders
+    if size <= 3:
+        pm_buffer = max(2, int(spread * 0.50))
+    elif size <= 10:
+        pm_buffer = max(2, int(spread * 0.40))
+    else:
+        pm_buffer = max(2, int(spread * 0.30))
+
+    print(f"[EXEC] Sized: {size} contracts | buffer: {pm_buffer}c")
 
     if params.get('pm_is_buy_short', False):
         # BUY_SHORT: PM interprets price as MIN YES sell price (favorite frame)
@@ -548,7 +771,7 @@ async def execute_arb(
             pm_slug,
             params['pm_intent'],   # 1=BUY_YES, 3=BUY_NO
             pm_price,
-            1,                     # Always 1 contract
+            size,                  # Dynamic sizing from depth walk
             tif=3,                 # time_in_force: IOC
             sync=True,             # Always synchronous for IOC
             outcome_index=actual_pm_outcome_idx
@@ -604,7 +827,7 @@ async def execute_arb(
             arb.kalshi_ticker,
             params['k_side'],      # 'yes'
             params['k_action'],    # 'buy' or 'sell'
-            1,                     # Always 1 contract
+            pm_filled,             # Match PM's actual fill count
             k_limit_price
         )
     except Exception as e:
@@ -743,7 +966,50 @@ async def execute_arb(
             k_order_ms=k_order_ms
         )
 
-    # Both sides filled - SUCCESS
+    # -------------------------------------------------------------------------
+    # Step 7.5: Partial hedge — unwind excess PM if K filled fewer than PM
+    # -------------------------------------------------------------------------
+    if 0 < k_filled < pm_filled:
+        excess = pm_filled - k_filled
+        print(f"[RECOVERY] Kalshi partial fill: {k_filled}/{pm_filled} — unwinding {excess} excess PM contracts")
+
+        original_intent = params['pm_intent']
+        reverse_intent = 2 if original_intent == 1 else 1
+        unwind_buffer = 3
+        if reverse_intent == 2:
+            unwind_price_cents_partial = max(pm_price_cents - unwind_buffer, 1)
+        else:
+            unwind_price_cents_partial = min(pm_price_cents + unwind_buffer, 99)
+        unwind_price_partial = unwind_price_cents_partial / 100.0
+
+        try:
+            unwind_result = await pm_api.place_order(
+                session, pm_slug, reverse_intent, unwind_price_partial, excess,
+                tif=3, sync=True, outcome_index=actual_pm_outcome_idx
+            )
+            unwind_filled = unwind_result.get('fill_count', 0)
+            if unwind_filled > 0:
+                pm_filled = pm_filled - unwind_filled  # Adjust net PM position
+                print(f"[RECOVERY] Unwound {unwind_filled}/{excess} excess PM. Net PM={pm_filled}")
+            else:
+                print(f"[RECOVERY] Excess PM unwind failed — {excess} contracts remain unhedged")
+        except Exception as unwind_err:
+            print(f"[RECOVERY] Excess PM unwind error: {unwind_err}")
+
+        # Still count as success for the hedged portion
+        return TradeResult(
+            success=k_filled > 0,
+            kalshi_filled=k_filled,
+            pm_filled=pm_filled,
+            kalshi_price=k_fill_price,
+            pm_price=pm_fill_price,
+            unhedged=(pm_filled != k_filled),
+            execution_time_ms=elapsed_ms,
+            pm_order_ms=pm_order_ms,
+            k_order_ms=k_order_ms
+        )
+
+    # Both sides filled (fully matched) - SUCCESS
     return TradeResult(
         success=True,
         kalshi_filled=k_filled,

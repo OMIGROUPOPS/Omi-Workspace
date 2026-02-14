@@ -41,6 +41,14 @@ export interface ActualPnl {
   is_profitable: boolean;
 }
 
+export interface SizingDetails {
+  avg_spread_cents: number;
+  expected_profit_cents: number;
+  k_depth: number;
+  pm_depth: number;
+  limit_reason: string;
+}
+
 export interface TradeEntry {
   timestamp: string;
   game_id: string;
@@ -54,8 +62,10 @@ export interface TradeEntry {
   k_price: number;
   pm_price: number;
   contracts_filled: number;
+  contracts_intended?: number;
   actual_pnl: ActualPnl | null;
   paper_mode: boolean;
+  sizing_details?: SizingDetails | null;
 }
 
 export interface PnlSummary {

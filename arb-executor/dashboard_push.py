@@ -242,8 +242,10 @@ class DashboardPusher:
                         "k_price": t.get("k_price", 0),
                         "pm_price": t.get("pm_price", 0),
                         "contracts_filled": t.get("contracts_filled", 0),
+                        "contracts_intended": t.get("contracts_intended", 1),
                         "actual_pnl": t.get("actual_pnl"),
                         "paper_mode": t.get("paper_mode", False),
+                        "sizing_details": t.get("sizing_details"),
                     }
                     for t in recent
                 ]

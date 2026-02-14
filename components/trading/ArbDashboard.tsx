@@ -6,12 +6,15 @@ import {
   Line,
   BarChart,
   Bar,
+  ScatterChart,
+  Scatter,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
   Cell,
+  ReferenceLine,
 } from "recharts";
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -80,6 +83,11 @@ interface TradeEntry {
   actual_pnl: ActualPnl | null;
   paper_mode: boolean;
   sizing_details?: SizingDetails | null;
+  execution_phase?: string;
+  is_maker?: boolean;
+  gtc_rest_time_ms?: number;
+  gtc_spread_checks?: number;
+  gtc_cancel_reason?: string;
 }
 
 interface PnlSummary {
@@ -145,6 +153,45 @@ interface MappedGame {
   traded: boolean;
 }
 
+interface GameLiquidity {
+  game_id: string;
+  platform: string;
+  snapshots: number;
+  avg_bid_depth: number;
+  avg_ask_depth: number;
+  avg_spread: number;
+  min_spread: number;
+  max_spread: number;
+  best_bid_seen: number;
+  best_ask_seen: number;
+  last_snapshot: string;
+}
+
+interface SpreadSnapshot {
+  game_id: string;
+  platform: string;
+  timestamp: string;
+  best_bid: number;
+  best_ask: number;
+  bid_depth: number;
+  ask_depth: number;
+  spread: number;
+}
+
+interface LiquidityAggregate {
+  total_snapshots: number;
+  unique_games: number;
+  overall_avg_bid_depth: number;
+  overall_avg_ask_depth: number;
+  overall_avg_spread: number;
+}
+
+interface LiquidityStats {
+  per_game: GameLiquidity[];
+  spread_history: SpreadSnapshot[];
+  aggregate: LiquidityAggregate;
+}
+
 interface ArbState {
   spreads: SpreadRow[];
   trades: TradeEntry[];
@@ -153,6 +200,7 @@ interface ArbState {
   system: SystemStatus;
   pnl_summary: PnlSummary;
   mapped_games: MappedGame[];
+  liquidity_stats: LiquidityStats;
   mappings_last_refreshed: string;
   updated_at: string;
 }
@@ -293,6 +341,21 @@ function mappingsHealthColor(iso: string): string {
   return "bg-red-500";
 }
 
+function formatTimeOnly(iso: string): string {
+  if (!iso) return "";
+  try {
+    const s = iso.endsWith("Z") || iso.includes("+") ? iso : iso + "Z";
+    const d = new Date(s);
+    return d.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+  } catch {
+    return "";
+  }
+}
+
 // ── Components ─────────────────────────────────────────────────────────────
 
 function Pulse({ active }: { active: boolean }) {
@@ -364,11 +427,12 @@ function FilterButton({
   );
 }
 
-type TopTab = "monitor" | "pnl_history";
+type TopTab = "monitor" | "pnl_history" | "liquidity";
 type TradeFilter = "all" | "live" | "paper";
 type StatusFilter = "all" | "SUCCESS" | "PM_NO_FILL" | "UNHEDGED" | "SKIPPED";
 type BottomTab = "positions" | "mapped_games";
 type TimeHorizon = "1D" | "1W" | "1M" | "YTD" | "ALL";
+type TradeSortKey = "time" | "spread" | "net" | "qty" | "phase";
 
 // ── Main Component ──────────────────────────────────────────────────────────
 
@@ -390,6 +454,10 @@ export default function ArbDashboard() {
   );
   const [pnlHorizon, setPnlHorizon] = useState<TimeHorizon>("ALL");
   const [pnlSport, setPnlSport] = useState("all");
+  const [tradeSortKey, setTradeSortKey] = useState<TradeSortKey>("time");
+  const [tradeSortAsc, setTradeSortAsc] = useState(false);
+  const [expandedTrade, setExpandedTrade] = useState<number | null>(null);
+  const [liqGameFilter, setLiqGameFilter] = useState("");
 
   const fetchData = useCallback(async () => {
     try {
@@ -534,7 +602,6 @@ export default function ArbDashboard() {
   }, [allTrades]);
 
   const pnlTrades = useMemo(() => {
-    // Only SUCCESS trades with actual_pnl data, non-paper
     let trades = allTrades.filter(
       (t) =>
         t.status === "SUCCESS" &&
@@ -543,12 +610,10 @@ export default function ArbDashboard() {
         t.contracts_filled > 0
     );
 
-    // Sport filter
     if (pnlSport !== "all") {
       trades = trades.filter((t) => t.sport === pnlSport);
     }
 
-    // Time horizon filter
     if (pnlHorizon !== "ALL") {
       const now = new Date();
       let cutoff: Date;
@@ -573,14 +638,12 @@ export default function ArbDashboard() {
       );
     }
 
-    // Sort chronologically for cumulative chart
     return [...trades].sort(
       (a, b) =>
         new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
     );
   }, [allTrades, pnlSport, pnlHorizon]);
 
-  // All trades matching horizon + sport (for total counts including non-SUCCESS)
   const pnlAllFiltered = useMemo(() => {
     let trades = allTrades.filter((t) => !t.paper_mode);
     if (pnlSport !== "all") {
@@ -618,14 +681,28 @@ export default function ArbDashboard() {
     let losses = 0;
     let best = -Infinity;
     let worst = Infinity;
+    let totalContracts = 0;
+    let makerFills = 0;
+    let gtcAttempts = 0;
+    let gtcFills = 0;
 
     for (const t of pnlTrades) {
       const net = t.actual_pnl!.net_profit_dollars;
       totalPnl += net;
+      totalContracts += t.contracts_filled || 1;
       if (net > 0) wins++;
       else losses++;
       if (net > best) best = net;
       if (net < worst) worst = net;
+      if (t.is_maker) makerFills++;
+    }
+
+    // GTC stats from all attempts (not just successes)
+    for (const t of pnlAllFiltered) {
+      if (t.execution_phase === "gtc") {
+        gtcAttempts++;
+        if (t.contracts_filled > 0) gtcFills++;
+      }
     }
 
     const totalAttempts = pnlAllFiltered.length;
@@ -648,38 +725,61 @@ export default function ArbDashboard() {
       best: best === -Infinity ? 0 : best,
       worst: worst === Infinity ? 0 : worst,
       noFills,
+      totalContracts,
+      makerFills,
+      gtcAttempts,
+      gtcFills,
+      gtcFillRate: gtcAttempts > 0 ? ((gtcFills / gtcAttempts) * 100).toFixed(1) : "0",
     };
   }, [pnlTrades, pnlAllFiltered]);
 
   const cumulativeChartData = useMemo(() => {
     let cumulative = 0;
-    return pnlTrades.map((t) => {
+    return pnlTrades.map((t, i) => {
       cumulative += t.actual_pnl!.net_profit_dollars;
       return {
+        index: i + 1,
         date: toDateStr(t.timestamp),
         time: formatDateTime(t.timestamp),
         pnl: Number(cumulative.toFixed(4)),
         tradePnl: Number(t.actual_pnl!.net_profit_dollars.toFixed(4)),
         team: t.team,
+        phase: t.execution_phase || "ioc",
+        isMaker: t.is_maker || false,
       };
     });
+  }, [pnlTrades]);
+
+  // Per-trade scatter data
+  const scatterData = useMemo(() => {
+    return pnlTrades.map((t, i) => ({
+      index: i + 1,
+      net: Number(t.actual_pnl!.net_profit_dollars.toFixed(4)),
+      spread: t.spread_cents,
+      team: t.team,
+      contracts: t.contracts_filled || 1,
+      phase: t.execution_phase || "ioc",
+      isMaker: t.is_maker || false,
+    }));
   }, [pnlTrades]);
 
   const dailyPnlData = useMemo(() => {
     const byDay: Record<
       string,
-      { pnl: number; trades: number; successes: number; noFills: number }
+      { pnl: number; trades: number; successes: number; noFills: number; contracts: number; makerFills: number }
     > = {};
 
     for (const t of pnlAllFiltered) {
       const day = toDateStr(t.timestamp);
       if (!day) continue;
       if (!byDay[day])
-        byDay[day] = { pnl: 0, trades: 0, successes: 0, noFills: 0 };
+        byDay[day] = { pnl: 0, trades: 0, successes: 0, noFills: 0, contracts: 0, makerFills: 0 };
       byDay[day].trades++;
       if (t.status === "SUCCESS" && t.actual_pnl) {
         byDay[day].pnl += t.actual_pnl.net_profit_dollars;
         byDay[day].successes++;
+        byDay[day].contracts += t.contracts_filled || 1;
+        if (t.is_maker) byDay[day].makerFills++;
       }
       if (t.status.includes("NO_FILL")) {
         byDay[day].noFills++;
@@ -695,8 +795,153 @@ export default function ArbDashboard() {
         trades: data.trades,
         successes: data.successes,
         noFills: data.noFills,
+        contracts: data.contracts,
+        makerFills: data.makerFills,
       }));
   }, [pnlAllFiltered]);
+
+  // Fill rate analytics
+  const fillRateStats = useMemo(() => {
+    const iocAttempts = pnlAllFiltered.filter((t) => (t.execution_phase || "ioc") === "ioc").length;
+    const iocFills = pnlAllFiltered.filter((t) => (t.execution_phase || "ioc") === "ioc" && t.contracts_filled > 0).length;
+    const gtcAttempts = pnlAllFiltered.filter((t) => t.execution_phase === "gtc").length;
+    const gtcFills = pnlAllFiltered.filter((t) => t.execution_phase === "gtc" && t.contracts_filled > 0).length;
+
+    // By spread bucket
+    const spreadBuckets: Record<string, { attempts: number; fills: number }> = {};
+    for (const t of pnlAllFiltered) {
+      const bucket = t.spread_cents < 3 ? "<3c" : t.spread_cents < 4 ? "3-4c" : t.spread_cents < 5 ? "4-5c" : "5c+";
+      if (!spreadBuckets[bucket]) spreadBuckets[bucket] = { attempts: 0, fills: 0 };
+      spreadBuckets[bucket].attempts++;
+      if (t.contracts_filled > 0) spreadBuckets[bucket].fills++;
+    }
+
+    // No-fill reasons
+    const noFillReasons: Record<string, number> = {};
+    for (const t of pnlAllFiltered) {
+      if (t.status.includes("NO_FILL")) {
+        const reason = t.gtc_cancel_reason || "ioc_expired";
+        noFillReasons[reason] = (noFillReasons[reason] || 0) + 1;
+      }
+    }
+
+    return {
+      iocAttempts, iocFills,
+      iocRate: iocAttempts > 0 ? ((iocFills / iocAttempts) * 100).toFixed(1) : "0",
+      gtcAttempts, gtcFills,
+      gtcRate: gtcAttempts > 0 ? ((gtcFills / gtcAttempts) * 100).toFixed(1) : "0",
+      spreadBuckets,
+      noFillReasons,
+    };
+  }, [pnlAllFiltered]);
+
+  // Sortable P&L trade table
+  const sortedPnlTrades = useMemo(() => {
+    const trades = [...pnlAllFiltered];
+    trades.sort((a, b) => {
+      let cmp = 0;
+      switch (tradeSortKey) {
+        case "time":
+          cmp = new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
+          break;
+        case "spread":
+          cmp = a.spread_cents - b.spread_cents;
+          break;
+        case "net": {
+          const aNet = a.actual_pnl?.net_profit_dollars ?? 0;
+          const bNet = b.actual_pnl?.net_profit_dollars ?? 0;
+          cmp = aNet - bNet;
+          break;
+        }
+        case "qty":
+          cmp = (a.contracts_filled || 0) - (b.contracts_filled || 0);
+          break;
+        case "phase":
+          cmp = (a.execution_phase || "ioc").localeCompare(b.execution_phase || "ioc");
+          break;
+      }
+      return tradeSortAsc ? cmp : -cmp;
+    });
+    return trades;
+  }, [pnlAllFiltered, tradeSortKey, tradeSortAsc]);
+
+  const handleSort = (key: TradeSortKey) => {
+    if (tradeSortKey === key) {
+      setTradeSortAsc(!tradeSortAsc);
+    } else {
+      setTradeSortKey(key);
+      setTradeSortAsc(false);
+    }
+  };
+
+  const sortArrow = (key: TradeSortKey) => {
+    if (tradeSortKey !== key) return "";
+    return tradeSortAsc ? " \u25B2" : " \u25BC";
+  };
+
+  // CSV export
+  const exportCsv = useCallback(() => {
+    const headers = ["Time", "Team", "Sport", "Direction", "Status", "Qty", "Spread", "Net P&L", "Phase", "Maker", "K Price", "PM Price"];
+    const rows = sortedPnlTrades.map((t) => [
+      t.timestamp,
+      t.team,
+      t.sport,
+      t.direction,
+      t.status,
+      t.contracts_filled || 0,
+      t.spread_cents,
+      t.actual_pnl?.net_profit_dollars?.toFixed(4) ?? "",
+      t.execution_phase || "ioc",
+      t.is_maker ? "Y" : "N",
+      t.k_price,
+      t.pm_price,
+    ]);
+    const csv = [headers, ...rows].map((r) => r.join(",")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `arb_trades_${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [sortedPnlTrades]);
+
+  // ── Liquidity data ──────────────────────────────────────────────────
+  const liq = state?.liquidity_stats;
+
+  const filteredLiqGames = useMemo(() => {
+    const games = liq?.per_game || [];
+    if (!liqGameFilter.trim()) return games;
+    const q = liqGameFilter.trim().toUpperCase();
+    return games.filter((g) => g.game_id.toUpperCase().includes(q));
+  }, [liq?.per_game, liqGameFilter]);
+
+  // Spread history chart data — group by game+platform, pick latest game
+  const liqChartGames = useMemo(() => {
+    const games = new Set<string>();
+    for (const s of liq?.spread_history || []) {
+      games.add(s.game_id);
+    }
+    return Array.from(games).slice(0, 6);
+  }, [liq?.spread_history]);
+
+  const [liqChartGame, setLiqChartGame] = useState("");
+
+  const liqSpreadChartData = useMemo(() => {
+    const history = liq?.spread_history || [];
+    const game = liqChartGame || liqChartGames[0] || "";
+    if (!game) return [];
+    return history
+      .filter((s) => s.game_id === game)
+      .map((s) => ({
+        time: formatTimeOnly(s.timestamp),
+        timestamp: s.timestamp,
+        spread: s.spread,
+        bid_depth: s.bid_depth,
+        ask_depth: s.ask_depth,
+        platform: s.platform,
+      }));
+  }, [liq?.spread_history, liqChartGame, liqChartGames]);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-gray-200">
@@ -739,26 +984,19 @@ export default function ArbDashboard() {
         </div>
         {/* Top-level tabs */}
         <div className="flex px-4 gap-1">
-          <button
-            onClick={() => setTopTab("monitor")}
-            className={`px-3 py-1.5 text-sm font-medium transition-colors border-b-2 -mb-px ${
-              topTab === "monitor"
-                ? "border-emerald-500 text-white"
-                : "border-transparent text-gray-500 hover:text-gray-300"
-            }`}
-          >
-            Monitor
-          </button>
-          <button
-            onClick={() => setTopTab("pnl_history")}
-            className={`px-3 py-1.5 text-sm font-medium transition-colors border-b-2 -mb-px ${
-              topTab === "pnl_history"
-                ? "border-emerald-500 text-white"
-                : "border-transparent text-gray-500 hover:text-gray-300"
-            }`}
-          >
-            P&L History
-          </button>
+          {(["monitor", "pnl_history", "liquidity"] as TopTab[]).map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setTopTab(tab)}
+              className={`px-3 py-1.5 text-sm font-medium transition-colors border-b-2 -mb-px ${
+                topTab === tab
+                  ? "border-emerald-500 text-white"
+                  : "border-transparent text-gray-500 hover:text-gray-300"
+              }`}
+            >
+              {tab === "monitor" ? "Monitor" : tab === "pnl_history" ? "P&L History" : "Liquidity"}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -1162,6 +1400,16 @@ export default function ArbDashboard() {
                                   P
                                 </span>
                               )}
+                              {t.execution_phase === "gtc" && (
+                                <span className="ml-0.5 text-[9px] text-blue-400">
+                                  G
+                                </span>
+                              )}
+                              {t.is_maker && (
+                                <span className="ml-0.5 text-[9px] text-cyan-400">
+                                  M
+                                </span>
+                              )}
                             </td>
                             <td
                               className={`px-2 py-1 text-right font-mono ${
@@ -1250,7 +1498,6 @@ export default function ArbDashboard() {
                   </span>
                 )}
               </button>
-              {/* Mappings health indicator */}
               {bottomTab === "mapped_games" &&
                 state?.mappings_last_refreshed && (
                   <div className="ml-auto flex items-center gap-1.5 text-[10px] text-gray-500">
@@ -1662,7 +1909,7 @@ export default function ArbDashboard() {
           </div>
 
           {/* ── Summary Stats ────────────────────────────────────── */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-10 gap-3">
             <MetricCard
               label="Total P&L"
               value={`${pnlSummaryStats.totalPnl >= 0 ? "+$" : "-$"}${Math.abs(pnlSummaryStats.totalPnl).toFixed(2)}`}
@@ -1692,6 +1939,10 @@ export default function ArbDashboard() {
               }
             />
             <MetricCard
+              label="Total Contracts"
+              value={String(pnlSummaryStats.totalContracts)}
+            />
+            <MetricCard
               label="Avg Profit"
               value={`${pnlSummaryStats.avgProfit >= 0 ? "+$" : "-$"}${Math.abs(pnlSummaryStats.avgProfit).toFixed(4)}`}
               accent={
@@ -1713,71 +1964,223 @@ export default function ArbDashboard() {
               accent="text-red-400"
             />
             <MetricCard
+              label="Maker Fills"
+              value={String(pnlSummaryStats.makerFills)}
+              sub={`${pnlSummaryStats.totalTrades > 0 ? ((pnlSummaryStats.makerFills / pnlSummaryStats.totalTrades) * 100).toFixed(0) : 0}% of trades`}
+              accent="text-cyan-400"
+            />
+            <MetricCard
+              label="GTC Fill Rate"
+              value={`${pnlSummaryStats.gtcFillRate}%`}
+              sub={`${pnlSummaryStats.gtcFills}/${pnlSummaryStats.gtcAttempts} attempts`}
+              accent="text-blue-400"
+            />
+            <MetricCard
               label="PM No-Fills"
               value={String(pnlSummaryStats.noFills)}
             />
-            <MetricCard
-              label="Active Days"
-              value={String(dailyPnlData.length)}
-            />
           </div>
 
-          {/* ── Cumulative P&L Line Chart ────────────────────────── */}
+          {/* ── Charts Row: Cumulative + Scatter ───────────────────── */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {/* Cumulative P&L Line Chart */}
+            <div className="rounded-lg border border-gray-800 bg-[#111] p-4">
+              <h3 className="text-sm font-semibold text-white mb-3">
+                Cumulative P&L
+              </h3>
+              {cumulativeChartData.length === 0 ? (
+                <div className="text-center py-8 text-xs text-gray-600">
+                  No P&L data for selected filters
+                </div>
+              ) : (
+                <ResponsiveContainer width="100%" height={240}>
+                  <LineChart data={cumulativeChartData}>
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      stroke="#1f2937"
+                      vertical={false}
+                    />
+                    <XAxis
+                      dataKey="index"
+                      stroke="#4b5563"
+                      fontSize={10}
+                      label={{ value: "Trade #", position: "insideBottom", offset: -2, fontSize: 10, fill: "#6b7280" }}
+                    />
+                    <YAxis
+                      stroke="#4b5563"
+                      fontSize={10}
+                      tickFormatter={(v: number) => `$${v.toFixed(2)}`}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "#111",
+                        border: "1px solid #374151",
+                        borderRadius: "6px",
+                        fontSize: "11px",
+                      }}
+                      formatter={(value: number | undefined, name: string | undefined) => {
+                        const v = value ?? 0;
+                        if (name === "pnl")
+                          return [`$${v.toFixed(4)}`, "Cumulative"];
+                        return [v, name ?? ""];
+                      }}
+                      labelFormatter={(label) => `Trade #${label}`}
+                    />
+                    <ReferenceLine y={0} stroke="#374151" strokeDasharray="3 3" />
+                    <Line
+                      type="monotone"
+                      dataKey="pnl"
+                      stroke="#10b981"
+                      strokeWidth={2}
+                      dot={false}
+                      activeDot={{ r: 4, fill: "#10b981" }}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              )}
+            </div>
+
+            {/* Per-Trade Scatter Plot */}
+            <div className="rounded-lg border border-gray-800 bg-[#111] p-4">
+              <h3 className="text-sm font-semibold text-white mb-3">
+                Per-Trade P&L
+                <span className="ml-2 text-[10px] text-gray-500 font-normal">
+                  (size = contracts)
+                </span>
+              </h3>
+              {scatterData.length === 0 ? (
+                <div className="text-center py-8 text-xs text-gray-600">
+                  No trade data for selected filters
+                </div>
+              ) : (
+                <ResponsiveContainer width="100%" height={240}>
+                  <ScatterChart>
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      stroke="#1f2937"
+                    />
+                    <XAxis
+                      dataKey="spread"
+                      stroke="#4b5563"
+                      fontSize={10}
+                      name="Spread"
+                      label={{ value: "Spread (c)", position: "insideBottom", offset: -2, fontSize: 10, fill: "#6b7280" }}
+                    />
+                    <YAxis
+                      dataKey="net"
+                      stroke="#4b5563"
+                      fontSize={10}
+                      name="Net P&L"
+                      tickFormatter={(v: number) => `$${v.toFixed(3)}`}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "#111",
+                        border: "1px solid #374151",
+                        borderRadius: "6px",
+                        fontSize: "11px",
+                      }}
+                      formatter={(value: number | undefined, name: string | undefined) => {
+                        const v = value ?? 0;
+                        if (name === "Net P&L") return [`$${v.toFixed(4)}`, name];
+                        if (name === "Spread") return [`${v.toFixed(1)}c`, name];
+                        return [v, name ?? ""];
+                      }}
+                    />
+                    <ReferenceLine y={0} stroke="#374151" strokeDasharray="3 3" />
+                    <Scatter data={scatterData} fill="#10b981">
+                      {scatterData.map((entry, index) => (
+                        <Cell
+                          key={`sc-${index}`}
+                          fill={entry.net >= 0 ? "#10b981" : "#ef4444"}
+                          fillOpacity={entry.isMaker ? 1 : 0.6}
+                          r={Math.max(3, Math.min(entry.contracts * 2, 10))}
+                        />
+                      ))}
+                    </Scatter>
+                  </ScatterChart>
+                </ResponsiveContainer>
+              )}
+            </div>
+          </div>
+
+          {/* ── Fill Rate Analytics ────────────────────────────────── */}
           <div className="rounded-lg border border-gray-800 bg-[#111] p-4">
             <h3 className="text-sm font-semibold text-white mb-3">
-              Cumulative P&L
+              Fill Rate Analytics
             </h3>
-            {cumulativeChartData.length === 0 ? (
-              <div className="text-center py-8 text-xs text-gray-600">
-                No P&L data for selected filters
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* IOC vs GTC */}
+              <div className="space-y-2">
+                <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500">IOC vs GTC Breakdown</p>
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-gray-400">IOC</span>
+                    <span className="font-mono text-white">{fillRateStats.iocFills}/{fillRateStats.iocAttempts} ({fillRateStats.iocRate}%)</span>
+                  </div>
+                  <div className="h-2 rounded-full bg-gray-800 overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-emerald-500"
+                      style={{ width: `${fillRateStats.iocRate}%` }}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-gray-400">GTC</span>
+                    <span className="font-mono text-white">{fillRateStats.gtcFills}/{fillRateStats.gtcAttempts} ({fillRateStats.gtcRate}%)</span>
+                  </div>
+                  <div className="h-2 rounded-full bg-gray-800 overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-blue-500"
+                      style={{ width: `${fillRateStats.gtcRate}%` }}
+                    />
+                  </div>
+                </div>
               </div>
-            ) : (
-              <ResponsiveContainer width="100%" height={240}>
-                <LineChart data={cumulativeChartData}>
-                  <CartesianGrid
-                    strokeDasharray="3 3"
-                    stroke="#1f2937"
-                    vertical={false}
-                  />
-                  <XAxis
-                    dataKey="date"
-                    stroke="#4b5563"
-                    fontSize={10}
-                    tickFormatter={formatShortDate}
-                  />
-                  <YAxis
-                    stroke="#4b5563"
-                    fontSize={10}
-                    tickFormatter={(v: number) => `$${v.toFixed(2)}`}
-                  />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "#111",
-                      border: "1px solid #374151",
-                      borderRadius: "6px",
-                      fontSize: "11px",
-                    }}
-                    formatter={(value: number | undefined, name: string | undefined) => {
-                      const v = value ?? 0;
-                      if (name === "pnl")
-                        return [`$${v.toFixed(4)}`, "Cumulative"];
-                      return [v, name ?? ""];
-                    }}
-                    labelFormatter={(label) =>
-                      formatDateLabel(String(label))
-                    }
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="pnl"
-                    stroke="#10b981"
-                    strokeWidth={2}
-                    dot={false}
-                    activeDot={{ r: 4, fill: "#10b981" }}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            )}
+
+              {/* By Spread Bucket */}
+              <div className="space-y-2">
+                <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500">Fill Rate by Spread</p>
+                <div className="space-y-1">
+                  {["<3c", "3-4c", "4-5c", "5c+"].map((bucket) => {
+                    const data = fillRateStats.spreadBuckets[bucket] || { attempts: 0, fills: 0 };
+                    const rate = data.attempts > 0 ? ((data.fills / data.attempts) * 100).toFixed(0) : "0";
+                    return (
+                      <div key={bucket} className="flex items-center justify-between text-xs">
+                        <span className="text-gray-400 w-10">{bucket}</span>
+                        <div className="flex-1 mx-2 h-1.5 rounded-full bg-gray-800 overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-emerald-500/70"
+                            style={{ width: `${rate}%` }}
+                          />
+                        </div>
+                        <span className="font-mono text-gray-300 text-[10px] w-16 text-right">
+                          {data.fills}/{data.attempts} ({rate}%)
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* No-Fill Reasons */}
+              <div className="space-y-2">
+                <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500">No-Fill Reasons</p>
+                <div className="space-y-1">
+                  {Object.entries(fillRateStats.noFillReasons).length === 0 ? (
+                    <span className="text-xs text-gray-600">No no-fills recorded</span>
+                  ) : (
+                    Object.entries(fillRateStats.noFillReasons)
+                      .sort(([, a], [, b]) => b - a)
+                      .map(([reason, count]) => (
+                        <div key={reason} className="flex items-center justify-between text-xs">
+                          <span className="text-gray-400 truncate max-w-[120px]">{reason}</span>
+                          <span className="font-mono text-yellow-400">{count}</span>
+                        </div>
+                      ))
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* ── Daily P&L Bar Chart ──────────────────────────────── */}
@@ -1819,6 +2222,7 @@ export default function ArbDashboard() {
                       "Net P&L",
                     ]}
                   />
+                  <ReferenceLine y={0} stroke="#374151" strokeDasharray="3 3" />
                   <Bar dataKey="pnl" radius={[3, 3, 0, 0]}>
                     {dailyPnlData.map((entry, index) => (
                       <Cell
@@ -1833,63 +2237,331 @@ export default function ArbDashboard() {
             )}
           </div>
 
-          {/* ── Daily Breakdown Table ────────────────────────────── */}
+          {/* ── Trade Details Table ────────────────────────────────── */}
           <div className="rounded-lg border border-gray-800 bg-[#111]">
-            <div className="border-b border-gray-800 px-3 py-2">
+            <div className="border-b border-gray-800 px-3 py-2 flex items-center justify-between">
               <h3 className="text-sm font-semibold text-white">
-                Daily Breakdown
+                Trade Details
+                <span className="ml-1.5 text-xs text-gray-500">{sortedPnlTrades.length}</span>
               </h3>
+              <button
+                onClick={exportCsv}
+                className="rounded bg-gray-800 px-2 py-1 text-[10px] font-medium text-gray-400 hover:bg-gray-700 transition-colors"
+              >
+                Export CSV
+              </button>
             </div>
-            <div className="overflow-auto" style={{ maxHeight: "300px" }}>
+            <div className="overflow-auto" style={{ maxHeight: "400px" }}>
               <table className="w-full text-xs">
                 <thead className="sticky top-0 bg-[#111] z-10">
                   <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
-                    <th className="px-3 py-1.5">Date</th>
-                    <th className="px-3 py-1.5 text-right">Trades</th>
-                    <th className="px-3 py-1.5 text-right">Successes</th>
-                    <th className="px-3 py-1.5 text-right">No-Fills</th>
-                    <th className="px-3 py-1.5 text-right">Net P&L</th>
+                    <th className="px-2 py-1.5 cursor-pointer hover:text-gray-300" onClick={() => handleSort("time")}>
+                      Time{sortArrow("time")}
+                    </th>
+                    <th className="px-2 py-1.5">Team</th>
+                    <th className="px-2 py-1.5">Status</th>
+                    <th className="px-2 py-1.5 text-right cursor-pointer hover:text-gray-300" onClick={() => handleSort("qty")}>
+                      Qty{sortArrow("qty")}
+                    </th>
+                    <th className="px-2 py-1.5 text-right cursor-pointer hover:text-gray-300" onClick={() => handleSort("spread")}>
+                      Spread{sortArrow("spread")}
+                    </th>
+                    <th className="px-2 py-1.5 text-right cursor-pointer hover:text-gray-300" onClick={() => handleSort("net")}>
+                      Net P&L{sortArrow("net")}
+                    </th>
+                    <th className="px-2 py-1.5 text-center cursor-pointer hover:text-gray-300" onClick={() => handleSort("phase")}>
+                      Phase{sortArrow("phase")}
+                    </th>
+                    <th className="px-2 py-1.5 text-center">Maker</th>
+                    <th className="px-2 py-1.5 text-right">K/PM</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {dailyPnlData.length === 0 ? (
+                  {sortedPnlTrades.length === 0 ? (
                     <tr>
                       <td
-                        colSpan={5}
+                        colSpan={9}
                         className="px-3 py-6 text-center text-gray-600"
                       >
                         No data
                       </td>
                     </tr>
                   ) : (
-                    [...dailyPnlData].reverse().map((d) => (
+                    sortedPnlTrades.map((t, i) => {
+                      const badge = statusBadge(t.status);
+                      const isExpanded = expandedTrade === i;
+                      return (
+                        <>
+                          <tr
+                            key={`trade-${i}`}
+                            className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors cursor-pointer ${isExpanded ? "bg-gray-800/20" : ""}`}
+                            onClick={() => setExpandedTrade(isExpanded ? null : i)}
+                          >
+                            <td className="px-2 py-1.5 font-mono text-gray-400 whitespace-nowrap text-[10px]">
+                              {formatDateTime(t.timestamp)}
+                            </td>
+                            <td className="px-2 py-1.5 whitespace-nowrap">
+                              <span className="text-white font-medium">{t.team}</span>
+                              <span className={`ml-1 inline-block rounded px-0.5 text-[9px] font-medium ${sportBadge(t.sport)}`}>
+                                {t.sport}
+                              </span>
+                            </td>
+                            <td className="px-2 py-1.5">
+                              <span className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${badge.bg} ${badge.text}`}>
+                                {t.status}
+                              </span>
+                            </td>
+                            <td className={`px-2 py-1.5 text-right font-mono ${(t.contracts_filled || 0) > 1 ? "text-white font-bold" : "text-gray-500"}`}>
+                              {t.contracts_filled || 0}
+                              {t.contracts_intended && t.contracts_intended !== t.contracts_filled && (
+                                <span className="text-gray-600">/{t.contracts_intended}</span>
+                              )}
+                            </td>
+                            <td className={`px-2 py-1.5 text-right font-mono ${spreadColor(t.spread_cents)}`}>
+                              {t.spread_cents.toFixed(1)}c
+                            </td>
+                            <td className={`px-2 py-1.5 text-right font-mono font-medium ${
+                              t.actual_pnl
+                                ? t.actual_pnl.net_profit_dollars > 0 ? "text-emerald-400" : t.actual_pnl.net_profit_dollars < 0 ? "text-red-400" : "text-gray-400"
+                                : "text-gray-500"
+                            }`}>
+                              {t.actual_pnl
+                                ? `${t.actual_pnl.net_profit_dollars >= 0 ? "+" : ""}$${t.actual_pnl.net_profit_dollars.toFixed(4)}`
+                                : "-"}
+                            </td>
+                            <td className="px-2 py-1.5 text-center">
+                              <span className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${
+                                (t.execution_phase || "ioc") === "gtc"
+                                  ? "bg-blue-500/20 text-blue-400"
+                                  : "bg-gray-500/20 text-gray-500"
+                              }`}>
+                                {(t.execution_phase || "ioc").toUpperCase()}
+                              </span>
+                            </td>
+                            <td className="px-2 py-1.5 text-center">
+                              {t.is_maker ? (
+                                <span className="text-cyan-400 text-[9px] font-medium">YES</span>
+                              ) : (
+                                <span className="text-gray-600 text-[9px]">-</span>
+                              )}
+                            </td>
+                            <td className="px-2 py-1.5 text-right font-mono text-gray-500 text-[10px]">
+                              {t.k_price}/{t.pm_price}
+                            </td>
+                          </tr>
+                          {isExpanded && (
+                            <tr key={`trade-exp-${i}`} className="bg-gray-800/10">
+                              <td colSpan={9} className="px-4 py-2">
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-[10px]">
+                                  <div>
+                                    <span className="text-gray-500">Direction:</span>{" "}
+                                    <span className="text-white">{t.direction}</span>
+                                  </div>
+                                  <div>
+                                    <span className="text-gray-500">Game ID:</span>{" "}
+                                    <span className="text-white font-mono">{t.game_id}</span>
+                                  </div>
+                                  {t.gtc_rest_time_ms ? (
+                                    <div>
+                                      <span className="text-gray-500">GTC Rest:</span>{" "}
+                                      <span className="text-blue-400">{t.gtc_rest_time_ms}ms ({t.gtc_spread_checks} checks)</span>
+                                    </div>
+                                  ) : null}
+                                  {t.gtc_cancel_reason ? (
+                                    <div>
+                                      <span className="text-gray-500">GTC Cancel:</span>{" "}
+                                      <span className="text-yellow-400">{t.gtc_cancel_reason}</span>
+                                    </div>
+                                  ) : null}
+                                  {t.actual_pnl && (
+                                    <>
+                                      <div>
+                                        <span className="text-gray-500">Gross:</span>{" "}
+                                        <span className="text-white">${t.actual_pnl.gross_profit_dollars.toFixed(4)}</span>
+                                      </div>
+                                      <div>
+                                        <span className="text-gray-500">Fees:</span>{" "}
+                                        <span className="text-red-400">${t.actual_pnl.fees_dollars.toFixed(4)}</span>
+                                      </div>
+                                      <div>
+                                        <span className="text-gray-500">Total Cost:</span>{" "}
+                                        <span className="text-white">${t.actual_pnl.total_cost_dollars.toFixed(4)}</span>
+                                      </div>
+                                    </>
+                                  )}
+                                  {t.sizing_details && (
+                                    <div>
+                                      <span className="text-gray-500">Sizing:</span>{" "}
+                                      <span className="text-gray-300">K={t.sizing_details.k_depth} PM={t.sizing_details.pm_depth} ({t.sizing_details.limit_reason})</span>
+                                    </div>
+                                  )}
+                                </div>
+                              </td>
+                            </tr>
+                          )}
+                        </>
+                      );
+                    })
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ══════════ LIQUIDITY TAB ══════════ */}
+      {topTab === "liquidity" && (
+        <div className="p-4 space-y-4">
+          {/* Aggregate Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+            <MetricCard
+              label="Snapshots (24h)"
+              value={String(liq?.aggregate?.total_snapshots || 0)}
+            />
+            <MetricCard
+              label="Games Tracked"
+              value={String(liq?.aggregate?.unique_games || 0)}
+            />
+            <MetricCard
+              label="Avg Bid Depth"
+              value={String(liq?.aggregate?.overall_avg_bid_depth || 0)}
+            />
+            <MetricCard
+              label="Avg Ask Depth"
+              value={String(liq?.aggregate?.overall_avg_ask_depth || 0)}
+            />
+            <MetricCard
+              label="Avg Spread"
+              value={`${liq?.aggregate?.overall_avg_spread || 0}c`}
+              accent={
+                (liq?.aggregate?.overall_avg_spread || 0) >= 4
+                  ? "text-emerald-400"
+                  : (liq?.aggregate?.overall_avg_spread || 0) >= 2
+                  ? "text-yellow-400"
+                  : "text-white"
+              }
+            />
+          </div>
+
+          {/* Spread Over Time Chart */}
+          <div className="rounded-lg border border-gray-800 bg-[#111] p-4">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-semibold text-white">
+                Spread Over Time
+                <span className="ml-2 text-[10px] text-gray-500 font-normal">(6h)</span>
+              </h3>
+              <div className="flex items-center gap-1">
+                {liqChartGames.map((g) => (
+                  <button
+                    key={g}
+                    onClick={() => setLiqChartGame(g)}
+                    className={`rounded px-2 py-0.5 text-[10px] font-medium transition-colors ${
+                      (liqChartGame || liqChartGames[0]) === g
+                        ? "bg-emerald-500/20 text-emerald-400"
+                        : "text-gray-500 hover:text-gray-300"
+                    }`}
+                  >
+                    {g.length > 20 ? g.slice(0, 20) + "..." : g}
+                  </button>
+                ))}
+              </div>
+            </div>
+            {liqSpreadChartData.length === 0 ? (
+              <div className="text-center py-8 text-xs text-gray-600">
+                No spread history data — waiting for orderbook snapshots
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height={240}>
+                <LineChart data={liqSpreadChartData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" vertical={false} />
+                  <XAxis dataKey="time" stroke="#4b5563" fontSize={10} />
+                  <YAxis stroke="#4b5563" fontSize={10} tickFormatter={(v: number) => `${v}c`} />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "#111",
+                      border: "1px solid #374151",
+                      borderRadius: "6px",
+                      fontSize: "11px",
+                    }}
+                    formatter={(value: number | undefined, name: string | undefined) => {
+                      const v = value ?? 0;
+                      if (name === "spread") return [`${v}c`, "Spread"];
+                      if (name === "bid_depth") return [v, "Bid Depth"];
+                      if (name === "ask_depth") return [v, "Ask Depth"];
+                      return [v, name ?? ""];
+                    }}
+                  />
+                  <Line type="stepAfter" dataKey="spread" stroke="#10b981" strokeWidth={2} dot={false} />
+                  <Line type="stepAfter" dataKey="bid_depth" stroke="#3b82f6" strokeWidth={1} dot={false} strokeDasharray="3 3" />
+                  <Line type="stepAfter" dataKey="ask_depth" stroke="#f59e0b" strokeWidth={1} dot={false} strokeDasharray="3 3" />
+                </LineChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+
+          {/* Per-Game Liquidity Table */}
+          <div className="rounded-lg border border-gray-800 bg-[#111]">
+            <div className="border-b border-gray-800 px-3 py-2 flex items-center justify-between">
+              <h3 className="text-sm font-semibold text-white">
+                Per-Game Liquidity
+                <span className="ml-1.5 text-xs text-gray-500">(24h)</span>
+              </h3>
+              <input
+                type="text"
+                placeholder="Filter game..."
+                value={liqGameFilter}
+                onChange={(e) => setLiqGameFilter(e.target.value)}
+                className="w-32 rounded bg-gray-800 px-2 py-0.5 text-[10px] text-gray-300 placeholder-gray-600 border border-gray-700 focus:border-gray-500 focus:outline-none"
+              />
+            </div>
+            <div className="overflow-auto" style={{ maxHeight: "400px" }}>
+              <table className="w-full text-xs">
+                <thead className="sticky top-0 bg-[#111] z-10">
+                  <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-2 py-1.5">Game</th>
+                    <th className="px-2 py-1.5">Platform</th>
+                    <th className="px-2 py-1.5 text-right">Snapshots</th>
+                    <th className="px-2 py-1.5 text-right">Avg Bid</th>
+                    <th className="px-2 py-1.5 text-right">Avg Ask</th>
+                    <th className="px-2 py-1.5 text-right">Avg Spread</th>
+                    <th className="px-2 py-1.5 text-right">Min Spread</th>
+                    <th className="px-2 py-1.5 text-right">Max Spread</th>
+                    <th className="px-2 py-1.5">Last Seen</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredLiqGames.length === 0 ? (
+                    <tr>
+                      <td colSpan={9} className="px-3 py-6 text-center text-gray-600">
+                        No liquidity data — orderbook DB may be empty
+                      </td>
+                    </tr>
+                  ) : (
+                    filteredLiqGames.map((g, i) => (
                       <tr
-                        key={d.date}
+                        key={`liq-${i}`}
                         className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors"
                       >
-                        <td className="px-3 py-1.5 font-mono text-gray-300">
-                          {formatDateLabel(d.date)}
+                        <td className="px-2 py-1.5 text-white font-medium whitespace-nowrap font-mono text-[10px]">
+                          {g.game_id.length > 30 ? g.game_id.slice(0, 30) + "..." : g.game_id}
                         </td>
-                        <td className="px-3 py-1.5 text-right text-gray-400">
-                          {d.trades}
+                        <td className="px-2 py-1.5">
+                          <span className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${
+                            g.platform === "kalshi" ? "bg-orange-500/20 text-orange-400" : "bg-blue-500/20 text-blue-400"
+                          }`}>
+                            {g.platform}
+                          </span>
                         </td>
-                        <td className="px-3 py-1.5 text-right text-emerald-400">
-                          {d.successes}
+                        <td className="px-2 py-1.5 text-right font-mono text-gray-400">{g.snapshots}</td>
+                        <td className="px-2 py-1.5 text-right font-mono text-gray-300">{g.avg_bid_depth}</td>
+                        <td className="px-2 py-1.5 text-right font-mono text-gray-300">{g.avg_ask_depth}</td>
+                        <td className={`px-2 py-1.5 text-right font-mono font-bold ${spreadColor(g.avg_spread)}`}>
+                          {g.avg_spread}c
                         </td>
-                        <td className="px-3 py-1.5 text-right text-yellow-400">
-                          {d.noFills}
-                        </td>
-                        <td
-                          className={`px-3 py-1.5 text-right font-mono font-bold ${
-                            d.pnl > 0
-                              ? "text-emerald-400"
-                              : d.pnl < 0
-                              ? "text-red-400"
-                              : "text-gray-400"
-                          }`}
-                        >
-                          {d.pnl >= 0 ? "+" : ""}${d.pnl.toFixed(4)}
-                        </td>
+                        <td className="px-2 py-1.5 text-right font-mono text-gray-400">{g.min_spread}c</td>
+                        <td className="px-2 py-1.5 text-right font-mono text-gray-400">{g.max_spread}c</td>
+                        <td className="px-2 py-1.5 text-[10px] text-gray-500">{timeAgo(g.last_snapshot)}</td>
                       </tr>
                     ))
                   )}

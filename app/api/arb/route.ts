@@ -66,6 +66,11 @@ export interface TradeEntry {
   actual_pnl: ActualPnl | null;
   paper_mode: boolean;
   sizing_details?: SizingDetails | null;
+  execution_phase?: string;
+  is_maker?: boolean;
+  gtc_rest_time_ms?: number;
+  gtc_spread_checks?: number;
+  gtc_cancel_reason?: string;
 }
 
 export interface PnlSummary {
@@ -131,6 +136,45 @@ export interface MappedGame {
   traded: boolean;
 }
 
+export interface GameLiquidity {
+  game_id: string;
+  platform: string;
+  snapshots: number;
+  avg_bid_depth: number;
+  avg_ask_depth: number;
+  avg_spread: number;
+  min_spread: number;
+  max_spread: number;
+  best_bid_seen: number;
+  best_ask_seen: number;
+  last_snapshot: string;
+}
+
+export interface SpreadSnapshot {
+  game_id: string;
+  platform: string;
+  timestamp: string;
+  best_bid: number;
+  best_ask: number;
+  bid_depth: number;
+  ask_depth: number;
+  spread: number;
+}
+
+export interface LiquidityAggregate {
+  total_snapshots: number;
+  unique_games: number;
+  overall_avg_bid_depth: number;
+  overall_avg_ask_depth: number;
+  overall_avg_spread: number;
+}
+
+export interface LiquidityStats {
+  per_game: GameLiquidity[];
+  spread_history: SpreadSnapshot[];
+  aggregate: LiquidityAggregate;
+}
+
 export interface ArbState {
   spreads: SpreadRow[];
   trades: TradeEntry[];
@@ -139,6 +183,7 @@ export interface ArbState {
   system: SystemStatus;
   pnl_summary: PnlSummary;
   mapped_games: MappedGame[];
+  liquidity_stats: LiquidityStats;
   mappings_last_refreshed: string;
   updated_at: string;
 }
@@ -176,6 +221,17 @@ const DEFAULT_STATE: ArbState = {
     unhedged_filled: 0,
   },
   mapped_games: [],
+  liquidity_stats: {
+    per_game: [],
+    spread_history: [],
+    aggregate: {
+      total_snapshots: 0,
+      unique_games: 0,
+      overall_avg_bid_depth: 0,
+      overall_avg_ask_depth: 0,
+      overall_avg_spread: 0,
+    },
+  },
   mappings_last_refreshed: "",
   updated_at: "",
 };
@@ -211,6 +267,7 @@ export async function POST(req: NextRequest) {
     if (body.system !== undefined) arbState.system = body.system;
     if (body.pnl_summary !== undefined) arbState.pnl_summary = body.pnl_summary;
     if (body.mapped_games !== undefined) arbState.mapped_games = body.mapped_games;
+    if (body.liquidity_stats !== undefined) arbState.liquidity_stats = body.liquidity_stats;
     if (body.mappings_last_refreshed !== undefined) arbState.mappings_last_refreshed = body.mappings_last_refreshed;
     arbState.updated_at = new Date().toISOString();
 

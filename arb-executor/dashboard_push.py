@@ -22,9 +22,10 @@ Usage:
 import json
 import os
 import time
+import sqlite3
 import threading
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Dict, Any, Optional, Callable
 
 import requests
@@ -33,6 +34,7 @@ logger = logging.getLogger("dashboard_push")
 
 TRADES_FILE = os.path.join(os.path.dirname(__file__) or ".", "trades.json")
 VERIFIED_MAPPINGS_FILE = os.path.join(os.path.dirname(__file__) or ".", "verified_mappings.json")
+ORDERBOOK_DB_PATH = os.path.join(os.path.dirname(__file__) or ".", "orderbook_data.db")
 DASHBOARD_URL = os.environ.get("DASHBOARD_URL", "")
 DASHBOARD_TOKEN = os.environ.get("DASHBOARD_TOKEN", "")
 
@@ -106,6 +108,7 @@ class DashboardPusher:
         system = self._build_system()
         pnl_summary = self._build_pnl_summary()
         mapped_games = self._build_mapped_games()
+        liquidity_stats = self._build_liquidity_stats()
 
         mappings_refreshed = self._get_mappings_last_refreshed()
 
@@ -118,6 +121,7 @@ class DashboardPusher:
             "pnl_summary": pnl_summary,
             "mapped_games": mapped_games,
             "mappings_last_refreshed": mappings_refreshed,
+            "liquidity_stats": liquidity_stats,
         }
 
         # Debug: log payload summary every push
@@ -246,6 +250,11 @@ class DashboardPusher:
                         "actual_pnl": t.get("actual_pnl"),
                         "paper_mode": t.get("paper_mode", False),
                         "sizing_details": t.get("sizing_details"),
+                        "execution_phase": t.get("execution_phase", "ioc"),
+                        "is_maker": t.get("is_maker", False),
+                        "gtc_rest_time_ms": t.get("gtc_rest_time_ms", 0),
+                        "gtc_spread_checks": t.get("gtc_spread_checks", 0),
+                        "gtc_cancel_reason": t.get("gtc_cancel_reason", ""),
                     }
                     for t in recent
                 ]
@@ -462,6 +471,132 @@ class DashboardPusher:
             -r["best_spread"],
         ))
         return rows
+
+    # ── Liquidity Stats ────────────────────────────────────────────────────
+
+    def _build_liquidity_stats(self) -> dict:
+        """Query orderbook_data.db for per-game liquidity aggregates."""
+        empty = {"per_game": [], "spread_history": [], "aggregate": {}}
+
+        if not os.path.exists(ORDERBOOK_DB_PATH):
+            return empty
+
+        try:
+            conn = sqlite3.connect(ORDERBOOK_DB_PATH, timeout=3)
+            conn.row_factory = sqlite3.Row
+
+            # Only look at last 24h of data
+            cutoff = (datetime.now(timezone.utc) - timedelta(hours=24)).isoformat()
+
+            # Per-game aggregates
+            per_game_rows = conn.execute("""
+                SELECT
+                    game_id,
+                    platform,
+                    COUNT(*) as snapshots,
+                    ROUND(AVG(bid_depth), 1) as avg_bid_depth,
+                    ROUND(AVG(ask_depth), 1) as avg_ask_depth,
+                    ROUND(AVG(spread), 1) as avg_spread,
+                    ROUND(MIN(spread), 1) as min_spread,
+                    ROUND(MAX(spread), 1) as max_spread,
+                    MAX(best_bid) as best_bid_seen,
+                    MIN(best_ask) as best_ask_seen,
+                    MAX(timestamp) as last_snapshot
+                FROM orderbook_snapshots
+                WHERE timestamp > ?
+                GROUP BY game_id, platform
+                ORDER BY game_id, platform
+            """, (cutoff,)).fetchall()
+
+            per_game = []
+            for r in per_game_rows:
+                per_game.append({
+                    "game_id": r["game_id"],
+                    "platform": r["platform"],
+                    "snapshots": r["snapshots"],
+                    "avg_bid_depth": r["avg_bid_depth"] or 0,
+                    "avg_ask_depth": r["avg_ask_depth"] or 0,
+                    "avg_spread": r["avg_spread"] or 0,
+                    "min_spread": r["min_spread"] or 0,
+                    "max_spread": r["max_spread"] or 0,
+                    "best_bid_seen": r["best_bid_seen"] or 0,
+                    "best_ask_seen": r["best_ask_seen"] or 0,
+                    "last_snapshot": r["last_snapshot"] or "",
+                })
+
+            # Spread history — last 6h, sampled every ~2 min per game+platform
+            spread_cutoff = (datetime.now(timezone.utc) - timedelta(hours=6)).isoformat()
+            spread_rows = conn.execute("""
+                SELECT
+                    game_id,
+                    platform,
+                    timestamp,
+                    best_bid,
+                    best_ask,
+                    bid_depth,
+                    ask_depth,
+                    spread
+                FROM orderbook_snapshots
+                WHERE timestamp > ?
+                ORDER BY timestamp ASC
+            """, (spread_cutoff,)).fetchall()
+
+            # Downsample to ~2 min intervals per game+platform
+            spread_history = []
+            last_ts: Dict[str, str] = {}
+            for r in spread_rows:
+                key = f"{r['game_id']}_{r['platform']}"
+                ts = r["timestamp"]
+                if key in last_ts:
+                    try:
+                        prev = datetime.fromisoformat(last_ts[key])
+                        curr = datetime.fromisoformat(ts)
+                        if (curr - prev).total_seconds() < 120:
+                            continue
+                    except (ValueError, TypeError):
+                        pass
+                last_ts[key] = ts
+                spread_history.append({
+                    "game_id": r["game_id"],
+                    "platform": r["platform"],
+                    "timestamp": ts,
+                    "best_bid": r["best_bid"] or 0,
+                    "best_ask": r["best_ask"] or 0,
+                    "bid_depth": r["bid_depth"] or 0,
+                    "ask_depth": r["ask_depth"] or 0,
+                    "spread": r["spread"] or 0,
+                })
+
+            # Aggregate stats across all games
+            agg_row = conn.execute("""
+                SELECT
+                    COUNT(*) as total_snapshots,
+                    COUNT(DISTINCT game_id) as unique_games,
+                    ROUND(AVG(bid_depth), 1) as overall_avg_bid_depth,
+                    ROUND(AVG(ask_depth), 1) as overall_avg_ask_depth,
+                    ROUND(AVG(spread), 1) as overall_avg_spread
+                FROM orderbook_snapshots
+                WHERE timestamp > ?
+            """, (cutoff,)).fetchone()
+
+            aggregate = {
+                "total_snapshots": agg_row["total_snapshots"] if agg_row else 0,
+                "unique_games": agg_row["unique_games"] if agg_row else 0,
+                "overall_avg_bid_depth": agg_row["overall_avg_bid_depth"] if agg_row else 0,
+                "overall_avg_ask_depth": agg_row["overall_avg_ask_depth"] if agg_row else 0,
+                "overall_avg_spread": agg_row["overall_avg_spread"] if agg_row else 0,
+            }
+
+            conn.close()
+            return {
+                "per_game": per_game,
+                "spread_history": spread_history,
+                "aggregate": aggregate,
+            }
+
+        except Exception as e:
+            logger.debug(f"Error building liquidity stats: {e}")
+            return empty
 
     # ── Mappings Health ─────────────────────────────────────────────────────
 

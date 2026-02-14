@@ -854,7 +854,7 @@ export default function ArbDashboard() {
           break;
         }
         case "qty":
-          cmp = (a.contracts_filled || 0) - (b.contracts_filled || 0);
+          cmp = (a.contracts_intended || a.contracts_filled || 0) - (b.contracts_intended || b.contracts_filled || 0);
           break;
         case "phase":
           cmp = (a.execution_phase || "ioc").localeCompare(b.execution_phase || "ioc");
@@ -1413,7 +1413,7 @@ export default function ArbDashboard() {
                             </td>
                             <td
                               className={`px-2 py-1 text-right font-mono ${
-                                (t.contracts_filled || 1) > 1
+                                (t.contracts_intended || t.contracts_filled || 1) > 1
                                   ? "text-white font-bold"
                                   : "text-gray-500"
                               }`}
@@ -1423,7 +1423,9 @@ export default function ArbDashboard() {
                                   : undefined
                               }
                             >
-                              {t.contracts_filled || 1}
+                              {t.contracts_intended && t.contracts_intended !== t.contracts_filled
+                                ? <>{t.contracts_filled}<span className="text-gray-600">/{t.contracts_intended}</span></>
+                                : (t.contracts_intended ?? t.contracts_filled ?? 1)}
                             </td>
                             <td
                               className={`px-2 py-1 text-right font-mono ${spreadColor(t.spread_cents)}`}
@@ -2311,11 +2313,10 @@ export default function ArbDashboard() {
                                 {t.status}
                               </span>
                             </td>
-                            <td className={`px-2 py-1.5 text-right font-mono ${(t.contracts_filled || 0) > 1 ? "text-white font-bold" : "text-gray-500"}`}>
-                              {t.contracts_filled || 0}
-                              {t.contracts_intended && t.contracts_intended !== t.contracts_filled && (
-                                <span className="text-gray-600">/{t.contracts_intended}</span>
-                              )}
+                            <td className={`px-2 py-1.5 text-right font-mono ${(t.contracts_intended || t.contracts_filled || 0) > 1 ? "text-white font-bold" : "text-gray-500"}`}>
+                              {t.contracts_intended && t.contracts_intended !== t.contracts_filled
+                                ? <>{t.contracts_filled}<span className="text-gray-600">/{t.contracts_intended}</span></>
+                                : (t.contracts_intended ?? t.contracts_filled ?? 0)}
                             </td>
                             <td className={`px-2 py-1.5 text-right font-mono ${spreadColor(t.spread_cents)}`}>
                               {t.spread_cents.toFixed(1)}c

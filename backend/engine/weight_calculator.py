@@ -371,13 +371,23 @@ def apply_feedback_adjustments(sport: str) -> Dict:
         for pillar in PILLAR_KEYS:
             adjustment_log[pillar]["new_normalized"] = new_weights[pillar]
 
-        # 5. Upsert into calibration_config
-        db.client.table("calibration_config").upsert({
-            "sport_key": sport_upper,
-            "config_type": "pillar_weights",
-            "config_data": new_weights,
-            "active": True,
-        }, on_conflict="sport_key,config_type").execute()
+        # 5. Update or insert into calibration_config
+        # (Partial unique index doesn't work with Supabase upsert on_conflict)
+        existing = db.client.table("calibration_config").select("id").eq(
+            "sport_key", sport_upper
+        ).eq("config_type", "pillar_weights").eq("active", True).limit(1).execute()
+
+        if existing.data:
+            db.client.table("calibration_config").update({
+                "config_data": new_weights,
+            }).eq("id", existing.data[0]["id"]).execute()
+        else:
+            db.client.table("calibration_config").insert({
+                "sport_key": sport_upper,
+                "config_type": "pillar_weights",
+                "config_data": new_weights,
+                "active": True,
+            }).execute()
 
         # 6. Clear weight cache
         if sport_upper in _weight_cache:

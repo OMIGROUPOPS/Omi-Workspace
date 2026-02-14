@@ -106,6 +106,7 @@ class ResultsTracker:
             "pillar_shocks": pred.get("pillar_shocks"),
             "pillar_time_decay": pred.get("pillar_time_decay"),
             "pillar_flow": pred.get("pillar_flow"),
+            "pillar_game_environment": pred.get("pillar_game_environment"),
 
             # Best bet
             "best_bet_market": pred.get("best_bet_market"),

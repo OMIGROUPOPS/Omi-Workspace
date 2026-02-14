@@ -210,17 +210,30 @@ class ModelFeedback:
             try:
                 result = self.client.table("game_results").select(
                     "game_id, pillar_execution, pillar_incentives, pillar_shocks, "
-                    "pillar_time_decay, pillar_flow, pillar_game_environment, "
+                    "pillar_time_decay, pillar_flow, "
                     "home_score, away_score, closing_spread_home, closing_total_line"
                 ).in_("game_id", batch).execute()
+
+                # Try fetching game_environment separately (column may not exist yet)
+                ge_map = {}
+                try:
+                    ge_result = self.client.table("game_results").select(
+                        "game_id, pillar_game_environment"
+                    ).in_("game_id", batch).execute()
+                    for r in (ge_result.data or []):
+                        ge_map[r["game_id"]] = r.get("pillar_game_environment")
+                except Exception:
+                    pass  # Column doesn't exist yet — game_environment will be None
+
                 for row in (result.data or []):
-                    pillar_map[row["game_id"]] = {
+                    gid = row["game_id"]
+                    pillar_map[gid] = {
                         "execution": row.get("pillar_execution"),
                         "incentives": row.get("pillar_incentives"),
                         "shocks": row.get("pillar_shocks"),
                         "time_decay": row.get("pillar_time_decay"),
                         "flow": row.get("pillar_flow"),
-                        "game_environment": row.get("pillar_game_environment"),
+                        "game_environment": ge_map.get(gid),
                         "home_score": row.get("home_score"),
                         "away_score": row.get("away_score"),
                         "closing_spread": row.get("closing_spread_home"),

@@ -75,6 +75,7 @@ class Database:
                 "pillar_shocks": analysis["pillar_scores"]["shocks"],
                 "pillar_time_decay": analysis["pillar_scores"]["time_decay"],
                 "pillar_flow": analysis["pillar_scores"]["flow"],
+                "pillar_game_environment": analysis["pillar_scores"].get("game_environment"),
                 "composite_score": analysis["composite_score"],
                 "best_bet_market": analysis.get("best_bet"),
                 "best_edge_pct": analysis.get("best_edge", 0),

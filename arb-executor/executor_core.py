@@ -79,6 +79,10 @@ PM_DISPLAY_TO_KALSHI = {
 # IMPORTANT: intent=3 price uses direct underdog price (not inverted)
 # Underdog ask = 100 - pm_long_team_bid
 
+# Reverse intent mapping for unwinding PM positions:
+# BUY_LONG(1) ↔ SELL_LONG(2), BUY_SHORT(3) ↔ SELL_SHORT(4)
+REVERSE_INTENT = {1: 2, 2: 1, 3: 4, 4: 3}
+
 TRADE_PARAMS = {
     # ==========================================================================
     # Case 1: BUY_PM_SELL_K, team IS pm_long_team
@@ -1031,11 +1035,11 @@ async def execute_arb(
         if not spread_ok:
             print(f"[GTC] Spread gone before K order ({current_spread}c), unwinding PM...")
             original_intent = params['pm_intent']
-            reverse_intent = 2 if original_intent == 1 else 1
+            reverse_intent = REVERSE_INTENT[original_intent]
             unwind_buffer = 3
-            if reverse_intent == 2:
+            if reverse_intent in (2, 4):  # SELL_LONG or SELL_SHORT: accept less
                 unwind_price_cents_gtc = max(pm_price_cents - unwind_buffer, 1)
-            else:
+            else:  # BUY_LONG or BUY_SHORT: pay more
                 unwind_price_cents_gtc = min(pm_price_cents + unwind_buffer, 99)
             unwind_price_gtc = unwind_price_cents_gtc / 100.0
             try:
@@ -1082,9 +1086,9 @@ async def execute_arb(
 
         # Try to unwind PM position
         original_intent = params['pm_intent']
-        reverse_intent = 2 if original_intent == 1 else 1
+        reverse_intent = REVERSE_INTENT[original_intent]
         unwind_buffer = 3
-        unwind_price_cents = max(pm_price_cents - unwind_buffer, 1) if reverse_intent == 2 else min(pm_price_cents + unwind_buffer, 99)
+        unwind_price_cents = max(pm_price_cents - unwind_buffer, 1) if reverse_intent in (2, 4) else min(pm_price_cents + unwind_buffer, 99)
         unwind_price = unwind_price_cents / 100.0
 
         try:
@@ -1152,20 +1156,18 @@ async def execute_arb(
         # KALSHI FAILED - Attempt to unwind PM position immediately
         print(f"[RECOVERY] Kalshi failed to fill - unwinding PM position...")
 
-        # Determine reverse intent: if we bought (1), sell (2); if we sold (2), buy (1)
+        # Determine reverse intent: 1↔2 (BUY_LONG↔SELL_LONG), 3↔4 (BUY_SHORT↔SELL_SHORT)
         original_intent = params['pm_intent']
-        reverse_intent = 2 if original_intent == 1 else 1  # BUY_YES=1 -> SELL_YES=2
+        reverse_intent = REVERSE_INTENT[original_intent]
 
         # For unwinding, we need to be aggressive with price to ensure fill
-        # If selling (intent=2): use bid - buffer (willing to take less)
-        # If buying (intent=1): use ask + buffer (willing to pay more)
+        # If selling (intent=2,4): use bid - buffer (willing to take less)
+        # If buying (intent=1,3): use ask + buffer (willing to pay more)
         unwind_buffer = 3  # 3c buffer for aggressive exit
 
-        if reverse_intent == 2:  # SELL_YES to close long
-            # Get current bid to sell at
+        if reverse_intent in (2, 4):  # SELL_LONG or SELL_SHORT to close
             unwind_price_cents = max(pm_price_cents - unwind_buffer, 1)
-        else:  # BUY_YES to close short
-            # Get current ask to buy at
+        else:  # BUY_LONG or BUY_SHORT to close
             unwind_price_cents = min(pm_price_cents + unwind_buffer, 99)
 
         unwind_price = unwind_price_cents / 100.0
@@ -1187,9 +1189,9 @@ async def execute_arb(
 
             if unwind_filled > 0:
                 # Calculate loss from the spread
-                if reverse_intent == 2:  # We sold to close
+                if reverse_intent in (2, 4):  # We sold to close (SELL_LONG or SELL_SHORT)
                     loss_cents = (pm_fill_price * 100) - (unwind_fill_price * 100)
-                else:  # We bought to close
+                else:  # We bought to close (BUY_LONG or BUY_SHORT)
                     loss_cents = (unwind_fill_price * 100) - (pm_fill_price * 100)
 
                 print(f"[RECOVERY] PM UNWOUND: Closed {unwind_filled} @ ${unwind_fill_price:.3f}")
@@ -1248,11 +1250,11 @@ async def execute_arb(
         print(f"[RECOVERY] Kalshi partial fill: {k_filled}/{pm_filled} — unwinding {excess} excess PM contracts")
 
         original_intent = params['pm_intent']
-        reverse_intent = 2 if original_intent == 1 else 1
+        reverse_intent = REVERSE_INTENT[original_intent]
         unwind_buffer = 3
-        if reverse_intent == 2:
+        if reverse_intent in (2, 4):  # SELL_LONG or SELL_SHORT: accept less
             unwind_price_cents_partial = max(pm_price_cents - unwind_buffer, 1)
-        else:
+        else:  # BUY_LONG or BUY_SHORT: pay more
             unwind_price_cents_partial = min(pm_price_cents + unwind_buffer, 99)
         unwind_price_partial = unwind_price_cents_partial / 100.0
 

@@ -1068,6 +1068,12 @@ class PreGameMapper:
                             "teams": {},
                         }
                     kalshi_games[game_id]["teams"][team] = ticker
+                    # Store Kalshi yes_bid for pm_long_team sanity check
+                    yes_bid = mkt.get("yes_bid")
+                    if yes_bid is not None:
+                        if "prices" not in kalshi_games[game_id]:
+                            kalshi_games[game_id]["prices"] = {}
+                        kalshi_games[game_id]["prices"][team] = int(yes_bid)
 
             # Build cache keys for Kalshi games
             kalshi_by_cache_key = {}
@@ -1547,14 +1553,50 @@ class PreGameMapper:
                     entry[f"team_{team_abbrev.lower()}_outcome_index"] = idx
                     entry[f"team_{team_abbrev.lower()}_token_id"] = token_ids.get(idx, "")
 
+                # ── pm_long_team sanity check using Kalshi prices ──
+                # PM bestBid is in long-team frame. If it diverges from Kalshi
+                # price for pm_long_team by >15c, the long flag may be wrong.
+                if pm_long_team:
+                    k_prices = k_game.get("prices", {})
+                    k_long_price = k_prices.get(pm_long_team)
+                    pm_best_bid_raw = mkt_data.get("bestBid")
+                    pm_best_bid = None
+                    if pm_best_bid_raw is not None:
+                        try:
+                            val = float(pm_best_bid_raw)
+                            # PM prices may be 0-1 (decimal) or 0-100 (cents)
+                            pm_best_bid = int(val * 100) if val <= 1 else int(val)
+                        except (ValueError, TypeError):
+                            pass
+
+                    if k_long_price is not None and pm_best_bid is not None and pm_best_bid > 0:
+                        diff = abs(k_long_price - pm_best_bid)
+                        inv_diff = abs(k_long_price - (100 - pm_best_bid))
+                        if diff > 15 and inv_diff < diff:
+                            # Other team in the game
+                            other_teams = [t for t in k_teams_normalized if t != pm_long_team]
+                            other_team = other_teams[0] if other_teams else "?"
+                            logger.warning(
+                                f"  [SWAP] {cache_key}: pm_long_team {pm_long_team} "
+                                f"price mismatch! Kalshi {pm_long_team}={k_long_price}c "
+                                f"vs PM bestBid={pm_best_bid}c (diff={diff}c). "
+                                f"Inverted={100 - pm_best_bid}c (diff={inv_diff}c). "
+                                f"Swapping pm_long_team to {other_team}"
+                            )
+                            entry["pm_long_team"] = other_team
+                            entry["pm_long_team_swapped"] = True
+                            entry["pm_long_team_original"] = pm_long_team
+
                 verified_games[cache_key] = entry
                 self.stats["verified"] += 1
                 team0 = outcome_map.get(0, {}).get("team", "?") if outcome_map.get(0) else "?"
                 team1 = outcome_map.get(1, {}).get("team", "?") if outcome_map.get(1) else "?"
+                swap_note = " [SWAPPED]" if entry.get("pm_long_team_swapped") else ""
                 logger.info(
                     f"  [OK] {cache_key}: "
                     f"outcome[0]={team0} "
                     f"outcome[1]={team1}"
+                    f"{swap_note}"
                 )
 
             # --- Step 5: Write output ---

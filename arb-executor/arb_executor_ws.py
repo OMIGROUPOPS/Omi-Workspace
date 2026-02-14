@@ -135,6 +135,12 @@ pm_slug_to_cache_keys: Dict[str, List[str]] = {}
 # Verified mappings
 VERIFIED_MAPS: Dict = {}
 
+# Games flagged for pm_long_team price mismatch — skip trading until manually verified
+# Set of cache_keys where PM WS prices diverge from Kalshi by >15c on first arrival
+price_mismatch_games: set = set()
+# Track which cache_keys have already been sanity-checked (only check once per session)
+_pm_price_checked: set = set()
+
 # Signal file for hot-reload (written by auto_mapper.py)
 MAPPINGS_SIGNAL_FILE = os.path.join(os.path.dirname(__file__) or '.', 'mappings_updated.flag')
 _last_signal_check: float = 0
@@ -1031,6 +1037,34 @@ class PMWebSocket:
             pm_outcomes = mapping.get('pm_outcomes', {})
             pm_long_team = mapping.get('pm_long_team', '')
 
+            # ── Runtime pm_long_team sanity check (once per game per session) ──
+            if cache_key not in _pm_price_checked and pm_long_team:
+                _pm_price_checked.add(cache_key)
+                pm_mid = (best_bid + best_ask) / 2  # PM WS price in long-team frame
+                # Find Kalshi price for pm_long_team
+                kalshi_tickers = mapping.get('kalshi_tickers', {})
+                k_ticker = kalshi_tickers.get(pm_long_team)
+                if k_ticker and k_ticker in local_books:
+                    k_book = local_books[k_ticker]
+                    k_bid = k_book.get('best_bid')
+                    k_ask = k_book.get('best_ask')
+                    if k_bid is not None and k_ask is not None:
+                        k_mid = (k_bid + k_ask) / 2
+                        diff = abs(k_mid - pm_mid)
+                        # Also check if the OTHER team's price matches better
+                        inv_pm_mid = 100 - pm_mid  # inverted = other team's price
+                        inv_diff = abs(k_mid - inv_pm_mid)
+                        if diff > 15 and inv_diff < diff:
+                            price_mismatch_games.add(cache_key)
+                            print(
+                                f"[WARN] Price mismatch on {cache_key}: "
+                                f"PM long team {pm_long_team} WS mid={pm_mid:.0f}c "
+                                f"vs Kalshi {pm_long_team} mid={k_mid:.0f}c "
+                                f"(diff={diff:.0f}c, inverted diff={inv_diff:.0f}c) "
+                                f"— skipping trades on this game",
+                                flush=True,
+                            )
+
             for idx_str, outcome_data in pm_outcomes.items():
                 team = outcome_data.get('team')
                 outcome_idx = outcome_data.get('outcome_index')
@@ -1147,6 +1181,10 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
 
     # Check blacklist (uses shared state from executor_core)
     if arb.game in blacklisted_games or arb.cache_key in blacklisted_games:
+        return
+
+    # Check price mismatch (pm_long_team sanity check failed at runtime)
+    if arb.cache_key in price_mismatch_games:
         return
 
     # Check kill switch
@@ -1786,6 +1824,10 @@ async def check_and_reload_mappings(k_ws, pm_ws, pusher=None) -> bool:
         return False
 
     VERIFIED_MAPS = new_maps
+
+    # Clear runtime sanity-check caches so reloaded games get re-checked
+    price_mismatch_games.clear()
+    _pm_price_checked.clear()
 
     # Update pusher's reference to the new VERIFIED_MAPS (it was reassigned above)
     if pusher:

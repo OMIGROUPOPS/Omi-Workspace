@@ -124,14 +124,31 @@ class DashboardPusher:
             "liquidity_stats": liquidity_stats,
         }
 
+        # Size check: drop liquidity_stats if payload too large (Vercel 4.5MB limit)
+        payload_json = json.dumps(payload)
+        payload_size = len(payload_json)
+        if payload_size > 4_000_000:
+            liq_size = len(json.dumps(liquidity_stats))
+            print(
+                f"[DASH] WARNING: Payload {payload_size/1e6:.1f}MB exceeds 4MB limit "
+                f"(liquidity_stats={liq_size/1e6:.1f}MB), dropping liquidity_stats",
+                flush=True,
+            )
+            payload.pop("liquidity_stats", None)
+            payload_json = json.dumps(payload)
+            payload_size = len(payload_json)
+
         # Debug: log payload summary every push
         bal_k = balances.get("kalshi_balance", 0)
         bal_p = balances.get("pm_balance", 0)
+        liq_games = len(liquidity_stats.get("per_game", []))
+        liq_hist = len(liquidity_stats.get("spread_history", []))
         print(
             f"[DASH] Push: {len(spreads)} spreads, {len(trades)} trades, "
             f"{len(positions)} positions, bal K=${bal_k} PM=${bal_p}, "
             f"{system.get('games_monitored', 0)} games, "
-            f"tickers_ref={len(self.ticker_to_cache_key)} books_ref={len(self.local_books)}",
+            f"liq={liq_games}g/{liq_hist}pts, "
+            f"size={payload_size/1e3:.0f}KB",
             flush=True,
         )
 
@@ -475,7 +492,13 @@ class DashboardPusher:
     # ── Liquidity Stats ────────────────────────────────────────────────────
 
     def _build_liquidity_stats(self) -> dict:
-        """Query orderbook_data.db for per-game liquidity aggregates."""
+        """Query orderbook_data.db for per-game liquidity aggregates.
+
+        Optimized to stay under Vercel's 4.5MB payload limit:
+        - Per-game table: only games active in last 2h
+        - Spread history: top 10 games by snapshot count, 10-min downsample
+        - All floats rounded to 1 decimal place
+        """
         empty = {"per_game": [], "spread_history": [], "aggregate": {}}
 
         if not os.path.exists(ORDERBOOK_DB_PATH):
@@ -485,10 +508,11 @@ class DashboardPusher:
             conn = sqlite3.connect(ORDERBOOK_DB_PATH, timeout=3)
             conn.row_factory = sqlite3.Row
 
-            # Only look at last 24h of data
-            cutoff = (datetime.now(timezone.utc) - timedelta(hours=24)).isoformat()
+            now = datetime.now(timezone.utc)
+            cutoff_24h = (now - timedelta(hours=24)).isoformat()
+            cutoff_2h = (now - timedelta(hours=2)).isoformat()
 
-            # Per-game aggregates
+            # Per-game aggregates — only games active in last 2h
             per_game_rows = conn.execute("""
                 SELECT
                     game_id,
@@ -505,8 +529,9 @@ class DashboardPusher:
                 FROM orderbook_snapshots
                 WHERE timestamp > ?
                 GROUP BY game_id, platform
-                ORDER BY game_id, platform
-            """, (cutoff,)).fetchall()
+                HAVING MAX(timestamp) > ?
+                ORDER BY snapshots DESC
+            """, (cutoff_24h, cutoff_2h)).fetchall()
 
             per_game = []
             for r in per_game_rows:
@@ -514,60 +539,67 @@ class DashboardPusher:
                     "game_id": r["game_id"],
                     "platform": r["platform"],
                     "snapshots": r["snapshots"],
-                    "avg_bid_depth": r["avg_bid_depth"] or 0,
-                    "avg_ask_depth": r["avg_ask_depth"] or 0,
-                    "avg_spread": r["avg_spread"] or 0,
-                    "min_spread": r["min_spread"] or 0,
-                    "max_spread": r["max_spread"] or 0,
+                    "avg_bid_depth": round(r["avg_bid_depth"] or 0, 1),
+                    "avg_ask_depth": round(r["avg_ask_depth"] or 0, 1),
+                    "avg_spread": round(r["avg_spread"] or 0, 1),
+                    "min_spread": round(r["min_spread"] or 0, 1),
+                    "max_spread": round(r["max_spread"] or 0, 1),
                     "best_bid_seen": r["best_bid_seen"] or 0,
                     "best_ask_seen": r["best_ask_seen"] or 0,
                     "last_snapshot": r["last_snapshot"] or "",
                 })
 
-            # Spread history — last 6h, sampled every ~2 min per game+platform
-            spread_cutoff = (datetime.now(timezone.utc) - timedelta(hours=6)).isoformat()
-            spread_rows = conn.execute("""
-                SELECT
-                    game_id,
-                    platform,
-                    timestamp,
-                    best_bid,
-                    best_ask,
-                    bid_depth,
-                    ask_depth,
-                    spread
+            # Top 10 games by snapshot count for spread history
+            top_games_rows = conn.execute("""
+                SELECT game_id, COUNT(*) as cnt
                 FROM orderbook_snapshots
                 WHERE timestamp > ?
-                ORDER BY timestamp ASC
-            """, (spread_cutoff,)).fetchall()
+                GROUP BY game_id
+                ORDER BY cnt DESC
+                LIMIT 10
+            """, (cutoff_2h,)).fetchall()
+            top_game_ids = [r["game_id"] for r in top_games_rows]
 
-            # Downsample to ~2 min intervals per game+platform
-            spread_history = []
-            last_ts: Dict[str, str] = {}
-            for r in spread_rows:
-                key = f"{r['game_id']}_{r['platform']}"
-                ts = r["timestamp"]
-                if key in last_ts:
-                    try:
-                        prev = datetime.fromisoformat(last_ts[key])
-                        curr = datetime.fromisoformat(ts)
-                        if (curr - prev).total_seconds() < 120:
-                            continue
-                    except (ValueError, TypeError):
-                        pass
-                last_ts[key] = ts
-                spread_history.append({
-                    "game_id": r["game_id"],
-                    "platform": r["platform"],
-                    "timestamp": ts,
-                    "best_bid": r["best_bid"] or 0,
-                    "best_ask": r["best_ask"] or 0,
-                    "bid_depth": r["bid_depth"] or 0,
-                    "ask_depth": r["ask_depth"] or 0,
-                    "spread": r["spread"] or 0,
-                })
+            # Spread history — last 6h, only top 10 games, 10-min downsample
+            spread_history: list = []
+            if top_game_ids:
+                placeholders = ",".join("?" for _ in top_game_ids)
+                spread_cutoff = (now - timedelta(hours=6)).isoformat()
+                spread_rows = conn.execute(f"""
+                    SELECT
+                        game_id, platform, timestamp,
+                        best_bid, best_ask, bid_depth, ask_depth, spread
+                    FROM orderbook_snapshots
+                    WHERE timestamp > ? AND game_id IN ({placeholders})
+                    ORDER BY timestamp ASC
+                """, (spread_cutoff, *top_game_ids)).fetchall()
 
-            # Aggregate stats across all games
+                # Downsample to 10-min intervals per game+platform
+                last_ts: Dict[str, str] = {}
+                for r in spread_rows:
+                    key = f"{r['game_id']}_{r['platform']}"
+                    ts = r["timestamp"]
+                    if key in last_ts:
+                        try:
+                            prev = datetime.fromisoformat(last_ts[key])
+                            curr = datetime.fromisoformat(ts)
+                            if (curr - prev).total_seconds() < 600:
+                                continue
+                        except (ValueError, TypeError):
+                            pass
+                    last_ts[key] = ts
+                    spread_history.append({
+                        "game_id": r["game_id"],
+                        "platform": r["platform"],
+                        "timestamp": ts,
+                        "best_bid": r["best_bid"] or 0,
+                        "best_ask": r["best_ask"] or 0,
+                        "bid_depth": r["bid_depth"] or 0,
+                        "ask_depth": r["ask_depth"] or 0,
+                        "spread": r["spread"] or 0,
+                    })
+
+            # Aggregate stats across all games (24h)
             agg_row = conn.execute("""
                 SELECT
                     COUNT(*) as total_snapshots,
@@ -577,14 +609,14 @@ class DashboardPusher:
                     ROUND(AVG(spread), 1) as overall_avg_spread
                 FROM orderbook_snapshots
                 WHERE timestamp > ?
-            """, (cutoff,)).fetchone()
+            """, (cutoff_24h,)).fetchone()
 
             aggregate = {
                 "total_snapshots": agg_row["total_snapshots"] if agg_row else 0,
                 "unique_games": agg_row["unique_games"] if agg_row else 0,
-                "overall_avg_bid_depth": agg_row["overall_avg_bid_depth"] if agg_row else 0,
-                "overall_avg_ask_depth": agg_row["overall_avg_ask_depth"] if agg_row else 0,
-                "overall_avg_spread": agg_row["overall_avg_spread"] if agg_row else 0,
+                "overall_avg_bid_depth": round(agg_row["overall_avg_bid_depth"] or 0, 1) if agg_row else 0,
+                "overall_avg_ask_depth": round(agg_row["overall_avg_ask_depth"] or 0, 1) if agg_row else 0,
+                "overall_avg_spread": round(agg_row["overall_avg_spread"] or 0, 1) if agg_row else 0,
             }
 
             conn.close()

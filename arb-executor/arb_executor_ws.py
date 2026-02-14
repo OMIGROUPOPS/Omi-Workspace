@@ -151,6 +151,9 @@ SIGNAL_CHECK_INTERVAL = 60  # Check every 60 seconds
 # A cache_key is added before execution starts and removed in a finally block
 executing_games: set = set()
 
+# Per-game cooldown after SUCCESS — prevents re-trading same game too quickly
+game_success_cooldown: Dict[str, float] = {}
+
 # Live balances (refreshed periodically, read by dashboard pusher)
 live_balances: Dict = {
     "kalshi_balance": 0, "pm_balance": 0,  # backwards-compat (used by sizing)
@@ -1202,6 +1205,12 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
         print(f"[EXEC] Kill switch active - skipping")
         return
 
+    # Per-game cooldown after SUCCESS — prevent stacking losses
+    if arb.cache_key in game_success_cooldown:
+        elapsed = time.time() - game_success_cooldown[arb.cache_key]
+        if elapsed < 30:  # 30 second cooldown after success
+            return
+
     # Per-game execution guard — prevent concurrent execution on same game
     if arb.cache_key in executing_games:
         return
@@ -1321,6 +1330,9 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                     TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
                     TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
                     TRADE_LOG[-1]['is_maker'] = result.is_maker
+
+                # Cooldown: prevent re-trading same game too quickly
+                game_success_cooldown[arb.cache_key] = time.time()
 
                 # Persist traded game to prevent duplicates across restarts
                 save_traded_game(arb.game, pm_slug=arb.pm_slug, team=arb.team)

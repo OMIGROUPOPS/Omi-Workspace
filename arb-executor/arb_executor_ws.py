@@ -147,6 +147,10 @@ MAPPINGS_SIGNAL_FILE = os.path.join(os.path.dirname(__file__) or '.', 'mappings_
 _last_signal_check: float = 0
 SIGNAL_CHECK_INTERVAL = 60  # Check every 60 seconds
 
+# Per-game execution guard — prevents concurrent execution on the same game
+# A cache_key is added before execution starts and removed in a finally block
+executing_games: set = set()
+
 # Live balances (refreshed periodically, read by dashboard pusher)
 live_balances: Dict = {"kalshi_balance": 0, "pm_balance": 0, "updated_at": ""}
 # Live positions fetched from platform APIs (list of Position dicts for dashboard)
@@ -1193,190 +1197,199 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
         print(f"[EXEC] Kill switch active - skipping")
         return
 
-    # Get mapping for trade verification
-    mapping = VERIFIED_MAPS.get(arb.cache_key)
-    if not mapping:
-        print(f"[EXEC] No mapping for {arb.cache_key} - skipping")
+    # Per-game execution guard — prevent concurrent execution on same game
+    if arb.cache_key in executing_games:
         return
+    executing_games.add(arb.cache_key)
 
-    # Verify this trade would create a proper hedge
-    if not run_trade_verification(mapping, arb.team, arb.direction):
-        print(f"[FATAL] Trade verification failed for {arb.game} {arb.team}")
-        print(f"[FATAL] This trade would NOT create a hedge. Aborting.")
-        log_skipped_arb(arb, 'hedge_verification_failed', 'Trade would not create proper hedge')
-        return
+    try:
+        # Get mapping for trade verification
+        mapping = VERIFIED_MAPS.get(arb.cache_key)
+        if not mapping:
+            print(f"[EXEC] No mapping for {arb.cache_key} - skipping")
+            return
 
-    print(f"\n[SPREAD] {arb.game} {arb.team}: {arb.net_spread}c ({arb.direction})")
-    print(f"  Kalshi: bid={arb.k_bid}c x{arb.k_bid_size} / ask={arb.k_ask}c x{arb.k_ask_size}")
-    print(f"  PM (WS): bid={arb.pm_bid}c x{arb.pm_bid_size} / ask={arb.pm_ask}c x{arb.pm_ask_size}")
+        # Verify this trade would create a proper hedge
+        if not run_trade_verification(mapping, arb.team, arb.direction):
+            print(f"[FATAL] Trade verification failed for {arb.game} {arb.team}")
+            print(f"[FATAL] This trade would NOT create a hedge. Aborting.")
+            log_skipped_arb(arb, 'hedge_verification_failed', 'Trade would not create proper hedge')
+            return
 
-    # -------------------------------------------------------------------------
-    # NO REST CONFIRMATION - Trust WS prices + PM buffer
-    # PM-first execution means bad price = PM order expires = no harm
-    # Saves 50-100ms latency where competitors steal spreads
-    # -------------------------------------------------------------------------
-    stats['spreads_detected'] += 1
+        print(f"\n[SPREAD] {arb.game} {arb.team}: {arb.net_spread}c ({arb.direction})")
+        print(f"  Kalshi: bid={arb.k_bid}c x{arb.k_bid_size} / ask={arb.k_ask}c x{arb.k_ask_size}")
+        print(f"  PM (WS): bid={arb.pm_bid}c x{arb.pm_bid_size} / ask={arb.pm_ask}c x{arb.pm_ask_size}")
 
-    # Estimate profit
-    net_profit, breakdown = estimate_net_profit_cents(arb)
-    if net_profit < Config.min_profit_cents:
-        print(f"[EXEC] Net profit {net_profit:.1f}c < min {Config.min_profit_cents}c - skipping")
-        log_skipped_arb(arb, 'low_profit', f'Net {net_profit:.1f}c < min {Config.min_profit_cents}c')
-        return
+        # ---------------------------------------------------------------------
+        # NO REST CONFIRMATION - Trust WS prices + PM buffer
+        # PM-first execution means bad price = PM order expires = no harm
+        # Saves 50-100ms latency where competitors steal spreads
+        # ---------------------------------------------------------------------
+        stats['spreads_detected'] += 1
 
-    print(f"[EXEC] Est. net profit: {net_profit:.1f}c/contract")
+        # Estimate profit
+        net_profit, breakdown = estimate_net_profit_cents(arb)
+        if net_profit < Config.min_profit_cents:
+            print(f"[EXEC] Net profit {net_profit:.1f}c < min {Config.min_profit_cents}c - skipping")
+            log_skipped_arb(arb, 'low_profit', f'Net {net_profit:.1f}c < min {Config.min_profit_cents}c')
+            return
 
-    # -------------------------------------------------------------------------
-    # Depth-aware sizing
-    # -------------------------------------------------------------------------
-    is_long_team = (arb.team == arb.pm_long_team)
-    kalshi_book = local_books.get(arb.kalshi_ticker, {})
-    pm_depth = pm_books.get(arb.pm_slug, {})
+        print(f"[EXEC] Est. net profit: {net_profit:.1f}c/contract")
 
-    if pm_depth and pm_depth.get('bids') and pm_depth.get('asks'):
-        sizing = calculate_optimal_size(
-            kalshi_book=kalshi_book, pm_depth=pm_depth,
-            direction=arb.direction, is_long_team=is_long_team,
-            pm_balance_cents=int(live_balances.get('pm_balance', 0) * 100),
-            k_balance_cents=int(live_balances.get('kalshi_balance', 0) * 100),
-            max_contracts=Config.max_contracts,
-        )
-        optimal_size = sizing['size']
-    else:
-        optimal_size = 1  # Fallback: no depth data
-        sizing = {'expected_profit_cents': net_profit, 'avg_spread_cents': arb.net_spread,
-                  'avg_pm_price': 0, 'avg_k_price': 0, 'k_depth': 0, 'pm_depth': 0, 'limit_reason': 'no_depth_data'}
+        # -----------------------------------------------------------------
+        # Depth-aware sizing
+        # -----------------------------------------------------------------
+        is_long_team = (arb.team == arb.pm_long_team)
+        kalshi_book = local_books.get(arb.kalshi_ticker, {})
+        pm_depth = pm_books.get(arb.pm_slug, {})
 
-    if optimal_size == 0:
-        log_skipped_arb(arb, 'depth_zero', 'No profitable contracts after depth walk')
-        return
+        if pm_depth and pm_depth.get('bids') and pm_depth.get('asks'):
+            sizing = calculate_optimal_size(
+                kalshi_book=kalshi_book, pm_depth=pm_depth,
+                direction=arb.direction, is_long_team=is_long_team,
+                pm_balance_cents=int(live_balances.get('pm_balance', 0) * 100),
+                k_balance_cents=int(live_balances.get('kalshi_balance', 0) * 100),
+                max_contracts=Config.max_contracts,
+            )
+            optimal_size = sizing['size']
+        else:
+            optimal_size = 1  # Fallback: no depth data
+            sizing = {'expected_profit_cents': net_profit, 'avg_spread_cents': arb.net_spread,
+                      'avg_pm_price': 0, 'avg_k_price': 0, 'k_depth': 0, 'pm_depth': 0, 'limit_reason': 'no_depth_data'}
 
-    arb.size = optimal_size  # Update for log_trade's contracts_intended field
+        if optimal_size == 0:
+            log_skipped_arb(arb, 'depth_zero', 'No profitable contracts after depth walk')
+            return
 
-    print(f"[EXEC] Sized: {optimal_size} contracts (limit: {sizing.get('limit_reason', '?')}), "
-          f"est ${sizing['expected_profit_cents']/100:.2f} profit")
+        arb.size = optimal_size  # Update for log_trade's contracts_intended field
 
-    # Build sizing_details dict for trade log
-    _sizing_details = {
-        'avg_spread_cents': sizing.get('avg_spread_cents', 0),
-        'expected_profit_cents': sizing.get('expected_profit_cents', 0),
-        'k_depth': sizing.get('k_depth', 0),
-        'pm_depth': sizing.get('pm_depth', 0),
-        'limit_reason': sizing.get('limit_reason', ''),
-    }
+        print(f"[EXEC] Sized: {optimal_size} contracts (limit: {sizing.get('limit_reason', '?')}), "
+              f"est ${sizing['expected_profit_cents']/100:.2f} profit")
 
-    # -------------------------------------------------------------------------
-    # Execute via executor_core (clean execution engine)
-    # -------------------------------------------------------------------------
-    async with EXECUTION_LOCK:
-        print(f"[EXEC] Executing {optimal_size} contract(s) via executor_core...")
+        # Build sizing_details dict for trade log
+        _sizing_details = {
+            'avg_spread_cents': sizing.get('avg_spread_cents', 0),
+            'expected_profit_cents': sizing.get('expected_profit_cents', 0),
+            'k_depth': sizing.get('k_depth', 0),
+            'pm_depth': sizing.get('pm_depth', 0),
+            'limit_reason': sizing.get('limit_reason', ''),
+        }
 
-        result = await execute_arb(
-            arb=arb,
-            session=session,
-            kalshi_api=kalshi_api,
-            pm_api=pm_api,
-            pm_slug=arb.pm_slug,
-            pm_outcome_idx=arb.pm_outcome_index,
-            size=optimal_size,
-            k_book_ref=local_books.get(arb.kalshi_ticker),
-        )
+        # -----------------------------------------------------------------
+        # Execute via executor_core (clean execution engine)
+        # -----------------------------------------------------------------
+        async with EXECUTION_LOCK:
+            print(f"[EXEC] Executing {optimal_size} contract(s) via executor_core...")
 
-        # Handle result — only apply cooldown when PM order was actually sent
-        pm_was_sent = result.pm_order_ms > 0 or result.success or result.unhedged
-        if pm_was_sent:
-            last_trade_time = time.time()
+            result = await execute_arb(
+                arb=arb,
+                session=session,
+                kalshi_api=kalshi_api,
+                pm_api=pm_api,
+                pm_slug=arb.pm_slug,
+                pm_outcome_idx=arb.pm_outcome_index,
+                size=optimal_size,
+                k_book_ref=local_books.get(arb.kalshi_ticker),
+            )
 
-        if result.success:
-            # Show timing breakdown: PM first (unreliable) → K second (reliable)
-            phase = " [GTC]" if result.execution_phase == "gtc" else ""
-            maker = " (MAKER)" if result.is_maker else ""
-            timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
-            if result.gtc_rest_time_ms > 0:
-                timing += f" (GTC: {result.gtc_rest_time_ms}ms, {result.gtc_spread_checks} checks)"
-            print(f"[EXEC]{phase} SUCCESS{maker}: PM={result.pm_filled}@{result.pm_price:.2f}, K={result.kalshi_filled}@{result.kalshi_price}c | {timing}")
-            # Build result dicts for log_trade compatibility
-            k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
-            pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
-            log_trade(arb, k_result, pm_result, 'SUCCESS', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
-            if TRADE_LOG:
-                TRADE_LOG[-1]['sizing_details'] = _sizing_details
-                TRADE_LOG[-1]['execution_phase'] = result.execution_phase
-                TRADE_LOG[-1]['gtc_rest_time_ms'] = result.gtc_rest_time_ms
-                TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
-                TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
-                TRADE_LOG[-1]['is_maker'] = result.is_maker
+            # Handle result — only apply cooldown when PM order was actually sent
+            pm_was_sent = result.pm_order_ms > 0 or result.success or result.unhedged
+            if pm_was_sent:
+                last_trade_time = time.time()
 
-            # Persist traded game to prevent duplicates across restarts
-            save_traded_game(arb.game, pm_slug=arb.pm_slug, team=arb.team)
+            if result.success:
+                # Show timing breakdown: PM first (unreliable) → K second (reliable)
+                phase = " [GTC]" if result.execution_phase == "gtc" else ""
+                maker = " (MAKER)" if result.is_maker else ""
+                timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
+                if result.gtc_rest_time_ms > 0:
+                    timing += f" (GTC: {result.gtc_rest_time_ms}ms, {result.gtc_spread_checks} checks)"
+                print(f"[EXEC]{phase} SUCCESS{maker}: PM={result.pm_filled}@{result.pm_price:.2f}, K={result.kalshi_filled}@{result.kalshi_price}c | {timing}")
+                # Build result dicts for log_trade compatibility
+                k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
+                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
+                log_trade(arb, k_result, pm_result, 'SUCCESS', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
+                if TRADE_LOG:
+                    TRADE_LOG[-1]['sizing_details'] = _sizing_details
+                    TRADE_LOG[-1]['execution_phase'] = result.execution_phase
+                    TRADE_LOG[-1]['gtc_rest_time_ms'] = result.gtc_rest_time_ms
+                    TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
+                    TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
+                    TRADE_LOG[-1]['is_maker'] = result.is_maker
 
-            stats['spreads_executed'] += 1
+                # Persist traded game to prevent duplicates across restarts
+                save_traded_game(arb.game, pm_slug=arb.pm_slug, team=arb.team)
 
-            # Check max trades limit
-            if MAX_TRADES_LIMIT > 0 and stats['spreads_executed'] >= MAX_TRADES_LIMIT:
+                stats['spreads_executed'] += 1
+
+                # Check max trades limit
+                if MAX_TRADES_LIMIT > 0 and stats['spreads_executed'] >= MAX_TRADES_LIMIT:
+                    print("\n" + "=" * 70)
+                    print(f"MAX TRADES REACHED ({MAX_TRADES_LIMIT}) — STOPPING")
+                    print("=" * 70)
+                    shutdown_requested = True
+
+            elif result.unhedged:
+                # PM filled but Kalshi didn't - this is now rare (Kalshi is reliable)
+                timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms"
+                print(f"[EXEC] UNHEDGED! PM={result.pm_filled} filled, K={result.kalshi_filled} failed | {timing}")
+                print(f"[EXEC] Reason: {result.abort_reason}")
+                k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
+                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
+                log_trade(arb, k_result, pm_result, 'UNHEDGED', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
+                if TRADE_LOG:
+                    TRADE_LOG[-1]['sizing_details'] = _sizing_details
+                    TRADE_LOG[-1]['execution_phase'] = result.execution_phase
+                    TRADE_LOG[-1]['gtc_rest_time_ms'] = result.gtc_rest_time_ms
+                    TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
+                    TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
+                    TRADE_LOG[-1]['is_maker'] = result.is_maker
+                # Save unhedged position for recovery
+                try:
+                    from arb_executor_v7 import HedgeState
+                    hedge_state = HedgeState(
+                        kalshi_ticker=arb.kalshi_ticker,
+                        pm_slug=arb.pm_slug,
+                        target_qty=optimal_size,
+                        kalshi_filled=result.kalshi_filled,
+                        pm_filled=result.pm_filled,
+                        kalshi_price=result.kalshi_price,
+                        pm_price=int(result.pm_price * 100),
+                    )
+                    save_unhedged_position(hedge_state, result.abort_reason)
+                except Exception as e:
+                    print(f"[ERROR] Failed to save unhedged position: {e}")
+
+            elif result.pm_filled == 0 and result.pm_order_ms > 0:
+                # Real PM no-fill: order was sent to PM API but IOC expired
+                gtc_info = ""
+                if result.execution_phase == "gtc":
+                    gtc_info = f" | GTC: {result.gtc_cancel_reason} ({result.gtc_rest_time_ms}ms)"
+                print(f"[EXEC] PM NO FILL: {result.abort_reason} | pm={result.pm_order_ms}ms{gtc_info}")
+                k_result = {'fill_count': 0, 'fill_price': result.kalshi_price}
+                pm_result = {'fill_count': 0, 'fill_price': result.pm_price}
+                log_trade(arb, k_result, pm_result, 'PM_NO_FILL', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
+                if TRADE_LOG:
+                    TRADE_LOG[-1]['sizing_details'] = _sizing_details
+                    TRADE_LOG[-1]['execution_phase'] = result.execution_phase
+                    TRADE_LOG[-1]['gtc_rest_time_ms'] = result.gtc_rest_time_ms
+                    TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
+                    TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
+                    TRADE_LOG[-1]['is_maker'] = result.is_maker
+
+            else:
+                # Early abort — never reached PM API (safety, phantom, pm_long_team, etc.)
+                print(f"[EXEC] SKIPPED: {result.abort_reason}")
+
+            # One-trade test mode: stop after first trade attempt
+            if ONE_TRADE_TEST_MODE:
                 print("\n" + "=" * 70)
-                print(f"MAX TRADES REACHED ({MAX_TRADES_LIMIT}) — STOPPING")
+                print("ONE-TRADE TEST COMPLETE - STOPPING")
                 print("=" * 70)
                 shutdown_requested = True
 
-        elif result.unhedged:
-            # PM filled but Kalshi didn't - this is now rare (Kalshi is reliable)
-            timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms"
-            print(f"[EXEC] UNHEDGED! PM={result.pm_filled} filled, K={result.kalshi_filled} failed | {timing}")
-            print(f"[EXEC] Reason: {result.abort_reason}")
-            k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
-            pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
-            log_trade(arb, k_result, pm_result, 'UNHEDGED', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
-            if TRADE_LOG:
-                TRADE_LOG[-1]['sizing_details'] = _sizing_details
-                TRADE_LOG[-1]['execution_phase'] = result.execution_phase
-                TRADE_LOG[-1]['gtc_rest_time_ms'] = result.gtc_rest_time_ms
-                TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
-                TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
-                TRADE_LOG[-1]['is_maker'] = result.is_maker
-            # Save unhedged position for recovery
-            try:
-                from arb_executor_v7 import HedgeState
-                hedge_state = HedgeState(
-                    kalshi_ticker=arb.kalshi_ticker,
-                    pm_slug=arb.pm_slug,
-                    target_qty=optimal_size,
-                    kalshi_filled=result.kalshi_filled,
-                    pm_filled=result.pm_filled,
-                    kalshi_price=result.kalshi_price,
-                    pm_price=int(result.pm_price * 100),
-                )
-                save_unhedged_position(hedge_state, result.abort_reason)
-            except Exception as e:
-                print(f"[ERROR] Failed to save unhedged position: {e}")
-
-        elif result.pm_filled == 0 and result.pm_order_ms > 0:
-            # Real PM no-fill: order was sent to PM API but IOC expired
-            gtc_info = ""
-            if result.execution_phase == "gtc":
-                gtc_info = f" | GTC: {result.gtc_cancel_reason} ({result.gtc_rest_time_ms}ms)"
-            print(f"[EXEC] PM NO FILL: {result.abort_reason} | pm={result.pm_order_ms}ms{gtc_info}")
-            k_result = {'fill_count': 0, 'fill_price': result.kalshi_price}
-            pm_result = {'fill_count': 0, 'fill_price': result.pm_price}
-            log_trade(arb, k_result, pm_result, 'PM_NO_FILL', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
-            if TRADE_LOG:
-                TRADE_LOG[-1]['sizing_details'] = _sizing_details
-                TRADE_LOG[-1]['execution_phase'] = result.execution_phase
-                TRADE_LOG[-1]['gtc_rest_time_ms'] = result.gtc_rest_time_ms
-                TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
-                TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
-                TRADE_LOG[-1]['is_maker'] = result.is_maker
-
-        else:
-            # Early abort — never reached PM API (safety, phantom, pm_long_team, etc.)
-            print(f"[EXEC] SKIPPED: {result.abort_reason}")
-
-        # One-trade test mode: stop after first trade attempt
-        if ONE_TRADE_TEST_MODE:
-            print("\n" + "=" * 70)
-            print("ONE-TRADE TEST COMPLETE - STOPPING")
-            print("=" * 70)
-            shutdown_requested = True
+    finally:
+        executing_games.discard(arb.cache_key)
 
 
 # ============================================================================

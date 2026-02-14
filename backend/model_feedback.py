@@ -146,6 +146,24 @@ class ModelFeedback:
             f"(n={bias_data.get('total_sample')})"
         )
 
+        # 6c. Run edge analytics for richer metric_data
+        edge_summary = {}
+        try:
+            from edge_analytics import EdgeAnalytics
+            ea_result = EdgeAnalytics().analyze(sport, days)
+            if "error" not in ea_result:
+                edge_summary = EdgeAnalytics.get_summary_for_feedback(ea_result)
+                logger.info(
+                    f"[ModelFeedback] Edge analytics for {sport}: "
+                    f"{ea_result['metadata']['attributed_count']} attributed, "
+                    f"{len(ea_result.get('insights', []))} insights"
+                )
+        except Exception as e:
+            logger.warning(f"[ModelFeedback] Edge analytics failed for {sport}: {e}")
+
+        # Merge bias + edge analytics into metric_data
+        metric_data = {**bias_data, **edge_summary}
+
         # 7. Get current weights
         current_weights = self._get_current_weights(sport)
 
@@ -163,7 +181,7 @@ class ModelFeedback:
             "current_weights": current_weights,
             "suggested_adjustments": suggested,
             "applied_adjustments": None,  # Filled by weight_calculator when applied
-            "metric_data": bias_data,
+            "metric_data": metric_data,
         }
 
         try:

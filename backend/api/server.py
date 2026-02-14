@@ -1291,6 +1291,17 @@ async def internal_edge_reflection(sport: str = None):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/api/internal/edge-analytics")
+async def internal_edge_analytics(sport: str = None, days: int = 30):
+    """Deep edge analytics: calibration curves, conditional breakdowns, CLV, insights."""
+    try:
+        from edge_analytics import EdgeAnalytics
+        return EdgeAnalytics().analyze(sport.upper() if sport else None, days)
+    except Exception as e:
+        logger.error(f"Error running edge analytics: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # =============================================================================
 # COMPOSITE HISTORY
 # =============================================================================

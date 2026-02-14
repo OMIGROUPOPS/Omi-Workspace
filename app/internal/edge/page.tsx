@@ -116,10 +116,18 @@ interface GradedGamesSummary {
   best_market: { key: string; hit_rate: number; count: number } | null;
 }
 
+interface GradedGamesDiagnostics {
+  db_total_prediction_grades: number;
+  raw_query_rows: number;
+  valid_game_ids_count: number | string;
+  unique_game_ids_in_rows: number;
+}
+
 interface GradedGamesResponse {
   rows: GradedGameRow[];
   summary: GradedGamesSummary;
   count: number;
+  diagnostics?: GradedGamesDiagnostics;
 }
 
 // ---------------------------------------------------------------------------
@@ -582,6 +590,36 @@ export default function EdgeInternalPage() {
           >
             {grading ? "Grading..." : "Grade New Games"}
           </button>
+          <button
+            onClick={async () => {
+              setGrading(true);
+              setGradeResult(null);
+              try {
+                const res = await fetch(
+                  `${BACKEND_URL}/api/internal/grade-games?regrade=true`,
+                  { method: "POST" }
+                );
+                if (res.ok) {
+                  const r = await res.json();
+                  setGradeResult(
+                    `Regrade: purged ${r.purged}, regenerated ${r.created} from ${r.games} games (${r.errors} errors)`
+                  );
+                  if (activeTab === "performance") fetchData();
+                  else fetchGradedGames();
+                } else {
+                  setGradeResult("Regrade failed");
+                }
+              } catch {
+                setGradeResult("Regrade request failed");
+              } finally {
+                setGrading(false);
+              }
+            }}
+            disabled={grading}
+            className="px-3 py-2 bg-amber-600 hover:bg-amber-700 disabled:bg-amber-600/50 text-white text-xs font-medium rounded-lg transition-colors"
+          >
+            Regrade All
+          </button>
         </div>
       </div>
 
@@ -974,6 +1012,16 @@ export default function EdgeInternalPage() {
                   </div>
                 )}
               </div>
+
+              {/* DB Diagnostics */}
+              {gradedData.diagnostics && (
+                <div className="mt-2 text-xs text-zinc-600 font-mono flex gap-4">
+                  <span>DB rows: {gradedData.diagnostics.db_total_prediction_grades}</span>
+                  <span>Query returned: {gradedData.diagnostics.raw_query_rows}</span>
+                  <span>Valid game IDs: {gradedData.diagnostics.valid_game_ids_count}</span>
+                  <span>Unique games: {gradedData.diagnostics.unique_game_ids_in_rows}</span>
+                </div>
+              )}
 
               {/* Graded Games Table */}
               <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">

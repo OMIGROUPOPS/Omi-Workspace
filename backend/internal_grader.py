@@ -178,20 +178,30 @@ class InternalGrader:
         auto_result = grader.grade_completed_games(sport)
 
         graded_count = 0
+        games_with_grades = 0
         errors = []
 
-        for detail in auto_result.get("details", []):
+        details = auto_result.get("details", [])
+        for detail in details:
             game_id = detail.get("game_id")
             try:
                 count = self._generate_prediction_grades(game_id)
                 graded_count += count
+                if count > 0:
+                    games_with_grades += 1
             except Exception as e:
                 logger.error(f"Error generating prediction grades for {game_id}: {e}")
                 errors.append({"game_id": game_id, "error": str(e)})
 
+        logger.info(
+            f"[InternalGrader] Prediction grades: {graded_count} inserted successfully "
+            f"from {games_with_grades}/{len(details)} games ({len(errors)} errors)"
+        )
+
         return {
             "auto_grader": auto_result,
             "prediction_grades_created": graded_count,
+            "games_with_grades": games_with_grades,
             "bootstrapped_game_results": bootstrapped,
             "errors": errors,
         }
@@ -415,7 +425,7 @@ class InternalGrader:
                     f"diff={abs(fair_spread - book_spread):.2f} edge_pct={edge_pct}%"
                 )
 
-                self._upsert_prediction_grade({
+                if self._upsert_prediction_grade({
                     "game_id": game_id,
                     "sport_key": sport_key,
                     "market_type": "spread",
@@ -433,8 +443,8 @@ class InternalGrader:
                     "pillar_composite": composite,
                     "ceq_score": None,
                     "graded_at": datetime.now(timezone.utc).isoformat(),
-                })
-                rows_created += 1
+                }):
+                    rows_created += 1
 
             # Total
             total_data = book_data.get("total")
@@ -465,7 +475,7 @@ class InternalGrader:
                     f"diff={abs(fair_total - book_total):.2f} edge_pct={edge_pct}%"
                 )
 
-                self._upsert_prediction_grade({
+                if self._upsert_prediction_grade({
                     "game_id": game_id,
                     "sport_key": sport_key,
                     "market_type": "total",
@@ -483,8 +493,8 @@ class InternalGrader:
                     "pillar_composite": composite,
                     "ceq_score": None,
                     "graded_at": datetime.now(timezone.utc).isoformat(),
-                })
-                rows_created += 1
+                }):
+                    rows_created += 1
 
             # Moneyline
             ml_data = book_data.get("moneyline")
@@ -527,7 +537,7 @@ class InternalGrader:
                     if winner == "push":
                         is_correct = None
 
-                    self._upsert_prediction_grade({
+                    if self._upsert_prediction_grade({
                         "game_id": game_id,
                         "sport_key": sport_key,
                         "market_type": "moneyline",
@@ -545,17 +555,23 @@ class InternalGrader:
                         "pillar_composite": composite,
                         "ceq_score": None,
                         "graded_at": datetime.now(timezone.utc).isoformat(),
-                    })
-                    rows_created += 1
+                    }):
+                        rows_created += 1
 
         return rows_created
 
-    def _upsert_prediction_grade(self, record: dict):
-        """Insert a prediction_grades row."""
+    def _upsert_prediction_grade(self, record: dict) -> bool:
+        """Insert a prediction_grades row. Returns True on success."""
         try:
             self.client.table("prediction_grades").insert(record).execute()
+            return True
         except Exception as e:
-            logger.error(f"Error inserting prediction grade: {e}")
+            logger.error(
+                f"Error inserting prediction grade: {e} | "
+                f"game={record.get('game_id')} market={record.get('market_type')} "
+                f"book={record.get('book_name')}"
+            )
+            return False
 
     # ------------------------------------------------------------------
     # Performance aggregation
@@ -577,12 +593,13 @@ class InternalGrader:
         if since:
             gr_result = self.client.table("game_results").select("game_id").gte(
                 "commence_time", since
-            ).execute()
+            ).limit(5000).execute()
             valid_game_ids = {r["game_id"] for r in (gr_result.data or [])}
+            logger.info(f"[Performance] valid_game_ids since {since}: {len(valid_game_ids)}")
 
         query = self.client.table("prediction_grades").select("*").not_.is_(
             "graded_at", "null"
-        ).gte("created_at", cutoff)
+        ).gte("created_at", cutoff).order("graded_at", desc=True).limit(5000)
 
         if sport:
             query = query.eq("sport_key", sport)
@@ -595,6 +612,7 @@ class InternalGrader:
 
         result = query.execute()
         rows = result.data or []
+        logger.info(f"[Performance] prediction_grades query returned {len(rows)} rows")
 
         if valid_game_ids is not None:
             rows = [r for r in rows if r.get("game_id") in valid_game_ids]
@@ -728,8 +746,9 @@ class InternalGrader:
 
         graded = self.client.table("game_results").select("game_id").not_.is_(
             "home_score", "null"
-        ).execute()
+        ).limit(5000).execute()
         game_ids = [r["game_id"] for r in (graded.data or [])]
+        logger.info(f"[Regrade] Found {len(game_ids)} graded game_results to regenerate")
 
         created = 0
         errors = 0
@@ -858,8 +877,9 @@ class InternalGrader:
         if since:
             gr_result = self.client.table("game_results").select("game_id").gte(
                 "commence_time", since
-            ).execute()
+            ).limit(5000).execute()
             valid_game_ids = {r["game_id"] for r in (gr_result.data or [])}
+            logger.info(f"[GradedGames] valid_game_ids since {since}: {len(valid_game_ids)}")
 
         query = self.client.table("prediction_grades").select("*").not_.is_(
             "graded_at", "null"
@@ -874,6 +894,10 @@ class InternalGrader:
 
         result = query.execute()
         rows = result.data or []
+        logger.info(
+            f"[GradedGames] Raw query returned {len(rows)} prediction_grades rows "
+            f"(cutoff={cutoff[:10]}, limit={limit}, books={list(GRADING_BOOKS)})"
+        )
 
         if valid_game_ids is not None:
             rows = [r for r in rows if r.get("game_id") in valid_game_ids]
@@ -1021,6 +1045,15 @@ class InternalGrader:
         hit_rate = wins / decided if decided > 0 else 0
         roi = (wins * 0.91 - losses) / len(merged) if merged else 0
 
+        # Diagnostic: count total prediction_grades in DB for visibility
+        try:
+            total_count_result = self.client.table("prediction_grades").select(
+                "id", count="exact"
+            ).execute()
+            db_total = total_count_result.count if hasattr(total_count_result, 'count') and total_count_result.count is not None else len(total_count_result.data or [])
+        except Exception:
+            db_total = -1
+
         return {
             "rows": merged,
             "summary": {
@@ -1034,6 +1067,12 @@ class InternalGrader:
                 "best_market": self._best_group(merged, "market_type"),
             },
             "count": len(merged),
+            "diagnostics": {
+                "db_total_prediction_grades": db_total,
+                "raw_query_rows": len(result.data or []),
+                "valid_game_ids_count": len(valid_game_ids) if valid_game_ids is not None else "no_filter",
+                "unique_game_ids_in_rows": len({r["game_id"] for r in (result.data or [])}),
+            },
         }
 
     # ------------------------------------------------------------------

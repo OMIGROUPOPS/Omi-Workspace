@@ -121,8 +121,8 @@ class EdgeAnalytics:
                     "home_score, away_score, final_spread, final_total, "
                     "pillar_execution, pillar_incentives, pillar_shocks, "
                     "pillar_time_decay, pillar_flow, "
-                    "closing_spread_home, closing_total_line, stale"
-                ).in_("game_id", batch).eq("stale", False).execute()
+                    "closing_spread_home, closing_total_line"
+                ).in_("game_id", batch).execute()
 
                 # Try game_environment separately (column may not exist)
                 ge_map = {}

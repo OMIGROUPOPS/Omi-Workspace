@@ -75,6 +75,7 @@ from executor_core import (
     blacklisted_games,      # Shared state - games blacklisted after crashes
     load_traded_games,      # Load persisted traded games on startup
     save_traded_game,       # Save traded game after successful trade
+    refresh_position_cache, # Background position refresh (not on hot path)
 )
 
 from pregame_mapper import load_verified_mappings
@@ -1595,8 +1596,10 @@ async def refresh_balances(session, kalshi_api, pm_api):
             print(f"[POSITIONS] Error loading trades.json for hedge check: {e}", flush=True)
 
         # Kalshi positions (skip settled: market_exposure == 0 means resolved)
+        # Also refresh executor_core's position cache (background, not on hot path)
         settled_kalshi_games: set = set()  # Track settled game_ids to filter PM side too
         k_positions = await kalshi_api.get_positions(session)
+        await refresh_position_cache(session, kalshi_api, prefetched=k_positions)
         for ticker, pos in (k_positions or {}).items():
             qty = pos.position if hasattr(pos, 'position') else pos.get('position', 0)
             if qty == 0:

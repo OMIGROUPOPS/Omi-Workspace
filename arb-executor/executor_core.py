@@ -18,12 +18,12 @@ EXECUTION ORDER: PM FIRST, THEN KALSHI
   - If PM fills but Kalshi doesn't, we have an unhedged position (rare)
 
 Safety guarantees:
-  - Checks position before ordering (no duplicate trades)
+  - In-memory position check before ordering (no API calls on hot path)
   - PM first (unreliable), Kalshi only if PM fills (reliable)
   - Dynamic sizing via depth-aware algorithm (defaults to 1 if no depth data)
   - Phantom spread rejection (>90c)
   - All 4 trade cases handled explicitly via TRADE_PARAMS lookup
-  - Runtime pm_long_team verification against live PM API
+  - pm_long_team verified at WS level (price mismatch check on first update)
   - Partial hedge handling (unwinds excess PM if K partially fills)
 """
 import asyncio
@@ -60,74 +60,10 @@ PM_DISPLAY_TO_KALSHI = {
 
 
 # =============================================================================
-# RUNTIME PM_LONG_TEAM VERIFICATION
-# =============================================================================
-async def verify_pm_long_team(
-    session,
-    pm_api,
-    pm_slug: str,
-    expected_pm_long_team: str,
-) -> Tuple[bool, str, Optional[str]]:
-    """
-    Verify pm_long_team at runtime by fetching PM market and checking marketSides.
-
-    Returns: (is_valid, reason, actual_pm_long_team)
-    - is_valid: True if mapping matches live API
-    - reason: Human-readable explanation
-    - actual_pm_long_team: The actual pm_long_team from live API (or None on error)
-    """
-    try:
-        # Fetch market details from PM API
-        path = f'/v1/markets/{pm_slug}'
-        headers = pm_api._headers('GET', path)
-
-        async with session.get(f'{pm_api.BASE_URL}{path}', headers=headers) as r:
-            if r.status != 200:
-                # Market might be closed - allow trade to proceed with warning
-                return True, f"PM market fetch failed (status={r.status}), proceeding with caution", None
-
-            market = await r.json()
-
-            # Check for error response
-            if market.get('code') or market.get('message') == 'Not Found':
-                return True, "PM market not found (may be closed), proceeding with caution", None
-
-            # Get marketSides
-            market_sides = market.get('marketSides', [])
-            if not market_sides or len(market_sides) < 2:
-                return True, "No marketSides in response, proceeding with caution", None
-
-            # Find which team has long=true
-            actual_long_team = None
-            for side in market_sides:
-                if side.get('long') is True:
-                    team_info = side.get('team', {})
-                    # Try displayAbbreviation first, then abbreviation
-                    abbrev = team_info.get('displayAbbreviation') or team_info.get('abbreviation') or ''
-                    abbrev_lower = abbrev.lower()
-
-                    # Map to Kalshi abbreviation
-                    if abbrev_lower in PM_DISPLAY_TO_KALSHI:
-                        actual_long_team = PM_DISPLAY_TO_KALSHI[abbrev_lower]
-                    else:
-                        actual_long_team = abbrev.upper()
-                    break
-
-            if not actual_long_team:
-                return True, "Could not determine pm_long_team from marketSides, proceeding with caution", None
-
-            # Compare with expected
-            if actual_long_team == expected_pm_long_team:
-                return True, f"pm_long_team verified: {actual_long_team}", actual_long_team
-            else:
-                return False, (
-                    f"PM_LONG_TEAM MISMATCH: mapping says {expected_pm_long_team}, "
-                    f"API says {actual_long_team}"
-                ), actual_long_team
-
-    except Exception as e:
-        # On error, allow trade but log warning
-        return True, f"pm_long_team verification error: {e}, proceeding with caution", None
+# PM_LONG_TEAM VERIFICATION — now handled at two earlier stages:
+#   1. pregame_mapper.py: price sanity check during mapping (Kalshi vs PM bestBid)
+#   2. arb_executor_ws.py: runtime check in _handle_market_data() on first WS update
+# No per-trade API verification needed — eliminated for latency.
 
 # =============================================================================
 # TRADE PARAMETERS - EXPLICIT MAPPING FOR ALL 4 CASES
@@ -560,11 +496,15 @@ def on_execution_crash(game_id: str) -> None:
         print(f"[SAFETY] Game {game_id} BLACKLISTED after {crash_counts[game_id]} crashes")
 
 
-async def refresh_position_cache(session, kalshi_api) -> None:
-    """Refresh the Kalshi positions cache."""
+async def refresh_position_cache(session, kalshi_api, prefetched=None) -> None:
+    """Refresh the Kalshi positions cache.
+
+    Called in the background (every 60s via refresh_balances), NOT on the hot path.
+    If prefetched positions are provided, use those to avoid a duplicate API call.
+    """
     global cached_positions, cached_positions_ts
     try:
-        positions = await kalshi_api.get_positions(session)
+        positions = prefetched if prefetched is not None else await kalshi_api.get_positions(session)
         cached_positions.clear()
         if positions:
             for ticker, pos in positions.items():
@@ -789,23 +729,22 @@ def calculate_optimal_size(
     }
 
 
-async def safe_to_trade(
-    session,
-    kalshi_api,
+def safe_to_trade(
     ticker: str,
     game_id: str
 ) -> Tuple[bool, str]:
     """
-    Pre-trade safety checks. Returns (safe, reason).
+    Pre-trade safety checks using IN-MEMORY state only (no API calls).
 
     Checks:
     1. Game not blacklisted
     2. Game not already traded this session
-    3. No existing position on this ticker
-    4. Under position limit
-    """
-    global cached_positions_ts
+    3. No existing position on this ticker (from local cache)
+    4. Under position limit (from local cache)
 
+    Position cache is refreshed in the background by the WS executor,
+    NOT on the hot execution path.
+    """
     # Check blacklist
     if game_id in blacklisted_games:
         return False, f"Game {game_id} is BLACKLISTED after crashes"
@@ -814,11 +753,7 @@ async def safe_to_trade(
     if game_id in traded_games:
         return False, f"Game {game_id} already traded this session"
 
-    # Refresh cache if stale (>5 seconds)
-    if time.time() - cached_positions_ts > 5:
-        await refresh_position_cache(session, kalshi_api)
-
-    # Check existing position
+    # Check existing position (from local cache — no API call)
     if ticker in cached_positions:
         pos_count = cached_positions[ticker]
         if abs(pos_count) >= Config.max_contracts_per_game:
@@ -830,6 +765,19 @@ async def safe_to_trade(
         return False, f"Too many positions ({total_positions}/{Config.max_concurrent_positions})"
 
     return True, "OK"
+
+
+def update_position_cache_after_trade(ticker: str, qty_delta: int):
+    """
+    Update the local position cache after a successful Kalshi fill.
+    Called from execute_arb() so the cache stays current without API calls.
+    """
+    current = cached_positions.get(ticker, 0)
+    new_qty = current + qty_delta
+    if new_qty == 0:
+        cached_positions.pop(ticker, None)
+    else:
+        cached_positions[ticker] = new_qty
 
 
 # =============================================================================
@@ -856,8 +804,8 @@ async def execute_arb(
     - If PM fills but Kalshi doesn't → unhedged (rare, logged)
 
     Safety guarantees:
-    1. Checks position before ordering (no duplicate trades)
-    2. Runtime pm_long_team verification against live PM API
+    1. In-memory position/blacklist check (no API calls)
+    2. pm_long_team verified at WS level (price mismatch check in _handle_market_data)
     3. PM first (unreliable), Kalshi only if PM fills (reliable)
     4. Size governed by depth-aware sizing algorithm
     5. Phantom spread rejection (>90c)
@@ -868,31 +816,14 @@ async def execute_arb(
     gtc_phase = None  # Set in Phase 2 if GTC is attempted
 
     # -------------------------------------------------------------------------
-    # Step 1: Safety checks
+    # Step 1: Safety checks (in-memory only — no API calls on hot path)
     # -------------------------------------------------------------------------
-    safe, reason = await safe_to_trade(session, kalshi_api, arb.kalshi_ticker, game_id)
+    safe, reason = safe_to_trade(arb.kalshi_ticker, game_id)
     if not safe:
         return TradeResult(success=False, abort_reason=f"Safety: {reason}")
 
     # NOTE: traded_games is only updated AFTER PM fills (see Step 5.5 below).
     # This allows retries on PM_NO_FILL — the game stays tradeable.
-
-    # -------------------------------------------------------------------------
-    # Step 1.5: Runtime pm_long_team verification
-    # -------------------------------------------------------------------------
-    # CRITICAL: The pregame mapper's pm_long_team can be wrong!
-    # Verify against live PM API before placing any orders.
-    pm_valid, pm_reason, actual_pm_long = await verify_pm_long_team(
-        session, pm_api, pm_slug, arb.pm_long_team
-    )
-    if not pm_valid:
-        # MISMATCH - abort trade to prevent unhedged positions
-        print(f"[ABORT] {pm_reason}")
-        return TradeResult(success=False, abort_reason=pm_reason)
-
-    # Log verification result
-    if actual_pm_long and actual_pm_long != arb.pm_long_team:
-        print(f"[WARN] pm_long_team corrected: {arb.pm_long_team} -> {actual_pm_long}")
 
     # -------------------------------------------------------------------------
     # Step 2: Phantom spread check
@@ -1206,6 +1137,11 @@ async def execute_arb(
     k_order_ms = int((time.time() - k_order_start) * 1000)
     k_filled = k_result.get('fill_count', 0)
     k_fill_price = k_result.get('fill_price', k_price)
+
+    # Update local position cache (no API call needed)
+    if k_filled > 0:
+        qty_delta = k_filled if params['k_action'] == 'buy' else -k_filled
+        update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
 
     # -------------------------------------------------------------------------
     # Step 7: Check hedge status and recover if needed

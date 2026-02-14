@@ -1117,7 +1117,7 @@ export default function EdgeInternalPage() {
               {/* Graded Games Table */}
               <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
+                  <table className="w-full text-sm min-w-[1200px]">
                     <thead>
                       <tr className="text-zinc-500 border-b border-zinc-800 text-xs uppercase tracking-wide">
                         <SortHeader field="commence_time" label="Date" />
@@ -1214,23 +1214,23 @@ export default function EdgeInternalPage() {
                               row.fd.signal === "STALE" ? (
                                 <span className="text-zinc-600 font-mono">STALE</span>
                               ) : (
-                                <div
-                                  className={
+                                <div>
+                                  <div className={`font-medium ${
                                     row.fd.correct === true
                                       ? "text-emerald-400"
                                       : row.fd.correct === false
                                         ? "text-red-400"
                                         : "text-zinc-300"
-                                  }
-                                >
-                                  <div className="font-medium">
+                                  }`}>
                                     {row.fd.call}
                                   </div>
                                   <div className="flex items-center gap-1.5 mt-0.5">
                                     <span className="text-zinc-500">
                                       FD {fmtOdds(row.fd.odds)}
                                     </span>
-                                    <span className="font-mono">
+                                    <span className={`font-mono ${
+                                      row.fd.edge > 0 ? "text-emerald-400" : "text-zinc-500"
+                                    }`}>
                                       {fmtEdgePct(row.fd.edge)}
                                     </span>
                                     <span
@@ -1252,23 +1252,23 @@ export default function EdgeInternalPage() {
                               row.dk.signal === "STALE" ? (
                                 <span className="text-zinc-600 font-mono">STALE</span>
                               ) : (
-                                <div
-                                  className={
+                                <div>
+                                  <div className={`font-medium ${
                                     row.dk.correct === true
                                       ? "text-emerald-400"
                                       : row.dk.correct === false
                                         ? "text-red-400"
                                         : "text-zinc-300"
-                                  }
-                                >
-                                  <div className="font-medium">
+                                  }`}>
                                     {row.dk.call}
                                   </div>
                                   <div className="flex items-center gap-1.5 mt-0.5">
                                     <span className="text-zinc-500">
                                       DK {fmtOdds(row.dk.odds)}
                                     </span>
-                                    <span className="font-mono">
+                                    <span className={`font-mono ${
+                                      row.dk.edge > 0 ? "text-emerald-400" : "text-zinc-500"
+                                    }`}>
                                       {fmtEdgePct(row.dk.edge)}
                                     </span>
                                     <span
@@ -1350,7 +1350,7 @@ export default function EdgeInternalPage() {
 
               <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden min-w-0">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm min-w-[1100px]">
+                  <table className="w-full text-sm min-w-[1400px]">
                     <thead>
                       <tr className="text-zinc-500 border-b border-zinc-800 text-xs uppercase tracking-wide">
                         <LiveSortHeader field="commence_time" label="Time" />

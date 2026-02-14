@@ -590,9 +590,68 @@ class InternalGrader:
                 }):
                     rows_created += 1
 
-            # Moneyline — excluded from grading pipeline.
-            # ML hit 35% / -33% ROI across 237 picks, poisoning performance metrics.
-            # ML fair lines are still displayed on game detail + dashboard (frontend unchanged).
+            # Moneyline — excluded for basketball/football (35% / -33% ROI across 237 picks).
+            # Re-enabled for soccer only (3-way ML is the primary market).
+            is_soccer_game = _is_soccer(sport_key)
+            if is_soccer_game and closing_ml_home is not None and closing_ml_away is not None:
+                for book_name, book_data in book_lines.items():
+                    if book_name not in GRADING_BOOKS:
+                        continue
+                    ml_data = book_data.get("h2h") or book_data.get("moneyline")
+                    if not ml_data:
+                        continue
+                    book_ml_h = ml_data.get("home_odds")
+                    book_ml_a = ml_data.get("away_odds")
+                    if book_ml_h is None or book_ml_a is None:
+                        continue
+
+                    # Use OMI fair ML probs
+                    fair_hp = american_to_implied(float(closing_ml_home))
+                    fair_ap = american_to_implied(float(closing_ml_away))
+                    book_hp = american_to_implied(book_ml_h)
+
+                    # OMI says home is underpriced → bet home; overpriced → bet away
+                    if fair_hp > book_hp:
+                        prediction_side = "home"
+                        book_odds = int(book_ml_h)
+                        is_correct = home_score > away_score
+                    else:
+                        prediction_side = "away"
+                        book_odds = int(book_ml_a)
+                        is_correct = away_score > home_score
+
+                    # Draw = push for ML grading
+                    if home_score == away_score:
+                        is_correct = None
+                        actual_result = "draw"
+                    else:
+                        actual_result = "home_win" if home_score > away_score else "away_win"
+
+                    edge_pct = round(abs(fair_hp - book_hp) * 100, 1)
+                    signal = determine_signal(edge_pct)
+
+                    gap = fair_hp - book_hp  # positive = home underpriced
+
+                    if self._upsert_prediction_grade({
+                        "game_id": game_id,
+                        "sport_key": sport_key,
+                        "market_type": "moneyline",
+                        "period": "full",
+                        "omi_fair_line": round(fair_hp * 100, 1),
+                        "book_line": round(book_hp * 100, 1),
+                        "book_name": book_name,
+                        "book_odds": book_odds,
+                        "gap": round(gap * 100, 1),
+                        "signal": signal,
+                        "confidence_tier": tier,
+                        "prediction_side": prediction_side,
+                        "actual_result": actual_result,
+                        "is_correct": is_correct,
+                        "pillar_composite": composite,
+                        "ceq_score": None,
+                        "graded_at": datetime.now(timezone.utc).isoformat(),
+                    }):
+                        rows_created += 1
 
         return rows_created
 
@@ -1189,8 +1248,8 @@ class InternalGrader:
         for i in range(0, len(game_ids), 50):
             batch = game_ids[i:i+50]
             ch = self.client.table("composite_history").select(
-                "game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away, "
-                "book_spread, book_total, book_ml_home, book_ml_away, timestamp"
+                "game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away, fair_ml_draw, "
+                "book_spread, book_total, book_ml_home, book_ml_away, book_ml_draw, timestamp"
             ).in_("game_id", batch).order("timestamp", desc=True).execute()
             for row in (ch.data or []):
                 gid = row["game_id"]
@@ -1238,11 +1297,14 @@ class InternalGrader:
                                 target["ml_home"] = o.get("price", 0)
                             elif o.get("name") == away:
                                 target["ml_away"] = o.get("price", 0)
+                            elif o.get("name") == "Draw":
+                                target["ml_draw"] = o.get("price", 0)
 
             fair_spread = ch.get("fair_spread") if ch else None
             fair_total = ch.get("fair_total") if ch else None
             fair_ml_home = ch.get("fair_ml_home") if ch else None
             fair_ml_away = ch.get("fair_ml_away") if ch else None
+            fair_ml_draw = ch.get("fair_ml_draw") if ch else None
 
             has_composite = ch is not None
 
@@ -1396,50 +1458,62 @@ class InternalGrader:
                     "best_edge": best_e, "signal": best_sig,
                 })
 
-            # Moneyline rows (soccer only)
+            # Moneyline rows (soccer only — 3-way: home/draw/away)
             if fair_ml_home is not None and fair_ml_away is not None and is_soccer_game:
                 fh = float(fair_ml_home)
                 fa = float(fair_ml_away)
-                # fair_ml values are American odds — convert to implied prob for display
-                fair_home_prob = american_to_implied(fh) * 100
-                fp_display = f"{fair_home_prob:.1f}% ({int(fh):+d})"
+                fair_hp = american_to_implied(fh)
+                fair_ap = american_to_implied(fa)
+
+                # 3-way: use fair_ml_draw if available, otherwise derive remainder
+                if fair_ml_draw is not None:
+                    fd_val = float(fair_ml_draw)
+                    fair_dp = american_to_implied(fd_val)
+                else:
+                    fair_dp = max(0.02, 1.0 - fair_hp - fair_ap)
+
+                # Normalize to sum to 1.0
+                ft = fair_hp + fair_dp + fair_ap
+                if ft > 0:
+                    fair_hp /= ft
+                    fair_dp /= ft
+                    fair_ap /= ft
+
+                fp_display = f"H {fair_hp*100:.0f}% / D {fair_dp*100:.0f}% / A {fair_ap*100:.0f}%"
 
                 fd_mlh = fd_lines.get("ml_home")
                 fd_mla = fd_lines.get("ml_away")
+                fd_mld = fd_lines.get("ml_draw")
                 dk_mlh = dk_lines.get("ml_home")
                 dk_mla = dk_lines.get("ml_away")
+                dk_mld = dk_lines.get("ml_draw")
 
                 fd_edge = None
                 dk_edge = None
                 fd_signal = None
                 dk_signal = None
 
+                def _calc_3way_edge(book_h, book_d, book_a, fair_h, fair_d, fair_a):
+                    """Max edge across 3 outcomes, vig-removed."""
+                    bh = american_to_implied(book_h)
+                    ba = american_to_implied(book_a)
+                    bd = american_to_implied(book_d) if book_d else 0
+                    bt = bh + bd + ba
+                    if bt > 0:
+                        bh /= bt
+                        bd /= bt
+                        ba /= bt
+                    edge_h = abs(fair_h - bh) * 100
+                    edge_d = abs(fair_d - bd) * 100 if bd > 0 else 0
+                    edge_a = abs(fair_a - ba) * 100
+                    return round(max(edge_h, edge_d, edge_a), 1)
+
                 if fd_mlh and fd_mla:
-                    fd_hp = american_to_implied(fd_mlh)
-                    fd_ap = american_to_implied(fd_mla)
-                    fd_total = fd_hp + fd_ap
-                    if fd_total > 0:
-                        fd_hp /= fd_total
-                    fair_hp = american_to_implied(fh)
-                    fair_ap = american_to_implied(fa)
-                    ft = fair_hp + fair_ap
-                    if ft > 0:
-                        fair_hp /= ft
-                    fd_edge = round(abs(fair_hp - fd_hp) * 100, 1)
+                    fd_edge = _calc_3way_edge(fd_mlh, fd_mld, fd_mla, fair_hp, fair_dp, fair_ap)
                     fd_signal = determine_signal(fd_edge)
 
                 if dk_mlh and dk_mla:
-                    dk_hp = american_to_implied(dk_mlh)
-                    dk_ap = american_to_implied(dk_mla)
-                    dk_total = dk_hp + dk_ap
-                    if dk_total > 0:
-                        dk_hp /= dk_total
-                    fair_hp2 = american_to_implied(fh)
-                    fair_ap2 = american_to_implied(fa)
-                    ft2 = fair_hp2 + fair_ap2
-                    if ft2 > 0:
-                        fair_hp2 /= ft2
-                    dk_edge = round(abs(fair_hp2 - dk_hp) * 100, 1)
+                    dk_edge = _calc_3way_edge(dk_mlh, dk_mld, dk_mla, fair_hp, fair_dp, fair_ap)
                     dk_signal = determine_signal(dk_edge)
 
                 # ML stale check
@@ -1447,7 +1521,7 @@ class InternalGrader:
                     fd_imp = american_to_implied(fd_mlh) * 100
                     dk_imp = american_to_implied(dk_mlh) * 100
                     if abs(fd_imp - dk_imp) > 30:
-                        fair_imp = american_to_implied(fh) * 100
+                        fair_imp = fair_hp * 100
                         if abs(fair_imp - fd_imp) > abs(fair_imp - dk_imp):
                             fd_signal = "STALE"
                             fd_edge = 0
@@ -1465,7 +1539,7 @@ class InternalGrader:
                     "game_id": gid, "sport_key": sport_short,
                     "home_team": home, "away_team": away,
                     "commence_time": commence, "market_type": "moneyline",
-                    "omi_fair": fp_display, "omi_fair_line": fair_home_prob,
+                    "omi_fair": fp_display, "omi_fair_line": fair_hp * 100,
                     "fd_line": fd_mlh, "fd_odds": fd_mlh,
                     "fd_edge": fd_edge, "fd_signal": fd_signal,
                     "dk_line": dk_mlh, "dk_odds": dk_mlh,

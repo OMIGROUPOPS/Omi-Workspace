@@ -104,6 +104,14 @@ class Config:
     min_profit_per_contract: float = 1.0  # Min expected net cents per marginal contract (--min-profit)
 
     # ==========================================================================
+    # GTC (MAKER) EXECUTION
+    # ==========================================================================
+    enable_gtc: bool = True               # Enable IOC-then-GTC two-phase execution
+    gtc_timeout_seconds: float = 3.0      # Max time to rest a GTC order
+    gtc_recheck_interval_ms: int = 200    # Spread recheck interval during GTC rest
+    gtc_cooldown_seconds: int = 5         # Per-game cooldown after GTC timeout
+
+    # ==========================================================================
     # CLASS METHODS FOR MODE CONTROL
     # ==========================================================================
 
@@ -171,6 +179,13 @@ class Config:
 
         if hasattr(args, 'depth_factor') and args.depth_factor is not None:
             cls.depth_cap = args.depth_factor
+
+        if hasattr(args, 'gtc_timeout') and args.gtc_timeout is not None:
+            cls.gtc_timeout_seconds = args.gtc_timeout
+        if hasattr(args, 'spread_recheck_interval') and args.spread_recheck_interval is not None:
+            cls.gtc_recheck_interval_ms = args.spread_recheck_interval
+        if hasattr(args, 'enable_gtc') and args.enable_gtc is not None:
+            cls.enable_gtc = args.enable_gtc
 
         # Sync max_contracts_per_game with max_contracts
         cls.max_contracts_per_game = cls.max_contracts

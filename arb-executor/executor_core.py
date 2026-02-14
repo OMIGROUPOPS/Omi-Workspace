@@ -236,6 +236,11 @@ class TradeResult:
     pm_order_ms: int = 0       # PM order latency
     k_order_ms: int = 0        # Kalshi order latency
     pm_response_details: Optional[Dict] = None  # PM API response diagnostics
+    execution_phase: str = "ioc"       # "ioc" or "gtc"
+    gtc_rest_time_ms: int = 0          # how long GTC rested before fill/cancel
+    gtc_spread_checks: int = 0         # spread validations during GTC rest
+    gtc_cancel_reason: str = ""        # "timeout", "spread_gone", "filled", ""
+    is_maker: bool = False             # True if filled via GTC (0% fee)
 
 
 def _extract_pm_response_details(pm_result: Dict) -> Dict:
@@ -282,6 +287,173 @@ def _extract_pm_response_details(pm_result: Dict) -> Dict:
     return details
 
 
+def check_kalshi_spread_live(
+    k_book: Dict,
+    direction: str,
+    pm_price_cents: float,
+) -> Tuple[bool, int]:
+    """Check if Kalshi spread still exceeds Config.spread_min_cents.
+
+    Uses pm_price_cents (our PM limit price) because during GTC rest
+    we don't have a fill price yet.
+    """
+    if not k_book:
+        return False, 0
+    best_bid = k_book.get('best_bid')
+    best_ask = k_book.get('best_ask')
+    if best_bid is None or best_ask is None:
+        return False, 0
+    if direction == 'BUY_PM_SELL_K':
+        current_spread = best_bid - pm_price_cents
+    else:
+        current_spread = pm_price_cents - best_ask
+    return current_spread >= Config.spread_min_cents, int(current_spread)
+
+
+async def _execute_gtc_phase(
+    session, pm_api, pm_slug: str, pm_intent: int,
+    pm_price: float, size: int, outcome_index: int,
+    k_book_ref: Dict, direction: str, game_id: str,
+) -> Dict:
+    """
+    Phase 2: Place GTC, monitor spread, return fill info.
+    Returns: {filled, fill_price, order_id, cancel_reason, rest_time_ms, spread_checks, is_maker}
+    """
+    global _resting_gtc_order_id
+
+    result = {
+        'filled': 0, 'fill_price': None, 'order_id': '',
+        'cancel_reason': '', 'rest_time_ms': 0, 'spread_checks': 0, 'is_maker': False,
+    }
+
+    # Safety gate: only 1 GTC at a time
+    if _resting_gtc_order_id is not None:
+        result['cancel_reason'] = 'concurrent_gtc'
+        return result
+
+    # Per-game cooldown check
+    now = time.time()
+    if game_id in gtc_cooldowns and now < gtc_cooldowns[game_id]:
+        remaining = gtc_cooldowns[game_id] - now
+        result['cancel_reason'] = f'cooldown ({remaining:.0f}s left)'
+        return result
+
+    # Place GTC order (tif=1 = GTC, sync=False for async placement)
+    gtc_start = time.time()
+    try:
+        pm_result = await pm_api.place_order(
+            session, pm_slug, pm_intent, pm_price, size,
+            tif=1,       # GTC
+            sync=False,  # Async - we'll poll status
+            outcome_index=outcome_index
+        )
+    except Exception as e:
+        result['cancel_reason'] = f'place_error: {e}'
+        return result
+
+    order_id = pm_result.get('order_id', '')
+    if not order_id:
+        result['cancel_reason'] = f"no_order_id: {pm_result.get('error', 'unknown')}"
+        return result
+
+    result['order_id'] = order_id
+
+    # Handle paper/dry_run → instant fill
+    if Config.is_paper() or Config.dry_run_mode:
+        fill_count = pm_result.get('fill_count', 0)
+        result['filled'] = fill_count if fill_count > 0 else size
+        result['fill_price'] = pm_result.get('fill_price', pm_price)
+        result['is_maker'] = True
+        result['cancel_reason'] = 'filled'
+        return result
+
+    # Handle instant fill from place_order response
+    instant_fills = pm_result.get('fill_count', 0)
+    if instant_fills >= size:
+        result['filled'] = instant_fills
+        result['fill_price'] = pm_result.get('fill_price', pm_price)
+        result['is_maker'] = True
+        result['cancel_reason'] = 'filled'
+        return result
+
+    # Set global gate
+    _resting_gtc_order_id = order_id
+    print(f"[GTC] Resting order {order_id[:12]}... {size}@${pm_price:.2f} (timeout={Config.gtc_timeout_seconds}s)")
+
+    # Monitoring loop
+    loop_start = time.time()
+    spread_checks = 0
+    cancel_reason = ''
+
+    try:
+        while (time.time() - loop_start) < Config.gtc_timeout_seconds:
+            await asyncio.sleep(Config.gtc_recheck_interval_ms / 1000)
+            elapsed_ms = int((time.time() - loop_start) * 1000)
+
+            # Check order status
+            status = await pm_api.get_order_status(session, order_id)
+
+            cum_qty = status.get('cum_quantity', 0)
+            state = status.get('state', '')
+
+            if cum_qty >= size or state in ('ORDER_STATE_FILLED',):
+                result['filled'] = cum_qty
+                result['fill_price'] = status.get('fill_price', pm_price)
+                result['is_maker'] = True
+                cancel_reason = 'filled'
+                print(f"[GTC] FILLED {cum_qty}/{size} @ {elapsed_ms}ms")
+                break
+
+            if state in ('ORDER_STATE_CANCELED', 'ORDER_STATE_EXPIRED'):
+                cancel_reason = f'state_{state}'
+                break
+
+            # Check spread
+            spread_checks += 1
+            spread_ok, current_spread = check_kalshi_spread_live(
+                k_book_ref, direction, pm_price * 100
+            )
+            status_str = 'ok' if spread_ok else 'GONE'
+            print(f"[GTC] {elapsed_ms}ms spread={current_spread}c {status_str} (fills={cum_qty})")
+
+            if not spread_ok:
+                cancel_reason = 'spread_gone'
+                break
+
+        # Timeout
+        if not cancel_reason:
+            cancel_reason = 'timeout'
+
+    finally:
+        result['rest_time_ms'] = int((time.time() - loop_start) * 1000)
+        result['spread_checks'] = spread_checks
+        result['cancel_reason'] = cancel_reason
+
+        # Cancel if not fully filled
+        if cancel_reason != 'filled':
+            # Try to cancel
+            cancel_ok = await pm_api.cancel_order(session, order_id, pm_slug)
+            if not cancel_ok:
+                # Race condition: might have filled between check and cancel
+                recheck = await pm_api.get_order_status(session, order_id)
+                recheck_qty = recheck.get('cum_quantity', 0)
+                if recheck_qty > 0:
+                    result['filled'] = recheck_qty
+                    result['fill_price'] = recheck.get('fill_price', pm_price)
+                    result['is_maker'] = True
+                    result['cancel_reason'] = 'filled_on_cancel'
+                    print(f"[GTC] Cancel race: actually filled {recheck_qty}")
+
+            # Set cooldown on timeout/spread_gone
+            if cancel_reason in ('timeout', 'spread_gone'):
+                gtc_cooldowns[game_id] = time.time() + Config.gtc_cooldown_seconds
+
+        # Clear global gate
+        _resting_gtc_order_id = None
+
+    return result
+
+
 # =============================================================================
 # SAFETY STATE (module-level, persists across trades)
 # =============================================================================
@@ -290,6 +462,10 @@ blacklisted_games: Set[str] = set()      # Games blacklisted after crashes
 crash_counts: Dict[str, int] = {}        # Crash count per game
 cached_positions: Dict[str, int] = {}    # Kalshi positions cache
 cached_positions_ts: float = 0           # Cache timestamp
+
+# GTC execution state
+gtc_cooldowns: Dict[str, float] = {}      # game_id -> timestamp cooldown expires
+_resting_gtc_order_id: Optional[str] = None  # max 1 resting GTC globally
 
 
 # =============================================================================
@@ -667,6 +843,7 @@ async def execute_arb(
     pm_slug: str,     # PM market slug
     pm_outcome_idx: int,  # PM outcome index (usually 0)
     size: int = 1,    # Number of contracts (from depth-aware sizing)
+    k_book_ref: Optional[Dict] = None,  # Live Kalshi book ref for GTC spread monitoring
 ) -> TradeResult:
     """
     Execute a hedged arb trade with dynamic sizing.
@@ -688,6 +865,7 @@ async def execute_arb(
     """
     start_time = time.time()
     game_id = arb.game  # Kalshi game_id format
+    gtc_phase = None  # Set in Phase 2 if GTC is attempted
 
     # -------------------------------------------------------------------------
     # Step 1: Safety checks
@@ -860,21 +1038,98 @@ async def execute_arb(
                 pm_response_details=pm_response_details,
             )
 
-        # Real no-fill: order was accepted but IOC expired without fills
-        return TradeResult(
-            success=False,
-            pm_filled=0,
-            pm_price=pm_price,
-            abort_reason="PM: no fill (safe exit)",
-            pm_order_ms=pm_order_ms,
-            execution_time_ms=execution_time_ms,
-            pm_response_details=pm_response_details,
-        )
+        # ── Phase 2: GTC attempt ──
+        if Config.enable_gtc and k_book_ref is not None:
+            print(f"[EXEC] Phase 1: IOC {size}@${pm_price:.2f} -> expired")
+            gtc_phase = await _execute_gtc_phase(
+                session=session, pm_api=pm_api, pm_slug=pm_slug,
+                pm_intent=params['pm_intent'], pm_price=pm_price,
+                size=size, outcome_index=actual_pm_outcome_idx,
+                k_book_ref=k_book_ref, direction=arb.direction,
+                game_id=game_id,
+            )
+            if gtc_phase['filled'] > 0:
+                # GTC got fills — update vars and FALL THROUGH to Kalshi leg
+                pm_filled = gtc_phase['filled']
+                pm_fill_price = gtc_phase['fill_price'] or pm_price
+                pm_order_ms = int((time.time() - pm_order_start) * 1000)
+                pm_response_details = {
+                    'pm_response_status': 200,
+                    'pm_response_body': f"GTC filled {pm_filled}/{size}",
+                    'pm_fill_price': pm_fill_price,
+                    'pm_fill_qty': pm_filled,
+                    'pm_order_id': gtc_phase['order_id'],
+                    'pm_expiry_reason': None,
+                }
+                # DON'T RETURN — fall through to Step 5.5 + Step 6
+            else:
+                # GTC didn't fill — return with GTC metadata
+                return TradeResult(
+                    success=False, pm_filled=0, pm_price=pm_price,
+                    abort_reason=f"PM: GTC no fill ({gtc_phase['cancel_reason']})",
+                    pm_order_ms=pm_order_ms,
+                    execution_time_ms=int((time.time() - start_time) * 1000),
+                    pm_response_details=pm_response_details,
+                    execution_phase="gtc",
+                    gtc_rest_time_ms=gtc_phase['rest_time_ms'],
+                    gtc_spread_checks=gtc_phase['spread_checks'],
+                    gtc_cancel_reason=gtc_phase['cancel_reason'],
+                )
+        else:
+            # GTC disabled — original IOC-only return
+            return TradeResult(
+                success=False, pm_filled=0, pm_price=pm_price,
+                abort_reason="PM: no fill (safe exit)",
+                pm_order_ms=pm_order_ms,
+                execution_time_ms=execution_time_ms,
+                pm_response_details=pm_response_details,
+            )
 
     # -------------------------------------------------------------------------
     # Step 5.5: PM filled — NOW lock the game to prevent duplicate trades
     # -------------------------------------------------------------------------
     traded_games.add(game_id)
+
+    # -------------------------------------------------------------------------
+    # Step 5.75: Final spread recheck after GTC fill (before Kalshi order)
+    # -------------------------------------------------------------------------
+    if gtc_phase is not None and gtc_phase['filled'] > 0 and k_book_ref:
+        spread_ok, current_spread = check_kalshi_spread_live(
+            k_book_ref, arb.direction, pm_fill_price * 100
+        )
+        if not spread_ok:
+            print(f"[GTC] Spread gone before K order ({current_spread}c), unwinding PM...")
+            original_intent = params['pm_intent']
+            reverse_intent = 2 if original_intent == 1 else 1
+            unwind_buffer = 3
+            if reverse_intent == 2:
+                unwind_price_cents_gtc = max(pm_price_cents - unwind_buffer, 1)
+            else:
+                unwind_price_cents_gtc = min(pm_price_cents + unwind_buffer, 99)
+            unwind_price_gtc = unwind_price_cents_gtc / 100.0
+            try:
+                unwind_result = await pm_api.place_order(
+                    session, pm_slug, reverse_intent, unwind_price_gtc, pm_filled,
+                    tif=3, sync=True, outcome_index=actual_pm_outcome_idx
+                )
+                unwind_filled = unwind_result.get('fill_count', 0)
+                if unwind_filled > 0:
+                    print(f"[GTC] PM unwound {unwind_filled} contracts after spread gone")
+                else:
+                    print(f"[GTC] PM unwind failed - position remains open!")
+            except Exception as e:
+                print(f"[GTC] PM unwind error: {e}")
+            return TradeResult(
+                success=False, pm_filled=0, pm_price=pm_fill_price,
+                abort_reason="GTC filled but K spread gone, PM unwound",
+                pm_order_ms=pm_order_ms,
+                execution_time_ms=int((time.time() - start_time) * 1000),
+                pm_response_details=pm_response_details,
+                execution_phase="gtc", is_maker=True,
+                gtc_rest_time_ms=gtc_phase['rest_time_ms'],
+                gtc_spread_checks=gtc_phase['spread_checks'],
+                gtc_cancel_reason='spread_gone_pre_kalshi',
+            )
 
     # -------------------------------------------------------------------------
     # Step 6: Place Kalshi order (only if PM filled - reliable leg)
@@ -919,6 +1174,11 @@ async def execute_arb(
                     execution_time_ms=int((time.time() - start_time) * 1000),
                     pm_order_ms=pm_order_ms, k_order_ms=0,
                     pm_response_details=pm_response_details,
+                    execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
+                    gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
+                    gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
+                    gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
+                    is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
                 )
         except Exception as unwind_err:
             print(f"[RECOVERY] PM unwind failed: {unwind_err}")
@@ -936,6 +1196,11 @@ async def execute_arb(
             pm_order_ms=pm_order_ms,
             k_order_ms=0,
             pm_response_details=pm_response_details,
+            execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
+            gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
+            gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
+            gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
+            is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
         )
 
     k_order_ms = int((time.time() - k_order_start) * 1000)
@@ -1007,6 +1272,11 @@ async def execute_arb(
                     pm_order_ms=pm_order_ms,
                     k_order_ms=k_order_ms,
                     pm_response_details=pm_response_details,
+                    execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
+                    gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
+                    gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
+                    gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
+                    is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
                 )
             else:
                 print(f"[RECOVERY] PM UNWIND FAILED - position remains open!")
@@ -1027,6 +1297,11 @@ async def execute_arb(
             pm_order_ms=pm_order_ms,
             k_order_ms=k_order_ms,
             pm_response_details=pm_response_details,
+            execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
+            gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
+            gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
+            gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
+            is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
         )
 
     # -------------------------------------------------------------------------
@@ -1071,6 +1346,11 @@ async def execute_arb(
             pm_order_ms=pm_order_ms,
             k_order_ms=k_order_ms,
             pm_response_details=pm_response_details,
+            execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
+            gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
+            gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
+            gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
+            is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
         )
 
     # Both sides filled (fully matched) - SUCCESS
@@ -1085,6 +1365,11 @@ async def execute_arb(
         pm_order_ms=pm_order_ms,
         k_order_ms=k_order_ms,
         pm_response_details=pm_response_details,
+        execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
+        gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
+        gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
+        gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
+        is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
     )
 
 

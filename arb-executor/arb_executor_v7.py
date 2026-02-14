@@ -1817,6 +1817,36 @@ class PolymarketUSAPI:
             print(f"   [!] PM cancel error: {e}")
             return False
 
+    async def get_order_status(self, session, order_id: str) -> Dict:
+        """GET /v1/orders/{order_id} — returns state, cum_quantity, fill_price."""
+        path = f'/v1/orders/{order_id}'
+        try:
+            async with session.get(
+                f'{self.BASE_URL}{path}',
+                headers=self._headers('GET', path),
+                timeout=aiohttp.ClientTimeout(total=3)
+            ) as r:
+                if r.status == 200:
+                    data = await r.json()
+                    cum_qty = data.get('cumQuantity', 0)
+                    if isinstance(cum_qty, str):
+                        cum_qty = int(cum_qty) if cum_qty else 0
+                    avg_px = data.get('avgPx', {})
+                    fill_price = float(avg_px['value']) if avg_px and avg_px.get('value') else None
+                    return {
+                        'order_id': order_id,
+                        'state': data.get('state', ''),
+                        'cum_quantity': cum_qty,
+                        'fill_price': fill_price,
+                    }
+                else:
+                    body = await r.text()
+                    return {'order_id': order_id, 'error': f'HTTP {r.status}: {body[:200]}',
+                            'state': '', 'cum_quantity': 0, 'fill_price': None}
+        except Exception as e:
+            return {'order_id': order_id, 'error': str(e),
+                    'state': '', 'cum_quantity': 0, 'fill_price': None}
+
     async def cancel_all_orders(self, session, slugs: List[str] = None) -> List[str]:
         """Cancel all open orders, optionally filtered by market slugs"""
         path = '/v1/orders/open/cancel'

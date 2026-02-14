@@ -1240,6 +1240,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             pm_slug=arb.pm_slug,
             pm_outcome_idx=arb.pm_outcome_index,
             size=optimal_size,
+            k_book_ref=local_books.get(arb.kalshi_ticker),
         )
 
         # Handle result — only apply cooldown when PM order was actually sent
@@ -1249,14 +1250,23 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
 
         if result.success:
             # Show timing breakdown: PM first (unreliable) → K second (reliable)
+            phase = " [GTC]" if result.execution_phase == "gtc" else ""
+            maker = " (MAKER)" if result.is_maker else ""
             timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
-            print(f"[EXEC] SUCCESS: PM={result.pm_filled}@{result.pm_price:.2f}, K={result.kalshi_filled}@{result.kalshi_price}c | {timing}")
+            if result.gtc_rest_time_ms > 0:
+                timing += f" (GTC: {result.gtc_rest_time_ms}ms, {result.gtc_spread_checks} checks)"
+            print(f"[EXEC]{phase} SUCCESS{maker}: PM={result.pm_filled}@{result.pm_price:.2f}, K={result.kalshi_filled}@{result.kalshi_price}c | {timing}")
             # Build result dicts for log_trade compatibility
             k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
             pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
             log_trade(arb, k_result, pm_result, 'SUCCESS', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
             if TRADE_LOG:
                 TRADE_LOG[-1]['sizing_details'] = _sizing_details
+                TRADE_LOG[-1]['execution_phase'] = result.execution_phase
+                TRADE_LOG[-1]['gtc_rest_time_ms'] = result.gtc_rest_time_ms
+                TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
+                TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
+                TRADE_LOG[-1]['is_maker'] = result.is_maker
 
             # Persist traded game to prevent duplicates across restarts
             save_traded_game(arb.game, pm_slug=arb.pm_slug, team=arb.team)
@@ -1280,6 +1290,11 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             log_trade(arb, k_result, pm_result, 'UNHEDGED', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
             if TRADE_LOG:
                 TRADE_LOG[-1]['sizing_details'] = _sizing_details
+                TRADE_LOG[-1]['execution_phase'] = result.execution_phase
+                TRADE_LOG[-1]['gtc_rest_time_ms'] = result.gtc_rest_time_ms
+                TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
+                TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
+                TRADE_LOG[-1]['is_maker'] = result.is_maker
             # Save unhedged position for recovery
             try:
                 from arb_executor_v7 import HedgeState
@@ -1298,12 +1313,20 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
 
         elif result.pm_filled == 0 and result.pm_order_ms > 0:
             # Real PM no-fill: order was sent to PM API but IOC expired
-            print(f"[EXEC] PM NO FILL: {result.abort_reason} | pm={result.pm_order_ms}ms")
+            gtc_info = ""
+            if result.execution_phase == "gtc":
+                gtc_info = f" | GTC: {result.gtc_cancel_reason} ({result.gtc_rest_time_ms}ms)"
+            print(f"[EXEC] PM NO FILL: {result.abort_reason} | pm={result.pm_order_ms}ms{gtc_info}")
             k_result = {'fill_count': 0, 'fill_price': result.kalshi_price}
             pm_result = {'fill_count': 0, 'fill_price': result.pm_price}
             log_trade(arb, k_result, pm_result, 'PM_NO_FILL', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
             if TRADE_LOG:
                 TRADE_LOG[-1]['sizing_details'] = _sizing_details
+                TRADE_LOG[-1]['execution_phase'] = result.execution_phase
+                TRADE_LOG[-1]['gtc_rest_time_ms'] = result.gtc_rest_time_ms
+                TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
+                TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
+                TRADE_LOG[-1]['is_maker'] = result.is_maker
 
         else:
             # Early abort — never reached PM API (safety, phantom, pm_long_team, etc.)
@@ -1992,10 +2015,12 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
             print("[ERROR] Failed to subscribe to PM markets")
             return
 
+        gtc_status = f"ON (timeout={Config.gtc_timeout_seconds}s, recheck={Config.gtc_recheck_interval_ms}ms)" if Config.enable_gtc else "OFF"
         print(f"\n{'='*70}")
         print(f"DUAL WS EXECUTOR: K={len(tickers)} tickers, PM={len(pm_slugs)} markets")
         print(f"Mode: {'LIVE' if Config.is_live() else 'PAPER'}")
         print(f"Min spread: {Config.spread_min_cents}c | Max contracts: {Config.max_contracts}")
+        print(f"GTC (maker): {gtc_status}")
         print(f"{'='*70}\n")
 
         # Start WebSocket listener tasks
@@ -2064,6 +2089,15 @@ def main():
                        help='Min expected net profit in cents per marginal contract (default 1.0)')
     parser.add_argument('--depth-factor', type=float, default=0.70, dest='depth_factor',
                        help='Fraction of available depth to use (default 0.70)')
+    parser.add_argument('--gtc-timeout', type=float, default=None, dest='gtc_timeout',
+                       help='GTC order timeout in seconds (default: 3)')
+    parser.add_argument('--spread-recheck-interval', type=int, default=None,
+                       dest='spread_recheck_interval',
+                       help='GTC spread recheck interval in ms (default: 200)')
+    parser.add_argument('--enable-gtc', action='store_true', default=None,
+                       dest='enable_gtc', help='Enable IOC-then-GTC (default)')
+    parser.add_argument('--no-gtc', action='store_false', dest='enable_gtc',
+                       help='Disable GTC, use IOC only')
 
     args = parser.parse_args()
 

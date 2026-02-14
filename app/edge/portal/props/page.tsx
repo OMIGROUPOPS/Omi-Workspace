@@ -118,14 +118,14 @@ const RETAIL_BOOKS = ['fanduel', 'draftkings'];
 // ============================================================================
 // Edge Tier System (matching game markets from edgescout.ts)
 // ============================================================================
-type EdgeTier = 'NO_EDGE' | 'LOW' | 'MID' | 'HIGH' | 'MAX';
+type EdgeTier = 'NO_EDGE' | 'LOW' | 'MID' | 'HIGH' | 'REVIEW';
 
 const EDGE_TIER_LABELS: Record<EdgeTier, string> = {
   NO_EDGE: 'NO EDGE',
   LOW: 'LOW EDGE',
   MID: 'MID EDGE',
   HIGH: 'HIGH EDGE',
-  MAX: 'MAX EDGE',
+  REVIEW: 'REVIEW',
 };
 
 const EDGE_TIER_COLORS: Record<EdgeTier, string> = {
@@ -133,7 +133,7 @@ const EDGE_TIER_COLORS: Record<EdgeTier, string> = {
   LOW: 'text-zinc-400',
   MID: 'text-zinc-300',
   HIGH: 'text-emerald-400',
-  MAX: 'text-emerald-300',
+  REVIEW: 'text-red-400',
 };
 
 interface PropOutcome {
@@ -210,7 +210,7 @@ function edgeToConfidence(edgePct: number): number {
 
 function getEdgeTier(edgePct: number): EdgeTier {
   const ae = Math.abs(edgePct);
-  if (ae >= 10) return 'MAX';
+  if (ae >= 10) return 'REVIEW';
   if (ae >= 6) return 'HIGH';
   if (ae >= 3) return 'MID';
   if (ae >= 1) return 'LOW';

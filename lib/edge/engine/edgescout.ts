@@ -29,11 +29,11 @@ export type CEQConfidence = 'PASS' | 'WATCH' | 'EDGE' | 'STRONG' | 'RARE';
 // Edge = abs(fair - book) * 3% per point (industry standard)
 // These labels are used across graded games and live game detail pages.
 
-export type EdgeSignal = 'NO EDGE' | 'LOW EDGE' | 'MID EDGE' | 'HIGH EDGE' | 'MAX EDGE';
+export type EdgeSignal = 'NO EDGE' | 'LOW EDGE' | 'MID EDGE' | 'HIGH EDGE' | 'REVIEW';
 
 export function getEdgeSignal(edgePct: number): EdgeSignal {
   const ae = Math.abs(edgePct);
-  if (ae >= 10) return 'MAX EDGE';
+  if (ae >= 10) return 'REVIEW';
   if (ae >= 6) return 'HIGH EDGE';
   if (ae >= 3) return 'MID EDGE';
   if (ae >= 1) return 'LOW EDGE';
@@ -53,7 +53,7 @@ export function edgeToConfidence(edgePct: number): number {
 /** Color class for edge signal tier. */
 export function getEdgeSignalColor(signal: EdgeSignal): string {
   switch (signal) {
-    case 'MAX EDGE':  return 'text-red-400';
+    case 'REVIEW':    return 'text-red-400';
     case 'HIGH EDGE': return 'text-cyan-400';
     case 'MID EDGE':  return 'text-amber-400';
     case 'LOW EDGE':  return 'text-zinc-400';
@@ -64,7 +64,7 @@ export function getEdgeSignalColor(signal: EdgeSignal): string {
 /** Background color class for edge signal tier badges. */
 export function getEdgeSignalBg(signal: EdgeSignal): string {
   switch (signal) {
-    case 'MAX EDGE':  return 'bg-red-400/10';
+    case 'REVIEW':    return 'bg-red-400/10';
     case 'HIGH EDGE': return 'bg-cyan-400/10';
     case 'MID EDGE':  return 'bg-amber-400/10';
     case 'LOW EDGE':  return 'bg-zinc-400/10';
@@ -72,8 +72,10 @@ export function getEdgeSignalBg(signal: EdgeSignal): string {
   }
 }
 
-// Points-to-probability: 1 point ≈ 3% win probability (unified constant)
+// Points-to-probability: 1 spread point ≈ 3% win probability
 export const PROB_PER_POINT = 0.03;
+// Totals are higher-variance: 1 total point ≈ 1.5% win probability
+export const PROB_PER_TOTAL_POINT = 0.015;
 export type MarketSide = 'home' | 'away' | 'over' | 'under' | 'draw';
 
 export interface CEQResult {

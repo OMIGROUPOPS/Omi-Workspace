@@ -103,9 +103,9 @@ function calculateMaxEdge(
     maxEdge = Math.max(maxEdge, (fairHP - normBHP) * 100, (fairAP - normBAP) * 100);
   }
 
-  // Total edge: abs(fair_total - book_total) * 3.0
+  // Total edge: abs(fair_total - book_total) * 1.5 (totals are higher-variance)
   if (fairLines.fair_total != null && consensus.totals?.line !== undefined) {
-    maxEdge = Math.max(maxEdge, Math.abs(fairLines.fair_total - consensus.totals.line) * 3.0);
+    maxEdge = Math.max(maxEdge, Math.abs(fairLines.fair_total - consensus.totals.line) * 1.5);
   }
 
   return maxEdge;

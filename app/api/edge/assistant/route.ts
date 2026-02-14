@@ -87,7 +87,7 @@ function getEdgeTier(edgePct: number): string {
   if (abs < 3) return 'LOW';
   if (abs < 6) return 'MID';
   if (abs < 10) return 'HIGH';
-  return 'MAX';
+  return 'REVIEW';
 }
 
 // Spread-to-probability rate by sport
@@ -424,7 +424,8 @@ async function buildGameContext(gameId: string, clientContext: string): Promise<
 
   if (fairTotal != null && consTotal !== undefined) {
     const gap = fairTotal - consTotal;
-    const edgePct = Math.abs(gap) * rate * 100;
+    const totalRate = rate * 0.5; // Totals are higher-variance
+    const edgePct = Math.abs(gap) * totalRate * 100;
     const direction = gap > 0 ? 'Over' : 'Under';
     lines.push(`Total Edge: ${edgePct.toFixed(1)}% favoring ${direction}`);
     lines.push(`  → BET: ${direction} ${consTotal} | OMI fair total: ${fairTotal.toFixed(1)} | Book total: ${consTotal}`);
@@ -526,7 +527,7 @@ async function buildGameContext(gameId: string, clientContext: string): Promise<
 
   // === EDGE TIERS REFERENCE ===
   lines.push('=== EDGE TIER SCALE ===');
-  lines.push('< 1%: NO EDGE | 1-3%: LOW | 3-6%: MID | 6-10%: HIGH | 10%+: MAX');
+  lines.push('< 1%: NO EDGE | 1-3%: LOW | 3-6%: MID | 6-10%: HIGH | 10%+: REVIEW');
   lines.push(`This game: ${getEdgeTier(bestEdgePct)} on ${bestEdgeMarket || 'N/A'} (${bestEdgePct.toFixed(1)}%)`);
 
   return lines.join('\n');

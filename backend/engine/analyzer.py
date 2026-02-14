@@ -294,6 +294,20 @@ def implied_prob_to_american(prob: float) -> int:
         return int(100 * (1 - prob) / prob)
 
 
+def _compress_pillar(score: float) -> float:
+    """Compress extreme pillar values to prevent single pillar domination.
+
+    Scores beyond [0.15, 0.85] are compressed by 70%, reducing the impact
+    of any single runaway pillar on the composite.
+    Effect: pillar at 1.0 → 0.895, pillar at 0.0 → 0.105.
+    """
+    if score > 0.85:
+        return 0.85 + (score - 0.85) * 0.3
+    if score < 0.15:
+        return 0.15 - (0.15 - score) * 0.3
+    return score
+
+
 def calculate_composite_score(pillar_scores: dict, sport: str = "NBA") -> float:
     """Calculate weighted composite score from all pillars using sport-specific weights."""
     # Normalize sport key to uppercase short format
@@ -310,7 +324,8 @@ def calculate_composite_score(pillar_scores: dict, sport: str = "NBA") -> float:
 
     for pillar, weight in weights.items():
         if pillar in pillar_scores:
-            composite += pillar_scores[pillar] * weight
+            compressed = _compress_pillar(pillar_scores[pillar])
+            composite += compressed * weight
             total_weight += weight
 
     if total_weight == 0:

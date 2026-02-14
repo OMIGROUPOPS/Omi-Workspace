@@ -153,7 +153,7 @@ const SPORT_BADGE_COLORS: Record<string, string> = {
 };
 
 const SIGNAL_COLORS: Record<string, string> = {
-  "MAX EDGE": "text-red-400",
+  "REVIEW": "text-red-400",
   "HIGH EDGE": "text-cyan-400",
   "MID EDGE": "text-amber-400",
   "LOW EDGE": "text-zinc-400",
@@ -418,10 +418,10 @@ export default function EdgeInternalPage() {
   }, [gradedData?.rows, sortField, sortDir]);
 
   // ------- Render helpers -------
-  const EDGE_TIERS = ["NO EDGE", "LOW EDGE", "MID EDGE", "HIGH EDGE", "MAX EDGE"];
+  const EDGE_TIERS = ["NO EDGE", "LOW EDGE", "MID EDGE", "HIGH EDGE", "REVIEW"];
   const EDGE_TIER_RANGES: Record<string, string> = {
     "NO EDGE": "<1%", "LOW EDGE": "1-3%", "MID EDGE": "3-6%",
-    "HIGH EDGE": "6-10%", "MAX EDGE": "10%+",
+    "HIGH EDGE": "6-10%", "REVIEW": "10%+",
   };
 
   const SortHeader = ({
@@ -551,7 +551,7 @@ export default function EdgeInternalPage() {
             <option value="LOW EDGE">Low Edge (1-3%)</option>
             <option value="MID EDGE">Mid Edge (3-6%)</option>
             <option value="HIGH EDGE">High Edge (6-10%)</option>
-            <option value="MAX EDGE">Max Edge (10%+)</option>
+            <option value="REVIEW">Review (10%+)</option>
           </select>
         )}
 
@@ -839,7 +839,7 @@ export default function EdgeInternalPage() {
                       })}
                       {/* Perfect calibration dashed line connecting expected confidence midpoints */}
                       {(() => {
-                        const tierMidpoints = [52, 57, 63, 68, 73]; // NO EDGE→MAX EDGE
+                        const tierMidpoints = [52, 57, 63, 68, 73]; // NO EDGE→REVIEW
                         const tierXPositions = [0, 1, 2, 3, 4].map((i) => 77 + i * 60);
                         const points = tierMidpoints.map((mp, i) => {
                           const x = tierXPositions[i];
@@ -865,7 +865,7 @@ export default function EdgeInternalPage() {
                         const tierName = point.tier || EDGE_TIERS[i] || "";
                         const tierColor = SIGNAL_COLORS[tierName] || "text-zinc-400";
                         // Map tier color class to hex
-                        const dotColor = tierName === "MAX EDGE" ? "#f87171"
+                        const dotColor = tierName === "REVIEW" ? "#f87171"
                           : tierName === "HIGH EDGE" ? "#22d3ee"
                           : tierName === "MID EDGE" ? "#fbbf24"
                           : tierName === "LOW EDGE" ? "#a1a1aa"

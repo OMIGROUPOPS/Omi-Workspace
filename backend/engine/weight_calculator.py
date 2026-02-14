@@ -330,7 +330,7 @@ def apply_feedback_adjustments(sport: str) -> Dict:
         pillar_metrics = feedback.get("pillar_metrics", {})
         sample_size = feedback.get("sample_size", 0)
 
-        if sample_size < 20:
+        if sample_size < 50:
             return {"status": "insufficient_sample", "sample_size": sample_size}
 
         # 2. Get current weights
@@ -389,8 +389,15 @@ def apply_feedback_adjustments(sport: str) -> Dict:
         }).eq("id", feedback_id).execute()
 
         logger.info(
+            f"[WeightAdj] {sport_upper}: " +
+            ", ".join(
+                f"{p} {old_weights.get(p, 0):.3f}→{new_weights[p]:.3f}"
+                for p in PILLAR_KEYS
+            )
+        )
+        logger.info(
             f"[WeightCalc] Applied feedback adjustments for {sport_upper}: "
-            f"sample={sample_size}, adjustments={adjustment_log}"
+            f"sample={sample_size}"
         )
 
         return {

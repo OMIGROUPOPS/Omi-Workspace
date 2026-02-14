@@ -1529,7 +1529,7 @@ async def get_model_feedback(sport: str = None, days: int = 30):
 
 
 @app.post("/api/internal/run-feedback")
-async def run_model_feedback(sport: str = None, min_games: int = 20, apply_weights: bool = False):
+async def run_model_feedback(sport: str = None, min_games: int = 50, apply_weights: bool = False):
     """Run feedback analysis and optionally apply weight adjustments.
 
     1. Analyzes graded predictions for per-pillar metrics and CLV

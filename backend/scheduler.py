@@ -16,6 +16,7 @@ import httpx
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
+from apscheduler.triggers.cron import CronTrigger
 
 from config import (
     ODDS_API_SPORTS, OUTDOOR_SPORTS, NFL_STADIUMS,
@@ -565,6 +566,35 @@ def run_analysis_cycle() -> dict:
 
 
 # =============================================================================
+# DAILY FEEDBACK LOOP
+# =============================================================================
+
+def run_daily_feedback():
+    """Daily model feedback loop: analyze grading performance and adjust pillar weights."""
+    logger.info("[DailyFeedback] Starting daily feedback cycle")
+    from model_feedback import ModelFeedback
+
+    fb = ModelFeedback()
+    sports = ["NBA", "NCAAB", "NHL", "EPL", "NFL", "NCAAF"]
+    results = {}
+
+    for sport in sports:
+        try:
+            result = fb.run_and_apply_feedback(sport, min_games=50)
+            sp_result = result.get("results", {}).get(sport, {})
+            status = sp_result.get("status", "unknown")
+            sample = sp_result.get("sample_size", 0)
+            results[sport] = {"status": status, "sample_size": sample}
+            logger.info(f"[DailyFeedback] {sport}: {status} (n={sample})")
+        except Exception as e:
+            logger.error(f"[DailyFeedback] {sport} failed: {e}")
+            results[sport] = {"error": str(e)}
+
+    logger.info(f"[DailyFeedback] Complete: {list(results.keys())}")
+    return results
+
+
+# =============================================================================
 # SCHEDULER SETUP
 # =============================================================================
 
@@ -619,6 +649,15 @@ def start_scheduler():
         replace_existing=True
     )
 
+    # Daily feedback: 6 AM UTC — analyze performance and adjust pillar weights
+    scheduler.add_job(
+        func=run_daily_feedback,
+        trigger=CronTrigger(hour=6, minute=0),
+        id="daily_feedback",
+        name="Daily model feedback and weight adjustment",
+        replace_existing=True
+    )
+
     scheduler.start()
     logger.info(f"Scheduler started:")
     logger.info(f"  - Pre-game: every {PREGAME_POLL_INTERVAL_MINUTES} min")
@@ -626,6 +665,7 @@ def start_scheduler():
     logger.info(f"  - Live props: every 7 min")
     logger.info(f"  - Closing line capture: every 10 min")
     logger.info(f"  - Grading: every 60 min")
+    logger.info(f"  - Daily feedback: 6:00 AM UTC")
     
     return scheduler
 

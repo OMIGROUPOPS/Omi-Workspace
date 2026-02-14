@@ -61,7 +61,7 @@ class ModelFeedback:
     def run_feedback(
         self,
         sport: Optional[str] = None,
-        min_games: int = 20,
+        min_games: int = 50,
         days: int = 60,
     ) -> dict:
         """
@@ -138,6 +138,14 @@ class ModelFeedback:
         # 6. Compute market-level metrics
         market_metrics = self._compute_market_metrics(grades)
 
+        # 6b. Compute bias (spread/total systematic error)
+        bias_data = self._compute_bias(grades, pillar_map)
+        logger.info(
+            f"[ModelFeedback] {sport}: spread_bias={bias_data.get('spread_bias')} "
+            f"(n={bias_data.get('spread_sample')}), total_bias={bias_data.get('total_bias')} "
+            f"(n={bias_data.get('total_sample')})"
+        )
+
         # 7. Get current weights
         current_weights = self._get_current_weights(sport)
 
@@ -155,6 +163,7 @@ class ModelFeedback:
             "current_weights": current_weights,
             "suggested_adjustments": suggested,
             "applied_adjustments": None,  # Filled by weight_calculator when applied
+            "metric_data": bias_data,
         }
 
         try:
@@ -171,6 +180,7 @@ class ModelFeedback:
             "avg_clv_total": clv_total,
             "market_metrics": market_metrics,
             "suggested_adjustments": suggested,
+            "bias": bias_data,
         }
 
     def _fetch_grades(self, sport: str, cutoff: str) -> list:
@@ -380,6 +390,45 @@ class ModelFeedback:
             }
         return result
 
+    def _compute_bias(self, grades: list, pillar_map: dict) -> dict:
+        """Calculate systematic bias in fair line predictions.
+
+        total_bias = AVG(omi_fair_total - actual_total)
+        spread_bias = AVG(omi_fair_spread - actual_spread)
+        Positive bias = model overestimates, negative = underestimates.
+        """
+        spread_diffs = []
+        total_diffs = []
+
+        for grade in grades:
+            gid = grade["game_id"]
+            pillars = pillar_map.get(gid)
+            if not pillars:
+                continue
+
+            home_score = pillars.get("home_score")
+            away_score = pillars.get("away_score")
+            if home_score is None or away_score is None:
+                continue
+
+            fair_line = grade.get("omi_fair_line")
+            if fair_line is None:
+                continue
+
+            if grade.get("market_type") == "spread":
+                actual_spread = home_score - away_score
+                spread_diffs.append(float(fair_line) - actual_spread)
+            elif grade.get("market_type") == "total":
+                actual_total = home_score + away_score
+                total_diffs.append(float(fair_line) - actual_total)
+
+        return {
+            "spread_bias": round(sum(spread_diffs) / len(spread_diffs), 2) if spread_diffs else None,
+            "spread_sample": len(spread_diffs),
+            "total_bias": round(sum(total_diffs) / len(total_diffs), 2) if total_diffs else None,
+            "total_sample": len(total_diffs),
+        }
+
     def _get_current_weights(self, sport: str) -> dict:
         """Get current pillar weights from calibration_config."""
         try:
@@ -444,6 +493,34 @@ class ModelFeedback:
                 adjustments[pillar]["new_weight_normalized"] = normalized
 
         return adjustments
+
+    def run_and_apply_feedback(
+        self,
+        sport_key: Optional[str] = None,
+        min_games: int = 50,
+    ) -> dict:
+        """Run feedback analysis + apply weight adjustments in one call.
+
+        Convenience wrapper that:
+        1. Runs run_feedback() to compute pillar metrics + bias
+        2. Applies EMA-bounded weight adjustments for sports with enough data
+        """
+        result = self.run_feedback(sport_key, min_games)
+
+        from engine.weight_calculator import apply_feedback_adjustments
+
+        adjustments = {}
+        for sp_key, sp_result in result.get("results", {}).items():
+            if (
+                sp_result.get("status") == "success"
+                and sp_result.get("sample_size", 0) >= min_games
+            ):
+                adj = apply_feedback_adjustments(sp_key)
+                adjustments[sp_key] = adj
+                logger.info(f"[WeightAdj] {sp_key}: {adj.get('status', 'unknown')}")
+
+        result["weight_adjustments"] = adjustments
+        return result
 
     def get_latest_feedback(self, sport: Optional[str] = None, days: int = 30) -> dict:
         """Get latest calibration_feedback rows for inspection."""

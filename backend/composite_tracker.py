@@ -35,6 +35,48 @@ SPREAD_TO_PROB_RATE = {
 
 FAIR_LINE_ML_FACTOR = 0.01  # 1% implied probability shift per composite point
 
+# Sport key normalization (for bias correction lookup)
+SPORT_DISPLAY = {
+    "basketball_nba": "NBA", "basketball_ncaab": "NCAAB",
+    "americanfootball_nfl": "NFL", "americanfootball_ncaaf": "NCAAF",
+    "icehockey_nhl": "NHL", "soccer_epl": "EPL",
+}
+
+
+def _get_bias_correction(sport_key: str) -> dict:
+    """Read latest total/spread bias from calibration_feedback for a sport.
+
+    Returns {total_bias, spread_bias, total_sample, spread_sample} or empty dict.
+    Requires sample_size >= 50 to activate corrections.
+    """
+    try:
+        if not db._is_connected():
+            return {}
+        sport_upper = SPORT_DISPLAY.get(sport_key, sport_key.upper())
+
+        result = db.client.table("calibration_feedback").select(
+            "metric_data, sample_size"
+        ).eq("sport_key", sport_upper).not_.is_(
+            "metric_data", "null"
+        ).order("analysis_date", desc=True).limit(1).execute()
+
+        if result.data:
+            row = result.data[0]
+            sample = row.get("sample_size", 0)
+            if sample < 50:
+                return {}
+            metric_data = row.get("metric_data") or {}
+            return {
+                "total_bias": metric_data.get("total_bias"),
+                "spread_bias": metric_data.get("spread_bias"),
+                "total_sample": metric_data.get("total_sample", 0),
+                "spread_sample": metric_data.get("spread_sample", 0),
+            }
+    except Exception as e:
+        logger.debug(f"[CompositeTracker] bias correction lookup failed: {e}")
+    return {}
+
+
 # Exchange divergence boost constants
 EXCHANGE_DIVERGENCE_THRESHOLD = 0.03  # 3% minimum divergence to trigger boost
 EXCHANGE_DIVERGENCE_SCALE = 0.30      # Convert divergence to spread points (dampened)
@@ -343,6 +385,9 @@ class CompositeTracker:
             f"By sport: {sport_counts}"
         )
 
+        # Bias correction cache — lazy-populated per sport to avoid redundant DB calls
+        bias_cache: dict[str, dict] = {}
+
         games_processed = 0
         errors = 0
         sport_processed: dict[str, int] = {}
@@ -406,6 +451,31 @@ class CompositeTracker:
 
                 if book_total is not None:
                     fair_total = _calculate_fair_total(book_total, game_env_score)
+
+                # 5b. Bias correction — apply 30% of measured systematic bias
+                if sport_key not in bias_cache:
+                    bias_cache[sport_key] = _get_bias_correction(sport_key)
+                bias = bias_cache[sport_key]
+
+                if fair_spread is not None and bias.get("spread_bias") is not None and bias.get("spread_sample", 0) >= 50:
+                    correction = bias["spread_bias"] * 0.3
+                    old_fs = fair_spread
+                    fair_spread = _round_to_half(fair_spread - correction)
+                    if games_processed < 3:  # Log first few only
+                        logger.info(
+                            f"[BiasCorr] {game_id}: spread_bias={bias['spread_bias']}, "
+                            f"correction={correction:.2f}, fair_spread {old_fs}→{fair_spread}"
+                        )
+
+                if fair_total is not None and bias.get("total_bias") is not None and bias.get("total_sample", 0) >= 50:
+                    correction = bias["total_bias"] * 0.3
+                    old_ft = fair_total
+                    fair_total = _round_to_half(fair_total - correction)
+                    if games_processed < 3:  # Log first few only
+                        logger.info(
+                            f"[BiasCorr] {game_id}: total_bias={bias['total_bias']}, "
+                            f"correction={correction:.2f}, fair_total {old_ft}→{fair_total}"
+                        )
 
                 # 6. Insert row
                 row_data = {

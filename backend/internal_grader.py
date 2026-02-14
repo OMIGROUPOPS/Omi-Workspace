@@ -198,13 +198,19 @@ class InternalGrader:
 
     def _bootstrap_game_results(self, sport: Optional[str] = None) -> int:
         """Create game_results rows from predictions for completed games."""
-        cutoff = datetime.now(timezone.utc).isoformat()
+        now = datetime.now(timezone.utc)
+        cutoff = now.isoformat()
+        # Only look back 30 days — keeps query well under Supabase's 1000-row
+        # default limit that was silently truncating recent games.
+        lookback = (now - timedelta(days=30)).isoformat()
         count = 0
 
         try:
             query = self.client.table("predictions").select(
                 "game_id, sport_key"
-            ).lt("commence_time", cutoff)
+            ).gte("commence_time", lookback).lt("commence_time", cutoff).order(
+                "commence_time", desc=True
+            )
 
             if sport:
                 query = query.eq("sport_key", sport)

@@ -200,9 +200,13 @@ const DEFAULT_STATE: ArbState = {
   trades: [],
   positions: [],
   balances: {
+    k_cash: 0,
+    k_portfolio: 0,
+    pm_cash: 0,
+    pm_portfolio: 0,
+    total_portfolio: 0,
     kalshi_balance: 0,
     pm_balance: 0,
-    total_portfolio: 0,
     updated_at: "",
   },
   system: {

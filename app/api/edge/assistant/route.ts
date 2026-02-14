@@ -397,8 +397,10 @@ async function buildGameContext(gameId: string, clientContext: string): Promise<
   if (fairSpread != null && consSpread !== undefined) {
     const gap = consSpread - fairSpread;
     const edgePct = Math.abs(gap) * rate * 100;
-    const favoredSide = gap > 0 ? awayTeam : homeTeam;
-    lines.push(`Spread Edge: ${edgePct.toFixed(1)}% favoring ${favoredSide} (fair ${fmtSpread(fairSpread)} vs book ${fmtSpread(consSpread)} = ${Math.abs(gap).toFixed(1)} pts gap)`);
+    const edgeTeam = gap > 0 ? awayTeam : homeTeam;
+    const edgeTeamSpread = gap > 0 ? fmtSpread(-consSpread) : fmtSpread(consSpread);
+    lines.push(`Spread Edge: ${edgePct.toFixed(1)}% favoring ${edgeTeam} ${edgeTeamSpread}`);
+    lines.push(`  → BET: ${edgeTeam} ${edgeTeamSpread} | OMI fair: ${homeTeam} ${fmtSpread(fairSpread)} | Book: ${homeTeam} ${fmtSpread(consSpread)} | Gap: ${Math.abs(gap).toFixed(1)} pts`);
     if (edgePct > bestEdgePct) { bestEdgePct = edgePct; bestEdgeMarket = 'Spread'; }
   }
 
@@ -412,8 +414,11 @@ async function buildGameContext(gameId: string, clientContext: string): Promise<
     const homeEdge = (fairHP - normBHP) * 100;
     const awayEdge = (fairAP - normBAP) * 100;
     const biggerEdge = Math.abs(homeEdge) > Math.abs(awayEdge) ? homeEdge : awayEdge;
-    const edgeTeam = Math.abs(homeEdge) > Math.abs(awayEdge) ? homeTeam : awayTeam;
-    lines.push(`ML Edge: ${Math.abs(biggerEdge).toFixed(1)}% favoring ${edgeTeam}`);
+    const mlEdgeTeam = Math.abs(homeEdge) > Math.abs(awayEdge) ? homeTeam : awayTeam;
+    const mlEdgeTeamFairProb = Math.abs(homeEdge) > Math.abs(awayEdge) ? (fairHP * 100).toFixed(1) : (fairAP * 100).toFixed(1);
+    const mlEdgeTeamBookProb = Math.abs(homeEdge) > Math.abs(awayEdge) ? (normBHP * 100).toFixed(1) : (normBAP * 100).toFixed(1);
+    lines.push(`ML Edge: ${Math.abs(biggerEdge).toFixed(1)}% favoring ${mlEdgeTeam}`);
+    lines.push(`  → BET: ${mlEdgeTeam} ML | OMI fair prob: ${mlEdgeTeamFairProb}% | Book implied: ${mlEdgeTeamBookProb}%`);
     if (Math.abs(biggerEdge) > bestEdgePct) { bestEdgePct = Math.abs(biggerEdge); bestEdgeMarket = 'ML'; }
   }
 
@@ -421,7 +426,8 @@ async function buildGameContext(gameId: string, clientContext: string): Promise<
     const gap = fairTotal - consTotal;
     const edgePct = Math.abs(gap) * rate * 100;
     const direction = gap > 0 ? 'Over' : 'Under';
-    lines.push(`Total Edge: ${edgePct.toFixed(1)}% favoring ${direction} (fair ${fairTotal.toFixed(1)} vs book ${consTotal})`);
+    lines.push(`Total Edge: ${edgePct.toFixed(1)}% favoring ${direction}`);
+    lines.push(`  → BET: ${direction} ${consTotal} | OMI fair total: ${fairTotal.toFixed(1)} | Book total: ${consTotal}`);
     if (edgePct > bestEdgePct) { bestEdgePct = edgePct; bestEdgeMarket = 'Total'; }
   }
 
@@ -528,19 +534,32 @@ async function buildGameContext(gameId: string, clientContext: string): Promise<
 
 const BASE_SYSTEM_PROMPT = `You are OMI Edge's AI analyst. You have comprehensive game data provided below. Use ONLY this data to answer questions. Be specific with numbers.
 
-CRITICAL RULES FOR TEAM/SPREAD IDENTIFICATION:
-- The HOME team's spread is listed first. A NEGATIVE spread means they are the FAVORITE (giving points). A POSITIVE spread means they are the UNDERDOG (getting points).
-- Example: If Home Team has spread -7.5, they are favored by 7.5 points. The Away Team is +7.5 (getting 7.5 points).
-- NEVER say a team is "at +X" if their spread is negative. Always check the data.
-- When discussing edges, always specify WHICH TEAM and the DIRECTION (e.g., "3.2% edge on the Celtics -5.5" not "3.2% edge on the spread").
+TEAM/SPREAD IDENTIFICATION:
+- NEGATIVE spread = FAVORITE (giving points). POSITIVE spread = UNDERDOG (getting points).
+- NEVER say a favorite is "getting points" or an underdog is "giving points."
+- The EDGES section in the data below already tells you which team/side has the edge and by how much. Trust it.
 
-ANALYSIS GUIDELINES:
-- Pillar scores range 0-100 (50 = neutral). Scores above 50 favor an adjustment toward the home team; below 50 favors the away team.
-- Reference specific pillar scores when explaining WHY an edge exists.
-- Edge % = gap between the book's line and OMI's fair line, converted to probability.
+EDGE EXPLANATION RULES — follow this exact logic:
+
+SPREADS:
+- The edge is on the team named in the "favoring [TEAM]" part of the Spread Edge line.
+- Use this template: "The edge is on [TEAM] [THEIR SPREAD] because OMI's fair line is [FAIR] but the book offers [BOOK], giving you [GAP] extra points of value."
+- Do NOT explain both sides. Just state which team has the edge and why in 2-3 sentences max.
+
+TOTALS:
+- Use this template: "The edge is on the [OVER/UNDER] because OMI's fair total is [FAIR] but the book line is [BOOK]."
+
+MONEYLINE:
+- Use this template: "The edge is on [TEAM] ML because OMI gives them a [FAIR_PROB]% win probability but the book implies only [BOOK_PROB]%."
+
+GENERAL RESPONSE RULES:
+- Lead with the edge. Never start with "there's a discrepancy" or "looking at the data" or "based on the analysis." Be direct.
+- State the bet first, then the reason. "The edge is on X because Y."
+- Reference specific pillar scores ONLY when the user asks "why" or "which pillar drives this."
+- Keep answers under 150 words unless the user explicitly asks for detail.
 - If asked about something NOT in the data below, say so honestly rather than guessing.
-- Never recommend specific bets — explain what the data shows and let the user decide.
-- Keep answers concise (under 200 words) unless the question requires more detail.`;
+- Never recommend specific bet amounts — explain what the data shows and let the user decide.
+- When the user asks a general "what do you think" or "what's the play" question, lead with the highest-edge market.`;
 
 export async function POST(request: NextRequest) {
   if (!ANTHROPIC_API_KEY) {

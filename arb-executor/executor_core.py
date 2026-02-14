@@ -234,6 +234,51 @@ class TradeResult:
     execution_time_ms: int = 0
     pm_order_ms: int = 0       # PM order latency
     k_order_ms: int = 0        # Kalshi order latency
+    pm_response_details: Optional[Dict] = None  # PM API response diagnostics
+
+
+def _extract_pm_response_details(pm_result: Dict) -> Dict:
+    """Extract PM API response details for trade record diagnostics."""
+    details: Dict[str, Any] = {}
+
+    # HTTP status: infer from response shape
+    if 'order_id' in pm_result:
+        details['pm_response_status'] = 200
+    elif 'error' in pm_result:
+        err = pm_result['error']
+        if isinstance(err, str) and err.startswith('HTTP '):
+            try:
+                details['pm_response_status'] = int(err.split(':')[0].split(' ')[1])
+            except (ValueError, IndexError):
+                details['pm_response_status'] = None
+        else:
+            details['pm_response_status'] = None
+    else:
+        details['pm_response_status'] = None
+
+    # Response body (truncated to 500 chars)
+    body_str = json.dumps(pm_result, default=str)
+    details['pm_response_body'] = body_str[:500]
+
+    # Fill details
+    details['pm_fill_price'] = pm_result.get('fill_price')
+    details['pm_fill_qty'] = pm_result.get('fill_count', 0)
+    details['pm_order_id'] = pm_result.get('order_id')
+
+    # Expiry / failure reason
+    order_state = pm_result.get('order_state', '')
+    if order_state == 'ORDER_STATE_EXPIRED':
+        details['pm_expiry_reason'] = 'IOC expired (no matching liquidity at limit price)'
+    elif order_state == 'ORDER_STATE_CANCELED':
+        details['pm_expiry_reason'] = 'Order canceled'
+    elif 'error' in pm_result:
+        details['pm_expiry_reason'] = str(pm_result['error'])[:200]
+    elif pm_result.get('fill_count', 0) == 0 and order_state:
+        details['pm_expiry_reason'] = f'No fill (state: {order_state})'
+    else:
+        details['pm_expiry_reason'] = None
+
+    return details
 
 
 # =============================================================================
@@ -779,14 +824,25 @@ async def execute_arb(
     except Exception as e:
         # PM failed before any position taken - safe exit
         execution_time_ms = int((time.time() - start_time) * 1000)
-        return TradeResult(success=False, abort_reason=f"PM order failed: {e}", execution_time_ms=execution_time_ms)
+        pm_err_details = _extract_pm_response_details({'error': str(e)})
+        return TradeResult(success=False, abort_reason=f"PM order failed: {e}",
+                           execution_time_ms=execution_time_ms,
+                           pm_response_details=pm_err_details)
 
     pm_order_ms = int((time.time() - pm_order_start) * 1000)
     pm_filled = pm_result.get('fill_count', 0)
     pm_fill_price = pm_result.get('fill_price', pm_price)
+    pm_response_details = _extract_pm_response_details(pm_result)
 
     if pm_filled == 0:
         execution_time_ms = int((time.time() - start_time) * 1000)
+
+        # Log diagnostic summary for no-fill
+        status = pm_response_details.get('pm_response_status', '?')
+        order_state = pm_result.get('order_state', 'N/A')
+        order_id = pm_result.get('order_id', 'none')
+        error_hint = pm_response_details.get('pm_expiry_reason', '') or ''
+        print(f"[EXEC] PM NO FILL: status={status} | state={order_state} | order={order_id} | {size}@${pm_price:.2f} | {error_hint}")
 
         # Distinguish real no-fills from early aborts / API errors:
         # Real no-fill: has 'order_id' (PM accepted the order, IOC expired)
@@ -799,7 +855,8 @@ async def execute_arb(
                 pm_price=pm_price,
                 abort_reason=f"PM order rejected: {error_msg}",
                 pm_order_ms=0,  # Force 0 so caller routes to SKIPPED
-                execution_time_ms=execution_time_ms
+                execution_time_ms=execution_time_ms,
+                pm_response_details=pm_response_details,
             )
 
         # Real no-fill: order was accepted but IOC expired without fills
@@ -809,7 +866,8 @@ async def execute_arb(
             pm_price=pm_price,
             abort_reason="PM: no fill (safe exit)",
             pm_order_ms=pm_order_ms,
-            execution_time_ms=execution_time_ms
+            execution_time_ms=execution_time_ms,
+            pm_response_details=pm_response_details,
         )
 
     # -------------------------------------------------------------------------
@@ -858,7 +916,8 @@ async def execute_arb(
                     unhedged=False,
                     abort_reason=f"Kalshi exception, PM unwound (loss: {loss_cents:.1f}c)",
                     execution_time_ms=int((time.time() - start_time) * 1000),
-                    pm_order_ms=pm_order_ms, k_order_ms=0
+                    pm_order_ms=pm_order_ms, k_order_ms=0,
+                    pm_response_details=pm_response_details,
                 )
         except Exception as unwind_err:
             print(f"[RECOVERY] PM unwind failed: {unwind_err}")
@@ -874,7 +933,8 @@ async def execute_arb(
             abort_reason=f"Kalshi exception: {e}, PM unwind failed - UNHEDGED!",
             execution_time_ms=int((time.time() - start_time) * 1000),
             pm_order_ms=pm_order_ms,
-            k_order_ms=0
+            k_order_ms=0,
+            pm_response_details=pm_response_details,
         )
 
     k_order_ms = int((time.time() - k_order_start) * 1000)
@@ -944,7 +1004,8 @@ async def execute_arb(
                     abort_reason=f"Kalshi failed, PM unwound (loss: {loss_cents:.1f}c)",
                     execution_time_ms=int((time.time() - start_time) * 1000),
                     pm_order_ms=pm_order_ms,
-                    k_order_ms=k_order_ms
+                    k_order_ms=k_order_ms,
+                    pm_response_details=pm_response_details,
                 )
             else:
                 print(f"[RECOVERY] PM UNWIND FAILED - position remains open!")
@@ -963,7 +1024,8 @@ async def execute_arb(
             abort_reason=f"Kalshi: no fill, PM unwind failed - UNHEDGED!",
             execution_time_ms=int((time.time() - start_time) * 1000),
             pm_order_ms=pm_order_ms,
-            k_order_ms=k_order_ms
+            k_order_ms=k_order_ms,
+            pm_response_details=pm_response_details,
         )
 
     # -------------------------------------------------------------------------
@@ -1006,7 +1068,8 @@ async def execute_arb(
             unhedged=(pm_filled != k_filled),
             execution_time_ms=elapsed_ms,
             pm_order_ms=pm_order_ms,
-            k_order_ms=k_order_ms
+            k_order_ms=k_order_ms,
+            pm_response_details=pm_response_details,
         )
 
     # Both sides filled (fully matched) - SUCCESS
@@ -1019,7 +1082,8 @@ async def execute_arb(
         unhedged=False,
         execution_time_ms=elapsed_ms,
         pm_order_ms=pm_order_ms,
-        k_order_ms=k_order_ms
+        k_order_ms=k_order_ms,
+        pm_response_details=pm_response_details,
     )
 
 

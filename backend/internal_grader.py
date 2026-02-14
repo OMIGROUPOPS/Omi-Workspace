@@ -92,8 +92,12 @@ def edge_to_confidence(edge_pct: float) -> float:
     return round(min(75, 71 + ((ae - 10) / 10.0) * 4), 1)
 
 
-def composite_to_confidence_tier(composite: float) -> Optional[int]:
-    """Map composite score (0-1) to confidence tier. Returns None if < 55."""
+def composite_to_confidence_tier(composite: float) -> int:
+    """Map composite score (0-1) to confidence tier.
+
+    Never returns None — low-composite games get tier 50 so they are
+    still graded (needed for calibration) but flagged as low-signal.
+    """
     score = composite * 100
     if score >= 70:
         return 70
@@ -103,7 +107,7 @@ def composite_to_confidence_tier(composite: float) -> Optional[int]:
         return 60
     elif score >= 55:
         return 55
-    return None
+    return 50
 
 
 def american_to_implied(odds) -> float:
@@ -346,6 +350,7 @@ class InternalGrader:
         ).single().execute()
 
         if not result.data:
+            logger.warning(f"[GenGrades] {game_id}: no game_results row found")
             return 0
 
         game = result.data
@@ -353,14 +358,19 @@ class InternalGrader:
         away_score = game.get("away_score")
 
         if home_score is None or away_score is None:
+            logger.warning(f"[GenGrades] {game_id}: scores missing (home={home_score}, away={away_score})")
             return 0
 
         sport_key = game.get("sport_key", "")
-        composite = game.get("composite_score", 0.5) or 0.5
+        raw_composite = game.get("composite_score")
+        composite = raw_composite if raw_composite is not None and raw_composite > 0 else 0.5
         tier = composite_to_confidence_tier(composite)
 
-        if tier is None:
-            return 0
+        if tier <= 50:
+            logger.info(
+                f"[GenGrades] {game_id}: composite {composite:.3f} (raw={raw_composite}) "
+                f"→ tier={tier} (low signal, will still grade)"
+            )
 
         final_spread = home_score - away_score
         final_total = home_score + away_score
@@ -370,6 +380,44 @@ class InternalGrader:
         closing_total = game.get("closing_total_line")
         closing_ml_home = game.get("closing_ml_home")
         closing_ml_away = game.get("closing_ml_away")
+
+        book_lines = self._get_book_lines(game_id)
+
+        # Fallback: if closing lines are missing, derive consensus from
+        # the median of available book lines so we can still grade.
+        if closing_spread is None or closing_total is None:
+            all_spreads = []
+            all_totals = []
+            all_ml_home = []
+            all_ml_away = []
+            for bdata in book_lines.values():
+                s = bdata.get("spread", {}).get("line")
+                if s is not None:
+                    all_spreads.append(s)
+                t = bdata.get("total", {}).get("line")
+                if t is not None:
+                    all_totals.append(t)
+                mh = bdata.get("moneyline", {}).get("home_odds")
+                ma = bdata.get("moneyline", {}).get("away_odds")
+                if mh is not None:
+                    all_ml_home.append(mh)
+                if ma is not None:
+                    all_ml_away.append(ma)
+
+            if closing_spread is None and all_spreads:
+                all_spreads.sort()
+                closing_spread = all_spreads[len(all_spreads) // 2]
+                logger.info(f"[GenGrades] {game_id}: used median book spread as consensus: {closing_spread}")
+            if closing_total is None and all_totals:
+                all_totals.sort()
+                closing_total = all_totals[len(all_totals) // 2]
+                logger.info(f"[GenGrades] {game_id}: used median book total as consensus: {closing_total}")
+            if closing_ml_home is None and all_ml_home:
+                all_ml_home.sort()
+                closing_ml_home = all_ml_home[len(all_ml_home) // 2]
+            if closing_ml_away is None and all_ml_away:
+                all_ml_away.sort()
+                closing_ml_away = all_ml_away[len(all_ml_away) // 2]
 
         # Calculate OMI fair lines
         fair_spread = None
@@ -383,7 +431,19 @@ class InternalGrader:
             adjustment = (game_env - 0.5) * FAIR_LINE_TOTAL_FACTOR * 10
             fair_total = closing_total + adjustment
 
-        book_lines = self._get_book_lines(game_id)
+        if not book_lines:
+            logger.info(
+                f"[GenGrades] {game_id}: no line_snapshots found. "
+                f"closing: spread={closing_spread}, total={closing_total}, "
+                f"ml={closing_ml_home}/{closing_ml_away}"
+            )
+        else:
+            grading_books_found = [b for b in book_lines if b in GRADING_BOOKS]
+            logger.info(
+                f"[GenGrades] {game_id}: book_lines={list(book_lines.keys())}, "
+                f"grading_books={grading_books_found}, composite={composite:.3f}, tier={tier}, "
+                f"fair_spread={fair_spread}, fair_total={fair_total}"
+            )
 
         rows_created = 0
 
@@ -752,15 +812,61 @@ class InternalGrader:
 
         created = 0
         errors = 0
+        zero_count = 0
         for gid in game_ids:
             try:
-                created += self._generate_prediction_grades(gid)
+                count = self._generate_prediction_grades(gid)
+                created += count
+                if count == 0:
+                    zero_count += 1
             except Exception as e:
                 logger.error(f"[Regrade] Error for {gid}: {e}")
                 errors += 1
 
-        logger.info(f"[Regrade] Purged {deleted}, regenerated {created} from {len(game_ids)} games")
-        return {"purged": deleted, "games": len(game_ids), "created": created, "errors": errors}
+        # Diagnostic probe: sample first few games to explain why 0 grades
+        sample_diagnostics = []
+        if created == 0 and game_ids:
+            for gid in game_ids[:3]:
+                try:
+                    gr = self.client.table("game_results").select(
+                        "game_id, sport_key, home_team, away_team, home_score, away_score, "
+                        "composite_score, closing_spread_home, closing_total_line, "
+                        "closing_ml_home, closing_ml_away"
+                    ).eq("game_id", gid).single().execute()
+                    g = gr.data or {}
+                    raw_comp = g.get("composite_score")
+                    comp = raw_comp if raw_comp is not None and raw_comp > 0 else 0.5
+                    tier = composite_to_confidence_tier(comp)
+                    bl = self._get_book_lines(gid)
+                    sample_diagnostics.append({
+                        "game_id": gid,
+                        "sport": g.get("sport_key"),
+                        "matchup": f"{g.get('away_team')} @ {g.get('home_team')}",
+                        "scores": f"{g.get('home_score')}-{g.get('away_score')}",
+                        "composite_raw": raw_comp,
+                        "composite_used": comp,
+                        "tier": tier,
+                        "closing_spread": g.get("closing_spread_home"),
+                        "closing_total": g.get("closing_total_line"),
+                        "closing_ml": f"{g.get('closing_ml_home')}/{g.get('closing_ml_away')}",
+                        "book_lines_keys": list(bl.keys()) if bl else [],
+                        "grading_books_found": [b for b in bl if b in GRADING_BOOKS] if bl else [],
+                    })
+                except Exception as e:
+                    sample_diagnostics.append({"game_id": gid, "error": str(e)})
+
+        logger.info(
+            f"[Regrade] Purged {deleted}, regenerated {created} from {len(game_ids)} games "
+            f"({zero_count} produced 0 grades, {errors} errors)"
+        )
+        return {
+            "purged": deleted,
+            "games": len(game_ids),
+            "created": created,
+            "zero_grade_games": zero_count,
+            "errors": errors,
+            "sample_diagnostics": sample_diagnostics,
+        }
 
     # ------------------------------------------------------------------
     # Graded Games — one row per game × market, per-book implied prob edges

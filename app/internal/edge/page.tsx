@@ -602,8 +602,12 @@ export default function EdgeInternalPage() {
                 if (res.ok) {
                   const r = await res.json();
                   setGradeResult(
-                    `Regrade: purged ${r.purged}, regenerated ${r.created} from ${r.games} games (${r.errors} errors)`
+                    `Regrade: purged ${r.purged}, regenerated ${r.created} from ${r.games} games ` +
+                    `(${r.zero_grade_games || 0} produced 0, ${r.errors} errors)`
                   );
+                  if (r.sample_diagnostics?.length > 0) {
+                    console.log("[Regrade] Sample diagnostics:", r.sample_diagnostics);
+                  }
                   if (activeTab === "performance") fetchData();
                   else fetchGradedGames();
                 } else {

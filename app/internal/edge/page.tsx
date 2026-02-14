@@ -340,10 +340,18 @@ export default function EdgeInternalPage() {
       if (res.ok) {
         const result = await res.json();
         const graded = result.auto_grader?.graded || 0;
+        const checked = result.auto_grader?.checked || 0;
+        const notFound = result.auto_grader?.not_found || 0;
         const pgCreated = result.prediction_grades_created || 0;
-        setGradeResult(
-          `Graded ${graded} games, created ${pgCreated} prediction grades`
-        );
+        const bootstrapped = result.bootstrapped_game_results || 0;
+        let msg = `Graded ${graded}/${checked} games, ${pgCreated} prediction grades`;
+        if (bootstrapped > 0) msg += `, ${bootstrapped} bootstrapped`;
+        if (notFound > 0) msg += ` (${notFound} no ESPN match)`;
+        setGradeResult(msg);
+        if (result.auto_grader?.not_found_details?.length > 0) {
+          console.log("[Grade] Not found details:", result.auto_grader.not_found_details);
+          console.log("[Grade] Diagnostics:", result.auto_grader.diagnostics);
+        }
         if (activeTab === "performance") fetchData();
         else fetchGradedGames();
       } else {

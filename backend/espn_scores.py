@@ -4,10 +4,13 @@ Fetches final scores from ESPN (FREE) and auto-grades games
 """
 
 import httpx
+import logging
 from datetime import datetime, timezone, timedelta
 from typing import Optional
 from zoneinfo import ZoneInfo
 import re
+
+logger = logging.getLogger(__name__)
 
 # ESPN organises its scoreboard by US Eastern date
 _US_EASTERN = ZoneInfo("America/New_York")
@@ -187,22 +190,25 @@ def normalize_team_name(name: str) -> str:
 
 def teams_match(espn_team: str, our_team: str) -> bool:
     """Check if ESPN team name matches our team name."""
+    if not espn_team or not our_team:
+        return False
+
     espn_norm = normalize_team_name(espn_team)
     our_norm = normalize_team_name(our_team)
-    
+
     # Direct match
     if espn_norm == our_norm:
         return True
-    
+
     # Check if one contains the other
     if espn_norm in our_norm or our_norm in espn_norm:
         return True
-    
+
     # Check aliases
     for full_name, aliases in TEAM_ALIASES.items():
         full_norm = normalize_team_name(full_name)
         alias_norms = [normalize_team_name(a) for a in aliases]
-        
+
         # If ESPN matches this team
         if espn_norm == full_norm or espn_norm in alias_norms:
             # Check if our team also matches
@@ -212,7 +218,22 @@ def teams_match(espn_team: str, our_team: str) -> bool:
             for alias in alias_norms:
                 if alias in our_norm or our_norm in alias:
                     return True
-    
+
+    # Word-overlap fallback — handles college teams where school name matches
+    # but mascot or qualifier differs (e.g. "Pitt Panthers" vs "Pittsburgh Panthers")
+    espn_words = set(espn_norm.split())
+    our_words = set(our_norm.split())
+    # Strip common noise words before comparing
+    noise = {"the", "of", "at", "st", "st.", "state", "university"}
+    espn_sig = espn_words - noise
+    our_sig = our_words - noise
+    if espn_sig and our_sig:
+        overlap = espn_sig & our_sig
+        smaller = min(len(espn_sig), len(our_sig))
+        # Match if >50% of the smaller set's words overlap
+        if smaller > 0 and len(overlap) / smaller >= 0.5:
+            return True
+
     return False
 
 
@@ -232,25 +253,31 @@ class ESPNScoreFetcher:
             List of game dicts with home/away teams and scores
         """
         if sport not in ESPN_ENDPOINTS:
-            print(f"[ESPN] Unknown sport: {sport}")
+            logger.warning(f"[ESPN] Unknown sport: {sport}")
             return []
         
         url = ESPN_ENDPOINTS[sport]
         params = {}
         if date:
             params["dates"] = date
-        
+        # College sports need groups=50 (Division I) and a high limit
+        # to return all games, not just the featured subset
+        if sport in ("NCAAB", "NCAAF"):
+            params["groups"] = "50"
+            params["limit"] = "300"
+
         try:
             response = self.client.get(url, params=params)
             response.raise_for_status()
             data = response.json()
         except Exception as e:
-            print(f"[ESPN] Error fetching {sport} scores: {e}")
+            logger.error(f"[ESPN] Error fetching {sport} scores: {e}")
             return []
         
         games = []
         events = data.get("events", [])
-        
+        logger.info(f"[ESPN] {sport} {date or 'today'}: {len(events)} events returned")
+
         for event in events:
             try:
                 competition = event.get("competitions", [{}])[0]
@@ -300,7 +327,7 @@ class ESPNScoreFetcher:
                 games.append(game_data)
                 
             except Exception as e:
-                print(f"[ESPN] Error parsing game: {e}")
+                logger.error(f"[ESPN] Error parsing game: {e}")
                 continue
         
         return games
@@ -368,8 +395,11 @@ class AutoGrader:
             "graded": 0,
             "already_graded": 0,
             "not_found": 0,
+            "not_final": 0,
             "errors": 0,
             "details": [],
+            "not_found_details": [],
+            "diagnostics": {},
         }
 
         for sport_key in sports_to_check:
@@ -379,11 +409,18 @@ class AutoGrader:
             if not ungraded:
                 continue
 
+            logger.info(
+                f"[AutoGrader] {sport_key}: {len(ungraded)} ungraded games. "
+                f"Sample: {[g.get('home_team','?') + ' vs ' + g.get('away_team','?') for g in ungraded[:3]]}"
+            )
+
             # Group ungraded games by their ESPN (US-Eastern) date
             games_by_date: dict[str, list[dict]] = {}
+            skipped_no_date = 0
             for game in ungraded:
                 ct = game.get("commence_time")
                 if not ct:
+                    skipped_no_date += 1
                     continue
                 try:
                     if isinstance(ct, str):
@@ -391,14 +428,30 @@ class AutoGrader:
                     else:
                         game_date = utc_to_espn_date(ct.isoformat())
                 except Exception:
+                    skipped_no_date += 1
                     continue
                 games_by_date.setdefault(game_date, []).append(game)
+
+            if skipped_no_date:
+                logger.warning(f"[AutoGrader] {sport_key}: {skipped_no_date} games skipped (no commence_time)")
 
             # Fetch ESPN scores per unique date, cache to avoid duplicate calls
             espn_cache: dict[str, list[dict]] = {}
             for date_str in games_by_date:
                 if date_str not in espn_cache:
                     espn_cache[date_str] = self.espn.get_final_scores(sport_key, date_str)
+                    logger.info(
+                        f"[AutoGrader] ESPN {sport_key} {date_str}: "
+                        f"{len(espn_cache[date_str])} final games"
+                    )
+
+            # Store per-sport diagnostics
+            results["diagnostics"][sport_key] = {
+                "ungraded": len(ungraded),
+                "dates": {d: len(g) for d, g in games_by_date.items()},
+                "espn_final": {d: len(g) for d, g in espn_cache.items()},
+                "skipped_no_date": skipped_no_date,
+            }
 
             # Match and grade
             for date_str, games in games_by_date.items():
@@ -424,9 +477,24 @@ class AutoGrader:
 
                     if not espn_match:
                         results["not_found"] += 1
+                        detail = {
+                            "sport": sport_key,
+                            "date": date_str,
+                            "home": home_team,
+                            "away": away_team,
+                            "espn_games_on_date": len(espn_games),
+                        }
+                        results["not_found_details"].append(detail)
+                        if len(espn_games) > 0:
+                            logger.warning(
+                                f"[AutoGrader] NO MATCH: {away_team} @ {home_team} "
+                                f"({sport_key} {date_str}). ESPN had: "
+                                f"{[(eg['away_team'] + ' @ ' + eg['home_team']) for eg in espn_games[:5]]}"
+                            )
                         continue
 
                     if not espn_match["is_final"]:
+                        results["not_final"] += 1
                         continue
 
                     try:
@@ -444,9 +512,19 @@ class AutoGrader:
                                 "score": f"{espn_match['away_score']}-{espn_match['home_score']}",
                                 "best_bet_result": graded.get("best_bet_result"),
                             })
+                            logger.info(
+                                f"[AutoGrader] GRADED: {away_team} @ {home_team} "
+                                f"({espn_match['away_score']}-{espn_match['home_score']})"
+                            )
                     except Exception as e:
-                        print(f"[AutoGrader] Error grading {game_id}: {e}")
+                        logger.error(f"[AutoGrader] Error grading {game_id}: {e}")
                         results["errors"] += 1
+
+        logger.info(
+            f"[AutoGrader] Complete: checked={results['checked']}, "
+            f"graded={results['graded']}, not_found={results['not_found']}, "
+            f"not_final={results['not_final']}, errors={results['errors']}"
+        )
 
         return results
 
@@ -463,9 +541,15 @@ class AutoGrader:
             "sport_key", variants
         ).is_("home_score", "null").gte("commence_time", cutoff).lt(
             "commence_time", datetime.now(timezone.utc).isoformat()
-        ).execute()
+        ).order("commence_time", desc=True).execute()
 
-        return result.data or []
+        games = result.data or []
+        if games:
+            logger.info(
+                f"[AutoGrader] _get_ungraded_games({sport}): {len(games)} ungraded "
+                f"(variants={variants}, cutoff={cutoff[:10]})"
+            )
+        return games
     
     def snapshot_upcoming_games(self, sport: Optional[str] = None, minutes_before: int = 30) -> dict:
         """
@@ -519,7 +603,7 @@ class AutoGrader:
                     self.tracker.snapshot_prediction_at_close(game_id, sport_key)
                     results["snapshotted"] += 1
                 except Exception as e:
-                    print(f"[AutoGrader] Error snapshotting {game_id}: {e}")
+                    logger.error(f"[AutoGrader] Error snapshotting {game_id}: {e}")
                     results["errors"] += 1
         
         return results

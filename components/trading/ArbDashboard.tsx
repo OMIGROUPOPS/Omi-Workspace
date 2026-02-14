@@ -123,9 +123,13 @@ interface Position {
 }
 
 interface Balances {
+  k_cash: number;
+  k_portfolio: number;
+  pm_cash: number;
+  pm_portfolio: number;
+  total_portfolio: number;
   kalshi_balance: number;
   pm_balance: number;
-  total_portfolio: number;
   updated_at: string;
 }
 
@@ -1007,20 +1011,36 @@ export default function ArbDashboard() {
       {topTab === "monitor" && (
         <div className="p-4 space-y-4">
           {/* ── Metrics Row ──────────────────────────────────────────── */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-9 gap-3">
             <MetricCard
-              label="Kalshi Balance"
+              label="K Cash"
               value={
-                state?.balances.kalshi_balance
-                  ? `$${state.balances.kalshi_balance.toFixed(2)}`
+                state?.balances.k_cash != null
+                  ? `$${state.balances.k_cash.toFixed(2)}`
                   : "-"
               }
             />
             <MetricCard
-              label="PM Balance"
+              label="K Portfolio"
               value={
-                state?.balances.pm_balance
-                  ? `$${state.balances.pm_balance.toFixed(2)}`
+                state?.balances.k_portfolio != null
+                  ? `$${state.balances.k_portfolio.toFixed(2)}`
+                  : "-"
+              }
+            />
+            <MetricCard
+              label="PM Cash"
+              value={
+                state?.balances.pm_cash != null
+                  ? `$${state.balances.pm_cash.toFixed(2)}`
+                  : "-"
+              }
+            />
+            <MetricCard
+              label="PM Portfolio"
+              value={
+                state?.balances.pm_portfolio != null
+                  ? `$${state.balances.pm_portfolio.toFixed(2)}`
                   : "-"
               }
             />

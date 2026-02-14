@@ -646,12 +646,19 @@ class DashboardPusher:
 
     def _build_balances(self) -> dict:
         """Return current balance snapshot."""
-        k = self.balances.get("kalshi_balance", 0)
-        p = self.balances.get("pm_balance", 0)
+        k_cash = self.balances.get("k_cash", 0)
+        k_portfolio = self.balances.get("k_portfolio", 0)
+        pm_cash = self.balances.get("pm_cash", 0)
+        pm_portfolio = self.balances.get("pm_portfolio", 0)
         return {
-            "kalshi_balance": k,
-            "pm_balance": p,
-            "total_portfolio": round(k + p, 2),
+            "k_cash": round(k_cash, 2),
+            "k_portfolio": round(k_portfolio, 2),
+            "pm_cash": round(pm_cash, 2),
+            "pm_portfolio": round(pm_portfolio, 2),
+            "total_portfolio": round(k_portfolio + pm_portfolio, 2),
+            # Backwards-compat
+            "kalshi_balance": round(k_portfolio, 2),
+            "pm_balance": round(pm_cash, 2),
             "updated_at": self.balances.get("updated_at", ""),
         }
 

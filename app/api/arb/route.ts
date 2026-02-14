@@ -106,9 +106,13 @@ export interface Position {
 }
 
 export interface Balances {
+  k_cash: number;
+  k_portfolio: number;
+  pm_cash: number;
+  pm_portfolio: number;
+  total_portfolio: number;
   kalshi_balance: number;
   pm_balance: number;
-  total_portfolio: number;
   updated_at: string;
 }
 

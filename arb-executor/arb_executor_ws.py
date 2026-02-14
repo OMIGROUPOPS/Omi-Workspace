@@ -152,7 +152,12 @@ SIGNAL_CHECK_INTERVAL = 60  # Check every 60 seconds
 executing_games: set = set()
 
 # Live balances (refreshed periodically, read by dashboard pusher)
-live_balances: Dict = {"kalshi_balance": 0, "pm_balance": 0, "updated_at": ""}
+live_balances: Dict = {
+    "kalshi_balance": 0, "pm_balance": 0,  # backwards-compat (used by sizing)
+    "k_cash": 0, "k_portfolio": 0,
+    "pm_cash": 0, "pm_portfolio": 0,
+    "updated_at": "",
+}
 # Live positions fetched from platform APIs (list of Position dicts for dashboard)
 live_positions: list = []
 _last_balance_refresh: float = 0
@@ -1593,10 +1598,45 @@ async def refresh_balances(session, kalshi_api, pm_api):
     _last_balance_refresh = now
 
     try:
-        k_bal = await kalshi_api.get_balance(session)
-        pm_bal = await pm_api.get_balance(session)
-        live_balances["kalshi_balance"] = round(k_bal or 0, 2)
-        live_balances["pm_balance"] = round(pm_bal or 0, 2)
+        # Kalshi: fetch cash and portfolio_value separately
+        k_cash = 0.0
+        k_portfolio = 0.0
+        k_path = '/trade-api/v2/portfolio/balance'
+        async with session.get(
+            f'{kalshi_api.BASE_URL}{k_path}',
+            headers=kalshi_api._headers('GET', k_path),
+            timeout=aiohttp.ClientTimeout(total=5)
+        ) as r:
+            if r.status == 200:
+                data = await r.json()
+                k_cash = round((data.get('balance', 0)) / 100, 2)
+                k_positions_value = round((data.get('portfolio_value', 0)) / 100, 2)
+                k_portfolio = round(k_cash + k_positions_value, 2)
+
+        # PM: fetch buyingPower (cash) and currentBalance (portfolio)
+        pm_cash = 0.0
+        pm_portfolio = 0.0
+        pm_path = '/v1/account/balances'
+        async with session.get(
+            f'{pm_api.BASE_URL}{pm_path}',
+            headers=pm_api._headers('GET', pm_path),
+            timeout=aiohttp.ClientTimeout(total=5)
+        ) as r:
+            if r.status == 200:
+                data = await r.json()
+                for b in data.get('balances', []):
+                    if b.get('currency') == 'USD':
+                        pm_cash = round(float(b.get('buyingPower', 0)), 2)
+                        pm_portfolio = round(float(b.get('currentBalance', b.get('buyingPower', 0))), 2)
+                        break
+
+        live_balances["k_cash"] = k_cash
+        live_balances["k_portfolio"] = k_portfolio
+        live_balances["pm_cash"] = pm_cash
+        live_balances["pm_portfolio"] = pm_portfolio
+        # Backwards-compat: sizing uses these
+        live_balances["kalshi_balance"] = k_portfolio
+        live_balances["pm_balance"] = pm_cash
         live_balances["updated_at"] = datetime.now(timezone.utc).isoformat()
     except Exception as e:
         print(f"[BALANCE] Refresh failed: {e}", flush=True)
@@ -2034,16 +2074,47 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
         return
 
     async with aiohttp.ClientSession() as session:
-        # Get balances
-        k_bal = await kalshi_api.get_balance(session)
-        pm_bal = await pm_api.get_balance(session)
-        k_bal = k_bal or 0
-        pm_bal = pm_bal or 0
-        print(f"\n[CAPITAL] Kalshi: ${k_bal:.2f} | PM US: ${pm_bal:.2f}")
+        # Get balances (detailed: cash + portfolio for each platform)
+        k_cash, k_portfolio, pm_cash, pm_portfolio = 0.0, 0.0, 0.0, 0.0
+        try:
+            k_path = '/trade-api/v2/portfolio/balance'
+            async with session.get(
+                f'{kalshi_api.BASE_URL}{k_path}',
+                headers=kalshi_api._headers('GET', k_path),
+                timeout=aiohttp.ClientTimeout(total=5)
+            ) as r:
+                if r.status == 200:
+                    data = await r.json()
+                    k_cash = round(data.get('balance', 0) / 100, 2)
+                    k_positions_value = round(data.get('portfolio_value', 0) / 100, 2)
+                    k_portfolio = round(k_cash + k_positions_value, 2)
+        except Exception as e:
+            print(f"[CAPITAL] Kalshi balance error: {e}")
+        try:
+            pm_path = '/v1/account/balances'
+            async with session.get(
+                f'{pm_api.BASE_URL}{pm_path}',
+                headers=pm_api._headers('GET', pm_path),
+                timeout=aiohttp.ClientTimeout(total=5)
+            ) as r:
+                if r.status == 200:
+                    data = await r.json()
+                    for b in data.get('balances', []):
+                        if b.get('currency') == 'USD':
+                            pm_cash = round(float(b.get('buyingPower', 0)), 2)
+                            pm_portfolio = round(float(b.get('currentBalance', b.get('buyingPower', 0))), 2)
+                            break
+        except Exception as e:
+            print(f"[CAPITAL] PM balance error: {e}")
+        print(f"\n[CAPITAL] Kalshi: cash=${k_cash:.2f} portfolio=${k_portfolio:.2f} | PM: cash=${pm_cash:.2f} portfolio=${pm_portfolio:.2f}")
 
         # Seed live_balances for dashboard
-        live_balances["kalshi_balance"] = round(k_bal, 2)
-        live_balances["pm_balance"] = round(pm_bal, 2)
+        live_balances["k_cash"] = k_cash
+        live_balances["k_portfolio"] = k_portfolio
+        live_balances["pm_cash"] = pm_cash
+        live_balances["pm_portfolio"] = pm_portfolio
+        live_balances["kalshi_balance"] = k_portfolio
+        live_balances["pm_balance"] = pm_cash
         live_balances["updated_at"] = datetime.now(timezone.utc).isoformat()
 
         # Create Kalshi WebSocket connection

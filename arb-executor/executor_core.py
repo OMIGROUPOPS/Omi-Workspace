@@ -228,6 +228,38 @@ def _extract_pm_response_details(pm_result: Dict) -> Dict:
     return details
 
 
+async def _unwind_pm_position(
+    session, pm_api, pm_slug: str, reverse_intent: int,
+    pm_price_cents: float, qty: int, outcome_index: int,
+) -> Tuple[int, Optional[float]]:
+    """
+    Attempt to unwind a PM position with two tries: buffer=10, then buffer=25.
+    Returns (filled_count, fill_price_or_None).
+    """
+    for attempt, buffer in enumerate([10, 25], 1):
+        if reverse_intent in (2, 4):  # SELL: accept less
+            price_cents = max(pm_price_cents - buffer, 1)
+        else:  # BUY: pay more
+            price_cents = min(pm_price_cents + buffer, 99)
+        price = price_cents / 100.0
+        label = "1st" if attempt == 1 else "2nd (desperation)"
+        try:
+            result = await pm_api.place_order(
+                session, pm_slug, reverse_intent, price, qty,
+                tif=3, sync=True, outcome_index=outcome_index
+            )
+            filled = result.get('fill_count', 0)
+            fill_price = result.get('fill_price', price)
+            if filled > 0:
+                print(f"[RECOVERY] PM unwind {label}: filled {filled} @ ${fill_price:.3f} (buf={buffer}c)")
+                return filled, fill_price
+            else:
+                print(f"[RECOVERY] PM unwind {label}: no fill (buf={buffer}c)")
+        except Exception as e:
+            print(f"[RECOVERY] PM unwind {label} error: {e}")
+    return 0, None
+
+
 def check_kalshi_spread_live(
     k_book: Dict,
     direction: str,
@@ -915,6 +947,33 @@ async def execute_arb(
         k_limit_price = min(k_price + Config.price_buffer_cents, 99)
 
     # -------------------------------------------------------------------------
+    # Step 4.5: Kalshi depth pre-validation (before committing PM order)
+    # -------------------------------------------------------------------------
+    if k_book_ref:
+        if params['k_action'] == 'sell':
+            # Selling YES: need bids at or above our limit price
+            k_depth_available = sum(
+                qty for price, qty in k_book_ref.get('yes_bids', {}).items()
+                if int(price) >= k_limit_price
+            )
+        else:
+            # Buying YES: need asks at or below our limit price
+            k_depth_available = sum(
+                qty for price, qty in k_book_ref.get('yes_asks', {}).items()
+                if int(price) <= k_limit_price
+            )
+        if k_depth_available < size:
+            book_bids = sorted(k_book_ref.get('yes_bids', {}).items(), key=lambda x: -int(x[0]))[:5]
+            book_asks = sorted(k_book_ref.get('yes_asks', {}).items(), key=lambda x: int(x[0]))[:5]
+            print(f"[EXEC] K depth insufficient: need {size} @ limit={k_limit_price}c, have {k_depth_available} "
+                  f"| action={params['k_action']} | bids={book_bids} | asks={book_asks}")
+            return TradeResult(
+                success=False,
+                abort_reason=f"Kalshi book depth insufficient ({k_depth_available}/{size} @ {k_limit_price}c)",
+                execution_time_ms=int((time.time() - start_time) * 1000),
+            )
+
+    # -------------------------------------------------------------------------
     # Step 5: Place PM order FIRST (unreliable leg - IOC often expires)
     # -------------------------------------------------------------------------
     # CRITICAL FIX: When is_long_team=False, we must trade on the LONG team's
@@ -1037,27 +1096,18 @@ async def execute_arb(
             print(f"[GTC] Spread gone before K order ({current_spread}c), unwinding PM...")
             original_intent = params['pm_intent']
             reverse_intent = REVERSE_INTENT[original_intent]
-            unwind_buffer = 3
-            if reverse_intent in (2, 4):  # SELL_LONG or SELL_SHORT: accept less
-                unwind_price_cents_gtc = max(pm_price_cents - unwind_buffer, 1)
-            else:  # BUY_LONG or BUY_SHORT: pay more
-                unwind_price_cents_gtc = min(pm_price_cents + unwind_buffer, 99)
-            unwind_price_gtc = unwind_price_cents_gtc / 100.0
-            try:
-                unwind_result = await pm_api.place_order(
-                    session, pm_slug, reverse_intent, unwind_price_gtc, pm_filled,
-                    tif=3, sync=True, outcome_index=actual_pm_outcome_idx
-                )
-                unwind_filled = unwind_result.get('fill_count', 0)
-                if unwind_filled > 0:
-                    print(f"[GTC] PM unwound {unwind_filled} contracts after spread gone")
-                else:
-                    print(f"[GTC] PM unwind failed - position remains open!")
-            except Exception as e:
-                print(f"[GTC] PM unwind error: {e}")
+            unwind_filled, _ = await _unwind_pm_position(
+                session, pm_api, pm_slug, reverse_intent,
+                pm_price_cents, pm_filled, actual_pm_outcome_idx,
+            )
+            exited = unwind_filled > 0
+            if not exited:
+                print(f"[GTC] PM unwind failed - position remains open!")
             return TradeResult(
-                success=False, pm_filled=0, pm_price=pm_fill_price,
-                abort_reason="GTC filled but K spread gone, PM unwound",
+                success=False, pm_filled=0 if exited else pm_filled,
+                pm_price=pm_fill_price,
+                unhedged=not exited,
+                abort_reason="GTC filled but K spread gone, PM unwound" if exited else "GTC filled but K spread gone, PM unwind FAILED - UNHEDGED!",
                 pm_order_ms=pm_order_ms,
                 execution_time_ms=int((time.time() - start_time) * 1000),
                 pm_response_details=pm_response_details,
@@ -1086,40 +1136,31 @@ async def execute_arb(
         print(f"[RECOVERY] Kalshi exception: {e} - unwinding PM position...")
         on_execution_crash(game_id)
 
-        # Try to unwind PM position
+        # Try to unwind PM position (10c buffer, then 25c desperation)
         original_intent = params['pm_intent']
         reverse_intent = REVERSE_INTENT[original_intent]
-        unwind_buffer = 3
-        unwind_price_cents = max(pm_price_cents - unwind_buffer, 1) if reverse_intent in (2, 4) else min(pm_price_cents + unwind_buffer, 99)
-        unwind_price = unwind_price_cents / 100.0
+        unwind_filled, unwind_fill_price = await _unwind_pm_position(
+            session, pm_api, pm_slug, reverse_intent,
+            pm_price_cents, pm_filled, actual_pm_outcome_idx,
+        )
 
-        try:
-            unwind_result = await pm_api.place_order(
-                session, pm_slug, reverse_intent, unwind_price, pm_filled,
-                tif=3, sync=True, outcome_index=actual_pm_outcome_idx
+        if unwind_filled > 0:
+            loss_cents = abs((pm_fill_price - unwind_fill_price) * 100)
+            return TradeResult(
+                success=False, kalshi_filled=0, pm_filled=0,
+                kalshi_price=k_limit_price, pm_price=pm_fill_price,
+                unhedged=False,
+                abort_reason=f"Kalshi exception, PM unwound (loss: {loss_cents:.1f}c)",
+                execution_time_ms=int((time.time() - start_time) * 1000),
+                pm_order_ms=pm_order_ms, k_order_ms=0,
+                pm_response_details=pm_response_details,
+                execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
+                gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
+                gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
+                gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
+                is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
+                exited=True,
             )
-            unwind_filled = unwind_result.get('fill_count', 0)
-            if unwind_filled > 0:
-                unwind_fill_price = unwind_result.get('fill_price', unwind_price)
-                loss_cents = abs((pm_fill_price - unwind_fill_price) * 100)
-                print(f"[RECOVERY] PM UNWOUND after K exception: {unwind_filled} @ ${unwind_fill_price:.3f} (loss: {loss_cents:.1f}c)")
-                return TradeResult(
-                    success=False, kalshi_filled=0, pm_filled=0,
-                    kalshi_price=k_limit_price, pm_price=pm_fill_price,
-                    unhedged=False,
-                    abort_reason=f"Kalshi exception, PM unwound (loss: {loss_cents:.1f}c)",
-                    execution_time_ms=int((time.time() - start_time) * 1000),
-                    pm_order_ms=pm_order_ms, k_order_ms=0,
-                    pm_response_details=pm_response_details,
-                    execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
-                    gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
-                    gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
-                    gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
-                    is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
-                    exited=True,
-                )
-        except Exception as unwind_err:
-            print(f"[RECOVERY] PM unwind failed: {unwind_err}")
 
         # Unwind failed
         return TradeResult(
@@ -1156,75 +1197,42 @@ async def execute_arb(
     elapsed_ms = int((time.time() - start_time) * 1000)
 
     if k_filled == 0:
-        # KALSHI FAILED - Attempt to unwind PM position immediately
+        # KALSHI FAILED - Attempt to unwind PM position (10c buffer, then 25c desperation)
         print(f"[RECOVERY] Kalshi failed to fill - unwinding PM position...")
 
-        # Determine reverse intent: 1↔2 (BUY_LONG↔SELL_LONG), 3↔4 (BUY_SHORT↔SELL_SHORT)
         original_intent = params['pm_intent']
         reverse_intent = REVERSE_INTENT[original_intent]
+        unwind_filled, unwind_fill_price = await _unwind_pm_position(
+            session, pm_api, pm_slug, reverse_intent,
+            pm_price_cents, pm_filled, actual_pm_outcome_idx,
+        )
 
-        # For unwinding, we need to be aggressive with price to ensure fill
-        # If selling (intent=2,4): use bid - buffer (willing to take less)
-        # If buying (intent=1,3): use ask + buffer (willing to pay more)
-        unwind_buffer = 3  # 3c buffer for aggressive exit
-
-        if reverse_intent in (2, 4):  # SELL_LONG or SELL_SHORT to close
-            unwind_price_cents = max(pm_price_cents - unwind_buffer, 1)
-        else:  # BUY_LONG or BUY_SHORT to close
-            unwind_price_cents = min(pm_price_cents + unwind_buffer, 99)
-
-        unwind_price = unwind_price_cents / 100.0
-
-        try:
-            unwind_result = await pm_api.place_order(
-                session,
-                pm_slug,
-                reverse_intent,
-                unwind_price,
-                pm_filled,  # Unwind same quantity that was filled
-                tif=3,      # IOC
-                sync=True,
-                outcome_index=actual_pm_outcome_idx
-            )
-
-            unwind_filled = unwind_result.get('fill_count', 0)
-            unwind_fill_price = unwind_result.get('fill_price', unwind_price)
-
-            if unwind_filled > 0:
-                # Calculate loss from the spread
-                if reverse_intent in (2, 4):  # We sold to close (SELL_LONG or SELL_SHORT)
-                    loss_cents = (pm_fill_price * 100) - (unwind_fill_price * 100)
-                else:  # We bought to close (BUY_LONG or BUY_SHORT)
-                    loss_cents = (unwind_fill_price * 100) - (pm_fill_price * 100)
-
-                print(f"[RECOVERY] PM UNWOUND: Closed {unwind_filled} @ ${unwind_fill_price:.3f}")
-                print(f"[RECOVERY] Loss from unwind: {loss_cents:.1f}c (+ fees)")
-
-                # Trade is now flat - no unhedged position
-                return TradeResult(
-                    success=False,
-                    kalshi_filled=0,
-                    pm_filled=0,  # Net zero after unwind
-                    kalshi_price=k_limit_price,
-                    pm_price=pm_fill_price,
-                    unhedged=False,  # Successfully unwound
-                    abort_reason=f"Kalshi failed, PM unwound (loss: {loss_cents:.1f}c)",
-                    execution_time_ms=int((time.time() - start_time) * 1000),
-                    pm_order_ms=pm_order_ms,
-                    k_order_ms=k_order_ms,
-                    pm_response_details=pm_response_details,
-                    execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
-                    gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
-                    gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
-                    gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
-                    is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
-                    exited=True,
-                )
+        if unwind_filled > 0:
+            if reverse_intent in (2, 4):
+                loss_cents = (pm_fill_price * 100) - (unwind_fill_price * 100)
             else:
-                print(f"[RECOVERY] PM UNWIND FAILED - position remains open!")
+                loss_cents = (unwind_fill_price * 100) - (pm_fill_price * 100)
+            print(f"[RECOVERY] Loss from unwind: {loss_cents:.1f}c (+ fees)")
 
-        except Exception as unwind_err:
-            print(f"[RECOVERY] PM unwind error: {unwind_err}")
+            return TradeResult(
+                success=False,
+                kalshi_filled=0,
+                pm_filled=0,
+                kalshi_price=k_limit_price,
+                pm_price=pm_fill_price,
+                unhedged=False,
+                abort_reason=f"Kalshi failed, PM unwound (loss: {loss_cents:.1f}c)",
+                execution_time_ms=int((time.time() - start_time) * 1000),
+                pm_order_ms=pm_order_ms,
+                k_order_ms=k_order_ms,
+                pm_response_details=pm_response_details,
+                execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
+                gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
+                gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
+                gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
+                is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
+                exited=True,
+            )
 
         # Unwind failed - still unhedged
         return TradeResult(
@@ -1255,26 +1263,15 @@ async def execute_arb(
 
         original_intent = params['pm_intent']
         reverse_intent = REVERSE_INTENT[original_intent]
-        unwind_buffer = 3
-        if reverse_intent in (2, 4):  # SELL_LONG or SELL_SHORT: accept less
-            unwind_price_cents_partial = max(pm_price_cents - unwind_buffer, 1)
-        else:  # BUY_LONG or BUY_SHORT: pay more
-            unwind_price_cents_partial = min(pm_price_cents + unwind_buffer, 99)
-        unwind_price_partial = unwind_price_cents_partial / 100.0
-
-        try:
-            unwind_result = await pm_api.place_order(
-                session, pm_slug, reverse_intent, unwind_price_partial, excess,
-                tif=3, sync=True, outcome_index=actual_pm_outcome_idx
-            )
-            unwind_filled = unwind_result.get('fill_count', 0)
-            if unwind_filled > 0:
-                pm_filled = pm_filled - unwind_filled  # Adjust net PM position
-                print(f"[RECOVERY] Unwound {unwind_filled}/{excess} excess PM. Net PM={pm_filled}")
-            else:
-                print(f"[RECOVERY] Excess PM unwind failed — {excess} contracts remain unhedged")
-        except Exception as unwind_err:
-            print(f"[RECOVERY] Excess PM unwind error: {unwind_err}")
+        unwind_filled, _ = await _unwind_pm_position(
+            session, pm_api, pm_slug, reverse_intent,
+            pm_price_cents, excess, actual_pm_outcome_idx,
+        )
+        if unwind_filled > 0:
+            pm_filled = pm_filled - unwind_filled
+            print(f"[RECOVERY] Unwound {unwind_filled}/{excess} excess PM. Net PM={pm_filled}")
+        else:
+            print(f"[RECOVERY] Excess PM unwind failed — {excess} contracts remain unhedged")
 
         # Still count as success for the hedged portion
         return TradeResult(

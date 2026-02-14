@@ -429,6 +429,10 @@ def _calculate_nba_environment(
         league_avg_rating = 105.0 if is_ncaab else 110.0
         efficiency_factor = ((home_expected_off + away_expected_off) / 2) / league_avg_rating
         expected_total = league_avg_total * pace_factor * efficiency_factor
+        # Without ppg, ratings are likely defaults — blend toward book total
+        # to avoid strong signals from no real data
+        if total_line:
+            expected_total = expected_total * 0.3 + total_line * 0.7
 
     # Clamp expected_total to ±25% of league average to prevent runaway values
     min_total = league_avg_total * 0.75

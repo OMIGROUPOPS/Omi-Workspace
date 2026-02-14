@@ -25,6 +25,7 @@ from config import (
 from data_sources.odds_api import odds_client
 from engine import analyze_all_games
 from database import db
+from internal_grader import InternalGrader
 
 logger = logging.getLogger(__name__)
 
@@ -510,6 +511,45 @@ def run_live_props_cycle() -> dict:
 
 
 # =============================================================================
+# GRADING CYCLE (Every 60 minutes)
+# =============================================================================
+
+def run_grading_cycle() -> dict:
+    """
+    Grading cycle:
+    - Bootstrap game_results from completed predictions
+    - Fetch ESPN scores for completed games
+    - Generate prediction_grades rows
+    """
+    start_time = datetime.now(timezone.utc)
+    logger.info(f"Starting GRADING cycle at {start_time.isoformat()}")
+
+    try:
+        grader = InternalGrader()
+        result = grader.grade_games()
+
+        auto = result.get("auto_grader", {})
+        logger.info(
+            f"[GRADING] Completed: "
+            f"{result.get('bootstrapped_game_results', 0)} bootstrapped, "
+            f"{auto.get('graded', 0)} games scored via ESPN, "
+            f"{result.get('prediction_grades_created', 0)} prediction_grades created"
+        )
+
+        if result.get("errors"):
+            for err in result["errors"]:
+                logger.error(f"[GRADING] Error: {err}")
+
+        end_time = datetime.now(timezone.utc)
+        result["duration_seconds"] = (end_time - start_time).total_seconds()
+        return result
+
+    except Exception as e:
+        logger.error(f"[GRADING] Cycle failed: {e}")
+        return {"error": str(e)}
+
+
+# =============================================================================
 # COMBINED ANALYSIS CYCLE (backward compatibility)
 # =============================================================================
 
@@ -570,12 +610,22 @@ def start_scheduler():
         replace_existing=True
     )
 
+    # Grading: Every 60 minutes — fetch ESPN scores and grade completed games
+    scheduler.add_job(
+        func=run_grading_cycle,
+        trigger=IntervalTrigger(minutes=60),
+        id="grading_cycle",
+        name="Grade completed games (ESPN scores + prediction_grades)",
+        replace_existing=True
+    )
+
     scheduler.start()
     logger.info(f"Scheduler started:")
     logger.info(f"  - Pre-game: every {PREGAME_POLL_INTERVAL_MINUTES} min")
     logger.info(f"  - Live: every {LIVE_POLL_INTERVAL_MINUTES} min")
     logger.info(f"  - Live props: every 7 min")
     logger.info(f"  - Closing line capture: every 10 min")
+    logger.info(f"  - Grading: every 60 min")
     
     return scheduler
 

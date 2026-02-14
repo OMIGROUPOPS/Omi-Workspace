@@ -387,6 +387,15 @@ def _calculate_nba_environment(
     away_off = away.get("off_rating", default_rating)
     away_def = away.get("def_rating", default_rating)
 
+    # NCAAB pace data in DB is sometimes stored on NBA scale (~100).
+    # Actual NCAAB pace is ~64-74 possessions per game.
+    # Detect and normalize: if NCAAB pace > 85, it's NBA-scaled.
+    if is_ncaab:
+        if home_pace > 85:
+            home_pace = home_pace * 0.68  # ~100 → ~68
+        if away_pace > 85:
+            away_pace = away_pace * 0.68
+
     # Expected game pace (average of both teams)
     expected_pace = (home_pace + away_pace) / 2
     league_avg_pace = 68.0 if is_ncaab else 100.0
@@ -406,6 +415,11 @@ def _calculate_nba_environment(
     efficiency_factor = ((home_expected_off + away_expected_off) / 2) / league_avg_rating
 
     expected_total = league_avg_total * pace_factor * efficiency_factor
+
+    # Clamp expected_total to ±25% of league average to prevent runaway values
+    min_total = league_avg_total * 0.75
+    max_total = league_avg_total * 1.25
+    expected_total = max(min_total, min(max_total, expected_total))
 
     reasoning_parts = []
     score = 0.5

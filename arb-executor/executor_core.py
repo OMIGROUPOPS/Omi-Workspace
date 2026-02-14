@@ -182,6 +182,7 @@ class TradeResult:
     gtc_cancel_reason: str = ""        # "timeout", "spread_gone", "filled", ""
     is_maker: bool = False             # True if filled via GTC (0% fee)
     exited: bool = False               # True if PM was successfully unwound after K failure
+    unwind_loss_cents: Optional[float] = None  # Actual loss from PM unwind (cents per contract)
 
 
 def _extract_pm_response_details(pm_result: Dict) -> Dict:
@@ -1096,18 +1097,25 @@ async def execute_arb(
             print(f"[GTC] Spread gone before K order ({current_spread}c), unwinding PM...")
             original_intent = params['pm_intent']
             reverse_intent = REVERSE_INTENT[original_intent]
-            unwind_filled, _ = await _unwind_pm_position(
+            unwind_filled, unwind_fill_price = await _unwind_pm_position(
                 session, pm_api, pm_slug, reverse_intent,
                 pm_price_cents, pm_filled, actual_pm_outcome_idx,
             )
             exited = unwind_filled > 0
+            unwind_loss = None
+            if exited and unwind_fill_price is not None:
+                if reverse_intent in (2, 4):
+                    unwind_loss = (pm_fill_price * 100) - (unwind_fill_price * 100)
+                else:
+                    unwind_loss = (unwind_fill_price * 100) - (pm_fill_price * 100)
+                print(f"[GTC] Loss from unwind: {unwind_loss:.1f}c (+ fees)")
             if not exited:
                 print(f"[GTC] PM unwind failed - position remains open!")
             return TradeResult(
                 success=False, pm_filled=0 if exited else pm_filled,
                 pm_price=pm_fill_price,
                 unhedged=not exited,
-                abort_reason="GTC filled but K spread gone, PM unwound" if exited else "GTC filled but K spread gone, PM unwind FAILED - UNHEDGED!",
+                abort_reason=f"GTC filled but K spread gone, PM unwound (loss: {unwind_loss:.1f}c)" if exited and unwind_loss is not None else "GTC filled but K spread gone, PM unwind FAILED - UNHEDGED!" if not exited else "GTC filled but K spread gone, PM unwound",
                 pm_order_ms=pm_order_ms,
                 execution_time_ms=int((time.time() - start_time) * 1000),
                 pm_response_details=pm_response_details,
@@ -1115,7 +1123,8 @@ async def execute_arb(
                 gtc_rest_time_ms=gtc_phase['rest_time_ms'],
                 gtc_spread_checks=gtc_phase['spread_checks'],
                 gtc_cancel_reason='spread_gone_pre_kalshi',
-                exited=True,
+                exited=exited,
+                unwind_loss_cents=unwind_loss,
             )
 
     # -------------------------------------------------------------------------
@@ -1160,6 +1169,7 @@ async def execute_arb(
                 gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
                 is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
                 exited=True,
+                unwind_loss_cents=loss_cents,
             )
 
         # Unwind failed
@@ -1232,6 +1242,7 @@ async def execute_arb(
                 gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
                 is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
                 exited=True,
+                unwind_loss_cents=loss_cents,
             )
 
         # Unwind failed - still unhedged

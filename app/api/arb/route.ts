@@ -71,6 +71,7 @@ export interface TradeEntry {
   gtc_rest_time_ms?: number;
   gtc_spread_checks?: number;
   gtc_cancel_reason?: string;
+  unwind_loss_cents?: number | null;
 }
 
 export interface PnlSummary {

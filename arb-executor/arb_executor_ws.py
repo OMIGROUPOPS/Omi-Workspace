@@ -1374,6 +1374,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                     TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
                     TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
                     TRADE_LOG[-1]['is_maker'] = result.is_maker
+                    TRADE_LOG[-1]['unwind_loss_cents'] = result.unwind_loss_cents
 
             elif result.pm_filled == 0 and result.pm_order_ms > 0:
                 # Real PM no-fill: order was sent to PM API but IOC expired

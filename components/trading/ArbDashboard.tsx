@@ -88,6 +88,7 @@ interface TradeEntry {
   gtc_rest_time_ms?: number;
   gtc_spread_checks?: number;
   gtc_cancel_reason?: string;
+  unwind_loss_cents?: number | null;
 }
 
 interface PnlSummary {
@@ -563,6 +564,8 @@ export default function ArbDashboard() {
       if (t.contracts_filled > 0) fills++;
       if (t.actual_pnl) {
         total += t.actual_pnl.net_profit_dollars;
+      } else if (t.status === "EXITED" && t.unwind_loss_cents != null) {
+        total -= Math.abs(t.unwind_loss_cents) / 100;
       } else if (
         t.status === "SUCCESS" &&
         t.estimated_net_profit_cents != null
@@ -1434,13 +1437,19 @@ export default function ArbDashboard() {
                               {t.spread_cents.toFixed(1)}
                             </td>
                             <td
-                              className={`px-2 py-1 text-right font-mono font-medium ${netColor(
-                                t.actual_pnl
-                                  ? t.actual_pnl.per_contract.net
-                                  : t.estimated_net_profit_cents
-                              )}`}
+                              className={`px-2 py-1 text-right font-mono font-medium ${
+                                t.status === "EXITED" && t.unwind_loss_cents != null
+                                  ? netColor(-Math.abs(t.unwind_loss_cents))
+                                  : netColor(
+                                      t.actual_pnl
+                                        ? t.actual_pnl.per_contract.net
+                                        : t.estimated_net_profit_cents
+                                    )
+                              }`}
                             >
-                              {t.actual_pnl
+                              {t.status === "EXITED" && t.unwind_loss_cents != null
+                                ? `-${Math.abs(t.unwind_loss_cents).toFixed(1)}`
+                                : t.actual_pnl
                                 ? `${t.actual_pnl.per_contract.net >= 0 ? "+" : ""}${t.actual_pnl.per_contract.net.toFixed(1)}`
                                 : t.estimated_net_profit_cents != null
                                 ? `${t.estimated_net_profit_cents > 0 ? "+" : ""}${t.estimated_net_profit_cents.toFixed(1)}~`
@@ -2323,11 +2332,15 @@ export default function ArbDashboard() {
                               {t.spread_cents.toFixed(1)}c
                             </td>
                             <td className={`px-2 py-1.5 text-right font-mono font-medium ${
-                              t.actual_pnl
+                              t.status === "EXITED" && t.unwind_loss_cents != null
+                                ? "text-red-400"
+                                : t.actual_pnl
                                 ? t.actual_pnl.net_profit_dollars > 0 ? "text-emerald-400" : t.actual_pnl.net_profit_dollars < 0 ? "text-red-400" : "text-gray-400"
                                 : "text-gray-500"
                             }`}>
-                              {t.actual_pnl
+                              {t.status === "EXITED" && t.unwind_loss_cents != null
+                                ? `-$${(Math.abs(t.unwind_loss_cents) / 100).toFixed(4)}`
+                                : t.actual_pnl
                                 ? `${t.actual_pnl.net_profit_dollars >= 0 ? "+" : ""}$${t.actual_pnl.net_profit_dollars.toFixed(4)}`
                                 : "-"}
                             </td>

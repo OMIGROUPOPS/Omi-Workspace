@@ -272,6 +272,7 @@ class DashboardPusher:
                         "gtc_rest_time_ms": t.get("gtc_rest_time_ms", 0),
                         "gtc_spread_checks": t.get("gtc_spread_checks", 0),
                         "gtc_cancel_reason": t.get("gtc_cancel_reason", ""),
+                        "unwind_loss_cents": t.get("unwind_loss_cents"),
                     }
                     for t in recent
                 ]

@@ -586,8 +586,8 @@ export default function ArbDashboard() {
       if (t.contracts_filled > 0) fills++;
       if (t.status === "EXITED") {
         // EXITED: only count if we have real unwind loss data
-        if (t.unwind_loss_cents != null && t.unwind_loss_cents > 0) {
-          total -= t.unwind_loss_cents / 100;
+        if (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0) {
+          total -= Math.abs(t.unwind_loss_cents) / 100;
         }
         // Otherwise exclude from sum entirely
       } else if (t.actual_pnl) {
@@ -1506,7 +1506,7 @@ export default function ArbDashboard() {
                             <td
                               className={`px-2 py-1 text-right font-mono font-medium ${
                                 t.status === "EXITED"
-                                  ? (t.unwind_loss_cents != null && t.unwind_loss_cents > 0 ? "text-red-400" : "text-gray-500")
+                                  ? (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0 ? "text-red-400" : "text-gray-500")
                                   : netColor(
                                       t.actual_pnl
                                         ? t.actual_pnl.per_contract.net
@@ -1515,8 +1515,8 @@ export default function ArbDashboard() {
                               }`}
                             >
                               {t.status === "EXITED"
-                                ? (t.unwind_loss_cents != null && t.unwind_loss_cents > 0
-                                  ? `-${t.unwind_loss_cents.toFixed(1)}`
+                                ? (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0
+                                  ? `-${Math.abs(t.unwind_loss_cents).toFixed(1)}c`
                                   : "N/A")
                                 : t.actual_pnl
                                 ? `${t.actual_pnl.per_contract.net >= 0 ? "+" : ""}${t.actual_pnl.per_contract.net.toFixed(1)}`
@@ -2402,14 +2402,14 @@ export default function ArbDashboard() {
                             </td>
                             <td className={`px-2 py-1.5 text-right font-mono font-medium ${
                               t.status === "EXITED"
-                                ? (t.unwind_loss_cents != null && t.unwind_loss_cents > 0 ? "text-red-400" : "text-gray-500")
+                                ? (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0 ? "text-red-400" : "text-gray-500")
                                 : t.actual_pnl
                                 ? t.actual_pnl.net_profit_dollars > 0 ? "text-emerald-400" : t.actual_pnl.net_profit_dollars < 0 ? "text-red-400" : "text-gray-400"
                                 : "text-gray-500"
                             }`}>
                               {t.status === "EXITED"
-                                ? (t.unwind_loss_cents != null && t.unwind_loss_cents > 0
-                                  ? `-$${(t.unwind_loss_cents / 100).toFixed(4)}`
+                                ? (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0
+                                  ? `-$${(Math.abs(t.unwind_loss_cents) / 100).toFixed(4)}`
                                   : "N/A")
                                 : t.actual_pnl
                                 ? `${t.actual_pnl.net_profit_dollars >= 0 ? "+" : ""}$${t.actual_pnl.net_profit_dollars.toFixed(4)}`

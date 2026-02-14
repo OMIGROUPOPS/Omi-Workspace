@@ -287,6 +287,126 @@ def calculate_all_composites(
     return results
 
 
+def apply_feedback_adjustments(sport: str) -> Dict:
+    """
+    Read latest calibration_feedback for a sport and apply bounded weight adjustments
+    to calibration_config. This is the reflexive feedback loop.
+
+    Steps:
+    1. Read latest calibration_feedback row for sport
+    2. Read current weights from calibration_config
+    3. Apply EMA-smoothed adjustments (alpha=0.1), bounded at ±5% per pillar
+    4. Normalize so weights sum to 1.0
+    5. Upsert into calibration_config
+    6. Clear weight cache
+    7. Log applied adjustments back to calibration_feedback row
+
+    Returns dict with old_weights, new_weights, adjustments, or error.
+    """
+    sport_upper = sport.upper()
+
+    # Feedback constants (match model_feedback.py)
+    EMA_ALPHA = 0.1
+    MAX_ADJ = 0.05
+    MIN_WEIGHT = 0.05
+
+    try:
+        from database import db
+        if not db._is_connected():
+            return {"error": "Database not connected"}
+
+        # 1. Get latest feedback
+        fb_result = db.client.table("calibration_feedback").select(
+            "id, pillar_metrics, suggested_adjustments, sample_size"
+        ).eq("sport_key", sport_upper).is_(
+            "applied_adjustments", "null"
+        ).order("analysis_date", desc=True).limit(1).execute()
+
+        if not fb_result.data:
+            return {"status": "no_pending_feedback", "sport": sport_upper}
+
+        feedback = fb_result.data[0]
+        feedback_id = feedback["id"]
+        pillar_metrics = feedback.get("pillar_metrics", {})
+        sample_size = feedback.get("sample_size", 0)
+
+        if sample_size < 20:
+            return {"status": "insufficient_sample", "sample_size": sample_size}
+
+        # 2. Get current weights
+        current_weights = _fetch_db_weights(sport)
+        if not current_weights:
+            current_weights = SPORT_WEIGHTS.get(sport_upper, DEFAULT_WEIGHTS)
+        old_weights = dict(current_weights)
+
+        # 3. Compute adjustments
+        new_weights = {}
+        adjustment_log = {}
+
+        for pillar in PILLAR_KEYS:
+            current = current_weights.get(pillar, 1.0 / len(PILLAR_KEYS))
+            metrics = pillar_metrics.get(pillar, {})
+            lift = metrics.get("lift")
+
+            if lift is not None:
+                raw_adj = lift * EMA_ALPHA
+                bounded = max(-MAX_ADJ, min(MAX_ADJ, raw_adj))
+                new_w = max(MIN_WEIGHT, current + bounded)
+            else:
+                bounded = 0.0
+                new_w = current
+
+            new_weights[pillar] = new_w
+            adjustment_log[pillar] = {
+                "old": round(current, 4),
+                "lift": lift,
+                "adjustment": round(bounded, 4),
+                "new_raw": round(new_w, 4),
+            }
+
+        # 4. Normalize to sum to 1.0
+        total = sum(new_weights.values())
+        if total > 0:
+            new_weights = {p: round(w / total, 4) for p, w in new_weights.items()}
+        for pillar in PILLAR_KEYS:
+            adjustment_log[pillar]["new_normalized"] = new_weights[pillar]
+
+        # 5. Upsert into calibration_config
+        db.client.table("calibration_config").upsert({
+            "sport_key": sport_upper,
+            "config_type": "pillar_weights",
+            "config_data": new_weights,
+            "active": True,
+        }, on_conflict="sport_key,config_type").execute()
+
+        # 6. Clear weight cache
+        if sport_upper in _weight_cache:
+            del _weight_cache[sport_upper]
+
+        # 7. Log applied adjustments back to feedback row
+        db.client.table("calibration_feedback").update({
+            "applied_adjustments": adjustment_log,
+        }).eq("id", feedback_id).execute()
+
+        logger.info(
+            f"[WeightCalc] Applied feedback adjustments for {sport_upper}: "
+            f"sample={sample_size}, adjustments={adjustment_log}"
+        )
+
+        return {
+            "status": "applied",
+            "sport": sport_upper,
+            "sample_size": sample_size,
+            "old_weights": old_weights,
+            "new_weights": new_weights,
+            "adjustments": adjustment_log,
+        }
+
+    except Exception as e:
+        logger.error(f"[WeightCalc] apply_feedback_adjustments failed for {sport}: {e}")
+        return {"error": str(e)}
+
+
 def get_available_periods(sport: str) -> list:
     """
     Get list of available periods for a sport.

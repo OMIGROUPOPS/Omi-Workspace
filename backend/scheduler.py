@@ -560,11 +560,22 @@ def start_scheduler():
         replace_existing=True
     )
     
+    # Closing line capture: Every 10 minutes
+    from closing_line_capture import run_closing_line_capture
+    scheduler.add_job(
+        func=run_closing_line_capture,
+        trigger=IntervalTrigger(minutes=10),
+        id="closing_line_capture",
+        name="Capture closing lines before game start",
+        replace_existing=True
+    )
+
     scheduler.start()
     logger.info(f"Scheduler started:")
     logger.info(f"  - Pre-game: every {PREGAME_POLL_INTERVAL_MINUTES} min")
     logger.info(f"  - Live: every {LIVE_POLL_INTERVAL_MINUTES} min")
     logger.info(f"  - Live props: every 7 min")
+    logger.info(f"  - Closing line capture: every 10 min")
     
     return scheduler
 

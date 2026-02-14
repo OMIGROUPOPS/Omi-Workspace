@@ -1516,6 +1516,59 @@ async def get_game_exchange_data(game_id: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+# =============================================================================
+# MODEL FEEDBACK & CLOSING LINES
+# =============================================================================
+
+@app.get("/api/internal/model-feedback")
+async def get_model_feedback(sport: str = None, days: int = 30):
+    """Get latest calibration feedback rows with pillar metrics and CLV."""
+    from model_feedback import ModelFeedback
+    fb = ModelFeedback()
+    return fb.get_latest_feedback(sport, days)
+
+
+@app.post("/api/internal/run-feedback")
+async def run_model_feedback(sport: str = None, min_games: int = 20, apply_weights: bool = False):
+    """Run feedback analysis and optionally apply weight adjustments.
+
+    1. Analyzes graded predictions for per-pillar metrics and CLV
+    2. Writes results to calibration_feedback table
+    3. If apply_weights=true, also applies bounded weight adjustments to calibration_config
+    """
+    from model_feedback import ModelFeedback
+    fb = ModelFeedback()
+    result = fb.run_feedback(sport, min_games)
+
+    # Optionally apply weight adjustments
+    if apply_weights:
+        from engine.weight_calculator import apply_feedback_adjustments
+        sports_to_adjust = []
+        if sport:
+            sports_to_adjust = [sport.upper()]
+        else:
+            sports_to_adjust = list(result.get("results", {}).keys())
+
+        adjustments = {}
+        for sp in sports_to_adjust:
+            sp_result = result.get("results", {}).get(sp, {})
+            if sp_result.get("status") == "success":
+                adj = apply_feedback_adjustments(sp)
+                adjustments[sp] = adj
+
+        result["weight_adjustments"] = adjustments
+
+    return result
+
+
+@app.get("/api/internal/closing-lines")
+async def get_closing_lines(sport: str = None, days: int = 7):
+    """Get recent closing line captures for inspection."""
+    from model_feedback import ModelFeedback
+    fb = ModelFeedback()
+    return fb.get_closing_lines(sport, days)
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

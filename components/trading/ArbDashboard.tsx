@@ -230,7 +230,7 @@ function netColor(cents: number | null | undefined): string {
 function statusBadge(status: string): { bg: string; text: string } {
   if (status === "HEDGED" || status === "FILLED" || status === "SUCCESS")
     return { bg: "bg-emerald-500/20", text: "text-emerald-400" };
-  if (status.includes("NO_FILL"))
+  if (status.includes("NO_FILL") || status === "EXITED")
     return { bg: "bg-yellow-500/20", text: "text-yellow-400" };
   if (status === "FAILED" || status === "ERROR" || status === "UNHEDGED")
     return { bg: "bg-red-500/20", text: "text-red-400" };
@@ -429,7 +429,7 @@ function FilterButton({
 
 type TopTab = "monitor" | "pnl_history" | "liquidity";
 type TradeFilter = "all" | "live" | "paper";
-type StatusFilter = "all" | "SUCCESS" | "PM_NO_FILL" | "UNHEDGED" | "SKIPPED";
+type StatusFilter = "all" | "SUCCESS" | "PM_NO_FILL" | "EXITED" | "UNHEDGED" | "SKIPPED";
 type BottomTab = "positions" | "mapped_games";
 type TimeHorizon = "1D" | "1W" | "1M" | "YTD" | "ALL";
 type TradeSortKey = "time" | "spread" | "net" | "qty" | "phase";
@@ -1296,6 +1296,7 @@ export default function ArbDashboard() {
                       "all",
                       "SUCCESS",
                       "PM_NO_FILL",
+                      "EXITED",
                       "UNHEDGED",
                       "SKIPPED",
                     ] as StatusFilter[]
@@ -1307,7 +1308,7 @@ export default function ArbDashboard() {
                       variant={
                         f === "SUCCESS"
                           ? "green"
-                          : f === "PM_NO_FILL"
+                          : f === "PM_NO_FILL" || f === "EXITED"
                           ? "yellow"
                           : f === "UNHEDGED"
                           ? "red"

@@ -181,6 +181,7 @@ class TradeResult:
     gtc_spread_checks: int = 0         # spread validations during GTC rest
     gtc_cancel_reason: str = ""        # "timeout", "spread_gone", "filled", ""
     is_maker: bool = False             # True if filled via GTC (0% fee)
+    exited: bool = False               # True if PM was successfully unwound after K failure
 
 
 def _extract_pm_response_details(pm_result: Dict) -> Dict:
@@ -1064,6 +1065,7 @@ async def execute_arb(
                 gtc_rest_time_ms=gtc_phase['rest_time_ms'],
                 gtc_spread_checks=gtc_phase['spread_checks'],
                 gtc_cancel_reason='spread_gone_pre_kalshi',
+                exited=True,
             )
 
     # -------------------------------------------------------------------------
@@ -1114,6 +1116,7 @@ async def execute_arb(
                     gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
                     gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
                     is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
+                    exited=True,
                 )
         except Exception as unwind_err:
             print(f"[RECOVERY] PM unwind failed: {unwind_err}")
@@ -1215,6 +1218,7 @@ async def execute_arb(
                     gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
                     gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
                     is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
+                    exited=True,
                 )
             else:
                 print(f"[RECOVERY] PM UNWIND FAILED - position remains open!")

@@ -581,71 +581,9 @@ class InternalGrader:
                 }):
                     rows_created += 1
 
-            # Moneyline
-            ml_data = book_data.get("moneyline")
-            if closing_ml_home and closing_ml_away and ml_data:
-                book_ml_home = ml_data.get("home_odds")
-                book_ml_away = ml_data.get("away_odds")
-                if book_ml_home and book_ml_away:
-                    # Remove vig from consensus closing line for fair probability
-                    fair_home_prob = american_to_implied(closing_ml_home)
-                    fair_away_prob = american_to_implied(closing_ml_away)
-                    total_prob = fair_home_prob + fair_away_prob
-                    if total_prob > 0:
-                        fair_home_prob /= total_prob
-                        fair_away_prob /= total_prob
-
-                    # Remove vig from book line for comparison
-                    book_home_prob = american_to_implied(book_ml_home)
-                    book_away_prob = american_to_implied(book_ml_away)
-                    btotal = book_home_prob + book_away_prob
-                    if btotal > 0:
-                        book_home_prob /= btotal
-
-                    # Cap fair probability deviation from book consensus
-                    fair_home_prob = max(book_home_prob - FAIR_ML_PROB_CAP,
-                                         min(book_home_prob + FAIR_ML_PROB_CAP, fair_home_prob))
-
-                    gap = (fair_home_prob - book_home_prob) * 100
-                    edge_pct = abs(gap)
-                    signal = determine_signal(edge_pct)
-
-                    winner = "home" if home_score > away_score else (
-                        "away" if away_score > home_score else "push"
-                    )
-
-                    if gap > 0:
-                        prediction_side = "home"
-                        book_odds = book_ml_home
-                        is_correct = winner == "home"
-                    else:
-                        prediction_side = "away"
-                        book_odds = book_ml_away
-                        is_correct = winner == "away"
-
-                    if winner == "push":
-                        is_correct = None
-
-                    if self._upsert_prediction_grade({
-                        "game_id": game_id,
-                        "sport_key": sport_key,
-                        "market_type": "moneyline",
-                        "period": "full",
-                        "omi_fair_line": fair_home_prob * 100,
-                        "book_line": book_home_prob * 100,
-                        "book_name": book_name,
-                        "book_odds": int(book_odds),
-                        "gap": gap,
-                        "signal": signal,
-                        "confidence_tier": tier,
-                        "prediction_side": prediction_side,
-                        "actual_result": winner,
-                        "is_correct": is_correct,
-                        "pillar_composite": composite,
-                        "ceq_score": None,
-                        "graded_at": datetime.now(timezone.utc).isoformat(),
-                    }):
-                        rows_created += 1
+            # Moneyline — excluded from grading pipeline.
+            # ML hit 35% / -33% ROI across 237 picks, poisoning performance metrics.
+            # ML fair lines are still displayed on game detail + dashboard (frontend unchanged).
 
         return rows_created
 

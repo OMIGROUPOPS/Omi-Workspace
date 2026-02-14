@@ -182,7 +182,7 @@ class TradeResult:
     gtc_cancel_reason: str = ""        # "timeout", "spread_gone", "filled", ""
     is_maker: bool = False             # True if filled via GTC (0% fee)
     exited: bool = False               # True if PM was successfully unwound after K failure
-    unwind_loss_cents: Optional[float] = None  # Actual loss from PM unwind (cents per contract)
+    unwind_loss_cents: Optional[float] = None  # Total loss from PM unwind across all contracts (cents)
 
 
 def _extract_pm_response_details(pm_result: Dict) -> Dict:
@@ -1105,10 +1105,11 @@ async def execute_arb(
             unwind_loss = None
             if exited and unwind_fill_price is not None:
                 if reverse_intent in (2, 4):
-                    unwind_loss = (pm_fill_price * 100) - (unwind_fill_price * 100)
+                    loss_per_contract = (pm_fill_price * 100) - (unwind_fill_price * 100)
                 else:
-                    unwind_loss = (unwind_fill_price * 100) - (pm_fill_price * 100)
-                print(f"[GTC] Loss from unwind: {unwind_loss:.1f}c (+ fees)")
+                    loss_per_contract = (unwind_fill_price * 100) - (pm_fill_price * 100)
+                unwind_loss = abs(loss_per_contract) * pm_filled
+                print(f"[GTC] Loss from unwind: {abs(loss_per_contract):.1f}c x {pm_filled} = {unwind_loss:.1f}c total (+ fees)")
             if not exited:
                 print(f"[GTC] PM unwind failed - position remains open!")
             return TradeResult(
@@ -1154,12 +1155,13 @@ async def execute_arb(
         )
 
         if unwind_filled > 0:
-            loss_cents = abs((pm_fill_price - unwind_fill_price) * 100)
+            loss_per_contract = abs((pm_fill_price - unwind_fill_price) * 100)
+            loss_cents = loss_per_contract * pm_filled
             return TradeResult(
                 success=False, kalshi_filled=0, pm_filled=0,
                 kalshi_price=k_limit_price, pm_price=pm_fill_price,
                 unhedged=False,
-                abort_reason=f"Kalshi exception, PM unwound (loss: {loss_cents:.1f}c)",
+                abort_reason=f"Kalshi exception, PM unwound (loss: {loss_per_contract:.1f}c x {pm_filled} = {loss_cents:.1f}c)",
                 execution_time_ms=int((time.time() - start_time) * 1000),
                 pm_order_ms=pm_order_ms, k_order_ms=0,
                 pm_response_details=pm_response_details,
@@ -1219,10 +1221,11 @@ async def execute_arb(
 
         if unwind_filled > 0:
             if reverse_intent in (2, 4):
-                loss_cents = (pm_fill_price * 100) - (unwind_fill_price * 100)
+                loss_per_contract = (pm_fill_price * 100) - (unwind_fill_price * 100)
             else:
-                loss_cents = (unwind_fill_price * 100) - (pm_fill_price * 100)
-            print(f"[RECOVERY] Loss from unwind: {loss_cents:.1f}c (+ fees)")
+                loss_per_contract = (unwind_fill_price * 100) - (pm_fill_price * 100)
+            loss_cents = abs(loss_per_contract) * pm_filled
+            print(f"[RECOVERY] Loss from unwind: {abs(loss_per_contract):.1f}c x {pm_filled} = {loss_cents:.1f}c total (+ fees)")
 
             return TradeResult(
                 success=False,

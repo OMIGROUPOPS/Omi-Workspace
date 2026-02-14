@@ -28,6 +28,7 @@ Safety guarantees:
 """
 import asyncio
 import json
+import math
 import os
 import time
 from dataclasses import dataclass
@@ -414,8 +415,6 @@ def calculate_optimal_size(
     Returns: {size, expected_profit_cents, avg_spread_cents, avg_pm_price,
               avg_k_price, k_depth, pm_depth, limit_reason}
     """
-    import math
-
     default = {
         'size': 1, 'expected_profit_cents': 0, 'avg_spread_cents': 0,
         'avg_pm_price': 0, 'avg_k_price': 0, 'k_depth': 0, 'pm_depth': 0,
@@ -771,12 +770,14 @@ async def execute_arb(
         pm_price_cents = 100 - pm_price_cents
 
     # PM buffer: scale with size to control risk on larger orders
+    # Use math.ceil so fractional cents always round UP (e.g. 5.5c → 6c)
+    # Prevents :.2f truncation from eating the buffer in the PM API payload
     if size <= 3:
-        pm_buffer = max(2, int(spread * 0.50))
+        pm_buffer = max(2, math.ceil(spread * 0.50))
     elif size <= 10:
-        pm_buffer = max(2, int(spread * 0.40))
+        pm_buffer = max(2, math.ceil(spread * 0.40))
     else:
-        pm_buffer = max(2, int(spread * 0.30))
+        pm_buffer = max(2, math.ceil(spread * 0.30))
 
     print(f"[EXEC] Sized: {size} contracts | buffer: {pm_buffer}c")
 
@@ -784,13 +785,13 @@ async def execute_arb(
         # BUY_SHORT: PM interprets price as MIN YES sell price (favorite frame)
         # pm_price_cents = underdog cost (what we want to pay for SHORT)
         # Buffer adds to underdog cost (willing to pay slightly more for fill)
-        max_underdog_cost = min(pm_price_cents + pm_buffer, 99)
+        max_underdog_cost = min(math.ceil(pm_price_cents + pm_buffer), 99)
         # Convert to YES frame: min_yes_sell = 100 - max_underdog_cost
         pm_price_buffered = max(100 - max_underdog_cost, 1)
         pm_price = pm_price_buffered / 100.0
     else:
         # BUY_LONG: PM interprets price as MAX YES buy price (favorite frame)
-        pm_price_buffered = min(pm_price_cents + pm_buffer, 99)
+        pm_price_buffered = min(math.ceil(pm_price_cents + pm_buffer), 99)
         pm_price = pm_price_buffered / 100.0
 
     # Add buffer to Kalshi price for better fill

@@ -640,6 +640,23 @@ def start_scheduler():
         replace_existing=True
     )
 
+    # Pregame capture: Every 15 minutes — snapshot fair lines, edges, pillars
+    def run_pregame_capture():
+        try:
+            from pregame_capture import PregameCapture
+            result = PregameCapture().capture_all()
+            logger.info(f"[PregameCapture] {result}")
+        except Exception as e:
+            logger.error(f"[PregameCapture] Failed: {e}")
+
+    scheduler.add_job(
+        func=run_pregame_capture,
+        trigger=IntervalTrigger(minutes=15),
+        id="pregame_capture",
+        name="Pregame fair line capture",
+        replace_existing=True
+    )
+
     # Grading: Every 60 minutes — fetch ESPN scores and grade completed games
     scheduler.add_job(
         func=run_grading_cycle,
@@ -664,6 +681,7 @@ def start_scheduler():
     logger.info(f"  - Live: every {LIVE_POLL_INTERVAL_MINUTES} min")
     logger.info(f"  - Live props: every 7 min")
     logger.info(f"  - Closing line capture: every 10 min")
+    logger.info(f"  - Pregame capture: every 15 min")
     logger.info(f"  - Grading: every 60 min")
     logger.info(f"  - Daily feedback: 6:00 AM UTC")
     

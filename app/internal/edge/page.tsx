@@ -263,6 +263,8 @@ export default function EdgeInternalPage() {
   // Pregame markets tab state
   const [liveData, setLiveData] = useState<LiveMarketsResponse | null>(null);
   const [liveLoading, setLiveLoading] = useState(false);
+  const [liveSortField, setLiveSortField] = useState("best_edge");
+  const [liveSortDir, setLiveSortDir] = useState<"asc" | "desc">("desc");
 
   // ------- Performance fetch -------
   const fetchData = useCallback(async () => {
@@ -417,6 +419,43 @@ export default function EdgeInternalPage() {
     });
   }, [gradedData?.rows, sortField, sortDir]);
 
+  // ------- Pregame sort logic -------
+  const handleLiveSort = (field: string) => {
+    if (liveSortField === field) {
+      setLiveSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    } else {
+      setLiveSortField(field);
+      setLiveSortDir("desc");
+    }
+  };
+
+  const sortedLiveRows = useMemo(() => {
+    if (!liveData?.rows) return [];
+    // Add hours_to_game to each row for sorting
+    const now = Date.now();
+    const withHours = liveData.rows.map((r) => ({
+      ...r,
+      hours_to_game: r.commence_time
+        ? (new Date(r.commence_time).getTime() - now) / 3600000
+        : 999,
+    }));
+    return withHours.sort((a, b) => {
+      const aVal = a[liveSortField as keyof typeof a] as number | string | null | undefined;
+      const bVal = b[liveSortField as keyof typeof b] as number | string | null | undefined;
+      if (aVal == null && bVal == null) return 0;
+      if (aVal == null) return 1;
+      if (bVal == null) return -1;
+      if (typeof aVal === "string") {
+        return liveSortDir === "asc"
+          ? aVal.localeCompare(bVal as string)
+          : (bVal as string).localeCompare(aVal);
+      }
+      return liveSortDir === "asc"
+        ? (aVal as number) - (bVal as number)
+        : (bVal as number) - (aVal as number);
+    });
+  }, [liveData?.rows, liveSortField, liveSortDir]);
+
   // ------- Render helpers -------
   const EDGE_TIERS = ["NO EDGE", "LOW EDGE", "MID EDGE", "HIGH EDGE", "REVIEW"];
   const EDGE_TIER_RANGES: Record<string, string> = {
@@ -445,6 +484,39 @@ export default function EdgeInternalPage() {
       )}
     </th>
   );
+
+  const LiveSortHeader = ({
+    field,
+    label,
+    align = "left",
+  }: {
+    field: string;
+    label: string;
+    align?: string;
+  }) => (
+    <th
+      className={`text-${align} px-3 py-2 cursor-pointer hover:text-zinc-300 select-none whitespace-nowrap`}
+      onClick={() => handleLiveSort(field)}
+    >
+      {label}
+      {liveSortField === field && (
+        <span className="ml-1 text-cyan-400">
+          {liveSortDir === "asc" ? "\u25B2" : "\u25BC"}
+        </span>
+      )}
+    </th>
+  );
+
+  function fmtHoursToGame(hours: number): { text: string; color: string } {
+    if (hours < 0) return { text: "LIVE", color: "text-red-400" };
+    if (hours < 1) return { text: `${Math.round(hours * 60)}m`, color: "text-red-400" };
+    if (hours < 2) return { text: `${hours.toFixed(1)}h`, color: "text-red-400" };
+    if (hours < 12) return { text: `${hours.toFixed(1)}h`, color: "text-amber-400" };
+    if (hours < 24) return { text: `${hours.toFixed(0)}h`, color: "text-zinc-400" };
+    const d = Math.floor(hours / 24);
+    const remainH = Math.round(hours % 24);
+    return { text: `${d}d ${remainH}h`, color: "text-emerald-400" };
+  }
 
   // =====================================================================
   return (
@@ -1244,8 +1316,21 @@ export default function EdgeInternalPage() {
             </div>
           ) : (
             <>
-              <div className="mt-4 text-sm text-zinc-500">
-                {liveData.count} markets across upcoming games
+              {/* Edge counter + market count */}
+              <div className="mt-4 flex items-center gap-4 text-sm">
+                <span className="text-zinc-500">
+                  {liveData.count} markets across upcoming games
+                </span>
+                {(() => {
+                  const edgeCount = sortedLiveRows.filter(
+                    (r) => Math.abs(r.best_edge ?? 0) > 3
+                  ).length;
+                  return edgeCount > 0 ? (
+                    <span className="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 font-mono text-xs">
+                      {edgeCount} {edgeCount === 1 ? "game" : "games"} with edge &gt; 3%
+                    </span>
+                  ) : null;
+                })()}
               </div>
 
               <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
@@ -1253,21 +1338,24 @@ export default function EdgeInternalPage() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="text-zinc-500 border-b border-zinc-800 text-xs uppercase tracking-wide">
-                        <th className="text-left px-3 py-2">Time</th>
-                        <th className="text-left px-3 py-2">Sport</th>
+                        <LiveSortHeader field="commence_time" label="Time" />
+                        <LiveSortHeader field="hours_to_game" label="Kickoff" />
+                        <LiveSortHeader field="sport_key" label="Sport" />
                         <th className="text-left px-3 py-2">Matchup</th>
-                        <th className="text-left px-3 py-2">Mkt</th>
+                        <LiveSortHeader field="market_type" label="Mkt" />
                         <th className="text-left px-3 py-2">OMI Fair</th>
                         <th className="text-left px-3 py-2">FD Line</th>
-                        <th className="text-left px-3 py-2">FD Edge</th>
+                        <LiveSortHeader field="fd_edge" label="FD Edge" />
                         <th className="text-left px-3 py-2">DK Line</th>
-                        <th className="text-left px-3 py-2">DK Edge</th>
-                        <th className="text-center px-3 py-2">Signal</th>
+                        <LiveSortHeader field="dk_edge" label="DK Edge" />
+                        <LiveSortHeader field="best_edge" label="Best Edge" />
+                        <LiveSortHeader field="signal" label="Signal" align="center" />
                       </tr>
                     </thead>
                     <tbody>
-                      {liveData.rows.map((row, i) => {
+                      {sortedLiveRows.map((row, i) => {
                         const sigColor = SIGNAL_COLORS[row.signal] || "text-zinc-500";
+                        const htg = fmtHoursToGame(row.hours_to_game);
                         return (
                           <tr
                             key={`${row.game_id}-${row.market_type}-${i}`}
@@ -1286,6 +1374,11 @@ export default function EdgeInternalPage() {
                                     hour: "numeric", minute: "2-digit",
                                   })
                                 : "—"}
+                            </td>
+
+                            {/* Hours to game */}
+                            <td className={`px-3 py-2.5 font-mono text-xs whitespace-nowrap ${htg.color}`}>
+                              {htg.text}
                             </td>
 
                             {/* Sport */}
@@ -1346,6 +1439,19 @@ export default function EdgeInternalPage() {
                               ) : row.dk_edge != null ? (
                                 <span className={`font-mono ${SIGNAL_COLORS[row.dk_signal || ""] || "text-zinc-400"}`}>
                                   {fmtEdgePct(row.dk_edge)}
+                                </span>
+                              ) : <span className="text-zinc-600">—</span>}
+                            </td>
+
+                            {/* Best Edge */}
+                            <td className="px-3 py-2.5 text-xs whitespace-nowrap">
+                              {row.best_edge != null ? (
+                                <span className={`font-mono font-bold ${
+                                  Math.abs(row.best_edge) > 6 ? "text-cyan-400" :
+                                  Math.abs(row.best_edge) > 3 ? "text-amber-400" :
+                                  "text-zinc-400"
+                                }`}>
+                                  {fmtEdgePct(row.best_edge)}
                                 </span>
                               ) : <span className="text-zinc-600">—</span>}
                             </td>

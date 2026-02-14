@@ -1303,6 +1303,93 @@ async def internal_edge_analytics(sport: str = None, days: int = 30):
 
 
 # =============================================================================
+# PREGAME CAPTURE
+# =============================================================================
+
+@app.get("/api/v1/pregame-edges")
+async def pregame_edges(sport: str = None):
+    """Get latest pregame snapshot for all upcoming games with edges."""
+    try:
+        if not db._is_connected():
+            raise HTTPException(status_code=500, detail="Database not connected")
+
+        from datetime import datetime, timezone
+
+        query = db.client.table("pregame_snapshots").select("*").gt(
+            "commence_time", datetime.now(timezone.utc).isoformat()
+        ).order("snapshot_time", desc=True)
+
+        if sport:
+            query = query.eq("sport_key", sport.upper())
+
+        result = query.limit(5000).execute()
+
+        # Dedup to latest snapshot per game_id
+        seen = {}
+        for row in (result.data or []):
+            gid = row["game_id"]
+            if gid not in seen:
+                seen[gid] = row
+
+        games = list(seen.values())
+        edges_over_3 = sum(
+            1 for g in games
+            if abs(g.get("spread_edge_pct") or 0) > 3
+            or abs(g.get("total_edge_pct") or 0) > 3
+        )
+
+        return {
+            "games": games,
+            "count": len(games),
+            "edges_over_3pct": edges_over_3,
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error fetching pregame edges: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/v1/pregame-history")
+async def pregame_history(game_id: str = None):
+    """Get all pregame snapshots for a specific game, ordered by time."""
+    if not game_id:
+        raise HTTPException(status_code=400, detail="game_id is required")
+    try:
+        if not db._is_connected():
+            raise HTTPException(status_code=500, detail="Database not connected")
+
+        result = db.client.table("pregame_snapshots").select("*").eq(
+            "game_id", game_id
+        ).order("snapshot_time", desc=False).execute()
+
+        return {
+            "game_id": game_id,
+            "snapshots": result.data or [],
+            "count": len(result.data or []),
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error fetching pregame history: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/internal/pregame-accuracy")
+async def internal_pregame_accuracy(sport: str = None, days: int = 30):
+    """Pregame accuracy analysis: how OMI fair lines performed by hours-to-game bucket."""
+    try:
+        from pregame_capture import PregameCapture
+        result = PregameCapture().get_pregame_accuracy_summary(
+            sport.upper() if sport else None, days
+        )
+        return result
+    except Exception as e:
+        logger.error(f"Error running pregame accuracy: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# =============================================================================
 # COMPOSITE HISTORY
 # =============================================================================
 

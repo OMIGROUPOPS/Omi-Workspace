@@ -161,8 +161,22 @@ class ModelFeedback:
         except Exception as e:
             logger.warning(f"[ModelFeedback] Edge analytics failed for {sport}: {e}")
 
-        # Merge bias + edge analytics into metric_data
-        metric_data = {**bias_data, **edge_summary}
+        # 6d. Pregame accuracy by hours-to-game bucket
+        pregame_accuracy = {}
+        try:
+            from pregame_capture import PregameCapture
+            accuracy = PregameCapture().get_pregame_accuracy_summary(sport, days)
+            if "error" not in accuracy:
+                pregame_accuracy = {"pregame_accuracy": accuracy}
+                logger.info(
+                    f"[ModelFeedback] Pregame accuracy for {sport}: "
+                    f"sample={accuracy.get('total_snapshots', 0)}"
+                )
+        except Exception as e:
+            logger.warning(f"[ModelFeedback] Pregame accuracy failed for {sport}: {e}")
+
+        # Merge bias + edge analytics + pregame accuracy into metric_data
+        metric_data = {**bias_data, **edge_summary, **pregame_accuracy}
 
         # 7. Get current weights
         current_weights = self._get_current_weights(sport)

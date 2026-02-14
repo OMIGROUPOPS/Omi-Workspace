@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import {
   LineChart,
   Line,
@@ -463,6 +463,8 @@ export default function ArbDashboard() {
   const [tradeSortAsc, setTradeSortAsc] = useState(false);
   const [expandedTrade, setExpandedTrade] = useState<number | null>(null);
   const [liqGameFilter, setLiqGameFilter] = useState("");
+  const prevPortfolioRef = useRef<{ k: number; pm: number; total: number } | null>(null);
+  const [portfolioDelta, setPortfolioDelta] = useState<{ k: number; pm: number; total: number }>({ k: 0, pm: 0, total: 0 });
 
   const fetchData = useCallback(async () => {
     try {
@@ -486,6 +488,22 @@ export default function ArbDashboard() {
     const interval = setInterval(fetchData, 3000);
     return () => clearInterval(interval);
   }, [fetchData, paused]);
+
+  // Track portfolio changes for rate-of-change indicators
+  useEffect(() => {
+    if (!state?.balances) return;
+    const { k_portfolio, pm_portfolio, total_portfolio } = state.balances;
+    if (total_portfolio === 0) return;
+    const prev = prevPortfolioRef.current;
+    if (prev && (prev.k !== k_portfolio || prev.pm !== pm_portfolio)) {
+      setPortfolioDelta({
+        k: k_portfolio - prev.k,
+        pm: pm_portfolio - prev.pm,
+        total: total_portfolio - prev.total,
+      });
+    }
+    prevPortfolioRef.current = { k: k_portfolio, pm: pm_portfolio, total: total_portfolio };
+  }, [state?.balances?.k_portfolio, state?.balances?.pm_portfolio, state?.balances?.total_portfolio]);
 
   const hasData = state && state.updated_at;
   const isStale =
@@ -566,10 +584,14 @@ export default function ArbDashboard() {
     for (const t of filteredTrades) {
       if (t.status === "SUCCESS") successes++;
       if (t.contracts_filled > 0) fills++;
-      if (t.actual_pnl) {
+      if (t.status === "EXITED") {
+        // EXITED: only count if we have real unwind loss data
+        if (t.unwind_loss_cents != null && t.unwind_loss_cents > 0) {
+          total -= t.unwind_loss_cents / 100;
+        }
+        // Otherwise exclude from sum entirely
+      } else if (t.actual_pnl) {
         total += t.actual_pnl.net_profit_dollars;
-      } else if (t.status === "EXITED" && t.unwind_loss_cents != null) {
-        total -= Math.abs(t.unwind_loss_cents) / 100;
       } else if (
         t.status === "SUCCESS" &&
         t.estimated_net_profit_cents != null
@@ -1011,85 +1033,110 @@ export default function ArbDashboard() {
       {topTab === "monitor" && (
         <div className="p-4 space-y-4">
           {/* ── Metrics Row ──────────────────────────────────────────── */}
-          <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-9 gap-3">
-            <MetricCard
-              label="K Cash"
-              value={
-                state?.balances.k_cash != null
-                  ? `$${state.balances.k_cash.toFixed(2)}`
-                  : "-"
-              }
-            />
-            <MetricCard
-              label="K Portfolio"
-              value={
-                state?.balances.k_portfolio != null
-                  ? `$${state.balances.k_portfolio.toFixed(2)}`
-                  : "-"
-              }
-            />
-            <MetricCard
-              label="PM Cash"
-              value={
-                state?.balances.pm_cash != null
-                  ? `$${state.balances.pm_cash.toFixed(2)}`
-                  : "-"
-              }
-            />
-            <MetricCard
-              label="PM Portfolio"
-              value={
-                state?.balances.pm_portfolio != null
-                  ? `$${state.balances.pm_portfolio.toFixed(2)}`
-                  : "-"
-              }
-            />
-            <MetricCard
-              label="Total Portfolio"
-              value={
-                state?.balances.total_portfolio
-                  ? `$${state.balances.total_portfolio.toFixed(2)}`
-                  : "-"
-              }
-              accent="text-emerald-400"
-            />
-            <MetricCard
-              label="P&L"
-              value={
-                pnl && pnl.total_trades > 0
-                  ? `${pnl.total_pnl_dollars >= 0 ? "+$" : "-$"}${Math.abs(pnl.total_pnl_dollars).toFixed(2)}`
-                  : "-"
-              }
-              sub={
-                pnl && pnl.total_trades > 0
-                  ? `${pnl.profitable_count}W / ${pnl.losing_count}L · ${pnl.hedged_count} hedged`
-                  : undefined
-              }
-              accent={
-                pnl && pnl.total_pnl_dollars > 0
-                  ? "text-emerald-400"
-                  : pnl && pnl.total_pnl_dollars < 0
-                  ? "text-red-400"
-                  : "text-white"
-              }
-            />
-            <MetricCard
-              label="Games"
-              value={String(state?.system.games_monitored || 0)}
-            />
-            <MetricCard
-              label="WS Messages"
-              value={
-                (state?.system.ws_messages_processed || 0) > 1000
-                  ? `${((state?.system.ws_messages_processed || 0) / 1000).toFixed(1)}k`
-                  : String(state?.system.ws_messages_processed || 0)
-              }
-            />
-            <MetricCard
-              label="Uptime"
-              value={formatUptime(state?.system.uptime_seconds || 0)}
-              sub={state?.system.executor_version || ""}
-            />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {/* Column 1: Cash */}
+            <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2.5">
+              <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 mb-1.5">Cash (Trading)</p>
+              <div className="space-y-1">
+                <div className="flex justify-between items-baseline">
+                  <span className="text-[11px] text-gray-400">PM</span>
+                  <span className="text-sm font-mono text-white">{state?.balances.pm_cash != null ? `$${state.balances.pm_cash.toFixed(2)}` : "-"}</span>
+                </div>
+                <div className="flex justify-between items-baseline">
+                  <span className="text-[11px] text-gray-400">Kalshi</span>
+                  <span className="text-sm font-mono text-white">{state?.balances.k_cash != null ? `$${state.balances.k_cash.toFixed(2)}` : "-"}</span>
+                </div>
+                <div className="border-t border-gray-800 pt-1 flex justify-between items-baseline">
+                  <span className="text-[11px] text-gray-400 font-medium">Total</span>
+                  <span className="text-base font-mono font-bold text-white">
+                    {state?.balances.pm_cash != null && state?.balances.k_cash != null
+                      ? `$${(state.balances.pm_cash + state.balances.k_cash).toFixed(2)}`
+                      : "-"}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Column 2: Portfolio */}
+            <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2.5">
+              <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 mb-1.5">Portfolio (Total Value)</p>
+              <div className="space-y-1">
+                <div className="flex justify-between items-baseline">
+                  <span className="text-[11px] text-gray-400">PM</span>
+                  <span className="text-sm font-mono text-white">
+                    {state?.balances.pm_portfolio != null ? `$${state.balances.pm_portfolio.toFixed(2)}` : "-"}
+                    {portfolioDelta.pm !== 0 && (
+                      <span className={`ml-1 text-[10px] ${portfolioDelta.pm > 0 ? "text-emerald-400" : "text-red-400"}`}>
+                        {portfolioDelta.pm > 0 ? "\u25B2" : "\u25BC"}{Math.abs(portfolioDelta.pm).toFixed(2)}
+                      </span>
+                    )}
+                  </span>
+                </div>
+                <div className="flex justify-between items-baseline">
+                  <span className="text-[11px] text-gray-400">Kalshi</span>
+                  <span className="text-sm font-mono text-white">
+                    {state?.balances.k_portfolio != null ? `$${state.balances.k_portfolio.toFixed(2)}` : "-"}
+                    {portfolioDelta.k !== 0 && (
+                      <span className={`ml-1 text-[10px] ${portfolioDelta.k > 0 ? "text-emerald-400" : "text-red-400"}`}>
+                        {portfolioDelta.k > 0 ? "\u25B2" : "\u25BC"}{Math.abs(portfolioDelta.k).toFixed(2)}
+                      </span>
+                    )}
+                  </span>
+                </div>
+                <div className="border-t border-gray-800 pt-1 flex justify-between items-baseline">
+                  <span className="text-[11px] text-gray-400 font-medium">Total</span>
+                  <span className="text-base font-mono font-bold text-emerald-400">
+                    {state?.balances.total_portfolio ? `$${state.balances.total_portfolio.toFixed(2)}` : "-"}
+                    {portfolioDelta.total !== 0 && (
+                      <span className={`ml-1 text-[10px] ${portfolioDelta.total > 0 ? "text-emerald-400" : "text-red-400"}`}>
+                        {portfolioDelta.total > 0 ? "\u25B2" : "\u25BC"}{Math.abs(portfolioDelta.total).toFixed(2)}
+                      </span>
+                    )}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Column 3: P&L + System */}
+            <div className="grid grid-cols-2 gap-3">
+              <MetricCard
+                label="P&L"
+                value={
+                  pnl && pnl.total_trades > 0
+                    ? `${pnl.total_pnl_dollars >= 0 ? "+$" : "-$"}${Math.abs(pnl.total_pnl_dollars).toFixed(2)}`
+                    : "-"
+                }
+                sub={
+                  pnl && pnl.total_trades > 0
+                    ? `${pnl.profitable_count}W / ${pnl.losing_count}L · ${pnl.hedged_count} hedged`
+                    : undefined
+                }
+                accent={
+                  pnl && pnl.total_pnl_dollars > 0
+                    ? "text-emerald-400"
+                    : pnl && pnl.total_pnl_dollars < 0
+                    ? "text-red-400"
+                    : "text-white"
+                }
+              />
+              <MetricCard
+                label="Games"
+                value={String(state?.system.games_monitored || 0)}
+              />
+              <MetricCard
+                label="WS Messages"
+                value={
+                  (state?.system.ws_messages_processed || 0) > 1000
+                    ? `${((state?.system.ws_messages_processed || 0) / 1000).toFixed(1)}k`
+                    : String(state?.system.ws_messages_processed || 0)
+                }
+              />
+              <MetricCard
+                label="Uptime"
+                value={formatUptime(state?.system.uptime_seconds || 0)}
+                sub={state?.system.executor_version || ""}
+              />
+            </div>
           </div>
 
           {/* ── Error Banner ─────────────────────────────────────────── */}
@@ -1458,8 +1505,8 @@ export default function ArbDashboard() {
                             </td>
                             <td
                               className={`px-2 py-1 text-right font-mono font-medium ${
-                                t.status === "EXITED" && t.unwind_loss_cents != null
-                                  ? netColor(-Math.abs(t.unwind_loss_cents))
+                                t.status === "EXITED"
+                                  ? (t.unwind_loss_cents != null && t.unwind_loss_cents > 0 ? "text-red-400" : "text-gray-500")
                                   : netColor(
                                       t.actual_pnl
                                         ? t.actual_pnl.per_contract.net
@@ -1467,8 +1514,10 @@ export default function ArbDashboard() {
                                     )
                               }`}
                             >
-                              {t.status === "EXITED" && t.unwind_loss_cents != null
-                                ? `-${Math.abs(t.unwind_loss_cents).toFixed(1)}`
+                              {t.status === "EXITED"
+                                ? (t.unwind_loss_cents != null && t.unwind_loss_cents > 0
+                                  ? `-${t.unwind_loss_cents.toFixed(1)}`
+                                  : "N/A")
                                 : t.actual_pnl
                                 ? `${t.actual_pnl.per_contract.net >= 0 ? "+" : ""}${t.actual_pnl.per_contract.net.toFixed(1)}`
                                 : t.estimated_net_profit_cents != null
@@ -2352,14 +2401,16 @@ export default function ArbDashboard() {
                               {t.spread_cents.toFixed(1)}c
                             </td>
                             <td className={`px-2 py-1.5 text-right font-mono font-medium ${
-                              t.status === "EXITED" && t.unwind_loss_cents != null
-                                ? "text-red-400"
+                              t.status === "EXITED"
+                                ? (t.unwind_loss_cents != null && t.unwind_loss_cents > 0 ? "text-red-400" : "text-gray-500")
                                 : t.actual_pnl
                                 ? t.actual_pnl.net_profit_dollars > 0 ? "text-emerald-400" : t.actual_pnl.net_profit_dollars < 0 ? "text-red-400" : "text-gray-400"
                                 : "text-gray-500"
                             }`}>
-                              {t.status === "EXITED" && t.unwind_loss_cents != null
-                                ? `-$${(Math.abs(t.unwind_loss_cents) / 100).toFixed(4)}`
+                              {t.status === "EXITED"
+                                ? (t.unwind_loss_cents != null && t.unwind_loss_cents > 0
+                                  ? `-$${(t.unwind_loss_cents / 100).toFixed(4)}`
+                                  : "N/A")
                                 : t.actual_pnl
                                 ? `${t.actual_pnl.net_profit_dollars >= 0 ? "+" : ""}$${t.actual_pnl.net_profit_dollars.toFixed(4)}`
                                 : "-"}

@@ -1168,6 +1168,14 @@ class InternalGrader:
             # Confidence from edge (interpolated, not bucketed)
             conf = edge_to_confidence(best_edge) if best_edge is not None else 50.0
 
+            # Signal tier from best edge
+            row_signal = determine_signal(best_edge) if best_edge is not None else "NO EDGE"
+
+            # Actual margin (home - away) for ATS grading display
+            h_score = game.get("home_score")
+            a_score = game.get("away_score")
+            actual_margin = (h_score - a_score) if h_score is not None and a_score is not None else None
+
             row_out = {
                 "game_id": gid,
                 "sport_key": sport_normalized,
@@ -1184,6 +1192,8 @@ class InternalGrader:
                 "best_edge": best_edge,
                 "best_book": best_book,
                 "is_correct": is_correct,
+                "signal": row_signal,
+                "actual_margin": actual_margin,
                 "fd": fd,
                 "dk": dk,
             }
@@ -1292,6 +1302,13 @@ class InternalGrader:
             logger.error(f"[LiveMarkets] Failed to query composite_history: {e}\n{traceback.format_exc()}")
             ch_map = {}
 
+        # 2b. Get pillar drivers from predictions table
+        try:
+            pillar_drivers = self._get_pillar_drivers(game_ids)
+        except Exception as e:
+            logger.warning(f"[LiveMarkets] Failed to get pillar drivers: {e}")
+            pillar_drivers = {}
+
         # 3. Build rows — one per game × market
         rows = []
         game_errors = 0
@@ -1365,6 +1382,7 @@ class InternalGrader:
                             "dk_line": dk_bl, "dk_odds": dk_lines.get("spread_odds"),
                             "dk_edge": None, "dk_signal": None,
                             "best_edge": None, "signal": "PENDING",
+                            "pillar_driver": pillar_drivers.get(gid, "—"),
                         })
                 # Total placeholder (always)
                 fd_bl = fd_lines.get("total_line")
@@ -1380,6 +1398,7 @@ class InternalGrader:
                         "dk_line": dk_bl, "dk_odds": dk_lines.get("total_odds"),
                         "dk_edge": None, "dk_signal": None,
                         "best_edge": None, "signal": "PENDING",
+                        "pillar_driver": pillar_drivers.get(gid, "—"),
                     })
                 # Moneyline placeholder (soccer only)
                 if is_soccer_game:
@@ -1396,6 +1415,7 @@ class InternalGrader:
                             "dk_line": dk_mlh, "dk_odds": dk_mlh,
                             "dk_edge": None, "dk_signal": None,
                             "best_edge": None, "signal": "PENDING",
+                            "pillar_driver": pillar_drivers.get(gid, "—"),
                         })
                 continue
 
@@ -1451,6 +1471,7 @@ class InternalGrader:
                     "dk_line": dk_bl, "dk_odds": dk_lines.get("spread_odds"),
                     "dk_edge": dk_edge, "dk_signal": dk_signal,
                     "best_edge": best_e, "signal": best_sig,
+                    "pillar_driver": pillar_drivers.get(gid, "—"),
                 })
 
             # Total rows
@@ -1498,6 +1519,7 @@ class InternalGrader:
                     "dk_line": dk_bl, "dk_odds": dk_lines.get("total_odds"),
                     "dk_edge": dk_edge, "dk_signal": dk_signal,
                     "best_edge": best_e, "signal": best_sig,
+                    "pillar_driver": pillar_drivers.get(gid, "—"),
                 })
 
             # Moneyline rows (soccer only — 3-way: home/draw/away)
@@ -1605,6 +1627,7 @@ class InternalGrader:
                         "dk_line": dk_mlh, "dk_odds": dk_mlh,
                         "dk_edge": dk_edge, "dk_signal": dk_signal,
                         "best_edge": best_e, "signal": best_sig,
+                        "pillar_driver": pillar_drivers.get(gid, "—"),
                     })
                 except Exception as e:
                     logger.warning(f"[LiveMarkets] Soccer ML error for {gid}: {e}")
@@ -1623,6 +1646,51 @@ class InternalGrader:
             logger.warning(f"[LiveMarkets] {game_errors} games had errors, {len(rows)} rows returned")
 
         return {"rows": rows, "count": len(rows)}
+
+    # ------------------------------------------------------------------
+    # Pillar driver — which pillar deviated most from neutral (0.5)
+    # ------------------------------------------------------------------
+
+    PILLAR_NAMES = {
+        "pillar_execution": "EXEC",
+        "pillar_incentives": "INCENT",
+        "pillar_shocks": "SHOCKS",
+        "pillar_time_decay": "DECAY",
+        "pillar_flow": "FLOW",
+        "pillar_game_environment": "ENV",
+    }
+
+    def _get_pillar_drivers(self, game_ids: list) -> dict:
+        """Get top pillar driver per game from predictions table.
+
+        Returns {game_id: "FLOW"} etc — the pillar furthest from 0.5.
+        """
+        if not game_ids:
+            return {}
+        drivers: dict = {}
+        for i in range(0, len(game_ids), 50):
+            batch = game_ids[i:i+50]
+            try:
+                result = self.client.table("predictions").select(
+                    "game_id, pillar_execution, pillar_incentives, pillar_shocks, "
+                    "pillar_time_decay, pillar_flow, pillar_game_environment"
+                ).in_("game_id", batch).execute()
+                for row in (result.data or []):
+                    gid = row["game_id"]
+                    if gid in drivers:
+                        continue
+                    max_dev = 0.0
+                    top = "—"
+                    for col, label in self.PILLAR_NAMES.items():
+                        val = row.get(col, 0.5) or 0.5
+                        dev = abs(float(val) - 0.5)
+                        if dev > max_dev:
+                            max_dev = dev
+                            top = label
+                    drivers[gid] = top
+            except Exception as e:
+                logger.warning(f"[PillarDriver] Error fetching batch: {e}")
+        return drivers
 
     def _best_group(self, rows: list, field: str, min_sample: int = 5) -> Optional[dict]:
         """Find the group with the highest hit rate (min sample size)."""

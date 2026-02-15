@@ -232,6 +232,47 @@ function netColor(cents: number | null | undefined): string {
   return "text-gray-400";
 }
 
+/** Uniform P&L calculation for any trade status.
+ *  Returns per-contract cents and total dollars. */
+function tradePnl(t: TradeEntry): { perContract: number | null; totalDollars: number | null; qty: number } {
+  const qty = t.contracts_filled > 0 ? t.contracts_filled : (t.contracts_intended || 0);
+
+  if (t.status === "EXITED") {
+    if (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0) {
+      // unwind_loss_cents is already total across all contracts
+      const totalLoss = Math.abs(t.unwind_loss_cents);
+      const perContract = qty > 0 ? -(totalLoss / qty) : -totalLoss;
+      return { perContract, totalDollars: -(totalLoss / 100), qty };
+    }
+    return { perContract: null, totalDollars: null, qty };
+  }
+
+  if (t.status === "SUCCESS") {
+    if (t.actual_pnl) {
+      return {
+        perContract: t.actual_pnl.per_contract.net,
+        totalDollars: t.actual_pnl.net_profit_dollars,
+        qty,
+      };
+    }
+    if (t.estimated_net_profit_cents != null) {
+      const pc = t.estimated_net_profit_cents;
+      return { perContract: pc, totalDollars: (pc * qty) / 100, qty };
+    }
+  }
+
+  if (t.status === "UNHEDGED") {
+    // Unhedged = exposed, show estimated spread as potential
+    if (t.estimated_net_profit_cents != null) {
+      const pc = t.estimated_net_profit_cents;
+      return { perContract: pc, totalDollars: (pc * qty) / 100, qty };
+    }
+  }
+
+  // PM_NO_FILL, SKIPPED, or no data
+  return { perContract: null, totalDollars: null, qty };
+}
+
 function statusBadge(status: string): { bg: string; text: string } {
   if (status === "HEDGED" || status === "FILLED" || status === "SUCCESS")
     return { bg: "bg-emerald-500/20", text: "text-emerald-400" };
@@ -584,20 +625,9 @@ export default function ArbDashboard() {
     for (const t of filteredTrades) {
       if (t.status === "SUCCESS") successes++;
       if (t.contracts_filled > 0) fills++;
-      if (t.status === "EXITED") {
-        // EXITED: only count if we have real unwind loss data
-        if (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0) {
-          total -= Math.abs(t.unwind_loss_cents) / 100;
-        }
-        // Otherwise exclude from sum entirely
-      } else if (t.actual_pnl) {
-        total += t.actual_pnl.net_profit_dollars;
-      } else if (
-        t.status === "SUCCESS" &&
-        t.estimated_net_profit_cents != null
-      ) {
-        total +=
-          (t.estimated_net_profit_cents * (t.contracts_filled || 1)) / 100;
+      const pnl = tradePnl(t);
+      if (pnl.totalDollars != null) {
+        total += pnl.totalDollars;
       }
     }
     return { total, successes, fills, count: filteredTrades.length };
@@ -886,8 +916,8 @@ export default function ArbDashboard() {
           cmp = a.spread_cents - b.spread_cents;
           break;
         case "net": {
-          const aNet = a.actual_pnl?.net_profit_dollars ?? 0;
-          const bNet = b.actual_pnl?.net_profit_dollars ?? 0;
+          const aNet = tradePnl(a).totalDollars ?? 0;
+          const bNet = tradePnl(b).totalDollars ?? 0;
           cmp = aNet - bNet;
           break;
         }
@@ -1531,27 +1561,23 @@ export default function ArbDashboard() {
                             >
                               {t.spread_cents.toFixed(1)}
                             </td>
-                            <td
-                              className={`px-2 py-1 text-right font-mono font-medium ${
-                                t.status === "EXITED"
-                                  ? (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0 ? "text-red-400" : "text-gray-500")
-                                  : netColor(
-                                      t.actual_pnl
-                                        ? t.actual_pnl.per_contract.net
-                                        : t.estimated_net_profit_cents
-                                    )
-                              }`}
-                            >
-                              {t.status === "EXITED"
-                                ? (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0
-                                  ? `-${Math.abs(t.unwind_loss_cents).toFixed(1)}c`
-                                  : "N/A")
-                                : t.actual_pnl
-                                ? `${t.actual_pnl.per_contract.net >= 0 ? "+" : ""}${t.actual_pnl.per_contract.net.toFixed(1)}`
-                                : t.estimated_net_profit_cents != null
-                                ? `${t.estimated_net_profit_cents > 0 ? "+" : ""}${t.estimated_net_profit_cents.toFixed(1)}~`
-                                : "-"}
-                            </td>
+                            {(() => {
+                              const pnl = tradePnl(t);
+                              return (
+                                <td className={`px-2 py-1 text-right font-mono font-medium ${netColor(pnl.perContract)}`}>
+                                  {pnl.perContract != null ? (
+                                    <div>
+                                      <span>{pnl.perContract >= 0 ? "+" : ""}{pnl.perContract.toFixed(1)}c</span>
+                                      {pnl.totalDollars != null && pnl.qty > 1 && (
+                                        <div className="text-[9px] text-gray-500">
+                                          ({pnl.totalDollars >= 0 ? "+$" : "-$"}{Math.abs(pnl.totalDollars).toFixed(2)})
+                                        </div>
+                                      )}
+                                    </div>
+                                  ) : "-"}
+                                </td>
+                              );
+                            })()}
                             <td className="px-2 py-1">
                               <span
                                 className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${badge.bg} ${badge.text}`}
@@ -2459,21 +2485,23 @@ export default function ArbDashboard() {
                             <td className={`px-2 py-1.5 text-right font-mono ${spreadColor(t.spread_cents)}`}>
                               {t.spread_cents.toFixed(1)}c
                             </td>
-                            <td className={`px-2 py-1.5 text-right font-mono font-medium ${
-                              t.status === "EXITED"
-                                ? (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0 ? "text-red-400" : "text-gray-500")
-                                : t.actual_pnl
-                                ? t.actual_pnl.net_profit_dollars > 0 ? "text-emerald-400" : t.actual_pnl.net_profit_dollars < 0 ? "text-red-400" : "text-gray-400"
-                                : "text-gray-500"
-                            }`}>
-                              {t.status === "EXITED"
-                                ? (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0
-                                  ? `-$${(Math.abs(t.unwind_loss_cents) / 100).toFixed(4)}`
-                                  : "N/A")
-                                : t.actual_pnl
-                                ? `${t.actual_pnl.net_profit_dollars >= 0 ? "+" : ""}$${t.actual_pnl.net_profit_dollars.toFixed(4)}`
-                                : "-"}
-                            </td>
+                            {(() => {
+                              const pnl = tradePnl(t);
+                              return (
+                                <td className={`px-2 py-1.5 text-right font-mono font-medium ${netColor(pnl.perContract)}`}>
+                                  {pnl.totalDollars != null ? (
+                                    <div>
+                                      <span>{pnl.totalDollars >= 0 ? "+$" : "-$"}{Math.abs(pnl.totalDollars).toFixed(4)}</span>
+                                      {pnl.perContract != null && pnl.qty > 1 && (
+                                        <div className="text-[9px] text-gray-500">
+                                          {pnl.perContract >= 0 ? "+" : ""}{pnl.perContract.toFixed(1)}c x{pnl.qty}
+                                        </div>
+                                      )}
+                                    </div>
+                                  ) : "-"}
+                                </td>
+                              );
+                            })()}
                             <td className="px-2 py-1.5 text-center">
                               <span className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${
                                 (t.execution_phase || "ioc") === "gtc"

@@ -1199,6 +1199,46 @@ class KalshiAPI:
             print(f"   [!] Kalshi orderbook error: {e}")
             return None
 
+    async def verify_rest_depth(self, session, ticker: str, side: str, action: str,
+                                limit_price: int, needed: int) -> Dict:
+        """
+        REST orderbook depth check. Returns {'available': int, 'passed': bool, 'error': str|None}.
+        side='yes', action='sell' → check YES bids >= limit_price
+        side='yes', action='buy'  → check YES asks <= limit_price (derived from NO bids)
+        """
+        path = f'/trade-api/v2/markets/{ticker}/orderbook'
+        try:
+            async with session.get(
+                f'{self.BASE_URL}{path}',
+                headers=self._headers('GET', path),
+                params={'depth': 10},
+                timeout=aiohttp.ClientTimeout(total=2)
+            ) as r:
+                if r.status != 200:
+                    return {'available': 0, 'passed': True, 'error': f'HTTP {r.status}'}
+                data = await r.json()
+                ob = data.get('orderbook', {})
+                yes_levels = ob.get('yes', [])  # [[price, size], ...]
+                no_levels = ob.get('no', [])
+
+                available = 0
+                if action == 'sell':
+                    # Selling YES: need YES bids at price >= our limit
+                    for price, size in yes_levels:
+                        if price >= limit_price:
+                            available += size
+                else:
+                    # Buying YES: need YES asks <= our limit
+                    # YES ask = 100 - NO bid price
+                    for price, size in no_levels:
+                        yes_ask = 100 - price
+                        if yes_ask <= limit_price:
+                            available += size
+
+                return {'available': available, 'passed': available >= needed, 'error': None}
+        except Exception as e:
+            return {'available': 0, 'passed': True, 'error': str(e)}
+
     async def cancel_order(self, session, order_id: str) -> bool:
         if not order_id:
             return False

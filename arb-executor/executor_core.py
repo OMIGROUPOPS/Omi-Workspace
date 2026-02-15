@@ -975,6 +975,30 @@ async def execute_arb(
             )
 
     # -------------------------------------------------------------------------
+    # Step 4.6: Kalshi REST orderbook depth verification
+    # -------------------------------------------------------------------------
+    # WS books can show phantom depth. Verify via REST before committing PM order.
+    try:
+        rest_depth = await kalshi_api.verify_rest_depth(
+            session, arb.kalshi_ticker,
+            params['k_side'], params['k_action'],
+            k_limit_price, size
+        )
+        if rest_depth.get('error'):
+            print(f"[DEPTH-REST] {arb.kalshi_ticker}: REST error ({rest_depth['error']}), proceeding with WS-only")
+        elif not rest_depth['passed']:
+            print(f"[DEPTH-REST] {arb.kalshi_ticker}: REST book shows {rest_depth['available']} @ {k_limit_price}c vs need {size} — FAIL")
+            return TradeResult(
+                success=False,
+                abort_reason=f"Kalshi REST depth insufficient ({rest_depth['available']}/{size} @ {k_limit_price}c)",
+                execution_time_ms=int((time.time() - start_time) * 1000),
+            )
+        else:
+            print(f"[DEPTH-REST] {arb.kalshi_ticker}: REST book shows {rest_depth['available']} @ {k_limit_price}c vs need {size} — PASS")
+    except Exception as e:
+        print(f"[DEPTH-REST] {arb.kalshi_ticker}: Exception ({e}), proceeding with WS-only")
+
+    # -------------------------------------------------------------------------
     # Step 5: Place PM order FIRST (unreliable leg - IOC often expires)
     # -------------------------------------------------------------------------
     # CRITICAL FIX: When is_long_team=False, we must trade on the LONG team's

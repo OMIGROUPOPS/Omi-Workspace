@@ -29,12 +29,12 @@ export type CEQConfidence = 'PASS' | 'WATCH' | 'EDGE' | 'STRONG' | 'RARE';
 // Edge = abs(fair - book) * 3% per point (industry standard)
 // These labels are used across graded games and live game detail pages.
 
-export type EdgeSignal = 'NO EDGE' | 'LOW EDGE' | 'MID EDGE' | 'HIGH EDGE' | 'REVIEW';
+export type EdgeSignal = 'NO EDGE' | 'LOW EDGE' | 'MID EDGE' | 'HIGH EDGE' | 'MAX EDGE';
 
 export function getEdgeSignal(edgePct: number): EdgeSignal {
   const ae = Math.abs(edgePct);
-  if (ae >= 10) return 'REVIEW';
-  if (ae >= 6) return 'HIGH EDGE';
+  if (ae >= 8) return 'MAX EDGE';
+  if (ae >= 5) return 'HIGH EDGE';
   if (ae >= 3) return 'MID EDGE';
   if (ae >= 1) return 'LOW EDGE';
   return 'NO EDGE';
@@ -43,17 +43,17 @@ export function getEdgeSignal(edgePct: number): EdgeSignal {
 /** Map IP edge % to confidence % via linear interpolation within bands. */
 export function edgeToConfidence(edgePct: number): number {
   const ae = Math.abs(edgePct);
-  if (ae < 1)  return Math.round(50 + ae * 4);           // 0→50, 1→54
-  if (ae < 3)  return Math.round(55 + (ae - 1) * 2);     // 1→55, 3→59
-  if (ae < 6)  return Math.round(60 + (ae - 3) * 5 / 3); // 3→60, 6→65
-  if (ae < 10) return Math.round(66 + (ae - 6));          // 6→66, 10→70
-  return Math.min(75, Math.round(71 + (ae - 10) * 0.5));  // 10→71, capped at 75
+  if (ae < 1)  return Math.round(50 + ae * 4);            // 0→50, 1→54
+  if (ae < 3)  return Math.round(55 + (ae - 1) * 2);      // 1→55, 3→59
+  if (ae < 5)  return Math.round(60 + (ae - 3) * 2.5);    // 3→60, 5→65
+  if (ae < 8)  return Math.round(66 + (ae - 5) * 4 / 3);  // 5→66, 8→70
+  return Math.min(75, Math.round(71 + (ae - 8) * 0.5));   // 8→71, capped at 75
 }
 
 /** Color class for edge signal tier. */
 export function getEdgeSignalColor(signal: EdgeSignal): string {
   switch (signal) {
-    case 'REVIEW':    return 'text-red-400';
+    case 'MAX EDGE':  return 'text-emerald-400';
     case 'HIGH EDGE': return 'text-cyan-400';
     case 'MID EDGE':  return 'text-amber-400';
     case 'LOW EDGE':  return 'text-zinc-400';
@@ -64,7 +64,7 @@ export function getEdgeSignalColor(signal: EdgeSignal): string {
 /** Background color class for edge signal tier badges. */
 export function getEdgeSignalBg(signal: EdgeSignal): string {
   switch (signal) {
-    case 'REVIEW':    return 'bg-red-400/10';
+    case 'MAX EDGE':  return 'bg-emerald-400/10';
     case 'HIGH EDGE': return 'bg-cyan-400/10';
     case 'MID EDGE':  return 'bg-amber-400/10';
     case 'LOW EDGE':  return 'bg-zinc-400/10';

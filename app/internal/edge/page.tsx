@@ -59,6 +59,15 @@ interface BookDetail {
   correct: boolean | null;
 }
 
+interface PillarScores {
+  execution: number;
+  incentives: number;
+  shocks: number;
+  time_decay: number;
+  flow: number;
+  game_environment: number;
+}
+
 interface GradedGameRow {
   game_id: string;
   sport_key: string;
@@ -77,6 +86,8 @@ interface GradedGameRow {
   is_correct: boolean | null;
   signal: string;
   actual_margin: number | null;
+  pillar_scores: PillarScores | null;
+  composite: number | null;
   fd: BookDetail | null;
   dk: BookDetail | null;
 }
@@ -101,6 +112,8 @@ interface LiveMarketRow {
   best_edge: number | null;
   signal: string;
   pillar_driver: string | null;
+  pillar_scores: PillarScores | null;
+  composite: number | null;
 }
 
 interface LiveMarketsResponse {
@@ -169,7 +182,7 @@ function isAllowedMarket(sportKey: string, marketType: string): boolean {
 }
 
 const SIGNAL_COLORS: Record<string, string> = {
-  "REVIEW": "text-red-400",
+  "MAX EDGE": "text-emerald-400",
   "HIGH EDGE": "text-cyan-400",
   "MID EDGE": "text-amber-400",
   "LOW EDGE": "text-zinc-400",
@@ -177,7 +190,8 @@ const SIGNAL_COLORS: Record<string, string> = {
   "STALE": "text-zinc-600",
   "PENDING": "text-zinc-600",
   // Legacy fallbacks
-  MISPRICED: "text-red-400",
+  "REVIEW": "text-emerald-400",
+  MISPRICED: "text-emerald-400",
   VALUE: "text-amber-400",
   FAIR: "text-zinc-400",
   SHARP: "text-zinc-500",
@@ -218,6 +232,44 @@ function roiColor(roi: number): string {
   if (roi > 0) return "text-emerald-400";
   if (roi < -0.05) return "text-red-400";
   return "text-zinc-400";
+}
+
+function pillarColor(val: number): string {
+  if (val > 0.60) return "text-emerald-400";
+  if (val < 0.40) return "text-red-400";
+  return "text-zinc-600";
+}
+
+function PillarLine({ scores, composite }: { scores: PillarScores | null; composite: number | null }) {
+  if (!scores) return null;
+  const items: { label: string; val: number }[] = [
+    { label: "EX", val: scores.execution },
+    { label: "MO", val: scores.incentives },
+    { label: "LM", val: scores.shocks },
+    { label: "RE", val: scores.time_decay },
+    { label: "SH", val: scores.flow },
+    { label: "MA", val: scores.game_environment },
+  ];
+  return (
+    <div className="flex items-center gap-1 mt-0.5 text-[10px] font-mono leading-none">
+      {composite != null && (
+        <>
+          <span className={pillarColor(composite)}>
+            CEQ {composite.toFixed(2)}
+          </span>
+          <span className="text-zinc-700">|</span>
+        </>
+      )}
+      {items.map((p, i) => (
+        <span key={p.label}>
+          <span className={pillarColor(p.val)}>
+            {p.label} {p.val.toFixed(2)}
+          </span>
+          {i < items.length - 1 && <span className="text-zinc-700 mx-0.5">·</span>}
+        </span>
+      ))}
+    </div>
+  );
 }
 
 function fmtLine(val: number | null, market: string): string {
@@ -475,10 +527,10 @@ export default function EdgeInternalPage() {
   }, [liveData?.rows, liveSortField, liveSortDir]);
 
   // ------- Render helpers -------
-  const EDGE_TIERS = ["NO EDGE", "LOW EDGE", "MID EDGE", "HIGH EDGE", "REVIEW"];
+  const EDGE_TIERS = ["NO EDGE", "LOW EDGE", "MID EDGE", "HIGH EDGE", "MAX EDGE"];
   const EDGE_TIER_RANGES: Record<string, string> = {
-    "NO EDGE": "<1%", "LOW EDGE": "1-3%", "MID EDGE": "3-6%",
-    "HIGH EDGE": "6-10%", "REVIEW": "10%+",
+    "NO EDGE": "<1%", "LOW EDGE": "1-3%", "MID EDGE": "3-5%",
+    "HIGH EDGE": "5-8%", "MAX EDGE": "8%+",
   };
 
   const SortHeader = ({
@@ -639,9 +691,9 @@ export default function EdgeInternalPage() {
             <option value="">All Edge Tiers</option>
             <option value="NO EDGE">No Edge (&lt;1%)</option>
             <option value="LOW EDGE">Low Edge (1-3%)</option>
-            <option value="MID EDGE">Mid Edge (3-6%)</option>
-            <option value="HIGH EDGE">High Edge (6-10%)</option>
-            <option value="REVIEW">Review (10%+)</option>
+            <option value="MID EDGE">Mid Edge (3-5%)</option>
+            <option value="HIGH EDGE">High Edge (5-8%)</option>
+            <option value="MAX EDGE">Max Edge (8%+)</option>
           </select>
         )}
 
@@ -955,7 +1007,7 @@ export default function EdgeInternalPage() {
                         const tierName = point.tier || EDGE_TIERS[i] || "";
                         const tierColor = SIGNAL_COLORS[tierName] || "text-zinc-400";
                         // Map tier color class to hex
-                        const dotColor = tierName === "REVIEW" ? "#f87171"
+                        const dotColor = tierName === "MAX EDGE" ? "#34d399"
                           : tierName === "HIGH EDGE" ? "#22d3ee"
                           : tierName === "MID EDGE" ? "#fbbf24"
                           : tierName === "LOW EDGE" ? "#a1a1aa"
@@ -1199,6 +1251,7 @@ export default function EdgeInternalPage() {
                               )}
                             </div>
                           )}
+                          <PillarLine scores={row.pillar_scores} composite={row.composite} />
                         </div>
 
                         {/* Market */}
@@ -1414,6 +1467,7 @@ export default function EdgeInternalPage() {
                             <div className="text-white text-xs truncate">
                               {row.away_team} <span className="text-zinc-600">@</span> {row.home_team}
                             </div>
+                            <PillarLine scores={row.pillar_scores} composite={row.composite} />
                           </div>
 
                           {/* Market */}

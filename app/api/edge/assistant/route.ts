@@ -85,9 +85,9 @@ function getEdgeTier(edgePct: number): string {
   const abs = Math.abs(edgePct);
   if (abs < 1) return 'NO EDGE';
   if (abs < 3) return 'LOW';
-  if (abs < 6) return 'MID';
-  if (abs < 10) return 'HIGH';
-  return 'REVIEW';
+  if (abs < 5) return 'MID';
+  if (abs < 8) return 'HIGH';
+  return 'MAX EDGE';
 }
 
 // Spread-to-probability rate by sport
@@ -527,7 +527,7 @@ async function buildGameContext(gameId: string, clientContext: string): Promise<
 
   // === EDGE TIERS REFERENCE ===
   lines.push('=== EDGE TIER SCALE ===');
-  lines.push('< 1%: NO EDGE | 1-3%: LOW | 3-6%: MID | 6-10%: HIGH | 10%+: REVIEW');
+  lines.push('< 1%: NO EDGE | 1-3%: LOW | 3-5%: MID | 5-8%: HIGH | 8%+: MAX EDGE');
   lines.push(`This game: ${getEdgeTier(bestEdgePct)} on ${bestEdgeMarket || 'N/A'} (${bestEdgePct.toFixed(1)}%)`);
 
   return lines.join('\n');

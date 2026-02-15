@@ -735,7 +735,7 @@ export default function EdgeInternalPage() {
               </div>
 
               {/* Edge Tier Breakdown Table */}
-              <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+              <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg">
                 <div className="px-4 py-3 border-b border-zinc-800">
                   <h2 className="text-sm font-semibold text-zinc-300 font-mono">
                     EDGE TIER BREAKDOWN
@@ -1116,8 +1116,19 @@ export default function EdgeInternalPage() {
 
               {/* Graded Games Table */}
               <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg">
-                <div className="overflow-x-auto rounded-lg">
-                  <table className="w-full text-sm min-w-[1600px]">
+                <div style={{overflowX: 'auto', width: '100%'}}>
+                  <table className="text-sm" style={{minWidth: '1600px', width: '100%', tableLayout: 'fixed'}}>
+                    <colgroup>
+                      <col style={{width: '80px'}} />   {/* Date */}
+                      <col style={{width: '70px'}} />   {/* Sport */}
+                      <col style={{width: '240px'}} />  {/* Matchup */}
+                      <col style={{width: '64px'}} />   {/* Mkt */}
+                      <col style={{width: '180px'}} />  {/* OMI Fair */}
+                      <col style={{width: '320px'}} />  {/* FD Edge */}
+                      <col style={{width: '320px'}} />  {/* DK Edge */}
+                      <col style={{width: '64px'}} />   {/* Tier */}
+                      <col style={{width: '72px'}} />   {/* Verdict */}
+                    </colgroup>
                     <thead>
                       <tr className="text-zinc-500 border-b border-zinc-800 text-xs uppercase tracking-wide">
                         <SortHeader field="commence_time" label="Date" />
@@ -1182,8 +1193,8 @@ export default function EdgeInternalPage() {
                           </td>
 
                           {/* Matchup */}
-                          <td className="px-3 py-2.5 whitespace-nowrap">
-                            <div className="text-white text-xs">
+                          <td className="px-3 py-2.5">
+                            <div className="text-white text-xs truncate">
                               {row.away_team || "—"}{" "}
                               <span className="text-zinc-600">@</span>{" "}
                               {row.home_team || "—"}
@@ -1209,13 +1220,13 @@ export default function EdgeInternalPage() {
                           </td>
 
                           {/* FD Edge */}
-                          <td className="px-3 py-2.5 text-xs whitespace-nowrap">
+                          <td className="px-3 py-2.5 text-xs">
                             {row.fd ? (
                               row.fd.signal === "STALE" ? (
                                 <span className="text-zinc-600 font-mono">STALE</span>
                               ) : (
                                 <div>
-                                  <div className={`font-medium ${
+                                  <div className={`font-medium truncate ${
                                     row.fd.correct === true
                                       ? "text-emerald-400"
                                       : row.fd.correct === false
@@ -1247,13 +1258,13 @@ export default function EdgeInternalPage() {
                           </td>
 
                           {/* DK Edge */}
-                          <td className="px-3 py-2.5 text-xs whitespace-nowrap">
+                          <td className="px-3 py-2.5 text-xs">
                             {row.dk ? (
                               row.dk.signal === "STALE" ? (
                                 <span className="text-zinc-600 font-mono">STALE</span>
                               ) : (
                                 <div>
-                                  <div className={`font-medium ${
+                                  <div className={`font-medium truncate ${
                                     row.dk.correct === true
                                       ? "text-emerald-400"
                                       : row.dk.correct === false
@@ -1348,9 +1359,23 @@ export default function EdgeInternalPage() {
                 })()}
               </div>
 
-              <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg min-w-0">
-                <div className="overflow-x-auto rounded-lg">
-                  <table className="w-full text-sm min-w-[1600px]">
+              <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg">
+                <div style={{overflowX: 'auto', width: '100%'}}>
+                  <table className="text-sm" style={{minWidth: '1600px', width: '100%', tableLayout: 'fixed'}}>
+                    <colgroup>
+                      <col style={{width: '120px'}} />  {/* Time */}
+                      <col style={{width: '72px'}} />   {/* Kickoff */}
+                      <col style={{width: '70px'}} />   {/* Sport */}
+                      <col style={{width: '240px'}} />  {/* Matchup */}
+                      <col style={{width: '72px'}} />   {/* Mkt */}
+                      <col style={{width: '200px'}} />  {/* OMI Fair */}
+                      <col style={{width: '80px'}} />   {/* FD Line */}
+                      <col style={{width: '80px'}} />   {/* FD Edge */}
+                      <col style={{width: '80px'}} />   {/* DK Line */}
+                      <col style={{width: '80px'}} />   {/* DK Edge */}
+                      <col style={{width: '80px'}} />   {/* Best Edge */}
+                      <col style={{width: '90px'}} />   {/* Signal */}
+                    </colgroup>
                     <thead>
                       <tr className="text-zinc-500 border-b border-zinc-800 text-xs uppercase tracking-wide">
                         <LiveSortHeader field="commence_time" label="Time" />
@@ -1404,7 +1429,7 @@ export default function EdgeInternalPage() {
                             </td>
 
                             {/* Matchup */}
-                            <td className="px-3 py-2.5 whitespace-nowrap text-white text-xs">
+                            <td className="px-3 py-2.5 text-white text-xs truncate">
                               {row.away_team} <span className="text-zinc-600">@</span> {row.home_team}
                             </td>
 

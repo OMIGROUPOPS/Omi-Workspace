@@ -1204,7 +1204,6 @@ class KalshiAPI:
         """
         REST orderbook depth check. Returns {'available': int, 'passed': bool, 'error': str|None}.
         side='yes', action='sell' → check YES bids >= limit_price
-        side='no',  action='sell' → check NO bids >= limit_price (direct match for SELL NO)
         side='yes', action='buy'  → check YES asks <= limit_price (derived from NO bids)
         """
         path = f'/trade-api/v2/markets/{ticker}/orderbook'
@@ -1226,11 +1225,6 @@ class KalshiAPI:
                 if side == 'yes' and action == 'sell':
                     # Selling YES: need YES bids at price >= our limit
                     for price, size in yes_levels:
-                        if price >= limit_price:
-                            available += size
-                elif side == 'no' and action == 'sell':
-                    # Selling NO: need NO bids at price >= our limit (direct match)
-                    for price, size in no_levels:
                         if price >= limit_price:
                             available += size
                 else:

@@ -1495,12 +1495,28 @@ class InternalGrader:
                     fair_hp = american_to_implied(fh)
                     fair_ap = american_to_implied(fa)
 
-                    # 3-way: use fair_ml_draw if available, otherwise derive remainder
+                    # 3-way: use fair_ml_draw if available, otherwise derive from book draw odds
                     if fair_ml_draw is not None:
                         fd_val = float(fair_ml_draw)
                         fair_dp = american_to_implied(fd_val)
                     else:
-                        fair_dp = max(0.02, 1.0 - fair_hp - fair_ap)
+                        # Fallback: use median book draw odds with vig removal
+                        draw_odds_list = []
+                        for bm in (gdata.get("bookmakers") or []):
+                            for mkt in (bm.get("markets") or []):
+                                if mkt.get("key") == "h2h":
+                                    for o in mkt.get("outcomes", []):
+                                        if o.get("name") == "Draw" and o.get("price"):
+                                            draw_odds_list.append(o["price"])
+                        if draw_odds_list:
+                            import statistics
+                            median_draw = statistics.median(draw_odds_list)
+                            raw_dp = american_to_implied(median_draw)
+                            # Remove vig: normalize all 3 book implied probs
+                            raw_total = fair_hp + fair_ap + raw_dp
+                            fair_dp = raw_dp / raw_total if raw_total > 0 else 0.25
+                        else:
+                            fair_dp = 0.25  # ~25% EPL historical average
 
                     # Normalize to sum to 1.0
                     ft = fair_hp + fair_dp + fair_ap

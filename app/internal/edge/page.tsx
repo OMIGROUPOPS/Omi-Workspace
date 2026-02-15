@@ -1115,8 +1115,8 @@ export default function EdgeInternalPage() {
               )}
 
               {/* Graded Games Table */}
-              <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
-                <div className="overflow-x-auto">
+              <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg">
+                <div className="overflow-x-auto rounded-lg">
                   <table className="w-full text-sm min-w-[1600px]">
                     <thead>
                       <tr className="text-zinc-500 border-b border-zinc-800 text-xs uppercase tracking-wide">
@@ -1348,8 +1348,8 @@ export default function EdgeInternalPage() {
                 })()}
               </div>
 
-              <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden min-w-0">
-                <div className="overflow-x-auto">
+              <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg min-w-0">
+                <div className="overflow-x-auto rounded-lg">
                   <table className="w-full text-sm min-w-[1600px]">
                     <thead>
                       <tr className="text-zinc-500 border-b border-zinc-800 text-xs uppercase tracking-wide">

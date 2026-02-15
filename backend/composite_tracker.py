@@ -549,8 +549,16 @@ class CompositeTracker:
                     if exchange_adj != 0.0:
                         fair_spread = _round_to_half(fair_spread + exchange_adj)
                     fair_ml_home, fair_ml_away = _calculate_fair_ml(fair_spread, sport_key)
+
+                    # Soccer: also calculate 3-way ML (spread path only gives 2-way)
+                    if is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None:
+                        comp = composite_ml if composite_ml is not None else 0.5
+                        fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
+                            book_ml_home, book_ml_draw, book_ml_away, comp
+                        )
+
                 elif is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None and composite_ml is not None:
-                    # Soccer 3-way ML
+                    # Soccer 3-way ML (no spread data)
                     fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
                         book_ml_home, book_ml_draw, book_ml_away, composite_ml
                     )
@@ -628,8 +636,6 @@ class CompositeTracker:
                 }
                 if fair_ml_draw is not None:
                     row_data["fair_ml_draw"] = fair_ml_draw
-                if book_ml_draw is not None:
-                    row_data["book_ml_draw"] = book_ml_draw
                 db.client.table("composite_history").insert(row_data).execute()
 
                 games_processed += 1

@@ -37,6 +37,19 @@ ODDS_CAP = 500  # max ±500
 # Only grade against books where users actually place bets
 GRADING_BOOKS = {"fanduel", "draftkings"}
 
+# Spread/total odds should be in normal juice range (-200 to +200).
+# Anything outside this is either corrupt data or ML odds in the wrong slot.
+SPREAD_ODDS_MIN = -250
+SPREAD_ODDS_MAX = 250
+
+
+def _clamp_juice(odds: int, market_type: str) -> int:
+    """Clamp spread/total odds to reasonable range. Return -110 for corrupt values."""
+    if market_type in ("spread", "total"):
+        if abs(odds) > 250 or odds == 0:
+            return -110
+    return odds
+
 # Sport key normalization — database has mixed formats
 SPORT_DISPLAY = {
     "basketball_nba": "NBA", "BASKETBALL_NBA": "NBA", "NBA": "NBA",
@@ -302,7 +315,7 @@ class InternalGrader:
             for snap in snapshots:
                 book = snap.get("book_key", "consensus")
                 mtype = snap.get("market_type")
-                outcome = snap.get("outcome_type", "")
+                outcome = snap.get("outcome_type") or ""  # None → ""
 
                 if book not in books:
                     books[book] = {}
@@ -483,14 +496,14 @@ class InternalGrader:
 
                 if gap > 0:
                     prediction_side = "away"
-                    book_odds = spread_data.get("away_odds") or -110
+                    book_odds = _clamp_juice(spread_data.get("away_odds") or -110, "spread")
                     actual_result = "away_covered" if final_spread < closing_spread else (
                         "push" if final_spread == closing_spread else "home_covered"
                     )
                     is_correct = final_spread < book_spread
                 else:
                     prediction_side = "home"
-                    book_odds = spread_data.get("home_odds") or -110
+                    book_odds = _clamp_juice(spread_data.get("home_odds") or -110, "spread")
                     actual_result = "home_covered" if final_spread > closing_spread else (
                         "push" if final_spread == closing_spread else "away_covered"
                     )
@@ -543,11 +556,11 @@ class InternalGrader:
 
                 if gap > 0:
                     prediction_side = "over"
-                    book_odds = total_data.get("over_odds") or -110
+                    book_odds = _clamp_juice(total_data.get("over_odds") or -110, "total")
                     is_correct = final_total > book_total
                 else:
                     prediction_side = "under"
-                    book_odds = total_data.get("under_odds") or -110
+                    book_odds = _clamp_juice(total_data.get("under_odds") or -110, "total")
                     is_correct = final_total < book_total
 
                 if final_total == book_total:
@@ -960,7 +973,8 @@ class InternalGrader:
         if bl is None:
             return None
 
-        book_odds = brow.get("book_odds") or -110
+        raw_odds = brow.get("book_odds") or -110
+        book_odds = _clamp_juice(raw_odds, mtype)
         gap = float(fair) - float(bl)
         side = brow.get("prediction_side", "")
 

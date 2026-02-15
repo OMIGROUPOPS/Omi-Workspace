@@ -1009,7 +1009,8 @@ class KalshiAPI:
         return None
 
     async def place_order(self, session, ticker: str, side: str, action: str,
-                          count: int, price_cents: int) -> Dict:
+                          count: int, price_cents: int,
+                          time_in_force: str = 'immediate_or_cancel') -> Dict:
         # Use Config for all execution-controlling values
         paper_unlimited = Config.is_paper_unlimited()
 
@@ -1070,7 +1071,7 @@ class KalshiAPI:
             'side': side,
             'count': count,
             'type': 'limit',
-            'time_in_force': 'immediate_or_cancel',  # IOC: fill what you can, cancel rest
+            'time_in_force': time_in_force,
             'client_order_id': str(uuid.uuid4()),
         }
 
@@ -1263,6 +1264,33 @@ class KalshiAPI:
         except Exception as e:
             print(f"   [!] Cancel error: {e}")
             return False
+
+    async def get_order_status(self, session, order_id: str) -> Dict:
+        """GET /trade-api/v2/portfolio/orders/{order_id} — returns fill status."""
+        path = f'/trade-api/v2/portfolio/orders/{order_id}'
+        try:
+            async with session.get(
+                f'{self.BASE_URL}{path}',
+                headers=self._headers('GET', path),
+                timeout=aiohttp.ClientTimeout(total=3)
+            ) as r:
+                if r.status == 200:
+                    data = await r.json()
+                    order = data.get('order', {})
+                    fill_count = order.get('taker_fill_count', 0) or order.get('fill_count', 0)
+                    side = order.get('side', 'yes')
+                    return {
+                        'order_id': order_id,
+                        'status': order.get('status', ''),
+                        'fill_count': fill_count,
+                        'fill_price': order.get('yes_price') if side == 'yes' else order.get('no_price'),
+                    }
+                else:
+                    return {'order_id': order_id, 'status': 'error',
+                            'fill_count': 0, 'fill_price': 0}
+        except Exception as e:
+            return {'order_id': order_id, 'status': 'error',
+                    'fill_count': 0, 'fill_price': 0}
 
     async def get_open_orders(self, session, ticker: str = None) -> List[Dict]:
         path = '/trade-api/v2/portfolio/orders?status=resting'

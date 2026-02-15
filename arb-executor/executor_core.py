@@ -261,6 +261,102 @@ async def _unwind_pm_position(
     return 0, None
 
 
+async def _retry_kalshi_wider(
+    session, kalshi_api,
+    ticker: str, side: str, action: str, count: int,
+    original_price: int, spread_cents: int,
+) -> Dict:
+    """
+    Retry Kalshi at a wider price (GTC limit order, ~5s timeout, 500ms polling).
+    Uses the full spread as buffer — willing to give back the entire spread to
+    get hedged at breakeven rather than take a loss on PM unwind.
+
+    Returns: {'filled': int, 'fill_price': int, 'order_id': str, 'elapsed_ms': int}
+    """
+    empty = {'filled': 0, 'fill_price': 0, 'order_id': '', 'elapsed_ms': 0}
+
+    # Calculate retry price: widen by the full spread (breakeven hedge)
+    buffer = max(spread_cents, 1)
+    if action == 'buy':
+        retry_price = min(original_price + buffer, 95)
+    else:  # sell
+        retry_price = max(original_price - buffer, 5)
+
+    actual_buffer = abs(retry_price - original_price)
+    print(f"[RECOVERY] Kalshi retry: placing limit {action} {count} {side} @ {retry_price}c "
+          f"(original: {original_price}c, buffer: {actual_buffer}c)")
+
+    try:
+        order_result = await kalshi_api.place_order(
+            session, ticker, side, action, count, retry_price,
+            time_in_force='good_til_canceled'
+        )
+
+        order_id = order_result.get('order_id')
+        if not order_id:
+            print(f"[RECOVERY] Kalshi retry: no order_id — {order_result.get('error', 'unknown')}")
+            return empty
+
+        # Check for instant fill from place response
+        instant_filled = order_result.get('fill_count', 0)
+        fill_price = order_result.get('fill_price', retry_price)
+
+        if instant_filled >= count:
+            cost = abs(fill_price - original_price)
+            print(f"[RECOVERY] Kalshi retry filled {instant_filled} @ {fill_price}c "
+                  f"(original: {original_price}c, cost: {cost}c/contract)")
+            return {'filled': instant_filled, 'fill_price': fill_price,
+                    'order_id': order_id, 'elapsed_ms': 0}
+
+        # Poll for fills (5s timeout, 500ms intervals)
+        poll_start = time.time()
+        filled_so_far = instant_filled
+
+        while (time.time() - poll_start) < 5.0:
+            await asyncio.sleep(0.5)
+
+            status = await kalshi_api.get_order_status(session, order_id)
+            filled = status.get('fill_count', filled_so_far)
+            if status.get('fill_price'):
+                fill_price = status['fill_price']
+
+            if filled >= count:
+                elapsed_ms = int((time.time() - poll_start) * 1000)
+                cost = abs(fill_price - original_price)
+                print(f"[RECOVERY] Kalshi retry filled {filled} @ {fill_price}c after {elapsed_ms}ms "
+                      f"(original: {original_price}c, cost: {cost}c/contract)")
+                return {'filled': filled, 'fill_price': fill_price,
+                        'order_id': order_id, 'elapsed_ms': elapsed_ms}
+
+            order_status = status.get('status', '')
+            if order_status in ('canceled', 'cancelled'):
+                break
+
+            if filled > filled_so_far:
+                filled_so_far = filled
+                print(f"[RECOVERY] Kalshi retry: partial {filled}/{count} after "
+                      f"{int((time.time() - poll_start) * 1000)}ms")
+
+        # Timeout — cancel remaining and collect fills
+        elapsed_ms = int((time.time() - poll_start) * 1000)
+        await kalshi_api.cancel_order(session, order_id)
+
+        # Re-check after cancel (fill might have raced with cancel)
+        final_status = await kalshi_api.get_order_status(session, order_id)
+        final_filled = max(final_status.get('fill_count', 0), filled_so_far)
+        if final_status.get('fill_price'):
+            fill_price = final_status['fill_price']
+
+        print(f"[RECOVERY] Kalshi retry: canceled after {elapsed_ms}ms, "
+              f"{final_filled}/{count} filled")
+        return {'filled': final_filled, 'fill_price': fill_price,
+                'order_id': order_id, 'elapsed_ms': elapsed_ms}
+
+    except Exception as e:
+        print(f"[RECOVERY] Kalshi retry exception: {e}")
+        return empty
+
+
 def check_kalshi_spread_live(
     k_book: Dict,
     direction: str,
@@ -1229,13 +1325,58 @@ async def execute_arb(
         update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
 
     # -------------------------------------------------------------------------
-    # Step 7: Check hedge status and recover if needed
+    # Step 7: Kalshi IOC failed — retry at wider price before PM unwind
+    # A bad hedge is better than no hedge. Retry with the full spread
+    # as buffer (breakeven hedge) before falling back to expensive PM unwind.
     # -------------------------------------------------------------------------
+    if k_filled == 0:
+        print(f"[RECOVERY] Kalshi IOC failed — retrying at wider price...")
+        retry = await _retry_kalshi_wider(
+            session, kalshi_api, arb.kalshi_ticker,
+            params['k_side'], params['k_action'], pm_filled,
+            k_limit_price, spread,
+        )
+        retry_filled = retry['filled']
+
+        if retry_filled > 0:
+            k_filled = retry_filled
+            k_fill_price = retry['fill_price'] or k_limit_price
+            k_order_ms += retry['elapsed_ms']
+
+            # Update position cache for retry fills
+            qty_delta = -k_filled if params['k_action'] == 'sell' else k_filled
+            update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
+
+            if retry_filled >= pm_filled:
+                # Fully hedged at wider price — SUCCESS (reduced profit)
+                cost_per = abs((k_fill_price or 0) - k_limit_price)
+                print(f"[RECOVERY] Kalshi retry: FULLY HEDGED {retry_filled}/{pm_filled} "
+                      f"(cost: {cost_per}c/contract vs original limit {k_limit_price}c)")
+                return TradeResult(
+                    success=True,
+                    kalshi_filled=k_filled,
+                    pm_filled=pm_filled,
+                    kalshi_price=k_fill_price,
+                    pm_price=pm_fill_price,
+                    unhedged=False,
+                    execution_time_ms=int((time.time() - start_time) * 1000),
+                    pm_order_ms=pm_order_ms,
+                    k_order_ms=k_order_ms,
+                    pm_response_details=pm_response_details,
+                    execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
+                    gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
+                    gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
+                    gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
+                    is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
+                )
+            # Partial retry fill — fall through to Step 7.5 for excess PM unwind
+
+    # Recompute elapsed after potential retry
     elapsed_ms = int((time.time() - start_time) * 1000)
 
     if k_filled == 0:
-        # KALSHI FAILED - Attempt to unwind PM position (10c buffer, then 25c desperation)
-        print(f"[RECOVERY] Kalshi failed to fill - unwinding PM position...")
+        # Kalshi retry also failed — fall back to PM unwind
+        print(f"[RECOVERY] Kalshi retry failed — unwinding PM position...")
 
         original_intent = params['pm_intent']
         reverse_intent = REVERSE_INTENT[original_intent]

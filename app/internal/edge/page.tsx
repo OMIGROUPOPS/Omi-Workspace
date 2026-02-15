@@ -1117,7 +1117,7 @@ export default function EdgeInternalPage() {
               {/* Graded Games Table */}
               <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm min-w-[1200px]">
+                  <table className="w-full text-sm min-w-[1400px]">
                     <thead>
                       <tr className="text-zinc-500 border-b border-zinc-800 text-xs uppercase tracking-wide">
                         <SortHeader field="commence_time" label="Date" />

@@ -908,11 +908,11 @@ class InternalGrader:
     # ------------------------------------------------------------------
 
     @staticmethod
-    def _omi_fair_display(fair_value: float, mtype: str, home: str, away: str) -> str:
+    def _omi_fair_display(fair_value: float, mtype: str, home: str, away: str, book_line: float = None) -> str:
         """Build OMI fair display string.
 
         Spreads always shown from home team perspective: 'HOU -8.0'
-        Totals shown as direction from nearest half: 'O 242.5 (-106)'
+        Totals shown as O/U relative to book total: 'O 242.5 (-106)'
         """
         if fair_value is None:
             return "—"
@@ -921,9 +921,23 @@ class InternalGrader:
         fp = calc_fair_price(fair_value, ref_half, mtype)
 
         if mtype == "total":
-            if abs(fair_value - ref_half) < 0.01:
+            # Direction based on OMI fair vs book total
+            if book_line is not None:
+                bl = float(book_line)
+                if fair_value > bl:
+                    direction = "O"
+                elif fair_value < bl:
+                    direction = "U"
+                else:
+                    direction = "PK"
+            else:
+                # Fallback: compare to nearest half-point
+                if abs(fair_value - ref_half) < 0.01:
+                    direction = "PK"
+                else:
+                    direction = "O" if fair_value > ref_half else "U"
+            if direction == "PK":
                 return f"PK {ref_half:.1f}"
-            direction = "O" if fair_value > ref_half else "U"
             return f"{direction} {ref_half:.1f} ({fp:+d})" if fp != 0 else f"{direction} {ref_half:.1f}"
         elif mtype == "spread":
             # Always home team perspective — fair_value IS home spread
@@ -1073,6 +1087,7 @@ class InternalGrader:
             dk_row = grp["rows_by_book"].get("draftkings")
 
             fair = first.get("omi_fair_line")
+            book_line = first.get("book_line")
             home = game.get("home_team", "?")
             away = game.get("away_team", "?")
 
@@ -1150,7 +1165,7 @@ class InternalGrader:
                 "away_score": game.get("away_score"),
                 "market_type": mtype,
                 "omi_fair_line": fair,
-                "omi_fair_display": self._omi_fair_display(fair, mtype, home, away),
+                "omi_fair_display": self._omi_fair_display(fair, mtype, home, away, book_line=book_line),
                 "confidence_tier": conf,
                 "pillar_composite": first.get("pillar_composite"),
                 "best_edge": best_edge,
@@ -1248,8 +1263,7 @@ class InternalGrader:
         for i in range(0, len(game_ids), 50):
             batch = game_ids[i:i+50]
             ch = self.client.table("composite_history").select(
-                "game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away, fair_ml_draw, "
-                "book_spread, book_total, book_ml_home, book_ml_away, book_ml_draw, timestamp"
+                "*"
             ).in_("game_id", batch).order("timestamp", desc=True).execute()
             for row in (ch.data or []):
                 gid = row["game_id"]
@@ -1418,8 +1432,12 @@ class InternalGrader:
             # Total rows
             if fair_total is not None:
                 fair_t = float(fair_total)
+                book_t = float(ch.get("book_total")) if ch and ch.get("book_total") is not None else None
                 ref_half = round(fair_t * 2) / 2
-                direction = "O" if fair_t > ref_half else "U" if fair_t < ref_half else "PK"
+                if book_t is not None:
+                    direction = "O" if fair_t > book_t else "U" if fair_t < book_t else "PK"
+                else:
+                    direction = "O" if fair_t > ref_half else "U" if fair_t < ref_half else "PK"
                 fair_display = f"{direction} {ref_half:.1f}" if direction != "PK" else f"PK {ref_half:.1f}"
 
                 fd_bl = fd_lines.get("total_line")
@@ -1459,93 +1477,97 @@ class InternalGrader:
                 })
 
             # Moneyline rows (soccer only — 3-way: home/draw/away)
+            # Wrapped in try/except: draw columns may not exist in DB yet
             if fair_ml_home is not None and fair_ml_away is not None and is_soccer_game:
-                fh = float(fair_ml_home)
-                fa = float(fair_ml_away)
-                fair_hp = american_to_implied(fh)
-                fair_ap = american_to_implied(fa)
+                try:
+                    fh = float(fair_ml_home)
+                    fa = float(fair_ml_away)
+                    fair_hp = american_to_implied(fh)
+                    fair_ap = american_to_implied(fa)
 
-                # 3-way: use fair_ml_draw if available, otherwise derive remainder
-                if fair_ml_draw is not None:
-                    fd_val = float(fair_ml_draw)
-                    fair_dp = american_to_implied(fd_val)
-                else:
-                    fair_dp = max(0.02, 1.0 - fair_hp - fair_ap)
+                    # 3-way: use fair_ml_draw if available, otherwise derive remainder
+                    if fair_ml_draw is not None:
+                        fd_val = float(fair_ml_draw)
+                        fair_dp = american_to_implied(fd_val)
+                    else:
+                        fair_dp = max(0.02, 1.0 - fair_hp - fair_ap)
 
-                # Normalize to sum to 1.0
-                ft = fair_hp + fair_dp + fair_ap
-                if ft > 0:
-                    fair_hp /= ft
-                    fair_dp /= ft
-                    fair_ap /= ft
+                    # Normalize to sum to 1.0
+                    ft = fair_hp + fair_dp + fair_ap
+                    if ft > 0:
+                        fair_hp /= ft
+                        fair_dp /= ft
+                        fair_ap /= ft
 
-                fp_display = f"H {fair_hp*100:.0f}% / D {fair_dp*100:.0f}% / A {fair_ap*100:.0f}%"
+                    fp_display = f"H {fair_hp*100:.0f}% / D {fair_dp*100:.0f}% / A {fair_ap*100:.0f}%"
 
-                fd_mlh = fd_lines.get("ml_home")
-                fd_mla = fd_lines.get("ml_away")
-                fd_mld = fd_lines.get("ml_draw")
-                dk_mlh = dk_lines.get("ml_home")
-                dk_mla = dk_lines.get("ml_away")
-                dk_mld = dk_lines.get("ml_draw")
+                    fd_mlh = fd_lines.get("ml_home")
+                    fd_mla = fd_lines.get("ml_away")
+                    fd_mld = fd_lines.get("ml_draw")
+                    dk_mlh = dk_lines.get("ml_home")
+                    dk_mla = dk_lines.get("ml_away")
+                    dk_mld = dk_lines.get("ml_draw")
 
-                fd_edge = None
-                dk_edge = None
-                fd_signal = None
-                dk_signal = None
+                    fd_edge = None
+                    dk_edge = None
+                    fd_signal = None
+                    dk_signal = None
 
-                def _calc_3way_edge(book_h, book_d, book_a, fair_h, fair_d, fair_a):
-                    """Max edge across 3 outcomes, vig-removed."""
-                    bh = american_to_implied(book_h)
-                    ba = american_to_implied(book_a)
-                    bd = american_to_implied(book_d) if book_d else 0
-                    bt = bh + bd + ba
-                    if bt > 0:
-                        bh /= bt
-                        bd /= bt
-                        ba /= bt
-                    edge_h = abs(fair_h - bh) * 100
-                    edge_d = abs(fair_d - bd) * 100 if bd > 0 else 0
-                    edge_a = abs(fair_a - ba) * 100
-                    return round(max(edge_h, edge_d, edge_a), 1)
+                    def _calc_3way_edge(book_h, book_d, book_a, fair_h, fair_d, fair_a):
+                        """Max edge across 3 outcomes, vig-removed."""
+                        bh = american_to_implied(book_h)
+                        ba = american_to_implied(book_a)
+                        bd = american_to_implied(book_d) if book_d else 0
+                        bt = bh + bd + ba
+                        if bt > 0:
+                            bh /= bt
+                            bd /= bt
+                            ba /= bt
+                        edge_h = abs(fair_h - bh) * 100
+                        edge_d = abs(fair_d - bd) * 100 if bd > 0 else 0
+                        edge_a = abs(fair_a - ba) * 100
+                        return round(max(edge_h, edge_d, edge_a), 1)
 
-                if fd_mlh and fd_mla:
-                    fd_edge = _calc_3way_edge(fd_mlh, fd_mld, fd_mla, fair_hp, fair_dp, fair_ap)
-                    fd_signal = determine_signal(fd_edge)
+                    if fd_mlh and fd_mla:
+                        fd_edge = _calc_3way_edge(fd_mlh, fd_mld, fd_mla, fair_hp, fair_dp, fair_ap)
+                        fd_signal = determine_signal(fd_edge)
 
-                if dk_mlh and dk_mla:
-                    dk_edge = _calc_3way_edge(dk_mlh, dk_mld, dk_mla, fair_hp, fair_dp, fair_ap)
-                    dk_signal = determine_signal(dk_edge)
+                    if dk_mlh and dk_mla:
+                        dk_edge = _calc_3way_edge(dk_mlh, dk_mld, dk_mla, fair_hp, fair_dp, fair_ap)
+                        dk_signal = determine_signal(dk_edge)
 
-                # ML stale check
-                if fd_edge is not None and dk_edge is not None and fd_mlh and dk_mlh:
-                    fd_imp = american_to_implied(fd_mlh) * 100
-                    dk_imp = american_to_implied(dk_mlh) * 100
-                    if abs(fd_imp - dk_imp) > 30:
-                        fair_imp = fair_hp * 100
-                        if abs(fair_imp - fd_imp) > abs(fair_imp - dk_imp):
-                            fd_signal = "STALE"
-                            fd_edge = 0
-                        else:
-                            dk_signal = "STALE"
-                            dk_edge = 0
+                    # ML stale check
+                    if fd_edge is not None and dk_edge is not None and fd_mlh and dk_mlh:
+                        fd_imp = american_to_implied(fd_mlh) * 100
+                        dk_imp = american_to_implied(dk_mlh) * 100
+                        if abs(fd_imp - dk_imp) > 30:
+                            fair_imp = fair_hp * 100
+                            if abs(fair_imp - fd_imp) > abs(fair_imp - dk_imp):
+                                fd_signal = "STALE"
+                                fd_edge = 0
+                            else:
+                                dk_signal = "STALE"
+                                dk_edge = 0
 
-                best_e = max(
-                    fd_edge if fd_signal and fd_signal != "STALE" else 0,
-                    dk_edge if dk_signal and dk_signal != "STALE" else 0,
-                ) if (fd_edge is not None or dk_edge is not None) else None
-                best_sig = determine_signal(best_e) if best_e else "NO EDGE"
+                    best_e = max(
+                        fd_edge if fd_signal and fd_signal != "STALE" else 0,
+                        dk_edge if dk_signal and dk_signal != "STALE" else 0,
+                    ) if (fd_edge is not None or dk_edge is not None) else None
+                    best_sig = determine_signal(best_e) if best_e else "NO EDGE"
 
-                rows.append({
-                    "game_id": gid, "sport_key": sport_short,
-                    "home_team": home, "away_team": away,
-                    "commence_time": commence, "market_type": "moneyline",
-                    "omi_fair": fp_display, "omi_fair_line": fair_hp * 100,
-                    "fd_line": fd_mlh, "fd_odds": fd_mlh,
-                    "fd_edge": fd_edge, "fd_signal": fd_signal,
-                    "dk_line": dk_mlh, "dk_odds": dk_mlh,
-                    "dk_edge": dk_edge, "dk_signal": dk_signal,
-                    "best_edge": best_e, "signal": best_sig,
-                })
+                    rows.append({
+                        "game_id": gid, "sport_key": sport_short,
+                        "home_team": home, "away_team": away,
+                        "commence_time": commence, "market_type": "moneyline",
+                        "omi_fair": fp_display, "omi_fair_line": fair_hp * 100,
+                        "fd_line": fd_mlh, "fd_odds": fd_mlh,
+                        "fd_edge": fd_edge, "fd_signal": fd_signal,
+                        "dk_line": dk_mlh, "dk_odds": dk_mlh,
+                        "dk_edge": dk_edge, "dk_signal": dk_signal,
+                        "best_edge": best_e, "signal": best_sig,
+                    })
+                except Exception as e:
+                    logger.warning(f"[LiveMarkets] Soccer ML error for {gid}: {e}")
 
         # Sort: sport, then commence_time
         rows.sort(key=lambda r: (r["sport_key"], r["commence_time"], r["game_id"], r["market_type"]))

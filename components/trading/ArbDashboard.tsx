@@ -1804,26 +1804,57 @@ export default function ArbDashboard() {
                             </div>
                           )}
 
-                          {hasFillData && (
-                            <div className="mt-1.5 flex items-center gap-3 text-[10px]">
-                              <span
-                                className={`font-mono font-bold ${
-                                  locked > 0
-                                    ? "text-emerald-400"
-                                    : locked < 0
-                                    ? "text-red-400"
-                                    : "text-gray-400"
-                                }`}
-                              >
-                                Locked: {locked >= 0 ? "+" : ""}
-                                {locked.toFixed(1)}c gross
-                              </span>
-                              <span className="text-gray-600">
-                                ({pmFill.toFixed(1)} + {kFill.toFixed(1)} ={" "}
-                                {(pmFill + kFill).toFixed(1)}c cost)
-                              </span>
-                            </div>
-                          )}
+                          {hasFillData && (() => {
+                            const feesPerContract = 2.0;
+                            const netPerContract = locked - feesPerContract;
+                            const totalPnlDollars = (netPerContract * qty) / 100;
+                            return (
+                              <div className="mt-1.5 space-y-0.5">
+                                <div className="flex items-center gap-3 text-[10px]">
+                                  <span
+                                    className={`font-mono font-bold ${
+                                      locked > 0
+                                        ? "text-emerald-400"
+                                        : locked < 0
+                                        ? "text-red-400"
+                                        : "text-gray-400"
+                                    }`}
+                                  >
+                                    Locked: {locked >= 0 ? "+" : ""}
+                                    {locked.toFixed(1)}c gross
+                                  </span>
+                                  <span className="text-gray-600">
+                                    ({pmFill.toFixed(1)} + {kFill.toFixed(1)} ={" "}
+                                    {(pmFill + kFill).toFixed(1)}c cost)
+                                  </span>
+                                </div>
+                                <div className="flex items-center gap-3 text-[10px]">
+                                  <span
+                                    className={`font-mono font-bold ${
+                                      netPerContract > 0
+                                        ? "text-emerald-400"
+                                        : netPerContract < 0
+                                        ? "text-red-400"
+                                        : "text-gray-400"
+                                    }`}
+                                  >
+                                    {netPerContract >= 0 ? "+" : ""}{netPerContract.toFixed(1)}c net/contract
+                                  </span>
+                                  <span
+                                    className={`font-mono font-bold ${
+                                      totalPnlDollars > 0
+                                        ? "text-emerald-400"
+                                        : totalPnlDollars < 0
+                                        ? "text-red-400"
+                                        : "text-gray-400"
+                                    }`}
+                                  >
+                                    {totalPnlDollars >= 0 ? "+" : ""}${totalPnlDollars.toFixed(3)} total ({qty}x)
+                                  </span>
+                                </div>
+                              </div>
+                            );
+                          })()}
                         </div>
                       );
                     })}

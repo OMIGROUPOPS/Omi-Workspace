@@ -615,17 +615,14 @@ export default function ArbDashboard() {
   const unhedgedPositions = activePositions.filter((p) => !p.hedged_with);
   const hedgedPositions = activePositions.filter((p) => p.hedged_with);
 
-  // Sum position market value per platform from actual open positions
+  // Position market value = portfolio - cash per platform
   const positionValues = useMemo(() => {
-    let pm = 0, kalshi = 0;
-    for (const p of activePositions) {
-      const value = ((p.avg_price || 0) * p.quantity) / 100;
-      const plat = (p.platform || "").toLowerCase();
-      if (plat.includes("pm") || plat.includes("poly")) pm += value;
-      if (plat.includes("kalshi")) kalshi += value;
-    }
+    const b = state?.balances;
+    if (!b) return { pm: 0, kalshi: 0, total: 0 };
+    const pm = (b.pm_portfolio ?? 0) - (b.pm_cash ?? 0);
+    const kalshi = (b.k_portfolio ?? 0) - (b.k_cash ?? 0);
     return { pm, kalshi, total: pm + kalshi };
-  }, [activePositions]);
+  }, [state?.balances]);
 
   const mappedGames = state?.mapped_games || [];
 

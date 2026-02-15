@@ -105,10 +105,12 @@ interface LiveMarketRow {
   fd_odds: number | null;
   fd_edge: number | null;
   fd_signal: string | null;
+  fd_call: string | null;
   dk_line: number | null;
   dk_odds: number | null;
   dk_edge: number | null;
   dk_signal: string | null;
+  dk_call: string | null;
   best_edge: number | null;
   signal: string;
   pillar_driver: string | null;
@@ -1399,13 +1401,13 @@ export default function EdgeInternalPage() {
 
               <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg">
                 <div style={{overflowX: 'auto'}}>
-                  <div style={{minWidth: '1050px'}}>
+                  <div style={{minWidth: '980px'}}>
                     {/* Header */}
                     <div
                       className="border-b border-zinc-800"
                       style={{
                         display: 'grid',
-                        gridTemplateColumns: '72px 56px minmax(140px,1.5fr) 52px 180px minmax(100px,1fr) minmax(100px,1fr) 72px 80px 72px',
+                        gridTemplateColumns: '72px 56px minmax(140px,1.5fr) 52px 180px minmax(100px,1fr) minmax(100px,1fr) 72px 80px',
                         alignItems: 'center',
                       }}
                     >
@@ -1418,20 +1420,12 @@ export default function EdgeInternalPage() {
                       <LiveSortHeader field="dk_edge" label="DraftKings" />
                       <LiveSortHeader field="best_edge" label="Edge" align="center" />
                       <LiveSortHeader field="signal" label="Signal" align="center" />
-                      <div className="px-3 py-2 text-zinc-500 text-xs uppercase tracking-wide font-medium text-center">Driver</div>
                     </div>
 
                     {/* Rows */}
                     {sortedLiveRows.map((row, i) => {
                       const sigColor = SIGNAL_COLORS[row.signal] || "text-zinc-500";
                       const htg = fmtHoursToGame(row.hours_to_game);
-
-                      const fmtBookLine = (line: number | null, mtype: string) => {
-                        if (line == null) return "—";
-                        if (mtype === "moneyline") return fmtOdds(line);
-                        if (mtype === "spread") return line > 0 ? `+${line}` : String(line);
-                        return String(line);
-                      };
 
                       return (
                         <div
@@ -1444,7 +1438,7 @@ export default function EdgeInternalPage() {
                           className="border-b border-zinc-800/50 cursor-pointer hover:bg-zinc-800/30 transition-colors text-sm"
                           style={{
                             display: 'grid',
-                            gridTemplateColumns: '72px 56px minmax(140px,1.5fr) 52px 180px minmax(100px,1fr) minmax(100px,1fr) 72px 80px 72px',
+                            gridTemplateColumns: '72px 56px minmax(140px,1.5fr) 52px 180px minmax(100px,1fr) minmax(100px,1fr) 72px 80px',
                             alignItems: 'center',
                           }}
                         >
@@ -1482,45 +1476,45 @@ export default function EdgeInternalPage() {
                             {row.omi_fair}
                           </div>
 
-                          {/* FD: line + edge combined */}
+                          {/* FD: call + edge */}
                           <div className="px-3 py-2.5 text-xs min-w-0">
                             {row.fd_signal === "STALE" ? (
                               <span className="text-zinc-600 font-mono">STALE</span>
-                            ) : row.fd_line != null ? (
-                              <div>
+                            ) : row.fd_call ? (
+                              <div className="truncate">
                                 <span className="text-zinc-300 font-mono">
-                                  {fmtBookLine(row.fd_line, row.market_type)}
+                                  {row.fd_call}
                                 </span>
-                                {row.fd_edge != null && (
-                                  <span className={`ml-1.5 font-mono ${
-                                    row.fd_edge > 0 ? "text-emerald-400" : "text-zinc-500"
-                                  }`}>
+                                {row.fd_edge != null && row.fd_edge > 0 && (
+                                  <span className="ml-1.5 font-mono text-emerald-400">
                                     {fmtEdgePct(row.fd_edge)}
                                   </span>
                                 )}
                               </div>
+                            ) : row.fd_line != null ? (
+                              <span className="text-zinc-500 font-mono">—</span>
                             ) : (
                               <span className="text-zinc-600">—</span>
                             )}
                           </div>
 
-                          {/* DK: line + edge combined */}
+                          {/* DK: call + edge */}
                           <div className="px-3 py-2.5 text-xs min-w-0">
                             {row.dk_signal === "STALE" ? (
                               <span className="text-zinc-600 font-mono">STALE</span>
-                            ) : row.dk_line != null ? (
-                              <div>
+                            ) : row.dk_call ? (
+                              <div className="truncate">
                                 <span className="text-zinc-300 font-mono">
-                                  {fmtBookLine(row.dk_line, row.market_type)}
+                                  {row.dk_call}
                                 </span>
-                                {row.dk_edge != null && (
-                                  <span className={`ml-1.5 font-mono ${
-                                    row.dk_edge > 0 ? "text-emerald-400" : "text-zinc-500"
-                                  }`}>
+                                {row.dk_edge != null && row.dk_edge > 0 && (
+                                  <span className="ml-1.5 font-mono text-emerald-400">
                                     {fmtEdgePct(row.dk_edge)}
                                   </span>
                                 )}
                               </div>
+                            ) : row.dk_line != null ? (
+                              <span className="text-zinc-500 font-mono">—</span>
                             ) : (
                               <span className="text-zinc-600">—</span>
                             )}
@@ -1543,13 +1537,6 @@ export default function EdgeInternalPage() {
                           <div className="px-3 py-2.5 text-center">
                             <span className={`text-[10px] font-mono font-bold ${sigColor}`}>
                               {row.signal}
-                            </span>
-                          </div>
-
-                          {/* Pillar Driver */}
-                          <div className="px-3 py-2.5 text-center">
-                            <span className="text-xs font-mono text-zinc-400">
-                              {row.pillar_driver || "—"}
                             </span>
                           </div>
                         </div>

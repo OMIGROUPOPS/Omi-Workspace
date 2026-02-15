@@ -1388,8 +1388,10 @@ class InternalGrader:
                             "omi_fair": "Awaiting OMI Fair", "omi_fair_line": None,
                             "fd_line": fd_bl, "fd_odds": fd_lines.get("spread_odds"),
                             "fd_edge": None, "fd_signal": None,
+                            "fd_call": None,
                             "dk_line": dk_bl, "dk_odds": dk_lines.get("spread_odds"),
                             "dk_edge": None, "dk_signal": None,
+                            "dk_call": None,
                             "best_edge": None, "signal": "PENDING",
                             "pillar_driver": (pillar_data.get(gid) or {}).get("driver", "—"),
                             "pillar_scores": (pillar_data.get(gid) or {}).get("scores"),
@@ -1406,8 +1408,10 @@ class InternalGrader:
                         "omi_fair": "Awaiting OMI Fair", "omi_fair_line": None,
                         "fd_line": fd_bl, "fd_odds": fd_lines.get("total_odds"),
                         "fd_edge": None, "fd_signal": None,
+                        "fd_call": None,
                         "dk_line": dk_bl, "dk_odds": dk_lines.get("total_odds"),
                         "dk_edge": None, "dk_signal": None,
+                        "dk_call": None,
                         "best_edge": None, "signal": "PENDING",
                         "pillar_driver": (pillar_data.get(gid) or {}).get("driver", "—"),
                         "pillar_scores": (pillar_data.get(gid) or {}).get("scores"),
@@ -1425,8 +1429,10 @@ class InternalGrader:
                             "omi_fair": "Awaiting OMI Fair", "omi_fair_line": None,
                             "fd_line": fd_mlh, "fd_odds": fd_mlh,
                             "fd_edge": None, "fd_signal": None,
+                            "fd_call": None,
                             "dk_line": dk_mlh, "dk_odds": dk_mlh,
                             "dk_edge": None, "dk_signal": None,
+                            "dk_call": None,
                             "best_edge": None, "signal": "PENDING",
                             "pillar_driver": (pillar_data.get(gid) or {}).get("driver", "—"),
                             "pillar_scores": (pillar_data.get(gid) or {}).get("scores"),
@@ -1476,6 +1482,20 @@ class InternalGrader:
                 ) if (fd_edge is not None or dk_edge is not None) else None
                 best_sig = determine_signal(best_e) if best_e else "NO EDGE"
 
+                # Spread call: which side has value at each book
+                def _spread_call(bl, fair, h, a):
+                    if bl is None:
+                        return None
+                    b = float(bl)
+                    if fair > b:  # away side has value
+                        away_line = -b
+                        return f"{a} {away_line:+.1f}"
+                    else:  # home side has value (or exact match)
+                        return f"{h} {b:+.1f}"
+
+                fd_call = _spread_call(fd_bl, fair_s, home, away)
+                dk_call = _spread_call(dk_bl, fair_s, home, away)
+
                 rows.append({
                     "game_id": gid, "sport_key": sport_short,
                     "home_team": home, "away_team": away,
@@ -1483,8 +1503,10 @@ class InternalGrader:
                     "omi_fair": fair_display, "omi_fair_line": fair_s,
                     "fd_line": fd_bl, "fd_odds": fd_lines.get("spread_odds"),
                     "fd_edge": fd_edge, "fd_signal": fd_signal,
+                    "fd_call": fd_call,
                     "dk_line": dk_bl, "dk_odds": dk_lines.get("spread_odds"),
                     "dk_edge": dk_edge, "dk_signal": dk_signal,
+                    "dk_call": dk_call,
                     "best_edge": best_e, "signal": best_sig,
                     "pillar_driver": (pillar_data.get(gid) or {}).get("driver", "—"),
                     "pillar_scores": (pillar_data.get(gid) or {}).get("scores"),
@@ -1526,6 +1548,17 @@ class InternalGrader:
                 ) if (fd_edge is not None or dk_edge is not None) else None
                 best_sig = determine_signal(best_e) if best_e else "NO EDGE"
 
+                # Total call: over or under at each book's line
+                def _total_call(bl, fair):
+                    if bl is None:
+                        return None
+                    b = float(bl)
+                    d = "O" if fair > b else "U" if fair < b else "PK"
+                    return f"{d} {b:.1f}"
+
+                fd_call = _total_call(fd_bl, fair_t)
+                dk_call = _total_call(dk_bl, fair_t)
+
                 rows.append({
                     "game_id": gid, "sport_key": sport_short,
                     "home_team": home, "away_team": away,
@@ -1533,8 +1566,10 @@ class InternalGrader:
                     "omi_fair": fair_display, "omi_fair_line": fair_t,
                     "fd_line": fd_bl, "fd_odds": fd_lines.get("total_odds"),
                     "fd_edge": fd_edge, "fd_signal": fd_signal,
+                    "fd_call": fd_call,
                     "dk_line": dk_bl, "dk_odds": dk_lines.get("total_odds"),
                     "dk_edge": dk_edge, "dk_signal": dk_signal,
+                    "dk_call": dk_call,
                     "best_edge": best_e, "signal": best_sig,
                     "pillar_driver": (pillar_data.get(gid) or {}).get("driver", "—"),
                     "pillar_scores": (pillar_data.get(gid) or {}).get("scores"),
@@ -1595,7 +1630,7 @@ class InternalGrader:
                     dk_signal = None
 
                     def _calc_3way_edge(book_h, book_d, book_a, fair_h, fair_d, fair_a):
-                        """Max edge across 3 outcomes, vig-removed."""
+                        """Max edge across 3 outcomes, vig-removed. Returns (edge, best_idx)."""
                         bh = american_to_implied(book_h)
                         ba = american_to_implied(book_a)
                         bd = american_to_implied(book_d) if book_d else 0
@@ -1604,18 +1639,27 @@ class InternalGrader:
                             bh /= bt
                             bd /= bt
                             ba /= bt
-                        edge_h = abs(fair_h - bh) * 100
-                        edge_d = abs(fair_d - bd) * 100 if bd > 0 else 0
-                        edge_a = abs(fair_a - ba) * 100
-                        return round(max(edge_h, edge_d, edge_a), 1)
+                        # Positive = OMI thinks more likely than book (undervalued)
+                        edges = [
+                            (fair_h - bh) * 100,            # home
+                            (fair_d - bd) * 100 if bd > 0 else 0,  # draw
+                            (fair_a - ba) * 100,            # away
+                        ]
+                        best_idx = max(range(3), key=lambda i: edges[i])
+                        return round(max(abs(e) for e in edges), 1), best_idx
+
+                    fd_call = None
+                    dk_call = None
 
                     if fd_mlh and fd_mla:
-                        fd_edge = _calc_3way_edge(fd_mlh, fd_mld, fd_mla, fair_hp, fair_dp, fair_ap)
+                        fd_edge, fd_best = _calc_3way_edge(fd_mlh, fd_mld, fd_mla, fair_hp, fair_dp, fair_ap)
                         fd_signal = determine_signal(fd_edge)
+                        fd_call = [f"{home} ML", "Draw", f"{away} ML"][fd_best]
 
                     if dk_mlh and dk_mla:
-                        dk_edge = _calc_3way_edge(dk_mlh, dk_mld, dk_mla, fair_hp, fair_dp, fair_ap)
+                        dk_edge, dk_best = _calc_3way_edge(dk_mlh, dk_mld, dk_mla, fair_hp, fair_dp, fair_ap)
                         dk_signal = determine_signal(dk_edge)
+                        dk_call = [f"{home} ML", "Draw", f"{away} ML"][dk_best]
 
                     # ML stale check
                     if fd_edge is not None and dk_edge is not None and fd_mlh and dk_mlh:
@@ -1643,8 +1687,10 @@ class InternalGrader:
                         "omi_fair": fp_display, "omi_fair_line": fair_hp * 100,
                         "fd_line": fd_mlh, "fd_odds": fd_mlh,
                         "fd_edge": fd_edge, "fd_signal": fd_signal,
+                        "fd_call": fd_call,
                         "dk_line": dk_mlh, "dk_odds": dk_mlh,
                         "dk_edge": dk_edge, "dk_signal": dk_signal,
+                        "dk_call": dk_call,
                         "best_edge": best_e, "signal": best_sig,
                         "pillar_driver": (pillar_data.get(gid) or {}).get("driver", "—"),
                         "pillar_scores": (pillar_data.get(gid) or {}).get("scores"),

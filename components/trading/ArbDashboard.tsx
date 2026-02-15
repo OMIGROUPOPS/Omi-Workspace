@@ -615,6 +615,18 @@ export default function ArbDashboard() {
   const unhedgedPositions = activePositions.filter((p) => !p.hedged_with);
   const hedgedPositions = activePositions.filter((p) => p.hedged_with);
 
+  // Sum position market value per platform from actual open positions
+  const positionValues = useMemo(() => {
+    let pm = 0, kalshi = 0;
+    for (const p of activePositions) {
+      const value = ((p.avg_price || 0) * p.quantity) / 100;
+      const plat = (p.platform || "").toLowerCase();
+      if (plat.includes("pm") || plat.includes("poly")) pm += value;
+      if (plat.includes("kalshi")) kalshi += value;
+    }
+    return { pm, kalshi, total: pm + kalshi };
+  }, [activePositions]);
+
   const mappedGames = state?.mapped_games || [];
 
   const markSettled = (gameId: string) => {
@@ -1057,33 +1069,21 @@ export default function ArbDashboard() {
               </div>
             </div>
 
-            {/* Column 2: Positions (Mkt Value) */}
+            {/* Column 2: Positions (Mkt Value) — from actual open positions */}
             <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2.5">
               <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 mb-1.5">Positions (Mkt Value)</p>
               <div className="space-y-1">
                 <div className="flex justify-between items-baseline">
                   <span className="text-[11px] text-gray-400">PM</span>
-                  <span className="text-sm font-mono text-yellow-400">
-                    {state?.balances.pm_portfolio != null && state?.balances.pm_cash != null
-                      ? `$${(state.balances.pm_portfolio - state.balances.pm_cash).toFixed(2)}`
-                      : "-"}
-                  </span>
+                  <span className="text-sm font-mono text-yellow-400">${positionValues.pm.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between items-baseline">
                   <span className="text-[11px] text-gray-400">Kalshi</span>
-                  <span className="text-sm font-mono text-yellow-400">
-                    {state?.balances.k_portfolio != null && state?.balances.k_cash != null
-                      ? `$${(state.balances.k_portfolio - state.balances.k_cash).toFixed(2)}`
-                      : "-"}
-                  </span>
+                  <span className="text-sm font-mono text-yellow-400">${positionValues.kalshi.toFixed(2)}</span>
                 </div>
                 <div className="border-t border-gray-800 pt-1 flex justify-between items-baseline">
                   <span className="text-[11px] text-gray-400 font-medium">Total</span>
-                  <span className="text-base font-mono font-bold text-yellow-400">
-                    {state?.balances.pm_portfolio != null && state?.balances.pm_cash != null && state?.balances.k_portfolio != null && state?.balances.k_cash != null
-                      ? `$${((state.balances.pm_portfolio - state.balances.pm_cash) + (state.balances.k_portfolio - state.balances.k_cash)).toFixed(2)}`
-                      : "-"}
-                  </span>
+                  <span className="text-base font-mono font-bold text-yellow-400">${positionValues.total.toFixed(2)}</span>
                 </div>
               </div>
             </div>

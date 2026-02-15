@@ -912,13 +912,12 @@ class InternalGrader:
         """Build OMI fair display string.
 
         Spreads always shown from home team perspective: 'HOU -8.0'
-        Totals shown as O/U relative to book total: 'O 242.5 (-106)'
+        Totals shown as O/U relative to book total: 'O 242.5'
         """
         if fair_value is None:
             return "—"
 
         ref_half = round(fair_value * 2) / 2
-        fp = calc_fair_price(fair_value, ref_half, mtype)
 
         if mtype == "total":
             # Direction based on OMI fair vs book total
@@ -938,7 +937,7 @@ class InternalGrader:
                     direction = "O" if fair_value > ref_half else "U"
             if direction == "PK":
                 return f"PK {ref_half:.1f}"
-            return f"{direction} {ref_half:.1f} ({fp:+d})" if fp != 0 else f"{direction} {ref_half:.1f}"
+            return f"{direction} {ref_half:.1f}"
         elif mtype == "spread":
             # Always home team perspective — fair_value IS home spread
             sign = "+" if fair_value > 0 else ""
@@ -1237,42 +1236,53 @@ class InternalGrader:
 
     def get_live_markets(self, sport: Optional[str] = None) -> dict:
         """Return upcoming games with current OMI fair lines and book edges."""
+        import traceback
         now = datetime.now(timezone.utc).isoformat()
 
-        # 1. Get upcoming games from cached_odds
-        query = self.client.table("cached_odds").select(
-            "sport_key, game_id, game_data"
-        ).gte("game_data->>commence_time", now)
-        if sport:
-            # cached_odds uses full sport_key (e.g. basketball_nba)
-            # Accept either short or long form
-            variants = [k for k, v in SPORT_DISPLAY.items() if v == sport.upper()]
-            if variants:
-                query = query.in_("sport_key", variants)
-            else:
-                query = query.eq("sport_key", sport)
-        result = query.execute()
-        games = result.data or []
+        try:
+            # 1. Get upcoming games from cached_odds
+            query = self.client.table("cached_odds").select(
+                "sport_key, game_id, game_data"
+            ).gte("game_data->>commence_time", now)
+            if sport:
+                # cached_odds uses full sport_key (e.g. basketball_nba)
+                # Accept either short or long form
+                variants = [k for k, v in SPORT_DISPLAY.items() if v == sport.upper()]
+                if variants:
+                    query = query.in_("sport_key", variants)
+                else:
+                    query = query.eq("sport_key", sport)
+            result = query.execute()
+            games = result.data or []
+        except Exception as e:
+            logger.error(f"[LiveMarkets] Failed to query cached_odds: {e}\n{traceback.format_exc()}")
+            return {"rows": [], "count": 0, "error": f"cached_odds query failed: {e}"}
 
         if not games:
             return {"rows": [], "count": 0}
 
-        # 2. Get latest composite_history snapshot per game
-        game_ids = list({g["game_id"] for g in games})
-        ch_map: dict = {}
-        for i in range(0, len(game_ids), 50):
-            batch = game_ids[i:i+50]
-            ch = self.client.table("composite_history").select(
-                "*"
-            ).in_("game_id", batch).order("timestamp", desc=True).execute()
-            for row in (ch.data or []):
-                gid = row["game_id"]
-                if gid not in ch_map:
-                    ch_map[gid] = row
+        try:
+            # 2. Get latest composite_history snapshot per game
+            game_ids = list({g["game_id"] for g in games})
+            ch_map: dict = {}
+            for i in range(0, len(game_ids), 50):
+                batch = game_ids[i:i+50]
+                ch = self.client.table("composite_history").select(
+                    "*"
+                ).in_("game_id", batch).order("timestamp", desc=True).execute()
+                for row in (ch.data or []):
+                    gid = row["game_id"]
+                    if gid not in ch_map:
+                        ch_map[gid] = row
+        except Exception as e:
+            logger.error(f"[LiveMarkets] Failed to query composite_history: {e}\n{traceback.format_exc()}")
+            ch_map = {}
 
         # 3. Build rows — one per game × market
         rows = []
+        game_errors = 0
         for g in games:
+          try:
             gid = g["game_id"]
             gdata = g.get("game_data") or {}
             sport_raw = g.get("sport_key", "")
@@ -1569,8 +1579,18 @@ class InternalGrader:
                 except Exception as e:
                     logger.warning(f"[LiveMarkets] Soccer ML error for {gid}: {e}")
 
+          except Exception as e:
+            game_errors += 1
+            logger.error(
+                f"[LiveMarkets] Error processing game {g.get('game_id', '?')} "
+                f"(sport={g.get('sport_key', '?')}): {e}\n{traceback.format_exc()}"
+            )
+
         # Sort: sport, then commence_time
         rows.sort(key=lambda r: (r["sport_key"], r["commence_time"], r["game_id"], r["market_type"]))
+
+        if game_errors > 0:
+            logger.warning(f"[LiveMarkets] {game_errors} games had errors, {len(rows)} rows returned")
 
         return {"rows": rows, "count": len(rows)}
 

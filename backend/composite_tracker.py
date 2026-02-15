@@ -23,6 +23,10 @@ logger = logging.getLogger(__name__)
 FAIR_LINE_SPREAD_FACTOR = 0.15
 FAIR_LINE_TOTAL_FACTOR = 0.20
 
+# Caps — prevent extreme fair line deviations from consensus
+FAIR_SPREAD_CAP = 4.0   # max ±4 points from book consensus
+FAIR_TOTAL_CAP = 5.0    # max ±5 points from book consensus
+
 SPREAD_TO_PROB_RATE = {
     "basketball_nba": 0.033,
     "basketball_ncaab": 0.030,
@@ -583,6 +587,27 @@ class CompositeTracker:
                             f"[BiasCorr] {game_id}: total_bias={bias['total_bias']}, "
                             f"correction={correction:.2f}, fair_total {old_ft}→{fair_total}"
                         )
+
+                # 5c. Cap fair lines — prevent extreme deviations from consensus
+                if fair_spread is not None and book_spread is not None:
+                    capped = max(book_spread - FAIR_SPREAD_CAP,
+                                 min(book_spread + FAIR_SPREAD_CAP, fair_spread))
+                    if capped != fair_spread:
+                        logger.info(
+                            f"[FairCap] {game_id}: spread capped {fair_spread}→{capped} "
+                            f"(book={book_spread}, cap=±{FAIR_SPREAD_CAP})"
+                        )
+                        fair_spread = capped
+
+                if fair_total is not None and book_total is not None:
+                    capped = max(book_total - FAIR_TOTAL_CAP,
+                                 min(book_total + FAIR_TOTAL_CAP, fair_total))
+                    if capped != fair_total:
+                        logger.info(
+                            f"[FairCap] {game_id}: total capped {fair_total}→{capped} "
+                            f"(book={book_total}, cap=±{FAIR_TOTAL_CAP})"
+                        )
+                        fair_total = capped
 
                 # 6. Insert row
                 row_data = {

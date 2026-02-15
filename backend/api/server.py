@@ -1275,8 +1275,13 @@ async def internal_graded_games(
 @app.get("/api/internal/edge/live-markets")
 async def internal_live_markets(sport: str = None):
     """Get upcoming games with current OMI fair lines and book edges."""
-    grader = InternalGrader()
-    return grader.get_live_markets(sport.upper() if sport else None)
+    try:
+        grader = InternalGrader()
+        return grader.get_live_markets(sport.upper() if sport else None)
+    except Exception as e:
+        import traceback
+        logger.error(f"[live-markets] 500 error: {e}\n{traceback.format_exc()}")
+        return {"rows": [], "count": 0, "error": str(e)}
 
 
 @app.get("/api/internal/edge/reflection")

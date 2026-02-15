@@ -8,12 +8,16 @@ Does: places hedged orders on Kalshi and PM, or safely aborts
 4 possible trades (all executable via BUY_LONG/BUY_SHORT):
   1. BUY_PM_SELL_K, team IS pm_long_team  -> K: SELL YES, PM: BUY_LONG (intent=1)
   2. BUY_PM_SELL_K, team NOT pm_long_team -> K: SELL YES, PM: BUY_SHORT (intent=3)
-  3. BUY_K_SELL_PM, team IS pm_long_team  -> K: BUY YES, PM: BUY_SHORT (intent=3)
-  4. BUY_K_SELL_PM, team NOT pm_long_team -> K: BUY YES, PM: BUY_LONG (intent=1)
+  3. BUY_K_SELL_PM, team IS pm_long_team  -> K: SELL NO,  PM: BUY_SHORT (intent=3)
+  4. BUY_K_SELL_PM, team NOT pm_long_team -> K: SELL NO,  PM: BUY_LONG (intent=1)
+
+NOTE: All Kalshi orders are SELL (SELL YES or SELL NO). No BUY orders.
+  BUY YES IOC fails on Kalshi due to cross-matching bug against NO bids.
+  SELL NO is economically equivalent to BUY YES and matches directly.
 
 EXECUTION ORDER: PM FIRST, THEN KALSHI
   - PM is the unreliable leg (IOC orders often expire due to latency)
-  - Kalshi is the reliable leg (fills consistently)
+  - Kalshi is the reliable leg (fills consistently with SELL orders)
   - If PM doesn't fill, we exit cleanly with no position
   - If PM fills but Kalshi doesn't, we have an unhedged position (rare)
 
@@ -121,33 +125,37 @@ TRADE_PARAMS = {
 
     # ==========================================================================
     # Case 3: BUY_K_SELL_PM, team IS pm_long_team
-    # K: BUY YES (long favorite), PM: BUY_SHORT (long underdog = short favorite)
+    # K: SELL NO (long favorite via selling NO), PM: BUY_SHORT (long underdog = short favorite)
     # HEDGE: K LONG favorite + PM LONG underdog = hedged
     # Price: Underdog ask = 100 - pm_bid (pm_bid is favorite's bid)
+    # NOTE: SELL NO is economically equivalent to BUY YES, but avoids Kalshi
+    #        IOC cross-matching bug where BUY YES fails against NO bids.
     # ==========================================================================
     ('BUY_K_SELL_PM', True): {
-        'k_action': 'buy',
-        'k_side': 'yes',
-        'k_price_field': 'k_ask',       # Buying, so pay ask
+        'k_action': 'sell',
+        'k_side': 'no',
+        'k_price_field': 'k_ask',       # YES ask price (converted to NO frame before order)
         'pm_intent': 3,                  # BUY_SHORT (underdog)
         'pm_price_field': 'pm_bid',     # Need to invert: underdog_ask = 100 - pm_bid
         'pm_invert_price': True,        # Signals to use 100 - pm_bid as the price
         'pm_is_buy_short': True,
         'k_result': 'LONG',
         'pm_result': 'SHORT',            # SHORT favorite = LONG underdog
-        'executable': True,              # RE-ENABLED: price now converted to YES frame
+        'executable': True,
     },
 
     # ==========================================================================
     # Case 4: BUY_K_SELL_PM, team is NOT pm_long_team (underdog)
-    # K: BUY YES (long underdog), PM: BUY_LONG (long favorite = short underdog)
+    # K: SELL NO (long underdog via selling NO), PM: BUY_LONG (long favorite = short underdog)
     # HEDGE: K LONG underdog + PM LONG favorite = hedged
     # Price: Favorite ask = 100 - pm_bid (pm_bid is underdog's bid)
+    # NOTE: SELL NO is economically equivalent to BUY YES, but avoids Kalshi
+    #        IOC cross-matching bug where BUY YES fails against NO bids.
     # ==========================================================================
     ('BUY_K_SELL_PM', False): {
-        'k_action': 'buy',
-        'k_side': 'yes',
-        'k_price_field': 'k_ask',       # Buying, so pay ask
+        'k_action': 'sell',
+        'k_side': 'no',
+        'k_price_field': 'k_ask',       # YES ask price (converted to NO frame before order)
         'pm_intent': 1,                  # BUY_LONG (favorite)
         'pm_price_field': 'pm_bid',     # Need to invert: favorite_ask = 100 - pm_bid
         'pm_invert_price': True,        # Signals to use 100 - pm_bid as the price
@@ -586,8 +594,8 @@ def calculate_optimal_size(
         return default
 
     # ── Step A: Build Kalshi levels ──
-    # BUY_PM_SELL_K → SELL on Kalshi → walk yes_bids descending (highest first)
-    # BUY_K_SELL_PM → BUY on Kalshi → walk yes_asks ascending (lowest first)
+    # BUY_PM_SELL_K → SELL YES on Kalshi → walk yes_bids descending (highest first)
+    # BUY_K_SELL_PM → SELL NO on Kalshi → walk yes_asks ascending (NO bids = YES asks)
     k_levels = []
     if direction == 'BUY_PM_SELL_K':
         raw = kalshi_book.get('yes_bids', {})
@@ -837,7 +845,8 @@ async def execute_arb(
 
     EXECUTION ORDER: PM FIRST, THEN KALSHI
     - PM is the unreliable leg (IOC orders often expire)
-    - Kalshi is the reliable leg (fills consistently)
+    - Kalshi is the reliable leg (all SELL orders fill consistently)
+    - Cases 1/2: SELL YES, Cases 3/4: SELL NO (equiv to BUY YES)
     - If PM doesn't fill → exit cleanly with no position
     - If PM fills but Kalshi doesn't → unhedged (rare, logged)
 
@@ -941,24 +950,26 @@ async def execute_arb(
         pm_price_buffered = min(math.ceil(pm_price_cents + pm_buffer), 99)
         pm_price = pm_price_buffered / 100.0
 
-    # Add buffer to Kalshi price for better fill
-    if params['k_action'] == 'sell':
+    # Add buffer to Kalshi price for better fill (YES frame)
+    # Direction-based: SELL_K accepts lower YES bid, BUY_K pays higher YES ask
+    # (SELL NO is economically BUY YES, so same buffer direction)
+    if arb.direction == 'BUY_PM_SELL_K':
         k_limit_price = max(k_price - Config.price_buffer_cents, 1)
-    else:
+    else:  # BUY_K_SELL_PM
         k_limit_price = min(k_price + Config.price_buffer_cents, 99)
 
     # -------------------------------------------------------------------------
     # Step 4.5: Kalshi depth pre-validation (before committing PM order)
     # -------------------------------------------------------------------------
     if k_book_ref:
-        if params['k_action'] == 'sell':
-            # Selling YES: need bids at or above our limit price
+        if arb.direction == 'BUY_PM_SELL_K':
+            # Selling YES: need YES bids at or above our limit price
             k_depth_available = sum(
                 qty for price, qty in k_book_ref.get('yes_bids', {}).items()
                 if int(price) >= k_limit_price
             )
-        else:
-            # Buying YES: need asks at or below our limit price
+        else:  # BUY_K_SELL_PM
+            # Selling NO (equiv BUY YES): need YES asks at or below our YES-frame limit
             k_depth_available = sum(
                 qty for price, qty in k_book_ref.get('yes_asks', {}).items()
                 if int(price) <= k_limit_price
@@ -978,25 +989,31 @@ async def execute_arb(
     # Step 4.6: Kalshi REST orderbook depth verification
     # -------------------------------------------------------------------------
     # WS books can show phantom depth. Verify via REST before committing PM order.
+    # Convert to correct frame for REST API: YES frame for SELL YES, NO frame for SELL NO
+    rest_limit = k_limit_price if params['k_side'] == 'yes' else (100 - k_limit_price)
     try:
         rest_depth = await kalshi_api.verify_rest_depth(
             session, arb.kalshi_ticker,
             params['k_side'], params['k_action'],
-            k_limit_price, size
+            rest_limit, size
         )
         if rest_depth.get('error'):
             print(f"[DEPTH-REST] {arb.kalshi_ticker}: REST error ({rest_depth['error']}), proceeding with WS-only")
         elif not rest_depth['passed']:
-            print(f"[DEPTH-REST] {arb.kalshi_ticker}: REST book shows {rest_depth['available']} @ {k_limit_price}c vs need {size} — FAIL")
+            print(f"[DEPTH-REST] {arb.kalshi_ticker}: REST {params['k_action']} {params['k_side']} shows {rest_depth['available']} @ {rest_limit}c vs need {size} — FAIL")
             return TradeResult(
                 success=False,
-                abort_reason=f"Kalshi REST depth insufficient ({rest_depth['available']}/{size} @ {k_limit_price}c)",
+                abort_reason=f"Kalshi REST depth insufficient ({rest_depth['available']}/{size} @ {rest_limit}c {params['k_side']})",
                 execution_time_ms=int((time.time() - start_time) * 1000),
             )
         else:
-            print(f"[DEPTH-REST] {arb.kalshi_ticker}: REST book shows {rest_depth['available']} @ {k_limit_price}c vs need {size} — PASS")
+            print(f"[DEPTH-REST] {arb.kalshi_ticker}: REST {params['k_action']} {params['k_side']} shows {rest_depth['available']} @ {rest_limit}c vs need {size} — PASS")
     except Exception as e:
         print(f"[DEPTH-REST] {arb.kalshi_ticker}: Exception ({e}), proceeding with WS-only")
+
+    # Convert k_limit_price to NO frame for SELL NO orders (after all YES-frame depth checks)
+    if params['k_side'] == 'no':
+        k_limit_price = 100 - k_limit_price
 
     # -------------------------------------------------------------------------
     # Step 5: Place PM order FIRST (unreliable leg - IOC often expires)
@@ -1160,8 +1177,8 @@ async def execute_arb(
         k_result = await kalshi_api.place_order(
             session,
             arb.kalshi_ticker,
-            params['k_side'],      # 'yes'
-            params['k_action'],    # 'buy' or 'sell'
+            params['k_side'],      # 'yes' or 'no'
+            params['k_action'],    # 'sell'
             pm_filled,             # Match PM's actual fill count
             k_limit_price
         )
@@ -1223,8 +1240,12 @@ async def execute_arb(
     k_fill_price = k_result.get('fill_price', k_price)
 
     # Update local position cache (no API call needed)
+    # SELL YES = short (negative), SELL NO = long YES equivalent (positive)
     if k_filled > 0:
-        qty_delta = k_filled if params['k_action'] == 'buy' else -k_filled
+        if params['k_side'] == 'yes':
+            qty_delta = -k_filled   # SELL YES = short position
+        else:
+            qty_delta = k_filled    # SELL NO = long YES equivalent
         update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
 
     # -------------------------------------------------------------------------
@@ -1373,9 +1394,9 @@ def run_self_test():
         ('BUY_PM_SELL_K', 'MSST', 'ARK',
          "K SELL YES @ k_bid, PM BUY_NO @ (100-pm_bid) -> K SHORT MSST, PM LONG MSST"),
         ('BUY_K_SELL_PM', 'ARK', 'ARK',
-         "K BUY YES @ k_ask, PM BUY_NO @ (100-pm_bid) -> K LONG ARK, PM SHORT ARK"),
+         "K SELL NO @ k_ask, PM BUY_NO @ (100-pm_bid) -> K LONG ARK, PM SHORT ARK"),
         ('BUY_K_SELL_PM', 'MSST', 'ARK',
-         "K BUY YES @ k_ask, PM BUY_YES @ pm_ask -> K LONG MSST, PM SHORT MSST"),
+         "K SELL NO @ k_ask, PM BUY_YES @ pm_ask -> K LONG MSST, PM SHORT MSST"),
     ]
 
     all_passed = True

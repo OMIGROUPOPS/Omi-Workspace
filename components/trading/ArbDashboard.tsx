@@ -1033,7 +1033,7 @@ export default function ArbDashboard() {
       {topTab === "monitor" && (
         <div className="p-4 space-y-4">
           {/* ── Metrics Row ──────────────────────────────────────────── */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
             {/* Column 1: Cash */}
             <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2.5">
               <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 mb-1.5">Cash (Trading)</p>
@@ -1057,9 +1057,40 @@ export default function ArbDashboard() {
               </div>
             </div>
 
-            {/* Column 2: Portfolio */}
+            {/* Column 2: Positions (Mkt Value) */}
             <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2.5">
-              <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 mb-1.5">Portfolio (Total Value)</p>
+              <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 mb-1.5">Positions (Mkt Value)</p>
+              <div className="space-y-1">
+                <div className="flex justify-between items-baseline">
+                  <span className="text-[11px] text-gray-400">PM</span>
+                  <span className="text-sm font-mono text-yellow-400">
+                    {state?.balances.pm_portfolio != null && state?.balances.pm_cash != null
+                      ? `$${(state.balances.pm_portfolio - state.balances.pm_cash).toFixed(2)}`
+                      : "-"}
+                  </span>
+                </div>
+                <div className="flex justify-between items-baseline">
+                  <span className="text-[11px] text-gray-400">Kalshi</span>
+                  <span className="text-sm font-mono text-yellow-400">
+                    {state?.balances.k_portfolio != null && state?.balances.k_cash != null
+                      ? `$${(state.balances.k_portfolio - state.balances.k_cash).toFixed(2)}`
+                      : "-"}
+                  </span>
+                </div>
+                <div className="border-t border-gray-800 pt-1 flex justify-between items-baseline">
+                  <span className="text-[11px] text-gray-400 font-medium">Total</span>
+                  <span className="text-base font-mono font-bold text-yellow-400">
+                    {state?.balances.pm_portfolio != null && state?.balances.pm_cash != null && state?.balances.k_portfolio != null && state?.balances.k_cash != null
+                      ? `$${((state.balances.pm_portfolio - state.balances.pm_cash) + (state.balances.k_portfolio - state.balances.k_cash)).toFixed(2)}`
+                      : "-"}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Column 3: Portfolio */}
+            <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2.5">
+              <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 mb-1.5">Portfolio (Total)</p>
               <div className="space-y-1">
                 <div className="flex justify-between items-baseline">
                   <span className="text-[11px] text-gray-400">PM</span>
@@ -1097,7 +1128,7 @@ export default function ArbDashboard() {
               </div>
             </div>
 
-            {/* Column 3: P&L + System */}
+            {/* Column 4: P&L + System */}
             <div className="grid grid-cols-2 gap-3">
               <MetricCard
                 label="P&L"

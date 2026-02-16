@@ -265,26 +265,68 @@ async def _retry_kalshi_wider(
     session, kalshi_api,
     ticker: str, side: str, action: str, count: int,
     original_price: int, spread_cents: int,
+    k_book_ref: Optional[Dict] = None,
 ) -> Dict:
     """
     Retry Kalshi at a wider price (GTC limit order, ~5s timeout, 500ms polling).
-    Uses the full spread as buffer — willing to give back the entire spread to
-    get hedged at breakeven rather than take a loss on PM unwind.
+    Walks the WS orderbook to find the nearest price with real depth, capped at
+    breakeven (original_price +/- spread_cents).
 
     Returns: {'filled': int, 'fill_price': int, 'order_id': str, 'elapsed_ms': int}
     """
     empty = {'filled': 0, 'fill_price': 0, 'order_id': '', 'elapsed_ms': 0}
 
-    # Calculate retry price: widen by the full spread (breakeven hedge)
-    buffer = max(spread_cents, 1)
+    # Calculate max concession (breakeven cap)
+    max_buffer = max(spread_cents, 1)
     if action == 'buy':
-        retry_price = min(original_price + buffer, 95)
+        cap_price = min(original_price + max_buffer, 95)
     else:  # sell
-        retry_price = max(original_price - buffer, 5)
+        cap_price = max(original_price - max_buffer, 5)
 
-    actual_buffer = abs(retry_price - original_price)
+    # Walk WS orderbook to find nearest price with depth >= count
+    retry_price = cap_price  # default: use breakeven cap
+    book_walk_found = False
+
+    if k_book_ref:
+        if action == 'buy':
+            # Buying YES: walk YES asks (from original+1 upward) for depth
+            asks = k_book_ref.get('yes_asks', {})
+            for price_str in sorted(asks.keys(), key=lambda x: int(x)):
+                price = int(price_str)
+                if price <= original_price:
+                    continue  # skip at-or-below original (already failed there)
+                if price > cap_price:
+                    break  # past breakeven cap
+                depth = int(asks[price_str])
+                if depth >= count:
+                    retry_price = price
+                    book_walk_found = True
+                    print(f"[RECOVERY] Kalshi retry: book walk found depth {depth} @ {price}c "
+                          f"(original: {original_price}c, concession: {price - original_price}c)")
+                    break
+        else:  # sell
+            # Selling YES: walk YES bids (from original-1 downward) for depth
+            bids = k_book_ref.get('yes_bids', {})
+            for price_str in sorted(bids.keys(), key=lambda x: -int(x)):
+                price = int(price_str)
+                if price >= original_price:
+                    continue  # skip at-or-above original (already failed there)
+                if price < cap_price:
+                    break  # past breakeven cap
+                depth = int(bids[price_str])
+                if depth >= count:
+                    retry_price = price
+                    book_walk_found = True
+                    print(f"[RECOVERY] Kalshi retry: book walk found depth {depth} @ {price}c "
+                          f"(original: {original_price}c, concession: {original_price - price}c)")
+                    break
+
+    if not book_walk_found:
+        print(f"[RECOVERY] Kalshi retry: no book depth found within cap, using breakeven @ {cap_price}c")
+
+    concession = abs(retry_price - original_price)
     print(f"[RECOVERY] Kalshi retry: placing limit {action} {count} {side} @ {retry_price}c "
-          f"(original: {original_price}c, buffer: {actual_buffer}c)")
+          f"(original: {original_price}c, concession: {concession}c)")
 
     try:
         order_result = await kalshi_api.place_order(
@@ -1072,30 +1114,6 @@ async def execute_arb(
             )
 
     # -------------------------------------------------------------------------
-    # Step 4.6: Kalshi REST orderbook depth verification
-    # -------------------------------------------------------------------------
-    # WS books can show phantom depth. Verify via REST before committing PM order.
-    try:
-        rest_depth = await kalshi_api.verify_rest_depth(
-            session, arb.kalshi_ticker,
-            params['k_side'], params['k_action'],
-            k_limit_price, size
-        )
-        if rest_depth.get('error'):
-            print(f"[DEPTH-REST] {arb.kalshi_ticker}: REST error ({rest_depth['error']}), proceeding with WS-only")
-        elif not rest_depth['passed']:
-            print(f"[DEPTH-REST] {arb.kalshi_ticker}: REST {params['k_action']} {params['k_side']} shows {rest_depth['available']} @ {k_limit_price}c vs need {size} — FAIL")
-            return TradeResult(
-                success=False,
-                abort_reason=f"Kalshi REST depth insufficient ({rest_depth['available']}/{size} @ {k_limit_price}c)",
-                execution_time_ms=int((time.time() - start_time) * 1000),
-            )
-        else:
-            print(f"[DEPTH-REST] {arb.kalshi_ticker}: REST {params['k_action']} {params['k_side']} shows {rest_depth['available']} @ {k_limit_price}c vs need {size} — PASS")
-    except Exception as e:
-        print(f"[DEPTH-REST] {arb.kalshi_ticker}: Exception ({e}), proceeding with WS-only")
-
-    # -------------------------------------------------------------------------
     # Step 5: Place PM order FIRST (unreliable leg - IOC often expires)
     # -------------------------------------------------------------------------
     # CRITICAL FIX: When is_long_team=False, we must trade on the LONG team's
@@ -1334,7 +1352,7 @@ async def execute_arb(
         retry = await _retry_kalshi_wider(
             session, kalshi_api, arb.kalshi_ticker,
             params['k_side'], params['k_action'], pm_filled,
-            k_limit_price, spread,
+            k_limit_price, spread, k_book_ref,
         )
         retry_filled = retry['filled']
 

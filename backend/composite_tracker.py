@@ -2,7 +2,7 @@
 Composite History Tracker
 
 Recalculates pillar composites and fair lines for all active games.
-Called every 15 minutes by Vercel cron (via POST /api/recalculate-composites)
+Called every 15 minutes by the scheduler (composite_recalc job)
 after odds sync writes fresh data to cached_odds and line_snapshots.
 
 Writes time-series rows to composite_history table for tracking

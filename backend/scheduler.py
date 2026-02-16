@@ -658,6 +658,30 @@ def start_scheduler():
         replace_existing=True
     )
 
+    # Composite recalc: Every 15 minutes — recalculate fair lines from fresh pillars
+    def run_composite_recalc():
+        try:
+            from composite_tracker import CompositeTracker
+            tracker = CompositeTracker()
+            result = tracker.recalculate_all()
+            recalced = result.get("recalculated", 0)
+            skipped = result.get("skipped_unchanged", 0)
+            errs = result.get("errors", 0)
+            logger.info(
+                f"[CompositeRecalc] Done: {recalced} recalculated, "
+                f"{skipped} unchanged, {errs} errors"
+            )
+        except Exception as e:
+            logger.error(f"[CompositeRecalc] Failed: {e}")
+
+    scheduler.add_job(
+        func=run_composite_recalc,
+        trigger=IntervalTrigger(minutes=15),
+        id="composite_recalc",
+        name="Recalculate composite scores and fair lines",
+        replace_existing=True
+    )
+
     # Pregame capture: Every 15 minutes — snapshot fair lines, edges, pillars
     def run_pregame_capture():
         try:
@@ -716,6 +740,7 @@ def start_scheduler():
     logger.info(f"  - Live props: every 7 min")
     logger.info(f"  - Closing line capture: every 10 min")
     logger.info(f"  - Exchange sync: every 15 min")
+    logger.info(f"  - Composite recalc: every 15 min")
     logger.info(f"  - Pregame capture: every 15 min")
     logger.info(f"  - Grading: every 60 min")
     logger.info(f"  - Health check: every 6 hours")

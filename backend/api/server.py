@@ -1664,6 +1664,18 @@ async def run_model_feedback(sport: str = None, min_games: int = 50, apply_weigh
     return result
 
 
+@app.get("/api/internal/system-health")
+async def system_health():
+    """Get system health report across all subsystems."""
+    try:
+        from system_health import SystemHealth
+        health = SystemHealth()
+        return health.run_all_checks()
+    except Exception as e:
+        logger.error(f"Error running system health check: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/api/internal/closing-lines")
 async def get_closing_lines(sport: str = None, days: int = 7):
     """Get recent closing line captures for inspection."""

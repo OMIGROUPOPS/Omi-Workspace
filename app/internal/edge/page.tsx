@@ -148,6 +148,21 @@ interface GradedGamesResponse {
   diagnostics?: GradedGamesDiagnostics;
 }
 
+interface HealthCheck {
+  status: "OK" | "WARNING" | "CRITICAL";
+  last_update?: string | null;
+  age_minutes?: number | null;
+  message?: string;
+  neutral_pct?: number;
+  sample_size?: number;
+}
+
+interface HealthReport {
+  overall_status: "OK" | "WARNING" | "CRITICAL";
+  timestamp: string;
+  checks: Record<string, HealthCheck>;
+}
+
 // ---------------------------------------------------------------------------
 // Constants
 // ---------------------------------------------------------------------------
@@ -330,6 +345,9 @@ export default function EdgeInternalPage() {
   const [sortField, setSortField] = useState("commence_time");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
 
+  // Health state
+  const [healthData, setHealthData] = useState<HealthReport | null>(null);
+
   // Pregame markets tab state
   const [liveData, setLiveData] = useState<LiveMarketsResponse | null>(null);
   const [liveLoading, setLiveLoading] = useState(false);
@@ -357,9 +375,22 @@ export default function EdgeInternalPage() {
     }
   }, [sport, market, days, tier, cleanDataOnly]);
 
+  // ------- Health fetch -------
+  const fetchHealth = useCallback(async () => {
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/internal/system-health`);
+      if (res.ok) setHealthData(await res.json());
+    } catch (e) {
+      console.error("Failed to fetch health:", e);
+    }
+  }, []);
+
   useEffect(() => {
-    if (activeTab === "performance") fetchData();
-  }, [activeTab, fetchData]);
+    if (activeTab === "performance") {
+      fetchData();
+      fetchHealth();
+    }
+  }, [activeTab, fetchData, fetchHealth]);
 
   // ------- Graded games fetch -------
   const fetchGradedGames = useCallback(async () => {
@@ -776,6 +807,41 @@ export default function EdgeInternalPage() {
       {/* ================================================================= */}
       {activeTab === "performance" && (
         <>
+          {/* System Health Bar */}
+          {healthData && (
+            <div
+              className={`mt-4 flex items-center gap-4 px-4 py-2.5 rounded-lg border text-sm font-mono ${
+                healthData.overall_status === "CRITICAL"
+                  ? "bg-red-500/10 border-red-500/30 text-red-400"
+                  : healthData.overall_status === "WARNING"
+                    ? "bg-amber-500/10 border-amber-500/30 text-amber-400"
+                    : "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
+              }`}
+            >
+              <span className="font-bold text-xs">
+                SYSTEM {healthData.overall_status}
+              </span>
+              <span className="text-zinc-600">|</span>
+              {Object.entries(healthData.checks).map(([name, check]) => {
+                const color =
+                  check.status === "CRITICAL"
+                    ? "text-red-400"
+                    : check.status === "WARNING"
+                      ? "text-amber-400"
+                      : "text-emerald-400";
+                const label = name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+                return (
+                  <span key={name} className="text-xs" title={check.message || `${check.age_minutes ?? "?"}m ago`}>
+                    <span className={color}>
+                      {check.status === "OK" ? "\u2713" : check.status === "WARNING" ? "\u25B2" : "\u2717"}
+                    </span>{" "}
+                    <span className="text-zinc-500">{label}</span>
+                  </span>
+                );
+              })}
+            </div>
+          )}
+
           {loading ? (
             <div className="mt-12 text-center text-zinc-500">
               Loading performance data...

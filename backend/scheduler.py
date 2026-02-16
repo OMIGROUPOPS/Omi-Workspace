@@ -684,6 +684,22 @@ def start_scheduler():
         replace_existing=True
     )
 
+    # System health check: Every 6 hours — log subsystem health, CRITICAL at ERROR level
+    def run_health_check_job():
+        try:
+            from system_health import run_health_check
+            run_health_check()
+        except Exception as e:
+            logger.error(f"[HealthCheck] Job failed: {e}")
+
+    scheduler.add_job(
+        func=run_health_check_job,
+        trigger=IntervalTrigger(hours=6),
+        id="health_check",
+        name="System health check (all subsystems)",
+        replace_existing=True
+    )
+
     # Daily feedback: 6 AM UTC — analyze performance and adjust pillar weights
     scheduler.add_job(
         func=run_daily_feedback,
@@ -702,6 +718,7 @@ def start_scheduler():
     logger.info(f"  - Exchange sync: every 15 min")
     logger.info(f"  - Pregame capture: every 15 min")
     logger.info(f"  - Grading: every 60 min")
+    logger.info(f"  - Health check: every 6 hours")
     logger.info(f"  - Daily feedback: 6:00 AM UTC")
     
     return scheduler

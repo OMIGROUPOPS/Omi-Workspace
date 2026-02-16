@@ -2222,6 +2222,10 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
 
         # Cleanup
         pusher.stop()
+        try:
+            await pm_api.close()
+        except Exception:
+            pass
         k_ws_task.cancel()
         pm_ws_task.cancel()
         await k_ws.close()

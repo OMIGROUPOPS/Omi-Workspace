@@ -255,6 +255,20 @@ async def _unwind_pm_position(
     """
     if buffers is None:
         buffers = [10, 25]
+
+    # Try SDK close_position first (fastest exit)
+    try:
+        close_resp = await pm_api.close_position(session, pm_slug, outcome_index=outcome_index)
+        filled_qty = int(close_resp.get("cumQuantity", 0))
+        if filled_qty >= qty:
+            fill_price = float(close_resp.get("avgPx", 0))
+            loss_cents = abs(pm_price_cents - fill_price * 100)
+            print(f"[UNWIND] SDK close_position filled {filled_qty} @ {fill_price:.4f} (loss ~{loss_cents:.1f}c)")
+            return filled_qty, loss_cents
+        print(f"[UNWIND] SDK close_position partial: {filled_qty}/{qty}, falling back to manual")
+    except Exception as e:
+        print(f"[UNWIND] SDK close_position failed: {e}, falling back to manual buffers")
+
     for attempt, buffer in enumerate(buffers, 1):
         if reverse_intent in (2, 4):  # SELL: accept less
             price_cents = max(pm_price_cents - buffer, 1)

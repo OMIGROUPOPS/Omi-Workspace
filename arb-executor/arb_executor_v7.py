@@ -43,6 +43,13 @@ try:
 except ImportError:
     HAS_MAPPER = False
 
+# Polymarket US SDK (optional — installed on production server, not locally)
+try:
+    from polymarket_us import AsyncPolymarketUS
+    HAS_PM_SDK = True
+except ImportError:
+    HAS_PM_SDK = False
+
 # ============================================================================
 # FIX: Windows Unicode encoding issue (cp1252 can't handle special chars)
 # ============================================================================
@@ -1361,6 +1368,19 @@ class KalshiAPI:
         return cancelled
 
 
+# SDK enum string mappings (for polymarket-us SDK order creation)
+_INTENT_MAP = {
+    1: 'ORDER_INTENT_BUY_LONG',
+    2: 'ORDER_INTENT_SELL_LONG',
+    3: 'ORDER_INTENT_BUY_SHORT',
+    4: 'ORDER_INTENT_SELL_SHORT',
+}
+_TIF_MAP = {
+    1: 'TIME_IN_FORCE_GOOD_TIL_CANCEL',
+    3: 'TIME_IN_FORCE_IMMEDIATE_OR_CANCEL',
+}
+
+
 class PolymarketUSAPI:
     """Polymarket US API client with Ed25519 authentication"""
     BASE_URL = 'https://api.polymarket.us'
@@ -1369,6 +1389,78 @@ class PolymarketUSAPI:
         self.api_key = api_key
         secret_bytes = base64.b64decode(secret_key)
         self.private_key = ed25519.Ed25519PrivateKey.from_private_bytes(secret_bytes[:32])
+
+        # SDK client (optional — faster order placement via httpx)
+        self._sdk_client = None
+        if HAS_PM_SDK:
+            self._sdk_client = AsyncPolymarketUS(
+                api_key=api_key,
+                secret=secret_key,
+            )
+
+    def _parse_pm_response(self, data: Dict) -> Dict:
+        """Parse PM order response dict into standardized result.
+        Used by both SDK and aiohttp paths (same response shape)."""
+        order_id = data.get('id')
+        executions = data.get('executions', [])
+
+        order_state = data.get('state', '')
+        cum_qty = data.get('cumQuantity', 0)
+        avg_px = data.get('avgPx', {})
+
+        if executions:
+            last_exec = executions[-1]
+            last_order = last_exec.get('order', {})
+            if last_order:
+                exec_state = last_order.get('state', '')
+                exec_cum_qty = last_order.get('cumQuantity', 0)
+                exec_avg_px = last_order.get('avgPx', {})
+                if exec_state:
+                    order_state = exec_state
+                if exec_cum_qty:
+                    cum_qty = exec_cum_qty
+                if exec_avg_px:
+                    avg_px = exec_avg_px
+
+        if isinstance(cum_qty, str):
+            cum_qty = int(cum_qty) if cum_qty else 0
+
+        total_filled = 0
+        fill_price = None
+        for ex in executions:
+            ex_type = ex.get('type', '')
+            if 'FILL' in str(ex_type):
+                shares = ex.get('lastShares', 0)
+                if isinstance(shares, str):
+                    shares = float(shares)
+                total_filled += int(shares)
+                last_px = ex.get('lastPx', {})
+                if last_px:
+                    fill_price = float(last_px.get('value', 0))
+
+        if cum_qty > total_filled:
+            total_filled = cum_qty
+
+        if avg_px and not fill_price:
+            px_value = avg_px.get('value', 0)
+            if px_value:
+                fill_price = float(px_value)
+
+        is_filled = (
+            order_state in ['ORDER_STATE_FILLED', 'ORDER_STATE_PARTIALLY_FILLED']
+            or total_filled > 0
+        )
+
+        print(f"   [DEBUG] Parsed: state={order_state}, filled={total_filled}, price={fill_price}")
+
+        return {
+            'success': is_filled,
+            'fill_count': total_filled,
+            'order_id': order_id,
+            'fill_price': fill_price,
+            'order_state': order_state,
+            'executions': executions
+        }
 
     def _sign(self, ts: str, method: str, path: str) -> str:
         """Sign: message = timestamp + method + path (no query params)"""
@@ -1750,6 +1842,25 @@ class PolymarketUSAPI:
                 'dry_run': True
             }
 
+        # --- SDK fast path (~3x faster than aiohttp, uses httpx internally) ---
+        if self._sdk_client is not None and intent in _INTENT_MAP and tif in _TIF_MAP:
+            try:
+                print(f"   [PM ORDER] {intent_names[intent]} outcome[{outcome_index}] {quantity} @ ${price:.2f} on {market_slug} [SDK]")
+                sdk_resp = await self._sdk_client.orders.create(
+                    market_slug=market_slug,
+                    intent=_INTENT_MAP[intent],
+                    quantity=quantity,
+                    price=price,
+                    order_type='ORDER_TYPE_LIMIT',
+                    time_in_force=_TIF_MAP[tif],
+                    outcome_index=outcome_index,
+                )
+                print(f"   [DEBUG] PM SDK Response: {sdk_resp}")
+                return self._parse_pm_response(sdk_resp)
+            except Exception as e:
+                print(f"   [PM-SDK] SDK order failed, falling back to aiohttp: {e}")
+
+        # --- aiohttp fallback (used when SDK unavailable or failed) ---
         path = '/v1/orders'
         payload = {
             'market_slug': market_slug,
@@ -1778,83 +1889,7 @@ class PolymarketUSAPI:
                 print(f"   [DEBUG] PM Response: {data}")
 
                 if r.status == 200:
-                    order_id = data.get('id')
-                    executions = data.get('executions', [])
-
-                    # CRITICAL FIX: PM response has state/cumQuantity in multiple places:
-                    # 1. Top-level: data['state'], data['cumQuantity']
-                    # 2. Inside LAST execution: executions[-1]['order']['state'], etc.
-                    # We must check the LAST execution for final state!
-
-                    # First try top-level
-                    order_state = data.get('state', '')
-                    cum_qty = data.get('cumQuantity', 0)
-                    avg_px = data.get('avgPx', {})
-
-                    # CRITICAL: Check LAST execution for final state
-                    # The executions array shows order progression: NEW -> PARTIAL -> FILLED
-                    if executions:
-                        last_exec = executions[-1]
-                        # Check if last execution has an 'order' object with state
-                        last_order = last_exec.get('order', {})
-                        if last_order:
-                            exec_state = last_order.get('state', '')
-                            exec_cum_qty = last_order.get('cumQuantity', 0)
-                            exec_avg_px = last_order.get('avgPx', {})
-                            # Use execution data if it has state info
-                            if exec_state:
-                                order_state = exec_state
-                            if exec_cum_qty:
-                                cum_qty = exec_cum_qty
-                            if exec_avg_px:
-                                avg_px = exec_avg_px
-
-                    # Parse cumQuantity (might be string)
-                    if isinstance(cum_qty, str):
-                        cum_qty = int(cum_qty) if cum_qty else 0
-
-                    # Sum fills from execution types as backup
-                    total_filled = 0
-                    fill_price = None
-                    for ex in executions:
-                        ex_type = ex.get('type', '')
-                        # PM returns string types: EXECUTION_TYPE_FILL, EXECUTION_TYPE_PARTIAL_FILL
-                        if 'FILL' in str(ex_type):
-                            shares = ex.get('lastShares', 0)
-                            # lastShares can be string like "1.000"
-                            if isinstance(shares, str):
-                                shares = float(shares)
-                            total_filled += int(shares)
-                            last_px = ex.get('lastPx', {})
-                            if last_px:
-                                fill_price = float(last_px.get('value', 0))
-
-                    # Use cumQuantity if it's higher (more reliable)
-                    if cum_qty > total_filled:
-                        total_filled = cum_qty
-
-                    # Get fill price from avgPx if not set from executions
-                    if avg_px and not fill_price:
-                        px_value = avg_px.get('value', 0)
-                        if px_value:
-                            fill_price = float(px_value)
-
-                    # Check order state - FILLED or PARTIALLY_FILLED with qty means success
-                    is_filled = (
-                        order_state in ['ORDER_STATE_FILLED', 'ORDER_STATE_PARTIALLY_FILLED']
-                        or total_filled > 0
-                    )
-
-                    print(f"   [DEBUG] Parsed: state={order_state}, filled={total_filled}, price={fill_price}")
-
-                    return {
-                        'success': is_filled,
-                        'fill_count': total_filled,
-                        'order_id': order_id,
-                        'fill_price': fill_price,
-                        'order_state': order_state,
-                        'executions': executions
-                    }
+                    return self._parse_pm_response(data)
                 else:
                     return {
                         'success': False,
@@ -1957,6 +1992,20 @@ class PolymarketUSAPI:
         except Exception as e:
             print(f"   [!] PM US open orders error: {e}")
         return []
+
+    async def close_position(self, session, pm_slug: str, outcome_index: int = 0) -> dict:
+        """Close a PM position using SDK. Returns dict with fill info or raises."""
+        if self._sdk_client is None:
+            raise RuntimeError("PM SDK not available")
+        return await self._sdk_client.positions.close(
+            market_slug=pm_slug,
+            outcome_index=outcome_index,
+        )
+
+    async def close(self):
+        """Clean up SDK httpx client."""
+        if self._sdk_client is not None:
+            await self._sdk_client.close()
 
 
 def get_pm_execution_params(arb: ArbOpportunity, fresh_prices: Dict = None, debug_only: bool = False) -> tuple:

@@ -502,6 +502,133 @@ class EdgeAnalytics:
             "insights": result.get("insights", [])[:10],
         }
 
+    # ── Exchange vs sportsbook accuracy ──────────────────────────
+
+    def analyze_exchange_accuracy(self, sport: Optional[str] = None, days: int = 30) -> dict:
+        """Compare exchange implied probabilities vs book implied probs vs actual outcomes.
+
+        Reads from exchange_accuracy_log (populated by grading pipeline).
+        Returns breakdown by sport, market, and exchange.
+        """
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+
+        try:
+            query = self.client.table("exchange_accuracy_log").select(
+                "game_id, sport_key, market_type, exchange, book_name, "
+                "exchange_implied_prob, book_implied_prob, omi_fair_prob, "
+                "actual_value, exchange_error, book_error, exchange_closer, created_at"
+            ).gte("created_at", cutoff).limit(5000)
+
+            if sport:
+                variants = [k for k, v in SPORT_DISPLAY.items() if v == sport]
+                if not variants:
+                    variants = [sport]
+                query = query.in_("sport_key", variants)
+
+            result = query.execute()
+            rows = result.data or []
+        except Exception as e:
+            logger.error(f"[ExchangeAccuracy] Fetch failed: {e}")
+            return {"error": str(e), "sample_size": 0}
+
+        if not rows:
+            return {"error": "No exchange accuracy data found", "sample_size": 0}
+
+        # Normalize sport keys
+        for r in rows:
+            r["sport_key"] = _normalize_sport(r.get("sport_key", ""))
+
+        # Overall stats
+        total = len(rows)
+        exchange_closer_count = sum(1 for r in rows if r.get("exchange_closer") is True)
+        book_closer_count = sum(1 for r in rows if r.get("exchange_closer") is False)
+
+        exchange_errors = [r["exchange_error"] for r in rows if r.get("exchange_error") is not None]
+        book_errors = [r["book_error"] for r in rows if r.get("book_error") is not None]
+
+        overall = {
+            "total": total,
+            "exchange_closer": exchange_closer_count,
+            "book_closer": book_closer_count,
+            "exchange_closer_pct": round(exchange_closer_count / total * 100, 1) if total > 0 else None,
+            "avg_exchange_error": round(sum(exchange_errors) / len(exchange_errors), 4) if exchange_errors else None,
+            "avg_book_error": round(sum(book_errors) / len(book_errors), 4) if book_errors else None,
+        }
+
+        # By exchange
+        by_exchange = self._group_exchange_accuracy(rows, "exchange")
+
+        # By sport
+        by_sport = self._group_exchange_accuracy(rows, "sport_key")
+
+        # By market type
+        by_market = self._group_exchange_accuracy(rows, "market_type")
+
+        # By book
+        by_book = self._group_exchange_accuracy(rows, "book_name")
+
+        # Insights
+        insights = []
+        if overall["exchange_closer_pct"] is not None:
+            pct = overall["exchange_closer_pct"]
+            if pct >= 55:
+                insights.append(f"Exchanges closer to actual result {pct}% of the time — consider increasing exchange weight")
+            elif pct <= 45:
+                insights.append(f"Sportsbooks closer to actual result {round(100 - pct, 1)}% of the time — books more accurate")
+            else:
+                insights.append(f"Exchanges and books roughly equal accuracy ({pct}% exchange closer)")
+
+        # Per-exchange insights
+        for ex, data in by_exchange.items():
+            if data["total"] >= 20 and data.get("exchange_closer_pct") is not None:
+                pct = data["exchange_closer_pct"]
+                if pct >= 55:
+                    insights.append(f"{ex.title()} closer than books {pct}% ({data['total']} games)")
+                elif pct <= 45:
+                    insights.append(f"{ex.title()} less accurate than books ({pct}% closer, {data['total']} games)")
+
+        return {
+            "overall": overall,
+            "by_exchange": by_exchange,
+            "by_sport": by_sport,
+            "by_market": by_market,
+            "by_book": by_book,
+            "insights": insights,
+            "metadata": {
+                "sport": sport or "all",
+                "days": days,
+                "sample_size": total,
+                "generated_at": datetime.now(timezone.utc).isoformat(),
+            },
+        }
+
+    def _group_exchange_accuracy(self, rows: list, field: str) -> dict:
+        """Group exchange accuracy rows by a field and compute stats."""
+        groups: Dict[str, List] = {}
+        for r in rows:
+            key = str(r.get(field, "unknown"))
+            if key not in groups:
+                groups[key] = []
+            groups[key].append(r)
+
+        result = {}
+        for key, group_rows in groups.items():
+            total = len(group_rows)
+            ex_closer = sum(1 for r in group_rows if r.get("exchange_closer") is True)
+            bk_closer = sum(1 for r in group_rows if r.get("exchange_closer") is False)
+            ex_errs = [r["exchange_error"] for r in group_rows if r.get("exchange_error") is not None]
+            bk_errs = [r["book_error"] for r in group_rows if r.get("book_error") is not None]
+
+            result[key] = {
+                "total": total,
+                "exchange_closer": ex_closer,
+                "book_closer": bk_closer,
+                "exchange_closer_pct": round(ex_closer / total * 100, 1) if total > 0 else None,
+                "avg_exchange_error": round(sum(ex_errs) / len(ex_errs), 4) if ex_errs else None,
+                "avg_book_error": round(sum(bk_errs) / len(bk_errs), 4) if bk_errs else None,
+            }
+        return result
+
     # ── Main entry point ───────────────────────────────────────────
 
     def analyze(self, sport: Optional[str] = None, days: int = 30) -> dict:

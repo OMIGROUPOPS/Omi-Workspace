@@ -1307,6 +1307,17 @@ async def internal_edge_analytics(sport: str = None, days: int = 30):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/api/internal/exchange-accuracy")
+async def internal_exchange_accuracy(sport: str = None, days: int = 30):
+    """Exchange vs sportsbook accuracy comparison from exchange_accuracy_log."""
+    try:
+        from edge_analytics import EdgeAnalytics
+        return EdgeAnalytics().analyze_exchange_accuracy(sport.upper() if sport else None, days)
+    except Exception as e:
+        logger.error(f"Error running exchange accuracy analysis: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # =============================================================================
 # PREGAME CAPTURE
 # =============================================================================

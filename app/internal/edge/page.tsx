@@ -348,6 +348,9 @@ export default function EdgeInternalPage() {
   // Health state
   const [healthData, setHealthData] = useState<HealthReport | null>(null);
 
+  // Exchange accuracy state
+  const [exchangeAccuracy, setExchangeAccuracy] = useState<Record<string, unknown> | null>(null);
+
   // Pregame markets tab state
   const [liveData, setLiveData] = useState<LiveMarketsResponse | null>(null);
   const [liveLoading, setLiveLoading] = useState(false);
@@ -385,12 +388,28 @@ export default function EdgeInternalPage() {
     }
   }, []);
 
+  // ------- Exchange accuracy fetch -------
+  const fetchExchangeAccuracy = useCallback(async () => {
+    try {
+      const params = new URLSearchParams();
+      if (sport) params.set("sport", sport);
+      if (days !== 30) params.set("days", String(days));
+      const res = await fetch(
+        `${BACKEND_URL}/api/internal/exchange-accuracy?${params.toString()}`
+      );
+      if (res.ok) setExchangeAccuracy(await res.json());
+    } catch (e) {
+      console.error("Failed to fetch exchange accuracy:", e);
+    }
+  }, [sport, days]);
+
   useEffect(() => {
     if (activeTab === "performance") {
       fetchData();
       fetchHealth();
+      fetchExchangeAccuracy();
     }
-  }, [activeTab, fetchData, fetchHealth]);
+  }, [activeTab, fetchData, fetchHealth, fetchExchangeAccuracy]);
 
   // ------- Graded games fetch -------
   const fetchGradedGames = useCallback(async () => {
@@ -1138,6 +1157,97 @@ export default function EdgeInternalPage() {
                         </div>
                       </div>
                     ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Exchange vs Books Accuracy */}
+              {exchangeAccuracy && !exchangeAccuracy.error && (
+                <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg">
+                  <div className="px-4 py-3 border-b border-zinc-800">
+                    <h2 className="text-sm font-semibold text-zinc-300 font-mono">
+                      EXCHANGE vs BOOKS
+                    </h2>
+                  </div>
+                  <div className="p-4 space-y-4">
+                    {/* Overall stats */}
+                    {(() => {
+                      const ov = (exchangeAccuracy as Record<string, unknown>).overall as Record<string, unknown> | undefined;
+                      if (!ov || (ov.total as number) === 0) return (
+                        <p className="text-zinc-600 text-sm">No exchange accuracy data yet. Data populates after games are graded.</p>
+                      );
+                      const pct = ov.exchange_closer_pct as number;
+                      const total = ov.total as number;
+                      const exCloser = ov.exchange_closer as number;
+                      const bkCloser = ov.book_closer as number;
+                      return (
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="text-zinc-400">Exchange closer to result</span>
+                            <span className={pct >= 55 ? "text-emerald-400 font-mono" : pct <= 45 ? "text-red-400 font-mono" : "text-zinc-300 font-mono"}>
+                              {pct?.toFixed(1)}% ({exCloser}/{total})
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="text-zinc-400">Book closer to result</span>
+                            <span className="text-zinc-300 font-mono">
+                              {(100 - (pct || 0)).toFixed(1)}% ({bkCloser}/{total})
+                            </span>
+                          </div>
+                          {/* Progress bar */}
+                          <div className="w-full bg-zinc-800 rounded-full h-2 mt-1">
+                            <div
+                              className={`h-2 rounded-full ${pct >= 55 ? "bg-emerald-500" : pct <= 45 ? "bg-red-500" : "bg-zinc-500"}`}
+                              style={{ width: `${pct || 50}%` }}
+                            />
+                          </div>
+                          <div className="flex justify-between text-xs text-zinc-600">
+                            <span>Books</span>
+                            <span>Exchanges</span>
+                          </div>
+                        </div>
+                      );
+                    })()}
+
+                    {/* By exchange breakdown */}
+                    {(() => {
+                      const byEx = (exchangeAccuracy as Record<string, unknown>).by_exchange as Record<string, Record<string, unknown>> | undefined;
+                      if (!byEx || Object.keys(byEx).length === 0) return null;
+                      return (
+                        <div className="border-t border-zinc-800 pt-3 space-y-2">
+                          <h3 className="text-xs text-zinc-500 font-mono">BY EXCHANGE</h3>
+                          {Object.entries(byEx).map(([ex, d]) => {
+                            const pct = d.exchange_closer_pct as number;
+                            const total = d.total as number;
+                            return (
+                              <div key={ex} className="flex items-center justify-between text-sm">
+                                <span className="text-white font-mono capitalize">{ex}</span>
+                                <div className="flex items-center gap-3">
+                                  <span className={pct >= 55 ? "text-emerald-400" : pct <= 45 ? "text-red-400" : "text-zinc-400"}>
+                                    {pct?.toFixed(1)}% closer
+                                  </span>
+                                  <span className="text-zinc-600 text-xs">({total})</span>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      );
+                    })()}
+
+                    {/* Insights */}
+                    {(() => {
+                      const insights = (exchangeAccuracy as Record<string, unknown>).insights as string[] | undefined;
+                      if (!insights || insights.length === 0) return null;
+                      return (
+                        <div className="border-t border-zinc-800 pt-3 space-y-1">
+                          <h3 className="text-xs text-zinc-500 font-mono">INSIGHTS</h3>
+                          {insights.map((ins, i) => (
+                            <p key={i} className="text-xs text-zinc-400">{ins}</p>
+                          ))}
+                        </div>
+                      );
+                    })()}
                   </div>
                 </div>
               )}

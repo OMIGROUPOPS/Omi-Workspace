@@ -724,6 +724,24 @@ def start_scheduler():
         replace_existing=True
     )
 
+    # Exchange cleanup: Daily at 4 AM UTC — remove unmapped Polymarket junk rows
+    def run_exchange_cleanup():
+        try:
+            from exchange_tracker import ExchangeTracker
+            tracker = ExchangeTracker()
+            result = tracker.cleanup_unmapped(hours_old=24)
+            logger.info(f"[ExchangeCleanup] {result}")
+        except Exception as e:
+            logger.error(f"[ExchangeCleanup] Failed: {e}")
+
+    scheduler.add_job(
+        func=run_exchange_cleanup,
+        trigger=CronTrigger(hour=4, minute=0),
+        id="exchange_cleanup",
+        name="Clean up unmapped Polymarket rows",
+        replace_existing=True
+    )
+
     # Daily feedback: 6 AM UTC — analyze performance and adjust pillar weights
     scheduler.add_job(
         func=run_daily_feedback,
@@ -744,6 +762,7 @@ def start_scheduler():
     logger.info(f"  - Pregame capture: every 15 min")
     logger.info(f"  - Grading: every 60 min")
     logger.info(f"  - Health check: every 6 hours")
+    logger.info(f"  - Exchange cleanup: 4:00 AM UTC")
     logger.info(f"  - Daily feedback: 6:00 AM UTC")
     
     return scheduler

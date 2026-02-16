@@ -666,7 +666,153 @@ class InternalGrader:
                     }):
                         rows_created += 1
 
+        # Log exchange accuracy comparisons (if exchange data exists for this game)
+        if rows_created > 0:
+            try:
+                ex_logged = self._log_exchange_accuracy(
+                    game_id, sport_key, fair_spread, fair_total,
+                    final_spread, final_total, book_lines,
+                )
+                if ex_logged > 0:
+                    logger.info(f"[GenGrades] {game_id}: logged {ex_logged} exchange accuracy rows")
+            except Exception as e:
+                logger.warning(f"[GenGrades] Exchange accuracy logging failed for {game_id}: {e}")
+
         return rows_created
+
+    def _log_exchange_accuracy(self, game_id: str, sport_key: str,
+                                fair_spread: float, fair_total: float,
+                                final_spread: float, final_total: float,
+                                book_lines: dict) -> int:
+        """Check if exchange data exists for this game and log accuracy comparisons.
+
+        Compares exchange implied probability vs book implied probability
+        vs actual outcome for each matched exchange contract.
+        """
+        try:
+            # Fetch exchange data matched to this game
+            result = self.client.table("exchange_data").select(
+                "exchange, market_type, yes_price, mapped_game_id, contract_ticker"
+            ).eq("mapped_game_id", game_id).order(
+                "snapshot_time", desc=True
+            ).limit(20).execute()
+
+            exchange_rows = result.data or []
+            if not exchange_rows:
+                return 0
+
+            # Deduplicate by (exchange, market_type) — take latest
+            seen = set()
+            deduped = []
+            for r in exchange_rows:
+                key = (r["exchange"], r.get("market_type", ""))
+                if key not in seen:
+                    seen.add(key)
+                    deduped.append(r)
+
+            logged = 0
+            for ex_row in deduped:
+                exchange = ex_row["exchange"]
+                mtype = ex_row.get("market_type", "moneyline")
+                yes_price = ex_row.get("yes_price")
+                if yes_price is None:
+                    continue
+
+                exchange_implied = yes_price / 100.0  # yes_price is 0-100
+
+                # Determine actual binary outcome and book implied prob
+                actual_binary = None
+                book_implied = None
+                actual_value = None
+
+                if mtype == "spread" and fair_spread is not None:
+                    actual_value = final_spread
+                    # For spread: exchange yes_price typically = home covers prob
+                    # Actual: did home cover the spread?
+                    # We need the book spread to determine "covered"
+                    for bname, bdata in book_lines.items():
+                        if bname not in ("fanduel", "draftkings"):
+                            continue
+                        s = bdata.get("spread", {}).get("line")
+                        if s is not None:
+                            actual_binary = 1.0 if final_spread > s else 0.0
+                            h_odds = bdata.get("spread", {}).get("home_odds") or -110
+                            book_implied = american_to_implied(h_odds)
+                            self._insert_accuracy_row(
+                                game_id, sport_key, mtype, exchange, bname,
+                                exchange_implied, book_implied, None,
+                                "home_covered" if actual_binary == 1 else "away_covered",
+                                actual_value, actual_binary,
+                            )
+                            logged += 1
+
+                elif mtype == "total" and fair_total is not None:
+                    actual_value = final_total
+                    for bname, bdata in book_lines.items():
+                        if bname not in ("fanduel", "draftkings"):
+                            continue
+                        t = bdata.get("total", {}).get("line")
+                        if t is not None:
+                            actual_binary = 1.0 if final_total > t else 0.0
+                            o_odds = bdata.get("total", {}).get("over_odds") or -110
+                            book_implied = american_to_implied(o_odds)
+                            self._insert_accuracy_row(
+                                game_id, sport_key, mtype, exchange, bname,
+                                exchange_implied, book_implied, None,
+                                "over" if actual_binary == 1 else "under",
+                                actual_value, actual_binary,
+                            )
+                            logged += 1
+
+                elif mtype == "moneyline":
+                    for bname, bdata in book_lines.items():
+                        if bname not in ("fanduel", "draftkings"):
+                            continue
+                        ml = bdata.get("moneyline", {})
+                        h_odds = ml.get("home_odds")
+                        if h_odds is not None:
+                            book_implied = american_to_implied(h_odds)
+                            actual_binary = 1.0 if final_spread > 0 else 0.0
+                            self._insert_accuracy_row(
+                                game_id, sport_key, mtype, exchange, bname,
+                                exchange_implied, book_implied, None,
+                                "home_win" if actual_binary == 1 else "away_win",
+                                final_spread, actual_binary,
+                            )
+                            logged += 1
+
+            return logged
+        except Exception as e:
+            logger.warning(f"[ExchangeAccuracy] Error for {game_id}: {e}")
+            return 0
+
+    def _insert_accuracy_row(self, game_id, sport_key, market_type, exchange,
+                              book_name, exchange_implied, book_implied,
+                              omi_fair_prob, actual_result, actual_value,
+                              actual_binary):
+        """Insert a single exchange_accuracy_log row."""
+        try:
+            ex_error = abs(exchange_implied - actual_binary) if actual_binary is not None else None
+            bk_error = abs(book_implied - actual_binary) if book_implied is not None and actual_binary is not None else None
+            ex_closer = (ex_error < bk_error) if ex_error is not None and bk_error is not None else None
+
+            self.client.table("exchange_accuracy_log").insert({
+                "game_id": game_id,
+                "sport_key": sport_key,
+                "market_type": market_type,
+                "exchange": exchange,
+                "book_name": book_name,
+                "exchange_implied_prob": round(exchange_implied, 4) if exchange_implied is not None else None,
+                "book_implied_prob": round(book_implied, 4) if book_implied is not None else None,
+                "omi_fair_prob": round(omi_fair_prob, 4) if omi_fair_prob is not None else None,
+                "actual_result": actual_result,
+                "actual_value": round(actual_value, 2) if actual_value is not None else None,
+                "exchange_error": round(ex_error, 4) if ex_error is not None else None,
+                "book_error": round(bk_error, 4) if bk_error is not None else None,
+                "exchange_closer": ex_closer,
+            }).execute()
+        except Exception as e:
+            logger.warning(f"[ExchangeAccuracy] Insert failed: {e}")
 
     def _upsert_prediction_grade(self, record: dict) -> bool:
         """Insert a prediction_grades row. Returns True on success."""

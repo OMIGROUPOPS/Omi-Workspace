@@ -59,6 +59,35 @@ SPORTS_GENERIC_KEYWORDS = [
     "march madness", "bowl game", "all-star",
 ]
 
+# Reject keywords: if any of these appear, the event is NOT a sports game market.
+# Applied BEFORE the sports-positive check to filter politics, crypto, etc.
+REJECT_KEYWORDS = [
+    # Politics / elections
+    "election", "president", "presidential", "congress", "senate", "governor",
+    "democrat", "republican", "trump", "biden", "political", "legislation",
+    "impeach", "cabinet", "white house", "supreme court", "scotus",
+    "vote", "ballot", "primary", "midterm", "electoral",
+    # Crypto / finance
+    "bitcoin", "btc", "ethereum", "eth", "crypto", "solana", "sol",
+    "dogecoin", "doge", "token", "defi", "blockchain", "coinbase",
+    "stock", "s&p", "nasdaq", "dow jones", "fed rate", "interest rate",
+    "inflation", "gdp", "treasury", "forex",
+    # Entertainment / pop culture
+    "oscar", "grammy", "emmy", "tony award", "box office", "movie",
+    "tv show", "netflix", "spotify", "tiktok", "youtube", "twitch",
+    "reality tv", "bachelor", "bachelorette", "survivor",
+    # Esports (not traditional sports)
+    "esport", "e-sport", "league of legends", "dota", "counter-strike",
+    "csgo", "cs2", "valorant", "fortnite", "overwatch", "call of duty",
+    # Science / tech / misc
+    "spacex", "nasa", "ai ", "artificial intelligence", "openai", "chatgpt",
+    "tesla", "elon musk", "climate", "hurricane", "earthquake", "pandemic",
+    "covid", "virus", "vaccine", "fda", "cdc",
+    # Social media / culture war
+    "twitter", "x.com", "meta ", "facebook", "tiktok ban",
+    "kanye", "kardashian", "celebrity",
+]
+
 # Common team name fragments for initial sports detection
 SPORTS_TEAM_KEYWORDS = [
     # NBA
@@ -101,22 +130,96 @@ ALL_SPORTS_KEYWORDS = (
     SPORTS_LEAGUE_KEYWORDS + SPORTS_GENERIC_KEYWORDS + SPORTS_TEAM_KEYWORDS
 )
 
+# Pattern for "Team A vs Team B" matchup format
+VS_PATTERN = re.compile(r'\bvs\.?\b', re.IGNORECASE)
+
+
+def _is_rejected(text: str) -> bool:
+    """Check if text contains any reject keywords (politics, crypto, etc.)."""
+    text_lower = text.lower()
+    for kw in REJECT_KEYWORDS:
+        if kw in text_lower:
+            return True
+    return False
+
 
 def _is_sports_market(
     title: str,
     category: Optional[str] = None,
     tags: Optional[list] = None,
 ) -> bool:
-    """Check if an exchange market is sports-related."""
+    """Check if an exchange market is sports-related (legacy, used by Kalshi)."""
     text = title.lower()
     if category:
         text += " " + category.lower()
     if tags:
         text += " " + " ".join(t.lower() for t in tags)
 
+    if _is_rejected(text):
+        return False
+
     for kw in ALL_SPORTS_KEYWORDS:
         if kw in text:
             return True
+    return False
+
+
+def _is_sports_game_market(
+    title: str,
+    tags: Optional[list] = None,
+    active_team_names: Optional[set] = None,
+) -> bool:
+    """Strict sports game filter for Polymarket.
+
+    Returns True only if the event looks like an actual sports game:
+    1. First, reject if any REJECT_KEYWORDS match.
+    2. Then require at least ONE of:
+       a. Title contains "vs" or "vs." (matchup pattern)
+       b. Title matches a known league keyword (nfl, nba, etc.)
+       c. Title contains a known team name from our active games
+       d. Tags contain a sports league keyword
+
+    This prevents "Who will win the election?" from matching on "win".
+    """
+    text = title.lower()
+    tag_text = ""
+    if tags:
+        tag_text = " ".join(t.lower() for t in tags)
+    full_text = text + " " + tag_text
+
+    # Step 1: Reject non-sports topics
+    if _is_rejected(full_text):
+        return False
+
+    # Step 2a: "vs" pattern = very likely a sports matchup
+    if VS_PATTERN.search(title):
+        return True
+
+    # Step 2b: League keyword in title or tags
+    for kw in SPORTS_LEAGUE_KEYWORDS:
+        if kw in full_text:
+            return True
+
+    # Step 2c: Known team name from our active games
+    if active_team_names:
+        for team in active_team_names:
+            if team in text:
+                return True
+
+    # Step 2d: Check for team keywords (hardcoded list) + require a second signal
+    # A single team keyword alone isn't enough (e.g. "jets" could be non-sports).
+    # Require team keyword + at least one generic sports keyword.
+    has_team = False
+    for kw in SPORTS_TEAM_KEYWORDS:
+        if kw in text:
+            has_team = True
+            break
+
+    if has_team:
+        for kw in SPORTS_GENERIC_KEYWORDS:
+            if kw in text:
+                return True
+
     return False
 
 
@@ -416,6 +519,9 @@ class ExchangeTracker:
 
         Batch approach: pre-loads previous prices in one query, collects all
         rows without DB calls, then batch-inserts in chunks of 200.
+
+        Uses strict _is_sports_game_market() filter to reject politics,
+        crypto, esports, and other non-sports events.
         """
         if not db._is_connected():
             return {"markets": 0, "matched": 0, "error": "Database not connected"}
@@ -423,10 +529,32 @@ class ExchangeTracker:
         # 1. Pre-load all existing Polymarket prices in one query
         prev_prices = self._load_previous_prices("polymarket")
 
+        # Build set of active team names from cached_odds for matching
+        active_team_names: set[str] = set()
+        games = self._load_active_games()
+        for g in games:
+            gdata = g.get("game_data", {})
+            if gdata:
+                home = gdata.get("home_team", "")
+                away = gdata.get("away_team", "")
+                if home:
+                    active_team_names.add(home.lower())
+                    # Add last word (usually team nickname) for partial match
+                    parts = home.lower().split()
+                    if len(parts) > 1:
+                        active_team_names.add(parts[-1])
+                if away:
+                    active_team_names.add(away.lower())
+                    parts = away.lower().split()
+                    if len(parts) > 1:
+                        active_team_names.add(parts[-1])
+
         now = datetime.now(timezone.utc).isoformat()
         rows: list[dict] = []
         sports_matched = 0
         api_errors = 0
+        total_events = 0
+        rejected_events = 0
         offset = 0
         page_limit = 200
 
@@ -452,6 +580,7 @@ class ExchangeTracker:
                     break
 
                 for event in events:
+                    total_events += 1
                     event_title = event.get("title", "")
                     tags_raw = event.get("tags", [])
                     tag_labels = []
@@ -462,7 +591,8 @@ class ExchangeTracker:
                             elif isinstance(t, str):
                                 tag_labels.append(t)
 
-                    if not _is_sports_market(event_title, tags=tag_labels):
+                    if not _is_sports_game_market(event_title, tags=tag_labels, active_team_names=active_team_names):
+                        rejected_events += 1
                         continue
 
                     game_id, sport_key = self._fuzzy_match_game(event_title)
@@ -566,8 +696,17 @@ class ExchangeTracker:
         if total_errors:
             error_msg = f"{api_errors} API + {insert_errors} insert errors"
 
-        summary = {"markets": inserted, "matched": sports_matched, "error": error_msg}
-        logger.info(f"[ExchangeTracker] Polymarket sync: {summary}")
+        summary = {
+            "markets": inserted,
+            "matched": sports_matched,
+            "total_events_scanned": total_events,
+            "rejected_events": rejected_events,
+            "error": error_msg,
+        }
+        logger.info(
+            f"[ExchangeTracker] Polymarket sync: {inserted} inserted, "
+            f"{sports_matched} matched, {rejected_events}/{total_events} rejected"
+        )
         return summary
 
     # =========================================================================
@@ -607,6 +746,47 @@ class ExchangeTracker:
         }
         logger.info(f"[ExchangeTracker] Full sync complete in {duration}s: {result}")
         return result
+
+    # =========================================================================
+    # CLEANUP — remove unmapped junk rows
+    # =========================================================================
+
+    def cleanup_unmapped(self, hours_old: int = 24) -> dict:
+        """Delete Polymarket rows older than `hours_old` hours that have no mapped_game_id.
+
+        These are events that passed the filter but couldn't be matched to any
+        sportsbook game — likely futures, props without a game, or false positives.
+        """
+        if not db._is_connected():
+            return {"deleted": 0, "error": "Database not connected"}
+
+        from datetime import timedelta as _td
+        cutoff = (datetime.now(timezone.utc) - _td(hours=hours_old)).isoformat()
+
+        try:
+            # Delete in batches to avoid timeout
+            total_deleted = 0
+            while True:
+                result = (
+                    db.client.table("exchange_data")
+                    .select("id")
+                    .eq("exchange", "polymarket")
+                    .is_("mapped_game_id", "null")
+                    .lt("snapshot_time", cutoff)
+                    .limit(500)
+                    .execute()
+                )
+                ids = [r["id"] for r in (result.data or [])]
+                if not ids:
+                    break
+                db.client.table("exchange_data").delete().in_("id", ids).execute()
+                total_deleted += len(ids)
+
+            logger.info(f"[ExchangeTracker] Cleanup: deleted {total_deleted} unmapped Polymarket rows older than {hours_old}h")
+            return {"deleted": total_deleted}
+        except Exception as e:
+            logger.error(f"[ExchangeTracker] Cleanup failed: {e}")
+            return {"deleted": 0, "error": str(e)}
 
     # =========================================================================
     # QUERY METHODS

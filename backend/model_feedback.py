@@ -175,8 +175,34 @@ class ModelFeedback:
         except Exception as e:
             logger.warning(f"[ModelFeedback] Pregame accuracy failed for {sport}: {e}")
 
-        # Merge bias + edge analytics + pregame accuracy into metric_data
-        metric_data = {**bias_data, **edge_summary, **pregame_accuracy}
+        # 6e. Exchange vs sportsbook accuracy
+        exchange_accuracy = {}
+        try:
+            from edge_analytics import EdgeAnalytics
+            ea = EdgeAnalytics()
+            ex_result = ea.analyze_exchange_accuracy(sport, days)
+            if "error" not in ex_result:
+                overall = ex_result.get("overall", {})
+                exchange_accuracy = {
+                    "exchange_accuracy": {
+                        "exchange_closer_pct": overall.get("exchange_closer_pct"),
+                        "sample_size": overall.get("total", 0),
+                        "avg_exchange_error": overall.get("avg_exchange_error"),
+                        "avg_book_error": overall.get("avg_book_error"),
+                        "by_exchange": ex_result.get("by_exchange", {}),
+                        "insights": ex_result.get("insights", []),
+                    }
+                }
+                logger.info(
+                    f"[ModelFeedback] Exchange accuracy for {sport}: "
+                    f"exchange_closer={overall.get('exchange_closer_pct')}% "
+                    f"(n={overall.get('total', 0)})"
+                )
+        except Exception as e:
+            logger.warning(f"[ModelFeedback] Exchange accuracy failed for {sport}: {e}")
+
+        # Merge bias + edge analytics + pregame accuracy + exchange accuracy into metric_data
+        metric_data = {**bias_data, **edge_summary, **pregame_accuracy, **exchange_accuracy}
 
         # 7. Get current weights
         current_weights = self._get_current_weights(sport)

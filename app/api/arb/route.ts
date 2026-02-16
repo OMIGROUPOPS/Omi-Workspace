@@ -74,6 +74,7 @@ export interface TradeEntry {
   unwind_loss_cents?: number | null;
   execution_time_ms?: number;
   pm_order_ms?: number;
+  tier?: string;
 }
 
 export interface PnlSummary {

@@ -91,6 +91,7 @@ interface TradeEntry {
   unwind_loss_cents?: number | null;
   execution_time_ms?: number;
   pm_order_ms?: number;
+  tier?: string;
 }
 
 interface PnlSummary {
@@ -1653,6 +1654,18 @@ export default function ArbDashboard() {
                                       <span className="text-yellow-400">{t.gtc_cancel_reason}</span>
                                     </div>
                                   ) : null}
+                                  {t.tier && (
+                                    <div>
+                                      <span className="text-gray-500">Recovery:</span>{" "}
+                                      <span className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${
+                                        t.tier === "TIER1_HEDGE" ? "bg-emerald-500/20 text-emerald-400" :
+                                        t.tier === "TIER2_EXIT" ? "bg-yellow-500/20 text-yellow-400" :
+                                        "bg-red-500/20 text-red-400"
+                                      }`}>
+                                        {t.tier}
+                                      </span>
+                                    </div>
+                                  )}
                                   {t.actual_pnl && (
                                     <>
                                       <div>
@@ -2645,6 +2658,18 @@ export default function ArbDashboard() {
                                       <span className="text-yellow-400">{t.gtc_cancel_reason}</span>
                                     </div>
                                   ) : null}
+                                  {t.tier && (
+                                    <div>
+                                      <span className="text-gray-500">Recovery:</span>{" "}
+                                      <span className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${
+                                        t.tier === "TIER1_HEDGE" ? "bg-emerald-500/20 text-emerald-400" :
+                                        t.tier === "TIER2_EXIT" ? "bg-yellow-500/20 text-yellow-400" :
+                                        "bg-red-500/20 text-red-400"
+                                      }`}>
+                                        {t.tier}
+                                      </span>
+                                    </div>
+                                  )}
                                   {t.actual_pnl && (
                                     <>
                                       <div>

@@ -3659,7 +3659,8 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
                unwind_loss_cents: float = None, *,
                sizing_details: Dict = None, execution_phase: str = "ioc",
                is_maker: bool = False, gtc_rest_time_ms: float = 0,
-               gtc_spread_checks: int = 0, gtc_cancel_reason: str = ""):
+               gtc_spread_checks: int = 0, gtc_cancel_reason: str = "",
+               tier: str = ""):
     """Log trade details with all important fields"""
     global TRADE_LOG
 
@@ -3761,6 +3762,7 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
         'gtc_rest_time_ms': gtc_rest_time_ms,
         'gtc_spread_checks': gtc_spread_checks,
         'gtc_cancel_reason': gtc_cancel_reason,
+        'tier': tier,
     }
 
     # FEE-AWARE P&L CALCULATION

@@ -183,6 +183,7 @@ class TradeResult:
     is_maker: bool = False             # True if filled via GTC (0% fee)
     exited: bool = False               # True if PM was successfully unwound after K failure
     unwind_loss_cents: Optional[float] = None  # Total loss from PM unwind across all contracts (cents)
+    tier: str = ""  # "TIER1_HEDGE", "TIER2_EXIT", "TIER3_UNWIND", or "" for normal/non-recovery
 
 
 def _extract_pm_response_details(pm_result: Dict) -> Dict:
@@ -229,21 +230,38 @@ def _extract_pm_response_details(pm_result: Dict) -> Dict:
     return details
 
 
+def _kalshi_fee_cents(price_cents: int) -> int:
+    """Kalshi fee per contract: ceil(0.07 * P * (1-P) * 100) where P = price/100."""
+    p = price_cents / 100.0
+    return math.ceil(0.07 * p * (1 - p) * 100)
+
+
+def _net_breakeven_buffer(spread_cents: float, k_price_cents: int, pm_fill_price_cents: float) -> int:
+    """Max Kalshi concession (cents) that still yields non-negative net P&L.
+    Uses fee at original K price as approximation (fee curve is flat 40-60c)."""
+    k_fee = _kalshi_fee_cents(k_price_cents)
+    pm_fee = math.ceil(pm_fill_price_cents * 0.001)  # 0.10% of PM premium
+    return max(int(spread_cents - k_fee - pm_fee), 0)
+
+
 async def _unwind_pm_position(
     session, pm_api, pm_slug: str, reverse_intent: int,
     pm_price_cents: float, qty: int, outcome_index: int,
+    buffers: list = None,
 ) -> Tuple[int, Optional[float]]:
     """
-    Attempt to unwind a PM position with two tries: buffer=10, then buffer=25.
+    Attempt to unwind a PM position with configurable buffer steps.
     Returns (filled_count, fill_price_or_None).
     """
-    for attempt, buffer in enumerate([10, 25], 1):
+    if buffers is None:
+        buffers = [10, 25]
+    for attempt, buffer in enumerate(buffers, 1):
         if reverse_intent in (2, 4):  # SELL: accept less
             price_cents = max(pm_price_cents - buffer, 1)
         else:  # BUY: pay more
             price_cents = min(pm_price_cents + buffer, 99)
         price = price_cents / 100.0
-        label = "1st" if attempt == 1 else "2nd (desperation)"
+        label = f"attempt {attempt} (buf={buffer}c)"
         try:
             result = await pm_api.place_order(
                 session, pm_slug, reverse_intent, price, qty,
@@ -1311,6 +1329,7 @@ async def execute_arb(
                 is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
                 exited=True,
                 unwind_loss_cents=loss_cents,
+                tier="TIER3_UNWIND",
             )
 
         # Unwind failed
@@ -1331,6 +1350,7 @@ async def execute_arb(
             gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
             gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
             is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
+            tier="TIER3_UNWIND",
         )
 
     k_order_ms = int((time.time() - k_order_start) * 1000)
@@ -1348,11 +1368,23 @@ async def execute_arb(
     # as buffer (breakeven hedge) before falling back to expensive PM unwind.
     # -------------------------------------------------------------------------
     if k_filled == 0:
-        print(f"[RECOVERY] Kalshi IOC failed — retrying at wider price...")
+        # Compute values used across all tiers
+        pm_fill_price_cents = pm_fill_price * 100
+        original_intent = params['pm_intent']
+        reverse_intent = REVERSE_INTENT[original_intent]
+        _exec_phase = "gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc"
+        _gtc_rest = gtc_phase['rest_time_ms'] if gtc_phase else 0
+        _gtc_checks = gtc_phase['spread_checks'] if gtc_phase else 0
+        _gtc_cancel = gtc_phase.get('cancel_reason', '') if gtc_phase else ''
+        _is_maker = bool(gtc_phase and gtc_phase.get('is_maker', False))
+
+        # ── TIER 1: Kalshi retry with fee-adjusted breakeven cap ──
+        net_cap = _net_breakeven_buffer(spread, k_limit_price, pm_fill_price_cents)
+        print(f"[RECOVERY] TIER 1: Kalshi retry (fee-adjusted cap={net_cap}c, gross spread={spread}c)")
         retry = await _retry_kalshi_wider(
             session, kalshi_api, arb.kalshi_ticker,
             params['k_side'], params['k_action'], pm_filled,
-            k_limit_price, spread, k_book_ref,
+            k_limit_price, net_cap, k_book_ref,
         )
         retry_filled = retry['filled']
 
@@ -1366,9 +1398,9 @@ async def execute_arb(
             update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
 
             if retry_filled >= pm_filled:
-                # Fully hedged at wider price — SUCCESS (reduced profit)
+                # Fully hedged at wider price — SUCCESS
                 cost_per = abs((k_fill_price or 0) - k_limit_price)
-                print(f"[RECOVERY] Kalshi retry: FULLY HEDGED {retry_filled}/{pm_filled} "
+                print(f"[RECOVERY] TIER 1: FULLY HEDGED {retry_filled}/{pm_filled} "
                       f"(cost: {cost_per}c/contract vs original limit {k_limit_price}c)")
                 return TradeResult(
                     success=True,
@@ -1381,35 +1413,81 @@ async def execute_arb(
                     pm_order_ms=pm_order_ms,
                     k_order_ms=k_order_ms,
                     pm_response_details=pm_response_details,
-                    execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
-                    gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
-                    gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
-                    gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
-                    is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
+                    execution_phase=_exec_phase,
+                    gtc_rest_time_ms=_gtc_rest,
+                    gtc_spread_checks=_gtc_checks,
+                    gtc_cancel_reason=_gtc_cancel,
+                    is_maker=_is_maker,
+                    tier="TIER1_HEDGE",
                 )
-            # Partial retry fill — fall through to Step 7.5 for excess PM unwind
+            # Partial retry fill — skip Tiers 2/3, fall through to Step 7.5
 
     # Recompute elapsed after potential retry
     elapsed_ms = int((time.time() - start_time) * 1000)
 
     if k_filled == 0:
-        # Kalshi retry also failed — fall back to PM unwind
-        print(f"[RECOVERY] Kalshi retry failed — unwinding PM position...")
-
+        # Tier 1 failed completely — try PM exit tiers
+        pm_fill_price_cents = pm_fill_price * 100
         original_intent = params['pm_intent']
         reverse_intent = REVERSE_INTENT[original_intent]
-        unwind_filled, unwind_fill_price = await _unwind_pm_position(
+        _exec_phase = "gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc"
+        _gtc_rest = gtc_phase['rest_time_ms'] if gtc_phase else 0
+        _gtc_checks = gtc_phase['spread_checks'] if gtc_phase else 0
+        _gtc_cancel = gtc_phase.get('cancel_reason', '') if gtc_phase else ''
+        _is_maker = bool(gtc_phase and gtc_phase.get('is_maker', False))
+
+        # ── TIER 2: PM near-breakeven exit at fill price +/- 1c ──
+        print(f"[RECOVERY] TIER 2: PM near-breakeven exit (buf=1c, base={pm_fill_price_cents:.1f}c)")
+        t2_filled, t2_fill_price = await _unwind_pm_position(
             session, pm_api, pm_slug, reverse_intent,
-            pm_price_cents, pm_filled, actual_pm_outcome_idx,
+            pm_fill_price_cents, pm_filled, actual_pm_outcome_idx,
+            buffers=[1],
         )
 
-        if unwind_filled > 0:
+        if t2_filled > 0:
             if reverse_intent in (2, 4):
-                loss_per_contract = (pm_fill_price * 100) - (unwind_fill_price * 100)
+                loss_per = pm_fill_price_cents - (t2_fill_price * 100)
             else:
-                loss_per_contract = (unwind_fill_price * 100) - (pm_fill_price * 100)
-            loss_cents = abs(loss_per_contract) * pm_filled
-            print(f"[RECOVERY] Loss from unwind: {abs(loss_per_contract):.1f}c x {pm_filled} = {loss_cents:.1f}c total (+ fees)")
+                loss_per = (t2_fill_price * 100) - pm_fill_price_cents
+            loss_cents = abs(loss_per) * pm_filled
+            print(f"[RECOVERY] TIER 2: EXITED {t2_filled} @ ${t2_fill_price:.3f} "
+                  f"(loss: {abs(loss_per):.1f}c x {pm_filled} = {loss_cents:.1f}c)")
+            return TradeResult(
+                success=False,
+                kalshi_filled=0,
+                pm_filled=0,
+                kalshi_price=k_limit_price,
+                pm_price=pm_fill_price,
+                unhedged=False,
+                abort_reason=f"Kalshi failed, PM exited near-breakeven (loss: {loss_cents:.1f}c)",
+                execution_time_ms=int((time.time() - start_time) * 1000),
+                pm_order_ms=pm_order_ms,
+                k_order_ms=k_order_ms,
+                pm_response_details=pm_response_details,
+                execution_phase=_exec_phase,
+                gtc_rest_time_ms=_gtc_rest,
+                gtc_spread_checks=_gtc_checks,
+                gtc_cancel_reason=_gtc_cancel,
+                is_maker=_is_maker,
+                exited=True,
+                unwind_loss_cents=loss_cents,
+                tier="TIER2_EXIT",
+            )
+
+        # ── TIER 3: PM desperation unwind at 10c/25c (existing behavior) ──
+        print(f"[RECOVERY] TIER 3: PM desperation unwind (bufs=[10,25]c)")
+        t3_filled, t3_fill_price = await _unwind_pm_position(
+            session, pm_api, pm_slug, reverse_intent,
+            pm_fill_price_cents, pm_filled, actual_pm_outcome_idx,
+        )
+
+        if t3_filled > 0:
+            if reverse_intent in (2, 4):
+                loss_per = pm_fill_price_cents - (t3_fill_price * 100)
+            else:
+                loss_per = (t3_fill_price * 100) - pm_fill_price_cents
+            loss_cents = abs(loss_per) * pm_filled
+            print(f"[RECOVERY] TIER 3: EXITED {t3_filled} (loss: {loss_cents:.1f}c)")
 
             return TradeResult(
                 success=False,
@@ -1423,16 +1501,18 @@ async def execute_arb(
                 pm_order_ms=pm_order_ms,
                 k_order_ms=k_order_ms,
                 pm_response_details=pm_response_details,
-                execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
-                gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
-                gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
-                gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
-                is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
+                execution_phase=_exec_phase,
+                gtc_rest_time_ms=_gtc_rest,
+                gtc_spread_checks=_gtc_checks,
+                gtc_cancel_reason=_gtc_cancel,
+                is_maker=_is_maker,
                 exited=True,
                 unwind_loss_cents=loss_cents,
+                tier="TIER3_UNWIND",
             )
 
-        # Unwind failed - still unhedged
+        # All tiers failed - still unhedged
+        print(f"[RECOVERY] ALL TIERS FAILED — position remains unhedged!")
         return TradeResult(
             success=False,
             kalshi_filled=0,
@@ -1440,16 +1520,17 @@ async def execute_arb(
             kalshi_price=k_limit_price,
             pm_price=pm_fill_price,
             unhedged=True,
-            abort_reason=f"Kalshi: no fill, PM unwind failed - UNHEDGED!",
+            abort_reason=f"Kalshi: no fill, all recovery tiers failed - UNHEDGED!",
             execution_time_ms=int((time.time() - start_time) * 1000),
             pm_order_ms=pm_order_ms,
             k_order_ms=k_order_ms,
             pm_response_details=pm_response_details,
-            execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
-            gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
-            gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
-            gtc_cancel_reason=gtc_phase.get('cancel_reason', '') if gtc_phase else '',
-            is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
+            execution_phase=_exec_phase,
+            gtc_rest_time_ms=_gtc_rest,
+            gtc_spread_checks=_gtc_checks,
+            gtc_cancel_reason=_gtc_cancel,
+            is_maker=_is_maker,
+            tier="TIER3_UNWIND",
         )
 
     # -------------------------------------------------------------------------

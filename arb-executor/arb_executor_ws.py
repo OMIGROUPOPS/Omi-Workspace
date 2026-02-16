@@ -1330,7 +1330,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                           is_maker=result.is_maker,
                           gtc_rest_time_ms=result.gtc_rest_time_ms,
                           gtc_spread_checks=result.gtc_spread_checks,
-                          gtc_cancel_reason=result.gtc_cancel_reason)
+                          gtc_cancel_reason=result.gtc_cancel_reason,
+                          tier=result.tier)
 
                 # Cooldown: prevent re-trading same game too quickly
                 game_success_cooldown[arb.cache_key] = time.time()
@@ -1362,7 +1363,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                           is_maker=result.is_maker,
                           gtc_rest_time_ms=result.gtc_rest_time_ms,
                           gtc_spread_checks=result.gtc_spread_checks,
-                          gtc_cancel_reason=result.gtc_cancel_reason)
+                          gtc_cancel_reason=result.gtc_cancel_reason,
+                          tier=result.tier)
                 # Save unhedged position for recovery
                 try:
                     from arb_executor_v7 import HedgeState
@@ -1382,7 +1384,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             elif result.exited:
                 # PM filled, K failed, PM successfully unwound — position is flat
                 timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
-                print(f"[EXEC] EXITED: {result.abort_reason} | {timing}")
+                tier_info = f" [{result.tier}]" if result.tier else ""
+                print(f"[EXEC] EXITED{tier_info}: {result.abort_reason} | {timing}")
                 k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
                 pm_result = {'fill_count': 0, 'fill_price': result.pm_price}
                 log_trade(arb, k_result, pm_result, 'EXITED',
@@ -1394,7 +1397,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                           is_maker=result.is_maker,
                           gtc_rest_time_ms=result.gtc_rest_time_ms,
                           gtc_spread_checks=result.gtc_spread_checks,
-                          gtc_cancel_reason=result.gtc_cancel_reason)
+                          gtc_cancel_reason=result.gtc_cancel_reason,
+                          tier=result.tier)
 
             elif result.pm_filled == 0 and result.pm_order_ms > 0:
                 # Real PM no-fill: order was sent to PM API but IOC expired
@@ -1412,7 +1416,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                           is_maker=result.is_maker,
                           gtc_rest_time_ms=result.gtc_rest_time_ms,
                           gtc_spread_checks=result.gtc_spread_checks,
-                          gtc_cancel_reason=result.gtc_cancel_reason)
+                          gtc_cancel_reason=result.gtc_cancel_reason,
+                          tier=result.tier)
 
             else:
                 # Early abort — never reached PM API (safety, phantom, pm_long_team, etc.)

@@ -275,6 +275,7 @@ class DashboardPusher:
                         "unwind_loss_cents": t.get("unwind_loss_cents"),
                         "execution_time_ms": t.get("execution_time_ms", 0),
                         "pm_order_ms": t.get("pm_order_ms", 0),
+                        "tier": t.get("tier", ""),
                     }
                     for t in recent
                 ]

@@ -139,7 +139,7 @@ class SystemHealth:
             result = db.client.table("predictions").select(
                 "pillar_execution, pillar_incentives, pillar_shocks, "
                 "pillar_time_decay, pillar_flow"
-            ).gt("updated_at", cutoff).limit(200).execute()
+            ).gt("predicted_at", cutoff).limit(200).execute()
 
             rows = result.data or []
             if not rows:

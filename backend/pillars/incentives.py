@@ -246,7 +246,96 @@ def calculate_incentives_score(
     if rivalry:
         home_motivation = min(1.0, home_motivation + rivalry_boost)
         away_motivation = min(1.0, away_motivation + rivalry_boost)
-    
+
+    # === Season stage weighting ===
+    # Late-season games have more motivation variance
+    month = game_time.month
+    season_stage_boost = 0.0
+    if sport in ["NCAAB", "basketball_ncaab"]:
+        if month in [2, 3]:  # Feb-Mar: bubble teams, conference tournaments
+            season_stage_boost = 0.08
+            reasoning_parts.append("Late-season NCAAB: tournament positioning")
+        elif month == 11:  # November: early season exhibition feel
+            season_stage_boost = -0.03
+    elif sport in ["NBA", "basketball_nba"]:
+        if month in [3, 4]:  # Playoff push
+            season_stage_boost = 0.06
+            reasoning_parts.append("NBA playoff push: heightened motivation")
+        elif month in [11, 12]:  # Early season
+            season_stage_boost = -0.02
+    elif sport in ["NFL", "americanfootball_nfl"]:
+        if month in [12, 1]:  # Playoff race
+            season_stage_boost = 0.05
+            reasoning_parts.append("NFL playoff race: every game matters")
+    elif sport in ["NHL", "icehockey_nhl"]:
+        if month in [3, 4]:  # Playoff push
+            season_stage_boost = 0.05
+
+    # Apply season stage to both teams (affects totals via avg_motivation)
+    if season_stage_boost != 0:
+        home_motivation = min(1.0, home_motivation + season_stage_boost)
+        away_motivation = min(1.0, away_motivation + season_stage_boost)
+
+    # === Win streak / losing streak as motivation signal ===
+    streak_motivation_adj = 0.0
+    home_streak_str = home_incentive.get("streak", "")
+    away_streak_str = away_incentive.get("streak", "")
+
+    def _parse_streak_val(s):
+        if not s:
+            return 0
+        s = str(s).strip()
+        try:
+            if s.startswith("W"):
+                return int(s[1:])
+            if s.startswith("L"):
+                return -int(s[1:])
+        except (ValueError, IndexError):
+            pass
+        return 0
+
+    home_sv = _parse_streak_val(home_streak_str)
+    away_sv = _parse_streak_val(away_streak_str)
+
+    # Hot team = confident/motivated, cold team = pressing/demoralized
+    if abs(home_sv) >= 3 or abs(away_sv) >= 3:
+        # Positive streak_motivation_adj → away more motivated → score goes up
+        home_streak_mot = home_sv * 0.02  # W5=+0.10, L5=-0.10
+        away_streak_mot = away_sv * 0.02
+        streak_motivation_adj = away_streak_mot - home_streak_mot
+        streak_motivation_adj = max(-0.15, min(0.15, streak_motivation_adj))
+
+        if home_streak_str or away_streak_str:
+            reasoning_parts.append(
+                f"Streaks: {home_team} {home_streak_str or 'N/A'} vs {away_team} {away_streak_str or 'N/A'}"
+            )
+        logger.info(f"[Incentives] Streak motivation adj={streak_motivation_adj:.3f}")
+
+    # === Underdog motivation from standings gap ===
+    underdog_adj = 0.0
+    home_wp = home_incentive.get("win_pct", 0.5)
+    away_wp = away_incentive.get("win_pct", 0.5)
+    home_w = home_incentive.get("wins", 0)
+    home_l = home_incentive.get("losses", 0)
+    away_w = away_incentive.get("wins", 0)
+    away_l = away_incentive.get("losses", 0)
+
+    if (home_w + home_l) > 0 and (away_w + away_l) > 0:
+        wp_gap = abs(home_wp - away_wp)
+        if wp_gap >= 0.25:
+            # Big underdog may play harder (nothing to lose), favorite may coast
+            if home_wp > away_wp:
+                underdog_adj = 0.05  # Away underdog has motivation edge
+                reasoning_parts.append(
+                    f"{away_team} ({away_w}-{away_l}) underdog — nothing to lose"
+                )
+            else:
+                underdog_adj = -0.05  # Home underdog has motivation edge
+                reasoning_parts.append(
+                    f"{home_team} ({home_w}-{home_l}) underdog — nothing to lose"
+                )
+            logger.info(f"[Incentives] Underdog adj={underdog_adj:.3f} (wp_gap={wp_gap:.3f})")
+
     motivation_differential = away_motivation - home_motivation
     
     tank_alert = False
@@ -436,6 +525,9 @@ def calculate_incentives_score(
 
     # Apply soccer-specific motivation adjustment DIRECTLY
     score += soccer_motivation_adjustment
+
+    # Apply streak and underdog adjustments
+    score += streak_motivation_adj + underdog_adj
 
     # Clamp to valid range but allow strong edges
     score = max(0.15, min(0.85, score))

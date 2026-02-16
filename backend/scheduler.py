@@ -640,6 +640,24 @@ def start_scheduler():
         replace_existing=True
     )
 
+    # Exchange sync: Every 15 minutes — Kalshi + Polymarket
+    def run_exchange_sync():
+        try:
+            from exchange_tracker import ExchangeTracker
+            tracker = ExchangeTracker()
+            result = tracker.sync_all()
+            logger.info(f"[ExchangeSync] {result}")
+        except Exception as e:
+            logger.error(f"[ExchangeSync] Failed: {e}")
+
+    scheduler.add_job(
+        func=run_exchange_sync,
+        trigger=IntervalTrigger(minutes=15),
+        id="exchange_sync",
+        name="Sync Kalshi + Polymarket exchange data",
+        replace_existing=True
+    )
+
     # Pregame capture: Every 15 minutes — snapshot fair lines, edges, pillars
     def run_pregame_capture():
         try:
@@ -681,6 +699,7 @@ def start_scheduler():
     logger.info(f"  - Live: every {LIVE_POLL_INTERVAL_MINUTES} min")
     logger.info(f"  - Live props: every 7 min")
     logger.info(f"  - Closing line capture: every 10 min")
+    logger.info(f"  - Exchange sync: every 15 min")
     logger.info(f"  - Pregame capture: every 15 min")
     logger.info(f"  - Grading: every 60 min")
     logger.info(f"  - Daily feedback: 6:00 AM UTC")

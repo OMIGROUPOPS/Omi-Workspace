@@ -476,6 +476,15 @@ class ExchangeTracker:
                         event_id = m.get("conditionId", m.get("id", ""))
                         slug = m.get("slug", "")
 
+                        # Infer market_type from question text
+                        q_lower = (question + " " + event_title).lower()
+                        if any(kw in q_lower for kw in ["spread", "cover", "margin", "by more"]):
+                            market_type = "spread"
+                        elif any(kw in q_lower for kw in ["total", "over", "under", "combined"]):
+                            market_type = "total"
+                        else:
+                            market_type = "moneyline"
+
                         yes_price = None
                         no_price = None
                         try:
@@ -515,6 +524,7 @@ class ExchangeTracker:
                             "event_id": event_id,
                             "event_title": display_title,
                             "contract_ticker": slug,
+                            "market_type": market_type,
                             "yes_price": yes_price,
                             "no_price": no_price,
                             "yes_bid": None,

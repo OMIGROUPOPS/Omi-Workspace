@@ -337,19 +337,31 @@ def _calculate_fair_ml_from_book_3way(
 
 def _extract_median_lines(game_data: dict) -> dict:
     """
-    Extract median book lines from game_data bookmakers (Odds API format).
-    Returns {book_spread, book_total, book_ml_home, book_ml_away, book_ml_draw}.
+    Extract Pinnacle-weighted consensus lines from game_data bookmakers.
+    Pinnacle 50%, FD 25%, DK 25% when Pinnacle available.
+    Falls back to simple median if Pinnacle not present.
+    Returns {book_spread, book_total, book_ml_home, book_ml_away, book_ml_draw,
+             pinnacle_spread, pinnacle_total}.
     """
     home_team = game_data.get("home_team", "")
     bookmakers = game_data.get("bookmakers", [])
 
-    spread_lines = []
-    total_lines = []
+    # Per-book tracking for weighted consensus
+    pin_spread = None
+    pin_total = None
+    fd_spread = None
+    fd_total = None
+    dk_spread = None
+    dk_total = None
+
+    all_spread_lines = []
+    all_total_lines = []
     ml_home_odds = []
     ml_away_odds = []
     ml_draw_odds = []
 
     for bk in bookmakers:
+        bk_key = (bk.get("key") or "").lower()
         for market in bk.get("markets", []):
             key = market.get("key")
             outcomes = market.get("outcomes", [])
@@ -357,12 +369,26 @@ def _extract_median_lines(game_data: dict) -> dict:
             if key == "spreads":
                 for o in outcomes:
                     if o.get("name") == home_team and o.get("point") is not None:
-                        spread_lines.append(o["point"])
+                        val = o["point"]
+                        all_spread_lines.append(val)
+                        if bk_key == "pinnacle":
+                            pin_spread = val
+                        elif bk_key == "fanduel":
+                            fd_spread = val
+                        elif bk_key == "draftkings":
+                            dk_spread = val
 
             elif key == "totals":
                 for o in outcomes:
                     if o.get("name") == "Over" and o.get("point") is not None:
-                        total_lines.append(o["point"])
+                        val = o["point"]
+                        all_total_lines.append(val)
+                        if bk_key == "pinnacle":
+                            pin_total = val
+                        elif bk_key == "fanduel":
+                            fd_total = val
+                        elif bk_key == "draftkings":
+                            dk_total = val
 
             elif key == "h2h":
                 for o in outcomes:
@@ -373,12 +399,40 @@ def _extract_median_lines(game_data: dict) -> dict:
                     else:
                         ml_away_odds.append(o["price"])
 
+    def _weighted_consensus(pin, fd, dk, all_vals):
+        """Pinnacle 50%, retail avg 50%. Fallback to median."""
+        if pin is not None:
+            retail_vals = [v for v in [fd, dk] if v is not None]
+            if retail_vals:
+                retail_avg = sum(retail_vals) / len(retail_vals)
+                result = pin * 0.50 + retail_avg * 0.50
+                logger.info(
+                    f"[FairLine] Pinnacle={pin}, FD={fd}, DK={dk}, "
+                    f"weighted_consensus={result:.2f}"
+                )
+                return result
+            # Pinnacle only, no retail
+            logger.info(f"[FairLine] Pinnacle={pin} only (no FD/DK)")
+            return pin
+        # No Pinnacle → simple median
+        if all_vals:
+            med = statistics.median(all_vals)
+            if fd is not None or dk is not None:
+                logger.debug(f"[FairLine] No Pinnacle, median={med} (FD={fd}, DK={dk})")
+            return med
+        return None
+
+    book_spread = _weighted_consensus(pin_spread, fd_spread, dk_spread, all_spread_lines)
+    book_total = _weighted_consensus(pin_total, fd_total, dk_total, all_total_lines)
+
     return {
-        "book_spread": statistics.median(spread_lines) if spread_lines else None,
-        "book_total": statistics.median(total_lines) if total_lines else None,
+        "book_spread": book_spread,
+        "book_total": book_total,
         "book_ml_home": round(statistics.median(ml_home_odds)) if ml_home_odds else None,
         "book_ml_away": round(statistics.median(ml_away_odds)) if ml_away_odds else None,
         "book_ml_draw": round(statistics.median(ml_draw_odds)) if ml_draw_odds else None,
+        "pinnacle_spread": pin_spread,
+        "pinnacle_total": pin_total,
     }
 
 

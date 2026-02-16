@@ -26,8 +26,8 @@ CAPTURE_WINDOW_MAX_MINUTES = 30
 
 def _extract_median_lines(game_data: dict) -> dict:
     """
-    Extract median book lines from game_data bookmakers (Odds API format).
-    Same logic as composite_tracker._extract_median_lines.
+    Extract median book lines + Pinnacle-specific lines from game_data bookmakers.
+    Pinnacle closing lines are captured separately for CLV calculation.
     """
     home_team = game_data.get("home_team", "")
     bookmakers = game_data.get("bookmakers", [])
@@ -38,7 +38,14 @@ def _extract_median_lines(game_data: dict) -> dict:
     ml_away_odds = []
     ml_draw_odds = []
 
+    # Track Pinnacle specifically for CLV
+    pinnacle_spread = None
+    pinnacle_total = None
+    pinnacle_ml_home = None
+    pinnacle_ml_away = None
+
     for bk in bookmakers:
+        bk_key = (bk.get("key") or "").lower()
         for market in bk.get("markets", []):
             key = market.get("key")
             outcomes = market.get("outcomes", [])
@@ -47,20 +54,28 @@ def _extract_median_lines(game_data: dict) -> dict:
                 for o in outcomes:
                     if o.get("name") == home_team and o.get("point") is not None:
                         spread_lines.append(o["point"])
+                        if bk_key == "pinnacle":
+                            pinnacle_spread = o["point"]
 
             elif key == "totals":
                 for o in outcomes:
                     if o.get("name") == "Over" and o.get("point") is not None:
                         total_lines.append(o["point"])
+                        if bk_key == "pinnacle":
+                            pinnacle_total = o["point"]
 
             elif key == "h2h":
                 for o in outcomes:
                     if o.get("name") == home_team:
                         ml_home_odds.append(o["price"])
+                        if bk_key == "pinnacle":
+                            pinnacle_ml_home = o["price"]
                     elif o.get("name") == "Draw":
                         ml_draw_odds.append(o["price"])
                     else:
                         ml_away_odds.append(o["price"])
+                        if bk_key == "pinnacle":
+                            pinnacle_ml_away = o["price"]
 
     return {
         "book_spread": statistics.median(spread_lines) if spread_lines else None,
@@ -68,6 +83,10 @@ def _extract_median_lines(game_data: dict) -> dict:
         "book_ml_home": round(statistics.median(ml_home_odds)) if ml_home_odds else None,
         "book_ml_away": round(statistics.median(ml_away_odds)) if ml_away_odds else None,
         "book_ml_draw": round(statistics.median(ml_draw_odds)) if ml_draw_odds else None,
+        "pinnacle_spread": pinnacle_spread,
+        "pinnacle_total": pinnacle_total,
+        "pinnacle_ml_home": pinnacle_ml_home,
+        "pinnacle_ml_away": pinnacle_ml_away,
     }
 
 
@@ -174,15 +193,59 @@ def run_closing_line_capture() -> dict:
                 "composite_ml": fair_lines.get("composite_ml"),
             }
 
+            # Pinnacle closing lines for CLV tracking
+            pin_spread = book_lines.get("pinnacle_spread")
+            pin_total = book_lines.get("pinnacle_total")
+            pin_ml_home = book_lines.get("pinnacle_ml_home")
+            pin_ml_away = book_lines.get("pinnacle_ml_away")
+
+            if pin_spread is not None:
+                closing_row["pinnacle_spread"] = pin_spread
+            if pin_total is not None:
+                closing_row["pinnacle_total"] = pin_total
+            if pin_ml_home is not None:
+                closing_row["pinnacle_ml_home"] = pin_ml_home
+            if pin_ml_away is not None:
+                closing_row["pinnacle_ml_away"] = pin_ml_away
+
+            # Pre-calculate CLV at capture time (OMI fair vs Pinnacle close)
+            # Positive CLV = OMI fair line was sharper than Pinnacle
+            omi_fair_spread = fair_lines.get("omi_fair_spread")
+            if omi_fair_spread is not None and pin_spread is not None:
+                spread_clv = abs(omi_fair_spread - pin_spread)
+                closing_row["spread_clv"] = round(spread_clv, 2)
+                logger.info(
+                    f"[ClosingLine] CLV for {game_id}: OMI={omi_fair_spread}, "
+                    f"Pinnacle={pin_spread}, CLV={spread_clv:.2f}pts"
+                )
+
+            omi_fair_total = fair_lines.get("omi_fair_total")
+            if omi_fair_total is not None and pin_total is not None:
+                total_clv = abs(omi_fair_total - pin_total)
+                closing_row["total_clv"] = round(total_clv, 2)
+
             # Upsert (update on conflict with game_id)
-            db.client.table("closing_lines").upsert(
-                closing_row, on_conflict="game_id"
-            ).execute()
+            # Unknown columns will be silently ignored by Supabase
+            try:
+                db.client.table("closing_lines").upsert(
+                    closing_row, on_conflict="game_id"
+                ).execute()
+            except Exception as upsert_err:
+                # If Pinnacle/CLV columns don't exist yet, retry without them
+                for extra_col in ["pinnacle_spread", "pinnacle_total",
+                                  "pinnacle_ml_home", "pinnacle_ml_away",
+                                  "spread_clv", "total_clv"]:
+                    closing_row.pop(extra_col, None)
+                db.client.table("closing_lines").upsert(
+                    closing_row, on_conflict="game_id"
+                ).execute()
+                logger.warning(f"[ClosingLine] Pinnacle/CLV columns not in table yet, saved without: {upsert_err}")
 
             captured += 1
+            pin_info = f", Pinnacle={pin_spread}/{pin_total}" if pin_spread or pin_total else ""
             logger.info(
                 f"[ClosingLine] Captured {game_id} ({sport_key}): "
-                f"spread={book_lines['book_spread']} total={book_lines['book_total']}"
+                f"spread={book_lines['book_spread']} total={book_lines['book_total']}{pin_info}"
             )
 
         except Exception as e:

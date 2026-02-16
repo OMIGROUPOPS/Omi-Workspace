@@ -277,16 +277,64 @@ def calculate_time_decay_score(
         situational_adjustment -= 0.1
         reasoning_parts.append(f"{away_team} playing 3rd game in 4 nights")
 
-    rest_diff = home_rest["days_rest"] - away_rest["days_rest"]
+    # === Enhanced rest differential — ANY asymmetry produces signal ===
+    home_days = home_rest["days_rest"]
+    away_days = away_rest["days_rest"]
+    rest_diff = home_days - away_days
+
     if rest_diff <= -2:
-        situational_adjustment += 0.1
-        reasoning_parts.append(f"Rest disparity: {home_team} {home_rest['days_rest']}d vs {away_team} {away_rest['days_rest']}d")
+        situational_adjustment += 0.12
+        reasoning_parts.append(f"Rest disparity: {home_team} {home_days}d vs {away_team} {away_days}d")
     elif rest_diff >= 2:
-        situational_adjustment -= 0.1
-        reasoning_parts.append(f"Rest advantage: {home_team} {home_rest['days_rest']}d vs {away_team} {away_rest['days_rest']}d")
-    elif sport in ["NFL", "americanfootball_nfl"] and home_rest["days_rest"] >= 14 and away_rest["days_rest"] >= 14:
-        # Super Bowl / Championship game - both teams have 2 weeks rest
+        situational_adjustment -= 0.12
+        reasoning_parts.append(f"Rest advantage: {home_team} {home_days}d vs {away_team} {away_days}d")
+    elif rest_diff == -1 and (home_days > 0 or away_days > 0):
+        # 1-day diff still matters, especially for NBA/NCAAB
+        adj = 0.06 * importance  # NBA importance=1.0 → 6%, NFL importance=0.4 → 2.4%
+        situational_adjustment += adj
+        reasoning_parts.append(f"Rest edge: {away_team} {away_days}d vs {home_team} {home_days}d rest")
+    elif rest_diff == 1 and (home_days > 0 or away_days > 0):
+        adj = 0.06 * importance
+        situational_adjustment -= adj
+        reasoning_parts.append(f"Rest edge: {home_team} {home_days}d vs {away_team} {away_days}d rest")
+    elif sport in ["NFL", "americanfootball_nfl"] and home_days >= 14 and away_days >= 14:
         reasoning_parts.append("Championship game: both teams fully rested (2 weeks)")
+
+    # === Form / momentum from recent streaks ===
+    # When rest data is symmetric or unavailable, streaks still produce signal
+    form_adj = 0.0
+    try:
+        home_incentive_data = espn_client.get_team_incentive_score(sport, home_team)
+        away_incentive_data = espn_client.get_team_incentive_score(sport, away_team)
+
+        def _parse_streak(s):
+            if not s:
+                return 0
+            s = str(s).strip()
+            try:
+                if s.startswith("W"):
+                    return int(s[1:])
+                if s.startswith("L"):
+                    return -int(s[1:])
+            except (ValueError, IndexError):
+                pass
+            return 0
+
+        home_sv = _parse_streak(home_incentive_data.get("streak", ""))
+        away_sv = _parse_streak(away_incentive_data.get("streak", ""))
+        streak_gap = home_sv - away_sv  # positive = home on better streak
+
+        if abs(streak_gap) >= 2:
+            # Momentum matters: team on hot streak has confidence/rhythm
+            form_adj = -streak_gap * 0.012  # 5-game gap → 6%
+            form_adj = max(-0.10, min(0.10, form_adj))
+            reasoning_parts.append(
+                f"Form: {home_team} {home_incentive_data.get('streak', 'N/A')} "
+                f"vs {away_team} {away_incentive_data.get('streak', 'N/A')}"
+            )
+            logger.info(f"[TimeDecay] Form adj={form_adj:.3f} (streak_gap={streak_gap})")
+    except Exception as e:
+        logger.debug(f"[TimeDecay] Form lookup failed: {e}")
 
     if away_rest["travel_situation"] == "road_trip":
         situational_adjustment -= 0.05
@@ -295,8 +343,8 @@ def calculate_time_decay_score(
         situational_adjustment -= 0.03
 
     base_score = 0.5
-    score = base_score + fatigue_differential + situational_adjustment + soccer_adjustment
-    logger.info(f"[TimeDecay] Score calc: base={base_score}, fatigue={fatigue_differential:.3f}, situational={situational_adjustment:.3f}, soccer={soccer_adjustment:.3f}")
+    score = base_score + fatigue_differential + situational_adjustment + soccer_adjustment + form_adj
+    logger.info(f"[TimeDecay] Score calc: base={base_score}, fatigue={fatigue_differential:.3f}, situational={situational_adjustment:.3f}, soccer={soccer_adjustment:.3f}, form={form_adj:.3f}")
     score = max(0.0, min(1.0, score))
 
     if not reasoning_parts:

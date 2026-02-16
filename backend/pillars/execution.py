@@ -354,6 +354,70 @@ def calculate_execution_score(
             # Could add weather API integration here
             weather_factor = 0.0
 
+    # === Team strength differential from ESPN standings ===
+    # When injury data is sparse, win records still produce execution signal
+    team_strength_adj = 0.0
+    streak_adj = 0.0
+    try:
+        home_record_data = espn_client.get_team_incentive_score(sport, home_team)
+        away_record_data = espn_client.get_team_incentive_score(sport, away_team)
+
+        home_wp = home_record_data.get("win_pct", 0.5)
+        away_wp = away_record_data.get("win_pct", 0.5)
+        h_wins = home_record_data.get("wins", 0)
+        h_losses = home_record_data.get("losses", 0)
+        a_wins = away_record_data.get("wins", 0)
+        a_losses = away_record_data.get("losses", 0)
+
+        has_home = (h_wins + h_losses) > 0
+        has_away = (a_wins + a_losses) > 0
+
+        if has_home and has_away:
+            wp_diff = home_wp - away_wp  # positive = home stronger
+            # Scale: 0.30 wp diff → ~10% score shift
+            # Negative adj → score goes down → home advantage
+            team_strength_adj = -wp_diff * 0.33
+            team_strength_adj = max(-0.25, min(0.25, team_strength_adj))
+
+            if abs(wp_diff) >= 0.10:
+                reasoning_parts.append(
+                    f"Records: {home_team} {h_wins}-{h_losses} vs {away_team} {a_wins}-{a_losses}"
+                )
+            logger.info(
+                f"[Execution] Team strength: home_wp={home_wp:.3f}, "
+                f"away_wp={away_wp:.3f}, adj={team_strength_adj:.3f}"
+            )
+
+        # Streak as execution momentum proxy
+        def _parse_streak(s):
+            if not s:
+                return 0
+            s = str(s).strip()
+            try:
+                if s.startswith("W"):
+                    return int(s[1:])
+                if s.startswith("L"):
+                    return -int(s[1:])
+            except (ValueError, IndexError):
+                pass
+            return 0
+
+        home_streak_val = _parse_streak(home_record_data.get("streak", ""))
+        away_streak_val = _parse_streak(away_record_data.get("streak", ""))
+        streak_diff = home_streak_val - away_streak_val
+
+        if abs(streak_diff) >= 3:
+            streak_adj = -streak_diff * 0.015  # 5-game diff → 7.5%
+            streak_adj = max(-0.10, min(0.10, streak_adj))
+            reasoning_parts.append(
+                f"Streaks: {home_team} {home_record_data.get('streak', 'N/A')} "
+                f"vs {away_team} {away_record_data.get('streak', 'N/A')}"
+            )
+            logger.info(f"[Execution] Streak diff={streak_diff}, adj={streak_adj:.3f}")
+
+    except Exception as e:
+        logger.warning(f"[Execution] Team strength lookup failed: {e}")
+
     base_score = 0.5
 
     # Calculate scores for ALL markets efficiently (data already fetched)
@@ -364,7 +428,7 @@ def calculate_execution_score(
         spread_injury_adj = injury_differential * 0.65
     else:
         spread_injury_adj = injury_differential * 0.50
-    spread_score = base_score + spread_injury_adj + weather_factor - soccer_adjustment
+    spread_score = base_score + spread_injury_adj + weather_factor - soccer_adjustment + team_strength_adj + streak_adj
     spread_score = max(0.15, min(0.85, spread_score))
     market_scores["spread"] = spread_score
     market_scores["moneyline"] = spread_score  # Same logic for ML

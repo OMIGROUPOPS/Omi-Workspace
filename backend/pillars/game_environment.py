@@ -95,6 +95,9 @@ def calculate_game_environment_score(
         return _calculate_nfl_environment(home_team, away_team, total_line, weather_data, game_time, team_stats)
     elif sport == "EPL" and team_stats:
         return _calculate_epl_environment(home_team, away_team, total_line, team_stats)
+    elif total_line is not None:
+        # Fallback: use total_line vs league average when no team stats available
+        return _calculate_generic_environment(home_team, away_team, total_line, sport)
     else:
         return _default_environment()
 
@@ -583,6 +586,85 @@ def _calculate_epl_environment(
             "away_ga_per_game": away_ga,
         },
         "reasoning": "; ".join(reasoning_parts) if reasoning_parts else "Standard scoring environment"
+    }
+
+
+def _calculate_generic_environment(
+    home_team: str,
+    away_team: str,
+    total_line: float,
+    sport: str,
+) -> dict:
+    """
+    Fallback environment calculation using total_line vs league average.
+    Used when team-specific stats are unavailable (common for NCAAB).
+    """
+    # League average totals by sport
+    LEAGUE_AVG_TOTALS = {
+        "NBA": 225.0, "NCAAB": 140.0,
+        "NFL": 46.0, "NCAAF": 52.0,
+        "NHL": 6.0, "EPL": 2.8,
+    }
+
+    league_avg = LEAGUE_AVG_TOTALS.get(sport, 140.0)
+    reasoning_parts = []
+    score = 0.5
+
+    # Total line vs league average → scoring environment signal
+    line_diff = total_line - league_avg
+    # Percentage deviation from league average
+    pct_deviation = line_diff / league_avg if league_avg > 0 else 0
+
+    # Scale: 10% above average → over lean, 10% below → under lean
+    score_adj = pct_deviation * 1.5  # 10% deviation → 0.15 score shift
+    score_adj = max(-0.25, min(0.25, score_adj))
+    score += score_adj
+
+    if pct_deviation >= 0.05:
+        reasoning_parts.append(f"High total ({total_line}) vs {sport} avg {league_avg:.0f} = OVER lean")
+    elif pct_deviation <= -0.05:
+        reasoning_parts.append(f"Low total ({total_line}) vs {sport} avg {league_avg:.0f} = UNDER lean")
+    else:
+        reasoning_parts.append(f"Total {total_line} near {sport} avg {league_avg:.0f}")
+
+    # Home court/field advantage as environment factor
+    HOME_ADVANTAGE = {
+        "NBA": 0.03, "NCAAB": 0.04,  # College home court stronger
+        "NFL": 0.02, "NCAAF": 0.03,
+        "NHL": 0.02, "EPL": 0.04,
+    }
+    home_adv = HOME_ADVANTAGE.get(sport, 0.02)
+    reasoning_parts.append(f"{home_team} home court advantage (+{home_adv*100:.0f}%)")
+
+    # Large spread signals affect environment (blowout = starters may sit)
+    # This is a secondary signal for totals
+    if total_line > league_avg * 1.15:
+        reasoning_parts.append("High-scoring environment expected")
+    elif total_line < league_avg * 0.85:
+        reasoning_parts.append("Low-scoring environment expected")
+
+    score = max(0.2, min(0.8, score))
+
+    # Market-specific scores
+    market_scores = {"totals": score}
+    # SPREAD: Home advantage is the primary environment signal
+    spread_score = 0.5 - home_adv  # Home advantage → lower score
+    spread_score = max(0.2, min(0.8, spread_score))
+    market_scores["spread"] = spread_score
+    market_scores["moneyline"] = spread_score
+
+    logger.info(f"[GameEnv Generic] {sport}: total_line={total_line}, avg={league_avg}, score={score:.3f}")
+
+    return {
+        "score": round(score, 3),
+        "market_scores": {k: round(v, 3) for k, v in market_scores.items()},
+        "expected_total": round(total_line, 1),
+        "breakdown": {
+            "league_avg_total": league_avg,
+            "line_deviation_pct": round(pct_deviation, 3),
+            "home_advantage": home_adv,
+        },
+        "reasoning": "; ".join(reasoning_parts) if reasoning_parts else "Generic environment analysis"
     }
 
 

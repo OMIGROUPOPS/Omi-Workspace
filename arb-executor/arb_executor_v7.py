@@ -20,7 +20,7 @@ import re
 import os
 import sys
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from dataclasses import dataclass, field
 from typing import Optional, Dict, List, Set, Any, Tuple
 from enum import Enum
@@ -3656,7 +3656,10 @@ def _pm_price_cents(fill_price: float, arb) -> float:
 
 def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
                execution_time_ms: float = 0, pm_order_ms: int = 0,
-               unwind_loss_cents: float = None):
+               unwind_loss_cents: float = None, *,
+               sizing_details: Dict = None, execution_phase: str = "ioc",
+               is_maker: bool = False, gtc_rest_time_ms: float = 0,
+               gtc_spread_checks: int = 0, gtc_cancel_reason: str = ""):
     """Log trade details with all important fields"""
     global TRADE_LOG
 
@@ -3690,7 +3693,7 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
 
     trade = {
         # Core identifiers
-        'timestamp': datetime.now().isoformat(),
+        'timestamp': datetime.now(timezone.utc).isoformat(),
         'game_id': arb.game,
         'team': arb.team,
         'sport': arb.sport,
@@ -3750,6 +3753,14 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
             vm.get('game_id') == arb.game and vm.get('verified', False)
             for vm in VERIFIED_MAPS.values()
         ) if VERIFIED_MAPS else False,
+
+        # Execution detail fields (passed from caller to persist with trade)
+        'sizing_details': sizing_details,
+        'execution_phase': execution_phase,
+        'is_maker': is_maker,
+        'gtc_rest_time_ms': gtc_rest_time_ms,
+        'gtc_spread_checks': gtc_spread_checks,
+        'gtc_cancel_reason': gtc_cancel_reason,
     }
 
     # FEE-AWARE P&L CALCULATION
@@ -3821,7 +3832,7 @@ def log_skipped_arb(arb: ArbOpportunity, reason: str, details: str = ""):
     SCAN_STATS['total_skipped'] += 1
 
     skipped = {
-        'timestamp': datetime.now().isoformat(),
+        'timestamp': datetime.now(timezone.utc).isoformat(),
         'game': arb.game,
         'team': arb.team,
         'sport': arb.sport,

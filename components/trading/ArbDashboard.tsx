@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useMemo, useRef } from "react";
+import React, { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import {
   LineChart,
   Line,
@@ -89,6 +89,8 @@ interface TradeEntry {
   gtc_spread_checks?: number;
   gtc_cancel_reason?: string;
   unwind_loss_cents?: number | null;
+  execution_time_ms?: number;
+  pm_order_ms?: number;
 }
 
 interface PnlSummary {
@@ -503,6 +505,7 @@ export default function ArbDashboard() {
   const [tradeSortKey, setTradeSortKey] = useState<TradeSortKey>("time");
   const [tradeSortAsc, setTradeSortAsc] = useState(false);
   const [expandedTrade, setExpandedTrade] = useState<number | null>(null);
+  const [expandedMonitorTrade, setExpandedMonitorTrade] = useState<number | null>(null);
   const [liqGameFilter, setLiqGameFilter] = useState("");
   const prevPortfolioRef = useRef<{ k: number; pm: number; total: number } | null>(null);
   const [portfolioDelta, setPortfolioDelta] = useState<{ k: number; pm: number; total: number }>({ k: 0, pm: 0, total: 0 });
@@ -619,7 +622,8 @@ export default function ArbDashboard() {
   }, [allTrades, selectedDate, tradeFilter, statusFilter, tradeSearch]);
 
   const filteredPnl = useMemo(() => {
-    let total = 0;
+    let successPnl = 0;
+    let exitedLoss = 0;
     let successes = 0;
     let fills = 0;
     for (const t of filteredTrades) {
@@ -627,10 +631,15 @@ export default function ArbDashboard() {
       if (t.contracts_filled > 0) fills++;
       const pnl = tradePnl(t);
       if (pnl.totalDollars != null) {
-        total += pnl.totalDollars;
+        if (t.status === "SUCCESS") {
+          successPnl += pnl.totalDollars;
+        } else if (t.status === "EXITED") {
+          exitedLoss += pnl.totalDollars;
+        }
       }
     }
-    return { total, successes, fills, count: filteredTrades.length };
+    const netTotal = successPnl + exitedLoss;
+    return { successPnl, exitedLoss, netTotal, successes, fills, count: filteredTrades.length };
   }, [filteredTrades]);
 
   const pnl = state?.pnl_summary;
@@ -1464,15 +1473,24 @@ export default function ArbDashboard() {
                     <span>{filteredPnl.fills} filled</span>
                     <span
                       className={
-                        filteredPnl.total > 0
+                        filteredPnl.netTotal > 0
                           ? "text-emerald-400"
-                          : filteredPnl.total < 0
+                          : filteredPnl.netTotal < 0
                           ? "text-red-400"
                           : "text-gray-500"
                       }
                     >
-                      P&L: {filteredPnl.total >= 0 ? "+" : ""}$
-                      {filteredPnl.total.toFixed(2)}
+                      P&L:{" "}
+                      {filteredPnl.exitedLoss !== 0 ? (
+                        <>
+                          <span className="text-emerald-400">+${filteredPnl.successPnl.toFixed(2)}</span>
+                          {" "}
+                          <span className="text-red-400">{filteredPnl.exitedLoss >= 0 ? "+" : ""}${filteredPnl.exitedLoss.toFixed(2)}</span>
+                          {" = "}
+                        </>
+                      ) : null}
+                      {filteredPnl.netTotal >= 0 ? "+" : ""}$
+                      {filteredPnl.netTotal.toFixed(2)}
                     </span>
                   </div>
                 )}
@@ -1507,10 +1525,12 @@ export default function ArbDashboard() {
                     ) : (
                       filteredTrades.map((t, i) => {
                         const badge = statusBadge(t.status);
+                        const isMonExpanded = expandedMonitorTrade === i;
                         return (
+                          <React.Fragment key={`${t.timestamp}-${i}`}>
                           <tr
-                            key={`${t.timestamp}-${i}`}
-                            className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors"
+                            className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors cursor-pointer ${isMonExpanded ? "bg-gray-800/20" : ""}`}
+                            onClick={() => setExpandedMonitorTrade(isMonExpanded ? null : i)}
                           >
                             <td className="px-2 py-1 font-mono text-gray-400 whitespace-nowrap text-[10px]">
                               {formatDateTime(t.timestamp)}
@@ -1591,6 +1611,85 @@ export default function ArbDashboard() {
                               )}
                             </td>
                           </tr>
+                          {isMonExpanded && (
+                            <tr className="bg-gray-800/10">
+                              <td colSpan={6} className="px-4 py-2">
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-[10px]">
+                                  <div>
+                                    <span className="text-gray-500">Direction:</span>{" "}
+                                    <span className="text-white">{t.direction}</span>
+                                  </div>
+                                  <div>
+                                    <span className="text-gray-500">Game ID:</span>{" "}
+                                    <span className="text-white font-mono">{t.game_id}</span>
+                                  </div>
+                                  <div>
+                                    <span className="text-gray-500">Phase:</span>{" "}
+                                    <span className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${
+                                      (t.execution_phase || "ioc") === "gtc"
+                                        ? "bg-blue-500/20 text-blue-400"
+                                        : "bg-gray-500/20 text-gray-500"
+                                    }`}>
+                                      {(t.execution_phase || "ioc").toUpperCase()}
+                                    </span>
+                                    {t.is_maker && <span className="ml-1 text-cyan-400">(MAKER)</span>}
+                                  </div>
+                                  <div>
+                                    <span className="text-gray-500">Timing:</span>{" "}
+                                    <span className="text-white">
+                                      pm={t.pm_order_ms ?? 0}ms
+                                      {(t.execution_time_ms ?? 0) > 0 && <> total={t.execution_time_ms}ms</>}
+                                    </span>
+                                  </div>
+                                  {(t.gtc_rest_time_ms ?? 0) > 0 && (
+                                    <div>
+                                      <span className="text-gray-500">GTC Rest:</span>{" "}
+                                      <span className="text-blue-400">{t.gtc_rest_time_ms}ms ({t.gtc_spread_checks} checks)</span>
+                                    </div>
+                                  )}
+                                  {t.gtc_cancel_reason ? (
+                                    <div>
+                                      <span className="text-gray-500">GTC Cancel:</span>{" "}
+                                      <span className="text-yellow-400">{t.gtc_cancel_reason}</span>
+                                    </div>
+                                  ) : null}
+                                  {t.actual_pnl && (
+                                    <>
+                                      <div>
+                                        <span className="text-gray-500">Gross:</span>{" "}
+                                        <span className="text-white">${t.actual_pnl.gross_profit_dollars.toFixed(4)}</span>
+                                      </div>
+                                      <div>
+                                        <span className="text-gray-500">Fees:</span>{" "}
+                                        <span className="text-red-400">${t.actual_pnl.fees_dollars.toFixed(4)}</span>
+                                      </div>
+                                      <div>
+                                        <span className="text-gray-500">Total Cost:</span>{" "}
+                                        <span className="text-white">${t.actual_pnl.total_cost_dollars.toFixed(4)}</span>
+                                      </div>
+                                      <div>
+                                        <span className="text-gray-500">Net:</span>{" "}
+                                        <span className={t.actual_pnl.is_profitable ? "text-emerald-400" : "text-red-400"}>
+                                          ${t.actual_pnl.net_profit_dollars.toFixed(4)}
+                                        </span>
+                                      </div>
+                                    </>
+                                  )}
+                                  {t.sizing_details && (
+                                    <div>
+                                      <span className="text-gray-500">Sizing:</span>{" "}
+                                      <span className="text-gray-300">K={t.sizing_details.k_depth} PM={t.sizing_details.pm_depth} ({t.sizing_details.limit_reason})</span>
+                                    </div>
+                                  )}
+                                  <div>
+                                    <span className="text-gray-500">Prices:</span>{" "}
+                                    <span className="text-gray-300">K={t.k_price}c PM={t.pm_price}c</span>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                          )}
+                          </React.Fragment>
                         );
                       })
                     )}
@@ -2649,7 +2748,8 @@ export default function ArbDashboard() {
                 <LineChart data={liqSpreadChartData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" vertical={false} />
                   <XAxis dataKey="time" stroke="#4b5563" fontSize={10} />
-                  <YAxis stroke="#4b5563" fontSize={10} tickFormatter={(v: number) => `${v}c`} />
+                  <YAxis yAxisId="left" stroke="#4b5563" fontSize={10} tickFormatter={(v: number) => `${v}c`} />
+                  <YAxis yAxisId="right" orientation="right" stroke="#4b5563" fontSize={10} tickFormatter={(v: number) => `${v}`} />
                   <Tooltip
                     contentStyle={{
                       backgroundColor: "#111",
@@ -2660,14 +2760,14 @@ export default function ArbDashboard() {
                     formatter={(value: number | undefined, name: string | undefined) => {
                       const v = value ?? 0;
                       if (name === "spread") return [`${v}c`, "Spread"];
-                      if (name === "bid_depth") return [v, "Bid Depth"];
-                      if (name === "ask_depth") return [v, "Ask Depth"];
+                      if (name === "bid_depth") return [`${v} contracts`, "Bid Depth"];
+                      if (name === "ask_depth") return [`${v} contracts`, "Ask Depth"];
                       return [v, name ?? ""];
                     }}
                   />
-                  <Line type="stepAfter" dataKey="spread" stroke="#10b981" strokeWidth={2} dot={false} />
-                  <Line type="stepAfter" dataKey="bid_depth" stroke="#3b82f6" strokeWidth={1} dot={false} strokeDasharray="3 3" />
-                  <Line type="stepAfter" dataKey="ask_depth" stroke="#f59e0b" strokeWidth={1} dot={false} strokeDasharray="3 3" />
+                  <Line yAxisId="left" type="stepAfter" dataKey="spread" stroke="#10b981" strokeWidth={2} dot={false} />
+                  <Line yAxisId="right" type="stepAfter" dataKey="bid_depth" stroke="#3b82f6" strokeWidth={1} dot={false} strokeDasharray="3 3" />
+                  <Line yAxisId="right" type="stepAfter" dataKey="ask_depth" stroke="#f59e0b" strokeWidth={1} dot={false} strokeDasharray="3 3" />
                 </LineChart>
               </ResponsiveContainer>
             )}

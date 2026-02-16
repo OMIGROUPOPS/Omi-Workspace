@@ -1322,14 +1322,15 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 # Build result dicts for log_trade compatibility
                 k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
                 pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
-                log_trade(arb, k_result, pm_result, 'SUCCESS', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
-                if TRADE_LOG:
-                    TRADE_LOG[-1]['sizing_details'] = _sizing_details
-                    TRADE_LOG[-1]['execution_phase'] = result.execution_phase
-                    TRADE_LOG[-1]['gtc_rest_time_ms'] = result.gtc_rest_time_ms
-                    TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
-                    TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
-                    TRADE_LOG[-1]['is_maker'] = result.is_maker
+                log_trade(arb, k_result, pm_result, 'SUCCESS',
+                          execution_time_ms=result.execution_time_ms,
+                          pm_order_ms=result.pm_order_ms,
+                          sizing_details=_sizing_details,
+                          execution_phase=result.execution_phase,
+                          is_maker=result.is_maker,
+                          gtc_rest_time_ms=result.gtc_rest_time_ms,
+                          gtc_spread_checks=result.gtc_spread_checks,
+                          gtc_cancel_reason=result.gtc_cancel_reason)
 
                 # Cooldown: prevent re-trading same game too quickly
                 game_success_cooldown[arb.cache_key] = time.time()
@@ -1353,14 +1354,15 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 print(f"[EXEC] Reason: {result.abort_reason}")
                 k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
                 pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
-                log_trade(arb, k_result, pm_result, 'UNHEDGED', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
-                if TRADE_LOG:
-                    TRADE_LOG[-1]['sizing_details'] = _sizing_details
-                    TRADE_LOG[-1]['execution_phase'] = result.execution_phase
-                    TRADE_LOG[-1]['gtc_rest_time_ms'] = result.gtc_rest_time_ms
-                    TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
-                    TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
-                    TRADE_LOG[-1]['is_maker'] = result.is_maker
+                log_trade(arb, k_result, pm_result, 'UNHEDGED',
+                          execution_time_ms=result.execution_time_ms,
+                          pm_order_ms=result.pm_order_ms,
+                          sizing_details=_sizing_details,
+                          execution_phase=result.execution_phase,
+                          is_maker=result.is_maker,
+                          gtc_rest_time_ms=result.gtc_rest_time_ms,
+                          gtc_spread_checks=result.gtc_spread_checks,
+                          gtc_cancel_reason=result.gtc_cancel_reason)
                 # Save unhedged position for recovery
                 try:
                     from arb_executor_v7 import HedgeState
@@ -1383,14 +1385,16 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 print(f"[EXEC] EXITED: {result.abort_reason} | {timing}")
                 k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
                 pm_result = {'fill_count': 0, 'fill_price': result.pm_price}
-                log_trade(arb, k_result, pm_result, 'EXITED', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms, unwind_loss_cents=result.unwind_loss_cents)
-                if TRADE_LOG:
-                    TRADE_LOG[-1]['sizing_details'] = _sizing_details
-                    TRADE_LOG[-1]['execution_phase'] = result.execution_phase
-                    TRADE_LOG[-1]['gtc_rest_time_ms'] = result.gtc_rest_time_ms
-                    TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
-                    TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
-                    TRADE_LOG[-1]['is_maker'] = result.is_maker
+                log_trade(arb, k_result, pm_result, 'EXITED',
+                          execution_time_ms=result.execution_time_ms,
+                          pm_order_ms=result.pm_order_ms,
+                          unwind_loss_cents=result.unwind_loss_cents,
+                          sizing_details=_sizing_details,
+                          execution_phase=result.execution_phase,
+                          is_maker=result.is_maker,
+                          gtc_rest_time_ms=result.gtc_rest_time_ms,
+                          gtc_spread_checks=result.gtc_spread_checks,
+                          gtc_cancel_reason=result.gtc_cancel_reason)
 
             elif result.pm_filled == 0 and result.pm_order_ms > 0:
                 # Real PM no-fill: order was sent to PM API but IOC expired
@@ -1400,14 +1404,15 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 print(f"[EXEC] PM NO FILL: {result.abort_reason} | pm={result.pm_order_ms}ms{gtc_info}")
                 k_result = {'fill_count': 0, 'fill_price': result.kalshi_price}
                 pm_result = {'fill_count': 0, 'fill_price': result.pm_price}
-                log_trade(arb, k_result, pm_result, 'PM_NO_FILL', execution_time_ms=result.execution_time_ms, pm_order_ms=result.pm_order_ms)
-                if TRADE_LOG:
-                    TRADE_LOG[-1]['sizing_details'] = _sizing_details
-                    TRADE_LOG[-1]['execution_phase'] = result.execution_phase
-                    TRADE_LOG[-1]['gtc_rest_time_ms'] = result.gtc_rest_time_ms
-                    TRADE_LOG[-1]['gtc_spread_checks'] = result.gtc_spread_checks
-                    TRADE_LOG[-1]['gtc_cancel_reason'] = result.gtc_cancel_reason
-                    TRADE_LOG[-1]['is_maker'] = result.is_maker
+                log_trade(arb, k_result, pm_result, 'PM_NO_FILL',
+                          execution_time_ms=result.execution_time_ms,
+                          pm_order_ms=result.pm_order_ms,
+                          sizing_details=_sizing_details,
+                          execution_phase=result.execution_phase,
+                          is_maker=result.is_maker,
+                          gtc_rest_time_ms=result.gtc_rest_time_ms,
+                          gtc_spread_checks=result.gtc_spread_checks,
+                          gtc_cancel_reason=result.gtc_cancel_reason)
 
             else:
                 # Early abort — never reached PM API (safety, phantom, pm_long_team, etc.)

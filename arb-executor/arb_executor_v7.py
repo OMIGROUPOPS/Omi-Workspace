@@ -1394,9 +1394,10 @@ class PolymarketUSAPI:
         self._sdk_client = None
         if HAS_PM_SDK:
             self._sdk_client = AsyncPolymarketUS(
-                api_key=api_key,
-                secret=secret_key,
+                key_id=api_key,
+                secret_key=secret_key,
             )
+            print("[PM-SDK] Polymarket US SDK client initialized (httpx fast path)")
 
     def _parse_pm_response(self, data: Dict) -> Dict:
         """Parse PM order response dict into standardized result.

@@ -559,7 +559,7 @@ export function SportsHomeGrid({
             type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search teams..."
             style={{
-              width: '100%', background: P.cardBg, border: `1px solid ${P.cardBorder}`,
+              width: '100%', background: P.headerBar, border: `1px solid ${P.cardBorder}`,
               borderRadius: 8, paddingLeft: 36, paddingRight: 16, paddingTop: 8, paddingBottom: 8,
               fontSize: 13, color: P.textPrimary, fontFamily: FONT, outline: 'none',
             }}
@@ -583,10 +583,11 @@ export function SportsHomeGrid({
           <button onClick={() => setActiveSport(null)}
             style={{
               flexShrink: 0, padding: '5px 12px', borderRadius: 6, fontSize: 12, fontWeight: 600,
-              border: `1px solid ${activeSport === null ? P.textPrimary : P.cardBorder}`,
-              background: activeSport === null ? P.textPrimary : P.cardBg,
-              color: activeSport === null ? '#ffffff' : P.textSecondary,
+              border: `1px solid ${activeSport === null ? P.cardBorder : 'transparent'}`,
+              background: activeSport === null ? P.cardBg : 'transparent',
+              color: activeSport === null ? P.textPrimary : P.textMuted,
               cursor: 'pointer',
+              boxShadow: activeSport === null ? '0 1px 2px rgba(0,0,0,0.04)' : 'none',
             }}
           >
             ALL
@@ -598,14 +599,15 @@ export function SportsHomeGrid({
               <button key={sport.key} onClick={() => setActiveSport(sport.key)}
                 style={{
                   flexShrink: 0, padding: '5px 12px', borderRadius: 6, fontSize: 12, fontWeight: 500,
-                  border: `1px solid ${active ? P.textPrimary : P.cardBorder}`,
-                  background: active ? P.textPrimary : P.cardBg,
-                  color: active ? '#ffffff' : P.textSecondary,
+                  border: `1px solid ${active ? P.cardBorder : 'transparent'}`,
+                  background: active ? P.cardBg : 'transparent',
+                  color: active ? P.textPrimary : P.textMuted,
                   cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 4,
+                  boxShadow: active ? '0 1px 2px rgba(0,0,0,0.04)' : 'none',
                 }}
               >
                 {sport.label}
-                {gc > 0 && <span style={{ fontSize: 9, fontFamily: 'monospace', color: active ? 'rgba(255,255,255,0.6)' : P.textFaint }}>{gc}</span>}
+                {gc > 0 && <span style={{ fontSize: 9, fontFamily: 'monospace', color: active ? P.textSecondary : P.textFaint }}>{gc}</span>}
               </button>
             );
           })}
@@ -614,10 +616,11 @@ export function SportsHomeGrid({
             <button onClick={() => setShowMoreSports(!showMoreSports)}
               style={{
                 padding: '5px 10px', borderRadius: 6, fontSize: 12, fontWeight: 500,
-                border: `1px solid ${!MODELED_SPORT_KEYS.has(activeSport || '') && activeSport !== null ? P.textPrimary : P.cardBorder}`,
-                background: !MODELED_SPORT_KEYS.has(activeSport || '') && activeSport !== null ? P.textPrimary : P.cardBg,
-                color: !MODELED_SPORT_KEYS.has(activeSport || '') && activeSport !== null ? '#ffffff' : P.textMuted,
+                border: `1px solid ${!MODELED_SPORT_KEYS.has(activeSport || '') && activeSport !== null ? P.cardBorder : 'transparent'}`,
+                background: !MODELED_SPORT_KEYS.has(activeSport || '') && activeSport !== null ? P.cardBg : 'transparent',
+                color: !MODELED_SPORT_KEYS.has(activeSport || '') && activeSport !== null ? P.textPrimary : P.textMuted,
                 cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 3,
+                boxShadow: !MODELED_SPORT_KEYS.has(activeSport || '') && activeSport !== null ? '0 1px 2px rgba(0,0,0,0.04)' : 'none',
               }}
             >
               More

@@ -9,19 +9,25 @@ Provides REST API endpoints for the frontend:
 - AI Chatbot
 - Results tracking
 """
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
-from datetime import datetime, timezone
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from datetime import datetime, timezone, timedelta
 from typing import Optional
 import logging
 import json
 import os
+import time
+from collections import defaultdict
 
 from config import ODDS_API_SPORTS, ANTHROPIC_API_KEY, PROP_MARKETS
 from database import db
 from results_tracker import ResultsTracker
-from espn_scores import ESPNScoreFetcher, AutoGrader
-from internal_grader import InternalGrader
+from espn_scores import ESPNScoreFetcher, AutoGrader, teams_match, SPORT_KEY_VARIANTS, ESPN_SPORTS
+from internal_grader import (
+    InternalGrader, determine_signal, calc_edge_pct, edge_to_confidence,
+    SPORT_DISPLAY, _normalize_sport, PROB_PER_POINT, PROB_PER_TOTAL_POINT,
+)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -1715,6 +1721,503 @@ async def get_closing_lines(sport: str = None, days: int = 7):
     from model_feedback import ModelFeedback
     fb = ModelFeedback()
     return fb.get_closing_lines(sport, days)
+
+
+# =============================================================================
+# ARB DESK API — Authenticated External Endpoints (v1)
+# =============================================================================
+
+ARB_API_KEY = os.getenv("ARB_API_KEY", "")
+_bearer_scheme = HTTPBearer()
+
+# Simple in-memory rate limiter: {ip: [timestamp, ...]}
+_rate_limit_store: dict[str, list[float]] = defaultdict(list)
+_RATE_LIMIT_WINDOW = 60  # seconds
+_RATE_LIMIT_MAX = 60  # requests per window
+
+
+def _rate_limit_check(client_ip: str):
+    """Enforce 60 requests per minute per IP."""
+    now = time.time()
+    window_start = now - _RATE_LIMIT_WINDOW
+    # Prune old entries
+    _rate_limit_store[client_ip] = [
+        t for t in _rate_limit_store[client_ip] if t > window_start
+    ]
+    if len(_rate_limit_store[client_ip]) >= _RATE_LIMIT_MAX:
+        raise HTTPException(status_code=429, detail="Rate limit exceeded (60 req/min)")
+    _rate_limit_store[client_ip].append(now)
+
+
+async def verify_arb_api_key(
+    request: Request,
+    credentials: HTTPAuthorizationCredentials = Depends(_bearer_scheme),
+):
+    """Verify Bearer token and enforce rate limit."""
+    if not ARB_API_KEY:
+        raise HTTPException(status_code=500, detail="ARB_API_KEY not configured")
+    if credentials.credentials != ARB_API_KEY:
+        raise HTTPException(status_code=401, detail="Invalid API key")
+    _rate_limit_check(request.client.host if request.client else "unknown")
+    return True
+
+
+def _sport_variants(sport: str) -> list[str]:
+    """Get all DB variants for a sport (e.g. NCAAB -> [NCAAB, BASKETBALL_NCAAB, basketball_ncaab])."""
+    sport_upper = sport.upper()
+    return SPORT_KEY_VARIANTS.get(sport_upper, [sport_upper])
+
+
+def _total_minutes_for_sport(sport: str) -> float:
+    """Game duration in minutes for live CEQ calculation."""
+    s = sport.upper()
+    if s in ("NBA",):
+        return 48.0
+    if s in ("NCAAB",):
+        return 40.0
+    if s in ("NFL", "NCAAF"):
+        return 60.0
+    if s in ("NHL",):
+        return 60.0
+    if s in ("EPL",):
+        return 90.0
+    return 48.0
+
+
+def _estimate_minutes_elapsed(period_str: str, clock: str, sport: str) -> float:
+    """Estimate minutes elapsed from period string and clock display."""
+    s = sport.upper()
+
+    # Parse clock "MM:SS" or "M:SS"
+    clock_mins = 0.0
+    if clock:
+        try:
+            parts = clock.split(":")
+            clock_mins = float(parts[0]) + float(parts[1]) / 60.0 if len(parts) == 2 else float(parts[0])
+        except (ValueError, IndexError):
+            clock_mins = 0.0
+
+    if s in ("NBA",):
+        # Q1-Q4 are 12 min each
+        q_map = {"Q1": 0, "Q2": 12, "Q3": 24, "Q4": 36}
+        for qname, base in q_map.items():
+            if qname in period_str:
+                return base + (12.0 - clock_mins)
+        if "OT" in period_str:
+            return 48.0 + (5.0 - clock_mins)
+        if "Half" in period_str:
+            return 24.0
+    elif s in ("NCAAB",):
+        if "1st Half" in period_str:
+            return 20.0 - clock_mins
+        if "2nd Half" in period_str:
+            return 20.0 + (20.0 - clock_mins)
+        if "Half" in period_str:
+            return 20.0
+        if "OT" in period_str:
+            return 40.0 + (5.0 - clock_mins)
+    elif s in ("NFL", "NCAAF"):
+        q_map = {"Q1": 0, "Q2": 15, "Q3": 30, "Q4": 45}
+        for qname, base in q_map.items():
+            if qname in period_str:
+                return base + (15.0 - clock_mins)
+        if "Half" in period_str:
+            return 30.0
+        if "OT" in period_str:
+            return 60.0
+    elif s in ("NHL",):
+        p_map = {"P1": 0, "P2": 20, "P3": 40}
+        for pname, base in p_map.items():
+            if pname in period_str:
+                return base + (20.0 - clock_mins)
+        if "OT" in period_str:
+            return 60.0
+    elif s in ("EPL",):
+        if "1st Half" in period_str:
+            return 45.0 - clock_mins
+        if "2nd Half" in period_str:
+            return 45.0 + (45.0 - clock_mins)
+        if "ET" in period_str:
+            return 90.0
+
+    return 0.0
+
+
+def calculate_live_ceq(
+    pre_game_composite: float,
+    live_score_diff: float,
+    expected_margin: float,
+    minutes_elapsed: float,
+    total_minutes: float,
+) -> float:
+    """Adjust pre-game composite based on live score vs expected margin."""
+    game_pct = min(minutes_elapsed / total_minutes, 1.0) if total_minutes > 0 else 0.0
+    score_surprise = live_score_diff - (expected_margin * game_pct)
+    surprise_factor = score_surprise / max(abs(expected_margin), 3.0)
+    adjustment = surprise_factor * 0.15 * game_pct
+    return max(0.0, min(1.0, pre_game_composite + adjustment))
+
+
+def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None) -> dict:
+    """Build a single game signal payload for the ARB API response."""
+    game_id = pred.get("game_id", "")
+    home_team = pred.get("home_team", "")
+    away_team = pred.get("away_team", "")
+    sport_key = _normalize_sport(pred.get("sport_key", ""))
+    commence_time = pred.get("commence_time", "")
+
+    composite = pred.get("composite_score", 0.5) or 0.5
+
+    # Fair lines from composite_history
+    fair_spread = comp_row.get("fair_spread")
+    fair_total = comp_row.get("fair_total")
+    book_spread = comp_row.get("book_spread")
+    book_total = comp_row.get("book_total")
+    fair_ml_home = comp_row.get("fair_ml_home")
+    fair_ml_away = comp_row.get("fair_ml_away")
+
+    # Edge calculations
+    spread_edge_pct = 0.0
+    total_edge_pct = 0.0
+    if fair_spread is not None and book_spread is not None:
+        spread_edge_pct = calc_edge_pct(float(fair_spread), float(book_spread), "spread")
+    if fair_total is not None and book_total is not None:
+        total_edge_pct = calc_edge_pct(float(fair_total), float(book_total), "total")
+
+    # Pick best edge
+    best_edge_pct = max(spread_edge_pct, total_edge_pct)
+    best_market = "spread" if spread_edge_pct >= total_edge_pct else "total"
+    signal = determine_signal(best_edge_pct)
+    confidence = edge_to_confidence(best_edge_pct)
+
+    # Favored side
+    favored_side = "pick"
+    if fair_spread is not None:
+        fs = float(fair_spread)
+        if fs < -0.5:
+            favored_side = "home"
+        elif fs > 0.5:
+            favored_side = "away"
+
+    # Live status
+    game_status = "pregame"
+    period = None
+    clock = None
+    live_home_score = None
+    live_away_score = None
+    live_composite = None
+
+    if live_game and live_game.get("status") == "STATUS_IN_PROGRESS":
+        game_status = "live"
+        period = live_game.get("period", "")
+        clock = live_game.get("clock", "")
+        live_home_score = live_game.get("home_score", 0)
+        live_away_score = live_game.get("away_score", 0)
+
+        # Live CEQ adjustment
+        score_diff = live_home_score - live_away_score
+        expected_margin = -(float(fair_spread)) if fair_spread is not None else (composite - 0.5) * 10
+        total_mins = _total_minutes_for_sport(sport_key)
+        elapsed = _estimate_minutes_elapsed(period or "", clock or "", sport_key)
+        live_composite = calculate_live_ceq(
+            composite, score_diff, expected_margin, elapsed, total_mins
+        )
+        # Recalculate edge with live composite if spread available
+        if fair_spread is not None and book_spread is not None:
+            # Recalculate fair spread with live composite
+            deviation = live_composite * 100 - 50
+            live_fair_spread = float(book_spread) - deviation * 0.15
+            spread_edge_pct = calc_edge_pct(live_fair_spread, float(book_spread), "spread")
+            fair_spread = round(live_fair_spread * 2) / 2  # round to 0.5
+
+        best_edge_pct = max(spread_edge_pct, total_edge_pct)
+        best_market = "spread" if spread_edge_pct >= total_edge_pct else "total"
+        signal = determine_signal(best_edge_pct)
+        confidence = edge_to_confidence(best_edge_pct)
+    elif live_game and live_game.get("status") == "STATUS_FINAL":
+        game_status = "final"
+
+    result = {
+        "game_id": game_id,
+        "sport": sport_key,
+        "home_team": home_team,
+        "away_team": away_team,
+        "commence_time": commence_time,
+        "game_status": game_status,
+        "favored_side": favored_side,
+        "omi_fair_spread": fair_spread,
+        "omi_fair_total": fair_total,
+        "omi_fair_ml_home": fair_ml_home,
+        "omi_fair_ml_away": fair_ml_away,
+        "book_spread": book_spread,
+        "book_total": book_total,
+        "spread_edge_pct": round(spread_edge_pct, 1),
+        "total_edge_pct": round(total_edge_pct, 1),
+        "best_edge_pct": round(best_edge_pct, 1),
+        "best_market": best_market,
+        "signal": signal,
+        "confidence_pct": confidence,
+        "composite_score": round(composite, 4),
+        "pillar_scores": {
+            "execution": pred.get("pillar_execution", 0.5),
+            "incentives": pred.get("pillar_incentives", 0.5),
+            "shocks": pred.get("pillar_shocks", 0.5),
+            "time_decay": pred.get("pillar_time_decay", 0.5),
+            "flow": pred.get("pillar_flow", 0.5),
+            "game_environment": pred.get("pillar_game_environment", 0.5),
+        },
+    }
+
+    if game_status == "live":
+        result["live"] = {
+            "period": period,
+            "clock": clock,
+            "home_score": live_home_score,
+            "away_score": live_away_score,
+            "live_composite": round(live_composite, 4) if live_composite is not None else None,
+        }
+
+    return result
+
+
+@app.get("/api/v1/edge-signal/bulk")
+async def arb_bulk_edge_signals(
+    sport: str = Query(..., description="Sport key: NCAAB, NBA, NFL, etc."),
+    _auth: bool = Depends(verify_arb_api_key),
+):
+    """
+    Bulk edge signals for all upcoming games in a sport.
+    Primary endpoint — called every 15 min by arb desk.
+    Includes live CEQ adjustments for in-progress games.
+    """
+    sport_upper = sport.upper()
+    sport_short = _normalize_sport(sport_upper)
+    variants = _sport_variants(sport_short)
+
+    try:
+        # 1. Fetch predictions for sport (upcoming games)
+        now_iso = datetime.now(timezone.utc).isoformat()
+        preds_result = db.client.table("predictions").select("*").in_(
+            "sport_key", variants
+        ).gte(
+            "commence_time", now_iso
+        ).order("commence_time", desc=False).execute()
+        predictions = preds_result.data or []
+
+        # Also fetch recently started games (within last 4 hours) that may be live
+        four_hours_ago = (datetime.now(timezone.utc) - timedelta(hours=4)).isoformat()
+        live_preds_result = db.client.table("predictions").select("*").in_(
+            "sport_key", variants
+        ).lt("commence_time", now_iso).gte(
+            "commence_time", four_hours_ago
+        ).execute()
+        live_predictions = live_preds_result.data or []
+        predictions.extend(live_predictions)
+
+        if not predictions:
+            return {
+                "sport": sport_short,
+                "games": [],
+                "count": 0,
+                "live_count": 0,
+                "timestamp": now_iso,
+            }
+
+        # 2. Batch-fetch latest composite_history per game
+        game_ids = list(set(p["game_id"] for p in predictions))
+        comp_by_game = {}
+        for i in range(0, len(game_ids), 100):
+            chunk = game_ids[i:i + 100]
+            comp_result = db.client.table("composite_history").select(
+                "game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away, "
+                "book_spread, book_total, book_ml_home, book_ml_away, "
+                "composite_spread, composite_total, timestamp"
+            ).in_("game_id", chunk).order("timestamp", desc=True).execute()
+            for row in (comp_result.data or []):
+                gid = row["game_id"]
+                if gid not in comp_by_game:
+                    comp_by_game[gid] = row
+
+        # 3. Fetch ESPN live scores for this sport
+        espn = ESPNScoreFetcher()
+        live_scores = []
+        if sport_short in ESPN_SPORTS:
+            live_scores = espn.get_scores(sport_short)
+
+        # Index live scores by team matching
+        def _find_live_game(home: str, away: str) -> dict:
+            for lg in live_scores:
+                if teams_match(lg.get("home_team", ""), home) and teams_match(lg.get("away_team", ""), away):
+                    return lg
+                if teams_match(lg.get("home_team", ""), away) and teams_match(lg.get("away_team", ""), home):
+                    return {
+                        **lg,
+                        "home_team": lg["away_team"],
+                        "away_team": lg["home_team"],
+                        "home_score": lg.get("away_score", 0),
+                        "away_score": lg.get("home_score", 0),
+                    }
+            return {}
+
+        # 4. Build response
+        games = []
+        live_count = 0
+        for pred in predictions:
+            gid = pred["game_id"]
+            comp_row = comp_by_game.get(gid, {})
+            live_game = _find_live_game(
+                pred.get("home_team", ""),
+                pred.get("away_team", ""),
+            )
+            signal = _build_game_signal(pred, comp_row, live_game or None)
+            games.append(signal)
+            if signal.get("game_status") == "live":
+                live_count += 1
+
+        # Sort: live games first, then by best_edge_pct descending
+        games.sort(key=lambda g: (
+            0 if g["game_status"] == "live" else 1,
+            -g["best_edge_pct"],
+        ))
+
+        return {
+            "sport": sport_short,
+            "games": games,
+            "count": len(games),
+            "live_count": live_count,
+            "timestamp": now_iso,
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"[ArbAPI] Bulk error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/v1/edge-signal")
+async def arb_single_edge_signal(
+    game_id: str = Query(..., description="Game ID"),
+    _auth: bool = Depends(verify_arb_api_key),
+):
+    """Single game edge signal with live status."""
+    try:
+        # Fetch prediction
+        pred_result = db.client.table("predictions").select("*").eq(
+            "game_id", game_id
+        ).order("predicted_at", desc=True).limit(1).execute()
+        if not pred_result.data:
+            raise HTTPException(status_code=404, detail=f"Game {game_id} not found")
+
+        pred = pred_result.data[0]
+        sport_short = _normalize_sport(pred.get("sport_key", ""))
+
+        # Fetch latest composite_history
+        comp_result = db.client.table("composite_history").select(
+            "game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away, "
+            "book_spread, book_total, book_ml_home, book_ml_away, "
+            "composite_spread, composite_total, timestamp"
+        ).eq("game_id", game_id).order("timestamp", desc=True).limit(1).execute()
+        comp_row = comp_result.data[0] if comp_result.data else {}
+
+        # Fetch ESPN live status
+        live_game = {}
+        if sport_short in ESPN_SPORTS:
+            espn = ESPNScoreFetcher()
+            live_scores = espn.get_scores(sport_short)
+            for lg in live_scores:
+                if teams_match(lg.get("home_team", ""), pred.get("home_team", "")) and \
+                   teams_match(lg.get("away_team", ""), pred.get("away_team", "")):
+                    live_game = lg
+                    break
+                if teams_match(lg.get("home_team", ""), pred.get("away_team", "")) and \
+                   teams_match(lg.get("away_team", ""), pred.get("home_team", "")):
+                    live_game = {
+                        **lg,
+                        "home_team": lg["away_team"],
+                        "away_team": lg["home_team"],
+                        "home_score": lg.get("away_score", 0),
+                        "away_score": lg.get("home_score", 0),
+                    }
+                    break
+
+        signal = _build_game_signal(pred, comp_row, live_game or None)
+        return signal
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"[ArbAPI] Single game error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/v1/edge-signal/by-teams")
+async def arb_edge_signal_by_teams(
+    home: str = Query(..., description="Home team name (fuzzy match)"),
+    away: str = Query(..., description="Away team name (fuzzy match)"),
+    sport: str = Query(..., description="Sport key: NCAAB, NBA, NFL, etc."),
+    _auth: bool = Depends(verify_arb_api_key),
+):
+    """Look up a game by team names (fuzzy match) and return edge signal."""
+    sport_short = _normalize_sport(sport.upper())
+    variants = _sport_variants(sport_short)
+
+    try:
+        # Fetch upcoming + recent predictions for this sport
+        four_hours_ago = (datetime.now(timezone.utc) - timedelta(hours=4)).isoformat()
+        result = db.client.table("predictions").select("*").in_(
+            "sport_key", variants
+        ).gte(
+            "commence_time", four_hours_ago
+        ).order("commence_time", desc=False).execute()
+        predictions = result.data or []
+
+        # Find matching game via fuzzy team matching
+        matched_pred = None
+        for pred in predictions:
+            h = pred.get("home_team", "")
+            a = pred.get("away_team", "")
+            if teams_match(h, home) and teams_match(a, away):
+                matched_pred = pred
+                break
+            if teams_match(h, away) and teams_match(a, home):
+                matched_pred = pred
+                break
+
+        if not matched_pred:
+            raise HTTPException(
+                status_code=404,
+                detail=f"No game found for {away} @ {home} in {sport_short}",
+            )
+
+        # Build signal same as single endpoint
+        gid = matched_pred["game_id"]
+        comp_result = db.client.table("composite_history").select(
+            "game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away, "
+            "book_spread, book_total, book_ml_home, book_ml_away, "
+            "composite_spread, composite_total, timestamp"
+        ).eq("game_id", gid).order("timestamp", desc=True).limit(1).execute()
+        comp_row = comp_result.data[0] if comp_result.data else {}
+
+        # Fetch ESPN live status
+        live_game = {}
+        if sport_short in ESPN_SPORTS:
+            espn = ESPNScoreFetcher()
+            live_scores = espn.get_scores(sport_short)
+            for lg in live_scores:
+                if teams_match(lg.get("home_team", ""), matched_pred.get("home_team", "")) and \
+                   teams_match(lg.get("away_team", ""), matched_pred.get("away_team", "")):
+                    live_game = lg
+                    break
+
+        signal = _build_game_signal(matched_pred, comp_row, live_game or None)
+        return signal
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"[ArbAPI] By-teams error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 if __name__ == "__main__":

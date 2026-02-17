@@ -311,6 +311,35 @@ class ESPNScoreFetcher:
                         away_team = team_name
                         away_score = score_int
                 
+                # Parse period and clock for live games
+                status_detail = status.get("type", {}).get("shortDetail", "")
+                clock_display = status.get("displayClock", "")
+                period_num = status.get("period", 0)
+
+                # Build human-readable period string
+                period_str = ""
+                if status_type == "STATUS_IN_PROGRESS":
+                    if status_detail:
+                        period_str = status_detail
+                    elif sport in ("NCAAB", "NBA"):
+                        if sport == "NCAAB":
+                            period_str = {1: "1st Half", 2: "2nd Half"}.get(period_num, f"OT" if period_num > 2 else "")
+                        else:
+                            if period_num <= 4:
+                                period_str = f"Q{period_num}"
+                            else:
+                                period_str = f"OT{period_num - 4}" if period_num > 5 else "OT"
+                    elif sport in ("NFL", "NCAAF"):
+                        period_str = {1: "Q1", 2: "Q2", 3: "Q3", 4: "Q4"}.get(period_num, "OT")
+                    elif sport == "NHL":
+                        period_str = {1: "P1", 2: "P2", 3: "P3"}.get(period_num, "OT")
+                    elif sport == "EPL":
+                        period_str = {1: "1st Half", 2: "2nd Half"}.get(period_num, "ET")
+                elif status_type == "STATUS_FINAL":
+                    period_str = "Final"
+                elif "Halftime" in status_detail or "Half" in status_detail:
+                    period_str = status_detail
+
                 game_data = {
                     "espn_id": event.get("id"),
                     "sport": sport,
@@ -322,6 +351,8 @@ class ESPNScoreFetcher:
                     "is_final": status_type == "STATUS_FINAL",
                     "start_time": event.get("date"),
                     "venue": competition.get("venue", {}).get("fullName", ""),
+                    "period": period_str,
+                    "clock": clock_display,
                 }
                 
                 games.append(game_data)

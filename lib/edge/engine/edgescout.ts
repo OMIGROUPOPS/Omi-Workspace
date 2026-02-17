@@ -114,6 +114,26 @@ export const FAIR_LINE_SPREAD_FACTOR = 0.15; // 10-point deviation ≈ 1.5 sprea
 export const FAIR_LINE_TOTAL_FACTOR = 0.20;  // 10-point deviation ≈ 2.0 total points
 export const FAIR_LINE_ML_FACTOR = 0.01;     // 1% implied probability shift per composite point
 
+// Sport-specific caps — max adjustment from book consensus (prevents hallucinated edges)
+export const SPREAD_CAP_BY_SPORT: Record<string, number> = {
+  'basketball_ncaab': 4.0,
+  'basketball_nba': 3.0,
+  'americanfootball_nfl': 3.0,
+  'americanfootball_ncaaf': 3.0,
+  'icehockey_nhl': 1.5,
+  'soccer_epl': 1.0,
+};
+export const TOTAL_CAP_BY_SPORT: Record<string, number> = {
+  'basketball_ncaab': 6.0,
+  'basketball_nba': 5.0,
+  'americanfootball_nfl': 5.0,
+  'americanfootball_ncaaf': 5.0,
+  'icehockey_nhl': 1.0,
+  'soccer_epl': 1.0,
+};
+export const DEFAULT_SPREAD_CAP = 3.0;
+export const DEFAULT_TOTAL_CAP = 4.0;
+
 // Sport-specific: how much win probability each spread point represents
 // Used to convert fair spread → fair moneyline for cross-market consistency
 export const SPREAD_TO_PROB_RATE: Record<string, number> = {
@@ -134,10 +154,14 @@ export const SPREAD_TO_PROB_RATE: Record<string, number> = {
  */
 export function calculateFairSpread(
   bookSpread: number,
-  pillarComposite: number
+  pillarComposite: number,
+  sportKey?: string
 ): { fairLine: number; gap: number; edgeSide: string | null } {
   const deviation = pillarComposite - 50;
-  const adjustment = deviation * FAIR_LINE_SPREAD_FACTOR;
+  const rawAdj = deviation * FAIR_LINE_SPREAD_FACTOR;
+  // Cap adjustment to prevent extreme divergence from book consensus
+  const cap = SPREAD_CAP_BY_SPORT[sportKey || ''] ?? DEFAULT_SPREAD_CAP;
+  const adjustment = Math.max(-cap, Math.min(cap, rawAdj));
   // Positive pillar deviation = home-favored thesis → subtract from spread (more negative)
   const fairLine = Math.round((bookSpread - adjustment) * 2) / 2; // Round to 0.5
   const gap = Math.round((bookSpread - fairLine) * 10) / 10;
@@ -152,10 +176,14 @@ export function calculateFairSpread(
  */
 export function calculateFairTotal(
   bookTotal: number,
-  gameEnvScore: number
+  gameEnvScore: number,
+  sportKey?: string
 ): { fairLine: number; gap: number; edgeSide: string | null } {
   const deviation = gameEnvScore - 50;
-  const adjustment = deviation * FAIR_LINE_TOTAL_FACTOR;
+  const rawAdj = deviation * FAIR_LINE_TOTAL_FACTOR;
+  // Cap adjustment to prevent extreme divergence from book consensus
+  const cap = TOTAL_CAP_BY_SPORT[sportKey || ''] ?? DEFAULT_TOTAL_CAP;
+  const adjustment = Math.max(-cap, Math.min(cap, rawAdj));
   // Positive deviation = over-favored → fair total is higher
   const fairLine = Math.round((bookTotal + adjustment) * 2) / 2; // Round to 0.5
   const gap = Math.round((fairLine - bookTotal) * 10) / 10;

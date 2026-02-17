@@ -23,9 +23,26 @@ logger = logging.getLogger(__name__)
 FAIR_LINE_SPREAD_FACTOR = 0.15
 FAIR_LINE_TOTAL_FACTOR = 0.20
 
-# Caps — prevent extreme fair line deviations from consensus
-FAIR_SPREAD_CAP = 4.0   # max ±4 points from book consensus
-FAIR_TOTAL_CAP = 5.0    # max ±5 points from book consensus
+# Sport-specific caps — prevent extreme fair line deviations from consensus
+# Tighter caps for low-scoring sports; wider for high-variance college games
+SPREAD_CAP_BY_SPORT = {
+    "basketball_ncaab": 4.0,
+    "basketball_nba": 3.0,
+    "americanfootball_nfl": 3.0,
+    "americanfootball_ncaaf": 3.0,
+    "icehockey_nhl": 1.5,
+    "soccer_epl": 1.0,
+}
+TOTAL_CAP_BY_SPORT = {
+    "basketball_ncaab": 6.0,
+    "basketball_nba": 5.0,
+    "americanfootball_nfl": 5.0,
+    "americanfootball_ncaaf": 5.0,
+    "icehockey_nhl": 1.0,
+    "soccer_epl": 1.0,
+}
+DEFAULT_SPREAD_CAP = 3.0
+DEFAULT_TOTAL_CAP = 4.0
 
 SPREAD_TO_PROB_RATE = {
     "basketball_nba": 0.033,
@@ -650,24 +667,27 @@ class CompositeTracker:
                             f"correction={correction:.2f}, fair_total {old_ft}→{fair_total}"
                         )
 
-                # 5c. Cap fair lines — prevent extreme deviations from consensus
+                # 5c. Cap fair lines — sport-specific caps prevent extreme deviations
+                s_cap = SPREAD_CAP_BY_SPORT.get(sport_key, DEFAULT_SPREAD_CAP)
+                t_cap = TOTAL_CAP_BY_SPORT.get(sport_key, DEFAULT_TOTAL_CAP)
+
                 if fair_spread is not None and book_spread is not None:
-                    capped = max(book_spread - FAIR_SPREAD_CAP,
-                                 min(book_spread + FAIR_SPREAD_CAP, fair_spread))
+                    capped = max(book_spread - s_cap,
+                                 min(book_spread + s_cap, fair_spread))
                     if capped != fair_spread:
-                        logger.info(
+                        logger.warning(
                             f"[FairCap] {game_id}: spread capped {fair_spread}→{capped} "
-                            f"(book={book_spread}, cap=±{FAIR_SPREAD_CAP})"
+                            f"(book={book_spread}, cap=±{s_cap}, sport={sport_key})"
                         )
                         fair_spread = capped
 
                 if fair_total is not None and book_total is not None:
-                    capped = max(book_total - FAIR_TOTAL_CAP,
-                                 min(book_total + FAIR_TOTAL_CAP, fair_total))
+                    capped = max(book_total - t_cap,
+                                 min(book_total + t_cap, fair_total))
                     if capped != fair_total:
-                        logger.info(
+                        logger.warning(
                             f"[FairCap] {game_id}: total capped {fair_total}→{capped} "
-                            f"(book={book_total}, cap=±{FAIR_TOTAL_CAP})"
+                            f"(book={book_total}, cap=±{t_cap}, sport={sport_key})"
                         )
                         fair_total = capped
 

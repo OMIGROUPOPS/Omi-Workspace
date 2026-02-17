@@ -856,10 +856,10 @@ function OmiFairPricing({
   // OMI fair lines — with consensus fallback when pillars unavailable
   const hasPillars = !!pythonPillars;
   const omiFairSpread = consensusSpread !== undefined
-    ? (pythonPillars ? calculateFairSpread(consensusSpread, pythonPillars.composite) : { fairLine: consensusSpread, adjustment: 0 })
+    ? (pythonPillars ? calculateFairSpread(consensusSpread, pythonPillars.composite, sportKey) : { fairLine: consensusSpread, adjustment: 0 })
     : null;
   const omiFairTotal = consensusTotal !== undefined
-    ? (pythonPillars ? calculateFairTotal(consensusTotal, pythonPillars.gameEnvironment) : { fairLine: consensusTotal, adjustment: 0 })
+    ? (pythonPillars ? calculateFairTotal(consensusTotal, pythonPillars.gameEnvironment, sportKey) : { fairLine: consensusTotal, adjustment: 0 })
     : null;
   // ML consensus: median of all book odds (needed before fair ML calc)
   const mlHomeOdds = allBooks.map(b => b.markets?.h2h?.home?.price).filter((v): v is number => v !== undefined);
@@ -2620,19 +2620,19 @@ export function GameDetailClient({
       const lines = allBooksForPeriod.map(m => m?.spreads?.home?.line).filter((v): v is number => v !== undefined);
       const consensus = calcMedian(lines);
       if (consensus === undefined) return undefined;
-      return calculateFairSpread(consensus, pythonPillarScores.composite).fairLine;
+      return calculateFairSpread(consensus, pythonPillarScores.composite, gameData.sportKey).fairLine;
     }
     if (activeMarket === 'total') {
       const lines = allBooksForPeriod.map(m => m?.totals?.line).filter((v): v is number => v !== undefined);
       const consensus = calcMedian(lines);
       if (consensus === undefined) return undefined;
-      return calculateFairTotal(consensus, pythonPillarScores.gameEnvironment).fairLine;
+      return calculateFairTotal(consensus, pythonPillarScores.gameEnvironment, gameData.sportKey).fairLine;
     }
     // Moneyline: derive from fair spread for consistency; fallback to composite-only
     const spreadLines = allBooksForPeriod.map(m => m?.spreads?.home?.line).filter((v): v is number => v !== undefined);
     const spreadConsensus = calcMedian(spreadLines);
     if (spreadConsensus !== undefined) {
-      const fairSpread = calculateFairSpread(spreadConsensus, pythonPillarScores.composite).fairLine;
+      const fairSpread = calculateFairSpread(spreadConsensus, pythonPillarScores.composite, gameData.sportKey).fairLine;
       return spreadToMoneyline(fairSpread, gameData.sportKey).homeOdds;
     }
     return calculateFairMoneyline(pythonPillarScores.composite).homeOdds;
@@ -2678,9 +2678,9 @@ export function GameDetailClient({
 
     // OMI fair lines
     const fairSpread = consSpread !== undefined && pythonPillarScores
-      ? calculateFairSpread(consSpread, pythonPillarScores.composite) : null;
+      ? calculateFairSpread(consSpread, pythonPillarScores.composite, gameData.sportKey) : null;
     const fairTotal = consTotal !== undefined && pythonPillarScores
-      ? calculateFairTotal(consTotal, pythonPillarScores.gameEnvironment) : null;
+      ? calculateFairTotal(consTotal, pythonPillarScores.gameEnvironment, gameData.sportKey) : null;
     const fairML = fairSpread
       ? spreadToMoneyline(fairSpread.fairLine, gameData.sportKey)
       : (pythonPillarScores ? calculateFairMoneyline(pythonPillarScores.composite) : null);

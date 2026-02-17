@@ -467,27 +467,41 @@ class InternalGrader:
                 all_ml_away.sort()
                 closing_ml_away = all_ml_away[len(all_ml_away) // 2]
 
-        # Calculate OMI fair lines
-        FAIR_SPREAD_CAP = 4.0   # max ±4 points from consensus
-        FAIR_TOTAL_CAP = 5.0    # max ±5 points from consensus
+        # Calculate OMI fair lines — sport-specific caps prevent hallucinated edges
+        SPREAD_CAP_BY_SPORT = {
+            "NCAAB": 4.0, "NBA": 3.0, "NFL": 3.0, "NCAAF": 3.0,
+            "NHL": 1.5, "EPL": 1.0,
+        }
+        TOTAL_CAP_BY_SPORT = {
+            "NCAAB": 6.0, "NBA": 5.0, "NFL": 5.0, "NCAAF": 5.0,
+            "NHL": 1.0, "EPL": 1.0,
+        }
+        spread_cap = SPREAD_CAP_BY_SPORT.get(sport_key, 3.0)
+        total_cap = TOTAL_CAP_BY_SPORT.get(sport_key, 4.0)
         FAIR_ML_PROB_CAP = 0.08 # max ±8% implied probability
 
         fair_spread = None
         if closing_spread is not None:
-            adjustment = (composite - 0.5) * FAIR_LINE_SPREAD_FACTOR * 10
-            fair_spread = closing_spread + adjustment
-            # Cap deviation from consensus
-            fair_spread = max(closing_spread - FAIR_SPREAD_CAP,
-                              min(closing_spread + FAIR_SPREAD_CAP, fair_spread))
+            raw_adj = (composite - 0.5) * FAIR_LINE_SPREAD_FACTOR * 10
+            capped_adj = max(-spread_cap, min(spread_cap, raw_adj))
+            if abs(raw_adj) > spread_cap:
+                logger.warning(
+                    f"[FairCap] {game_id}: spread adjustment capped "
+                    f"{raw_adj:.1f} -> {capped_adj:.1f} (cap=±{spread_cap})"
+                )
+            fair_spread = closing_spread + capped_adj
 
         fair_total = None
         game_env = game.get("pillar_game_environment") or composite
         if closing_total is not None:
-            adjustment = (game_env - 0.5) * FAIR_LINE_TOTAL_FACTOR * 10
-            fair_total = closing_total + adjustment
-            # Cap deviation from consensus
-            fair_total = max(closing_total - FAIR_TOTAL_CAP,
-                             min(closing_total + FAIR_TOTAL_CAP, fair_total))
+            raw_adj = (game_env - 0.5) * FAIR_LINE_TOTAL_FACTOR * 10
+            capped_adj = max(-total_cap, min(total_cap, raw_adj))
+            if abs(raw_adj) > total_cap:
+                logger.warning(
+                    f"[FairCap] {game_id}: total adjustment capped "
+                    f"{raw_adj:.1f} -> {capped_adj:.1f} (cap=±{total_cap})"
+                )
+            fair_total = closing_total + capped_adj
 
         if not book_lines:
             logger.info(
@@ -513,6 +527,16 @@ class InternalGrader:
             spread_data = book_data.get("spread")
             if fair_spread is not None and spread_data and spread_data.get("line") is not None:
                 book_spread = spread_data["line"]
+
+                # Skip if book diverges wildly from consensus (likely stale/bad data)
+                if closing_spread is not None and abs(book_spread - closing_spread) > spread_cap * 2:
+                    logger.warning(
+                        f"[GenGrades] {game_id}: {book_name} spread {book_spread} "
+                        f"diverges {abs(book_spread - closing_spread):.1f}pts from consensus "
+                        f"{closing_spread} (threshold=±{spread_cap * 2}), skipping"
+                    )
+                    continue
+
                 gap = fair_spread - book_spread
 
                 if gap > 0:
@@ -573,6 +597,16 @@ class InternalGrader:
             total_data = book_data.get("total")
             if fair_total is not None and total_data and total_data.get("line") is not None:
                 book_total = total_data["line"]
+
+                # Skip if book diverges wildly from consensus (likely stale/bad data)
+                if closing_total is not None and abs(book_total - closing_total) > total_cap * 2:
+                    logger.warning(
+                        f"[GenGrades] {game_id}: {book_name} total {book_total} "
+                        f"diverges {abs(book_total - closing_total):.1f}pts from consensus "
+                        f"{closing_total} (threshold=±{total_cap * 2}), skipping"
+                    )
+                    continue
+
                 gap = fair_total - book_total
 
                 if gap > 0:

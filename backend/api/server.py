@@ -1733,11 +1733,11 @@ _bearer_scheme = HTTPBearer()
 # Simple in-memory rate limiter: {ip: [timestamp, ...]}
 _rate_limit_store: dict[str, list[float]] = defaultdict(list)
 _RATE_LIMIT_WINDOW = 60  # seconds
-_RATE_LIMIT_MAX = 60  # requests per window
+_RATE_LIMIT_MAX = 600  # requests per window (dedicated partner key)
 
 
 def _rate_limit_check(client_ip: str):
-    """Enforce 60 requests per minute per IP."""
+    """Enforce 600 requests per minute per IP."""
     now = time.time()
     window_start = now - _RATE_LIMIT_WINDOW
     # Prune old entries
@@ -1745,7 +1745,7 @@ def _rate_limit_check(client_ip: str):
         t for t in _rate_limit_store[client_ip] if t > window_start
     ]
     if len(_rate_limit_store[client_ip]) >= _RATE_LIMIT_MAX:
-        raise HTTPException(status_code=429, detail="Rate limit exceeded (60 req/min)")
+        raise HTTPException(status_code=429, detail="Rate limit exceeded (600 req/min)")
     _rate_limit_store[client_ip].append(now)
 
 
@@ -1849,17 +1849,196 @@ def calculate_live_ceq(
     expected_margin: float,
     minutes_elapsed: float,
     total_minutes: float,
-) -> float:
-    """Adjust pre-game composite based on live score vs expected margin."""
+    favored_side: str = "pick",
+    exchange_data: dict = None,
+) -> tuple[float, bool | None]:
+    """Adjust pre-game composite based on:
+    1. Live score vs expected margin (primary ~70% influence)
+    2. Live exchange price movement (secondary ~30% — free Kalshi/PM data)
+
+    Returns (live_ceq, exchange_confirms) where exchange_confirms is
+    True/False/None (None = no exchange data).
+    """
     game_pct = min(minutes_elapsed / total_minutes, 1.0) if total_minutes > 0 else 0.0
     score_surprise = live_score_diff - (expected_margin * game_pct)
     surprise_factor = score_surprise / max(abs(expected_margin), 3.0)
-    adjustment = surprise_factor * 0.15 * game_pct
-    return max(0.0, min(1.0, pre_game_composite + adjustment))
+    score_adjustment = surprise_factor * 0.15 * game_pct
+    score_based_ceq = max(0.0, min(1.0, pre_game_composite + score_adjustment))
+
+    # Exchange adjustment (only if we have exchange data)
+    exchange_adjustment = 0.0
+    exchange_confirms = None
+
+    if exchange_data:
+        current_exchange_prob = exchange_data.get("exchange_implied_prob")
+        pregame_exchange_prob = exchange_data.get("pregame_exchange_prob")
+
+        if current_exchange_prob and pregame_exchange_prob:
+            exchange_move = current_exchange_prob - pregame_exchange_prob
+
+            # Does exchange movement confirm or contradict our model?
+            if favored_side == "home":
+                exchange_confirmation = exchange_move
+            elif favored_side == "away":
+                exchange_confirmation = -exchange_move
+            else:
+                exchange_confirmation = 0.0
+
+            # Scale: 10% exchange move = significant
+            exchange_factor = exchange_confirmation / 0.10
+            exchange_factor = max(-0.5, min(0.5, exchange_factor))
+
+            # Apply with ~20% weight (score is still primary)
+            if exchange_factor >= 0:
+                exchange_adjustment = (1.0 - score_based_ceq) * exchange_factor * 0.15
+            else:
+                exchange_adjustment = (0.5 - score_based_ceq) * abs(exchange_factor) * 0.30
+
+            exchange_confirms = exchange_confirmation > 0.02  # 2% threshold
+
+    live_ceq = max(0.15, min(0.85, score_based_ceq + exchange_adjustment))
+    return live_ceq, exchange_confirms
 
 
-def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None) -> dict:
-    """Build a single game signal payload for the ARB API response."""
+def calculate_live_flow(pregame_flow: float, exchange_implied_prob: float = None) -> float:
+    """Live Flow score from current exchange prices.
+    Flow > 0.5 = away edge, < 0.5 = home edge (matches pillar convention).
+    """
+    if exchange_implied_prob is None:
+        return pregame_flow
+    exchange_flow = 1.0 - exchange_implied_prob
+    live_flow = exchange_flow * 0.6 + pregame_flow * 0.4
+    return round(max(0.05, min(0.95, live_flow)), 3)
+
+
+def _fetch_exchange_data_for_game(game_id: str, home_team: str) -> dict | None:
+    """Fetch latest + earliest exchange snapshots for a game.
+    Returns {kalshi_home_prob, polymarket_home_prob, exchange_implied_prob,
+             pregame_exchange_prob, exchange_move} or None.
+    """
+    try:
+        # Latest snapshots (already deduped by exchange_tracker)
+        latest = db.client.table("exchange_data").select(
+            "yes_price, exchange, subtitle, market_type, snapshot_time"
+        ).eq("mapped_game_id", game_id).eq(
+            "market_type", "moneyline"
+        ).gt("yes_price", 0).order(
+            "snapshot_time", desc=True
+        ).limit(20).execute()
+        contracts = latest.data or []
+        if not contracts:
+            return None
+
+        # Identify home team contracts
+        home_lower = home_team.lower()
+        home_words = [w for w in home_lower.split() if len(w) > 3]
+
+        kalshi_prob = None
+        polymarket_prob = None
+        for c in contracts:
+            sub = (c.get("subtitle") or "").lower()
+            is_home = any(w in sub for w in home_words) if home_words else False
+            if not is_home:
+                continue
+            prob = c["yes_price"] / 100.0
+            exch = c.get("exchange", "")
+            if exch == "kalshi" and kalshi_prob is None:
+                kalshi_prob = prob
+            elif exch == "polymarket" and polymarket_prob is None:
+                polymarket_prob = prob
+
+        # Average available exchange prices
+        probs = [p for p in [kalshi_prob, polymarket_prob] if p is not None]
+        if not probs:
+            return None
+        exchange_implied = sum(probs) / len(probs)
+
+        # Get pregame exchange price (earliest snapshot for this game)
+        earliest = db.client.table("exchange_data").select(
+            "yes_price, subtitle"
+        ).eq("mapped_game_id", game_id).eq(
+            "market_type", "moneyline"
+        ).gt("yes_price", 0).order(
+            "snapshot_time", desc=False
+        ).limit(10).execute()
+        pregame_prob = None
+        for c in (earliest.data or []):
+            sub = (c.get("subtitle") or "").lower()
+            if any(w in sub for w in home_words) if home_words else False:
+                pregame_prob = c["yes_price"] / 100.0
+                break
+
+        # Fallback: if no identifiable home contract in earliest, skip
+        if pregame_prob is None:
+            pregame_prob = exchange_implied  # treat as no movement
+
+        exchange_move = exchange_implied - pregame_prob
+
+        return {
+            "kalshi_home_prob": round(kalshi_prob, 3) if kalshi_prob is not None else None,
+            "polymarket_home_prob": round(polymarket_prob, 3) if polymarket_prob is not None else None,
+            "exchange_implied_prob": round(exchange_implied, 3),
+            "pregame_exchange_prob": round(pregame_prob, 3),
+            "exchange_move": round(exchange_move, 3),
+        }
+    except Exception as e:
+        logger.debug(f"[ArbAPI] Exchange fetch failed for {game_id}: {e}")
+        return None
+
+
+def _generate_live_signal_note(
+    home_team: str, away_team: str,
+    home_score: int, away_score: int,
+    fair_spread: float, exchange_data: dict = None,
+    exchange_confirms: bool = None,
+) -> str:
+    """Generate human-readable one-liner for live signal."""
+    margin = home_score - away_score
+    leading = home_team if margin > 0 else away_team if margin < 0 else "Tied"
+    margin_abs = abs(margin)
+
+    parts = []
+    if margin != 0:
+        parts.append(f"{leading} leading by {margin_abs}")
+    else:
+        parts.append(f"Game tied {home_score}-{away_score}")
+
+    if fair_spread is not None:
+        parts.append(f"pregame fair spread was {fair_spread:+.1f}")
+
+    if margin != 0 and fair_spread is not None:
+        expected = -float(fair_spread)
+        if (margin > 0 and expected > 0) or (margin < 0 and expected < 0):
+            parts.append("Score confirms pregame read")
+        else:
+            parts.append("Score contradicts pregame read")
+
+    if exchange_data:
+        exch_parts = []
+        kp = exchange_data.get("kalshi_home_prob")
+        pp = exchange_data.get("polymarket_home_prob")
+        if kp is not None:
+            exch_parts.append(f"Kalshi {int(kp*100)}c")
+        if pp is not None:
+            exch_parts.append(f"PM {int(pp*100)}c")
+        pregame_p = exchange_data.get("pregame_exchange_prob")
+        if exch_parts and pregame_p is not None:
+            direction = "up" if exchange_data.get("exchange_move", 0) > 0 else "down"
+            note = f"Exchange prices {'confirming' if exchange_confirms else 'diverging'}"
+            note += f" — {', '.join(exch_parts)}, {direction} from pregame {int(pregame_p*100)}c"
+            parts.append(note)
+
+    return ". ".join(parts) + "."
+
+
+def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
+                       exchange_cache: dict = None) -> dict:
+    """Build a single game signal payload for the ARB API response.
+
+    exchange_cache: optional pre-fetched {game_id: exchange_data_dict} to avoid
+    per-game DB lookups in the bulk endpoint. If None and game is live, will
+    fetch on demand.
+    """
     game_id = pred.get("game_id", "")
     home_team = pred.get("home_team", "")
     away_team = pred.get("away_team", "")
@@ -1867,6 +2046,7 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None) -> di
     commence_time = pred.get("commence_time", "")
 
     composite = pred.get("composite_score", 0.5) or 0.5
+    pregame_flow = pred.get("pillar_flow", 0.5) or 0.5
 
     # Fair lines from composite_history
     fair_spread = comp_row.get("fair_spread")
@@ -1906,6 +2086,7 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None) -> di
     live_home_score = None
     live_away_score = None
     live_composite = None
+    live_block = None
 
     if live_game and live_game.get("status") == "STATUS_IN_PROGRESS":
         game_status = "live"
@@ -1914,26 +2095,76 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None) -> di
         live_home_score = live_game.get("home_score", 0)
         live_away_score = live_game.get("away_score", 0)
 
-        # Live CEQ adjustment
+        # Fetch exchange data (from cache or on-demand)
+        exch_data = None
+        if exchange_cache is not None:
+            exch_data = exchange_cache.get(game_id)
+        else:
+            exch_data = _fetch_exchange_data_for_game(game_id, home_team)
+
+        # Live CEQ adjustment (enhanced with exchange data)
         score_diff = live_home_score - live_away_score
         expected_margin = -(float(fair_spread)) if fair_spread is not None else (composite - 0.5) * 10
         total_mins = _total_minutes_for_sport(sport_key)
         elapsed = _estimate_minutes_elapsed(period or "", clock or "", sport_key)
-        live_composite = calculate_live_ceq(
-            composite, score_diff, expected_margin, elapsed, total_mins
+        live_composite, exchange_confirms = calculate_live_ceq(
+            composite, score_diff, expected_margin, elapsed, total_mins,
+            favored_side=favored_side, exchange_data=exch_data,
         )
+
         # Recalculate edge with live composite if spread available
         if fair_spread is not None and book_spread is not None:
-            # Recalculate fair spread with live composite
             deviation = live_composite * 100 - 50
             live_fair_spread = float(book_spread) - deviation * 0.15
             spread_edge_pct = calc_edge_pct(live_fair_spread, float(book_spread), "spread")
-            fair_spread = round(live_fair_spread * 2) / 2  # round to 0.5
+            fair_spread = round(live_fair_spread * 2) / 2
 
         best_edge_pct = max(spread_edge_pct, total_edge_pct)
         best_market = "spread" if spread_edge_pct >= total_edge_pct else "total"
         signal = determine_signal(best_edge_pct)
         confidence = edge_to_confidence(best_edge_pct)
+
+        # Live confidence label
+        margin_vs_expected = score_diff - expected_margin
+        if abs(margin_vs_expected) < 2:
+            live_confidence = "ON TRACK"
+        elif (favored_side == "home" and margin_vs_expected > 0) or \
+             (favored_side == "away" and margin_vs_expected < 0):
+            live_confidence = "STRENGTHENED"
+        else:
+            live_confidence = "WEAKENED"
+
+        # Live flow score
+        exch_implied = exch_data.get("exchange_implied_prob") if exch_data else None
+        live_flow = calculate_live_flow(pregame_flow, exch_implied)
+
+        # Signal note
+        signal_note = _generate_live_signal_note(
+            home_team, away_team, live_home_score, live_away_score,
+            fair_spread, exch_data, exchange_confirms,
+        )
+
+        live_block = {
+            "home_score": live_home_score,
+            "away_score": live_away_score,
+            "period": period,
+            "clock": clock,
+            "current_margin": score_diff,
+            "pregame_expected_margin": round(expected_margin, 1),
+            "margin_vs_expected": round(margin_vs_expected, 1),
+            "live_ceq": round(live_composite, 4),
+            "live_confidence": live_confidence,
+            "live_signal_note": signal_note,
+            "exchange": {
+                "kalshi_home_prob": exch_data["kalshi_home_prob"],
+                "polymarket_home_prob": exch_data["polymarket_home_prob"],
+                "pregame_exchange_prob": exch_data["pregame_exchange_prob"],
+                "exchange_move": exch_data["exchange_move"],
+                "exchange_confirms_model": exchange_confirms,
+            } if exch_data else None,
+            "live_flow_score": live_flow,
+        }
+
     elif live_game and live_game.get("status") == "STATUS_FINAL":
         game_status = "final"
 
@@ -1968,14 +2199,8 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None) -> di
         },
     }
 
-    if game_status == "live":
-        result["live"] = {
-            "period": period,
-            "clock": clock,
-            "home_score": live_home_score,
-            "away_score": live_away_score,
-            "live_composite": round(live_composite, 4) if live_composite is not None else None,
-        }
+    if live_block:
+        result["live"] = live_block
 
     return result
 
@@ -2059,7 +2284,98 @@ async def arb_bulk_edge_signals(
                     }
             return {}
 
-        # 4. Build response
+        # 4. Pre-identify live games and batch-fetch exchange data
+        live_game_ids = []
+        live_home_teams = {}
+        for pred in predictions:
+            lg = _find_live_game(pred.get("home_team", ""), pred.get("away_team", ""))
+            if lg and lg.get("status") == "STATUS_IN_PROGRESS":
+                gid = pred["game_id"]
+                live_game_ids.append(gid)
+                live_home_teams[gid] = pred.get("home_team", "")
+
+        exchange_cache = {}
+        if live_game_ids:
+            # Batch-fetch exchange data for all live games in one query
+            for i in range(0, len(live_game_ids), 50):
+                chunk = live_game_ids[i:i + 50]
+                try:
+                    exch_result = db.client.table("exchange_data").select(
+                        "mapped_game_id, yes_price, exchange, subtitle, market_type, snapshot_time"
+                    ).in_("mapped_game_id", chunk).eq(
+                        "market_type", "moneyline"
+                    ).gt("yes_price", 0).order(
+                        "snapshot_time", desc=True
+                    ).limit(500).execute()
+
+                    # Also fetch earliest snapshots for pregame prices
+                    earliest_result = db.client.table("exchange_data").select(
+                        "mapped_game_id, yes_price, subtitle, market_type"
+                    ).in_("mapped_game_id", chunk).eq(
+                        "market_type", "moneyline"
+                    ).gt("yes_price", 0).order(
+                        "snapshot_time", desc=False
+                    ).limit(500).execute()
+
+                    # Group latest by game_id
+                    latest_by_game: dict[str, list] = defaultdict(list)
+                    for row in (exch_result.data or []):
+                        latest_by_game[row["mapped_game_id"]].append(row)
+
+                    earliest_by_game: dict[str, list] = defaultdict(list)
+                    for row in (earliest_result.data or []):
+                        earliest_by_game[row["mapped_game_id"]].append(row)
+
+                    # Build exchange_data dict per game
+                    for gid in chunk:
+                        home_team_name = live_home_teams.get(gid, "")
+                        home_lower = home_team_name.lower()
+                        home_words = [w for w in home_lower.split() if len(w) > 3]
+
+                        contracts = latest_by_game.get(gid, [])
+                        if not contracts:
+                            continue
+
+                        kalshi_prob = None
+                        polymarket_prob = None
+                        for c in contracts:
+                            sub = (c.get("subtitle") or "").lower()
+                            is_home = any(w in sub for w in home_words) if home_words else False
+                            if not is_home:
+                                continue
+                            prob = c["yes_price"] / 100.0
+                            exch = c.get("exchange", "")
+                            if exch == "kalshi" and kalshi_prob is None:
+                                kalshi_prob = prob
+                            elif exch == "polymarket" and polymarket_prob is None:
+                                polymarket_prob = prob
+
+                        probs = [p for p in [kalshi_prob, polymarket_prob] if p is not None]
+                        if not probs:
+                            continue
+                        exchange_implied = sum(probs) / len(probs)
+
+                        # Pregame price from earliest snapshot
+                        pregame_prob = None
+                        for c in earliest_by_game.get(gid, []):
+                            sub = (c.get("subtitle") or "").lower()
+                            if any(w in sub for w in home_words) if home_words else False:
+                                pregame_prob = c["yes_price"] / 100.0
+                                break
+                        if pregame_prob is None:
+                            pregame_prob = exchange_implied
+
+                        exchange_cache[gid] = {
+                            "kalshi_home_prob": round(kalshi_prob, 3) if kalshi_prob is not None else None,
+                            "polymarket_home_prob": round(polymarket_prob, 3) if polymarket_prob is not None else None,
+                            "exchange_implied_prob": round(exchange_implied, 3),
+                            "pregame_exchange_prob": round(pregame_prob, 3),
+                            "exchange_move": round(exchange_implied - pregame_prob, 3),
+                        }
+                except Exception as exch_err:
+                    logger.debug(f"[ArbAPI] Batch exchange fetch error: {exch_err}")
+
+        # 5. Build response
         games = []
         live_count = 0
         for pred in predictions:
@@ -2069,7 +2385,10 @@ async def arb_bulk_edge_signals(
                 pred.get("home_team", ""),
                 pred.get("away_team", ""),
             )
-            signal = _build_game_signal(pred, comp_row, live_game or None)
+            signal = _build_game_signal(
+                pred, comp_row, live_game or None,
+                exchange_cache=exchange_cache,
+            )
             games.append(signal)
             if signal.get("game_status") == "live":
                 live_count += 1
@@ -2100,7 +2419,7 @@ async def arb_single_edge_signal(
     game_id: str = Query(..., description="Game ID"),
     _auth: bool = Depends(verify_arb_api_key),
 ):
-    """Single game edge signal with live status."""
+    """Single game edge signal with live status and exchange data."""
     try:
         # Fetch prediction
         pred_result = db.client.table("predictions").select("*").eq(
@@ -2141,6 +2460,7 @@ async def arb_single_edge_signal(
                     }
                     break
 
+        # exchange_cache=None → _build_game_signal fetches on demand for live games
         signal = _build_game_signal(pred, comp_row, live_game or None)
         return signal
 

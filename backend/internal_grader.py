@@ -388,7 +388,7 @@ class InternalGrader:
             logger.warning(f"[GenGrades] {game_id}: scores missing (home={home_score}, away={away_score})")
             return 0
 
-        sport_key = game.get("sport_key", "")
+        sport_key = _normalize_sport(game.get("sport_key", ""))
         raw_composite = game.get("composite_score")
         composite = raw_composite if raw_composite is not None and raw_composite > 0 else 0.5
         tier = composite_to_confidence_tier(composite)

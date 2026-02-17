@@ -1032,18 +1032,57 @@ export default async function SportsPage() {
     }
   }
 
-  // Fetch exchange data (Kalshi/Polymarket) and build per-game exchange bookmaker entries
+  // Build game team lookup for exchange ML matching
+  const gameTeamsMap: Record<string, { home: string; away: string }> = {};
+  if (cachedOddsData) {
+    for (const row of cachedOddsData) {
+      if (row.game_data?.home_team && row.game_data?.away_team) {
+        gameTeamsMap[row.game_data.id || row.game_id] = {
+          home: row.game_data.home_team,
+          away: row.game_data.away_team,
+        };
+      }
+    }
+  }
+
+  // Fetch exchange data — split by market_type to avoid 1000-row Supabase limit.
+  // Kalshi offers many alternate lines per game; Polymarket has duplicate entries.
+  // Splitting ensures each market type gets its own 1000-row budget.
   const exchangeBookmakersByGameId: Record<string, Record<string, any>> = {};
   {
-    const { data: exchangeRows } = await supabase
-      .from('exchange_data')
-      .select('exchange, market_type, yes_price, no_price, subtitle, event_title, mapped_game_id')
-      .not('mapped_game_id', 'is', null);
+    const fetchExchange = async (marketType: string) => {
+      const { data } = await supabase
+        .from('exchange_data')
+        .select('exchange, market_type, yes_price, no_price, subtitle, event_title, mapped_game_id')
+        .not('mapped_game_id', 'is', null)
+        .not('subtitle', 'is', null)
+        .eq('market_type', marketType)
+        .order('snapshot_time', { ascending: false })
+        .limit(1000);
+      return data || [];
+    };
 
-    if (exchangeRows) {
-      // Group by game_id -> exchange -> market_type
-      const grouped: Record<string, Record<string, any[]>> = {};
+    const [mlRows, spreadRows, totalRows] = await Promise.all([
+      fetchExchange('moneyline'),
+      fetchExchange('spread'),
+      fetchExchange('total'),
+    ]);
+    const exchangeRows = [...mlRows, ...spreadRows, ...totalRows];
+
+    if (exchangeRows.length > 0) {
+      // De-dup: keep only latest snapshot per (game, exchange, market_type, subtitle)
+      const seen = new Set<string>();
+      const deduped: typeof exchangeRows = [];
       for (const row of exchangeRows) {
+        const key = `${row.mapped_game_id}|${row.exchange}|${row.market_type}|${row.subtitle ?? ''}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        deduped.push(row);
+      }
+
+      // Group by game_id -> exchange
+      const grouped: Record<string, Record<string, typeof deduped>> = {};
+      for (const row of deduped) {
         const gid = row.mapped_game_id;
         if (!gid) continue;
         if (!grouped[gid]) grouped[gid] = {};
@@ -1061,14 +1100,43 @@ export default async function SportsPage() {
 
       for (const [gameId, exchanges] of Object.entries(grouped)) {
         exchangeBookmakersByGameId[gameId] = {};
+        const teams = gameTeamsMap[gameId];
 
         for (const [exchange, contracts] of Object.entries(exchanges)) {
           const bookOdds: any = {};
 
-          // Moneyline: market_type = 'moneyline'
-          const mlContracts = contracts.filter(c => c.market_type === 'moneyline');
-          if (mlContracts.length > 0) {
-            // Pick the first moneyline contract (usually the main win market)
+          // --- Moneyline: match two contracts to home/away by subtitle ---
+          const mlContracts = contracts.filter(c => c.market_type === 'moneyline' && c.subtitle);
+          if (mlContracts.length >= 2 && teams) {
+            let homeMl: (typeof mlContracts)[0] | null = null;
+            let awayMl: (typeof mlContracts)[0] | null = null;
+            const homeLower = teams.home.toLowerCase();
+            const awayLower = teams.away.toLowerCase();
+            // Try full name match first
+            for (const c of mlContracts) {
+              const sub = (c.subtitle || '').toLowerCase();
+              if (!homeMl && (sub.includes(homeLower) || homeLower.includes(sub))) homeMl = c;
+              if (!awayMl && (sub.includes(awayLower) || awayLower.includes(sub))) awayMl = c;
+            }
+            // Fallback: match by last word (team mascot)
+            if (!homeMl || !awayMl) {
+              const homeLast = homeLower.split(' ').pop()!;
+              const awayLast = awayLower.split(' ').pop()!;
+              for (const c of mlContracts) {
+                const sub = (c.subtitle || '').toLowerCase();
+                if (!homeMl && sub.includes(homeLast)) homeMl = c;
+                if (!awayMl && sub.includes(awayLast)) awayMl = c;
+              }
+            }
+            if (homeMl && awayMl) {
+              bookOdds.h2h = {
+                homePrice: centToAmerican(homeMl.yes_price ?? 50),
+                awayPrice: centToAmerican(awayMl.yes_price ?? 50),
+                exchangeHomeYes: homeMl.yes_price,
+                exchangeAwayYes: awayMl.yes_price,
+              };
+            }
+          } else if (mlContracts.length === 1) {
             const ml = mlContracts[0];
             if (ml.yes_price != null) {
               bookOdds.h2h = {
@@ -1080,42 +1148,55 @@ export default async function SportsPage() {
             }
           }
 
-          // Spread: market_type = 'spread'
-          const spreadContracts = contracts.filter(c => c.market_type === 'spread');
+          // --- Spread: pick contract closest to 50¢ (primary line) ---
+          const spreadContracts = contracts.filter(c => c.market_type === 'spread' && c.subtitle);
           if (spreadContracts.length > 0) {
-            // Pick the contract with the most meaningful spread line
-            // Parse line from subtitle: "Alabama A&M wins by over 18.5 Points" or "Spread: Team (-2.5)"
-            const sp = spreadContracts[0];
-            let spreadLine: number | undefined;
-            const sub = sp.subtitle || sp.event_title || '';
-            const lineMatch = sub.match(/[-+]?\d+\.?\d*/);
-            if (lineMatch) spreadLine = parseFloat(lineMatch[0]);
+            const primary = spreadContracts.reduce((best, c) =>
+              Math.abs((c.yes_price ?? 50) - 50) < Math.abs((best.yes_price ?? 50) - 50) ? c : best
+            );
+            const sub = primary.subtitle || primary.event_title || '';
+            const lineMatch = sub.match(/(\d+\.?\d*)/);
+            const rawLine = lineMatch ? parseFloat(lineMatch[1]) : undefined;
 
+            // Determine sign: "{Team} wins by over X" → if home team, line = -X
+            let signedLine = rawLine;
+            const isHomeTeamContract = teams && sub.toLowerCase().includes(
+              teams.home.toLowerCase().split(' ').pop()!
+            );
+            if (rawLine !== undefined && teams) {
+              signedLine = isHomeTeamContract ? -rawLine : rawLine;
+            }
+
+            // YES = subtitle team covers, NO = other team covers
             bookOdds.spreads = {
-              line: spreadLine,
-              homePrice: centToAmerican(sp.yes_price ?? 50),
-              awayPrice: centToAmerican(sp.no_price ?? 50),
-              exchangeYes: sp.yes_price,
-              exchangeNo: sp.no_price,
+              line: signedLine,
+              homePrice: isHomeTeamContract
+                ? centToAmerican(primary.yes_price ?? 50)
+                : centToAmerican(primary.no_price ?? 50),
+              awayPrice: isHomeTeamContract
+                ? centToAmerican(primary.no_price ?? 50)
+                : centToAmerican(primary.yes_price ?? 50),
+              exchangeYes: primary.yes_price,
+              exchangeNo: primary.no_price,
             };
           }
 
-          // Total: market_type = 'total'
-          const totalContracts = contracts.filter(c => c.market_type === 'total');
+          // --- Total: pick contract closest to 50¢ (primary line) ---
+          const totalContracts = contracts.filter(c => c.market_type === 'total' && c.subtitle);
           if (totalContracts.length > 0) {
-            // Pick the first total contract, parse line from subtitle
-            const tot = totalContracts[0];
-            let totalLine: number | undefined;
-            const sub = tot.subtitle || tot.event_title || '';
-            const lineMatch = sub.match(/\d+\.?\d*/);
-            if (lineMatch) totalLine = parseFloat(lineMatch[0]);
+            const primary = totalContracts.reduce((best, c) =>
+              Math.abs((c.yes_price ?? 50) - 50) < Math.abs((best.yes_price ?? 50) - 50) ? c : best
+            );
+            const sub = primary.subtitle || primary.event_title || '';
+            const lineMatch = sub.match(/(\d+\.?\d*)/);
+            const totalLine = lineMatch ? parseFloat(lineMatch[1]) : undefined;
 
             bookOdds.totals = {
               line: totalLine,
-              overPrice: centToAmerican(tot.yes_price ?? 50),
-              underPrice: centToAmerican(tot.no_price ?? 50),
-              exchangeOverYes: tot.yes_price,
-              exchangeUnderYes: tot.no_price,
+              overPrice: centToAmerican(primary.yes_price ?? 50),
+              underPrice: centToAmerican(primary.no_price ?? 50),
+              exchangeOverYes: primary.yes_price,
+              exchangeUnderYes: primary.no_price,
             };
           }
 

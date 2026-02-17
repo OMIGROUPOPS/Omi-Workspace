@@ -1687,6 +1687,17 @@ async def system_health():
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/api/internal/accuracy-summary")
+async def accuracy_summary(sport: str = None, days: int = 30):
+    """Prediction accuracy reflection pool — how close OMI fair lines are to reality."""
+    try:
+        from accuracy_tracker import AccuracyTracker
+        tracker = AccuracyTracker()
+        return tracker.get_accuracy_summary(sport=sport, days=days)
+    except Exception as e:
+        return {"error": str(e)}
+
+
 @app.get("/api/internal/closing-lines")
 async def get_closing_lines(sport: str = None, days: int = 7):
     """Get recent closing line captures for inspection."""

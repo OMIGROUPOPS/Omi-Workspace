@@ -319,7 +319,7 @@ export default function EdgeInternalPage() {
   const router = useRouter();
 
   // Shared state
-  const [activeTab, setActiveTab] = useState<"performance" | "graded" | "live">(
+  const [activeTab, setActiveTab] = useState<"performance" | "graded" | "live" | "accuracy">(
     "performance"
   );
   const [grading, setGrading] = useState(false);
@@ -356,6 +356,10 @@ export default function EdgeInternalPage() {
   const [liveLoading, setLiveLoading] = useState(false);
   const [liveSortField, setLiveSortField] = useState("best_edge");
   const [liveSortDir, setLiveSortDir] = useState<"asc" | "desc">("desc");
+
+  // Accuracy tab state
+  const [accuracyData, setAccuracyData] = useState<any>(null);
+  const [accuracyLoading, setAccuracyLoading] = useState(false);
 
   // ------- Performance fetch -------
   const fetchData = useCallback(async () => {
@@ -456,6 +460,24 @@ export default function EdgeInternalPage() {
   useEffect(() => {
     if (activeTab === "live") fetchLiveMarkets();
   }, [activeTab, fetchLiveMarkets]);
+
+  // ------- Accuracy fetch -------
+  const fetchAccuracy = useCallback(async () => {
+    setAccuracyLoading(true);
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/internal/accuracy-summary?days=${days}`);
+      const data = await res.json();
+      setAccuracyData(data);
+    } catch (e) {
+      console.error("Accuracy fetch failed:", e);
+    } finally {
+      setAccuracyLoading(false);
+    }
+  }, [days]);
+
+  useEffect(() => {
+    if (activeTab === "accuracy") fetchAccuracy();
+  }, [activeTab, fetchAccuracy]);
 
   // ------- Grade handler -------
   const handleGrade = async () => {
@@ -692,6 +714,16 @@ export default function EdgeInternalPage() {
           }`}
         >
           PREGAME MARKETS
+        </button>
+        <button
+          onClick={() => setActiveTab("accuracy")}
+          className={`px-4 py-2.5 text-sm font-mono border-b-2 transition-colors ${
+            activeTab === "accuracy"
+              ? "text-purple-400 border-purple-400"
+              : "text-zinc-500 border-transparent hover:text-zinc-300"
+          }`}
+        >
+          ACCURACY
         </button>
       </div>
 
@@ -1569,7 +1601,7 @@ export default function EdgeInternalPage() {
                   ).length;
                   return edgeCount > 0 ? (
                     <span className="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 font-mono text-xs">
-                      {edgeCount} {edgeCount === 1 ? "game" : "games"} with edge &gt; 3%
+                      {edgeCount} {edgeCount === 1 ? "game" : "games"} with edge &gt;  3%
                     </span>
                   ) : null;
                 })()}
@@ -1721,6 +1753,211 @@ export default function EdgeInternalPage() {
                   </div>
                 </div>
               </div>
+            </>
+          )}
+        </>
+      )}
+
+      {/* ================================================================= */}
+      {/* ACCURACY TAB                                                      */}
+      {/* ================================================================= */}
+      {activeTab === "accuracy" && (
+        <>
+          {accuracyLoading ? (
+            <div className="mt-12 text-center text-zinc-500">
+              Loading accuracy data...
+            </div>
+          ) : !accuracyData || accuracyData.error || !accuracyData.overall || accuracyData.overall.games === 0 ? (
+            <div className="mt-12 text-center text-zinc-500">
+              No accuracy data yet — games will populate after grading.
+            </div>
+          ) : (
+            <>
+              {/* Spread Summary Cards */}
+              <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
+                  <div className="text-xs text-zinc-500 font-mono">OMI SPREAD ERROR</div>
+                  <div className="text-xl font-bold text-white mt-1 font-mono">
+                    {accuracyData.overall.avg_omi_spread_error?.toFixed(1) ?? "—"} pts
+                  </div>
+                  <div className="text-xs text-zinc-600">{accuracyData.overall.spread_games} games</div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
+                  <div className="text-xs text-zinc-500 font-mono">BOOK SPREAD ERROR</div>
+                  <div className="text-xl font-bold text-white mt-1 font-mono">
+                    {accuracyData.overall.avg_book_spread_error?.toFixed(1) ?? "—"} pts
+                  </div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
+                  <div className="text-xs text-zinc-500 font-mono">OMI SPREAD EDGE</div>
+                  <div className={`text-xl font-bold mt-1 font-mono ${
+                    (accuracyData.overall.avg_omi_spread_edge ?? 0) > 0 ? "text-emerald-400" :
+                    (accuracyData.overall.avg_omi_spread_edge ?? 0) < 0 ? "text-red-400" : "text-zinc-400"
+                  }`}>
+                    {accuracyData.overall.avg_omi_spread_edge != null
+                      ? `${accuracyData.overall.avg_omi_spread_edge > 0 ? "+" : ""}${accuracyData.overall.avg_omi_spread_edge.toFixed(2)} pts`
+                      : "—"}
+                  </div>
+                  <div className="text-xs text-zinc-600">
+                    OMI closer: {accuracyData.overall.omi_closer_spread} | Book closer: {accuracyData.overall.book_closer_spread}
+                  </div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
+                  <div className="text-xs text-zinc-500 font-mono">GAMES ANALYZED</div>
+                  <div className="text-xl font-bold text-white mt-1 font-mono">
+                    {accuracyData.overall.games}
+                  </div>
+                </div>
+              </div>
+
+              {/* Total Summary Cards */}
+              <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
+                  <div className="text-xs text-zinc-500 font-mono">OMI TOTAL ERROR</div>
+                  <div className="text-xl font-bold text-white mt-1 font-mono">
+                    {accuracyData.overall.avg_omi_total_error?.toFixed(1) ?? "—"} pts
+                  </div>
+                  <div className="text-xs text-zinc-600">{accuracyData.overall.total_games} games</div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
+                  <div className="text-xs text-zinc-500 font-mono">BOOK TOTAL ERROR</div>
+                  <div className="text-xl font-bold text-white mt-1 font-mono">
+                    {accuracyData.overall.avg_book_total_error?.toFixed(1) ?? "—"} pts
+                  </div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
+                  <div className="text-xs text-zinc-500 font-mono">OMI TOTAL EDGE</div>
+                  <div className={`text-xl font-bold mt-1 font-mono ${
+                    (accuracyData.overall.avg_omi_total_edge ?? 0) > 0 ? "text-emerald-400" :
+                    (accuracyData.overall.avg_omi_total_edge ?? 0) < 0 ? "text-red-400" : "text-zinc-400"
+                  }`}>
+                    {accuracyData.overall.avg_omi_total_edge != null
+                      ? `${accuracyData.overall.avg_omi_total_edge > 0 ? "+" : ""}${accuracyData.overall.avg_omi_total_edge.toFixed(2)} pts`
+                      : "—"}
+                  </div>
+                  <div className="text-xs text-zinc-600">
+                    OMI closer: {accuracyData.overall.omi_closer_total} | Book closer: {accuracyData.overall.book_closer_total}
+                  </div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
+                  <div className="text-xs text-zinc-500 font-mono">PINNACLE SPREAD ERR</div>
+                  <div className="text-xl font-bold text-white mt-1 font-mono">
+                    {accuracyData.overall.avg_pinnacle_spread_error?.toFixed(1) ?? "N/A"} pts
+                  </div>
+                </div>
+              </div>
+
+              {/* Per-Tier Accuracy Breakdown */}
+              {accuracyData.by_tier && Object.keys(accuracyData.by_tier).length > 0 && (
+                <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg">
+                  <div className="px-4 py-3 border-b border-zinc-800">
+                    <h2 className="text-sm font-semibold text-zinc-300 font-mono">
+                      PER-TIER ACCURACY BREAKDOWN
+                    </h2>
+                  </div>
+                  <div style={{ overflowX: "auto" }}>
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="text-zinc-500 border-b border-zinc-800">
+                          <th className="text-left px-4 py-2">Tier</th>
+                          <th className="text-right px-4 py-2">Games</th>
+                          <th className="text-right px-4 py-2">OMI Spread Err</th>
+                          <th className="text-right px-4 py-2">Book Spread Err</th>
+                          <th className="text-right px-4 py-2">Spread Edge</th>
+                          <th className="text-right px-4 py-2">OMI Total Err</th>
+                          <th className="text-right px-4 py-2">Book Total Err</th>
+                          <th className="text-right px-4 py-2">Total Edge</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {["NO EDGE", "LOW EDGE", "MID EDGE", "HIGH EDGE", "MAX EDGE", "UNKNOWN"].map((tier) => {
+                          const d = accuracyData.by_tier[tier];
+                          if (!d) return null;
+                          const sigColor = SIGNAL_COLORS[tier] || "text-zinc-400";
+                          return (
+                            <tr key={tier} className="border-b border-zinc-800/50 text-white">
+                              <td className={`px-4 py-2 font-mono font-bold ${sigColor}`}>{tier}</td>
+                              <td className="px-4 py-2 text-right text-zinc-400">{d.games}</td>
+                              <td className="px-4 py-2 text-right font-mono">{d.avg_omi_spread_error?.toFixed(1) ?? "—"}</td>
+                              <td className="px-4 py-2 text-right font-mono text-zinc-400">{d.avg_book_spread_error?.toFixed(1) ?? "—"}</td>
+                              <td className={`px-4 py-2 text-right font-mono font-bold ${
+                                (d.avg_spread_edge ?? 0) > 0 ? "text-emerald-400" :
+                                (d.avg_spread_edge ?? 0) < 0 ? "text-red-400" : "text-zinc-400"
+                              }`}>
+                                {d.avg_spread_edge != null
+                                  ? `${d.avg_spread_edge > 0 ? "+" : ""}${d.avg_spread_edge.toFixed(2)}`
+                                  : "—"}
+                              </td>
+                              <td className="px-4 py-2 text-right font-mono">{d.avg_omi_total_error?.toFixed(1) ?? "—"}</td>
+                              <td className="px-4 py-2 text-right font-mono text-zinc-400">{d.avg_book_total_error?.toFixed(1) ?? "—"}</td>
+                              <td className={`px-4 py-2 text-right font-mono font-bold ${
+                                (d.avg_total_edge ?? 0) > 0 ? "text-emerald-400" :
+                                (d.avg_total_edge ?? 0) < 0 ? "text-red-400" : "text-zinc-400"
+                              }`}>
+                                {d.avg_total_edge != null
+                                  ? `${d.avg_total_edge > 0 ? "+" : ""}${d.avg_total_edge.toFixed(2)}`
+                                  : "—"}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+              {/* Pillar Accuracy Correlation */}
+              {accuracyData.pillar_correlation && Object.keys(accuracyData.pillar_correlation).length > 0 && (
+                <div className="mt-4 bg-zinc-900 border border-zinc-800 rounded-lg">
+                  <div className="px-4 py-3 border-b border-zinc-800">
+                    <h2 className="text-sm font-semibold text-zinc-300 font-mono">
+                      PILLAR ACCURACY CORRELATION
+                    </h2>
+                    <p className="text-xs text-zinc-600 mt-1">
+                      Positive accuracy lift = pillar makes the model more accurate when active
+                    </p>
+                  </div>
+                  <div style={{ overflowX: "auto" }}>
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="text-zinc-500 border-b border-zinc-800">
+                          <th className="text-left px-4 py-2">Pillar</th>
+                          <th className="text-right px-4 py-2">Active Games</th>
+                          <th className="text-right px-4 py-2">Neutral Games</th>
+                          <th className="text-right px-4 py-2">Avg Error (Active)</th>
+                          <th className="text-right px-4 py-2">Avg Error (Neutral)</th>
+                          <th className="text-right px-4 py-2">Accuracy Lift</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {["execution", "incentives", "shocks", "time_decay", "flow", "game_environment"].map((pillar) => {
+                          const d = accuracyData.pillar_correlation[pillar];
+                          if (!d) return null;
+                          const label = pillar.replace("_", " ").replace(/\b\w/g, (c: string) => c.toUpperCase());
+                          return (
+                            <tr key={pillar} className="border-b border-zinc-800/50 text-white">
+                              <td className="px-4 py-2 font-mono">{label}</td>
+                              <td className="px-4 py-2 text-right text-zinc-400">{d.active_games}</td>
+                              <td className="px-4 py-2 text-right text-zinc-400">{d.neutral_games}</td>
+                              <td className="px-4 py-2 text-right font-mono">{d.avg_error_active?.toFixed(2) ?? "—"}</td>
+                              <td className="px-4 py-2 text-right font-mono text-zinc-400">{d.avg_error_neutral?.toFixed(2) ?? "—"}</td>
+                              <td className={`px-4 py-2 text-right font-mono font-bold ${
+                                (d.accuracy_lift ?? 0) > 0 ? "text-emerald-400" :
+                                (d.accuracy_lift ?? 0) < 0 ? "text-red-400" : "text-zinc-400"
+                              }`}>
+                                {d.accuracy_lift != null
+                                  ? `${d.accuracy_lift > 0 ? "+" : ""}${d.accuracy_lift.toFixed(2)}`
+                                  : "—"}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
             </>
           )}
         </>

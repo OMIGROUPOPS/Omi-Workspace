@@ -27,6 +27,7 @@ from data_sources.odds_api import odds_client
 from engine import analyze_all_games
 from database import db
 from internal_grader import InternalGrader
+from accuracy_tracker import AccuracyTracker
 
 logger = logging.getLogger(__name__)
 
@@ -708,6 +709,24 @@ def start_scheduler():
         replace_existing=True
     )
 
+    # Accuracy reflection: Every 60 minutes — measure how close OMI fair lines were to reality
+    def run_accuracy_reflection():
+        try:
+            tracker = AccuracyTracker()
+            result = tracker.run_accuracy_reflection(lookback_hours=48)
+            logger.info(f"[Scheduler] Accuracy reflection: {result}")
+        except Exception as e:
+            logger.error(f"[Scheduler] Accuracy reflection failed: {e}")
+
+    scheduler.add_job(
+        func=run_accuracy_reflection,
+        trigger='interval',
+        minutes=60,
+        id="accuracy_reflection",
+        name="Prediction accuracy reflection pool",
+        next_run_time=datetime.now(timezone.utc) + timedelta(minutes=5),
+    )
+
     # System health check: Every 6 hours — log subsystem health, CRITICAL at ERROR level
     def run_health_check_job():
         try:
@@ -761,6 +780,7 @@ def start_scheduler():
     logger.info(f"  - Composite recalc: every 15 min")
     logger.info(f"  - Pregame capture: every 15 min")
     logger.info(f"  - Grading: every 60 min")
+    logger.info(f"  - Accuracy reflection: every 60 min (5 min delayed start)")
     logger.info(f"  - Health check: every 6 hours")
     logger.info(f"  - Exchange cleanup: 4:00 AM UTC")
     logger.info(f"  - Daily feedback: 6:00 AM UTC")

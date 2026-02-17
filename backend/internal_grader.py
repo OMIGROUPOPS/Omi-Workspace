@@ -372,6 +372,14 @@ class InternalGrader:
 
     def _generate_prediction_grades(self, game_id: str) -> int:
         """Generate prediction_grades rows for a graded game."""
+        # Guard: skip if this game has already been graded
+        existing = self.client.table("prediction_grades").select("id").eq(
+            "game_id", game_id
+        ).limit(1).execute()
+        if existing.data:
+            logger.info(f"[GenGrades] {game_id}: already graded, skipping")
+            return 0
+
         result = self.client.table("game_results").select("*").eq(
             "game_id", game_id
         ).single().execute()

@@ -1994,14 +1994,29 @@ class PolymarketUSAPI:
             print(f"   [!] PM US open orders error: {e}")
         return []
 
-    async def close_position(self, session, pm_slug: str, outcome_index: int = 0) -> dict:
-        """Close a PM position using SDK. Returns dict with fill info or raises."""
+    async def get_bbo(self, pm_slug: str) -> dict:
+        """Get best bid/offer for a market via SDK. ~45ms.
+        Returns dict with 'bid' and 'ask' in cents, or raises."""
         if self._sdk_client is None:
             raise RuntimeError("PM SDK not available")
-        return await self._sdk_client.positions.close(
-            market_slug=pm_slug,
-            outcome_index=outcome_index,
-        )
+        resp = await self._sdk_client.markets.bbo(pm_slug)
+        # SDK returns {bid: {value: "0.45", ...}, ask: {value: "0.47", ...}}
+        bid_val = resp.get('bid', {})
+        ask_val = resp.get('ask', {})
+        bid_cents = round(float(bid_val.get('value', 0)) * 100) if bid_val else None
+        ask_cents = round(float(ask_val.get('value', 0)) * 100) if ask_val else None
+        return {'bid': bid_cents, 'ask': ask_cents}
+
+    async def close_position(self, session, pm_slug: str, outcome_index: int = 0) -> dict:
+        """Close a PM position using SDK close_position.
+        Auto-determines correct reverse intent, places IOC at 0.999.
+        Returns dict with fill info or raises."""
+        if self._sdk_client is None:
+            raise RuntimeError("PM SDK not available")
+        return await self._sdk_client.orders.close_position({
+            'marketSlug': pm_slug,
+            'synchronousExecution': True,
+        })
 
     async def close(self):
         """Clean up SDK httpx client."""

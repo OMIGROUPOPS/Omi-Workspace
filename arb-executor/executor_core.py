@@ -236,14 +236,6 @@ def _kalshi_fee_cents(price_cents: int) -> int:
     return math.ceil(0.07 * p * (1 - p) * 100)
 
 
-def _net_breakeven_buffer(spread_cents: float, k_price_cents: int, pm_fill_price_cents: float) -> int:
-    """Max Kalshi concession (cents) that still yields non-negative net P&L.
-    Uses fee at original K price as approximation (fee curve is flat 40-60c)."""
-    k_fee = _kalshi_fee_cents(k_price_cents)
-    pm_fee = math.ceil(pm_fill_price_cents * 0.001)  # 0.10% of PM premium
-    return max(int(spread_cents - k_fee - pm_fee), 0)
-
-
 async def _unwind_pm_position(
     session, pm_api, pm_slug: str, reverse_intent: int,
     pm_price_cents: float, qty: int, outcome_index: int,
@@ -259,12 +251,19 @@ async def _unwind_pm_position(
     # Try SDK close_position first (fastest exit)
     try:
         close_resp = await pm_api.close_position(session, pm_slug, outcome_index=outcome_index)
-        filled_qty = int(close_resp.get("cumQuantity", 0))
+        cum_qty = close_resp.get("cumQuantity", 0)
+        if isinstance(cum_qty, str):
+            cum_qty = int(cum_qty) if cum_qty else 0
+        filled_qty = int(cum_qty)
         if filled_qty >= qty:
-            fill_price = float(close_resp.get("avgPx", 0))
+            avg_px = close_resp.get("avgPx", {})
+            if isinstance(avg_px, dict):
+                fill_price = float(avg_px.get("value", 0)) if avg_px.get("value") else 0
+            else:
+                fill_price = float(avg_px) if avg_px else 0
             loss_cents = abs(pm_price_cents - fill_price * 100)
             print(f"[UNWIND] SDK close_position filled {filled_qty} @ {fill_price:.4f} (loss ~{loss_cents:.1f}c)")
-            return filled_qty, loss_cents
+            return filled_qty, fill_price
         print(f"[UNWIND] SDK close_position partial: {filled_qty}/{qty}, falling back to manual")
     except Exception as e:
         print(f"[UNWIND] SDK close_position failed: {e}, falling back to manual buffers")
@@ -293,142 +292,71 @@ async def _unwind_pm_position(
     return 0, None
 
 
-async def _retry_kalshi_wider(
-    session, kalshi_api,
-    ticker: str, side: str, action: str, count: int,
-    original_price: int, spread_cents: int,
-    k_book_ref: Optional[Dict] = None,
-) -> Dict:
+def _find_kalshi_wider_price(
+    k_book_ref: Optional[Dict],
+    action: str,
+    original_price: int,
+    count: int,
+    pm_fill_price_cents: float,
+    direction: str,
+) -> Optional[int]:
     """
-    Retry Kalshi at a wider price (GTC limit order, ~5s timeout, 500ms polling).
-    Walks the WS orderbook to find the nearest price with real depth, capped at
-    breakeven (original_price +/- spread_cents).
+    Walk the WS orderbook to find the nearest price level with sufficient depth
+    where an arb still exists net of fees.
 
-    Returns: {'filled': int, 'fill_price': int, 'order_id': str, 'elapsed_ms': int}
+    Returns the price in cents, or None if no profitable wider price exists.
+    Does NOT place any orders — pure price discovery from local WS data.
     """
-    empty = {'filled': 0, 'fill_price': 0, 'order_id': '', 'elapsed_ms': 0}
+    if not k_book_ref:
+        return None
 
-    # Calculate max concession (breakeven cap)
-    max_buffer = max(spread_cents, 1)
     if action == 'buy':
-        cap_price = min(original_price + max_buffer, 95)
-    else:  # sell
-        cap_price = max(original_price - max_buffer, 5)
-
-    # Walk WS orderbook to find nearest price with depth >= count
-    retry_price = cap_price  # default: use breakeven cap
-    book_walk_found = False
-
-    if k_book_ref:
-        if action == 'buy':
-            # Buying YES: walk YES asks (from original+1 upward) for depth
-            asks = k_book_ref.get('yes_asks', {})
-            for price_str in sorted(asks.keys(), key=lambda x: int(x)):
-                price = int(price_str)
-                if price <= original_price:
-                    continue  # skip at-or-below original (already failed there)
-                if price > cap_price:
-                    break  # past breakeven cap
-                depth = int(asks[price_str])
-                if depth >= count:
-                    retry_price = price
-                    book_walk_found = True
-                    print(f"[RECOVERY] Kalshi retry: book walk found depth {depth} @ {price}c "
-                          f"(original: {original_price}c, concession: {price - original_price}c)")
-                    break
-        else:  # sell
-            # Selling YES: walk YES bids (from original-1 downward) for depth
-            bids = k_book_ref.get('yes_bids', {})
-            for price_str in sorted(bids.keys(), key=lambda x: -int(x)):
-                price = int(price_str)
-                if price >= original_price:
-                    continue  # skip at-or-above original (already failed there)
-                if price < cap_price:
-                    break  # past breakeven cap
-                depth = int(bids[price_str])
-                if depth >= count:
-                    retry_price = price
-                    book_walk_found = True
-                    print(f"[RECOVERY] Kalshi retry: book walk found depth {depth} @ {price}c "
-                          f"(original: {original_price}c, concession: {original_price - price}c)")
-                    break
-
-    if not book_walk_found:
-        print(f"[RECOVERY] Kalshi retry: no book depth found within cap, using breakeven @ {cap_price}c")
-
-    concession = abs(retry_price - original_price)
-    print(f"[RECOVERY] Kalshi retry: placing limit {action} {count} {side} @ {retry_price}c "
-          f"(original: {original_price}c, concession: {concession}c)")
-
-    try:
-        order_result = await kalshi_api.place_order(
-            session, ticker, side, action, count, retry_price,
-            time_in_force='good_til_canceled'
-        )
-
-        order_id = order_result.get('order_id')
-        if not order_id:
-            print(f"[RECOVERY] Kalshi retry: no order_id — {order_result.get('error', 'unknown')}")
-            return empty
-
-        # Check for instant fill from place response
-        instant_filled = order_result.get('fill_count', 0)
-        fill_price = order_result.get('fill_price', retry_price)
-
-        if instant_filled >= count:
-            cost = abs(fill_price - original_price)
-            print(f"[RECOVERY] Kalshi retry filled {instant_filled} @ {fill_price}c "
-                  f"(original: {original_price}c, cost: {cost}c/contract)")
-            return {'filled': instant_filled, 'fill_price': fill_price,
-                    'order_id': order_id, 'elapsed_ms': 0}
-
-        # Poll for fills (5s timeout, 500ms intervals)
-        poll_start = time.time()
-        filled_so_far = instant_filled
-
-        while (time.time() - poll_start) < 5.0:
-            await asyncio.sleep(0.5)
-
-            status = await kalshi_api.get_order_status(session, order_id)
-            filled = status.get('fill_count', filled_so_far)
-            if status.get('fill_price'):
-                fill_price = status['fill_price']
-
-            if filled >= count:
-                elapsed_ms = int((time.time() - poll_start) * 1000)
-                cost = abs(fill_price - original_price)
-                print(f"[RECOVERY] Kalshi retry filled {filled} @ {fill_price}c after {elapsed_ms}ms "
-                      f"(original: {original_price}c, cost: {cost}c/contract)")
-                return {'filled': filled, 'fill_price': fill_price,
-                        'order_id': order_id, 'elapsed_ms': elapsed_ms}
-
-            order_status = status.get('status', '')
-            if order_status in ('canceled', 'cancelled'):
+        # Buying YES: walk YES asks upward from original+1
+        asks = k_book_ref.get('yes_asks', {})
+        for price_str in sorted(asks.keys(), key=lambda x: int(x)):
+            price = int(price_str)
+            if price <= original_price:
+                continue
+            if price > 95:
                 break
+            depth = int(asks[price_str])
+            if depth < count:
+                continue
+            # Check if arb still exists at this wider price
+            # BUY_K_SELL_PM: spread = (100 - pm_cost) - k_price
+            if direction == 'BUY_K_SELL_PM':
+                wider_spread = (100 - pm_fill_price_cents) - price
+            else:
+                wider_spread = price - pm_fill_price_cents
+            k_fee = _kalshi_fee_cents(price)
+            pm_fee = math.ceil(pm_fill_price_cents * 0.001)
+            net_profit = wider_spread - k_fee - pm_fee
+            if net_profit >= 1:  # At least 1 cent profit
+                return price
+    else:
+        # Selling YES: walk YES bids downward from original-1
+        bids = k_book_ref.get('yes_bids', {})
+        for price_str in sorted(bids.keys(), key=lambda x: -int(x)):
+            price = int(price_str)
+            if price >= original_price:
+                continue
+            if price < 5:
+                break
+            depth = int(bids[price_str])
+            if depth < count:
+                continue
+            # BUY_PM_SELL_K: spread = k_price - pm_cost
+            if direction == 'BUY_PM_SELL_K':
+                wider_spread = price - pm_fill_price_cents
+            else:
+                wider_spread = pm_fill_price_cents - price
+            k_fee = _kalshi_fee_cents(price)
+            pm_fee = math.ceil(pm_fill_price_cents * 0.001)
+            net_profit = wider_spread - k_fee - pm_fee
+            if net_profit >= 1:
+                return price
 
-            if filled > filled_so_far:
-                filled_so_far = filled
-                print(f"[RECOVERY] Kalshi retry: partial {filled}/{count} after "
-                      f"{int((time.time() - poll_start) * 1000)}ms")
-
-        # Timeout — cancel remaining and collect fills
-        elapsed_ms = int((time.time() - poll_start) * 1000)
-        await kalshi_api.cancel_order(session, order_id)
-
-        # Re-check after cancel (fill might have raced with cancel)
-        final_status = await kalshi_api.get_order_status(session, order_id)
-        final_filled = max(final_status.get('fill_count', 0), filled_so_far)
-        if final_status.get('fill_price'):
-            fill_price = final_status['fill_price']
-
-        print(f"[RECOVERY] Kalshi retry: canceled after {elapsed_ms}ms, "
-              f"{final_filled}/{count} filled")
-        return {'filled': final_filled, 'fill_price': fill_price,
-                'order_id': order_id, 'elapsed_ms': elapsed_ms}
-
-    except Exception as e:
-        print(f"[RECOVERY] Kalshi retry exception: {e}")
-        return empty
+    return None
 
 
 def check_kalshi_spread_live(
@@ -1377,119 +1305,182 @@ async def execute_arb(
         update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
 
     # -------------------------------------------------------------------------
-    # Step 7: Kalshi IOC failed — retry at wider price before PM unwind
-    # A bad hedge is better than no hedge. Retry with the full spread
-    # as buffer (breakeven hedge) before falling back to expensive PM unwind.
+    # Step 7: Kalshi IOC failed — tiered recovery (all IOC, no GTC/polling)
+    # Tier 1: Hedge at wider Kalshi price if arb still exists
+    # Tier 2: Close PM via SDK if position is in the money
+    # Tier 3: Fallback to existing PM unwind (SDK close_position + manual)
     # -------------------------------------------------------------------------
     if k_filled == 0:
         # Compute values used across all tiers
         pm_fill_price_cents = pm_fill_price * 100
         original_intent = params['pm_intent']
         reverse_intent = REVERSE_INTENT[original_intent]
+        # Normalize to effective PM cost: BUY_LONG cost = fill price,
+        # BUY_SHORT cost = 100 - fill price (underdog cost)
+        is_buy_short = params.get('pm_is_buy_short', False)
+        pm_cost_cents = (100 - pm_fill_price_cents) if is_buy_short else pm_fill_price_cents
         _exec_phase = "gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc"
         _gtc_rest = gtc_phase['rest_time_ms'] if gtc_phase else 0
         _gtc_checks = gtc_phase['spread_checks'] if gtc_phase else 0
         _gtc_cancel = gtc_phase.get('cancel_reason', '') if gtc_phase else ''
         _is_maker = bool(gtc_phase and gtc_phase.get('is_maker', False))
 
-        # ── TIER 1: Kalshi retry with fee-adjusted breakeven cap ──
-        net_cap = _net_breakeven_buffer(spread, k_limit_price, pm_fill_price_cents)
-        print(f"[RECOVERY] TIER 1: Kalshi retry (fee-adjusted cap={net_cap}c, gross spread={spread}c)")
-        retry = await _retry_kalshi_wider(
-            session, kalshi_api, arb.kalshi_ticker,
-            params['k_side'], params['k_action'], pm_filled,
-            k_limit_price, net_cap, k_book_ref,
+        # ── TIER 1: Kalshi IOC at wider price if arb still exists ──
+        wider_price = _find_kalshi_wider_price(
+            k_book_ref, params['k_action'], k_limit_price,
+            pm_filled, pm_cost_cents, arb.direction,
         )
-        retry_filled = retry['filled']
+        if wider_price is not None:
+            k_fee = _kalshi_fee_cents(wider_price)
+            pm_fee = math.ceil(pm_cost_cents * 0.001)
+            if arb.direction == 'BUY_PM_SELL_K':
+                wider_spread = wider_price - pm_cost_cents
+            else:
+                wider_spread = (100 - pm_cost_cents) - wider_price
+            net_spread = wider_spread - k_fee - pm_fee
+            concession = abs(wider_price - k_limit_price)
+            print(f"[TIER] Kalshi IOC failed. Checking Tier 1: wider arb at {wider_price}c "
+                  f"(spread {net_spread:.0f}c net of fees, concession {concession}c) -> placing IOC")
 
-        if retry_filled > 0:
-            k_filled = retry_filled
-            k_fill_price = retry['fill_price'] or k_limit_price
-            k_order_ms += retry['elapsed_ms']
-
-            # Update position cache for retry fills
-            qty_delta = -k_filled if params['k_action'] == 'sell' else k_filled
-            update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
-
-            if retry_filled >= pm_filled:
-                # Fully hedged at wider price — SUCCESS
-                cost_per = abs((k_fill_price or 0) - k_limit_price)
-                print(f"[RECOVERY] TIER 1: FULLY HEDGED {retry_filled}/{pm_filled} "
-                      f"(cost: {cost_per}c/contract vs original limit {k_limit_price}c)")
-                return TradeResult(
-                    success=True,
-                    kalshi_filled=k_filled,
-                    pm_filled=pm_filled,
-                    kalshi_price=k_fill_price,
-                    pm_price=pm_fill_price,
-                    unhedged=False,
-                    execution_time_ms=int((time.time() - start_time) * 1000),
-                    pm_order_ms=pm_order_ms,
-                    k_order_ms=k_order_ms,
-                    pm_response_details=pm_response_details,
-                    execution_phase=_exec_phase,
-                    gtc_rest_time_ms=_gtc_rest,
-                    gtc_spread_checks=_gtc_checks,
-                    gtc_cancel_reason=_gtc_cancel,
-                    is_maker=_is_maker,
-                    tier="TIER1_HEDGE",
+            try:
+                t1_result = await kalshi_api.place_order(
+                    session, arb.kalshi_ticker,
+                    params['k_side'], params['k_action'],
+                    pm_filled, wider_price,
+                    time_in_force='immediate_or_cancel'
                 )
-            # Partial retry fill — skip Tiers 2/3, fall through to Step 7.5
+                t1_filled = t1_result.get('fill_count', 0)
+                t1_fill_price = t1_result.get('fill_price', wider_price)
+            except Exception as e:
+                print(f"[TIER] Tier 1 Kalshi IOC exception: {e}")
+                t1_filled = 0
+                t1_fill_price = wider_price
 
-    # Recompute elapsed after potential retry
+            if t1_filled > 0:
+                k_filled = t1_filled
+                k_fill_price = t1_fill_price
+                k_order_ms = int((time.time() - k_order_start) * 1000)
+
+                # Update position cache for Tier 1 fills
+                qty_delta = -k_filled if params['k_action'] == 'sell' else k_filled
+                update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
+
+                if t1_filled >= pm_filled:
+                    actual_cost = abs(t1_fill_price - k_limit_price)
+                    print(f"[TIER] Tier 1 SUCCESS: hedged {t1_filled}/{pm_filled} @ {t1_fill_price}c "
+                          f"(concession {actual_cost}c, net spread {net_spread:.0f}c)")
+                    return TradeResult(
+                        success=True,
+                        kalshi_filled=k_filled,
+                        pm_filled=pm_filled,
+                        kalshi_price=k_fill_price,
+                        pm_price=pm_fill_price,
+                        unhedged=False,
+                        execution_time_ms=int((time.time() - start_time) * 1000),
+                        pm_order_ms=pm_order_ms,
+                        k_order_ms=k_order_ms,
+                        pm_response_details=pm_response_details,
+                        execution_phase=_exec_phase,
+                        gtc_rest_time_ms=_gtc_rest,
+                        gtc_spread_checks=_gtc_checks,
+                        gtc_cancel_reason=_gtc_cancel,
+                        is_maker=_is_maker,
+                        tier="TIER1_HEDGE",
+                    )
+                # Partial Tier 1 fill — fall through to Step 7.5
+                print(f"[TIER] Tier 1 partial: {t1_filled}/{pm_filled}, falling through to partial handler")
+            else:
+                print(f"[TIER] Tier 1 failed: Kalshi IOC at {wider_price}c got no fill")
+        else:
+            print(f"[TIER] Kalshi IOC failed. Tier 1 skipped: no wider arb exists in book")
+
+    # Recompute elapsed after potential Tier 1
     elapsed_ms = int((time.time() - start_time) * 1000)
 
     if k_filled == 0:
-        # Tier 1 failed completely — try PM exit tiers
-        pm_fill_price_cents = pm_fill_price * 100
-        original_intent = params['pm_intent']
-        reverse_intent = REVERSE_INTENT[original_intent]
-        _exec_phase = "gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc"
-        _gtc_rest = gtc_phase['rest_time_ms'] if gtc_phase else 0
-        _gtc_checks = gtc_phase['spread_checks'] if gtc_phase else 0
-        _gtc_cancel = gtc_phase.get('cancel_reason', '') if gtc_phase else ''
-        _is_maker = bool(gtc_phase and gtc_phase.get('is_maker', False))
+        # Tier 1 failed or skipped — try Tier 2 (PM SDK close)
+        # ── TIER 2: Close PM via SDK if position is in the money ──
+        t2_attempted = False
+        try:
+            bbo = await pm_api.get_bbo(pm_slug)
+            bbo_bid = bbo.get('bid')
+            bbo_ask = bbo.get('ask')
+            if bbo_bid is not None and bbo_ask is not None:
+                # Determine if PM position is closeable near breakeven.
+                # Intent 1/4 (long YES): close by selling at bid. P&L = bid - fill_price.
+                # Intent 2/3 (short YES): close by buying at ask. P&L = fill_price - ask.
+                if original_intent in (1, 4):
+                    pm_close_pnl_cents = bbo_bid - pm_fill_price_cents
+                    close_price_label = f"BBO bid {bbo_bid}c"
+                else:
+                    pm_close_pnl_cents = pm_fill_price_cents - bbo_ask
+                    close_price_label = f"BBO ask {bbo_ask}c"
 
-        # ── TIER 2: PM near-breakeven exit at fill price +/- 1c ──
-        print(f"[RECOVERY] TIER 2: PM near-breakeven exit (buf=1c, base={pm_fill_price_cents:.1f}c)")
-        t2_filled, t2_fill_price = await _unwind_pm_position(
-            session, pm_api, pm_slug, reverse_intent,
-            pm_fill_price_cents, pm_filled, actual_pm_outcome_idx,
-            buffers=[1],
-        )
+                if pm_close_pnl_cents >= -1:  # Allow up to 1c loss per contract
+                    print(f"[TIER] Tier 1 failed. Checking Tier 2: PM position closeable "
+                          f"(fill {pm_fill_price_cents:.0f}c, {close_price_label}, "
+                          f"P&L {pm_close_pnl_cents:+.0f}c/contract) -> closing via SDK")
+                    t2_attempted = True
+                    try:
+                        close_resp = await pm_api.close_position(session, pm_slug)
+                        # Parse close_position response
+                        t2_cum_qty = close_resp.get('cumQuantity', 0)
+                        if isinstance(t2_cum_qty, str):
+                            t2_cum_qty = int(t2_cum_qty) if t2_cum_qty else 0
+                        t2_avg_px = close_resp.get('avgPx')
+                        if isinstance(t2_avg_px, dict):
+                            t2_fill_price = float(t2_avg_px.get('value', 0)) if t2_avg_px.get('value') else None
+                        elif t2_avg_px is not None:
+                            t2_fill_price = float(t2_avg_px) if t2_avg_px else None
+                        else:
+                            t2_fill_price = None
 
-        if t2_filled > 0:
-            if reverse_intent in (2, 4):
-                loss_per = pm_fill_price_cents - (t2_fill_price * 100)
+                        if t2_cum_qty >= pm_filled and t2_fill_price is not None:
+                            if original_intent in (1, 4):
+                                pnl_per = (t2_fill_price * 100) - pm_fill_price_cents
+                            else:
+                                pnl_per = pm_fill_price_cents - (t2_fill_price * 100)
+                            total_pnl = pnl_per * pm_filled
+                            print(f"[TIER] Tier 2 SUCCESS: closed {t2_cum_qty} @ ${t2_fill_price:.4f} "
+                                  f"(P&L {pnl_per:+.1f}c/contract, total {total_pnl:+.1f}c)")
+                            return TradeResult(
+                                success=False,
+                                kalshi_filled=0,
+                                pm_filled=0,
+                                kalshi_price=k_limit_price,
+                                pm_price=pm_fill_price,
+                                unhedged=False,
+                                abort_reason=f"Kalshi failed, PM closed via SDK (P&L {total_pnl:+.1f}c)",
+                                execution_time_ms=int((time.time() - start_time) * 1000),
+                                pm_order_ms=pm_order_ms,
+                                k_order_ms=k_order_ms,
+                                pm_response_details=pm_response_details,
+                                execution_phase=_exec_phase,
+                                gtc_rest_time_ms=_gtc_rest,
+                                gtc_spread_checks=_gtc_checks,
+                                gtc_cancel_reason=_gtc_cancel,
+                                is_maker=_is_maker,
+                                exited=True,
+                                unwind_loss_cents=abs(total_pnl) if total_pnl < 0 else 0,
+                                tier="TIER2_EXIT",
+                            )
+                        else:
+                            print(f"[TIER] Tier 2 partial/failed: close_position filled {t2_cum_qty}/{pm_filled}")
+                    except Exception as e:
+                        print(f"[TIER] Tier 2 SDK close_position failed: {e}")
+                else:
+                    print(f"[TIER] Tier 1 failed. Tier 2 skipped: PM underwater "
+                          f"(fill {pm_fill_price_cents:.0f}c, {close_price_label}, "
+                          f"P&L {pm_close_pnl_cents:+.0f}c/contract)")
             else:
-                loss_per = (t2_fill_price * 100) - pm_fill_price_cents
-            loss_cents = abs(loss_per) * pm_filled
-            print(f"[RECOVERY] TIER 2: EXITED {t2_filled} @ ${t2_fill_price:.3f} "
-                  f"(loss: {abs(loss_per):.1f}c x {pm_filled} = {loss_cents:.1f}c)")
-            return TradeResult(
-                success=False,
-                kalshi_filled=0,
-                pm_filled=0,
-                kalshi_price=k_limit_price,
-                pm_price=pm_fill_price,
-                unhedged=False,
-                abort_reason=f"Kalshi failed, PM exited near-breakeven (loss: {loss_cents:.1f}c)",
-                execution_time_ms=int((time.time() - start_time) * 1000),
-                pm_order_ms=pm_order_ms,
-                k_order_ms=k_order_ms,
-                pm_response_details=pm_response_details,
-                execution_phase=_exec_phase,
-                gtc_rest_time_ms=_gtc_rest,
-                gtc_spread_checks=_gtc_checks,
-                gtc_cancel_reason=_gtc_cancel,
-                is_maker=_is_maker,
-                exited=True,
-                unwind_loss_cents=loss_cents,
-                tier="TIER2_EXIT",
-            )
+                print(f"[TIER] Tier 2 skipped: BBO unavailable (bid={bbo_bid}, ask={bbo_ask})")
+        except Exception as e:
+            if not t2_attempted:
+                print(f"[TIER] Tier 2 skipped: BBO fetch failed: {e}")
 
-        # ── TIER 3: PM desperation unwind at 10c/25c (existing behavior) ──
-        print(f"[RECOVERY] TIER 3: PM desperation unwind (bufs=[10,25]c)")
+        # ── TIER 3: Fallback to existing PM unwind (SDK close_position + manual) ──
+        print(f"[TIER] Tier 2 failed/skipped. Falling through to Tier 3 unwind.")
+
         t3_filled, t3_fill_price = await _unwind_pm_position(
             session, pm_api, pm_slug, reverse_intent,
             pm_fill_price_cents, pm_filled, actual_pm_outcome_idx,
@@ -1501,7 +1492,7 @@ async def execute_arb(
             else:
                 loss_per = (t3_fill_price * 100) - pm_fill_price_cents
             loss_cents = abs(loss_per) * pm_filled
-            print(f"[RECOVERY] TIER 3: EXITED {t3_filled} (loss: {loss_cents:.1f}c)")
+            print(f"[TIER] Tier 3: exited {t3_filled} (loss: {loss_cents:.1f}c)")
 
             return TradeResult(
                 success=False,
@@ -1526,7 +1517,7 @@ async def execute_arb(
             )
 
         # All tiers failed - still unhedged
-        print(f"[RECOVERY] ALL TIERS FAILED — position remains unhedged!")
+        print(f"[TIER] ALL TIERS FAILED — position remains unhedged!")
         return TradeResult(
             success=False,
             kalshi_filled=0,

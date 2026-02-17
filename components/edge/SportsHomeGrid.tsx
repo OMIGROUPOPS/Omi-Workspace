@@ -44,6 +44,10 @@ function isExchange(book: string) {
   return BOOK_CONFIG[book]?.type === 'exchange';
 }
 
+function isSoccer(sportKey: string): boolean {
+  return sportKey?.includes('soccer') || false;
+}
+
 // --- Sport lists ---
 const MODELED_SPORTS = [
   { key: 'americanfootball_nfl', label: 'NFL' },
@@ -825,15 +829,33 @@ export function SportsHomeGrid({
                     }
 
                     let homeMLEdge: number | null = null, awayMLEdge: number | null = null;
+                    let drawEdge: number | null = null;
+                    const gameSoccer = isSoccer(game.sportKey);
                     if (fair?.fair_ml_home != null && fair?.fair_ml_away != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
                       const fairHP = toProb(fair.fair_ml_home);
                       const fairAP = toProb(fair.fair_ml_away);
                       const bookHP = toProb(h2h.homePrice);
                       const bookAP = toProb(h2h.awayPrice);
-                      const normBHP = bookHP / (bookHP + bookAP);
-                      const normBAP = bookAP / (bookHP + bookAP);
-                      homeMLEdge = (fairHP - normBHP) * 100;
-                      awayMLEdge = (fairAP - normBAP) * 100;
+                      const drawPrice = h2h?.drawPrice ?? h2h?.draw;
+                      if (gameSoccer && drawPrice != null) {
+                        // 3-way: normalize across all 3 outcomes
+                        const bookDP = toProb(drawPrice);
+                        const totalBook = bookHP + bookAP + bookDP;
+                        const normBHP = bookHP / totalBook;
+                        const normBAP = bookAP / totalBook;
+                        const normBDP = bookDP / totalBook;
+                        // Fair draw = 1 - fairHome - fairAway (residual)
+                        const fairDP = Math.max(0, 1 - fairHP - fairAP);
+                        homeMLEdge = (fairHP - normBHP) * 100;
+                        awayMLEdge = (fairAP - normBAP) * 100;
+                        drawEdge = (fairDP - normBDP) * 100;
+                      } else {
+                        // 2-way: normalize home + away only
+                        const normBHP = bookHP / (bookHP + bookAP);
+                        const normBAP = bookAP / (bookHP + bookAP);
+                        homeMLEdge = (fairHP - normBHP) * 100;
+                        awayMLEdge = (fairAP - normBAP) * 100;
+                      }
                     }
 
                     let overEdge: number | null = null, underEdge: number | null = null;
@@ -923,123 +945,153 @@ export function SportsHomeGrid({
                           </div>
                         </div>
 
-                        {/* Draw row for soccer */}
-                        {game.sportKey?.includes('soccer') && (h2h?.drawPrice ?? h2h?.draw) && (
-                          <div style={{ padding: '3px 12px', borderTop: `1px solid ${P.cardBorder}`, display: 'flex', alignItems: 'center', gap: 6 }}>
-                            <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ background: P.neutralBg, fontSize: 8, fontWeight: 700, color: P.textMuted }}>X</div>
-                            <span style={{ fontSize: 11, color: P.textMuted }}>Draw</span>
-                            <span style={{ fontSize: 11, color: P.textSecondary, fontFamily: 'monospace', marginLeft: 'auto' }}>
-                              {fmtOdds(h2h?.drawPrice ?? h2h?.draw)}
-                            </span>
-                          </div>
-                        )}
-
-                        {/* Market Grid: 3 columns */}
+                        {/* Market Grid — soccer vs non-soccer layout */}
                         <div style={{ borderTop: `1px solid ${P.cardBorder}` }}>
-                          {/* Market Headers */}
-                          <div className="grid grid-cols-3" style={{ borderBottom: `1px solid ${P.cardBorder}` }}>
-                            {[
-                              exchangeMode ? 'YES/NO' : 'SPREAD',
-                              exchangeMode ? '' : 'TOTAL',
-                              exchangeMode ? '' : 'ML',
-                            ].map((h, i) => (
-                              <div key={i} style={{
-                                padding: '3px 8px', fontSize: 9, fontWeight: 700, color: P.textFaint,
-                                textAlign: 'center', letterSpacing: 1,
-                                borderRight: i < 2 ? `1px solid ${P.cardBorder}` : undefined,
-                              }}>
-                                {h}
+                          {gameSoccer ? (
+                            /* ===== SOCCER: 4-col 1-row (Home ML | Draw | Away ML | Total) ===== */
+                            <>
+                              <div className="grid grid-cols-4" style={{ borderBottom: `1px solid ${P.cardBorder}` }}>
+                                {['HOME', 'DRAW', 'AWAY', 'TOTAL'].map((h, i) => (
+                                  <div key={i} style={{
+                                    padding: '3px 8px', fontSize: 9, fontWeight: 700, color: P.textFaint,
+                                    textAlign: 'center', letterSpacing: 1,
+                                    borderRight: i < 3 ? `1px solid ${P.cardBorder}` : undefined,
+                                  }}>
+                                    {h}
+                                  </div>
+                                ))}
                               </div>
-                            ))}
-                          </div>
+                              <div className="grid grid-cols-4">
+                                {/* Home ML */}
+                                <MarketCell
+                                  bookValue={fmtML(h2h?.homePrice)}
+                                  fairValue={fair?.fair_ml_home != null ? fmtOdds(fair.fair_ml_home) : null}
+                                  edge={homeMLEdge}
+                                />
+                                {/* Draw */}
+                                <MarketCell
+                                  bookValue={fmtOdds(h2h?.drawPrice ?? h2h?.draw)}
+                                  fairValue={null}
+                                  edge={drawEdge}
+                                />
+                                {/* Away ML */}
+                                <MarketCell
+                                  bookValue={fmtML(h2h?.awayPrice)}
+                                  fairValue={fair?.fair_ml_away != null ? fmtOdds(fair.fair_ml_away) : null}
+                                  edge={awayMLEdge}
+                                />
+                                {/* Total (O/U stacked) */}
+                                <MarketCell
+                                  bookValue={totals?.line !== undefined ? `O/U ${totals.line}` : '--'}
+                                  bookPrice={totals?.overPrice != null ? `(${fmtOdds(totals.overPrice)})` : undefined}
+                                  fairValue={fair?.fair_total != null ? fair.fair_total.toFixed(1) : null}
+                                  edge={overEdge}
+                                />
+                              </div>
+                            </>
+                          ) : (
+                            /* ===== US SPORTS: 3-col 2-row (Spread | Total | ML) ===== */
+                            <>
+                              {/* Market Headers */}
+                              <div className="grid grid-cols-3" style={{ borderBottom: `1px solid ${P.cardBorder}` }}>
+                                {[
+                                  exchangeMode ? 'YES/NO' : 'SPREAD',
+                                  exchangeMode ? '' : 'TOTAL',
+                                  exchangeMode ? '' : 'ML',
+                                ].map((h, i) => (
+                                  <div key={i} style={{
+                                    padding: '3px 8px', fontSize: 9, fontWeight: 700, color: P.textFaint,
+                                    textAlign: 'center', letterSpacing: 1,
+                                    borderRight: i < 2 ? `1px solid ${P.cardBorder}` : undefined,
+                                  }}>
+                                    {h}
+                                  </div>
+                                ))}
+                              </div>
 
-                          {/* Away market row */}
-                          <div className="grid grid-cols-3" style={{ borderBottom: `1px solid ${P.cardBorder}` }}>
-                            {/* Away Spread / Exchange YES */}
-                            {exchangeMode ? (
-                              <MarketCell
-                                bookValue={h2h?.awayPrice != null ? `${oddsToYesCents(h2h.awayPrice)}\u00a2 YES` : '--'}
-                                fairValue={fair?.fair_ml_away != null ? `${oddsToYesCents(fair.fair_ml_away)}\u00a2` : null}
-                                edge={awayMLEdge}
-                              />
-                            ) : (
-                              <MarketCell
-                                bookValue={spreads?.line !== undefined ? fmtSpread(-spreads.line) : '--'}
-                                bookPrice={spreads?.awayPrice != null ? `(${fmtOdds(spreads.awayPrice)})` : undefined}
-                                fairValue={fair?.fair_spread != null ? fmtSpread(-fair.fair_spread) : null}
-                                edge={awaySpreadEdge}
-                              />
-                            )}
-                            {/* Over / empty for exchange */}
-                            {exchangeMode ? (
-                              <div style={{ background: P.neutralBg, borderRight: `1px solid ${P.neutralBorder}`, minHeight: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <span style={{ fontSize: 10, color: P.textFaint }}>--</span>
+                              {/* Away market row */}
+                              <div className="grid grid-cols-3" style={{ borderBottom: `1px solid ${P.cardBorder}` }}>
+                                {exchangeMode ? (
+                                  <MarketCell
+                                    bookValue={h2h?.awayPrice != null ? `${oddsToYesCents(h2h.awayPrice)}\u00a2 YES` : '--'}
+                                    fairValue={fair?.fair_ml_away != null ? `${oddsToYesCents(fair.fair_ml_away)}\u00a2` : null}
+                                    edge={awayMLEdge}
+                                  />
+                                ) : (
+                                  <MarketCell
+                                    bookValue={spreads?.line !== undefined ? fmtSpread(-spreads.line) : '--'}
+                                    bookPrice={spreads?.awayPrice != null ? `(${fmtOdds(spreads.awayPrice)})` : undefined}
+                                    fairValue={fair?.fair_spread != null ? fmtSpread(-fair.fair_spread) : null}
+                                    edge={awaySpreadEdge}
+                                  />
+                                )}
+                                {exchangeMode ? (
+                                  <div style={{ background: P.neutralBg, borderRight: `1px solid ${P.neutralBorder}`, minHeight: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <span style={{ fontSize: 10, color: P.textFaint }}>--</span>
+                                  </div>
+                                ) : (
+                                  <MarketCell
+                                    bookValue={totals?.line !== undefined ? `O ${totals.line}` : '--'}
+                                    bookPrice={totals?.overPrice != null ? `(${fmtOdds(totals.overPrice)})` : undefined}
+                                    fairValue={fair?.fair_total != null ? fair.fair_total.toFixed(1) : null}
+                                    edge={overEdge}
+                                  />
+                                )}
+                                {exchangeMode ? (
+                                  <div style={{ background: P.neutralBg, minHeight: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <span style={{ fontSize: 10, color: P.textFaint }}>--</span>
+                                  </div>
+                                ) : (
+                                  <MarketCell
+                                    bookValue={fmtML(h2h?.awayPrice)}
+                                    fairValue={fair?.fair_ml_away != null ? fmtOdds(fair.fair_ml_away) : null}
+                                    edge={awayMLEdge}
+                                  />
+                                )}
                               </div>
-                            ) : (
-                              <MarketCell
-                                bookValue={totals?.line !== undefined ? `O ${totals.line}` : '--'}
-                                bookPrice={totals?.overPrice != null ? `(${fmtOdds(totals.overPrice)})` : undefined}
-                                fairValue={fair?.fair_total != null ? fair.fair_total.toFixed(1) : null}
-                                edge={overEdge}
-                              />
-                            )}
-                            {/* Away ML / empty for exchange */}
-                            {exchangeMode ? (
-                              <div style={{ background: P.neutralBg, minHeight: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <span style={{ fontSize: 10, color: P.textFaint }}>--</span>
-                              </div>
-                            ) : (
-                              <MarketCell
-                                bookValue={fmtML(h2h?.awayPrice)}
-                                fairValue={fair?.fair_ml_away != null ? fmtOdds(fair.fair_ml_away) : null}
-                                edge={awayMLEdge}
-                              />
-                            )}
-                          </div>
 
-                          {/* Home market row */}
-                          <div className="grid grid-cols-3">
-                            {/* Home Spread / Exchange NO */}
-                            {exchangeMode ? (
-                              <MarketCell
-                                bookValue={h2h?.homePrice != null ? `${oddsToYesCents(h2h.homePrice)}\u00a2 YES` : '--'}
-                                fairValue={fair?.fair_ml_home != null ? `${oddsToYesCents(fair.fair_ml_home)}\u00a2` : null}
-                                edge={homeMLEdge}
-                              />
-                            ) : (
-                              <MarketCell
-                                bookValue={spreads?.line !== undefined ? fmtSpread(spreads.line) : '--'}
-                                bookPrice={spreads?.homePrice != null ? `(${fmtOdds(spreads.homePrice)})` : undefined}
-                                fairValue={fair?.fair_spread != null ? fmtSpread(fair.fair_spread) : null}
-                                edge={homeSpreadEdge}
-                              />
-                            )}
-                            {/* Under / empty for exchange */}
-                            {exchangeMode ? (
-                              <div style={{ background: P.neutralBg, borderRight: `1px solid ${P.neutralBorder}`, minHeight: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <span style={{ fontSize: 10, color: P.textFaint }}>--</span>
+                              {/* Home market row */}
+                              <div className="grid grid-cols-3">
+                                {exchangeMode ? (
+                                  <MarketCell
+                                    bookValue={h2h?.homePrice != null ? `${oddsToYesCents(h2h.homePrice)}\u00a2 YES` : '--'}
+                                    fairValue={fair?.fair_ml_home != null ? `${oddsToYesCents(fair.fair_ml_home)}\u00a2` : null}
+                                    edge={homeMLEdge}
+                                  />
+                                ) : (
+                                  <MarketCell
+                                    bookValue={spreads?.line !== undefined ? fmtSpread(spreads.line) : '--'}
+                                    bookPrice={spreads?.homePrice != null ? `(${fmtOdds(spreads.homePrice)})` : undefined}
+                                    fairValue={fair?.fair_spread != null ? fmtSpread(fair.fair_spread) : null}
+                                    edge={homeSpreadEdge}
+                                  />
+                                )}
+                                {exchangeMode ? (
+                                  <div style={{ background: P.neutralBg, borderRight: `1px solid ${P.neutralBorder}`, minHeight: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <span style={{ fontSize: 10, color: P.textFaint }}>--</span>
+                                  </div>
+                                ) : (
+                                  <MarketCell
+                                    bookValue={totals?.line !== undefined ? `U ${totals.line}` : '--'}
+                                    bookPrice={totals?.underPrice != null ? `(${fmtOdds(totals.underPrice)})` : undefined}
+                                    fairValue={fair?.fair_total != null ? fair.fair_total.toFixed(1) : null}
+                                    edge={underEdge}
+                                  />
+                                )}
+                                {exchangeMode ? (
+                                  <div style={{ background: P.neutralBg, minHeight: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <span style={{ fontSize: 10, color: P.textFaint }}>--</span>
+                                  </div>
+                                ) : (
+                                  <MarketCell
+                                    bookValue={fmtML(h2h?.homePrice)}
+                                    fairValue={fair?.fair_ml_home != null ? fmtOdds(fair.fair_ml_home) : null}
+                                    edge={homeMLEdge}
+                                  />
+                                )}
                               </div>
-                            ) : (
-                              <MarketCell
-                                bookValue={totals?.line !== undefined ? `U ${totals.line}` : '--'}
-                                bookPrice={totals?.underPrice != null ? `(${fmtOdds(totals.underPrice)})` : undefined}
-                                fairValue={fair?.fair_total != null ? fair.fair_total.toFixed(1) : null}
-                                edge={underEdge}
-                              />
-                            )}
-                            {/* Home ML / empty for exchange */}
-                            {exchangeMode ? (
-                              <div style={{ background: P.neutralBg, minHeight: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <span style={{ fontSize: 10, color: P.textFaint }}>--</span>
-                              </div>
-                            ) : (
-                              <MarketCell
-                                bookValue={fmtML(h2h?.homePrice)}
-                                fairValue={fair?.fair_ml_home != null ? fmtOdds(fair.fair_ml_home) : null}
-                                edge={homeMLEdge}
-                              />
-                            )}
-                          </div>
+                            </>
+                          )}
                         </div>
                       </Link>
                     );

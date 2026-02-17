@@ -120,10 +120,10 @@ function Logo() {
         </svg>
       </div>
       <div className="flex flex-col">
-        <span className="text-sm font-bold text-zinc-100 leading-tight tracking-tight">
-          OMI <span className="text-emerald-400">EDGE</span>
+        <span className="text-sm font-bold text-[#1f2937] leading-tight tracking-tight">
+          OMI <span className="text-emerald-500">EDGE</span>
         </span>
-        <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-widest leading-tight">Terminal</span>
+        <span className="text-[9px] font-mono text-[#9ca3af] uppercase tracking-widest leading-tight">Terminal</span>
       </div>
     </a>
   );
@@ -136,21 +136,21 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 bg-black/60 z-40 lg:hidden backdrop-blur-sm" onClick={onClose} />
+        <div className="fixed inset-0 bg-black/20 z-40 lg:hidden backdrop-blur-sm" onClick={onClose} />
       )}
 
       <aside
         className={`
-          fixed top-0 left-0 z-50 h-full w-52 bg-[#0a0a0a] border-r border-zinc-800/80
+          fixed top-0 left-0 z-50 h-full w-52 bg-white border-r border-[#e2e4e8]
           transform transition-transform duration-200 ease-in-out
           lg:translate-x-0 lg:static lg:z-auto flex flex-col
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
       >
         {/* Logo */}
-        <div className="h-14 px-3 flex items-center border-b border-zinc-800/80 flex-shrink-0">
+        <div className="h-14 px-3 flex items-center border-b border-[#e2e4e8] flex-shrink-0">
           <Logo />
-          <button onClick={onClose} className="ml-auto lg:hidden p-1.5 text-zinc-400 hover:text-zinc-100">
+          <button onClick={onClose} className="ml-auto lg:hidden p-1.5 text-[#6b7280] hover:text-[#1f2937]">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -162,7 +162,7 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
           {NAV_SECTIONS.map((section, sIdx) => (
             <div key={section.label} className={sIdx > 0 ? 'mt-4' : ''}>
               <div className="px-2.5 mb-1.5">
-                <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-widest">{section.label}</span>
+                <span className="text-[9px] font-mono text-[#9ca3af] uppercase tracking-widest">{section.label}</span>
               </div>
               <div className="space-y-0.5">
                 {section.items.map((item) => {
@@ -176,8 +176,8 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
                       className={`
                         flex items-center gap-2 px-2.5 py-1.5 rounded-md transition-all text-[13px]
                         ${isActive
-                          ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                          : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50 border border-transparent'
+                          ? 'bg-[#f0f1f3] text-[#1f2937] border border-[#e2e4e8]'
+                          : 'text-[#6b7280] hover:text-[#1f2937] hover:bg-[#f4f5f7] border border-transparent'
                         }
                         ${isLocked ? 'opacity-50' : ''}
                       `}
@@ -185,10 +185,10 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
                       {item.icon}
                       <span className="font-medium flex-1 truncate">{item.label}</span>
                       {isLocked && (
-                        <span className="text-[8px] font-mono bg-zinc-800 text-zinc-500 px-1 py-0.5 rounded flex-shrink-0 tracking-wider">PRO</span>
+                        <span className="text-[8px] font-mono bg-[#f0f1f3] text-[#9ca3af] px-1 py-0.5 rounded flex-shrink-0 tracking-wider border border-[#e2e4e8]">PRO</span>
                       )}
                       {isActive && (
-                        <div className="w-1 h-1 rounded-full bg-emerald-400 flex-shrink-0" />
+                        <div className="w-1 h-1 rounded-full bg-emerald-500 flex-shrink-0" />
                       )}
                     </a>
                   );
@@ -199,38 +199,38 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
         </nav>
 
         {/* Status Footer */}
-        <div className="p-2 border-t border-zinc-800/80 flex-shrink-0 space-y-2">
+        <div className="p-2 border-t border-[#e2e4e8] flex-shrink-0 space-y-2">
           {/* User Info */}
           {userEmail && (
-            <div className="bg-zinc-900/50 rounded-md p-2.5">
+            <div className="bg-[#f4f5f7] rounded-md p-2.5">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 bg-emerald-500/20 rounded flex items-center justify-center flex-shrink-0">
-                  <span className="text-[9px] font-mono font-bold text-emerald-400">
+                  <span className="text-[9px] font-mono font-bold text-emerald-600">
                     {userEmail.slice(0, 2).toUpperCase()}
                   </span>
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[10px] text-zinc-400 truncate">{userEmail}</p>
-                  <p className="text-[8px] font-mono text-zinc-600 uppercase">Beta Access</p>
+                  <p className="text-[10px] text-[#6b7280] truncate">{userEmail}</p>
+                  <p className="text-[8px] font-mono text-[#9ca3af] uppercase">Beta Access</p>
                 </div>
               </div>
             </div>
           )}
 
           {/* System Status */}
-          <div className="bg-zinc-900/50 rounded-md p-2.5">
+          <div className="bg-[#f4f5f7] rounded-md p-2.5">
             <div className="flex items-center gap-1.5 mb-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50" />
-              <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-wider">System Online</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50" />
+              <span className="text-[9px] font-mono text-[#6b7280] uppercase tracking-wider">System Online</span>
             </div>
             <div className="grid grid-cols-2 gap-1.5">
-              <div className="bg-zinc-800/40 rounded px-1.5 py-1">
-                <span className="text-[8px] font-mono text-zinc-600 block">TIER</span>
-                <span className="text-[10px] font-mono text-emerald-400 font-semibold">{userTier}</span>
+              <div className="bg-white rounded px-1.5 py-1 border border-[#e2e4e8]">
+                <span className="text-[8px] font-mono text-[#9ca3af] block">TIER</span>
+                <span className="text-[10px] font-mono text-emerald-600 font-semibold">{userTier}</span>
               </div>
-              <div className="bg-zinc-800/40 rounded px-1.5 py-1">
-                <span className="text-[8px] font-mono text-zinc-600 block">API</span>
-                <span className="text-[10px] font-mono text-emerald-400 font-semibold">OK</span>
+              <div className="bg-white rounded px-1.5 py-1 border border-[#e2e4e8]">
+                <span className="text-[8px] font-mono text-[#9ca3af] block">API</span>
+                <span className="text-[10px] font-mono text-emerald-600 font-semibold">OK</span>
               </div>
             </div>
           </div>
@@ -238,7 +238,7 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
           {/* Upgrade */}
           <Link
             href="/edge/pricing"
-            className="block w-full text-center text-[10px] font-mono font-medium text-zinc-400 bg-zinc-900/50 hover:bg-zinc-800 border border-zinc-800 rounded-md py-1.5 transition-colors uppercase tracking-wider"
+            className="block w-full text-center text-[10px] font-mono font-medium text-[#1f2937] bg-[#f0f1f3] hover:bg-[#e2e4e8] border border-[#e2e4e8] rounded-md py-1.5 transition-colors uppercase tracking-wider"
           >
             Upgrade Plan
           </Link>
@@ -246,7 +246,7 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
           {/* Logout */}
           <button
             onClick={onLogout}
-            className="w-full flex items-center justify-center gap-1.5 text-[10px] font-mono font-medium text-zinc-500 hover:text-red-400 bg-zinc-900/50 hover:bg-red-500/10 border border-zinc-800 hover:border-red-500/20 rounded-md py-1.5 transition-colors uppercase tracking-wider"
+            className="w-full flex items-center justify-center gap-1.5 text-[10px] font-mono font-medium text-[#9ca3af] hover:text-red-500 bg-[#f4f5f7] hover:bg-red-50 border border-[#e2e4e8] hover:border-red-200 rounded-md py-1.5 transition-colors uppercase tracking-wider"
           >
             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -362,17 +362,17 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
   // Show loading state while checking auth
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#ebedf0] flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <div className="w-8 h-8 border-2 border-emerald-500/30 border-t-emerald-500 rounded-full animate-spin" />
-          <span className="text-xs font-mono text-zinc-600 uppercase tracking-wider">Loading...</span>
+          <span className="text-xs font-mono text-[#9ca3af] uppercase tracking-wider">Loading...</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 flex">
+    <div className="min-h-screen bg-[#ebedf0] text-[#1f2937] flex">
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} onLogout={handleLogout} userEmail={userEmail} />
       <div className="flex-1 flex flex-col min-w-0">
         <Header onMenuClick={() => setSidebarOpen(true)} />

@@ -19,10 +19,10 @@ const P = {
   textFaint: '#b0b5bd',
   greenText: '#16a34a',
   greenBg: 'rgba(34,197,94,0.06)',
-  greenBorder: 'rgba(34,197,94,0.18)',
+  greenBorder: 'rgba(34,197,94,0.35)',
   redText: '#b91c1c',
   redBg: 'rgba(239,68,68,0.04)',
-  redBorder: 'rgba(239,68,68,0.10)',
+  redBorder: 'rgba(239,68,68,0.25)',
   neutralBg: '#f7f8f9',
   neutralBorder: '#ecedef',
 };
@@ -135,11 +135,38 @@ function getDisplayTeamName(teamName: string, sportKey: string): string {
   return words[words.length - 1];
 }
 
+// Spread/total odds → implied probability (handles American odds from any book)
+// Fair line edge = diff between fair implied prob and book implied prob
+function spreadEdgePct(bookLine: number, bookOdds: number, fairLine: number): number {
+  // The book's price already encodes line + juice into one implied probability
+  const bookProb = toProb(bookOdds);
+  // Fair line at -110 juice (standard) gives baseline; adjust for line diff
+  // A 1-point spread diff ≈ 2.5-3% implied probability depending on sport
+  // But we directly compare: fair line at standard juice vs book price
+  const fairProb = toProb(-110); // fair line assumes -110 standard juice
+  // Adjust fair prob for the line gap: each point of spread ≈ 3% probability
+  const lineGap = fairLine - bookLine; // positive = fair line is higher (more favorable to home)
+  const fairAdjusted = fairProb + lineGap * 0.03;
+  return (fairAdjusted - bookProb) * 100;
+}
+
 function calcMaxEdge(fair: any, spreads: any, h2h: any, totals: any): number {
   let maxEdge = 0;
-  if (fair?.fair_spread != null && spreads?.line !== undefined) {
+
+  // Spread edge: probability-based using book odds (juice matters)
+  if (fair?.fair_spread != null && spreads?.line !== undefined && spreads?.homePrice != null) {
+    const homeProb = toProb(spreads.homePrice);
+    const awayProb = spreads.awayPrice != null ? toProb(spreads.awayPrice) : 1 - homeProb;
+    // Fair spread implies a probability shift: each point ≈ 3%
+    const lineGap = spreads.line - fair.fair_spread;
+    const fairHomeProb = homeProb + lineGap * 0.03;
+    maxEdge = Math.max(maxEdge, Math.abs(fairHomeProb - homeProb) * 100, Math.abs((1 - fairHomeProb) - awayProb) * 100);
+  } else if (fair?.fair_spread != null && spreads?.line !== undefined) {
+    // Fallback: line-only comparison when no odds available
     maxEdge = Math.max(maxEdge, Math.abs(spreads.line - fair.fair_spread) * 3.0);
   }
+
+  // ML edge: already probability-based
   if (fair?.fair_ml_home != null && fair?.fair_ml_away != null && h2h?.homePrice !== undefined && h2h?.awayPrice !== undefined) {
     const fairHP = toProb(fair.fair_ml_home);
     const fairAP = toProb(fair.fair_ml_away);
@@ -149,9 +176,18 @@ function calcMaxEdge(fair: any, spreads: any, h2h: any, totals: any): number {
     const normBAP = bookAP / (bookHP + bookAP);
     maxEdge = Math.max(maxEdge, (fairHP - normBHP) * 100, (fairAP - normBAP) * 100);
   }
-  if (fair?.fair_total != null && totals?.line !== undefined) {
+
+  // Total edge: probability-based using book odds
+  if (fair?.fair_total != null && totals?.line !== undefined && totals?.overPrice != null) {
+    const overProb = toProb(totals.overPrice);
+    const underProb = totals.underPrice != null ? toProb(totals.underPrice) : 1 - overProb;
+    const lineGap = fair.fair_total - totals.line;
+    const fairOverProb = overProb + lineGap * 0.02; // totals: ~2% per point
+    maxEdge = Math.max(maxEdge, Math.abs(fairOverProb - overProb) * 100, Math.abs((1 - fairOverProb) - underProb) * 100);
+  } else if (fair?.fair_total != null && totals?.line !== undefined) {
     maxEdge = Math.max(maxEdge, Math.abs(fair.fair_total - totals.line) * 1.5);
   }
+
   return maxEdge;
 }
 
@@ -241,6 +277,7 @@ function MarketCell({
   return (
     <div style={{
       background: bg, borderRight: `1px solid ${border}`,
+      borderLeft: hasEdge ? `3px solid ${border}` : undefined,
       padding: '6px 8px', minHeight: 70, display: 'flex', flexDirection: 'column',
     }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
@@ -765,11 +802,26 @@ export function SportsHomeGrid({
                     const h2h = bookOdds?.h2h || game.consensus?.h2h;
                     const totals = bookOdds?.totals || game.consensus?.totals;
 
-                    // Per-cell edges
+                    // Per-cell edges — probability-based, incorporates book juice
                     let homeSpreadEdge: number | null = null, awaySpreadEdge: number | null = null;
                     if (fair?.fair_spread != null && spreads?.line !== undefined) {
-                      homeSpreadEdge = (spreads.line - fair.fair_spread) * 3.0;
-                      awaySpreadEdge = -homeSpreadEdge;
+                      if (spreads.homePrice != null) {
+                        // Probability-based: book odds encode line + juice together
+                        const bookHomeProb = toProb(spreads.homePrice);
+                        const bookAwayProb = spreads.awayPrice != null ? toProb(spreads.awayPrice) : 1 - bookHomeProb;
+                        // Fair spread shift: each point of spread gap ≈ 3% probability
+                        const lineGap = spreads.line - fair.fair_spread;
+                        homeSpreadEdge = (bookHomeProb + lineGap * 0.03 - bookHomeProb) * 100; // = lineGap * 3
+                        // But now factor in the actual juice difference vs standard -110
+                        const stdProb = toProb(-110); // 0.5238
+                        const homeJuiceEdge = (stdProb - bookHomeProb) * 100; // positive = book is overcharging
+                        homeSpreadEdge = lineGap * 3.0 + homeJuiceEdge;
+                        awaySpreadEdge = -lineGap * 3.0 + (spreads.awayPrice != null ? (stdProb - bookAwayProb) * 100 : -homeJuiceEdge);
+                      } else {
+                        // Fallback: line-only
+                        homeSpreadEdge = (spreads.line - fair.fair_spread) * 3.0;
+                        awaySpreadEdge = -homeSpreadEdge;
+                      }
                     }
 
                     let homeMLEdge: number | null = null, awayMLEdge: number | null = null;
@@ -786,8 +838,17 @@ export function SportsHomeGrid({
 
                     let overEdge: number | null = null, underEdge: number | null = null;
                     if (fair?.fair_total != null && totals?.line !== undefined) {
-                      overEdge = (fair.fair_total - totals.line) * 1.5;
-                      underEdge = -overEdge;
+                      if (totals.overPrice != null) {
+                        const bookOverProb = toProb(totals.overPrice);
+                        const bookUnderProb = totals.underPrice != null ? toProb(totals.underPrice) : 1 - bookOverProb;
+                        const stdProb = toProb(-110);
+                        const lineGap = fair.fair_total - totals.line;
+                        overEdge = lineGap * 2.0 + (stdProb - bookOverProb) * 100;
+                        underEdge = -lineGap * 2.0 + (totals.underPrice != null ? (stdProb - bookUnderProb) * 100 : -(stdProb - bookOverProb) * 100);
+                      } else {
+                        overEdge = (fair.fair_total - totals.line) * 1.5;
+                        underEdge = -overEdge;
+                      }
                     }
 
                     const displayAway = getDisplayTeamName(game.awayTeam, game.sportKey);

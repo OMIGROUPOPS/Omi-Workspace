@@ -53,12 +53,16 @@ class AccuracyTracker:
         if not completed_games:
             return {"processed": 0, "skipped": 0, "errors": 0, "message": "No completed games in lookback window"}
 
-        # Get already-processed game IDs
+        # Get already-processed game IDs (batch to avoid URL length limits)
         game_ids = [g["game_id"] for g in completed_games]
-        existing = self.client.table("prediction_accuracy_log").select(
-            "game_id"
-        ).in_("game_id", game_ids).execute()
-        already_done = {r["game_id"] for r in (existing.data or [])}
+        already_done: set = set()
+        BATCH = 100
+        for i in range(0, len(game_ids), BATCH):
+            batch = game_ids[i:i + BATCH]
+            existing = self.client.table("prediction_accuracy_log").select(
+                "game_id"
+            ).in_("game_id", batch).execute()
+            already_done.update(r["game_id"] for r in (existing.data or []))
 
         processed = 0
         skipped = 0
@@ -151,21 +155,21 @@ class AccuracyTracker:
             book_spread = _to_float(ch.get("book_spread"))
             book_total = _to_float(ch.get("book_total"))
 
-        # --- Get Pinnacle closing lines ---
+        # --- Get Pinnacle closing lines (one row per game) ---
         pinnacle_spread = None
         pinnacle_total = None
 
-        cl_result = self.client.table("closing_lines").select(
-            "market_type, line"
-        ).eq("game_id", game_id).eq("book_key", "pinnacle").execute()
+        try:
+            cl_result = self.client.table("closing_lines").select(
+                "pinnacle_spread, pinnacle_total"
+            ).eq("game_id", game_id).limit(1).execute()
 
-        for cl in (cl_result.data or []):
-            mt = cl.get("market_type", "")
-            line = _to_float(cl.get("line"))
-            if mt == "spread":
-                pinnacle_spread = line
-            elif mt == "total":
-                pinnacle_total = line
+            if cl_result.data:
+                cl = cl_result.data[0]
+                pinnacle_spread = _to_float(cl.get("pinnacle_spread"))
+                pinnacle_total = _to_float(cl.get("pinnacle_total"))
+        except Exception:
+            pass  # closing_lines may be empty or columns may not exist yet
 
         # --- Get pillar scores from predictions table ---
         sport_short = SPORT_NORMALIZE.get(sport_key, sport_key)

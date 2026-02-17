@@ -15,9 +15,22 @@ import statistics
 import traceback
 
 from database import db
-from engine.analyzer import analyze_game, implied_prob_to_american
+from engine.analyzer import analyze_game, implied_prob_to_american, fetch_line_context, fetch_team_environment_stats
 
 logger = logging.getLogger(__name__)
+
+# Variable engine — lazy import to avoid circular deps
+_variable_engine = None
+
+def _get_variable_engine():
+    global _variable_engine
+    if _variable_engine is None:
+        try:
+            import variable_engine
+            _variable_engine = variable_engine
+        except Exception as e:
+            logger.warning(f"[VarEngine] Failed to import variable_engine: {e}")
+    return _variable_engine
 
 # Fair line constants — mirror edgescout.ts (lines 59-72)
 FAIR_LINE_SPREAD_FACTOR = 0.15
@@ -487,6 +500,202 @@ class CompositeTracker:
             logger.error(f"[DynamicRecalc] Failed to batch-fetch latest composites: {e}")
             return {}
 
+    def _run_variable_engine(
+        self,
+        analysis: dict,
+        sport_key: str,
+        game_id: str,
+        game_data: dict,
+        book_spread: float | None,
+    ) -> dict | None:
+        """
+        Run the 63-variable engine on a completed analysis.
+
+        Returns {enhanced_composite, avg_confidence, pillar_scores, all_variables,
+                 dynamic_weights, context} or None on failure.
+        """
+        ve = _get_variable_engine()
+        if ve is None:
+            return None
+
+        try:
+            sport_upper = SPORT_DISPLAY.get(sport_key, sport_key.upper())
+            pillar_results = analysis.get("pillars", {})
+
+            # Fetch team_stats for variable engine (may already be cached by analyzer)
+            home_team = game_data.get("home_team", "")
+            away_team = game_data.get("away_team", "")
+            team_stats = fetch_team_environment_stats(home_team, away_team, sport_key)
+
+            # Get opening/current line from line context
+            line_ctx = fetch_line_context(game_id, sport_key)
+            opening_line = line_ctx.get("opening_line")
+            current_line = line_ctx.get("current_line")
+
+            # Calculate all 63 variables
+            all_variables = ve.calculate_all_variables(
+                pillar_results, sport_upper,
+                team_stats=team_stats,
+                opening_line=opening_line,
+                current_line=current_line,
+            )
+
+            # Build GameContext
+            incentives = pillar_results.get("incentives", {})
+            is_rivalry = incentives.get("is_rivalry", False)
+            is_champ = incentives.get("is_championship", False)
+            if is_champ:
+                significance = "playoff"
+            elif is_rivalry:
+                significance = "rivalry"
+            else:
+                significance = "regular"
+
+            commence_time = game_data.get("commence_time")
+            ttg_hours = 24.0  # Default
+            if commence_time:
+                try:
+                    game_dt = datetime.fromisoformat(
+                        commence_time.replace("Z", "+00:00")
+                    )
+                    ttg_hours = max(0.0, (game_dt - datetime.now(timezone.utc)).total_seconds() / 3600)
+                except (ValueError, AttributeError):
+                    pass
+
+            has_exchange = False
+            try:
+                from exchange_tracker import ExchangeTracker
+                has_exchange = bool(ExchangeTracker().get_game_exchange_data(game_id))
+            except Exception:
+                pass
+
+            game_env = pillar_results.get("game_environment", {})
+            has_weather = bool((game_env.get("breakdown") or {}).get("weather_impact"))
+
+            context = ve.GameContext(
+                sport=sport_upper,
+                market="spread",
+                significance=significance,
+                time_to_game_hours=ttg_hours,
+                is_nationally_televised=False,
+                conference_tier="power5",
+                has_exchange_data=has_exchange,
+                has_weather_data=has_weather,
+            )
+
+            # Aggregate and compute enhanced composite
+            pillar_scores = ve.aggregate_pillar_scores(all_variables, context)
+            enhanced_composite = ve.calculate_variable_composite(pillar_scores)
+
+            # Average confidence across available variables
+            summary = ve.get_variable_summary(all_variables)
+            total_avail = summary["available_variables"]
+            total_vars = summary["total_variables"]
+            avg_confidence = 0.0
+            if total_avail > 0:
+                conf_sum = 0.0
+                for var_list in all_variables.values():
+                    for v in var_list:
+                        if v.available:
+                            conf_sum += v.confidence
+                avg_confidence = conf_sum / total_avail
+
+            dynamic_weights = ve.calculate_dynamic_weights(context)
+
+            logger.info(
+                f"[VarEngine] {game_id}: enhanced_composite={enhanced_composite:.3f}, "
+                f"avg_confidence={avg_confidence:.2f}, "
+                f"coverage={total_avail}/{total_vars}"
+            )
+
+            return {
+                "enhanced_composite": enhanced_composite,
+                "avg_confidence": avg_confidence,
+                "pillar_scores": pillar_scores,
+                "all_variables": all_variables,
+                "dynamic_weights": dynamic_weights,
+                "context": context,
+                "summary": summary,
+            }
+
+        except Exception as e:
+            logger.warning(
+                f"[VarEngine] Failed for {game_id}: {e}\n{traceback.format_exc()}"
+            )
+            return None
+
+    def _store_variable_results(
+        self,
+        game_id: str,
+        sport_key: str,
+        ve_result: dict,
+    ) -> None:
+        """
+        Persist variable scores and dynamic weights to Supabase.
+        Uses upsert (ON CONFLICT ... DO UPDATE) via the UNIQUE constraints.
+        """
+        try:
+            # 1. Store individual variable scores → game_variables
+            all_variables = ve_result["all_variables"]
+            var_rows = []
+            for var_list in all_variables.values():
+                for v in var_list:
+                    if not v.available:
+                        continue  # Skip stubs — no value in storing neutral 0.5
+                    var_rows.append({
+                        "game_id": game_id,
+                        "sport_key": sport_key,
+                        "variable_code": v.code,
+                        "variable_name": v.name,
+                        "pillar": v.pillar,
+                        "raw_value": round(v.raw_value, 4),
+                        "normalized": round(v.normalized, 4),
+                        "confidence": round(v.confidence, 2),
+                        "source": v.source,
+                    })
+
+            if var_rows:
+                # Batch upsert in chunks of 50
+                for i in range(0, len(var_rows), 50):
+                    chunk = var_rows[i:i + 50]
+                    db.client.table("game_variables").upsert(
+                        chunk, on_conflict="game_id,variable_code"
+                    ).execute()
+
+            # 2. Store dynamic weights → game_pillar_weights
+            weights = ve_result["dynamic_weights"]
+            ctx = ve_result["context"]
+            weight_row = {
+                "game_id": game_id,
+                "sport_key": sport_key,
+                "market_type": ctx.market,
+                "execution_weight": round(weights.get("EXECUTION", 0), 4),
+                "incentives_weight": round(weights.get("INCENTIVES", 0), 4),
+                "shocks_weight": round(weights.get("SHOCKS", 0), 4),
+                "time_decay_weight": round(weights.get("TIME_DECAY", 0), 4),
+                "flow_weight": round(weights.get("FLOW", 0), 4),
+                "game_env_weight": round(weights.get("GAME_ENV", 0), 4),
+                "context_json": {
+                    "sport": ctx.sport,
+                    "market": ctx.market,
+                    "significance": ctx.significance,
+                    "time_to_game_hours": round(ctx.time_to_game_hours, 1),
+                    "has_exchange_data": ctx.has_exchange_data,
+                    "has_weather_data": ctx.has_weather_data,
+                    "conference_tier": ctx.conference_tier,
+                    "enhanced_composite": round(ve_result["enhanced_composite"], 4),
+                    "avg_confidence": round(ve_result["avg_confidence"], 2),
+                    "coverage": ve_result["summary"]["coverage_pct"],
+                },
+            }
+            db.client.table("game_pillar_weights").upsert(
+                weight_row, on_conflict="game_id,market_type"
+            ).execute()
+
+        except Exception as e:
+            # Storage failure must never block composite calculation
+            logger.warning(f"[VarEngine] Storage failed for {game_id}: {e}")
+
     def recalculate_all(self) -> dict:
         """
         Main entry point. For every active (not yet started) game in cached_odds:
@@ -494,6 +703,7 @@ class CompositeTracker:
         2. Extract per-market composites
         3. Calculate fair lines (same formulas as edgescout.ts)
         4. Write row to composite_history
+        5. Run variable engine → store results, use enhanced composite if confident
         """
         if not db._is_connected():
             return {"error": "Database not connected", "games_processed": 0, "errors": 0}
@@ -551,6 +761,8 @@ class CompositeTracker:
         recalculated = 0
         skipped = 0
         errors = 0
+        ve_enhanced = 0   # Games where variable engine enhanced the composite
+        ve_fallback = 0   # Games where variable engine fell back to old composite
         sport_processed: dict[str, int] = {}
         sport_errors: dict[str, int] = {}
 
@@ -595,11 +807,40 @@ class CompositeTracker:
                 # 4. Fresh pillar analysis (EXPENSIVE — only when movement detected)
                 analysis = analyze_game(game_data, sport_key)
 
+                # 4b. Variable engine — enhanced composite (safe fallback)
+                ve_result = self._run_variable_engine(
+                    analysis, sport_key, game_id, game_data, book_spread,
+                )
+                if ve_result is not None:
+                    self._store_variable_results(game_id, sport_key, ve_result)
+
                 # 5. Per-market composites from pillars_by_market
                 pbm = analysis.get("pillars_by_market", {})
                 composite_spread = pbm.get("spread", {}).get("full", {}).get("composite")
                 composite_total = pbm.get("totals", {}).get("full", {}).get("composite")
                 composite_ml = pbm.get("moneyline", {}).get("full", {}).get("composite")
+
+                # 5a. Use enhanced composite IF variable engine succeeded and
+                #     confidence is above 0.5 — otherwise keep old composite.
+                #     Enhanced composite blends into spread composite only (primary market).
+                if (
+                    ve_result is not None
+                    and ve_result["avg_confidence"] > 0.5
+                    and composite_spread is not None
+                ):
+                    old_cs = composite_spread
+                    # Blend: 70% old composite + 30% enhanced (conservative ramp-in)
+                    composite_spread = old_cs * 0.70 + ve_result["enhanced_composite"] * 0.30
+                    ve_enhanced += 1
+                    if games_processed < 5:
+                        logger.info(
+                            f"[VarEngine] {game_id}: blended spread composite "
+                            f"{old_cs:.3f} -> {composite_spread:.3f} "
+                            f"(enhanced={ve_result['enhanced_composite']:.3f}, "
+                            f"conf={ve_result['avg_confidence']:.2f})"
+                        )
+                else:
+                    ve_fallback += 1
 
                 # 6. Game environment pillar score (for fair total)
                 game_env_score = analysis.get("pillar_scores", {}).get("game_environment", 0.5)
@@ -728,7 +969,8 @@ class CompositeTracker:
 
         logger.info(
             f"[DynamicRecalc] Recalculated {recalculated} games, "
-            f"skipped {skipped} unchanged (errors={errors})"
+            f"skipped {skipped} unchanged (errors={errors}). "
+            f"VarEngine: {ve_enhanced} enhanced, {ve_fallback} fallback"
         )
 
         summary = {
@@ -739,6 +981,10 @@ class CompositeTracker:
             "timestamp": now,
             "by_sport": sport_processed,
             "errors_by_sport": sport_errors if sport_errors else None,
+            "variable_engine": {
+                "enhanced": ve_enhanced,
+                "fallback": ve_fallback,
+            },
         }
         logger.info(f"[CompositeTracker] Done: {summary}")
         return summary

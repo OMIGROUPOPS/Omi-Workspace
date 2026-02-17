@@ -2032,6 +2032,14 @@ def _generate_live_signal_note(
     return ". ".join(parts) + "."
 
 
+def _fallback_abbrev(team_name: str) -> str:
+    """Generate a fallback abbreviation from team name (first word, upper, max 4 chars)."""
+    if not team_name:
+        return ""
+    first = team_name.split()[0].upper()
+    return first[:4]
+
+
 def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
                        exchange_cache: dict = None) -> dict:
     """Build a single game signal payload for the ARB API response.
@@ -2079,6 +2087,13 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
             favored_side = "home"
         elif fs > 0.5:
             favored_side = "away"
+
+    # Team abbreviations — prefer ESPN, fallback to first word of name
+    home_abbrev = _fallback_abbrev(home_team)
+    away_abbrev = _fallback_abbrev(away_team)
+    if live_game:
+        home_abbrev = live_game.get("home_abbrev") or home_abbrev
+        away_abbrev = live_game.get("away_abbrev") or away_abbrev
 
     # Live status
     game_status = "pregame"
@@ -2174,6 +2189,8 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
         "sport": sport_key,
         "home_team": home_team,
         "away_team": away_team,
+        "home_abbrev": home_abbrev,
+        "away_abbrev": away_abbrev,
         "commence_time": commence_time,
         "game_status": game_status,
         "favored_side": favored_side,
@@ -2280,6 +2297,8 @@ async def arb_bulk_edge_signals(
                         **lg,
                         "home_team": lg["away_team"],
                         "away_team": lg["home_team"],
+                        "home_abbrev": lg.get("away_abbrev", ""),
+                        "away_abbrev": lg.get("home_abbrev", ""),
                         "home_score": lg.get("away_score", 0),
                         "away_score": lg.get("home_score", 0),
                     }
@@ -2456,6 +2475,8 @@ async def arb_single_edge_signal(
                         **lg,
                         "home_team": lg["away_team"],
                         "away_team": lg["home_team"],
+                        "home_abbrev": lg.get("away_abbrev", ""),
+                        "away_abbrev": lg.get("home_abbrev", ""),
                         "home_score": lg.get("away_score", 0),
                         "away_score": lg.get("home_score", 0),
                     }

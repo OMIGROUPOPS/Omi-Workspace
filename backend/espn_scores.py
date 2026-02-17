@@ -293,23 +293,28 @@ class ESPNScoreFetcher:
                 away_team = None
                 home_score = None
                 away_score = None
-                
+                home_abbrev = ""
+                away_abbrev = ""
+
                 for comp in competitors:
                     team_name = comp.get("team", {}).get("displayName", "")
+                    abbrev = comp.get("team", {}).get("abbreviation", "")
                     score = comp.get("score", "0")
                     is_home = comp.get("homeAway", "") == "home"
-                    
+
                     try:
                         score_int = int(score) if score else 0
                     except ValueError:
                         score_int = 0
-                    
+
                     if is_home:
                         home_team = team_name
                         home_score = score_int
+                        home_abbrev = abbrev
                     else:
                         away_team = team_name
                         away_score = score_int
+                        away_abbrev = abbrev
                 
                 # Parse period and clock for live games
                 status_detail = status.get("type", {}).get("shortDetail", "")
@@ -345,6 +350,8 @@ class ESPNScoreFetcher:
                     "sport": sport,
                     "home_team": home_team,
                     "away_team": away_team,
+                    "home_abbrev": home_abbrev,
+                    "away_abbrev": away_abbrev,
                     "home_score": home_score,
                     "away_score": away_score,
                     "status": status_type,  # "STATUS_SCHEDULED", "STATUS_IN_PROGRESS", "STATUS_FINAL"

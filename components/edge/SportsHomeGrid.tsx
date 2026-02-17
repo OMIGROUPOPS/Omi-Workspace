@@ -1025,7 +1025,7 @@ export function SportsHomeGrid({
                                 {exchangeMode ? (
                                   <MarketCell
                                     bookValue={bookOdds?.spreads?.line !== undefined ? fmtSpread(-bookOdds.spreads.line) : '--'}
-                                    bookPrice={bookOdds?.spreads?.awayPrice != null ? `(${oddsToYesCents(bookOdds.spreads.awayPrice)}\u00a2)` : undefined}
+                                    bookPrice={bookOdds?.spreads?.exchangeNo != null ? `${bookOdds.spreads.exchangeNo}\u00a2` : undefined}
                                     fairValue={fair?.fair_spread != null ? fmtSpread(-fair.fair_spread) : null}
                                     edge={bookOdds?.spreads ? awaySpreadEdge : null}
                                   />
@@ -1040,7 +1040,7 @@ export function SportsHomeGrid({
                                 {exchangeMode ? (
                                   <MarketCell
                                     bookValue={bookOdds?.totals?.line !== undefined ? `O ${bookOdds.totals.line}` : '--'}
-                                    bookPrice={bookOdds?.totals?.overPrice != null ? `(${oddsToYesCents(bookOdds.totals.overPrice)}\u00a2)` : undefined}
+                                    bookPrice={bookOdds?.totals?.exchangeOverYes != null ? `${bookOdds.totals.exchangeOverYes}\u00a2` : undefined}
                                     fairValue={fair?.fair_total != null ? fair.fair_total.toFixed(1) : null}
                                     edge={bookOdds?.totals ? overEdge : null}
                                   />
@@ -1054,7 +1054,7 @@ export function SportsHomeGrid({
                                 )}
                                 {exchangeMode ? (
                                   <MarketCell
-                                    bookValue={bookOdds?.h2h?.awayPrice != null ? `${oddsToYesCents(bookOdds.h2h.awayPrice)}\u00a2` : '--'}
+                                    bookValue={bookOdds?.h2h?.exchangeAwayYes != null ? `${bookOdds.h2h.exchangeAwayYes}\u00a2` : '--'}
                                     fairValue={fair?.fair_ml_away != null ? `${oddsToYesCents(fair.fair_ml_away)}\u00a2` : null}
                                     edge={bookOdds?.h2h ? awayMLEdge : null}
                                   />
@@ -1072,7 +1072,7 @@ export function SportsHomeGrid({
                                 {exchangeMode ? (
                                   <MarketCell
                                     bookValue={bookOdds?.spreads?.line !== undefined ? fmtSpread(bookOdds.spreads.line) : '--'}
-                                    bookPrice={bookOdds?.spreads?.homePrice != null ? `(${oddsToYesCents(bookOdds.spreads.homePrice)}\u00a2)` : undefined}
+                                    bookPrice={bookOdds?.spreads?.exchangeYes != null ? `${bookOdds.spreads.exchangeYes}\u00a2` : undefined}
                                     fairValue={fair?.fair_spread != null ? fmtSpread(fair.fair_spread) : null}
                                     edge={bookOdds?.spreads ? homeSpreadEdge : null}
                                   />
@@ -1087,7 +1087,7 @@ export function SportsHomeGrid({
                                 {exchangeMode ? (
                                   <MarketCell
                                     bookValue={bookOdds?.totals?.line !== undefined ? `U ${bookOdds.totals.line}` : '--'}
-                                    bookPrice={bookOdds?.totals?.underPrice != null ? `(${oddsToYesCents(bookOdds.totals.underPrice)}\u00a2)` : undefined}
+                                    bookPrice={bookOdds?.totals?.exchangeUnderYes != null ? `${bookOdds.totals.exchangeUnderYes}\u00a2` : undefined}
                                     fairValue={fair?.fair_total != null ? fair.fair_total.toFixed(1) : null}
                                     edge={bookOdds?.totals ? underEdge : null}
                                   />
@@ -1101,7 +1101,7 @@ export function SportsHomeGrid({
                                 )}
                                 {exchangeMode ? (
                                   <MarketCell
-                                    bookValue={bookOdds?.h2h?.homePrice != null ? `${oddsToYesCents(bookOdds.h2h.homePrice)}\u00a2` : '--'}
+                                    bookValue={bookOdds?.h2h?.exchangeHomeYes != null ? `${bookOdds.h2h.exchangeHomeYes}\u00a2` : '--'}
                                     fairValue={fair?.fair_ml_home != null ? `${oddsToYesCents(fair.fair_ml_home)}\u00a2` : null}
                                     edge={bookOdds?.h2h ? homeMLEdge : null}
                                   />

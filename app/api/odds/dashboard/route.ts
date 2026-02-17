@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { enrichExchangeRows } from '@/lib/edge/utils/exchange-enrichment';
 
 // ACTIVE SPORTS - Must match app/api/odds/sync/route.ts SPORT_KEYS
 const SPORT_KEYS = [
@@ -286,7 +287,6 @@ export async function GET() {
         .from('exchange_data')
         .select('exchange, market_type, yes_price, no_price, subtitle, event_title, mapped_game_id')
         .not('mapped_game_id', 'is', null)
-        .not('subtitle', 'is', null)
         .eq('market_type', marketType)
         .order('snapshot_time', { ascending: false })
         .limit(1000);
@@ -304,7 +304,9 @@ export async function GET() {
     // Build exchange bookmakers by game ID
     const exchangeBookmakersByGameId: Record<string, Record<string, any>> = {};
     {
-      const exchangeRows = [...mlRows, ...spreadRows, ...totalRows];
+      const rawRows = [...mlRows, ...spreadRows, ...totalRows];
+      // Enrich Polymarket rows (null subtitle) by parsing event_title
+      const exchangeRows = enrichExchangeRows(rawRows, gameTeamsMap);
 
       if (exchangeRows.length > 0) {
         // De-dup: keep only latest snapshot per (game, exchange, market_type, subtitle)

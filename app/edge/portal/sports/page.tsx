@@ -4,6 +4,7 @@ import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
 import { calculateQuickEdge } from '@/lib/edge/engine/edge-calculator';
 import { calculateCEQ, calculateGameCEQ, groupSnapshotsByGame, type ExtendedOddsSnapshot, type GameCEQ, type GameContextData, type TeamStatsData } from '@/lib/edge/engine/edgescout';
+import { enrichExchangeRows } from '@/lib/edge/utils/exchange-enrichment';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 
@@ -1055,7 +1056,6 @@ export default async function SportsPage() {
         .from('exchange_data')
         .select('exchange, market_type, yes_price, no_price, subtitle, event_title, mapped_game_id')
         .not('mapped_game_id', 'is', null)
-        .not('subtitle', 'is', null)
         .eq('market_type', marketType)
         .order('snapshot_time', { ascending: false })
         .limit(1000);
@@ -1067,7 +1067,9 @@ export default async function SportsPage() {
       fetchExchange('spread'),
       fetchExchange('total'),
     ]);
-    const exchangeRows = [...mlRows, ...spreadRows, ...totalRows];
+    const rawRows = [...mlRows, ...spreadRows, ...totalRows];
+    // Enrich Polymarket rows (null subtitle) by parsing event_title
+    const exchangeRows = enrichExchangeRows(rawRows, gameTeamsMap);
 
     if (exchangeRows.length > 0) {
       // De-dup: keep only latest snapshot per (game, exchange, market_type, subtitle)

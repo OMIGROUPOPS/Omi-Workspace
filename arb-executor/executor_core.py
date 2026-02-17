@@ -1112,33 +1112,7 @@ async def execute_arb(
     else:  # buy
         k_limit_price = min(k_price + Config.price_buffer_cents, 99)
 
-    # -------------------------------------------------------------------------
-    # Step 4.5: Kalshi depth pre-validation (before committing PM order)
-    # -------------------------------------------------------------------------
-    if k_book_ref:
-        if params['k_action'] == 'sell':
-            # Selling YES: need YES bids at or above our limit price
-            k_depth_available = sum(
-                qty for price, qty in k_book_ref.get('yes_bids', {}).items()
-                if int(price) >= k_limit_price
-            )
-        else:  # buy
-            # Buying YES: need YES asks at or below our limit price
-            k_depth_available = sum(
-                qty for price, qty in k_book_ref.get('yes_asks', {}).items()
-                if int(price) <= k_limit_price
-            )
-        # 2x depth requirement — phantom depth mitigation
-        if k_depth_available < size * 2:
-            book_bids = sorted(k_book_ref.get('yes_bids', {}).items(), key=lambda x: -int(x[0]))[:5]
-            book_asks = sorted(k_book_ref.get('yes_asks', {}).items(), key=lambda x: int(x[0]))[:5]
-            print(f"[EXEC] K depth insufficient: need {size}x2={size*2} @ limit={k_limit_price}c, have {k_depth_available} "
-                  f"| action={params['k_action']} | bids={book_bids} | asks={book_asks}")
-            return TradeResult(
-                success=False,
-                abort_reason=f"Kalshi book depth insufficient ({k_depth_available}/{size*2} @ {k_limit_price}c)",
-                execution_time_ms=int((time.time() - start_time) * 1000),
-            )
+    # Depth pre-check removed — tier system handles Kalshi failures cheaply
 
     # -------------------------------------------------------------------------
     # Step 5: Place PM order FIRST (unreliable leg - IOC often expires)

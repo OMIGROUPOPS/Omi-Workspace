@@ -885,8 +885,8 @@ def safe_to_trade(
     if game_id in blacklisted_games:
         return False, f"Game {game_id} is BLACKLISTED after crashes"
 
-    # Check already traded
-    if game_id in traded_games:
+    # Check already traded (skippable via config for multi-trade-per-game strategies)
+    if not Config.skip_traded_games_check and game_id in traded_games:
         return False, f"Game {game_id} already traded this session"
 
     # Check existing position (from local cache — no API call)
@@ -1062,14 +1062,15 @@ async def execute_arb(
                 qty for price, qty in k_book_ref.get('yes_asks', {}).items()
                 if int(price) <= k_limit_price
             )
-        if k_depth_available < size:
+        # 2x depth requirement — phantom depth mitigation
+        if k_depth_available < size * 2:
             book_bids = sorted(k_book_ref.get('yes_bids', {}).items(), key=lambda x: -int(x[0]))[:5]
             book_asks = sorted(k_book_ref.get('yes_asks', {}).items(), key=lambda x: int(x[0]))[:5]
-            print(f"[EXEC] K depth insufficient: need {size} @ limit={k_limit_price}c, have {k_depth_available} "
+            print(f"[EXEC] K depth insufficient: need {size}x2={size*2} @ limit={k_limit_price}c, have {k_depth_available} "
                   f"| action={params['k_action']} | bids={book_bids} | asks={book_asks}")
             return TradeResult(
                 success=False,
-                abort_reason=f"Kalshi book depth insufficient ({k_depth_available}/{size} @ {k_limit_price}c)",
+                abort_reason=f"Kalshi book depth insufficient ({k_depth_available}/{size*2} @ {k_limit_price}c)",
                 execution_time_ms=int((time.time() - start_time) * 1000),
             )
 

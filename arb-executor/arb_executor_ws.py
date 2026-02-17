@@ -777,6 +777,7 @@ class KalshiWebSocket:
         self.reconnect_delay = WS_RECONNECT_DELAY_INITIAL
         self.message_id = 0
         self.on_spread_detected = None  # Callback for spread detection
+        self._last_resub = time.time()  # Track periodic re-subscribe for book freshness
 
     def _sign(self, ts: str, method: str, path: str) -> str:
         """Generate RSA-PSS signature"""
@@ -866,6 +867,20 @@ class KalshiWebSocket:
                     if self.subscribed_tickers:
                         await self.subscribe(list(self.subscribed_tickers))
                 continue
+
+            # Periodic re-subscribe to force fresh orderbook snapshots
+            now = time.time()
+            if now - self._last_resub >= 60 and self.subscribed_tickers:
+                active = [t for t in self.subscribed_tickers
+                          if (local_books.get(t, {}).get('best_bid') or 0) > 0]
+                if active:
+                    resub_batch = active[:50]
+                    try:
+                        await self.subscribe(resub_batch)
+                        print(f"[WS] Periodic re-subscribe: {len(resub_batch)}/{len(self.subscribed_tickers)} active tickers (book refresh)")
+                    except Exception as e:
+                        print(f"[WS] Periodic re-subscribe failed: {e}")
+                self._last_resub = now
 
             try:
                 msg = await asyncio.wait_for(self.ws.recv(), timeout=60)

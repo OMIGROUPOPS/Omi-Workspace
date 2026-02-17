@@ -63,13 +63,13 @@ class Config:
     # ==========================================================================
     kalshi_fee_cents: int = 2           # Kalshi taker fee per contract
     pm_us_fee_rate: float = 0.001       # PM US fee rate (0.10%)
-    expected_slippage_cents: int = 1    # Expected slippage per side
+    expected_slippage_cents: int = 0    # Expected slippage per side
     min_profit_cents: int = 0           # Let PM buffer handle profitability
 
     # ==========================================================================
     # PRICE BUFFERS
     # ==========================================================================
-    price_buffer_cents: int = 1         # Kalshi limit order buffer
+    price_buffer_cents: int = 0         # Kalshi limit order buffer
     pm_price_buffer_cents: int = 3      # PM limit order buffer (3c to account for latency)
 
     # ==========================================================================
@@ -78,7 +78,7 @@ class Config:
     max_price_staleness_ms: int = 2000  # Max age for prices
     max_price_age_ms: int = 500         # Reject prices older than this
     pm_poll_interval_ms: int = 100      # PM REST polling interval (faster for fresher prices)
-    cooldown_seconds: int = 10          # Seconds between trade attempts
+    cooldown_seconds: int = 0           # Seconds between trade attempts
     scan_interval_ms: int = 500         # Target scan interval
 
     # ==========================================================================
@@ -91,6 +91,7 @@ class Config:
     max_concurrent_positions: int = 15  # Max open positions across all platforms
     max_contracts_per_game: int = 20    # Max contracts per game (sizing algo is real governor)
     max_crashes_per_game: int = 2       # Blacklist game after this many execution crashes
+    skip_traded_games_check: bool = True  # Skip per-session traded_games duplicate check
 
     # ==========================================================================
     # LIQUIDITY
@@ -109,7 +110,7 @@ class Config:
     enable_gtc: bool = True               # Enable IOC-then-GTC two-phase execution
     gtc_timeout_seconds: float = 3.0      # Max time to rest a GTC order
     gtc_recheck_interval_ms: int = 200    # Spread recheck interval during GTC rest
-    gtc_cooldown_seconds: int = 5         # Per-game cooldown after GTC timeout
+    gtc_cooldown_seconds: int = 0         # Per-game cooldown after GTC timeout
 
     # ==========================================================================
     # CLASS METHODS FOR MODE CONTROL

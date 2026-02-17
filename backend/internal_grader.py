@@ -389,6 +389,19 @@ class InternalGrader:
             return 0
 
         game = result.data
+
+        # Guard: skip pre-calibration games (model recalibrated Feb 16 2026)
+        commence_time = game.get("commence_time")
+        if commence_time:
+            try:
+                game_date = datetime.fromisoformat(str(commence_time).replace("Z", "+00:00"))
+                calibration_cutoff = datetime(2026, 2, 16, tzinfo=timezone.utc)
+                if game_date < calibration_cutoff:
+                    logger.info(f"[GenGrades] {game_id}: pre-calibration game ({commence_time}), skipping")
+                    return 0
+            except (ValueError, TypeError):
+                pass  # If date parsing fails, proceed with grading
+
         home_score = game.get("home_score")
         away_score = game.get("away_score")
 

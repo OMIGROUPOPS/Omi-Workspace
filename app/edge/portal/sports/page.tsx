@@ -1032,6 +1032,99 @@ export default async function SportsPage() {
     }
   }
 
+  // Fetch exchange data (Kalshi/Polymarket) and build per-game exchange bookmaker entries
+  const exchangeBookmakersByGameId: Record<string, Record<string, any>> = {};
+  {
+    const { data: exchangeRows } = await supabase
+      .from('exchange_data')
+      .select('exchange, market_type, yes_price, no_price, subtitle, event_title, mapped_game_id')
+      .not('mapped_game_id', 'is', null);
+
+    if (exchangeRows) {
+      // Group by game_id -> exchange -> market_type
+      const grouped: Record<string, Record<string, any[]>> = {};
+      for (const row of exchangeRows) {
+        const gid = row.mapped_game_id;
+        if (!gid) continue;
+        if (!grouped[gid]) grouped[gid] = {};
+        if (!grouped[gid][row.exchange]) grouped[gid][row.exchange] = [];
+        grouped[gid][row.exchange].push(row);
+      }
+
+      const centToAmerican = (cents: number) => {
+        const prob = cents / 100;
+        if (prob <= 0 || prob >= 1) return 0;
+        return prob >= 0.5
+          ? Math.round(-100 * prob / (1 - prob))
+          : Math.round(100 * (1 - prob) / prob);
+      };
+
+      for (const [gameId, exchanges] of Object.entries(grouped)) {
+        exchangeBookmakersByGameId[gameId] = {};
+
+        for (const [exchange, contracts] of Object.entries(exchanges)) {
+          const bookOdds: any = {};
+
+          // Moneyline: market_type = 'moneyline'
+          const mlContracts = contracts.filter(c => c.market_type === 'moneyline');
+          if (mlContracts.length > 0) {
+            // Pick the first moneyline contract (usually the main win market)
+            const ml = mlContracts[0];
+            if (ml.yes_price != null) {
+              bookOdds.h2h = {
+                homePrice: centToAmerican(ml.yes_price),
+                awayPrice: centToAmerican(ml.no_price ?? (100 - ml.yes_price)),
+                exchangeHomeYes: ml.yes_price,
+                exchangeAwayYes: ml.no_price ?? (100 - ml.yes_price),
+              };
+            }
+          }
+
+          // Spread: market_type = 'spread'
+          const spreadContracts = contracts.filter(c => c.market_type === 'spread');
+          if (spreadContracts.length > 0) {
+            // Pick the contract with the most meaningful spread line
+            // Parse line from subtitle: "Alabama A&M wins by over 18.5 Points" or "Spread: Team (-2.5)"
+            const sp = spreadContracts[0];
+            let spreadLine: number | undefined;
+            const sub = sp.subtitle || sp.event_title || '';
+            const lineMatch = sub.match(/[-+]?\d+\.?\d*/);
+            if (lineMatch) spreadLine = parseFloat(lineMatch[0]);
+
+            bookOdds.spreads = {
+              line: spreadLine,
+              homePrice: centToAmerican(sp.yes_price ?? 50),
+              awayPrice: centToAmerican(sp.no_price ?? 50),
+              exchangeYes: sp.yes_price,
+              exchangeNo: sp.no_price,
+            };
+          }
+
+          // Total: market_type = 'total'
+          const totalContracts = contracts.filter(c => c.market_type === 'total');
+          if (totalContracts.length > 0) {
+            // Pick the first total contract, parse line from subtitle
+            const tot = totalContracts[0];
+            let totalLine: number | undefined;
+            const sub = tot.subtitle || tot.event_title || '';
+            const lineMatch = sub.match(/\d+\.?\d*/);
+            if (lineMatch) totalLine = parseFloat(lineMatch[0]);
+
+            bookOdds.totals = {
+              line: totalLine,
+              overPrice: centToAmerican(tot.yes_price ?? 50),
+              underPrice: centToAmerican(tot.no_price ?? 50),
+              exchangeOverYes: tot.yes_price,
+              exchangeUnderYes: tot.no_price,
+            };
+          }
+
+          exchangeBookmakersByGameId[gameId][exchange] = bookOdds;
+        }
+      }
+    }
+  }
+
   // Process backend data for sports that have it
   if (hasBackendData) {
     dataSource = 'backend';
@@ -1045,7 +1138,13 @@ export default async function SportsPage() {
           if (cachedBookmakers) {
             g.bookmakers = cachedBookmakers;
           }
-          return processBackendGame(g, sport, scoresData, openingLines, snapshotsMap, teamStatsMap, edgesMap, fairLinesMap);
+          const result = processBackendGame(g, sport, scoresData, openingLines, snapshotsMap, teamStatsMap, edgesMap, fairLinesMap);
+          // Merge exchange bookmakers (Kalshi, Polymarket)
+          const exchangeBooks = exchangeBookmakersByGameId[g.game_id];
+          if (exchangeBooks && result) {
+            result.bookmakers = { ...result.bookmakers, ...exchangeBooks };
+          }
+          return result;
         })
         .filter(Boolean)
         .sort((a: any, b: any) => new Date(a.commenceTime).getTime() - new Date(b.commenceTime).getTime());
@@ -1101,7 +1200,14 @@ export default async function SportsPage() {
 
       const sportData = allCachedData?.filter((row: any) => row.sport_key === sportKey) || [];
       const games = sportData
-        .map((row: any) => processOddsApiGame(row.game_data, scoresData, cachedOpeningLines, cachedSnapshotsMap, teamStatsMap, cachedEdgesMap, fairLinesMap))
+        .map((row: any) => {
+          const result = processOddsApiGame(row.game_data, scoresData, cachedOpeningLines, cachedSnapshotsMap, teamStatsMap, cachedEdgesMap, fairLinesMap);
+          const exchangeBooks = exchangeBookmakersByGameId[row.game_data?.id];
+          if (exchangeBooks && result) {
+            result.bookmakers = { ...result.bookmakers, ...exchangeBooks };
+          }
+          return result;
+        })
         .filter(Boolean);
       return { sport, games };
     });

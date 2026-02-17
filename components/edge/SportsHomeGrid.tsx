@@ -1004,9 +1004,9 @@ export function SportsHomeGrid({
                               {/* Market Headers */}
                               <div className="grid grid-cols-3" style={{ borderBottom: `1px solid ${P.cardBorder}` }}>
                                 {[
-                                  exchangeMode ? 'YES/NO' : 'SPREAD',
-                                  exchangeMode ? '' : 'TOTAL',
-                                  exchangeMode ? '' : 'ML',
+                                  'SPREAD',
+                                  'TOTAL',
+                                  'ML',
                                 ].map((h, i) => (
                                   <div key={i} style={{
                                     padding: '3px 8px', fontSize: 9, fontWeight: 700, color: P.textFaint,
@@ -1022,9 +1022,10 @@ export function SportsHomeGrid({
                               <div className="grid grid-cols-3" style={{ borderBottom: `1px solid ${P.cardBorder}` }}>
                                 {exchangeMode ? (
                                   <MarketCell
-                                    bookValue={h2h?.awayPrice != null ? `${oddsToYesCents(h2h.awayPrice)}\u00a2 YES` : '--'}
-                                    fairValue={fair?.fair_ml_away != null ? `${oddsToYesCents(fair.fair_ml_away)}\u00a2` : null}
-                                    edge={awayMLEdge}
+                                    bookValue={bookOdds?.spreads?.line !== undefined ? fmtSpread(-bookOdds.spreads.line) : '--'}
+                                    bookPrice={bookOdds?.spreads?.awayPrice != null ? `(${oddsToYesCents(bookOdds.spreads.awayPrice)}\u00a2)` : undefined}
+                                    fairValue={fair?.fair_spread != null ? fmtSpread(-fair.fair_spread) : null}
+                                    edge={bookOdds?.spreads ? awaySpreadEdge : null}
                                   />
                                 ) : (
                                   <MarketCell
@@ -1035,9 +1036,12 @@ export function SportsHomeGrid({
                                   />
                                 )}
                                 {exchangeMode ? (
-                                  <div style={{ background: P.neutralBg, borderRight: `1px solid ${P.neutralBorder}`, minHeight: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <span style={{ fontSize: 10, color: P.textFaint }}>--</span>
-                                  </div>
+                                  <MarketCell
+                                    bookValue={bookOdds?.totals?.line !== undefined ? `O ${bookOdds.totals.line}` : '--'}
+                                    bookPrice={bookOdds?.totals?.overPrice != null ? `(${oddsToYesCents(bookOdds.totals.overPrice)}\u00a2)` : undefined}
+                                    fairValue={fair?.fair_total != null ? fair.fair_total.toFixed(1) : null}
+                                    edge={bookOdds?.totals ? overEdge : null}
+                                  />
                                 ) : (
                                   <MarketCell
                                     bookValue={totals?.line !== undefined ? `O ${totals.line}` : '--'}
@@ -1047,9 +1051,11 @@ export function SportsHomeGrid({
                                   />
                                 )}
                                 {exchangeMode ? (
-                                  <div style={{ background: P.neutralBg, minHeight: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <span style={{ fontSize: 10, color: P.textFaint }}>--</span>
-                                  </div>
+                                  <MarketCell
+                                    bookValue={bookOdds?.h2h?.awayPrice != null ? `${oddsToYesCents(bookOdds.h2h.awayPrice)}\u00a2` : '--'}
+                                    fairValue={fair?.fair_ml_away != null ? `${oddsToYesCents(fair.fair_ml_away)}\u00a2` : null}
+                                    edge={bookOdds?.h2h ? awayMLEdge : null}
+                                  />
                                 ) : (
                                   <MarketCell
                                     bookValue={fmtML(h2h?.awayPrice)}
@@ -1063,9 +1069,10 @@ export function SportsHomeGrid({
                               <div className="grid grid-cols-3">
                                 {exchangeMode ? (
                                   <MarketCell
-                                    bookValue={h2h?.homePrice != null ? `${oddsToYesCents(h2h.homePrice)}\u00a2 YES` : '--'}
-                                    fairValue={fair?.fair_ml_home != null ? `${oddsToYesCents(fair.fair_ml_home)}\u00a2` : null}
-                                    edge={homeMLEdge}
+                                    bookValue={bookOdds?.spreads?.line !== undefined ? fmtSpread(bookOdds.spreads.line) : '--'}
+                                    bookPrice={bookOdds?.spreads?.homePrice != null ? `(${oddsToYesCents(bookOdds.spreads.homePrice)}\u00a2)` : undefined}
+                                    fairValue={fair?.fair_spread != null ? fmtSpread(fair.fair_spread) : null}
+                                    edge={bookOdds?.spreads ? homeSpreadEdge : null}
                                   />
                                 ) : (
                                   <MarketCell
@@ -1076,9 +1083,12 @@ export function SportsHomeGrid({
                                   />
                                 )}
                                 {exchangeMode ? (
-                                  <div style={{ background: P.neutralBg, borderRight: `1px solid ${P.neutralBorder}`, minHeight: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <span style={{ fontSize: 10, color: P.textFaint }}>--</span>
-                                  </div>
+                                  <MarketCell
+                                    bookValue={bookOdds?.totals?.line !== undefined ? `U ${bookOdds.totals.line}` : '--'}
+                                    bookPrice={bookOdds?.totals?.underPrice != null ? `(${oddsToYesCents(bookOdds.totals.underPrice)}\u00a2)` : undefined}
+                                    fairValue={fair?.fair_total != null ? fair.fair_total.toFixed(1) : null}
+                                    edge={bookOdds?.totals ? underEdge : null}
+                                  />
                                 ) : (
                                   <MarketCell
                                     bookValue={totals?.line !== undefined ? `U ${totals.line}` : '--'}
@@ -1088,9 +1098,11 @@ export function SportsHomeGrid({
                                   />
                                 )}
                                 {exchangeMode ? (
-                                  <div style={{ background: P.neutralBg, minHeight: 70, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <span style={{ fontSize: 10, color: P.textFaint }}>--</span>
-                                  </div>
+                                  <MarketCell
+                                    bookValue={bookOdds?.h2h?.homePrice != null ? `${oddsToYesCents(bookOdds.h2h.homePrice)}\u00a2` : '--'}
+                                    fairValue={fair?.fair_ml_home != null ? `${oddsToYesCents(fair.fair_ml_home)}\u00a2` : null}
+                                    edge={bookOdds?.h2h ? homeMLEdge : null}
+                                  />
                                 ) : (
                                   <MarketCell
                                     bookValue={fmtML(h2h?.homePrice)}

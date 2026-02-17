@@ -225,6 +225,7 @@ def calculate_incentives_score(
     """
     # Determine soccer data source at runtime (handles late-loaded env vars)
     soccer_source = _get_soccer_data_source()
+    reasoning_parts = []
 
     home_incentive = espn_client.get_team_incentive_score(sport, home_team)
     away_incentive = espn_client.get_team_incentive_score(sport, away_team)
@@ -369,7 +370,6 @@ def calculate_incentives_score(
     title_race_alert = False
     relegation_battle_alert = False
     soccer_motivation_adjustment = 0.0  # Direct adjustment to final score
-    reasoning_parts = []  # Initialize early so soccer section can append
     is_soccer_sport = sport and ("soccer" in sport.lower() or sport.upper() in SOCCER_SHORT_KEYS)
     logger.info(f"[Incentives] Sport check: sport={sport}, is_soccer={is_soccer_sport}, soccer_source={soccer_source}")
 

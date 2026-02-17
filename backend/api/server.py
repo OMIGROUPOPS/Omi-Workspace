@@ -1698,6 +1698,17 @@ async def accuracy_summary(sport: str = None, days: int = 30):
         return {"error": str(e)}
 
 
+@app.post("/api/internal/run-accuracy-reflection")
+async def run_accuracy_reflection():
+    """Manually trigger accuracy reflection — process completed games."""
+    try:
+        from accuracy_tracker import AccuracyTracker
+        tracker = AccuracyTracker()
+        return tracker.run_accuracy_reflection(lookback_hours=720)
+    except Exception as e:
+        return {"error": str(e)}
+
+
 @app.get("/api/internal/closing-lines")
 async def get_closing_lines(sport: str = None, days: int = 7):
     """Get recent closing line captures for inspection."""

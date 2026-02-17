@@ -84,8 +84,19 @@ function ProbabilityChart({
 
   // Extract ML history: group by snapshot_time, find home/away contracts
   const chartData = useMemo(() => {
+    const homeLower = homeTeam.toLowerCase();
+    const awayLower = awayTeam.toLowerCase();
+    const homeLast = homeLower.split(' ').pop()!;
+    const awayLast = awayLower.split(' ').pop()!;
+
+    const matchSub = (sub: string): 'home' | 'away' | null => {
+      const s = sub.toLowerCase();
+      if (s.includes(homeLast) || s.includes(homeLower) || homeLower.includes(s)) return 'home';
+      if (s.includes(awayLast) || s.includes(awayLower) || awayLower.includes(s)) return 'away';
+      return null;
+    };
+
     const mlHistory = history.filter(h => h.market_type === 'moneyline' && h.subtitle);
-    if (mlHistory.length === 0) return [];
 
     // Group by snapshot_time
     const byTime = new Map<string, typeof mlHistory>();
@@ -95,22 +106,14 @@ function ProbabilityChart({
       byTime.set(h.snapshot_time, arr);
     }
 
-    const homeLower = homeTeam.toLowerCase();
-    const awayLower = awayTeam.toLowerCase();
-    const homeLast = homeLower.split(' ').pop()!;
-    const awayLast = awayLower.split(' ').pop()!;
-
     const points: { time: Date; homeProb: number; awayProb: number }[] = [];
     for (const [time, rows] of byTime) {
       let homeProb: number | null = null;
       let awayProb: number | null = null;
       for (const r of rows) {
-        const sub = (r.subtitle || '').toLowerCase();
-        if (sub.includes(homeLast) || sub.includes(homeLower)) {
-          homeProb = r.yes_price;
-        } else if (sub.includes(awayLast) || sub.includes(awayLower)) {
-          awayProb = r.yes_price;
-        }
+        const side = matchSub(r.subtitle || '');
+        if (side === 'home') homeProb = r.yes_price;
+        else if (side === 'away') awayProb = r.yes_price;
       }
       if (homeProb != null && awayProb != null) {
         points.push({ time: new Date(time), homeProb, awayProb });
@@ -138,7 +141,7 @@ function ProbabilityChart({
 
     const W = rect.width;
     const H = rect.height;
-    const pad = { top: 20, right: 20, bottom: 30, left: 45 };
+    const pad = { top: 20, right: 60, bottom: 30, left: 45 };
     const cW = W - pad.left - pad.right;
     const cH = H - pad.top - pad.bottom;
 
@@ -150,7 +153,11 @@ function ProbabilityChart({
     const maxTime = chartData[chartData.length - 1].time.getTime();
     const timeRange = maxTime - minTime || 1;
 
-    const toX = (t: Date) => pad.left + ((t.getTime() - minTime) / timeRange) * cW;
+    // For single points, center in chart area
+    const isSparse = chartData.length <= 2;
+    const toX = isSparse
+      ? (_t: Date, i: number) => pad.left + ((i + 0.5) / Math.max(chartData.length, 1)) * cW
+      : (t: Date) => pad.left + ((t.getTime() - minTime) / timeRange) * cW;
     const toY = (p: number) => pad.top + ((100 - p) / 100) * cH;
 
     // Grid lines
@@ -176,7 +183,7 @@ function ProbabilityChart({
     for (let i = 0; i < labelCount; i++) {
       const idx = Math.floor((i / (labelCount - 1 || 1)) * (chartData.length - 1));
       const pt = chartData[idx];
-      const x = toX(pt.time);
+      const x = toX(pt.time, idx);
       ctx.fillText(
         pt.time.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }),
         x,
@@ -215,43 +222,71 @@ function ProbabilityChart({
       ctx.font = '9px monospace';
       ctx.fillStyle = '#06b6d4';
       ctx.textAlign = 'left';
-      ctx.fillText(`OMI ${fairHome}%`, W - pad.right + 3, toY(fairHome) + 3);
-      ctx.fillText(`OMI ${fairAway}%`, W - pad.right + 3, toY(fairAway) + 3);
+      ctx.fillText(`OMI ${fairHome}%`, W - pad.right + 4, toY(fairHome) + 3);
+      ctx.fillText(`OMI ${fairAway}%`, W - pad.right + 4, toY(fairAway) + 3);
     }
 
-    // Home probability line
     const platformColor = PLATFORM_CONFIG[platform]?.color || '#00d395';
-    ctx.strokeStyle = platformColor;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    for (let i = 0; i < chartData.length; i++) {
-      const x = toX(chartData[i].time);
-      const y = toY(chartData[i].homeProb);
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
 
-    // Away probability line
-    ctx.strokeStyle = '#ef4444';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    for (let i = 0; i < chartData.length; i++) {
-      const x = toX(chartData[i].time);
-      const y = toY(chartData[i].awayProb);
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
+    if (isSparse) {
+      // Sparse data: draw dots with labels
+      for (let i = 0; i < chartData.length; i++) {
+        const x = toX(chartData[i].time, i);
+        // Home dot
+        const yHome = toY(chartData[i].homeProb);
+        ctx.fillStyle = platformColor;
+        ctx.beginPath();
+        ctx.arc(x, yHome, 5, 0, Math.PI * 2);
+        ctx.fill();
+        // Away dot
+        const yAway = toY(chartData[i].awayProb);
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.arc(x, yAway, 5, 0, Math.PI * 2);
+        ctx.fill();
 
-    // Legend
-    const lastPt = chartData[chartData.length - 1];
-    ctx.font = 'bold 10px sans-serif';
-    ctx.fillStyle = platformColor;
-    ctx.textAlign = 'right';
-    ctx.fillText(`${homeTeam.split(' ').pop()} ${lastPt.homeProb}%`, W - pad.right - 4, toY(lastPt.homeProb) - 6);
-    ctx.fillStyle = '#ef4444';
-    ctx.fillText(`${awayTeam.split(' ').pop()} ${lastPt.awayProb}%`, W - pad.right - 4, toY(lastPt.awayProb) - 6);
+        // Labels next to dots
+        ctx.font = 'bold 11px sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillStyle = platformColor;
+        ctx.fillText(`${homeTeam.split(' ').pop()} ${chartData[i].homeProb}%`, x + 10, yHome + 4);
+        ctx.fillStyle = '#ef4444';
+        ctx.fillText(`${awayTeam.split(' ').pop()} ${chartData[i].awayProb}%`, x + 10, yAway + 4);
+      }
+    } else {
+      // Full time series: draw lines
+      ctx.strokeStyle = platformColor;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let i = 0; i < chartData.length; i++) {
+        const x = toX(chartData[i].time, i);
+        const y = toY(chartData[i].homeProb);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      ctx.strokeStyle = '#ef4444';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let i = 0; i < chartData.length; i++) {
+        const x = toX(chartData[i].time, i);
+        const y = toY(chartData[i].awayProb);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      // Endpoint labels
+      const lastPt = chartData[chartData.length - 1];
+      const lastX = toX(lastPt.time, chartData.length - 1);
+      ctx.font = 'bold 10px sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillStyle = platformColor;
+      ctx.fillText(`${homeTeam.split(' ').pop()} ${lastPt.homeProb}%`, lastX + 6, toY(lastPt.homeProb) + 3);
+      ctx.fillStyle = '#ef4444';
+      ctx.fillText(`${awayTeam.split(' ').pop()} ${lastPt.awayProb}%`, lastX + 6, toY(lastPt.awayProb) + 3);
+    }
   }, [chartData, fairLines, homeTeam, awayTeam, platform]);
 
   if (chartData.length === 0) {
@@ -355,11 +390,13 @@ export function ExchangeGameClient({
   const homeLast = homeTeam.toLowerCase().split(' ').pop()!;
   const awayLast = awayTeam.toLowerCase().split(' ').pop()!;
 
-  // Match ML contracts to home/away
+  // Match ML contracts to home/away (bidirectional: "Toronto" matches "Toronto Raptors" and vice versa)
   const matchTeam = (sub: string) => {
     const s = sub.toLowerCase();
-    if (s.includes(homeLast) || s.includes(homeTeam.toLowerCase())) return 'home';
-    if (s.includes(awayLast) || s.includes(awayTeam.toLowerCase())) return 'away';
+    const homeLower = homeTeam.toLowerCase();
+    const awayLower = awayTeam.toLowerCase();
+    if (s.includes(homeLast) || s.includes(homeLower) || homeLower.includes(s)) return 'home';
+    if (s.includes(awayLast) || s.includes(awayLower) || awayLower.includes(s)) return 'away';
     return null;
   };
 

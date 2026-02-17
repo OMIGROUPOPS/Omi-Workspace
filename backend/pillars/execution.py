@@ -379,7 +379,7 @@ def calculate_execution_score(
             team_strength_adj = -wp_diff * 0.33
             team_strength_adj = max(-0.25, min(0.25, team_strength_adj))
 
-            if abs(wp_diff) >= 0.10:
+            if abs(wp_diff) >= 0.05:
                 reasoning_parts.append(
                     f"Records: {home_team} {h_wins}-{h_losses} vs {away_team} {a_wins}-{a_losses}"
                 )
@@ -406,8 +406,8 @@ def calculate_execution_score(
         away_streak_val = _parse_streak(away_record_data.get("streak", ""))
         streak_diff = home_streak_val - away_streak_val
 
-        if abs(streak_diff) >= 3:
-            streak_adj = -streak_diff * 0.015  # 5-game diff → 7.5%
+        if abs(streak_diff) >= 2:
+            streak_adj = -streak_diff * 0.015  # 5-game diff → 7.5%, 2-game diff → 3%
             streak_adj = max(-0.10, min(0.10, streak_adj))
             reasoning_parts.append(
                 f"Streaks: {home_team} {home_record_data.get('streak', 'N/A')} "

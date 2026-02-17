@@ -324,9 +324,9 @@ def calculate_time_decay_score(
         away_sv = _parse_streak(away_incentive_data.get("streak", ""))
         streak_gap = home_sv - away_sv  # positive = home on better streak
 
-        if abs(streak_gap) >= 2:
+        if abs(streak_gap) >= 1:
             # Momentum matters: team on hot streak has confidence/rhythm
-            form_adj = -streak_gap * 0.012  # 5-game gap → 6%
+            form_adj = -streak_gap * 0.015  # 5-game gap → 7.5%, 1-game gap → 1.5%
             form_adj = max(-0.10, min(0.10, form_adj))
             reasoning_parts.append(
                 f"Form: {home_team} {home_incentive_data.get('streak', 'N/A')} "

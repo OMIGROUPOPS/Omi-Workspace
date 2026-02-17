@@ -303,7 +303,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   if (data.length === 0) {
     return (
-      <div className="flex items-center justify-center h-full text-zinc-500 text-[11px]">
+      <div className="flex items-center justify-center h-full text-[#9ca3af] text-[11px]">
         {isFilteredEmpty ? 'No data in range' : 'Insufficient line history'}
       </div>
     );
@@ -436,7 +436,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   // Line badge: current tracking value
   const lineBadge = displayLine !== undefined ? (marketType === 'spread' ? formatSpread(displayLine) : `${displayLine}`) : null;
 
-  const movementColor = movement > 0 ? 'text-emerald-400' : movement < 0 ? 'text-red-400' : 'text-zinc-400';
+  const movementColor = movement > 0 ? 'text-emerald-400' : movement < 0 ? 'text-red-400' : 'text-[#6b7280]';
 
   // Helper: convert a value to SVG Y coordinate
   const valueToY = (val: number) =>
@@ -601,18 +601,18 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       {/* Row 1: Chart title + time range + Line/Price toggle */}
       <div className="flex items-center justify-between px-1 flex-shrink-0">
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-semibold text-zinc-300">{chartTitle}</span>
+          <span className="text-[11px] font-semibold text-[#374151]">{chartTitle}</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="flex rounded overflow-hidden border border-zinc-700/50">
+          <div className="flex rounded overflow-hidden border border-[#e2e4e8]/50">
             {(isGameLive ? ['30M', '1H', '3H', '6H', '24H', 'ALL'] as TimeRange[] : ['1H', '3H', '6H', '24H', 'ALL'] as TimeRange[]).map(r => (
-              <button key={r} onClick={() => setTimeRange(r)} className={`px-1.5 py-0.5 text-[8px] font-medium ${timeRange === r ? 'bg-zinc-600 text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>{r}</button>
+              <button key={r} onClick={() => setTimeRange(r)} className={`px-1.5 py-0.5 text-[8px] font-medium ${timeRange === r ? 'bg-[#e2e4e8] text-[#1f2937]' : 'text-[#9ca3af] hover:text-[#374151]'}`}>{r}</button>
             ))}
           </div>
           {marketType !== 'moneyline' && (
-            <div className="flex rounded overflow-hidden border border-zinc-700/50">
-              <button onClick={() => onViewModeChange('line')} className={`px-1.5 py-0.5 text-[9px] font-medium ${viewMode === 'line' ? 'bg-zinc-700 text-zinc-100' : 'text-zinc-500'}`}>Line</button>
-              <button onClick={() => onViewModeChange('price')} className={`px-1.5 py-0.5 text-[9px] font-medium ${viewMode === 'price' ? 'bg-zinc-700 text-zinc-100' : 'text-zinc-500'}`}>Price</button>
+            <div className="flex rounded overflow-hidden border border-[#e2e4e8]/50">
+              <button onClick={() => onViewModeChange('line')} className={`px-1.5 py-0.5 text-[9px] font-medium ${viewMode === 'line' ? 'bg-[#e2e4e8] text-[#1f2937]' : 'text-[#9ca3af]'}`}>Line</button>
+              <button onClick={() => onViewModeChange('price')} className={`px-1.5 py-0.5 text-[9px] font-medium ${viewMode === 'price' ? 'bg-[#e2e4e8] text-[#1f2937]' : 'text-[#9ca3af]'}`}>Price</button>
             </div>
           )}
         </div>
@@ -621,7 +621,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       {/* Row 2: Tracking pills + movement */}
       <div className="flex items-center justify-between px-1 flex-shrink-0">
         <div className="flex items-center gap-1.5">
-          <span className="text-[8px] text-zinc-500 uppercase tracking-wider">Tracking</span>
+          <span className="text-[8px] text-[#9ca3af] uppercase tracking-wider">Tracking</span>
           {!isProp && (
             <div className="flex gap-0.5">
               <button
@@ -629,7 +629,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
                 className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
                   (marketType === 'total' ? trackingSide === 'over' : trackingSide === 'home')
                     ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                    : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300'
+                    : 'bg-[#f4f5f7] text-[#9ca3af] border border-[#e2e4e8]/50 hover:text-[#374151]'
                 }`}
               >
                 {marketType === 'total' ? 'OVR' : homeAbbr}
@@ -640,7 +640,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
                   className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
                     trackingSide === 'draw'
                       ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                      : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300'
+                      : 'bg-[#f4f5f7] text-[#9ca3af] border border-[#e2e4e8]/50 hover:text-[#374151]'
                   }`}
                 >DRW</button>
               )}
@@ -649,7 +649,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
                 className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
                   (marketType === 'total' ? trackingSide === 'under' : trackingSide === 'away')
                     ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                    : 'bg-zinc-800 text-zinc-500 border border-zinc-700/50 hover:text-zinc-300'
+                    : 'bg-[#f4f5f7] text-[#9ca3af] border border-[#e2e4e8]/50 hover:text-[#374151]'
                 }`}
               >
                 {marketType === 'total' ? 'UND' : awayAbbr}
@@ -658,9 +658,9 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           )}
         </div>
         <div className="flex items-center gap-1.5 text-[10px] font-mono" style={{ fontVariantNumeric: 'tabular-nums' }}>
-          <span className="text-zinc-500">{formatValue(openValue)}</span>
-          <span className="text-zinc-600">&rarr;</span>
-          <span className="text-zinc-100 font-semibold">{formatValue(currentValue)}</span>
+          <span className="text-[#9ca3af]">{formatValue(openValue)}</span>
+          <span className="text-[#9ca3af]">&rarr;</span>
+          <span className="text-[#1f2937] font-semibold">{formatValue(currentValue)}</span>
           <span className={`font-semibold ${movementColor}`}>{movement > 0 ? '+' : ''}{isMLChart ? Math.round(movement) : effectiveViewMode === 'price' ? Math.round(movement) : movement.toFixed(1)}</span>
         </div>
       </div>
@@ -678,14 +678,14 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
           {/* Y-axis gridlines + labels — horizontal dashed only */}
           {yLabels.map((label, i) => (
             <g key={i}>
-              <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#333333" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.4" />
+              <line x1={paddingLeft} y1={label.y} x2={width - paddingRight} y2={label.y} stroke="#d1d5db" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.4" />
               <text x={paddingLeft - 4} y={label.y + 3} textAnchor="end" fill="#a1a1aa" fontSize="10" fontFamily="monospace">{formatValue(label.value)}</text>
             </g>
           ))}
 
           {/* X-axis date labels */}
           {xLabels.map((label, i) => (
-            <text key={i} x={label.x} y={height - 2} textAnchor="middle" fill="#71717a" fontSize="9" fontFamily="monospace">{label.label}</text>
+            <text key={i} x={label.x} y={height - 2} textAnchor="middle" fill="#6b7280" fontSize="9" fontFamily="monospace">{label.label}</text>
           ))}
 
           {/* Green gradient fill below step-line */}
@@ -700,29 +700,29 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
             <>
               <path d={pathD} fill="none" stroke={lineColor} strokeWidth="2" />
               {/* Open dot — green */}
-              <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="3" fill="#34d399" stroke="#18181b" strokeWidth="1" />
+              <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="3" fill="#34d399" stroke="#e2e4e8" strokeWidth="1" />
               {/* Current dot — colored */}
-              <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="3.5" fill={lineColor} stroke="#18181b" strokeWidth="1" />
+              <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="3.5" fill={lineColor} stroke="#e2e4e8" strokeWidth="1" />
               {/* Hover crosshair + dot */}
               {hoveredPoint && (
                 <>
-                  <line x1={hoveredPoint.x} y1={paddingTop} x2={hoveredPoint.x} y2={paddingTop + chartHeight} stroke="#52525b" strokeWidth="0.5" strokeDasharray="2 2" />
-                  <circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="4" fill={lineColor} stroke="#18181b" strokeWidth="1.5" />
+                  <line x1={hoveredPoint.x} y1={paddingTop} x2={hoveredPoint.x} y2={paddingTop + chartHeight} stroke="#9ca3af" strokeWidth="0.5" strokeDasharray="2 2" />
+                  <circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="4" fill={lineColor} stroke="#e2e4e8" strokeWidth="1.5" />
                 </>
               )}
             </>
           )}
         </svg>
         {hoveredPoint && (
-          <div className="absolute bg-zinc-800/95 border border-zinc-700/50 rounded px-2 py-0.5 text-[9px] pointer-events-none shadow-lg z-10 whitespace-nowrap" style={{ left: `${(hoveredPoint.x / width) * 100}%`, top: `${(hoveredPoint.y / height) * 100 - 8}%`, transform: 'translate(-50%, -100%)' }}>
-            <span className="font-semibold text-zinc-100 font-mono">{formatValue(hoveredPoint.value)}</span>
-            <span className="text-zinc-500 mx-1">/</span>
-            <span className="text-zinc-400">{hoveredPoint.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}, {hoveredPoint.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</span>
+          <div className="absolute bg-[#f4f5f7]/95 border border-[#e2e4e8]/50 rounded px-2 py-0.5 text-[9px] pointer-events-none shadow-lg z-10 whitespace-nowrap" style={{ left: `${(hoveredPoint.x / width) * 100}%`, top: `${(hoveredPoint.y / height) * 100 - 8}%`, transform: 'translate(-50%, -100%)' }}>
+            <span className="font-semibold text-[#1f2937] font-mono">{formatValue(hoveredPoint.value)}</span>
+            <span className="text-[#9ca3af] mx-1">/</span>
+            <span className="text-[#6b7280]">{hoveredPoint.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}, {hoveredPoint.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</span>
           </div>
         )}
       </div>
       {/* Legend */}
-      <div className="flex items-center justify-between px-1 flex-shrink-0 text-[8px] text-zinc-500">
+      <div className="flex items-center justify-between px-1 flex-shrink-0 text-[8px] text-[#9ca3af]">
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Open</span>
           <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full" style={{ backgroundColor: lineColor }}></span>Current</span>
@@ -758,15 +758,15 @@ function TerminalHeader({
   const marketLabels: Record<string, string> = { 'spread': 'Spread', 'total': 'Total', 'moneyline': 'Moneyline' };
 
   return (
-    <div className="bg-[#0a0a0a] flex items-center justify-between px-3 h-[36px] min-h-[36px]" style={{ gridArea: 'header', borderBottom: '2px solid rgba(6, 78, 59, 0.3)', boxShadow: '0 1px 8px rgba(16, 185, 129, 0.06)' }}>
+    <div className="bg-white flex items-center justify-between px-3 h-[36px] min-h-[36px]" style={{ gridArea: 'header', borderBottom: '1px solid #e2e4e8' }}>
       <div className="flex items-center gap-3">
-        <a href="/edge/portal/sports" className="text-zinc-500 hover:text-zinc-300 transition-colors">
+        <a href="/edge/portal/sports" className="text-[#9ca3af] hover:text-[#374151] transition-colors">
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
         </a>
-        <span className="text-[13px] font-bold text-zinc-100 tracking-tight font-mono">
+        <span className="text-[13px] font-bold text-[#1f2937] tracking-tight font-mono">
           {abbrev(awayTeam)} @ {abbrev(homeTeam)}
         </span>
-        <span className="text-[10px] text-zinc-500 hidden sm:inline" title={`${awayTeam} @ ${homeTeam}`}>
+        <span className="text-[10px] text-[#9ca3af] hidden sm:inline" title={`${awayTeam} @ ${homeTeam}`}>
           {awayTeam} vs {homeTeam}
         </span>
         {isLive && (
@@ -775,24 +775,24 @@ function TerminalHeader({
             <span className="text-[10px] font-medium text-red-400">LIVE</span>
           </span>
         )}
-        <span className="text-[10px] text-zinc-500">{dateStr}</span>
+        <span className="text-[10px] text-[#9ca3af]">{dateStr}</span>
       </div>
       <div className="flex items-center gap-3">
-        <span className="text-[10px] text-zinc-400">Viewing: <span className="text-cyan-400 font-medium">{marketLabels[activeMarket] || activeMarket}</span></span>
+        <span className="text-[10px] text-[#6b7280]">Viewing: <span className="text-cyan-400 font-medium">{marketLabels[activeMarket] || activeMarket}</span></span>
         {/* Book selector */}
         <div className="relative" ref={dropdownRef}>
-          <button onClick={() => setBookOpen(!bookOpen)} className="flex items-center gap-1.5 px-2 py-0.5 bg-zinc-800/80 border border-zinc-700/50 rounded text-[11px] text-zinc-300 hover:bg-zinc-700/80">
+          <button onClick={() => setBookOpen(!bookOpen)} className="flex items-center gap-1.5 px-2 py-0.5 bg-[#f4f5f7]/80 border border-[#e2e4e8]/50 rounded text-[11px] text-[#374151] hover:bg-[#e2e4e8]/80">
             <span className="w-3 h-3 rounded flex items-center justify-center text-[7px] font-bold text-white flex-shrink-0" style={{ backgroundColor: BOOK_CONFIG[selectedBook]?.color || '#6b7280' }}>
               {(BOOK_CONFIG[selectedBook]?.name || selectedBook).charAt(0)}
             </span>
             {BOOK_CONFIG[selectedBook]?.name || selectedBook}
-            <svg className={`w-3 h-3 text-zinc-500 transition-transform ${bookOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            <svg className={`w-3 h-3 text-[#9ca3af] transition-transform ${bookOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
           </button>
           {bookOpen && (
-            <div className="absolute right-0 z-50 mt-1 w-44 bg-zinc-800 border border-zinc-700 rounded shadow-xl overflow-hidden">
+            <div className="absolute right-0 z-50 mt-1 w-44 bg-[#f4f5f7] border border-[#e2e4e8] rounded shadow-xl overflow-hidden">
               {filteredBooks.map(book => (
                 <button key={book} onClick={() => { onSelectBook(book); setBookOpen(false); }}
-                  className={`w-full flex items-center gap-2 px-3 py-1.5 text-left text-[11px] transition-colors ${book === selectedBook ? 'bg-emerald-500/10 text-emerald-400' : 'hover:bg-zinc-700/50 text-zinc-300'}`}>
+                  className={`w-full flex items-center gap-2 px-3 py-1.5 text-left text-[11px] transition-colors ${book === selectedBook ? 'bg-emerald-500/10 text-emerald-400' : 'hover:bg-[#e2e4e8]/50 text-[#374151]'}`}>
                   <span className="w-3 h-3 rounded flex items-center justify-center text-[7px] font-bold text-white" style={{ backgroundColor: BOOK_CONFIG[book]?.color || '#6b7280' }}>{(BOOK_CONFIG[book]?.name || book).charAt(0)}</span>
                   {BOOK_CONFIG[book]?.name || book}
                 </button>
@@ -900,7 +900,7 @@ function OmiFairPricing({
   // Edge color: positive = emerald (value), negative = red (wrong side)
   const getEdgeColor = (pctGap: number): string => {
     const abs = Math.abs(pctGap);
-    if (abs < 0.5) return 'text-zinc-500';
+    if (abs < 0.5) return 'text-[#9ca3af]';
     return pctGap > 0 ? 'text-emerald-400' : 'text-red-400';
   };
 
@@ -908,16 +908,16 @@ function OmiFairPricing({
   const getConfColor = (conf: number): string => {
     if (conf >= 66) return 'text-cyan-400';
     if (conf >= 60) return 'text-amber-400';
-    if (conf >= 55) return 'text-zinc-400';
-    return 'text-zinc-500';
+    if (conf >= 55) return 'text-[#6b7280]';
+    return 'text-[#9ca3af]';
   };
 
   // Implied probability color — moneylines (shows win probability, not edge)
   const getImpliedProbColor = (prob: number): string => {
     if (prob >= 65) return 'text-cyan-400';
-    if (prob >= 55) return 'text-zinc-200';
-    if (prob >= 45) return 'text-zinc-400';
-    return 'text-zinc-500';
+    if (prob >= 55) return 'text-[#1f2937]';
+    if (prob >= 45) return 'text-[#6b7280]';
+    return 'text-[#9ca3af]';
   };
 
   // EV calculation
@@ -957,7 +957,7 @@ function OmiFairPricing({
   };
 
   const sideBlocks: SideBlock[] = (() => {
-    const noData: SideBlock = { label: '', fair: 'N/A', bookLine: '--', bookOdds: '--', edgePct: 0, edgePts: 0, edgeColor: 'text-zinc-500', contextLine: '', evLine: '', bookName: selBookName, hasData: false, confidence: 50, confColor: 'text-zinc-500' };
+    const noData: SideBlock = { label: '', fair: 'N/A', bookLine: '--', bookOdds: '--', edgePct: 0, edgePts: 0, edgeColor: 'text-[#9ca3af]', contextLine: '', evLine: '', bookName: selBookName, hasData: false, confidence: 50, confColor: 'text-[#9ca3af]' };
 
     if (activeMarket === 'spread') {
       const homeBookLine = selBook?.markets?.spreads?.home?.line;
@@ -1016,7 +1016,7 @@ function OmiFairPricing({
           contextLine: mkContext(awayAbbr, awayBookLine, fairAwayLine, awayEdgePct, awaySignedGap),
           evLine: mkEvLine(awayEdgePct, awaySignedGap, awayCross),
           bookName: selBookName, hasData: awayBookLine !== undefined, crossedKey: awayCross,
-          confidence: awayConf, confColor: awayEdgePct > 0 ? getConfColor(awayConf) : 'text-zinc-600',
+          confidence: awayConf, confColor: awayEdgePct > 0 ? getConfColor(awayConf) : 'text-[#9ca3af]',
         },
         {
           label: homeAbbr, fair: fairHomeLine !== undefined ? formatSpread(fairHomeLine) : 'N/A',
@@ -1025,7 +1025,7 @@ function OmiFairPricing({
           contextLine: mkContext(homeAbbr, homeBookLine, fairHomeLine, homeEdgePct, homeSignedGap),
           evLine: mkEvLine(homeEdgePct, homeSignedGap, homeCross),
           bookName: selBookName, hasData: homeBookLine !== undefined, crossedKey: homeCross,
-          confidence: homeConf, confColor: homeEdgePct > 0 ? getConfColor(homeConf) : 'text-zinc-600',
+          confidence: homeConf, confColor: homeEdgePct > 0 ? getConfColor(homeConf) : 'text-[#9ca3af]',
         },
       ];
     }
@@ -1095,7 +1095,7 @@ function OmiFairPricing({
           contextLine: mkTotalContext('Over', overEdgePct, overSignedGap),
           evLine: mkTotalEv(overEdgePct, overSignedGap, overEv),
           bookName: effBookName, hasData: bookLine !== undefined,
-          confidence: overConf, confColor: overEdgePct > 0 ? getConfColor(overConf) : 'text-zinc-600',
+          confidence: overConf, confColor: overEdgePct > 0 ? getConfColor(overConf) : 'text-[#9ca3af]',
         },
         {
           label: 'UNDER', fair: fairLine !== undefined ? `${fairLine}` : 'N/A',
@@ -1104,7 +1104,7 @@ function OmiFairPricing({
           contextLine: mkTotalContext('Under', underEdgePct, underSignedGap),
           evLine: mkTotalEv(underEdgePct, underSignedGap, underEv),
           bookName: effBookName, hasData: bookLine !== undefined,
-          confidence: underConf, confColor: underEdgePct > 0 ? getConfColor(underConf) : 'text-zinc-600',
+          confidence: underConf, confColor: underEdgePct > 0 ? getConfColor(underConf) : 'text-[#9ca3af]',
         },
       ];
     }
@@ -1280,25 +1280,25 @@ function OmiFairPricing({
   })();
 
   return (
-    <div className="bg-[#0a0a0a] px-3 py-2 flex flex-col" style={{ overflow: 'visible' }}>
+    <div className="bg-white px-3 py-2 flex flex-col" style={{ overflow: 'visible' }}>
       {/* OMI Fair Line — split display for both sides */}
       <div className="mb-1.5 flex-shrink-0">
-        <div className="text-[10px] text-zinc-500 uppercase tracking-widest mb-0.5">OMI Fair Line</div>
+        <div className="text-[10px] text-[#9ca3af] uppercase tracking-widest mb-0.5">OMI Fair Line</div>
         <div className="flex items-baseline gap-4" style={{ fontVariantNumeric: 'tabular-nums' }}>
           {sideBlocks.map((block, i) => (
             <div key={i} className="flex items-baseline">
-              {i > 0 && <span className="text-zinc-600 text-[12px] mr-4">vs</span>}
-              <span className="text-[10px] text-zinc-500 mr-1">{block.label}</span>
+              {i > 0 && <span className="text-[#9ca3af] text-[12px] mr-4">vs</span>}
+              <span className="text-[10px] text-[#9ca3af] mr-1">{block.label}</span>
               <span className="text-[20px] font-bold font-mono text-cyan-400">{block.fair}</span>
             </div>
           ))}
         </div>
-        <div className="text-[10px] text-zinc-500 mt-0.5">
+        <div className="text-[10px] text-[#9ca3af] mt-0.5">
           {hasPillars
             ? `Based on 6-pillar composite (${pythonPillars!.composite}) and market analysis`
             : `Based on market consensus (${allBooks.length} books)`}
         </div>
-        {pillarsAgoText && <div className="text-[10px] text-zinc-600">{pillarsAgoText}</div>}
+        {pillarsAgoText && <div className="text-[10px] text-[#9ca3af]">{pillarsAgoText}</div>}
         {lineMovementNotice && (
           <div className="text-[10px] text-amber-400 mt-0.5">{lineMovementNotice}</div>
         )}
@@ -1360,7 +1360,7 @@ function OmiFairPricing({
           } else {
             narrative = `Comparing ${selBookName} against market consensus of ${allBooks.length} sportsbooks.`;
           }
-          return <div className="text-[11px] text-zinc-200 mt-1 leading-snug">{narrative}</div>;
+          return <div className="text-[11px] text-[#1f2937] mt-1 leading-snug">{narrative}</div>;
         })()}
       </div>
 
@@ -1382,31 +1382,31 @@ function OmiFairPricing({
           })();
 
           return (
-            <div key={blockIdx} className={`rounded overflow-hidden border border-zinc-800 ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`}>
+            <div key={blockIdx} className={`rounded overflow-hidden border border-[#e2e4e8] ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`}>
               {/* Block header — team/side label */}
-              <div className="bg-zinc-900 px-2 py-1 border-b border-zinc-800">
-                <span className="text-[11px] font-bold text-zinc-100">{block.label}</span>
+              <div className="bg-white px-2 py-1 border-b border-[#e2e4e8]">
+                <span className="text-[11px] font-bold text-[#1f2937]">{block.label}</span>
               </div>
               {/* Comparison: OMI Fair vs Book vs Edge vs Confidence */}
               <div className="px-2 py-1.5">
                 <div className="flex items-end justify-between gap-1.5">
                   <div>
-                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest">{hasPillars ? 'OMI Fair' : 'Consensus'}</div>
+                    <div className="text-[8px] text-[#9ca3af] uppercase tracking-widest">{hasPillars ? 'OMI Fair' : 'Consensus'}</div>
                     <div className="text-[18px] font-bold font-mono text-cyan-400">{block.fair}</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest">{block.bookName}</div>
-                    <div className="text-[18px] font-bold font-mono text-zinc-100">{block.bookLine}</div>
+                    <div className="text-[8px] text-[#9ca3af] uppercase tracking-widest">{block.bookName}</div>
+                    <div className="text-[18px] font-bold font-mono text-[#1f2937]">{block.bookLine}</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-[8px] text-zinc-500 uppercase tracking-widest">Edge</div>
+                    <div className="text-[8px] text-[#9ca3af] uppercase tracking-widest">Edge</div>
                     <div className={`text-[18px] font-bold font-mono ${block.edgeColor}`}>
                       {edgeDisplay}
                     </div>
                   </div>
                   {hasPillars && (
                     <div className="text-right">
-                      <div className="text-[8px] text-zinc-500 uppercase tracking-widest">{activeMarket === 'moneyline' ? 'Win %' : 'Conf'}</div>
+                      <div className="text-[8px] text-[#9ca3af] uppercase tracking-widest">{activeMarket === 'moneyline' ? 'Win %' : 'Conf'}</div>
                       <div className={`text-[18px] font-bold font-mono ${block.confColor}`}>
                         {activeMarket === 'moneyline' ? `${block.confidence.toFixed(1)}%` : `${block.confidence}%`}
                       </div>
@@ -1414,13 +1414,13 @@ function OmiFairPricing({
                   )}
                 </div>
                 {block.contextLine && (
-                  <div className="mt-1 pt-1 border-t border-zinc-800/50">
-                    <div className="text-[10px] text-zinc-400">{block.contextLine}</div>
+                  <div className="mt-1 pt-1 border-t border-[#e2e4e8]/50">
+                    <div className="text-[10px] text-[#6b7280]">{block.contextLine}</div>
                     {block.evLine && <div className={`text-[10px] font-medium ${block.edgeColor}`}>{block.evLine}</div>}
                   </div>
                 )}
                 <div className="flex items-center justify-between mt-1">
-                  <span className="text-[9px] text-zinc-500 font-mono">
+                  <span className="text-[9px] text-[#9ca3af] font-mono">
                     {activeMarket === 'moneyline' ? `Juice: ${block.bookOdds}` : `Odds: ${block.bookOdds}`}
                   </span>
                 </div>
@@ -1432,9 +1432,9 @@ function OmiFairPricing({
 
       {/* All Books quick-scan row — with edge direction and best value */}
       {allBooksQuickScan.length > 1 && (
-        <div className="flex-shrink-0 border-t border-zinc-800/50 pt-1 pb-0">
+        <div className="flex-shrink-0 border-t border-[#e2e4e8]/50 pt-1 pb-0">
           <div className="flex items-center gap-2 mb-0.5">
-            <span className="text-[8px] text-zinc-600 uppercase tracking-widest">All Books</span>
+            <span className="text-[8px] text-[#9ca3af] uppercase tracking-widest">All Books</span>
             {bestValueBook && bestValueBook.signedEdge > 3 && (
               <span className="text-[10px] font-mono text-emerald-400 font-semibold">
                 Best value: {bestValueBook.name} {bestValueBook.line} {bestValueBook.edgeStr}
@@ -1444,9 +1444,9 @@ function OmiFairPricing({
           <div className="flex flex-wrap gap-x-3 gap-y-0.5">
             {allBooksQuickScan.map(b => {
               const isBest = b.key === bestValueBook?.key && b.signedEdge > (activeMarket === 'moneyline' ? 3 : 0.5);
-              const edgeColor = isBest ? 'text-emerald-400 font-semibold' : b.absEdge < (activeMarket === 'moneyline' ? 3 : 0.5) ? 'text-zinc-500' : b.signedEdge > 0 ? 'text-emerald-400/70' : 'text-zinc-500';
+              const edgeColor = isBest ? 'text-emerald-400 font-semibold' : b.absEdge < (activeMarket === 'moneyline' ? 3 : 0.5) ? 'text-[#9ca3af]' : b.signedEdge > 0 ? 'text-emerald-400/70' : 'text-[#9ca3af]';
               return (
-                <span key={b.key} className={`text-[10px] font-mono ${b.isSelected ? 'text-cyan-400 font-semibold' : 'text-zinc-400'}`}>
+                <span key={b.key} className={`text-[10px] font-mono ${b.isSelected ? 'text-cyan-400 font-semibold' : 'text-[#6b7280]'}`}>
                   <span className="inline-block w-1.5 h-1.5 rounded-sm mr-0.5" style={{ backgroundColor: b.color }} />
                   {b.name}: {b.line} {b.edgeStr && <span className={edgeColor}>{b.edgeStr}</span>}
                 </span>
@@ -1485,7 +1485,7 @@ function PillarBarsCompact({
   const getBarColor = (score: number) => {
     if (score >= 65) return '#34d399'; // emerald-400 (strong home)
     if (score > 55) return '#059669';  // emerald-600 (home lean)
-    if (score > 45) return '#52525b';  // zinc-600 (neutral)
+    if (score > 45) return '#9ca3af';  // neutral
     if (score > 35) return '#f59e0b';  // amber-500 (away lean)
     return '#ef4444'; // red-500 (strong away)
   };
@@ -1493,7 +1493,7 @@ function PillarBarsCompact({
   const getTextColor = (score: number) => {
     if (score >= 65) return 'text-emerald-400';
     if (score > 55) return 'text-emerald-600';
-    if (score > 45) return 'text-zinc-500';
+    if (score > 45) return 'text-[#9ca3af]';
     if (score > 35) return 'text-amber-400';
     return 'text-red-400';
   };
@@ -1502,7 +1502,7 @@ function PillarBarsCompact({
   const awayAbbrev = abbrev(awayTeam);
 
   if (!pythonPillars) {
-    return <div className="flex items-center justify-center text-[10px] text-zinc-600 py-2">No pillar data</div>;
+    return <div className="flex items-center justify-center text-[10px] text-[#9ca3af] py-2">No pillar data</div>;
   }
 
   // Use market-specific scores when available, fall back to base scores
@@ -1516,10 +1516,10 @@ function PillarBarsCompact({
     <div className="flex flex-col gap-1">
       {/* Team labels row */}
       <div className="flex items-center mb-0.5">
-        <span className="text-[8px] text-zinc-500 font-mono w-16" />
-        <span className="text-[8px] text-zinc-500 font-mono w-6 text-right">{awayAbbrev}</span>
+        <span className="text-[8px] text-[#9ca3af] font-mono w-16" />
+        <span className="text-[8px] text-[#9ca3af] font-mono w-6 text-right">{awayAbbrev}</span>
         <div className="flex-1" />
-        <span className="text-[8px] text-zinc-500 font-mono w-6">{homeAbbrev}</span>
+        <span className="text-[8px] text-[#9ca3af] font-mono w-6">{homeAbbrev}</span>
         <span className="w-6" />
       </div>
       {pillars.map(p => {
@@ -1532,12 +1532,12 @@ function PillarBarsCompact({
         const isHomeSide = score >= 50;
         return (
           <div key={p.key} className="flex items-center gap-1">
-            <span className="text-[9px] text-zinc-500 w-16 font-mono truncate" title={p.fullLabel}>
-              {p.label} <span className="text-zinc-600">({p.weight})</span>
+            <span className="text-[9px] text-[#9ca3af] w-16 font-mono truncate" title={p.fullLabel}>
+              {p.label} <span className="text-[#9ca3af]">({p.weight})</span>
             </span>
-            <div className="flex-1 h-[6px] bg-zinc-800 rounded-sm relative">
+            <div className="flex-1 h-[6px] bg-[#f4f5f7] rounded-sm relative">
               {/* Center line — dashed for visibility at neutral */}
-              <div className="absolute left-1/2 top-0 w-0 h-full z-10" style={{ borderLeft: '1px dashed #71717a' }} />
+              <div className="absolute left-1/2 top-0 w-0 h-full z-10" style={{ borderLeft: '1px dashed #d1d5db' }} />
               {isHomeSide ? (
                 /* Bar grows RIGHT from center (50%) */
                 <div
@@ -1557,8 +1557,8 @@ function PillarBarsCompact({
         );
       })}
       {/* Composite */}
-      <div className="flex items-center justify-between mt-1 pt-1 border-t border-zinc-800/50">
-        <span className="text-[9px] text-zinc-500 font-mono">COMPOSITE</span>
+      <div className="flex items-center justify-between mt-1 pt-1 border-t border-[#e2e4e8]/50">
+        <span className="text-[9px] text-[#9ca3af] font-mono">COMPOSITE</span>
         <span className={`text-[13px] font-bold font-mono ${getTextColor(compositeScore)}`} style={{ fontVariantNumeric: 'tabular-nums' }}>
           {compositeScore}
         </span>
@@ -1691,32 +1691,32 @@ function WhyThisPrice({
   const confColor = ceqSummary ? (
     ceqSummary.confidence === 'STRONG' || ceqSummary.confidence === 'RARE' ? 'text-emerald-400' :
     ceqSummary.confidence === 'EDGE' ? 'text-blue-400' :
-    ceqSummary.confidence === 'WATCH' ? 'text-amber-400' : 'text-zinc-500'
-  ) : 'text-zinc-500';
+    ceqSummary.confidence === 'WATCH' ? 'text-amber-400' : 'text-[#9ca3af]'
+  ) : 'text-[#9ca3af]';
 
   return (
-    <div className="bg-[#0a0a0a] px-2 py-1.5 flex flex-col">
-      <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-1">Why This Price</span>
+    <div className="bg-white px-2 py-1.5 flex flex-col">
+      <span className="text-[10px] font-semibold text-[#9ca3af] uppercase tracking-widest mb-1">Why This Price</span>
       <div>
         <PillarBarsCompact pythonPillars={pythonPillars} homeTeam={homeTeam} awayTeam={awayTeam} marketPillarScores={marketPillarScores} marketComposite={marketData?.composite} />
         {/* Generated pillar summary */}
         {pillarSummary.length > 0 && (
           <div className="mt-1.5 space-y-0.5">
             {pillarSummary.map((line, i) => (
-              <p key={i} className="text-[10px] text-zinc-400 leading-tight">{line}</p>
+              <p key={i} className="text-[10px] text-[#6b7280] leading-tight">{line}</p>
             ))}
           </div>
         )}
         {/* CEQ summary line — detail integrated inline */}
         {ceqSummary ? (
-          <div className="mt-2 pt-1.5 border-t border-zinc-800/50">
+          <div className="mt-2 pt-1.5 border-t border-[#e2e4e8]/50">
             <div className={`text-[10px] font-mono ${confColor}`}>
-              {ceqSummary.text} <span className="text-zinc-600">({ceqSummary.detail})</span>
+              {ceqSummary.text} <span className="text-[#9ca3af]">({ceqSummary.detail})</span>
             </div>
           </div>
         ) : (
-          <div className="mt-2 pt-1.5 border-t border-zinc-800/50">
-            <div className="text-[10px] text-zinc-600">
+          <div className="mt-2 pt-1.5 border-t border-[#e2e4e8]/50">
+            <div className="text-[10px] text-[#9ca3af]">
               {ceq === undefined ? 'CEQ loading...' : 'No market data for CEQ validation'}
             </div>
           </div>
@@ -1767,8 +1767,8 @@ function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | 
   const ceqPillars = findCeqPillars();
   if (!ceqPillars) {
     return (
-      <div className="bg-[#0a0a0a] px-2 py-1.5 flex items-center justify-center">
-        <span className="text-[10px] text-zinc-600">No CEQ factor data</span>
+      <div className="bg-white px-2 py-1.5 flex items-center justify-center">
+        <span className="text-[10px] text-[#9ca3af]">No CEQ factor data</span>
       </div>
     );
   }
@@ -1832,8 +1832,8 @@ function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | 
     { key: 'sentiment' as const, label: 'Sentiment', weight: weights.sentiment },
   ];
   const getStrength = (s: number) => s >= 75 ? 'Strong' : s >= 60 ? 'Moderate' : s >= 40 ? 'Weak' : 'Low';
-  const getBarColor = (s: number) => s >= 75 ? '#34d399' : s >= 60 ? '#22d3ee' : s >= 40 ? '#fbbf24' : '#71717a';
-  const getTextColor = (s: number) => s >= 75 ? 'text-emerald-400' : s >= 60 ? 'text-cyan-400' : s >= 40 ? 'text-amber-400' : 'text-zinc-500';
+  const getBarColor = (s: number) => s >= 75 ? '#34d399' : s >= 60 ? '#22d3ee' : s >= 40 ? '#fbbf24' : '#9ca3af';
+  const getTextColor = (s: number) => s >= 75 ? 'text-emerald-400' : s >= 60 ? 'text-cyan-400' : s >= 40 ? 'text-amber-400' : 'text-[#9ca3af]';
 
   // Compute scores for composite summary
   const scoredFactors = factors.map(f => {
@@ -1845,8 +1845,8 @@ function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | 
   const strongest = [...scoredFactors].sort((a, b) => Math.abs(b.score - 50) - Math.abs(a.score - 50))[0];
 
   return (
-    <div className="bg-[#0a0a0a] px-2 py-1.5 flex flex-col">
-      <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-1">CEQ Factors{activeMarket ? ` — ${activeMarket === 'moneyline' ? 'ML' : activeMarket.charAt(0).toUpperCase() + activeMarket.slice(1)}` : ''}</span>
+    <div className="bg-white px-2 py-1.5 flex flex-col">
+      <span className="text-[10px] font-semibold text-[#9ca3af] uppercase tracking-widest mb-1">CEQ Factors{activeMarket ? ` — ${activeMarket === 'moneyline' ? 'ML' : activeMarket.charAt(0).toUpperCase() + activeMarket.slice(1)}` : ''}</span>
       <div>
         <div className="flex flex-col gap-0.5">
           {scoredFactors.map(f => {
@@ -1854,22 +1854,22 @@ function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | 
             return (
               <div key={f.key}>
                 <div className="flex items-center gap-1">
-                  <span className="text-[9px] text-zinc-500 font-mono w-16 truncate">{f.label} ({wPct}%)</span>
-                  <div className="flex-1 h-[5px] bg-zinc-800 rounded-sm overflow-hidden">
+                  <span className="text-[9px] text-[#9ca3af] font-mono w-16 truncate">{f.label} ({wPct}%)</span>
+                  <div className="flex-1 h-[5px] bg-[#f4f5f7] rounded-sm overflow-hidden">
                     <div className="h-full rounded-sm" style={{ width: `${f.score}%`, backgroundColor: getBarColor(f.score) }} />
                   </div>
                   <span className={`text-[9px] font-mono w-5 text-right ${getTextColor(f.score)}`}>{f.score}</span>
                   <span className={`text-[8px] w-12 text-right ${getTextColor(f.score)}`}>{getStrength(f.score)}</span>
                 </div>
-                <div className="text-[9px] text-zinc-500 ml-[68px] leading-tight">{getDetailText(f.key, f.score)}</div>
+                <div className="text-[9px] text-[#9ca3af] ml-[68px] leading-tight">{getDetailText(f.key, f.score)}</div>
               </div>
             );
           })}
         </div>
         {/* Composite summary */}
-        <div className="mt-1 pt-1 border-t border-zinc-800/50">
-          <div className="text-[9px] text-zinc-400">
-            <span className="font-semibold text-zinc-300">CEQ COMPOSITE: {compositeAvg}%</span>
+        <div className="mt-1 pt-1 border-t border-[#e2e4e8]/50">
+          <div className="text-[9px] text-[#6b7280]">
+            <span className="font-semibold text-[#374151]">CEQ COMPOSITE: {compositeAvg}%</span>
             {' — '}
             {compositeAvg >= 65 ? 'Market strongly validates thesis.'
               : compositeAvg >= 55 ? 'Market partially validates thesis.'
@@ -1891,13 +1891,13 @@ const DEMO_ACCOUNTS: string[] = ['omigroup.ops@outlook.com'];
 
 function LiveLockOverlay() {
   return (
-    <div className="absolute inset-0 bg-zinc-900/80 backdrop-blur-sm flex flex-col items-center justify-center z-20 rounded">
+    <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center z-20 rounded">
       <div className="text-center p-4">
         <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-amber-500/20 flex items-center justify-center">
           <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
         </div>
-        <h3 className="text-sm font-semibold text-zinc-100 mb-1">Live Tracking</h3>
-        <p className="text-[10px] text-zinc-400 mb-2">Upgrade to Tier 2</p>
+        <h3 className="text-sm font-semibold text-[#1f2937] mb-1">Live Tracking</h3>
+        <p className="text-[10px] text-[#6b7280] mb-2">Upgrade to Tier 2</p>
         <button className="px-3 py-1 bg-amber-500 hover:bg-amber-600 text-black font-medium rounded text-[11px]">Upgrade</button>
       </div>
     </div>
@@ -2043,13 +2043,13 @@ function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) 
         <div className={`flex-1 ${expanded ? 'px-5 py-4' : 'px-3 py-2'} overflow-y-auto space-y-3`} style={{ minHeight: 0 }}>
           {!hasMessages && (
             <>
-              <p className={`${textSize} text-zinc-400 mb-2`}>Ask about this game:</p>
+              <p className={`${textSize} text-[#6b7280] mb-2`}>Ask about this game:</p>
               <div className="space-y-1">
                 {suggestedQuestions.map((q) => (
                   <button
                     key={q}
                     onClick={() => { setInput(q); iRef.current?.focus(); }}
-                    className={`block w-full text-left ${btnSize} text-zinc-500 hover:text-cyan-400 hover:bg-zinc-800/50 px-2.5 py-2 rounded transition-colors font-mono`}
+                    className={`block w-full text-left ${btnSize} text-[#9ca3af] hover:text-cyan-400 hover:bg-[#f4f5f7]/50 px-2.5 py-2 rounded transition-colors font-mono`}
                   >
                     {q}
                   </button>
@@ -2059,13 +2059,13 @@ function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) 
           )}
 
           {messages.map((msg, i) => (
-            <div key={i} className={`${textSize} leading-relaxed ${msg.role === 'user' ? 'text-zinc-300' : 'text-zinc-400'}`}>
-              <span className={`${labelSize} font-mono font-bold uppercase tracking-wider ${msg.role === 'user' ? 'text-zinc-500' : 'text-cyan-600'}`}>
+            <div key={i} className={`${textSize} leading-relaxed ${msg.role === 'user' ? 'text-[#374151]' : 'text-[#6b7280]'}`}>
+              <span className={`${labelSize} font-mono font-bold uppercase tracking-wider ${msg.role === 'user' ? 'text-[#9ca3af]' : 'text-cyan-600'}`}>
                 {msg.role === 'user' ? 'You' : 'OMI'}
               </span>
               <div className="mt-0.5 whitespace-pre-wrap">
                 {msg.content || (isLoading && i === messages.length - 1 ? (
-                  <span className="text-zinc-600 animate-pulse">...</span>
+                  <span className="text-[#9ca3af] animate-pulse">...</span>
                 ) : '')}
               </div>
             </div>
@@ -2080,7 +2080,7 @@ function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) 
           <div ref={endRef} />
         </div>
 
-        <div className={`${expanded ? 'px-5 pb-4 pt-2' : 'px-3 pb-2 pt-1'} border-t border-zinc-800/30`}>
+        <div className={`${expanded ? 'px-5 pb-4 pt-2' : 'px-3 pb-2 pt-1'} border-t border-[#e2e4e8]/30`}>
           <div className="flex gap-2">
             <input
               ref={iRef}
@@ -2089,13 +2089,13 @@ function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) 
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder={`Ask about ${viewingLabel}...`}
-              className={`flex-1 bg-zinc-900 border border-zinc-700/50 rounded px-3 ${expanded ? 'py-2.5 text-[13px]' : 'py-1.5 text-[11px]'} text-zinc-300 placeholder-zinc-600 focus:outline-none focus:border-cyan-700/50 transition-colors`}
+              className={`flex-1 bg-white border border-[#e2e4e8]/50 rounded px-3 ${expanded ? 'py-2.5 text-[13px]' : 'py-1.5 text-[11px]'} text-[#374151] placeholder-[#9ca3af] focus:outline-none focus:border-cyan-700/50 transition-colors`}
               disabled={isLoading}
             />
             <button
               onClick={handleSubmit}
               disabled={isLoading || !input.trim()}
-              className={`${expanded ? 'px-4 py-2.5 text-[13px]' : 'px-3 py-1.5 text-[11px]'} bg-zinc-800 border border-zinc-700/50 rounded font-medium transition-colors disabled:opacity-30 disabled:cursor-default text-cyan-400 hover:bg-zinc-700 hover:border-cyan-700/30`}
+              className={`${expanded ? 'px-4 py-2.5 text-[13px]' : 'px-3 py-1.5 text-[11px]'} bg-[#f4f5f7] border border-[#e2e4e8]/50 rounded font-medium transition-colors disabled:opacity-30 disabled:cursor-default text-cyan-400 hover:bg-[#e2e4e8] hover:border-cyan-700/30`}
             >
               {isLoading ? '...' : 'Ask'}
             </button>
@@ -2107,10 +2107,10 @@ function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) 
 
   // Shared header renderer
   const renderHeader = (expanded: boolean) => (
-    <div className={`flex items-center justify-between ${expanded ? 'px-5 py-3' : 'px-3 py-2'} border-b border-zinc-800/50`}>
+    <div className={`flex items-center justify-between ${expanded ? 'px-5 py-3' : 'px-3 py-2'} border-b border-[#e2e4e8]/50`}>
       <div className="flex items-center gap-1.5">
         <span className={expanded ? 'text-[15px]' : 'text-[13px]'}>&#10022;</span>
-        <span className={`${expanded ? 'text-[14px]' : 'text-[12px]'} font-semibold text-zinc-200`}>Ask Edge AI</span>
+        <span className={`${expanded ? 'text-[14px]' : 'text-[12px]'} font-semibold text-[#1f2937]`}>Ask Edge AI</span>
         {isLoading && (
           <span className="flex items-center gap-1 ml-1">
             <span className="w-1 h-1 rounded-full bg-cyan-400 animate-pulse" />
@@ -2122,15 +2122,15 @@ function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) 
         {hasMessages && (
           <button
             onClick={() => { setMessages([]); setError(null); }}
-            className="text-[9px] text-zinc-600 hover:text-zinc-400 font-mono transition-colors"
+            className="text-[9px] text-[#9ca3af] hover:text-[#6b7280] font-mono transition-colors"
           >
             Clear
           </button>
         )}
-        <span className="text-[9px] text-zinc-600 font-mono">{viewingLabel}</span>
+        <span className="text-[9px] text-[#9ca3af] font-mono">{viewingLabel}</span>
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="ml-1 text-zinc-600 hover:text-zinc-300 transition-colors"
+          className="ml-1 text-[#9ca3af] hover:text-[#374151] transition-colors"
           title={isExpanded ? 'Collapse' : 'Expand'}
         >
           {isExpanded ? (
@@ -2150,7 +2150,7 @@ function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) 
   return (
     <>
       {/* Inline panel (always rendered to keep position in layout) */}
-      <div className="flex flex-col h-full bg-[#0a0a0a] border-l border-zinc-800">
+      <div className="flex flex-col h-full bg-white border-l border-[#e2e4e8]">
         {renderHeader(false)}
         {renderChatBody(false)}
       </div>
@@ -2165,7 +2165,7 @@ function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) 
           />
           {/* Drawer */}
           <div
-            className="relative flex flex-col bg-[#0a0a0a] border-l border-zinc-700/50 shadow-2xl"
+            className="relative flex flex-col bg-white border-l border-[#e2e4e8]/50 shadow-2xl"
             style={{ width: '480px', maxWidth: '90vw' }}
           >
             {renderHeader(true)}
@@ -2203,7 +2203,7 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData, activeMarket }: {
     if (v >= 1_000) return `$${(v / 1_000).toFixed(1)}K`;
     return `$${v}`;
   };
-  const divColor = (pct: number) => Math.abs(pct) < 1 ? 'text-zinc-500' : pct > 0 ? 'text-emerald-400' : 'text-red-400';
+  const divColor = (pct: number) => Math.abs(pct) < 1 ? 'text-[#9ca3af]' : pct > 0 ? 'text-emerald-400' : 'text-red-400';
 
   const markets = exchangeData.by_market;
   const div = exchangeData.divergence;
@@ -2237,7 +2237,7 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData, activeMarket }: {
   // Volume confidence label
   const getVolConf = (vol: number) => {
     if (vol >= 50000) return { label: 'High volume — strong signal', color: 'text-emerald-400' };
-    if (vol >= 10000) return { label: 'Moderate volume', color: 'text-zinc-400' };
+    if (vol >= 10000) return { label: 'Moderate volume', color: 'text-[#6b7280]' };
     return { label: 'Low volume — treat signal with caution', color: 'text-amber-400' };
   };
 
@@ -2264,11 +2264,11 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData, activeMarket }: {
   const marketOrder = [activeExKey, ...['moneyline', 'spread', 'total'].filter(k => k !== activeExKey)];
 
   return (
-    <div className="border-t border-cyan-500/20 bg-[#0c0c0c]">
-      <div className="px-4 py-2.5 flex items-center gap-2 border-b border-zinc-800/50">
+    <div className="border-t border-cyan-500/20 bg-[#f7f8f9]">
+      <div className="px-4 py-2.5 flex items-center gap-2 border-b border-[#e2e4e8]/50">
         <span className="text-[10px] font-semibold tracking-widest text-cyan-500/70 uppercase">Exchange Signals</span>
         <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-sky-500/15 text-sky-400 border border-sky-500/30">Kalshi</span>
-        <span className="text-[10px] text-zinc-600 ml-auto">
+        <span className="text-[10px] text-[#9ca3af] ml-auto">
           {exchangeData.count > 0 && `${exchangeData.count} contracts`}
           {lastSyncedAgo && <> · Synced {lastSyncedAgo}</>}
         </span>
@@ -2284,8 +2284,8 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData, activeMarket }: {
           if (!hasMkt) {
             return (
               <div key={mktKey} className={isActive ? '' : 'opacity-40'}>
-                <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1">{mktLabel}</div>
-                <div className="text-[10px] text-zinc-600 italic">No exchange coverage</div>
+                <div className="text-[10px] font-semibold text-[#9ca3af] uppercase tracking-wider mb-1">{mktLabel}</div>
+                <div className="text-[10px] text-[#9ca3af] italic">No exchange coverage</div>
               </div>
             );
           }
@@ -2316,13 +2316,13 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData, activeMarket }: {
             return (
               <div key={mktKey} className={isActive ? '' : 'opacity-40'}>
                 <div className="flex items-center gap-2 mb-1">
-                  <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">{mktLabel}</div>
+                  <div className="text-[10px] font-semibold text-[#9ca3af] uppercase tracking-wider">{mktLabel}</div>
                   {isActive && <span className="text-[8px] px-1 py-0.5 rounded bg-cyan-500/10 text-cyan-400 font-medium">Active</span>}
                 </div>
-                {ticker && <div className="text-[9px] text-zinc-600 font-mono mb-1 truncate">{contractLabel}</div>}
+                {ticker && <div className="text-[9px] text-[#9ca3af] font-mono mb-1 truncate">{contractLabel}</div>}
                 <table className="w-full text-[11px]">
                   <thead>
-                    <tr className="text-zinc-600">
+                    <tr className="text-[#9ca3af]">
                       <th className="text-left py-1 font-normal">Source</th>
                       <th className="text-right py-1 font-normal">{awayAbbr}</th>
                       <th className="text-right py-1 font-normal">{homeAbbr}</th>
@@ -2330,23 +2330,23 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData, activeMarket }: {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="text-zinc-300">
+                    <tr className="text-[#374151]">
                       <td className="py-1 text-sky-400 font-medium">Kalshi</td>
-                      <td className="py-1 text-right font-mono">{fmtCents(awayYes)} <span className="text-zinc-500">({fmtPct(awayYes)})</span></td>
-                      <td className="py-1 text-right font-mono">{fmtCents(homeYes)} <span className="text-zinc-500">({fmtPct(homeYes)})</span></td>
-                      <td className="py-1 text-right text-zinc-500">{fmtVol(totalVol)}</td>
+                      <td className="py-1 text-right font-mono">{fmtCents(awayYes)} <span className="text-[#9ca3af]">({fmtPct(awayYes)})</span></td>
+                      <td className="py-1 text-right font-mono">{fmtCents(homeYes)} <span className="text-[#9ca3af]">({fmtPct(homeYes)})</span></td>
+                      <td className="py-1 text-right text-[#9ca3af]">{fmtVol(totalVol)}</td>
                     </tr>
                     {fdHome && fdAway && (
-                      <tr className="text-zinc-400">
+                      <tr className="text-[#6b7280]">
                         <td className="py-1 font-medium" style={{ color: '#1493ff' }}>FanDuel</td>
-                        <td className="py-1 text-right font-mono">{fdAway > 0 ? '+' : ''}{fdAway} <span className="text-zinc-600">({fmtPct(fdAwayProb)})</span></td>
-                        <td className="py-1 text-right font-mono">{fdHome > 0 ? '+' : ''}{fdHome} <span className="text-zinc-600">({fmtPct(fdHomeProb)})</span></td>
-                        <td className="py-1 text-right text-zinc-600">—</td>
+                        <td className="py-1 text-right font-mono">{fdAway > 0 ? '+' : ''}{fdAway} <span className="text-[#9ca3af]">({fmtPct(fdAwayProb)})</span></td>
+                        <td className="py-1 text-right font-mono">{fdHome > 0 ? '+' : ''}{fdHome} <span className="text-[#9ca3af]">({fmtPct(fdHomeProb)})</span></td>
+                        <td className="py-1 text-right text-[#9ca3af]">—</td>
                       </tr>
                     )}
                     {mlDiv && (
                       <tr>
-                        <td className="py-1 text-zinc-500 font-medium">Divergence</td>
+                        <td className="py-1 text-[#9ca3af] font-medium">Divergence</td>
                         <td className="py-1"></td>
                         <td className={`py-1 text-right font-mono font-bold ${divColor(mlDiv.divergence_pct)}`}>
                           {mlDiv.divergence_pct > 0 ? '+' : ''}{mlDiv.divergence_pct.toFixed(1)}%
@@ -2357,7 +2357,7 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData, activeMarket }: {
                   </tbody>
                 </table>
                 {isActive && mlDiv && (
-                  <div className="mt-1.5 text-[10px] text-zinc-500 italic">{getDivExplanation(mlDiv.divergence_pct, gameData.homeTeam)}</div>
+                  <div className="mt-1.5 text-[10px] text-[#9ca3af] italic">{getDivExplanation(mlDiv.divergence_pct, gameData.homeTeam)}</div>
                 )}
                 {isActive && <div className={`mt-1 text-[9px] ${volConf.color}`}>{volConf.label}</div>}
               </div>
@@ -2370,12 +2370,12 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData, activeMarket }: {
             return (
               <div key={mktKey} className={isActive ? '' : 'opacity-40'}>
                 <div className="flex items-center gap-2 mb-1">
-                  <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">{mktLabel}</div>
+                  <div className="text-[10px] font-semibold text-[#9ca3af] uppercase tracking-wider">{mktLabel}</div>
                   {isActive && <span className="text-[8px] px-1 py-0.5 rounded bg-cyan-500/10 text-cyan-400 font-medium">Active</span>}
                 </div>
                 <table className="w-full text-[11px]">
                   <thead>
-                    <tr className="text-zinc-600">
+                    <tr className="text-[#9ca3af]">
                       <th className="text-left py-1 font-normal">Contract</th>
                       <th className="text-right py-1 font-normal">Price</th>
                       <th className="text-right py-1 font-normal">Implied</th>
@@ -2384,16 +2384,16 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData, activeMarket }: {
                   </thead>
                   <tbody>
                     {mktContracts.map((c: any, i: number) => (
-                      <tr key={i} className="text-zinc-300">
-                        <td className="py-1 text-zinc-400 text-[10px] truncate max-w-[180px]" title={c.contract_ticker || ''}>{c.subtitle || c.contract_ticker || '—'}</td>
+                      <tr key={i} className="text-[#374151]">
+                        <td className="py-1 text-[#6b7280] text-[10px] truncate max-w-[180px]" title={c.contract_ticker || ''}>{c.subtitle || c.contract_ticker || '—'}</td>
                         <td className="py-1 text-right font-mono">{fmtCents(c.yes_price)}</td>
-                        <td className="py-1 text-right font-mono text-zinc-400">{fmtPct(c.yes_price)}</td>
-                        <td className="py-1 text-right text-zinc-500">{fmtVol(c.volume)}</td>
+                        <td className="py-1 text-right font-mono text-[#6b7280]">{fmtPct(c.yes_price)}</td>
+                        <td className="py-1 text-right text-[#9ca3af]">{fmtVol(c.volume)}</td>
                       </tr>
                     ))}
                     {spDiv && (
                       <tr>
-                        <td className="py-1 text-zinc-500 font-medium">Divergence (Book: {spDiv.book_spread})</td>
+                        <td className="py-1 text-[#9ca3af] font-medium">Divergence (Book: {spDiv.book_spread})</td>
                         <td className="py-1"></td>
                         <td className={`py-1 text-right font-mono font-bold ${divColor(spDiv.divergence_pct)}`}>
                           {spDiv.divergence_pct > 0 ? '+' : ''}{spDiv.divergence_pct.toFixed(1)}%
@@ -2404,7 +2404,7 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData, activeMarket }: {
                   </tbody>
                 </table>
                 {isActive && spDiv && (
-                  <div className="mt-1.5 text-[10px] text-zinc-500 italic">{getDivExplanation(spDiv.divergence_pct, gameData.homeTeam)}</div>
+                  <div className="mt-1.5 text-[10px] text-[#9ca3af] italic">{getDivExplanation(spDiv.divergence_pct, gameData.homeTeam)}</div>
                 )}
                 {isActive && <div className={`mt-1 text-[9px] ${volConf.color}`}>{volConf.label}</div>}
               </div>
@@ -2417,12 +2417,12 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData, activeMarket }: {
             return (
               <div key={mktKey} className={isActive ? '' : 'opacity-40'}>
                 <div className="flex items-center gap-2 mb-1">
-                  <div className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">{mktLabel}</div>
+                  <div className="text-[10px] font-semibold text-[#9ca3af] uppercase tracking-wider">{mktLabel}</div>
                   {isActive && <span className="text-[8px] px-1 py-0.5 rounded bg-cyan-500/10 text-cyan-400 font-medium">Active</span>}
                 </div>
                 <table className="w-full text-[11px]">
                   <thead>
-                    <tr className="text-zinc-600">
+                    <tr className="text-[#9ca3af]">
                       <th className="text-left py-1 font-normal">Contract</th>
                       <th className="text-right py-1 font-normal">Over</th>
                       <th className="text-right py-1 font-normal">Under</th>
@@ -2431,18 +2431,18 @@ function ExchangeSignals({ exchangeData, bookmakers, gameData, activeMarket }: {
                   </thead>
                   <tbody>
                     {mktContracts.map((c: any, i: number) => (
-                      <tr key={i} className="text-zinc-300">
-                        <td className="py-1 text-zinc-400 text-[10px] truncate max-w-[180px]" title={c.contract_ticker || ''}>{c.subtitle || c.contract_ticker || '—'}</td>
+                      <tr key={i} className="text-[#374151]">
+                        <td className="py-1 text-[#6b7280] text-[10px] truncate max-w-[180px]" title={c.contract_ticker || ''}>{c.subtitle || c.contract_ticker || '—'}</td>
                         <td className="py-1 text-right font-mono">{fmtCents(c.yes_price)}</td>
                         <td className="py-1 text-right font-mono">{fmtCents(c.no_price)}</td>
-                        <td className="py-1 text-right text-zinc-500">{fmtVol(c.volume)}</td>
+                        <td className="py-1 text-right text-[#9ca3af]">{fmtVol(c.volume)}</td>
                       </tr>
                     ))}
                     {totDiv && (
                       <tr>
-                        <td className="py-1 text-zinc-500 font-medium">vs Book ({totDiv.book_total})</td>
-                        <td className="py-1 text-right font-mono text-zinc-400">{fmtPct(totDiv.exchange_over_prob)}</td>
-                        <td className="py-1 text-right font-mono text-zinc-400">{totDiv.exchange_over_prob != null ? fmtPct(100 - totDiv.exchange_over_prob) : '—'}</td>
+                        <td className="py-1 text-[#9ca3af] font-medium">vs Book ({totDiv.book_total})</td>
+                        <td className="py-1 text-right font-mono text-[#6b7280]">{fmtPct(totDiv.exchange_over_prob)}</td>
+                        <td className="py-1 text-right font-mono text-[#6b7280]">{totDiv.exchange_over_prob != null ? fmtPct(100 - totDiv.exchange_over_prob) : '—'}</td>
                         <td className="py-1"></td>
                       </tr>
                     )}
@@ -2765,7 +2765,7 @@ export function GameDetailClient({
       {/* Desktop: OMI Fair Pricing Layout */}
       <div
         className="hidden lg:block h-full relative overflow-y-auto"
-        style={{ background: '#0a0a0a', fontVariantNumeric: 'tabular-nums' }}
+        style={{ background: '#ffffff', fontVariantNumeric: 'tabular-nums' }}
       >
         {/* Subtle scanline overlay */}
         <div className="pointer-events-none absolute inset-0 z-50" style={{
@@ -2787,7 +2787,7 @@ export function GameDetailClient({
         </div>
 
         {/* Market tabs + period sub-tabs */}
-        <div className="flex items-center justify-between px-3 py-1.5 border-b border-zinc-800/50">
+        <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#e2e4e8]/50">
           <div className="flex items-center gap-1">
             {(['spread', 'total', 'moneyline'] as ActiveMarket[])
               .filter(m => m !== 'spread' || !isSoccerGame)
@@ -2798,13 +2798,13 @@ export function GameDetailClient({
                   className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
                     activeMarket === m
                       ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                      : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
+                      : 'text-[#9ca3af] hover:text-[#374151] border border-transparent'
                   }`}
                 >
                   {m === 'spread' ? 'Spread' : m === 'total' ? 'Total' : 'Moneyline'}
                 </button>
               ))}
-            <span className="w-px h-4 bg-zinc-700/50 mx-1" />
+            <span className="w-px h-4 bg-[#e2e4e8]/50 mx-1" />
             {[
               { key: 'full', label: 'Full' },
               ...(availableTabs?.firstHalf ? [{ key: '1h', label: '1H' }] : []),
@@ -2822,8 +2822,8 @@ export function GameDetailClient({
                 onClick={() => handlePeriodChange(tab.key)}
                 className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-colors ${
                   activePeriod === tab.key
-                    ? 'bg-zinc-700 text-zinc-100'
-                    : 'text-zinc-600 hover:text-zinc-400'
+                    ? 'bg-[#e2e4e8] text-[#1f2937]'
+                    : 'text-[#9ca3af] hover:text-[#6b7280]'
                 }`}
               >
                 {tab.label}
@@ -2833,7 +2833,7 @@ export function GameDetailClient({
         </div>
 
         {/* Two-column: Chart (55%) + Ask Edge AI (45%) */}
-        <div className="flex border-b border-zinc-800/50" style={{ height: '260px' }}>
+        <div className="flex border-b border-[#e2e4e8]/50" style={{ height: '260px' }}>
           {/* Left: Chart */}
           <div className="relative flex flex-col px-1 py-1" style={{ width: '55%' }}>
             <LineMovementChart
@@ -2872,8 +2872,8 @@ export function GameDetailClient({
         />
 
         {/* Why This Price + CEQ Factors — side by side */}
-        <div className="flex border-t border-zinc-800/50">
-          <div className="w-1/2 border-r border-zinc-800/50">
+        <div className="flex border-t border-[#e2e4e8]/50">
+          <div className="w-1/2 border-r border-[#e2e4e8]/50">
             <WhyThisPrice
               pythonPillars={pythonPillarScores}
               ceq={activeCeq}
@@ -2896,7 +2896,7 @@ export function GameDetailClient({
       </div>
 
       {/* Mobile: Single-column scrollable fallback */}
-      <div className="lg:hidden h-auto overflow-y-auto bg-[#0a0a0a]">
+      <div className="lg:hidden h-auto overflow-y-auto bg-white">
         <TerminalHeader
           awayTeam={gameData.awayTeam}
           homeTeam={gameData.homeTeam}
@@ -2910,7 +2910,7 @@ export function GameDetailClient({
 
         <div className="p-2 space-y-2">
           {/* Market + Period tabs */}
-          <div className="bg-zinc-900/50 rounded p-2">
+          <div className="bg-white/50 rounded p-2">
             <div className="flex items-center gap-0.5 mb-1.5 flex-wrap">
               {(['spread', 'total', 'moneyline'] as ActiveMarket[])
                 .filter(m => m !== 'spread' || !isSoccerGame)
@@ -2921,7 +2921,7 @@ export function GameDetailClient({
                     className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
                       activeMarket === m
                         ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                        : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
+                        : 'text-[#9ca3af] hover:text-[#374151] border border-transparent'
                     }`}
                   >
                     {m === 'spread' ? 'Spread' : m === 'total' ? 'Total' : 'Moneyline'}
@@ -2946,8 +2946,8 @@ export function GameDetailClient({
                   onClick={() => handlePeriodChange(tab.key)}
                   className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-colors ${
                     activePeriod === tab.key
-                      ? 'bg-zinc-700 text-zinc-100'
-                      : 'text-zinc-600 hover:text-zinc-400'
+                      ? 'bg-[#e2e4e8] text-[#1f2937]'
+                      : 'text-[#9ca3af] hover:text-[#6b7280]'
                   }`}
                 >
                   {tab.label}
@@ -2957,8 +2957,8 @@ export function GameDetailClient({
           </div>
 
           {/* Convergence chart — compact */}
-          <div className="h-[200px] relative bg-zinc-900/50 rounded p-2">
-            <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest mb-1 block">Line Convergence</span>
+          <div className="h-[200px] relative bg-white/50 rounded p-2">
+            <span className="text-[10px] font-semibold text-[#9ca3af] uppercase tracking-widest mb-1 block">Line Convergence</span>
             <div className="flex-1 min-h-0 h-[calc(100%-20px)]">
               <LineMovementChart
                 gameId={gameData.id}

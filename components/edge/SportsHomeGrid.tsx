@@ -893,7 +893,9 @@ export function SportsHomeGrid({
                     };
 
                     return (
-                      <Link key={game.id} href={`/edge/portal/sports/game/${game.id}?sport=${game.sportKey}`}
+                      <Link key={game.id} href={exchangeMode
+                            ? `/edge/portal/sports/exchange/${game.id}?sport=${game.sportKey}&platform=${selectedBook}`
+                            : `/edge/portal/sports/game/${game.id}?sport=${game.sportKey}`}
                         className="block group"
                         style={{
                           background: P.cardBg,

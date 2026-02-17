@@ -107,7 +107,7 @@ class Config:
     # ==========================================================================
     # GTC (MAKER) EXECUTION
     # ==========================================================================
-    enable_gtc: bool = True               # Enable IOC-then-GTC two-phase execution
+    enable_gtc: bool = False              # Disabled — tier system handles Kalshi failures cheaply
     gtc_timeout_seconds: float = 3.0      # Max time to rest a GTC order
     gtc_recheck_interval_ms: int = 200    # Spread recheck interval during GTC rest
     gtc_cooldown_seconds: int = 0         # Per-game cooldown after GTC timeout

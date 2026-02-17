@@ -1848,13 +1848,13 @@ class PolymarketUSAPI:
             try:
                 print(f"   [PM ORDER] {intent_names[intent]} outcome[{outcome_index}] {quantity} @ ${price:.2f} on {market_slug} [SDK]")
                 sdk_resp = await self._sdk_client.orders.create(
-                    market_slug=market_slug,
+                    marketSlug=market_slug,
                     intent=_INTENT_MAP[intent],
                     quantity=quantity,
                     price=price,
-                    order_type='ORDER_TYPE_LIMIT',
-                    time_in_force=_TIF_MAP[tif],
-                    outcome_index=outcome_index,
+                    orderType='ORDER_TYPE_LIMIT',
+                    timeInForce=_TIF_MAP[tif],
+                    outcomeIndex=outcome_index,
                 )
                 print(f"   [DEBUG] PM SDK Response: {sdk_resp}")
                 return self._parse_pm_response(sdk_resp)
@@ -1864,7 +1864,7 @@ class PolymarketUSAPI:
         # --- aiohttp fallback (used when SDK unavailable or failed) ---
         path = '/v1/orders'
         payload = {
-            'market_slug': market_slug,
+            'marketSlug': market_slug,
             'intent': intent,
             'outcomeIndex': outcome_index,  # CRITICAL: Specify which outcome to trade
             'type': 1,  # LIMIT
@@ -1907,7 +1907,7 @@ class PolymarketUSAPI:
             async with session.post(
                 f'{self.BASE_URL}{path}',
                 headers=self._headers('POST', path),
-                json={'market_slug': market_slug},
+                json={'marketSlug': market_slug},
                 timeout=aiohttp.ClientTimeout(total=5)
             ) as r:
                 if r.status == 200:

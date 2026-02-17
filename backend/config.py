@@ -36,43 +36,28 @@ ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 # =============================================================================
 # ACTIVE SPORTS ONLY - PAUSED sports commented out to reduce API usage
 # =============================================================================
-# Odds API sport keys - maps both short names AND Odds API format to canonical format
-# The backend uppercases input, so "soccer_epl" becomes "SOCCER_EPL"
+# Odds API sport keys - short names to canonical lowercase format.
+# The scheduler iterates these keys, so each sport must appear ONCE only.
 ODDS_API_SPORTS = {
-    # American Football - short format
+    # American Football
     "NFL": "americanfootball_nfl",
     "NCAAF": "americanfootball_ncaaf",
-    # American Football - Odds API format (uppercased)
-    "AMERICANFOOTBALL_NFL": "americanfootball_nfl",
-    "AMERICANFOOTBALL_NCAAF": "americanfootball_ncaaf",
 
-    # Basketball - short format
+    # Basketball
     "NBA": "basketball_nba",
     "NCAAB": "basketball_ncaab",
-    # Basketball - Odds API format
-    "BASKETBALL_NBA": "basketball_nba",
-    "BASKETBALL_NCAAB": "basketball_ncaab",
 
-    # Hockey - short format
+    # Hockey
     "NHL": "icehockey_nhl",
-    # Hockey - Odds API format
-    "ICEHOCKEY_NHL": "icehockey_nhl",
 
-    # Soccer - short format (EPL only)
+    # Soccer (EPL only)
     "EPL": "soccer_epl",
-    # Soccer - Odds API format
-    "SOCCER_EPL": "soccer_epl",
 
-    # Tennis - short format
+    # Tennis
     "TENNIS_AO": "tennis_atp_australian_open",
     "TENNIS_FO": "tennis_atp_french_open",
     "TENNIS_USO": "tennis_atp_us_open",
     "TENNIS_WIM": "tennis_atp_wimbledon",
-    # Tennis - Odds API format
-    "TENNIS_ATP_AUSTRALIAN_OPEN": "tennis_atp_australian_open",
-    "TENNIS_ATP_FRENCH_OPEN": "tennis_atp_french_open",
-    "TENNIS_ATP_US_OPEN": "tennis_atp_us_open",
-    "TENNIS_ATP_WIMBLEDON": "tennis_atp_wimbledon",
 
     # ==========================================================================
     # PAUSED SPORTS - Re-enable when in season or budget allows

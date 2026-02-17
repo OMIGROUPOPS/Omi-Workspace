@@ -165,10 +165,10 @@ function spreadEdgeForSide(
   fairSpread: number, bookLine: number, bookOdds: number, sportKey: string, isHome: boolean
 ): number {
   const rate = getProbRate(sportKey);
-  // Line difference from home perspective: positive = home has edge
-  const lineDiff = bookLine - fairSpread; // e.g. book -4.5, fair -3.0 → -1.5 (home disadvantaged at this book)
+  // Line difference from home perspective: negative = book line harder for home to cover
+  const lineDiff = bookLine - fairSpread; // e.g. book -17.5, fair -14 → -3.5 (home must cover more)
   // Fair probability of covering this book's line: 50% adjusted by line diff
-  const fairCoverProb = 0.5 - lineDiff * rate; // home cover prob at book's line
+  const fairCoverProb = 0.5 + lineDiff * rate; // home cover prob at book's line
   const fairProb = isHome ? fairCoverProb : 1 - fairCoverProb;
   // Book's implied probability from odds
   const bookProb = toProb(bookOdds);

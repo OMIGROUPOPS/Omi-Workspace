@@ -1234,7 +1234,7 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   );
 
   return (
-    <div className="h-[calc(100vh-56px)] overflow-hidden">
+    <div className="min-h-[calc(100vh-56px)] lg:h-[calc(100vh-56px)] overflow-y-auto lg:overflow-hidden">
       <GameDetailClient
         gameData={{ id: gameId, homeTeam, awayTeam, sportKey: fullSportKey, commenceTime }}
         bookmakers={bookmakers}

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import Link from 'next/link';
-import { formatOdds, calculateTwoWayEV, formatEV, getEVColor, getEVBgClass } from '@/lib/edge/utils/odds-math';
+// formatOdds etc. no longer used — fair line rendering is inline
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
@@ -86,63 +86,92 @@ function TeamLogo({ teamName, sportKey }: { teamName: string; sportKey: string }
   );
 }
 
-function EdgeArrow({ value }: { value: number }) {
-  if (Math.abs(value) < 0.5) return null;
-  const isUp = value > 0;
-  return (
-    <svg width="8" height="8" viewBox="0 0 8 8" className="flex-shrink-0">
-      <path
-        d={isUp ? 'M4 1 L7 5 L5 5 L5 7 L3 7 L3 5 L1 5 Z' : 'M4 7 L7 3 L5 3 L5 1 L3 1 L3 3 L1 3 Z'}
-        fill={isUp ? '#10b981' : '#ef4444'}
-      />
-    </svg>
-  );
+// Signal tier system
+type SignalTier = 'MAX_EDGE' | 'HIGH_EDGE' | 'MID_EDGE' | 'LOW_EDGE' | 'NO_EDGE';
+
+function getSignalTier(maxEdgePct: number): SignalTier {
+  if (maxEdgePct >= 8) return 'MAX_EDGE';
+  if (maxEdgePct >= 5) return 'HIGH_EDGE';
+  if (maxEdgePct >= 3) return 'MID_EDGE';
+  if (maxEdgePct >= 1) return 'LOW_EDGE';
+  return 'NO_EDGE';
 }
 
-// CEQ-based styling helper
-function getCEQStyles(ceq: number | undefined): { bgTint: string; borderTint: string; textColor: string } {
-  if (ceq === undefined) {
-    return { bgTint: 'bg-zinc-800/80', borderTint: 'border-zinc-700/50', textColor: 'text-zinc-500' };
+const SIGNAL_TIER_STYLE: Record<SignalTier, { label: string; text: string; bg: string; border: string; glow: string }> = {
+  MAX_EDGE:  { label: 'MAX EDGE',  text: 'text-cyan-400',    bg: 'bg-cyan-500/15',    border: 'border-cyan-500/40',    glow: 'shadow-cyan-500/20' },
+  HIGH_EDGE: { label: 'HIGH EDGE', text: 'text-emerald-400', bg: 'bg-emerald-500/15', border: 'border-emerald-500/30', glow: 'shadow-emerald-500/15' },
+  MID_EDGE:  { label: 'MID EDGE',  text: 'text-amber-400',   bg: 'bg-amber-500/15',   border: 'border-amber-500/30',   glow: '' },
+  LOW_EDGE:  { label: 'LOW EDGE',  text: 'text-zinc-400',    bg: 'bg-zinc-700/40',    border: 'border-zinc-600/30',    glow: '' },
+  NO_EDGE:   { label: 'NO EDGE',   text: 'text-zinc-600',    bg: 'bg-zinc-800/40',    border: 'border-zinc-700/30',    glow: '' },
+};
+
+// Calculate max edge % for a game (across all markets)
+function calcMaxEdge(
+  fair: any,
+  spreads: any,
+  h2h: any,
+  totals: any
+): { maxEdge: number; bestMarket: string; bestSide: string } {
+  let maxEdge = 0;
+  let bestMarket = '';
+  let bestSide = '';
+
+  // Spread edge
+  if (fair?.fair_spread != null && spreads?.line !== undefined) {
+    const homeE = (spreads.line - fair.fair_spread) * 3.0;
+    const awayE = -homeE;
+    if (Math.abs(homeE) > maxEdge) { maxEdge = Math.abs(homeE); bestMarket = 'spread'; bestSide = homeE > 0 ? 'home' : 'away'; }
+    if (Math.abs(awayE) > maxEdge) { maxEdge = Math.abs(awayE); bestMarket = 'spread'; bestSide = awayE > 0 ? 'home' : 'away'; }
   }
-  if (ceq >= 76) return { bgTint: 'bg-emerald-500/20', borderTint: 'border-emerald-500/40', textColor: 'text-emerald-400' };
-  if (ceq >= 66) return { bgTint: 'bg-emerald-500/15', borderTint: 'border-emerald-500/30', textColor: 'text-emerald-400' };
-  if (ceq >= 56) return { bgTint: 'bg-emerald-500/10', borderTint: 'border-emerald-500/20', textColor: 'text-emerald-400' };
-  if (ceq <= 35) return { bgTint: 'bg-red-500/15', borderTint: 'border-red-500/30', textColor: 'text-red-400' };
-  if (ceq <= 45) return { bgTint: 'bg-red-500/10', borderTint: 'border-red-500/20', textColor: 'text-red-400' };
-  return { bgTint: 'bg-zinc-800/80', borderTint: 'border-zinc-700/50', textColor: 'text-zinc-500' };
+
+  // ML edge
+  if (fair?.fair_ml_home != null && fair?.fair_ml_away != null && h2h?.homePrice !== undefined && h2h?.awayPrice !== undefined) {
+    const toProb = (o: number) => o < 0 ? Math.abs(o) / (Math.abs(o) + 100) : 100 / (o + 100);
+    const fairHP = toProb(fair.fair_ml_home);
+    const fairAP = toProb(fair.fair_ml_away);
+    const bookHP = toProb(h2h.homePrice);
+    const bookAP = toProb(h2h.awayPrice);
+    const normBHP = bookHP / (bookHP + bookAP);
+    const normBAP = bookAP / (bookHP + bookAP);
+    const homeMLEdge = (fairHP - normBHP) * 100;
+    const awayMLEdge = (fairAP - normBAP) * 100;
+    if (Math.abs(homeMLEdge) > maxEdge) { maxEdge = Math.abs(homeMLEdge); bestMarket = 'ml'; bestSide = homeMLEdge > 0 ? 'home' : 'away'; }
+    if (Math.abs(awayMLEdge) > maxEdge) { maxEdge = Math.abs(awayMLEdge); bestMarket = 'ml'; bestSide = awayMLEdge > 0 ? 'home' : 'away'; }
+  }
+
+  // Total edge
+  if (fair?.fair_total != null && totals?.line !== undefined) {
+    const overE = (fair.fair_total - totals.line) * 1.5;
+    if (Math.abs(overE) > maxEdge) { maxEdge = Math.abs(overE); bestMarket = 'total'; bestSide = overE > 0 ? 'over' : 'under'; }
+  }
+
+  return { maxEdge, bestMarket, bestSide };
 }
 
-function OddsCell({ line, price, edgePct }: { line?: number | string; price: number; ev?: number; ceq?: number; topDrivers?: string[]; edgePct?: number }) {
-  return (
-    <div className="flex flex-col items-center justify-center p-1.5 bg-[#1a1f2b] border border-zinc-700/50 rounded hover:brightness-110 transition-all cursor-pointer">
-      <div className="flex items-center gap-0.5">
-        <span className="text-xs font-semibold text-zinc-100 font-mono">
-          {line !== undefined && (typeof line === 'number' ? (line > 0 ? `+${line}` : line) : line)}
-        </span>
-      </div>
-      <div className="flex items-center gap-1">
-        <span className={`text-[11px] font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-300'}`}>
-          {formatOdds(price)}
-        </span>
-        {edgePct !== undefined && Math.abs(edgePct) >= 1.0 && (
-          <span className={`text-[9px] font-mono ${edgePct > 0 ? 'text-emerald-400' : 'text-red-400'}`}>{edgePct > 0 ? '+' : ''}{edgePct.toFixed(1)}%</span>
-        )}
-      </div>
-    </div>
-  );
+// Format spread line with sign
+function fmtSpread(v: number | null | undefined): string {
+  if (v == null) return '--';
+  return v > 0 ? `+${v}` : `${v}`;
 }
 
-function MoneylineCell({ price, edgePct }: { price: number; ev?: number; ceq?: number; topDrivers?: string[]; edgePct?: number }) {
+// Format American odds
+function fmtOdds(v: number | null | undefined): string {
+  if (v == null) return '--';
+  return v > 0 ? `+${v}` : `${v}`;
+}
+
+// Conviction bar from composite scores (0-100, 50 is neutral)
+function ConvictionBar({ score }: { score: number | null }) {
+  if (score == null) return null;
+  const deviation = Math.abs(score - 50);
+  const widthPct = Math.min(deviation * 2, 100); // 0-50 deviation → 0-100% width
+  const color = score >= 55 ? '#10b981' : score <= 45 ? '#ef4444' : '#71717a';
   return (
-    <div className="flex flex-col items-center justify-center p-1.5 bg-[#1a1f2b] border border-zinc-700/50 rounded hover:brightness-110 transition-all cursor-pointer">
-      <div className="flex items-center gap-1">
-        <span className={`text-xs font-semibold font-mono ${price > 0 ? 'text-emerald-400' : 'text-zinc-100'}`}>
-          {formatOdds(price)}
-        </span>
-        {edgePct !== undefined && Math.abs(edgePct) >= 1.0 && (
-          <span className={`text-[9px] font-mono ${edgePct > 0 ? 'text-emerald-400' : 'text-red-400'}`}>{edgePct > 0 ? '+' : ''}{edgePct.toFixed(1)}%</span>
-        )}
+    <div className="flex items-center gap-1.5">
+      <div className="w-16 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+        <div className="h-full rounded-full transition-all" style={{ width: `${widthPct}%`, backgroundColor: color }} />
       </div>
+      <span className="text-[9px] font-mono text-zinc-500">{Math.round(score)}</span>
     </div>
   );
 }
@@ -160,63 +189,55 @@ function BookIcon({ bookKey, size = 24 }: { bookKey: string; size?: number }) {
   );
 }
 
-// Sport pills grouped by category
-const SPORT_PILLS = [
-  // American Football
-  { key: 'americanfootball_nfl', label: 'NFL', icon: 'football', group: 'Football' },
-  { key: 'americanfootball_ncaaf', label: 'NCAAF', icon: 'football', group: 'Football' },
-
-  // Basketball
-  { key: 'basketball_nba', label: 'NBA', icon: 'basketball', group: 'Basketball' },
-  { key: 'basketball_ncaab', label: 'NCAAB', icon: 'basketball', group: 'Basketball' },
-  { key: 'basketball_wnba', label: 'WNBA', icon: 'basketball', group: 'Basketball' },
-  { key: 'basketball_euroleague', label: 'EuroLg', icon: 'basketball', group: 'Basketball' },
-
-  // Hockey
-  { key: 'icehockey_nhl', label: 'NHL', icon: 'hockey', group: 'Hockey' },
-  { key: 'icehockey_ahl', label: 'AHL', icon: 'hockey', group: 'Hockey' },
-  { key: 'icehockey_sweden_hockey_league', label: 'SHL', icon: 'hockey', group: 'Hockey' },
-  { key: 'icehockey_liiga', label: 'Liiga', icon: 'hockey', group: 'Hockey' },
-
-  // Baseball
-  { key: 'baseball_mlb', label: 'MLB', icon: 'baseball', group: 'Baseball' },
-
-  // Soccer - Major
-  { key: 'soccer_usa_mls', label: 'MLS', icon: 'soccer', group: 'Soccer' },
-  { key: 'soccer_epl', label: 'EPL', icon: 'soccer', group: 'Soccer' },
-  { key: 'soccer_spain_la_liga', label: 'La Liga', icon: 'soccer', group: 'Soccer' },
-  { key: 'soccer_germany_bundesliga', label: 'Bundes', icon: 'soccer', group: 'Soccer' },
-  { key: 'soccer_italy_serie_a', label: 'Serie A', icon: 'soccer', group: 'Soccer' },
-  { key: 'soccer_france_ligue_one', label: 'Ligue 1', icon: 'soccer', group: 'Soccer' },
-  { key: 'soccer_uefa_champs_league', label: 'UCL', icon: 'soccer', group: 'Soccer' },
-  { key: 'soccer_uefa_europa_league', label: 'Europa', icon: 'soccer', group: 'Soccer' },
-  { key: 'soccer_efl_champ', label: 'EFL Ch', icon: 'soccer', group: 'Soccer' },
-  { key: 'soccer_netherlands_eredivisie', label: 'Erediv', icon: 'soccer', group: 'Soccer' },
-  { key: 'soccer_mexico_ligamx', label: 'Liga MX', icon: 'soccer', group: 'Soccer' },
-  { key: 'soccer_fa_cup', label: 'FA Cup', icon: 'soccer', group: 'Soccer' },
-
-  // Tennis
-  { key: 'tennis_atp_australian_open', label: 'AUS Open', icon: 'tennis', group: 'Tennis' },
-  { key: 'tennis_atp_french_open', label: 'FR Open', icon: 'tennis', group: 'Tennis' },
-  { key: 'tennis_atp_us_open', label: 'US Open', icon: 'tennis', group: 'Tennis' },
-  { key: 'tennis_atp_wimbledon', label: 'Wimbledon', icon: 'tennis', group: 'Tennis' },
-
-  // Golf
-  { key: 'golf_masters_tournament_winner', label: 'Masters', icon: 'golf', group: 'Golf' },
-  { key: 'golf_pga_championship_winner', label: 'PGA', icon: 'golf', group: 'Golf' },
-  { key: 'golf_us_open_winner', label: 'US Open', icon: 'golf', group: 'Golf' },
-  { key: 'golf_the_open_championship_winner', label: 'The Open', icon: 'golf', group: 'Golf' },
-
-  // Combat Sports
-  { key: 'mma_mixed_martial_arts', label: 'UFC', icon: 'mma', group: 'Combat' },
-  { key: 'boxing_boxing', label: 'Boxing', icon: 'boxing', group: 'Combat' },
-
-  // Other
-  { key: 'rugbyleague_nrl', label: 'NRL', icon: 'rugby', group: 'Other' },
-  { key: 'aussierules_afl', label: 'AFL', icon: 'afl', group: 'Other' },
-  { key: 'cricket_ipl', label: 'IPL', icon: 'cricket', group: 'Other' },
-  { key: 'cricket_big_bash', label: 'Big Bash', icon: 'cricket', group: 'Other' },
+// Modeled sports — these get primary tabs
+const MODELED_SPORTS = [
+  { key: 'americanfootball_nfl', label: 'NFL' },
+  { key: 'basketball_nba', label: 'NBA' },
+  { key: 'basketball_ncaab', label: 'NCAAB' },
+  { key: 'americanfootball_ncaaf', label: 'NCAAF' },
+  { key: 'icehockey_nhl', label: 'NHL' },
+  { key: 'soccer_epl', label: 'EPL' },
 ];
+
+const MODELED_SPORT_KEYS = new Set(MODELED_SPORTS.map(s => s.key));
+
+// All other sports for the "More" overflow
+const MORE_SPORTS = [
+  { key: 'baseball_mlb', label: 'MLB' },
+  { key: 'basketball_wnba', label: 'WNBA' },
+  { key: 'basketball_euroleague', label: 'EuroLg' },
+  { key: 'icehockey_ahl', label: 'AHL' },
+  { key: 'soccer_usa_mls', label: 'MLS' },
+  { key: 'soccer_spain_la_liga', label: 'La Liga' },
+  { key: 'soccer_germany_bundesliga', label: 'Bundes' },
+  { key: 'soccer_italy_serie_a', label: 'Serie A' },
+  { key: 'soccer_france_ligue_one', label: 'Ligue 1' },
+  { key: 'soccer_uefa_champs_league', label: 'UCL' },
+  { key: 'soccer_uefa_europa_league', label: 'Europa' },
+  { key: 'soccer_efl_champ', label: 'EFL Ch' },
+  { key: 'soccer_netherlands_eredivisie', label: 'Erediv' },
+  { key: 'soccer_mexico_ligamx', label: 'Liga MX' },
+  { key: 'soccer_fa_cup', label: 'FA Cup' },
+  { key: 'mma_mixed_martial_arts', label: 'UFC' },
+  { key: 'boxing_boxing', label: 'Boxing' },
+  { key: 'tennis_atp_australian_open', label: 'AUS Open' },
+  { key: 'tennis_atp_french_open', label: 'FR Open' },
+  { key: 'tennis_atp_us_open', label: 'US Open' },
+  { key: 'tennis_atp_wimbledon', label: 'Wimbledon' },
+  { key: 'golf_masters_tournament_winner', label: 'Masters' },
+  { key: 'golf_pga_championship_winner', label: 'PGA' },
+  { key: 'golf_us_open_winner', label: 'US Open' },
+  { key: 'golf_the_open_championship_winner', label: 'The Open' },
+  { key: 'icehockey_sweden_hockey_league', label: 'SHL' },
+  { key: 'icehockey_liiga', label: 'Liiga' },
+  { key: 'rugbyleague_nrl', label: 'NRL' },
+  { key: 'aussierules_afl', label: 'AFL' },
+  { key: 'cricket_ipl', label: 'IPL' },
+  { key: 'cricket_big_bash', label: 'Big Bash' },
+];
+
+// Combined for lookups
+const ALL_SPORT_PILLS = [...MODELED_SPORTS, ...MORE_SPORTS];
 
 const SPORT_ORDER = [
   // US Major Sports first
@@ -269,18 +290,7 @@ const SPORT_ORDER = [
 const AVAILABLE_BOOKS = ['fanduel', 'draftkings'];
 
 // Core sports that should ALWAYS be visible and enabled (even with 0 games)
-const CORE_SPORTS = [
-  'americanfootball_nfl',
-  'basketball_nba',
-  'icehockey_nhl',
-  'baseball_mlb',
-  'americanfootball_ncaaf',
-  'basketball_ncaab',
-  'basketball_wnba',
-  'soccer_epl',
-  'soccer_usa_mls',
-  'mma_mixed_martial_arts',
-];
+const CORE_SPORTS = MODELED_SPORTS.map(s => s.key);
 
 interface SportsHomeGridProps {
   games: Record<string, any[]>;
@@ -301,10 +311,13 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
   };
   const [selectedBook, setSelectedBook] = useState<string>('fanduel');
   const [isBookDropdownOpen, setIsBookDropdownOpen] = useState(false);
+  const [showMoreSports, setShowMoreSports] = useState(false);
+  const [noEdgeCollapsed, setNoEdgeCollapsed] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [mounted, setMounted] = useState(false);
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const moreSportsRef = useRef<HTMLDivElement>(null);
 
   const [games, setGames] = useState(initialGames);
   const [dataSource, setDataSource] = useState(initialDataSource);
@@ -359,6 +372,9 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsBookDropdownOpen(false);
+      }
+      if (moreSportsRef.current && !moreSportsRef.current.contains(event.target as Node)) {
+        setShowMoreSports(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -623,7 +639,7 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
 
       {/* Sport pills + Book dropdown */}
       <div className="flex items-center justify-between gap-4 mb-6">
-        <div className="flex gap-1.5 overflow-x-auto pb-2 flex-1">
+        <div className="flex gap-1.5 overflow-x-auto pb-2 flex-1 items-center">
           <button
             onClick={() => setActiveSport(null, 'all-button-click')}
             className={`flex-shrink-0 px-3.5 py-1.5 rounded-md text-xs font-medium transition-all border ${
@@ -634,23 +650,17 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
           >
             ALL
           </button>
-          {SPORT_PILLS.map((sport) => {
+          {MODELED_SPORTS.map((sport) => {
             const gameCount = games[sport.key]?.length || 0;
-            const isCoreSport = CORE_SPORTS.includes(sport.key);
-            // Core sports are always enabled, others only if they have games
-            const isEnabled = isCoreSport || gameCount > 0;
             return (
               <button
                 key={sport.key}
-                onClick={() => isEnabled && setActiveSport(sport.key, 'sport-pill-click')}
+                onClick={() => setActiveSport(sport.key, 'sport-pill-click')}
                 className={`flex-shrink-0 px-3.5 py-1.5 rounded-md text-xs font-medium transition-all border flex items-center gap-1.5 ${
                   activeSport === sport.key
                     ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
-                    : isEnabled
-                    ? 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700 hover:text-zinc-300'
-                    : 'bg-zinc-900/50 text-zinc-600 border-zinc-800/50 cursor-default'
+                    : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700 hover:text-zinc-300'
                 }`}
-                disabled={!isEnabled}
               >
                 {sport.label}
                 {gameCount > 0 && (
@@ -661,6 +671,43 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
               </button>
             );
           })}
+
+          {/* More sports dropdown */}
+          <div className="relative flex-shrink-0" ref={moreSportsRef}>
+            <button
+              onClick={() => setShowMoreSports(!showMoreSports)}
+              className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all border flex items-center gap-1 ${
+                !MODELED_SPORT_KEYS.has(activeSport || '') && activeSport !== null
+                  ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
+                  : 'bg-zinc-900 text-zinc-500 border-zinc-800 hover:border-zinc-700 hover:text-zinc-300'
+              }`}
+            >
+              More
+              <svg className={`w-3 h-3 transition-transform ${showMoreSports ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {showMoreSports && (
+              <div className="absolute left-0 z-50 mt-1.5 w-48 max-h-64 overflow-y-auto bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl">
+                {MORE_SPORTS.map((sport) => {
+                  const gameCount = games[sport.key]?.length || 0;
+                  if (gameCount === 0) return null;
+                  return (
+                    <button
+                      key={sport.key}
+                      onClick={() => { setActiveSport(sport.key, 'more-sport-click'); setShowMoreSports(false); }}
+                      className={`w-full flex items-center justify-between px-3 py-2 text-left transition-all text-xs ${
+                        activeSport === sport.key ? 'bg-emerald-500/10 text-emerald-400' : 'hover:bg-zinc-800 text-zinc-300'
+                      }`}
+                    >
+                      <span>{sport.label}</span>
+                      <span className="text-[9px] font-mono text-zinc-600">{gameCount}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Book Dropdown */}
@@ -755,7 +802,7 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
           if (!sportGames || sportGames.length === 0) return null;
 
           const sportInfo = SUPPORTED_SPORTS.find(s => s.key === sportKey);
-          const sportLabel = SPORT_PILLS.find(s => s.key === sportKey)?.label;
+          const sportLabel = ALL_SPORT_PILLS.find(s => s.key === sportKey)?.label;
           const sportName = sportLabel || sportInfo?.name || sportKey;
 
           // Check if ANY game in this sport has odds
@@ -811,146 +858,299 @@ export function SportsHomeGrid({ games: initialGames, dataSource: initialDataSou
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
-                {gamesToShow.map((game: any) => {
-                  const gameTime = typeof game.commenceTime === 'string' ? new Date(game.commenceTime) : game.commenceTime;
-                  const timeStr = mounted
-                    ? gameTime.toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })
-                    : '';
-                  const countdown = mounted ? getTimeDisplay(gameTime, game.sportKey) : '';
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+                {(() => {
+                  // Pre-compute edges for sorting
+                  const gamesWithEdge = gamesToShow.map((game: any) => {
+                    const fair = game.fairLines;
+                    const bookOdds = game.bookmakers?.[selectedBook];
+                    const spreads = bookOdds?.spreads || game.consensus?.spreads;
+                    const h2h = bookOdds?.h2h || game.consensus?.h2h;
+                    const totals = bookOdds?.totals || game.consensus?.totals;
+                    const { maxEdge } = calcMaxEdge(fair, spreads, h2h, totals);
+                    return { game, maxEdge };
+                  });
 
-                  // Calculate edge percentages from fair lines
-                  const fair = game.fairLines;
-                  const bookOdds = game.bookmakers?.[selectedBook];
-                  const spreads = bookOdds?.spreads || game.consensus?.spreads;
-                  const h2h = bookOdds?.h2h || game.consensus?.h2h;
-                  const totals = bookOdds?.totals || game.consensus?.totals;
+                  // Sort: highest edge first, NO EDGE (<1%) last
+                  gamesWithEdge.sort((a, b) => b.maxEdge - a.maxEdge);
 
-                  // Spread edge: signed, both sides (positive = value on that side)
-                  let homeSpreadEdge: number | undefined, awaySpreadEdge: number | undefined;
-                  if (fair?.fair_spread != null && spreads?.line !== undefined) {
-                    homeSpreadEdge = (spreads.line - fair.fair_spread) * 3.0;
-                    awaySpreadEdge = -homeSpreadEdge;
-                  }
+                  // Split into edge / no-edge groups
+                  const withEdge = gamesWithEdge.filter(g => g.maxEdge >= 1);
+                  const noEdge = gamesWithEdge.filter(g => g.maxEdge < 1);
 
-                  // ML edge: signed implied probability gap
-                  let homeMLEdge: number | undefined, awayMLEdge: number | undefined;
-                  if (fair?.fair_ml_home != null && fair?.fair_ml_away != null && h2h?.homePrice !== undefined && h2h?.awayPrice !== undefined) {
-                    const toProb = (o: number) => o < 0 ? Math.abs(o) / (Math.abs(o) + 100) : 100 / (o + 100);
-                    const fairHomeProb = toProb(fair.fair_ml_home);
-                    const fairAwayProb = toProb(fair.fair_ml_away);
-                    const bookHomeProb = toProb(h2h.homePrice);
-                    const bookAwayProb = toProb(h2h.awayPrice);
-                    const normBHP = bookHomeProb / (bookHomeProb + bookAwayProb);
-                    const normBAP = bookAwayProb / (bookHomeProb + bookAwayProb);
-                    homeMLEdge = (fairHomeProb - normBHP) * 100;
-                    awayMLEdge = (fairAwayProb - normBAP) * 100;
-                  }
+                  const renderCard = ({ game, maxEdge }: { game: any; maxEdge: number }, isNoEdge = false) => {
+                    const gameTime = typeof game.commenceTime === 'string' ? new Date(game.commenceTime) : game.commenceTime;
+                    const timeStr = mounted
+                      ? gameTime.toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })
+                      : '';
+                    const countdown = mounted ? getTimeDisplay(gameTime, game.sportKey) : '';
+                    const isLive = countdown === 'LIVE';
 
-                  // Total edge: signed, both sides (positive over = fair higher than book)
-                  let overEdge: number | undefined, underEdge: number | undefined;
-                  if (fair?.fair_total != null && totals?.line !== undefined) {
-                    overEdge = (fair.fair_total - totals.line) * 3.0;
-                    underEdge = -overEdge;
-                  }
+                    const fair = game.fairLines;
+                    const bookOdds = game.bookmakers?.[selectedBook];
+                    const spreads = bookOdds?.spreads || game.consensus?.spreads;
+                    const h2h = bookOdds?.h2h || game.consensus?.h2h;
+                    const totals = bookOdds?.totals || game.consensus?.totals;
+                    const bookLabel = selectedBook === 'fanduel' ? 'FD' : 'DK';
 
-                  // Check if card has any odds data
-                  const hasOdds = spreads?.line !== undefined || h2h?.homePrice !== undefined || totals?.line !== undefined;
+                    // Edge calculations
+                    let homeSpreadEdge: number | undefined, awaySpreadEdge: number | undefined;
+                    if (fair?.fair_spread != null && spreads?.line !== undefined) {
+                      homeSpreadEdge = (spreads.line - fair.fair_spread) * 3.0;
+                      awaySpreadEdge = -homeSpreadEdge;
+                    }
 
-                  return (
-                    <Link
-                      key={game.id}
-                      href={`/edge/portal/sports/game/${game.id}?sport=${game.sportKey}`}
-                      className={`bg-[#0f0f0f] border border-zinc-800/80 hover:border-zinc-700 rounded-lg overflow-hidden hover:bg-[#111111] transition-all group ${!hasOdds ? 'opacity-30' : ''}`}
-                    >
-                      {/* Card Header */}
-                      <div className="px-3 py-2 border-b flex items-center justify-between bg-zinc-900/40 border-zinc-800/50">
-                        <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-mono text-zinc-500" suppressHydrationWarning>{timeStr}</span>
-                          {countdown === 'LIVE' ? (
-                            <span className="flex items-center gap-1.5 text-[10px] font-semibold text-red-400 bg-red-500/20 px-2 py-0.5 rounded-full">
-                              <span className="relative flex h-1.5 w-1.5">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
+                    let homeMLEdge: number | undefined, awayMLEdge: number | undefined;
+                    if (fair?.fair_ml_home != null && fair?.fair_ml_away != null && h2h?.homePrice !== undefined && h2h?.awayPrice !== undefined) {
+                      const toProb = (o: number) => o < 0 ? Math.abs(o) / (Math.abs(o) + 100) : 100 / (o + 100);
+                      const fairHP = toProb(fair.fair_ml_home);
+                      const fairAP = toProb(fair.fair_ml_away);
+                      const bookHP = toProb(h2h.homePrice);
+                      const bookAP = toProb(h2h.awayPrice);
+                      const normBHP = bookHP / (bookHP + bookAP);
+                      const normBAP = bookAP / (bookHP + bookAP);
+                      homeMLEdge = (fairHP - normBHP) * 100;
+                      awayMLEdge = (fairAP - normBAP) * 100;
+                    }
+
+                    let overEdge: number | undefined, underEdge: number | undefined;
+                    if (fair?.fair_total != null && totals?.line !== undefined) {
+                      overEdge = (fair.fair_total - totals.line) * 1.5;
+                      underEdge = -overEdge;
+                    }
+
+                    const tier = getSignalTier(maxEdge);
+                    const tierStyle = SIGNAL_TIER_STYLE[tier];
+                    const hasOdds = spreads?.line !== undefined || h2h?.homePrice !== undefined || totals?.line !== undefined;
+
+                    // Composite score for conviction bar (average of available composites)
+                    const composites = [fair?.composite_spread, fair?.composite_total, fair?.composite_ml].filter((v: any) => v != null) as number[];
+                    const avgComposite = composites.length > 0 ? composites.reduce((a: number, b: number) => a + b, 0) / composites.length : null;
+
+                    // Best edge side highlight (which team row to emphasize)
+                    const homeEdgeMax = Math.max(homeSpreadEdge ?? 0, homeMLEdge ?? 0);
+                    const awayEdgeMax = Math.max(awaySpreadEdge ?? 0, awayMLEdge ?? 0);
+                    const edgeSide: 'home' | 'away' | null = homeEdgeMax > 1 || awayEdgeMax > 1
+                      ? (homeEdgeMax >= awayEdgeMax ? 'home' : 'away')
+                      : null;
+
+                    return (
+                      <Link
+                        key={game.id}
+                        href={`/edge/portal/sports/game/${game.id}?sport=${game.sportKey}`}
+                        className={`bg-[#0f0f0f] rounded-lg overflow-hidden hover:bg-[#111111] transition-all group ${
+                          isLive
+                            ? 'border-2 border-red-500/50 shadow-lg shadow-red-500/10'
+                            : isNoEdge
+                            ? 'border border-zinc-800/50 opacity-60'
+                            : !hasOdds
+                            ? 'border border-zinc-800/50 opacity-30'
+                            : 'border border-zinc-800/80 hover:border-zinc-700'
+                        } ${tierStyle.glow ? `shadow-md ${tierStyle.glow}` : ''}`}
+                      >
+                        {/* Card Header: time + signal badge + CEQ bar */}
+                        <div className="px-3 py-2 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/40">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[10px] font-mono text-zinc-500" suppressHydrationWarning>{timeStr}</span>
+                            {isLive ? (
+                              <span className="flex items-center gap-1.5 text-[10px] font-semibold text-red-400 bg-red-500/20 px-2 py-0.5 rounded-full">
+                                <span className="relative flex h-1.5 w-1.5">
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
+                                </span>
+                                LIVE
                               </span>
-                              LIVE
-                            </span>
-                          ) : countdown === 'FINAL' ? (
-                            <span className="text-[10px] font-semibold text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded-full">FINAL</span>
-                          ) : (
-                            <span className="text-[10px] font-mono text-zinc-500 bg-zinc-800/50 px-2 py-0.5 rounded">{countdown}</span>
-                          )}
-                          {(countdown === 'LIVE' || countdown === 'FINAL') && game.scores && (
-                            <span className="text-sm font-bold font-mono text-zinc-100 bg-zinc-800/80 px-2 py-0.5 rounded border border-zinc-700/50">
+                            ) : countdown === 'FINAL' ? (
+                              <span className="text-[10px] font-semibold text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded-full">FINAL</span>
+                            ) : (
+                              <span className="text-[10px] font-mono text-zinc-600 bg-zinc-800/50 px-1.5 py-0.5 rounded">{countdown}</span>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {hasOdds && fair && (
+                              <span className={`text-[9px] font-bold font-mono px-2 py-0.5 rounded-full border ${tierStyle.text} ${tierStyle.bg} ${tierStyle.border}`}>
+                                {tierStyle.label}
+                              </span>
+                            )}
+                            {avgComposite != null && <ConvictionBar score={avgComposite} />}
+                          </div>
+                        </div>
+
+                        {/* Live Score */}
+                        {isLive && game.scores && (
+                          <div className="px-3 py-1.5 border-b border-zinc-800/30 bg-zinc-900/60 flex items-center justify-center">
+                            <span className="text-lg font-bold font-mono text-zinc-100">
                               {game.scores.away} - {game.scores.home}
                             </span>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Column Headers */}
-                      <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1 border-b border-zinc-800/30">
-                        <span className="text-[9px] text-zinc-600 uppercase font-mono tracking-wider"></span>
-                        <span className="text-[9px] text-zinc-600 uppercase text-center font-mono tracking-wider">SPRD</span>
-                        <span className="text-[9px] text-zinc-600 uppercase text-center font-mono tracking-wider">ML</span>
-                        <span className="text-[9px] text-zinc-600 uppercase text-center font-mono tracking-wider">O/U</span>
-                      </div>
-
-                      {/* Away Row */}
-                      <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
-                        <div className="flex items-center gap-2 min-w-0">
-                          <TeamLogo teamName={game.awayTeam} sportKey={game.sportKey} />
-                          <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.awayTeam, game.sportKey)}</span>
-                        </div>
-                        {spreads?.line !== undefined ? (
-                          <OddsCell line={-spreads.line} price={spreads.awayPrice} edgePct={awaySpreadEdge} />
-                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                        {h2h?.awayPrice !== undefined ? (
-                          <MoneylineCell price={h2h.awayPrice} edgePct={awayMLEdge} />
-                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                        {totals?.line !== undefined ? (
-                          <OddsCell line={`O${totals.line}`} price={totals.overPrice} edgePct={overEdge} />
-                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                      </div>
-
-                      {/* Draw Row - Soccer only */}
-                      {game.sportKey?.includes('soccer') && (() => {
-                        const drawPrice = h2h?.drawPrice ?? h2h?.draw;
-                        if (!drawPrice) return null;
-                        return (
-                          <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1 items-center bg-zinc-900/30">
-                            <div className="flex items-center gap-2 min-w-0">
-                              <div className="w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold text-zinc-400 bg-zinc-800 flex-shrink-0">
-                                X
-                              </div>
-                              <span className="text-xs text-zinc-400 font-medium">Draw</span>
-                            </div>
-                            <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>
-                            <MoneylineCell price={drawPrice} />
-                            <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>
                           </div>
-                        );
-                      })()}
+                        )}
 
-                      {/* Home Row */}
-                      <div className="grid grid-cols-[1fr,65px,65px,65px] gap-1.5 px-3 py-1.5 items-center">
-                        <div className="flex items-center gap-2 min-w-0">
-                          <TeamLogo teamName={game.homeTeam} sportKey={game.sportKey} />
-                          <span className="text-xs text-zinc-200 truncate font-medium">{getDisplayTeamName(game.homeTeam, game.sportKey)}</span>
+                        {/* Away Team Block */}
+                        <div className={`px-3 py-2 ${edgeSide === 'away' ? 'border-l-2 border-l-cyan-500/50 bg-cyan-500/[0.03]' : ''}`}>
+                          <div className="flex items-center gap-2 mb-1">
+                            <TeamLogo teamName={game.awayTeam} sportKey={game.sportKey} />
+                            <span className="text-xs text-zinc-200 truncate font-medium flex-1">{getDisplayTeamName(game.awayTeam, game.sportKey)}</span>
+                          </div>
+                          <div className="flex items-center gap-3 ml-7">
+                            {/* OMI Fair Spread — hero */}
+                            {fair?.fair_spread != null ? (
+                              <div className="flex items-center gap-1">
+                                <span className="text-[9px] font-mono text-zinc-600">OMI</span>
+                                <span className="text-sm font-bold font-mono text-cyan-400">{fmtSpread(-fair.fair_spread)}</span>
+                              </div>
+                            ) : spreads?.line !== undefined ? (
+                              <div className="flex items-center gap-1">
+                                <span className="text-[9px] font-mono text-zinc-600">SPRD</span>
+                                <span className="text-sm font-mono text-zinc-300">{fmtSpread(-spreads.line)}</span>
+                              </div>
+                            ) : null}
+                            {/* Book spread + edge */}
+                            {fair?.fair_spread != null && spreads?.line !== undefined && (
+                              <div className="flex items-center gap-1">
+                                <span className="text-[9px] font-mono text-zinc-600">{bookLabel}</span>
+                                <span className="text-[11px] font-mono text-zinc-400">{fmtSpread(-spreads.line)}</span>
+                                {awaySpreadEdge !== undefined && Math.abs(awaySpreadEdge) >= 1 && (
+                                  <span className={`text-[9px] font-mono font-semibold ${awaySpreadEdge > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                                    {awaySpreadEdge > 0 ? '+' : ''}{awaySpreadEdge.toFixed(1)}%
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                            {/* ML */}
+                            {h2h?.awayPrice !== undefined && (
+                              <div className="flex items-center gap-1 ml-auto">
+                                <span className="text-[9px] font-mono text-zinc-600">ML</span>
+                                <span className="text-[11px] font-mono text-zinc-400">{fmtOdds(h2h.awayPrice)}</span>
+                                {awayMLEdge !== undefined && Math.abs(awayMLEdge) >= 1 && (
+                                  <span className={`text-[9px] font-mono ${awayMLEdge > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                                    {awayMLEdge > 0 ? '+' : ''}{awayMLEdge.toFixed(1)}%
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                          </div>
                         </div>
-                        {spreads?.line !== undefined ? (
-                          <OddsCell line={spreads.line} price={spreads.homePrice} edgePct={homeSpreadEdge} />
-                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                        {h2h?.homePrice !== undefined ? (
-                          <MoneylineCell price={h2h.homePrice} edgePct={homeMLEdge} />
-                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                        {totals?.line !== undefined ? (
-                          <OddsCell line={`U${totals.line}`} price={totals.underPrice} edgePct={underEdge} />
-                        ) : <div className="text-center text-zinc-700 text-[10px] font-mono">--</div>}
-                      </div>
-                    </Link>
+
+                        {/* Divider */}
+                        <div className="border-b border-zinc-800/30 mx-3" />
+
+                        {/* Home Team Block */}
+                        <div className={`px-3 py-2 ${edgeSide === 'home' ? 'border-l-2 border-l-cyan-500/50 bg-cyan-500/[0.03]' : ''}`}>
+                          <div className="flex items-center gap-2 mb-1">
+                            <TeamLogo teamName={game.homeTeam} sportKey={game.sportKey} />
+                            <span className="text-xs text-zinc-200 truncate font-medium flex-1">{getDisplayTeamName(game.homeTeam, game.sportKey)}</span>
+                          </div>
+                          <div className="flex items-center gap-3 ml-7">
+                            {/* OMI Fair Spread — hero */}
+                            {fair?.fair_spread != null ? (
+                              <div className="flex items-center gap-1">
+                                <span className="text-[9px] font-mono text-zinc-600">OMI</span>
+                                <span className="text-sm font-bold font-mono text-cyan-400">{fmtSpread(fair.fair_spread)}</span>
+                              </div>
+                            ) : spreads?.line !== undefined ? (
+                              <div className="flex items-center gap-1">
+                                <span className="text-[9px] font-mono text-zinc-600">SPRD</span>
+                                <span className="text-sm font-mono text-zinc-300">{fmtSpread(spreads.line)}</span>
+                              </div>
+                            ) : null}
+                            {/* Book spread + edge */}
+                            {fair?.fair_spread != null && spreads?.line !== undefined && (
+                              <div className="flex items-center gap-1">
+                                <span className="text-[9px] font-mono text-zinc-600">{bookLabel}</span>
+                                <span className="text-[11px] font-mono text-zinc-400">{fmtSpread(spreads.line)}</span>
+                                {homeSpreadEdge !== undefined && Math.abs(homeSpreadEdge) >= 1 && (
+                                  <span className={`text-[9px] font-mono font-semibold ${homeSpreadEdge > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                                    {homeSpreadEdge > 0 ? '+' : ''}{homeSpreadEdge.toFixed(1)}%
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                            {/* ML */}
+                            {h2h?.homePrice !== undefined && (
+                              <div className="flex items-center gap-1 ml-auto">
+                                <span className="text-[9px] font-mono text-zinc-600">ML</span>
+                                <span className="text-[11px] font-mono text-zinc-400">{fmtOdds(h2h.homePrice)}</span>
+                                {homeMLEdge !== undefined && Math.abs(homeMLEdge) >= 1 && (
+                                  <span className={`text-[9px] font-mono ${homeMLEdge > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                                    {homeMLEdge > 0 ? '+' : ''}{homeMLEdge.toFixed(1)}%
+                                  </span>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Draw Row - Soccer only */}
+                        {game.sportKey?.includes('soccer') && (() => {
+                          const drawPrice = h2h?.drawPrice ?? h2h?.draw;
+                          if (!drawPrice) return null;
+                          return (
+                            <>
+                              <div className="border-b border-zinc-800/30 mx-3" />
+                              <div className="px-3 py-1.5 flex items-center gap-3">
+                                <div className="w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold text-zinc-500 bg-zinc-800 flex-shrink-0">X</div>
+                                <span className="text-[11px] text-zinc-500 font-medium">Draw</span>
+                                <span className="text-[11px] font-mono text-zinc-400 ml-auto">{fmtOdds(drawPrice)}</span>
+                              </div>
+                            </>
+                          );
+                        })()}
+
+                        {/* Total Line Row */}
+                        {(fair?.fair_total != null || totals?.line !== undefined) && (
+                          <div className="px-3 py-1.5 border-t border-zinc-800/30 bg-zinc-900/30 flex items-center gap-3">
+                            <span className="text-[9px] font-mono text-zinc-600 font-semibold">O/U</span>
+                            {fair?.fair_total != null ? (
+                              <>
+                                <div className="flex items-center gap-1">
+                                  <span className="text-[9px] font-mono text-zinc-600">OMI</span>
+                                  <span className="text-xs font-bold font-mono text-cyan-400">{fair.fair_total.toFixed(1)}</span>
+                                </div>
+                                {totals?.line !== undefined && (
+                                  <div className="flex items-center gap-1">
+                                    <span className="text-[9px] font-mono text-zinc-600">{bookLabel}</span>
+                                    <span className="text-[11px] font-mono text-zinc-400">{totals.line}</span>
+                                    {overEdge !== undefined && Math.abs(overEdge) >= 0.5 && (
+                                      <span className={`text-[9px] font-mono ${overEdge > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                                        {overEdge > 0 ? 'O' : 'U'}{Math.abs(overEdge).toFixed(1)}%
+                                      </span>
+                                    )}
+                                  </div>
+                                )}
+                              </>
+                            ) : totals?.line !== undefined ? (
+                              <span className="text-[11px] font-mono text-zinc-400">{totals.line}</span>
+                            ) : null}
+                          </div>
+                        )}
+                      </Link>
+                    );
+                  };
+
+                  return (
+                    <>
+                      {withEdge.map(g => renderCard(g))}
+                      {noEdge.length > 0 && (
+                        <>
+                          {withEdge.length > 0 && (
+                            <div className="col-span-full">
+                              <button
+                                onClick={(e) => { e.preventDefault(); setNoEdgeCollapsed(!noEdgeCollapsed); }}
+                                className="flex items-center gap-2 text-[10px] font-mono text-zinc-600 hover:text-zinc-400 transition-colors py-1"
+                              >
+                                <svg className={`w-3 h-3 transition-transform ${noEdgeCollapsed ? '' : 'rotate-90'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                                {noEdge.length} NO EDGE game{noEdge.length !== 1 ? 's' : ''}
+                              </button>
+                            </div>
+                          )}
+                          {(!noEdgeCollapsed || withEdge.length === 0) && noEdge.map(g => renderCard(g, true))}
+                        </>
+                      )}
+                    </>
                   );
-                })}
+                })()}
               </div>
 
               {hasMoreGames && (

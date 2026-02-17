@@ -41,6 +41,9 @@ async function fetchLatestFairLines(gameIds: string[]): Promise<Record<string, {
   fair_total: number | null;
   fair_ml_home: number | null;
   fair_ml_away: number | null;
+  composite_spread: number | null;
+  composite_total: number | null;
+  composite_ml: number | null;
 }>> {
   const fairLines: Record<string, any> = {};
   if (gameIds.length === 0) return fairLines;
@@ -49,7 +52,7 @@ async function fetchLatestFairLines(gameIds: string[]): Promise<Record<string, {
     const supabase = getSupabase();
     const { data, error } = await supabase
       .from('composite_history')
-      .select('game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away')
+      .select('game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away, composite_spread, composite_total, composite_ml')
       .in('game_id', gameIds)
       .order('timestamp', { ascending: false });
 
@@ -63,6 +66,9 @@ async function fetchLatestFairLines(gameIds: string[]): Promise<Record<string, {
           fair_total: row.fair_total != null ? Number(row.fair_total) : null,
           fair_ml_home: row.fair_ml_home != null ? Number(row.fair_ml_home) : null,
           fair_ml_away: row.fair_ml_away != null ? Number(row.fair_ml_away) : null,
+          composite_spread: row.composite_spread != null ? Number(row.composite_spread) : null,
+          composite_total: row.composite_total != null ? Number(row.composite_total) : null,
+          composite_ml: row.composite_ml != null ? Number(row.composite_ml) : null,
         };
       }
     }

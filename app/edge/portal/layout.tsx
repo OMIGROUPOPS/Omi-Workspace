@@ -279,9 +279,9 @@ function Header({ onMenuClick }: { onMenuClick: () => void }) {
   };
 
   return (
-    <header className="h-14 bg-gradient-to-r from-[#0a0a0a] to-[#0c0c0c] border-b border-zinc-800/60 px-4 flex items-center justify-between sticky top-0 z-30">
+    <header className="h-14 bg-white border-b border-[#e2e4e8] px-4 flex items-center justify-between sticky top-0 z-30">
       <div className="flex items-center gap-4">
-        <button onClick={onMenuClick} className="lg:hidden p-2 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50 rounded-lg transition-all">
+        <button onClick={onMenuClick} className="lg:hidden p-2 text-[#6b7280] hover:text-[#1f2937] hover:bg-gray-100 rounded-lg transition-all">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -289,14 +289,14 @@ function Header({ onMenuClick }: { onMenuClick: () => void }) {
 
         <div className="flex items-center gap-3">
           <div className="w-1 h-5 bg-emerald-500 rounded-full" />
-          <span className="text-sm font-semibold text-zinc-100">{getPageTitle()}</span>
+          <span className="text-sm font-semibold text-[#1f2937]">{getPageTitle()}</span>
         </div>
 
         {/* Breadcrumb for game pages */}
         {pathname.includes('/sports/game/') && (
           <div className="hidden sm:flex items-center gap-2 text-xs">
-            <span className="text-zinc-600">/</span>
-            <Link href="/edge/portal/sports" className="text-zinc-500 hover:text-emerald-400 transition-colors">
+            <span className="text-[#9ca3af]">/</span>
+            <Link href="/edge/portal/sports" className="text-[#6b7280] hover:text-emerald-500 transition-colors">
               Markets
             </Link>
           </div>
@@ -305,30 +305,30 @@ function Header({ onMenuClick }: { onMenuClick: () => void }) {
 
       <div className="flex items-center gap-3">
         {/* Live Clock - Bloomberg style */}
-        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-zinc-900/60 rounded-lg border border-zinc-800/60">
+        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-[#f4f5f7] rounded-lg border border-[#e2e4e8]">
           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-xs font-mono text-zinc-400" suppressHydrationWarning>
+          <span className="text-xs font-mono text-[#6b7280]" suppressHydrationWarning>
             {currentTime ? currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) : '--:--:--'}
           </span>
-          <span className="text-[10px] font-mono text-zinc-600">ET</span>
+          <span className="text-[10px] font-mono text-[#9ca3af]">ET</span>
         </div>
 
-        <div className="w-px h-6 bg-zinc-800" />
+        <div className="w-px h-6 bg-[#e2e4e8]" />
 
         {/* Notification */}
-        <button className="p-2 text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50 rounded-lg relative transition-all">
+        <button className="p-2 text-[#6b7280] hover:text-[#1f2937] hover:bg-gray-100 rounded-lg relative transition-all">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
           </svg>
-          <span className="absolute top-1 right-1 w-2 h-2 bg-emerald-500 rounded-full border-2 border-[#0a0a0a]" />
+          <span className="absolute top-1 right-1 w-2 h-2 bg-emerald-500 rounded-full border-2 border-white" />
         </button>
 
         {/* User */}
-        <button className="flex items-center gap-2 px-2 py-1.5 hover:bg-zinc-800/50 rounded-lg transition-all">
+        <button className="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-100 rounded-lg transition-all">
           <div className="w-7 h-7 bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 border border-emerald-500/30 rounded-lg flex items-center justify-center">
-            <span className="text-[10px] font-mono font-bold text-emerald-400">OG</span>
+            <span className="text-[10px] font-mono font-bold text-emerald-600">OG</span>
           </div>
-          <svg className="w-3 h-3 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-3 h-3 text-[#9ca3af]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>

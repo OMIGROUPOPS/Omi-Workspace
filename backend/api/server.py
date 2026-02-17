@@ -1927,6 +1927,7 @@ def _fetch_exchange_data_for_game(game_id: str, home_team: str) -> dict | None:
         ).limit(20).execute()
         contracts = latest.data or []
         if not contracts:
+            logger.debug(f"[ArbAPI] No exchange contracts for {game_id}")
             return None
 
         # Identify home team contracts
@@ -1982,7 +1983,7 @@ def _fetch_exchange_data_for_game(game_id: str, home_team: str) -> dict | None:
             "exchange_move": round(exchange_move, 3),
         }
     except Exception as e:
-        logger.debug(f"[ArbAPI] Exchange fetch failed for {game_id}: {e}")
+        logger.warning(f"[ArbAPI] Exchange fetch failed for {game_id}: {e}")
         return None
 
 

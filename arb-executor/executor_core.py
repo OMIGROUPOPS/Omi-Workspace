@@ -32,13 +32,15 @@ import math
 import os
 import time
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Set, Tuple, Optional, Any
 
 from config import Config
+from pregame_mapper import TEAM_FULL_NAMES  # Kalshi abbrev → full name for OMI lookups
 
 # Path for persisting traded games across restarts
 TRADED_GAMES_FILE = os.path.join(os.path.dirname(__file__), "traded_games.json")
+DIRECTIONAL_POSITIONS_FILE = os.path.join(os.path.dirname(__file__), "directional_positions.json")
 
 # =============================================================================
 # PM_LONG_TEAM ABBREVIATION MAPPINGS
@@ -183,7 +185,13 @@ class TradeResult:
     is_maker: bool = False             # True if filled via GTC (0% fee)
     exited: bool = False               # True if PM was successfully unwound after K failure
     unwind_loss_cents: Optional[float] = None  # Total loss from PM unwind across all contracts (cents)
-    tier: str = ""  # "TIER1_HEDGE", "TIER2_EXIT", "TIER3_UNWIND", or "" for normal/non-recovery
+    tier: str = ""  # "TIER1_HEDGE", "TIER2_EXIT", "TIER3_UNWIND", "TIER3A", "TIER3B", or ""
+    naked_contracts: int = 0           # Contracts held directional (no hedge)
+    flip_contracts: int = 0            # Extra flip contracts (Tier 3b)
+    omi_ceq: float = 0.0              # CEQ used for decision
+    omi_signal: str = ""               # Signal tier (e.g. "HIGH EDGE")
+    omi_favored_team: str = ""         # Team OMI favors
+    omi_pillar_scores: Optional[Dict] = None  # Full pillar scores dict
 
 
 def _extract_pm_response_details(pm_result: Dict) -> Dict:
@@ -622,6 +630,63 @@ def get_traded_games_count() -> int:
 
 
 # =============================================================================
+# DIRECTIONAL POSITION TRACKING (OMI Edge Tier 3a/3b)
+# =============================================================================
+# In-memory directional positions for exposure tracking
+# Key: game_id → {contracts, entry_price_cents, side, tier, ceq, timestamp, ...}
+directional_positions: Dict[str, Dict] = {}
+
+
+def load_directional_positions() -> Tuple[float, float]:
+    """Load directional_positions.json. Return (current_exposure_usd, daily_loss_usd)."""
+    global directional_positions
+    if not os.path.exists(DIRECTIONAL_POSITIONS_FILE):
+        return 0.0, 0.0
+    try:
+        with open(DIRECTIONAL_POSITIONS_FILE, 'r') as f:
+            data = json.load(f)
+        today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+        exposure = 0.0
+        daily_loss = 0.0
+        for entry in data:
+            gid = entry.get('game_id', '')
+            if not entry.get('settled', False):
+                # Active position → count toward exposure
+                cost = entry.get('entry_price_cents', 0) * entry.get('naked_contracts', 0) / 100.0
+                exposure += cost
+                directional_positions[gid] = entry
+            else:
+                # Settled → count toward daily loss if today
+                ts = entry.get('timestamp', '')
+                if ts.startswith(today):
+                    pnl = entry.get('settlement_pnl', 0)
+                    if pnl < 0:
+                        daily_loss += abs(pnl)
+        return exposure, daily_loss
+    except Exception as e:
+        print(f"[WARN] Failed to load directional_positions.json: {e}")
+        return 0.0, 0.0
+
+
+def save_directional_position(entry: dict) -> None:
+    """Append a directional position entry to directional_positions.json."""
+    data = []
+    if os.path.exists(DIRECTIONAL_POSITIONS_FILE):
+        try:
+            with open(DIRECTIONAL_POSITIONS_FILE, 'r') as f:
+                data = json.load(f)
+        except (json.JSONDecodeError, IOError):
+            data = []
+    data.append(entry)
+    with open(DIRECTIONAL_POSITIONS_FILE, 'w') as f:
+        json.dump(data, f, indent=2, default=str)
+    # Also track in memory
+    gid = entry.get('game_id', '')
+    if gid and not entry.get('settled', False):
+        directional_positions[gid] = entry
+
+
+# =============================================================================
 # SAFETY FUNCTIONS
 # =============================================================================
 def on_execution_crash(game_id: str) -> None:
@@ -928,6 +993,7 @@ async def execute_arb(
     pm_outcome_idx: int,  # PM outcome index (usually 0)
     size: int = 1,    # Number of contracts (from depth-aware sizing)
     k_book_ref: Optional[Dict] = None,  # Live Kalshi book ref for GTC spread monitoring
+    omi_cache=None,   # OmiSignalCache instance for Tier 3 directional decisions
 ) -> TradeResult:
     """
     Execute a hedged arb trade with dynamic sizing.
@@ -1479,30 +1545,279 @@ async def execute_arb(
             if not t2_attempted:
                 print(f"[TIER] Tier 2 skipped: BBO fetch failed: {e}")
 
-        # ── TIER 3: Fallback to existing PM unwind (SDK close_position + manual) ──
-        print(f"[TIER] Tier 2 failed/skipped. Falling through to Tier 3 unwind.")
+        # ── TIER 3: OMI DIRECTIONAL RISK ──
+        print(f"[TIER] Tier 2 failed/skipped. Entering Tier 3 directional decision.")
 
-        t3_filled, t3_fill_price = await _unwind_pm_position(
-            session, pm_api, pm_slug, reverse_intent,
-            pm_fill_price_cents, pm_filled, actual_pm_outcome_idx,
-        )
+        _tier3_fell_through = True  # Flag: did we skip to fallback?
 
-        if t3_filled > 0:
-            if reverse_intent in (2, 4):
-                loss_per = pm_fill_price_cents - (t3_fill_price * 100)
+        if omi_cache is not None:
+            # Step 1: Look up OMI signal
+            team_full_name = TEAM_FULL_NAMES.get(arb.team, arb.team)
+            omi_signal_data = omi_cache.get_signal(team_full_name)
+
+            if omi_signal_data is not None:
+                ceq = omi_cache.get_effective_ceq(omi_signal_data)
+                favored_team = omi_cache.get_favored_team(omi_signal_data)
+                signal_tier = omi_signal_data.get("signal", "")
+                game_status = omi_signal_data.get("game_status", "")
+                live_data = omi_signal_data.get("live") or {}
+                live_ceq = live_data.get("live_ceq") if live_data else None
+                live_confidence = live_data.get("live_confidence", "") if live_data else ""
+                pillar_scores = omi_signal_data.get("pillar_scores", {})
+
+                print(f"[TIER3] OMI signal: composite={omi_signal_data.get('composite_score')}, "
+                      f"live_ceq={live_ceq}, favored={favored_team}, "
+                      f"signal={signal_tier}, game_status={game_status}")
+
+                # Step 2: Game status check
+                if game_status != "final":
+
+                    # Step 3: Exposure limits
+                    current_exposure, daily_loss = load_directional_positions()
+                    new_cost = pm_cost_cents * pm_filled / 100.0
+                    print(f"[TIER3] Exposure: current=${current_exposure:.2f}, "
+                          f"limit=${Config.max_directional_exposure_usd:.2f} | "
+                          f"Daily loss: ${daily_loss:.2f}, "
+                          f"limit=${Config.daily_directional_loss_limit:.2f}")
+
+                    if (current_exposure + new_cost <= Config.max_directional_exposure_usd
+                            and daily_loss < Config.daily_directional_loss_limit):
+
+                        # Step 4: Direction match
+                        # BUY_PM_SELL_K → we're LONG arb.team
+                        # BUY_K_SELL_PM → we're SHORT arb.team (PM is opposite side)
+                        pm_bet_long = (arb.direction == 'BUY_PM_SELL_K')
+
+                        # Check if OMI favored_team matches arb.team
+                        arb_team_full = team_full_name.lower()
+                        favored_full = favored_team.lower()
+                        omi_favors_our_team = (
+                            arb_team_full in favored_full or favored_full in arb_team_full
+                        ) if favored_full else False
+
+                        omi_agrees = (pm_bet_long and omi_favors_our_team) or \
+                                     (not pm_bet_long and not omi_favors_our_team)
+
+                        # Step 5a: TIER3A — OMI agrees, hold some naked
+                        if omi_agrees and ceq >= Config.min_ceq_hold:
+                            naked_count = Config.get_naked_contracts(ceq)
+                            naked_count = min(naked_count, pm_filled)
+                            hedge_count = pm_filled - naked_count
+                            k_hedge_filled = 0
+                            k_hedge_price = k_limit_price
+
+                            if hedge_count > 0:
+                                print(f"[TIER3] TIER3A: OMI agrees (CEQ {ceq:.2f}). "
+                                      f"Holding {naked_count} naked, hedging {hedge_count} via Kalshi IOC")
+                                try:
+                                    t3a_result = await kalshi_api.place_order(
+                                        session, arb.kalshi_ticker,
+                                        params['k_side'], params['k_action'],
+                                        hedge_count, k_limit_price,
+                                        time_in_force='immediate_or_cancel'
+                                    )
+                                    k_hedge_filled = t3a_result.get('fill_count', 0)
+                                    k_hedge_price = t3a_result.get('fill_price', k_limit_price)
+                                    if k_hedge_filled > 0:
+                                        qty_delta = -k_hedge_filled if params['k_action'] == 'sell' else k_hedge_filled
+                                        update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
+                                except Exception as e:
+                                    print(f"[TIER3] TIER3A Kalshi hedge IOC failed: {e}")
+                            else:
+                                print(f"[TIER3] TIER3A: OMI agrees (CEQ {ceq:.2f}). "
+                                      f"Holding all {naked_count} contracts naked")
+
+                            # Actual naked = pm_filled - k_hedge_filled
+                            actual_naked = pm_filled - k_hedge_filled
+
+                            # Save directional position
+                            dir_entry = {
+                                "timestamp": datetime.now(timezone.utc).isoformat(),
+                                "game_id": arb.game, "team": arb.team,
+                                "side": "long" if pm_bet_long else "short",
+                                "naked_contracts": actual_naked,
+                                "hedged_contracts": k_hedge_filled,
+                                "entry_price_cents": int(pm_cost_cents),
+                                "tier": "TIER3A", "ceq": round(ceq, 3),
+                                "live_ceq": live_ceq, "signal": signal_tier,
+                                "game_status": game_status,
+                                "live_confidence": live_confidence,
+                                "pillar_scores": pillar_scores,
+                                "settled": False, "settlement_pnl": None,
+                            }
+                            save_directional_position(dir_entry)
+
+                            print(f"[TIER3] TIER3A result: {actual_naked} naked + {k_hedge_filled} hedged")
+
+                            _tier3_fell_through = False
+                            return TradeResult(
+                                success=k_hedge_filled > 0,
+                                kalshi_filled=k_hedge_filled,
+                                pm_filled=pm_filled,
+                                kalshi_price=k_hedge_price,
+                                pm_price=pm_fill_price,
+                                unhedged=actual_naked > 0,
+                                abort_reason=f"TIER3A: OMI agrees, holding {actual_naked} naked (CEQ {ceq:.2f}, {signal_tier})",
+                                execution_time_ms=int((time.time() - start_time) * 1000),
+                                pm_order_ms=pm_order_ms, k_order_ms=k_order_ms,
+                                pm_response_details=pm_response_details,
+                                execution_phase=_exec_phase,
+                                gtc_rest_time_ms=_gtc_rest, gtc_spread_checks=_gtc_checks,
+                                gtc_cancel_reason=_gtc_cancel, is_maker=_is_maker,
+                                tier="TIER3A",
+                                naked_contracts=actual_naked, flip_contracts=0,
+                                omi_ceq=ceq, omi_signal=signal_tier,
+                                omi_favored_team=favored_team, omi_pillar_scores=pillar_scores,
+                            )
+
+                        # Step 5b: TIER3B — OMI disagrees, hedge + flip
+                        elif not omi_agrees and ceq >= Config.min_ceq_flip \
+                                and Config.is_flip_eligible(signal_tier):
+                            print(f"[TIER3] TIER3B: OMI disagrees (CEQ {ceq:.2f}, {signal_tier}). "
+                                  f"Hedging all + flipping {Config.max_flip_contracts}")
+
+                            # Step 1: Full hedge
+                            k_hedge_filled = 0
+                            k_hedge_price = k_limit_price
+                            try:
+                                t3b_hedge = await kalshi_api.place_order(
+                                    session, arb.kalshi_ticker,
+                                    params['k_side'], params['k_action'],
+                                    pm_filled, k_limit_price,
+                                    time_in_force='immediate_or_cancel'
+                                )
+                                k_hedge_filled = t3b_hedge.get('fill_count', 0)
+                                k_hedge_price = t3b_hedge.get('fill_price', k_limit_price)
+                                if k_hedge_filled > 0:
+                                    qty_delta = -k_hedge_filled if params['k_action'] == 'sell' else k_hedge_filled
+                                    update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
+                            except Exception as e:
+                                print(f"[TIER3] TIER3B base hedge IOC failed: {e}")
+
+                            if k_hedge_filled == 0:
+                                print(f"[TIER3] TIER3B base hedge got 0 fills — cannot flip, falling through")
+                                # Fall through to fallback unwind
+                            else:
+                                # Step 2: Flip extra contracts (same Kalshi direction = bet against our PM)
+                                flip_filled = 0
+                                flip_price = k_limit_price
+                                try:
+                                    t3b_flip = await kalshi_api.place_order(
+                                        session, arb.kalshi_ticker,
+                                        params['k_side'], params['k_action'],
+                                        Config.max_flip_contracts, k_limit_price,
+                                        time_in_force='immediate_or_cancel'
+                                    )
+                                    flip_filled = t3b_flip.get('fill_count', 0)
+                                    flip_price = t3b_flip.get('fill_price', k_limit_price)
+                                    if flip_filled > 0:
+                                        qty_delta = -flip_filled if params['k_action'] == 'sell' else flip_filled
+                                        update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
+                                except Exception as e:
+                                    print(f"[TIER3] TIER3B flip IOC failed: {e} (base hedge OK)")
+
+                                # Save directional position (flip contracts only — base hedge is flat)
+                                if flip_filled > 0:
+                                    flip_side = "short" if pm_bet_long else "long"
+                                    dir_entry = {
+                                        "timestamp": datetime.now(timezone.utc).isoformat(),
+                                        "game_id": arb.game, "team": arb.team,
+                                        "side": flip_side,
+                                        "naked_contracts": flip_filled,
+                                        "hedged_contracts": k_hedge_filled,
+                                        "entry_price_cents": int(flip_price),
+                                        "tier": "TIER3B", "ceq": round(ceq, 3),
+                                        "live_ceq": live_ceq, "signal": signal_tier,
+                                        "game_status": game_status,
+                                        "live_confidence": live_confidence,
+                                        "pillar_scores": pillar_scores,
+                                        "settled": False, "settlement_pnl": None,
+                                    }
+                                    save_directional_position(dir_entry)
+
+                                print(f"[TIER3] TIER3B result: {k_hedge_filled} hedged + {flip_filled} flipped")
+
+                                _tier3_fell_through = False
+                                return TradeResult(
+                                    success=True,
+                                    kalshi_filled=k_hedge_filled + flip_filled,
+                                    pm_filled=pm_filled,
+                                    kalshi_price=k_hedge_price,
+                                    pm_price=pm_fill_price,
+                                    unhedged=False,
+                                    abort_reason=f"TIER3B: OMI disagrees, hedged {k_hedge_filled} + flipped {flip_filled} (CEQ {ceq:.2f}, {signal_tier})",
+                                    execution_time_ms=int((time.time() - start_time) * 1000),
+                                    pm_order_ms=pm_order_ms, k_order_ms=k_order_ms,
+                                    pm_response_details=pm_response_details,
+                                    execution_phase=_exec_phase,
+                                    gtc_rest_time_ms=_gtc_rest, gtc_spread_checks=_gtc_checks,
+                                    gtc_cancel_reason=_gtc_cancel, is_maker=_is_maker,
+                                    tier="TIER3B",
+                                    naked_contracts=0, flip_contracts=flip_filled,
+                                    omi_ceq=ceq, omi_signal=signal_tier,
+                                    omi_favored_team=favored_team, omi_pillar_scores=pillar_scores,
+                                )
+                        else:
+                            print(f"[TIER3] OMI signal present but conditions not met "
+                                  f"(agrees={omi_agrees}, ceq={ceq:.2f}, signal={signal_tier})")
+                    else:
+                        print(f"[TIER3] Exposure/loss limits exceeded, skipping directional")
+                else:
+                    print(f"[TIER3] Game status is 'final', skipping directional")
             else:
-                loss_per = (t3_fill_price * 100) - pm_fill_price_cents
-            loss_cents = abs(loss_per) * pm_filled
-            print(f"[TIER] Tier 3: exited {t3_filled} (loss: {loss_cents:.1f}c)")
+                print(f"[TIER3] No OMI signal for {team_full_name}")
+        else:
+            print(f"[TIER3] OMI cache not available")
 
+        # ── TIER 3 FALLBACK: Existing PM unwind (SDK close_position + manual) ──
+        if _tier3_fell_through:
+            print(f"[TIER] Tier 3 directional skipped. Falling through to unwind.")
+
+            t3_filled, t3_fill_price = await _unwind_pm_position(
+                session, pm_api, pm_slug, reverse_intent,
+                pm_fill_price_cents, pm_filled, actual_pm_outcome_idx,
+            )
+
+            if t3_filled > 0:
+                if reverse_intent in (2, 4):
+                    loss_per = pm_fill_price_cents - (t3_fill_price * 100)
+                else:
+                    loss_per = (t3_fill_price * 100) - pm_fill_price_cents
+                loss_cents = abs(loss_per) * pm_filled
+                print(f"[TIER] Tier 3 unwind: exited {t3_filled} (loss: {loss_cents:.1f}c)")
+
+                return TradeResult(
+                    success=False,
+                    kalshi_filled=0,
+                    pm_filled=0,
+                    kalshi_price=k_limit_price,
+                    pm_price=pm_fill_price,
+                    unhedged=False,
+                    abort_reason=f"Kalshi failed, PM unwound (loss: {loss_cents:.1f}c)",
+                    execution_time_ms=int((time.time() - start_time) * 1000),
+                    pm_order_ms=pm_order_ms,
+                    k_order_ms=k_order_ms,
+                    pm_response_details=pm_response_details,
+                    execution_phase=_exec_phase,
+                    gtc_rest_time_ms=_gtc_rest,
+                    gtc_spread_checks=_gtc_checks,
+                    gtc_cancel_reason=_gtc_cancel,
+                    is_maker=_is_maker,
+                    exited=True,
+                    unwind_loss_cents=loss_cents,
+                    tier="TIER3_UNWIND",
+                )
+
+            # All tiers failed - still unhedged
+            print(f"[TIER] ALL TIERS FAILED — position remains unhedged!")
             return TradeResult(
                 success=False,
                 kalshi_filled=0,
-                pm_filled=0,
+                pm_filled=pm_filled,
                 kalshi_price=k_limit_price,
                 pm_price=pm_fill_price,
-                unhedged=False,
-                abort_reason=f"Kalshi failed, PM unwound (loss: {loss_cents:.1f}c)",
+                unhedged=True,
+                abort_reason=f"Kalshi: no fill, all recovery tiers failed - UNHEDGED!",
                 execution_time_ms=int((time.time() - start_time) * 1000),
                 pm_order_ms=pm_order_ms,
                 k_order_ms=k_order_ms,
@@ -1512,32 +1827,8 @@ async def execute_arb(
                 gtc_spread_checks=_gtc_checks,
                 gtc_cancel_reason=_gtc_cancel,
                 is_maker=_is_maker,
-                exited=True,
-                unwind_loss_cents=loss_cents,
                 tier="TIER3_UNWIND",
             )
-
-        # All tiers failed - still unhedged
-        print(f"[TIER] ALL TIERS FAILED — position remains unhedged!")
-        return TradeResult(
-            success=False,
-            kalshi_filled=0,
-            pm_filled=pm_filled,
-            kalshi_price=k_limit_price,
-            pm_price=pm_fill_price,
-            unhedged=True,
-            abort_reason=f"Kalshi: no fill, all recovery tiers failed - UNHEDGED!",
-            execution_time_ms=int((time.time() - start_time) * 1000),
-            pm_order_ms=pm_order_ms,
-            k_order_ms=k_order_ms,
-            pm_response_details=pm_response_details,
-            execution_phase=_exec_phase,
-            gtc_rest_time_ms=_gtc_rest,
-            gtc_spread_checks=_gtc_checks,
-            gtc_cancel_reason=_gtc_cancel,
-            is_maker=_is_maker,
-            tier="TIER3_UNWIND",
-        )
 
     # -------------------------------------------------------------------------
     # Step 7.5: Partial hedge — unwind excess PM if K filled fewer than PM

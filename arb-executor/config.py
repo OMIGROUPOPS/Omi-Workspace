@@ -113,6 +113,18 @@ class Config:
     gtc_cooldown_seconds: int = 0         # Per-game cooldown after GTC timeout
 
     # ==========================================================================
+    # OMI EDGE DIRECTIONAL RISK
+    # ==========================================================================
+    min_ceq_hold: float = 0.60        # Min CEQ for Tier 3a (hold naked)
+    min_ceq_flip: float = 0.70        # Min CEQ for Tier 3b (flip to opposite)
+    min_flip_signal: str = "HIGH EDGE" # Min signal tier for flip ("HIGH EDGE" or "MAX EDGE")
+    max_directional_exposure_usd: float = 15.0   # Max $ in naked directional positions
+    daily_directional_loss_limit: float = 10.0   # Daily Tier 3 loss limit ($)
+    max_flip_contracts: int = 2        # Max extra contracts when flipping
+    # CEQ contract scale: [(0.60, 1), (0.65, 2), (0.70, 3)]
+    # Meaning: CEQ 0.60-0.64 → 1 naked, 0.65-0.69 → 2 naked, 0.70+ → 3 naked
+
+    # ==========================================================================
     # CLASS METHODS FOR MODE CONTROL
     # ==========================================================================
 
@@ -142,6 +154,19 @@ class Config:
     def is_paper_unlimited(cls) -> bool:
         """Check if running in paper mode with no limits."""
         return cls.execution_mode == ExecutionMode.PAPER and cls.paper_no_limits
+
+    @classmethod
+    def get_naked_contracts(cls, ceq: float) -> int:
+        """Return max naked contracts for given CEQ."""
+        if ceq >= 0.70: return 3
+        if ceq >= 0.65: return 2
+        if ceq >= 0.60: return 1
+        return 0
+
+    @classmethod
+    def is_flip_eligible(cls, signal: str) -> bool:
+        """Check if signal tier is high enough for flip."""
+        return signal in ("HIGH EDGE", "MAX EDGE")
 
     @classmethod
     def configure_from_args(cls, args):

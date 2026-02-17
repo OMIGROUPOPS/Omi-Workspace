@@ -28,6 +28,7 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.backends import default_backend
 
+import httpx  # available from PM SDK dependency
 from dashboard_push import DashboardPusher
 import orderbook_db
 
@@ -76,9 +77,10 @@ from executor_core import (
     load_traded_games,      # Load persisted traded games on startup
     save_traded_game,       # Save traded game after successful trade
     refresh_position_cache, # Background position refresh (not on hot path)
+    load_directional_positions,  # Load OMI directional positions on startup
 )
 
-from pregame_mapper import load_verified_mappings
+from pregame_mapper import load_verified_mappings, TEAM_FULL_NAMES
 from verify_all_mappings import run_startup_verification, run_trade_verification
 
 # ============================================================================
@@ -238,6 +240,101 @@ ONE_TRADE_TEST_MODE = False
 
 # Max trades limit (0 = unlimited)
 MAX_TRADES_LIMIT = 0
+
+
+# ============================================================================
+# OMI EDGE SIGNAL CACHE
+# ============================================================================
+
+class OmiSignalCache:
+    """Pre-cached OMI Edge signals. All lookups are local dict reads (0ms)."""
+
+    def __init__(self):
+        self.signals = {}           # keyed by lowercase team name → signal dict
+        self.last_refresh = 0
+        self.refresh_interval_idle = 900   # 15 min when no live games
+        self.refresh_interval_live = 120   # 2 min when games are live
+        self.api_url = "https://omi-workspace-production.up.railway.app/api/v1/edge-signal/bulk?sport=NCAAB"
+        self.api_key = os.environ.get("OMI_API_KEY", "SkvEI04AmE0lOsOuHsSNmLwsUkDh_6Q_n1wyQBZK8rU")
+        self._refreshing = False    # Guard against concurrent refreshes
+
+    async def refresh(self) -> bool:
+        """Fetch all signals from OMI Edge API and rebuild local cache."""
+        if self._refreshing:
+            return False
+        self._refreshing = True
+        try:
+            async with httpx.AsyncClient(timeout=5.0) as client:
+                resp = await client.get(
+                    self.api_url,
+                    headers={"Authorization": f"Bearer {self.api_key}"},
+                )
+                resp.raise_for_status()
+                data = resp.json()
+            signals_list = data.get("signals", data if isinstance(data, list) else [])
+            new_cache = {}
+            for s in signals_list:
+                home = s.get("home_team", "").lower().strip()
+                away = s.get("away_team", "").lower().strip()
+                if home:
+                    new_cache[home] = s
+                if away:
+                    new_cache[away] = s
+            self.signals = new_cache
+            self.last_refresh = time.time()
+            live_count = data.get("live_count", 0)
+            print(f"[OMI] Cache refreshed: {len(signals_list)} games, {live_count} live")
+            return any(s.get("game_status") == "live" for s in signals_list)
+        except Exception as e:
+            print(f"[OMI] Cache refresh failed: {e}")
+            return False
+        finally:
+            self._refreshing = False
+
+    def get_signal(self, team_name: str) -> dict | None:
+        """Look up signal by team name. Tries exact then substring."""
+        key = team_name.lower().strip()
+        if key in self.signals:
+            return self.signals[key]
+        for cached_key, signal in self.signals.items():
+            if key in cached_key or cached_key in key:
+                return signal
+        return None
+
+    def get_effective_ceq(self, signal: dict) -> float:
+        """Return live_ceq if game is live, composite_score if pre_game."""
+        if signal.get("game_status") == "live" and signal.get("live"):
+            return signal["live"].get("live_ceq", signal.get("composite_score", 0.5))
+        return signal.get("composite_score", 0.5)
+
+    def get_favored_team(self, signal: dict) -> str:
+        """Derive favored team from favored_side field."""
+        side = signal.get("favored_side", "")
+        if side == "home":
+            return signal.get("home_team", "")
+        elif side == "away":
+            return signal.get("away_team", "")
+        return ""
+
+    def is_stale(self) -> bool:
+        if self.last_refresh == 0:
+            return True
+        seen = set()
+        has_live = False
+        for s in self.signals.values():
+            sid = id(s)
+            if sid in seen:
+                continue
+            seen.add(sid)
+            if isinstance(s, dict) and s.get("game_status") == "live":
+                has_live = True
+                break
+        interval = self.refresh_interval_live if has_live else self.refresh_interval_idle
+        return time.time() - self.last_refresh > interval
+
+
+# Module-level OMI cache instance
+omi_cache = OmiSignalCache()
 
 
 # ============================================================================
@@ -1319,6 +1416,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 pm_outcome_idx=arb.pm_outcome_index,
                 size=optimal_size,
                 k_book_ref=local_books.get(arb.kalshi_ticker),
+                omi_cache=omi_cache,
             )
 
             # Handle result — only apply cooldown when PM order was actually sent
@@ -1395,6 +1493,23 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                     save_unhedged_position(hedge_state, result.abort_reason)
                 except Exception as e:
                     print(f"[ERROR] Failed to save unhedged position: {e}")
+
+            elif result.tier in ("TIER3A", "TIER3B"):
+                # OMI directional hold/flip — not a full unwind
+                timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
+                print(f"[EXEC] [{result.tier}]: {result.abort_reason} | {timing}")
+                k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
+                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
+                log_trade(arb, k_result, pm_result, result.tier,
+                          execution_time_ms=result.execution_time_ms,
+                          pm_order_ms=result.pm_order_ms,
+                          sizing_details=_sizing_details,
+                          execution_phase=result.execution_phase,
+                          is_maker=result.is_maker,
+                          gtc_rest_time_ms=result.gtc_rest_time_ms,
+                          gtc_spread_checks=result.gtc_spread_checks,
+                          gtc_cancel_reason=result.gtc_cancel_reason,
+                          tier=result.tier)
 
             elif result.exited:
                 # PM filled, K failed, PM successfully unwound — position is flat
@@ -2105,6 +2220,12 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
     # Build ticker mappings
     build_ticker_mappings()
 
+    # Initialize OMI signal cache
+    try:
+        await omi_cache.refresh()
+    except Exception as e:
+        print(f"[OMI] Initial cache load failed: {e}")
+
     if not ticker_to_cache_key:
         print("[ERROR] No active tickers for today/tomorrow")
         return
@@ -2230,6 +2351,8 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
                 print_spread_snapshot()  # One-time snapshot after data loads
                 await refresh_balances(session, kalshi_api, pm_api)
                 await check_and_reload_mappings(k_ws, pm_ws, pusher=pusher)
+                if omi_cache.is_stale():
+                    asyncio.create_task(omi_cache.refresh())  # Non-blocking
                 await asyncio.sleep(1)
         except KeyboardInterrupt:
             print("\n[SHUTDOWN] Received interrupt, stopping...")
@@ -2295,6 +2418,11 @@ def main():
     traded_count = load_traded_games(clear=args.clear_traded)
     if traded_count > 0:
         print(f"[INIT] Loaded {traded_count} previously traded games from traded_games.json")
+
+    # Load directional positions (OMI Tier 3a/3b exposure tracking)
+    dir_exposure, dir_loss = load_directional_positions()
+    if dir_exposure > 0 or dir_loss > 0:
+        print(f"[INIT] Directional positions: exposure=${dir_exposure:.2f}, daily_loss=${dir_loss:.2f}")
 
     # Configure shared Config object - this is the single source of truth
     # All imported v7 functions will read from Config automatically

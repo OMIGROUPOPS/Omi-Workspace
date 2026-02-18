@@ -657,7 +657,7 @@ export default function ArbDashboard() {
     return trades;
   }, [allTrades, selectedDate, tradeFilter, statusFilter, tradeSearch]);
 
-  const filteredPnl = useMemo(() => {
+  function computePnl(trades: TradeEntry[]) {
     let arbPnl = 0;         // SUCCESS trades: spread_cents * contracts / 100
     let exitedLoss = 0;     // EXITED trades: -(abs(unwind_loss_cents) / 100)
     let directionalPnl = 0; // settled UNHEDGED / TIER3A / TIER3B: settlement_pnl
@@ -666,18 +666,20 @@ export default function ArbDashboard() {
     let openCount = 0;
     let realizedWins = 0;
     let realizedLosses = 0;
-    for (const t of filteredTrades) {
+    let dirCount = 0;
+    for (const t of trades) {
       if (t.status === "SUCCESS") successes++;
       if (t.contracts_filled > 0) fills++;
       const qty = t.contracts_filled > 0 ? t.contracts_filled : (t.contracts_intended || 0);
-      const tier = t.tier || "";
 
       // Directional positions (UNHEDGED / TIER3A_HOLD / TIER3B_FLIP)
       if (isOpenTrade(t)) {
-        if (t.settlement_pnl != null) {
+        const sp = t.settlement_pnl != null ? parseFloat(String(t.settlement_pnl)) : NaN;
+        if (!isNaN(sp)) {
           // Settled — use settlement_pnl directly (already in dollars)
-          directionalPnl += t.settlement_pnl;
-          if (t.settlement_pnl >= 0) realizedWins++;
+          directionalPnl += sp;
+          dirCount++;
+          if (sp >= 0) realizedWins++;
           else realizedLosses++;
         } else {
           openCount++;
@@ -707,8 +709,18 @@ export default function ArbDashboard() {
       }
     }
     const netTotal = arbPnl + exitedLoss + directionalPnl;
-    return { arbPnl, exitedLoss, directionalPnl, netTotal, successes, fills, count: filteredTrades.length, openCount, realizedWins, realizedLosses };
-  }, [filteredTrades]);
+    return { arbPnl, exitedLoss, directionalPnl, netTotal, successes, fills, count: trades.length, openCount, realizedWins, realizedLosses, dirCount };
+  }
+
+  // Total P&L across ALL trades (for top MetricCard)
+  const totalPnl = useMemo(() => {
+    const result = computePnl(allTrades);
+    console.log(`[P&L] All trades: arb=${result.arbPnl.toFixed(2)} dir=${result.directionalPnl.toFixed(2)} (${result.dirCount} trades) exit=${result.exitedLoss.toFixed(2)} total=${result.netTotal.toFixed(2)} open=${result.openCount}`);
+    return result;
+  }, [allTrades]);
+
+  // Filtered P&L (for inline summary under current date/filter view)
+  const filteredPnl = useMemo(() => computePnl(filteredTrades), [filteredTrades]);
 
   const pnl = state?.pnl_summary;
 
@@ -1237,19 +1249,19 @@ export default function ArbDashboard() {
               <MetricCard
                 label="P&L"
                 value={
-                  filteredPnl.count > 0
-                    ? `${filteredPnl.netTotal >= 0 ? "+$" : "-$"}${Math.abs(filteredPnl.netTotal).toFixed(2)}`
+                  totalPnl.count > 0
+                    ? `${totalPnl.netTotal >= 0 ? "+$" : "-$"}${Math.abs(totalPnl.netTotal).toFixed(2)}`
                     : "-"
                 }
                 sub={
-                  filteredPnl.count > 0
-                    ? `Arb: ${filteredPnl.arbPnl >= 0 ? "+" : ""}$${filteredPnl.arbPnl.toFixed(2)}${filteredPnl.directionalPnl !== 0 ? ` · Dir: ${filteredPnl.directionalPnl >= 0 ? "+" : ""}$${filteredPnl.directionalPnl.toFixed(2)}` : ""}${filteredPnl.exitedLoss !== 0 ? ` · Exit: ${filteredPnl.exitedLoss >= 0 ? "+" : ""}$${filteredPnl.exitedLoss.toFixed(2)}` : ""}${filteredPnl.openCount > 0 ? ` · ${filteredPnl.openCount} open` : ""}`
+                  totalPnl.count > 0
+                    ? `Arb: ${totalPnl.arbPnl >= 0 ? "+" : ""}$${totalPnl.arbPnl.toFixed(2)}${totalPnl.directionalPnl !== 0 ? ` · Dir: ${totalPnl.directionalPnl >= 0 ? "+" : ""}$${totalPnl.directionalPnl.toFixed(2)}` : ""}${totalPnl.exitedLoss !== 0 ? ` · Exit: ${totalPnl.exitedLoss >= 0 ? "+" : ""}$${totalPnl.exitedLoss.toFixed(2)}` : ""}${totalPnl.openCount > 0 ? ` · ${totalPnl.openCount} open` : ""}`
                     : undefined
                 }
                 accent={
-                  filteredPnl.netTotal > 0
+                  totalPnl.netTotal > 0
                     ? "text-emerald-400"
-                    : filteredPnl.netTotal < 0
+                    : totalPnl.netTotal < 0
                     ? "text-red-400"
                     : "text-white"
                 }

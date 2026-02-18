@@ -1376,7 +1376,7 @@ _INTENT_MAP = {
     4: 'ORDER_INTENT_SELL_SHORT',
 }
 _TIF_MAP = {
-    1: 'TIME_IN_FORCE_GOOD_TIL_CANCEL',
+    1: 'TIME_IN_FORCE_GOOD_TILL_CANCEL',
     3: 'TIME_IN_FORCE_IMMEDIATE_OR_CANCEL',
 }
 
@@ -1843,64 +1843,34 @@ class PolymarketUSAPI:
                 'dry_run': True
             }
 
-        # --- SDK fast path (~3x faster than aiohttp, uses httpx internally) ---
-        if self._sdk_client is not None and intent in _INTENT_MAP and tif in _TIF_MAP:
-            try:
-                print(f"   [PM ORDER] {intent_names[intent]} outcome[{outcome_index}] {quantity} @ ${price:.2f} on {market_slug} [SDK]")
-                sdk_resp = await self._sdk_client.orders.create({
-                    'marketSlug': market_slug,
-                    'intent': _INTENT_MAP[intent],
-                    'type': 'ORDER_TYPE_LIMIT',
-                    'price': {'value': f'{price:.2f}', 'currency': 'USD'},
-                    'quantity': quantity,
-                    'tif': _TIF_MAP[tif],
-                    'outcomeIndex': outcome_index,
-                    'manualOrderIndicator': 'MANUAL_ORDER_INDICATOR_AUTOMATIC',
-                    'synchronousExecution': True,
-                })
-                print(f"   [DEBUG] PM SDK Response: {sdk_resp}")
-                return self._parse_pm_response(sdk_resp)
-            except Exception as e:
-                print(f"   [PM-SDK] SDK order failed, falling back to aiohttp: {e}")
-
-        # --- aiohttp fallback (used when SDK unavailable or failed) ---
-        path = '/v1/orders'
-        payload = {
-            'marketSlug': market_slug,
-            'intent': intent,
-            'outcomeIndex': outcome_index,  # CRITICAL: Specify which outcome to trade
-            'type': 1,  # LIMIT
-            'price': {'value': f'{price:.2f}', 'currency': 'USD'},
-            'quantity': quantity,
-            'tif': tif,
-            'manualOrderIndicator': 2,  # AUTOMATIC
-            'synchronousExecution': sync,
-        }
+        # --- SDK order (httpx, ~67ms) ---
+        if self._sdk_client is None:
+            print(f"   [!] PM SDK client not initialised — cannot place order")
+            return {'success': False, 'error': 'PM SDK client not initialised'}
+        if intent not in _INTENT_MAP:
+            print(f"   [!] Unknown PM intent={intent} — cannot place order")
+            return {'success': False, 'error': f'Unknown PM intent={intent}'}
+        if tif not in _TIF_MAP:
+            print(f"   [!] Unknown PM tif={tif} — cannot place order")
+            return {'success': False, 'error': f'Unknown PM tif={tif}'}
 
         try:
-            print(f"   [PM ORDER] {intent_names[intent]} outcome[{outcome_index}] {quantity} @ ${price:.2f} on {market_slug}")
-            print(f"   [DEBUG] PM Payload: {json.dumps(payload)}")
-
-            async with session.post(
-                f'{self.BASE_URL}{path}',
-                headers=self._headers('POST', path),
-                json=payload,
-                timeout=aiohttp.ClientTimeout(total=15)
-            ) as r:
-                data = await r.json()
-                print(f"   [DEBUG] PM HTTP Status: {r.status}")
-                print(f"   [DEBUG] PM Response: {data}")
-
-                if r.status == 200:
-                    return self._parse_pm_response(data)
-                else:
-                    return {
-                        'success': False,
-                        'error': f'HTTP {r.status}: {json.dumps(data)[:200]}'
-                    }
+            print(f"   [PM ORDER] {intent_names[intent]} outcome[{outcome_index}] {quantity} @ ${price:.2f} on {market_slug} [SDK]")
+            sdk_resp = await self._sdk_client.orders.create({
+                'marketSlug': market_slug,
+                'intent': _INTENT_MAP[intent],
+                'type': 'ORDER_TYPE_LIMIT',
+                'price': {'value': f'{price:.2f}', 'currency': 'USD'},
+                'quantity': quantity,
+                'tif': _TIF_MAP[tif],
+                'manualOrderIndicator': 'MANUAL_ORDER_INDICATOR_AUTOMATIC',
+                'synchronousExecution': True,
+            })
+            print(f"   [DEBUG] PM SDK Response: {sdk_resp}")
+            return self._parse_pm_response(sdk_resp)
         except Exception as e:
-            print(f"   [!] PM US order error: {e}")
-            return {'success': False, 'error': str(e)}
+            print(f"   [!] PM SDK order FAILED (no fallback): {e}")
+            return {'success': False, 'error': f'PM SDK order failed: {e}'}
 
     async def cancel_order(self, session, order_id: str, market_slug: str) -> bool:
         """Cancel a specific order"""

@@ -508,6 +508,17 @@ export function SportsHomeGrid({
     return result;
   }, [searchQuery, activeSport, sortedGamesBySport]);
 
+  // Debug: log first live game's liveData on each data update
+  useEffect(() => {
+    for (const sportGames of Object.values(sortedGamesBySport)) {
+      const liveGame = sportGames.find((g: any) => g.gameState === 'live');
+      if (liveGame) {
+        console.log(`[LiveData DEBUG] ${liveGame.awayTeam} @ ${liveGame.homeTeam}: gameState=${liveGame.gameState}, liveData=`, liveGame.liveData);
+        break;
+      }
+    }
+  }, [sortedGamesBySport]);
+
   const isAllView = activeSport === null;
   const activeSportsCount = Object.keys(games).filter(k => games[k]?.length > 0).length;
   const hasAnyGames = totalGames > 0 || Object.values(games).some(g => g.length > 0);

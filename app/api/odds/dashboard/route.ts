@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { enrichExchangeRows } from '@/lib/edge/utils/exchange-enrichment';
 
+// Force dynamic — never cache this route (ESPN scores must be fresh on every poll)
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 // ACTIVE SPORTS - Must match app/api/odds/sync/route.ts SPORT_KEYS
 const SPORT_KEYS = [
   'americanfootball_nfl',
@@ -425,21 +429,22 @@ function processGame(
           period: espnMatch.period,
           clock: espnMatch.clock,
         };
+        console.log(`[ESPN LIVE] ${game.away_team} @ ${game.home_team}: ${espnMatch.awayScore}-${espnMatch.homeScore}, detail="${espnMatch.statusDetail}", clock="${espnMatch.clock}", period=${espnMatch.period}`);
       } else {
         // ESPN says scheduled but commence_time passed — treat as live (pre-tip)
         gameState = 'live';
         liveData = { statusDetail: 'Starting soon' };
       }
     } else {
-      // No ESPN match — use time-based fallback
+      // No ESPN match — use time-based fallback (no fake clocks)
       const duration = SPORT_DURATIONS[game.sport_key] || 3;
       const expectedEnd = new Date(commenceTime.getTime() + duration * 60 * 60 * 1000);
       if (now < expectedEnd) {
         gameState = 'live';
-        liveData = { statusDetail: 'Score unavailable' };
+        liveData = { statusDetail: 'In Progress' };
       } else {
         gameState = 'final';
-        liveData = { statusDetail: 'Final (score pending)' };
+        liveData = { statusDetail: 'Final' };
       }
     }
   }

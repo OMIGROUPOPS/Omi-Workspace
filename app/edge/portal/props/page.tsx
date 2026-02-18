@@ -250,150 +250,191 @@ function getGameCompositeModifier(composite: number | null, edgeSide: 'Over' | '
   return 1.0;
 }
 
-// Inline SVG step-line chart with interactive hover, conditional fair line, and source attribution
+// Format a line value consistently (shared between chart and description)
+function fmtLine(v: number): string {
+  return Number.isInteger(v) ? String(v) : v.toFixed(1);
+}
+
+// Inline SVG step-line chart: green book line + orange OMI fair line, both interactive
 function PropLineChart({ data, fairLine, fairSource }: { data: any[]; fairLine: number; fairSource: 'pinnacle' | 'consensus' }) {
-  const [hoverIdx, setHoverIdx] = useState<number | null>(null);
+  const [hover, setHover] = useState<{ idx: number; target: 'book' | 'fair' } | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
-  const W = 680, H = 140, PAD_X = 40, PAD_R = 120, PAD_Y = 20;
-  const lines = data.map(d => Number(d.line)).filter(n => !isNaN(n));
-  if (lines.length < 2) return null;
+  // Debug: log fair value sources so chart vs description can be audited in console
+  useEffect(() => {
+    const last = data[data.length - 1];
+    console.log('[PropLineChart] fairLine:', fairLine, '| source:', fairSource,
+      '| lastSnapshot:', last?.line, '| book:', last?.book_key, '| time:', last?.snapshot_time);
+  }, [fairLine, fairSource, data]);
 
-  // Show fair line only when it differs from at least one book line (not stagnant)
-  const showFairLine = lines.some(l => Math.abs(l - fairLine) >= 0.25);
+  const W = 680, H = 160, PAD_X = 40, PAD_R = 80, PAD_Y = 20;
 
-  // Include fair line in range only when shown
-  const allValues = showFairLine ? [...lines, fairLine] : lines;
-  const minLine = Math.min(...allValues);
-  const maxLine = Math.max(...allValues);
-  const range = maxLine - minLine || 1;
+  // Filter to single book (prefer FanDuel) to avoid mixed-book step chart
+  const bookCounts = new Map<string, number>();
+  data.forEach(d => {
+    const bk = (d.book_key || '').toLowerCase();
+    bookCounts.set(bk, (bookCounts.get(bk) || 0) + 1);
+  });
+  let primaryBook = 'fanduel';
+  if ((bookCounts.get('fanduel') || 0) < 2) {
+    let maxN = 0;
+    bookCounts.forEach((n, bk) => { if (n > maxN) { maxN = n; primaryBook = bk; } });
+  }
+  const bookData = data.filter(d => (d.book_key || '').toLowerCase() === primaryBook);
+  const bookFullName = primaryBook === 'fanduel' ? 'FanDuel' : primaryBook === 'draftkings' ? 'DraftKings' : primaryBook;
+  const bookShort = primaryBook === 'fanduel' ? 'FD' : primaryBook === 'draftkings' ? 'DK' : primaryBook.slice(0, 3).toUpperCase();
+
+  const vals = bookData.map(d => Number(d.line)).filter(n => !isNaN(n));
+  if (vals.length < 2) return null;
+
+  // Y-range includes both lines
+  const allY = [...vals, fairLine];
+  const yMin = Math.min(...allY);
+  const yMax = Math.max(...allY);
+  const yRange = yMax - yMin || 1;
 
   const chartW = W - PAD_X - PAD_R;
-  const xStep = chartW / (lines.length - 1);
-  const valToY = (val: number) => PAD_Y + (1 - (val - minLine) / range) * (H - PAD_Y * 2);
+  const xStep = chartW / (vals.length - 1);
+  const toY = (v: number) => PAD_Y + (1 - (v - yMin) / yRange) * (H - PAD_Y * 2);
 
-  // Build step-line path
-  const points: string[] = [];
-  lines.forEach((val, i) => {
+  // Book step-line path
+  const parts: string[] = [];
+  vals.forEach((v, i) => {
     const x = PAD_X + i * xStep;
-    const y = valToY(val);
-    if (i === 0) {
-      points.push(`M ${x} ${y}`);
-    } else {
-      points.push(`H ${x}`);
-      points.push(`V ${y}`);
-    }
+    const y = toY(v);
+    if (i === 0) parts.push(`M ${x} ${y}`);
+    else { parts.push(`H ${x}`); parts.push(`V ${y}`); }
   });
-  const pathD = points.join(' ');
-  const fairY = valToY(fairLine);
+  const bookPath = parts.join(' ');
+  const fairY = toY(fairLine);
 
   // Y-axis labels
-  const yLabels = [minLine, (minLine + maxLine) / 2, maxLine];
+  const yTicks = [yMin, (yMin + yMax) / 2, yMax];
 
   // X-axis timestamps
-  const firstTime = data[0]?.snapshot_time ? new Date(data[0].snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
-  const lastTime = data[data.length - 1]?.snapshot_time ? new Date(data[data.length - 1].snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+  const t0 = bookData[0]?.snapshot_time ? new Date(bookData[0].snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
+  const tN = bookData[bookData.length - 1]?.snapshot_time
+    ? new Date(bookData[bookData.length - 1].snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
 
-  // Fair line label with source attribution
-  const fairValStr = Number.isInteger(fairLine) ? String(fairLine) : fairLine.toFixed(1);
-  const srcTag = fairSource === 'pinnacle' ? 'PIN' : 'consensus';
-  const fairLabel = `Fair: ${fairValStr} (${srcTag})`;
-  const labelX = W - PAD_R + 8;
+  // Endpoint positions
+  const lastX = PAD_X + (vals.length - 1) * xStep;
+  const lastBookY = toY(vals[vals.length - 1]);
 
-  // --- Hover logic ---
+  // Endpoint label collision avoidance
+  const GAP = 14;
+  let eLabelBookY = lastBookY;
+  let eLabelFairY = fairY;
+  if (Math.abs(eLabelBookY - eLabelFairY) < GAP) {
+    const mid = (eLabelBookY + eLabelFairY) / 2;
+    if (lastBookY <= fairY) { eLabelBookY = mid - GAP / 2; eLabelFairY = mid + GAP / 2; }
+    else { eLabelFairY = mid - GAP / 2; eLabelBookY = mid + GAP / 2; }
+  }
+
+  // Hover: detect which line is closer
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
     const svg = svgRef.current;
     if (!svg) return;
     const rect = svg.getBoundingClientRect();
-    const mouseX = ((e.clientX - rect.left) / rect.width) * W;
-    const idx = Math.round((mouseX - PAD_X) / xStep);
-    setHoverIdx(Math.max(0, Math.min(lines.length - 1, idx)));
+    const mx = ((e.clientX - rect.left) / rect.width) * W;
+    const my = ((e.clientY - rect.top) / rect.height) * H;
+    const idx = Math.max(0, Math.min(vals.length - 1, Math.round((mx - PAD_X) / xStep)));
+    const dBook = Math.abs(my - toY(vals[idx]));
+    const dFair = Math.abs(my - fairY);
+    setHover({ idx, target: dFair < dBook ? 'fair' : 'book' });
   };
-  const handleMouseLeave = () => setHoverIdx(null);
+  const handleMouseLeave = () => setHover(null);
 
-  // Hover data
-  const hd = hoverIdx !== null ? data[hoverIdx] : null;
-  const hx = hoverIdx !== null ? PAD_X + hoverIdx * xStep : 0;
-  const hy = hoverIdx !== null ? valToY(lines[hoverIdx]) : 0;
+  // Hover derived values
+  const hi = hover?.idx ?? null;
+  const ht = hover?.target ?? null;
+  const hx = hi !== null ? PAD_X + hi * xStep : 0;
+  const hBookY = hi !== null ? toY(vals[hi]) : 0;
+  const hd = hi !== null ? bookData[hi] : null;
   const hTime = hd?.snapshot_time
     ? new Date(hd.snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true })
     : '';
-  const hLine = hoverIdx !== null ? lines[hoverIdx] : 0;
-  const hBook = hd?.book_key || '';
-  const fmtBk = (b: string) => b.toLowerCase() === 'fanduel' ? 'FD' : b.toLowerCase() === 'draftkings' ? 'DK' : b.slice(0, 3).toUpperCase();
   const fmtO = (o: number) => o > 0 ? `+${o}` : `${o}`;
-  const tipL1 = hTime;
-  const tipL2 = `Line: ${Number.isInteger(hLine) ? hLine : hLine.toFixed(1)} (${fmtBk(hBook)})`;
-  const tipL3 = hd?.over_odds != null && hd?.under_odds != null
-    ? `O ${fmtO(hd.over_odds)} / U ${fmtO(hd.under_odds)}`
-    : hd?.over_odds != null ? `O ${fmtO(hd.over_odds)}` : '';
-  const tipW = 180;
-  const tipX = hoverIdx !== null && hx + tipW + 10 > W - PAD_R ? hx - tipW - 10 : hx + 10;
+
+  // Tooltip styling per target
+  const tipW = 220;
+  const tipX = hi !== null && hx + tipW + 10 > W - PAD_R ? hx - tipW - 10 : hx + 10;
+  const isBook = ht === 'book';
+  const tipColor = isBook ? '#16a34a' : '#ea580c';
+  const tipBg = isBook ? '#f0fdf4' : '#fff7ed';
+  const tipBorder = isBook ? '#bbf7d0' : '#fed7aa';
+
+  // Tooltip text
+  let tip1 = '', tip2 = '', tip3 = '';
+  if (hi !== null && isBook && hd) {
+    tip1 = `${bookFullName}: ${fmtLine(vals[hi])}`;
+    tip2 = hTime;
+    if (hd.over_odds != null && hd.under_odds != null) {
+      tip3 = `O ${fmtO(hd.over_odds)} / U ${fmtO(hd.under_odds)}`;
+    }
+  } else if (hi !== null && !isBook) {
+    tip1 = `OMI Fair: ${fmtLine(fairLine)}`;
+    tip2 = `Source: ${fairSource === 'pinnacle' ? 'PIN current' : 'consensus'}`;
+  }
+  const tipH = tip3 ? 54 : 40;
 
   return (
-    <svg
-      ref={svgRef}
-      viewBox={`0 0 ${W} ${H}`}
-      className="w-full max-w-[680px] cursor-crosshair select-none"
-      style={{ height: '140px' }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
+    <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} className="w-full max-w-[680px] cursor-crosshair select-none"
+      style={{ height: '160px' }} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+
       {/* Grid lines */}
-      {yLabels.map((val, i) => {
-        const y = valToY(val);
+      {yTicks.map((val, i) => {
+        const y = toY(val);
         return (
           <g key={i}>
             <line x1={PAD_X} y1={y} x2={W - PAD_R} y2={y} stroke={P.cardBorder} strokeWidth="1" />
-            <text x={PAD_X - 4} y={y + 3} textAnchor="end" fill={P.textMuted} fontSize="9" fontFamily="monospace">
-              {Number.isInteger(val) ? val : val.toFixed(1)}
-            </text>
+            <text x={PAD_X - 4} y={y + 3} textAnchor="end" fill={P.textMuted} fontSize="9" fontFamily="monospace">{fmtLine(val)}</text>
           </g>
         );
       })}
-      {/* Fair line (only when non-stagnant) */}
-      {showFairLine && (
-        <>
-          <line x1={PAD_X} y1={fairY} x2={W - PAD_R} y2={fairY} stroke="#ea580c" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.85" />
-          <rect x={labelX - 4} y={fairY - 9} width={tipW - 60} height={18} rx="4" fill="#fff7ed" stroke="#fed7aa" strokeWidth="0.5" />
-          <text x={labelX} y={fairY + 4} fill="#ea580c" fontSize="11" fontFamily="monospace" fontWeight="bold">
-            {fairLabel}
-          </text>
-          {/* Convergence fill */}
-          {lines.map((val, i) => {
-            if (i === lines.length - 1) return null;
-            const x1 = PAD_X + i * xStep;
-            const x2 = PAD_X + (i + 1) * xStep;
-            const bookY = valToY(val);
-            return (
-              <rect
-                key={i}
-                x={x1}
-                y={Math.min(bookY, fairY)}
-                width={x2 - x1}
-                height={Math.abs(bookY - fairY)}
-                fill={bookY < fairY ? 'rgba(234,88,12,0.08)' : 'rgba(234,88,12,0.05)'}
-              />
-            );
-          })}
-        </>
-      )}
-      {/* Step-line path (book line) */}
-      <path d={pathD} fill="none" stroke={P.textSecondary} strokeWidth="2" />
-      {/* Dot on last point */}
-      <circle cx={PAD_X + (lines.length - 1) * xStep} cy={valToY(lines[lines.length - 1])} r="3" fill={P.textSecondary} />
+
+      {/* Convergence fill between book and fair */}
+      {vals.map((v, i) => {
+        if (i === vals.length - 1) return null;
+        const x1 = PAD_X + i * xStep;
+        const x2 = PAD_X + (i + 1) * xStep;
+        const bY = toY(v);
+        return <rect key={i} x={x1} y={Math.min(bY, fairY)} width={x2 - x1} height={Math.abs(bY - fairY)} fill="rgba(234,88,12,0.06)" />;
+      })}
+
+      {/* OMI Fair line — dashed orange, 2px */}
+      <line x1={PAD_X} y1={fairY} x2={lastX} y2={fairY} stroke="#ea580c" strokeWidth="2" strokeDasharray="6 4" opacity="0.85" />
+      <circle cx={lastX} cy={fairY} r="3.5" fill="#ea580c" stroke={P.cardBg} strokeWidth="1.5" />
+
+      {/* Book step-line — solid green, 2.5px */}
+      <path d={bookPath} fill="none" stroke="#16a34a" strokeWidth="2.5" />
+      {/* Green dots at every data point */}
+      {vals.map((v, i) => (
+        <circle key={i} cx={PAD_X + i * xStep} cy={toY(v)} r="2.5" fill="#16a34a" stroke={P.cardBg} strokeWidth="1" />
+      ))}
+
+      {/* Always-visible endpoint labels */}
+      <text x={lastX + 10} y={eLabelBookY + 4} fill="#16a34a" fontSize="10" fontFamily="monospace" fontWeight="bold">
+        {bookShort} {fmtLine(vals[vals.length - 1])}
+      </text>
+      <text x={lastX + 10} y={eLabelFairY + 4} fill="#ea580c" fontSize="10" fontFamily="monospace" fontWeight="bold">
+        OMI {fmtLine(fairLine)}
+      </text>
+
       {/* X-axis labels */}
-      <text x={PAD_X} y={H - 2} fill={P.textMuted} fontSize="8" fontFamily="monospace">{firstTime}</text>
-      <text x={W - PAD_R} y={H - 2} textAnchor="end" fill={P.textMuted} fontSize="8" fontFamily="monospace">{lastTime}</text>
-      {/* Hover crosshair + tooltip */}
-      {hoverIdx !== null && (
+      <text x={PAD_X} y={H - 2} fill={P.textMuted} fontSize="8" fontFamily="monospace">{t0}</text>
+      <text x={W - PAD_R} y={H - 2} textAnchor="end" fill={P.textMuted} fontSize="8" fontFamily="monospace">{tN}</text>
+
+      {/* Hover: crosshair + colored dot + tooltip */}
+      {hover !== null && hi !== null && (
         <g>
-          <line x1={hx} y1={PAD_Y} x2={hx} y2={H - PAD_Y} stroke={P.textMuted} strokeWidth="1" strokeDasharray="2 2" />
-          <circle cx={hx} cy={hy} r="4" fill={P.cardBg} stroke={P.textPrimary} strokeWidth="1.5" />
-          <rect x={tipX} y={8} width={tipW} height={50} rx="4" fill={P.cardBg} stroke={P.cardBorder} strokeWidth="1" />
-          <text x={tipX + 6} y={22} fill={P.textMuted} fontSize="9" fontFamily="monospace">{tipL1}</text>
-          <text x={tipX + 6} y={35} fill={P.textPrimary} fontSize="10" fontFamily="monospace" fontWeight="bold">{tipL2}</text>
-          <text x={tipX + 6} y={48} fill={P.textSecondary} fontSize="9" fontFamily="monospace">{tipL3}</text>
+          <line x1={hx} y1={PAD_Y} x2={hx} y2={H - PAD_Y} stroke={P.textFaint} strokeWidth="1" strokeDasharray="2 2" />
+          {/* Enlarged dot on the target line */}
+          <circle cx={hx} cy={isBook ? hBookY : fairY} r="5" fill={tipColor} stroke={P.cardBg} strokeWidth="2" />
+          {/* Tooltip */}
+          <rect x={tipX} y={6} width={tipW} height={tipH} rx="4" fill={tipBg} stroke={tipBorder} strokeWidth="1" />
+          <text x={tipX + 6} y={20} fill={tipColor} fontSize="10" fontFamily="monospace" fontWeight="bold">{tip1}</text>
+          <text x={tipX + 6} y={34} fill={P.textSecondary} fontSize="9" fontFamily="monospace">{tip2}</text>
+          {tip3 && <text x={tipX + 6} y={48} fill={P.textMuted} fontSize="9" fontFamily="monospace">{tip3}</text>}
         </g>
       )}
     </svg>
@@ -1318,7 +1359,7 @@ export default function PlayerPropsPage() {
                                       {/* Fair source + contrarian context */}
                                       <div className="flex items-center gap-3 mt-2 text-[10px]">
                                         <span style={{ color: P.textMuted }}>
-                                          Fair: <span className="font-mono" style={{ color: P.textSecondary }}>{Number.isInteger(prop.fairLine) ? prop.fairLine : prop.fairLine.toFixed(1)}</span>
+                                          Fair: <span className="font-mono" style={{ color: P.textSecondary }}>{fmtLine(prop.fairLine)}</span>
                                           <span className="ml-1" style={{ color: P.textMuted }}>({prop.fairSource === 'pinnacle' ? 'PIN current' : 'consensus'})</span>
                                         </span>
                                         {prop.isContrarian && history && history.length > 1 && (

@@ -276,6 +276,9 @@ class DashboardPusher:
                         "execution_time_ms": t.get("execution_time_ms", 0),
                         "pm_order_ms": t.get("pm_order_ms", 0),
                         "tier": t.get("tier", ""),
+                        "settlement_pnl": t.get("settlement_pnl"),
+                        "settlement_time": t.get("settlement_time"),
+                        "settlement_winner_index": t.get("settlement_winner_index"),
                     }
                     for t in recent
                 ]

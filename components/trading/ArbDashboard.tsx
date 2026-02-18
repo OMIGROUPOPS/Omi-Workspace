@@ -93,6 +93,8 @@ interface TradeEntry {
   pm_order_ms?: number;
   tier?: string;
   settlement_pnl?: number | null;
+  settlement_time?: string | null;
+  settlement_winner_index?: number | null;
 }
 
 interface PnlSummary {
@@ -656,8 +658,9 @@ export default function ArbDashboard() {
   }, [allTrades, selectedDate, tradeFilter, statusFilter, tradeSearch]);
 
   const filteredPnl = useMemo(() => {
-    let successPnl = 0;
-    let exitedLoss = 0;
+    let arbPnl = 0;       // SUCCESS / TIER1_HEDGE / TIER2_EXIT
+    let exitedLoss = 0;   // EXITED / TIER3_UNWIND
+    let directionalPnl = 0; // settled UNHEDGED / TIER3A / TIER3B
     let successes = 0;
     let fills = 0;
     let openCount = 0;
@@ -675,14 +678,19 @@ export default function ArbDashboard() {
         if (pnl.totalDollars >= 0) realizedWins++;
         else realizedLosses++;
         if (t.status === "SUCCESS" || t.tier === "TIER1_HEDGE") {
-          successPnl += pnl.totalDollars;
-        } else if (t.status === "EXITED" || t.tier === "TIER2_EXIT" || t.tier === "TIER3_UNWIND") {
+          arbPnl += pnl.totalDollars;
+        } else if (t.tier === "TIER2_EXIT") {
+          arbPnl += pnl.totalDollars;
+        } else if (t.status === "EXITED" || t.tier === "TIER3_UNWIND") {
           exitedLoss += pnl.totalDollars;
+        } else if (t.settlement_pnl != null) {
+          // Settled directional positions (UNHEDGED/TIER3A/TIER3B with settlement_pnl)
+          directionalPnl += pnl.totalDollars;
         }
       }
     }
-    const netTotal = successPnl + exitedLoss;
-    return { successPnl, exitedLoss, netTotal, successes, fills, count: filteredTrades.length, openCount, realizedWins, realizedLosses };
+    const netTotal = arbPnl + exitedLoss + directionalPnl;
+    return { arbPnl, exitedLoss, directionalPnl, netTotal, successes, fills, count: filteredTrades.length, openCount, realizedWins, realizedLosses };
   }, [filteredTrades]);
 
   const pnl = state?.pnl_summary;
@@ -1218,7 +1226,7 @@ export default function ArbDashboard() {
                 }
                 sub={
                   filteredPnl.count > 0
-                    ? `${filteredPnl.realizedWins}W / ${filteredPnl.realizedLosses}L · ${pnl?.hedged_count ?? 0} hedged${filteredPnl.openCount > 0 ? ` · ${filteredPnl.openCount} open` : ""}`
+                    ? `Arb ${(filteredPnl.arbPnl + filteredPnl.exitedLoss) >= 0 ? "+" : ""}$${(filteredPnl.arbPnl + filteredPnl.exitedLoss).toFixed(2)}${filteredPnl.directionalPnl !== 0 ? ` · Dir ${filteredPnl.directionalPnl >= 0 ? "+" : ""}$${filteredPnl.directionalPnl.toFixed(2)}` : ""}${filteredPnl.openCount > 0 ? ` · ${filteredPnl.openCount} open` : ""}`
                     : undefined
                 }
                 accent={
@@ -1508,31 +1516,30 @@ export default function ArbDashboard() {
                 </div>
                 {/* Summary */}
                 {filteredTrades.length > 0 && (
-                  <div className="flex items-center gap-3 text-[10px] text-gray-500 pt-0.5">
+                  <div className="flex items-center gap-3 text-[10px] text-gray-500 pt-0.5 flex-wrap">
                     <span>
                       {filteredPnl.successes} success
                       {filteredPnl.successes !== 1 ? "es" : ""}
                     </span>
                     <span>{filteredPnl.fills} filled</span>
+                    <span className={filteredPnl.arbPnl + filteredPnl.exitedLoss >= 0 ? "text-emerald-400" : "text-red-400"}>
+                      Arb: {filteredPnl.arbPnl + filteredPnl.exitedLoss >= 0 ? "+" : ""}${(filteredPnl.arbPnl + filteredPnl.exitedLoss).toFixed(2)}
+                    </span>
+                    {filteredPnl.directionalPnl !== 0 && (
+                      <span className={filteredPnl.directionalPnl >= 0 ? "text-emerald-400" : "text-red-400"}>
+                        Dir: {filteredPnl.directionalPnl >= 0 ? "+" : ""}${filteredPnl.directionalPnl.toFixed(2)}
+                      </span>
+                    )}
                     <span
                       className={
                         filteredPnl.netTotal > 0
-                          ? "text-emerald-400"
+                          ? "text-emerald-400 font-medium"
                           : filteredPnl.netTotal < 0
-                          ? "text-red-400"
+                          ? "text-red-400 font-medium"
                           : "text-gray-500"
                       }
                     >
-                      P&L:{" "}
-                      {filteredPnl.exitedLoss !== 0 ? (
-                        <>
-                          <span className="text-emerald-400">+${filteredPnl.successPnl.toFixed(2)}</span>
-                          {" "}
-                          <span className="text-red-400">{filteredPnl.exitedLoss >= 0 ? "+" : ""}${filteredPnl.exitedLoss.toFixed(2)}</span>
-                          {" = "}
-                        </>
-                      ) : null}
-                      {filteredPnl.netTotal >= 0 ? "+" : ""}$
+                      Total: {filteredPnl.netTotal >= 0 ? "+" : ""}$
                       {filteredPnl.netTotal.toFixed(2)}
                     </span>
                     {filteredPnl.openCount > 0 && (

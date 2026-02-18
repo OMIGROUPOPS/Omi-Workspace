@@ -776,40 +776,61 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
             );
           })()}
 
-          {/* Continuous crosshair with pill labels + timestamps */}
-          {hoverX !== null && chartPoints.length > 0 && (() => {
-            // Step-chart interpolation: find last point with x <= hoverX
-            let bookPt = chartPoints[0];
-            for (let i = chartPoints.length - 1; i >= 0; i--) {
-              if (chartPoints[i].x <= hoverX) { bookPt = chartPoints[i]; break; }
+          {/* Continuous crosshair — follows cursor pixel-by-pixel */}
+          {hoverX !== null && chartPoints.length > 0 && data.length >= 2 && (() => {
+            // Convert cursor pixel X → timestamp via linear interpolation on the data time span
+            const frac = Math.max(0, Math.min(1, (hoverX - paddingLeft) / chartWidth));
+            const startMs = data[0].timestamp.getTime();
+            const endMs = data[data.length - 1].timestamp.getTime();
+            const cursorMs = startMs + frac * (endMs - startMs);
+            const cursorTime = new Date(cursorMs);
+
+            // Step-interpolation on book line: last data point at or before cursor time
+            let bookVal = data[0].value;
+            let bookTs = data[0].timestamp;
+            for (let i = data.length - 1; i >= 0; i--) {
+              if (data[i].timestamp.getTime() <= cursorMs) { bookVal = data[i].value; bookTs = data[i].timestamp; break; }
             }
-            let omiPt: typeof omiChartPoints[0] | null = null;
-            if (hasOmiLine && omiChartPoints.length > 0) {
-              omiPt = omiChartPoints[0];
-              for (let i = omiChartPoints.length - 1; i >= 0; i--) {
-                if (omiChartPoints[i].x <= hoverX) { omiPt = omiChartPoints[i]; break; }
+            const bookY = valueToY(bookVal);
+
+            // Step-interpolation on OMI line: last OMI data point at or before cursor time
+            let omiVal: number | null = null;
+            let omiTs: Date | null = null;
+            let omiY = 0;
+            if (hasOmiLine && omiFairLineData.length > 0) {
+              omiVal = omiFairLineData[0].value;
+              omiTs = omiFairLineData[0].timestamp;
+              for (let i = omiFairLineData.length - 1; i >= 0; i--) {
+                if (omiFairLineData[i].timestamp.getTime() <= cursorMs) { omiVal = omiFairLineData[i].value; omiTs = omiFairLineData[i].timestamp; break; }
               }
+              omiY = valueToY(omiVal);
             }
+
             const fmtTime = (ts: Date) => ts.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-            const bookLabel = `${formatValue(bookPt.value)} · ${fmtTime(bookPt.timestamp)}`;
-            const omiLabel = omiPt && omiPt.timestamp ? `${formatValue(omiPt.value)} · ${fmtTime(omiPt.timestamp)}` : omiPt ? formatValue(omiPt.value) : '';
+            const cursorTimeStr = fmtTime(cursorTime);
+            const bookLabel = `${formatValue(bookVal)} · ${fmtTime(bookTs)}`;
+            const omiLabel = omiVal !== null && omiTs ? `${formatValue(omiVal)} · ${fmtTime(omiTs)}` : omiVal !== null ? formatValue(omiVal) : '';
             const pillH = 14;
             const bookPillW = Math.max(52, bookLabel.length * 5.5 + 10);
             const omiPillW = Math.max(52, omiLabel.length * 5.5 + 10);
             // Flip pills to left side if too close to right edge
             const flipBook = hoverX + 4 + bookPillW > width - 2;
-            const flipOmi = omiPt && hoverX + 4 + omiPillW > width - 2;
+            const flipOmi = omiVal !== null && hoverX + 4 + omiPillW > width - 2;
             return (
               <>
+                {/* Vertical crosshair line — tracks cursor exactly */}
                 <line x1={hoverX} y1={paddingTop} x2={hoverX} y2={paddingTop + chartHeight} stroke="#d1d5db" strokeWidth="1" strokeDasharray="3 2" />
-                {/* Book value pill */}
-                <rect x={flipBook ? hoverX - 4 - bookPillW : hoverX + 4} y={bookPt.y - pillH / 2} width={bookPillW} height={pillH} rx="3" fill={bookColor} opacity="0.9" />
-                <text x={flipBook ? hoverX - 4 - bookPillW / 2 : hoverX + 4 + bookPillW / 2} y={bookPt.y + 3} textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace" fontWeight="600">{bookLabel}</text>
+                {/* Cursor time label on X-axis */}
+                <rect x={hoverX - 24} y={paddingTop + chartHeight + 2} width={48} height={13} rx="2" fill="#374151" opacity="0.85" />
+                <text x={hoverX} y={paddingTop + chartHeight + 12} textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace">{cursorTimeStr}</text>
+                {/* Book value pill — positioned at cursor X, step-interpolated Y */}
+                <rect x={flipBook ? hoverX - 4 - bookPillW : hoverX + 4} y={bookY - pillH / 2} width={bookPillW} height={pillH} rx="3" fill={bookColor} opacity="0.9" />
+                <text x={flipBook ? hoverX - 4 - bookPillW / 2 : hoverX + 4 + bookPillW / 2} y={bookY + 3} textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace" fontWeight="600">{bookLabel}</text>
                 {/* OMI value pill */}
-                {omiPt && (
+                {omiVal !== null && (
                   <>
-                    <rect x={flipOmi ? hoverX - 4 - omiPillW : hoverX + 4} y={omiPt.y - pillH / 2} width={omiPillW} height={pillH} rx="3" fill={omiColor} opacity="0.9" />
-                    <text x={flipOmi ? hoverX - 4 - omiPillW / 2 : hoverX + 4 + omiPillW / 2} y={omiPt.y + 3} textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace" fontWeight="600">{omiLabel}</text>
+                    <rect x={flipOmi ? hoverX - 4 - omiPillW : hoverX + 4} y={omiY - pillH / 2} width={omiPillW} height={pillH} rx="3" fill={omiColor} opacity="0.9" />
+                    <text x={flipOmi ? hoverX - 4 - omiPillW / 2 : hoverX + 4 + omiPillW / 2} y={omiY + 3} textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace" fontWeight="600">{omiLabel}</text>
                   </>
                 )}
               </>

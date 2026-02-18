@@ -686,8 +686,28 @@ function buildPerBookFromCache(game: any): Record<string, { marketGroups: any }>
 // No mock/fake edges - this is an enterprise product where data integrity matters
 
 export default async function GameDetailPage({ params, searchParams }: PageProps) {
-  const { id: gameId } = await params;
-  const { sport: querySport, demo } = await searchParams;
+  let gameId: string;
+  let querySport: string | undefined;
+  let demo: string | undefined;
+
+  try {
+    const p = await params;
+    const sp = await searchParams;
+    gameId = p.id;
+    querySport = sp.sport;
+    demo = sp.demo;
+  } catch (e) {
+    console.error('[GameDetail] Failed to parse params:', e);
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ background: '#ebedf0' }}>
+        <div className="text-center">
+          <h1 className="text-xl font-bold text-gray-800 mb-2">Page Error</h1>
+          <p className="text-gray-500 text-sm mb-4">Could not load game parameters.</p>
+          <a href="/edge/portal/sports" className="text-emerald-600 hover:underline text-sm">Back to sports</a>
+        </div>
+      </div>
+    );
+  }
 
   // Check for demo mode via URL param
   const isDemo = demo === 'true';
@@ -782,12 +802,12 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
 
   if (!gameData) {
     return (
-      <div className="min-h-screen bg-zinc-950 text-zinc-100 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ background: '#ebedf0' }}>
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-2">Game not found</h1>
-          <p className="text-zinc-500 mb-4 text-sm">ID: {gameId}</p>
-          <p className="text-zinc-600 text-xs mb-4">Make sure the backend is running and data has been fetched.</p>
-          <Link href="/edge/portal/sports" className="text-emerald-400 hover:underline">
+          <h1 className="text-xl font-bold text-gray-800 mb-2">Game not found</h1>
+          <p className="text-gray-500 mb-4 text-sm">ID: {gameId}</p>
+          <p className="text-gray-400 text-xs mb-4">Make sure the backend is running and data has been fetched.</p>
+          <Link href="/edge/portal/sports" className="text-emerald-600 hover:underline text-sm">
             Back to sports
           </Link>
         </div>

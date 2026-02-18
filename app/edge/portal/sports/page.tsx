@@ -1328,6 +1328,7 @@ export default async function SportsPage() {
         totalGames={totalGames}
         totalEdges={totalEdges}
         fetchedAt={fetchedAt}
+        view="tier1"
       />
     </div>
   );

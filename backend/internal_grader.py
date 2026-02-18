@@ -906,7 +906,10 @@ class InternalGrader:
             valid_game_ids = {r["game_id"] for r in (gr_result.data or [])}
             logger.info(f"[Performance] valid_game_ids since {since}: {len(valid_game_ids)}")
 
-        query = self.client.table("prediction_grades").select("*").not_.is_(
+        query = self.client.table("prediction_grades").select(
+            "game_id, sport_key, market_type, confidence_tier, signal, "
+            "is_correct, pillar_composite, graded_at, created_at"
+        ).not_.is_(
             "graded_at", "null"
         ).gte("created_at", cutoff).order("graded_at", desc=True).limit(5000)
 

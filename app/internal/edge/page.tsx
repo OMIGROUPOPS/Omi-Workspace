@@ -386,7 +386,7 @@ export default function EdgeInternalPage() {
       if (tier) params.set("signal", tier);
       if (cleanDataOnly) params.set("since", "2026-02-10T00:00:00+00:00");
       const res = await fetchWithTimeout(
-        `${BACKEND_URL}/api/internal/edge/performance?${params.toString()}`
+        `${BACKEND_URL}/api/internal/edge/performance?${params.toString()}`, 45000
       );
       if (res.ok) setData(await res.json());
     } catch (e) {

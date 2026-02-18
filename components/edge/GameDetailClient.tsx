@@ -402,7 +402,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const width = 600;
   const height = 200;
   const paddingLeft = 36;
-  const paddingRight = 50;
+  const paddingRight = 34;
   const paddingTop = 8;
   const paddingBottom = 20;
   const chartWidth = width - paddingLeft - paddingRight;
@@ -740,34 +740,23 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
             return <rect key={`edge-${i}`} x={x1} y={top} width={x2 - x1} height={h} fill={omiY < bookY ? 'rgba(220,252,231,0.3)' : 'rgba(252,231,231,0.3)'} />;
           })}
 
-          {/* OMI Fair line — solid orange, 2px */}
+          {/* OMI Fair line — solid orange, 2px, no dots */}
           {hasOmiLine && omiPathD && (
-            <>
-              <path d={omiPathD} fill="none" stroke={omiColor} strokeWidth="2" />
-              {omiChartPoints.map((pt, i) => pt.isEdge ? null : (
-                <circle key={`omi-dot-${i}`} cx={pt.x} cy={pt.y} r="3" fill={omiColor} stroke="white" strokeWidth="0.5" />
-              ))}
-            </>
+            <path d={omiPathD} fill="none" stroke={omiColor} strokeWidth="2" />
           )}
 
-          {/* Book line — solid green, 2px */}
+          {/* Book line — solid green, 2px, no dots */}
           {chartPoints.length > 0 && (
-            <>
-              <path d={pathD} fill="none" stroke={bookColor} strokeWidth="2" />
-              {chartPoints.map((pt, i) => (
-                <circle key={`book-dot-${i}`} cx={pt.x} cy={pt.y} r="3" fill={bookColor} stroke="white" strokeWidth="0.5" />
-              ))}
-            </>
+            <path d={pathD} fill="none" stroke={bookColor} strokeWidth="2" />
           )}
 
-          {/* Endpoint labels at right edge with collision avoidance */}
+          {/* Endpoint labels — small colored text at right edge */}
           {chartPoints.length > 0 && (() => {
             const lastBook = chartPoints[chartPoints.length - 1];
-            const bookName = BOOK_CONFIG[selectedBook]?.name || selectedBook;
-            const labelX = paddingLeft + chartWidth + 3;
+            const labelX = paddingLeft + chartWidth + 2;
             let bookLabelY = lastBook.y + 3;
             let omiLabelY = 0;
-            const GAP = 14;
+            const GAP = 10;
             if (hasOmiLine && omiChartPoints.length > 0) {
               const lastOmi = omiChartPoints[omiChartPoints.length - 1];
               omiLabelY = lastOmi.y + 3;
@@ -779,15 +768,15 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
             }
             return (
               <>
-                <text x={labelX} y={bookLabelY} textAnchor="start" fill={bookColor} fontSize="8" fontFamily="monospace" fontWeight="600">{bookName} {formatValue(lastBook.value)}</text>
+                <text x={labelX} y={bookLabelY} textAnchor="start" fill={bookColor} fontSize="9" fontFamily="monospace">{formatValue(lastBook.value)}</text>
                 {hasOmiLine && omiChartPoints.length > 0 && (
-                  <text x={labelX} y={omiLabelY} textAnchor="start" fill={omiColor} fontSize="8" fontFamily="monospace" fontWeight="600">OMI {formatValue(omiChartPoints[omiChartPoints.length - 1].value)}</text>
+                  <text x={labelX} y={omiLabelY} textAnchor="start" fill={omiColor} fontSize="9" fontFamily="monospace">{formatValue(omiChartPoints[omiChartPoints.length - 1].value)}</text>
                 )}
               </>
             );
           })()}
 
-          {/* Continuous crosshair with pill labels */}
+          {/* Continuous crosshair with pill labels + timestamps */}
           {hoverX !== null && chartPoints.length > 0 && (() => {
             // Step-chart interpolation: find last point with x <= hoverX
             let bookPt = chartPoints[0];
@@ -801,18 +790,26 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
                 if (omiChartPoints[i].x <= hoverX) { omiPt = omiChartPoints[i]; break; }
               }
             }
-            const pillW = 52, pillH = 14;
+            const fmtTime = (ts: Date) => ts.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+            const bookLabel = `${formatValue(bookPt.value)} · ${fmtTime(bookPt.timestamp)}`;
+            const omiLabel = omiPt && omiPt.timestamp ? `${formatValue(omiPt.value)} · ${fmtTime(omiPt.timestamp)}` : omiPt ? formatValue(omiPt.value) : '';
+            const pillH = 14;
+            const bookPillW = Math.max(52, bookLabel.length * 5.5 + 10);
+            const omiPillW = Math.max(52, omiLabel.length * 5.5 + 10);
+            // Flip pills to left side if too close to right edge
+            const flipBook = hoverX + 4 + bookPillW > width - 2;
+            const flipOmi = omiPt && hoverX + 4 + omiPillW > width - 2;
             return (
               <>
                 <line x1={hoverX} y1={paddingTop} x2={hoverX} y2={paddingTop + chartHeight} stroke="#d1d5db" strokeWidth="1" strokeDasharray="3 2" />
                 {/* Book value pill */}
-                <rect x={hoverX + 4} y={bookPt.y - pillH / 2} width={pillW} height={pillH} rx="3" fill={bookColor} opacity="0.9" />
-                <text x={hoverX + 4 + pillW / 2} y={bookPt.y + 3} textAnchor="middle" fill="white" fontSize="9" fontFamily="monospace" fontWeight="600">{formatValue(bookPt.value)}</text>
+                <rect x={flipBook ? hoverX - 4 - bookPillW : hoverX + 4} y={bookPt.y - pillH / 2} width={bookPillW} height={pillH} rx="3" fill={bookColor} opacity="0.9" />
+                <text x={flipBook ? hoverX - 4 - bookPillW / 2 : hoverX + 4 + bookPillW / 2} y={bookPt.y + 3} textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace" fontWeight="600">{bookLabel}</text>
                 {/* OMI value pill */}
                 {omiPt && (
                   <>
-                    <rect x={hoverX + 4} y={omiPt.y - pillH / 2} width={pillW} height={pillH} rx="3" fill={omiColor} opacity="0.9" />
-                    <text x={hoverX + 4 + pillW / 2} y={omiPt.y + 3} textAnchor="middle" fill="white" fontSize="9" fontFamily="monospace" fontWeight="600">{formatValue(omiPt.value)}</text>
+                    <rect x={flipOmi ? hoverX - 4 - omiPillW : hoverX + 4} y={omiPt.y - pillH / 2} width={omiPillW} height={pillH} rx="3" fill={omiColor} opacity="0.9" />
+                    <text x={flipOmi ? hoverX - 4 - omiPillW / 2 : hoverX + 4 + omiPillW / 2} y={omiPt.y + 3} textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace" fontWeight="600">{omiLabel}</text>
                   </>
                 )}
               </>

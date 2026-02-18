@@ -688,12 +688,32 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
             <text key={i} x={label.x} y={height - 2} textAnchor="middle" fill="#6b7280" fontSize="9" fontFamily="monospace">{label.label}</text>
           ))}
 
+          {/* Tipoff vertical divider at commence_time */}
+          {commenceTime && data.length >= 2 && (() => {
+            const tipoffTime = new Date(commenceTime).getTime();
+            const bookStartTime = data[0].timestamp.getTime();
+            const bookEndTime = data[data.length - 1].timestamp.getTime();
+            const bookTimeRange = bookEndTime - bookStartTime;
+            if (bookTimeRange <= 0 || tipoffTime <= bookStartTime || tipoffTime >= bookEndTime) return null;
+            const tFrac = (tipoffTime - bookStartTime) / bookTimeRange;
+            const tipoffX = paddingLeft + tFrac * chartWidth;
+            return (
+              <g>
+                <line x1={tipoffX} y1={paddingTop} x2={tipoffX} y2={paddingTop + chartHeight} stroke="#9CA3AF" strokeWidth="1" strokeDasharray="4 3" />
+                <text x={tipoffX} y={paddingTop - 2} textAnchor="middle" fill="#9CA3AF" fontSize="8" fontFamily="monospace" fontWeight="600">TIPOFF</text>
+              </g>
+            );
+          })()}
+
           {/* Green gradient fill below step-line */}
           {gradientFillPath && (
             <path d={gradientFillPath} fill={`url(#grad-${gameId})`} />
           )}
 
-          {/* OMI fair line hidden — data still accumulates in background via compositeHistory */}
+          {/* OMI Fair Value line overlay (dashed green) */}
+          {hasOmiLine && omiPathD && (
+            <path d={omiPathD} fill="none" stroke="#16a34a" strokeWidth="1.5" strokeDasharray="6 3" opacity="0.5" />
+          )}
 
           {/* Book line — single step-line */}
           {chartPoints.length > 0 && (
@@ -726,6 +746,12 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Open</span>
           <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full" style={{ backgroundColor: lineColor }}></span>Current</span>
+          {hasOmiLine && (
+            <span className="flex items-center gap-1">
+              <span className="inline-block w-3 h-0 border-t border-dashed" style={{ borderColor: '#16a34a', opacity: 0.7 }}></span>
+              <span>OMI Fair</span>
+            </span>
+          )}
         </div>
         <span className="font-mono">{Math.abs(movement) > 0.05 ? `${Math.abs(isMLChart ? Math.round(movement) : Number(movement.toFixed(1)))} pts` : ''}</span>
       </div>

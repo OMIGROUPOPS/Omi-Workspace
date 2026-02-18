@@ -1932,30 +1932,57 @@ interface LiveScoreData {
 }
 
 function LiveScoreBar({
-  liveData, homeTeam, awayTeam, sportKey, fairSpread,
+  liveData, homeTeam, awayTeam, sportKey, fairSpread, fairTotal, fairMLHomeProb,
+  activeMarket, isFinalGame,
 }: {
   liveData: LiveScoreData;
   homeTeam: string;
   awayTeam: string;
   sportKey: string;
   fairSpread?: number | null;
+  fairTotal?: number | null;
+  fairMLHomeProb?: number | null;
+  activeMarket: 'spread' | 'total' | 'moneyline';
+  isFinalGame?: boolean;
 }) {
   const hAbbr = liveData.homeAbbrev || abbrev(homeTeam);
   const aAbbr = liveData.awayAbbrev || abbrev(awayTeam);
   const margin = liveData.homeScore - liveData.awayScore;
   const leader = margin > 0 ? hAbbr : margin < 0 ? aAbbr : null;
   const marginAbs = Math.abs(margin);
+  const totalPts = liveData.homeScore + liveData.awayScore;
+  const statusShort = liveData.statusDetail || '';
 
-  // Covering indicator
-  let coveringText = '';
-  if (fairSpread != null && margin !== 0) {
-    // fairSpread is home perspective (negative = home favored)
-    const actualMargin = liveData.homeScore - liveData.awayScore; // positive = home winning
-    const coverMargin = actualMargin + fairSpread; // if home favored -7, home needs to win by >7
+  // Market-specific indicator
+  let indicatorText = '';
+  if (activeMarket === 'spread' && fairSpread != null) {
+    const actualMargin = liveData.homeScore - liveData.awayScore;
+    const coverMargin = actualMargin + fairSpread;
     const isCovering = coverMargin > 0;
     const favTeam = fairSpread < 0 ? hAbbr : aAbbr;
     const fmtSpread = fairSpread > 0 ? `+${fairSpread}` : `${fairSpread}`;
-    coveringText = `SPREAD: Fair ${favTeam} ${fmtSpread} | Margin ${leader} by ${marginAbs} | ${isCovering ? '\u2713 Covering' : '\u2717 Not Covering'}`;
+    const actualLabel = isFinalGame ? 'Final' : 'Actual';
+    indicatorText = `OMI: ${favTeam} ${fmtSpread} | ${actualLabel}: ${leader ? `${leader} by ${marginAbs}` : 'Tied'} | ${isCovering ? '\u2713 Covering' : '\u2717 Not Covering'}`;
+  } else if (activeMarket === 'total' && fairTotal != null) {
+    const isOver = totalPts > fairTotal;
+    const isUnder = totalPts < fairTotal;
+    if (isFinalGame) {
+      indicatorText = `OMI: O ${fairTotal} | Final: ${totalPts} | ${isOver ? '\u2713 Over Hit' : isUnder ? '\u2713 Under Hit' : 'Push'}`;
+    } else {
+      indicatorText = `OMI: O ${fairTotal} | Current: ${totalPts} pts (${statusShort}) | Tracking ${isOver ? 'Over' : 'Under'}`;
+    }
+  } else if (activeMarket === 'moneyline' && fairMLHomeProb != null) {
+    const homeProb = Math.round(fairMLHomeProb * 100);
+    const favTeam = homeProb >= 50 ? hAbbr : aAbbr;
+    const favProb = homeProb >= 50 ? homeProb : 100 - homeProb;
+    const isLeading = (homeProb >= 50 && margin > 0) || (homeProb < 50 && margin < 0);
+    if (isFinalGame) {
+      const winner = margin > 0 ? hAbbr : margin < 0 ? aAbbr : 'Tie';
+      const correct = (homeProb >= 50 && margin > 0) || (homeProb < 50 && margin < 0);
+      indicatorText = `OMI: ${favTeam} ${favProb}% | Winner: ${winner} | ${correct ? '\u2713 Correct' : '\u2717 Incorrect'}`;
+    } else {
+      indicatorText = `OMI: ${favTeam} ${favProb}% | Live: ${leader ? `${leader} leading` : 'Tied'} | ${margin === 0 ? '\u2014' : isLeading ? '\u2713 On Track' : '\u2717 Off Track'}`;
+    }
   }
 
   return (
@@ -1981,8 +2008,8 @@ function LiveScoreBar({
         <span style={{ fontSize: 10, fontWeight: 600, color: '#6b7280', letterSpacing: '0.05em' }}>
           {liveData.statusDetail || 'In Progress'}
         </span>
-        {coveringText && (
-          <span style={{ fontSize: 9, color: '#9ca3af', whiteSpace: 'nowrap' }}>{coveringText}</span>
+        {indicatorText && (
+          <span style={{ fontSize: 9, color: '#9ca3af', whiteSpace: 'nowrap' }}>{indicatorText}</span>
         )}
       </div>
 
@@ -2672,20 +2699,40 @@ export function GameDetailClient({
   const activePeriodKey = tabToPeriodKey[activePeriod] || 'fullGame';
   const activeCeq: GameCEQ | null | undefined = ceqByPeriod?.[activePeriodKey] ?? (activePeriod === 'full' ? ceq : null);
 
-  // Fair spread for live score covering indicator
-  const liveScoreFairSpread = (() => {
-    if (!pythonPillarScores) return null;
+  // Fair values for live score indicator (spread, total, ML)
+  const liveScoreFairValues = (() => {
+    if (!pythonPillarScores) return { fairSpread: null as number | null, fairTotal: null as number | null, fairMLHomeProb: null as number | null };
+    const getMedian = (arr: number[]) => {
+      if (arr.length === 0) return null;
+      const sorted = [...arr].sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+    };
     const allSpreads: number[] = [];
+    const allTotals: number[] = [];
     Object.entries(bookmakers).forEach(([, data]) => {
-      const line = (data as any)?.marketGroups?.fullGame?.spreads?.home?.line;
-      if (typeof line === 'number') allSpreads.push(line);
+      const fg = (data as any)?.marketGroups?.fullGame;
+      const sl = fg?.spreads?.home?.line;
+      const tl = fg?.totals?.line;
+      if (typeof sl === 'number') allSpreads.push(sl);
+      if (typeof tl === 'number') allTotals.push(tl);
     });
-    if (allSpreads.length === 0) return null;
-    const sorted = [...allSpreads].sort((a, b) => a - b);
-    const mid = Math.floor(sorted.length / 2);
-    const consSpread = sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
-    return calculateFairSpread(consSpread, pythonPillarScores.composite, gameData.sportKey).fairLine;
+    const consSpread = getMedian(allSpreads);
+    const consTotal = getMedian(allTotals);
+    const fairSpread = consSpread !== null ? calculateFairSpread(consSpread, pythonPillarScores.composite, gameData.sportKey).fairLine : null;
+    const fairTotal = consTotal !== null ? calculateFairTotal(consTotal, pythonPillarScores.gameEnvironment, gameData.sportKey).fairLine : null;
+    // ML: derive from fair spread for consistency, fallback to composite
+    let fairMLHomeProb: number | null = null;
+    if (fairSpread !== null) {
+      const ml = spreadToMoneyline(fairSpread, gameData.sportKey);
+      fairMLHomeProb = americanToImplied(ml.homeOdds);
+    } else {
+      const ml = calculateFairMoneyline(pythonPillarScores.composite);
+      fairMLHomeProb = americanToImplied(ml.homeOdds);
+    }
+    return { fairSpread, fairTotal, fairMLHomeProb };
   })();
+  const liveScoreFairSpread = liveScoreFairValues.fairSpread;
 
   // Chart selection (synced with activeMarket + activePeriod)
   const generatePriceMovement = (seed: string) => { const hashSeed = seed.split('').reduce((a, c) => a + c.charCodeAt(0), 0); const x = Math.sin(hashSeed) * 10000; return (x - Math.floor(x) - 0.5) * 0.15; };
@@ -2970,7 +3017,11 @@ export function GameDetailClient({
             homeTeam={gameData.homeTeam}
             awayTeam={gameData.awayTeam}
             sportKey={gameData.sportKey}
-            fairSpread={liveScoreFairSpread}
+            fairSpread={liveScoreFairValues.fairSpread}
+            fairTotal={liveScoreFairValues.fairTotal}
+            fairMLHomeProb={liveScoreFairValues.fairMLHomeProb}
+            activeMarket={activeMarket}
+            isFinalGame={isFinal}
           />
         )}
 
@@ -3029,6 +3080,7 @@ export function GameDetailClient({
           {/* Left: Chart */}
           <div className="relative flex flex-col px-1 py-1" style={{ width: '55%' }}>
             <LineMovementChart
+              key={`chart-${activeMarket}-${activePeriod}-${selectedBook}`}
               gameId={gameData.id}
               selection={chartSelection}
               lineHistory={getLineHistoryWithCurrentOdds()}
@@ -3106,7 +3158,11 @@ export function GameDetailClient({
             homeTeam={gameData.homeTeam}
             awayTeam={gameData.awayTeam}
             sportKey={gameData.sportKey}
-            fairSpread={liveScoreFairSpread}
+            fairSpread={liveScoreFairValues.fairSpread}
+            fairTotal={liveScoreFairValues.fairTotal}
+            fairMLHomeProb={liveScoreFairValues.fairMLHomeProb}
+            activeMarket={activeMarket}
+            isFinalGame={isFinal}
           />
         )}
 
@@ -3167,6 +3223,7 @@ export function GameDetailClient({
             <span className="text-[10px] font-semibold text-[#9ca3af] uppercase tracking-widest mb-1 block">Line Convergence</span>
             <div className="flex-1 min-h-0 h-[calc(100%-20px)]">
               <LineMovementChart
+                key={`chart-mobile-${activeMarket}-${activePeriod}-${selectedBook}`}
                 gameId={gameData.id}
                 selection={chartSelection}
                 lineHistory={getLineHistoryWithCurrentOdds()}

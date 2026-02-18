@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { formatOdds, formatSpread } from '@/lib/edge/utils/odds-math';
-import { isGameLive as checkGameLive } from '@/lib/edge/utils/game-state';
+import { isGameLive as checkGameLive, getGameState } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, CEQConfidence, PythonPillarScores, PillarResult } from '@/lib/edge/engine/edgescout';
 import { calculateFairSpread, calculateFairTotal, calculateFairMoneyline, calculateFairMLFromBook, calculateFairMLFromBook3Way, spreadToMoneyline, removeVig, removeVig3Way, SPORT_KEY_NUMBERS, SPREAD_TO_PROB_RATE, getEdgeSignal, getEdgeSignalColor, edgeToConfidence, PROB_PER_POINT } from '@/lib/edge/engine/edgescout';
 
@@ -1889,46 +1889,127 @@ function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | 
 
 const DEMO_ACCOUNTS: string[] = ['omigroup.ops@outlook.com'];
 
-function LiveLockOverlay() {
+// ============================================================================
+// LiveScoreBar — live score display between header and tabs
+// ============================================================================
+
+interface LiveScoreData {
+  homeScore: number;
+  awayScore: number;
+  statusDetail: string;
+  period?: number;
+  clock?: string;
+  homeAbbrev?: string;
+  awayAbbrev?: string;
+  homeLogo?: string;
+  awayLogo?: string;
+}
+
+function LiveScoreBar({
+  liveData, homeTeam, awayTeam, sportKey, fairSpread,
+}: {
+  liveData: LiveScoreData;
+  homeTeam: string;
+  awayTeam: string;
+  sportKey: string;
+  fairSpread?: number | null;
+}) {
+  const hAbbr = liveData.homeAbbrev || abbrev(homeTeam);
+  const aAbbr = liveData.awayAbbrev || abbrev(awayTeam);
+  const margin = liveData.homeScore - liveData.awayScore;
+  const leader = margin > 0 ? hAbbr : margin < 0 ? aAbbr : null;
+  const marginAbs = Math.abs(margin);
+
+  // Covering indicator
+  let coveringText = '';
+  if (fairSpread != null && margin !== 0) {
+    // fairSpread is home perspective (negative = home favored)
+    const actualMargin = liveData.homeScore - liveData.awayScore; // positive = home winning
+    const coverMargin = actualMargin + fairSpread; // if home favored -7, home needs to win by >7
+    const isCovering = coverMargin > 0;
+    const favTeam = fairSpread < 0 ? hAbbr : aAbbr;
+    const fmtSpread = fairSpread > 0 ? `+${fairSpread}` : `${fairSpread}`;
+    coveringText = `SPREAD: Fair ${favTeam} ${fmtSpread} | Margin ${leader} by ${marginAbs} | ${isCovering ? '\u2713 Covering' : '\u2717 Not Covering'}`;
+  }
+
   return (
-    <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center z-20 rounded">
-      <div className="text-center p-4">
-        <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-amber-500/20 flex items-center justify-center">
-          <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-        </div>
-        <h3 className="text-sm font-semibold text-[#1f2937] mb-1">Live Tracking</h3>
-        <p className="text-[10px] text-[#6b7280] mb-2">Upgrade to Tier 2</p>
-        <button className="px-3 py-1 bg-amber-500 hover:bg-amber-600 text-black font-medium rounded text-[11px]">Upgrade</button>
+    <div style={{
+      background: '#f8fafc',
+      borderBottom: '1px solid #e2e4e8',
+      padding: '8px 16px',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16,
+    }}>
+      {/* Away team */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        {liveData.awayLogo && (
+          <img src={liveData.awayLogo} alt="" style={{ width: 20, height: 20 }} />
+        )}
+        <span style={{ fontSize: 13, fontWeight: 600, color: '#374151' }}>{aAbbr}</span>
+        <span style={{ fontSize: 22, fontWeight: 700, color: '#1f2937', fontVariantNumeric: 'tabular-nums' }}>
+          {liveData.awayScore}
+        </span>
+      </div>
+
+      {/* Divider + status */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, minWidth: 80 }}>
+        <span style={{ fontSize: 10, fontWeight: 600, color: '#6b7280', letterSpacing: '0.05em' }}>
+          {liveData.statusDetail || 'In Progress'}
+        </span>
+        {coveringText && (
+          <span style={{ fontSize: 9, color: '#9ca3af', whiteSpace: 'nowrap' }}>{coveringText}</span>
+        )}
+      </div>
+
+      {/* Home team */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span style={{ fontSize: 22, fontWeight: 700, color: '#1f2937', fontVariantNumeric: 'tabular-nums' }}>
+          {liveData.homeScore}
+        </span>
+        <span style={{ fontSize: 13, fontWeight: 600, color: '#374151' }}>{hAbbr}</span>
+        {liveData.homeLogo && (
+          <img src={liveData.homeLogo} alt="" style={{ width: 20, height: 20 }} />
+        )}
       </div>
     </div>
   );
 }
 
-function LiveLockBanner() {
+// ============================================================================
+// GameStatusBanner — informational only, non-blocking
+// ============================================================================
+
+function GameStatusBanner({ gameState }: { gameState: 'live' | 'final' }) {
+  if (gameState === 'live') {
+    return (
+      <div style={{
+        background: '#f0fdf4',
+        borderLeft: '4px solid #16a34a',
+        padding: '8px 16px',
+        display: 'flex', alignItems: 'center', gap: 10,
+      }}>
+        <span style={{ fontSize: 12 }}>&#x1F534;</span>
+        <span style={{ fontSize: 12, fontWeight: 600, color: '#166534' }}>
+          GAME IN PROGRESS
+        </span>
+        <span style={{ fontSize: 11, color: '#15803d' }}>
+          Live tracking is a Tier 2 feature. Open during beta.
+        </span>
+      </div>
+    );
+  }
   return (
     <div style={{
-      background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)',
-      borderBottom: '1px solid #fbbf24',
-      padding: '10px 16px',
-      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+      background: '#f9fafb',
+      borderLeft: '4px solid #9ca3af',
+      padding: '8px 16px',
+      display: 'flex', alignItems: 'center', gap: 10,
     }}>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-        <path d="M7 11V7a5 5 0 0110 0v4" />
-      </svg>
-      <span style={{ fontSize: 12, fontWeight: 600, color: '#92400e' }}>
-        GAME IN PROGRESS
+      <span style={{ fontSize: 12, fontWeight: 600, color: '#374151' }}>
+        FINAL
       </span>
-      <span style={{ fontSize: 11, color: '#a16207' }}>
-        Upgrade to Tier 2 for live score tracking
+      <span style={{ fontSize: 11, color: '#6b7280' }}>
+        Game completed. Final scores and results shown below.
       </span>
-      <a href="/edge/pricing" style={{
-        marginLeft: 8, fontSize: 11, fontWeight: 600,
-        background: '#f59e0b', color: '#000', padding: '4px 12px',
-        borderRadius: 4, textDecoration: 'none',
-      }}>
-        Upgrade
-      </a>
     </div>
   );
 }
@@ -2521,8 +2602,34 @@ export function GameDetailClient({
   }, []);
   const effectiveEmail = userEmail || localEmail;
   const isDemoUser = isDemo || (effectiveEmail && DEMO_ACCOUNTS.includes(effectiveEmail.toLowerCase()));
-  const isLive = gameData.commenceTime ? checkGameLive(gameData.commenceTime) : false;
-  const showLiveLock = isLive && userTier === 'tier_1' && !isDemoUser;
+  const gameState = gameData.commenceTime ? getGameState(gameData.commenceTime, gameData.sportKey) : 'upcoming';
+  const isLive = gameState === 'live';
+  const isFinal = gameState === 'final';
+  const showLiveLock = false; // Replaced by informational banner
+
+  // Live score polling
+  const [liveScore, setLiveScore] = useState<LiveScoreData | null>(null);
+  useEffect(() => {
+    if (!isLive && !isFinal) return;
+    const fetchLiveScore = async () => {
+      try {
+        const params = new URLSearchParams({
+          sport: gameData.sportKey,
+          home: gameData.homeTeam,
+          away: gameData.awayTeam,
+        });
+        const res = await fetch(`/api/odds/live-score?${params}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.liveData) setLiveScore(data.liveData);
+      } catch { /* silent */ }
+    };
+    fetchLiveScore();
+    if (isLive) {
+      const interval = setInterval(fetchLiveScore, 12000);
+      return () => clearInterval(interval);
+    }
+  }, [isLive, isFinal, gameData.sportKey, gameData.homeTeam, gameData.awayTeam]);
 
   // Always include core sportsbooks in selector (DK/FD), even if a game lacks data for one
   const CORE_BOOKS = ['fanduel', 'draftkings'];
@@ -2538,6 +2645,21 @@ export function GameDetailClient({
   };
   const activePeriodKey = tabToPeriodKey[activePeriod] || 'fullGame';
   const activeCeq: GameCEQ | null | undefined = ceqByPeriod?.[activePeriodKey] ?? (activePeriod === 'full' ? ceq : null);
+
+  // Fair spread for live score covering indicator
+  const liveScoreFairSpread = (() => {
+    if (!pythonPillarScores) return null;
+    const allSpreads: number[] = [];
+    Object.entries(bookmakers).forEach(([, data]) => {
+      const line = (data as any)?.marketGroups?.fullGame?.spreads?.home?.line;
+      if (typeof line === 'number') allSpreads.push(line);
+    });
+    if (allSpreads.length === 0) return null;
+    const sorted = [...allSpreads].sort((a, b) => a - b);
+    const mid = Math.floor(sorted.length / 2);
+    const consSpread = sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+    return calculateFairSpread(consSpread, pythonPillarScores.composite, gameData.sportKey).fairLine;
+  })();
 
   // Chart selection (synced with activeMarket + activePeriod)
   const generatePriceMovement = (seed: string) => { const hashSeed = seed.split('').reduce((a, c) => a + c.charCodeAt(0), 0); const x = Math.sin(hashSeed) * 10000; return (x - Math.floor(x) - 0.5) * 0.15; };
@@ -2815,7 +2937,20 @@ export function GameDetailClient({
           />
         </div>
 
-        {showLiveLock && <LiveLockBanner />}
+        {/* Live score bar */}
+        {liveScore && (isLive || isFinal) && (
+          <LiveScoreBar
+            liveData={liveScore}
+            homeTeam={gameData.homeTeam}
+            awayTeam={gameData.awayTeam}
+            sportKey={gameData.sportKey}
+            fairSpread={liveScoreFairSpread}
+          />
+        )}
+
+        {/* Informational banner */}
+        {isLive && <GameStatusBanner gameState="live" />}
+        {isFinal && <GameStatusBanner gameState="final" />}
 
         {/* Market tabs + period sub-tabs */}
         <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#e2e4e8]/50">
@@ -2881,7 +3016,6 @@ export function GameDetailClient({
               omiFairLine={omiFairLineForChart}
               activeMarket={activeMarket}
             />
-            {showLiveLock && <LiveLockOverlay />}
           </div>
           {/* Right: Ask Edge AI */}
           <div className="h-full" style={{ width: '45%' }}>
@@ -2939,7 +3073,20 @@ export function GameDetailClient({
           isLive={isLive}
         />
 
-        {showLiveLock && <LiveLockBanner />}
+        {/* Live score bar (mobile) */}
+        {liveScore && (isLive || isFinal) && (
+          <LiveScoreBar
+            liveData={liveScore}
+            homeTeam={gameData.homeTeam}
+            awayTeam={gameData.awayTeam}
+            sportKey={gameData.sportKey}
+            fairSpread={liveScoreFairSpread}
+          />
+        )}
+
+        {/* Informational banner (mobile) */}
+        {isLive && <GameStatusBanner gameState="live" />}
+        {isFinal && <GameStatusBanner gameState="final" />}
 
         <div className="p-2 space-y-2">
           {/* Market + Period tabs */}
@@ -3009,7 +3156,6 @@ export function GameDetailClient({
                 activeMarket={activeMarket}
               />
             </div>
-            {showLiveLock && <LiveLockOverlay />}
           </div>
 
           <OmiFairPricing

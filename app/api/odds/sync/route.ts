@@ -1028,6 +1028,118 @@ async function checkLineMovementAndRecalculate(
   return { triggered: true, delta };
 }
 
+// ESPN odds endpoint — free, no auth, provides DraftKings/Caesars odds
+const ESPN_ODDS_SPORTS: Record<string, { sport: string; league: string }> = {
+  'americanfootball_nfl': { sport: 'football', league: 'nfl' },
+  'americanfootball_ncaaf': { sport: 'football', league: 'college-football' },
+  'basketball_nba': { sport: 'basketball', league: 'nba' },
+  'basketball_ncaab': { sport: 'basketball', league: 'mens-college-basketball' },
+  'icehockey_nhl': { sport: 'hockey', league: 'nhl' },
+};
+
+// ESPN scoreboard endpoints (reused from dashboard)
+const ESPN_SCORE_ENDPOINTS: Record<string, string> = {
+  'americanfootball_nfl': 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard',
+  'americanfootball_ncaaf': 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard',
+  'basketball_nba': 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
+  'basketball_ncaab': 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard',
+  'icehockey_nhl': 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
+};
+
+// Map Odds API game to ESPN event ID by matching team names
+interface ESPNEventMapping {
+  espnEventId: string;
+  homeTeam: string;
+  awayTeam: string;
+  status: string;
+}
+
+function normalizeTeamName(name: string): string {
+  return name.toLowerCase().replace(/\s+/g, ' ').trim();
+}
+
+function espnTeamsMatch(a: string, b: string): boolean {
+  const na = normalizeTeamName(a);
+  const nb = normalizeTeamName(b);
+  if (na === nb) return true;
+  if (na.includes(nb) || nb.includes(na)) return true;
+  const la = na.split(' ').pop()!;
+  const lb = nb.split(' ').pop()!;
+  if (la && lb && la.length > 3 && la === lb) return true;
+  return false;
+}
+
+// Fetch ESPN scoreboard and build game ID mapping + detect live games
+async function fetchESPNEventMap(sportKey: string): Promise<{
+  mappings: Map<string, ESPNEventMapping>; // keyed by "homeTeam|awayTeam"
+  liveEventIds: Set<string>;
+}> {
+  const mappings = new Map<string, ESPNEventMapping>();
+  const liveEventIds = new Set<string>();
+  const url = ESPN_SCORE_ENDPOINTS[sportKey];
+  if (!url) return { mappings, liveEventIds };
+
+  try {
+    const fetchUrl = sportKey.includes('ncaa') ? `${url}?groups=50&limit=300` : url;
+    const res = await fetch(fetchUrl, { cache: 'no-store' });
+    if (!res.ok) return { mappings, liveEventIds };
+    const data = await res.json();
+
+    for (const event of data.events || []) {
+      const comp = event.competitions?.[0];
+      if (!comp?.competitors || comp.competitors.length !== 2) continue;
+      let hTeam = '', aTeam = '';
+      for (const c of comp.competitors) {
+        if (c.homeAway === 'home') hTeam = c.team?.displayName || '';
+        else aTeam = c.team?.displayName || '';
+      }
+      const statusType = comp.status?.type?.name || '';
+      const mapping: ESPNEventMapping = {
+        espnEventId: event.id,
+        homeTeam: hTeam,
+        awayTeam: aTeam,
+        status: statusType,
+      };
+      // Store normalized key for lookup
+      mappings.set(`${normalizeTeamName(hTeam)}|${normalizeTeamName(aTeam)}`, mapping);
+      if (statusType === 'STATUS_IN_PROGRESS' || statusType === 'STATUS_HALFTIME') {
+        liveEventIds.add(event.id);
+      }
+    }
+  } catch (e) {
+    console.error(`[Odds Sync] ESPN event map fetch failed for ${sportKey}:`, e);
+  }
+  return { mappings, liveEventIds };
+}
+
+// Check if a game has started (commenced)
+function hasGameStarted(game: any): boolean {
+  if (!game.commence_time) return false;
+  return new Date(game.commence_time) <= new Date();
+}
+
+// Find ESPN event ID for an Odds API game
+function findESPNEventId(
+  game: any,
+  espnMappings: Map<string, ESPNEventMapping>
+): string | null {
+  const home = normalizeTeamName(game.home_team || '');
+  const away = normalizeTeamName(game.away_team || '');
+
+  // Direct match
+  const directKey = `${home}|${away}`;
+  if (espnMappings.has(directKey)) return espnMappings.get(directKey)!.espnEventId;
+
+  // Fuzzy match
+  for (const [, mapping] of espnMappings) {
+    if (espnTeamsMatch(mapping.homeTeam, game.home_team) &&
+        espnTeamsMatch(mapping.awayTeam, game.away_team)) {
+      return mapping.espnEventId;
+    }
+  }
+  return null;
+}
+
 // Shared sync logic used by both GET (cron) and POST (manual)
 async function runSync() {
   if (!ODDS_API_KEY) {
@@ -1055,6 +1167,8 @@ async function runSync() {
   > = {};
   const snapshotTime = new Date().toISOString();
 
+  let totalLiveSkipped = 0;
+
   for (const [sport, sportKey] of Object.entries(SPORT_KEYS)) {
     try {
       // Pass 1: Core markets for all games
@@ -1069,10 +1183,20 @@ async function runSync() {
         continue;
       }
 
+      // Fetch ESPN event mappings to identify live games (skip enrichment for them)
+      const { mappings: espnMappings } = await fetchESPNEventMap(sportKey);
+
       // Pass 2: Per-event enrichment (pro sports only)
+      // COST OPTIMIZATION: Skip enrichment for live/started games — their odds
+      // change too fast for 15-min polling to be useful. Live odds served via ESPN.
       const additionalMarkets = EVENT_MARKETS[sportKey];
       if (additionalMarkets && additionalMarkets.length > 0) {
         for (const game of games) {
+          // Skip enrichment for games that have already started (save API calls)
+          if (hasGameStarted(game)) {
+            totalLiveSkipped++;
+            continue;
+          }
           try {
             const { bookmakers, cost, remaining: evtRemaining } =
               await fetchEventMarkets(
@@ -1304,8 +1428,15 @@ async function runSync() {
     console.error('[Odds Sync] Auto-grade failed:', e);
   }
 
+  // API cost summary
+  // Current setup: cron every 15 min = 96 invocations/day
+  // Per invocation: 1 core call/sport + N enrichment calls/pregame game
+  // Optimization: skip enrichment for live/started games → saves ~N enrichment calls
   console.log(
     `[Odds Sync] Done: ${totalSynced} games, ${totalCost} reqs used, ${lastRemaining} remaining`
+  );
+  console.log(
+    `[Odds Sync] Cost savings: skipped ${totalLiveSkipped} live game enrichments (saved ~${totalLiveSkipped} API calls)`
   );
 
   return NextResponse.json({
@@ -1313,6 +1444,7 @@ async function runSync() {
     staleGamesDeleted: gamesDeleted,
     requestsUsed: totalCost,
     remaining: lastRemaining,
+    liveGamesSkipped: totalLiveSkipped,
     sports: sportSummary,
     edgeLifecycle: lifecycleStats,
     errors: errors.length > 0 ? errors : undefined,

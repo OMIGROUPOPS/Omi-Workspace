@@ -487,7 +487,11 @@ export function SportsHomeGrid({
   useEffect(() => {
     if (!mounted) return;
     const interval = hasLiveGames ? 10000 : 45000;
-    const timer = setInterval(() => refreshData(false), interval);
+    console.log(`[SportsHomeGrid] Auto-refresh set to ${interval / 1000}s (hasLiveGames=${hasLiveGames})`);
+    const timer = setInterval(() => {
+      console.log(`[SportsHomeGrid] Polling live scores... (${new Date().toLocaleTimeString()})`);
+      refreshData(false);
+    }, interval);
     return () => clearInterval(timer);
   }, [mounted, refreshData, hasLiveGames]);
 
@@ -558,8 +562,9 @@ export function SportsHomeGrid({
                 </span>
               )}
               <span style={{ fontSize: 10, color: secondsSinceUpdate > 60 ? '#d97706' : P.textMuted, fontFamily: 'monospace' }}>
-                {hasLiveGames && <span style={{ color: '#16a34a', marginRight: 4 }}>LIVE</span>}
+                {hasLiveGames && <span style={{ color: '#16a34a', marginRight: 4 }}>LIVE {hasLiveGames ? '10s' : '45s'}</span>}
                 Updated {secondsSinceUpdate < 60 ? `${secondsSinceUpdate}s` : `${Math.floor(secondsSinceUpdate / 60)}m`} ago
+                {lastUpdated && <span style={{ color: P.textFaint, marginLeft: 4 }}>({lastUpdated.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })})</span>}
               </span>
             </div>
             <button onClick={() => refreshData(true)} disabled={isRefreshing}

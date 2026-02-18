@@ -104,8 +104,12 @@ async function fetchESPNScores(sportKeys: string[]): Promise<Record<string, ESPN
       for (const event of data.events || []) {
         const comp = event.competitions?.[0];
         if (!comp?.competitors || comp.competitors.length !== 2) continue;
-        const statusType = comp.status?.type?.name || '';
-        const statusDetail = comp.status?.type?.shortDetail || '';
+        // ESPN nests status under competition (competition.status)
+        const status = comp.status || {};
+        const statusType = status.type?.name || '';
+        const statusDetail = status.type?.shortDetail || '';
+        const displayClock = status.displayClock || '';
+        const period = status.period || 0;
         let hTeam = '', aTeam = '', hScore = 0, aScore = 0;
         for (const c of comp.competitors) {
           if (c.homeAway === 'home') {
@@ -116,14 +120,17 @@ async function fetchESPNScores(sportKeys: string[]): Promise<Record<string, ESPN
             aScore = parseInt(c.score || '0') || 0;
           }
         }
+        // Debug: log raw ESPN status for in-progress games
+        if (statusType === 'STATUS_IN_PROGRESS') {
+          console.log(`[ESPN DEBUG] ${aTeam} @ ${hTeam}: status=${statusType}, shortDetail="${statusDetail}", displayClock="${displayClock}", period=${period}, score=${aScore}-${hScore}`);
+        }
         games.push({
           homeTeam: hTeam, awayTeam: aTeam,
           homeScore: hScore, awayScore: aScore,
           status: statusType === 'STATUS_FINAL' ? 'final'
                  : statusType === 'STATUS_IN_PROGRESS' ? 'in_progress'
                  : 'scheduled',
-          statusDetail, period: comp.status?.period || 0,
-          clock: comp.status?.displayClock || '',
+          statusDetail, period, clock: displayClock,
         });
       }
       result[sportKey] = games;
@@ -394,6 +401,10 @@ function processGame(
     // Game has started — check ESPN for live/final status
     const espnGames = espnData[game.sport_key] || [];
     const espnMatch = findESPNMatch(game.home_team, game.away_team, espnGames);
+
+    if (!espnMatch && espnGames.length > 0) {
+      console.log(`[ESPN MISS] No match for "${game.away_team} @ ${game.home_team}" (${game.sport_key}). ESPN has: ${espnGames.slice(0, 3).map(g => `"${g.awayTeam} @ ${g.homeTeam}"`).join(', ')}${espnGames.length > 3 ? ` +${espnGames.length - 3} more` : ''}`);
+    }
 
     if (espnMatch) {
       if (espnMatch.status === 'final') {

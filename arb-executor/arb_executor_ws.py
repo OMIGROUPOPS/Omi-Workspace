@@ -257,6 +257,10 @@ class OmiSignalCache:
         self.api_url = "https://omi-workspace-production.up.railway.app/api/v1/edge-signal/bulk?sport=NCAAB"
         self.api_key = os.environ.get("OMI_API_KEY", "SkvEI04AmE0lOsOuHsSNmLwsUkDh_6Q_n1wyQBZK8rU")
         self._refreshing = False    # Guard against concurrent refreshes
+        # Build abbreviation → full name reverse lookup from TEAM_FULL_NAMES
+        self._abbrev_to_full: dict[str, str] = {}
+        for abbrev, full in TEAM_FULL_NAMES.items():
+            self._abbrev_to_full[abbrev.lower()] = full.lower()
 
     async def refresh(self) -> bool:
         """Fetch all signals from OMI Edge API and rebuild local cache."""
@@ -292,10 +296,15 @@ class OmiSignalCache:
             self._refreshing = False
 
     def get_signal(self, team_name: str) -> dict | None:
-        """Look up signal by team name. Tries exact then substring."""
+        """Look up signal by team name. Tries exact, abbreviation, then substring."""
         key = team_name.lower().strip()
         if key in self.signals:
             return self.signals[key]
+        # Try abbreviation → full name lookup (e.g. "uk" → "kentucky wildcats")
+        full = self._abbrev_to_full.get(key)
+        if full and full in self.signals:
+            return self.signals[full]
+        # Substring match (existing fallback)
         for cached_key, signal in self.signals.items():
             if key in cached_key or cached_key in key:
                 return signal

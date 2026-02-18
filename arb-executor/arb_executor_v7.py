@@ -1847,15 +1847,17 @@ class PolymarketUSAPI:
         if self._sdk_client is not None and intent in _INTENT_MAP and tif in _TIF_MAP:
             try:
                 print(f"   [PM ORDER] {intent_names[intent]} outcome[{outcome_index}] {quantity} @ ${price:.2f} on {market_slug} [SDK]")
-                sdk_resp = await self._sdk_client.orders.create(
-                    marketSlug=market_slug,
-                    intent=_INTENT_MAP[intent],
-                    quantity=quantity,
-                    price=price,
-                    orderType='ORDER_TYPE_LIMIT',
-                    timeInForce=_TIF_MAP[tif],
-                    outcomeIndex=outcome_index,
-                )
+                sdk_resp = await self._sdk_client.orders.create({
+                    'marketSlug': market_slug,
+                    'intent': _INTENT_MAP[intent],
+                    'type': 'ORDER_TYPE_LIMIT',
+                    'price': {'value': f'{price:.2f}', 'currency': 'USD'},
+                    'quantity': quantity,
+                    'tif': _TIF_MAP[tif],
+                    'outcomeIndex': outcome_index,
+                    'manualOrderIndicator': 'MANUAL_ORDER_INDICATOR_AUTOMATIC',
+                    'synchronousExecution': True,
+                })
                 print(f"   [DEBUG] PM SDK Response: {sdk_resp}")
                 return self._parse_pm_response(sdk_resp)
             except Exception as e:

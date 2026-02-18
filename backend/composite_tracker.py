@@ -224,7 +224,8 @@ def _round_to_half(value: float) -> float:
 # Movement thresholds for triggering recalculation
 SPREAD_MOVEMENT_THRESHOLD = 0.5   # points
 TOTAL_MOVEMENT_THRESHOLD = 1.0    # points
-STALE_RECALC_HOURS = 2            # force recalc if last composite older than this
+STALE_RECALC_HOURS = 0.5          # force recalc if last composite older than 30 min
+CARRY_FORWARD_MINUTES = 15        # carry forward unchanged values if no movement but stale
 
 
 def _should_recalculate(
@@ -237,15 +238,19 @@ def _should_recalculate(
     """
     Determine if a game needs composite recalculation based on line movement.
     Returns (should_recalc: bool, reason: str).
+    Reason prefixed with "carry_forward_" means: skip expensive pillar analysis,
+    just re-insert the previous fair lines with fresh timestamp.
     """
     if previous is None:
         return True, "first_time"
 
-    # Staleness guard
+    # Parse previous timestamp
+    age_minutes = 0
     try:
         prev_ts_str = previous.get("timestamp", "")
         prev_ts = datetime.fromisoformat(str(prev_ts_str).replace("Z", "+00:00"))
-        age_hours = (now_dt - prev_ts).total_seconds() / 3600
+        age_minutes = (now_dt - prev_ts).total_seconds() / 60
+        age_hours = age_minutes / 60
         if age_hours >= STALE_RECALC_HOURS:
             return True, f"stale_{age_hours:.1f}h"
     except (ValueError, AttributeError, TypeError):
@@ -270,6 +275,11 @@ def _should_recalculate(
                 return True, f"total_moved_{prev_total}->{current_book_total}"
         except (ValueError, TypeError):
             pass
+
+    # Carry-forward: no line movement but entry is older than CARRY_FORWARD_MINUTES
+    # This writes a fresh timestamp with the same fair lines (cheap, no pillar analysis)
+    if age_minutes >= CARRY_FORWARD_MINUTES:
+        return True, f"carry_forward_{age_minutes:.0f}m"
 
     return False, "no_movement"
 
@@ -804,6 +814,40 @@ class CompositeTracker:
                 # 3. Log the trigger reason
                 logger.info(f"[DynamicRecalc] {game_id}: {reason}")
 
+                # 3b. Carry-forward path: no line movement, just re-insert previous
+                #     fair lines with fresh timestamp (cheap, skip pillar analysis)
+                if reason.startswith("carry_forward_") and previous:
+                    row_data = {
+                        "game_id": game_id,
+                        "sport_key": sport_key,
+                        "timestamp": now,
+                        "composite_spread": previous.get("composite_spread"),
+                        "composite_total": previous.get("composite_total"),
+                        "composite_ml": previous.get("composite_ml"),
+                        "fair_spread": previous.get("fair_spread"),
+                        "fair_total": previous.get("fair_total"),
+                        "fair_ml_home": previous.get("fair_ml_home"),
+                        "fair_ml_away": previous.get("fair_ml_away"),
+                        "book_spread": book_spread,
+                        "book_total": book_total,
+                        "book_ml_home": book_ml_home,
+                        "book_ml_away": book_ml_away,
+                    }
+                    if previous.get("fair_ml_draw") is not None:
+                        row_data["fair_ml_draw"] = previous["fair_ml_draw"]
+                    if book_ml_draw is not None:
+                        row_data["book_ml_draw"] = book_ml_draw
+                    db.client.table("composite_history").insert(row_data).execute()
+                    logger.info(
+                        f"[CompositeTracker] CARRY-FORWARD {game_id}: "
+                        f"fair_spread={previous.get('fair_spread')}, "
+                        f"fair_total={previous.get('fair_total')}"
+                    )
+                    games_processed += 1
+                    recalculated += 1
+                    sport_processed[sport_key] = sport_processed.get(sport_key, 0) + 1
+                    continue
+
                 # 4. Fresh pillar analysis (EXPENSIVE — only when movement detected)
                 analysis = analyze_game(game_data, sport_key)
 
@@ -952,6 +996,11 @@ class CompositeTracker:
                 if fair_ml_draw is not None:
                     row_data["fair_ml_draw"] = fair_ml_draw
                 db.client.table("composite_history").insert(row_data).execute()
+                logger.info(
+                    f"[CompositeTracker] WRITE {game_id}: "
+                    f"fair_spread={fair_spread}, fair_total={fair_total}, "
+                    f"reason={reason}"
+                )
 
                 games_processed += 1
                 recalculated += 1
@@ -1195,14 +1244,12 @@ class CompositeTracker:
                 if fair_ml_draw is not None:
                     row_data["fair_ml_draw"] = fair_ml_draw
                 db.client.table("composite_history").insert(row_data).execute()
+                logger.info(
+                    f"[CompositeTracker] WRITE-FAST {game_id}: "
+                    f"fair_spread={fair_spread}, fair_total={fair_total}"
+                )
 
                 refreshed += 1
-                if refreshed <= 3:
-                    logger.info(
-                        f"[FastRefresh] {game_id}: book_spread={book_spread}, "
-                        f"fair_spread={fair_spread}, book_total={book_total}, "
-                        f"fair_total={fair_total}"
-                    )
 
             except Exception as e:
                 logger.error(f"[FastRefresh] Error on {row.get('game_id', '?')}: {e}")

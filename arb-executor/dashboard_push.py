@@ -246,7 +246,30 @@ class DashboardPusher:
             if os.path.exists(TRADES_FILE):
                 with open(TRADES_FILE, "r") as f:
                     trades = json.load(f)
-                recent = trades[-200:] if len(trades) > 200 else trades
+                # Keep ALL trades that affect P&L (SUCCESS, EXITED, UNHEDGED,
+                # TIER3A_HOLD, TIER3B_FLIP, TIER3_UNWIND).  Only limit
+                # PM_NO_FILL / SKIPPED which are high-volume, zero-P&L noise.
+                pnl_statuses = {"SUCCESS", "EXITED", "UNHEDGED"}
+                pnl_tiers = {"TIER1_HEDGE", "TIER2_EXIT", "TIER3_UNWIND",
+                             "TIER3A_HOLD", "TIER3B_FLIP"}
+                pnl_trades = [
+                    t for t in trades
+                    if t.get("status") in pnl_statuses
+                    or t.get("tier") in pnl_tiers
+                    or t.get("settlement_pnl") is not None
+                ]
+                noise_trades = [
+                    t for t in trades
+                    if t.get("status") not in pnl_statuses
+                    and t.get("tier", "") not in pnl_tiers
+                    and t.get("settlement_pnl") is None
+                ]
+                # Keep last 100 noise trades for recent activity display
+                recent_noise = noise_trades[-100:] if len(noise_trades) > 100 else noise_trades
+                recent = sorted(
+                    pnl_trades + recent_noise,
+                    key=lambda t: t.get("timestamp", ""),
+                )
                 return [
                     {
                         "timestamp": t.get("timestamp", ""),

@@ -485,7 +485,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   const hasOmiLine = omiChartPoints.length >= 2;
   const omiPathD = hasOmiLine
-    ? omiChartPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ')
+    ? omiChartPoints.map((p, i) => i === 0 ? `M ${p.x} ${p.y}` : `H ${p.x} V ${p.y}`).join(' ')
     : null;
 
   // OMI fair line Y position (for flat fallback and convergence label)
@@ -504,8 +504,8 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     let labelStep: number;
     if (isHalfPointMarket) {
       gridStep = 0.5;
-      // Show labels at every 0.5 if range <= 5, else every 1.0 to avoid overlap
-      labelStep = range <= 5 ? 0.5 : 1.0;
+      // Label density based on range
+      labelStep = range > 10 ? 2.0 : range > 5 ? 1.0 : 0.5;
     } else if (isMLAny) {
       gridStep = 10; labelStep = 10;
     } else if (effectiveViewMode === 'price') {
@@ -527,17 +527,24 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       const y = paddingTop + chartHeight - normalizedY * chartHeight;
       if (y >= paddingTop - 2 && y <= paddingTop + chartHeight + 2) {
         gridLines.push({ value: rounded, y });
-        // Label only at labelStep intervals (aligned to labelStep)
         if (Math.abs(rounded - Math.round(rounded / labelStep) * labelStep) < 0.01) {
           labels.push({ value: rounded, y });
         }
       }
     }
 
+    // Enforce minimum 16px vertical spacing between labels
+    const spaced: typeof labels = [];
+    for (const lbl of labels) {
+      if (spaced.length === 0 || Math.abs(lbl.y - spaced[spaced.length - 1].y) >= 16) {
+        spaced.push(lbl);
+      }
+    }
+
     // For non-half-point markets, apply the old decimation if needed
-    const finalLabels = (!isHalfPointMarket && labels.length > 12)
-      ? labels.filter((_, i) => i % Math.ceil(labels.length / 10) === 0)
-      : labels;
+    const finalLabels = (!isHalfPointMarket && spaced.length > 12)
+      ? spaced.filter((_, i) => i % Math.ceil(spaced.length / 10) === 0)
+      : spaced;
 
     return { gridLines, labels: finalLabels };
   })();

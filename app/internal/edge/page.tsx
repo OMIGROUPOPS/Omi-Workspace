@@ -361,6 +361,20 @@ export default function EdgeInternalPage() {
   const [accuracyData, setAccuracyData] = useState<any>(null);
   const [accuracyLoading, setAccuracyLoading] = useState(false);
 
+  // ------- Fetch with timeout helper -------
+  const fetchWithTimeout = useCallback(async (url: string, timeoutMs = 15000) => {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(id);
+      return res;
+    } catch (e) {
+      clearTimeout(id);
+      throw e;
+    }
+  }, []);
+
   // ------- Performance fetch -------
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -371,7 +385,7 @@ export default function EdgeInternalPage() {
       if (days !== 30) params.set("days", String(days));
       if (tier) params.set("signal", tier);
       if (cleanDataOnly) params.set("since", "2026-02-10T00:00:00+00:00");
-      const res = await fetch(
+      const res = await fetchWithTimeout(
         `${BACKEND_URL}/api/internal/edge/performance?${params.toString()}`
       );
       if (res.ok) setData(await res.json());
@@ -380,17 +394,17 @@ export default function EdgeInternalPage() {
     } finally {
       setLoading(false);
     }
-  }, [sport, market, days, tier, cleanDataOnly]);
+  }, [sport, market, days, tier, cleanDataOnly, fetchWithTimeout]);
 
   // ------- Health fetch -------
   const fetchHealth = useCallback(async () => {
     try {
-      const res = await fetch(`${BACKEND_URL}/api/internal/system-health`);
+      const res = await fetchWithTimeout(`${BACKEND_URL}/api/internal/system-health`);
       if (res.ok) setHealthData(await res.json());
     } catch (e) {
       console.error("Failed to fetch health:", e);
     }
-  }, []);
+  }, [fetchWithTimeout]);
 
   // ------- Exchange accuracy fetch -------
   const fetchExchangeAccuracy = useCallback(async () => {
@@ -398,14 +412,14 @@ export default function EdgeInternalPage() {
       const params = new URLSearchParams();
       if (sport) params.set("sport", sport);
       if (days !== 30) params.set("days", String(days));
-      const res = await fetch(
+      const res = await fetchWithTimeout(
         `${BACKEND_URL}/api/internal/exchange-accuracy?${params.toString()}`
       );
       if (res.ok) setExchangeAccuracy(await res.json());
     } catch (e) {
       console.error("Failed to fetch exchange accuracy:", e);
     }
-  }, [sport, days]);
+  }, [sport, days, fetchWithTimeout]);
 
   useEffect(() => {
     if (activeTab === "performance") {
@@ -425,7 +439,7 @@ export default function EdgeInternalPage() {
       if (days !== 30) params.set("days", String(days));
       if (verdictFilter) params.set("verdict", verdictFilter);
       if (cleanDataOnly) params.set("since", "2026-02-10T00:00:00+00:00");
-      const res = await fetch(
+      const res = await fetchWithTimeout(
         `${BACKEND_URL}/api/internal/edge/graded-games?${params.toString()}`
       );
       if (res.ok) setGradedData(await res.json());
@@ -434,7 +448,7 @@ export default function EdgeInternalPage() {
     } finally {
       setGradedLoading(false);
     }
-  }, [sport, market, days, verdictFilter, cleanDataOnly]);
+  }, [sport, market, days, verdictFilter, cleanDataOnly, fetchWithTimeout]);
 
   useEffect(() => {
     if (activeTab === "graded") fetchGradedGames();
@@ -446,7 +460,7 @@ export default function EdgeInternalPage() {
     try {
       const params = new URLSearchParams();
       if (sport) params.set("sport", sport);
-      const res = await fetch(
+      const res = await fetchWithTimeout(
         `${BACKEND_URL}/api/internal/edge/live-markets?${params.toString()}`
       );
       if (res.ok) setLiveData(await res.json());
@@ -455,7 +469,7 @@ export default function EdgeInternalPage() {
     } finally {
       setLiveLoading(false);
     }
-  }, [sport]);
+  }, [sport, fetchWithTimeout]);
 
   useEffect(() => {
     if (activeTab === "live") fetchLiveMarkets();
@@ -465,15 +479,17 @@ export default function EdgeInternalPage() {
   const fetchAccuracy = useCallback(async () => {
     setAccuracyLoading(true);
     try {
-      const res = await fetch(`${BACKEND_URL}/api/internal/accuracy-summary?days=${days}`);
-      const data = await res.json();
-      setAccuracyData(data);
+      const res = await fetchWithTimeout(`${BACKEND_URL}/api/internal/accuracy-summary?days=${days}`);
+      if (res.ok) {
+        const data = await res.json();
+        setAccuracyData(data);
+      }
     } catch (e) {
       console.error("Accuracy fetch failed:", e);
     } finally {
       setAccuracyLoading(false);
     }
-  }, [days]);
+  }, [days, fetchWithTimeout]);
 
   useEffect(() => {
     if (activeTab === "accuracy") fetchAccuracy();

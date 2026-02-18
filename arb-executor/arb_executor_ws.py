@@ -2350,6 +2350,7 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
             live_positions=live_positions,
             verified_maps=VERIFIED_MAPS,
             executor_version="ws-v8",
+            omi_cache=omi_cache,
         )
         pusher.start(interval=5)
 

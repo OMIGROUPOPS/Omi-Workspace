@@ -21,6 +21,8 @@ Usage:
 
 import json
 import os
+import subprocess
+import sys
 import time
 import sqlite3
 import threading
@@ -37,6 +39,32 @@ VERIFIED_MAPPINGS_FILE = os.path.join(os.path.dirname(__file__) or ".", "verifie
 ORDERBOOK_DB_PATH = os.path.join(os.path.dirname(__file__) or ".", "orderbook_data.db")
 DASHBOARD_URL = os.environ.get("DASHBOARD_URL", "")
 DASHBOARD_TOKEN = os.environ.get("DASHBOARD_TOKEN", "")
+
+
+# ── Git info — computed once at module load ────────────────────────────────
+def _get_git_info() -> dict:
+    info = {"commit_short": "", "commit_sha": "", "branch": "", "commit_date": "", "commit_msg": ""}
+    try:
+        base = os.path.dirname(__file__) or "."
+        info["commit_sha"] = subprocess.run(
+            ["git", "rev-parse", "HEAD"], capture_output=True, text=True, cwd=base, timeout=3
+        ).stdout.strip()
+        info["commit_short"] = info["commit_sha"][:7]
+        info["branch"] = subprocess.run(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"], capture_output=True, text=True, cwd=base, timeout=3
+        ).stdout.strip()
+        info["commit_date"] = subprocess.run(
+            ["git", "log", "-1", "--format=%ci"], capture_output=True, text=True, cwd=base, timeout=3
+        ).stdout.strip()
+        info["commit_msg"] = subprocess.run(
+            ["git", "log", "-1", "--format=%s"], capture_output=True, text=True, cwd=base, timeout=3
+        ).stdout.strip()[:80]
+    except Exception:
+        pass
+    return info
+
+_GIT_INFO = _get_git_info()
+_PYTHON_VERSION = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
 
 
 class DashboardPusher:
@@ -63,6 +91,7 @@ class DashboardPusher:
         self.live_positions: list = []
         self.verified_maps: Dict = {}
         self.executor_version: str = ""
+        self.omi_cache = None
 
     def set_state_sources(self, **kwargs: Any) -> None:
         """Set references to live executor state dicts."""
@@ -109,6 +138,7 @@ class DashboardPusher:
         pnl_summary = self._build_pnl_summary()
         mapped_games = self._build_mapped_games()
         liquidity_stats = self._build_liquidity_stats()
+        specs = self._build_specs()
 
         mappings_refreshed = self._get_mappings_last_refreshed()
 
@@ -122,6 +152,7 @@ class DashboardPusher:
             "mapped_games": mapped_games,
             "mappings_last_refreshed": mappings_refreshed,
             "liquidity_stats": liquidity_stats,
+            "specs": specs,
         }
 
         # Size check: drop liquidity_stats if payload too large (Vercel 4.5MB limit)
@@ -298,6 +329,7 @@ class DashboardPusher:
                         "unwind_loss_cents": t.get("unwind_loss_cents"),
                         "execution_time_ms": t.get("execution_time_ms", 0),
                         "pm_order_ms": t.get("pm_order_ms", 0),
+                        "k_order_ms": t.get("k_order_ms", 0),
                         "tier": t.get("tier", ""),
                         "settlement_pnl": t.get("settlement_pnl"),
                         "settlement_time": t.get("settlement_time"),
@@ -713,6 +745,208 @@ class DashboardPusher:
             "executor_version": self.executor_version,
             "error_count": self.stats.get("errors", 0),
             "last_error": self.stats.get("last_error"),
+        }
+
+    # ── Specs ─────────────────────────────────────────────────────────────
+
+    def _build_specs(self) -> dict:
+        """Build specs payload for the Specs diagnostics tab."""
+        from config import Config
+
+        # ── Load trades for latency + tier stats ──
+        all_trades = []
+        try:
+            if os.path.exists(TRADES_FILE):
+                with open(TRADES_FILE, "r") as f:
+                    all_trades = json.load(f)
+        except Exception:
+            pass
+
+        # Filled trades (have actual execution data)
+        filled = [t for t in all_trades if t.get("contracts_filled", 0) > 0
+                  and t.get("execution_time_ms", 0) > 0]
+        # Sort by timestamp descending for recency
+        filled.sort(key=lambda t: t.get("timestamp", ""), reverse=True)
+
+        # ── Latency ──
+        last_trade = {}
+        if filled:
+            lt = filled[0]
+            last_trade = {
+                "pm_ms": lt.get("pm_order_ms", 0),
+                "k_ms": lt.get("k_order_ms", 0),
+                "total_ms": lt.get("execution_time_ms", 0),
+                "sdk_used": lt.get("pm_order_ms", 999) < 100,
+                "timestamp": lt.get("timestamp", ""),
+                "team": lt.get("team", ""),
+            }
+
+        rolling_10 = {}
+        r10 = filled[:10]
+        if r10:
+            rolling_10 = {
+                "avg_pm_ms": round(sum(t.get("pm_order_ms", 0) for t in r10) / len(r10)),
+                "avg_k_ms": round(sum(t.get("k_order_ms", 0) for t in r10) / len(r10)),
+                "avg_total_ms": round(sum(t.get("execution_time_ms", 0) for t in r10) / len(r10)),
+                "sdk_hit_rate": round(sum(1 for t in r10 if t.get("pm_order_ms", 999) < 100) / len(r10) * 100),
+            }
+
+        all_time = {}
+        if filled:
+            exec_times = [t["execution_time_ms"] for t in filled]
+            sdk_count = sum(1 for t in filled if t.get("pm_order_ms", 999) < 100)
+            all_time = {
+                "fastest_ms": min(exec_times),
+                "slowest_ms": max(exec_times),
+                "sdk_success_rate": round(sdk_count / len(filled) * 100),
+            }
+
+        # ── Tier stats ──
+        tier_filled = [t for t in all_trades if t.get("contracts_filled", 0) > 0]
+        total_filled = len(tier_filled)
+        success_count = 0
+        tier1_count = 0
+        tier2_count = 0
+        tier3a_count = 0
+        tier3b_count = 0
+        tier3_unwind_count = 0
+        unhedged_no_tier = 0
+        exited_count = 0
+        success_spreads = []
+        exit_losses = []
+        dir_settled = 0
+        dir_wins = 0
+
+        for t in all_trades:
+            status = t.get("status", "")
+            tier = t.get("tier", "")
+            cf = t.get("contracts_filled", 0)
+
+            if status == "SUCCESS" and not tier:
+                if cf > 0:
+                    success_count += 1
+                    if t.get("spread_cents") is not None:
+                        success_spreads.append(t["spread_cents"])
+            elif tier == "TIER1_HEDGE":
+                if cf > 0:
+                    tier1_count += 1
+                    if t.get("spread_cents") is not None:
+                        success_spreads.append(t["spread_cents"])
+            elif tier == "TIER2_EXIT":
+                if cf > 0:
+                    tier2_count += 1
+            elif tier in ("TIER3A_HOLD", "TIER3A"):
+                if cf > 0:
+                    tier3a_count += 1
+            elif tier in ("TIER3B_FLIP", "TIER3B"):
+                if cf > 0:
+                    tier3b_count += 1
+            elif tier == "TIER3_UNWIND":
+                if cf > 0:
+                    tier3_unwind_count += 1
+            elif status == "UNHEDGED" and cf > 0:
+                unhedged_no_tier += 1
+
+            if status == "EXITED" and t.get("unwind_loss_cents") is not None:
+                exit_losses.append(abs(t["unwind_loss_cents"]))
+                exited_count += 1
+
+            # Directional win rate
+            if (status == "UNHEDGED" or tier in ("TIER3A_HOLD", "TIER3A", "TIER3B_FLIP", "TIER3B")):
+                sp = t.get("settlement_pnl")
+                if sp is not None:
+                    dir_settled += 1
+                    if sp > 0:
+                        dir_wins += 1
+
+        hedge_success = success_count + tier1_count
+        kalshi_fail_rate = round((total_filled - hedge_success) / total_filled * 100) if total_filled > 0 else 0
+        avg_success_spread = round(sum(success_spreads) / len(success_spreads), 1) if success_spreads else 0
+        avg_exit_loss = round(sum(exit_losses) / len(exit_losses), 1) if exit_losses else 0
+        directional_win_rate = round(dir_wins / dir_settled * 100) if dir_settled > 0 else 0
+
+        # ── OMI cache ──
+        omi_signals = 0
+        omi_live = 0
+        omi_refresh_ago = None
+        omi_stale = True
+        if self.omi_cache is not None:
+            seen = set()
+            for v in self.omi_cache.signals.values():
+                sid = id(v)
+                if sid not in seen:
+                    seen.add(sid)
+                    omi_signals += 1
+                    if v.get("game_status") == "live":
+                        omi_live += 1
+            if self.omi_cache.last_refresh > 0:
+                omi_refresh_ago = round(time.time() - self.omi_cache.last_refresh)
+            omi_stale = self.omi_cache.is_stale()
+
+        # ── Connection ──
+        connection = {
+            "kalshi_ws": bool(self.stats.get("k_ws_connected")),
+            "pm_ws": bool(self.stats.get("pm_ws_connected")),
+            "k_messages": self.stats.get("k_ws_messages", 0),
+            "pm_messages": self.stats.get("pm_ws_messages", 0),
+            "omi_signals_cached": omi_signals,
+            "omi_live_count": omi_live,
+            "omi_last_refresh_ago_s": omi_refresh_ago,
+            "omi_is_stale": omi_stale,
+        }
+
+        return {
+            "latency": {
+                "last_trade": last_trade,
+                "rolling_10": rolling_10,
+                "all_time": all_time,
+            },
+            "deployment": {
+                "git_branch": _GIT_INFO["branch"],
+                "git_commit_short": _GIT_INFO["commit_short"],
+                "git_commit_date": _GIT_INFO["commit_date"],
+                "git_commit_msg": _GIT_INFO["commit_msg"],
+                "executor_version": self.executor_version,
+                "python_version": _PYTHON_VERSION,
+                "server": "DO ubuntu-s-1vcpu-2gb-nyc3-01",
+                "execution_mode": "LIVE" if Config.is_live() else "PAPER",
+                "dry_run": Config.dry_run_mode,
+            },
+            "config": {
+                "spread_min_cents": Config.spread_min_cents,
+                "min_contracts": Config.min_contracts,
+                "max_contracts": Config.max_contracts,
+                "max_cost_cents": Config.max_cost_cents,
+                "enable_gtc": Config.enable_gtc,
+                "depth_pre_check": False,
+                "max_concurrent_positions": Config.max_concurrent_positions,
+                "min_ceq_hold": Config.min_ceq_hold,
+                "min_ceq_flip": Config.min_ceq_flip,
+                "min_flip_signal": Config.min_flip_signal,
+                "max_directional_exposure_usd": Config.max_directional_exposure_usd,
+                "daily_loss_limit": Config.daily_directional_loss_limit,
+                "max_flip_contracts": Config.max_flip_contracts,
+                "expected_slippage_cents": Config.expected_slippage_cents,
+                "price_buffer_cents": Config.price_buffer_cents,
+                "pm_price_buffer_cents": Config.pm_price_buffer_cents,
+                "cooldown_seconds": Config.cooldown_seconds,
+                "depth_cap": Config.depth_cap,
+            },
+            "tiers": {
+                "total_filled": total_filled,
+                "success_count": success_count,
+                "tier1_count": tier1_count,
+                "tier2_count": tier2_count,
+                "tier3a_count": tier3a_count,
+                "tier3b_count": tier3b_count,
+                "tier3_unwind_count": tier3_unwind_count,
+                "unhedged_no_tier": unhedged_no_tier,
+                "kalshi_fail_rate": kalshi_fail_rate,
+                "avg_success_spread": avg_success_spread,
+                "avg_exit_loss": avg_exit_loss,
+                "directional_win_rate": directional_win_rate,
+            },
+            "connection": connection,
         }
 
 

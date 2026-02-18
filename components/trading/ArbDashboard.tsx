@@ -212,6 +212,7 @@ interface ArbState {
   pnl_summary: PnlSummary;
   mapped_games: MappedGame[];
   liquidity_stats: LiquidityStats;
+  specs?: any;
   mappings_last_refreshed: string;
   updated_at: string;
 }
@@ -511,7 +512,7 @@ function FilterButton({
   );
 }
 
-type TopTab = "monitor" | "pnl_history" | "liquidity";
+type TopTab = "monitor" | "pnl_history" | "liquidity" | "specs";
 type TradeFilter = "all" | "live" | "paper";
 type StatusFilter = "all" | "SUCCESS" | "PM_NO_FILL" | "EXITED" | "UNHEDGED" | "SKIPPED";
 type BottomTab = "positions" | "mapped_games";
@@ -1141,7 +1142,7 @@ export default function ArbDashboard() {
         </div>
         {/* Top-level tabs */}
         <div className="flex px-4 gap-1">
-          {(["monitor", "pnl_history", "liquidity"] as TopTab[]).map((tab) => (
+          {(["monitor", "pnl_history", "liquidity", "specs"] as TopTab[]).map((tab) => (
             <button
               key={tab}
               onClick={() => setTopTab(tab)}
@@ -1151,7 +1152,7 @@ export default function ArbDashboard() {
                   : "border-transparent text-gray-500 hover:text-gray-300"
               }`}
             >
-              {tab === "monitor" ? "Monitor" : tab === "pnl_history" ? "P&L History" : "Liquidity"}
+              {tab === "monitor" ? "Monitor" : tab === "pnl_history" ? "P&L History" : tab === "liquidity" ? "Liquidity" : "Specs"}
             </button>
           ))}
         </div>
@@ -2961,6 +2962,298 @@ export default function ArbDashboard() {
           </div>
         </div>
       )}
+
+      {/* ══════════ SPECS TAB ══════════ */}
+      {topTab === "specs" && (() => {
+        const specs = data.specs || {};
+        const lat = specs.latency || {};
+        const lastTrade = lat.last_trade || {};
+        const rolling = lat.rolling_10 || {};
+        const allTime = lat.all_time || {};
+        const deploy = specs.deployment || {};
+        const cfg = specs.config || {};
+        const tiers = specs.tiers || {};
+        const conn = specs.connection || {};
+
+        const latencyColor = (ms: number) =>
+          ms > 0 && ms < 100 ? "text-emerald-400" : ms <= 200 ? "text-yellow-400" : "text-red-400";
+        const boolColor = (v: boolean) => v ? "text-emerald-400" : "text-red-400";
+
+        return (
+          <div className="p-4 space-y-4">
+            {/* ── Section 1: System & Speed ── */}
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">System & Speed</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                {/* Last Trade */}
+                <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2.5">
+                  <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 mb-2">Last Trade</p>
+                  {lastTrade.total_ms ? (
+                    <div className="space-y-1.5">
+                      <div className="flex justify-between">
+                        <span className="text-[10px] text-gray-500">PM</span>
+                        <span className={`text-sm font-bold font-mono ${latencyColor(lastTrade.pm_ms || 0)}`}>{lastTrade.pm_ms || 0}ms</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[10px] text-gray-500">Kalshi</span>
+                        <span className={`text-sm font-bold font-mono ${latencyColor(lastTrade.k_ms || 0)}`}>{lastTrade.k_ms || 0}ms</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[10px] text-gray-500">Total</span>
+                        <span className={`text-sm font-bold font-mono ${latencyColor(lastTrade.total_ms)}`}>{lastTrade.total_ms}ms</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-[10px] text-gray-500">SDK</span>
+                        <span className={`inline-block rounded px-1.5 py-0.5 text-[9px] font-bold ${lastTrade.sdk_used ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"}`}>
+                          {lastTrade.sdk_used ? "YES" : "NO"}
+                        </span>
+                      </div>
+                      <p className="text-[9px] text-gray-600 pt-1">{lastTrade.team} &middot; {lastTrade.timestamp ? new Date(lastTrade.timestamp).toLocaleTimeString() : "—"}</p>
+                    </div>
+                  ) : (
+                    <p className="text-sm text-gray-600">No data</p>
+                  )}
+                </div>
+
+                {/* Rolling 10 Avg */}
+                <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2.5">
+                  <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 mb-2">Rolling 10 Avg</p>
+                  {rolling.avg_total_ms ? (
+                    <div className="space-y-1.5">
+                      <div className="flex justify-between">
+                        <span className="text-[10px] text-gray-500">PM</span>
+                        <span className={`text-sm font-bold font-mono ${latencyColor(rolling.avg_pm_ms || 0)}`}>{rolling.avg_pm_ms || 0}ms</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[10px] text-gray-500">Kalshi</span>
+                        <span className={`text-sm font-bold font-mono ${latencyColor(rolling.avg_k_ms || 0)}`}>{rolling.avg_k_ms || 0}ms</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[10px] text-gray-500">Total</span>
+                        <span className={`text-sm font-bold font-mono ${latencyColor(rolling.avg_total_ms)}`}>{rolling.avg_total_ms}ms</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[10px] text-gray-500">SDK Hit Rate</span>
+                        <span className="text-sm font-bold font-mono text-gray-300">{rolling.sdk_hit_rate || 0}%</span>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-sm text-gray-600">No data</p>
+                  )}
+                </div>
+
+                {/* All-Time */}
+                <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2.5">
+                  <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 mb-2">All-Time</p>
+                  {allTime.fastest_ms != null ? (
+                    <div className="space-y-1.5">
+                      <div className="flex justify-between">
+                        <span className="text-[10px] text-gray-500">Fastest</span>
+                        <span className={`text-sm font-bold font-mono ${latencyColor(allTime.fastest_ms)}`}>{allTime.fastest_ms}ms</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[10px] text-gray-500">Slowest</span>
+                        <span className={`text-sm font-bold font-mono ${latencyColor(allTime.slowest_ms)}`}>{allTime.slowest_ms}ms</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[10px] text-gray-500">SDK Success</span>
+                        <span className="text-sm font-bold font-mono text-gray-300">{allTime.sdk_success_rate || 0}%</span>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-sm text-gray-600">No data</p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* ── Section 2: Deployment ── */}
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Deployment</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <MetricCard
+                  label="Git Commit"
+                  value={deploy.git_commit_short || "—"}
+                  sub={deploy.git_commit_msg || ""}
+                />
+                <MetricCard
+                  label="Branch"
+                  value={deploy.git_branch || "—"}
+                />
+                <MetricCard
+                  label="Commit Date"
+                  value={deploy.git_commit_date ? new Date(deploy.git_commit_date).toLocaleDateString() : "—"}
+                />
+                <MetricCard
+                  label="Mode"
+                  value={deploy.execution_mode || "—"}
+                  accent={deploy.execution_mode === "LIVE" ? "text-red-400" : "text-yellow-400"}
+                />
+                <MetricCard
+                  label="Executor"
+                  value={deploy.executor_version || "—"}
+                />
+                <MetricCard
+                  label="Python"
+                  value={deploy.python_version || "—"}
+                />
+                <MetricCard
+                  label="Server"
+                  value={deploy.server || "—"}
+                />
+                <MetricCard
+                  label="Dry Run"
+                  value={deploy.dry_run ? "ON" : "OFF"}
+                  accent={deploy.dry_run ? "text-yellow-400" : "text-emerald-400"}
+                />
+              </div>
+            </div>
+
+            {/* ── Section 3: Configuration ── */}
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Configuration</h3>
+              <div className="rounded-lg border border-gray-800 bg-[#111] px-4 py-3">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-2">
+                  {Object.entries(cfg).map(([key, val]) => (
+                    <div key={key} className="flex justify-between items-baseline gap-2">
+                      <span className="text-[10px] text-gray-500 truncate">{key.replace(/_/g, " ")}</span>
+                      <span className={`text-xs font-mono font-bold shrink-0 ${
+                        typeof val === "boolean"
+                          ? val ? "text-emerald-400" : "text-red-400"
+                          : "text-gray-300"
+                      }`}>
+                        {typeof val === "boolean" ? (val ? "ON" : "OFF") :
+                         typeof val === "number" && key.includes("usd") ? `$${val}` :
+                         typeof val === "number" && key.includes("loss") ? `$${val}` :
+                         String(val)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* ── Section 4: Tier System ── */}
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Tier System</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <MetricCard
+                  label="Total Filled"
+                  value={String(tiers.total_filled || 0)}
+                />
+                <MetricCard
+                  label="SUCCESS"
+                  value={String(tiers.success_count || 0)}
+                  sub={tiers.total_filled ? `${Math.round((tiers.success_count || 0) / tiers.total_filled * 100)}%` : "—"}
+                  accent="text-emerald-400"
+                />
+                <MetricCard
+                  label="TIER 1 Hedge"
+                  value={String(tiers.tier1_count || 0)}
+                  sub={tiers.total_filled ? `${Math.round((tiers.tier1_count || 0) / tiers.total_filled * 100)}%` : "—"}
+                  accent="text-emerald-400"
+                />
+                <MetricCard
+                  label="TIER 2 Exit"
+                  value={String(tiers.tier2_count || 0)}
+                  sub={tiers.total_filled ? `${Math.round((tiers.tier2_count || 0) / tiers.total_filled * 100)}%` : "—"}
+                  accent="text-yellow-400"
+                />
+                <MetricCard
+                  label="TIER 3A Hold"
+                  value={String(tiers.tier3a_count || 0)}
+                  sub={tiers.total_filled ? `${Math.round((tiers.tier3a_count || 0) / tiers.total_filled * 100)}%` : "—"}
+                  accent="text-orange-400"
+                />
+                <MetricCard
+                  label="TIER 3B Flip"
+                  value={String(tiers.tier3b_count || 0)}
+                  sub={tiers.total_filled ? `${Math.round((tiers.tier3b_count || 0) / tiers.total_filled * 100)}%` : "—"}
+                  accent="text-orange-400"
+                />
+                <MetricCard
+                  label="TIER 3 Unwind"
+                  value={String(tiers.tier3_unwind_count || 0)}
+                  accent="text-red-400"
+                />
+                <MetricCard
+                  label="UNHEDGED (no tier)"
+                  value={String(tiers.unhedged_no_tier || 0)}
+                  accent="text-purple-400"
+                />
+                <MetricCard
+                  label="K Fail Rate"
+                  value={`${tiers.kalshi_fail_rate || 0}%`}
+                  accent={(tiers.kalshi_fail_rate || 0) > 30 ? "text-red-400" : "text-gray-300"}
+                />
+                <MetricCard
+                  label="Avg Success Spread"
+                  value={`${tiers.avg_success_spread || 0}c`}
+                  accent="text-emerald-400"
+                />
+                <MetricCard
+                  label="Avg Exit Loss"
+                  value={`${tiers.avg_exit_loss || 0}c`}
+                  accent="text-red-400"
+                />
+                <MetricCard
+                  label="Dir Win Rate"
+                  value={`${tiers.directional_win_rate || 0}%`}
+                  accent={(tiers.directional_win_rate || 0) >= 50 ? "text-emerald-400" : "text-red-400"}
+                />
+              </div>
+            </div>
+
+            {/* ── Section 5: Connection Health ── */}
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Connection Health</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <MetricCard
+                  label="Kalshi WS"
+                  value={conn.kalshi_ws ? "Connected" : "Down"}
+                  accent={boolColor(conn.kalshi_ws)}
+                />
+                <MetricCard
+                  label="PM WS"
+                  value={conn.pm_ws ? "Connected" : "Down"}
+                  accent={boolColor(conn.pm_ws)}
+                />
+                <MetricCard
+                  label="K Messages"
+                  value={String(conn.k_messages || 0)}
+                />
+                <MetricCard
+                  label="PM Messages"
+                  value={String(conn.pm_messages || 0)}
+                />
+                <MetricCard
+                  label="OMI Cache"
+                  value={conn.omi_is_stale ? "Stale" : "Fresh"}
+                  accent={conn.omi_is_stale ? "text-red-400" : "text-emerald-400"}
+                  sub={conn.omi_last_refresh_ago_s != null ? `${conn.omi_last_refresh_ago_s}s ago` : "never"}
+                />
+                <MetricCard
+                  label="OMI Signals"
+                  value={String(conn.omi_signals_cached || 0)}
+                />
+                <MetricCard
+                  label="OMI Live Games"
+                  value={String(conn.omi_live_count || 0)}
+                  accent={(conn.omi_live_count || 0) > 0 ? "text-emerald-400" : "text-gray-500"}
+                />
+              </div>
+            </div>
+
+            {/* ── No data fallback ── */}
+            {!specs.latency && !specs.deployment && (
+              <div className="text-center text-gray-600 py-8">
+                <p className="text-sm">No specs data available</p>
+                <p className="text-[10px] mt-1">Specs are pushed from the executor every 5 seconds</p>
+              </div>
+            )}
+          </div>
+        );
+      })()}
     </div>
   );
 }

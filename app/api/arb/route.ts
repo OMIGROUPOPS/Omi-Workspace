@@ -192,6 +192,7 @@ export interface ArbState {
   pnl_summary: PnlSummary;
   mapped_games: MappedGame[];
   liquidity_stats: LiquidityStats;
+  specs?: any;
   mappings_last_refreshed: string;
   updated_at: string;
 }
@@ -244,6 +245,7 @@ const DEFAULT_STATE: ArbState = {
       overall_avg_spread: 0,
     },
   },
+  specs: undefined,
   mappings_last_refreshed: "",
   updated_at: "",
 };
@@ -280,6 +282,7 @@ export async function POST(req: NextRequest) {
     if (body.pnl_summary !== undefined) arbState.pnl_summary = body.pnl_summary;
     if (body.mapped_games !== undefined) arbState.mapped_games = body.mapped_games;
     if (body.liquidity_stats !== undefined) arbState.liquidity_stats = body.liquidity_stats;
+    if (body.specs !== undefined) arbState.specs = body.specs;
     if (body.mappings_last_refreshed !== undefined) arbState.mappings_last_refreshed = body.mappings_last_refreshed;
     arbState.updated_at = new Date().toISOString();
 

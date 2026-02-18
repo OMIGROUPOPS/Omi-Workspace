@@ -255,9 +255,9 @@ function fmtLine(v: number): string {
   return Number.isInteger(v) ? String(v) : v.toFixed(1);
 }
 
-// Inline SVG step-line chart: green book line + orange OMI fair line, both interactive
+// TradingView-style step chart: continuous crosshair, edge fill, both lines interactive
 function PropLineChart({ data, fairLine, fairSource }: { data: any[]; fairLine: number; fairSource: 'pinnacle' | 'consensus' }) {
-  const [hover, setHover] = useState<{ idx: number; target: 'book' | 'fair' } | null>(null);
+  const [hoverX, setHoverX] = useState<number | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
   // Debug: log fair value sources so chart vs description can be audited in console
@@ -267,7 +267,7 @@ function PropLineChart({ data, fairLine, fairSource }: { data: any[]; fairLine: 
       '| lastSnapshot:', last?.line, '| book:', last?.book_key, '| time:', last?.snapshot_time);
   }, [fairLine, fairSource, data]);
 
-  const W = 680, H = 160, PAD_X = 40, PAD_R = 80, PAD_Y = 20;
+  const W = 700, H = 195, PAD_X = 40, PAD_R = 78, PAD_Y = 14, CHART_B = 142;
 
   // Filter to single book (prefer FanDuel) to avoid mixed-book step chart
   const bookCounts = new Map<string, number>();
@@ -287,99 +287,83 @@ function PropLineChart({ data, fairLine, fairSource }: { data: any[]; fairLine: 
   const vals = bookData.map(d => Number(d.line)).filter(n => !isNaN(n));
   if (vals.length < 2) return null;
 
-  // Y-range includes both lines
+  // Y scale includes both lines
   const allY = [...vals, fairLine];
   const yMin = Math.min(...allY);
   const yMax = Math.max(...allY);
   const yRange = yMax - yMin || 1;
-
   const chartW = W - PAD_X - PAD_R;
   const xStep = chartW / (vals.length - 1);
-  const toY = (v: number) => PAD_Y + (1 - (v - yMin) / yRange) * (H - PAD_Y * 2);
+  const toY = (v: number) => PAD_Y + (1 - (v - yMin) / yRange) * (CHART_B - PAD_Y);
+  const fairY = toY(fairLine);
 
   // Book step-line path
-  const parts: string[] = [];
+  const pathParts: string[] = [];
   vals.forEach((v, i) => {
     const x = PAD_X + i * xStep;
     const y = toY(v);
-    if (i === 0) parts.push(`M ${x} ${y}`);
-    else { parts.push(`H ${x}`); parts.push(`V ${y}`); }
+    if (i === 0) pathParts.push(`M ${x} ${y}`);
+    else { pathParts.push(`H ${x}`); pathParts.push(`V ${y}`); }
   });
-  const bookPath = parts.join(' ');
-  const fairY = toY(fairLine);
+  const bookPath = pathParts.join(' ');
 
-  // Y-axis labels
+  // Y-axis ticks
   const yTicks = [yMin, (yMin + yMax) / 2, yMax];
 
   // X-axis timestamps
-  const t0 = bookData[0]?.snapshot_time ? new Date(bookData[0].snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
+  const t0 = bookData[0]?.snapshot_time
+    ? new Date(bookData[0].snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
   const tN = bookData[bookData.length - 1]?.snapshot_time
     ? new Date(bookData[bookData.length - 1].snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
 
-  // Endpoint positions
+  // Endpoint positions + collision avoidance
   const lastX = PAD_X + (vals.length - 1) * xStep;
   const lastBookY = toY(vals[vals.length - 1]);
-
-  // Endpoint label collision avoidance
   const GAP = 14;
-  let eLabelBookY = lastBookY;
-  let eLabelFairY = fairY;
-  if (Math.abs(eLabelBookY - eLabelFairY) < GAP) {
-    const mid = (eLabelBookY + eLabelFairY) / 2;
-    if (lastBookY <= fairY) { eLabelBookY = mid - GAP / 2; eLabelFairY = mid + GAP / 2; }
-    else { eLabelFairY = mid - GAP / 2; eLabelBookY = mid + GAP / 2; }
+  let eLblBookY = lastBookY, eLblFairY = fairY;
+  if (Math.abs(eLblBookY - eLblFairY) < GAP) {
+    const mid = (eLblBookY + eLblFairY) / 2;
+    if (lastBookY <= fairY) { eLblBookY = mid - GAP / 2; eLblFairY = mid + GAP / 2; }
+    else { eLblFairY = mid - GAP / 2; eLblBookY = mid + GAP / 2; }
   }
 
-  // Hover: detect which line is closer
+  // --- Continuous crosshair hover ---
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
     const svg = svgRef.current;
     if (!svg) return;
     const rect = svg.getBoundingClientRect();
     const mx = ((e.clientX - rect.left) / rect.width) * W;
-    const my = ((e.clientY - rect.top) / rect.height) * H;
-    const idx = Math.max(0, Math.min(vals.length - 1, Math.round((mx - PAD_X) / xStep)));
-    const dBook = Math.abs(my - toY(vals[idx]));
-    const dFair = Math.abs(my - fairY);
-    setHover({ idx, target: dFair < dBook ? 'fair' : 'book' });
+    if (mx < PAD_X || mx > PAD_X + chartW) { setHoverX(null); return; }
+    setHoverX(mx);
   };
-  const handleMouseLeave = () => setHover(null);
+  const handleMouseLeave = () => setHoverX(null);
 
-  // Hover derived values
-  const hi = hover?.idx ?? null;
-  const ht = hover?.target ?? null;
-  const hx = hi !== null ? PAD_X + hi * xStep : 0;
-  const hBookY = hi !== null ? toY(vals[hi]) : 0;
-  const hd = hi !== null ? bookData[hi] : null;
+  // Step-chart interpolation: last known value before cursor X
+  const stepIdx = hoverX !== null
+    ? Math.min(vals.length - 1, Math.max(0, Math.floor((hoverX - PAD_X) / xStep)))
+    : null;
+  const hBookVal = stepIdx !== null ? vals[stepIdx] : null;
+  const hBookY = hBookVal !== null ? toY(hBookVal) : 0;
+  const hd = stepIdx !== null ? bookData[stepIdx] : null;
   const hTime = hd?.snapshot_time
     ? new Date(hd.snapshot_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true })
     : '';
-  const fmtO = (o: number) => o > 0 ? `+${o}` : `${o}`;
 
-  // Tooltip styling per target
-  const tipW = 220;
-  const tipX = hi !== null && hx + tipW + 10 > W - PAD_R ? hx - tipW - 10 : hx + 10;
-  const isBook = ht === 'book';
-  const tipColor = isBook ? '#16a34a' : '#ea580c';
-  const tipBg = isBook ? '#f0fdf4' : '#fff7ed';
-  const tipBorder = isBook ? '#bbf7d0' : '#fed7aa';
-
-  // Tooltip text
-  let tip1 = '', tip2 = '', tip3 = '';
-  if (hi !== null && isBook && hd) {
-    tip1 = `${bookFullName}: ${fmtLine(vals[hi])}`;
-    tip2 = hTime;
-    if (hd.over_odds != null && hd.under_odds != null) {
-      tip3 = `O ${fmtO(hd.over_odds)} / U ${fmtO(hd.under_odds)}`;
-    }
-  } else if (hi !== null && !isBook) {
-    tip1 = `OMI Fair: ${fmtLine(fairLine)}`;
-    tip2 = `Source: ${fairSource === 'pinnacle' ? 'PIN current' : 'consensus'}`;
+  // Crosshair label collision avoidance
+  const CH_GAP = 13;
+  let chBookY = hBookY, chFairY = fairY;
+  if (hoverX !== null && Math.abs(chBookY - chFairY) < CH_GAP) {
+    const mid = (chBookY + chFairY) / 2;
+    if (hBookY <= fairY) { chBookY = mid - CH_GAP / 2; chFairY = mid + CH_GAP / 2; }
+    else { chFairY = mid - CH_GAP / 2; chBookY = mid + CH_GAP / 2; }
   }
-  const tipH = tip3 ? 54 : 40;
+  // Flip labels left if near right edge
+  const lblW = 64;
+  const lblDx = hoverX !== null && hoverX > W - PAD_R - lblW - 14 ? -(lblW + 6) : 8;
 
   return (
-    <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} className="w-full max-w-[680px] cursor-crosshair select-none"
-      style={{ height: '160px' }} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+    <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} className="w-full max-w-[700px] cursor-crosshair select-none"
+      style={{ height: '195px' }} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
 
       {/* Grid lines */}
       {yTicks.map((val, i) => {
@@ -392,49 +376,85 @@ function PropLineChart({ data, fairLine, fairSource }: { data: any[]; fairLine: 
         );
       })}
 
-      {/* Convergence fill between book and fair */}
+      {/* Edge fill: green when OMI > book (positive edge), red when OMI < book */}
       {vals.map((v, i) => {
         if (i === vals.length - 1) return null;
         const x1 = PAD_X + i * xStep;
         const x2 = PAD_X + (i + 1) * xStep;
         const bY = toY(v);
-        return <rect key={i} x={x1} y={Math.min(bY, fairY)} width={x2 - x1} height={Math.abs(bY - fairY)} fill="rgba(234,88,12,0.06)" />;
+        const gap = Math.abs(bY - fairY);
+        if (gap < 1) return null;
+        const positive = fairLine > v; // OMI fair above book = positive edge
+        return (
+          <rect key={i} x={x1} y={Math.min(bY, fairY)} width={x2 - x1} height={gap}
+            fill={positive ? 'rgba(220,252,231,0.3)' : 'rgba(252,231,231,0.3)'} />
+        );
       })}
 
-      {/* OMI Fair line — dashed orange, 2px */}
-      <line x1={PAD_X} y1={fairY} x2={lastX} y2={fairY} stroke="#ea580c" strokeWidth="2" strokeDasharray="6 4" opacity="0.85" />
-      <circle cx={lastX} cy={fairY} r="3.5" fill="#ea580c" stroke={P.cardBg} strokeWidth="1.5" />
-
-      {/* Book step-line — solid green, 2.5px */}
-      <path d={bookPath} fill="none" stroke="#16a34a" strokeWidth="2.5" />
-      {/* Green dots at every data point */}
-      {vals.map((v, i) => (
-        <circle key={i} cx={PAD_X + i * xStep} cy={toY(v)} r="2.5" fill="#16a34a" stroke={P.cardBg} strokeWidth="1" />
+      {/* OMI Fair line — solid orange, 2px */}
+      <line x1={PAD_X} y1={fairY} x2={lastX} y2={fairY} stroke="#ea580c" strokeWidth="2" />
+      {/* Orange dots at each data point X */}
+      {vals.map((_, i) => (
+        <circle key={`f${i}`} cx={PAD_X + i * xStep} cy={fairY} r="3" fill="#ea580c" stroke={P.cardBg} strokeWidth="1" />
       ))}
 
-      {/* Always-visible endpoint labels */}
-      <text x={lastX + 10} y={eLabelBookY + 4} fill="#16a34a" fontSize="10" fontFamily="monospace" fontWeight="bold">
+      {/* Book step-line — solid green, 2px */}
+      <path d={bookPath} fill="none" stroke="#16a34a" strokeWidth="2" />
+      {/* Green dots at each data point */}
+      {vals.map((v, i) => (
+        <circle key={`b${i}`} cx={PAD_X + i * xStep} cy={toY(v)} r="3" fill="#16a34a" stroke={P.cardBg} strokeWidth="1" />
+      ))}
+
+      {/* Endpoint labels (always visible) */}
+      <text x={lastX + 10} y={eLblBookY + 4} fill="#16a34a" fontSize="10" fontFamily="monospace" fontWeight="bold">
         {bookShort} {fmtLine(vals[vals.length - 1])}
       </text>
-      <text x={lastX + 10} y={eLabelFairY + 4} fill="#ea580c" fontSize="10" fontFamily="monospace" fontWeight="bold">
+      <text x={lastX + 10} y={eLblFairY + 4} fill="#ea580c" fontSize="10" fontFamily="monospace" fontWeight="bold">
         OMI {fmtLine(fairLine)}
       </text>
 
-      {/* X-axis labels */}
-      <text x={PAD_X} y={H - 2} fill={P.textMuted} fontSize="8" fontFamily="monospace">{t0}</text>
-      <text x={W - PAD_R} y={H - 2} textAnchor="end" fill={P.textMuted} fontSize="8" fontFamily="monospace">{tN}</text>
+      {/* X-axis */}
+      <text x={PAD_X} y={CHART_B + 18} fill={P.textMuted} fontSize="8" fontFamily="monospace">{t0}</text>
+      <text x={lastX} y={CHART_B + 18} textAnchor="end" fill={P.textMuted} fontSize="8" fontFamily="monospace">{tN}</text>
 
-      {/* Hover: crosshair + colored dot + tooltip */}
-      {hover !== null && hi !== null && (
+      {/* Legend */}
+      <g transform={`translate(${PAD_X}, ${H - 10})`}>
+        <line x1="0" y1="0" x2="12" y2="0" stroke="#16a34a" strokeWidth="2" />
+        <circle cx="6" cy="0" r="1.5" fill="#16a34a" />
+        <text x="16" y="3" fill={P.textSecondary} fontSize="9" fontFamily="monospace">{bookFullName}</text>
+        <text x="72" y="3" fill={P.textFaint} fontSize="9">|</text>
+        <line x1="82" y1="0" x2="94" y2="0" stroke="#ea580c" strokeWidth="2" />
+        <circle cx="88" cy="0" r="1.5" fill="#ea580c" />
+        <text x="98" y="3" fill={P.textSecondary} fontSize="9" fontFamily="monospace">OMI Fair</text>
+        <text x="156" y="3" fill={P.textFaint} fontSize="9">|</text>
+        <rect x="166" y="-5" width="12" height="10" rx="1" fill="rgba(220,252,231,0.5)" stroke="#bbf7d0" strokeWidth="0.5" />
+        <text x="182" y="3" fill={P.textSecondary} fontSize="9" fontFamily="monospace">Edge Zone</text>
+      </g>
+
+      {/* Continuous crosshair */}
+      {hoverX !== null && stepIdx !== null && hBookVal !== null && (
         <g>
-          <line x1={hx} y1={PAD_Y} x2={hx} y2={H - PAD_Y} stroke={P.textFaint} strokeWidth="1" strokeDasharray="2 2" />
-          {/* Enlarged dot on the target line */}
-          <circle cx={hx} cy={isBook ? hBookY : fairY} r="5" fill={tipColor} stroke={P.cardBg} strokeWidth="2" />
-          {/* Tooltip */}
-          <rect x={tipX} y={6} width={tipW} height={tipH} rx="4" fill={tipBg} stroke={tipBorder} strokeWidth="1" />
-          <text x={tipX + 6} y={20} fill={tipColor} fontSize="10" fontFamily="monospace" fontWeight="bold">{tip1}</text>
-          <text x={tipX + 6} y={34} fill={P.textSecondary} fontSize="9" fontFamily="monospace">{tip2}</text>
-          {tip3 && <text x={tipX + 6} y={48} fill={P.textMuted} fontSize="9" fontFamily="monospace">{tip3}</text>}
+          {/* Vertical crosshair line */}
+          <line x1={hoverX} y1={PAD_Y} x2={hoverX} y2={CHART_B} stroke="#d1d5db" strokeWidth="1" strokeDasharray="3 2" />
+
+          {/* Circle + label on book line */}
+          <circle cx={hoverX} cy={hBookY} r="4" fill="#16a34a" stroke={P.cardBg} strokeWidth="1.5" />
+          <rect x={hoverX + lblDx - 2} y={chBookY - 8} width={lblW} height={15} rx="3" fill="rgba(255,255,255,0.92)" />
+          <text x={hoverX + lblDx} y={chBookY + 4} fill="#16a34a" fontSize="9" fontFamily="monospace" fontWeight="bold">
+            {bookShort}: {fmtLine(hBookVal)}
+          </text>
+
+          {/* Circle + label on OMI fair line */}
+          <circle cx={hoverX} cy={fairY} r="4" fill="#ea580c" stroke={P.cardBg} strokeWidth="1.5" />
+          <rect x={hoverX + lblDx - 2} y={chFairY - 8} width={lblW} height={15} rx="3" fill="rgba(255,255,255,0.92)" />
+          <text x={hoverX + lblDx} y={chFairY + 4} fill="#ea580c" fontSize="9" fontFamily="monospace" fontWeight="bold">
+            OMI: {fmtLine(fairLine)}
+          </text>
+
+          {/* Time label at bottom of crosshair */}
+          <text x={hoverX} y={CHART_B + 12} textAnchor="middle" fill={P.textSecondary} fontSize="8" fontFamily="monospace">
+            {hTime}
+          </text>
         </g>
       )}
     </svg>

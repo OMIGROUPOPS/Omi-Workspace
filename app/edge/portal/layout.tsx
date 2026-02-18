@@ -71,7 +71,7 @@ const NAV_SECTIONS: NavSection[] = [
       },
       {
         key: 'exchanges',
-        label: 'Exchange Markets',
+        label: 'Live Edge Tracker',
         href: '/edge/portal/exchanges',
         icon: (
           <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

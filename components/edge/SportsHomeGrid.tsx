@@ -483,10 +483,10 @@ export function SportsHomeGrid({
     return { hasLiveGames: hasLive, sortedGamesBySport: sorted };
   }, [orderedGames]);
 
-  // Auto-refresh
+  // Auto-refresh: 10s when live games, 45s otherwise
   useEffect(() => {
     if (!mounted) return;
-    const interval = hasLiveGames ? 20000 : 45000;
+    const interval = hasLiveGames ? 10000 : 45000;
     const timer = setInterval(() => refreshData(false), interval);
     return () => clearInterval(timer);
   }, [mounted, refreshData, hasLiveGames]);

@@ -965,6 +965,12 @@ export function SportsHomeGrid({
                             ) : (
                               <span style={{ fontSize: 10, color: P.textFaint, fontFamily: 'monospace' }}>{countdown}</span>
                             )}
+                            {maxEdge >= 8 && (
+                              <span style={{ fontSize: 9, fontWeight: 700, color: '#d97706', background: '#fef3c7',
+                                borderRadius: 4, padding: '1px 5px', marginLeft: 4 }}>
+                                HIGH VARIANCE
+                              </span>
+                            )}
                           </div>
                         </div>
 

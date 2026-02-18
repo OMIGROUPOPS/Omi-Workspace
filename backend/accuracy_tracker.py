@@ -203,6 +203,33 @@ class AccuracyTracker:
             if best_edge is not None:
                 signal_tier = _determine_signal(best_edge)
 
+        # --- Fetch edge cap data from composite_history ---
+        raw_edge_pct = None
+        capped_edge_pct = None
+        try:
+            ch_result = self.client.table("composite_history").select(
+                "raw_edge_pct, capped_edge_pct"
+            ).eq("game_id", game_id).order("timestamp", desc=True).limit(1).execute()
+            if ch_result.data:
+                raw_edge_pct = ch_result.data[0].get("raw_edge_pct")
+                capped_edge_pct = ch_result.data[0].get("capped_edge_pct")
+        except Exception as e:
+            logger.debug(f"[AccuracyTracker] edge cap lookup failed for {game_id}: {e}")
+
+        # Compute edge on-the-fly from fair vs book lines if composite_history
+        # doesn't have raw_edge_pct yet (rows written before migration)
+        if raw_edge_pct is None and omi_fair_spread is not None:
+            raw_edge_pct = _compute_edge_pct(
+                omi_fair_spread, book_spread, omi_fair_total, book_total, sport_key
+            )
+            if raw_edge_pct is not None:
+                capped_edge_pct = _cap_edge(raw_edge_pct)
+
+        # Prefer composite_history raw_edge_pct for signal_tier (more accurate than
+        # predictions.best_edge_pct which is capped lower by the old prediction pipeline)
+        if raw_edge_pct is not None:
+            signal_tier = _determine_signal(float(raw_edge_pct))
+
         # --- Calculate errors ---
         omi_spread_error = abs(omi_fair_spread - actual_margin) if omi_fair_spread is not None else None
         omi_total_error = abs(omi_fair_total - actual_total) if omi_fair_total is not None else None
@@ -264,6 +291,8 @@ class AccuracyTracker:
             "pillar_game_environment": _round(pillar_game_environment),
             "edge_tier": edge_tier,
             "signal_tier": signal_tier,
+            "raw_edge_pct": raw_edge_pct,
+            "capped_edge_pct": capped_edge_pct,
         }
 
         return row
@@ -436,6 +465,49 @@ def _avg(vals: list[float]) -> Optional[float]:
     if not vals:
         return None
     return round(sum(vals) / len(vals), 2)
+
+
+# Sport-specific probability rates (mirror composite_tracker.py)
+_SPREAD_TO_PROB_RATE = {
+    "basketball_nba": 0.033, "NBA": 0.033,
+    "basketball_ncaab": 0.030, "NCAAB": 0.030,
+    "americanfootball_nfl": 0.027, "NFL": 0.027,
+    "americanfootball_ncaaf": 0.025, "NCAAF": 0.025,
+    "icehockey_nhl": 0.08, "NHL": 0.08,
+    "baseball_mlb": 0.09, "MLB": 0.09,
+    "soccer_epl": 0.20, "EPL": 0.20,
+}
+
+_EDGE_CAP_THRESHOLD = 8.0
+_EDGE_CAP_DECAY = 0.3
+
+
+def _compute_edge_pct(fair_spread, book_spread, fair_total, book_total, sport_key):
+    """Calculate max edge % across spread and total markets."""
+    max_edge = 0.0
+    rate = _SPREAD_TO_PROB_RATE.get(sport_key, 0.03)
+
+    if fair_spread is not None and book_spread is not None:
+        diff = abs(float(fair_spread) - float(book_spread))
+        edge = diff * rate * 100
+        max_edge = max(max_edge, edge)
+
+    if fair_total is not None and book_total is not None:
+        total_rate = rate * 0.6
+        diff = abs(float(fair_total) - float(book_total))
+        edge = diff * total_rate * 100
+        max_edge = max(max_edge, edge)
+
+    return round(max_edge, 2) if max_edge > 0 else None
+
+
+def _cap_edge(raw_edge):
+    """Apply soft cap: above 8%, diminishing returns."""
+    if raw_edge is None:
+        return None
+    if raw_edge <= _EDGE_CAP_THRESHOLD:
+        return raw_edge
+    return round(_EDGE_CAP_THRESHOLD + (raw_edge - _EDGE_CAP_THRESHOLD) * _EDGE_CAP_DECAY, 2)
 
 
 def _determine_signal(edge_pct: float) -> str:

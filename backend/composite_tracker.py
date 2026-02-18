@@ -69,12 +69,42 @@ SPREAD_TO_PROB_RATE = {
 
 FAIR_LINE_ML_FACTOR = 0.01  # 1% implied probability shift per composite point
 
+# Edge soft cap — extreme edges (8%+) are likely noise, apply diminishing returns
+EDGE_CAP_THRESHOLD = 8.0    # Edge % above which we apply diminishing returns
+EDGE_CAP_DECAY = 0.3        # Above threshold: capped = 8 + (raw - 8) * 0.3
+
 # Sport key normalization (for bias correction lookup)
 SPORT_DISPLAY = {
     "basketball_nba": "NBA", "basketball_ncaab": "NCAAB",
     "americanfootball_nfl": "NFL", "americanfootball_ncaaf": "NCAAF",
     "icehockey_nhl": "NHL", "soccer_epl": "EPL",
 }
+
+
+def _calculate_edge_pct(fair_spread, book_spread, fair_total, book_total, sport_key):
+    """Calculate max edge % across spread and total markets."""
+    max_edge = 0.0
+    rate = SPREAD_TO_PROB_RATE.get(sport_key, 0.03)
+
+    if fair_spread is not None and book_spread is not None:
+        diff = abs(float(fair_spread) - float(book_spread))
+        edge = diff * rate * 100
+        max_edge = max(max_edge, edge)
+
+    if fair_total is not None and book_total is not None:
+        total_rate = rate * 0.6  # TOTAL_TO_PROB_FACTOR
+        diff = abs(float(fair_total) - float(book_total))
+        edge = diff * total_rate * 100
+        max_edge = max(max_edge, edge)
+
+    return round(max_edge, 2)
+
+
+def _cap_edge(raw_edge):
+    """Apply soft cap: above 8%, diminishing returns."""
+    if raw_edge <= EDGE_CAP_THRESHOLD:
+        return raw_edge
+    return round(EDGE_CAP_THRESHOLD + (raw_edge - EDGE_CAP_THRESHOLD) * EDGE_CAP_DECAY, 2)
 
 
 def _get_bias_correction(sport_key: str) -> dict:
@@ -837,6 +867,16 @@ class CompositeTracker:
                         row_data["fair_ml_draw"] = previous["fair_ml_draw"]
                     if book_ml_draw is not None:
                         row_data["book_ml_draw"] = book_ml_draw
+                    # Edge calculation — use carried-forward fair lines vs current book lines
+                    raw_edge = _calculate_edge_pct(
+                        previous.get("fair_spread"), book_spread,
+                        previous.get("fair_total"), book_total, sport_key
+                    )
+                    capped_edge = _cap_edge(raw_edge)
+                    row_data["raw_edge_pct"] = raw_edge
+                    row_data["capped_edge_pct"] = capped_edge
+                    if raw_edge >= EDGE_CAP_THRESHOLD:
+                        logger.warning(f"[EdgeCap] {game_id}: raw={raw_edge:.1f}% -> capped={capped_edge:.1f}%")
                     db.client.table("composite_history").insert(row_data).execute()
                     logger.info(
                         f"[CompositeTracker] CARRY-FORWARD {game_id}: "
@@ -995,6 +1035,13 @@ class CompositeTracker:
                 }
                 if fair_ml_draw is not None:
                     row_data["fair_ml_draw"] = fair_ml_draw
+                # Edge calculation and soft cap
+                raw_edge = _calculate_edge_pct(fair_spread, book_spread, fair_total, book_total, sport_key)
+                capped_edge = _cap_edge(raw_edge)
+                row_data["raw_edge_pct"] = raw_edge
+                row_data["capped_edge_pct"] = capped_edge
+                if raw_edge >= EDGE_CAP_THRESHOLD:
+                    logger.warning(f"[EdgeCap] {game_id}: raw={raw_edge:.1f}% -> capped={capped_edge:.1f}%")
                 db.client.table("composite_history").insert(row_data).execute()
                 logger.info(
                     f"[CompositeTracker] WRITE {game_id}: "
@@ -1243,6 +1290,13 @@ class CompositeTracker:
                 }
                 if fair_ml_draw is not None:
                     row_data["fair_ml_draw"] = fair_ml_draw
+                # Edge calculation and soft cap
+                raw_edge = _calculate_edge_pct(fair_spread, book_spread, fair_total, book_total, sport_key)
+                capped_edge = _cap_edge(raw_edge)
+                row_data["raw_edge_pct"] = raw_edge
+                row_data["capped_edge_pct"] = capped_edge
+                if raw_edge >= EDGE_CAP_THRESHOLD:
+                    logger.warning(f"[EdgeCap] {game_id}: raw={raw_edge:.1f}% -> capped={capped_edge:.1f}%")
                 db.client.table("composite_history").insert(row_data).execute()
                 logger.info(
                     f"[CompositeTracker] WRITE-FAST {game_id}: "

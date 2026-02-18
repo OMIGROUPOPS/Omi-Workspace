@@ -1487,6 +1487,16 @@ function OmiFairPricing({
           }
           return <div className="text-[11px] text-[#1f2937] mt-1 leading-snug">{narrative}</div>;
         })()}
+        {/* HIGH VARIANCE warning when any edge >= 8% */}
+        {(() => {
+          const maxAbsEdge = Math.max(...sideBlocks.map(b => Math.abs(b.edgePct)));
+          if (maxAbsEdge < 8) return null;
+          return (
+            <div className="text-[10px] text-amber-600 bg-amber-50 border border-amber-200 rounded px-2 py-1 mt-1">
+              HIGH VARIANCE — Edge of {maxAbsEdge.toFixed(1)}% exceeds 8% threshold. Signal reliability decreases at extreme edges.
+            </div>
+          );
+        })()}
       </div>
 
       {/* Single-book comparison — two side-by-side blocks with edge story */}

@@ -109,6 +109,27 @@ const PROP_TYPE_LABELS: Record<string, string> = {
   player_cards: 'Cards',
 };
 
+// Light theme palette (matches SportsHomeGrid + Live Markets)
+const P = {
+  pageBg: '#ebedf0',
+  cardBg: '#ffffff',
+  cardBorder: '#e2e4e8',
+  headerBar: '#f4f5f7',
+  chartBg: '#f0f1f3',
+  textPrimary: '#1f2937',
+  textSecondary: '#6b7280',
+  textMuted: '#9ca3af',
+  textFaint: '#b0b5bd',
+  greenText: '#16a34a',
+  greenBg: 'rgba(34,197,94,0.06)',
+  greenBorder: 'rgba(34,197,94,0.35)',
+  redText: '#b91c1c',
+  redBg: 'rgba(239,68,68,0.04)',
+  redBorder: 'rgba(239,68,68,0.25)',
+  neutralBg: '#f7f8f9',
+  neutralBorder: '#ecedef',
+};
+
 // Sharp book for benchmark (used internally, NOT displayed)
 const SHARP_BOOK = 'pinnacle';
 
@@ -129,11 +150,11 @@ const EDGE_TIER_LABELS: Record<EdgeTier, string> = {
 };
 
 const EDGE_TIER_COLORS: Record<EdgeTier, string> = {
-  NO_EDGE: 'text-zinc-500',
-  LOW: 'text-zinc-400',
-  MID: 'text-zinc-300',
-  HIGH: 'text-emerald-400',
-  REVIEW: 'text-red-400',
+  NO_EDGE: 'text-gray-400',
+  LOW: 'text-gray-500',
+  MID: 'text-gray-600',
+  HIGH: 'text-green-600',
+  REVIEW: 'text-red-600',
 };
 
 interface PropOutcome {
@@ -323,8 +344,8 @@ function PropLineChart({ data, fairLine, fairSource }: { data: any[]; fairLine: 
         const y = valToY(val);
         return (
           <g key={i}>
-            <line x1={PAD_X} y1={y} x2={W - PAD_R} y2={y} stroke="#27272a" strokeWidth="1" />
-            <text x={PAD_X - 4} y={y + 3} textAnchor="end" fill="#52525b" fontSize="9" fontFamily="monospace">
+            <line x1={PAD_X} y1={y} x2={W - PAD_R} y2={y} stroke={P.cardBorder} strokeWidth="1" />
+            <text x={PAD_X - 4} y={y + 3} textAnchor="end" fill={P.textMuted} fontSize="9" fontFamily="monospace">
               {Number.isInteger(val) ? val : val.toFixed(1)}
             </text>
           </g>
@@ -333,9 +354,9 @@ function PropLineChart({ data, fairLine, fairSource }: { data: any[]; fairLine: 
       {/* Fair line (only when non-stagnant) */}
       {showFairLine && (
         <>
-          <line x1={PAD_X} y1={fairY} x2={W - PAD_R} y2={fairY} stroke="#2dd4bf" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.8" />
-          <rect x={labelX - 4} y={fairY - 9} width={tipW - 60} height={18} rx="4" fill="#0f766e" opacity="0.35" />
-          <text x={labelX} y={fairY + 4} fill="#2dd4bf" fontSize="11" fontFamily="monospace" fontWeight="bold">
+          <line x1={PAD_X} y1={fairY} x2={W - PAD_R} y2={fairY} stroke="#ea580c" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.85" />
+          <rect x={labelX - 4} y={fairY - 9} width={tipW - 60} height={18} rx="4" fill="#fff7ed" stroke="#fed7aa" strokeWidth="0.5" />
+          <text x={labelX} y={fairY + 4} fill="#ea580c" fontSize="11" fontFamily="monospace" fontWeight="bold">
             {fairLabel}
           </text>
           {/* Convergence fill */}
@@ -351,31 +372,81 @@ function PropLineChart({ data, fairLine, fairSource }: { data: any[]; fairLine: 
                 y={Math.min(bookY, fairY)}
                 width={x2 - x1}
                 height={Math.abs(bookY - fairY)}
-                fill={bookY < fairY ? '#10b98120' : '#10b98110'}
+                fill={bookY < fairY ? 'rgba(234,88,12,0.08)' : 'rgba(234,88,12,0.05)'}
               />
             );
           })}
         </>
       )}
       {/* Step-line path (book line) */}
-      <path d={pathD} fill="none" stroke="#a1a1aa" strokeWidth="2" />
+      <path d={pathD} fill="none" stroke={P.textSecondary} strokeWidth="2" />
       {/* Dot on last point */}
-      <circle cx={PAD_X + (lines.length - 1) * xStep} cy={valToY(lines[lines.length - 1])} r="3" fill="#a1a1aa" />
+      <circle cx={PAD_X + (lines.length - 1) * xStep} cy={valToY(lines[lines.length - 1])} r="3" fill={P.textSecondary} />
       {/* X-axis labels */}
-      <text x={PAD_X} y={H - 2} fill="#52525b" fontSize="8" fontFamily="monospace">{firstTime}</text>
-      <text x={W - PAD_R} y={H - 2} textAnchor="end" fill="#52525b" fontSize="8" fontFamily="monospace">{lastTime}</text>
+      <text x={PAD_X} y={H - 2} fill={P.textMuted} fontSize="8" fontFamily="monospace">{firstTime}</text>
+      <text x={W - PAD_R} y={H - 2} textAnchor="end" fill={P.textMuted} fontSize="8" fontFamily="monospace">{lastTime}</text>
       {/* Hover crosshair + tooltip */}
       {hoverIdx !== null && (
         <g>
-          <line x1={hx} y1={PAD_Y} x2={hx} y2={H - PAD_Y} stroke="#52525b" strokeWidth="1" strokeDasharray="2 2" />
-          <circle cx={hx} cy={hy} r="4" fill="#e4e4e7" stroke="#0a0a0a" strokeWidth="1.5" />
-          <rect x={tipX} y={8} width={tipW} height={50} rx="4" fill="#18181b" stroke="#3f3f46" strokeWidth="0.5" opacity="0.95" />
-          <text x={tipX + 6} y={22} fill="#a1a1aa" fontSize="9" fontFamily="monospace">{tipL1}</text>
-          <text x={tipX + 6} y={35} fill="#e4e4e7" fontSize="10" fontFamily="monospace" fontWeight="bold">{tipL2}</text>
-          <text x={tipX + 6} y={48} fill="#71717a" fontSize="9" fontFamily="monospace">{tipL3}</text>
+          <line x1={hx} y1={PAD_Y} x2={hx} y2={H - PAD_Y} stroke={P.textMuted} strokeWidth="1" strokeDasharray="2 2" />
+          <circle cx={hx} cy={hy} r="4" fill={P.cardBg} stroke={P.textPrimary} strokeWidth="1.5" />
+          <rect x={tipX} y={8} width={tipW} height={50} rx="4" fill={P.cardBg} stroke={P.cardBorder} strokeWidth="1" />
+          <text x={tipX + 6} y={22} fill={P.textMuted} fontSize="9" fontFamily="monospace">{tipL1}</text>
+          <text x={tipX + 6} y={35} fill={P.textPrimary} fontSize="10" fontFamily="monospace" fontWeight="bold">{tipL2}</text>
+          <text x={tipX + 6} y={48} fill={P.textSecondary} fontSize="9" fontFamily="monospace">{tipL3}</text>
         </g>
       )}
     </svg>
+  );
+}
+
+// Number-line comparison bar: shows FD, DK, and OMI Fair markers on a horizontal scale
+function PropComparisonBar({ prop }: { prop: ParsedProp }) {
+  const fdOver = prop.retailOverOdds.find(o => o.book.toLowerCase() === 'fanduel');
+  const dkOver = prop.retailOverOdds.find(o => o.book.toLowerCase() === 'draftkings');
+  const fdLine = fdOver?.line;
+  const dkLine = dkOver?.line;
+  const fairLine = prop.fairLine;
+
+  const values = [fdLine, dkLine, fairLine].filter((v): v is number => v != null);
+  if (values.length < 2) return null;
+
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const range = max - min || 1;
+  const pad = range * 0.2;
+  const scaleMin = min - pad;
+  const scaleMax = max + pad;
+  const scaleRange = scaleMax - scaleMin;
+  const toX = (v: number) => ((v - scaleMin) / scaleRange) * 100;
+
+  const fmtVal = (v: number) => Number.isInteger(v) ? String(v) : v.toFixed(1);
+
+  const markers: { label: string; value: number; color: string; bg: string; border: string }[] = [];
+  if (fdLine != null) markers.push({ label: 'FD', value: fdLine, color: '#1493ff', bg: '#eff6ff', border: '#bfdbfe' });
+  if (dkLine != null) markers.push({ label: 'DK', value: dkLine, color: '#16a34a', bg: '#f0fdf4', border: '#bbf7d0' });
+  markers.push({ label: 'OMI', value: fairLine, color: '#ea580c', bg: '#fff7ed', border: '#fed7aa' });
+
+  return (
+    <div style={{ padding: '12px 0' }}>
+      <div style={{ position: 'relative', height: 40, margin: '0 16px' }}>
+        {/* Track */}
+        <div style={{ position: 'absolute', top: 18, left: 0, right: 0, height: 4, background: P.cardBorder, borderRadius: 2 }} />
+        {/* Markers */}
+        {markers.map((m) => (
+          <div key={m.label} style={{ position: 'absolute', left: `${toX(m.value)}%`, transform: 'translateX(-50%)', textAlign: 'center', zIndex: m.label === 'OMI' ? 2 : 1 }}>
+            <div style={{
+              fontSize: 10, fontWeight: 700, fontFamily: 'monospace', color: m.color,
+              background: m.bg, border: `1px solid ${m.border}`,
+              borderRadius: 4, padding: '1px 5px', marginBottom: 2, whiteSpace: 'nowrap',
+            }}>
+              {m.label} {fmtVal(m.value)}
+            </div>
+            <div style={{ width: m.label === 'OMI' ? 10 : 8, height: m.label === 'OMI' ? 10 : 8, borderRadius: '50%', background: m.color, margin: '0 auto', border: `2px solid ${P.cardBg}`, boxShadow: '0 0 0 1px ' + m.border }} />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -770,17 +841,17 @@ export default function PlayerPropsPage() {
   };
 
   const getCEQColor = (ceq: number): string => {
-    if (ceq >= 66) return 'text-emerald-400';  // HIGH/MAX
-    if (ceq >= 60) return 'text-zinc-300';     // MID
-    if (ceq >= 55) return 'text-zinc-400';     // LOW
-    return 'text-zinc-500';                    // NO EDGE
+    if (ceq >= 66) return 'text-green-600';    // HIGH/MAX
+    if (ceq >= 60) return 'text-gray-700';     // MID
+    if (ceq >= 55) return 'text-gray-500';     // LOW
+    return 'text-gray-400';                    // NO EDGE
   };
 
   const getCEQBadgeColor = (ceq: number): string => {
-    if (ceq >= 66) return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
-    if (ceq >= 60) return 'bg-zinc-700/30 text-zinc-300 border-zinc-600/30';
-    if (ceq >= 55) return 'bg-zinc-800/30 text-zinc-400 border-zinc-700/30';
-    return 'bg-zinc-800/50 text-zinc-500 border-zinc-700';
+    if (ceq >= 66) return 'bg-green-50 text-green-700 border-green-200';
+    if (ceq >= 60) return 'bg-gray-100 text-gray-600 border-gray-200';
+    if (ceq >= 55) return 'bg-gray-50 text-gray-500 border-gray-200';
+    return 'bg-gray-50 text-gray-400 border-gray-200';
   };
 
   const getSportBorderColor = (sport: string): string => {
@@ -853,22 +924,22 @@ export default function PlayerPropsPage() {
   ).size;
 
   return (
-    <div className="py-4 px-4 max-w-[1600px] mx-auto" style={{ background: '#0a0a0a', minHeight: '100vh' }}>
+    <div className="py-4 px-4 max-w-[1600px] mx-auto" style={{ background: P.pageBg, minHeight: '100vh' }}>
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100 flex items-center gap-2">
-            <User className="w-6 h-6 text-purple-400" />
+          <h1 className="text-2xl font-bold flex items-center gap-2" style={{ color: P.textPrimary }}>
+            <User className="w-6 h-6" style={{ color: '#7c3aed' }} />
             Player Props
           </h1>
-          <p className="text-sm text-zinc-500 mt-1">
+          <p className="text-sm mt-1" style={{ color: P.textSecondary }}>
             Edges on player prop markets (FanDuel & DraftKings)
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           {lastUpdated && (
-            <span className="text-xs text-zinc-500 flex items-center gap-1">
+            <span className="text-xs flex items-center gap-1" style={{ color: P.textMuted }}>
               <Clock className="w-3 h-3" />
               {lastUpdated.toLocaleTimeString()}
             </span>
@@ -876,7 +947,8 @@ export default function PlayerPropsPage() {
           <button
             onClick={fetchPropsFromCachedOdds}
             disabled={loading}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-sm transition-colors disabled:opacity-50"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-colors disabled:opacity-50"
+            style={{ background: P.cardBg, color: P.textSecondary, border: `1px solid ${P.cardBorder}` }}
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
             Refresh
@@ -887,17 +959,17 @@ export default function PlayerPropsPage() {
       {/* Filters Row */}
       <div className="flex flex-wrap items-center gap-4 mb-6">
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-zinc-500" />
-          <div className="flex gap-1">
+          <Filter className="w-4 h-4" style={{ color: P.textMuted }} />
+          <div className="flex gap-1 flex-wrap">
             {SPORTS.map((sport) => (
               <button
                 key={sport.key}
                 onClick={() => setSelectedSport(sport.key)}
-                className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
-                  selectedSport === sport.key
-                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
-                    : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200 border border-transparent'
-                }`}
+                className="px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors"
+                style={selectedSport === sport.key
+                  ? { background: '#f3e8ff', color: '#7c3aed', border: '1px solid #c4b5fd' }
+                  : { background: P.cardBg, color: P.textSecondary, border: `1px solid ${P.cardBorder}` }
+                }
               >
                 {sport.emoji} {sport.label}
               </button>
@@ -906,17 +978,17 @@ export default function PlayerPropsPage() {
         </div>
 
         <div className="flex items-center gap-2 ml-auto">
-          <span className="text-xs text-zinc-500">Min Conf:</span>
+          <span className="text-xs" style={{ color: P.textMuted }}>Min Conf:</span>
           <div className="flex gap-1">
             {[50, 55, 60, 66].map((val) => (
               <button
                 key={val}
                 onClick={() => setMinCEQ(val)}
-                className={`px-2 py-1 rounded text-xs transition-colors ${
-                  minCEQ === val
-                    ? 'bg-zinc-700 text-zinc-200'
-                    : 'bg-zinc-800/50 text-zinc-500 hover:text-zinc-400'
-                }`}
+                className="px-2 py-1 rounded text-xs transition-colors"
+                style={minCEQ === val
+                  ? { background: P.textPrimary, color: P.cardBg }
+                  : { background: P.cardBg, color: P.textSecondary, border: `1px solid ${P.cardBorder}` }
+                }
               >
                 {val}%
               </button>
@@ -926,50 +998,50 @@ export default function PlayerPropsPage() {
       </div>
 
       {/* Edge Tier Legend */}
-      <div className="flex items-center gap-4 mb-4 text-xs text-zinc-500">
-        <span className="text-zinc-400">LOW</span>
-        <span className="text-zinc-300">MID</span>
-        <span className="text-emerald-400">HIGH</span>
-        <span className="text-emerald-300">MAX</span>
-        <span className="text-zinc-600 ml-1">= fair value vs book line</span>
+      <div className="flex items-center gap-4 mb-4 text-xs" style={{ color: P.textMuted }}>
+        <span style={{ color: P.textSecondary }}>LOW</span>
+        <span style={{ color: P.textPrimary }}>MID</span>
+        <span style={{ color: P.greenText }}>HIGH</span>
+        <span style={{ color: '#15803d' }}>MAX</span>
+        <span style={{ color: P.textFaint }} className="ml-1">= fair value vs book line</span>
       </div>
 
       {/* Stats Bar */}
       <div className="grid grid-cols-3 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 rounded-lg p-4" style={{ borderTopColor: '#a855f7', borderTopWidth: '2px' }}>
-          <div className="text-2xl font-bold text-zinc-100">{totalPropsWithEdges}</div>
-          <div className="text-xs text-zinc-500">Props with Edges</div>
+        <div className="rounded-lg p-4" style={{ background: P.cardBg, border: `1px solid ${P.cardBorder}`, borderTopColor: '#a855f7', borderTopWidth: '2px' }}>
+          <div className="text-2xl font-bold" style={{ color: P.textPrimary }}>{totalPropsWithEdges}</div>
+          <div className="text-xs" style={{ color: P.textMuted }}>Props with Edges</div>
         </div>
-        <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 rounded-lg p-4" style={{ borderTopColor: '#8b5cf6', borderTopWidth: '2px' }}>
-          <div className="text-2xl font-bold text-purple-400">{totalPlayers}</div>
-          <div className="text-xs text-zinc-500">Players</div>
+        <div className="rounded-lg p-4" style={{ background: P.cardBg, border: `1px solid ${P.cardBorder}`, borderTopColor: '#8b5cf6', borderTopWidth: '2px' }}>
+          <div className="text-2xl font-bold" style={{ color: '#7c3aed' }}>{totalPlayers}</div>
+          <div className="text-xs" style={{ color: P.textMuted }}>Players</div>
         </div>
-        <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 rounded-lg p-4" style={{ borderTopColor: '#10b981', borderTopWidth: '2px' }}>
-          <div className="text-2xl font-bold text-emerald-400">{gamesWithProps.length}</div>
-          <div className="text-xs text-zinc-500">Games with Edges</div>
+        <div className="rounded-lg p-4" style={{ background: P.cardBg, border: `1px solid ${P.cardBorder}`, borderTopColor: '#10b981', borderTopWidth: '2px' }}>
+          <div className="text-2xl font-bold" style={{ color: P.greenText }}>{gamesWithProps.length}</div>
+          <div className="text-xs" style={{ color: P.textMuted }}>Games with Edges</div>
         </div>
       </div>
 
       {/* Error State */}
       {error && (
-        <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6">
-          <p className="text-red-400 text-sm">{error}</p>
+        <div className="rounded-lg p-4 mb-6" style={{ background: '#fef2f2', border: '1px solid #fecaca' }}>
+          <p className="text-sm" style={{ color: P.redText }}>{error}</p>
         </div>
       )}
 
       {/* Loading State */}
       {loading && gamesWithProps.length === 0 && (
         <div className="flex items-center justify-center py-12">
-          <RefreshCw className="w-6 h-6 text-zinc-500 animate-spin" />
+          <RefreshCw className="w-6 h-6 animate-spin" style={{ color: P.textMuted }} />
         </div>
       )}
 
       {/* Empty State */}
       {!loading && totalPropsWithEdges === 0 && !error && (
         <div className="text-center py-12">
-          <TrendingUp className="w-12 h-12 text-zinc-700 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-zinc-400 mb-2">No Player Props Edges</h3>
-          <p className="text-sm text-zinc-600">
+          <TrendingUp className="w-12 h-12 mx-auto mb-4" style={{ color: P.textFaint }} />
+          <h3 className="text-lg font-medium mb-2" style={{ color: P.textSecondary }}>No Player Props Edges</h3>
+          <p className="text-sm" style={{ color: P.textMuted }}>
             No player prop edges detected above {minCEQ}% confidence. Try lowering the threshold or check back later.
           </p>
         </div>
@@ -988,23 +1060,24 @@ export default function PlayerPropsPage() {
             return (
               <div
                 key={game.gameId}
-                className="bg-zinc-900/50 border border-zinc-800 rounded-lg overflow-hidden"
-                style={{ borderLeftColor: getSportBorderColor(game.sport), borderLeftWidth: '3px' }}
+                className="rounded-lg overflow-hidden"
+                style={{ background: P.cardBg, border: `1px solid ${P.cardBorder}`, borderLeftColor: getSportBorderColor(game.sport), borderLeftWidth: '3px' }}
               >
                 {/* Game Header */}
                 <button
                   onClick={() => toggleGame(game.gameId)}
-                  className="w-full px-4 py-3 bg-zinc-800/50 border-b border-zinc-800 hover:bg-zinc-800/70 transition-colors"
+                  className="w-full px-4 py-3 transition-colors"
+                  style={{ background: P.headerBar, borderBottom: `1px solid ${P.cardBorder}` }}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       {isExpanded ? (
-                        <ChevronDown className="w-4 h-4 text-zinc-500" />
+                        <ChevronDown className="w-4 h-4" style={{ color: P.textMuted }} />
                       ) : (
-                        <ChevronRight className="w-4 h-4 text-zinc-500" />
+                        <ChevronRight className="w-4 h-4" style={{ color: P.textMuted }} />
                       )}
                       <span className="text-lg">{getSportEmoji(game.sport)}</span>
-                      <span className="font-semibold text-zinc-100">
+                      <span className="font-semibold" style={{ color: P.textPrimary }}>
                         {game.awayTeam} @ {game.homeTeam}
                       </span>
                       <span className={`text-xs px-2 py-0.5 rounded border ${getCEQBadgeColor(bestCEQ)}`}>
@@ -1012,13 +1085,14 @@ export default function PlayerPropsPage() {
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className={`text-xs font-medium ${formatTime(game.commenceTime) === 'LIVE' ? 'text-red-400' : 'text-zinc-500'}`}>
+                      <span className="text-xs font-medium" style={{ color: formatTime(game.commenceTime) === 'LIVE' ? '#dc2626' : P.textMuted }}>
                         {formatTime(game.commenceTime)}
                       </span>
                       <Link
                         href={`/edge/portal/sports/game/${game.gameId}?sport=${game.sport}`}
                         onClick={(e) => e.stopPropagation()}
-                        className="text-zinc-500 hover:text-emerald-400 transition-colors"
+                        className="transition-colors hover:opacity-70"
+                        style={{ color: P.textMuted }}
                       >
                         <ExternalLink className="w-4 h-4" />
                       </Link>
@@ -1037,13 +1111,13 @@ export default function PlayerPropsPage() {
                         <div key={propType}>
                           {/* Prop Type Header */}
                           <div className="flex items-center gap-2 mb-2 px-2">
-                            <TrendingUp className="w-3.5 h-3.5 text-purple-400" />
-                            <span className="text-sm font-semibold text-zinc-300">{propLabel}</span>
-                            <span className="text-xs text-zinc-600">({props.length})</span>
+                            <TrendingUp className="w-3.5 h-3.5" style={{ color: '#7c3aed' }} />
+                            <span className="text-sm font-semibold" style={{ color: P.textPrimary }}>{propLabel}</span>
+                            <span className="text-xs" style={{ color: P.textMuted }}>({props.length})</span>
                           </div>
 
                           {/* Table Header */}
-                          <div className="hidden lg:grid gap-0 px-3 py-1.5 text-[10px] text-zinc-500 font-medium uppercase tracking-wide" style={{ gridTemplateColumns: '3fr 1fr 2.5fr 2.5fr 2fr 1fr' }}>
+                          <div className="hidden lg:grid gap-0 px-3 py-1.5 text-[10px] font-medium uppercase tracking-wide" style={{ gridTemplateColumns: '3fr 1fr 2.5fr 2.5fr 2fr 1fr', color: P.textMuted }}>
                             <div>Player</div>
                             <div className="text-center">Line</div>
                             <div className="text-center">Over (FD / DK)</div>
@@ -1075,54 +1149,55 @@ export default function PlayerPropsPage() {
                                   {/* Main row */}
                                   <div
                                     onClick={() => toggleProp(propKey, game.gameId, prop.player, prop.propType)}
-                                    className={`cursor-pointer hover:bg-zinc-800/50 transition-colors ${idx % 2 === 0 ? 'bg-zinc-800/30' : ''} ${isPropExpanded ? 'bg-zinc-800/60' : ''}`}
+                                    className="cursor-pointer transition-colors"
+                                    style={{ background: isPropExpanded ? P.neutralBg : idx % 2 === 0 ? P.neutralBg : P.cardBg }}
                                   >
                                     {/* Desktop layout */}
                                     <div className="hidden lg:grid gap-0 px-3 py-2 items-center" style={{ gridTemplateColumns: '3fr 1fr 2.5fr 2.5fr 2fr 1fr' }}>
                                       {/* Player */}
                                       <div className="flex items-center gap-2">
-                                        <ChevronRight className={`w-3 h-3 text-zinc-500 transition-transform flex-shrink-0 ${isPropExpanded ? 'rotate-90' : ''}`} />
-                                        <span className="text-sm font-semibold text-zinc-100 truncate">
+                                        <ChevronRight className={`w-3 h-3 transition-transform flex-shrink-0 ${isPropExpanded ? 'rotate-90' : ''}`} style={{ color: P.textMuted }} />
+                                        <span className="text-sm font-semibold truncate" style={{ color: P.textPrimary }}>
                                           {prop.player}
                                         </span>
                                       </div>
 
                                       {/* Fair Line */}
                                       <div className="text-center">
-                                        <span className="text-sm font-mono text-zinc-200">{prop.fairLine}</span>
+                                        <span className="text-sm font-mono" style={{ color: P.textPrimary }}>{prop.fairLine}</span>
                                       </div>
 
                                       {/* Over (FD / DK) */}
                                       <div className="text-center flex items-center justify-center gap-2">
-                                        <span className={`text-xs font-mono ${bestOverOdds === 'fd' ? 'text-emerald-400' : 'text-zinc-400'}`}>
-                                          {fdOver ? `FD ${formatOdds(fdOver.odds)}` : <span className="text-zinc-600">FD —</span>}
+                                        <span className="text-xs font-mono" style={{ color: bestOverOdds === 'fd' ? P.greenText : P.textSecondary }}>
+                                          {fdOver ? `FD ${formatOdds(fdOver.odds)}` : <span style={{ color: P.textFaint }}>FD —</span>}
                                         </span>
-                                        <span className="text-zinc-600 text-[10px]">/</span>
-                                        <span className={`text-xs font-mono ${bestOverOdds === 'dk' ? 'text-emerald-400' : 'text-zinc-400'}`}>
-                                          {dkOver ? `DK ${formatOdds(dkOver.odds)}` : <span className="text-zinc-600">DK —</span>}
+                                        <span className="text-[10px]" style={{ color: P.textFaint }}>/</span>
+                                        <span className="text-xs font-mono" style={{ color: bestOverOdds === 'dk' ? P.greenText : P.textSecondary }}>
+                                          {dkOver ? `DK ${formatOdds(dkOver.odds)}` : <span style={{ color: P.textFaint }}>DK —</span>}
                                         </span>
                                       </div>
 
                                       {/* Under (FD / DK) */}
                                       <div className="text-center flex items-center justify-center gap-2">
-                                        <span className={`text-xs font-mono ${bestUnderOdds === 'fd' ? 'text-emerald-400' : 'text-zinc-400'}`}>
-                                          {fdUnder ? `FD ${formatOdds(fdUnder.odds)}` : <span className="text-zinc-600">FD —</span>}
+                                        <span className="text-xs font-mono" style={{ color: bestUnderOdds === 'fd' ? P.greenText : P.textSecondary }}>
+                                          {fdUnder ? `FD ${formatOdds(fdUnder.odds)}` : <span style={{ color: P.textFaint }}>FD —</span>}
                                         </span>
-                                        <span className="text-zinc-600 text-[10px]">/</span>
-                                        <span className={`text-xs font-mono ${bestUnderOdds === 'dk' ? 'text-emerald-400' : 'text-zinc-400'}`}>
-                                          {dkUnder ? `DK ${formatOdds(dkUnder.odds)}` : <span className="text-zinc-600">DK —</span>}
+                                        <span className="text-[10px]" style={{ color: P.textFaint }}>/</span>
+                                        <span className="text-xs font-mono" style={{ color: bestUnderOdds === 'dk' ? P.greenText : P.textSecondary }}>
+                                          {dkUnder ? `DK ${formatOdds(dkUnder.odds)}` : <span style={{ color: P.textFaint }}>DK —</span>}
                                         </span>
                                       </div>
 
                                       {/* Best Edge */}
                                       <div className="text-center">
                                         <div className="flex items-center justify-center gap-1">
-                                          <span className="text-xs font-semibold text-zinc-200">
+                                          <span className="text-xs font-semibold" style={{ color: P.textPrimary }}>
                                             {prop.edgeSide} {prop.edgeLine}
                                           </span>
-                                          <span className="text-[10px] text-zinc-500">@{formatBook(prop.edgeBook)}</span>
+                                          <span className="text-[10px]" style={{ color: P.textMuted }}>@{formatBook(prop.edgeBook)}</span>
                                           {prop.isContrarian && (
-                                            <span className="text-[9px] font-bold text-amber-400 bg-amber-500/15 border border-amber-500/30 px-1 py-px rounded">
+                                            <span className="text-[9px] font-bold px-1 py-px rounded" style={{ color: '#b45309', background: '#fef3c7', border: '1px solid #fcd34d' }}>
                                               CTR
                                             </span>
                                           )}
@@ -1138,7 +1213,7 @@ export default function PlayerPropsPage() {
                                           {prop.edgeCEQ}%
                                         </div>
                                         {prop.compositeModifier > 1.0 && (
-                                          <div className="text-[10px] text-zinc-500">
+                                          <div className="text-[10px]" style={{ color: P.textMuted }}>
                                             +{Math.round((prop.compositeModifier - 1) * 100)}% boost
                                           </div>
                                         )}
@@ -1149,23 +1224,23 @@ export default function PlayerPropsPage() {
                                     <div className="lg:hidden px-3 py-2">
                                       <div className="flex items-center justify-between mb-1">
                                         <div className="flex items-center gap-2">
-                                          <ChevronRight className={`w-3 h-3 text-zinc-500 transition-transform flex-shrink-0 ${isPropExpanded ? 'rotate-90' : ''}`} />
-                                          <span className="text-sm font-semibold text-zinc-100">{prop.player}</span>
+                                          <ChevronRight className={`w-3 h-3 transition-transform flex-shrink-0 ${isPropExpanded ? 'rotate-90' : ''}`} style={{ color: P.textMuted }} />
+                                          <span className="text-sm font-semibold" style={{ color: P.textPrimary }}>{prop.player}</span>
                                         </div>
                                         <div className={`text-sm font-bold ${getCEQColor(prop.edgeCEQ)}`}>
                                           {prop.edgeCEQ}%
                                         </div>
                                       </div>
                                       <div className="flex items-center gap-3 text-xs pl-5">
-                                        <span className="font-mono text-zinc-300">{prop.fairLine}</span>
-                                        <span className="font-semibold text-zinc-200">
+                                        <span className="font-mono" style={{ color: P.textPrimary }}>{prop.fairLine}</span>
+                                        <span className="font-semibold" style={{ color: P.textPrimary }}>
                                           {prop.edgeSide} {prop.edgeLine} @{formatBook(prop.edgeBook)}
                                         </span>
                                         <span className={EDGE_TIER_COLORS[prop.edgeTier]}>
                                           {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
                                         </span>
                                         {prop.isContrarian && (
-                                          <span className="text-[9px] font-bold text-amber-400 bg-amber-500/15 border border-amber-500/30 px-1 py-px rounded">
+                                          <span className="text-[9px] font-bold px-1 py-px rounded" style={{ color: '#b45309', background: '#fef3c7', border: '1px solid #fcd34d' }}>
                                             CTR
                                           </span>
                                         )}
@@ -1175,17 +1250,17 @@ export default function PlayerPropsPage() {
 
                                   {/* Expandable Detail Panel */}
                                   {isPropExpanded && (
-                                    <div className="px-4 py-3 bg-zinc-900/80 border-t border-zinc-800/50">
-                                      {/* Line History Chart */}
+                                    <div className="px-4 py-3" style={{ background: P.chartBg, borderTop: `1px solid ${P.cardBorder}` }}>
+                                      {/* Line History Chart or Comparison Bar */}
                                       <div className="mb-3">
                                         {isLoadingHist ? (
                                           <div className="flex items-center justify-center py-6">
-                                            <RefreshCw className="w-4 h-4 text-zinc-500 animate-spin" />
+                                            <RefreshCw className="w-4 h-4 animate-spin" style={{ color: P.textMuted }} />
                                           </div>
                                         ) : history && history.length > 1 ? (
                                           <PropLineChart data={history} fairLine={prop.fairLine} fairSource={prop.fairSource} />
                                         ) : (
-                                          <div className="text-xs text-zinc-600 py-4 text-center">Line history unavailable</div>
+                                          <PropComparisonBar prop={prop} />
                                         )}
                                       </div>
 
@@ -1193,47 +1268,47 @@ export default function PlayerPropsPage() {
                                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                                         {/* Line movement */}
                                         {history && history.length > 1 && (
-                                          <div className="text-zinc-400">
-                                            <span className="text-zinc-500">Opened:</span>{' '}
-                                            <span className="text-zinc-200 font-mono">{history[0].line}</span>
-                                            <span className="text-zinc-600 mx-1">&rarr;</span>
-                                            <span className="text-zinc-500">Current:</span>{' '}
-                                            <span className="text-zinc-200 font-mono">{history[history.length - 1].line}</span>
-                                            <span className={`ml-1 font-mono ${history[history.length - 1].line - history[0].line > 0 ? 'text-emerald-400' : history[history.length - 1].line - history[0].line < 0 ? 'text-red-400' : 'text-zinc-500'}`}>
+                                          <div style={{ color: P.textSecondary }}>
+                                            <span style={{ color: P.textMuted }}>Opened:</span>{' '}
+                                            <span className="font-mono" style={{ color: P.textPrimary }}>{history[0].line}</span>
+                                            <span style={{ color: P.textFaint }} className="mx-1">&rarr;</span>
+                                            <span style={{ color: P.textMuted }}>Current:</span>{' '}
+                                            <span className="font-mono" style={{ color: P.textPrimary }}>{history[history.length - 1].line}</span>
+                                            <span className="ml-1 font-mono" style={{ color: history[history.length - 1].line - history[0].line > 0 ? P.greenText : history[history.length - 1].line - history[0].line < 0 ? P.redText : P.textMuted }}>
                                               ({history[history.length - 1].line - history[0].line > 0 ? '+' : ''}{(history[history.length - 1].line - history[0].line).toFixed(1)})
                                             </span>
                                           </div>
                                         )}
 
                                         {/* Book odds summary */}
-                                        <div className="text-zinc-400">
-                                          <span className="text-zinc-500">FD:</span>{' '}
-                                          <span className="text-emerald-400/80 font-mono">O {fdOver ? formatOdds(fdOver.odds) : '—'}</span>
-                                          <span className="text-zinc-600 mx-1">/</span>
-                                          <span className="text-red-400/80 font-mono">U {fdUnder ? formatOdds(fdUnder.odds) : '—'}</span>
-                                          <span className="text-zinc-700 mx-2">|</span>
-                                          <span className="text-zinc-500">DK:</span>{' '}
-                                          <span className="text-emerald-400/80 font-mono">O {dkOver ? formatOdds(dkOver.odds) : '—'}</span>
-                                          <span className="text-zinc-600 mx-1">/</span>
-                                          <span className="text-red-400/80 font-mono">U {dkUnder ? formatOdds(dkUnder.odds) : '—'}</span>
+                                        <div style={{ color: P.textSecondary }}>
+                                          <span style={{ color: P.textMuted }}>FD:</span>{' '}
+                                          <span className="font-mono" style={{ color: P.greenText }}>O {fdOver ? formatOdds(fdOver.odds) : '—'}</span>
+                                          <span style={{ color: P.textFaint }} className="mx-1">/</span>
+                                          <span className="font-mono" style={{ color: P.redText }}>U {fdUnder ? formatOdds(fdUnder.odds) : '—'}</span>
+                                          <span style={{ color: P.neutralBorder }} className="mx-2">|</span>
+                                          <span style={{ color: P.textMuted }}>DK:</span>{' '}
+                                          <span className="font-mono" style={{ color: P.greenText }}>O {dkOver ? formatOdds(dkOver.odds) : '—'}</span>
+                                          <span style={{ color: P.textFaint }} className="mx-1">/</span>
+                                          <span className="font-mono" style={{ color: P.redText }}>U {dkUnder ? formatOdds(dkUnder.odds) : '—'}</span>
                                         </div>
 
                                         {/* Best edge + fair source + contrarian */}
-                                        <div className="text-zinc-400">
-                                          <span className="text-zinc-500">Best:</span>{' '}
-                                          <span className="font-semibold text-zinc-200">
+                                        <div style={{ color: P.textSecondary }}>
+                                          <span style={{ color: P.textMuted }}>Best:</span>{' '}
+                                          <span className="font-semibold" style={{ color: P.textPrimary }}>
                                             {formatBook(prop.edgeBook)} {prop.edgeSide} {prop.edgeLine} {formatOdds(prop.edgeOdds)}
                                           </span>
                                           <span className={`ml-1 ${EDGE_TIER_COLORS[prop.edgeTier]}`}>
                                             {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
                                           </span>
                                           {prop.isContrarian && (
-                                            <span className="ml-1.5 text-[10px] font-bold text-amber-400 bg-amber-500/15 border border-amber-500/30 px-1 py-px rounded">
+                                            <span className="ml-1.5 text-[10px] font-bold px-1 py-px rounded" style={{ color: '#b45309', background: '#fef3c7', border: '1px solid #fcd34d' }}>
                                               CONTRARIAN
                                             </span>
                                           )}
                                           {prop.compositeModifier > 1.0 && (
-                                            <span className="ml-1 text-zinc-500">
+                                            <span className="ml-1" style={{ color: P.textMuted }}>
                                               (game composite boost)
                                             </span>
                                           )}
@@ -1242,17 +1317,17 @@ export default function PlayerPropsPage() {
 
                                       {/* Fair source + contrarian context */}
                                       <div className="flex items-center gap-3 mt-2 text-[10px]">
-                                        <span className="text-zinc-600">
-                                          Fair: <span className="text-zinc-400 font-mono">{Number.isInteger(prop.fairLine) ? prop.fairLine : prop.fairLine.toFixed(1)}</span>
-                                          <span className="text-zinc-500 ml-1">({prop.fairSource === 'pinnacle' ? 'PIN current' : 'consensus'})</span>
+                                        <span style={{ color: P.textMuted }}>
+                                          Fair: <span className="font-mono" style={{ color: P.textSecondary }}>{Number.isInteger(prop.fairLine) ? prop.fairLine : prop.fairLine.toFixed(1)}</span>
+                                          <span className="ml-1" style={{ color: P.textMuted }}>({prop.fairSource === 'pinnacle' ? 'PIN current' : 'consensus'})</span>
                                         </span>
                                         {prop.isContrarian && history && history.length > 1 && (
-                                          <span className="text-amber-400/80">
+                                          <span style={{ color: '#b45309' }}>
                                             Line moved {history[history.length - 1].line - history[0].line > 0 ? '+' : ''}{(history[history.length - 1].line - history[0].line).toFixed(1)} but model says {prop.edgeSide}
                                           </span>
                                         )}
                                         {prop.isContrarian && !(history && history.length > 1) && (
-                                          <span className="text-amber-400/80">
+                                          <span style={{ color: '#b45309' }}>
                                             Book line {prop.edgeLine} vs fair {prop.fairLine} ({prop.edgeLine > prop.fairLine ? '+' : ''}{(prop.edgeLine - prop.fairLine).toFixed(1)}), model says {prop.edgeSide}
                                           </span>
                                         )}
@@ -1260,37 +1335,37 @@ export default function PlayerPropsPage() {
 
                                       {/* Compressed Pillar Bar */}
                                       {gamePillars[game.gameId] ? (() => {
-                                        const p = gamePillars[game.gameId];
+                                        const gp = gamePillars[game.gameId];
                                         const pillars = [
-                                          { key: 'EXEC', val: p.execution },
-                                          { key: 'INCV', val: p.incentives },
-                                          { key: 'SHCK', val: p.shocks },
-                                          { key: 'TIME', val: p.timeDecay },
-                                          { key: 'FLOW', val: p.flow },
-                                          { key: 'ENV', val: p.gameEnvironment },
+                                          { key: 'EXEC', val: gp.execution },
+                                          { key: 'INCV', val: gp.incentives },
+                                          { key: 'SHCK', val: gp.shocks },
+                                          { key: 'TIME', val: gp.timeDecay },
+                                          { key: 'FLOW', val: gp.flow },
+                                          { key: 'ENV', val: gp.gameEnvironment },
                                         ];
                                         const pillarColor = (v: number) =>
-                                          v >= 60 ? 'text-emerald-400' : v <= 40 ? 'text-red-400' : 'text-zinc-400';
+                                          v >= 60 ? P.greenText : v <= 40 ? P.redText : P.textSecondary;
                                         return (
-                                          <div className="mt-3 pt-2 border-t border-zinc-800/40">
+                                          <div className="mt-3 pt-2" style={{ borderTop: `1px solid ${P.cardBorder}` }}>
                                             <div className="flex items-center gap-1 text-[10px] font-mono flex-wrap">
-                                              <span className="text-zinc-600 mr-1">Game Context:</span>
+                                              <span style={{ color: P.textMuted }} className="mr-1">Game Context:</span>
                                               {pillars.map((pl, i) => (
                                                 <span key={pl.key}>
-                                                  <span className="text-zinc-500">{pl.key}</span>{' '}
-                                                  <span className={pillarColor(pl.val)}>{pl.val}</span>
-                                                  {i < pillars.length - 1 && <span className="text-zinc-700 mx-0.5">&middot;</span>}
+                                                  <span style={{ color: P.textMuted }}>{pl.key}</span>{' '}
+                                                  <span style={{ color: pillarColor(pl.val) }}>{pl.val}</span>
+                                                  {i < pillars.length - 1 && <span style={{ color: P.textFaint }} className="mx-0.5">&middot;</span>}
                                                 </span>
                                               ))}
-                                              <span className="text-zinc-600 mx-1">&rarr;</span>
-                                              <span className="text-zinc-500">Composite</span>{' '}
-                                              <span className={pillarColor(p.composite)}>{p.composite}</span>
+                                              <span style={{ color: P.textFaint }} className="mx-1">&rarr;</span>
+                                              <span style={{ color: P.textMuted }}>Composite</span>{' '}
+                                              <span style={{ color: pillarColor(gp.composite) }}>{gp.composite}</span>
                                             </div>
                                           </div>
                                         );
                                       })() : (
-                                        <div className="mt-3 pt-2 border-t border-zinc-800/40">
-                                          <span className="text-[10px] text-zinc-600 font-mono">Game context unavailable</span>
+                                        <div className="mt-3 pt-2" style={{ borderTop: `1px solid ${P.cardBorder}` }}>
+                                          <span className="text-[10px] font-mono" style={{ color: P.textFaint }}>Game context unavailable</span>
                                         </div>
                                       )}
                                     </div>

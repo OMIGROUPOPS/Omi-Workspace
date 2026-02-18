@@ -165,7 +165,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       .then(res => res.ok ? res.json() : [])
       .then((rows: CompositeHistoryPoint[]) => {
         const arr = Array.isArray(rows) ? rows : [];
-        if (arr.length > 0) console.log(`[OMI Chart] composite_history: ${arr.length} pts for ${gameId}`, arr[0]);
+        console.log(`[OMI Chart] composite_history: ${arr.length} pts for ${gameId}`, arr.length > 0 ? { first: arr[0].timestamp, last: arr[arr.length-1].timestamp, fair_totals: arr.map(r => r.fair_total), fair_spreads: arr.map(r => r.fair_spread) } : 'empty');
         setCompositeHistory(arr);
       })
       .catch((err) => { console.warn('[OMI Chart] fetch failed:', err); setCompositeHistory([]); });
@@ -346,6 +346,8 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const currentValue = data[data.length - 1]?.value || baseValue;
   const movement = currentValue - openValue;
   const values = data.map(d => d.value);
+  // Include OMI fair line values in Y-axis range so the fair line is always visible
+  for (const pt of omiFairLineData) values.push(pt.value);
   // For soccer 3-way single-select, only include tracked side in Y-axis bounds
   if (soccer3WayData) {
     const sideKey = trackingSide === 'draw' ? 'draw' : trackingSide === 'away' ? 'away' : 'home';

@@ -495,23 +495,19 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
 
   // Y-axis labels
+  const isHalfPointMarket = (marketType === 'spread' || marketType === 'total') && effectiveViewMode === 'line';
   const yLabels = (() => {
     const labels: { value: number; y: number }[] = [];
     const visualMin = minVal - padding;
     const visualMax = maxVal + padding;
     const visualRange = visualMax - visualMin;
     let labelStep: number;
-    if (isMLAny) {
-      // ML: always 10pt ticks — every 10pt move is significant
+    if (isHalfPointMarket) {
+      // Spread/total: force half-point ticks. Use 1.0 only if range > 20
+      labelStep = range > 20 ? 1.0 : 0.5;
+    } else if (isMLAny) {
       labelStep = 10;
-    } else if (marketType === 'spread' && effectiveViewMode === 'line') {
-      // Spread line: 0.5pt ticks
-      labelStep = 0.5;
-    } else if (marketType === 'total' && effectiveViewMode === 'line') {
-      // Total line: 0.5pt ticks
-      labelStep = 0.5;
     } else if (effectiveViewMode === 'price') {
-      // Juice/price: every integer when range < 15, else every 2
       labelStep = range < 15 ? 1 : 2;
     } else {
       labelStep = range <= 5 ? 0.5 : range <= 12 ? 1 : range <= 25 ? 2 : 5;
@@ -525,6 +521,8 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
         labels.push({ value: Math.round(val * 100) / 100, y });
       }
     }
+    // For spread/total, never decimate — half-point ticks are mandatory
+    if (isHalfPointMarket) return labels;
     return labels.length > 12 ? labels.filter((_, i) => i % Math.ceil(labels.length / 10) === 0) : labels;
   })();
 

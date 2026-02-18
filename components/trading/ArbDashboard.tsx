@@ -2965,7 +2965,7 @@ export default function ArbDashboard() {
 
       {/* ══════════ SPECS TAB ══════════ */}
       {topTab === "specs" && (() => {
-        const specs = data.specs || {};
+        const specs = state?.specs || {};
         const lat = specs.latency || {};
         const lastTrade = lat.last_trade || {};
         const rolling = lat.rolling_10 || {};

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { getAuthState, logout } from '@/lib/edge/auth';
+import { isTier2Account } from '@/lib/edge/auth-tier';
 
 interface NavItem {
   key: string;
@@ -131,7 +132,7 @@ function Logo() {
 
 function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; onClose: () => void; onLogout: () => void; userEmail: string | null }) {
   const pathname = usePathname();
-  const userTier = 2; // Allow access to Tier 2 features (Live Markets, ARB Trading)
+  const userTier = isTier2Account(userEmail) ? 2 : 1;
 
   return (
     <>

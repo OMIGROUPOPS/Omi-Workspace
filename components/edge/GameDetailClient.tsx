@@ -1904,6 +1904,35 @@ function LiveLockOverlay() {
   );
 }
 
+function LiveLockBanner() {
+  return (
+    <div style={{
+      background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)',
+      borderBottom: '1px solid #fbbf24',
+      padding: '10px 16px',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+    }}>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+        <path d="M7 11V7a5 5 0 0110 0v4" />
+      </svg>
+      <span style={{ fontSize: 12, fontWeight: 600, color: '#92400e' }}>
+        GAME IN PROGRESS
+      </span>
+      <span style={{ fontSize: 11, color: '#a16207' }}>
+        Upgrade to Tier 2 for live score tracking
+      </span>
+      <a href="/edge/pricing" style={{
+        marginLeft: 8, fontSize: 11, fontWeight: 600,
+        background: '#f59e0b', color: '#000', padding: '4px 12px',
+        borderRadius: 4, textDecoration: 'none',
+      }}>
+        Upgrade
+      </a>
+    </div>
+  );
+}
+
 // ============================================================================
 // AskEdgeAI — interactive AI chat panel (right column)
 // ============================================================================
@@ -2786,6 +2815,8 @@ export function GameDetailClient({
           />
         </div>
 
+        {showLiveLock && <LiveLockBanner />}
+
         {/* Market tabs + period sub-tabs */}
         <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#e2e4e8]/50">
           <div className="flex items-center gap-1">
@@ -2907,6 +2938,8 @@ export function GameDetailClient({
           onSelectBook={setSelectedBook}
           isLive={isLive}
         />
+
+        {showLiveLock && <LiveLockBanner />}
 
         <div className="p-2 space-y-2">
           {/* Market + Period tabs */}

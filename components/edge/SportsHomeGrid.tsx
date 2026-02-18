@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
+import { isTier2Account } from '@/lib/edge/auth-tier';
 
 // --- Light theme palette ---
 const P = {
@@ -373,6 +374,14 @@ export function SportsHomeGrid({
   const [lastUpdated, setLastUpdated] = useState<Date | null>(initialFetchedAt ? new Date(initialFetchedAt) : null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [secondsSinceUpdate, setSecondsSinceUpdate] = useState(0);
+
+  // Tier detection from localStorage email
+  const [userTier, setUserTier] = useState<'tier_1' | 'tier_2'>('tier_2');
+  useEffect(() => {
+    const email = localStorage.getItem('omi_edge_email');
+    setUserTier(isTier2Account(email) ? 'tier_2' : 'tier_1');
+  }, []);
+  const isTier1 = userTier === 'tier_1';
 
   const exchangeMode = isExchange(selectedBook);
   const selectedBookConfig = BOOK_CONFIG[selectedBook];
@@ -916,6 +925,9 @@ export function SportsHomeGrid({
                       return fmtOdds(odds);
                     };
 
+                    // Tier gate: Tier 1 users see blurred live data
+                    const liveLocked = isLive && isTier1;
+
                     return (
                       <Link key={game.id} href={exchangeMode
                             ? `/edge/portal/sports/exchange/${game.id}?sport=${game.sportKey}&platform=${selectedBook}`
@@ -947,7 +959,7 @@ export function SportsHomeGrid({
                                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
                                 </span>
                                 LIVE
-                                {game.liveData?.statusDetail && game.liveData.statusDetail !== 'Score unavailable' && (
+                                {!liveLocked && game.liveData?.statusDetail && game.liveData.statusDetail !== 'Score unavailable' && (
                                   <span style={{ fontWeight: 500, color: P.textSecondary, marginLeft: 2, fontSize: 9 }}>
                                     {game.liveData.statusDetail}
                                   </span>
@@ -970,7 +982,7 @@ export function SportsHomeGrid({
                               {displayAway}
                             </span>
                             {(isLive || isFinal) && game.liveData?.awayScore != null && (
-                              <span style={{ fontSize: 16, fontWeight: 700, color: P.textPrimary, fontFamily: 'monospace' }}>{game.liveData.awayScore}</span>
+                              <span style={{ fontSize: 16, fontWeight: 700, color: P.textPrimary, fontFamily: 'monospace', filter: liveLocked ? 'blur(8px)' : undefined, userSelect: liveLocked ? 'none' : undefined }}>{game.liveData.awayScore}</span>
                             )}
                           </div>
                           {/* Home */}
@@ -980,13 +992,30 @@ export function SportsHomeGrid({
                               {displayHome}
                             </span>
                             {(isLive || isFinal) && game.liveData?.homeScore != null && (
-                              <span style={{ fontSize: 16, fontWeight: 700, color: P.textPrimary, fontFamily: 'monospace' }}>{game.liveData.homeScore}</span>
+                              <span style={{ fontSize: 16, fontWeight: 700, color: P.textPrimary, fontFamily: 'monospace', filter: liveLocked ? 'blur(8px)' : undefined, userSelect: liveLocked ? 'none' : undefined }}>{game.liveData.homeScore}</span>
                             )}
                           </div>
                         </div>
 
+                        {/* Tier gate overlay for live games — Tier 1 users */}
+                        {liveLocked && (
+                          <div style={{
+                            padding: '8px 12px', borderTop: `1px solid ${P.cardBorder}`,
+                            background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                          }}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                              <path d="M7 11V7a5 5 0 0110 0v4" />
+                            </svg>
+                            <span style={{ fontSize: 10, fontWeight: 700, color: '#92400e', letterSpacing: 0.5 }}>
+                              LIVE — Upgrade to Tier 2
+                            </span>
+                          </div>
+                        )}
+
                         {/* Live/Final status bar with covering indicator */}
-                        {(isLive || isFinal) && game.liveData && game.liveData.homeScore != null && fair?.fair_spread != null && (
+                        {!liveLocked && (isLive || isFinal) && game.liveData && game.liveData.homeScore != null && fair?.fair_spread != null && (
                           <div style={{
                             padding: '4px 12px', borderTop: `1px solid ${P.cardBorder}`,
                             display: 'flex', alignItems: 'center', justifyContent: 'space-between',

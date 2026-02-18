@@ -92,6 +92,7 @@ interface TradeEntry {
   execution_time_ms?: number;
   pm_order_ms?: number;
   tier?: string;
+  settlement_pnl?: number | null;
 }
 
 interface PnlSummary {
@@ -235,45 +236,77 @@ function netColor(cents: number | null | undefined): string {
   return "text-gray-400";
 }
 
-/** Uniform P&L calculation for any trade status.
- *  Returns per-contract cents and total dollars. */
-function tradePnl(t: TradeEntry): { perContract: number | null; totalDollars: number | null; qty: number } {
-  const qty = t.contracts_filled > 0 ? t.contracts_filled : (t.contracts_intended || 0);
+/** Is this trade an open (unsettled) position? */
+function isOpenTrade(t: TradeEntry): boolean {
+  const tier = t.tier || "";
+  if (tier === "TIER3A_HOLD" || tier === "TIER3B_FLIP") return true;
+  if (t.status === "UNHEDGED" && tier !== "TIER3_UNWIND") return true;
+  return false;
+}
 
-  if (t.status === "EXITED") {
-    if (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0) {
-      // unwind_loss_cents is already total across all contracts
-      const totalLoss = Math.abs(t.unwind_loss_cents);
-      const perContract = qty > 0 ? -(totalLoss / qty) : -totalLoss;
-      return { perContract, totalDollars: -(totalLoss / 100), qty };
+/** Uniform P&L calculation for any trade status/tier.
+ *  Open positions return isOpen=true with no dollar P&L. */
+function tradePnl(t: TradeEntry): { perContract: number | null; totalDollars: number | null; qty: number; isOpen: boolean; spreadCents: number | null } {
+  const qty = t.contracts_filled > 0 ? t.contracts_filled : (t.contracts_intended || 0);
+  const spreadCents = t.spread_cents ?? null;
+
+  // Open positions: UNHEDGED (no unwind tier), TIER3A_HOLD, TIER3B_FLIP
+  if (isOpenTrade(t)) {
+    // If a settlement_pnl has been recorded, show that as realized
+    if (t.settlement_pnl != null) {
+      const pc = qty > 0 ? (t.settlement_pnl * 100) / qty : t.settlement_pnl * 100;
+      return { perContract: pc, totalDollars: t.settlement_pnl, qty, isOpen: false, spreadCents };
     }
-    return { perContract: null, totalDollars: null, qty };
+    return { perContract: null, totalDollars: null, qty, isOpen: true, spreadCents };
   }
 
-  if (t.status === "SUCCESS") {
+  // EXITED or TIER3_UNWIND: realized loss from unwinding
+  if (t.status === "EXITED" || t.tier === "TIER3_UNWIND") {
+    if (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0) {
+      const totalLoss = Math.abs(t.unwind_loss_cents);
+      const perContract = qty > 0 ? -(totalLoss / qty) : -totalLoss;
+      return { perContract, totalDollars: -(totalLoss / 100), qty, isOpen: false, spreadCents };
+    }
+    return { perContract: null, totalDollars: null, qty, isOpen: false, spreadCents };
+  }
+
+  // SUCCESS or TIER1_HEDGE: completed hedged arb
+  if (t.status === "SUCCESS" || t.tier === "TIER1_HEDGE") {
     if (t.actual_pnl) {
       return {
         perContract: t.actual_pnl.per_contract.net,
         totalDollars: t.actual_pnl.net_profit_dollars,
         qty,
+        isOpen: false,
+        spreadCents,
       };
     }
     if (t.estimated_net_profit_cents != null) {
       const pc = t.estimated_net_profit_cents;
-      return { perContract: pc, totalDollars: (pc * qty) / 100, qty };
+      return { perContract: pc, totalDollars: (pc * qty) / 100, qty, isOpen: false, spreadCents };
     }
   }
 
-  if (t.status === "UNHEDGED") {
-    // Unhedged = exposed, show estimated spread as potential
-    if (t.estimated_net_profit_cents != null) {
-      const pc = t.estimated_net_profit_cents;
-      return { perContract: pc, totalDollars: (pc * qty) / 100, qty };
+  // TIER2_EXIT: realized P&L from closing PM position
+  if (t.tier === "TIER2_EXIT") {
+    if (t.actual_pnl) {
+      return {
+        perContract: t.actual_pnl.per_contract.net,
+        totalDollars: t.actual_pnl.net_profit_dollars,
+        qty,
+        isOpen: false,
+        spreadCents,
+      };
+    }
+    if (t.unwind_loss_cents != null) {
+      const totalLoss = Math.abs(t.unwind_loss_cents);
+      const perContract = qty > 0 ? -(totalLoss / qty) : -totalLoss;
+      return { perContract, totalDollars: -(totalLoss / 100), qty, isOpen: false, spreadCents };
     }
   }
 
   // PM_NO_FILL, SKIPPED, or no data
-  return { perContract: null, totalDollars: null, qty };
+  return { perContract: null, totalDollars: null, qty, isOpen: false, spreadCents };
 }
 
 function statusBadge(status: string): { bg: string; text: string } {
@@ -627,20 +660,29 @@ export default function ArbDashboard() {
     let exitedLoss = 0;
     let successes = 0;
     let fills = 0;
+    let openCount = 0;
+    let realizedWins = 0;
+    let realizedLosses = 0;
     for (const t of filteredTrades) {
       if (t.status === "SUCCESS") successes++;
       if (t.contracts_filled > 0) fills++;
       const pnl = tradePnl(t);
+      if (pnl.isOpen) {
+        openCount++;
+        continue; // exclude open positions from P&L total
+      }
       if (pnl.totalDollars != null) {
-        if (t.status === "SUCCESS") {
+        if (pnl.totalDollars >= 0) realizedWins++;
+        else realizedLosses++;
+        if (t.status === "SUCCESS" || t.tier === "TIER1_HEDGE") {
           successPnl += pnl.totalDollars;
-        } else if (t.status === "EXITED") {
+        } else if (t.status === "EXITED" || t.tier === "TIER2_EXIT" || t.tier === "TIER3_UNWIND") {
           exitedLoss += pnl.totalDollars;
         }
       }
     }
     const netTotal = successPnl + exitedLoss;
-    return { successPnl, exitedLoss, netTotal, successes, fills, count: filteredTrades.length };
+    return { successPnl, exitedLoss, netTotal, successes, fills, count: filteredTrades.length, openCount, realizedWins, realizedLosses };
   }, [filteredTrades]);
 
   const pnl = state?.pnl_summary;
@@ -1170,19 +1212,19 @@ export default function ArbDashboard() {
               <MetricCard
                 label="P&L"
                 value={
-                  pnl && pnl.total_trades > 0
-                    ? `${pnl.total_pnl_dollars >= 0 ? "+$" : "-$"}${Math.abs(pnl.total_pnl_dollars).toFixed(2)}`
+                  filteredPnl.count > 0
+                    ? `${filteredPnl.netTotal >= 0 ? "+$" : "-$"}${Math.abs(filteredPnl.netTotal).toFixed(2)}`
                     : "-"
                 }
                 sub={
-                  pnl && pnl.total_trades > 0
-                    ? `${pnl.profitable_count}W / ${pnl.losing_count}L · ${pnl.hedged_count} hedged`
+                  filteredPnl.count > 0
+                    ? `${filteredPnl.realizedWins}W / ${filteredPnl.realizedLosses}L · ${pnl?.hedged_count ?? 0} hedged${filteredPnl.openCount > 0 ? ` · ${filteredPnl.openCount} open` : ""}`
                     : undefined
                 }
                 accent={
-                  pnl && pnl.total_pnl_dollars > 0
+                  filteredPnl.netTotal > 0
                     ? "text-emerald-400"
-                    : pnl && pnl.total_pnl_dollars < 0
+                    : filteredPnl.netTotal < 0
                     ? "text-red-400"
                     : "text-white"
                 }
@@ -1493,6 +1535,11 @@ export default function ArbDashboard() {
                       {filteredPnl.netTotal >= 0 ? "+" : ""}$
                       {filteredPnl.netTotal.toFixed(2)}
                     </span>
+                    {filteredPnl.openCount > 0 && (
+                      <span className="text-yellow-400">
+                        ({filteredPnl.openCount} open)
+                      </span>
+                    )}
                   </div>
                 )}
               </div>
@@ -1585,8 +1632,10 @@ export default function ArbDashboard() {
                             {(() => {
                               const pnl = tradePnl(t);
                               return (
-                                <td className={`px-2 py-1 text-right font-mono font-medium ${netColor(pnl.perContract)}`}>
-                                  {pnl.perContract != null ? (
+                                <td className={`px-2 py-1 text-right font-mono font-medium ${pnl.isOpen ? "text-yellow-400" : netColor(pnl.perContract)}`}>
+                                  {pnl.isOpen ? (
+                                    <span className="text-[10px] font-semibold text-yellow-400">OPEN</span>
+                                  ) : pnl.perContract != null ? (
                                     <div>
                                       <span>{pnl.perContract >= 0 ? "+" : ""}{pnl.perContract.toFixed(1)}c</span>
                                       {pnl.totalDollars != null && pnl.qty > 1 && (
@@ -2600,8 +2649,10 @@ export default function ArbDashboard() {
                             {(() => {
                               const pnl = tradePnl(t);
                               return (
-                                <td className={`px-2 py-1.5 text-right font-mono font-medium ${netColor(pnl.perContract)}`}>
-                                  {pnl.totalDollars != null ? (
+                                <td className={`px-2 py-1.5 text-right font-mono font-medium ${pnl.isOpen ? "text-yellow-400" : netColor(pnl.perContract)}`}>
+                                  {pnl.isOpen ? (
+                                    <span className="text-[10px] font-semibold text-yellow-400">OPEN</span>
+                                  ) : pnl.totalDollars != null ? (
                                     <div>
                                       <span>{pnl.totalDollars >= 0 ? "+$" : "-$"}{Math.abs(pnl.totalDollars).toFixed(4)}</span>
                                       {pnl.perContract != null && pnl.qty > 1 && (

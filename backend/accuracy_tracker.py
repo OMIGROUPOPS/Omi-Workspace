@@ -187,7 +187,7 @@ class AccuracyTracker:
         pillar_game_environment = None
         omi_composite_score = None
         edge_tier = None
-        signal_tier = None
+        signal_tier = "NO EDGE"  # Default — overridden if edge data exists
 
         if pred_result.data:
             pred = pred_result.data[0]
@@ -498,7 +498,7 @@ def _compute_edge_pct(fair_spread, book_spread, fair_total, book_total, sport_ke
         edge = diff * total_rate * 100
         max_edge = max(max_edge, edge)
 
-    return round(max_edge, 2) if max_edge > 0 else None
+    return round(max_edge, 2) if max_edge > 0 else 0.0
 
 
 def _cap_edge(raw_edge):
@@ -510,8 +510,14 @@ def _cap_edge(raw_edge):
     return round(_EDGE_CAP_THRESHOLD + (raw_edge - _EDGE_CAP_THRESHOLD) * _EDGE_CAP_DECAY, 2)
 
 
-def _determine_signal(edge_pct: float) -> str:
-    ae = abs(edge_pct)
+def _determine_signal(edge_pct) -> str:
+    """Classify edge % into a tier. Always returns a valid string, never None."""
+    if edge_pct is None:
+        return "NO EDGE"
+    try:
+        ae = abs(float(edge_pct))
+    except (TypeError, ValueError):
+        return "NO EDGE"
     if ae >= 8:
         return "MAX EDGE"
     if ae >= 5:

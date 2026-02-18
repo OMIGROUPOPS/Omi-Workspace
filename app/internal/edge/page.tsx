@@ -334,6 +334,7 @@ export default function EdgeInternalPage() {
   // Performance tab state
   const [data, setData] = useState<PerformanceData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [tier, setTier] = useState("");
 
   // Graded games tab state
@@ -360,6 +361,7 @@ export default function EdgeInternalPage() {
   // Accuracy tab state
   const [accuracyData, setAccuracyData] = useState<any>(null);
   const [accuracyLoading, setAccuracyLoading] = useState(false);
+  const [accuracyError, setAccuracyError] = useState<string | null>(null);
 
   // ------- Fetch with timeout helper -------
   const fetchWithTimeout = useCallback(async (url: string, timeoutMs = 15000) => {
@@ -378,6 +380,7 @@ export default function EdgeInternalPage() {
   // ------- Performance fetch -------
   const fetchData = useCallback(async () => {
     setLoading(true);
+    setLoadError(null);
     try {
       const params = new URLSearchParams();
       if (sport) params.set("sport", sport);
@@ -388,9 +391,14 @@ export default function EdgeInternalPage() {
       const res = await fetchWithTimeout(
         `${BACKEND_URL}/api/internal/edge/performance?${params.toString()}`, 45000
       );
-      if (res.ok) setData(await res.json());
-    } catch (e) {
+      if (res.ok) {
+        setData(await res.json());
+      } else {
+        setLoadError(`Backend returned ${res.status}`);
+      }
+    } catch (e: any) {
       console.error("Failed to fetch performance data:", e);
+      setLoadError(e?.name === "AbortError" ? "Backend unreachable (timeout)" : "Failed to connect to backend");
     } finally {
       setLoading(false);
     }
@@ -478,14 +486,18 @@ export default function EdgeInternalPage() {
   // ------- Accuracy fetch -------
   const fetchAccuracy = useCallback(async () => {
     setAccuracyLoading(true);
+    setAccuracyError(null);
     try {
       const res = await fetchWithTimeout(`${BACKEND_URL}/api/internal/accuracy-summary?days=${days}`);
       if (res.ok) {
         const data = await res.json();
         setAccuracyData(data);
+      } else {
+        setAccuracyError(`Backend returned ${res.status}`);
       }
-    } catch (e) {
+    } catch (e: any) {
       console.error("Accuracy fetch failed:", e);
+      setAccuracyError(e?.name === "AbortError" ? "Backend unreachable (timeout)" : "Failed to connect to backend");
     } finally {
       setAccuracyLoading(false);
     }
@@ -912,6 +924,10 @@ export default function EdgeInternalPage() {
           {loading ? (
             <div className="mt-12 text-center text-zinc-500">
               Loading performance data...
+            </div>
+          ) : loadError ? (
+            <div className="mt-12 text-center text-red-400">
+              {loadError}
             </div>
           ) : !data || data.total_predictions === 0 ? (
             <div className="mt-12 text-center text-zinc-500">
@@ -1782,6 +1798,10 @@ export default function EdgeInternalPage() {
           {accuracyLoading ? (
             <div className="mt-12 text-center text-zinc-500">
               Loading accuracy data...
+            </div>
+          ) : accuracyError ? (
+            <div className="mt-12 text-center text-red-400">
+              {accuracyError}
             </div>
           ) : !accuracyData || accuracyData.error || !accuracyData.overall || accuracyData.overall.games === 0 ? (
             <div className="mt-12 text-center text-zinc-500">

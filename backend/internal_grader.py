@@ -75,15 +75,20 @@ def _is_soccer(sport_short: str) -> bool:
     return sport_short in SOCCER_SPORTS or "soccer" in sport_short.lower()
 
 
-def determine_signal(edge_pct: float) -> str:
-    """Determine signal tier from IP edge %.
+def determine_signal(edge_pct) -> str:
+    """Determine signal tier from IP edge %. Always returns a valid string.
     < 1%  = NO EDGE
     1-3%  = LOW EDGE
     3-5%  = MID EDGE
     5-8%  = HIGH EDGE
     8%+   = MAX EDGE (genuine strong signal — caps prevent garbage)
     """
-    ae = abs(edge_pct)
+    if edge_pct is None:
+        return "NO EDGE"
+    try:
+        ae = abs(float(edge_pct))
+    except (TypeError, ValueError):
+        return "NO EDGE"
     if ae >= 8:
         return "MAX EDGE"
     if ae >= 5:

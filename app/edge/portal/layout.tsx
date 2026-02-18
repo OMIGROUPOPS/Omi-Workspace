@@ -132,7 +132,9 @@ function Logo() {
 
 function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; onClose: () => void; onLogout: () => void; userEmail: string | null }) {
   const pathname = usePathname();
+  // Tier detection: default to 1 if email not loaded yet (never block navigation)
   const userTier = isTier2Account(userEmail) ? 2 : 1;
+  console.log('[Layout] userEmail:', userEmail, '| userTier:', userTier);
 
   return (
     <>
@@ -347,6 +349,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
   // Check auth on mount
   useEffect(() => {
     const authState = getAuthState();
+    console.log('[Layout] authState:', { isAuthenticated: authState.isAuthenticated, email: authState.email });
     if (!authState.isAuthenticated) {
       router.replace('/edge/login');
     } else {

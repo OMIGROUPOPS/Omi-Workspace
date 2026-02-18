@@ -1014,35 +1014,49 @@ export function SportsHomeGrid({
                           </div>
                         )}
 
-                        {/* Live/Final status bar with covering indicator */}
+                        {/* Live/Final covering indicator: SPREAD: Fair NEB -0.5 | 45-45 | ✗ Not Covering */}
                         {!liveLocked && (isLive || isFinal) && game.liveData && game.liveData.homeScore != null && fair?.fair_spread != null && (
                           <div style={{
-                            padding: '4px 12px', borderTop: `1px solid ${P.cardBorder}`,
-                            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                            background: P.neutralBg,
+                            padding: '5px 12px', borderTop: `1px solid ${P.cardBorder}`,
+                            display: 'flex', alignItems: 'center', gap: 6,
+                            background: P.neutralBg, fontFamily: 'monospace', fontSize: 10,
                           }}>
                             {(() => {
                               const margin = game.liveData.homeScore - game.liveData.awayScore;
                               const atsMargin = margin + fair.fair_spread;
-                              // For graded final games, use official result
+                              const scoreStr = `${game.liveData.awayScore}-${game.liveData.homeScore}`;
+                              // Determine covering status
+                              let statusLabel: string;
+                              let statusColor: string;
                               if (isFinal && game.liveData.spreadResult) {
                                 const result = game.liveData.spreadResult.toUpperCase();
-                                return (
-                                  <span style={{ fontSize: 10, fontWeight: 600, color: result === 'WIN' ? P.greenText : result === 'LOSS' ? P.redText : P.textMuted }}>
-                                    {result === 'WIN' ? '✓ COVERED' : result === 'LOSS' ? '✗ MISSED' : 'PUSH'}
-                                  </span>
-                                );
+                                statusLabel = result === 'WIN' ? '✓ Covered' : result === 'LOSS' ? '✗ Missed' : '— Push';
+                                statusColor = result === 'WIN' ? P.greenText : result === 'LOSS' ? P.redText : P.textMuted;
+                              } else {
+                                const isPush = atsMargin === 0;
+                                const isCovering = atsMargin > 0;
+                                if (isPush) {
+                                  statusLabel = '— Push';
+                                  statusColor = P.textMuted;
+                                } else if (isLive) {
+                                  statusLabel = isCovering ? '✓ Covering' : '✗ Not Covering';
+                                  statusColor = isCovering ? P.greenText : P.redText;
+                                } else {
+                                  statusLabel = isCovering ? '✓ Covered' : '✗ Missed';
+                                  statusColor = isCovering ? P.greenText : P.redText;
+                                }
                               }
-                              const isCovering = atsMargin > 0;
                               return (
-                                <span style={{ fontSize: 10, fontWeight: 600, color: isCovering ? P.greenText : P.redText }}>
-                                  {isLive ? (isCovering ? '✓ Covering' : '✗ Not Covering') : (isCovering ? '✓ Covered' : '✗ Missed')}
-                                </span>
+                                <>
+                                  <span style={{ color: P.textMuted, fontWeight: 600, letterSpacing: 0.5 }}>SPREAD:</span>
+                                  <span style={{ color: P.textSecondary }}>Fair {displayHome} {fmtSpread(fair.fair_spread)}</span>
+                                  <span style={{ color: P.textFaint }}>|</span>
+                                  <span style={{ color: P.textSecondary, fontWeight: 600 }}>{scoreStr}</span>
+                                  <span style={{ color: P.textFaint }}>|</span>
+                                  <span style={{ fontWeight: 700, color: statusColor }}>{statusLabel}</span>
+                                </>
                               );
                             })()}
-                            <span style={{ fontSize: 9, color: P.textMuted, fontFamily: 'monospace' }}>
-                              Fair {fmtSpread(fair.fair_spread)} | Margin {game.liveData.homeScore - game.liveData.awayScore > 0 ? '+' : ''}{game.liveData.homeScore - game.liveData.awayScore}
-                            </span>
                           </div>
                         )}
 

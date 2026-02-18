@@ -683,6 +683,30 @@ def start_scheduler():
         replace_existing=True
     )
 
+    # Fast refresh: Every 3 minutes — lightweight fair-line update for LIVE games
+    # Reuses composite scores from last full calc, only grabs fresh book lines
+    def run_fast_refresh():
+        try:
+            from composite_tracker import CompositeTracker
+            tracker = CompositeTracker()
+            result = tracker.fast_refresh_live()
+            refreshed = result.get("refreshed", 0)
+            live = result.get("live_games", 0)
+            if refreshed > 0 or live > 0:
+                logger.info(
+                    f"[FastRefresh] Done: {refreshed} refreshed out of {live} live games"
+                )
+        except Exception as e:
+            logger.error(f"[FastRefresh] Failed: {e}")
+
+    scheduler.add_job(
+        func=run_fast_refresh,
+        trigger=IntervalTrigger(minutes=3),
+        id="fast_refresh_live",
+        name="Fast refresh fair lines for live games",
+        replace_existing=True
+    )
+
     # Pregame capture: Every 15 minutes — snapshot fair lines, edges, pillars
     def run_pregame_capture():
         try:

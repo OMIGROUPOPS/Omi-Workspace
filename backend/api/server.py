@@ -1448,6 +1448,20 @@ async def get_composite_history(game_id: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.post("/api/composite/fast-refresh")
+async def fast_refresh_live():
+    """Trigger a fast refresh of fair lines for live games."""
+    import threading
+    try:
+        from composite_tracker import CompositeTracker
+        tracker = CompositeTracker()
+        result = tracker.fast_refresh_live()
+        return result
+    except Exception as e:
+        logger.error(f"Fast refresh failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # =========================================================================
 # EXCHANGE DATA
 # =========================================================================

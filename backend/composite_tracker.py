@@ -988,3 +988,233 @@ class CompositeTracker:
         }
         logger.info(f"[CompositeTracker] Done: {summary}")
         return summary
+
+    def fast_refresh_live(self) -> dict:
+        """
+        Lightweight fair-line refresh for LIVE games only (every 2-3 min).
+
+        Skips the expensive pillar analysis + variable engine.
+        Instead: reuse the composite scores from the last full calculation,
+        grab the latest consensus book lines, recompute fair values.
+        This is cheap: fair = consensus + (composite * factor).
+
+        Each result is stored in composite_history so the chart plots it.
+        """
+        if not db._is_connected():
+            return {"error": "Database not connected", "refreshed": 0}
+
+        now_dt = datetime.now(timezone.utc)
+        now = now_dt.isoformat()
+
+        try:
+            result = db.client.table("cached_odds").select(
+                "sport_key, game_id, game_data"
+            ).limit(5000).execute()
+        except Exception as e:
+            logger.error(f"[FastRefresh] Failed to query cached_odds: {e}")
+            return {"error": str(e), "refreshed": 0}
+
+        all_rows = result.data or []
+
+        # Filter to LIVE games: commence_time in the past but within 8 hours
+        live_rows = []
+        for row in all_rows:
+            gd = row.get("game_data") or {}
+            ct = gd.get("commence_time")
+            if not ct:
+                continue
+            try:
+                game_dt = datetime.fromisoformat(ct.replace("Z", "+00:00"))
+                hours_ago = (now_dt - game_dt).total_seconds() / 3600
+                if 0 < hours_ago <= 8:
+                    live_rows.append(row)
+            except (ValueError, AttributeError):
+                continue
+
+        if not live_rows:
+            logger.info("[FastRefresh] No live games found")
+            return {"refreshed": 0, "live_games": 0}
+
+        logger.info(f"[FastRefresh] Found {len(live_rows)} live games")
+
+        # Batch-fetch latest composite_history rows (for composite scores)
+        game_ids = [row["game_id"] for row in live_rows]
+        try:
+            all_history = []
+            chunk_size = 200
+            for i in range(0, len(game_ids), chunk_size):
+                chunk = game_ids[i:i + chunk_size]
+                res = db.client.table("composite_history").select(
+                    "game_id, composite_spread, composite_total, composite_ml, "
+                    "fair_spread, fair_total, fair_ml_home, fair_ml_away, fair_ml_draw, "
+                    "book_spread, book_total, timestamp"
+                ).in_("game_id", chunk).order("timestamp", desc=True).execute()
+                all_history.extend(res.data or [])
+
+            # Dedup: keep newest per game_id
+            latest = {}
+            for h in all_history:
+                gid = h["game_id"]
+                if gid not in latest:
+                    latest[gid] = h
+        except Exception as e:
+            logger.error(f"[FastRefresh] Failed to fetch composite history: {e}")
+            return {"error": str(e), "refreshed": 0}
+
+        # Bias correction cache
+        bias_cache: dict[str, dict] = {}
+
+        refreshed = 0
+        skipped_no_history = 0
+        skipped_no_change = 0
+        errors = 0
+
+        for row in live_rows:
+            try:
+                sport_key = row["sport_key"]
+                game_id = row["game_id"]
+                game_data = row["game_data"]
+                if not game_data:
+                    continue
+
+                prev = latest.get(game_id)
+                if not prev:
+                    skipped_no_history += 1
+                    continue
+
+                # Reuse composite scores from last full calculation
+                composite_spread = prev.get("composite_spread")
+                composite_total = prev.get("composite_total")
+                composite_ml = prev.get("composite_ml")
+
+                # Fresh consensus book lines from cached_odds
+                book_lines = _extract_median_lines(game_data)
+                book_spread = book_lines["book_spread"]
+                book_total = book_lines["book_total"]
+                book_ml_home = book_lines["book_ml_home"]
+                book_ml_away = book_lines["book_ml_away"]
+                book_ml_draw = book_lines["book_ml_draw"]
+
+                # Skip if book lines haven't moved since last entry
+                prev_bs = prev.get("book_spread")
+                prev_bt = prev.get("book_total")
+                spread_moved = (book_spread is not None and prev_bs is not None
+                                and abs(float(book_spread) - float(prev_bs)) >= 0.25)
+                total_moved = (book_total is not None and prev_bt is not None
+                               and abs(float(book_total) - float(prev_bt)) >= 0.5)
+                # Also refresh if last entry is >5 min old (ensure at least periodic updates)
+                stale = False
+                try:
+                    prev_ts = datetime.fromisoformat(prev["timestamp"].replace("Z", "+00:00"))
+                    stale = (now_dt - prev_ts).total_seconds() > 300
+                except (ValueError, TypeError, KeyError):
+                    stale = True
+
+                if not spread_moved and not total_moved and not stale:
+                    skipped_no_change += 1
+                    continue
+
+                # Reuse game_env_score from composite_total's pillar
+                # (We don't have the raw pillar score, so derive it back from fair_total)
+                # Actually simpler: just use composite_total as game_env proxy
+                # since _calculate_fair_total expects game_env on 0-1 scale
+                game_env_score = composite_total if composite_total is not None else 0.5
+
+                is_soccer = "soccer" in sport_key
+
+                # Calculate fair lines (same logic as full recalc)
+                fair_spread = None
+                fair_total = None
+                fair_ml_home = None
+                fair_ml_away = None
+                fair_ml_draw = None
+
+                if book_spread is not None and composite_spread is not None:
+                    fair_spread = _calculate_fair_spread(book_spread, composite_spread)
+                    exchange_adj = _calc_exchange_divergence_boost(game_id, book_spread)
+                    if exchange_adj != 0.0:
+                        fair_spread = _round_to_half(fair_spread + exchange_adj)
+                    fair_ml_home, fair_ml_away = _calculate_fair_ml(fair_spread, sport_key)
+
+                    if is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None:
+                        comp = composite_ml if composite_ml is not None else 0.5
+                        fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
+                            book_ml_home, book_ml_draw, book_ml_away, comp
+                        )
+
+                elif is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None and composite_ml is not None:
+                    fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
+                        book_ml_home, book_ml_draw, book_ml_away, composite_ml
+                    )
+                elif book_ml_home is not None and book_ml_away is not None and composite_ml is not None:
+                    fair_ml_home, fair_ml_away = _calculate_fair_ml_from_book(
+                        book_ml_home, book_ml_away, composite_ml
+                    )
+
+                if book_total is not None:
+                    fair_total = _calculate_fair_total(book_total, game_env_score)
+
+                # Bias correction
+                if sport_key not in bias_cache:
+                    bias_cache[sport_key] = _get_bias_correction(sport_key)
+                bias = bias_cache[sport_key]
+
+                if fair_spread is not None and bias.get("spread_bias") is not None and bias.get("spread_sample", 0) >= 50:
+                    fair_spread = _round_to_half(fair_spread - bias["spread_bias"] * 0.3)
+
+                if fair_total is not None and bias.get("total_bias") is not None and bias.get("total_sample", 0) >= 50:
+                    fair_total = _round_to_half(fair_total - bias["total_bias"] * 0.3)
+
+                # Sport-specific caps
+                s_cap = SPREAD_CAP_BY_SPORT.get(sport_key, DEFAULT_SPREAD_CAP)
+                t_cap = TOTAL_CAP_BY_SPORT.get(sport_key, DEFAULT_TOTAL_CAP)
+
+                if fair_spread is not None and book_spread is not None:
+                    fair_spread = max(book_spread - s_cap, min(book_spread + s_cap, fair_spread))
+
+                if fair_total is not None and book_total is not None:
+                    fair_total = max(book_total - t_cap, min(book_total + t_cap, fair_total))
+
+                # Insert row to composite_history
+                row_data = {
+                    "game_id": game_id,
+                    "sport_key": sport_key,
+                    "timestamp": now,
+                    "composite_spread": composite_spread,
+                    "composite_total": composite_total,
+                    "composite_ml": composite_ml,
+                    "fair_spread": fair_spread,
+                    "fair_total": fair_total,
+                    "fair_ml_home": fair_ml_home,
+                    "fair_ml_away": fair_ml_away,
+                    "book_spread": book_spread,
+                    "book_total": book_total,
+                    "book_ml_home": book_ml_home,
+                    "book_ml_away": book_ml_away,
+                }
+                if fair_ml_draw is not None:
+                    row_data["fair_ml_draw"] = fair_ml_draw
+                db.client.table("composite_history").insert(row_data).execute()
+
+                refreshed += 1
+                if refreshed <= 3:
+                    logger.info(
+                        f"[FastRefresh] {game_id}: book_spread={book_spread}, "
+                        f"fair_spread={fair_spread}, book_total={book_total}, "
+                        f"fair_total={fair_total}"
+                    )
+
+            except Exception as e:
+                logger.error(f"[FastRefresh] Error on {row.get('game_id', '?')}: {e}")
+                errors += 1
+
+        summary = {
+            "refreshed": refreshed,
+            "live_games": len(live_rows),
+            "skipped_no_history": skipped_no_history,
+            "skipped_no_change": skipped_no_change,
+            "errors": errors,
+            "timestamp": now,
+        }
+        logger.info(f"[FastRefresh] Done: {summary}")
+        return summary

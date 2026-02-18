@@ -150,8 +150,7 @@ interface LineMovementChartProps {
 }
 
 function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, awayTeam, viewMode, onViewModeChange, commenceTime, sportKey, compact = false, omiFairLine, activeMarket: activeMarketProp }: LineMovementChartProps) {
-  const [hoveredPoint, setHoveredPoint] = useState<{ x: number; y: number; value: number; timestamp: Date; index: number } | null>(null);
-  const [hoveredOmiPoint, setHoveredOmiPoint] = useState<{ x: number; y: number; value: number; timestamp: Date } | null>(null);
+  const [hoverX, setHoverX] = useState<number | null>(null);
   const [trackingSide, setTrackingSide] = useState<'home' | 'away' | 'over' | 'under' | 'draw'>('home');
   const isSoccer = sportKey?.includes('soccer') ?? false;
   const [timeRange, setTimeRange] = useState<TimeRange>('ALL');
@@ -300,7 +299,8 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   // Color theming: emerald for line view, amber for price view
   const isPrice = effectiveViewMode === 'price';
-  const lineColor = isPrice ? '#fbbf24' : '#34d399';
+  const bookColor = '#16a34a';
+  const omiColor = '#ea580c';
 
   if (data.length === 0) {
     return (
@@ -402,7 +402,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
   const width = 600;
   const height = 200;
   const paddingLeft = 36;
-  const paddingRight = 6;
+  const paddingRight = 50;
   const paddingTop = 8;
   const paddingBottom = 20;
   const chartWidth = width - paddingLeft - paddingRight;
@@ -602,34 +602,11 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     const svg = e.currentTarget;
     const rect = svg.getBoundingClientRect();
     const scaleX = width / rect.width;
-    const scaleY = height / rect.height;
-    const mouseX = (e.clientX - rect.left) * scaleX;
-    const mouseY = (e.clientY - rect.top) * scaleY;
-
-    // Check OMI dots first (smaller target, prioritize when close)
-    let nearestOmi: typeof omiChartPoints[0] | null = null;
-    let omiDist = Infinity;
-    for (const pt of omiChartPoints) {
-      if (pt.isEdge || !pt.timestamp) continue;
-      const dist = Math.sqrt((pt.x - mouseX) ** 2 + (pt.y - mouseY) ** 2);
-      if (dist < omiDist) { omiDist = dist; nearestOmi = pt; }
-    }
-
-    // Check book line points
-    let nearestPoint = chartPoints[0];
-    let minDist = Infinity;
-    for (const point of chartPoints) {
-      const dist = Math.abs(point.x - mouseX);
-      if (dist < minDist) { minDist = dist; nearestPoint = point; }
-    }
-
-    // OMI dot takes priority if mouse is close to it (within 15px SVG units)
-    if (nearestOmi && omiDist < 15) {
-      setHoveredOmiPoint({ x: nearestOmi.x, y: nearestOmi.y, value: nearestOmi.value, timestamp: nearestOmi.timestamp! });
-      setHoveredPoint(null);
+    const mx = (e.clientX - rect.left) * scaleX;
+    if (mx >= paddingLeft && mx <= paddingLeft + chartWidth) {
+      setHoverX(mx);
     } else {
-      setHoveredOmiPoint(null);
-      setHoveredPoint(minDist < 20 ? nearestPoint : null);
+      setHoverX(null);
     }
   };
 
@@ -713,13 +690,8 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
       {/* Chart SVG — fills available space, step-line rendering */}
       <div className="relative flex-1 min-h-0">
-        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="none" onMouseMove={handleMouseMove} onMouseLeave={() => { setHoveredPoint(null); setHoveredOmiPoint(null); }}>
-          <defs>
-            <linearGradient id={`grad-${gameId}`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={lineColor} stopOpacity="0.25" />
-              <stop offset="100%" stopColor={lineColor} stopOpacity="0.02" />
-            </linearGradient>
-          </defs>
+        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="none" onMouseMove={handleMouseMove} onMouseLeave={() => setHoverX(null)}>
+          {/* No gradient defs needed — edge fill rendered inline */}
 
           {/* Y-axis gridlines at half-point intervals */}
           {yGridLines.map((g, i) => (
@@ -752,92 +724,113 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
             );
           })()}
 
-          {/* Green gradient fill below step-line */}
-          {gradientFillPath && (
-            <path d={gradientFillPath} fill={`url(#grad-${gameId})`} />
-          )}
+          {/* Edge fill between book and OMI lines */}
+          {hasOmiLine && chartPoints.length >= 2 && chartPoints.slice(0, -1).map((pt, i) => {
+            const x1 = pt.x;
+            const x2 = chartPoints[i + 1].x;
+            const bookY = pt.y;
+            let omiY = omiChartPoints[0]?.y ?? bookY;
+            for (const op of omiChartPoints) {
+              if (op.x <= x1) omiY = op.y;
+              else break;
+            }
+            const top = Math.min(bookY, omiY);
+            const h = Math.max(bookY, omiY) - top;
+            if (h < 0.5) return null;
+            return <rect key={`edge-${i}`} x={x1} y={top} width={x2 - x1} height={h} fill={omiY < bookY ? 'rgba(220,252,231,0.3)' : 'rgba(252,231,231,0.3)'} />;
+          })}
 
-          {/* OMI Fair Value line overlay (dashed orange) */}
+          {/* OMI Fair line — solid orange, 2px */}
           {hasOmiLine && omiPathD && (
             <>
-              <path d={omiPathD} fill="none" stroke="#f59e0b" strokeWidth="2" strokeDasharray="6 3" opacity="0.85" />
-              {/* Recalculation dots — visible at each real data point (skip edge-extensions) */}
+              <path d={omiPathD} fill="none" stroke={omiColor} strokeWidth="2" />
               {omiChartPoints.map((pt, i) => pt.isEdge ? null : (
-                <circle key={`omi-dot-${i}`} cx={pt.x} cy={pt.y} r="3" fill="#f59e0b" stroke="#e2e4e8" strokeWidth="0.5" opacity="0.9" />
+                <circle key={`omi-dot-${i}`} cx={pt.x} cy={pt.y} r="3" fill={omiColor} stroke="white" strokeWidth="0.5" />
               ))}
-              {/* Hovered OMI dot highlight */}
-              {hoveredOmiPoint && (
-                <>
-                  <line x1={hoveredOmiPoint.x} y1={paddingTop} x2={hoveredOmiPoint.x} y2={paddingTop + chartHeight} stroke="#f59e0b" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.5" />
-                  <circle cx={hoveredOmiPoint.x} cy={hoveredOmiPoint.y} r="5" fill="#f59e0b" stroke="#e2e4e8" strokeWidth="1.5" />
-                </>
-              )}
             </>
           )}
 
-          {/* Book line — single step-line */}
+          {/* Book line — solid green, 2px */}
           {chartPoints.length > 0 && (
             <>
-              <path d={pathD} fill="none" stroke={lineColor} strokeWidth="2" />
-              {/* Open dot — green */}
-              <circle cx={chartPoints[0].x} cy={chartPoints[0].y} r="3" fill="#34d399" stroke="#e2e4e8" strokeWidth="1" />
-              {/* Current dot — colored */}
-              <circle cx={chartPoints[chartPoints.length - 1].x} cy={chartPoints[chartPoints.length - 1].y} r="3.5" fill={lineColor} stroke="#e2e4e8" strokeWidth="1" />
-              {/* Hover crosshair + dot */}
-              {hoveredPoint && (
-                <>
-                  <line x1={hoveredPoint.x} y1={paddingTop} x2={hoveredPoint.x} y2={paddingTop + chartHeight} stroke="#9ca3af" strokeWidth="0.5" strokeDasharray="2 2" />
-                  <circle cx={hoveredPoint.x} cy={hoveredPoint.y} r="4" fill={lineColor} stroke="#e2e4e8" strokeWidth="1.5" />
-                </>
-              )}
+              <path d={pathD} fill="none" stroke={bookColor} strokeWidth="2" />
+              {chartPoints.map((pt, i) => (
+                <circle key={`book-dot-${i}`} cx={pt.x} cy={pt.y} r="3" fill={bookColor} stroke="white" strokeWidth="0.5" />
+              ))}
             </>
           )}
 
-          {/* Inline labels at right end of lines */}
+          {/* Endpoint labels at right edge with collision avoidance */}
           {chartPoints.length > 0 && (() => {
-            const lastPt = chartPoints[chartPoints.length - 1];
+            const lastBook = chartPoints[chartPoints.length - 1];
             const bookName = BOOK_CONFIG[selectedBook]?.name || selectedBook;
-            const bookLabel = `${bookName} ${formatValue(lastPt.value)}`;
-            // Position label to the left of the right edge to stay visible
-            const labelX = Math.min(lastPt.x + 4, paddingLeft + chartWidth - 2);
-            // Offset OMI label if both lines end near same Y
-            const omiLast = hasOmiLine ? omiChartPoints[omiChartPoints.length - 1] : null;
-            const omiLabelY = omiLast ? (Math.abs(omiLast.y - lastPt.y) < 12 ? omiLast.y - 12 : omiLast.y) : 0;
+            const labelX = paddingLeft + chartWidth + 3;
+            let bookLabelY = lastBook.y + 3;
+            let omiLabelY = 0;
+            const GAP = 14;
+            if (hasOmiLine && omiChartPoints.length > 0) {
+              const lastOmi = omiChartPoints[omiChartPoints.length - 1];
+              omiLabelY = lastOmi.y + 3;
+              if (Math.abs(bookLabelY - omiLabelY) < GAP) {
+                const mid = (bookLabelY + omiLabelY) / 2;
+                if (bookLabelY < omiLabelY) { bookLabelY = mid - GAP / 2; omiLabelY = mid + GAP / 2; }
+                else { omiLabelY = mid - GAP / 2; bookLabelY = mid + GAP / 2; }
+              }
+            }
             return (
               <>
-                <text x={labelX} y={lastPt.y - 5} textAnchor="start" fill={lineColor} fontSize="8" fontFamily="monospace" fontWeight="600">{bookLabel}</text>
-                {omiLast && (
-                  <text x={labelX} y={omiLabelY - 5} textAnchor="start" fill="#f59e0b" fontSize="8" fontFamily="monospace" fontWeight="600">OMI {formatValue(omiLast.value)}</text>
+                <text x={labelX} y={bookLabelY} textAnchor="start" fill={bookColor} fontSize="8" fontFamily="monospace" fontWeight="600">{bookName} {formatValue(lastBook.value)}</text>
+                {hasOmiLine && omiChartPoints.length > 0 && (
+                  <text x={labelX} y={omiLabelY} textAnchor="start" fill={omiColor} fontSize="8" fontFamily="monospace" fontWeight="600">OMI {formatValue(omiChartPoints[omiChartPoints.length - 1].value)}</text>
+                )}
+              </>
+            );
+          })()}
+
+          {/* Continuous crosshair with pill labels */}
+          {hoverX !== null && chartPoints.length > 0 && (() => {
+            // Step-chart interpolation: find last point with x <= hoverX
+            let bookPt = chartPoints[0];
+            for (let i = chartPoints.length - 1; i >= 0; i--) {
+              if (chartPoints[i].x <= hoverX) { bookPt = chartPoints[i]; break; }
+            }
+            let omiPt: typeof omiChartPoints[0] | null = null;
+            if (hasOmiLine && omiChartPoints.length > 0) {
+              omiPt = omiChartPoints[0];
+              for (let i = omiChartPoints.length - 1; i >= 0; i--) {
+                if (omiChartPoints[i].x <= hoverX) { omiPt = omiChartPoints[i]; break; }
+              }
+            }
+            const pillW = 52, pillH = 14;
+            return (
+              <>
+                <line x1={hoverX} y1={paddingTop} x2={hoverX} y2={paddingTop + chartHeight} stroke="#d1d5db" strokeWidth="1" strokeDasharray="3 2" />
+                {/* Book value pill */}
+                <rect x={hoverX + 4} y={bookPt.y - pillH / 2} width={pillW} height={pillH} rx="3" fill={bookColor} opacity="0.9" />
+                <text x={hoverX + 4 + pillW / 2} y={bookPt.y + 3} textAnchor="middle" fill="white" fontSize="9" fontFamily="monospace" fontWeight="600">{formatValue(bookPt.value)}</text>
+                {/* OMI value pill */}
+                {omiPt && (
+                  <>
+                    <rect x={hoverX + 4} y={omiPt.y - pillH / 2} width={pillW} height={pillH} rx="3" fill={omiColor} opacity="0.9" />
+                    <text x={hoverX + 4 + pillW / 2} y={omiPt.y + 3} textAnchor="middle" fill="white" fontSize="9" fontFamily="monospace" fontWeight="600">{formatValue(omiPt.value)}</text>
+                  </>
                 )}
               </>
             );
           })()}
         </svg>
-        {hoveredPoint && (
-          <div className="absolute bg-[#f4f5f7]/95 border border-[#e2e4e8]/50 rounded px-2 py-0.5 text-[9px] pointer-events-none shadow-lg z-10 whitespace-nowrap" style={{ left: `${(hoveredPoint.x / width) * 100}%`, top: `${(hoveredPoint.y / height) * 100 - 8}%`, transform: 'translate(-50%, -100%)' }}>
-            <span className="font-semibold text-[#1f2937] font-mono">{formatValue(hoveredPoint.value)}</span>
-            <span className="text-[#9ca3af] mx-1">/</span>
-            <span className="text-[#6b7280]">{hoveredPoint.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}, {hoveredPoint.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</span>
-          </div>
-        )}
-        {hoveredOmiPoint && (
-          <div className="absolute bg-[#fffbeb]/95 border border-[#f59e0b]/30 rounded px-2 py-0.5 text-[9px] pointer-events-none shadow-lg z-10 whitespace-nowrap" style={{ left: `${(hoveredOmiPoint.x / width) * 100}%`, top: `${(hoveredOmiPoint.y / height) * 100 - 8}%`, transform: 'translate(-50%, -100%)' }}>
-            <span className="font-semibold text-[#92400e] font-mono">OMI Fair: {formatValue(hoveredOmiPoint.value)}</span>
-            <span className="text-[#b45309] mx-1">/</span>
-            <span className="text-[#92400e]">{hoveredOmiPoint.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</span>
-          </div>
-        )}
       </div>
-      {/* Legend */}
+      {/* Legend: Book | OMI Fair | Edge Zone */}
       <div className="flex items-center justify-between px-1 flex-shrink-0 text-[8px] text-[#9ca3af]">
         <div className="flex items-center gap-3">
-          <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Open</span>
-          <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full" style={{ backgroundColor: lineColor }}></span>{BOOK_CONFIG[selectedBook]?.name || selectedBook}</span>
+          <span className="flex items-center gap-1"><span className="inline-block w-3 h-0.5 rounded" style={{ backgroundColor: bookColor }}></span>{BOOK_CONFIG[selectedBook]?.name || selectedBook}</span>
+          {hasOmiLine && (
+            <span className="flex items-center gap-1"><span className="inline-block w-3 h-0.5 rounded" style={{ backgroundColor: omiColor }}></span>OMI Fair</span>
+          )}
           {hasOmiLine && (
             <span className="flex items-center gap-1">
-              <span className="inline-block w-3 h-0 border-t border-dashed" style={{ borderColor: '#f59e0b', opacity: 0.85 }}></span>
-              <span className="inline-block w-1 h-1 rounded-full" style={{ backgroundColor: '#f59e0b' }}></span>
-              <span>OMI Fair</span>
+              <span className="inline-block w-3 h-2 rounded-sm" style={{ background: 'linear-gradient(to right, rgba(220,252,231,0.5), rgba(252,231,231,0.5))' }}></span>
+              Edge Zone
             </span>
           )}
         </div>

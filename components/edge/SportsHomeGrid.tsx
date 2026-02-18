@@ -458,23 +458,30 @@ export function SportsHomeGrid({
     return result;
   }, [games]);
 
-  // Separate live/pregame
-  const { liveGames: allLiveGames, pregameGames } = useMemo(() => {
-    const live: any[] = [];
-    const pregame: Record<string, any[]> = {};
-    for (const [sportKey, sportGames] of Object.entries(orderedGames)) {
-      const pg: any[] = [];
-      for (const game of sportGames) {
-        const state = getGameState(game.commenceTime, game.sportKey);
-        if (state === 'live') live.push({ ...game, sportKey });
-        else if (state === 'upcoming') pg.push(game);
-      }
-      if (pg.length > 0) pregame[sportKey] = pg;
-    }
-    return { liveGames: live, pregameGames: pregame };
-  }, [orderedGames]);
+  // All games sorted: live → pregame → final within each sport
+  const { hasLiveGames, sortedGamesBySport } = useMemo(() => {
+    let hasLive = false;
+    const sorted: Record<string, any[]> = {};
+    const stateOrder: Record<string, number> = { live: 0, pregame: 1, final: 2 };
 
-  const hasLiveGames = allLiveGames.length > 0;
+    for (const [sportKey, sportGames] of Object.entries(orderedGames)) {
+      const games = [...sportGames].sort((a, b) => {
+        const sa = stateOrder[a.gameState || 'pregame'] ?? 1;
+        const sb = stateOrder[b.gameState || 'pregame'] ?? 1;
+        if (sa !== sb) return sa - sb;
+        const ta = new Date(a.commenceTime).getTime();
+        const tb = new Date(b.commenceTime).getTime();
+        if ((a.gameState || 'pregame') === 'final') return tb - ta;
+        return ta - tb;
+      });
+      if (games.length > 0) {
+        sorted[sportKey] = games;
+        if (games.some(g => g.gameState === 'live')) hasLive = true;
+      }
+    }
+
+    return { hasLiveGames: hasLive, sortedGamesBySport: sorted };
+  }, [orderedGames]);
 
   // Auto-refresh
   useEffect(() => {
@@ -486,7 +493,7 @@ export function SportsHomeGrid({
 
   // Filter by sport + search
   const filteredGames = useMemo(() => {
-    const source = activeSport ? { [activeSport]: pregameGames[activeSport] || [] } : pregameGames;
+    const source = activeSport ? { [activeSport]: sortedGamesBySport[activeSport] || [] } : sortedGamesBySport;
     if (!searchQuery.trim()) return source;
     const q = searchQuery.toLowerCase();
     const result: Record<string, any[]> = {};
@@ -495,7 +502,7 @@ export function SportsHomeGrid({
       if (matched.length > 0) result[sportKey] = matched;
     }
     return result;
-  }, [searchQuery, activeSport, pregameGames]);
+  }, [searchQuery, activeSport, sortedGamesBySport]);
 
   const isAllView = activeSport === null;
   const activeSportsCount = Object.keys(games).filter(k => games[k]?.length > 0).length;
@@ -546,12 +553,12 @@ export function SportsHomeGrid({
             <div className="flex items-center gap-2" style={{ padding: '3px 8px', background: P.neutralBg, borderRadius: 6 }} suppressHydrationWarning>
               {hasLiveGames && (
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
                 </span>
               )}
               <span style={{ fontSize: 10, color: secondsSinceUpdate > 60 ? '#d97706' : P.textMuted, fontFamily: 'monospace' }}>
-                {hasLiveGames && <span style={{ color: '#ef4444', marginRight: 4 }}>LIVE</span>}
+                {hasLiveGames && <span style={{ color: '#16a34a', marginRight: 4 }}>LIVE</span>}
                 Updated {secondsSinceUpdate < 60 ? `${secondsSinceUpdate}s` : `${Math.floor(secondsSinceUpdate / 60)}m`} ago
               </span>
             </div>
@@ -830,8 +837,9 @@ export function SportsHomeGrid({
                   const renderCard = ({ game, maxEdge }: { game: any; maxEdge: number }, isNoEdge = false) => {
                     const gameTime = typeof game.commenceTime === 'string' ? new Date(game.commenceTime) : game.commenceTime;
                     const timeStr = mounted ? gameTime.toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
-                    const countdown = mounted ? getTimeDisplay(gameTime, game.sportKey) : '';
-                    const isLive = countdown === 'LIVE';
+                    const isLive = game.gameState === 'live';
+                    const isFinal = game.gameState === 'final';
+                    const countdown = mounted ? (isLive ? 'LIVE' : isFinal ? 'FINAL' : getTimeDisplay(gameTime, game.sportKey)) : '';
 
                     const fair = game.fairLines;
                     const bookOdds = game.bookmakers?.[selectedBook];
@@ -899,10 +907,10 @@ export function SportsHomeGrid({
                         className="block group"
                         style={{
                           background: P.cardBg,
-                          border: isLive ? '2px solid #ef4444' : `1px solid ${P.cardBorder}`,
+                          border: isLive ? '2px solid #16a34a' : isFinal ? `1px solid ${P.textMuted}` : `1px solid ${P.cardBorder}`,
                           borderRadius: 12,
                           boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
-                          opacity: isNoEdge ? 0.45 : 1,
+                          opacity: isNoEdge ? 0.45 : isFinal ? 0.75 : 1,
                           transition: 'all 0.15s',
                           overflow: 'hidden',
                           textDecoration: 'none',
@@ -917,17 +925,22 @@ export function SportsHomeGrid({
                           <span style={{ fontSize: 11, color: P.textSecondary }} suppressHydrationWarning>{timeStr}</span>
                           <div className="flex items-center gap-2">
                             {isLive ? (
-                              <span className="flex items-center gap-1" style={{ fontSize: 10, fontWeight: 700, color: '#ef4444' }}>
+                              <span className="flex items-center gap-1" style={{ fontSize: 10, fontWeight: 700, color: '#16a34a' }}>
                                 <span className="relative flex h-1.5 w-1.5">
-                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
                                 </span>
                                 LIVE
+                                {game.liveData?.statusDetail && game.liveData.statusDetail !== 'Score unavailable' && (
+                                  <span style={{ fontWeight: 500, color: P.textSecondary, marginLeft: 2, fontSize: 9 }}>
+                                    {game.liveData.statusDetail}
+                                  </span>
+                                )}
                               </span>
-                            ) : countdown !== 'FINAL' ? (
-                              <span style={{ fontSize: 10, color: P.textFaint, fontFamily: 'monospace' }}>{countdown}</span>
-                            ) : (
+                            ) : isFinal ? (
                               <span style={{ fontSize: 10, fontWeight: 600, color: P.textMuted }}>FINAL</span>
+                            ) : (
+                              <span style={{ fontSize: 10, color: P.textFaint, fontFamily: 'monospace' }}>{countdown}</span>
                             )}
                           </div>
                         </div>
@@ -940,8 +953,8 @@ export function SportsHomeGrid({
                             <span style={{ fontSize: 13, fontWeight: 600, color: P.textPrimary, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                               {displayAway}
                             </span>
-                            {isLive && game.scores && (
-                              <span style={{ fontSize: 16, fontWeight: 700, color: P.textPrimary, fontFamily: 'monospace' }}>{game.scores.away}</span>
+                            {(isLive || isFinal) && game.liveData?.awayScore != null && (
+                              <span style={{ fontSize: 16, fontWeight: 700, color: P.textPrimary, fontFamily: 'monospace' }}>{game.liveData.awayScore}</span>
                             )}
                           </div>
                           {/* Home */}
@@ -950,11 +963,43 @@ export function SportsHomeGrid({
                             <span style={{ fontSize: 13, fontWeight: 600, color: P.textPrimary, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                               {displayHome}
                             </span>
-                            {isLive && game.scores && (
-                              <span style={{ fontSize: 16, fontWeight: 700, color: P.textPrimary, fontFamily: 'monospace' }}>{game.scores.home}</span>
+                            {(isLive || isFinal) && game.liveData?.homeScore != null && (
+                              <span style={{ fontSize: 16, fontWeight: 700, color: P.textPrimary, fontFamily: 'monospace' }}>{game.liveData.homeScore}</span>
                             )}
                           </div>
                         </div>
+
+                        {/* Live/Final status bar with covering indicator */}
+                        {(isLive || isFinal) && game.liveData && game.liveData.homeScore != null && fair?.fair_spread != null && (
+                          <div style={{
+                            padding: '4px 12px', borderTop: `1px solid ${P.cardBorder}`,
+                            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                            background: P.neutralBg,
+                          }}>
+                            {(() => {
+                              const margin = game.liveData.homeScore - game.liveData.awayScore;
+                              const atsMargin = margin + fair.fair_spread;
+                              // For graded final games, use official result
+                              if (isFinal && game.liveData.spreadResult) {
+                                const result = game.liveData.spreadResult.toUpperCase();
+                                return (
+                                  <span style={{ fontSize: 10, fontWeight: 600, color: result === 'WIN' ? P.greenText : result === 'LOSS' ? P.redText : P.textMuted }}>
+                                    {result === 'WIN' ? '✓ COVERED' : result === 'LOSS' ? '✗ MISSED' : 'PUSH'}
+                                  </span>
+                                );
+                              }
+                              const isCovering = atsMargin > 0;
+                              return (
+                                <span style={{ fontSize: 10, fontWeight: 600, color: isCovering ? P.greenText : P.redText }}>
+                                  {isLive ? (isCovering ? '✓ Covering' : '✗ Not Covering') : (isCovering ? '✓ Covered' : '✗ Missed')}
+                                </span>
+                              );
+                            })()}
+                            <span style={{ fontSize: 9, color: P.textMuted, fontFamily: 'monospace' }}>
+                              Fair {fmtSpread(fair.fair_spread)} | Margin {game.liveData.homeScore - game.liveData.awayScore > 0 ? '+' : ''}{game.liveData.homeScore - game.liveData.awayScore}
+                            </span>
+                          </div>
+                        )}
 
                         {/* Market Grid — soccer vs non-soccer layout */}
                         <div style={{ borderTop: `1px solid ${P.cardBorder}` }}>

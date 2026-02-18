@@ -31,9 +31,147 @@ function getSupabase() {
   );
 }
 
-// Stub — live scores disabled to save API budget
-async function fetchLiveScores(): Promise<Record<string, any>> {
-  return {};
+// ESPN API endpoints (free, no auth needed)
+const ESPN_ENDPOINTS: Record<string, string> = {
+  'americanfootball_nfl': 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard',
+  'americanfootball_ncaaf': 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard',
+  'basketball_nba': 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
+  'basketball_ncaab': 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard',
+  'icehockey_nhl': 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
+  'soccer_epl': 'https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard',
+};
+
+// Average game durations by sport (hours) — time-based fallback when ESPN unavailable
+const SPORT_DURATIONS: Record<string, number> = {
+  americanfootball_nfl: 3.5, americanfootball_ncaaf: 3.5,
+  basketball_nba: 2.5, basketball_ncaab: 2.5,
+  icehockey_nhl: 3, soccer_epl: 2,
+};
+
+interface ESPNGame {
+  homeTeam: string;
+  awayTeam: string;
+  homeScore: number;
+  awayScore: number;
+  status: 'scheduled' | 'in_progress' | 'final';
+  statusDetail: string;
+  period: number;
+  clock: string;
+}
+
+function normalizeTeam(name: string): string {
+  return name.toLowerCase().replace(/\s+/g, ' ').trim();
+}
+
+function teamsMatch(a: string, b: string): boolean {
+  const na = normalizeTeam(a);
+  const nb = normalizeTeam(b);
+  if (na === nb) return true;
+  if (na.includes(nb) || nb.includes(na)) return true;
+  // Match on last word (mascot) if long enough to avoid false positives
+  const la = na.split(' ').pop()!;
+  const lb = nb.split(' ').pop()!;
+  if (la && lb && la.length > 3 && la === lb) return true;
+  return false;
+}
+
+function findESPNMatch(homeTeam: string, awayTeam: string, espnGames: ESPNGame[]): ESPNGame | null {
+  if (!espnGames) return null;
+  for (const eg of espnGames) {
+    if (teamsMatch(eg.homeTeam, homeTeam) && teamsMatch(eg.awayTeam, awayTeam)) return eg;
+    if (teamsMatch(eg.homeTeam, awayTeam) && teamsMatch(eg.awayTeam, homeTeam)) {
+      return { ...eg, homeScore: eg.awayScore, awayScore: eg.homeScore };
+    }
+  }
+  return null;
+}
+
+// Fetch live scores from ESPN for sports with active games
+async function fetchESPNScores(sportKeys: string[]): Promise<Record<string, ESPNGame[]>> {
+  const result: Record<string, ESPNGame[]> = {};
+  const uniqueSports = [...new Set(sportKeys.filter(k => ESPN_ENDPOINTS[k]))];
+  if (uniqueSports.length === 0) return result;
+
+  await Promise.all(uniqueSports.map(async (sportKey) => {
+    try {
+      let url = ESPN_ENDPOINTS[sportKey];
+      if (sportKey.includes('ncaa')) url += '?groups=50&limit=300';
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) return;
+      const data = await res.json();
+
+      const games: ESPNGame[] = [];
+      for (const event of data.events || []) {
+        const comp = event.competitions?.[0];
+        if (!comp?.competitors || comp.competitors.length !== 2) continue;
+        const statusType = comp.status?.type?.name || '';
+        const statusDetail = comp.status?.type?.shortDetail || '';
+        let hTeam = '', aTeam = '', hScore = 0, aScore = 0;
+        for (const c of comp.competitors) {
+          if (c.homeAway === 'home') {
+            hTeam = c.team?.displayName || '';
+            hScore = parseInt(c.score || '0') || 0;
+          } else {
+            aTeam = c.team?.displayName || '';
+            aScore = parseInt(c.score || '0') || 0;
+          }
+        }
+        games.push({
+          homeTeam: hTeam, awayTeam: aTeam,
+          homeScore: hScore, awayScore: aScore,
+          status: statusType === 'STATUS_FINAL' ? 'final'
+                 : statusType === 'STATUS_IN_PROGRESS' ? 'in_progress'
+                 : 'scheduled',
+          statusDetail, period: comp.status?.period || 0,
+          clock: comp.status?.displayClock || '',
+        });
+      }
+      result[sportKey] = games;
+      console.log(`[ESPN] ${sportKey}: ${games.length} games (${games.filter(g => g.status === 'in_progress').length} live, ${games.filter(g => g.status === 'final').length} final)`);
+    } catch (e) {
+      console.error(`[ESPN] ${sportKey} fetch error:`, e);
+    }
+  }));
+
+  return result;
+}
+
+// Fetch graded game results from game_results table
+async function fetchGameResults(gameIds: string[]): Promise<Record<string, {
+  homeScore: number;
+  awayScore: number;
+  spreadResult: string | null;
+  mlResult: string | null;
+  totalResult: string | null;
+  finalSpread: number | null;
+  finalTotal: number | null;
+}>> {
+  if (gameIds.length === 0) return {};
+  try {
+    const supabase = getSupabase();
+    const { data } = await supabase
+      .from('game_results')
+      .select('game_id, home_score, away_score, spread_result, ml_result, total_result, final_spread, final_total')
+      .in('game_id', gameIds)
+      .not('home_score', 'is', null);
+
+    const results: Record<string, any> = {};
+    for (const row of data || []) {
+      results[row.game_id] = {
+        homeScore: row.home_score,
+        awayScore: row.away_score,
+        spreadResult: row.spread_result,
+        mlResult: row.ml_result,
+        totalResult: row.total_result,
+        finalSpread: row.final_spread != null ? Number(row.final_spread) : null,
+        finalTotal: row.final_total != null ? Number(row.final_total) : null,
+      };
+    }
+    return results;
+  } catch (e) {
+    console.error('[Dashboard API] Game results fetch failed:', e);
+    return {};
+  }
 }
 
 // Fetch latest composite_history entry per game (single source of truth for fair lines)
@@ -196,7 +334,8 @@ function buildConsensus(game: any) {
 // Process a single game from cached_odds into dashboard format
 function processGame(
   game: any,
-  scores: Record<string, any>,
+  espnData: Record<string, ESPNGame[]>,
+  gameResults: Record<string, any>,
   fairLinesMap: Record<string, any>
 ) {
   const consensus = buildConsensus(game);
@@ -231,6 +370,69 @@ function processGame(
   // Attach fair lines from composite_history (single source of truth)
   const fairLines = fairLinesMap[game.id] || null;
 
+  // Determine game state and live data
+  const commenceTime = new Date(game.commence_time);
+  const now = new Date();
+  let gameState: 'pregame' | 'live' | 'final' = 'pregame';
+  let liveData: any = null;
+
+  // Check graded game_results first (most authoritative)
+  const graded = gameResults[game.id];
+  if (graded) {
+    gameState = 'final';
+    liveData = {
+      homeScore: graded.homeScore,
+      awayScore: graded.awayScore,
+      statusDetail: 'Final',
+      spreadResult: graded.spreadResult,
+      mlResult: graded.mlResult,
+      totalResult: graded.totalResult,
+      finalSpread: graded.finalSpread,
+      finalTotal: graded.finalTotal,
+    };
+  } else if (now > commenceTime) {
+    // Game has started — check ESPN for live/final status
+    const espnGames = espnData[game.sport_key] || [];
+    const espnMatch = findESPNMatch(game.home_team, game.away_team, espnGames);
+
+    if (espnMatch) {
+      if (espnMatch.status === 'final') {
+        gameState = 'final';
+        liveData = {
+          homeScore: espnMatch.homeScore,
+          awayScore: espnMatch.awayScore,
+          statusDetail: espnMatch.statusDetail || 'Final',
+          period: espnMatch.period,
+          clock: espnMatch.clock,
+        };
+      } else if (espnMatch.status === 'in_progress') {
+        gameState = 'live';
+        liveData = {
+          homeScore: espnMatch.homeScore,
+          awayScore: espnMatch.awayScore,
+          statusDetail: espnMatch.statusDetail,
+          period: espnMatch.period,
+          clock: espnMatch.clock,
+        };
+      } else {
+        // ESPN says scheduled but commence_time passed — treat as live (pre-tip)
+        gameState = 'live';
+        liveData = { statusDetail: 'Starting soon' };
+      }
+    } else {
+      // No ESPN match — use time-based fallback
+      const duration = SPORT_DURATIONS[game.sport_key] || 3;
+      const expectedEnd = new Date(commenceTime.getTime() + duration * 60 * 60 * 1000);
+      if (now < expectedEnd) {
+        gameState = 'live';
+        liveData = { statusDetail: 'Score unavailable' };
+      } else {
+        gameState = 'final';
+        liveData = { statusDetail: 'Final (score pending)' };
+      }
+    }
+  }
+
   return {
     id: game.id,
     sportKey: game.sport_key,
@@ -240,7 +442,8 @@ function processGame(
     consensus,
     bookmakers,
     fairLines,
-    scores: scores[game.id] || null,
+    gameState,
+    liveData,
   };
 }
 
@@ -281,7 +484,21 @@ export async function GET() {
       }
     }
 
-    // Fetch exchange data, fair lines, and scores in parallel
+    // Determine which sports have started games (need ESPN live scores)
+    const now = new Date();
+    const sportsNeedingScores: string[] = [];
+    if (allCachedData) {
+      const seen = new Set<string>();
+      for (const row of allCachedData) {
+        const ct = row.game_data?.commence_time;
+        if (ct && new Date(ct) <= now && !seen.has(row.sport_key)) {
+          seen.add(row.sport_key);
+          sportsNeedingScores.push(row.sport_key);
+        }
+      }
+    }
+
+    // Fetch exchange data, fair lines, ESPN scores, and game results in parallel
     const fetchExchange = async (marketType: string) => {
       const { data } = await supabase
         .from('exchange_data')
@@ -293,8 +510,9 @@ export async function GET() {
       return data || [];
     };
 
-    const [scores, fairLinesMap, mlRows, spreadRows, totalRows] = await Promise.all([
-      fetchLiveScores(),
+    const [espnData, gameResults, fairLinesMap, mlRows, spreadRows, totalRows] = await Promise.all([
+      fetchESPNScores(sportsNeedingScores),
+      fetchGameResults(gameIds),
       fetchLatestFairLines(gameIds),
       fetchExchange('moneyline'),
       fetchExchange('spread'),
@@ -442,16 +660,15 @@ export async function GET() {
     const allGames: Record<string, any[]> = {};
     let totalGames = 0;
     let totalEdges = 0;
-    const now = new Date();
     const sevenDaysFromNow = now.getTime() + 7 * 24 * 60 * 60 * 1000;
-    const fourHoursAgo = now.getTime() - 4 * 60 * 60 * 1000;
+    const twentyFourHoursAgo = now.getTime() - 24 * 60 * 60 * 1000;
 
     for (const sportKey of SPORT_KEYS) {
       const sportData = allCachedData?.filter((row: any) => row.sport_key === sportKey) || [];
 
       const games = sportData
         .map((row: any) => {
-          const result = processGame(row.game_data, scores, fairLinesMap);
+          const result = processGame(row.game_data, espnData, gameResults, fairLinesMap);
           // Merge exchange bookmakers (Kalshi, Polymarket)
           const exchangeBooks = exchangeBookmakersByGameId[row.game_data?.id];
           if (exchangeBooks && result) {
@@ -460,9 +677,19 @@ export async function GET() {
           return result;
         })
         .filter(Boolean)
-        // Keep future games AND games that started within last 4 hours (live/recently finished)
-        .filter((g: any) => new Date(g.commenceTime).getTime() > fourHoursAgo)
-        .sort((a: any, b: any) => new Date(a.commenceTime).getTime() - new Date(b.commenceTime).getTime());
+        // Keep future games AND games from the last 24 hours
+        .filter((g: any) => new Date(g.commenceTime).getTime() > twentyFourHoursAgo)
+        // Sort: live first, then pregame (soonest), then final (most recent)
+        .sort((a: any, b: any) => {
+          const stateOrder: Record<string, number> = { live: 0, pregame: 1, final: 2 };
+          const sa = stateOrder[a.gameState] ?? 1;
+          const sb = stateOrder[b.gameState] ?? 1;
+          if (sa !== sb) return sa - sb;
+          const ta = new Date(a.commenceTime).getTime();
+          const tb = new Date(b.commenceTime).getTime();
+          if (a.gameState === 'final') return tb - ta;
+          return ta - tb;
+        });
 
       if (games.length > 0) {
         allGames[sportKey] = games;
@@ -485,7 +712,19 @@ export async function GET() {
     }, null);
 
     const processingTime = Date.now() - startTime;
+
+    // Debug: game state counts and exchange coverage
+    let gamesWithExchange = 0, liveCount = 0, finalCount = 0;
+    for (const sportGames of Object.values(allGames)) {
+      for (const g of sportGames as any[]) {
+        if (g.bookmakers?.kalshi || g.bookmakers?.polymarket) gamesWithExchange++;
+        if (g.gameState === 'live') liveCount++;
+        if (g.gameState === 'final') finalCount++;
+      }
+    }
     console.log(`[Dashboard API] ${totalGames} games, ${totalEdges} edges (>=${EDGE_THRESHOLD}%), ${Object.keys(fairLinesMap).length} fair lines, ${processingTime}ms`);
+    console.log(`[Dashboard API] States: ${liveCount} live, ${totalGames - liveCount - finalCount} pregame, ${finalCount} final | ESPN fetched: ${sportsNeedingScores.join(', ') || 'none'}`);
+    console.log(`[Dashboard API] Exchange merge: ${gamesWithExchange} of ${totalGames} games have exchange data, ${Object.keys(exchangeBookmakersByGameId).length} mapped game IDs`);
 
     return NextResponse.json({
       games: allGames,

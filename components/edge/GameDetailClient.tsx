@@ -712,9 +712,15 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
             <path d={gradientFillPath} fill={`url(#grad-${gameId})`} />
           )}
 
-          {/* OMI Fair Value line overlay (dashed green) */}
+          {/* OMI Fair Value line overlay (dashed orange) */}
           {hasOmiLine && omiPathD && (
-            <path d={omiPathD} fill="none" stroke="#16a34a" strokeWidth="1.5" strokeDasharray="6 3" opacity="0.5" />
+            <>
+              <path d={omiPathD} fill="none" stroke="#f59e0b" strokeWidth="2" strokeDasharray="6 3" opacity="0.85" />
+              {/* Recalculation dots — show each composite_history data point */}
+              {omiChartPoints.map((pt, i) => (
+                <circle key={`omi-dot-${i}`} cx={pt.x} cy={pt.y} r="2" fill="#f59e0b" opacity="0.9" />
+              ))}
+            </>
           )}
 
           {/* Book line — single step-line */}
@@ -734,6 +740,26 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
               )}
             </>
           )}
+
+          {/* Inline labels at right end of lines */}
+          {chartPoints.length > 0 && (() => {
+            const lastPt = chartPoints[chartPoints.length - 1];
+            const bookName = BOOK_CONFIG[selectedBook]?.name || selectedBook;
+            const bookLabel = `${bookName} ${formatValue(lastPt.value)}`;
+            // Position label to the left of the right edge to stay visible
+            const labelX = Math.min(lastPt.x + 4, paddingLeft + chartWidth - 2);
+            // Offset OMI label if both lines end near same Y
+            const omiLast = hasOmiLine ? omiChartPoints[omiChartPoints.length - 1] : null;
+            const omiLabelY = omiLast ? (Math.abs(omiLast.y - lastPt.y) < 12 ? omiLast.y - 12 : omiLast.y) : 0;
+            return (
+              <>
+                <text x={labelX} y={lastPt.y - 5} textAnchor="start" fill={lineColor} fontSize="8" fontFamily="monospace" fontWeight="600">{bookLabel}</text>
+                {omiLast && (
+                  <text x={labelX} y={omiLabelY - 5} textAnchor="start" fill="#f59e0b" fontSize="8" fontFamily="monospace" fontWeight="600">OMI {formatValue(omiLast.value)}</text>
+                )}
+              </>
+            );
+          })()}
         </svg>
         {hoveredPoint && (
           <div className="absolute bg-[#f4f5f7]/95 border border-[#e2e4e8]/50 rounded px-2 py-0.5 text-[9px] pointer-events-none shadow-lg z-10 whitespace-nowrap" style={{ left: `${(hoveredPoint.x / width) * 100}%`, top: `${(hoveredPoint.y / height) * 100 - 8}%`, transform: 'translate(-50%, -100%)' }}>
@@ -747,10 +773,11 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       <div className="flex items-center justify-between px-1 flex-shrink-0 text-[8px] text-[#9ca3af]">
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Open</span>
-          <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full" style={{ backgroundColor: lineColor }}></span>Current</span>
+          <span className="flex items-center gap-1"><span className="inline-block w-1.5 h-1.5 rounded-full" style={{ backgroundColor: lineColor }}></span>{BOOK_CONFIG[selectedBook]?.name || selectedBook}</span>
           {hasOmiLine && (
             <span className="flex items-center gap-1">
-              <span className="inline-block w-3 h-0 border-t border-dashed" style={{ borderColor: '#16a34a', opacity: 0.7 }}></span>
+              <span className="inline-block w-3 h-0 border-t border-dashed" style={{ borderColor: '#f59e0b', opacity: 0.85 }}></span>
+              <span className="inline-block w-1 h-1 rounded-full" style={{ backgroundColor: '#f59e0b' }}></span>
               <span>OMI Fair</span>
             </span>
           )}

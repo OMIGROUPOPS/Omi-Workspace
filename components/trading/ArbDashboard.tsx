@@ -658,9 +658,9 @@ export default function ArbDashboard() {
   }, [allTrades, selectedDate, tradeFilter, statusFilter, tradeSearch]);
 
   const filteredPnl = useMemo(() => {
-    let arbPnl = 0;       // SUCCESS / TIER1_HEDGE / TIER2_EXIT
-    let exitedLoss = 0;   // EXITED / TIER3_UNWIND
-    let directionalPnl = 0; // settled UNHEDGED / TIER3A / TIER3B
+    let arbPnl = 0;         // SUCCESS trades: spread_cents * contracts / 100
+    let exitedLoss = 0;     // EXITED trades: -(abs(unwind_loss_cents) / 100)
+    let directionalPnl = 0; // settled UNHEDGED / TIER3A / TIER3B: settlement_pnl
     let successes = 0;
     let fills = 0;
     let openCount = 0;
@@ -669,24 +669,41 @@ export default function ArbDashboard() {
     for (const t of filteredTrades) {
       if (t.status === "SUCCESS") successes++;
       if (t.contracts_filled > 0) fills++;
-      const pnl = tradePnl(t);
-      if (pnl.isOpen) {
-        openCount++;
-        continue; // exclude open positions from P&L total
-      }
-      if (pnl.totalDollars != null) {
-        if (pnl.totalDollars >= 0) realizedWins++;
-        else realizedLosses++;
-        if (t.status === "SUCCESS" || t.tier === "TIER1_HEDGE") {
-          arbPnl += pnl.totalDollars;
-        } else if (t.tier === "TIER2_EXIT") {
-          arbPnl += pnl.totalDollars;
-        } else if (t.status === "EXITED" || t.tier === "TIER3_UNWIND") {
-          exitedLoss += pnl.totalDollars;
-        } else if (t.settlement_pnl != null) {
-          // Settled directional positions (UNHEDGED/TIER3A/TIER3B with settlement_pnl)
-          directionalPnl += pnl.totalDollars;
+      const qty = t.contracts_filled > 0 ? t.contracts_filled : (t.contracts_intended || 0);
+      const tier = t.tier || "";
+
+      // Directional positions (UNHEDGED / TIER3A_HOLD / TIER3B_FLIP)
+      if (isOpenTrade(t)) {
+        if (t.settlement_pnl != null) {
+          // Settled — use settlement_pnl directly (already in dollars)
+          directionalPnl += t.settlement_pnl;
+          if (t.settlement_pnl >= 0) realizedWins++;
+          else realizedLosses++;
+        } else {
+          openCount++;
         }
+        continue;
+      }
+
+      // SUCCESS trades (includes TIER1_HEDGE): spread profit
+      if (t.status === "SUCCESS") {
+        if (t.spread_cents != null && qty > 0) {
+          const pnlDollars = (t.spread_cents * qty) / 100;
+          arbPnl += pnlDollars;
+          if (pnlDollars >= 0) realizedWins++;
+          else realizedLosses++;
+        }
+        continue;
+      }
+
+      // EXITED trades (includes TIER2_EXIT, TIER3_UNWIND): unwind loss
+      if (t.status === "EXITED") {
+        if (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0) {
+          const lossDollars = -(Math.abs(t.unwind_loss_cents) / 100);
+          exitedLoss += lossDollars;
+          realizedLosses++;
+        }
+        continue;
       }
     }
     const netTotal = arbPnl + exitedLoss + directionalPnl;
@@ -1226,7 +1243,7 @@ export default function ArbDashboard() {
                 }
                 sub={
                   filteredPnl.count > 0
-                    ? `Arb ${(filteredPnl.arbPnl + filteredPnl.exitedLoss) >= 0 ? "+" : ""}$${(filteredPnl.arbPnl + filteredPnl.exitedLoss).toFixed(2)}${filteredPnl.directionalPnl !== 0 ? ` · Dir ${filteredPnl.directionalPnl >= 0 ? "+" : ""}$${filteredPnl.directionalPnl.toFixed(2)}` : ""}${filteredPnl.openCount > 0 ? ` · ${filteredPnl.openCount} open` : ""}`
+                    ? `Arb: ${filteredPnl.arbPnl >= 0 ? "+" : ""}$${filteredPnl.arbPnl.toFixed(2)}${filteredPnl.directionalPnl !== 0 ? ` · Dir: ${filteredPnl.directionalPnl >= 0 ? "+" : ""}$${filteredPnl.directionalPnl.toFixed(2)}` : ""}${filteredPnl.exitedLoss !== 0 ? ` · Exit: ${filteredPnl.exitedLoss >= 0 ? "+" : ""}$${filteredPnl.exitedLoss.toFixed(2)}` : ""}${filteredPnl.openCount > 0 ? ` · ${filteredPnl.openCount} open` : ""}`
                     : undefined
                 }
                 accent={
@@ -1522,12 +1539,17 @@ export default function ArbDashboard() {
                       {filteredPnl.successes !== 1 ? "es" : ""}
                     </span>
                     <span>{filteredPnl.fills} filled</span>
-                    <span className={filteredPnl.arbPnl + filteredPnl.exitedLoss >= 0 ? "text-emerald-400" : "text-red-400"}>
-                      Arb: {filteredPnl.arbPnl + filteredPnl.exitedLoss >= 0 ? "+" : ""}${(filteredPnl.arbPnl + filteredPnl.exitedLoss).toFixed(2)}
+                    <span className={filteredPnl.arbPnl >= 0 ? "text-emerald-400" : "text-red-400"}>
+                      Arb: {filteredPnl.arbPnl >= 0 ? "+" : ""}${filteredPnl.arbPnl.toFixed(2)}
                     </span>
                     {filteredPnl.directionalPnl !== 0 && (
                       <span className={filteredPnl.directionalPnl >= 0 ? "text-emerald-400" : "text-red-400"}>
                         Dir: {filteredPnl.directionalPnl >= 0 ? "+" : ""}${filteredPnl.directionalPnl.toFixed(2)}
+                      </span>
+                    )}
+                    {filteredPnl.exitedLoss !== 0 && (
+                      <span className="text-red-400">
+                        Exit: {filteredPnl.exitedLoss >= 0 ? "+" : ""}${filteredPnl.exitedLoss.toFixed(2)}
                       </span>
                     )}
                     <span

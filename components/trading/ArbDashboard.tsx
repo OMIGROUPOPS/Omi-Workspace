@@ -89,6 +89,8 @@ interface TradeEntry {
   gtc_spread_checks?: number;
   gtc_cancel_reason?: string;
   unwind_loss_cents?: number | null;
+  pm_fee?: number;
+  k_fee?: number;
   execution_time_ms?: number;
   pm_order_ms?: number;
   tier?: string;
@@ -1604,7 +1606,9 @@ export default function ArbDashboard() {
                       <th className="px-2 py-1.5">Game</th>
                       <th className="px-2 py-1.5 text-right">Qty</th>
                       <th className="px-2 py-1.5 text-right">Spread</th>
-                      <th className="px-2 py-1.5 text-right">Net</th>
+                      <th className="px-2 py-1.5 text-right">Exec</th>
+                      <th className="px-2 py-1.5 text-right">Fees</th>
+                      <th className="px-2 py-1.5 text-right">Net P&L</th>
                       <th className="px-2 py-1.5">Status</th>
                     </tr>
                   </thead>
@@ -1612,7 +1616,7 @@ export default function ArbDashboard() {
                     {filteredTrades.length === 0 ? (
                       <tr>
                         <td
-                          colSpan={6}
+                          colSpan={8}
                           className="px-3 py-6 text-center text-gray-600 text-xs"
                         >
                           No trades{" "}
@@ -1682,18 +1686,35 @@ export default function ArbDashboard() {
                             >
                               {t.spread_cents.toFixed(1)}
                             </td>
+                            <td className="px-2 py-1 text-right font-mono text-gray-400">
+                              {t.actual_pnl?.per_contract?.gross != null
+                                ? `${t.actual_pnl.per_contract.gross.toFixed(1)}c`
+                                : <span className="text-gray-600">-</span>}
+                            </td>
+                            <td className="px-2 py-1 text-right font-mono text-red-400/70">
+                              {(() => {
+                                if (t.actual_pnl?.fees_dollars != null && t.actual_pnl.fees_dollars > 0)
+                                  return `$${t.actual_pnl.fees_dollars.toFixed(2)}`;
+                                const pmFee = t.pm_fee || 0;
+                                const kFee = t.k_fee || 0;
+                                if (pmFee > 0 || kFee > 0)
+                                  return `$${(pmFee + kFee).toFixed(2)}`;
+                                return <span className="text-gray-600">-</span>;
+                              })()}
+                            </td>
                             {(() => {
                               const pnl = tradePnl(t);
+                              const noFill = t.status === "PM_NO_FILL" || t.status === "SKIPPED";
                               return (
-                                <td className={`px-2 py-1 text-right font-mono font-medium ${pnl.isOpen ? "text-yellow-400" : netColor(pnl.perContract)}`}>
-                                  {pnl.isOpen ? (
+                                <td className={`px-2 py-1 text-right font-mono font-medium ${pnl.isOpen ? "text-yellow-400" : noFill ? "text-gray-600" : netColor(pnl.perContract)}`}>
+                                  {noFill ? "-" : pnl.isOpen ? (
                                     <span className="text-[10px] font-semibold text-yellow-400">OPEN</span>
-                                  ) : pnl.perContract != null ? (
+                                  ) : pnl.totalDollars != null ? (
                                     <div>
-                                      <span>{pnl.perContract >= 0 ? "+" : ""}{pnl.perContract.toFixed(1)}c</span>
-                                      {pnl.totalDollars != null && pnl.qty > 1 && (
+                                      <span>{pnl.totalDollars >= 0 ? "+$" : "-$"}{Math.abs(pnl.totalDollars).toFixed(2)}</span>
+                                      {pnl.perContract != null && (
                                         <div className="text-[9px] text-gray-500">
-                                          ({pnl.totalDollars >= 0 ? "+$" : "-$"}{Math.abs(pnl.totalDollars).toFixed(2)})
+                                          {pnl.perContract >= 0 ? "+" : ""}{pnl.perContract.toFixed(1)}c/ct
                                         </div>
                                       )}
                                     </div>
@@ -1716,7 +1737,7 @@ export default function ArbDashboard() {
                           </tr>
                           {isMonExpanded && (
                             <tr className="bg-gray-800/10">
-                              <td colSpan={6} className="px-4 py-2">
+                              <td colSpan={8} className="px-4 py-2">
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-[10px]">
                                   <div>
                                     <span className="text-gray-500">Direction:</span>{" "}

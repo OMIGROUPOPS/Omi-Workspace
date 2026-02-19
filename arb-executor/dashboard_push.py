@@ -327,6 +327,8 @@ class DashboardPusher:
                         "gtc_spread_checks": t.get("gtc_spread_checks", 0),
                         "gtc_cancel_reason": t.get("gtc_cancel_reason", ""),
                         "unwind_loss_cents": t.get("unwind_loss_cents"),
+                        "pm_fee": t.get("pm_fee", 0),
+                        "k_fee": t.get("k_fee", 0),
                         "execution_time_ms": t.get("execution_time_ms", 0),
                         "pm_order_ms": t.get("pm_order_ms", 0),
                         "k_order_ms": t.get("k_order_ms", 0),

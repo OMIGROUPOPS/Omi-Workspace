@@ -1620,7 +1620,7 @@ async def execute_arb(
                                     opp_tier_name = "TIER3_OPPOSITE_OVERWEIGHT"
                                     print(f"[TIER3] Overweight path: STRONG_HOLD + combined {combined:.0f}c")
                                 elif hold_sig is None and ceq >= Config.opposite_overweight_min_ceq \
-                                        and signal_tier in ("HIGH EDGE", "MAX EDGE"):
+                                        and signal_tier == "HIGH EDGE":
                                     execute_opposite = True
                                     opp_tier_name = "TIER3_OPPOSITE_OVERWEIGHT"
                                     print(f"[TIER3] Overweight path: pregame CEQ {ceq:.1f} + {signal_tier} + combined {combined:.0f}c")

@@ -1435,14 +1435,20 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
         # -----------------------------------------------------------------
         opposite_info = None
         mapping = VERIFIED_MAPS.get(arb.cache_key)
-        if mapping:
+        if not mapping:
+            print(f"[OPP-HEDGE] No VERIFIED_MAP for {arb.cache_key} — opposite hedge unavailable")
+        else:
             all_tickers = mapping.get('kalshi_tickers', {})
             other_teams = [t for t in all_tickers if t != arb.team]
-            if other_teams:
+            if not other_teams:
+                print(f"[OPP-HEDGE] No other team in mapping for {arb.cache_key} — opposite hedge unavailable")
+            else:
                 ot = other_teams[0]
                 ot_ticker = all_tickers[ot]
                 ot_book = local_books.get(ot_ticker)
-                if ot_book and ot_book.get('best_ask'):
+                if not ot_book or not ot_book.get('best_ask'):
+                    print(f"[OPP-HEDGE] No orderbook/ask for {ot} ({ot_ticker}) — opposite hedge unavailable")
+                else:
                     opposite_info = {
                         'team': ot,
                         'ticker': ot_ticker,

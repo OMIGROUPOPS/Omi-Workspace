@@ -364,7 +364,7 @@ export default function EdgeInternalPage() {
   const [accuracyError, setAccuracyError] = useState<string | null>(null);
 
   // ------- Fetch with timeout helper -------
-  const fetchWithTimeout = useCallback(async (url: string, timeoutMs = 15000) => {
+  const fetchWithTimeout = useCallback(async (url: string, timeoutMs = 60000) => {
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort(), timeoutMs);
     try {
@@ -448,7 +448,7 @@ export default function EdgeInternalPage() {
       if (verdictFilter) params.set("verdict", verdictFilter);
       if (cleanDataOnly) params.set("since", "2026-02-10T00:00:00+00:00");
       const res = await fetchWithTimeout(
-        `${BACKEND_URL}/api/internal/edge/graded-games?${params.toString()}`
+        `${BACKEND_URL}/api/internal/edge/graded-games?${params.toString()}`, 60000
       );
       if (res.ok) setGradedData(await res.json());
     } catch (e) {

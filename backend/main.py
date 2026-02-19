@@ -7,6 +7,7 @@ Usage:
     python main.py          # Start server + scheduler
     python main.py --once   # Run one analysis cycle and exit
 """
+import os
 import sys
 import logging
 import uvicorn
@@ -39,10 +40,11 @@ def main():
     # except Exception as e:
     #     logger.error(f"Initial analysis failed: {e}")
 
-    logger.info("Starting API server on port 8000...")
+    port = int(os.environ.get("PORT", 8000))
+    logger.info(f"Starting API server on 0.0.0.0:{port}...")
     try:
         from api.server import app
-        uvicorn.run(app, host="0.0.0.0", port=8000)
+        uvicorn.run(app, host="0.0.0.0", port=port)
     except KeyboardInterrupt:
         logger.info("Shutting down...")
         scheduler.shutdown()

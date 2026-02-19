@@ -900,7 +900,65 @@ class InternalGrader:
         signal: Optional[str] = None,
         since: Optional[str] = None,
     ) -> dict:
-        """Query prediction_grades and aggregate performance metrics."""
+        """Query prediction_grades and aggregate performance metrics.
+
+        Tries SQL RPC first (get_performance_summary) for speed, falls back
+        to the Python aggregation path if the function doesn't exist yet.
+        """
+        filters = {
+            "sport": sport,
+            "market": market,
+            "confidence_tier": confidence_tier,
+            "signal": signal,
+            "since": since,
+        }
+
+        # --- Fast path: SQL RPC ---
+        try:
+            rpc_params = {"p_days": days}
+            if sport:
+                rpc_params["p_sport"] = sport
+            if market:
+                rpc_params["p_market"] = market
+            if confidence_tier:
+                rpc_params["p_confidence_tier"] = confidence_tier
+            if signal:
+                rpc_params["p_signal"] = signal
+            if since:
+                rpc_params["p_since"] = since
+
+            rpc_result = self.client.rpc("get_performance_summary", rpc_params).execute()
+            if rpc_result.data is not None:
+                data = rpc_result.data
+                # RPC returns a single jsonb object
+                if isinstance(data, list) and len(data) == 1:
+                    data = data[0]
+                # Unwrap if nested under a key
+                if isinstance(data, dict) and "get_performance_summary" in data:
+                    data = data["get_performance_summary"]
+                if isinstance(data, dict) and "total_predictions" in data:
+                    data["days"] = days
+                    data["filters"] = filters
+                    logger.info(f"[Performance] RPC returned {data['total_predictions']} predictions")
+                    return data
+                logger.warning(f"[Performance] RPC returned unexpected shape, falling back to Python")
+        except Exception as e:
+            logger.info(f"[Performance] RPC unavailable ({e}), falling back to Python")
+
+        # --- Fallback: Python aggregation ---
+        return self._get_performance_python(sport, days, market, confidence_tier, signal, since, filters)
+
+    def _get_performance_python(
+        self,
+        sport: Optional[str],
+        days: int,
+        market: Optional[str],
+        confidence_tier: Optional[int],
+        signal: Optional[str],
+        since: Optional[str],
+        filters: dict,
+    ) -> dict:
+        """Original Python-side aggregation of prediction_grades rows."""
         cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
 
         valid_game_ids: Optional[set] = None
@@ -929,7 +987,7 @@ class InternalGrader:
 
         result = query.execute()
         rows = result.data or []
-        logger.info(f"[Performance] prediction_grades query returned {len(rows)} rows")
+        logger.info(f"[Performance] Python fallback: {len(rows)} rows")
 
         if valid_game_ids is not None:
             rows = [r for r in rows if r.get("game_id") in valid_game_ids]
@@ -941,13 +999,7 @@ class InternalGrader:
         return {
             "total_predictions": len(rows),
             "days": days,
-            "filters": {
-                "sport": sport,
-                "market": market,
-                "confidence_tier": confidence_tier,
-                "signal": signal,
-                "since": since,
-            },
+            "filters": filters,
             "by_confidence_tier": self._aggregate_by_field(rows, "confidence_tier"),
             "by_market": self._aggregate_by_field(rows, "market_type"),
             "by_sport": self._aggregate_by_field(rows, "sport_key"),

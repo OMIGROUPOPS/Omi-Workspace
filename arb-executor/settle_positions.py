@@ -2,7 +2,7 @@
 """
 settle_positions.py - Check settlement status of positions and update trades.json.
 
-Handles TWO trade types:
+Handles THREE trade types:
 
   1. UNHEDGED / TIER3A_HOLD / TIER3B_FLIP — directional (PM-only) positions.
      P&L depends on which side won (see calculate_settlement_pnl).
@@ -10,6 +10,9 @@ Handles TWO trade types:
   2. SUCCESS / TIER1_HEDGE — hedged positions (both legs filled).
      Spread was locked at trade time.  Settlement just confirms the market
      resolved and cash returned.  Net P&L = spread_cents * qty / 100 - fees.
+
+  3. EXITED (TIER2_EXIT / TIER3_UNWIND) — position closed via PM unwind.
+     No market settlement needed.  P&L = -(unwind_loss_cents / 100).
 
 Run manually:   python settle_positions.py
 Run on cron:     */30 * * * * cd /path/to/arb-executor && python settle_positions.py >> logs/settle.log 2>&1
@@ -235,52 +238,59 @@ async def main():
         # ── Collect unsettled trades ──
         directional_trades = []   # UNHEDGED / TIER3A / TIER3B
         hedged_trades = []        # SUCCESS / TIER1_HEDGE
+        exited_trades = []        # EXITED (position closed via unwind)
 
         for i, t in enumerate(trades):
             if t.get('settlement_pnl') is not None:
                 continue
-            if (t.get('contracts_filled') or 0) == 0:
-                continue
             status = t.get('status', '')
             tier = t.get('tier', '')
+            # EXITED trades don't need contracts_filled > 0 (position was unwound)
+            if status == 'EXITED':
+                exited_trades.append((i, t))
+                continue
+            if (t.get('contracts_filled') or 0) == 0:
+                continue
             if status in DIRECTIONAL_STATUSES or tier in DIRECTIONAL_TIERS:
                 directional_trades.append((i, t))
             elif status in HEDGED_STATUSES or tier in HEDGED_TIERS:
                 hedged_trades.append((i, t))
 
-        total_unsettled = len(directional_trades) + len(hedged_trades)
+        total_unsettled = len(directional_trades) + len(hedged_trades) + len(exited_trades)
         if total_unsettled == 0:
             print(f'[{datetime.now().isoformat()}] No unsettled trades to check')
             return
 
         print(f'[{datetime.now().isoformat()}] Checking {total_unsettled} unsettled trade(s) '
-              f'({len(directional_trades)} directional, {len(hedged_trades)} hedged)...')
+              f'({len(directional_trades)} directional, {len(hedged_trades)} hedged, '
+              f'{len(exited_trades)} exited)...')
 
-        # ── De-duplicate slugs across both lists ──
-        all_unsettled = directional_trades + hedged_trades
-        slugs_to_check = list({t['pm_slug'] for _, t in all_unsettled if t.get('pm_slug')})
-        print(f'  Unique markets: {len(slugs_to_check)}')
-
-        # ── Check settlement for each market ──
+        # ── Settlement check for directional + hedged trades ──
         settled_markets: dict[str, int] = {}
+        dir_count = 0
+        hedged_count = 0
 
-        for slug in slugs_to_check:
-            result = await check_settlement_sdk(client, slug)
-            if result is None:
-                result = await check_settlement_book(client, slug)
-            if result is None:
-                print(f'  [{slug}] Not settled yet — skipping')
-                continue
-            settled_markets[slug] = result
-            winner_label = 'YES' if result == 1 else 'NO'
-            print(f'  [{slug}] SETTLED — winner: {winner_label} (settlement={result})')
+        if directional_trades or hedged_trades:
+            all_market_trades = directional_trades + hedged_trades
+            slugs_to_check = list({t['pm_slug'] for _, t in all_market_trades if t.get('pm_slug')})
+            print(f'  Unique markets to check: {len(slugs_to_check)}')
 
-        if not settled_markets:
-            print('  No newly settled markets found')
-            return
+            for slug in slugs_to_check:
+                result = await check_settlement_sdk(client, slug)
+                if result is None:
+                    result = await check_settlement_book(client, slug)
+                if result is None:
+                    print(f'  [{slug}] Not settled yet — skipping')
+                    continue
+                settled_markets[slug] = result
+                winner_label = 'YES' if result == 1 else 'NO'
+                print(f'  [{slug}] SETTLED — winner: {winner_label} (settlement={result})')
+
+            if not settled_markets and not exited_trades:
+                print('  No newly settled markets found')
+                return
 
         # ── Update DIRECTIONAL trades (UNHEDGED / TIER3) ──
-        dir_count = 0
         for idx, trade in directional_trades:
             slug = trade.get('pm_slug', '')
             if slug not in settled_markets:
@@ -306,7 +316,6 @@ async def main():
             dir_count += 1
 
         # ── Update HEDGED trades (SUCCESS / TIER1_HEDGE) ──
-        hedged_count = 0
         for idx, trade in hedged_trades:
             slug = trade.get('pm_slug', '')
             if slug not in settled_markets:
@@ -326,12 +335,31 @@ async def main():
             print(f'  [HEDGED] {team} {qty}x | spread={spread}c | net P&L: ${pnl:+.4f}')
             hedged_count += 1
 
-        total_updated = dir_count + hedged_count
+        # ── Update EXITED trades (position closed via unwind — no market settlement needed) ──
+        exited_count = 0
+        for idx, trade in exited_trades:
+            ulc = trade.get('unwind_loss_cents')
+            if ulc is None:
+                ulc = 0
+            settlement_pnl = round(-ulc / 100, 4)
+
+            trades[idx]['settlement_pnl'] = settlement_pnl
+            trades[idx]['settlement_time'] = trade.get('timestamp', datetime.now(timezone.utc).isoformat())
+            trades[idx]['settlement_source'] = 'unwind'
+
+            team = trade.get('team', '?')
+            tier = trade.get('tier', '')
+            qty = trade.get('contracts_filled', 0) or trade.get('pm_fill', 0)
+
+            print(f'  [EXITED] {team} ({tier}) {qty}x | unwind_loss={ulc}c | P&L: ${settlement_pnl:+.4f}')
+            exited_count += 1
+
+        total_updated = dir_count + hedged_count + exited_count
         if total_updated > 0:
             with open(TRADES_FILE, 'w') as f:
                 json.dump(trades, f, indent=2)
             print(f'\n  Updated {total_updated} trade(s) in {TRADES_FILE} '
-                  f'({dir_count} directional, {hedged_count} hedged)')
+                  f'({dir_count} directional, {hedged_count} hedged, {exited_count} exited)')
         else:
             print('  No trades updated')
 

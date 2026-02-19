@@ -186,6 +186,8 @@ class TradeResult:
     is_maker: bool = False             # True if filled via GTC (0% fee)
     exited: bool = False               # True if PM was successfully unwound after K failure
     unwind_loss_cents: Optional[float] = None  # Total loss from PM unwind across all contracts (cents)
+    unwind_fill_price: Optional[float] = None  # Price PM unwind filled at (dollars)
+    unwind_qty: int = 0                         # Contracts actually unwound
     tier: str = ""  # "TIER1_HEDGE", "TIER2_EXIT", "TIER3_UNWIND", "TIER3A", "TIER3B", or ""
     naked_contracts: int = 0           # Contracts held directional (no hedge)
     flip_contracts: int = 0            # Extra flip contracts (Tier 3b)
@@ -1254,7 +1256,7 @@ async def execute_arb(
             if not exited:
                 print(f"[GTC] PM unwind failed - position remains open!")
             return TradeResult(
-                success=False, pm_filled=0 if exited else pm_filled,
+                success=False, pm_filled=pm_filled,
                 pm_price=pm_fill_price,
                 unhedged=not exited,
                 abort_reason=f"GTC filled but K spread gone, PM unwound (loss: {unwind_loss:.1f}c)" if exited and unwind_loss is not None else "GTC filled but K spread gone, PM unwind FAILED - UNHEDGED!" if not exited else "GTC filled but K spread gone, PM unwound",
@@ -1267,6 +1269,8 @@ async def execute_arb(
                 gtc_cancel_reason='spread_gone_pre_kalshi',
                 exited=exited,
                 unwind_loss_cents=unwind_loss,
+                unwind_fill_price=unwind_fill_price if exited else None,
+                unwind_qty=unwind_filled if exited else 0,
             )
 
     # -------------------------------------------------------------------------
@@ -1299,7 +1303,7 @@ async def execute_arb(
             loss_per_contract = abs((pm_fill_price - unwind_fill_price) * 100)
             loss_cents = loss_per_contract * pm_filled
             return TradeResult(
-                success=False, kalshi_filled=0, pm_filled=0,
+                success=False, kalshi_filled=0, pm_filled=pm_filled,
                 kalshi_price=k_limit_price, pm_price=pm_fill_price,
                 unhedged=False,
                 abort_reason=f"Kalshi exception, PM unwound (loss: {loss_per_contract:.1f}c x {pm_filled} = {loss_cents:.1f}c)",
@@ -1313,6 +1317,8 @@ async def execute_arb(
                 is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
                 exited=True,
                 unwind_loss_cents=loss_cents,
+                unwind_fill_price=unwind_fill_price,
+                unwind_qty=unwind_filled,
                 tier="TIER3_UNWIND",
             )
 
@@ -1488,7 +1494,7 @@ async def execute_arb(
                             return TradeResult(
                                 success=False,
                                 kalshi_filled=0,
-                                pm_filled=0,
+                                pm_filled=pm_filled,
                                 kalshi_price=k_limit_price,
                                 pm_price=pm_fill_price,
                                 unhedged=False,
@@ -1504,6 +1510,8 @@ async def execute_arb(
                                 is_maker=_is_maker,
                                 exited=True,
                                 unwind_loss_cents=abs(total_pnl) if total_pnl < 0 else 0,
+                                unwind_fill_price=t2_fill_price,
+                                unwind_qty=t2_cum_qty,
                                 tier="TIER2_EXIT",
                             )
                         else:
@@ -1764,7 +1772,7 @@ async def execute_arb(
                 return TradeResult(
                     success=False,
                     kalshi_filled=0,
-                    pm_filled=0,
+                    pm_filled=pm_filled,
                     kalshi_price=k_limit_price,
                     pm_price=pm_fill_price,
                     unhedged=False,
@@ -1780,6 +1788,8 @@ async def execute_arb(
                     is_maker=_is_maker,
                     exited=True,
                     unwind_loss_cents=loss_cents,
+                    unwind_fill_price=t3_fill_price,
+                    unwind_qty=t3_filled,
                     tier="TIER3_UNWIND",
                 )
 

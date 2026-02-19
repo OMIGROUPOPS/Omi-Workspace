@@ -3721,7 +3721,8 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
                sizing_details: Dict = None, execution_phase: str = "ioc",
                is_maker: bool = False, gtc_rest_time_ms: float = 0,
                gtc_spread_checks: int = 0, gtc_cancel_reason: str = "",
-               tier: str = ""):
+               tier: str = "",
+               unwind_fill_price: float = None, unwind_qty: int = 0):
     """Log trade details with all important fields"""
     global TRADE_LOG
 
@@ -3806,6 +3807,8 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
         'review_reason': arb.review_reason if arb.needs_review else None,
         'is_live_game': arb.is_live_game,
         'unwind_loss_cents': unwind_loss_cents,
+        'unwind_fill_price': unwind_fill_price,
+        'unwind_qty': unwind_qty,
 
         # CRITICAL: Log pm_outcome_index for post-hoc auditing
         # This helps diagnose same-direction betting bugs

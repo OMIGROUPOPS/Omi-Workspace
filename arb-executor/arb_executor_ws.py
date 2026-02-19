@@ -275,7 +275,7 @@ class OmiSignalCache:
                 )
                 resp.raise_for_status()
                 data = resp.json()
-            signals_list = data.get("signals", data if isinstance(data, list) else [])
+            signals_list = data.get("signals", data.get("games", data if isinstance(data, list) else []))
             new_cache = {}
             for s in signals_list:
                 home = s.get("home_team", "").lower().strip()

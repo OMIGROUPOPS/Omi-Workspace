@@ -33,8 +33,8 @@ def _get_variable_engine():
     return _variable_engine
 
 # Fair line constants — mirror edgescout.ts (lines 59-72)
-FAIR_LINE_SPREAD_FACTOR = 0.15
-FAIR_LINE_TOTAL_FACTOR = 0.20
+FAIR_LINE_SPREAD_FACTOR = 0.06
+FAIR_LINE_TOTAL_FACTOR = 0.05
 
 # Sport-specific caps — prevent extreme fair line deviations from consensus
 # Tighter caps for low-scoring sports; wider for high-variance college games

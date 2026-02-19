@@ -268,7 +268,7 @@ class OmiSignalCache:
             return False
         self._refreshing = True
         try:
-            async with httpx.AsyncClient(timeout=5.0) as client:
+            async with httpx.AsyncClient(timeout=15.0) as client:
                 resp = await client.get(
                     self.api_url,
                     headers={"Authorization": f"Bearer {self.api_key}"},

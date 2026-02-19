@@ -311,10 +311,13 @@ class OmiSignalCache:
         return None
 
     def get_effective_ceq(self, signal: dict) -> float:
-        """Return live_ceq if game is live, composite_score if pre_game."""
+        """Return best_edge_pct / 10 as 0-1 CEQ (e.g. 9.8% → 0.98, 4.5% → 0.45)."""
         if signal.get("game_status") == "live" and signal.get("live"):
-            return signal["live"].get("live_ceq", signal.get("composite_score", 0.5))
-        return signal.get("composite_score", 0.5)
+            live_ceq = signal["live"].get("live_ceq")
+            if live_ceq is not None:
+                return live_ceq
+        edge = signal.get("best_edge_pct", 0) or 0
+        return min(edge / 10.0, 1.0)
 
     def get_favored_team(self, signal: dict) -> str:
         """Derive favored team from favored_side field."""

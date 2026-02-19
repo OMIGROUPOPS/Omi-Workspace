@@ -1548,8 +1548,8 @@ async def execute_arb(
                 live_confidence = live_data.get("live_confidence", "") if live_data else ""
                 pillar_scores = omi_signal_data.get("pillar_scores", {})
 
-                print(f"[TIER3] OMI signal: composite={omi_signal_data.get('composite_score')}, "
-                      f"live_ceq={live_ceq}, favored={favored_team}, "
+                print(f"[TIER3] OMI signal: edge={omi_signal_data.get('best_edge_pct')}%, "
+                      f"ceq={ceq:.2f}, live_ceq={live_ceq}, favored={favored_team}, "
                       f"signal={signal_tier}, game_status={game_status}")
 
                 # Step 2: Game status check

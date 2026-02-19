@@ -230,6 +230,14 @@ class AccuracyTracker:
         if raw_edge_pct is not None:
             signal_tier = _determine_signal(float(raw_edge_pct))
 
+        # Guard: if we never had real edge data AND no fair spread was computed,
+        # this game was never properly analyzed. Classify as UNGRADED to avoid
+        # polluting NO EDGE metrics with garbage/stale fair lines.
+        if omi_fair_spread is None and raw_edge_pct is None and (
+            not pred_result.data or _to_float(pred_result.data[0].get("best_edge_pct")) is None
+        ):
+            signal_tier = "UNGRADED"
+
         # --- Calculate errors ---
         omi_spread_error = abs(omi_fair_spread - actual_margin) if omi_fair_spread is not None else None
         omi_total_error = abs(omi_fair_total - actual_total) if omi_fair_total is not None else None

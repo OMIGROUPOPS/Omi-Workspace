@@ -305,9 +305,12 @@ def apply_feedback_adjustments(sport: str) -> Dict:
     """
     sport_upper = sport.upper()
 
-    # Feedback constants (match model_feedback.py)
-    EMA_ALPHA = 0.1
-    MAX_ADJ = 0.05
+    # Feedback constants — aggressive enough to correct fundamentally wrong
+    # starting weights within a few cycles (not dozens).
+    # EMA_ALPHA=0.25: new feedback gets 25% influence per cycle
+    # MAX_ADJ=0.10: single pillar can move ±10% per cycle
+    EMA_ALPHA = 0.25
+    MAX_ADJ = 0.10
     MIN_WEIGHT = 0.05
 
     try:

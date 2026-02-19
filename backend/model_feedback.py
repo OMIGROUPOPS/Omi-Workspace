@@ -28,11 +28,12 @@ PILLAR_KEYS = ["execution", "incentives", "shocks", "time_decay", "flow", "game_
 PILLAR_HIGH_THRESHOLD = 0.55
 PILLAR_LOW_THRESHOLD = 0.45
 
-# EMA smoothing for weight adjustments
-EMA_ALPHA = 0.1
+# EMA smoothing for weight adjustments — aggressive enough to correct
+# fundamentally wrong starting weights within a few cycles
+EMA_ALPHA = 0.25
 
-# Max weight change per pillar per cycle
-MAX_ADJUSTMENT = 0.05
+# Max weight change per pillar per cycle (±10% allows meaningful correction)
+MAX_ADJUSTMENT = 0.10
 
 # Minimum pillar weight floor
 MIN_WEIGHT = 0.05

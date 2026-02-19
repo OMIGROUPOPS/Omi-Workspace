@@ -72,9 +72,37 @@ SPORT_BASE_WEIGHTS = {
 }
 
 
+def _load_db_weights(sport: str) -> Optional[Dict[str, float]]:
+    """Load raw learned pillar weights from calibration_config.
+    Returns UPPERCASE-keyed dict or None on miss/error.
+    Uses _fetch_db_weights (not get_effective_weights) to avoid double-applying
+    market/period adjustments — variable_engine applies its own context multipliers."""
+    try:
+        from engine.weight_calculator import _fetch_db_weights
+        db_weights = _fetch_db_weights(sport)
+        if db_weights:
+            # weight_calculator uses lowercase keys; variable_engine uses UPPERCASE
+            mapped = {k.upper(): v for k, v in db_weights.items()}
+            # Rename game_environment → GAME_ENV to match our convention
+            if "GAME_ENVIRONMENT" in mapped:
+                mapped["GAME_ENV"] = mapped.pop("GAME_ENVIRONMENT")
+            # Validate all 6 keys present
+            required = {"EXECUTION", "INCENTIVES", "SHOCKS", "TIME_DECAY", "FLOW", "GAME_ENV"}
+            if required.issubset(mapped.keys()):
+                logger.debug(f"[VarEngine] Using DB-backed weights for {sport}: {mapped}")
+                return mapped
+    except Exception as e:
+        logger.debug(f"[VarEngine] DB weight lookup failed for {sport}: {e}")
+    return None
+
+
 def calculate_dynamic_weights(context: GameContext) -> Dict[str, float]:
-    """Calculate context-sensitive pillar weights."""
-    weights = SPORT_BASE_WEIGHTS.get(context.sport, SPORT_BASE_WEIGHTS["NBA"]).copy()
+    """Calculate context-sensitive pillar weights.
+    Loads learned weights from DB first; falls back to hardcoded SPORT_BASE_WEIGHTS."""
+    # Try DB-backed weights first (written by feedback loop)
+    db_weights = _load_db_weights(context.sport)
+    base = db_weights if db_weights else SPORT_BASE_WEIGHTS.get(context.sport, SPORT_BASE_WEIGHTS["NBA"])
+    weights = base.copy()
 
     # Market type adjustments
     if context.market == "total":

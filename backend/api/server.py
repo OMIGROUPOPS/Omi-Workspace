@@ -2019,60 +2019,59 @@ def _estimate_minutes_elapsed(period_str: str, clock: str, sport: str) -> float:
 
 
 def calculate_live_ceq(
-    pre_game_composite: float,
-    live_score_diff: float,
-    expected_margin: float,
-    minutes_elapsed: float,
-    total_minutes: float,
-    favored_side: str = "pick",
+    pregame_ceq: float,
+    pregame_fair_spread: float,
+    score_diff: float,
+    time_remaining_pct: float,
     exchange_data: dict = None,
-) -> tuple[float, bool | None]:
-    """Adjust pre-game composite based on:
-    1. Live score vs expected margin (primary ~70% influence)
-    2. Live exchange price movement (secondary ~30% — free Kalshi/PM data)
+    favored_side: str = "pick",
+) -> tuple[float, str, float, bool | None]:
+    """Calculate live CEQ with hold/unwind signal.
 
-    Returns (live_ceq, exchange_confirms) where exchange_confirms is
-    True/False/None (None = no exchange data).
+    pregame_ceq: 0-100 scale (composite * 100)
+    pregame_fair_spread: from pregame composite_history row
+    score_diff: home_score - away_score
+    time_remaining_pct: 1.0 at tipoff, 0.0 at final
+
+    Returns (live_ceq, hold_signal, confirmation_factor, exchange_confirms).
     """
-    game_pct = min(minutes_elapsed / total_minutes, 1.0) if total_minutes > 0 else 0.0
-    score_surprise = live_score_diff - (expected_margin * game_pct)
-    surprise_factor = score_surprise / max(abs(expected_margin), 3.0)
-    score_adjustment = surprise_factor * 0.15 * game_pct
-    score_based_ceq = max(0.0, min(1.0, pre_game_composite + score_adjustment))
+    score_vs_spread = score_diff - (-pregame_fair_spread)  # positive = outperforming
+    time_weight = 1.0 - time_remaining_pct  # 0 at start, 1 at end
+    confirmation_factor = score_vs_spread / max(abs(pregame_fair_spread), 1.0)
+    confirmation_factor = max(-1.0, min(1.0, confirmation_factor))
 
-    # Exchange adjustment (only if we have exchange data)
-    exchange_adjustment = 0.0
+    if confirmation_factor > 0:
+        live_ceq = pregame_ceq + (confirmation_factor * time_weight * 15)
+    else:
+        live_ceq = pregame_ceq + (confirmation_factor * time_weight * 25)
+
+    live_ceq = max(0, min(100, live_ceq))
+
+    # Hold signal
+    if live_ceq >= 65:
+        hold_signal = "STRONG_HOLD"
+    elif live_ceq >= 55:
+        hold_signal = "HOLD"
+    elif live_ceq >= 40:
+        hold_signal = "UNWIND"
+    else:
+        hold_signal = "URGENT_UNWIND"
+
+    # Exchange confirmation (secondary — informational)
     exchange_confirms = None
-
     if exchange_data:
         current_exchange_prob = exchange_data.get("exchange_implied_prob")
         pregame_exchange_prob = exchange_data.get("pregame_exchange_prob")
-
         if current_exchange_prob and pregame_exchange_prob:
             exchange_move = current_exchange_prob - pregame_exchange_prob
-
-            # Does exchange movement confirm or contradict our model?
             if favored_side == "home":
-                exchange_confirmation = exchange_move
+                exchange_confirms = exchange_move > 0.02
             elif favored_side == "away":
-                exchange_confirmation = -exchange_move
+                exchange_confirms = exchange_move < -0.02
             else:
-                exchange_confirmation = 0.0
+                exchange_confirms = None
 
-            # Scale: 10% exchange move = significant
-            exchange_factor = exchange_confirmation / 0.10
-            exchange_factor = max(-0.5, min(0.5, exchange_factor))
-
-            # Apply with ~20% weight (score is still primary)
-            if exchange_factor >= 0:
-                exchange_adjustment = (1.0 - score_based_ceq) * exchange_factor * 0.15
-            else:
-                exchange_adjustment = (0.5 - score_based_ceq) * abs(exchange_factor) * 0.30
-
-            exchange_confirms = exchange_confirmation > 0.02  # 2% threshold
-
-    live_ceq = max(0.15, min(0.85, score_based_ceq + exchange_adjustment))
-    return live_ceq, exchange_confirms
+    return live_ceq, hold_signal, confirmation_factor, exchange_confirms
 
 
 def calculate_live_flow(pregame_flow: float, exchange_implied_prob: float = None) -> float:
@@ -2216,12 +2215,15 @@ def _fallback_abbrev(team_name: str) -> str:
 
 
 def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
-                       exchange_cache: dict = None) -> dict:
+                       exchange_cache: dict = None,
+                       pregame_baseline: dict = None) -> dict:
     """Build a single game signal payload for the ARB API response.
 
     exchange_cache: optional pre-fetched {game_id: exchange_data_dict} to avoid
     per-game DB lookups in the bulk endpoint. If None and game is live, will
     fetch on demand.
+    pregame_baseline: optional pregame composite_history row (where live_ceq IS NULL)
+    for stable pregame fair spread baseline used in live CEQ formula.
     """
     game_id = pred.get("game_id", "")
     home_team = pred.get("home_team", "")
@@ -2299,19 +2301,29 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
         else:
             exch_data = _fetch_exchange_data_for_game(game_id, home_team)
 
-        # Live CEQ adjustment (enhanced with exchange data)
+        # Live CEQ with new formula
         score_diff = live_home_score - live_away_score
-        expected_margin = -(float(fair_spread)) if fair_spread is not None else (composite - 0.5) * 10
         total_mins = _total_minutes_for_sport(sport_key)
         elapsed = _estimate_minutes_elapsed(period or "", clock or "", sport_key)
-        live_composite, exchange_confirms = calculate_live_ceq(
-            composite, score_diff, expected_margin, elapsed, total_mins,
-            favored_side=favored_side, exchange_data=exch_data,
+        time_remaining_pct = 1.0 - min(elapsed / total_mins, 1.0) if total_mins > 0 else 1.0
+
+        # Use pregame baseline for stable reference
+        pg = pregame_baseline or comp_row
+        pregame_ceq = composite * 100
+        pregame_fair_spread = float(pg.get("fair_spread") or 0)
+
+        live_ceq_val, hold_signal, confirmation_factor, exchange_confirms = calculate_live_ceq(
+            pregame_ceq, pregame_fair_spread, score_diff, time_remaining_pct,
+            exchange_data=exch_data, favored_side=favored_side,
         )
+        live_composite = live_ceq_val / 100.0  # 0-1 scale for edge recalc
+
+        # Edge remaining: pregame edge decays with time, faster if contradicted
+        edge_remaining_pct = max(0, best_edge_pct * time_remaining_pct * max(0, (1 + confirmation_factor) / 2))
 
         # Recalculate edge with live composite if spread available
         if fair_spread is not None and book_spread is not None:
-            deviation = live_composite * 100 - 50
+            deviation = live_ceq_val - 50
             live_fair_spread = float(book_spread) - deviation * 0.15
             spread_edge_pct = calc_edge_pct(live_fair_spread, float(book_spread), "spread")
             fair_spread = round(live_fair_spread * 2) / 2
@@ -2327,6 +2339,7 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
             flow_gated = True
 
         # Live confidence label
+        expected_margin = -(pregame_fair_spread) if pregame_fair_spread else (composite - 0.5) * 10
         margin_vs_expected = score_diff - expected_margin
         if abs(margin_vs_expected) < 2:
             live_confidence = "ON TRACK"
@@ -2354,7 +2367,11 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
             "current_margin": score_diff,
             "pregame_expected_margin": round(expected_margin, 1),
             "margin_vs_expected": round(margin_vs_expected, 1),
-            "live_ceq": round(live_composite, 4),
+            "live_ceq": round(live_ceq_val, 2),
+            "hold_signal": hold_signal,
+            "pregame_ceq": round(pregame_ceq, 2),
+            "edge_remaining_pct": round(edge_remaining_pct, 1),
+            "time_remaining_pct": round(time_remaining_pct, 4),
             "live_confidence": live_confidence,
             "live_signal_note": signal_note,
             "exchange": {
@@ -2582,7 +2599,25 @@ def arb_bulk_edge_signals(
                 except Exception as exch_err:
                     logger.debug(f"[ArbAPI] Batch exchange fetch error: {exch_err}")
 
-        # 5. Build response
+        # 5. Batch-fetch pregame baselines (where live_ceq IS NULL) for live CEQ formula
+        pregame_baselines: dict[str, dict] = {}
+        if live_game_ids:
+            try:
+                for i in range(0, len(live_game_ids), 100):
+                    chunk = live_game_ids[i:i + 100]
+                    pg_res = db.client.table("composite_history").select(
+                        "game_id, composite_spread, fair_spread"
+                    ).in_("game_id", chunk).is_("live_ceq", "null").order(
+                        "timestamp", desc=True
+                    ).execute()
+                    for row in (pg_res.data or []):
+                        gid = row["game_id"]
+                        if gid not in pregame_baselines:
+                            pregame_baselines[gid] = row
+            except Exception as pg_err:
+                logger.debug(f"[ArbAPI] Pregame baseline fetch error: {pg_err}")
+
+        # 6. Build response
         games = []
         live_count = 0
         for pred in predictions:
@@ -2595,6 +2630,7 @@ def arb_bulk_edge_signals(
             signal = _build_game_signal(
                 pred, comp_row, live_game or None,
                 exchange_cache=exchange_cache,
+                pregame_baseline=pregame_baselines.get(gid),
             )
             games.append(signal)
             if signal.get("game_status") == "live":
@@ -2669,8 +2705,25 @@ async def arb_single_edge_signal(
                     }
                     break
 
+        # Fetch pregame baseline for live CEQ formula
+        pregame_baseline = None
+        if live_game and live_game.get("status") == "STATUS_IN_PROGRESS":
+            try:
+                pg_res = db.client.table("composite_history").select(
+                    "game_id, composite_spread, fair_spread"
+                ).eq("game_id", game_id).is_("live_ceq", "null").order(
+                    "timestamp", desc=True
+                ).limit(1).execute()
+                if pg_res.data:
+                    pregame_baseline = pg_res.data[0]
+            except Exception:
+                pass
+
         # exchange_cache=None → _build_game_signal fetches on demand for live games
-        signal = _build_game_signal(pred, comp_row, live_game or None)
+        signal = _build_game_signal(
+            pred, comp_row, live_game or None,
+            pregame_baseline=pregame_baseline,
+        )
         return signal
 
     except HTTPException:
@@ -2739,7 +2792,24 @@ async def arb_edge_signal_by_teams(
                     live_game = lg
                     break
 
-        signal = _build_game_signal(matched_pred, comp_row, live_game or None)
+        # Fetch pregame baseline for live CEQ formula
+        pregame_baseline = None
+        if live_game and live_game.get("status") == "STATUS_IN_PROGRESS":
+            try:
+                pg_res = db.client.table("composite_history").select(
+                    "game_id, composite_spread, fair_spread"
+                ).eq("game_id", gid).is_("live_ceq", "null").order(
+                    "timestamp", desc=True
+                ).limit(1).execute()
+                if pg_res.data:
+                    pregame_baseline = pg_res.data[0]
+            except Exception:
+                pass
+
+        signal = _build_game_signal(
+            matched_pred, comp_row, live_game or None,
+            pregame_baseline=pregame_baseline,
+        )
         return signal
 
     except HTTPException:

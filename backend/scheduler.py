@@ -768,7 +768,7 @@ def start_scheduler():
         next_run_time=_delayed(120),
     )
 
-    # 4. Fast refresh: Every 3 minutes (first run at +90s)
+    # 4. Fast refresh: Every 30 seconds (first run at +90s)
     def run_fast_refresh():
         if _check_paused("fast_refresh"):
             return
@@ -789,9 +789,9 @@ def start_scheduler():
 
     scheduler.add_job(
         func=run_fast_refresh,
-        trigger=IntervalTrigger(minutes=3),
+        trigger=IntervalTrigger(seconds=30),
         id="fast_refresh_live",
-        name="Fast refresh fair lines for live games",
+        name="Fast refresh fair lines + live CEQ for live games",
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
@@ -949,7 +949,7 @@ def start_scheduler():
     logger.info("Scheduler started — 8 active jobs:")
     logger.info(f"  1. Pre-game: every {PREGAME_POLL_INTERVAL_MINUTES} min (first at +60s)")
     logger.info(f"  2. Live: every {LIVE_POLL_INTERVAL_MINUTES} min (first at +70s)")
-    logger.info(f"  3. Fast refresh: every 3 min (first at +90s)")
+    logger.info(f"  3. Fast refresh + live CEQ: every 30s (first at +90s)")
     logger.info(f"  4. Closing line capture: every 10 min (first at +100s)")
     logger.info(f"  5. Exchange sync: every 15 min (first at +100s)")
     logger.info(f"  6. Pregame capture: every 15 min (first at +110s)")

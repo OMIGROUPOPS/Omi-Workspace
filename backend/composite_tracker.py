@@ -16,6 +16,7 @@ import traceback
 
 from database import db
 from engine.analyzer import analyze_game, implied_prob_to_american, fetch_line_context, fetch_team_environment_stats
+from espn_scores import ESPNScoreFetcher, teams_match, ESPN_SPORTS
 
 logger = logging.getLogger(__name__)
 
@@ -83,6 +84,122 @@ SPORT_DISPLAY = {
     "americanfootball_nfl": "NFL", "americanfootball_ncaaf": "NCAAF",
     "icehockey_nhl": "NHL", "soccer_epl": "EPL",
 }
+
+
+# =============================================================================
+# Time helpers — duplicated from server.py to avoid circular import
+# =============================================================================
+
+def _total_minutes_for_sport(sport: str) -> float:
+    """Game duration in minutes for live CEQ calculation."""
+    s = sport.upper()
+    if s in ("NBA",):
+        return 48.0
+    if s in ("NCAAB",):
+        return 40.0
+    if s in ("NFL", "NCAAF"):
+        return 60.0
+    if s in ("NHL",):
+        return 60.0
+    if s in ("EPL",):
+        return 90.0
+    return 48.0
+
+
+def _estimate_minutes_elapsed(period_str: str, clock: str, sport: str) -> float:
+    """Estimate minutes elapsed from period string and clock display."""
+    s = sport.upper()
+
+    clock_mins = 0.0
+    if clock:
+        try:
+            parts = clock.split(":")
+            clock_mins = float(parts[0]) + float(parts[1]) / 60.0 if len(parts) == 2 else float(parts[0])
+        except (ValueError, IndexError):
+            clock_mins = 0.0
+
+    if s in ("NBA",):
+        q_map = {"Q1": 0, "Q2": 12, "Q3": 24, "Q4": 36}
+        for qname, base in q_map.items():
+            if qname in period_str:
+                return base + (12.0 - clock_mins)
+        if "OT" in period_str:
+            return 48.0 + (5.0 - clock_mins)
+        if "Half" in period_str:
+            return 24.0
+    elif s in ("NCAAB",):
+        if "1st Half" in period_str:
+            return 20.0 - clock_mins
+        if "2nd Half" in period_str:
+            return 20.0 + (20.0 - clock_mins)
+        if "Half" in period_str:
+            return 20.0
+        if "OT" in period_str:
+            return 40.0 + (5.0 - clock_mins)
+    elif s in ("NFL", "NCAAF"):
+        q_map = {"Q1": 0, "Q2": 15, "Q3": 30, "Q4": 45}
+        for qname, base in q_map.items():
+            if qname in period_str:
+                return base + (15.0 - clock_mins)
+        if "Half" in period_str:
+            return 30.0
+        if "OT" in period_str:
+            return 60.0
+    elif s in ("NHL",):
+        p_map = {"P1": 0, "P2": 20, "P3": 40}
+        for pname, base in p_map.items():
+            if pname in period_str:
+                return base + (20.0 - clock_mins)
+        if "OT" in period_str:
+            return 60.0
+    elif s in ("EPL",):
+        if "1st Half" in period_str:
+            return 45.0 - clock_mins
+        if "2nd Half" in period_str:
+            return 45.0 + (45.0 - clock_mins)
+        if "ET" in period_str:
+            return 90.0
+
+    return 0.0
+
+
+# =============================================================================
+# Live CEQ calculation
+# =============================================================================
+
+def _calculate_live_ceq(pregame_ceq: float, pregame_fair_spread: float,
+                        score_diff: float, time_remaining_pct: float) -> tuple:
+    """
+    Calculate live CEQ and hold signal.
+
+    pregame_ceq: 0-100 scale (composite_spread * 100)
+    pregame_fair_spread: from pregame composite_history row
+    score_diff: home_score - away_score
+    time_remaining_pct: 1.0 at tipoff, 0.0 at final
+    """
+    score_vs_spread = score_diff - (-pregame_fair_spread)  # positive = outperforming
+    time_weight = 1.0 - time_remaining_pct  # 0 at start, 1 at end
+    confirmation_factor = score_vs_spread / max(abs(pregame_fair_spread), 1.0)
+    confirmation_factor = max(-1.0, min(1.0, confirmation_factor))
+
+    if confirmation_factor > 0:
+        live_ceq = pregame_ceq + (confirmation_factor * time_weight * 15)
+    else:
+        live_ceq = pregame_ceq + (confirmation_factor * time_weight * 25)
+
+    live_ceq = max(0, min(100, live_ceq))
+
+    # Hold signal
+    if live_ceq >= 65:
+        hold_signal = "STRONG_HOLD"
+    elif live_ceq >= 55:
+        hold_signal = "HOLD"
+    elif live_ceq >= 40:
+        hold_signal = "UNWIND"
+    else:
+        hold_signal = "URGENT_UNWIND"
+
+    return live_ceq, hold_signal
 
 
 def _calculate_edge_pct(fair_spread, book_spread, fair_total, book_total, sport_key):
@@ -1128,12 +1245,12 @@ class CompositeTracker:
 
     def fast_refresh_live(self) -> dict:
         """
-        Lightweight fair-line refresh for LIVE games only (every 2-3 min).
+        Lightweight fair-line refresh for LIVE games only (every 30s).
 
         Skips the expensive pillar analysis + variable engine.
         Instead: reuse the composite scores from the last full calculation,
         grab the latest consensus book lines, recompute fair values.
-        This is cheap: fair = consensus + (composite * factor).
+        Also fetches ESPN live scores and calculates live CEQ + hold signals.
 
         Each result is stored in composite_history so the chart plots it.
         """
@@ -1198,6 +1315,60 @@ class CompositeTracker:
             logger.error(f"[FastRefresh] Failed to fetch composite history: {e}")
             return {"error": str(e), "refreshed": 0}
 
+        # Fetch ESPN live scores per sport
+        espn_by_game_id: dict[str, dict] = {}
+        sports_seen = set()
+        for row in live_rows:
+            sports_seen.add(row["sport_key"])
+
+        espn_scores_by_sport: dict[str, list] = {}
+        espn = ESPNScoreFetcher()
+        for sport_key in sports_seen:
+            espn_sport = SPORT_DISPLAY.get(sport_key)
+            if espn_sport and espn_sport in ESPN_SPORTS and espn_sport not in espn_scores_by_sport:
+                try:
+                    espn_scores_by_sport[espn_sport] = espn.get_scores(espn_sport)
+                except Exception as e:
+                    logger.warning(f"[FastRefresh] ESPN fetch failed for {espn_sport}: {e}")
+                    espn_scores_by_sport[espn_sport] = []
+
+        # Match ESPN scores to game_ids using team name matching
+        for row in live_rows:
+            gd = row.get("game_data") or {}
+            home = gd.get("home_team", "")
+            away = gd.get("away_team", "")
+            espn_sport = SPORT_DISPLAY.get(row["sport_key"])
+            if not espn_sport:
+                continue
+            for lg in espn_scores_by_sport.get(espn_sport, []):
+                if teams_match(lg.get("home_team", ""), home) and teams_match(lg.get("away_team", ""), away):
+                    espn_by_game_id[row["game_id"]] = lg
+                    break
+                if teams_match(lg.get("home_team", ""), away) and teams_match(lg.get("away_team", ""), home):
+                    espn_by_game_id[row["game_id"]] = {
+                        **lg,
+                        "home_team": lg["away_team"], "away_team": lg["home_team"],
+                        "home_score": lg.get("away_score", 0), "away_score": lg.get("home_score", 0),
+                    }
+                    break
+
+        # Batch-fetch pregame baselines (rows where live_ceq IS NULL = pregame)
+        pregame_baselines: dict[str, dict] = {}
+        try:
+            for i in range(0, len(game_ids), chunk_size):
+                chunk = game_ids[i:i + chunk_size]
+                pg_res = db.client.table("composite_history").select(
+                    "game_id, composite_spread, fair_spread"
+                ).in_("game_id", chunk).is_("live_ceq", "null").order(
+                    "timestamp", desc=True
+                ).execute()
+                for h in (pg_res.data or []):
+                    gid = h["game_id"]
+                    if gid not in pregame_baselines:
+                        pregame_baselines[gid] = h
+        except Exception as e:
+            logger.warning(f"[FastRefresh] Pregame baseline fetch failed: {e}")
+
         # Bias correction cache
         bias_cache: dict[str, dict] = {}
 
@@ -1239,11 +1410,11 @@ class CompositeTracker:
                                 and abs(float(book_spread) - float(prev_bs)) >= 0.25)
                 total_moved = (book_total is not None and prev_bt is not None
                                and abs(float(book_total) - float(prev_bt)) >= 0.5)
-                # Also refresh if last entry is >5 min old (ensure at least periodic updates)
+                # Also refresh if last entry is >60s old (at 30s intervals, keeps data fresh)
                 stale = False
                 try:
                     prev_ts = datetime.fromisoformat(prev["timestamp"].replace("Z", "+00:00"))
-                    stale = (now_dt - prev_ts).total_seconds() > 300
+                    stale = (now_dt - prev_ts).total_seconds() > 60
                 except (ValueError, TypeError, KeyError):
                     stale = True
 
@@ -1343,10 +1514,49 @@ class CompositeTracker:
                 row_data["flow_gated"] = flow_gated
                 if flow_gated:
                     logger.info(f"[FlowGate] {game_id}: FAST-REFRESH gated (flow={fr_flow:.2f}, edge={capped_edge:.1f}%)")
+
+                # Live CEQ calculation from ESPN scores
+                espn_game = espn_by_game_id.get(game_id)
+                if espn_game and espn_game.get("status") == "STATUS_IN_PROGRESS":
+                    home_score = espn_game.get("home_score", 0)
+                    away_score = espn_game.get("away_score", 0)
+                    period = espn_game.get("period", "")
+                    clock = espn_game.get("clock", "")
+                    espn_sport = SPORT_DISPLAY.get(sport_key, "")
+
+                    total_mins = _total_minutes_for_sport(espn_sport)
+                    minutes_elapsed = _estimate_minutes_elapsed(period, clock, espn_sport)
+                    time_remaining_pct = 1.0 - min(minutes_elapsed / total_mins, 1.0) if total_mins > 0 else 1.0
+
+                    # Get pregame baseline
+                    pg_baseline = pregame_baselines.get(game_id)
+                    if pg_baseline:
+                        pregame_ceq = (pg_baseline.get("composite_spread") or 0.5) * 100
+                        pregame_fair_spread = pg_baseline.get("fair_spread") or 0.0
+                    else:
+                        pregame_ceq = (composite_spread or 0.5) * 100
+                        pregame_fair_spread = fair_spread or 0.0
+
+                    score_diff = home_score - away_score
+                    live_ceq, hold_signal = _calculate_live_ceq(
+                        pregame_ceq, pregame_fair_spread, score_diff, time_remaining_pct
+                    )
+
+                    row_data["live_ceq"] = round(live_ceq, 2)
+                    row_data["hold_signal"] = hold_signal
+                    row_data["score_home"] = home_score
+                    row_data["score_away"] = away_score
+                    row_data["period"] = period
+                    row_data["clock"] = clock
+                    row_data["time_remaining_pct"] = round(time_remaining_pct, 4)
+
                 db.client.table("composite_history").insert(row_data).execute()
+                ceq_info = ""
+                if row_data.get("live_ceq") is not None:
+                    ceq_info = f", live_ceq={row_data['live_ceq']}, {row_data.get('hold_signal', '')}"
                 logger.info(
                     f"[CompositeTracker] WRITE-FAST {game_id}: "
-                    f"fair_spread={fair_spread}, fair_total={fair_total}"
+                    f"fair_spread={fair_spread}, fair_total={fair_total}{ceq_info}"
                 )
 
                 refreshed += 1

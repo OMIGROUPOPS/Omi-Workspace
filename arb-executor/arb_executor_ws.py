@@ -2199,6 +2199,31 @@ async def run_self_test(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI):
 
 
 # ============================================================================
+# PM SDK CONNECTION KEEPALIVE
+# ============================================================================
+
+async def pm_sdk_keepalive(pm_api: 'PolymarketUSAPI'):
+    """Ping PM API every 30s to keep httpx connection pool warm.
+
+    The SDK uses httpx with connection pooling.  Warm requests take ~22ms
+    vs 200ms+ cold (TLS handshake).  Connections die after ~60s idle, so
+    we ping every 30s to keep them alive.
+    """
+    while not shutdown_requested:
+        try:
+            await asyncio.sleep(30)
+            if pm_api._sdk_client is None:
+                continue
+            # Pick any active slug from current mappings
+            slug = next(iter(pm_slug_to_cache_keys), None)
+            if slug is None:
+                continue
+            await pm_api._sdk_client.markets.bbo(slug)
+        except Exception:
+            pass  # Silent — this is just keepalive
+
+
+# ============================================================================
 # MAIN
 # ============================================================================
 
@@ -2238,6 +2263,16 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
     if not ticker_to_cache_key:
         print("[ERROR] No active tickers for today/tomorrow")
         return
+
+    # Warm up PM SDK connection pool (first call is always cold ~200ms+)
+    if pm_api._sdk_client is not None:
+        warmup_slug = next(iter(pm_slug_to_cache_keys), None)
+        if warmup_slug:
+            try:
+                await pm_api._sdk_client.markets.bbo(warmup_slug)
+                print("[PM-SDK] Connection pool warmed up")
+            except Exception:
+                print("[PM-SDK] Warmup ping failed (non-fatal)")
 
     async with aiohttp.ClientSession() as session:
         # Get balances (detailed: cash + portfolio for each platform)
@@ -2338,6 +2373,9 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
         k_ws_task = asyncio.create_task(k_ws.listen())
         pm_ws_task = asyncio.create_task(pm_ws.listen())
 
+        # Keep PM SDK httpx connection pool warm (prevents 200ms+ cold starts)
+        keepalive_task = asyncio.create_task(pm_sdk_keepalive(pm_api))
+
         # Start dashboard push (if DASHBOARD_URL is set in .env)
         pusher = DashboardPusher()
         pusher.set_state_sources(
@@ -2376,6 +2414,7 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
             pass
         k_ws_task.cancel()
         pm_ws_task.cancel()
+        keepalive_task.cancel()
         await k_ws.close()
         await pm_ws.close()
 

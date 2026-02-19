@@ -34,7 +34,7 @@ def _get_variable_engine():
 
 # Fair line constants — mirror edgescout.ts (lines 59-72)
 FAIR_LINE_SPREAD_FACTOR = 0.06
-FAIR_LINE_TOTAL_FACTOR = 0.05
+FAIR_LINE_TOTAL_FACTOR = 0.10
 
 # Sport-specific caps — prevent extreme fair line deviations from consensus
 # Tighter caps for low-scoring sports; wider for high-variance college games
@@ -324,12 +324,13 @@ def _calculate_fair_spread(book_spread: float, composite_spread: float) -> float
     return _round_to_half(book_spread - adjustment)
 
 
-def _calculate_fair_total(book_total: float, game_env_score: float) -> float:
+def _calculate_fair_total(book_total: float, composite_total: float) -> float:
     """
-    Mirror edgescout.ts calculateFairTotal (lines 98-109).
-    game_env_score is the game_environment PILLAR score (0-1), not totals composite.
+    Calculate fair total from the full totals-market composite (0-1 scale),
+    not just the game_environment pillar. This mirrors the approach used by
+    _calculate_fair_spread which takes the full spread composite.
     """
-    deviation = game_env_score * 100 - 50
+    deviation = composite_total * 100 - 50
     adjustment = deviation * FAIR_LINE_TOTAL_FACTOR
     return _round_to_half(book_total + adjustment)
 
@@ -926,9 +927,6 @@ class CompositeTracker:
                 else:
                     ve_fallback += 1
 
-                # 6. Game environment pillar score (for fair total)
-                game_env_score = analysis.get("pillar_scores", {}).get("game_environment", 0.5)
-
                 is_soccer = "soccer" in sport_key
 
                 # 7. Calculate fair lines
@@ -965,7 +963,10 @@ class CompositeTracker:
                     )
 
                 if book_total is not None:
-                    fair_total = _calculate_fair_total(book_total, game_env_score)
+                    # Use full totals composite; fall back to game_env pillar if unavailable
+                    game_env_score = analysis.get("pillar_scores", {}).get("game_environment", 0.5)
+                    total_signal = composite_total if composite_total is not None else game_env_score
+                    fair_total = _calculate_fair_total(book_total, total_signal)
 
                 # 5b. Bias correction — apply 30% of measured systematic bias
                 if sport_key not in bias_cache:
@@ -1210,12 +1211,6 @@ class CompositeTracker:
                     skipped_no_change += 1
                     continue
 
-                # Reuse game_env_score from composite_total's pillar
-                # (We don't have the raw pillar score, so derive it back from fair_total)
-                # Actually simpler: just use composite_total as game_env proxy
-                # since _calculate_fair_total expects game_env on 0-1 scale
-                game_env_score = composite_total if composite_total is not None else 0.5
-
                 is_soccer = "soccer" in sport_key
 
                 # Calculate fair lines (same logic as full recalc)
@@ -1248,7 +1243,9 @@ class CompositeTracker:
                     )
 
                 if book_total is not None:
-                    fair_total = _calculate_fair_total(book_total, game_env_score)
+                    # composite_total already available from carry-forward data
+                    total_signal = composite_total if composite_total is not None else 0.5
+                    fair_total = _calculate_fair_total(book_total, total_signal)
 
                 # Bias correction
                 if sport_key not in bias_cache:

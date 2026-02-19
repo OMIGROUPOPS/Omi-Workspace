@@ -2219,6 +2219,12 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
     signal = determine_signal(best_edge_pct)
     confidence = edge_to_confidence(best_edge_pct)
 
+    # Flow gate — downgrade HIGH/MAX EDGE when Flow pillar is weak
+    flow_gated = False
+    if signal in ("HIGH EDGE", "MAX EDGE") and pregame_flow < 0.55:
+        signal = "LOW EDGE"
+        flow_gated = True
+
     # Favored side
     favored_side = "pick"
     if fair_spread is not None:
@@ -2279,6 +2285,11 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
         best_market = "spread" if spread_edge_pct >= total_edge_pct else "total"
         signal = determine_signal(best_edge_pct)
         confidence = edge_to_confidence(best_edge_pct)
+
+        # Flow gate (live path) — same threshold as pregame
+        if signal in ("HIGH EDGE", "MAX EDGE") and pregame_flow < 0.55:
+            signal = "LOW EDGE"
+            flow_gated = True
 
         # Live confidence label
         margin_vs_expected = score_diff - expected_margin
@@ -2346,6 +2357,7 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
         "best_market": best_market,
         "signal": signal,
         "confidence_pct": confidence,
+        "flow_gated": flow_gated,
         "composite_score": round(composite, 4),
         "pillar_scores": {
             "execution": pred.get("pillar_execution", 0.5),

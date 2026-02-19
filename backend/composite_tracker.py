@@ -73,6 +73,10 @@ FAIR_LINE_ML_FACTOR = 0.01  # 1% implied probability shift per composite point
 EDGE_CAP_THRESHOLD = 8.0    # Edge % above which we apply diminishing returns
 EDGE_CAP_DECAY = 0.3        # Above threshold: capped = 8 + (raw - 8) * 0.3
 
+# Flow gate — downgrade HIGH/MAX EDGE signals when Flow pillar is weak
+FLOW_GATE_THRESHOLD = 0.55  # Flow score below this gates strong signals
+FLOW_GATE_EDGE_MIN = 5.0    # Edge % threshold (HIGH EDGE = 5%+)
+
 # Sport key normalization (for bias correction lookup)
 SPORT_DISPLAY = {
     "basketball_nba": "NBA", "basketball_ncaab": "NCAAB",
@@ -878,6 +882,15 @@ class CompositeTracker:
                     row_data["capped_edge_pct"] = capped_edge
                     if raw_edge >= EDGE_CAP_THRESHOLD:
                         logger.warning(f"[EdgeCap] {game_id}: raw={raw_edge:.1f}% -> capped={capped_edge:.1f}%")
+                    # Flow gate — carry forward from previous row
+                    cf_flow = previous.get("pillar_flow", 0.5) or 0.5
+                    row_data["pillar_flow"] = cf_flow
+                    flow_gated = (capped_edge is not None
+                                  and abs(capped_edge) >= FLOW_GATE_EDGE_MIN
+                                  and cf_flow < FLOW_GATE_THRESHOLD)
+                    row_data["flow_gated"] = flow_gated
+                    if flow_gated:
+                        logger.info(f"[FlowGate] {game_id}: CARRY-FWD gated (flow={cf_flow:.2f}, edge={capped_edge:.1f}%)")
                     db.client.table("composite_history").insert(row_data).execute()
                     logger.info(
                         f"[CompositeTracker] CARRY-FORWARD {game_id}: "
@@ -1043,6 +1056,15 @@ class CompositeTracker:
                 row_data["capped_edge_pct"] = capped_edge
                 if raw_edge >= EDGE_CAP_THRESHOLD:
                     logger.warning(f"[EdgeCap] {game_id}: raw={raw_edge:.1f}% -> capped={capped_edge:.1f}%")
+                # Flow gate — use fresh pillar flow from analysis
+                flow_score = analysis.get("pillar_scores", {}).get("flow", 0.5) or 0.5
+                row_data["pillar_flow"] = flow_score
+                flow_gated = (capped_edge is not None
+                              and abs(capped_edge) >= FLOW_GATE_EDGE_MIN
+                              and flow_score < FLOW_GATE_THRESHOLD)
+                row_data["flow_gated"] = flow_gated
+                if flow_gated:
+                    logger.info(f"[FlowGate] {game_id}: gated (flow={flow_score:.2f}, edge={capped_edge:.1f}%)")
                 db.client.table("composite_history").insert(row_data).execute()
                 logger.info(
                     f"[CompositeTracker] WRITE {game_id}: "
@@ -1294,6 +1316,15 @@ class CompositeTracker:
                 row_data["capped_edge_pct"] = capped_edge
                 if raw_edge >= EDGE_CAP_THRESHOLD:
                     logger.warning(f"[EdgeCap] {game_id}: raw={raw_edge:.1f}% -> capped={capped_edge:.1f}%")
+                # Flow gate — carry forward from previous composite_history row
+                fr_flow = prev.get("pillar_flow", 0.5) or 0.5
+                row_data["pillar_flow"] = fr_flow
+                flow_gated = (capped_edge is not None
+                              and abs(capped_edge) >= FLOW_GATE_EDGE_MIN
+                              and fr_flow < FLOW_GATE_THRESHOLD)
+                row_data["flow_gated"] = flow_gated
+                if flow_gated:
+                    logger.info(f"[FlowGate] {game_id}: FAST-REFRESH gated (flow={fr_flow:.2f}, edge={capped_edge:.1f}%)")
                 db.client.table("composite_history").insert(row_data).execute()
                 logger.info(
                     f"[CompositeTracker] WRITE-FAST {game_id}: "

@@ -70,6 +70,29 @@ def _check_paused(job_name: str) -> bool:
     return False
 
 
+def _run_with_timeout(fn, job_name: str, timeout: int = 30):
+    """Run fn in a thread with a timeout. If it exceeds timeout, log and move on."""
+    import threading
+    result = [None]
+    error = [None]
+
+    def _target():
+        try:
+            result[0] = fn()
+        except Exception as e:
+            error[0] = e
+
+    t = threading.Thread(target=_target, daemon=True)
+    t.start()
+    t.join(timeout=timeout)
+    if t.is_alive():
+        logger.warning(f"[Scheduler] {job_name} TIMED OUT after {timeout}s — moving on")
+        return None
+    if error[0] is not None:
+        raise error[0]
+    return result[0]
+
+
 # =============================================================================
 # WEATHER FETCHING
 # =============================================================================
@@ -246,16 +269,8 @@ def get_games_needing_pregame_update() -> list[dict]:
 # PRE-GAME POLLING (Every 30 minutes)
 # =============================================================================
 
-def run_pregame_cycle() -> dict:
-    """
-    Pre-game polling cycle:
-    - Fetch all markets (main + halves + quarters + alternates)
-    - Fetch all props
-    - Fetch weather for outdoor games
-    - Run analysis and save predictions
-    """
-    if _check_paused("pregame_cycle"):
-        return {"skipped": "paused"}
+def _pregame_cycle_inner() -> dict:
+    """Inner pregame cycle logic."""
     start_time = datetime.now(timezone.utc)
     logger.info(f"Starting PRE-GAME cycle at {start_time.isoformat()}")
     
@@ -351,8 +366,19 @@ def run_pregame_cycle() -> dict:
     return results
 
 
+def run_pregame_cycle() -> dict:
+    """Pre-game polling cycle with timeout protection."""
+    if _check_paused("pregame_cycle"):
+        return {"skipped": "paused"}
+    try:
+        return _run_with_timeout(_pregame_cycle_inner, "pregame_cycle", timeout=120) or {"error": "timeout"}
+    except Exception as e:
+        logger.error(f"[PREGAME] Cycle failed: {e}")
+        return {"error": str(e)}
+
+
 # =============================================================================
-# LIVE POLLING (Every 2 minutes)
+# LIVE POLLING (Every 5 minutes)
 # =============================================================================
 
 def _detect_line_movement(game: dict, sport: str) -> list[dict]:
@@ -382,16 +408,8 @@ def _detect_line_movement(game: dict, sport: str) -> list[dict]:
     return movements
 
 
-def run_live_cycle() -> dict:
-    """
-    Live polling cycle:
-    - Only fetch main markets (h2h, spreads, totals)
-    - Only for games currently in progress
-    - Save snapshots for line movement tracking
-    - Detect >0.5 point movements and trigger pillar recalculation
-    """
-    if _check_paused("live_cycle"):
-        return {"skipped": "paused"}
+def _live_cycle_inner() -> dict:
+    """Inner live cycle logic."""
     from engine import analyze_all_games
     from engine.analyzer import analyze_game, fetch_line_context
 
@@ -483,18 +501,23 @@ def run_live_cycle() -> dict:
     return results
 
 
+def run_live_cycle() -> dict:
+    """Live polling cycle with timeout protection."""
+    if _check_paused("live_cycle"):
+        return {"skipped": "paused"}
+    try:
+        return _run_with_timeout(_live_cycle_inner, "live_cycle", timeout=30) or {"error": "timeout"}
+    except Exception as e:
+        logger.error(f"[LIVE] Cycle failed: {e}")
+        return {"error": str(e)}
+
+
 # =============================================================================
 # LIVE PROPS POLLING (At quarter/period breaks)
 # =============================================================================
 
-def run_live_props_cycle() -> dict:
-    """
-    Live props polling:
-    - Fetch props for live games only
-    - Called at quarter/period breaks
-    """
-    if _check_paused("live_props_cycle"):
-        return {"skipped": "paused"}
+def _live_props_cycle_inner() -> dict:
+    """Inner live props cycle logic."""
     start_time = datetime.now(timezone.utc)
     logger.info(f"Starting LIVE PROPS cycle at {start_time.isoformat()}")
     
@@ -556,42 +579,52 @@ def run_live_props_cycle() -> dict:
     return results
 
 
+def run_live_props_cycle() -> dict:
+    """Live props polling with timeout protection."""
+    if _check_paused("live_props_cycle"):
+        return {"skipped": "paused"}
+    try:
+        return _run_with_timeout(_live_props_cycle_inner, "live_props_cycle", timeout=30) or {"error": "timeout"}
+    except Exception as e:
+        logger.error(f"[LIVE PROPS] Cycle failed: {e}")
+        return {"error": str(e)}
+
+
 # =============================================================================
 # GRADING CYCLE (Every 60 minutes)
 # =============================================================================
 
-def run_grading_cycle() -> dict:
-    """
-    Grading cycle:
-    - Bootstrap game_results from completed predictions
-    - Fetch ESPN scores for completed games
-    - Generate prediction_grades rows
-    """
-    if _check_paused("grading_cycle"):
-        return {"skipped": "paused"}
+def _grading_cycle_inner() -> dict:
+    """Inner grading cycle logic."""
     start_time = datetime.now(timezone.utc)
     logger.info(f"Starting GRADING cycle at {start_time.isoformat()}")
 
+    grader = InternalGrader()
+    result = grader.grade_games()
+
+    auto = result.get("auto_grader", {})
+    logger.info(
+        f"[GRADING] Completed: "
+        f"{result.get('bootstrapped_game_results', 0)} bootstrapped, "
+        f"{auto.get('graded', 0)} games scored via ESPN, "
+        f"{result.get('prediction_grades_created', 0)} prediction_grades created"
+    )
+
+    if result.get("errors"):
+        for err in result["errors"]:
+            logger.error(f"[GRADING] Error: {err}")
+
+    end_time = datetime.now(timezone.utc)
+    result["duration_seconds"] = (end_time - start_time).total_seconds()
+    return result
+
+
+def run_grading_cycle() -> dict:
+    """Grading cycle with timeout protection."""
+    if _check_paused("grading_cycle"):
+        return {"skipped": "paused"}
     try:
-        grader = InternalGrader()
-        result = grader.grade_games()
-
-        auto = result.get("auto_grader", {})
-        logger.info(
-            f"[GRADING] Completed: "
-            f"{result.get('bootstrapped_game_results', 0)} bootstrapped, "
-            f"{auto.get('graded', 0)} games scored via ESPN, "
-            f"{result.get('prediction_grades_created', 0)} prediction_grades created"
-        )
-
-        if result.get("errors"):
-            for err in result["errors"]:
-                logger.error(f"[GRADING] Error: {err}")
-
-        end_time = datetime.now(timezone.utc)
-        result["duration_seconds"] = (end_time - start_time).total_seconds()
-        return result
-
+        return _run_with_timeout(_grading_cycle_inner, "grading_cycle", timeout=60) or {"error": "timeout"}
     except Exception as e:
         logger.error(f"[GRADING] Cycle failed: {e}")
         return {"error": str(e)}
@@ -616,10 +649,8 @@ def run_analysis_cycle() -> dict:
 # DAILY FEEDBACK LOOP
 # =============================================================================
 
-def run_daily_feedback():
-    """Daily model feedback loop: analyze grading performance and adjust pillar weights."""
-    if _check_paused("daily_feedback"):
-        return
+def _daily_feedback_inner():
+    """Inner daily feedback logic."""
     logger.info("[DailyFeedback] Starting daily feedback cycle")
     from model_feedback import ModelFeedback
 
@@ -643,6 +674,16 @@ def run_daily_feedback():
     return results
 
 
+def run_daily_feedback():
+    """Daily feedback with timeout protection."""
+    if _check_paused("daily_feedback"):
+        return
+    try:
+        return _run_with_timeout(_daily_feedback_inner, "daily_feedback", timeout=60)
+    except Exception as e:
+        logger.error(f"[DailyFeedback] Failed: {e}")
+
+
 # =============================================================================
 # SCHEDULER SETUP
 # =============================================================================
@@ -657,28 +698,33 @@ def start_scheduler():
         trigger=IntervalTrigger(minutes=PREGAME_POLL_INTERVAL_MINUTES),
         id="pregame_cycle",
         name="Pre-game polling (all markets + props)",
-        replace_existing=True
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=30,
     )
-    
-    # Live polling: Every 2 minutes
+
+    # Live polling: Every 5 minutes (reduced from 2 to ease connection pressure)
     scheduler.add_job(
         func=run_live_cycle,
         trigger=IntervalTrigger(minutes=LIVE_POLL_INTERVAL_MINUTES),
         id="live_cycle",
         name="Live game polling (main markets)",
-        replace_existing=True
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=30,
     )
-    
+
     # Live props polling: Every 7-8 minutes (roughly 2x per quarter)
-    # A quarter is ~12-15 minutes, so polling every 7 mins = ~2x per quarter
     scheduler.add_job(
         func=run_live_props_cycle,
         trigger=IntervalTrigger(minutes=7),
         id="live_props_cycle",
         name="Live props polling (2x per quarter)",
-        replace_existing=True
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=30,
     )
-    
+
     # Closing line capture: Every 10 minutes
     from closing_line_capture import run_closing_line_capture
     scheduler.add_job(
@@ -686,18 +732,22 @@ def start_scheduler():
         trigger=IntervalTrigger(minutes=10),
         id="closing_line_capture",
         name="Capture closing lines before game start",
-        replace_existing=True
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=30,
     )
 
     # Exchange sync: Every 15 minutes — Kalshi + Polymarket
     def run_exchange_sync():
         if _check_paused("exchange_sync"):
             return
-        try:
+        def _inner():
             from exchange_tracker import ExchangeTracker
             tracker = ExchangeTracker()
             result = tracker.sync_all()
             logger.info(f"[ExchangeSync] {result}")
+        try:
+            _run_with_timeout(_inner, "exchange_sync", timeout=30)
         except Exception as e:
             logger.error(f"[ExchangeSync] Failed: {e}")
 
@@ -706,14 +756,16 @@ def start_scheduler():
         trigger=IntervalTrigger(minutes=15),
         id="exchange_sync",
         name="Sync Kalshi + Polymarket exchange data",
-        replace_existing=True
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=30,
     )
 
-    # Composite recalc: Every 15 minutes — recalculate fair lines from fresh pillars
+    # Composite recalc: Every 20 minutes (reduced from 15 to ease connection pressure)
     def run_composite_recalc():
         if _check_paused("composite_recalc"):
             return
-        try:
+        def _inner():
             from composite_tracker import CompositeTracker
             tracker = CompositeTracker()
             result = tracker.recalculate_all()
@@ -724,23 +776,26 @@ def start_scheduler():
                 f"[CompositeRecalc] Done: {recalced} recalculated, "
                 f"{skipped} unchanged, {errs} errors"
             )
+        try:
+            _run_with_timeout(_inner, "composite_recalc", timeout=30)
         except Exception as e:
             logger.error(f"[CompositeRecalc] Failed: {e}")
 
     scheduler.add_job(
         func=run_composite_recalc,
-        trigger=IntervalTrigger(minutes=15),
+        trigger=IntervalTrigger(minutes=20),
         id="composite_recalc",
         name="Recalculate composite scores and fair lines",
-        replace_existing=True
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=30,
     )
 
     # Fast refresh: Every 3 minutes — lightweight fair-line update for LIVE games
-    # Reuses composite scores from last full calc, only grabs fresh book lines
     def run_fast_refresh():
         if _check_paused("fast_refresh"):
             return
-        try:
+        def _inner():
             from composite_tracker import CompositeTracker
             tracker = CompositeTracker()
             result = tracker.fast_refresh_live()
@@ -750,6 +805,8 @@ def start_scheduler():
                 logger.info(
                     f"[FastRefresh] Done: {refreshed} refreshed out of {live} live games"
                 )
+        try:
+            _run_with_timeout(_inner, "fast_refresh", timeout=30)
         except Exception as e:
             logger.error(f"[FastRefresh] Failed: {e}")
 
@@ -758,17 +815,21 @@ def start_scheduler():
         trigger=IntervalTrigger(minutes=3),
         id="fast_refresh_live",
         name="Fast refresh fair lines for live games",
-        replace_existing=True
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=30,
     )
 
     # Pregame capture: Every 15 minutes — snapshot fair lines, edges, pillars
     def run_pregame_capture():
         if _check_paused("pregame_capture"):
             return
-        try:
+        def _inner():
             from pregame_capture import PregameCapture
             result = PregameCapture().capture_all()
             logger.info(f"[PregameCapture] {result}")
+        try:
+            _run_with_timeout(_inner, "pregame_capture", timeout=30)
         except Exception as e:
             logger.error(f"[PregameCapture] Failed: {e}")
 
@@ -777,7 +838,9 @@ def start_scheduler():
         trigger=IntervalTrigger(minutes=15),
         id="pregame_capture",
         name="Pregame fair line capture",
-        replace_existing=True
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=30,
     )
 
     # Grading: Every 60 minutes — fetch ESPN scores and grade completed games
@@ -786,17 +849,21 @@ def start_scheduler():
         trigger=IntervalTrigger(minutes=60),
         id="grading_cycle",
         name="Grade completed games (ESPN scores + prediction_grades)",
-        replace_existing=True
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=30,
     )
 
-    # Accuracy reflection: Every 60 minutes — measure how close OMI fair lines were to reality
+    # Accuracy reflection: Every 60 minutes
     def run_accuracy_reflection():
         if _check_paused("accuracy_reflection"):
             return
-        try:
+        def _inner():
             tracker = AccuracyTracker()
             result = tracker.run_accuracy_reflection(lookback_hours=48)
             logger.info(f"[Scheduler] Accuracy reflection: {result}")
+        try:
+            _run_with_timeout(_inner, "accuracy_reflection", timeout=30)
         except Exception as e:
             logger.error(f"[Scheduler] Accuracy reflection failed: {e}")
 
@@ -807,15 +874,19 @@ def start_scheduler():
         id="accuracy_reflection",
         name="Prediction accuracy reflection pool",
         next_run_time=datetime.now(timezone.utc) + timedelta(minutes=5),
+        max_instances=1,
+        misfire_grace_time=30,
     )
 
-    # System health check: Every 6 hours — log subsystem health, CRITICAL at ERROR level
+    # System health check: Every 6 hours
     def run_health_check_job():
         if _check_paused("health_check"):
             return
-        try:
+        def _inner():
             from system_health import run_health_check
             run_health_check()
+        try:
+            _run_with_timeout(_inner, "health_check", timeout=30)
         except Exception as e:
             logger.error(f"[HealthCheck] Job failed: {e}")
 
@@ -824,18 +895,22 @@ def start_scheduler():
         trigger=IntervalTrigger(hours=6),
         id="health_check",
         name="System health check (all subsystems)",
-        replace_existing=True
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=30,
     )
 
-    # Exchange cleanup: Daily at 4 AM UTC — remove unmapped Polymarket junk rows
+    # Exchange cleanup: Daily at 4 AM UTC
     def run_exchange_cleanup():
         if _check_paused("exchange_cleanup"):
             return
-        try:
+        def _inner():
             from exchange_tracker import ExchangeTracker
             tracker = ExchangeTracker()
             result = tracker.cleanup_unmapped(hours_old=24)
             logger.info(f"[ExchangeCleanup] {result}")
+        try:
+            _run_with_timeout(_inner, "exchange_cleanup", timeout=30)
         except Exception as e:
             logger.error(f"[ExchangeCleanup] Failed: {e}")
 
@@ -844,7 +919,9 @@ def start_scheduler():
         trigger=CronTrigger(hour=4, minute=0),
         id="exchange_cleanup",
         name="Clean up unmapped Polymarket rows",
-        replace_existing=True
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=30,
     )
 
     # Performance cache: Every 5 minutes — pre-fetch aggregated performance via RPC
@@ -855,16 +932,20 @@ def start_scheduler():
         id="perf_cache_refresh",
         name="Pre-fetch performance dashboard data via RPC",
         replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=30,
         next_run_time=datetime.now(timezone.utc) + timedelta(seconds=10),
     )
 
-    # Daily feedback: 6 AM UTC — analyze performance and adjust pillar weights
+    # Daily feedback: 6 AM UTC
     scheduler.add_job(
         func=run_daily_feedback,
         trigger=CronTrigger(hour=6, minute=0),
         id="daily_feedback",
         name="Daily model feedback and weight adjustment",
-        replace_existing=True
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=30,
     )
 
     scheduler.start()
@@ -874,7 +955,7 @@ def start_scheduler():
     logger.info(f"  - Live props: every 7 min")
     logger.info(f"  - Closing line capture: every 10 min")
     logger.info(f"  - Exchange sync: every 15 min")
-    logger.info(f"  - Composite recalc: every 15 min")
+    logger.info(f"  - Composite recalc: every 20 min")
     logger.info(f"  - Pregame capture: every 15 min")
     logger.info(f"  - Grading: every 60 min")
     logger.info(f"  - Accuracy reflection: every 60 min (5 min delayed start)")
@@ -882,6 +963,7 @@ def start_scheduler():
     logger.info(f"  - Health check: every 6 hours")
     logger.info(f"  - Exchange cleanup: 4:00 AM UTC")
     logger.info(f"  - Daily feedback: 6:00 AM UTC")
+    logger.info(f"  - All jobs: max_instances=1, misfire_grace_time=30s, 30s timeout")
     
     return scheduler
 

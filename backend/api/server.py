@@ -2328,7 +2328,7 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
 
 
 @app.get("/api/v1/edge-signal/bulk")
-async def arb_bulk_edge_signals(
+def arb_bulk_edge_signals(
     sport: str = Query(..., description="Sport key: NCAAB, NBA, NFL, etc."),
     _auth: bool = Depends(verify_arb_api_key),
 ):

@@ -445,7 +445,7 @@ EDGE_THRESHOLDS = {
 PREGAME_POLL_INTERVAL_MINUTES = 30
 
 # Live game polling (main markets only: h2h, spreads, totals)
-LIVE_POLL_INTERVAL_MINUTES = 2
+LIVE_POLL_INTERVAL_MINUTES = 5
 
 # Live props polling (at quarter/period breaks)
 LIVE_PROPS_PER_QUARTER = 2  # Poll props twice per quarter/period

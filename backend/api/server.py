@@ -2434,11 +2434,18 @@ def arb_bulk_edge_signals(
 ):
     """
     Bulk edge signals for all upcoming games in a sport.
-    Primary endpoint — called every 15 min by arb desk.
+    Primary endpoint — called every 30s by arb desk.
     Includes live CEQ adjustments for in-progress games.
     """
     sport_upper = sport.upper()
     sport_short = _normalize_sport(sport_upper)
+
+    # 10s cache — prevents Supabase hammering from concurrent callers
+    ck = f"arb-bulk:{sport_short}"
+    cached = _cache_get(ck, 10)
+    if cached is not None:
+        return cached
+
     variants = _sport_variants(sport_short)
 
     try:
@@ -2642,13 +2649,15 @@ def arb_bulk_edge_signals(
             -g["best_edge_pct"],
         ))
 
-        return {
+        result = {
             "sport": sport_short,
             "games": games,
             "count": len(games),
             "live_count": live_count,
             "timestamp": now_iso,
         }
+        _cache_set(ck, result)
+        return result
 
     except HTTPException:
         raise

@@ -1323,14 +1323,17 @@ class CompositeTracker:
 
         espn_scores_by_sport: dict[str, list] = {}
         espn = ESPNScoreFetcher()
-        for sport_key in sports_seen:
-            espn_sport = SPORT_DISPLAY.get(sport_key)
-            if espn_sport and espn_sport in ESPN_SPORTS and espn_sport not in espn_scores_by_sport:
-                try:
-                    espn_scores_by_sport[espn_sport] = espn.get_scores(espn_sport)
-                except Exception as e:
-                    logger.warning(f"[FastRefresh] ESPN fetch failed for {espn_sport}: {e}")
-                    espn_scores_by_sport[espn_sport] = []
+        try:
+            for sport_key in sports_seen:
+                espn_sport = SPORT_DISPLAY.get(sport_key)
+                if espn_sport and espn_sport in ESPN_SPORTS and espn_sport not in espn_scores_by_sport:
+                    try:
+                        espn_scores_by_sport[espn_sport] = espn.get_scores(espn_sport)
+                    except Exception as e:
+                        logger.warning(f"[FastRefresh] ESPN fetch failed for {espn_sport}: {e}")
+                        espn_scores_by_sport[espn_sport] = []
+        finally:
+            espn.client.close()
 
         # Match ESPN scores to game_ids using team name matching
         for row in live_rows:

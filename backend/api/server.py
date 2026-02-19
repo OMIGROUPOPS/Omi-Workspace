@@ -51,6 +51,23 @@ app.add_middleware(
 
 
 # =============================================================================
+# RESPONSE CACHE — avoid hammering Supabase when multiple tabs fire at once
+# =============================================================================
+_cache: dict = {}  # key -> {"data": ..., "ts": float}
+
+def _cache_get(key: str, ttl: float):
+    """Return cached data if fresh, else None."""
+    entry = _cache.get(key)
+    if entry and (time.time() - entry["ts"]) < ttl:
+        return entry["data"]
+    return None
+
+def _cache_set(key: str, data):
+    """Store data in cache with current timestamp."""
+    _cache[key] = {"data": data, "ts": time.time()}
+
+
+# =============================================================================
 # HEALTH & STATUS
 # =============================================================================
 
@@ -1246,8 +1263,12 @@ def internal_edge_performance(
     since: str = None,
 ):
     """Get Edge performance metrics from prediction_grades."""
+    ck = f"perf:{sport}:{days}:{market}:{confidence_tier}:{signal}:{since}"
+    cached = _cache_get(ck, 300)
+    if cached is not None:
+        return cached
     grader = InternalGrader()
-    return grader.get_performance(
+    data = grader.get_performance(
         sport.upper() if sport else None,
         days,
         market,
@@ -1255,6 +1276,8 @@ def internal_edge_performance(
         signal,
         since,
     )
+    _cache_set(ck, data)
+    return data
 
 
 @app.get("/api/internal/edge/graded-games")
@@ -1316,9 +1339,15 @@ def internal_edge_analytics(sport: str = None, days: int = 30):
 @app.get("/api/internal/exchange-accuracy")
 def internal_exchange_accuracy(sport: str = None, days: int = 30):
     """Exchange vs sportsbook accuracy comparison from exchange_accuracy_log."""
+    ck = f"exch-acc:{sport}:{days}"
+    cached = _cache_get(ck, 300)
+    if cached is not None:
+        return cached
     try:
         from edge_analytics import EdgeAnalytics
-        return EdgeAnalytics().analyze_exchange_accuracy(sport.upper() if sport else None, days)
+        data = EdgeAnalytics().analyze_exchange_accuracy(sport.upper() if sport else None, days)
+        _cache_set(ck, data)
+        return data
     except Exception as e:
         logger.error(f"Error running exchange accuracy analysis: {e}")
         raise HTTPException(status_code=500, detail=str(e))
@@ -1698,10 +1727,15 @@ async def run_model_feedback(sport: str = None, min_games: int = 50, apply_weigh
 @app.get("/api/internal/system-health")
 def system_health():
     """Get system health report across all subsystems."""
+    cached = _cache_get("system-health", 120)
+    if cached is not None:
+        return cached
     try:
         from system_health import SystemHealth
         health = SystemHealth()
-        return health.run_all_checks()
+        data = health.run_all_checks()
+        _cache_set("system-health", data)
+        return data
     except Exception as e:
         logger.error(f"Error running system health check: {e}")
         raise HTTPException(status_code=500, detail=str(e))
@@ -1710,10 +1744,16 @@ def system_health():
 @app.get("/api/internal/accuracy-summary")
 def accuracy_summary(sport: str = None, days: int = 30):
     """Prediction accuracy reflection pool — how close OMI fair lines are to reality."""
+    ck = f"acc-sum:{sport}:{days}"
+    cached = _cache_get(ck, 300)
+    if cached is not None:
+        return cached
     try:
         from accuracy_tracker import AccuracyTracker
         tracker = AccuracyTracker()
-        return tracker.get_accuracy_summary(sport=sport, days=days)
+        data = tracker.get_accuracy_summary(sport=sport, days=days)
+        _cache_set(ck, data)
+        return data
     except Exception as e:
         return {"error": str(e)}
 
@@ -1730,7 +1770,7 @@ def run_accuracy_reflection():
 
 
 @app.get("/api/internal/closing-lines")
-async def get_closing_lines(sport: str = None, days: int = 7):
+def get_closing_lines(sport: str = None, days: int = 7):
     """Get recent closing line captures for inspection."""
     from model_feedback import ModelFeedback
     fb = ModelFeedback()

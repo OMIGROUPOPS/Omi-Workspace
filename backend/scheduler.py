@@ -12,6 +12,7 @@ Also handles:
 """
 from datetime import datetime, timezone, timedelta
 import logging
+import time
 import httpx
 
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -71,7 +72,8 @@ def _check_paused(job_name: str) -> bool:
 
 
 def _run_with_timeout(fn, job_name: str, timeout: int = 30):
-    """Run fn in a thread with a timeout. If it exceeds timeout, log and move on."""
+    """Run fn in a thread with a timeout. If it exceeds timeout, log and move on.
+    Always sleeps 1s after completion to give API endpoints a window for Supabase calls."""
     import threading
     result = [None]
     error = [None]
@@ -87,7 +89,10 @@ def _run_with_timeout(fn, job_name: str, timeout: int = 30):
     t.join(timeout=timeout)
     if t.is_alive():
         logger.warning(f"[Scheduler] {job_name} TIMED OUT after {timeout}s — moving on")
+        time.sleep(1)
         return None
+    # 1s gap between jobs — lets API endpoint threads grab a Supabase connection
+    time.sleep(1)
     if error[0] is not None:
         raise error[0]
     return result[0]

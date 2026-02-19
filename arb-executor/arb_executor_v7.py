@@ -13,6 +13,7 @@ HARD LIMITS:
 """
 import asyncio
 import aiohttp
+import math
 import time
 import base64
 import json
@@ -3691,6 +3692,29 @@ def _pm_price_cents(fill_price: float, arb) -> float:
     return arb.pm_ask if arb.direction == 'BUY_PM_SELL_K' else arb.pm_bid
 
 
+def _extract_pm_fee(pm_result: Dict) -> float:
+    """Extract PM commission from SDK response (dollars). Returns 0 if unavailable."""
+    try:
+        for ex in pm_result.get('executions', []):
+            order = ex.get('order', {})
+            commission = order.get('commissionNotionalTotalCollected', {})
+            value = commission.get('value')
+            if value:
+                return round(float(value), 4)
+    except Exception:
+        pass
+    return 0.0
+
+
+def _calc_kalshi_fee(k_price_cents: float, qty: int) -> float:
+    """Kalshi taker fee: ceil(7% * p * (1-p) * 100) / 100 per contract (dollars)."""
+    if qty <= 0 or k_price_cents <= 0:
+        return 0.0
+    p = k_price_cents / 100.0
+    per_contract = math.ceil(0.07 * p * (1 - p) * 100) / 100
+    return round(per_contract * qty, 4)
+
+
 def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
                execution_time_ms: float = 0, pm_order_ms: int = 0,
                unwind_loss_cents: float = None, *,
@@ -3800,6 +3824,13 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
         'gtc_spread_checks': gtc_spread_checks,
         'gtc_cancel_reason': gtc_cancel_reason,
         'tier': tier,
+
+        # Fee tracking (dollars)
+        'pm_fee': _extract_pm_fee(pm_result),
+        'k_fee': _calc_kalshi_fee(
+            k_result.get('fill_price') or (arb.k_ask if arb.direction == 'BUY_K_SELL_PM' else arb.k_bid),
+            actual_contracts,
+        ),
     }
 
     # FEE-AWARE P&L CALCULATION

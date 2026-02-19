@@ -107,18 +107,19 @@ TRADE_PARAMS = {
     # Case 2: BUY_PM_SELL_K, team is NOT pm_long_team (underdog)
     # K: SELL YES (short underdog), PM: BUY_SHORT (long underdog)
     # HEDGE: K SHORT + PM LONG = hedged
-    # Price: Use underdog's ask directly (pm_ask since team is underdog)
+    # Price: Underdog ask = 100 - pm_bid (pm_bid is favorite's bid)
     # ==========================================================================
     ('BUY_PM_SELL_K', False): {
         'k_action': 'sell',
         'k_side': 'yes',
         'k_price_field': 'k_bid',       # Selling, so use bid
         'pm_intent': 3,                  # BUY_SHORT (underdog)
-        'pm_price_field': 'pm_ask',     # Pay underdog's ask directly
+        'pm_price_field': 'pm_bid',     # Invert: underdog_ask = 100 - pm_bid
+        'pm_invert_price': True,        # Convert from favorite bid to underdog ask
         'pm_is_buy_short': True,
         'k_result': 'SHORT',
         'pm_result': 'LONG',
-        'executable': True,              # RE-ENABLED: price now converted to YES frame
+        'executable': True,
     },
 
     # ==========================================================================

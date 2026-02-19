@@ -784,10 +784,11 @@ export default function ArbDashboard() {
   const pnlTrades = useMemo(() => {
     let trades = allTrades.filter(
       (t) =>
-        t.status === "SUCCESS" &&
-        t.actual_pnl &&
         !t.paper_mode &&
-        t.contracts_filled > 0
+        (t.contracts_filled > 0 || t.status === "EXITED") &&
+        (t.status === "SUCCESS" || t.status === "EXITED" || t.status === "UNHEDGED" ||
+         t.tier === "TIER3A_HOLD" || t.tier === "TIER3B_FLIP" || t.tier === "TIER1_HEDGE") &&
+        tradePnl(t).totalDollars !== null
     );
 
     if (pnlSport !== "all") {
@@ -867,9 +868,10 @@ export default function ArbDashboard() {
     let gtcFills = 0;
 
     for (const t of pnlTrades) {
-      const net = t.actual_pnl!.net_profit_dollars;
+      const pnl = tradePnl(t);
+      const net = pnl.totalDollars ?? 0;
       totalPnl += net;
-      totalContracts += t.contracts_filled || 1;
+      totalContracts += pnl.qty || 1;
       if (net > 0) wins++;
       else losses++;
       if (net > best) best = net;
@@ -916,13 +918,14 @@ export default function ArbDashboard() {
   const cumulativeChartData = useMemo(() => {
     let cumulative = 0;
     return pnlTrades.map((t, i) => {
-      cumulative += t.actual_pnl!.net_profit_dollars;
+      const net = tradePnl(t).totalDollars ?? 0;
+      cumulative += net;
       return {
         index: i + 1,
         date: toDateStr(t.timestamp),
         time: formatDateTime(t.timestamp),
         pnl: Number(cumulative.toFixed(4)),
-        tradePnl: Number(t.actual_pnl!.net_profit_dollars.toFixed(4)),
+        tradePnl: Number(net.toFixed(4)),
         team: t.team,
         phase: t.execution_phase || "ioc",
         isMaker: t.is_maker || false,
@@ -932,15 +935,18 @@ export default function ArbDashboard() {
 
   // Per-trade scatter data
   const scatterData = useMemo(() => {
-    return pnlTrades.map((t, i) => ({
-      index: i + 1,
-      net: Number(t.actual_pnl!.net_profit_dollars.toFixed(4)),
-      spread: t.spread_cents,
-      team: t.team,
-      contracts: t.contracts_filled || 1,
-      phase: t.execution_phase || "ioc",
-      isMaker: t.is_maker || false,
-    }));
+    return pnlTrades.map((t, i) => {
+      const pnl = tradePnl(t);
+      return {
+        index: i + 1,
+        net: Number((pnl.totalDollars ?? 0).toFixed(4)),
+        spread: t.spread_cents,
+        team: t.team,
+        contracts: pnl.qty || 1,
+        phase: t.execution_phase || "ioc",
+        isMaker: t.is_maker || false,
+      };
+    });
   }, [pnlTrades]);
 
   const dailyPnlData = useMemo(() => {
@@ -955,10 +961,11 @@ export default function ArbDashboard() {
       if (!byDay[day])
         byDay[day] = { pnl: 0, trades: 0, successes: 0, noFills: 0, contracts: 0, makerFills: 0 };
       byDay[day].trades++;
-      if (t.status === "SUCCESS" && t.actual_pnl) {
-        byDay[day].pnl += t.actual_pnl.net_profit_dollars;
+      const pnl = tradePnl(t);
+      if (pnl.totalDollars !== null) {
+        byDay[day].pnl += pnl.totalDollars;
         byDay[day].successes++;
-        byDay[day].contracts += t.contracts_filled || 1;
+        byDay[day].contracts += pnl.qty || 1;
         if (t.is_maker) byDay[day].makerFills++;
       }
       if (t.status.includes("NO_FILL")) {

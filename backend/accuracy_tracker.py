@@ -302,7 +302,29 @@ class AccuracyTracker:
     # =========================================================================
 
     def get_accuracy_summary(self, sport: str = None, days: int = 30) -> dict:
-        """Return summary stats for the accuracy dashboard tab."""
+        """Return summary stats for the accuracy dashboard tab.
+        Tries SQL RPC first (zero row transfer), falls back to Python."""
+        # Try RPC first
+        try:
+            rpc_params = {"p_days": days}
+            if sport:
+                rpc_params["p_sport"] = sport.upper()
+            rpc_result = self.client.rpc("get_accuracy_summary", rpc_params).execute()
+            data = rpc_result.data
+            if isinstance(data, list) and len(data) == 1:
+                data = data[0]
+            if isinstance(data, dict) and "get_accuracy_summary" in data:
+                data = data["get_accuracy_summary"]
+            if isinstance(data, dict) and ("overall" in data or "games" in data):
+                logger.info(f"[AccuracySummary] RPC returned data")
+                return data
+        except Exception as e:
+            logger.info(f"[AccuracySummary] RPC unavailable ({e}), falling back to Python")
+
+        return self._get_accuracy_summary_python(sport, days)
+
+    def _get_accuracy_summary_python(self, sport: str = None, days: int = 30) -> dict:
+        """Python fallback for accuracy summary aggregation."""
         cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
 
         query = self.client.table("prediction_accuracy_log").select("*").gte(

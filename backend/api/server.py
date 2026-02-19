@@ -1334,23 +1334,40 @@ def internal_graded_games(
     limit: int = 500,
 ):
     """Get individual graded prediction rows with game context."""
-    grader = InternalGrader()
-    return grader.get_graded_games(
-        sport=sport.upper() if sport else None,
-        market=market,
-        verdict=verdict,
-        since=since,
-        days=days,
-        limit=min(limit, 1000),
-    )
+    capped_limit = min(limit, 1000)
+    ck = f"graded:{sport}:{market}:{verdict}:{days}:{since}:{capped_limit}"
+    cached = _cache_get(ck, 300)
+    if cached is not None:
+        return cached
+    def _query():
+        grader = InternalGrader()
+        return grader.get_graded_games(
+            sport=sport.upper() if sport else None,
+            market=market,
+            verdict=verdict,
+            since=since,
+            days=days,
+            limit=capped_limit,
+        )
+    data = _with_scheduler_pause(_query)
+    _cache_set(ck, data)
+    return data
 
 
 @app.get("/api/internal/edge/live-markets")
 def internal_live_markets(sport: str = None):
     """Get upcoming games with current OMI fair lines and book edges."""
+    ck = f"live-mkts:{sport}"
+    cached = _cache_get(ck, 120)
+    if cached is not None:
+        return cached
     try:
-        grader = InternalGrader()
-        return grader.get_live_markets(sport.upper() if sport else None)
+        def _query():
+            grader = InternalGrader()
+            return grader.get_live_markets(sport.upper() if sport else None)
+        data = _with_scheduler_pause(_query)
+        _cache_set(ck, data)
+        return data
     except Exception as e:
         import traceback
         logger.error(f"[live-markets] 500 error: {e}\n{traceback.format_exc()}")

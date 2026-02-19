@@ -708,7 +708,12 @@ def start_scheduler():
     def _delayed(seconds):
         return now + timedelta(seconds=seconds)
 
-    # Pre-game polling: Every 30 minutes (first run at +60s)
+    # =========================================================================
+    # ESSENTIAL JOBS ONLY — cut from 14 to 5 to stop exhausting Supabase
+    # connections.  Non-critical jobs commented out below.
+    # =========================================================================
+
+    # 1. Pre-game polling: Every 30 minutes (first run at +60s)
     scheduler.add_job(
         func=run_pregame_cycle,
         trigger=IntervalTrigger(minutes=PREGAME_POLL_INTERVAL_MINUTES),
@@ -720,7 +725,7 @@ def start_scheduler():
         next_run_time=_delayed(60),
     )
 
-    # Live polling: Every 5 minutes (first run at +70s)
+    # 2. Live polling: Every 5 minutes (first run at +70s)
     scheduler.add_job(
         func=run_live_cycle,
         trigger=IntervalTrigger(minutes=LIVE_POLL_INTERVAL_MINUTES),
@@ -732,57 +737,7 @@ def start_scheduler():
         next_run_time=_delayed(70),
     )
 
-    # Live props polling: Every 7-8 minutes (first run at +80s)
-    scheduler.add_job(
-        func=run_live_props_cycle,
-        trigger=IntervalTrigger(minutes=7),
-        id="live_props_cycle",
-        name="Live props polling (2x per quarter)",
-        replace_existing=True,
-        max_instances=1,
-        misfire_grace_time=30,
-        next_run_time=_delayed(80),
-    )
-
-    # Closing line capture: Every 10 minutes (first run at +90s)
-    from closing_line_capture import run_closing_line_capture
-    scheduler.add_job(
-        func=run_closing_line_capture,
-        trigger=IntervalTrigger(minutes=10),
-        id="closing_line_capture",
-        name="Capture closing lines before game start",
-        replace_existing=True,
-        max_instances=1,
-        misfire_grace_time=30,
-        next_run_time=_delayed(90),
-    )
-
-    # Exchange sync: Every 15 minutes — Kalshi + Polymarket (first run at +100s)
-    def run_exchange_sync():
-        if _check_paused("exchange_sync"):
-            return
-        def _inner():
-            from exchange_tracker import ExchangeTracker
-            tracker = ExchangeTracker()
-            result = tracker.sync_all()
-            logger.info(f"[ExchangeSync] {result}")
-        try:
-            _run_with_timeout(_inner, "exchange_sync", timeout=30)
-        except Exception as e:
-            logger.error(f"[ExchangeSync] Failed: {e}")
-
-    scheduler.add_job(
-        func=run_exchange_sync,
-        trigger=IntervalTrigger(minutes=15),
-        id="exchange_sync",
-        name="Sync Kalshi + Polymarket exchange data",
-        replace_existing=True,
-        max_instances=1,
-        misfire_grace_time=30,
-        next_run_time=_delayed(100),
-    )
-
-    # Composite recalc: Every 20 minutes (first run at +120s)
+    # 3. Composite recalc: Every 20 minutes (first run at +120s)
     def run_composite_recalc():
         if _check_paused("composite_recalc"):
             return
@@ -813,7 +768,7 @@ def start_scheduler():
         next_run_time=_delayed(120),
     )
 
-    # Fast refresh: Every 3 minutes — lightweight fair-line update for LIVE games (first run at +90s)
+    # 4. Fast refresh: Every 3 minutes (first run at +90s)
     def run_fast_refresh():
         if _check_paused("fast_refresh"):
             return
@@ -843,154 +798,164 @@ def start_scheduler():
         next_run_time=_delayed(90),
     )
 
-    # Pregame capture: Every 15 minutes (first run at +110s)
-    def run_pregame_capture():
-        if _check_paused("pregame_capture"):
-            return
-        def _inner():
-            from pregame_capture import PregameCapture
-            result = PregameCapture().capture_all()
-            logger.info(f"[PregameCapture] {result}")
-        try:
-            _run_with_timeout(_inner, "pregame_capture", timeout=30)
-        except Exception as e:
-            logger.error(f"[PregameCapture] Failed: {e}")
-
+    # 5. Closing line capture: Every 10 minutes (first run at +90s)
+    from closing_line_capture import run_closing_line_capture
     scheduler.add_job(
-        func=run_pregame_capture,
-        trigger=IntervalTrigger(minutes=15),
-        id="pregame_capture",
-        name="Pregame fair line capture",
+        func=run_closing_line_capture,
+        trigger=IntervalTrigger(minutes=10),
+        id="closing_line_capture",
+        name="Capture closing lines before game start",
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
-        next_run_time=_delayed(110),
+        next_run_time=_delayed(100),
     )
 
-    # Grading: Every 60 minutes (first run at +180s)
-    scheduler.add_job(
-        func=run_grading_cycle,
-        trigger=IntervalTrigger(minutes=60),
-        id="grading_cycle",
-        name="Grade completed games (ESPN scores + prediction_grades)",
-        replace_existing=True,
-        max_instances=1,
-        misfire_grace_time=30,
-        next_run_time=_delayed(180),
-    )
+    # =========================================================================
+    # NON-CRITICAL JOBS — disabled to reduce Supabase connection pressure.
+    # Re-enable once connection pooling / PgBouncer is in place.
+    # =========================================================================
 
-    # Accuracy reflection: Every 60 minutes (first run at +300s / 5 min)
-    def run_accuracy_reflection():
-        if _check_paused("accuracy_reflection"):
-            return
-        def _inner():
-            tracker = AccuracyTracker()
-            result = tracker.run_accuracy_reflection(lookback_hours=48)
-            logger.info(f"[Scheduler] Accuracy reflection: {result}")
-        try:
-            _run_with_timeout(_inner, "accuracy_reflection", timeout=30)
-        except Exception as e:
-            logger.error(f"[Scheduler] Accuracy reflection failed: {e}")
+    # # Live props polling: Every 7 minutes
+    # scheduler.add_job(
+    #     func=run_live_props_cycle,
+    #     trigger=IntervalTrigger(minutes=7),
+    #     id="live_props_cycle",
+    #     name="Live props polling (2x per quarter)",
+    #     replace_existing=True, max_instances=1, misfire_grace_time=30,
+    #     next_run_time=_delayed(80),
+    # )
 
-    scheduler.add_job(
-        func=run_accuracy_reflection,
-        trigger='interval',
-        minutes=60,
-        id="accuracy_reflection",
-        name="Prediction accuracy reflection pool",
-        next_run_time=_delayed(300),
-        max_instances=1,
-        misfire_grace_time=30,
-    )
+    # # Exchange sync: Every 15 minutes
+    # def run_exchange_sync():
+    #     if _check_paused("exchange_sync"): return
+    #     def _inner():
+    #         from exchange_tracker import ExchangeTracker
+    #         tracker = ExchangeTracker()
+    #         result = tracker.sync_all()
+    #         logger.info(f"[ExchangeSync] {result}")
+    #     try: _run_with_timeout(_inner, "exchange_sync", timeout=30)
+    #     except Exception as e: logger.error(f"[ExchangeSync] Failed: {e}")
+    # scheduler.add_job(
+    #     func=run_exchange_sync,
+    #     trigger=IntervalTrigger(minutes=15),
+    #     id="exchange_sync",
+    #     name="Sync Kalshi + Polymarket exchange data",
+    #     replace_existing=True, max_instances=1, misfire_grace_time=30,
+    #     next_run_time=_delayed(100),
+    # )
 
-    # System health check: Every 6 hours (first run at +200s)
-    def run_health_check_job():
-        if _check_paused("health_check"):
-            return
-        def _inner():
-            from system_health import run_health_check
-            run_health_check()
-        try:
-            _run_with_timeout(_inner, "health_check", timeout=30)
-        except Exception as e:
-            logger.error(f"[HealthCheck] Job failed: {e}")
+    # # Pregame capture: Every 15 minutes
+    # def run_pregame_capture():
+    #     if _check_paused("pregame_capture"): return
+    #     def _inner():
+    #         from pregame_capture import PregameCapture
+    #         result = PregameCapture().capture_all()
+    #         logger.info(f"[PregameCapture] {result}")
+    #     try: _run_with_timeout(_inner, "pregame_capture", timeout=30)
+    #     except Exception as e: logger.error(f"[PregameCapture] Failed: {e}")
+    # scheduler.add_job(
+    #     func=run_pregame_capture,
+    #     trigger=IntervalTrigger(minutes=15),
+    #     id="pregame_capture",
+    #     name="Pregame fair line capture",
+    #     replace_existing=True, max_instances=1, misfire_grace_time=30,
+    #     next_run_time=_delayed(110),
+    # )
 
-    scheduler.add_job(
-        func=run_health_check_job,
-        trigger=IntervalTrigger(hours=6),
-        id="health_check",
-        name="System health check (all subsystems)",
-        replace_existing=True,
-        max_instances=1,
-        misfire_grace_time=30,
-        next_run_time=_delayed(200),
-    )
+    # # Grading: Every 60 minutes
+    # scheduler.add_job(
+    #     func=run_grading_cycle,
+    #     trigger=IntervalTrigger(minutes=60),
+    #     id="grading_cycle",
+    #     name="Grade completed games (ESPN scores + prediction_grades)",
+    #     replace_existing=True, max_instances=1, misfire_grace_time=30,
+    #     next_run_time=_delayed(180),
+    # )
 
-    # Exchange cleanup: Daily at 4 AM UTC
-    def run_exchange_cleanup():
-        if _check_paused("exchange_cleanup"):
-            return
-        def _inner():
-            from exchange_tracker import ExchangeTracker
-            tracker = ExchangeTracker()
-            result = tracker.cleanup_unmapped(hours_old=24)
-            logger.info(f"[ExchangeCleanup] {result}")
-        try:
-            _run_with_timeout(_inner, "exchange_cleanup", timeout=30)
-        except Exception as e:
-            logger.error(f"[ExchangeCleanup] Failed: {e}")
+    # # Accuracy reflection: Every 60 minutes
+    # def run_accuracy_reflection():
+    #     if _check_paused("accuracy_reflection"): return
+    #     def _inner():
+    #         tracker = AccuracyTracker()
+    #         result = tracker.run_accuracy_reflection(lookback_hours=48)
+    #         logger.info(f"[Scheduler] Accuracy reflection: {result}")
+    #     try: _run_with_timeout(_inner, "accuracy_reflection", timeout=30)
+    #     except Exception as e: logger.error(f"[Scheduler] Accuracy reflection failed: {e}")
+    # scheduler.add_job(
+    #     func=run_accuracy_reflection,
+    #     trigger='interval', minutes=60,
+    #     id="accuracy_reflection",
+    #     name="Prediction accuracy reflection pool",
+    #     next_run_time=_delayed(300), max_instances=1, misfire_grace_time=30,
+    # )
 
-    scheduler.add_job(
-        func=run_exchange_cleanup,
-        trigger=CronTrigger(hour=4, minute=0),
-        id="exchange_cleanup",
-        name="Clean up unmapped Polymarket rows",
-        replace_existing=True,
-        max_instances=1,
-        misfire_grace_time=30,
-    )
+    # # System health check: Every 6 hours
+    # def run_health_check_job():
+    #     if _check_paused("health_check"): return
+    #     def _inner():
+    #         from system_health import run_health_check
+    #         run_health_check()
+    #     try: _run_with_timeout(_inner, "health_check", timeout=30)
+    #     except Exception as e: logger.error(f"[HealthCheck] Job failed: {e}")
+    # scheduler.add_job(
+    #     func=run_health_check_job,
+    #     trigger=IntervalTrigger(hours=6),
+    #     id="health_check",
+    #     name="System health check (all subsystems)",
+    #     replace_existing=True, max_instances=1, misfire_grace_time=30,
+    #     next_run_time=_delayed(200),
+    # )
 
-    # Performance cache: Every 5 minutes (first run at +60s)
-    from perf_cache import refresh_performance_cache
-    scheduler.add_job(
-        func=refresh_performance_cache,
-        trigger=IntervalTrigger(minutes=5),
-        id="perf_cache_refresh",
-        name="Pre-fetch performance dashboard data via RPC",
-        replace_existing=True,
-        max_instances=1,
-        misfire_grace_time=30,
-        next_run_time=_delayed(60),
-    )
+    # # Exchange cleanup: Daily at 4 AM UTC
+    # def run_exchange_cleanup():
+    #     if _check_paused("exchange_cleanup"): return
+    #     def _inner():
+    #         from exchange_tracker import ExchangeTracker
+    #         tracker = ExchangeTracker()
+    #         result = tracker.cleanup_unmapped(hours_old=24)
+    #         logger.info(f"[ExchangeCleanup] {result}")
+    #     try: _run_with_timeout(_inner, "exchange_cleanup", timeout=30)
+    #     except Exception as e: logger.error(f"[ExchangeCleanup] Failed: {e}")
+    # scheduler.add_job(
+    #     func=run_exchange_cleanup,
+    #     trigger=CronTrigger(hour=4, minute=0),
+    #     id="exchange_cleanup",
+    #     name="Clean up unmapped Polymarket rows",
+    #     replace_existing=True, max_instances=1, misfire_grace_time=30,
+    # )
 
-    # Daily feedback: 6 AM UTC
-    scheduler.add_job(
-        func=run_daily_feedback,
-        trigger=CronTrigger(hour=6, minute=0),
-        id="daily_feedback",
-        name="Daily model feedback and weight adjustment",
-        replace_existing=True,
-        max_instances=1,
-        misfire_grace_time=30,
-    )
+    # # Performance cache: Every 5 minutes
+    # from perf_cache import refresh_performance_cache
+    # scheduler.add_job(
+    #     func=refresh_performance_cache,
+    #     trigger=IntervalTrigger(minutes=5),
+    #     id="perf_cache_refresh",
+    #     name="Pre-fetch performance dashboard data via RPC",
+    #     replace_existing=True, max_instances=1, misfire_grace_time=30,
+    #     next_run_time=_delayed(60),
+    # )
+
+    # # Daily feedback: 6 AM UTC
+    # scheduler.add_job(
+    #     func=run_daily_feedback,
+    #     trigger=CronTrigger(hour=6, minute=0),
+    #     id="daily_feedback",
+    #     name="Daily model feedback and weight adjustment",
+    #     replace_existing=True, max_instances=1, misfire_grace_time=30,
+    # )
 
     scheduler.start()
-    logger.info("Scheduler started (all jobs staggered 60-300s after startup):")
-    logger.info(f"  - Pre-game: every {PREGAME_POLL_INTERVAL_MINUTES} min (first at +60s)")
-    logger.info(f"  - Live: every {LIVE_POLL_INTERVAL_MINUTES} min (first at +70s)")
-    logger.info(f"  - Live props: every 7 min (first at +80s)")
-    logger.info(f"  - Fast refresh: every 3 min (first at +90s)")
-    logger.info(f"  - Closing line capture: every 10 min (first at +90s)")
-    logger.info(f"  - Exchange sync: every 15 min (first at +100s)")
-    logger.info(f"  - Pregame capture: every 15 min (first at +110s)")
-    logger.info(f"  - Composite recalc: every 20 min (first at +120s)")
-    logger.info(f"  - Grading: every 60 min (first at +180s)")
-    logger.info(f"  - Health check: every 6 hours (first at +200s)")
-    logger.info(f"  - Accuracy reflection: every 60 min (first at +300s)")
-    logger.info(f"  - Performance cache: every 5 min (first at +60s)")
-    logger.info(f"  - Exchange cleanup: 4:00 AM UTC")
-    logger.info(f"  - Daily feedback: 6:00 AM UTC")
-    logger.info(f"  - All jobs: max_instances=1, misfire_grace_time=30s")
+    logger.info("Scheduler started — ESSENTIAL JOBS ONLY (5 of 14):")
+    logger.info(f"  1. Pre-game: every {PREGAME_POLL_INTERVAL_MINUTES} min (first at +60s)")
+    logger.info(f"  2. Live: every {LIVE_POLL_INTERVAL_MINUTES} min (first at +70s)")
+    logger.info(f"  3. Fast refresh: every 3 min (first at +90s)")
+    logger.info(f"  4. Closing line capture: every 10 min (first at +100s)")
+    logger.info(f"  5. Composite recalc: every 20 min (first at +120s)")
+    logger.info(f"  DISABLED: live_props, exchange_sync, pregame_capture, grading,")
+    logger.info(f"            accuracy_reflection, health_check, exchange_cleanup,")
+    logger.info(f"            perf_cache, daily_feedback")
+    logger.info(f"  All jobs: max_instances=1, misfire_grace_time=30s")
 
     return scheduler
 

@@ -253,13 +253,14 @@ function tradePnl(t: TradeEntry): { perContract: number | null; totalDollars: nu
   const qty = t.contracts_filled > 0 ? t.contracts_filled : (t.contracts_intended || 0);
   const spreadCents = t.spread_cents ?? null;
 
+  // Always prefer settlement_pnl when available (most accurate, from actual settlement)
+  if (t.settlement_pnl != null) {
+    const pc = qty > 0 ? (t.settlement_pnl * 100) / qty : t.settlement_pnl * 100;
+    return { perContract: pc, totalDollars: t.settlement_pnl, qty, isOpen: false, spreadCents };
+  }
+
   // Open positions: UNHEDGED (no unwind tier), TIER3A_HOLD, TIER3B_FLIP
   if (isOpenTrade(t)) {
-    // If a settlement_pnl has been recorded, show that as realized
-    if (t.settlement_pnl != null) {
-      const pc = qty > 0 ? (t.settlement_pnl * 100) / qty : t.settlement_pnl * 100;
-      return { perContract: pc, totalDollars: t.settlement_pnl, qty, isOpen: false, spreadCents };
-    }
     return { perContract: null, totalDollars: null, qty, isOpen: true, spreadCents };
   }
 
@@ -688,9 +689,14 @@ export default function ArbDashboard() {
         continue;
       }
 
-      // SUCCESS trades (includes TIER1_HEDGE): spread profit
+      // SUCCESS trades (includes TIER1_HEDGE): prefer settlement_pnl, fallback to spread
       if (t.status === "SUCCESS") {
-        if (t.spread_cents != null && qty > 0) {
+        const sp = t.settlement_pnl != null ? parseFloat(String(t.settlement_pnl)) : NaN;
+        if (!isNaN(sp)) {
+          arbPnl += sp;
+          if (sp >= 0) realizedWins++;
+          else realizedLosses++;
+        } else if (t.spread_cents != null && qty > 0) {
           const pnlDollars = (t.spread_cents * qty) / 100;
           arbPnl += pnlDollars;
           if (pnlDollars >= 0) realizedWins++;
@@ -699,9 +705,14 @@ export default function ArbDashboard() {
         continue;
       }
 
-      // EXITED trades (includes TIER2_EXIT, TIER3_UNWIND): unwind loss
+      // EXITED trades (includes TIER2_EXIT, TIER3_UNWIND): prefer settlement_pnl, fallback to unwind_loss
       if (t.status === "EXITED") {
-        if (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0) {
+        const sp = t.settlement_pnl != null ? parseFloat(String(t.settlement_pnl)) : NaN;
+        if (!isNaN(sp)) {
+          exitedLoss += sp;
+          if (sp < 0) realizedLosses++;
+          else realizedWins++;
+        } else if (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0) {
           const lossDollars = -(Math.abs(t.unwind_loss_cents) / 100);
           exitedLoss += lossDollars;
           realizedLosses++;

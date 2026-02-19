@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 """
-settle_positions.py - Check settlement status of open PM positions and update trades.json.
+settle_positions.py - Check settlement status of positions and update trades.json.
 
-Reads UNHEDGED / TIER3A_HOLD / TIER3B_FLIP trades from trades.json, queries
-the PM US SDK for market settlement, and writes back the realized P&L as
-`settlement_pnl` (in dollars).
+Handles TWO trade types:
+
+  1. UNHEDGED / TIER3A_HOLD / TIER3B_FLIP — directional (PM-only) positions.
+     P&L depends on which side won (see calculate_settlement_pnl).
+
+  2. SUCCESS / TIER1_HEDGE — hedged positions (both legs filled).
+     Spread was locked at trade time.  Settlement just confirms the market
+     resolved and cash returned.  Net P&L = spread_cents * qty / 100 - fees.
 
 Run manually:   python settle_positions.py
 Run on cron:     */30 * * * * cd /path/to/arb-executor && python settle_positions.py >> logs/settle.log 2>&1
@@ -18,23 +23,10 @@ Settlement detection (in priority order):
      If state == "MARKET_STATE_EXPIRED" AND stats.settlementPx exists:
        settlementPx.value == "1.000" → YES won (settlement=1)
        settlementPx.value == "0.000" → NO won  (settlement=0)
-
-P&L logic (settlement value: 1 = YES/long won, 0 = NO/short won):
-
-  settlement == 1 (YES won):
-    BUY_PM_SELL_K (we're long PM YES): WIN  → pnl = (100 - pm_price) * qty / 100
-    BUY_K_SELL_PM (we're short PM YES): LOSE → pnl = -(100 - pm_price) * qty / 100
-
-  settlement == 0 (NO won):
-    BUY_PM_SELL_K (we're long PM YES): LOSE → pnl = -pm_price * qty / 100
-    BUY_K_SELL_PM (we're short PM YES): WIN  → pnl = pm_price * qty / 100
-
-NOTE: This only calculates the PM leg P&L.  The Kalshi leg settled separately
-(Kalshi auto-settles).  For UNHEDGED trades, there IS no Kalshi hedge — the
-entire P&L is the PM leg.
 """
 import asyncio
 import json
+import math
 import os
 import sys
 from datetime import datetime, timezone
@@ -50,9 +42,13 @@ PM_US_API_KEY = os.getenv('PM_US_API_KEY')
 PM_US_SECRET_KEY = os.getenv('PM_US_SECRET_KEY')
 TRADES_FILE = os.path.join(os.path.dirname(__file__), 'trades.json')
 
-# Statuses that represent open (unsettled) positions on the PM side
-OPEN_STATUSES = {'UNHEDGED'}
-OPEN_TIERS = {'TIER3A_HOLD', 'TIER3B_FLIP'}
+# Statuses/tiers that represent DIRECTIONAL (unhedged) positions
+DIRECTIONAL_STATUSES = {'UNHEDGED'}
+DIRECTIONAL_TIERS = {'TIER3A_HOLD', 'TIER3B_FLIP'}
+
+# Statuses/tiers that represent HEDGED positions (both legs filled)
+HEDGED_STATUSES = {'SUCCESS'}
+HEDGED_TIERS = {'TIER1_HEDGE'}
 
 # ── SDK import ────────────────────────────────────────────────────────────
 try:
@@ -179,6 +175,37 @@ def calculate_settlement_pnl(trade: dict, settlement: int) -> float:
     return round(pnl_cents / 100, 4)
 
 
+def calculate_hedged_settlement_pnl(trade: dict) -> float:
+    """
+    Calculate the realized net P&L for a HEDGED (SUCCESS) trade.
+
+    The spread was locked at execution.  Both legs settle to $1 or $0 each,
+    so regardless of outcome the gross profit is spread_cents * qty.
+    We subtract fees to get net.
+
+    Returns P&L in dollars.
+    """
+    spread_cents = trade.get('spread_cents', 0) or 0
+    qty = trade.get('contracts_filled', 0) or trade.get('contracts_intended', 0) or 1
+
+    gross_dollars = spread_cents * qty / 100
+
+    # Use recorded fees if available, otherwise estimate
+    pm_fee = trade.get('pm_fee', 0) or 0
+    k_fee = trade.get('k_fee', 0)
+    if k_fee is None:
+        # Estimate Kalshi fee: ceil(7% * p * (1-p) * 100) / 100 * qty
+        k_price = trade.get('k_price', 50)
+        if k_price and k_price > 0:
+            p = k_price / 100.0
+            k_fee = math.ceil(0.07 * p * (1 - p) * 100) / 100 * qty
+        else:
+            k_fee = 0
+
+    net_dollars = gross_dollars - pm_fee - k_fee
+    return round(net_dollars, 4)
+
+
 # ── Main ─────────────────────────────────────────────────────────────────
 
 async def main():
@@ -205,46 +232,45 @@ async def main():
         with open(TRADES_FILE, 'r') as f:
             trades = json.load(f)
 
-        # Find open positions that need settlement checking
-        open_trades = []
+        # ── Collect unsettled trades ──
+        directional_trades = []   # UNHEDGED / TIER3A / TIER3B
+        hedged_trades = []        # SUCCESS / TIER1_HEDGE
+
         for i, t in enumerate(trades):
-            # Skip trades that already have settlement_pnl
             if t.get('settlement_pnl') is not None:
                 continue
-            # Skip trades with no PM fill
             if (t.get('contracts_filled') or 0) == 0:
                 continue
-            # Check if this is an open position
             status = t.get('status', '')
             tier = t.get('tier', '')
-            if status in OPEN_STATUSES or tier in OPEN_TIERS:
-                open_trades.append((i, t))
+            if status in DIRECTIONAL_STATUSES or tier in DIRECTIONAL_TIERS:
+                directional_trades.append((i, t))
+            elif status in HEDGED_STATUSES or tier in HEDGED_TIERS:
+                hedged_trades.append((i, t))
 
-        if not open_trades:
-            print(f'[{datetime.now().isoformat()}] No open positions to check')
+        total_unsettled = len(directional_trades) + len(hedged_trades)
+        if total_unsettled == 0:
+            print(f'[{datetime.now().isoformat()}] No unsettled trades to check')
             return
 
-        print(f'[{datetime.now().isoformat()}] Checking {len(open_trades)} open position(s)...')
+        print(f'[{datetime.now().isoformat()}] Checking {total_unsettled} unsettled trade(s) '
+              f'({len(directional_trades)} directional, {len(hedged_trades)} hedged)...')
 
-        # De-duplicate slugs (multiple trades may share a market)
-        slugs_to_check = list({t['pm_slug'] for _, t in open_trades if t.get('pm_slug')})
+        # ── De-duplicate slugs across both lists ──
+        all_unsettled = directional_trades + hedged_trades
+        slugs_to_check = list({t['pm_slug'] for _, t in all_unsettled if t.get('pm_slug')})
         print(f'  Unique markets: {len(slugs_to_check)}')
 
-        # Check settlement for each market
-        settled_markets: dict[str, int] = {}  # slug → settlement (1=YES won, 0=NO won)
+        # ── Check settlement for each market ──
+        settled_markets: dict[str, int] = {}
 
         for slug in slugs_to_check:
-            # Primary: SDK settlement endpoint
             result = await check_settlement_sdk(client, slug)
-
-            # Fallback: book endpoint with settlementPx
             if result is None:
                 result = await check_settlement_book(client, slug)
-
             if result is None:
                 print(f'  [{slug}] Not settled yet — skipping')
                 continue
-
             settled_markets[slug] = result
             winner_label = 'YES' if result == 1 else 'NO'
             print(f'  [{slug}] SETTLED — winner: {winner_label} (settlement={result})')
@@ -253,9 +279,9 @@ async def main():
             print('  No newly settled markets found')
             return
 
-        # Update trades
-        updated_count = 0
-        for idx, trade in open_trades:
+        # ── Update DIRECTIONAL trades (UNHEDGED / TIER3) ──
+        dir_count = 0
+        for idx, trade in directional_trades:
             slug = trade.get('pm_slug', '')
             if slug not in settled_markets:
                 continue
@@ -273,20 +299,39 @@ async def main():
             pm_price = trade.get('pm_price', 0)
 
             yes_won = (settlement == 1)
-            if direction == 'BUY_PM_SELL_K':
-                we_won = yes_won
-            else:
-                we_won = not yes_won
+            we_won = yes_won if direction == 'BUY_PM_SELL_K' else not yes_won
 
-            print(f'  SETTLED: {team} ({direction}) {qty}x @ {pm_price} | '
+            print(f'  [DIR] {team} ({direction}) {qty}x @ {pm_price} | '
                   f'YES {"WON" if yes_won else "LOST"} | we {"WIN" if we_won else "LOSE"} | P&L: ${pnl:+.4f}')
-            updated_count += 1
+            dir_count += 1
 
-        if updated_count > 0:
-            # Write back
+        # ── Update HEDGED trades (SUCCESS / TIER1_HEDGE) ──
+        hedged_count = 0
+        for idx, trade in hedged_trades:
+            slug = trade.get('pm_slug', '')
+            if slug not in settled_markets:
+                continue
+
+            settlement = settled_markets[slug]
+            pnl = calculate_hedged_settlement_pnl(trade)
+
+            trades[idx]['settlement_pnl'] = pnl
+            trades[idx]['settlement_time'] = datetime.now(timezone.utc).isoformat()
+            trades[idx]['settlement_winner_index'] = settlement
+
+            team = trade.get('team', '?')
+            qty = trade.get('contracts_filled', 0)
+            spread = trade.get('spread_cents', 0)
+
+            print(f'  [HEDGED] {team} {qty}x | spread={spread}c | net P&L: ${pnl:+.4f}')
+            hedged_count += 1
+
+        total_updated = dir_count + hedged_count
+        if total_updated > 0:
             with open(TRADES_FILE, 'w') as f:
                 json.dump(trades, f, indent=2)
-            print(f'\n  Updated {updated_count} trade(s) in {TRADES_FILE}')
+            print(f'\n  Updated {total_updated} trade(s) in {TRADES_FILE} '
+                  f'({dir_count} directional, {hedged_count} hedged)')
         else:
             print('  No trades updated')
 

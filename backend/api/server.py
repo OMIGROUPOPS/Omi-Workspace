@@ -1856,17 +1856,38 @@ def run_accuracy_reflection():
         return {"error": str(e)}
 
 
+_force_recalc_status = {"running": False, "last_result": None}
+
 @app.post("/api/internal/force-composite-recalc")
 def force_composite_recalc():
-    """Manually trigger a full composite recalc — bypasses movement check,
-    forces fresh pillar analysis and fair line recalc for every game."""
-    try:
-        from composite_tracker import CompositeTracker
-        tracker = CompositeTracker()
-        result = tracker.recalculate_all(force=True)
-        return result
-    except Exception as e:
-        return {"error": str(e)}
+    """Trigger a full composite recalc in a background thread.
+    Returns immediately so Railway's proxy doesn't kill the request.
+    Poll GET /api/internal/force-composite-recalc for status."""
+    import threading
+    if _force_recalc_status["running"]:
+        return {"status": "already_running"}
+
+    def _run():
+        _force_recalc_status["running"] = True
+        try:
+            from composite_tracker import CompositeTracker
+            tracker = CompositeTracker()
+            _force_recalc_status["last_result"] = tracker.recalculate_all(force=True)
+        except Exception as e:
+            _force_recalc_status["last_result"] = {"error": str(e)}
+        finally:
+            _force_recalc_status["running"] = False
+
+    threading.Thread(target=_run, daemon=True).start()
+    return {"status": "started"}
+
+@app.get("/api/internal/force-composite-recalc")
+def force_composite_recalc_status():
+    """Poll for the result of the last force-composite-recalc run."""
+    return {
+        "running": _force_recalc_status["running"],
+        "last_result": _force_recalc_status["last_result"],
+    }
 
 
 @app.get("/api/internal/closing-lines")

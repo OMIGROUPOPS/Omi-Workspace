@@ -1858,11 +1858,12 @@ def run_accuracy_reflection():
 
 @app.post("/api/internal/force-composite-recalc")
 def force_composite_recalc():
-    """Manually trigger a full composite recalc cycle (rewrites fair lines)."""
+    """Manually trigger a full composite recalc — bypasses movement check,
+    forces fresh pillar analysis and fair line recalc for every game."""
     try:
         from composite_tracker import CompositeTracker
         tracker = CompositeTracker()
-        result = tracker.recalculate_all()
+        result = tracker.recalculate_all(force=True)
         return result
     except Exception as e:
         return {"error": str(e)}

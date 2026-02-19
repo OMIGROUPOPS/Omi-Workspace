@@ -751,7 +751,7 @@ class CompositeTracker:
             # Storage failure must never block composite calculation
             logger.warning(f"[VarEngine] Storage failed for {game_id}: {e}")
 
-    def recalculate_all(self) -> dict:
+    def recalculate_all(self, force: bool = False) -> dict:
         """
         Main entry point. For every active (not yet started) game in cached_odds:
         1. Run analyze_game for fresh pillar scores
@@ -759,6 +759,9 @@ class CompositeTracker:
         3. Calculate fair lines (same formulas as edgescout.ts)
         4. Write row to composite_history
         5. Run variable engine → store results, use enhanced composite if confident
+
+        force=True bypasses the movement check — forces fresh pillar analysis
+        and fair line recalc for every game (use after deploying formula changes).
         """
         if not db._is_connected():
             return {"error": "Database not connected", "games_processed": 0, "errors": 0}
@@ -846,11 +849,14 @@ class CompositeTracker:
                 book_ml_away = book_lines["book_ml_away"]
                 book_ml_draw = book_lines["book_ml_draw"]
 
-                # 2. Movement check — skip if lines haven't moved
+                # 2. Movement check — skip if lines haven't moved (unless force=True)
                 previous = latest_composites.get(game_id)
-                should_recalc, reason = _should_recalculate(
-                    game_id, book_spread, book_total, previous, now_dt
-                )
+                if force:
+                    should_recalc, reason = True, "forced"
+                else:
+                    should_recalc, reason = _should_recalculate(
+                        game_id, book_spread, book_total, previous, now_dt
+                    )
 
                 if not should_recalc:
                     skipped += 1

@@ -1103,7 +1103,7 @@ async def calculate_pillars(
 # =============================================================================
 
 @app.post("/api/internal/grade-games")
-async def internal_grade_games(sport: str = None, regrade: bool = False):
+def internal_grade_games(sport: str = None, regrade: bool = False):
     """Grade completed games and generate prediction_grades rows.
 
     Pass ?regrade=true to purge all prediction_grades and regenerate
@@ -1116,7 +1116,7 @@ async def internal_grade_games(sport: str = None, regrade: bool = False):
 
 
 @app.post("/api/internal/backfill-scores")
-async def backfill_scores():
+def backfill_scores():
     """One-time backfill: fetch ESPN scores for Feb 10+ games, grade them.
 
     1. Purge pre-Feb-10 game_results and prediction_grades (broken pillars)
@@ -1237,7 +1237,7 @@ async def backfill_scores():
 
 
 @app.get("/api/internal/edge/performance")
-async def internal_edge_performance(
+def internal_edge_performance(
     sport: str = None,
     days: int = 30,
     market: str = None,
@@ -1258,7 +1258,7 @@ async def internal_edge_performance(
 
 
 @app.get("/api/internal/edge/graded-games")
-async def internal_graded_games(
+def internal_graded_games(
     sport: str = None,
     market: str = None,
     verdict: str = None,
@@ -1279,7 +1279,7 @@ async def internal_graded_games(
 
 
 @app.get("/api/internal/edge/live-markets")
-async def internal_live_markets(sport: str = None):
+def internal_live_markets(sport: str = None):
     """Get upcoming games with current OMI fair lines and book edges."""
     try:
         grader = InternalGrader()
@@ -1291,7 +1291,7 @@ async def internal_live_markets(sport: str = None):
 
 
 @app.get("/api/internal/edge/reflection")
-async def internal_edge_reflection(sport: str = None):
+def internal_edge_reflection(sport: str = None):
     """Deep reflection analysis on prediction accuracy and pillar effectiveness."""
     try:
         from reflection_engine import ReflectionEngine
@@ -1303,7 +1303,7 @@ async def internal_edge_reflection(sport: str = None):
 
 
 @app.get("/api/internal/edge-analytics")
-async def internal_edge_analytics(sport: str = None, days: int = 30):
+def internal_edge_analytics(sport: str = None, days: int = 30):
     """Deep edge analytics: calibration curves, conditional breakdowns, CLV, insights."""
     try:
         from edge_analytics import EdgeAnalytics
@@ -1314,7 +1314,7 @@ async def internal_edge_analytics(sport: str = None, days: int = 30):
 
 
 @app.get("/api/internal/exchange-accuracy")
-async def internal_exchange_accuracy(sport: str = None, days: int = 30):
+def internal_exchange_accuracy(sport: str = None, days: int = 30):
     """Exchange vs sportsbook accuracy comparison from exchange_accuracy_log."""
     try:
         from edge_analytics import EdgeAnalytics
@@ -1329,7 +1329,7 @@ async def internal_exchange_accuracy(sport: str = None, days: int = 30):
 # =============================================================================
 
 @app.get("/api/v1/pregame-edges")
-async def pregame_edges(sport: str = None):
+def pregame_edges(sport: str = None):
     """Get latest pregame snapshot for all upcoming games with edges."""
     try:
         if not db._is_connected():
@@ -1373,7 +1373,7 @@ async def pregame_edges(sport: str = None):
 
 
 @app.get("/api/v1/pregame-history")
-async def pregame_history(game_id: str = None):
+def pregame_history(game_id: str = None):
     """Get all pregame snapshots for a specific game, ordered by time."""
     if not game_id:
         raise HTTPException(status_code=400, detail="game_id is required")
@@ -1398,7 +1398,7 @@ async def pregame_history(game_id: str = None):
 
 
 @app.get("/api/internal/pregame-accuracy")
-async def internal_pregame_accuracy(sport: str = None, days: int = 30):
+def internal_pregame_accuracy(sport: str = None, days: int = 30):
     """Pregame accuracy analysis: how OMI fair lines performed by hours-to-game bucket."""
     try:
         from pregame_capture import PregameCapture
@@ -1696,7 +1696,7 @@ async def run_model_feedback(sport: str = None, min_games: int = 50, apply_weigh
 
 
 @app.get("/api/internal/system-health")
-async def system_health():
+def system_health():
     """Get system health report across all subsystems."""
     try:
         from system_health import SystemHealth
@@ -1708,7 +1708,7 @@ async def system_health():
 
 
 @app.get("/api/internal/accuracy-summary")
-async def accuracy_summary(sport: str = None, days: int = 30):
+def accuracy_summary(sport: str = None, days: int = 30):
     """Prediction accuracy reflection pool — how close OMI fair lines are to reality."""
     try:
         from accuracy_tracker import AccuracyTracker
@@ -1719,7 +1719,7 @@ async def accuracy_summary(sport: str = None, days: int = 30):
 
 
 @app.post("/api/internal/run-accuracy-reflection")
-async def run_accuracy_reflection():
+def run_accuracy_reflection():
     """Manually trigger accuracy reflection — process completed games."""
     try:
         from accuracy_tracker import AccuracyTracker

@@ -33,6 +33,44 @@ logger = logging.getLogger(__name__)
 
 
 # =============================================================================
+# SCHEDULER PAUSE — lets dashboard endpoints grab a Supabase connection
+# =============================================================================
+_paused = False
+_resume_timer = None
+
+def is_paused() -> bool:
+    return _paused
+
+def pause_scheduler(seconds: int = 60):
+    """Pause all scheduler jobs for `seconds`. Auto-resumes after."""
+    global _paused, _resume_timer
+    import threading
+    _paused = True
+    if _resume_timer is not None:
+        _resume_timer.cancel()
+    _resume_timer = threading.Timer(seconds, resume_scheduler)
+    _resume_timer.daemon = True
+    _resume_timer.start()
+    logger.info(f"[Scheduler] PAUSED for {seconds}s")
+
+def resume_scheduler():
+    """Resume scheduler jobs immediately."""
+    global _paused, _resume_timer
+    _paused = False
+    if _resume_timer is not None:
+        _resume_timer.cancel()
+        _resume_timer = None
+    logger.info("[Scheduler] RESUMED")
+
+def _check_paused(job_name: str) -> bool:
+    """Return True if paused (caller should return early)."""
+    if _paused:
+        logger.debug(f"[Scheduler] {job_name} skipped (paused)")
+        return True
+    return False
+
+
+# =============================================================================
 # WEATHER FETCHING
 # =============================================================================
 
@@ -216,6 +254,8 @@ def run_pregame_cycle() -> dict:
     - Fetch weather for outdoor games
     - Run analysis and save predictions
     """
+    if _check_paused("pregame_cycle"):
+        return {"skipped": "paused"}
     start_time = datetime.now(timezone.utc)
     logger.info(f"Starting PRE-GAME cycle at {start_time.isoformat()}")
     
@@ -350,6 +390,8 @@ def run_live_cycle() -> dict:
     - Save snapshots for line movement tracking
     - Detect >0.5 point movements and trigger pillar recalculation
     """
+    if _check_paused("live_cycle"):
+        return {"skipped": "paused"}
     from engine import analyze_all_games
     from engine.analyzer import analyze_game, fetch_line_context
 
@@ -451,6 +493,8 @@ def run_live_props_cycle() -> dict:
     - Fetch props for live games only
     - Called at quarter/period breaks
     """
+    if _check_paused("live_props_cycle"):
+        return {"skipped": "paused"}
     start_time = datetime.now(timezone.utc)
     logger.info(f"Starting LIVE PROPS cycle at {start_time.isoformat()}")
     
@@ -523,6 +567,8 @@ def run_grading_cycle() -> dict:
     - Fetch ESPN scores for completed games
     - Generate prediction_grades rows
     """
+    if _check_paused("grading_cycle"):
+        return {"skipped": "paused"}
     start_time = datetime.now(timezone.utc)
     logger.info(f"Starting GRADING cycle at {start_time.isoformat()}")
 
@@ -572,6 +618,8 @@ def run_analysis_cycle() -> dict:
 
 def run_daily_feedback():
     """Daily model feedback loop: analyze grading performance and adjust pillar weights."""
+    if _check_paused("daily_feedback"):
+        return
     logger.info("[DailyFeedback] Starting daily feedback cycle")
     from model_feedback import ModelFeedback
 
@@ -643,6 +691,8 @@ def start_scheduler():
 
     # Exchange sync: Every 15 minutes — Kalshi + Polymarket
     def run_exchange_sync():
+        if _check_paused("exchange_sync"):
+            return
         try:
             from exchange_tracker import ExchangeTracker
             tracker = ExchangeTracker()
@@ -661,6 +711,8 @@ def start_scheduler():
 
     # Composite recalc: Every 15 minutes — recalculate fair lines from fresh pillars
     def run_composite_recalc():
+        if _check_paused("composite_recalc"):
+            return
         try:
             from composite_tracker import CompositeTracker
             tracker = CompositeTracker()
@@ -686,6 +738,8 @@ def start_scheduler():
     # Fast refresh: Every 3 minutes — lightweight fair-line update for LIVE games
     # Reuses composite scores from last full calc, only grabs fresh book lines
     def run_fast_refresh():
+        if _check_paused("fast_refresh"):
+            return
         try:
             from composite_tracker import CompositeTracker
             tracker = CompositeTracker()
@@ -709,6 +763,8 @@ def start_scheduler():
 
     # Pregame capture: Every 15 minutes — snapshot fair lines, edges, pillars
     def run_pregame_capture():
+        if _check_paused("pregame_capture"):
+            return
         try:
             from pregame_capture import PregameCapture
             result = PregameCapture().capture_all()
@@ -735,6 +791,8 @@ def start_scheduler():
 
     # Accuracy reflection: Every 60 minutes — measure how close OMI fair lines were to reality
     def run_accuracy_reflection():
+        if _check_paused("accuracy_reflection"):
+            return
         try:
             tracker = AccuracyTracker()
             result = tracker.run_accuracy_reflection(lookback_hours=48)
@@ -753,6 +811,8 @@ def start_scheduler():
 
     # System health check: Every 6 hours — log subsystem health, CRITICAL at ERROR level
     def run_health_check_job():
+        if _check_paused("health_check"):
+            return
         try:
             from system_health import run_health_check
             run_health_check()
@@ -769,6 +829,8 @@ def start_scheduler():
 
     # Exchange cleanup: Daily at 4 AM UTC — remove unmapped Polymarket junk rows
     def run_exchange_cleanup():
+        if _check_paused("exchange_cleanup"):
+            return
         try:
             from exchange_tracker import ExchangeTracker
             tracker = ExchangeTracker()

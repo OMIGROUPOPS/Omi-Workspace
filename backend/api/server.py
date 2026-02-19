@@ -67,6 +67,35 @@ def _cache_set(key: str, data):
     _cache[key] = {"data": data, "ts": time.time()}
 
 
+def _with_scheduler_pause(fn, *args, **kwargs):
+    """Pause scheduler, run fn, resume. Guarantees a free Supabase connection."""
+    from scheduler import pause_scheduler, resume_scheduler
+    pause_scheduler(60)
+    try:
+        return fn(*args, **kwargs)
+    finally:
+        resume_scheduler()
+
+
+# =============================================================================
+# SCHEDULER PAUSE/RESUME API
+# =============================================================================
+
+@app.post("/api/internal/pause-scheduler")
+def api_pause_scheduler(seconds: int = 60):
+    """Pause all scheduler jobs for N seconds (default 60). Auto-resumes."""
+    from scheduler import pause_scheduler
+    pause_scheduler(min(seconds, 300))
+    return {"status": "paused", "seconds": min(seconds, 300)}
+
+@app.post("/api/internal/resume-scheduler")
+def api_resume_scheduler():
+    """Resume scheduler jobs immediately."""
+    from scheduler import resume_scheduler
+    resume_scheduler()
+    return {"status": "resumed"}
+
+
 # =============================================================================
 # HEALTH & STATUS
 # =============================================================================
@@ -1284,16 +1313,13 @@ def internal_edge_performance(
     if cached is not None:
         return cached
 
-    # 3. Last resort: direct Supabase query
-    grader = InternalGrader()
-    data = grader.get_performance(
-        sport.upper() if sport else None,
-        days,
-        market,
-        confidence_tier,
-        signal,
-        since,
-    )
+    # 3. Last resort: pause scheduler, query Supabase directly
+    def _query():
+        return InternalGrader().get_performance(
+            sport.upper() if sport else None,
+            days, market, confidence_tier, signal, since,
+        )
+    data = _with_scheduler_pause(_query)
     _cache_set(ck, data)
     return data
 
@@ -1363,7 +1389,9 @@ def internal_exchange_accuracy(sport: str = None, days: int = 30):
         return cached
     try:
         from edge_analytics import EdgeAnalytics
-        data = EdgeAnalytics().analyze_exchange_accuracy(sport.upper() if sport else None, days)
+        def _query():
+            return EdgeAnalytics().analyze_exchange_accuracy(sport.upper() if sport else None, days)
+        data = _with_scheduler_pause(_query)
         _cache_set(ck, data)
         return data
     except Exception as e:
@@ -1750,8 +1778,10 @@ def system_health():
         return cached
     try:
         from system_health import SystemHealth
-        health = SystemHealth()
-        data = health.run_all_checks()
+        def _query():
+            health = SystemHealth()
+            return health.run_all_checks()
+        data = _with_scheduler_pause(_query)
         _cache_set("system-health", data)
         return data
     except Exception as e:
@@ -1768,8 +1798,10 @@ def accuracy_summary(sport: str = None, days: int = 30):
         return cached
     try:
         from accuracy_tracker import AccuracyTracker
-        tracker = AccuracyTracker()
-        data = tracker.get_accuracy_summary(sport=sport, days=days)
+        def _query():
+            tracker = AccuracyTracker()
+            return tracker.get_accuracy_summary(sport=sport, days=days)
+        data = _with_scheduler_pause(_query)
         _cache_set(ck, data)
         return data
     except Exception as e:

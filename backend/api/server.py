@@ -27,6 +27,7 @@ from results_tracker import ResultsTracker
 from espn_scores import ESPNScoreFetcher, AutoGrader, teams_match, SPORT_KEY_VARIANTS, ESPN_SPORTS
 from internal_grader import (
     InternalGrader, determine_signal, calc_edge_pct, edge_to_confidence,
+    _cap_edge_display,
     SPORT_DISPLAY, _normalize_sport, PROB_PER_POINT, PROB_PER_TOTAL_POINT,
 )
 
@@ -2213,8 +2214,8 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
     if fair_total is not None and book_total is not None:
         total_edge_pct = calc_edge_pct(float(fair_total), float(book_total), "total")
 
-    # Pick best edge
-    best_edge_pct = max(spread_edge_pct, total_edge_pct)
+    # Pick best edge (soft-cap before signal tier mapping)
+    best_edge_pct = _cap_edge_display(max(spread_edge_pct, total_edge_pct))
     best_market = "spread" if spread_edge_pct >= total_edge_pct else "total"
     signal = determine_signal(best_edge_pct)
     confidence = edge_to_confidence(best_edge_pct)
@@ -2281,7 +2282,7 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
             spread_edge_pct = calc_edge_pct(live_fair_spread, float(book_spread), "spread")
             fair_spread = round(live_fair_spread * 2) / 2
 
-        best_edge_pct = max(spread_edge_pct, total_edge_pct)
+        best_edge_pct = _cap_edge_display(max(spread_edge_pct, total_edge_pct))
         best_market = "spread" if spread_edge_pct >= total_edge_pct else "total"
         signal = determine_signal(best_edge_pct)
         confidence = edge_to_confidence(best_edge_pct)

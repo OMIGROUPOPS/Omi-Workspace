@@ -322,9 +322,15 @@ def _calculate_fair_spread(book_spread: float, composite_spread: float) -> float
     """
     Mirror edgescout.ts calculateFairSpread (lines 80-91).
     composite_spread is on 0-1 scale from analyzer.
+
+    Confidence scaling: composites near 0.50 produce near-zero adjustments.
+    A composite of 0.60 adjusts modestly; 0.80 adjusts aggressively.
+    This prevents low-confidence composites (0.30-0.37) from generating
+    the largest fair line divergences.
     """
     deviation = composite_spread * 100 - 50
-    adjustment = deviation * FAIR_LINE_SPREAD_FACTOR
+    confidence = abs(composite_spread - 0.50) * 2  # 0.0 at 0.50, 1.0 at 0/1
+    adjustment = deviation * FAIR_LINE_SPREAD_FACTOR * confidence
     return _round_to_half(book_spread - adjustment)
 
 
@@ -333,9 +339,13 @@ def _calculate_fair_total(book_total: float, composite_total: float) -> float:
     Calculate fair total from the full totals-market composite (0-1 scale),
     not just the game_environment pillar. This mirrors the approach used by
     _calculate_fair_spread which takes the full spread composite.
+
+    Same confidence scaling as _calculate_fair_spread — near-neutral
+    composites produce near-zero total adjustments.
     """
     deviation = composite_total * 100 - 50
-    adjustment = deviation * FAIR_LINE_TOTAL_FACTOR
+    confidence = abs(composite_total - 0.50) * 2
+    adjustment = deviation * FAIR_LINE_TOTAL_FACTOR * confidence
     return _round_to_half(book_total + adjustment)
 
 

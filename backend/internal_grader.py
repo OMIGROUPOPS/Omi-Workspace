@@ -107,6 +107,16 @@ def determine_signal(edge_pct, market_type="spread") -> str:
     return "NO EDGE"
 
 
+def _cap_edge_display(raw_edge, threshold=8.0, decay=0.3):
+    """Soft-cap edge for display — mirrors composite_tracker._cap_edge().
+    Above threshold, apply diminishing returns so 12% raw → 9.2% display."""
+    if raw_edge is None:
+        return raw_edge
+    if raw_edge <= threshold:
+        return raw_edge
+    return round(threshold + (raw_edge - threshold) * decay, 2)
+
+
 def edge_to_confidence(edge_pct: float) -> float:
     """Map edge % to confidence % via linear interpolation within bands.
     < 1%  (NO EDGE)   → 50-54%
@@ -1728,9 +1738,9 @@ class InternalGrader:
                 fd_bl = fd_lines.get("spread_line")
                 dk_bl = dk_lines.get("spread_line")
 
-                # Stale check between books
-                fd_edge = calc_edge_pct(fair_s, float(fd_bl), "spread") if fd_bl is not None else None
-                dk_edge = calc_edge_pct(fair_s, float(dk_bl), "spread") if dk_bl is not None else None
+                # Stale check between books (soft-cap edges before signal tier)
+                fd_edge = _cap_edge_display(calc_edge_pct(fair_s, float(fd_bl), "spread")) if fd_bl is not None else None
+                dk_edge = _cap_edge_display(calc_edge_pct(fair_s, float(dk_bl), "spread")) if dk_bl is not None else None
                 fd_signal = determine_signal(fd_edge) if fd_edge is not None else None
                 dk_signal = determine_signal(dk_edge) if dk_edge is not None else None
 
@@ -1795,8 +1805,8 @@ class InternalGrader:
                 fd_bl = fd_lines.get("total_line")
                 dk_bl = dk_lines.get("total_line")
 
-                fd_edge = calc_edge_pct(fair_t, float(fd_bl), "total") if fd_bl is not None else None
-                dk_edge = calc_edge_pct(fair_t, float(dk_bl), "total") if dk_bl is not None else None
+                fd_edge = _cap_edge_display(calc_edge_pct(fair_t, float(fd_bl), "total")) if fd_bl is not None else None
+                dk_edge = _cap_edge_display(calc_edge_pct(fair_t, float(dk_bl), "total")) if dk_bl is not None else None
                 fd_signal = determine_signal(fd_edge) if fd_edge is not None else None
                 dk_signal = determine_signal(dk_edge) if dk_edge is not None else None
 

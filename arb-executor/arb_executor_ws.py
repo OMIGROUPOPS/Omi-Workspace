@@ -319,6 +319,10 @@ class OmiSignalCache:
         edge = signal.get("best_edge_pct", 0) or 0
         return min(edge / 10.0, 1.0)
 
+    def get_flow_gated(self, signal: dict) -> bool:
+        """Return True if sharp money flow doesn't confirm the edge."""
+        return bool(signal.get("flow_gated", False))
+
     def get_favored_team(self, signal: dict) -> str:
         """Derive favored team from favored_side field."""
         side = signal.get("favored_side", "")

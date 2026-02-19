@@ -1548,12 +1548,18 @@ async def execute_arb(
                 live_confidence = live_data.get("live_confidence", "") if live_data else ""
                 pillar_scores = omi_signal_data.get("pillar_scores", {})
 
+                flow_gated = omi_cache.get_flow_gated(omi_signal_data)
                 print(f"[TIER3] OMI signal: edge={omi_signal_data.get('best_edge_pct')}%, "
                       f"ceq={ceq:.2f}, live_ceq={live_ceq}, favored={favored_team}, "
-                      f"signal={signal_tier}, game_status={game_status}")
+                      f"signal={signal_tier}, game_status={game_status}, "
+                      f"flow_gated={flow_gated}")
+
+                # Flow-gated: sharp money doesn't confirm edge — skip directional
+                if flow_gated:
+                    print(f"[OMI] Flow-gated signal: {arb.team} — skipping directional")
 
                 # Step 2: Game status check
-                if game_status != "final":
+                elif game_status != "final":
 
                     # Step 3: Exposure limits
                     current_exposure, daily_loss = load_directional_positions()

@@ -694,10 +694,21 @@ def run_daily_feedback():
 # =============================================================================
 
 def start_scheduler():
-    """Start the background scheduler with tiered polling."""
+    """Start the background scheduler with tiered polling.
+
+    IMPORTANT: All jobs are staggered so nothing fires in the first 60 seconds.
+    This ensures the HTTP server can respond to health checks immediately.
+    """
     scheduler = BackgroundScheduler()
-    
-    # Pre-game polling: Every 30 minutes
+    now = datetime.now(timezone.utc)
+
+    # -------------------------------------------------------------------------
+    # Helper: all jobs get a delayed first run so startup isn't a thundering herd
+    # -------------------------------------------------------------------------
+    def _delayed(seconds):
+        return now + timedelta(seconds=seconds)
+
+    # Pre-game polling: Every 30 minutes (first run at +60s)
     scheduler.add_job(
         func=run_pregame_cycle,
         trigger=IntervalTrigger(minutes=PREGAME_POLL_INTERVAL_MINUTES),
@@ -706,9 +717,10 @@ def start_scheduler():
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
+        next_run_time=_delayed(60),
     )
 
-    # Live polling: Every 5 minutes (reduced from 2 to ease connection pressure)
+    # Live polling: Every 5 minutes (first run at +70s)
     scheduler.add_job(
         func=run_live_cycle,
         trigger=IntervalTrigger(minutes=LIVE_POLL_INTERVAL_MINUTES),
@@ -717,9 +729,10 @@ def start_scheduler():
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
+        next_run_time=_delayed(70),
     )
 
-    # Live props polling: Every 7-8 minutes (roughly 2x per quarter)
+    # Live props polling: Every 7-8 minutes (first run at +80s)
     scheduler.add_job(
         func=run_live_props_cycle,
         trigger=IntervalTrigger(minutes=7),
@@ -728,9 +741,10 @@ def start_scheduler():
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
+        next_run_time=_delayed(80),
     )
 
-    # Closing line capture: Every 10 minutes
+    # Closing line capture: Every 10 minutes (first run at +90s)
     from closing_line_capture import run_closing_line_capture
     scheduler.add_job(
         func=run_closing_line_capture,
@@ -740,9 +754,10 @@ def start_scheduler():
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
+        next_run_time=_delayed(90),
     )
 
-    # Exchange sync: Every 15 minutes — Kalshi + Polymarket
+    # Exchange sync: Every 15 minutes — Kalshi + Polymarket (first run at +100s)
     def run_exchange_sync():
         if _check_paused("exchange_sync"):
             return
@@ -764,9 +779,10 @@ def start_scheduler():
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
+        next_run_time=_delayed(100),
     )
 
-    # Composite recalc: Every 20 minutes (reduced from 15 to ease connection pressure)
+    # Composite recalc: Every 20 minutes (first run at +120s)
     def run_composite_recalc():
         if _check_paused("composite_recalc"):
             return
@@ -794,9 +810,10 @@ def start_scheduler():
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
+        next_run_time=_delayed(120),
     )
 
-    # Fast refresh: Every 3 minutes — lightweight fair-line update for LIVE games
+    # Fast refresh: Every 3 minutes — lightweight fair-line update for LIVE games (first run at +90s)
     def run_fast_refresh():
         if _check_paused("fast_refresh"):
             return
@@ -823,9 +840,10 @@ def start_scheduler():
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
+        next_run_time=_delayed(90),
     )
 
-    # Pregame capture: Every 15 minutes — snapshot fair lines, edges, pillars
+    # Pregame capture: Every 15 minutes (first run at +110s)
     def run_pregame_capture():
         if _check_paused("pregame_capture"):
             return
@@ -846,9 +864,10 @@ def start_scheduler():
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
+        next_run_time=_delayed(110),
     )
 
-    # Grading: Every 60 minutes — fetch ESPN scores and grade completed games
+    # Grading: Every 60 minutes (first run at +180s)
     scheduler.add_job(
         func=run_grading_cycle,
         trigger=IntervalTrigger(minutes=60),
@@ -857,9 +876,10 @@ def start_scheduler():
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
+        next_run_time=_delayed(180),
     )
 
-    # Accuracy reflection: Every 60 minutes
+    # Accuracy reflection: Every 60 minutes (first run at +300s / 5 min)
     def run_accuracy_reflection():
         if _check_paused("accuracy_reflection"):
             return
@@ -878,12 +898,12 @@ def start_scheduler():
         minutes=60,
         id="accuracy_reflection",
         name="Prediction accuracy reflection pool",
-        next_run_time=datetime.now(timezone.utc) + timedelta(minutes=5),
+        next_run_time=_delayed(300),
         max_instances=1,
         misfire_grace_time=30,
     )
 
-    # System health check: Every 6 hours
+    # System health check: Every 6 hours (first run at +200s)
     def run_health_check_job():
         if _check_paused("health_check"):
             return
@@ -903,6 +923,7 @@ def start_scheduler():
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
+        next_run_time=_delayed(200),
     )
 
     # Exchange cleanup: Daily at 4 AM UTC
@@ -929,7 +950,7 @@ def start_scheduler():
         misfire_grace_time=30,
     )
 
-    # Performance cache: Every 5 minutes — pre-fetch aggregated performance via RPC
+    # Performance cache: Every 5 minutes (first run at +60s)
     from perf_cache import refresh_performance_cache
     scheduler.add_job(
         func=refresh_performance_cache,
@@ -939,7 +960,7 @@ def start_scheduler():
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
-        next_run_time=datetime.now(timezone.utc) + timedelta(seconds=10),
+        next_run_time=_delayed(60),
     )
 
     # Daily feedback: 6 AM UTC
@@ -954,22 +975,23 @@ def start_scheduler():
     )
 
     scheduler.start()
-    logger.info(f"Scheduler started:")
-    logger.info(f"  - Pre-game: every {PREGAME_POLL_INTERVAL_MINUTES} min")
-    logger.info(f"  - Live: every {LIVE_POLL_INTERVAL_MINUTES} min")
-    logger.info(f"  - Live props: every 7 min")
-    logger.info(f"  - Closing line capture: every 10 min")
-    logger.info(f"  - Exchange sync: every 15 min")
-    logger.info(f"  - Composite recalc: every 20 min")
-    logger.info(f"  - Pregame capture: every 15 min")
-    logger.info(f"  - Grading: every 60 min")
-    logger.info(f"  - Accuracy reflection: every 60 min (5 min delayed start)")
-    logger.info(f"  - Performance cache: every 5 min (10s delayed start)")
-    logger.info(f"  - Health check: every 6 hours")
+    logger.info("Scheduler started (all jobs staggered 60-300s after startup):")
+    logger.info(f"  - Pre-game: every {PREGAME_POLL_INTERVAL_MINUTES} min (first at +60s)")
+    logger.info(f"  - Live: every {LIVE_POLL_INTERVAL_MINUTES} min (first at +70s)")
+    logger.info(f"  - Live props: every 7 min (first at +80s)")
+    logger.info(f"  - Fast refresh: every 3 min (first at +90s)")
+    logger.info(f"  - Closing line capture: every 10 min (first at +90s)")
+    logger.info(f"  - Exchange sync: every 15 min (first at +100s)")
+    logger.info(f"  - Pregame capture: every 15 min (first at +110s)")
+    logger.info(f"  - Composite recalc: every 20 min (first at +120s)")
+    logger.info(f"  - Grading: every 60 min (first at +180s)")
+    logger.info(f"  - Health check: every 6 hours (first at +200s)")
+    logger.info(f"  - Accuracy reflection: every 60 min (first at +300s)")
+    logger.info(f"  - Performance cache: every 5 min (first at +60s)")
     logger.info(f"  - Exchange cleanup: 4:00 AM UTC")
     logger.info(f"  - Daily feedback: 6:00 AM UTC")
-    logger.info(f"  - All jobs: max_instances=1, misfire_grace_time=30s, 30s timeout")
-    
+    logger.info(f"  - All jobs: max_instances=1, misfire_grace_time=30s")
+
     return scheduler
 
 

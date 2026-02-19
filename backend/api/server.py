@@ -9,6 +9,7 @@ Provides REST API endpoints for the frontend:
 - AI Chatbot
 - Results tracking
 """
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Query, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -35,10 +36,27 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+_scheduler = None
+
+@asynccontextmanager
+async def lifespan(app):
+    """Start scheduler AFTER the server is listening — never before."""
+    global _scheduler
+    print("LIFESPAN: server is up, starting scheduler in background...", flush=True)
+    logger.info("FastAPI lifespan: starting scheduler (all jobs delayed 60s+)")
+    from scheduler import start_scheduler
+    _scheduler = start_scheduler()
+    yield
+    # Shutdown
+    if _scheduler:
+        logger.info("Shutting down scheduler...")
+        _scheduler.shutdown(wait=False)
+
 app = FastAPI(
     title="OMI Edge API",
     description="Sports betting mispricing detection API",
-    version="2.0.0"
+    version="2.0.0",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
@@ -103,6 +121,7 @@ def api_resume_scheduler():
 @app.get("/")
 async def root():
     """Health check endpoint."""
+    print("HEALTH CHECK READY", flush=True)
     return {
         "status": "ok",
         "service": "OMI Edge API",

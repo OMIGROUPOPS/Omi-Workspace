@@ -4,7 +4,7 @@ settle_positions.py - Check settlement status of positions and update trades.jso
 
 Handles THREE trade types:
 
-  1. UNHEDGED / TIER3A_HOLD / TIER3B_FLIP — directional (PM-only) positions.
+  1. UNHEDGED / TIER3A_HOLD — directional (PM-only) positions.
      P&L depends on which side won (see calculate_settlement_pnl).
 
   2. SUCCESS / TIER1_HEDGE — hedged positions (both legs filled).
@@ -47,11 +47,14 @@ TRADES_FILE = os.path.join(os.path.dirname(__file__), 'trades.json')
 
 # Statuses/tiers that represent DIRECTIONAL (unhedged) positions
 DIRECTIONAL_STATUSES = {'UNHEDGED'}
-DIRECTIONAL_TIERS = {'TIER3A_HOLD', 'TIER3B_FLIP'}
+DIRECTIONAL_TIERS = {'TIER3A_HOLD'}
 
 # Statuses/tiers that represent HEDGED positions (both legs filled)
 HEDGED_STATUSES = {'SUCCESS'}
 HEDGED_TIERS = {'TIER1_HEDGE'}
+
+# Opposite-side hedge tiers (cross-platform: PM team A + K team B)
+OPPOSITE_HEDGE_TIERS = {'TIER3_OPPOSITE_HEDGE', 'TIER3_OPPOSITE_OVERWEIGHT'}
 
 # ── SDK import ────────────────────────────────────────────────────────────
 try:
@@ -209,6 +212,24 @@ def calculate_hedged_settlement_pnl(trade: dict) -> float:
     return round(net_dollars, 4)
 
 
+def calculate_opposite_hedge_settlement_pnl(trade: dict) -> float:
+    """
+    Calculate the realized P&L for an opposite-side hedge trade.
+
+    Cross-platform arb: PM long Team A + K long Team B.
+    Exactly one team wins, so one leg always pays 100c.
+    P&L = (100 - combined_cost) * qty / 100, same regardless of winner.
+    """
+    combined = trade.get('combined_cost_cents')
+    if combined is None:
+        pm_raw = trade.get('pm_price', 0)
+        pm_c = pm_raw * 100 if pm_raw < 1 else pm_raw
+        combined = pm_c + trade.get('opposite_hedge_price', 0)
+    qty = trade.get('contracts_filled', 0) or 1
+    pnl_cents = (100 - combined) * qty
+    return round(pnl_cents / 100, 4)
+
+
 # ── Main ─────────────────────────────────────────────────────────────────
 
 async def main():
@@ -236,9 +257,10 @@ async def main():
             trades = json.load(f)
 
         # ── Collect unsettled trades ──
-        directional_trades = []   # UNHEDGED / TIER3A / TIER3B
+        directional_trades = []   # UNHEDGED / TIER3A
         hedged_trades = []        # SUCCESS / TIER1_HEDGE
         exited_trades = []        # EXITED (position closed via unwind)
+        opposite_hedge_trades = []  # TIER3_OPPOSITE_HEDGE / TIER3_OPPOSITE_OVERWEIGHT
 
         for i, t in enumerate(trades):
             if t.get('settlement_pnl') is not None:
@@ -251,27 +273,29 @@ async def main():
                 continue
             if (t.get('contracts_filled') or 0) == 0:
                 continue
-            if status in DIRECTIONAL_STATUSES or tier in DIRECTIONAL_TIERS:
+            if tier in OPPOSITE_HEDGE_TIERS:
+                opposite_hedge_trades.append((i, t))
+            elif status in DIRECTIONAL_STATUSES or tier in DIRECTIONAL_TIERS:
                 directional_trades.append((i, t))
             elif status in HEDGED_STATUSES or tier in HEDGED_TIERS:
                 hedged_trades.append((i, t))
 
-        total_unsettled = len(directional_trades) + len(hedged_trades) + len(exited_trades)
+        total_unsettled = len(directional_trades) + len(hedged_trades) + len(exited_trades) + len(opposite_hedge_trades)
         if total_unsettled == 0:
             print(f'[{datetime.now().isoformat()}] No unsettled trades to check')
             return
 
         print(f'[{datetime.now().isoformat()}] Checking {total_unsettled} unsettled trade(s) '
               f'({len(directional_trades)} directional, {len(hedged_trades)} hedged, '
-              f'{len(exited_trades)} exited)...')
+              f'{len(exited_trades)} exited, {len(opposite_hedge_trades)} opposite-hedge)...')
 
         # ── Settlement check for directional + hedged trades ──
         settled_markets: dict[str, int] = {}
         dir_count = 0
         hedged_count = 0
 
-        if directional_trades or hedged_trades:
-            all_market_trades = directional_trades + hedged_trades
+        if directional_trades or hedged_trades or opposite_hedge_trades:
+            all_market_trades = directional_trades + hedged_trades + opposite_hedge_trades
             slugs_to_check = list({t['pm_slug'] for _, t in all_market_trades if t.get('pm_slug')})
             print(f'  Unique markets to check: {len(slugs_to_check)}')
 
@@ -354,12 +378,35 @@ async def main():
             print(f'  [EXITED] {team} ({tier}) {qty}x | unwind_loss={ulc}c | P&L: ${settlement_pnl:+.4f}')
             exited_count += 1
 
-        total_updated = dir_count + hedged_count + exited_count
+        # ── Update OPPOSITE HEDGE trades (cross-platform arb — P&L is deterministic) ──
+        opp_count = 0
+        for idx, trade in opposite_hedge_trades:
+            slug = trade.get('pm_slug', '')
+            if slug not in settled_markets:
+                continue
+
+            settlement = settled_markets[slug]
+            pnl = calculate_opposite_hedge_settlement_pnl(trade)
+
+            trades[idx]['settlement_pnl'] = pnl
+            trades[idx]['settlement_time'] = datetime.now(timezone.utc).isoformat()
+            trades[idx]['settlement_winner_index'] = settlement
+
+            team = trade.get('team', '?')
+            tier = trade.get('tier', '')
+            qty = trade.get('contracts_filled', 0)
+            combined = trade.get('combined_cost_cents', 0)
+
+            print(f'  [OPP_HEDGE] {team} ({tier}) {qty}x | combined={combined:.0f}c | P&L: ${pnl:+.4f}')
+            opp_count += 1
+
+        total_updated = dir_count + hedged_count + exited_count + opp_count
         if total_updated > 0:
             with open(TRADES_FILE, 'w') as f:
                 json.dump(trades, f, indent=2)
             print(f'\n  Updated {total_updated} trade(s) in {TRADES_FILE} '
-                  f'({dir_count} directional, {hedged_count} hedged, {exited_count} exited)')
+                  f'({dir_count} directional, {hedged_count} hedged, {exited_count} exited, '
+                  f'{opp_count} opposite-hedge)')
         else:
             print('  No trades updated')
 

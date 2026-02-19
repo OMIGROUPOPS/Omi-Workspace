@@ -311,13 +311,17 @@ class OmiSignalCache:
         return None
 
     def get_effective_ceq(self, signal: dict) -> float:
-        """Return CEQ on 0-100 scale. Live games use live_ceq, pregame uses best_edge_pct."""
+        """Return best_edge_pct (0-15 scale). Used for pregame thresholds and position sizing."""
+        edge = signal.get("best_edge_pct", 0) or 0
+        return float(edge)
+
+    def get_live_ceq(self, signal: dict) -> float | None:
+        """Return live_ceq (0-100 scale) or None if not live."""
         if signal.get("game_status") == "live" and signal.get("live"):
             live_ceq = signal["live"].get("live_ceq")
             if live_ceq is not None:
                 return float(live_ceq)
-        edge = signal.get("best_edge_pct", 0) or 0
-        return float(edge)
+        return None
 
     def get_hold_signal(self, signal: dict) -> str | None:
         """Return live hold_signal (STRONG_HOLD/HOLD/UNWIND/URGENT_UNWIND) or None."""
@@ -1427,6 +1431,26 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
         }
 
         # -----------------------------------------------------------------
+        # Compute opposite-side hedge info (for Tier 3 cross-platform arb)
+        # -----------------------------------------------------------------
+        opposite_info = None
+        mapping = VERIFIED_MAPS.get(arb.cache_key)
+        if mapping:
+            all_tickers = mapping.get('kalshi_tickers', {})
+            other_teams = [t for t in all_tickers if t != arb.team]
+            if other_teams:
+                ot = other_teams[0]
+                ot_ticker = all_tickers[ot]
+                ot_book = local_books.get(ot_ticker)
+                if ot_book and ot_book.get('best_ask'):
+                    opposite_info = {
+                        'team': ot,
+                        'ticker': ot_ticker,
+                        'ask': ot_book['best_ask'],
+                        'ask_size': ot_book.get('best_ask_size', 0),
+                    }
+
+        # -----------------------------------------------------------------
         # Execute via executor_core (clean execution engine)
         # -----------------------------------------------------------------
         async with EXECUTION_LOCK:
@@ -1442,6 +1466,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 size=optimal_size,
                 k_book_ref=local_books.get(arb.kalshi_ticker),
                 omi_cache=omi_cache,
+                opposite_info=opposite_info,
             )
 
             # Handle result — only apply cooldown when PM order was actually sent
@@ -1449,7 +1474,40 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             if pm_was_sent:
                 last_trade_time = time.time()
 
-            if result.success:
+            if result.tier in ("TIER3_OPPOSITE_HEDGE", "TIER3_OPPOSITE_OVERWEIGHT"):
+                # Opposite-side hedge: cross-platform arb (PM team A + K team B)
+                timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
+                print(f"[EXEC] [{result.tier}]: {result.abort_reason} | {timing}")
+                k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
+                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
+                log_trade(arb, k_result, pm_result, result.tier,
+                          execution_time_ms=result.execution_time_ms,
+                          pm_order_ms=result.pm_order_ms,
+                          sizing_details=_sizing_details,
+                          execution_phase=result.execution_phase,
+                          is_maker=result.is_maker,
+                          gtc_rest_time_ms=result.gtc_rest_time_ms,
+                          gtc_spread_checks=result.gtc_spread_checks,
+                          gtc_cancel_reason=result.gtc_cancel_reason,
+                          tier=result.tier)
+                # Patch opposite hedge fields into trade record
+                from arb_executor_v7 import TRADE_LOG
+                if TRADE_LOG:
+                    TRADE_LOG[-1].update({
+                        'opposite_hedge_ticker': result.opposite_hedge_ticker,
+                        'opposite_hedge_team': result.opposite_hedge_team,
+                        'opposite_hedge_price': result.opposite_hedge_price,
+                        'combined_cost_cents': result.combined_cost_cents,
+                        'guaranteed_profit_cents': result.guaranteed_profit_cents,
+                    })
+                    with open('trades.json', 'w', encoding='utf-8') as f:
+                        json.dump(TRADE_LOG, f, indent=2)
+
+                game_success_cooldown[arb.cache_key] = time.time()
+                save_traded_game(arb.game, pm_slug=arb.pm_slug, team=arb.team)
+                stats['spreads_executed'] += 1
+
+            elif result.success:
                 # Show timing breakdown: PM first (unreliable) → K second (reliable)
                 phase = " [GTC]" if result.execution_phase == "gtc" else ""
                 maker = " (MAKER)" if result.is_maker else ""
@@ -1519,8 +1577,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 except Exception as e:
                     print(f"[ERROR] Failed to save unhedged position: {e}")
 
-            elif result.tier in ("TIER3A", "TIER3B"):
-                # OMI directional hold/flip — not a full unwind
+            elif result.tier == "TIER3A":
+                # OMI directional hold — not a full unwind
                 timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
                 print(f"[EXEC] [{result.tier}]: {result.abort_reason} | {timing}")
                 k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}

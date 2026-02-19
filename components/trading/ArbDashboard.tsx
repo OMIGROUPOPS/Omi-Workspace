@@ -253,7 +253,7 @@ function netColor(cents: number | null | undefined): string {
 /** Is this trade an open (unsettled) position? */
 function isOpenTrade(t: TradeEntry): boolean {
   const tier = t.tier || "";
-  if (tier === "TIER3A_HOLD" || tier === "TIER3B_FLIP") return true;
+  if (tier === "TIER3A_HOLD" || tier === "TIER3_OPPOSITE_HEDGE" || tier === "TIER3_OPPOSITE_OVERWEIGHT") return true;
   if (t.status === "UNHEDGED" && tier !== "TIER3_UNWIND") return true;
   return false;
 }
@@ -270,7 +270,7 @@ function tradePnl(t: TradeEntry): { perContract: number | null; totalDollars: nu
     return { perContract: pc, totalDollars: t.settlement_pnl, qty, isOpen: false, spreadCents };
   }
 
-  // Open positions: UNHEDGED (no unwind tier), TIER3A_HOLD, TIER3B_FLIP
+  // Open positions: UNHEDGED (no unwind tier), TIER3A_HOLD, TIER3_OPPOSITE_HEDGE/OVERWEIGHT
   if (isOpenTrade(t)) {
     return { perContract: null, totalDollars: null, qty, isOpen: true, spreadCents };
   }
@@ -673,7 +673,7 @@ export default function ArbDashboard() {
   function computePnl(trades: TradeEntry[]) {
     let arbPnl = 0;         // SUCCESS trades: spread_cents * contracts / 100
     let exitedLoss = 0;     // EXITED trades: -(abs(unwind_loss_cents) / 100)
-    let directionalPnl = 0; // settled UNHEDGED / TIER3A / TIER3B: settlement_pnl
+    let directionalPnl = 0; // settled UNHEDGED / TIER3A / opposite-hedge: settlement_pnl
     let successes = 0;
     let fills = 0;
     let openCount = 0;
@@ -685,7 +685,7 @@ export default function ArbDashboard() {
       if (t.contracts_filled > 0) fills++;
       const qty = t.contracts_filled > 0 ? t.contracts_filled : (t.contracts_intended || 0);
 
-      // Directional positions (UNHEDGED / TIER3A_HOLD / TIER3B_FLIP)
+      // Directional positions (UNHEDGED / TIER3A_HOLD / TIER3_OPPOSITE_HEDGE/OVERWEIGHT)
       if (isOpenTrade(t)) {
         const sp = t.settlement_pnl != null ? parseFloat(String(t.settlement_pnl)) : NaN;
         if (!isNaN(sp)) {
@@ -787,7 +787,7 @@ export default function ArbDashboard() {
         !t.paper_mode &&
         (t.contracts_filled > 0 || t.status === "EXITED") &&
         (t.status === "SUCCESS" || t.status === "EXITED" || t.status === "UNHEDGED" ||
-         t.tier === "TIER3A_HOLD" || t.tier === "TIER3B_FLIP" || t.tier === "TIER1_HEDGE") &&
+         t.tier === "TIER3A_HOLD" || t.tier === "TIER3_OPPOSITE_HEDGE" || t.tier === "TIER3_OPPOSITE_OVERWEIGHT" || t.tier === "TIER1_HEDGE") &&
         tradePnl(t).totalDollars !== null
     );
 
@@ -1955,8 +1955,10 @@ export default function ArbDashboard() {
                               ? "bg-emerald-500/20 text-emerald-400"
                               : p.status === "TIER3A_HOLD"
                               ? "bg-yellow-500/20 text-yellow-400"
-                              : p.status === "TIER3B_FLIP"
-                              ? "bg-purple-500/20 text-purple-400"
+                              : p.status === "TIER3_OPPOSITE_HEDGE"
+                              ? "bg-blue-500/20 text-blue-400"
+                              : p.status === "TIER3_OPPOSITE_OVERWEIGHT"
+                              ? "bg-cyan-500/20 text-cyan-400"
                               : "bg-red-500/20 text-red-400";
                             const statusLabel = p.hedged ? "HEDGED" : p.status;
                             const pnlColor = p.unrealised_pnl > 0 ? "text-emerald-400" : p.unrealised_pnl < 0 ? "text-red-400" : "text-gray-400";

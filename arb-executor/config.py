@@ -115,14 +115,18 @@ class Config:
     # ==========================================================================
     # OMI EDGE DIRECTIONAL RISK
     # ==========================================================================
-    min_ceq_hold: float = 6.0         # Min CEQ for Tier 3a (hold naked) — 0-100 scale
-    min_ceq_flip: float = 7.0         # Min CEQ for Tier 3b (flip to opposite) — 0-100 scale
-    min_flip_signal: str = "HIGH EDGE" # Min signal tier for flip ("HIGH EDGE" or "MAX EDGE")
+    min_ceq_hold: float = 6.0         # Min edge % for Tier 3a (hold naked) — 0-15 scale
     max_directional_exposure_usd: float = 15.0   # Max $ in naked directional positions
     daily_directional_loss_limit: float = 10.0   # Daily Tier 3 loss limit ($)
-    max_flip_contracts: int = 2        # Max extra contracts when flipping
-    # CEQ contract scale (0-100): [(6.0, 1), (6.5, 2), (7.0, 3)]
-    # Meaning: CEQ 6.0-6.4 → 1 naked, 6.5-6.9 → 2 naked, 7.0+ → 3 naked
+    # Edge % contract scale (0-15): [(6.0, 1), (6.5, 2), (7.0, 3)]
+    # Meaning: edge 6.0-6.4% → 1 naked, 6.5-6.9% → 2 naked, 7.0%+ → 3 naked
+
+    # ==========================================================================
+    # OPPOSITE-SIDE HEDGE (Tier 3 cross-platform arb)
+    # ==========================================================================
+    opposite_hedge_max_cost: int = 100      # Max combined cost for guaranteed path (cents)
+    opposite_overweight_max_cost: int = 103  # Max combined cost for conviction path (cents)
+    opposite_overweight_min_ceq: float = 7.0 # Min edge % for overweight path (0-15 scale)
 
     # ==========================================================================
     # CLASS METHODS FOR MODE CONTROL
@@ -157,16 +161,11 @@ class Config:
 
     @classmethod
     def get_naked_contracts(cls, ceq: float) -> int:
-        """Return max naked contracts for given CEQ (0-100 scale)."""
+        """Return max naked contracts for given edge % (0-15 scale)."""
         if ceq >= 7.0: return 3
         if ceq >= 6.5: return 2
         if ceq >= 6.0: return 1
         return 0
-
-    @classmethod
-    def is_flip_eligible(cls, signal: str) -> bool:
-        """Check if signal tier is high enough for flip."""
-        return signal in ("HIGH EDGE", "MAX EDGE")
 
     @classmethod
     def configure_from_args(cls, args):

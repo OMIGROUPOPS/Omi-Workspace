@@ -278,11 +278,11 @@ class DashboardPusher:
                 with open(TRADES_FILE, "r") as f:
                     trades = json.load(f)
                 # Keep ALL trades that affect P&L (SUCCESS, EXITED, UNHEDGED,
-                # TIER3A_HOLD, TIER3B_FLIP, TIER3_UNWIND).  Only limit
+                # TIER3A_HOLD, TIER3_OPPOSITE_*, TIER3_UNWIND).  Only limit
                 # PM_NO_FILL / SKIPPED which are high-volume, zero-P&L noise.
                 pnl_statuses = {"SUCCESS", "EXITED", "UNHEDGED"}
                 pnl_tiers = {"TIER1_HEDGE", "TIER2_EXIT", "TIER3_UNWIND",
-                             "TIER3A_HOLD", "TIER3B_FLIP"}
+                             "TIER3A_HOLD", "TIER3_OPPOSITE_HEDGE", "TIER3_OPPOSITE_OVERWEIGHT"}
                 pnl_trades = [
                     t for t in trades
                     if t.get("status") in pnl_statuses
@@ -352,7 +352,7 @@ class DashboardPusher:
         Enriches each with current WS prices and OMI signal data.
         """
         OPEN_STATUSES = {"SUCCESS", "UNHEDGED"}
-        OPEN_TIERS = {"TIER1_HEDGE", "TIER3A_HOLD", "TIER3B_FLIP"}
+        OPEN_TIERS = {"TIER1_HEDGE", "TIER3A_HOLD", "TIER3_OPPOSITE_HEDGE", "TIER3_OPPOSITE_OVERWEIGHT"}
 
         try:
             if not os.path.exists(TRADES_FILE):
@@ -922,7 +922,7 @@ class DashboardPusher:
         tier1_count = 0
         tier2_count = 0
         tier3a_count = 0
-        tier3b_count = 0
+        opp_hedge_count = 0
         tier3_unwind_count = 0
         unhedged_no_tier = 0
         exited_count = 0
@@ -952,9 +952,9 @@ class DashboardPusher:
             elif tier in ("TIER3A_HOLD", "TIER3A"):
                 if cf > 0:
                     tier3a_count += 1
-            elif tier in ("TIER3B_FLIP", "TIER3B"):
+            elif tier in ("TIER3_OPPOSITE_HEDGE", "TIER3_OPPOSITE_OVERWEIGHT"):
                 if cf > 0:
-                    tier3b_count += 1
+                    opp_hedge_count += 1
             elif tier == "TIER3_UNWIND":
                 if cf > 0:
                     tier3_unwind_count += 1
@@ -966,7 +966,7 @@ class DashboardPusher:
                 exited_count += 1
 
             # Directional win rate
-            if (status == "UNHEDGED" or tier in ("TIER3A_HOLD", "TIER3A", "TIER3B_FLIP", "TIER3B")):
+            if (status == "UNHEDGED" or tier in ("TIER3A_HOLD", "TIER3A", "TIER3_OPPOSITE_HEDGE", "TIER3_OPPOSITE_OVERWEIGHT")):
                 sp = t.get("settlement_pnl")
                 if sp is not None:
                     dir_settled += 1
@@ -1035,11 +1035,11 @@ class DashboardPusher:
                 "depth_pre_check": False,
                 "max_concurrent_positions": Config.max_concurrent_positions,
                 "min_ceq_hold": Config.min_ceq_hold,
-                "min_ceq_flip": Config.min_ceq_flip,
-                "min_flip_signal": Config.min_flip_signal,
+                "opposite_hedge_max_cost": Config.opposite_hedge_max_cost,
+                "opposite_overweight_max_cost": Config.opposite_overweight_max_cost,
+                "opposite_overweight_min_ceq": Config.opposite_overweight_min_ceq,
                 "max_directional_exposure_usd": Config.max_directional_exposure_usd,
                 "daily_loss_limit": Config.daily_directional_loss_limit,
-                "max_flip_contracts": Config.max_flip_contracts,
                 "expected_slippage_cents": Config.expected_slippage_cents,
                 "price_buffer_cents": Config.price_buffer_cents,
                 "pm_price_buffer_cents": Config.pm_price_buffer_cents,
@@ -1052,7 +1052,7 @@ class DashboardPusher:
                 "tier1_count": tier1_count,
                 "tier2_count": tier2_count,
                 "tier3a_count": tier3a_count,
-                "tier3b_count": tier3b_count,
+                "opp_hedge_count": opp_hedge_count,
                 "tier3_unwind_count": tier3_unwind_count,
                 "unhedged_no_tier": unhedged_no_tier,
                 "kalshi_fail_rate": kalshi_fail_rate,

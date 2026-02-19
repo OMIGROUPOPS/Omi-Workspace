@@ -346,42 +346,154 @@ class DashboardPusher:
     # ── Positions ──────────────────────────────────────────────────────────
 
     def _build_positions(self) -> list:
-        """Return live positions enriched with fill prices from trades.json."""
-        positions = [dict(p) for p in self.live_positions]  # shallow copy each
+        """Build open positions by scanning trades.json for unsettled fills.
+
+        Open = contracts_filled > 0, no settlement_pnl, not EXITED.
+        Enriches each with current WS prices and OMI signal data.
+        """
+        OPEN_STATUSES = {"SUCCESS", "UNHEDGED"}
+        OPEN_TIERS = {"TIER1_HEDGE", "TIER3A_HOLD", "TIER3B_FLIP"}
 
         try:
-            if os.path.exists(TRADES_FILE):
-                with open(TRADES_FILE, "r") as f:
-                    all_trades = json.load(f)
-
-                # Build lookup: game_id -> most recent SUCCESS+hedged trade
-                trade_by_game: Dict[str, dict] = {}
-                for t in all_trades:
-                    if (
-                        t.get("status") == "SUCCESS"
-                        and t.get("hedged")
-                        and t.get("contracts_filled", 0) > 0
-                    ):
-                        trade_by_game[t["game_id"]] = t
-
-                for pos in positions:
-                    trade = trade_by_game.get(pos.get("game_id", ""))
-                    if not trade:
-                        continue
-
-                    pnl = trade.get("actual_pnl")
-                    if pnl and isinstance(pnl, dict):
-                        pc = pnl.get("per_contract", {})
-                        pos["pm_fill_price"] = pc.get("pm_cost", 0)
-                        pos["k_fill_price"] = pc.get("k_cost", 0)
-                        pos["locked_profit_cents"] = pc.get("gross", 0)
-                        pos["net_profit_cents"] = pc.get("net", 0)
-
-                    pos["direction"] = trade.get("direction", "")
-                    pos["contracts"] = trade.get("contracts_filled", 0)
-                    pos["trade_timestamp"] = trade.get("timestamp", "")
+            if not os.path.exists(TRADES_FILE):
+                return []
+            with open(TRADES_FILE, "r") as f:
+                all_trades = json.load(f)
         except Exception as e:
-            logger.debug(f"Error enriching positions: {e}")
+            logger.debug(f"Error loading trades for positions: {e}")
+            return []
+
+        positions = []
+        for t in all_trades:
+            if t.get("contracts_filled", 0) <= 0:
+                continue
+            if t.get("settlement_pnl") is not None:
+                continue
+            status = t.get("status", "")
+            tier = t.get("tier", "")
+            if status == "EXITED":
+                continue
+            if status not in OPEN_STATUSES and tier not in OPEN_TIERS:
+                continue
+
+            qty = t.get("contracts_filled", 0)
+            direction = t.get("direction", "")
+            pm_fill = t.get("pm_price", 0)
+            k_fill = t.get("k_price", 0)
+            team = t.get("team", "")
+            hedged = t.get("hedged", False)
+
+            # Normalise PM fill to cents (stored as decimal < 1 or cents)
+            pm_fill_c = pm_fill * 100 if pm_fill < 1 else pm_fill
+
+            # Cost in dollars
+            pm_cost = pm_fill_c * qty / 100
+            k_cost = k_fill * qty / 100 if hedged else 0
+
+            # ── Current market prices from WS cache ──
+            k_ticker = t.get("kalshi_ticker", "")
+            pm_bid_now = 0.0
+            pm_ask_now = 0.0
+            k_bid_now = 0.0
+            k_ask_now = 0.0
+
+            # Kalshi current
+            if k_ticker:
+                book = self.local_books.get(k_ticker)
+                if book:
+                    k_bid_now = book.get("best_bid") or 0
+                    k_ask_now = book.get("best_ask") or 0
+
+            # PM current via cache_key lookup
+            cache_key = self.ticker_to_cache_key.get(k_ticker, "")
+            if cache_key and team:
+                pm_key = f"{cache_key}_{team}"
+                pm = self.pm_prices.get(pm_key)
+                if pm:
+                    pm_bid_now = pm.get("bid") or 0
+                    pm_ask_now = pm.get("ask") or 0
+
+            # ── Market value (mark-to-market) ──
+            # For BUY_PM_SELL_K: long PM YES, short K YES
+            #   PM value = pm_bid * qty (could sell at bid)
+            #   K value  = (100 - k_ask) * qty (cost to buy back)
+            # For BUY_K_SELL_PM: short PM YES, long K YES
+            #   PM value = (100 - pm_ask) * qty (cost to buy back)
+            #   K value  = k_bid * qty (could sell at bid)
+            if direction == "BUY_PM_SELL_K":
+                pm_mkt = pm_bid_now * qty / 100 if pm_bid_now else 0
+                k_mkt = (100 - k_ask_now) * qty / 100 if hedged and k_ask_now else 0
+            elif direction == "BUY_K_SELL_PM":
+                pm_mkt = (100 - pm_ask_now) * qty / 100 if pm_ask_now else 0
+                k_mkt = k_bid_now * qty / 100 if hedged and k_bid_now else 0
+            else:
+                pm_mkt = 0
+                k_mkt = 0
+
+            # Fees
+            pm_fee = t.get("pm_fee", 0) or 0
+            k_fee = t.get("k_fee", 0) or 0
+            total_fees = pm_fee + k_fee
+
+            # ── Unrealised P&L ──
+            if hedged:
+                # Locked spread — doesn't change with market
+                spread_cents = t.get("spread_cents", 0) or 0
+                unrealised = spread_cents * qty / 100 - total_fees
+            else:
+                # Directional — mark to market
+                if direction == "BUY_PM_SELL_K":
+                    unrealised = pm_mkt - pm_cost - total_fees
+                elif direction == "BUY_K_SELL_PM":
+                    unrealised = pm_cost - pm_mkt - total_fees  # short PM
+                else:
+                    unrealised = 0
+
+            # ── OMI signal ──
+            ceq = None
+            signal = None
+            if self.omi_cache is not None:
+                omi_data = self.omi_cache.get_signal(team)
+                if omi_data:
+                    ceq = round(self.omi_cache.get_effective_ceq(omi_data), 2)
+                    signal = omi_data.get("signal", "")
+
+            # Determine display status
+            if hedged:
+                display_status = "HEDGED"
+            elif tier in OPEN_TIERS:
+                display_status = tier
+            else:
+                display_status = "UNHEDGED"
+
+            positions.append({
+                "game_id": t.get("game_id", ""),
+                "team": team,
+                "sport": t.get("sport", ""),
+                "direction": direction,
+                "status": display_status,
+                "tier": tier,
+                "hedged": hedged,
+                "timestamp": t.get("timestamp", ""),
+                "contracts": qty,
+                "pm_fill_cents": round(pm_fill_c, 1),
+                "k_fill_cents": k_fill,
+                "pm_bid_now": round(pm_bid_now, 1),
+                "pm_ask_now": round(pm_ask_now, 1),
+                "k_bid_now": k_bid_now,
+                "k_ask_now": k_ask_now,
+                "pm_cost_dollars": round(pm_cost, 4),
+                "k_cost_dollars": round(k_cost, 4),
+                "pm_mkt_val_dollars": round(pm_mkt, 4),
+                "k_mkt_val_dollars": round(k_mkt, 4),
+                "pm_fee": round(pm_fee, 4),
+                "k_fee": round(k_fee, 4),
+                "total_fees": round(total_fees, 4),
+                "unrealised_pnl": round(unrealised, 4),
+                "spread_cents": t.get("spread_cents", 0) or 0,
+                "ceq": ceq,
+                "signal": signal,
+            })
 
         return positions
 

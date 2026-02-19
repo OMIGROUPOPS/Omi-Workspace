@@ -89,23 +89,32 @@ export interface PnlSummary {
 }
 
 export interface Position {
-  platform: string;
   game_id: string;
   team: string;
   sport: string;
-  side: string;
-  quantity: number;
-  avg_price: number;
-  current_value: number;
-  hedged_with: string | null;
-  hedge_source?: string | null;
-  pm_fill_price?: number;
-  k_fill_price?: number;
-  direction?: string;
-  locked_profit_cents?: number;
-  net_profit_cents?: number;
-  contracts?: number;
-  trade_timestamp?: string;
+  direction: string;
+  status: string;
+  tier: string;
+  hedged: boolean;
+  timestamp: string;
+  contracts: number;
+  pm_fill_cents: number;
+  k_fill_cents: number;
+  pm_bid_now: number;
+  pm_ask_now: number;
+  k_bid_now: number;
+  k_ask_now: number;
+  pm_cost_dollars: number;
+  k_cost_dollars: number;
+  pm_mkt_val_dollars: number;
+  k_mkt_val_dollars: number;
+  pm_fee: number;
+  k_fee: number;
+  total_fees: number;
+  unrealised_pnl: number;
+  spread_cents: number;
+  ceq: number | null;
+  signal: string | null;
 }
 
 export interface Balances {

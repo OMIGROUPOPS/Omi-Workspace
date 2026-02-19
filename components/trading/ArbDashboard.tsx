@@ -111,23 +111,32 @@ interface PnlSummary {
 }
 
 interface Position {
-  platform: string;
   game_id: string;
   team: string;
   sport: string;
-  side: string;
-  quantity: number;
-  avg_price: number;
-  current_value: number;
-  hedged_with: string | null;
-  hedge_source?: "API_MATCHED" | "CONFIRMED" | "UNHEDGED" | null;
-  pm_fill_price?: number;
-  k_fill_price?: number;
-  direction?: string;
-  locked_profit_cents?: number;
-  net_profit_cents?: number;
-  contracts?: number;
-  trade_timestamp?: string;
+  direction: string;
+  status: string;
+  tier: string;
+  hedged: boolean;
+  timestamp: string;
+  contracts: number;
+  pm_fill_cents: number;
+  k_fill_cents: number;
+  pm_bid_now: number;
+  pm_ask_now: number;
+  k_bid_now: number;
+  k_ask_now: number;
+  pm_cost_dollars: number;
+  k_cost_dollars: number;
+  pm_mkt_val_dollars: number;
+  k_mkt_val_dollars: number;
+  pm_fee: number;
+  k_fee: number;
+  total_fees: number;
+  unrealised_pnl: number;
+  spread_cents: number;
+  ceq: number | null;
+  signal: string | null;
 }
 
 interface Balances {
@@ -741,12 +750,12 @@ export default function ArbDashboard() {
   // ── Positions ───────────────────────────────────────────────────────
   const activePositions = useMemo(() => {
     return (state?.positions || []).filter(
-      (p) => p.quantity > 0 && !hiddenPositions.has(p.game_id)
+      (p) => p.contracts > 0 && !hiddenPositions.has(p.game_id)
     );
   }, [state?.positions, hiddenPositions]);
 
-  const unhedgedPositions = activePositions.filter((p) => !p.hedged_with);
-  const hedgedPositions = activePositions.filter((p) => p.hedged_with);
+  const hedgedPositions = activePositions.filter((p) => p.hedged);
+  const unhedgedPositions = activePositions.filter((p) => !p.hedged);
 
   // Position market value = portfolio - cash per platform
   const positionValues = useMemo(() => {
@@ -1886,230 +1895,165 @@ export default function ArbDashboard() {
                     </span>
                   </div>
                 ) : (
-                  <div className="divide-y divide-gray-800/50">
-                    {unhedgedPositions.map((p, i) => (
-                      <div
-                        key={`uh-${i}`}
-                        className="px-4 py-3 border-l-2 border-red-500 bg-red-500/5"
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <span className="text-white font-medium text-xs">
-                              {p.team || p.game_id}
-                            </span>
-                            <span
-                              className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${sportBadge(p.sport)}`}
-                            >
-                              {p.sport}
-                            </span>
-                            {p.trade_timestamp && (
-                              <span className="text-[9px] text-gray-600">
-                                {timeAgo(p.trade_timestamp)}
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-[9px] font-medium rounded px-1.5 py-0.5 bg-red-500/20 text-red-400">
-                              UNHEDGED
-                            </span>
-                            <button
-                              onClick={() => markSettled(p.game_id)}
-                              className="text-[9px] text-gray-600 hover:text-gray-400 px-1"
-                              title="Hide this position (mark as settled)"
-                            >
-                              Mark Settled
-                            </button>
-                          </div>
-                        </div>
-                        <div className="mt-1.5 flex items-center gap-3 text-[11px]">
-                          <span className="text-gray-400">
-                            {p.platform}: {p.side} x{p.quantity}
-                          </span>
-                          {p.avg_price > 0 && (
-                            <span className="text-gray-500">
-                              @{p.avg_price}c
-                            </span>
-                          )}
-                          <span className="text-red-400/80 text-[10px]">
-                            Exposure: $
-                            {(
-                              ((p.avg_price || 50) * p.quantity) /
-                              100
-                            ).toFixed(2)}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-
-                    {hedgedPositions.map((p, i) => {
-                      const dir = p.direction || "";
-                      const hasFillData =
-                        (p.pm_fill_price ?? 0) > 0 ||
-                        (p.k_fill_price ?? 0) > 0;
-                      const pmDir =
-                        dir === "BUY_PM_SELL_K"
-                          ? "LONG"
-                          : dir === "BUY_K_SELL_PM"
-                          ? "SHORT"
-                          : "";
-                      const kDir =
-                        dir === "BUY_PM_SELL_K"
-                          ? "SHORT"
-                          : dir === "BUY_K_SELL_PM"
-                          ? "LONG"
-                          : "";
-                      const locked = p.locked_profit_cents ?? 0;
-                      const netProfit = p.net_profit_cents ?? 0;
-                      const pmFill = p.pm_fill_price ?? 0;
-                      const kFill = p.k_fill_price ?? 0;
-                      const qty = p.contracts || p.quantity || 0;
-
+                  <div>
+                    {/* Summary row */}
+                    {(() => {
+                      const totPmExp = activePositions.reduce((s, p) => s + p.pm_cost_dollars, 0);
+                      const totKExp = activePositions.reduce((s, p) => s + p.k_cost_dollars, 0);
+                      const totPnl = activePositions.reduce((s, p) => s + p.unrealised_pnl, 0);
                       return (
-                        <div
-                          key={`h-${i}`}
-                          className="px-4 py-3 border-l-2 border-emerald-500"
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <span className="text-white font-medium text-xs">
-                                {p.team || p.game_id}
-                              </span>
-                              <span
-                                className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${sportBadge(p.sport)}`}
-                              >
-                                {p.sport}
-                              </span>
-                              {p.trade_timestamp && (
-                                <span className="text-[9px] text-gray-600">
-                                  {timeAgo(p.trade_timestamp)}
-                                </span>
-                              )}
-                            </div>
-                            <div className="flex items-center gap-2">
-                              {hasFillData && (
-                                <span
-                                  className={`text-[10px] font-mono font-bold ${
-                                    netProfit > 0
-                                      ? "text-emerald-400"
-                                      : netProfit < 0
-                                      ? "text-red-400"
-                                      : "text-gray-400"
-                                  }`}
-                                >
-                                  {netProfit >= 0 ? "+" : ""}
-                                  {netProfit.toFixed(1)}c net
-                                </span>
-                              )}
-                              <span className="text-[9px] font-medium rounded px-1.5 py-0.5 bg-emerald-500/20 text-emerald-400">
-                                HEDGED
-                              </span>
-                              <button
-                                onClick={() => markSettled(p.game_id)}
-                                className="text-[9px] text-gray-600 hover:text-gray-400 px-1"
-                                title="Hide this position (mark as settled)"
-                              >
-                                Mark Settled
-                              </button>
-                            </div>
-                          </div>
-
-                          {hasFillData ? (
-                            <div className="mt-2 grid grid-cols-2 gap-3">
-                              <div className="rounded bg-blue-500/5 border border-blue-500/20 px-2.5 py-1.5">
-                                <div className="text-[9px] text-blue-400 font-medium mb-0.5">
-                                  PM LEG
-                                </div>
-                                <div className="flex items-center justify-between">
-                                  <span className="text-[11px] font-mono text-blue-300">
-                                    {pmDir} x{qty}
-                                  </span>
-                                  <span className="text-[11px] font-mono text-white">
-                                    @{pmFill.toFixed(1)}c
-                                  </span>
-                                </div>
-                              </div>
-                              <div className="rounded bg-orange-500/5 border border-orange-500/20 px-2.5 py-1.5">
-                                <div className="text-[9px] text-orange-400 font-medium mb-0.5">
-                                  KALSHI LEG
-                                </div>
-                                <div className="flex items-center justify-between">
-                                  <span className="text-[11px] font-mono text-orange-300">
-                                    {kDir} x{qty}
-                                  </span>
-                                  <span className="text-[11px] font-mono text-white">
-                                    @{kFill.toFixed(1)}c
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="mt-1 flex items-center gap-2 text-[10px] text-gray-400">
-                              <span>
-                                {p.side} x{p.quantity}
-                              </span>
-                              {p.avg_price > 0 && (
-                                <span>PM@{p.avg_price}c</span>
-                              )}
-                              {p.current_value > 0 && (
-                                <span>K@{p.current_value}c</span>
-                              )}
-                            </div>
-                          )}
-
-                          {hasFillData && (() => {
-                            const feesPerContract = 2.0;
-                            const netPerContract = locked - feesPerContract;
-                            const totalPnlDollars = (netPerContract * qty) / 100;
-                            return (
-                              <div className="mt-1.5 space-y-0.5">
-                                <div className="flex items-center gap-3 text-[10px]">
-                                  <span
-                                    className={`font-mono font-bold ${
-                                      locked > 0
-                                        ? "text-emerald-400"
-                                        : locked < 0
-                                        ? "text-red-400"
-                                        : "text-gray-400"
-                                    }`}
-                                  >
-                                    Locked: {locked >= 0 ? "+" : ""}
-                                    {locked.toFixed(1)}c gross
-                                  </span>
-                                  <span className="text-gray-600">
-                                    ({pmFill.toFixed(1)} + {kFill.toFixed(1)} ={" "}
-                                    {(pmFill + kFill).toFixed(1)}c cost)
-                                  </span>
-                                </div>
-                                <div className="flex items-center gap-3 text-[10px]">
-                                  <span
-                                    className={`font-mono font-bold ${
-                                      netPerContract > 0
-                                        ? "text-emerald-400"
-                                        : netPerContract < 0
-                                        ? "text-red-400"
-                                        : "text-gray-400"
-                                    }`}
-                                  >
-                                    {netPerContract >= 0 ? "+" : ""}{netPerContract.toFixed(1)}c net/contract
-                                  </span>
-                                  <span
-                                    className={`font-mono font-bold ${
-                                      totalPnlDollars > 0
-                                        ? "text-emerald-400"
-                                        : totalPnlDollars < 0
-                                        ? "text-red-400"
-                                        : "text-gray-400"
-                                    }`}
-                                  >
-                                    {totalPnlDollars >= 0 ? "+" : ""}${totalPnlDollars.toFixed(3)} total ({qty}x)
-                                  </span>
-                                </div>
-                              </div>
-                            );
-                          })()}
+                        <div className="px-3 py-2 bg-gray-800/30 border-b border-gray-800 flex flex-wrap items-center gap-4 text-[10px]">
+                          <span className="text-gray-400">
+                            {activePositions.length} position{activePositions.length !== 1 ? "s" : ""}
+                            {hedgedPositions.length > 0 && (
+                              <span className="text-emerald-500 ml-1">({hedgedPositions.length} hedged)</span>
+                            )}
+                            {unhedgedPositions.length > 0 && (
+                              <span className="text-red-400 ml-1">({unhedgedPositions.length} directional)</span>
+                            )}
+                          </span>
+                          <span className="text-blue-400">PM: ${totPmExp.toFixed(2)}</span>
+                          <span className="text-orange-400">K: ${totKExp.toFixed(2)}</span>
+                          <span className={`font-mono font-bold ${totPnl > 0 ? "text-emerald-400" : totPnl < 0 ? "text-red-400" : "text-gray-400"}`}>
+                            P&L: {totPnl >= 0 ? "+" : ""}${totPnl.toFixed(4)}
+                          </span>
                         </div>
                       );
-                    })}
+                    })()}
+
+                    {/* Table */}
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-[11px]">
+                        <thead>
+                          <tr className="text-gray-500 text-[9px] uppercase tracking-wider border-b border-gray-800">
+                            <th className="py-2 px-2 text-left font-medium">Game</th>
+                            <th className="py-2 px-2 text-left font-medium">Team</th>
+                            <th className="py-2 px-2 text-center font-medium">Status</th>
+                            <th className="py-2 px-2 text-center font-medium">Qty</th>
+                            <th className="py-2 px-2 text-right font-medium">PM Fill</th>
+                            <th className="py-2 px-2 text-right font-medium">PM Now</th>
+                            <th className="py-2 px-2 text-right font-medium">K Fill</th>
+                            <th className="py-2 px-2 text-right font-medium">K Now</th>
+                            <th className="py-2 px-2 text-right font-medium">Fees</th>
+                            <th className="py-2 px-2 text-right font-medium">Net P&L</th>
+                            <th className="py-2 px-2 text-center font-medium">Signal</th>
+                            <th className="py-2 px-2 text-center font-medium w-6"></th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-800/50">
+                          {activePositions.map((p, i) => {
+                            const pmDir = p.direction === "BUY_PM_SELL_K" ? "L" : p.direction === "BUY_K_SELL_PM" ? "S" : "?";
+                            const kDir = p.direction === "BUY_PM_SELL_K" ? "S" : p.direction === "BUY_K_SELL_PM" ? "L" : "?";
+                            const statusColor = p.hedged
+                              ? "bg-emerald-500/20 text-emerald-400"
+                              : p.status === "TIER3A_HOLD"
+                              ? "bg-yellow-500/20 text-yellow-400"
+                              : p.status === "TIER3B_FLIP"
+                              ? "bg-purple-500/20 text-purple-400"
+                              : "bg-red-500/20 text-red-400";
+                            const statusLabel = p.hedged ? "HEDGED" : p.status;
+                            const pnlColor = p.unrealised_pnl > 0 ? "text-emerald-400" : p.unrealised_pnl < 0 ? "text-red-400" : "text-gray-400";
+                            const signalColor = p.signal === "MAX EDGE" ? "text-emerald-400"
+                              : p.signal === "HIGH EDGE" ? "text-blue-400"
+                              : p.signal === "MID EDGE" ? "text-yellow-400"
+                              : p.signal === "LOW EDGE" ? "text-orange-400"
+                              : "text-gray-500";
+
+                            return (
+                              <tr key={i} className={`hover:bg-gray-800/30 ${!p.hedged ? "bg-red-500/[0.02]" : ""}`}>
+                                <td className="py-2 px-2">
+                                  <div className="flex items-center gap-1">
+                                    <span className={`inline-block rounded px-1 py-0.5 text-[8px] font-medium ${sportBadge(p.sport)}`}>
+                                      {p.sport}
+                                    </span>
+                                    <span className="text-gray-500 text-[10px] truncate max-w-[80px]" title={p.game_id}>
+                                      {p.game_id}
+                                    </span>
+                                  </div>
+                                  <div className="text-[9px] text-gray-600 mt-0.5">{timeAgo(p.timestamp)}</div>
+                                </td>
+                                <td className="py-2 px-2 text-white font-medium">{p.team}</td>
+                                <td className="py-2 px-2 text-center">
+                                  <span className={`text-[9px] font-medium rounded px-1.5 py-0.5 ${statusColor}`}>
+                                    {statusLabel}
+                                  </span>
+                                </td>
+                                <td className="py-2 px-2 text-center font-mono text-gray-300">{p.contracts}x</td>
+                                <td className="py-2 px-2 text-right font-mono">
+                                  <span className="text-blue-300">{pmDir} {p.pm_fill_cents.toFixed(1)}c</span>
+                                  <div className="text-[9px] text-gray-600">${p.pm_cost_dollars.toFixed(2)}</div>
+                                </td>
+                                <td className="py-2 px-2 text-right font-mono">
+                                  {p.pm_bid_now > 0 ? (
+                                    <>
+                                      <span className="text-blue-400">{p.pm_bid_now.toFixed(1)}</span>
+                                      <span className="text-gray-600">/</span>
+                                      <span className="text-blue-400">{p.pm_ask_now.toFixed(1)}</span>
+                                    </>
+                                  ) : (
+                                    <span className="text-gray-600">—</span>
+                                  )}
+                                </td>
+                                <td className="py-2 px-2 text-right font-mono">
+                                  {p.hedged ? (
+                                    <>
+                                      <span className="text-orange-300">{kDir} {p.k_fill_cents}c</span>
+                                      <div className="text-[9px] text-gray-600">${p.k_cost_dollars.toFixed(2)}</div>
+                                    </>
+                                  ) : (
+                                    <span className="text-gray-600">—</span>
+                                  )}
+                                </td>
+                                <td className="py-2 px-2 text-right font-mono">
+                                  {p.hedged && p.k_bid_now > 0 ? (
+                                    <>
+                                      <span className="text-orange-400">{p.k_bid_now}</span>
+                                      <span className="text-gray-600">/</span>
+                                      <span className="text-orange-400">{p.k_ask_now}</span>
+                                    </>
+                                  ) : (
+                                    <span className="text-gray-600">—</span>
+                                  )}
+                                </td>
+                                <td className="py-2 px-2 text-right font-mono text-gray-400">
+                                  {p.total_fees > 0 ? `${(p.total_fees * 100 / p.contracts).toFixed(1)}c` : "—"}
+                                  {p.total_fees > 0 && (
+                                    <div className="text-[9px] text-gray-600">${p.total_fees.toFixed(3)}</div>
+                                  )}
+                                </td>
+                                <td className={`py-2 px-2 text-right font-mono font-bold ${pnlColor}`}>
+                                  {p.unrealised_pnl >= 0 ? "+" : ""}${p.unrealised_pnl.toFixed(4)}
+                                  {p.hedged && p.spread_cents > 0 && (
+                                    <div className="text-[9px] text-gray-600 font-normal">{p.spread_cents.toFixed(1)}c spread</div>
+                                  )}
+                                </td>
+                                <td className="py-2 px-2 text-center">
+                                  {p.signal ? (
+                                    <div>
+                                      <span className={`text-[9px] font-medium ${signalColor}`}>{p.signal}</span>
+                                      {p.ceq !== null && (
+                                        <div className="text-[9px] text-gray-600">{(p.ceq * 100).toFixed(0)}%</div>
+                                      )}
+                                    </div>
+                                  ) : (
+                                    <span className="text-gray-600">—</span>
+                                  )}
+                                </td>
+                                <td className="py-2 px-2 text-center">
+                                  <button
+                                    onClick={() => markSettled(p.game_id)}
+                                    className="text-[9px] text-gray-600 hover:text-gray-400"
+                                    title="Hide this position"
+                                  >
+                                    ✕
+                                  </button>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 )}
               </div>

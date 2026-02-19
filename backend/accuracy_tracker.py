@@ -11,6 +11,7 @@ from datetime import datetime, timezone, timedelta
 from typing import Optional
 
 from supabase import create_client, Client
+from internal_grader import determine_signal
 
 SUPABASE_URL = os.getenv("NEXT_PUBLIC_SUPABASE_URL")
 SUPABASE_KEY = os.getenv("NEXT_PUBLIC_SUPABASE_ANON_KEY")
@@ -201,7 +202,7 @@ class AccuracyTracker:
             edge_tier = pred.get("overall_confidence")
             best_edge = _to_float(pred.get("best_edge_pct"))
             if best_edge is not None:
-                signal_tier = _determine_signal(best_edge)
+                signal_tier = determine_signal(best_edge, market_type="spread")
 
         # --- Fetch edge cap data from composite_history ---
         raw_edge_pct = None
@@ -228,7 +229,7 @@ class AccuracyTracker:
         # Prefer composite_history raw_edge_pct for signal_tier (more accurate than
         # predictions.best_edge_pct which is capped lower by the old prediction pipeline)
         if raw_edge_pct is not None:
-            signal_tier = _determine_signal(float(raw_edge_pct))
+            signal_tier = determine_signal(float(raw_edge_pct), market_type="spread")
 
         # Guard: if we never had real edge data AND no fair spread was computed,
         # this game was never properly analyzed. Classify as UNGRADED to avoid
@@ -301,6 +302,12 @@ class AccuracyTracker:
             "signal_tier": signal_tier,
             "raw_edge_pct": raw_edge_pct,
             "capped_edge_pct": capped_edge_pct,
+            "market_type": "spread",
+            "is_correct": (
+                True if omi_vs_book_spread_edge is not None and omi_vs_book_spread_edge > 0
+                else (False if omi_vs_book_spread_edge is not None and omi_vs_book_spread_edge < 0
+                      else None)
+            ),
         }
 
         return row
@@ -540,20 +547,3 @@ def _cap_edge(raw_edge):
     return round(_EDGE_CAP_THRESHOLD + (raw_edge - _EDGE_CAP_THRESHOLD) * _EDGE_CAP_DECAY, 2)
 
 
-def _determine_signal(edge_pct) -> str:
-    """Classify edge % into a tier. Always returns a valid string, never None."""
-    if edge_pct is None:
-        return "NO EDGE"
-    try:
-        ae = abs(float(edge_pct))
-    except (TypeError, ValueError):
-        return "NO EDGE"
-    if ae >= 8:
-        return "MAX EDGE"
-    if ae >= 5:
-        return "HIGH EDGE"
-    if ae >= 3:
-        return "MID EDGE"
-    if ae >= 1:
-        return "LOW EDGE"
-    return "NO EDGE"

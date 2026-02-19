@@ -826,52 +826,52 @@ def start_scheduler():
     #     next_run_time=_delayed(80),
     # )
 
-    # # Exchange sync: Every 15 minutes
-    # def run_exchange_sync():
-    #     if _check_paused("exchange_sync"): return
-    #     def _inner():
-    #         from exchange_tracker import ExchangeTracker
-    #         tracker = ExchangeTracker()
-    #         result = tracker.sync_all()
-    #         logger.info(f"[ExchangeSync] {result}")
-    #     try: _run_with_timeout(_inner, "exchange_sync", timeout=30)
-    #     except Exception as e: logger.error(f"[ExchangeSync] Failed: {e}")
-    # scheduler.add_job(
-    #     func=run_exchange_sync,
-    #     trigger=IntervalTrigger(minutes=15),
-    #     id="exchange_sync",
-    #     name="Sync Kalshi + Polymarket exchange data",
-    #     replace_existing=True, max_instances=1, misfire_grace_time=30,
-    #     next_run_time=_delayed(100),
-    # )
+    # Exchange sync: Every 15 minutes
+    def run_exchange_sync():
+        if _check_paused("exchange_sync"): return
+        def _inner():
+            from exchange_tracker import ExchangeTracker
+            tracker = ExchangeTracker()
+            result = tracker.sync_all()
+            logger.info(f"[ExchangeSync] {result}")
+        try: _run_with_timeout(_inner, "exchange_sync", timeout=30)
+        except Exception as e: logger.error(f"[ExchangeSync] Failed: {e}")
+    scheduler.add_job(
+        func=run_exchange_sync,
+        trigger=IntervalTrigger(minutes=15),
+        id="exchange_sync",
+        name="Sync Kalshi + Polymarket exchange data",
+        replace_existing=True, max_instances=1, misfire_grace_time=30,
+        next_run_time=_delayed(100),
+    )
 
-    # # Pregame capture: Every 15 minutes
-    # def run_pregame_capture():
-    #     if _check_paused("pregame_capture"): return
-    #     def _inner():
-    #         from pregame_capture import PregameCapture
-    #         result = PregameCapture().capture_all()
-    #         logger.info(f"[PregameCapture] {result}")
-    #     try: _run_with_timeout(_inner, "pregame_capture", timeout=30)
-    #     except Exception as e: logger.error(f"[PregameCapture] Failed: {e}")
-    # scheduler.add_job(
-    #     func=run_pregame_capture,
-    #     trigger=IntervalTrigger(minutes=15),
-    #     id="pregame_capture",
-    #     name="Pregame fair line capture",
-    #     replace_existing=True, max_instances=1, misfire_grace_time=30,
-    #     next_run_time=_delayed(110),
-    # )
+    # Pregame capture: Every 15 minutes
+    def run_pregame_capture():
+        if _check_paused("pregame_capture"): return
+        def _inner():
+            from pregame_capture import PregameCapture
+            result = PregameCapture().capture_all()
+            logger.info(f"[PregameCapture] {result}")
+        try: _run_with_timeout(_inner, "pregame_capture", timeout=30)
+        except Exception as e: logger.error(f"[PregameCapture] Failed: {e}")
+    scheduler.add_job(
+        func=run_pregame_capture,
+        trigger=IntervalTrigger(minutes=15),
+        id="pregame_capture",
+        name="Pregame fair line capture",
+        replace_existing=True, max_instances=1, misfire_grace_time=30,
+        next_run_time=_delayed(110),
+    )
 
-    # # Grading: Every 60 minutes
-    # scheduler.add_job(
-    #     func=run_grading_cycle,
-    #     trigger=IntervalTrigger(minutes=60),
-    #     id="grading_cycle",
-    #     name="Grade completed games (ESPN scores + prediction_grades)",
-    #     replace_existing=True, max_instances=1, misfire_grace_time=30,
-    #     next_run_time=_delayed(180),
-    # )
+    # Grading: Every 60 minutes
+    scheduler.add_job(
+        func=run_grading_cycle,
+        trigger=IntervalTrigger(minutes=60),
+        id="grading_cycle",
+        name="Grade completed games (ESPN scores + prediction_grades)",
+        replace_existing=True, max_instances=1, misfire_grace_time=30,
+        next_run_time=_delayed(180),
+    )
 
     # # Accuracy reflection: Every 60 minutes
     # def run_accuracy_reflection():
@@ -946,15 +946,17 @@ def start_scheduler():
     # )
 
     scheduler.start()
-    logger.info("Scheduler started — ESSENTIAL JOBS ONLY (5 of 14):")
+    logger.info("Scheduler started — 8 active jobs:")
     logger.info(f"  1. Pre-game: every {PREGAME_POLL_INTERVAL_MINUTES} min (first at +60s)")
     logger.info(f"  2. Live: every {LIVE_POLL_INTERVAL_MINUTES} min (first at +70s)")
     logger.info(f"  3. Fast refresh: every 3 min (first at +90s)")
     logger.info(f"  4. Closing line capture: every 10 min (first at +100s)")
-    logger.info(f"  5. Composite recalc: every 20 min (first at +120s)")
-    logger.info(f"  DISABLED: live_props, exchange_sync, pregame_capture, grading,")
-    logger.info(f"            accuracy_reflection, health_check, exchange_cleanup,")
-    logger.info(f"            perf_cache, daily_feedback")
+    logger.info(f"  5. Exchange sync: every 15 min (first at +100s)")
+    logger.info(f"  6. Pregame capture: every 15 min (first at +110s)")
+    logger.info(f"  7. Composite recalc: every 20 min (first at +120s)")
+    logger.info(f"  8. Grading: every 60 min (first at +180s)")
+    logger.info(f"  DISABLED: live_props, accuracy_reflection, health_check,")
+    logger.info(f"            exchange_cleanup, perf_cache, daily_feedback")
     logger.info(f"  All jobs: max_instances=1, misfire_grace_time=30s")
 
     return scheduler

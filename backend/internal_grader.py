@@ -930,39 +930,8 @@ class InternalGrader:
             "since": since,
         }
 
-        # --- Fast path: SQL RPC ---
-        try:
-            rpc_params = {"p_days": days}
-            if sport:
-                rpc_params["p_sport"] = sport
-            if market:
-                rpc_params["p_market"] = market
-            if confidence_tier:
-                rpc_params["p_confidence_tier"] = confidence_tier
-            if signal:
-                rpc_params["p_signal"] = signal
-            if since:
-                rpc_params["p_since"] = since
-
-            rpc_result = self.client.rpc("get_performance_summary", rpc_params).execute()
-            if rpc_result.data is not None:
-                data = rpc_result.data
-                # RPC returns a single jsonb object
-                if isinstance(data, list) and len(data) == 1:
-                    data = data[0]
-                # Unwrap if nested under a key
-                if isinstance(data, dict) and "get_performance_summary" in data:
-                    data = data["get_performance_summary"]
-                if isinstance(data, dict) and "total_predictions" in data:
-                    data["days"] = days
-                    data["filters"] = filters
-                    logger.info(f"[Performance] RPC returned {data['total_predictions']} predictions")
-                    return data
-                logger.warning(f"[Performance] RPC returned unexpected shape, falling back to Python")
-        except Exception as e:
-            logger.info(f"[Performance] RPC unavailable ({e}), falling back to Python")
-
-        # --- Fallback: Python aggregation ---
+        # RPC reads from prediction_grades (stale) — skip straight to Python
+        # which now reads from prediction_accuracy_log (single source of truth).
         return self._get_performance_python(sport, days, market, confidence_tier, signal, since, filters)
 
     def _get_performance_python(
@@ -975,7 +944,7 @@ class InternalGrader:
         since: Optional[str],
         filters: dict,
     ) -> dict:
-        """Original Python-side aggregation of prediction_grades rows."""
+        """Aggregate performance from prediction_accuracy_log (single source of truth)."""
         cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
 
         valid_game_ids: Optional[set] = None
@@ -986,25 +955,22 @@ class InternalGrader:
             valid_game_ids = {r["game_id"] for r in (gr_result.data or [])}
             logger.info(f"[Performance] valid_game_ids since {since}: {len(valid_game_ids)}")
 
-        query = self.client.table("prediction_grades").select(
-            "game_id, sport_key, market_type, confidence_tier, signal, "
-            "is_correct, pillar_composite, graded_at, created_at"
-        ).not_.is_(
-            "graded_at", "null"
-        ).gte("created_at", cutoff).order("graded_at", desc=True).limit(5000)
+        # Read from prediction_accuracy_log — unified source of truth
+        query = self.client.table("prediction_accuracy_log").select(
+            "game_id, sport_key, signal_tier, is_correct, "
+            "omi_composite_score, market_type, created_at"
+        ).gte("created_at", cutoff).order("created_at", desc=True).limit(5000)
 
         if sport:
             query = query.eq("sport_key", sport)
         if market:
             query = query.eq("market_type", market)
-        if confidence_tier:
-            query = query.eq("confidence_tier", confidence_tier)
         if signal:
-            query = query.eq("signal", signal)
+            query = query.eq("signal_tier", signal)
 
         result = query.execute()
         rows = result.data or []
-        logger.info(f"[Performance] Python fallback: {len(rows)} rows")
+        logger.info(f"[Performance] prediction_accuracy_log: {len(rows)} rows")
 
         if valid_game_ids is not None:
             rows = [r for r in rows if r.get("game_id") in valid_game_ids]
@@ -1012,12 +978,15 @@ class InternalGrader:
         # Normalize sport keys for aggregation
         for r in rows:
             r["sport_key"] = _normalize_sport(r.get("sport_key", ""))
+            # Map accuracy_log columns to the names _aggregate_by_field expects
+            r["signal"] = r.get("signal_tier")
+            r["pillar_composite"] = r.get("omi_composite_score")
 
         return {
             "total_predictions": len(rows),
             "days": days,
             "filters": filters,
-            "by_confidence_tier": self._aggregate_by_field(rows, "confidence_tier"),
+            "by_confidence_tier": {},  # accuracy_log doesn't have confidence_tier
             "by_market": self._aggregate_by_field(rows, "market_type"),
             "by_sport": self._aggregate_by_field(rows, "sport_key"),
             "by_signal": self._aggregate_by_field(rows, "signal"),

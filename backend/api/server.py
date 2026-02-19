@@ -1262,11 +1262,29 @@ def internal_edge_performance(
     signal: str = None,
     since: str = None,
 ):
-    """Get Edge performance metrics from prediction_grades."""
+    """Get Edge performance metrics from prediction_grades.
+
+    Reads from scheduler-populated perf_cache first (zero Supabase calls).
+    Falls back to in-process cache, then direct query.
+    """
+    # 1. Check scheduler-populated cache (no Supabase call)
+    from perf_cache import lookup as perf_lookup
+    pre = perf_lookup(
+        sport=sport.upper() if sport else None,
+        days=days, market=market,
+        confidence_tier=confidence_tier,
+        signal=signal, since=since,
+    )
+    if pre is not None:
+        return pre
+
+    # 2. Fall back to in-process response cache
     ck = f"perf:{sport}:{days}:{market}:{confidence_tier}:{signal}:{since}"
     cached = _cache_get(ck, 300)
     if cached is not None:
         return cached
+
+    # 3. Last resort: direct Supabase query
     grader = InternalGrader()
     data = grader.get_performance(
         sport.upper() if sport else None,

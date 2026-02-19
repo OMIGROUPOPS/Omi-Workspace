@@ -785,6 +785,17 @@ def start_scheduler():
         replace_existing=True
     )
 
+    # Performance cache: Every 5 minutes — pre-fetch aggregated performance via RPC
+    from perf_cache import refresh_performance_cache
+    scheduler.add_job(
+        func=refresh_performance_cache,
+        trigger=IntervalTrigger(minutes=5),
+        id="perf_cache_refresh",
+        name="Pre-fetch performance dashboard data via RPC",
+        replace_existing=True,
+        next_run_time=datetime.now(timezone.utc) + timedelta(seconds=10),
+    )
+
     # Daily feedback: 6 AM UTC — analyze performance and adjust pillar weights
     scheduler.add_job(
         func=run_daily_feedback,
@@ -805,6 +816,7 @@ def start_scheduler():
     logger.info(f"  - Pregame capture: every 15 min")
     logger.info(f"  - Grading: every 60 min")
     logger.info(f"  - Accuracy reflection: every 60 min (5 min delayed start)")
+    logger.info(f"  - Performance cache: every 5 min (10s delayed start)")
     logger.info(f"  - Health check: every 6 hours")
     logger.info(f"  - Exchange cleanup: 4:00 AM UTC")
     logger.info(f"  - Daily feedback: 6:00 AM UTC")

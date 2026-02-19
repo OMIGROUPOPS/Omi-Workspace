@@ -40,3 +40,7 @@ arb-executor/kalshi.pem
 arb-executor/__pycache__/
 arb-executor/.claude/
 *.pyc
+
+# Accidental artifacts
+Omi-Workspace/
+nul

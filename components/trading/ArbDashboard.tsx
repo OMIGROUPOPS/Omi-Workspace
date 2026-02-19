@@ -2032,7 +2032,7 @@ export default function ArbDashboard() {
                                     <div>
                                       <span className={`text-[9px] font-medium ${signalColor}`}>{p.signal}</span>
                                       {p.ceq !== null && (
-                                        <div className="text-[9px] text-gray-600">{(p.ceq * 100).toFixed(0)}%</div>
+                                        <div className="text-[9px] text-gray-600">{p.ceq.toFixed(1)}%</div>
                                       )}
                                     </div>
                                   ) : (

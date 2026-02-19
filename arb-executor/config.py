@@ -115,14 +115,14 @@ class Config:
     # ==========================================================================
     # OMI EDGE DIRECTIONAL RISK
     # ==========================================================================
-    min_ceq_hold: float = 0.60        # Min CEQ for Tier 3a (hold naked)
-    min_ceq_flip: float = 0.70        # Min CEQ for Tier 3b (flip to opposite)
+    min_ceq_hold: float = 6.0         # Min CEQ for Tier 3a (hold naked) — 0-100 scale
+    min_ceq_flip: float = 7.0         # Min CEQ for Tier 3b (flip to opposite) — 0-100 scale
     min_flip_signal: str = "HIGH EDGE" # Min signal tier for flip ("HIGH EDGE" or "MAX EDGE")
     max_directional_exposure_usd: float = 15.0   # Max $ in naked directional positions
     daily_directional_loss_limit: float = 10.0   # Daily Tier 3 loss limit ($)
     max_flip_contracts: int = 2        # Max extra contracts when flipping
-    # CEQ contract scale: [(0.60, 1), (0.65, 2), (0.70, 3)]
-    # Meaning: CEQ 0.60-0.64 → 1 naked, 0.65-0.69 → 2 naked, 0.70+ → 3 naked
+    # CEQ contract scale (0-100): [(6.0, 1), (6.5, 2), (7.0, 3)]
+    # Meaning: CEQ 6.0-6.4 → 1 naked, 6.5-6.9 → 2 naked, 7.0+ → 3 naked
 
     # ==========================================================================
     # CLASS METHODS FOR MODE CONTROL
@@ -157,10 +157,10 @@ class Config:
 
     @classmethod
     def get_naked_contracts(cls, ceq: float) -> int:
-        """Return max naked contracts for given CEQ."""
-        if ceq >= 0.70: return 3
-        if ceq >= 0.65: return 2
-        if ceq >= 0.60: return 1
+        """Return max naked contracts for given CEQ (0-100 scale)."""
+        if ceq >= 7.0: return 3
+        if ceq >= 6.5: return 2
+        if ceq >= 6.0: return 1
         return 0
 
     @classmethod

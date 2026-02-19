@@ -1550,7 +1550,7 @@ async def execute_arb(
 
                 flow_gated = omi_cache.get_flow_gated(omi_signal_data)
                 print(f"[TIER3] OMI signal: edge={omi_signal_data.get('best_edge_pct')}%, "
-                      f"ceq={ceq:.2f}, live_ceq={live_ceq}, favored={favored_team}, "
+                      f"ceq={ceq:.1f}, live_ceq={live_ceq}, favored={favored_team}, "
                       f"signal={signal_tier}, game_status={game_status}, "
                       f"flow_gated={flow_gated}")
 
@@ -1587,168 +1587,264 @@ async def execute_arb(
                         omi_agrees = (pm_bet_long and omi_favors_our_team) or \
                                      (not pm_bet_long and not omi_favors_our_team)
 
-                        # Step 5a: TIER3A — OMI agrees, hold some naked
-                        if omi_agrees and ceq >= Config.min_ceq_hold:
-                            naked_count = Config.get_naked_contracts(ceq)
-                            naked_count = min(naked_count, pm_filled)
-                            hedge_count = pm_filled - naked_count
-                            k_hedge_filled = 0
-                            k_hedge_price = k_limit_price
+                        # ── LIVE GAME: hold_signal-based decisions ──
+                        hold_signal = omi_cache.get_hold_signal(omi_signal_data)
+                        if hold_signal is not None:
+                            print(f"[TIER3] Live hold_signal={hold_signal}, omi_agrees={omi_agrees}, ceq={ceq:.1f}")
 
-                            if hedge_count > 0:
-                                print(f"[TIER3] TIER3A: OMI agrees (CEQ {ceq:.2f}). "
-                                      f"Holding {naked_count} naked, hedging {hedge_count} via Kalshi IOC")
-                                try:
-                                    t3a_result = await kalshi_api.place_order(
-                                        session, arb.kalshi_ticker,
-                                        params['k_side'], params['k_action'],
-                                        hedge_count, k_limit_price,
-                                        time_in_force='immediate_or_cancel'
-                                    )
-                                    k_hedge_filled = t3a_result.get('fill_count', 0)
-                                    k_hedge_price = t3a_result.get('fill_price', k_limit_price)
-                                    if k_hedge_filled > 0:
-                                        qty_delta = -k_hedge_filled if params['k_action'] == 'sell' else k_hedge_filled
-                                        update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
-                                except Exception as e:
-                                    print(f"[TIER3] TIER3A Kalshi hedge IOC failed: {e}")
-                            else:
-                                print(f"[TIER3] TIER3A: OMI agrees (CEQ {ceq:.2f}). "
-                                      f"Holding all {naked_count} contracts naked")
-
-                            # Actual naked = pm_filled - k_hedge_filled
-                            actual_naked = pm_filled - k_hedge_filled
-
-                            # Save directional position
-                            dir_entry = {
-                                "timestamp": datetime.now(timezone.utc).isoformat(),
-                                "game_id": arb.game, "team": arb.team,
-                                "side": "long" if pm_bet_long else "short",
-                                "naked_contracts": actual_naked,
-                                "hedged_contracts": k_hedge_filled,
-                                "entry_price_cents": int(pm_cost_cents),
-                                "tier": "TIER3A", "ceq": round(ceq, 3),
-                                "live_ceq": live_ceq, "signal": signal_tier,
-                                "game_status": game_status,
-                                "live_confidence": live_confidence,
-                                "pillar_scores": pillar_scores,
-                                "settled": False, "settlement_pnl": None,
-                            }
-                            save_directional_position(dir_entry)
-
-                            print(f"[TIER3] TIER3A result: {actual_naked} naked + {k_hedge_filled} hedged")
-
-                            _tier3_fell_through = False
-                            return TradeResult(
-                                success=k_hedge_filled > 0,
-                                kalshi_filled=k_hedge_filled,
-                                pm_filled=pm_filled,
-                                kalshi_price=k_hedge_price,
-                                pm_price=pm_fill_price,
-                                unhedged=actual_naked > 0,
-                                abort_reason=f"TIER3A: OMI agrees, holding {actual_naked} naked (CEQ {ceq:.2f}, {signal_tier})",
-                                execution_time_ms=int((time.time() - start_time) * 1000),
-                                pm_order_ms=pm_order_ms, k_order_ms=k_order_ms,
-                                pm_response_details=pm_response_details,
-                                execution_phase=_exec_phase,
-                                gtc_rest_time_ms=_gtc_rest, gtc_spread_checks=_gtc_checks,
-                                gtc_cancel_reason=_gtc_cancel, is_maker=_is_maker,
-                                tier="TIER3A",
-                                naked_contracts=actual_naked, flip_contracts=0,
-                                omi_ceq=ceq, omi_signal=signal_tier,
-                                omi_favored_team=favored_team, omi_pillar_scores=pillar_scores,
-                            )
-
-                        # Step 5b: TIER3B — OMI disagrees, hedge + flip
-                        elif not omi_agrees and ceq >= Config.min_ceq_flip \
-                                and Config.is_flip_eligible(signal_tier):
-                            print(f"[TIER3] TIER3B: OMI disagrees (CEQ {ceq:.2f}, {signal_tier}). "
-                                  f"Hedging all + flipping {Config.max_flip_contracts}")
-
-                            # Step 1: Full hedge
-                            k_hedge_filled = 0
-                            k_hedge_price = k_limit_price
-                            try:
-                                t3b_hedge = await kalshi_api.place_order(
-                                    session, arb.kalshi_ticker,
-                                    params['k_side'], params['k_action'],
-                                    pm_filled, k_limit_price,
-                                    time_in_force='immediate_or_cancel'
-                                )
-                                k_hedge_filled = t3b_hedge.get('fill_count', 0)
-                                k_hedge_price = t3b_hedge.get('fill_price', k_limit_price)
-                                if k_hedge_filled > 0:
-                                    qty_delta = -k_hedge_filled if params['k_action'] == 'sell' else k_hedge_filled
-                                    update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
-                            except Exception as e:
-                                print(f"[TIER3] TIER3B base hedge IOC failed: {e}")
-
-                            if k_hedge_filled == 0:
-                                print(f"[TIER3] TIER3B base hedge got 0 fills — cannot flip, falling through")
+                            if hold_signal == "URGENT_UNWIND":
+                                print(f"[TIER3] URGENT_UNWIND — unwinding immediately")
                                 # Fall through to fallback unwind
-                            else:
-                                # Step 2: Flip extra contracts (same Kalshi direction = bet against our PM)
-                                flip_filled = 0
-                                flip_price = k_limit_price
-                                try:
-                                    t3b_flip = await kalshi_api.place_order(
-                                        session, arb.kalshi_ticker,
-                                        params['k_side'], params['k_action'],
-                                        Config.max_flip_contracts, k_limit_price,
-                                        time_in_force='immediate_or_cancel'
-                                    )
-                                    flip_filled = t3b_flip.get('fill_count', 0)
-                                    flip_price = t3b_flip.get('fill_price', k_limit_price)
-                                    if flip_filled > 0:
-                                        qty_delta = -flip_filled if params['k_action'] == 'sell' else flip_filled
-                                        update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
-                                except Exception as e:
-                                    print(f"[TIER3] TIER3B flip IOC failed: {e} (base hedge OK)")
 
-                                # Save directional position (flip contracts only — base hedge is flat)
-                                if flip_filled > 0:
-                                    flip_side = "short" if pm_bet_long else "long"
+                            elif hold_signal == "UNWIND":
+                                print(f"[TIER3] UNWIND — unwinding")
+                                # Fall through to fallback unwind
+
+                            elif hold_signal in ("HOLD", "STRONG_HOLD"):
+                                do_hold = False
+                                if omi_agrees:
+                                    do_hold = True
+                                    print(f"[TIER3] {hold_signal} + omi_agrees → TIER3A hold")
+                                elif hold_signal == "STRONG_HOLD":
+                                    do_hold = True
+                                    print(f"[TIER3] STRONG_HOLD overrides direction disagreement → TIER3A hold")
+                                else:
+                                    print(f"[TIER3] HOLD but omi disagrees — unwinding")
+
+                                if do_hold:
+                                    naked_count = Config.get_naked_contracts(ceq)
+                                    naked_count = min(naked_count, pm_filled)
+                                    hedge_count = pm_filled - naked_count
+                                    k_hedge_filled = 0
+                                    k_hedge_price = k_limit_price
+
+                                    if hedge_count > 0:
+                                        print(f"[TIER3] TIER3A: {hold_signal} (CEQ {ceq:.1f}). "
+                                              f"Holding {naked_count} naked, hedging {hedge_count} via Kalshi IOC")
+                                        try:
+                                            t3a_result = await kalshi_api.place_order(
+                                                session, arb.kalshi_ticker,
+                                                params['k_side'], params['k_action'],
+                                                hedge_count, k_limit_price,
+                                                time_in_force='immediate_or_cancel'
+                                            )
+                                            k_hedge_filled = t3a_result.get('fill_count', 0)
+                                            k_hedge_price = t3a_result.get('fill_price', k_limit_price)
+                                            if k_hedge_filled > 0:
+                                                qty_delta = -k_hedge_filled if params['k_action'] == 'sell' else k_hedge_filled
+                                                update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
+                                        except Exception as e:
+                                            print(f"[TIER3] TIER3A Kalshi hedge IOC failed: {e}")
+                                    else:
+                                        print(f"[TIER3] TIER3A: {hold_signal} (CEQ {ceq:.1f}). "
+                                              f"Holding all {naked_count} contracts naked")
+
+                                    actual_naked = pm_filled - k_hedge_filled
+
                                     dir_entry = {
                                         "timestamp": datetime.now(timezone.utc).isoformat(),
                                         "game_id": arb.game, "team": arb.team,
-                                        "side": flip_side,
-                                        "naked_contracts": flip_filled,
+                                        "side": "long" if pm_bet_long else "short",
+                                        "naked_contracts": actual_naked,
                                         "hedged_contracts": k_hedge_filled,
-                                        "entry_price_cents": int(flip_price),
-                                        "tier": "TIER3B", "ceq": round(ceq, 3),
+                                        "entry_price_cents": int(pm_cost_cents),
+                                        "tier": "TIER3A", "ceq": round(ceq, 1),
                                         "live_ceq": live_ceq, "signal": signal_tier,
                                         "game_status": game_status,
                                         "live_confidence": live_confidence,
+                                        "hold_signal": hold_signal,
                                         "pillar_scores": pillar_scores,
                                         "settled": False, "settlement_pnl": None,
                                     }
                                     save_directional_position(dir_entry)
 
-                                print(f"[TIER3] TIER3B result: {k_hedge_filled} hedged + {flip_filled} flipped")
+                                    print(f"[TIER3] TIER3A result: {actual_naked} naked + {k_hedge_filled} hedged")
+
+                                    _tier3_fell_through = False
+                                    return TradeResult(
+                                        success=k_hedge_filled > 0,
+                                        kalshi_filled=k_hedge_filled,
+                                        pm_filled=pm_filled,
+                                        kalshi_price=k_hedge_price,
+                                        pm_price=pm_fill_price,
+                                        unhedged=actual_naked > 0,
+                                        abort_reason=f"TIER3A: {hold_signal}, holding {actual_naked} naked (CEQ {ceq:.1f}, {signal_tier})",
+                                        execution_time_ms=int((time.time() - start_time) * 1000),
+                                        pm_order_ms=pm_order_ms, k_order_ms=k_order_ms,
+                                        pm_response_details=pm_response_details,
+                                        execution_phase=_exec_phase,
+                                        gtc_rest_time_ms=_gtc_rest, gtc_spread_checks=_gtc_checks,
+                                        gtc_cancel_reason=_gtc_cancel, is_maker=_is_maker,
+                                        tier="TIER3A",
+                                        naked_contracts=actual_naked, flip_contracts=0,
+                                        omi_ceq=ceq, omi_signal=signal_tier,
+                                        omi_favored_team=favored_team, omi_pillar_scores=pillar_scores,
+                                    )
+                            else:
+                                print(f"[TIER3] Unknown hold_signal '{hold_signal}' — unwinding")
+
+                        # ── PREGAME: CEQ threshold-based decisions ──
+                        else:
+                            # Step 5a: TIER3A — OMI agrees, hold some naked
+                            if omi_agrees and ceq >= Config.min_ceq_hold:
+                                naked_count = Config.get_naked_contracts(ceq)
+                                naked_count = min(naked_count, pm_filled)
+                                hedge_count = pm_filled - naked_count
+                                k_hedge_filled = 0
+                                k_hedge_price = k_limit_price
+
+                                if hedge_count > 0:
+                                    print(f"[TIER3] TIER3A: OMI agrees (CEQ {ceq:.1f}). "
+                                          f"Holding {naked_count} naked, hedging {hedge_count} via Kalshi IOC")
+                                    try:
+                                        t3a_result = await kalshi_api.place_order(
+                                            session, arb.kalshi_ticker,
+                                            params['k_side'], params['k_action'],
+                                            hedge_count, k_limit_price,
+                                            time_in_force='immediate_or_cancel'
+                                        )
+                                        k_hedge_filled = t3a_result.get('fill_count', 0)
+                                        k_hedge_price = t3a_result.get('fill_price', k_limit_price)
+                                        if k_hedge_filled > 0:
+                                            qty_delta = -k_hedge_filled if params['k_action'] == 'sell' else k_hedge_filled
+                                            update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
+                                    except Exception as e:
+                                        print(f"[TIER3] TIER3A Kalshi hedge IOC failed: {e}")
+                                else:
+                                    print(f"[TIER3] TIER3A: OMI agrees (CEQ {ceq:.1f}). "
+                                          f"Holding all {naked_count} contracts naked")
+
+                                actual_naked = pm_filled - k_hedge_filled
+
+                                dir_entry = {
+                                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                                    "game_id": arb.game, "team": arb.team,
+                                    "side": "long" if pm_bet_long else "short",
+                                    "naked_contracts": actual_naked,
+                                    "hedged_contracts": k_hedge_filled,
+                                    "entry_price_cents": int(pm_cost_cents),
+                                    "tier": "TIER3A", "ceq": round(ceq, 1),
+                                    "live_ceq": live_ceq, "signal": signal_tier,
+                                    "game_status": game_status,
+                                    "live_confidence": live_confidence,
+                                    "pillar_scores": pillar_scores,
+                                    "settled": False, "settlement_pnl": None,
+                                }
+                                save_directional_position(dir_entry)
+
+                                print(f"[TIER3] TIER3A result: {actual_naked} naked + {k_hedge_filled} hedged")
 
                                 _tier3_fell_through = False
                                 return TradeResult(
-                                    success=True,
-                                    kalshi_filled=k_hedge_filled + flip_filled,
+                                    success=k_hedge_filled > 0,
+                                    kalshi_filled=k_hedge_filled,
                                     pm_filled=pm_filled,
                                     kalshi_price=k_hedge_price,
                                     pm_price=pm_fill_price,
-                                    unhedged=False,
-                                    abort_reason=f"TIER3B: OMI disagrees, hedged {k_hedge_filled} + flipped {flip_filled} (CEQ {ceq:.2f}, {signal_tier})",
+                                    unhedged=actual_naked > 0,
+                                    abort_reason=f"TIER3A: OMI agrees, holding {actual_naked} naked (CEQ {ceq:.1f}, {signal_tier})",
                                     execution_time_ms=int((time.time() - start_time) * 1000),
                                     pm_order_ms=pm_order_ms, k_order_ms=k_order_ms,
                                     pm_response_details=pm_response_details,
                                     execution_phase=_exec_phase,
                                     gtc_rest_time_ms=_gtc_rest, gtc_spread_checks=_gtc_checks,
                                     gtc_cancel_reason=_gtc_cancel, is_maker=_is_maker,
-                                    tier="TIER3B",
-                                    naked_contracts=0, flip_contracts=flip_filled,
+                                    tier="TIER3A",
+                                    naked_contracts=actual_naked, flip_contracts=0,
                                     omi_ceq=ceq, omi_signal=signal_tier,
                                     omi_favored_team=favored_team, omi_pillar_scores=pillar_scores,
                                 )
-                        else:
-                            print(f"[TIER3] OMI signal present but conditions not met "
-                                  f"(agrees={omi_agrees}, ceq={ceq:.2f}, signal={signal_tier})")
+
+                            # Step 5b: TIER3B — OMI disagrees, hedge + flip
+                            elif not omi_agrees and ceq >= Config.min_ceq_flip \
+                                    and Config.is_flip_eligible(signal_tier):
+                                print(f"[TIER3] TIER3B: OMI disagrees (CEQ {ceq:.1f}, {signal_tier}). "
+                                      f"Hedging all + flipping {Config.max_flip_contracts}")
+
+                                # Step 1: Full hedge
+                                k_hedge_filled = 0
+                                k_hedge_price = k_limit_price
+                                try:
+                                    t3b_hedge = await kalshi_api.place_order(
+                                        session, arb.kalshi_ticker,
+                                        params['k_side'], params['k_action'],
+                                        pm_filled, k_limit_price,
+                                        time_in_force='immediate_or_cancel'
+                                    )
+                                    k_hedge_filled = t3b_hedge.get('fill_count', 0)
+                                    k_hedge_price = t3b_hedge.get('fill_price', k_limit_price)
+                                    if k_hedge_filled > 0:
+                                        qty_delta = -k_hedge_filled if params['k_action'] == 'sell' else k_hedge_filled
+                                        update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
+                                except Exception as e:
+                                    print(f"[TIER3] TIER3B base hedge IOC failed: {e}")
+
+                                if k_hedge_filled == 0:
+                                    print(f"[TIER3] TIER3B base hedge got 0 fills — cannot flip, falling through")
+                                    # Fall through to fallback unwind
+                                else:
+                                    # Step 2: Flip extra contracts (same Kalshi direction = bet against our PM)
+                                    flip_filled = 0
+                                    flip_price = k_limit_price
+                                    try:
+                                        t3b_flip = await kalshi_api.place_order(
+                                            session, arb.kalshi_ticker,
+                                            params['k_side'], params['k_action'],
+                                            Config.max_flip_contracts, k_limit_price,
+                                            time_in_force='immediate_or_cancel'
+                                        )
+                                        flip_filled = t3b_flip.get('fill_count', 0)
+                                        flip_price = t3b_flip.get('fill_price', k_limit_price)
+                                        if flip_filled > 0:
+                                            qty_delta = -flip_filled if params['k_action'] == 'sell' else flip_filled
+                                            update_position_cache_after_trade(arb.kalshi_ticker, qty_delta)
+                                    except Exception as e:
+                                        print(f"[TIER3] TIER3B flip IOC failed: {e} (base hedge OK)")
+
+                                    # Save directional position (flip contracts only — base hedge is flat)
+                                    if flip_filled > 0:
+                                        flip_side = "short" if pm_bet_long else "long"
+                                        dir_entry = {
+                                            "timestamp": datetime.now(timezone.utc).isoformat(),
+                                            "game_id": arb.game, "team": arb.team,
+                                            "side": flip_side,
+                                            "naked_contracts": flip_filled,
+                                            "hedged_contracts": k_hedge_filled,
+                                            "entry_price_cents": int(flip_price),
+                                            "tier": "TIER3B", "ceq": round(ceq, 1),
+                                            "live_ceq": live_ceq, "signal": signal_tier,
+                                            "game_status": game_status,
+                                            "live_confidence": live_confidence,
+                                            "pillar_scores": pillar_scores,
+                                            "settled": False, "settlement_pnl": None,
+                                        }
+                                        save_directional_position(dir_entry)
+
+                                    print(f"[TIER3] TIER3B result: {k_hedge_filled} hedged + {flip_filled} flipped")
+
+                                    _tier3_fell_through = False
+                                    return TradeResult(
+                                        success=True,
+                                        kalshi_filled=k_hedge_filled + flip_filled,
+                                        pm_filled=pm_filled,
+                                        kalshi_price=k_hedge_price,
+                                        pm_price=pm_fill_price,
+                                        unhedged=False,
+                                        abort_reason=f"TIER3B: OMI disagrees, hedged {k_hedge_filled} + flipped {flip_filled} (CEQ {ceq:.1f}, {signal_tier})",
+                                        execution_time_ms=int((time.time() - start_time) * 1000),
+                                        pm_order_ms=pm_order_ms, k_order_ms=k_order_ms,
+                                        pm_response_details=pm_response_details,
+                                        execution_phase=_exec_phase,
+                                        gtc_rest_time_ms=_gtc_rest, gtc_spread_checks=_gtc_checks,
+                                        gtc_cancel_reason=_gtc_cancel, is_maker=_is_maker,
+                                        tier="TIER3B",
+                                        naked_contracts=0, flip_contracts=flip_filled,
+                                        omi_ceq=ceq, omi_signal=signal_tier,
+                                        omi_favored_team=favored_team, omi_pillar_scores=pillar_scores,
+                                    )
+                            else:
+                                print(f"[TIER3] OMI signal present but conditions not met "
+                                      f"(agrees={omi_agrees}, ceq={ceq:.1f}, signal={signal_tier})")
                     else:
                         print(f"[TIER3] Exposure/loss limits exceeded, skipping directional")
                 else:

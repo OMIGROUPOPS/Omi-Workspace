@@ -253,7 +253,7 @@ class OmiSignalCache:
         self.signals = {}           # keyed by lowercase team name → signal dict
         self.last_refresh = 0
         self.refresh_interval_idle = 900   # 15 min when no live games
-        self.refresh_interval_live = 120   # 2 min when games are live
+        self.refresh_interval_live = 30    # 30s when games are live
         self.api_url = "https://omi-workspace-production.up.railway.app/api/v1/edge-signal/bulk?sport=NCAAB"
         self.api_key = os.environ.get("OMI_API_KEY", "SkvEI04AmE0lOsOuHsSNmLwsUkDh_6Q_n1wyQBZK8rU")
         self._refreshing = False    # Guard against concurrent refreshes
@@ -311,13 +311,32 @@ class OmiSignalCache:
         return None
 
     def get_effective_ceq(self, signal: dict) -> float:
-        """Return best_edge_pct / 10 as 0-1 CEQ (e.g. 9.8% → 0.98, 4.5% → 0.45)."""
+        """Return CEQ on 0-100 scale. Live games use live_ceq, pregame uses best_edge_pct."""
         if signal.get("game_status") == "live" and signal.get("live"):
             live_ceq = signal["live"].get("live_ceq")
             if live_ceq is not None:
-                return live_ceq
+                return float(live_ceq)
         edge = signal.get("best_edge_pct", 0) or 0
-        return min(edge / 10.0, 1.0)
+        return float(edge)
+
+    def get_hold_signal(self, signal: dict) -> str | None:
+        """Return live hold_signal (STRONG_HOLD/HOLD/UNWIND/URGENT_UNWIND) or None."""
+        if signal.get("game_status") == "live" and signal.get("live"):
+            return signal["live"].get("hold_signal")
+        return None
+
+    @property
+    def has_live_games(self) -> bool:
+        """Check if any cached signal has game_status == 'live'."""
+        seen = set()
+        for s in self.signals.values():
+            sid = id(s)
+            if sid in seen:
+                continue
+            seen.add(sid)
+            if isinstance(s, dict) and s.get("game_status") == "live":
+                return True
+        return False
 
     def get_flow_gated(self, signal: dict) -> bool:
         """Return True if sharp money flow doesn't confirm the edge."""
@@ -335,17 +354,7 @@ class OmiSignalCache:
     def is_stale(self) -> bool:
         if self.last_refresh == 0:
             return True
-        seen = set()
-        has_live = False
-        for s in self.signals.values():
-            sid = id(s)
-            if sid in seen:
-                continue
-            seen.add(sid)
-            if isinstance(s, dict) and s.get("game_status") == "live":
-                has_live = True
-                break
-        interval = self.refresh_interval_live if has_live else self.refresh_interval_idle
+        interval = self.refresh_interval_live if self.has_live_games else self.refresh_interval_idle
         return time.time() - self.last_refresh > interval
 
 

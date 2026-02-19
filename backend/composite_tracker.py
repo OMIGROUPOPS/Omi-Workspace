@@ -373,9 +373,10 @@ def _calculate_fair_ml_from_book(
     away_implied = abs(book_ml_away) / (abs(book_ml_away) + 100) if book_ml_away < 0 else 100 / (book_ml_away + 100)
     total = home_implied + away_implied
     fair_home = home_implied / total
-    # Shift by composite deviation
+    # Shift by composite deviation (confidence-scaled)
     deviation = composite_ml * 100 - 50
-    shift = deviation * FAIR_LINE_ML_FACTOR
+    confidence = max(0.25, abs(composite_ml - 0.50) * 2)
+    shift = deviation * FAIR_LINE_ML_FACTOR * confidence
     adjusted_home = max(0.05, min(0.95, fair_home + shift))
     adjusted_away = 1 - adjusted_home
     return (implied_prob_to_american(adjusted_home), implied_prob_to_american(adjusted_away))
@@ -400,7 +401,8 @@ def _calculate_fair_ml_from_book_3way(
     fair_away = away_imp / total
 
     deviation = composite_ml * 100 - 50
-    shift = deviation * FAIR_LINE_ML_FACTOR
+    confidence = max(0.25, abs(composite_ml - 0.50) * 2)
+    shift = deviation * FAIR_LINE_ML_FACTOR * confidence
     adj_home = fair_home + shift
     adj_away = fair_away - shift
     adj_draw = 1 - adj_home - adj_away

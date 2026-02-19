@@ -75,13 +75,17 @@ def _is_soccer(sport_short: str) -> bool:
     return sport_short in SOCCER_SPORTS or "soccer" in sport_short.lower()
 
 
-def determine_signal(edge_pct) -> str:
+def determine_signal(edge_pct, market_type="spread") -> str:
     """Determine signal tier from IP edge %. Always returns a valid string.
     < 1%  = NO EDGE
     1-3%  = LOW EDGE
     3-5%  = MID EDGE
     5-8%  = HIGH EDGE
     8%+   = MAX EDGE (genuine strong signal — caps prevent garbage)
+
+    ML edges are naturally larger than spread/total edges because implied
+    probability divergences amplify through the 3-way market.  Apply 0.6x
+    scaling so a 5% ML edge maps to the same tier as a 3% spread edge.
     """
     if edge_pct is None:
         return "NO EDGE"
@@ -89,6 +93,9 @@ def determine_signal(edge_pct) -> str:
         ae = abs(float(edge_pct))
     except (TypeError, ValueError):
         return "NO EDGE"
+    # ML edges are systematically inflated — scale down before tier mapping
+    if market_type in ("moneyline", "ml", "h2h"):
+        ae = ae * 0.6
     if ae >= 8:
         return "MAX EDGE"
     if ae >= 5:
@@ -701,7 +708,7 @@ class InternalGrader:
                         actual_result = "home_win" if home_score > away_score else "away_win"
 
                     edge_pct = round(abs(fair_hp - book_hp) * 100, 1)
-                    signal = determine_signal(edge_pct)
+                    signal = determine_signal(edge_pct, market_type="moneyline")
 
                     gap = fair_hp - book_hp  # positive = home underpriced
 
@@ -1891,7 +1898,14 @@ class InternalGrader:
                     dk_signal = None
 
                     def _calc_3way_edge(book_h, book_d, book_a, fair_h, fair_d, fair_a):
-                        """Max edge across 3 outcomes, vig-removed. Returns (edge, best_idx)."""
+                        """Best positive edge across 3 outcomes, vig-removed. Returns (edge, best_idx).
+
+                        Only returns the edge on the outcome OMI thinks is underpriced
+                        (positive edge = book is offering worse odds than fair).
+                        Previous max(abs(e)) inflated edges by picking the largest
+                        absolute divergence, which double-counts because shifting one
+                        outcome's probability automatically shifts the others.
+                        """
                         bh = american_to_implied(book_h)
                         ba = american_to_implied(book_a)
                         bd = american_to_implied(book_d) if book_d else 0
@@ -1907,19 +1921,20 @@ class InternalGrader:
                             (fair_a - ba) * 100,            # away
                         ]
                         best_idx = max(range(3), key=lambda i: edges[i])
-                        return round(max(abs(e) for e in edges), 1), best_idx
+                        best_edge = max(0, edges[best_idx])
+                        return round(best_edge, 1), best_idx
 
                     fd_call = None
                     dk_call = None
 
                     if fd_mlh and fd_mla:
                         fd_edge, fd_best = _calc_3way_edge(fd_mlh, fd_mld, fd_mla, fair_hp, fair_dp, fair_ap)
-                        fd_signal = determine_signal(fd_edge)
+                        fd_signal = determine_signal(fd_edge, market_type="moneyline")
                         fd_call = [f"{home} ML", "Draw", f"{away} ML"][fd_best]
 
                     if dk_mlh and dk_mla:
                         dk_edge, dk_best = _calc_3way_edge(dk_mlh, dk_mld, dk_mla, fair_hp, fair_dp, fair_ap)
-                        dk_signal = determine_signal(dk_edge)
+                        dk_signal = determine_signal(dk_edge, market_type="moneyline")
                         dk_call = [f"{home} ML", "Draw", f"{away} ML"][dk_best]
 
                     # ML stale check
@@ -1939,7 +1954,7 @@ class InternalGrader:
                         fd_edge if fd_signal and fd_signal != "STALE" else 0,
                         dk_edge if dk_signal and dk_signal != "STALE" else 0,
                     ) if (fd_edge is not None or dk_edge is not None) else None
-                    best_sig = determine_signal(best_e) if best_e else "NO EDGE"
+                    best_sig = determine_signal(best_e, market_type="moneyline") if best_e else "NO EDGE"
 
                     rows.append({
                         "game_id": gid, "sport_key": sport_short,

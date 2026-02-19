@@ -1856,6 +1856,18 @@ def run_accuracy_reflection():
         return {"error": str(e)}
 
 
+@app.post("/api/internal/force-composite-recalc")
+def force_composite_recalc():
+    """Manually trigger a full composite recalc cycle (rewrites fair lines)."""
+    try:
+        from composite_tracker import CompositeTracker
+        tracker = CompositeTracker()
+        result = tracker.recalculate_all()
+        return result
+    except Exception as e:
+        return {"error": str(e)}
+
+
 @app.get("/api/internal/closing-lines")
 def get_closing_lines(sport: str = None, days: int = 7):
     """Get recent closing line captures for inspection."""

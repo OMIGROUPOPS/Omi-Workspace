@@ -1693,12 +1693,13 @@ export default function ArbDashboard() {
                             </td>
                             <td className="px-2 py-1 text-right font-mono text-red-400/70">
                               {(() => {
-                                if (t.actual_pnl?.fees_dollars != null && t.actual_pnl.fees_dollars > 0)
-                                  return `$${t.actual_pnl.fees_dollars.toFixed(2)}`;
+                                if (t.actual_pnl?.per_contract?.fees != null)
+                                  return `${t.actual_pnl.per_contract.fees.toFixed(1)}c`;
                                 const pmFee = t.pm_fee || 0;
                                 const kFee = t.k_fee || 0;
-                                if (pmFee > 0 || kFee > 0)
-                                  return `$${(pmFee + kFee).toFixed(2)}`;
+                                const qty = t.contracts_filled > 0 ? t.contracts_filled : (t.contracts_intended || 0);
+                                if ((pmFee > 0 || kFee > 0) && qty > 0)
+                                  return `${((pmFee + kFee) / qty * 100).toFixed(1)}c`;
                                 return <span className="text-gray-600">-</span>;
                               })()}
                             </td>
@@ -1706,18 +1707,11 @@ export default function ArbDashboard() {
                               const pnl = tradePnl(t);
                               const noFill = t.status === "PM_NO_FILL" || t.status === "SKIPPED";
                               return (
-                                <td className={`px-2 py-1 text-right font-mono font-medium ${pnl.isOpen ? "text-yellow-400" : noFill ? "text-gray-600" : netColor(pnl.perContract)}`}>
+                                <td className={`px-2 py-1 text-right font-mono font-medium ${pnl.isOpen ? "text-yellow-400" : noFill ? "text-gray-600" : netColor(pnl.totalDollars)}`}>
                                   {noFill ? "-" : pnl.isOpen ? (
                                     <span className="text-[10px] font-semibold text-yellow-400">OPEN</span>
                                   ) : pnl.totalDollars != null ? (
-                                    <div>
-                                      <span>{pnl.totalDollars >= 0 ? "+$" : "-$"}{Math.abs(pnl.totalDollars).toFixed(2)}</span>
-                                      {pnl.perContract != null && (
-                                        <div className="text-[9px] text-gray-500">
-                                          {pnl.perContract >= 0 ? "+" : ""}{pnl.perContract.toFixed(1)}c/ct
-                                        </div>
-                                      )}
-                                    </div>
+                                    <span>{pnl.totalDollars >= 0 ? "+$" : "-$"}{Math.abs(pnl.totalDollars).toFixed(2)}</span>
                                   ) : "-"}
                                 </td>
                               );

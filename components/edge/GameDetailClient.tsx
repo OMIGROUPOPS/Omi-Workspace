@@ -326,9 +326,12 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     chartOmiFairLine = -chartOmiFairLine;
   }
 
-  // Build dynamic OMI fair line data from composite_history
+  // Build dynamic OMI fair line data from composite_history (full game only —
+  // composite_history doesn't store sub-period fair lines; sub-periods use
+  // the omiFairLine prop as a flat horizontal line instead)
   const resolvedMarket = activeMarketProp || (selection.type === 'market' ? selection.market : 'spread');
-  const omiFairLineData: { timestamp: Date; value: number }[] = compositeHistory
+  const isFullPeriod = selection.type !== 'market' || selection.period === 'full';
+  const omiFairLineData: { timestamp: Date; value: number }[] = (isFullPeriod ? compositeHistory : [])
     .map(pt => {
       let val: number | null = null;
       if (resolvedMarket === 'spread') val = pt.fair_spread;

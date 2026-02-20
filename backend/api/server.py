@@ -1181,6 +1181,66 @@ def internal_grade_games(sport: str = None, regrade: bool = False):
     return grader.grade_games(sport.upper() if sport else None)
 
 
+_regrade_status = {
+    "running": False,
+    "last_result": None,
+    "progress": {
+        "phase": "idle",
+        "deleted": 0,
+        "total_games": 0,
+        "games_processed": 0,
+        "grades_created": 0,
+        "errors": 0,
+    },
+}
+
+
+@app.post("/api/internal/edge/regrade-all")
+def regrade_all_async():
+    """Trigger a full regrade in a background thread.
+    Returns immediately so Railway's proxy doesn't kill the request.
+    Poll GET /api/internal/edge/regrade-status for progress."""
+    import threading
+    if _regrade_status["running"]:
+        return {"status": "already_running", "progress": _regrade_status["progress"]}
+
+    # Reset progress
+    progress = {
+        "phase": "starting",
+        "deleted": 0,
+        "total_games": 0,
+        "games_processed": 0,
+        "grades_created": 0,
+        "errors": 0,
+    }
+    _regrade_status["progress"] = progress
+
+    def _run():
+        _regrade_status["running"] = True
+        try:
+            grader = InternalGrader()
+            _regrade_status["last_result"] = grader.regrade_all(progress=progress)
+        except Exception as e:
+            logger.error(f"[Regrade async] Error: {e}")
+            _regrade_status["last_result"] = {"error": str(e)}
+            progress["phase"] = "error"
+        finally:
+            _regrade_status["running"] = False
+
+    threading.Thread(target=_run, daemon=True).start()
+    return {"status": "started"}
+
+
+@app.get("/api/internal/edge/regrade-status")
+def regrade_status():
+    """Poll for regrade progress and result."""
+    return {
+        "running": _regrade_status["running"],
+        "progress": _regrade_status["progress"],
+        "last_result": _regrade_status["last_result"],
+    }
+
+
 @app.post("/api/internal/backfill-scores")
 def backfill_scores():
     """One-time backfill: fetch ESPN scores for Feb 10+ games, grade them.

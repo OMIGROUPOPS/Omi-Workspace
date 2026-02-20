@@ -1144,8 +1144,17 @@ class InternalGrader:
     # Regrade — purge + regenerate all prediction_grades
     # ------------------------------------------------------------------
 
-    def regrade_all(self) -> dict:
-        """Delete all prediction_grades and regenerate from graded game_results."""
+    def regrade_all(self, progress: Optional[dict] = None) -> dict:
+        """Delete all prediction_grades and regenerate from graded game_results.
+
+        If progress dict is provided, updates it in-place for status polling:
+          phase, deleted, total_games, games_processed, grades_created, errors
+        """
+        def _update(key, val):
+            if progress is not None:
+                progress[key] = val
+
+        _update("phase", "purging")
         deleted = 0
         while True:
             batch = self.client.table("prediction_grades").select("id").limit(500).execute()
@@ -1154,17 +1163,20 @@ class InternalGrader:
                 break
             self.client.table("prediction_grades").delete().in_("id", ids).execute()
             deleted += len(ids)
+            _update("deleted", deleted)
 
+        _update("phase", "regenerating")
         graded = self.client.table("game_results").select("game_id").not_.is_(
             "home_score", "null"
         ).limit(5000).execute()
         game_ids = [r["game_id"] for r in (graded.data or [])]
         logger.info(f"[Regrade] Found {len(game_ids)} graded game_results to regenerate")
+        _update("total_games", len(game_ids))
 
         created = 0
         errors = 0
         zero_count = 0
-        for gid in game_ids:
+        for i, gid in enumerate(game_ids):
             try:
                 count = self._generate_prediction_grades(gid)
                 created += count
@@ -1173,6 +1185,9 @@ class InternalGrader:
             except Exception as e:
                 logger.error(f"[Regrade] Error for {gid}: {e}")
                 errors += 1
+            _update("games_processed", i + 1)
+            _update("grades_created", created)
+            _update("errors", errors)
 
         # Diagnostic probe: sample first few games to explain why 0 grades
         sample_diagnostics = []
@@ -1206,6 +1221,7 @@ class InternalGrader:
                 except Exception as e:
                     sample_diagnostics.append({"game_id": gid, "error": str(e)})
 
+        _update("phase", "done")
         logger.info(
             f"[Regrade] Purged {deleted}, regenerated {created} from {len(game_ids)} games "
             f"({zero_count} produced 0 grades, {errors} errors)"

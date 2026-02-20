@@ -934,8 +934,6 @@ class InternalGrader:
             "to_date": to_date,
         }
 
-        # RPC reads from prediction_grades (stale) — skip straight to Python
-        # which now reads from prediction_accuracy_log (single source of truth).
         return self._get_performance_python(sport, days, market, confidence_tier, signal, since, filters,
                                             from_date=from_date, to_date=to_date)
 
@@ -951,12 +949,19 @@ class InternalGrader:
         from_date: Optional[str] = None,
         to_date: Optional[str] = None,
     ) -> dict:
-        """Aggregate performance from prediction_accuracy_log (single source of truth)."""
+        """Aggregate pick-based performance from prediction_grades.
+
+        Uses prediction_grades (pick correctness: did OMI-favored side cover?)
+        NOT prediction_accuracy_log (accuracy: was OMI line closer to result?).
+        Deduplicates per game×market: prefer fanduel, fallback to draftkings.
+        ROI uses actual book_odds for proper payout calculation.
+        """
         cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
 
+        # Build valid_game_ids from game_results when date filters are active
         valid_game_ids: Optional[set] = None
         if since or from_date or to_date:
-            gr_query = self.client.table("game_results").select("game_id, commence_time").limit(5000)
+            gr_query = self.client.table("game_results").select("game_id").limit(5000)
             if since:
                 gr_query = gr_query.gte("commence_time", since)
             if from_date:
@@ -967,38 +972,55 @@ class InternalGrader:
             valid_game_ids = {r["game_id"] for r in (gr_result.data or [])}
             logger.info(f"[Performance] valid_game_ids (since={since}, from={from_date}, to={to_date}): {len(valid_game_ids)}")
 
-        # Read from prediction_accuracy_log — unified source of truth
-        query = self.client.table("prediction_accuracy_log").select(
-            "game_id, sport_key, signal_tier, is_correct, "
-            "omi_composite_score, market_type, created_at"
-        ).gte("created_at", cutoff).order("created_at", desc=True).limit(5000)
+        # Read from prediction_grades — pick correctness source of truth
+        query = self.client.table("prediction_grades").select(
+            "game_id, sport_key, signal, is_correct, "
+            "pillar_composite, market_type, book_name, book_odds, "
+            "confidence_tier, created_at"
+        ).not_.is_("graded_at", "null").gte(
+            "created_at", cutoff
+        ).in_(
+            "book_name", list(GRADING_BOOKS)
+        ).order("created_at", desc=True).limit(5000)
 
         if sport:
             query = query.eq("sport_key", sport)
         if market:
             query = query.eq("market_type", market)
         if signal:
-            query = query.eq("signal_tier", signal)
+            query = query.eq("signal", signal)
 
         result = query.execute()
-        rows = result.data or []
-        logger.info(f"[Performance] prediction_accuracy_log: {len(rows)} rows")
+        raw_rows = result.data or []
+        logger.info(f"[Performance] prediction_grades raw: {len(raw_rows)} rows")
 
         if valid_game_ids is not None:
-            rows = [r for r in rows if r.get("game_id") in valid_game_ids]
+            raw_rows = [r for r in raw_rows if r.get("game_id") in valid_game_ids]
+
+        # Deduplicate per game×market: prefer fanduel, fallback to draftkings.
+        # This prevents double-counting when both FD and DK are graded.
+        dedup: dict = {}  # key: (game_id, market_type)
+        for r in raw_rows:
+            key = (r.get("game_id"), r.get("market_type"))
+            existing = dedup.get(key)
+            if existing is None:
+                dedup[key] = r
+            elif r.get("book_name") == "fanduel" and existing.get("book_name") != "fanduel":
+                dedup[key] = r
+            # else keep existing (already fanduel, or first-seen draftkings)
+
+        rows = list(dedup.values())
+        logger.info(f"[Performance] after dedup: {len(rows)} rows (from {len(raw_rows)} raw)")
 
         # Normalize sport keys for aggregation
         for r in rows:
             r["sport_key"] = _normalize_sport(r.get("sport_key", ""))
-            # Map accuracy_log columns to the names _aggregate_by_field expects
-            r["signal"] = r.get("signal_tier")
-            r["pillar_composite"] = r.get("omi_composite_score")
 
         return {
             "total_predictions": len(rows),
             "days": days,
             "filters": filters,
-            "by_confidence_tier": {},  # accuracy_log doesn't have confidence_tier
+            "by_confidence_tier": self._aggregate_by_field(rows, "confidence_tier"),
             "by_market": self._aggregate_by_field(rows, "market_type"),
             "by_sport": self._aggregate_by_field(rows, "sport_key"),
             "by_signal": self._aggregate_by_field(rows, "signal"),
@@ -1007,7 +1029,15 @@ class InternalGrader:
         }
 
     def _aggregate_by_field(self, rows: list, field: str) -> dict:
-        """Aggregate hit rate and ROI by a grouping field."""
+        """Aggregate hit rate and ROI by a grouping field.
+
+        ROI uses actual book_odds when available:
+          Win at -110 → profit = 100/110 = +$0.909 per $1 risked
+          Win at +150 → profit = 150/100 = +$1.50 per $1 risked
+          Loss → -$1.00 per $1 risked
+          Push → $0
+        Falls back to flat -110 assumption (0.909 payout) when book_odds missing.
+        """
         groups: dict = {}
         for row in rows:
             key = row.get(field)
@@ -1015,13 +1045,25 @@ class InternalGrader:
                 continue
             key = str(key)
             if key not in groups:
-                groups[key] = {"total": 0, "correct": 0, "wrong": 0, "push": 0}
+                groups[key] = {"total": 0, "correct": 0, "wrong": 0, "push": 0, "profit": 0.0}
 
             groups[key]["total"] += 1
             if row.get("is_correct") is True:
                 groups[key]["correct"] += 1
+                # Calculate actual payout from book_odds
+                odds = row.get("book_odds")
+                if odds is not None and odds != 0:
+                    odds = int(odds)
+                    if odds < 0:
+                        payout = 100 / abs(odds)  # e.g. -110 → 0.909
+                    else:
+                        payout = odds / 100  # e.g. +150 → 1.50
+                else:
+                    payout = 100 / 110  # default -110
+                groups[key]["profit"] += payout
             elif row.get("is_correct") is False:
                 groups[key]["wrong"] += 1
+                groups[key]["profit"] -= 1.0
             else:
                 groups[key]["push"] += 1
 
@@ -1029,7 +1071,7 @@ class InternalGrader:
         for key, data in groups.items():
             decided = data["correct"] + data["wrong"]
             hit_rate = data["correct"] / decided if decided > 0 else 0
-            roi = (data["correct"] * 0.91 - data["wrong"]) / data["total"] if data["total"] > 0 else 0
+            roi = data["profit"] / data["total"] if data["total"] > 0 else 0
             result[key] = {
                 "total": data["total"],
                 "correct": data["correct"],

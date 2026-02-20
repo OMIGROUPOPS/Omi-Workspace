@@ -122,6 +122,9 @@ export interface Balances {
   k_portfolio: number;
   pm_cash: number;
   pm_portfolio: number;
+  pm_positions?: number;
+  k_positions?: number;
+  pm_positions_source?: string;
   total_portfolio: number;
   kalshi_balance: number;
   pm_balance: number;

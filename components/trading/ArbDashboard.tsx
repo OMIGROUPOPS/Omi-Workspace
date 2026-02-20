@@ -144,6 +144,9 @@ interface Balances {
   k_portfolio: number;
   pm_cash: number;
   pm_portfolio: number;
+  pm_positions?: number;
+  k_positions?: number;
+  pm_positions_source?: string;
   total_portfolio: number;
   kalshi_balance: number;
   pm_balance: number;
@@ -757,13 +760,14 @@ export default function ArbDashboard() {
   const hedgedPositions = activePositions.filter((p) => p.hedged);
   const unhedgedPositions = activePositions.filter((p) => !p.hedged);
 
-  // Position market value = portfolio - cash per platform
+  // Position market value — use API positions data when available, fall back to portfolio - cash
   const positionValues = useMemo(() => {
     const b = state?.balances;
-    if (!b) return { pm: 0, kalshi: 0, total: 0 };
-    const pm = (b.pm_portfolio ?? 0) - (b.pm_cash ?? 0);
-    const kalshi = (b.k_portfolio ?? 0) - (b.k_cash ?? 0);
-    return { pm, kalshi, total: pm + kalshi };
+    if (!b) return { pm: 0, kalshi: 0, total: 0, pmSource: "margin" as string };
+    const pm = b.pm_positions ?? ((b.pm_portfolio ?? 0) - (b.pm_cash ?? 0));
+    const kalshi = b.k_positions ?? ((b.k_portfolio ?? 0) - (b.k_cash ?? 0));
+    const pmSource = b.pm_positions_source ?? "margin";
+    return { pm, kalshi, total: pm + kalshi, pmSource };
   }, [state?.balances]);
 
   const mappedGames = state?.mapped_games || [];
@@ -1217,7 +1221,9 @@ export default function ArbDashboard() {
 
             {/* Column 2: Positions (Mkt Value) — from actual open positions */}
             <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2.5">
-              <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 mb-1.5">Positions (Mkt Value)</p>
+              <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 mb-1.5">
+                Positions ({positionValues.pmSource === "market" ? "Mkt Value" : "Margin"})
+              </p>
               <div className="space-y-1">
                 <div className="flex justify-between items-baseline">
                   <span className="text-[11px] text-gray-400">PM</span>

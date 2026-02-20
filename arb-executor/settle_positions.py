@@ -131,52 +131,65 @@ async def check_settlement_book(client, slug: str) -> int | None:
 
 def calculate_settlement_pnl(trade: dict, settlement: int) -> float:
     """
-    Calculate the realized P&L in dollars for the PM leg.
+    Calculate the realized P&L in dollars for the PM leg (directional trades).
+
+    Uses the actual outcome index traded and whether the position was
+    BUY_LONG (bought YES) or BUY_SHORT (sold YES) to determine P&L.
+
+    Settlement mapping:
+        settlement=1 → outcome index 0 won
+        settlement=0 → outcome index 1 won
 
     Parameters
     ----------
     trade : dict
         A trade entry from trades.json.
     settlement : int
-        1 = YES/long side won, 0 = NO/short side won.
+        1 = outcome 0 won, 0 = outcome 1 won.
 
     Returns
     -------
     float  P&L in dollars (positive = profit, negative = loss).
     """
-    direction = trade['direction']
     pm_price_raw = trade['pm_price']
     qty = trade.get('contracts_filled', 0) or trade.get('contracts_intended', 0) or 1
 
-    # pm_price is stored as a decimal (e.g., 0.694 = 69.4 cents)
-    # or sometimes as cents already (> 1).  Normalise to cents.
+    # pm_price is stored as cents (e.g., 69.4) or rarely as a decimal (< 1).
     if pm_price_raw < 1:
         pm_price_cents = pm_price_raw * 100
     else:
         pm_price_cents = pm_price_raw
 
-    if settlement == 1:
-        # YES won
-        if direction == 'BUY_PM_SELL_K':
-            # We're long PM YES → we WIN
+    # Determine which outcome index we traded on
+    actual_oi = trade.get('pm_outcome_index_used')
+    if actual_oi is None:
+        actual_oi = trade.get('pm_outcome_index')
+    if actual_oi is None:
+        print(f'    [WARN] No pm_outcome_index for trade — cannot compute P&L')
+        return 0.0
+
+    is_buy_short = trade.get('pm_is_buy_short', False)
+
+    # Which outcome won?
+    winning_outcome = 0 if settlement == 1 else 1
+    our_outcome_won = (actual_oi == winning_outcome)
+
+    if not is_buy_short:
+        # BUY_LONG: we bought YES on our outcome
+        # Won: payout 100c, paid pm_price → profit = (100 - pm_price) per contract
+        # Lost: YES = 0, we lose our cost → loss = -pm_price per contract
+        if our_outcome_won:
             pnl_cents = (100 - pm_price_cents) * qty
-        elif direction == 'BUY_K_SELL_PM':
-            # We're short PM YES → we LOSE
+        else:
+            pnl_cents = -pm_price_cents * qty
+    else:
+        # BUY_SHORT: we sold YES on our outcome (received pm_price proceeds)
+        # Won: YES = 100c, we owe 100 → loss = -(100 - pm_price) per contract
+        # Lost: YES = 0, we owe nothing → profit = pm_price per contract
+        if our_outcome_won:
             pnl_cents = -(100 - pm_price_cents) * qty
         else:
-            return 0.0
-    elif settlement == 0:
-        # NO won
-        if direction == 'BUY_PM_SELL_K':
-            # We're long PM YES → we LOSE
-            pnl_cents = -pm_price_cents * qty
-        elif direction == 'BUY_K_SELL_PM':
-            # We're short PM YES → we WIN
             pnl_cents = pm_price_cents * qty
-        else:
-            return 0.0
-    else:
-        return 0.0
 
     return round(pnl_cents / 100, 4)
 

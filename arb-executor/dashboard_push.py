@@ -826,11 +826,16 @@ class DashboardPusher:
         k_portfolio = self.balances.get("k_portfolio", 0)
         pm_cash = self.balances.get("pm_cash", 0)
         pm_portfolio = self.balances.get("pm_portfolio", 0)
+        pm_positions_value = self.balances.get("pm_positions_value", pm_portfolio - pm_cash)
+        pm_positions_source = self.balances.get("pm_positions_source", "margin")
         return {
             "k_cash": round(k_cash, 2),
             "k_portfolio": round(k_portfolio, 2),
             "pm_cash": round(pm_cash, 2),
             "pm_portfolio": round(pm_portfolio, 2),
+            "pm_positions": round(pm_positions_value, 2),
+            "k_positions": round(k_portfolio - k_cash, 2),
+            "pm_positions_source": pm_positions_source,
             "total_portfolio": round(k_portfolio + pm_portfolio, 2),
             # Backwards-compat
             "kalshi_balance": round(k_portfolio, 2),

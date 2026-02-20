@@ -72,6 +72,7 @@ from executor_core import (
     execute_arb,
     calculate_optimal_size,
     TradeResult,
+    TRADE_PARAMS,           # For computing settlement fields
     traded_games,           # Shared state - games traded this session
     blacklisted_games,      # Shared state - games blacklisted after crashes
     load_traded_games,      # Load persisted traded games on startup
@@ -1548,6 +1549,12 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 opposite_info=opposite_info,
             )
 
+            # Compute PM position details for settlement tracking
+            # Replicates executor_core.py logic: actual traded outcome + long/short
+            _is_long = (arb.team == arb.pm_long_team)
+            _actual_pm_oi = arb.pm_outcome_index if _is_long else (1 - arb.pm_outcome_index)
+            _is_buy_short = TRADE_PARAMS.get((arb.direction, _is_long), {}).get('pm_is_buy_short', False)
+
             # Handle result — only apply cooldown when PM order was actually sent
             pm_was_sent = result.pm_order_ms > 0 or result.success or result.unhedged
             if pm_was_sent:
@@ -1558,7 +1565,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
                 print(f"[EXEC] [{result.tier}]: {result.abort_reason} | {timing}")
                 k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
-                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
+                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price, 'outcome_index': _actual_pm_oi, 'is_buy_short': _is_buy_short}
                 log_trade(arb, k_result, pm_result, result.tier,
                           execution_time_ms=result.execution_time_ms,
                           pm_order_ms=result.pm_order_ms,
@@ -1596,7 +1603,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 print(f"[EXEC]{phase} SUCCESS{maker}: PM={result.pm_filled}@{result.pm_price:.2f}, K={result.kalshi_filled}@{result.kalshi_price}c | {timing}")
                 # Build result dicts for log_trade compatibility
                 k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
-                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
+                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price, 'outcome_index': _actual_pm_oi, 'is_buy_short': _is_buy_short}
                 log_trade(arb, k_result, pm_result, 'SUCCESS',
                           execution_time_ms=result.execution_time_ms,
                           pm_order_ms=result.pm_order_ms,
@@ -1629,7 +1636,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 print(f"[EXEC] UNHEDGED! PM={result.pm_filled} filled, K={result.kalshi_filled} failed | {timing}")
                 print(f"[EXEC] Reason: {result.abort_reason}")
                 k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
-                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
+                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price, 'outcome_index': _actual_pm_oi, 'is_buy_short': _is_buy_short}
                 log_trade(arb, k_result, pm_result, 'UNHEDGED',
                           execution_time_ms=result.execution_time_ms,
                           pm_order_ms=result.pm_order_ms,
@@ -1661,7 +1668,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
                 print(f"[EXEC] [{result.tier}]: {result.abort_reason} | {timing}")
                 k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
-                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
+                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price, 'outcome_index': _actual_pm_oi, 'is_buy_short': _is_buy_short}
                 log_trade(arb, k_result, pm_result, result.tier,
                           execution_time_ms=result.execution_time_ms,
                           pm_order_ms=result.pm_order_ms,
@@ -1679,7 +1686,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 tier_info = f" [{result.tier}]" if result.tier else ""
                 print(f"[EXEC] EXITED{tier_info}: {result.abort_reason} | {timing}")
                 k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
-                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price}
+                pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price, 'outcome_index': _actual_pm_oi, 'is_buy_short': _is_buy_short}
                 log_trade(arb, k_result, pm_result, 'EXITED',
                           execution_time_ms=result.execution_time_ms,
                           pm_order_ms=result.pm_order_ms,
@@ -1701,7 +1708,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                     gtc_info = f" | GTC: {result.gtc_cancel_reason} ({result.gtc_rest_time_ms}ms)"
                 print(f"[EXEC] PM NO FILL: {result.abort_reason} | pm={result.pm_order_ms}ms{gtc_info}")
                 k_result = {'fill_count': 0, 'fill_price': result.kalshi_price}
-                pm_result = {'fill_count': 0, 'fill_price': result.pm_price}
+                pm_result = {'fill_count': 0, 'fill_price': result.pm_price, 'outcome_index': _actual_pm_oi, 'is_buy_short': _is_buy_short}
                 log_trade(arb, k_result, pm_result, 'PM_NO_FILL',
                           execution_time_ms=result.execution_time_ms,
                           pm_order_ms=result.pm_order_ms,
@@ -1928,9 +1935,10 @@ async def refresh_balances(session, kalshi_api, pm_api):
                 k_positions_value = round((data.get('portfolio_value', 0)) / 100, 2)
                 k_portfolio = round(k_cash + k_positions_value, 2)
 
-        # PM: fetch buyingPower (cash) and currentBalance (portfolio)
+        # PM: fetch buyingPower (cash)
         pm_cash = 0.0
-        pm_portfolio = 0.0
+        pm_positions_value = 0.0
+        pm_positions_source = "margin"
         pm_path = '/v1/account/balances'
         async with session.get(
             f'{pm_api.BASE_URL}{pm_path}',
@@ -1942,13 +1950,47 @@ async def refresh_balances(session, kalshi_api, pm_api):
                 for b in data.get('balances', []):
                     if b.get('currency') == 'USD':
                         pm_cash = round(float(b.get('buyingPower', 0)), 2)
-                        pm_portfolio = round(float(b.get('currentBalance', b.get('buyingPower', 0))), 2)
+                        # Default: margin-based (currentBalance - buyingPower)
+                        pm_positions_value = round(
+                            float(b.get('currentBalance', 0)) - float(b.get('buyingPower', 0)), 2)
                         break
+
+        # Fetch actual PM positions for mark-to-market
+        try:
+            pos_path = '/v1/portfolio/positions'
+            async with session.get(
+                f'{pm_api.BASE_URL}{pos_path}',
+                headers=pm_api._headers('GET', pos_path),
+                timeout=aiohttp.ClientTimeout(total=5)
+            ) as r:
+                if r.status == 200:
+                    pos_data = await r.json()
+                    positions_dict = pos_data.get('positions', {})
+                    if isinstance(positions_dict, dict):
+                        mkt_value = 0.0
+                        for slug, pos in positions_dict.items():
+                            if not isinstance(pos, dict):
+                                continue
+                            net = int(pos.get('netPosition', 0) or 0)
+                            if net != 0:
+                                cv = pos.get('cashValue')
+                                if isinstance(cv, dict):
+                                    mkt_value += float(cv.get('value', 0))
+                                elif cv is not None:
+                                    mkt_value += float(cv)
+                        pm_positions_value = round(mkt_value, 2)
+                        pm_positions_source = "market"
+        except Exception as e:
+            print(f"[BALANCE] PM positions fetch failed, using margin: {e}")
+
+        pm_portfolio = round(pm_cash + pm_positions_value, 2)
 
         live_balances["k_cash"] = k_cash
         live_balances["k_portfolio"] = k_portfolio
         live_balances["pm_cash"] = pm_cash
         live_balances["pm_portfolio"] = pm_portfolio
+        live_balances["pm_positions_value"] = pm_positions_value
+        live_balances["pm_positions_source"] = pm_positions_source
         # Backwards-compat: sizing uses these
         live_balances["kalshi_balance"] = k_portfolio
         live_balances["pm_balance"] = pm_cash
@@ -2446,6 +2488,8 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
                     k_portfolio = round(k_cash + k_positions_value, 2)
         except Exception as e:
             print(f"[CAPITAL] Kalshi balance error: {e}")
+        pm_positions_value = 0.0
+        pm_positions_source = "margin"
         try:
             pm_path = '/v1/account/balances'
             async with session.get(
@@ -2458,17 +2502,52 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
                     for b in data.get('balances', []):
                         if b.get('currency') == 'USD':
                             pm_cash = round(float(b.get('buyingPower', 0)), 2)
-                            pm_portfolio = round(float(b.get('currentBalance', b.get('buyingPower', 0))), 2)
+                            # Default: margin-based (currentBalance - buyingPower)
+                            pm_positions_value = round(
+                                float(b.get('currentBalance', 0)) - float(b.get('buyingPower', 0)), 2)
                             break
         except Exception as e:
             print(f"[CAPITAL] PM balance error: {e}")
-        print(f"\n[CAPITAL] Kalshi: cash=${k_cash:.2f} portfolio=${k_portfolio:.2f} | PM: cash=${pm_cash:.2f} portfolio=${pm_portfolio:.2f}")
+
+        # Fetch actual PM positions for mark-to-market
+        try:
+            pos_path = '/v1/portfolio/positions'
+            async with session.get(
+                f'{pm_api.BASE_URL}{pos_path}',
+                headers=pm_api._headers('GET', pos_path),
+                timeout=aiohttp.ClientTimeout(total=5)
+            ) as r:
+                if r.status == 200:
+                    pos_data = await r.json()
+                    positions_dict = pos_data.get('positions', {})
+                    if isinstance(positions_dict, dict):
+                        mkt_value = 0.0
+                        for slug, pos in positions_dict.items():
+                            if not isinstance(pos, dict):
+                                continue
+                            net = int(pos.get('netPosition', 0) or 0)
+                            if net != 0:
+                                cv = pos.get('cashValue')
+                                if isinstance(cv, dict):
+                                    mkt_value += float(cv.get('value', 0))
+                                elif cv is not None:
+                                    mkt_value += float(cv)
+                        pm_positions_value = round(mkt_value, 2)
+                        pm_positions_source = "market"
+        except Exception as e:
+            print(f"[CAPITAL] PM positions fetch failed, using margin: {e}")
+
+        pm_portfolio = round(pm_cash + pm_positions_value, 2)
+        print(f"\n[CAPITAL] Kalshi: cash=${k_cash:.2f} portfolio=${k_portfolio:.2f} | "
+              f"PM: cash=${pm_cash:.2f} positions=${pm_positions_value:.2f} ({pm_positions_source}) portfolio=${pm_portfolio:.2f}")
 
         # Seed live_balances for dashboard
         live_balances["k_cash"] = k_cash
         live_balances["k_portfolio"] = k_portfolio
         live_balances["pm_cash"] = pm_cash
         live_balances["pm_portfolio"] = pm_portfolio
+        live_balances["pm_positions_value"] = pm_positions_value
+        live_balances["pm_positions_source"] = pm_positions_source
         live_balances["kalshi_balance"] = k_portfolio
         live_balances["pm_balance"] = pm_cash
         live_balances["updated_at"] = datetime.now(timezone.utc).isoformat()

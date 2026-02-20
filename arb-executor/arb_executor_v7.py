@@ -3813,7 +3813,8 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
         # CRITICAL: Log pm_outcome_index for post-hoc auditing
         # This helps diagnose same-direction betting bugs
         'pm_outcome_index': arb.pm_outcome_index,
-        'pm_outcome_index_used': pm_result.get('outcome_index'),  # Actual index sent to PM API
+        'pm_outcome_index_used': pm_result.get('outcome_index'),  # Actual outcome index traded on PM
+        'pm_is_buy_short': pm_result.get('is_buy_short', False),  # True if PM intent was BUY_SHORT (sold YES)
         'mapping_verified': arb.cache_key in VERIFIED_MAPS if VERIFIED_MAPS else False,
         'cache_key': arb.cache_key,
 

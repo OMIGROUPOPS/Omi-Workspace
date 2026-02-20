@@ -1310,25 +1310,29 @@ def internal_edge_performance(
     confidence_tier: int = None,
     signal: str = None,
     since: str = None,
+    from_date: str = None,
+    to_date: str = None,
 ):
     """Get Edge performance metrics from prediction_grades.
 
     Reads from scheduler-populated perf_cache first (zero Supabase calls).
     Falls back to in-process cache, then direct query.
     """
-    # 1. Check scheduler-populated cache (no Supabase call)
-    from perf_cache import lookup as perf_lookup
-    pre = perf_lookup(
-        sport=sport.upper() if sport else None,
-        days=days, market=market,
-        confidence_tier=confidence_tier,
-        signal=signal, since=since,
-    )
-    if pre is not None:
-        return pre
+    # Skip perf_cache when date filters are active (cache doesn't support them)
+    if not from_date and not to_date:
+        # 1. Check scheduler-populated cache (no Supabase call)
+        from perf_cache import lookup as perf_lookup
+        pre = perf_lookup(
+            sport=sport.upper() if sport else None,
+            days=days, market=market,
+            confidence_tier=confidence_tier,
+            signal=signal, since=since,
+        )
+        if pre is not None:
+            return pre
 
     # 2. Fall back to in-process response cache
-    ck = f"perf:{sport}:{days}:{market}:{confidence_tier}:{signal}:{since}"
+    ck = f"perf:{sport}:{days}:{market}:{confidence_tier}:{signal}:{since}:{from_date}:{to_date}"
     cached = _cache_get(ck, 300)
     if cached is not None:
         return cached
@@ -1338,6 +1342,7 @@ def internal_edge_performance(
         return InternalGrader().get_performance(
             sport.upper() if sport else None,
             days, market, confidence_tier, signal, since,
+            from_date=from_date, to_date=to_date,
         )
     data = _with_scheduler_pause(_query)
     _cache_set(ck, data)
@@ -1352,10 +1357,12 @@ def internal_graded_games(
     days: int = 30,
     since: str = None,
     limit: int = 500,
+    from_date: str = None,
+    to_date: str = None,
 ):
     """Get individual graded prediction rows with game context."""
     capped_limit = min(limit, 1000)
-    ck = f"graded:{sport}:{market}:{verdict}:{days}:{since}:{capped_limit}"
+    ck = f"graded:{sport}:{market}:{verdict}:{days}:{since}:{capped_limit}:{from_date}:{to_date}"
     cached = _cache_get(ck, 300)
     if cached is not None:
         return cached
@@ -1368,6 +1375,8 @@ def internal_graded_games(
             since=since,
             days=days,
             limit=capped_limit,
+            from_date=from_date,
+            to_date=to_date,
         )
     data = _with_scheduler_pause(_query)
     _cache_set(ck, data)
@@ -1827,9 +1836,9 @@ def system_health():
 
 
 @app.get("/api/internal/accuracy-summary")
-def accuracy_summary(sport: str = None, days: int = 30):
+def accuracy_summary(sport: str = None, days: int = 30, from_date: str = None, to_date: str = None):
     """Prediction accuracy reflection pool — how close OMI fair lines are to reality."""
-    ck = f"acc-sum:{sport}:{days}"
+    ck = f"acc-sum:{sport}:{days}:{from_date}:{to_date}"
     cached = _cache_get(ck, 300)
     if cached is not None:
         return cached
@@ -1837,7 +1846,7 @@ def accuracy_summary(sport: str = None, days: int = 30):
         from accuracy_tracker import AccuracyTracker
         def _query():
             tracker = AccuracyTracker()
-            return tracker.get_accuracy_summary(sport=sport, days=days)
+            return tracker.get_accuracy_summary(sport=sport, days=days, from_date=from_date, to_date=to_date)
         data = _with_scheduler_pause(_query)
         _cache_set(ck, data)
         return data

@@ -330,6 +330,8 @@ export default function EdgeInternalPage() {
   const [market, setMarket] = useState("");
   const [days, setDays] = useState(30);
   const [cleanDataOnly, setCleanDataOnly] = useState(true);
+  const [fromDate, setFromDate] = useState("2026-02-19");
+  const [toDate, setToDate] = useState(new Date().toISOString().slice(0, 10));
 
   // Performance tab state
   const [data, setData] = useState<PerformanceData | null>(null);
@@ -388,6 +390,8 @@ export default function EdgeInternalPage() {
       if (days !== 30) params.set("days", String(days));
       if (tier) params.set("signal", tier);
       if (cleanDataOnly) params.set("since", "2026-02-10T00:00:00+00:00");
+      if (fromDate) params.set("from_date", fromDate);
+      if (toDate) params.set("to_date", toDate);
       const res = await fetchWithTimeout(
         `${BACKEND_URL}/api/internal/edge/performance?${params.toString()}`, 45000
       );
@@ -402,7 +406,7 @@ export default function EdgeInternalPage() {
     } finally {
       setLoading(false);
     }
-  }, [sport, market, days, tier, cleanDataOnly, fetchWithTimeout]);
+  }, [sport, market, days, tier, cleanDataOnly, fromDate, toDate, fetchWithTimeout]);
 
   // ------- Health fetch -------
   const fetchHealth = useCallback(async () => {
@@ -447,6 +451,8 @@ export default function EdgeInternalPage() {
       if (days !== 30) params.set("days", String(days));
       if (verdictFilter) params.set("verdict", verdictFilter);
       if (cleanDataOnly) params.set("since", "2026-02-10T00:00:00+00:00");
+      if (fromDate) params.set("from_date", fromDate);
+      if (toDate) params.set("to_date", toDate);
       const res = await fetchWithTimeout(
         `${BACKEND_URL}/api/internal/edge/graded-games?${params.toString()}`, 60000
       );
@@ -456,7 +462,7 @@ export default function EdgeInternalPage() {
     } finally {
       setGradedLoading(false);
     }
-  }, [sport, market, days, verdictFilter, cleanDataOnly, fetchWithTimeout]);
+  }, [sport, market, days, verdictFilter, cleanDataOnly, fromDate, toDate, fetchWithTimeout]);
 
   useEffect(() => {
     if (activeTab === "graded") fetchGradedGames();
@@ -488,7 +494,11 @@ export default function EdgeInternalPage() {
     setAccuracyLoading(true);
     setAccuracyError(null);
     try {
-      const res = await fetchWithTimeout(`${BACKEND_URL}/api/internal/accuracy-summary?days=${days}`);
+      const params = new URLSearchParams();
+      params.set("days", String(days));
+      if (fromDate) params.set("from_date", fromDate);
+      if (toDate) params.set("to_date", toDate);
+      const res = await fetchWithTimeout(`${BACKEND_URL}/api/internal/accuracy-summary?${params.toString()}`);
       if (res.ok) {
         const data = await res.json();
         setAccuracyData(data);
@@ -501,7 +511,7 @@ export default function EdgeInternalPage() {
     } finally {
       setAccuracyLoading(false);
     }
-  }, [days, fetchWithTimeout]);
+  }, [days, fromDate, toDate, fetchWithTimeout]);
 
   useEffect(() => {
     if (activeTab === "accuracy") fetchAccuracy();
@@ -832,6 +842,23 @@ export default function EdgeInternalPage() {
           <span className="text-sm text-zinc-300">Clean Data Only</span>
           <span className="text-xs text-zinc-600">(Feb 10+)</span>
         </label>
+
+        <div className="flex items-center gap-2">
+          <label className="text-xs text-zinc-500">From</label>
+          <input
+            type="date"
+            value={fromDate}
+            onChange={(e) => setFromDate(e.target.value)}
+            className="bg-zinc-800 border border-zinc-700 rounded px-2 py-1.5 text-sm text-white [color-scheme:dark]"
+          />
+          <label className="text-xs text-zinc-500">To</label>
+          <input
+            type="date"
+            value={toDate}
+            onChange={(e) => setToDate(e.target.value)}
+            className="bg-zinc-800 border border-zinc-700 rounded px-2 py-1.5 text-sm text-white [color-scheme:dark]"
+          />
+        </div>
 
         <div className="ml-auto flex items-center gap-3">
           {gradeResult && (

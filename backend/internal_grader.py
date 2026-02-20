@@ -916,6 +916,8 @@ class InternalGrader:
         confidence_tier: Optional[int] = None,
         signal: Optional[str] = None,
         since: Optional[str] = None,
+        from_date: Optional[str] = None,
+        to_date: Optional[str] = None,
     ) -> dict:
         """Query prediction_grades and aggregate performance metrics.
 
@@ -928,11 +930,14 @@ class InternalGrader:
             "confidence_tier": confidence_tier,
             "signal": signal,
             "since": since,
+            "from_date": from_date,
+            "to_date": to_date,
         }
 
         # RPC reads from prediction_grades (stale) — skip straight to Python
         # which now reads from prediction_accuracy_log (single source of truth).
-        return self._get_performance_python(sport, days, market, confidence_tier, signal, since, filters)
+        return self._get_performance_python(sport, days, market, confidence_tier, signal, since, filters,
+                                            from_date=from_date, to_date=to_date)
 
     def _get_performance_python(
         self,
@@ -943,17 +948,24 @@ class InternalGrader:
         signal: Optional[str],
         since: Optional[str],
         filters: dict,
+        from_date: Optional[str] = None,
+        to_date: Optional[str] = None,
     ) -> dict:
         """Aggregate performance from prediction_accuracy_log (single source of truth)."""
         cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
 
         valid_game_ids: Optional[set] = None
-        if since:
-            gr_result = self.client.table("game_results").select("game_id").gte(
-                "commence_time", since
-            ).limit(5000).execute()
+        if since or from_date or to_date:
+            gr_query = self.client.table("game_results").select("game_id, commence_time").limit(5000)
+            if since:
+                gr_query = gr_query.gte("commence_time", since)
+            if from_date:
+                gr_query = gr_query.gte("commence_time", f"{from_date}T00:00:00+00:00")
+            if to_date:
+                gr_query = gr_query.lte("commence_time", f"{to_date}T23:59:59+00:00")
+            gr_result = gr_query.execute()
             valid_game_ids = {r["game_id"] for r in (gr_result.data or [])}
-            logger.info(f"[Performance] valid_game_ids since {since}: {len(valid_game_ids)}")
+            logger.info(f"[Performance] valid_game_ids (since={since}, from={from_date}, to={to_date}): {len(valid_game_ids)}")
 
         # Read from prediction_accuracy_log — unified source of truth
         query = self.client.table("prediction_accuracy_log").select(
@@ -1284,17 +1296,24 @@ class InternalGrader:
         since: Optional[str] = None,
         days: int = 30,
         limit: int = 500,
+        from_date: Optional[str] = None,
+        to_date: Optional[str] = None,
     ) -> dict:
         """Return graded predictions: one row per game×market, per-book implied prob edges."""
         cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
 
         valid_game_ids: Optional[set] = None
-        if since:
-            gr_result = self.client.table("game_results").select("game_id").gte(
-                "commence_time", since
-            ).limit(5000).execute()
+        if since or from_date or to_date:
+            gr_query = self.client.table("game_results").select("game_id").limit(5000)
+            if since:
+                gr_query = gr_query.gte("commence_time", since)
+            if from_date:
+                gr_query = gr_query.gte("commence_time", f"{from_date}T00:00:00+00:00")
+            if to_date:
+                gr_query = gr_query.lte("commence_time", f"{to_date}T23:59:59+00:00")
+            gr_result = gr_query.execute()
             valid_game_ids = {r["game_id"] for r in (gr_result.data or [])}
-            logger.info(f"[GradedGames] valid_game_ids since {since}: {len(valid_game_ids)}")
+            logger.info(f"[GradedGames] valid_game_ids (since={since}, from={from_date}, to={to_date}): {len(valid_game_ids)}")
 
         query = self.client.table("prediction_grades").select("*").not_.is_(
             "graded_at", "null"

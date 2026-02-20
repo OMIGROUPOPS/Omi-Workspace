@@ -316,29 +316,30 @@ class AccuracyTracker:
     # DASHBOARD SUMMARY
     # =========================================================================
 
-    def get_accuracy_summary(self, sport: str = None, days: int = 30) -> dict:
+    def get_accuracy_summary(self, sport: str = None, days: int = 30, from_date: str = None, to_date: str = None) -> dict:
         """Return summary stats for the accuracy dashboard tab.
         Tries SQL RPC first (zero row transfer), falls back to Python."""
-        # Try RPC first
-        try:
-            rpc_params = {"p_days": days}
-            if sport:
-                rpc_params["p_sport"] = sport.upper()
-            rpc_result = self.client.rpc("get_accuracy_summary", rpc_params).execute()
-            data = rpc_result.data
-            if isinstance(data, list) and len(data) == 1:
-                data = data[0]
-            if isinstance(data, dict) and "get_accuracy_summary" in data:
-                data = data["get_accuracy_summary"]
-            if isinstance(data, dict) and ("overall" in data or "games" in data):
-                logger.info(f"[AccuracySummary] RPC returned data")
-                return data
-        except Exception as e:
-            logger.info(f"[AccuracySummary] RPC unavailable ({e}), falling back to Python")
+        # Skip RPC when date filters are active (RPC doesn't support them)
+        if not from_date and not to_date:
+            try:
+                rpc_params = {"p_days": days}
+                if sport:
+                    rpc_params["p_sport"] = sport.upper()
+                rpc_result = self.client.rpc("get_accuracy_summary", rpc_params).execute()
+                data = rpc_result.data
+                if isinstance(data, list) and len(data) == 1:
+                    data = data[0]
+                if isinstance(data, dict) and "get_accuracy_summary" in data:
+                    data = data["get_accuracy_summary"]
+                if isinstance(data, dict) and ("overall" in data or "games" in data):
+                    logger.info(f"[AccuracySummary] RPC returned data")
+                    return data
+            except Exception as e:
+                logger.info(f"[AccuracySummary] RPC unavailable ({e}), falling back to Python")
 
-        return self._get_accuracy_summary_python(sport, days)
+        return self._get_accuracy_summary_python(sport, days, from_date=from_date, to_date=to_date)
 
-    def _get_accuracy_summary_python(self, sport: str = None, days: int = 30) -> dict:
+    def _get_accuracy_summary_python(self, sport: str = None, days: int = 30, from_date: str = None, to_date: str = None) -> dict:
         """Python fallback for accuracy summary aggregation."""
         cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
 
@@ -347,6 +348,10 @@ class AccuracyTracker:
         )
         if sport:
             query = query.eq("sport_key", sport.upper())
+        if from_date:
+            query = query.gte("created_at", f"{from_date}T00:00:00+00:00")
+        if to_date:
+            query = query.lte("created_at", f"{to_date}T23:59:59+00:00")
 
         result = query.order("created_at", desc=True).limit(5000).execute()
         rows = result.data or []

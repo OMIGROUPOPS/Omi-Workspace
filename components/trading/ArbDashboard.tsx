@@ -1793,6 +1793,7 @@ export default function ArbDashboard() {
                                       <span className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${
                                         t.tier === "TIER1_HEDGE" ? "bg-emerald-500/20 text-emerald-400" :
                                         t.tier === "TIER2_EXIT" ? "bg-yellow-500/20 text-yellow-400" :
+                                        t.tier === "TIER3_EMERGENCY" ? "bg-orange-500/20 text-orange-400" :
                                         "bg-red-500/20 text-red-400"
                                       }`}>
                                         {t.tier}
@@ -2736,6 +2737,7 @@ export default function ArbDashboard() {
                                       <span className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${
                                         t.tier === "TIER1_HEDGE" ? "bg-emerald-500/20 text-emerald-400" :
                                         t.tier === "TIER2_EXIT" ? "bg-yellow-500/20 text-yellow-400" :
+                                        t.tier === "TIER3_EMERGENCY" ? "bg-orange-500/20 text-orange-400" :
                                         "bg-red-500/20 text-red-400"
                                       }`}>
                                         {t.tier}

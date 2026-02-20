@@ -3814,10 +3814,8 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
         # This helps diagnose same-direction betting bugs
         'pm_outcome_index': arb.pm_outcome_index,
         'pm_outcome_index_used': pm_result.get('outcome_index'),  # Actual index sent to PM API
-        'mapping_verified': any(
-            vm.get('game_id') == arb.game and vm.get('verified', False)
-            for vm in VERIFIED_MAPS.values()
-        ) if VERIFIED_MAPS else False,
+        'mapping_verified': arb.cache_key in VERIFIED_MAPS if VERIFIED_MAPS else False,
+        'cache_key': arb.cache_key,
 
         # Execution detail fields (passed from caller to persist with trade)
         'sizing_details': sizing_details,

@@ -1919,8 +1919,52 @@ async def execute_arb(
                     tier="TIER3_UNWIND",
                 )
 
-            # All tiers failed - still unhedged
-            print(f"[TIER] ALL TIERS FAILED — position remains unhedged!")
+            # ── EMERGENCY UNWIND: Aggressive market-crossing exit ──
+            # All normal tiers failed. Rather than leaving a naked position,
+            # retry with much wider buffers. A 15-20c loss on forced exit is
+            # better than potential 60-70c loss at settlement.
+            print(f"[EMERGENCY] All tiers failed — attempting aggressive market-crossing exit")
+
+            emg_filled, emg_fill_price = await _unwind_pm_position(
+                session, pm_api, pm_slug, reverse_intent,
+                pm_fill_price_cents, pm_filled, actual_pm_outcome_idx,
+                buffers=[35, 50, 65],
+            )
+
+            if emg_filled > 0:
+                if reverse_intent in (2, 4):
+                    loss_per = pm_fill_price_cents - (emg_fill_price * 100)
+                else:
+                    loss_per = (emg_fill_price * 100) - pm_fill_price_cents
+                loss_cents = abs(loss_per) * pm_filled
+                print(f"[EMERGENCY] Exited {emg_filled} @ {emg_fill_price:.4f} (loss ~{loss_cents:.1f}c)")
+
+                return TradeResult(
+                    success=False,
+                    kalshi_filled=0,
+                    pm_filled=pm_filled,
+                    kalshi_price=k_limit_price,
+                    pm_price=pm_fill_price,
+                    unhedged=False,
+                    exited=True,
+                    unwind_loss_cents=loss_cents,
+                    unwind_fill_price=emg_fill_price,
+                    unwind_qty=emg_filled,
+                    abort_reason=f"Emergency exit: {emg_filled} @ {emg_fill_price:.4f} (loss ~{loss_cents:.1f}c)",
+                    execution_time_ms=int((time.time() - start_time) * 1000),
+                    pm_order_ms=pm_order_ms,
+                    k_order_ms=k_order_ms,
+                    pm_response_details=pm_response_details,
+                    execution_phase="emergency",
+                    gtc_rest_time_ms=_gtc_rest,
+                    gtc_spread_checks=_gtc_checks,
+                    gtc_cancel_reason=_gtc_cancel,
+                    is_maker=_is_maker,
+                    tier="TIER3_EMERGENCY",
+                )
+
+            # Even emergency exit failed — flag for manual review
+            print(f"[EMERGENCY] ALL EXIT ATTEMPTS FAILED — position remains unhedged, needs manual review")
             return TradeResult(
                 success=False,
                 kalshi_filled=0,
@@ -1928,7 +1972,7 @@ async def execute_arb(
                 kalshi_price=k_limit_price,
                 pm_price=pm_fill_price,
                 unhedged=True,
-                abort_reason=f"Kalshi: no fill, all recovery tiers failed - UNHEDGED!",
+                abort_reason=f"Kalshi: no fill, all recovery tiers AND emergency exit failed - UNHEDGED! NEEDS MANUAL REVIEW",
                 execution_time_ms=int((time.time() - start_time) * 1000),
                 pm_order_ms=pm_order_ms,
                 k_order_ms=k_order_ms,

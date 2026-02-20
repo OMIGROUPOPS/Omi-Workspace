@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 # Fair line factors (must match edgescout.ts)
 FAIR_LINE_SPREAD_FACTOR = 0.15
-FAIR_LINE_TOTAL_FACTOR = 0.20
+FAIR_LINE_TOTAL_FACTOR = 0.10
 FAIR_LINE_ML_FACTOR = 0.01
 
 # Industry standard: ~3% win probability per point of spread difference
@@ -504,7 +504,8 @@ class InternalGrader:
 
         fair_spread = None
         if closing_spread is not None:
-            raw_adj = (composite - 0.5) * FAIR_LINE_SPREAD_FACTOR * 10
+            confidence = max(0.40, abs(composite - 0.50) * 2)
+            raw_adj = (composite - 0.5) * FAIR_LINE_SPREAD_FACTOR * 10 * confidence
             capped_adj = max(-spread_cap, min(spread_cap, raw_adj))
             if abs(raw_adj) > spread_cap:
                 logger.warning(
@@ -516,7 +517,8 @@ class InternalGrader:
         fair_total = None
         game_env = game.get("pillar_game_environment") or composite
         if closing_total is not None:
-            raw_adj = (game_env - 0.5) * FAIR_LINE_TOTAL_FACTOR * 10
+            confidence = max(0.40, abs(game_env - 0.50) * 2)
+            raw_adj = (game_env - 0.5) * FAIR_LINE_TOTAL_FACTOR * 10 * confidence
             capped_adj = max(-total_cap, min(total_cap, raw_adj))
             if abs(raw_adj) > total_cap:
                 logger.warning(

@@ -713,16 +713,18 @@ def start_scheduler():
     # connections.  Non-critical jobs commented out below.
     # =========================================================================
 
-    # 1. Pre-game polling: Every 30 minutes (first run at +60s)
+    # 1. Pre-game polling: Every 10 minutes (first run at +120s)
+    #    Feeds fresh FanDuel/DraftKings lines into cached_odds so
+    #    fast_refresh reads current book lines for the chart.
     scheduler.add_job(
         func=run_pregame_cycle,
-        trigger=IntervalTrigger(minutes=PREGAME_POLL_INTERVAL_MINUTES),
+        trigger=IntervalTrigger(minutes=10),
         id="pregame_cycle",
         name="Pre-game polling (all markets + props)",
         replace_existing=True,
         max_instances=1,
         misfire_grace_time=30,
-        next_run_time=_delayed(60),
+        next_run_time=_delayed(120),
     )
 
     # 2. Live polling: Every 5 minutes (first run at +70s)
@@ -947,7 +949,7 @@ def start_scheduler():
 
     scheduler.start()
     logger.info("Scheduler started — 8 active jobs:")
-    logger.info(f"  1. Pre-game: every {PREGAME_POLL_INTERVAL_MINUTES} min (first at +60s)")
+    logger.info(f"  1. Pre-game: every 10 min (first at +120s)")
     logger.info(f"  2. Live: every {LIVE_POLL_INTERVAL_MINUTES} min (first at +70s)")
     logger.info(f"  3. Fast refresh + live CEQ: every 30s (first at +90s)")
     logger.info(f"  4. Closing line capture: every 10 min (first at +100s)")

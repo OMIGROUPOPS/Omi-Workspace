@@ -1413,11 +1413,11 @@ class CompositeTracker:
                                 and abs(float(book_spread) - float(prev_bs)) >= 0.25)
                 total_moved = (book_total is not None and prev_bt is not None
                                and abs(float(book_total) - float(prev_bt)) >= 0.5)
-                # Also refresh if last entry is >60s old (at 30s intervals, keeps data fresh)
+                # Also refresh if last entry is >45s old (at 30s intervals, ensures ≥1 write/min)
                 stale = False
                 try:
                     prev_ts = datetime.fromisoformat(prev["timestamp"].replace("Z", "+00:00"))
-                    stale = (now_dt - prev_ts).total_seconds() > 60
+                    stale = (now_dt - prev_ts).total_seconds() > 45
                 except (ValueError, TypeError, KeyError):
                     stale = True
 

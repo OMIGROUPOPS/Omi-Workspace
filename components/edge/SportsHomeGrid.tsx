@@ -158,51 +158,44 @@ function getProbRate(sportKey: string): number {
   return SPREAD_TO_PROB[sportKey] || 0.03;
 }
 
-// Clean implied probability edge for spread/total:
-//   1. Convert OMI fair line difference to fair implied probability
-//   2. Compare against book's implied probability (from odds)
-//   3. Edge = (fair_prob - book_implied_prob) / book_implied_prob * 100
+// Absolute edge: point difference × probability per point
+// Matches backend _calculate_edge_pct and game detail page formula
 function spreadEdgeForSide(
   fairSpread: number, bookLine: number, bookOdds: number, sportKey: string, isHome: boolean
 ): number {
   const rate = getProbRate(sportKey);
-  // Line difference from home perspective: negative = book line harder for home to cover
-  const lineDiff = bookLine - fairSpread; // e.g. book -17.5, fair -14 → -3.5 (home must cover more)
-  // Fair probability of covering this book's line: 50% adjusted by line diff
-  const fairCoverProb = 0.5 + lineDiff * rate; // home cover prob at book's line
-  const fairProb = isHome ? fairCoverProb : 1 - fairCoverProb;
-  // Book's implied probability from odds
-  const bookProb = toProb(bookOdds);
-  // Edge: how much is fair prob above what book charges
-  return (fairProb - bookProb) / bookProb * 100;
+  // Absolute edge: point difference × probability per point
+  const pointDiff = fairSpread - bookLine;
+  // Positive pointDiff means fair spread is more positive (favoring away/underdog)
+  // For home: negative pointDiff = home edge (fair says home is better than book)
+  // For away: positive pointDiff = away edge
+  const edge = Math.abs(pointDiff) * rate * 100;
+  const sign = isHome ? (pointDiff < 0 ? 1 : -1) : (pointDiff > 0 ? 1 : -1);
+  return edge * sign;
 }
 
 function totalEdgeForSide(
   fairTotal: number, bookLine: number, bookOdds: number, sportKey: string, isOver: boolean
 ): number {
   const rate = getProbRate(sportKey) * TOTAL_TO_PROB_FACTOR;
-  // Line difference: positive = OMI fair is higher than book → over has edge
-  const lineDiff = fairTotal - bookLine;
-  const fairOverProb = 0.5 + lineDiff * rate;
-  const fairProb = isOver ? fairOverProb : 1 - fairOverProb;
-  const bookProb = toProb(bookOdds);
-  return (fairProb - bookProb) / bookProb * 100;
+  const pointDiff = fairTotal - bookLine;
+  // Positive = fair total higher than book = over edge
+  const edge = Math.abs(pointDiff) * rate * 100;
+  const sign = isOver ? (pointDiff > 0 ? 1 : -1) : (pointDiff < 0 ? 1 : -1);
+  return edge * sign;
 }
 
 function calcMaxEdge(fair: any, spreads: any, h2h: any, totals: any, sportKey: string): number {
   let maxEdge = 0;
+  const rate = getProbRate(sportKey);
 
-  // Spread edge: implied probability comparison
+  // Spread edge: absolute point difference × prob per point (matches backend)
   if (fair?.fair_spread != null && spreads?.line !== undefined) {
-    if (spreads.homePrice != null) {
-      maxEdge = Math.max(maxEdge, spreadEdgeForSide(fair.fair_spread, spreads.line, spreads.homePrice, sportKey, true));
-    }
-    if (spreads.awayPrice != null) {
-      maxEdge = Math.max(maxEdge, spreadEdgeForSide(fair.fair_spread, spreads.line, spreads.awayPrice, sportKey, false));
-    }
+    const diff = Math.abs(fair.fair_spread - spreads.line);
+    maxEdge = Math.max(maxEdge, diff * rate * 100);
   }
 
-  // ML edge: pure probability comparison (no line, odds directly convert)
+  // ML edge: absolute probability comparison
   if (fair?.fair_ml_home != null && fair?.fair_ml_away != null && h2h?.homePrice !== undefined && h2h?.awayPrice !== undefined) {
     const fairHP = toProb(fair.fair_ml_home);
     const fairAP = toProb(fair.fair_ml_away);
@@ -210,17 +203,14 @@ function calcMaxEdge(fair: any, spreads: any, h2h: any, totals: any, sportKey: s
     const bookAP = toProb(h2h.awayPrice);
     const normBHP = bookHP / (bookHP + bookAP);
     const normBAP = bookAP / (bookHP + bookAP);
-    maxEdge = Math.max(maxEdge, (fairHP - normBHP) * 100, (fairAP - normBAP) * 100);
+    maxEdge = Math.max(maxEdge, Math.abs(fairHP - normBHP) * 100, Math.abs(fairAP - normBAP) * 100);
   }
 
-  // Total edge: implied probability comparison
+  // Total edge: absolute point difference × prob per point (matches backend)
   if (fair?.fair_total != null && totals?.line !== undefined) {
-    if (totals.overPrice != null) {
-      maxEdge = Math.max(maxEdge, totalEdgeForSide(fair.fair_total, totals.line, totals.overPrice, sportKey, true));
-    }
-    if (totals.underPrice != null) {
-      maxEdge = Math.max(maxEdge, totalEdgeForSide(fair.fair_total, totals.line, totals.underPrice, sportKey, false));
-    }
+    const totalRate = rate * TOTAL_TO_PROB_FACTOR;
+    const diff = Math.abs(fair.fair_total - totals.line);
+    maxEdge = Math.max(maxEdge, diff * totalRate * 100);
   }
 
   return maxEdge;

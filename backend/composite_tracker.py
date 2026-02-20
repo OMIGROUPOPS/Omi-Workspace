@@ -1270,7 +1270,7 @@ class CompositeTracker:
 
         all_rows = result.data or []
 
-        # Filter to LIVE games: commence_time in the past but within 8 hours
+        # Filter to LIVE or near-tipoff games: started within 8h or starting within 30min
         live_rows = []
         for row in all_rows:
             gd = row.get("game_data") or {}
@@ -1280,7 +1280,7 @@ class CompositeTracker:
             try:
                 game_dt = datetime.fromisoformat(ct.replace("Z", "+00:00"))
                 hours_ago = (now_dt - game_dt).total_seconds() / 3600
-                if 0 < hours_ago <= 8:
+                if -0.5 < hours_ago <= 8:
                     live_rows.append(row)
             except (ValueError, AttributeError):
                 continue

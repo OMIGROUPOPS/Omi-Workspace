@@ -401,7 +401,7 @@ function buildGameContext(
 async function fetchEdgesFromBackend(sport: string) {
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 3000);
+    const timeout = setTimeout(() => controller.abort(), 8000);
     const res = await fetch(`${BACKEND_URL}/api/edges/${sport}`, {
       cache: 'no-store',
       signal: controller.signal,
@@ -945,7 +945,7 @@ function processOddsApiGame(
     consensus,
     bookmakers,
     bookmakerCount: game.bookmakers?.length || 0,
-    composite_score: edgeData.score / 100,
+    composite_score: fairLinesMap[game.id]?.composite_score ?? (edgeData.score / 100),
     overall_confidence: edgeData.confidence,
     calculatedEdge: edgeData,
     ceq: ceqData,
@@ -1032,7 +1032,7 @@ export default async function SportsPage() {
       if (allKnownGameIds.length === 0) return map;
       const { data, error } = await supabaseForFairLines
         .from('composite_history')
-        .select('game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away')
+        .select('game_id, fair_spread, fair_total, fair_ml_home, fair_ml_away, composite_spread')
         .in('game_id', allKnownGameIds)
         .order('timestamp', { ascending: false });
       if (error || !data) return map;
@@ -1043,6 +1043,7 @@ export default async function SportsPage() {
             fair_total: row.fair_total != null ? Number(row.fair_total) : null,
             fair_ml_home: row.fair_ml_home != null ? Number(row.fair_ml_home) : null,
             fair_ml_away: row.fair_ml_away != null ? Number(row.fair_ml_away) : null,
+            composite_score: row.composite_spread != null ? Number(row.composite_spread) : null,
           };
         }
       }

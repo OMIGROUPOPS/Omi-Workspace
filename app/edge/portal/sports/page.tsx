@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
 import { calculateQuickEdge } from '@/lib/edge/engine/edge-calculator';
-import { calculateCEQ, calculateGameCEQ, groupSnapshotsByGame, calculateFairSpread, calculateFairTotal, calculateFairMLFromBook, type ExtendedOddsSnapshot, type GameCEQ, type GameContextData, type TeamStatsData } from '@/lib/edge/engine/edgescout';
+import { calculateCEQ, calculateGameCEQ, groupSnapshotsByGame, calculateFairSpread, calculateFairTotal, calculateFairMLFromBook, calculateFairMLFromBook3Way, type ExtendedOddsSnapshot, type GameCEQ, type GameContextData, type TeamStatsData } from '@/lib/edge/engine/edgescout';
 import { enrichExchangeRows } from '@/lib/edge/utils/exchange-enrichment';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
@@ -432,12 +432,40 @@ function computeFallbackFair(g: any) {
   const h2h = g.consensus?.h2h;
   const fs = spreads?.line != null ? calculateFairSpread(spreads.line, comp, g.sportKey) : null;
   const ft = totals?.line != null ? calculateFairTotal(totals.line, comp, g.sportKey) : null;
-  const fm = h2h?.homePrice != null && h2h?.awayPrice != null ? calculateFairMLFromBook(h2h.homePrice, h2h.awayPrice, comp) : null;
+  const drawPrice = h2h?.drawPrice ?? h2h?.draw;
+  let fair_ml_home: number | null = null, fair_ml_away: number | null = null, fair_ml_draw: number | null = null;
+  if (drawPrice != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
+    const fm3 = calculateFairMLFromBook3Way(h2h.homePrice, drawPrice, h2h.awayPrice, comp);
+    fair_ml_home = fm3.homeOdds;
+    fair_ml_away = fm3.awayOdds;
+    fair_ml_draw = fm3.drawOdds;
+  } else if (h2h?.homePrice != null && h2h?.awayPrice != null) {
+    const fm = calculateFairMLFromBook(h2h.homePrice, h2h.awayPrice, comp);
+    fair_ml_home = fm.homeOdds;
+    fair_ml_away = fm.awayOdds;
+  }
   return {
     fair_spread: fs?.fairLine ?? null,
     fair_total: ft?.fairLine ?? null,
-    fair_ml_home: fm?.homeOdds ?? null,
-    fair_ml_away: fm?.awayOdds ?? null,
+    fair_ml_home,
+    fair_ml_away,
+    fair_ml_draw,
+  };
+}
+
+/** Merge DB fair lines with on-the-fly fallback — fill nulls from edgescout */
+function getEffectiveFair(g: any) {
+  const db = g.fairLines;
+  const fb = computeFallbackFair(g);
+  if (!db && !fb) return null;
+  if (!db) return fb;
+  if (!fb) return db;
+  return {
+    fair_spread: db.fair_spread ?? fb.fair_spread,
+    fair_total: db.fair_total ?? fb.fair_total,
+    fair_ml_home: db.fair_ml_home ?? fb.fair_ml_home,
+    fair_ml_away: db.fair_ml_away ?? fb.fair_ml_away,
+    fair_ml_draw: db.fair_ml_draw ?? fb.fair_ml_draw,
   };
 }
 
@@ -1256,7 +1284,7 @@ export default async function SportsPage() {
         totalGames += processed.length;
         const now7d = Date.now() + 7 * 24 * 60 * 60 * 1000;
         totalEdges += processed.filter((g: any) => {
-          const fair = g.fairLines || computeFallbackFair(g);
+          const fair = getEffectiveFair(g);
           if (!fair) return false;
           if (new Date(g.commenceTime).getTime() > now7d) return false;
           return calculateMaxEdge(fair, g.consensus) >= EDGE_THRESHOLD;
@@ -1330,7 +1358,7 @@ export default async function SportsPage() {
           totalGames += upcoming.length;
           const now7d = Date.now() + 7 * 24 * 60 * 60 * 1000;
           totalEdges += upcoming.filter((g: any) => {
-            const fair = g.fairLines || computeFallbackFair(g);
+            const fair = getEffectiveFair(g);
             if (!fair) return false;
             if (new Date(g.commenceTime).getTime() > now7d) return false;
             return calculateMaxEdge(fair, g.consensus) >= EDGE_THRESHOLD;

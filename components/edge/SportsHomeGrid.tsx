@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
-import { calculateFairSpread, calculateFairTotal, calculateFairMLFromBook } from '@/lib/edge/engine/edgescout';
+import { calculateFairSpread, calculateFairTotal, calculateFairMLFromBook, calculateFairMLFromBook3Way } from '@/lib/edge/engine/edgescout';
 
 // --- Light theme palette ---
 const P = {
@@ -235,12 +235,41 @@ function computeFallbackFair(game: any) {
   const h2h = game.consensus?.h2h;
   const fs = spreads?.line != null ? calculateFairSpread(spreads.line, comp, game.sportKey) : null;
   const ft = totals?.line != null ? calculateFairTotal(totals.line, comp, game.sportKey) : null;
-  const fm = h2h?.homePrice != null && h2h?.awayPrice != null ? calculateFairMLFromBook(h2h.homePrice, h2h.awayPrice, comp) : null;
+  // 3-way ML for soccer, 2-way for everything else
+  const drawPrice = h2h?.drawPrice ?? h2h?.draw;
+  let fair_ml_home: number | null = null, fair_ml_away: number | null = null, fair_ml_draw: number | null = null;
+  if (drawPrice != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
+    const fm3 = calculateFairMLFromBook3Way(h2h.homePrice, drawPrice, h2h.awayPrice, comp);
+    fair_ml_home = fm3.homeOdds;
+    fair_ml_away = fm3.awayOdds;
+    fair_ml_draw = fm3.drawOdds;
+  } else if (h2h?.homePrice != null && h2h?.awayPrice != null) {
+    const fm = calculateFairMLFromBook(h2h.homePrice, h2h.awayPrice, comp);
+    fair_ml_home = fm.homeOdds;
+    fair_ml_away = fm.awayOdds;
+  }
   return {
     fair_spread: fs?.fairLine ?? null,
     fair_total: ft?.fairLine ?? null,
-    fair_ml_home: fm?.homeOdds ?? null,
-    fair_ml_away: fm?.awayOdds ?? null,
+    fair_ml_home,
+    fair_ml_away,
+    fair_ml_draw,
+  };
+}
+
+/** Merge DB fair lines with on-the-fly fallback — fill nulls from edgescout */
+function getEffectiveFair(game: any) {
+  const db = game.fairLines;
+  const fb = computeFallbackFair(game);
+  if (!db && !fb) return null;
+  if (!db) return fb;
+  if (!fb) return db;
+  return {
+    fair_spread: db.fair_spread ?? fb.fair_spread,
+    fair_total: db.fair_total ?? fb.fair_total,
+    fair_ml_home: db.fair_ml_home ?? fb.fair_ml_home,
+    fair_ml_away: db.fair_ml_away ?? fb.fair_ml_away,
+    fair_ml_draw: db.fair_ml_draw ?? fb.fair_ml_draw,
   };
 }
 
@@ -863,7 +892,7 @@ export function SportsHomeGrid({
                 {(() => {
                   // Pre-compute edges for sorting
                   const gamesWithEdge = gamesToShow.map((game: any) => {
-                    const fair = game.fairLines || computeFallbackFair(game);
+                    const fair = getEffectiveFair(game);
                     const bookOdds = game.bookmakers?.[selectedBook];
                     const spreads = bookOdds?.spreads || game.consensus?.spreads;
                     const h2h = bookOdds?.h2h || game.consensus?.h2h;
@@ -872,7 +901,13 @@ export function SportsHomeGrid({
                     return { game, maxEdge };
                   });
 
-                  gamesWithEdge.sort((a, b) => b.maxEdge - a.maxEdge);
+                  // Sort: LIVE first, then pregame by edge, then FINAL last
+                  gamesWithEdge.sort((a, b) => {
+                    const stateOrder = (g: any) => g.game.gameState === 'live' ? 0 : g.game.gameState === 'final' ? 2 : 1;
+                    const stateDiff = stateOrder(a) - stateOrder(b);
+                    if (stateDiff !== 0) return stateDiff;
+                    return b.maxEdge - a.maxEdge;
+                  });
                   const withEdge = gamesWithEdge.filter(g => g.maxEdge >= EDGE_THRESHOLD);
                   const noEdge = gamesWithEdge.filter(g => g.maxEdge < EDGE_THRESHOLD);
 
@@ -883,7 +918,7 @@ export function SportsHomeGrid({
                     const isFinal = game.gameState === 'final';
                     const countdown = mounted ? (isLive ? 'LIVE' : isFinal ? 'FINAL' : getTimeDisplay(gameTime, game.sportKey)) : '';
 
-                    const fair = game.fairLines || computeFallbackFair(game);
+                    const fair = getEffectiveFair(game);
                     const bookOdds = game.bookmakers?.[selectedBook];
                     const spreads = bookOdds?.spreads || game.consensus?.spreads;
                     const h2h = bookOdds?.h2h || game.consensus?.h2h;
@@ -912,8 +947,10 @@ export function SportsHomeGrid({
                         const normBHP = bookHP / totalBook;
                         const normBAP = bookAP / totalBook;
                         const normBDP = bookDP / totalBook;
-                        // Fair draw = 1 - fairHome - fairAway (residual)
-                        const fairDP = Math.max(0, 1 - fairHP - fairAP);
+                        // Use proper 3-way fair draw if available, else residual
+                        const fairDP = fair?.fair_ml_draw != null
+                          ? toProb(fair.fair_ml_draw)
+                          : Math.max(0, 1 - fairHP - fairAP);
                         homeMLEdge = (fairHP - normBHP) * 100;
                         awayMLEdge = (fairAP - normBAP) * 100;
                         drawEdge = (fairDP - normBDP) * 100;

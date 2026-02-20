@@ -398,7 +398,7 @@ export function SportsHomeGrid({
   const [selectedBook, setSelectedBook] = useState<string>('fanduel');
   const [isBookDropdownOpen, setIsBookDropdownOpen] = useState(false);
   const [showMoreSports, setShowMoreSports] = useState(false);
-  const [noEdgeCollapsed, setNoEdgeCollapsed] = useState(true);
+  // noEdgeCollapsed state removed — all games shown equally
   const [searchQuery, setSearchQuery] = useState('');
   const [mounted, setMounted] = useState(false);
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
@@ -897,10 +897,7 @@ export function SportsHomeGrid({
                     if (stateDiff !== 0) return stateDiff;
                     return b.maxEdge - a.maxEdge;
                   });
-                  const withEdge = gamesWithEdge.filter(g => g.maxEdge >= EDGE_THRESHOLD);
-                  const noEdge = gamesWithEdge.filter(g => g.maxEdge < EDGE_THRESHOLD);
-
-                  const renderCard = ({ game, maxEdge }: { game: any; maxEdge: number }, isNoEdge = false) => {
+                  const renderCard = ({ game, maxEdge }: { game: any; maxEdge: number }) => {
                     const gameTime = typeof game.commenceTime === 'string' ? new Date(game.commenceTime) : game.commenceTime;
                     const timeStr = mounted ? gameTime.toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
                     const isLive = game.gameState === 'live';
@@ -978,7 +975,7 @@ export function SportsHomeGrid({
                           border: isLive ? '2px solid #16a34a' : isFinal ? `1px solid ${P.textMuted}` : `1px solid ${P.cardBorder}`,
                           borderRadius: 12,
                           boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
-                          opacity: isNoEdge ? 0.45 : isFinal ? 0.75 : 1,
+                          opacity: isFinal ? 0.75 : 1,
                           transition: 'all 0.15s',
                           overflow: 'hidden',
                           textDecoration: 'none',
@@ -1009,12 +1006,6 @@ export function SportsHomeGrid({
                               <span style={{ fontSize: 10, fontWeight: 600, color: P.textMuted }}>FINAL</span>
                             ) : (
                               <span style={{ fontSize: 10, color: P.textFaint, fontFamily: 'monospace' }}>{countdown}</span>
-                            )}
-                            {maxEdge >= 8 && (
-                              <span style={{ fontSize: 9, fontWeight: 700, color: '#d97706', background: '#fef3c7',
-                                borderRadius: 4, padding: '1px 5px', marginLeft: 4 }}>
-                                HIGH VARIANCE
-                              </span>
                             )}
                           </div>
                         </div>
@@ -1255,26 +1246,7 @@ export function SportsHomeGrid({
 
                   return (
                     <>
-                      {withEdge.map(g => renderCard(g))}
-                      {noEdge.length > 0 && (
-                        <>
-                          {withEdge.length > 0 && (
-                            <div className="col-span-full">
-                              <button
-                                onClick={(e) => { e.preventDefault(); setNoEdgeCollapsed(!noEdgeCollapsed); }}
-                                className="flex items-center gap-2"
-                                style={{ fontSize: 10, color: P.textMuted, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0' }}
-                              >
-                                <svg className={`w-3 h-3 transition-transform ${noEdgeCollapsed ? '' : 'rotate-90'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
-                                {noEdge.length} no-edge game{noEdge.length !== 1 ? 's' : ''}
-                              </button>
-                            </div>
-                          )}
-                          {(!noEdgeCollapsed || withEdge.length === 0) && noEdge.map(g => renderCard(g, true))}
-                        </>
-                      )}
+                      {gamesWithEdge.map(g => renderCard(g))}
                     </>
                   );
                 })()}

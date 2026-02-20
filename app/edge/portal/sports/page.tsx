@@ -432,7 +432,7 @@ function computeFallbackFair(g: any) {
   const h2h = g.consensus?.h2h;
   const fs = spreads?.line != null ? calculateFairSpread(spreads.line, comp, g.sportKey) : null;
   const ft = totals?.line != null ? calculateFairTotal(totals.line, comp, g.sportKey) : null;
-  const drawPrice = h2h?.drawPrice ?? h2h?.draw;
+  const drawPrice = h2h?.drawPrice ?? h2h?.draw ?? h2h?.drawOdds ?? null;
   let fair_ml_home: number | null = null, fair_ml_away: number | null = null, fair_ml_draw: number | null = null;
   if (drawPrice != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
     const fm3 = calculateFairMLFromBook3Way(h2h.homePrice, drawPrice, h2h.awayPrice, comp);
@@ -505,6 +505,7 @@ function processBackendGame(
     consensus.h2h = {
       homePrice: game.consensus_odds.h2h.home,
       awayPrice: game.consensus_odds.h2h.away,
+      drawPrice: game.consensus_odds.h2h.draw ?? game.consensus_odds.h2h.drawPrice ?? undefined,
     };
   }
 
@@ -570,7 +571,7 @@ function processBackendGame(
   } = {};
 
   if (game.bookmakers && game.bookmakers.length > 0) {
-    const h2hPrices: { home: number[]; away: number[] } = { home: [], away: [] };
+    const h2hPrices: { home: number[]; away: number[]; draw: number[] } = { home: [], away: [], draw: [] };
     const spreadData: { line: number[]; homePrice: number[]; awayPrice: number[] } = { line: [], homePrice: [], awayPrice: [] };
     const totalData: { line: number[]; overPrice: number[]; underPrice: number[] } = { line: [], overPrice: [], underPrice: [] };
 
@@ -580,9 +581,11 @@ function processBackendGame(
         if (market.key === 'h2h') {
           const home = market.outcomes?.find((o: any) => o.name === game.home_team);
           const away = market.outcomes?.find((o: any) => o.name === game.away_team);
+          const draw = market.outcomes?.find((o: any) => o.name === 'Draw');
           if (home) h2hPrices.home.push(home.price);
           if (away) h2hPrices.away.push(away.price);
-          bookOdds.h2h = { homePrice: home?.price, awayPrice: away?.price };
+          if (draw) h2hPrices.draw.push(draw.price);
+          bookOdds.h2h = { homePrice: home?.price, awayPrice: away?.price, drawPrice: draw?.price };
         }
         if (market.key === 'spreads') {
           const home = market.outcomes?.find((o: any) => o.name === game.home_team);
@@ -734,7 +737,7 @@ function processOddsApiGame(
   } = {};
 
   if (game.bookmakers && game.bookmakers.length > 0) {
-    const h2hPrices: { home: number[]; away: number[] } = { home: [], away: [] };
+    const h2hPrices: { home: number[]; away: number[]; draw: number[] } = { home: [], away: [], draw: [] };
     const spreadData: { line: number[]; homePrice: number[]; awayPrice: number[] } = { line: [], homePrice: [], awayPrice: [] };
     const totalData: { line: number[]; overPrice: number[]; underPrice: number[] } = { line: [], overPrice: [], underPrice: [] };
 
@@ -743,8 +746,10 @@ function processOddsApiGame(
         if (market.key === 'h2h') {
           const home = market.outcomes.find((o: any) => o.name === game.home_team);
           const away = market.outcomes.find((o: any) => o.name === game.away_team);
+          const draw = market.outcomes.find((o: any) => o.name === 'Draw');
           if (home) h2hPrices.home.push(home.price);
           if (away) h2hPrices.away.push(away.price);
+          if (draw) h2hPrices.draw.push(draw.price);
         }
         if (market.key === 'spreads') {
           const home = market.outcomes.find((o: any) => o.name === game.home_team);
@@ -783,6 +788,7 @@ function processOddsApiGame(
       consensus.h2h = {
         homePrice: median(h2hPrices.home),
         awayPrice: median(h2hPrices.away),
+        drawPrice: h2hPrices.draw.length > 0 ? median(h2hPrices.draw) : undefined,
       };
     }
     if (spreadData.line.length > 0) {
@@ -810,7 +816,8 @@ function processOddsApiGame(
         if (market.key === 'h2h') {
           const home = market.outcomes.find((o: any) => o.name === game.home_team);
           const away = market.outcomes.find((o: any) => o.name === game.away_team);
-          bookOdds.h2h = { homePrice: home?.price, awayPrice: away?.price };
+          const draw = market.outcomes.find((o: any) => o.name === 'Draw');
+          bookOdds.h2h = { homePrice: home?.price, awayPrice: away?.price, drawPrice: draw?.price };
         }
         if (market.key === 'spreads') {
           const home = market.outcomes.find((o: any) => o.name === game.home_team);

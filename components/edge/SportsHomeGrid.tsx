@@ -236,7 +236,7 @@ function computeFallbackFair(game: any) {
   const fs = spreads?.line != null ? calculateFairSpread(spreads.line, comp, game.sportKey) : null;
   const ft = totals?.line != null ? calculateFairTotal(totals.line, comp, game.sportKey) : null;
   // 3-way ML for soccer, 2-way for everything else
-  const drawPrice = h2h?.drawPrice ?? h2h?.draw;
+  const drawPrice = h2h?.drawPrice ?? h2h?.draw ?? h2h?.drawOdds ?? null;
   let fair_ml_home: number | null = null, fair_ml_away: number | null = null, fair_ml_draw: number | null = null;
   if (drawPrice != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
     const fm3 = calculateFairMLFromBook3Way(h2h.homePrice, drawPrice, h2h.awayPrice, comp);
@@ -925,7 +925,7 @@ export function SportsHomeGrid({
                       const fairAP = toProb(fair.fair_ml_away);
                       const bookHP = toProb(h2h.homePrice);
                       const bookAP = toProb(h2h.awayPrice);
-                      const drawPrice = h2h?.drawPrice ?? h2h?.draw;
+                      const drawPrice = h2h?.drawPrice ?? h2h?.draw ?? h2h?.drawOdds ?? null;
                       if (gameSoccer && drawPrice != null) {
                         // 3-way: normalize across all 3 outcomes
                         const bookDP = toProb(drawPrice);
@@ -1105,8 +1105,8 @@ export function SportsHomeGrid({
                                 />
                                 {/* Draw */}
                                 <MarketCell
-                                  bookValue={fmtOdds(h2h?.drawPrice ?? h2h?.draw)}
-                                  fairValue={null}
+                                  bookValue={fmtOdds(h2h?.drawPrice ?? h2h?.draw ?? h2h?.drawOdds)}
+                                  fairValue={fair?.fair_ml_draw != null ? fmtOdds(fair.fair_ml_draw) : null}
                                   edge={drawEdge}
                                 />
                                 {/* Away ML */}

@@ -755,7 +755,7 @@ def start_scheduler():
                 f"{skipped} unchanged, {errs} errors"
             )
         try:
-            _run_with_timeout(_inner, "composite_recalc", timeout=30)
+            _run_with_timeout(_inner, "composite_recalc", timeout=120)
         except Exception as e:
             logger.error(f"[CompositeRecalc] Failed: {e}")
 

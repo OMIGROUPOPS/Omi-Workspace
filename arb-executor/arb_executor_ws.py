@@ -153,6 +153,9 @@ SIGNAL_CHECK_INTERVAL = 60  # Check every 60 seconds
 # A cache_key is added before execution starts and removed in a finally block
 executing_games: set = set()
 
+# Tickers whose orderbook changed since last snapshot recording (drained by background task)
+dirty_tickers: set = set()
+
 # Per-game cooldown after SUCCESS — prevents re-trading same game too quickly
 game_success_cooldown: Dict[str, float] = {}
 
@@ -563,6 +566,24 @@ def _record_pm_snapshot(pm_slug: str, market_data: Dict):
     )
 
 
+async def periodic_snapshot_recorder():
+    """Background task: drain dirty_tickers and record Kalshi snapshots every 5s.
+
+    Keeps snapshot recording off the WS hot path — the WS handler just does
+    dirty_tickers.add(ticker) (O(1) set op) instead of building JSON + writing SQLite.
+    """
+    while not shutdown_requested:
+        await asyncio.sleep(5)
+        # Atomically swap the dirty set
+        batch = dirty_tickers.copy()
+        dirty_tickers.clear()
+        for ticker in batch:
+            try:
+                _record_kalshi_snapshot(ticker)
+            except Exception:
+                pass  # Best-effort — don't crash background task
+
+
 # ============================================================================
 # PM PRICE MANAGEMENT
 # ============================================================================
@@ -696,6 +717,54 @@ def recalculate_spread_with_fresh_pm(arb: 'ArbOpportunity', fresh_pm: Dict) -> T
 # ============================================================================
 # SPREAD DETECTION (EVENT-DRIVEN)
 # ============================================================================
+
+def quick_spread_possible(ticker: str) -> bool:
+    """
+    Lightweight pre-check: can this ticker possibly produce a spread >= exec_min?
+
+    Avoids the full check_spread_for_ticker overhead (mapping lookup, PM price fetch,
+    sport detection, ArbOpportunity construction) for ~95% of WS messages where
+    no spread is possible.
+
+    Only uses in-memory dicts — no allocations, no I/O.
+    """
+    book = local_books.get(ticker)
+    if not book:
+        return False
+
+    k_bid = book.get('best_bid') or 0
+    k_ask = book.get('best_ask') or 0
+    if k_bid == 0 and k_ask == 0:
+        return False
+
+    cache_key = ticker_to_cache_key.get(ticker)
+    if not cache_key:
+        return False
+
+    # Extract team from ticker (e.g., KXNBAGAME-26FEB05PHILAL-PHI -> PHI)
+    parts = ticker.split('-')
+    if len(parts) < 3:
+        return False
+    team = parts[-1]
+
+    pm_data = pm_prices.get(f"{cache_key}_{team}")
+    if not pm_data:
+        return False
+
+    pm_bid = pm_data.get('bid') or 0
+    pm_ask = pm_data.get('ask') or 0
+
+    threshold = Config.spread_log_min_cents  # 2c — same as check_spread_for_ticker uses
+
+    # BUY_PM_SELL_K: spread = k_bid - pm_ask
+    if k_bid > 0 and pm_ask > 0 and (k_bid - pm_ask) >= threshold:
+        return True
+    # BUY_K_SELL_PM: spread = pm_bid - k_ask
+    if pm_bid > 0 and k_ask > 0 and (pm_bid - k_ask) >= threshold:
+        return True
+
+    return False
+
 
 def check_spread_for_ticker(ticker: str) -> Optional[ArbOpportunity]:
     """
@@ -1020,21 +1089,23 @@ class KalshiWebSocket:
                     ticker = msg_data.get('market_ticker')
                     if ticker:
                         apply_orderbook_snapshot(ticker, msg_data)
-                        _record_kalshi_snapshot(ticker)
+                        dirty_tickers.add(ticker)
                         # Check for spread after snapshot
-                        arb = check_spread_for_ticker(ticker)
-                        if arb and self.on_spread_detected:
-                            await self.on_spread_detected(arb)
+                        if quick_spread_possible(ticker):
+                            arb = check_spread_for_ticker(ticker)
+                            if arb and self.on_spread_detected:
+                                asyncio.create_task(self.on_spread_detected(arb))
 
                 elif msg_type == 'orderbook_delta':
                     ticker = msg_data.get('market_ticker')
                     if ticker:
                         apply_orderbook_delta(ticker, msg_data)
-                        _record_kalshi_snapshot(ticker)
+                        dirty_tickers.add(ticker)
                         # Check for spread after every delta - this is the key!
-                        arb = check_spread_for_ticker(ticker)
-                        if arb and self.on_spread_detected:
-                            await self.on_spread_detected(arb)
+                        if quick_spread_possible(ticker):
+                            arb = check_spread_for_ticker(ticker)
+                            if arb and self.on_spread_detected:
+                                asyncio.create_task(self.on_spread_detected(arb))
 
                 elif msg_type == 'subscribed':
                     print(f"[WS] Subscription confirmed: {msg_data}")
@@ -1246,9 +1317,11 @@ class PMWebSocket:
         for cache_key in cache_keys:
             tickers = cache_key_to_tickers.get(cache_key, [])
             for ticker in tickers:
+                if not quick_spread_possible(ticker):
+                    continue
                 arb = check_spread_for_ticker(ticker)
                 if arb and self.on_spread_detected:
-                    await self.on_spread_detected(arb)
+                    asyncio.create_task(self.on_spread_detected(arb))
 
     async def listen(self):
         """Listen for PM WebSocket messages"""
@@ -2457,6 +2530,9 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
 
         # Keep PM SDK httpx connection pool warm (prevents 200ms+ cold starts)
         keepalive_task = asyncio.create_task(pm_sdk_keepalive(pm_api))
+
+        # Background snapshot recorder (drains dirty_tickers every 5s)
+        snapshot_task = asyncio.create_task(periodic_snapshot_recorder())
 
         # Start dashboard push (if DASHBOARD_URL is set in .env)
         pusher = DashboardPusher()

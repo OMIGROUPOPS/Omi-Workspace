@@ -453,20 +453,9 @@ function computeFallbackFair(g: any) {
   };
 }
 
-/** Merge DB fair lines with on-the-fly fallback — fill nulls from edgescout */
+/** Use composite_history as single source of truth; only fall back to edgescout when no DB entry */
 function getEffectiveFair(g: any) {
-  const db = g.fairLines;
-  const fb = computeFallbackFair(g);
-  if (!db && !fb) return null;
-  if (!db) return fb;
-  if (!fb) return db;
-  return {
-    fair_spread: db.fair_spread ?? fb.fair_spread,
-    fair_total: db.fair_total ?? fb.fair_total,
-    fair_ml_home: db.fair_ml_home ?? fb.fair_ml_home,
-    fair_ml_away: db.fair_ml_away ?? fb.fair_ml_away,
-    fair_ml_draw: db.fair_ml_draw ?? fb.fair_ml_draw,
-  };
+  return g.fairLines || computeFallbackFair(g);
 }
 
 // Calculate max edge % for a game using composite fair lines vs book consensus

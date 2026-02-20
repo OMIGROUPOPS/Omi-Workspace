@@ -257,20 +257,9 @@ function computeFallbackFair(game: any) {
   };
 }
 
-/** Merge DB fair lines with on-the-fly fallback — fill nulls from edgescout */
+/** Use composite_history as single source of truth; only fall back to edgescout when no DB entry */
 function getEffectiveFair(game: any) {
-  const db = game.fairLines;
-  const fb = computeFallbackFair(game);
-  if (!db && !fb) return null;
-  if (!db) return fb;
-  if (!fb) return db;
-  return {
-    fair_spread: db.fair_spread ?? fb.fair_spread,
-    fair_total: db.fair_total ?? fb.fair_total,
-    fair_ml_home: db.fair_ml_home ?? fb.fair_ml_home,
-    fair_ml_away: db.fair_ml_away ?? fb.fair_ml_away,
-    fair_ml_draw: db.fair_ml_draw ?? fb.fair_ml_draw,
-  };
+  return game.fairLines || computeFallbackFair(game);
 }
 
 function getCellStyle(edge: number | null): { bg: string; border: string } {

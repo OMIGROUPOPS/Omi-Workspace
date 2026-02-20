@@ -165,8 +165,11 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
       .then(res => res.ok ? res.json() : [])
       .then((rows: CompositeHistoryPoint[]) => {
         const arr = Array.isArray(rows) ? rows : [];
-        console.log(`[OMI Chart] composite_history: ${arr.length} pts for ${gameId}`, arr.length > 0 ? { first: arr[0].timestamp, last: arr[arr.length-1].timestamp, fair_totals: arr.map(r => r.fair_total), fair_spreads: arr.map(r => r.fair_spread) } : 'empty');
-        setCompositeHistory(arr);
+        // Filter out pre-calibration rows (before confidence scaling was deployed)
+        const calibrationCutoff = new Date('2026-02-19T00:00:00Z').getTime();
+        const filtered = arr.filter(r => new Date(r.timestamp).getTime() >= calibrationCutoff);
+        console.log(`[OMI Chart] composite_history: ${filtered.length}/${arr.length} pts for ${gameId} (post-calibration)`, filtered.length > 0 ? { first: filtered[0].timestamp, last: filtered[filtered.length-1].timestamp } : 'empty');
+        setCompositeHistory(filtered);
       })
       .catch((err) => { console.warn('[OMI Chart] fetch failed:', err); setCompositeHistory([]); });
   }, [gameId]);
@@ -938,7 +941,7 @@ type ActiveMarket = 'spread' | 'total' | 'moneyline';
 
 function OmiFairPricing({
   pythonPillars, bookmakers, gameData, sportKey,
-  activeMarket, activePeriod, selectedBook, commenceTime, renderKey = 0,
+  activeMarket, activePeriod, selectedBook, commenceTime, renderKey = 0, dbFairLines,
 }: {
   pythonPillars: PythonPillarScores | null | undefined;
   bookmakers: Record<string, any>;
@@ -949,6 +952,7 @@ function OmiFairPricing({
   selectedBook: string;
   commenceTime?: string;
   renderKey?: number;
+  dbFairLines?: CompositeHistoryPoint | null;
 }) {
   const periodKey = PERIOD_MAP[activePeriod] || 'fullGame';
   const isSoccerGame = sportKey?.includes('soccer') ?? false;
@@ -978,14 +982,20 @@ function OmiFairPricing({
   const consensusSpread = calcMedian(spreadLines);
   const consensusTotal = calcMedian(totalLines);
 
-  // OMI fair lines — with consensus fallback when pillars unavailable
+  // OMI fair lines — composite_history is source of truth for full game period;
+  // edgescout calculation is fallback for sub-periods or when no DB entry exists
   const hasPillars = !!pythonPillars;
-  const omiFairSpread = consensusSpread !== undefined
-    ? (pythonPillars ? calculateFairSpread(consensusSpread, pythonPillars.composite, sportKey) : { fairLine: consensusSpread, adjustment: 0 })
-    : null;
-  const omiFairTotal = consensusTotal !== undefined
-    ? (pythonPillars ? calculateFairTotal(consensusTotal, pythonPillars.gameEnvironment, sportKey) : { fairLine: consensusTotal, adjustment: 0 })
-    : null;
+  const useDbFairLines = dbFairLines && activePeriod === 'full';
+  const omiFairSpread = useDbFairLines && dbFairLines.fair_spread != null
+    ? { fairLine: dbFairLines.fair_spread, gap: consensusSpread !== undefined ? Math.round((consensusSpread - dbFairLines.fair_spread) * 10) / 10 : 0, edgeSide: null }
+    : (consensusSpread !== undefined
+      ? (pythonPillars ? calculateFairSpread(consensusSpread, pythonPillars.composite, sportKey) : { fairLine: consensusSpread, adjustment: 0 })
+      : null);
+  const omiFairTotal = useDbFairLines && dbFairLines.fair_total != null
+    ? { fairLine: dbFairLines.fair_total, gap: consensusTotal !== undefined ? Math.round((dbFairLines.fair_total - consensusTotal) * 10) / 10 : 0, edgeSide: null }
+    : (consensusTotal !== undefined
+      ? (pythonPillars ? calculateFairTotal(consensusTotal, pythonPillars.gameEnvironment, sportKey) : { fairLine: consensusTotal, adjustment: 0 })
+      : null);
   // ML consensus: median of all book odds (needed before fair ML calc)
   const mlHomeOdds = allBooks.map(b => b.markets?.h2h?.home?.price).filter((v): v is number => v !== undefined);
   const mlAwayOdds = allBooks.map(b => b.markets?.h2h?.away?.price).filter((v): v is number => v !== undefined);
@@ -999,19 +1009,23 @@ function OmiFairPricing({
     ? calculateFairMLFromBook3Way(consensusHomeML, consensusDrawML, consensusAwayML, pythonPillars.composite)
     : null;
 
-  // ML derived from fair spread for cross-market consistency; fallback to book-anchored adjustment
-  const omiFairML = omiFairML3Way
-    ? { homeOdds: omiFairML3Way.homeOdds, awayOdds: omiFairML3Way.awayOdds }
-    : (omiFairSpread
-      ? spreadToMoneyline(omiFairSpread.fairLine, sportKey)
-      : (pythonPillars && consensusHomeML !== undefined && consensusAwayML !== undefined
-        ? calculateFairMLFromBook(consensusHomeML, consensusAwayML, pythonPillars.composite)
-        : (pythonPillars ? calculateFairMoneyline(pythonPillars.composite) : null)));
+  // ML: composite_history is source of truth for full game; edgescout is fallback
+  const omiFairML = useDbFairLines && dbFairLines.fair_ml_home != null && dbFairLines.fair_ml_away != null
+    ? { homeOdds: dbFairLines.fair_ml_home, awayOdds: dbFairLines.fair_ml_away }
+    : (omiFairML3Way
+      ? { homeOdds: omiFairML3Way.homeOdds, awayOdds: omiFairML3Way.awayOdds }
+      : (omiFairSpread
+        ? spreadToMoneyline(omiFairSpread.fairLine, sportKey)
+        : (pythonPillars && consensusHomeML !== undefined && consensusAwayML !== undefined
+          ? calculateFairMLFromBook(consensusHomeML, consensusAwayML, pythonPillars.composite)
+          : (pythonPillars ? calculateFairMoneyline(pythonPillars.composite) : null))));
 
   // OMI fair ML implied probabilities (no-vig)
   const effectiveHomeML = omiFairML ? omiFairML.homeOdds : (consensusHomeML ?? undefined);
   const effectiveAwayML = omiFairML ? omiFairML.awayOdds : (consensusAwayML ?? undefined);
-  const effectiveDrawML = omiFairML3Way ? omiFairML3Way.drawOdds : (consensusDrawML ?? undefined);
+  const effectiveDrawML = useDbFairLines && dbFairLines.fair_ml_draw != null
+    ? dbFairLines.fair_ml_draw
+    : (omiFairML3Way ? omiFairML3Way.drawOdds : (consensusDrawML ?? undefined));
   const omiFairHomeProb = effectiveHomeML !== undefined ? americanToImplied(effectiveHomeML) : undefined;
   const omiFairAwayProb = effectiveAwayML !== undefined ? americanToImplied(effectiveAwayML) : undefined;
   const omiFairDrawProb = effectiveDrawML !== undefined ? americanToImplied(effectiveDrawML) : undefined;
@@ -2749,6 +2763,19 @@ export function GameDetailClient({
   const [lazyLineHistory, setLazyLineHistory] = useState<Record<string, Record<string, any[]>>>({});
   const [loadingPeriods, setLoadingPeriods] = useState<Set<string>>(new Set());
 
+  // Fetch latest composite_history fair lines — single source of truth for all displays
+  const [dbFairLines, setDbFairLines] = useState<CompositeHistoryPoint | null>(null);
+  useEffect(() => {
+    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://omi-workspace-production.up.railway.app';
+    fetch(`${BACKEND_URL}/api/composite-history/${gameData.id}`)
+      .then(res => res.ok ? res.json() : [])
+      .then((rows: CompositeHistoryPoint[]) => {
+        const arr = Array.isArray(rows) ? rows : [];
+        // Use the latest row as the authoritative fair line
+        if (arr.length > 0) setDbFairLines(arr[arr.length - 1]);
+      })
+      .catch(() => {});
+  }, [gameData.id]);
 
   // Force re-render when market/period changes to fix blank blocks
   const [renderKey, setRenderKey] = useState(0);
@@ -2828,11 +2855,14 @@ export function GameDetailClient({
     });
     const consSpread = getMedian(allSpreads);
     const consTotal = getMedian(allTotals);
-    const fairSpread = consSpread !== null ? calculateFairSpread(consSpread, pythonPillarScores.composite, gameData.sportKey).fairLine : null;
-    const fairTotal = consTotal !== null ? calculateFairTotal(consTotal, pythonPillarScores.gameEnvironment, gameData.sportKey).fairLine : null;
-    // ML: derive from fair spread for consistency, fallback to composite
+    // Prefer composite_history (single source of truth), fall back to edgescout
+    const fairSpread = dbFairLines?.fair_spread ?? (consSpread !== null ? calculateFairSpread(consSpread, pythonPillarScores.composite, gameData.sportKey).fairLine : null);
+    const fairTotal = dbFairLines?.fair_total ?? (consTotal !== null ? calculateFairTotal(consTotal, pythonPillarScores.gameEnvironment, gameData.sportKey).fairLine : null);
+    // ML: prefer DB, then derive from fair spread, then composite fallback
     let fairMLHomeProb: number | null = null;
-    if (fairSpread !== null) {
+    if (dbFairLines?.fair_ml_home != null) {
+      fairMLHomeProb = americanToImplied(dbFairLines.fair_ml_home);
+    } else if (fairSpread !== null) {
       const ml = spreadToMoneyline(fairSpread, gameData.sportKey);
       fairMLHomeProb = americanToImplied(ml.homeOdds);
     } else {
@@ -3221,6 +3251,7 @@ export function GameDetailClient({
           selectedBook={selectedBook}
           commenceTime={gameData.commenceTime}
           renderKey={renderKey}
+          dbFairLines={dbFairLines}
         />
 
         {/* Why This Price + CEQ Factors — side by side */}
@@ -3361,6 +3392,7 @@ export function GameDetailClient({
             selectedBook={selectedBook}
             commenceTime={gameData.commenceTime}
             renderKey={renderKey}
+            dbFairLines={dbFairLines}
           />
 
           <WhyThisPrice

@@ -159,7 +159,7 @@ export function calculateFairSpread(
 ): { fairLine: number; gap: number; edgeSide: string | null } {
   const deviation = pillarComposite - 50;
   // Confidence scaling: adjustments are attenuated when composite is near 50 (low conviction)
-  const confidence = Math.max(0.25, Math.abs(pillarComposite - 50) / 50 * 2);
+  const confidence = Math.max(0.40, Math.abs(pillarComposite - 50) / 50 * 2);
   const rawAdj = deviation * FAIR_LINE_SPREAD_FACTOR * confidence;
   // Cap adjustment to prevent extreme divergence from book consensus
   const cap = SPREAD_CAP_BY_SPORT[sportKey || ''] ?? DEFAULT_SPREAD_CAP;
@@ -183,7 +183,7 @@ export function calculateFairTotal(
 ): { fairLine: number; gap: number; edgeSide: string | null } {
   const deviation = gameEnvScore - 50;
   // Confidence scaling: attenuate when game env score is near 50
-  const confidence = Math.max(0.25, Math.abs(gameEnvScore - 50) / 50 * 2);
+  const confidence = Math.max(0.40, Math.abs(gameEnvScore - 50) / 50 * 2);
   const rawAdj = deviation * FAIR_LINE_TOTAL_FACTOR * confidence;
   // Cap adjustment to prevent extreme divergence from book consensus
   const cap = TOTAL_CAP_BY_SPORT[sportKey || ''] ?? DEFAULT_TOTAL_CAP;
@@ -205,7 +205,7 @@ export function calculateFairMoneyline(
   pillarComposite: number
 ): { homeOdds: number; awayOdds: number } {
   const deviation = pillarComposite - 50;
-  const confidence = Math.max(0.25, Math.abs(pillarComposite - 50) / 50 * 2);
+  const confidence = Math.max(0.40, Math.abs(pillarComposite - 50) / 50 * 2);
   const homeProb = Math.max(0.05, Math.min(0.95, 0.50 + deviation * FAIR_LINE_ML_FACTOR * confidence));
   const awayProb = 1 - homeProb;
   const probToAmerican = (prob: number) => {
@@ -230,7 +230,7 @@ export function calculateFairMLFromBook(
   const { fairHomeProb, fairAwayProb } = removeVig(bookHomeOdds, bookAwayOdds);
   // Shift by composite deviation with confidence scaling
   const deviation = pillarComposite - 50;
-  const confidence = Math.max(0.25, Math.abs(pillarComposite - 50) / 50 * 2);
+  const confidence = Math.max(0.40, Math.abs(pillarComposite - 50) / 50 * 2);
   const shift = deviation * FAIR_LINE_ML_FACTOR * confidence;
   const adjustedHome = Math.max(0.05, Math.min(0.95, fairHomeProb + shift));
   const adjustedAway = 1 - adjustedHome;
@@ -276,7 +276,7 @@ export function calculateFairMLFromBook3Way(
 ): { homeOdds: number; drawOdds: number; awayOdds: number } {
   const { fairHomeProb, fairDrawProb, fairAwayProb } = removeVig3Way(bookHomeOdds, bookDrawOdds, bookAwayOdds);
   const deviation = pillarComposite - 50;
-  const confidence = Math.max(0.25, Math.abs(pillarComposite - 50) / 50 * 2);
+  const confidence = Math.max(0.40, Math.abs(pillarComposite - 50) / 50 * 2);
   const shift = deviation * FAIR_LINE_ML_FACTOR * confidence;
   let adjHome = fairHomeProb + shift;
   let adjAway = fairAwayProb - shift;

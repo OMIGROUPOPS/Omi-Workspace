@@ -415,8 +415,8 @@ async function fetchEdgesFromBackend(sport: string) {
   }
 }
 
-// Edge threshold: game counts as "edge" if max edge >= 3%
-const EDGE_THRESHOLD = 3.0;
+// Edge threshold: game counts as "edge" if max edge >= 2%
+const EDGE_THRESHOLD = 2.0;
 
 // American odds → implied probability
 function toProb(odds: number): number {

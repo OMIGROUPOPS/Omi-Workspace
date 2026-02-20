@@ -446,7 +446,7 @@ def _calculate_fair_spread(book_spread: float, composite_spread: float) -> float
     the largest fair line divergences.
     """
     deviation = composite_spread * 100 - 50
-    confidence = max(0.25, abs(composite_spread - 0.50) * 2)  # floor 0.25 so moderate composites still adjust
+    confidence = max(0.40, abs(composite_spread - 0.50) * 2)  # floor 0.25 so moderate composites still adjust
     adjustment = deviation * FAIR_LINE_SPREAD_FACTOR * confidence
     return _round_to_half(book_spread - adjustment)
 
@@ -461,7 +461,7 @@ def _calculate_fair_total(book_total: float, composite_total: float) -> float:
     composites produce near-zero total adjustments.
     """
     deviation = composite_total * 100 - 50
-    confidence = max(0.25, abs(composite_total - 0.50) * 2)
+    confidence = max(0.40, abs(composite_total - 0.50) * 2)
     adjustment = deviation * FAIR_LINE_TOTAL_FACTOR * confidence
     return _round_to_half(book_total + adjustment)
 
@@ -492,7 +492,7 @@ def _calculate_fair_ml_from_book(
     fair_home = home_implied / total
     # Shift by composite deviation (confidence-scaled)
     deviation = composite_ml * 100 - 50
-    confidence = max(0.25, abs(composite_ml - 0.50) * 2)
+    confidence = max(0.40, abs(composite_ml - 0.50) * 2)
     shift = deviation * FAIR_LINE_ML_FACTOR * confidence
     adjusted_home = max(0.05, min(0.95, fair_home + shift))
     adjusted_away = 1 - adjusted_home
@@ -518,7 +518,7 @@ def _calculate_fair_ml_from_book_3way(
     fair_away = away_imp / total
 
     deviation = composite_ml * 100 - 50
-    confidence = max(0.25, abs(composite_ml - 0.50) * 2)
+    confidence = max(0.40, abs(composite_ml - 0.50) * 2)
     shift = deviation * FAIR_LINE_ML_FACTOR * confidence
     adj_home = fair_home + shift
     adj_away = fair_away - shift

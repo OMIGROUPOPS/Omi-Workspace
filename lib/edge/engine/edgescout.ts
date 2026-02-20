@@ -111,7 +111,7 @@ export interface ExtendedOddsSnapshot extends OddsSnapshot {
 // Easy to tune: change these constants to adjust fair line sensitivity
 
 export const FAIR_LINE_SPREAD_FACTOR = 0.15; // 10-point deviation ≈ 1.5 spread points
-export const FAIR_LINE_TOTAL_FACTOR = 0.20;  // 10-point deviation ≈ 2.0 total points
+export const FAIR_LINE_TOTAL_FACTOR = 0.10;  // 10-point deviation ≈ 1.0 total points (was 0.20)
 export const FAIR_LINE_ML_FACTOR = 0.01;     // 1% implied probability shift per composite point
 
 // Sport-specific caps — max adjustment from book consensus (prevents hallucinated edges)
@@ -158,7 +158,9 @@ export function calculateFairSpread(
   sportKey?: string
 ): { fairLine: number; gap: number; edgeSide: string | null } {
   const deviation = pillarComposite - 50;
-  const rawAdj = deviation * FAIR_LINE_SPREAD_FACTOR;
+  // Confidence scaling: adjustments are attenuated when composite is near 50 (low conviction)
+  const confidence = Math.max(0.25, Math.abs(pillarComposite - 50) / 50 * 2);
+  const rawAdj = deviation * FAIR_LINE_SPREAD_FACTOR * confidence;
   // Cap adjustment to prevent extreme divergence from book consensus
   const cap = SPREAD_CAP_BY_SPORT[sportKey || ''] ?? DEFAULT_SPREAD_CAP;
   const adjustment = Math.max(-cap, Math.min(cap, rawAdj));
@@ -180,7 +182,9 @@ export function calculateFairTotal(
   sportKey?: string
 ): { fairLine: number; gap: number; edgeSide: string | null } {
   const deviation = gameEnvScore - 50;
-  const rawAdj = deviation * FAIR_LINE_TOTAL_FACTOR;
+  // Confidence scaling: attenuate when game env score is near 50
+  const confidence = Math.max(0.25, Math.abs(gameEnvScore - 50) / 50 * 2);
+  const rawAdj = deviation * FAIR_LINE_TOTAL_FACTOR * confidence;
   // Cap adjustment to prevent extreme divergence from book consensus
   const cap = TOTAL_CAP_BY_SPORT[sportKey || ''] ?? DEFAULT_TOTAL_CAP;
   const adjustment = Math.max(-cap, Math.min(cap, rawAdj));
@@ -201,7 +205,8 @@ export function calculateFairMoneyline(
   pillarComposite: number
 ): { homeOdds: number; awayOdds: number } {
   const deviation = pillarComposite - 50;
-  const homeProb = Math.max(0.05, Math.min(0.95, 0.50 + deviation * FAIR_LINE_ML_FACTOR));
+  const confidence = Math.max(0.25, Math.abs(pillarComposite - 50) / 50 * 2);
+  const homeProb = Math.max(0.05, Math.min(0.95, 0.50 + deviation * FAIR_LINE_ML_FACTOR * confidence));
   const awayProb = 1 - homeProb;
   const probToAmerican = (prob: number) => {
     if (prob >= 0.5) return Math.round(-100 * prob / (1 - prob));
@@ -223,9 +228,10 @@ export function calculateFairMLFromBook(
 ): { homeOdds: number; awayOdds: number } {
   // Remove vig to get true 2-way fair probabilities
   const { fairHomeProb, fairAwayProb } = removeVig(bookHomeOdds, bookAwayOdds);
-  // Shift by composite deviation
+  // Shift by composite deviation with confidence scaling
   const deviation = pillarComposite - 50;
-  const shift = deviation * FAIR_LINE_ML_FACTOR;
+  const confidence = Math.max(0.25, Math.abs(pillarComposite - 50) / 50 * 2);
+  const shift = deviation * FAIR_LINE_ML_FACTOR * confidence;
   const adjustedHome = Math.max(0.05, Math.min(0.95, fairHomeProb + shift));
   const adjustedAway = 1 - adjustedHome;
   const probToAmerican = (prob: number) => {
@@ -270,7 +276,8 @@ export function calculateFairMLFromBook3Way(
 ): { homeOdds: number; drawOdds: number; awayOdds: number } {
   const { fairHomeProb, fairDrawProb, fairAwayProb } = removeVig3Way(bookHomeOdds, bookDrawOdds, bookAwayOdds);
   const deviation = pillarComposite - 50;
-  const shift = deviation * FAIR_LINE_ML_FACTOR;
+  const confidence = Math.max(0.25, Math.abs(pillarComposite - 50) / 50 * 2);
+  const shift = deviation * FAIR_LINE_ML_FACTOR * confidence;
   let adjHome = fairHomeProb + shift;
   let adjAway = fairAwayProb - shift;
   let adjDraw = 1 - adjHome - adjAway;
@@ -2005,8 +2012,8 @@ export function calculateGameCEQ(
         ...homeCEQ,
         ceq: awayCEQValue,
         confidence: awayConfidence,
-        side: awayCEQValue >= 56 ? 'away' : awayCEQValue <= 44 ? 'home' : null,
-        topDrivers: awayCEQValue >= 56 ? homeCEQ.topDrivers : ['No edge on this side'],
+        side: awayCEQValue >= 53 ? 'away' : awayCEQValue <= 47 ? 'home' : null,
+        topDrivers: awayCEQValue >= 53 ? homeCEQ.topDrivers : ['No edge on this side'],
       },
     };
   }
@@ -2119,19 +2126,19 @@ export function calculateGameCEQ(
         home: createCEQResult(
           homeCEQValue,
           homeConfidence,
-          homeCEQValue >= 56 ? 'home' : null,
+          homeCEQValue >= 53 ? 'home' : null,
           buildReason('Home', homeEdge, homeImplied, homeFair)
         ),
         away: createCEQResult(
           awayCEQValue,
           awayConfidence,
-          awayCEQValue >= 56 ? 'away' : null,
+          awayCEQValue >= 53 ? 'away' : null,
           buildReason('Away', awayEdge, awayImplied, awayFair)
         ),
         draw: createCEQResult(
           drawCEQValue,
           drawConfidence,
-          drawCEQValue >= 56 ? 'draw' : null,
+          drawCEQValue >= 53 ? 'draw' : null,
           buildReason('Draw', drawEdge, drawImplied, drawFair)
         ),
       };
@@ -2146,8 +2153,8 @@ export function calculateGameCEQ(
           ...homeCEQ,
           ceq: awayCEQValue,
           confidence: awayConfidence,
-          side: awayCEQValue >= 56 ? 'away' : awayCEQValue <= 44 ? 'home' : null,
-          topDrivers: awayCEQValue >= 56 ? homeCEQ.topDrivers : ['No edge on this side'],
+          side: awayCEQValue >= 53 ? 'away' : awayCEQValue <= 47 ? 'home' : null,
+          topDrivers: awayCEQValue >= 53 ? homeCEQ.topDrivers : ['No edge on this side'],
         },
       };
     }
@@ -2181,8 +2188,8 @@ export function calculateGameCEQ(
         ...overCEQ,
         ceq: underCEQValue,
         confidence: underConfidence,
-        side: underCEQValue >= 56 ? 'under' : underCEQValue <= 44 ? 'over' : null,
-        topDrivers: underCEQValue >= 56 ? overCEQ.topDrivers : ['No edge on this side'],
+        side: underCEQValue >= 53 ? 'under' : underCEQValue <= 47 ? 'over' : null,
+        topDrivers: underCEQValue >= 53 ? overCEQ.topDrivers : ['No edge on this side'],
       },
     };
   }

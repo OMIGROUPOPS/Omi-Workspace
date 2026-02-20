@@ -14,15 +14,15 @@ function countPeriodEdges(ceq: GameCEQ | null): number {
   if (!ceq) return 0;
   let count = 0;
   // Spreads: home and away are separate edges
-  if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 56) count++;
-  if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 56) count++;
+  if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 53) count++;
+  if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 53) count++;
   // H2H/Moneyline: home, away, and draw (for soccer) are separate edges
-  if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 56) count++;
-  if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 56) count++;
-  if (ceq.h2h?.draw?.ceq !== undefined && ceq.h2h.draw.ceq >= 56) count++;
+  if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 53) count++;
+  if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 53) count++;
+  if (ceq.h2h?.draw?.ceq !== undefined && ceq.h2h.draw.ceq >= 53) count++;
   // Totals: over and under are separate edges
-  if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 56) count++;
-  if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 56) count++;
+  if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 53) count++;
+  if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 53) count++;
   return count;
 }
 
@@ -351,10 +351,10 @@ async function calculateGameEdgeCount(gameId: string): Promise<number> {
     const homeCeq = calcTeamTotalCEQ(teamTotals.home);
     const awayCeq = calcTeamTotalCEQ(teamTotals.away);
 
-    if (homeCeq?.totals?.over?.ceq !== undefined && homeCeq.totals.over.ceq >= 56) teamTotalsEdges++;
-    if (homeCeq?.totals?.under?.ceq !== undefined && homeCeq.totals.under.ceq >= 56) teamTotalsEdges++;
-    if (awayCeq?.totals?.over?.ceq !== undefined && awayCeq.totals.over.ceq >= 56) teamTotalsEdges++;
-    if (awayCeq?.totals?.under?.ceq !== undefined && awayCeq.totals.under.ceq >= 56) teamTotalsEdges++;
+    if (homeCeq?.totals?.over?.ceq !== undefined && homeCeq.totals.over.ceq >= 53) teamTotalsEdges++;
+    if (homeCeq?.totals?.under?.ceq !== undefined && homeCeq.totals.under.ceq >= 53) teamTotalsEdges++;
+    if (awayCeq?.totals?.over?.ceq !== undefined && awayCeq.totals.over.ceq >= 53) teamTotalsEdges++;
+    if (awayCeq?.totals?.under?.ceq !== undefined && awayCeq.totals.under.ceq >= 53) teamTotalsEdges++;
   }
 
   // Count total edges - SAME as game detail page

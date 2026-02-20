@@ -33,8 +33,8 @@ interface GameEdgesPanelProps {
 export function GameEdgesPanel({ gameId, sport, ceqEdges = [], edgeCountBreakdown }: GameEdgesPanelProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  // Filter CEQ edges to only show those with actual edge (>= 56%)
-  const validCEQEdges = ceqEdges.filter(e => e.ceq >= 56);
+  // Filter CEQ edges to only show those with actual edge (>= 53%)
+  const validCEQEdges = ceqEdges.filter(e => e.ceq >= 53);
 
   // Use edgeCountBreakdown.total as the source of truth (includes all periods)
   const totalEdges = edgeCountBreakdown?.total ?? 0;

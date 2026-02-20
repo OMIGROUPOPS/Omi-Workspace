@@ -545,16 +545,16 @@ function buildGameContext(
   };
 }
 
-// Count edges from a CEQ result (CEQ >= 56 = edge)
+// Count edges from a CEQ result (CEQ >= 53 = edge)
 function countPeriodEdges(ceq: GameCEQ | null): number {
   if (!ceq) return 0;
   let count = 0;
-  if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 56) count++;
-  if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 56) count++;
-  if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 56) count++;
-  if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 56) count++;
-  if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 56) count++;
-  if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 56) count++;
+  if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 53) count++;
+  if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 53) count++;
+  if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 53) count++;
+  if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 53) count++;
+  if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 53) count++;
+  if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 53) count++;
   return count;
 }
 

@@ -1185,15 +1185,15 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     if (!ceq) return 0;
     let count = 0;
     // Spreads: home and away are separate edges
-    if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 56) count++;
-    if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 56) count++;
+    if (ceq.spreads?.home?.ceq !== undefined && ceq.spreads.home.ceq >= 53) count++;
+    if (ceq.spreads?.away?.ceq !== undefined && ceq.spreads.away.ceq >= 53) count++;
     // H2H/Moneyline: home, away, and draw (for soccer) are separate edges
-    if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 56) count++;
-    if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 56) count++;
-    if (ceq.h2h?.draw?.ceq !== undefined && ceq.h2h.draw.ceq >= 56) count++;
+    if (ceq.h2h?.home?.ceq !== undefined && ceq.h2h.home.ceq >= 53) count++;
+    if (ceq.h2h?.away?.ceq !== undefined && ceq.h2h.away.ceq >= 53) count++;
+    if (ceq.h2h?.draw?.ceq !== undefined && ceq.h2h.draw.ceq >= 53) count++;
     // Totals: over and under are separate edges
-    if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 56) count++;
-    if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 56) count++;
+    if (ceq.totals?.over?.ceq !== undefined && ceq.totals.over.ceq >= 53) count++;
+    if (ceq.totals?.under?.ceq !== undefined && ceq.totals.under.ceq >= 53) count++;
     return count;
   }
 
@@ -1211,10 +1211,10 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
   };
 
   // Count team total edges (4 possible: home over, home under, away over, away under)
-  if (teamTotalsCeq?.home?.totals?.over?.ceq !== undefined && teamTotalsCeq.home.totals.over.ceq >= 56) edgeCountBreakdown.teamTotals++;
-  if (teamTotalsCeq?.home?.totals?.under?.ceq !== undefined && teamTotalsCeq.home.totals.under.ceq >= 56) edgeCountBreakdown.teamTotals++;
-  if (teamTotalsCeq?.away?.totals?.over?.ceq !== undefined && teamTotalsCeq.away.totals.over.ceq >= 56) edgeCountBreakdown.teamTotals++;
-  if (teamTotalsCeq?.away?.totals?.under?.ceq !== undefined && teamTotalsCeq.away.totals.under.ceq >= 56) edgeCountBreakdown.teamTotals++;
+  if (teamTotalsCeq?.home?.totals?.over?.ceq !== undefined && teamTotalsCeq.home.totals.over.ceq >= 53) edgeCountBreakdown.teamTotals++;
+  if (teamTotalsCeq?.home?.totals?.under?.ceq !== undefined && teamTotalsCeq.home.totals.under.ceq >= 53) edgeCountBreakdown.teamTotals++;
+  if (teamTotalsCeq?.away?.totals?.over?.ceq !== undefined && teamTotalsCeq.away.totals.over.ceq >= 53) edgeCountBreakdown.teamTotals++;
+  if (teamTotalsCeq?.away?.totals?.under?.ceq !== undefined && teamTotalsCeq.away.totals.under.ceq >= 53) edgeCountBreakdown.teamTotals++;
 
   // Calculate total
   edgeCountBreakdown.total = edgeCountBreakdown.fullGame + edgeCountBreakdown.firstHalf +

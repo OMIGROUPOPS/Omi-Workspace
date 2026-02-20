@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
 import { calculateQuickEdge } from '@/lib/edge/engine/edge-calculator';
-import { calculateCEQ, calculateGameCEQ, groupSnapshotsByGame, type ExtendedOddsSnapshot, type GameCEQ, type GameContextData, type TeamStatsData } from '@/lib/edge/engine/edgescout';
+import { calculateCEQ, calculateGameCEQ, groupSnapshotsByGame, calculateFairSpread, calculateFairTotal, calculateFairMLFromBook, type ExtendedOddsSnapshot, type GameCEQ, type GameContextData, type TeamStatsData } from '@/lib/edge/engine/edgescout';
 import { enrichExchangeRows } from '@/lib/edge/utils/exchange-enrichment';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
@@ -421,6 +421,24 @@ const EDGE_THRESHOLD = 2.0;
 // American odds → implied probability
 function toProb(odds: number): number {
   return odds < 0 ? Math.abs(odds) / (Math.abs(odds) + 100) : 100 / (odds + 100);
+}
+
+/** Compute fair lines on-the-fly when composite_history entry is missing */
+function computeFallbackFair(g: any) {
+  const comp = g.composite_score != null ? g.composite_score * 100 : null;
+  if (comp == null) return null;
+  const spreads = g.consensus?.spreads;
+  const totals = g.consensus?.totals;
+  const h2h = g.consensus?.h2h;
+  const fs = spreads?.line != null ? calculateFairSpread(spreads.line, comp, g.sportKey) : null;
+  const ft = totals?.line != null ? calculateFairTotal(totals.line, comp, g.sportKey) : null;
+  const fm = h2h?.homePrice != null && h2h?.awayPrice != null ? calculateFairMLFromBook(h2h.homePrice, h2h.awayPrice, comp) : null;
+  return {
+    fair_spread: fs?.fairLine ?? null,
+    fair_total: ft?.fairLine ?? null,
+    fair_ml_home: fm?.homeOdds ?? null,
+    fair_ml_away: fm?.awayOdds ?? null,
+  };
 }
 
 // Calculate max edge % for a game using composite fair lines vs book consensus
@@ -1238,9 +1256,10 @@ export default async function SportsPage() {
         totalGames += processed.length;
         const now7d = Date.now() + 7 * 24 * 60 * 60 * 1000;
         totalEdges += processed.filter((g: any) => {
-          if (!g.fairLines) return false;
+          const fair = g.fairLines || computeFallbackFair(g);
+          if (!fair) return false;
           if (new Date(g.commenceTime).getTime() > now7d) return false;
-          return calculateMaxEdge(g.fairLines, g.consensus) >= EDGE_THRESHOLD;
+          return calculateMaxEdge(fair, g.consensus) >= EDGE_THRESHOLD;
         }).length;
       }
     }
@@ -1311,9 +1330,10 @@ export default async function SportsPage() {
           totalGames += upcoming.length;
           const now7d = Date.now() + 7 * 24 * 60 * 60 * 1000;
           totalEdges += upcoming.filter((g: any) => {
-            if (!g.fairLines) return false;
+            const fair = g.fairLines || computeFallbackFair(g);
+            if (!fair) return false;
             if (new Date(g.commenceTime).getTime() > now7d) return false;
-            return calculateMaxEdge(g.fairLines, g.consensus) >= EDGE_THRESHOLD;
+            return calculateMaxEdge(fair, g.consensus) >= EDGE_THRESHOLD;
           }).length;
         }
       }

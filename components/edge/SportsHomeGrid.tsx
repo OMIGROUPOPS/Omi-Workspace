@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
+import { calculateFairSpread, calculateFairTotal, calculateFairMLFromBook } from '@/lib/edge/engine/edgescout';
 
 // --- Light theme palette ---
 const P = {
@@ -223,6 +224,24 @@ function calcMaxEdge(fair: any, spreads: any, h2h: any, totals: any, sportKey: s
   }
 
   return maxEdge;
+}
+
+/** Compute fair lines on-the-fly from composite_score when composite_history is missing */
+function computeFallbackFair(game: any) {
+  const comp = game.composite_score != null ? game.composite_score * 100 : null;
+  if (comp == null) return null;
+  const spreads = game.consensus?.spreads;
+  const totals = game.consensus?.totals;
+  const h2h = game.consensus?.h2h;
+  const fs = spreads?.line != null ? calculateFairSpread(spreads.line, comp, game.sportKey) : null;
+  const ft = totals?.line != null ? calculateFairTotal(totals.line, comp, game.sportKey) : null;
+  const fm = h2h?.homePrice != null && h2h?.awayPrice != null ? calculateFairMLFromBook(h2h.homePrice, h2h.awayPrice, comp) : null;
+  return {
+    fair_spread: fs?.fairLine ?? null,
+    fair_total: ft?.fairLine ?? null,
+    fair_ml_home: fm?.homeOdds ?? null,
+    fair_ml_away: fm?.awayOdds ?? null,
+  };
 }
 
 function getCellStyle(edge: number | null): { bg: string; border: string } {
@@ -844,7 +863,7 @@ export function SportsHomeGrid({
                 {(() => {
                   // Pre-compute edges for sorting
                   const gamesWithEdge = gamesToShow.map((game: any) => {
-                    const fair = game.fairLines;
+                    const fair = game.fairLines || computeFallbackFair(game);
                     const bookOdds = game.bookmakers?.[selectedBook];
                     const spreads = bookOdds?.spreads || game.consensus?.spreads;
                     const h2h = bookOdds?.h2h || game.consensus?.h2h;
@@ -864,7 +883,7 @@ export function SportsHomeGrid({
                     const isFinal = game.gameState === 'final';
                     const countdown = mounted ? (isLive ? 'LIVE' : isFinal ? 'FINAL' : getTimeDisplay(gameTime, game.sportKey)) : '';
 
-                    const fair = game.fairLines;
+                    const fair = game.fairLines || computeFallbackFair(game);
                     const bookOdds = game.bookmakers?.[selectedBook];
                     const spreads = bookOdds?.spreads || game.consensus?.spreads;
                     const h2h = bookOdds?.h2h || game.consensus?.h2h;

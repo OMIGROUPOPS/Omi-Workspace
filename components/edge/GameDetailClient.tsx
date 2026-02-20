@@ -131,6 +131,10 @@ interface CompositeHistoryPoint {
   fair_ml_home: number | null;
   fair_ml_away: number | null;
   fair_ml_draw: number | null;
+  book_spread: number | null;
+  book_total: number | null;
+  book_ml_home: number | null;
+  book_ml_away: number | null;
 }
 
 interface LineMovementChartProps {
@@ -348,6 +352,39 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
     })
     .filter((d): d is { timestamp: Date; value: number } => d !== null);
   const hasOmiTimeSeries = omiFairLineData.length >= 1;
+
+  // Build synchronized book line from composite_history — ensures every OMI fair
+  // data point has a paired book data point at the same timestamp
+  if (isFullPeriod && !isSoccer3Way) {
+    const compositeBookData: { timestamp: Date; value: number }[] = compositeHistory
+      .map(pt => {
+        let val: number | null = null;
+        if (resolvedMarket === 'spread') val = pt.book_spread;
+        else if (resolvedMarket === 'total') val = pt.book_total;
+        else if (resolvedMarket === 'moneyline') {
+          if (trackingSide === 'away') val = pt.book_ml_away;
+          else val = pt.book_ml_home;
+        }
+        if (val === null || val === undefined) return null;
+        if (resolvedMarket === 'spread' && trackingSide === 'away') val = -val;
+        return { timestamp: new Date(pt.timestamp), value: val };
+      })
+      .filter((d): d is { timestamp: Date; value: number } => d !== null);
+
+    if (compositeBookData.length >= 2) {
+      data = compositeBookData;
+      // Apply time range filter
+      if (timeRange !== 'ALL') {
+        const now = new Date();
+        const hoursMap: Record<TimeRange, number> = { '30M': 0.5, '1H': 1, '3H': 3, '6H': 6, '24H': 24, 'ALL': 0 };
+        const cutoffTime = new Date(now.getTime() - hoursMap[timeRange] * 60 * 60 * 1000);
+        data = data.filter(d => d.timestamp >= cutoffTime);
+      }
+      if (data.length === 1) {
+        data = [data[0], { timestamp: new Date(), value: data[0].value }];
+      }
+    }
+  }
 
   const openValue = data[0]?.value || baseValue;
   const currentValue = data[data.length - 1]?.value || baseValue;
@@ -741,8 +778,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
               else break;
             }
             const top = Math.min(bookY, omiY);
-            const h = Math.max(bookY, omiY) - top;
-            if (h < 0.5) return null;
+            const h = Math.max(1, Math.max(bookY, omiY) - top);
             return <rect key={`edge-${i}`} x={x1} y={top} width={x2 - x1} height={h} fill={omiY < bookY ? 'rgba(220,252,231,0.3)' : 'rgba(252,231,231,0.3)'} />;
           })}
 

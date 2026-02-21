@@ -246,6 +246,10 @@ function computeFallbackFair(game: any, overrideSpreads?: any, overrideH2h?: any
   };
 }
 
+/** Check if fairLines has at least one non-null fair value (not just a truthy empty shell) */
+function hasFairData(fl: any): boolean {
+  return fl && (fl.fair_spread != null || fl.fair_total != null || fl.fair_ml_home != null || fl.fair_ml_away != null);
+}
 
 function getCellStyle(edge: number | null): { bg: string; border: string } {
   if (edge == null || Math.abs(edge) < 1) return { bg: P.neutralBg, border: P.neutralBorder };
@@ -866,7 +870,7 @@ export function SportsHomeGrid({
                     const spreads = bookOdds?.spreads || game.consensus?.spreads;
                     const h2h = bookOdds?.h2h || game.consensus?.h2h;
                     const totals = bookOdds?.totals || game.consensus?.totals;
-                    const fair = game.fairLines || computeFallbackFair(game, spreads, h2h, totals);
+                    const fair = hasFairData(game.fairLines) ? game.fairLines : computeFallbackFair(game, spreads, h2h, totals);
                     const maxEdge = calcMaxEdge(fair, spreads, h2h, totals, game.sportKey);
                     return { game, maxEdge };
                   });
@@ -897,7 +901,7 @@ export function SportsHomeGrid({
                     const spreads = bookOdds?.spreads || game.consensus?.spreads;
                     const h2h = bookOdds?.h2h || game.consensus?.h2h;
                     const totals = bookOdds?.totals || game.consensus?.totals;
-                    const fair = game.fairLines || computeFallbackFair(game, spreads, h2h, totals);
+                    const fair = hasFairData(game.fairLines) ? game.fairLines : computeFallbackFair(game, spreads, h2h, totals);
 
                     // Per-cell edges — clean implied probability comparison
                     let homeSpreadEdge: number | null = null, awaySpreadEdge: number | null = null;

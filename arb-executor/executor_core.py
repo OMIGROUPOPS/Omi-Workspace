@@ -179,6 +179,7 @@ class TradeResult:
     pm_order_ms: int = 0       # PM order latency
     k_order_ms: int = 0        # Kalshi order latency
     pm_response_details: Optional[Dict] = None  # PM API response diagnostics
+    k_response_details: Optional[Dict] = None   # Kalshi API response diagnostics
     execution_phase: str = "ioc"       # "ioc" or "gtc"
     gtc_rest_time_ms: int = 0          # how long GTC rested before fill/cancel
     gtc_spread_checks: int = 0         # spread validations during GTC rest
@@ -1364,6 +1365,39 @@ async def execute_arb(
     # Tier 3: Fallback to existing PM unwind (SDK close_position + manual)
     # -------------------------------------------------------------------------
     if k_filled == 0:
+        # ── Diagnostic: log Kalshi failure context ──
+        k_status = k_result.get('status', '?')
+        k_error = k_result.get('error', '')
+        k_order_id = k_result.get('order_id', 'none')
+        # Check price staleness: current book vs sent price
+        k_stale_info = ""
+        if k_book_ref:
+            if params['k_action'] == 'sell':
+                cur_bid = k_book_ref.get('best_bid', 0)
+                if cur_bid and cur_bid < k_limit_price:
+                    k_stale_info = f" STALE: bid moved {cur_bid}c < sent {k_limit_price}c"
+            else:
+                cur_ask = k_book_ref.get('best_ask', 0)
+                if cur_ask and cur_ask > k_limit_price:
+                    k_stale_info = f" STALE: ask moved {cur_ask}c > sent {k_limit_price}c"
+        print(f"[KALSHI FAIL] {arb.kalshi_ticker}: {params['k_action']} {params['k_side']} "
+              f"{pm_filled}x @ {k_limit_price}c | status={k_status} | order={k_order_id} | "
+              f"pm_latency={pm_order_ms}ms k_latency={k_order_ms}ms | "
+              f"original_k_price={k_price}c{k_stale_info}")
+        if k_error:
+            print(f"[KALSHI FAIL] Error: {k_error}")
+
+        _k_response_details = {
+            'k_status': k_status,
+            'k_error': k_error,
+            'k_order_id': k_order_id,
+            'k_limit_price_sent': k_limit_price,
+            'k_original_price': k_price,
+            'k_stale_info': k_stale_info.strip() if k_stale_info else None,
+            'pm_latency_ms': pm_order_ms,
+            'k_latency_ms': k_order_ms,
+        }
+
         # Compute values used across all tiers
         pm_fill_price_cents = pm_fill_price * 100
         original_intent = params['pm_intent']
@@ -1975,6 +2009,7 @@ async def execute_arb(
                 pm_order_ms=pm_order_ms,
                 k_order_ms=k_order_ms,
                 pm_response_details=pm_response_details,
+                k_response_details=_k_response_details,
                 execution_phase=_exec_phase,
                 gtc_rest_time_ms=_gtc_rest,
                 gtc_spread_checks=_gtc_checks,

@@ -3829,6 +3829,9 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
         'gtc_cancel_reason': gtc_cancel_reason,
         'tier': tier,
 
+        # Kalshi failure diagnostics (only present on UNHEDGED trades)
+        'k_response_details': k_result.get('k_response_details'),
+
         # Fee tracking (dollars)
         'pm_fee': _extract_pm_fee(pm_result),
         'k_fee': _calc_kalshi_fee(

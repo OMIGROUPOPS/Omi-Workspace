@@ -1662,7 +1662,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms"
                 print(f"[EXEC] UNHEDGED! PM={result.pm_filled} filled, K={result.kalshi_filled} failed | {timing}")
                 print(f"[EXEC] Reason: {result.abort_reason}")
-                k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
+                k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price,
+                            'k_response_details': result.k_response_details}
                 pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price, 'outcome_index': _actual_pm_oi, 'is_buy_short': _is_buy_short}
                 log_trade(arb, k_result, pm_result, 'UNHEDGED',
                           execution_time_ms=result.execution_time_ms,

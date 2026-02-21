@@ -217,11 +217,11 @@ function calcMaxEdge(fair: any, spreads: any, h2h: any, totals: any, sportKey: s
 }
 
 /** Compute fair lines on-the-fly from composite_score when composite_history is missing */
-function computeFallbackFair(game: any) {
+function computeFallbackFair(game: any, overrideSpreads?: any, overrideH2h?: any, overrideTotals?: any) {
   const comp = game.composite_score != null ? game.composite_score * 100 : 50;
-  const spreads = game.consensus?.spreads;
-  const totals = game.consensus?.totals;
-  const h2h = game.consensus?.h2h;
+  const spreads = overrideSpreads || game.consensus?.spreads;
+  const totals = overrideTotals || game.consensus?.totals;
+  const h2h = overrideH2h || game.consensus?.h2h;
   const fs = spreads?.line != null ? calculateFairSpread(spreads.line, comp, game.sportKey) : null;
   const ft = totals?.line != null ? calculateFairTotal(totals.line, comp, game.sportKey) : null;
   // 3-way ML for soccer, 2-way for everything else
@@ -246,10 +246,6 @@ function computeFallbackFair(game: any) {
   };
 }
 
-/** Use composite_history as single source of truth; only fall back to edgescout when no DB entry */
-function getEffectiveFair(game: any) {
-  return game.fairLines || computeFallbackFair(game);
-}
 
 function getCellStyle(edge: number | null): { bg: string; border: string } {
   if (edge == null || Math.abs(edge) < 1) return { bg: P.neutralBg, border: P.neutralBorder };
@@ -866,11 +862,11 @@ export function SportsHomeGrid({
                 {(() => {
                   // Pre-compute edges for sorting
                   const gamesWithEdge = gamesToShow.map((game: any) => {
-                    const fair = getEffectiveFair(game);
                     const bookOdds = game.bookmakers?.[selectedBook];
                     const spreads = bookOdds?.spreads || game.consensus?.spreads;
                     const h2h = bookOdds?.h2h || game.consensus?.h2h;
                     const totals = bookOdds?.totals || game.consensus?.totals;
+                    const fair = game.fairLines || computeFallbackFair(game, spreads, h2h, totals);
                     const maxEdge = calcMaxEdge(fair, spreads, h2h, totals, game.sportKey);
                     return { game, maxEdge };
                   });
@@ -897,11 +893,11 @@ export function SportsHomeGrid({
                     const isFinal = game.gameState === 'final';
                     const countdown = mounted ? (isLive ? 'LIVE' : isFinal ? 'FINAL' : getTimeDisplay(gameTime, game.sportKey)) : '';
 
-                    const fair = getEffectiveFair(game);
                     const bookOdds = game.bookmakers?.[selectedBook];
                     const spreads = bookOdds?.spreads || game.consensus?.spreads;
                     const h2h = bookOdds?.h2h || game.consensus?.h2h;
                     const totals = bookOdds?.totals || game.consensus?.totals;
+                    const fair = game.fairLines || computeFallbackFair(game, spreads, h2h, totals);
 
                     // Per-cell edges — clean implied probability comparison
                     let homeSpreadEdge: number | null = null, awaySpreadEdge: number | null = null;

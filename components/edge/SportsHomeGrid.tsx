@@ -28,7 +28,7 @@ const P = {
   neutralBorder: '#ecedef',
 };
 
-const EDGE_THRESHOLD = 1.5;
+const EDGE_THRESHOLD = 0;
 const GAMES_PER_SPORT_IN_ALL_VIEW = 6;
 const FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
 
@@ -253,7 +253,7 @@ function getEffectiveFair(game: any) {
 }
 
 function getCellStyle(edge: number | null): { bg: string; border: string } {
-  if (edge == null || Math.abs(edge) < EDGE_THRESHOLD) return { bg: P.neutralBg, border: P.neutralBorder };
+  if (edge == null || Math.abs(edge) < 1) return { bg: P.neutralBg, border: P.neutralBorder };
   return edge > 0
     ? { bg: P.greenBg, border: P.greenBorder }
     : { bg: P.redBg, border: P.redBorder };
@@ -332,13 +332,13 @@ function MarketCell({
   fairChartValue?: number | null;
 }) {
   const { bg, border } = getCellStyle(edge);
-  const hasEdge = edge != null && Math.abs(edge) >= EDGE_THRESHOLD;
-  const edgeColor = hasEdge ? (edge! > 0 ? P.greenText : P.redText) : P.textMuted;
+  const significantEdge = edge != null && Math.abs(edge) >= 1;
+  const edgeColor = edge != null && Math.abs(edge) >= 1 ? (edge > 0 ? P.greenText : P.redText) : P.textMuted;
 
   return (
     <div style={{
       background: bg, borderRight: `1px solid ${border}`,
-      borderLeft: hasEdge ? `3px solid ${border}` : undefined,
+      borderLeft: significantEdge ? `3px solid ${border}` : undefined,
       padding: '6px 8px', minHeight: 70, display: 'flex', flexDirection: 'column',
     }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
@@ -356,9 +356,9 @@ function MarketCell({
           Fair {fairValue}
         </div>
       )}
-      {hasEdge && (
+      {edge != null && (
         <div style={{ fontSize: 10, fontWeight: 600, color: edgeColor, marginTop: 1 }}>
-          {edge! > 0 ? '+' : ''}{edge!.toFixed(1)}%
+          {edge > 0 ? '+' : ''}{edge.toFixed(1)}%
         </div>
       )}
       {chartData && chartData.length >= 2 && (

@@ -218,8 +218,7 @@ function calcMaxEdge(fair: any, spreads: any, h2h: any, totals: any, sportKey: s
 
 /** Compute fair lines on-the-fly from composite_score when composite_history is missing */
 function computeFallbackFair(game: any) {
-  const comp = game.composite_score != null ? game.composite_score * 100 : null;
-  if (comp == null) return null;
+  const comp = game.composite_score != null ? game.composite_score * 100 : 50;
   const spreads = game.consensus?.spreads;
   const totals = game.consensus?.totals;
   const h2h = game.consensus?.h2h;

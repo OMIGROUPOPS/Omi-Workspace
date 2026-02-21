@@ -1104,13 +1104,11 @@ async def execute_arb(
     print(f"[EXEC] Sized: {size} contracts | buffer: {pm_buffer}c")
 
     if params.get('pm_is_buy_short', False):
-        # BUY_SHORT: PM interprets price as MIN YES sell price (favorite frame)
-        # pm_price_cents = underdog cost (what we want to pay for SHORT)
+        # BUY_SHORT: PM expects direct underdog price (see line 81)
+        # pm_price_cents = underdog cost already (inverted in spread detection)
         # Buffer adds to underdog cost (willing to pay slightly more for fill)
         max_underdog_cost = min(math.ceil(pm_price_cents + pm_buffer), 99)
-        # Convert to YES frame: min_yes_sell = 100 - max_underdog_cost
-        pm_price_buffered = max(100 - max_underdog_cost, 1)
-        pm_price = pm_price_buffered / 100.0
+        pm_price = max_underdog_cost / 100.0  # Send directly, no re-inversion
     else:
         # BUY_LONG: PM interprets price as MAX YES buy price (favorite frame)
         pm_price_buffered = min(math.ceil(pm_price_cents + pm_buffer), 99)

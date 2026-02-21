@@ -1822,11 +1822,13 @@ class PolymarketUSAPI:
 
         if Config.is_paper():
             print(f"   [PAPER] PM US: {intent_names[intent]} outcome[{outcome_index}] {quantity} @ ${price:.2f} on {market_slug}")
-            # LATENCY OPT: Removed 0.1s sleep - paper mode should be fast
+            # BUY_SHORT: price is in underdog frame, but fill_price must be YES frame
+            # (matches live PM API which returns avgPx in YES frame regardless of intent)
+            paper_fill = (1 - price) if intent == 3 else price
             return {
                 'success': True,
                 'fill_count': quantity,
-                'fill_price': price,
+                'fill_price': paper_fill,
                 'order_id': f'PM-PAPER-{int(time.time()*1000)}',
                 'paper': True
             }
@@ -1835,11 +1837,11 @@ class PolymarketUSAPI:
         if Config.dry_run_mode:
             cost = price * quantity
             print(f"   [DRY RUN] PM US: Would {intent_names[intent]} outcome[{outcome_index}] {quantity} @ ${price:.2f} (${cost:.2f}) on {market_slug}")
-            # LATENCY OPT: Removed 0.1s sleep
+            dryrun_fill = (1 - price) if intent == 3 else price
             return {
                 'success': True,
                 'fill_count': quantity,
-                'fill_price': price,
+                'fill_price': dryrun_fill,
                 'order_id': f'DRYRUN-PM-{int(time.time()*1000)}',
                 'dry_run': True
             }

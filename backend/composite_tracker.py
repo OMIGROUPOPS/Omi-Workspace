@@ -987,6 +987,13 @@ class CompositeTracker:
                 # 3b. Carry-forward path: no line movement, just re-insert previous
                 #     fair lines with fresh timestamp (cheap, skip pillar analysis)
                 if reason.startswith("carry_forward_") and previous:
+                    # Skip carry-forward if previous had no useful fair data
+                    prev_fs = previous.get("fair_spread")
+                    prev_ft = previous.get("fair_total")
+                    prev_fmh = previous.get("fair_ml_home")
+                    if prev_fs is None and prev_ft is None and prev_fmh is None:
+                        skipped += 1
+                        continue
                     row_data = {
                         "game_id": game_id,
                         "sport_key": sport_key,
@@ -1165,7 +1172,13 @@ class CompositeTracker:
                         )
                         fair_total = capped
 
-                # 6. Insert row
+                # 6. Skip write if all fair values are null (analyzer returned nothing useful)
+                if fair_spread is None and fair_total is None and fair_ml_home is None:
+                    logger.debug(f"[CompositeTracker] SKIP {game_id}: all fair values null after analysis")
+                    skipped += 1
+                    continue
+
+                # 7. Insert row
                 row_data = {
                     "game_id": game_id,
                     "sport_key": sport_key,
@@ -1228,139 +1241,146 @@ class CompositeTracker:
         )
 
         # --- Second pass: seed new games with no composite_history entry ---
-        # Games that entered cached_odds after the last recalc cycle may have
-        # been skipped if _should_recalculate returned first_time but the game
-        # errored out. Re-fetch composite_history to find true gaps.
-        if not force:
-            processed_ids = set()
-            for row in rows:
-                if row.get("game_data"):
-                    processed_ids.add(row["game_id"])
+        # Wrapped in try/except so it can never break the main recalc.
+        try:
+            if not force:
+                processed_ids = set()
+                for row in rows:
+                    if row.get("game_data"):
+                        processed_ids.add(row["game_id"])
 
-            # Re-check which games still lack composite_history after main loop
-            fresh_composites = self._fetch_latest_composites(list(processed_ids))
-            missing = [
-                row for row in rows
-                if row.get("game_data") and row["game_id"] not in fresh_composites
-            ]
+                fresh_composites = self._fetch_latest_composites(list(processed_ids))
+                missing = [
+                    row for row in rows
+                    if row.get("game_data") and row["game_id"] not in fresh_composites
+                ]
 
-            if missing:
-                logger.info(
-                    f"[CompositeTracker] Second pass: {len(missing)} games "
-                    f"with no composite_history — force-processing"
-                )
-                for row in missing:
-                    try:
-                        sport_key = row["sport_key"]
-                        game_id = row["game_id"]
-                        game_data = row["game_data"]
+                if missing:
+                    logger.info(
+                        f"[CompositeTracker] Second pass: {len(missing)} games "
+                        f"with no composite_history — force-processing"
+                    )
+                    seeded = 0
+                    for row in missing:
+                        try:
+                            sport_key = row["sport_key"]
+                            game_id = row["game_id"]
+                            game_data = row["game_data"]
 
-                        book_lines = _extract_median_lines(game_data)
-                        book_spread = book_lines["book_spread"]
-                        book_total = book_lines["book_total"]
-                        book_ml_home = book_lines["book_ml_home"]
-                        book_ml_away = book_lines["book_ml_away"]
-                        book_ml_draw = book_lines["book_ml_draw"]
+                            book_lines = _extract_median_lines(game_data)
+                            book_spread = book_lines["book_spread"]
+                            book_total = book_lines["book_total"]
+                            book_ml_home = book_lines["book_ml_home"]
+                            book_ml_away = book_lines["book_ml_away"]
+                            book_ml_draw = book_lines["book_ml_draw"]
 
-                        analysis = analyze_game(game_data, sport_key)
+                            analysis = analyze_game(game_data, sport_key)
 
-                        pbm = analysis.get("pillars_by_market", {})
-                        composite_spread = pbm.get("spread", {}).get("full", {}).get("composite")
-                        composite_total = pbm.get("totals", {}).get("full", {}).get("composite")
-                        composite_ml = pbm.get("moneyline", {}).get("full", {}).get("composite")
+                            pbm = analysis.get("pillars_by_market", {})
+                            composite_spread = pbm.get("spread", {}).get("full", {}).get("composite")
+                            composite_total = pbm.get("totals", {}).get("full", {}).get("composite")
+                            composite_ml = pbm.get("moneyline", {}).get("full", {}).get("composite")
 
-                        is_soccer = "soccer" in sport_key
+                            is_soccer = "soccer" in sport_key
 
-                        fair_spread = None
-                        fair_total = None
-                        fair_ml_home = None
-                        fair_ml_away = None
-                        fair_ml_draw = None
+                            fair_spread = None
+                            fair_total = None
+                            fair_ml_home = None
+                            fair_ml_away = None
+                            fair_ml_draw = None
 
-                        if book_spread is not None and composite_spread is not None:
-                            fair_spread = _calculate_fair_spread(book_spread, composite_spread)
-                            fair_ml_home, fair_ml_away = _calculate_fair_ml(fair_spread, sport_key)
-                            if is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None:
-                                comp = composite_ml if composite_ml is not None else 0.5
+                            if book_spread is not None and composite_spread is not None:
+                                fair_spread = _calculate_fair_spread(book_spread, composite_spread)
+                                fair_ml_home, fair_ml_away = _calculate_fair_ml(fair_spread, sport_key)
+                                if is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None:
+                                    comp = composite_ml if composite_ml is not None else 0.5
+                                    fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
+                                        book_ml_home, book_ml_draw, book_ml_away, comp
+                                    )
+                            elif is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None and composite_ml is not None:
                                 fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
-                                    book_ml_home, book_ml_draw, book_ml_away, comp
+                                    book_ml_home, book_ml_draw, book_ml_away, composite_ml
                                 )
-                        elif is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None and composite_ml is not None:
-                            fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
-                                book_ml_home, book_ml_draw, book_ml_away, composite_ml
+                            elif book_ml_home is not None and book_ml_away is not None and composite_ml is not None:
+                                fair_ml_home, fair_ml_away = _calculate_fair_ml_from_book(
+                                    book_ml_home, book_ml_away, composite_ml
+                                )
+
+                            if book_total is not None:
+                                game_env_score = analysis.get("pillar_scores", {}).get("game_environment", 0.5)
+                                total_signal = composite_total if composite_total is not None else game_env_score
+                                fair_total = _calculate_fair_total(book_total, total_signal)
+
+                            # Skip if all fair values are null
+                            if fair_spread is None and fair_total is None and fair_ml_home is None:
+                                logger.debug(f"[CompositeTracker] SEED-SKIP {game_id}: all fair values null")
+                                continue
+
+                            # Sport-specific caps
+                            s_cap = SPREAD_CAP_BY_SPORT.get(sport_key, DEFAULT_SPREAD_CAP)
+                            t_cap = TOTAL_CAP_BY_SPORT.get(sport_key, DEFAULT_TOTAL_CAP)
+                            if fair_spread is not None and book_spread is not None:
+                                fair_spread = max(book_spread - s_cap, min(book_spread + s_cap, fair_spread))
+                            if fair_total is not None and book_total is not None:
+                                fair_total = max(book_total - t_cap, min(book_total + t_cap, fair_total))
+
+                            row_data = {
+                                "game_id": game_id,
+                                "sport_key": sport_key,
+                                "timestamp": now,
+                                "composite_spread": composite_spread,
+                                "composite_total": composite_total,
+                                "composite_ml": composite_ml,
+                                "fair_spread": fair_spread,
+                                "fair_total": fair_total,
+                                "fair_ml_home": fair_ml_home,
+                                "fair_ml_away": fair_ml_away,
+                                "book_spread": book_spread,
+                                "book_total": book_total,
+                                "book_ml_home": book_ml_home,
+                                "book_ml_away": book_ml_away,
+                            }
+                            if fair_ml_draw is not None:
+                                row_data["fair_ml_draw"] = fair_ml_draw
+                            if book_ml_draw is not None:
+                                row_data["book_ml_draw"] = book_ml_draw
+                            raw_edge = _calculate_edge_pct(fair_spread, book_spread, fair_total, book_total, sport_key)
+                            capped_edge = _cap_edge(raw_edge)
+                            row_data["raw_edge_pct"] = raw_edge
+                            row_data["capped_edge_pct"] = capped_edge
+                            flow_score = analysis.get("pillar_scores", {}).get("flow", 0.5) or 0.5
+                            row_data["pillar_flow"] = flow_score
+                            row_data["flow_gated"] = (
+                                capped_edge is not None
+                                and abs(capped_edge) >= FLOW_GATE_EDGE_MIN
+                                and flow_score < FLOW_GATE_THRESHOLD
                             )
-                        elif book_ml_home is not None and book_ml_away is not None and composite_ml is not None:
-                            fair_ml_home, fair_ml_away = _calculate_fair_ml_from_book(
-                                book_ml_home, book_ml_away, composite_ml
+
+                            db.client.table("composite_history").insert(row_data).execute()
+                            logger.info(
+                                f"[CompositeTracker] SEED {game_id}: "
+                                f"fair_spread={fair_spread}, fair_total={fair_total}"
                             )
+                            seeded += 1
+                            games_processed += 1
+                            recalculated += 1
+                            sport_processed[sport_key] = sport_processed.get(sport_key, 0) + 1
 
-                        if book_total is not None:
-                            game_env_score = analysis.get("pillar_scores", {}).get("game_environment", 0.5)
-                            total_signal = composite_total if composite_total is not None else game_env_score
-                            fair_total = _calculate_fair_total(book_total, total_signal)
+                        except Exception as e:
+                            logger.error(
+                                f"[CompositeTracker] Seed error {row.get('game_id', '?')}: {e}\n"
+                                f"{traceback.format_exc()}"
+                            )
+                            errors += 1
+                            sk = row.get("sport_key", "unknown")
+                            sport_errors[sk] = sport_errors.get(sk, 0) + 1
 
-                        # Sport-specific caps
-                        s_cap = SPREAD_CAP_BY_SPORT.get(sport_key, DEFAULT_SPREAD_CAP)
-                        t_cap = TOTAL_CAP_BY_SPORT.get(sport_key, DEFAULT_TOTAL_CAP)
-                        if fair_spread is not None and book_spread is not None:
-                            fair_spread = max(book_spread - s_cap, min(book_spread + s_cap, fair_spread))
-                        if fair_total is not None and book_total is not None:
-                            fair_total = max(book_total - t_cap, min(book_total + t_cap, fair_total))
-
-                        row_data = {
-                            "game_id": game_id,
-                            "sport_key": sport_key,
-                            "timestamp": now,
-                            "composite_spread": composite_spread,
-                            "composite_total": composite_total,
-                            "composite_ml": composite_ml,
-                            "fair_spread": fair_spread,
-                            "fair_total": fair_total,
-                            "fair_ml_home": fair_ml_home,
-                            "fair_ml_away": fair_ml_away,
-                            "book_spread": book_spread,
-                            "book_total": book_total,
-                            "book_ml_home": book_ml_home,
-                            "book_ml_away": book_ml_away,
-                        }
-                        if fair_ml_draw is not None:
-                            row_data["fair_ml_draw"] = fair_ml_draw
-                        if book_ml_draw is not None:
-                            row_data["book_ml_draw"] = book_ml_draw
-                        raw_edge = _calculate_edge_pct(fair_spread, book_spread, fair_total, book_total, sport_key)
-                        capped_edge = _cap_edge(raw_edge)
-                        row_data["raw_edge_pct"] = raw_edge
-                        row_data["capped_edge_pct"] = capped_edge
-                        flow_score = analysis.get("pillar_scores", {}).get("flow", 0.5) or 0.5
-                        row_data["pillar_flow"] = flow_score
-                        row_data["flow_gated"] = (
-                            capped_edge is not None
-                            and abs(capped_edge) >= FLOW_GATE_EDGE_MIN
-                            and flow_score < FLOW_GATE_THRESHOLD
-                        )
-
-                        db.client.table("composite_history").insert(row_data).execute()
-                        logger.info(
-                            f"[CompositeTracker] SEED {game_id}: "
-                            f"fair_spread={fair_spread}, fair_total={fair_total}"
-                        )
-                        games_processed += 1
-                        recalculated += 1
-                        sport_processed[sport_key] = sport_processed.get(sport_key, 0) + 1
-
-                    except Exception as e:
-                        logger.error(
-                            f"[CompositeTracker] Seed error {row.get('game_id', '?')}: {e}\n"
-                            f"{traceback.format_exc()}"
-                        )
-                        errors += 1
-                        sk = row.get("sport_key", "unknown")
-                        sport_errors[sk] = sport_errors.get(sk, 0) + 1
-
-                logger.info(
-                    f"[CompositeTracker] Second pass complete: "
-                    f"seeded {len(missing)} new games"
-                )
+                    logger.info(
+                        f"[CompositeTracker] Second pass complete: "
+                        f"seeded {seeded}/{len(missing)} new games"
+                    )
+        except Exception as e:
+            logger.error(f"[CompositeTracker] Second pass failed (non-fatal): {e}\n{traceback.format_exc()}")
 
         summary = {
             "games_processed": games_processed,

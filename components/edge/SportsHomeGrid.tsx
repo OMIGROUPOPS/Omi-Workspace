@@ -350,16 +350,12 @@ function MarketCell({
           </span>
         )}
       </div>
-      {fairValue && (
-        <div style={{ fontSize: 10, color: P.textMuted, marginTop: 1, fontFamily: 'monospace' }}>
-          Fair {fairValue}
-        </div>
-      )}
-      {edge != null && (
-        <div style={{ fontSize: 10, fontWeight: 600, color: edgeColor, marginTop: 1 }}>
-          {edge > 0 ? '+' : ''}{edge.toFixed(1)}%
-        </div>
-      )}
+      <div style={{ fontSize: 10, color: P.textMuted, marginTop: 1, fontFamily: 'monospace' }}>
+        Fair {fairValue ?? '--'}
+      </div>
+      <div style={{ fontSize: 10, fontWeight: 600, color: edgeColor, marginTop: 1 }}>
+        {edge != null ? `${edge > 0 ? '+' : ''}${edge.toFixed(1)}%` : '--'}
+      </div>
       {chartData && chartData.length >= 2 && (
         <MiniChart data={chartData} fairValue={fairChartValue} />
       )}
@@ -879,8 +875,16 @@ export function SportsHomeGrid({
                     return { game, maxEdge };
                   });
 
+                  // Filter out games more than 7 days in the future
+                  const maxDate = new Date();
+                  maxDate.setDate(maxDate.getDate() + 7);
+                  const filtered = gamesWithEdge.filter(({ game }) => {
+                    const ct = typeof game.commenceTime === 'string' ? new Date(game.commenceTime) : game.commenceTime;
+                    return !ct || ct <= maxDate;
+                  });
+
                   // Sort: LIVE first, then pregame by edge, then FINAL last
-                  gamesWithEdge.sort((a, b) => {
+                  filtered.sort((a, b) => {
                     const stateOrder = (g: any) => g.game.gameState === 'live' ? 0 : g.game.gameState === 'final' ? 2 : 1;
                     const stateDiff = stateOrder(a) - stateOrder(b);
                     if (stateDiff !== 0) return stateDiff;
@@ -1235,7 +1239,7 @@ export function SportsHomeGrid({
 
                   return (
                     <>
-                      {gamesWithEdge.map(g => renderCard(g))}
+                      {filtered.map(g => renderCard(g))}
                     </>
                   );
                 })()}

@@ -1568,6 +1568,51 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
         # Execute via executor_core (clean execution engine)
         # -----------------------------------------------------------------
         async with EXECUTION_LOCK:
+            # ── Pre-execution freshness check: PM price ──
+            _pm_key = f"{arb.cache_key}_{arb.team}"
+            _fresh_pm = pm_prices.get(_pm_key)
+            if _fresh_pm:
+                _pm_age = int(time.time() * 1000) - _fresh_pm.get('timestamp_ms', 0)
+                if _pm_age > PM_PRICE_MAX_AGE_MS:
+                    executing_games.discard(arb.cache_key)
+                    return
+                _fresh_ask = _fresh_pm.get('ask', 0)
+                _fresh_bid = _fresh_pm.get('bid', 0)
+                if arb.direction == 'BUY_PM_SELL_K':
+                    _drift = _fresh_ask - arb.pm_ask
+                    if _drift > 2:
+                        print(f"[EXEC] PM ask drifted +{_drift:.0f}c since detection — aborting")
+                        executing_games.discard(arb.cache_key)
+                        return
+                else:
+                    _drift = arb.pm_bid - _fresh_bid
+                    if _drift > 2:
+                        print(f"[EXEC] PM bid drifted -{_drift:.0f}c since detection — aborting")
+                        executing_games.discard(arb.cache_key)
+                        return
+
+            # ── Pre-execution freshness check: Kalshi book ──
+            _fresh_k = local_books.get(arb.kalshi_ticker)
+            if _fresh_k:
+                _k_age = int(time.time() * 1000) - _fresh_k.get('last_update_ms', 0)
+                if _k_age > K_PRICE_MAX_AGE_MS:
+                    executing_games.discard(arb.cache_key)
+                    return
+                if arb.direction == 'BUY_PM_SELL_K':
+                    _fresh_k_bid = _fresh_k.get('best_bid') or 0
+                    _k_drift = arb.k_bid - _fresh_k_bid
+                    if _k_drift > 2:
+                        print(f"[EXEC] K bid drifted -{_k_drift:.0f}c since detection — aborting")
+                        executing_games.discard(arb.cache_key)
+                        return
+                else:
+                    _fresh_k_ask = _fresh_k.get('best_ask') or 0
+                    _k_drift = _fresh_k_ask - arb.k_ask
+                    if _k_drift > 2:
+                        print(f"[EXEC] K ask drifted +{_k_drift:.0f}c since detection — aborting")
+                        executing_games.discard(arb.cache_key)
+                        return
+
             print(f"[EXEC] Executing {optimal_size} contract(s) via executor_core...")
 
             result = await execute_arb(

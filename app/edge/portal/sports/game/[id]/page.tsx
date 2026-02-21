@@ -8,6 +8,7 @@ import { calculateTwoWayEV } from '@/lib/edge/utils/odds-math';
 import { isTier2Account } from '@/lib/edge/auth-tier';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
+const BACKEND_TIMEOUT_MS = 5000; // 5s timeout for all backend fetches
 
 // Fetch Python pillar scores from backend
 async function fetchPythonPillars(gameId: string, sport: string): Promise<PythonPillarScores | null> {
@@ -24,7 +25,7 @@ async function fetchPythonPillars(gameId: string, sport: string): Promise<Python
 
     const response = await fetch(
       `${BACKEND_URL}/api/pillars/${backendSport}/${gameId}`,
-      { cache: 'no-store' }
+      { cache: 'no-store', signal: AbortSignal.timeout(BACKEND_TIMEOUT_MS) }
     );
 
     if (!response.ok) {
@@ -230,7 +231,7 @@ async function fetchLineHistory(gameId: string, market: string = 'spread', perio
   try {
     let url = `${BACKEND_URL}/api/lines/${gameId}?market=${market}&period=${period}`;
     if (book) url += `&book=${book}`;
-    const res = await fetch(url, { cache: 'no-store' });
+    const res = await fetch(url, { cache: 'no-store', signal: AbortSignal.timeout(BACKEND_TIMEOUT_MS) });
     if (res.ok) {
       const data = await res.json();
       if (data.snapshots && data.snapshots.length > 0) {
@@ -274,7 +275,7 @@ async function fetchLineHistory(gameId: string, market: string = 'spread', perio
 
 async function fetchAllGamesForSport(sport: string) {
   try {
-    const res = await fetch(`${BACKEND_URL}/api/edges/${sport}`, { cache: 'no-store' });
+    const res = await fetch(`${BACKEND_URL}/api/edges/${sport}`, { cache: 'no-store', signal: AbortSignal.timeout(BACKEND_TIMEOUT_MS) });
     if (!res.ok) return [];
     const data = await res.json();
     return data.games || [];
@@ -286,7 +287,7 @@ async function fetchAllGamesForSport(sport: string) {
 
 async function fetchProps(sport: string, gameId: string) {
   try {
-    const res = await fetch(`${BACKEND_URL}/api/props/${sport}/${gameId}`, { cache: 'no-store' });
+    const res = await fetch(`${BACKEND_URL}/api/props/${sport}/${gameId}`, { cache: 'no-store', signal: AbortSignal.timeout(BACKEND_TIMEOUT_MS) });
     if (!res.ok) return [];
     const data = await res.json();
     return data.props || [];
@@ -298,7 +299,7 @@ async function fetchProps(sport: string, gameId: string) {
 
 async function fetchConsensus(sport: string, gameId: string) {
   try {
-    const res = await fetch(`${BACKEND_URL}/api/consensus/${sport}/${gameId}`, { cache: 'no-store' });
+    const res = await fetch(`${BACKEND_URL}/api/consensus/${sport}/${gameId}`, { cache: 'no-store', signal: AbortSignal.timeout(BACKEND_TIMEOUT_MS) });
     if (!res.ok) return null;
     return await res.json();
   } catch (e) {
@@ -309,7 +310,7 @@ async function fetchConsensus(sport: string, gameId: string) {
 
 async function fetchPerBookOdds(sport: string, gameId: string) {
   try {
-    const res = await fetch(`${BACKEND_URL}/api/odds/${sport}/${gameId}`, { cache: 'no-store' });
+    const res = await fetch(`${BACKEND_URL}/api/odds/${sport}/${gameId}`, { cache: 'no-store', signal: AbortSignal.timeout(BACKEND_TIMEOUT_MS) });
     if (!res.ok) return null;
     return await res.json();
   } catch (e) {
@@ -743,60 +744,61 @@ export default async function GameDetailPage({ params, searchParams }: PageProps
     'soccer_epl': 'EPL',
   };
 
-  if (querySport) {
-    backendSportKey = sportMap[querySport] || querySport.toUpperCase();
-    const allGames = await fetchAllGamesForSport(backendSportKey);
-    gameData = allGames.find((g: any) => g.game_id === gameId);
-    if (gameData) {
-      sportKey = querySport;
-    }
+  // Try Supabase cached_odds FIRST (fast, reliable, no backend dependency)
+  const cached = await fetchGameFromCache(gameId);
+  if (cached) {
+    const raw = cached.game_data;
+    cachedRaw = raw;
+    gameData = {
+      game_id: raw.id || gameId,
+      home_team: raw.home_team,
+      away_team: raw.away_team,
+      commence_time: raw.commence_time,
+      consensus_odds: buildConsensusFromBookmakers(raw),
+    };
+    sportKey = querySport || cached.sport_key;
+    backendSportKey = sportMap[sportKey] || sportKey.toUpperCase();
   }
 
-  if (!gameData) {
-    const sportsToSearch = ['NFL', 'NBA', 'NHL', 'NCAAF', 'NCAAB', 'MLB', 'EPL', 'WNBA', 'MMA', 'TENNIS_AO', 'TENNIS_FO', 'TENNIS_USO', 'TENNIS_WIM'];
-    const reverseMap: Record<string, string> = {
-      'NFL': 'americanfootball_nfl',
-      'NBA': 'basketball_nba',
-      'NHL': 'icehockey_nhl',
-      'NCAAF': 'americanfootball_ncaaf',
-      'NCAAB': 'basketball_ncaab',
-      'MLB': 'baseball_mlb',
-      'WNBA': 'basketball_wnba',
-      'MMA': 'mma_mixed_martial_arts',
-      'TENNIS_AO': 'tennis_atp_australian_open',
-      'TENNIS_FO': 'tennis_atp_french_open',
-      'TENNIS_USO': 'tennis_atp_us_open',
-      'TENNIS_WIM': 'tennis_atp_wimbledon',
-      'EPL': 'soccer_epl',
-    };
-    
-    for (const sport of sportsToSearch) {
-      const allGames = await fetchAllGamesForSport(sport);
+  // Enhance with backend data if available (has composite_score, confidence, etc.)
+  if (!gameData || !gameData.composite_score) {
+    const targetSport = backendSportKey || (querySport ? (sportMap[querySport] || querySport.toUpperCase()) : '');
+    if (targetSport) {
+      const allGames = await fetchAllGamesForSport(targetSport);
       const found = allGames.find((g: any) => g.game_id === gameId);
       if (found) {
         gameData = found;
-        sportKey = reverseMap[sport] || sport.toLowerCase();
-        backendSportKey = sport;
-        break;
+        backendSportKey = targetSport;
       }
-    }
-  }
-
-  // Fallback: read from cached_odds table
-  if (!gameData) {
-    const cached = await fetchGameFromCache(gameId);
-    if (cached) {
-      const raw = cached.game_data;
-      cachedRaw = raw; // Store for enriched market extraction
-      gameData = {
-        game_id: raw.id,
-        home_team: raw.home_team,
-        away_team: raw.away_team,
-        commence_time: raw.commence_time,
-        consensus_odds: buildConsensusFromBookmakers(raw),
+    } else if (!gameData) {
+      // No sport hint and no cache — try searching backend sports
+      const sportsToSearch = ['NFL', 'NBA', 'NHL', 'NCAAF', 'NCAAB', 'MLB', 'EPL', 'WNBA', 'MMA', 'TENNIS_AO', 'TENNIS_FO', 'TENNIS_USO', 'TENNIS_WIM'];
+      const reverseMap: Record<string, string> = {
+        'NFL': 'americanfootball_nfl',
+        'NBA': 'basketball_nba',
+        'NHL': 'icehockey_nhl',
+        'NCAAF': 'americanfootball_ncaaf',
+        'NCAAB': 'basketball_ncaab',
+        'MLB': 'baseball_mlb',
+        'WNBA': 'basketball_wnba',
+        'MMA': 'mma_mixed_martial_arts',
+        'TENNIS_AO': 'tennis_atp_australian_open',
+        'TENNIS_FO': 'tennis_atp_french_open',
+        'TENNIS_USO': 'tennis_atp_us_open',
+        'TENNIS_WIM': 'tennis_atp_wimbledon',
+        'EPL': 'soccer_epl',
       };
-      sportKey = cached.sport_key;
-      backendSportKey = sportMap[cached.sport_key] || cached.sport_key.toUpperCase();
+
+      for (const sport of sportsToSearch) {
+        const allGames = await fetchAllGamesForSport(sport);
+        const found = allGames.find((g: any) => g.game_id === gameId);
+        if (found) {
+          gameData = found;
+          sportKey = reverseMap[sport] || sport.toLowerCase();
+          backendSportKey = sport;
+          break;
+        }
+      }
     }
   }
 

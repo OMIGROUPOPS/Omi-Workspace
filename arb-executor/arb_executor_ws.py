@@ -106,6 +106,7 @@ PM_WS_URL = "wss://api.polymarket.us/v1/ws/markets"
 PM_WS_PATH = "/v1/ws/markets"
 
 PM_PRICE_MAX_AGE_MS = 2000  # Skip if PM price is older than 2 seconds (for safety)
+K_PRICE_MAX_AGE_MS = 2000   # Skip if Kalshi price is older than 2 seconds
 
 WS_RECONNECT_DELAY_INITIAL = 1  # Initial reconnect delay in seconds
 WS_RECONNECT_DELAY_MAX = 60     # Max reconnect delay
@@ -745,6 +746,11 @@ def quick_spread_possible(ticker: str) -> bool:
     if k_bid == 0 and k_ask == 0:
         return False
 
+    # Skip stale Kalshi books
+    k_age_ms = int(time.time() * 1000) - book.get('last_update_ms', 0)
+    if k_age_ms > K_PRICE_MAX_AGE_MS:
+        return False
+
     cache_key = ticker_to_cache_key.get(ticker)
     if not cache_key:
         return False
@@ -786,6 +792,11 @@ def check_spread_for_ticker(ticker: str) -> Optional[ArbOpportunity]:
     # Get local book
     book = local_books.get(ticker)
     if not book or book['best_bid'] is None or book['best_ask'] is None:
+        return None
+
+    # Skip stale Kalshi books
+    k_age_ms = int(time.time() * 1000) - book.get('last_update_ms', 0)
+    if k_age_ms > K_PRICE_MAX_AGE_MS:
         return None
 
     # Find the cache_key for this ticker

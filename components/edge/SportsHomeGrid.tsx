@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
-import { calculateFairSpread, calculateFairTotal, calculateFairMLFromBook, calculateFairMLFromBook3Way, calculateFairMoneyline } from '@/lib/edge/engine/edgescout';
+import { calculateFairSpread, calculateFairTotal, calculateFairMLFromBook, calculateFairMLFromBook3Way, calculateFairMoneyline, spreadToWinProb } from '@/lib/edge/engine/edgescout';
 
 // --- Light theme palette ---
 const P = {
@@ -158,19 +158,18 @@ function getProbRate(sportKey: string): number {
   return SPREAD_TO_PROB[sportKey] || 0.03;
 }
 
-// Absolute edge: point difference × probability per point
-// Matches backend _calculate_edge_pct and game detail page formula
+// Spread edge using logistic probability difference (not linear pointDiff * rate)
+// This compresses naturally at extreme spreads, preventing inflated edges
 function spreadEdgeForSide(
   fairSpread: number, bookLine: number, bookOdds: number, sportKey: string, isHome: boolean
 ): number {
-  const rate = getProbRate(sportKey);
-  // Absolute edge: point difference × probability per point
-  const pointDiff = fairSpread - bookLine;
-  // Positive pointDiff means fair spread is more positive (favoring away/underdog)
-  // For home: negative pointDiff = home edge (fair says home is better than book)
-  // For away: positive pointDiff = away edge
-  const edge = Math.abs(pointDiff) * rate * 100;
-  const sign = isHome ? (pointDiff < 0 ? 1 : -1) : (pointDiff > 0 ? 1 : -1);
+  const fairProb = spreadToWinProb(fairSpread, sportKey);   // fair home win prob
+  const bookProb = spreadToWinProb(bookLine, sportKey);     // book home win prob
+  const probDiff = fairProb - bookProb;
+  // For home: positive probDiff = home edge (fair says home is more likely)
+  // For away: negative probDiff = away edge
+  const edge = Math.abs(probDiff) * 100;
+  const sign = isHome ? (probDiff > 0 ? 1 : -1) : (probDiff < 0 ? 1 : -1);
   return edge * sign;
 }
 
@@ -189,15 +188,16 @@ function calcMaxEdge(fair: any, spreads: any, h2h: any, totals: any, sportKey: s
   let maxEdge = 0;
   const rate = getProbRate(sportKey);
 
-  // Spread edge: absolute point difference × prob per point (matches backend)
+  // Spread edge: logistic probability difference (compresses at extremes)
   if (fair?.fair_spread != null && spreads?.line !== undefined) {
-    const diff = Math.abs(fair.fair_spread - spreads.line);
-    maxEdge = Math.max(maxEdge, diff * rate * 100);
+    const fairProb = spreadToWinProb(fair.fair_spread, sportKey);
+    const bookProb = spreadToWinProb(spreads.line, sportKey);
+    maxEdge = Math.max(maxEdge, Math.abs(fairProb - bookProb) * 100);
   }
 
-  // ML edge: derive from spread for coherence (avoid American odds rounding loss)
+  // ML edge: derive from spread via logistic for coherence
   if (fair?.fair_spread != null && h2h?.homePrice !== undefined && h2h?.awayPrice !== undefined) {
-    const fairWinProb = 0.50 + (-fair.fair_spread) * rate;
+    const fairWinProb = spreadToWinProb(fair.fair_spread, sportKey);
     const bookHP = toProb(h2h.homePrice);
     const bookAP = toProb(h2h.awayPrice);
     const normBHP = bookHP / (bookHP + bookAP);
@@ -211,7 +211,7 @@ function calcMaxEdge(fair: any, spreads: any, h2h: any, totals: any, sportKey: s
     maxEdge = Math.max(maxEdge, Math.abs(fairHP - normBHP) * 100);
   }
 
-  // Total edge: absolute point difference × prob per point (matches backend)
+  // Total edge: linear probability difference (totals don't get extreme enough to need logistic)
   if (fair?.fair_total != null && totals?.line !== undefined) {
     const totalRate = rate * TOTAL_TO_PROB_FACTOR;
     const diff = Math.abs(fair.fair_total - totals.line);
@@ -933,10 +933,9 @@ export function SportsHomeGrid({
                     let homeMLEdge: number | null = null, awayMLEdge: number | null = null;
                     let drawEdge: number | null = null;
                     const gameSoccer = isSoccer(game.sportKey);
-                    const mlRate = getProbRate(game.sportKey);
                     if (fair?.fair_spread != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
-                      // Derive ML edge from spread for coherence (avoids American odds rounding)
-                      const fairWinProb = 0.50 + (-fair.fair_spread) * mlRate;
+                      // Derive ML edge from spread via logistic (compresses at extreme spreads)
+                      const fairWinProb = spreadToWinProb(fair.fair_spread, game.sportKey);
                       const bookHP = toProb(h2h.homePrice);
                       const bookAP = toProb(h2h.awayPrice);
                       const drawPrice = h2h?.drawPrice ?? h2h?.draw ?? h2h?.drawOdds ?? null;

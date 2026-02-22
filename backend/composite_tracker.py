@@ -11,6 +11,7 @@ how OMI's fair pricing evolves over time.
 from datetime import datetime, timezone, timedelta
 from typing import Optional
 import logging
+import math
 import statistics
 import traceback
 
@@ -67,6 +68,30 @@ SPREAD_TO_PROB_RATE = {
     "baseball_mlb": 0.09,
     "soccer_epl": 0.20,
 }
+
+# Logistic k-values: k = linear_rate * 4  (derivative at x=0 matches linear rate)
+SPREAD_TO_PROB_K = {
+    "basketball_nba": 0.132,
+    "basketball_ncaab": 0.120,
+    "americanfootball_nfl": 0.108,
+    "americanfootball_ncaaf": 0.108,
+    "icehockey_nhl": 0.320,
+    "baseball_mlb": 0.360,
+    "soccer_epl": 0.800,
+    "soccer_usa_mls": 0.800,
+    "soccer_spain_la_liga": 0.800,
+    "soccer_italy_serie_a": 0.800,
+    "soccer_germany_bundesliga": 0.800,
+    "soccer_france_ligue_one": 0.800,
+    "soccer_uefa_champs_league": 0.800,
+}
+
+
+def spread_to_win_prob(spread: float, sport_key: str) -> float:
+    """Logistic spread-to-probability: P(win) = 1 / (1 + exp(spread * k)).
+    Negative spread = favorite → probability > 0.50."""
+    k = SPREAD_TO_PROB_K.get(sport_key, 0.120)
+    return 1.0 / (1.0 + math.exp(spread * k))
 
 FAIR_LINE_ML_FACTOR = 0.01  # 1% implied probability shift per composite point
 
@@ -203,16 +228,18 @@ def _calculate_live_ceq(pregame_ceq: float, pregame_fair_spread: float,
 
 
 def _calculate_edge_pct(fair_spread, book_spread, fair_total, book_total, sport_key):
-    """Calculate max edge % across spread and total markets."""
+    """Calculate max edge % across spread and total markets.
+    Uses logistic probability differences for spread edge."""
     max_edge = 0.0
-    rate = SPREAD_TO_PROB_RATE.get(sport_key, 0.03)
 
     if fair_spread is not None and book_spread is not None:
-        diff = abs(float(fair_spread) - float(book_spread))
-        edge = diff * rate * 100
+        fair_prob = spread_to_win_prob(float(fair_spread), sport_key)
+        book_prob = spread_to_win_prob(float(book_spread), sport_key)
+        edge = abs(fair_prob - book_prob) * 100
         max_edge = max(max_edge, edge)
 
     if fair_total is not None and book_total is not None:
+        rate = SPREAD_TO_PROB_RATE.get(sport_key, 0.03)
         total_rate = rate * 0.6  # TOTAL_TO_PROB_FACTOR
         diff = abs(float(fair_total) - float(book_total))
         edge = diff * total_rate * 100
@@ -285,7 +312,7 @@ def _get_scale_factor(sport_key: str = "_global") -> float:
     return FAIR_LINE_SPREAD_FACTOR
 
 
-def _calc_exchange_divergence_boost(game_id: str, book_spread: float) -> float:
+def _calc_exchange_divergence_boost(game_id: str, book_spread: float, sport_key: str = "basketball_nba") -> float:
     """
     Calculate spread adjustment from exchange vs book divergence.
 
@@ -342,9 +369,8 @@ def _calc_exchange_divergence_boost(game_id: str, book_spread: float) -> float:
             best = max(ml_contracts, key=lambda c: c["yes_price"])
             exchange_prob = best["yes_price"] / 100.0
 
-        # Book implied prob from spread: home favored = negative spread
-        # P(home) = 0.50 + (-book_spread * 0.03)
-        book_implied = 0.50 + (-book_spread) * 0.03
+        # Book implied prob from spread (logistic)
+        book_implied = spread_to_win_prob(book_spread, sport_key)
 
         divergence = exchange_prob - book_implied
 
@@ -468,11 +494,12 @@ def _calculate_fair_total(book_total: float, composite_total: float) -> float:
 
 def _calculate_fair_ml(fair_spread: float, sport_key: str) -> tuple[int, int]:
     """
-    Derive fair ML from fair spread — mirrors edgescout.ts spreadToMoneyline (lines 136-149).
+    Derive fair ML from fair spread — mirrors edgescout.ts spreadToMoneyline.
+    Uses logistic conversion to prevent probability overflow at extreme spreads.
     Returns (fair_ml_home, fair_ml_away).
     """
-    rate = SPREAD_TO_PROB_RATE.get(sport_key, 0.03)
-    home_prob = max(0.05, min(0.95, 0.50 + (-fair_spread) * rate))
+    home_prob = spread_to_win_prob(fair_spread, sport_key)
+    home_prob = max(0.01, min(0.99, home_prob))
     away_prob = 1 - home_prob
     return (implied_prob_to_american(home_prob), implied_prob_to_american(away_prob))
 
@@ -521,10 +548,9 @@ def _calculate_fair_ml_from_book_3way(
     fair_draw = draw_imp / total_imp
 
     if book_spread is not None and sport_key:
-        # Derive from fair spread for coherence
+        # Derive from fair spread for coherence (logistic conversion)
         fair_spread_val = _calculate_fair_spread(book_spread, composite_ml)
-        rate = SPREAD_TO_PROB_RATE.get(sport_key, 0.03)
-        two_way_home = max(0.05, min(0.95, 0.50 + (-fair_spread_val) * rate))
+        two_way_home = spread_to_win_prob(fair_spread_val, sport_key)
         # Scale down H/A to make room for draw
         adj_home = two_way_home * (1 - fair_draw)
         adj_away = (1 - two_way_home) * (1 - fair_draw)
@@ -1110,7 +1136,7 @@ class CompositeTracker:
                 if book_spread is not None and composite_spread is not None:
                     fair_spread = _calculate_fair_spread(book_spread, composite_spread)
                     # Exchange divergence boost: shift fair spread toward exchange signal
-                    exchange_adj = _calc_exchange_divergence_boost(game_id, book_spread)
+                    exchange_adj = _calc_exchange_divergence_boost(game_id, book_spread, sport_key)
                     if exchange_adj != 0.0:
                         fair_spread = _round_to_half(fair_spread + exchange_adj)
                     fair_ml_home, fair_ml_away = _calculate_fair_ml(fair_spread, sport_key)
@@ -1603,7 +1629,7 @@ class CompositeTracker:
 
                 if book_spread is not None and composite_spread is not None:
                     fair_spread = _calculate_fair_spread(book_spread, composite_spread)
-                    exchange_adj = _calc_exchange_divergence_boost(game_id, book_spread)
+                    exchange_adj = _calc_exchange_divergence_boost(game_id, book_spread, sport_key)
                     if exchange_adj != 0.0:
                         fair_spread = _round_to_half(fair_spread + exchange_adj)
                     fair_ml_home, fair_ml_away = _calculate_fair_ml(fair_spread, sport_key)

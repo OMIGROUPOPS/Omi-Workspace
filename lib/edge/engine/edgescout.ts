@@ -147,6 +147,43 @@ export const SPREAD_TO_PROB_RATE: Record<string, number> = {
 };
 
 /**
+ * Logistic scaling constants per sport: k = linear_rate * 4.
+ * Calibrated so slope at spread=0 matches the linear SPREAD_TO_PROB rates.
+ * The logistic curve naturally compresses toward 0 and 1 at extreme spreads,
+ * preventing impossible probabilities (>1.0) that the linear model produces.
+ */
+const SPREAD_TO_PROB_K: Record<string, number> = {
+  'basketball_nba': 0.132,
+  'basketball_ncaab': 0.120,
+  'americanfootball_nfl': 0.108,
+  'americanfootball_ncaaf': 0.108,
+  'icehockey_nhl': 0.320,
+  'baseball_mlb': 0.360,
+  'soccer_epl': 0.800,
+  'soccer_usa_mls': 0.800,
+  'soccer_spain_la_liga': 0.800,
+  'soccer_italy_serie_a': 0.800,
+  'soccer_germany_bundesliga': 0.800,
+  'soccer_france_ligue_one': 0.800,
+  'soccer_uefa_champs_league': 0.800,
+};
+
+/**
+ * Convert a spread to win probability using logistic (sigmoid) function.
+ * P(win) = 1 / (1 + exp(spread * k))
+ *
+ * Matches linear rates at moderate spreads (±0 to ±8), compresses naturally
+ * at extremes. Never produces probabilities outside (0, 1).
+ *
+ * Sign convention: spread of -7 means the team is a 7-point favorite.
+ * Returns probability > 0.50 for favorites (negative spreads).
+ */
+export function spreadToWinProb(spread: number, sportKey: string): number {
+  const k = SPREAD_TO_PROB_K[sportKey] ?? 0.120;
+  return 1 / (1 + Math.exp(spread * k));
+}
+
+/**
  * Calculate a fair spread based on book spread + pillar composite deviation.
  * Pillar composite is 0-100, 50 = neutral.
  * Deviation from 50 is scaled by FAIR_LINE_SPREAD_FACTOR to get point adjustment.
@@ -276,11 +313,10 @@ export function calculateFairMLFromBook3Way(
   const { fairDrawProb } = removeVig3Way(bookHomeOdds, bookDrawOdds, bookAwayOdds);
 
   if (bookSpread !== undefined && sportKey) {
-    // Derive from fair spread for coherence
+    // Derive from fair spread for coherence (logistic conversion)
     const { fairLine: fairSpread } = calculateFairSpread(bookSpread, pillarComposite, sportKey);
-    const rate = SPREAD_TO_PROB_RATE[sportKey] || 0.03;
-    // 2-way win probability from spread (ignoring draw)
-    const twoWayHomeProb = Math.max(0.05, Math.min(0.95, 0.50 + (-fairSpread) * rate));
+    // 2-way win probability from spread using logistic (ignoring draw)
+    const twoWayHomeProb = spreadToWinProb(fairSpread, sportKey);
     // Scale down H/A to make room for draw
     let adjHome = twoWayHomeProb * (1 - fairDrawProb);
     let adjAway = (1 - twoWayHomeProb) * (1 - fairDrawProb);
@@ -319,22 +355,20 @@ export function calculateFairMLFromBook3Way(
 }
 
 /**
- * Derive fair moneyline from a fair spread using sport-specific conversion rates.
- * This ensures ML and spread tell the same story for the same game.
+ * Derive fair moneyline from a fair spread using logistic conversion.
+ * Uses spreadToWinProb() for proper compression at extreme spreads.
  * fairSpread is from the HOME perspective (negative = home favored).
- * Example: fairSpread = +5.5 (home is 5.5pt underdog) → home ~31% / away ~69%
  */
 export function spreadToMoneyline(
   fairSpread: number,
   sportKey: string
 ): { homeOdds: number; awayOdds: number } {
-  const rate = SPREAD_TO_PROB_RATE[sportKey] || 0.03;
-  // Negative fairSpread = home favored → higher home win prob
-  const homeProb = Math.max(0.05, Math.min(0.95, 0.50 + (-fairSpread) * rate));
+  const homeProb = spreadToWinProb(fairSpread, sportKey);
   const awayProb = 1 - homeProb;
   const probToAmerican = (prob: number) => {
-    if (prob >= 0.5) return Math.round(-100 * prob / (1 - prob));
-    return Math.round(100 * (1 - prob) / prob);
+    const p = Math.max(0.01, Math.min(0.99, prob));
+    if (p >= 0.5) return Math.round(-100 * p / (1 - p));
+    return Math.round(100 * (1 - p) / p);
   };
   return { homeOdds: probToAmerican(homeProb), awayOdds: probToAmerican(awayProb) };
 }

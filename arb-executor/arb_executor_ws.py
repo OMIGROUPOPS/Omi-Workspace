@@ -1568,28 +1568,40 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
         # Execute via executor_core (clean execution engine)
         # -----------------------------------------------------------------
         async with EXECUTION_LOCK:
-            # ── Pre-execution freshness check: PM price ──
-            _pm_key = f"{arb.cache_key}_{arb.team}"
-            _fresh_pm = pm_prices.get(_pm_key)
-            if _fresh_pm:
-                _pm_age = int(time.time() * 1000) - _fresh_pm.get('timestamp_ms', 0)
-                if _pm_age > PM_PRICE_MAX_AGE_MS:
-                    executing_games.discard(arb.cache_key)
-                    return
-                _fresh_ask = _fresh_pm.get('ask', 0)
-                _fresh_bid = _fresh_pm.get('bid', 0)
-                if arb.direction == 'BUY_PM_SELL_K':
-                    _drift = _fresh_ask - arb.pm_ask
-                    if _drift > 2:
-                        print(f"[EXEC] PM ask drifted +{_drift:.0f}c since detection — aborting")
-                        executing_games.discard(arb.cache_key)
-                        return
-                else:
-                    _drift = arb.pm_bid - _fresh_bid
-                    if _drift > 2:
-                        print(f"[EXEC] PM bid drifted -{_drift:.0f}c since detection — aborting")
-                        executing_games.discard(arb.cache_key)
-                        return
+            # ── Pre-execution: fetch FRESH PM BBO via REST ──
+            fresh_pm, bbo_ms = await confirm_pm_price_fresh(session, pm_api, arb)
+
+            if fresh_pm is None:
+                print(f"[EXEC] PM REST BBO fetch failed ({bbo_ms:.0f}ms) — aborting")
+                executing_games.discard(arb.cache_key)
+                return
+
+            # Log cache vs fresh divergence for diagnostics
+            _cache_bid_diff = fresh_pm['bid'] - arb.pm_bid
+            _cache_ask_diff = fresh_pm['ask'] - arb.pm_ask
+            if abs(_cache_bid_diff) > 1 or abs(_cache_ask_diff) > 1:
+                print(f"[EXEC] PM cache divergence: bid {arb.pm_bid:.0f}→{fresh_pm['bid']:.0f} ({_cache_bid_diff:+.0f}c), "
+                      f"ask {arb.pm_ask:.0f}→{fresh_pm['ask']:.0f} ({_cache_ask_diff:+.0f}c)")
+
+            # Update arb with fresh PM prices (executor_core reads these)
+            arb.pm_bid = fresh_pm['bid']
+            arb.pm_ask = fresh_pm['ask']
+            arb.pm_bid_size = fresh_pm.get('bid_size', 0)
+            arb.pm_ask_size = fresh_pm.get('ask_size', 0)
+
+            # Recalculate spread with fresh prices — abort if gone
+            fresh_spread, _ = recalculate_spread_with_fresh_pm(arb, fresh_pm)
+            if fresh_spread < Config.spread_min_cents:
+                print(f"[EXEC] Spread gone after fresh BBO: {fresh_spread:.1f}c < {Config.spread_min_cents}c min — aborting ({bbo_ms:.0f}ms)")
+                executing_games.discard(arb.cache_key)
+                return
+
+            # Update arb spread fields for executor_core
+            arb.gross_spread = fresh_spread
+            arb.net_spread = fresh_spread  # Will be recalculated by executor_core with fees
+
+            print(f"[EXEC] Fresh BBO confirmed ({bbo_ms:.0f}ms): "
+                  f"pm_bid={fresh_pm['bid']:.0f}c pm_ask={fresh_pm['ask']:.0f}c spread={fresh_spread:.1f}c")
 
             # ── Pre-execution freshness check: Kalshi book ──
             _fresh_k = local_books.get(arb.kalshi_ticker)

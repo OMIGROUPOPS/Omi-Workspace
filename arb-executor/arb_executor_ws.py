@@ -848,7 +848,7 @@ def check_spread_for_ticker(ticker: str) -> Optional[ArbOpportunity]:
         # Profit = k_bid - pm_ask
         spread_buy_pm = k_bid - pm_ask
     else:
-        # Case 2: PM BUY_LONG (intent=1) at pm_ask (underdog's ask, already inverted in cache)
+        # Case 2: PM BUY_SHORT (intent=3) to short favorite = long underdog; cost from pm_ask
         # Profit = k_bid - pm_ask
         spread_buy_pm = k_bid - pm_ask
 
@@ -874,7 +874,7 @@ def check_spread_for_ticker(ticker: str) -> Optional[ArbOpportunity]:
     best_spread = None
     best_direction = None
 
-    # Check BUY_PM_SELL_K (Cases 1 & 2: both use BUY_LONG on own team's outcome)
+    # Check BUY_PM_SELL_K (Case 1: BUY_LONG favorite, Case 2: BUY_SHORT favorite = long underdog)
     if spread_buy_pm >= log_min and k_bid_size >= 1:
         best_spread = spread_buy_pm
         best_direction = 'BUY_PM_SELL_K'

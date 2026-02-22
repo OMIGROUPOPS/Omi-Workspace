@@ -782,7 +782,7 @@ def estimate_net_profit_cents(arb: 'ArbOpportunity') -> Tuple[float, Dict]:
             # BUY_YES at pm_ask
             pm_price_cents = arb.pm_ask if arb.pm_ask else 50
         else:
-            # BUY_YES at pm_ask (to long the underdog directly)
+            # BUY_SHORT at pm_ask (short favorite = long underdog; fee on underdog cost)
             pm_price_cents = arb.pm_ask if arb.pm_ask else 50
 
     pm_fee = pm_price_cents * PM_US_FEE_RATE  # typically ~0.05c

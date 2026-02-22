@@ -107,18 +107,27 @@ TRADE_PARAMS = {
 
     # ==========================================================================
     # Case 2: BUY_PM_SELL_K, team is NOT pm_long_team (underdog)
-    # K: SELL YES (short underdog), PM: BUY_LONG (long underdog via own outcome)
-    # HEDGE: K SHORT + PM LONG = hedged
+    # K: SELL YES (short underdog), PM: BUY_SHORT (short pm_long_team = long underdog)
+    # HEDGE: K SHORT underdog + PM LONG underdog = hedged
+    #
+    # BINARY MARKET CONSTRAINT: PM US SDK has NO outcomeIndex parameter.
+    # Direction is controlled ENTIRELY by intent:
+    #   BUY_LONG (1) = LONG pm_long_team    (always outcome 0)
+    #   BUY_SHORT (3) = SHORT pm_long_team  (= LONG underdog)
+    # To go LONG underdog, we must BUY_SHORT the market.
+    #
     # Price: pm_ask = underdog's ask from cache (already inverted: 100 - long_bid)
+    #        Converted to YES-frame via pm_is_buy_short path:
+    #        min_YES_sell = (100 - max_underdog_cost) / 100
     # ==========================================================================
     ('BUY_PM_SELL_K', False): {
         'k_action': 'sell',
         'k_side': 'yes',
         'k_price_field': 'k_bid',       # Selling, so use bid
-        'pm_intent': 1,                  # BUY_LONG (long underdog via YES)
-        'pm_price_field': 'pm_ask',     # Underdog's own ask (cache already inverted)
-        'pm_is_buy_short': False,
-        'pm_switch_outcome': False,      # Trade on underdog's OWN outcome, not long team's
+        'pm_intent': 3,                  # BUY_SHORT (short pm_long_team = long underdog)
+        'pm_price_field': 'pm_ask',     # Underdog's ask (cache inverted: 100 - long_bid)
+        'pm_is_buy_short': True,
+        'pm_switch_outcome': True,       # Settlement: actual_oi = 0 (all binary trades are outcome 0)
         'k_result': 'SHORT',
         'pm_result': 'LONG',
         'executable': True,

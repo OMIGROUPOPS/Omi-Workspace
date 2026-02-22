@@ -829,24 +829,33 @@ class PolymarketUSClient:
         return {'Content-Type': 'application/json'}
 
     async def get_active_markets(self) -> list[dict]:
-        """Fetch all active, open markets."""
+        """Fetch all active, open markets with pagination (API caps at 200/request)."""
         markets = []
         path = '/v1/markets'
-        query = '?active=true&closed=false&limit=200'
+        page_size = 200
+        offset = 0
         try:
-            url = f"{self.base}{path}{query}"
-            async with self.session.get(url, headers=self._headers('GET', path),
-                                        timeout=aiohttp.ClientTimeout(total=15)) as resp:
-                if resp.status != 200:
-                    body = await resp.text()
-                    logger.error(f"PM US markets fetch failed: {resp.status} - {body[:200]}")
-                    return []
-                data = await resp.json()
-                markets = data.get("markets", data) if isinstance(data, dict) else data
+            while True:
+                query = f'?active=true&closed=false&limit={page_size}&offset={offset}'
+                url = f"{self.base}{path}{query}"
+                async with self.session.get(url, headers=self._headers('GET', path),
+                                            timeout=aiohttp.ClientTimeout(total=15)) as resp:
+                    if resp.status != 200:
+                        body = await resp.text()
+                        logger.error(f"PM US markets fetch failed: {resp.status} - {body[:200]}")
+                        break
+                    data = await resp.json()
+                    batch = data.get("markets", data) if isinstance(data, dict) else data
+                    if not isinstance(batch, list):
+                        break
+                    markets.extend(batch)
+                    if len(batch) < page_size:
+                        break
+                    offset += page_size
         except Exception as e:
             logger.error(f"PM US API error: {e}")
 
-        return markets if isinstance(markets, list) else []
+        return markets
 
     async def get_market_detail(self, slug: str) -> Optional[dict]:
         """Fetch detailed market info including outcome names and token IDs."""

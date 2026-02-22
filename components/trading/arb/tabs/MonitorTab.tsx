@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import type { ArbDataReturn } from "../hooks/useArbData";
 import type { BottomTab } from "../types";
 import { DashboardCard } from "../shared/DashboardCard";
@@ -44,6 +44,8 @@ export function MonitorTab({ data }: Props) {
     markSettled,
   } = data;
 
+  const [chartOpen, setChartOpen] = useState(false);
+
   const specs = state?.specs;
   const spreadMinCents = specs?.config?.spread_min_cents ?? 4;
 
@@ -85,21 +87,8 @@ export function MonitorTab({ data }: Props) {
         />
       </div>
 
-      {/* ── Spread Time Series Chart ─────────────────────────── */}
-      <SpreadTimeSeriesChart
-        spreadHistory={state?.spread_history || []}
-        spreadMinCents={spreadMinCents}
-      />
-
-      {/* ── Spread Heatmap ────────────────────────────────────── */}
-      <SpreadHeatmapTable
-        spreads={sortedSpreads}
-        mappedGames={state?.mapped_games || []}
-      />
-
       {/* ── Trades Section ────────────────────────────────────── */}
       <div className="rounded-lg border border-gray-800 bg-[#111]">
-        {/* Filters */}
         <div className="px-3 py-2 border-b border-gray-800 flex flex-wrap items-center gap-2">
           <div className="flex items-center gap-1">
             <button
@@ -143,7 +132,6 @@ export function MonitorTab({ data }: Props) {
             onChange={(e) => setTradeSearch(e.target.value)}
             className="ml-auto bg-gray-800 border border-gray-700 rounded px-2 py-0.5 text-xs text-gray-300 w-32 focus:outline-none focus:border-gray-600"
           />
-          {/* Inline P&L summary */}
           <span className={`text-xs font-mono ${filteredPnl.netTotal >= 0 ? "text-emerald-400" : "text-red-400"}`}>
             ${filteredPnl.netTotal.toFixed(2)} ({filteredPnl.fills} fills)
           </span>
@@ -156,7 +144,7 @@ export function MonitorTab({ data }: Props) {
         />
       </div>
 
-      {/* ── Bottom Tabs: Positions / Mapped Games ─────────────── */}
+      {/* ── Positions / Mapped Games ──────────────────────────── */}
       <div className="rounded-lg border border-gray-800 bg-[#111]">
         <div className="px-3 py-2 border-b border-gray-800 flex items-center gap-2">
           <button
@@ -177,6 +165,32 @@ export function MonitorTab({ data }: Props) {
         )}
         {bottomTab === "mapped_games" && (
           <MappedGamesTable games={state?.mapped_games || []} />
+        )}
+      </div>
+
+      {/* ── Spread Heatmap ────────────────────────────────────── */}
+      <SpreadHeatmapTable
+        spreads={sortedSpreads}
+        mappedGames={state?.mapped_games || []}
+      />
+
+      {/* ── Spread Time Series (collapsible) ─────────────────── */}
+      <div className="rounded-lg border border-gray-800 bg-[#111]">
+        <button
+          onClick={() => setChartOpen((o) => !o)}
+          className="w-full px-3 py-2 flex items-center justify-between text-xs font-semibold text-gray-400 uppercase tracking-wide hover:text-gray-300"
+        >
+          <span>Spread Time Series (60 min)</span>
+          <span className="text-gray-600">{chartOpen ? "\u25B2" : "\u25BC"}</span>
+        </button>
+        {chartOpen && (
+          <div className="px-3 pb-3">
+            <SpreadTimeSeriesChart
+              spreadHistory={state?.spread_history || []}
+              spreadMinCents={spreadMinCents}
+              compact
+            />
+          </div>
         )}
       </div>
     </div>

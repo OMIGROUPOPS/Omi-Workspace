@@ -90,6 +90,7 @@ TRADE_PARAMS = {
     # Case 1: BUY_PM_SELL_K, team IS pm_long_team
     # K: SELL YES (short our team), PM: BUY_LONG (long our team = favorite)
     # HEDGE: K SHORT + PM LONG = hedged
+    # Price: pm_ask = favorite's ask from cache (direct, no inversion)
     # ==========================================================================
     ('BUY_PM_SELL_K', True): {
         'k_action': 'sell',
@@ -98,6 +99,7 @@ TRADE_PARAMS = {
         'pm_intent': 1,                  # BUY_LONG (favorite)
         'pm_price_field': 'pm_ask',     # Pay favorite's ask
         'pm_is_buy_short': False,
+        'pm_switch_outcome': False,      # Trade on own outcome (long team)
         'k_result': 'SHORT',
         'pm_result': 'LONG',
         'executable': True,
@@ -105,18 +107,18 @@ TRADE_PARAMS = {
 
     # ==========================================================================
     # Case 2: BUY_PM_SELL_K, team is NOT pm_long_team (underdog)
-    # K: SELL YES (short underdog), PM: BUY_SHORT (long underdog)
+    # K: SELL YES (short underdog), PM: BUY_LONG (long underdog via own outcome)
     # HEDGE: K SHORT + PM LONG = hedged
-    # Price: Underdog ask = 100 - pm_bid (pm_bid is favorite's bid)
+    # Price: pm_ask = underdog's ask from cache (already inverted: 100 - long_bid)
     # ==========================================================================
     ('BUY_PM_SELL_K', False): {
         'k_action': 'sell',
         'k_side': 'yes',
         'k_price_field': 'k_bid',       # Selling, so use bid
-        'pm_intent': 3,                  # BUY_SHORT (underdog)
-        'pm_price_field': 'pm_bid',     # Invert: underdog_ask = 100 - pm_bid
-        'pm_invert_price': True,        # Convert from favorite bid to underdog ask
-        'pm_is_buy_short': True,
+        'pm_intent': 1,                  # BUY_LONG (long underdog via YES)
+        'pm_price_field': 'pm_ask',     # Underdog's own ask (cache already inverted)
+        'pm_is_buy_short': False,
+        'pm_switch_outcome': False,      # Trade on underdog's OWN outcome, not long team's
         'k_result': 'SHORT',
         'pm_result': 'LONG',
         'executable': True,
@@ -124,18 +126,19 @@ TRADE_PARAMS = {
 
     # ==========================================================================
     # Case 3: BUY_K_SELL_PM, team IS pm_long_team
-    # K: BUY YES (long favorite), PM: BUY_SHORT (long underdog = short favorite)
-    # HEDGE: K LONG favorite + PM LONG underdog = hedged
-    # Price: Underdog ask = 100 - pm_bid (pm_bid is favorite's bid)
+    # K: BUY YES (long favorite), PM: BUY_SHORT (short favorite = long underdog)
+    # HEDGE: K LONG favorite + PM SHORT favorite = hedged
+    # Price: pm_bid (long team bid) → invert to underdog cost → YES-frame
     # ==========================================================================
     ('BUY_K_SELL_PM', True): {
         'k_action': 'buy',
         'k_side': 'yes',
         'k_price_field': 'k_ask',       # Buying, so use ask
-        'pm_intent': 3,                  # BUY_SHORT (underdog)
-        'pm_price_field': 'pm_bid',     # Need to invert: underdog_ask = 100 - pm_bid
-        'pm_invert_price': True,        # Signals to use 100 - pm_bid as the price
+        'pm_intent': 3,                  # BUY_SHORT (short favorite)
+        'pm_price_field': 'pm_bid',     # Need to invert: underdog_cost = 100 - pm_bid
+        'pm_invert_price': True,        # Signals to use 100 - pm_bid as underdog cost
         'pm_is_buy_short': True,
+        'pm_switch_outcome': False,      # Trade on own outcome (long team)
         'k_result': 'LONG',
         'pm_result': 'SHORT',            # SHORT favorite = LONG underdog
         'executable': True,
@@ -145,7 +148,7 @@ TRADE_PARAMS = {
     # Case 4: BUY_K_SELL_PM, team is NOT pm_long_team (underdog)
     # K: BUY YES (long underdog), PM: BUY_LONG (long favorite = short underdog)
     # HEDGE: K LONG underdog + PM LONG favorite = hedged
-    # Price: Favorite ask = 100 - pm_bid (pm_bid is underdog's bid)
+    # Price: pm_bid (underdog bid) → invert to favorite ask = 100 - pm_bid
     # ==========================================================================
     ('BUY_K_SELL_PM', False): {
         'k_action': 'buy',
@@ -155,6 +158,7 @@ TRADE_PARAMS = {
         'pm_price_field': 'pm_bid',     # Need to invert: favorite_ask = 100 - pm_bid
         'pm_invert_price': True,        # Signals to use 100 - pm_bid as the price
         'pm_is_buy_short': False,
+        'pm_switch_outcome': True,       # Must switch to long team's outcome for BUY_LONG
         'k_result': 'LONG',
         'pm_result': 'SHORT',            # LONG favorite = SHORT underdog
         'executable': True,
@@ -1087,8 +1091,8 @@ async def execute_arb(
     # PM price (in dollars) with buffer for slippage protection
     pm_price_cents = getattr(arb, params['pm_price_field'])
 
-    # For Case 4: pm_bid is our team's bid, but we're buying the OTHER team
-    # Other team's ask = 100 - our team's bid
+    # pm_invert_price: convert from our team's bid to the other team's ask
+    # Case 3: 100 - long_bid = underdog cost, Case 4: 100 - underdog_bid = favorite ask
     if params.get('pm_invert_price', False):
         pm_price_cents = 100 - pm_price_cents
 
@@ -1127,12 +1131,10 @@ async def execute_arb(
     # -------------------------------------------------------------------------
     # Step 5: Place PM order FIRST (unreliable leg - IOC often expires)
     # -------------------------------------------------------------------------
-    # CRITICAL FIX: When is_long_team=False, we must trade on the LONG team's
-    # outcome, not our team's outcome. The long team's index is the complement
-    # of our team's index (1 - pm_outcome_idx). This is because:
-    # - BUY_NO on long team's outcome = SHORT long team = LONG our team
-    # - BUY_YES on long team's outcome = LONG long team = SHORT our team
-    actual_pm_outcome_idx = pm_outcome_idx if is_long_team else (1 - pm_outcome_idx)
+    # Outcome index: most cases trade on their own team's outcome.
+    # Only Case 4 (BUY_K_SELL_PM, underdog) switches to the long team's outcome
+    # because we BUY_LONG on the long team to SHORT our underdog.
+    actual_pm_outcome_idx = (1 - pm_outcome_idx) if params.get('pm_switch_outcome', False) else pm_outcome_idx
 
     pm_order_start = time.time()
     try:
@@ -1494,6 +1496,10 @@ async def execute_arb(
             bbo_bid = bbo.get('bid')
             bbo_ask = bbo.get('ask')
             if bbo_bid is not None and bbo_ask is not None:
+                # BBO is in long-team frame (outcome 0). If our position is on
+                # outcome 1 (underdog), invert to get underdog's BBO.
+                if actual_pm_outcome_idx != 0:
+                    bbo_bid, bbo_ask = 100 - bbo_ask, 100 - bbo_bid
                 # Determine if PM position is closeable near breakeven.
                 # Intent 1/4 (long YES): close by selling at bid. P&L = bid - fill_price.
                 # Intent 2/3 (short YES): close by buying at ask. P&L = fill_price - ask.
@@ -1510,7 +1516,7 @@ async def execute_arb(
                           f"P&L {pm_close_pnl_cents:+.0f}c/contract) -> closing via SDK")
                     t2_attempted = True
                     try:
-                        close_resp = await pm_api.close_position(session, pm_slug)
+                        close_resp = await pm_api.close_position(session, pm_slug, outcome_index=actual_pm_outcome_idx)
                         # Parse close_position response
                         t2_cum_qty = close_resp.get('cumQuantity', 0)
                         if isinstance(t2_cum_qty, str):

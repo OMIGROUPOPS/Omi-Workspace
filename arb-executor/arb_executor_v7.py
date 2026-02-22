@@ -782,8 +782,8 @@ def estimate_net_profit_cents(arb: 'ArbOpportunity') -> Tuple[float, Dict]:
             # BUY_YES at pm_ask
             pm_price_cents = arb.pm_ask if arb.pm_ask else 50
         else:
-            # SELL_YES at pm_bid (to short the long team = long our team)
-            pm_price_cents = arb.pm_bid if arb.pm_bid else 50
+            # BUY_YES at pm_ask (to long the underdog directly)
+            pm_price_cents = arb.pm_ask if arb.pm_ask else 50
 
     pm_fee = pm_price_cents * PM_US_FEE_RATE  # typically ~0.05c
 
@@ -3859,12 +3859,9 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
         if pm_fill_price and pm_fill_price < 1:
             pm_fill_price = pm_fill_price * 100  # Convert to cents
 
-        # Calculate pm_intent based on direction and is_long_team
-        is_long_team = (arb.team == arb.pm_long_team)
-        if arb.direction == 'BUY_K_SELL_PM':
-            pm_intent = 2 if is_long_team else 1  # SELL_YES if long, BUY_YES if not
-        else:  # BUY_PM_SELL_K
-            pm_intent = 1 if is_long_team else 2  # BUY_YES if long, SELL_YES if not
+        # pm_intent for P&L: BUY_SHORT → SELL_YES (intent=2), BUY_LONG → BUY_YES (intent=1)
+        is_buy_short = pm_result.get('is_buy_short', False) if pm_result else False
+        pm_intent = 2 if is_buy_short else 1
 
         actual_contracts = min(k_fill, pm_fill)
         actual_pnl = calculate_actual_pnl(

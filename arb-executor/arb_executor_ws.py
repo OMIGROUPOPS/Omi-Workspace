@@ -848,7 +848,7 @@ def check_spread_for_ticker(ticker: str) -> Optional[ArbOpportunity]:
         # Profit = k_bid - pm_ask
         spread_buy_pm = k_bid - pm_ask
     else:
-        # Case 2: PM BUY_SHORT (intent=3) at pm_ask (underdog's ask, already inverted in cache)
+        # Case 2: PM BUY_LONG (intent=1) at pm_ask (underdog's ask, already inverted in cache)
         # Profit = k_bid - pm_ask
         spread_buy_pm = k_bid - pm_ask
 
@@ -874,7 +874,7 @@ def check_spread_for_ticker(ticker: str) -> Optional[ArbOpportunity]:
     best_spread = None
     best_direction = None
 
-    # Check BUY_PM_SELL_K (Case 1: is_long_team uses BUY_LONG, Case 2: uses BUY_SHORT)
+    # Check BUY_PM_SELL_K (Cases 1 & 2: both use BUY_LONG on own team's outcome)
     if spread_buy_pm >= log_min and k_bid_size >= 1:
         best_spread = spread_buy_pm
         best_direction = 'BUY_PM_SELL_K'
@@ -1631,8 +1631,9 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             # Compute PM position details for settlement tracking
             # Replicates executor_core.py logic: actual traded outcome + long/short
             _is_long = (arb.team == arb.pm_long_team)
-            _actual_pm_oi = arb.pm_outcome_index if _is_long else (1 - arb.pm_outcome_index)
-            _is_buy_short = TRADE_PARAMS.get((arb.direction, _is_long), {}).get('pm_is_buy_short', False)
+            _params = TRADE_PARAMS.get((arb.direction, _is_long), {})
+            _actual_pm_oi = (1 - arb.pm_outcome_index) if _params.get('pm_switch_outcome', False) else arb.pm_outcome_index
+            _is_buy_short = _params.get('pm_is_buy_short', False)
 
             # Handle result — only apply cooldown when PM order was actually sent
             pm_was_sent = result.pm_order_ms > 0 or result.success or result.unhedged

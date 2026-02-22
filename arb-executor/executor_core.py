@@ -287,9 +287,9 @@ async def _unwind_pm_position(
         print(f"[UNWIND] SDK close_position failed: {e}, falling back to manual buffers")
 
     for attempt, buffer in enumerate(buffers, 1):
-        if reverse_intent in (2, 4):  # SELL: accept less
+        if reverse_intent == 2:  # SELL_LONG: sell YES lower to exit (accept less)
             price_cents = max(pm_price_cents - buffer, 1)
-        else:  # BUY: pay more
+        else:  # SELL_SHORT (4): buy YES higher to close short (pay more to exit)
             price_cents = min(pm_price_cents + buffer, 99)
         price = price_cents / 100.0
         label = f"attempt {attempt} (buf={buffer}c)"
@@ -1105,11 +1105,12 @@ async def execute_arb(
     print(f"[EXEC] Sized: {size} contracts | buffer: {pm_buffer}c")
 
     if params.get('pm_is_buy_short', False):
-        # BUY_SHORT: PM expects direct underdog price (see line 81)
-        # pm_price_cents = underdog cost already (inverted in spread detection)
+        # BUY_SHORT: PM interprets price as MINIMUM YES SELL price (always YES-frame)
+        # pm_price_cents = underdog cost (after pm_invert_price conversion)
         # Buffer adds to underdog cost (willing to pay slightly more for fill)
+        # Convert to YES frame: min_sell = 100 - max_cost (lower sell = more aggressive)
         max_underdog_cost = min(math.ceil(pm_price_cents + pm_buffer), 99)
-        pm_price = max_underdog_cost / 100.0  # Send directly, no re-inversion
+        pm_price = max(100 - max_underdog_cost, 1) / 100.0  # YES-frame price
     else:
         # BUY_LONG: PM interprets price as MAX YES buy price (favorite frame)
         pm_price_buffered = min(math.ceil(pm_price_cents + pm_buffer), 99)
@@ -1248,7 +1249,7 @@ async def execute_arb(
             reverse_intent = REVERSE_INTENT[original_intent]
             unwind_filled, unwind_fill_price = await _unwind_pm_position(
                 session, pm_api, pm_slug, reverse_intent,
-                pm_price_cents, pm_filled, actual_pm_outcome_idx,
+                pm_fill_price * 100, pm_filled, actual_pm_outcome_idx,
             )
             exited = unwind_filled > 0
             unwind_loss = None
@@ -1302,7 +1303,7 @@ async def execute_arb(
         reverse_intent = REVERSE_INTENT[original_intent]
         unwind_filled, unwind_fill_price = await _unwind_pm_position(
             session, pm_api, pm_slug, reverse_intent,
-            pm_price_cents, pm_filled, actual_pm_outcome_idx,
+            pm_fill_price * 100, pm_filled, actual_pm_outcome_idx,
         )
 
         if unwind_filled > 0:
@@ -2029,7 +2030,7 @@ async def execute_arb(
         reverse_intent = REVERSE_INTENT[original_intent]
         unwind_filled, _ = await _unwind_pm_position(
             session, pm_api, pm_slug, reverse_intent,
-            pm_price_cents, excess, actual_pm_outcome_idx,
+            pm_fill_price * 100, excess, actual_pm_outcome_idx,
         )
         if unwind_filled > 0:
             pm_filled = pm_filled - unwind_filled

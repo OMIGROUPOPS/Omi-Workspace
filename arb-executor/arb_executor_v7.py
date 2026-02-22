@@ -1822,9 +1822,9 @@ class PolymarketUSAPI:
 
         if Config.is_paper():
             print(f"   [PAPER] PM US: {intent_names[intent]} outcome[{outcome_index}] {quantity} @ ${price:.2f} on {market_slug}")
-            # BUY_SHORT: price is in underdog frame, but fill_price must be YES frame
-            # (matches live PM API which returns avgPx in YES frame regardless of intent)
-            paper_fill = (1 - price) if intent == 3 else price
+            # price is always YES-frame (BUY_LONG=max buy, BUY_SHORT=min sell)
+            # PM API returns avgPx in YES frame, so simulated fill = limit price
+            paper_fill = price
             return {
                 'success': True,
                 'fill_count': quantity,
@@ -1837,7 +1837,7 @@ class PolymarketUSAPI:
         if Config.dry_run_mode:
             cost = price * quantity
             print(f"   [DRY RUN] PM US: Would {intent_names[intent]} outcome[{outcome_index}] {quantity} @ ${price:.2f} (${cost:.2f}) on {market_slug}")
-            dryrun_fill = (1 - price) if intent == 3 else price
+            dryrun_fill = price  # price is always YES-frame after BUY_SHORT fix
             return {
                 'success': True,
                 'fill_count': quantity,

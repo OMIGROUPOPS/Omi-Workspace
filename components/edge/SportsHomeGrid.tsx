@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
-import { calculateFairSpread, calculateFairTotal, calculateFairMLFromBook, calculateFairMLFromBook3Way } from '@/lib/edge/engine/edgescout';
+import { calculateFairSpread, calculateFairTotal, calculateFairMLFromBook, calculateFairMLFromBook3Way, calculateFairMoneyline } from '@/lib/edge/engine/edgescout';
 
 // --- Light theme palette ---
 const P = {
@@ -195,15 +195,20 @@ function calcMaxEdge(fair: any, spreads: any, h2h: any, totals: any, sportKey: s
     maxEdge = Math.max(maxEdge, diff * rate * 100);
   }
 
-  // ML edge: absolute probability comparison
-  if (fair?.fair_ml_home != null && fair?.fair_ml_away != null && h2h?.homePrice !== undefined && h2h?.awayPrice !== undefined) {
-    const fairHP = toProb(fair.fair_ml_home);
-    const fairAP = toProb(fair.fair_ml_away);
+  // ML edge: derive from spread for coherence (avoid American odds rounding loss)
+  if (fair?.fair_spread != null && h2h?.homePrice !== undefined && h2h?.awayPrice !== undefined) {
+    const fairWinProb = 0.50 + (-fair.fair_spread) * rate;
     const bookHP = toProb(h2h.homePrice);
     const bookAP = toProb(h2h.awayPrice);
     const normBHP = bookHP / (bookHP + bookAP);
-    const normBAP = bookAP / (bookHP + bookAP);
-    maxEdge = Math.max(maxEdge, Math.abs(fairHP - normBHP) * 100, Math.abs(fairAP - normBAP) * 100);
+    maxEdge = Math.max(maxEdge, Math.abs(fairWinProb - normBHP) * 100);
+  } else if (fair?.fair_ml_home != null && fair?.fair_ml_away != null && h2h?.homePrice !== undefined && h2h?.awayPrice !== undefined) {
+    // Fallback: use fair ML odds when no spread available
+    const fairHP = toProb(fair.fair_ml_home);
+    const bookHP = toProb(h2h.homePrice);
+    const bookAP = toProb(h2h.awayPrice);
+    const normBHP = bookHP / (bookHP + bookAP);
+    maxEdge = Math.max(maxEdge, Math.abs(fairHP - normBHP) * 100);
   }
 
   // Total edge: absolute point difference × prob per point (matches backend)
@@ -224,16 +229,31 @@ function computeFallbackFair(game: any, overrideSpreads?: any, overrideH2h?: any
   const h2h = overrideH2h || game.consensus?.h2h;
   const fs = spreads?.line != null ? calculateFairSpread(spreads.line, comp, game.sportKey) : null;
   const ft = totals?.line != null ? calculateFairTotal(totals.line, comp, game.sportKey) : null;
-  // 3-way ML for soccer, 2-way for everything else
+  // ML derived from fair spread for coherence (spread is single source of truth)
   const drawPrice = h2h?.drawPrice ?? h2h?.draw ?? h2h?.drawOdds ?? null;
   let fair_ml_home: number | null = null, fair_ml_away: number | null = null, fair_ml_draw: number | null = null;
-  if (drawPrice != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
+  if (fs && spreads?.line != null) {
+    // 3-way (soccer): derive H/A from spread, use book draw as baseline
+    if (drawPrice != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
+      const fm3 = calculateFairMLFromBook3Way(h2h.homePrice, drawPrice, h2h.awayPrice, comp, spreads.line, game.sportKey);
+      fair_ml_home = fm3.homeOdds;
+      fair_ml_away = fm3.awayOdds;
+      fair_ml_draw = fm3.drawOdds;
+    } else {
+      // 2-way: derive ML directly from fair spread
+      const fm = calculateFairMLFromBook(spreads.line, comp, game.sportKey);
+      fair_ml_home = fm.homeOdds;
+      fair_ml_away = fm.awayOdds;
+    }
+  } else if (drawPrice != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
+    // No spread available — 3-way fallback (composite-only)
     const fm3 = calculateFairMLFromBook3Way(h2h.homePrice, drawPrice, h2h.awayPrice, comp);
     fair_ml_home = fm3.homeOdds;
     fair_ml_away = fm3.awayOdds;
     fair_ml_draw = fm3.drawOdds;
   } else if (h2h?.homePrice != null && h2h?.awayPrice != null) {
-    const fm = calculateFairMLFromBook(h2h.homePrice, h2h.awayPrice, comp);
+    // No spread — use spreadToMoneyline with composite-only fair ML
+    const fm = calculateFairMoneyline(comp);
     fair_ml_home = fm.homeOdds;
     fair_ml_away = fm.awayOdds;
   }
@@ -883,12 +903,12 @@ export function SportsHomeGrid({
                     return !ct || ct <= maxDate;
                   });
 
-                  // Sort: LIVE first, then pregame by edge, then FINAL last
+                  // Sort: LIVE first, then pregame chronologically, then FINAL last
                   filtered.sort((a, b) => {
                     const stateOrder = (g: any) => g.game.gameState === 'live' ? 0 : g.game.gameState === 'final' ? 2 : 1;
                     const stateDiff = stateOrder(a) - stateOrder(b);
                     if (stateDiff !== 0) return stateDiff;
-                    return b.maxEdge - a.maxEdge;
+                    return new Date(a.game.commenceTime).getTime() - new Date(b.game.commenceTime).getTime();
                   });
                   const renderCard = ({ game, maxEdge }: { game: any; maxEdge: number }) => {
                     const gameTime = typeof game.commenceTime === 'string' ? new Date(game.commenceTime) : game.commenceTime;
@@ -913,33 +933,41 @@ export function SportsHomeGrid({
                     let homeMLEdge: number | null = null, awayMLEdge: number | null = null;
                     let drawEdge: number | null = null;
                     const gameSoccer = isSoccer(game.sportKey);
-                    if (fair?.fair_ml_home != null && fair?.fair_ml_away != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
-                      const fairHP = toProb(fair.fair_ml_home);
-                      const fairAP = toProb(fair.fair_ml_away);
+                    const mlRate = getProbRate(game.sportKey);
+                    if (fair?.fair_spread != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
+                      // Derive ML edge from spread for coherence (avoids American odds rounding)
+                      const fairWinProb = 0.50 + (-fair.fair_spread) * mlRate;
                       const bookHP = toProb(h2h.homePrice);
                       const bookAP = toProb(h2h.awayPrice);
                       const drawPrice = h2h?.drawPrice ?? h2h?.draw ?? h2h?.drawOdds ?? null;
                       if (gameSoccer && drawPrice != null) {
-                        // 3-way: normalize across all 3 outcomes
                         const bookDP = toProb(drawPrice);
                         const totalBook = bookHP + bookAP + bookDP;
                         const normBHP = bookHP / totalBook;
                         const normBAP = bookAP / totalBook;
                         const normBDP = bookDP / totalBook;
-                        // Use proper 3-way fair draw if available, else residual
-                        const fairDP = fair?.fair_ml_draw != null
-                          ? toProb(fair.fair_ml_draw)
-                          : Math.max(0, 1 - fairHP - fairAP);
-                        homeMLEdge = (fairHP - normBHP) * 100;
-                        awayMLEdge = (fairAP - normBAP) * 100;
-                        drawEdge = (fairDP - normBDP) * 100;
+                        const fairDrawProb = bookDP / totalBook; // book draw as baseline
+                        const adjHome = fairWinProb * (1 - fairDrawProb);
+                        const adjAway = (1 - fairWinProb) * (1 - fairDrawProb);
+                        homeMLEdge = (adjHome - normBHP) * 100;
+                        awayMLEdge = (adjAway - normBAP) * 100;
+                        drawEdge = (fairDrawProb - normBDP) * 100;
                       } else {
-                        // 2-way: normalize home + away only
                         const normBHP = bookHP / (bookHP + bookAP);
                         const normBAP = bookAP / (bookHP + bookAP);
-                        homeMLEdge = (fairHP - normBHP) * 100;
-                        awayMLEdge = (fairAP - normBAP) * 100;
+                        homeMLEdge = (fairWinProb - normBHP) * 100;
+                        awayMLEdge = ((1 - fairWinProb) - normBAP) * 100;
                       }
+                    } else if (fair?.fair_ml_home != null && fair?.fair_ml_away != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
+                      // Fallback: use fair ML odds when no spread available
+                      const fairHP = toProb(fair.fair_ml_home);
+                      const fairAP = toProb(fair.fair_ml_away);
+                      const bookHP = toProb(h2h.homePrice);
+                      const bookAP = toProb(h2h.awayPrice);
+                      const normBHP = bookHP / (bookHP + bookAP);
+                      const normBAP = bookAP / (bookHP + bookAP);
+                      homeMLEdge = (fairHP - normBHP) * 100;
+                      awayMLEdge = (fairAP - normBAP) * 100;
                     }
 
                     let overEdge: number | null = null, underEdge: number | null = null;

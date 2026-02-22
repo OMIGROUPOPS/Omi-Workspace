@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
 import { calculateQuickEdge } from '@/lib/edge/engine/edge-calculator';
-import { calculateCEQ, calculateGameCEQ, groupSnapshotsByGame, calculateFairSpread, calculateFairTotal, calculateFairMLFromBook, calculateFairMLFromBook3Way, type ExtendedOddsSnapshot, type GameCEQ, type GameContextData, type TeamStatsData } from '@/lib/edge/engine/edgescout';
+import { calculateCEQ, calculateGameCEQ, groupSnapshotsByGame, calculateFairSpread, calculateFairTotal, calculateFairMLFromBook, calculateFairMLFromBook3Way, calculateFairMoneyline, type ExtendedOddsSnapshot, type GameCEQ, type GameContextData, type TeamStatsData } from '@/lib/edge/engine/edgescout';
 import { enrichExchangeRows } from '@/lib/edge/utils/exchange-enrichment';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
@@ -432,15 +432,27 @@ function computeFallbackFair(g: any) {
   const h2h = g.consensus?.h2h;
   const fs = spreads?.line != null ? calculateFairSpread(spreads.line, comp, g.sportKey) : null;
   const ft = totals?.line != null ? calculateFairTotal(totals.line, comp, g.sportKey) : null;
+  // ML derived from fair spread for coherence (spread is single source of truth)
   const drawPrice = h2h?.drawPrice ?? h2h?.draw ?? h2h?.drawOdds ?? null;
   let fair_ml_home: number | null = null, fair_ml_away: number | null = null, fair_ml_draw: number | null = null;
-  if (drawPrice != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
+  if (fs && spreads?.line != null) {
+    if (drawPrice != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
+      const fm3 = calculateFairMLFromBook3Way(h2h.homePrice, drawPrice, h2h.awayPrice, comp, spreads.line, g.sportKey);
+      fair_ml_home = fm3.homeOdds;
+      fair_ml_away = fm3.awayOdds;
+      fair_ml_draw = fm3.drawOdds;
+    } else {
+      const fm = calculateFairMLFromBook(spreads.line, comp, g.sportKey);
+      fair_ml_home = fm.homeOdds;
+      fair_ml_away = fm.awayOdds;
+    }
+  } else if (drawPrice != null && h2h?.homePrice != null && h2h?.awayPrice != null) {
     const fm3 = calculateFairMLFromBook3Way(h2h.homePrice, drawPrice, h2h.awayPrice, comp);
     fair_ml_home = fm3.homeOdds;
     fair_ml_away = fm3.awayOdds;
     fair_ml_draw = fm3.drawOdds;
-  } else if (h2h?.homePrice != null && h2h?.awayPrice != null) {
-    const fm = calculateFairMLFromBook(h2h.homePrice, h2h.awayPrice, comp);
+  } else {
+    const fm = calculateFairMoneyline(comp);
     fair_ml_home = fm.homeOdds;
     fair_ml_away = fm.awayOdds;
   }

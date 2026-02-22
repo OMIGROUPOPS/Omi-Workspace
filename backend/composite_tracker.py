@@ -34,7 +34,7 @@ def _get_variable_engine():
     return _variable_engine
 
 # Fair line constants — mirror edgescout.ts (lines 59-72)
-FAIR_LINE_SPREAD_FACTOR = 0.06
+FAIR_LINE_SPREAD_FACTOR = 0.15
 FAIR_LINE_TOTAL_FACTOR = 0.10
 
 # Sport-specific caps — prevent extreme fair line deviations from consensus
@@ -478,51 +478,67 @@ def _calculate_fair_ml(fair_spread: float, sport_key: str) -> tuple[int, int]:
 
 
 def _calculate_fair_ml_from_book(
-    book_ml_home: int, book_ml_away: int, composite_ml: float
+    book_spread: float, composite_spread: float, sport_key: str
 ) -> tuple[int, int]:
     """
-    Book-anchored fair ML: adjust consensus book ML by composite deviation.
+    Derive fair ML from fair spread — ensures spread/ML coherence.
     Mirrors edgescout.ts calculateFairMLFromBook.
-    composite_ml is on 0-1 scale from analyzer.
+    Calculates fair spread internally, then converts to win probability.
     """
-    # Remove vig from book odds
-    home_implied = abs(book_ml_home) / (abs(book_ml_home) + 100) if book_ml_home < 0 else 100 / (book_ml_home + 100)
-    away_implied = abs(book_ml_away) / (abs(book_ml_away) + 100) if book_ml_away < 0 else 100 / (book_ml_away + 100)
-    total = home_implied + away_implied
-    fair_home = home_implied / total
-    # Shift by composite deviation (confidence-scaled)
-    deviation = composite_ml * 100 - 50
-    confidence = max(0.40, abs(composite_ml - 0.50) * 2)
-    shift = deviation * FAIR_LINE_ML_FACTOR * confidence
-    adjusted_home = max(0.05, min(0.95, fair_home + shift))
-    adjusted_away = 1 - adjusted_home
-    return (implied_prob_to_american(adjusted_home), implied_prob_to_american(adjusted_away))
+    fair_spread = _calculate_fair_spread(book_spread, composite_spread)
+    return _calculate_fair_ml(fair_spread, sport_key)
+
+
+def _calculate_fair_ml_composite_only(composite: float) -> tuple[int, int]:
+    """
+    Composite-only ML when no spread data available.
+    Mirrors edgescout.ts calculateFairMoneyline. composite is 0-1 scale.
+    """
+    deviation = composite * 100 - 50
+    confidence = max(0.40, abs(composite - 0.50) * 2)
+    home_prob = max(0.05, min(0.95, 0.50 + deviation * FAIR_LINE_ML_FACTOR * confidence))
+    away_prob = 1 - home_prob
+    return (implied_prob_to_american(home_prob), implied_prob_to_american(away_prob))
 
 
 def _calculate_fair_ml_from_book_3way(
-    book_ml_home: int, book_ml_draw: int, book_ml_away: int, composite_ml: float
+    book_ml_home: int, book_ml_draw: int, book_ml_away: int,
+    composite_ml: float, book_spread: float = None, sport_key: str = None
 ) -> tuple[int, int, int]:
     """
-    3-way fair ML for soccer. Mirrors edgescout.ts calculateFairMLFromBook3Way.
+    3-way fair ML for soccer. Derives H/A from fair spread when available;
+    uses book draw as baseline. Falls back to composite-only adjustment.
     Returns (fair_ml_home, fair_ml_draw, fair_ml_away).
     """
     def to_implied(odds: int) -> float:
         return abs(odds) / (abs(odds) + 100) if odds < 0 else 100 / (odds + 100)
 
+    # Get vig-free draw probability as baseline
     home_imp = to_implied(book_ml_home)
     draw_imp = to_implied(book_ml_draw)
     away_imp = to_implied(book_ml_away)
-    total = home_imp + draw_imp + away_imp
-    fair_home = home_imp / total
-    fair_draw = draw_imp / total
-    fair_away = away_imp / total
+    total_imp = home_imp + draw_imp + away_imp
+    fair_draw = draw_imp / total_imp
 
-    deviation = composite_ml * 100 - 50
-    confidence = max(0.40, abs(composite_ml - 0.50) * 2)
-    shift = deviation * FAIR_LINE_ML_FACTOR * confidence
-    adj_home = fair_home + shift
-    adj_away = fair_away - shift
-    adj_draw = 1 - adj_home - adj_away
+    if book_spread is not None and sport_key:
+        # Derive from fair spread for coherence
+        fair_spread_val = _calculate_fair_spread(book_spread, composite_ml)
+        rate = SPREAD_TO_PROB_RATE.get(sport_key, 0.03)
+        two_way_home = max(0.05, min(0.95, 0.50 + (-fair_spread_val) * rate))
+        # Scale down H/A to make room for draw
+        adj_home = two_way_home * (1 - fair_draw)
+        adj_away = (1 - two_way_home) * (1 - fair_draw)
+        adj_draw = fair_draw
+    else:
+        # Fallback: composite-only adjustment
+        fair_home = home_imp / total_imp
+        fair_away = away_imp / total_imp
+        deviation = composite_ml * 100 - 50
+        confidence = max(0.40, abs(composite_ml - 0.50) * 2)
+        shift = deviation * FAIR_LINE_ML_FACTOR * confidence
+        adj_home = fair_home + shift
+        adj_away = fair_away - shift
+        adj_draw = 1 - adj_home - adj_away
 
     adj_home = max(0.02, adj_home)
     adj_away = max(0.02, adj_away)
@@ -1099,23 +1115,21 @@ class CompositeTracker:
                         fair_spread = _round_to_half(fair_spread + exchange_adj)
                     fair_ml_home, fair_ml_away = _calculate_fair_ml(fair_spread, sport_key)
 
-                    # Soccer: also calculate 3-way ML (spread path only gives 2-way)
+                    # Soccer: 3-way ML derived from spread for coherence
                     if is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None:
                         comp = composite_ml if composite_ml is not None else 0.5
                         fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
-                            book_ml_home, book_ml_draw, book_ml_away, comp
+                            book_ml_home, book_ml_draw, book_ml_away, comp, book_spread, sport_key
                         )
 
                 elif is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None and composite_ml is not None:
-                    # Soccer 3-way ML (no spread data)
+                    # Soccer 3-way ML (no spread data — composite-only fallback)
                     fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
                         book_ml_home, book_ml_draw, book_ml_away, composite_ml
                     )
-                elif book_ml_home is not None and book_ml_away is not None and composite_ml is not None:
-                    # No spread data — use book-anchored 2-way ML adjustment
-                    fair_ml_home, fair_ml_away = _calculate_fair_ml_from_book(
-                        book_ml_home, book_ml_away, composite_ml
-                    )
+                elif composite_ml is not None:
+                    # No spread data — composite-only ML
+                    fair_ml_home, fair_ml_away = _calculate_fair_ml_composite_only(composite_ml)
 
                 if book_total is not None:
                     # Use full totals composite; fall back to game_env pillar if unavailable
@@ -1295,16 +1309,14 @@ class CompositeTracker:
                                 if is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None:
                                     comp = composite_ml if composite_ml is not None else 0.5
                                     fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
-                                        book_ml_home, book_ml_draw, book_ml_away, comp
+                                        book_ml_home, book_ml_draw, book_ml_away, comp, book_spread, sport_key
                                     )
                             elif is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None and composite_ml is not None:
                                 fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
                                     book_ml_home, book_ml_draw, book_ml_away, composite_ml
                                 )
-                            elif book_ml_home is not None and book_ml_away is not None and composite_ml is not None:
-                                fair_ml_home, fair_ml_away = _calculate_fair_ml_from_book(
-                                    book_ml_home, book_ml_away, composite_ml
-                                )
+                            elif composite_ml is not None:
+                                fair_ml_home, fair_ml_away = _calculate_fair_ml_composite_only(composite_ml)
 
                             if book_total is not None:
                                 game_env_score = analysis.get("pillar_scores", {}).get("game_environment", 0.5)
@@ -1599,17 +1611,15 @@ class CompositeTracker:
                     if is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None:
                         comp = composite_ml if composite_ml is not None else 0.5
                         fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
-                            book_ml_home, book_ml_draw, book_ml_away, comp
+                            book_ml_home, book_ml_draw, book_ml_away, comp, book_spread, sport_key
                         )
 
                 elif is_soccer and book_ml_home is not None and book_ml_draw is not None and book_ml_away is not None and composite_ml is not None:
                     fair_ml_home, fair_ml_draw, fair_ml_away = _calculate_fair_ml_from_book_3way(
                         book_ml_home, book_ml_draw, book_ml_away, composite_ml
                     )
-                elif book_ml_home is not None and book_ml_away is not None and composite_ml is not None:
-                    fair_ml_home, fair_ml_away = _calculate_fair_ml_from_book(
-                        book_ml_home, book_ml_away, composite_ml
-                    )
+                elif composite_ml is not None:
+                    fair_ml_home, fair_ml_away = _calculate_fair_ml_composite_only(composite_ml)
 
                 if book_total is not None:
                     # composite_total already available from carry-forward data

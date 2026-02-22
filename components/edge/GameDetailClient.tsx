@@ -1043,20 +1043,20 @@ function OmiFairPricing({
   const consensusAwayML = calcMedian(mlAwayOdds);
   const consensusDrawML = calcMedian(mlDrawOdds);
 
-  // 3-way fair ML for soccer (home/draw/away)
+  // 3-way fair ML for soccer (home/draw/away) — derived from spread when available
   const omiFairML3Way = (isSoccerGame && pythonPillars && consensusHomeML !== undefined && consensusDrawML !== undefined && consensusAwayML !== undefined)
-    ? calculateFairMLFromBook3Way(consensusHomeML, consensusDrawML, consensusAwayML, pythonPillars.composite)
+    ? calculateFairMLFromBook3Way(consensusHomeML, consensusDrawML, consensusAwayML, pythonPillars.composite, consensusSpread, sportKey)
     : null;
 
-  // ML: composite_history is source of truth for full game; edgescout is fallback
+  // ML: composite_history is source of truth for full game; derive from spread for coherence
   const omiFairML = useDbFairLines && dbFairLines.fair_ml_home != null && dbFairLines.fair_ml_away != null
     ? { homeOdds: dbFairLines.fair_ml_home, awayOdds: dbFairLines.fair_ml_away }
     : (omiFairML3Way
       ? { homeOdds: omiFairML3Way.homeOdds, awayOdds: omiFairML3Way.awayOdds }
       : (omiFairSpread
         ? spreadToMoneyline(omiFairSpread.fairLine, sportKey)
-        : (pythonPillars && consensusHomeML !== undefined && consensusAwayML !== undefined
-          ? calculateFairMLFromBook(consensusHomeML, consensusAwayML, pythonPillars.composite)
+        : (pythonPillars && consensusSpread !== undefined
+          ? calculateFairMLFromBook(consensusSpread, pythonPillars.composite, sportKey)
           : (pythonPillars ? calculateFairMoneyline(pythonPillars.composite) : null))));
 
   // OMI fair ML implied probabilities (no-vig)

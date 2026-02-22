@@ -1991,21 +1991,35 @@ def manual_refresh(sport_key: str = None):
         from data_sources.odds_api import odds_client
         from config import ODDS_API_SPORTS
 
+        # ODDS_API_SPORTS maps display names ("NBA") to API keys ("basketball_nba").
+        # get_all_markets() expects display names. Build a reverse lookup so callers
+        # can pass either format (e.g. "basketball_nba" or "NBA").
+        api_key_to_display = {v: k for k, v in ODDS_API_SPORTS.items()}
+
         if sport_key:
-            logger.info(f"[ManualRefresh] Polling odds for sport: {sport_key}")
-            data = odds_client.get_all_markets(sport_key)
-            games = data.get("games", []) if data else []
-            # Save to cached_odds via the same path as pregame_cycle
-            snapshots = 0
-            for game in games:
-                snapshots += db.save_game_snapshots(game, sport_key)
-            results["steps"].append({
-                "step": "poll_odds",
-                "sport": sport_key,
-                "status": "ok",
-                "games": len(games),
-                "snapshots": snapshots,
-            })
+            # Resolve: accept both "basketball_nba" and "NBA"
+            display_name = api_key_to_display.get(sport_key) or sport_key
+            if display_name not in ODDS_API_SPORTS:
+                results["steps"].append({
+                    "step": "poll_odds",
+                    "status": "error",
+                    "error": f"Unknown sport: {sport_key}. Valid: {list(ODDS_API_SPORTS.keys())} or {list(ODDS_API_SPORTS.values())}",
+                })
+            else:
+                logger.info(f"[ManualRefresh] Polling odds for sport: {display_name}")
+                data = odds_client.get_all_markets(display_name)
+                games = data.get("games", []) if data else []
+                # Save to cached_odds via the same path as pregame_cycle
+                snapshots = 0
+                for game in games:
+                    snapshots += db.save_game_snapshots(game, display_name)
+                results["steps"].append({
+                    "step": "poll_odds",
+                    "sport": display_name,
+                    "status": "ok",
+                    "games": len(games),
+                    "snapshots": snapshots,
+                })
         else:
             logger.info("[ManualRefresh] Polling odds for ALL sports")
             total_games = 0

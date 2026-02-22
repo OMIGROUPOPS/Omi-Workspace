@@ -402,7 +402,7 @@ def _round_to_half(value: float) -> float:
 SPREAD_MOVEMENT_THRESHOLD = 0.5   # points
 TOTAL_MOVEMENT_THRESHOLD = 1.0    # points
 STALE_RECALC_HOURS = 0.5          # force recalc if last composite older than 30 min
-CARRY_FORWARD_MINUTES = 15        # carry forward unchanged values if no movement but stale
+CARRY_FORWARD_MINUTES = 0         # always carry forward — ensures every cycle writes a row
 
 
 def _should_recalculate(

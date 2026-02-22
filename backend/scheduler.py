@@ -45,6 +45,10 @@ PREGAME_POLLING_ENABLED = True
 # fast_refresh (30s), live_cycle (5min), live_props — all disabled when False
 LIVE_POLLING_ENABLED = False
 
+# Active sports — only poll these in pregame_cycle (skip off-season/empty sports to save tokens + time)
+# Update this list seasonally. Full list lives in config.ODDS_API_SPORTS.
+ACTIVE_SPORTS = {"NBA", "NCAAB", "NHL", "EPL"}
+
 
 # =============================================================================
 # SCHEDULER PAUSE — lets dashboard endpoints grab a Supabase connection
@@ -304,9 +308,11 @@ def _pregame_cycle_inner() -> dict:
     }
     
     for sport in ODDS_API_SPORTS.keys():
+        if sport not in ACTIVE_SPORTS:
+            continue
         try:
             logger.info(f"[PREGAME] Processing {sport}...")
-            
+
             # Fetch all markets in one call
             all_markets_data = odds_client.get_all_markets(sport)
             games = all_markets_data.get("games", [])

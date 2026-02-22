@@ -1078,18 +1078,17 @@ class KalshiAPI:
             'action': action,
             'side': side,
             'count': count,
-            'type': 'limit',
             'time_in_force': time_in_force,
             'client_order_id': str(uuid.uuid4()),
         }
+        # Note: 'type' field removed (no longer a valid Kalshi request parameter)
+        # Note: 'buy_max_cost' removed — it forces FoK behavior, overriding IOC.
+        #        Without it, IOC correctly allows partial fills.
 
         if side == 'yes':
             payload['yes_price'] = order_price
         else:
             payload['no_price'] = order_price
-
-        if action == 'buy':
-            payload['buy_max_cost'] = count * order_price + (count * 2)
 
         try:
             print(f"   [ORDER] {action} {count} {side} @ {order_price}c")
@@ -1105,18 +1104,30 @@ class KalshiAPI:
                 print(f"   [DEBUG] HTTP Status: {r.status}")
                 print(f"   [DEBUG] Response: {data}")
 
-                # Handle HTTP 409 - insufficient resting volume (IOC order couldn't fill)
+                # Handle HTTP 409 - duplicate client_order_id or resource collision.
+                # Retry once with a fresh UUID before giving up.
                 if r.status == 409:
                     error_code = data.get('error', {}).get('code', '')
                     error_msg = data.get('error', {}).get('message', 'Unknown 409 error')
-                    print(f"   [!] Kalshi 409: {error_code} - {error_msg}")
-                    return {
-                        'success': False,
-                        'fill_count': 0,
-                        'order_id': None,
-                        'status': 'REJECTED_409',
-                        'error': f'409: {error_code}'
-                    }
+                    print(f"   [!] Kalshi 409: {error_code} - {error_msg} — retrying with new UUID")
+                    payload['client_order_id'] = str(uuid.uuid4())
+                    async with session.post(
+                        f'{self.BASE_URL}{path}',
+                        headers=self._headers('POST', path),
+                        json=payload,
+                        timeout=aiohttp.ClientTimeout(total=10)
+                    ) as r2:
+                        data = await r2.json()
+                        if r2.status == 409:
+                            print(f"   [!] Kalshi 409 retry also failed")
+                            return {
+                                'success': False,
+                                'fill_count': 0,
+                                'order_id': None,
+                                'status': 'REJECTED_409',
+                                'error': f'409: {error_code}'
+                            }
+                        r = r2  # fall through to normal response handling
 
                 # Handle HTTP 400 - invalid parameters (API error, NOT liquidity issue)
                 if r.status == 400:

@@ -1,0 +1,218 @@
+"use client";
+
+import React, { useState } from "react";
+import type { TradeEntry, TradeSortKey } from "../types";
+import { tradePnl, sportBadge, statusBadge, formatDateTime, toDateStr } from "../helpers";
+
+interface Props {
+  trades: TradeEntry[];
+  tradeSortKey: TradeSortKey;
+  tradeSortAsc: boolean;
+  handleSort: (key: TradeSortKey) => void;
+  sortArrow: (key: TradeSortKey) => string;
+  expandedTrade: number | null;
+  setExpandedTrade: (idx: number | null) => void;
+}
+
+export function PnlTradeTable({
+  trades,
+  tradeSortKey,
+  tradeSortAsc,
+  handleSort,
+  sortArrow,
+  expandedTrade,
+  setExpandedTrade,
+}: Props) {
+  // Today summary
+  const today = new Date().toISOString().slice(0, 10);
+  const todayTrades = trades.filter((t) => toDateStr(t.timestamp) === today);
+  const todayStats = {
+    count: todayTrades.length,
+    wins: todayTrades.filter((t) => { const p = tradePnl(t); return p.totalDollars !== null && p.totalDollars > 0; }).length,
+    losses: todayTrades.filter((t) => { const p = tradePnl(t); return p.totalDollars !== null && p.totalDollars < 0; }).length,
+    gross: todayTrades.reduce((s, t) => s + (tradePnl(t).totalDollars || 0), 0),
+    fees: todayTrades.reduce((s, t) => s + (t.pm_fee || 0) + (t.k_fee || 0), 0),
+  };
+
+  return (
+    <div className="rounded-lg border border-gray-800 bg-[#111] overflow-hidden">
+      {/* Today summary row */}
+      {todayTrades.length > 0 && (
+        <div className="px-3 py-2 border-b border-gray-800 bg-gray-800/30 flex items-center gap-4 text-xs">
+          <span className="text-gray-400">Today:</span>
+          <span className="text-white font-bold">{todayStats.count} trades</span>
+          <span className="text-emerald-400">{todayStats.wins}W</span>
+          <span className="text-red-400">{todayStats.losses}L</span>
+          <span className={todayStats.gross >= 0 ? "text-emerald-400" : "text-red-400"}>
+            ${todayStats.gross.toFixed(2)}
+          </span>
+          <span className="text-yellow-400">-${todayStats.fees.toFixed(2)} fees</span>
+          <span className={todayStats.gross - todayStats.fees >= 0 ? "text-emerald-400 font-bold" : "text-red-400 font-bold"}>
+            Net: ${(todayStats.gross - todayStats.fees).toFixed(2)}
+          </span>
+        </div>
+      )}
+      <div className="overflow-x-auto">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="border-b border-gray-800 text-gray-500">
+              <th className="px-2 py-1.5 text-left font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("time")}>
+                TIME{sortArrow("time")}
+              </th>
+              <th className="px-2 py-1.5 text-left font-medium">TEAM</th>
+              <th className="px-2 py-1.5 text-left font-medium">DIR</th>
+              <th className="px-2 py-1.5 text-left font-medium">STATUS</th>
+              <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("qty")}>
+                QTY{sortArrow("qty")}
+              </th>
+              <th className="px-2 py-1.5 text-right font-medium">K</th>
+              <th className="px-2 py-1.5 text-right font-medium">PM</th>
+              <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("spread")}>
+                SPREAD{sortArrow("spread")}
+              </th>
+              <th className="px-2 py-1.5 text-right font-medium">FEES</th>
+              <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("net")}>
+                NET P&L{sortArrow("net")}
+              </th>
+              <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("phase")}>
+                PHASE{sortArrow("phase")}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {trades.slice(0, 100).map((t, i) => {
+              const pnl = tradePnl(t);
+              const badge = statusBadge(t.status);
+              const fees = (t.pm_fee || 0) + (t.k_fee || 0);
+              const isExpanded = expandedTrade === i;
+
+              return (
+                <React.Fragment key={`${t.timestamp}-${t.team}-${i}`}>
+                  <tr
+                    className="border-b border-gray-800/50 hover:bg-gray-800/30 cursor-pointer"
+                    onClick={() => setExpandedTrade(isExpanded ? null : i)}
+                  >
+                    <td className="px-2 py-1.5 text-gray-400 whitespace-nowrap font-mono">
+                      {formatDateTime(t.timestamp)}
+                    </td>
+                    <td className="px-2 py-1.5">
+                      <span className={`inline-block rounded px-1 py-0.5 text-[10px] mr-1 ${sportBadge(t.sport)}`}>
+                        {t.sport}
+                      </span>
+                      <span className="font-bold text-white">{t.team}</span>
+                    </td>
+                    <td className="px-2 py-1.5 text-gray-400 text-[10px]">
+                      {t.direction === "BUY_PM_SELL_K" ? "PM\u2192K" : "K\u2192PM"}
+                    </td>
+                    <td className="px-2 py-1.5">
+                      <span className={`rounded px-1 py-0.5 text-[10px] font-medium ${badge.bg} ${badge.text}`}>
+                        {t.tier || t.status}
+                      </span>
+                    </td>
+                    <td className="px-2 py-1.5 text-right font-mono text-gray-300">
+                      {t.contracts_filled || t.contracts_intended || 0}
+                    </td>
+                    <td className="px-2 py-1.5 text-right font-mono text-gray-400">
+                      {t.k_price || "-"}
+                    </td>
+                    <td className="px-2 py-1.5 text-right font-mono text-gray-400">
+                      {typeof t.pm_price === "number" ? (t.pm_price < 1 ? (t.pm_price * 100).toFixed(1) : t.pm_price.toFixed(1)) : "-"}
+                    </td>
+                    <td className="px-2 py-1.5 text-right font-mono text-gray-400">
+                      {t.spread_cents?.toFixed(1) ?? "-"}c
+                    </td>
+                    <td className="px-2 py-1.5 text-right font-mono text-yellow-400">
+                      {fees > 0 ? `$${fees.toFixed(2)}` : "-"}
+                    </td>
+                    <td className={`px-2 py-1.5 text-right font-mono font-bold ${
+                      pnl.totalDollars === null ? "text-gray-500" :
+                      pnl.totalDollars > 0 ? "text-emerald-400" :
+                      pnl.totalDollars < 0 ? "text-red-400" : "text-gray-400"
+                    }`}>
+                      {pnl.totalDollars !== null ? `$${pnl.totalDollars.toFixed(4)}` : pnl.isOpen ? "OPEN" : "-"}
+                    </td>
+                    <td className="px-2 py-1.5 text-right text-gray-500 text-[10px]">
+                      {t.execution_phase || "ioc"}
+                      {t.is_maker && <span className="ml-0.5 text-purple-400">M</span>}
+                    </td>
+                  </tr>
+                  {isExpanded && (
+                    <tr className="bg-gray-900/50">
+                      <td colSpan={11} className="px-4 py-2">
+                        <div className="grid grid-cols-4 gap-3 text-[10px]">
+                          <div>
+                            <span className="text-gray-500">Execution:</span>{" "}
+                            <span className="text-gray-300">{t.execution_time_ms}ms total</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500">K order:</span>{" "}
+                            <span className="text-gray-300">{t.k_order_ms || "-"}ms</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500">PM order:</span>{" "}
+                            <span className="text-gray-300">{t.pm_order_ms || "-"}ms</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500">Game:</span>{" "}
+                            <span className="text-gray-300">{t.game_id}</span>
+                          </div>
+                          {t.sizing_details && (
+                            <>
+                              <div>
+                                <span className="text-gray-500">K depth:</span>{" "}
+                                <span className="text-gray-300">{t.sizing_details.k_depth}</span>
+                              </div>
+                              <div>
+                                <span className="text-gray-500">PM depth:</span>{" "}
+                                <span className="text-gray-300">{t.sizing_details.pm_depth}</span>
+                              </div>
+                              <div>
+                                <span className="text-gray-500">Limit:</span>{" "}
+                                <span className="text-gray-300">{t.sizing_details.limit_reason}</span>
+                              </div>
+                            </>
+                          )}
+                          {t.actual_pnl && (
+                            <>
+                              <div>
+                                <span className="text-gray-500">Gross:</span>{" "}
+                                <span className="text-gray-300">${t.actual_pnl.gross_profit_dollars.toFixed(4)}</span>
+                              </div>
+                              <div>
+                                <span className="text-gray-500">Fees:</span>{" "}
+                                <span className="text-yellow-400">${t.actual_pnl.fees_dollars.toFixed(4)}</span>
+                              </div>
+                              <div>
+                                <span className="text-gray-500">Net:</span>{" "}
+                                <span className={t.actual_pnl.net_profit_dollars >= 0 ? "text-emerald-400" : "text-red-400"}>
+                                  ${t.actual_pnl.net_profit_dollars.toFixed(4)}
+                                </span>
+                              </div>
+                            </>
+                          )}
+                          {t.settlement_pnl != null && (
+                            <div>
+                              <span className="text-gray-500">Settlement:</span>{" "}
+                              <span className={t.settlement_pnl >= 0 ? "text-emerald-400" : "text-red-400"}>
+                                ${t.settlement_pnl.toFixed(4)}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      {trades.length > 100 && (
+        <div className="px-3 py-2 text-center text-xs text-gray-500 border-t border-gray-800">
+          Showing 100 of {trades.length} trades
+        </div>
+      )}
+    </div>
+  );
+}

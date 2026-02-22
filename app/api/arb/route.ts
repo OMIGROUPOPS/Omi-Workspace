@@ -74,7 +74,13 @@ export interface TradeEntry {
   unwind_loss_cents?: number | null;
   execution_time_ms?: number;
   pm_order_ms?: number;
+  k_order_ms?: number;
   tier?: string;
+  pm_fee?: number;
+  k_fee?: number;
+  settlement_pnl?: number | null;
+  settlement_time?: string | null;
+  settlement_winner_index?: number | null;
 }
 
 export interface PnlSummary {
@@ -195,8 +201,19 @@ export interface LiquidityStats {
   aggregate: LiquidityAggregate;
 }
 
+export interface SpreadHistoryPoint {
+  timestamp: string;
+  game_id: string;
+  team: string;
+  sport: string;
+  spread_buy_pm: number;
+  spread_buy_k: number;
+  best_spread: number;
+}
+
 export interface ArbState {
   spreads: SpreadRow[];
+  spread_history: SpreadHistoryPoint[];
   trades: TradeEntry[];
   positions: Position[];
   balances: Balances;
@@ -213,6 +230,7 @@ export interface ArbState {
 
 const DEFAULT_STATE: ArbState = {
   spreads: [],
+  spread_history: [],
   trades: [],
   positions: [],
   balances: {
@@ -287,6 +305,7 @@ export async function POST(req: NextRequest) {
 
     // Support partial updates - merge whatever fields are sent
     if (body.spreads !== undefined) arbState.spreads = body.spreads;
+    if (body.spread_history !== undefined) arbState.spread_history = body.spread_history;
     if (body.trades !== undefined) arbState.trades = body.trades;
     if (body.positions !== undefined) arbState.positions = body.positions;
     if (body.balances !== undefined) arbState.balances = body.balances;

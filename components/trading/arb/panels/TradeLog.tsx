@@ -1,0 +1,166 @@
+"use client";
+
+import React from "react";
+import type { TradeEntry } from "../types";
+import { tradePnl, sportBadge, statusBadge, formatDateTime, netColor } from "../helpers";
+
+interface Props {
+  trades: TradeEntry[];
+  expandedTrade: number | null;
+  setExpandedTrade: (idx: number | null) => void;
+}
+
+export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
+  if (trades.length === 0) {
+    return (
+      <div className="rounded-lg border border-gray-800 bg-[#111] p-4 text-center text-sm text-gray-500">
+        No trades in current view
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-lg border border-gray-800 bg-[#111] overflow-hidden">
+      <div className="px-3 py-2 border-b border-gray-800">
+        <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+          Recent Trades ({trades.length})
+        </h3>
+      </div>
+      <div className="overflow-x-auto" style={{ maxHeight: "400px" }}>
+        <table className="w-full text-xs">
+          <thead className="sticky top-0 bg-[#111] z-10">
+            <tr className="border-b border-gray-800 text-gray-500">
+              <th className="px-2 py-1.5 text-left font-medium">TIME</th>
+              <th className="px-2 py-1.5 text-left font-medium">TEAM</th>
+              <th className="px-2 py-1.5 text-left font-medium">STATUS</th>
+              <th className="px-2 py-1.5 text-right font-medium">QTY</th>
+              <th className="px-2 py-1.5 text-right font-medium">SPREAD</th>
+              <th className="px-2 py-1.5 text-right font-medium">NET P&L</th>
+              <th className="px-2 py-1.5 text-right font-medium">MS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {trades.slice(0, 50).map((t, i) => {
+              const pnl = tradePnl(t);
+              const badge = statusBadge(t.status);
+              const isExpanded = expandedTrade === i;
+
+              return (
+                <React.Fragment key={`${t.timestamp}-${t.team}-${i}`}>
+                  <tr
+                    className="border-b border-gray-800/50 hover:bg-gray-800/30 cursor-pointer"
+                    onClick={() => setExpandedTrade(isExpanded ? null : i)}
+                  >
+                    <td className="px-2 py-1.5 text-gray-500 whitespace-nowrap font-mono text-[10px]">
+                      {formatDateTime(t.timestamp)}
+                    </td>
+                    <td className="px-2 py-1.5">
+                      <span className={`inline-block rounded px-1 py-0.5 text-[9px] mr-1 ${sportBadge(t.sport)}`}>
+                        {t.sport}
+                      </span>
+                      <span className="font-bold text-white">{t.team}</span>
+                      <span className="text-gray-600 text-[9px] ml-1">
+                        {t.direction === "BUY_PM_SELL_K" ? "PM\u2192K" : "K\u2192PM"}
+                      </span>
+                    </td>
+                    <td className="px-2 py-1.5">
+                      <span className={`rounded px-1 py-0.5 text-[9px] font-medium ${badge.bg} ${badge.text}`}>
+                        {t.tier || t.status}
+                      </span>
+                    </td>
+                    <td className="px-2 py-1.5 text-right font-mono text-gray-300">
+                      {t.contracts_filled || 0}
+                    </td>
+                    <td className="px-2 py-1.5 text-right font-mono text-gray-400">
+                      {t.spread_cents?.toFixed(1) ?? "-"}c
+                    </td>
+                    <td className={`px-2 py-1.5 text-right font-mono ${
+                      pnl.totalDollars === null ? "text-gray-500" :
+                      Math.abs(pnl.totalDollars) >= 1 ? `font-bold ${netColor(pnl.totalDollars)}` :
+                      netColor(pnl.totalDollars)
+                    }`}>
+                      {pnl.totalDollars !== null
+                        ? `$${pnl.totalDollars.toFixed(4)}`
+                        : pnl.isOpen ? "OPEN" : "-"}
+                    </td>
+                    <td className="px-2 py-1.5 text-right text-gray-600 font-mono text-[10px]">
+                      {t.execution_time_ms || "-"}
+                    </td>
+                  </tr>
+                  {isExpanded && (
+                    <tr className="bg-gray-900/50">
+                      <td colSpan={7} className="px-4 py-3">
+                        <div className="grid grid-cols-3 gap-x-6 gap-y-2 text-[10px]">
+                          <div>
+                            <span className="text-gray-500 block">Game ID</span>
+                            <span className="text-gray-300 font-mono">{t.game_id}</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500 block">Direction</span>
+                            <span className="text-gray-300">{t.direction}</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500 block">Phase</span>
+                            <span className="text-gray-300">{t.execution_phase || "ioc"}{t.is_maker ? " (maker)" : ""}</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500 block">K Price / Order</span>
+                            <span className="text-gray-300 font-mono">{t.k_price}c ({t.k_order_ms || "-"}ms)</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500 block">PM Price / Order</span>
+                            <span className="text-gray-300 font-mono">
+                              {typeof t.pm_price === "number" ? (t.pm_price < 1 ? (t.pm_price * 100).toFixed(1) : t.pm_price.toFixed(1)) : "-"}c ({t.pm_order_ms || "-"}ms)
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500 block">Total Execution</span>
+                            <span className="text-gray-300 font-mono">{t.execution_time_ms || "-"}ms</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500 block">Fees (PM / K)</span>
+                            <span className="text-yellow-400 font-mono">
+                              ${(t.pm_fee || 0).toFixed(3)} / ${(t.k_fee || 0).toFixed(3)}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500 block">Hedged</span>
+                            <span className={t.hedged ? "text-emerald-400" : "text-red-400"}>
+                              {t.hedged ? "Yes" : "No"}
+                            </span>
+                          </div>
+                          {t.sizing_details && (
+                            <div>
+                              <span className="text-gray-500 block">Depth (K/PM)</span>
+                              <span className="text-gray-300 font-mono">
+                                {t.sizing_details.k_depth} / {t.sizing_details.pm_depth} ({t.sizing_details.limit_reason})
+                              </span>
+                            </div>
+                          )}
+                          {t.settlement_pnl != null && (
+                            <div>
+                              <span className="text-gray-500 block">Settlement P&L</span>
+                              <span className={t.settlement_pnl >= 0 ? "text-emerald-400 font-bold" : "text-red-400 font-bold"}>
+                                ${t.settlement_pnl.toFixed(4)}
+                              </span>
+                            </div>
+                          )}
+                          {t.gtc_cancel_reason && (
+                            <div>
+                              <span className="text-gray-500 block">GTC Cancel</span>
+                              <span className="text-gray-300">{t.gtc_cancel_reason}</span>
+                            </div>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}

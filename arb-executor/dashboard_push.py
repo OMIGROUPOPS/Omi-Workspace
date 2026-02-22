@@ -93,6 +93,10 @@ class DashboardPusher:
         self.executor_version: str = ""
         self.omi_cache = None
 
+        # Rolling spread history buffer (60 min, max 1 point per 30s per game)
+        self._spread_history: list = []
+        self._spread_history_last: Dict[str, float] = {}  # game_team -> last_ts
+
     def set_state_sources(self, **kwargs: Any) -> None:
         """Set references to live executor state dicts."""
         for key, val in kwargs.items():
@@ -131,6 +135,7 @@ class DashboardPusher:
             return False
 
         spreads = self._build_spreads()
+        spread_history = self._build_spread_history(spreads)
         trades = self._build_trades()
         positions = self._build_positions()
         balances = self._build_balances()
@@ -144,6 +149,7 @@ class DashboardPusher:
 
         payload = {
             "spreads": spreads,
+            "spread_history": spread_history,
             "trades": trades,
             "positions": positions,
             "balances": balances,
@@ -268,6 +274,47 @@ class DashboardPusher:
             )
 
         return rows
+
+    # ── Spread History ───────────────────────────────────────────────────
+
+    def _build_spread_history(self, spreads: list) -> list:
+        """Snapshot current spreads into rolling 60-min history buffer.
+
+        Downsamples to max 1 point per 30s per game to keep payload small.
+        Returns the full buffer (trimmed to 60 min).
+        """
+        now = time.time()
+        cutoff = now - 3600  # 60 minutes
+
+        # Add current spread snapshot
+        for s in spreads:
+            key = f"{s['game_id']}_{s['team']}"
+            last_ts = self._spread_history_last.get(key, 0)
+            if now - last_ts < 30:
+                continue  # skip — too soon for this game
+            self._spread_history_last[key] = now
+            self._spread_history.append({
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "game_id": s["game_id"],
+                "team": s["team"],
+                "sport": s["sport"],
+                "spread_buy_pm": s["spread_buy_pm"],
+                "spread_buy_k": s["spread_buy_k"],
+                "best_spread": max(s["spread_buy_pm"], s["spread_buy_k"]),
+            })
+
+        # Trim entries older than 60 min
+        self._spread_history = [
+            p for p in self._spread_history
+            if now - datetime.fromisoformat(p["timestamp"].replace("Z", "+00:00")).timestamp() < 3600
+        ]
+
+        # Also clean up stale keys from last-timestamp tracker
+        self._spread_history_last = {
+            k: v for k, v in self._spread_history_last.items() if now - v < 3600
+        }
+
+        return self._spread_history
 
     # ── Trades ─────────────────────────────────────────────────────────────
 
@@ -1014,6 +1061,47 @@ class DashboardPusher:
             "omi_is_stale": omi_stale,
         }
 
+        # ── Book coverage ──
+        k_total = len(self.ticker_to_cache_key)
+        k_active = sum(
+            1 for t in self.ticker_to_cache_key
+            if self.local_books.get(t) and (self.local_books[t].get("best_bid") or 0) > 0
+        )
+        pm_keys = set()
+        pm_active_count = 0
+        for t, ck in self.ticker_to_cache_key.items():
+            parts = t.split("-")
+            team = parts[-1] if len(parts) >= 3 else ""
+            pk = f"{ck}_{team}"
+            if pk not in pm_keys:
+                pm_keys.add(pk)
+                pm = self.pm_prices.get(pk)
+                if pm and (pm.get("bid") or 0) > 0:
+                    pm_active_count += 1
+        # Find cache_keys with Kalshi book but no PM price
+        missing_pm = []
+        seen_ck = set()
+        for t, ck in self.ticker_to_cache_key.items():
+            if ck in seen_ck:
+                continue
+            seen_ck.add(ck)
+            parts = t.split("-")
+            team = parts[-1] if len(parts) >= 3 else ""
+            pk = f"{ck}_{team}"
+            book = self.local_books.get(t)
+            if book and (book.get("best_bid") or 0) > 0:
+                pm = self.pm_prices.get(pk)
+                if not pm or (pm.get("bid") or 0) == 0:
+                    missing_pm.append(ck)
+
+        book_coverage = {
+            "k_total": k_total,
+            "k_active": k_active,
+            "pm_total": len(pm_keys),
+            "pm_active": pm_active_count,
+            "missing_pm": missing_pm[:20],  # Cap to avoid payload bloat
+        }
+
         return {
             "latency": {
                 "last_trade": last_trade,
@@ -1066,6 +1154,7 @@ class DashboardPusher:
                 "directional_win_rate": directional_win_rate,
             },
             "connection": connection,
+            "book_coverage": book_coverage,
         }
 
 

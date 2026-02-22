@@ -1968,6 +1968,119 @@ def get_closing_lines(sport: str = None, days: int = 7):
 
 
 # =============================================================================
+# MANUAL REFRESH — One-shot poll + recalc (for use when automated polling is off)
+# =============================================================================
+
+@app.post("/api/internal/manual-refresh")
+def manual_refresh(sport_key: str = None):
+    """
+    Trigger a single poll + recalc cycle.
+    Book odds and fair lines update together in lockstep.
+
+    - If sport_key provided: poll just that sport, then recalc all
+    - If no sport_key: poll all sports, then recalc all
+
+    Use sparingly to conserve Odds API tokens.
+    This is synchronous and may take 30-120 seconds.
+    """
+    start = time.time()
+    results = {"steps": []}
+
+    # Step 1: Poll fresh odds from Odds API
+    try:
+        from data_sources.odds_api import odds_client
+        from config import ODDS_API_SPORTS
+
+        if sport_key:
+            logger.info(f"[ManualRefresh] Polling odds for sport: {sport_key}")
+            data = odds_client.get_all_markets(sport_key)
+            games = data.get("games", []) if data else []
+            # Save to cached_odds via the same path as pregame_cycle
+            snapshots = 0
+            for game in games:
+                snapshots += db.save_game_snapshots(game, sport_key)
+            results["steps"].append({
+                "step": "poll_odds",
+                "sport": sport_key,
+                "status": "ok",
+                "games": len(games),
+                "snapshots": snapshots,
+            })
+        else:
+            logger.info("[ManualRefresh] Polling odds for ALL sports")
+            total_games = 0
+            total_snapshots = 0
+            for sport in ODDS_API_SPORTS.keys():
+                try:
+                    data = odds_client.get_all_markets(sport)
+                    games = data.get("games", []) if data else []
+                    for game in games:
+                        total_snapshots += db.save_game_snapshots(game, sport)
+                    total_games += len(games)
+                    logger.info(f"[ManualRefresh] {sport}: {len(games)} games")
+                except Exception as e:
+                    logger.error(f"[ManualRefresh] {sport} failed: {e}")
+                    results["steps"].append({
+                        "step": "poll_odds",
+                        "sport": sport,
+                        "status": "error",
+                        "error": str(e),
+                    })
+            results["steps"].append({
+                "step": "poll_odds",
+                "sport": "all",
+                "status": "ok",
+                "games": total_games,
+                "snapshots": total_snapshots,
+            })
+        remaining = odds_client.get_requests_remaining()
+        results["api_requests_remaining"] = remaining
+    except Exception as e:
+        logger.error(f"[ManualRefresh] Poll step failed: {e}")
+        results["steps"].append({"step": "poll_odds", "status": "error", "error": str(e)})
+
+    # Step 2: Recalculate composites from freshly updated cached_odds
+    try:
+        logger.info("[ManualRefresh] Running composite recalculation...")
+        from composite_tracker import CompositeTracker
+        tracker = CompositeTracker()
+        recalc_result = tracker.recalculate_all()
+        results["steps"].append({
+            "step": "composite_recalc",
+            "status": "ok",
+            "recalculated": recalc_result.get("recalculated", 0),
+            "skipped": recalc_result.get("skipped_unchanged", 0),
+            "errors": recalc_result.get("errors", 0),
+        })
+        logger.info(
+            f"[ManualRefresh] Recalc done: {recalc_result.get('recalculated', 0)} recalculated, "
+            f"{recalc_result.get('errors', 0)} errors"
+        )
+    except Exception as e:
+        logger.error(f"[ManualRefresh] Recalc step failed: {e}")
+        results["steps"].append({"step": "composite_recalc", "status": "error", "error": str(e)})
+
+    elapsed = time.time() - start
+    results["elapsed_seconds"] = round(elapsed, 1)
+    results["warning"] = "This endpoint makes Odds API calls. Use sparingly."
+    logger.info(f"[ManualRefresh] Complete in {elapsed:.1f}s")
+    return results
+
+
+@app.post("/api/internal/manual-refresh/{sport_key}")
+def manual_refresh_sport(sport_key: str):
+    """Refresh odds + recalc for a single sport only."""
+    return manual_refresh(sport_key=sport_key)
+
+
+@app.get("/api/internal/odds-api-usage")
+def get_odds_api_usage():
+    """Check how many Odds API calls have been made since last restart."""
+    from data_sources.odds_api import get_odds_api_usage as _get_usage
+    return _get_usage()
+
+
+# =============================================================================
 # ARB DESK API — Authenticated External Endpoints (v1)
 # =============================================================================
 

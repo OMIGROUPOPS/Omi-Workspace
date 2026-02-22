@@ -34,6 +34,15 @@ logger = logging.getLogger(__name__)
 
 
 # =============================================================================
+# FEATURE FLAG — Controls ALL automated polling and recalculation
+# When False: no Odds API calls, no composite recalculation, no closing line captures
+# Use /api/internal/manual-refresh to trigger a single poll+recalc cycle on demand
+# Re-enable when token budget is resolved
+# =============================================================================
+AUTOMATED_POLLING_ENABLED = False
+
+
+# =============================================================================
 # SCHEDULER PAUSE — lets dashboard endpoints grab a Supabase connection
 # =============================================================================
 _paused = False
@@ -373,6 +382,9 @@ def _pregame_cycle_inner() -> dict:
 
 def run_pregame_cycle() -> dict:
     """Pre-game polling cycle with timeout protection."""
+    if not AUTOMATED_POLLING_ENABLED:
+        logger.info("pregame_cycle: automated polling disabled, skipping")
+        return {"skipped": "polling_disabled"}
     if _check_paused("pregame_cycle"):
         return {"skipped": "paused"}
     try:
@@ -508,6 +520,9 @@ def _live_cycle_inner() -> dict:
 
 def run_live_cycle() -> dict:
     """Live polling cycle with timeout protection."""
+    if not AUTOMATED_POLLING_ENABLED:
+        logger.info("live_cycle: automated polling disabled, skipping")
+        return {"skipped": "polling_disabled"}
     if _check_paused("live_cycle"):
         return {"skipped": "paused"}
     try:
@@ -586,6 +601,9 @@ def _live_props_cycle_inner() -> dict:
 
 def run_live_props_cycle() -> dict:
     """Live props polling with timeout protection."""
+    if not AUTOMATED_POLLING_ENABLED:
+        logger.info("live_props_cycle: automated polling disabled, skipping")
+        return {"skipped": "polling_disabled"}
     if _check_paused("live_props_cycle"):
         return {"skipped": "paused"}
     try:
@@ -741,6 +759,9 @@ def start_scheduler():
 
     # 3. Composite recalc: Every 20 minutes (first run at +120s)
     def run_composite_recalc():
+        if not AUTOMATED_POLLING_ENABLED:
+            logger.info("composite_recalc: automated polling disabled, skipping")
+            return
         if _check_paused("composite_recalc"):
             return
         def _inner():
@@ -772,6 +793,8 @@ def start_scheduler():
 
     # 4. Fast refresh: Every 30 seconds (first run at +90s)
     def run_fast_refresh():
+        if not AUTOMATED_POLLING_ENABLED:
+            return  # silent skip — fires every 30s, don't spam logs
         if _check_paused("fast_refresh"):
             return
         def _inner():
@@ -801,9 +824,18 @@ def start_scheduler():
     )
 
     # 5. Closing line capture: Every 10 minutes (first run at +90s)
-    from closing_line_capture import run_closing_line_capture
+    from closing_line_capture import run_closing_line_capture as _run_closing_line_capture_inner
+
+    def run_closing_line_capture_guarded():
+        if not AUTOMATED_POLLING_ENABLED:
+            logger.info("closing_line_capture: automated polling disabled, skipping")
+            return
+        if _check_paused("closing_line_capture"):
+            return
+        return _run_closing_line_capture_inner()
+
     scheduler.add_job(
-        func=run_closing_line_capture,
+        func=run_closing_line_capture_guarded,
         trigger=IntervalTrigger(minutes=10),
         id="closing_line_capture",
         name="Capture closing lines before game start",
@@ -948,17 +980,21 @@ def start_scheduler():
     # )
 
     scheduler.start()
-    logger.info("Scheduler started — 8 active jobs:")
-    logger.info(f"  1. Pre-game: every 10 min (first at +120s)")
-    logger.info(f"  2. Live: every {LIVE_POLL_INTERVAL_MINUTES} min (first at +70s)")
-    logger.info(f"  3. Fast refresh + live CEQ: every 30s (first at +90s)")
-    logger.info(f"  4. Closing line capture: every 10 min (first at +100s)")
-    logger.info(f"  5. Exchange sync: every 15 min (first at +100s)")
-    logger.info(f"  6. Pregame capture: every 15 min (first at +110s)")
-    logger.info(f"  7. Composite recalc: every 20 min (first at +120s)")
-    logger.info(f"  8. Grading: every 60 min (first at +180s)")
-    logger.info(f"  DISABLED: live_props, accuracy_reflection, health_check,")
-    logger.info(f"            exchange_cleanup, perf_cache, daily_feedback")
+    if AUTOMATED_POLLING_ENABLED:
+        logger.info("Scheduler started — 8 active jobs (POLLING ENABLED):")
+        logger.info(f"  1. Pre-game: every 10 min (first at +120s)")
+        logger.info(f"  2. Live: every {LIVE_POLL_INTERVAL_MINUTES} min (first at +70s)")
+        logger.info(f"  3. Fast refresh + live CEQ: every 30s (first at +90s)")
+        logger.info(f"  4. Closing line capture: every 10 min (first at +100s)")
+        logger.info(f"  5. Exchange sync: every 15 min (first at +100s)")
+        logger.info(f"  6. Pregame capture: every 15 min (first at +110s)")
+        logger.info(f"  7. Composite recalc: every 20 min (first at +120s)")
+        logger.info(f"  8. Grading: every 60 min (first at +180s)")
+    else:
+        logger.info("Scheduler started — AUTOMATED POLLING DISABLED")
+        logger.info("  Odds API polling, composite recalc, fast refresh, closing line capture: ALL SKIPPED")
+        logger.info("  Still running: grading (60min), exchange sync (15min), pregame capture (15min)")
+        logger.info("  Use POST /api/internal/manual-refresh to trigger a one-shot poll+recalc cycle")
     logger.info(f"  All jobs: max_instances=1, misfire_grace_time=30s")
 
     return scheduler

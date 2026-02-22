@@ -3,18 +3,40 @@ Odds API Data Source
 Fetches live odds, line movements, and market data from The Odds API.
 """
 import httpx
+from collections import deque
 from datetime import datetime, timezone
 from typing import Optional
 import logging
 
 from config import (
     ODDS_API_KEY, ODDS_API_BASE, ODDS_API_SPORTS,
-    MAIN_MARKETS, HALF_MARKETS, QUARTER_MARKETS_FOOTBALL, 
+    MAIN_MARKETS, HALF_MARKETS, QUARTER_MARKETS_FOOTBALL,
     QUARTER_MARKETS_BASKETBALL, PERIOD_MARKETS_HOCKEY, ALTERNATE_MARKETS,
     PREFERRED_BOOKS, PROPS_ENABLED, PROP_MARKETS
 )
 
 logger = logging.getLogger(__name__)
+
+# Rolling log of Odds API calls for usage monitoring
+_odds_api_calls: deque = deque(maxlen=500)
+
+
+def log_odds_api_call(endpoint: str, sport_key: str = None, params: dict = None):
+    """Record an Odds API call for usage tracking."""
+    _odds_api_calls.append({
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "endpoint": endpoint,
+        "sport_key": sport_key,
+        "params": str(params) if params else None,
+    })
+
+
+def get_odds_api_usage() -> dict:
+    """Return Odds API usage stats since last restart."""
+    return {
+        "total_calls_since_restart": len(_odds_api_calls),
+        "recent_calls": list(_odds_api_calls)[-20:],
+    }
 
 
 class OddsAPIClient:
@@ -31,7 +53,14 @@ class OddsAPIClient:
         if params is None:
             params = {}
         params["apiKey"] = self.api_key
-        
+
+        # Extract sport_key from endpoint (e.g. "sports/basketball_nba/odds")
+        sport_key = None
+        parts = endpoint.split("/")
+        if len(parts) >= 2 and parts[0] == "sports":
+            sport_key = parts[1]
+        log_odds_api_call(endpoint, sport_key=sport_key, params={k: v for k, v in params.items() if k != "apiKey"})
+
         url = f"{self.base_url}/{endpoint}"
         try:
             response = self.client.get(url, params=params)

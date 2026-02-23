@@ -137,6 +137,41 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                               </span>
                             </div>
                           )}
+                          {t.sizing_details?.depth_walk_log && t.sizing_details.depth_walk_log.length > 0 && (
+                            <div className="col-span-3 mt-1">
+                              <span className="text-gray-500 block mb-1">Depth Walk</span>
+                              <table className="w-full text-[10px] font-mono">
+                                <thead>
+                                  <tr className="text-gray-600">
+                                    <th className="text-left pr-2">LVL</th>
+                                    <th className="text-right pr-2">K</th>
+                                    <th className="text-right pr-2">PM</th>
+                                    <th className="text-right pr-2">SPREAD</th>
+                                    <th className="text-right pr-2">FEES</th>
+                                    <th className="text-right pr-2">NET</th>
+                                    <th className="text-right pr-2">QTY</th>
+                                    <th className="text-right">CUM</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {t.sizing_details.depth_walk_log.map((l) => (
+                                    <tr key={l.level} className={l.stopped ? "text-red-400/80" : "text-emerald-400/80"}>
+                                      <td className="text-left pr-2">{l.stopped ? "\u2717" : "\u2713"} L{l.level}</td>
+                                      <td className="text-right pr-2">{l.k_price}c</td>
+                                      <td className="text-right pr-2">{l.pm_cost}c</td>
+                                      <td className="text-right pr-2">{l.spread}c</td>
+                                      <td className="text-right pr-2">{l.fees}c</td>
+                                      <td className={`text-right pr-2 font-bold ${l.marginal_profit >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                                        {l.marginal_profit}c
+                                      </td>
+                                      <td className="text-right pr-2">{l.contracts_at_level ?? "-"}</td>
+                                      <td className="text-right">{l.cumulative_contracts}</td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                          )}
                           {t.settlement_pnl != null && (
                             <div>
                               <span className="text-gray-500 block">Settlement P&L</span>

@@ -819,18 +819,28 @@ def calculate_optimal_size(
     total_k_available = sum(s for _, s in k_levels)
     total_pm_available = sum(s for _, s in pm_levels)
 
+    # Depth walk log: track each price-level transition
+    depth_walk_log = []
+    _prev_k_idx = -1
+    _prev_pm_idx = -1
+    _level_contracts = 0
+    _walk_stopped_reason = None
+
     while contracts < max_contracts:
         # Get current prices at this depth level
         if k_idx >= len(k_levels) or pm_idx >= len(pm_levels):
+            _walk_stopped_reason = 'book_exhausted'
             break
         if k_remaining <= 0:
             k_idx += 1
             if k_idx >= len(k_levels):
+                _walk_stopped_reason = 'k_book_exhausted'
                 break
             k_remaining = k_levels[k_idx][1]
         if pm_remaining <= 0:
             pm_idx += 1
             if pm_idx >= len(pm_levels):
+                _walk_stopped_reason = 'pm_book_exhausted'
                 break
             pm_remaining = pm_levels[pm_idx][1]
 
@@ -848,15 +858,55 @@ def calculate_optimal_size(
         marginal_profit = spread - fees
 
         if marginal_profit < Config.min_profit_per_contract:
+            # Log the unprofitable level that stopped the walk
+            depth_walk_log.append({
+                'level': len(depth_walk_log) + 1,
+                'k_price': k_price,
+                'pm_cost': pm_cost,
+                'spread': round(spread, 2),
+                'fees': round(fees, 2),
+                'marginal_profit': round(marginal_profit, 2),
+                'k_remaining': k_remaining,
+                'pm_remaining': pm_remaining,
+                'cumulative_contracts': contracts,
+                'stopped': True,
+            })
+            _walk_stopped_reason = 'unprofitable'
             break
+
+        # Log new price-level transition
+        if k_idx != _prev_k_idx or pm_idx != _prev_pm_idx:
+            # Close out previous level
+            if _prev_k_idx >= 0 and _level_contracts > 0:
+                depth_walk_log[-1]['contracts_at_level'] = _level_contracts
+            _prev_k_idx = k_idx
+            _prev_pm_idx = pm_idx
+            _level_contracts = 0
+            depth_walk_log.append({
+                'level': len(depth_walk_log) + 1,
+                'k_price': k_price,
+                'pm_cost': pm_cost,
+                'spread': round(spread, 2),
+                'fees': round(fees, 2),
+                'marginal_profit': round(marginal_profit, 2),
+                'k_remaining': k_remaining,
+                'pm_remaining': pm_remaining,
+                'cumulative_contracts': contracts + 1,
+                'stopped': False,
+            })
 
         # Take 1 contract from both books
         contracts += 1
+        _level_contracts += 1
         total_profit += marginal_profit
         total_k_price += k_price
         total_pm_cost += pm_cost
         k_remaining -= 1
         pm_remaining -= 1
+
+    # Finalize last profitable level's contract count
+    if depth_walk_log and not depth_walk_log[-1].get('stopped') and _level_contracts > 0:
+        depth_walk_log[-1]['contracts_at_level'] = _level_contracts
 
     if contracts == 0:
         return {
@@ -864,6 +914,7 @@ def calculate_optimal_size(
             'avg_pm_price': 0, 'avg_k_price': 0,
             'k_depth': total_k_available, 'pm_depth': total_pm_available,
             'limit_reason': 'no_profitable_contracts',
+            'depth_walk_log': depth_walk_log,
         }
 
     # ── Step D: Apply safety caps ──
@@ -934,6 +985,7 @@ def calculate_optimal_size(
             'avg_pm_price': 0, 'avg_k_price': 0,
             'k_depth': total_k_available, 'pm_depth': total_pm_available,
             'limit_reason': 'negative_total_profit',
+            'depth_walk_log': depth_walk_log,
         }
 
     avg_k = total_k_price / final_size if final_size > 0 else 0
@@ -950,6 +1002,7 @@ def calculate_optimal_size(
         'k_depth': total_k_available,
         'pm_depth': total_pm_available,
         'limit_reason': limit_reason,
+        'depth_walk_log': depth_walk_log,
     }
 
 

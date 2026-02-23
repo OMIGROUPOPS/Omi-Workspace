@@ -41,12 +41,27 @@ export interface ActualPnl {
   is_profitable: boolean;
 }
 
+export interface DepthWalkLevel {
+  level: number;
+  k_price: number;
+  pm_cost: number;
+  spread: number;
+  fees: number;
+  marginal_profit: number;
+  k_remaining: number;
+  pm_remaining: number;
+  cumulative_contracts: number;
+  contracts_at_level?: number;
+  stopped?: boolean;
+}
+
 export interface SizingDetails {
   avg_spread_cents: number;
   expected_profit_cents: number;
   k_depth: number;
   pm_depth: number;
   limit_reason: string;
+  depth_walk_log?: DepthWalkLevel[];
 }
 
 export interface TradeEntry {

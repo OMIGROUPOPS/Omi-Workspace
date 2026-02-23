@@ -5,6 +5,7 @@ export type {
   ActualPnl,
   PerContractPnl,
   SizingDetails,
+  DepthWalkLevel,
   PnlSummary,
   Position,
   Balances,

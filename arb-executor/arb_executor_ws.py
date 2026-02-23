@@ -1723,6 +1723,19 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
         print(f"[EXEC] Sized: {optimal_size} contracts (limit: {sizing.get('limit_reason', '?')}), "
               f"est ${sizing['expected_profit_cents']/100:.2f} profit")
 
+        # Print depth walk summary
+        dwl = sizing.get('depth_walk_log', [])
+        if dwl:
+            profitable = [l for l in dwl if not l.get('stopped')]
+            stopped = [l for l in dwl if l.get('stopped')]
+            parts = []
+            for l in dwl:
+                avail = l.get('contracts_at_level', l.get('k_remaining', '?'))
+                tag = " STOP" if l.get('stopped') else ""
+                parts.append(f"L{l['level']}: K{l['k_price']}+PM{l['pm_cost']}={l['k_price']+l['pm_cost']}c "
+                             f"({l['spread']}c spread, {l['marginal_profit']}c net{tag})")
+            print(f"[DEPTH] {arb.team}: {len(profitable)} profitable levels | {' | '.join(parts)}", flush=True)
+
         # Build sizing_details dict for trade log
         _sizing_details = {
             'avg_spread_cents': sizing.get('avg_spread_cents', 0),
@@ -1730,6 +1743,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             'k_depth': sizing.get('k_depth', 0),
             'pm_depth': sizing.get('pm_depth', 0),
             'limit_reason': sizing.get('limit_reason', ''),
+            'depth_walk_log': dwl,
         }
 
         # -----------------------------------------------------------------

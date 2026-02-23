@@ -192,6 +192,10 @@ interface ParsedProp {
   fairSource: 'pinnacle' | 'consensus';
   // Alt book hint: other book has better price on the same side
   altBookHint: string | null;
+  // Edge type: 'line' = fair line differs, 'price' = same line, different odds
+  edgeType: 'line' | 'price';
+  // Conviction score: 0-100 weighted signal composite
+  conviction: number;
 }
 
 interface GameWithProps {
@@ -311,6 +315,154 @@ function getGameCompositeModifier(composite: number | null, edgeSide: 'Over' | '
   if (composite < 40 && edgeSide === 'Under') return 1.2;
   if (composite < 45 && edgeSide === 'Under') return 1.1;
   return 1.0;
+}
+
+// ============================================================================
+// Signal bars, Conviction score, Narrative generation
+// ============================================================================
+
+interface PropSignals {
+  sharpLine: number;      // 0-100: Does Pinnacle confirm the edge?
+  lineMovement: number;   // 0-100: Has the line moved toward the edge?
+  gameContext: number;     // 0-100: Does game composite support the direction?
+  priceValue: number;     // 0-100: How large is the edge?
+  bookConsensus: number;  // 0-100: Do other books agree?
+}
+
+const SIGNAL_LABELS: { key: keyof PropSignals; label: string }[] = [
+  { key: 'sharpLine', label: 'Sharp Line' },
+  { key: 'lineMovement', label: 'Line Movement' },
+  { key: 'gameContext', label: 'Game Context' },
+  { key: 'priceValue', label: 'Price Value' },
+  { key: 'bookConsensus', label: 'Book Consensus' },
+];
+
+const SIGNAL_WEIGHTS: Record<keyof PropSignals, number> = {
+  sharpLine: 0.30,
+  lineMovement: 0.20,
+  gameContext: 0.15,
+  priceValue: 0.25,
+  bookConsensus: 0.10,
+};
+
+function computePropSignals(opts: {
+  fairSource: 'pinnacle' | 'consensus';
+  edgeSide: 'Over' | 'Under';
+  edgePct: number;
+  fairLine: number;
+  edgeLine: number;
+  gameComposite: number | null; // 0-100 scale
+  altBookHint: string | null;
+  edgeOdds: number;
+}, history: any[] | null): PropSignals {
+  // 1. Sharp Line (0-100): Pinnacle-backed = higher base, line gap boosts
+  let sharpLine = opts.fairSource === 'pinnacle' ? 70 : 45;
+  const lineDiff = Math.abs(opts.fairLine - opts.edgeLine);
+  if (lineDiff >= 2) sharpLine = Math.min(100, sharpLine + 20);
+  else if (lineDiff >= 1) sharpLine = Math.min(100, sharpLine + 10);
+  else if (lineDiff >= 0.5) sharpLine = Math.min(100, sharpLine + 5);
+
+  // 2. Line Movement (0-100): movement confirming edge = higher
+  let lineMovement = 50;
+  if (history && history.length >= 2) {
+    const openLine = history[0].line;
+    const currentLine = history[history.length - 1].line;
+    const movement = currentLine - openLine;
+    const confirmsEdge = (opts.edgeSide === 'Over' && movement > 0) ||
+                         (opts.edgeSide === 'Under' && movement < 0);
+    const absMove = Math.abs(movement);
+    if (confirmsEdge) {
+      lineMovement = Math.min(95, 55 + Math.round(absMove * 10));
+    } else if (absMove > 0.25) {
+      lineMovement = Math.max(10, 45 - Math.round(absMove * 10));
+    }
+  }
+
+  // 3. Game Context (0-100): composite alignment with edge direction
+  let gameContext = 50;
+  if (opts.gameComposite !== null) {
+    if (opts.edgeSide === 'Over') {
+      gameContext = Math.min(95, Math.max(10, opts.gameComposite));
+    } else {
+      gameContext = Math.min(95, Math.max(10, 100 - opts.gameComposite));
+    }
+  }
+
+  // 4. Price Value (0-100): edge size mapped to signal
+  const priceValue = Math.min(95, Math.round(50 + opts.edgePct * 5));
+
+  // 5. Book Consensus (0-100): alt book agrees = confirmation
+  let bookConsensus = 50;
+  if (opts.altBookHint) bookConsensus = 72;
+  if (opts.edgeOdds > 0) bookConsensus = Math.min(95, bookConsensus + 8);
+
+  return { sharpLine, lineMovement, gameContext, priceValue, bookConsensus };
+}
+
+function computeConviction(signals: PropSignals): number {
+  return Math.round(
+    signals.sharpLine * SIGNAL_WEIGHTS.sharpLine +
+    signals.lineMovement * SIGNAL_WEIGHTS.lineMovement +
+    signals.gameContext * SIGNAL_WEIGHTS.gameContext +
+    signals.priceValue * SIGNAL_WEIGHTS.priceValue +
+    signals.bookConsensus * SIGNAL_WEIGHTS.bookConsensus
+  );
+}
+
+function generatePropNarrative(
+  opts: { edgeSide: 'Over' | 'Under'; edgePct: number; fairLine: number; edgeLine: number; propTypeLabel: string; edgeType: 'line' | 'price'; fairSource: 'pinnacle' | 'consensus' },
+  signals: PropSignals,
+  history: any[] | null,
+): string {
+  const parts: string[] = [];
+
+  // Sharp line confirmation
+  if (signals.sharpLine >= 70) {
+    parts.push(`Sharp line confirms ${opts.edgeSide}`);
+  } else if (signals.sharpLine >= 55) {
+    parts.push(`Sharp line leans ${opts.edgeSide}`);
+  }
+
+  // Line movement
+  if (history && history.length >= 2) {
+    const movement = history[history.length - 1].line - history[0].line;
+    if (signals.lineMovement >= 60 && Math.abs(movement) >= 0.5) {
+      parts.push(`line moved ${movement > 0 ? 'up' : 'down'} ${Math.abs(movement).toFixed(1)}pt`);
+    }
+  }
+
+  // Game context
+  if (signals.gameContext >= 65) parts.push('game context supports');
+  else if (signals.gameContext <= 35) parts.push('game context opposes');
+
+  // Edge specifics
+  const lineDiff = Math.abs(opts.fairLine - opts.edgeLine);
+  if (opts.edgeType === 'line' && lineDiff >= 0.5) {
+    parts.push(`book ${lineDiff.toFixed(1)}pt ${opts.edgeSide === 'Over' ? 'below' : 'above'} fair`);
+  } else if (opts.edgeType === 'price') {
+    parts.push(`${opts.edgePct.toFixed(1)}% price edge at same line`);
+  }
+
+  if (parts.length === 0) {
+    return `${opts.edgePct.toFixed(1)}% ${opts.edgeSide} edge on ${opts.propTypeLabel}.`;
+  }
+  // Capitalize first part
+  parts[0] = parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
+  return parts.join(', ') + '.';
+}
+
+function getSignalBarColor(value: number): string {
+  if (value >= 70) return P.greenText;
+  if (value >= 55) return '#ca8a04'; // amber
+  if (value >= 40) return P.textSecondary;
+  return P.redText;
+}
+
+function getConvictionColor(conv: number): string {
+  if (conv >= 70) return P.greenText;
+  if (conv >= 60) return '#ca8a04';
+  if (conv >= 50) return P.textSecondary;
+  return P.textMuted;
 }
 
 // Format a line value consistently (shared between chart and description)
@@ -628,7 +780,7 @@ export default function PlayerPropsPage() {
           .order('timestamp', { ascending: false });
         for (const row of compData || []) {
           if (!compositeMap.has(row.game_id) && row.composite_total != null) {
-            compositeMap.set(row.game_id, Number(row.composite_total));
+            compositeMap.set(row.game_id, Math.round(Number(row.composite_total) * 100));
           }
         }
       }
@@ -659,7 +811,7 @@ export default function PlayerPropsPage() {
             timeDecay: Math.round((row.pillar_time_decay ?? 0.5) * 100),
             flow: Math.round((row.pillar_flow ?? 0.5) * 100),
             gameEnvironment: Math.round(gameEnv * 100),
-            composite: Math.round((row.composite_score ?? 50)),
+            composite: Math.round((row.composite_score ?? 0.5) * 100),
           };
         }
       }
@@ -765,6 +917,7 @@ export default function PlayerPropsPage() {
           let bestEdgePct = 0;
           let bestEdgeSide: 'Over' | 'Under' | null = null;
           let bestEdgeOdds = 0;
+          let edgeType: 'line' | 'price' = 'line';
 
           const lineDiff = myEntry.line - fairLine;
 
@@ -779,6 +932,7 @@ export default function PlayerPropsPage() {
             }
           } else if (pinnacleEntry) {
             // Same line — compare implied probabilities vs Pinnacle
+            edgeType = 'price';
             if (myEntry.overOdds && pinnacleEntry.overOdds) {
               const retailProb = oddsToProb(myEntry.overOdds);
               const sharpProb = oddsToProb(pinnacleEntry.overOdds);
@@ -812,9 +966,6 @@ export default function PlayerPropsPage() {
           const confidence = edgeToConfidence(adjustedEdgePct);
           const tier = getEdgeTier(adjustedEdgePct);
 
-          // Apply min confidence filter
-          if (confidence < minCEQ) continue;
-
           // Build retail odds arrays for display (all books for reference)
           const retailOverOdds = retailEntries
             .filter(e => e.overOdds !== null)
@@ -836,6 +987,22 @@ export default function PlayerPropsPage() {
             }
           }
 
+          // Compute conviction score (base: without history, lineMovement=50)
+          const baseSignals = computePropSignals({
+            fairSource: hasPinnacle ? 'pinnacle' : 'consensus',
+            edgeSide: bestEdgeSide,
+            edgePct: Math.round(adjustedEdgePct * 10) / 10,
+            fairLine,
+            edgeLine: myEntry.line,
+            gameComposite,
+            altBookHint,
+            edgeOdds: bestEdgeOdds,
+          }, null);
+          const conviction = computeConviction(baseSignals);
+
+          // Apply min score filter
+          if (conviction < minCEQ) continue;
+
           const parsedProp: ParsedProp = {
             player: group.player,
             propType: group.propType,
@@ -856,6 +1023,8 @@ export default function PlayerPropsPage() {
             compositeModifier: modifier,
             fairSource: hasPinnacle ? 'pinnacle' : 'consensus',
             altBookHint,
+            edgeType,
+            conviction,
           };
 
           // Group by prop type
@@ -1103,7 +1272,7 @@ export default function PlayerPropsPage() {
         </div>
 
         <div className="flex items-center gap-2 ml-auto">
-          <span className="text-xs" style={{ color: P.textMuted }}>Min Conf:</span>
+          <span className="text-xs" style={{ color: P.textMuted }}>Min Score:</span>
           <div className="flex gap-1">
             {[50, 55, 60, 66].map((val) => (
               <button
@@ -1178,8 +1347,8 @@ export default function PlayerPropsPage() {
           {gamesWithProps.map((game) => {
             const isExpanded = expandedGames.has(game.gameId);
             const totalEdges = Array.from(game.propsByType.values()).reduce((sum, arr) => sum + arr.length, 0);
-            const bestCEQ = Math.max(
-              ...Array.from(game.propsByType.values()).flat().map(p => p.edgeCEQ)
+            const bestConviction = Math.max(
+              ...Array.from(game.propsByType.values()).flat().map(p => p.conviction)
             );
 
             return (
@@ -1205,7 +1374,7 @@ export default function PlayerPropsPage() {
                       <span className="font-semibold" style={{ color: P.textPrimary }}>
                         {game.awayTeam} @ {game.homeTeam}
                       </span>
-                      <span className={`text-xs px-2 py-0.5 rounded border ${getCEQBadgeColor(bestCEQ)}`}>
+                      <span className={`text-xs px-2 py-0.5 rounded border ${getCEQBadgeColor(bestConviction)}`}>
                         {totalEdges} edge{totalEdges !== 1 ? 's' : ''}
                       </span>
                     </div>
@@ -1248,7 +1417,7 @@ export default function PlayerPropsPage() {
                             <div className="text-center">Over</div>
                             <div className="text-center">Under</div>
                             <div className="text-center">Edge</div>
-                            <div className="text-center">Conf</div>
+                            <div className="text-center">Score</div>
                           </div>
 
                           {/* Props Rows */}
@@ -1319,16 +1488,14 @@ export default function PlayerPropsPage() {
                                         </div>
                                       </div>
 
-                                      {/* CEQ */}
+                                      {/* Conviction Score */}
                                       <div className="text-center">
-                                        <div className={`text-sm font-bold ${getCEQColor(prop.edgeCEQ)}`}>
-                                          {prop.edgeCEQ}%
+                                        <div className="text-sm font-bold font-mono" style={{ color: getConvictionColor(prop.conviction) }}>
+                                          {prop.conviction}
                                         </div>
-                                        {prop.compositeModifier > 1.0 && (
-                                          <div className="text-[10px]" style={{ color: P.textMuted }}>
-                                            +{Math.round((prop.compositeModifier - 1) * 100)}% boost
-                                          </div>
-                                        )}
+                                        <div className="text-[9px]" style={{ color: P.textMuted }}>
+                                          {prop.edgeType === 'line' ? 'LINE' : 'PRICE'}
+                                        </div>
                                       </div>
                                     </div>
 
@@ -1339,8 +1506,8 @@ export default function PlayerPropsPage() {
                                           <ChevronRight className={`w-3 h-3 transition-transform flex-shrink-0 ${isPropExpanded ? 'rotate-90' : ''}`} style={{ color: P.textMuted }} />
                                           <span className="text-sm font-semibold" style={{ color: P.textPrimary }}>{prop.player}</span>
                                         </div>
-                                        <div className={`text-sm font-bold ${getCEQColor(prop.edgeCEQ)}`}>
-                                          {prop.edgeCEQ}%
+                                        <div className="text-sm font-bold font-mono" style={{ color: getConvictionColor(prop.conviction) }}>
+                                          {prop.conviction}
                                         </div>
                                       </div>
                                       <div className="flex items-center gap-3 text-xs pl-5">
@@ -1356,115 +1523,131 @@ export default function PlayerPropsPage() {
                                   </div>
 
                                   {/* Expandable Detail Panel */}
-                                  {isPropExpanded && (
-                                    <div className="px-4 py-3" style={{ background: P.chartBg, borderTop: `1px solid ${P.cardBorder}` }}>
-                                      {/* Line History Chart — only show with 3+ meaningful data points */}
-                                      {isLoadingHist ? (
-                                        <div className="flex items-center justify-center py-4 mb-3">
-                                          <RefreshCw className="w-4 h-4 animate-spin" style={{ color: P.textMuted }} />
-                                        </div>
-                                      ) : history && history.length >= 3 ? (
-                                        <div className="mb-3">
-                                          <PropLineChart data={history} fairLine={prop.fairLine} fairSource={prop.fairSource} />
-                                        </div>
-                                      ) : null}
+                                  {isPropExpanded && (() => {
+                                    // Compute full signals with history for expanded view
+                                    const fullSignals = computePropSignals({
+                                      fairSource: prop.fairSource,
+                                      edgeSide: prop.edgeSide!,
+                                      edgePct: prop.edgePct,
+                                      fairLine: prop.fairLine,
+                                      edgeLine: prop.edgeLine,
+                                      gameComposite: prop.gameComposite,
+                                      altBookHint: prop.altBookHint,
+                                      edgeOdds: prop.edgeOdds,
+                                    }, history || null);
+                                    const fullConviction = computeConviction(fullSignals);
+                                    const narrative = generatePropNarrative({
+                                      edgeSide: prop.edgeSide!,
+                                      edgePct: prop.edgePct,
+                                      fairLine: prop.fairLine,
+                                      edgeLine: prop.edgeLine,
+                                      propTypeLabel: prop.propTypeLabel,
+                                      edgeType: prop.edgeType,
+                                      fairSource: prop.fairSource,
+                                    }, fullSignals, history || null);
 
-                                      {/* Detail Row */}
-                                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                                        {/* Line movement */}
-                                        {history && history.length > 1 && (
-                                          <div style={{ color: P.textSecondary }}>
-                                            <span style={{ color: P.textMuted }}>Opened:</span>{' '}
-                                            <span className="font-mono" style={{ color: P.textPrimary }}>{history[0].line}</span>
-                                            <span style={{ color: P.textFaint }} className="mx-1">&rarr;</span>
-                                            <span style={{ color: P.textMuted }}>Current:</span>{' '}
-                                            <span className="font-mono" style={{ color: P.textPrimary }}>{history[history.length - 1].line}</span>
-                                            <span className="ml-1 font-mono" style={{ color: history[history.length - 1].line - history[0].line > 0 ? P.greenText : history[history.length - 1].line - history[0].line < 0 ? P.redText : P.textMuted }}>
-                                              ({history[history.length - 1].line - history[0].line > 0 ? '+' : ''}{(history[history.length - 1].line - history[0].line).toFixed(1)})
-                                            </span>
+                                    return (
+                                      <div className="px-4 py-3" style={{ background: P.chartBg, borderTop: `1px solid ${P.cardBorder}` }}>
+                                        {/* Section 1: Mini Chart */}
+                                        {isLoadingHist ? (
+                                          <div className="flex items-center justify-center py-4 mb-3">
+                                            <RefreshCw className="w-4 h-4 animate-spin" style={{ color: P.textMuted }} />
                                           </div>
-                                        )}
+                                        ) : history && history.length >= 3 ? (
+                                          <div className="mb-3">
+                                            <PropLineChart data={history} fairLine={prop.fairLine} fairSource={prop.fairSource} />
+                                          </div>
+                                        ) : null}
 
-                                        {/* Selected book odds */}
-                                        <div style={{ color: P.textSecondary }}>
-                                          <span className="font-semibold" style={{ color: P.textPrimary }}>
-                                            {prop.edgeSide} {prop.edgeLine} {formatOdds(prop.edgeOdds)}
-                                          </span>
-                                          <span className={`ml-1 ${EDGE_TIER_COLORS[prop.edgeTier]}`}>
-                                            {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
-                                          </span>
-                                          {prop.compositeModifier > 1.0 && (
-                                            <span className="ml-1" style={{ color: P.textMuted }}>
-                                              (+{Math.round((prop.compositeModifier - 1) * 100)}% game boost)
-                                            </span>
-                                          )}
+                                        {/* Section 2: Over / Under Comparison Boxes */}
+                                        <div className="grid grid-cols-2 gap-2 mb-3">
+                                          {/* Over box */}
+                                          <div className="rounded-lg p-2.5" style={{ background: P.cardBg, border: `1px solid ${prop.edgeSide === 'Over' ? P.greenBorder : P.cardBorder}` }}>
+                                            <div className="text-[10px] font-semibold uppercase tracking-wide mb-1.5" style={{ color: prop.edgeSide === 'Over' ? P.greenText : P.textMuted }}>
+                                              Over
+                                            </div>
+                                            <div className="flex justify-between items-baseline mb-0.5">
+                                              <span className="text-[10px]" style={{ color: P.textMuted }}>Book</span>
+                                              <span className="text-sm font-mono font-bold" style={{ color: P.textPrimary }}>
+                                                {myOver ? `${myOver.line} (${formatOdds(myOver.odds)})` : '\u2014'}
+                                              </span>
+                                            </div>
+                                            <div className="flex justify-between items-baseline">
+                                              <span className="text-[10px]" style={{ color: P.textMuted }}>Fair</span>
+                                              <span className="text-sm font-mono font-bold" style={{ color: '#ea580c' }}>{fmtLine(prop.fairLine)}</span>
+                                            </div>
+                                            {prop.edgeSide === 'Over' && (
+                                              <div className="mt-1.5 pt-1.5" style={{ borderTop: `1px solid ${P.cardBorder}` }}>
+                                                <span className="text-xs font-semibold" style={{ color: P.greenText }}>
+                                                  +{prop.edgePct.toFixed(1)}% {prop.edgeType === 'line' ? 'Line Edge' : 'Price Edge'}
+                                                </span>
+                                              </div>
+                                            )}
+                                          </div>
+                                          {/* Under box */}
+                                          <div className="rounded-lg p-2.5" style={{ background: P.cardBg, border: `1px solid ${prop.edgeSide === 'Under' ? P.greenBorder : P.cardBorder}` }}>
+                                            <div className="text-[10px] font-semibold uppercase tracking-wide mb-1.5" style={{ color: prop.edgeSide === 'Under' ? P.greenText : P.textMuted }}>
+                                              Under
+                                            </div>
+                                            <div className="flex justify-between items-baseline mb-0.5">
+                                              <span className="text-[10px]" style={{ color: P.textMuted }}>Book</span>
+                                              <span className="text-sm font-mono font-bold" style={{ color: P.textPrimary }}>
+                                                {myUnder ? `${myUnder.line} (${formatOdds(myUnder.odds)})` : '\u2014'}
+                                              </span>
+                                            </div>
+                                            <div className="flex justify-between items-baseline">
+                                              <span className="text-[10px]" style={{ color: P.textMuted }}>Fair</span>
+                                              <span className="text-sm font-mono font-bold" style={{ color: '#ea580c' }}>{fmtLine(prop.fairLine)}</span>
+                                            </div>
+                                            {prop.edgeSide === 'Under' && (
+                                              <div className="mt-1.5 pt-1.5" style={{ borderTop: `1px solid ${P.cardBorder}` }}>
+                                                <span className="text-xs font-semibold" style={{ color: P.greenText }}>
+                                                  +{prop.edgePct.toFixed(1)}% {prop.edgeType === 'line' ? 'Line Edge' : 'Price Edge'}
+                                                </span>
+                                              </div>
+                                            )}
+                                          </div>
                                         </div>
 
-                                        {/* Fair source + alt book hint */}
-                                        <div style={{ color: P.textSecondary }}>
-                                          <span style={{ color: P.textMuted }}>
+                                        {/* Section 3: WHY THIS PRICE Signal Bars */}
+                                        <div className="mb-3 rounded-lg p-2.5" style={{ background: P.cardBg, border: `1px solid ${P.cardBorder}` }}>
+                                          <div className="text-[10px] font-semibold uppercase tracking-widest mb-2" style={{ color: P.textMuted }}>Why This Price</div>
+                                          {SIGNAL_LABELS.map(({ key, label }) => {
+                                            const value = fullSignals[key];
+                                            return (
+                                              <div key={key} className="flex items-center gap-2 mb-1">
+                                                <span className="text-[10px] w-[88px] text-right shrink-0" style={{ color: P.textSecondary }}>{label}</span>
+                                                <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: P.neutralBg }}>
+                                                  <div className="h-full rounded-full transition-all" style={{ width: `${value}%`, background: getSignalBarColor(value) }} />
+                                                </div>
+                                                <span className="text-[10px] font-mono w-5 text-right shrink-0" style={{ color: getSignalBarColor(value) }}>{value}</span>
+                                              </div>
+                                            );
+                                          })}
+                                        </div>
+
+                                        {/* Section 4: Conviction Score + Fair Source */}
+                                        <div className="flex items-center justify-between mb-2">
+                                          <div className="flex items-center gap-3">
+                                            <span className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: P.textMuted }}>Conviction</span>
+                                            <span className="text-xl font-bold font-mono" style={{ color: getConvictionColor(fullConviction) }}>{fullConviction}</span>
+                                          </div>
+                                          <div className="text-[10px]" style={{ color: P.textMuted }}>
                                             Fair: <span className="font-mono" style={{ color: '#ea580c' }}>{fmtLine(prop.fairLine)}</span>
                                             <span className="ml-1">({prop.fairSource === 'pinnacle' ? 'Pinnacle' : 'consensus'})</span>
-                                          </span>
-                                          {prop.altBookHint && (
-                                            <span className="ml-2" style={{ color: '#7c3aed' }}>
-                                              {prop.altBookHint}
-                                            </span>
-                                          )}
-                                        </div>
-                                      </div>
-
-                                      {/* Compressed Pillar Bar */}
-                                      {(() => {
-                                        const gp = gamePillars[game.gameId];
-                                        const compositeVal = gp?.composite ?? (prop.gameComposite != null ? Math.round(prop.gameComposite * 100) : null);
-                                        if (!gp && compositeVal === null) {
-                                          return (
-                                            <div className="mt-3 pt-2" style={{ borderTop: `1px solid ${P.cardBorder}` }}>
-                                              <span className="text-[10px] font-mono" style={{ color: P.textFaint }}>Game context unavailable</span>
-                                            </div>
-                                          );
-                                        }
-                                        const pillarColor = (v: number) =>
-                                          v >= 60 ? P.greenText : v <= 40 ? P.redText : P.textSecondary;
-                                        if (gp) {
-                                          const pillars = [
-                                            { key: 'EXEC', val: gp.execution },
-                                            { key: 'INCV', val: gp.incentives },
-                                            { key: 'SHCK', val: gp.shocks },
-                                            { key: 'TIME', val: gp.timeDecay },
-                                            { key: 'FLOW', val: gp.flow },
-                                            { key: 'ENV', val: gp.gameEnvironment },
-                                          ];
-                                          return (
-                                            <div className="mt-3 pt-2" style={{ borderTop: `1px solid ${P.cardBorder}` }}>
-                                              <div className="flex items-center gap-1 text-[10px] font-mono flex-wrap">
-                                                <span style={{ color: P.textMuted }} className="mr-1">Game Context:</span>
-                                                {pillars.map((pl, i) => (
-                                                  <span key={pl.key}>
-                                                    <span style={{ color: P.textMuted }}>{pl.key}</span>{' '}
-                                                    <span style={{ color: pillarColor(pl.val) }}>{pl.val}</span>
-                                                    {i < pillars.length - 1 && <span style={{ color: P.textFaint }} className="mx-0.5">&middot;</span>}
-                                                  </span>
-                                                ))}
-                                                <span style={{ color: P.textFaint }} className="mx-1">&rarr;</span>
-                                                <span style={{ color: P.textMuted }}>Composite</span>{' '}
-                                                <span style={{ color: pillarColor(gp.composite) }}>{gp.composite}</span>
-                                              </div>
-                                            </div>
-                                          );
-                                        }
-                                        // Fallback: show composite from composite_history without individual pillars
-                                        return (
-                                          <div className="mt-3 pt-2" style={{ borderTop: `1px solid ${P.cardBorder}` }}>
-                                            <span className="text-[10px] font-mono" style={{ color: P.textMuted }}>
-                                              Game Composite: <span style={{ color: pillarColor(compositeVal!) }}>{compositeVal}</span>
-                                            </span>
+                                            {prop.altBookHint && (
+                                              <span className="ml-2" style={{ color: '#7c3aed' }}>{prop.altBookHint}</span>
+                                            )}
                                           </div>
-                                        );
-                                      })()}
-                                    </div>
-                                  )}
+                                        </div>
+
+                                        {/* Section 5: One-Line Narrative */}
+                                        <p className="text-xs leading-relaxed" style={{ color: P.textSecondary }}>
+                                          {narrative}
+                                        </p>
+                                      </div>
+                                    );
+                                  })()}
                                 </div>
                               );
                             })}

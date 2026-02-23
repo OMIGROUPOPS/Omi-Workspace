@@ -22,7 +22,7 @@ interface AIAssistantProps {
 const SAMPLE_PROMPTS = [
   "Why is the line moving?",
   "Explain the edge on this game",
-  "Is there sharp money?",
+  "Is there significant money flow?",
   "What's the injury report?",
 ];
 

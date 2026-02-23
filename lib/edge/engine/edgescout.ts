@@ -746,8 +746,8 @@ function calculateFDV(
     const pinnStr = formatLine(pinnacleLine);
     const bookStr = formatLine(bookLine);
     const reason = diff > 0
-      ? `${marketLabel}: Book ${bookStr} vs Pinnacle ${pinnStr} (${diff.toFixed(1)} pts off sharp)`
-      : `${marketLabel}: In line with Pinnacle at ${pinnStr}`;
+      ? `${marketLabel}: Book ${bookStr} vs fair ${pinnStr} (${diff.toFixed(1)} pts off)`
+      : `${marketLabel}: In line with fair value at ${pinnStr}`;
 
     return {
       name: 'FDV',
@@ -765,7 +765,7 @@ function calculateFDV(
       value: 0,
       score: 50,
       available: false,
-      reason: 'No Pinnacle or opening line data available',
+      reason: 'No fair line or opening line data available',
     };
   }
 

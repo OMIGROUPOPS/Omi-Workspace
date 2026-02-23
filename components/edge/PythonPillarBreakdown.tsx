@@ -73,7 +73,7 @@ const PILLAR_CONFIG = {
   incentives: { name: 'Incentives', weight: 0.10, description: 'Playoffs, motivation, rivalries' },
   shocks: { name: 'Shocks', weight: 0.25, description: 'Line movement, velocity, steam' },
   timeDecay: { name: 'Time Decay', weight: 0.10, description: 'Rest, travel, fatigue' },
-  flow: { name: 'Flow', weight: 0.25, description: 'Sharp money, book disagreement' },
+  flow: { name: 'Flow', weight: 0.25, description: 'Money flow, book disagreement' },
   gameEnvironment: { name: 'Game Env', weight: 0.10, description: 'Pace, weather, totals' },
 };
 
@@ -491,7 +491,7 @@ export function PythonPillarBreakdown({
                   {key === 'flow' && detail.breakdown && (
                     <div className="mt-2 text-[9px] text-zinc-400 space-y-0.5">
                       <div>Consensus Line: {detail.consensus_line}</div>
-                      <div>Sharp Line: {detail.sharpest_line}</div>
+                      <div>Fair Line: {detail.sharpest_line}</div>
                       <div>Book Agreement: {(detail.book_agreement * 100).toFixed(0)}%</div>
                     </div>
                   )}

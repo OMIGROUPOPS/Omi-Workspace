@@ -98,13 +98,13 @@ export function analyzeLineMovement(
 
   if (absMovement >= 2) {
     score = 85;
-    reason = `Major line move (${movement > 0 ? '+' : ''}${movement.toFixed(1)} pts) - strong sharp action on ${edgeSide}`;
+    reason = `Major line move (${movement > 0 ? '+' : ''}${movement.toFixed(1)} pts) - strong action on ${edgeSide}`;
   } else if (absMovement >= 1.5) {
     score = 75;
-    reason = `Significant move (${movement > 0 ? '+' : ''}${movement.toFixed(1)} pts) - sharp money on ${edgeSide}`;
+    reason = `Significant move (${movement > 0 ? '+' : ''}${movement.toFixed(1)} pts) - notable flow on ${edgeSide}`;
   } else if (absMovement >= 1) {
     score = 65;
-    reason = `Notable move (${movement > 0 ? '+' : ''}${movement.toFixed(1)} pts) - possible sharp action`;
+    reason = `Notable move (${movement > 0 ? '+' : ''}${movement.toFixed(1)} pts) - possible informed action`;
   } else {
     score = 55;
     reason = `Minor move (${movement > 0 ? '+' : ''}${movement.toFixed(1)} pts)`;

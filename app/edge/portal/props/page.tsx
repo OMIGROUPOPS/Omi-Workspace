@@ -330,7 +330,7 @@ interface PropSignals {
 }
 
 const SIGNAL_LABELS: { key: keyof PropSignals; label: string }[] = [
-  { key: 'sharpLine', label: 'Sharp Line' },
+  { key: 'sharpLine', label: 'Fair Line' },
   { key: 'lineMovement', label: 'Line Movement' },
   { key: 'gameContext', label: 'Game Context' },
   { key: 'priceValue', label: 'Price Value' },
@@ -416,11 +416,11 @@ function generatePropNarrative(
 ): string {
   const parts: string[] = [];
 
-  // Sharp line confirmation
+  // Fair line confirmation
   if (signals.sharpLine >= 70) {
-    parts.push(`Sharp line confirms ${opts.edgeSide}`);
+    parts.push(`Fair line confirms ${opts.edgeSide}`);
   } else if (signals.sharpLine >= 55) {
-    parts.push(`Sharp line leans ${opts.edgeSide}`);
+    parts.push(`Fair line leans ${opts.edgeSide}`);
   }
 
   // Line movement
@@ -1634,7 +1634,7 @@ export default function PlayerPropsPage() {
                                           </div>
                                           <div className="text-[10px]" style={{ color: P.textMuted }}>
                                             Fair: <span className="font-mono" style={{ color: '#ea580c' }}>{fmtLine(prop.fairLine)}</span>
-                                            <span className="ml-1">({prop.fairSource === 'pinnacle' ? 'Pinnacle' : 'consensus'})</span>
+                                            <span className="ml-1">(OMI model)</span>
                                             {prop.altBookHint && (
                                               <span className="ml-2" style={{ color: '#7c3aed' }}>{prop.altBookHint}</span>
                                             )}

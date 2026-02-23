@@ -221,7 +221,7 @@ export function LiveEdgeCard({ edge, showGameLink = true, compact = false }: Liv
           )}
           {edge.sharp_book_line !== null && edge.sharp_book_line !== undefined && (
             <span className="text-zinc-500">
-              Sharp line: <span className="text-zinc-400">{edge.sharp_book_line}</span>
+              Fair line: <span className="text-zinc-400">{edge.sharp_book_line}</span>
             </span>
           )}
         </div>

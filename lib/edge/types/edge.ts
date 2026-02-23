@@ -141,7 +141,7 @@ export const EDGE_TYPE_CONFIG = {
   exchange_divergence: {
     label: 'Sharp Divergence',
     shortLabel: 'SD',
-    description: 'Soft books off from sharp line',
+    description: 'Book off from fair line',
     icon: 'GitBranch',
     color: 'purple',
   },
@@ -219,11 +219,11 @@ export function formatEdgeDescription(edge: LiveEdge): string {
     }
     case 'exchange_divergence': {
       const pts = edge.edge_magnitude.toFixed(1);
-      return `${pts} pts off Pinnacle (sharp: ${edge.sharp_book_line})`;
+      return `${pts} pts off fair line (${edge.sharp_book_line})`;
     }
     case 'reverse_line': {
       const pts = edge.edge_magnitude.toFixed(1);
-      return `Sharp money move: ${pts} pts against public`;
+      return `Reverse line move: ${pts} pts against public`;
     }
     default:
       return config.description;

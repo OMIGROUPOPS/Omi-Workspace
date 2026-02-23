@@ -439,7 +439,7 @@ function EdgeCard({
             )}
             {edge.sharp_book_line !== null && (
               <span className="text-zinc-600">
-                vs sharp {edge.sharp_book_line > 0 ? '+' : ''}{edge.sharp_book_line}
+                vs fair {edge.sharp_book_line > 0 ? '+' : ''}{edge.sharp_book_line}
               </span>
             )}
           </div>
@@ -472,7 +472,7 @@ function EdgeCard({
             </div>
             {edge.sharp_book_line !== null && (
               <div>
-                <span className="text-zinc-500">Pinnacle Line:</span>{' '}
+                <span className="text-zinc-500">Fair Line:</span>{' '}
                 <span className="text-zinc-300">{edge.sharp_book_line}</span>
               </div>
             )}

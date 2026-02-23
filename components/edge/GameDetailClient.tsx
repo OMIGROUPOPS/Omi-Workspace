@@ -1878,7 +1878,7 @@ function WhyThisPrice({
     // Sharp money notice (Issue 4B)
     const flowScore = getScore('flow');
     if (flowScore > 60 || flowScore < 40) {
-      lines.push(`Sharp money detected (Flow: ${flowScore}). Line movement may reflect new information.`);
+      lines.push(`Significant flow detected (Flow: ${flowScore}). Line movement may reflect new information.`);
     }
 
     return lines;
@@ -2016,9 +2016,9 @@ function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | 
           : score < 40 ? `Matchup favors ${unfav} — stylistic disadvantage`
           : 'Even matchup — no clear stylistic edge';
       case 'sentiment':
-        return score > 60 ? 'Public/sharp sentiment aligns with model — market agrees'
+        return score > 60 ? 'Market sentiment aligns with model — consensus agrees'
           : score < 40 ? 'Contrarian signal — model disagrees with market sentiment'
-          : 'Mixed sentiment — public and sharp money diverge';
+          : 'Mixed sentiment — market consensus and model diverge';
       default: return '';
     }
   };
@@ -2362,7 +2362,7 @@ function AskEdgeAI({ activeMarket, activePeriod, gameContext }: AskEdgeAIProps) 
   const suggestedQuestions = [
     'Why is the line different from the book?',
     'Which pillar is driving the edge?',
-    'Is there sharp money on this game?',
+    'Is there significant money flow on this game?',
     'Explain the line movement',
   ];
 

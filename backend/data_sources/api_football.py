@@ -11,13 +11,22 @@ import requests
 from typing import Optional, Dict, Any, List
 from datetime import datetime
 
-API_FOOTBALL_KEY = os.getenv("API_FOOTBALL_KEY", "")
 BASE_URL = "https://v3.football.api-sports.io"
 
 # League IDs
 EPL_LEAGUE_ID = 39  # English Premier League
 CHAMPIONSHIP_LEAGUE_ID = 40  # English Championship
-CURRENT_SEASON = 2024  # Will need to update for 2025 season
+
+
+def _get_api_key() -> str:
+    """Read API key fresh each time (handles late-loaded env vars in Railway/Docker)."""
+    return os.getenv("API_FOOTBALL_KEY", "")
+
+
+def _get_current_season() -> int:
+    """EPL season spans Aug-May. Season 2025 means 2025-26."""
+    now = datetime.now()
+    return now.year if now.month >= 8 else now.year - 1
 
 # Team ID mappings from Odds API names to API-Football team IDs
 # Note: Different from Football-Data IDs
@@ -99,24 +108,25 @@ API_FOOTBALL_TEAM_MAPPINGS: Dict[str, int] = {
 def get_headers() -> Dict[str, str]:
     """Get headers for API-Football requests."""
     return {
-        "x-rapidapi-key": API_FOOTBALL_KEY,
+        "x-rapidapi-key": _get_api_key(),
         "x-rapidapi-host": "v3.football.api-sports.io"
     }
 
 
-def get_league_standings(league_id: int = EPL_LEAGUE_ID, season: int = CURRENT_SEASON) -> Optional[Dict[str, Any]]:
+def get_league_standings(league_id: int = EPL_LEAGUE_ID, season: int = None) -> Optional[Dict[str, Any]]:
     """
     Fetch league standings.
     SYNCHRONOUS - safe to call from FastAPI/async context.
 
     Args:
         league_id: League ID (default: EPL)
-        season: Season year (default: 2024)
+        season: Season year (default: current season, computed from date)
 
     Returns:
         Dict with standings data or None if request fails
     """
-    if not API_FOOTBALL_KEY:
+    season = season or _get_current_season()
+    if not _get_api_key():
         print("[API-FOOTBALL] No API key configured")
         return None
 
@@ -170,7 +180,7 @@ def get_league_standings(league_id: int = EPL_LEAGUE_ID, season: int = CURRENT_S
         return None
 
 
-def get_team_injuries(team_id: int, season: int = CURRENT_SEASON) -> Optional[List[Dict[str, Any]]]:
+def get_team_injuries(team_id: int, season: int = None) -> Optional[List[Dict[str, Any]]]:
     """
     Fetch injuries for a specific team.
     SYNCHRONOUS - safe to call from FastAPI/async context.
@@ -182,7 +192,8 @@ def get_team_injuries(team_id: int, season: int = CURRENT_SEASON) -> Optional[Li
     Returns:
         List of injuries or None if request fails
     """
-    if not API_FOOTBALL_KEY:
+    season = season or _get_current_season()
+    if not _get_api_key():
         print("[API-FOOTBALL] No API key configured")
         return None
 
@@ -241,7 +252,7 @@ def get_head_to_head(team1_id: int, team2_id: int, last: int = 10) -> Optional[L
     Returns:
         List of H2H matches or None if request fails
     """
-    if not API_FOOTBALL_KEY:
+    if not _get_api_key():
         print("[API-FOOTBALL] No API key configured")
         return None
 
@@ -293,7 +304,7 @@ def get_head_to_head(team1_id: int, team2_id: int, last: int = 10) -> Optional[L
         return None
 
 
-def get_team_statistics(team_id: int, league_id: int = EPL_LEAGUE_ID, season: int = CURRENT_SEASON) -> Optional[Dict[str, Any]]:
+def get_team_statistics(team_id: int, league_id: int = EPL_LEAGUE_ID, season: int = None) -> Optional[Dict[str, Any]]:
     """
     Fetch team statistics for the season.
     SYNCHRONOUS - safe to call from FastAPI/async context.
@@ -306,7 +317,8 @@ def get_team_statistics(team_id: int, league_id: int = EPL_LEAGUE_ID, season: in
     Returns:
         Team statistics or None if request fails
     """
-    if not API_FOOTBALL_KEY:
+    season = season or _get_current_season()
+    if not _get_api_key():
         print("[API-FOOTBALL] No API key configured")
         return None
 
@@ -445,7 +457,7 @@ def get_match_context(home_team: str, away_team: str) -> Dict[str, Any]:
 
 
 # Legacy aliases for backwards compatibility (all functions are now synchronous)
-def get_league_standings_sync(league_id: int = EPL_LEAGUE_ID, season: int = CURRENT_SEASON) -> Optional[Dict[str, Any]]:
+def get_league_standings_sync(league_id: int = EPL_LEAGUE_ID, season: int = None) -> Optional[Dict[str, Any]]:
     """Alias for get_league_standings (now synchronous)."""
     return get_league_standings(league_id, season)
 

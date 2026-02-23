@@ -26,6 +26,10 @@ ESPN_API_BASE_V2 = "http://site.api.espn.com/apis/v2/sports"  # Alternate base f
 # Open-Meteo Weather (free, no key needed)
 OPEN_METEO_BASE = "https://api.open-meteo.com/v1/forecast"
 
+# Football data APIs (for EPL pillar engine)
+FOOTBALL_DATA_API_KEY = os.getenv("FOOTBALL_DATA_API_KEY", "")
+API_FOOTBALL_KEY = os.getenv("API_FOOTBALL_KEY", "")
+
 # Claude API for chatbot
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 

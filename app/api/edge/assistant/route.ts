@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { spreadToWinProb, calculateEdge } from '@/lib/edge/engine/edgescout';
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 
@@ -390,13 +391,12 @@ async function buildGameContext(gameId: string, clientContext: string): Promise<
 
   // === EDGES ===
   lines.push('=== EDGES ===');
-  const rate = SPREAD_TO_PROB_RATE[sportKey] || 0.03;
   let bestEdgePct = 0;
   let bestEdgeMarket = '';
 
   if (fairSpread != null && consSpread !== undefined) {
     const gap = consSpread - fairSpread;
-    const edgePct = Math.abs(gap) * rate * 100;
+    const edgePct = calculateEdge(consSpread, fairSpread, 'spread', sportKey);
     const edgeTeam = gap > 0 ? awayTeam : homeTeam;
     const edgeTeamSpread = gap > 0 ? fmtSpread(-consSpread) : fmtSpread(consSpread);
     lines.push(`Spread Edge: ${edgePct.toFixed(1)}% favoring ${edgeTeam} ${edgeTeamSpread}`);
@@ -424,8 +424,7 @@ async function buildGameContext(gameId: string, clientContext: string): Promise<
 
   if (fairTotal != null && consTotal !== undefined) {
     const gap = fairTotal - consTotal;
-    const totalRate = rate * 0.5; // Totals are higher-variance
-    const edgePct = Math.abs(gap) * totalRate * 100;
+    const edgePct = calculateEdge(consTotal, fairTotal, 'total', sportKey);
     const direction = gap > 0 ? 'Over' : 'Under';
     lines.push(`Total Edge: ${edgePct.toFixed(1)}% favoring ${direction}`);
     lines.push(`  → BET: ${direction} ${consTotal} | OMI fair total: ${fairTotal.toFixed(1)} | Book total: ${consTotal}`);

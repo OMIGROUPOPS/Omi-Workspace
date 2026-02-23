@@ -525,22 +525,10 @@ _EDGE_CAP_DECAY = 0.3
 
 
 def _compute_edge_pct(fair_spread, book_spread, fair_total, book_total, sport_key):
-    """Calculate max edge % across spread and total markets."""
-    max_edge = 0.0
-    rate = _SPREAD_TO_PROB_RATE.get(sport_key, 0.03)
-
-    if fair_spread is not None and book_spread is not None:
-        diff = abs(float(fair_spread) - float(book_spread))
-        edge = diff * rate * 100
-        max_edge = max(max_edge, edge)
-
-    if fair_total is not None and book_total is not None:
-        total_rate = rate * 0.6
-        diff = abs(float(fair_total) - float(book_total))
-        edge = diff * total_rate * 100
-        max_edge = max(max_edge, edge)
-
-    return round(max_edge, 2) if max_edge > 0 else 0.0
+    """Calculate max edge % across spread and total markets.
+    Uses unified logistic formula from edge_calc.py."""
+    from edge_calc import calculate_max_edge
+    return calculate_max_edge(fair_spread, book_spread, fair_total, book_total, sport_key)
 
 
 def _cap_edge(raw_edge):

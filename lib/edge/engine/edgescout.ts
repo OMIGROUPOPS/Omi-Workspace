@@ -152,7 +152,7 @@ export const SPREAD_TO_PROB_RATE: Record<string, number> = {
  * The logistic curve naturally compresses toward 0 and 1 at extreme spreads,
  * preventing impossible probabilities (>1.0) that the linear model produces.
  */
-const SPREAD_TO_PROB_K: Record<string, number> = {
+export const SPREAD_TO_PROB_K: Record<string, number> = {
   'basketball_nba': 0.132,
   'basketball_ncaab': 0.120,
   'americanfootball_nfl': 0.108,
@@ -181,6 +181,59 @@ const SPREAD_TO_PROB_K: Record<string, number> = {
 export function spreadToWinProb(spread: number, sportKey: string): number {
   const k = SPREAD_TO_PROB_K[sportKey] ?? 0.120;
   return 1 / (1 + Math.exp(spread * k));
+}
+
+/**
+ * Convert American odds to implied probability (0-1).
+ * -120 → 0.5455, +150 → 0.4000
+ */
+export function americanToProb(odds: number): number {
+  if (odds < 0) return Math.abs(odds) / (Math.abs(odds) + 100);
+  return 100 / (odds + 100);
+}
+
+/**
+ * Convert implied probability (0-1) to American odds.
+ * 0.60 → -150, 0.40 → +150
+ */
+export function probToAmerican(prob: number): number {
+  const p = Math.max(0.01, Math.min(0.99, prob));
+  if (p >= 0.5) return Math.round(-100 * p / (1 - p));
+  return Math.round(100 * (1 - p) / p);
+}
+
+/**
+ * Unified edge calculation — ONE formula for the entire codebase.
+ *
+ * Edge = |fairProb - bookProb| × 100, always expressed as a logistic
+ * probability difference percentage.
+ *
+ * Spread: both sides through logistic, diff in probability.
+ * Total:  difference (bookTotal - fairTotal) through logistic vs 0.50.
+ * ML:     fairSpread through logistic vs book ML through americanToProb.
+ */
+export function calculateEdge(
+  bookValue: number,
+  fairValue: number,
+  marketType: 'spread' | 'total' | 'ml',
+  sportKey: string,
+): number {
+  if (marketType === 'ml') {
+    // fairValue = fair spread, bookValue = book American ML odds
+    const fairProb = spreadToWinProb(fairValue, sportKey);
+    const bookProb = americanToProb(bookValue);
+    return Math.abs(fairProb - bookProb) * 100;
+  }
+  if (marketType === 'total') {
+    // Treat the total difference as a "spread" — book total implies 50/50
+    const diff = bookValue - fairValue; // positive = book higher than fair → under value
+    const overProb = spreadToWinProb(diff, sportKey);
+    return Math.abs(overProb - 0.50) * 100;
+  }
+  // Spread: logistic probability difference
+  const bookProb = spreadToWinProb(bookValue, sportKey);
+  const fairProb = spreadToWinProb(fairValue, sportKey);
+  return Math.abs(fairProb - bookProb) * 100;
 }
 
 /**

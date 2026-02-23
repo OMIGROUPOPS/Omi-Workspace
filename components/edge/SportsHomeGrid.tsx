@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { SUPPORTED_SPORTS } from '@/lib/edge/utils/constants';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
-import { calculateFairSpread, calculateFairTotal, calculateFairMLFromBook, calculateFairMLFromBook3Way, calculateFairMoneyline, spreadToWinProb } from '@/lib/edge/engine/edgescout';
+import { calculateFairSpread, calculateFairTotal, calculateFairMLFromBook, calculateFairMLFromBook3Way, calculateFairMoneyline, spreadToWinProb, calculateEdge } from '@/lib/edge/engine/edgescout';
 
 // --- Light theme palette ---
 const P = {
@@ -176,10 +176,9 @@ function spreadEdgeForSide(
 function totalEdgeForSide(
   fairTotal: number, bookLine: number, bookOdds: number, sportKey: string, isOver: boolean
 ): number {
-  const rate = getProbRate(sportKey) * TOTAL_TO_PROB_FACTOR;
   const pointDiff = fairTotal - bookLine;
-  // Positive = fair total higher than book = over edge
-  const edge = Math.abs(pointDiff) * rate * 100;
+  // Logistic: treat total difference as a "spread" — book implies 50/50
+  const edge = calculateEdge(bookLine, fairTotal, 'total', sportKey);
   const sign = isOver ? (pointDiff > 0 ? 1 : -1) : (pointDiff < 0 ? 1 : -1);
   return edge * sign;
 }
@@ -211,11 +210,9 @@ function calcMaxEdge(fair: any, spreads: any, h2h: any, totals: any, sportKey: s
     maxEdge = Math.max(maxEdge, Math.abs(fairHP - normBHP) * 100);
   }
 
-  // Total edge: linear probability difference (totals don't get extreme enough to need logistic)
+  // Total edge: logistic probability difference (unified with spread)
   if (fair?.fair_total != null && totals?.line !== undefined) {
-    const totalRate = rate * TOTAL_TO_PROB_FACTOR;
-    const diff = Math.abs(fair.fair_total - totals.line);
-    maxEdge = Math.max(maxEdge, diff * totalRate * 100);
+    maxEdge = Math.max(maxEdge, calculateEdge(totals.line, fair.fair_total, 'total', sportKey));
   }
 
   return maxEdge;

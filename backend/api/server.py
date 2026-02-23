@@ -2442,9 +2442,9 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
     spread_edge_pct = 0.0
     total_edge_pct = 0.0
     if fair_spread is not None and book_spread is not None:
-        spread_edge_pct = calc_edge_pct(float(fair_spread), float(book_spread), "spread")
+        spread_edge_pct = calc_edge_pct(float(fair_spread), float(book_spread), "spread", sport_key)
     if fair_total is not None and book_total is not None:
-        total_edge_pct = calc_edge_pct(float(fair_total), float(book_total), "total")
+        total_edge_pct = calc_edge_pct(float(fair_total), float(book_total), "total", sport_key)
 
     # Pick best edge (soft-cap before signal tier mapping)
     best_edge_pct = _cap_edge_display(max(spread_edge_pct, total_edge_pct))
@@ -2521,7 +2521,7 @@ def _build_game_signal(pred: dict, comp_row: dict, live_game: dict = None,
         if fair_spread is not None and book_spread is not None:
             deviation = live_ceq_val - 50
             live_fair_spread = float(book_spread) - deviation * 0.15
-            spread_edge_pct = calc_edge_pct(live_fair_spread, float(book_spread), "spread")
+            spread_edge_pct = calc_edge_pct(live_fair_spread, float(book_spread), "spread", sport_key)
             fair_spread = round(live_fair_spread * 2) / 2
 
         best_edge_pct = _cap_edge_display(max(spread_edge_pct, total_edge_pct))

@@ -192,7 +192,8 @@ class EdgeAnalytics:
             actual_value = float(actual_value)
 
             # Edge pct
-            edge_pct = calc_edge_pct(omi_fair, book_line, market)
+            sk = grade.get("sport_key", "") or game.get("sport_key", "")
+            edge_pct = calc_edge_pct(omi_fair, book_line, market, sk)
 
             # Fair line error vs book line error
             fair_line_error = round(abs(omi_fair - actual_value), 2)

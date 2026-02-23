@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { formatOdds, formatSpread } from '@/lib/edge/utils/odds-math';
 import { isGameLive as checkGameLive, getGameState } from '@/lib/edge/utils/game-state';
 import type { CEQResult, GameCEQ, CEQConfidence, PythonPillarScores, PillarResult } from '@/lib/edge/engine/edgescout';
-import { calculateFairSpread, calculateFairTotal, calculateFairMoneyline, calculateFairMLFromBook, calculateFairMLFromBook3Way, spreadToMoneyline, removeVig, removeVig3Way, SPORT_KEY_NUMBERS, SPREAD_TO_PROB_RATE, getEdgeSignal, getEdgeSignalColor, edgeToConfidence, PROB_PER_POINT } from '@/lib/edge/engine/edgescout';
+import { calculateFairSpread, calculateFairTotal, calculateFairMoneyline, calculateFairMLFromBook, calculateFairMLFromBook3Way, spreadToMoneyline, removeVig, removeVig3Way, SPORT_KEY_NUMBERS, SPREAD_TO_PROB_RATE, getEdgeSignal, getEdgeSignalColor, edgeToConfidence, PROB_PER_POINT, spreadToWinProb, calculateEdge } from '@/lib/edge/engine/edgescout';
 
 // ============================================================================
 // Constants
@@ -1069,10 +1069,13 @@ function OmiFairPricing({
   const omiFairAwayProb = effectiveAwayML !== undefined ? americanToImplied(effectiveAwayML) : undefined;
   const omiFairDrawProb = effectiveDrawML !== undefined ? americanToImplied(effectiveDrawML) : undefined;
 
-  // Convert spread/total point edge to implied probability percentage
-  const pointsToEdgePct = (pts: number): number => {
-    const rate = SPREAD_TO_PROB_RATE[sportKey] || 0.03;
-    return Math.round(Math.abs(pts) * rate * 1000) / 10; // e.g. 0.5 pts * 0.033 = 1.65%
+  // Convert spread point gap to logistic probability difference %
+  const spreadPointsToEdgePct = (bookLine: number, fairLine: number): number => {
+    return Math.round(calculateEdge(bookLine, fairLine, 'spread', sportKey) * 10) / 10;
+  };
+  // Convert total point gap to logistic probability difference %
+  const totalPointsToEdgePct = (bookTotal: number, fairTotal: number): number => {
+    return Math.round(calculateEdge(bookTotal, fairTotal, 'total', sportKey) * 10) / 10;
   };
 
   // Edge color: positive = emerald (value), negative = red (wrong side)
@@ -1156,9 +1159,11 @@ function OmiFairPricing({
       const homeCross = homeBookLine !== undefined && fairHomeLine !== undefined ? crossesKeyNumber(homeBookLine, fairHomeLine) : null;
       const awayCross = awayBookLine !== undefined && fairAwayLine !== undefined ? crossesKeyNumber(awayBookLine, fairAwayLine) : null;
 
-      // Convert point edge to implied probability %
-      const homeEdgePct = homeSignedGap !== 0 ? (homeSignedGap > 0 ? 1 : -1) * pointsToEdgePct(homeSignedGap) : 0;
-      const awayEdgePct = awaySignedGap !== 0 ? (awaySignedGap > 0 ? 1 : -1) * pointsToEdgePct(awaySignedGap) : 0;
+      // Convert point edge to logistic probability % (signed: positive = value)
+      const homeEdgePct = homeBookLine !== undefined && fairHomeLine !== undefined
+        ? Math.round((spreadToWinProb(fairHomeLine, sportKey) - spreadToWinProb(homeBookLine, sportKey)) * 1000) / 10
+        : 0;
+      const awayEdgePct = -homeEdgePct;
 
       // Confidence: directional — side WITH edge gets full conf, other gets inverse
       const rawConf = edgeToConfidence(Math.max(Math.abs(homeEdgePct), Math.abs(awayEdgePct)));
@@ -1227,8 +1232,13 @@ function OmiFairPricing({
         ? Math.round((fairLine - bookLine) * 10) / 10 : 0;
       const underSignedGap = -overSignedGap;
 
-      // Convert point edge to probability %
-      const overEdgePct = overSignedGap !== 0 ? (overSignedGap > 0 ? 1 : -1) * pointsToEdgePct(overSignedGap) : 0;
+      // Convert total gap to logistic probability % (signed: positive = value)
+      const overEdgePct = bookLine !== undefined && fairLine !== undefined
+        ? (() => {
+            const mag = totalPointsToEdgePct(bookLine, fairLine);
+            return overSignedGap > 0 ? mag : overSignedGap < 0 ? -mag : 0;
+          })()
+        : 0;
       const underEdgePct = -overEdgePct;
 
       // Confidence: directional — side WITH edge gets full conf, other gets inverse
@@ -1400,15 +1410,16 @@ function OmiFairPricing({
       const bookLine = b.markets?.spreads?.home?.line;
       line = bookLine !== undefined ? formatSpread(bookLine) : '--';
       if (bookLine !== undefined && omiFairSpread) {
-        const ptsGap = bookLine - omiFairSpread.fairLine;
-        signedEdge = ptsGap !== 0 ? (ptsGap > 0 ? 1 : -1) * pointsToEdgePct(ptsGap) : 0;
+        // Logistic: signed edge = (fairProb - bookProb) * 100
+        signedEdge = Math.round((spreadToWinProb(omiFairSpread.fairLine, sportKey) - spreadToWinProb(bookLine, sportKey)) * 1000) / 10;
       }
     } else if (activeMarket === 'total') {
       const totalLine = b.markets?.totals?.line;
       line = totalLine !== undefined ? `${totalLine}` : '--';
       if (totalLine !== undefined && omiFairTotal) {
         const ptsGap = omiFairTotal.fairLine - totalLine;
-        signedEdge = ptsGap !== 0 ? (ptsGap > 0 ? 1 : -1) * pointsToEdgePct(ptsGap) : 0;
+        const mag = totalPointsToEdgePct(totalLine, omiFairTotal.fairLine);
+        signedEdge = ptsGap > 0 ? mag : ptsGap < 0 ? -mag : 0;
       }
     } else {
       const homeOdds = b.markets?.h2h?.home?.price;

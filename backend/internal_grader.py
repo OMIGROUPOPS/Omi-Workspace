@@ -177,27 +177,28 @@ def implied_to_american(prob: float) -> int:
     return int(100 * (1 - prob) / prob)
 
 
-def calc_edge_pct(fair_value: float, book_line: float, market_type: str = "spread") -> float:
-    """Calculate edge as implied probability percentage.
+def calc_edge_pct(fair_value: float, book_line: float, market_type: str = "spread", sport_key: str = "") -> float:
+    """Calculate edge as logistic probability percentage.
 
-    Spread: 1 point ≈ 3% win probability (PROB_PER_POINT).
-    Total:  1 point ≈ 1.5% win probability (PROB_PER_TOTAL_POINT).
-    Book odds are display-only and NOT used in edge math.
+    Uses the unified logistic formula from edge_calc.py.
+    sport_key is required for accurate k-value lookup; defaults to generic 0.120.
     """
-    point_diff = abs(fair_value - book_line)
-    rate = PROB_PER_TOTAL_POINT if market_type == "total" else PROB_PER_POINT
-    return round(point_diff * rate * 100, 1)
+    from edge_calc import calculate_edge
+    return round(calculate_edge(book_line, fair_value, market_type, sport_key), 1)
 
 
-def calc_fair_price(fair_value: float, book_line: float, market_type: str = "spread") -> int:
+def calc_fair_price(fair_value: float, book_line: float, market_type: str = "spread", sport_key: str = "") -> int:
     """Convert OMI fair value at a book's line to capped American odds.
 
-    Uses point difference → probability, then converts to American.
+    Uses logistic spread-to-probability, then converts to American.
     Caps at ±ODDS_CAP to avoid absurd display values.
     """
-    point_diff = abs(fair_value - book_line)
-    rate = PROB_PER_TOTAL_POINT if market_type == "total" else PROB_PER_POINT
-    fair_prob = 0.50 + point_diff * rate
+    from edge_calc import spread_to_win_prob
+    if market_type in ("total", "totals"):
+        diff = book_line - fair_value
+        fair_prob = spread_to_win_prob(diff, sport_key)
+    else:
+        fair_prob = spread_to_win_prob(fair_value, sport_key)
     fair_prob = min(0.95, max(0.05, fair_prob))
     raw = implied_to_american(fair_prob)
     if raw == 0:
@@ -583,7 +584,7 @@ class InternalGrader:
                     is_correct = None
 
                 # Edge as implied probability %
-                edge_pct = calc_edge_pct(fair_spread, book_spread, "spread")
+                edge_pct = calc_edge_pct(fair_spread, book_spread, "spread", sport_key)
 
                 # Confidence penalty: large gap likely means bad data, not real edge
                 if abs(fair_spread - book_spread) > 3:
@@ -648,7 +649,7 @@ class InternalGrader:
                 else:
                     actual_result = "over" if final_total > book_total else "under"
 
-                edge_pct = calc_edge_pct(fair_total, book_total, "total")
+                edge_pct = calc_edge_pct(fair_total, book_total, "total", sport_key)
 
                 # Confidence penalty: large total gap likely means bad data
                 if abs(fair_total - book_total) > 5:
@@ -1284,8 +1285,8 @@ class InternalGrader:
 
         return f"{fair_value:.1f}"
 
-    def _book_detail_implied(self, brow, fair, mtype, home, away):
-        """Extract per-book edge detail using point-to-probability model."""
+    def _book_detail_implied(self, brow, fair, mtype, home, away, sport_key=""):
+        """Extract per-book edge detail using logistic probability model."""
         if brow is None or fair is None:
             return None
         bl = brow.get("book_line")
@@ -1312,9 +1313,9 @@ class InternalGrader:
             call = f"{call_team} ML ({fp:+d})" if fp != 0 else f"{call_team} ML"
             book_offer = f"{call_team} ML {book_odds:+d}"
         else:
-            # Spread / Total: point-to-probability model
-            edge_pct = calc_edge_pct(float(fair), float(bl), mtype)
-            fp = calc_fair_price(float(fair), float(bl), mtype)
+            # Spread / Total: logistic probability model
+            edge_pct = calc_edge_pct(float(fair), float(bl), mtype, sport_key)
+            fp = calc_fair_price(float(fair), float(bl), mtype, sport_key)
 
             if mtype == "total":
                 direction = "O" if gap > 0 else "U"
@@ -1437,8 +1438,9 @@ class InternalGrader:
             home = game.get("home_team", "?")
             away = game.get("away_team", "?")
 
-            fd = self._book_detail_implied(fd_row, fair, mtype, home, away)
-            dk = self._book_detail_implied(dk_row, fair, mtype, home, away)
+            gk = game.get("sport_key", "")
+            fd = self._book_detail_implied(fd_row, fair, mtype, home, away, gk)
+            dk = self._book_detail_implied(dk_row, fair, mtype, home, away, gk)
 
             # Stale data detection — flag books with impossible line divergence
             if fd and dk:
@@ -1774,7 +1776,7 @@ class InternalGrader:
                 ]:
                     bl = blines.get("spread_line")
                     if bl is not None:
-                        edge = calc_edge_pct(fair_s, float(bl), "spread")
+                        edge = calc_edge_pct(fair_s, float(bl), "spread", sport_key)
                         signal = determine_signal(edge)
                     else:
                         edge = None
@@ -1787,8 +1789,8 @@ class InternalGrader:
                 dk_bl = dk_lines.get("spread_line")
 
                 # Stale check between books (soft-cap edges before signal tier)
-                fd_edge = _cap_edge_display(calc_edge_pct(fair_s, float(fd_bl), "spread")) if fd_bl is not None else None
-                dk_edge = _cap_edge_display(calc_edge_pct(fair_s, float(dk_bl), "spread")) if dk_bl is not None else None
+                fd_edge = _cap_edge_display(calc_edge_pct(fair_s, float(fd_bl), "spread", sport_key)) if fd_bl is not None else None
+                dk_edge = _cap_edge_display(calc_edge_pct(fair_s, float(dk_bl), "spread", sport_key)) if dk_bl is not None else None
                 fd_signal = determine_signal(fd_edge) if fd_edge is not None else None
                 dk_signal = determine_signal(dk_edge) if dk_edge is not None else None
 
@@ -1853,8 +1855,8 @@ class InternalGrader:
                 fd_bl = fd_lines.get("total_line")
                 dk_bl = dk_lines.get("total_line")
 
-                fd_edge = _cap_edge_display(calc_edge_pct(fair_t, float(fd_bl), "total")) if fd_bl is not None else None
-                dk_edge = _cap_edge_display(calc_edge_pct(fair_t, float(dk_bl), "total")) if dk_bl is not None else None
+                fd_edge = _cap_edge_display(calc_edge_pct(fair_t, float(fd_bl), "total", sport_key)) if fd_bl is not None else None
+                dk_edge = _cap_edge_display(calc_edge_pct(fair_t, float(dk_bl), "total", sport_key)) if dk_bl is not None else None
                 fd_signal = determine_signal(fd_edge) if fd_edge is not None else None
                 dk_signal = determine_signal(dk_edge) if dk_edge is not None else None
 

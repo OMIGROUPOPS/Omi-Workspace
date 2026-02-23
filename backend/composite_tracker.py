@@ -229,23 +229,9 @@ def _calculate_live_ceq(pregame_ceq: float, pregame_fair_spread: float,
 
 def _calculate_edge_pct(fair_spread, book_spread, fair_total, book_total, sport_key):
     """Calculate max edge % across spread and total markets.
-    Uses logistic probability differences for spread edge."""
-    max_edge = 0.0
-
-    if fair_spread is not None and book_spread is not None:
-        fair_prob = spread_to_win_prob(float(fair_spread), sport_key)
-        book_prob = spread_to_win_prob(float(book_spread), sport_key)
-        edge = abs(fair_prob - book_prob) * 100
-        max_edge = max(max_edge, edge)
-
-    if fair_total is not None and book_total is not None:
-        rate = SPREAD_TO_PROB_RATE.get(sport_key, 0.03)
-        total_rate = rate * 0.6  # TOTAL_TO_PROB_FACTOR
-        diff = abs(float(fair_total) - float(book_total))
-        edge = diff * total_rate * 100
-        max_edge = max(max_edge, edge)
-
-    return round(max_edge, 2)
+    Uses logistic probability differences for both spread and total."""
+    from edge_calc import calculate_max_edge
+    return calculate_max_edge(fair_spread, book_spread, fair_total, book_total, sport_key)
 
 
 def _cap_edge(raw_edge):

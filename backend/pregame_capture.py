@@ -172,10 +172,10 @@ class PregameCapture:
             total_signal = None
 
             if fair_spread is not None and book_spread is not None:
-                spread_edge = calc_edge_pct(float(fair_spread), float(book_spread), "spread")
+                spread_edge = calc_edge_pct(float(fair_spread), float(book_spread), "spread", sport)
                 spread_signal = determine_signal(spread_edge)
             if fair_total is not None and book_total is not None:
-                total_edge = calc_edge_pct(float(fair_total), float(book_total), "total")
+                total_edge = calc_edge_pct(float(fair_total), float(book_total), "total", sport)
                 total_signal = determine_signal(total_edge)
 
             hours_to_game = round((game_dt - now).total_seconds() / 3600, 2)

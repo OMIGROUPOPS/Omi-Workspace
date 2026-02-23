@@ -190,8 +190,8 @@ interface ParsedProp {
   compositeModifier: number;
   // Fair value source
   fairSource: 'pinnacle' | 'consensus';
-  // Contrarian: edge opposes significant line movement direction
-  isContrarian: boolean;
+  // Alt book hint: other book has better price on the same side
+  altBookHint: string | null;
 }
 
 interface GameWithProps {
@@ -236,6 +236,69 @@ function getEdgeTier(edgePct: number): EdgeTier {
   if (ae >= 3) return 'MID';
   if (ae >= 1) return 'LOW';
   return 'NO_EDGE';
+}
+
+// ============================================================================
+// Logistic edge calculation — prop-type-specific k-values
+// k = how much probability shifts per 1 point of line difference
+// Higher k = smaller typical lines (rebounds, TDs) where 1 pt matters more
+// Lower k = larger typical lines (pass yards, combo props) where 1 pt matters less
+// These are starting estimates — calibrate from graded prop data over time.
+// ============================================================================
+const PROP_K_VALUES: Record<string, number> = {
+  // Basketball
+  player_points: 0.15,
+  player_rebounds: 0.25,
+  player_assists: 0.25,
+  player_threes: 0.35,
+  player_steals: 0.35,
+  player_blocks: 0.35,
+  player_points_rebounds_assists: 0.08,
+  player_points_rebounds: 0.10,
+  player_points_assists: 0.10,
+  player_rebounds_assists: 0.15,
+  player_double_double: 0.50,
+  player_triple_double: 0.50,
+  // Football
+  player_pass_yds: 0.02,
+  player_pass_tds: 0.50,
+  player_pass_completions: 0.06,
+  player_pass_attempts: 0.06,
+  player_pass_interceptions: 0.50,
+  player_rush_yds: 0.04,
+  player_rush_attempts: 0.08,
+  player_reception_yds: 0.04,
+  player_receptions: 0.20,
+  player_anytime_td: 0.50,
+  // Hockey
+  player_goals: 0.50,
+  player_shots_on_goal: 0.25,
+  player_blocked_shots: 0.35,
+  player_power_play_points: 0.40,
+  // Baseball
+  pitcher_strikeouts: 0.15,
+  batter_hits: 0.30,
+  batter_home_runs: 0.50,
+  batter_total_bases: 0.15,
+  batter_rbis: 0.30,
+  // Soccer
+  player_goal_scorer_anytime: 0.50,
+  player_shots: 0.25,
+  player_tackles: 0.25,
+};
+
+/**
+ * Logistic prop edge: converts line difference to probability edge.
+ * Uses the same logistic approach as game-level spread→ML conversion.
+ * Returns edge% (0-50 range) and side (Over/Under).
+ */
+function propEdgeLogistic(bookLine: number, fairLine: number, propType: string): { edgePct: number; side: 'Over' | 'Under' } {
+  const k = PROP_K_VALUES[propType] ?? 0.15;
+  const diff = fairLine - bookLine; // positive = fair higher = Over easier on the book line
+  const fairProb = 1 / (1 + Math.exp(-diff * k));
+  const edgePct = Math.abs(fairProb - 0.50) * 100;
+  const side: 'Over' | 'Under' = diff > 0 ? 'Over' : 'Under';
+  return { edgePct, side };
 }
 
 // Game composite modifier: boosts edge when pillar analysis agrees with direction
@@ -527,6 +590,17 @@ export default function PlayerPropsPage() {
     composite: number;
   }>>({});
   const [minCEQ, setMinCEQ] = useState(55);
+  const [selectedBook, setSelectedBook] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('omi_prop_book') || 'fanduel';
+    }
+    return 'fanduel';
+  });
+
+  // Persist book selection
+  useEffect(() => {
+    localStorage.setItem('omi_prop_book', selectedBook);
+  }, [selectedBook]);
 
   const fetchPropsFromCachedOdds = useCallback(async () => {
     setLoading(true);
@@ -683,81 +757,46 @@ export default function PlayerPropsPage() {
             ? pinnacleEntry.line
             : median(retailEntries.map(e => e.line));
 
-          // Find best edge across all retail entries and sides
+          // ── Edge calculation: selected book only ──
+          // Find entry for the user's selected book
+          const myEntry = retailEntries.find(e => e.book.toLowerCase() === selectedBook);
+          if (!myEntry) continue; // selected book doesn't offer this prop
+
           let bestEdgePct = 0;
           let bestEdgeSide: 'Over' | 'Under' | null = null;
-          let bestEdgeBook = '';
           let bestEdgeOdds = 0;
-          let bestEdgeLine = 0;
 
-          for (const entry of retailEntries) {
-            const lineDiff = entry.line - fairLine;
+          const lineDiff = myEntry.line - fairLine;
 
-            if (Math.abs(lineDiff) >= 0.5) {
-              // Line differs from fair value: edge = |diff| × 3% per point
-              const edgePct = Math.abs(lineDiff) * 3;
-              // book_line < fair → Over is easier to hit → Over edge
-              // book_line > fair → Under is easier to hit → Under edge
-              const side: 'Over' | 'Under' = lineDiff < 0 ? 'Over' : 'Under';
-              const odds = side === 'Over' ? entry.overOdds : entry.underOdds;
-
-              if (odds && edgePct > bestEdgePct) {
-                bestEdgePct = edgePct;
-                bestEdgeSide = side;
-                bestEdgeBook = entry.book;
-                bestEdgeOdds = odds;
-                bestEdgeLine = entry.line;
+          if (Math.abs(lineDiff) >= 0.25) {
+            // Line differs from fair: use logistic probability edge
+            const { edgePct, side } = propEdgeLogistic(myEntry.line, fairLine, group.propType);
+            const odds = side === 'Over' ? myEntry.overOdds : myEntry.underOdds;
+            if (odds && edgePct > 0.5) {
+              bestEdgePct = edgePct;
+              bestEdgeSide = side;
+              bestEdgeOdds = odds;
+            }
+          } else if (pinnacleEntry) {
+            // Same line — compare implied probabilities vs Pinnacle
+            if (myEntry.overOdds && pinnacleEntry.overOdds) {
+              const retailProb = oddsToProb(myEntry.overOdds);
+              const sharpProb = oddsToProb(pinnacleEntry.overOdds);
+              const edge = (sharpProb - retailProb) * 100;
+              if (edge > bestEdgePct) {
+                bestEdgePct = edge;
+                bestEdgeSide = 'Over';
+                bestEdgeOdds = myEntry.overOdds;
               }
-            } else {
-              // Same line — compare implied probabilities
-              if (pinnacleEntry) {
-                // Compare retail odds vs Pinnacle (sharp reference)
-                if (entry.overOdds && pinnacleEntry.overOdds) {
-                  const retailProb = oddsToProb(entry.overOdds);
-                  const sharpProb = oddsToProb(pinnacleEntry.overOdds);
-                  // Positive edge = retail offers better odds than sharp
-                  const edge = (sharpProb - retailProb) * 100;
-                  if (edge > bestEdgePct) {
-                    bestEdgePct = edge;
-                    bestEdgeSide = 'Over';
-                    bestEdgeBook = entry.book;
-                    bestEdgeOdds = entry.overOdds;
-                    bestEdgeLine = entry.line;
-                  }
-                }
-                if (entry.underOdds && pinnacleEntry.underOdds) {
-                  const retailProb = oddsToProb(entry.underOdds);
-                  const sharpProb = oddsToProb(pinnacleEntry.underOdds);
-                  const edge = (sharpProb - retailProb) * 100;
-                  if (edge > bestEdgePct) {
-                    bestEdgePct = edge;
-                    bestEdgeSide = 'Under';
-                    bestEdgeBook = entry.book;
-                    bestEdgeOdds = entry.underOdds;
-                    bestEdgeLine = entry.line;
-                  }
-                }
-              } else if (retailEntries.length > 1) {
-                // No Pinnacle — cross-book comparison on same line
-                for (const side of ['Over', 'Under'] as const) {
-                  const oddsKey = side === 'Over' ? 'overOdds' : 'underOdds';
-                  const sameLineOdds = retailEntries
-                    .filter(e => Math.abs(e.line - entry.line) < 0.25 && e[oddsKey] !== null)
-                    .map(e => ({ book: e.book, odds: e[oddsKey]!, line: e.line }));
-
-                  if (sameLineOdds.length >= 2) {
-                    const best = sameLineOdds.reduce((a, b) => a.odds > b.odds ? a : b);
-                    const worst = sameLineOdds.reduce((a, b) => a.odds < b.odds ? a : b);
-                    const edge = (oddsToProb(worst.odds) - oddsToProb(best.odds)) * 100;
-                    if (edge > bestEdgePct) {
-                      bestEdgePct = edge;
-                      bestEdgeSide = side;
-                      bestEdgeBook = best.book;
-                      bestEdgeOdds = best.odds;
-                      bestEdgeLine = best.line;
-                    }
-                  }
-                }
+            }
+            if (myEntry.underOdds && pinnacleEntry.underOdds) {
+              const retailProb = oddsToProb(myEntry.underOdds);
+              const sharpProb = oddsToProb(pinnacleEntry.underOdds);
+              const edge = (sharpProb - retailProb) * 100;
+              if (edge > bestEdgePct) {
+                bestEdgePct = edge;
+                bestEdgeSide = 'Under';
+                bestEdgeOdds = myEntry.underOdds;
               }
             }
           }
@@ -776,7 +815,7 @@ export default function PlayerPropsPage() {
           // Apply min confidence filter
           if (confidence < minCEQ) continue;
 
-          // Build retail odds arrays for display
+          // Build retail odds arrays for display (all books for reference)
           const retailOverOdds = retailEntries
             .filter(e => e.overOdds !== null)
             .map(e => ({ book: e.book, odds: e.overOdds!, line: e.line }));
@@ -784,13 +823,18 @@ export default function PlayerPropsPage() {
             .filter(e => e.underOdds !== null)
             .map(e => ({ book: e.book, odds: e.underOdds!, line: e.line }));
 
-          // Contrarian: edge direction opposes significant line movement
-          // If book line moved >=2pts from fair value AND edge opposes that movement
-          const lineDelta = bestEdgeLine - fairLine;
-          const isContrarian = Math.abs(lineDelta) >= 2 && (
-            (lineDelta > 0 && bestEdgeSide === 'Under') || // line moved UP, model says Under
-            (lineDelta < 0 && bestEdgeSide === 'Over')     // line moved DOWN, model says Over
-          );
+          // Check if the OTHER book has a better price on the same side
+          let altBookHint: string | null = null;
+          const otherBook = selectedBook === 'fanduel' ? 'draftkings' : 'fanduel';
+          const otherEntry = retailEntries.find(e => e.book.toLowerCase() === otherBook);
+          if (otherEntry && bestEdgeSide) {
+            const myOdds = bestEdgeSide === 'Over' ? myEntry.overOdds : myEntry.underOdds;
+            const otherOdds = bestEdgeSide === 'Over' ? otherEntry.overOdds : otherEntry.underOdds;
+            if (myOdds && otherOdds && otherOdds > myOdds) {
+              const otherLabel = otherBook === 'fanduel' ? 'FD' : 'DK';
+              altBookHint = `Better price on ${otherLabel}: ${otherOdds > 0 ? '+' : ''}${otherOdds}`;
+            }
+          }
 
           const parsedProp: ParsedProp = {
             player: group.player,
@@ -806,12 +850,12 @@ export default function PlayerPropsPage() {
             edgeCEQ: confidence,
             edgeTier: tier,
             edgeOdds: bestEdgeOdds,
-            edgeBook: bestEdgeBook,
-            edgeLine: bestEdgeLine,
+            edgeBook: myEntry.book,
+            edgeLine: myEntry.line,
             gameComposite,
             compositeModifier: modifier,
             fairSource: hasPinnacle ? 'pinnacle' : 'consensus',
-            isContrarian,
+            altBookHint,
           };
 
           // Group by prop type
@@ -858,7 +902,7 @@ export default function PlayerPropsPage() {
     } finally {
       setLoading(false);
     }
-  }, [selectedSport, minCEQ]);
+  }, [selectedSport, minCEQ, selectedBook]);
 
   useEffect(() => {
     fetchPropsFromCachedOdds();
@@ -994,7 +1038,7 @@ export default function PlayerPropsPage() {
             Player Props
           </h1>
           <p className="text-sm mt-1" style={{ color: P.textSecondary }}>
-            Edges on player prop markets (FanDuel & DraftKings)
+            Fair lines vs your book — ranked by edge size
           </p>
         </div>
 
@@ -1017,8 +1061,28 @@ export default function PlayerPropsPage() {
         </div>
       </div>
 
-      {/* Filters Row */}
+      {/* Book Toggle + Filters Row */}
       <div className="flex flex-wrap items-center gap-4 mb-6">
+        {/* Book Toggle */}
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-medium" style={{ color: P.textMuted }}>My Book:</span>
+          <div className="flex gap-0 rounded-lg overflow-hidden" style={{ border: `1px solid ${P.cardBorder}` }}>
+            {[{ key: 'fanduel', label: 'FanDuel' }, { key: 'draftkings', label: 'DraftKings' }].map((book) => (
+              <button
+                key={book.key}
+                onClick={() => setSelectedBook(book.key)}
+                className="px-3 py-1.5 text-xs font-semibold transition-colors"
+                style={selectedBook === book.key
+                  ? { background: '#7c3aed', color: '#ffffff' }
+                  : { background: P.cardBg, color: P.textSecondary }
+                }
+              >
+                {book.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="flex items-center gap-2">
           <Filter className="w-4 h-4" style={{ color: P.textMuted }} />
           <div className="flex gap-1 flex-wrap">
@@ -1178,12 +1242,12 @@ export default function PlayerPropsPage() {
                           </div>
 
                           {/* Table Header */}
-                          <div className="hidden lg:grid gap-0 px-3 py-1.5 text-[10px] font-medium uppercase tracking-wide" style={{ gridTemplateColumns: '3fr 1fr 2.5fr 2.5fr 2fr 1fr', color: P.textMuted }}>
+                          <div className="hidden lg:grid gap-0 px-3 py-1.5 text-[10px] font-medium uppercase tracking-wide" style={{ gridTemplateColumns: '3fr 1fr 1.5fr 1.5fr 2.5fr 1fr', color: P.textMuted }}>
                             <div>Player</div>
-                            <div className="text-center">Line</div>
-                            <div className="text-center">Over (FD / DK)</div>
-                            <div className="text-center">Under (FD / DK)</div>
-                            <div className="text-center">Best Edge</div>
+                            <div className="text-center">Fair</div>
+                            <div className="text-center">Over</div>
+                            <div className="text-center">Under</div>
+                            <div className="text-center">Edge</div>
                             <div className="text-center">Conf</div>
                           </div>
 
@@ -1195,15 +1259,9 @@ export default function PlayerPropsPage() {
                               const history = propHistory[propKey];
                               const isLoadingHist = loadingHistory.has(propKey);
 
-                              // Find FD and DK odds for over and under
-                              const fdOver = prop.retailOverOdds.find(o => o.book.toLowerCase() === 'fanduel');
-                              const dkOver = prop.retailOverOdds.find(o => o.book.toLowerCase() === 'draftkings');
-                              const fdUnder = prop.retailUnderOdds.find(o => o.book.toLowerCase() === 'fanduel');
-                              const dkUnder = prop.retailUnderOdds.find(o => o.book.toLowerCase() === 'draftkings');
-
-                              // Determine best over/under odds for highlighting
-                              const bestOverOdds = fdOver && dkOver ? (fdOver.odds >= dkOver.odds ? 'fd' : 'dk') : fdOver ? 'fd' : dkOver ? 'dk' : null;
-                              const bestUnderOdds = fdUnder && dkUnder ? (fdUnder.odds >= dkUnder.odds ? 'fd' : 'dk') : fdUnder ? 'fd' : dkUnder ? 'dk' : null;
+                              // Selected book odds
+                              const myOver = prop.retailOverOdds.find(o => o.book.toLowerCase() === selectedBook);
+                              const myUnder = prop.retailUnderOdds.find(o => o.book.toLowerCase() === selectedBook);
 
                               return (
                                 <div key={`${prop.player}-${prop.fairLine}-${idx}`}>
@@ -1214,7 +1272,7 @@ export default function PlayerPropsPage() {
                                     style={{ background: isPropExpanded ? P.neutralBg : idx % 2 === 0 ? P.neutralBg : P.cardBg }}
                                   >
                                     {/* Desktop layout */}
-                                    <div className="hidden lg:grid gap-0 px-3 py-2 items-center" style={{ gridTemplateColumns: '3fr 1fr 2.5fr 2.5fr 2fr 1fr' }}>
+                                    <div className="hidden lg:grid gap-0 px-3 py-2 items-center" style={{ gridTemplateColumns: '3fr 1fr 1.5fr 1.5fr 2.5fr 1fr' }}>
                                       {/* Player */}
                                       <div className="flex items-center gap-2">
                                         <ChevronRight className={`w-3 h-3 transition-transform flex-shrink-0 ${isPropExpanded ? 'rotate-90' : ''}`} style={{ color: P.textMuted }} />
@@ -1225,46 +1283,39 @@ export default function PlayerPropsPage() {
 
                                       {/* Fair Line */}
                                       <div className="text-center">
-                                        <span className="text-sm font-mono" style={{ color: P.textPrimary }}>{prop.fairLine}</span>
+                                        <span className="text-sm font-mono" style={{ color: '#ea580c' }}>{prop.fairLine}</span>
                                       </div>
 
-                                      {/* Over (FD / DK) */}
-                                      <div className="text-center flex items-center justify-center gap-2">
-                                        <span className="text-xs font-mono" style={{ color: bestOverOdds === 'fd' ? P.greenText : P.textSecondary }}>
-                                          {fdOver ? `FD ${formatOdds(fdOver.odds)}` : <span style={{ color: P.textFaint }}>FD —</span>}
-                                        </span>
-                                        <span className="text-[10px]" style={{ color: P.textFaint }}>/</span>
-                                        <span className="text-xs font-mono" style={{ color: bestOverOdds === 'dk' ? P.greenText : P.textSecondary }}>
-                                          {dkOver ? `DK ${formatOdds(dkOver.odds)}` : <span style={{ color: P.textFaint }}>DK —</span>}
+                                      {/* Over odds (selected book) */}
+                                      <div className="text-center">
+                                        <span className="text-xs font-mono" style={{ color: prop.edgeSide === 'Over' ? P.greenText : P.textSecondary }}>
+                                          {myOver ? `O ${formatOdds(myOver.odds)}` : '—'}
                                         </span>
                                       </div>
 
-                                      {/* Under (FD / DK) */}
-                                      <div className="text-center flex items-center justify-center gap-2">
-                                        <span className="text-xs font-mono" style={{ color: bestUnderOdds === 'fd' ? P.greenText : P.textSecondary }}>
-                                          {fdUnder ? `FD ${formatOdds(fdUnder.odds)}` : <span style={{ color: P.textFaint }}>FD —</span>}
-                                        </span>
-                                        <span className="text-[10px]" style={{ color: P.textFaint }}>/</span>
-                                        <span className="text-xs font-mono" style={{ color: bestUnderOdds === 'dk' ? P.greenText : P.textSecondary }}>
-                                          {dkUnder ? `DK ${formatOdds(dkUnder.odds)}` : <span style={{ color: P.textFaint }}>DK —</span>}
+                                      {/* Under odds (selected book) */}
+                                      <div className="text-center">
+                                        <span className="text-xs font-mono" style={{ color: prop.edgeSide === 'Under' ? P.greenText : P.textSecondary }}>
+                                          {myUnder ? `U ${formatOdds(myUnder.odds)}` : '—'}
                                         </span>
                                       </div>
 
-                                      {/* Best Edge */}
+                                      {/* Edge */}
                                       <div className="text-center">
                                         <div className="flex items-center justify-center gap-1">
                                           <span className="text-xs font-semibold" style={{ color: P.textPrimary }}>
                                             {prop.edgeSide} {prop.edgeLine}
                                           </span>
-                                          <span className="text-[10px]" style={{ color: P.textMuted }}>@{formatBook(prop.edgeBook)}</span>
-                                          {prop.isContrarian && (
-                                            <span className="text-[9px] font-bold px-1 py-px rounded" style={{ color: '#b45309', background: '#fef3c7', border: '1px solid #fcd34d' }}>
-                                              CTR
+                                        </div>
+                                        <div className="flex items-center justify-center gap-1">
+                                          <span className={`text-[10px] ${EDGE_TIER_COLORS[prop.edgeTier]}`}>
+                                            {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
+                                          </span>
+                                          {prop.altBookHint && (
+                                            <span className="text-[9px] px-1 py-px rounded" style={{ color: '#7c3aed', background: '#f3e8ff', border: '1px solid #c4b5fd' }}>
+                                              ALT
                                             </span>
                                           )}
-                                        </div>
-                                        <div className={`text-[10px] ${EDGE_TIER_COLORS[prop.edgeTier]}`}>
-                                          {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
                                         </div>
                                       </div>
 
@@ -1293,18 +1344,13 @@ export default function PlayerPropsPage() {
                                         </div>
                                       </div>
                                       <div className="flex items-center gap-3 text-xs pl-5">
-                                        <span className="font-mono" style={{ color: P.textPrimary }}>{prop.fairLine}</span>
+                                        <span className="font-mono" style={{ color: '#ea580c' }}>{prop.fairLine}</span>
                                         <span className="font-semibold" style={{ color: P.textPrimary }}>
-                                          {prop.edgeSide} {prop.edgeLine} @{formatBook(prop.edgeBook)}
+                                          {prop.edgeSide} {prop.edgeLine}
                                         </span>
                                         <span className={EDGE_TIER_COLORS[prop.edgeTier]}>
                                           {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
                                         </span>
-                                        {prop.isContrarian && (
-                                          <span className="text-[9px] font-bold px-1 py-px rounded" style={{ color: '#b45309', background: '#fef3c7', border: '1px solid #fcd34d' }}>
-                                            CTR
-                                          </span>
-                                        )}
                                       </div>
                                     </div>
                                   </div>
@@ -1312,18 +1358,16 @@ export default function PlayerPropsPage() {
                                   {/* Expandable Detail Panel */}
                                   {isPropExpanded && (
                                     <div className="px-4 py-3" style={{ background: P.chartBg, borderTop: `1px solid ${P.cardBorder}` }}>
-                                      {/* Line History Chart or Comparison Bar */}
-                                      <div className="mb-3">
-                                        {isLoadingHist ? (
-                                          <div className="flex items-center justify-center py-6">
-                                            <RefreshCw className="w-4 h-4 animate-spin" style={{ color: P.textMuted }} />
-                                          </div>
-                                        ) : history && history.length > 1 ? (
+                                      {/* Line History Chart — only show with 3+ meaningful data points */}
+                                      {isLoadingHist ? (
+                                        <div className="flex items-center justify-center py-4 mb-3">
+                                          <RefreshCw className="w-4 h-4 animate-spin" style={{ color: P.textMuted }} />
+                                        </div>
+                                      ) : history && history.length >= 3 ? (
+                                        <div className="mb-3">
                                           <PropLineChart data={history} fairLine={prop.fairLine} fairSource={prop.fairSource} />
-                                        ) : (
-                                          <PropComparisonBar prop={prop} />
-                                        )}
-                                      </div>
+                                        </div>
+                                      ) : null}
 
                                       {/* Detail Row */}
                                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
@@ -1341,94 +1385,84 @@ export default function PlayerPropsPage() {
                                           </div>
                                         )}
 
-                                        {/* Book odds summary */}
+                                        {/* Selected book odds */}
                                         <div style={{ color: P.textSecondary }}>
-                                          <span style={{ color: P.textMuted }}>FD:</span>{' '}
-                                          <span className="font-mono" style={{ color: P.greenText }}>O {fdOver ? formatOdds(fdOver.odds) : '—'}</span>
-                                          <span style={{ color: P.textFaint }} className="mx-1">/</span>
-                                          <span className="font-mono" style={{ color: P.redText }}>U {fdUnder ? formatOdds(fdUnder.odds) : '—'}</span>
-                                          <span style={{ color: P.neutralBorder }} className="mx-2">|</span>
-                                          <span style={{ color: P.textMuted }}>DK:</span>{' '}
-                                          <span className="font-mono" style={{ color: P.greenText }}>O {dkOver ? formatOdds(dkOver.odds) : '—'}</span>
-                                          <span style={{ color: P.textFaint }} className="mx-1">/</span>
-                                          <span className="font-mono" style={{ color: P.redText }}>U {dkUnder ? formatOdds(dkUnder.odds) : '—'}</span>
-                                        </div>
-
-                                        {/* Best edge + fair source + contrarian */}
-                                        <div style={{ color: P.textSecondary }}>
-                                          <span style={{ color: P.textMuted }}>Best:</span>{' '}
                                           <span className="font-semibold" style={{ color: P.textPrimary }}>
-                                            {formatBook(prop.edgeBook)} {prop.edgeSide} {prop.edgeLine} {formatOdds(prop.edgeOdds)}
+                                            {prop.edgeSide} {prop.edgeLine} {formatOdds(prop.edgeOdds)}
                                           </span>
                                           <span className={`ml-1 ${EDGE_TIER_COLORS[prop.edgeTier]}`}>
                                             {prop.edgePct.toFixed(1)}% {EDGE_TIER_LABELS[prop.edgeTier]}
                                           </span>
-                                          {prop.isContrarian && (
-                                            <span className="ml-1.5 text-[10px] font-bold px-1 py-px rounded" style={{ color: '#b45309', background: '#fef3c7', border: '1px solid #fcd34d' }}>
-                                              CONTRARIAN
-                                            </span>
-                                          )}
                                           {prop.compositeModifier > 1.0 && (
                                             <span className="ml-1" style={{ color: P.textMuted }}>
-                                              (game composite boost)
+                                              (+{Math.round((prop.compositeModifier - 1) * 100)}% game boost)
                                             </span>
                                           )}
                                         </div>
-                                      </div>
 
-                                      {/* Fair source + contrarian context */}
-                                      <div className="flex items-center gap-3 mt-2 text-[10px]">
-                                        <span style={{ color: P.textMuted }}>
-                                          Fair: <span className="font-mono" style={{ color: P.textSecondary }}>{fmtLine(prop.fairLine)}</span>
-                                          <span className="ml-1" style={{ color: P.textMuted }}>({prop.fairSource === 'pinnacle' ? 'PIN current' : 'consensus'})</span>
-                                        </span>
-                                        {prop.isContrarian && history && history.length > 1 && (
-                                          <span style={{ color: '#b45309' }}>
-                                            Line moved {history[history.length - 1].line - history[0].line > 0 ? '+' : ''}{(history[history.length - 1].line - history[0].line).toFixed(1)} but model says {prop.edgeSide}
+                                        {/* Fair source + alt book hint */}
+                                        <div style={{ color: P.textSecondary }}>
+                                          <span style={{ color: P.textMuted }}>
+                                            Fair: <span className="font-mono" style={{ color: '#ea580c' }}>{fmtLine(prop.fairLine)}</span>
+                                            <span className="ml-1">({prop.fairSource === 'pinnacle' ? 'Pinnacle' : 'consensus'})</span>
                                           </span>
-                                        )}
-                                        {prop.isContrarian && !(history && history.length > 1) && (
-                                          <span style={{ color: '#b45309' }}>
-                                            Book line {prop.edgeLine} vs fair {prop.fairLine} ({prop.edgeLine > prop.fairLine ? '+' : ''}{(prop.edgeLine - prop.fairLine).toFixed(1)}), model says {prop.edgeSide}
-                                          </span>
-                                        )}
+                                          {prop.altBookHint && (
+                                            <span className="ml-2" style={{ color: '#7c3aed' }}>
+                                              {prop.altBookHint}
+                                            </span>
+                                          )}
+                                        </div>
                                       </div>
 
                                       {/* Compressed Pillar Bar */}
-                                      {gamePillars[game.gameId] ? (() => {
+                                      {(() => {
                                         const gp = gamePillars[game.gameId];
-                                        const pillars = [
-                                          { key: 'EXEC', val: gp.execution },
-                                          { key: 'INCV', val: gp.incentives },
-                                          { key: 'SHCK', val: gp.shocks },
-                                          { key: 'TIME', val: gp.timeDecay },
-                                          { key: 'FLOW', val: gp.flow },
-                                          { key: 'ENV', val: gp.gameEnvironment },
-                                        ];
+                                        const compositeVal = gp?.composite ?? (prop.gameComposite != null ? Math.round(prop.gameComposite * 100) : null);
+                                        if (!gp && compositeVal === null) {
+                                          return (
+                                            <div className="mt-3 pt-2" style={{ borderTop: `1px solid ${P.cardBorder}` }}>
+                                              <span className="text-[10px] font-mono" style={{ color: P.textFaint }}>Game context unavailable</span>
+                                            </div>
+                                          );
+                                        }
                                         const pillarColor = (v: number) =>
                                           v >= 60 ? P.greenText : v <= 40 ? P.redText : P.textSecondary;
+                                        if (gp) {
+                                          const pillars = [
+                                            { key: 'EXEC', val: gp.execution },
+                                            { key: 'INCV', val: gp.incentives },
+                                            { key: 'SHCK', val: gp.shocks },
+                                            { key: 'TIME', val: gp.timeDecay },
+                                            { key: 'FLOW', val: gp.flow },
+                                            { key: 'ENV', val: gp.gameEnvironment },
+                                          ];
+                                          return (
+                                            <div className="mt-3 pt-2" style={{ borderTop: `1px solid ${P.cardBorder}` }}>
+                                              <div className="flex items-center gap-1 text-[10px] font-mono flex-wrap">
+                                                <span style={{ color: P.textMuted }} className="mr-1">Game Context:</span>
+                                                {pillars.map((pl, i) => (
+                                                  <span key={pl.key}>
+                                                    <span style={{ color: P.textMuted }}>{pl.key}</span>{' '}
+                                                    <span style={{ color: pillarColor(pl.val) }}>{pl.val}</span>
+                                                    {i < pillars.length - 1 && <span style={{ color: P.textFaint }} className="mx-0.5">&middot;</span>}
+                                                  </span>
+                                                ))}
+                                                <span style={{ color: P.textFaint }} className="mx-1">&rarr;</span>
+                                                <span style={{ color: P.textMuted }}>Composite</span>{' '}
+                                                <span style={{ color: pillarColor(gp.composite) }}>{gp.composite}</span>
+                                              </div>
+                                            </div>
+                                          );
+                                        }
+                                        // Fallback: show composite from composite_history without individual pillars
                                         return (
                                           <div className="mt-3 pt-2" style={{ borderTop: `1px solid ${P.cardBorder}` }}>
-                                            <div className="flex items-center gap-1 text-[10px] font-mono flex-wrap">
-                                              <span style={{ color: P.textMuted }} className="mr-1">Game Context:</span>
-                                              {pillars.map((pl, i) => (
-                                                <span key={pl.key}>
-                                                  <span style={{ color: P.textMuted }}>{pl.key}</span>{' '}
-                                                  <span style={{ color: pillarColor(pl.val) }}>{pl.val}</span>
-                                                  {i < pillars.length - 1 && <span style={{ color: P.textFaint }} className="mx-0.5">&middot;</span>}
-                                                </span>
-                                              ))}
-                                              <span style={{ color: P.textFaint }} className="mx-1">&rarr;</span>
-                                              <span style={{ color: P.textMuted }}>Composite</span>{' '}
-                                              <span style={{ color: pillarColor(gp.composite) }}>{gp.composite}</span>
-                                            </div>
+                                            <span className="text-[10px] font-mono" style={{ color: P.textMuted }}>
+                                              Game Composite: <span style={{ color: pillarColor(compositeVal!) }}>{compositeVal}</span>
+                                            </span>
                                           </div>
                                         );
-                                      })() : (
-                                        <div className="mt-3 pt-2" style={{ borderTop: `1px solid ${P.cardBorder}` }}>
-                                          <span className="text-[10px] font-mono" style={{ color: P.textFaint }}>Game context unavailable</span>
-                                        </div>
-                                      )}
+                                      })()}
                                     </div>
                                   )}
                                 </div>

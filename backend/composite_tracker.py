@@ -688,8 +688,9 @@ class CompositeTracker:
     def _fetch_latest_composites(self, game_ids: list) -> dict:
         """
         Batch-fetch the most recent composite_history row per game_id.
-        Returns {game_id: {book_spread, book_total, timestamp}}.
+        Returns {game_id: {full row including fair_spread, fair_total, etc.}}.
         Single query + Python dedup avoids N per-game queries.
+        All columns are fetched so carry-forward can propagate fair lines.
         """
         if not game_ids:
             return {}
@@ -699,7 +700,7 @@ class CompositeTracker:
             for i in range(0, len(game_ids), chunk_size):
                 chunk = game_ids[i:i + chunk_size]
                 result = db.client.table("composite_history").select(
-                    "game_id, book_spread, book_total, timestamp"
+                    "*"
                 ).in_("game_id", chunk).order(
                     "timestamp", desc=True
                 ).execute()

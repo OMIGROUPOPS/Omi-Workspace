@@ -1169,6 +1169,9 @@ class PMWebSocket:
         self.connected = False
         self.reconnect_delay = WS_RECONNECT_DELAY_INITIAL
         self.on_spread_detected = None  # Callback for spread detection
+        # Subscription health tracking
+        self._subscribed_slugs: set = set()
+        self._slug_last_data: Dict[str, float] = {}  # slug -> last data timestamp
 
     def _sign(self, ts: str, method: str, path: str) -> str:
         """Sign message with Ed25519"""
@@ -1211,25 +1214,81 @@ class PMWebSocket:
             return False
 
     async def subscribe(self, slugs: List[str]):
-        """Subscribe to market data for given slugs"""
+        """Subscribe to market data in batches of 10 to avoid server limits"""
         if not self.connected or not self.ws:
             return False
 
-        subscribe_msg = {
-            "subscribe": {
-                "request_id": "arb-executor-sub",
-                "subscription_type": 1,  # MARKET_DATA (full orderbook)
-                "market_slugs": slugs
-            }
-        }
+        BATCH_SIZE = 10
+        total = len(slugs)
+        ok = 0
 
-        try:
-            await self.ws.send(json.dumps(subscribe_msg))
-            print(f"[PM WS] Subscribed to {len(slugs)} markets")
-            return True
-        except Exception as e:
-            print(f"[PM WS] Subscribe failed: {e}")
-            return False
+        for i in range(0, total, BATCH_SIZE):
+            batch = slugs[i:i + BATCH_SIZE]
+            subscribe_msg = {
+                "subscribe": {
+                    "request_id": f"arb-sub-{i // BATCH_SIZE}",
+                    "subscription_type": 1,  # MARKET_DATA (full orderbook)
+                    "market_slugs": batch
+                }
+            }
+            try:
+                await self.ws.send(json.dumps(subscribe_msg))
+                ok += len(batch)
+                self._subscribed_slugs.update(batch)
+                if i + BATCH_SIZE < total:
+                    await asyncio.sleep(0.3)  # 300ms between batches
+            except Exception as e:
+                print(f"[PM WS] Subscribe batch {i // BATCH_SIZE} failed: {e}")
+                return False
+
+        print(f"[PM WS] Subscribed to {ok}/{total} markets in {(total + BATCH_SIZE - 1) // BATCH_SIZE} batches")
+        return True
+
+    async def log_subscription_health(self, delay: float = 5.0):
+        """After subscribing, wait and report which markets responded"""
+        await asyncio.sleep(delay)
+        responding = set()
+        silent = set()
+        for slug in self._subscribed_slugs:
+            if slug in self._slug_last_data:
+                responding.add(slug)
+            else:
+                silent.add(slug)
+        print(f"[PM WS HEALTH] {len(responding)}/{len(self._subscribed_slugs)} markets responding after {delay}s")
+        if silent:
+            print(f"[PM WS HEALTH] SILENT markets ({len(silent)}): {sorted(silent)}", flush=True)
+        if responding:
+            print(f"[PM WS HEALTH] Responding ({len(responding)}): {sorted(responding)}", flush=True)
+
+    def get_silent_slugs(self, threshold_s: float = 30.0) -> List[str]:
+        """Return slugs that haven't sent data within threshold_s seconds"""
+        now = time.time()
+        silent = []
+        for slug in self._subscribed_slugs:
+            last = self._slug_last_data.get(slug, 0)
+            if now - last > threshold_s:
+                silent.append(slug)
+        return silent
+
+    async def resubscribe_silent(self, threshold_s: float = 60.0):
+        """Re-subscribe slugs that have been silent for threshold_s seconds"""
+        silent = self.get_silent_slugs(threshold_s)
+        if not silent:
+            return 0
+        print(f"[PM WS] Resubscribing {len(silent)} silent markets: {sorted(silent)}", flush=True)
+        if self.connected and self.ws:
+            try:
+                subscribe_msg = {
+                    "subscribe": {
+                        "request_id": "arb-resub",
+                        "subscription_type": 1,
+                        "market_slugs": silent
+                    }
+                }
+                await self.ws.send(json.dumps(subscribe_msg))
+            except Exception as e:
+                print(f"[PM WS] Resubscribe failed: {e}")
+        return len(silent)
 
     def _handle_market_data(self, data: Dict):
         """Parse PM WS orderbook update and update local PM book cache"""
@@ -1243,6 +1302,9 @@ class PMWebSocket:
 
         if not pm_slug:
             return
+
+        # Track subscription health
+        self._slug_last_data[pm_slug] = time.time()
 
         # Parse best bid/ask from orderbook
         bids = md.get("bids", [])
@@ -1394,6 +1456,138 @@ class PMWebSocket:
             await self.ws.close()
         self.connected = False
         stats['pm_ws_connected'] = False
+
+
+# ============================================================================
+# PM WS HEALTH MONITOR & REST FALLBACK
+# ============================================================================
+
+async def pm_resub_monitor(pm_ws: PMWebSocket):
+    """Every 60s, resubscribe any markets that haven't sent data"""
+    global shutdown_requested
+    await asyncio.sleep(15)  # Initial grace period after startup
+    while not shutdown_requested:
+        try:
+            count = await pm_ws.resubscribe_silent(threshold_s=60.0)
+            if count == 0:
+                # All markets responding — check less frequently
+                await asyncio.sleep(60)
+            else:
+                # Gave resub, check again sooner to see if it helped
+                await asyncio.sleep(20)
+        except Exception as e:
+            print(f"[PM RESUB] Error: {e}", flush=True)
+            await asyncio.sleep(30)
+
+
+async def pm_rest_fallback_poller(
+    pm_ws: PMWebSocket,
+    pm_api: 'PolymarketUSAPI',
+    session: aiohttp.ClientSession,
+):
+    """
+    Poll REST BBO for PM markets that have been silent on WS for >30s.
+    Updates pm_prices so spread detection works even without WS data.
+    Polls every 5s per silent market, staggered to avoid bursts.
+    """
+    global shutdown_requested, stats
+
+    SILENCE_THRESHOLD_S = 30.0
+    POLL_INTERVAL_S = 5.0
+
+    await asyncio.sleep(20)  # Let WS settle before starting fallback
+    print("[PM REST FALLBACK] Poller started (silence threshold=30s, poll=5s)", flush=True)
+
+    while not shutdown_requested:
+        try:
+            silent_slugs = pm_ws.get_silent_slugs(SILENCE_THRESHOLD_S)
+            if not silent_slugs:
+                await asyncio.sleep(POLL_INTERVAL_S)
+                continue
+
+            stats_key = 'pm_rest_fallback_polls'
+            if stats_key not in stats:
+                stats[stats_key] = 0
+
+            for slug in silent_slugs:
+                if shutdown_requested:
+                    break
+                try:
+                    ob = await pm_api.get_orderbook(session, slug, debug=False)
+                    if not ob or ob.get('best_bid') is None or ob.get('best_ask') is None:
+                        continue
+
+                    # Convert to cents (REST returns decimal like 0.55)
+                    best_bid = ob['best_bid'] * 100 if ob['best_bid'] < 1 else ob['best_bid']
+                    best_ask = ob['best_ask'] * 100 if ob['best_ask'] < 1 else ob['best_ask']
+                    bid_size = ob.get('bid_size', 0)
+                    ask_size = ob.get('ask_size', 0)
+
+                    if best_bid >= best_ask:
+                        continue  # Crossed book
+
+                    # Store full depth
+                    pm_books[slug] = {
+                        'bids': [{'price_cents': round(b['price'] * 100), 'size': b['size']}
+                                 for b in ob.get('bids', [])],
+                        'asks': [{'price_cents': round(a['price'] * 100), 'size': a['size']}
+                                 for a in ob.get('asks', [])],
+                        'timestamp_ms': int(time.time() * 1000),
+                    }
+
+                    # Update pm_prices for all cache_keys mapped to this slug
+                    cache_keys = pm_slug_to_cache_keys.get(slug, [])
+                    for cache_key in cache_keys:
+                        mapping = VERIFIED_MAPS.get(cache_key)
+                        if not mapping:
+                            continue
+                        pm_outcomes = mapping.get('pm_outcomes', {})
+                        pm_long_team = mapping.get('pm_long_team', '')
+
+                        for idx_str, outcome_data in pm_outcomes.items():
+                            team = outcome_data.get('team')
+                            outcome_idx = outcome_data.get('outcome_index')
+                            if not team:
+                                continue
+
+                            team_normalized = normalize_team_abbrev(team)
+                            is_long_team = (team_normalized == pm_long_team)
+
+                            if is_long_team:
+                                update_pm_price(cache_key, team, best_bid, best_ask,
+                                              bid_size, ask_size, slug, outcome_idx, pm_long_team)
+                            else:
+                                update_pm_price(cache_key, team, 100 - best_ask, 100 - best_bid,
+                                              ask_size, bid_size, slug, outcome_idx, pm_long_team)
+
+                    stats[stats_key] += 1
+
+                    # Check spreads after REST update
+                    for cache_key in cache_keys:
+                        tickers = cache_key_to_tickers.get(cache_key, [])
+                        for ticker in tickers:
+                            if not quick_spread_possible(ticker):
+                                continue
+                            arb = check_spread_for_ticker(ticker)
+                            if arb and pm_ws.on_spread_detected:
+                                asyncio.create_task(pm_ws.on_spread_detected(arb))
+
+                except Exception as e:
+                    print(f"[PM REST FALLBACK] Error polling {slug}: {e}", flush=True)
+
+                # Stagger requests — 200ms between slugs
+                await asyncio.sleep(0.2)
+
+            # Log periodically
+            if stats.get(stats_key, 0) % 50 == 1:
+                print(f"[PM REST FALLBACK] Polling {len(silent_slugs)} silent markets "
+                      f"(total polls: {stats.get(stats_key, 0)})", flush=True)
+
+            await asyncio.sleep(POLL_INTERVAL_S)
+
+        except Exception as e:
+            print(f"[PM REST FALLBACK] Loop error: {e}", flush=True)
+            await asyncio.sleep(10)
 
 
 # ============================================================================
@@ -2718,6 +2912,17 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
         k_ws_task = asyncio.create_task(k_ws.listen())
         pm_ws_task = asyncio.create_task(pm_ws.listen())
 
+        # PM subscription health: log which markets respond within 5s
+        asyncio.create_task(pm_ws.log_subscription_health(delay=5.0))
+
+        # PM resubscription monitor: resub silent markets every 60s
+        resub_task = asyncio.create_task(pm_resub_monitor(pm_ws))
+
+        # PM REST fallback: poll BBO for markets missing WS data >30s
+        rest_fallback_task = asyncio.create_task(
+            pm_rest_fallback_poller(pm_ws, pm_api, session)
+        )
+
         # Keep PM SDK httpx connection pool warm (prevents 200ms+ cold starts)
         keepalive_task = asyncio.create_task(pm_sdk_keepalive(pm_api))
 
@@ -2763,6 +2968,8 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
         k_ws_task.cancel()
         pm_ws_task.cancel()
         keepalive_task.cancel()
+        resub_task.cancel()
+        rest_fallback_task.cancel()
         await k_ws.close()
         await pm_ws.close()
 

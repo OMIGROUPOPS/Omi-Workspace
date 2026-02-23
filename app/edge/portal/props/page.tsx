@@ -196,6 +196,8 @@ interface ParsedProp {
   edgeType: 'line' | 'price';
   // Conviction score: 0-100 weighted signal composite
   conviction: number;
+  // All books' entries for CEQ computation
+  allBookEntries: { book: string; line: number; overOdds: number | null; underOdds: number | null }[];
 }
 
 interface GameWithProps {
@@ -413,42 +415,51 @@ function generatePropNarrative(
   opts: { edgeSide: 'Over' | 'Under'; edgePct: number; fairLine: number; edgeLine: number; propTypeLabel: string; edgeType: 'line' | 'price'; fairSource: 'pinnacle' | 'consensus' },
   signals: PropSignals,
   history: any[] | null,
+  ceq?: PropCEQ,
 ): string {
-  const parts: string[] = [];
+  const signalNames: Record<keyof PropSignals, string> = {
+    sharpLine: 'fair line divergence',
+    lineMovement: 'line movement',
+    gameContext: 'game context',
+    priceValue: 'price value',
+    bookConsensus: 'book consensus',
+  };
 
-  // Fair line confirmation
-  if (signals.sharpLine >= 70) {
-    parts.push(`Fair line confirms ${opts.edgeSide}`);
-  } else if (signals.sharpLine >= 55) {
-    parts.push(`Fair line leans ${opts.edgeSide}`);
-  }
+  // Find strongest and weakest signals
+  const signalEntries = (Object.entries(signals) as [keyof PropSignals, number][])
+    .sort((a, b) => b[1] - a[1]);
+  const strongest = signalEntries[0];
+  const weakest = signalEntries[signalEntries.length - 1];
 
-  // Line movement
-  if (history && history.length >= 2) {
-    const movement = history[history.length - 1].line - history[0].line;
-    if (signals.lineMovement >= 60 && Math.abs(movement) >= 0.5) {
-      parts.push(`line moved ${movement > 0 ? 'up' : 'down'} ${Math.abs(movement).toFixed(1)}pt`);
-    }
-  }
-
-  // Game context
-  if (signals.gameContext >= 65) parts.push('game context supports');
-  else if (signals.gameContext <= 35) parts.push('game context opposes');
-
-  // Edge specifics
+  // Sentence 1: Lead with strongest signal
+  let s1 = '';
   const lineDiff = Math.abs(opts.fairLine - opts.edgeLine);
-  if (opts.edgeType === 'line' && lineDiff >= 0.5) {
-    parts.push(`book ${lineDiff.toFixed(1)}pt ${opts.edgeSide === 'Over' ? 'below' : 'above'} fair`);
-  } else if (opts.edgeType === 'price') {
-    parts.push(`${opts.edgePct.toFixed(1)}% price edge at same line`);
+  if (strongest[0] === 'sharpLine' && lineDiff >= 0.5) {
+    s1 = `Fair line sits ${lineDiff.toFixed(1)}pt ${opts.fairLine > opts.edgeLine ? 'above' : 'below'} ${opts.edgeLine}, giving ${opts.edgeSide} a ${opts.edgePct.toFixed(1)}% edge on ${opts.propTypeLabel}.`;
+  } else if (strongest[0] === 'lineMovement' && history && history.length >= 2) {
+    const movement = history[history.length - 1].line - history[0].line;
+    s1 = `Line has moved ${Math.abs(movement).toFixed(1)}pt ${movement > 0 ? 'up' : 'down'}, ${strongest[1] >= 60 ? 'confirming' : 'noting'} the ${opts.edgePct.toFixed(1)}% ${opts.edgeSide} edge on ${opts.propTypeLabel}.`;
+  } else if (strongest[0] === 'priceValue') {
+    s1 = `${opts.edgePct.toFixed(1)}% ${opts.edgeType === 'line' ? 'line' : 'price'} edge on ${opts.edgeSide} ${opts.propTypeLabel} \u2014 ${opts.edgePct >= 3 ? 'significant' : 'moderate'} value.`;
+  } else {
+    s1 = `${opts.edgePct.toFixed(1)}% ${opts.edgeSide} edge on ${opts.propTypeLabel}, led by ${signalNames[strongest[0]]}.`;
   }
 
-  if (parts.length === 0) {
-    return `${opts.edgePct.toFixed(1)}% ${opts.edgeSide} edge on ${opts.propTypeLabel}.`;
+  // Sentence 2: Supporting or conflicting signal
+  let s2 = '';
+  if (weakest[1] < 40) {
+    s2 = `${signalNames[weakest[0]].charAt(0).toUpperCase() + signalNames[weakest[0]].slice(1)} is a concern (${weakest[1]}/100).`;
+  } else if (signalEntries[1] && signalEntries[1][1] >= 60) {
+    s2 = `${signalNames[signalEntries[1][0]].charAt(0).toUpperCase() + signalNames[signalEntries[1][0]].slice(1)} provides additional support.`;
   }
-  // Capitalize first part
-  parts[0] = parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
-  return parts.join(', ') + '.';
+
+  // Sentence 3: CEQ summary
+  let s3 = '';
+  if (ceq) {
+    s3 = `Market validation: ${getCEQLabel(ceq.composite).toLowerCase()} (${ceq.composite}/100).`;
+  }
+
+  return [s1, s2, s3].filter(Boolean).join(' ');
 }
 
 function getSignalBarColor(value: number): string {
@@ -463,6 +474,157 @@ function getConvictionColor(conv: number): string {
   if (conv >= 60) return '#ca8a04';
   if (conv >= 50) return P.textSecondary;
   return P.textMuted;
+}
+
+function getConvictionTier(conv: number): string {
+  if (conv >= 75) return 'V. Strong';
+  if (conv >= 65) return 'Strong';
+  if (conv >= 55) return 'Moderate';
+  return 'Weak';
+}
+
+function generateSignalDescription(
+  key: keyof PropSignals, value: number,
+  opts: { fairLine: number; edgeLine: number; edgeSide: 'Over' | 'Under'; edgePct: number; gameComposite: number | null; fairSource: 'pinnacle' | 'consensus' },
+  history: any[] | null,
+): string {
+  switch (key) {
+    case 'sharpLine': {
+      const diff = Math.abs(opts.fairLine - opts.edgeLine);
+      if (diff < 0.25) return 'Fair line matches book line';
+      return `Fair line ${diff.toFixed(1)}pt ${opts.fairLine > opts.edgeLine ? 'above' : 'below'} book \u2014 ${value >= 65 ? 'supports' : 'leans'} ${opts.edgeSide}`;
+    }
+    case 'lineMovement': {
+      if (!history || history.length < 2) return 'No line history available';
+      const movement = history[history.length - 1].line - history[0].line;
+      if (Math.abs(movement) < 0.25) return 'Line has been stable';
+      const dir = movement > 0 ? 'up' : 'down';
+      const confirms = (opts.edgeSide === 'Over' && movement > 0) || (opts.edgeSide === 'Under' && movement < 0);
+      return `Line moved ${dir} ${Math.abs(movement).toFixed(1)}pt \u2014 ${confirms ? 'confirms' : 'contradicts'} ${opts.edgeSide} edge`;
+    }
+    case 'gameContext': {
+      if (opts.gameComposite === null) return 'No game composite available';
+      const aligned = (opts.edgeSide === 'Over' && opts.gameComposite > 55) || (opts.edgeSide === 'Under' && opts.gameComposite < 45);
+      const opposed = (opts.edgeSide === 'Over' && opts.gameComposite < 45) || (opts.edgeSide === 'Under' && opts.gameComposite > 55);
+      if (aligned) return `Game composite (${opts.gameComposite}) aligns with ${opts.edgeSide}`;
+      if (opposed) return `Game composite (${opts.gameComposite}) opposes ${opts.edgeSide}`;
+      return `Game composite (${opts.gameComposite}) is neutral`;
+    }
+    case 'priceValue': {
+      if (opts.edgePct < 1) return 'Marginal price advantage';
+      if (opts.edgePct < 3) return `${opts.edgePct.toFixed(1)}% edge \u2014 moderate value`;
+      return `${opts.edgePct.toFixed(1)}% edge \u2014 significant value`;
+    }
+    case 'bookConsensus': {
+      return value >= 70 ? 'Both books lean same direction' : value > 55 ? 'Partial book agreement' : 'Limited book consensus data';
+    }
+    default:
+      return '';
+  }
+}
+
+// ============================================================================
+// Prop CEQ: Market validation factors
+// ============================================================================
+interface PropCEQ {
+  marketEfficiency: number;
+  lineStability: number;
+  priceConsistency: number;
+  volumeSignal: number;
+  composite: number;
+}
+
+const CEQ_LABELS: { key: keyof Omit<PropCEQ, 'composite'>; label: string }[] = [
+  { key: 'marketEfficiency', label: 'Market Efficiency' },
+  { key: 'lineStability', label: 'Line Stability' },
+  { key: 'priceConsistency', label: 'Price Consistency' },
+  { key: 'volumeSignal', label: 'Volume Signal' },
+];
+
+function computePropCEQ(
+  allEntries: { book: string; line: number; overOdds: number | null; underOdds: number | null }[],
+  fairLine: number,
+  edgeSide: 'Over' | 'Under',
+  history: any[] | null,
+): PropCEQ {
+  // 1. Market Efficiency: std dev of lines across books — higher = less efficient = more opportunity
+  const lines = allEntries.map(e => e.line);
+  let marketEfficiency = 50;
+  if (lines.length >= 2) {
+    const mean = lines.reduce((a, b) => a + b, 0) / lines.length;
+    const stdDev = Math.sqrt(lines.reduce((sum, v) => sum + (v - mean) ** 2, 0) / lines.length);
+    marketEfficiency = Math.min(95, Math.round(40 + stdDev * 30));
+  }
+
+  // 2. Line Stability: stable or moving toward fair = edge is holding
+  let lineStability = 50;
+  if (history && history.length >= 2) {
+    const openLine = history[0].line;
+    const currentLine = history[history.length - 1].line;
+    const movement = currentLine - openLine;
+    const towardFair = (fairLine > currentLine && movement > 0) || (fairLine < currentLine && movement < 0);
+    if (Math.abs(movement) < 0.25) {
+      lineStability = 65;
+    } else if (towardFair) {
+      lineStability = 75;
+    } else {
+      lineStability = 35;
+    }
+  }
+
+  // 3. Price Consistency: std dev of odds across books for edge side
+  const edgeOdds = allEntries
+    .map(e => edgeSide === 'Over' ? e.overOdds : e.underOdds)
+    .filter((o): o is number => o !== null);
+  let priceConsistency = 50;
+  if (edgeOdds.length >= 2) {
+    const mean = edgeOdds.reduce((a, b) => a + b, 0) / edgeOdds.length;
+    const stdDev = Math.sqrt(edgeOdds.reduce((sum, v) => sum + (v - mean) ** 2, 0) / edgeOdds.length);
+    priceConsistency = Math.min(95, Math.round(40 + stdDev * 0.5));
+  }
+
+  // 4. Volume Signal: rate of line change in history
+  let volumeSignal = 50;
+  if (history && history.length >= 3) {
+    const changes = history.filter((d: any, i: number) => i > 0 && d.line !== history[i - 1].line).length;
+    const changeRate = changes / (history.length - 1);
+    volumeSignal = Math.min(90, Math.round(40 + changeRate * 60));
+  }
+
+  const composite = Math.round(
+    marketEfficiency * 0.30 +
+    lineStability * 0.30 +
+    priceConsistency * 0.20 +
+    volumeSignal * 0.20
+  );
+
+  return { marketEfficiency, lineStability, priceConsistency, volumeSignal, composite };
+}
+
+function getCEQLabel(ceq: number): string {
+  if (ceq >= 70) return 'High Validation';
+  if (ceq >= 55) return 'Moderate Validation';
+  if (ceq >= 40) return 'Low Validation';
+  return 'Unvalidated';
+}
+
+function generateBoxText(
+  side: 'Over' | 'Under',
+  bookLine: number, fairLine: number, bookOdds: number,
+  edgePct: number, edgeType: 'line' | 'price', bookName: string,
+): string {
+  const diff = Math.abs(bookLine - fairLine);
+  if (edgeType === 'line' && diff >= 0.25) {
+    const direction = bookLine > fairLine ? 'above' : 'below';
+    if (edgePct > 0) {
+      return `${bookName}\u2019s line is ${diff.toFixed(1)}pt${diff >= 2 ? 's' : ''} ${direction} fair value. ${side} offers ${edgePct.toFixed(1)}% value.`;
+    }
+    return `${bookName}\u2019s line is ${diff.toFixed(1)}pt${diff >= 2 ? 's' : ''} ${direction} fair value. ${side} is overpriced.`;
+  }
+  if (edgeType === 'price' && edgePct > 0) {
+    return `Same line at ${bookLine} \u2014 ${bookName} offers ${edgePct.toFixed(1)}% better odds on ${side}.`;
+  }
+  return '';
 }
 
 // Format a line value consistently (shared between chart and description)
@@ -1025,6 +1187,7 @@ export default function PlayerPropsPage() {
             altBookHint,
             edgeType,
             conviction,
+            allBookEntries: entries.map(e => ({ book: e.book, line: e.line, overOdds: e.overOdds, underOdds: e.underOdds })),
           };
 
           // Group by prop type
@@ -1417,7 +1580,7 @@ export default function PlayerPropsPage() {
                             <div className="text-center">Over</div>
                             <div className="text-center">Under</div>
                             <div className="text-center">Edge</div>
-                            <div className="text-center">Score</div>
+                            <div className="text-center">Conviction</div>
                           </div>
 
                           {/* Props Rows */}
@@ -1493,8 +1656,8 @@ export default function PlayerPropsPage() {
                                         <div className="text-sm font-bold font-mono" style={{ color: getConvictionColor(prop.conviction) }}>
                                           {prop.conviction}
                                         </div>
-                                        <div className="text-[9px]" style={{ color: P.textMuted }}>
-                                          {prop.edgeType === 'line' ? 'LINE' : 'PRICE'}
+                                        <div className="text-[9px]" style={{ color: getConvictionColor(prop.conviction) }}>
+                                          {getConvictionTier(prop.conviction)}
                                         </div>
                                       </div>
                                     </div>
@@ -1536,6 +1699,7 @@ export default function PlayerPropsPage() {
                                       edgeOdds: prop.edgeOdds,
                                     }, history || null);
                                     const fullConviction = computeConviction(fullSignals);
+                                    const propCEQ = computePropCEQ(prop.allBookEntries, prop.fairLine, prop.edgeSide!, history || null);
                                     const narrative = generatePropNarrative({
                                       edgeSide: prop.edgeSide!,
                                       edgePct: prop.edgePct,
@@ -1544,7 +1708,9 @@ export default function PlayerPropsPage() {
                                       propTypeLabel: prop.propTypeLabel,
                                       edgeType: prop.edgeType,
                                       fairSource: prop.fairSource,
-                                    }, fullSignals, history || null);
+                                    }, fullSignals, history || null, propCEQ);
+                                    const bookDisplayName = selectedBook === 'fanduel' ? 'FanDuel' : 'DraftKings';
+                                    const linePtDiff = Math.abs(prop.fairLine - prop.edgeLine);
 
                                     return (
                                       <div className="px-4 py-3" style={{ background: P.chartBg, borderTop: `1px solid ${P.cardBorder}` }}>
@@ -1566,21 +1732,39 @@ export default function PlayerPropsPage() {
                                             <div className="text-[10px] font-semibold uppercase tracking-wide mb-1.5" style={{ color: prop.edgeSide === 'Over' ? P.greenText : P.textMuted }}>
                                               Over
                                             </div>
-                                            <div className="flex justify-between items-baseline mb-0.5">
-                                              <span className="text-[10px]" style={{ color: P.textMuted }}>Book</span>
-                                              <span className="text-sm font-mono font-bold" style={{ color: P.textPrimary }}>
-                                                {myOver ? `${myOver.line} (${formatOdds(myOver.odds)})` : '\u2014'}
-                                              </span>
+                                            {/* Header row */}
+                                            <div className="grid grid-cols-3 gap-1 mb-1.5 pb-1" style={{ borderBottom: `1px solid ${P.neutralBorder}` }}>
+                                              <span className="text-[9px] font-semibold uppercase" style={{ color: '#ea580c' }}>OMI Fair</span>
+                                              <span className="text-[9px] font-semibold uppercase text-center" style={{ color: P.textMuted }}>Book</span>
+                                              <span className="text-[9px] font-semibold uppercase text-right" style={{ color: prop.edgeSide === 'Over' ? P.greenText : P.textMuted }}>Edge</span>
                                             </div>
-                                            <div className="flex justify-between items-baseline">
-                                              <span className="text-[10px]" style={{ color: P.textMuted }}>Fair</span>
+                                            {/* Values row */}
+                                            <div className="grid grid-cols-3 gap-1 items-baseline">
                                               <span className="text-sm font-mono font-bold" style={{ color: '#ea580c' }}>{fmtLine(prop.fairLine)}</span>
-                                            </div>
-                                            {prop.edgeSide === 'Over' && (
-                                              <div className="mt-1.5 pt-1.5" style={{ borderTop: `1px solid ${P.cardBorder}` }}>
-                                                <span className="text-xs font-semibold" style={{ color: P.greenText }}>
-                                                  +{prop.edgePct.toFixed(1)}% {prop.edgeType === 'line' ? 'Line Edge' : 'Price Edge'}
+                                              <div className="text-center">
+                                                <span className="text-sm font-mono font-bold" style={{ color: P.textPrimary }}>
+                                                  {myOver ? fmtLine(myOver.line) : '\u2014'}
                                                 </span>
+                                                {myOver && <span className="text-[10px] font-mono ml-0.5" style={{ color: P.textSecondary }}>({formatOdds(myOver.odds)})</span>}
+                                              </div>
+                                              <div className="text-right">
+                                                {prop.edgeSide === 'Over' ? (
+                                                  <span className="text-sm font-mono font-bold" style={{ color: P.greenText }}>+{prop.edgePct.toFixed(1)}%</span>
+                                                ) : (
+                                                  <span className="text-sm font-mono" style={{ color: P.textMuted }}>\u2014</span>
+                                                )}
+                                              </div>
+                                            </div>
+                                            {/* Edge callout + context */}
+                                            {prop.edgeSide === 'Over' && (
+                                              <div className="mt-1.5 pt-1.5" style={{ borderTop: `1px solid ${P.neutralBorder}` }}>
+                                                <div className="text-[10px] font-semibold mb-0.5" style={{ color: P.greenText }}>
+                                                  +{prop.edgePct.toFixed(1)}% {prop.edgeType === 'line' ? 'Line Edge' : 'Price Edge'}
+                                                  {linePtDiff >= 0.25 && <span className="font-normal" style={{ color: P.textSecondary }}> ({linePtDiff.toFixed(1)} pts)</span>}
+                                                </div>
+                                                <div className="text-[10px] leading-snug" style={{ color: P.textSecondary }}>
+                                                  {generateBoxText('Over', myOver?.line ?? prop.edgeLine, prop.fairLine, myOver?.odds ?? prop.edgeOdds, prop.edgePct, prop.edgeType, bookDisplayName)}
+                                                </div>
                                               </div>
                                             )}
                                           </div>
@@ -1589,34 +1773,83 @@ export default function PlayerPropsPage() {
                                             <div className="text-[10px] font-semibold uppercase tracking-wide mb-1.5" style={{ color: prop.edgeSide === 'Under' ? P.greenText : P.textMuted }}>
                                               Under
                                             </div>
-                                            <div className="flex justify-between items-baseline mb-0.5">
-                                              <span className="text-[10px]" style={{ color: P.textMuted }}>Book</span>
-                                              <span className="text-sm font-mono font-bold" style={{ color: P.textPrimary }}>
-                                                {myUnder ? `${myUnder.line} (${formatOdds(myUnder.odds)})` : '\u2014'}
-                                              </span>
+                                            {/* Header row */}
+                                            <div className="grid grid-cols-3 gap-1 mb-1.5 pb-1" style={{ borderBottom: `1px solid ${P.neutralBorder}` }}>
+                                              <span className="text-[9px] font-semibold uppercase" style={{ color: '#ea580c' }}>OMI Fair</span>
+                                              <span className="text-[9px] font-semibold uppercase text-center" style={{ color: P.textMuted }}>Book</span>
+                                              <span className="text-[9px] font-semibold uppercase text-right" style={{ color: prop.edgeSide === 'Under' ? P.greenText : P.textMuted }}>Edge</span>
                                             </div>
-                                            <div className="flex justify-between items-baseline">
-                                              <span className="text-[10px]" style={{ color: P.textMuted }}>Fair</span>
+                                            {/* Values row */}
+                                            <div className="grid grid-cols-3 gap-1 items-baseline">
                                               <span className="text-sm font-mono font-bold" style={{ color: '#ea580c' }}>{fmtLine(prop.fairLine)}</span>
-                                            </div>
-                                            {prop.edgeSide === 'Under' && (
-                                              <div className="mt-1.5 pt-1.5" style={{ borderTop: `1px solid ${P.cardBorder}` }}>
-                                                <span className="text-xs font-semibold" style={{ color: P.greenText }}>
-                                                  +{prop.edgePct.toFixed(1)}% {prop.edgeType === 'line' ? 'Line Edge' : 'Price Edge'}
+                                              <div className="text-center">
+                                                <span className="text-sm font-mono font-bold" style={{ color: P.textPrimary }}>
+                                                  {myUnder ? fmtLine(myUnder.line) : '\u2014'}
                                                 </span>
+                                                {myUnder && <span className="text-[10px] font-mono ml-0.5" style={{ color: P.textSecondary }}>({formatOdds(myUnder.odds)})</span>}
+                                              </div>
+                                              <div className="text-right">
+                                                {prop.edgeSide === 'Under' ? (
+                                                  <span className="text-sm font-mono font-bold" style={{ color: P.greenText }}>+{prop.edgePct.toFixed(1)}%</span>
+                                                ) : (
+                                                  <span className="text-sm font-mono" style={{ color: P.textMuted }}>\u2014</span>
+                                                )}
+                                              </div>
+                                            </div>
+                                            {/* Edge callout + context */}
+                                            {prop.edgeSide === 'Under' && (
+                                              <div className="mt-1.5 pt-1.5" style={{ borderTop: `1px solid ${P.neutralBorder}` }}>
+                                                <div className="text-[10px] font-semibold mb-0.5" style={{ color: P.greenText }}>
+                                                  +{prop.edgePct.toFixed(1)}% {prop.edgeType === 'line' ? 'Line Edge' : 'Price Edge'}
+                                                  {linePtDiff >= 0.25 && <span className="font-normal" style={{ color: P.textSecondary }}> ({linePtDiff.toFixed(1)} pts)</span>}
+                                                </div>
+                                                <div className="text-[10px] leading-snug" style={{ color: P.textSecondary }}>
+                                                  {generateBoxText('Under', myUnder?.line ?? prop.edgeLine, prop.fairLine, myUnder?.odds ?? prop.edgeOdds, prop.edgePct, prop.edgeType, bookDisplayName)}
+                                                </div>
                                               </div>
                                             )}
                                           </div>
                                         </div>
 
-                                        {/* Section 3: WHY THIS PRICE Signal Bars */}
+                                        {/* Section 3: WHY THIS PRICE Signal Bars with Descriptions */}
                                         <div className="mb-3 rounded-lg p-2.5" style={{ background: P.cardBg, border: `1px solid ${P.cardBorder}` }}>
                                           <div className="text-[10px] font-semibold uppercase tracking-widest mb-2" style={{ color: P.textMuted }}>Why This Price</div>
                                           {SIGNAL_LABELS.map(({ key, label }) => {
                                             const value = fullSignals[key];
+                                            const desc = generateSignalDescription(key, value, {
+                                              fairLine: prop.fairLine, edgeLine: prop.edgeLine,
+                                              edgeSide: prop.edgeSide!, edgePct: prop.edgePct,
+                                              gameComposite: prop.gameComposite, fairSource: prop.fairSource,
+                                            }, history || null);
+                                            return (
+                                              <div key={key} className="mb-2">
+                                                <div className="flex items-center gap-2">
+                                                  <span className="text-[10px] w-[88px] text-right shrink-0" style={{ color: P.textSecondary }}>{label}</span>
+                                                  <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: P.neutralBg }}>
+                                                    <div className="h-full rounded-full transition-all" style={{ width: `${value}%`, background: getSignalBarColor(value) }} />
+                                                  </div>
+                                                  <span className="text-[10px] font-mono w-5 text-right shrink-0" style={{ color: getSignalBarColor(value) }}>{value}</span>
+                                                </div>
+                                                <div className="text-[9px] ml-[96px] mt-0.5 leading-tight" style={{ color: P.textMuted }}>{desc}</div>
+                                              </div>
+                                            );
+                                          })}
+                                        </div>
+
+                                        {/* Section 4: Prop CEQ Validation */}
+                                        <div className="mb-3 rounded-lg p-2.5" style={{ background: P.cardBg, border: `1px solid ${P.cardBorder}` }}>
+                                          <div className="flex items-center justify-between mb-2">
+                                            <div className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: P.textMuted }}>Market Validation (CEQ)</div>
+                                            <div className="flex items-center gap-1.5">
+                                              <span className="text-xs font-bold font-mono" style={{ color: getConvictionColor(propCEQ.composite) }}>{propCEQ.composite}</span>
+                                              <span className="text-[9px]" style={{ color: getConvictionColor(propCEQ.composite) }}>{getCEQLabel(propCEQ.composite)}</span>
+                                            </div>
+                                          </div>
+                                          {CEQ_LABELS.map(({ key, label }) => {
+                                            const value = propCEQ[key];
                                             return (
                                               <div key={key} className="flex items-center gap-2 mb-1">
-                                                <span className="text-[10px] w-[88px] text-right shrink-0" style={{ color: P.textSecondary }}>{label}</span>
+                                                <span className="text-[10px] w-[105px] text-right shrink-0" style={{ color: P.textSecondary }}>{label}</span>
                                                 <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: P.neutralBg }}>
                                                   <div className="h-full rounded-full transition-all" style={{ width: `${value}%`, background: getSignalBarColor(value) }} />
                                                 </div>
@@ -1626,11 +1859,12 @@ export default function PlayerPropsPage() {
                                           })}
                                         </div>
 
-                                        {/* Section 4: Conviction Score + Fair Source */}
+                                        {/* Section 5: Conviction Score + Fair Source */}
                                         <div className="flex items-center justify-between mb-2">
                                           <div className="flex items-center gap-3">
                                             <span className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: P.textMuted }}>Conviction</span>
                                             <span className="text-xl font-bold font-mono" style={{ color: getConvictionColor(fullConviction) }}>{fullConviction}</span>
+                                            <span className="text-[10px] font-medium" style={{ color: getConvictionColor(fullConviction) }}>{getConvictionTier(fullConviction)}</span>
                                           </div>
                                           <div className="text-[10px]" style={{ color: P.textMuted }}>
                                             Fair: <span className="font-mono" style={{ color: '#ea580c' }}>{fmtLine(prop.fairLine)}</span>
@@ -1641,10 +1875,12 @@ export default function PlayerPropsPage() {
                                           </div>
                                         </div>
 
-                                        {/* Section 5: One-Line Narrative */}
-                                        <p className="text-xs leading-relaxed" style={{ color: P.textSecondary }}>
-                                          {narrative}
-                                        </p>
+                                        {/* Section 6: Analyst Narrative */}
+                                        <div className="rounded-lg p-2.5" style={{ background: P.cardBg, border: `1px solid ${P.cardBorder}` }}>
+                                          <p className="text-xs leading-relaxed" style={{ color: P.textSecondary }}>
+                                            {narrative}
+                                          </p>
+                                        </div>
                                       </div>
                                     );
                                   })()}

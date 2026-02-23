@@ -1100,25 +1100,26 @@ export function SportsHomeGrid({
                         {/* Market Grid — soccer vs non-soccer layout */}
                         <div style={{ borderTop: `1px solid ${P.cardBorder}` }}>
                           {gameSoccer ? (
-                            /* ===== SOCCER: 4-col 1-row (Home ML | Draw | Away ML | Total) ===== */
+                            /* ===== SOCCER: 4-col 1-row — column order matches team rows (Away top, Home bottom) ===== */
                             <>
                               <div className="grid grid-cols-4" style={{ borderBottom: `1px solid ${P.cardBorder}` }}>
-                                {['HOME', 'DRAW', 'AWAY', 'TOTAL'].map((h, i) => (
+                                {[displayAway, 'DRAW', displayHome, 'TOTAL'].map((h, i) => (
                                   <div key={i} style={{
                                     padding: '3px 8px', fontSize: 9, fontWeight: 700, color: P.textFaint,
                                     textAlign: 'center', letterSpacing: 1,
                                     borderRight: i < 3 ? `1px solid ${P.cardBorder}` : undefined,
+                                    overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
                                   }}>
                                     {h}
                                   </div>
                                 ))}
                               </div>
                               <div className="grid grid-cols-4">
-                                {/* Home ML */}
+                                {/* Away ML (first col — matches away team on top row) */}
                                 <MarketCell
-                                  bookValue={fmtML(h2h?.homePrice)}
-                                  fairValue={fair?.fair_ml_home != null ? fmtOdds(fair.fair_ml_home) : null}
-                                  edge={homeMLEdge}
+                                  bookValue={fmtML(h2h?.awayPrice)}
+                                  fairValue={fair?.fair_ml_away != null ? fmtOdds(fair.fair_ml_away) : null}
+                                  edge={awayMLEdge}
                                 />
                                 {/* Draw */}
                                 <MarketCell
@@ -1126,11 +1127,11 @@ export function SportsHomeGrid({
                                   fairValue={fair?.fair_ml_draw != null ? fmtOdds(fair.fair_ml_draw) : null}
                                   edge={drawEdge}
                                 />
-                                {/* Away ML */}
+                                {/* Home ML (third col — matches home team on bottom row) */}
                                 <MarketCell
-                                  bookValue={fmtML(h2h?.awayPrice)}
-                                  fairValue={fair?.fair_ml_away != null ? fmtOdds(fair.fair_ml_away) : null}
-                                  edge={awayMLEdge}
+                                  bookValue={fmtML(h2h?.homePrice)}
+                                  fairValue={fair?.fair_ml_home != null ? fmtOdds(fair.fair_ml_home) : null}
+                                  edge={homeMLEdge}
                                 />
                                 {/* Total (O/U stacked) */}
                                 <MarketCell

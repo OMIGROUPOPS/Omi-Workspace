@@ -78,21 +78,37 @@ class BDLClient:
     # Player search
     # -----------------------------------------------------------------
     def search_player(self, name: str) -> Optional[dict]:
-        """Search for a player by name. Returns first match or None."""
-        data = self._get("/players", {"search": name, "per_page": 5})
+        """Search for a player by name. Searches first name, filters by last name."""
+        parts = name.strip().split()
+        first = parts[0] if parts else name
+        last = parts[-1].lower() if len(parts) >= 2 else None
+
+        logger.info(f"[BDL] Searching first='{first}', filtering last='{last}' (full='{name}')")
+        data = self._get("/players", {"search": first, "per_page": 25})
         if not data or not data.get("data"):
-            logger.warning(f"[BDL] No results for search '{name}'")
+            logger.warning(f"[BDL] No results for search '{first}'")
             return None
-        # Return exact match if found, otherwise first result
+
+        # Filter by last name match, then return exact full-name match first
         for player in data["data"]:
-            full = f"{player.get('first_name', '')} {player.get('last_name', '')}".strip()
+            p_first = player.get("first_name", "")
+            p_last = player.get("last_name", "")
+            full = f"{p_first} {p_last}".strip()
             if full.lower() == name.lower():
                 logger.info(f"[BDL] Found exact match: {full} (id={player['id']})")
                 return player
-        first = data["data"][0]
-        first_full = f"{first.get('first_name', '')} {first.get('last_name', '')}".strip()
-        logger.info(f"[BDL] No exact match for '{name}', using first result: {first_full} (id={first['id']})")
-        return first
+
+        # Fallback: match last name only
+        if last:
+            for player in data["data"]:
+                if player.get("last_name", "").lower() == last:
+                    full = f"{player.get('first_name', '')} {player.get('last_name', '')}".strip()
+                    logger.info(f"[BDL] Last-name match: {full} (id={player['id']})")
+                    return player
+
+        # No match at all
+        logger.warning(f"[BDL] No matching player for '{name}' in {len(data['data'])} results")
+        return None
 
     # -----------------------------------------------------------------
     # Season averages

@@ -121,7 +121,11 @@ class BDLClient:
         })
         if not data or not data.get("data"):
             return None
-        return data["data"][0] if data["data"] else None
+        row = data["data"][0] if data["data"] else None
+        if row:
+            logger.info(f"[BDL] Season avg keys: {list(row.keys())}")
+            logger.info(f"[BDL] Season avg sample: pts={row.get('pts')}, reb={row.get('reb')}, ast={row.get('ast')}, min={row.get('min')}")
+        return row
 
     # -----------------------------------------------------------------
     # Game logs (recent games)
@@ -136,7 +140,12 @@ class BDLClient:
         })
         if not data or not data.get("data"):
             return None
-        return data["data"]
+        games = data["data"]
+        if games:
+            first = games[0]
+            logger.info(f"[BDL] Stats response keys: {list(first.keys())}")
+            logger.info(f"[BDL] First game sample: pts={first.get('pts')}, reb={first.get('reb')}, ast={first.get('ast')}, min={first.get('min')}")
+        return games
 
     # -----------------------------------------------------------------
     # Advanced stats

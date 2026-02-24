@@ -115,7 +115,7 @@ class BDLClient:
     # -----------------------------------------------------------------
     def get_season_averages(self, player_id: int, season: int = CURRENT_SEASON) -> Optional[dict]:
         """Get season averages for a player."""
-        data = self._get("/season_averages/general", {
+        data = self._get("/season_averages", {
             "season": season,
             "player_id": player_id,
         })

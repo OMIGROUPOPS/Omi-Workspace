@@ -13,9 +13,8 @@ All errors return None — never crashes the caller.
 """
 import time
 import logging
-from typing import Optional
-
 import os
+from typing import Optional
 
 import requests
 
@@ -67,7 +66,7 @@ class BDLClient:
         url = f"{BDL_BASE}{path}"
         try:
             resp = self.session.get(url, params=params or {}, timeout=10, headers={"Authorization": api_key})
-            logger.info(f"[BDL] GET {resp.url} → {resp.status_code}")
+            logger.info(f"[BDL] GET {resp.url} -> {resp.status_code}")
             resp.raise_for_status()
             return resp.json()
         except requests.RequestException as e:
@@ -83,17 +82,15 @@ class BDLClient:
         first = parts[0] if parts else name
         last = parts[-1].lower() if len(parts) >= 2 else None
 
-        logger.info(f"[BDL] Searching first='{first}', filtering last='{last}' (full='{name}')")
+        logger.info(f"[BDL] Searching first='{first}', filtering last='{last}'")
         data = self._get("/players", {"search": first, "per_page": 25})
         if not data or not data.get("data"):
             logger.warning(f"[BDL] No results for search '{first}'")
             return None
 
-        # Filter by last name match, then return exact full-name match first
+        # Exact full-name match first
         for player in data["data"]:
-            p_first = player.get("first_name", "")
-            p_last = player.get("last_name", "")
-            full = f"{p_first} {p_last}".strip()
+            full = f"{player.get('first_name', '')} {player.get('last_name', '')}".strip()
             if full.lower() == name.lower():
                 logger.info(f"[BDL] Found exact match: {full} (id={player['id']})")
                 return player
@@ -106,7 +103,6 @@ class BDLClient:
                     logger.info(f"[BDL] Last-name match: {full} (id={player['id']})")
                     return player
 
-        # No match at all
         logger.warning(f"[BDL] No matching player for '{name}' in {len(data['data'])} results")
         return None
 
@@ -123,8 +119,7 @@ class BDLClient:
             return None
         row = data["data"][0] if data["data"] else None
         if row:
-            logger.info(f"[BDL] Season avg keys: {list(row.keys())}")
-            logger.info(f"[BDL] Season avg sample: pts={row.get('pts')}, reb={row.get('reb')}, ast={row.get('ast')}, min={row.get('min')}")
+            logger.info(f"[BDL] Season avg: pts={row.get('pts')}, reb={row.get('reb')}, ast={row.get('ast')}, min={row.get('min')}, games={row.get('games_played')}")
         return row
 
     # -----------------------------------------------------------------
@@ -142,9 +137,8 @@ class BDLClient:
             return None
         games = data["data"]
         if games:
-            first = games[0]
-            logger.info(f"[BDL] Stats response keys: {list(first.keys())}")
-            logger.info(f"[BDL] First game sample: pts={first.get('pts')}, reb={first.get('reb')}, ast={first.get('ast')}, min={first.get('min')}")
+            g = games[0]
+            logger.info(f"[BDL] {len(games)} game logs fetched. First: pts={g.get('pts')}, reb={g.get('reb')}, ast={g.get('ast')}, min={g.get('min')}")
         return games
 
     # -----------------------------------------------------------------

@@ -10,6 +10,7 @@ Key outputs:
 - minutes_consistency: 0-100 signal from minutes volume + coefficient of variation
 """
 import logging
+import math
 from typing import Optional
 from datetime import datetime, timezone
 
@@ -238,7 +239,6 @@ def compute_minutes_consistency(recent_games: list[dict]) -> int:
     volume_score = min(1.0, avg_min / 36.0) * 60  # Max 60 points from volume
 
     # Consistency component: lower CV is better
-    import math
     variance = sum((m - avg_min) ** 2 for m in minutes) / len(minutes)
     std_dev = math.sqrt(variance)
     cv = std_dev / avg_min  # coefficient of variation
@@ -319,12 +319,8 @@ def get_player_profile(player_name: str, prop_type: str, force: bool = False) ->
             injury_status=None,
         )
 
-    # Debug: log what we're working with
     games_list = recent_games or []
-    logger.info(f"[PlayerAnalytics] Game logs count: {len(games_list)}, first game pts: {games_list[0].get('pts') if games_list else 'none'}")
-    logger.info(f"[PlayerAnalytics] Stat keys for {prop_type}: {stat_keys}, raw values: {[[g.get(k) for k in stat_keys] for g in games_list[:3]]}")
-    if games_list:
-        logger.info(f"[PlayerAnalytics] First game all keys: {list(games_list[0].keys())}")
+    logger.info(f"[PlayerAnalytics] {player_name} ({prop_type}): {len(games_list)} games, cache={'hit' if cache_valid else 'miss'}")
 
     # Compute analytics
     projection = compute_projection(season_averages or {}, games_list, stat_keys)

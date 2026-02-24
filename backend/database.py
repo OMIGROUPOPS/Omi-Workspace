@@ -8,7 +8,7 @@ Handles all database operations:
 - Storing weather data
 - Tracking results
 """
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Optional
 import logging
 import json
@@ -807,12 +807,12 @@ class Database:
                 "player_name": player_name,
                 "bdl_player_id": bdl_player_id,
                 "sport_key": sport_key,
-                "season_averages": json.dumps(season_averages),
-                "recent_games": json.dumps(recent_games),
-                "advanced_stats": json.dumps(advanced_stats),
+                "season_averages": season_averages,
+                "recent_games": recent_games,
+                "advanced_stats": advanced_stats,
                 "injury_status": injury_status,
                 "fetched_at": now.isoformat(),
-                "expires_at": (now + __import__('datetime').timedelta(hours=ttl_hours)).isoformat(),
+                "expires_at": (now + timedelta(hours=ttl_hours)).isoformat(),
             }
             self.client.table("player_stats_cache").upsert(
                 record, on_conflict="player_name,sport_key"

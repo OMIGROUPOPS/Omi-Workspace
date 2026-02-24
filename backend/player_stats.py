@@ -125,20 +125,47 @@ class BDLClient:
     # -----------------------------------------------------------------
     # Game logs (recent games)
     # -----------------------------------------------------------------
-    def get_game_logs(self, player_id: int, season: int = CURRENT_SEASON, per_page: int = 15) -> Optional[list]:
-        """Get recent game logs for a player. Returns list of stat lines."""
+    def get_game_logs(self, player_id: int, season: int = CURRENT_SEASON, limit: int = 15) -> Optional[list]:
+        """Get recent game logs for a player. Returns list of stat lines, most recent first.
+
+        Fetches all season games, filters out DNP entries, sorts by date descending,
+        and returns the most recent `limit` games actually played.
+        """
         data = self._get("/stats", {
             "player_ids[]": player_id,
             "seasons[]": season,
-            "per_page": per_page,
-            "sort": "-game.date",
+            "per_page": 100,
         })
         if not data or not data.get("data"):
             return None
-        games = data["data"]
+
+        raw = data["data"]
+
+        # Filter out DNP entries — games where player logged 0 minutes
+        played = []
+        for g in raw:
+            m = g.get("min")
+            # BDL returns min as "MM:SS" string; "00" or "00:00" means DNP
+            if m is None:
+                continue
+            m_str = str(m).strip()
+            if m_str in ("00", "0", "00:00", "0:00", ""):
+                continue
+            played.append(g)
+
+        # Sort by game date descending (most recent first)
+        def game_date(g):
+            try:
+                return g.get("game", {}).get("date", "")
+            except Exception:
+                return ""
+        played.sort(key=game_date, reverse=True)
+
+        games = played[:limit]
+        logger.info(f"[BDL] {len(raw)} raw entries, {len(played)} played, returning {len(games)} most recent")
         if games:
             g = games[0]
-            logger.info(f"[BDL] {len(games)} game logs fetched. First: pts={g.get('pts')}, reb={g.get('reb')}, ast={g.get('ast')}, min={g.get('min')}")
+            logger.info(f"[BDL] Most recent: date={game_date(g)}, pts={g.get('pts')}, reb={g.get('reb')}, ast={g.get('ast')}, min={g.get('min')}")
         return games
 
     # -----------------------------------------------------------------

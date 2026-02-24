@@ -319,14 +319,21 @@ def get_player_profile(player_name: str, prop_type: str, force: bool = False) ->
             injury_status=None,
         )
 
+    # Debug: log what we're working with
+    games_list = recent_games or []
+    logger.info(f"[PlayerAnalytics] Game logs count: {len(games_list)}, first game pts: {games_list[0].get('pts') if games_list else 'none'}")
+    logger.info(f"[PlayerAnalytics] Stat keys for {prop_type}: {stat_keys}, raw values: {[[g.get(k) for k in stat_keys] for g in games_list[:3]]}")
+    if games_list:
+        logger.info(f"[PlayerAnalytics] First game all keys: {list(games_list[0].keys())}")
+
     # Compute analytics
-    projection = compute_projection(season_averages or {}, recent_games or [], stat_keys)
-    form = compute_player_form(season_averages or {}, recent_games or [], stat_keys)
-    consistency = compute_minutes_consistency(recent_games or [])
+    projection = compute_projection(season_averages or {}, games_list, stat_keys)
+    form = compute_player_form(season_averages or {}, games_list, stat_keys)
+    consistency = compute_minutes_consistency(games_list)
 
     # Recent trend: last 5 values
     recent_trend = []
-    for g in (recent_games or [])[:5]:
+    for g in games_list[:5]:
         val = _extract_stat(g, stat_keys)
         if val is not None:
             recent_trend.append(round(val, 1))

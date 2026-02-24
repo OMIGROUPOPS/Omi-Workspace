@@ -69,8 +69,10 @@ _player_id_cache: dict[str, Optional[int]] = {}
 
 def resolve_player_id(player_name: str) -> Optional[int]:
     """Resolve a player name to a BDL player ID using 3-tier approach."""
-    if player_name in _player_id_cache:
-        return _player_id_cache[player_name]
+    # Only use in-memory cache for positive hits (not None)
+    cached_id = _player_id_cache.get(player_name)
+    if cached_id is not None:
+        return cached_id
 
     # Check DB cache first
     cached = db.get_player_cache(player_name)
@@ -81,6 +83,7 @@ def resolve_player_id(player_name: str) -> Optional[int]:
 
     # Tier 1: Name overrides
     search_name = NAME_OVERRIDES.get(player_name, player_name)
+    logger.info(f"[PlayerAnalytics] Resolving player ID for '{player_name}' (search: '{search_name}')")
 
     # Tier 2: BDL search API
     result = bdl_client.search_player(search_name)
@@ -108,7 +111,7 @@ def resolve_player_id(player_name: str) -> Optional[int]:
         logger.debug("[PlayerAnalytics] rapidfuzz not installed, skipping fuzzy match")
 
     logger.warning(f"[PlayerAnalytics] Player not found: {player_name}")
-    _player_id_cache[player_name] = None
+    # Do NOT cache None — allow retries on next request
     return None
 
 
@@ -250,7 +253,7 @@ def compute_minutes_consistency(recent_games: list[dict]) -> int:
 # Profile builder
 # ============================================================================
 
-def get_player_profile(player_name: str, prop_type: str) -> Optional[dict]:
+def get_player_profile(player_name: str, prop_type: str, force: bool = False) -> Optional[dict]:
     """
     Get full player profile for prop analytics.
     Checks cache first, fetches from BDL if stale/missing.
@@ -268,18 +271,31 @@ def get_player_profile(player_name: str, prop_type: str) -> Optional[dict]:
 
     sport_key = "basketball_nba"
 
-    # Check cache
-    cached = db.get_player_cache(player_name, sport_key)
+    # Check cache — only trust entries that have real data
+    cached = db.get_player_cache(player_name, sport_key) if not force else None
+    cache_valid = (
+        cached is not None
+        and cached.get("bdl_player_id")
+        and cached.get("season_averages")
+        and cached["season_averages"] != {}
+    )
+
     season_averages = None
     recent_games = None
     injury_status = None
 
-    if cached:
+    if cache_valid:
+        logger.debug(f"[PlayerAnalytics] Cache hit for {player_name}")
         season_averages = cached.get("season_averages", {})
         recent_games = cached.get("recent_games", [])
         injury_status = cached.get("injury_status")
     else:
         # Fetch from BDL
+        if cached and not cache_valid:
+            logger.info(f"[PlayerAnalytics] Stale/empty cache for {player_name}, refetching from BDL")
+        else:
+            logger.info(f"[PlayerAnalytics] No cache for {player_name}, fetching from BDL")
+
         player_id = resolve_player_id(player_name)
         if player_id is None:
             return None

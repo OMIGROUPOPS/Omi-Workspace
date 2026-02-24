@@ -59,14 +59,17 @@ class BDLClient:
     def _get(self, path: str, params: Optional[dict] = None) -> Optional[dict]:
         """Make a rate-limited GET request. Returns JSON or None on failure."""
         if not self._enabled:
+            logger.warning("[BDL] API key not set — skipping request")
             return None
         self.limiter.wait()
+        url = f"{BDL_BASE}{path}"
         try:
-            resp = self.session.get(f"{BDL_BASE}{path}", params=params or {}, timeout=10)
+            resp = self.session.get(url, params=params or {}, timeout=10)
+            logger.info(f"[BDL] GET {path}: status={resp.status_code}")
             resp.raise_for_status()
             return resp.json()
         except requests.RequestException as e:
-            logger.warning(f"[PlayerStats] BDL request failed: {path} — {e}")
+            logger.error(f"[BDL] Request failed: {url} — {e}")
             return None
 
     # -----------------------------------------------------------------
@@ -76,13 +79,18 @@ class BDLClient:
         """Search for a player by name. Returns first match or None."""
         data = self._get("/players", {"search": name, "per_page": 5})
         if not data or not data.get("data"):
+            logger.warning(f"[BDL] No results for search '{name}'")
             return None
         # Return exact match if found, otherwise first result
         for player in data["data"]:
             full = f"{player.get('first_name', '')} {player.get('last_name', '')}".strip()
             if full.lower() == name.lower():
+                logger.info(f"[BDL] Found exact match: {full} (id={player['id']})")
                 return player
-        return data["data"][0]
+        first = data["data"][0]
+        first_full = f"{first.get('first_name', '')} {first.get('last_name', '')}".strip()
+        logger.info(f"[BDL] No exact match for '{name}', using first result: {first_full} (id={first['id']})")
+        return first
 
     # -----------------------------------------------------------------
     # Season averages

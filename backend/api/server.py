@@ -1964,19 +1964,21 @@ def force_composite_recalc_status():
 # =============================================================================
 
 @app.get("/api/internal/player-profile/{player_name}")
-def get_player_profile(player_name: str, prop_type: str = "player_points"):
+def get_player_profile(player_name: str, prop_type: str = "player_points", force: bool = False):
     """
     Get player projection, form score, and minutes/consistency for prop analytics.
     Lazy-loaded on prop expand — checks cache first, fetches from BDL if stale.
+    Use force=true to skip all caches and refetch from BDL.
     """
     cache_key = f"player_profile:{player_name}:{prop_type}"
-    cached = _cache_get(cache_key, ttl=300)  # 5-min in-memory cache
-    if cached is not None:
-        return cached
+    if not force:
+        cached = _cache_get(cache_key, ttl=300)  # 5-min in-memory cache
+        if cached is not None:
+            return cached
 
     try:
         from player_analytics import get_player_profile as _get_profile
-        profile = _get_profile(player_name, prop_type)
+        profile = _get_profile(player_name, prop_type, force=force)
         if profile is None:
             raise HTTPException(status_code=404, detail=f"Player not found: {player_name}")
         _cache_set(cache_key, profile)

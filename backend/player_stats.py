@@ -21,7 +21,7 @@ from config import BALLDONTLIE_API_KEY
 
 logger = logging.getLogger(__name__)
 
-BDL_BASE = "https://api.balldontlie.io/v1"
+BDL_BASE = "https://api.balldontlie.io/nba/v1"
 CURRENT_SEASON = 2025  # 2024-25 NBA season
 
 

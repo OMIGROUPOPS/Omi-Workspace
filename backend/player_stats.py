@@ -67,7 +67,7 @@ class BDLClient:
         url = f"{BDL_BASE}{path}"
         try:
             resp = self.session.get(url, params=params or {}, timeout=10, headers={"Authorization": api_key})
-            logger.info(f"[BDL] GET {path}: status={resp.status_code}")
+            logger.info(f"[BDL] GET {resp.url} → {resp.status_code}")
             resp.raise_for_status()
             return resp.json()
         except requests.RequestException as e:
@@ -117,7 +117,7 @@ class BDLClient:
         """Get season averages for a player."""
         data = self._get("/season_averages/general", {
             "season": season,
-            "player_ids[]": player_id,
+            "player_id": player_id,
         })
         if not data or not data.get("data"):
             return None

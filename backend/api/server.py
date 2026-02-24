@@ -1970,6 +1970,7 @@ def get_player_profile(player_name: str, prop_type: str = "player_points", force
     Lazy-loaded on prop expand — checks cache first, fetches from BDL if stale.
     Use force=true to skip all caches and refetch from BDL.
     """
+    logger.info(f"[DEBUG] BDL key present: {bool(os.getenv('BALLDONTLIE_API_KEY'))}, length: {len(os.getenv('BALLDONTLIE_API_KEY', ''))}")
     cache_key = f"player_profile:{player_name}:{prop_type}"
     if not force:
         cached = _cache_get(cache_key, ttl=300)  # 5-min in-memory cache

@@ -1990,6 +1990,52 @@ def get_player_profile(player_name: str, prop_type: str = "player_points", force
         raise HTTPException(status_code=500, detail="Internal error fetching player profile")
 
 
+@app.get("/api/internal/debug-player/{player_name}")
+def debug_player(player_name: str):
+    """Temporary diagnostic: show raw BDL data at each pipeline stage."""
+    try:
+        from player_stats import BDLClient
+        from player_analytics import PROP_TO_STAT_KEY, _extract_stat
+
+        client = BDLClient()
+        player = client.search_player(player_name)
+        if not player:
+            return {"error": "player not found", "searched": player_name}
+
+        pid = player["id"]
+        season_avg = client.get_season_averages(pid)
+        game_logs = client.get_game_logs(pid)
+
+        stat_keys = PROP_TO_STAT_KEY.get("player_points", ["pts"])
+
+        # Try extraction the same way player_analytics does
+        extracted = []
+        if game_logs:
+            for g in game_logs[:5]:
+                extracted.append({
+                    "raw_pts": g.get("pts"),
+                    "raw_pts_type": type(g.get("pts")).__name__,
+                    "raw_min": g.get("min"),
+                    "_extract_stat_result": _extract_stat(g, stat_keys),
+                    "top_level_keys": sorted(g.keys())[:20],
+                })
+
+        return {
+            "player_id": pid,
+            "player_name": f"{player.get('first_name', '')} {player.get('last_name', '')}",
+            "season_avg_pts": season_avg.get("pts") if season_avg else None,
+            "season_avg_type": type(season_avg).__name__ if season_avg else None,
+            "game_logs_count": len(game_logs) if game_logs else 0,
+            "game_logs_type": type(game_logs).__name__ if game_logs else None,
+            "first_game_raw": game_logs[0] if game_logs else None,
+            "stat_keys": stat_keys,
+            "extraction_debug": extracted,
+        }
+    except Exception as e:
+        import traceback
+        return {"error": str(e), "traceback": traceback.format_exc()}
+
+
 @app.get("/api/internal/closing-lines")
 def get_closing_lines(sport: str = None, days: int = 7):
     """Get recent closing line captures for inspection."""

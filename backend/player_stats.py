@@ -15,11 +15,15 @@ import time
 import logging
 from typing import Optional
 
+import os
+
 import requests
 
-from config import BALLDONTLIE_API_KEY
-
 logger = logging.getLogger(__name__)
+
+
+def _get_api_key():
+    return os.getenv("BALLDONTLIE_API_KEY", "")
 
 BDL_BASE = "https://api.balldontlie.io/nba/v1"
 CURRENT_SEASON = 2025  # 2024-25 NBA season
@@ -51,20 +55,18 @@ class BDLClient:
 
     def __init__(self):
         self.session = requests.Session()
-        if BALLDONTLIE_API_KEY:
-            self.session.headers["Authorization"] = BALLDONTLIE_API_KEY
         self.limiter = _RateLimiter(550)
-        self._enabled = bool(BALLDONTLIE_API_KEY)
 
     def _get(self, path: str, params: Optional[dict] = None) -> Optional[dict]:
         """Make a rate-limited GET request. Returns JSON or None on failure."""
-        if not self._enabled:
+        api_key = _get_api_key()
+        if not api_key:
             logger.warning("[BDL] API key not set — skipping request")
             return None
         self.limiter.wait()
         url = f"{BDL_BASE}{path}"
         try:
-            resp = self.session.get(url, params=params or {}, timeout=10)
+            resp = self.session.get(url, params=params or {}, timeout=10, headers={"Authorization": api_key})
             logger.info(f"[BDL] GET {path}: status={resp.status_code}")
             resp.raise_for_status()
             return resp.json()

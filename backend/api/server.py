@@ -1959,6 +1959,35 @@ def force_composite_recalc_status():
     }
 
 
+# =============================================================================
+# PLAYER PROFILE — BDL-backed player stats for prop analytics
+# =============================================================================
+
+@app.get("/api/internal/player-profile/{player_name}")
+def get_player_profile(player_name: str, prop_type: str = "player_points"):
+    """
+    Get player projection, form score, and minutes/consistency for prop analytics.
+    Lazy-loaded on prop expand — checks cache first, fetches from BDL if stale.
+    """
+    cache_key = f"player_profile:{player_name}:{prop_type}"
+    cached = _cache_get(cache_key, ttl=300)  # 5-min in-memory cache
+    if cached is not None:
+        return cached
+
+    try:
+        from player_analytics import get_player_profile as _get_profile
+        profile = _get_profile(player_name, prop_type)
+        if profile is None:
+            raise HTTPException(status_code=404, detail=f"Player not found: {player_name}")
+        _cache_set(cache_key, profile)
+        return profile
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"[PlayerProfile] Error for {player_name}: {e}")
+        raise HTTPException(status_code=500, detail="Internal error fetching player profile")
+
+
 @app.get("/api/internal/closing-lines")
 def get_closing_lines(sport: str = None, days: int = 7):
     """Get recent closing line captures for inspection."""

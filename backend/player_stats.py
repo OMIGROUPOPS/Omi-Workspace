@@ -1,0 +1,159 @@
+"""
+BallDontLie (BDL) API Client
+
+Fetches NBA player stats for prop analytics:
+- Player search
+- Season averages
+- Game logs (recent games)
+- Advanced stats
+- Injury reports
+
+Rate limited to 550 req/min (soft cap under 600/min API limit).
+All errors return None — never crashes the caller.
+"""
+import time
+import logging
+from typing import Optional
+
+import requests
+
+from config import BALLDONTLIE_API_KEY
+
+logger = logging.getLogger(__name__)
+
+BDL_BASE = "https://api.balldontlie.io/v1"
+CURRENT_SEASON = 2025  # 2024-25 NBA season
+
+
+class _RateLimiter:
+    """Simple token-bucket rate limiter: max `rate` calls per 60 seconds."""
+
+    def __init__(self, rate: int = 550):
+        self.rate = rate
+        self.tokens = rate
+        self.last_refill = time.monotonic()
+
+    def wait(self):
+        now = time.monotonic()
+        elapsed = now - self.last_refill
+        self.tokens = min(self.rate, self.tokens + elapsed * (self.rate / 60.0))
+        self.last_refill = now
+        if self.tokens < 1:
+            sleep_time = (1 - self.tokens) * (60.0 / self.rate)
+            time.sleep(sleep_time)
+            self.tokens = 0
+        else:
+            self.tokens -= 1
+
+
+class BDLClient:
+    """BallDontLie API client with rate limiting and error handling."""
+
+    def __init__(self):
+        self.session = requests.Session()
+        if BALLDONTLIE_API_KEY:
+            self.session.headers["Authorization"] = BALLDONTLIE_API_KEY
+        self.limiter = _RateLimiter(550)
+        self._enabled = bool(BALLDONTLIE_API_KEY)
+
+    def _get(self, path: str, params: Optional[dict] = None) -> Optional[dict]:
+        """Make a rate-limited GET request. Returns JSON or None on failure."""
+        if not self._enabled:
+            return None
+        self.limiter.wait()
+        try:
+            resp = self.session.get(f"{BDL_BASE}{path}", params=params or {}, timeout=10)
+            resp.raise_for_status()
+            return resp.json()
+        except requests.RequestException as e:
+            logger.warning(f"[PlayerStats] BDL request failed: {path} — {e}")
+            return None
+
+    # -----------------------------------------------------------------
+    # Player search
+    # -----------------------------------------------------------------
+    def search_player(self, name: str) -> Optional[dict]:
+        """Search for a player by name. Returns first match or None."""
+        data = self._get("/players", {"search": name, "per_page": 5})
+        if not data or not data.get("data"):
+            return None
+        # Return exact match if found, otherwise first result
+        for player in data["data"]:
+            full = f"{player.get('first_name', '')} {player.get('last_name', '')}".strip()
+            if full.lower() == name.lower():
+                return player
+        return data["data"][0]
+
+    # -----------------------------------------------------------------
+    # Season averages
+    # -----------------------------------------------------------------
+    def get_season_averages(self, player_id: int, season: int = CURRENT_SEASON) -> Optional[dict]:
+        """Get season averages for a player."""
+        data = self._get("/season_averages/general", {
+            "season": season,
+            "player_ids[]": player_id,
+        })
+        if not data or not data.get("data"):
+            return None
+        return data["data"][0] if data["data"] else None
+
+    # -----------------------------------------------------------------
+    # Game logs (recent games)
+    # -----------------------------------------------------------------
+    def get_game_logs(self, player_id: int, season: int = CURRENT_SEASON, per_page: int = 15) -> Optional[list]:
+        """Get recent game logs for a player. Returns list of stat lines."""
+        data = self._get("/stats", {
+            "player_ids[]": player_id,
+            "seasons[]": season,
+            "per_page": per_page,
+            "sort": "-game.date",
+        })
+        if not data or not data.get("data"):
+            return None
+        return data["data"]
+
+    # -----------------------------------------------------------------
+    # Advanced stats
+    # -----------------------------------------------------------------
+    def get_advanced_stats(self, player_id: int, season: int = CURRENT_SEASON) -> Optional[list]:
+        """Get advanced stats for a player."""
+        data = self._get("/stats/advanced", {
+            "player_ids[]": player_id,
+            "seasons[]": season,
+            "per_page": 5,
+        })
+        if not data or not data.get("data"):
+            return None
+        return data["data"]
+
+    # -----------------------------------------------------------------
+    # Injuries
+    # -----------------------------------------------------------------
+    def get_injuries(self) -> Optional[list]:
+        """Get current injury report."""
+        data = self._get("/player_injuries")
+        if not data or not data.get("data"):
+            return None
+        return data["data"]
+
+    # -----------------------------------------------------------------
+    # Full profile (combined fetch)
+    # -----------------------------------------------------------------
+    def fetch_full_profile(self, player_id: int) -> Optional[dict]:
+        """Fetch season averages + recent game logs + advanced stats in one go."""
+        season_avg = self.get_season_averages(player_id)
+        game_logs = self.get_game_logs(player_id)
+        advanced = self.get_advanced_stats(player_id)
+
+        if season_avg is None and game_logs is None:
+            return None
+
+        return {
+            "season_averages": season_avg or {},
+            "recent_games": game_logs or [],
+            "advanced_stats": advanced or [],
+        }
+
+
+# Singleton
+bdl_client = BDLClient()

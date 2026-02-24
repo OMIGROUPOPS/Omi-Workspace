@@ -784,6 +784,93 @@ class Database:
             return None
     
     # =========================================================================
+    # PLAYER STATS CACHE
+    # =========================================================================
+
+    def save_player_cache(
+        self,
+        player_name: str,
+        bdl_player_id: Optional[int],
+        sport_key: str,
+        season_averages: dict,
+        recent_games: list,
+        advanced_stats: list,
+        injury_status: Optional[str] = None,
+        ttl_hours: int = 2,
+    ) -> bool:
+        """Upsert player stats into player_stats_cache."""
+        if not self._is_connected():
+            return False
+        try:
+            now = datetime.now(timezone.utc)
+            record = {
+                "player_name": player_name,
+                "bdl_player_id": bdl_player_id,
+                "sport_key": sport_key,
+                "season_averages": json.dumps(season_averages),
+                "recent_games": json.dumps(recent_games),
+                "advanced_stats": json.dumps(advanced_stats),
+                "injury_status": injury_status,
+                "fetched_at": now.isoformat(),
+                "expires_at": (now + __import__('datetime').timedelta(hours=ttl_hours)).isoformat(),
+            }
+            self.client.table("player_stats_cache").upsert(
+                record, on_conflict="player_name,sport_key"
+            ).execute()
+            return True
+        except Exception as e:
+            logger.error(f"Error saving player cache for {player_name}: {e}")
+            return False
+
+    def get_player_cache(self, player_name: str, sport_key: str = "basketball_nba") -> Optional[dict]:
+        """Get cached player stats. Returns None if not found or expired."""
+        if not self._is_connected():
+            return None
+        try:
+            result = self.client.table("player_stats_cache").select("*").eq(
+                "player_name", player_name
+            ).eq(
+                "sport_key", sport_key
+            ).limit(1).execute()
+
+            if not result.data:
+                return None
+
+            row = result.data[0]
+            # Check expiry
+            expires_at = row.get("expires_at")
+            if expires_at:
+                from dateutil.parser import parse as parse_dt
+                if parse_dt(expires_at) < datetime.now(timezone.utc):
+                    return None  # Expired
+
+            # Parse JSON fields
+            for field in ("season_averages", "recent_games", "advanced_stats"):
+                val = row.get(field)
+                if isinstance(val, str):
+                    try:
+                        row[field] = json.loads(val)
+                    except Exception:
+                        pass
+            return row
+        except Exception as e:
+            logger.error(f"Error getting player cache for {player_name}: {e}")
+            return None
+
+    def get_all_cached_players(self, sport_key: str = "basketball_nba") -> list[dict]:
+        """Get all cached player entries for a sport (for refresh)."""
+        if not self._is_connected():
+            return []
+        try:
+            result = self.client.table("player_stats_cache").select(
+                "player_name,bdl_player_id,expires_at"
+            ).eq("sport_key", sport_key).execute()
+            return result.data or []
+        except Exception as e:
+            logger.error(f"Error listing cached players: {e}")
+            return []
+
+    # =========================================================================
     # GAME STATUS TRACKING
     # =========================================================================
     

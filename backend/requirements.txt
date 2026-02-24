@@ -22,5 +22,8 @@ numpy==1.26.3
 python-dateutil==2.8.2
 pytz==2024.1
 
+# Fuzzy name matching (player stats)
+rapidfuzz==3.6.1
+
 # Type hints
 pydantic==2.5.3

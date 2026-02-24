@@ -911,6 +911,28 @@ def start_scheduler():
         next_run_time=_delayed(180),
     )
 
+    # Player stats refresh: Every 2 hours (BDL API data for prop analytics)
+    def run_player_stats_refresh():
+        if _check_paused("player_stats_refresh"):
+            return
+        def _inner():
+            from player_analytics import refresh_active_players
+            result = refresh_active_players()
+            logger.info(f"[PlayerStats] {result}")
+        try:
+            _run_with_timeout(_inner, "player_stats_refresh", timeout=120)
+        except Exception as e:
+            logger.error(f"[PlayerStats] Refresh failed: {e}")
+
+    scheduler.add_job(
+        func=run_player_stats_refresh,
+        trigger=IntervalTrigger(hours=2),
+        id="player_stats_refresh",
+        name="Refresh BDL player stats cache",
+        replace_existing=True, max_instances=1, misfire_grace_time=60,
+        next_run_time=_delayed(300),
+    )
+
     # # Accuracy reflection: Every 60 minutes
     # def run_accuracy_reflection():
     #     if _check_paused("accuracy_reflection"): return
@@ -999,6 +1021,7 @@ def start_scheduler():
     logger.info("  4. Exchange sync: every 15 min (always on)")
     logger.info("  5. Pregame capture: every 15 min (always on)")
     logger.info("  6. Grading: every 60 min (always on)")
+    logger.info("  7. Player stats refresh: every 2h (first at +300s)")
     logger.info("  Manual refresh: POST /api/internal/manual-refresh")
 
     return scheduler

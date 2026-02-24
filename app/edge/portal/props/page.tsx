@@ -323,12 +323,26 @@ function getGameCompositeModifier(composite: number | null, edgeSide: 'Over' | '
 // Signal bars, Conviction score, Narrative generation
 // ============================================================================
 
+interface PlayerProfile {
+  player: string;
+  prop_type: string;
+  projection: number | null;
+  player_form: number;
+  minutes_consistency: number;
+  season_averages: Record<string, number>;
+  recent_trend: number[];
+  injury_status: string | null;
+  source: string;
+}
+
 interface PropSignals {
-  sharpLine: number;      // 0-100: Does Pinnacle confirm the edge?
-  lineMovement: number;   // 0-100: Has the line moved toward the edge?
-  gameContext: number;     // 0-100: Does game composite support the direction?
-  priceValue: number;     // 0-100: How large is the edge?
-  bookConsensus: number;  // 0-100: Do other books agree?
+  sharpLine: number;           // 0-100: Does Pinnacle confirm the edge?
+  lineMovement: number;        // 0-100: Has the line moved toward the edge?
+  gameContext: number;          // 0-100: Does game composite support the direction?
+  priceValue: number;          // 0-100: How large is the edge?
+  bookConsensus: number;       // 0-100: Do other books agree?
+  playerForm: number;          // 0-100: Recent form vs season baseline
+  minutesConsistency: number;  // 0-100: Minutes volume + consistency
 }
 
 const SIGNAL_LABELS: { key: keyof PropSignals; label: string }[] = [
@@ -337,14 +351,18 @@ const SIGNAL_LABELS: { key: keyof PropSignals; label: string }[] = [
   { key: 'gameContext', label: 'Game Context' },
   { key: 'priceValue', label: 'Price Value' },
   { key: 'bookConsensus', label: 'Book Consensus' },
+  { key: 'playerForm', label: 'Player Form' },
+  { key: 'minutesConsistency', label: 'Minutes/Consistency' },
 ];
 
 const SIGNAL_WEIGHTS: Record<keyof PropSignals, number> = {
-  sharpLine: 0.30,
-  lineMovement: 0.20,
-  gameContext: 0.15,
-  priceValue: 0.25,
-  bookConsensus: 0.10,
+  sharpLine: 0.22,
+  lineMovement: 0.15,
+  gameContext: 0.10,
+  priceValue: 0.20,
+  bookConsensus: 0.08,
+  playerForm: 0.15,
+  minutesConsistency: 0.10,
 };
 
 function computePropSignals(opts: {
@@ -356,7 +374,7 @@ function computePropSignals(opts: {
   gameComposite: number | null; // 0-100 scale
   altBookHint: string | null;
   edgeOdds: number;
-}, history: any[] | null): PropSignals {
+}, history: any[] | null, playerProfile?: PlayerProfile | null): PropSignals {
   // 1. Sharp Line (0-100): Pinnacle-backed = higher base, line gap boosts
   let sharpLine = opts.fairSource === 'pinnacle' ? 70 : 45;
   const lineDiff = Math.abs(opts.fairLine - opts.edgeLine);
@@ -398,7 +416,13 @@ function computePropSignals(opts: {
   if (opts.altBookHint) bookConsensus = 72;
   if (opts.edgeOdds > 0) bookConsensus = Math.min(95, bookConsensus + 8);
 
-  return { sharpLine, lineMovement, gameContext, priceValue, bookConsensus };
+  // 6. Player Form (0-100): from BDL analytics (defaults to 50 when unavailable)
+  const playerForm = playerProfile?.player_form ?? 50;
+
+  // 7. Minutes/Consistency (0-100): from BDL analytics
+  const minutesConsistency = playerProfile?.minutes_consistency ?? 50;
+
+  return { sharpLine, lineMovement, gameContext, priceValue, bookConsensus, playerForm, minutesConsistency };
 }
 
 function computeConviction(signals: PropSignals): number {
@@ -407,7 +431,9 @@ function computeConviction(signals: PropSignals): number {
     signals.lineMovement * SIGNAL_WEIGHTS.lineMovement +
     signals.gameContext * SIGNAL_WEIGHTS.gameContext +
     signals.priceValue * SIGNAL_WEIGHTS.priceValue +
-    signals.bookConsensus * SIGNAL_WEIGHTS.bookConsensus
+    signals.bookConsensus * SIGNAL_WEIGHTS.bookConsensus +
+    signals.playerForm * SIGNAL_WEIGHTS.playerForm +
+    signals.minutesConsistency * SIGNAL_WEIGHTS.minutesConsistency
   );
 }
 
@@ -423,6 +449,8 @@ function generatePropNarrative(
     gameContext: 'game context',
     priceValue: 'price value',
     bookConsensus: 'book consensus',
+    playerForm: 'player form',
+    minutesConsistency: 'minutes consistency',
   };
 
   // Find strongest and weakest signals
@@ -517,6 +545,20 @@ function generateSignalDescription(
     }
     case 'bookConsensus': {
       return value >= 70 ? 'Both books lean same direction' : value > 55 ? 'Partial book agreement' : 'Limited book consensus data';
+    }
+    case 'playerForm': {
+      if (value === 50) return 'No player analytics available';
+      if (value >= 70) return `Player trending up — recent production well above season avg`;
+      if (value >= 55) return `Player slightly above season baseline`;
+      if (value >= 40) return `Player slightly below season baseline`;
+      return `Player in a slump — recent production well below season avg`;
+    }
+    case 'minutesConsistency': {
+      if (value === 50) return 'No minutes data available';
+      if (value >= 70) return `High minutes volume with consistent role`;
+      if (value >= 55) return `Moderate minutes with some variance`;
+      if (value >= 40) return `Minutes volume or consistency is a concern`;
+      return `Low minutes volume or high variance — role unclear`;
     }
     default:
       return '';
@@ -898,6 +940,8 @@ export default function PlayerPropsPage() {
   const [expandedProps, setExpandedProps] = useState<Set<string>>(new Set());
   const [propHistory, setPropHistory] = useState<Record<string, any[]>>({});
   const [loadingHistory, setLoadingHistory] = useState<Set<string>>(new Set());
+  const [playerProfiles, setPlayerProfiles] = useState<Record<string, PlayerProfile>>({});
+  const [loadingProfiles, setLoadingProfiles] = useState<Set<string>>(new Set());
   const [gamePillars, setGamePillars] = useState<Record<string, {
     execution: number; incentives: number; shocks: number;
     timeDecay: number; flow: number; gameEnvironment: number;
@@ -1334,6 +1378,30 @@ export default function PlayerPropsPage() {
         });
       }
     }
+
+    // Lazy fetch player profile on first expand (NBA props only)
+    const profileKey = `${player}::${marketType}`;
+    if (!playerProfiles[profileKey] && !loadingProfiles.has(profileKey)) {
+      setLoadingProfiles(prev => new Set(prev).add(profileKey));
+      try {
+        const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
+        const res = await fetch(
+          `${backendUrl}/api/internal/player-profile/${encodeURIComponent(player)}?prop_type=${encodeURIComponent(marketType)}`
+        );
+        if (res.ok) {
+          const profile: PlayerProfile = await res.json();
+          setPlayerProfiles(prev => ({ ...prev, [profileKey]: profile }));
+        }
+      } catch {
+        // Silently fail — signals default to 50
+      } finally {
+        setLoadingProfiles(prev => {
+          const next = new Set(prev);
+          next.delete(profileKey);
+          return next;
+        });
+      }
+    }
   };
 
   // Get sorted prop types for a game
@@ -1687,7 +1755,9 @@ export default function PlayerPropsPage() {
 
                                   {/* Expandable Detail Panel */}
                                   {isPropExpanded && (() => {
-                                    // Compute full signals with history for expanded view
+                                    // Compute full signals with history + player profile for expanded view
+                                    const profileKey = `${prop.player}::${prop.propType}`;
+                                    const profile = playerProfiles[profileKey] || null;
                                     const fullSignals = computePropSignals({
                                       fairSource: prop.fairSource,
                                       edgeSide: prop.edgeSide!,
@@ -1697,7 +1767,7 @@ export default function PlayerPropsPage() {
                                       gameComposite: prop.gameComposite,
                                       altBookHint: prop.altBookHint,
                                       edgeOdds: prop.edgeOdds,
-                                    }, history || null);
+                                    }, history || null, profile);
                                     const fullConviction = computeConviction(fullSignals);
                                     const propCEQ = computePropCEQ(prop.allBookEntries, prop.fairLine, prop.edgeSide!, history || null);
                                     const narrative = generatePropNarrative({
@@ -1868,7 +1938,16 @@ export default function PlayerPropsPage() {
                                           </div>
                                           <div className="text-[10px]" style={{ color: P.textMuted }}>
                                             Fair: <span className="font-mono" style={{ color: '#ea580c' }}>{fmtLine(prop.fairLine)}</span>
-                                            <span className="ml-1">(OMI model)</span>
+                                            {profile?.projection != null ? (
+                                              <span className="ml-1">(OMI blended fair line)</span>
+                                            ) : (
+                                              <span className="ml-1">(OMI model)</span>
+                                            )}
+                                            {profile?.projection != null && (
+                                              <span className="ml-2 font-mono" style={{ color: '#7c3aed' }}>
+                                                Proj: {profile.projection.toFixed(1)}
+                                              </span>
+                                            )}
                                             {prop.altBookHint && (
                                               <span className="ml-2" style={{ color: '#7c3aed' }}>{prop.altBookHint}</span>
                                             )}

@@ -30,6 +30,9 @@ OPEN_METEO_BASE = "https://api.open-meteo.com/v1/forecast"
 FOOTBALL_DATA_API_KEY = os.getenv("FOOTBALL_DATA_API_KEY", "")
 API_FOOTBALL_KEY = os.getenv("API_FOOTBALL_KEY", "")
 
+# BallDontLie API (player stats for prop analytics)
+BALLDONTLIE_API_KEY = os.getenv("BALLDONTLIE_API_KEY", "")
+
 # Claude API for chatbot
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 

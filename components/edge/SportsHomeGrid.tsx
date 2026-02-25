@@ -7,25 +7,25 @@ import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/tea
 import { getTimeDisplay, getGameState } from '@/lib/edge/utils/game-state';
 import { calculateFairSpread, calculateFairTotal, calculateFairMLFromBook, calculateFairMLFromBook3Way, calculateFairMoneyline, spreadToWinProb, calculateEdge } from '@/lib/edge/engine/edgescout';
 
-// --- Light theme palette ---
+// --- Dark terminal palette ---
 const P = {
-  pageBg: '#ebedf0',
-  cardBg: '#ffffff',
-  cardBorder: '#e2e4e8',
-  headerBar: '#f4f5f7',
-  chartBg: '#f0f1f3',
-  textPrimary: '#1f2937',
-  textSecondary: '#6b7280',
-  textMuted: '#9ca3af',
-  textFaint: '#b0b5bd',
-  greenText: '#16a34a',
-  greenBg: 'rgba(34,197,94,0.06)',
-  greenBorder: 'rgba(34,197,94,0.35)',
-  redText: '#b91c1c',
-  redBg: 'rgba(239,68,68,0.04)',
-  redBorder: 'rgba(239,68,68,0.25)',
-  neutralBg: '#f7f8f9',
-  neutralBorder: '#ecedef',
+  pageBg: '#0b0b0b',
+  cardBg: '#111111',
+  cardBorder: '#1a1a1a',
+  headerBar: '#0e0e0e',
+  chartBg: '#080808',
+  textPrimary: '#dddddd',
+  textSecondary: '#888888',
+  textMuted: '#555555',
+  textFaint: '#333333',
+  greenText: '#22c55e',
+  greenBg: 'rgba(34,197,94,0.08)',
+  greenBorder: 'rgba(34,197,94,0.25)',
+  redText: '#ef4444',
+  redBg: 'rgba(239,68,68,0.06)',
+  redBorder: 'rgba(239,68,68,0.20)',
+  neutralBg: '#0e0e0e',
+  neutralBorder: '#1a1a1a',
 };
 
 const EDGE_THRESHOLD = 0;
@@ -292,7 +292,7 @@ function TeamLogo({ teamName, sportKey }: { teamName: string; sportKey: string }
 }
 
 function BookIcon({ bookKey, size = 24 }: { bookKey: string; size?: number }) {
-  const config = BOOK_CONFIG[bookKey] || { name: bookKey, color: '#6b7280' };
+  const config = BOOK_CONFIG[bookKey] || { name: bookKey, color: '#888888' };
   const initials = config.name.split(' ').map(w => w[0]).join('').slice(0, 2);
   return (
     <div className="rounded flex items-center justify-center font-bold text-white flex-shrink-0"
@@ -320,7 +320,7 @@ function MiniChart({ data, fairValue }: { data?: { t: number; v: number }[]; fai
   const lastVal = data[data.length - 1].v;
   const converging = fairValue != null && data.length >= 2
     ? Math.abs(lastVal - fairValue) < Math.abs(data[0].v - fairValue) : null;
-  const lineColor = converging === true ? '#22c55e' : converging === false ? '#ef4444' : '#9ca3af';
+  const lineColor = converging === true ? '#22c55e' : converging === false ? '#ef4444' : '#555555';
 
   return (
     <svg width={W} height={H} style={{ marginTop: 4 }}>
@@ -619,7 +619,7 @@ export function SportsHomeGrid({
                 </span>
               )}
               <span style={{ fontSize: 10, color: secondsSinceUpdate > 60 ? '#d97706' : P.textMuted, fontFamily: 'monospace' }}>
-                {hasLiveGames && <span style={{ color: '#16a34a', marginRight: 4 }}>LIVE {hasLiveGames ? '10s' : '45s'}</span>}
+                {hasLiveGames && <span style={{ color: '#22c55e', marginRight: 4 }}>LIVE {hasLiveGames ? '10s' : '45s'}</span>}
                 Updated {secondsSinceUpdate < 60 ? `${secondsSinceUpdate}s` : `${Math.floor(secondsSinceUpdate / 60)}m`} ago
                 {lastUpdated && <span style={{ color: P.textFaint, marginLeft: 4 }}>({lastUpdated.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })})</span>}
               </span>
@@ -989,7 +989,7 @@ export function SportsHomeGrid({
                         className="block group"
                         style={{
                           background: P.cardBg,
-                          border: isLive ? '2px solid #16a34a' : isFinal ? `1px solid ${P.textMuted}` : `1px solid ${P.cardBorder}`,
+                          border: isLive ? '2px solid #22c55e' : isFinal ? `1px solid ${P.textMuted}` : `1px solid ${P.cardBorder}`,
                           borderRadius: 12,
                           boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
                           opacity: isFinal ? 0.75 : 1,
@@ -1007,7 +1007,7 @@ export function SportsHomeGrid({
                           <span style={{ fontSize: 11, color: P.textSecondary }} suppressHydrationWarning>{timeStr}</span>
                           <div className="flex items-center gap-2">
                             {isLive ? (
-                              <span className="flex items-center gap-1" style={{ fontSize: 10, fontWeight: 700, color: '#16a34a' }}>
+                              <span className="flex items-center gap-1" style={{ fontSize: 10, fontWeight: 700, color: '#22c55e' }}>
                                 <span className="relative flex h-1.5 w-1.5">
                                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>

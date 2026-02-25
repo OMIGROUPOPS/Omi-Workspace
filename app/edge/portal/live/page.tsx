@@ -6,21 +6,21 @@ import { formatOdds } from '@/lib/edge/utils/odds-math';
 import { getTeamLogo, getTeamColor, getTeamInitials } from '@/lib/edge/utils/team-logos';
 import { getGameState, getEstimatedPeriod } from '@/lib/edge/utils/game-state';
 
-// Light theme palette (matches SportsHomeGrid)
+// --- Dark terminal palette (matches SportsHomeGrid) ---
 const P = {
-  pageBg: '#ebedf0',
-  cardBg: '#ffffff',
-  cardBorder: '#e2e4e8',
-  headerBar: '#f4f5f7',
-  textPrimary: '#1f2937',
-  textSecondary: '#6b7280',
-  textMuted: '#9ca3af',
-  textFaint: '#b0b5bd',
-  greenText: '#16a34a',
-  greenBg: 'rgba(34,197,94,0.06)',
-  greenBorder: 'rgba(34,197,94,0.35)',
-  neutralBg: '#f7f8f9',
-  neutralBorder: '#ecedef',
+  pageBg: '#0b0b0b',
+  cardBg: '#111111',
+  cardBorder: '#1a1a1a',
+  headerBar: '#0e0e0e',
+  textPrimary: '#dddddd',
+  textSecondary: '#888888',
+  textMuted: '#555555',
+  textFaint: '#333333',
+  greenText: '#22c55e',
+  greenBg: 'rgba(34,197,94,0.08)',
+  greenBorder: 'rgba(34,197,94,0.25)',
+  neutralBg: '#0e0e0e',
+  neutralBorder: '#1a1a1a',
 };
 
 const BOOK_CONFIG: Record<string, { name: string; color: string }> = {
@@ -57,7 +57,7 @@ function TeamLogo({ teamName, sportKey }: { teamName: string; sportKey: string }
 }
 
 function BookIcon({ bookKey, size = 24 }: { bookKey: string; size?: number }) {
-  const config = BOOK_CONFIG[bookKey] || { name: bookKey, color: '#6b7280' };
+  const config = BOOK_CONFIG[bookKey] || { name: bookKey, color: '#888888' };
   const initials = config.name.split(' ').map(w => w[0]).join('').slice(0, 2);
   return (
     <div
@@ -184,7 +184,7 @@ export default function LiveMarketsPage() {
               <span style={{ fontSize: 13, fontWeight: 700, color: P.textPrimary }}>Live Markets</span>
               <span style={{
                 fontSize: 9, fontFamily: 'monospace', fontWeight: 600,
-                color: '#16a34a', background: P.greenBg, border: `1px solid ${P.greenBorder}`,
+                color: '#22c55e', background: P.greenBg, border: `1px solid ${P.greenBorder}`,
                 padding: '2px 6px', borderRadius: 4, letterSpacing: 1,
               }}>TIER 2</span>
             </div>
@@ -202,7 +202,7 @@ export default function LiveMarketsPage() {
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
               </span>
               <span style={{ fontSize: 10, color: P.textMuted, fontFamily: 'monospace' }}>
-                <span style={{ color: '#16a34a', marginRight: 4 }}>LIVE 10s</span>
+                <span style={{ color: '#22c55e', marginRight: 4 }}>LIVE 10s</span>
                 Updated {secondsSinceUpdate < 60 ? `${secondsSinceUpdate}s` : `${Math.floor(secondsSinceUpdate / 60)}m`} ago
                 {lastUpdated && <span style={{ color: P.textFaint, marginLeft: 4 }}>({lastUpdated.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })})</span>}
               </span>
@@ -389,7 +389,7 @@ export default function LiveMarketsPage() {
                         statusColor = P.textMuted;
                       } else {
                         statusLabel = isCovering ? '✓ Covering' : '✗ Not Covering';
-                        statusColor = isCovering ? P.greenText : '#b91c1c';
+                        statusColor = isCovering ? P.greenText : '#ef4444';
                       }
                       return (
                         <>

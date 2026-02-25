@@ -2,22 +2,23 @@
 
 import { useState, useMemo, useRef, useEffect } from 'react';
 
+// --- Dark terminal palette ---
 const P = {
-  pageBg: '#ebedf0',
-  cardBg: '#ffffff',
-  cardBorder: '#e2e4e8',
-  headerBar: '#f4f5f7',
-  chartBg: '#f7f8f9',
-  textPrimary: '#1f2937',
-  textSecondary: '#6b7280',
-  textMuted: '#9ca3af',
-  textFaint: '#b0b5bd',
-  greenText: '#16a34a',
-  greenBg: 'rgba(34,197,94,0.06)',
-  greenBorder: 'rgba(34,197,94,0.3)',
-  redText: '#dc2626',
+  pageBg: '#0b0b0b',
+  cardBg: '#111111',
+  cardBorder: '#1a1a1a',
+  headerBar: '#0e0e0e',
+  chartBg: '#080808',
+  textPrimary: '#dddddd',
+  textSecondary: '#888888',
+  textMuted: '#555555',
+  textFaint: '#333333',
+  greenText: '#22c55e',
+  greenBg: 'rgba(34,197,94,0.08)',
+  greenBorder: 'rgba(34,197,94,0.25)',
+  redText: '#ef4444',
   redBg: 'rgba(239,68,68,0.06)',
-  redBorder: 'rgba(239,68,68,0.25)',
+  redBorder: 'rgba(239,68,68,0.20)',
 };
 
 const PLATFORM_CONFIG: Record<string, { name: string; color: string }> = {
@@ -782,7 +783,7 @@ export function ExchangeGameClient({
                 return (
                   <CompRow
                     key={key}
-                    color={BOOK_CONFIG[key]?.color || '#6b7280'}
+                    color={BOOK_CONFIG[key]?.color || '#888888'}
                     label={BOOK_CONFIG[key]?.name || key}
                     col1={odds.h2h?.homePrice != null ? fmtOdds(odds.h2h.homePrice) : '--'}
                     col2={odds.h2h?.awayPrice != null ? fmtOdds(odds.h2h.awayPrice) : '--'}
@@ -828,7 +829,7 @@ export function ExchangeGameClient({
                 return (
                   <CompRow
                     key={key}
-                    color={BOOK_CONFIG[key]?.color || '#6b7280'}
+                    color={BOOK_CONFIG[key]?.color || '#888888'}
                     label={BOOK_CONFIG[key]?.name || key}
                     col1={line > 0 ? `+${line}` : `${line}`}
                     col2={fmtOdds(odds.spreads.homePrice)}
@@ -872,7 +873,7 @@ export function ExchangeGameClient({
                 return (
                   <CompRow
                     key={key}
-                    color={BOOK_CONFIG[key]?.color || '#6b7280'}
+                    color={BOOK_CONFIG[key]?.color || '#888888'}
                     label={BOOK_CONFIG[key]?.name || key}
                     col1={`${odds.totals.line}`}
                     col2={fmtOdds(odds.totals.overPrice)}

@@ -109,25 +109,25 @@ const PROP_TYPE_LABELS: Record<string, string> = {
   player_cards: 'Cards',
 };
 
-// Light theme palette (matches SportsHomeGrid + Live Markets)
+// --- Dark terminal palette (matches SportsHomeGrid + Game Detail) ---
 const P = {
-  pageBg: '#ebedf0',
-  cardBg: '#ffffff',
-  cardBorder: '#e2e4e8',
-  headerBar: '#f4f5f7',
-  chartBg: '#f0f1f3',
-  textPrimary: '#1f2937',
-  textSecondary: '#6b7280',
-  textMuted: '#9ca3af',
-  textFaint: '#b0b5bd',
-  greenText: '#16a34a',
-  greenBg: 'rgba(34,197,94,0.06)',
-  greenBorder: 'rgba(34,197,94,0.35)',
-  redText: '#b91c1c',
-  redBg: 'rgba(239,68,68,0.04)',
-  redBorder: 'rgba(239,68,68,0.25)',
-  neutralBg: '#f7f8f9',
-  neutralBorder: '#ecedef',
+  pageBg: '#0b0b0b',
+  cardBg: '#111111',
+  cardBorder: '#1a1a1a',
+  headerBar: '#0e0e0e',
+  chartBg: '#080808',
+  textPrimary: '#dddddd',
+  textSecondary: '#888888',
+  textMuted: '#555555',
+  textFaint: '#333333',
+  greenText: '#22c55e',
+  greenBg: 'rgba(34,197,94,0.08)',
+  greenBorder: 'rgba(34,197,94,0.25)',
+  redText: '#ef4444',
+  redBg: 'rgba(239,68,68,0.06)',
+  redBorder: 'rgba(239,68,68,0.20)',
+  neutralBg: '#0e0e0e',
+  neutralBorder: '#1a1a1a',
 };
 
 // Sharp book for benchmark (used internally, NOT displayed)
@@ -806,29 +806,29 @@ function PropLineChart({ data, fairLine, fairSource }: { data: any[]; fairLine: 
         const positive = fairLine > v; // OMI fair above book = positive edge
         return (
           <rect key={i} x={x1} y={Math.min(bY, fairY)} width={x2 - x1} height={gap}
-            fill={positive ? 'rgba(220,252,231,0.3)' : 'rgba(252,231,231,0.3)'} />
+            fill="rgba(212,168,67,0.06)" />
         );
       })}
 
       {/* OMI Fair line — solid orange, 2px */}
-      <line x1={PAD_X} y1={fairY} x2={lastX} y2={fairY} stroke="#ea580c" strokeWidth="2" />
+      <line x1={PAD_X} y1={fairY} x2={lastX} y2={fairY} stroke="#D4A843" strokeWidth="2" />
       {/* Orange dots at each data point X */}
       {vals.map((_, i) => (
-        <circle key={`f${i}`} cx={PAD_X + i * xStep} cy={fairY} r="3" fill="#ea580c" stroke={P.cardBg} strokeWidth="1" />
+        <circle key={`f${i}`} cx={PAD_X + i * xStep} cy={fairY} r="3" fill="#D4A843" stroke={P.cardBg} strokeWidth="1" />
       ))}
 
       {/* Book step-line — solid green, 2px */}
-      <path d={bookPath} fill="none" stroke="#16a34a" strokeWidth="2" />
+      <path d={bookPath} fill="none" stroke="#22c55e" strokeWidth="2" />
       {/* Green dots at each data point */}
       {vals.map((v, i) => (
-        <circle key={`b${i}`} cx={PAD_X + i * xStep} cy={toY(v)} r="3" fill="#16a34a" stroke={P.cardBg} strokeWidth="1" />
+        <circle key={`b${i}`} cx={PAD_X + i * xStep} cy={toY(v)} r="3" fill="#22c55e" stroke={P.cardBg} strokeWidth="1" />
       ))}
 
       {/* Endpoint labels (always visible) */}
-      <text x={lastX + 10} y={eLblBookY + 4} fill="#16a34a" fontSize="10" fontFamily="monospace" fontWeight="bold">
+      <text x={lastX + 10} y={eLblBookY + 4} fill="#22c55e" fontSize="10" fontFamily="monospace" fontWeight="bold">
         {bookShort} {fmtLine(vals[vals.length - 1])}
       </text>
-      <text x={lastX + 10} y={eLblFairY + 4} fill="#ea580c" fontSize="10" fontFamily="monospace" fontWeight="bold">
+      <text x={lastX + 10} y={eLblFairY + 4} fill="#D4A843" fontSize="10" fontFamily="monospace" fontWeight="bold">
         OMI {fmtLine(fairLine)}
       </text>
 
@@ -838,15 +838,15 @@ function PropLineChart({ data, fairLine, fairSource }: { data: any[]; fairLine: 
 
       {/* Legend */}
       <g transform={`translate(${PAD_X}, ${H - 10})`}>
-        <line x1="0" y1="0" x2="12" y2="0" stroke="#16a34a" strokeWidth="2" />
-        <circle cx="6" cy="0" r="1.5" fill="#16a34a" />
+        <line x1="0" y1="0" x2="12" y2="0" stroke="#22c55e" strokeWidth="2" />
+        <circle cx="6" cy="0" r="1.5" fill="#22c55e" />
         <text x="16" y="3" fill={P.textSecondary} fontSize="9" fontFamily="monospace">{bookFullName}</text>
         <text x="72" y="3" fill={P.textFaint} fontSize="9">|</text>
-        <line x1="82" y1="0" x2="94" y2="0" stroke="#ea580c" strokeWidth="2" />
-        <circle cx="88" cy="0" r="1.5" fill="#ea580c" />
+        <line x1="82" y1="0" x2="94" y2="0" stroke="#D4A843" strokeWidth="2" />
+        <circle cx="88" cy="0" r="1.5" fill="#D4A843" />
         <text x="98" y="3" fill={P.textSecondary} fontSize="9" fontFamily="monospace">OMI Fair</text>
         <text x="156" y="3" fill={P.textFaint} fontSize="9">|</text>
-        <rect x="166" y="-5" width="12" height="10" rx="1" fill="rgba(220,252,231,0.5)" stroke="#bbf7d0" strokeWidth="0.5" />
+        <rect x="166" y="-5" width="12" height="10" rx="1" fill="rgba(212,168,67,0.15)" stroke="rgba(212,168,67,0.3)" strokeWidth="0.5" />
         <text x="182" y="3" fill={P.textSecondary} fontSize="9" fontFamily="monospace">Edge Zone</text>
       </g>
 
@@ -857,16 +857,16 @@ function PropLineChart({ data, fairLine, fairSource }: { data: any[]; fairLine: 
           <line x1={hoverX} y1={PAD_Y} x2={hoverX} y2={CHART_B} stroke="#d1d5db" strokeWidth="1" strokeDasharray="3 2" />
 
           {/* Circle + label on book line */}
-          <circle cx={hoverX} cy={hBookY} r="4" fill="#16a34a" stroke={P.cardBg} strokeWidth="1.5" />
+          <circle cx={hoverX} cy={hBookY} r="4" fill="#22c55e" stroke={P.cardBg} strokeWidth="1.5" />
           <rect x={hoverX + lblDx - 2} y={chBookY - 8} width={lblW} height={15} rx="3" fill="rgba(255,255,255,0.92)" />
-          <text x={hoverX + lblDx} y={chBookY + 4} fill="#16a34a" fontSize="9" fontFamily="monospace" fontWeight="bold">
+          <text x={hoverX + lblDx} y={chBookY + 4} fill="#22c55e" fontSize="9" fontFamily="monospace" fontWeight="bold">
             {bookShort}: {fmtLine(hBookVal)}
           </text>
 
           {/* Circle + label on OMI fair line */}
-          <circle cx={hoverX} cy={fairY} r="4" fill="#ea580c" stroke={P.cardBg} strokeWidth="1.5" />
+          <circle cx={hoverX} cy={fairY} r="4" fill="#D4A843" stroke={P.cardBg} strokeWidth="1.5" />
           <rect x={hoverX + lblDx - 2} y={chFairY - 8} width={lblW} height={15} rx="3" fill="rgba(255,255,255,0.92)" />
-          <text x={hoverX + lblDx} y={chFairY + 4} fill="#ea580c" fontSize="9" fontFamily="monospace" fontWeight="bold">
+          <text x={hoverX + lblDx} y={chFairY + 4} fill="#D4A843" fontSize="9" fontFamily="monospace" fontWeight="bold">
             OMI: {fmtLine(fairLine)}
           </text>
 
@@ -903,9 +903,9 @@ function PropComparisonBar({ prop }: { prop: ParsedProp }) {
   const fmtVal = (v: number) => Number.isInteger(v) ? String(v) : v.toFixed(1);
 
   const markers: { label: string; value: number; color: string; bg: string; border: string }[] = [];
-  if (fdLine != null) markers.push({ label: 'FD', value: fdLine, color: '#1493ff', bg: '#eff6ff', border: '#bfdbfe' });
-  if (dkLine != null) markers.push({ label: 'DK', value: dkLine, color: '#16a34a', bg: '#f0fdf4', border: '#bbf7d0' });
-  markers.push({ label: 'OMI', value: fairLine, color: '#ea580c', bg: '#fff7ed', border: '#fed7aa' });
+  if (fdLine != null) markers.push({ label: 'FD', value: fdLine, color: '#1493ff', bg: 'rgba(20,147,255,0.08)', border: 'rgba(20,147,255,0.25)' });
+  if (dkLine != null) markers.push({ label: 'DK', value: dkLine, color: '#22c55e', bg: 'rgba(34,197,94,0.08)', border: 'rgba(34,197,94,0.25)' });
+  markers.push({ label: 'OMI', value: fairLine, color: '#D4A843', bg: 'rgba(212,168,67,0.08)', border: 'rgba(212,168,67,0.25)' });
 
   return (
     <div style={{ padding: '12px 0' }}>
@@ -1683,7 +1683,7 @@ export default function PlayerPropsPage() {
 
                                       {/* Fair Line */}
                                       <div className="text-center">
-                                        <span className="text-sm font-mono" style={{ color: '#ea580c' }}>{prop.fairLine}</span>
+                                        <span className="text-sm font-mono" style={{ color: '#D4A843' }}>{prop.fairLine}</span>
                                       </div>
 
                                       {/* Over odds (selected book) */}
@@ -1742,7 +1742,7 @@ export default function PlayerPropsPage() {
                                         </div>
                                       </div>
                                       <div className="flex items-center gap-3 text-xs pl-5">
-                                        <span className="font-mono" style={{ color: '#ea580c' }}>{prop.fairLine}</span>
+                                        <span className="font-mono" style={{ color: '#D4A843' }}>{prop.fairLine}</span>
                                         <span className="font-semibold" style={{ color: P.textPrimary }}>
                                           {prop.edgeSide} {prop.edgeLine}
                                         </span>
@@ -1804,13 +1804,13 @@ export default function PlayerPropsPage() {
                                             </div>
                                             {/* Header row */}
                                             <div className="grid grid-cols-3 gap-1 mb-1.5 pb-1" style={{ borderBottom: `1px solid ${P.neutralBorder}` }}>
-                                              <span className="text-[9px] font-semibold uppercase" style={{ color: '#ea580c' }}>OMI Fair</span>
+                                              <span className="text-[9px] font-semibold uppercase" style={{ color: '#D4A843' }}>OMI Fair</span>
                                               <span className="text-[9px] font-semibold uppercase text-center" style={{ color: P.textMuted }}>Book</span>
                                               <span className="text-[9px] font-semibold uppercase text-right" style={{ color: prop.edgeSide === 'Over' ? P.greenText : P.textMuted }}>Edge</span>
                                             </div>
                                             {/* Values row */}
                                             <div className="grid grid-cols-3 gap-1 items-baseline">
-                                              <span className="text-sm font-mono font-bold" style={{ color: '#ea580c' }}>{fmtLine(prop.fairLine)}</span>
+                                              <span className="text-sm font-mono font-bold" style={{ color: '#D4A843' }}>{fmtLine(prop.fairLine)}</span>
                                               <div className="text-center">
                                                 <span className="text-sm font-mono font-bold" style={{ color: P.textPrimary }}>
                                                   {myOver ? fmtLine(myOver.line) : '\u2014'}
@@ -1845,13 +1845,13 @@ export default function PlayerPropsPage() {
                                             </div>
                                             {/* Header row */}
                                             <div className="grid grid-cols-3 gap-1 mb-1.5 pb-1" style={{ borderBottom: `1px solid ${P.neutralBorder}` }}>
-                                              <span className="text-[9px] font-semibold uppercase" style={{ color: '#ea580c' }}>OMI Fair</span>
+                                              <span className="text-[9px] font-semibold uppercase" style={{ color: '#D4A843' }}>OMI Fair</span>
                                               <span className="text-[9px] font-semibold uppercase text-center" style={{ color: P.textMuted }}>Book</span>
                                               <span className="text-[9px] font-semibold uppercase text-right" style={{ color: prop.edgeSide === 'Under' ? P.greenText : P.textMuted }}>Edge</span>
                                             </div>
                                             {/* Values row */}
                                             <div className="grid grid-cols-3 gap-1 items-baseline">
-                                              <span className="text-sm font-mono font-bold" style={{ color: '#ea580c' }}>{fmtLine(prop.fairLine)}</span>
+                                              <span className="text-sm font-mono font-bold" style={{ color: '#D4A843' }}>{fmtLine(prop.fairLine)}</span>
                                               <div className="text-center">
                                                 <span className="text-sm font-mono font-bold" style={{ color: P.textPrimary }}>
                                                   {myUnder ? fmtLine(myUnder.line) : '\u2014'}
@@ -1937,7 +1937,7 @@ export default function PlayerPropsPage() {
                                             <span className="text-[10px] font-medium" style={{ color: getConvictionColor(fullConviction) }}>{getConvictionTier(fullConviction)}</span>
                                           </div>
                                           <div className="text-[10px]" style={{ color: P.textMuted }}>
-                                            Fair: <span className="font-mono" style={{ color: '#ea580c' }}>{fmtLine(prop.fairLine)}</span>
+                                            Fair: <span className="font-mono" style={{ color: '#D4A843' }}>{fmtLine(prop.fairLine)}</span>
                                             {profile?.projection != null ? (
                                               <span className="ml-1">(OMI blended fair line)</span>
                                             ) : (

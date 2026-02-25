@@ -306,7 +306,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
 
   // Color theming: emerald for line view, amber for price view
   const isPrice = effectiveViewMode === 'price';
-  const bookColor = '#a1a1aa';
+  const bookColor = 'rgba(255,255,255,0.6)';
   const omiColor = '#D4A843';
 
   if (data.length === 0) {
@@ -863,7 +863,7 @@ function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeT
                 {/* Vertical crosshair line — tracks cursor exactly */}
                 <line x1={hoverX} y1={paddingTop} x2={hoverX} y2={paddingTop + chartHeight} stroke="#222" strokeWidth="1" strokeDasharray="3 2" />
                 {/* Cursor time label on X-axis */}
-                <rect x={hoverX - 24} y={paddingTop + chartHeight + 2} width={48} height={13} rx="2" fill="#222" opacity="0.85" />
+                <rect x={hoverX - 24} y={paddingTop + chartHeight + 2} width={48} height={13} rx="2" fill="#111" opacity="0.85" />
                 <text x={hoverX} y={paddingTop + chartHeight + 12} textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace">{cursorTimeStr}</text>
                 {/* Book value pill — positioned at cursor X, step-interpolated Y */}
                 <rect x={flipBook ? hoverX - 4 - bookPillW : hoverX + 4} y={bookY - pillH / 2} width={bookPillW} height={pillH} rx="3" fill={bookColor} opacity="0.9" />
@@ -2188,6 +2188,177 @@ function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | 
 }
 
 // ============================================================================
+// EdgeEvolution — timeline showing how edge % changed over composite_history
+// ============================================================================
+
+function EdgeEvolution({
+  compositeHistory, sportKey, activeMarket,
+}: {
+  compositeHistory: CompositeHistoryPoint[];
+  sportKey: string;
+  activeMarket: 'spread' | 'total' | 'moneyline';
+}) {
+  if (!compositeHistory || compositeHistory.length === 0) {
+    return (
+      <div className="p-3">
+        <div className="text-[9px] text-[#444] font-mono uppercase tracking-wider mb-2">Edge Evolution</div>
+        <div className="text-[10px] text-[#555]">No composite history available yet.</div>
+      </div>
+    );
+  }
+
+  const rate = SPREAD_TO_PROB_RATE[sportKey] || 0.033;
+
+  // Calculate edge at each timestamp
+  const points = compositeHistory.map((row, i) => {
+    let edge = 0;
+    let label = '';
+    if (activeMarket === 'total') {
+      if (row.fair_total != null && row.book_total != null) {
+        edge = Math.abs(row.fair_total - row.book_total) * rate * 100;
+        label = `Fair O${row.fair_total.toFixed(1)} vs Book O${row.book_total.toFixed(1)}`;
+      }
+    } else {
+      // spread and moneyline both derive from spread
+      if (row.fair_spread != null && row.book_spread != null) {
+        edge = Math.abs(row.book_spread - row.fair_spread) * rate * 100;
+        label = `Fair ${row.fair_spread > 0 ? '+' : ''}${row.fair_spread.toFixed(1)} vs Book ${row.book_spread > 0 ? '+' : ''}${row.book_spread.toFixed(1)}`;
+      }
+    }
+
+    // Detect what changed vs previous row
+    let note = label;
+    if (i > 0) {
+      const prev = compositeHistory[i - 1];
+      const prevFairSpread = prev.fair_spread;
+      const curFairSpread = row.fair_spread;
+      const prevBookSpread = prev.book_spread;
+      const curBookSpread = row.book_spread;
+      if (activeMarket === 'total') {
+        if (prev.fair_total != null && row.fair_total != null && Math.abs(row.fair_total - prev.fair_total) >= 0.5) {
+          note = `Fair total moved ${row.fair_total > prev.fair_total ? 'up' : 'down'} to ${row.fair_total.toFixed(1)}`;
+        } else if (prev.book_total != null && row.book_total != null && Math.abs(row.book_total - prev.book_total) >= 0.5) {
+          note = `Book total moved to ${row.book_total.toFixed(1)}`;
+        }
+      } else {
+        if (prevFairSpread != null && curFairSpread != null && Math.abs(curFairSpread - prevFairSpread) >= 0.5) {
+          note = `Fair line moved to ${curFairSpread > 0 ? '+' : ''}${curFairSpread.toFixed(1)}`;
+        } else if (prevBookSpread != null && curBookSpread != null && Math.abs(curBookSpread - prevBookSpread) >= 0.5) {
+          note = `Book line moved to ${curBookSpread > 0 ? '+' : ''}${curBookSpread.toFixed(1)}`;
+        }
+      }
+    }
+
+    return {
+      timestamp: row.timestamp,
+      edge: Math.round(edge * 10) / 10,
+      note,
+    };
+  });
+
+  const maxEdge = Math.max(...points.map(p => p.edge), 1);
+
+  // Sparkline SVG
+  const sparkW = 200;
+  const sparkH = 32;
+  const sparkPad = 2;
+  const stepX = points.length > 1 ? (sparkW - sparkPad * 2) / (points.length - 1) : 0;
+  const sparkPoints = points.map((p, i) => {
+    const x = sparkPad + i * stepX;
+    const y = sparkH - sparkPad - ((p.edge / (maxEdge || 1)) * (sparkH - sparkPad * 2));
+    return `${x},${y}`;
+  }).join(' ');
+
+  // Show last N entries in timeline (most recent first), capped for space
+  const timelineEntries = [...points].reverse().slice(0, 8);
+
+  const formatTime = (ts: string) => {
+    try {
+      const d = new Date(ts);
+      const now = new Date();
+      const diffMs = now.getTime() - d.getTime();
+      const diffH = Math.floor(diffMs / 3600000);
+      if (diffH < 1) return `${Math.floor(diffMs / 60000)}m ago`;
+      if (diffH < 24) return `${diffH}h ago`;
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    } catch { return ts; }
+  };
+
+  const getEdgeColor = (edge: number) => {
+    if (edge >= 5) return '#22c55e';
+    if (edge >= 3) return '#D4A843';
+    if (edge >= 1) return '#555';
+    return '#333';
+  };
+
+  const latestEdge = points[points.length - 1]?.edge ?? 0;
+  const earliestEdge = points[0]?.edge ?? 0;
+  const edgeTrend = latestEdge > earliestEdge ? 'expanding' : latestEdge < earliestEdge ? 'narrowing' : 'stable';
+
+  return (
+    <div className="p-3">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-[9px] text-[#444] font-mono uppercase tracking-wider">Edge Evolution</span>
+        <span className="text-[9px] font-mono" style={{ color: getEdgeColor(latestEdge) }}>
+          {latestEdge.toFixed(1)}% {edgeTrend === 'expanding' ? '\u25B2' : edgeTrend === 'narrowing' ? '\u25BC' : '\u25C6'}
+        </span>
+      </div>
+
+      {/* Timeline entries */}
+      <div className="space-y-0">
+        {timelineEntries.map((entry, i) => (
+          <div key={i} className="flex items-start gap-2 py-1" style={{ borderBottom: i < timelineEntries.length - 1 ? '1px solid #111' : 'none' }}>
+            <span className="text-[8px] text-[#333] font-mono w-12 flex-shrink-0 pt-px">{formatTime(entry.timestamp)}</span>
+            <div
+              className="w-1 h-1 rounded-full flex-shrink-0 mt-1"
+              style={{ backgroundColor: getEdgeColor(entry.edge) }}
+            />
+            <div className="min-w-0 flex-1">
+              <span className="text-[9px] font-mono font-semibold" style={{ color: getEdgeColor(entry.edge) }}>
+                {entry.edge.toFixed(1)}%
+              </span>
+              <span className="text-[9px] text-[#444] ml-1.5">{entry.note}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Sparkline */}
+      {points.length >= 2 && (
+        <div className="mt-2 pt-2 border-t border-[#111]">
+          <svg width="100%" height={sparkH} viewBox={`0 0 ${sparkW} ${sparkH}`} preserveAspectRatio="none" className="overflow-visible">
+            {/* Fill area under line */}
+            <polygon
+              points={`${sparkPad},${sparkH - sparkPad} ${sparkPoints} ${sparkPad + (points.length - 1) * stepX},${sparkH - sparkPad}`}
+              fill="rgba(212,168,67,0.06)"
+            />
+            {/* Line */}
+            <polyline
+              points={sparkPoints}
+              fill="none"
+              stroke="#D4A843"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+            />
+            {/* Latest point dot */}
+            {(() => {
+              const lastPt = points[points.length - 1];
+              const lx = sparkPad + (points.length - 1) * stepX;
+              const ly = sparkH - sparkPad - ((lastPt.edge / (maxEdge || 1)) * (sparkH - sparkPad * 2));
+              return <circle cx={lx} cy={ly} r="2.5" fill="#D4A843" />;
+            })()}
+          </svg>
+          <div className="flex justify-between mt-0.5">
+            <span className="text-[7px] text-[#333] font-mono">{formatTime(points[0].timestamp)}</span>
+            <span className="text-[7px] text-[#333] font-mono">{formatTime(points[points.length - 1].timestamp)}</span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ============================================================================
 // Demo/Lock components
 // ============================================================================
 
@@ -2918,16 +3089,21 @@ export function GameDetailClient({
   const [lazyLineHistory, setLazyLineHistory] = useState<Record<string, Record<string, any[]>>>({});
   const [loadingPeriods, setLoadingPeriods] = useState<Set<string>>(new Set());
 
-  // Fetch latest composite_history fair lines — single source of truth for all displays
+  // Fetch composite_history — full array for EdgeEvolution, latest row for fair lines
   const [dbFairLines, setDbFairLines] = useState<CompositeHistoryPoint | null>(null);
+  const [compositeHistory, setCompositeHistory] = useState<CompositeHistoryPoint[]>([]);
   useEffect(() => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://omi-workspace-production.up.railway.app';
     fetch(`${BACKEND_URL}/api/composite-history/${gameData.id}`)
       .then(res => res.ok ? res.json() : [])
       .then((rows: CompositeHistoryPoint[]) => {
         const arr = Array.isArray(rows) ? rows : [];
+        // Filter out pre-calibration rows
+        const calibrationCutoff = new Date('2026-02-19T00:00:00Z').getTime();
+        const filtered = arr.filter(r => new Date(r.timestamp).getTime() >= calibrationCutoff);
+        setCompositeHistory(filtered);
         // Use the latest row as the authoritative fair line
-        if (arr.length > 0) setDbFairLines(arr[arr.length - 1]);
+        if (filtered.length > 0) setDbFairLines(filtered[filtered.length - 1]);
       })
       .catch(() => {});
   }, [gameData.id]);
@@ -3418,6 +3594,16 @@ export function GameDetailClient({
                   <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
                 </div>
               </div>
+
+              {/* Edge Evolution — 50% left (Injury Report placeholder right) */}
+              <div className="flex border-t border-[#1a1a1a]/50">
+                <div className="w-1/2 border-r border-[#1a1a1a]/50">
+                  <EdgeEvolution compositeHistory={compositeHistory} sportKey={gameData.sportKey} activeMarket={activeMarket} />
+                </div>
+                <div className="w-1/2">
+                  {/* Injury Report will go here */}
+                </div>
+              </div>
             </div>
 
             {/* Right: Edge AI sidebar — fixed width, full height */}
@@ -3556,6 +3742,8 @@ export function GameDetailClient({
           />
 
           <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
+
+          <EdgeEvolution compositeHistory={compositeHistory} sportKey={gameData.sportKey} activeMarket={activeMarket} />
 
           {/* Exchange Signals — complementary intelligence */}
           {exchangeData && (

@@ -196,7 +196,7 @@ function UnifiedChart({
   const data = filtered.map(row => {
     const { bookVal, fairVal } = getValues(row);
     return { timestamp: new Date(row.timestamp), bookVal, fairVal, raw: row };
-  }).filter(d => d.bookVal != null || d.fairVal != null);
+  }).filter(d => d.bookVal != null && d.fairVal != null);
 
   // Empty state
   if (data.length === 0) {

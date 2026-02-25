@@ -272,26 +272,24 @@ function UnifiedChart({
     return trackingSide === 'home' ? fair < book : fair > book;
   };
 
-  // Directional edge shading segments
+  // Directional edge shading segments — thin band between book and fair lines
   const edgeSegments = data.slice(0, -1).map((d, i) => {
     const next = data[i + 1];
     if (d.bookVal == null || d.fairVal == null || next.bookVal == null || next.fairVal == null) return null;
-    const x1 = indexToX(i);
-    const x2 = indexToX(i + 1);
+    const x = indexToX(i);
+    const w = indexToX(i + 1) - x;
     const gap = Math.abs(d.bookVal - d.fairVal);
     const edge = gap * rate * 100;
     const favorable = isFavorable(d.fairVal, d.bookVal);
-    const opacity = Math.min(edge / 5, 1) * 0.18;
+    const opacity = Math.min(edge / 5, 1) * 0.15;
     const color = favorable ? '#22c55e' : '#ef4444';
-    const y1Book = valueToY(d.bookVal);
-    const y1Fair = valueToY(d.fairVal);
-    const y2Book = valueToY(next.bookVal);
-    const y2Fair = valueToY(next.fairVal);
-    return {
-      points: `${x1},${y1Book} ${x2},${y2Book} ${x2},${y2Fair} ${x1},${y1Fair}`,
-      color, opacity, edge, favorable,
-    };
-  }).filter(Boolean) as { points: string; color: string; opacity: number; edge: number; favorable: boolean }[];
+    const yBook = valueToY(d.bookVal);
+    const yFair = valueToY(d.fairVal);
+    const yTop = Math.min(yBook, yFair);
+    const yBot = Math.max(yBook, yFair);
+    const h = yBot - yTop;
+    return { x, y: yTop, w, h, color, opacity, edge, favorable };
+  }).filter(Boolean) as { x: number; y: number; w: number; h: number; color: string; opacity: number; edge: number; favorable: boolean }[];
 
   // Y-axis grid
   const gridStep = isML ? 10 : 0.5;
@@ -373,10 +371,23 @@ function UnifiedChart({
   const currentEdge = currentGap * rate * 100;
   const compositeScore = pythonPillars?.composite ?? null;
 
-  // Hover logic
+  // Hover logic — accounts for aspect ratio letterboxing
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const mx = ((e.clientX - rect.left) / rect.width) * svgW;
+    const svgEl = e.currentTarget;
+    const svgRect = svgEl.getBoundingClientRect();
+    const viewBox = svgEl.viewBox.baseVal;
+    const containerAspect = svgRect.width / svgRect.height;
+    const viewBoxAspect = viewBox.width / viewBox.height;
+    let renderWidth: number, renderX: number;
+    if (containerAspect > viewBoxAspect) {
+      renderWidth = svgRect.height * viewBoxAspect;
+      renderX = (svgRect.width - renderWidth) / 2;
+    } else {
+      renderWidth = svgRect.width;
+      renderX = 0;
+    }
+    const relativeX = e.clientX - svgRect.left - renderX;
+    const mx = (relativeX / renderWidth) * viewBox.width;
     if (mx >= padL && mx <= padL + chartW) setHoverX(mx);
     else setHoverX(null);
   };
@@ -461,7 +472,7 @@ function UnifiedChart({
 
       {/* SVG Chart */}
       <div className="relative">
-        <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full cursor-crosshair" style={{ height: '220px' }} preserveAspectRatio="none" onMouseMove={handleMouseMove} onMouseLeave={() => setHoverX(null)}>
+        <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full cursor-crosshair" style={{ height: '220px' }} preserveAspectRatio="xMidYMid meet" onMouseMove={handleMouseMove} onMouseLeave={() => setHoverX(null)}>
           {/* Y-axis grid */}
           {yGridLines.map((g, i) => (
             <line key={`g-${i}`} x1={padL} y1={g.y} x2={svgW - padR} y2={g.y} stroke="#131313" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.6" />
@@ -475,9 +486,9 @@ function UnifiedChart({
             <text key={`x-${i}`} x={lbl.x} y={svgH - 2} textAnchor="middle" fill="#555" fontSize="9" fontFamily="monospace">{lbl.label}</text>
           ))}
 
-          {/* Directional edge shading */}
+          {/* Directional edge shading — thin band between lines */}
           {edgeSegments.map((seg, i) => (
-            <polygon key={`e-${i}`} points={seg.points} fill={seg.color} opacity={seg.opacity} />
+            <rect key={`e-${i}`} x={seg.x} y={seg.y} width={seg.w} height={seg.h} fill={seg.color} opacity={seg.opacity} />
           ))}
 
           {/* Book line — smooth curve */}

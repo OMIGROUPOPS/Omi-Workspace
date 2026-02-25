@@ -376,10 +376,8 @@ function UnifiedChart({
 
   // Hover logic
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
-    const svg = e.currentTarget;
-    const rect = svg.getBoundingClientRect();
-    const scaleX = svgW / rect.width;
-    const mx = (e.clientX - rect.left) * scaleX;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const mx = ((e.clientX - rect.left) / rect.width) * svgW;
     if (mx >= padL && mx <= padL + chartW) setHoverX(mx);
     else setHoverX(null);
   };
@@ -468,7 +466,7 @@ function UnifiedChart({
       </div>
 
       {/* SVG Chart */}
-      <div className="relative px-1">
+      <div className="relative">
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full cursor-crosshair" style={{ height: '220px' }} preserveAspectRatio="xMidYMid meet" onMouseMove={handleMouseMove} onMouseLeave={() => setHoverX(null)}>
           {/* Y-axis grid */}
           {yGridLines.map((g, i) => (
@@ -537,11 +535,14 @@ function UnifiedChart({
               {hoverData.bookY != null && <circle cx={hoverData.x} cy={hoverData.bookY} r="3" fill={BOOK_LINE_COLOR} stroke="#0b0b0b" strokeWidth="1" />}
               {hoverData.fairY != null && <circle cx={hoverData.x} cy={hoverData.fairY} r="3" fill={FAIR_LINE_COLOR} stroke="#0b0b0b" strokeWidth="1" />}
               {(() => {
-                const tooltipW = hoverData.nearbyDriver ? 160 : 130;
-                const tooltipH = hoverData.nearbyDriver ? 70 : 56;
+                const hasDriver = !!hoverData.nearbyDriver;
+                const tooltipW = hasDriver ? 170 : 130;
+                const tooltipH = hasDriver ? 84 : 56;
                 const tx = flipTooltip ? hoverData.x - tooltipW - 8 : hoverData.x + 8;
                 const ty = Math.max(padT, Math.min(padT + chartH - tooltipH, (hoverData.bookY ?? padT + chartH / 2) - tooltipH / 2));
                 const fmtTs = hoverData.ts.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+                const dirLabel = hoverData.favorable ? '\u25B2 favorable' : '\u25BC unfavorable';
+                const dirColor = hoverData.favorable ? '#22c55e' : '#ef4444';
                 return (
                   <g>
                     <rect x={tx} y={ty} width={tooltipW} height={tooltipH} rx="3" fill="#111" stroke="#222" strokeWidth="0.5" />
@@ -552,13 +553,18 @@ function UnifiedChart({
                     <text x={tx + 6} y={ty + 36} fill={FAIR_LINE_COLOR} fontSize="9" fontFamily="monospace" fontWeight="600">
                       Fair {hoverData.fairV != null ? formatValue(hoverData.fairV) : '\u2014'}
                     </text>
-                    <text x={tx + 6} y={ty + 48} fill={hoverData.favorable ? '#22c55e' : '#ef4444'} fontSize="9" fontFamily="monospace" fontWeight="600">
-                      {hoverData.edge.toFixed(1)}% {hoverData.tierLabel} {hoverData.favorable ? '\u25B2' : '\u25BC'}
+                    <text x={tx + 6} y={ty + 48} fill={dirColor} fontSize="9" fontFamily="monospace" fontWeight="600">
+                      {hoverData.edge.toFixed(1)}% {hoverData.tierLabel} {dirLabel}
                     </text>
-                    {hoverData.nearbyDriver && (
-                      <text x={tx + 6} y={ty + 62} fill={FAIR_LINE_COLOR} fontSize="8" fontFamily="monospace">
-                        {'\u25B2'} {hoverData.nearbyDriver.detail.slice(0, 28)}
-                      </text>
+                    {hasDriver && (
+                      <>
+                        <text x={tx + 6} y={ty + 62} fill="#aaa" fontSize="8" fontFamily="monospace">
+                          {hoverData.nearbyDriver!.detail.slice(0, 30)}
+                        </text>
+                        <text x={tx + 6} y={ty + 76} fill={FAIR_LINE_COLOR} fontSize="8" fontFamily="monospace" fontWeight="600">
+                          {'\u2726'} Ask Edge AI
+                        </text>
+                      </>
                     )}
                   </g>
                 );
@@ -1463,21 +1469,17 @@ function PillarBarsCompact({
     { key: 'gameEnvironment', label: 'ENV', weight: '10%', fullLabel: 'Game Env' },
   ];
 
-  // Dual-sided: >55 = emerald (home), <45 = red/amber (away), 45-55 = neutral
+  // Neutral color scheme: gold = strong signal, grey = neutral, blue = opposite signal
   const getBarColor = (score: number) => {
-    if (score >= 65) return '#34d399'; // emerald-400 (strong home)
-    if (score > 55) return '#059669';  // emerald-600 (home lean)
-    if (score > 45) return '#555';  // neutral
-    if (score > 35) return '#f59e0b';  // amber-500 (away lean)
-    return '#ef4444'; // red-500 (strong away)
+    if (score > 55) return '#D4A843';  // gold — strong signal
+    if (score >= 45) return '#555';    // grey — neutral
+    return '#5b7a99';                  // steel blue — opposite signal
   };
 
   const getTextColor = (score: number) => {
-    if (score >= 65) return 'text-emerald-400';
-    if (score > 55) return 'text-emerald-600';
-    if (score > 45) return 'text-[#555]';
-    if (score > 35) return 'text-amber-400';
-    return 'text-red-400';
+    if (score > 55) return 'text-[#D4A843]';
+    if (score >= 45) return 'text-[#555]';
+    return 'text-[#5b7a99]';
   };
 
   const homeAbbrev = abbrev(homeTeam);
@@ -1845,8 +1847,8 @@ function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | 
     { key: 'sentiment' as const, label: 'Sentiment', weight: weights.sentiment },
   ];
   const getStrength = (s: number) => s >= 75 ? 'Strong' : s >= 60 ? 'Moderate' : s >= 40 ? 'Weak' : 'Low';
-  const getBarColor = (s: number) => s >= 75 ? '#34d399' : s >= 60 ? '#22d3ee' : s >= 40 ? '#fbbf24' : '#555';
-  const getTextColor = (s: number) => s >= 75 ? 'text-emerald-400' : s >= 60 ? 'text-cyan-400' : s >= 40 ? 'text-amber-400' : 'text-[#555]';
+  const getBarColor = (s: number) => s > 55 ? '#D4A843' : s >= 45 ? '#555' : '#5b7a99';
+  const getTextColor = (s: number) => s > 55 ? 'text-[#D4A843]' : s >= 45 ? 'text-[#555]' : 'text-[#5b7a99]';
 
   // Compute scores for composite summary
   const scoredFactors = factors.map(f => {

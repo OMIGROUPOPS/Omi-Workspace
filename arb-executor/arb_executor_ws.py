@@ -1974,7 +1974,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 # OMI directional hold — not a full unwind
                 timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
                 print(f"[EXEC] [{result.tier}]: {result.abort_reason} | {timing}")
-                k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
+                k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price,
+                            'k_response_details': result.k_response_details}
                 pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price, 'outcome_index': _actual_pm_oi, 'is_buy_short': _is_buy_short}
                 log_trade(arb, k_result, pm_result, result.tier,
                           execution_time_ms=result.execution_time_ms,
@@ -1994,7 +1995,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
                 tier_info = f" [{result.tier}]" if result.tier else ""
                 print(f"[EXEC] EXITED{tier_info}: {result.abort_reason} | {timing}")
-                k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
+                k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price,
+                            'k_response_details': result.k_response_details}
                 pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price, 'outcome_index': _actual_pm_oi, 'is_buy_short': _is_buy_short}
                 log_trade(arb, k_result, pm_result, 'EXITED',
                           execution_time_ms=result.execution_time_ms,

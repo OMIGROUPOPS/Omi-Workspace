@@ -3176,151 +3176,152 @@ export function GameDetailClient({
   return (
     <>
       {/* Desktop: OMI Fair Pricing Layout */}
-      <div
-        className="hidden lg:block h-full relative overflow-y-auto"
-        style={{ background: '#0b0b0b', fontVariantNumeric: 'tabular-nums' }}
-      >
+      <div className="hidden lg:block h-full" style={{ background: '#0b0b0b' }}>
+        <div className="flex flex-col h-full mx-auto" style={{ maxWidth: '1400px', fontVariantNumeric: 'tabular-nums' }}>
 
-        <div style={{ borderBottom: '1px solid #1a1a1a' }}>
-          <TerminalHeader
-            awayTeam={gameData.awayTeam}
-            homeTeam={gameData.homeTeam}
-            commenceTime={gameData.commenceTime}
-            activeMarket={activeMarket}
-            selectedBook={selectedBook}
-            filteredBooks={filteredBooks}
-            onSelectBook={setSelectedBook}
-            isLive={isLive}
-          />
+          {/* Fixed header area — does not scroll */}
+          <div className="flex-shrink-0">
+            <div style={{ borderBottom: '1px solid #1a1a1a' }}>
+              <TerminalHeader
+                awayTeam={gameData.awayTeam}
+                homeTeam={gameData.homeTeam}
+                commenceTime={gameData.commenceTime}
+                activeMarket={activeMarket}
+                selectedBook={selectedBook}
+                filteredBooks={filteredBooks}
+                onSelectBook={setSelectedBook}
+                isLive={isLive}
+              />
+            </div>
+
+            {/* Live score bar */}
+            {liveScore && (isLive || isFinal) && (
+              <LiveScoreBar
+                liveData={liveScore}
+                homeTeam={gameData.homeTeam}
+                awayTeam={gameData.awayTeam}
+                sportKey={gameData.sportKey}
+                fairSpread={liveScoreFairValues.fairSpread}
+                fairTotal={liveScoreFairValues.fairTotal}
+                fairMLHomeProb={liveScoreFairValues.fairMLHomeProb}
+                activeMarket={activeMarket}
+                isFinalGame={isFinal}
+              />
+            )}
+
+            {/* Informational banner */}
+            {isLive && <GameStatusBanner gameState="live" />}
+            {isFinal && <GameStatusBanner gameState="final" />}
+
+            {/* Market tabs + period sub-tabs */}
+            <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#1a1a1a]/50">
+              <div className="flex items-center gap-1">
+                {(['spread', 'total', 'moneyline'] as ActiveMarket[])
+                  .filter(m => m !== 'spread' || !isSoccerGame)
+                  .map(m => (
+                    <button
+                      key={m}
+                      onClick={() => setActiveMarket(m)}
+                      className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
+                        activeMarket === m
+                          ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                          : 'text-[#555] hover:text-[#ccc] border border-transparent'
+                      }`}
+                    >
+                      {m === 'spread' ? 'Spread' : m === 'total' ? 'Total' : 'Moneyline'}
+                    </button>
+                  ))}
+                <span className="w-px h-4 bg-[#222]/50 mx-1" />
+                {[
+                  { key: 'full', label: 'Full' },
+                  ...(availableTabs?.firstHalf ? [{ key: '1h', label: '1H' }] : []),
+                  ...(availableTabs?.secondHalf ? [{ key: '2h', label: '2H' }] : []),
+                  ...(availableTabs?.q1 ? [{ key: '1q', label: 'Q1' }] : []),
+                  ...(availableTabs?.q2 ? [{ key: '2q', label: 'Q2' }] : []),
+                  ...(availableTabs?.q3 ? [{ key: '3q', label: 'Q3' }] : []),
+                  ...(availableTabs?.q4 ? [{ key: '4q', label: 'Q4' }] : []),
+                  ...(availableTabs?.p1 ? [{ key: '1p', label: 'P1' }] : []),
+                  ...(availableTabs?.p2 ? [{ key: '2p', label: 'P2' }] : []),
+                  ...(availableTabs?.p3 ? [{ key: '3p', label: 'P3' }] : []),
+                ].map(tab => (
+                  <button
+                    key={tab.key}
+                    onClick={() => handlePeriodChange(tab.key)}
+                    className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-colors ${
+                      activePeriod === tab.key
+                        ? 'bg-[#222] text-[#ddd]'
+                        : 'text-[#555] hover:text-[#888]'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Main area: scrollable left content + fixed Edge AI sidebar */}
+          <div className="flex flex-1 min-h-0">
+            {/* Left: independently scrollable content */}
+            <div className="flex-1 min-w-0 overflow-y-auto">
+              {/* Chart — full width */}
+              <div className="relative flex flex-col px-1 py-1 border-b border-[#1a1a1a]/50" style={{ height: '280px' }}>
+                <LineMovementChart
+                  key={`chart-${activeMarket}-${activePeriod}-${selectedBook}`}
+                  gameId={gameData.id}
+                  selection={chartSelection}
+                  lineHistory={getLineHistoryWithCurrentOdds()}
+                  selectedBook={selectedBook}
+                  homeTeam={gameData.homeTeam}
+                  awayTeam={gameData.awayTeam}
+                  viewMode={chartViewMode}
+                  onViewModeChange={setChartViewMode}
+                  commenceTime={gameData.commenceTime}
+                  sportKey={gameData.sportKey}
+                  omiFairLine={omiFairLineForChart}
+                  activeMarket={activeMarket}
+                />
+              </div>
+
+              <OmiFairPricing
+                key={`desktop-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
+                pythonPillars={pythonPillarScores}
+                bookmakers={bookmakers}
+                gameData={gameData}
+                sportKey={gameData.sportKey}
+                activeMarket={activeMarket}
+                activePeriod={activePeriod}
+                selectedBook={selectedBook}
+                commenceTime={gameData.commenceTime}
+                renderKey={renderKey}
+                dbFairLines={dbFairLines}
+              />
+
+              {/* Why This Price + CEQ Factors — side by side */}
+              <div className="flex border-t border-[#1a1a1a]/50">
+                <div className="w-1/2 border-r border-[#1a1a1a]/50">
+                  <WhyThisPrice
+                    pythonPillars={pythonPillarScores}
+                    ceq={activeCeq}
+                    homeTeam={gameData.homeTeam}
+                    awayTeam={gameData.awayTeam}
+                    activeMarket={activeMarket}
+                    activePeriod={activePeriod}
+                  />
+                </div>
+                <div className="w-1/2">
+                  <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Edge AI sidebar — fixed width, full height */}
+            <div className="w-[260px] flex-shrink-0">
+              <AskEdgeAI activeMarket={activeMarket} activePeriod={activePeriod} gameContext={edgeAIGameContext} />
+            </div>
+          </div>
+
         </div>
-
-        {/* Live score bar */}
-        {liveScore && (isLive || isFinal) && (
-          <LiveScoreBar
-            liveData={liveScore}
-            homeTeam={gameData.homeTeam}
-            awayTeam={gameData.awayTeam}
-            sportKey={gameData.sportKey}
-            fairSpread={liveScoreFairValues.fairSpread}
-            fairTotal={liveScoreFairValues.fairTotal}
-            fairMLHomeProb={liveScoreFairValues.fairMLHomeProb}
-            activeMarket={activeMarket}
-            isFinalGame={isFinal}
-          />
-        )}
-
-        {/* Informational banner */}
-        {isLive && <GameStatusBanner gameState="live" />}
-        {isFinal && <GameStatusBanner gameState="final" />}
-
-        {/* Market tabs + period sub-tabs */}
-        <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#1a1a1a]/50">
-          <div className="flex items-center gap-1">
-            {(['spread', 'total', 'moneyline'] as ActiveMarket[])
-              .filter(m => m !== 'spread' || !isSoccerGame)
-              .map(m => (
-                <button
-                  key={m}
-                  onClick={() => setActiveMarket(m)}
-                  className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
-                    activeMarket === m
-                      ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                      : 'text-[#555] hover:text-[#ccc] border border-transparent'
-                  }`}
-                >
-                  {m === 'spread' ? 'Spread' : m === 'total' ? 'Total' : 'Moneyline'}
-                </button>
-              ))}
-            <span className="w-px h-4 bg-[#222]/50 mx-1" />
-            {[
-              { key: 'full', label: 'Full' },
-              ...(availableTabs?.firstHalf ? [{ key: '1h', label: '1H' }] : []),
-              ...(availableTabs?.secondHalf ? [{ key: '2h', label: '2H' }] : []),
-              ...(availableTabs?.q1 ? [{ key: '1q', label: 'Q1' }] : []),
-              ...(availableTabs?.q2 ? [{ key: '2q', label: 'Q2' }] : []),
-              ...(availableTabs?.q3 ? [{ key: '3q', label: 'Q3' }] : []),
-              ...(availableTabs?.q4 ? [{ key: '4q', label: 'Q4' }] : []),
-              ...(availableTabs?.p1 ? [{ key: '1p', label: 'P1' }] : []),
-              ...(availableTabs?.p2 ? [{ key: '2p', label: 'P2' }] : []),
-              ...(availableTabs?.p3 ? [{ key: '3p', label: 'P3' }] : []),
-            ].map(tab => (
-              <button
-                key={tab.key}
-                onClick={() => handlePeriodChange(tab.key)}
-                className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-colors ${
-                  activePeriod === tab.key
-                    ? 'bg-[#222] text-[#ddd]'
-                    : 'text-[#555] hover:text-[#888]'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Two-column: Chart (55%) + Ask Edge AI (45%) */}
-        <div className="flex border-b border-[#1a1a1a]/50" style={{ height: '260px' }}>
-          {/* Left: Chart */}
-          <div className="relative flex flex-col px-1 py-1" style={{ width: '55%' }}>
-            <LineMovementChart
-              key={`chart-${activeMarket}-${activePeriod}-${selectedBook}`}
-              gameId={gameData.id}
-              selection={chartSelection}
-              lineHistory={getLineHistoryWithCurrentOdds()}
-              selectedBook={selectedBook}
-              homeTeam={gameData.homeTeam}
-              awayTeam={gameData.awayTeam}
-              viewMode={chartViewMode}
-              onViewModeChange={setChartViewMode}
-              commenceTime={gameData.commenceTime}
-              sportKey={gameData.sportKey}
-              omiFairLine={omiFairLineForChart}
-              activeMarket={activeMarket}
-            />
-          </div>
-          {/* Right: Ask Edge AI */}
-          <div className="h-full" style={{ width: '45%' }}>
-            <AskEdgeAI activeMarket={activeMarket} activePeriod={activePeriod} gameContext={edgeAIGameContext} />
-          </div>
-        </div>
-
-        <OmiFairPricing
-          key={`desktop-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
-          pythonPillars={pythonPillarScores}
-          bookmakers={bookmakers}
-          gameData={gameData}
-          sportKey={gameData.sportKey}
-          activeMarket={activeMarket}
-          activePeriod={activePeriod}
-          selectedBook={selectedBook}
-          commenceTime={gameData.commenceTime}
-          renderKey={renderKey}
-          dbFairLines={dbFairLines}
-        />
-
-        {/* Why This Price + CEQ Factors — side by side */}
-        <div className="flex border-t border-[#1a1a1a]/50">
-          <div className="w-1/2 border-r border-[#1a1a1a]/50">
-            <WhyThisPrice
-              pythonPillars={pythonPillarScores}
-              ceq={activeCeq}
-              homeTeam={gameData.homeTeam}
-              awayTeam={gameData.awayTeam}
-              activeMarket={activeMarket}
-              activePeriod={activePeriod}
-            />
-          </div>
-          <div className="w-1/2">
-            <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
-          </div>
-        </div>
-
-        {/* Exchange Signals — hidden until data cleanup, re-enable later
-        {exchangeData && (
-          <ExchangeSignals exchangeData={exchangeData} bookmakers={bookmakers} gameData={gameData} activeMarket={activeMarket} />
-        )}
-        */}
       </div>
 
       {/* Mobile: Single-column scrollable fallback */}

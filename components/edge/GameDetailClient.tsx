@@ -266,6 +266,12 @@ function UnifiedChart({
   const bookPathD = smoothPath(bookPts);
   const fairPathD = smoothPath(fairPts);
 
+  // Shared favorability: accounts for tracking side after value negation
+  const isFavorable = (fair: number, book: number) => {
+    if (isTotal) return trackingSide === 'over' ? fair > book : fair < book;
+    return trackingSide === 'home' ? fair < book : fair > book;
+  };
+
   // Directional edge shading segments
   const edgeSegments = data.slice(0, -1).map((d, i) => {
     const next = data[i + 1];
@@ -274,14 +280,7 @@ function UnifiedChart({
     const x2 = indexToX(i + 1);
     const gap = Math.abs(d.bookVal - d.fairVal);
     const edge = gap * rate * 100;
-    // Favorable: for spread/ML, fair < book means tracked side gets better value
-    // For total over, fair > book is favorable; for under, fair < book is favorable
-    let favorable: boolean;
-    if (isTotal) {
-      favorable = trackingSide === 'over' ? d.fairVal > d.bookVal : d.fairVal < d.bookVal;
-    } else {
-      favorable = d.fairVal < d.bookVal;
-    }
+    const favorable = isFavorable(d.fairVal, d.bookVal);
     const opacity = Math.min(edge / 5, 1) * 0.18;
     const color = favorable ? '#22c55e' : '#ef4444';
     const y1Book = valueToY(d.bookVal);
@@ -390,12 +389,7 @@ function UnifiedChart({
     const bookV = d.bookVal;
     const fairV = d.fairVal;
     const edge = (bookV != null && fairV != null) ? Math.abs(bookV - fairV) * rate * 100 : 0;
-    let favorable: boolean;
-    if (isTotal) {
-      favorable = trackingSide === 'over' ? (fairV ?? 0) > (bookV ?? 0) : (fairV ?? 0) < (bookV ?? 0);
-    } else {
-      favorable = (fairV ?? 0) < (bookV ?? 0);
-    }
+    const favorable = isFavorable(fairV ?? 0, bookV ?? 0);
     const tierLabel = edge >= 5 ? 'STRONG' : edge >= 3 ? 'EDGE' : edge >= 1 ? 'WATCH' : 'FLAT';
     const nearbyDriver = drivers.find(drv => Math.abs(drv.index - idx) <= 2);
     return {
@@ -467,7 +461,7 @@ function UnifiedChart({
 
       {/* SVG Chart */}
       <div className="relative">
-        <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full cursor-crosshair" style={{ height: '220px' }} preserveAspectRatio="xMidYMid meet" onMouseMove={handleMouseMove} onMouseLeave={() => setHoverX(null)}>
+        <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full cursor-crosshair" style={{ height: '220px' }} preserveAspectRatio="none" onMouseMove={handleMouseMove} onMouseLeave={() => setHoverX(null)}>
           {/* Y-axis grid */}
           {yGridLines.map((g, i) => (
             <line key={`g-${i}`} x1={padL} y1={g.y} x2={svgW - padR} y2={g.y} stroke="#131313" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.6" />

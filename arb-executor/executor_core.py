@@ -31,6 +31,7 @@ import json
 import math
 import os
 import time
+import traceback
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Dict, Set, Tuple, Optional, Any
@@ -41,6 +42,7 @@ from pregame_mapper import TEAM_FULL_NAMES  # Kalshi abbrev → full name for OM
 # Path for persisting traded games across restarts
 TRADED_GAMES_FILE = os.path.join(os.path.dirname(__file__), "traded_games.json")
 DIRECTIONAL_POSITIONS_FILE = os.path.join(os.path.dirname(__file__), "directional_positions.json")
+KALSHI_ERRORS_LOG = os.path.join(os.path.dirname(__file__), "kalshi_errors.log")
 
 # =============================================================================
 # PM_LONG_TEAM ABBREVIATION MAPPINGS
@@ -215,6 +217,22 @@ class TradeResult:
     opposite_hedge_filled: int = 0
     combined_cost_cents: float = 0.0        # PM + K opposite
     guaranteed_profit_cents: float = 0.0    # (100 - combined) * qty, 0 if overweight
+
+
+def _log_kalshi_error(ticker: str, price_cents: int, action: str, side: str,
+                      count: int, error_str: str, tb: str) -> None:
+    """Append Kalshi error to persistent log file for post-hoc diagnosis."""
+    try:
+        ts = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
+        with open(KALSHI_ERRORS_LOG, 'a') as f:
+            f.write(f"[{ts}] {ticker} | {action} {count} {side} @ {price_cents}c\n")
+            f.write(f"  Error: {error_str}\n")
+            f.write(f"  Traceback:\n")
+            for line in tb.strip().splitlines():
+                f.write(f"    {line}\n")
+            f.write("\n")
+    except Exception:
+        pass  # Never let logging crash execution
 
 
 def _extract_pm_response_details(pm_result: Dict) -> Dict:
@@ -1191,6 +1209,38 @@ async def execute_arb(
     # Depth pre-check removed — tier system handles Kalshi failures cheaply
 
     # -------------------------------------------------------------------------
+    # Step 4.5: Pre-flight Kalshi validation (zero-cost, prevents PM risk)
+    # -------------------------------------------------------------------------
+    if k_book_ref is not None:
+        k_best_bid = k_book_ref.get('best_bid', 0)
+        k_best_ask = k_book_ref.get('best_ask', 0)
+        # Check book has valid prices (ticker is active and tradeable)
+        if not k_best_bid and not k_best_ask:
+            return TradeResult(
+                success=False,
+                abort_reason=f"Pre-flight: Kalshi book empty for {arb.kalshi_ticker} (inactive/untradeable)",
+            )
+        # Check our limit price isn't wildly out of range
+        if params['k_action'] == 'sell' and k_best_bid:
+            if k_limit_price > k_best_bid + 5:
+                return TradeResult(
+                    success=False,
+                    abort_reason=f"Pre-flight: K sell price {k_limit_price}c > best_bid {k_best_bid}c + 5c buffer",
+                )
+        elif params['k_action'] == 'buy' and k_best_ask:
+            if k_limit_price < k_best_ask - 5:
+                return TradeResult(
+                    success=False,
+                    abort_reason=f"Pre-flight: K buy price {k_limit_price}c < best_ask {k_best_ask}c - 5c buffer",
+                )
+    else:
+        # No book reference at all — cannot validate Kalshi side
+        return TradeResult(
+            success=False,
+            abort_reason=f"Pre-flight: No Kalshi book data for {arb.kalshi_ticker}",
+        )
+
+    # -------------------------------------------------------------------------
     # Step 5: Place PM order FIRST (unreliable leg - IOC often expires)
     # -------------------------------------------------------------------------
     # Outcome index: most cases trade on their own team's outcome.
@@ -1200,16 +1250,25 @@ async def execute_arb(
 
     pm_order_start = time.time()
     try:
-        pm_result = await pm_api.place_order(
-            session,
-            pm_slug,
-            params['pm_intent'],   # 1=BUY_YES, 3=BUY_NO
-            pm_price,
-            size,                  # Dynamic sizing from depth walk
-            tif=3,                 # time_in_force: IOC
-            sync=True,             # Always synchronous for IOC
-            outcome_index=actual_pm_outcome_idx
+        pm_result = await asyncio.wait_for(
+            pm_api.place_order(
+                session,
+                pm_slug,
+                params['pm_intent'],   # 1=BUY_YES, 3=BUY_NO
+                pm_price,
+                size,                  # Dynamic sizing from depth walk
+                tif=3,                 # time_in_force: IOC
+                sync=True,             # Always synchronous for IOC
+                outcome_index=actual_pm_outcome_idx
+            ),
+            timeout=2.0,  # Hard 2s cap — IOC auto-expires, safe to abort
         )
+    except asyncio.TimeoutError:
+        pm_order_ms = int((time.time() - pm_order_start) * 1000)
+        execution_time_ms = int((time.time() - start_time) * 1000)
+        print(f"[EXEC] PM order TIMEOUT after {pm_order_ms}ms (2s cap) - aborting safely")
+        return TradeResult(success=False, abort_reason=f"PM order timeout ({pm_order_ms}ms > 2000ms cap)",
+                           execution_time_ms=execution_time_ms, pm_order_ms=pm_order_ms)
     except Exception as e:
         # PM failed before any position taken - safe exit
         execution_time_ms = int((time.time() - start_time) * 1000)
@@ -1359,8 +1418,24 @@ async def execute_arb(
         )
     except Exception as e:
         # KALSHI EXCEPTION - Attempt to unwind PM position
-        print(f"[RECOVERY] Kalshi exception: {e} - unwinding PM position...")
+        k_exception_str = str(e)
+        k_traceback = traceback.format_exc()
+        print(f"[RECOVERY] Kalshi exception: {k_exception_str} - unwinding PM position...")
         on_execution_crash(game_id)
+
+        # Log to persistent file
+        _log_kalshi_error(arb.kalshi_ticker, k_limit_price, params['k_action'],
+                          params['k_side'], pm_filled, k_exception_str, k_traceback)
+
+        k_err_details = {
+            'k_exception': k_exception_str,
+            'k_traceback': k_traceback,
+            'k_limit_price_sent': k_limit_price,
+            'k_original_price': k_price,
+            'k_action': params['k_action'],
+            'k_side': params['k_side'],
+            'k_count': pm_filled,
+        }
 
         # Try to unwind PM position (10c buffer, then 25c desperation)
         original_intent = params['pm_intent']
@@ -1377,10 +1452,11 @@ async def execute_arb(
                 success=False, kalshi_filled=0, pm_filled=pm_filled,
                 kalshi_price=k_limit_price, pm_price=pm_fill_price,
                 unhedged=False,
-                abort_reason=f"Kalshi exception, PM unwound (loss: {loss_per_contract:.1f}c x {pm_filled} = {loss_cents:.1f}c)",
+                abort_reason=f"Kalshi exception: {k_exception_str} | PM unwound (loss: {loss_per_contract:.1f}c x {pm_filled} = {loss_cents:.1f}c)",
                 execution_time_ms=int((time.time() - start_time) * 1000),
                 pm_order_ms=pm_order_ms, k_order_ms=0,
                 pm_response_details=pm_response_details,
+                k_response_details=k_err_details,
                 execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
                 gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
                 gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,
@@ -1401,11 +1477,12 @@ async def execute_arb(
             kalshi_price=k_limit_price,
             pm_price=pm_fill_price,
             unhedged=True,
-            abort_reason=f"Kalshi exception: {e}, PM unwind failed - UNHEDGED!",
+            abort_reason=f"Kalshi exception: {k_exception_str} | PM unwind failed - UNHEDGED!",
             execution_time_ms=int((time.time() - start_time) * 1000),
             pm_order_ms=pm_order_ms,
             k_order_ms=0,
             pm_response_details=pm_response_details,
+            k_response_details=k_err_details,
             execution_phase="gtc" if (gtc_phase and gtc_phase.get('filled', 0) > 0) else "ioc",
             gtc_rest_time_ms=gtc_phase['rest_time_ms'] if gtc_phase else 0,
             gtc_spread_checks=gtc_phase['spread_checks'] if gtc_phase else 0,

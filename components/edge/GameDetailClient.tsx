@@ -19,6 +19,9 @@ const BOOK_CONFIG: Record<string, { name: string; color: string; type: 'sportsbo
 
 const ALLOWED_BOOKS = ['fanduel', 'draftkings', 'kalshi', 'polymarket'];
 
+const BOOK_LINE_COLOR = '#5b7a99';
+const FAIR_LINE_COLOR = '#D4A843';
+
 const PERIOD_MAP: Record<string, string> = {
   'full': 'fullGame', '1h': 'firstHalf', '2h': 'secondHalf',
   '1q': 'q1', '2q': 'q2', '3q': 'q3', '4q': 'q4',
@@ -121,7 +124,7 @@ const americanToImplied = (odds: number): number => {
 };
 
 // ============================================================================
-// LineMovementChart — with OMI fair line overlay
+// Chart types
 // ============================================================================
 
 interface CompositeHistoryPoint {
@@ -137,768 +140,474 @@ interface CompositeHistoryPoint {
   book_ml_away: number | null;
 }
 
-interface LineMovementChartProps {
-  gameId: string;
-  selection: ChartSelection;
-  lineHistory?: any[];
-  selectedBook: string;
-  homeTeam?: string;
-  awayTeam?: string;
-  viewMode: ChartViewMode;
-  onViewModeChange: (mode: ChartViewMode) => void;
+// ============================================================================
+// UnifiedChart — convergence chart with smooth curves, edge shading, drivers
+// ============================================================================
+
+function UnifiedChart({
+  compositeHistory, sportKey, activeMarket, homeTeam, awayTeam, commenceTime, pythonPillars,
+}: {
+  compositeHistory: CompositeHistoryPoint[];
+  sportKey: string;
+  activeMarket: 'spread' | 'total' | 'moneyline';
+  homeTeam: string;
+  awayTeam: string;
   commenceTime?: string;
-  sportKey?: string;
-  compact?: boolean;
-  omiFairLine?: number;
-  activeMarket?: string;
-}
-
-function LineMovementChart({ gameId, selection, lineHistory, selectedBook, homeTeam, awayTeam, viewMode, onViewModeChange, commenceTime, sportKey, compact = false, omiFairLine, activeMarket: activeMarketProp }: LineMovementChartProps) {
+  pythonPillars?: PythonPillarScores | null;
+}) {
   const [hoverX, setHoverX] = useState<number | null>(null);
-  const [trackingSide, setTrackingSide] = useState<'home' | 'away' | 'over' | 'under' | 'draw'>('home');
-  const isSoccer = sportKey?.includes('soccer') ?? false;
-  const [timeRange, setTimeRange] = useState<TimeRange>('ALL');
-  const [compositeHistory, setCompositeHistory] = useState<CompositeHistoryPoint[]>([]);
-  // Soccer 3-way: single-select (one line at a time, toggle switches)
+  const [chartTimeRange, setChartTimeRange] = useState<TimeRange>('ALL');
+  const [trackingSide, setTrackingSide] = useState<'home' | 'away' | 'over' | 'under'>('home');
+  const homeAbbr = abbrev(homeTeam);
+  const awayAbbr = abbrev(awayTeam);
+  const rate = SPREAD_TO_PROB_RATE[sportKey] || 0.033;
+  const isML = activeMarket === 'moneyline';
+  const isTotal = activeMarket === 'total';
 
-  // Fetch composite history for dynamic OMI fair line
-  useEffect(() => {
-    if (!gameId) return;
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://omi-workspace-production.up.railway.app';
-    fetch(`${BACKEND_URL}/api/composite-history/${gameId}`)
-      .then(res => res.ok ? res.json() : [])
-      .then((rows: CompositeHistoryPoint[]) => {
-        const arr = Array.isArray(rows) ? rows : [];
-        // Filter out pre-calibration rows (before confidence scaling was deployed)
-        const calibrationCutoff = new Date('2026-02-19T00:00:00Z').getTime();
-        const filtered = arr.filter(r => new Date(r.timestamp).getTime() >= calibrationCutoff);
-        console.log(`[OMI Chart] composite_history: ${filtered.length}/${arr.length} pts for ${gameId} (post-calibration)`, filtered.length > 0 ? { first: filtered[0].timestamp, last: filtered[filtered.length-1].timestamp } : 'empty');
-        setCompositeHistory(filtered);
-      })
-      .catch((err) => { console.warn('[OMI Chart] fetch failed:', err); setCompositeHistory([]); });
-  }, [gameId]);
-
-  const isProp = selection.type === 'prop';
-  const marketType = selection.type === 'market' ? selection.market : 'line';
-
-  const getDisplayLine = () => {
-    if (selection.type === 'prop') return selection.line;
-    if (marketType === 'spread') {
-      return trackingSide === 'away' ? selection.awayLine : selection.homeLine;
-    }
-    return selection.line;
-  };
-  const displayLine = getDisplayLine();
-  const baseValue = displayLine ?? (selection.type === 'market' ? selection.price : 0) ?? 0;
-  const isGameLive = commenceTime ? checkGameLive(commenceTime) : false;
-  const effectiveViewMode = marketType === 'moneyline' ? 'line' : viewMode;
-
-  const getOutcomeFilter = () => {
-    if (marketType === 'total') return trackingSide === 'under' ? 'Under' : 'Over';
-    if (trackingSide === 'draw') return 'Draw';
-    if (trackingSide === 'away' && awayTeam) return awayTeam;
-    return homeTeam;
-  };
-
-  // Helper: filter lineHistory by outcome name
-  const filterByOutcome = (target: string) => {
-    return (lineHistory || []).filter(snapshot => {
-      const bookMatch = snapshot.book_key === selectedBook || snapshot.book === selectedBook;
-      if (!bookMatch) return false;
-      if (!snapshot.outcome_type) return false;
-      const outcomeType = snapshot.outcome_type.toLowerCase();
-      const tgt = target.toLowerCase();
-      if (outcomeType === tgt) return true;
-      // Match generic 'home'/'away' outcome_type (from line_snapshots) to team names
-      if (outcomeType === 'home' && homeTeam && tgt === homeTeam.toLowerCase()) return true;
-      if (outcomeType === 'away' && awayTeam && tgt === awayTeam.toLowerCase()) return true;
-      if (outcomeType.includes(tgt) || tgt.includes(outcomeType)) return true;
-      const outcomeLast = outcomeType.split(/\s+/).pop();
-      const targetLast = tgt.split(/\s+/).pop();
-      return outcomeLast === targetLast;
-    });
-  };
-
-  // Helper: build data array from snapshots
-  const buildDataArray = (snapshots: any[]) => {
-    let arr = snapshots.map(s => ({
-      timestamp: new Date(s.snapshot_time),
-      value: marketType === 'moneyline' ? s.odds : s.line,
-    })).filter(d => d.value !== null && d.value !== undefined);
-    arr.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
-    if (timeRange !== 'ALL' && arr.length > 0) {
-      const now = new Date();
-      const hoursMap: Record<TimeRange, number> = { '30M': 0.5, '1H': 1, '3H': 3, '6H': 6, '24H': 24, 'ALL': 0 };
-      const cutoffTime = new Date(now.getTime() - hoursMap[timeRange] * 60 * 60 * 1000);
-      arr = arr.filter(d => d.timestamp >= cutoffTime);
-    }
-    return arr;
-  };
-
-  // Soccer 3-way ML: build separate data arrays for home/draw/away
-  const isSoccer3Way = isSoccer && marketType === 'moneyline';
-  const soccer3WayData = isSoccer3Way ? {
-    home: buildDataArray(filterByOutcome(homeTeam || 'home')),
-    draw: buildDataArray(filterByOutcome('Draw')),
-    away: buildDataArray(filterByOutcome(awayTeam || 'away')),
-  } : null;
-
-  const filteredHistory = (lineHistory || []).filter(snapshot => {
-    const bookMatch = snapshot.book_key === selectedBook || snapshot.book === selectedBook;
-    if (!bookMatch) return false;
-    const targetOutcome = getOutcomeFilter();
-    if (!snapshot.outcome_type) {
-      if (marketType === 'spread' || marketType === 'total') return true;
-      if (marketType === 'moneyline') return trackingSide === 'home';
-      return true;
-    }
-    if (!targetOutcome) return true;
-    const outcomeType = snapshot.outcome_type.toLowerCase();
-    const target = targetOutcome.toLowerCase();
-    if (target === 'over' || target === 'under') return outcomeType === target;
-    if (outcomeType === 'home' || outcomeType === 'away') return outcomeType === trackingSide;
-    if (outcomeType === target) return true;
-    if (outcomeType.includes(target) || target.includes(outcomeType)) return true;
-    const outcomeLast = outcomeType.split(/\s+/).pop();
-    const targetLast = target.split(/\s+/).pop();
-    if (outcomeLast === targetLast) return true;
-    return false;
-  });
-
-  const hasRealData = filteredHistory.length > 0 || (soccer3WayData && (soccer3WayData.home.length > 0 || soccer3WayData.draw.length > 0 || soccer3WayData.away.length > 0));
-  let data: { timestamp: Date; value: number }[] = [];
-
-  if (isSoccer3Way && soccer3WayData) {
-    // For soccer 3-way, primary data is the focused (trackingSide) line
-    const sideData = trackingSide === 'draw' ? soccer3WayData.draw : trackingSide === 'away' ? soccer3WayData.away : soccer3WayData.home;
-    data = sideData.length > 0 ? sideData : soccer3WayData.home;
-  } else if (hasRealData) {
-    data = filteredHistory.map(snapshot => {
-      let value: number;
-      if (effectiveViewMode === 'price') { value = snapshot.odds; }
-      else if (isProp) { value = snapshot.line; }
-      else if (marketType === 'moneyline') { value = snapshot.odds; }
-      else if (marketType === 'spread') {
-        if (snapshot.outcome_type) { value = snapshot.line; }
-        else { value = trackingSide === 'away' ? (snapshot.line * -1) : snapshot.line; }
-      } else { value = snapshot.line; }
-      return { timestamp: new Date(snapshot.snapshot_time), value };
-    }).filter(d => d.value !== null && d.value !== undefined);
-    data.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
-    // Deduplicate: keep only the latest value at each timestamp (prevents vertical bar artifacts)
-    if (data.length > 1) {
-      const deduped: typeof data = [];
-      for (let i = 0; i < data.length; i++) {
-        if (i < data.length - 1 && data[i].timestamp.getTime() === data[i + 1].timestamp.getTime()) continue;
-        deduped.push(data[i]);
-      }
-      data = deduped;
-    }
-    if (timeRange !== 'ALL' && data.length > 0) {
-      const now = new Date();
-      const hoursMap: Record<TimeRange, number> = { '30M': 0.5, '1H': 1, '3H': 3, '6H': 6, '24H': 24, 'ALL': 0 };
-      const cutoffTime = new Date(now.getTime() - hoursMap[timeRange] * 60 * 60 * 1000);
-      data = data.filter(d => d.timestamp >= cutoffTime);
-    }
+  // Reset tracking side when market changes
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const _resetSide = activeMarket; // dep tracker
+  // Filter by time range
+  let filtered = compositeHistory;
+  if (chartTimeRange !== 'ALL' && filtered.length > 0) {
+    const now = new Date();
+    const hoursMap: Record<TimeRange, number> = { '30M': 0.5, '1H': 1, '3H': 3, '6H': 6, '24H': 24, 'ALL': 0 };
+    const cutoff = new Date(now.getTime() - hoursMap[chartTimeRange] * 3600000);
+    filtered = filtered.filter(r => new Date(r.timestamp) >= cutoff);
   }
 
-  const isFilteredEmpty = hasRealData && data.length === 0;
+  // Extract book/fair values based on activeMarket + trackingSide
+  const getValues = (row: CompositeHistoryPoint) => {
+    let bookVal: number | null = null;
+    let fairVal: number | null = null;
+    if (isTotal) {
+      bookVal = row.book_total; fairVal = row.fair_total;
+    } else if (isML) {
+      bookVal = trackingSide === 'away' ? row.book_ml_away : row.book_ml_home;
+      fairVal = trackingSide === 'away' ? row.fair_ml_away : row.fair_ml_home;
+    } else {
+      bookVal = row.book_spread; fairVal = row.fair_spread;
+      if (trackingSide === 'away' && bookVal != null) bookVal = -bookVal;
+      if (trackingSide === 'away' && fairVal != null) fairVal = -fairVal;
+    }
+    return { bookVal, fairVal };
+  };
 
-  // Color theming: emerald for line view, amber for price view
-  const isPrice = effectiveViewMode === 'price';
-  const bookColor = 'rgba(255,255,255,0.6)';
-  const omiColor = '#D4A843';
+  const data = filtered.map(row => {
+    const { bookVal, fairVal } = getValues(row);
+    return { timestamp: new Date(row.timestamp), bookVal, fairVal, raw: row };
+  }).filter(d => d.bookVal != null || d.fairVal != null);
 
+  // Empty state
   if (data.length === 0) {
     return (
-      <div className="flex items-center justify-center h-full text-[#555] text-[11px]">
-        {isFilteredEmpty ? 'No data in range' : 'Insufficient line history'}
+      <div className="flex flex-col">
+        <div className="flex items-center justify-between px-3 py-2">
+          <span className="text-[9px] text-[#444] font-mono uppercase tracking-wider">Line Convergence</span>
+        </div>
+        <div className="flex items-center justify-center h-[180px] text-[11px] text-[#555]">
+          Insufficient convergence data
+        </div>
       </div>
     );
   }
 
+  // Ensure at least 2 points
   if (data.length === 1) {
-    data = [data[0], { timestamp: new Date(), value: data[0].value }];
+    data.push({ ...data[0], timestamp: new Date() });
   }
 
-  // ML chart: show raw American odds (not probability conversion)
-  const isMLChart = marketType === 'moneyline' && effectiveViewMode === 'line';
-  // Align OMI fair line basis with tracked side: fair line is always HOME spread,
-  // so negate when tracking AWAY to match the book data (which also negates for away)
-  let chartOmiFairLine = omiFairLine;
-  if (marketType === 'spread' && trackingSide === 'away' && chartOmiFairLine !== undefined) {
-    chartOmiFairLine = -chartOmiFairLine;
-  }
-
-  // Build dynamic OMI fair line data from composite_history (full game only —
-  // composite_history doesn't store sub-period fair lines; sub-periods use
-  // the omiFairLine prop as a flat horizontal line instead)
-  const resolvedMarket = activeMarketProp || (selection.type === 'market' ? selection.market : 'spread');
-  const isFullPeriod = selection.type !== 'market' || selection.period === 'full';
-  const omiFairLineData: { timestamp: Date; value: number }[] = (isFullPeriod ? compositeHistory : [])
-    .map(pt => {
-      let val: number | null = null;
-      if (resolvedMarket === 'spread') val = pt.fair_spread;
-      else if (resolvedMarket === 'total') val = pt.fair_total;
-      else if (resolvedMarket === 'moneyline') {
-        if (trackingSide === 'draw') val = pt.fair_ml_draw;
-        else if (trackingSide === 'away') val = pt.fair_ml_away;
-        else val = pt.fair_ml_home;
-      }
-      if (val === null || val === undefined) return null;
-      // Negate spread for away side tracking
-      if (resolvedMarket === 'spread' && trackingSide === 'away') val = -val;
-      return { timestamp: new Date(pt.timestamp), value: val };
-    })
-    .filter((d): d is { timestamp: Date; value: number } => d !== null);
-  const hasOmiTimeSeries = omiFairLineData.length >= 1;
-
-  // Build synchronized book line from composite_history — ensures every OMI fair
-  // data point has a paired book data point at the same timestamp
-  if (isFullPeriod && !isSoccer3Way) {
-    const compositeBookData: { timestamp: Date; value: number }[] = compositeHistory
-      .map(pt => {
-        let val: number | null = null;
-        if (resolvedMarket === 'spread') val = pt.book_spread;
-        else if (resolvedMarket === 'total') val = pt.book_total;
-        else if (resolvedMarket === 'moneyline') {
-          if (trackingSide === 'away') val = pt.book_ml_away;
-          else val = pt.book_ml_home;
-        }
-        if (val === null || val === undefined) return null;
-        if (resolvedMarket === 'spread' && trackingSide === 'away') val = -val;
-        return { timestamp: new Date(pt.timestamp), value: val };
-      })
-      .filter((d): d is { timestamp: Date; value: number } => d !== null);
-
-    if (compositeBookData.length >= 2) {
-      data = compositeBookData;
-      // Apply time range filter
-      if (timeRange !== 'ALL') {
-        const now = new Date();
-        const hoursMap: Record<TimeRange, number> = { '30M': 0.5, '1H': 1, '3H': 3, '6H': 6, '24H': 24, 'ALL': 0 };
-        const cutoffTime = new Date(now.getTime() - hoursMap[timeRange] * 60 * 60 * 1000);
-        data = data.filter(d => d.timestamp >= cutoffTime);
-      }
-      if (data.length === 1) {
-        data = [data[0], { timestamp: new Date(), value: data[0].value }];
-      }
-    }
-  }
-
-  const openValue = data[0]?.value || baseValue;
-  const currentValue = data[data.length - 1]?.value || baseValue;
-  const movement = currentValue - openValue;
-  const values = data.map(d => d.value);
-  // Include OMI fair line values in Y-axis range so the fair line is always visible
-  for (const pt of omiFairLineData) values.push(pt.value);
-  // For soccer 3-way single-select, only include tracked side in Y-axis bounds
-  if (soccer3WayData) {
-    const sideKey = trackingSide === 'draw' ? 'draw' : trackingSide === 'away' ? 'away' : 'home';
-    const sideArr = soccer3WayData[sideKey as keyof typeof soccer3WayData];
-    for (const pt of sideArr) values.push(pt.value);
-  }
-
-  // Smart Y-axis scaling: for ML, use percentile-based range to handle outliers
-  const isMLAny = marketType === 'moneyline';
-  let minVal: number;
-  let maxVal: number;
-
-  if (isMLAny && values.length >= 4) {
-    // ML: use 5th-95th percentile to exclude outlier opening prints
-    const sorted = [...values].sort((a, b) => a - b);
-    const p5Idx = Math.floor(sorted.length * 0.05);
-    const p95Idx = Math.min(sorted.length - 1, Math.ceil(sorted.length * 0.95));
-    const p5 = sorted[p5Idx];
-    const p95 = sorted[p95Idx];
-    // Always include the most recent value (it's what the user cares about)
-    const recent = values.slice(-Math.max(3, Math.floor(values.length * 0.25)));
-    const recentMin = Math.min(...recent);
-    const recentMax = Math.max(...recent);
-    minVal = Math.min(p5, recentMin);
-    maxVal = Math.max(p95, recentMax);
-  } else {
-    minVal = Math.min(...values);
-    maxVal = Math.max(...values);
-  }
-
+  // Compute bounds with 25% Y padding
+  const allValues = data.flatMap(d => [d.bookVal, d.fairVal].filter((v): v is number => v != null));
+  const minVal = Math.min(...allValues);
+  const maxVal = Math.max(...allValues);
   const range = maxVal - minVal || 1;
+  const yPadding = range * 0.25;
 
-  // Y-axis padding
-  let padding: number;
-  if (isMLAny) {
-    // ML: 10% padding, min 5 pts
-    padding = Math.max(range * 0.10, 5);
-  } else if (isPrice) {
-    padding = Math.max(range * 0.05, 1);
-  } else if (marketType === 'spread' || marketType === 'total') {
-    padding = Math.max(range * 0.05, 0.2);
-  } else {
-    padding = Math.max(range * 0.05, 0.5);
-  }
-  // Minimum visual range — avoid flat-looking charts
-  const minVisualRange = isMLAny ? 20 : (isPrice ? 4 : 1);
-  if (range + 2 * padding < minVisualRange) {
-    padding = (minVisualRange - range) / 2;
-  }
+  // SVG dimensions
+  const svgW = 560;
+  const svgH = 220;
+  const padL = 38;
+  const padR = 50;
+  const padT = 10;
+  const padB = 24;
+  const chartW = svgW - padL - padR;
+  const chartH = svgH - padT - padB;
 
-  const width = 600;
-  const height = 200;
-  const paddingLeft = 36;
-  const paddingRight = 34;
-  const paddingTop = 8;
-  const paddingBottom = 20;
-  const chartWidth = width - paddingLeft - paddingRight;
-  const chartHeight = height - paddingTop - paddingBottom;
+  const valueToY = (val: number) => {
+    const norm = (val - minVal + yPadding) / (range + 2 * yPadding);
+    return padT + chartH - norm * chartH;
+  };
+  const indexToX = (i: number) => padL + (i / Math.max(data.length - 1, 1)) * chartW;
 
-  const chartPoints = data.map((d, i) => {
-    const normalizedY = (d.value - minVal + padding) / (range + 2 * padding);
-    // Clamp Y so outlier values (beyond percentile range) stay within chart bounds
-    const rawY = paddingTop + chartHeight - normalizedY * chartHeight;
-    const y = Math.max(paddingTop - 2, Math.min(paddingTop + chartHeight + 2, rawY));
-    return { x: paddingLeft + (i / Math.max(data.length - 1, 1)) * chartWidth, y, value: d.value, timestamp: d.timestamp, index: i };
+  // Build chart point arrays
+  const bookPts: { x: number; y: number; value: number }[] = [];
+  const fairPts: { x: number; y: number; value: number }[] = [];
+  data.forEach((d, i) => {
+    const x = indexToX(i);
+    if (d.bookVal != null) bookPts.push({ x, y: valueToY(d.bookVal), value: d.bookVal });
+    if (d.fairVal != null) fairPts.push({ x, y: valueToY(d.fairVal), value: d.fairVal });
   });
 
-  // Step-line path: horizontal then vertical between each point (how sportsbook lines actually move)
-  const pathD = chartPoints.map((p, i) => {
-    if (i === 0) return `M ${p.x} ${p.y}`;
-    return `H ${p.x} V ${p.y}`;
-  }).join(' ');
-
-  // Gradient fill path: step-line path + close to bottom of chart area
-  const chartBottom = paddingTop + chartHeight;
-  const gradientFillPath = chartPoints.length >= 2
-    ? `${pathD} V ${chartBottom} H ${chartPoints[0].x} Z`
-    : null;
-
-  const formatValue = (val: number) => {
-    if (isMLChart) return val > 0 ? `+${Math.round(val)}` : `${Math.round(val)}`;
-    if (effectiveViewMode === 'price') return val > 0 ? `+${val}` : val.toString();
-    if (isProp) return val.toString();
-    if (marketType === 'spread') return val > 0 ? `+${val}` : val.toString();
-    return val.toString();
+  // Catmull-Rom smooth path
+  const smoothPath = (pts: { x: number; y: number }[]) => {
+    if (pts.length < 2) return '';
+    let d = `M${pts[0].x},${pts[0].y}`;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[Math.max(0, i - 1)];
+      const p1 = pts[i];
+      const p2 = pts[i + 1];
+      const p3 = pts[Math.min(pts.length - 1, i + 2)];
+      d += ` C${p1.x + (p2.x - p0.x) / 6},${p1.y + (p2.y - p0.y) / 6} ${p2.x - (p3.x - p1.x) / 6},${p2.y - (p3.y - p1.y) / 6} ${p2.x},${p2.y}`;
+    }
+    return d;
   };
 
-  // Line badge: current tracking value
-  const lineBadge = displayLine !== undefined ? (marketType === 'spread' ? formatSpread(displayLine) : `${displayLine}`) : null;
+  const bookPathD = smoothPath(bookPts);
+  const fairPathD = smoothPath(fairPts);
 
-  const movementColor = movement > 0 ? 'text-emerald-400' : movement < 0 ? 'text-red-400' : 'text-[#888]';
-
-  // Helper: convert a value to SVG Y coordinate
-  const valueToY = (val: number) =>
-    paddingTop + chartHeight - ((val - minVal + padding) / (range + 2 * padding)) * chartHeight;
-
-  // OMI fair line: build SVG points aligned to the book line X-axis
-  // When we have time-series data (>=2 pts), map onto the chart's time span.
-  // Clamp X to chart bounds so points before/after book data still render.
-  // When only 1 pt or no history, fall back to flat horizontal line.
-  const omiChartPoints: { x: number; y: number; value: number; timestamp: Date | null; isEdge?: boolean }[] = (() => {
-    if (hasOmiTimeSeries && omiFairLineData.length >= 2 && data.length >= 2) {
-      const bookStartTime = data[0].timestamp.getTime();
-      const bookEndTime = data[data.length - 1].timestamp.getTime();
-      const bookTimeRange = bookEndTime - bookStartTime || 1;
-      const mapped = omiFairLineData.map(pt => {
-        const tFrac = (pt.timestamp.getTime() - bookStartTime) / bookTimeRange;
-        const x = Math.max(paddingLeft, Math.min(paddingLeft + chartWidth, paddingLeft + tFrac * chartWidth));
-        return { x, y: valueToY(pt.value), value: pt.value, timestamp: pt.timestamp as Date | null, isEdge: false };
-      });
-      if (mapped.length >= 2) {
-        const first = mapped[0];
-        const last = mapped[mapped.length - 1];
-        const extended: typeof mapped = [];
-        if (first.x > paddingLeft + 1) {
-          extended.push({ x: paddingLeft, y: first.y, value: first.value, timestamp: null, isEdge: true });
-        }
-        extended.push(...mapped);
-        if (last.x < paddingLeft + chartWidth - 1) {
-          extended.push({ x: paddingLeft + chartWidth, y: last.y, value: last.value, timestamp: null, isEdge: true });
-        }
-        return extended;
-      }
-    }
-    const flatValue = omiFairLineData.length >= 1 ? omiFairLineData[omiFairLineData.length - 1].value : chartOmiFairLine;
-    if (flatValue === undefined) return [];
-    const ts = omiFairLineData.length >= 1 ? omiFairLineData[omiFairLineData.length - 1].timestamp : null;
-    const y = valueToY(flatValue);
-    return [
-      { x: paddingLeft, y, value: flatValue, timestamp: ts as Date | null, isEdge: true },
-      { x: paddingLeft + chartWidth, y, value: flatValue, timestamp: ts as Date | null, isEdge: true },
-    ];
-  })();
-
-  const hasOmiLine = omiChartPoints.length >= 2;
-  const omiPathD = hasOmiLine
-    ? omiChartPoints.map((p, i) => i === 0 ? `M ${p.x} ${p.y}` : `H ${p.x} V ${p.y}`).join(' ')
-    : null;
-
-  // OMI fair line Y position (for flat fallback and convergence label)
-  const omiLineY = hasOmiLine ? omiChartPoints[omiChartPoints.length - 1].y : null;
-  const currentOmiFairValue = hasOmiLine ? omiChartPoints[omiChartPoints.length - 1].value : chartOmiFairLine;
-
-
-  // Y-axis: for spread/total, grid at 0.5 intervals, labels at 1.0 when crowded
-  const isHalfPointMarket = (marketType === 'spread' || marketType === 'total') && effectiveViewMode === 'line';
-  const yGridAndLabels = (() => {
-    const visualMin = minVal - padding;
-    const visualMax = maxVal + padding;
-    const visualRange = visualMax - visualMin;
-
-    let gridStep: number;
-    let labelStep: number;
-    if (isHalfPointMarket) {
-      gridStep = 0.5;
-      // Label density based on range
-      labelStep = range > 10 ? 2.0 : range > 5 ? 1.0 : 0.5;
-    } else if (isMLAny) {
-      gridStep = 10; labelStep = 10;
-    } else if (effectiveViewMode === 'price') {
-      gridStep = range < 15 ? 1 : 2; labelStep = gridStep;
+  // Directional edge shading segments
+  const edgeSegments = data.slice(0, -1).map((d, i) => {
+    const next = data[i + 1];
+    if (d.bookVal == null || d.fairVal == null || next.bookVal == null || next.fairVal == null) return null;
+    const x1 = indexToX(i);
+    const x2 = indexToX(i + 1);
+    const gap = Math.abs(d.bookVal - d.fairVal);
+    const edge = gap * rate * 100;
+    // Favorable: for spread/ML, fair < book means tracked side gets better value
+    // For total over, fair > book is favorable; for under, fair < book is favorable
+    let favorable: boolean;
+    if (isTotal) {
+      favorable = trackingSide === 'over' ? d.fairVal > d.bookVal : d.fairVal < d.bookVal;
     } else {
-      gridStep = range <= 5 ? 0.5 : range <= 12 ? 1 : range <= 25 ? 2 : 5;
-      labelStep = gridStep;
+      favorable = d.fairVal < d.bookVal;
     }
+    const opacity = Math.min(edge / 5, 1) * 0.18;
+    const color = favorable ? '#22c55e' : '#ef4444';
+    const y1Book = valueToY(d.bookVal);
+    const y1Fair = valueToY(d.fairVal);
+    const y2Book = valueToY(next.bookVal);
+    const y2Fair = valueToY(next.fairVal);
+    return {
+      points: `${x1},${y1Book} ${x2},${y2Book} ${x2},${y2Fair} ${x1},${y1Fair}`,
+      color, opacity, edge, favorable,
+    };
+  }).filter(Boolean) as { points: string; color: string; opacity: number; edge: number; favorable: boolean }[];
 
-    const startValue = Math.floor(visualMin / gridStep) * gridStep;
-    const endValue = Math.ceil(visualMax / gridStep) * gridStep + gridStep;
-
-    const gridLines: { value: number; y: number }[] = [];
-    const labels: { value: number; y: number }[] = [];
-
-    for (let val = startValue; val <= endValue; val += gridStep) {
-      const rounded = Math.round(val * 100) / 100;
-      const normalizedY = (rounded - visualMin) / visualRange;
-      const y = paddingTop + chartHeight - normalizedY * chartHeight;
-      if (y >= paddingTop - 2 && y <= paddingTop + chartHeight + 2) {
-        gridLines.push({ value: rounded, y });
-        if (Math.abs(rounded - Math.round(rounded / labelStep) * labelStep) < 0.01) {
-          labels.push({ value: rounded, y });
-        }
+  // Y-axis grid
+  const gridStep = isML ? 10 : 0.5;
+  const labelStep = isML ? (range > 50 ? 20 : 10) : (range > 10 ? 2 : range > 5 ? 1 : 0.5);
+  const visualMin = minVal - yPadding;
+  const visualMax = maxVal + yPadding;
+  const yGridLines: { value: number; y: number }[] = [];
+  const yLabels: { value: number; y: number }[] = [];
+  const startGrid = Math.floor(visualMin / gridStep) * gridStep;
+  for (let val = startGrid; val <= visualMax + gridStep; val += gridStep) {
+    const rounded = Math.round(val * 100) / 100;
+    const y = valueToY(rounded);
+    if (y >= padT - 2 && y <= padT + chartH + 2) {
+      yGridLines.push({ value: rounded, y });
+      if (Math.abs(rounded - Math.round(rounded / labelStep) * labelStep) < 0.01) {
+        yLabels.push({ value: rounded, y });
       }
     }
-
-    // Enforce minimum 16px vertical spacing between labels
-    const spaced: typeof labels = [];
-    for (const lbl of labels) {
-      if (spaced.length === 0 || Math.abs(lbl.y - spaced[spaced.length - 1].y) >= 16) {
-        spaced.push(lbl);
-      }
+  }
+  // Enforce 16px min spacing
+  const spacedLabels: typeof yLabels = [];
+  for (const lbl of yLabels) {
+    if (spacedLabels.length === 0 || Math.abs(lbl.y - spacedLabels[spacedLabels.length - 1].y) >= 16) {
+      spacedLabels.push(lbl);
     }
+  }
 
-    // For non-half-point markets, apply the old decimation if needed
-    const finalLabels = (!isHalfPointMarket && spaced.length > 12)
-      ? spaced.filter((_, i) => i % Math.ceil(spaced.length / 10) === 0)
-      : spaced;
-
-    return { gridLines, labels: finalLabels };
-  })();
-  const yGridLines = yGridAndLabels.gridLines;
-  const yLabels = yGridAndLabels.labels;
-
-  // X-axis date labels — more granular with time-appropriate formatting
-  const xLabels = (() => {
-    if (data.length < 2) return [];
-    const labels: { x: number; label: string }[] = [];
+  // X-axis labels
+  const xLabels: { x: number; label: string }[] = [];
+  if (data.length >= 2) {
     const timeSpan = data[data.length - 1].timestamp.getTime() - data[0].timestamp.getTime();
-    const maxLabels = 7;
-    const count = Math.min(maxLabels, data.length);
-    const step = Math.max(1, Math.floor(data.length / count));
+    const maxXLabels = 6;
+    const step = Math.max(1, Math.floor(data.length / maxXLabels));
     const seen = new Set<string>();
     for (let i = 0; i < data.length; i += step) {
-      const d = data[i];
-      let dateStr: string;
-      if (timeSpan > 7 * 24 * 3600000) {
-        // > 7 days: "Feb 12"
-        dateStr = d.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-      } else if (timeSpan > 48 * 3600000) {
-        // 2-7 days: "Wed 3p"
-        dateStr = d.timestamp.toLocaleDateString('en-US', { weekday: 'short' }) + ' ' +
-          d.timestamp.toLocaleTimeString('en-US', { hour: 'numeric' });
-      } else if (timeSpan > 6 * 3600000) {
-        // 6h-48h: "3:30 PM"
-        dateStr = d.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-      } else {
-        // < 6h: "3:30:15" — show seconds for tight ranges
-        dateStr = d.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-      }
-      if (seen.has(dateStr)) continue;
-      seen.add(dateStr);
-      const x = paddingLeft + (i / Math.max(data.length - 1, 1)) * chartWidth;
-      labels.push({ x, label: dateStr });
+      const ts = data[i].timestamp;
+      let label: string;
+      if (timeSpan > 48 * 3600000) label = ts.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      else label = ts.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      if (seen.has(label)) continue;
+      seen.add(label);
+      xLabels.push({ x: indexToX(i), label });
     }
-    // Always include last data point time
-    if (labels.length > 0 && data.length > 1) {
-      const lastD = data[data.length - 1];
-      const lastX = paddingLeft + chartWidth;
-      const lastLabel = timeSpan > 48 * 3600000
-        ? lastD.timestamp.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-        : lastD.timestamp.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-      // Only add if not too close to the previous label
-      const prevX = labels[labels.length - 1].x;
-      if (lastX - prevX > chartWidth / (maxLabels + 1) && !seen.has(lastLabel)) {
-        labels.push({ x: lastX, label: lastLabel });
-      }
-    }
-    return labels;
-  })();
+  }
 
+  // Format value
+  const formatValue = (val: number) => {
+    if (isML) return val > 0 ? `+${Math.round(val)}` : `${Math.round(val)}`;
+    if (activeMarket === 'spread') return val > 0 ? `+${val.toFixed(1)}` : val.toFixed(1);
+    return val.toFixed(1);
+  };
+
+  // Driver event markers
+  const drivers: { x: number; label: string; detail: string; index: number }[] = [];
+  for (let i = 1; i < data.length; i++) {
+    const prev = data[i - 1].raw;
+    const cur = data[i].raw;
+    const x = indexToX(i);
+    if (activeMarket === 'total' || isTotal) {
+      if (cur.fair_total != null && prev.fair_total != null && Math.abs(cur.fair_total - prev.fair_total) >= 0.5) {
+        drivers.push({ x, label: 'COMP', detail: `Fair total \u2192 ${cur.fair_total.toFixed(1)}`, index: i });
+      } else if (cur.book_total != null && prev.book_total != null && Math.abs(cur.book_total - prev.book_total) >= 0.5) {
+        drivers.push({ x, label: 'BOOK', detail: `Book total \u2192 ${cur.book_total.toFixed(1)}`, index: i });
+      }
+    } else {
+      if (cur.fair_spread != null && prev.fair_spread != null && Math.abs(cur.fair_spread - prev.fair_spread) >= 0.5) {
+        drivers.push({ x, label: 'COMP', detail: `Fair spread \u2192 ${cur.fair_spread > 0 ? '+' : ''}${cur.fair_spread.toFixed(1)}`, index: i });
+      } else if (cur.book_spread != null && prev.book_spread != null && Math.abs(cur.book_spread - prev.book_spread) >= 0.5) {
+        drivers.push({ x, label: 'BOOK', detail: `Book \u2192 ${cur.book_spread > 0 ? '+' : ''}${cur.book_spread.toFixed(1)}`, index: i });
+      }
+    }
+  }
+
+  // Current values for summary
+  const lastData = data[data.length - 1];
+  const currentBook = lastData.bookVal;
+  const currentFair = lastData.fairVal;
+  const currentGap = (currentBook != null && currentFair != null) ? Math.abs(currentBook - currentFair) : 0;
+  const currentEdge = currentGap * rate * 100;
+  const compositeScore = pythonPillars?.composite ?? null;
+
+  // Hover logic
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
     const svg = e.currentTarget;
     const rect = svg.getBoundingClientRect();
-    const scaleX = width / rect.width;
+    const scaleX = svgW / rect.width;
     const mx = (e.clientX - rect.left) * scaleX;
-    if (mx >= paddingLeft && mx <= paddingLeft + chartWidth) {
-      setHoverX(mx);
-    } else {
-      setHoverX(null);
-    }
+    if (mx >= padL && mx <= padL + chartW) setHoverX(mx);
+    else setHoverX(null);
   };
 
-  // Chart title
-  const periodLabels: Record<string, string> = { 'full': 'Full Game', '1h': '1st Half', '2h': '2nd Half', '1q': '1Q', '2q': '2Q', '3q': '3Q', '4q': '4Q', '1p': '1P', '2p': '2P', '3p': '3P' };
-  const marketLabels: Record<string, string> = { 'spread': 'Spread', 'total': 'Total', 'moneyline': 'ML' };
-  const period = selection.type === 'market' ? selection.period : 'full';
-  const chartTitle = `${periodLabels[period] || 'Full Game'} ${marketLabels[marketType] || marketType}${isPrice ? ' Price' : ''}`;
-
-  const homeAbbr = homeTeam?.slice(0, 3).toUpperCase() || 'HM';
-  const awayAbbr = awayTeam?.slice(0, 3).toUpperCase() || 'AW';
+  const getHoverData = () => {
+    if (hoverX === null || data.length < 2) return null;
+    const frac = Math.max(0, Math.min(1, (hoverX - padL) / chartW));
+    const idx = Math.round(frac * (data.length - 1));
+    const d = data[idx];
+    const bookV = d.bookVal;
+    const fairV = d.fairVal;
+    const edge = (bookV != null && fairV != null) ? Math.abs(bookV - fairV) * rate * 100 : 0;
+    let favorable: boolean;
+    if (isTotal) {
+      favorable = trackingSide === 'over' ? (fairV ?? 0) > (bookV ?? 0) : (fairV ?? 0) < (bookV ?? 0);
+    } else {
+      favorable = (fairV ?? 0) < (bookV ?? 0);
+    }
+    const tierLabel = edge >= 5 ? 'STRONG' : edge >= 3 ? 'EDGE' : edge >= 1 ? 'WATCH' : 'FLAT';
+    const nearbyDriver = drivers.find(drv => Math.abs(drv.index - idx) <= 2);
+    return {
+      ts: d.timestamp, bookV, fairV, edge, favorable, tierLabel,
+      x: indexToX(idx),
+      bookY: bookV != null ? valueToY(bookV) : null,
+      fairY: fairV != null ? valueToY(fairV) : null,
+      nearbyDriver,
+    };
+  };
+  const hoverData = getHoverData();
+  const flipTooltip = hoverData && hoverData.x > padL + chartW / 2;
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Row 1: Chart title + time range + Line/Price toggle */}
-      <div className="flex items-center justify-between px-1 flex-shrink-0">
-        <div className="flex items-center gap-2">
-          <span className="text-[11px] font-semibold text-[#ccc]">{chartTitle}</span>
+    <div className="flex flex-col">
+      {/* Header: title + current values + time range */}
+      <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#1a1a1a]/50">
+        <div className="flex items-center gap-3">
+          <span className="text-[9px] text-[#444] font-mono uppercase tracking-wider">Convergence</span>
+          <span className="text-[10px] font-mono font-semibold" style={{ color: BOOK_LINE_COLOR }}>
+            {currentBook != null ? formatValue(currentBook) : '\u2014'}
+          </span>
+          <span className="text-[10px] font-mono font-semibold" style={{ color: FAIR_LINE_COLOR }}>
+            {currentFair != null ? formatValue(currentFair) : '\u2014'}
+          </span>
         </div>
-        <div className="flex items-center gap-1.5">
-          <div className="flex rounded overflow-hidden border border-[#1a1a1a]/50">
-            {(isGameLive ? ['30M', '1H', '3H', '6H', '24H', 'ALL'] as TimeRange[] : ['1H', '3H', '6H', '24H', 'ALL'] as TimeRange[]).map(r => (
-              <button key={r} onClick={() => setTimeRange(r)} className={`px-1.5 py-0.5 text-[8px] font-medium ${timeRange === r ? 'bg-[#222] text-[#ddd]' : 'text-[#555] hover:text-[#ccc]'}`}>{r}</button>
-            ))}
-          </div>
-          {marketType !== 'moneyline' && (
-            <div className="flex rounded overflow-hidden border border-[#1a1a1a]/50">
-              <button onClick={() => onViewModeChange('line')} className={`px-1.5 py-0.5 text-[9px] font-medium ${viewMode === 'line' ? 'bg-[#222] text-[#ddd]' : 'text-[#555]'}`}>Line</button>
-              <button onClick={() => onViewModeChange('price')} className={`px-1.5 py-0.5 text-[9px] font-medium ${viewMode === 'price' ? 'bg-[#222] text-[#ddd]' : 'text-[#555]'}`}>Price</button>
-            </div>
-          )}
+        <div className="flex rounded overflow-hidden border border-[#1a1a1a]/50">
+          {(['1H', '3H', '6H', '24H', 'ALL'] as TimeRange[]).map(r => (
+            <button key={r} onClick={() => setChartTimeRange(r)} className={`px-1.5 py-0.5 text-[8px] font-medium ${chartTimeRange === r ? 'bg-[#222] text-[#ddd]' : 'text-[#555] hover:text-[#ccc]'}`}>{r}</button>
+          ))}
         </div>
       </div>
 
-      {/* Row 2: Tracking pills + movement */}
-      <div className="flex items-center justify-between px-1 flex-shrink-0">
+      {/* Tracking row + legend */}
+      <div className="flex items-center justify-between px-3 py-1">
         <div className="flex items-center gap-1.5">
           <span className="text-[8px] text-[#555] uppercase tracking-wider">Tracking</span>
-          {!isProp && (
-            <div className="flex gap-0.5">
-              <button
-                onClick={() => marketType === 'total' ? setTrackingSide('over') : setTrackingSide('home')}
-                className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
-                  (marketType === 'total' ? trackingSide === 'over' : trackingSide === 'home')
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                    : 'bg-[#111] text-[#555] border border-[#1a1a1a]/50 hover:text-[#ccc]'
-                }`}
-              >
-                {marketType === 'total' ? 'OVR' : homeAbbr}
-              </button>
-              {isSoccer && marketType === 'moneyline' && (
-                <button
-                  onClick={() => setTrackingSide('draw')}
-                  className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
-                    trackingSide === 'draw'
-                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                      : 'bg-[#111] text-[#555] border border-[#1a1a1a]/50 hover:text-[#ccc]'
-                  }`}
-                >DRW</button>
-              )}
-              <button
-                onClick={() => marketType === 'total' ? setTrackingSide('under') : setTrackingSide('away')}
-                className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
-                  (marketType === 'total' ? trackingSide === 'under' : trackingSide === 'away')
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                    : 'bg-[#111] text-[#555] border border-[#1a1a1a]/50 hover:text-[#ccc]'
-                }`}
-              >
-                {marketType === 'total' ? 'UND' : awayAbbr}
-              </button>
-            </div>
-          )}
+          <div className="flex gap-0.5">
+            <button
+              onClick={() => isTotal ? setTrackingSide('over') : setTrackingSide('home')}
+              className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
+                (isTotal ? trackingSide === 'over' : trackingSide === 'home')
+                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                  : 'bg-[#111] text-[#555] border border-[#1a1a1a]/50 hover:text-[#ccc]'
+              }`}
+            >
+              {isTotal ? 'OVR' : homeAbbr}
+            </button>
+            <button
+              onClick={() => isTotal ? setTrackingSide('under') : setTrackingSide('away')}
+              className={`px-1.5 py-0.5 text-[9px] font-bold font-mono rounded transition-colors ${
+                (isTotal ? trackingSide === 'under' : trackingSide === 'away')
+                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                  : 'bg-[#111] text-[#555] border border-[#1a1a1a]/50 hover:text-[#ccc]'
+              }`}
+            >
+              {isTotal ? 'UND' : awayAbbr}
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-1.5 text-[10px] font-mono" style={{ fontVariantNumeric: 'tabular-nums' }}>
-          <span className="text-[#555]">{formatValue(openValue)}</span>
-          <span className="text-[#555]">&rarr;</span>
-          <span className="text-[#ddd] font-semibold">{formatValue(currentValue)}</span>
-          <span className={`font-semibold ${movementColor}`}>{movement > 0 ? '+' : ''}{isMLChart ? Math.round(movement) : effectiveViewMode === 'price' ? Math.round(movement) : movement.toFixed(1)}</span>
+        <div className="flex items-center gap-3 text-[8px] text-[#555]">
+          <span className="flex items-center gap-1"><span className="inline-block w-3 h-0.5 rounded" style={{ backgroundColor: BOOK_LINE_COLOR }} />Book</span>
+          <span className="flex items-center gap-1"><span className="inline-block w-3 h-0.5 rounded" style={{ backgroundColor: FAIR_LINE_COLOR }} />OMI Fair</span>
+          <span className="flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-sm" style={{ background: 'rgba(34,197,94,0.2)' }} />Edge</span>
+          <span className="flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-sm" style={{ background: 'rgba(239,68,68,0.2)' }} />No Edge</span>
+          <span className="flex items-center gap-1"><span style={{ color: FAIR_LINE_COLOR }}>{'\u25B2'}</span>Driver</span>
         </div>
       </div>
 
-      {/* Chart SVG — fills available space, step-line rendering */}
-      <div className="relative flex-1 min-h-0">
-        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full cursor-crosshair" preserveAspectRatio="none" onMouseMove={handleMouseMove} onMouseLeave={() => setHoverX(null)}>
-          {/* No gradient defs needed — edge fill rendered inline */}
-
-          {/* Y-axis gridlines at half-point intervals */}
+      {/* SVG Chart */}
+      <div className="relative px-1">
+        <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full cursor-crosshair" style={{ height: '220px' }} preserveAspectRatio="xMidYMid meet" onMouseMove={handleMouseMove} onMouseLeave={() => setHoverX(null)}>
+          {/* Y-axis grid */}
           {yGridLines.map((g, i) => (
-            <line key={`grid-${i}`} x1={paddingLeft} y1={g.y} x2={width - paddingRight} y2={g.y} stroke="#131313" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.6" />
+            <line key={`g-${i}`} x1={padL} y1={g.y} x2={svgW - padR} y2={g.y} stroke="#131313" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.6" />
           ))}
-          {/* Y-axis labels (may be sparser than grid to avoid overlap) */}
-          {yLabels.map((label, i) => (
-            <text key={`lbl-${i}`} x={paddingLeft - 4} y={label.y + 3} textAnchor="end" fill="#444" fontSize="9" fontFamily="monospace">{formatValue(label.value)}</text>
+          {/* Y-axis labels */}
+          {spacedLabels.map((lbl, i) => (
+            <text key={`l-${i}`} x={padL - 4} y={lbl.y + 3} textAnchor="end" fill="#555" fontSize="9" fontFamily="monospace" fontWeight="500">{formatValue(lbl.value)}</text>
+          ))}
+          {/* X-axis labels */}
+          {xLabels.map((lbl, i) => (
+            <text key={`x-${i}`} x={lbl.x} y={svgH - 2} textAnchor="middle" fill="#555" fontSize="9" fontFamily="monospace">{lbl.label}</text>
           ))}
 
-          {/* X-axis date labels */}
-          {xLabels.map((label, i) => (
-            <text key={i} x={label.x} y={height - 2} textAnchor="middle" fill="#444" fontSize="9" fontFamily="monospace">{label.label}</text>
+          {/* Directional edge shading */}
+          {edgeSegments.map((seg, i) => (
+            <polygon key={`e-${i}`} points={seg.points} fill={seg.color} opacity={seg.opacity} />
           ))}
 
-          {/* Tipoff vertical divider at commence_time */}
-          {commenceTime && data.length >= 2 && (() => {
-            const tipoffTime = new Date(commenceTime).getTime();
-            const bookStartTime = data[0].timestamp.getTime();
-            const bookEndTime = data[data.length - 1].timestamp.getTime();
-            const bookTimeRange = bookEndTime - bookStartTime;
-            if (bookTimeRange <= 0 || tipoffTime <= bookStartTime || tipoffTime >= bookEndTime) return null;
-            const tFrac = (tipoffTime - bookStartTime) / bookTimeRange;
-            const tipoffX = paddingLeft + tFrac * chartWidth;
-            return (
-              <g>
-                <line x1={tipoffX} y1={paddingTop} x2={tipoffX} y2={paddingTop + chartHeight} stroke="#555" strokeWidth="1" strokeDasharray="4 3" />
-                <text x={tipoffX} y={paddingTop - 2} textAnchor="middle" fill="#555" fontSize="8" fontFamily="monospace" fontWeight="600">TIPOFF</text>
-              </g>
-            );
-          })()}
-
-          {/* Edge fill between book and OMI lines */}
-          {hasOmiLine && chartPoints.length >= 2 && chartPoints.slice(0, -1).map((pt, i) => {
-            const x1 = pt.x;
-            const x2 = chartPoints[i + 1].x;
-            const bookY = pt.y;
-            let omiY = omiChartPoints[0]?.y ?? bookY;
-            for (const op of omiChartPoints) {
-              if (op.x <= x1) omiY = op.y;
-              else break;
-            }
-            const top = Math.min(bookY, omiY);
-            const h = Math.max(1, Math.max(bookY, omiY) - top);
-            return <rect key={`edge-${i}`} x={x1} y={top} width={x2 - x1} height={h} fill="rgba(212,168,67,0.06)" />;
-          })}
-
-          {/* OMI Fair line — solid orange, 2px, no dots */}
-          {hasOmiLine && omiPathD && (
-            <path d={omiPathD} fill="none" stroke={omiColor} strokeWidth="2" />
+          {/* Book line — smooth curve */}
+          {bookPts.length >= 2 && (
+            <path d={bookPathD} fill="none" stroke={BOOK_LINE_COLOR} strokeWidth="1.2" />
           )}
 
-          {/* Book line — solid green, 2px, no dots */}
-          {chartPoints.length > 0 && (
-            <path d={pathD} fill="none" stroke={bookColor} strokeWidth="2" />
+          {/* OMI Fair line — smooth curve */}
+          {fairPts.length >= 2 && (
+            <path d={fairPathD} fill="none" stroke={FAIR_LINE_COLOR} strokeWidth="1.5" />
           )}
 
-          {/* Endpoint labels — small colored text at right edge */}
-          {chartPoints.length > 0 && (() => {
-            const lastBook = chartPoints[chartPoints.length - 1];
-            const labelX = paddingLeft + chartWidth + 2;
-            let bookLabelY = lastBook.y + 3;
-            let omiLabelY = 0;
-            const GAP = 10;
-            if (hasOmiLine && omiChartPoints.length > 0) {
-              const lastOmi = omiChartPoints[omiChartPoints.length - 1];
-              omiLabelY = lastOmi.y + 3;
-              if (Math.abs(bookLabelY - omiLabelY) < GAP) {
-                const mid = (bookLabelY + omiLabelY) / 2;
-                if (bookLabelY < omiLabelY) { bookLabelY = mid - GAP / 2; omiLabelY = mid + GAP / 2; }
-                else { omiLabelY = mid - GAP / 2; bookLabelY = mid + GAP / 2; }
-              }
+          {/* Right-side price badges */}
+          {bookPts.length > 0 && (() => {
+            const lastBook = bookPts[bookPts.length - 1];
+            const lastFair = fairPts.length > 0 ? fairPts[fairPts.length - 1] : null;
+            const bx = svgW - padR + 4;
+            let bookBadgeY = lastBook.y;
+            let fairBadgeY = lastFair ? lastFair.y : 0;
+            const GAP = 14;
+            if (lastFair && Math.abs(bookBadgeY - fairBadgeY) < GAP) {
+              const mid = (bookBadgeY + fairBadgeY) / 2;
+              if (bookBadgeY < fairBadgeY) { bookBadgeY = mid - GAP / 2; fairBadgeY = mid + GAP / 2; }
+              else { fairBadgeY = mid - GAP / 2; bookBadgeY = mid + GAP / 2; }
             }
             return (
               <>
-                <text x={labelX} y={bookLabelY} textAnchor="start" fill={bookColor} fontSize="9" fontFamily="monospace">{formatValue(lastBook.value)}</text>
-                {hasOmiLine && omiChartPoints.length > 0 && (
-                  <text x={labelX} y={omiLabelY} textAnchor="start" fill={omiColor} fontSize="9" fontFamily="monospace">{formatValue(omiChartPoints[omiChartPoints.length - 1].value)}</text>
-                )}
-              </>
-            );
-          })()}
-
-          {/* Continuous crosshair — follows cursor pixel-by-pixel */}
-          {hoverX !== null && chartPoints.length > 0 && data.length >= 2 && (() => {
-            // Convert cursor pixel X → timestamp via linear interpolation on the data time span
-            const frac = Math.max(0, Math.min(1, (hoverX - paddingLeft) / chartWidth));
-            const startMs = data[0].timestamp.getTime();
-            const endMs = data[data.length - 1].timestamp.getTime();
-            const cursorMs = startMs + frac * (endMs - startMs);
-            const cursorTime = new Date(cursorMs);
-
-            // Step-interpolation on book line: last data point at or before cursor time
-            let bookVal = data[0].value;
-            let bookTs = data[0].timestamp;
-            for (let i = data.length - 1; i >= 0; i--) {
-              if (data[i].timestamp.getTime() <= cursorMs) { bookVal = data[i].value; bookTs = data[i].timestamp; break; }
-            }
-            const bookY = valueToY(bookVal);
-
-            // Step-interpolation on OMI line: last OMI data point at or before cursor time
-            let omiVal: number | null = null;
-            let omiTs: Date | null = null;
-            let omiY = 0;
-            if (hasOmiLine && omiFairLineData.length > 0) {
-              omiVal = omiFairLineData[0].value;
-              omiTs = omiFairLineData[0].timestamp;
-              for (let i = omiFairLineData.length - 1; i >= 0; i--) {
-                if (omiFairLineData[i].timestamp.getTime() <= cursorMs) { omiVal = omiFairLineData[i].value; omiTs = omiFairLineData[i].timestamp; break; }
-              }
-              omiY = valueToY(omiVal);
-            }
-
-            const fmtTime = (ts: Date) => ts.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-            const cursorTimeStr = fmtTime(cursorTime);
-            const bookLabel = `${formatValue(bookVal)} · ${fmtTime(bookTs)}`;
-            const omiLabel = omiVal !== null && omiTs ? `${formatValue(omiVal)} · ${fmtTime(omiTs)}` : omiVal !== null ? formatValue(omiVal) : '';
-            const pillH = 14;
-            const bookPillW = Math.max(52, bookLabel.length * 5.5 + 10);
-            const omiPillW = Math.max(52, omiLabel.length * 5.5 + 10);
-            // Flip pills to left side if too close to right edge
-            const flipBook = hoverX + 4 + bookPillW > width - 2;
-            const flipOmi = omiVal !== null && hoverX + 4 + omiPillW > width - 2;
-            return (
-              <>
-                {/* Vertical crosshair line — tracks cursor exactly */}
-                <line x1={hoverX} y1={paddingTop} x2={hoverX} y2={paddingTop + chartHeight} stroke="#222" strokeWidth="1" strokeDasharray="3 2" />
-                {/* Cursor time label on X-axis */}
-                <rect x={hoverX - 24} y={paddingTop + chartHeight + 2} width={48} height={13} rx="2" fill="#111" opacity="0.85" />
-                <text x={hoverX} y={paddingTop + chartHeight + 12} textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace">{cursorTimeStr}</text>
-                {/* Book value pill — positioned at cursor X, step-interpolated Y */}
-                <rect x={flipBook ? hoverX - 4 - bookPillW : hoverX + 4} y={bookY - pillH / 2} width={bookPillW} height={pillH} rx="3" fill={bookColor} opacity="0.9" />
-                <text x={flipBook ? hoverX - 4 - bookPillW / 2 : hoverX + 4 + bookPillW / 2} y={bookY + 3} textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace" fontWeight="600">{bookLabel}</text>
-                {/* OMI value pill */}
-                {omiVal !== null && (
+                <rect x={bx} y={bookBadgeY - 6} width={42} height={12} rx="2" fill={BOOK_LINE_COLOR} opacity="0.9" />
+                <text x={bx + 21} y={bookBadgeY + 2} textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace" fontWeight="600">{formatValue(lastBook.value)}</text>
+                {lastFair && (
                   <>
-                    <rect x={flipOmi ? hoverX - 4 - omiPillW : hoverX + 4} y={omiY - pillH / 2} width={omiPillW} height={pillH} rx="3" fill={omiColor} opacity="0.9" />
-                    <text x={flipOmi ? hoverX - 4 - omiPillW / 2 : hoverX + 4 + omiPillW / 2} y={omiY + 3} textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace" fontWeight="600">{omiLabel}</text>
+                    <rect x={bx} y={fairBadgeY - 6} width={42} height={12} rx="2" fill={FAIR_LINE_COLOR} opacity="0.9" />
+                    <text x={bx + 21} y={fairBadgeY + 2} textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace" fontWeight="600">{formatValue(lastFair.value)}</text>
                   </>
                 )}
               </>
             );
           })()}
+
+          {/* Driver event markers */}
+          {drivers.map((drv, i) => (
+            <polygon key={`drv-${i}`} points={`${drv.x - 3},${padT + 2} ${drv.x + 3},${padT + 2} ${drv.x},${padT - 4}`} fill={FAIR_LINE_COLOR} opacity="0.7" />
+          ))}
+
+          {/* Hover crosshair + tooltip */}
+          {hoverData && (
+            <>
+              <line x1={hoverData.x} y1={padT} x2={hoverData.x} y2={padT + chartH} stroke="#222" strokeWidth="1" strokeDasharray="3 2" />
+              {hoverData.bookY != null && <circle cx={hoverData.x} cy={hoverData.bookY} r="3" fill={BOOK_LINE_COLOR} stroke="#0b0b0b" strokeWidth="1" />}
+              {hoverData.fairY != null && <circle cx={hoverData.x} cy={hoverData.fairY} r="3" fill={FAIR_LINE_COLOR} stroke="#0b0b0b" strokeWidth="1" />}
+              {(() => {
+                const tooltipW = hoverData.nearbyDriver ? 160 : 130;
+                const tooltipH = hoverData.nearbyDriver ? 70 : 56;
+                const tx = flipTooltip ? hoverData.x - tooltipW - 8 : hoverData.x + 8;
+                const ty = Math.max(padT, Math.min(padT + chartH - tooltipH, (hoverData.bookY ?? padT + chartH / 2) - tooltipH / 2));
+                const fmtTs = hoverData.ts.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+                return (
+                  <g>
+                    <rect x={tx} y={ty} width={tooltipW} height={tooltipH} rx="3" fill="#111" stroke="#222" strokeWidth="0.5" />
+                    <text x={tx + 6} y={ty + 12} fill="#555" fontSize="8" fontFamily="monospace">{fmtTs}</text>
+                    <text x={tx + 6} y={ty + 24} fill={BOOK_LINE_COLOR} fontSize="9" fontFamily="monospace" fontWeight="600">
+                      Book {hoverData.bookV != null ? formatValue(hoverData.bookV) : '\u2014'}
+                    </text>
+                    <text x={tx + 6} y={ty + 36} fill={FAIR_LINE_COLOR} fontSize="9" fontFamily="monospace" fontWeight="600">
+                      Fair {hoverData.fairV != null ? formatValue(hoverData.fairV) : '\u2014'}
+                    </text>
+                    <text x={tx + 6} y={ty + 48} fill={hoverData.favorable ? '#22c55e' : '#ef4444'} fontSize="9" fontFamily="monospace" fontWeight="600">
+                      {hoverData.edge.toFixed(1)}% {hoverData.tierLabel} {hoverData.favorable ? '\u25B2' : '\u25BC'}
+                    </text>
+                    {hoverData.nearbyDriver && (
+                      <text x={tx + 6} y={ty + 62} fill={FAIR_LINE_COLOR} fontSize="8" fontFamily="monospace">
+                        {'\u25B2'} {hoverData.nearbyDriver.detail.slice(0, 28)}
+                      </text>
+                    )}
+                  </g>
+                );
+              })()}
+            </>
+          )}
         </svg>
       </div>
-      {/* Legend: Book | OMI Fair | Edge Zone */}
-      <div className="flex items-center justify-between px-1 flex-shrink-0 text-[8px] text-[#555]">
-        <div className="flex items-center gap-3">
-          <span className="flex items-center gap-1"><span className="inline-block w-3 h-0.5 rounded" style={{ backgroundColor: bookColor }}></span>{BOOK_CONFIG[selectedBook]?.name || selectedBook}</span>
-          {hasOmiLine && (
-            <span className="flex items-center gap-1"><span className="inline-block w-3 h-0.5 rounded" style={{ backgroundColor: omiColor }}></span>OMI Fair</span>
-          )}
-          {hasOmiLine && (
-            <span className="flex items-center gap-1">
-              <span className="inline-block w-3 h-2 rounded-sm" style={{ background: 'rgba(212,168,67,0.15)' }}></span>
-              Edge Zone
-            </span>
-          )}
+
+      {/* Edge heat strip */}
+      <div className="mx-3 h-2 flex rounded-sm overflow-hidden" style={{ background: '#111' }}>
+        {edgeSegments.map((seg, i) => (
+          <div
+            key={i}
+            className="h-full"
+            style={{ flex: 1, backgroundColor: seg.color, opacity: Math.min(seg.edge / 5, 1) * 0.5 }}
+          />
+        ))}
+      </div>
+
+      {/* Summary row: COMP | OMI FAIR | BOOK | GAP | EDGE */}
+      <div className="grid grid-cols-5 gap-0 px-3 py-1.5 border-t border-[#1a1a1a]/50">
+        <div className="text-center">
+          <div className="text-[7px] text-[#333] font-mono uppercase">Comp</div>
+          <div className="text-[11px] font-mono font-bold text-[#ccc]">{compositeScore ?? '\u2014'}</div>
         </div>
-        <span className="font-mono">{Math.abs(movement) > 0.05 ? `${Math.abs(isMLChart ? Math.round(movement) : Number(movement.toFixed(1)))} pts` : ''}</span>
+        <div className="text-center">
+          <div className="text-[7px] text-[#333] font-mono uppercase">OMI Fair</div>
+          <div className="text-[11px] font-mono font-bold" style={{ color: FAIR_LINE_COLOR }}>{currentFair != null ? formatValue(currentFair) : '\u2014'}</div>
+        </div>
+        <div className="text-center">
+          <div className="text-[7px] text-[#333] font-mono uppercase">Book</div>
+          <div className="text-[11px] font-mono font-bold" style={{ color: BOOK_LINE_COLOR }}>{currentBook != null ? formatValue(currentBook) : '\u2014'}</div>
+        </div>
+        <div className="text-center">
+          <div className="text-[7px] text-[#333] font-mono uppercase">Gap</div>
+          <div className="text-[11px] font-mono font-bold text-[#888]">{currentGap > 0 ? currentGap.toFixed(1) : '\u2014'}</div>
+        </div>
+        <div className="text-center">
+          <div className="text-[7px] text-[#333] font-mono uppercase">Edge</div>
+          <div className="text-[11px] font-mono font-bold" style={{ color: currentEdge >= 5 ? '#22c55e' : currentEdge >= 3 ? '#D4A843' : currentEdge >= 1 ? '#888' : '#555' }}>
+            {currentEdge > 0 ? `${currentEdge.toFixed(1)}%` : '\u2014'}
+          </div>
+        </div>
       </div>
     </div>
   );
 }
+
 
 // ============================================================================
 // TerminalHeader — 36px bar (modified: no edges, shows active market)
@@ -2188,177 +1897,6 @@ function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | 
 }
 
 // ============================================================================
-// EdgeEvolution — timeline showing how edge % changed over composite_history
-// ============================================================================
-
-function EdgeEvolution({
-  compositeHistory, sportKey, activeMarket,
-}: {
-  compositeHistory: CompositeHistoryPoint[];
-  sportKey: string;
-  activeMarket: 'spread' | 'total' | 'moneyline';
-}) {
-  if (!compositeHistory || compositeHistory.length === 0) {
-    return (
-      <div className="p-3">
-        <div className="text-[9px] text-[#444] font-mono uppercase tracking-wider mb-2">Edge Evolution</div>
-        <div className="text-[10px] text-[#555]">No composite history available yet.</div>
-      </div>
-    );
-  }
-
-  const rate = SPREAD_TO_PROB_RATE[sportKey] || 0.033;
-
-  // Calculate edge at each timestamp
-  const points = compositeHistory.map((row, i) => {
-    let edge = 0;
-    let label = '';
-    if (activeMarket === 'total') {
-      if (row.fair_total != null && row.book_total != null) {
-        edge = Math.abs(row.fair_total - row.book_total) * rate * 100;
-        label = `Fair O${row.fair_total.toFixed(1)} vs Book O${row.book_total.toFixed(1)}`;
-      }
-    } else {
-      // spread and moneyline both derive from spread
-      if (row.fair_spread != null && row.book_spread != null) {
-        edge = Math.abs(row.book_spread - row.fair_spread) * rate * 100;
-        label = `Fair ${row.fair_spread > 0 ? '+' : ''}${row.fair_spread.toFixed(1)} vs Book ${row.book_spread > 0 ? '+' : ''}${row.book_spread.toFixed(1)}`;
-      }
-    }
-
-    // Detect what changed vs previous row
-    let note = label;
-    if (i > 0) {
-      const prev = compositeHistory[i - 1];
-      const prevFairSpread = prev.fair_spread;
-      const curFairSpread = row.fair_spread;
-      const prevBookSpread = prev.book_spread;
-      const curBookSpread = row.book_spread;
-      if (activeMarket === 'total') {
-        if (prev.fair_total != null && row.fair_total != null && Math.abs(row.fair_total - prev.fair_total) >= 0.5) {
-          note = `Fair total moved ${row.fair_total > prev.fair_total ? 'up' : 'down'} to ${row.fair_total.toFixed(1)}`;
-        } else if (prev.book_total != null && row.book_total != null && Math.abs(row.book_total - prev.book_total) >= 0.5) {
-          note = `Book total moved to ${row.book_total.toFixed(1)}`;
-        }
-      } else {
-        if (prevFairSpread != null && curFairSpread != null && Math.abs(curFairSpread - prevFairSpread) >= 0.5) {
-          note = `Fair line moved to ${curFairSpread > 0 ? '+' : ''}${curFairSpread.toFixed(1)}`;
-        } else if (prevBookSpread != null && curBookSpread != null && Math.abs(curBookSpread - prevBookSpread) >= 0.5) {
-          note = `Book line moved to ${curBookSpread > 0 ? '+' : ''}${curBookSpread.toFixed(1)}`;
-        }
-      }
-    }
-
-    return {
-      timestamp: row.timestamp,
-      edge: Math.round(edge * 10) / 10,
-      note,
-    };
-  });
-
-  const maxEdge = Math.max(...points.map(p => p.edge), 1);
-
-  // Sparkline SVG
-  const sparkW = 200;
-  const sparkH = 32;
-  const sparkPad = 2;
-  const stepX = points.length > 1 ? (sparkW - sparkPad * 2) / (points.length - 1) : 0;
-  const sparkPoints = points.map((p, i) => {
-    const x = sparkPad + i * stepX;
-    const y = sparkH - sparkPad - ((p.edge / (maxEdge || 1)) * (sparkH - sparkPad * 2));
-    return `${x},${y}`;
-  }).join(' ');
-
-  // Show last N entries in timeline (most recent first), capped for space
-  const timelineEntries = [...points].reverse().slice(0, 8);
-
-  const formatTime = (ts: string) => {
-    try {
-      const d = new Date(ts);
-      const now = new Date();
-      const diffMs = now.getTime() - d.getTime();
-      const diffH = Math.floor(diffMs / 3600000);
-      if (diffH < 1) return `${Math.floor(diffMs / 60000)}m ago`;
-      if (diffH < 24) return `${diffH}h ago`;
-      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-    } catch { return ts; }
-  };
-
-  const getEdgeColor = (edge: number) => {
-    if (edge >= 5) return '#22c55e';
-    if (edge >= 3) return '#D4A843';
-    if (edge >= 1) return '#555';
-    return '#333';
-  };
-
-  const latestEdge = points[points.length - 1]?.edge ?? 0;
-  const earliestEdge = points[0]?.edge ?? 0;
-  const edgeTrend = latestEdge > earliestEdge ? 'expanding' : latestEdge < earliestEdge ? 'narrowing' : 'stable';
-
-  return (
-    <div className="p-3">
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-[9px] text-[#444] font-mono uppercase tracking-wider">Edge Evolution</span>
-        <span className="text-[9px] font-mono" style={{ color: getEdgeColor(latestEdge) }}>
-          {latestEdge.toFixed(1)}% {edgeTrend === 'expanding' ? '\u25B2' : edgeTrend === 'narrowing' ? '\u25BC' : '\u25C6'}
-        </span>
-      </div>
-
-      {/* Timeline entries */}
-      <div className="space-y-0">
-        {timelineEntries.map((entry, i) => (
-          <div key={i} className="flex items-start gap-2 py-1" style={{ borderBottom: i < timelineEntries.length - 1 ? '1px solid #111' : 'none' }}>
-            <span className="text-[8px] text-[#333] font-mono w-12 flex-shrink-0 pt-px">{formatTime(entry.timestamp)}</span>
-            <div
-              className="w-1 h-1 rounded-full flex-shrink-0 mt-1"
-              style={{ backgroundColor: getEdgeColor(entry.edge) }}
-            />
-            <div className="min-w-0 flex-1">
-              <span className="text-[9px] font-mono font-semibold" style={{ color: getEdgeColor(entry.edge) }}>
-                {entry.edge.toFixed(1)}%
-              </span>
-              <span className="text-[9px] text-[#444] ml-1.5">{entry.note}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Sparkline */}
-      {points.length >= 2 && (
-        <div className="mt-2 pt-2 border-t border-[#111]">
-          <svg width="100%" height={sparkH} viewBox={`0 0 ${sparkW} ${sparkH}`} preserveAspectRatio="none" className="overflow-visible">
-            {/* Fill area under line */}
-            <polygon
-              points={`${sparkPad},${sparkH - sparkPad} ${sparkPoints} ${sparkPad + (points.length - 1) * stepX},${sparkH - sparkPad}`}
-              fill="rgba(212,168,67,0.06)"
-            />
-            {/* Line */}
-            <polyline
-              points={sparkPoints}
-              fill="none"
-              stroke="#D4A843"
-              strokeWidth="1.5"
-              strokeLinejoin="round"
-            />
-            {/* Latest point dot */}
-            {(() => {
-              const lastPt = points[points.length - 1];
-              const lx = sparkPad + (points.length - 1) * stepX;
-              const ly = sparkH - sparkPad - ((lastPt.edge / (maxEdge || 1)) * (sparkH - sparkPad * 2));
-              return <circle cx={lx} cy={ly} r="2.5" fill="#D4A843" />;
-            })()}
-          </svg>
-          <div className="flex justify-between mt-0.5">
-            <span className="text-[7px] text-[#333] font-mono">{formatTime(points[0].timestamp)}</span>
-            <span className="text-[7px] text-[#333] font-mono">{formatTime(points[points.length - 1].timestamp)}</span>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ============================================================================
 // Demo/Lock components
 // ============================================================================
 
@@ -3085,11 +2623,10 @@ export function GameDetailClient({
   const isSoccerGame = gameData.sportKey?.includes('soccer') ?? false;
   const [activeMarket, setActiveMarket] = useState<ActiveMarket>(isSoccerGame ? 'moneyline' : 'spread');
   const [activePeriod, setActivePeriod] = useState('full');
-  const [chartViewMode, setChartViewMode] = useState<ChartViewMode>('line');
   const [lazyLineHistory, setLazyLineHistory] = useState<Record<string, Record<string, any[]>>>({});
   const [loadingPeriods, setLoadingPeriods] = useState<Set<string>>(new Set());
 
-  // Fetch composite_history — full array for EdgeEvolution, latest row for fair lines
+  // Fetch composite_history — full array for UnifiedChart, latest row for fair lines
   const [dbFairLines, setDbFairLines] = useState<CompositeHistoryPoint | null>(null);
   const [compositeHistory, setCompositeHistory] = useState<CompositeHistoryPoint[]>([]);
   useEffect(() => {
@@ -3545,22 +3082,17 @@ export function GameDetailClient({
           <div className="flex flex-1 min-h-0">
             {/* Left: independently scrollable content */}
             <div className="flex-1 min-w-0 overflow-y-auto">
-              {/* Chart — full width */}
-              <div className="relative flex flex-col px-1 py-1 border-b border-[#1a1a1a]/50" style={{ height: '280px' }}>
-                <LineMovementChart
-                  key={`chart-${activeMarket}-${activePeriod}-${selectedBook}`}
-                  gameId={gameData.id}
-                  selection={chartSelection}
-                  lineHistory={getLineHistoryWithCurrentOdds()}
-                  selectedBook={selectedBook}
+              {/* Unified convergence chart */}
+              <div className="border-b border-[#1a1a1a]/50">
+                <UnifiedChart
+                  key={`chart-${activeMarket}-${activePeriod}`}
+                  compositeHistory={compositeHistory}
+                  sportKey={gameData.sportKey}
+                  activeMarket={activeMarket}
                   homeTeam={gameData.homeTeam}
                   awayTeam={gameData.awayTeam}
-                  viewMode={chartViewMode}
-                  onViewModeChange={setChartViewMode}
                   commenceTime={gameData.commenceTime}
-                  sportKey={gameData.sportKey}
-                  omiFairLine={omiFairLineForChart}
-                  activeMarket={activeMarket}
+                  pythonPillars={pythonPillarScores}
                 />
               </div>
 
@@ -3595,11 +3127,8 @@ export function GameDetailClient({
                 </div>
               </div>
 
-              {/* Edge Evolution — 50% left (Injury Report placeholder right) */}
+              {/* Injury Report placeholder */}
               <div className="flex border-t border-[#1a1a1a]/50">
-                <div className="w-1/2 border-r border-[#1a1a1a]/50">
-                  <EdgeEvolution compositeHistory={compositeHistory} sportKey={gameData.sportKey} activeMarket={activeMarket} />
-                </div>
                 <div className="w-1/2">
                   {/* Injury Report will go here */}
                 </div>
@@ -3695,28 +3224,17 @@ export function GameDetailClient({
             </div>
           </div>
 
-          {/* Convergence chart — compact */}
-          <div className="h-[200px] relative bg-[#0b0b0b]/50 rounded p-2">
-            <span className="text-[10px] font-semibold text-[#555] uppercase tracking-widest mb-1 block">Line Convergence</span>
-            <div className="flex-1 min-h-0 h-[calc(100%-20px)]">
-              <LineMovementChart
-                key={`chart-mobile-${activeMarket}-${activePeriod}-${selectedBook}`}
-                gameId={gameData.id}
-                selection={chartSelection}
-                lineHistory={getLineHistoryWithCurrentOdds()}
-                selectedBook={selectedBook}
-                homeTeam={gameData.homeTeam}
-                awayTeam={gameData.awayTeam}
-                viewMode={chartViewMode}
-                onViewModeChange={setChartViewMode}
-                commenceTime={gameData.commenceTime}
-                sportKey={gameData.sportKey}
-                compact
-                omiFairLine={omiFairLineForChart}
-                activeMarket={activeMarket}
-              />
-            </div>
-          </div>
+          {/* Unified convergence chart */}
+          <UnifiedChart
+            key={`chart-mobile-${activeMarket}-${activePeriod}`}
+            compositeHistory={compositeHistory}
+            sportKey={gameData.sportKey}
+            activeMarket={activeMarket}
+            homeTeam={gameData.homeTeam}
+            awayTeam={gameData.awayTeam}
+            commenceTime={gameData.commenceTime}
+            pythonPillars={pythonPillarScores}
+          />
 
           <OmiFairPricing
             key={`mobile-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
@@ -3742,8 +3260,6 @@ export function GameDetailClient({
           />
 
           <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
-
-          <EdgeEvolution compositeHistory={compositeHistory} sportKey={gameData.sportKey} activeMarket={activeMarket} />
 
           {/* Exchange Signals — complementary intelligence */}
           {exchangeData && (

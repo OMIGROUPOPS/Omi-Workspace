@@ -1659,8 +1659,80 @@ function OmiFairPricing({
 }
 
 // ============================================================================
-// PillarBarsCompact — dual-sided bars (center at 50%)
+// PillarBarsCompact — dual-sided bars (center at 50%) with expand/collapse
 // ============================================================================
+
+const PILLAR_VARIABLES: Record<string, { code: string; label: string; description: string }[]> = {
+  execution: [
+    { code: 'FRM', label: 'Form Composite', description: 'ATS record, scoring margin, opponent-adjusted performance' },
+    { code: 'FDR', label: 'Q4 Differential', description: 'Clutch execution, 4th quarter point differential' },
+    { code: 'TSH', label: 'Home Scoring Trend', description: 'Rolling offensive efficiency at home venue' },
+    { code: 'SKH', label: 'Streak Detection', description: 'Sustained performance runs exceeding noise' },
+    { code: 'HIJ', label: 'Injury-Adjusted', description: 'Team strength factoring current injury report' },
+  ],
+  incentives: [
+    { code: 'PLI', label: 'Playoff Implications', description: 'Seeding leverage, elimination pressure, clinch scenarios' },
+    { code: 'RIV', label: 'Rivalry Factor', description: 'Historical rivalry intensity and motivation boost' },
+    { code: 'RST', label: 'Rest Advantage', description: 'Days since last game, back-to-back fatigue detection' },
+    { code: 'SZN', label: 'Season Context', description: 'Early-season variance vs late-season urgency' },
+  ],
+  shocks: [
+    { code: 'INJ', label: 'Injury News', description: 'Breaking injury reports and their spread impact' },
+    { code: 'LIN', label: 'Lineup Changes', description: 'Unexpected starter/bench changes vs projected' },
+    { code: 'SUS', label: 'Suspensions', description: 'Player suspensions affecting team strength' },
+    { code: 'WTH', label: 'Weather/Venue', description: 'Weather conditions, dome/open, altitude factors' },
+    { code: 'NWS', label: 'Breaking News', description: 'Trade rumors, coach firings, off-court events' },
+  ],
+  timeDecay: [
+    { code: 'STL', label: 'Signal Staleness', description: 'How recently pillar inputs were refreshed' },
+    { code: 'CLV', label: 'Closing Line Value', description: 'Expected line drift as game approaches' },
+    { code: 'MKT', label: 'Market Maturity', description: 'Early-week soft lines vs game-day sharp markets' },
+    { code: 'VOL', label: 'Volume Indicator', description: 'Betting handle growth approaching tipoff' },
+  ],
+  flow: [
+    { code: 'RLM', label: 'Reverse Line Move', description: 'Line moved opposite to public betting %' },
+    { code: 'PDV', label: 'Price Divergence', description: 'Exchange-to-sportsbook convergence analysis' },
+    { code: 'SHP', label: 'Sharp Consensus', description: 'Cross-referencing multiple professional signals' },
+    { code: 'JFI', label: 'Juice Flow', description: 'Vig changes without line movement (stealth adjustments)' },
+    { code: 'FLM', label: 'Full Line Movement', description: 'Velocity, direction, persistence across 15+ books' },
+  ],
+  gameEnvironment: [
+    { code: 'HCA', label: 'Home Court', description: 'Home court advantage strength for this venue' },
+    { code: 'TRV', label: 'Travel Factor', description: 'Distance traveled, time zone shifts, back-to-backs' },
+    { code: 'ALT', label: 'Altitude/Climate', description: 'Denver altitude, Miami humidity, outdoor elements' },
+    { code: 'PAC', label: 'Pace Matchup', description: 'Tempo differential between teams and its effect on totals' },
+  ],
+};
+
+function generatePillarSummary(pillarKey: string, score: number, homeTeam: string, awayTeam: string): string {
+  const hA = abbrev(homeTeam);
+  const aA = abbrev(awayTeam);
+  const leanTeam = score >= 50 ? hA : aA;
+  const strength = score >= 65 || score <= 35 ? 'strongly' : score > 55 || score < 45 ? 'moderately' : 'slightly';
+  const isNeutral = score > 45 && score < 55;
+
+  const summaries: Record<string, string> = {
+    execution: isNeutral
+      ? `Both teams showing comparable form and execution metrics.`
+      : `${strength.charAt(0).toUpperCase() + strength.slice(1)} favors ${leanTeam} — recent form, clutch performance, and scoring trends lean ${score >= 50 ? 'home' : 'away'}.`,
+    incentives: isNeutral
+      ? `Similar motivation levels — no clear edge from rest, rivalry, or playoff leverage.`
+      : `${leanTeam} has a ${strength} incentive edge from playoff positioning, rest advantage, or situational motivation.`,
+    shocks: isNeutral
+      ? `No significant injury or news shocks detected for either side.`
+      : `Shock signals ${strength} favor ${leanTeam} — check injury reports and lineup changes for impact.`,
+    timeDecay: isNeutral
+      ? `Signal freshness is balanced — market inputs are current for both sides.`
+      : `Time decay ${strength} favors ${leanTeam} — ${score >= 50 ? 'home' : 'away'} signals are fresher or line is expected to move their way.`,
+    flow: isNeutral
+      ? `Money flow is balanced — no clear sharp or public lean detected.`
+      : `Sharp money and line movement ${strength} favor ${leanTeam} — watch for reverse line movement and juice shifts.`,
+    gameEnvironment: isNeutral
+      ? `Venue and environmental factors are roughly neutral for this matchup.`
+      : `Environment ${strength} favors ${leanTeam} — home court, travel, and pace matchup contribute.`,
+  };
+  return summaries[pillarKey] || `Score of ${score} — ${isNeutral ? 'neutral' : `${strength} ${score >= 50 ? 'home' : 'away'} lean`}.`;
+}
 
 function PillarBarsCompact({
   pythonPillars, homeTeam, awayTeam, marketPillarScores, marketComposite,
@@ -1671,6 +1743,8 @@ function PillarBarsCompact({
   marketPillarScores?: Record<string, number>;
   marketComposite?: number;
 }) {
+  const [expandedPillar, setExpandedPillar] = useState<string | null>(null);
+
   const pillars = [
     { key: 'execution', label: 'EXEC', weight: '20%', fullLabel: 'Execution' },
     { key: 'incentives', label: 'INCV', weight: '10%', fullLabel: 'Incentives' },
@@ -1729,29 +1803,60 @@ function PillarBarsCompact({
         const deviation = Math.abs(score - 50);
         const barWidthPct = isNeutral ? Math.max(deviation, 1) : deviation; // tiny bar in neutral zone
         const isHomeSide = score >= 50;
+        const isExpanded = expandedPillar === p.key;
         return (
-          <div key={p.key} className="flex items-center gap-1">
-            <span className="text-[9px] text-[#555] w-16 font-mono truncate" title={p.fullLabel}>
-              {p.label} <span className="text-[#555]">({p.weight})</span>
-            </span>
-            <div className="flex-1 h-[6px] bg-[#111] rounded-sm relative">
-              {/* Center line — dashed for visibility at neutral */}
-              <div className="absolute left-1/2 top-0 w-0 h-full z-10" style={{ borderLeft: '1px dashed #222' }} />
-              {isHomeSide ? (
-                /* Bar grows RIGHT from center (50%) */
-                <div
-                  className="absolute top-0 h-full rounded-r-sm"
-                  style={{ left: '50%', width: `${barWidthPct}%`, backgroundColor: barColor }}
-                />
-              ) : (
-                /* Bar grows LEFT from center (50%) — anchor right edge at 50% */
-                <div
-                  className="absolute top-0 h-full rounded-l-sm"
-                  style={{ right: '50%', width: `${barWidthPct}%`, backgroundColor: barColor }}
-                />
-              )}
+          <div key={p.key}>
+            <div
+              className="flex items-center gap-1 cursor-pointer hover:bg-[#111]/50 rounded-sm -mx-0.5 px-0.5 transition-colors"
+              onClick={() => setExpandedPillar(isExpanded ? null : p.key)}
+            >
+              <span className="text-[9px] text-[#555] w-16 font-mono truncate" title={p.fullLabel}>
+                {p.label} <span className="text-[#555]">({p.weight})</span>
+              </span>
+              <div className="flex-1 h-[6px] bg-[#111] rounded-sm relative">
+                {/* Center line — dashed for visibility at neutral */}
+                <div className="absolute left-1/2 top-0 w-0 h-full z-10" style={{ borderLeft: '1px dashed #222' }} />
+                {isHomeSide ? (
+                  /* Bar grows RIGHT from center (50%) */
+                  <div
+                    className="absolute top-0 h-full rounded-r-sm"
+                    style={{ left: '50%', width: `${barWidthPct}%`, backgroundColor: barColor }}
+                  />
+                ) : (
+                  /* Bar grows LEFT from center (50%) — anchor right edge at 50% */
+                  <div
+                    className="absolute top-0 h-full rounded-l-sm"
+                    style={{ right: '50%', width: `${barWidthPct}%`, backgroundColor: barColor }}
+                  />
+                )}
+              </div>
+              <span className={`text-[9px] font-mono w-6 text-right font-semibold ${getTextColor(score)}`} style={{ fontVariantNumeric: 'tabular-nums' }}>{score}</span>
             </div>
-            <span className={`text-[9px] font-mono w-6 text-right font-semibold ${getTextColor(score)}`} style={{ fontVariantNumeric: 'tabular-nums' }}>{score}</span>
+            {/* Expanded detail */}
+            {isExpanded && (
+              <div
+                className="mt-1 mb-1.5 ml-1 rounded-sm overflow-hidden"
+                style={{ background: '#080808', borderLeft: `2px solid ${barColor}` }}
+              >
+                <div className="px-2.5 py-2">
+                  <div className="text-[10px] text-[#888] leading-relaxed mb-2">
+                    {generatePillarSummary(p.key, score, homeTeam, awayTeam)}
+                  </div>
+                  <div className="space-y-1">
+                    {(PILLAR_VARIABLES[p.key] || []).map(v => (
+                      <div key={v.code} className="flex items-start gap-2">
+                        <span className="text-[9px] font-mono text-[#555] w-7 flex-shrink-0 pt-px">{v.code}</span>
+                        <div className="min-w-0">
+                          <span className="text-[9px] text-[#888]">{v.label}</span>
+                          <span className="text-[9px] text-[#333] mx-1">—</span>
+                          <span className="text-[9px] text-[#555]">{v.description}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         );
       })}

@@ -158,6 +158,14 @@ function UnifiedChart({
   const [hoverX, setHoverX] = useState<number | null>(null);
   const [chartTimeRange, setChartTimeRange] = useState<TimeRange>('ALL');
   const [trackingSide, setTrackingSide] = useState<'home' | 'away' | 'over' | 'under'>('home');
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [svgWidth, setSvgWidth] = useState(800);
+  useEffect(() => {
+    if (containerRef.current) setSvgWidth(containerRef.current.clientWidth);
+    const obs = new ResizeObserver(entries => setSvgWidth(entries[0].contentRect.width));
+    if (containerRef.current) obs.observe(containerRef.current);
+    return () => obs.disconnect();
+  }, []);
   const homeAbbr = abbrev(homeTeam);
   const awayAbbr = abbrev(awayTeam);
   const rate = SPREAD_TO_PROB_RATE[sportKey] || 0.033;
@@ -224,8 +232,8 @@ function UnifiedChart({
   const range = maxVal - minVal || 1;
   const yPadding = range * 0.25;
 
-  // SVG dimensions
-  const svgW = 560;
+  // SVG dimensions — match container width exactly, no viewBox
+  const svgW = svgWidth;
   const svgH = 220;
   const padL = 38;
   const padR = 50;
@@ -342,23 +350,38 @@ function UnifiedChart({
     return val.toFixed(1);
   };
 
-  // Driver event markers
-  const drivers: { x: number; label: string; detail: string; index: number }[] = [];
+  // Driver event markers — rich context from data diffs
+  const fmtSpread = (v: number) => v > 0 ? `+${v.toFixed(1)}` : v.toFixed(1);
+  const drivers: { x: number; label: string; detail: string; edgeImpact: string; index: number }[] = [];
   for (let i = 1; i < data.length; i++) {
     const prev = data[i - 1].raw;
     const cur = data[i].raw;
     const x = indexToX(i);
-    if (activeMarket === 'total' || isTotal) {
-      if (cur.fair_total != null && prev.fair_total != null && Math.abs(cur.fair_total - prev.fair_total) >= 0.5) {
-        drivers.push({ x, label: 'COMP', detail: `Fair total \u2192 ${cur.fair_total.toFixed(1)}`, index: i });
-      } else if (cur.book_total != null && prev.book_total != null && Math.abs(cur.book_total - prev.book_total) >= 0.5) {
-        drivers.push({ x, label: 'BOOK', detail: `Book total \u2192 ${cur.book_total.toFixed(1)}`, index: i });
+    const prevEdge = (data[i - 1].bookVal != null && data[i - 1].fairVal != null) ? Math.abs(data[i - 1].bookVal! - data[i - 1].fairVal!) * rate * 100 : 0;
+    const curEdge = (data[i].bookVal != null && data[i].fairVal != null) ? Math.abs(data[i].bookVal! - data[i].fairVal!) * rate * 100 : 0;
+    const edgeDir = curEdge > prevEdge ? 'widened' : 'narrowed';
+    const edgeImpact = `Edge ${edgeDir} ${prevEdge.toFixed(1)}% \u2192 ${curEdge.toFixed(1)}%`;
+    if (isTotal) {
+      const bookMoved = cur.book_total != null && prev.book_total != null && Math.abs(cur.book_total - prev.book_total) >= 0.5;
+      const fairMoved = cur.fair_total != null && prev.fair_total != null && Math.abs(cur.fair_total - prev.fair_total) >= 0.5;
+      if (fairMoved) {
+        const detail = bookMoved
+          ? `Book ${prev.book_total!.toFixed(1)} \u2192 ${cur.book_total!.toFixed(1)}, Fair ${prev.fair_total!.toFixed(1)} \u2192 ${cur.fair_total!.toFixed(1)}`
+          : `Fair shifted ${prev.fair_total!.toFixed(1)} \u2192 ${cur.fair_total!.toFixed(1)}`;
+        drivers.push({ x, label: 'COMP', detail, edgeImpact, index: i });
+      } else if (bookMoved) {
+        drivers.push({ x, label: 'BOOK', detail: `Book moved ${prev.book_total!.toFixed(1)} \u2192 ${cur.book_total!.toFixed(1)}, Fair held at ${cur.fair_total?.toFixed(1) ?? '?'}`, edgeImpact, index: i });
       }
     } else {
-      if (cur.fair_spread != null && prev.fair_spread != null && Math.abs(cur.fair_spread - prev.fair_spread) >= 0.5) {
-        drivers.push({ x, label: 'COMP', detail: `Fair spread \u2192 ${cur.fair_spread > 0 ? '+' : ''}${cur.fair_spread.toFixed(1)}`, index: i });
-      } else if (cur.book_spread != null && prev.book_spread != null && Math.abs(cur.book_spread - prev.book_spread) >= 0.5) {
-        drivers.push({ x, label: 'BOOK', detail: `Book \u2192 ${cur.book_spread > 0 ? '+' : ''}${cur.book_spread.toFixed(1)}`, index: i });
+      const bookMoved = cur.book_spread != null && prev.book_spread != null && Math.abs(cur.book_spread - prev.book_spread) >= 0.5;
+      const fairMoved = cur.fair_spread != null && prev.fair_spread != null && Math.abs(cur.fair_spread - prev.fair_spread) >= 0.5;
+      if (fairMoved) {
+        const detail = bookMoved
+          ? `Book ${fmtSpread(prev.book_spread!)} \u2192 ${fmtSpread(cur.book_spread!)}, Fair ${fmtSpread(prev.fair_spread!)} \u2192 ${fmtSpread(cur.fair_spread!)}`
+          : `Fair shifted ${fmtSpread(prev.fair_spread!)} \u2192 ${fmtSpread(cur.fair_spread!)}`;
+        drivers.push({ x, label: 'COMP', detail, edgeImpact, index: i });
+      } else if (bookMoved) {
+        drivers.push({ x, label: 'BOOK', detail: `Book moved ${fmtSpread(prev.book_spread!)} \u2192 ${fmtSpread(cur.book_spread!)}, Fair held at ${cur.fair_spread != null ? fmtSpread(cur.fair_spread) : '?'}`, edgeImpact, index: i });
       }
     }
   }
@@ -371,23 +394,10 @@ function UnifiedChart({
   const currentEdge = currentGap * rate * 100;
   const compositeScore = pythonPillars?.composite ?? null;
 
-  // Hover logic — accounts for aspect ratio letterboxing
+  // Hover logic — 1:1 pixel mapping, no viewBox conversion needed
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
-    const svgEl = e.currentTarget;
-    const svgRect = svgEl.getBoundingClientRect();
-    const viewBox = svgEl.viewBox.baseVal;
-    const containerAspect = svgRect.width / svgRect.height;
-    const viewBoxAspect = viewBox.width / viewBox.height;
-    let renderWidth: number, renderX: number;
-    if (containerAspect > viewBoxAspect) {
-      renderWidth = svgRect.height * viewBoxAspect;
-      renderX = (svgRect.width - renderWidth) / 2;
-    } else {
-      renderWidth = svgRect.width;
-      renderX = 0;
-    }
-    const relativeX = e.clientX - svgRect.left - renderX;
-    const mx = (relativeX / renderWidth) * viewBox.width;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
     if (mx >= padL && mx <= padL + chartW) setHoverX(mx);
     else setHoverX(null);
   };
@@ -471,8 +481,8 @@ function UnifiedChart({
       </div>
 
       {/* SVG Chart */}
-      <div className="relative">
-        <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full cursor-crosshair" style={{ height: '220px' }} preserveAspectRatio="xMidYMid meet" onMouseMove={handleMouseMove} onMouseLeave={() => setHoverX(null)}>
+      <div ref={containerRef} className="relative">
+        <svg width={svgW} height={svgH} className="cursor-crosshair" onMouseMove={handleMouseMove} onMouseLeave={() => setHoverX(null)}>
           {/* Y-axis grid */}
           {yGridLines.map((g, i) => (
             <line key={`g-${i}`} x1={padL} y1={g.y} x2={svgW - padR} y2={g.y} stroke="#131313" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.6" />
@@ -541,8 +551,8 @@ function UnifiedChart({
               {hoverData.fairY != null && <circle cx={hoverData.x} cy={hoverData.fairY} r="3" fill={FAIR_LINE_COLOR} stroke="#0b0b0b" strokeWidth="1" />}
               {(() => {
                 const hasDriver = !!hoverData.nearbyDriver;
-                const tooltipW = hasDriver ? 170 : 130;
-                const tooltipH = hasDriver ? 84 : 56;
+                const tooltipW = hasDriver ? 240 : 130;
+                const tooltipH = hasDriver ? 96 : 56;
                 const tx = flipTooltip ? hoverData.x - tooltipW - 8 : hoverData.x + 8;
                 const ty = Math.max(padT, Math.min(padT + chartH - tooltipH, (hoverData.bookY ?? padT + chartH / 2) - tooltipH / 2));
                 const fmtTs = hoverData.ts.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
@@ -564,9 +574,12 @@ function UnifiedChart({
                     {hasDriver && (
                       <>
                         <text x={tx + 6} y={ty + 62} fill="#aaa" fontSize="8" fontFamily="monospace">
-                          {hoverData.nearbyDriver!.detail.slice(0, 30)}
+                          {hoverData.nearbyDriver!.detail.slice(0, 42)}
                         </text>
-                        <text x={tx + 6} y={ty + 76} fill={FAIR_LINE_COLOR} fontSize="8" fontFamily="monospace" fontWeight="600">
+                        <text x={tx + 6} y={ty + 74} fill={dirColor} fontSize="8" fontFamily="monospace">
+                          {hoverData.nearbyDriver!.edgeImpact}
+                        </text>
+                        <text x={tx + 6} y={ty + 88} fill={FAIR_LINE_COLOR} fontSize="8" fontFamily="monospace" fontWeight="600">
                           {'\u2726'} Ask Edge AI
                         </text>
                       </>

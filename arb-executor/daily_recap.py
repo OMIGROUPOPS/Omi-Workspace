@@ -154,26 +154,31 @@ def filter_by_date(trades: list, target_date: str) -> list:
 
 def format_trade_line(t: dict, pnl_val: float | None) -> str:
     ts = t.get("timestamp", "")
-    time_str = ts[11:19] if len(ts) >= 19 else ts
+    time_str = ts[11:16] if len(ts) >= 16 else ts
     team = t.get("team", "?")
-    opponent = extract_opponent(t)
-    matchup = f"{team} vs {opponent}" if opponent else team
-    sport = t.get("sport", "").upper()
-    status = t.get("tier") or t.get("status", "")
-    qty = t.get("contracts_filled", 0) or t.get("contracts_intended", 0) or 0
-    spread = t.get("spread_cents")
-    spread_str = f"{spread:.1f}c" if spread is not None else "-"
+    opponent = extract_opponent(t) or "?"
+    matchup = f"{team} vs {opponent}"
 
     direction = t.get("direction", "")
     pm_price = norm_pm(t.get("pm_price", 0))
-    k_price = t.get("k_price", 0)
-    if direction == "BUY_PM_SELL_K":
-        legs = f"PM:BUY@{pm_price:.0f}c K:SELL@{k_price}c"
-    else:
-        legs = f"K:BUY@{k_price}c PM:SELL@{pm_price:.0f}c"
+    k_price = t.get("k_price", 0) or 0
 
+    if direction == "BUY_PM_SELL_K":
+        k_opp_cost = 100 - k_price if k_price > 0 else 0
+        total_cost = pm_price + k_opp_cost
+        spread = 100 - total_cost
+        legs = f"PM: {team} @{pm_price:.0f}c  K: {opponent} @{k_opp_cost:.0f}c"
+    else:
+        total_cost = k_price + pm_price
+        spread = 100 - total_cost
+        legs = f"K: {team} @{k_price}c  PM: {opponent} @{pm_price:.0f}c"
+
+    cost_str = f"[{total_cost:.0f}c\u2192{spread:.0f}c]"
+    qty = t.get("contracts_filled", 0) or t.get("contracts_intended", 0) or 0
     pnl_str = f"${pnl_val:+.4f}" if pnl_val is not None else "OPEN"
-    return f"  {time_str}  [{sport:>3}] {matchup:<20} {legs:<28} {status:<18} {qty:>3}x  {spread_str:>6}  {pnl_str:>10}"
+    status_icon = "\u2713" if pnl_val is not None and pnl_val >= 0 else "\u2717" if pnl_val is not None else " "
+
+    return f"  {time_str}  {status_icon} {matchup:<18} | {legs}  {cost_str:<12} | {qty:>2}x | {pnl_str}"
 
 
 def generate_recap(target_date: str) -> str:

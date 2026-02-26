@@ -10,36 +10,45 @@ interface Props {
   setExpandedTrade: (idx: number | null) => void;
 }
 
+function normPmNum(pm: number | undefined): number {
+  if (typeof pm !== "number") return 0;
+  return pm < 1 && pm > 0 ? pm * 100 : pm;
+}
+
 function normPm(pm: number | undefined): string {
   if (typeof pm !== "number") return "-";
   return pm < 1 ? (pm * 100).toFixed(1) : pm.toFixed(1);
 }
 
 function legsLabel(t: TradeEntry) {
-  const pmC = normPm(t.pm_price);
-  const kC = t.k_price || "-";
+  const pmVal = normPmNum(t.pm_price);
+  const kVal = typeof t.k_price === "number" ? t.k_price : 0;
+  const team = t.team || "?";
+  const opp = t.opponent || "?";
+
   if (t.direction === "BUY_PM_SELL_K") {
+    // PM: buy team YES @pm, K: sell team YES = buy opponent YES @(100-k)
+    const kOppCost = kVal > 0 ? 100 - kVal : 0;
+    const totalCost = pmVal + kOppCost;
+    const spread = 100 - totalCost;
     return (
       <>
-        <span className="text-gray-500">PM:</span>
-        <span className="text-emerald-400 ml-0.5">BUY</span>
-        <span className="text-gray-500 ml-0.5">@{pmC}c</span>
+        <span className="text-emerald-400">PM: {team} @{pmVal.toFixed(0)}c</span>
         <span className="text-gray-700 mx-1">|</span>
-        <span className="text-gray-500">K:</span>
-        <span className="text-red-400 ml-0.5">SELL</span>
-        <span className="text-gray-500 ml-0.5">@{kC}c</span>
+        <span className="text-blue-400">K: {opp} @{kOppCost.toFixed(0)}c</span>
+        <span className="text-gray-600 ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
       </>
     );
   }
+  // BUY_K_SELL_PM: K: buy team YES @k, PM: buy opponent YES @pm
+  const totalCost = kVal + pmVal;
+  const spread = 100 - totalCost;
   return (
     <>
-      <span className="text-gray-500">K:</span>
-      <span className="text-emerald-400 ml-0.5">BUY</span>
-      <span className="text-gray-500 ml-0.5">@{kC}c</span>
+      <span className="text-emerald-400">K: {team} @{kVal}c</span>
       <span className="text-gray-700 mx-1">|</span>
-      <span className="text-gray-500">PM:</span>
-      <span className="text-red-400 ml-0.5">SELL</span>
-      <span className="text-gray-500 ml-0.5">@{pmC}c</span>
+      <span className="text-blue-400">PM: {opp} @{pmVal.toFixed(0)}c</span>
+      <span className="text-gray-600 ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
     </>
   );
 }

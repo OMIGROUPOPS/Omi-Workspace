@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import type { ArbDataReturn } from "../hooks/useArbData";
-import type { BottomTab } from "../types";
 import { DashboardCard } from "../shared/DashboardCard";
 import { FilterButton } from "../shared/FilterButton";
-import { SpreadHeatmapTable } from "../panels/SpreadHeatmapTable";
 import { TradeLog } from "../panels/TradeLog";
 import { PositionsTable } from "../panels/PositionsTable";
 import { MappedGamesTable } from "../panels/MappedGamesTable";
@@ -35,14 +33,10 @@ export function MonitorTab({ data }: Props) {
     dateLabel,
     tradeSearch,
     setTradeSearch,
-    bottomTab,
-    setBottomTab,
     expandedMonitorTrade,
     setExpandedMonitorTrade,
     markSettled,
   } = data;
-
-  const [heatmapOpen, setHeatmapOpen] = useState(false);
 
   return (
     <div className="p-4 space-y-4">
@@ -150,46 +144,26 @@ export function MonitorTab({ data }: Props) {
         />
       </div>
 
-      {/* ── Positions / Mapped Games ──────────────────────────── */}
+      {/* ── Positions ────────────────────────────────────────── */}
       <div className="rounded-lg border border-gray-800 bg-[#111]">
-        <div className="px-3 py-2 border-b border-gray-800 flex items-center gap-2">
-          <button
-            onClick={() => setBottomTab("positions")}
-            className={`rounded px-2 py-0.5 text-xs font-medium ${bottomTab === "positions" ? "bg-gray-700 text-white" : "text-gray-500 hover:text-gray-300"}`}
-          >
+        <div className="px-3 py-2 border-b border-gray-800">
+          <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
             Positions ({activePositions.length})
-          </button>
-          <button
-            onClick={() => setBottomTab("mapped_games")}
-            className={`rounded px-2 py-0.5 text-xs font-medium ${bottomTab === "mapped_games" ? "bg-gray-700 text-white" : "text-gray-500 hover:text-gray-300"}`}
-          >
-            Mapped Games ({state?.mapped_games?.length ?? 0})
-          </button>
+          </h3>
         </div>
-        {bottomTab === "positions" && (
-          <PositionsTable positions={activePositions} markSettled={markSettled} />
-        )}
-        {bottomTab === "mapped_games" && (
-          <MappedGamesTable games={state?.mapped_games || []} />
-        )}
+        <PositionsTable positions={activePositions} markSettled={markSettled} />
       </div>
 
-      {/* ── Spread Heatmap (collapsed by default) ──────────── */}
+      {/* ── Mapped Games ──────────────────────────────────────── */}
       <div className="rounded-lg border border-gray-800 bg-[#111]">
-        <button
-          onClick={() => setHeatmapOpen((o) => !o)}
-          className="w-full px-3 py-2 flex items-center justify-between text-xs font-semibold text-gray-400 uppercase tracking-wide hover:text-gray-300"
-        >
-          <span>{sortedSpreads.length + (state?.mapped_games?.length ?? 0)} mapped games</span>
-          <span className="text-gray-600">{heatmapOpen ? "\u25B2" : "\u25BC"}</span>
-        </button>
-        {heatmapOpen && (
-          <SpreadHeatmapTable
-            spreads={sortedSpreads}
-            mappedGames={state?.mapped_games || []}
-          />
-        )}
+        <div className="px-3 py-2 border-b border-gray-800">
+          <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+            Mapped Games ({state?.mapped_games?.length ?? 0})
+          </h3>
+        </div>
+        <MappedGamesTable games={state?.mapped_games || []} />
       </div>
+
     </div>
   );
 }

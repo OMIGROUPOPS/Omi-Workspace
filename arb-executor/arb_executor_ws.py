@@ -2986,6 +2986,7 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
         pusher.set_state_sources(
             local_books=local_books,
             pm_prices=pm_prices,
+            pm_books=pm_books,
             ticker_to_cache_key=ticker_to_cache_key,
             cache_key_to_tickers=cache_key_to_tickers,
             stats=stats,

@@ -203,9 +203,13 @@ export interface MappedGame {
   date: string;
   team1: string;
   team2: string;
+  team1_full?: string;
+  team2_full?: string;
   pm_slug: string;
   kalshi_tickers: string[];
   best_spread: number;
+  k_depth?: number;
+  pm_depth?: number;
   status: string;
   traded: boolean;
 }

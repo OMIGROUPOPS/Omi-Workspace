@@ -84,6 +84,7 @@ class DashboardPusher:
         # References to executor state (set these after init)
         self.local_books: Dict = {}
         self.pm_prices: Dict = {}
+        self.pm_books: Dict = {}
         self.ticker_to_cache_key: Dict = {}
         self.cache_key_to_tickers: Dict = {}
         self.stats: Dict = {}
@@ -744,12 +745,17 @@ class DashboardPusher:
             date = g.get("date", "")
             pm_slug = g.get("pm_slug", "")
 
-            # Extract team names from cache_key (format: sport:TEAM1-TEAM2:date)
+            # Extract team abbreviations from cache_key (format: sport:TEAM1-TEAM2:date)
             ck_parts = cache_key.split(":")
             teams_str = ck_parts[1] if len(ck_parts) >= 2 else ""
             teams = teams_str.split("-") if teams_str else []
             team1 = teams[0] if len(teams) >= 1 else ""
             team2 = teams[1] if len(teams) >= 2 else ""
+
+            # Resolve full names from team_names dict
+            tn = g.get("team_names", {})
+            team1_full = tn.get(team1, "")
+            team2_full = tn.get(team2, "")
 
             # Kalshi tickers
             kalshi_tickers = g.get("kalshi_tickers", {})
@@ -779,6 +785,25 @@ class DashboardPusher:
                 if best > best_spread:
                     best_spread = best
 
+            # Aggregate depth across all levels for this game
+            k_depth_total = 0
+            pm_depth_total = 0
+            for team_abbr, ticker in kalshi_tickers.items():
+                book = self.local_books.get(ticker)
+                if book:
+                    k_depth_total += sum(book.get("yes_bids", {}).values())
+
+            # PM full book depth (all levels)
+            pm_book = self.pm_books.get(pm_slug, {})
+            if pm_book:
+                pm_depth_total = sum(l.get("size", 0) for l in pm_book.get("bids", []))
+            else:
+                # Fallback to L1 from pm_prices
+                for team_abbr in kalshi_tickers:
+                    pm = self.pm_prices.get(f"{cache_key}_{team_abbr}")
+                    if pm:
+                        pm_depth_total += pm.get("bid_size", 0)
+
             # Determine status
             has_books = any(
                 self.local_books.get(t) and
@@ -794,9 +819,13 @@ class DashboardPusher:
                 "date": date,
                 "team1": team1,
                 "team2": team2,
+                "team1_full": team1_full,
+                "team2_full": team2_full,
                 "pm_slug": pm_slug,
                 "kalshi_tickers": ticker_list,
                 "best_spread": round(best_spread, 1),
+                "k_depth": k_depth_total,
+                "pm_depth": pm_depth_total,
                 "status": status,
                 "traded": game_id in traded_game_ids,
             })

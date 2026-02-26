@@ -26,3 +26,85 @@ body {
   }
 }
 
+/* ============================================================================
+   OMI TERMINAL — GLOBALS CSS DARK MODE PATCH
+
+   INSTRUCTIONS: Replace the existing globals.css content with this file,
+   OR apply these specific changes to your existing globals.css:
+
+   1. Change: background-color: #f9fafb  →  background-color: #0a0a0a
+   2. Change: color: #111827  →  color: #e5e5e5
+   3. Change: --background: 0 0% 100%  →  --background: 0 0% 4%
+   4. Change: --border: 0 0% 89.8%  →  --border: 0 0% 10%
+   ============================================================================ */
+
+/* === CRITICAL OVERRIDES — paste at the END of your globals.css === */
+
+/* Force dark background everywhere */
+html,
+body {
+  height: 100%;
+  background-color: #0a0a0a !important;
+  color: #e5e5e5 !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+/* Override Tailwind/shadcn CSS variable defaults to dark */
+:root {
+  --background: 0 0% 4%;
+  --foreground: 0 0% 90%;
+  --card: 0 0% 6.5%;
+  --card-foreground: 0 0% 90%;
+  --popover: 0 0% 6.5%;
+  --popover-foreground: 0 0% 90%;
+  --primary: 0 0% 90%;
+  --primary-foreground: 0 0% 4%;
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 0 0% 10%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 0 0% 10%;
+  --accent-foreground: 0 0% 90%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 10%;
+  --input: 0 0% 10%;
+  --ring: 142 71% 45%;
+  --radius: 0.5rem;
+}
+
+/* Ensure bg-background resolves to dark */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Kill any remaining light backgrounds that might leak through */
+.bg-white {
+  background-color: #0d0d0d !important;
+}
+.bg-gray-50, .bg-gray-100, .bg-\[#f9fafb\], .bg-\[#f4f5f7\], .bg-\[#f0f1f3\] {
+  background-color: #111 !important;
+}
+.border-\[#e2e4e8\] {
+  border-color: #1a1a1a !important;
+}
+.text-\[#1f2937\] {
+  color: #e5e5e5 !important;
+}
+.text-\[#6b7280\] {
+  color: #666 !important;
+}
+.text-\[#9ca3af\] {
+  color: #555 !important;
+}
+
+/* Error state page background fix */
+.bg-\[#ebedf0\] {
+  background-color: #0a0a0a !important;
+}

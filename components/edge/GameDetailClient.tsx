@@ -3363,6 +3363,259 @@ export function GameDetailClient({
     from { opacity: 0; transform: translateY(-12px) scale(0.95); }
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
+  @keyframes omi-number-pop {
+    0% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.04); filter: brightness(1.3); }
+    100% { transform: scale(1); filter: brightness(1); }
+  }
+  @keyframes omi-glow-breathe {
+    0%, 100% { filter: drop-shadow(0 0 2px currentColor) brightness(1); }
+    50% { filter: drop-shadow(0 0 8px currentColor) brightness(1.15); }
+  }
+  @keyframes omi-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes omi-edge-flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+  
+  /* === VALUE POP SYSTEM === */
+  /* Key numbers get subtle glow + contrast boost without font-size increase */
+  .omi-val-gold {
+    color: #D4A843;
+    text-shadow: 0 0 8px rgba(212, 168, 67, 0.35), 0 0 2px rgba(212, 168, 67, 0.2);
+    transition: all 0.2s ease;
+  }
+  .omi-val-gold:hover {
+    text-shadow: 0 0 16px rgba(212, 168, 67, 0.6), 0 0 4px rgba(212, 168, 67, 0.4);
+    filter: brightness(1.2);
+  }
+  .omi-val-green {
+    color: #22c55e;
+    text-shadow: 0 0 6px rgba(34, 197, 94, 0.3), 0 0 2px rgba(34, 197, 94, 0.15);
+    transition: all 0.2s ease;
+  }
+  .omi-val-green:hover {
+    text-shadow: 0 0 14px rgba(34, 197, 94, 0.55), 0 0 3px rgba(34, 197, 94, 0.3);
+  }
+  .omi-val-red {
+    color: #ef4444;
+    text-shadow: 0 0 6px rgba(239, 68, 68, 0.3), 0 0 2px rgba(239, 68, 68, 0.15);
+    transition: all 0.2s ease;
+  }
+  .omi-val-red:hover {
+    text-shadow: 0 0 14px rgba(239, 68, 68, 0.55), 0 0 3px rgba(239, 68, 68, 0.3);
+  }
+  /* Number badge — subtle dark background pad to lift numbers off panel */
+  .omi-num-badge {
+    display: inline-flex;
+    align-items: baseline;
+    padding: 1px 5px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 2px;
+    transition: all 0.2s ease;
+  }
+  .omi-num-badge:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(212, 168, 67, 0.15);
+  }
+  /* Accent left-line for important values */
+  .omi-accent-line {
+    position: relative;
+    padding-left: 8px;
+  }
+  .omi-accent-line::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 2px;
+    background: #D4A843;
+    border-radius: 1px;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+  .omi-accent-line:hover::before {
+    opacity: 1;
+    box-shadow: 0 0 6px rgba(212, 168, 67, 0.4);
+  }
+  /* Edge indicator chip — colored pill for edge values */
+  .omi-edge-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .omi-edge-chip-pos {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    text-shadow: 0 0 6px rgba(34, 197, 94, 0.2);
+  }
+  .omi-edge-chip-pos:hover {
+    background: rgba(34, 197, 94, 0.18);
+    border-color: rgba(34, 197, 94, 0.4);
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+  }
+  .omi-edge-chip-neg {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    text-shadow: 0 0 6px rgba(239, 68, 68, 0.2);
+  }
+  .omi-edge-chip-neg:hover {
+    background: rgba(239, 68, 68, 0.18);
+    border-color: rgba(239, 68, 68, 0.4);
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+  }
+  .omi-edge-chip-neutral {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #888;
+  }
+  
+  /* === INTERACTIVITY SYSTEM === */
+  /* Panel hover lift */
+  .omi-war-room-panel {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .omi-war-room-panel:hover {
+    border-color: #2a2a2a;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(212, 168, 67, 0.04);
+  }
+  /* Row hover highlight for data rows */
+  .omi-data-row {
+    transition: background 0.15s ease;
+    cursor: default;
+  }
+  .omi-data-row:hover {
+    background: rgba(212, 168, 67, 0.04) !important;
+  }
+  /* Interactive pillar bar */
+  .omi-pillar-interactive {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  .omi-pillar-interactive:hover {
+    transform: scaleY(1.15);
+    filter: brightness(1.25);
+  }
+  .omi-pillar-interactive:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #e5e5e5;
+    white-space: nowrap;
+    z-index: 50;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+  /* Clickable section header */
+  .omi-section-toggle {
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s ease;
+  }
+  .omi-section-toggle:hover {
+    background: linear-gradient(180deg, #181818 0%, #141414 100%) !important;
+  }
+  .omi-section-toggle:hover span {
+    color: #e5c76b !important;
+  }
+  /* Shimmer line — premium indicator */
+  .omi-shimmer-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 168, 67, 0.3), transparent);
+    background-size: 200% 100%;
+    animation: omi-shimmer 3s ease-in-out infinite;
+  }
+  /* Mini sparkline on hover */
+  .omi-hover-reveal {
+    opacity: 0;
+    transform: translateY(4px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+  }
+  .omi-hover-parent:hover .omi-hover-reveal {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  /* Interactive edge card — the Over/Under blocks */
+  .omi-edge-card {
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  .omi-edge-card:hover {
+    border-color: #333 !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px);
+  }
+  .omi-edge-card:active {
+    transform: translateY(0);
+  }
+  /* Status dot pulse */
+  .omi-dot-live {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+    animation: omi-dot-ring 2s ease-out infinite;
+  }
+  @keyframes omi-dot-ring {
+    0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+  }
+  /* Value change flash */
+  .omi-flash {
+    animation: omi-value-flash 0.8s ease-out;
+  }
+  /* Confidence meter bar */
+  .omi-conf-meter {
+    height: 3px;
+    background: #1a1a1a;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+  .omi-conf-meter-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.6s ease-out;
+    position: relative;
+  }
+  .omi-conf-meter-fill::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -1px;
+    bottom: -1px;
+    width: 3px;
+    background: inherit;
+    border-radius: 1px;
+    filter: brightness(1.5);
+    box-shadow: 0 0 4px currentColor;
+  }
   
   .omi-terminal-bg {
     background: #0a0a0a;
@@ -3859,20 +4112,22 @@ export function GameDetailClient({
                   <>
                     {/* Panel 1: Composite Signal */}
                     <div className="omi-war-room-panel" style={{ overflow: 'hidden' }}>
-                      <div className="omi-intel-header">
+                      <div className="omi-intel-header omi-section-toggle">
                         <span style={{ color: '#D4A843', fontSize: '10px' }}>◈</span>
                         <span>Composite Signal</span>
+                        <div className="omi-dot-live" style={{ marginLeft: 'auto' }} />
                       </div>
+                      <div className="omi-shimmer-line" />
                       <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                        <div className="omi-accent-line" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                           <div className="omi-mini-label">Direction</div>
-                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '16px', fontWeight: 700, color: leanDir === homeAbbr ? '#22c55e' : leanDir === awayAbbr ? '#ef4444' : '#888', letterSpacing: '-0.5px' }}>
+                          <div className={`omi-num-badge ${leanDir === homeAbbr ? 'omi-val-green' : leanDir === awayAbbr ? 'omi-val-red' : ''}`} style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '15px', fontWeight: 700, letterSpacing: '-0.5px', color: leanDir === homeAbbr ? undefined : leanDir === awayAbbr ? undefined : '#888' }}>
                             {leanStrength !== '--' ? `${leanStrength} ${leanDir}` : '--'}
                           </div>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                        <div className="omi-data-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '2px 0' }}>
                           <div className="omi-mini-label">Composite</div>
-                          <div className="omi-mini-value" style={{ color: getColor(comp) }}>{comp?.toFixed(1) ?? '--'}</div>
+                          <div className={`omi-num-badge ${comp != null && comp > 55 ? 'omi-val-green' : comp != null && comp < 45 ? 'omi-val-red' : 'omi-val-gold'}`} style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '14px', fontWeight: 600 }}>{comp?.toFixed(1) ?? '--'}</div>
                         </div>
                         {/* Pillar mini-bars */}
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '4px', marginTop: '2px' }}>
@@ -3884,12 +4139,13 @@ export function GameDetailClient({
                             { label: 'TIME', val: tDecay, weight: '10%' },
                             { label: 'GENV', val: gEnv, weight: '10%' },
                           ].map(p => (
-                            <div key={p.label} style={{ textAlign: 'center' }}>
+                            <div key={p.label} className="omi-pillar-interactive omi-hover-parent" data-tooltip={`${p.label}: ${p.val?.toFixed(1) ?? 'N/A'} (${p.weight})`} style={{ textAlign: 'center', padding: '3px 2px', borderRadius: '2px' }}>
                               <div style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: '7px', color: '#444', letterSpacing: '1px', textTransform: 'uppercase' as const }}>{p.label}</div>
-                              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', fontWeight: 600, color: getColor(p.val) }}>{p.val?.toFixed(1) ?? '--'}</div>
-                              <div style={{ height: '2px', background: '#1a1a1a', borderRadius: '1px', marginTop: '2px', overflow: 'hidden' }}>
-                                <div style={{ height: '100%', width: `${Math.min(100, Math.max(0, (p.val ?? 50)))}%`, background: getColor(p.val), borderRadius: '1px', transition: 'width 0.4s ease' }} />
+                              <div className={p.val != null && p.val > 55 ? 'omi-val-green' : p.val != null && p.val < 45 ? 'omi-val-red' : ''} style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', fontWeight: 600, color: p.val != null ? undefined : '#555' }}>{p.val?.toFixed(1) ?? '--'}</div>
+                              <div className="omi-conf-meter" style={{ marginTop: '3px' }}>
+                                <div className="omi-conf-meter-fill" style={{ width: `${Math.min(100, Math.max(0, (p.val ?? 50)))}%`, background: getColor(p.val) }} />
                               </div>
+                              <div className="omi-hover-reveal" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '7px', color: '#666', marginTop: '2px' }}>{p.weight} wt</div>
                             </div>
                           ))}
                         </div>
@@ -3898,36 +4154,37 @@ export function GameDetailClient({
 
                     {/* Panel 2: Edge Summary */}
                     <div className="omi-war-room-panel" style={{ overflow: 'hidden' }}>
-                      <div className="omi-intel-header">
+                      <div className="omi-intel-header omi-section-toggle">
                         <span style={{ color: '#D4A843', fontSize: '10px' }}>⧉</span>
                         <span>Edge Summary</span>
                       </div>
+                      <div className="omi-shimmer-line" />
                       <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: '5px' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                        <div className="omi-accent-line omi-data-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '2px 0' }}>
                           <div className="omi-mini-label">Spread Edge</div>
-                          <div className="omi-mini-value" style={{ color: getEdgeColor(spreadEdge) }}>
+                          <span className={`omi-edge-chip ${spreadEdge != null && spreadEdge > 0 ? 'omi-edge-chip-pos' : spreadEdge != null && spreadEdge < 0 ? 'omi-edge-chip-neg' : 'omi-edge-chip-neutral'}`}>
                             {spreadEdge != null ? `${spreadEdge > 0 ? '+' : ''}${spreadEdge.toFixed(1)} pts` : '--'}
-                          </div>
+                          </span>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                        <div className="omi-accent-line omi-data-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '2px 0' }}>
                           <div className="omi-mini-label">Total Edge</div>
-                          <div className="omi-mini-value" style={{ color: getEdgeColor(totalEdge) }}>
+                          <span className={`omi-edge-chip ${totalEdge != null && totalEdge > 0 ? 'omi-edge-chip-pos' : totalEdge != null && totalEdge < 0 ? 'omi-edge-chip-neg' : 'omi-edge-chip-neutral'}`}>
                             {totalEdge != null ? `${totalEdge > 0 ? '+' : ''}${totalEdge.toFixed(1)} pts` : '--'}
-                          </div>
+                          </span>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                        <div className="omi-data-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '2px 0' }}>
                           <div className="omi-mini-label">Fair Spread</div>
-                          <div className="omi-mini-sub">{fairSpreadVal != null ? `${homeAbbr} ${fairSpreadVal > 0 ? '+' : ''}${fairSpreadVal.toFixed(1)}` : '--'}</div>
+                          <div className="omi-num-badge omi-val-gold" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px' }}>{fairSpreadVal != null ? `${homeAbbr} ${fairSpreadVal > 0 ? '+' : ''}${fairSpreadVal.toFixed(1)}` : '--'}</div>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                        <div className="omi-data-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '2px 0' }}>
                           <div className="omi-mini-label">Fair Total</div>
-                          <div className="omi-mini-sub">{fairTotalVal != null ? fairTotalVal.toFixed(1) : '--'}</div>
+                          <div className="omi-num-badge omi-val-gold" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px' }}>{fairTotalVal != null ? fairTotalVal.toFixed(1) : '--'}</div>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                        <div className="omi-data-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '2px 0' }}>
                           <div className="omi-mini-label">Consensus Spread</div>
                           <div className="omi-mini-sub">{consensusSpread != null ? `${homeAbbr} ${consensusSpread > 0 ? '+' : ''}${consensusSpread.toFixed(1)}` : '--'}</div>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                        <div className="omi-data-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '2px 0' }}>
                           <div className="omi-mini-label">Consensus Total</div>
                           <div className="omi-mini-sub">{consensusTotal != null ? consensusTotal.toFixed(1) : '--'}</div>
                         </div>

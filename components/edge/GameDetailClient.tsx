@@ -189,12 +189,12 @@ function UnifiedChart({
     let bookVal: number | null = null;
     let fairVal: number | null = null;
     if (isTotal) {
-      bookVal = row.book_total; fairVal = row.fair_total;
+      bookVal = row.book_total != null ? Math.round(row.book_total * 2) / 2 : null; fairVal = row.fair_total;
     } else if (isML) {
       bookVal = trackingSide === 'away' ? row.book_ml_away : row.book_ml_home;
       fairVal = trackingSide === 'away' ? row.fair_ml_away : row.fair_ml_home;
     } else {
-      bookVal = row.book_spread; fairVal = row.fair_spread;
+      bookVal = row.book_spread != null ? Math.round(row.book_spread * 2) / 2 : null; fairVal = row.fair_spread;
       if (trackingSide === 'away' && bookVal != null) bookVal = -bookVal;
       if (trackingSide === 'away' && fairVal != null) fairVal = -fairVal;
     }
@@ -277,7 +277,10 @@ function UnifiedChart({
   // Shared favorability: accounts for tracking side after value negation
   const isFavorable = (fair: number, book: number) => {
     if (isTotal) return trackingSide === 'over' ? fair > book : fair < book;
-    return trackingSide === 'home' ? fair < book : fair > book;
+    // For spreads: favorable when book gives more points than fair (abs comparison)
+    // e.g., book -2.8 vs fair -2.5: abs(-2.8) > abs(-2.5) = true = favorable for favorite bettors
+    // e.g., book +3.5 vs fair +2.5: abs(3.5) > abs(2.5) = true = favorable for underdog bettors
+    return Math.abs(book) > Math.abs(fair);
   };
 
   // Directional edge shading segments — thin band between book and fair lines

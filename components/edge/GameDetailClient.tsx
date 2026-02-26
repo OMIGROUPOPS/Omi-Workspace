@@ -929,6 +929,7 @@ function OmiFairPricing({
     rawBookOdds?: number; rawFairProb?: number; rawBookProb?: number;
     vigPct?: string; crossedKey?: number | null;
     confidence: number; confColor: string;
+    divergenceNote?: string;
   };
 
   const sideBlocks: SideBlock[] = (() => {
@@ -1156,6 +1157,22 @@ function OmiFairPricing({
       return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)}%${ev > 0 ? ` | EV: +$${ev}/1K` : ''}`;
     };
 
+    // Cross-market divergence: compare ML edge to spread edge
+    // If the book's spread and ML markets disagree by >3%, flag it
+    const spreadBookLine = selBook?.markets?.spreads?.home?.line;
+    const fairSpreadLine = omiFairSpread?.fairLine;
+    const spreadEdgePct = (spreadBookLine !== undefined && fairSpreadLine !== undefined)
+      ? Math.abs(Math.round((spreadToWinProb(fairSpreadLine, sportKey) - spreadToWinProb(spreadBookLine, sportKey)) * 1000) / 10)
+      : null;
+    const mlBookSource = mlEffBook?.key !== selBook?.key ? mlEffBookName : null;
+    const mkDivergenceNote = (mlAbsEdge: number) => {
+      if (mlBookSource) return `ML from ${mlBookSource} (${selBookName} has no ML)`;
+      if (spreadEdgePct !== null && Math.abs(mlAbsEdge - spreadEdgePct) > 3) {
+        return `Cross-market: spread edge ${spreadEdgePct.toFixed(1)}% vs ML edge ${mlAbsEdge.toFixed(1)}%`;
+      }
+      return undefined;
+    };
+
     const blocks: SideBlock[] = [
       {
         label: awayAbbr, fair: effectiveAwayML !== undefined ? formatOdds(effectiveAwayML) : 'N/A',
@@ -1166,6 +1183,7 @@ function OmiFairPricing({
         bookName: mlEffBookName, hasData: bookAwayOdds !== undefined, vigPct,
         rawBookOdds: bookAwayOdds, rawFairProb: omiFairAwayProb, rawBookProb: bookAwayProb,
         confidence: awayConf, confColor: getImpliedProbColor(awayConf),
+        divergenceNote: mkDivergenceNote(Math.abs(awaySignedGap)),
       },
     ];
 
@@ -1191,6 +1209,7 @@ function OmiFairPricing({
       bookName: mlEffBookName, hasData: bookHomeOdds !== undefined, vigPct,
       rawBookOdds: bookHomeOdds, rawFairProb: omiFairHomeProb, rawBookProb: bookHomeProb,
       confidence: homeConf, confColor: getImpliedProbColor(homeConf),
+      divergenceNote: mkDivergenceNote(Math.abs(homeSignedGap)),
     });
 
     return blocks;
@@ -1416,6 +1435,7 @@ function OmiFairPricing({
                   <div className="mt-1 pt-1 border-t border-[#1a1a1a]/50">
                     <div className="text-[10px] text-[#888]">{block.contextLine}</div>
                     {block.evLine && <div className={`text-[10px] font-medium ${block.edgeColor}`}>{block.evLine}</div>}
+                    {block.divergenceNote && <div className="text-[9px] font-mono text-amber-500/70 mt-0.5">{block.divergenceNote}</div>}
                   </div>
                 )}
                 <div className="flex items-center justify-between mt-1">

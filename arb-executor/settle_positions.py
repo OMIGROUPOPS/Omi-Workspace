@@ -28,6 +28,7 @@ Settlement detection (in priority order):
        settlementPx.value == "0.000" → NO won  (settlement=0)
 """
 import asyncio
+import aiohttp
 import json
 import math
 import os
@@ -243,6 +244,43 @@ def calculate_opposite_hedge_settlement_pnl(trade: dict) -> float:
     return round(pnl_cents / 100, 4)
 
 
+def compute_exited_pnl(trade: dict) -> float:
+    """
+    Compute P&L for an EXITED trade using 3-priority cascade:
+      1. unwind_pnl_cents (signed, new field) → divide by 100
+      2. Recompute from unwind_fill_price + pm_price + direction
+      3. Fall back to -abs(unwind_loss_cents) / 100 (old unsigned field, always loss)
+    Returns P&L in dollars.
+    """
+    qty = trade.get('contracts_filled', 0) or trade.get('contracts_intended', 0) or 0
+
+    # Priority 1: signed unwind_pnl_cents
+    upc = trade.get('unwind_pnl_cents')
+    if upc is not None:
+        return round(upc / 100, 4)
+
+    # Priority 2: recompute from fill price
+    ufp = trade.get('unwind_fill_price')
+    pm_raw = trade.get('pm_price', 0)
+    pm_cents = pm_raw * 100 if (isinstance(pm_raw, (int, float)) and pm_raw < 1 and pm_raw > 0) else pm_raw
+    if ufp is not None and pm_cents > 0 and qty > 0:
+        direction = trade.get('direction', '')
+        if direction == 'BUY_PM_SELL_K':
+            # We bought YES, unwind = sell YES. Profit = sell - buy
+            pnl_cents = ((ufp * 100) - pm_cents) * qty
+        else:
+            # We sold YES (BUY_SHORT), unwind = buy back. Profit = original_sell - buyback
+            pnl_cents = (pm_cents - (ufp * 100)) * qty
+        return round(pnl_cents / 100, 4)
+
+    # Priority 3: old unsigned field (always treated as loss)
+    ulc = trade.get('unwind_loss_cents')
+    if ulc is not None and ulc != 0:
+        return round(-abs(ulc) / 100, 4)
+
+    return 0.0
+
+
 # ── Main ─────────────────────────────────────────────────────────────────
 
 async def main():
@@ -375,10 +413,7 @@ async def main():
         # ── Update EXITED trades (position closed via unwind — no market settlement needed) ──
         exited_count = 0
         for idx, trade in exited_trades:
-            ulc = trade.get('unwind_loss_cents')
-            if ulc is None:
-                ulc = 0
-            settlement_pnl = round(-ulc / 100, 4)
+            settlement_pnl = compute_exited_pnl(trade)
 
             trades[idx]['settlement_pnl'] = settlement_pnl
             trades[idx]['settlement_time'] = trade.get('timestamp', datetime.now(timezone.utc).isoformat())
@@ -388,7 +423,10 @@ async def main():
             tier = trade.get('tier', '')
             qty = trade.get('contracts_filled', 0) or trade.get('pm_fill', 0)
 
-            print(f'  [EXITED] {team} ({tier}) {qty}x | unwind_loss={ulc}c | P&L: ${settlement_pnl:+.4f}')
+            upc = trade.get('unwind_pnl_cents')
+            ulc = trade.get('unwind_loss_cents')
+            src = 'upc' if upc is not None else ('recomp' if trade.get('unwind_fill_price') else 'ulc')
+            print(f'  [EXITED] {team} ({tier}) {qty}x | upc={upc} ulc={ulc} | src={src} | P&L: ${settlement_pnl:+.4f}')
             exited_count += 1
 
         # ── Update OPPOSITE HEDGE trades (cross-platform arb — P&L is deterministic) ──
@@ -414,12 +452,98 @@ async def main():
             opp_count += 1
 
         total_updated = dir_count + hedged_count + exited_count + opp_count
+
+        # ── Kalshi reconciliation: replace settlement_pnl with ground truth ──
+        reconciled_count = 0
+        try:
+            from kalshi_reconciler import (
+                get_fills_and_settlements, get_fill_cost_by_ticker,
+                get_settlement_by_ticker, compute_kalshi_pnl,
+            )
+            print('\n  Running Kalshi reconciliation...')
+            fills, settlements = await get_fills_and_settlements()
+            fill_map = get_fill_cost_by_ticker(fills)
+            settle_map = get_settlement_by_ticker(settlements)
+
+            for idx, t in enumerate(trades):
+                # Only reconcile trades with settlement_pnl that haven't been reconciled yet
+                if t.get('settlement_pnl') is None:
+                    continue
+                if t.get('settlement_source') == 'kalshi_reconciled':
+                    continue
+                # Skip EXITED trades (no Kalshi fill to reconcile against)
+                if t.get('status') == 'EXITED' or t.get('settlement_source') == 'unwind':
+                    continue
+
+                ticker = t.get('kalshi_ticker', '')
+                if not ticker:
+                    continue
+
+                k_fill = fill_map.get(ticker)
+                k_settle = settle_map.get(ticker)
+                if not k_fill or not k_settle:
+                    continue
+
+                # Kalshi-side P&L
+                k_pnl = compute_kalshi_pnl(k_fill, k_settle)
+
+                # PM-side P&L from settlement outcome
+                pm_raw = t.get('pm_price', 0)
+                pm_cents = pm_raw * 100 if (isinstance(pm_raw, (int, float)) and pm_raw < 1 and pm_raw > 0) else pm_raw
+                is_short = t.get('pm_is_buy_short')
+                if is_short is None:
+                    # Infer from direction: BUY_K_SELL_PM → PM is sell (short)
+                    is_short = 'SELL_PM' in t.get('direction', '')
+                qty = t.get('contracts_filled', 0) or 1
+                pm_fee = t.get('pm_fee', 0) or 0
+
+                # Use settlement result directly for PM P&L
+                # (don't invert k_won — both legs can be same direction)
+                result = k_settle['result']  # 'yes' or 'no'
+
+                if not is_short:
+                    # Bought YES on PM → wins if result=yes
+                    if result == 'yes':
+                        pm_pnl = (100 - pm_cents) * qty / 100
+                    else:
+                        pm_pnl = -pm_cents * qty / 100
+                else:
+                    # Sold YES on PM (short) → wins if result=no
+                    if result == 'no':
+                        pm_pnl = pm_cents * qty / 100
+                    else:
+                        pm_pnl = -(100 - pm_cents) * qty / 100
+
+                pm_pnl -= pm_fee  # subtract PM fee
+
+                old_pnl = t.get('settlement_pnl')
+                new_pnl = round(k_pnl + pm_pnl, 4)
+
+                trades[idx]['settlement_pnl'] = new_pnl
+                trades[idx]['settlement_source'] = 'kalshi_reconciled'
+                trades[idx]['k_actual_cost'] = k_fill['net_cost_cents']
+                trades[idx]['k_actual_fee'] = round(k_fill['fee_dollars'] + k_settle['fee_dollars'], 4)
+
+                team = t.get('team', '?')
+                if abs((old_pnl or 0) - new_pnl) > 0.0001:
+                    print(f'  [RECONCILED] {team}: ${old_pnl:+.4f} → ${new_pnl:+.4f} '
+                          f'(K: ${k_pnl:+.4f}, PM: ${pm_pnl:+.4f})')
+                reconciled_count += 1
+
+            if reconciled_count:
+                print(f'  Reconciled {reconciled_count} trade(s) against Kalshi API')
+        except ImportError:
+            print('  [WARN] kalshi_reconciler not available — skipping reconciliation')
+        except Exception as e:
+            print(f'  [WARN] Kalshi reconciliation failed: {e}')
+
+        total_updated += reconciled_count
         if total_updated > 0:
             with open(TRADES_FILE, 'w') as f:
                 json.dump(trades, f, indent=2)
             print(f'\n  Updated {total_updated} trade(s) in {TRADES_FILE} '
                   f'({dir_count} directional, {hedged_count} hedged, {exited_count} exited, '
-                  f'{opp_count} opposite-hedge)')
+                  f'{opp_count} opposite-hedge, {reconciled_count} reconciled)')
         else:
             print('  No trades updated')
 

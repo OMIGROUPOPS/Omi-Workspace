@@ -227,6 +227,9 @@ def generate_recap(target_date: str) -> str:
     total_fees = sum((t.get("pm_fee") or 0) + (t.get("k_fee") or 0) for t in day_trades)
     total_contracts = sum(t.get("contracts_filled", 0) for t in day_trades)
 
+    reconciled = [t for t in day_trades if t.get("settlement_source") == "kalshi_reconciled"]
+    estimated = [t for t, p in realized if t.get("settlement_source") != "kalshi_reconciled"]
+
     lines.append("P&L")
     lines.append("-" * 40)
     lines.append(f"  Realized P&L:     ${total_realized:+.4f}")
@@ -235,6 +238,10 @@ def generate_recap(target_date: str) -> str:
     lines.append(f"  Open positions:   {len(open_trades)}")
     lines.append(f"  Total fees:       ${total_fees:.4f}")
     lines.append(f"  Total contracts:  {total_contracts}")
+    if reconciled:
+        lines.append(f"  Reconciled (K):   {len(reconciled)} trades (Kalshi ground truth)")
+    if estimated:
+        lines.append(f"  Estimated:        {len(estimated)} trades (not yet reconciled)")
     if wins:
         best = max(wins, key=lambda x: x[1])
         lines.append(f"  Best trade:       ${best[1]:+.4f} ({best[0].get('team', '?')})")

@@ -610,6 +610,17 @@ class DashboardPusher:
                 if filled == 0 or status not in ("SUCCESS", "EXITED"):
                     continue
 
+                # Priority 1: Kalshi-reconciled settlement_pnl (ground truth)
+                if t.get("settlement_source") == "kalshi_reconciled":
+                    net = t.get("settlement_pnl", 0) or 0
+                    total_pnl += net
+                    trades_with_pnl += 1
+                    if net > 0:
+                        profitable += 1
+                    else:
+                        losing += 1
+                    continue
+
                 # SUCCESS trades: use actual_pnl or estimated
                 if status == "SUCCESS":
                     pnl = t.get("actual_pnl")

@@ -2,7 +2,7 @@
 
 import React from "react";
 import type { TradeEntry, TradeSortKey } from "../types";
-import { tradePnl, sportBadge, statusBadge, formatDateTime, toDateStr, todayET, getKL1Depth, kDepthColor } from "../helpers";
+import { tradePnl, sportBadge, statusBadge, formatDateTime, toDateStr, todayET, getL1Depth, depthColor, fmtNum } from "../helpers";
 
 interface Props {
   trades: TradeEntry[];
@@ -109,7 +109,7 @@ export function PnlTradeTable({
               <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("spread")}>
                 SPREAD{sortArrow("spread")}
               </th>
-              <th className="px-2 py-1.5 text-right font-medium">K DEPTH</th>
+              <th className="px-2 py-1.5 text-right font-medium">DEPTH</th>
               <th className="px-2 py-1.5 text-right font-medium">FEES</th>
               <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("net")}>
                 NET P&L{sortArrow("net")}
@@ -124,6 +124,7 @@ export function PnlTradeTable({
               const pnl = tradePnl(t);
               const badge = statusBadge(t.status);
               const fees = (t.pm_fee || 0) + (t.k_fee || 0);
+              const depth = getL1Depth(t);
               const isExpanded = expandedTrade === i;
 
               return (
@@ -158,8 +159,14 @@ export function PnlTradeTable({
                     <td className="px-2 py-1.5 text-right font-mono text-gray-400">
                       {t.spread_cents?.toFixed(1) ?? "-"}c
                     </td>
-                    <td className={`px-2 py-1.5 text-right font-mono ${kDepthColor(getKL1Depth(t))}`}>
-                      {getKL1Depth(t) ?? "-"}
+                    <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap text-[10px]">
+                      {depth.k !== null || depth.pm !== null ? (
+                        <>
+                          <span className={depthColor(depth.k)}>K:{fmtNum(depth.k!)}</span>
+                          <span className="text-gray-700 mx-0.5">|</span>
+                          <span className={depthColor(depth.pm)}>PM:{fmtNum(depth.pm!)}</span>
+                        </>
+                      ) : "\u2014"}
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono text-yellow-400">
                       {fees > 0 ? `$${fees.toFixed(2)}` : "-"}
@@ -210,13 +217,21 @@ export function PnlTradeTable({
                           )}
                           {t.sizing_details && (
                             <>
+                              {depth.k !== null && (
+                                <div className="col-span-2">
+                                  <span className="text-gray-500">L1 at arb price:</span>{" "}
+                                  <span className="font-mono">
+                                    <span className={depthColor(depth.k)}>K: {fmtNum(depth.k)}</span>
+                                    {" @ "}{t.sizing_details.depth_walk_log?.[0]?.k_price ?? "-"}c
+                                    <span className="text-gray-700 mx-1">|</span>
+                                    <span className={depthColor(depth.pm)}>PM: {fmtNum(depth.pm!)}</span>
+                                    {" @ "}{t.sizing_details.depth_walk_log?.[0]?.pm_cost ?? "-"}c
+                                  </span>
+                                </div>
+                              )}
                               <div>
-                                <span className="text-gray-500">K depth:</span>{" "}
-                                <span className="text-gray-300">{t.sizing_details.k_depth}</span>
-                              </div>
-                              <div>
-                                <span className="text-gray-500">PM depth:</span>{" "}
-                                <span className="text-gray-300">{t.sizing_details.pm_depth}</span>
+                                <span className="text-gray-500">Total depth:</span>{" "}
+                                <span className="text-gray-300 font-mono">K: {fmtNum(t.sizing_details.k_depth)} | PM: {fmtNum(t.sizing_details.pm_depth)}</span>
                               </div>
                               <div>
                                 <span className="text-gray-500">Limit:</span>{" "}

@@ -2,7 +2,7 @@
 
 import React from "react";
 import type { TradeEntry } from "../types";
-import { tradePnl, sportBadge, statusBadge, formatDateTime, netColor, getKL1Depth, kDepthColor } from "../helpers";
+import { tradePnl, sportBadge, statusBadge, formatDateTime, netColor, getL1Depth, depthColor, fmtNum } from "../helpers";
 
 interface Props {
   trades: TradeEntry[];
@@ -79,7 +79,7 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
               <th className="px-2 py-1.5 text-left font-medium">STATUS</th>
               <th className="px-2 py-1.5 text-right font-medium">QTY</th>
               <th className="px-2 py-1.5 text-right font-medium">SPREAD</th>
-              <th className="px-2 py-1.5 text-right font-medium">K DEPTH</th>
+              <th className="px-2 py-1.5 text-right font-medium">DEPTH</th>
               <th className="px-2 py-1.5 text-right font-medium">NET P&L</th>
               <th className="px-2 py-1.5 text-right font-medium">MS</th>
             </tr>
@@ -88,6 +88,7 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
             {trades.slice(0, 50).map((t, i) => {
               const pnl = tradePnl(t);
               const badge = statusBadge(t.status);
+              const depth = getL1Depth(t);
               const isExpanded = expandedTrade === i;
 
               return (
@@ -122,8 +123,14 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                     <td className="px-2 py-1.5 text-right font-mono text-gray-400">
                       {t.spread_cents?.toFixed(1) ?? "-"}c
                     </td>
-                    <td className={`px-2 py-1.5 text-right font-mono ${kDepthColor(getKL1Depth(t))}`}>
-                      {getKL1Depth(t) ?? "-"}
+                    <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap text-[10px]">
+                      {depth.k !== null || depth.pm !== null ? (
+                        <>
+                          <span className={depthColor(depth.k)}>K:{fmtNum(depth.k!)}</span>
+                          <span className="text-gray-700 mx-0.5">|</span>
+                          <span className={depthColor(depth.pm)}>PM:{fmtNum(depth.pm!)}</span>
+                        </>
+                      ) : "\u2014"}
                     </td>
                     <td className={`px-2 py-1.5 text-right font-mono ${
                       pnl.totalDollars === null ? "text-gray-500" :
@@ -181,12 +188,26 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                             </span>
                           </div>
                           {t.sizing_details && (
-                            <div>
-                              <span className="text-gray-500 block">Depth (K/PM)</span>
-                              <span className="text-gray-300 font-mono">
-                                {t.sizing_details.k_depth} / {t.sizing_details.pm_depth} ({t.sizing_details.limit_reason})
-                              </span>
-                            </div>
+                            <>
+                              {depth.k !== null && (
+                                <div>
+                                  <span className="text-gray-500 block">L1 at Arb Price</span>
+                                  <span className="font-mono">
+                                    <span className={depthColor(depth.k)}>K: {fmtNum(depth.k)}</span>
+                                    {" @ "}{t.sizing_details.depth_walk_log?.[0]?.k_price ?? "-"}c
+                                    <span className="text-gray-700 mx-1">|</span>
+                                    <span className={depthColor(depth.pm)}>PM: {fmtNum(depth.pm!)}</span>
+                                    {" @ "}{t.sizing_details.depth_walk_log?.[0]?.pm_cost ?? "-"}c
+                                  </span>
+                                </div>
+                              )}
+                              <div>
+                                <span className="text-gray-500 block">Total Book Depth</span>
+                                <span className="text-gray-300 font-mono">
+                                  K: {fmtNum(t.sizing_details.k_depth)} | PM: {fmtNum(t.sizing_details.pm_depth)} ({t.sizing_details.limit_reason})
+                                </span>
+                              </div>
+                            </>
                           )}
                           {t.pm_slug && (
                             <div>

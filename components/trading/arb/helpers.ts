@@ -172,19 +172,34 @@ export function toDateStr(iso: string): string {
   return toETDate(iso);
 }
 
-/** Extract Kalshi L1 depth from a trade's sizing_details. */
-export function getKL1Depth(t: TradeEntry): number | null {
+/** Extract L1 depth at arb price from depth_walk_log[0]. */
+export function getL1Depth(t: TradeEntry): { k: number | null; pm: number | null } {
   const log = t.sizing_details?.depth_walk_log;
-  if (log && log.length > 0) return log[0].k_remaining ?? null;
-  return null;
+  if (log && log.length > 0) {
+    return { k: log[0].k_remaining ?? null, pm: log[0].pm_remaining ?? null };
+  }
+  return { k: null, pm: null };
 }
 
-/** Color class for K L1 depth value. */
-export function kDepthColor(depth: number | null): string {
+/** Backward-compat: returns just K L1 depth. */
+export function getKL1Depth(t: TradeEntry): number | null {
+  return getL1Depth(t).k;
+}
+
+/** Color class for depth value (red < 50, yellow 50-199, green >= 200). */
+export function depthColor(depth: number | null): string {
   if (depth === null) return "text-gray-600";
   if (depth < 50) return "text-red-400";
   if (depth < 200) return "text-yellow-400";
   return "text-emerald-400";
+}
+
+/** @deprecated Use depthColor */
+export const kDepthColor = depthColor;
+
+/** Format number with commas. */
+export function fmtNum(n: number): string {
+  return n.toLocaleString("en-US");
 }
 
 export function formatDateLabel(dateStr: string): string {

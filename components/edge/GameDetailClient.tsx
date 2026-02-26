@@ -1337,12 +1337,12 @@ function OmiFairPricing({
           const absEdge = Math.abs(edgeVal);
           const isPositiveEdge = edgeVal > 0;
           const isHighEdge = isPositiveEdge && absEdge >= 6;
-          const isNearZero = absEdge < 0.5;
+          const isNearZero = absEdge === 0;
 
           // Format edge display — always percentage
           const edgeDisplay = (() => {
             if (!block.hasData) return '--';
-            if (isNearZero) return 'None';
+            if (isNearZero) return '0.0%';
             const sign = isPositiveEdge ? '+' : '\u2212';
             return `${sign}${absEdge.toFixed(1)}%`;
           })();

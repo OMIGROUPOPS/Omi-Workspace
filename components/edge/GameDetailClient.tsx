@@ -3480,12 +3480,12 @@ export function GameDetailClient({
 
   .omi-war-room {
     display: grid;
-    grid-template-rows: auto 1fr 1fr 48px;
-    grid-template-columns: 45fr 55fr;
-    gap: 3px;
+    grid-template-rows: auto 1fr auto 48px;
+    grid-template-columns: 42fr 58fr;
+    gap: 2px;
     height: 100%;
     background: #0a0a0a;
-    padding: 3px;
+    padding: 2px;
   }
   
   .omi-war-room-header {
@@ -3493,25 +3493,58 @@ export function GameDetailClient({
     grid-row: 1;
   }
   
-  .omi-war-room-pricing {
+  .omi-war-room-left-stack {
     grid-column: 1;
     grid-row: 2;
     overflow-y: auto;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .omi-war-room-left-stack::-webkit-scrollbar {
+    width: 4px;
+  }
+  .omi-war-room-left-stack::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  .omi-war-room-left-stack::-webkit-scrollbar-thumb {
+    background: #1f1f1f;
+    border-radius: 2px;
+  }
+  .omi-war-room-left-stack::-webkit-scrollbar-thumb:hover {
+    background: #333;
   }
   
-  .omi-war-room-chart {
+  .omi-war-room-right-stack {
     grid-column: 2;
     grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     overflow: hidden;
+  }
+  
+  .omi-war-room-chart-area {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+  
+  .omi-war-room-intel-area {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
   }
   
   .omi-war-room-bottom {
     grid-column: 1 / -1;
     grid-row: 3;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 3px;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    max-height: 220px;
     overflow: hidden;
   }
   
@@ -3524,6 +3557,56 @@ export function GameDetailClient({
     grid-column: 1 / -1;
     grid-row: 4;
     overflow: hidden;
+  }
+  
+  .omi-war-room-mini-panel {
+    background: #111111;
+    border: 1px solid #1a1a1a;
+    padding: 8px 10px;
+    position: relative;
+  }
+  .omi-war-room-mini-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(212, 168, 67, 0.15) 50%, transparent 100%);
+  }
+  .omi-mini-label {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #555;
+    margin-bottom: 3px;
+  }
+  .omi-mini-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: #e5e5e5;
+    letter-spacing: -0.3px;
+  }
+  .omi-mini-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #555;
+  }
+  .omi-intel-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 8px;
+    border-bottom: 1px solid #1a1a1a;
+    background: linear-gradient(180deg, #131313 0%, #111111 100%);
+  }
+  .omi-intel-header span {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #D4A843;
+    font-weight: 600;
   }
   
   .omi-war-room-panel {
@@ -3691,39 +3774,24 @@ export function GameDetailClient({
             </div>
           </div>
 
-          {/* === ROW 2: OmiFairPricing (left) + Chart (right) === */}
-          <div className="omi-war-room-pricing omi-war-room-panel">
-            <OmiFairPricing
-              key={`desktop-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
-              pythonPillars={pythonPillarScores}
-              bookmakers={bookmakers}
-              gameData={gameData}
-              sportKey={gameData.sportKey}
-              activeMarket={activeMarket}
-              activePeriod={activePeriod}
-              selectedBook={selectedBook}
-              commenceTime={gameData.commenceTime}
-              renderKey={renderKey}
-              dbFairLines={dbFairLines}
-            />
-          </div>
-
-          <div className="omi-war-room-chart omi-war-room-panel">
-            <UnifiedChart
-              key={`chart-${activeMarket}-${activePeriod}`}
-              compositeHistory={compositeHistory}
-              sportKey={gameData.sportKey}
-              activeMarket={activeMarket}
-              homeTeam={gameData.homeTeam}
-              awayTeam={gameData.awayTeam}
-              commenceTime={gameData.commenceTime}
-              pythonPillars={pythonPillarScores}
-            />
-          </div>
-
-          {/* === ROW 3: 4-panel bottom row === */}
-          <div className="omi-war-room-bottom">
-            <div className="omi-war-room-panel">
+          {/* === ROW 2: Left Stack (analytical story) + Right Stack (chart + intel) === */}
+          <div className="omi-war-room-left-stack">
+            <div className="omi-war-room-panel" style={{ flex: '0 0 auto' }}>
+              <OmiFairPricing
+                key={`desktop-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
+                pythonPillars={pythonPillarScores}
+                bookmakers={bookmakers}
+                gameData={gameData}
+                sportKey={gameData.sportKey}
+                activeMarket={activeMarket}
+                activePeriod={activePeriod}
+                selectedBook={selectedBook}
+                commenceTime={gameData.commenceTime}
+                renderKey={renderKey}
+                dbFairLines={dbFairLines}
+              />
+            </div>
+            <div className="omi-war-room-panel" style={{ flex: '0 0 auto' }}>
               <WhyThisPrice
                 pythonPillars={pythonPillarScores}
                 ceq={activeCeq}
@@ -3733,9 +3801,171 @@ export function GameDetailClient({
                 activePeriod={activePeriod}
               />
             </div>
-            <div className="omi-war-room-panel">
+            <div className="omi-war-room-panel" style={{ flex: '0 0 auto' }}>
               <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
             </div>
+            {/* Exchange Signals — now visible on desktop */}
+            {exchangeData && (
+              <div className="omi-war-room-panel" style={{ flex: '0 0 auto' }}>
+                <ExchangeSignals exchangeData={exchangeData} bookmakers={bookmakers} gameData={gameData} activeMarket={activeMarket} />
+              </div>
+            )}
+          </div>
+
+          <div className="omi-war-room-right-stack">
+            <div className="omi-war-room-chart-area omi-war-room-panel">
+              <UnifiedChart
+                key={`chart-${activeMarket}-${activePeriod}`}
+                compositeHistory={compositeHistory}
+                sportKey={gameData.sportKey}
+                activeMarket={activeMarket}
+                homeTeam={gameData.homeTeam}
+                awayTeam={gameData.awayTeam}
+                commenceTime={gameData.commenceTime}
+                pythonPillars={pythonPillarScores}
+              />
+            </div>
+            {/* Market Intelligence — fills dead space below chart */}
+            <div className="omi-war-room-intel-area">
+              {(() => {
+                const periodMapped = PERIOD_MAP[activePeriod] || 'fullGame';
+                const allBooksForPeriod = Object.entries(bookmakers)
+                  .filter(([key]) => { const c = BOOK_CONFIG[key]; return !c || c.type === 'sportsbook'; })
+                  .map(([, data]) => (data as any).marketGroups?.[periodMapped])
+                  .filter(Boolean);
+                const spreadLines = allBooksForPeriod.map((m: any) => m?.spreads?.home?.line).filter((v: any): v is number => v !== undefined);
+                const totalLines = allBooksForPeriod.map((m: any) => m?.totals?.line).filter((v: any): v is number => v !== undefined);
+                const consensusSpread = spreadLines.length > 0 ? calcMedian(spreadLines) : undefined;
+                const consensusTotal = totalLines.length > 0 ? calcMedian(totalLines) : undefined;
+                const fairSpreadVal = dbFairLines?.fair_spread ?? (consensusSpread != null && pythonPillarScores ? calculateFairSpread(consensusSpread, pythonPillarScores.composite, gameData.sportKey).fairLine : null);
+                const fairTotalVal = dbFairLines?.fair_total ?? (consensusTotal != null && pythonPillarScores ? calculateFairTotal(consensusTotal, pythonPillarScores.gameEnvironment, gameData.sportKey).fairLine : null);
+                const spreadEdge = (consensusSpread != null && fairSpreadVal != null) ? (fairSpreadVal - consensusSpread) : null;
+                const totalEdge = (consensusTotal != null && fairTotalVal != null) ? (fairTotalVal - consensusTotal) : null;
+                const comp = pythonPillarScores?.composite ?? null;
+                const exec = pythonPillarScores?.execution ?? null;
+                const incv = pythonPillarScores?.incentives ?? null;
+                const shok = pythonPillarScores?.shocks ?? null;
+                const tDecay = pythonPillarScores?.timeDecay ?? null;
+                const flowVal = pythonPillarScores?.flow ?? null;
+                const gEnv = pythonPillarScores?.gameEnvironment ?? null;
+                const homeAbbr = abbrev(gameData.homeTeam);
+                const awayAbbr = abbrev(gameData.awayTeam);
+                const leanDir = comp != null ? (comp > 52 ? homeAbbr : comp < 48 ? awayAbbr : 'NEUTRAL') : '--';
+                const leanStrength = comp != null ? (Math.abs(comp - 50) > 8 ? 'STRONG' : Math.abs(comp - 50) > 3 ? 'LEAN' : 'NEUTRAL') : '--';
+                const getColor = (v: number | null) => !v ? '#555' : v > 55 ? '#22c55e' : v < 45 ? '#ef4444' : '#888';
+                const getEdgeColor = (v: number | null) => !v ? '#555' : Math.abs(v) >= 1.5 ? '#22c55e' : Math.abs(v) >= 0.5 ? '#D4A843' : '#555';
+
+                return (
+                  <>
+                    {/* Panel 1: Composite Signal */}
+                    <div className="omi-war-room-panel" style={{ overflow: 'hidden' }}>
+                      <div className="omi-intel-header">
+                        <span style={{ color: '#D4A843', fontSize: '10px' }}>◈</span>
+                        <span>Composite Signal</span>
+                      </div>
+                      <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                          <div className="omi-mini-label">Direction</div>
+                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '16px', fontWeight: 700, color: leanDir === homeAbbr ? '#22c55e' : leanDir === awayAbbr ? '#ef4444' : '#888', letterSpacing: '-0.5px' }}>
+                            {leanStrength !== '--' ? `${leanStrength} ${leanDir}` : '--'}
+                          </div>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                          <div className="omi-mini-label">Composite</div>
+                          <div className="omi-mini-value" style={{ color: getColor(comp) }}>{comp?.toFixed(1) ?? '--'}</div>
+                        </div>
+                        {/* Pillar mini-bars */}
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '4px', marginTop: '2px' }}>
+                          {[
+                            { label: 'EXEC', val: exec, weight: '20%' },
+                            { label: 'FLOW', val: flowVal, weight: '25%' },
+                            { label: 'SHOK', val: shok, weight: '25%' },
+                            { label: 'INCV', val: incv, weight: '10%' },
+                            { label: 'TIME', val: tDecay, weight: '10%' },
+                            { label: 'GENV', val: gEnv, weight: '10%' },
+                          ].map(p => (
+                            <div key={p.label} style={{ textAlign: 'center' }}>
+                              <div style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: '7px', color: '#444', letterSpacing: '1px', textTransform: 'uppercase' as const }}>{p.label}</div>
+                              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', fontWeight: 600, color: getColor(p.val) }}>{p.val?.toFixed(1) ?? '--'}</div>
+                              <div style={{ height: '2px', background: '#1a1a1a', borderRadius: '1px', marginTop: '2px', overflow: 'hidden' }}>
+                                <div style={{ height: '100%', width: `${Math.min(100, Math.max(0, (p.val ?? 50)))}%`, background: getColor(p.val), borderRadius: '1px', transition: 'width 0.4s ease' }} />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Panel 2: Edge Summary */}
+                    <div className="omi-war-room-panel" style={{ overflow: 'hidden' }}>
+                      <div className="omi-intel-header">
+                        <span style={{ color: '#D4A843', fontSize: '10px' }}>⧉</span>
+                        <span>Edge Summary</span>
+                      </div>
+                      <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                          <div className="omi-mini-label">Spread Edge</div>
+                          <div className="omi-mini-value" style={{ color: getEdgeColor(spreadEdge) }}>
+                            {spreadEdge != null ? `${spreadEdge > 0 ? '+' : ''}${spreadEdge.toFixed(1)} pts` : '--'}
+                          </div>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                          <div className="omi-mini-label">Total Edge</div>
+                          <div className="omi-mini-value" style={{ color: getEdgeColor(totalEdge) }}>
+                            {totalEdge != null ? `${totalEdge > 0 ? '+' : ''}${totalEdge.toFixed(1)} pts` : '--'}
+                          </div>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                          <div className="omi-mini-label">Fair Spread</div>
+                          <div className="omi-mini-sub">{fairSpreadVal != null ? `${homeAbbr} ${fairSpreadVal > 0 ? '+' : ''}${fairSpreadVal.toFixed(1)}` : '--'}</div>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                          <div className="omi-mini-label">Fair Total</div>
+                          <div className="omi-mini-sub">{fairTotalVal != null ? fairTotalVal.toFixed(1) : '--'}</div>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                          <div className="omi-mini-label">Consensus Spread</div>
+                          <div className="omi-mini-sub">{consensusSpread != null ? `${homeAbbr} ${consensusSpread > 0 ? '+' : ''}${consensusSpread.toFixed(1)}` : '--'}</div>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                          <div className="omi-mini-label">Consensus Total</div>
+                          <div className="omi-mini-sub">{consensusTotal != null ? consensusTotal.toFixed(1) : '--'}</div>
+                        </div>
+                        {/* CEQ confidence if available */}
+                        {activeCeq?.bestEdge && (
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderTop: '1px solid #1a1a1a', paddingTop: '4px', marginTop: '2px' }}>
+                            <div className="omi-mini-label">CEQ Confidence</div>
+                            <div className="omi-mini-sub" style={{ color: String(activeCeq.bestEdge.confidence) === 'high' ? '#22c55e' : String(activeCeq.bestEdge.confidence) === 'medium' ? '#D4A843' : '#ef4444' }}>
+                              {(activeCeq.bestEdge.confidence ?? '--').toString().toUpperCase()}
+                            </div>
+                          </div>
+                        )}
+                        {activeCeq?.bestEdge && (
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                            <div className="omi-mini-label">Best Edge</div>
+                            <div className="omi-mini-sub" style={{ color: '#D4A843' }}>
+                              {activeCeq.bestEdge.market?.toUpperCase() ?? '--'} {activeCeq.bestEdge.side?.toUpperCase() ?? ''}
+                            </div>
+                          </div>
+                        )}
+                        {activeCeq?.bestEdge?.ceq != null && (
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                            <div className="omi-mini-label">CEQ Score</div>
+                            <div className="omi-mini-sub" style={{ color: activeCeq.bestEdge.ceq > 60 ? '#22c55e' : activeCeq.bestEdge.ceq > 40 ? '#D4A843' : '#ef4444' }}>
+                              {typeof activeCeq.bestEdge.ceq === 'number' ? activeCeq.bestEdge.ceq.toFixed(1) : '--'}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </>
+                );
+              })()}
+            </div>
+          </div>
+
+          {/* === ROW 3: L10 ATS + Injury Report only === */}
+          <div className="omi-war-room-bottom">
             <div className="omi-war-room-panel">
               <L10AtsPanel homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} activeMarket={activeMarket} />
             </div>

@@ -6,6 +6,7 @@ export type {
   PerContractPnl,
   SizingDetails,
   DepthWalkLevel,
+  DepthProfileLevel,
   PnlSummary,
   Position,
   Balances,

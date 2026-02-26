@@ -927,6 +927,71 @@ def calculate_optimal_size(
     if depth_walk_log and not depth_walk_log[-1].get('stopped') and _level_contracts > 0:
         depth_walk_log[-1]['contracts_at_level'] = _level_contracts
 
+    # ── Depth profile: continue walk past cap for analysis ──
+    depth_profile = []
+    if _walk_stopped_reason is None and contracts > 0:
+        # Walk stopped at max_contracts — continue to find full profitable depth
+        dp_k_idx, dp_pm_idx = k_idx, pm_idx
+        dp_k_rem, dp_pm_rem = k_remaining, pm_remaining
+        dp_contracts = contracts
+        dp_total_profit = total_profit
+        dp_prev_k = -1
+        dp_prev_pm = -1
+
+        while True:
+            if dp_k_idx >= len(k_levels) or dp_pm_idx >= len(pm_levels):
+                break
+            if dp_k_rem <= 0:
+                dp_k_idx += 1
+                if dp_k_idx >= len(k_levels):
+                    break
+                dp_k_rem = k_levels[dp_k_idx][1]
+            if dp_pm_rem <= 0:
+                dp_pm_idx += 1
+                if dp_pm_idx >= len(pm_levels):
+                    break
+                dp_pm_rem = pm_levels[dp_pm_idx][1]
+
+            kp = k_levels[dp_k_idx][0]
+            pc = pm_levels[dp_pm_idx][0]
+            if direction == 'BUY_PM_SELL_K':
+                sp = kp - pc
+            else:
+                sp = (100 - pc) - kp
+            f = Config.kalshi_fee_cents + (pc * Config.pm_us_fee_rate) + Config.expected_slippage_cents
+            net = sp - f
+
+            if net < Config.min_profit_per_contract:
+                break
+
+            # New level transition → start new profile entry
+            if dp_k_idx != dp_prev_k or dp_pm_idx != dp_prev_pm:
+                dp_prev_k = dp_k_idx
+                dp_prev_pm = dp_pm_idx
+                depth_profile.append({
+                    'level': len(depth_profile) + 1,
+                    'k_price': kp,
+                    'pm_cost': pc,
+                    'spread': round(sp, 2),
+                    'net': round(net, 2),
+                    'available': 0,
+                    'cumulative': dp_contracts,
+                })
+
+            dp_contracts += 1
+            dp_total_profit += net
+            dp_k_rem -= 1
+            dp_pm_rem -= 1
+            depth_profile[-1]['available'] += 1
+            depth_profile[-1]['cumulative'] = dp_contracts
+
+        max_profitable = dp_contracts
+        max_profit = dp_total_profit
+    else:
+        # Walk ended naturally (unprofitable or exhausted) — full depth already captured
+        max_profitable = contracts
+        max_profit = total_profit
+
     if contracts == 0:
         return {
             'size': 0, 'expected_profit_cents': 0, 'avg_spread_cents': 0,
@@ -934,6 +999,11 @@ def calculate_optimal_size(
             'k_depth': total_k_available, 'pm_depth': total_pm_available,
             'limit_reason': 'no_profitable_contracts',
             'depth_walk_log': depth_walk_log,
+            'depth_profile': depth_profile,
+            'max_profitable_contracts': max_profitable,
+            'max_theoretical_profit_cents': round(max_profit, 2),
+            'traded_contracts': 0,
+            'captured_profit_cents': 0,
         }
 
     # ── Step D: Apply safety caps ──
@@ -1005,6 +1075,11 @@ def calculate_optimal_size(
             'k_depth': total_k_available, 'pm_depth': total_pm_available,
             'limit_reason': 'negative_total_profit',
             'depth_walk_log': depth_walk_log,
+            'depth_profile': depth_profile,
+            'max_profitable_contracts': max_profitable,
+            'max_theoretical_profit_cents': round(max_profit, 2),
+            'traded_contracts': 0,
+            'captured_profit_cents': 0,
         }
 
     avg_k = total_k_price / final_size if final_size > 0 else 0
@@ -1022,6 +1097,11 @@ def calculate_optimal_size(
         'pm_depth': total_pm_available,
         'limit_reason': limit_reason,
         'depth_walk_log': depth_walk_log,
+        'depth_profile': depth_profile,
+        'max_profitable_contracts': max_profitable,
+        'max_theoretical_profit_cents': round(max_profit, 2),
+        'traded_contracts': final_size,
+        'captured_profit_cents': round(total_profit, 2),
     }
 
 

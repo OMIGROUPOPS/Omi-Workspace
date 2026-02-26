@@ -55,6 +55,16 @@ export interface DepthWalkLevel {
   stopped?: boolean;
 }
 
+export interface DepthProfileLevel {
+  level: number;
+  k_price: number;
+  pm_cost: number;
+  spread: number;
+  net: number;
+  available: number;
+  cumulative: number;
+}
+
 export interface SizingDetails {
   avg_spread_cents: number;
   expected_profit_cents: number;
@@ -62,6 +72,11 @@ export interface SizingDetails {
   pm_depth: number;
   limit_reason: string;
   depth_walk_log?: DepthWalkLevel[];
+  depth_profile?: DepthProfileLevel[];
+  max_profitable_contracts?: number;
+  max_theoretical_profit_cents?: number;
+  traded_contracts?: number;
+  captured_profit_cents?: number;
 }
 
 export interface TradeEntry {

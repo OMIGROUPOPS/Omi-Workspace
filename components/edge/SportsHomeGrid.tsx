@@ -900,12 +900,16 @@ export function SportsHomeGrid({
                     return !ct || ct <= maxDate;
                   });
 
-                  // Sort: LIVE first, then pregame chronologically, then FINAL last
+                  // Sort: LIVE first (by time asc), UPCOMING (by time asc), COMPLETED (by time desc)
                   filtered.sort((a, b) => {
                     const stateOrder = (g: any) => g.game.gameState === 'live' ? 0 : g.game.gameState === 'final' ? 2 : 1;
                     const stateDiff = stateOrder(a) - stateOrder(b);
                     if (stateDiff !== 0) return stateDiff;
-                    return new Date(a.game.commenceTime).getTime() - new Date(b.game.commenceTime).getTime();
+                    const tA = new Date(a.game.commenceTime).getTime();
+                    const tB = new Date(b.game.commenceTime).getTime();
+                    // Completed games: most recent first
+                    if (a.game.gameState === 'final') return tB - tA;
+                    return tA - tB;
                   });
                   const renderCard = ({ game, maxEdge }: { game: any; maxEdge: number }) => {
                     const gameTime = typeof game.commenceTime === 'string' ? new Date(game.commenceTime) : game.commenceTime;

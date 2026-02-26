@@ -1917,6 +1917,285 @@ function CeqFactors({ ceq, activeMarket, homeTeam, awayTeam }: { ceq: GameCEQ | 
 }
 
 // ============================================================================
+// InjuryReport — ESPN injury data for both teams
+// ============================================================================
+
+const ESPN_SPORT_MAP: Record<string, { sport: string; league: string }> = {
+  'basketball_nba': { sport: 'basketball', league: 'nba' },
+  'americanfootball_nfl': { sport: 'football', league: 'nfl' },
+  'icehockey_nhl': { sport: 'hockey', league: 'nhl' },
+  'basketball_ncaab': { sport: 'basketball', league: 'mens-college-basketball' },
+  'americanfootball_ncaaf': { sport: 'football', league: 'college-football' },
+};
+
+interface InjuryEntry {
+  player: string;
+  position: string;
+  status: string;
+  type: string;
+}
+
+const INJURY_ORDER: Record<string, number> = { 'Out': 0, 'Suspension': 1, 'Day-To-Day': 2, 'Questionable': 3, 'Doubtful': 4, 'Probable': 5 };
+
+function InjuryReport({ homeTeam, awayTeam, sportKey }: {
+  homeTeam: string;
+  awayTeam: string;
+  sportKey: string;
+}) {
+  const [homeInjuries, setHomeInjuries] = useState<InjuryEntry[]>([]);
+  const [awayInjuries, setAwayInjuries] = useState<InjuryEntry[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const espnCfg = ESPN_SPORT_MAP[sportKey];
+    if (!espnCfg) { setLoading(false); return; }
+
+    const url = `https://site.api.espn.com/apis/site/v2/sports/${espnCfg.sport}/${espnCfg.league}/injuries`;
+    fetch(url)
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (!data?.injuries) return;
+        const parse = (teamName: string): InjuryEntry[] => {
+          const teamData = data.injuries.find((t: any) =>
+            t.displayName === teamName ||
+            teamName.includes(t.displayName) ||
+            t.displayName.includes(teamName) ||
+            t.displayName.split(' ').pop() === teamName.split(' ').pop()
+          );
+          if (!teamData?.injuries) return [];
+          return teamData.injuries.map((inj: any) => ({
+            player: inj.athlete?.displayName || 'Unknown',
+            position: inj.athlete?.position?.abbreviation || inj.athlete?.position?.name || '—',
+            status: inj.status || 'Unknown',
+            type: inj.type?.description || inj.details?.type || '',
+          })).sort((a: InjuryEntry, b: InjuryEntry) =>
+            (INJURY_ORDER[a.status] ?? 9) - (INJURY_ORDER[b.status] ?? 9)
+          );
+        };
+        setHomeInjuries(parse(homeTeam));
+        setAwayInjuries(parse(awayTeam));
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [homeTeam, awayTeam, sportKey]);
+
+  const statusColor = (status: string) => {
+    if (status === 'Out') return { bg: '#ef4444', text: '#fff' };
+    if (status === 'Day-To-Day' || status === 'Questionable' || status === 'Doubtful') return { bg: '#eab308', text: '#000' };
+    if (status === 'Suspension') return { bg: '#ef4444', text: '#fff' };
+    return { bg: '#555', text: '#fff' };
+  };
+
+  const statusLabel = (status: string) => {
+    if (status === 'Out') return 'OUT';
+    if (status === 'Day-To-Day') return 'GTD';
+    if (status === 'Questionable') return 'Q';
+    if (status === 'Doubtful') return 'DBT';
+    if (status === 'Suspension') return 'SUSP';
+    if (status === 'Probable') return 'PROB';
+    return status.slice(0, 3).toUpperCase();
+  };
+
+  const renderColumn = (team: string, injuries: InjuryEntry[]) => {
+    const teamAbbr = abbrev(team);
+    if (loading) return <div className="text-[10px] text-[#444] py-3 text-center">Loading...</div>;
+
+    return (
+      <div>
+        <div className="flex items-center justify-between px-2 py-1">
+          <span className="text-[9px] font-mono font-semibold text-[#888] uppercase tracking-wider">{teamAbbr}</span>
+          <span className="text-[9px] font-mono text-[#555]">{injuries.length > 0 ? `${injuries.length} listed` : ''}</span>
+        </div>
+        {injuries.length === 0 ? (
+          <div className="text-[9px] text-[#444] px-2 py-1">No injuries listed</div>
+        ) : (
+          <div className="px-1">
+            {injuries.map((inj, i) => {
+              const { bg, text } = statusColor(inj.status);
+              return (
+                <div key={i} className="flex items-center gap-1 px-1" style={{ height: '16px', borderBottom: i < injuries.length - 1 ? '1px solid #111' : 'none' }}>
+                  <span
+                    className="text-[7px] font-mono font-bold rounded-sm px-1 flex-shrink-0"
+                    style={{ backgroundColor: bg, color: text, lineHeight: '12px' }}
+                  >
+                    {statusLabel(inj.status)}
+                  </span>
+                  <span className="text-[8px] font-mono text-[#888] flex-1 truncate">{inj.player}</span>
+                  <span className="text-[8px] font-mono text-[#555] flex-shrink-0">{inj.position}</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const espnCfg = ESPN_SPORT_MAP[sportKey];
+  if (!espnCfg) {
+    return (
+      <div style={{ background: '#080808', border: '1px solid #1a1a1a' }}>
+        <div className="px-2 py-1.5">
+          <span className="text-[9px] font-mono text-[#444] uppercase" style={{ letterSpacing: '1px' }}>Injury Report</span>
+        </div>
+        <div className="text-[9px] text-[#444] px-2 py-2">Not available for this sport</div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ background: '#080808', border: '1px solid #1a1a1a' }}>
+      <div className="px-2 py-1.5">
+        <span className="text-[9px] font-mono text-[#444] uppercase" style={{ letterSpacing: '1px' }}>Injury Report</span>
+      </div>
+      <div className="flex">
+        <div className="w-1/2 border-r" style={{ borderColor: '#1a1a1a' }}>
+          {renderColumn(homeTeam, homeInjuries)}
+        </div>
+        <div className="w-1/2">
+          {renderColumn(awayTeam, awayInjuries)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
+// L10AtsPanel — Last 10 games ATS / O-U / W-L per team
+// ============================================================================
+
+interface L10Game {
+  opponent: string;
+  spread: number;
+  margin: number;
+  covered: boolean;
+  totalLine: number;
+  actualTotal: number;
+  overHit: boolean;
+  won: boolean;
+  homeScore: number;
+  awayScore: number;
+  wasHome: boolean;
+  commenceTime: string;
+}
+
+function L10AtsPanel({ homeTeam, awayTeam, activeMarket }: {
+  homeTeam: string;
+  awayTeam: string;
+  activeMarket: ActiveMarket;
+}) {
+  const [homeGames, setHomeGames] = useState<L10Game[]>([]);
+  const [awayGames, setAwayGames] = useState<L10Game[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (!SUPABASE_URL || !SUPABASE_KEY) { setLoading(false); return; }
+
+    const headers = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` };
+    const fields = 'home_team,away_team,home_score,away_score,closing_spread_home,closing_total_line,winner,commence_time';
+
+    const fetchTeam = async (team: string): Promise<L10Game[]> => {
+      const url = `${SUPABASE_URL}/rest/v1/game_results?select=${fields}&home_score=not.is.null&or=(home_team.eq.${encodeURIComponent(team)},away_team.eq.${encodeURIComponent(team)})&order=commence_time.desc&limit=10`;
+      const res = await fetch(url, { headers });
+      if (!res.ok) return [];
+      const rows: any[] = await res.json();
+      return rows.map(r => {
+        const wasHome = r.home_team === team;
+        const opponent = wasHome ? r.away_team : r.home_team;
+        const teamSpread = wasHome ? r.closing_spread_home : -r.closing_spread_home;
+        const teamMargin = wasHome ? (r.home_score - r.away_score) : (r.away_score - r.home_score);
+        const actualTotal = r.home_score + r.away_score;
+        return {
+          opponent,
+          spread: teamSpread,
+          margin: teamMargin,
+          covered: teamMargin + teamSpread > 0,
+          totalLine: r.closing_total_line,
+          actualTotal,
+          overHit: actualTotal > r.closing_total_line,
+          won: (wasHome && r.winner === 'home') || (!wasHome && r.winner === 'away'),
+          homeScore: r.home_score,
+          awayScore: r.away_score,
+          wasHome,
+          commenceTime: r.commence_time,
+        };
+      });
+    };
+
+    Promise.all([fetchTeam(homeTeam), fetchTeam(awayTeam)])
+      .then(([h, a]) => { setHomeGames(h); setAwayGames(a); })
+      .finally(() => setLoading(false));
+  }, [homeTeam, awayTeam]);
+
+  const getLabel = () => activeMarket === 'total' ? 'O/U' : activeMarket === 'moneyline' ? 'W/L' : 'ATS';
+
+  const getResult = (g: L10Game) => {
+    if (activeMarket === 'total') return g.overHit;
+    if (activeMarket === 'moneyline') return g.won;
+    return g.covered;
+  };
+
+  const getRecord = (games: L10Game[]) => {
+    const w = games.filter(g => getResult(g)).length;
+    return `${w}-${games.length - w}`;
+  };
+
+  const getDetail = (g: L10Game) => {
+    if (activeMarket === 'total') return `${g.actualTotal} (${g.totalLine})`;
+    if (activeMarket === 'moneyline') return `${g.won ? 'W' : 'L'} ${Math.abs(g.margin)}`;
+    const sign = g.spread > 0 ? '+' : '';
+    return `${sign}${g.spread.toFixed(1)}`;
+  };
+
+  const renderColumn = (team: string, games: L10Game[]) => {
+    const teamAbbr = abbrev(team);
+    const label = getLabel();
+    if (loading) return <div className="text-[10px] text-[#444] py-3 text-center">Loading...</div>;
+    if (games.length === 0) return <div className="text-[10px] text-[#444] py-3 text-center">No recent data</div>;
+
+    return (
+      <div>
+        <div className="flex items-center justify-between px-2 py-1">
+          <span className="text-[9px] font-mono font-semibold text-[#888] uppercase tracking-wider">{teamAbbr} — L10 {label}</span>
+          <span className="text-[10px] font-mono font-bold text-[#ccc]">{getRecord(games)}</span>
+        </div>
+        <div className="px-1">
+          {games.map((g, i) => {
+            const hit = getResult(g);
+            return (
+              <div key={i} className="flex items-center gap-1 px-1" style={{ height: '16px', borderBottom: i < games.length - 1 ? '1px solid #111' : 'none' }}>
+                <span className="text-[8px] font-mono text-[#555] w-[6px]">{g.wasHome ? '' : '@'}</span>
+                <span className="text-[8px] font-mono text-[#888] flex-1 truncate">{abbrev(g.opponent)}</span>
+                <span className="text-[8px] font-mono text-[#666] w-[36px] text-right">{getDetail(g)}</span>
+                <span className="text-[8px] font-mono text-[#666] w-[28px] text-right">{g.margin > 0 ? '+' : ''}{g.margin}</span>
+                <span className={`text-[7px] font-mono font-bold w-[14px] text-center rounded-sm ${hit ? 'text-emerald-400 bg-emerald-500/10' : 'text-red-400 bg-red-500/10'}`}>
+                  {hit ? 'W' : 'L'}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div style={{ background: '#080808', border: '1px solid #1a1a1a' }}>
+      <div className="flex">
+        <div className="w-1/2 border-r" style={{ borderColor: '#1a1a1a' }}>
+          {renderColumn(homeTeam, homeGames)}
+        </div>
+        <div className="w-1/2">
+          {renderColumn(awayTeam, awayGames)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
 // Demo/Lock components
 // ============================================================================
 
@@ -3147,10 +3426,13 @@ export function GameDetailClient({
                 </div>
               </div>
 
-              {/* Injury Report placeholder */}
+              {/* L10 ATS + Injury Report — side by side */}
               <div className="flex border-t border-[#1a1a1a]/50">
+                <div className="w-1/2 border-r border-[#1a1a1a]/50">
+                  <L10AtsPanel homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} activeMarket={activeMarket} />
+                </div>
                 <div className="w-1/2">
-                  {/* Injury Report will go here */}
+                  <InjuryReport homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} />
                 </div>
               </div>
             </div>
@@ -3280,6 +3562,12 @@ export function GameDetailClient({
           />
 
           <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
+
+          {/* L10 ATS / O-U / W-L */}
+          <L10AtsPanel homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} activeMarket={activeMarket} />
+
+          {/* Injury Report */}
+          <InjuryReport homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} />
 
           {/* Exchange Signals — complementary intelligence */}
           {exchangeData && (

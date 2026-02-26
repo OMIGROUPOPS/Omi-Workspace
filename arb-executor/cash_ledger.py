@@ -61,7 +61,7 @@ def snapshot():
     try:
         k_data = asyncio.run(_fetch_kalshi_balance())
         k_balance = k_data.get("balance", 0) / 100  # cents → dollars
-        k_portfolio = k_data.get("portfolio_value", k_data.get("balance", 0)) / 100
+        k_portfolio = (k_data.get("balance", 0) + k_data.get("portfolio_value", 0)) / 100
     except Exception as e:
         print(f"Warning: Could not fetch Kalshi balance: {e}")
         k_balance = 0
@@ -133,7 +133,24 @@ def reconcile_trade_pnl(t: dict) -> float | None:
             return None
 
     direction = t.get("direction", "")
+    pm_price = _norm_pm(t.get("pm_price", 0))
     k_price = t.get("k_price", 0) or 0
+
+    # EXITED: K never filled, compute PM-only unwind P&L
+    if status == "EXITED" or tier in ("TIER1_HEDGE", "TIER2_EXIT", "TIER3_UNWIND"):
+        unwind_px = t.get("unwind_fill_price")
+        if unwind_px is None or pm_price == 0:
+            return t.get("settlement_pnl", 0) or 0
+        unwind_cents = unwind_px * 100 if unwind_px < 1 else unwind_px
+        is_short = t.get("pm_is_buy_short", False)
+        if is_short:
+            entry_cost = 100 - pm_price
+            exit_price = 100 - unwind_cents
+        else:
+            entry_cost = pm_price
+            exit_price = unwind_cents
+        pnl = (exit_price - entry_cost) * filled / 100
+        return round(pnl, 4)
     pm_price = _norm_pm(t.get("pm_price", 0))
 
     if k_price == 0 or pm_price == 0:
@@ -273,12 +290,16 @@ def report(target_date: str | None = None):
 
     total_pnl = total_reconciled + total_settlement + total_estimated
 
-    # Current balances
-    pm_data = _load_pm_balance()
-    pm_portfolio = pm_data.get("pm_portfolio", 0)
-    k_portfolio = pm_data.get("k_portfolio", 0)
-    total_portfolio = pm_portfolio + k_portfolio
-    cash_pnl = total_portfolio - STARTING_BALANCE["total"]
+    # Current balances — use latest snapshot
+    total_portfolio = 0
+    cash_pnl = -STARTING_BALANCE["total"]
+    if os.path.exists(SNAPSHOTS_FILE):
+        with open(SNAPSHOTS_FILE) as sf:
+            snaps = json.load(sf)
+        if snaps:
+            latest = snaps[-1]
+            total_portfolio = latest.get("total_portfolio", 0)
+            cash_pnl = latest.get("cash_pnl", total_portfolio - STARTING_BALANCE["total"])
 
     date_label = target_date or "All Time"
     print("=" * 60)

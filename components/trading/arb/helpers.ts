@@ -220,6 +220,14 @@ export function tradePnl(t: TradeEntry): {
   const qty = t.contracts_filled > 0 ? t.contracts_filled : (t.contracts_intended || 0);
   const spreadCents = t.spread_cents ?? null;
 
+  // Priority 1: reconciled_pnl (cash_ledger.py ground truth)
+  if (t.reconciled_pnl != null) {
+    const rp = t.reconciled_pnl;
+    const pc = qty > 0 ? (rp * 100) / qty : rp * 100;
+    return { perContract: pc, totalDollars: rp, qty, isOpen: false, spreadCents };
+  }
+
+  // Priority 2: settlement_pnl (kalshi_reconciler)
   if (t.settlement_pnl != null) {
     const pc = qty > 0 ? (t.settlement_pnl * 100) / qty : t.settlement_pnl * 100;
     return { perContract: pc, totalDollars: t.settlement_pnl, qty, isOpen: false, spreadCents };

@@ -259,7 +259,8 @@
     "settlement_pnl": -1.03,
     "settlement_source": "kalshi_reconciled",
     "k_actual_cost": -61,
-    "k_actual_fee": 0.04
+    "k_actual_fee": 0.04,
+    "reconciled_pnl": -0.22
   },
   {
     "timestamp": "2026-02-09T19:43:02.154731",
@@ -329,7 +330,8 @@
     "settlement_pnl": -1.038,
     "settlement_source": "kalshi_reconciled",
     "k_actual_cost": -50,
-    "k_actual_fee": 0.04
+    "k_actual_fee": 0.04,
+    "reconciled_pnl": -0.028
   },
   {
     "timestamp": "2026-02-09T20:15:39.276316",
@@ -447,7 +449,8 @@
     "settlement_pnl": 0.394,
     "settlement_source": "kalshi_reconciled",
     "k_actual_cost": -20,
-    "k_actual_fee": 0.04
+    "k_actual_fee": 0.04,
+    "reconciled_pnl": 0.024
   },
   {
     "timestamp": "2026-02-09T20:22:27.654311",
@@ -517,7 +520,8 @@
     "settlement_pnl": -0.706,
     "settlement_source": "kalshi_reconciled",
     "k_actual_cost": -65,
-    "k_actual_fee": 0.04
+    "k_actual_fee": 0.04,
+    "reconciled_pnl": 0.024
   },
   {
     "timestamp": "2026-02-09T20:32:27.256731",
@@ -587,7 +591,8 @@
     "settlement_pnl": -0.052,
     "settlement_source": "kalshi_reconciled",
     "k_actual_cost": 62,
-    "k_actual_fee": 0.04
+    "k_actual_fee": 0.04,
+    "reconciled_pnl": -0.012
   },
   {
     "timestamp": "2026-02-09T21:07:52.383076",

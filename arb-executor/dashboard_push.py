@@ -401,6 +401,7 @@ class DashboardPusher:
                         "k_order_ms": t.get("k_order_ms", 0),
                         "tier": t.get("tier", ""),
                         "settlement_pnl": t.get("settlement_pnl"),
+                        "reconciled_pnl": t.get("reconciled_pnl"),
                         "settlement_time": t.get("settlement_time"),
                         "settlement_winner_index": t.get("settlement_winner_index"),
                         "opponent": self._extract_opponent(t),
@@ -571,7 +572,18 @@ class DashboardPusher:
     # ── P&L Summary ───────────────────────────────────────────────────────
 
     def _build_pnl_summary(self) -> dict:
-        """Compute exact P&L from trades.json actual_pnl data."""
+        """Compute P&L from trades.json using reconciled_pnl as primary source.
+
+        Priority order for each trade's P&L:
+          1. reconciled_pnl (set by cash_ledger.py reconcile)
+          2. settlement_pnl (set by kalshi_reconciler)
+          3. actual_pnl / estimated_net_profit_cents (original executor data)
+          4. unwind_pnl_cents / recomputed unwind (EXITED trades)
+
+        Also computes cash_pnl = portfolio_total - starting_balance as headline.
+        """
+        STARTING_BALANCE_TOTAL = 317.77
+
         empty = {
             "total_pnl_dollars": 0,
             "profitable_count": 0,
@@ -581,6 +593,9 @@ class DashboardPusher:
             "total_filled": 0,
             "hedged_count": 0,
             "unhedged_filled": 0,
+            "cash_pnl": 0,
+            "portfolio_total": 0,
+            "starting_balance": STARTING_BALANCE_TOTAL,
         }
         try:
             if not os.path.exists(TRADES_FILE):
@@ -610,48 +625,32 @@ class DashboardPusher:
                 if filled == 0 or status not in ("SUCCESS", "EXITED"):
                     continue
 
-                # Priority 1: Kalshi-reconciled settlement_pnl (ground truth)
-                if t.get("settlement_source") == "kalshi_reconciled":
-                    net = t.get("settlement_pnl", 0) or 0
-                    total_pnl += net
-                    trades_with_pnl += 1
-                    if net > 0:
-                        profitable += 1
-                    else:
-                        losing += 1
-                    continue
+                net = None
 
-                # SUCCESS trades: use actual_pnl or estimated
-                if status == "SUCCESS":
+                # Priority 1: reconciled_pnl (cash_ledger.py ground truth)
+                rp = t.get("reconciled_pnl")
+                if rp is not None:
+                    net = rp
+
+                # Priority 2: Kalshi-reconciled settlement_pnl
+                if net is None and t.get("settlement_source") == "kalshi_reconciled":
+                    net = t.get("settlement_pnl", 0) or 0
+
+                # Priority 3: actual_pnl or estimated (SUCCESS trades)
+                if net is None and status == "SUCCESS":
                     pnl = t.get("actual_pnl")
                     if pnl and isinstance(pnl, dict):
                         net = pnl.get("net_profit_dollars", 0)
-                        total_pnl += net
-                        trades_with_pnl += 1
-                        if pnl.get("is_profitable"):
-                            profitable += 1
-                        else:
-                            losing += 1
                     else:
-                        # Fallback: use estimated_net_profit_cents
                         est = t.get("estimated_net_profit_cents", 0) or 0
-                        contracts = filled
-                        net = est * contracts / 100
-                        total_pnl += net
-                        trades_with_pnl += 1
-                        if net > 0:
-                            profitable += 1
-                        else:
-                            losing += 1
-                    continue
+                        net = est * filled / 100
 
-                # EXITED trades: use signed unwind_pnl_cents, or recompute from fields
-                if status == "EXITED":
+                # Priority 4: unwind P&L (EXITED trades)
+                if net is None and status == "EXITED":
                     upnl = t.get("unwind_pnl_cents")
                     if upnl is not None:
                         net = upnl / 100.0
                     else:
-                        # Recompute from direction, pm_price, unwind_fill_price
                         direction = t.get("direction", "")
                         pm_price = t.get("pm_price", 0) or 0
                         ufp = t.get("unwind_fill_price")
@@ -662,16 +661,22 @@ class DashboardPusher:
                             else:
                                 net = (pm_price - (ufp * 100)) * uqty / 100.0
                         else:
-                            # Last resort: old unsigned field (always negative)
                             ulc = t.get("unwind_loss_cents", 0) or 0
                             net = -(abs(ulc) / 100.0)
+
+                if net is not None:
                     total_pnl += net
                     trades_with_pnl += 1
                     if net > 0:
                         profitable += 1
                     else:
                         losing += 1
-                    continue
+
+            # Cash P&L from live balances
+            k_portfolio = self.balances.get("k_portfolio", 0)
+            pm_portfolio = self.balances.get("pm_portfolio", 0)
+            portfolio_total = k_portfolio + pm_portfolio
+            cash_pnl = portfolio_total - STARTING_BALANCE_TOTAL
 
             return {
                 "total_pnl_dollars": round(total_pnl, 4),
@@ -682,6 +687,9 @@ class DashboardPusher:
                 "total_filled": total_filled,
                 "hedged_count": hedged_count,
                 "unhedged_filled": unhedged_filled,
+                "cash_pnl": round(cash_pnl, 2),
+                "portfolio_total": round(portfolio_total, 2),
+                "starting_balance": STARTING_BALANCE_TOTAL,
             }
         except Exception as e:
             logger.debug(f"Error computing P&L summary: {e}")

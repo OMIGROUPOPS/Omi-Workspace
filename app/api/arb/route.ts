@@ -118,6 +118,7 @@ export interface TradeEntry {
   cache_key?: string;
   pm_slug?: string;
   kalshi_ticker?: string;
+  reconciled_pnl?: number | null;
 }
 
 export interface PnlSummary {
@@ -129,6 +130,9 @@ export interface PnlSummary {
   total_filled: number;
   hedged_count: number;
   unhedged_filled: number;
+  cash_pnl?: number;
+  portfolio_total?: number;
+  starting_balance?: number;
 }
 
 export interface Position {

@@ -546,7 +546,13 @@ function UnifiedChart({
           {/* Hover crosshair + tooltip */}
           {hoverData && (
             <>
-              <line x1={hoverData.x} y1={padT} x2={hoverData.x} y2={padT + chartH} stroke="#222" strokeWidth="1" strokeDasharray="3 2" />
+              <line x1={hoverData.x} y1={padT} x2={hoverData.x} y2={padT + chartH} stroke="#333" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.8" />
+              {hoverData.fairY != null && (
+                <line x1={hoverData.x} y1={hoverData.fairY} x2={svgW - padR} y2={hoverData.fairY} stroke={FAIR_LINE_COLOR} strokeWidth="0.5" strokeDasharray="2 2" opacity="0.4" />
+              )}
+              {hoverData.bookY != null && (
+                <line x1={hoverData.x} y1={hoverData.bookY} x2={svgW - padR} y2={hoverData.bookY} stroke={BOOK_LINE_COLOR} strokeWidth="0.5" strokeDasharray="2 2" opacity="0.3" />
+              )}
               {hoverData.bookY != null && <circle cx={hoverData.x} cy={hoverData.bookY} r="3" fill={BOOK_LINE_COLOR} stroke="#0b0b0b" strokeWidth="1" />}
               {hoverData.fairY != null && <circle cx={hoverData.x} cy={hoverData.fairY} r="3" fill={FAIR_LINE_COLOR} stroke="#0b0b0b" strokeWidth="1" />}
               {(() => {
@@ -560,7 +566,8 @@ function UnifiedChart({
                 const dirColor = hoverData.favorable ? '#22c55e' : '#ef4444';
                 return (
                   <g>
-                    <rect x={tx} y={ty} width={tooltipW} height={tooltipH} rx="3" fill="#111" stroke="#222" strokeWidth="0.5" />
+                    <rect x={tx} y={ty} width={tooltipW} height={tooltipH} rx="2" fill="#0d0d0d" stroke={FAIR_LINE_COLOR} strokeWidth="0.5" opacity="0.95" />
+                    <rect x={tx} y={ty} width={tooltipW} height={tooltipH} rx="2" fill="none" stroke="#1a1a1a" strokeWidth="1" />
                     <text x={tx + 6} y={ty + 12} fill="#555" fontSize="8" fontFamily="monospace">{fmtTs}</text>
                     <text x={tx + 6} y={ty + 24} fill={BOOK_LINE_COLOR} fontSize="9" fontFamily="monospace" fontWeight="600">
                       Book {hoverData.bookV != null ? formatValue(hoverData.bookV) : '\u2014'}
@@ -593,18 +600,20 @@ function UnifiedChart({
       </div>
 
       {/* Edge heat strip */}
-      <div className="mx-3 h-2 flex rounded-sm overflow-hidden" style={{ background: '#111' }}>
+      <div className="mx-3 h-2 flex overflow-hidden" style={{ background: '#111' }}>
         {edgeSegments.map((seg, i) => (
           <div
             key={i}
-            className="h-full"
+            className="h-full transition-opacity duration-300"
             style={{ flex: 1, backgroundColor: seg.color, opacity: Math.min(seg.edge / 5, 1) * 0.5 }}
+            onMouseEnter={(e) => { (e.target as HTMLElement).style.opacity = String(Math.min(Math.min(seg.edge / 5, 1) * 0.5 + 0.15, 0.8)); }}
+            onMouseLeave={(e) => { (e.target as HTMLElement).style.opacity = String(Math.min(seg.edge / 5, 1) * 0.5); }}
           />
         ))}
       </div>
 
       {/* Summary row: COMP | OMI FAIR | BOOK | GAP | EDGE */}
-      <div className="grid grid-cols-5 gap-0 px-3 py-1.5 border-t border-[#1a1a1a]/50">
+      <div className="grid grid-cols-5 px-3 py-1.5" style={{ borderTop: '1px solid #1a1a1a' }}>
         <div className="text-center">
           <div className="text-[7px] text-[#333] font-mono uppercase">Comp</div>
           <div className="text-[11px] font-mono font-bold text-[#ccc]">{compositeScore ?? '\u2014'}</div>
@@ -1211,7 +1220,7 @@ function OmiFairPricing({
             <div key={i} className="flex items-baseline">
               {i > 0 && <span className="text-[#555] text-[12px] mr-4">vs</span>}
               <span className="text-[10px] text-[#555] mr-1">{block.label}</span>
-              <span className="text-[20px] font-bold font-mono text-cyan-400">{block.fair}</span>
+              <span className="text-[20px] font-bold font-mono" style={{ color: '#D4A843' }}>{block.fair}</span>
             </div>
           ))}
         </div>
@@ -1314,7 +1323,7 @@ function OmiFairPricing({
           })();
 
           return (
-            <div key={blockIdx} className={`rounded overflow-hidden border border-[#1a1a1a] ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`}>
+            <div key={blockIdx} className={`overflow-hidden border border-[#1a1a1a] ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`} style={{ borderTop: `2px solid ${isPositiveEdge && absEdge >= 0.5 ? '#22c55e' : isNearZero ? '#1a1a1a' : '#ef4444'}`, animation: 'omi-fade-in 0.2s ease-out' }}>
               {/* Block header — team/side label */}
               <div className="bg-[#0b0b0b] px-2 py-1 border-b border-[#1a1a1a]">
                 <span className="text-[11px] font-bold text-[#ddd]">{block.label}</span>
@@ -1324,16 +1333,16 @@ function OmiFairPricing({
                 <div className="flex items-end justify-between gap-1.5">
                   <div>
                     <div className="text-[8px] text-[#555] uppercase tracking-widest">{hasPillars ? 'OMI Fair' : 'Consensus'}</div>
-                    <div className="text-[18px] font-bold font-mono text-cyan-400">{block.fair}</div>
+                    <div className="text-[18px] font-bold font-mono" style={{ color: '#D4A843' }}>{block.fair}</div>
                   </div>
                   <div className="text-right">
                     <div className="text-[8px] text-[#555] uppercase tracking-widest">{block.bookName}</div>
-                    <div className="text-[18px] font-bold font-mono text-[#ddd]">{block.bookLine}</div>
+                    <div className="text-[18px] font-bold font-mono" style={{ color: '#5b7a99' }}>{block.bookLine}</div>
                   </div>
                   <div className="text-right">
                     <div className="text-[8px] text-[#555] uppercase tracking-widest">Edge</div>
-                    <div className={`text-[18px] font-bold font-mono ${block.edgeColor}`}>
-                      {edgeDisplay}
+                    <div className={`text-[20px] font-bold font-mono ${block.edgeColor}`} style={{ letterSpacing: '-0.5px' }}>
+                      {edgeDisplay}{!isNearZero && block.hasData && (isPositiveEdge ? ' ▲' : ' ▼')}
                     </div>
                   </div>
                   {hasPillars && (
@@ -1542,20 +1551,20 @@ function PillarBarsCompact({
               <span className="text-[9px] text-[#555] w-16 font-mono truncate" title={p.fullLabel}>
                 {p.label} <span className="text-[#555]">({p.weight})</span>
               </span>
-              <div className="flex-1 h-[6px] bg-[#111] rounded-sm relative">
+              <div className="flex-1 h-[6px] bg-[#111] relative">
                 {/* Center line — dashed for visibility at neutral */}
                 <div className="absolute left-1/2 top-0 w-0 h-full z-10" style={{ borderLeft: '1px dashed #222' }} />
                 {isHomeSide ? (
                   /* Bar grows RIGHT from center (50%) */
                   <div
-                    className="absolute top-0 h-full rounded-r-sm"
-                    style={{ left: '50%', width: `${barWidthPct}%`, backgroundColor: barColor }}
+                    className="absolute top-0 h-full"
+                    style={{ left: '50%', width: `${barWidthPct}%`, background: `linear-gradient(90deg, ${barColor}88, ${barColor})`, boxShadow: deviation > 8 ? `0 0 4px ${barColor}40` : 'none' }}
                   />
                 ) : (
                   /* Bar grows LEFT from center (50%) — anchor right edge at 50% */
                   <div
-                    className="absolute top-0 h-full rounded-l-sm"
-                    style={{ right: '50%', width: `${barWidthPct}%`, backgroundColor: barColor }}
+                    className="absolute top-0 h-full"
+                    style={{ right: '50%', width: `${barWidthPct}%`, background: `linear-gradient(270deg, ${barColor}88, ${barColor})`, boxShadow: deviation > 8 ? `0 0 4px ${barColor}40` : 'none' }}
                   />
                 )}
               </div>
@@ -1564,8 +1573,8 @@ function PillarBarsCompact({
             {/* Expanded detail */}
             {isExpanded && (
               <div
-                className="mt-1 mb-1.5 ml-1 rounded-sm overflow-hidden"
-                style={{ background: '#080808', borderLeft: `2px solid ${barColor}` }}
+                className="mt-1 mb-1.5 ml-1 overflow-hidden"
+                style={{ background: '#080808', borderLeft: `2px solid ${barColor}`, animation: 'omi-fade-in 0.15s ease-out' }}
               >
                 <div className="px-2.5 py-2">
                   <div className="text-[10px] text-[#888] leading-relaxed mb-2">
@@ -3299,6 +3308,33 @@ export function GameDetailClient({
 
   return (
     <>
+      {/* OMI Bloomberg Visual Overhaul — injected keyframes */}
+      <style>{`
+        @keyframes omi-gold-flash {
+          0% { box-shadow: 0 0 0 0 rgba(212, 168, 67, 0.4); }
+          50% { box-shadow: 0 0 8px 2px rgba(212, 168, 67, 0.15); }
+          100% { box-shadow: 0 0 0 0 rgba(212, 168, 67, 0); }
+        }
+        @keyframes omi-green-flash {
+          0% { text-shadow: 0 0 0 rgba(34, 197, 94, 0); }
+          50% { text-shadow: 0 0 6px rgba(34, 197, 94, 0.3); }
+          100% { text-shadow: 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        @keyframes omi-red-flash {
+          0% { text-shadow: 0 0 0 rgba(239, 68, 68, 0); }
+          50% { text-shadow: 0 0 6px rgba(239, 68, 68, 0.3); }
+          100% { text-shadow: 0 0 0 rgba(239, 68, 68, 0); }
+        }
+        @keyframes omi-pulse-border {
+          0%, 100% { border-color: rgba(212, 168, 67, 0.15); }
+          50% { border-color: rgba(212, 168, 67, 0.4); }
+        }
+        @keyframes omi-fade-in {
+          from { opacity: 0; transform: translateY(4px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+
       {/* Desktop: OMI Fair Pricing Layout */}
       <div className="hidden lg:block h-full" style={{ background: '#0b0b0b' }}>
         <div className="flex flex-col h-full mx-auto" style={{ maxWidth: '1400px', fontVariantNumeric: 'tabular-nums' }}>
@@ -3346,7 +3382,7 @@ export function GameDetailClient({
                     <button
                       key={m}
                       onClick={() => setActiveMarket(m)}
-                      className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
+                      className={`px-2.5 py-1 text-[11px] font-medium rounded transition-all duration-150 ${
                         activeMarket === m
                           ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
                           : 'text-[#555] hover:text-[#ccc] border border-transparent'
@@ -3371,7 +3407,7 @@ export function GameDetailClient({
                   <button
                     key={tab.key}
                     onClick={() => handlePeriodChange(tab.key)}
-                    className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-colors ${
+                    className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-all duration-150 ${
                       activePeriod === tab.key
                         ? 'bg-[#222] text-[#ddd]'
                         : 'text-[#555] hover:text-[#888]'
@@ -3387,9 +3423,9 @@ export function GameDetailClient({
           {/* Main area: scrollable left content + fixed Edge AI sidebar */}
           <div className="flex flex-1 min-h-0">
             {/* Left: independently scrollable content */}
-            <div className="flex-1 min-w-0 overflow-y-auto">
+            <div className="flex-1 min-w-0 overflow-y-auto" style={{ padding: '10px 10px 10px 10px' }}>
               {/* Unified convergence chart */}
-              <div className="border-b border-[#1a1a1a]/50">
+              <div style={{ background: '#080808', border: '1px solid #1a1a1a', marginBottom: '10px' }}>
                 <UnifiedChart
                   key={`chart-${activeMarket}-${activePeriod}`}
                   compositeHistory={compositeHistory}
@@ -3402,6 +3438,7 @@ export function GameDetailClient({
                 />
               </div>
 
+              <div style={{ background: '#080808', border: '1px solid #1a1a1a', marginBottom: '10px' }}>
               <OmiFairPricing
                 key={`desktop-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
                 pythonPillars={pythonPillarScores}
@@ -3415,9 +3452,11 @@ export function GameDetailClient({
                 renderKey={renderKey}
                 dbFairLines={dbFairLines}
               />
+              </div>
 
               {/* Why This Price + CEQ Factors — side by side */}
-              <div className="flex border-t border-[#1a1a1a]/50">
+              <div style={{ background: '#080808', border: '1px solid #1a1a1a', marginBottom: '10px' }}>
+              <div className="flex">
                 <div className="w-1/2 border-r border-[#1a1a1a]/50">
                   <WhyThisPrice
                     pythonPillars={pythonPillarScores}
@@ -3432,9 +3471,11 @@ export function GameDetailClient({
                   <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
                 </div>
               </div>
+              </div>
 
               {/* L10 ATS + Injury Report — side by side */}
-              <div className="flex border-t border-[#1a1a1a]/50">
+              <div style={{ background: '#080808', border: '1px solid #1a1a1a', marginBottom: '10px' }}>
+              <div className="flex">
                 <div className="w-1/2 border-r border-[#1a1a1a]/50">
                   <L10AtsPanel homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} activeMarket={activeMarket} />
                 </div>
@@ -3442,10 +3483,11 @@ export function GameDetailClient({
                   <InjuryReport homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} />
                 </div>
               </div>
+              </div>
             </div>
 
             {/* Right: Edge AI sidebar — fixed width, full height */}
-            <div className="w-[260px] flex-shrink-0">
+            <div className="w-[260px] flex-shrink-0" style={{ borderLeft: '1px solid #1a1a1a', marginLeft: '10px' }}>
               <AskEdgeAI activeMarket={activeMarket} activePeriod={activePeriod} gameContext={edgeAIGameContext} />
             </div>
           </div>
@@ -3485,7 +3527,7 @@ export function GameDetailClient({
         {isLive && <GameStatusBanner gameState="live" />}
         {isFinal && <GameStatusBanner gameState="final" />}
 
-        <div className="p-2 space-y-2">
+        <div className="p-3 space-y-3">
           {/* Market + Period tabs */}
           <div className="bg-[#0b0b0b]/50 rounded p-2">
             <div className="flex items-center gap-0.5 mb-1.5 flex-wrap">
@@ -3495,7 +3537,7 @@ export function GameDetailClient({
                   <button
                     key={m}
                     onClick={() => setActiveMarket(m)}
-                    className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
+                    className={`px-2.5 py-1 text-[11px] font-medium rounded transition-all duration-150 ${
                       activeMarket === m
                         ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
                         : 'text-[#555] hover:text-[#ccc] border border-transparent'
@@ -3534,6 +3576,7 @@ export function GameDetailClient({
           </div>
 
           {/* Unified convergence chart */}
+          <div style={{ background: '#080808', border: '1px solid #1a1a1a' }}>
           <UnifiedChart
             key={`chart-mobile-${activeMarket}-${activePeriod}`}
             compositeHistory={compositeHistory}
@@ -3544,7 +3587,9 @@ export function GameDetailClient({
             commenceTime={gameData.commenceTime}
             pythonPillars={pythonPillarScores}
           />
+          </div>
 
+          <div style={{ background: '#080808', border: '1px solid #1a1a1a' }}>
           <OmiFairPricing
             key={`mobile-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
             pythonPillars={pythonPillarScores}
@@ -3558,7 +3603,9 @@ export function GameDetailClient({
             renderKey={renderKey}
             dbFairLines={dbFairLines}
           />
+          </div>
 
+          <div style={{ background: '#080808', border: '1px solid #1a1a1a' }}>
           <WhyThisPrice
             pythonPillars={pythonPillarScores}
             ceq={activeCeq}
@@ -3567,8 +3614,11 @@ export function GameDetailClient({
             activeMarket={activeMarket}
             activePeriod={activePeriod}
           />
+          </div>
 
+          <div style={{ background: '#080808', border: '1px solid #1a1a1a' }}>
           <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
+          </div>
 
           {/* L10 ATS / O-U / W-L */}
           <L10AtsPanel homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} activeMarket={activeMarket} />
@@ -3580,6 +3630,11 @@ export function GameDetailClient({
           {exchangeData && (
             <ExchangeSignals exchangeData={exchangeData} bookmakers={bookmakers} gameData={gameData} activeMarket={activeMarket} />
           )}
+
+          {/* Edge AI — mobile */}
+          <div style={{ background: '#080808', border: '1px solid #1a1a1a' }}>
+            <AskEdgeAI activeMarket={activeMarket} activePeriod={activePeriod} gameContext={edgeAIGameContext} />
+          </div>
         </div>
       </div>
     </>

@@ -144,8 +144,15 @@ interface CompositeHistoryPoint {
 // UnifiedChart — convergence chart with smooth curves, edge shading, drivers
 // ============================================================================
 
+interface SelectedBookLines {
+  spreadHome?: number;   // e.g. -2.5
+  totalLine?: number;    // e.g. 215.5
+  mlHome?: number;       // e.g. -148 (American odds)
+  mlAway?: number;       // e.g. +124 (American odds)
+}
+
 function UnifiedChart({
-  compositeHistory, sportKey, activeMarket, homeTeam, awayTeam, commenceTime, pythonPillars,
+  compositeHistory, sportKey, activeMarket, homeTeam, awayTeam, commenceTime, pythonPillars, selectedBookLines,
 }: {
   compositeHistory: CompositeHistoryPoint[];
   sportKey: string;
@@ -154,6 +161,7 @@ function UnifiedChart({
   awayTeam: string;
   commenceTime?: string;
   pythonPillars?: PythonPillarScores | null;
+  selectedBookLines?: SelectedBookLines;
 }) {
   const [hoverX, setHoverX] = useState<number | null>(null);
   const [chartTimeRange, setChartTimeRange] = useState<TimeRange>('ALL');
@@ -201,10 +209,27 @@ function UnifiedChart({
     return { bookVal, fairVal };
   };
 
-  const data = filtered.map(row => {
+  const data = filtered.map((row, idx) => {
     const { bookVal, fairVal } = getValues(row);
-    return { timestamp: new Date(row.timestamp), bookVal, fairVal, raw: row };
+    return { timestamp: new Date(row.timestamp), bookVal, fairVal, raw: row, isLast: idx === filtered.length - 1 };
   }).filter(d => d.bookVal != null && d.fairVal != null);
+
+  // Override the latest point's book value with the selected book's actual line
+  if (data.length > 0 && selectedBookLines) {
+    const last = data[data.length - 1];
+    let selBookVal: number | null = null;
+    if (isTotal && selectedBookLines.totalLine != null) {
+      selBookVal = selectedBookLines.totalLine;
+    } else if (isML && selectedBookLines.mlHome != null && selectedBookLines.mlAway != null) {
+      selBookVal = trackingSide === 'away' ? selectedBookLines.mlAway : selectedBookLines.mlHome;
+    } else if (!isTotal && !isML && selectedBookLines.spreadHome != null) {
+      selBookVal = selectedBookLines.spreadHome;
+      if (trackingSide === 'away') selBookVal = -selBookVal;
+    }
+    if (selBookVal != null) {
+      data[data.length - 1] = { ...last, bookVal: selBookVal };
+    }
+  }
 
   // Empty state
   if (data.length === 0) {
@@ -288,15 +313,18 @@ function UnifiedChart({
   };
 
   // Edge calculation: for ML use vig-removed implied prob diff, for spreads/totals use point gap * rate
-  const calcEdge = (bookV: number, fairV: number, raw?: CompositeHistoryPoint): number => {
-    if (isML && raw?.book_ml_home != null && raw?.book_ml_away != null) {
-      const stripped = removeVig(raw.book_ml_home, raw.book_ml_away);
-      const bookProb = trackingSide === 'away' ? stripped.fairAwayProb : stripped.fairHomeProb;
-      const fairProb = americanToImplied(fairV);
-      return Math.abs(bookProb - fairProb) * 100;
-    }
+  const calcEdge = (bookV: number, fairV: number, raw?: CompositeHistoryPoint, useSelectedBook?: boolean): number => {
     if (isML) {
-      // Fallback if raw row missing — use raw odds (less accurate but not broken)
+      // Use selected book's ML for vig removal when available (latest point)
+      const mlHome = (useSelectedBook && selectedBookLines?.mlHome != null) ? selectedBookLines.mlHome : raw?.book_ml_home;
+      const mlAway = (useSelectedBook && selectedBookLines?.mlAway != null) ? selectedBookLines.mlAway : raw?.book_ml_away;
+      if (mlHome != null && mlAway != null) {
+        const stripped = removeVig(mlHome, mlAway);
+        const bookProb = trackingSide === 'away' ? stripped.fairAwayProb : stripped.fairHomeProb;
+        const fairProb = americanToImplied(fairV);
+        return Math.abs(bookProb - fairProb) * 100;
+      }
+      // Fallback if no ML pair available — use raw odds (less accurate but not broken)
       return Math.abs(americanToImplied(bookV) - americanToImplied(fairV)) * 100;
     }
     return Math.abs(bookV - fairV) * rate * 100;
@@ -412,9 +440,9 @@ function UnifiedChart({
   const currentBook = lastData.bookVal;
   const currentFair = lastData.fairVal;
   const currentGap = (currentBook != null && currentFair != null)
-    ? (isML ? calcEdge(currentBook, currentFair, lastData.raw) : Math.abs(currentBook - currentFair))
+    ? (isML ? calcEdge(currentBook, currentFair, lastData.raw, true) : Math.abs(currentBook - currentFair))
     : 0;
-  const currentEdge = (currentBook != null && currentFair != null) ? calcEdge(currentBook, currentFair, lastData.raw) : 0;
+  const currentEdge = (currentBook != null && currentFair != null) ? calcEdge(currentBook, currentFair, lastData.raw, true) : 0;
   const compositeScore = pythonPillars?.composite ?? null;
 
   // Hover logic — 1:1 pixel mapping, no viewBox conversion needed
@@ -432,7 +460,8 @@ function UnifiedChart({
     const d = data[idx];
     const bookV = d.bookVal;
     const fairV = d.fairVal;
-    const edge = (bookV != null && fairV != null) ? calcEdge(bookV, fairV, d.raw) : 0;
+    const isLastPoint = idx === data.length - 1;
+    const edge = (bookV != null && fairV != null) ? calcEdge(bookV, fairV, d.raw, isLastPoint) : 0;
     const favorable = isFavorable(fairV ?? 0, bookV ?? 0);
     const tierLabel = edge >= 5 ? 'STRONG' : edge >= 3 ? 'EDGE' : edge >= 1 ? 'WATCH' : 'FLAT';
     const nearbyDriver = drivers.find(drv => Math.abs(drv.index - idx) <= 2);
@@ -3036,6 +3065,15 @@ export function GameDetailClient({
   const [selectedBook, setSelectedBook] = useState(filteredBooks[0] || 'fanduel');
   const selectedBookMarkets = bookmakers[selectedBook]?.marketGroups || {};
 
+  // Selected book's current lines for the active period (passed to chart)
+  const selBookPeriodData = selectedBookMarkets[PERIOD_MAP[activePeriod] || 'fullGame'];
+  const selectedBookLines: SelectedBookLines | undefined = selBookPeriodData ? {
+    spreadHome: selBookPeriodData.spreads?.home?.line,
+    totalLine: selBookPeriodData.totals?.line,
+    mlHome: selBookPeriodData.h2h?.home?.price,
+    mlAway: selBookPeriodData.h2h?.away?.price,
+  } : undefined;
+
   // CEQ by period
   const tabToPeriodKey: Record<string, keyof CEQByPeriod> = {
     'full': 'fullGame', '1h': 'firstHalf', '2h': 'secondHalf',
@@ -4099,6 +4137,7 @@ export function GameDetailClient({
                 awayTeam={gameData.awayTeam}
                 commenceTime={gameData.commenceTime}
                 pythonPillars={pythonPillarScores}
+                selectedBookLines={selectedBookLines}
               />
             </div>
             {/* Market Intelligence — fills dead space below chart */}
@@ -4381,6 +4420,7 @@ export function GameDetailClient({
             awayTeam={gameData.awayTeam}
             commenceTime={gameData.commenceTime}
             pythonPillars={pythonPillarScores}
+            selectedBookLines={selectedBookLines}
           />
           </div>
 

@@ -333,55 +333,34 @@ export function computePnl(trades: TradeEntry[]) {
   for (const t of trades) {
     if (t.status === "SUCCESS") successes++;
     if (t.contracts_filled > 0) fills++;
-    const qty = t.contracts_filled > 0 ? t.contracts_filled : (t.contracts_intended || 0);
 
     // Track fees
     totalFees += (t.pm_fee || 0) + (t.k_fee || 0);
 
-    if (isOpenTrade(t)) {
-      const sp = t.settlement_pnl != null ? parseFloat(String(t.settlement_pnl)) : NaN;
-      if (!isNaN(sp)) {
-        directionalPnl += sp;
-        dirCount++;
-        if (sp >= 0) realizedWins++;
-        else realizedLosses++;
-      } else {
-        openCount++;
-      }
+    // Use tradePnl() for ALL trades — single priority chain:
+    // reconciled_pnl > settlement_pnl > actual_pnl > estimated
+    const pnl = tradePnl(t);
+
+    if (pnl.isOpen) {
+      openCount++;
       continue;
     }
 
-    if (t.status === "SUCCESS") {
-      const sp = t.settlement_pnl != null ? parseFloat(String(t.settlement_pnl)) : NaN;
-      if (!isNaN(sp)) {
-        arbPnl += sp;
-        if (sp >= 0) realizedWins++;
-        else realizedLosses++;
-      } else if (t.spread_cents != null && qty > 0) {
-        const pnlDollars = (t.spread_cents * qty) / 100;
-        arbPnl += pnlDollars;
-        if (pnlDollars >= 0) realizedWins++;
-        else realizedLosses++;
-      }
-      continue;
-    }
+    if (pnl.totalDollars == null) continue;
 
+    // Categorize by status for breakdown
     if (t.status === "EXITED") {
-      const sp = t.settlement_pnl != null ? parseFloat(String(t.settlement_pnl)) : NaN;
-      if (!isNaN(sp)) {
-        exitedPnl += sp;
-        if (sp >= 0) realizedWins++;
-        else realizedLosses++;
-      } else {
-        const pnl = tradePnl(t);
-        if (pnl.totalDollars != null) {
-          exitedPnl += pnl.totalDollars;
-          if (pnl.totalDollars >= 0) realizedWins++;
-          else realizedLosses++;
-        }
-      }
-      continue;
+      exitedPnl += pnl.totalDollars;
+    } else if (isOpenTrade(t)) {
+      // "Open" trade that has settlement/reconciled P&L (settled directional)
+      directionalPnl += pnl.totalDollars;
+      dirCount++;
+    } else {
+      arbPnl += pnl.totalDollars;
     }
+
+    if (pnl.totalDollars >= 0) realizedWins++;
+    else realizedLosses++;
   }
 
   const netTotal = arbPnl + exitedPnl + directionalPnl;

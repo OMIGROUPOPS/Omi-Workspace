@@ -71,11 +71,19 @@ export function PnlHistoryTab({ data }: Props) {
 
       {/* ── Summary Metrics ──────────────────────────────────── */}
       <div className="grid grid-cols-6 gap-3">
-        <DashboardCard
-          label="Net P&L"
-          value={`$${pnlSummaryStats.totalPnl.toFixed(2)}`}
-          accent={pnlSummaryStats.totalPnl >= 0 ? "text-emerald-400" : "text-red-400"}
-        />
+        {(() => {
+          const cashPnl = state?.pnl_summary?.cash_pnl;
+          const headline = cashPnl != null ? cashPnl : pnlSummaryStats.totalPnl;
+          const sub = cashPnl != null ? `Arb: $${pnlSummaryStats.totalPnl.toFixed(2)}` : undefined;
+          return (
+            <DashboardCard
+              label="Net P&L"
+              value={`${headline < 0 ? "-" : ""}$${Math.abs(headline).toFixed(2)}`}
+              accent={headline >= 0 ? "text-emerald-400" : "text-red-400"}
+              sub={sub}
+            />
+          );
+        })()}
         <DashboardCard
           label="Win Rate"
           value={`${pnlSummaryStats.winRate}%`}
@@ -131,6 +139,7 @@ export function PnlHistoryTab({ data }: Props) {
         balances={state?.balances}
         positions={activePositions}
         totalPnl={totalPnl}
+        pnlSummary={state?.pnl_summary}
       />
 
       {/* ── Charts Row ────────────────────────────────────────── */}

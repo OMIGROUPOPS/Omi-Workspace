@@ -58,12 +58,23 @@ export function MonitorTab({ data }: Props) {
           value={`$${(state?.balances?.total_portfolio ?? 0).toFixed(2)}`}
           sub={portfolioDelta.total !== 0 ? `${portfolioDelta.total >= 0 ? "+" : ""}$${portfolioDelta.total.toFixed(2)}` : undefined}
         />
-        <DashboardCard
-          label="P&L (All)"
-          value={`$${totalPnl.netTotal.toFixed(2)}`}
-          accent={totalPnl.netTotal >= 0 ? "text-emerald-400" : "text-red-400"}
-          sub={`${totalPnl.realizedWins}W / ${totalPnl.realizedLosses}L${totalPnl.openCount > 0 ? ` (${totalPnl.openCount} open)` : ""}`}
-        />
+        {(() => {
+          const cashPnl = state?.pnl_summary?.cash_pnl;
+          const headline = cashPnl != null ? cashPnl : totalPnl.netTotal;
+          const arbPnl = totalPnl.netTotal;
+          const legacy = cashPnl != null ? cashPnl - arbPnl : null;
+          const sub = cashPnl != null
+            ? `Arb: $${arbPnl.toFixed(2)} | Legacy: $${legacy!.toFixed(2)}`
+            : `${totalPnl.realizedWins}W / ${totalPnl.realizedLosses}L${totalPnl.openCount > 0 ? ` (${totalPnl.openCount} open)` : ""}`;
+          return (
+            <DashboardCard
+              label="P&L (All)"
+              value={`${headline < 0 ? "-" : ""}$${Math.abs(headline).toFixed(2)}`}
+              accent={headline >= 0 ? "text-emerald-400" : "text-red-400"}
+              sub={sub}
+            />
+          );
+        })()}
         <DashboardCard
           label="Spreads"
           value={`${sortedSpreads.filter((s) => Math.max(s.spread_buy_pm, s.spread_buy_k) >= 4).length}`}

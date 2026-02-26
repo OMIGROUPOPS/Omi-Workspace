@@ -196,6 +196,14 @@ export interface SystemStatus {
   last_error: string | null;
 }
 
+export interface TeamPrices {
+  k_bid: number;
+  k_ask: number;
+  pm_bid: number;
+  pm_ask: number;
+  spread: number;
+}
+
 export interface MappedGame {
   cache_key: string;
   game_id: string;
@@ -210,6 +218,8 @@ export interface MappedGame {
   best_spread: number;
   k_depth?: number;
   pm_depth?: number;
+  team1_prices?: TeamPrices;
+  team2_prices?: TeamPrices;
   status: string;
   traded: boolean;
 }

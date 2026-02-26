@@ -11,6 +11,7 @@ export type {
   Position,
   Balances,
   SystemStatus,
+  TeamPrices,
   MappedGame,
   GameLiquidity,
   SpreadSnapshot,

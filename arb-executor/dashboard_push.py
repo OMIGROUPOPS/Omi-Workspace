@@ -761,44 +761,44 @@ class DashboardPusher:
             kalshi_tickers = g.get("kalshi_tickers", {})
             ticker_list = list(kalshi_tickers.values())
 
-            # Current best spread from live data
+            # Per-team prices and spreads from live orderbooks
+            team_order = [team1, team2]
+            team_prices_list = []  # [{k_bid, k_ask, pm_bid, pm_ask, spread}, ...]
             best_spread = 0.0
-            for team_abbr, ticker in kalshi_tickers.items():
-                book = self.local_books.get(ticker)
-                if not book:
-                    continue
-                k_bid = book.get("best_bid") or 0
-                k_ask = book.get("best_ask") or 0
-                if k_bid == 0 or k_ask == 0:
-                    continue
+            k_depth_total = 0
+            pm_depth_total = 0
+
+            for team_abbr in team_order:
+                tp = {"k_bid": 0, "k_ask": 0, "pm_bid": 0, "pm_ask": 0, "spread": 0.0}
+                ticker = kalshi_tickers.get(team_abbr, "")
+                if ticker:
+                    book = self.local_books.get(ticker)
+                    if book:
+                        tp["k_bid"] = book.get("best_bid") or 0
+                        tp["k_ask"] = book.get("best_ask") or 0
+                        k_depth_total += sum(book.get("yes_bids", {}).values())
 
                 pm_key = f"{cache_key}_{team_abbr}"
                 pm = self.pm_prices.get(pm_key)
-                if not pm:
-                    continue
-                pm_bid = pm.get("bid") or 0
-                pm_ask = pm.get("ask") or 0
+                if pm:
+                    tp["pm_bid"] = round(pm.get("bid") or 0, 1)
+                    tp["pm_ask"] = round(pm.get("ask") or 0, 1)
 
-                spread_buy_pm = k_bid - pm_ask
-                spread_buy_k = pm_bid - k_ask
-                best = max(spread_buy_pm, spread_buy_k)
-                if best > best_spread:
-                    best_spread = best
+                # Per-team spread
+                if tp["k_bid"] and tp["pm_ask"]:
+                    spread_buy_pm = tp["k_bid"] - tp["pm_ask"]
+                    spread_buy_k = tp["pm_bid"] - tp["k_ask"]
+                    tp["spread"] = round(max(spread_buy_pm, spread_buy_k), 1)
+                    if tp["spread"] > best_spread:
+                        best_spread = tp["spread"]
 
-            # Aggregate depth across all levels for this game
-            k_depth_total = 0
-            pm_depth_total = 0
-            for team_abbr, ticker in kalshi_tickers.items():
-                book = self.local_books.get(ticker)
-                if book:
-                    k_depth_total += sum(book.get("yes_bids", {}).values())
+                team_prices_list.append(tp)
 
             # PM full book depth (all levels)
             pm_book = self.pm_books.get(pm_slug, {})
             if pm_book:
                 pm_depth_total = sum(l.get("size", 0) for l in pm_book.get("bids", []))
             else:
-                # Fallback to L1 from pm_prices
                 for team_abbr in kalshi_tickers:
                     pm = self.pm_prices.get(f"{cache_key}_{team_abbr}")
                     if pm:
@@ -826,6 +826,8 @@ class DashboardPusher:
                 "best_spread": round(best_spread, 1),
                 "k_depth": k_depth_total,
                 "pm_depth": pm_depth_total,
+                "team1_prices": team_prices_list[0] if len(team_prices_list) > 0 else None,
+                "team2_prices": team_prices_list[1] if len(team_prices_list) > 1 else None,
                 "status": status,
                 "traded": game_id in traded_game_ids,
             })

@@ -546,19 +546,19 @@ function UnifiedChart({
           {/* Hover crosshair + tooltip */}
           {hoverData && (
             <>
-              <line x1={hoverData.x} y1={padT} x2={hoverData.x} y2={padT + chartH} stroke="#333" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.8" />
+              <line x1={hoverData.x} y1={padT} x2={hoverData.x} y2={padT + chartH} stroke="#D4A843" strokeWidth="0.75" strokeDasharray="3 3" opacity="0.5" />
               {hoverData.fairY != null && (
                 <line x1={hoverData.x} y1={hoverData.fairY} x2={svgW - padR} y2={hoverData.fairY} stroke={FAIR_LINE_COLOR} strokeWidth="0.5" strokeDasharray="2 2" opacity="0.4" />
               )}
               {hoverData.bookY != null && (
                 <line x1={hoverData.x} y1={hoverData.bookY} x2={svgW - padR} y2={hoverData.bookY} stroke={BOOK_LINE_COLOR} strokeWidth="0.5" strokeDasharray="2 2" opacity="0.3" />
               )}
-              {hoverData.bookY != null && <circle cx={hoverData.x} cy={hoverData.bookY} r="3" fill={BOOK_LINE_COLOR} stroke="#0b0b0b" strokeWidth="1" />}
-              {hoverData.fairY != null && <circle cx={hoverData.x} cy={hoverData.fairY} r="3" fill={FAIR_LINE_COLOR} stroke="#0b0b0b" strokeWidth="1" />}
+              {hoverData.bookY != null && <circle cx={hoverData.x} cy={hoverData.bookY} r="4.5" fill={BOOK_LINE_COLOR} stroke="#0b0b0b" strokeWidth="1.5" className="omi-crosshair-dot" />}
+              {hoverData.fairY != null && <circle cx={hoverData.x} cy={hoverData.fairY} r="4.5" fill={FAIR_LINE_COLOR} stroke="#0b0b0b" strokeWidth="1.5" className="omi-crosshair-dot" />}
               {(() => {
                 const hasDriver = !!hoverData.nearbyDriver;
-                const tooltipW = hasDriver ? 240 : 130;
-                const tooltipH = hasDriver ? 96 : 56;
+                const tooltipW = hasDriver ? 260 : 150;
+                const tooltipH = hasDriver ? 108 : 68;
                 const tx = flipTooltip ? hoverData.x - tooltipW - 8 : hoverData.x + 8;
                 const ty = Math.max(padT, Math.min(padT + chartH - tooltipH, (hoverData.bookY ?? padT + chartH / 2) - tooltipH / 2));
                 const fmtTs = hoverData.ts.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
@@ -566,7 +566,7 @@ function UnifiedChart({
                 const dirColor = hoverData.favorable ? '#22c55e' : '#ef4444';
                 return (
                   <g>
-                    <rect x={tx} y={ty} width={tooltipW} height={tooltipH} rx="2" fill="#0d0d0d" stroke={FAIR_LINE_COLOR} strokeWidth="0.5" opacity="0.95" />
+                    <rect x={tx} y={ty} width={tooltipW} height={tooltipH} rx="3" fill="#0d0d0d" stroke={FAIR_LINE_COLOR} strokeWidth="0.75" opacity="0.97" />
                     <rect x={tx} y={ty} width={tooltipW} height={tooltipH} rx="2" fill="none" stroke="#1a1a1a" strokeWidth="1" />
                     <text x={tx + 6} y={ty + 12} fill="#555" fontSize="8" fontFamily="monospace">{fmtTs}</text>
                     <text x={tx + 6} y={ty + 24} fill={BOOK_LINE_COLOR} fontSize="9" fontFamily="monospace" fontWeight="600">
@@ -600,7 +600,7 @@ function UnifiedChart({
       </div>
 
       {/* Edge heat strip */}
-      <div className="mx-3 h-2 flex overflow-hidden" style={{ background: '#111' }}>
+      <div className="omi-heat-strip flex">
         {edgeSegments.map((seg, i) => (
           <div
             key={i}
@@ -613,26 +613,26 @@ function UnifiedChart({
       </div>
 
       {/* Summary row: COMP | OMI FAIR | BOOK | GAP | EDGE */}
-      <div className="grid grid-cols-5 px-3 py-1.5" style={{ borderTop: '1px solid #1a1a1a' }}>
+      <div className="grid grid-cols-5 px-4 py-2.5" style={{ borderTop: '1px solid #1f1f1f', background: '#0d0d0d' }}>
         <div className="text-center">
-          <div className="text-[7px] text-[#333] font-mono uppercase">Comp</div>
-          <div className="text-[11px] font-mono font-bold text-[#ccc]">{compositeScore ?? '\u2014'}</div>
+          <div className="text-[8px] text-[#555] font-mono uppercase tracking-wider">Comp</div>
+          <div className="text-[13px] font-mono font-bold text-[#ddd]">{compositeScore ?? '\u2014'}</div>
         </div>
         <div className="text-center">
-          <div className="text-[7px] text-[#333] font-mono uppercase">OMI Fair</div>
-          <div className="text-[11px] font-mono font-bold" style={{ color: FAIR_LINE_COLOR }}>{currentFair != null ? formatValue(currentFair) : '\u2014'}</div>
+          <div className="text-[8px] text-[#555] font-mono uppercase tracking-wider">OMI Fair</div>
+          <div className="text-[13px] font-mono font-bold" style={{ color: FAIR_LINE_COLOR }}>{currentFair != null ? formatValue(currentFair) : '\u2014'}</div>
         </div>
         <div className="text-center">
-          <div className="text-[7px] text-[#333] font-mono uppercase">Book</div>
-          <div className="text-[11px] font-mono font-bold" style={{ color: BOOK_LINE_COLOR }}>{currentBook != null ? formatValue(currentBook) : '\u2014'}</div>
+          <div className="text-[8px] text-[#555] font-mono uppercase tracking-wider">Book</div>
+          <div className="text-[13px] font-mono font-bold" style={{ color: BOOK_LINE_COLOR }}>{currentBook != null ? formatValue(currentBook) : '\u2014'}</div>
         </div>
         <div className="text-center">
-          <div className="text-[7px] text-[#333] font-mono uppercase">Gap</div>
-          <div className="text-[11px] font-mono font-bold text-[#888]">{currentGap > 0 ? currentGap.toFixed(1) : '\u2014'}</div>
+          <div className="text-[8px] text-[#555] font-mono uppercase tracking-wider">Gap</div>
+          <div className="text-[13px] font-mono font-bold text-[#999]">{currentGap > 0 ? currentGap.toFixed(1) : '\u2014'}</div>
         </div>
         <div className="text-center">
-          <div className="text-[7px] text-[#333] font-mono uppercase">Edge</div>
-          <div className="text-[11px] font-mono font-bold" style={{ color: currentEdge >= 5 ? '#22c55e' : currentEdge >= 3 ? '#D4A843' : currentEdge >= 1 ? '#888' : '#555' }}>
+          <div className="text-[8px] text-[#555] font-mono uppercase tracking-wider">Edge</div>
+          <div className="text-[13px] font-mono font-bold" style={{ color: currentEdge >= 5 ? '#22c55e' : currentEdge >= 3 ? '#D4A843' : currentEdge >= 1 ? '#888' : '#555' }}>
             {currentEdge > 0 ? `${currentEdge.toFixed(1)}%` : '\u2014'}
           </div>
         </div>
@@ -667,12 +667,12 @@ function TerminalHeader({
   const marketLabels: Record<string, string> = { 'spread': 'Spread', 'total': 'Total', 'moneyline': 'Moneyline' };
 
   return (
-    <div className="bg-[#0b0b0b] flex items-center justify-between px-3 h-[36px] min-h-[36px]" style={{ gridArea: 'header', borderBottom: '1px solid #1a1a1a' }}>
+    <div className="flex items-center justify-between px-4 h-[44px] min-h-[44px]" style={{ gridArea: 'header', borderBottom: '1px solid #1f1f1f', background: 'linear-gradient(180deg, #111111 0%, #0b0b0b 100%)' }}>
       <div className="flex items-center gap-3">
         <a href="/edge/portal/sports" className="text-[#555] hover:text-[#ccc] transition-colors">
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
         </a>
-        <span className="text-[13px] font-bold text-[#ddd] tracking-tight font-mono">
+        <span className="text-[15px] font-bold tracking-tight" style={{ fontFamily: "'JetBrains Mono', monospace", color: '#e5e5e5' }}>
           {abbrev(awayTeam)} @ {abbrev(homeTeam)}
         </span>
         <span className="text-[10px] text-[#555] hidden sm:inline" title={`${awayTeam} @ ${homeTeam}`}>
@@ -1298,8 +1298,14 @@ function OmiFairPricing({
           const maxAbsEdge = Math.max(...sideBlocks.map(b => Math.abs(b.edgePct)));
           if (maxAbsEdge < 8) return null;
           return (
-            <div className="text-[10px] text-amber-600 bg-amber-50 border border-amber-200 rounded px-2 py-1 mt-1">
-              HIGH VARIANCE — Edge of {maxAbsEdge.toFixed(1)}% exceeds 8% threshold. Signal reliability decreases at extreme edges.
+            <div className="omi-variance-alert">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                <span style={{ color: '#D4A843', fontSize: '14px' }}>⚠</span>
+                <span style={{ color: '#D4A843', fontSize: '11px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase' as const }}>High Variance</span>
+              </div>
+              <div style={{ color: '#999', fontSize: '10px', lineHeight: '1.5' }}>
+                Edge of {maxAbsEdge?.toFixed(1) ?? '--'}% exceeds 8% threshold. Signal reliability decreases at extreme edges.
+              </div>
             </div>
           );
         })()}
@@ -1323,31 +1329,31 @@ function OmiFairPricing({
           })();
 
           return (
-            <div key={blockIdx} className={`overflow-hidden border border-[#1a1a1a] ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`} style={{ borderTop: `2px solid ${isPositiveEdge && absEdge >= 0.5 ? '#22c55e' : isNearZero ? '#1a1a1a' : '#ef4444'}`, animation: 'omi-fade-in 0.2s ease-out' }}>
+            <div key={blockIdx} className={`overflow-hidden ${isHighEdge ? 'border-l-2 border-l-emerald-400' : ''}`} style={{ border: '1px solid #1f1f1f', borderTop: `3px solid ${isPositiveEdge && absEdge >= 0.5 ? '#22c55e' : isNearZero ? '#1a1a1a' : '#ef4444'}`, animation: 'omi-fade-in 0.3s ease-out', background: '#111111', boxShadow: isHighEdge ? '0 0 16px rgba(34, 197, 94, 0.08)' : 'none' }}>
               {/* Block header — team/side label */}
-              <div className="bg-[#0b0b0b] px-2 py-1 border-b border-[#1a1a1a]">
-                <span className="text-[11px] font-bold text-[#ddd]">{block.label}</span>
+              <div className="px-3 py-2 border-b border-[#1a1a1a]" style={{ background: 'linear-gradient(180deg, #141414 0%, #0f0f0f 100%)' }}>
+                <span className="font-bold text-[#e5e5e5]" style={{ fontSize: '12px', fontFamily: "'IBM Plex Sans', sans-serif", letterSpacing: '0.5px' }}>{block.label}</span>
               </div>
               {/* Comparison: OMI Fair vs Book vs Edge vs Confidence */}
-              <div className="px-2 py-1.5">
+              <div className="px-3 py-3">
                 <div className="flex items-end justify-between gap-1.5">
                   <div>
-                    <div className="text-[8px] text-[#555] uppercase tracking-widest">{hasPillars ? 'OMI Fair' : 'Consensus'}</div>
-                    <div className="text-[18px] font-bold font-mono" style={{ color: '#D4A843' }}>{block.fair}</div>
+                    <div className="omi-label">{hasPillars ? 'OMI Fair' : 'Consensus'}</div>
+                    <div className="font-bold" style={{ color: '#D4A843', fontSize: '22px', fontFamily: "'JetBrains Mono', monospace", animation: 'omi-gold-pulse 3s ease-in-out infinite' }}>{block.fair}</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-[8px] text-[#555] uppercase tracking-widest">{block.bookName}</div>
-                    <div className="text-[18px] font-bold font-mono" style={{ color: '#5b7a99' }}>{block.bookLine}</div>
+                    <div className="omi-label">{block.bookName}</div>
+                    <div className="font-bold" style={{ color: '#5b7a99', fontSize: '22px', fontFamily: "'JetBrains Mono', monospace" }}>{block.bookLine}</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-[8px] text-[#555] uppercase tracking-widest">Edge</div>
-                    <div className={`text-[20px] font-bold font-mono ${block.edgeColor}`} style={{ letterSpacing: '-0.5px' }}>
+                    <div className="omi-label">Edge</div>
+                    <div className={`font-bold font-mono ${block.edgeColor} ${!isNearZero && block.hasData ? (isPositiveEdge ? 'omi-edge-positive' : 'omi-edge-negative') : ''}`} style={{ fontSize: '26px', letterSpacing: '-0.5px', fontFamily: "'JetBrains Mono', monospace" }}>
                       {edgeDisplay}{!isNearZero && block.hasData && (isPositiveEdge ? ' ▲' : ' ▼')}
                     </div>
                   </div>
                   {hasPillars && (
                     <div className="text-right">
-                      <div className="text-[8px] text-[#555] uppercase tracking-widest">{activeMarket === 'moneyline' ? 'Win %' : 'Conf'}</div>
+                      <div className="omi-label">{activeMarket === 'moneyline' ? 'Win %' : 'Conf'}</div>
                       <div className={`text-[18px] font-bold font-mono ${block.confColor}`}>
                         {activeMarket === 'moneyline' ? `${block.confidence.toFixed(1)}%` : `${block.confidence}%`}
                       </div>
@@ -1548,27 +1554,25 @@ function PillarBarsCompact({
               className="flex items-center gap-1 cursor-pointer hover:bg-[#111]/50 rounded-sm -mx-0.5 px-0.5 transition-colors"
               onClick={() => setExpandedPillar(isExpanded ? null : p.key)}
             >
-              <span className="text-[9px] text-[#555] w-16 font-mono truncate" title={p.fullLabel}>
+              <span className="text-[10px] text-[#666] w-20 font-mono truncate" title={p.fullLabel} style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                 {p.label} <span className="text-[#555]">({p.weight})</span>
               </span>
-              <div className="flex-1 h-[6px] bg-[#111] relative">
+              <div className="flex-1 h-[10px] bg-[#0a0a0a] relative" style={{ border: '1px solid #1a1a1a', borderRadius: '1px' }}>
                 {/* Center line — dashed for visibility at neutral */}
                 <div className="absolute left-1/2 top-0 w-0 h-full z-10" style={{ borderLeft: '1px dashed #222' }} />
                 {isHomeSide ? (
                   /* Bar grows RIGHT from center (50%) */
                   <div
-                    className="absolute top-0 h-full"
-                    style={{ left: '50%', width: `${barWidthPct}%`, background: `linear-gradient(90deg, ${barColor}88, ${barColor})`, boxShadow: deviation > 8 ? `0 0 4px ${barColor}40` : 'none' }}
+                    className="absolute top-0 h-full omi-pillar-bar" style={{ left: '50%', width: `${barWidthPct}%`, background: `linear-gradient(90deg, ${barColor}55, ${barColor}, ${barColor}dd)`, boxShadow: `0 0 ${deviation > 8 ? '12' : '6'}px ${barColor}${deviation > 8 ? '60' : '30'}`, borderRadius: '1px' }}
                   />
                 ) : (
                   /* Bar grows LEFT from center (50%) — anchor right edge at 50% */
                   <div
-                    className="absolute top-0 h-full"
-                    style={{ right: '50%', width: `${barWidthPct}%`, background: `linear-gradient(270deg, ${barColor}88, ${barColor})`, boxShadow: deviation > 8 ? `0 0 4px ${barColor}40` : 'none' }}
+                    className="absolute top-0 h-full omi-pillar-bar" style={{ right: '50%', width: `${barWidthPct}%`, background: `linear-gradient(270deg, ${barColor}55, ${barColor}, ${barColor}dd)`, boxShadow: `0 0 ${deviation > 8 ? '12' : '6'}px ${barColor}${deviation > 8 ? '60' : '30'}`, borderRadius: '1px' }}
                   />
                 )}
               </div>
-              <span className={`text-[9px] font-mono w-6 text-right font-semibold ${getTextColor(score)}`} style={{ fontVariantNumeric: 'tabular-nums' }}>{score}</span>
+              <span className={`font-mono w-8 text-right font-bold ${getTextColor(score)}`} style={{ fontVariantNumeric: 'tabular-nums', fontSize: '11px', fontFamily: "'JetBrains Mono', monospace" }}>{score}</span>
             </div>
             {/* Expanded detail */}
             {isExpanded && (
@@ -3310,33 +3314,170 @@ export function GameDetailClient({
     <>
       {/* OMI Bloomberg Visual Overhaul — injected keyframes */}
       <style>{`
-        @keyframes omi-gold-flash {
-          0% { box-shadow: 0 0 0 0 rgba(212, 168, 67, 0.4); }
-          50% { box-shadow: 0 0 8px 2px rgba(212, 168, 67, 0.15); }
-          100% { box-shadow: 0 0 0 0 rgba(212, 168, 67, 0); }
-        }
-        @keyframes omi-green-flash {
-          0% { text-shadow: 0 0 0 rgba(34, 197, 94, 0); }
-          50% { text-shadow: 0 0 6px rgba(34, 197, 94, 0.3); }
-          100% { text-shadow: 0 0 0 rgba(34, 197, 94, 0); }
-        }
-        @keyframes omi-red-flash {
-          0% { text-shadow: 0 0 0 rgba(239, 68, 68, 0); }
-          50% { text-shadow: 0 0 6px rgba(239, 68, 68, 0.3); }
-          100% { text-shadow: 0 0 0 rgba(239, 68, 68, 0); }
-        }
-        @keyframes omi-pulse-border {
-          0%, 100% { border-color: rgba(212, 168, 67, 0.15); }
-          50% { border-color: rgba(212, 168, 67, 0.4); }
-        }
-        @keyframes omi-fade-in {
-          from { opacity: 0; transform: translateY(4px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+  
+  @keyframes omi-gold-pulse {
+    0%, 100% { text-shadow: 0 0 4px rgba(212, 168, 67, 0.0); }
+    50% { text-shadow: 0 0 20px rgba(212, 168, 67, 0.6), 0 0 40px rgba(212, 168, 67, 0.2); }
+  }
+  @keyframes omi-green-pulse {
+    0%, 100% { text-shadow: 0 0 4px rgba(34, 197, 94, 0.0); }
+    50% { text-shadow: 0 0 16px rgba(34, 197, 94, 0.6), 0 0 30px rgba(34, 197, 94, 0.15); }
+  }
+  @keyframes omi-red-pulse {
+    0%, 100% { text-shadow: 0 0 4px rgba(239, 68, 68, 0.0); }
+    50% { text-shadow: 0 0 16px rgba(239, 68, 68, 0.6), 0 0 30px rgba(239, 68, 68, 0.15); }
+  }
+  @keyframes omi-border-glow {
+    0%, 100% { border-color: rgba(212, 168, 67, 0.15); box-shadow: 0 0 0 0 rgba(212, 168, 67, 0); }
+    50% { border-color: rgba(212, 168, 67, 0.5); box-shadow: 0 0 12px 0 rgba(212, 168, 67, 0.1); }
+  }
+  @keyframes omi-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes omi-slide-in-right {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes omi-scan-line {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+  @keyframes omi-value-flash {
+    0% { background-color: rgba(212, 168, 67, 0.15); }
+    100% { background-color: transparent; }
+  }
+  @keyframes omi-bar-grow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+  @keyframes omi-grid-fade {
+    0%, 100% { opacity: 0.03; }
+    50% { opacity: 0.06; }
+  }
+  @keyframes omi-float-in {
+    from { opacity: 0; transform: translateY(-12px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  
+  .omi-terminal-bg {
+    background: #0a0a0a;
+    background-image: 
+      linear-gradient(rgba(212, 168, 67, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 168, 67, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  
+  .omi-panel {
+    background: #111111;
+    border: 1px solid #1f1f1f;
+    position: relative;
+    overflow: hidden;
+  }
+  .omi-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(212, 168, 67, 0.3) 50%, transparent 100%);
+  }
+  
+  .omi-panel-header {
+    padding: 10px 16px;
+    border-bottom: 1px solid #1a1a1a;
+    background: linear-gradient(180deg, #151515 0%, #111111 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .omi-gold-text {
+    color: #D4A843;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  .omi-label {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #555;
+  }
+  
+  .omi-number-lg {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .omi-tab-active {
+    background: linear-gradient(180deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.05) 100%);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.1), inset 0 1px 0 rgba(34, 197, 94, 0.1);
+  }
+  
+  .omi-tab-inactive {
+    color: #555;
+    border: 1px solid transparent;
+    transition: all 200ms ease;
+  }
+  .omi-tab-inactive:hover {
+    color: #ccc;
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .omi-edge-positive {
+    color: #22c55e;
+    animation: omi-green-pulse 2s ease-in-out infinite;
+  }
+  .omi-edge-negative {
+    color: #ef4444;
+    animation: omi-red-pulse 2s ease-in-out infinite;
+  }
+
+  .omi-variance-alert {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 50;
+    animation: omi-float-in 0.4s ease-out;
+    background: linear-gradient(135deg, #1a1500 0%, #111111 100%);
+    border: 1px solid rgba(212, 168, 67, 0.4);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(212, 168, 67, 0.1);
+    padding: 12px 16px;
+    max-width: 320px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  .omi-crosshair-dot {
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  
+  .omi-pillar-bar {
+    transform-origin: center;
+    animation: omi-bar-grow 0.6s ease-out both;
+    border-radius: 1px;
+  }
+  
+  .omi-heat-strip {
+    height: 4px;
+    margin: 0 12px;
+    border-radius: 2px;
+    overflow: hidden;
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+  }
+`}</style>
 
       {/* Desktop: OMI Fair Pricing Layout */}
-      <div className="hidden lg:block h-full" style={{ background: '#0b0b0b' }}>
+      <div className="hidden lg:block h-full omi-terminal-bg">
         <div className="flex flex-col h-full mx-auto" style={{ maxWidth: '1400px', fontVariantNumeric: 'tabular-nums' }}>
 
           {/* Fixed header area — does not scroll */}
@@ -3382,11 +3523,12 @@ export function GameDetailClient({
                     <button
                       key={m}
                       onClick={() => setActiveMarket(m)}
-                      className={`px-2.5 py-1 text-[11px] font-medium rounded transition-all duration-150 ${
+                      className={`px-3 py-1.5 text-[11px] font-semibold rounded-sm transition-all duration-200 ${
                         activeMarket === m
-                          ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                          : 'text-[#555] hover:text-[#ccc] border border-transparent'
+                          ? 'omi-tab-active'
+                          : 'omi-tab-inactive'
                       }`}
+                    style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}
                     >
                       {m === 'spread' ? 'Spread' : m === 'total' ? 'Total' : 'Moneyline'}
                     </button>
@@ -3407,11 +3549,12 @@ export function GameDetailClient({
                   <button
                     key={tab.key}
                     onClick={() => handlePeriodChange(tab.key)}
-                    className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-all duration-150 ${
+                    className={`px-2 py-1 text-[10px] font-medium rounded-sm transition-all duration-200 ${
                       activePeriod === tab.key
-                        ? 'bg-[#222] text-[#ddd]'
-                        : 'text-[#555] hover:text-[#888]'
+                        ? 'bg-[#1a1a1a] text-[#e5e5e5] border border-[#333]'
+                        : 'text-[#555] hover:text-[#999] border border-transparent'
                     }`}
+                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
                   >
                     {tab.label}
                   </button>
@@ -3423,9 +3566,9 @@ export function GameDetailClient({
           {/* Main area: scrollable left content + fixed Edge AI sidebar */}
           <div className="flex flex-1 min-h-0">
             {/* Left: independently scrollable content */}
-            <div className="flex-1 min-w-0 overflow-y-auto" style={{ padding: '10px 10px 10px 10px' }}>
+            <div className="flex-1 min-w-0 overflow-y-auto" style={{ padding: '24px 24px 24px 24px' }}>
               {/* Unified convergence chart */}
-              <div style={{ background: '#080808', border: '1px solid #1a1a1a', marginBottom: '10px' }}>
+              <div className="omi-panel" style={{ marginBottom: '24px', borderRadius: '2px' }}>
                 <UnifiedChart
                   key={`chart-${activeMarket}-${activePeriod}`}
                   compositeHistory={compositeHistory}
@@ -3438,7 +3581,7 @@ export function GameDetailClient({
                 />
               </div>
 
-              <div style={{ background: '#080808', border: '1px solid #1a1a1a', marginBottom: '10px' }}>
+              <div className="omi-panel" style={{ marginBottom: '24px', borderRadius: '2px' }}>
               <OmiFairPricing
                 key={`desktop-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
                 pythonPillars={pythonPillarScores}
@@ -3455,7 +3598,7 @@ export function GameDetailClient({
               </div>
 
               {/* Why This Price + CEQ Factors — side by side */}
-              <div style={{ background: '#080808', border: '1px solid #1a1a1a', marginBottom: '10px' }}>
+              <div className="omi-panel" style={{ marginBottom: '24px', borderRadius: '2px' }}>
               <div className="flex">
                 <div className="w-1/2 border-r border-[#1a1a1a]/50">
                   <WhyThisPrice
@@ -3474,7 +3617,7 @@ export function GameDetailClient({
               </div>
 
               {/* L10 ATS + Injury Report — side by side */}
-              <div style={{ background: '#080808', border: '1px solid #1a1a1a', marginBottom: '10px' }}>
+              <div className="omi-panel" style={{ marginBottom: '24px', borderRadius: '2px' }}>
               <div className="flex">
                 <div className="w-1/2 border-r border-[#1a1a1a]/50">
                   <L10AtsPanel homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} activeMarket={activeMarket} />
@@ -3487,7 +3630,7 @@ export function GameDetailClient({
             </div>
 
             {/* Right: Edge AI sidebar — fixed width, full height */}
-            <div className="w-[260px] flex-shrink-0" style={{ borderLeft: '1px solid #1a1a1a', marginLeft: '10px' }}>
+            <div className="w-[280px] flex-shrink-0" style={{ borderLeft: '1px solid #1f1f1f', marginLeft: '24px', background: '#0d0d0d' }}>
               <AskEdgeAI activeMarket={activeMarket} activePeriod={activePeriod} gameContext={edgeAIGameContext} />
             </div>
           </div>
@@ -3496,7 +3639,7 @@ export function GameDetailClient({
       </div>
 
       {/* Mobile: Single-column scrollable fallback */}
-      <div className="lg:hidden h-auto overflow-y-auto bg-[#0b0b0b]">
+      <div className="lg:hidden h-auto overflow-y-auto omi-terminal-bg">
         <TerminalHeader
           awayTeam={gameData.awayTeam}
           homeTeam={gameData.homeTeam}
@@ -3527,7 +3670,7 @@ export function GameDetailClient({
         {isLive && <GameStatusBanner gameState="live" />}
         {isFinal && <GameStatusBanner gameState="final" />}
 
-        <div className="p-3 space-y-3">
+        <div className="p-4 space-y-5">
           {/* Market + Period tabs */}
           <div className="bg-[#0b0b0b]/50 rounded p-2">
             <div className="flex items-center gap-0.5 mb-1.5 flex-wrap">
@@ -3537,11 +3680,12 @@ export function GameDetailClient({
                   <button
                     key={m}
                     onClick={() => setActiveMarket(m)}
-                    className={`px-2.5 py-1 text-[11px] font-medium rounded transition-all duration-150 ${
+                    className={`px-3 py-1.5 text-[11px] font-semibold rounded-sm transition-all duration-200 ${
                       activeMarket === m
-                        ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                        : 'text-[#555] hover:text-[#ccc] border border-transparent'
+                        ? 'omi-tab-active'
+                        : 'omi-tab-inactive'
                     }`}
+                  style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}
                   >
                     {m === 'spread' ? 'Spread' : m === 'total' ? 'Total' : 'Moneyline'}
                   </button>
@@ -3563,11 +3707,12 @@ export function GameDetailClient({
                 <button
                   key={tab.key}
                   onClick={() => handlePeriodChange(tab.key)}
-                  className={`px-1.5 py-0.5 text-[9px] font-medium rounded transition-colors ${
+                  className={`px-2 py-1 text-[10px] font-medium rounded-sm transition-all duration-200 ${
                     activePeriod === tab.key
-                      ? 'bg-[#222] text-[#ddd]'
-                      : 'text-[#555] hover:text-[#888]'
+                      ? 'bg-[#1a1a1a] text-[#e5e5e5] border border-[#333]'
+                      : 'text-[#555] hover:text-[#999] border border-transparent'
                   }`}
+                style={{ fontFamily: "'JetBrains Mono', monospace" }}
                 >
                   {tab.label}
                 </button>
@@ -3576,7 +3721,7 @@ export function GameDetailClient({
           </div>
 
           {/* Unified convergence chart */}
-          <div style={{ background: '#080808', border: '1px solid #1a1a1a' }}>
+          <div className="omi-panel" style={{ borderRadius: '2px' }}>
           <UnifiedChart
             key={`chart-mobile-${activeMarket}-${activePeriod}`}
             compositeHistory={compositeHistory}
@@ -3589,7 +3734,7 @@ export function GameDetailClient({
           />
           </div>
 
-          <div style={{ background: '#080808', border: '1px solid #1a1a1a' }}>
+          <div className="omi-panel" style={{ borderRadius: '2px' }}>
           <OmiFairPricing
             key={`mobile-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
             pythonPillars={pythonPillarScores}
@@ -3605,7 +3750,7 @@ export function GameDetailClient({
           />
           </div>
 
-          <div style={{ background: '#080808', border: '1px solid #1a1a1a' }}>
+          <div className="omi-panel" style={{ borderRadius: '2px' }}>
           <WhyThisPrice
             pythonPillars={pythonPillarScores}
             ceq={activeCeq}
@@ -3616,7 +3761,7 @@ export function GameDetailClient({
           />
           </div>
 
-          <div style={{ background: '#080808', border: '1px solid #1a1a1a' }}>
+          <div className="omi-panel" style={{ borderRadius: '2px' }}>
           <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
           </div>
 
@@ -3632,7 +3777,7 @@ export function GameDetailClient({
           )}
 
           {/* Edge AI — mobile */}
-          <div style={{ background: '#080808', border: '1px solid #1a1a1a' }}>
+          <div className="omi-panel" style={{ borderRadius: '2px' }}>
             <AskEdgeAI activeMarket={activeMarket} activePeriod={activePeriod} gameContext={edgeAIGameContext} />
           </div>
         </div>

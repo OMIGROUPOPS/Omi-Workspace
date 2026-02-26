@@ -1956,12 +1956,14 @@ function InjuryReport({ homeTeam, awayTeam, sportKey }: {
       .then(data => {
         if (!data?.injuries) return;
         const parse = (teamName: string): InjuryEntry[] => {
-          const teamData = data.injuries.find((t: any) =>
-            t.displayName === teamName ||
-            teamName.includes(t.displayName) ||
-            t.displayName.includes(teamName) ||
-            t.displayName.split(' ').pop() === teamName.split(' ').pop()
-          );
+          const teamData = data.injuries.find((t: any) => {
+            const dn = t.displayName;
+            if (!dn) return false;
+            return dn === teamName ||
+              teamName.includes(dn) ||
+              dn.includes(teamName) ||
+              dn.split(' ').pop() === teamName.split(' ').pop();
+          });
           if (!teamData?.injuries) return [];
           return teamData.injuries.map((inj: any) => ({
             player: inj.athlete?.displayName || 'Unknown',
@@ -1993,7 +1995,7 @@ function InjuryReport({ homeTeam, awayTeam, sportKey }: {
     if (status === 'Doubtful') return 'DBT';
     if (status === 'Suspension') return 'SUSP';
     if (status === 'Probable') return 'PROB';
-    return status.slice(0, 3).toUpperCase();
+    return (status || '?').slice(0, 3).toUpperCase();
   };
 
   const renderColumn = (team: string, injuries: InjuryEntry[]) => {
@@ -2104,20 +2106,24 @@ function L10AtsPanel({ homeTeam, awayTeam, activeMarket }: {
       return rows.map(r => {
         const wasHome = r.home_team === team;
         const opponent = wasHome ? r.away_team : r.home_team;
-        const teamSpread = wasHome ? r.closing_spread_home : -r.closing_spread_home;
-        const teamMargin = wasHome ? (r.home_score - r.away_score) : (r.away_score - r.home_score);
-        const actualTotal = r.home_score + r.away_score;
+        const closingSpread = r.closing_spread_home ?? 0;
+        const teamSpread = wasHome ? closingSpread : -closingSpread;
+        const hScore = r.home_score ?? 0;
+        const aScore = r.away_score ?? 0;
+        const teamMargin = wasHome ? (hScore - aScore) : (aScore - hScore);
+        const actualTotal = hScore + aScore;
+        const totalLine = r.closing_total_line ?? 0;
         return {
           opponent,
           spread: teamSpread,
           margin: teamMargin,
           covered: teamMargin + teamSpread > 0,
-          totalLine: r.closing_total_line,
+          totalLine,
           actualTotal,
-          overHit: actualTotal > r.closing_total_line,
+          overHit: actualTotal > totalLine,
           won: (wasHome && r.winner === 'home') || (!wasHome && r.winner === 'away'),
-          homeScore: r.home_score,
-          awayScore: r.away_score,
+          homeScore: hScore,
+          awayScore: aScore,
           wasHome,
           commenceTime: r.commence_time,
         };
@@ -2145,8 +2151,9 @@ function L10AtsPanel({ homeTeam, awayTeam, activeMarket }: {
   const getDetail = (g: L10Game) => {
     if (activeMarket === 'total') return `${g.actualTotal} (${g.totalLine})`;
     if (activeMarket === 'moneyline') return `${g.won ? 'W' : 'L'} ${Math.abs(g.margin)}`;
-    const sign = g.spread > 0 ? '+' : '';
-    return `${sign}${g.spread.toFixed(1)}`;
+    const sp = g.spread ?? 0;
+    const sign = sp > 0 ? '+' : '';
+    return `${sign}${sp.toFixed(1)}`;
   };
 
   const renderColumn = (team: string, games: L10Game[]) => {

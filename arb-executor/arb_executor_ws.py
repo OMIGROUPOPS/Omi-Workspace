@@ -30,6 +30,7 @@ from cryptography.hazmat.backends import default_backend
 
 import httpx  # available from PM SDK dependency
 from dashboard_push import DashboardPusher
+from espn_scores import ESPNScores
 import orderbook_db
 
 # Shared configuration - single source of truth
@@ -2981,6 +2982,9 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
         # Background snapshot recorder (drains dirty_tickers every 5s)
         snapshot_task = asyncio.create_task(periodic_snapshot_recorder())
 
+        # ESPN live scores (polls every 45s, no auth needed)
+        espn = ESPNScores()
+
         # Start dashboard push (if DASHBOARD_URL is set in .env)
         pusher = DashboardPusher()
         pusher.set_state_sources(
@@ -2995,6 +2999,7 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
             verified_maps=VERIFIED_MAPS,
             executor_version="ws-v8",
             omi_cache=omi_cache,
+            espn_scores=espn,
         )
         pusher.start(interval=5)
 
@@ -3007,6 +3012,7 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
                 await check_and_reload_mappings(k_ws, pm_ws, pusher=pusher)
                 if omi_cache.is_stale():
                     asyncio.create_task(omi_cache.refresh())  # Non-blocking
+                await espn.poll(session, VERIFIED_MAPS)  # Self-throttles to every 45s
                 await asyncio.sleep(1)
         except KeyboardInterrupt:
             print("\n[SHUTDOWN] Received interrupt, stopping...")

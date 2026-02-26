@@ -93,6 +93,7 @@ class DashboardPusher:
         self.verified_maps: Dict = {}
         self.executor_version: str = ""
         self.omi_cache = None
+        self.espn_scores = None  # ESPNScores instance
 
         # Rolling spread history buffer (60 min, max 1 point per 30s per game)
         self._spread_history: list = []
@@ -812,7 +813,7 @@ class DashboardPusher:
             )
             status = "Active" if has_books else "Inactive"
 
-            rows.append({
+            row = {
                 "cache_key": cache_key,
                 "game_id": game_id,
                 "sport": sport,
@@ -830,14 +831,33 @@ class DashboardPusher:
                 "team2_prices": team_prices_list[1] if len(team_prices_list) > 1 else None,
                 "status": status,
                 "traded": game_id in traded_game_ids,
-            })
+            }
 
-        # Sort: active games first, then by date, then by best spread
-        rows.sort(key=lambda r: (
-            0 if r["status"] == "Active" else 1,
-            r["date"],
-            -r["best_spread"],
-        ))
+            # Enrich with ESPN live data (scores, clock, period)
+            if self.espn_scores:
+                espn = self.espn_scores.get(cache_key)
+                if espn:
+                    row["game_status"] = espn.get("game_status", "")
+                    row["game_time"] = espn.get("game_time", "")
+                    row["period"] = espn.get("period", "")
+                    row["clock"] = espn.get("clock", "")
+                    row["team1_score"] = espn.get("team1_score", 0)
+                    row["team2_score"] = espn.get("team2_score", 0)
+
+            rows.append(row)
+
+        # Sort: live first, then active, then by date, then by best spread
+        def _sort_key(r):
+            gs = r.get("game_status", "")
+            if gs == "in":
+                priority = 0  # live games first
+            elif r["status"] == "Active":
+                priority = 1
+            else:
+                priority = 2
+            return (priority, r["date"], -r["best_spread"])
+
+        rows.sort(key=_sort_key)
         return rows
 
     # ── Liquidity Stats ────────────────────────────────────────────────────

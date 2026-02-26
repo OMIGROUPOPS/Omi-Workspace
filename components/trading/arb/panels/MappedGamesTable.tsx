@@ -29,6 +29,31 @@ function ba(p: TeamPrices | undefined, field: "k" | "pm"): React.ReactNode {
   );
 }
 
+/** Render the game clock/status cell content based on ESPN data. */
+function gameClockCell(g: MappedGame): React.ReactNode {
+  const gs = g.game_status;
+  if (gs === "in") {
+    // Live: green dot + period + clock
+    return (
+      <span className="text-emerald-400 font-mono font-medium">
+        <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1 animate-pulse" />
+        {g.period}{g.clock ? ` ${g.clock}` : ""}
+      </span>
+    );
+  }
+  if (gs === "post") {
+    return <span className="text-gray-500 font-mono">FINAL</span>;
+  }
+  // Pre-game or no ESPN data — show date + optional start time
+  const isTodayGame = isToday(g.date);
+  return (
+    <span className="font-mono text-gray-400">
+      {isTodayGame ? <span className="text-emerald-400">Today</span> : g.date.slice(5)}
+      {g.game_time ? <span className="text-gray-500 ml-1 text-[9px]">{g.game_time}</span> : null}
+    </span>
+  );
+}
+
 interface Props {
   games: MappedGame[];
 }
@@ -54,6 +79,8 @@ export function MappedGamesTable({ games }: Props) {
     const s = new Set(games.map((g) => g.sport.toUpperCase()));
     return Array.from(s).sort();
   }, [games]);
+
+  const liveCount = useMemo(() => filtered.filter((g) => g.game_status === "in").length, [filtered]);
 
   if (games.length === 0) {
     return (
@@ -82,6 +109,7 @@ export function MappedGamesTable({ games }: Props) {
           ))}
         </div>
         <span className="ml-auto text-[10px] text-gray-500 font-mono">
+          {liveCount > 0 && <span className="text-emerald-400 mr-2">{liveCount} live</span>}
           {filtered.length} / {games.length}
         </span>
       </div>
@@ -100,7 +128,7 @@ export function MappedGamesTable({ games }: Props) {
                 <th className="px-2 py-1.5 text-center">PM Bid/Ask</th>
                 <th className="px-2 py-1.5 text-right">Spread</th>
                 <th className="px-2 py-1.5">Sport</th>
-                <th className="px-2 py-1.5">Date</th>
+                <th className="px-2 py-1.5">Game</th>
                 <th className="px-2 py-1.5 text-right">Depth</th>
                 <th className="px-2 py-1.5">Status</th>
                 <th className="px-2 py-1.5">Traded</th>
@@ -108,20 +136,28 @@ export function MappedGamesTable({ games }: Props) {
             </thead>
             <tbody>
               {filtered.map((g, gi) => {
-                const isTodayGame = isToday(g.date);
                 const t1 = g.team1_prices;
                 const t2 = g.team2_prices;
                 const arbThreshold = 4;
+                const isLive = g.game_status === "in";
+                const isFinal = g.game_status === "post";
+                const hasScore = isLive || isFinal;
                 const stripe = gi % 2 === 1 ? "bg-white/[0.02]" : "";
                 const tradedBg = g.traded ? "bg-emerald-500/5" : "";
+                const liveBorder = isLive ? "border-l-2 border-l-emerald-400" : "";
                 const rowBg = tradedBg || stripe;
 
                 return (
                   <React.Fragment key={g.cache_key}>
                     {/* ── Team 1 row (includes game info) ── */}
-                    <tr className={`border-t border-gray-800/80 hover:bg-gray-800/30 transition-colors ${rowBg}`}>
+                    <tr className={`border-t border-gray-800/80 hover:bg-gray-800/30 transition-colors ${rowBg} ${liveBorder}`}>
                       <td className="px-2 py-1 whitespace-nowrap">
                         <span className="text-white font-medium">{g.team1_full || g.team1}</span>
+                        {hasScore && (
+                          <span className={`ml-2 font-mono font-bold ${isLive ? "text-emerald-400" : "text-gray-300"}`}>
+                            {g.team1_score}
+                          </span>
+                        )}
                       </td>
                       <td className="px-2 py-1 text-center font-mono text-[10px]">
                         {ba(t1, "k")}
@@ -139,8 +175,8 @@ export function MappedGamesTable({ games }: Props) {
                           {g.sport}
                         </span>
                       </td>
-                      <td className="px-2 py-1 font-mono text-gray-400" rowSpan={2}>
-                        {isTodayGame ? <span className="text-emerald-400">Today</span> : g.date.slice(5)}
+                      <td className="px-2 py-1 whitespace-nowrap" rowSpan={2}>
+                        {gameClockCell(g)}
                       </td>
                       <td className="px-2 py-1 text-right font-mono text-[10px] whitespace-nowrap" rowSpan={2}>
                         <span className={depthColor(g.k_depth ?? null)}>K:{g.k_depth != null && g.k_depth > 0 ? fmtNum(g.k_depth) : "—"}</span>
@@ -161,9 +197,14 @@ export function MappedGamesTable({ games }: Props) {
                       </td>
                     </tr>
                     {/* ── Team 2 row ── */}
-                    <tr className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors ${rowBg}`}>
+                    <tr className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors ${rowBg} ${liveBorder}`}>
                       <td className="px-2 py-1 whitespace-nowrap">
                         <span className="text-white font-medium">{g.team2_full || g.team2}</span>
+                        {hasScore && (
+                          <span className={`ml-2 font-mono font-bold ${isLive ? "text-emerald-400" : "text-gray-300"}`}>
+                            {g.team2_score}
+                          </span>
+                        )}
                       </td>
                       <td className="px-2 py-1 text-center font-mono text-[10px]">
                         {ba(t2, "k")}
@@ -176,7 +217,7 @@ export function MappedGamesTable({ games }: Props) {
                       }`}>
                         {t2 && t2.spread > 0 ? `${t2.spread.toFixed(1)}c` : "—"}
                       </td>
-                      {/* Sport, Date, Depth, Status, Traded handled by rowSpan above */}
+                      {/* Sport, Game, Depth, Status, Traded handled by rowSpan above */}
                     </tr>
                   </React.Fragment>
                 );

@@ -220,6 +220,12 @@ export interface MappedGame {
   pm_depth?: number;
   team1_prices?: TeamPrices;
   team2_prices?: TeamPrices;
+  game_status?: string;    // "pre" | "in" | "post" from ESPN
+  game_time?: string;      // start time in ET, e.g. "7:00 PM"
+  period?: string;         // "1H", "2Q", "3P", "OT", "FINAL"
+  clock?: string;          // "4:32" (live games only)
+  team1_score?: number;
+  team2_score?: number;
   status: string;
   traded: boolean;
 }

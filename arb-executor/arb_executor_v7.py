@@ -3730,7 +3730,7 @@ def _calc_kalshi_fee(k_price_cents: float, qty: int) -> float:
 
 def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
                execution_time_ms: float = 0, pm_order_ms: int = 0,
-               unwind_loss_cents: float = None, *,
+               unwind_loss_cents: float = None, unwind_pnl_cents: float = None, *,
                sizing_details: Dict = None, execution_phase: str = "ioc",
                is_maker: bool = False, gtc_rest_time_ms: float = 0,
                gtc_spread_checks: int = 0, gtc_cancel_reason: str = "",
@@ -3820,6 +3820,7 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
         'review_reason': arb.review_reason if arb.needs_review else None,
         'is_live_game': arb.is_live_game,
         'unwind_loss_cents': unwind_loss_cents,
+        'unwind_pnl_cents': unwind_pnl_cents,
         'unwind_fill_price': unwind_fill_price,
         'unwind_qty': unwind_qty,
 

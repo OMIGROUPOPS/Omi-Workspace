@@ -374,6 +374,9 @@ class DashboardPusher:
                         "gtc_spread_checks": t.get("gtc_spread_checks", 0),
                         "gtc_cancel_reason": t.get("gtc_cancel_reason", ""),
                         "unwind_loss_cents": t.get("unwind_loss_cents"),
+                        "unwind_pnl_cents": t.get("unwind_pnl_cents"),
+                        "unwind_fill_price": t.get("unwind_fill_price"),
+                        "unwind_qty": t.get("unwind_qty", 0),
                         "pm_fee": t.get("pm_fee", 0),
                         "k_fee": t.get("k_fee", 0),
                         "execution_time_ms": t.get("execution_time_ms", 0),
@@ -582,29 +585,61 @@ class DashboardPusher:
                     else:
                         unhedged_filled += 1
 
-                if t.get("status") != "SUCCESS" or filled == 0:
+                status = t.get("status", "")
+                if filled == 0 or status not in ("SUCCESS", "EXITED"):
                     continue
 
-                pnl = t.get("actual_pnl")
-                if pnl and isinstance(pnl, dict):
-                    net = pnl.get("net_profit_dollars", 0)
-                    total_pnl += net
-                    trades_with_pnl += 1
-                    if pnl.get("is_profitable"):
-                        profitable += 1
+                # SUCCESS trades: use actual_pnl or estimated
+                if status == "SUCCESS":
+                    pnl = t.get("actual_pnl")
+                    if pnl and isinstance(pnl, dict):
+                        net = pnl.get("net_profit_dollars", 0)
+                        total_pnl += net
+                        trades_with_pnl += 1
+                        if pnl.get("is_profitable"):
+                            profitable += 1
+                        else:
+                            losing += 1
                     else:
-                        losing += 1
-                else:
-                    # Fallback: use estimated_net_profit_cents
-                    est = t.get("estimated_net_profit_cents", 0) or 0
-                    contracts = filled
-                    net = est * contracts / 100
+                        # Fallback: use estimated_net_profit_cents
+                        est = t.get("estimated_net_profit_cents", 0) or 0
+                        contracts = filled
+                        net = est * contracts / 100
+                        total_pnl += net
+                        trades_with_pnl += 1
+                        if net > 0:
+                            profitable += 1
+                        else:
+                            losing += 1
+                    continue
+
+                # EXITED trades: use signed unwind_pnl_cents, or recompute from fields
+                if status == "EXITED":
+                    upnl = t.get("unwind_pnl_cents")
+                    if upnl is not None:
+                        net = upnl / 100.0
+                    else:
+                        # Recompute from direction, pm_price, unwind_fill_price
+                        direction = t.get("direction", "")
+                        pm_price = t.get("pm_price", 0) or 0
+                        ufp = t.get("unwind_fill_price")
+                        uqty = t.get("unwind_qty", 0) or filled
+                        if ufp is not None and pm_price > 0:
+                            if direction == "BUY_PM_SELL_K":
+                                net = ((ufp * 100) - pm_price) * uqty / 100.0
+                            else:
+                                net = (pm_price - (ufp * 100)) * uqty / 100.0
+                        else:
+                            # Last resort: old unsigned field (always negative)
+                            ulc = t.get("unwind_loss_cents", 0) or 0
+                            net = -(abs(ulc) / 100.0)
                     total_pnl += net
                     trades_with_pnl += 1
                     if net > 0:
                         profitable += 1
                     else:
                         losing += 1
+                    continue
 
             return {
                 "total_pnl_dollars": round(total_pnl, 4),

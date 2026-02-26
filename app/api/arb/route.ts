@@ -87,6 +87,9 @@ export interface TradeEntry {
   gtc_spread_checks?: number;
   gtc_cancel_reason?: string;
   unwind_loss_cents?: number | null;
+  unwind_pnl_cents?: number | null;
+  unwind_fill_price?: number | null;
+  unwind_qty?: number;
   execution_time_ms?: number;
   pm_order_ms?: number;
   k_order_ms?: number;

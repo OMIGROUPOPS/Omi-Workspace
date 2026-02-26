@@ -201,7 +201,8 @@ class TradeResult:
     gtc_cancel_reason: str = ""        # "timeout", "spread_gone", "filled", ""
     is_maker: bool = False             # True if filled via GTC (0% fee)
     exited: bool = False               # True if PM was successfully unwound after K failure
-    unwind_loss_cents: Optional[float] = None  # Total loss from PM unwind across all contracts (cents)
+    unwind_loss_cents: Optional[float] = None  # Unsigned loss from PM unwind (always positive, backward compat)
+    unwind_pnl_cents: Optional[float] = None   # Signed P&L from PM unwind (positive=profit, negative=loss)
     unwind_fill_price: Optional[float] = None  # Price PM unwind filled at (dollars)
     unwind_qty: int = 0                         # Contracts actually unwound
     tier: str = ""  # "TIER1_HEDGE", "TIER2_EXIT", "TIER3_UNWIND", "TIER3A", "TIER3_OPPOSITE_HEDGE", etc.
@@ -1376,20 +1377,23 @@ async def execute_arb(
             )
             exited = unwind_filled > 0
             unwind_loss = None
+            unwind_pnl = None
             if exited and unwind_fill_price is not None:
-                if reverse_intent in (2, 4):
-                    loss_per_contract = (pm_fill_price * 100) - (unwind_fill_price * 100)
-                else:
-                    loss_per_contract = (unwind_fill_price * 100) - (pm_fill_price * 100)
-                unwind_loss = abs(loss_per_contract) * pm_filled
-                print(f"[GTC] Loss from unwind: {abs(loss_per_contract):.1f}c x {pm_filled} = {unwind_loss:.1f}c total (+ fees)")
+                if reverse_intent == 2:  # Selling long: profit = sell - buy
+                    pnl_per = (unwind_fill_price * 100) - (pm_fill_price * 100)
+                else:  # reverse_intent == 4: Closing short: profit = original_sell - buyback
+                    pnl_per = (pm_fill_price * 100) - (unwind_fill_price * 100)
+                unwind_pnl = pnl_per * unwind_filled
+                unwind_loss = abs(unwind_pnl)
+                pnl_label = "gain" if unwind_pnl > 0 else "loss"
+                print(f"[GTC] Unwind {pnl_label}: {abs(pnl_per):.1f}c x {unwind_filled} = {abs(unwind_pnl):.1f}c total (+ fees)")
             if not exited:
                 print(f"[GTC] PM unwind failed - position remains open!")
             return TradeResult(
                 success=False, pm_filled=pm_filled,
                 pm_price=pm_fill_price,
                 unhedged=not exited,
-                abort_reason=f"GTC filled but K spread gone, PM unwound (loss: {unwind_loss:.1f}c)" if exited and unwind_loss is not None else "GTC filled but K spread gone, PM unwind FAILED - UNHEDGED!" if not exited else "GTC filled but K spread gone, PM unwound",
+                abort_reason=f"GTC filled but K spread gone, PM unwound ({pnl_label}: {abs(unwind_pnl):.1f}c)" if exited and unwind_pnl is not None else "GTC filled but K spread gone, PM unwind FAILED - UNHEDGED!" if not exited else "GTC filled but K spread gone, PM unwound",
                 pm_order_ms=pm_order_ms,
                 execution_time_ms=int((time.time() - start_time) * 1000),
                 pm_response_details=pm_response_details,
@@ -1399,6 +1403,7 @@ async def execute_arb(
                 gtc_cancel_reason='spread_gone_pre_kalshi',
                 exited=exited,
                 unwind_loss_cents=unwind_loss,
+                unwind_pnl_cents=unwind_pnl,
                 unwind_fill_price=unwind_fill_price if exited else None,
                 unwind_qty=unwind_filled if exited else 0,
             )
@@ -1446,13 +1451,18 @@ async def execute_arb(
         )
 
         if unwind_filled > 0:
-            loss_per_contract = abs((pm_fill_price - unwind_fill_price) * 100)
-            loss_cents = loss_per_contract * pm_filled
+            if reverse_intent == 2:  # Selling long: profit = sell - buy
+                pnl_per = (unwind_fill_price - pm_fill_price) * 100
+            else:  # reverse_intent == 4: Closing short: profit = original_sell - buyback
+                pnl_per = (pm_fill_price - unwind_fill_price) * 100
+            unwind_pnl = pnl_per * unwind_filled
+            loss_cents = abs(unwind_pnl)
+            pnl_label = "gain" if unwind_pnl > 0 else "loss"
             return TradeResult(
                 success=False, kalshi_filled=0, pm_filled=pm_filled,
                 kalshi_price=k_limit_price, pm_price=pm_fill_price,
                 unhedged=False,
-                abort_reason=f"Kalshi exception: {k_exception_str} | PM unwound (loss: {loss_per_contract:.1f}c x {pm_filled} = {loss_cents:.1f}c)",
+                abort_reason=f"Kalshi exception: {k_exception_str} | PM unwound ({pnl_label}: {abs(pnl_per):.1f}c x {unwind_filled} = {loss_cents:.1f}c)",
                 execution_time_ms=int((time.time() - start_time) * 1000),
                 pm_order_ms=pm_order_ms, k_order_ms=0,
                 pm_response_details=pm_response_details,
@@ -1464,6 +1474,7 @@ async def execute_arb(
                 is_maker=bool(gtc_phase and gtc_phase.get('is_maker', False)),
                 exited=True,
                 unwind_loss_cents=loss_cents,
+                unwind_pnl_cents=unwind_pnl,
                 unwind_fill_price=unwind_fill_price,
                 unwind_qty=unwind_filled,
                 tier="TIER3_UNWIND",
@@ -2072,12 +2083,14 @@ async def execute_arb(
             )
 
             if t3_filled > 0:
-                if reverse_intent in (2, 4):
-                    loss_per = pm_fill_price_cents - (t3_fill_price * 100)
-                else:
-                    loss_per = (t3_fill_price * 100) - pm_fill_price_cents
-                loss_cents = abs(loss_per) * pm_filled
-                print(f"[TIER] Tier 3 unwind: exited {t3_filled} (loss: {loss_cents:.1f}c)")
+                if reverse_intent == 2:  # Selling long: profit = sell - buy
+                    pnl_per = (t3_fill_price * 100) - pm_fill_price_cents
+                else:  # reverse_intent == 4: Closing short: profit = original_sell - buyback
+                    pnl_per = pm_fill_price_cents - (t3_fill_price * 100)
+                unwind_pnl = pnl_per * t3_filled
+                loss_cents = abs(unwind_pnl)
+                pnl_label = "gain" if unwind_pnl > 0 else "loss"
+                print(f"[TIER] Tier 3 unwind: exited {t3_filled} ({pnl_label}: {loss_cents:.1f}c)")
 
                 return TradeResult(
                     success=False,
@@ -2086,7 +2099,7 @@ async def execute_arb(
                     kalshi_price=k_limit_price,
                     pm_price=pm_fill_price,
                     unhedged=False,
-                    abort_reason=f"Kalshi failed, PM unwound (loss: {loss_cents:.1f}c)",
+                    abort_reason=f"Kalshi failed, PM unwound ({pnl_label}: {loss_cents:.1f}c)",
                     execution_time_ms=int((time.time() - start_time) * 1000),
                     pm_order_ms=pm_order_ms,
                     k_order_ms=k_order_ms,
@@ -2099,6 +2112,7 @@ async def execute_arb(
                     is_maker=_is_maker,
                     exited=True,
                     unwind_loss_cents=loss_cents,
+                    unwind_pnl_cents=unwind_pnl,
                     unwind_fill_price=t3_fill_price,
                     unwind_qty=t3_filled,
                     tier="TIER3_UNWIND",
@@ -2117,12 +2131,14 @@ async def execute_arb(
             )
 
             if emg_filled > 0:
-                if reverse_intent in (2, 4):
-                    loss_per = pm_fill_price_cents - (emg_fill_price * 100)
-                else:
-                    loss_per = (emg_fill_price * 100) - pm_fill_price_cents
-                loss_cents = abs(loss_per) * pm_filled
-                print(f"[EMERGENCY] Exited {emg_filled} @ {emg_fill_price:.4f} (loss ~{loss_cents:.1f}c)")
+                if reverse_intent == 2:  # Selling long: profit = sell - buy
+                    pnl_per = (emg_fill_price * 100) - pm_fill_price_cents
+                else:  # reverse_intent == 4: Closing short: profit = original_sell - buyback
+                    pnl_per = pm_fill_price_cents - (emg_fill_price * 100)
+                unwind_pnl = pnl_per * emg_filled
+                loss_cents = abs(unwind_pnl)
+                pnl_label = "gain" if unwind_pnl > 0 else "loss"
+                print(f"[EMERGENCY] Exited {emg_filled} @ {emg_fill_price:.4f} ({pnl_label} ~{loss_cents:.1f}c)")
 
                 return TradeResult(
                     success=False,
@@ -2133,9 +2149,10 @@ async def execute_arb(
                     unhedged=False,
                     exited=True,
                     unwind_loss_cents=loss_cents,
+                    unwind_pnl_cents=unwind_pnl,
                     unwind_fill_price=emg_fill_price,
                     unwind_qty=emg_filled,
-                    abort_reason=f"Emergency exit: {emg_filled} @ {emg_fill_price:.4f} (loss ~{loss_cents:.1f}c)",
+                    abort_reason=f"Emergency exit: {emg_filled} @ {emg_fill_price:.4f} ({pnl_label} ~{loss_cents:.1f}c)",
                     execution_time_ms=int((time.time() - start_time) * 1000),
                     pm_order_ms=pm_order_ms,
                     k_order_ms=k_order_ms,

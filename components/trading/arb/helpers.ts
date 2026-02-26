@@ -189,6 +189,27 @@ export function isOpenTrade(t: TradeEntry): boolean {
   return false;
 }
 
+/** Compute signed unwind P&L in dollars. Returns null if insufficient data. */
+function _computeUnwindPnl(t: TradeEntry, qty: number): number | null {
+  // Priority 1: New signed field (total cents, positive=profit)
+  if (t.unwind_pnl_cents != null) {
+    return t.unwind_pnl_cents / 100;
+  }
+  // Priority 2: Recompute from direction + pm_price + unwind_fill_price
+  if (t.unwind_fill_price != null && t.pm_price > 0 && qty > 0) {
+    if (t.direction === "BUY_PM_SELL_K") {
+      return ((t.unwind_fill_price * 100) - t.pm_price) * qty / 100;
+    } else {
+      return (t.pm_price - (t.unwind_fill_price * 100)) * qty / 100;
+    }
+  }
+  // Priority 3: Old unsigned field (always treated as loss)
+  if (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0) {
+    return -(Math.abs(t.unwind_loss_cents) / 100);
+  }
+  return null;
+}
+
 export function tradePnl(t: TradeEntry): {
   perContract: number | null;
   totalDollars: number | null;
@@ -209,10 +230,10 @@ export function tradePnl(t: TradeEntry): {
   }
 
   if (t.status === "EXITED" || t.tier === "TIER3_UNWIND") {
-    if (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0) {
-      const totalLoss = Math.abs(t.unwind_loss_cents);
-      const perContract = qty > 0 ? -(totalLoss / qty) : -totalLoss;
-      return { perContract, totalDollars: -(totalLoss / 100), qty, isOpen: false, spreadCents };
+    const pnl = _computeUnwindPnl(t, qty);
+    if (pnl !== null) {
+      const pc = qty > 0 ? (pnl * 100) / qty : pnl * 100;
+      return { perContract: pc, totalDollars: pnl, qty, isOpen: false, spreadCents };
     }
     return { perContract: null, totalDollars: null, qty, isOpen: false, spreadCents };
   }
@@ -243,10 +264,10 @@ export function tradePnl(t: TradeEntry): {
         spreadCents,
       };
     }
-    if (t.unwind_loss_cents != null) {
-      const totalLoss = Math.abs(t.unwind_loss_cents);
-      const perContract = qty > 0 ? -(totalLoss / qty) : -totalLoss;
-      return { perContract, totalDollars: -(totalLoss / 100), qty, isOpen: false, spreadCents };
+    const pnl = _computeUnwindPnl(t, qty);
+    if (pnl !== null) {
+      const pc = qty > 0 ? (pnl * 100) / qty : pnl * 100;
+      return { perContract: pc, totalDollars: pnl, qty, isOpen: false, spreadCents };
     }
   }
 
@@ -255,7 +276,7 @@ export function tradePnl(t: TradeEntry): {
 
 export function computePnl(trades: TradeEntry[]) {
   let arbPnl = 0;
-  let exitedLoss = 0;
+  let exitedPnl = 0;
   let directionalPnl = 0;
   let successes = 0;
   let fills = 0;
@@ -304,22 +325,25 @@ export function computePnl(trades: TradeEntry[]) {
     if (t.status === "EXITED") {
       const sp = t.settlement_pnl != null ? parseFloat(String(t.settlement_pnl)) : NaN;
       if (!isNaN(sp)) {
-        exitedLoss += sp;
-        if (sp < 0) realizedLosses++;
-        else realizedWins++;
-      } else if (t.unwind_loss_cents != null && t.unwind_loss_cents !== 0) {
-        const lossDollars = -(Math.abs(t.unwind_loss_cents) / 100);
-        exitedLoss += lossDollars;
-        realizedLosses++;
+        exitedPnl += sp;
+        if (sp >= 0) realizedWins++;
+        else realizedLosses++;
+      } else {
+        const pnl = tradePnl(t);
+        if (pnl.totalDollars != null) {
+          exitedPnl += pnl.totalDollars;
+          if (pnl.totalDollars >= 0) realizedWins++;
+          else realizedLosses++;
+        }
       }
       continue;
     }
   }
 
-  const netTotal = arbPnl + exitedLoss + directionalPnl;
+  const netTotal = arbPnl + exitedPnl + directionalPnl;
   return {
     arbPnl,
-    exitedLoss,
+    exitedPnl,
     directionalPnl,
     netTotal,
     successes,

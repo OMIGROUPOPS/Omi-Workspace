@@ -2002,6 +2002,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                           execution_time_ms=result.execution_time_ms,
                           pm_order_ms=result.pm_order_ms,
                           unwind_loss_cents=result.unwind_loss_cents,
+                          unwind_pnl_cents=result.unwind_pnl_cents,
                           sizing_details=_sizing_details,
                           execution_phase=result.execution_phase,
                           is_maker=result.is_maker,

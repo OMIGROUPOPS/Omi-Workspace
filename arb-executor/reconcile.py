@@ -31,7 +31,7 @@ sys.path.insert(0, SCRIPT_DIR)
 
 from arb_executor_v7 import KalshiAPI, KALSHI_API_KEY, KALSHI_PRIVATE_KEY
 
-STARTING_BALANCE = 317.77  # Feb 15 starting point
+STARTING_BALANCE = 910.31  # Feb 26 starting point (reset after +$300 deposits)
 
 
 # ── Kalshi API data pull ──────────────────────────────────────────────────

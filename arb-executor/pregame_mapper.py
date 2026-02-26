@@ -1526,6 +1526,28 @@ class PreGameMapper:
                             elif isinstance(token_entry, str):
                                 token_ids[idx] = token_entry
 
+                # Build team_names lookup: kalshi_abbrev -> PM full team name
+                team_names = {}
+                if market_sides:
+                    _sport_ov = SPORT_PM_OVERRIDES.get(k_game["sport"], {})
+                    for _side in market_sides[:2]:
+                        _ti = _side.get("team", {}) if isinstance(_side, dict) else {}
+                        if not _ti:
+                            continue
+                        _ab = (_ti.get("displayAbbreviation", "") or _ti.get("abbreviation", ""))
+                        _fn = _ti.get("name", "")
+                        if _ab and _fn:
+                            _ka = _sport_ov.get(_ab.lower()) or PM_TO_KALSHI_ABBREV.get(_ab.lower())
+                            if not _ka and HAS_EXECUTOR:
+                                _ka = normalize_team_abbrev(_ab.upper())
+                            if not _ka:
+                                _ka = _ab.upper()
+                            team_names[_ka] = _fn
+                # Fall back to TEAM_FULL_NAMES for teams not captured from PM
+                for _ta in k_teams_normalized:
+                    if _ta not in team_names and _ta in TEAM_FULL_NAMES:
+                        team_names[_ta] = TEAM_FULL_NAMES[_ta]
+
                 # Build the verified mapping entry
                 entry = {
                     "cache_key": cache_key,
@@ -1550,6 +1572,8 @@ class PreGameMapper:
                     },
                     # Kalshi details (normalized team abbrevs as keys)
                     "kalshi_tickers": k_teams_normalized,
+                    # Full team names from PM API (kalshi_abbrev -> "School Name Mascot")
+                    "team_names": team_names,
                     # Verification metadata
                     "verified": True,
                     "verified_at": datetime.now(timezone.utc).isoformat(),

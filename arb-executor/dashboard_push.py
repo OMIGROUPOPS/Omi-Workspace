@@ -335,6 +335,21 @@ class DashboardPusher:
                 return t
         return ""
 
+    def _resolve_full_name(self, cache_key: str, team_abbrev: str) -> str:
+        """Look up full team name from verified_maps, fall back to TEAM_FULL_NAMES."""
+        if not team_abbrev:
+            return ""
+        mapping = self.verified_maps.get(cache_key, {})
+        team_names = mapping.get("team_names", {})
+        if team_abbrev in team_names:
+            return team_names[team_abbrev]
+        # Fall back to static NBA/NHL names
+        try:
+            from pregame_mapper import TEAM_FULL_NAMES
+            return TEAM_FULL_NAMES.get(team_abbrev, "")
+        except ImportError:
+            return ""
+
     def _build_trades(self) -> list:
         """Load recent trades from trades.json."""
         try:
@@ -405,6 +420,8 @@ class DashboardPusher:
                         "settlement_time": t.get("settlement_time"),
                         "settlement_winner_index": t.get("settlement_winner_index"),
                         "opponent": self._extract_opponent(t),
+                        "team_full_name": self._resolve_full_name(t.get("cache_key", ""), t.get("team", "")),
+                        "opponent_full_name": self._resolve_full_name(t.get("cache_key", ""), self._extract_opponent(t)),
                         "cache_key": t.get("cache_key", ""),
                         "pm_slug": t.get("pm_slug", ""),
                         "kalshi_ticker": t.get("kalshi_ticker", ""),
@@ -538,9 +555,14 @@ class DashboardPusher:
             else:
                 display_status = "UNHEDGED"
 
+            _ck = t.get("cache_key", "")
+            _opp = self._extract_opponent(t)
             positions.append({
                 "game_id": t.get("game_id", ""),
                 "team": team,
+                "team_full_name": self._resolve_full_name(_ck, team),
+                "opponent": _opp,
+                "opponent_full_name": self._resolve_full_name(_ck, _opp),
                 "sport": t.get("sport", ""),
                 "direction": direction,
                 "status": display_status,
@@ -582,7 +604,7 @@ class DashboardPusher:
 
         Also computes cash_pnl = portfolio_total - starting_balance as headline.
         """
-        STARTING_BALANCE_TOTAL = 317.77
+        STARTING_BALANCE_TOTAL = 910.31
 
         empty = {
             "total_pnl_dollars": 0,

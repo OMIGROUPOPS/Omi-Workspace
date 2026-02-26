@@ -85,7 +85,12 @@ export function PositionsTable({ positions, markSettled }: Props) {
                     </div>
                     <div className="text-[9px] text-gray-600 mt-0.5">{timeAgo(p.timestamp)}</div>
                   </td>
-                  <td className="py-2 px-2 text-white font-medium">{p.team}</td>
+                  <td className="py-2 px-2">
+                    <span className="text-white font-medium">{p.team_full_name || p.team}</span>
+                    {(p.opponent_full_name || p.opponent) ? (
+                      <span className="text-gray-500 text-[10px] ml-1">vs {p.opponent_full_name || p.opponent}</span>
+                    ) : null}
+                  </td>
                   <td className="py-2 px-2 text-center">
                     <span className={`text-[9px] font-medium rounded px-1.5 py-0.5 ${statusColor}`}>{statusLabel}</span>
                   </td>

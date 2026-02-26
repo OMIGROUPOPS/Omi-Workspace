@@ -115,6 +115,8 @@ export interface TradeEntry {
   settlement_time?: string | null;
   settlement_winner_index?: number | null;
   opponent?: string;
+  team_full_name?: string;
+  opponent_full_name?: string;
   cache_key?: string;
   pm_slug?: string;
   kalshi_ticker?: string;
@@ -140,6 +142,9 @@ export interface PnlSummary {
 export interface Position {
   game_id: string;
   team: string;
+  team_full_name?: string;
+  opponent?: string;
+  opponent_full_name?: string;
   sport: string;
   direction: string;
   status: string;

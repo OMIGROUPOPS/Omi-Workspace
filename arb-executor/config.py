@@ -47,7 +47,7 @@ class Config:
     # CONTRACT SIZING
     # ==========================================================================
     min_contracts: int = 1        # Minimum contracts per order
-    max_contracts: int = 20       # Maximum contracts per trade
+    max_contracts: int = 30       # Maximum contracts per trade
     max_cost_cents: int = 1500    # Maximum cost per trade ($15)
     min_liquidity: int = 50       # Minimum bid/ask depth required
 
@@ -89,7 +89,7 @@ class Config:
     max_roi: float = 50.0               # Max ROI before flagging as bad data
     unhedged_exposure_limit: int = 1000 # Max unhedged cents before kill switch
     max_concurrent_positions: int = 15  # Max open positions across all platforms
-    max_contracts_per_game: int = 20    # Max contracts per game (sizing algo is real governor)
+    max_contracts_per_game: int = 30    # Max contracts per game (sizing algo is real governor)
     max_crashes_per_game: int = 2       # Blacklist game after this many execution crashes
     skip_traded_games_check: bool = True  # Skip per-session traded_games duplicate check
 

@@ -140,9 +140,9 @@ export function PnlTradeTable({
                       <span className={`inline-block rounded px-1 py-0.5 text-[10px] mr-1 ${sportBadge(t.sport)}`}>
                         {t.sport}
                       </span>
-                      <span className="font-bold text-white">{t.team}</span>
-                      {t.opponent ? (
-                        <span className="text-gray-500 text-[10px] ml-1">vs {t.opponent}</span>
+                      <span className="font-bold text-white">{t.team_full_name || t.team}</span>
+                      {(t.opponent_full_name || t.opponent) ? (
+                        <span className="text-gray-500 text-[10px] ml-1">vs {t.opponent_full_name || t.opponent}</span>
                       ) : null}
                     </td>
                     <td className="px-2 py-1.5 whitespace-nowrap text-[10px] font-mono">

@@ -79,6 +79,7 @@ from executor_core import (
     save_traded_game,       # Save traded game after successful trade
     refresh_position_cache, # Background position refresh (not on hot path)
     load_directional_positions,  # Load OMI directional positions on startup
+    MIN_K_DEPTH_L1,         # Depth gate threshold for walk-based check
 )
 
 from pregame_mapper import load_verified_mappings, TEAM_FULL_NAMES
@@ -1742,6 +1743,23 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                              f"({l['spread']}c spread, {l['marginal_profit']}c net{tag})")
             print(f"[DEPTH] {arb.team}: {len(profitable)} profitable levels | {' | '.join(parts)}", flush=True)
 
+        # Walk-based depth gate — authoritative check using actual depth at arb price
+        if dwl:
+            walk_k_depth = dwl[0].get('k_remaining', 0)
+            if walk_k_depth < MIN_K_DEPTH_L1:
+                print(f"[DEPTH_GATE] SKIP {arb.team}: walk K L1 depth {walk_k_depth} < {MIN_K_DEPTH_L1} at arb price", flush=True)
+                log_skipped_arb(arb, 'walk_depth_gate', f'K depth {walk_k_depth} < {MIN_K_DEPTH_L1} at arb price')
+                stats['depth_gate_skips'] = stats.get('depth_gate_skips', 0) + 1
+                return
+
+        # Sizing decision log
+        _dcap = sizing.get('depth_cap_used', 0)
+        _spread_l1 = sizing.get('spread_at_sizing', 0)
+        _commit_cap = sizing.get('commitment_cap', '?')
+        print(f"[SIZING] {arb.team}: {optimal_size} contracts | spread={_spread_l1:.1f}c cap={_dcap:.0%} | "
+              f"walk={sizing.get('max_profitable_contracts', '?')} depth={sizing.get('size', '?')} "
+              f"commit={_commit_cap} max={Config.max_contracts} | limit={sizing.get('limit_reason', '?')}", flush=True)
+
         # Build sizing_details dict for trade log
         _sizing_details = {
             'avg_spread_cents': sizing.get('avg_spread_cents', 0),
@@ -1750,6 +1768,9 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
             'pm_depth': sizing.get('pm_depth', 0),
             'limit_reason': sizing.get('limit_reason', ''),
             'depth_walk_log': dwl,
+            'depth_cap_used': sizing.get('depth_cap_used', 0),
+            'spread_at_sizing': sizing.get('spread_at_sizing', 0),
+            'commitment_cap': sizing.get('commitment_cap', 0),
         }
 
         # -----------------------------------------------------------------

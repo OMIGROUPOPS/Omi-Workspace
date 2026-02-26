@@ -23,10 +23,10 @@ BALANCES_FILE = os.path.join(SCRIPT_DIR, "balances.json")
 SNAPSHOTS_FILE = os.path.join(SCRIPT_DIR, "balance_snapshots.json")
 
 STARTING_BALANCE = {
-    "kalshi": 188.83,
-    "pm": 128.94,
-    "total": 317.77,
-    "date": "2026-02-15",
+    "kalshi": 460.23,
+    "pm": 450.08,
+    "total": 910.31,
+    "date": "2026-02-26",
 }
 
 # Import Kalshi auth from kalshi_reconciler

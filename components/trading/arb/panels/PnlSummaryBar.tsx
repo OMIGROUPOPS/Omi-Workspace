@@ -3,7 +3,7 @@
 import React from "react";
 import type { Balances, Position, PnlSummary } from "../types";
 
-const STARTING_BALANCE = 317.77;
+const STARTING_BALANCE = 910.31;
 
 interface Props {
   balances: Balances | undefined;

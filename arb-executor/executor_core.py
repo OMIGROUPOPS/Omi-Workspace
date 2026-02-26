@@ -91,6 +91,15 @@ REVERSE_INTENT = {1: 2, 2: 1, 3: 4, 4: 3}
 # Data: 57% unwind rate when K_L1 < 50, vs 0% when >= 50
 MIN_K_DEPTH_L1 = 50
 
+
+def get_depth_cap(spread_cents: float) -> float:
+    """Higher spread = more confidence = take more depth."""
+    if spread_cents >= 20: return 0.85
+    if spread_cents >= 10: return 0.75
+    if spread_cents >= 7:  return 0.65
+    if spread_cents >= 5:  return 0.50
+    return 0.35  # 4c spreads, just skim
+
 TRADE_PARAMS = {
     # ==========================================================================
     # Case 1: BUY_PM_SELL_K, team IS pm_long_team
@@ -1012,7 +1021,9 @@ def calculate_optimal_size(
 
     # ── Step D: Apply safety caps ──
     depth_limit = min(total_k_available, total_pm_available)
-    safe_depth = math.floor(depth_limit * Config.depth_cap)
+    spread_at_l1 = depth_walk_log[0]['spread'] if depth_walk_log else 0
+    depth_cap_used = get_depth_cap(spread_at_l1)
+    safe_depth = math.floor(depth_limit * depth_cap_used)
 
     # Capital limits (approximate using best-level cost)
     best_pm_cost = pm_levels[0][0] if pm_levels else 50
@@ -1026,6 +1037,12 @@ def calculate_optimal_size(
     capital_limit_k = math.floor(k_balance_cents / max(k_cost_per, 1))
     capital_limit = min(capital_limit_pm, capital_limit_k)
 
+    # Max 12% of smaller account balance committed per trade
+    max_commitment_pct = 0.12
+    smaller_balance = min(k_balance_cents, pm_balance_cents)
+    max_cost_per_contract = max(k_cost_per, best_pm_cost)
+    commitment_cap = math.floor((smaller_balance * max_commitment_pct) / max(max_cost_per_contract, 1))
+
     # Determine limiting factor
     limit_reason = 'depth_walk'
     final_size = contracts
@@ -1035,6 +1052,9 @@ def calculate_optimal_size(
     if capital_limit < final_size:
         final_size = capital_limit
         limit_reason = 'capital'
+    if commitment_cap < final_size:
+        final_size = commitment_cap
+        limit_reason = 'commitment_cap'
     if max_contracts < final_size:
         final_size = max_contracts
         limit_reason = 'max_contracts'
@@ -1106,6 +1126,9 @@ def calculate_optimal_size(
         'max_theoretical_profit_cents': round(max_profit, 2),
         'traded_contracts': final_size,
         'captured_profit_cents': round(total_profit, 2),
+        'depth_cap_used': depth_cap_used,
+        'spread_at_sizing': spread_at_l1,
+        'commitment_cap': commitment_cap,
     }
 
 

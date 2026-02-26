@@ -402,6 +402,7 @@ function UnifiedChart({
   const lastData = data[data.length - 1];
   const currentBook = lastData.bookVal;
   const currentFair = lastData.fairVal;
+  const currentGap = (currentBook != null && currentFair != null) ? Math.abs(currentBook - currentFair) : 0;
   const currentEdge = (currentBook != null && currentFair != null) ? calcEdge(currentBook, currentFair) : 0;
   const compositeScore = pythonPillars?.composite ?? null;
 

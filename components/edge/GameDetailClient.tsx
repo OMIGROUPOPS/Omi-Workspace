@@ -3286,6 +3286,9 @@ export function GameDetailClient({
     return lines.join('\n');
   })();
 
+  // Edge AI expanded state for War Room layout
+  const [edgeAIExpanded, setEdgeAIExpanded] = useState(false);
+
   // Exchange data state
   const [exchangeData, setExchangeData] = useState<{
     by_market: Record<string, Array<{
@@ -3474,15 +3477,140 @@ export function GameDetailClient({
     background: #0a0a0a;
     border: 1px solid #1a1a1a;
   }
+
+  .omi-war-room {
+    display: grid;
+    grid-template-rows: auto 1fr 1fr 48px;
+    grid-template-columns: 45fr 55fr;
+    gap: 3px;
+    height: 100%;
+    background: #0a0a0a;
+    padding: 3px;
+  }
+  
+  .omi-war-room-header {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  
+  .omi-war-room-pricing {
+    grid-column: 1;
+    grid-row: 2;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .omi-war-room-chart {
+    grid-column: 2;
+    grid-row: 2;
+    overflow: hidden;
+  }
+  
+  .omi-war-room-bottom {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 3px;
+    overflow: hidden;
+  }
+  
+  .omi-war-room-bottom > div {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .omi-war-room-edge-ai {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    overflow: hidden;
+  }
+  
+  .omi-war-room-panel {
+    background: #111111;
+    border: 1px solid #1f1f1f;
+    position: relative;
+  }
+  .omi-war-room-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(212, 168, 67, 0.3) 50%, transparent 100%);
+    z-index: 1;
+  }
+  
+  .omi-edge-ai-bar {
+    background: linear-gradient(180deg, #111111 0%, #0d0d0d 100%);
+    border: 1px solid #1f1f1f;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+    height: 48px;
+    cursor: pointer;
+    transition: all 200ms ease;
+    position: relative;
+  }
+  .omi-edge-ai-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(212, 168, 67, 0.2) 50%, transparent 100%);
+  }
+  .omi-edge-ai-bar:hover {
+    background: linear-gradient(180deg, #151515 0%, #111111 100%);
+    border-color: #2a2a2a;
+  }
+  
+  .omi-edge-ai-expanded {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50vh;
+    z-index: 100;
+    background: #0d0d0d;
+    border-top: 1px solid #1f1f1f;
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.6);
+    animation: omi-slide-up 0.3s ease-out;
+  }
+  
+  @keyframes omi-slide-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  
+  .omi-panel-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-bottom: 1px solid #1a1a1a;
+    background: linear-gradient(180deg, #141414 0%, #111111 100%);
+  }
+  .omi-panel-label span {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #D4A843;
+    font-weight: 600;
+  }
 `}</style>
 
-      {/* Desktop: OMI Fair Pricing Layout */}
-      <div className="hidden lg:block h-full omi-terminal-bg">
-        <div className="flex flex-col h-full mx-auto" style={{ maxWidth: '1400px', fontVariantNumeric: 'tabular-nums' }}>
-
-          {/* Fixed header area — does not scroll */}
-          <div className="flex-shrink-0">
-            <div style={{ borderBottom: '1px solid #1a1a1a' }}>
+      {/* Desktop: War Room Mosaic Layout */}
+      <div className="hidden lg:block h-full" style={{ fontVariantNumeric: 'tabular-nums' }}>
+        <div className="omi-war-room" style={{ maxWidth: '1920px', margin: '0 auto' }}>
+          
+          {/* === ROW 1: Header === */}
+          <div className="omi-war-room-header">
+            <div style={{ borderBottom: '1px solid #1a1a1a', background: '#0b0b0b' }}>
               <TerminalHeader
                 awayTeam={gameData.awayTeam}
                 homeTeam={gameData.homeTeam}
@@ -3515,7 +3643,7 @@ export function GameDetailClient({
             {isFinal && <GameStatusBanner gameState="final" />}
 
             {/* Market tabs + period sub-tabs */}
-            <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#1a1a1a]/50">
+            <div className="flex items-center justify-between px-3 py-1.5" style={{ borderBottom: '1px solid #1a1a1a', background: '#0b0b0b' }}>
               <div className="flex items-center gap-1">
                 {(['spread', 'total', 'moneyline'] as ActiveMarket[])
                   .filter(m => m !== 'spread' || !isSoccerGame)
@@ -3563,76 +3691,88 @@ export function GameDetailClient({
             </div>
           </div>
 
-          {/* Main area: scrollable left content + fixed Edge AI sidebar */}
-          <div className="flex flex-1 min-h-0">
-            {/* Left: independently scrollable content */}
-            <div className="flex-1 min-w-0 overflow-y-auto" style={{ padding: '24px 24px 24px 24px' }}>
-              {/* Unified convergence chart */}
-              <div className="omi-panel" style={{ marginBottom: '24px', borderRadius: '2px' }}>
-                <UnifiedChart
-                  key={`chart-${activeMarket}-${activePeriod}`}
-                  compositeHistory={compositeHistory}
-                  sportKey={gameData.sportKey}
-                  activeMarket={activeMarket}
-                  homeTeam={gameData.homeTeam}
-                  awayTeam={gameData.awayTeam}
-                  commenceTime={gameData.commenceTime}
-                  pythonPillars={pythonPillarScores}
-                />
-              </div>
+          {/* === ROW 2: OmiFairPricing (left) + Chart (right) === */}
+          <div className="omi-war-room-pricing omi-war-room-panel">
+            <OmiFairPricing
+              key={`desktop-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
+              pythonPillars={pythonPillarScores}
+              bookmakers={bookmakers}
+              gameData={gameData}
+              sportKey={gameData.sportKey}
+              activeMarket={activeMarket}
+              activePeriod={activePeriod}
+              selectedBook={selectedBook}
+              commenceTime={gameData.commenceTime}
+              renderKey={renderKey}
+              dbFairLines={dbFairLines}
+            />
+          </div>
 
-              <div className="omi-panel" style={{ marginBottom: '24px', borderRadius: '2px' }}>
-              <OmiFairPricing
-                key={`desktop-pricing-${renderKey}-${activeMarket}-${activePeriod}-${selectedBook}`}
+          <div className="omi-war-room-chart omi-war-room-panel">
+            <UnifiedChart
+              key={`chart-${activeMarket}-${activePeriod}`}
+              compositeHistory={compositeHistory}
+              sportKey={gameData.sportKey}
+              activeMarket={activeMarket}
+              homeTeam={gameData.homeTeam}
+              awayTeam={gameData.awayTeam}
+              commenceTime={gameData.commenceTime}
+              pythonPillars={pythonPillarScores}
+            />
+          </div>
+
+          {/* === ROW 3: 4-panel bottom row === */}
+          <div className="omi-war-room-bottom">
+            <div className="omi-war-room-panel">
+              <WhyThisPrice
                 pythonPillars={pythonPillarScores}
-                bookmakers={bookmakers}
-                gameData={gameData}
-                sportKey={gameData.sportKey}
+                ceq={activeCeq}
+                homeTeam={gameData.homeTeam}
+                awayTeam={gameData.awayTeam}
                 activeMarket={activeMarket}
                 activePeriod={activePeriod}
-                selectedBook={selectedBook}
-                commenceTime={gameData.commenceTime}
-                renderKey={renderKey}
-                dbFairLines={dbFairLines}
               />
-              </div>
-
-              {/* Why This Price + CEQ Factors — side by side */}
-              <div className="omi-panel" style={{ marginBottom: '24px', borderRadius: '2px' }}>
-              <div className="flex">
-                <div className="w-1/2 border-r border-[#1a1a1a]/50">
-                  <WhyThisPrice
-                    pythonPillars={pythonPillarScores}
-                    ceq={activeCeq}
-                    homeTeam={gameData.homeTeam}
-                    awayTeam={gameData.awayTeam}
-                    activeMarket={activeMarket}
-                    activePeriod={activePeriod}
-                  />
-                </div>
-                <div className="w-1/2">
-                  <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
-                </div>
-              </div>
-              </div>
-
-              {/* L10 ATS + Injury Report — side by side */}
-              <div className="omi-panel" style={{ marginBottom: '24px', borderRadius: '2px' }}>
-              <div className="flex">
-                <div className="w-1/2 border-r border-[#1a1a1a]/50">
-                  <L10AtsPanel homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} activeMarket={activeMarket} />
-                </div>
-                <div className="w-1/2">
-                  <InjuryReport homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} />
-                </div>
-              </div>
-              </div>
             </div>
-
-            {/* Right: Edge AI sidebar — fixed width, full height */}
-            <div className="w-[280px] flex-shrink-0" style={{ borderLeft: '1px solid #1f1f1f', marginLeft: '24px', background: '#0d0d0d' }}>
-              <AskEdgeAI activeMarket={activeMarket} activePeriod={activePeriod} gameContext={edgeAIGameContext} />
+            <div className="omi-war-room-panel">
+              <CeqFactors ceq={activeCeq} activeMarket={activeMarket} homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} />
             </div>
+            <div className="omi-war-room-panel">
+              <L10AtsPanel homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} activeMarket={activeMarket} />
+            </div>
+            <div className="omi-war-room-panel">
+              <InjuryReport homeTeam={gameData.homeTeam} awayTeam={gameData.awayTeam} sportKey={gameData.sportKey} />
+            </div>
+          </div>
+
+          {/* === ROW 4: Edge AI collapsed bar === */}
+          <div className="omi-war-room-edge-ai">
+            {!edgeAIExpanded ? (
+              <div className="omi-edge-ai-bar" onClick={() => setEdgeAIExpanded(true)}>
+                <span style={{ color: '#D4A843', fontSize: '14px' }}>✦</span>
+                <span style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: '11px', fontWeight: 600, color: '#D4A843', letterSpacing: '1px', textTransform: 'uppercase' as const }}>Edge AI</span>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', color: '#555', marginLeft: '8px' }}>Ask about {gameData.awayTeam} @ {gameData.homeTeam}...</span>
+                <div style={{ marginLeft: 'auto', display: 'flex', gap: '6px' }}>
+                  {['Why is the line different from the book?', 'Which pillar is driving the edge?', 'Explain line movement'].map((q, i) => (
+                    <span key={i} style={{ padding: '3px 8px', fontSize: '9px', fontFamily: "'IBM Plex Sans', sans-serif", color: '#888', border: '1px solid #1f1f1f', background: '#0a0a0a', cursor: 'pointer', whiteSpace: 'nowrap' as const }}
+                      onClick={(e) => { e.stopPropagation(); setEdgeAIExpanded(true); }}
+                    >{q}</span>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="omi-edge-ai-expanded">
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 16px', borderBottom: '1px solid #1a1a1a', background: '#111111' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ color: '#D4A843', fontSize: '14px' }}>✦</span>
+                    <span style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: '11px', fontWeight: 600, color: '#D4A843', letterSpacing: '1px', textTransform: 'uppercase' as const }}>Edge AI</span>
+                  </div>
+                  <button onClick={() => setEdgeAIExpanded(false)} style={{ color: '#555', fontSize: '18px', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px' }}>✕</button>
+                </div>
+                <div style={{ height: 'calc(50vh - 40px)', overflow: 'hidden' }}>
+                  <AskEdgeAI activeMarket={activeMarket} activePeriod={activePeriod} gameContext={edgeAIGameContext} />
+                </div>
+              </div>
+            )}
           </div>
 
         </div>

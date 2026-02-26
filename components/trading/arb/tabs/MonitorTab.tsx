@@ -6,11 +6,9 @@ import type { BottomTab } from "../types";
 import { DashboardCard } from "../shared/DashboardCard";
 import { FilterButton } from "../shared/FilterButton";
 import { SpreadHeatmapTable } from "../panels/SpreadHeatmapTable";
-import { SpreadTimeSeriesChart } from "../panels/SpreadTimeSeriesChart";
 import { TradeLog } from "../panels/TradeLog";
 import { PositionsTable } from "../panels/PositionsTable";
 import { MappedGamesTable } from "../panels/MappedGamesTable";
-import { formatUptime, formatDateLabel } from "../helpers";
 
 interface Props {
   data: ArbDataReturn;
@@ -44,10 +42,7 @@ export function MonitorTab({ data }: Props) {
     markSettled,
   } = data;
 
-  const [chartOpen, setChartOpen] = useState(false);
-
-  const specs = state?.specs;
-  const spreadMinCents = specs?.config?.spread_min_cents ?? 4;
+  const [heatmapOpen, setHeatmapOpen] = useState(false);
 
   return (
     <div className="p-4 space-y-4">
@@ -179,29 +174,20 @@ export function MonitorTab({ data }: Props) {
         )}
       </div>
 
-      {/* ── Spread Heatmap ────────────────────────────────────── */}
-      <SpreadHeatmapTable
-        spreads={sortedSpreads}
-        mappedGames={state?.mapped_games || []}
-      />
-
-      {/* ── Spread Time Series (collapsible) ─────────────────── */}
+      {/* ── Spread Heatmap (collapsed by default) ──────────── */}
       <div className="rounded-lg border border-gray-800 bg-[#111]">
         <button
-          onClick={() => setChartOpen((o) => !o)}
+          onClick={() => setHeatmapOpen((o) => !o)}
           className="w-full px-3 py-2 flex items-center justify-between text-xs font-semibold text-gray-400 uppercase tracking-wide hover:text-gray-300"
         >
-          <span>Spread Time Series (60 min)</span>
-          <span className="text-gray-600">{chartOpen ? "\u25B2" : "\u25BC"}</span>
+          <span>{sortedSpreads.length + (state?.mapped_games?.length ?? 0)} mapped games</span>
+          <span className="text-gray-600">{heatmapOpen ? "\u25B2" : "\u25BC"}</span>
         </button>
-        {chartOpen && (
-          <div className="px-3 pb-3">
-            <SpreadTimeSeriesChart
-              spreadHistory={state?.spread_history || []}
-              spreadMinCents={spreadMinCents}
-              compact
-            />
-          </div>
+        {heatmapOpen && (
+          <SpreadHeatmapTable
+            spreads={sortedSpreads}
+            mappedGames={state?.mapped_games || []}
+          />
         )}
       </div>
     </div>

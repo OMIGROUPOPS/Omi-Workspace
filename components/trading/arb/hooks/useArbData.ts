@@ -11,7 +11,7 @@ import type {
   TimeHorizon,
   TradeSortKey,
 } from "../types";
-import { toDateStr, formatDateLabel, formatShortDate, tradePnl, computePnl, isOpenTrade } from "../helpers";
+import { toDateStr, todayET, formatDateLabel, formatShortDate, tradePnl, computePnl, isOpenTrade, getKL1Depth } from "../helpers";
 
 export function useArbData() {
   const [state, setState] = useState<ArbState | null>(null);
@@ -81,9 +81,20 @@ export function useArbData() {
   // ── Date navigation ──
   const selectedDate = useMemo(() => {
     if (dateAll) return null;
+    // Use ET for date navigation
     const d = new Date();
-    d.setUTCDate(d.getUTCDate() + dateOffset);
-    return d.toISOString().slice(0, 10);
+    d.setDate(d.getDate() + dateOffset);
+    // Convert to ET date string
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).formatToParts(d);
+    const y = parts.find((p) => p.type === "year")?.value ?? "";
+    const m = parts.find((p) => p.type === "month")?.value ?? "";
+    const day = parts.find((p) => p.type === "day")?.value ?? "";
+    return `${y}-${m}-${day}`;
   }, [dateOffset, dateAll]);
 
   const dateLabel = useMemo(() => {
@@ -384,6 +395,44 @@ export function useArbData() {
     return tradeSortAsc ? " \u25B2" : " \u25BC";
   };
 
+  // ── Depth gate stats ──
+  const depthGateStats = useMemo(() => {
+    const etToday = todayET();
+    const todaySkipped = allTrades.filter(
+      (t) => t.status === "SKIPPED" && toDateStr(t.timestamp) === etToday
+    );
+    const depthGateSkips = todaySkipped.filter((t) =>
+      (t as any).skip_reason?.includes("k_depth_gate") ||
+      (t as any).abort_reason?.includes("k_depth_gate")
+    ).length;
+
+    // Unwind rates by depth bucket
+    const filledTrades = allTrades.filter((t) => !t.paper_mode && t.contracts_filled > 0);
+    let belowThreshold = 0, belowUnwinds = 0;
+    let aboveThreshold = 0, aboveUnwinds = 0;
+    for (const t of filledTrades) {
+      const depth = getKL1Depth(t);
+      if (depth === null) continue;
+      const isUnwind = t.status === "EXITED" || t.status === "UNHEDGED";
+      if (depth < 50) {
+        belowThreshold++;
+        if (isUnwind) belowUnwinds++;
+      } else {
+        aboveThreshold++;
+        if (isUnwind) aboveUnwinds++;
+      }
+    }
+
+    return {
+      skippedToday: depthGateSkips,
+      threshold: 50,
+      belowThreshold,
+      belowUnwindRate: belowThreshold > 0 ? ((belowUnwinds / belowThreshold) * 100).toFixed(0) : "0",
+      aboveThreshold,
+      aboveUnwindRate: aboveThreshold > 0 ? ((aboveUnwinds / aboveThreshold) * 100).toFixed(0) : "0",
+    };
+  }, [allTrades]);
+
   const exportCsv = useCallback(() => {
     const headers = ["Time", "Team", "Sport", "Direction", "Status", "Qty", "Spread", "Net P&L", "Phase", "Maker", "K Price", "PM Price"];
     const rows = sortedPnlTrades.map((t) => [
@@ -458,6 +507,7 @@ export function useArbData() {
     scatterData,
     dailyPnlData,
     fillRateStats,
+    depthGateStats,
     sortedPnlTrades,
     handleSort,
     sortArrow,

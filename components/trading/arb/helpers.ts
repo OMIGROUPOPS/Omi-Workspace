@@ -90,13 +90,14 @@ export function formatDateTime(iso: string): string {
   try {
     const s = iso.endsWith("Z") || iso.includes("+") ? iso : iso + "Z";
     const d = new Date(s);
-    const mon = d.toLocaleString("en-US", { month: "short" });
-    const day = d.getDate();
+    const mon = d.toLocaleString("en-US", { month: "short", timeZone: "America/New_York" });
+    const day = Number(new Intl.DateTimeFormat("en-US", { day: "numeric", timeZone: "America/New_York" }).format(d));
     const time = d.toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
       hour12: false,
+      timeZone: "America/New_York",
     });
     return `${mon} ${day} ${time}`;
   } catch {
@@ -135,20 +136,55 @@ export function formatTimeHM(iso: string): string {
   }
 }
 
-export function isToday(dateStr: string | undefined): boolean {
-  if (!dateStr) return false;
-  const today = new Date().toISOString().slice(0, 10);
-  return dateStr === today;
-}
-
-export function toDateStr(iso: string): string {
-  if (!iso) return "";
+/** Convert a UTC timestamp to YYYY-MM-DD in US Eastern Time. */
+export function toETDate(utcTimestamp: string): string {
+  if (!utcTimestamp) return "";
   try {
-    const s = iso.endsWith("Z") || iso.includes("+") ? iso : iso + "Z";
-    return new Date(s).toISOString().slice(0, 10);
+    const s = utcTimestamp.endsWith("Z") || utcTimestamp.includes("+") ? utcTimestamp : utcTimestamp + "Z";
+    const d = new Date(s);
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).formatToParts(d);
+    const y = parts.find((p) => p.type === "year")?.value ?? "";
+    const m = parts.find((p) => p.type === "month")?.value ?? "";
+    const day = parts.find((p) => p.type === "day")?.value ?? "";
+    return `${y}-${m}-${day}`;
   } catch {
     return "";
   }
+}
+
+/** Get today's date as YYYY-MM-DD in US Eastern Time. */
+export function todayET(): string {
+  return toETDate(new Date().toISOString());
+}
+
+export function isToday(dateStr: string | undefined): boolean {
+  if (!dateStr) return false;
+  return dateStr === todayET();
+}
+
+/** Convert ISO timestamp to YYYY-MM-DD (ET). All date grouping uses Eastern Time. */
+export function toDateStr(iso: string): string {
+  return toETDate(iso);
+}
+
+/** Extract Kalshi L1 depth from a trade's sizing_details. */
+export function getKL1Depth(t: TradeEntry): number | null {
+  const log = t.sizing_details?.depth_walk_log;
+  if (log && log.length > 0) return log[0].k_remaining ?? null;
+  return null;
+}
+
+/** Color class for K L1 depth value. */
+export function kDepthColor(depth: number | null): string {
+  if (depth === null) return "text-gray-600";
+  if (depth < 50) return "text-red-400";
+  if (depth < 200) return "text-yellow-400";
+  return "text-emerald-400";
 }
 
 export function formatDateLabel(dateStr: string): string {

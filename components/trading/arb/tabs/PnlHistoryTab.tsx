@@ -37,6 +37,7 @@ export function PnlHistoryTab({ data }: Props) {
     exportCsv,
     totalPnl,
     activePositions,
+    depthGateStats,
   } = data;
 
   const horizons: TimeHorizon[] = ["1D", "1W", "1M", "YTD", "ALL"];
@@ -100,6 +101,29 @@ export function PnlHistoryTab({ data }: Props) {
           value={`${pnlSummaryStats.noFills}`}
           sub={`GTC: ${pnlSummaryStats.gtcFills}/${pnlSummaryStats.gtcAttempts} (${pnlSummaryStats.gtcFillRate}%)`}
         />
+      </div>
+
+      {/* ── Depth Gate Stats ──────────────────────────────────── */}
+      <div className="rounded-lg border border-gray-800 bg-[#111] px-3 py-2 flex items-center gap-6 text-xs">
+        <span className="text-[10px] font-semibold text-gray-500 uppercase tracking-wide">Depth Gate</span>
+        <div>
+          <span className="text-gray-500">Skips Today: </span>
+          <span className="text-white font-bold font-mono">{depthGateStats.skippedToday}</span>
+        </div>
+        <div>
+          <span className="text-gray-500">Threshold: </span>
+          <span className="text-white font-mono">{depthGateStats.threshold}</span>
+        </div>
+        <div>
+          <span className="text-gray-500">&lt;{depthGateStats.threshold}: </span>
+          <span className="text-red-400 font-bold font-mono">{depthGateStats.belowUnwindRate}%</span>
+          <span className="text-gray-600"> unwind ({depthGateStats.belowThreshold})</span>
+        </div>
+        <div>
+          <span className="text-gray-500">&ge;{depthGateStats.threshold}: </span>
+          <span className="text-emerald-400 font-bold font-mono">{depthGateStats.aboveUnwindRate}%</span>
+          <span className="text-gray-600"> unwind ({depthGateStats.aboveThreshold})</span>
+        </div>
       </div>
 
       {/* ── P&L Reconciliation Bar ────────────────────────────── */}

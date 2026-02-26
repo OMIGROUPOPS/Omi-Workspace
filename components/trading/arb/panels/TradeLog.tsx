@@ -2,7 +2,7 @@
 
 import React from "react";
 import type { TradeEntry } from "../types";
-import { tradePnl, sportBadge, statusBadge, formatDateTime, netColor } from "../helpers";
+import { tradePnl, sportBadge, statusBadge, formatDateTime, netColor, getKL1Depth, kDepthColor } from "../helpers";
 
 interface Props {
   trades: TradeEntry[];
@@ -79,6 +79,7 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
               <th className="px-2 py-1.5 text-left font-medium">STATUS</th>
               <th className="px-2 py-1.5 text-right font-medium">QTY</th>
               <th className="px-2 py-1.5 text-right font-medium">SPREAD</th>
+              <th className="px-2 py-1.5 text-right font-medium">K DEPTH</th>
               <th className="px-2 py-1.5 text-right font-medium">NET P&L</th>
               <th className="px-2 py-1.5 text-right font-medium">MS</th>
             </tr>
@@ -121,6 +122,9 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                     <td className="px-2 py-1.5 text-right font-mono text-gray-400">
                       {t.spread_cents?.toFixed(1) ?? "-"}c
                     </td>
+                    <td className={`px-2 py-1.5 text-right font-mono ${kDepthColor(getKL1Depth(t))}`}>
+                      {getKL1Depth(t) ?? "-"}
+                    </td>
                     <td className={`px-2 py-1.5 text-right font-mono ${
                       pnl.totalDollars === null ? "text-gray-500" :
                       Math.abs(pnl.totalDollars) >= 1 ? `font-bold ${netColor(pnl.totalDollars)}` :
@@ -136,7 +140,7 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                   </tr>
                   {isExpanded && (
                     <tr className="bg-gray-900/50">
-                      <td colSpan={8} className="px-4 py-3">
+                      <td colSpan={9} className="px-4 py-3">
                         <div className="grid grid-cols-3 gap-x-6 gap-y-2 text-[10px]">
                           <div>
                             <span className="text-gray-500 block">Game ID</span>

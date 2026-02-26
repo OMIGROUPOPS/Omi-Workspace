@@ -119,6 +119,8 @@ export interface TradeEntry {
   pm_slug?: string;
   kalshi_ticker?: string;
   reconciled_pnl?: number | null;
+  skip_reason?: string;
+  abort_reason?: string;
 }
 
 export interface PnlSummary {

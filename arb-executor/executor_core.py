@@ -87,6 +87,10 @@ PM_DISPLAY_TO_KALSHI = {
 # BUY_LONG(1) ↔ SELL_LONG(2), BUY_SHORT(3) ↔ SELL_SHORT(4)
 REVERSE_INTENT = {1: 2, 2: 1, 3: 4, 4: 3}
 
+# Minimum K depth gate - skip trades when Kalshi L1 depth is too thin
+# Data: 57% unwind rate when K_L1 < 50, vs 0% when >= 50
+MIN_K_DEPTH_L1 = 50
+
 TRADE_PARAMS = {
     # ==========================================================================
     # Case 1: BUY_PM_SELL_K, team IS pm_long_team
@@ -1319,6 +1323,22 @@ async def execute_arb(
         return TradeResult(
             success=False,
             abort_reason=f"Pre-flight: No Kalshi book data for {arb.kalshi_ticker}",
+        )
+
+    # -------------------------------------------------------------------------
+    # Step 4b: K depth gate — skip if Kalshi L1 too thin for reliable fill
+    # -------------------------------------------------------------------------
+    if params['k_action'] == 'sell':
+        k_l1_depth = k_book_ref.get('best_bid_size', 0) if k_book_ref else 0
+    else:
+        k_l1_depth = k_book_ref.get('best_ask_size', 0) if k_book_ref else 0
+
+    if k_l1_depth < MIN_K_DEPTH_L1:
+        print(f"[DEPTH_GATE] SKIP {arb.team}: K L1 depth {k_l1_depth} < {MIN_K_DEPTH_L1}", flush=True)
+        on_execution_crash(game_id)
+        return TradeResult(
+            success=False,
+            abort_reason=f"k_depth_gate: K L1 depth {k_l1_depth} < {MIN_K_DEPTH_L1}",
         )
 
     # -------------------------------------------------------------------------

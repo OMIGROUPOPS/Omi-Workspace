@@ -2,7 +2,7 @@
 
 import React from "react";
 import type { TradeEntry, TradeSortKey } from "../types";
-import { tradePnl, sportBadge, statusBadge, formatDateTime, toDateStr } from "../helpers";
+import { tradePnl, sportBadge, statusBadge, formatDateTime, toDateStr, todayET, getKL1Depth, kDepthColor } from "../helpers";
 
 interface Props {
   trades: TradeEntry[];
@@ -65,7 +65,7 @@ export function PnlTradeTable({
   setExpandedTrade,
 }: Props) {
   // Today summary
-  const today = new Date().toISOString().slice(0, 10);
+  const today = todayET();
   const todayTrades = trades.filter((t) => toDateStr(t.timestamp) === today);
   const todayStats = {
     count: todayTrades.length,
@@ -109,6 +109,7 @@ export function PnlTradeTable({
               <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("spread")}>
                 SPREAD{sortArrow("spread")}
               </th>
+              <th className="px-2 py-1.5 text-right font-medium">K DEPTH</th>
               <th className="px-2 py-1.5 text-right font-medium">FEES</th>
               <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("net")}>
                 NET P&L{sortArrow("net")}
@@ -157,6 +158,9 @@ export function PnlTradeTable({
                     <td className="px-2 py-1.5 text-right font-mono text-gray-400">
                       {t.spread_cents?.toFixed(1) ?? "-"}c
                     </td>
+                    <td className={`px-2 py-1.5 text-right font-mono ${kDepthColor(getKL1Depth(t))}`}>
+                      {getKL1Depth(t) ?? "-"}
+                    </td>
                     <td className="px-2 py-1.5 text-right font-mono text-yellow-400">
                       {fees > 0 ? `$${fees.toFixed(2)}` : "-"}
                     </td>
@@ -174,7 +178,7 @@ export function PnlTradeTable({
                   </tr>
                   {isExpanded && (
                     <tr className="bg-gray-900/50">
-                      <td colSpan={9} className="px-4 py-2">
+                      <td colSpan={10} className="px-4 py-2">
                         <div className="grid grid-cols-4 gap-3 text-[10px]">
                           <div>
                             <span className="text-gray-500">Execution:</span>{" "}

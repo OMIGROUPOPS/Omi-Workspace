@@ -338,7 +338,7 @@ function UnifiedChart({
     const w = indexToX(i + 1) - x;
     const edge = calcEdge(d.bookVal, d.fairVal, d.raw);
     const favorable = isFavorable(d.fairVal, d.bookVal);
-    const opacity = Math.min(edge / 5, 1) * 0.15;
+    const opacity = Math.max(Math.min(edge / 5, 1) * 0.15, 0.04);
     const color = favorable ? '#22c55e' : '#ef4444';
     const yBook = valueToY(d.bookVal);
     const yFair = valueToY(d.fairVal);
@@ -1405,7 +1405,7 @@ function OmiFairPricing({
                   </div>
                   {hasPillars && (
                     <div className="text-right">
-                      <div className="omi-label">{activeMarket === 'moneyline' ? 'Win %' : 'Conf'}</div>
+                      <div className="omi-label">Conf</div>
                       <div className={`text-[18px] font-bold font-mono ${block.confColor}`}>
                         {activeMarket === 'moneyline' ? `${block.confidence.toFixed(1)}%` : `${block.confidence}%`}
                       </div>
@@ -2214,7 +2214,7 @@ function L10AtsPanel({ homeTeam, awayTeam, activeMarket }: {
   };
 
   const getDetail = (g: L10Game) => {
-    if (activeMarket === 'total') return `${g.actualTotal} (${g.totalLine})`;
+    if (activeMarket === 'total') return `${g.overHit ? 'O' : 'U'} ${g.actualTotal}`;
     if (activeMarket === 'moneyline') return `${g.won ? 'W' : 'L'} ${Math.abs(g.margin)}`;
     const sp = g.spread ?? 0;
     const sign = sp > 0 ? '+' : '';
@@ -2241,9 +2241,9 @@ function L10AtsPanel({ homeTeam, awayTeam, activeMarket }: {
                 <span className="text-[8px] font-mono text-[#555] w-[6px]">{g.wasHome ? '' : '@'}</span>
                 <span className="text-[8px] font-mono text-[#888] flex-1 truncate">{abbrev(g.opponent)}</span>
                 <span className="text-[8px] font-mono text-[#666] w-[36px] text-right">{getDetail(g)}</span>
-                <span className="text-[8px] font-mono text-[#666] w-[28px] text-right">{g.margin > 0 ? '+' : ''}{g.margin}</span>
+                <span className="text-[8px] font-mono text-[#666] w-[28px] text-right">{activeMarket === 'total' ? g.totalLine : `${g.margin > 0 ? '+' : ''}${g.margin}`}</span>
                 <span className={`text-[7px] font-mono font-bold w-[14px] text-center rounded-sm ${hit ? 'text-emerald-400 bg-emerald-500/10' : 'text-red-400 bg-red-500/10'}`}>
-                  {hit ? 'W' : 'L'}
+                  {activeMarket === 'total' ? (hit ? 'O' : 'U') : (hit ? 'W' : 'L')}
                 </span>
               </div>
             );

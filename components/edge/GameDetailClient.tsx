@@ -1102,6 +1102,19 @@ function OmiFairPricing({
     const homeAbbr = abbrev(gameData.homeTeam);
     const awayAbbr = abbrev(gameData.awayTeam);
 
+    console.log('[ML Edge Debug]', {
+      bookHomeOdds, bookAwayOdds,
+      rawBookHomeProb: bookHomeOdds !== undefined ? americanToImplied(bookHomeOdds) : undefined,
+      rawBookAwayProb: bookAwayOdds !== undefined ? americanToImplied(bookAwayOdds) : undefined,
+      vigStrippedHomeProb: bookHomeProb,
+      vigStrippedAwayProb: bookAwayProb,
+      omiFairHomeProb, omiFairAwayProb,
+      homeSignedGap, awaySignedGap,
+      threshold: 0.5,
+      homePassesThreshold: Math.abs(homeSignedGap) >= 0.5,
+      awayPassesThreshold: Math.abs(awaySignedGap) >= 0.5,
+    });
+
     const mkMLContext = (side: string, bookProb: number | undefined, fairProb: number | undefined, signedGap: number) => {
       if (bookProb === undefined || fairProb === undefined) return '';
       const abs = Math.abs(signedGap);

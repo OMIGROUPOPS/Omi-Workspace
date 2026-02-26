@@ -277,9 +277,13 @@ function UnifiedChart({
   // Shared favorability: accounts for tracking side after value negation
   const isFavorable = (fair: number, book: number) => {
     if (isTotal) return trackingSide === 'over' ? fair > book : fair < book;
+    if (isML) {
+      // For moneyline: favorable when book is cheaper (lower absolute odds) than fair
+      // e.g., book -124 vs fair -130: abs(124) < abs(130) = true = cheaper price = favorable
+      return Math.abs(book) < Math.abs(fair);
+    }
     // For spreads: favorable when book gives more points than fair (abs comparison)
     // e.g., book -2.8 vs fair -2.5: abs(-2.8) > abs(-2.5) = true = favorable for favorite bettors
-    // e.g., book +3.5 vs fair +2.5: abs(3.5) > abs(2.5) = true = favorable for underdog bettors
     return Math.abs(book) > Math.abs(fair);
   };
 

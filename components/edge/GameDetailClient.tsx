@@ -937,16 +937,16 @@ function OmiFairPricing({
       const mkContext = (side: string, bookL: number | undefined, fairL: number | undefined, pctEdge: number, ptsGap: number) => {
         if (bookL === undefined || fairL === undefined) return '';
         const absPct = Math.abs(pctEdge);
-        if (absPct < 0.5) return `${selBookName} is at fair value on ${side}`;
         return pctEdge > 0
           ? `${selBookName} offers ${absPct.toFixed(1)}% more than fair value on ${side}`
-          : `${selBookName} prices ${side} ${absPct.toFixed(1)}% tighter than fair`;
+          : pctEdge < 0
+          ? `${selBookName} prices ${side} ${absPct.toFixed(1)}% tighter than fair`
+          : `${selBookName} is at fair value on ${side}`;
       };
 
       const mkEvLine = (pctEdge: number, ptsGap: number, cross: number | null) => {
         const absPct = Math.abs(pctEdge);
-        if (absPct < 0.5) return '';
-        const sign = pctEdge > 0 ? '+' : '\u2212';
+        const sign = pctEdge > 0 ? '+' : pctEdge < 0 ? '\u2212' : '';
         const ptsStr = `${Math.abs(ptsGap).toFixed(1)} pts`;
         if (pctEdge <= 0) return `Edge: ${sign}${absPct.toFixed(1)}% (${ptsStr})`;
         return `Edge: ${sign}${absPct.toFixed(1)}% (${ptsStr})${cross ? ` | Crosses key number ${cross}` : ''}`;
@@ -1021,16 +1021,16 @@ function OmiFairPricing({
       const mkTotalContext = (side: string, pctEdge: number, ptsGap: number) => {
         if (bookLine === undefined || fairLine === undefined) return '';
         const absPct = Math.abs(pctEdge);
-        if (absPct < 0.5) return `${effBookName} is at fair value on ${side}`;
         return pctEdge > 0
           ? `${effBookName} offers ${absPct.toFixed(1)}% more than fair value on ${side}`
-          : `${effBookName} prices ${side} ${absPct.toFixed(1)}% tighter than fair`;
+          : pctEdge < 0
+          ? `${effBookName} prices ${side} ${absPct.toFixed(1)}% tighter than fair`
+          : `${effBookName} is at fair value on ${side}`;
       };
 
       const mkTotalEv = (pctEdge: number, ptsGap: number, ev: number) => {
         const absPct = Math.abs(pctEdge);
-        if (absPct < 0.5) return '';
-        const sign = pctEdge > 0 ? '+' : '\u2212';
+        const sign = pctEdge > 0 ? '+' : pctEdge < 0 ? '\u2212' : '';
         const ptsStr = `${Math.abs(ptsGap).toFixed(1)} pts`;
         if (pctEdge <= 0) return `Edge: ${sign}${absPct.toFixed(1)}% (${ptsStr})`;
         return `Edge: ${sign}${absPct.toFixed(1)}% (${ptsStr})${ev > 0 ? ` | EV: +$${ev}/1K` : ''}`;
@@ -1110,15 +1110,15 @@ function OmiFairPricing({
     const mkMLContext = (side: string, bookProb: number | undefined, fairProb: number | undefined, signedGap: number) => {
       if (bookProb === undefined || fairProb === undefined) return '';
       const abs = Math.abs(signedGap);
-      if (abs < 0.5) return `${mlEffBookName} is at fair value on ${side} ML`;
       return signedGap > 0
         ? `${mlEffBookName} offers ${abs.toFixed(1)}% more than fair value on ${side} ML`
-        : `${mlEffBookName} prices ${side} ML ${abs.toFixed(1)}% tighter than fair`;
+        : signedGap < 0
+        ? `${mlEffBookName} prices ${side} ML ${abs.toFixed(1)}% tighter than fair`
+        : `${mlEffBookName} is at fair value on ${side} ML`;
     };
 
     const mkMLEvLine = (signedGap: number, ev: number) => {
-      if (Math.abs(signedGap) < 0.5) return '';
-      const sign = signedGap > 0 ? '+' : '\u2212';
+      const sign = signedGap > 0 ? '+' : signedGap < 0 ? '\u2212' : '';
       if (signedGap <= 0) return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)}%`;
       return `Edge: ${sign}${Math.abs(signedGap).toFixed(1)}%${ev > 0 ? ` | EV: +$${ev}/1K` : ''}`;
     };

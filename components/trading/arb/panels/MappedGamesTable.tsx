@@ -107,16 +107,19 @@ export function MappedGamesTable({ games }: Props) {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((g) => {
+              {filtered.map((g, gi) => {
                 const isTodayGame = isToday(g.date);
                 const t1 = g.team1_prices;
                 const t2 = g.team2_prices;
                 const arbThreshold = 4;
+                const stripe = gi % 2 === 1 ? "bg-white/[0.02]" : "";
+                const tradedBg = g.traded ? "bg-emerald-500/5" : "";
+                const rowBg = tradedBg || stripe;
 
                 return (
                   <React.Fragment key={g.cache_key}>
                     {/* ── Team 1 row (includes game info) ── */}
-                    <tr className={`border-t border-gray-800/80 hover:bg-gray-800/30 transition-colors ${g.traded ? "bg-emerald-500/5" : ""}`}>
+                    <tr className={`border-t border-gray-800/80 hover:bg-gray-800/30 transition-colors ${rowBg}`}>
                       <td className="px-2 py-1 whitespace-nowrap">
                         <span className="text-white font-medium">{g.team1_full || g.team1}</span>
                       </td>
@@ -158,7 +161,7 @@ export function MappedGamesTable({ games }: Props) {
                       </td>
                     </tr>
                     {/* ── Team 2 row ── */}
-                    <tr className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors ${g.traded ? "bg-emerald-500/5" : ""}`}>
+                    <tr className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors ${rowBg}`}>
                       <td className="px-2 py-1 whitespace-nowrap">
                         <span className="text-white font-medium">{g.team2_full || g.team2}</span>
                       </td>

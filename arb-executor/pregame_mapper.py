@@ -531,10 +531,45 @@ SPORT_PM_OVERRIDES: dict[str, dict[str, str]] = {
     },
 }
 
-# Full team names for verification (Kalshi abbreviation -> full name)
-# Used to cross-check against PM outcome names
-TEAM_FULL_NAMES = {
-    # NBA
+# Known single-word school names that are NOT mascots
+_SINGLE_WORD_SCHOOLS = {
+    'Duke', 'Gonzaga', 'Purdue', 'Villanova', 'Creighton', 'Syracuse',
+    'Stanford', 'Princeton', 'Harvard', 'Yale', 'Cornell', 'Dartmouth',
+    'Columbia', 'Penn', 'Brown', 'Marquette', 'Baylor', 'Butler',
+    'Georgetown', 'Vanderbilt', 'Michigan', 'Wisconsin', 'Minnesota',
+    'Maryland', 'Rutgers', 'Nebraska', 'Northwestern', 'Indiana',
+    'Oregon', 'Arizona', 'Colorado', 'Utah', 'California', 'Houston',
+    'Cincinnati', 'Memphis', 'Tulane', 'Dayton', 'Richmond', 'Fordham',
+    'Drexel', 'Delaware', 'Bucknell', 'Lafayette', 'Colgate', 'Army',
+    'Navy', 'Lehigh', 'Vermont', 'Maine', 'Marshall', 'Louisiana',
+    'Clemson', 'Virginia', 'Pittsburgh', 'Louisville', 'Auburn', 'Alabama',
+    'Tennessee', 'Kentucky', 'Florida', 'Georgia', 'Mississippi', 'Arkansas',
+    'Missouri', 'Xavier', 'Providence', 'Mercer', 'Furman', 'Samford',
+    'Belmont', 'Drake', 'Bradley', 'Evansville', 'Valparaiso',
+    'Wofford', 'Chattanooga', 'Jacksonville', 'Stetson', 'Liberty',
+    'Lipscomb', 'Bellarmine', 'Niagara', 'Marist', 'Fairfield', 'Siena',
+    'Canisius', 'Quinnipiac', 'Monmouth', 'Hofstra', 'Towson', 'Elon',
+    'Hampton', 'Campbell', 'Charleston', 'Radford', 'Longwood',
+    'Winthrop', 'Gardner-Webb', 'Kennesaw', 'Stetson', 'Denver',
+}
+
+def _is_mascot_only(name: str) -> bool:
+    """Check if a team name looks like just a mascot (e.g. 'Wildcats', 'Eagles')."""
+    if not name:
+        return True
+    words = name.strip().split()
+    if len(words) >= 3:
+        return False  # Multi-word names are likely full (e.g. "Maine Black Bears")
+    if len(words) == 2:
+        # Two words could be full ("Seton Hall") or mascot-ish ("Golden Eagles")
+        # If first word is a common mascot prefix, it's still a mascot
+        return False  # Err on the side of keeping 2-word names
+    # Single word: mascot unless it's a known school name
+    return name not in _SINGLE_WORD_SCHOOLS
+
+# Full team names by sport (Kalshi abbreviation -> full franchise name)
+# Split by sport to avoid collisions (CHI = Bulls in NBA, Blackhawks in NHL)
+_NBA_FULL_NAMES = {
     "ATL": "Atlanta Hawks", "BOS": "Boston Celtics", "BKN": "Brooklyn Nets",
     "CHA": "Charlotte Hornets", "CHI": "Chicago Bulls", "CLE": "Cleveland Cavaliers",
     "DAL": "Dallas Mavericks", "DEN": "Denver Nuggets", "DET": "Detroit Pistons",
@@ -545,17 +580,24 @@ TEAM_FULL_NAMES = {
     "ORL": "Orlando Magic", "PHI": "Philadelphia 76ers", "PHX": "Phoenix Suns",
     "POR": "Portland Trail Blazers", "SAC": "Sacramento Kings", "SAS": "San Antonio Spurs",
     "TOR": "Toronto Raptors", "UTA": "Utah Jazz", "WAS": "Washington Wizards",
-    # NHL
-    "ANA": "Anaheim Ducks", "ARI": "Arizona Coyotes", "BUF": "Buffalo Sabres",
-    "CAR": "Carolina Hurricanes", "CBJ": "Columbus Blue Jackets", "CGY": "Calgary Flames",
-    "COL": "Colorado Avalanche", "EDM": "Edmonton Oilers", "FLA": "Florida Panthers",
-    "LAK": "Los Angeles Kings", "MTL": "Montreal Canadiens", "NJD": "New Jersey Devils",
-    "NSH": "Nashville Predators", "NYI": "New York Islanders", "NYR": "New York Rangers",
-    "OTT": "Ottawa Senators", "PIT": "Pittsburgh Penguins", "SEA": "Seattle Kraken",
-    "SJS": "San Jose Sharks", "STL": "St. Louis Blues", "TBL": "Tampa Bay Lightning",
-    "VAN": "Vancouver Canucks", "VGK": "Vegas Golden Knights", "WPG": "Winnipeg Jets",
-    "WSH": "Washington Capitals",
+    "WSH": "Washington Wizards",  # Kalshi uses WSH not WAS
 }
+_NHL_FULL_NAMES = {
+    "ANA": "Anaheim Ducks", "ARI": "Arizona Coyotes", "BOS": "Boston Bruins",
+    "BUF": "Buffalo Sabres", "CAR": "Carolina Hurricanes", "CBJ": "Columbus Blue Jackets",
+    "CGY": "Calgary Flames", "CHI": "Chicago Blackhawks", "COL": "Colorado Avalanche",
+    "DAL": "Dallas Stars", "DET": "Detroit Red Wings", "EDM": "Edmonton Oilers",
+    "FLA": "Florida Panthers", "LAK": "Los Angeles Kings", "MIN": "Minnesota Wild",
+    "MTL": "Montreal Canadiens", "NJD": "New Jersey Devils", "NSH": "Nashville Predators",
+    "NYI": "New York Islanders", "NYR": "New York Rangers", "OTT": "Ottawa Senators",
+    "PHI": "Philadelphia Flyers", "PIT": "Pittsburgh Penguins", "SEA": "Seattle Kraken",
+    "SJS": "San Jose Sharks", "STL": "St. Louis Blues", "TBL": "Tampa Bay Lightning",
+    "TOR": "Toronto Maple Leafs", "UTA": "Utah Hockey Club", "VAN": "Vancouver Canucks",
+    "VGK": "Vegas Golden Knights", "WPG": "Winnipeg Jets", "WSH": "Washington Capitals",
+}
+SPORT_FULL_NAMES = {"nba": _NBA_FULL_NAMES, "nhl": _NHL_FULL_NAMES}
+# Flat fallback (NBA + NHL, NBA wins collisions — only used for backward compat)
+TEAM_FULL_NAMES = {**_NHL_FULL_NAMES, **_NBA_FULL_NAMES}
 
 # PM outcome name keywords -> Kalshi abbreviation
 # Used for fuzzy verification when PM outcome names don't exactly match
@@ -1083,6 +1125,15 @@ class PreGameMapper:
                         if "prices" not in kalshi_games[game_id]:
                             kalshi_games[game_id]["prices"] = {}
                         kalshi_games[game_id]["prices"][team] = int(yes_bid)
+                    # Store Kalshi full team name from yes_sub_title (e.g. "Seton Hall")
+                    ysub = mkt.get("yes_sub_title", "")
+                    if ysub:
+                        if "kalshi_names" not in kalshi_games[game_id]:
+                            kalshi_games[game_id]["kalshi_names"] = {}
+                        kalshi_games[game_id]["kalshi_names"][team] = ysub
+                    # Store event title once (e.g. "Seton Hall at UConn Winner?")
+                    if "title" not in kalshi_games[game_id]:
+                        kalshi_games[game_id]["title"] = mkt.get("title", "")
 
             # Build cache keys for Kalshi games
             kalshi_by_cache_key = {}
@@ -1543,10 +1594,21 @@ class PreGameMapper:
                             if not _ka:
                                 _ka = _ab.upper()
                             team_names[_ka] = _fn
-                # Fall back to TEAM_FULL_NAMES for teams not captured from PM
+                # Prefer sport-specific full names for NBA/NHL
+                _sport_names = SPORT_FULL_NAMES.get(k_game.get("sport", ""), {})
                 for _ta in k_teams_normalized:
-                    if _ta not in team_names and _ta in TEAM_FULL_NAMES:
-                        team_names[_ta] = TEAM_FULL_NAMES[_ta]
+                    if _ta in _sport_names:
+                        team_names[_ta] = _sport_names[_ta]
+                # For CBB: fall back to Kalshi yes_sub_title for mascot-only PM names
+                _k_names = k_game.get("kalshi_names", {})
+                if k_game.get("sport") == "cbb":
+                    for _ta, _name in list(team_names.items()):
+                        if _is_mascot_only(_name) and _ta in _k_names:
+                            team_names[_ta] = _k_names[_ta]
+                    # Fill missing CBB teams from Kalshi names
+                    for _ta in k_teams_normalized:
+                        if _ta not in team_names and _ta in _k_names:
+                            team_names[_ta] = _k_names[_ta]
 
                 # Build the verified mapping entry
                 entry = {

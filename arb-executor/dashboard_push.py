@@ -318,6 +318,23 @@ class DashboardPusher:
 
     # ── Trades ─────────────────────────────────────────────────────────────
 
+    @staticmethod
+    def _extract_opponent(trade: dict) -> str:
+        """Extract opponent team from cache_key. Format: 'sport:TEAM1-TEAM2:date'"""
+        ck = trade.get("cache_key", "")
+        team = trade.get("team", "")
+        if not ck or not team:
+            return ""
+        parts = ck.split(":")
+        if len(parts) < 2:
+            return ""
+        teams_part = parts[1]  # "TEAM1-TEAM2"
+        teams = teams_part.split("-")
+        for t in teams:
+            if t != team:
+                return t
+        return ""
+
     def _build_trades(self) -> list:
         """Load recent trades from trades.json."""
         try:
@@ -386,6 +403,10 @@ class DashboardPusher:
                         "settlement_pnl": t.get("settlement_pnl"),
                         "settlement_time": t.get("settlement_time"),
                         "settlement_winner_index": t.get("settlement_winner_index"),
+                        "opponent": self._extract_opponent(t),
+                        "cache_key": t.get("cache_key", ""),
+                        "pm_slug": t.get("pm_slug", ""),
+                        "kalshi_ticker": t.get("kalshi_ticker", ""),
                     }
                     for t in recent
                 ]

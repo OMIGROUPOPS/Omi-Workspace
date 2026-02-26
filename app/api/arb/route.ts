@@ -114,6 +114,10 @@ export interface TradeEntry {
   settlement_pnl?: number | null;
   settlement_time?: string | null;
   settlement_winner_index?: number | null;
+  opponent?: string;
+  cache_key?: string;
+  pm_slug?: string;
+  kalshi_ticker?: string;
 }
 
 export interface PnlSummary {

@@ -158,12 +158,12 @@ executing_games: set = set()
 # Tickers whose orderbook changed since last snapshot recording (drained by background task)
 dirty_tickers: set = set()
 
-# Per-game cooldown after SUCCESS — prevents re-trading same game too quickly
+# Per-team cooldown after SUCCESS — prevents re-trading same team too quickly
 game_success_cooldown: Dict[str, float] = {}
 
-# Per-game no-fill cooldown — exponential backoff on repeated PM no-fills
-nofill_cooldown: Dict[str, float] = {}   # cache_key -> timestamp of last no-fill
-nofill_count: Dict[str, int] = {}        # cache_key -> consecutive no-fill count
+# Per-team no-fill cooldown — exponential backoff on repeated PM no-fills
+nofill_cooldown: Dict[str, float] = {}   # cooldown_key -> timestamp of last no-fill
+nofill_count: Dict[str, int] = {}        # cooldown_key -> consecutive no-fill count
 NOFILL_COOLDOWN_BASE = 30                # seconds (doubles per consecutive no-fill)
 NOFILL_COOLDOWN_MAX = 300                # 5 minutes max cooldown
 NOFILL_BLACKLIST_THRESHOLD = 10          # stop trading game after this many consecutive no-fills
@@ -1636,22 +1636,28 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
         print(f"[EXEC] Kill switch active - skipping")
         return
 
-    # Per-game cooldown after SUCCESS — prevent stacking losses
-    if arb.cache_key in game_success_cooldown:
-        elapsed = time.time() - game_success_cooldown[arb.cache_key]
+    # Team-level cooldown key (ILST no-fill shouldn't block UNI on same game)
+    cd_key = f"{arb.cache_key}:{arb.team}"
+
+    # Per-team cooldown after SUCCESS — prevent stacking losses
+    if cd_key in game_success_cooldown:
+        elapsed = time.time() - game_success_cooldown[cd_key]
         if elapsed < 30:  # 30 second cooldown after success
             return
 
-    # Per-game no-fill blacklist — stop after too many consecutive no-fills
-    if nofill_count.get(arb.cache_key, 0) >= NOFILL_BLACKLIST_THRESHOLD:
+    # Per-team no-fill blacklist — stop after too many consecutive no-fills
+    if nofill_count.get(cd_key, 0) >= NOFILL_BLACKLIST_THRESHOLD:
         return
 
-    # Per-game no-fill cooldown — exponential backoff on repeated PM no-fills
-    if arb.cache_key in nofill_cooldown:
-        elapsed = time.time() - nofill_cooldown[arb.cache_key]
-        count = nofill_count.get(arb.cache_key, 1)
+    # Per-team no-fill cooldown — exponential backoff on repeated PM no-fills
+    if cd_key in nofill_cooldown:
+        elapsed = time.time() - nofill_cooldown[cd_key]
+        count = nofill_count.get(cd_key, 1)
         cooldown = min(NOFILL_COOLDOWN_BASE * count, NOFILL_COOLDOWN_MAX)
         if elapsed < cooldown:
+            remaining = cooldown - elapsed
+            if arb.spread_cents >= 7:
+                print(f"[COOLDOWN] {arb.team} {arb.spread_cents:.1f}c spread blocked by nofill cooldown ({remaining:.0f}s left, {count} consecutive no-fills)")
             return
 
     # Per-game execution guard — prevent concurrent execution on same game
@@ -1889,9 +1895,9 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                     with open('trades.json', 'w', encoding='utf-8') as f:
                         json.dump(TRADE_LOG, f, indent=2)
 
-                game_success_cooldown[arb.cache_key] = time.time()
-                nofill_count.pop(arb.cache_key, None)
-                nofill_cooldown.pop(arb.cache_key, None)
+                game_success_cooldown[cd_key] = time.time()
+                nofill_count.pop(cd_key, None)
+                nofill_cooldown.pop(cd_key, None)
                 save_traded_game(arb.game, pm_slug=arb.pm_slug, team=arb.team)
                 stats['spreads_executed'] += 1
 
@@ -1917,10 +1923,10 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                           gtc_cancel_reason=result.gtc_cancel_reason,
                           tier=result.tier)
 
-                # Cooldown: prevent re-trading same game too quickly
-                game_success_cooldown[arb.cache_key] = time.time()
-                nofill_count.pop(arb.cache_key, None)
-                nofill_cooldown.pop(arb.cache_key, None)
+                # Cooldown: prevent re-trading same team too quickly
+                game_success_cooldown[cd_key] = time.time()
+                nofill_count.pop(cd_key, None)
+                nofill_cooldown.pop(cd_key, None)
 
                 # Persist traded game to prevent duplicates across restarts
                 save_traded_game(arb.game, pm_slug=arb.pm_slug, team=arb.team)
@@ -1967,8 +1973,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                     save_unhedged_position(hedge_state, result.abort_reason)
                 except Exception as e:
                     print(f"[ERROR] Failed to save unhedged position: {e}")
-                nofill_count.pop(arb.cache_key, None)
-                nofill_cooldown.pop(arb.cache_key, None)
+                nofill_count.pop(cd_key, None)
+                nofill_cooldown.pop(cd_key, None)
 
             elif result.tier == "TIER3A":
                 # OMI directional hold — not a full unwind
@@ -1987,8 +1993,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                           gtc_spread_checks=result.gtc_spread_checks,
                           gtc_cancel_reason=result.gtc_cancel_reason,
                           tier=result.tier)
-                nofill_count.pop(arb.cache_key, None)
-                nofill_cooldown.pop(arb.cache_key, None)
+                nofill_count.pop(cd_key, None)
+                nofill_cooldown.pop(cd_key, None)
 
             elif result.exited:
                 # PM filled, K failed, PM successfully unwound — position is flat
@@ -2012,8 +2018,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                           tier=result.tier,
                           unwind_fill_price=result.unwind_fill_price,
                           unwind_qty=result.unwind_qty)
-                nofill_count.pop(arb.cache_key, None)
-                nofill_cooldown.pop(arb.cache_key, None)
+                nofill_count.pop(cd_key, None)
+                nofill_cooldown.pop(cd_key, None)
 
             elif result.pm_filled == 0 and result.pm_order_ms > 0:
                 # Real PM no-fill: order was sent to PM API but IOC expired
@@ -2034,9 +2040,9 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                           gtc_cancel_reason=result.gtc_cancel_reason,
                           tier=result.tier)
                 # No-fill cooldown: exponential backoff on repeated failures
-                nofill_cooldown[arb.cache_key] = time.time()
-                nofill_count[arb.cache_key] = nofill_count.get(arb.cache_key, 0) + 1
-                count = nofill_count[arb.cache_key]
+                nofill_cooldown[cd_key] = time.time()
+                nofill_count[cd_key] = nofill_count.get(cd_key, 0) + 1
+                count = nofill_count[cd_key]
                 if count >= NOFILL_BLACKLIST_THRESHOLD:
                     print(f"[NOFILL] {arb.team}: {count} consecutive no-fills — BLACKLISTED")
                 elif count > 1:
@@ -2317,6 +2323,14 @@ async def refresh_balances(session, kalshi_api, pm_api):
         live_balances["kalshi_balance"] = k_portfolio
         live_balances["pm_balance"] = pm_cash
         live_balances["updated_at"] = datetime.now(timezone.utc).isoformat()
+
+        # Persist snapshot for daily_recap.py
+        try:
+            bal_path = os.path.join(os.path.dirname(__file__) or ".", "balances.json")
+            with open(bal_path, "w") as bf:
+                json.dump(live_balances, bf)
+        except Exception:
+            pass
     except Exception as e:
         print(f"[BALANCE] Refresh failed: {e}", flush=True)
 

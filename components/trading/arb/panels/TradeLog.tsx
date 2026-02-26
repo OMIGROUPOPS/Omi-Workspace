@@ -10,6 +10,40 @@ interface Props {
   setExpandedTrade: (idx: number | null) => void;
 }
 
+function normPm(pm: number | undefined): string {
+  if (typeof pm !== "number") return "-";
+  return pm < 1 ? (pm * 100).toFixed(1) : pm.toFixed(1);
+}
+
+function legsLabel(t: TradeEntry) {
+  const pmC = normPm(t.pm_price);
+  const kC = t.k_price || "-";
+  if (t.direction === "BUY_PM_SELL_K") {
+    return (
+      <>
+        <span className="text-gray-500">PM:</span>
+        <span className="text-emerald-400 ml-0.5">BUY</span>
+        <span className="text-gray-500 ml-0.5">@{pmC}c</span>
+        <span className="text-gray-700 mx-1">|</span>
+        <span className="text-gray-500">K:</span>
+        <span className="text-red-400 ml-0.5">SELL</span>
+        <span className="text-gray-500 ml-0.5">@{kC}c</span>
+      </>
+    );
+  }
+  return (
+    <>
+      <span className="text-gray-500">K:</span>
+      <span className="text-emerald-400 ml-0.5">BUY</span>
+      <span className="text-gray-500 ml-0.5">@{kC}c</span>
+      <span className="text-gray-700 mx-1">|</span>
+      <span className="text-gray-500">PM:</span>
+      <span className="text-red-400 ml-0.5">SELL</span>
+      <span className="text-gray-500 ml-0.5">@{pmC}c</span>
+    </>
+  );
+}
+
 export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
   if (trades.length === 0) {
     return (
@@ -31,7 +65,8 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
           <thead className="sticky top-0 bg-[#111] z-10">
             <tr className="border-b border-gray-800 text-gray-500">
               <th className="px-2 py-1.5 text-left font-medium">TIME</th>
-              <th className="px-2 py-1.5 text-left font-medium">TEAM</th>
+              <th className="px-2 py-1.5 text-left font-medium">MATCHUP</th>
+              <th className="px-2 py-1.5 text-left font-medium">LEGS</th>
               <th className="px-2 py-1.5 text-left font-medium">STATUS</th>
               <th className="px-2 py-1.5 text-right font-medium">QTY</th>
               <th className="px-2 py-1.5 text-right font-medium">SPREAD</th>
@@ -54,14 +89,17 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                     <td className="px-2 py-1.5 text-gray-500 whitespace-nowrap font-mono text-[10px]">
                       {formatDateTime(t.timestamp)}
                     </td>
-                    <td className="px-2 py-1.5">
+                    <td className="px-2 py-1.5 whitespace-nowrap">
                       <span className={`inline-block rounded px-1 py-0.5 text-[9px] mr-1 ${sportBadge(t.sport)}`}>
                         {t.sport}
                       </span>
                       <span className="font-bold text-white">{t.team}</span>
-                      <span className="text-gray-600 text-[9px] ml-1">
-                        {t.direction === "BUY_PM_SELL_K" ? "PM\u2192K" : "K\u2192PM"}
-                      </span>
+                      {t.opponent ? (
+                        <span className="text-gray-500 text-[10px] ml-1">vs {t.opponent}</span>
+                      ) : null}
+                    </td>
+                    <td className="px-2 py-1.5 whitespace-nowrap text-[10px] font-mono">
+                      {legsLabel(t)}
                     </td>
                     <td className="px-2 py-1.5">
                       <span className={`rounded px-1 py-0.5 text-[9px] font-medium ${badge.bg} ${badge.text}`}>
@@ -89,7 +127,7 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                   </tr>
                   {isExpanded && (
                     <tr className="bg-gray-900/50">
-                      <td colSpan={7} className="px-4 py-3">
+                      <td colSpan={8} className="px-4 py-3">
                         <div className="grid grid-cols-3 gap-x-6 gap-y-2 text-[10px]">
                           <div>
                             <span className="text-gray-500 block">Game ID</span>
@@ -110,7 +148,7 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                           <div>
                             <span className="text-gray-500 block">PM Price / Order</span>
                             <span className="text-gray-300 font-mono">
-                              {typeof t.pm_price === "number" ? (t.pm_price < 1 ? (t.pm_price * 100).toFixed(1) : t.pm_price.toFixed(1)) : "-"}c ({t.pm_order_ms || "-"}ms)
+                              {normPm(t.pm_price)}c ({t.pm_order_ms || "-"}ms)
                             </span>
                           </div>
                           <div>
@@ -135,6 +173,18 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                               <span className="text-gray-300 font-mono">
                                 {t.sizing_details.k_depth} / {t.sizing_details.pm_depth} ({t.sizing_details.limit_reason})
                               </span>
+                            </div>
+                          )}
+                          {t.pm_slug && (
+                            <div>
+                              <span className="text-gray-500 block">PM Slug</span>
+                              <span className="text-gray-300 font-mono text-[9px]">{t.pm_slug}</span>
+                            </div>
+                          )}
+                          {t.kalshi_ticker && (
+                            <div>
+                              <span className="text-gray-500 block">Kalshi Ticker</span>
+                              <span className="text-gray-300 font-mono text-[9px]">{t.kalshi_ticker}</span>
                             </div>
                           )}
                           {t.sizing_details?.depth_walk_log && t.sizing_details.depth_walk_log.length > 0 && (

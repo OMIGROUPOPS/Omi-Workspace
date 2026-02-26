@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import type { TradeEntry, TradeSortKey } from "../types";
 import { tradePnl, sportBadge, statusBadge, formatDateTime, toDateStr } from "../helpers";
 
@@ -12,6 +12,40 @@ interface Props {
   sortArrow: (key: TradeSortKey) => string;
   expandedTrade: number | null;
   setExpandedTrade: (idx: number | null) => void;
+}
+
+function normPm(pm: number | undefined): string {
+  if (typeof pm !== "number") return "-";
+  return pm < 1 ? (pm * 100).toFixed(1) : pm.toFixed(1);
+}
+
+function legsLabel(t: TradeEntry) {
+  const pmC = normPm(t.pm_price);
+  const kC = t.k_price || "-";
+  if (t.direction === "BUY_PM_SELL_K") {
+    return (
+      <>
+        <span className="text-gray-500">PM:</span>
+        <span className="text-emerald-400 ml-0.5">BUY</span>
+        <span className="text-gray-500 ml-0.5">@{pmC}c</span>
+        <span className="text-gray-700 mx-1">|</span>
+        <span className="text-gray-500">K:</span>
+        <span className="text-red-400 ml-0.5">SELL</span>
+        <span className="text-gray-500 ml-0.5">@{kC}c</span>
+      </>
+    );
+  }
+  return (
+    <>
+      <span className="text-gray-500">K:</span>
+      <span className="text-emerald-400 ml-0.5">BUY</span>
+      <span className="text-gray-500 ml-0.5">@{kC}c</span>
+      <span className="text-gray-700 mx-1">|</span>
+      <span className="text-gray-500">PM:</span>
+      <span className="text-red-400 ml-0.5">SELL</span>
+      <span className="text-gray-500 ml-0.5">@{pmC}c</span>
+    </>
+  );
 }
 
 export function PnlTradeTable({
@@ -59,14 +93,12 @@ export function PnlTradeTable({
               <th className="px-2 py-1.5 text-left font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("time")}>
                 TIME{sortArrow("time")}
               </th>
-              <th className="px-2 py-1.5 text-left font-medium">TEAM</th>
-              <th className="px-2 py-1.5 text-left font-medium">DIR</th>
+              <th className="px-2 py-1.5 text-left font-medium">MATCHUP</th>
+              <th className="px-2 py-1.5 text-left font-medium">LEGS</th>
               <th className="px-2 py-1.5 text-left font-medium">STATUS</th>
               <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("qty")}>
                 QTY{sortArrow("qty")}
               </th>
-              <th className="px-2 py-1.5 text-right font-medium">K</th>
-              <th className="px-2 py-1.5 text-right font-medium">PM</th>
               <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("spread")}>
                 SPREAD{sortArrow("spread")}
               </th>
@@ -95,14 +127,17 @@ export function PnlTradeTable({
                     <td className="px-2 py-1.5 text-gray-400 whitespace-nowrap font-mono">
                       {formatDateTime(t.timestamp)}
                     </td>
-                    <td className="px-2 py-1.5">
+                    <td className="px-2 py-1.5 whitespace-nowrap">
                       <span className={`inline-block rounded px-1 py-0.5 text-[10px] mr-1 ${sportBadge(t.sport)}`}>
                         {t.sport}
                       </span>
                       <span className="font-bold text-white">{t.team}</span>
+                      {t.opponent ? (
+                        <span className="text-gray-500 text-[10px] ml-1">vs {t.opponent}</span>
+                      ) : null}
                     </td>
-                    <td className="px-2 py-1.5 text-gray-400 text-[10px]">
-                      {t.direction === "BUY_PM_SELL_K" ? "PM\u2192K" : "K\u2192PM"}
+                    <td className="px-2 py-1.5 whitespace-nowrap text-[10px] font-mono">
+                      {legsLabel(t)}
                     </td>
                     <td className="px-2 py-1.5">
                       <span className={`rounded px-1 py-0.5 text-[10px] font-medium ${badge.bg} ${badge.text}`}>
@@ -111,12 +146,6 @@ export function PnlTradeTable({
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono text-gray-300">
                       {t.contracts_filled || t.contracts_intended || 0}
-                    </td>
-                    <td className="px-2 py-1.5 text-right font-mono text-gray-400">
-                      {t.k_price || "-"}
-                    </td>
-                    <td className="px-2 py-1.5 text-right font-mono text-gray-400">
-                      {typeof t.pm_price === "number" ? (t.pm_price < 1 ? (t.pm_price * 100).toFixed(1) : t.pm_price.toFixed(1)) : "-"}
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono text-gray-400">
                       {t.spread_cents?.toFixed(1) ?? "-"}c
@@ -138,7 +167,7 @@ export function PnlTradeTable({
                   </tr>
                   {isExpanded && (
                     <tr className="bg-gray-900/50">
-                      <td colSpan={11} className="px-4 py-2">
+                      <td colSpan={9} className="px-4 py-2">
                         <div className="grid grid-cols-4 gap-3 text-[10px]">
                           <div>
                             <span className="text-gray-500">Execution:</span>{" "}
@@ -156,6 +185,18 @@ export function PnlTradeTable({
                             <span className="text-gray-500">Game:</span>{" "}
                             <span className="text-gray-300">{t.game_id}</span>
                           </div>
+                          {t.pm_slug && (
+                            <div>
+                              <span className="text-gray-500">PM Slug:</span>{" "}
+                              <span className="text-gray-300 font-mono text-[9px]">{t.pm_slug}</span>
+                            </div>
+                          )}
+                          {t.kalshi_ticker && (
+                            <div>
+                              <span className="text-gray-500">K Ticker:</span>{" "}
+                              <span className="text-gray-300 font-mono text-[9px]">{t.kalshi_ticker}</span>
+                            </div>
+                          )}
                           {t.sizing_details && (
                             <>
                               <div>

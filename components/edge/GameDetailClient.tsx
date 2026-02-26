@@ -283,14 +283,23 @@ function UnifiedChart({
     return Math.abs(book) > Math.abs(fair);
   };
 
+  // Edge calculation: for ML use implied probability diff, for spreads/totals use point gap * rate
+  const calcEdge = (bookV: number, fairV: number): number => {
+    if (isML) {
+      const bookProb = americanToImplied(bookV);
+      const fairProb = americanToImplied(fairV);
+      return Math.abs(bookProb - fairProb) * 100;
+    }
+    return Math.abs(bookV - fairV) * rate * 100;
+  };
+
   // Directional edge shading segments — thin band between book and fair lines
   const edgeSegments = data.slice(0, -1).map((d, i) => {
     const next = data[i + 1];
     if (d.bookVal == null || d.fairVal == null || next.bookVal == null || next.fairVal == null) return null;
     const x = indexToX(i);
     const w = indexToX(i + 1) - x;
-    const gap = Math.abs(d.bookVal - d.fairVal);
-    const edge = gap * rate * 100;
+    const edge = calcEdge(d.bookVal, d.fairVal);
     const favorable = isFavorable(d.fairVal, d.bookVal);
     const opacity = Math.min(edge / 5, 1) * 0.15;
     const color = favorable ? '#22c55e' : '#ef4444';
@@ -360,8 +369,8 @@ function UnifiedChart({
     const prev = data[i - 1].raw;
     const cur = data[i].raw;
     const x = indexToX(i);
-    const prevEdge = (data[i - 1].bookVal != null && data[i - 1].fairVal != null) ? Math.abs(data[i - 1].bookVal! - data[i - 1].fairVal!) * rate * 100 : 0;
-    const curEdge = (data[i].bookVal != null && data[i].fairVal != null) ? Math.abs(data[i].bookVal! - data[i].fairVal!) * rate * 100 : 0;
+    const prevEdge = (data[i - 1].bookVal != null && data[i - 1].fairVal != null) ? calcEdge(data[i - 1].bookVal!, data[i - 1].fairVal!) : 0;
+    const curEdge = (data[i].bookVal != null && data[i].fairVal != null) ? calcEdge(data[i].bookVal!, data[i].fairVal!) : 0;
     const edgeDir = curEdge > prevEdge ? 'widened' : 'narrowed';
     const edgeImpact = `Edge ${edgeDir} ${prevEdge.toFixed(1)}% \u2192 ${curEdge.toFixed(1)}%`;
     if (isTotal) {
@@ -393,8 +402,7 @@ function UnifiedChart({
   const lastData = data[data.length - 1];
   const currentBook = lastData.bookVal;
   const currentFair = lastData.fairVal;
-  const currentGap = (currentBook != null && currentFair != null) ? Math.abs(currentBook - currentFair) : 0;
-  const currentEdge = currentGap * rate * 100;
+  const currentEdge = (currentBook != null && currentFair != null) ? calcEdge(currentBook, currentFair) : 0;
   const compositeScore = pythonPillars?.composite ?? null;
 
   // Hover logic — 1:1 pixel mapping, no viewBox conversion needed
@@ -412,7 +420,7 @@ function UnifiedChart({
     const d = data[idx];
     const bookV = d.bookVal;
     const fairV = d.fairVal;
-    const edge = (bookV != null && fairV != null) ? Math.abs(bookV - fairV) * rate * 100 : 0;
+    const edge = (bookV != null && fairV != null) ? calcEdge(bookV, fairV) : 0;
     const favorable = isFavorable(fairV ?? 0, bookV ?? 0);
     const tierLabel = edge >= 5 ? 'STRONG' : edge >= 3 ? 'EDGE' : edge >= 1 ? 'WATCH' : 'FLAT';
     const nearbyDriver = drivers.find(drv => Math.abs(drv.index - idx) <= 2);

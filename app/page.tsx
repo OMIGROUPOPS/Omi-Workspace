@@ -444,7 +444,7 @@ export default function LandingPage() {
           <div className="hecate-ornament-top" />
 
           <h1 className="hecate-hero-title">OMI Group</h1>
-          <p className="hecate-hero-subtitle">At every crossroad, an edge.</p>
+          <p className="hecate-hero-subtitle">Where paths converge, dominion begins.</p>
 
           <div className="hecate-image-container">
             <img
@@ -492,7 +492,7 @@ export default function LandingPage() {
             <h3 className="hecate-card-title">OMI Edge</h3>
             <p className="hecate-card-slogan">Predictive Market Intelligence</p>
             <p className="hecate-card-description">
-              See what others cannot. Data-driven foresight across every market.
+              Real-time analytics and predictive modeling across global markets.
             </p>
             <Link href="/edge/portal/sports" className="hecate-card-link">
               OMI Edge

@@ -54,11 +54,15 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
   let pmAction: string, pmTeam: string, pmPrice: string;
   let kAction: string, kTeam: string, kPrice: string;
 
+  // When pm_is_buy_short, stored pm_price is the arb cost (100 - token_price).
+  // Display the actual token price the user sees on PM: 100 - pm_price.
+  const pmDisplayPrice = t.pm_is_buy_short ? (100 - pmVal) : pmVal;
+
   if (t.direction === "BUY_PM_SELL_K") {
     // PM side: bought YES team (or opponent if pm_is_buy_short)
     pmAction = "BUY YES";
     pmTeam = t.pm_is_buy_short ? opp : team;
-    pmPrice = `${pmVal.toFixed(0)}c`;
+    pmPrice = `${pmDisplayPrice.toFixed(0)}c`;
     // K side: "sold" team YES = bought opponent YES at (100 - k_price)
     kAction = "BUY YES";
     kTeam = opp;
@@ -72,7 +76,7 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
     // PM side: bought opponent YES (pm_is_buy_short means bought opponent's YES)
     pmAction = "BUY YES";
     pmTeam = t.pm_is_buy_short ? opp : team;
-    pmPrice = `${pmVal.toFixed(0)}c`;
+    pmPrice = `${pmDisplayPrice.toFixed(0)}c`;
   }
 
   return (
@@ -202,16 +206,21 @@ function legsLabel(t: TradeEntry) {
   const team = t.team || "?";
   const opp = t.opponent || "?";
 
+  // When pm_is_buy_short, stored pm_price is arb cost (100 - token_price).
+  // Display the actual token price the user sees on PM.
+  const pmDisplayPrice = t.pm_is_buy_short ? (100 - pmVal) : pmVal;
+
   if (t.direction === "BUY_PM_SELL_K") {
     // PM: bought YES for team (or opponent if pm_is_buy_short)
     const pmFighter = t.pm_is_buy_short ? opp : team;
     // K: "sold" team = bought opponent YES at (100 - k_price)
     const kOppCost = kVal > 0 ? 100 - kVal : 0;
+    // Total cost uses arb-side costs: pmVal (arb cost) + kOppCost
     const totalCost = pmVal + kOppCost;
     const spread = 100 - totalCost;
     return (
       <>
-        <span className="text-[#00ff88]">PM: {pmFighter} @{pmVal.toFixed(0)}c</span>
+        <span className="text-[#00ff88]">PM: {pmFighter} @{pmDisplayPrice.toFixed(0)}c</span>
         <span className="text-[#1a1a2e] mx-1">|</span>
         <span className="text-[#00bfff]">K: {opp} @{kOppCost.toFixed(0)}c</span>
         <span className="text-[#3a3a5a] ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
@@ -220,13 +229,14 @@ function legsLabel(t: TradeEntry) {
   }
   // BUY_K_SELL_PM: K bought YES team, PM bought YES opponent
   const pmFighter = t.pm_is_buy_short ? opp : team;
+  // Total cost uses arb-side costs: kVal + pmVal (stored arb cost)
   const totalCost = kVal + pmVal;
   const spread = 100 - totalCost;
   return (
     <>
       <span className="text-[#00bfff]">K: {team} @{kVal}c</span>
       <span className="text-[#1a1a2e] mx-1">|</span>
-      <span className="text-[#00ff88]">PM: {pmFighter} @{pmVal.toFixed(0)}c</span>
+      <span className="text-[#00ff88]">PM: {pmFighter} @{pmDisplayPrice.toFixed(0)}c</span>
       <span className="text-[#3a3a5a] ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
     </>
   );
@@ -309,7 +319,7 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap">
                       <span className="text-[#00ff88]">{t.pm_fill ?? t.contracts_filled ?? 0}x</span>
-                      <div className="text-[9px] text-[#3a3a5a]">@{normPmNum(t.pm_price).toFixed(0)}c</div>
+                      <div className="text-[9px] text-[#3a3a5a]">@{(() => { const raw = normPmNum(t.pm_price); return t.pm_is_buy_short ? (100 - raw).toFixed(0) : raw.toFixed(0); })()}c</div>
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono text-[#ff8c00]">
                       {t.spread_cents?.toFixed(1) ?? "-"}c

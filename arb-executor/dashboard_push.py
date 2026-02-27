@@ -338,16 +338,30 @@ class DashboardPusher:
         return ""
 
     def _resolve_full_name(self, cache_key: str, team_abbrev: str) -> str:
-        """Look up full team name from verified_maps, fall back to TEAM_FULL_NAMES."""
+        """Look up full team name from verified_maps, fall back to sport-aware SPORT_FULL_NAMES.
+
+        Priority:
+          1. verified_maps[cache_key]['team_names'][abbrev]  (ground truth from mapper)
+          2. SPORT_FULL_NAMES[sport][abbrev]  (sport-aware static names)
+          3. TEAM_FULL_NAMES[abbrev]  (flat fallback, NBA wins collisions)
+        """
         if not team_abbrev:
             return ""
         mapping = self.verified_maps.get(cache_key, {})
         team_names = mapping.get("team_names", {})
         if team_abbrev in team_names:
             return team_names[team_abbrev]
-        # Fall back to static NBA/NHL names
+        # Extract sport from cache_key (format: sport:TEAM1-TEAM2:date)
+        sport = ""
+        if cache_key and ":" in cache_key:
+            sport = cache_key.split(":")[0].lower()
+        # Fall back to sport-aware names (avoids PHI→76ers for NHL, CHI→Bulls for NHL)
         try:
-            from pregame_mapper import TEAM_FULL_NAMES
+            from pregame_mapper import SPORT_FULL_NAMES, TEAM_FULL_NAMES
+            if sport and sport in SPORT_FULL_NAMES:
+                name = SPORT_FULL_NAMES[sport].get(team_abbrev)
+                if name:
+                    return name
             return TEAM_FULL_NAMES.get(team_abbrev, "")
         except ImportError:
             return ""
@@ -1410,7 +1424,7 @@ class DashboardPusher:
 # ── Convenience: standalone push from CLI ───────────────────────────────────
 
 if __name__ == "__main__":
-    """Quick test / one-shot push of trades.json to dashboard."""
+    """One-shot push of trades.json + positions + P&L to dashboard."""
     import argparse
 
     parser = argparse.ArgumentParser(description="Push arb state to dashboard")
@@ -1424,9 +1438,32 @@ if __name__ == "__main__":
 
     pusher = DashboardPusher(url=args.url, token=args.token)
 
-    # Load trades for a one-shot push
+    # Load verified_mappings so team name resolution is sport-aware
+    if os.path.exists(VERIFIED_MAPPINGS_FILE):
+        try:
+            with open(VERIFIED_MAPPINGS_FILE, "r") as f:
+                vm_data = json.load(f)
+            pusher.verified_maps = vm_data.get("games", {})
+            print(f"Loaded verified_mappings: {len(pusher.verified_maps)} games")
+        except Exception as e:
+            print(f"Warning: could not load verified_mappings: {e}")
+
+    # Build full payload (not just trades)
     trades = pusher._build_trades()
-    print(f"Pushing {len(trades)} trades to {args.url}")
+    positions = pusher._build_positions()
+    pnl_summary = pusher._build_pnl_summary()
+    mapped_games = pusher._build_mapped_games()
+    mappings_refreshed = pusher._get_mappings_last_refreshed()
+
+    payload = {
+        "trades": trades,
+        "positions": positions,
+        "pnl_summary": pnl_summary,
+        "mapped_games": mapped_games,
+        "mappings_last_refreshed": mappings_refreshed,
+    }
+
+    print(f"Pushing {len(trades)} trades, {len(positions)} positions to {args.url}")
 
     headers = {"Content-Type": "application/json"}
     if args.token:
@@ -1434,8 +1471,8 @@ if __name__ == "__main__":
 
     resp = requests.post(
         args.url,
-        json={"trades": trades},
+        json=payload,
         headers=headers,
-        timeout=5,
+        timeout=10,
     )
     print(f"Response: {resp.status_code} {resp.text}")

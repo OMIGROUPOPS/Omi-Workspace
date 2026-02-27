@@ -440,7 +440,7 @@ export default function LandingPage() {
           <div className="hecate-ornament-top" />
 
           <h1 className="hecate-hero-title">OMI Group</h1>
-          <p className="hecate-hero-subtitle">Goddess of the Crossroads</p>
+          <p className="hecate-hero-subtitle">At every crossroad, an edge.</p>
 
           <div className="hecate-image-container">
             <img
@@ -449,9 +449,7 @@ export default function LandingPage() {
               className="hecate-image"
             />
           </div>
-          <p className="hecate-image-caption">
-            Three faces. Three paths. One dominion.
-          </p>
+
         </section>
 
         {/* Divider */}
@@ -463,14 +461,14 @@ export default function LandingPage() {
 
         {/* Three Faces Section Header */}
         <div className="hecate-faces-heading">
-          <h2>The Three Faces</h2>
+          <h2>Divisions</h2>
         </div>
 
         {/* Division Cards */}
         <div className="hecate-cards">
           {/* OMI Solutions — The Key (knowledge, unlocking) */}
           <div className="hecate-card">
-            <div className="hecate-card-numeral">I — The Key</div>
+            <div className="hecate-card-numeral">Automation</div>
             <h3 className="hecate-card-title">OMI Solutions</h3>
             <p className="hecate-card-slogan">Adaptive Enterprise Systems</p>
             <p className="hecate-card-description">
@@ -486,7 +484,7 @@ export default function LandingPage() {
 
           {/* OMI Edge (Terminal) — The Torch (illumination, foresight) */}
           <div className="hecate-card">
-            <div className="hecate-card-numeral">II — The Torch</div>
+            <div className="hecate-card-numeral">Intelligence</div>
             <h3 className="hecate-card-title">OMI Edge</h3>
             <p className="hecate-card-slogan">Predictive Market Intelligence</p>
             <p className="hecate-card-description">
@@ -502,7 +500,7 @@ export default function LandingPage() {
 
           {/* OMI Trading — The Serpent (power, hidden knowledge) — LOCKED */}
           <div className="hecate-card hecate-card-locked">
-            <div className="hecate-card-numeral">III — The Serpent</div>
+            <div className="hecate-card-numeral">Trading</div>
             <h3 className="hecate-card-title">OMI Trading</h3>
             <p className="hecate-card-slogan">Automated Arbitrage Trading</p>
             <p className="hecate-card-description">

@@ -12,17 +12,19 @@ export function FilterButton({
   variant?: "default" | "green" | "purple" | "red" | "yellow";
 }) {
   const activeColors = {
-    default: "bg-gray-700 text-white",
-    green: "bg-emerald-500/20 text-emerald-400",
-    purple: "bg-purple-500/20 text-purple-400",
-    red: "bg-red-500/20 text-red-400",
-    yellow: "bg-yellow-500/20 text-yellow-400",
+    default: "bg-[#ff8c00]/20 text-[#ff8c00] border-[#ff8c00]/40",
+    green: "bg-[#00ff88]/20 text-[#00ff88] border-[#00ff88]/40",
+    purple: "bg-[#8b5cf6]/20 text-[#8b5cf6] border-[#8b5cf6]/40",
+    red: "bg-[#ff3333]/20 text-[#ff3333] border-[#ff3333]/40",
+    yellow: "bg-[#ff8c00]/20 text-[#ff8c00] border-[#ff8c00]/40",
   };
   return (
     <button
       onClick={onClick}
-      className={`rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors ${
-        active ? activeColors[variant] : "text-gray-500 hover:text-gray-300"
+      className={`rounded-none px-1.5 py-0.5 text-[9px] font-mono border transition-colors ${
+        active
+          ? activeColors[variant]
+          : "text-[#4a4a6a] border-transparent hover:text-[#ff8c00]"
       }`}
     >
       {children}

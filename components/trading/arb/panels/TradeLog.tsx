@@ -86,46 +86,46 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
   }
 
   return (
-    <div className="rounded border border-gray-700/60 bg-gray-800/40 overflow-hidden">
+    <div className="border border-[#1a1a2e] bg-[#0a0a12] overflow-hidden rounded-none">
       {/* Header */}
-      <div className="flex items-center justify-between px-3 py-1.5 bg-gray-800/60 border-b border-gray-700/40">
-        <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">
-          Trade Specs
+      <div className="flex items-center justify-between px-3 py-1.5 bg-black border-b border-[#1a1a2e]">
+        <span className="text-[9px] font-mono font-bold text-[#4a4a6a] uppercase tracking-widest">
+          TRADE SPECS
         </span>
-        <span className="text-[9px] text-gray-600 font-mono">
+        <span className="text-[8px] text-[#3a3a5a] font-mono">
           {t.game_id} &middot; {t.direction}
         </span>
       </div>
       {/* Two-column leg breakdown */}
-      <div className="grid grid-cols-2 divide-x divide-gray-700/40">
+      <div className="grid grid-cols-2 divide-x divide-[#1a1a2e]">
         {/* PM Leg */}
         <div className="px-3 py-2">
           <div className="flex items-center gap-1.5 mb-1">
-            <span className="rounded bg-emerald-900/50 px-1.5 py-0.5 text-[9px] font-bold text-emerald-400">
+            <span className="rounded-none bg-[#00ff88]/10 border border-[#00ff88]/30 px-1.5 py-0.5 text-[9px] font-bold font-mono text-[#00ff88]">
               PM
             </span>
-            <span className="text-[10px] font-bold text-white">{pmAction}</span>
-            <span className="text-[10px] text-gray-400">{pmTeam}</span>
+            <span className="text-[10px] font-bold font-mono text-[#ff8c00]">{pmAction}</span>
+            <span className="text-[10px] font-mono text-[#4a4a6a]">{pmTeam}</span>
           </div>
           <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 text-[9px] font-mono">
-            <div><span className="text-gray-500">Fill Price</span> <span className="text-emerald-400 ml-1">{pmPrice}</span></div>
-            <div><span className="text-gray-500">Qty</span> <span className="text-gray-300 ml-1">{qty}</span></div>
-            <div><span className="text-gray-500">Latency</span> <span className="text-gray-300 ml-1">{t.pm_order_ms || "-"}ms</span></div>
-            <div><span className="text-gray-500">Side</span> <span className={`ml-1 ${pmSide === 'long' ? 'text-emerald-400' : 'text-red-400'}`}>{pmSide}</span></div>
-            <div><span className="text-gray-500">Fee</span> <span className="text-yellow-400/80 ml-1">{pmFeeCents.toFixed(2)}c</span></div>
+            <div><span className="text-[#4a4a6a]">Fill Price</span> <span className="text-[#00ff88] ml-1">{pmPrice}</span></div>
+            <div><span className="text-[#4a4a6a]">Qty</span> <span className="text-[#ff8c00] ml-1">{qty}</span></div>
+            <div><span className="text-[#4a4a6a]">Latency</span> <span className="text-[#ff8c00] ml-1">{t.pm_order_ms || "-"}ms</span></div>
+            <div><span className="text-[#4a4a6a]">Side</span> <span className={`ml-1 ${pmSide === 'long' ? 'text-[#00ff88]' : 'text-[#ff3333]'}`}>{pmSide}</span></div>
+            <div><span className="text-[#4a4a6a]">Fee</span> <span className="text-[#ff8c00]/80 ml-1">{pmFeeCents.toFixed(2)}c</span></div>
             {t.pm_bid != null && (
-              <div className="col-span-2"><span className="text-gray-500">BBO at Detection</span> <span className="text-gray-400 ml-1">{t.pm_bid}c / {t.pm_ask}c</span></div>
+              <div className="col-span-2"><span className="text-[#4a4a6a]">BBO at Detection</span> <span className="text-[#ff8c00] ml-1">{t.pm_bid}c / {t.pm_ask}c</span></div>
             )}
           </div>
           {pmLink && (
             <a href={pmLink} target="_blank" rel="noopener noreferrer"
-               className="inline-flex items-center gap-1 mt-1.5 text-[9px] text-emerald-400/70 hover:text-emerald-400 transition-colors">
+               className="inline-flex items-center gap-1 mt-1.5 text-[9px] text-[#00ff88]/70 hover:text-[#00ff88] transition-colors font-mono">
               <span>View on Polymarket</span>
               <span className="text-[8px]">&rarr;</span>
             </a>
           )}
           {t.pm_order_id && (
-            <div className="mt-0.5 text-[8px] text-gray-600 font-mono truncate">
+            <div className="mt-0.5 text-[8px] text-[#3a3a5a] font-mono truncate">
               order: {typeof t.pm_order_id === 'string' ? t.pm_order_id.slice(0, 20) : t.pm_order_id}...
             </div>
           )}
@@ -133,59 +133,59 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
         {/* Kalshi Leg */}
         <div className="px-3 py-2">
           <div className="flex items-center gap-1.5 mb-1">
-            <span className="rounded bg-blue-900/50 px-1.5 py-0.5 text-[9px] font-bold text-blue-400">
+            <span className="rounded-none bg-[#00bfff]/10 border border-[#00bfff]/30 px-1.5 py-0.5 text-[9px] font-bold font-mono text-[#00bfff]">
               K
             </span>
-            <span className="text-[10px] font-bold text-white">{kAction}</span>
-            <span className="text-[10px] text-gray-400">{kTeam}</span>
+            <span className="text-[10px] font-bold font-mono text-[#ff8c00]">{kAction}</span>
+            <span className="text-[10px] font-mono text-[#4a4a6a]">{kTeam}</span>
           </div>
           <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 text-[9px] font-mono">
-            <div><span className="text-gray-500">Fill Price</span> <span className="text-blue-400 ml-1">{kPrice}</span></div>
-            <div><span className="text-gray-500">Qty</span> <span className="text-gray-300 ml-1">{qty}</span></div>
-            <div><span className="text-gray-500">Latency</span> <span className="text-gray-300 ml-1">{t.k_order_ms || "-"}ms</span></div>
-            <div><span className="text-gray-500">Side</span> <span className={`ml-1 ${kSide === 'long' ? 'text-emerald-400' : 'text-red-400'}`}>{kSide}</span></div>
-            <div><span className="text-gray-500">Fee</span> <span className="text-yellow-400/80 ml-1">{kFeeCents.toFixed(1)}c</span></div>
+            <div><span className="text-[#4a4a6a]">Fill Price</span> <span className="text-[#00bfff] ml-1">{kPrice}</span></div>
+            <div><span className="text-[#4a4a6a]">Qty</span> <span className="text-[#ff8c00] ml-1">{qty}</span></div>
+            <div><span className="text-[#4a4a6a]">Latency</span> <span className="text-[#ff8c00] ml-1">{t.k_order_ms || "-"}ms</span></div>
+            <div><span className="text-[#4a4a6a]">Side</span> <span className={`ml-1 ${kSide === 'long' ? 'text-[#00ff88]' : 'text-[#ff3333]'}`}>{kSide}</span></div>
+            <div><span className="text-[#4a4a6a]">Fee</span> <span className="text-[#ff8c00]/80 ml-1">{kFeeCents.toFixed(1)}c</span></div>
             {t.k_bid != null && (
-              <div className="col-span-2"><span className="text-gray-500">BBO at Detection</span> <span className="text-gray-400 ml-1">{t.k_bid}c / {t.k_ask}c</span></div>
+              <div className="col-span-2"><span className="text-[#4a4a6a]">BBO at Detection</span> <span className="text-[#ff8c00] ml-1">{t.k_bid}c / {t.k_ask}c</span></div>
             )}
           </div>
           {kLink && (
             <a href={kLink} target="_blank" rel="noopener noreferrer"
-               className="inline-flex items-center gap-1 mt-1.5 text-[9px] text-blue-400/70 hover:text-blue-400 transition-colors">
+               className="inline-flex items-center gap-1 mt-1.5 text-[9px] text-[#00bfff]/70 hover:text-[#00bfff] transition-colors font-mono">
               <span>View on Kalshi</span>
               <span className="text-[8px]">&rarr;</span>
             </a>
           )}
           {t.k_order_id && (
-            <div className="mt-0.5 text-[8px] text-gray-600 font-mono truncate">
+            <div className="mt-0.5 text-[8px] text-[#3a3a5a] font-mono truncate">
               order: {typeof t.k_order_id === 'string' ? t.k_order_id.slice(0, 20) : t.k_order_id}...
             </div>
           )}
         </div>
       </div>
       {/* ── Net Profit Summary Bar ── */}
-      <div className="flex items-center justify-between px-3 py-1.5 bg-gray-900/60 border-t border-gray-700/40 text-[9px] font-mono">
+      <div className="flex items-center justify-between px-3 py-1.5 bg-black border-t-2 border-[#ff8c00]/30 text-[9px] font-mono">
         <div className="flex items-center gap-3">
-          <span className="text-gray-500">Spread</span>
-          <span className="text-white">{t.spread_cents}c</span>
-          <span className="text-gray-600">−</span>
-          <span className="text-gray-500">Fees</span>
-          <span className="text-yellow-400/80">{totalCosts.toFixed(1)}c</span>
-          <span className="text-gray-600">=</span>
+          <span className="text-[#4a4a6a]">Spread</span>
+          <span className="text-[#ff8c00]">{t.spread_cents}c</span>
+          <span className="text-[#3a3a5a]">−</span>
+          <span className="text-[#4a4a6a]">Fees</span>
+          <span className="text-[#ff8c00]/80">{totalCosts.toFixed(1)}c</span>
+          <span className="text-[#3a3a5a]">=</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="text-gray-400">Net</span>
-          <span className={`font-bold text-[10px] ${netCents > 0 ? 'text-emerald-400' : netCents < 0 ? 'text-red-400' : 'text-gray-400'}`}>
+          <span className="text-[#4a4a6a]">Net</span>
+          <span className={`font-bold text-[10px] ${netCents > 0 ? 'text-[#00ff88]' : netCents < 0 ? 'text-[#ff3333]' : 'text-[#4a4a6a]'}`}>
             {netCents > 0 ? '+' : ''}{netCents.toFixed(2)}c
           </span>
-          <span className="text-gray-600">/contract</span>
+          <span className="text-[#3a3a5a]">/contract</span>
           {qty > 0 && (
             <>
-              <span className="text-gray-700 mx-1">|</span>
-              <span className={`font-bold text-[10px] ${netCents > 0 ? 'text-emerald-400' : netCents < 0 ? 'text-red-400' : 'text-gray-400'}`}>
+              <span className="text-[#1a1a2e] mx-1">|</span>
+              <span className={`font-bold text-[10px] ${netCents > 0 ? 'text-[#00ff88]' : netCents < 0 ? 'text-[#ff3333]' : 'text-[#4a4a6a]'}`}>
                 ${((netCents * qty) / 100).toFixed(2)}
               </span>
-              <span className="text-gray-600">total</span>
+              <span className="text-[#3a3a5a]">total</span>
             </>
           )}
         </div>
@@ -207,10 +207,10 @@ function legsLabel(t: TradeEntry) {
     const spread = 100 - totalCost;
     return (
       <>
-        <span className="text-emerald-400">PM: {team} @{pmVal.toFixed(0)}c</span>
-        <span className="text-gray-700 mx-1">|</span>
-        <span className="text-blue-400">K: {opp} @{kOppCost.toFixed(0)}c</span>
-        <span className="text-gray-600 ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
+        <span className="text-[#00ff88]">PM: {team} @{pmVal.toFixed(0)}c</span>
+        <span className="text-[#1a1a2e] mx-1">|</span>
+        <span className="text-[#00bfff]">K: {opp} @{kOppCost.toFixed(0)}c</span>
+        <span className="text-[#3a3a5a] ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
       </>
     );
   }
@@ -219,10 +219,10 @@ function legsLabel(t: TradeEntry) {
   const spread = 100 - totalCost;
   return (
     <>
-      <span className="text-emerald-400">K: {team} @{kVal}c</span>
-      <span className="text-gray-700 mx-1">|</span>
-      <span className="text-blue-400">PM: {opp} @{pmVal.toFixed(0)}c</span>
-      <span className="text-gray-600 ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
+      <span className="text-[#00ff88]">K: {team} @{kVal}c</span>
+      <span className="text-[#1a1a2e] mx-1">|</span>
+      <span className="text-[#00bfff]">PM: {opp} @{pmVal.toFixed(0)}c</span>
+      <span className="text-[#3a3a5a] ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
     </>
   );
 }
@@ -230,33 +230,28 @@ function legsLabel(t: TradeEntry) {
 export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
   if (trades.length === 0) {
     return (
-      <div className="rounded-lg border border-gray-800 bg-[#111] p-4 text-center text-sm text-gray-500">
-        No trades in current view
+      <div className="p-4 text-center text-[10px] font-mono text-[#3a3a5a]">
+        NO TRADES IN CURRENT VIEW
       </div>
     );
   }
 
   return (
-    <div className="rounded-lg border border-gray-800 bg-[#111] overflow-hidden">
-      <div className="px-3 py-2 border-b border-gray-800">
-        <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
-          Recent Trades ({trades.length})
-        </h3>
-      </div>
+    <div className="overflow-hidden">
       <div className="overflow-x-auto" style={{ maxHeight: "400px" }}>
         <table className="w-full text-xs">
-          <thead className="sticky top-0 bg-[#111] z-10">
-            <tr className="border-b border-gray-800 text-gray-500">
-              <th className="px-2 py-1.5 text-left font-medium">TIME</th>
-              <th className="px-2 py-1.5 text-left font-medium">MATCHUP</th>
-              <th className="px-2 py-1.5 text-left font-medium">LEGS</th>
-              <th className="px-2 py-1.5 text-left font-medium">STATUS</th>
-              <th className="px-2 py-1.5 text-right font-medium">K QTY</th>
-              <th className="px-2 py-1.5 text-right font-medium">PM QTY</th>
-              <th className="px-2 py-1.5 text-right font-medium">SPREAD</th>
-              <th className="px-2 py-1.5 text-right font-medium">DEPTH</th>
-              <th className="px-2 py-1.5 text-right font-medium">NET P&L</th>
-              <th className="px-2 py-1.5 text-right font-medium">MS</th>
+          <thead className="sticky top-0 bg-[#0a0a0a] z-10 border-b border-[#1a1a2e]">
+            <tr className="text-[#4a4a6a]">
+              <th className="px-2 py-1.5 text-left font-mono text-[9px] uppercase tracking-wider font-medium">TIME</th>
+              <th className="px-2 py-1.5 text-left font-mono text-[9px] uppercase tracking-wider font-medium">MATCHUP</th>
+              <th className="px-2 py-1.5 text-left font-mono text-[9px] uppercase tracking-wider font-medium">LEGS</th>
+              <th className="px-2 py-1.5 text-left font-mono text-[9px] uppercase tracking-wider font-medium">STATUS</th>
+              <th className="px-2 py-1.5 text-right font-mono text-[9px] uppercase tracking-wider font-medium">K QTY</th>
+              <th className="px-2 py-1.5 text-right font-mono text-[9px] uppercase tracking-wider font-medium">PM QTY</th>
+              <th className="px-2 py-1.5 text-right font-mono text-[9px] uppercase tracking-wider font-medium">SPREAD</th>
+              <th className="px-2 py-1.5 text-right font-mono text-[9px] uppercase tracking-wider font-medium">DEPTH</th>
+              <th className="px-2 py-1.5 text-right font-mono text-[9px] uppercase tracking-wider font-medium">NET P&L</th>
+              <th className="px-2 py-1.5 text-right font-mono text-[9px] uppercase tracking-wider font-medium">MS</th>
             </tr>
           </thead>
           <tbody>
@@ -265,110 +260,111 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
               const badge = statusBadge(t.status, t.tier);
               const depth = getL1Depth(t);
               const isExpanded = expandedTrade === i;
+              const isOdd = i % 2 === 1;
 
               return (
                 <React.Fragment key={`${t.timestamp}-${t.team}-${i}`}>
                   <tr
-                    className="border-b border-gray-800/50 hover:bg-gray-800/30 cursor-pointer"
+                    className={`border-b border-[#1a1a2e]/50 hover:bg-[#ff8c00]/[0.04] cursor-pointer transition-colors ${isOdd ? "bg-white/[0.02]" : ""}`}
                     onClick={() => setExpandedTrade(isExpanded ? null : i)}
                   >
-                    <td className="px-2 py-1.5 text-gray-500 whitespace-nowrap font-mono text-[10px]">
+                    <td className="px-2 py-1.5 text-[#4a4a6a] whitespace-nowrap font-mono text-[10px]">
                       {formatDateTime(t.timestamp)}
                     </td>
                     <td className="px-2 py-1.5 whitespace-nowrap">
-                      <span className={`inline-block rounded px-1 py-0.5 text-[9px] mr-1 ${sportBadge(t.sport)}`}>
+                      <span className={`inline-block rounded-none px-1 py-0.5 text-[8px] font-mono mr-1 ${sportBadge(t.sport)}`}>
                         {t.sport}
                       </span>
-                      <span className="font-bold text-white">{t.team_full_name || t.team}</span>
+                      <span className="font-bold font-mono text-[#ff8c00]">{t.team_full_name || t.team}</span>
                       {(t.opponent_full_name || t.opponent) ? (
-                        <span className="text-gray-500 text-[10px] ml-1">vs {t.opponent_full_name || t.opponent}</span>
+                        <span className="text-[#4a4a6a] font-mono text-[10px] ml-1">vs {t.opponent_full_name || t.opponent}</span>
                       ) : null}
                     </td>
                     <td className="px-2 py-1.5 whitespace-nowrap text-[10px] font-mono">
                       {legsLabel(t)}
                     </td>
                     <td className="px-2 py-1.5">
-                      <span className={`rounded px-1 py-0.5 text-[9px] font-medium ${badge.bg} ${badge.text}`} title={badge.tooltip}>
+                      <span className={`rounded-none px-1 py-0.5 text-[9px] font-mono font-medium ${badge.bg} ${badge.text}`} title={badge.tooltip}>
                         {badge.label}
                       </span>
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap">
-                      <span className="text-blue-400">{t.kalshi_fill ?? t.contracts_filled ?? 0}x</span>
-                      <div className="text-[9px] text-gray-600">@{typeof t.k_price === 'number' ? t.k_price : '-'}c</div>
+                      <span className="text-[#00bfff]">{t.kalshi_fill ?? t.contracts_filled ?? 0}x</span>
+                      <div className="text-[9px] text-[#3a3a5a]">@{typeof t.k_price === 'number' ? t.k_price : '-'}c</div>
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap">
-                      <span className="text-emerald-400">{t.pm_fill ?? t.contracts_filled ?? 0}x</span>
-                      <div className="text-[9px] text-gray-600">@{normPmNum(t.pm_price).toFixed(0)}c</div>
+                      <span className="text-[#00ff88]">{t.pm_fill ?? t.contracts_filled ?? 0}x</span>
+                      <div className="text-[9px] text-[#3a3a5a]">@{normPmNum(t.pm_price).toFixed(0)}c</div>
                     </td>
-                    <td className="px-2 py-1.5 text-right font-mono text-gray-400">
+                    <td className="px-2 py-1.5 text-right font-mono text-[#ff8c00]">
                       {t.spread_cents?.toFixed(1) ?? "-"}c
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap text-[10px]">
                       {depth.k !== null || depth.pm !== null ? (
                         <>
                           <span className={depthColor(depth.k)}>K:{fmtNum(depth.k!)}</span>
-                          <span className="text-gray-700 mx-0.5">|</span>
+                          <span className="text-[#3a3a5a] mx-0.5">|</span>
                           <span className={depthColor(depth.pm)}>PM:{fmtNum(depth.pm!)}</span>
                         </>
                       ) : "\u2014"}
                     </td>
                     <td className={`px-2 py-1.5 text-right font-mono ${
-                      pnl.totalDollars === null ? "text-gray-500" :
+                      pnl.totalDollars === null ? "text-[#4a4a6a]" :
                       Math.abs(pnl.totalDollars) >= 1 ? `font-bold ${netColor(pnl.totalDollars)}` :
                       netColor(pnl.totalDollars)
                     }`}>
                       {pnl.totalDollars !== null
                         ? `$${pnl.totalDollars.toFixed(4)}`
-                        : pnl.isOpen ? "OPEN" : "-"}
+                        : pnl.isOpen ? <span className="text-[#ff8c00]">OPEN</span> : "-"}
                     </td>
-                    <td className="px-2 py-1.5 text-right text-gray-600 font-mono text-[10px]">
+                    <td className="px-2 py-1.5 text-right text-[#3a3a5a] font-mono text-[10px]">
                       {t.execution_time_ms || "-"}
                     </td>
                   </tr>
                   {isExpanded && (
-                    <tr className="bg-gray-900/50">
+                    <tr className="bg-[#0a0a12]">
                       <td colSpan={10} className="px-4 py-3">
                         {/* ── TRADE SPECS: What exactly was traded ── */}
                         <TradeSpecs t={t} />
 
                         {/* ── NO-FILL DIAGNOSTIC (PM_NO_FILL only) ── */}
                         {t.nofill_reason && (
-                          <div className="mt-3 rounded border border-amber-800/50 bg-amber-950/30 px-3 py-2">
+                          <div className="mt-3 border border-[#ff8c00]/30 bg-[#ff8c00]/5 px-3 py-2">
                             <div className="flex items-center gap-2 mb-1">
-                              <span className="text-amber-400 font-bold text-[10px] uppercase tracking-wide">No-Fill Diagnosis</span>
-                              <span className="rounded bg-amber-800/50 px-1.5 py-0.5 text-[9px] font-mono text-amber-300">
+                              <span className="text-[#ff8c00] font-bold font-mono text-[9px] uppercase tracking-wider">No-Fill Diagnosis</span>
+                              <span className="rounded-none bg-[#ff8c00]/20 border border-[#ff8c00]/30 px-1.5 py-0.5 text-[9px] font-mono text-[#ff8c00]">
                                 {t.nofill_reason}
                               </span>
                             </div>
-                            <p className="text-[10px] text-amber-200/80">{t.nofill_explanation}</p>
+                            <p className="text-[10px] font-mono text-[#ff8c00]/80">{t.nofill_explanation}</p>
                             {t.nofill_details && (
                               <div className="mt-1.5 grid grid-cols-4 gap-x-4 gap-y-1 text-[9px] font-mono">
                                 {t.nofill_details.pm_data_age_ms != null && (
                                   <div>
-                                    <span className="text-gray-500">Data Age</span>
-                                    <span className={`ml-1 ${(t.nofill_details.pm_data_age_ms as number) > 500 ? 'text-red-400' : 'text-gray-300'}`}>
+                                    <span className="text-[#4a4a6a]">Data Age</span>
+                                    <span className={`ml-1 ${(t.nofill_details.pm_data_age_ms as number) > 500 ? 'text-[#ff3333]' : 'text-[#ff8c00]'}`}>
                                       {String(t.nofill_details.pm_data_age_ms)}ms
                                     </span>
                                   </div>
                                 )}
                                 {t.nofill_details.pm_order_ms != null && (
                                   <div>
-                                    <span className="text-gray-500">Order Latency</span>
-                                    <span className="text-gray-300 ml-1">{String(t.nofill_details.pm_order_ms)}ms</span>
+                                    <span className="text-[#4a4a6a]">Order Latency</span>
+                                    <span className="text-[#ff8c00] ml-1">{String(t.nofill_details.pm_order_ms)}ms</span>
                                   </div>
                                 )}
                                 {t.nofill_details.pre_bbo != null && (
                                   <div>
-                                    <span className="text-gray-500">Pre-BBO</span>
-                                    <span className="text-gray-300 ml-1">
+                                    <span className="text-[#4a4a6a]">Pre-BBO</span>
+                                    <span className="text-[#ff8c00] ml-1">
                                       {String((t.nofill_details.pre_bbo as Record<string, string | number>).bid_cents)}c / {String((t.nofill_details.pre_bbo as Record<string, string | number>).ask_cents)}c
                                     </span>
                                   </div>
                                 )}
                                 {t.nofill_details.post_bbo != null && (
                                   <div>
-                                    <span className="text-gray-500">Post-BBO</span>
-                                    <span className="text-gray-300 ml-1">
+                                    <span className="text-[#4a4a6a]">Post-BBO</span>
+                                    <span className="text-[#ff8c00] ml-1">
                                       {String((t.nofill_details.post_bbo as Record<string, string | number>).bid_cents)}c / {String((t.nofill_details.post_bbo as Record<string, string | number>).ask_cents)}c
                                     </span>
                                   </div>
@@ -379,24 +375,24 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                         )}
 
                         {/* ── EXECUTION & FINANCIAL DETAIL ── */}
-                        <div className="mt-3 grid grid-cols-3 gap-x-6 gap-y-2 text-[10px]">
+                        <div className="mt-3 grid grid-cols-3 gap-x-6 gap-y-2 text-[10px] font-mono">
                           <div>
-                            <span className="text-gray-500 block">Phase</span>
-                            <span className="text-gray-300">{t.execution_phase || "ioc"}{t.is_maker ? " (maker)" : ""}</span>
+                            <span className="text-[#4a4a6a] block text-[9px] uppercase tracking-wider">Phase</span>
+                            <span className="text-[#ff8c00]">{t.execution_phase || "ioc"}{t.is_maker ? " (maker)" : ""}</span>
                           </div>
                           <div>
-                            <span className="text-gray-500 block">Total Execution</span>
-                            <span className="text-gray-300 font-mono">{t.execution_time_ms || "-"}ms</span>
+                            <span className="text-[#4a4a6a] block text-[9px] uppercase tracking-wider">Total Execution</span>
+                            <span className="text-[#ff8c00]">{t.execution_time_ms || "-"}ms</span>
                           </div>
                           <div>
-                            <span className="text-gray-500 block">Hedged</span>
-                            <span className={t.hedged ? "text-emerald-400" : "text-red-400"}>
-                              {t.hedged ? "Yes" : "No"}
+                            <span className="text-[#4a4a6a] block text-[9px] uppercase tracking-wider">Hedged</span>
+                            <span className={t.hedged ? "text-[#00ff88]" : "text-[#ff3333]"}>
+                              {t.hedged ? "YES" : "NO"}
                             </span>
                           </div>
                           <div>
-                            <span className="text-gray-500 block">Fees (PM / K)</span>
-                            <span className="text-yellow-400 font-mono">
+                            <span className="text-[#4a4a6a] block text-[9px] uppercase tracking-wider">Fees (PM / K)</span>
+                            <span className="text-[#ff8c00]">
                               ${(t.pm_fee || 0).toFixed(3)} / ${(t.k_fee || 0).toFixed(3)}
                             </span>
                           </div>
@@ -404,19 +400,19 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                             <>
                               {depth.k !== null && (
                                 <div>
-                                  <span className="text-gray-500 block">L1 at Arb Price</span>
-                                  <span className="font-mono">
+                                  <span className="text-[#4a4a6a] block text-[9px] uppercase tracking-wider">L1 at Arb Price</span>
+                                  <span>
                                     <span className={depthColor(depth.k)}>K: {fmtNum(depth.k)}</span>
                                     {" @ "}{t.sizing_details.depth_walk_log?.[0]?.k_price ?? "-"}c
-                                    <span className="text-gray-700 mx-1">|</span>
+                                    <span className="text-[#3a3a5a] mx-1">|</span>
                                     <span className={depthColor(depth.pm)}>PM: {fmtNum(depth.pm!)}</span>
                                     {" @ "}{t.sizing_details.depth_walk_log?.[0]?.pm_cost ?? "-"}c
                                   </span>
                                 </div>
                               )}
                               <div>
-                                <span className="text-gray-500 block">Total Book Depth</span>
-                                <span className="text-gray-300 font-mono">
+                                <span className="text-[#4a4a6a] block text-[9px] uppercase tracking-wider">Total Book Depth</span>
+                                <span className="text-[#ff8c00]">
                                   K: {fmtNum(t.sizing_details.k_depth)} | PM: {fmtNum(t.sizing_details.pm_depth)} ({t.sizing_details.limit_reason})
                                 </span>
                               </div>
@@ -424,16 +420,16 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                           )}
                           {t.settlement_pnl != null && (
                             <div>
-                              <span className="text-gray-500 block">Settlement P&L</span>
-                              <span className={t.settlement_pnl >= 0 ? "text-emerald-400 font-bold" : "text-red-400 font-bold"}>
+                              <span className="text-[#4a4a6a] block text-[9px] uppercase tracking-wider">Settlement P&L</span>
+                              <span className={t.settlement_pnl >= 0 ? "text-[#00ff88] font-bold" : "text-[#ff3333] font-bold"}>
                                 ${t.settlement_pnl.toFixed(4)}
                               </span>
                             </div>
                           )}
                           {t.gtc_cancel_reason && (
                             <div>
-                              <span className="text-gray-500 block">GTC Cancel</span>
-                              <span className="text-gray-300">{t.gtc_cancel_reason}</span>
+                              <span className="text-[#4a4a6a] block text-[9px] uppercase tracking-wider">GTC Cancel</span>
+                              <span className="text-[#ff8c00]">{t.gtc_cancel_reason}</span>
                             </div>
                           )}
                         </div>
@@ -441,29 +437,29 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                         {/* ── DEPTH WALK TABLE ── */}
                         {t.sizing_details?.depth_walk_log && t.sizing_details.depth_walk_log.length > 0 && (
                           <div className="mt-3">
-                            <span className="text-gray-500 block mb-1 text-[10px]">Depth Walk</span>
+                            <span className="text-[#4a4a6a] block mb-1 text-[9px] font-mono uppercase tracking-wider">Depth Walk</span>
                             <table className="w-full text-[10px] font-mono">
                               <thead>
-                                <tr className="text-gray-600">
-                                  <th className="text-left pr-2">LVL</th>
-                                  <th className="text-right pr-2">K</th>
-                                  <th className="text-right pr-2">PM</th>
-                                  <th className="text-right pr-2">SPREAD</th>
-                                  <th className="text-right pr-2">FEES</th>
-                                  <th className="text-right pr-2">NET</th>
-                                  <th className="text-right pr-2">QTY</th>
-                                  <th className="text-right">CUM</th>
+                                <tr className="text-[#4a4a6a] border-b border-[#1a1a2e]">
+                                  <th className="text-left pr-2 py-1 font-medium">LVL</th>
+                                  <th className="text-right pr-2 py-1 font-medium">K</th>
+                                  <th className="text-right pr-2 py-1 font-medium">PM</th>
+                                  <th className="text-right pr-2 py-1 font-medium">SPREAD</th>
+                                  <th className="text-right pr-2 py-1 font-medium">FEES</th>
+                                  <th className="text-right pr-2 py-1 font-medium">NET</th>
+                                  <th className="text-right pr-2 py-1 font-medium">QTY</th>
+                                  <th className="text-right py-1 font-medium">CUM</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 {t.sizing_details.depth_walk_log.map((l) => (
-                                  <tr key={l.level} className={l.stopped ? "text-red-400/80" : "text-emerald-400/80"}>
-                                    <td className="text-left pr-2">{l.stopped ? "\u2717" : "\u2713"} L{l.level}</td>
+                                  <tr key={l.level} className={l.stopped ? "text-[#ff3333]" : "text-[#00ff88]"}>
+                                    <td className="text-left pr-2 py-0.5">{l.stopped ? "\u2717" : "\u2713"} L{l.level}</td>
                                     <td className="text-right pr-2">{l.k_price}c</td>
                                     <td className="text-right pr-2">{l.pm_cost}c</td>
                                     <td className="text-right pr-2">{l.spread}c</td>
                                     <td className="text-right pr-2">{l.fees}c</td>
-                                    <td className={`text-right pr-2 font-bold ${l.marginal_profit >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                                    <td className={`text-right pr-2 font-bold ${l.marginal_profit >= 0 ? "text-[#00ff88]" : "text-[#ff3333]"}`}>
                                       {l.marginal_profit}c
                                     </td>
                                     <td className="text-right pr-2">{l.contracts_at_level ?? "-"}</td>

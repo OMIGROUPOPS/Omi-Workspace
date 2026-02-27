@@ -19,10 +19,10 @@ interface Props {
 }
 
 const TABS: { key: TopTab; label: string }[] = [
-  { key: "monitor", label: "Monitor" },
+  { key: "monitor", label: "MONITOR" },
   { key: "pnl_history", label: "P&L" },
-  { key: "depth", label: "Depth" },
-  { key: "operations", label: "Operations" },
+  { key: "depth", label: "DEPTH" },
+  { key: "operations", label: "OPS" },
 ];
 
 export function ArbDashboardHeader({
@@ -56,62 +56,79 @@ export function ArbDashboardHeader({
     return () => clearInterval(id);
   }, []);
 
+  const isLive = !!hasData && !isStale && !fetchError;
+
   return (
-    <div className="border-b border-gray-800 bg-[#0f0f0f]">
+    <div className="border-b border-[#1a1a2e] bg-black">
+      {/* Top amber accent line */}
+      <div className="h-[2px] bg-[#ff8c00] w-full" />
+
       {/* Alert banner */}
       {alerts.length > 0 && (
-        <div className="px-4 py-1.5 flex items-center gap-3 overflow-x-auto bg-yellow-500/5 border-b border-yellow-500/20">
+        <div className="px-4 py-1 flex items-center gap-3 overflow-x-auto bg-[#ff8c00]/10 border-b border-[#ff8c00]/20">
           {alerts.map((a, i) => (
             <span
               key={i}
-              className={`text-[10px] font-medium whitespace-nowrap ${
-                a.type === "error" ? "text-red-400" : a.type === "warning" ? "text-yellow-400" : "text-blue-400"
+              className={`text-[9px] font-mono uppercase tracking-wider whitespace-nowrap ${
+                a.type === "error" ? "text-[#ff3333]" : a.type === "warning" ? "text-[#ff8c00]" : "text-[#00bfff]"
               }`}
             >
-              {a.type === "error" ? "\u26A0" : a.type === "warning" ? "\u26A0" : "\u2139"} {a.message}
+              {a.type === "error" ? "■ ERR:" : a.type === "warning" ? "▲ WARN:" : "● INFO:"} {a.message}
             </span>
           ))}
         </div>
       )}
 
-      <div className="flex items-center justify-between px-4 py-3">
-        <div className="flex items-center gap-3">
-          <h1 className="text-lg font-bold text-white">Arb Monitor</h1>
+      <div className="flex items-center justify-between px-4 py-2">
+        {/* Left: Title + Status */}
+        <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <Pulse active={!!hasData && !isStale && !fetchError} />
-            <span className="text-xs text-gray-500">
+            <span className="text-[11px] font-mono font-bold text-[#ff8c00] uppercase tracking-widest">
+              OMI ARB TERMINAL
+            </span>
+            <span className="text-[#1a1a2e] font-mono">|</span>
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            <Pulse active={isLive} />
+            <span className={`text-[9px] font-mono uppercase tracking-wider ${isLive ? "text-[#ff8c00]" : "text-[#ff3333]"}`}>
               {fetchError
-                ? "Connection error"
+                ? "CONN ERR"
                 : isStale
-                ? "Stale"
+                ? "STALE"
                 : hasData
-                ? "Live"
-                : "Connecting..."}
+                ? "LIVE"
+                : "CONNECTING"}
             </span>
           </div>
-          {/* EST Clock */}
-          <span className="text-xs font-mono text-gray-500 border-l border-gray-800 pl-3 ml-1">
-            {clock} ET
+
+          {/* Clock */}
+          <span className="text-[11px] font-mono text-[#00ff88] border-l border-[#1a1a2e] pl-4 ml-1">
+            {clock} <span className="text-[#3a3a5a]">ET</span>
           </span>
-          {/* Uptime */}
+
+          {/* System info */}
           {system && (
-            <span className="text-xs text-gray-600">
-              {formatUptime(system.uptime_seconds)} up | {system.games_monitored} games
+            <span className="text-[9px] font-mono text-[#4a4a6a] border-l border-[#1a1a2e] pl-3">
+              UP: {formatUptime(system.uptime_seconds)}
+              <span className="mx-1.5 text-[#1a1a2e]">|</span>
+              {system.games_monitored} GAMES
             </span>
           )}
         </div>
 
-        <div className="flex items-center gap-2">
-          {/* Tabs */}
-          <div className="flex items-center gap-0.5 rounded-lg bg-gray-800/50 p-0.5">
+        {/* Right: Tabs + Controls */}
+        <div className="flex items-center gap-0">
+          {/* Tab bar */}
+          <div className="flex items-center border-l border-[#1a1a2e]">
             {TABS.map((tab) => (
               <button
                 key={tab.key}
                 onClick={() => setTopTab(tab.key)}
-                className={`rounded-md px-3 py-1 text-xs font-medium transition-colors ${
+                className={`px-3 py-2 text-[9px] font-mono tracking-wider border-b-2 transition-colors ${
                   topTab === tab.key
-                    ? "bg-gray-700 text-white"
-                    : "text-gray-500 hover:text-gray-300"
+                    ? "text-[#ff8c00] border-[#ff8c00]"
+                    : "text-[#4a4a6a] border-transparent hover:text-[#ff8c00]/70"
                 }`}
               >
                 {tab.label}
@@ -120,20 +137,24 @@ export function ArbDashboardHeader({
           </div>
 
           {/* Controls */}
-          <button
-            onClick={() => setPaused(!paused)}
-            className={`rounded px-2 py-1 text-[10px] font-medium ${
-              paused ? "bg-yellow-500/20 text-yellow-400" : "bg-gray-800 text-gray-400 hover:text-gray-300"
-            }`}
-          >
-            {paused ? "Paused" : "Pause"}
-          </button>
-          <button
-            onClick={fetchData}
-            className="rounded px-2 py-1 text-[10px] font-medium bg-gray-800 text-gray-400 hover:text-gray-300"
-          >
-            Refresh
-          </button>
+          <div className="flex items-center gap-1 ml-3 border-l border-[#1a1a2e] pl-3">
+            <button
+              onClick={() => setPaused(!paused)}
+              className={`rounded-none px-2 py-1 text-[9px] font-mono border transition-colors ${
+                paused
+                  ? "bg-[#ff8c00]/20 text-[#ff8c00] border-[#ff8c00]/40"
+                  : "bg-transparent text-[#4a4a6a] border-[#1a1a2e] hover:text-[#00bfff] hover:border-[#00bfff]/40"
+              }`}
+            >
+              {paused ? "PAUSED" : "PAUSE"}
+            </button>
+            <button
+              onClick={fetchData}
+              className="rounded-none px-2 py-1 text-[9px] font-mono border border-[#1a1a2e] text-[#4a4a6a] hover:text-[#00bfff] hover:border-[#00bfff]/40 transition-colors"
+            >
+              REFRESH
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ export function PositionsTable({ positions, markSettled }: Props) {
   if (positions.length === 0) {
     return (
       <div className="text-center py-6">
-        <span className="text-xs text-gray-600">No open positions</span>
+        <span className="text-[9px] font-mono text-[#3a3a5a] uppercase tracking-wider">NO OPEN POSITIONS</span>
       </div>
     );
   }
@@ -27,15 +27,16 @@ export function PositionsTable({ positions, markSettled }: Props) {
   return (
     <div>
       {/* Summary row */}
-      <div className="px-3 py-2 bg-gray-800/30 border-b border-gray-800 flex flex-wrap items-center gap-4 text-[10px]">
-        <span className="text-gray-400">
-          {positions.length} position{positions.length !== 1 ? "s" : ""}
-          {hedged.length > 0 && <span className="text-emerald-500 ml-1">({hedged.length} hedged)</span>}
-          {unhedged.length > 0 && <span className="text-red-400 ml-1">({unhedged.length} directional)</span>}
+      <div className="px-3 py-1.5 bg-black border-b border-[#1a1a2e] flex flex-wrap items-center gap-4 text-[9px] font-mono">
+        <span className="text-[#4a4a6a]">
+          {positions.length} POSITION{positions.length !== 1 ? "S" : ""}
+          {hedged.length > 0 && <span className="text-[#00ff88] ml-1">({hedged.length} HEDGED)</span>}
+          {unhedged.length > 0 && <span className="text-[#ff3333] ml-1">({unhedged.length} DIRECTIONAL)</span>}
         </span>
-        <span className="text-blue-400">PM: ${totPmExp.toFixed(2)}</span>
-        <span className="text-orange-400">K: ${totKExp.toFixed(2)}</span>
-        <span className={`font-mono font-bold ${totPnl > 0 ? "text-emerald-400" : totPnl < 0 ? "text-red-400" : "text-gray-400"}`}>
+        <span className="text-[#4a4a6a]">|</span>
+        <span className="text-[#00bfff]">PM: ${totPmExp.toFixed(2)}</span>
+        <span className="text-[#ff8c00]">K: ${totKExp.toFixed(2)}</span>
+        <span className={`font-mono font-bold ${totPnl > 0 ? "text-[#00ff88]" : totPnl < 0 ? "text-[#ff3333]" : "text-[#4a4a6a]"}`}>
           P&L: {totPnl >= 0 ? "+" : ""}${totPnl.toFixed(4)}
         </span>
       </div>
@@ -43,103 +44,103 @@ export function PositionsTable({ positions, markSettled }: Props) {
       <div className="overflow-x-auto">
         <table className="w-full text-[11px]">
           <thead>
-            <tr className="text-gray-500 text-[9px] uppercase tracking-wider border-b border-gray-800">
-              <th className="py-2 px-2 text-left font-medium">Game</th>
-              <th className="py-2 px-2 text-left font-medium">Team</th>
-              <th className="py-2 px-2 text-center font-medium">Status</th>
-              <th className="py-2 px-2 text-center font-medium">K Qty</th>
-              <th className="py-2 px-2 text-center font-medium">PM Qty</th>
-              <th className="py-2 px-2 text-right font-medium">PM Fill</th>
-              <th className="py-2 px-2 text-right font-medium">PM Now</th>
-              <th className="py-2 px-2 text-right font-medium">K Fill</th>
-              <th className="py-2 px-2 text-right font-medium">K Now</th>
-              <th className="py-2 px-2 text-right font-medium">Fees</th>
-              <th className="py-2 px-2 text-right font-medium">Net P&L</th>
-              <th className="py-2 px-2 text-center font-medium">Signal</th>
-              <th className="py-2 px-2 text-center font-medium w-6"></th>
+            <tr className="text-[#4a4a6a] text-[9px] uppercase tracking-wider border-b border-[#1a1a2e] font-mono">
+              <th className="py-1.5 px-2 text-left font-medium">GAME</th>
+              <th className="py-1.5 px-2 text-left font-medium">TEAM</th>
+              <th className="py-1.5 px-2 text-center font-medium">STATUS</th>
+              <th className="py-1.5 px-2 text-center font-medium">K QTY</th>
+              <th className="py-1.5 px-2 text-center font-medium">PM QTY</th>
+              <th className="py-1.5 px-2 text-right font-medium">PM FILL</th>
+              <th className="py-1.5 px-2 text-right font-medium">PM NOW</th>
+              <th className="py-1.5 px-2 text-right font-medium">K FILL</th>
+              <th className="py-1.5 px-2 text-right font-medium">K NOW</th>
+              <th className="py-1.5 px-2 text-right font-medium">FEES</th>
+              <th className="py-1.5 px-2 text-right font-medium">NET P&L</th>
+              <th className="py-1.5 px-2 text-center font-medium">SIGNAL</th>
+              <th className="py-1.5 px-2 text-center font-medium w-6"></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-800/50">
+          <tbody className="divide-y divide-[#1a1a2e]/50">
             {positions.map((p, i) => {
               const pmDir = p.direction === "BUY_PM_SELL_K" ? "L" : p.direction === "BUY_K_SELL_PM" ? "S" : "?";
               const kDir = p.direction === "BUY_PM_SELL_K" ? "S" : p.direction === "BUY_K_SELL_PM" ? "L" : "?";
               const statusColor = p.hedged
-                ? "bg-emerald-500/20 text-emerald-400"
-                : p.status === "TIER3A_HOLD" ? "bg-yellow-500/20 text-yellow-400"
-                : p.status === "TIER3_OPPOSITE_HEDGE" ? "bg-blue-500/20 text-blue-400"
-                : p.status === "TIER3_OPPOSITE_OVERWEIGHT" ? "bg-cyan-500/20 text-cyan-400"
-                : "bg-red-500/20 text-red-400";
+                ? "bg-[#00ff88]/10 text-[#00ff88] border-[#00ff88]/30"
+                : p.status === "TIER3A_HOLD" ? "bg-[#ff8c00]/10 text-[#ff8c00] border-[#ff8c00]/30"
+                : p.status === "TIER3_OPPOSITE_HEDGE" ? "bg-[#00bfff]/10 text-[#00bfff] border-[#00bfff]/30"
+                : p.status === "TIER3_OPPOSITE_OVERWEIGHT" ? "bg-[#00bfff]/10 text-[#00bfff] border-[#00bfff]/30"
+                : "bg-[#ff3333]/10 text-[#ff3333] border-[#ff3333]/30";
               const statusLabel = p.hedged ? "HEDGED" : p.status;
-              const pnlColor = p.unrealised_pnl > 0 ? "text-emerald-400" : p.unrealised_pnl < 0 ? "text-red-400" : "text-gray-400";
-              const signalColor = p.signal === "MAX EDGE" ? "text-emerald-400"
-                : p.signal === "HIGH EDGE" ? "text-blue-400"
-                : p.signal === "MID EDGE" ? "text-yellow-400"
-                : p.signal === "LOW EDGE" ? "text-orange-400"
-                : "text-gray-500";
+              const pnlColor = p.unrealised_pnl > 0 ? "text-[#00ff88]" : p.unrealised_pnl < 0 ? "text-[#ff3333]" : "text-[#4a4a6a]";
+              const signalColor = p.signal === "MAX EDGE" ? "text-[#ff8c00]"
+                : p.signal === "HIGH EDGE" ? "text-[#00ff88]"
+                : p.signal === "MID EDGE" ? "text-[#ff8c00]/70"
+                : p.signal === "LOW EDGE" ? "text-[#4a4a6a]"
+                : "text-[#3a3a5a]";
 
               return (
-                <tr key={i} className={`hover:bg-gray-800/30 ${!p.hedged ? "bg-red-500/[0.02]" : ""}`}>
-                  <td className="py-2 px-2">
+                <tr key={i} className={`hover:bg-[#ff8c00]/[0.03] transition-colors font-mono ${!p.hedged ? "bg-[#ff3333]/[0.02]" : ""}`}>
+                  <td className="py-1.5 px-2">
                     <div className="flex items-center gap-1">
-                      <span className={`inline-block rounded px-1 py-0.5 text-[8px] font-medium ${sportBadge(p.sport)}`}>{p.sport}</span>
-                      <span className="text-gray-500 text-[10px] truncate max-w-[80px]" title={p.game_id}>{p.game_id}</span>
+                      <span className={`inline-block rounded-none px-1 py-0.5 text-[8px] font-medium ${sportBadge(p.sport)}`}>{p.sport}</span>
+                      <span className="text-[#4a4a6a] text-[9px] truncate max-w-[80px]" title={p.game_id}>{p.game_id}</span>
                     </div>
-                    <div className="text-[9px] text-gray-600 mt-0.5">{timeAgo(p.timestamp)}</div>
+                    <div className="text-[8px] text-[#3a3a5a] mt-0.5">{timeAgo(p.timestamp)}</div>
                   </td>
-                  <td className="py-2 px-2">
-                    <span className="text-white font-medium">{p.team_full_name || p.team}</span>
+                  <td className="py-1.5 px-2">
+                    <span className="text-[#ff8c00] font-medium">{p.team_full_name || p.team}</span>
                     {(p.opponent_full_name || p.opponent) ? (
-                      <span className="text-gray-500 text-[10px] ml-1">vs {p.opponent_full_name || p.opponent}</span>
+                      <span className="text-[#4a4a6a] text-[9px] ml-1">vs {p.opponent_full_name || p.opponent}</span>
                     ) : null}
                   </td>
-                  <td className="py-2 px-2 text-center">
-                    <span className={`text-[9px] font-medium rounded px-1.5 py-0.5 ${statusColor}`}>{statusLabel}</span>
+                  <td className="py-1.5 px-2 text-center">
+                    <span className={`text-[9px] font-medium rounded-none border px-1.5 py-0.5 ${statusColor}`}>{statusLabel}</span>
                   </td>
-                  <td className="py-2 px-2 text-center font-mono">
-                    <span className="text-blue-400">{p.kalshi_fill ?? (p.hedged ? p.contracts : 0)}x</span>
-                    <div className="text-[9px] text-gray-600">@{p.k_fill_cents}c</div>
+                  <td className="py-1.5 px-2 text-center font-mono">
+                    <span className="text-[#00bfff]">{p.kalshi_fill ?? (p.hedged ? p.contracts : 0)}x</span>
+                    <div className="text-[9px] text-[#3a3a5a]">@{p.k_fill_cents}c</div>
                   </td>
-                  <td className="py-2 px-2 text-center font-mono">
-                    <span className="text-emerald-400">{p.pm_fill_qty ?? p.contracts}x</span>
-                    <div className="text-[9px] text-gray-600">@{p.pm_fill_cents.toFixed(1)}c</div>
+                  <td className="py-1.5 px-2 text-center font-mono">
+                    <span className="text-[#00ff88]">{p.pm_fill_qty ?? p.contracts}x</span>
+                    <div className="text-[9px] text-[#3a3a5a]">@{p.pm_fill_cents.toFixed(1)}c</div>
                   </td>
-                  <td className="py-2 px-2 text-right font-mono">
-                    <span className="text-blue-300">{pmDir} {p.pm_fill_cents.toFixed(1)}c</span>
-                    <div className="text-[9px] text-gray-600">${p.pm_cost_dollars.toFixed(2)}</div>
+                  <td className="py-1.5 px-2 text-right font-mono">
+                    <span className="text-[#00bfff]">{pmDir} {p.pm_fill_cents.toFixed(1)}c</span>
+                    <div className="text-[9px] text-[#3a3a5a]">${p.pm_cost_dollars.toFixed(2)}</div>
                   </td>
-                  <td className="py-2 px-2 text-right font-mono">
+                  <td className="py-1.5 px-2 text-right font-mono">
                     {p.pm_bid_now > 0 ? (
-                      <><span className="text-blue-400">{p.pm_bid_now.toFixed(1)}</span><span className="text-gray-600">/</span><span className="text-blue-400">{p.pm_ask_now.toFixed(1)}</span></>
-                    ) : <span className="text-gray-600">{"\u2014"}</span>}
+                      <><span className="text-[#00bfff]">{p.pm_bid_now.toFixed(1)}</span><span className="text-[#3a3a5a]">/</span><span className="text-[#00bfff]">{p.pm_ask_now.toFixed(1)}</span></>
+                    ) : <span className="text-[#3a3a5a]">{"\u2014"}</span>}
                   </td>
-                  <td className="py-2 px-2 text-right font-mono">
+                  <td className="py-1.5 px-2 text-right font-mono">
                     {p.hedged ? (
-                      <><span className="text-orange-300">{kDir} {p.k_fill_cents}c</span><div className="text-[9px] text-gray-600">${p.k_cost_dollars.toFixed(2)}</div></>
-                    ) : <span className="text-gray-600">{"\u2014"}</span>}
+                      <><span className="text-[#ff8c00]">{kDir} {p.k_fill_cents}c</span><div className="text-[9px] text-[#3a3a5a]">${p.k_cost_dollars.toFixed(2)}</div></>
+                    ) : <span className="text-[#3a3a5a]">{"\u2014"}</span>}
                   </td>
-                  <td className="py-2 px-2 text-right font-mono">
+                  <td className="py-1.5 px-2 text-right font-mono">
                     {p.hedged && p.k_bid_now > 0 ? (
-                      <><span className="text-orange-400">{p.k_bid_now}</span><span className="text-gray-600">/</span><span className="text-orange-400">{p.k_ask_now}</span></>
-                    ) : <span className="text-gray-600">{"\u2014"}</span>}
+                      <><span className="text-[#ff8c00]">{p.k_bid_now}</span><span className="text-[#3a3a5a]">/</span><span className="text-[#ff8c00]">{p.k_ask_now}</span></>
+                    ) : <span className="text-[#3a3a5a]">{"\u2014"}</span>}
                   </td>
-                  <td className="py-2 px-2 text-right font-mono text-gray-400">
+                  <td className="py-1.5 px-2 text-right font-mono text-[#4a4a6a]">
                     {p.total_fees > 0 ? `${(p.total_fees * 100 / p.contracts).toFixed(1)}c` : "\u2014"}
-                    {p.total_fees > 0 && <div className="text-[9px] text-gray-600">${p.total_fees.toFixed(3)}</div>}
+                    {p.total_fees > 0 && <div className="text-[9px] text-[#3a3a5a]">${p.total_fees.toFixed(3)}</div>}
                   </td>
-                  <td className={`py-2 px-2 text-right font-mono font-bold ${pnlColor}`}>
+                  <td className={`py-1.5 px-2 text-right font-mono font-bold ${pnlColor}`}>
                     {p.unrealised_pnl >= 0 ? "+" : ""}${p.unrealised_pnl.toFixed(4)}
-                    {p.hedged && p.spread_cents > 0 && <div className="text-[9px] text-gray-600 font-normal">{p.spread_cents.toFixed(1)}c spread</div>}
+                    {p.hedged && p.spread_cents > 0 && <div className="text-[9px] text-[#3a3a5a] font-normal">{p.spread_cents.toFixed(1)}c spread</div>}
                   </td>
-                  <td className="py-2 px-2 text-center">
+                  <td className="py-1.5 px-2 text-center">
                     {p.signal ? (
                       <div>
-                        <span className={`text-[9px] font-medium ${signalColor}`}>{p.signal}</span>
-                        {p.ceq !== null && <div className="text-[9px] text-gray-600">{p.ceq.toFixed(1)}%</div>}
+                        <span className={`text-[9px] font-mono font-medium ${signalColor}`}>{p.signal}</span>
+                        {p.ceq !== null && <div className="text-[9px] text-[#3a3a5a]">{p.ceq.toFixed(1)}%</div>}
                       </div>
-                    ) : <span className="text-gray-600">{"\u2014"}</span>}
+                    ) : <span className="text-[#3a3a5a]">{"\u2014"}</span>}
                   </td>
-                  <td className="py-2 px-2 text-center">
-                    <button onClick={() => markSettled(p.game_id)} className="text-[9px] text-gray-600 hover:text-gray-400" title="Hide">
+                  <td className="py-1.5 px-2 text-center">
+                    <button onClick={() => markSettled(p.game_id)} className="text-[9px] text-[#3a3a5a] hover:text-[#ff3333] font-mono transition-colors" title="Hide">
                       {"\u2715"}
                     </button>
                   </td>

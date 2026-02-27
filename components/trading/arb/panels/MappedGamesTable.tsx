@@ -16,15 +16,15 @@ function tomorrowET(): string {
 
 /** Format bid/ask as compact "42/45" string, or "—" if no data. */
 function ba(p: TeamPrices | undefined, field: "k" | "pm"): React.ReactNode {
-  if (!p) return <span className="text-gray-700">&mdash;</span>;
+  if (!p) return <span className="text-[#3a3a5a]">&mdash;</span>;
   const bid = field === "k" ? p.k_bid : p.pm_bid;
   const ask = field === "k" ? p.k_ask : p.pm_ask;
-  if (!bid && !ask) return <span className="text-gray-700">&mdash;</span>;
+  if (!bid && !ask) return <span className="text-[#3a3a5a]">&mdash;</span>;
   return (
     <>
-      <span className="text-gray-300">{bid || "—"}</span>
-      <span className="text-gray-600">/</span>
-      <span className="text-gray-300">{ask || "—"}</span>
+      <span className="text-[#ff8c00]">{bid || "—"}</span>
+      <span className="text-[#3a3a5a]">/</span>
+      <span className="text-[#ff8c00]">{ask || "—"}</span>
     </>
   );
 }
@@ -33,23 +33,23 @@ function ba(p: TeamPrices | undefined, field: "k" | "pm"): React.ReactNode {
 function gameClockCell(g: MappedGame): React.ReactNode {
   const gs = g.game_status;
   if (gs === "in") {
-    // Live: green dot + period + clock
+    // Live: amber block + period + clock
     return (
-      <span className="text-emerald-400 font-mono font-medium">
-        <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1 animate-pulse" />
+      <span className="text-[#00ff88] font-mono font-medium">
+        <span className="inline-block w-1.5 h-1.5 bg-[#00ff88] mr-1 animate-pulse" />
         {g.period}{g.clock ? ` ${g.clock}` : ""}
       </span>
     );
   }
   if (gs === "post") {
-    return <span className="text-gray-500 font-mono">FINAL</span>;
+    return <span className="text-[#4a4a6a] font-mono">FINAL</span>;
   }
   // Pre-game or no ESPN data — show date + optional start time
   const isTodayGame = isToday(g.date);
   return (
-    <span className="font-mono text-gray-400">
-      {isTodayGame ? <span className="text-emerald-400">Today</span> : g.date.slice(5)}
-      {g.game_time ? <span className="text-gray-500 ml-1 text-[9px]">{g.game_time}</span> : null}
+    <span className="font-mono text-[#4a4a6a]">
+      {isTodayGame ? <span className="text-[#00ff88]">TODAY</span> : g.date.slice(5)}
+      {g.game_time ? <span className="text-[#3a3a5a] ml-1 text-[9px]">{g.game_time}</span> : null}
     </span>
   );
 }
@@ -85,7 +85,7 @@ export function MappedGamesTable({ games }: Props) {
   if (games.length === 0) {
     return (
       <div className="text-center py-6">
-        <span className="text-xs text-gray-600">No mapped games data — waiting for executor push</span>
+        <span className="text-[9px] font-mono text-[#3a3a5a] uppercase tracking-wider">NO MAPPED GAMES — WAITING FOR EXECUTOR PUSH</span>
       </div>
     );
   }
@@ -93,45 +93,45 @@ export function MappedGamesTable({ games }: Props) {
   return (
     <div>
       {/* ── Filters ──────────────────────────────────────────── */}
-      <div className="px-3 py-2 border-b border-gray-800 flex items-center gap-2">
+      <div className="px-3 py-1.5 border-b border-[#1a1a2e] flex items-center gap-2">
         <div className="flex items-center gap-1">
-          <FilterButton active={dateFilter === "today"} onClick={() => setDateFilter("today")}>Today</FilterButton>
-          <FilterButton active={dateFilter === "tomorrow"} onClick={() => setDateFilter("tomorrow")}>Tomorrow</FilterButton>
-          <FilterButton active={dateFilter === "all"} onClick={() => setDateFilter("all")}>All</FilterButton>
+          <FilterButton active={dateFilter === "today"} onClick={() => setDateFilter("today")}>TODAY</FilterButton>
+          <FilterButton active={dateFilter === "tomorrow"} onClick={() => setDateFilter("tomorrow")}>TMRW</FilterButton>
+          <FilterButton active={dateFilter === "all"} onClick={() => setDateFilter("all")}>ALL</FilterButton>
         </div>
-        <span className="text-gray-700">|</span>
+        <span className="text-[#1a1a2e] font-mono">|</span>
         <div className="flex items-center gap-1">
-          <FilterButton active={sportFilter === "all"} onClick={() => setSportFilter("all")}>All</FilterButton>
+          <FilterButton active={sportFilter === "all"} onClick={() => setSportFilter("all")}>ALL</FilterButton>
           {sports.map((s) => (
             <FilterButton key={s} active={sportFilter === s as SportFilter} onClick={() => setSportFilter(s as SportFilter)}>
               {s}
             </FilterButton>
           ))}
         </div>
-        <span className="ml-auto text-[10px] text-gray-500 font-mono">
-          {liveCount > 0 && <span className="text-emerald-400 mr-2">{liveCount} live</span>}
-          {filtered.length} / {games.length}
+        <span className="ml-auto text-[9px] text-[#4a4a6a] font-mono">
+          {liveCount > 0 && <span className="text-[#00ff88] mr-2">{liveCount} LIVE</span>}
+          {filtered.length}<span className="text-[#3a3a5a]">/{games.length}</span>
         </span>
       </div>
 
       {filtered.length === 0 ? (
         <div className="text-center py-6">
-          <span className="text-xs text-gray-600">No games match filters</span>
+          <span className="text-[9px] font-mono text-[#3a3a5a] uppercase tracking-wider">NO GAMES MATCH FILTERS</span>
         </div>
       ) : (
         <div className="overflow-auto" style={{ maxHeight: "500px" }}>
           <table className="w-full text-xs">
-            <thead className="sticky top-0 bg-[#111] z-10">
-              <tr className="border-b border-gray-800 text-left text-[10px] font-medium uppercase tracking-wider text-gray-500">
-                <th className="px-2 py-1.5">Team</th>
-                <th className="px-2 py-1.5 text-center">K Bid/Ask</th>
-                <th className="px-2 py-1.5 text-center">PM Bid/Ask</th>
-                <th className="px-2 py-1.5 text-right">Spread</th>
-                <th className="px-2 py-1.5">Sport</th>
-                <th className="px-2 py-1.5">Game</th>
-                <th className="px-2 py-1.5 text-right">Depth</th>
-                <th className="px-2 py-1.5">Status</th>
-                <th className="px-2 py-1.5">Traded</th>
+            <thead className="sticky top-0 bg-[#0a0a0a] z-10 border-b border-[#1a1a2e]">
+              <tr className="text-left text-[9px] font-mono font-medium uppercase tracking-wider text-[#4a4a6a]">
+                <th className="px-2 py-1.5">TEAM</th>
+                <th className="px-2 py-1.5 text-center">K BID/ASK</th>
+                <th className="px-2 py-1.5 text-center">PM BID/ASK</th>
+                <th className="px-2 py-1.5 text-right">SPREAD</th>
+                <th className="px-2 py-1.5">SPORT</th>
+                <th className="px-2 py-1.5">GAME</th>
+                <th className="px-2 py-1.5 text-right">DEPTH</th>
+                <th className="px-2 py-1.5">STATUS</th>
+                <th className="px-2 py-1.5">TRADED</th>
               </tr>
             </thead>
             <tbody>
@@ -143,18 +143,18 @@ export function MappedGamesTable({ games }: Props) {
                 const isFinal = g.game_status === "post";
                 const hasScore = isLive || isFinal;
                 const stripe = gi % 2 === 1 ? "bg-white/[0.02]" : "";
-                const tradedBg = g.traded ? "bg-emerald-500/5" : "";
-                const liveBorder = isLive ? "border-l-2 border-l-emerald-400" : "";
+                const tradedBg = g.traded ? "bg-[#00ff88]/[0.03]" : "";
+                const liveBorder = isLive ? "border-l-2 border-l-[#00ff88]" : "";
                 const rowBg = tradedBg || stripe;
 
                 return (
                   <React.Fragment key={g.cache_key}>
                     {/* ── Team 1 row (includes game info) ── */}
-                    <tr className={`border-t border-gray-800/80 hover:bg-gray-800/30 transition-colors ${rowBg} ${liveBorder}`}>
+                    <tr className={`border-t border-[#1a1a2e]/80 hover:bg-[#ff8c00]/[0.03] transition-colors font-mono ${rowBg} ${liveBorder}`}>
                       <td className="px-2 py-1 whitespace-nowrap">
-                        <span className="text-white font-medium">{g.team1_full || g.team1}</span>
+                        <span className="text-[#ff8c00] font-medium">{g.team1_full || g.team1}</span>
                         {hasScore && (
-                          <span className={`ml-2 font-mono font-bold ${isLive ? "text-emerald-400" : "text-gray-300"}`}>
+                          <span className={`ml-2 font-mono font-bold ${isLive ? "text-[#00ff88]" : "text-[#4a4a6a]"}`}>
                             {g.team1_score}
                           </span>
                         )}
@@ -166,12 +166,12 @@ export function MappedGamesTable({ games }: Props) {
                         {ba(t1, "pm")}
                       </td>
                       <td className={`px-2 py-1 text-right font-mono font-bold text-[10px] ${
-                        t1 && t1.spread >= arbThreshold ? "text-emerald-400" : spreadColor(t1?.spread ?? 0)
+                        t1 && t1.spread >= arbThreshold ? "text-[#00ff88]" : spreadColor(t1?.spread ?? 0)
                       }`}>
                         {t1 && t1.spread > 0 ? `${t1.spread.toFixed(1)}c` : "—"}
                       </td>
                       <td className="px-2 py-1" rowSpan={2}>
-                        <span className={`inline-block rounded px-1 py-0.5 text-[10px] font-medium ${sportBadge(g.sport)}`}>
+                        <span className={`inline-block rounded-none px-1 py-0.5 text-[9px] font-mono font-medium ${sportBadge(g.sport)}`}>
                           {g.sport}
                         </span>
                       </td>
@@ -180,28 +180,30 @@ export function MappedGamesTable({ games }: Props) {
                       </td>
                       <td className="px-2 py-1 text-right font-mono text-[10px] whitespace-nowrap" rowSpan={2}>
                         <span className={depthColor(g.k_depth ?? null)}>K:{g.k_depth != null && g.k_depth > 0 ? fmtNum(g.k_depth) : "—"}</span>
-                        <span className="text-gray-700 mx-0.5">|</span>
+                        <span className="text-[#3a3a5a] mx-0.5">|</span>
                         <span className={depthColor(g.pm_depth ?? null)}>PM:{g.pm_depth != null && g.pm_depth > 0 ? fmtNum(g.pm_depth) : "—"}</span>
                       </td>
                       <td className="px-2 py-1" rowSpan={2}>
-                        <span className={`inline-block rounded px-1 py-0.5 text-[9px] font-medium ${
-                          g.status === "Active" ? "bg-emerald-500/20 text-emerald-400" : "bg-gray-500/20 text-gray-500"
+                        <span className={`inline-block rounded-none border px-1 py-0.5 text-[9px] font-mono font-medium ${
+                          g.status === "Active"
+                            ? "bg-[#00ff88]/10 text-[#00ff88] border-[#00ff88]/30"
+                            : "bg-[#4a4a6a]/10 text-[#4a4a6a] border-[#4a4a6a]/30"
                         }`}>
                           {g.status}
                         </span>
                       </td>
                       <td className="px-2 py-1" rowSpan={2}>
                         {g.traded
-                          ? <span className="text-emerald-400 text-[9px] font-medium">YES</span>
-                          : <span className="text-gray-600 text-[9px]">-</span>}
+                          ? <span className="text-[#00ff88] text-[9px] font-mono font-bold">YES</span>
+                          : <span className="text-[#3a3a5a] text-[9px] font-mono">-</span>}
                       </td>
                     </tr>
                     {/* ── Team 2 row ── */}
-                    <tr className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors ${rowBg} ${liveBorder}`}>
+                    <tr className={`border-b border-[#1a1a2e]/50 hover:bg-[#ff8c00]/[0.03] transition-colors font-mono ${rowBg} ${liveBorder}`}>
                       <td className="px-2 py-1 whitespace-nowrap">
-                        <span className="text-white font-medium">{g.team2_full || g.team2}</span>
+                        <span className="text-[#ff8c00] font-medium">{g.team2_full || g.team2}</span>
                         {hasScore && (
-                          <span className={`ml-2 font-mono font-bold ${isLive ? "text-emerald-400" : "text-gray-300"}`}>
+                          <span className={`ml-2 font-mono font-bold ${isLive ? "text-[#00ff88]" : "text-[#4a4a6a]"}`}>
                             {g.team2_score}
                           </span>
                         )}
@@ -213,7 +215,7 @@ export function MappedGamesTable({ games }: Props) {
                         {ba(t2, "pm")}
                       </td>
                       <td className={`px-2 py-1 text-right font-mono font-bold text-[10px] ${
-                        t2 && t2.spread >= arbThreshold ? "text-emerald-400" : spreadColor(t2?.spread ?? 0)
+                        t2 && t2.spread >= arbThreshold ? "text-[#00ff88]" : spreadColor(t2?.spread ?? 0)
                       }`}>
                         {t2 && t2.spread > 0 ? `${t2.spread.toFixed(1)}c` : "—"}
                       </td>

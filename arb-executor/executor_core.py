@@ -1287,10 +1287,11 @@ async def execute_arb(
     # PM buffer: scale with size to control risk on larger orders
     # Use math.ceil so fractional cents always round UP (e.g. 5.5c → 6c)
     # Prevents :.2f truncation from eating the buffer in the PM API payload
+    # Min buffer of 3c ensures IOC crosses the L1 spread to find resting liquidity
     if size <= 3:
-        pm_buffer = max(2, math.ceil(spread * 0.50))
+        pm_buffer = max(3, math.ceil(spread * 0.50))
     elif size <= 10:
-        pm_buffer = max(2, math.ceil(spread * 0.40))
+        pm_buffer = max(3, math.ceil(spread * 0.40))
     else:
         pm_buffer = max(2, math.ceil(spread * 0.30))
 
@@ -1414,7 +1415,7 @@ async def execute_arb(
         order_state = pm_result.get('order_state', 'N/A')
         order_id = pm_result.get('order_id', 'none')
         error_hint = pm_response_details.get('pm_expiry_reason', '') or ''
-        print(f"[EXEC] PM NO FILL: status={status} | state={order_state} | order={order_id} | {size}@${pm_price:.2f} | {error_hint}")
+        print(f"[EXEC] PM NO FILL: status={status} | state={order_state} | order={order_id} | outcome_idx={actual_pm_outcome_idx} | {size}@${pm_price:.2f} | {error_hint}")
 
         # Distinguish real no-fills from early aborts / API errors:
         # Real no-fill: has 'order_id' (PM accepted the order, IOC expired)

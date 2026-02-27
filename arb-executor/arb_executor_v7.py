@@ -1877,6 +1877,7 @@ class PolymarketUSAPI:
                 'price': {'value': f'{price:.2f}', 'currency': 'USD'},
                 'quantity': quantity,
                 'tif': _TIF_MAP[tif],
+                'outcomeIndex': outcome_index,  # CRITICAL: route order to correct outcome side
                 'manualOrderIndicator': 'MANUAL_ORDER_INDICATOR_AUTOMATIC',
                 'synchronousExecution': True,
             })

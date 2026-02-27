@@ -616,7 +616,8 @@ PM_NAME_KEYWORDS = {
     "timberwolves": "MIN", "pelicans": "NOP",
     "knicks": "NYK", "thunder": "OKC", "magic": "ORL",
     "76ers": "PHI", "sixers": "PHI", "suns": "PHX",
-    "trail blazers": "POR", "blazers": "POR", "kings": "SAC",
+    "trail blazers": "POR", "blazers": "POR",
+    "sacramento kings": "SAC",  # Full name to avoid collision with LA Kings (NHL)
     "spurs": "SAS", "raptors": "TOR", "jazz": "UTA",
     "wizards": "WSH",  # Kalshi uses WSH, not WAS
     # --- NHL ---
@@ -626,7 +627,7 @@ PM_NAME_KEYWORDS = {
     "anaheim ducks": "ANA", "coyotes": "ARI", "sabres": "BUF",
     "hurricanes": "CAR", "blue jackets": "CBJ", "flames": "CGY",
     "avalanche": "COL", "dallas stars": "DAL", "oilers": "EDM",
-    "florida panthers": "FLA", "minnesota wild": "MIN",
+    "florida panthers": "FLA", "los angeles kings": "LAK", "minnesota wild": "MIN",
     "canadiens": "MTL", "habs": "MTL", "devils": "NJD",
     "predators": "NSH", "preds": "NSH", "islanders": "NYI",
     "rangers": "NYR", "senators": "OTT", "sens": "OTT",
@@ -726,16 +727,17 @@ PM_NAME_KEYWORDS = {
 # Pro-sport abbreviations (NBA + NHL) used to prevent cross-sport keyword
 # matching. When identifying teams for a CBB game, reject any match that
 # resolves to an NBA/NHL abbreviation — let the marketSides fallback handle it.
-_PRO_SPORT_ABBREVS = {
-    # NBA
+_NBA_ABBREVS = {
     "ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW",
     "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK",
     "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WSH",
-    # NHL
+}
+_NHL_ABBREVS = {
     "ANA", "ARI", "BUF", "CAR", "CBJ", "CGY", "COL", "EDM", "FLA", "LAK",
     "MTL", "NJD", "NSH", "NYI", "NYR", "OTT", "PIT", "SEA", "SJS", "STL",
     "TBL", "VAN", "VGK", "WPG",
 }
+_PRO_SPORT_ABBREVS = _NBA_ABBREVS | _NHL_ABBREVS
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -1002,6 +1004,11 @@ def identify_team_from_outcome(outcome_name: str, sport: str) -> Optional[str]:
         if sport == "cbb" and best_match in _PRO_SPORT_ABBREVS:
             return None
         if sport in ("nba", "nhl") and best_match not in _PRO_SPORT_ABBREVS:
+            return None
+        # Prevent NBA↔NHL cross-matching (e.g. "Kings" → SAC instead of LAK)
+        if sport == "nhl" and best_match in _NBA_ABBREVS:
+            return None
+        if sport == "nba" and best_match in _NHL_ABBREVS:
             return None
         return best_match
 

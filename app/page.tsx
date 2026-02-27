@@ -67,18 +67,20 @@ export default function LandingPage() {
         }
 
         .hecate-logo-mark {
-          width: 40px;
-          height: 40px;
-          border: 1.5px solid rgba(181, 155, 99, 0.5);
-          border-radius: 2px;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          overflow: hidden;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-family: 'Cinzel', serif;
-          font-weight: 600;
-          font-size: 0.65rem;
-          letter-spacing: 0.15em;
-          color: #b59b63;
+          flex-shrink: 0;
+        }
+
+        .hecate-logo-mark img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
         .hecate-logo-text {
@@ -427,7 +429,9 @@ export default function LandingPage() {
         {/* Header */}
         <header className="hecate-header">
           <div className="hecate-header-left">
-            <div className="hecate-logo-mark">OMI</div>
+            <div className="hecate-logo-mark">
+              <img src="/hecate-logo.png" alt="OMI" />
+            </div>
             <span className="hecate-logo-text">OMI Group</span>
           </div>
           <Link href="/internal" className="hecate-internal-link">

@@ -1823,6 +1823,29 @@ class PreGameMapper:
                     entry[f"team_{team_abbrev.lower()}_outcome_index"] = idx
                     entry[f"team_{team_abbrev.lower()}_token_id"] = token_ids.get(idx, "")
 
+                # UFC: fix pm_long_team when it doesn't match any Kalshi team
+                # This happens with fuzzy-matched fights where PM slug codes differ
+                # from Kalshi codes (e.g., PM 'SIL' vs Kalshi 'DEA').
+                if k_game.get("sport") == "ufc" and pm_long_team:
+                    if pm_long_team not in k_teams_normalized:
+                        # Find which PM side is "long" and match it to Kalshi team by name
+                        for _side in (market_sides or [])[:2]:
+                            if isinstance(_side, dict) and _side.get("long") is True:
+                                _ti = _side.get("team", {})
+                                long_name = _ti.get("name", "").lower().strip()
+                                # Match against outcome_map to find the Kalshi team
+                                for _idx, _od in outcome_map.items():
+                                    om_name = _od.get("name", "").lower().strip()
+                                    if long_name and om_name and (
+                                        long_name == om_name or
+                                        long_name.split()[-1] == om_name.split()[-1]
+                                    ):
+                                        old_lt = pm_long_team
+                                        pm_long_team = _od["team"]
+                                        entry["pm_long_team"] = pm_long_team
+                                        logger.info(f"  {cache_key}: UFC pm_long_team corrected {old_lt} -> {pm_long_team}")
+                                        break
+                                break
                 # ── pm_long_team sanity check using Kalshi prices ──
                 # PM bestBid is in long-team frame. If it diverges from Kalshi
                 # price for pm_long_team by >15c, the long flag may be wrong.

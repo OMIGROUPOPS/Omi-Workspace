@@ -69,7 +69,7 @@ class Config:
     # ==========================================================================
     # PRICE BUFFERS
     # ==========================================================================
-    price_buffer_cents: int = 0         # Kalshi limit order buffer
+    price_buffer_cents: int = 2         # Kalshi limit order buffer (2c absorbs 1-tick moves during PM fill latency)
     pm_price_buffer_cents: int = 3      # PM limit order buffer (3c to account for latency)
 
     # ==========================================================================

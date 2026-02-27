@@ -1451,12 +1451,13 @@ async def execute_arb(
     # Use math.ceil so fractional cents always round UP (e.g. 5.5c → 6c)
     # Prevents :.2f truncation from eating the buffer in the PM API payload
     # Min buffer of 3c ensures IOC crosses the L1 spread to find resting liquidity
+    # AGGRESSIVE: Higher buffers = better fill rate at slight cost to profit per contract
     if size <= 3:
-        pm_buffer = max(3, math.ceil(spread * 0.50))
+        pm_buffer = max(3, math.ceil(spread * 0.60))
     elif size <= 10:
-        pm_buffer = max(3, math.ceil(spread * 0.40))
+        pm_buffer = max(3, math.ceil(spread * 0.50))
     else:
-        pm_buffer = max(2, math.ceil(spread * 0.30))
+        pm_buffer = max(3, math.ceil(spread * 0.40))
 
     print(f"[EXEC] Sized: {size} contracts | buffer: {pm_buffer}c")
 
@@ -1545,6 +1546,17 @@ async def execute_arb(
     # Only Case 4 (BUY_K_SELL_PM, underdog) switches to the long team's outcome
     # because we BUY_LONG on the long team to SHORT our underdog.
     actual_pm_outcome_idx = (1 - pm_outcome_idx) if params.get('pm_switch_outcome', False) else pm_outcome_idx
+
+    # ── PRE-ORDER DEBUG LOG ──
+    _intent_label = {1: 'BUY_LONG', 3: 'BUY_SHORT'}.get(params['pm_intent'], '?')
+    _case_num = '3' if (arb.direction == 'BUY_K_SELL_PM' and is_long_team) else \
+                '4' if (arb.direction == 'BUY_K_SELL_PM' and not is_long_team) else \
+                '1' if (arb.direction == 'BUY_PM_SELL_K' and is_long_team) else '2'
+    print(f"[PM_ORDER] Case {_case_num}: {_intent_label} {size}@${pm_price:.4f} "
+          f"outcome[{actual_pm_outcome_idx}] | "
+          f"team={arb.team} is_long={is_long_team} dir={arb.direction} | "
+          f"pm_bid={arb.pm_bid}c pm_ask={arb.pm_ask}c | "
+          f"spread={spread:.1f}c buf={pm_buffer}c | slug={pm_slug[:50]}")
 
     pm_order_start = time.time()
     try:

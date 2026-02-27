@@ -99,14 +99,17 @@ export function PositionsTable({ positions, markSettled }: Props) {
                   <td className="py-1.5 px-2 text-center font-mono">
                     <span className="text-[#00bfff]">{p.kalshi_fill ?? (p.hedged ? p.contracts : 0)}x</span>
                     <div className="text-[9px] text-[#3a3a5a]">@{p.k_fill_cents}c</div>
+                    <div className="text-[9px] text-[#00bfff]/60">${(p.k_fill_cents * (p.kalshi_fill ?? p.contracts) / 100).toFixed(2)}</div>
                   </td>
                   <td className="py-1.5 px-2 text-center font-mono">
                     <span className="text-[#00ff88]">{p.pm_fill_qty ?? p.contracts}x</span>
                     <div className="text-[9px] text-[#3a3a5a]">@{p.pm_fill_cents.toFixed(1)}c</div>
+                    <div className="text-[9px] text-[#00ff88]/60">${(p.pm_fill_cents * (p.pm_fill_qty ?? p.contracts) / 100).toFixed(2)}</div>
                   </td>
                   <td className="py-1.5 px-2 text-right font-mono">
-                    <span className="text-[#00bfff]">{p.pm_fill_cents.toFixed(1)}c</span>
-                    <div className="text-[9px] text-[#3a3a5a]">${p.pm_cost_dollars.toFixed(2)}</div>
+                    <span className="text-[#00ff88]">{p.pm_fill_cents.toFixed(1)}c</span>
+                    <span className="text-[#4a4a6a] ml-0.5">(${(p.pm_fill_cents / 100).toFixed(2)})</span>
+                    <div className="text-[9px] text-[#00ff88]/70 font-bold">${p.pm_cost_dollars.toFixed(2)} total</div>
                   </td>
                   <td className="py-1.5 px-2 text-right font-mono">
                     {p.pm_bid_now > 0 ? (
@@ -115,7 +118,7 @@ export function PositionsTable({ positions, markSettled }: Props) {
                   </td>
                   <td className="py-1.5 px-2 text-right font-mono">
                     {p.hedged ? (
-                      <><span className="text-[#ff8c00]">{p.k_fill_cents}c</span><div className="text-[9px] text-[#3a3a5a]">${p.k_cost_dollars.toFixed(2)}</div></>
+                      <><span className="text-[#00bfff]">{p.k_fill_cents}c</span><span className="text-[#4a4a6a] ml-0.5">(${(p.k_fill_cents / 100).toFixed(2)})</span><div className="text-[9px] text-[#00bfff]/70 font-bold">${p.k_cost_dollars.toFixed(2)} total</div></>
                     ) : <span className="text-[#3a3a5a]">{"\u2014"}</span>}
                   </td>
                   <td className="py-1.5 px-2 text-right font-mono">

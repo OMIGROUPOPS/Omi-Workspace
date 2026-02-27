@@ -612,10 +612,17 @@ class DashboardPusher:
 
             # Normalise PM fill to cents (stored as decimal < 1 or cents)
             pm_fill_c = pm_fill * 100 if pm_fill < 1 else pm_fill
+            pm_is_buy_short = t.get("pm_is_buy_short", False)
 
-            # Cost in dollars
-            pm_cost = pm_fill_c * qty / 100
-            k_cost = k_fill * qty / 100 if hedged else 0
+            # Display prices: what the user actually sees on each exchange
+            # pm_is_buy_short: stored pm_price is arb cost (100 - token_price)
+            pm_display_c = (100 - pm_fill_c) if pm_is_buy_short else pm_fill_c
+            # BUY_PM_SELL_K: Kalshi sold YES team = bought NO at (100 - k_price)
+            k_display_c = (100 - k_fill) if direction == "BUY_PM_SELL_K" else k_fill
+
+            # Cost in dollars (using display/actual prices, not arb-internal prices)
+            pm_cost = pm_display_c * qty / 100
+            k_cost = k_display_c * qty / 100 if hedged else 0
 
             # ── Current market prices from WS cache ──
             k_ticker = t.get("kalshi_ticker", "")
@@ -715,8 +722,9 @@ class DashboardPusher:
                 "contracts": qty,
                 "kalshi_fill": t.get("kalshi_fill", 0),
                 "pm_fill_qty": t.get("pm_fill", 0),
-                "pm_fill_cents": round(pm_fill_c, 1),
-                "k_fill_cents": k_fill,
+                "pm_fill_cents": round(pm_display_c, 1),
+                "k_fill_cents": round(k_display_c, 1),
+                "pm_is_buy_short": pm_is_buy_short,
                 "pm_bid_now": round(pm_bid_now, 1),
                 "pm_ask_now": round(pm_ask_now, 1),
                 "k_bid_now": k_bid_now,

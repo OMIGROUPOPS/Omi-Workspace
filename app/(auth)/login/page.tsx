@@ -26,72 +26,278 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f0f13] flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center h-14 w-14 rounded-xl bg-indigo-600 shadow-lg shadow-indigo-500/30 text-xl font-bold text-white mb-4">
-            OMI
+    <div className="hecate-login">
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+
+        .hecate-login {
+          min-height: 100vh;
+          background: #0c0a09;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 2rem 1rem;
+          position: relative;
+          font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        .hecate-login::before {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background:
+            radial-gradient(ellipse at 50% 30%, rgba(139, 109, 63, 0.06) 0%, transparent 50%);
+          pointer-events: none;
+        }
+
+        .hecate-login::after {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          opacity: 0.03;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+          pointer-events: none;
+        }
+
+        .hecate-login-inner {
+          position: relative;
+          z-index: 1;
+          width: 100%;
+          max-width: 400px;
+        }
+
+        .hecate-login-header {
+          text-align: center;
+          margin-bottom: 2.5rem;
+        }
+
+        .hecate-login-logo {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin: 0 auto 1.5rem;
+        }
+
+        .hecate-login-logo img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .hecate-login-title {
+          font-family: 'Cinzel', serif;
+          font-size: 1.5rem;
+          font-weight: 500;
+          letter-spacing: 0.15em;
+          color: #e7e0d5;
+          margin: 0 0 0.4rem;
+        }
+
+        .hecate-login-subtitle {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 0.95rem;
+          font-style: italic;
+          color: rgba(181, 155, 99, 0.45);
+          letter-spacing: 0.05em;
+          margin: 0;
+        }
+
+        .hecate-login-card {
+          background: rgba(18, 15, 13, 0.8);
+          border: 1px solid rgba(181, 155, 99, 0.12);
+          border-radius: 2px;
+          padding: 2.5rem 2rem;
+          position: relative;
+        }
+
+        .hecate-login-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 1px;
+          background: rgba(181, 155, 99, 0.3);
+        }
+
+        .hecate-login-error {
+          margin-bottom: 1.5rem;
+          padding: 0.8rem 1rem;
+          background: rgba(180, 60, 60, 0.1);
+          border: 1px solid rgba(180, 60, 60, 0.2);
+          border-radius: 2px;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 0.9rem;
+          color: #c47070;
+        }
+
+        .hecate-login-field {
+          margin-bottom: 1.5rem;
+        }
+
+        .hecate-login-label {
+          display: block;
+          font-family: 'Cinzel', serif;
+          font-size: 0.65rem;
+          font-weight: 500;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: rgba(181, 155, 99, 0.5);
+          margin-bottom: 0.6rem;
+        }
+
+        .hecate-login-input {
+          width: 100%;
+          padding: 0.8rem 1rem;
+          background: rgba(12, 10, 9, 0.8);
+          border: 1px solid rgba(181, 155, 99, 0.15);
+          border-radius: 2px;
+          color: #e7e0d5;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1rem;
+          letter-spacing: 0.02em;
+          outline: none;
+          transition: border-color 0.3s ease;
+          box-sizing: border-box;
+        }
+
+        .hecate-login-input::placeholder {
+          color: rgba(181, 155, 99, 0.2);
+        }
+
+        .hecate-login-input:focus {
+          border-color: rgba(181, 155, 99, 0.4);
+        }
+
+        .hecate-login-button {
+          width: 100%;
+          padding: 0.8rem;
+          background: transparent;
+          border: 1px solid rgba(181, 155, 99, 0.3);
+          border-radius: 2px;
+          color: #b59b63;
+          font-family: 'Cinzel', serif;
+          font-size: 0.75rem;
+          font-weight: 500;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          margin-top: 0.5rem;
+        }
+
+        .hecate-login-button:hover {
+          background: rgba(181, 155, 99, 0.08);
+          border-color: rgba(181, 155, 99, 0.5);
+        }
+
+        .hecate-login-button:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
+
+        .hecate-login-signup {
+          text-align: center;
+          margin-top: 1.5rem;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 0.9rem;
+          color: rgba(181, 155, 99, 0.3);
+        }
+
+        .hecate-login-signup a {
+          color: rgba(181, 155, 99, 0.6);
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .hecate-login-signup a:hover {
+          color: #b59b63;
+        }
+
+        .hecate-login-footer {
+          text-align: center;
+          margin-top: 2rem;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 0.8rem;
+          color: rgba(181, 155, 99, 0.2);
+          letter-spacing: 0.1em;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hecate-login-inner {
+          animation: fadeIn 0.8s ease-out;
+        }
+      `}</style>
+
+      <div className="hecate-login-inner">
+        {/* Header */}
+        <div className="hecate-login-header">
+          <div className="hecate-login-logo">
+            <img src="/hecate-logo.png" alt="OMI" />
           </div>
-          <h1 className="text-2xl font-semibold text-white">Welcome back</h1>
-          <p className="text-gray-500 mt-1">Sign in to OMI Workspace</p>
+          <h1 className="hecate-login-title">Internal Access</h1>
+          <p className="hecate-login-subtitle">OMI Group Operations</p>
         </div>
 
         {/* Login Card */}
-        <div className="bg-[#1a1a1f] border border-gray-800 rounded-xl p-8 shadow-xl">
+        <div className="hecate-login-card">
           {error && (
-            <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
-              <p className="text-sm text-red-400">{error}</p>
-            </div>
+            <div className="hecate-login-error">{error}</div>
           )}
 
-          <div className="space-y-5">
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                className="w-full px-4 py-3 bg-[#0f0f13] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-                placeholder="you@company.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Password
-              </label>
-              <input
-                type="password"
-                className="w-full px-4 py-3 bg-[#0f0f13] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-
-            <button
-              onClick={handleLogin}
-              disabled={loading}
-              className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-600/50 text-white font-medium rounded-lg shadow-lg shadow-indigo-500/20 transition-all"
-            >
-              {loading ? "Signing in..." : "Sign in"}
-            </button>
-
-            <p className="text-center text-gray-500 text-sm">
-              Do not have an account?{" "}
-              <Link href="/signup" className="text-indigo-400 hover:text-indigo-300">
-                Sign up
-              </Link>
-            </p>
+          <div className="hecate-login-field">
+            <label className="hecate-login-label">Email</label>
+            <input
+              type="email"
+              className="hecate-login-input"
+              placeholder="operator@omigroup.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+            />
           </div>
+
+          <div className="hecate-login-field">
+            <label className="hecate-login-label">Password</label>
+            <input
+              type="password"
+              className="hecate-login-input"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+            />
+          </div>
+
+          <button
+            onClick={handleLogin}
+            disabled={loading}
+            className="hecate-login-button"
+          >
+            {loading ? "Authenticating..." : "Sign In"}
+          </button>
+
+          <p className="hecate-login-signup">
+            No account?{" "}
+            <Link href="/signup">Request access</Link>
+          </p>
         </div>
 
         {/* Footer */}
-        <p className="text-center text-gray-600 text-sm mt-8">
-          OMI Group Solutions • Adaptive Enterprise Systems
+        <p className="hecate-login-footer">
+          OMI Group &copy; {new Date().getFullYear()}
         </p>
       </div>
     </div>

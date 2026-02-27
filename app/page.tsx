@@ -444,7 +444,7 @@ export default function LandingPage() {
           <div className="hecate-ornament-top" />
 
           <h1 className="hecate-hero-title">OMI Group</h1>
-          <p className="hecate-hero-subtitle">The world adapts, or it gets left behind. We don't get left behind.</p>
+          <p className="hecate-hero-subtitle">Custom systems engineering — enterprise automation, predictive modeling, quantitative strategy.</p>
 
           <div className="hecate-image-container">
             <img

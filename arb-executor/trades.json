@@ -6953,26 +6953,8 @@
     "profit_dollars": 30.0,
     "at_risk_dollars": 8.41,
     "roi_percent": 137.93,
-    "estimated_net_profit_cents": 40.93,
-    "actual_pnl": {
-      "contracts": 29,
-      "total_cost_dollars": 17.69,
-      "total_payout_dollars": 29.0,
-      "gross_profit_dollars": 11.31,
-      "fees_dollars": 0.58899,
-      "net_profit_dollars": 10.721010000000001,
-      "per_contract": {
-        "k_cost": 30,
-        "pm_cost": 31.0,
-        "total_cost": 61.0,
-        "payout": 100,
-        "gross": 39.0,
-        "fees": 2.031,
-        "net": 36.969,
-        "direction": "BUY_K_SELL_PM"
-      },
-      "is_profitable": true
-    },
+    "estimated_net_profit_cents": -3.0,
+    "actual_pnl": null,
     "execution_time_ms": 204,
     "pm_order_ms": 145,
     "hedged": true,
@@ -7042,11 +7024,11 @@
       "total_costs": 3.07,
       "net_cents": 36.93
     },
-    "reconciled_pnl": 11.1418,
+    "reconciled_pnl": null,
     "unwind_timestamp": "2026-02-27T18:01:32.294287+00:00",
     "unwind_note": "Manual unwind: flipped PM from wrong-side to correct hedge. Close loss: 116c, Arb net: -87c",
-    "unwind_close_action": "PM: SOLD YES Vera 29x @27c",
-    "unwind_reopen_action": "PM: BOUGHT YES Martinez 29x @27c",
+    "unwind_close_action": "SOLD YES Vera 29x on PM",
+    "unwind_reopen_action": "BOUGHT YES Martinez 29x on PM (-3c/ct net)",
     "unwind_close_fill_cents": 27,
     "unwind_reopen_fill_cents": 27,
     "unwind_close_qty": 29,
@@ -7056,7 +7038,8 @@
     "arb_net_cents_per_contract": -3,
     "arb_net_total_cents": -87,
     "unwind_timestamp_est": "Feb 27 1:00:36 PM EST",
-    "opponent": "MAR"
+    "opponent": "MAR",
+    "settlement_pnl": null
   },
   {
     "timestamp": "2026-02-27T07:30:59.334919+00:00",
@@ -7078,26 +7061,8 @@
     "profit_dollars": 48.0,
     "at_risk_dollars": 4.48,
     "roi_percent": 400.0,
-    "estimated_net_profit_cents": 65.92,
-    "actual_pnl": {
-      "contracts": 28,
-      "total_cost_dollars": 10.36,
-      "total_payout_dollars": 28.0,
-      "gross_profit_dollars": 17.64,
-      "fees_dollars": 0.5656,
-      "net_profit_dollars": 17.0744,
-      "per_contract": {
-        "k_cost": 17,
-        "pm_cost": 20.0,
-        "total_cost": 37.0,
-        "payout": 100,
-        "gross": 63.0,
-        "fees": 2.02,
-        "net": 60.98,
-        "direction": "BUY_K_SELL_PM"
-      },
-      "is_profitable": true
-    },
+    "estimated_net_profit_cents": -2.0,
+    "actual_pnl": null,
     "execution_time_ms": 491,
     "pm_order_ms": 411,
     "hedged": true,
@@ -7167,11 +7132,11 @@
       "total_costs": 3.08,
       "net_cents": 60.92
     },
-    "reconciled_pnl": 17.5616,
+    "reconciled_pnl": null,
     "unwind_timestamp": "2026-02-27T18:01:32.294287+00:00",
     "unwind_note": "Manual unwind: flipped PM from wrong-side to correct hedge. Close loss: 140c, Arb net: -56c",
-    "unwind_close_action": "PM: SOLD YES Pacheco 28x @15c",
-    "unwind_reopen_action": "PM: BOUGHT YES Luna 28x @15c",
+    "unwind_close_action": "SOLD YES Pacheco 28x on PM",
+    "unwind_reopen_action": "BOUGHT YES Luna 28x on PM (-2c/ct net)",
     "unwind_close_fill_cents": 15,
     "unwind_reopen_fill_cents": 15,
     "unwind_close_qty": 28,
@@ -7181,7 +7146,8 @@
     "arb_net_cents_per_contract": -2,
     "arb_net_total_cents": -56,
     "unwind_timestamp_est": "Feb 27 1:00:31 PM EST",
-    "opponent": "LUN"
+    "opponent": "LUN",
+    "settlement_pnl": null
   },
   {
     "timestamp": "2026-02-27T07:40:08.432880+00:00",
@@ -7203,26 +7169,8 @@
     "profit_dollars": 23.25,
     "at_risk_dollars": 10.5,
     "roi_percent": 88.57,
-    "estimated_net_profit_cents": -3.04,
-    "actual_pnl": {
-      "contracts": 30,
-      "total_cost_dollars": 21.0,
-      "total_payout_dollars": 30.0,
-      "gross_profit_dollars": 9.0,
-      "fees_dollars": 0.6194999999999999,
-      "net_profit_dollars": 8.3805,
-      "per_contract": {
-        "k_cost": 35,
-        "pm_cost": 35.0,
-        "total_cost": 70.0,
-        "payout": 100,
-        "gross": 30.0,
-        "fees": 2.065,
-        "net": 27.935,
-        "direction": "BUY_PM_SELL_K"
-      },
-      "is_profitable": true
-    },
+    "estimated_net_profit_cents": -1.0,
+    "actual_pnl": null,
     "execution_time_ms": 152,
     "pm_order_ms": 104,
     "hedged": true,
@@ -7292,11 +7240,11 @@
       "total_costs": 3.04,
       "net_cents": 27.96
     },
-    "reconciled_pnl": 8.82,
+    "reconciled_pnl": null,
     "unwind_timestamp": "2026-02-27T18:01:32.294287+00:00",
     "unwind_note": "Manual unwind: flipped PM from wrong-side to correct hedge. Close loss: 30c, Arb net: -30c",
-    "unwind_close_action": "PM: BOUGHT YES Moreno 30x @66c (closed short)",
-    "unwind_reopen_action": "PM: Now LONG YES Moreno 30x @66c",
+    "unwind_close_action": "Closed SHORT Moreno 30x on PM",
+    "unwind_reopen_action": "Now LONG YES Moreno 30x on PM (-1c/ct net)",
     "unwind_close_fill_cents": 66,
     "unwind_reopen_fill_cents": 66,
     "unwind_close_qty": 30,
@@ -7306,7 +7254,8 @@
     "arb_net_cents_per_contract": -1,
     "arb_net_total_cents": -30,
     "unwind_timestamp_est": "Feb 27 1:00:38 PM EST",
-    "opponent": "KAV"
+    "opponent": "KAV",
+    "settlement_pnl": null
   },
   {
     "timestamp": "2026-02-27T07:46:14.275188+00:00",
@@ -7328,26 +7277,8 @@
     "profit_dollars": 38.25,
     "at_risk_dollars": 6.16,
     "roi_percent": 231.82,
-    "estimated_net_profit_cents": 54.92,
-    "actual_pnl": {
-      "contracts": 28,
-      "total_cost_dollars": 14.0,
-      "total_payout_dollars": 28.0,
-      "gross_profit_dollars": 14.0,
-      "fees_dollars": 0.56756,
-      "net_profit_dollars": 13.43244,
-      "per_contract": {
-        "k_cost": 23,
-        "pm_cost": 27.0,
-        "total_cost": 50.0,
-        "payout": 100,
-        "gross": 50.0,
-        "fees": 2.027,
-        "net": 47.973,
-        "direction": "BUY_K_SELL_PM"
-      },
-      "is_profitable": true
-    },
+    "estimated_net_profit_cents": -3.0,
+    "actual_pnl": null,
     "execution_time_ms": 173,
     "pm_order_ms": 116,
     "hedged": true,
@@ -7417,11 +7348,11 @@
       "total_costs": 3.08,
       "net_cents": 47.92
     },
-    "reconciled_pnl": 13.8432,
+    "reconciled_pnl": null,
     "unwind_timestamp": "2026-02-27T18:01:32.294287+00:00",
     "unwind_note": "Manual unwind: flipped PM from wrong-side to correct hedge. Close loss: 196c, Arb net: -84c",
-    "unwind_close_action": "PM: SOLD YES Green 28x @20c",
-    "unwind_reopen_action": "PM: BOUGHT YES Zellhuber 28x @20c",
+    "unwind_close_action": "SOLD YES Green 28x on PM",
+    "unwind_reopen_action": "BOUGHT YES Zellhuber 28x on PM (-3c/ct net)",
     "unwind_close_fill_cents": 20,
     "unwind_reopen_fill_cents": 20,
     "unwind_close_qty": 28,
@@ -7431,6 +7362,7 @@
     "arb_net_cents_per_contract": -3,
     "arb_net_total_cents": -84,
     "unwind_timestamp_est": "Feb 27 1:00:34 PM EST",
-    "opponent": "ZEL"
+    "opponent": "ZEL",
+    "settlement_pnl": null
   }
 ]

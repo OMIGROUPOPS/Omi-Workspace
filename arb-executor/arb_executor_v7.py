@@ -5096,6 +5096,7 @@ SPORTS_CONFIG = [
     {'sport':'nba','series':'KXNBAGAME','k2pm':NBA_K2PM,'pm2k':NBA_PM2K},
     {'sport':'nhl','series':'KXNHLGAME','k2pm':NHL_K2PM,'pm2k':NHL_PM2K},
     {'sport':'cbb','series':'KXNCAAMBGAME','k2pm':CBB_K2PM,'pm2k':CBB_PM2K},
+    {'sport':'ufc','series':'KXUFCFIGHT','k2pm':{},'pm2k':{}},  # UFC: no static team maps, uses dynamic fighter-code matching
 ]
 
 # PM US slug team codes differ from Kalshi codes
@@ -5644,9 +5645,15 @@ def build_cache_key(sport: str, team1: str, team2: str, date: str) -> str:
     """
     Build a normalized cache key for matching Kalshi and PM markets.
     Teams are normalized to canonical form and sorted alphabetically.
+    NOTE: UFC fighter codes bypass normalize_team_abbrev to avoid
+    collisions (e.g. 'VER' -> 'UVM' is Vermont, not a fighter).
     """
-    norm1 = normalize_team_abbrev(team1)
-    norm2 = normalize_team_abbrev(team2)
+    if sport.lower() == "ufc" or sport.lower() == "ufcfight":
+        norm1 = team1.upper()
+        norm2 = team2.upper()
+    else:
+        norm1 = normalize_team_abbrev(team1)
+        norm2 = normalize_team_abbrev(team2)
     sorted_teams = sorted([norm1, norm2])
     return f"{sport}:{sorted_teams[0]}-{sorted_teams[1]}:{date}"
 
@@ -5828,7 +5835,7 @@ async def run_match_debug():
                     kalshi_cache_keys[cache_key] = {
                         'sport': sport,
                         'gid': gid,
-                        'teams': sorted([normalize_team_abbrev(t) for t in teams_list]),
+                        'teams': sorted([t.upper() if sport.lower() in ('ufc', 'ufcfight') else normalize_team_abbrev(t) for t in teams_list]),
                         'date': game['date'],
                         'tickers': game['tickers']
                     }
@@ -6675,7 +6682,11 @@ async def fetch_prices_from_verified_mappings(session, pm_api, verified_maps: di
 
                 # Determine if this team's prices come from orderbook directly or inverted
                 # Orderbook is always for the first team in the slug
-                team_normalized = normalize_team_abbrev(team)
+                # UFC: skip normalize_team_abbrev to avoid collisions
+                if cache_key.startswith('ufc:'):
+                    team_normalized = team.upper()
+                else:
+                    team_normalized = normalize_team_abbrev(team)
 
                 # Check if this is the orderbook team (first in slug)
                 is_ob_team = False
@@ -6991,8 +7002,13 @@ async def fetch_pm_us_markets(session, pm_api, debug: bool = False):
                 sport = cfg['sport']
 
                 # Normalize team abbreviations for cache key matching!
-                norm_team_0 = normalize_team_abbrev(team_0)
-                norm_team_1 = normalize_team_abbrev(team_1)
+                # UFC: skip normalize_team_abbrev to avoid collisions
+                if sport.lower() in ('ufc', 'ufcfight'):
+                    norm_team_0 = team_0.upper()
+                    norm_team_1 = team_1.upper()
+                else:
+                    norm_team_0 = normalize_team_abbrev(team_0)
+                    norm_team_1 = normalize_team_abbrev(team_1)
 
                 # Store mid prices as fallback (but we'll prefer order book)
                 mid_price_0 = int(float(prices[0]) * 100)
@@ -7666,7 +7682,11 @@ async def run_executor():
                                     verified_map = VERIFIED_MAPS.get(cache_key)
                                     if verified_map and verified_map.get('verified'):
                                         # Normalize team for lookup (Kalshi raw -> canonical)
-                                        norm_team = normalize_team_abbrev(team)
+                                        # UFC: skip normalize_team_abbrev to avoid collisions
+                                        if cache_key.startswith('ufc:'):
+                                            norm_team = team.upper()
+                                        else:
+                                            norm_team = normalize_team_abbrev(team)
                                         verified_idx = get_team_outcome_index(verified_map, norm_team)
                                         if verified_idx is not None:
                                             if verified_idx != outcome_idx:

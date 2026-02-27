@@ -1070,8 +1070,14 @@ class PreGameMapper:
         Build canonical cache key matching arb_executor_v7.py format.
         MUST use same normalize_team_abbrev() as executor or keys won't match.
         Teams are normalized then sorted alphabetically.
+        NOTE: UFC fighter codes must NOT go through normalize_team_abbrev
+        because codes like 'VER' collide with college basketball (Vermont -> UVM).
         """
-        if HAS_EXECUTOR:
+        if sport.lower() == "ufc":
+            # UFC: use raw uppercase fighter codes, no canonical normalization
+            norm1 = team1.upper()
+            norm2 = team2.upper()
+        elif HAS_EXECUTOR:
             norm1 = normalize_team_abbrev(team1)
             norm2 = normalize_team_abbrev(team2)
         else:
@@ -1393,7 +1399,11 @@ class PreGameMapper:
                 # and PM mappings use canonical abbrevs (WSH, TBL, LAK, NJD)
                 k_teams_normalized = {}
                 for raw_team, ticker in k_game["teams"].items():
-                    norm_team = normalize_team_abbrev(raw_team) if HAS_EXECUTOR else raw_team
+                    # UFC: skip normalize_team_abbrev to avoid collisions
+                    if k_game.get("sport") == "ufc":
+                        norm_team = raw_team.upper()
+                    else:
+                        norm_team = normalize_team_abbrev(raw_team) if HAS_EXECUTOR else raw_team
                     k_teams_normalized[norm_team] = ticker
 
                 # Use outcomes from listing response (no detail endpoint needed)
@@ -1463,7 +1473,7 @@ class PreGameMapper:
                             best_match_abbrev = None
                             best_match_score = 0
                             for abbrev, full_name in kalshi_names.items():
-                                norm_abbrev = normalize_team_abbrev(abbrev) if HAS_EXECUTOR else abbrev.upper()
+                                norm_abbrev = abbrev.upper()  # UFC: skip normalize_team_abbrev to avoid collisions
                                 name_lower = full_name.lower().strip()
                                 # Try exact match
                                 if outcome_str == name_lower:
@@ -1522,13 +1532,17 @@ class PreGameMapper:
                                   or team_info.get("abbreviation", ""))
                         team_name = team_info.get("name", "")
                         if team_name and abbrev:
-                            kalshi_abbrev = sport_overrides.get(abbrev.lower())
-                            if not kalshi_abbrev:
-                                kalshi_abbrev = PM_TO_KALSHI_ABBREV.get(abbrev.lower())
-                            if not kalshi_abbrev and HAS_EXECUTOR:
-                                kalshi_abbrev = normalize_team_abbrev(abbrev.upper())
-                            if not kalshi_abbrev:
-                                kalshi_abbrev = abbrev.upper()
+                            # UFC: use last 3 chars of abbreviation (same as PM slug logic)
+                            if k_game["sport"] == "ufc" and len(abbrev) >= 3:
+                                kalshi_abbrev = abbrev[-3:].upper()
+                            else:
+                                kalshi_abbrev = sport_overrides.get(abbrev.lower())
+                                if not kalshi_abbrev:
+                                    kalshi_abbrev = PM_TO_KALSHI_ABBREV.get(abbrev.lower())
+                                if not kalshi_abbrev and HAS_EXECUTOR:
+                                    kalshi_abbrev = normalize_team_abbrev(abbrev.upper())
+                                if not kalshi_abbrev:
+                                    kalshi_abbrev = abbrev.upper()
                             marketside_teams[team_name.lower()] = kalshi_abbrev
 
                     # Now match outcomes array to marketSides teams
@@ -1631,13 +1645,17 @@ class PreGameMapper:
                                 if abbrev:
                                     # Map PM abbreviation to Kalshi abbreviation
                                     sport_ov = SPORT_PM_OVERRIDES.get(k_game["sport"], {})
-                                    kalshi = sport_ov.get(abbrev.lower())
-                                    if not kalshi:
-                                        kalshi = PM_TO_KALSHI_ABBREV.get(abbrev.lower())
-                                    if not kalshi and HAS_EXECUTOR:
-                                        kalshi = normalize_team_abbrev(abbrev.upper())
-                                    if not kalshi:
-                                        kalshi = abbrev.upper()
+                                    # UFC: use last 3 chars, skip normalize_team_abbrev
+                                    if k_game["sport"] == "ufc" and len(abbrev) >= 3:
+                                        kalshi = abbrev[-3:].upper()
+                                    else:
+                                        kalshi = sport_ov.get(abbrev.lower())
+                                        if not kalshi:
+                                            kalshi = PM_TO_KALSHI_ABBREV.get(abbrev.lower())
+                                        if not kalshi and HAS_EXECUTOR:
+                                            kalshi = normalize_team_abbrev(abbrev.upper())
+                                        if not kalshi:
+                                            kalshi = abbrev.upper()
                                     pm_long_team = kalshi
                                     logger.debug(f"  {cache_key}: pm_long_team={pm_long_team} (from displayAbbrev={abbrev}, side[{idx}].long=True)")
 
@@ -1662,11 +1680,15 @@ class PreGameMapper:
                         _ab = (_ti.get("displayAbbreviation", "") or _ti.get("abbreviation", ""))
                         _fn = _ti.get("name", "")
                         if _ab and _fn:
-                            _ka = _sport_ov.get(_ab.lower()) or PM_TO_KALSHI_ABBREV.get(_ab.lower())
-                            if not _ka and HAS_EXECUTOR:
-                                _ka = normalize_team_abbrev(_ab.upper())
-                            if not _ka:
-                                _ka = _ab.upper()
+                            # UFC: use last 3 chars, skip normalize_team_abbrev
+                            if k_game.get("sport") == "ufc" and len(_ab) >= 3:
+                                _ka = _ab[-3:].upper()
+                            else:
+                                _ka = _sport_ov.get(_ab.lower()) or PM_TO_KALSHI_ABBREV.get(_ab.lower())
+                                if not _ka and HAS_EXECUTOR:
+                                    _ka = normalize_team_abbrev(_ab.upper())
+                                if not _ka:
+                                    _ka = _ab.upper()
                             team_names[_ka] = _fn
                 # Prefer sport-specific full names for NBA/NHL
                 _sport_names = SPORT_FULL_NAMES.get(k_game.get("sport", ""), {})

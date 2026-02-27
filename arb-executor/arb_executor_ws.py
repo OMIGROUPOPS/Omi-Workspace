@@ -1385,7 +1385,11 @@ class PMWebSocket:
                 if not team:
                     continue
 
-                team_normalized = normalize_team_abbrev(team)
+                # UFC: skip normalize_team_abbrev — fighter codes collide with college abbrevs
+                if cache_key.startswith('ufc:'):
+                    team_normalized = team.upper()
+                else:
+                    team_normalized = normalize_team_abbrev(team)
 
                 # PM WS prices are for pm_long_team - apply inversion for other team
                 is_long_team = (team_normalized == pm_long_team)
@@ -1554,7 +1558,11 @@ async def pm_rest_fallback_poller(
                             if not team:
                                 continue
 
-                            team_normalized = normalize_team_abbrev(team)
+                            # UFC: skip normalize_team_abbrev
+                            if cache_key.startswith('ufc:'):
+                                team_normalized = team.upper()
+                            else:
+                                team_normalized = normalize_team_abbrev(team)
                             is_long_team = (team_normalized == pm_long_team)
 
                             if is_long_team:

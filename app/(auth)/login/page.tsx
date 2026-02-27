@@ -33,7 +33,7 @@ export default function LoginPage() {
         .hecate-login {
           min-height: 100vh;
           background: 
-            radial-gradient(ellipse at 50% 50%, rgba(12, 10, 9, 0.5) 0%, rgba(12, 10, 9, 0.92) 70%),
+            radial-gradient(ellipse at 50% 50%, rgba(12, 10, 9, 0.3) 0%, rgba(12, 10, 9, 0.82) 70%),
             url('/internal-backdrop.jpg') center center / cover no-repeat;
           background-color: #0c0a09;
           display: flex;

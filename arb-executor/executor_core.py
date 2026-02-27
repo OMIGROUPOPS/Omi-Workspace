@@ -1452,7 +1452,12 @@ async def execute_arb(
     # Prevents :.2f truncation from eating the buffer in the PM API payload
     # Min buffer of 3c ensures IOC crosses the L1 spread to find resting liquidity
     # AGGRESSIVE: Higher buffers = better fill rate at slight cost to profit per contract
-    if size <= 3:
+    if spread >= 10:
+        # FAT SPREAD SWEEP: give up 50% to near-guarantee fill on rare 10c+ arbs
+        # At 12c spread: 6c buffer, worst case nets 2c/contract after fees
+        # Depth walk + profitability check still reject if truly unprofitable
+        pm_buffer = max(4, math.ceil(spread * 0.50))
+    elif size <= 3:
         pm_buffer = max(3, math.ceil(spread * 0.60))
     elif size <= 10:
         pm_buffer = max(3, math.ceil(spread * 0.50))

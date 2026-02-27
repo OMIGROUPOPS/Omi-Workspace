@@ -1199,6 +1199,11 @@ class CompositeTracker:
                         )
                         fair_total = capped
 
+                # Re-derive fair ML from post-bias/cap fair_spread for coherence
+                # (Skip soccer 3-way which uses its own internal fair_spread)
+                if fair_spread is not None and fair_ml_draw is None:
+                    fair_ml_home, fair_ml_away = _calculate_fair_ml(fair_spread, sport_key)
+
                 # 6. Skip write if all fair values are null (analyzer returned nothing useful)
                 if fair_spread is None and fair_total is None and fair_ml_home is None:
                     logger.debug(f"[CompositeTracker] SKIP {game_id}: all fair values null after analysis")
@@ -1348,6 +1353,10 @@ class CompositeTracker:
                                 fair_spread = max(book_spread - s_cap, min(book_spread + s_cap, fair_spread))
                             if fair_total is not None and book_total is not None:
                                 fair_total = max(book_total - t_cap, min(book_total + t_cap, fair_total))
+
+                            # Re-derive fair ML from post-cap fair_spread for coherence
+                            if fair_spread is not None and fair_ml_draw is None:
+                                fair_ml_home, fair_ml_away = _calculate_fair_ml(fair_spread, sport_key)
 
                             row_data = {
                                 "game_id": game_id,
@@ -1659,6 +1668,10 @@ class CompositeTracker:
 
                 if fair_total is not None and book_total is not None:
                     fair_total = max(book_total - t_cap, min(book_total + t_cap, fair_total))
+
+                # Re-derive fair ML from post-bias/cap fair_spread for coherence
+                if fair_spread is not None and fair_ml_draw is None:
+                    fair_ml_home, fair_ml_away = _calculate_fair_ml(fair_spread, sport_key)
 
                 # Insert row to composite_history
                 row_data = {

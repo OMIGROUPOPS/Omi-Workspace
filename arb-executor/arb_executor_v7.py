@@ -3736,7 +3736,8 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
                is_maker: bool = False, gtc_rest_time_ms: float = 0,
                gtc_spread_checks: int = 0, gtc_cancel_reason: str = "",
                tier: str = "",
-               unwind_fill_price: float = None, unwind_qty: int = 0):
+               unwind_fill_price: float = None, unwind_qty: int = 0,
+               nofill_diagnosis: Dict = None):
     """Log trade details with all important fields"""
     global TRADE_LOG
 
@@ -3844,6 +3845,11 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
 
         # Kalshi failure diagnostics (only present on UNHEDGED trades)
         'k_response_details': k_result.get('k_response_details'),
+
+        # No-fill diagnostics (only present on PM_NO_FILL trades)
+        'nofill_reason': nofill_diagnosis.get('reason') if nofill_diagnosis else None,
+        'nofill_explanation': nofill_diagnosis.get('explanation') if nofill_diagnosis else None,
+        'nofill_details': nofill_diagnosis if nofill_diagnosis else None,
 
         # Fee tracking (dollars)
         'pm_fee': _extract_pm_fee(pm_result),

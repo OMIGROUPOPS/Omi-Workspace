@@ -93,6 +93,8 @@ export interface TradeEntry {
   pm_price: number;
   contracts_filled: number;
   contracts_intended?: number;
+  kalshi_fill?: number;
+  pm_fill?: number;
   actual_pnl: ActualPnl | null;
   paper_mode: boolean;
   sizing_details?: SizingDetails | null;
@@ -120,6 +122,18 @@ export interface TradeEntry {
   cache_key?: string;
   pm_slug?: string;
   kalshi_ticker?: string;
+  k_order_id?: string | null;
+  pm_order_id?: string | null;
+  pm_is_buy_short?: boolean;
+  pm_outcome_index?: number | null;
+  pm_outcome_index_used?: number | null;
+  k_bid?: number;
+  k_ask?: number;
+  pm_bid?: number;
+  pm_ask?: number;
+  nofill_reason?: string | null;
+  nofill_explanation?: string | null;
+  nofill_details?: Record<string, unknown> | null;
   reconciled_pnl?: number | null;
   skip_reason?: string;
   abort_reason?: string;
@@ -137,6 +151,13 @@ export interface PnlSummary {
   cash_pnl?: number;
   portfolio_total?: number;
   starting_balance?: number;
+  reconciliation?: {
+    k_api_total: number;
+    pm_api_total: number;
+    combined_api: number;
+    stale: boolean;
+    stale_seconds: number;
+  };
 }
 
 export interface Position {
@@ -152,6 +173,8 @@ export interface Position {
   hedged: boolean;
   timestamp: string;
   contracts: number;
+  kalshi_fill?: number;
+  pm_fill_qty?: number;
   pm_fill_cents: number;
   k_fill_cents: number;
   pm_bid_now: number;
@@ -292,6 +315,7 @@ export interface ArbState {
   specs?: any;
   mappings_last_refreshed: string;
   updated_at: string;
+  trade_categories?: Record<string, { count: number; pnl: number }>;
 }
 
 // ── In-memory store ────────────────────────────────────────────────────────
@@ -383,6 +407,7 @@ export async function POST(req: NextRequest) {
     if (body.liquidity_stats !== undefined) arbState.liquidity_stats = body.liquidity_stats;
     if (body.specs !== undefined) arbState.specs = body.specs;
     if (body.mappings_last_refreshed !== undefined) arbState.mappings_last_refreshed = body.mappings_last_refreshed;
+    if (body.trade_categories !== undefined) arbState.trade_categories = body.trade_categories;
     arbState.updated_at = new Date().toISOString();
 
     return NextResponse.json({ ok: true, updated_at: arbState.updated_at });

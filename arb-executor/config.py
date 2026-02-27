@@ -115,6 +115,7 @@ class Config:
     # ==========================================================================
     # OMI EDGE DIRECTIONAL RISK
     # ==========================================================================
+    enable_tier3_directional: bool = False  # DISABLED — user wants risk-free arb only
     min_ceq_hold: float = 6.0         # Min edge % for Tier 3a (hold naked) — 0-15 scale
     max_directional_exposure_usd: float = 15.0   # Max $ in naked directional positions
     daily_directional_loss_limit: float = 10.0   # Daily Tier 3 loss limit ($)
@@ -211,6 +212,9 @@ class Config:
             cls.gtc_recheck_interval_ms = args.spread_recheck_interval
         if hasattr(args, 'enable_gtc') and args.enable_gtc is not None:
             cls.enable_gtc = args.enable_gtc
+
+        if hasattr(args, 'enable_tier3') and args.enable_tier3 is not None:
+            cls.enable_tier3_directional = args.enable_tier3
 
         # Sync max_contracts_per_game with max_contracts
         cls.max_contracts_per_game = cls.max_contracts

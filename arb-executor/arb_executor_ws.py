@@ -1863,6 +1863,12 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
 
             print(f"[EXEC] Executing {optimal_size} contract(s) via executor_core...")
 
+            # Compute PM data age for no-fill diagnostics
+            _pm_key = f"{arb.cache_key}_{arb.team}"
+            _pm_data_age_ms = 0
+            if _pm_key in pm_prices and 'timestamp_ms' in pm_prices[_pm_key]:
+                _pm_data_age_ms = int(time.time() * 1000) - pm_prices[_pm_key]['timestamp_ms']
+
             result = await execute_arb(
                 arb=arb,
                 session=session,
@@ -1874,6 +1880,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 k_book_ref=local_books.get(arb.kalshi_ticker),
                 omi_cache=omi_cache,
                 opposite_info=opposite_info,
+                pm_data_age_ms=_pm_data_age_ms,
             )
 
             # Compute PM position details for settlement tracking
@@ -2048,7 +2055,9 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 gtc_info = ""
                 if result.execution_phase == "gtc":
                     gtc_info = f" | GTC: {result.gtc_cancel_reason} ({result.gtc_rest_time_ms}ms)"
-                print(f"[EXEC] PM NO FILL: {result.abort_reason} | pm={result.pm_order_ms}ms{gtc_info}")
+                _diag = result.nofill_diagnosis
+                _diag_reason = _diag.get('reason', '?') if _diag else '?'
+                print(f"[EXEC] PM NO FILL: {_diag_reason} — {result.abort_reason} | pm={result.pm_order_ms}ms{gtc_info}")
                 k_result = {'fill_count': 0, 'fill_price': result.kalshi_price}
                 pm_result = {'fill_count': 0, 'fill_price': result.pm_price, 'outcome_index': _actual_pm_oi, 'is_buy_short': _is_buy_short}
                 log_trade(arb, k_result, pm_result, 'PM_NO_FILL',
@@ -2060,7 +2069,8 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                           gtc_rest_time_ms=result.gtc_rest_time_ms,
                           gtc_spread_checks=result.gtc_spread_checks,
                           gtc_cancel_reason=result.gtc_cancel_reason,
-                          tier=result.tier)
+                          tier=result.tier,
+                          nofill_diagnosis=_diag)
                 # No-fill cooldown: exponential backoff on repeated failures
                 nofill_cooldown[cd_key] = time.time()
                 nofill_count[cd_key] = nofill_count.get(cd_key, 0) + 1

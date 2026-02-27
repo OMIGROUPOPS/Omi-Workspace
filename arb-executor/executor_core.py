@@ -224,6 +224,8 @@ class TradeResult:
     omi_signal: str = ""               # Signal tier (e.g. "HIGH EDGE")
     omi_favored_team: str = ""         # Team OMI favors
     omi_pillar_scores: Optional[Dict] = None  # Full pillar scores dict
+    # No-fill diagnostic (only present on PM_NO_FILL trades)
+    nofill_diagnosis: Optional[Dict] = None     # Full diagnosis from diagnose_nofill()
     # Opposite-side hedge fields
     opposite_hedge_ticker: str = ""
     opposite_hedge_team: str = ""
@@ -247,6 +249,166 @@ def _log_kalshi_error(ticker: str, price_cents: int, action: str, side: str,
             f.write("\n")
     except Exception:
         pass  # Never let logging crash execution
+
+
+# =============================================================================
+# NO-FILL DIAGNOSTIC ENGINE
+# =============================================================================
+# Every PM_NO_FILL must have a verifiable root cause. This system captures:
+# 1. Pre-order state: PM BBO, book depth, data age, Kalshi prices
+# 2. Order details: exact price sent, intent, outcome_index, buffer used
+# 3. PM response: order_id, state, any error message
+# 4. Post-order state: PM BBO after the no-fill (was liquidity still there?)
+# 5. Verdict: structured classification of WHY it didn't fill
+
+NOFILL_REASONS = {
+    'BOOK_EMPTY':       'PM book had no resting orders on our side at order time',
+    'PRICE_UNCROSSED':  'Our limit price did not cross the best resting order',
+    'DEPTH_EATEN':      'Liquidity was there pre-order but gone post-order (race)',
+    'LATENCY_STALE':    'PM data was >500ms old when order hit the exchange',
+    'API_REJECTED':     'PM API rejected the order (no order_id returned)',
+    'TIMEOUT':          'PM order timed out (>2s) before response received',
+    'PARTIAL_ONLY':     'Order partially filled but not enough for hedge',
+    'UNKNOWN':          'Could not determine root cause — needs manual review',
+}
+
+
+def diagnose_nofill(
+    pm_result: Dict,
+    pm_price_sent: float,          # dollars, the limit price we sent
+    pm_intent: int,                # 1=BUY_LONG, 3=BUY_SHORT
+    is_buy_short: bool,
+    pre_order_bbo: Optional[Dict], # {bid_cents, ask_cents, bid_size, ask_size} or None
+    post_order_bbo: Optional[Dict],# same shape, fetched AFTER the no-fill
+    pm_data_age_ms: int,           # how old the PM WS data was at order time
+    pm_order_ms: int,              # round-trip latency of the PM order call
+    spread_cents: float,           # spread that triggered the trade
+    buffer_cents: int,             # buffer applied to price
+) -> Dict:
+    """
+    Classify a PM no-fill into a verifiable root cause.
+    
+    Returns dict with:
+      reason: str          - key from NOFILL_REASONS
+      explanation: str     - human-readable one-liner
+      details: dict        - full diagnostic data for logging
+    """
+    diag: Dict[str, Any] = {
+        'reason': 'UNKNOWN',
+        'explanation': '',
+        'pm_price_sent': pm_price_sent,
+        'pm_price_sent_cents': round(pm_price_sent * 100, 1),
+        'pm_intent': pm_intent,
+        'is_buy_short': is_buy_short,
+        'spread_cents': spread_cents,
+        'buffer_cents': buffer_cents,
+        'pm_data_age_ms': pm_data_age_ms,
+        'pm_order_ms': pm_order_ms,
+        'pre_bbo': pre_order_bbo,
+        'post_bbo': post_order_bbo,
+        'pm_order_id': pm_result.get('order_id'),
+        'pm_order_state': pm_result.get('order_state', ''),
+        'pm_error': pm_result.get('error'),
+    }
+
+    # ── Check 1: API rejection (no order_id) ──
+    if not pm_result.get('order_id'):
+        diag['reason'] = 'API_REJECTED'
+        diag['explanation'] = f"PM API rejected: {pm_result.get('error', 'unknown')}"
+        return diag
+
+    # ── Check 2: Timeout ──
+    if pm_order_ms >= 1900:  # close to 2s timeout
+        diag['reason'] = 'TIMEOUT'
+        diag['explanation'] = f"PM order took {pm_order_ms}ms (timeout=2000ms)"
+        return diag
+
+    # ── Check 3: Pre-order book analysis ──
+    if pre_order_bbo:
+        pre_bid = pre_order_bbo.get('bid_cents', 0) or 0
+        pre_ask = pre_order_bbo.get('ask_cents', 0) or 0
+        pre_bid_size = pre_order_bbo.get('bid_size', 0) or 0
+        pre_ask_size = pre_order_bbo.get('ask_size', 0) or 0
+        price_sent_cents = round(pm_price_sent * 100, 1)
+
+        if is_buy_short:
+            # BUY_SHORT: we sell YES. Need a YES bid to match against.
+            # Our min sell price = pm_price_sent (YES-frame).
+            # We need pre_bid >= our min sell.
+            resting_price = pre_bid
+            resting_size = pre_bid_size
+            crosses = pre_bid >= price_sent_cents if pre_bid else False
+            side_label = f"YES bids (best={pre_bid}c x{pre_bid_size})"
+            cross_label = f"our min_sell={price_sent_cents:.0f}c vs best_bid={pre_bid}c"
+        else:
+            # BUY_LONG: we buy YES. Need a YES ask to match against.
+            # Our max buy price = pm_price_sent (YES-frame).
+            # We need pre_ask <= our max buy.
+            resting_price = pre_ask
+            resting_size = pre_ask_size
+            crosses = pre_ask <= price_sent_cents if pre_ask else False
+            side_label = f"YES asks (best={pre_ask}c x{pre_ask_size})"
+            cross_label = f"our max_buy={price_sent_cents:.0f}c vs best_ask={pre_ask}c"
+
+        diag['resting_price'] = resting_price
+        diag['resting_size'] = resting_size
+        diag['price_crosses'] = crosses
+        diag['cross_detail'] = cross_label
+
+        if not resting_price or resting_size == 0:
+            diag['reason'] = 'BOOK_EMPTY'
+            diag['explanation'] = f"No resting {side_label} at order time"
+            return diag
+
+        if not crosses:
+            diag['reason'] = 'PRICE_UNCROSSED'
+            diag['explanation'] = f"Price didn't cross: {cross_label}"
+            return diag
+
+    # ── Check 4: Post-order book comparison ──
+    if pre_order_bbo and post_order_bbo:
+        if is_buy_short:
+            post_bid = post_order_bbo.get('bid_cents', 0) or 0
+            post_bid_size = post_order_bbo.get('bid_size', 0) or 0
+            pre_liq = pre_order_bbo.get('bid_size', 0) or 0
+            if pre_liq > 0 and post_bid_size == 0:
+                diag['reason'] = 'DEPTH_EATEN'
+                diag['explanation'] = (f"Liquidity race: pre={pre_liq} bids @ "
+                                       f"{pre_order_bbo.get('bid_cents', 0)}c → "
+                                       f"post={post_bid_size} bids @ {post_bid}c")
+                return diag
+        else:
+            post_ask = post_order_bbo.get('ask_cents', 0) or 0
+            post_ask_size = post_order_bbo.get('ask_size', 0) or 0
+            pre_liq = pre_order_bbo.get('ask_size', 0) or 0
+            if pre_liq > 0 and post_ask_size == 0:
+                diag['reason'] = 'DEPTH_EATEN'
+                diag['explanation'] = (f"Liquidity race: pre={pre_liq} asks @ "
+                                       f"{pre_order_bbo.get('ask_cents', 0)}c → "
+                                       f"post={post_ask_size} asks @ {post_ask}c")
+                return diag
+
+    # ── Check 5: Stale data ──
+    if pm_data_age_ms > 500:
+        diag['reason'] = 'LATENCY_STALE'
+        diag['explanation'] = f"PM data was {pm_data_age_ms}ms old at order time"
+        return diag
+
+    # ── Check 6: price crossed pre-order but still no fill → likely race condition ──
+    if pre_order_bbo and diag.get('price_crosses'):
+        # Price should have crossed, but didn't fill.
+        # Most likely: between BBO fetch and order arrival, someone else took the liquidity.
+        diag['reason'] = 'DEPTH_EATEN'
+        diag['explanation'] = (f"Price crossed ({diag.get('cross_detail', '')}) but IOC expired — "
+                               f"liquidity consumed between BBO fetch and order arrival "
+                               f"(order latency: {pm_order_ms}ms)")
+        return diag
+
+    # ── Fallback ──
+    diag['reason'] = 'UNKNOWN'
+    diag['explanation'] = (f"No clear root cause. order_state={pm_result.get('order_state', '?')}, "
+                           f"pm_latency={pm_order_ms}ms, data_age={pm_data_age_ms}ms")
+    return diag
 
 
 def _extract_pm_response_details(pm_result: Dict) -> Dict:
@@ -1197,6 +1359,7 @@ async def execute_arb(
     k_book_ref: Optional[Dict] = None,  # Live Kalshi book ref for GTC spread monitoring
     omi_cache=None,   # OmiSignalCache instance for Tier 3 directional decisions
     opposite_info: Optional[Dict] = None,  # {team, ticker, ask, ask_size} for cross-hedge
+    pm_data_age_ms: int = 0,  # Age of PM WS data at detection time (for no-fill diagnostics)
 ) -> TradeResult:
     """
     Execute a hedged arb trade with dynamic sizing.
@@ -1368,6 +1531,16 @@ async def execute_arb(
     # -------------------------------------------------------------------------
     # Step 5: Place PM order FIRST (unreliable leg - IOC often expires)
     # -------------------------------------------------------------------------
+    # Snapshot pre-order BBO for no-fill diagnostics
+    # arb.pm_bid/pm_ask were refreshed by the WS handler's confirm_pm_price_fresh()
+    # These are in the team's own frame (already inverted for underdog)
+    _pre_order_bbo = {
+        'bid_cents': arb.pm_bid,
+        'ask_cents': arb.pm_ask,
+        'bid_size': arb.pm_bid_size,
+        'ask_size': arb.pm_ask_size,
+    }
+
     # Outcome index: most cases trade on their own team's outcome.
     # Only Case 4 (BUY_K_SELL_PM, underdog) switches to the long team's outcome
     # because we BUY_LONG on the long team to SHORT our underdog.
@@ -1410,12 +1583,62 @@ async def execute_arb(
     if pm_filled == 0:
         execution_time_ms = int((time.time() - start_time) * 1000)
 
-        # Log diagnostic summary for no-fill
-        status = pm_response_details.get('pm_response_status', '?')
-        order_state = pm_result.get('order_state', 'N/A')
+        # ── FULL NO-FILL DIAGNOSTIC ──
+        # Fetch post-order BBO to compare with pre-order state
+        _post_order_bbo = None
+        try:
+            post_bbo_raw = await pm_api.get_bbo(pm_slug)
+            if post_bbo_raw.get('bid') is not None:
+                # BBO comes back in long-team frame — invert for non-long team
+                if is_long_team:
+                    _post_order_bbo = {
+                        'bid_cents': post_bbo_raw['bid'],
+                        'ask_cents': post_bbo_raw['ask'],
+                        'bid_size': 0,  # BBO doesn't return size
+                        'ask_size': 0,
+                    }
+                else:
+                    _post_order_bbo = {
+                        'bid_cents': 100 - post_bbo_raw['ask'] if post_bbo_raw['ask'] else 0,
+                        'ask_cents': 100 - post_bbo_raw['bid'] if post_bbo_raw['bid'] else 0,
+                        'bid_size': 0,
+                        'ask_size': 0,
+                    }
+        except Exception as e:
+            print(f"   [DIAG] Post-order BBO fetch failed: {e}")
+
+        # Run structured diagnosis
+        _nofill_diag = diagnose_nofill(
+            pm_result=pm_result,
+            pm_price_sent=pm_price,
+            pm_intent=params['pm_intent'],
+            is_buy_short=params.get('pm_is_buy_short', False),
+            pre_order_bbo=_pre_order_bbo,
+            post_order_bbo=_post_order_bbo,
+            pm_data_age_ms=pm_data_age_ms,
+            pm_order_ms=pm_order_ms,
+            spread_cents=spread,
+            buffer_cents=pm_buffer,
+        )
+
+        # Print human-readable diagnostic
+        _reason = _nofill_diag['reason']
+        _explain = _nofill_diag['explanation']
         order_id = pm_result.get('order_id', 'none')
-        error_hint = pm_response_details.get('pm_expiry_reason', '') or ''
-        print(f"[EXEC] PM NO FILL: status={status} | state={order_state} | order={order_id} | outcome_idx={actual_pm_outcome_idx} | {size}@${pm_price:.2f} | {error_hint}")
+        _intent_name = {1: 'BUY_LONG', 3: 'BUY_SHORT'}.get(params['pm_intent'], '?')
+        _pre_bid = _pre_order_bbo.get('bid_cents', '?')
+        _pre_ask = _pre_order_bbo.get('ask_cents', '?')
+        _post_bid = _post_order_bbo.get('bid_cents', '?') if _post_order_bbo else '?'
+        _post_ask = _post_order_bbo.get('ask_cents', '?') if _post_order_bbo else '?'
+
+        print(f"\n{'='*70}")
+        print(f"[NO-FILL DIAGNOSTIC] {arb.team} | {_reason}")
+        print(f"  Verdict: {_explain}")
+        print(f"  Order: {_intent_name} {size}@${pm_price:.2f} outcome[{actual_pm_outcome_idx}] | order_id={str(order_id)[:16]}")
+        print(f"  Spread: {spread:.1f}c | Buffer: {pm_buffer}c | PM latency: {pm_order_ms}ms | Data age: {pm_data_age_ms}ms")
+        print(f"  Pre-BBO:  bid={_pre_bid}c x{_pre_order_bbo.get('bid_size', '?')} / ask={_pre_ask}c x{_pre_order_bbo.get('ask_size', '?')}")
+        print(f"  Post-BBO: bid={_post_bid}c / ask={_post_ask}c")
+        print(f"{'='*70}\n")
 
         # Distinguish real no-fills from early aborts / API errors:
         # Real no-fill: has 'order_id' (PM accepted the order, IOC expired)
@@ -1430,6 +1653,7 @@ async def execute_arb(
                 pm_order_ms=0,  # Force 0 so caller routes to SKIPPED
                 execution_time_ms=execution_time_ms,
                 pm_response_details=pm_response_details,
+                nofill_diagnosis=_nofill_diag,
             )
 
         # ── Phase 2: GTC attempt ──
@@ -1457,7 +1681,7 @@ async def execute_arb(
                 }
                 # DON'T RETURN — fall through to Step 5.5 + Step 6
             else:
-                # GTC didn't fill — return with GTC metadata
+                # GTC didn't fill — return with GTC metadata + IOC diagnosis
                 return TradeResult(
                     success=False, pm_filled=0, pm_price=pm_price,
                     abort_reason=f"PM: GTC no fill ({gtc_phase['cancel_reason']})",
@@ -1468,15 +1692,17 @@ async def execute_arb(
                     gtc_rest_time_ms=gtc_phase['rest_time_ms'],
                     gtc_spread_checks=gtc_phase['spread_checks'],
                     gtc_cancel_reason=gtc_phase['cancel_reason'],
+                    nofill_diagnosis=_nofill_diag,
                 )
         else:
-            # GTC disabled — original IOC-only return
+            # GTC disabled — IOC-only return with diagnosis
             return TradeResult(
                 success=False, pm_filled=0, pm_price=pm_price,
-                abort_reason="PM: no fill (safe exit)",
+                abort_reason=f"PM: no fill ({_reason})",
                 pm_order_ms=pm_order_ms,
                 execution_time_ms=execution_time_ms,
                 pm_response_details=pm_response_details,
+                nofill_diagnosis=_nofill_diag,
             )
 
     # -------------------------------------------------------------------------
@@ -1852,11 +2078,17 @@ async def execute_arb(
                 print(f"[TIER] Tier 2 skipped: BBO fetch failed: {e}")
 
         # ── TIER 3: OMI DIRECTIONAL RISK ──
-        print(f"[TIER] Tier 2 failed/skipped. Entering Tier 3 directional decision.")
+        # Master kill switch: if enable_tier3_directional is False, skip ALL
+        # directional risk (TIER3A hold, OPPOSITE_HEDGE, OPPOSITE_OVERWEIGHT)
+        # and go straight to unwind. User wants risk-free arb only.
+        if not Config.enable_tier3_directional:
+            print(f"[TIER] Tier 3 DISABLED (enable_tier3_directional=False). Skipping directional, unwinding PM.")
+            _tier3_fell_through = True
+        else:
+            print(f"[TIER] Tier 2 failed/skipped. Entering Tier 3 directional decision.")
+            _tier3_fell_through = True  # Flag: did we skip to fallback?
 
-        _tier3_fell_through = True  # Flag: did we skip to fallback?
-
-        if omi_cache is not None:
+        if Config.enable_tier3_directional and omi_cache is not None:
             # Step 1: Look up OMI signal
             team_full_name = TEAM_FULL_NAMES.get(arb.team, arb.team)
             omi_signal_data = omi_cache.get_signal(team_full_name)

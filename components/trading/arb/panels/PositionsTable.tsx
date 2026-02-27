@@ -47,7 +47,8 @@ export function PositionsTable({ positions, markSettled }: Props) {
               <th className="py-2 px-2 text-left font-medium">Game</th>
               <th className="py-2 px-2 text-left font-medium">Team</th>
               <th className="py-2 px-2 text-center font-medium">Status</th>
-              <th className="py-2 px-2 text-center font-medium">Qty</th>
+              <th className="py-2 px-2 text-center font-medium">K Qty</th>
+              <th className="py-2 px-2 text-center font-medium">PM Qty</th>
               <th className="py-2 px-2 text-right font-medium">PM Fill</th>
               <th className="py-2 px-2 text-right font-medium">PM Now</th>
               <th className="py-2 px-2 text-right font-medium">K Fill</th>
@@ -94,7 +95,14 @@ export function PositionsTable({ positions, markSettled }: Props) {
                   <td className="py-2 px-2 text-center">
                     <span className={`text-[9px] font-medium rounded px-1.5 py-0.5 ${statusColor}`}>{statusLabel}</span>
                   </td>
-                  <td className="py-2 px-2 text-center font-mono text-gray-300">{p.contracts}x</td>
+                  <td className="py-2 px-2 text-center font-mono">
+                    <span className="text-blue-400">{p.kalshi_fill ?? (p.hedged ? p.contracts : 0)}x</span>
+                    <div className="text-[9px] text-gray-600">@{p.k_fill_cents}c</div>
+                  </td>
+                  <td className="py-2 px-2 text-center font-mono">
+                    <span className="text-emerald-400">{p.pm_fill_qty ?? p.contracts}x</span>
+                    <div className="text-[9px] text-gray-600">@{p.pm_fill_cents.toFixed(1)}c</div>
+                  </td>
                   <td className="py-2 px-2 text-right font-mono">
                     <span className="text-blue-300">{pmDir} {p.pm_fill_cents.toFixed(1)}c</span>
                     <div className="text-[9px] text-gray-600">${p.pm_cost_dollars.toFixed(2)}</div>

@@ -104,7 +104,10 @@ export function PnlTradeTable({
               <th className="px-2 py-1.5 text-left font-medium">LEGS</th>
               <th className="px-2 py-1.5 text-left font-medium">STATUS</th>
               <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("qty")}>
-                QTY{sortArrow("qty")}
+                K QTY{sortArrow("qty")}
+              </th>
+              <th className="px-2 py-1.5 text-right font-medium">
+                PM QTY
               </th>
               <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("spread")}>
                 SPREAD{sortArrow("spread")}
@@ -122,7 +125,7 @@ export function PnlTradeTable({
           <tbody>
             {trades.slice(0, 100).map((t, i) => {
               const pnl = tradePnl(t);
-              const badge = statusBadge(t.status);
+              const badge = statusBadge(t.status, t.tier);
               const fees = (t.pm_fee || 0) + (t.k_fee || 0);
               const depth = getL1Depth(t);
               const isExpanded = expandedTrade === i;
@@ -149,12 +152,17 @@ export function PnlTradeTable({
                       {legsLabel(t)}
                     </td>
                     <td className="px-2 py-1.5">
-                      <span className={`rounded px-1 py-0.5 text-[10px] font-medium ${badge.bg} ${badge.text}`}>
-                        {t.tier || t.status}
+                      <span className={`rounded px-1 py-0.5 text-[10px] font-medium ${badge.bg} ${badge.text}`} title={badge.tooltip}>
+                        {badge.label}
                       </span>
                     </td>
-                    <td className="px-2 py-1.5 text-right font-mono text-gray-300">
-                      {t.contracts_filled || t.contracts_intended || 0}
+                    <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap">
+                      <span className="text-blue-400">{t.kalshi_fill ?? t.contracts_filled ?? 0}x</span>
+                      <div className="text-[9px] text-gray-600">@{typeof t.k_price === 'number' ? t.k_price : '-'}c</div>
+                    </td>
+                    <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap">
+                      <span className="text-emerald-400">{t.pm_fill ?? t.contracts_filled ?? 0}x</span>
+                      <div className="text-[9px] text-gray-600">@{normPmNum(t.pm_price).toFixed(0)}c</div>
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono text-gray-400">
                       {t.spread_cents?.toFixed(1) ?? "-"}c
@@ -185,7 +193,7 @@ export function PnlTradeTable({
                   </tr>
                   {isExpanded && (
                     <tr className="bg-gray-900/50">
-                      <td colSpan={10} className="px-4 py-2">
+                      <td colSpan={11} className="px-4 py-2">
                         <div className="grid grid-cols-4 gap-3 text-[10px]">
                           <div>
                             <span className="text-gray-500">Execution:</span>{" "}

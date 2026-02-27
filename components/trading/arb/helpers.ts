@@ -24,16 +24,42 @@ export function netColor(cents: number | null | undefined): string {
 
 // ── Status / Sport badges ───────────────────────────────────────────────────
 
-export function statusBadge(status: string): { bg: string; text: string } {
-  if (status === "HEDGED" || status === "FILLED" || status === "SUCCESS")
-    return { bg: "bg-emerald-500/20", text: "text-emerald-400" };
-  if (status.includes("NO_FILL") || status === "EXITED")
-    return { bg: "bg-yellow-500/20", text: "text-yellow-400" };
-  if (status === "FAILED" || status === "ERROR" || status === "UNHEDGED")
-    return { bg: "bg-red-500/20", text: "text-red-400" };
+export function statusBadge(status: string, tier?: string): { bg: string; text: string; label: string; tooltip: string } {
+  const t = tier || status;
+  // Pure arb success
+  if (t === "SUCCESS" || status === "SUCCESS")
+    return { bg: "bg-emerald-500/20", text: "text-emerald-400", label: "ARB ✓", tooltip: "Both sides filled — guaranteed profit locked" };
+  if (t === "TIER1_HEDGE")
+    return { bg: "bg-emerald-500/20", text: "text-emerald-300", label: "HEDGE ✓", tooltip: "Delayed hedge filled — position now hedged" };
+  // Exits and unwinds
+  if (t === "TIER2_EXIT" || status === "EXITED")
+    return { bg: "bg-yellow-500/20", text: "text-yellow-400", label: "EXITED", tooltip: "PM filled, K failed — PM position unwound to exit" };
+  if (t === "TIER3_UNWIND")
+    return { bg: "bg-orange-500/20", text: "text-orange-400", label: "UNWOUND", tooltip: "Unhedged position unwound on PM — realized loss/gain from spread" };
+  // Directional risk (Tier 3)
+  if (t === "TIER3A" || t === "TIER3A_HOLD")
+    return { bg: "bg-purple-500/20", text: "text-purple-400", label: "DIRECTIONAL", tooltip: "OMI signal hold — unhedged directional bet, not risk-free" };
+  if (t === "TIER3_OPPOSITE_HEDGE")
+    return { bg: "bg-blue-500/20", text: "text-blue-400", label: "OPP HEDGE", tooltip: "Opposite-side hedge — bought both teams across platforms" };
+  if (t === "TIER3_OPPOSITE_OVERWEIGHT")
+    return { bg: "bg-cyan-500/20", text: "text-cyan-400", label: "OPP OVER", tooltip: "Overweight opposite — extra contracts on opposing team" };
+  // No fills
+  if (status === "PM_NO_FILL" || status.includes("NO_FILL"))
+    return { bg: "bg-gray-500/20", text: "text-gray-400", label: "NO FILL", tooltip: "PM order sent but didn't fill — no position taken" };
+  // Unhedged
+  if (status === "UNHEDGED")
+    return { bg: "bg-red-500/20", text: "text-red-400", label: "UNHEDGED", tooltip: "PM filled but Kalshi didn't — directional risk exposure" };
+  // Recovery
+  if (status === "RECOVERED")
+    return { bg: "bg-emerald-500/20", text: "text-emerald-300", label: "RECOVERED", tooltip: "Previously unhedged position was hedged on retry" };
+  // Paper
+  if (status === "PAPER" || status === "PAPER_SUCCESS")
+    return { bg: "bg-gray-500/20", text: "text-gray-500", label: "PAPER", tooltip: "Simulated trade — no real money" };
+  // Skipped
   if (status === "SKIPPED")
-    return { bg: "bg-gray-500/20", text: "text-gray-400" };
-  return { bg: "bg-gray-500/20", text: "text-gray-400" };
+    return { bg: "bg-gray-500/20", text: "text-gray-400", label: "SKIPPED", tooltip: "Trade opportunity skipped by executor" };
+  // Fallback
+  return { bg: "bg-gray-500/20", text: "text-gray-400", label: status, tooltip: status };
 }
 
 export function sportBadge(sport: string): string {

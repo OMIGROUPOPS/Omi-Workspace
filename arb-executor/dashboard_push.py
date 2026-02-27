@@ -352,6 +352,54 @@ class DashboardPusher:
         except ImportError:
             return ""
 
+    @staticmethod
+    def _compute_trade_pnl_dollars(t: dict) -> float:
+        """Compute realised P&L for a single trade entry in dollars.
+
+        Returns 0.0 for trades with no P&L data (e.g. PM_NO_FILL, open positions).
+        """
+        # Priority 1: reconciled_pnl
+        rp = t.get("reconciled_pnl")
+        if rp is not None:
+            return float(rp)
+
+        # Priority 2: settlement_pnl
+        sp = t.get("settlement_pnl")
+        if sp is not None:
+            return float(sp)
+
+        # Priority 3: actual_pnl dict (hedged trades)
+        pnl = t.get("actual_pnl")
+        if pnl and isinstance(pnl, dict):
+            npd = pnl.get("net_profit_dollars", 0)
+            if npd:
+                return float(npd)
+
+        # Priority 4: guaranteed_profit_cents (opposite-side hedge)
+        gp = t.get("guaranteed_profit_cents")
+        if gp is not None and gp > 0:
+            return float(gp) / 100.0
+
+        status = t.get("status", "")
+        filled = t.get("contracts_filled", 0) or 0
+
+        # Priority 5: estimated (SUCCESS/hedged)
+        if status == "SUCCESS" and filled > 0:
+            est = t.get("estimated_net_profit_cents", 0) or 0
+            if est:
+                return est * filled / 100.0
+
+        # Priority 6: unwind P&L (EXITED)
+        if status == "EXITED":
+            upnl = t.get("unwind_pnl_cents")
+            if upnl is not None:
+                return float(upnl) / 100.0
+            ulc = t.get("unwind_loss_cents", 0) or 0
+            if ulc:
+                return -(abs(ulc) / 100.0)
+
+        return 0.0
+
     def _build_trades(self) -> list:
         """Load recent trades from trades.json."""
         try:
@@ -399,6 +447,8 @@ class DashboardPusher:
                         "pm_price": t.get("pm_price", 0),
                         "contracts_filled": t.get("contracts_filled", 0),
                         "contracts_intended": t.get("contracts_intended", 1),
+                        "kalshi_fill": t.get("kalshi_fill", 0),
+                        "pm_fill": t.get("pm_fill", 0),
                         "actual_pnl": t.get("actual_pnl"),
                         "paper_mode": t.get("paper_mode", False),
                         "sizing_details": t.get("sizing_details"),
@@ -427,6 +477,28 @@ class DashboardPusher:
                         "cache_key": t.get("cache_key", ""),
                         "pm_slug": t.get("pm_slug", ""),
                         "kalshi_ticker": t.get("kalshi_ticker", ""),
+                        # Order IDs & PM trade details
+                        "k_order_id": t.get("k_order_id"),
+                        "pm_order_id": t.get("pm_order_id"),
+                        "pm_is_buy_short": t.get("pm_is_buy_short", False),
+                        "pm_outcome_index": t.get("pm_outcome_index"),
+                        "pm_outcome_index_used": t.get("pm_outcome_index_used"),
+                        "k_bid": t.get("k_bid", 0),
+                        "k_ask": t.get("k_ask", 0),
+                        "pm_bid": t.get("pm_bid", 0),
+                        "pm_ask": t.get("pm_ask", 0),
+                        # No-fill diagnostics (PM_NO_FILL trades only)
+                        "nofill_reason": t.get("nofill_reason"),
+                        "nofill_explanation": t.get("nofill_explanation"),
+                        "nofill_details": t.get("nofill_details"),
+                        # Computed P&L per trade (dollars, realised)
+                        "pnl_dollars": round(self._compute_trade_pnl_dollars(t), 4),
+                        # Opposite-hedge fields
+                        "opposite_hedge_ticker": t.get("opposite_hedge_ticker"),
+                        "opposite_hedge_team": t.get("opposite_hedge_team"),
+                        "opposite_hedge_price": t.get("opposite_hedge_price"),
+                        "combined_cost_cents": t.get("combined_cost_cents"),
+                        "guaranteed_profit_cents": t.get("guaranteed_profit_cents"),
                     }
                     for t in recent
                 ]
@@ -572,6 +644,8 @@ class DashboardPusher:
                 "hedged": hedged,
                 "timestamp": t.get("timestamp", ""),
                 "contracts": qty,
+                "kalshi_fill": t.get("kalshi_fill", 0),
+                "pm_fill_qty": t.get("pm_fill", 0),
                 "pm_fill_cents": round(pm_fill_c, 1),
                 "k_fill_cents": k_fill,
                 "pm_bid_now": round(pm_bid_now, 1),
@@ -646,7 +720,14 @@ class DashboardPusher:
                         unhedged_filled += 1
 
                 status = t.get("status", "")
-                if filled == 0 or status not in ("SUCCESS", "EXITED"):
+                tier = t.get("tier", "")
+                # Count all trades that carry P&L: SUCCESS (including TIER1_HEDGE),
+                # EXITED (unwound), UNHEDGED (directional), and tier-based entries
+                # like TIER3_OPPOSITE_HEDGE, TIER3A_HOLD, etc.
+                pnl_statuses = {"SUCCESS", "EXITED", "UNHEDGED",
+                                "TIER3_OPPOSITE_HEDGE", "TIER3_OPPOSITE_OVERWEIGHT",
+                                "TIER3A", "TIER3A_HOLD"}
+                if filled == 0 or (status not in pnl_statuses and tier not in pnl_statuses):
                     continue
 
                 net = None
@@ -657,19 +738,28 @@ class DashboardPusher:
                     net = rp
 
                 # Priority 2: Kalshi-reconciled settlement_pnl
-                if net is None and t.get("settlement_source") == "kalshi_reconciled":
+                if net is None and t.get("settlement_pnl") is not None:
                     net = t.get("settlement_pnl", 0) or 0
 
-                # Priority 3: actual_pnl or estimated (SUCCESS trades)
-                if net is None and status == "SUCCESS":
+                # Priority 3: actual_pnl dict (populated for any hedged trade)
+                if net is None:
                     pnl = t.get("actual_pnl")
                     if pnl and isinstance(pnl, dict):
                         net = pnl.get("net_profit_dollars", 0)
-                    else:
-                        est = t.get("estimated_net_profit_cents", 0) or 0
-                        net = est * filled / 100
 
-                # Priority 4: unwind P&L (EXITED trades)
+                # Priority 4: opposite-hedge guaranteed profit
+                if net is None and t.get("guaranteed_profit_cents") is not None:
+                    gp = t.get("guaranteed_profit_cents", 0)
+                    # guaranteed_profit_cents is total cents across all contracts
+                    # Convert to dollars
+                    net = gp / 100.0
+
+                # Priority 5: estimated spread profit (SUCCESS/hedged trades)
+                if net is None and status == "SUCCESS":
+                    est = t.get("estimated_net_profit_cents", 0) or 0
+                    net = est * filled / 100
+
+                # Priority 6: unwind P&L (EXITED trades)
                 if net is None and status == "EXITED":
                     upnl = t.get("unwind_pnl_cents")
                     if upnl is not None:
@@ -687,6 +777,16 @@ class DashboardPusher:
                         else:
                             ulc = t.get("unwind_loss_cents", 0) or 0
                             net = -(abs(ulc) / 100.0)
+
+                # Priority 7: UNHEDGED / directional — settlement result only
+                # These trades don't have pre-computed P&L; P&L comes at settlement
+                if net is None and (status == "UNHEDGED" or tier in ("TIER3A", "TIER3A_HOLD")):
+                    sp = t.get("settlement_pnl")
+                    if sp is not None:
+                        net = sp
+                    else:
+                        # Still open — don't count yet (unrealised)
+                        net = None
 
                 if net is not None:
                     total_pnl += net
@@ -1273,6 +1373,7 @@ class DashboardPusher:
                 "max_contracts": Config.max_contracts,
                 "max_cost_cents": Config.max_cost_cents,
                 "enable_gtc": Config.enable_gtc,
+                "enable_tier3_directional": Config.enable_tier3_directional,
                 "depth_pre_check": False,
                 "max_concurrent_positions": Config.max_concurrent_positions,
                 "min_ceq_hold": Config.min_ceq_hold,

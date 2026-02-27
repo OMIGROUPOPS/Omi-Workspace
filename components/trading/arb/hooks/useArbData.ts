@@ -135,7 +135,14 @@ export function useArbData() {
       trades = trades.filter((t) => !t.paper_mode);
     }
     if (statusFilter !== "all") {
-      trades = trades.filter((t) => t.status === statusFilter);
+      if (statusFilter === "DIRECTIONAL") {
+        trades = trades.filter((t) =>
+          t.tier === "TIER3A" || t.tier === "TIER3A_HOLD" ||
+          t.tier === "TIER3_OPPOSITE_HEDGE" || t.tier === "TIER3_OPPOSITE_OVERWEIGHT"
+        );
+      } else {
+        trades = trades.filter((t) => t.status === statusFilter);
+      }
     }
     if (tradeSearch.trim()) {
       const q = tradeSearch.trim().toUpperCase();

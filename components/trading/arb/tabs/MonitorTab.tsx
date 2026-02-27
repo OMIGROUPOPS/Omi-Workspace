@@ -87,6 +87,40 @@ export function MonitorTab({ data }: Props) {
         />
       </div>
 
+      {/* ── Trade Category Breakdown ──────────────────────────── */}
+      {state?.trade_categories && (
+        <div className="rounded-lg border border-gray-800 bg-[#111] p-3">
+          <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
+            Trade Breakdown — Today
+          </h3>
+          <div className="grid grid-cols-5 gap-3">
+            {[
+              { key: "arb_success", label: "Arb Success", color: "text-emerald-400", icon: "✓" },
+              { key: "pm_no_fill", label: "PM No Fill", color: "text-gray-400", icon: "○" },
+              { key: "exited", label: "Exited/Unwound", color: "text-yellow-400", icon: "↩" },
+              { key: "unhedged", label: "Unhedged", color: "text-red-400", icon: "⚠" },
+              { key: "directional", label: "Directional", color: "text-purple-400", icon: "↗" },
+            ].map(({ key, label, color, icon }) => {
+              const cat = (state.trade_categories as Record<string, { count: number; pnl: number }>)?.[key];
+              if (!cat) return null;
+              return (
+                <div key={key} className="text-center">
+                  <div className={`text-lg font-bold font-mono ${color}`}>
+                    {icon} {cat.count}
+                  </div>
+                  <div className="text-[10px] text-gray-500 uppercase">{label}</div>
+                  {cat.pnl !== 0 && (
+                    <div className={`text-[10px] font-mono ${cat.pnl >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                      {cat.pnl >= 0 ? "+" : ""}${cat.pnl.toFixed(2)}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* ── Trades Section ────────────────────────────────────── */}
       <div className="rounded-lg border border-gray-800 bg-[#111]">
         <div className="px-3 py-2 border-b border-gray-800 flex flex-wrap items-center gap-2">
@@ -119,9 +153,9 @@ export function MonitorTab({ data }: Props) {
           </div>
           <span className="text-gray-700">|</span>
           <div className="flex items-center gap-1">
-            {(["all", "SUCCESS", "PM_NO_FILL", "EXITED", "UNHEDGED"] as const).map((s) => (
+            {(["all", "SUCCESS", "PM_NO_FILL", "EXITED", "UNHEDGED", "DIRECTIONAL"] as const).map((s) => (
               <FilterButton key={s} active={statusFilter === s} onClick={() => setStatusFilter(s)}>
-                {s === "all" ? "All" : s}
+                {s === "all" ? "All" : s === "PM_NO_FILL" ? "No Fill" : s === "DIRECTIONAL" ? "Directional" : s}
               </FilterButton>
             ))}
           </div>

@@ -50,9 +50,10 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
   const totalCosts = ecb?.total_costs ?? (kFeeCents + pmFeeCents);
 
   // Determine what we BOUGHT on each exchange
-  // Rule: ALWAYS show "BUY YES [fighter]" — never "SELL YES" or "short"
-  let pmAction: string, pmTeam: string, pmPrice: string;
-  let kAction: string, kTeam: string, kPrice: string;
+  // Kalshi has YES/NO per fighter. PM only has YES per fighter.
+  // Show exactly what happened on each exchange.
+  let pmAction: string, pmTeam: string, pmPrice: string, pmPriceCents: number;
+  let kAction: string, kTeam: string, kPrice: string, kPriceCents: number;
 
   // When pm_is_buy_short, stored pm_price is the arb cost (100 - token_price).
   // Display the actual token price the user sees on PM: 100 - pm_price.
@@ -62,22 +63,33 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
     // PM side: bought YES team (or opponent if pm_is_buy_short)
     pmAction = "BUY YES";
     pmTeam = t.pm_is_buy_short ? opp : team;
+    pmPriceCents = pmDisplayPrice;
     pmPrice = `${pmDisplayPrice.toFixed(0)}c`;
-    // K side: "sold" team YES = bought opponent YES at (100 - k_price)
-    kAction = "BUY YES";
-    kTeam = opp;
-    kPrice = `${(100 - kVal)}c`;
+    // K side: SELL YES team = BUY NO team at (100 - k_price)
+    // Kalshi shows this as "No · [team]" — match that.
+    kAction = "BUY NO";
+    kTeam = team;
+    kPriceCents = 100 - kVal;
+    kPrice = `${kPriceCents}c`;
   } else {
     // BUY_K_SELL_PM
     // K side: bought YES team
     kAction = "BUY YES";
     kTeam = team;
+    kPriceCents = kVal;
     kPrice = `${kVal}c`;
     // PM side: bought opponent YES (pm_is_buy_short means bought opponent's YES)
     pmAction = "BUY YES";
     pmTeam = t.pm_is_buy_short ? opp : team;
+    pmPriceCents = pmDisplayPrice;
     pmPrice = `${pmDisplayPrice.toFixed(0)}c`;
   }
+
+  // Cost calculations: $ per contract and total cost per side
+  const kCostPerContract = kPriceCents / 100;
+  const pmCostPerContract = pmPriceCents / 100;
+  const kTotalCost = kCostPerContract * qty;
+  const pmTotalCost = pmCostPerContract * qty;
 
   return (
     <div className="border border-[#1a1a2e] bg-[#0a0a12] overflow-hidden rounded-none">
@@ -102,8 +114,9 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
             <span className="text-[10px] font-mono text-[#4a4a6a]">{pmTeam}</span>
           </div>
           <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 text-[9px] font-mono">
-            <div><span className="text-[#4a4a6a]">Fill Price</span> <span className="text-[#00ff88] ml-1">{pmPrice}</span></div>
+            <div><span className="text-[#4a4a6a]">Fill Price</span> <span className="text-[#00ff88] ml-1">{pmPrice}</span> <span className="text-[#4a4a6a] ml-0.5">(${pmCostPerContract.toFixed(2)})</span></div>
             <div><span className="text-[#4a4a6a]">Qty</span> <span className="text-[#ff8c00] ml-1">{qty}</span></div>
+            <div className="col-span-2"><span className="text-[#4a4a6a]">Total Cost</span> <span className="text-[#00ff88] ml-1 font-bold">${pmTotalCost.toFixed(2)}</span></div>
             <div><span className="text-[#4a4a6a]">Latency</span> <span className="text-[#ff8c00] ml-1">{t.pm_order_ms || "-"}ms</span></div>
             <div><span className="text-[#4a4a6a]">Fee</span> <span className="text-[#ff8c00]/80 ml-1">{pmFeeCents.toFixed(2)}c</span></div>
             {t.pm_bid != null && (
@@ -133,8 +146,9 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
             <span className="text-[10px] font-mono text-[#4a4a6a]">{kTeam}</span>
           </div>
           <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 text-[9px] font-mono">
-            <div><span className="text-[#4a4a6a]">Fill Price</span> <span className="text-[#00bfff] ml-1">{kPrice}</span></div>
+            <div><span className="text-[#4a4a6a]">Fill Price</span> <span className="text-[#00bfff] ml-1">{kPrice}</span> <span className="text-[#4a4a6a] ml-0.5">(${kCostPerContract.toFixed(2)})</span></div>
             <div><span className="text-[#4a4a6a]">Qty</span> <span className="text-[#ff8c00] ml-1">{qty}</span></div>
+            <div className="col-span-2"><span className="text-[#4a4a6a]">Total Cost</span> <span className="text-[#00bfff] ml-1 font-bold">${kTotalCost.toFixed(2)}</span></div>
             <div><span className="text-[#4a4a6a]">Latency</span> <span className="text-[#ff8c00] ml-1">{t.k_order_ms || "-"}ms</span></div>
             <div><span className="text-[#4a4a6a]">Fee</span> <span className="text-[#ff8c00]/80 ml-1">{kFeeCents.toFixed(1)}c</span></div>
             {t.k_bid != null && (
@@ -213,16 +227,16 @@ function legsLabel(t: TradeEntry) {
   if (t.direction === "BUY_PM_SELL_K") {
     // PM: bought YES for team (or opponent if pm_is_buy_short)
     const pmFighter = t.pm_is_buy_short ? opp : team;
-    // K: "sold" team = bought opponent YES at (100 - k_price)
-    const kOppCost = kVal > 0 ? 100 - kVal : 0;
-    // Total cost uses arb-side costs: pmVal (arb cost) + kOppCost
-    const totalCost = pmVal + kOppCost;
+    // K: SELL YES team = BUY NO team at (100 - k_price)
+    const kNoCost = kVal > 0 ? 100 - kVal : 0;
+    // Total cost uses arb-side costs: pmVal (arb cost) + kNoCost
+    const totalCost = pmVal + kNoCost;
     const spread = 100 - totalCost;
     return (
       <>
         <span className="text-[#00ff88]">PM: {pmFighter} @{pmDisplayPrice.toFixed(0)}c</span>
         <span className="text-[#1a1a2e] mx-1">|</span>
-        <span className="text-[#00bfff]">K: {opp} @{kOppCost.toFixed(0)}c</span>
+        <span className="text-[#00bfff]">K: NO {team} @{kNoCost.toFixed(0)}c</span>
         <span className="text-[#3a3a5a] ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
       </>
     );
@@ -315,7 +329,7 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap">
                       <span className="text-[#00bfff]">{t.kalshi_fill ?? t.contracts_filled ?? 0}x</span>
-                      <div className="text-[9px] text-[#3a3a5a]">@{typeof t.k_price === 'number' ? t.k_price : '-'}c</div>
+                      <div className="text-[9px] text-[#3a3a5a]">@{(() => { const kp = typeof t.k_price === 'number' ? t.k_price : 0; return t.direction === 'BUY_PM_SELL_K' ? (100 - kp) : kp; })()}c</div>
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap">
                       <span className="text-[#00ff88]">{t.pm_fill ?? t.contracts_filled ?? 0}x</span>

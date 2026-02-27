@@ -835,6 +835,16 @@ def check_spread_for_ticker(ticker: str) -> Optional[ArbOpportunity]:
     pm_outcome_index = pm_data['outcome_index']
     pm_long_team = pm_data.get('pm_long_team', '')  # Team with long=true in PM
 
+    # ── GUARD: Refuse to calculate spreads if pm_long_team is missing ──
+    # Without pm_long_team, is_long_team defaults to False for ALL teams,
+    # which routes to the wrong TRADE_PARAMS case (Case 4 instead of Case 3
+    # for BUY_K_SELL_PM), causing PM to buy the SAME side as Kalshi.
+    # This was the root cause of Feb 27 double-directional UFC trades.
+    if not pm_long_team:
+        print(f"[GUARD] Skipping {ticker}: pm_long_team is empty/None for {cache_key}. "
+              f"Mapping may be stale or incomplete.", flush=True)
+        return None
+
     # Calculate spreads for both directions
     # CRITICAL: Spread depends on whether team == pm_long_team!
     # - BUY_YES on PM: cost = price paid
@@ -939,14 +949,17 @@ def check_spread_for_ticker(ticker: str) -> Optional[ArbOpportunity]:
     # Extract game ID from ticker
     game_id = ticker_parts[1] if len(ticker_parts) >= 2 else ticker
 
-    # Determine sport from series
-    sport = 'NBA'
-    if 'NHL' in ticker:
-        sport = 'NHL'
-    elif 'NCAAMB' in ticker:
-        sport = 'CBB'
-    elif 'UFCFIGHT' in ticker:
+    # Determine sport from ticker series prefix AND cache_key
+    # Belt-and-suspenders: check both ticker AND cache_key to catch edge cases
+    sport = 'NBA'  # default
+    ticker_upper = ticker.upper()
+    cache_prefix = cache_key.split(':')[0].upper() if cache_key else ''
+    if 'UFCFIGHT' in ticker_upper or cache_prefix == 'UFC':
         sport = 'UFC'
+    elif 'NHL' in ticker_upper or cache_prefix == 'NHL':
+        sport = 'NHL'
+    elif 'NCAAMB' in ticker_upper or cache_prefix == 'CBB':
+        sport = 'CBB'
 
     arb = ArbOpportunity(
         timestamp=datetime.now(),

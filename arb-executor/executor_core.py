@@ -1391,6 +1391,24 @@ async def execute_arb(
     if not safe:
         return TradeResult(success=False, abort_reason=f"Safety: {reason}")
 
+    # -------------------------------------------------------------------------
+    # Step 1b: pm_long_team guard — REFUSE to trade if mapping is missing
+    # -------------------------------------------------------------------------
+    # Root cause of Feb 27 wrong-side trades: stale verified_mappings.json had
+    # no UFC entries, so pm_long_team was empty string. This caused is_long_team
+    # to always be False, routing BUY_K_SELL_PM to Case 4 (BUY_LONG intent=1)
+    # instead of Case 3 (BUY_SHORT intent=3), buying SAME side on both exchanges.
+    if not arb.pm_long_team:
+        logger.error(
+            f"[GUARD] REFUSING to trade {arb.game} {arb.team}: "
+            f"pm_long_team is empty/None! Mapping is missing or stale. "
+            f"Cannot determine correct PM trade direction."
+        )
+        return TradeResult(
+            success=False,
+            abort_reason=f"pm_long_team is empty for {arb.game} — mapping missing or stale, cannot determine PM trade side"
+        )
+
     # NOTE: traded_games is only updated AFTER PM fills (see Step 5.5 below).
     # This allows retries on PM_NO_FILL — the game stays tradeable.
 

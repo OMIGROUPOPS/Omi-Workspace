@@ -355,13 +355,21 @@ def verify_mapping_structure(cache_key: str, mapping: Dict) -> Tuple[bool, List[
     errors = []
 
     # Check required fields
-    required = ['pm_slug', 'pm_outcomes', 'kalshi_tickers', 'verified']
+    required = ['pm_slug', 'pm_outcomes', 'kalshi_tickers', 'verified', 'pm_long_team']
     for field in required:
         if field not in mapping:
             errors.append(f"Missing field: {field}")
 
     if not mapping.get('verified'):
         errors.append("Mapping not marked as verified")
+
+    # CRITICAL: pm_long_team must be non-empty to determine trade direction
+    pm_long_team = mapping.get('pm_long_team', '')
+    if not pm_long_team:
+        errors.append(
+            "pm_long_team is empty/None — cannot determine PM trade direction. "
+            "This WILL cause wrong-side trades (Feb 27 root cause)."
+        )
 
     pm_outcomes = mapping.get('pm_outcomes', {})
     kalshi_tickers = mapping.get('kalshi_tickers', {})

@@ -1994,6 +1994,15 @@ def load_verified_mappings(filepath: str = MAPPING_FILE) -> dict:
             pass
 
         logger.info(f"Loaded {len(games)} verified mappings (generated: {generated})")
+
+        # Audit pm_long_team presence — this field is CRITICAL for trade direction
+        missing_pm_long = [k for k, v in games.items() if not v.get('pm_long_team')]
+        if missing_pm_long:
+            logger.warning(
+                f"[AUDIT] {len(missing_pm_long)} mappings missing pm_long_team! "
+                f"These games will be BLOCKED from trading: {missing_pm_long[:10]}"
+            )
+
         return games
 
     except (json.JSONDecodeError, KeyError) as e:

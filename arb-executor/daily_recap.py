@@ -19,7 +19,7 @@ TRADES_FILE = os.path.join(SCRIPT_DIR, "trades.json")
 BALANCES_FILE = os.path.join(SCRIPT_DIR, "balances.json")
 RECAPS_DIR = os.path.join(SCRIPT_DIR, "recaps")
 
-STARTING_BALANCE = 910.31  # Feb 26 starting point (reset after +$300 deposits)
+STARTING_BALANCE = 910.21  # Feb 26 starting point (reset after +$300 deposits)
 
 
 # ── Opponent extraction (matches dashboard_push.py logic) ─────────────────

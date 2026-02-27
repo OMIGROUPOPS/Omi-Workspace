@@ -1716,9 +1716,17 @@ class PreGameMapper:
                 logger.info("DRY RUN — not writing file")
                 print(json.dumps(output, indent=2))
             else:
+                # Merge with existing mappings
+                existing = {}
+                try:
+                    with open(MAPPING_FILE, "r") as f:
+                        existing = json.load(f)
+                except (FileNotFoundError, json.JSONDecodeError):
+                    pass
+                existing.update(output)
                 with open(MAPPING_FILE, "w") as f:
-                    json.dump(output, f, indent=2)
-                logger.info(f"Wrote {len(all_games)} mappings to {MAPPING_FILE}")
+                    json.dump(existing, f, indent=2)
+                logger.info(f"Wrote {len(output)} new/updated mappings ({len(existing)} total) to {MAPPING_FILE}")
 
         # --- Summary ---
         elapsed = time.time() - start_time

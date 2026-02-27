@@ -25,7 +25,7 @@ SNAPSHOTS_FILE = os.path.join(SCRIPT_DIR, "balance_snapshots.json")
 STARTING_BALANCE = {
     "kalshi": 460.23,
     "pm": 450.08,
-    "total": 910.31,
+    "total": 910.21,
     "date": "2026-02-26",
 }
 

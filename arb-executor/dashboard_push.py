@@ -606,7 +606,7 @@ class DashboardPusher:
 
         Also computes cash_pnl = portfolio_total - starting_balance as headline.
         """
-        STARTING_BALANCE_TOTAL = 910.31
+        STARTING_BALANCE_TOTAL = 910.21
 
         empty = {
             "total_pnl_dollars": 0,

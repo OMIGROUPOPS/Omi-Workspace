@@ -32,36 +32,16 @@ export default function LoginPage() {
 
         .hecate-login {
           min-height: 100vh;
-          background: #0c0a09;
+          background: 
+            radial-gradient(ellipse at 50% 50%, rgba(12, 10, 9, 0.5) 0%, rgba(12, 10, 9, 0.92) 70%),
+            url('/internal-backdrop.jpg') center center / cover no-repeat;
+          background-color: #0c0a09;
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 2rem 1rem;
           position: relative;
           font-family: 'Cormorant Garamond', Georgia, serif;
-        }
-
-        .hecate-login::before {
-          content: '';
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: url('/internal-backdrop.jpg') center center / cover no-repeat;
-          opacity: 0.4;
-          pointer-events: none;
-        }
-
-        .hecate-login::after {
-          content: '';
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: radial-gradient(ellipse at 50% 50%, rgba(12, 10, 9, 0.5) 0%, rgba(12, 10, 9, 0.9) 70%);
-          pointer-events: none;
         }
 
         .hecate-login-inner {

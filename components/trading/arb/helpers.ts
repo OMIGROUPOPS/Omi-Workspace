@@ -313,6 +313,14 @@ export function tradePnl(t: TradeEntry): {
     return { perContract: pc, totalDollars: t.settlement_pnl, qty, isOpen: false, spreadCents };
   }
 
+  // Priority 3: arb_net_total_cents (post-unwind locked P&L)
+  const arbNet = (t as any).arb_net_total_cents;
+  if (arbNet != null) {
+    const totalDollars = arbNet / 100;
+    const pc = qty > 0 ? arbNet / qty : arbNet;
+    return { perContract: pc, totalDollars, qty, isOpen: false, spreadCents };
+  }
+
   if (isOpenTrade(t)) {
     return { perContract: null, totalDollars: null, qty, isOpen: true, spreadCents };
   }

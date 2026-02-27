@@ -550,6 +550,19 @@ class DashboardPusher:
                         "opposite_hedge_price": t.get("opposite_hedge_price"),
                         "combined_cost_cents": t.get("combined_cost_cents"),
                         "guaranteed_profit_cents": t.get("guaranteed_profit_cents"),
+                        # Unwind transparency fields
+                        "unwind_close_action": t.get("unwind_close_action"),
+                        "unwind_reopen_action": t.get("unwind_reopen_action"),
+                        "unwind_close_fill_cents": t.get("unwind_close_fill_cents"),
+                        "unwind_reopen_fill_cents": t.get("unwind_reopen_fill_cents"),
+                        "unwind_close_qty": t.get("unwind_close_qty"),
+                        "unwind_reopen_qty": t.get("unwind_reopen_qty"),
+                        "original_pm_side": t.get("original_pm_side"),
+                        "new_pm_side": t.get("new_pm_side"),
+                        "arb_net_cents_per_contract": t.get("arb_net_cents_per_contract"),
+                        "arb_net_total_cents": t.get("arb_net_total_cents"),
+                        "unwind_timestamp": t.get("unwind_timestamp"),
+                        "unwind_timestamp_est": t.get("unwind_timestamp_est"),
                     }
                     for t in recent
                 ]

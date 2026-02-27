@@ -91,6 +91,11 @@ SPORTS_CONFIG = [
         "series": "KXNCAAMBGAME",
         "display": "CBB",
     },
+    {
+        "sport": "ufc",
+        "series": "KXUFCFIGHT",
+        "display": "UFC",
+    },
 ]
 
 # ---------------------------------------------------------------------------
@@ -1170,7 +1175,7 @@ class PreGameMapper:
 
                 # Map PM sport to our sport names
                 pm_sport = parsed["sport"]
-                if pm_sport not in ("nba", "nhl", "cbb"):
+                if pm_sport not in ("nba", "nhl", "cbb", "ufc"):
                     continue
 
                 pm_teams = parsed["teams"]
@@ -1181,14 +1186,19 @@ class PreGameMapper:
                 sport_overrides = SPORT_PM_OVERRIDES.get(pm_sport, {})
                 kalshi_teams = []
                 for pt in pm_teams:
-                    kt = sport_overrides.get(pt)
-                    if not kt:
-                        kt = PM_TO_KALSHI_ABBREV.get(pt)
-                    if not kt and HAS_EXECUTOR:
-                        # Try normalizing through executor's canonical map
-                        kt = normalize_team_abbrev(pt.upper())
-                    if not kt:
-                        kt = pt.upper()  # Fallback: use raw uppercase
+                    # UFC special handling: PM uses first3+last3 format (e.g., 'bramor')
+                    # Kalshi uses last 3 chars of last name (e.g., 'MOR')
+                    if pm_sport == "ufc" and len(pt) >= 3:
+                        kt = pt[-3:].upper()
+                    else:
+                        kt = sport_overrides.get(pt)
+                        if not kt:
+                            kt = PM_TO_KALSHI_ABBREV.get(pt)
+                        if not kt and HAS_EXECUTOR:
+                            # Try normalizing through executor's canonical map
+                            kt = normalize_team_abbrev(pt.upper())
+                        if not kt:
+                            kt = pt.upper()  # Fallback: use raw uppercase
                     kalshi_teams.append(kt)
 
                 if len(kalshi_teams) >= 2:
@@ -1308,16 +1318,19 @@ class PreGameMapper:
                     parsed = pm.parse_pm_slug(slug)
                     if parsed:
                         pm_sport = parsed["sport"]
-                        if pm_sport in ("nba", "nhl", "cbb"):
+                        if pm_sport in ("nba", "nhl", "cbb", "ufc"):
                             pm_teams = parsed["teams"]
                             date = parsed["date"]
                             kalshi_teams = []
                             for pt in pm_teams:
-                                kt = PM_TO_KALSHI_ABBREV.get(pt)
-                                if not kt and HAS_EXECUTOR:
-                                    kt = normalize_team_abbrev(pt.upper())
-                                if not kt:
-                                    kt = pt.upper()
+                                if pm_sport == "ufc" and len(pt) >= 3:
+                                    kt = pt[-3:].upper()
+                                else:
+                                    kt = PM_TO_KALSHI_ABBREV.get(pt)
+                                    if not kt and HAS_EXECUTOR:
+                                        kt = normalize_team_abbrev(pt.upper())
+                                    if not kt:
+                                        kt = pt.upper()
                                 kalshi_teams.append(kt)
                             if len(kalshi_teams) >= 2:
                                 cache_key = self.make_cache_key(pm_sport, kalshi_teams[0], kalshi_teams[1], date)
@@ -1435,6 +1448,60 @@ class PreGameMapper:
                         })
                     else:
                         logger.warning(f"  Could not identify team from outcome: '{outcome_str}'")
+
+                # Strategy 1.5 (UFC): Match outcome names against Kalshi fighter names
+                # For UFC, identify_team_from_outcome won't find fighters in keyword tables.
+                # Instead, match PM outcome names against Kalshi's yes_sub_title names.
+                if len(outcome_map) < 2 and k_game["sport"] == "ufc":
+                    kalshi_names = k_game.get("kalshi_names", {})
+                    if kalshi_names:
+                        logger.debug(f"  {cache_key}: UFC fighter matching, kalshi_names={kalshi_names}")
+                        for idx, outcome_name in enumerate(outcomes[:2]):
+                            if idx in outcome_map:
+                                continue  # Already mapped
+                            outcome_str = str(outcome_name).strip().lower()
+                            best_match_abbrev = None
+                            best_match_score = 0
+                            for abbrev, full_name in kalshi_names.items():
+                                norm_abbrev = normalize_team_abbrev(abbrev) if HAS_EXECUTOR else abbrev.upper()
+                                name_lower = full_name.lower().strip()
+                                # Try exact match
+                                if outcome_str == name_lower:
+                                    best_match_abbrev = norm_abbrev
+                                    best_match_score = 100
+                                    break
+                                # Try substring: outcome contains last name or full name
+                                name_parts = name_lower.split()
+                                if len(name_parts) >= 2:
+                                    last_name = name_parts[-1]
+                                    first_name = name_parts[0]
+                                    # Check if outcome contains the last name
+                                    if last_name in outcome_str and len(last_name) >= 3:
+                                        score = len(last_name)
+                                        if score > best_match_score:
+                                            best_match_abbrev = norm_abbrev
+                                            best_match_score = score
+                                    # Check if full name is substring of outcome
+                                    if name_lower in outcome_str:
+                                        best_match_abbrev = norm_abbrev
+                                        best_match_score = 100
+                                        break
+                                    # Check if outcome is substring of full name
+                                    if outcome_str in name_lower and len(outcome_str) >= 4:
+                                        score = len(outcome_str)
+                                        if score > best_match_score:
+                                            best_match_abbrev = norm_abbrev
+                                            best_match_score = score
+                            if best_match_abbrev:
+                                outcome_map[idx] = {"team": best_match_abbrev, "name": str(outcome_name)}
+                                verification_details.append({
+                                    "index": idx,
+                                    "pm_name": str(outcome_name),
+                                    "mapped_to": best_match_abbrev,
+                                    "full_name": kalshi_names.get(best_match_abbrev, kalshi_names.get(best_match_abbrev.upper(), "?")),
+                                    "method": "ufc_fighter_name_match",
+                                })
+                                logger.debug(f"  UFC matched outcome[{idx}]='{outcome_name}' -> {best_match_abbrev}")
 
                 # Strategy 2: If outcomes array failed, try using marketSides as backup
                 # But note: marketSides index may NOT match outcomeIndex!
@@ -1606,13 +1673,13 @@ class PreGameMapper:
                 for _ta in k_teams_normalized:
                     if _ta in _sport_names:
                         team_names[_ta] = _sport_names[_ta]
-                # For CBB: fall back to Kalshi yes_sub_title for mascot-only PM names
+                # For CBB and UFC: fall back to Kalshi yes_sub_title for names
                 _k_names = k_game.get("kalshi_names", {})
-                if k_game.get("sport") == "cbb":
+                if k_game.get("sport") in ("cbb", "ufc"):
                     for _ta, _name in list(team_names.items()):
                         if _is_mascot_only(_name) and _ta in _k_names:
                             team_names[_ta] = _k_names[_ta]
-                    # Fill missing CBB teams from Kalshi names
+                    # Fill missing teams/fighters from Kalshi names
                     for _ta in k_teams_normalized:
                         if _ta not in team_names and _ta in _k_names:
                             team_names[_ta] = _k_names[_ta]

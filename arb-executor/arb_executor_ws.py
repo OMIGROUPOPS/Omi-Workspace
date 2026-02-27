@@ -945,6 +945,8 @@ def check_spread_for_ticker(ticker: str) -> Optional[ArbOpportunity]:
         sport = 'NHL'
     elif 'NCAAMB' in ticker:
         sport = 'CBB'
+    elif 'UFCFIGHT' in ticker:
+        sport = 'UFC'
 
     arb = ArbOpportunity(
         timestamp=datetime.now(),

@@ -70,6 +70,8 @@ export function sportBadge(sport: string): string {
       return "bg-blue-500/20 text-blue-400";
     case "NHL":
       return "bg-cyan-500/20 text-cyan-400";
+    case "UFC":
+      return "bg-red-500/20 text-red-400";
     default:
       return "bg-gray-500/20 text-gray-400";
   }
@@ -80,6 +82,7 @@ export function sportChartColor(sport: string): string {
     case "NBA": return "#f97316"; // orange
     case "CBB": return "#3b82f6"; // blue
     case "NHL": return "#06b6d4"; // cyan
+    case "UFC": return "#ef4444"; // red
     default:    return "#6b7280"; // gray
   }
 }

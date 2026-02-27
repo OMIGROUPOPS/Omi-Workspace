@@ -5,7 +5,7 @@ import type { MappedGame, TeamPrices } from "../types";
 import { sportBadge, spreadColor, isToday, depthColor, fmtNum, todayET } from "../helpers";
 import { FilterButton } from "../shared/FilterButton";
 
-type SportFilter = "all" | "CBB" | "NBA" | "NHL";
+type SportFilter = "all" | "CBB" | "NBA" | "NHL" | "UFC";
 type DateFilter = "today" | "tomorrow" | "all";
 
 function tomorrowET(): string {

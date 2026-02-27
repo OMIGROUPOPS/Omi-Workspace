@@ -664,9 +664,14 @@ class DashboardPusher:
 
             # ── Unrealised P&L ──
             if hedged:
-                # Locked spread — doesn't change with market
-                spread_cents = t.get("spread_cents", 0) or 0
-                unrealised = spread_cents * qty / 100 - total_fees
+                arb_net_total = t.get("arb_net_total_cents")
+                if arb_net_total is not None:
+                    # Post-unwind: arb_net_total_cents is the true locked P&L
+                    unrealised = arb_net_total / 100 - total_fees
+                else:
+                    # Normal hedge: use original spread
+                    spread_cents = t.get("spread_cents", 0) or 0
+                    unrealised = spread_cents * qty / 100 - total_fees
             else:
                 # Directional — mark to market
                 if direction == "BUY_PM_SELL_K":

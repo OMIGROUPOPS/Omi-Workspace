@@ -7045,8 +7045,8 @@
     "reconciled_pnl": 11.1418,
     "unwind_timestamp": "2026-02-27T18:01:32.294287+00:00",
     "unwind_note": "Manual unwind: flipped PM from wrong-side to correct hedge. Close loss: 116c, Arb net: -87c",
-    "unwind_close_action": "SELL_LONG 29 @ 27c",
-    "unwind_reopen_action": "BUY_SHORT 29 @ 27c",
+    "unwind_close_action": "SOLD YES MAR 29x @27c",
+    "unwind_reopen_action": "BOUGHT YES MAR 29x @27c",
     "unwind_close_fill_cents": 27,
     "unwind_reopen_fill_cents": 27,
     "unwind_close_qty": 29,
@@ -7055,7 +7055,8 @@
     "new_pm_side": "SHORT YES (correct hedge)",
     "arb_net_cents_per_contract": -3,
     "arb_net_total_cents": -87,
-    "unwind_timestamp_est": "Feb 27 1:00:36 PM EST"
+    "unwind_timestamp_est": "Feb 27 1:00:36 PM EST",
+    "opponent": "MAR"
   },
   {
     "timestamp": "2026-02-27T07:30:59.334919+00:00",
@@ -7169,8 +7170,8 @@
     "reconciled_pnl": 17.5616,
     "unwind_timestamp": "2026-02-27T18:01:32.294287+00:00",
     "unwind_note": "Manual unwind: flipped PM from wrong-side to correct hedge. Close loss: 140c, Arb net: -56c",
-    "unwind_close_action": "SELL_LONG 28 @ 15c",
-    "unwind_reopen_action": "BUY_SHORT 28 @ 15c",
+    "unwind_close_action": "SOLD YES LUN 28x @15c",
+    "unwind_reopen_action": "BOUGHT YES LUN 28x @15c",
     "unwind_close_fill_cents": 15,
     "unwind_reopen_fill_cents": 15,
     "unwind_close_qty": 28,
@@ -7179,7 +7180,8 @@
     "new_pm_side": "SHORT YES (correct hedge)",
     "arb_net_cents_per_contract": -2,
     "arb_net_total_cents": -56,
-    "unwind_timestamp_est": "Feb 27 1:00:31 PM EST"
+    "unwind_timestamp_est": "Feb 27 1:00:31 PM EST",
+    "opponent": "LUN"
   },
   {
     "timestamp": "2026-02-27T07:40:08.432880+00:00",
@@ -7293,8 +7295,8 @@
     "reconciled_pnl": 8.82,
     "unwind_timestamp": "2026-02-27T18:01:32.294287+00:00",
     "unwind_note": "Manual unwind: flipped PM from wrong-side to correct hedge. Close loss: 30c, Arb net: -30c",
-    "unwind_close_action": "SELL_SHORT 30 @ 66c",
-    "unwind_reopen_action": "BUY_LONG 30 @ 66c",
+    "unwind_close_action": "SOLD YES MOR 30x @66c",
+    "unwind_reopen_action": "BOUGHT YES MOR 30x @66c",
     "unwind_close_fill_cents": 66,
     "unwind_reopen_fill_cents": 66,
     "unwind_close_qty": 30,
@@ -7303,7 +7305,8 @@
     "new_pm_side": "LONG YES (correct hedge)",
     "arb_net_cents_per_contract": -1,
     "arb_net_total_cents": -30,
-    "unwind_timestamp_est": "Feb 27 1:00:38 PM EST"
+    "unwind_timestamp_est": "Feb 27 1:00:38 PM EST",
+    "opponent": "KAV"
   },
   {
     "timestamp": "2026-02-27T07:46:14.275188+00:00",
@@ -7417,8 +7420,8 @@
     "reconciled_pnl": 13.8432,
     "unwind_timestamp": "2026-02-27T18:01:32.294287+00:00",
     "unwind_note": "Manual unwind: flipped PM from wrong-side to correct hedge. Close loss: 196c, Arb net: -84c",
-    "unwind_close_action": "SELL_LONG 28 @ 20c",
-    "unwind_reopen_action": "BUY_SHORT 28 @ 20c",
+    "unwind_close_action": "SOLD YES ZEL 28x @20c",
+    "unwind_reopen_action": "BOUGHT YES ZEL 28x @20c",
     "unwind_close_fill_cents": 20,
     "unwind_reopen_fill_cents": 20,
     "unwind_close_qty": 28,
@@ -7427,6 +7430,7 @@
     "new_pm_side": "SHORT YES (correct hedge)",
     "arb_net_cents_per_contract": -3,
     "arb_net_total_cents": -84,
-    "unwind_timestamp_est": "Feb 27 1:00:34 PM EST"
+    "unwind_timestamp_est": "Feb 27 1:00:34 PM EST",
+    "opponent": "ZEL"
   }
 ]

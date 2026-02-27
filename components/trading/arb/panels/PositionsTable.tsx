@@ -62,8 +62,8 @@ export function PositionsTable({ positions, markSettled }: Props) {
           </thead>
           <tbody className="divide-y divide-[#1a1a2e]/50">
             {positions.map((p, i) => {
-              const pmDir = p.direction === "BUY_PM_SELL_K" ? "L" : p.direction === "BUY_K_SELL_PM" ? "S" : "?";
-              const kDir = p.direction === "BUY_PM_SELL_K" ? "S" : p.direction === "BUY_K_SELL_PM" ? "L" : "?";
+              const pmDir = "";
+              const kDir = "";
               const statusColor = p.hedged
                 ? "bg-[#00ff88]/10 text-[#00ff88] border-[#00ff88]/30"
                 : p.status === "TIER3A_HOLD" ? "bg-[#ff8c00]/10 text-[#ff8c00] border-[#ff8c00]/30"
@@ -105,7 +105,7 @@ export function PositionsTable({ positions, markSettled }: Props) {
                     <div className="text-[9px] text-[#3a3a5a]">@{p.pm_fill_cents.toFixed(1)}c</div>
                   </td>
                   <td className="py-1.5 px-2 text-right font-mono">
-                    <span className="text-[#00bfff]">{pmDir} {p.pm_fill_cents.toFixed(1)}c</span>
+                    <span className="text-[#00bfff]">{p.pm_fill_cents.toFixed(1)}c</span>
                     <div className="text-[9px] text-[#3a3a5a]">${p.pm_cost_dollars.toFixed(2)}</div>
                   </td>
                   <td className="py-1.5 px-2 text-right font-mono">
@@ -115,7 +115,7 @@ export function PositionsTable({ positions, markSettled }: Props) {
                   </td>
                   <td className="py-1.5 px-2 text-right font-mono">
                     {p.hedged ? (
-                      <><span className="text-[#ff8c00]">{kDir} {p.k_fill_cents}c</span><div className="text-[9px] text-[#3a3a5a]">${p.k_cost_dollars.toFixed(2)}</div></>
+                      <><span className="text-[#ff8c00]">{p.k_fill_cents}c</span><div className="text-[9px] text-[#3a3a5a]">${p.k_cost_dollars.toFixed(2)}</div></>
                     ) : <span className="text-[#3a3a5a]">{"\u2014"}</span>}
                   </td>
                   <td className="py-1.5 px-2 text-right font-mono">

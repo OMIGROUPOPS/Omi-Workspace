@@ -1448,10 +1448,21 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"Warning: could not load verified_mappings: {e}")
 
+    # Try to load cached balances (written by reconcile or executor)
+    BALANCES_CACHE = os.path.join(os.path.dirname(__file__) or ".", "balances_cache.json")
+    if os.path.exists(BALANCES_CACHE):
+        try:
+            with open(BALANCES_CACHE, "r") as f:
+                pusher.balances = json.load(f)
+            print(f"Loaded cached balances: K=${pusher.balances.get('k_portfolio',0)} PM=${pusher.balances.get('pm_portfolio',0)}")
+        except Exception as e:
+            print(f"Warning: could not load balances cache: {e}")
+
     # Build full payload (not just trades)
     trades = pusher._build_trades()
     positions = pusher._build_positions()
     pnl_summary = pusher._build_pnl_summary()
+    balances = pusher._build_balances()
     mapped_games = pusher._build_mapped_games()
     mappings_refreshed = pusher._get_mappings_last_refreshed()
 
@@ -1459,11 +1470,13 @@ if __name__ == "__main__":
         "trades": trades,
         "positions": positions,
         "pnl_summary": pnl_summary,
+        "balances": balances,
         "mapped_games": mapped_games,
         "mappings_last_refreshed": mappings_refreshed,
     }
 
     print(f"Pushing {len(trades)} trades, {len(positions)} positions to {args.url}")
+    print(f"Balances: K=${balances.get('kalshi_balance',0)} PM=${balances.get('pm_balance',0)} | P&L: ${pnl_summary.get('cash_pnl',0)}")
 
     headers = {"Content-Type": "application/json"}
     if args.token:

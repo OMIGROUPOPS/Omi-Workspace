@@ -49,7 +49,7 @@ export default function LoginPage() {
           right: 0;
           bottom: 0;
           background: url('/internal-backdrop.jpg') center center / cover no-repeat;
-          opacity: 0.25;
+          opacity: 0.4;
           pointer-events: none;
         }
 
@@ -60,7 +60,7 @@ export default function LoginPage() {
           left: 0;
           right: 0;
           bottom: 0;
-          background: radial-gradient(ellipse at 50% 50%, transparent 20%, rgba(12, 10, 9, 0.85) 70%);
+          background: radial-gradient(ellipse at 50% 50%, rgba(12, 10, 9, 0.5) 0%, rgba(12, 10, 9, 0.9) 70%);
           pointer-events: none;
         }
 

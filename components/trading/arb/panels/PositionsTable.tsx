@@ -129,7 +129,13 @@ export function PositionsTable({ positions, markSettled }: Props) {
                   </td>
                   <td className={`py-1.5 px-2 text-right font-mono font-bold ${pnlColor}`}>
                     {p.unrealised_pnl >= 0 ? "+" : ""}${p.unrealised_pnl.toFixed(4)}
-                    {p.hedged && p.spread_cents > 0 && <div className="text-[9px] text-[#3a3a5a] font-normal">{p.spread_cents.toFixed(1)}c spread</div>}
+                    {(p as any).arb_net_cents_per_contract != null ? (
+                      <div className={`text-[9px] font-normal ${(p as any).arb_net_cents_per_contract < 0 ? 'text-[#ff3333]' : 'text-[#00ff88]'}`}>
+                        {(p as any).arb_net_cents_per_contract}c/ct | {((p as any).arb_net_total_cents / 100).toFixed(2)}$ total
+                      </div>
+                    ) : p.hedged && p.spread_cents > 0 ? (
+                      <div className="text-[9px] text-[#3a3a5a] font-normal">{p.spread_cents.toFixed(1)}c spread</div>
+                    ) : null}
                   </td>
                   <td className="py-1.5 px-2 text-center">
                     {p.signal ? (

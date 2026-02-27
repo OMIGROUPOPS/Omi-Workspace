@@ -122,13 +122,13 @@ export function formatDateTime(iso: string): string {
     const mon = d.toLocaleString("en-US", { month: "short", timeZone: "America/New_York" });
     const day = Number(new Intl.DateTimeFormat("en-US", { day: "numeric", timeZone: "America/New_York" }).format(d));
     const time = d.toLocaleTimeString("en-US", {
-      hour: "2-digit",
+      hour: "numeric",
       minute: "2-digit",
       second: "2-digit",
-      hour12: false,
+      hour12: true,
       timeZone: "America/New_York",
     });
-    return `${mon} ${day} ${time}`;
+    return `${mon} ${day} ${time} EST`;
   } catch {
     return iso;
   }

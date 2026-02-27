@@ -270,6 +270,11 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                   >
                     <td className="px-2 py-1.5 text-[#4a4a6a] whitespace-nowrap font-mono text-[10px]">
                       {formatDateTime(t.timestamp)}
+                      {(t as any).unwind_timestamp_est && (
+                        <div className="text-[9px] text-[#ff8c00] mt-0.5">
+                          &#x21A9; {(t as any).unwind_timestamp_est}
+                        </div>
+                      )}
                     </td>
                     <td className="px-2 py-1.5 whitespace-nowrap">
                       <span className={`inline-block rounded-none px-1 py-0.5 text-[8px] font-mono mr-1 ${sportBadge(t.sport)}`}>
@@ -282,6 +287,11 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                     </td>
                     <td className="px-2 py-1.5 whitespace-nowrap text-[10px] font-mono">
                       {legsLabel(t)}
+                      {(t as any).unwind_close_action && (
+                        <div className="text-[9px] text-[#ff8c00] mt-0.5">
+                          &#x21A9; {(t as any).unwind_close_action} &#x2192; {(t as any).unwind_reopen_action}
+                        </div>
+                      )}
                     </td>
                     <td className="px-2 py-1.5">
                       <span className={`rounded-none px-1 py-0.5 text-[9px] font-mono font-medium ${badge.bg} ${badge.text}`} title={badge.tooltip}>

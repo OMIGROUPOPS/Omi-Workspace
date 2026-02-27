@@ -163,17 +163,50 @@ class DashboardPusher:
             "specs": specs,
         }
 
-        # Size check: drop liquidity_stats if payload too large (Vercel 4.5MB limit)
+        # Size check: cascading drops to stay under Vercel 4MB limit
+        VERCEL_LIMIT = 3_800_000  # 3.8MB target (leave headroom)
         payload_json = json.dumps(payload)
         payload_size = len(payload_json)
-        if payload_size > 4_000_000:
-            liq_size = len(json.dumps(liquidity_stats))
-            print(
-                f"[DASH] WARNING: Payload {payload_size/1e6:.1f}MB exceeds 4MB limit "
-                f"(liquidity_stats={liq_size/1e6:.1f}MB), dropping liquidity_stats",
-                flush=True,
-            )
+
+        if payload_size > VERCEL_LIMIT:
+            print(f"[DASH] Payload {payload_size/1e6:.1f}MB > 3.8MB, trimming...", flush=True)
+
+            # Step 1: Drop liquidity_stats
             payload.pop("liquidity_stats", None)
+            payload_json = json.dumps(payload)
+            payload_size = len(payload_json)
+
+        if payload_size > VERCEL_LIMIT:
+            # Step 2: Drop spread_history (biggest culprit — grows with game count)
+            sh_size = len(json.dumps(payload.get("spread_history", [])))
+            print(f"[DASH]   Dropping spread_history ({sh_size/1e3:.0f}KB)", flush=True)
+            payload["spread_history"] = []
+            payload_json = json.dumps(payload)
+            payload_size = len(payload_json)
+
+        if payload_size > VERCEL_LIMIT:
+            # Step 3: Trim mapped_games to only active + traded games
+            mg = payload.get("mapped_games", [])
+            trimmed = [g for g in mg if g.get("status") == "Active" or g.get("traded")]
+            dropped = len(mg) - len(trimmed)
+            print(f"[DASH]   Trimmed mapped_games: {len(mg)} -> {len(trimmed)} (-{dropped} inactive)", flush=True)
+            payload["mapped_games"] = trimmed
+            payload_json = json.dumps(payload)
+            payload_size = len(payload_json)
+
+        if payload_size > VERCEL_LIMIT:
+            # Step 4: Trim spreads to top 200 by absolute spread
+            sp = payload.get("spreads", [])
+            sp_sorted = sorted(sp, key=lambda s: max(abs(s.get("spread_buy_pm", 0)), abs(s.get("spread_buy_k", 0))), reverse=True)
+            payload["spreads"] = sp_sorted[:200]
+            print(f"[DASH]   Trimmed spreads: {len(sp)} -> {len(payload[spreads])}", flush=True)
+            payload_json = json.dumps(payload)
+            payload_size = len(payload_json)
+
+        if payload_size > VERCEL_LIMIT:
+            # Step 5: Nuclear — drop mapped_games entirely
+            print(f"[DASH]   Still {payload_size/1e6:.1f}MB, dropping mapped_games entirely", flush=True)
+            payload["mapped_games"] = []
             payload_json = json.dumps(payload)
             payload_size = len(payload_json)
 
@@ -292,7 +325,7 @@ class DashboardPusher:
         for s in spreads:
             key = f"{s['game_id']}_{s['team']}"
             last_ts = self._spread_history_last.get(key, 0)
-            if now - last_ts < 30:
+            if now - last_ts < 120:  # 2min interval (was 30s) to keep payload small
                 continue  # skip — too soon for this game
             self._spread_history_last[key] = now
             self._spread_history.append({
@@ -316,6 +349,9 @@ class DashboardPusher:
             k: v for k, v in self._spread_history_last.items() if now - v < 3600
         }
 
+        # Hard cap: keep at most 2000 entries (prevents runaway growth)
+        if len(self._spread_history) > 2000:
+            self._spread_history = self._spread_history[-2000:]
         return self._spread_history
 
     # ── Trades ─────────────────────────────────────────────────────────────
@@ -676,6 +712,13 @@ class DashboardPusher:
                 "total_fees": round(total_fees, 4),
                 "unrealised_pnl": round(unrealised, 4),
                 "spread_cents": t.get("spread_cents", 0) or 0,
+                "arb_net_cents_per_contract": t.get("arb_net_cents_per_contract"),
+                "arb_net_total_cents": t.get("arb_net_total_cents"),
+                "unwind_close_action": t.get("unwind_close_action"),
+                "unwind_reopen_action": t.get("unwind_reopen_action"),
+                "unwind_timestamp": t.get("unwind_timestamp"),
+                "original_pm_side": t.get("original_pm_side"),
+                "new_pm_side": t.get("new_pm_side"),
                 "ceq": ceq,
                 "signal": signal,
             })
@@ -1467,6 +1510,31 @@ if __name__ == "__main__":
     mapped_games = pusher._build_mapped_games()
     mappings_refreshed = pusher._get_mappings_last_refreshed()
 
+    # Check if executor is running (tmux arb session has a live process)
+    import subprocess as _sp
+    _executor_running = False
+    try:
+        result = _sp.run(["tmux", "list-panes", "-t", "arb", "-F", "#{pane_pid}"], 
+                        capture_output=True, text=True, timeout=3)
+        if result.returncode == 0:
+            for pid in result.stdout.strip().split("\n"):
+                if pid:
+                    children = _sp.run(["pgrep", "-P", pid], capture_output=True, text=True, timeout=3)
+                    if children.stdout.strip():
+                        _executor_running = True
+                        break
+    except Exception:
+        pass
+
+    from datetime import datetime, timezone
+    _system_state = {
+        "ws_connected": _executor_running,  # Only true when executor is actually running
+        "executor_status": "RUNNING" if _executor_running else "STANDBY",
+        "last_push": datetime.now(timezone.utc).isoformat(),
+    }
+    if not _executor_running:
+        _system_state["note"] = "Executor paused. Positions hedged. Monitoring via cron."
+
     payload = {
         "trades": trades,
         "positions": positions,
@@ -1474,6 +1542,7 @@ if __name__ == "__main__":
         "balances": balances,
         "mapped_games": mapped_games,
         "mappings_last_refreshed": mappings_refreshed,
+        "system": _system_state,
     }
 
     print(f"Pushing {len(trades)} trades, {len(positions)} positions to {args.url}")

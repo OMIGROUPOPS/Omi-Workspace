@@ -145,6 +145,18 @@ export interface TradeEntry {
   reconciled_pnl?: number | null;
   skip_reason?: string;
   abort_reason?: string;
+  unwind_close_action?: string;
+  unwind_reopen_action?: string;
+  unwind_close_fill_cents?: number;
+  unwind_reopen_fill_cents?: number;
+  unwind_close_qty?: number;
+  unwind_reopen_qty?: number;
+  original_pm_side?: string;
+  new_pm_side?: string;
+  arb_net_cents_per_contract?: number;
+  arb_net_total_cents?: number;
+  unwind_timestamp?: string;
+  unwind_timestamp_est?: string;
 }
 
 export interface PnlSummary {

@@ -23,7 +23,7 @@ export type {
 
 // ── Local UI types ──────────────────────────────────────────────────────────
 
-export type TopTab = "monitor" | "pnl_history" | "depth" | "operations";
+export type TopTab = "monitor" | "live" | "pnl_history" | "depth" | "operations";
 export type TradeFilter = "all" | "live" | "paper";
 export type StatusFilter = "all" | "SUCCESS" | "PM_NO_FILL" | "EXITED" | "UNHEDGED" | "SKIPPED" | "DIRECTIONAL";
 export type BottomTab = "positions" | "mapped_games";

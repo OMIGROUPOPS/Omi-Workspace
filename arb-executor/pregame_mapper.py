@@ -522,6 +522,7 @@ PM_DISPLAY_ABBREV_TO_KALSHI = {
     "wcu": "WCU",      # Western Carolina (identity)
     "liu": "LIU",      # LIU (identity)
     "crei": "CREI",    # Creighton (override reverse mapping crei→CREIGH)
+    "bama": "ALA",     # Alabama (PM displayAbbrev=BAMA, Kalshi uses ALA)
 }
 
 PM_TO_KALSHI_ABBREV.update(PM_DISPLAY_ABBREV_TO_KALSHI)
@@ -1733,6 +1734,21 @@ class PreGameMapper:
                                             kalshi = abbrev.upper()
                                     pm_long_team = kalshi
                                     logger.debug(f"  {cache_key}: pm_long_team={pm_long_team} (from displayAbbrev={abbrev}, side[{idx}].long=True)")
+
+                                    # VALIDATION: pm_long_team MUST match a kalshi_tickers key
+                                    k_teams_in_map = set(k_game.get("kalshi_tickers", {}).keys())
+                                    if pm_long_team and k_teams_in_map and pm_long_team not in k_teams_in_map:
+                                        logger.warning(f"  {cache_key}: pm_long_team '{pm_long_team}' not in kalshi teams {k_teams_in_map} -- attempting recovery")
+                                        _recovered = False
+                                        for _kt in k_teams_in_map:
+                                            if _kt.lower() in pm_long_team.lower() or pm_long_team.lower() in _kt.lower():
+                                                logger.warning(f"  {cache_key}: Recovered pm_long_team {pm_long_team} -> {_kt} via substring")
+                                                pm_long_team = _kt
+                                                _recovered = True
+                                                break
+                                        if not _recovered:
+                                            logger.error(f"  {cache_key}: CANNOT resolve pm_long_team '{pm_long_team}' -- setting empty to trigger guard")
+                                            pm_long_team = ""
 
                 # Also check top-level market_data for token fields
                 if not token_ids:

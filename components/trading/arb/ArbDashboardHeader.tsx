@@ -20,6 +20,7 @@ interface Props {
 
 const TABS: { key: TopTab; label: string }[] = [
   { key: "monitor", label: "MONITOR" },
+  { key: "live", label: "LIVE" },
   { key: "pnl_history", label: "P&L" },
   { key: "depth", label: "DEPTH" },
   { key: "operations", label: "OPS" },

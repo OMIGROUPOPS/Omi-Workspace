@@ -5,6 +5,7 @@ import { useArbData } from "./arb/hooks/useArbData";
 import { useAlerts } from "./arb/hooks/useAlerts";
 import { ArbDashboardHeader } from "./arb/ArbDashboardHeader";
 import { MonitorTab } from "./arb/tabs/MonitorTab";
+import { LiveGamesTab } from "./arb/tabs/LiveGamesTab";
 import { PnlHistoryTab } from "./arb/tabs/PnlHistoryTab";
 import { DepthTab } from "./arb/tabs/DepthTab";
 import { OperationsTab } from "./arb/tabs/OperationsTab";
@@ -37,6 +38,7 @@ export default function ArbDashboard() {
       />
 
       {data.topTab === "monitor" && <MonitorTab data={data} />}
+      {data.topTab === "live" && <LiveGamesTab data={data} />}
       {data.topTab === "pnl_history" && <PnlHistoryTab data={data} />}
       {data.topTab === "depth" && <DepthTab data={data} />}
       {data.topTab === "operations" && <OperationsTab data={data} />}

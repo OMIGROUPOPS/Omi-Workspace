@@ -114,17 +114,33 @@ const NAV_SECTIONS: NavSection[] = [
 
 function Logo() {
   return (
-    <a href="/edge/portal/sports" className="flex items-center gap-2.5 cursor-pointer">
-      <div className="w-7 h-7 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded flex items-center justify-center flex-shrink-0">
-        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-        </svg>
-      </div>
-      <div className="flex flex-col">
-        <span className="text-sm font-bold text-[#1f2937] leading-tight tracking-tight">
-          OMI <span className="text-emerald-500">EDGE</span>
+    <a href="/edge/portal/sports" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+      <img
+        src="/hecate-logo.png"
+        alt="OMI"
+        style={{ width: '28px', height: '28px', borderRadius: '50%', objectFit: 'cover' }}
+      />
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <span style={{
+          fontFamily: "'Cinzel', serif",
+          fontSize: '12px',
+          fontWeight: 600,
+          letterSpacing: '0.12em',
+          color: '#e7e0d5',
+          lineHeight: 1.2,
+        }}>
+          OMI <span style={{ color: '#b59b63' }}>TERMINAL</span>
         </span>
-        <span className="text-[9px] font-mono text-[#9ca3af] uppercase tracking-widest leading-tight">Terminal</span>
+        <span style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '8px',
+          color: 'rgba(181,155,99,0.35)',
+          textTransform: 'uppercase' as const,
+          letterSpacing: '0.2em',
+          lineHeight: 1.2,
+        }}>
+          Analytics
+        </span>
       </div>
     </a>
   );
@@ -132,28 +148,46 @@ function Logo() {
 
 function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; onClose: () => void; onLogout: () => void; userEmail: string | null }) {
   const pathname = usePathname();
-  // Tier detection: default to 1 if email not loaded yet (never block navigation)
   const userTier = isTier2Account(userEmail) ? 2 : 1;
   console.log('[Layout] userEmail:', userEmail, '| userTier:', userTier);
 
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 bg-black/20 z-40 lg:hidden backdrop-blur-sm" onClick={onClose} />
+        <div
+          style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 40, backdropFilter: 'blur(4px)' }}
+          className="lg:hidden"
+          onClick={onClose}
+        />
       )}
 
       <aside
         className={`
-          fixed top-0 left-0 z-50 h-full w-52 bg-white border-r border-[#e2e4e8]
+          fixed top-0 left-0 z-50 h-full w-52
           transform transition-transform duration-200 ease-in-out
           lg:translate-x-0 lg:static lg:z-auto flex flex-col
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
+        style={{
+          background: '#0d0d0d',
+          borderRight: '1px solid #1a1a1a',
+        }}
       >
         {/* Logo */}
-        <div className="h-14 px-3 flex items-center border-b border-[#e2e4e8] flex-shrink-0">
+        <div style={{
+          height: '56px',
+          padding: '0 12px',
+          display: 'flex',
+          alignItems: 'center',
+          borderBottom: '1px solid #1a1a1a',
+          flexShrink: 0,
+        }}>
           <Logo />
-          <button onClick={onClose} className="ml-auto lg:hidden p-1.5 text-[#6b7280] hover:text-[#1f2937]">
+          <button
+            onClick={onClose}
+            className="ml-auto lg:hidden"
+            style={{ padding: '6px', color: 'rgba(181,155,99,0.4)' }}
+          >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -161,13 +195,22 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-2 overflow-y-auto">
+        <nav style={{ flex: 1, padding: '8px', overflowY: 'auto' }}>
           {NAV_SECTIONS.map((section, sIdx) => (
-            <div key={section.label} className={sIdx > 0 ? 'mt-4' : ''}>
-              <div className="px-2.5 mb-1.5">
-                <span className="text-[9px] font-mono text-[#9ca3af] uppercase tracking-widest">{section.label}</span>
+            <div key={section.label} style={{ marginTop: sIdx > 0 ? '16px' : '0' }}>
+              <div style={{ padding: '0 10px', marginBottom: '6px' }}>
+                <span style={{
+                  fontFamily: "'Cinzel', serif",
+                  fontSize: '9px',
+                  fontWeight: 500,
+                  color: 'rgba(181,155,99,0.3)',
+                  textTransform: 'uppercase' as const,
+                  letterSpacing: '0.2em',
+                }}>
+                  {section.label}
+                </span>
               </div>
-              <div className="space-y-0.5">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
                 {section.items.map((item) => {
                   const isActive = pathname.startsWith(item.href);
                   const isLocked = item.tier && item.tier > userTier;
@@ -176,22 +219,61 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
                     <a
                       key={item.key}
                       href={isLocked ? '/edge/pricing' : item.href}
-                      className={`
-                        flex items-center gap-2 px-2.5 py-1.5 rounded-md transition-all text-[13px]
-                        ${isActive
-                          ? 'bg-[#f0f1f3] text-[#1f2937] border border-[#e2e4e8]'
-                          : 'text-[#6b7280] hover:text-[#1f2937] hover:bg-[#f4f5f7] border border-transparent'
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        padding: '7px 10px',
+                        borderRadius: '3px',
+                        fontSize: '13px',
+                        fontFamily: "'Cormorant Garamond', Georgia, serif",
+                        fontWeight: 500,
+                        textDecoration: 'none',
+                        transition: 'all 0.2s ease',
+                        color: isActive ? '#e7e0d5' : 'rgba(181,155,99,0.45)',
+                        background: isActive ? 'rgba(181,155,99,0.08)' : 'transparent',
+                        borderLeft: isActive ? '2px solid #b59b63' : '2px solid transparent',
+                        opacity: isLocked ? 0.35 : 1,
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isActive) {
+                          e.currentTarget.style.color = '#e7e0d5';
+                          e.currentTarget.style.background = 'rgba(181,155,99,0.04)';
                         }
-                        ${isLocked ? 'opacity-50' : ''}
-                      `}
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isActive) {
+                          e.currentTarget.style.color = 'rgba(181,155,99,0.45)';
+                          e.currentTarget.style.background = 'transparent';
+                        }
+                      }}
                     >
                       {item.icon}
-                      <span className="font-medium flex-1 truncate">{item.label}</span>
+                      <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.label}</span>
                       {isLocked && (
-                        <span className="text-[8px] font-mono bg-[#f0f1f3] text-[#9ca3af] px-1 py-0.5 rounded flex-shrink-0 tracking-wider border border-[#e2e4e8]">PRO</span>
+                        <span style={{
+                          fontFamily: "'JetBrains Mono', monospace",
+                          fontSize: '7px',
+                          background: 'rgba(181,155,99,0.08)',
+                          color: 'rgba(181,155,99,0.35)',
+                          padding: '2px 5px',
+                          borderRadius: '2px',
+                          letterSpacing: '0.15em',
+                          border: '1px solid rgba(181,155,99,0.1)',
+                          flexShrink: 0,
+                        }}>
+                          PRO
+                        </span>
                       )}
                       {isActive && (
-                        <div className="w-1 h-1 rounded-full bg-emerald-500 flex-shrink-0" />
+                        <div style={{
+                          width: '4px',
+                          height: '4px',
+                          borderRadius: '50%',
+                          background: '#b59b63',
+                          boxShadow: '0 0 6px rgba(181,155,99,0.4)',
+                          flexShrink: 0,
+                        }} />
                       )}
                     </a>
                   );
@@ -202,38 +284,132 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
         </nav>
 
         {/* Status Footer */}
-        <div className="p-2 border-t border-[#e2e4e8] flex-shrink-0 space-y-2">
+        <div style={{
+          padding: '8px',
+          borderTop: '1px solid #1a1a1a',
+          flexShrink: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '8px',
+        }}>
           {/* User Info */}
           {userEmail && (
-            <div className="bg-[#f4f5f7] rounded-md p-2.5">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-emerald-500/20 rounded flex items-center justify-center flex-shrink-0">
-                  <span className="text-[9px] font-mono font-bold text-emerald-600">
+            <div style={{
+              background: 'rgba(181,155,99,0.04)',
+              border: '1px solid rgba(181,155,99,0.08)',
+              borderRadius: '3px',
+              padding: '10px',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{
+                  width: '24px',
+                  height: '24px',
+                  background: 'rgba(181,155,99,0.1)',
+                  borderRadius: '3px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}>
+                  <span style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: '8px',
+                    fontWeight: 700,
+                    color: '#b59b63',
+                  }}>
                     {userEmail.slice(0, 2).toUpperCase()}
                   </span>
                 </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[10px] text-[#6b7280] truncate">{userEmail}</p>
-                  <p className="text-[8px] font-mono text-[#9ca3af] uppercase">Beta Access</p>
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <p style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: '9px',
+                    color: 'rgba(181,155,99,0.5)',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                    margin: 0,
+                  }}>
+                    {userEmail}
+                  </p>
+                  <p style={{
+                    fontFamily: "'Cinzel', serif",
+                    fontSize: '7px',
+                    color: 'rgba(181,155,99,0.25)',
+                    textTransform: 'uppercase' as const,
+                    letterSpacing: '0.15em',
+                    margin: 0,
+                  }}>
+                    Beta Access
+                  </p>
                 </div>
               </div>
             </div>
           )}
 
           {/* System Status */}
-          <div className="bg-[#f4f5f7] rounded-md p-2.5">
-            <div className="flex items-center gap-1.5 mb-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50" />
-              <span className="text-[9px] font-mono text-[#6b7280] uppercase tracking-wider">System Online</span>
+          <div style={{
+            background: 'rgba(181,155,99,0.04)',
+            border: '1px solid rgba(181,155,99,0.08)',
+            borderRadius: '3px',
+            padding: '10px',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+              <div style={{
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                background: '#22c55e',
+                boxShadow: '0 0 6px rgba(34,197,94,0.4)',
+              }} />
+              <span style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: '8px',
+                color: 'rgba(181,155,99,0.4)',
+                textTransform: 'uppercase' as const,
+                letterSpacing: '0.15em',
+              }}>
+                System Online
+              </span>
             </div>
-            <div className="grid grid-cols-2 gap-1.5">
-              <div className="bg-white rounded px-1.5 py-1 border border-[#e2e4e8]">
-                <span className="text-[8px] font-mono text-[#9ca3af] block">TIER</span>
-                <span className="text-[10px] font-mono text-emerald-600 font-semibold">{userTier}</span>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
+              <div style={{
+                background: 'rgba(0,0,0,0.3)',
+                borderRadius: '2px',
+                padding: '4px 6px',
+                border: '1px solid rgba(181,155,99,0.06)',
+              }}>
+                <span style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '7px',
+                  color: 'rgba(181,155,99,0.25)',
+                  display: 'block',
+                }}>TIER</span>
+                <span style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '10px',
+                  color: '#b59b63',
+                  fontWeight: 600,
+                }}>{userTier}</span>
               </div>
-              <div className="bg-white rounded px-1.5 py-1 border border-[#e2e4e8]">
-                <span className="text-[8px] font-mono text-[#9ca3af] block">API</span>
-                <span className="text-[10px] font-mono text-emerald-600 font-semibold">OK</span>
+              <div style={{
+                background: 'rgba(0,0,0,0.3)',
+                borderRadius: '2px',
+                padding: '4px 6px',
+                border: '1px solid rgba(181,155,99,0.06)',
+              }}>
+                <span style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '7px',
+                  color: 'rgba(181,155,99,0.25)',
+                  display: 'block',
+                }}>API</span>
+                <span style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '10px',
+                  color: '#22c55e',
+                  fontWeight: 600,
+                }}>OK</span>
               </div>
             </div>
           </div>
@@ -241,7 +417,31 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
           {/* Upgrade */}
           <Link
             href="/edge/pricing"
-            className="block w-full text-center text-[10px] font-mono font-medium text-[#1f2937] bg-[#f0f1f3] hover:bg-[#e2e4e8] border border-[#e2e4e8] rounded-md py-1.5 transition-colors uppercase tracking-wider"
+            style={{
+              display: 'block',
+              width: '100%',
+              textAlign: 'center',
+              fontFamily: "'Cinzel', serif",
+              fontSize: '9px',
+              fontWeight: 500,
+              color: '#b59b63',
+              background: 'transparent',
+              border: '1px solid rgba(181,155,99,0.15)',
+              borderRadius: '2px',
+              padding: '7px 0',
+              textTransform: 'uppercase' as const,
+              letterSpacing: '0.18em',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(181,155,99,0.06)';
+              e.currentTarget.style.borderColor = 'rgba(181,155,99,0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.borderColor = 'rgba(181,155,99,0.15)';
+            }}
           >
             Upgrade Plan
           </Link>
@@ -249,7 +449,35 @@ function Sidebar({ isOpen, onClose, onLogout, userEmail }: { isOpen: boolean; on
           {/* Logout */}
           <button
             onClick={onLogout}
-            className="w-full flex items-center justify-center gap-1.5 text-[10px] font-mono font-medium text-[#9ca3af] hover:text-red-500 bg-[#f4f5f7] hover:bg-red-50 border border-[#e2e4e8] hover:border-red-200 rounded-md py-1.5 transition-colors uppercase tracking-wider"
+            style={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+              fontFamily: "'Cinzel', serif",
+              fontSize: '9px',
+              fontWeight: 500,
+              color: 'rgba(181,155,99,0.3)',
+              background: 'transparent',
+              border: '1px solid rgba(181,155,99,0.08)',
+              borderRadius: '2px',
+              padding: '7px 0',
+              textTransform: 'uppercase' as const,
+              letterSpacing: '0.18em',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = '#c47070';
+              e.currentTarget.style.borderColor = 'rgba(196,112,112,0.25)';
+              e.currentTarget.style.background = 'rgba(196,112,112,0.04)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = 'rgba(181,155,99,0.3)';
+              e.currentTarget.style.borderColor = 'rgba(181,155,99,0.08)';
+              e.currentTarget.style.background = 'transparent';
+            }}
           >
             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -282,56 +510,172 @@ function Header({ onMenuClick }: { onMenuClick: () => void }) {
   };
 
   return (
-    <header className="h-14 bg-white border-b border-[#e2e4e8] px-4 flex items-center justify-between sticky top-0 z-30">
-      <div className="flex items-center gap-4">
-        <button onClick={onMenuClick} className="lg:hidden p-2 text-[#6b7280] hover:text-[#1f2937] hover:bg-gray-100 rounded-lg transition-all">
+    <header style={{
+      height: '56px',
+      background: '#0d0d0d',
+      borderBottom: '1px solid #1a1a1a',
+      padding: '0 16px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      position: 'sticky',
+      top: 0,
+      zIndex: 30,
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <button
+          onClick={onMenuClick}
+          className="lg:hidden"
+          style={{
+            padding: '8px',
+            color: 'rgba(181,155,99,0.4)',
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            borderRadius: '4px',
+          }}
+        >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
 
-        <div className="flex items-center gap-3">
-          <div className="w-1 h-5 bg-emerald-500 rounded-full" />
-          <span className="text-sm font-semibold text-[#1f2937]">{getPageTitle()}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{
+            width: '3px',
+            height: '18px',
+            background: 'linear-gradient(180deg, #b59b63, rgba(181,155,99,0.3))',
+            borderRadius: '2px',
+          }} />
+          <span style={{
+            fontFamily: "'Cinzel', serif",
+            fontSize: '13px',
+            fontWeight: 500,
+            color: '#e7e0d5',
+            letterSpacing: '0.08em',
+          }}>
+            {getPageTitle()}
+          </span>
         </div>
 
-        {/* Breadcrumb for game pages */}
         {pathname.includes('/sports/game/') && (
-          <div className="hidden sm:flex items-center gap-2 text-xs">
-            <span className="text-[#9ca3af]">/</span>
-            <Link href="/edge/portal/sports" className="text-[#6b7280] hover:text-emerald-500 transition-colors">
+          <div className="hidden sm:flex" style={{ alignItems: 'center', gap: '8px', fontSize: '12px' }}>
+            <span style={{ color: 'rgba(181,155,99,0.2)' }}>/</span>
+            <Link
+              href="/edge/portal/sports"
+              style={{
+                color: 'rgba(181,155,99,0.4)',
+                textDecoration: 'none',
+                fontFamily: "'Cormorant Garamond', serif",
+                transition: 'color 0.2s',
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#b59b63'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(181,155,99,0.4)'; }}
+            >
               Markets
             </Link>
           </div>
         )}
       </div>
 
-      <div className="flex items-center gap-3">
-        {/* Live Clock - Bloomberg style */}
-        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-[#f4f5f7] rounded-lg border border-[#e2e4e8]">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-xs font-mono text-[#6b7280]" suppressHydrationWarning>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        {/* Live Clock */}
+        <div className="hidden sm:flex" style={{
+          alignItems: 'center',
+          gap: '8px',
+          padding: '6px 12px',
+          background: 'rgba(181,155,99,0.04)',
+          borderRadius: '3px',
+          border: '1px solid rgba(181,155,99,0.08)',
+        }}>
+          <div style={{
+            width: '5px',
+            height: '5px',
+            borderRadius: '50%',
+            background: '#22c55e',
+            boxShadow: '0 0 6px rgba(34,197,94,0.4)',
+            animation: 'omiClockPulse 2s ease-in-out infinite',
+          }} />
+          <span style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '11px',
+            color: 'rgba(181,155,99,0.6)',
+          }} suppressHydrationWarning>
             {currentTime ? currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) : '--:--:--'}
           </span>
-          <span className="text-[10px] font-mono text-[#9ca3af]">ET</span>
+          <span style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '9px',
+            color: 'rgba(181,155,99,0.25)',
+          }}>ET</span>
         </div>
 
-        <div className="w-px h-6 bg-[#e2e4e8]" />
+        <div style={{ width: '1px', height: '24px', background: 'rgba(181,155,99,0.08)' }} />
 
         {/* Notification */}
-        <button className="p-2 text-[#6b7280] hover:text-[#1f2937] hover:bg-gray-100 rounded-lg relative transition-all">
+        <button
+          style={{
+            padding: '8px',
+            color: 'rgba(181,155,99,0.35)',
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            borderRadius: '4px',
+            position: 'relative',
+            transition: 'color 0.2s',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = '#b59b63'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(181,155,99,0.35)'; }}
+        >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
           </svg>
-          <span className="absolute top-1 right-1 w-2 h-2 bg-emerald-500 rounded-full border-2 border-white" />
+          <span style={{
+            position: 'absolute',
+            top: '4px',
+            right: '4px',
+            width: '6px',
+            height: '6px',
+            background: '#b59b63',
+            borderRadius: '50%',
+            border: '1.5px solid #0d0d0d',
+          }} />
         </button>
 
-        {/* User */}
-        <button className="flex items-center gap-2 px-2 py-1.5 hover:bg-gray-100 rounded-lg transition-all">
-          <div className="w-7 h-7 bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 border border-emerald-500/30 rounded-lg flex items-center justify-center">
-            <span className="text-[10px] font-mono font-bold text-emerald-600">OG</span>
+        {/* User Avatar */}
+        <button
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '4px 8px',
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            borderRadius: '4px',
+            transition: 'background 0.2s',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(181,155,99,0.04)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+        >
+          <div style={{
+            width: '28px',
+            height: '28px',
+            background: 'rgba(181,155,99,0.08)',
+            border: '1px solid rgba(181,155,99,0.15)',
+            borderRadius: '4px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <span style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '9px',
+              fontWeight: 700,
+              color: '#b59b63',
+            }}>OG</span>
           </div>
-          <svg className="w-3 h-3 text-[#9ca3af]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'rgba(181,155,99,0.25)' }}>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
@@ -366,22 +710,84 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
   // Show loading state while checking auth
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#ebedf0] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 border-2 border-emerald-500/30 border-t-emerald-500 rounded-full animate-spin" />
-          <span className="text-xs font-mono text-[#9ca3af] uppercase tracking-wider">Loading...</span>
+      <div style={{
+        minHeight: '100vh',
+        background: '#0a0a0a',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+          <div style={{
+            width: '32px',
+            height: '32px',
+            border: '2px solid rgba(181,155,99,0.15)',
+            borderTop: '2px solid #b59b63',
+            borderRadius: '50%',
+            animation: 'omiSpin 1s linear infinite',
+          }} />
+          <span style={{
+            fontFamily: "'Cinzel', serif",
+            fontSize: '10px',
+            color: 'rgba(181,155,99,0.3)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.2em',
+          }}>Loading...</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#ebedf0] text-[#1f2937] flex">
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} onLogout={handleLogout} userEmail={userEmail} />
-      <div className="flex-1 flex flex-col min-w-0">
-        <Header onMenuClick={() => setSidebarOpen(true)} />
-        <main className="flex-1 overflow-auto">{children}</main>
+    <>
+      {/* Nuclear CSS reset — kill all Tailwind light-mode leaks */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+        .omi-terminal-shell,
+        .omi-terminal-shell *,
+        .omi-terminal-shell *::before,
+        .omi-terminal-shell *::after {
+          border-color: #1a1a1a !important;
+        }
+
+        .omi-terminal-shell .bg-white,
+        .omi-terminal-shell .bg-gray-50,
+        .omi-terminal-shell .bg-gray-100 {
+          background-color: #0d0d0d !important;
+        }
+
+        .omi-terminal-shell .border-gray-200,
+        .omi-terminal-shell .border-\\[\\#e2e4e8\\] {
+          border-color: #1a1a1a !important;
+        }
+
+        @keyframes omiSpin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        @keyframes omiClockPulse {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 1; }
+        }
+      `}</style>
+
+      <div
+        className="omi-terminal-shell"
+        style={{
+          minHeight: '100vh',
+          background: '#0a0a0a',
+          color: '#e7e0d5',
+          display: 'flex',
+        }}
+      >
+        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} onLogout={handleLogout} userEmail={userEmail} />
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+          <Header onMenuClick={() => setSidebarOpen(true)} />
+          <main style={{ flex: 1, overflowY: 'auto', background: '#0a0a0a' }}>{children}</main>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

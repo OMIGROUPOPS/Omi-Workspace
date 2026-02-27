@@ -48,8 +48,8 @@ export default function LoginPage() {
           left: 0;
           right: 0;
           bottom: 0;
-          background:
-            radial-gradient(ellipse at 50% 30%, rgba(139, 109, 63, 0.06) 0%, transparent 50%);
+          background: url('/internal-backdrop.jpg') center center / cover no-repeat;
+          opacity: 0.25;
           pointer-events: none;
         }
 
@@ -60,8 +60,7 @@ export default function LoginPage() {
           left: 0;
           right: 0;
           bottom: 0;
-          opacity: 0.03;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+          background: radial-gradient(ellipse at 50% 50%, transparent 20%, rgba(12, 10, 9, 0.85) 70%);
           pointer-events: none;
         }
 

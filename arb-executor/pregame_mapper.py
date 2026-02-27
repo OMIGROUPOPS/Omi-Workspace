@@ -1232,6 +1232,69 @@ class PreGameMapper:
             logger.info(f"  Kalshi-only: {self.stats['unmatched_kalshi']}")
             logger.info(f"  PM-only: {self.stats['unmatched_pm']}")
 
+            # UFC fuzzy matching: when cache keys don't match due to abbreviation
+            # differences (e.g., Kalshi 'DEA' vs PM slug 'SIL' for same fighter),
+            # try matching by comparing full fighter names.
+            kalshi_only = set(kalshi_by_cache_key.keys()) - matched_keys
+            pm_only = set(pm_by_cache_key.keys()) - matched_keys
+            ufc_kalshi_unmatched = {k: v for k, v in kalshi_by_cache_key.items()
+                                   if k in kalshi_only and k.startswith('ufc:')}
+            ufc_pm_unmatched = {k: v for k, v in pm_by_cache_key.items()
+                               if k in pm_only and k.startswith('ufc:')}
+
+            if ufc_kalshi_unmatched and ufc_pm_unmatched:
+                logger.info(f"  UFC fuzzy matching: {len(ufc_kalshi_unmatched)} Kalshi / {len(ufc_pm_unmatched)} PM unmatched")
+                for k_key, k_game in ufc_kalshi_unmatched.items():
+                    # Get Kalshi fighter full names from yes_sub_title
+                    k_names = k_game.get('kalshi_names', {})
+                    if not k_names or len(k_names) < 2:
+                        continue
+                    k_name_set = {n.lower().strip() for n in k_names.values()}
+
+                    for pm_key, pm_info in ufc_pm_unmatched.items():
+                        # Compare dates first
+                        k_date = k_key.split(':')[-1]
+                        pm_date = pm_key.split(':')[-1]
+                        if k_date != pm_date:
+                            continue
+
+                        # Get PM fighter names from outcomes
+                        outcomes = pm_info.get('outcomes', [])
+                        if isinstance(outcomes, str):
+                            try:
+                                import json as _json
+                                outcomes = _json.loads(outcomes)
+                            except Exception:
+                                outcomes = []
+                        pm_name_set = {str(o).lower().strip() for o in outcomes[:2]}
+
+                        # Check for name overlap (at least partial last-name match)
+                        name_matches = 0
+                        for kn in k_name_set:
+                            kn_parts = kn.split()
+                            k_last = kn_parts[-1] if kn_parts else ''
+                            for pn in pm_name_set:
+                                pn_parts = pn.split()
+                                p_last = pn_parts[-1] if pn_parts else ''
+                                if k_last and p_last and (k_last == p_last or kn == pn):
+                                    name_matches += 1
+                                    break
+
+                        if name_matches >= 2:
+                            # Both fighters matched by name — remap PM to use Kalshi cache key
+                            logger.info(f"  UFC fuzzy match: {pm_key} -> {k_key} (name match)")
+                            pm_by_cache_key[k_key] = pm_info
+                            matched_keys.add(k_key)
+                            break  # Move to next Kalshi game
+
+                # Recount after fuzzy matching
+                old_matched = self.stats["matched"]
+                self.stats["matched"] = len(matched_keys)
+                if self.stats["matched"] > old_matched:
+                    self.stats["unmatched_kalshi"] = len(kalshi_by_cache_key) - len(matched_keys)
+                    self.stats["unmatched_pm"] = len(pm_by_cache_key) - len(matched_keys) + (self.stats["matched"] - old_matched)
+                    logger.info(f"  After UFC fuzzy: {self.stats['matched']} matched (+{self.stats['matched'] - old_matched})")
+
             # Debug key analysis
             if debug_keys:
                 print("\n" + "="*80)

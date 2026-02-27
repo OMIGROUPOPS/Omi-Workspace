@@ -303,9 +303,9 @@ function UnifiedChart({
   const isFavorable = (fair: number, book: number) => {
     if (isTotal) return trackingSide === 'over' ? fair > book : fair < book;
     if (isML) {
-      // For moneyline: favorable when book is cheaper (lower absolute odds) than fair
-      // e.g., book -124 vs fair -130: abs(124) < abs(130) = true = cheaper price = favorable
-      return Math.abs(book) < Math.abs(fair);
+      // For moneyline: convert to implied probability, favorable when book implies
+      // lower probability than fair (better payout). Works across sign boundaries.
+      return americanToImplied(book) < americanToImplied(fair);
     }
     // For spreads: favorable when book gives more points than fair (abs comparison)
     // e.g., book -2.8 vs fair -2.5: abs(-2.8) > abs(-2.5) = true = favorable for favorite bettors

@@ -1047,8 +1047,8 @@ def calculate_optimal_size(
         else:  # BUY_K_SELL_PM
             spread = (100 - pm_cost) - k_price
 
-        # Compute fees for this contract
-        fees = Config.kalshi_fee_cents + (pm_cost * Config.pm_us_fee_rate) + Config.expected_slippage_cents
+        # Compute fees for this contract (including Kalshi buffer cost)
+        fees = Config.kalshi_fee_cents + (pm_cost * Config.pm_us_fee_rate) + Config.expected_slippage_cents + Config.price_buffer_cents
         marginal_profit = spread - fees
 
         if marginal_profit < Config.min_profit_per_contract:
@@ -1133,7 +1133,7 @@ def calculate_optimal_size(
                 sp = kp - pc
             else:
                 sp = (100 - pc) - kp
-            f = Config.kalshi_fee_cents + (pc * Config.pm_us_fee_rate) + Config.expected_slippage_cents
+            f = Config.kalshi_fee_cents + (pc * Config.pm_us_fee_rate) + Config.expected_slippage_cents + Config.price_buffer_cents
             net = sp - f
 
             if net < Config.min_profit_per_contract:
@@ -1247,7 +1247,7 @@ def calculate_optimal_size(
                 sp = kp - pc
             else:
                 sp = (100 - pc) - kp
-            fees = Config.kalshi_fee_cents + (pc * Config.pm_us_fee_rate) + Config.expected_slippage_cents
+            fees = Config.kalshi_fee_cents + (pc * Config.pm_us_fee_rate) + Config.expected_slippage_cents + Config.price_buffer_cents
             total_profit += sp - fees
             total_k_price += kp
             total_pm_cost += pc

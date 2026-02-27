@@ -69,7 +69,7 @@ class Config:
     # ==========================================================================
     # PRICE BUFFERS
     # ==========================================================================
-    price_buffer_cents: int = 2         # Kalshi limit order buffer (2c absorbs 1-tick moves during PM fill latency)
+    price_buffer_cents: int = 1         # Kalshi limit order buffer (1c absorbs tick move without killing 4c spreads)
     pm_price_buffer_cents: int = 3      # PM limit order buffer (3c to account for latency)
 
     # ==========================================================================
@@ -222,7 +222,7 @@ class Config:
     @classmethod
     def get_min_execution_spread(cls) -> int:
         """Calculate minimum spread needed for profitable execution."""
-        return cls.kalshi_fee_cents + 1 + cls.expected_slippage_cents + cls.min_profit_cents
+        return cls.kalshi_fee_cents + 1 + cls.expected_slippage_cents + cls.min_profit_cents + cls.price_buffer_cents
 
     @classmethod
     def summary(cls) -> str:

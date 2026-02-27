@@ -1709,12 +1709,14 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
         pm_depth = pm_books.get(arb.pm_slug, {})
 
         if pm_depth and pm_depth.get('bids') and pm_depth.get('asks'):
+            # Juicy spreads get higher contract cap
+            effective_max = Config.max_contracts_juicy if arb.net_spread >= Config.juicy_spread_threshold else Config.max_contracts
             sizing = calculate_optimal_size(
                 kalshi_book=kalshi_book, pm_depth=pm_depth,
                 direction=arb.direction, is_long_team=is_long_team,
                 pm_balance_cents=int(live_balances.get('pm_balance', 0) * 100),
                 k_balance_cents=int(live_balances.get('kalshi_balance', 0) * 100),
-                max_contracts=Config.max_contracts,
+                max_contracts=effective_max,
             )
             optimal_size = sizing['size']
         else:

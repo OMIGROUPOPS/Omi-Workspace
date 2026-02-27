@@ -1528,8 +1528,15 @@ class PreGameMapper:
                         team_info = side.get("team", {}) if isinstance(side, dict) else {}
                         if not team_info:
                             continue
-                        abbrev = (team_info.get("displayAbbreviation", "")
-                                  or team_info.get("abbreviation", ""))
+                        # UFC: displayAbbreviation is full last name (e.g. 'Moutinho'),
+                        # abbreviation is the 6-char slug code (e.g. 'krimou').
+                        # Use abbreviation for UFC to extract correct last-3-chars.
+                        if k_game["sport"] == "ufc":
+                            abbrev = (team_info.get("abbreviation", "")
+                                      or team_info.get("displayAbbreviation", ""))
+                        else:
+                            abbrev = (team_info.get("displayAbbreviation", "")
+                                      or team_info.get("abbreviation", ""))
                         team_name = team_info.get("name", "")
                         if team_name and abbrev:
                             # UFC: use last 3 chars of abbreviation (same as PM slug logic)
@@ -1640,8 +1647,13 @@ class PreGameMapper:
                             # Check if this side is the "long" side
                             if side.get("long") is True:
                                 team_info = side.get("team", {})
-                                abbrev = (team_info.get("displayAbbreviation", "")
-                                          or team_info.get("abbreviation", ""))
+                                # UFC: use abbreviation (6-char slug code), not displayAbbreviation (full last name)
+                                if k_game["sport"] == "ufc":
+                                    abbrev = (team_info.get("abbreviation", "")
+                                              or team_info.get("displayAbbreviation", ""))
+                                else:
+                                    abbrev = (team_info.get("displayAbbreviation", "")
+                                              or team_info.get("abbreviation", ""))
                                 if abbrev:
                                     # Map PM abbreviation to Kalshi abbreviation
                                     sport_ov = SPORT_PM_OVERRIDES.get(k_game["sport"], {})
@@ -1677,7 +1689,11 @@ class PreGameMapper:
                         _ti = _side.get("team", {}) if isinstance(_side, dict) else {}
                         if not _ti:
                             continue
-                        _ab = (_ti.get("displayAbbreviation", "") or _ti.get("abbreviation", ""))
+                        # UFC: use abbreviation (6-char slug code), not displayAbbreviation (full last name)
+                        if k_game.get("sport") == "ufc":
+                            _ab = (_ti.get("abbreviation", "") or _ti.get("displayAbbreviation", ""))
+                        else:
+                            _ab = (_ti.get("displayAbbreviation", "") or _ti.get("abbreviation", ""))
                         _fn = _ti.get("name", "")
                         if _ab and _fn:
                             # UFC: use last 3 chars, skip normalize_team_abbrev

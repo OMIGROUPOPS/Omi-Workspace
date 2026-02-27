@@ -477,6 +477,7 @@ class DashboardPusher:
                         "unwind_qty": t.get("unwind_qty", 0),
                         "pm_fee": t.get("pm_fee", 0),
                         "k_fee": t.get("k_fee", 0),
+                        "estimated_costs_breakdown": t.get("estimated_costs_breakdown"),
                         "execution_time_ms": t.get("execution_time_ms", 0),
                         "pm_order_ms": t.get("pm_order_ms", 0),
                         "k_order_ms": t.get("k_order_ms", 0),

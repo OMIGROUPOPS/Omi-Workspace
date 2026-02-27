@@ -113,6 +113,14 @@ export interface TradeEntry {
   tier?: string;
   pm_fee?: number;
   k_fee?: number;
+  estimated_costs_breakdown?: {
+    raw_spread: number;
+    k_fee: number;
+    pm_fee: number;
+    slippage: number;
+    total_costs: number;
+    net_cents: number;
+  } | null;
   settlement_pnl?: number | null;
   settlement_time?: string | null;
   settlement_winner_index?: number | null;

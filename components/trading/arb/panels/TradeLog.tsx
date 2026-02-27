@@ -42,12 +42,18 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
   const pmLink = pmUrl(t.pm_slug);
   const kLink = kalshiUrl(t.kalshi_ticker);
 
+  // Cost breakdown
+  const ecb = t.estimated_costs_breakdown;
+  const kFeeCents = ecb?.k_fee ?? (typeof t.k_fee === 'number' ? t.k_fee : 0);
+  const pmFeeCents = ecb?.pm_fee ?? (typeof t.pm_fee === 'number' ? t.pm_fee : 0);
+  const netCents = ecb?.net_cents ?? (t.estimated_net_profit_cents || 0);
+  const totalCosts = ecb?.total_costs ?? (kFeeCents + pmFeeCents);
+
   // Determine what we did on each exchange
   let pmAction: string, pmTeam: string, pmPrice: string, pmSide: string;
   let kAction: string, kTeam: string, kPrice: string, kSide: string;
 
   if (t.direction === "BUY_PM_SELL_K") {
-    // PM: buy team YES, K: sell opp YES (= buy opp NO)
     if (t.pm_is_buy_short) {
       pmAction = "SELL YES";
       pmTeam = team;
@@ -63,7 +69,6 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
     kPrice = `${kVal}c`;
     kSide = "short";
   } else {
-    // BUY_K_SELL_PM: K: buy team YES, PM: sell team YES / buy opp YES
     kAction = "BUY YES";
     kTeam = team;
     kPrice = `${kVal}c`;
@@ -107,6 +112,7 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
             <div><span className="text-gray-500">Qty</span> <span className="text-gray-300 ml-1">{qty}</span></div>
             <div><span className="text-gray-500">Latency</span> <span className="text-gray-300 ml-1">{t.pm_order_ms || "-"}ms</span></div>
             <div><span className="text-gray-500">Side</span> <span className={`ml-1 ${pmSide === 'long' ? 'text-emerald-400' : 'text-red-400'}`}>{pmSide}</span></div>
+            <div><span className="text-gray-500">Fee</span> <span className="text-yellow-400/80 ml-1">{pmFeeCents.toFixed(2)}c</span></div>
             {t.pm_bid != null && (
               <div className="col-span-2"><span className="text-gray-500">BBO at Detection</span> <span className="text-gray-400 ml-1">{t.pm_bid}c / {t.pm_ask}c</span></div>
             )}
@@ -138,6 +144,7 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
             <div><span className="text-gray-500">Qty</span> <span className="text-gray-300 ml-1">{qty}</span></div>
             <div><span className="text-gray-500">Latency</span> <span className="text-gray-300 ml-1">{t.k_order_ms || "-"}ms</span></div>
             <div><span className="text-gray-500">Side</span> <span className={`ml-1 ${kSide === 'long' ? 'text-emerald-400' : 'text-red-400'}`}>{kSide}</span></div>
+            <div><span className="text-gray-500">Fee</span> <span className="text-yellow-400/80 ml-1">{kFeeCents.toFixed(1)}c</span></div>
             {t.k_bid != null && (
               <div className="col-span-2"><span className="text-gray-500">BBO at Detection</span> <span className="text-gray-400 ml-1">{t.k_bid}c / {t.k_ask}c</span></div>
             )}
@@ -153,6 +160,33 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
             <div className="mt-0.5 text-[8px] text-gray-600 font-mono truncate">
               order: {typeof t.k_order_id === 'string' ? t.k_order_id.slice(0, 20) : t.k_order_id}...
             </div>
+          )}
+        </div>
+      </div>
+      {/* ── Net Profit Summary Bar ── */}
+      <div className="flex items-center justify-between px-3 py-1.5 bg-gray-900/60 border-t border-gray-700/40 text-[9px] font-mono">
+        <div className="flex items-center gap-3">
+          <span className="text-gray-500">Spread</span>
+          <span className="text-white">{t.spread_cents}c</span>
+          <span className="text-gray-600">−</span>
+          <span className="text-gray-500">Fees</span>
+          <span className="text-yellow-400/80">{totalCosts.toFixed(1)}c</span>
+          <span className="text-gray-600">=</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="text-gray-400">Net</span>
+          <span className={`font-bold text-[10px] ${netCents > 0 ? 'text-emerald-400' : netCents < 0 ? 'text-red-400' : 'text-gray-400'}`}>
+            {netCents > 0 ? '+' : ''}{netCents.toFixed(2)}c
+          </span>
+          <span className="text-gray-600">/contract</span>
+          {qty > 0 && (
+            <>
+              <span className="text-gray-700 mx-1">|</span>
+              <span className={`font-bold text-[10px] ${netCents > 0 ? 'text-emerald-400' : netCents < 0 ? 'text-red-400' : 'text-gray-400'}`}>
+                ${((netCents * qty) / 100).toFixed(2)}
+              </span>
+              <span className="text-gray-600">total</span>
+            </>
           )}
         </div>
       </div>

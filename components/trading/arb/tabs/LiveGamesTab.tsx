@@ -9,7 +9,7 @@ interface Props {
   data: ArbDataReturn;
 }
 
-type SortKey = "spread" | "sport" | "team" | "k_depth" | "pm_depth" | "imbalance";
+type SortKey = "spread" | "net_gtc" | "sport" | "team" | "k_depth" | "pm_depth" | "imbalance";
 type SportFilter = "ALL" | "CBB" | "NBA" | "NHL" | "UFC";
 
 /* ── Helpers ─────────────────────────────────────────────────────────── */
@@ -19,6 +19,14 @@ function calcSpread(t: TeamPrices | undefined): { buyPM: number; buyK: number; b
   const buyPM = (t.k_bid && t.pm_ask) ? t.k_bid - t.pm_ask : 0;
   const buyK = (t.pm_bid && t.k_ask) ? t.pm_bid - t.k_ask : 0;
   return { buyPM, buyK, best: Math.max(buyPM, buyK) };
+}
+
+/** Net spread after fees. K fee ≈ 2c/contract, PM IOC = 2% taker, PM GTC = 0% maker */
+function netSpread(rawSpread: number, mode: "ioc" | "gtc"): number {
+  if (rawSpread <= 0) return 0;
+  const kFee = 2.0; // Kalshi ~2c per contract
+  const pmFee = mode === "ioc" ? rawSpread * 0.02 : 0; // PM: 2% taker IOC, 0% maker GTC
+  return rawSpread - kFee - pmFee;
 }
 
 function imbInfo(kDepth: number, pmDepth: number): { label: string; color: string } {
@@ -82,6 +90,7 @@ export function LiveGamesTab({ data }: Props) {
       let va = 0, vb = 0;
       switch (sortKey) {
         case "spread": va = a.best_spread; vb = b.best_spread; break;
+        case "net_gtc": va = netSpread(a.best_spread, "gtc"); vb = netSpread(b.best_spread, "gtc"); break;
         case "sport": return sortAsc ? a.sport.localeCompare(b.sport) : b.sport.localeCompare(a.sport);
         case "team": return sortAsc ? (a.team1 || "").localeCompare(b.team1 || "") : (b.team1 || "").localeCompare(a.team1 || "");
         case "k_depth": va = a.k_depth ?? 0; vb = b.k_depth ?? 0; break;
@@ -96,15 +105,16 @@ export function LiveGamesTab({ data }: Props) {
   }, [activeGames, sortKey, sortAsc]);
 
   const stats = useMemo(() => {
-    let arb = 0, watch = 0, kD = 0, pmD = 0, max = 0;
+    let arb = 0, watch = 0, gtcProfit = 0, kD = 0, pmD = 0, max = 0;
     for (const g of activeGames) {
       if (g.best_spread >= 4) arb++;
       else if (g.best_spread >= 2) watch++;
+      if (netSpread(g.best_spread, "gtc") > 0) gtcProfit++;
       if (g.best_spread > max) max = g.best_spread;
       kD += g.k_depth ?? 0;
       pmD += g.pm_depth ?? 0;
     }
-    return { arb, watch, kD, pmD, max, total: activeGames.length };
+    return { arb, watch, gtcProfit, kD, pmD, max, total: activeGames.length };
   }, [activeGames]);
 
   const sports = useMemo(() => {
@@ -126,6 +136,7 @@ export function LiveGamesTab({ data }: Props) {
       <div className="flex items-center gap-2 px-2 py-1 bg-[#06060c] border-b border-[#1a1a2e] text-[9px] font-mono overflow-x-auto">
         {stats.arb > 0 && <span className="text-[#00ff88] font-bold animate-pulse">⚡ {stats.arb} ARB</span>}
         {stats.watch > 0 && <span className="text-[#ff8c00]">{stats.watch} WATCH</span>}
+        {stats.gtcProfit > 0 && <><span className="text-[#1a1a2e]">│</span><span className="text-[#00ff88]">GTC +EV: {stats.gtcProfit}</span></>}
         <span className="text-[#1a1a2e]">│</span>
         {liveCount > 0 && (<><span className="text-[#00ff88]">● {liveCount} IN-PLAY</span><span className="text-[#1a1a2e]">│</span></>)}
         <span className="text-[#4a4a6a]">{stats.total} MKT</span>
@@ -160,7 +171,9 @@ export function LiveGamesTab({ data }: Props) {
               <th className="px-1 py-1 text-center text-[#ff8c00]/50">K ASK</th>
               <th className="px-1 py-1 text-center border-l border-[#00bfff]/20 text-[#00bfff]/50">PM BID</th>
               <th className="px-1 py-1 text-center text-[#00bfff]/50">PM ASK</th>
-              <th className="px-1 py-1 text-center border-l border-[#1a1a2e] cursor-pointer select-none hover:text-[#ff8c00] w-10" onClick={() => toggleSort("spread")}>SPRD{si("spread")}</th>
+              <th className="px-1 py-1 text-center border-l border-[#1a1a2e] cursor-pointer select-none hover:text-[#ff8c00] w-10" onClick={() => toggleSort("spread")}>RAW{si("spread")}</th>
+              <th className="px-1 py-1 text-center w-9 text-[#ff6666]/50">IOC</th>
+              <th className="px-1 py-1 text-center cursor-pointer select-none hover:text-[#ff8c00] w-9 text-[#00ff88]/50" onClick={() => toggleSort("net_gtc")}>GTC{si("net_gtc")}</th>
               <th className="px-1 py-1 text-right border-l border-[#1a1a2e] cursor-pointer select-none hover:text-[#ff8c00]" onClick={() => toggleSort("k_depth")}>K DPT{si("k_depth")}</th>
               <th className="px-1 py-1 text-right cursor-pointer select-none hover:text-[#ff8c00]" onClick={() => toggleSort("pm_depth")}>PM DPT{si("pm_depth")}</th>
               <th className="px-1 py-1 text-center cursor-pointer select-none hover:text-[#ff8c00] w-9" onClick={() => toggleSort("imbalance")}>BAL{si("imbalance")}</th>
@@ -210,6 +223,16 @@ export function LiveGamesTab({ data }: Props) {
                         </span>
                       ) : <span className="text-[#2a2a4a]">·</span>}
                     </td>
+                    <td className="px-1 py-[2px] text-center" rowSpan={2}>
+                      {(() => { const n = netSpread(gs, "ioc"); return gs > 0 ? (
+                        <span className={`text-[8px] ${n > 0 ? "text-[#ff8c00]" : "text-[#ff3333]"}`}>{n > 0 ? "+" : ""}{n.toFixed(1)}</span>
+                      ) : <span className="text-[#2a2a4a]">·</span>; })()}
+                    </td>
+                    <td className="px-1 py-[2px] text-center" rowSpan={2}>
+                      {(() => { const n = netSpread(gs, "gtc"); return gs > 0 ? (
+                        <span className={`text-[8px] font-bold ${n >= 2 ? "text-[#00ff88]" : n > 0 ? "text-[#00ff88]/70" : "text-[#ff3333]"}`}>{n > 0 ? "+" : ""}{n.toFixed(1)}</span>
+                      ) : <span className="text-[#2a2a4a]">·</span>; })()}
+                    </td>
                     <td className="px-1 py-[2px] text-right border-l border-[#1a1a2e] text-[#ff8c00]/70" rowSpan={2}>{g.k_depth ? fmtNum(g.k_depth) : "—"}</td>
                     <td className="px-1 py-[2px] text-right text-[#00bfff]/70" rowSpan={2}>{g.pm_depth ? fmtNum(g.pm_depth) : "—"}</td>
                     <td className={`px-1 py-[2px] text-center text-[8px] ${imb.color}`} rowSpan={2}>{imb.label}</td>
@@ -230,7 +253,7 @@ export function LiveGamesTab({ data }: Props) {
                   {/* Expanded detail */}
                   {isExp && (
                     <tr className="bg-[#0c0c14]">
-                      <td colSpan={12} className="px-2 py-2 border-t border-[#ff8c00]/20">
+                      <td colSpan={14} className="px-2 py-2 border-t border-[#ff8c00]/20">
                         <div className="grid grid-cols-4 gap-2 text-[9px] font-mono">
                           {/* Arb Breakdown */}
                           <div className="border border-[#1a1a2e] p-1.5">

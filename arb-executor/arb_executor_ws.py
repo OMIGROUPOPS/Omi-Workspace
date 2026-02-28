@@ -3299,6 +3299,7 @@ def main():
     parser.add_argument('--self-test', action='store_true', dest='self_test',
                        help='Test connections and exit')
     parser.add_argument('--pnl', action='store_true', help='Show P&L summary and exit')
+    parser.add_argument('--audit', action='store_true', help='Run position report and exit')
     parser.add_argument('--one-trade', action='store_true', dest='one_trade',
                        help='Stop after first trade attempt (for testing)')
     parser.add_argument('--max-trades', type=int, default=0, dest='max_trades',
@@ -3326,6 +3327,16 @@ def main():
     # Handle --pnl
     if args.pnl:
         print_pnl_summary()
+        return
+
+    # Handle --audit
+    if args.audit:
+        from position_report import run_report, save_portfolio_log
+        async def _run_audit():
+            result = await run_report()
+            if result:
+                save_portfolio_log(result)
+        asyncio.run(_run_audit())
         return
 
     # Load previously traded games (prevents duplicate trades across restarts)

@@ -135,6 +135,39 @@ def _check_hedge_coherence(team: str, k_fill_price: int, pm_fill_price_dollars: 
         return False
     return True
 
+async def _verify_both_legs(session, kalshi_api, pm_api, ticker: str, pm_slug: str,
+                            team: str, k_filled: int, pm_filled: int) -> bool:
+    """
+    Post-fill verification: confirm both legs exist on their platforms via API.
+    Pauses executor if either leg is missing. Exception-safe — API errors don't pause.
+    Returns True if both legs confirmed, False if verification failed.
+    """
+    global executor_paused
+    try:
+        k_pos = await kalshi_api.get_position_for_ticker(session, ticker)
+        k_exists = k_pos is not None and abs(k_pos.position) > 0
+
+        pm_positions = await pm_api.get_positions(session, market_slug=pm_slug)
+        pm_exists = pm_positions is not None and len(pm_positions) > 0
+
+        if not k_exists or not pm_exists:
+            print(f"[HEDGE_VERIFY] FAILED: {team} | "
+                  f"K={ticker} {'EXISTS' if k_exists else 'MISSING'} (expected {k_filled}) | "
+                  f"PM={pm_slug[:35]} {'EXISTS' if pm_exists else 'MISSING'} (expected {pm_filled})",
+                  flush=True)
+            executor_paused = True
+            print(f"[HEDGE_VERIFY] EXECUTOR PAUSED — manual review required", flush=True)
+            return False
+
+        print(f"[HEDGE_VERIFY] OK: {team} K={ticker[-15:]} PM={pm_slug[:25]} — both legs confirmed",
+              flush=True)
+        return True
+    except Exception as e:
+        print(f"[HEDGE_VERIFY] ERROR checking legs for {team}: {e} — skipping (trade already done)",
+              flush=True)
+        return True  # Don't pause on API errors
+
+
 TRADE_PARAMS = {
     # ==========================================================================
     # Case 1: BUY_PM_SELL_K, team IS pm_long_team
@@ -795,9 +828,32 @@ crash_counts: Dict[str, int] = {}        # Crash count per game
 cached_positions: Dict[str, int] = {}    # Kalshi positions cache
 cached_positions_ts: float = 0           # Cache timestamp
 
+# Unhedged exposure tracking
+unhedged_positions: Dict[str, int] = {}  # ticker → cost_cents of unhedged leg
+executor_paused: bool = False
+MAX_UNHEDGED_EXPOSURE_CENTS = 5000       # $50 — pause executor if exceeded
+
 # GTC execution state
 gtc_cooldowns: Dict[str, float] = {}      # game_id -> timestamp cooldown expires
 _resting_gtc_order_id: Optional[str] = None  # max 1 resting GTC globally
+
+
+def register_unhedged(ticker: str, cost_cents: int):
+    """Track an unhedged position. Pauses executor if total exceeds limit."""
+    global executor_paused
+    unhedged_positions[ticker] = cost_cents
+    total = sum(unhedged_positions.values())
+    print(f"[EXPOSURE] Unhedged: {ticker} +{cost_cents}c | total=${total/100:.2f} "
+          f"(limit=${MAX_UNHEDGED_EXPOSURE_CENTS/100:.2f})", flush=True)
+    if total > MAX_UNHEDGED_EXPOSURE_CENTS:
+        executor_paused = True
+        print(f"[EXPOSURE_LIMIT] EXECUTOR PAUSED: unhedged exposure ${total/100:.2f} > "
+              f"${MAX_UNHEDGED_EXPOSURE_CENTS/100:.2f} limit. Manual review required.", flush=True)
+
+
+def clear_unhedged(ticker: str):
+    """Remove from unhedged tracker (e.g., after manual close or settlement)."""
+    unhedged_positions.pop(ticker, None)
 
 
 # =============================================================================
@@ -1345,6 +1401,10 @@ def safe_to_trade(
     Position cache is refreshed in the background by the WS executor,
     NOT on the hot execution path.
     """
+    # Check if executor is paused (unhedged exposure limit)
+    if executor_paused:
+        return False, "Executor PAUSED: unhedged exposure limit exceeded — manual review required"
+
     # Check blacklist
     if game_id in blacklisted_games:
         return False, f"Game {game_id} is BLACKLISTED after crashes"
@@ -1440,10 +1500,11 @@ async def execute_arb(
     # to always be False, routing BUY_K_SELL_PM to Case 4 (BUY_LONG intent=1)
     # instead of Case 3 (BUY_SHORT intent=3), buying SAME side on both exchanges.
     if not arb.pm_long_team:
-        logger.error(
+        print(
             f"[GUARD] REFUSING to trade {arb.game} {arb.team}: "
             f"pm_long_team is empty/None! Mapping is missing or stale. "
-            f"Cannot determine correct PM trade direction."
+            f"Cannot determine correct PM trade direction.",
+            flush=True
         )
         return TradeResult(
             success=False,
@@ -1487,6 +1548,18 @@ async def execute_arb(
               f"pm_long_team={arb.pm_long_team} is_long_team={is_long_team} "
               f"dir={arb.direction} | slug={arb.pm_slug}", flush=True)
         return TradeResult(success=False, abort_reason=f"Spread {spread:.0f}c > {MAX_CREDIBLE_SPREAD}c ceiling — likely mapping error")
+
+    # ── COMBINED COST GATE: tighter check on expected entry cost ──
+    # For a valid arb, combined cost = 100 - spread (e.g., 4c spread → 96c combined).
+    # Block if outside 90-102c range (spread > 10c or negative arb).
+    expected_combined = 100 - spread
+    if expected_combined < 90 or expected_combined > 102:
+        print(f"[COST_GATE] REJECT {arb.team}: expected combined={expected_combined:.0f}c "
+              f"(outside 90-102c range) | spread={spread:.0f}c | "
+              f"k_bid={arb.k_bid}c k_ask={arb.k_ask}c pm_bid={arb.pm_bid}c pm_ask={arb.pm_ask}c | "
+              f"dir={arb.direction}", flush=True)
+        return TradeResult(success=False,
+            abort_reason=f"Combined cost {expected_combined:.0f}c outside 90-102c range")
 
     # -------------------------------------------------------------------------
     # Step 3: Look up trade params
@@ -1897,6 +1970,8 @@ async def execute_arb(
             arb.team, k_fill_price, pm_fill_price,
             params['k_action'], params.get('pm_is_buy_short', False),
             arb.direction, arb.pm_long_team, is_long_team)
+        await _verify_both_legs(session, kalshi_api, pm_api,
+                                arb.kalshi_ticker, pm_slug, arb.team, k_filled, pm_filled)
         print(f"[K_FIRST] SUCCESS: K={k_filled}x@{k_fill_price}c PM={pm_filled}x@${pm_fill_price:.4f} "
               f"total={execution_time_ms}ms (k={k_order_ms}ms pm={pm_order_ms}ms)")
         return TradeResult(
@@ -1981,7 +2056,9 @@ async def execute_arb(
                 tier="TIER3_UNWIND",
             )
 
-        # Unwind failed
+        # Unwind failed — register unhedged exposure
+        pm_cost_cents = int(pm_fill_price * 100) * pm_filled
+        register_unhedged(arb.kalshi_ticker, pm_cost_cents)
         return TradeResult(
             success=False,
             kalshi_filled=0,
@@ -2113,6 +2190,8 @@ async def execute_arb(
                         arb.team, t1_fill_price, pm_fill_price,
                         params['k_action'], params.get('pm_is_buy_short', False),
                         arb.direction, arb.pm_long_team, is_long_team)
+                    await _verify_both_legs(session, kalshi_api, pm_api,
+                                            arb.kalshi_ticker, pm_slug, arb.team, k_filled, pm_filled)
                     print(f"[TIER] Tier 1 SUCCESS: hedged {t1_filled}/{pm_filled} @ {t1_fill_price}c "
                           f"(concession {actual_cost}c, net spread {net_spread:.0f}c)")
                     return TradeResult(
@@ -2677,8 +2756,10 @@ async def execute_arb(
                     tier="TIER3_EMERGENCY",
                 )
 
-            # Even emergency exit failed — flag for manual review
+            # Even emergency exit failed — flag for manual review + register exposure
             print(f"[EMERGENCY] ALL EXIT ATTEMPTS FAILED — position remains unhedged, needs manual review")
+            pm_cost_cents = int(pm_fill_price * 100) * pm_filled
+            register_unhedged(arb.kalshi_ticker, pm_cost_cents)
             return TradeResult(
                 success=False,
                 kalshi_filled=0,
@@ -2743,6 +2824,8 @@ async def execute_arb(
         arb.team, k_fill_price, pm_fill_price,
         params['k_action'], params.get('pm_is_buy_short', False),
         arb.direction, arb.pm_long_team, is_long_team)
+    await _verify_both_legs(session, kalshi_api, pm_api,
+                            arb.kalshi_ticker, pm_slug, arb.team, k_filled, pm_filled)
     return TradeResult(
         success=True,
         kalshi_filled=k_filled,

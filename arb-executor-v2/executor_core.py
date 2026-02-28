@@ -730,15 +730,16 @@ async def _execute_gtc_phase(
         if cancel_reason != 'filled':
             # Try to cancel
             cancel_ok = await pm_api.cancel_order(session, order_id, pm_slug)
-            # ALWAYS recheck fill status after cancel — even if cancel "succeeded"
-            recheck = await pm_api.get_order_status(session, order_id)
-            recheck_qty = recheck.get('cum_quantity', 0)
-            if recheck_qty > 0:
-                result['filled'] = recheck_qty
-                result['fill_price'] = recheck.get('fill_price', pm_price)
-                result['is_maker'] = True
-                result['cancel_reason'] = 'filled_on_cancel'
-                print(f"[GTC] Post-cancel recheck: FILLED {recheck_qty} (cancel_ok={cancel_ok})")
+            if not cancel_ok:
+                # Race condition: might have filled between check and cancel
+                recheck = await pm_api.get_order_status(session, order_id)
+                recheck_qty = recheck.get('cum_quantity', 0)
+                if recheck_qty > 0:
+                    result['filled'] = recheck_qty
+                    result['fill_price'] = recheck.get('fill_price', pm_price)
+                    result['is_maker'] = True
+                    result['cancel_reason'] = 'filled_on_cancel'
+                    print(f"[GTC] Cancel race: actually filled {recheck_qty}")
 
             # Set cooldown on timeout/spread_gone
             if cancel_reason in ('timeout', 'spread_gone'):

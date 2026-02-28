@@ -32,8 +32,23 @@ import aiohttp
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PORTFOLIO_LOG_PATH = os.path.join(BASE_DIR, 'portfolio_log.json')
-STARTING_BALANCE = 910.31  # Feb 26, 2026
+DEPOSITS_PATH = os.path.join(BASE_DIR, 'deposits.json')
 KALSHI_FEE_CENTS = 2  # per contract per side
+
+
+def load_deposit_history():
+    """Load deposit/withdrawal history from deposits.json.
+    Returns (starting_total, net_deposits) where net_deposits = deposits - withdrawals."""
+    try:
+        with open(DEPOSITS_PATH) as f:
+            data = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return 317.77, 600.00  # Hardcoded fallback
+
+    starting = data.get('starting_balances', {}).get('total', 317.77)
+    deposits = sum(d.get('amount', 0) for d in data.get('deposits', []))
+    withdrawals = sum(w.get('amount', 0) for w in data.get('withdrawals', []))
+    return starting, deposits - withdrawals
 
 
 def _extract_cost(raw):
@@ -400,7 +415,11 @@ async def run_report(quiet=False):
     k_total = k_cash + k_position_value_dollars
     pm_total = pm_cash + pm_position_value
     combined_portfolio = k_total + pm_total
-    net_pnl = combined_portfolio - STARTING_BALANCE
+
+    # True P&L = current portfolio - starting balance - net deposits
+    starting_balance, net_deposits = load_deposit_history()
+    total_capital_in = starting_balance + net_deposits
+    net_pnl = combined_portfolio - total_capital_in
 
     # ═════════════════════════════════════════════════════════════════
     # PRINT REPORT
@@ -445,9 +464,10 @@ async def run_report(quiet=False):
         print(f"  K Cash: ${k_cash:.2f}   K Positions: ${k_position_value_dollars:.2f}   K Total: ${k_total:.2f}")
         print(f"  PM Cash: ${pm_cash:.2f}  PM Positions: ${pm_position_value:.2f}   PM Total: ${pm_total:.2f}")
         print(f"  Combined Portfolio: ${combined_portfolio:.2f}")
-        print(f"  Starting Balance (Feb 26): ${STARTING_BALANCE:.2f}")
+        print(f"  Starting Balance (Feb 15): ${starting_balance:.2f}")
+        print(f"  Total Deposits: ${net_deposits:.2f}   Total Capital In: ${total_capital_in:.2f}")
         pnl_sign = '+' if net_pnl >= 0 else ''
-        print(f"  Net P&L: {pnl_sign}${net_pnl:.2f}")
+        print(f"  True P&L: {pnl_sign}${net_pnl:.2f}  ({net_pnl/total_capital_in*100:+.1f}%)")
         print(f"  Locked Profit: ${total_locked_gross/100:.2f}   "
               f"Net After Fees: ${total_locked_net/100:.2f}   "
               f"Unhedged Exposure: ${total_unhedged_cents/100:.2f}")
@@ -466,7 +486,9 @@ async def run_report(quiet=False):
             "pm_positions": round(pm_position_value, 2),
             "pm_total": round(pm_total, 2),
             "combined": round(combined_portfolio, 2),
-            "starting_balance": STARTING_BALANCE,
+            "starting_balance": round(starting_balance, 2),
+            "net_deposits": round(net_deposits, 2),
+            "total_capital_in": round(total_capital_in, 2),
             "net_pnl": round(net_pnl, 2),
         },
         "locked_profit_cents": round(total_locked_gross, 1),

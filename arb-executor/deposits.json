@@ -1,0 +1,24 @@
+{
+  "starting_balances": {
+    "date": "2026-02-15",
+    "kalshi": 188.83,
+    "polymarket": 128.94,
+    "total": 317.77
+  },
+  "deposits": [
+    {
+      "date": "2026-02-25",
+      "platform": "kalshi",
+      "amount": 300.00,
+      "note": "Pre-launch deposit"
+    },
+    {
+      "date": "2026-02-25",
+      "platform": "polymarket",
+      "amount": 300.00,
+      "note": "Pre-launch deposit"
+    }
+  ],
+  "withdrawals": [],
+  "_comment": "Update this file when adding or removing funds. True P&L = current portfolio - starting total - total deposits + total withdrawals"
+}

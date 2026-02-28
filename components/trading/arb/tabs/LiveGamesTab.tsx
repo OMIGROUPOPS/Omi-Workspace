@@ -3,363 +3,311 @@
 import React, { useState, useMemo } from "react";
 import type { ArbDataReturn } from "../hooks/useArbData";
 import type { MappedGame, TeamPrices } from "../types";
-import { spreadColor, sportBadge, depthColor, fmtNum } from "../helpers";
+import { sportBadge, fmtNum } from "../helpers";
 
 interface Props {
   data: ArbDataReturn;
 }
 
-/** Price cell: shows bid/ask in cents with coloring */
-function PriceCell({ prices, field }: { prices: TeamPrices | undefined; field: "k" | "pm" }) {
-  if (!prices) return <span className="text-[#2a2a4a]">—</span>;
-  const bid = field === "k" ? prices.k_bid : prices.pm_bid;
-  const ask = field === "k" ? prices.k_ask : prices.pm_ask;
-  if (!bid && !ask) return <span className="text-[#2a2a4a]">—</span>;
-  return (
-    <span className="font-mono">
-      <span className="text-[#00ff88]">{bid || "—"}</span>
-      <span className="text-[#2a2a4a] mx-px">/</span>
-      <span className="text-[#ff6666]">{ask || "—"}</span>
-    </span>
-  );
+type SortKey = "spread" | "sport" | "team" | "k_depth" | "pm_depth" | "imbalance";
+type SportFilter = "ALL" | "CBB" | "NBA" | "NHL" | "UFC";
+
+/* ── Helpers ─────────────────────────────────────────────────────────── */
+
+function calcSpread(t: TeamPrices | undefined): { buyPM: number; buyK: number; best: number } {
+  if (!t) return { buyPM: 0, buyK: 0, best: 0 };
+  const buyPM = (t.k_bid && t.pm_ask) ? t.k_bid - t.pm_ask : 0;
+  const buyK = (t.pm_bid && t.k_ask) ? t.pm_bid - t.k_ask : 0;
+  return { buyPM, buyK, best: Math.max(buyPM, buyK) };
 }
 
-/** Spread badge with background color based on arb profitability */
-function SpreadBadge({ cents }: { cents: number }) {
-  if (cents <= 0) return <span className="text-[#2a2a4a]">—</span>;
-  const isArb = cents >= 4;
-  const bg = isArb
-    ? "bg-[#00ff88]/15 border-[#00ff88]/30"
-    : cents >= 2
-    ? "bg-[#ff8c00]/10 border-[#ff8c00]/20"
-    : "bg-transparent border-[#2a2a4a]";
-  const text = isArb ? "text-[#00ff88]" : cents >= 2 ? "text-[#ff8c00]" : "text-[#4a4a6a]";
-  return (
-    <span className={`inline-block px-1.5 py-0.5 border font-mono font-bold text-[10px] ${bg} ${text}`}>
-      {cents.toFixed(1)}c
-    </span>
-  );
+function imbInfo(kDepth: number, pmDepth: number): { label: string; color: string } {
+  if (!kDepth || !pmDepth) return { label: "—", color: "text-[#3a3a5a]" };
+  const r = kDepth / pmDepth;
+  if (r > 5) return { label: `K ${r.toFixed(0)}x`, color: "text-[#ff8c00]" };
+  if (r > 2) return { label: `K ${r.toFixed(1)}x`, color: "text-[#ff8c00]/70" };
+  if (r < 0.2) return { label: `PM ${(1/r).toFixed(0)}x`, color: "text-[#00bfff]" };
+  if (r < 0.5) return { label: `PM ${(1/r).toFixed(1)}x`, color: "text-[#00bfff]/70" };
+  return { label: "~1:1", color: "text-[#4a4a6a]" };
 }
 
-/** Score display for live games */
-function ScoreDisplay({ game }: { game: MappedGame }) {
-  const isLive = game.game_status === "in";
-  const isFinal = game.game_status === "post";
-  if (!isLive && !isFinal) return null;
-
+function DepthBar({ k, pm }: { k: number; pm: number }) {
+  const total = k + pm;
+  if (!total) return <span className="text-[#2a2a4a]">—</span>;
+  const kPct = (k / total) * 100;
   return (
-    <div className="flex items-center gap-2">
-      <div className="flex flex-col items-center gap-0.5">
-        <span className={`font-mono font-bold text-sm ${isLive ? "text-[#00ff88]" : "text-[#4a4a6a]"}`}>
-          {game.team1_score ?? "—"}
-        </span>
-        <span className={`font-mono font-bold text-sm ${isLive ? "text-[#00ff88]" : "text-[#4a4a6a]"}`}>
-          {game.team2_score ?? "—"}
-        </span>
-      </div>
-      {isLive && (
-        <div className="flex flex-col items-center">
-          <span className="text-[8px] font-mono text-[#00ff88] uppercase tracking-wider">
-            {game.period}
-          </span>
-          <span className="text-[9px] font-mono text-[#00ff88] font-bold">
-            {game.clock}
-          </span>
-        </div>
-      )}
-      {isFinal && (
-        <span className="text-[8px] font-mono text-[#4a4a6a] uppercase">FINAL</span>
-      )}
+    <div className="flex h-[6px] w-full overflow-hidden">
+      <div className="h-full bg-[#ff8c00]/50" style={{ width: `${kPct}%` }} />
+      <div className="h-full bg-[#00bfff]/50" style={{ width: `${100 - kPct}%` }} />
     </div>
   );
 }
 
-/** Price comparison bar - visual representation of K vs PM price */
-function PriceBar({ kPrice, pmPrice, label }: { kPrice: number; pmPrice: number; label: string }) {
-  if (!kPrice && !pmPrice) return null;
-  const diff = kPrice - pmPrice;
-  const absDiff = Math.abs(diff);
-  const maxPrice = Math.max(kPrice, pmPrice, 1);
-  const kWidth = (kPrice / maxPrice) * 100;
-  const pmWidth = (pmPrice / maxPrice) * 100;
-
-  return (
-    <div className="flex items-center gap-1.5 w-full">
-      <span className="text-[8px] font-mono text-[#4a4a6a] w-5 text-right shrink-0">{label}</span>
-      <div className="flex-1 flex items-center gap-0.5 h-3">
-        {/* K bar */}
-        <div className="flex-1 relative h-full bg-[#1a1a2e] overflow-hidden">
-          <div
-            className="absolute inset-y-0 left-0 bg-[#ff8c00]/30 border-r border-[#ff8c00]/60"
-            style={{ width: `${kWidth}%` }}
-          />
-          <span className="absolute inset-0 flex items-center justify-center text-[7px] font-mono text-[#ff8c00] font-bold">
-            {kPrice > 0 ? `K:${kPrice}` : ""}
-          </span>
-        </div>
-        {/* PM bar */}
-        <div className="flex-1 relative h-full bg-[#1a1a2e] overflow-hidden">
-          <div
-            className="absolute inset-y-0 left-0 bg-[#00bfff]/30 border-r border-[#00bfff]/60"
-            style={{ width: `${pmWidth}%` }}
-          />
-          <span className="absolute inset-0 flex items-center justify-center text-[7px] font-mono text-[#00bfff] font-bold">
-            {pmPrice > 0 ? `PM:${pmPrice}` : ""}
-          </span>
-        </div>
-      </div>
-      {/* Diff */}
-      <span className={`text-[8px] font-mono font-bold w-6 text-right shrink-0 ${
-        absDiff >= 4 ? "text-[#00ff88]" : absDiff >= 2 ? "text-[#ff8c00]" : "text-[#3a3a5a]"
-      }`}>
-        {absDiff > 0 ? `${diff > 0 ? "+" : ""}${diff}` : "="}
-      </span>
-    </div>
-  );
+function P({ v }: { v: number }) {
+  if (!v) return <span className="text-[#2a2a4a]">—</span>;
+  return <>{v}</>;
 }
 
-/** Single live game card */
-function LiveGameCard({ game }: { game: MappedGame }) {
-  const t1 = game.team1_prices;
-  const t2 = game.team2_prices;
-  const isLive = game.game_status === "in";
-  const bestSpread = game.best_spread;
-  const isArb = bestSpread >= 4;
+/* ── Main Component ──────────────────────────────────────────────────── */
+
+export function LiveGamesTab({ data }: Props) {
+  const { state } = data;
+  const [sortKey, setSortKey] = useState<SortKey>("spread");
+  const [sortAsc, setSortAsc] = useState(false);
+  const [sportFilter, setSportFilter] = useState<SportFilter>("ALL");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [expandedGame, setExpandedGame] = useState<string | null>(null);
+
+  const games = state?.mapped_games ?? [];
+
+  const activeGames = useMemo(() => {
+    return games.filter((g) => {
+      if (g.game_status === "post") return false;
+      if (g.status !== "Active") return false;
+      if (sportFilter !== "ALL" && g.sport.toUpperCase() !== sportFilter) return false;
+      if (searchTerm) {
+        const s = searchTerm.toLowerCase();
+        if (!(g.team1 || "").toLowerCase().includes(s) &&
+            !(g.team2 || "").toLowerCase().includes(s) &&
+            !(g.team1_full || "").toLowerCase().includes(s) &&
+            !(g.team2_full || "").toLowerCase().includes(s)) return false;
+      }
+      return true;
+    });
+  }, [games, sportFilter, searchTerm]);
+
+  const sorted = useMemo(() => {
+    const arr = [...activeGames];
+    arr.sort((a, b) => {
+      let va = 0, vb = 0;
+      switch (sortKey) {
+        case "spread": va = a.best_spread; vb = b.best_spread; break;
+        case "sport": return sortAsc ? a.sport.localeCompare(b.sport) : b.sport.localeCompare(a.sport);
+        case "team": return sortAsc ? (a.team1 || "").localeCompare(b.team1 || "") : (b.team1 || "").localeCompare(a.team1 || "");
+        case "k_depth": va = a.k_depth ?? 0; vb = b.k_depth ?? 0; break;
+        case "pm_depth": va = a.pm_depth ?? 0; vb = b.pm_depth ?? 0; break;
+        case "imbalance":
+          va = (a.k_depth ?? 0) / Math.max(a.pm_depth ?? 1, 1);
+          vb = (b.k_depth ?? 0) / Math.max(b.pm_depth ?? 1, 1); break;
+      }
+      return sortAsc ? va - vb : vb - va;
+    });
+    return arr;
+  }, [activeGames, sortKey, sortAsc]);
+
+  const stats = useMemo(() => {
+    let arb = 0, watch = 0, kD = 0, pmD = 0, max = 0;
+    for (const g of activeGames) {
+      if (g.best_spread >= 4) arb++;
+      else if (g.best_spread >= 2) watch++;
+      if (g.best_spread > max) max = g.best_spread;
+      kD += g.k_depth ?? 0;
+      pmD += g.pm_depth ?? 0;
+    }
+    return { arb, watch, kD, pmD, max, total: activeGames.length };
+  }, [activeGames]);
+
+  const sports = useMemo(() => {
+    const s = new Set(games.filter((g) => g.status === "Active").map((g) => g.sport.toUpperCase()));
+    return Array.from(s).sort();
+  }, [games]);
+
+  const liveCount = useMemo(() => games.filter((g) => g.game_status === "in").length, [games]);
+
+  function toggleSort(key: SortKey) {
+    if (sortKey === key) setSortAsc(!sortAsc);
+    else { setSortKey(key); setSortAsc(false); }
+  }
+  function si(key: SortKey) { return sortKey === key ? (sortAsc ? " ▲" : " ▼") : ""; }
 
   return (
-    <div className={`border ${
-      isArb ? "border-[#00ff88]/40 bg-[#00ff88]/[0.03]" : 
-      isLive ? "border-[#ff8c00]/30 bg-[#ff8c00]/[0.02]" : 
-      "border-[#1a1a2e] bg-[#0a0a0f]"
-    } relative`}>
-      {/* Arb flash indicator */}
-      {isArb && (
-        <div className="absolute top-0 right-0 px-1.5 py-0.5 bg-[#00ff88]/20 border-l border-b border-[#00ff88]/30">
-          <span className="text-[8px] font-mono font-bold text-[#00ff88] uppercase tracking-wider animate-pulse">
-            ARB {bestSpread.toFixed(0)}c
-          </span>
-        </div>
-      )}
+    <div className="p-0">
+      {/* ── Ticker Strip ─────────────────────────────────── */}
+      <div className="flex items-center gap-2 px-2 py-1 bg-[#06060c] border-b border-[#1a1a2e] text-[9px] font-mono overflow-x-auto">
+        {stats.arb > 0 && <span className="text-[#00ff88] font-bold animate-pulse">⚡ {stats.arb} ARB</span>}
+        {stats.watch > 0 && <span className="text-[#ff8c00]">{stats.watch} WATCH</span>}
+        <span className="text-[#1a1a2e]">│</span>
+        {liveCount > 0 && (<><span className="text-[#00ff88]">● {liveCount} IN-PLAY</span><span className="text-[#1a1a2e]">│</span></>)}
+        <span className="text-[#4a4a6a]">{stats.total} MKT</span>
+        <span className="text-[#1a1a2e]">│</span>
+        <span className="text-[#4a4a6a]">MAX <span className={stats.max >= 4 ? "text-[#00ff88] font-bold" : stats.max >= 2 ? "text-[#ff8c00]" : "text-[#4a4a6a]"}>{stats.max.toFixed(1)}c</span></span>
+        <span className="text-[#1a1a2e]">│</span>
+        <span className="text-[#ff8c00]/60">K Σ{fmtNum(stats.kD)}</span>
+        <span className="text-[#00bfff]/60">PM Σ{fmtNum(stats.pmD)}</span>
 
-      {/* Header: Sport badge + Teams + Score */}
-      <div className="px-3 py-2 border-b border-[#1a1a2e]/60 flex items-start justify-between">
-        <div className="flex items-start gap-2">
-          <span className={`inline-block rounded-none px-1 py-0.5 text-[8px] font-mono font-medium mt-0.5 ${sportBadge(game.sport)}`}>
-            {game.sport}
-          </span>
-          <div className="flex flex-col">
-            <span className="text-[#ff8c00] font-mono font-medium text-[11px]">
-              {game.team1_full || game.team1}
-            </span>
-            <span className="text-[#ff8c00] font-mono font-medium text-[11px]">
-              {game.team2_full || game.team2}
-            </span>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <ScoreDisplay game={game} />
-          {isLive && (
-            <span className="inline-block w-1.5 h-1.5 bg-[#00ff88] animate-pulse" />
-          )}
+        <div className="ml-auto flex items-center gap-1 shrink-0">
+          {(["ALL", ...sports] as SportFilter[]).map((s) => (
+            <button key={s} onClick={() => setSportFilter(s)}
+              className={`px-1.5 py-0.5 text-[8px] tracking-wider border transition-colors ${
+                sportFilter === s ? "text-[#ff8c00] border-[#ff8c00]/40 bg-[#ff8c00]/10" : "text-[#3a3a5a] border-[#1a1a2e] hover:text-[#ff8c00]/60"
+              }`}>{s}</button>
+          ))}
+          <span className="text-[#1a1a2e]">│</span>
+          <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="SEARCH" className="w-16 bg-transparent border border-[#1a1a2e] px-1 py-0.5 text-[8px] font-mono text-[#ff8c00] placeholder-[#2a2a4a] focus:border-[#ff8c00]/40 focus:outline-none" />
         </div>
       </div>
 
-      {/* Price comparison table */}
-      <div className="px-3 py-2">
-        <table className="w-full text-[10px] font-mono">
-          <thead>
-            <tr className="text-[8px] text-[#4a4a6a] uppercase tracking-wider">
-              <th className="text-left py-0.5 w-16">TEAM</th>
-              <th className="text-center py-0.5">K BID</th>
-              <th className="text-center py-0.5">K ASK</th>
-              <th className="text-center py-0.5 text-[#1a1a2e]">│</th>
-              <th className="text-center py-0.5">PM BID</th>
-              <th className="text-center py-0.5">PM ASK</th>
-              <th className="text-center py-0.5 text-[#1a1a2e]">│</th>
-              <th className="text-right py-0.5">SPREAD</th>
+      {/* ── Data Grid ────────────────────────────────────── */}
+      <div className="overflow-auto" style={{ maxHeight: "calc(100vh - 120px)" }}>
+        <table className="w-full text-[10px] font-mono border-collapse">
+          <thead className="sticky top-0 z-10 bg-[#06060c]">
+            <tr className="text-[8px] text-[#4a4a6a] uppercase tracking-wider border-b-2 border-[#1a1a2e]">
+              <th className="px-1 py-1 text-left w-5 cursor-pointer select-none hover:text-[#ff8c00]" onClick={() => toggleSort("sport")}>S{si("sport")}</th>
+              <th className="px-1 py-1 text-left cursor-pointer select-none hover:text-[#ff8c00]" onClick={() => toggleSort("team")}>GAME{si("team")}</th>
+              <th className="px-1 py-1 text-center w-5">⊕</th>
+              <th className="px-1 py-1 text-center border-l border-[#ff8c00]/20 text-[#ff8c00]/50">K BID</th>
+              <th className="px-1 py-1 text-center text-[#ff8c00]/50">K ASK</th>
+              <th className="px-1 py-1 text-center border-l border-[#00bfff]/20 text-[#00bfff]/50">PM BID</th>
+              <th className="px-1 py-1 text-center text-[#00bfff]/50">PM ASK</th>
+              <th className="px-1 py-1 text-center border-l border-[#1a1a2e] cursor-pointer select-none hover:text-[#ff8c00] w-10" onClick={() => toggleSort("spread")}>SPRD{si("spread")}</th>
+              <th className="px-1 py-1 text-right border-l border-[#1a1a2e] cursor-pointer select-none hover:text-[#ff8c00]" onClick={() => toggleSort("k_depth")}>K DPT{si("k_depth")}</th>
+              <th className="px-1 py-1 text-right cursor-pointer select-none hover:text-[#ff8c00]" onClick={() => toggleSort("pm_depth")}>PM DPT{si("pm_depth")}</th>
+              <th className="px-1 py-1 text-center cursor-pointer select-none hover:text-[#ff8c00] w-9" onClick={() => toggleSort("imbalance")}>BAL{si("imbalance")}</th>
+              <th className="px-1 py-1 w-14">LIQ</th>
             </tr>
           </thead>
           <tbody>
-            {[
-              { label: game.team1, prices: t1 },
-              { label: game.team2, prices: t2 },
-            ].map(({ label, prices }) => {
-              const kBid = prices?.k_bid ?? 0;
-              const kAsk = prices?.k_ask ?? 0;
-              const pmBid = prices?.pm_bid ?? 0;
-              const pmAsk = prices?.pm_ask ?? 0;
-              const spread = prices?.spread ?? 0;
-              const hasData = kBid > 0 || pmBid > 0;
+            {sorted.map((g, gi) => {
+              const t1 = g.team1_prices;
+              const t2 = g.team2_prices;
+              const s1 = calcSpread(t1);
+              const s2 = calcSpread(t2);
+              const gs = g.best_spread;
+              const isArb = gs >= 4;
+              const isWatch = gs >= 2;
+              const isLive = g.game_status === "in";
+              const imb = imbInfo(g.k_depth ?? 0, g.pm_depth ?? 0);
+              const isExp = expandedGame === g.cache_key;
+              const bg = isArb ? "bg-[#00ff88]/[0.04]" : isWatch ? "bg-[#ff8c00]/[0.02]" : gi % 2 === 0 ? "" : "bg-white/[0.01]";
+              const liveBdr = isLive ? "border-l-2 border-l-[#00ff88]" : "";
 
               return (
-                <tr key={label} className={`border-t border-[#1a1a2e]/40 ${spread >= 4 ? "bg-[#00ff88]/[0.04]" : ""}`}>
-                  <td className="py-1 text-[#ff8c00] font-medium">{label}</td>
-                  <td className="py-1 text-center text-[#00ff88]">{kBid || "—"}</td>
-                  <td className="py-1 text-center text-[#ff6666]">{kAsk || "—"}</td>
-                  <td className="py-1 text-center text-[#1a1a2e]">│</td>
-                  <td className="py-1 text-center text-[#00ff88]">{pmBid || "—"}</td>
-                  <td className="py-1 text-center text-[#ff6666]">{pmAsk || "—"}</td>
-                  <td className="py-1 text-center text-[#1a1a2e]">│</td>
-                  <td className="py-1 text-right">
-                    <SpreadBadge cents={spread} />
-                  </td>
-                </tr>
+                <React.Fragment key={g.cache_key}>
+                  {/* Team 1 */}
+                  <tr className={`border-t border-[#1a1a2e]/40 hover:bg-[#ff8c00]/[0.05] cursor-pointer ${bg} ${liveBdr}`}
+                    onClick={() => setExpandedGame(isExp ? null : g.cache_key)}>
+                    <td className="px-1 py-[2px]" rowSpan={2}>
+                      <span className={`text-[7px] font-bold px-0.5 ${sportBadge(g.sport)}`}>{g.sport}</span>
+                    </td>
+                    <td className="px-1 py-[2px]">
+                      <span className="text-[#ff8c00]">{g.team1}</span>
+                      {isLive && g.team1_score != null && <span className="text-[#00ff88] font-bold ml-1 text-[9px]">{g.team1_score}</span>}
+                    </td>
+                    <td className="px-1 py-[2px] text-center" rowSpan={2}>
+                      {isLive ? <span className="inline-block w-1.5 h-1.5 bg-[#00ff88] animate-pulse" />
+                        : g.traded ? <span className="text-[#00ff88] text-[7px]">✓</span>
+                        : <span className="text-[#2a2a4a] text-[7px]">·</span>}
+                    </td>
+                    <td className="px-1 py-[2px] text-center border-l border-[#ff8c00]/10 text-[#00ff88]"><P v={t1?.k_bid ?? 0} /></td>
+                    <td className="px-1 py-[2px] text-center text-[#ff6666]"><P v={t1?.k_ask ?? 0} /></td>
+                    <td className="px-1 py-[2px] text-center border-l border-[#00bfff]/10 text-[#00ff88]"><P v={t1?.pm_bid ?? 0} /></td>
+                    <td className="px-1 py-[2px] text-center text-[#ff6666]"><P v={t1?.pm_ask ?? 0} /></td>
+                    <td className="px-1 py-[2px] text-center border-l border-[#1a1a2e]" rowSpan={2}>
+                      {gs > 0 ? (
+                        <span className={`font-bold ${isArb ? "text-[#00ff88] bg-[#00ff88]/10 px-1 border border-[#00ff88]/30" : isWatch ? "text-[#ff8c00]" : "text-[#4a4a6a]"}`}>
+                          {gs.toFixed(1)}
+                        </span>
+                      ) : <span className="text-[#2a2a4a]">·</span>}
+                    </td>
+                    <td className="px-1 py-[2px] text-right border-l border-[#1a1a2e] text-[#ff8c00]/70" rowSpan={2}>{g.k_depth ? fmtNum(g.k_depth) : "—"}</td>
+                    <td className="px-1 py-[2px] text-right text-[#00bfff]/70" rowSpan={2}>{g.pm_depth ? fmtNum(g.pm_depth) : "—"}</td>
+                    <td className={`px-1 py-[2px] text-center text-[8px] ${imb.color}`} rowSpan={2}>{imb.label}</td>
+                    <td className="px-1 py-[2px]" rowSpan={2}><DepthBar k={g.k_depth ?? 0} pm={g.pm_depth ?? 0} /></td>
+                  </tr>
+                  {/* Team 2 */}
+                  <tr className={`hover:bg-[#ff8c00]/[0.05] cursor-pointer ${bg} ${liveBdr}`}
+                    onClick={() => setExpandedGame(isExp ? null : g.cache_key)}>
+                    <td className="px-1 py-[2px]">
+                      <span className="text-[#ff8c00]/60">{g.team2}</span>
+                      {isLive && g.team2_score != null && <span className="text-[#00ff88] font-bold ml-1 text-[9px]">{g.team2_score}</span>}
+                    </td>
+                    <td className="px-1 py-[2px] text-center border-l border-[#ff8c00]/10 text-[#00ff88]/60"><P v={t2?.k_bid ?? 0} /></td>
+                    <td className="px-1 py-[2px] text-center text-[#ff6666]/60"><P v={t2?.k_ask ?? 0} /></td>
+                    <td className="px-1 py-[2px] text-center border-l border-[#00bfff]/10 text-[#00ff88]/60"><P v={t2?.pm_bid ?? 0} /></td>
+                    <td className="px-1 py-[2px] text-center text-[#ff6666]/60"><P v={t2?.pm_ask ?? 0} /></td>
+                  </tr>
+                  {/* Expanded detail */}
+                  {isExp && (
+                    <tr className="bg-[#0c0c14]">
+                      <td colSpan={12} className="px-2 py-2 border-t border-[#ff8c00]/20">
+                        <div className="grid grid-cols-4 gap-2 text-[9px] font-mono">
+                          {/* Arb Breakdown */}
+                          <div className="border border-[#1a1a2e] p-1.5">
+                            <div className="text-[7px] text-[#4a4a6a] uppercase tracking-wider mb-1">ARB VECTORS</div>
+                            {[{ l: g.team1, s: s1 }, { l: g.team2, s: s2 }].map(({ l, s }) => (
+                              <div key={l} className="flex justify-between py-0.5">
+                                <span className="text-[#4a4a6a]">{l}</span>
+                                <span>
+                                  <span className={s.buyPM >= 4 ? "text-[#00ff88] font-bold" : s.buyPM > 0 ? "text-[#ff8c00]" : "text-[#3a3a5a]"}>
+                                    {s.buyPM > 0 ? `↑PM ${s.buyPM}c` : "—"}
+                                  </span>
+                                  <span className="text-[#2a2a4a] mx-1">│</span>
+                                  <span className={s.buyK >= 4 ? "text-[#00ff88] font-bold" : s.buyK > 0 ? "text-[#ff8c00]" : "text-[#3a3a5a]"}>
+                                    {s.buyK > 0 ? `↑K ${s.buyK}c` : "—"}
+                                  </span>
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                          {/* Price delta */}
+                          <div className="border border-[#1a1a2e] p-1.5">
+                            <div className="text-[7px] text-[#4a4a6a] uppercase tracking-wider mb-1">K – PM DELTA (BID)</div>
+                            {[{ l: g.team1, k: t1?.k_bid ?? 0, p: t1?.pm_bid ?? 0 },
+                              { l: g.team2, k: t2?.k_bid ?? 0, p: t2?.pm_bid ?? 0 }].map(({ l, k, p }) => {
+                              const d = k - p;
+                              return (
+                                <div key={l} className="flex items-center gap-1 py-0.5">
+                                  <span className="text-[#4a4a6a] w-8">{l}</span>
+                                  <div className="flex-1 h-[8px] bg-[#1a1a2e] relative overflow-hidden">
+                                    {d > 0 && <div className="absolute left-1/2 h-full bg-[#ff8c00]/50" style={{ width: `${Math.min(Math.abs(d), 50)}%` }} />}
+                                    {d < 0 && <div className="absolute right-1/2 h-full bg-[#00bfff]/50" style={{ width: `${Math.min(Math.abs(d), 50)}%` }} />}
+                                    {d === 0 && <div className="absolute left-1/2 w-px h-full bg-[#4a4a6a]" />}
+                                  </div>
+                                  <span className={`w-6 text-right ${d > 0 ? "text-[#ff8c00]" : d < 0 ? "text-[#00bfff]" : "text-[#4a4a6a]"}`}>
+                                    {d > 0 ? "+" : ""}{d}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                          {/* Depth */}
+                          <div className="border border-[#1a1a2e] p-1.5">
+                            <div className="text-[7px] text-[#4a4a6a] uppercase tracking-wider mb-1">DEPTH PROFILE</div>
+                            <div className="flex justify-between py-0.5">
+                              <span className="text-[#ff8c00]">K: {g.k_depth ? fmtNum(g.k_depth) : "—"}</span>
+                              <span className="text-[#00bfff]">PM: {g.pm_depth ? fmtNum(g.pm_depth) : "—"}</span>
+                            </div>
+                            <DepthBar k={g.k_depth ?? 0} pm={g.pm_depth ?? 0} />
+                            <div className={`text-center mt-1 ${imb.color}`}>{imb.label}</div>
+                          </div>
+                          {/* Meta */}
+                          <div className="border border-[#1a1a2e] p-1.5">
+                            <div className="text-[7px] text-[#4a4a6a] uppercase tracking-wider mb-1">MARKET META</div>
+                            <div className="space-y-0.5 text-[#4a4a6a]">
+                              <div className="flex justify-between"><span>Date</span><span className="text-[#ff8c00]">{g.date}</span></div>
+                              <div className="flex justify-between"><span>Slug</span><span className="text-[#00bfff] text-[7px]">{g.pm_slug?.slice(0, 22)}</span></div>
+                              {isLive && <div className="flex justify-between border-t border-[#1a1a2e] pt-0.5 mt-0.5"><span>Score</span><span className="text-[#00ff88] font-bold">{g.team1_score} – {g.team2_score} {g.period} {g.clock}</span></div>}
+                              {g.traded && <div className="flex justify-between border-t border-[#1a1a2e] pt-0.5 mt-0.5"><span>Traded</span><span className="text-[#00ff88] font-bold">✓</span></div>}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
               );
             })}
           </tbody>
         </table>
-      </div>
-
-      {/* Visual price bars */}
-      <div className="px-3 pb-2 space-y-1">
-        <PriceBar
-          kPrice={t1?.k_bid ?? 0}
-          pmPrice={t1?.pm_bid ?? 0}
-          label={game.team1}
-        />
-        <PriceBar
-          kPrice={t2?.k_bid ?? 0}
-          pmPrice={t2?.pm_bid ?? 0}
-          label={game.team2}
-        />
-      </div>
-
-      {/* Footer: Depth + Status */}
-      <div className="px-3 py-1.5 border-t border-[#1a1a2e]/60 flex items-center justify-between text-[9px] font-mono">
-        <span className="text-[#4a4a6a]">
-          Depth:{" "}
-          <span className={depthColor(game.k_depth ?? null)}>K:{game.k_depth ? fmtNum(game.k_depth) : "—"}</span>
-          <span className="text-[#2a2a4a] mx-1">|</span>
-          <span className={depthColor(game.pm_depth ?? null)}>PM:{game.pm_depth ? fmtNum(game.pm_depth) : "—"}</span>
-        </span>
-        <span className="text-[#4a4a6a]">
-          {game.traded ? (
-            <span className="text-[#00ff88] font-bold">TRADED ✓</span>
-          ) : game.status === "Active" ? (
-            <span className="text-[#ff8c00]">ACTIVE</span>
-          ) : (
-            <span className="text-[#3a3a5a]">WAITING</span>
-          )}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-export function LiveGamesTab({ data }: Props) {
-  const { state } = data;
-  const [showAll, setShowAll] = useState(false);
-
-  const games = state?.mapped_games ?? [];
-
-  // Separate live, active (with prices), and upcoming
-  const { liveGames, activeGames, upcomingCount } = useMemo(() => {
-    const live: MappedGame[] = [];
-    const active: MappedGame[] = [];
-    let upcoming = 0;
-
-    for (const g of games) {
-      if (g.game_status === "in") {
-        live.push(g);
-      } else if (g.status === "Active" && g.game_status !== "post") {
-        active.push(g);
-      } else if (g.game_status !== "post") {
-        upcoming++;
-      }
-    }
-
-    // Sort live by best spread descending (biggest arb opportunity first)
-    live.sort((a, b) => b.best_spread - a.best_spread);
-    active.sort((a, b) => b.best_spread - a.best_spread);
-
-    return { liveGames: live, activeGames: active, upcomingCount: upcoming };
-  }, [games]);
-
-  const displayActive = showAll ? activeGames : activeGames.slice(0, 6);
-
-  return (
-    <div className="p-3 space-y-3">
-      {/* Summary bar */}
-      <div className="flex items-center gap-4 px-3 py-2 border border-[#1a1a2e] bg-[#0a0a0f]">
-        <div className="flex items-center gap-1.5">
-          <span className="inline-block w-2 h-2 bg-[#00ff88] animate-pulse" />
-          <span className="text-[10px] font-mono font-bold text-[#00ff88] uppercase tracking-wider">
-            {liveGames.length} LIVE
-          </span>
-        </div>
-        <span className="text-[#1a1a2e]">│</span>
-        <span className="text-[10px] font-mono text-[#ff8c00]">
-          {activeGames.length} ACTIVE
-        </span>
-        <span className="text-[#1a1a2e]">│</span>
-        <span className="text-[10px] font-mono text-[#4a4a6a]">
-          {upcomingCount} UPCOMING
-        </span>
-        <span className="text-[#1a1a2e]">│</span>
-        <span className="text-[10px] font-mono text-[#4a4a6a]">
-          Refresh: 3s
-        </span>
-        {liveGames.some((g) => g.best_spread >= 4) && (
-          <>
-            <span className="text-[#1a1a2e]">│</span>
-            <span className="text-[10px] font-mono font-bold text-[#00ff88] animate-pulse">
-              ⚡ ARB OPPORTUNITIES DETECTED
+        {sorted.length === 0 && (
+          <div className="text-center py-12">
+            <span className="text-[#3a3a5a] font-mono text-[10px] uppercase tracking-wider">
+              NO ACTIVE BOOKS{sportFilter !== "ALL" ? ` FOR ${sportFilter}` : ""} — WAITING FOR MARKETS
             </span>
-          </>
+          </div>
         )}
       </div>
-
-      {/* Live Games Section */}
-      {liveGames.length > 0 ? (
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-[9px] font-mono font-bold text-[#00ff88] uppercase tracking-widest">
-              ● LIVE GAMES
-            </span>
-            <div className="flex-1 h-px bg-[#00ff88]/20" />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
-            {liveGames.map((g) => (
-              <LiveGameCard key={g.cache_key} game={g} />
-            ))}
-          </div>
-        </div>
-      ) : (
-        <div className="border border-[#1a1a2e] bg-[#0a0a0f] px-4 py-8 text-center">
-          <span className="text-[#3a3a5a] font-mono text-[10px] uppercase tracking-wider">
-            NO LIVE GAMES — WAITING FOR TIP-OFF
-          </span>
-        </div>
-      )}
-
-      {/* Active Games Section (pre-game with orderbooks) */}
-      {activeGames.length > 0 && (
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-[9px] font-mono font-bold text-[#ff8c00] uppercase tracking-widest">
-              ▲ ACTIVE BOOKS
-            </span>
-            <div className="flex-1 h-px bg-[#ff8c00]/20" />
-            <span className="text-[9px] font-mono text-[#4a4a6a]">
-              {activeGames.length} games
-            </span>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
-            {displayActive.map((g) => (
-              <LiveGameCard key={g.cache_key} game={g} />
-            ))}
-          </div>
-          {activeGames.length > 6 && (
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="mt-2 w-full py-1.5 border border-[#1a1a2e] text-[9px] font-mono text-[#4a4a6a] hover:text-[#ff8c00] hover:border-[#ff8c00]/30 transition-colors uppercase tracking-wider"
-            >
-              {showAll ? "SHOW LESS" : `SHOW ALL ${activeGames.length} ACTIVE GAMES`}
-            </button>
-          )}
-        </div>
-      )}
     </div>
   );
 }

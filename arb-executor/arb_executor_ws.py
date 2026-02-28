@@ -2115,6 +2115,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 omi_cache=omi_cache,
                 opposite_info=opposite_info,
                 pm_data_age_ms=_pm_data_age_ms,
+                pm_prices=pm_prices,
             )
 
             # Compute PM position details for settlement tracking

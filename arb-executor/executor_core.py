@@ -1359,6 +1359,7 @@ async def execute_arb(
     omi_cache=None,   # OmiSignalCache instance for Tier 3 directional decisions
     opposite_info: Optional[Dict] = None,  # {team, ticker, ask, ask_size} for cross-hedge
     pm_data_age_ms: int = 0,  # Age of PM WS data at detection time (for no-fill diagnostics)
+    pm_prices: Optional[Dict] = None,  # WS-updated PM price dict for BBO refresh
 ) -> TradeResult:
     """
     Execute a hedged arb trade with dynamic sizing.
@@ -1382,6 +1383,11 @@ async def execute_arb(
     start_time = time.time()
     game_id = arb.game  # Kalshi game_id format
     gtc_phase = None  # Set in Phase 2 if GTC is attempted
+
+    # Hard cap: prevent sizing bugs from sending oversized orders
+    if size > Config.max_contracts:
+        print(f"[EXEC] SIZE CAP: {size} -> {Config.max_contracts} (max_contracts)")
+        size = Config.max_contracts
 
     # -------------------------------------------------------------------------
     # Step 1: Safety checks (in-memory only — no API calls on hot path)
@@ -1652,19 +1658,78 @@ async def execute_arb(
         k_qty_delta = -k_preflight_filled if params['k_action'] == 'sell' else k_preflight_filled
         update_position_cache_after_trade(arb.kalshi_ticker, k_qty_delta)
         print(f"[EXEC] K filled {k_preflight_filled}x @{k_preflight_price}c in {k_preflight_ms}ms — placing PM...")
+
+        # ── PM BBO REFRESH: re-read fresh price from WS-updated dict ──
+        stale_pm_price = pm_price
+        if pm_prices is not None:
+            pm_key = f"{arb.cache_key}_{arb.team}"
+            fresh = pm_prices.get(pm_key)
+            if fresh:
+                fresh_cents = fresh.get('ask') if params['pm_intent'] == 1 else fresh.get('bid')
+                if fresh_cents is not None:
+                    fresh_pm_price_cents = fresh_cents
+                    if params.get('pm_invert_price', False):
+                        fresh_pm_price_cents = 100 - fresh_pm_price_cents
+                    if params.get('pm_is_buy_short', False):
+                        max_cost = min(math.ceil(fresh_pm_price_cents + pm_buffer), 99)
+                        pm_price = max(100 - max_cost, 1) / 100.0
+                    else:
+                        pm_price = min(math.ceil(fresh_pm_price_cents + pm_buffer), 99) / 100.0
+                    delta_c = (pm_price - stale_pm_price) * 100
+                    age_ms = int(time.time() * 1000) - fresh.get('timestamp_ms', 0)
+                    print(f"[K_FIRST] PM BBO refresh: ${stale_pm_price:.2f} -> ${pm_price:.2f} (delta={delta_c:+.1f}c, age={age_ms}ms)")
+
+        # ── PM GTC ORDER: tif=1 (maker) then poll up to 1.5s ──
         pm_order_start = time.time()
         try:
             pm_result = await asyncio.wait_for(
                 pm_api.place_order(session, pm_slug, params['pm_intent'], pm_price,
-                    k_preflight_filled, tif=3, sync=True, outcome_index=actual_pm_outcome_idx),
+                    k_preflight_filled, tif=1, sync=False, outcome_index=actual_pm_outcome_idx),
                 timeout=2.0)
         except (asyncio.TimeoutError, Exception) as e:
             pm_order_ms = int((time.time() - pm_order_start) * 1000)
-            print(f"[EXEC] PM failed: {e} — unwinding K...")
+            print(f"[K_FIRST] PM GTC send failed: {e} — unwinding K...")
             pm_result = {'fill_count': 0, 'error': str(e)}
-        pm_order_ms = int((time.time() - pm_order_start) * 1000)
+
+        # Poll for GTC fill up to 1.5s
+        pm_order_id = pm_result.get('order_id')
         pm_filled = pm_result.get('fill_count', 0)
         pm_fill_price = pm_result.get('fill_price', pm_price)
+        if pm_order_id and pm_filled == 0:
+            poll_start = time.time()
+            while (time.time() - poll_start) < 1.5:
+                await asyncio.sleep(0.15)
+                try:
+                    status = await pm_api.get_order_status(session, pm_order_id)
+                    cum_qty = status.get('cum_quantity', 0)
+                    state = status.get('state', '')
+                    if cum_qty > 0 or state == 'ORDER_STATE_FILLED':
+                        pm_filled = cum_qty
+                        pm_fill_price = status.get('fill_price', pm_price)
+                        print(f"[K_FIRST] PM GTC FILLED {pm_filled}x @${pm_fill_price:.4f} in {int((time.time()-poll_start)*1000)}ms")
+                        break
+                    if state in ('ORDER_STATE_CANCELED', 'ORDER_STATE_EXPIRED'):
+                        break
+                except Exception:
+                    pass
+            # Cancel if still not filled
+            if pm_filled == 0:
+                try:
+                    await pm_api.cancel_order(session, pm_order_id, pm_slug)
+                    # Recheck after cancel
+                    recheck = await pm_api.get_order_status(session, pm_order_id)
+                    recheck_qty = recheck.get('cum_quantity', 0)
+                    if recheck_qty > 0:
+                        pm_filled = recheck_qty
+                        pm_fill_price = recheck.get('fill_price', pm_price)
+                        print(f"[K_FIRST] PM filled on cancel: {pm_filled}x @${pm_fill_price:.4f}")
+                except Exception as ce:
+                    print(f"[K_FIRST] PM cancel error: {ce}")
+                if pm_filled == 0:
+                    print(f"[K_FIRST] PM GTC no-fill after 1.5s poll — cancelling")
+
+        pm_order_ms = int((time.time() - pm_order_start) * 1000)
+        pm_fill_price = pm_result.get('fill_price', pm_price) if pm_filled == 0 else pm_fill_price
         pm_response_details = _extract_pm_response_details(pm_result)
         if pm_filled == 0:
             print(f"[EXEC] PM no-fill latency={pm_order_ms}ms — unwinding {k_preflight_filled} K...")
@@ -1776,13 +1841,10 @@ async def execute_arb(
     # Step 6: Place Kalshi order (SKIPPED in K-first mode)
     # -------------------------------------------------------------------------
     if k_filled > 0:
-        print(f"[EXEC] Skip Step 6 — K already filled {k_filled}x in K-first mode")
-        k_result = {'fill_count': k_filled, 'fill_price': k_fill_price, 'status': 'filled'}
-        k_order_ms = k_order_ms
-        k_fill_price = k_fill_price
-        # JUMP past Step 6+7 to success handling (Step 8)
         traded_games.add(game_id)
         execution_time_ms = int((time.time() - start_time) * 1000)
+        print(f"[K_FIRST] SUCCESS: K={k_filled}x@{k_fill_price}c PM={pm_filled}x@${pm_fill_price:.4f} "
+              f"total={execution_time_ms}ms (k={k_order_ms}ms pm={pm_order_ms}ms)")
         return TradeResult(
             success=True,
             kalshi_filled=k_filled,

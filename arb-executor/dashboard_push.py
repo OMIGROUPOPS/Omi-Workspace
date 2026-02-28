@@ -264,10 +264,13 @@ class DashboardPusher:
             if k_bid == 0 or k_ask == 0:
                 continue
 
-            # PM price (keyed by cache_key_team)
+            # PM price (keyed by cache_key_team) — enforce staleness like executor
             pm_key = f"{cache_key}_{team}"
             pm = self.pm_prices.get(pm_key)
             if not pm:
+                continue
+            pm_age_ms = int(time.time() * 1000) - pm.get('timestamp_ms', 0)
+            if pm_age_ms > 5000:  # 5s staleness (dashboard pushes every 5s)
                 continue
             pm_bid = pm.get("bid") or 0
             pm_ask = pm.get("ask") or 0
@@ -965,6 +968,10 @@ class DashboardPusher:
 
                 pm_key = f"{cache_key}_{team_abbr}"
                 pm = self.pm_prices.get(pm_key)
+                if pm:
+                    pm_age_ms = int(time.time() * 1000) - pm.get('timestamp_ms', 0)
+                    if pm_age_ms > 5000:
+                        pm = None  # Stale — zero out PM prices
                 if pm:
                     tp["pm_bid"] = round(pm.get("bid") or 0, 1)
                     tp["pm_ask"] = round(pm.get("ask") or 0, 1)

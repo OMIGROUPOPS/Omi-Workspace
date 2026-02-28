@@ -531,15 +531,23 @@ async def run_audit(quiet=False):
                 net_int = abs(int(pm_net)) if pm_net else 0
                 pm_entry = round(pm_cost / net_int * 100, 1) if net_int > 0 else 0
 
-            # Combined cost
+            # Combined cost — simple addition
+            # pm_entry from SDK = actual cash outlay: buy price (longs) or collateral (shorts)
+            # k_entry from fills = actual entry price (YES or NO VWAP)
+            # For a valid arb (opposite sides): combined ~96-100c, payout=100c, gross=0-4c
+            # If combined < 90c → likely same-side double (NOT an arb)
+            # If combined > 100c → negative arb (overpaid)
             if k_entry and pm_entry:
-                # For arb: total cost = k_entry + (100 - pm_entry) or k_entry + pm_entry depending on sides
-                # Simple: show combined cost per contract
                 combined = k_entry + pm_entry
                 payout = 100
                 gross_profit = payout - combined
                 status_str = "LOCKED" if k_pos and pm_pos_data else ("K-ONLY" if k_pos else "PM-ONLY")
-                print(f"  {t.get('team', '?'):<6s} K:{k_side}@{k_entry:.0f}c + PM:{pm_outcome[:6]}@{pm_entry:.0f}c = {combined:.0f}c/{payout}c  gross={gross_profit:.0f}c  [{status_str}]")
+                flag = ""
+                if combined < 90:
+                    flag = " !! SAME-SIDE?"
+                elif combined > 100:
+                    flag = " !! NEG-ARB"
+                print(f"  {t.get('team', '?'):<6s} K:{k_side}@{k_entry:.0f}c + PM:{pm_outcome[:6]}@{pm_entry:.0f}c = {combined:.0f}c/{payout}c  gross={gross_profit:.0f}c  [{status_str}]{flag}")
             elif k_pos:
                 print(f"  {t.get('team', '?'):<6s} K:{k_side}@{k_entry:.0f}c + PM:SETTLED  [K-ONLY]")
             elif pm_pos_data:

@@ -1929,7 +1929,31 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
         # -----------------------------------------------------------------
         is_long_team = (arb.team == arb.pm_long_team)
         kalshi_book = local_books.get(arb.kalshi_ticker, {})
-        pm_depth = pm_books.get(arb.pm_slug, {})
+        pm_depth_raw = pm_books.get(arb.pm_slug, {})
+
+        # pm_books always stores outcome-0 (long team at idx=0) orderbook from WS.
+        # When pm_long_team is at outcome idx=1, the stored data is for the OTHER
+        # team. The depth walk assumes pm_books is in "long-team frame", so we must
+        # invert bids/asks when pm_long_team is NOT at outcome 0.
+        # Detect: if the traded team IS pm_long_team but its outcome_index != 0,
+        # or if the traded team is NOT pm_long_team but its outcome_index == 0,
+        # the pm_books frame doesn't match what the depth walk expects.
+        pm_long_at_idx0 = not is_long_team if arb.pm_outcome_index == 0 else is_long_team
+        if pm_depth_raw and pm_depth_raw.get('bids') and pm_depth_raw.get('asks') and not pm_long_at_idx0:
+            # pm_long_team is at outcome 1 — WS data is for the wrong team.
+            # Invert: outcome-0 asks become long-team bids (inverted), and vice versa.
+            pm_depth = {
+                'bids': [{'price_cents': 100 - l['price_cents'], 'size': l['size']}
+                         for l in pm_depth_raw['asks']],
+                'asks': [{'price_cents': 100 - l['price_cents'], 'size': l['size']}
+                         for l in pm_depth_raw['bids']],
+                'timestamp_ms': pm_depth_raw.get('timestamp_ms', 0),
+            }
+            # Sort: bids descending, asks ascending (by price)
+            pm_depth['bids'].sort(key=lambda x: x['price_cents'], reverse=True)
+            pm_depth['asks'].sort(key=lambda x: x['price_cents'])
+        else:
+            pm_depth = pm_depth_raw
 
         if pm_depth and pm_depth.get('bids') and pm_depth.get('asks'):
             # Juicy spreads get higher contract cap
@@ -2356,6 +2380,26 @@ def log_status():
     print(f"\n[STATUS] K_WS: {k_ws_status} | PM_WS: {pm_ws_status} | Books: {books_with_data} K, {fresh_pm} PM")
     print(f"[STATUS] K_msgs: {stats['k_ws_messages']} | PM_msgs: {stats['pm_ws_messages']}")
     print(f"[STATUS] Spreads detected: {stats['spreads_detected']} | Executed: {stats['spreads_executed']}")
+
+    # Intra-Kalshi spread scanner: check if buying YES on both sides < 98c
+    for ck, tickers in cache_key_to_tickers.items():
+        if len(tickers) < 2:
+            continue
+        for i in range(len(tickers)):
+            for j in range(i + 1, len(tickers)):
+                book_a = local_books.get(tickers[i], {})
+                book_b = local_books.get(tickers[j], {})
+                ask_a = book_a.get('best_ask')
+                ask_b = book_b.get('best_ask')
+                if ask_a is not None and ask_b is not None:
+                    combined = ask_a + ask_b
+                    if combined < 98:
+                        team_a = tickers[i].split('-')[-1]
+                        team_b = tickers[j].split('-')[-1]
+                        profit = 100 - combined
+                        print(f"[INTRA-K-ARB] {team_a} vs {team_b} | "
+                              f"YES asks: {ask_a}c + {ask_b}c = {combined}c | "
+                              f"Gross profit: {profit}c")
 
 
 # Flag to print snapshot once

@@ -1882,7 +1882,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
         _fresh_k = local_books.get(arb.kalshi_ticker)
         if _fresh_k:
             _k_age = now_ms - _fresh_k.get('last_update_ms', 0)
-            if _k_age > 500:  # Tightened from 2000ms to 500ms
+            if _k_age > 750:
                 print(f"[EXEC] K data stale ({_k_age}ms) — aborting")
                 executing_games.discard(arb.cache_key)
                 return

@@ -1033,9 +1033,10 @@ class KalshiAPI:
         # In paper unlimited mode, skip all limits
         if not paper_unlimited:
             # HARD LIMIT ENFORCEMENT (live mode only)
-            if count > Config.max_contracts:
-                print(f"   [SAFETY] Capping contracts from {count} to {Config.max_contracts}")
-                count = Config.max_contracts
+            hard_cap = Config.max_contracts_juicy
+            if count > hard_cap:
+                print(f"   [SAFETY] Capping contracts from {count} to {hard_cap}")
+                count = hard_cap
 
             if count < Config.min_contracts:
                 return {'success': False, 'error': f'Count {count} below minimum {Config.min_contracts}'}
@@ -1824,9 +1825,10 @@ class PolymarketUSAPI:
         # In paper unlimited mode, skip all limits
         if not paper_unlimited:
             # HARD LIMIT ENFORCEMENT (live mode only)
-            if quantity > Config.max_contracts:
-                print(f"   [SAFETY] PM US: Capping contracts from {quantity} to {Config.max_contracts}")
-                quantity = Config.max_contracts
+            hard_cap = Config.max_contracts_juicy
+            if quantity > hard_cap:
+                print(f"   [SAFETY] PM US: Capping contracts from {quantity} to {hard_cap}")
+                quantity = hard_cap
             if quantity < Config.min_contracts:
                 return {'success': False, 'error': f'Quantity {quantity} below minimum'}
 
@@ -1835,7 +1837,7 @@ class PolymarketUSAPI:
                 quantity = int(Config.max_cost_cents / (price * 100))
                 if quantity < Config.min_contracts:
                     return {'success': False, 'error': 'Quantity below minimum after cost cap'}
-                print(f"   [SAFETY] PM US: Reduced to {quantity} contracts")
+                print(f"   [SAFETY] PM US: Reduced to {quantity} contracts (cost cap ${Config.max_cost_cents/100:.0f})")
 
         intent_names = {1: 'BUY_LONG', 2: 'SELL_LONG', 3: 'BUY_SHORT', 4: 'SELL_SHORT'}
 

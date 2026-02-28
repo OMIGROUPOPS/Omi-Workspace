@@ -50,7 +50,7 @@ class Config:
     max_contracts: int = 30       # Maximum contracts per trade
     max_contracts_juicy: int = 100 # Max contracts for fat spreads (>= juicy_spread_threshold)
     juicy_spread_threshold: int = 7  # Spread (cents) at which we unlock higher sizing
-    max_cost_cents: int = 1500    # Maximum cost per trade ($15)
+    max_cost_cents: int = 5000    # Maximum cost per trade ($50 — depth walk + commitment cap are real governors)
     min_liquidity: int = 50       # Minimum bid/ask depth required
 
     # ==========================================================================

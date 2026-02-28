@@ -162,12 +162,16 @@ async def _verify_both_legs(session, kalshi_api, pm_api, ticker: str, pm_slug: s
         pm_exists = pm_positions is not None and len(pm_positions) > 0
 
         if not k_exists or not pm_exists:
-            print(f"[HEDGE_VERIFY] FAILED: {team} | "
+            # WARNING ONLY — do NOT pause. Both fills were already confirmed by order
+            # responses. Position API may lag behind (especially K SELL YES = short).
+            # False positives from API latency are common and were pausing the executor
+            # unnecessarily (e.g., LCHI trade: K confirmed fill_count=1 but position
+            # API returned 0 within 50ms of fill).
+            print(f"[HEDGE_VERIFY] WARN: {team} | "
                   f"K={ticker} {'EXISTS' if k_exists else 'MISSING'} (expected {k_filled}) | "
-                  f"PM={pm_slug[:35]} {'EXISTS' if pm_exists else 'MISSING'} (expected {pm_filled})",
+                  f"PM={pm_slug[:35]} {'EXISTS' if pm_exists else 'MISSING'} (expected {pm_filled}) | "
+                  f"NOTE: both fills confirmed by order response — likely API latency",
                   flush=True)
-            executor_paused = True
-            print(f"[HEDGE_VERIFY] EXECUTOR PAUSED — manual review required", flush=True)
             return False
 
         print(f"[HEDGE_VERIFY] OK: {team} K={ticker[-15:]} PM={pm_slug[:25]} — both legs confirmed",

@@ -241,6 +241,7 @@ def log_spread_watch(game: str, team: str, direction: str, spread_cents: float,
 
 # Cooldown tracking
 last_trade_time = 0
+_last_warmup_time = 0  # Tracks last pre-trade SDK warmup ping
 # Note: traded_games and blacklisted_games are imported from executor_core
 
 # Execution mode is now controlled via Config (from config.py)
@@ -925,6 +926,9 @@ def check_spread_for_ticker(ticker: str) -> Optional[ArbOpportunity]:
 
     # Only proceed to execution if spread >= exec_min
     if best_spread < exec_min:
+        global _last_warmup_time
+        if best_spread >= exec_min - 1 and (time.time() - _last_warmup_time) > 5:
+            _last_warmup_time = time.time()
         log_spread_watch(ticker_parts[1] if len(ticker_parts) >= 2 else ticker,
                         team, best_direction, best_spread, k_price_for_watch,
                         pm_price_for_watch, pm_size_for_watch, is_long_team)
@@ -2805,22 +2809,32 @@ async def run_self_test(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI):
 # ============================================================================
 
 async def pm_sdk_keepalive(pm_api: 'PolymarketUSAPI'):
-    """Ping PM API every 30s to keep httpx connection pool warm.
+    """Ping PM API every 10s + respond to pre-trade warmup triggers."""
+    global _last_warmup_time
+    _last_ping_time = 0
 
-    The SDK uses httpx with connection pooling.  Warm requests take ~22ms
-    vs 200ms+ cold (TLS handshake).  Connections die after ~60s idle, so
-    we ping every 30s to keep them alive.
-    """
     while not shutdown_requested:
         try:
-            await asyncio.sleep(30)
+            await asyncio.sleep(1)
             if pm_api._sdk_client is None:
                 continue
-            # Pick any active slug from current mappings
+
+            now = time.time()
+            warmup_requested = (_last_warmup_time > _last_ping_time)
+            regular_due = (now - _last_ping_time) >= 10
+
+            if not warmup_requested and not regular_due:
+                continue
+
             slug = next(iter(pm_slug_to_cache_keys), None)
             if slug is None:
                 continue
+
             await pm_api._sdk_client.markets.bbo(slug)
+            _last_ping_time = now
+
+            if warmup_requested:
+                print(f"[PM-SDK] Pre-trade warmup ping (spread approaching threshold)")
         except Exception:
             pass  # Silent — this is just keepalive
 

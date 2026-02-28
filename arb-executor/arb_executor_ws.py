@@ -901,7 +901,7 @@ def check_spread_for_ticker(ticker: str) -> Optional[ArbOpportunity]:
         return None
 
     # Skip thin PM liquidity - price will move before we can execute
-    MIN_PM_SIZE = 50  # minimum contracts at the price we'd trade
+    MIN_PM_SIZE = 10  # minimum contracts at the price we'd trade
     if best_direction == 'BUY_PM_SELL_K':
         if pm_ask_size < MIN_PM_SIZE:
             return None  # PM ask too thin

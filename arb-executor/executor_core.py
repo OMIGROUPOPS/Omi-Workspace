@@ -1582,163 +1582,209 @@ async def execute_arb(
           f"spread={spread:.1f}c buf={pm_buffer}c | slug={pm_slug[:50]}")
 
     pm_order_start = time.time()
-    try:
-        pm_result = await asyncio.wait_for(
-            pm_api.place_order(
-                session,
-                pm_slug,
-                params['pm_intent'],   # 1=BUY_YES, 3=BUY_NO
-                pm_price,
-                size,                  # Dynamic sizing from depth walk
-                tif=3,                 # time_in_force: IOC
-                sync=True,             # Always synchronous for IOC
-                outcome_index=actual_pm_outcome_idx
-            ),
-            timeout=2.0,  # Hard 2s cap — IOC auto-expires, safe to abort
+
+    # ── GTC-ONLY MODE: Skip IOC entirely, go straight to maker order ──
+    # When enable_gtc=True, IOC taker fills eat the margin on thin spreads.
+    # GTC maker at 0% PM fee is the only path that's profitable for 2-4c spreads.
+    _gtc_only_filled = False
+    if Config.enable_gtc and k_book_ref is not None:
+        print(f"[EXEC] GTC-ONLY: Skipping IOC, placing maker order {size}@${pm_price:.2f}")
+        gtc_phase = await _execute_gtc_phase(
+            session=session, pm_api=pm_api, pm_slug=pm_slug,
+            pm_intent=params['pm_intent'], pm_price=pm_price,
+            size=size, outcome_index=actual_pm_outcome_idx,
+            k_book_ref=k_book_ref, direction=arb.direction,
+            game_id=game_id,
         )
-    except asyncio.TimeoutError:
-        pm_order_ms = int((time.time() - pm_order_start) * 1000)
-        execution_time_ms = int((time.time() - start_time) * 1000)
-        print(f"[EXEC] PM order TIMEOUT after {pm_order_ms}ms (2s cap) - aborting safely")
-        return TradeResult(success=False, abort_reason=f"PM order timeout ({pm_order_ms}ms > 2000ms cap)",
-                           execution_time_ms=execution_time_ms, pm_order_ms=pm_order_ms)
-    except Exception as e:
-        # PM failed before any position taken - safe exit
-        execution_time_ms = int((time.time() - start_time) * 1000)
-        pm_err_details = _extract_pm_response_details({'error': str(e)})
-        return TradeResult(success=False, abort_reason=f"PM order failed: {e}",
-                           execution_time_ms=execution_time_ms,
-                           pm_response_details=pm_err_details)
-
-    pm_order_ms = int((time.time() - pm_order_start) * 1000)
-    pm_filled = pm_result.get('fill_count', 0)
-    pm_fill_price = pm_result.get('fill_price', pm_price)
-    pm_response_details = _extract_pm_response_details(pm_result)
-
-    if pm_filled == 0:
-        execution_time_ms = int((time.time() - start_time) * 1000)
-
-        # ── FULL NO-FILL DIAGNOSTIC ──
-        # Fetch post-order BBO to compare with pre-order state
-        _post_order_bbo = None
-        try:
-            post_bbo_raw = await pm_api.get_bbo(pm_slug)
-            if post_bbo_raw.get('bid') is not None:
-                # BBO comes back in long-team frame — invert for non-long team
-                if is_long_team:
-                    _post_order_bbo = {
-                        'bid_cents': post_bbo_raw['bid'],
-                        'ask_cents': post_bbo_raw['ask'],
-                        'bid_size': 0,  # BBO doesn't return size
-                        'ask_size': 0,
-                    }
-                else:
-                    _post_order_bbo = {
-                        'bid_cents': 100 - post_bbo_raw['ask'] if post_bbo_raw['ask'] else 0,
-                        'ask_cents': 100 - post_bbo_raw['bid'] if post_bbo_raw['bid'] else 0,
-                        'bid_size': 0,
-                        'ask_size': 0,
-                    }
-        except Exception as e:
-            print(f"   [DIAG] Post-order BBO fetch failed: {e}")
-
-        # Run structured diagnosis
-        _nofill_diag = diagnose_nofill(
-            pm_result=pm_result,
-            pm_price_sent=pm_price,
-            pm_intent=params['pm_intent'],
-            is_buy_short=params.get('pm_is_buy_short', False),
-            pre_order_bbo=_pre_order_bbo,
-            post_order_bbo=_post_order_bbo,
-            pm_data_age_ms=pm_data_age_ms,
-            pm_order_ms=pm_order_ms,
-            spread_cents=spread,
-            buffer_cents=pm_buffer,
-        )
-
-        # Print human-readable diagnostic
-        _reason = _nofill_diag['reason']
-        _explain = _nofill_diag['explanation']
-        order_id = pm_result.get('order_id', 'none')
-        _intent_name = {1: 'BUY_LONG', 3: 'BUY_SHORT'}.get(params['pm_intent'], '?')
-        _pre_bid = _pre_order_bbo.get('bid_cents', '?')
-        _pre_ask = _pre_order_bbo.get('ask_cents', '?')
-        _post_bid = _post_order_bbo.get('bid_cents', '?') if _post_order_bbo else '?'
-        _post_ask = _post_order_bbo.get('ask_cents', '?') if _post_order_bbo else '?'
-
-        print(f"\n{'='*70}")
-        print(f"[NO-FILL DIAGNOSTIC] {arb.team} | {_reason}")
-        print(f"  Verdict: {_explain}")
-        print(f"  Order: {_intent_name} {size}@${pm_price:.2f} outcome[{actual_pm_outcome_idx}] | order_id={str(order_id)[:16]}")
-        print(f"  Spread: {spread:.1f}c | Buffer: {pm_buffer}c | PM latency: {pm_order_ms}ms | Data age: {pm_data_age_ms}ms")
-        print(f"  Pre-BBO:  bid={_pre_bid}c x{_pre_order_bbo.get('bid_size', '?')} / ask={_pre_ask}c x{_pre_order_bbo.get('ask_size', '?')}")
-        print(f"  Post-BBO: bid={_post_bid}c / ask={_post_ask}c")
-        print(f"{'='*70}\n")
-
-        # Distinguish real no-fills from early aborts / API errors:
-        # Real no-fill: has 'order_id' (PM accepted the order, IOC expired)
-        # Early abort/error: no 'order_id' (validation fail or HTTP error)
-        if 'order_id' not in pm_result:
-            error_msg = pm_result.get('error', 'unknown')
-            return TradeResult(
-                success=False,
-                pm_filled=0,
-                pm_price=pm_price,
-                abort_reason=f"PM order rejected: {error_msg}",
-                pm_order_ms=0,  # Force 0 so caller routes to SKIPPED
-                execution_time_ms=execution_time_ms,
-                pm_response_details=pm_response_details,
-                nofill_diagnosis=_nofill_diag,
-            )
-
-        # ── Phase 2: GTC attempt ──
-        if Config.enable_gtc and k_book_ref is not None:
-            print(f"[EXEC] Phase 1: IOC {size}@${pm_price:.2f} -> expired")
-            gtc_phase = await _execute_gtc_phase(
-                session=session, pm_api=pm_api, pm_slug=pm_slug,
-                pm_intent=params['pm_intent'], pm_price=pm_price,
-                size=size, outcome_index=actual_pm_outcome_idx,
-                k_book_ref=k_book_ref, direction=arb.direction,
-                game_id=game_id,
-            )
-            if gtc_phase['filled'] > 0:
-                # GTC got fills — update vars and FALL THROUGH to Kalshi leg
-                pm_filled = gtc_phase['filled']
-                pm_fill_price = gtc_phase['fill_price'] or pm_price
-                pm_order_ms = int((time.time() - pm_order_start) * 1000)
-                pm_response_details = {
-                    'pm_response_status': 200,
-                    'pm_response_body': f"GTC filled {pm_filled}/{size}",
-                    'pm_fill_price': pm_fill_price,
-                    'pm_fill_qty': pm_filled,
-                    'pm_order_id': gtc_phase['order_id'],
-                    'pm_expiry_reason': None,
-                }
-                # DON'T RETURN — fall through to Step 5.5 + Step 6
-            else:
-                # GTC didn't fill — return with GTC metadata + IOC diagnosis
-                return TradeResult(
-                    success=False, pm_filled=0, pm_price=pm_price,
-                    abort_reason=f"PM: GTC no fill ({gtc_phase['cancel_reason']})",
-                    pm_order_ms=pm_order_ms,
-                    execution_time_ms=int((time.time() - start_time) * 1000),
-                    pm_response_details=pm_response_details,
-                    execution_phase="gtc",
-                    gtc_rest_time_ms=gtc_phase['rest_time_ms'],
-                    gtc_spread_checks=gtc_phase['spread_checks'],
-                    gtc_cancel_reason=gtc_phase['cancel_reason'],
-                    nofill_diagnosis=_nofill_diag,
-                )
+        if gtc_phase['filled'] > 0:
+            # GTC got fills — set vars and skip IOC, fall through to Step 5.5 + Step 6
+            pm_filled = gtc_phase['filled']
+            pm_fill_price = gtc_phase['fill_price'] or pm_price
+            pm_order_ms = int((time.time() - pm_order_start) * 1000)
+            pm_response_details = {
+                'pm_response_status': 200,
+                'pm_response_body': f"GTC filled {pm_filled}/{size}",
+                'pm_fill_price': pm_fill_price,
+                'pm_fill_qty': pm_filled,
+                'pm_order_id': gtc_phase['order_id'],
+                'pm_expiry_reason': None,
+            }
+            _gtc_only_filled = True
+            print(f"[EXEC] GTC MAKER FILL: {pm_filled}x @${pm_fill_price:.2f} (0% PM fee)")
         else:
-            # GTC disabled — IOC-only return with diagnosis
+            # GTC didn't fill — return immediately
+            execution_time_ms = int((time.time() - start_time) * 1000)
             return TradeResult(
                 success=False, pm_filled=0, pm_price=pm_price,
-                abort_reason=f"PM: no fill ({_reason})",
-                pm_order_ms=pm_order_ms,
+                abort_reason=f"PM: GTC no fill ({gtc_phase['cancel_reason']})",
+                pm_order_ms=int((time.time() - pm_order_start) * 1000),
                 execution_time_ms=execution_time_ms,
-                pm_response_details=pm_response_details,
-                nofill_diagnosis=_nofill_diag,
+                pm_response_details={},
+                execution_phase="gtc",
+                gtc_rest_time_ms=gtc_phase['rest_time_ms'],
+                gtc_spread_checks=gtc_phase['spread_checks'],
+                gtc_cancel_reason=gtc_phase['cancel_reason'],
             )
+
+    # ── IOC PATH (only when GTC disabled or not attempted) ──
+    if not _gtc_only_filled:
+        try:
+            pm_result = await asyncio.wait_for(
+                pm_api.place_order(
+                    session,
+                    pm_slug,
+                    params['pm_intent'],   # 1=BUY_YES, 3=BUY_NO
+                    pm_price,
+                    size,                  # Dynamic sizing from depth walk
+                    tif=3,                 # time_in_force: IOC
+                    sync=True,             # Always synchronous for IOC
+                    outcome_index=actual_pm_outcome_idx
+                ),
+                timeout=2.0,  # Hard 2s cap — IOC auto-expires, safe to abort
+            )
+        except asyncio.TimeoutError:
+            pm_order_ms = int((time.time() - pm_order_start) * 1000)
+            execution_time_ms = int((time.time() - start_time) * 1000)
+            print(f"[EXEC] PM order TIMEOUT after {pm_order_ms}ms (2s cap) - aborting safely")
+            return TradeResult(success=False, abort_reason=f"PM order timeout ({pm_order_ms}ms > 2000ms cap)",
+                               execution_time_ms=execution_time_ms, pm_order_ms=pm_order_ms)
+        except Exception as e:
+            # PM failed before any position taken - safe exit
+            execution_time_ms = int((time.time() - start_time) * 1000)
+            pm_err_details = _extract_pm_response_details({'error': str(e)})
+            return TradeResult(success=False, abort_reason=f"PM order failed: {e}",
+                               execution_time_ms=execution_time_ms,
+                               pm_response_details=pm_err_details)
+    
+        pm_order_ms = int((time.time() - pm_order_start) * 1000)
+        pm_filled = pm_result.get('fill_count', 0)
+        pm_fill_price = pm_result.get('fill_price', pm_price)
+        pm_response_details = _extract_pm_response_details(pm_result)
+    
+        if pm_filled == 0:
+            execution_time_ms = int((time.time() - start_time) * 1000)
+    
+            # ── FULL NO-FILL DIAGNOSTIC ──
+            # Fetch post-order BBO to compare with pre-order state
+            _post_order_bbo = None
+            try:
+                post_bbo_raw = await pm_api.get_bbo(pm_slug)
+                if post_bbo_raw.get('bid') is not None:
+                    # BBO comes back in long-team frame — invert for non-long team
+                    if is_long_team:
+                        _post_order_bbo = {
+                            'bid_cents': post_bbo_raw['bid'],
+                            'ask_cents': post_bbo_raw['ask'],
+                            'bid_size': 0,  # BBO doesn't return size
+                            'ask_size': 0,
+                        }
+                    else:
+                        _post_order_bbo = {
+                            'bid_cents': 100 - post_bbo_raw['ask'] if post_bbo_raw['ask'] else 0,
+                            'ask_cents': 100 - post_bbo_raw['bid'] if post_bbo_raw['bid'] else 0,
+                            'bid_size': 0,
+                            'ask_size': 0,
+                        }
+            except Exception as e:
+                print(f"   [DIAG] Post-order BBO fetch failed: {e}")
+    
+            # Run structured diagnosis
+            _nofill_diag = diagnose_nofill(
+                pm_result=pm_result,
+                pm_price_sent=pm_price,
+                pm_intent=params['pm_intent'],
+                is_buy_short=params.get('pm_is_buy_short', False),
+                pre_order_bbo=_pre_order_bbo,
+                post_order_bbo=_post_order_bbo,
+                pm_data_age_ms=pm_data_age_ms,
+                pm_order_ms=pm_order_ms,
+                spread_cents=spread,
+                buffer_cents=pm_buffer,
+            )
+    
+            # Print human-readable diagnostic
+            _reason = _nofill_diag['reason']
+            _explain = _nofill_diag['explanation']
+            order_id = pm_result.get('order_id', 'none')
+            _intent_name = {1: 'BUY_LONG', 3: 'BUY_SHORT'}.get(params['pm_intent'], '?')
+            _pre_bid = _pre_order_bbo.get('bid_cents', '?')
+            _pre_ask = _pre_order_bbo.get('ask_cents', '?')
+            _post_bid = _post_order_bbo.get('bid_cents', '?') if _post_order_bbo else '?'
+            _post_ask = _post_order_bbo.get('ask_cents', '?') if _post_order_bbo else '?'
+    
+            print(f"\n{'='*70}")
+            print(f"[NO-FILL DIAGNOSTIC] {arb.team} | {_reason}")
+            print(f"  Verdict: {_explain}")
+            print(f"  Order: {_intent_name} {size}@${pm_price:.2f} outcome[{actual_pm_outcome_idx}] | order_id={str(order_id)[:16]}")
+            print(f"  Spread: {spread:.1f}c | Buffer: {pm_buffer}c | PM latency: {pm_order_ms}ms | Data age: {pm_data_age_ms}ms")
+            print(f"  Pre-BBO:  bid={_pre_bid}c x{_pre_order_bbo.get('bid_size', '?')} / ask={_pre_ask}c x{_pre_order_bbo.get('ask_size', '?')}")
+            print(f"  Post-BBO: bid={_post_bid}c / ask={_post_ask}c")
+            print(f"{'='*70}\n")
+    
+            # Distinguish real no-fills from early aborts / API errors:
+            # Real no-fill: has 'order_id' (PM accepted the order, IOC expired)
+            # Early abort/error: no 'order_id' (validation fail or HTTP error)
+            if 'order_id' not in pm_result:
+                error_msg = pm_result.get('error', 'unknown')
+                return TradeResult(
+                    success=False,
+                    pm_filled=0,
+                    pm_price=pm_price,
+                    abort_reason=f"PM order rejected: {error_msg}",
+                    pm_order_ms=0,  # Force 0 so caller routes to SKIPPED
+                    execution_time_ms=execution_time_ms,
+                    pm_response_details=pm_response_details,
+                    nofill_diagnosis=_nofill_diag,
+                )
+    
+            # ── Phase 2: GTC attempt ──
+            if Config.enable_gtc and k_book_ref is not None:
+                print(f"[EXEC] Phase 1: IOC {size}@${pm_price:.2f} -> expired")
+                gtc_phase = await _execute_gtc_phase(
+                    session=session, pm_api=pm_api, pm_slug=pm_slug,
+                    pm_intent=params['pm_intent'], pm_price=pm_price,
+                    size=size, outcome_index=actual_pm_outcome_idx,
+                    k_book_ref=k_book_ref, direction=arb.direction,
+                    game_id=game_id,
+                )
+                if gtc_phase['filled'] > 0:
+                    # GTC got fills — update vars and FALL THROUGH to Kalshi leg
+                    pm_filled = gtc_phase['filled']
+                    pm_fill_price = gtc_phase['fill_price'] or pm_price
+                    pm_order_ms = int((time.time() - pm_order_start) * 1000)
+                    pm_response_details = {
+                        'pm_response_status': 200,
+                        'pm_response_body': f"GTC filled {pm_filled}/{size}",
+                        'pm_fill_price': pm_fill_price,
+                        'pm_fill_qty': pm_filled,
+                        'pm_order_id': gtc_phase['order_id'],
+                        'pm_expiry_reason': None,
+                    }
+                    # DON'T RETURN — fall through to Step 5.5 + Step 6
+                else:
+                    # GTC didn't fill — return with GTC metadata + IOC diagnosis
+                    return TradeResult(
+                        success=False, pm_filled=0, pm_price=pm_price,
+                        abort_reason=f"PM: GTC no fill ({gtc_phase['cancel_reason']})",
+                        pm_order_ms=pm_order_ms,
+                        execution_time_ms=int((time.time() - start_time) * 1000),
+                        pm_response_details=pm_response_details,
+                        execution_phase="gtc",
+                        gtc_rest_time_ms=gtc_phase['rest_time_ms'],
+                        gtc_spread_checks=gtc_phase['spread_checks'],
+                        gtc_cancel_reason=gtc_phase['cancel_reason'],
+                        nofill_diagnosis=_nofill_diag,
+                    )
+            else:
+                # GTC disabled — IOC-only return with diagnosis
+                return TradeResult(
+                    success=False, pm_filled=0, pm_price=pm_price,
+                    abort_reason=f"PM: no fill ({_reason})",
+                    pm_order_ms=pm_order_ms,
+                    execution_time_ms=execution_time_ms,
+                    pm_response_details=pm_response_details,
+                    nofill_diagnosis=_nofill_diag,
+                )
 
     # -------------------------------------------------------------------------
     # Step 5.5: PM filled — NOW lock the game to prevent duplicate trades

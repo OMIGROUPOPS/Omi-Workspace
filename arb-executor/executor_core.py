@@ -1318,7 +1318,7 @@ def safe_to_trade(
         return False, f"Game {game_id} already traded this session"
 
     # Check existing position (from local cache — no API call)
-    if ticker in cached_positions:
+    if False and ticker in cached_positions:  # DISABLED: K-first testing
         pos_count = cached_positions[ticker]
         if abs(pos_count) >= Config.max_contracts_per_game:
             return False, f"Already have {pos_count} contracts on {ticker}"
@@ -1625,167 +1625,84 @@ async def execute_arb(
                 gtc_cancel_reason=gtc_phase['cancel_reason'],
             )
 
-    # ── IOC PATH (only when GTC disabled or not attempted) ──
+    # Initialize K-first variables
+    k_filled = 0
+    k_fill_price = k_price
+    k_order_ms = 0
+
+    # ── K-FIRST EXECUTION: Send K (44ms) then PM (300ms) ──
     if not _gtc_only_filled:
+        k_order_start = time.time()
+        try:
+            k_result_preflight = await kalshi_api.place_order(
+                session, arb.kalshi_ticker,
+                params['k_side'], params['k_action'],
+                size, k_limit_price)
+        except Exception as e:
+            return TradeResult(success=False, abort_reason=f"K order failed: {e}",
+                               execution_time_ms=int((time.time() - start_time) * 1000))
+        k_preflight_ms = int((time.time() - k_order_start) * 1000)
+        k_preflight_filled = k_result_preflight.get('fill_count', 0)
+        k_preflight_price = k_result_preflight.get('fill_price', k_limit_price)
+        if k_preflight_filled == 0:
+            print(f"[EXEC] K no-fill: {k_result_preflight.get('status','?')} latency={k_preflight_ms}ms")
+            return TradeResult(success=False, abort_reason=f"K no-fill",
+                               execution_time_ms=int((time.time() - start_time) * 1000),
+                               k_order_ms=k_preflight_ms)
+        k_qty_delta = -k_preflight_filled if params['k_action'] == 'sell' else k_preflight_filled
+        update_position_cache_after_trade(arb.kalshi_ticker, k_qty_delta)
+        print(f"[EXEC] K filled {k_preflight_filled}x @{k_preflight_price}c in {k_preflight_ms}ms — placing PM...")
+        pm_order_start = time.time()
         try:
             pm_result = await asyncio.wait_for(
-                pm_api.place_order(
-                    session,
-                    pm_slug,
-                    params['pm_intent'],   # 1=BUY_YES, 3=BUY_NO
-                    pm_price,
-                    size,                  # Dynamic sizing from depth walk
-                    tif=3,                 # time_in_force: IOC
-                    sync=True,             # Always synchronous for IOC
-                    outcome_index=actual_pm_outcome_idx
-                ),
-                timeout=2.0,  # Hard 2s cap — IOC auto-expires, safe to abort
-            )
-        except asyncio.TimeoutError:
+                pm_api.place_order(session, pm_slug, params['pm_intent'], pm_price,
+                    k_preflight_filled, tif=3, sync=True, outcome_index=actual_pm_outcome_idx),
+                timeout=2.0)
+        except (asyncio.TimeoutError, Exception) as e:
             pm_order_ms = int((time.time() - pm_order_start) * 1000)
-            execution_time_ms = int((time.time() - start_time) * 1000)
-            print(f"[EXEC] PM order TIMEOUT after {pm_order_ms}ms (2s cap) - aborting safely")
-            return TradeResult(success=False, abort_reason=f"PM order timeout ({pm_order_ms}ms > 2000ms cap)",
-                               execution_time_ms=execution_time_ms, pm_order_ms=pm_order_ms)
-        except Exception as e:
-            # PM failed before any position taken - safe exit
-            execution_time_ms = int((time.time() - start_time) * 1000)
-            pm_err_details = _extract_pm_response_details({'error': str(e)})
-            return TradeResult(success=False, abort_reason=f"PM order failed: {e}",
-                               execution_time_ms=execution_time_ms,
-                               pm_response_details=pm_err_details)
-    
+            print(f"[EXEC] PM failed: {e} — unwinding K...")
+            pm_result = {'fill_count': 0, 'error': str(e)}
         pm_order_ms = int((time.time() - pm_order_start) * 1000)
         pm_filled = pm_result.get('fill_count', 0)
         pm_fill_price = pm_result.get('fill_price', pm_price)
         pm_response_details = _extract_pm_response_details(pm_result)
-    
         if pm_filled == 0:
-            execution_time_ms = int((time.time() - start_time) * 1000)
-    
-            # ── FULL NO-FILL DIAGNOSTIC ──
-            # Fetch post-order BBO to compare with pre-order state
-            _post_order_bbo = None
+            print(f"[EXEC] PM no-fill latency={pm_order_ms}ms — unwinding {k_preflight_filled} K...")
             try:
-                post_bbo_raw = await pm_api.get_bbo(pm_slug)
-                if post_bbo_raw.get('bid') is not None:
-                    # BBO comes back in long-team frame — invert for non-long team
-                    if is_long_team:
-                        _post_order_bbo = {
-                            'bid_cents': post_bbo_raw['bid'],
-                            'ask_cents': post_bbo_raw['ask'],
-                            'bid_size': 0,  # BBO doesn't return size
-                            'ask_size': 0,
-                        }
-                    else:
-                        _post_order_bbo = {
-                            'bid_cents': 100 - post_bbo_raw['ask'] if post_bbo_raw['ask'] else 0,
-                            'ask_cents': 100 - post_bbo_raw['bid'] if post_bbo_raw['bid'] else 0,
-                            'bid_size': 0,
-                            'ask_size': 0,
-                        }
-            except Exception as e:
-                print(f"   [DIAG] Post-order BBO fetch failed: {e}")
-    
-            # Run structured diagnosis
-            _nofill_diag = diagnose_nofill(
-                pm_result=pm_result,
-                pm_price_sent=pm_price,
-                pm_intent=params['pm_intent'],
-                is_buy_short=params.get('pm_is_buy_short', False),
-                pre_order_bbo=_pre_order_bbo,
-                post_order_bbo=_post_order_bbo,
-                pm_data_age_ms=pm_data_age_ms,
-                pm_order_ms=pm_order_ms,
-                spread_cents=spread,
-                buffer_cents=pm_buffer,
-            )
-    
-            # Print human-readable diagnostic
-            _reason = _nofill_diag['reason']
-            _explain = _nofill_diag['explanation']
-            order_id = pm_result.get('order_id', 'none')
-            _intent_name = {1: 'BUY_LONG', 3: 'BUY_SHORT'}.get(params['pm_intent'], '?')
-            _pre_bid = _pre_order_bbo.get('bid_cents', '?')
-            _pre_ask = _pre_order_bbo.get('ask_cents', '?')
-            _post_bid = _post_order_bbo.get('bid_cents', '?') if _post_order_bbo else '?'
-            _post_ask = _post_order_bbo.get('ask_cents', '?') if _post_order_bbo else '?'
-    
-            print(f"\n{'='*70}")
-            print(f"[NO-FILL DIAGNOSTIC] {arb.team} | {_reason}")
-            print(f"  Verdict: {_explain}")
-            print(f"  Order: {_intent_name} {size}@${pm_price:.2f} outcome[{actual_pm_outcome_idx}] | order_id={str(order_id)[:16]}")
-            print(f"  Spread: {spread:.1f}c | Buffer: {pm_buffer}c | PM latency: {pm_order_ms}ms | Data age: {pm_data_age_ms}ms")
-            print(f"  Pre-BBO:  bid={_pre_bid}c x{_pre_order_bbo.get('bid_size', '?')} / ask={_pre_ask}c x{_pre_order_bbo.get('ask_size', '?')}")
-            print(f"  Post-BBO: bid={_post_bid}c / ask={_post_ask}c")
-            print(f"{'='*70}\n")
-    
-            # Distinguish real no-fills from early aborts / API errors:
-            # Real no-fill: has 'order_id' (PM accepted the order, IOC expired)
-            # Early abort/error: no 'order_id' (validation fail or HTTP error)
-            if 'order_id' not in pm_result:
-                error_msg = pm_result.get('error', 'unknown')
-                return TradeResult(
-                    success=False,
-                    pm_filled=0,
-                    pm_price=pm_price,
-                    abort_reason=f"PM order rejected: {error_msg}",
-                    pm_order_ms=0,  # Force 0 so caller routes to SKIPPED
-                    execution_time_ms=execution_time_ms,
-                    pm_response_details=pm_response_details,
-                    nofill_diagnosis=_nofill_diag,
-                )
-    
-            # ── Phase 2: GTC attempt ──
-            if Config.enable_gtc and k_book_ref is not None:
-                print(f"[EXEC] Phase 1: IOC {size}@${pm_price:.2f} -> expired")
-                gtc_phase = await _execute_gtc_phase(
-                    session=session, pm_api=pm_api, pm_slug=pm_slug,
-                    pm_intent=params['pm_intent'], pm_price=pm_price,
-                    size=size, outcome_index=actual_pm_outcome_idx,
-                    k_book_ref=k_book_ref, direction=arb.direction,
-                    game_id=game_id,
-                )
-                if gtc_phase['filled'] > 0:
-                    # GTC got fills — update vars and FALL THROUGH to Kalshi leg
-                    pm_filled = gtc_phase['filled']
-                    pm_fill_price = gtc_phase['fill_price'] or pm_price
-                    pm_order_ms = int((time.time() - pm_order_start) * 1000)
-                    pm_response_details = {
-                        'pm_response_status': 200,
-                        'pm_response_body': f"GTC filled {pm_filled}/{size}",
-                        'pm_fill_price': pm_fill_price,
-                        'pm_fill_qty': pm_filled,
-                        'pm_order_id': gtc_phase['order_id'],
-                        'pm_expiry_reason': None,
-                    }
-                    # DON'T RETURN — fall through to Step 5.5 + Step 6
+                k_rev_action = 'buy' if params['k_action'] == 'sell' else 'sell'
+                if k_rev_action == 'buy':
+                    k_unw_price = min((k_book_ref.get('best_ask', 99) if k_book_ref else 99) + 3, 99)
                 else:
-                    # GTC didn't fill — return with GTC metadata + IOC diagnosis
-                    return TradeResult(
-                        success=False, pm_filled=0, pm_price=pm_price,
-                        abort_reason=f"PM: GTC no fill ({gtc_phase['cancel_reason']})",
-                        pm_order_ms=pm_order_ms,
-                        execution_time_ms=int((time.time() - start_time) * 1000),
-                        pm_response_details=pm_response_details,
-                        execution_phase="gtc",
-                        gtc_rest_time_ms=gtc_phase['rest_time_ms'],
-                        gtc_spread_checks=gtc_phase['spread_checks'],
-                        gtc_cancel_reason=gtc_phase['cancel_reason'],
-                        nofill_diagnosis=_nofill_diag,
-                    )
-            else:
-                # GTC disabled — IOC-only return with diagnosis
-                return TradeResult(
-                    success=False, pm_filled=0, pm_price=pm_price,
-                    abort_reason=f"PM: no fill ({_reason})",
-                    pm_order_ms=pm_order_ms,
-                    execution_time_ms=execution_time_ms,
-                    pm_response_details=pm_response_details,
-                    nofill_diagnosis=_nofill_diag,
-                )
+                    k_unw_price = max((k_book_ref.get('best_bid', 1) if k_book_ref else 1) - 3, 1)
+                k_unw = await kalshi_api.place_order(session, arb.kalshi_ticker,
+                    params['k_side'], k_rev_action, k_preflight_filled, k_unw_price)
+                k_unw_filled = k_unw.get('fill_count', 0)
+                k_unw_fp = k_unw.get('fill_price', k_unw_price)
+                if k_unw_filled > 0:
+                    k_rev_delta = -k_unw_filled if k_rev_action == 'sell' else k_unw_filled
+                    update_position_cache_after_trade(arb.kalshi_ticker, k_rev_delta)
+                    if params['k_action'] == 'sell':
+                        k_loss = (k_unw_fp - k_preflight_price) * k_unw_filled
+                    else:
+                        k_loss = (k_preflight_price - k_unw_fp) * k_unw_filled
+                    print(f"[EXEC] K unwound {k_unw_filled}x @{k_unw_fp}c (loss: {k_loss:.1f}c)")
+                else:
+                    k_loss = k_preflight_filled * 5
+                    print(f"[EXEC] K unwind FAILED — {k_preflight_filled} contracts open!")
+            except Exception as e:
+                k_loss = k_preflight_filled * 5
+                print(f"[EXEC] K unwind exception: {e}")
+            return TradeResult(success=False, pm_filled=0, kalshi_filled=k_preflight_filled,
+                abort_reason=f"PM no-fill (K-first): pm={pm_order_ms}ms, K unwound",
+                execution_time_ms=int((time.time() - start_time) * 1000),
+                pm_order_ms=pm_order_ms, k_order_ms=k_preflight_ms,
+                pm_response_details=pm_response_details, execution_phase="ioc",
+                exited=True, unwind_loss_cents=abs(k_loss), tier="K_FIRST_PM_NOFILL")
+        print(f"[EXEC] PM filled {pm_filled}x @${pm_fill_price:.4f} in {pm_order_ms}ms — BOTH LEGS DONE")
+        k_filled = k_preflight_filled
+        k_fill_price = k_preflight_price
+        k_order_ms = k_preflight_ms
 
-    # -------------------------------------------------------------------------
     # Step 5.5: PM filled — NOW lock the game to prevent duplicate trades
     # -------------------------------------------------------------------------
     traded_games.add(game_id)
@@ -1856,8 +1773,29 @@ async def execute_arb(
                 print(f"[GTC] K price refreshed: {old_k_limit}c → {k_limit_price}c (live bid={live_bid} ask={live_ask})")
 
     # -------------------------------------------------------------------------
-    # Step 6: Place Kalshi order (only if PM filled - reliable leg)
+    # Step 6: Place Kalshi order (SKIPPED in K-first mode)
     # -------------------------------------------------------------------------
+    if k_filled > 0:
+        print(f"[EXEC] Skip Step 6 — K already filled {k_filled}x in K-first mode")
+        k_result = {'fill_count': k_filled, 'fill_price': k_fill_price, 'status': 'filled'}
+        k_order_ms = k_order_ms
+        k_fill_price = k_fill_price
+        # JUMP past Step 6+7 to success handling (Step 8)
+        traded_games.add(game_id)
+        execution_time_ms = int((time.time() - start_time) * 1000)
+        return TradeResult(
+            success=True,
+            kalshi_filled=k_filled,
+            pm_filled=pm_filled,
+            kalshi_price=k_fill_price,
+            pm_price=pm_fill_price,
+            execution_time_ms=execution_time_ms,
+            pm_order_ms=pm_order_ms,
+            k_order_ms=k_order_ms,
+            pm_response_details=pm_response_details,
+            execution_phase="ioc",
+            tier="K_FIRST_SUCCESS",
+        )
     k_order_start = time.time()
     try:
         k_result = await kalshi_api.place_order(

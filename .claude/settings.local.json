@@ -118,7 +118,8 @@
       "Bash(npx kill-port 3333)",
       "Bash(git reset:*)",
       "Bash(npm install:*)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(rm:*)"
     ]
   }
 }

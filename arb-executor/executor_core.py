@@ -133,6 +133,16 @@ def _check_hedge_coherence(team: str, k_fill_price: int, pm_fill_price_dollars: 
             print(f"[HEDGE_CHECK] CRITICAL: combined={combined:.0f}c < 80c — "
                   f"likely SAME-SIDE bet (not a hedge)!", flush=True)
         return False
+
+    # Post-fill combined cost gate: tighter than pre-trade check
+    if combined > 102:
+        print(f"[COST_GATE] CRITICAL POST-FILL: {team} combined={combined:.0f}c > 102c "
+              f"(K {'buy' if k_action == 'buy' else 'sell'}@{k_fill_price}c={k_cost:.0f}c + "
+              f"PM {'SHORT' if is_buy_short else 'LONG'}@{pm_fill_cents:.0f}c={pm_cost:.0f}c) | "
+              f"NEGATIVE ARB — will lose {combined - 100:.0f}c per contract at settlement | "
+              f"dir={direction}", flush=True)
+        return False
+
     return True
 
 async def _verify_both_legs(session, kalshi_api, pm_api, ticker: str, pm_slug: str,
@@ -145,7 +155,8 @@ async def _verify_both_legs(session, kalshi_api, pm_api, ticker: str, pm_slug: s
     global executor_paused
     try:
         k_pos = await kalshi_api.get_position_for_ticker(session, ticker)
-        k_exists = k_pos is not None and abs(k_pos.position) > 0
+        # get_position_for_ticker returns an int (position count), not an object
+        k_exists = k_pos is not None and abs(k_pos) > 0
 
         pm_positions = await pm_api.get_positions(session, market_slug=pm_slug)
         pm_exists = pm_positions is not None and len(pm_positions) > 0
@@ -1802,54 +1813,27 @@ async def execute_arb(
                     age_ms = int(time.time() * 1000) - fresh.get('timestamp_ms', 0)
                     print(f"[K_FIRST] PM BBO refresh: ${stale_pm_price:.2f} -> ${pm_price:.2f} (delta={delta_c:+.1f}c, age={age_ms}ms)")
 
-        # ── PM GTC ORDER: tif=1 (maker) then poll up to 1.5s ──
+        # ── PM IOC ORDER: tif=3 (immediate-or-cancel) — no resting orders ──
+        # GTC (tif=1) with synchronousExecution caused 2s timeouts when PM had no
+        # matching liquidity, leaving orphaned resting orders + K unwind losses.
+        # IOC fills instantly or returns 0 — clean abort, no orphan risk.
         pm_order_start = time.time()
         try:
             pm_result = await asyncio.wait_for(
                 pm_api.place_order(session, pm_slug, params['pm_intent'], pm_price,
-                    k_preflight_filled, tif=1, sync=False, outcome_index=actual_pm_outcome_idx),
-                timeout=2.0)
-        except (asyncio.TimeoutError, Exception) as e:
+                    k_preflight_filled, tif=3, sync=True, outcome_index=actual_pm_outcome_idx),
+                timeout=5.0)
+        except asyncio.TimeoutError:
             pm_order_ms = int((time.time() - pm_order_start) * 1000)
-            print(f"[K_FIRST] PM GTC send failed: {e} — unwinding K...")
+            print(f"[K_FIRST] PM IOC timeout ({pm_order_ms}ms) — unwinding K...")
+            pm_result = {'fill_count': 0, 'error': 'timeout'}
+        except Exception as e:
+            pm_order_ms = int((time.time() - pm_order_start) * 1000)
+            print(f"[K_FIRST] PM IOC send failed: {e} — unwinding K...")
             pm_result = {'fill_count': 0, 'error': str(e)}
 
-        # Poll for GTC fill up to 1.5s
-        pm_order_id = pm_result.get('order_id')
         pm_filled = pm_result.get('fill_count', 0)
         pm_fill_price = pm_result.get('fill_price', pm_price)
-        if pm_order_id and pm_filled == 0:
-            poll_start = time.time()
-            while (time.time() - poll_start) < 1.5:
-                await asyncio.sleep(0.15)
-                try:
-                    status = await pm_api.get_order_status(session, pm_order_id)
-                    cum_qty = status.get('cum_quantity', 0)
-                    state = status.get('state', '')
-                    if cum_qty > 0 or state == 'ORDER_STATE_FILLED':
-                        pm_filled = cum_qty
-                        pm_fill_price = status.get('fill_price', pm_price)
-                        print(f"[K_FIRST] PM GTC FILLED {pm_filled}x @${pm_fill_price:.4f} in {int((time.time()-poll_start)*1000)}ms")
-                        break
-                    if state in ('ORDER_STATE_CANCELED', 'ORDER_STATE_EXPIRED'):
-                        break
-                except Exception:
-                    pass
-            # Cancel if still not filled
-            if pm_filled == 0:
-                try:
-                    await pm_api.cancel_order(session, pm_order_id, pm_slug)
-                    # Recheck after cancel
-                    recheck = await pm_api.get_order_status(session, pm_order_id)
-                    recheck_qty = recheck.get('cum_quantity', 0)
-                    if recheck_qty > 0:
-                        pm_filled = recheck_qty
-                        pm_fill_price = recheck.get('fill_price', pm_price)
-                        print(f"[K_FIRST] PM filled on cancel: {pm_filled}x @${pm_fill_price:.4f}")
-                except Exception as ce:
-                    print(f"[K_FIRST] PM cancel error: {ce}")
-                if pm_filled == 0:
-                    print(f"[K_FIRST] PM GTC no-fill after 1.5s poll — cancelling")
 
         pm_order_ms = int((time.time() - pm_order_start) * 1000)
         pm_fill_price = pm_result.get('fill_price', pm_price) if pm_filled == 0 else pm_fill_price

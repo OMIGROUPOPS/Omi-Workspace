@@ -758,43 +758,50 @@ def estimate_net_profit_cents(arb: 'ArbOpportunity') -> Tuple[float, Dict]:
     For a hedge trade:
     - Gross profit = net_spread (already calculated correctly based on is_long_team)
     - Net profit = gross - K_fee - PM_fee - expected_slippage
+
+    When GTC is enabled:
+    - PM maker fee = 0% (vs IOC taker fee)
+    - Slippage = 0c (resting order fills at your price)
+    - Only K taker fee applies (~2c)
     """
     raw_spread = arb.net_spread  # Already calculated correctly in spread detection
 
     # Kalshi fee: approximately 2c per contract (based on actual trade data)
     k_fee = KALSHI_FEE_CENTS_PER_CONTRACT
 
-    # PM fee: 0.10% on notional (the price transacted, not the risk)
-    # Fee depends on is_long_team and direction
-    is_long_team = (arb.team == arb.pm_long_team)
+    # GTC-aware fee model
+    use_gtc = Config.enable_gtc
 
-    if arb.direction == 'BUY_K_SELL_PM':
-        # We SHORT on PM
-        if is_long_team:
-            # SELL_YES at pm_bid
-            pm_price_cents = arb.pm_bid if arb.pm_bid else 50
-        else:
-            # BUY_YES at pm_ask (to long the other team = short our team)
-            pm_price_cents = arb.pm_ask if arb.pm_ask else 50
-    else:  # BUY_PM_SELL_K
-        # We LONG on PM
-        if is_long_team:
-            # BUY_YES at pm_ask
-            pm_price_cents = arb.pm_ask if arb.pm_ask else 50
-        else:
-            # BUY_SHORT at pm_ask (short favorite = long underdog; fee on underdog cost)
-            pm_price_cents = arb.pm_ask if arb.pm_ask else 50
+    if use_gtc:
+        # GTC maker: 0% PM fee, 0 slippage (resting order)
+        pm_fee = 0.0
+        slippage = 0.0
+    else:
+        # IOC taker: PM fee based on notional + expected slippage
+        is_long_team = (arb.team == arb.pm_long_team)
 
-    pm_fee = pm_price_cents * PM_US_FEE_RATE  # typically ~0.05c
+        if arb.direction == 'BUY_K_SELL_PM':
+            if is_long_team:
+                pm_price_cents = arb.pm_bid if arb.pm_bid else 50
+            else:
+                pm_price_cents = arb.pm_ask if arb.pm_ask else 50
+        else:  # BUY_PM_SELL_K
+            if is_long_team:
+                pm_price_cents = arb.pm_ask if arb.pm_ask else 50
+            else:
+                pm_price_cents = arb.pm_ask if arb.pm_ask else 50
 
-    # Expected slippage (based on historical data)
-    slippage = EXPECTED_SLIPPAGE_CENTS
+        pm_fee = pm_price_cents * PM_US_FEE_RATE  # typically ~0.05c
+        slippage = EXPECTED_SLIPPAGE_CENTS
 
     # Total fees and costs
     total_costs = k_fee + pm_fee + slippage
 
     # Net profit per contract
     net_cents = raw_spread - total_costs
+
+    fee_model = "GTC" if use_gtc else "IOC"
+    print(f"[NET_PROFIT] {raw_spread:.1f}c raw → {net_cents:+.1f}c net ({fee_model} model: K={k_fee}c PM={pm_fee:.2f}c slip={slippage}c)")
 
     breakdown = {
         'raw_spread': raw_spread,
@@ -803,6 +810,7 @@ def estimate_net_profit_cents(arb: 'ArbOpportunity') -> Tuple[float, Dict]:
         'slippage': slippage,
         'total_costs': round(total_costs, 2),
         'net_cents': round(net_cents, 2),
+        'fee_model': fee_model,
     }
 
     return net_cents, breakdown

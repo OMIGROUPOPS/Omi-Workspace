@@ -100,6 +100,41 @@ def get_depth_cap(spread_cents: float) -> float:
     if spread_cents >= 5:  return 0.50
     return 0.35  # 4c spreads, just skim
 
+
+def _check_hedge_coherence(team: str, k_fill_price: int, pm_fill_price_dollars: float,
+                           k_action: str, is_buy_short: bool, direction: str,
+                           pm_long_team: str, is_long_team: bool) -> bool:
+    """
+    Post-fill sanity check: verify K + PM positions form a valid hedge.
+
+    For a valid arb (opposite sides of same event), combined cost should be
+    close to 100c (the guaranteed payout). If combined < 80c or > 110c,
+    the positions may be same-side (not a hedge).
+
+    Returns True if coherent (likely valid hedge), False if suspicious.
+    """
+    pm_fill_cents = pm_fill_price_dollars * 100
+
+    # K cost: buy = fill_price, sell = 100 - fill_price (risk)
+    k_cost = k_fill_price if k_action == 'buy' else (100 - k_fill_price)
+    # PM cost: BUY_LONG = fill_price, BUY_SHORT = 100 - fill_price (collateral)
+    pm_cost = (100 - pm_fill_cents) if is_buy_short else pm_fill_cents
+
+    combined = k_cost + pm_cost
+
+    if combined < 80 or combined > 110:
+        print(f"[HEDGE_CHECK] WARNING: {team} combined cost={combined:.0f}c "
+              f"(K {'buy' if k_action == 'buy' else 'sell'}@{k_fill_price}c={k_cost:.0f}c + "
+              f"PM {'SHORT' if is_buy_short else 'LONG'}@{pm_fill_cents:.0f}c={pm_cost:.0f}c) | "
+              f"Expected ~96-100c for valid arb | "
+              f"pm_long_team={pm_long_team} is_long={is_long_team} dir={direction}",
+              flush=True)
+        if combined < 80:
+            print(f"[HEDGE_CHECK] CRITICAL: combined={combined:.0f}c < 80c — "
+                  f"likely SAME-SIDE bet (not a hedge)!", flush=True)
+        return False
+    return True
+
 TRADE_PARAMS = {
     # ==========================================================================
     # Case 1: BUY_PM_SELL_K, team IS pm_long_team
@@ -125,11 +160,12 @@ TRADE_PARAMS = {
     # K: SELL YES (short underdog), PM: BUY_SHORT (short pm_long_team = long underdog)
     # HEDGE: K SHORT underdog + PM LONG underdog = hedged
     #
-    # BINARY MARKET CONSTRAINT: PM US SDK has NO outcomeIndex parameter.
-    # Direction is controlled ENTIRELY by intent:
-    #   BUY_LONG (1) = LONG pm_long_team    (always outcome 0)
-    #   BUY_SHORT (3) = SHORT pm_long_team  (= LONG underdog)
-    # To go LONG underdog, we must BUY_SHORT the market.
+    # BINARY MARKET: PM US SDK DOES accept outcomeIndex (0 or 1).
+    # Intent controls direction, outcomeIndex selects which outcome to trade:
+    #   BUY_LONG (1) + outcomeIndex = LONG on that outcome
+    #   BUY_SHORT (3) + outcomeIndex = SHORT on that outcome
+    # For underdog (not pm_long_team), we BUY_SHORT with pm_switch_outcome
+    # to target the correct outcome index.
     #
     # Price: pm_ask = underdog's ask from cache (already inverted: 100 - long_bid)
     #        Converted to YES-frame via pm_is_buy_short path:
@@ -1438,6 +1474,20 @@ async def execute_arb(
     if spread > 90:  # Only reject clearly impossible spreads
         return TradeResult(success=False, abort_reason=f"Phantom spread: {spread}c > 90c max")
 
+    # ── SPREAD CEILING: reject spreads that indicate pm_long_team mapping errors ──
+    # Real arbs: 2-7c. Anything > 20c is almost certainly a price frame inversion
+    # where PM prices are stored in the wrong team's frame (e.g., ALA-TENN bug:
+    # spread=33c because pm_bid was TENN's raw price, not ALA's inverted price).
+    MAX_CREDIBLE_SPREAD = 20
+    if spread > MAX_CREDIBLE_SPREAD:
+        print(f"[SPREAD_GATE] REJECT {arb.team}: spread={spread:.0f}c > {MAX_CREDIBLE_SPREAD}c ceiling. "
+              f"Likely pm_long_team inversion | "
+              f"pm_bid={arb.pm_bid}c pm_ask={arb.pm_ask}c "
+              f"k_bid={arb.k_bid}c k_ask={arb.k_ask}c | "
+              f"pm_long_team={arb.pm_long_team} is_long_team={is_long_team} "
+              f"dir={arb.direction} | slug={arb.pm_slug}", flush=True)
+        return TradeResult(success=False, abort_reason=f"Spread {spread:.0f}c > {MAX_CREDIBLE_SPREAD}c ceiling — likely mapping error")
+
     # -------------------------------------------------------------------------
     # Step 3: Look up trade params
     # -------------------------------------------------------------------------
@@ -1843,6 +1893,10 @@ async def execute_arb(
     if k_filled > 0:
         traded_games.add(game_id)
         execution_time_ms = int((time.time() - start_time) * 1000)
+        _check_hedge_coherence(
+            arb.team, k_fill_price, pm_fill_price,
+            params['k_action'], params.get('pm_is_buy_short', False),
+            arb.direction, arb.pm_long_team, is_long_team)
         print(f"[K_FIRST] SUCCESS: K={k_filled}x@{k_fill_price}c PM={pm_filled}x@${pm_fill_price:.4f} "
               f"total={execution_time_ms}ms (k={k_order_ms}ms pm={pm_order_ms}ms)")
         return TradeResult(
@@ -2055,6 +2109,10 @@ async def execute_arb(
 
                 if t1_filled >= pm_filled:
                     actual_cost = abs(t1_fill_price - k_limit_price)
+                    _check_hedge_coherence(
+                        arb.team, t1_fill_price, pm_fill_price,
+                        params['k_action'], params.get('pm_is_buy_short', False),
+                        arb.direction, arb.pm_long_team, is_long_team)
                     print(f"[TIER] Tier 1 SUCCESS: hedged {t1_filled}/{pm_filled} @ {t1_fill_price}c "
                           f"(concession {actual_cost}c, net spread {net_spread:.0f}c)")
                     return TradeResult(
@@ -2681,6 +2739,10 @@ async def execute_arb(
         )
 
     # Both sides filled (fully matched) - SUCCESS
+    _check_hedge_coherence(
+        arb.team, k_fill_price, pm_fill_price,
+        params['k_action'], params.get('pm_is_buy_short', False),
+        arb.direction, arb.pm_long_team, is_long_team)
     return TradeResult(
         success=True,
         kalshi_filled=k_filled,

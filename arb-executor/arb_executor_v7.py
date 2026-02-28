@@ -3837,10 +3837,13 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
         'unwind_qty': unwind_qty,
 
         # CRITICAL: Log pm_outcome_index for post-hoc auditing
-        # This helps diagnose same-direction betting bugs
+        # This helps diagnose same-direction betting bugs (e.g., ALA-TENN inversion)
         'pm_outcome_index': arb.pm_outcome_index,
         'pm_outcome_index_used': pm_result.get('outcome_index'),  # Actual outcome index traded on PM
         'pm_is_buy_short': pm_result.get('is_buy_short', False),  # True if PM intent was BUY_SHORT (sold YES)
+        'pm_long_team': arb.pm_long_team,  # Team with long=true in PM — determines price inversion
+        'is_long_team': (arb.team == arb.pm_long_team),  # True if our team IS pm_long_team
+        'trade_case': f"Case{'3' if (arb.direction == 'BUY_K_SELL_PM' and arb.team == arb.pm_long_team) else '4' if (arb.direction == 'BUY_K_SELL_PM') else '1' if (arb.team == arb.pm_long_team) else '2'}",
         'mapping_verified': arb.cache_key in VERIFIED_MAPS if VERIFIED_MAPS else False,
         'cache_key': arb.cache_key,
 

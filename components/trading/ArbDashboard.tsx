@@ -10,6 +10,7 @@ import { LiveMarketsTable } from "./arb/panels/LiveMarketsTable";
 import { PositionsTable } from "./arb/panels/PositionsTable";
 import { SettledTrades } from "./arb/panels/SettledTrades";
 import { PnlBox } from "./arb/panels/PnlBox";
+import { TradeLog } from "./arb/panels/TradeLog";
 import type { DashboardTab } from "./arb/types";
 
 export default function ArbDashboard() {
@@ -232,6 +233,21 @@ export default function ArbDashboard() {
                 ${filteredPnl.netTotal.toFixed(2)} <span className="text-[#4a4a6a]">({filteredPnl.fills} fills)</span>
               </span>
             </div>
+          </div>
+
+          {/* ── Trade Log ─────────────────────────────────────── */}
+          <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#ff8c00]" />
+            <div className="px-3 py-1.5 border-b border-[#1a1a2e]">
+              <h3 className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">
+                TRADE LOG <span className="text-[#ff8c00] ml-1">({filteredTrades.length})</span>
+              </h3>
+            </div>
+            <TradeLog
+              trades={filteredTrades}
+              expandedTrade={expandedMonitorTrade}
+              setExpandedTrade={setExpandedMonitorTrade}
+            />
           </div>
 
           {/* ── Positions ────────────────────────────────────── */}

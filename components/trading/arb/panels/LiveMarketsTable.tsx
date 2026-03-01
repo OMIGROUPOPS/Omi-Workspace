@@ -164,8 +164,8 @@ export function LiveMarketsTable({ games }: Props) {
     live.sort((a, b) => Math.max(b[0].netArb, b[1].netArb) - Math.max(a[0].netArb, a[1].netArb));
 
     // Sort by start time ascending (game_time string, then date)
-    const timeSort = (a: MarketRow[][], b: MarketRow[][]) => {
-      const [ra, rb] = [a[0][0], b[0][0]];
+    const timeSort = (a: MarketRow[], b: MarketRow[]) => {
+      const [ra, rb] = [a[0], b[0]];
       if (ra.date !== rb.date) return ra.date.localeCompare(rb.date);
       return (ra.gameTime || "99:99").localeCompare(rb.gameTime || "99:99");
     };

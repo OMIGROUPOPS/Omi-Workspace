@@ -234,17 +234,6 @@ export default function ArbDashboard() {
             </div>
           </div>
 
-          {/* ── Live Markets ──────────────────────────────────── */}
-          <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#00bfff]" />
-            <div className="px-3 py-1.5 border-b border-[#1a1a2e]">
-              <h3 className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">
-                LIVE MARKETS <span className="text-[#00bfff] ml-1">({state?.mapped_games?.length ?? 0})</span>
-              </h3>
-            </div>
-            <LiveMarketsTable games={state?.mapped_games ?? []} />
-          </div>
-
           {/* ── Positions ────────────────────────────────────── */}
           <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#ff8c00]" />
@@ -268,6 +257,17 @@ export default function ArbDashboard() {
 
           {/* ── P&L Box ───────────────────────────────────────── */}
           <PnlBox settledTrades={settledTrades} totalPnl={settledPnlTotal} />
+
+          {/* ── Live Markets ──────────────────────────────────── */}
+          <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#00bfff]" />
+            <div className="px-3 py-1.5 border-b border-[#1a1a2e]">
+              <h3 className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">
+                LIVE MARKETS <span className="text-[#00bfff] ml-1">({state?.mapped_games?.length ?? 0})</span>
+              </h3>
+            </div>
+            <LiveMarketsTable games={state?.mapped_games ?? []} />
+          </div>
         </div>
       ) : (
         /* ── Tab 2: Intra-Kalshi (Placeholder) ──────────────── */

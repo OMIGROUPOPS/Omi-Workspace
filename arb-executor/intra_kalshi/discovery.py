@@ -220,7 +220,7 @@ def normalize_market(m: dict) -> dict:
 # ---------------------------------------------------------------------------
 
 async def fetch_events_with_markets(session, api_key, pk, rl, sem):
-    print('\n[1/5] Fetching events with nested markets...')
+    print('\n[1/4] Fetching events with nested markets...')
     path = '/trade-api/v2/events?status=open&with_nested_markets=true&limit=200'
     events = await paginate(session, api_key, pk, path, 'events', rl, sem)
     print(f'  → {len(events)} events fetched')
@@ -249,16 +249,32 @@ async def fetch_events_with_markets(session, api_key, pk, rl, sem):
 # Step 2: Cross-check via markets endpoint
 # ---------------------------------------------------------------------------
 
-async def fetch_orphan_markets(session, api_key, pk, rl, sem, known_tickers):
-    print('\n[2/5] Cross-checking via markets endpoint...')
-    path = '/trade-api/v2/markets?status=open&limit=1000'
-    raw = await paginate(session, api_key, pk, path, 'markets', rl, sem)
+async def fetch_orphan_markets(session, api_key, pk, rl, sem, known_tickers, max_pages=10):
+    """Cross-check via markets endpoint (capped to avoid 183K+ market firehose)."""
+    print('\n[1b/4] Cross-checking via markets endpoint (capped)...')
+    items = []
+    cursor = None
+    page = 0
+    while page < max_pages:
+        path = '/trade-api/v2/markets?status=open&limit=1000'
+        if cursor:
+            path += f'&cursor={cursor}'
+        data = await api_get(session, api_key, pk, path, rl, sem)
+        if data is None:
+            break
+        batch = data.get('markets', [])
+        items.extend(batch)
+        cursor = data.get('cursor')
+        page += 1
+        print(f'  Page {page}: +{len(batch)} markets (total {len(items)})')
+        if not cursor or not batch:
+            break
     orphans = {}
-    for m in raw:
+    for m in items:
         t = m.get('ticker', '')
         if t and t not in known_tickers:
             orphans[t] = normalize_market(m)
-    print(f'  → {len(orphans)} orphan markets found')
+    print(f'  → {len(orphans)} orphan markets found (from {len(items)} sampled)')
     return orphans
 
 # ---------------------------------------------------------------------------
@@ -266,7 +282,7 @@ async def fetch_orphan_markets(session, api_key, pk, rl, sem, known_tickers):
 # ---------------------------------------------------------------------------
 
 async def fetch_orderbooks(session, api_key, pk, rl, sem, markets, top_n):
-    print(f'\n[3/5] Fetching orderbooks for top {top_n} markets by 24h volume...')
+    print(f'\n[2/4] Fetching orderbooks for top {top_n} markets by 24h volume...')
     sorted_markets = sorted(markets.values(), key=lambda m: m['volume_24h'], reverse=True)[:top_n]
     if not sorted_markets:
         print('  → No markets to fetch orderbooks for')
@@ -434,7 +450,7 @@ def save_output(events_data, markets, categories, anomalies, tree, output_path):
 # Main
 # ---------------------------------------------------------------------------
 
-async def run(top_n: int = 50, output: str = 'market_surface.json'):
+async def run(top_n: int = 50, output: str = 'market_surface.json', cross_check: bool = False):
     api_key, private_key = load_credentials()
     rate_limiter = RateLimiter()
     semaphore = asyncio.Semaphore(MAX_CONCURRENCY)
@@ -444,23 +460,26 @@ async def run(top_n: int = 50, output: str = 'market_surface.json'):
         events_data, markets = await fetch_events_with_markets(
             session, api_key, private_key, rate_limiter, semaphore
         )
+        print(f'  → {len(markets)} markets from events')
 
-        # Step 2: Cross-check for orphan markets
-        orphans = await fetch_orphan_markets(
-            session, api_key, private_key, rate_limiter, semaphore, set(markets.keys())
-        )
-        markets.update(orphans)
+        # Step 1b: Optional cross-check (capped at 10 pages = 10K markets)
+        if cross_check:
+            orphans = await fetch_orphan_markets(
+                session, api_key, private_key, rate_limiter, semaphore, set(markets.keys())
+            )
+            markets.update(orphans)
 
-        # Step 3: Orderbooks for top-N
+        # Step 2: Orderbooks for top-N
         await fetch_orderbooks(
             session, api_key, private_key, rate_limiter, semaphore, markets, top_n
         )
 
-    # Step 4: Build tree + anomalies
+    # Step 3: Build tree + anomalies
+    print('\n[3/4] Building tree + scanning anomalies...')
     tree, categories = build_tree(events_data, markets)
     anomalies = scan_anomalies(events_data, markets)
 
-    # Step 5: Output
+    # Step 4: Output
     print_summary(events_data, markets, categories, anomalies, top_n)
     save_output(events_data, markets, categories, anomalies, tree, output)
 
@@ -469,8 +488,9 @@ def main():
     parser = argparse.ArgumentParser(description='Kalshi Market Surface Discovery')
     parser.add_argument('--top-n', type=int, default=50, help='Number of top markets to fetch orderbooks for')
     parser.add_argument('--output', type=str, default='market_surface.json', help='Output JSON path')
+    parser.add_argument('--cross-check', action='store_true', help='Cross-check with /markets endpoint for orphans (slow)')
     args = parser.parse_args()
-    asyncio.run(run(top_n=args.top_n, output=args.output))
+    asyncio.run(run(top_n=args.top_n, output=args.output, cross_check=args.cross_check))
 
 
 if __name__ == '__main__':

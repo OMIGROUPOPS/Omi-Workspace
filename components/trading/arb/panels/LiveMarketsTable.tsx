@@ -14,10 +14,10 @@ interface MarketRow {
   sport: string;
   team: string;
   opponent: string;
-  kYes: number;
-  pmYes: number;
-  combined: number;
-  netArb: number;
+  kYes: number;       // K YES price for THIS team (buy leg)
+  oppPmYes: number;   // PM YES price for OPPONENT (hedge leg)
+  combined: number;   // kYes + oppPmYes = arb cost
+  netArb: number;     // 100 - combined - fees
   feeEst: number;
   gameStatus?: string;
   period?: string;
@@ -48,21 +48,21 @@ function buildGameRows(g: MappedGame): MarketRow[] {
     isLive: g.game_status === "in",
   };
 
+  // Row 1: Buy K YES team1 + Buy PM YES team2 (opponent)
   const k1 = t1.k_ask || t1.k_bid;
-  const pm1 = t1.pm_ask || t1.pm_bid;
-  const pm2opp = t2.pm_ask || t2.pm_bid;
-  const combined1 = k1 + pm2opp;
+  const pm2forOpp = t2.pm_ask || t2.pm_bid;
+  const combined1 = k1 + pm2forOpp;
   const fee1 = computeFeeEst(k1);
 
+  // Row 2: Buy K YES team2 + Buy PM YES team1 (opponent)
   const k2 = t2.k_ask || t2.k_bid;
-  const pm2 = t2.pm_ask || t2.pm_bid;
-  const pm1opp = t1.pm_ask || t1.pm_bid;
-  const combined2 = k2 + pm1opp;
+  const pm1forOpp = t1.pm_ask || t1.pm_bid;
+  const combined2 = k2 + pm1forOpp;
   const fee2 = computeFeeEst(k2);
 
   return [
-    { ...base, team: g.team1_full || g.team1, opponent: g.team2_full || g.team2, kYes: k1, pmYes: pm1, combined: combined1, netArb: 100 - combined1 - fee1, feeEst: fee1, isFirstOfPair: true },
-    { ...base, team: g.team2_full || g.team2, opponent: g.team1_full || g.team1, kYes: k2, pmYes: pm2, combined: combined2, netArb: 100 - combined2 - fee2, feeEst: fee2, isFirstOfPair: false },
+    { ...base, team: g.team1_full || g.team1, opponent: g.team2_full || g.team2, kYes: k1, oppPmYes: pm2forOpp, combined: combined1, netArb: 100 - combined1 - fee1, feeEst: fee1, isFirstOfPair: true },
+    { ...base, team: g.team2_full || g.team2, opponent: g.team1_full || g.team1, kYes: k2, oppPmYes: pm1forOpp, combined: combined2, netArb: 100 - combined2 - fee2, feeEst: fee2, isFirstOfPair: false },
   ];
 }
 
@@ -112,7 +112,7 @@ function SectionTable({ pairs, sectionIdx }: { pairs: MarketRow[][]; sectionIdx:
                   <span className="text-[#ff8c00] font-medium">{r.team}</span>
                 </td>
                 <td className="px-2 py-1 text-right font-mono text-[#00bfff]">{r.kYes}c</td>
-                <td className="px-2 py-1 text-right font-mono text-[#00ff88]">{r.pmYes}c</td>
+                <td className="px-2 py-1 text-right font-mono text-[#00ff88]">{r.oppPmYes}c</td>
                 <td className="px-2 py-1 text-right font-mono text-[#ff8c00]">{r.combined.toFixed(0)}c</td>
                 <td className={`px-2 py-1 text-right font-mono font-bold ${arbColor(r.netArb)} ${ri === bestIdx ? "" : "opacity-50"}`}>
                   {r.netArb > 0 ? "+" : ""}{r.netArb.toFixed(1)}c
@@ -178,7 +178,7 @@ export function LiveMarketsTable({ games }: Props) {
           <tr className="text-left">
             <th className={TH}>TEAM</th>
             <th className={`${TH} text-right`}>K YES</th>
-            <th className={`${TH} text-right`}>PM YES</th>
+            <th className={`${TH} text-right`}>PM OPP</th>
             <th className={`${TH} text-right`}>COMBINED</th>
             <th className={`${TH} text-right`}>NET ARB</th>
             <th className={`${TH} text-right`}>FEE EST</th>

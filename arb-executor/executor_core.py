@@ -1855,153 +1855,72 @@ async def execute_arb(
                 gtc_cancel_reason=gtc_phase['cancel_reason'],
             )
 
-    # Initialize K-first variables
+    # Initialize variables
     k_filled = 0
     k_fill_price = k_price
     k_order_ms = 0
 
-    # ── K-FIRST EXECUTION: Send K (44ms) then PM (300ms) ──
+    # ── PM-FIRST IOC: Send PM (unreliable leg) then K (reliable leg) ──
+    # Monte Carlo: PM-first Sharpe 1.80 vs K-first 0.07. PM no-fill = $0 clean abort.
+    # K no-fill after PM fills → Tier 1/2/3 recovery (PM unwind capped at spread).
     if not _gtc_only_filled:
-        k_order_start = time.time()
-        try:
-            k_result_preflight = await kalshi_api.place_order(
-                session, arb.kalshi_ticker,
-                params['k_side'], params['k_action'],
-                size, k_limit_price)
-        except Exception as e:
-            return TradeResult(success=False, abort_reason=f"K order failed: {e}",
-                               execution_time_ms=int((time.time() - start_time) * 1000))
-        k_preflight_ms = int((time.time() - k_order_start) * 1000)
-        k_preflight_filled = k_result_preflight.get('fill_count', 0)
-        k_preflight_price = k_result_preflight.get('fill_price', k_limit_price)
-        if k_preflight_filled == 0:
-            print(f"[EXEC] K no-fill: {k_result_preflight.get('status','?')} latency={k_preflight_ms}ms")
-            return TradeResult(success=False, abort_reason=f"K no-fill",
-                               execution_time_ms=int((time.time() - start_time) * 1000),
-                               k_order_ms=k_preflight_ms)
-        k_qty_delta = -k_preflight_filled if params['k_action'] == 'sell' else k_preflight_filled
-        update_position_cache_after_trade(arb.kalshi_ticker, k_qty_delta)
-        print(f"[EXEC] K filled {k_preflight_filled}x @{k_preflight_price}c in {k_preflight_ms}ms — placing PM...")
-
-        # ── PM BBO REFRESH: re-read fresh price from WS-updated dict ──
-        stale_pm_price = pm_price
-        if pm_prices is not None:
-            pm_key = f"{arb.cache_key}_{arb.team}"
-            fresh = pm_prices.get(pm_key)
-            if fresh:
-                fresh_cents = fresh.get('ask') if params['pm_intent'] == 1 else fresh.get('bid')
-                if fresh_cents is not None:
-                    fresh_pm_price_cents = fresh_cents
-                    if params.get('pm_invert_price', False):
-                        fresh_pm_price_cents = 100 - fresh_pm_price_cents
-                    if params.get('pm_is_buy_short', False):
-                        max_cost = min(math.ceil(fresh_pm_price_cents + pm_buffer), 99)
-                        pm_price = max(100 - max_cost, 1) / 100.0
-                    else:
-                        pm_price = min(math.ceil(fresh_pm_price_cents + pm_buffer), 99) / 100.0
-                    delta_c = (pm_price - stale_pm_price) * 100
-                    age_ms = int(time.time() * 1000) - fresh.get('timestamp_ms', 0)
-                    print(f"[K_FIRST] PM BBO refresh: ${stale_pm_price:.2f} -> ${pm_price:.2f} (delta={delta_c:+.1f}c, age={age_ms}ms)")
-
-        # ── PM IOC ORDER: tif=3 (immediate-or-cancel) — no resting orders ──
-        # GTC (tif=1) with synchronousExecution caused 2s timeouts when PM had no
-        # matching liquidity, leaving orphaned resting orders + K unwind losses.
-        # IOC fills instantly or returns 0 — clean abort, no orphan risk.
         pm_order_start = time.time()
         try:
             pm_result = await asyncio.wait_for(
                 pm_api.place_order(session, pm_slug, params['pm_intent'], pm_price,
-                    k_preflight_filled, tif=3, sync=True, outcome_index=actual_pm_outcome_idx),
+                    size, tif=3, sync=True, outcome_index=actual_pm_outcome_idx),
                 timeout=5.0)
         except asyncio.TimeoutError:
             pm_order_ms = int((time.time() - pm_order_start) * 1000)
-            print(f"[K_FIRST] PM IOC timeout ({pm_order_ms}ms) — unwinding K...")
+            print(f"[PM_FIRST] PM IOC timeout ({pm_order_ms}ms) — clean abort, $0 cost")
             pm_result = {'fill_count': 0, 'error': 'timeout'}
         except Exception as e:
             pm_order_ms = int((time.time() - pm_order_start) * 1000)
-            print(f"[K_FIRST] PM IOC send failed: {e} — unwinding K...")
+            print(f"[PM_FIRST] PM IOC error: {e} — clean abort, $0 cost")
             pm_result = {'fill_count': 0, 'error': str(e)}
 
         pm_filled = pm_result.get('fill_count', 0)
         pm_fill_price = pm_result.get('fill_price', pm_price)
-
         pm_order_ms = int((time.time() - pm_order_start) * 1000)
-        pm_fill_price = pm_result.get('fill_price', pm_price) if pm_filled == 0 else pm_fill_price
         pm_response_details = _extract_pm_response_details(pm_result)
-        if pm_filled == 0:
-            print(f"[EXEC] PM no-fill latency={pm_order_ms}ms — evaluating K unwind vs hold...")
-            k_loss = 0
-            k_held = False
-            try:
-                k_rev_action = 'buy' if params['k_action'] == 'sell' else 'sell'
-                if k_rev_action == 'buy':
-                    k_unw_price_est = (k_book_ref.get('best_ask', 99) if k_book_ref else 99)
-                else:
-                    k_unw_price_est = (k_book_ref.get('best_bid', 1) if k_book_ref else 1)
-                # Calculate expected unwind loss BEFORE placing the order
-                if params['k_action'] == 'sell':
-                    expected_loss = (k_unw_price_est - k_preflight_price) * k_preflight_filled
-                else:
-                    expected_loss = (k_preflight_price - k_unw_price_est) * k_preflight_filled
-                # If price moved in our favor (negative loss = profit), sell immediately
-                if expected_loss < 0:
-                    print(f"[UNWIND_FREE] K price moved in our favor! "
-                          f"entry={k_preflight_price}c exit~{k_unw_price_est}c "
-                          f"gain={abs(expected_loss):.1f}c — selling immediately", flush=True)
-                    # Proceed with unwind (it's profitable)
-                elif expected_loss > spread:
-                    # Unwind would cost more than the spread — hold to settlement
-                    print(f"[HOLD_TO_SETTLE] K unwind loss {expected_loss:.1f}c > spread {spread:.0f}c — "
-                          f"HOLDING {k_preflight_filled}x {arb.kalshi_ticker} to settlement | "
-                          f"entry={k_preflight_price}c best_exit~{k_unw_price_est}c | "
-                          f"Settlement: win=${k_preflight_filled:.2f} or lose entry cost. "
-                          f"Better than guaranteed {expected_loss:.1f}c loss.", flush=True)
-                    k_held = True
-                    k_loss = 0  # No realized loss — holding
-                else:
-                    print(f"[UNWIND_OK] K unwind loss {expected_loss:.1f}c <= spread {spread:.0f}c — unwinding", flush=True)
 
-                if not k_held:
-                    # Place the unwind order with 3c buffer
-                    if k_rev_action == 'buy':
-                        k_unw_price = min(k_unw_price_est + 3, 99)
-                    else:
-                        k_unw_price = max(k_unw_price_est - 3, 1)
-                    k_unw = await kalshi_api.place_order(session, arb.kalshi_ticker,
-                        params['k_side'], k_rev_action, k_preflight_filled, k_unw_price)
-                    k_unw_filled = k_unw.get('fill_count', 0)
-                    k_unw_fp = k_unw.get('fill_price', k_unw_price)
-                    if k_unw_filled > 0:
-                        k_rev_delta = -k_unw_filled if k_rev_action == 'sell' else k_unw_filled
-                        update_position_cache_after_trade(arb.kalshi_ticker, k_rev_delta)
-                        if params['k_action'] == 'sell':
-                            k_loss = (k_unw_fp - k_preflight_price) * k_unw_filled
-                        else:
-                            k_loss = (k_preflight_price - k_unw_fp) * k_unw_filled
-                        print(f"[EXEC] K unwound {k_unw_filled}x @{k_unw_fp}c (loss: {k_loss:.1f}c)")
-                    else:
-                        # Unwind order didn't fill — hold to settlement as fallback
-                        k_loss = 0
-                        k_held = True
-                        print(f"[HOLD_TO_SETTLE] K unwind no-fill — holding {k_preflight_filled}x to settlement")
-            except Exception as e:
-                k_loss = 0
-                k_held = True
-                print(f"[HOLD_TO_SETTLE] K unwind exception ({e}) — holding to settlement")
-            tier_label = "K_FIRST_PM_NOFILL_HELD" if k_held else "K_FIRST_PM_NOFILL"
-            abort_msg = (f"PM no-fill (K-first): pm={pm_order_ms}ms, K HELD to settlement"
-                         if k_held else
-                         f"PM no-fill (K-first): pm={pm_order_ms}ms, K unwound")
-            return TradeResult(success=False, pm_filled=0, kalshi_filled=k_preflight_filled,
-                abort_reason=abort_msg,
+        if pm_filled == 0:
+            # PM didn't fill — CLEAN ABORT. No position, no risk, $0 cost.
+            print(f"[PM_FIRST] PM no-fill ({pm_order_ms}ms) — clean abort, no position taken")
+            return TradeResult(
+                success=False, pm_filled=0,
+                abort_reason=f"PM no-fill (PM-first): clean abort, $0 cost",
                 execution_time_ms=int((time.time() - start_time) * 1000),
-                pm_order_ms=pm_order_ms, k_order_ms=k_preflight_ms,
-                pm_response_details=pm_response_details, execution_phase="ioc",
-                exited=not k_held, unwind_loss_cents=abs(k_loss), tier=tier_label)
-        print(f"[EXEC] PM filled {pm_filled}x @${pm_fill_price:.4f} in {pm_order_ms}ms — BOTH LEGS DONE")
-        k_filled = k_preflight_filled
-        k_fill_price = k_preflight_price
-        k_order_ms = k_preflight_ms
+                pm_order_ms=pm_order_ms,
+                pm_response_details=pm_response_details,
+                execution_phase="ioc",
+                nofill_diagnosis={
+                    'sequence': 'PM_FIRST',
+                    'pm_latency_ms': pm_order_ms,
+                    'pm_price_sent': pm_price,
+                    'pm_intent': params['pm_intent'],
+                    'pre_order_bbo': _pre_order_bbo,
+                    'pm_data_age_ms': pm_data_age_ms,
+                },
+            )
+
+        print(f"[PM_FIRST] PM filled {pm_filled}x @${pm_fill_price:.4f} in {pm_order_ms}ms — placing K...")
+
+        # Refresh K limit price after PM latency (150-250ms K book may shift)
+        if k_book_ref:
+            live_bid = k_book_ref.get('best_bid')
+            live_ask = k_book_ref.get('best_ask')
+            if live_bid and live_ask:
+                old_k_limit = k_limit_price
+                if params['k_action'] == 'sell':
+                    k_limit_price = max(live_bid - Config.price_buffer_cents, 1)
+                else:
+                    k_limit_price = min(live_ask + Config.price_buffer_cents, 99)
+                if k_limit_price != old_k_limit:
+                    print(f"[PM_FIRST] K price refreshed: {old_k_limit}c -> {k_limit_price}c "
+                          f"(live bid={live_bid} ask={live_ask})")
+
+        # k_filled stays 0 — falls through to Step 6 (K order placement)
 
     # Step 5.5: PM filled — NOW lock the game to prevent duplicate trades
     # -------------------------------------------------------------------------
@@ -2073,7 +1992,7 @@ async def execute_arb(
                 print(f"[GTC] K price refreshed: {old_k_limit}c → {k_limit_price}c (live bid={live_bid} ask={live_ask})")
 
     # -------------------------------------------------------------------------
-    # Step 6: Place Kalshi order (SKIPPED in K-first mode)
+    # Step 6: Kalshi order (already filled in K-first mode, placed here in PM-first/GTC)
     # -------------------------------------------------------------------------
     if k_filled > 0:
         traded_games.add(game_id)
@@ -2085,7 +2004,7 @@ async def execute_arb(
             cache_key=arb.cache_key)
         await _verify_both_legs(session, kalshi_api, pm_api,
                                 arb.kalshi_ticker, pm_slug, arb.team, k_filled, pm_filled)
-        print(f"[K_FIRST] SUCCESS: K={k_filled}x@{k_fill_price}c PM={pm_filled}x@${pm_fill_price:.4f} "
+        print(f"[PM_FIRST] SUCCESS: K={k_filled}x@{k_fill_price}c PM={pm_filled}x@${pm_fill_price:.4f} "
               f"total={execution_time_ms}ms (k={k_order_ms}ms pm={pm_order_ms}ms)")
         return TradeResult(
             success=True,
@@ -2098,7 +2017,7 @@ async def execute_arb(
             k_order_ms=k_order_ms,
             pm_response_details=pm_response_details,
             execution_phase="ioc",
-            tier="K_FIRST_SUCCESS",
+            tier="PM_FIRST_SUCCESS",
         )
     k_order_start = time.time()
     try:

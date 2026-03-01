@@ -211,6 +211,13 @@ export function todayET(): string {
   return toETDate(new Date().toISOString());
 }
 
+/** Get tomorrow's date as YYYY-MM-DD in US Eastern Time. */
+export function tomorrowET(): string {
+  const d = new Date();
+  d.setDate(d.getDate() + 1);
+  return toETDate(d.toISOString());
+}
+
 export function isToday(dateStr: string | undefined): boolean {
   if (!dateStr) return false;
   return dateStr === todayET();

@@ -970,7 +970,7 @@ class DashboardPusher:
                 pm = self.pm_prices.get(pm_key)
                 if pm:
                     pm_age_ms = int(time.time() * 1000) - pm.get('timestamp_ms', 0)
-                    if pm_age_ms > 5000:
+                    if pm_age_ms > 30000:
                         pm = None  # Stale — zero out PM prices
                 if pm:
                     tp["pm_bid"] = round(pm.get("bid") or 0, 1)

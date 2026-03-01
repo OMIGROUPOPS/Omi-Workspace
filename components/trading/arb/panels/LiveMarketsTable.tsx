@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 import type { MappedGame } from "../types";
-import { sportBadge, computeFeeEst, arbColor } from "../helpers";
+import { sportBadge, computeFeeEst, arbColor, todayET, tomorrowET } from "../helpers";
 
 interface Props {
   games: MappedGame[];
@@ -19,6 +19,7 @@ interface MarketRow {
   combined: number;   // kYes + oppPmYes = arb cost
   netArb: number;     // 100 - combined - fees
   feeEst: number;
+  hasPm: boolean;     // whether PM prices are available
   gameStatus?: string;
   period?: string;
   clock?: string;
@@ -33,8 +34,10 @@ function buildGameRows(g: MappedGame): MarketRow[] {
   const t1 = g.team1_prices;
   const t2 = g.team2_prices;
   if (!t1 || !t2) return [];
-  if ((!t1.k_ask && !t1.k_bid) || (!t2.k_ask && !t2.k_bid)) return [];
-  if ((!t1.pm_ask && !t1.pm_bid) || (!t2.pm_ask && !t2.pm_bid)) return [];
+  // Skip only if BOTH teams have zero K data
+  if ((!t1.k_ask && !t1.k_bid) && (!t2.k_ask && !t2.k_bid)) return [];
+
+  const hasPm = !!((t1.pm_ask || t1.pm_bid) && (t2.pm_ask || t2.pm_bid));
 
   const base = {
     gameId: g.game_id,
@@ -46,17 +49,18 @@ function buildGameRows(g: MappedGame): MarketRow[] {
     date: g.date,
     gameTime: g.game_time,
     isLive: g.game_status === "in",
+    hasPm,
   };
 
   // Row 1: Buy K YES team1 + Buy PM YES team2 (opponent)
   const k1 = t1.k_ask || t1.k_bid;
-  const pm2forOpp = t2.pm_ask || t2.pm_bid;
+  const pm2forOpp = hasPm ? (t2.pm_ask || t2.pm_bid) : 0;
   const combined1 = k1 + pm2forOpp;
   const fee1 = computeFeeEst(k1);
 
   // Row 2: Buy K YES team2 + Buy PM YES team1 (opponent)
   const k2 = t2.k_ask || t2.k_bid;
-  const pm1forOpp = t1.pm_ask || t1.pm_bid;
+  const pm1forOpp = hasPm ? (t1.pm_ask || t1.pm_bid) : 0;
   const combined2 = k2 + pm1forOpp;
   const fee2 = computeFeeEst(k2);
 
@@ -95,13 +99,14 @@ function SectionTable({ pairs, sectionIdx }: { pairs: MarketRow[][]; sectionIdx:
         const stripe = globalIdx % 2 === 1 ? "bg-white/[0.02]" : "";
         const liveBorder = pair[0].isLive ? "border-l-2 border-l-[#00ff88]" : "";
         const bestIdx = pair[0].netArb >= pair[1].netArb ? 0 : 1;
+        const dimmed = !pair[0].hasPm;
 
         return (
           <React.Fragment key={pair[0].cacheKey}>
             {pair.map((r, ri) => (
               <tr
                 key={`${r.cacheKey}-${r.team}`}
-                className={`${ri === 0 ? "border-t border-[#1a1a2e]/80" : "border-b border-[#1a1a2e]/50"} hover:bg-[#00bfff]/[0.04] transition-colors font-mono ${stripe} ${liveBorder}`}
+                className={`${ri === 0 ? "border-t border-[#1a1a2e]/80" : "border-b border-[#1a1a2e]/50"} hover:bg-[#00bfff]/[0.04] transition-colors font-mono ${stripe} ${liveBorder} ${dimmed ? "opacity-40" : ""}`}
               >
                 <td className="px-2 py-1 whitespace-nowrap">
                   {ri === 0 && (
@@ -112,10 +117,10 @@ function SectionTable({ pairs, sectionIdx }: { pairs: MarketRow[][]; sectionIdx:
                   <span className="text-[#ff8c00] font-medium">{r.team}</span>
                 </td>
                 <td className="px-2 py-1 text-right font-mono text-[#00bfff]">{r.kYes}c</td>
-                <td className="px-2 py-1 text-right font-mono text-[#00ff88]">{r.oppPmYes}c</td>
-                <td className="px-2 py-1 text-right font-mono text-[#ff8c00]">{r.combined.toFixed(0)}c</td>
-                <td className={`px-2 py-1 text-right font-mono font-bold ${arbColor(r.netArb)} ${ri === bestIdx ? "" : "opacity-50"}`}>
-                  {r.netArb > 0 ? "+" : ""}{r.netArb.toFixed(1)}c
+                <td className="px-2 py-1 text-right font-mono text-[#00ff88]">{r.hasPm ? `${r.oppPmYes}c` : "—"}</td>
+                <td className="px-2 py-1 text-right font-mono text-[#ff8c00]">{r.hasPm ? `${r.combined.toFixed(0)}c` : "—"}</td>
+                <td className={`px-2 py-1 text-right font-mono font-bold ${r.hasPm ? arbColor(r.netArb) : "text-[#4a4a6a]"} ${ri === bestIdx && r.hasPm ? "" : "opacity-50"}`}>
+                  {r.hasPm ? `${r.netArb > 0 ? "+" : ""}${r.netArb.toFixed(1)}c` : "—"}
                 </td>
                 <td className="px-2 py-1 text-right font-mono text-[#4a4a6a]">{r.feeEst.toFixed(1)}c</td>
                 {ri === 0 && (
@@ -133,9 +138,13 @@ function SectionTable({ pairs, sectionIdx }: { pairs: MarketRow[][]; sectionIdx:
 }
 
 export function LiveMarketsTable({ games }: Props) {
-  const { livePairs, mappedPairs } = useMemo(() => {
+  const { livePairs, todayPairs, tomorrowPairs } = useMemo(() => {
     const live: MarketRow[][] = [];
-    const mapped: MarketRow[][] = [];
+    const today: MarketRow[][] = [];
+    const tomorrow: MarketRow[][] = [];
+
+    const todayDate = todayET();
+    const tomorrowDate = tomorrowET();
 
     for (const g of games) {
       const rows = buildGameRows(g);
@@ -143,27 +152,30 @@ export function LiveMarketsTable({ games }: Props) {
       if (g.game_status === "in") {
         live.push(rows);
       } else if (g.game_status !== "post") {
-        mapped.push(rows);
+        if (rows[0].date === tomorrowDate) {
+          tomorrow.push(rows);
+        } else {
+          today.push(rows);
+        }
       }
     }
 
     // Live: sort by best net arb descending
     live.sort((a, b) => Math.max(b[0].netArb, b[1].netArb) - Math.max(a[0].netArb, a[1].netArb));
 
-    // Mapped: sort by start time ascending (game_time string, then date)
-    mapped.sort((a, b) => {
-      const da = a[0].date;
-      const db = b[0].date;
-      if (da !== db) return da.localeCompare(db);
-      const ta = a[0].gameTime || "99:99";
-      const tb = b[0].gameTime || "99:99";
-      return ta.localeCompare(tb);
-    });
+    // Sort by start time ascending (game_time string, then date)
+    const timeSort = (a: MarketRow[][], b: MarketRow[][]) => {
+      const [ra, rb] = [a[0][0], b[0][0]];
+      if (ra.date !== rb.date) return ra.date.localeCompare(rb.date);
+      return (ra.gameTime || "99:99").localeCompare(rb.gameTime || "99:99");
+    };
+    today.sort(timeSort);
+    tomorrow.sort(timeSort);
 
-    return { livePairs: live, mappedPairs: mapped };
+    return { livePairs: live, todayPairs: today, tomorrowPairs: tomorrow };
   }, [games]);
 
-  if (livePairs.length === 0 && mappedPairs.length === 0) {
+  if (livePairs.length === 0 && todayPairs.length === 0 && tomorrowPairs.length === 0) {
     return (
       <div className="text-center py-6">
         <span className="text-[9px] font-mono text-[#3a3a5a] uppercase tracking-wider">NO MARKET DATA</span>
@@ -201,17 +213,31 @@ export function LiveMarketsTable({ games }: Props) {
             </>
           )}
 
-          {/* ── Upcoming / mapped games ────────────────────── */}
-          {mappedPairs.length > 0 && (
+          {/* ── Today's mapped games ──────────────────────── */}
+          {todayPairs.length > 0 && (
             <>
               <tr>
                 <td colSpan={7} className="px-2 py-1 bg-[#00bfff]/[0.06] border-y border-[#00bfff]/20">
                   <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-[#00bfff]">
-                    MAPPED GAMES ({mappedPairs.length})
+                    MAPPED GAMES ({todayPairs.length})
                   </span>
                 </td>
               </tr>
-              <SectionTable pairs={mappedPairs} sectionIdx={livePairs.length} />
+              <SectionTable pairs={todayPairs} sectionIdx={livePairs.length} />
+            </>
+          )}
+
+          {/* ── Tomorrow's games ──────────────────────────── */}
+          {tomorrowPairs.length > 0 && (
+            <>
+              <tr>
+                <td colSpan={7} className="px-2 py-1 bg-[#a855f7]/[0.06] border-y border-[#a855f7]/20">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-[#a855f7]">
+                    TOMORROW ({tomorrowPairs.length})
+                  </span>
+                </td>
+              </tr>
+              <SectionTable pairs={tomorrowPairs} sectionIdx={livePairs.length + todayPairs.length} />
             </>
           )}
         </tbody>

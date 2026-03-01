@@ -1160,11 +1160,27 @@ class KalshiAPI:
                 print(f"   [DEBUG] Order status: {status}, fill_count: {fill_count}")
 
                 if r.status in [200, 201] and fill_count > 0:
+                    # Compute actual fill price from taker_fill_cost (NOT yes_price/no_price which are limit prices)
+                    # taker_fill_cost = collateral in cents: buy pays price, sell puts up (100 - price)
+                    limit_price = order.get('yes_price') if side == 'yes' else order.get('no_price')
+                    tfc = order.get('taker_fill_cost')
+                    tfn = order.get('taker_fill_count', 0)
+                    if tfc is not None and tfn > 0:
+                        avg_cost = tfc / tfn
+                        if action == 'sell':
+                            actual_fill = round(100 - avg_cost)
+                        else:
+                            actual_fill = round(avg_cost)
+                        if actual_fill != limit_price:
+                            print(f"   [FILL_PRICE] Actual {actual_fill}c vs limit {limit_price}c "
+                                  f"(improvement: {abs(actual_fill - limit_price)}c)")
+                    else:
+                        actual_fill = limit_price
                     return {
                         'success': True,
                         'fill_count': fill_count,
                         'order_id': order.get('order_id'),
-                        'fill_price': order.get('yes_price') if side == 'yes' else order.get('no_price'),
+                        'fill_price': actual_fill,
                         'status': status
                     }
 

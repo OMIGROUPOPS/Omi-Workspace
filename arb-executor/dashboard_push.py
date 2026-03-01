@@ -477,7 +477,11 @@ class DashboardPusher:
                     and t.get("tier", "") not in pnl_tiers
                     and t.get("settlement_pnl") is None
                 ]
+<<<<<<< HEAD
                 # Keep last 500 noise trades to avoid evicting early-day trades
+=======
+                # Keep last 100 noise trades for recent activity display
+>>>>>>> d4235e8 (fix: forward k_yes_team/pm_yes_team in dashboard_push + noise cap 100→500)
                 recent_noise = noise_trades[-500:] if len(noise_trades) > 500 else noise_trades
                 recent = sorted(
                     pnl_trades + recent_noise,
@@ -566,6 +570,9 @@ class DashboardPusher:
                         "arb_net_total_cents": t.get("arb_net_total_cents"),
                         "unwind_timestamp": t.get("unwind_timestamp"),
                         "unwind_timestamp_est": t.get("unwind_timestamp_est"),
+                        # Ground truth team names for each leg
+                        "k_yes_team": t.get("k_yes_team"),
+                        "pm_yes_team": t.get("pm_yes_team"),
                     }
                     for t in recent
                 ]

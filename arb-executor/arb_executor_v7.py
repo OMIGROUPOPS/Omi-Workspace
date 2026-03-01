@@ -196,14 +196,14 @@ LIQUIDITY_UTILIZATION = 0.66      # Use 66% of available liquidity (conservative
 # ============================================================================
 KALSHI_FEE_CENTS_PER_CONTRACT = 2     # Kalshi taker fee (~2c/contract at 50c)
 PM_US_FEE_RATE = 0.001                # PM US: 0.10% (10 bps) on notional
-EXPECTED_SLIPPAGE_CENTS = 0           # IOC orders fill at ask or expire - no slippage
+EXPECTED_SLIPPAGE_CENTS = 1           # PM buffer eats ~1c on tight spreads (reduced from 3c)
 MIN_PROFIT_CENTS = 1                  # Minimum profit we want AFTER all costs
 RECOVERY_SLIPPAGE_BUDGET_CENTS = 2    # Max slippage during recovery before aborting
 
 # Calculate minimum spread needed to break even:
 # raw_spread >= k_fee + pm_fee + slippage + min_profit
-# At 50c price: 2c + 0.05c + 0c + 1c = 3.05c → 4c spreads are profitable
-CALCULATED_BREAKEVEN_SPREAD = KALSHI_FEE_CENTS_PER_CONTRACT + 1 + EXPECTED_SLIPPAGE_CENTS + MIN_PROFIT_CENTS  # = 3c
+# At 50c price: 2c + 0.05c + 1c + 1c = 4.05c → 5c spreads reliably profitable
+CALCULATED_BREAKEVEN_SPREAD = KALSHI_FEE_CENTS_PER_CONTRACT + 1 + EXPECTED_SLIPPAGE_CENTS + MIN_PROFIT_CENTS  # = 4c
 MIN_SPREAD_FOR_EXECUTION = max(CALCULATED_BREAKEVEN_SPREAD, 4)  # At least 4c
 
 # FIX-BUG-5: Price buffers for limit orders

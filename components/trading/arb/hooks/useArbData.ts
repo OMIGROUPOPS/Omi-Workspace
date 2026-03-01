@@ -4,10 +4,8 @@ import { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import type {
   ArbState,
   TradeEntry,
-  TopTab,
   TradeFilter,
   StatusFilter,
-  BottomTab,
   TimeHorizon,
   TradeSortKey,
 } from "../types";
@@ -18,14 +16,12 @@ export function useArbData() {
   const [lastFetch, setLastFetch] = useState<Date | null>(null);
   const [fetchError, setFetchError] = useState(false);
   const [paused, setPaused] = useState(false);
-  const [topTab, setTopTab] = useState<TopTab>("monitor");
   const [tradeFilter, setTradeFilter] = useState<TradeFilter>("all");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
   const [dateOffset, setDateOffset] = useState(0);
   const [dateAll, setDateAll] = useState(false);
   const [showAllSpreads, setShowAllSpreads] = useState(true);
   const [tradeSearch, setTradeSearch] = useState("");
-  const [bottomTab, setBottomTab] = useState<BottomTab>("positions");
   const [hiddenPositions, setHiddenPositions] = useState<Set<string>>(new Set());
   const [pnlHorizon, setPnlHorizon] = useState<TimeHorizon>("ALL");
   const [pnlSport, setPnlSport] = useState("all");
@@ -33,7 +29,6 @@ export function useArbData() {
   const [tradeSortAsc, setTradeSortAsc] = useState(false);
   const [expandedTrade, setExpandedTrade] = useState<number | null>(null);
   const [expandedMonitorTrade, setExpandedMonitorTrade] = useState<number | null>(null);
-  const [liqGameFilter, setLiqGameFilter] = useState("");
   const prevPortfolioRef = useRef<{ k: number; pm: number; total: number } | null>(null);
   const [portfolioDelta, setPortfolioDelta] = useState<{ k: number; pm: number; total: number }>({ k: 0, pm: 0, total: 0 });
 
@@ -465,8 +460,6 @@ export function useArbData() {
     fetchError,
     paused,
     setPaused,
-    topTab,
-    setTopTab,
     tradeFilter,
     setTradeFilter,
     statusFilter,
@@ -479,8 +472,6 @@ export function useArbData() {
     setShowAllSpreads,
     tradeSearch,
     setTradeSearch,
-    bottomTab,
-    setBottomTab,
     pnlHorizon,
     setPnlHorizon,
     pnlSport,
@@ -491,8 +482,6 @@ export function useArbData() {
     setExpandedTrade,
     expandedMonitorTrade,
     setExpandedMonitorTrade,
-    liqGameFilter,
-    setLiqGameFilter,
     portfolioDelta,
     hasData,
     isStale,

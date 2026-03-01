@@ -477,8 +477,8 @@ class DashboardPusher:
                     and t.get("tier", "") not in pnl_tiers
                     and t.get("settlement_pnl") is None
                 ]
-                # Keep last 100 noise trades for recent activity display
-                recent_noise = noise_trades[-100:] if len(noise_trades) > 100 else noise_trades
+                # Keep last 500 noise trades to avoid evicting early-day trades
+                recent_noise = noise_trades[-500:] if len(noise_trades) > 500 else noise_trades
                 recent = sorted(
                     pnl_trades + recent_noise,
                     key=lambda t: t.get("timestamp", ""),

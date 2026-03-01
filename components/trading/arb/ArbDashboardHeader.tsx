@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import type { TopTab, AlertInfo } from "./types";
+import type { AlertInfo } from "./types";
 import { Pulse } from "./shared/Pulse";
-import { formatUptime, timeAgo } from "./helpers";
+import { formatUptime } from "./helpers";
 
 interface Props {
   hasData: boolean;
@@ -11,20 +11,10 @@ interface Props {
   fetchError: boolean;
   paused: boolean;
   setPaused: (v: boolean) => void;
-  topTab: TopTab;
-  setTopTab: (v: TopTab) => void;
   system: { ws_connected: boolean; uptime_seconds: number; last_scan_at: string; games_monitored: number } | undefined;
   alerts: AlertInfo[];
   fetchData: () => void;
 }
-
-const TABS: { key: TopTab; label: string }[] = [
-  { key: "monitor", label: "MONITOR" },
-  { key: "live", label: "LIVE" },
-  { key: "pnl_history", label: "P&L" },
-  { key: "depth", label: "DEPTH" },
-  { key: "operations", label: "OPS" },
-];
 
 export function ArbDashboardHeader({
   hasData,
@@ -32,8 +22,6 @@ export function ArbDashboardHeader({
   fetchError,
   paused,
   setPaused,
-  topTab,
-  setTopTab,
   system,
   alerts,
   fetchData,
@@ -118,44 +106,24 @@ export function ArbDashboardHeader({
           )}
         </div>
 
-        {/* Right: Tabs + Controls */}
-        <div className="flex items-center gap-0">
-          {/* Tab bar */}
-          <div className="flex items-center border-l border-[#1a1a2e]">
-            {TABS.map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setTopTab(tab.key)}
-                className={`px-3 py-2 text-[9px] font-mono tracking-wider border-b-2 transition-colors ${
-                  topTab === tab.key
-                    ? "text-[#ff8c00] border-[#ff8c00]"
-                    : "text-[#4a4a6a] border-transparent hover:text-[#ff8c00]/70"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Controls */}
-          <div className="flex items-center gap-1 ml-3 border-l border-[#1a1a2e] pl-3">
-            <button
-              onClick={() => setPaused(!paused)}
-              className={`rounded-none px-2 py-1 text-[9px] font-mono border transition-colors ${
-                paused
-                  ? "bg-[#ff8c00]/20 text-[#ff8c00] border-[#ff8c00]/40"
-                  : "bg-transparent text-[#4a4a6a] border-[#1a1a2e] hover:text-[#00bfff] hover:border-[#00bfff]/40"
-              }`}
-            >
-              {paused ? "PAUSED" : "PAUSE"}
-            </button>
-            <button
-              onClick={fetchData}
-              className="rounded-none px-2 py-1 text-[9px] font-mono border border-[#1a1a2e] text-[#4a4a6a] hover:text-[#00bfff] hover:border-[#00bfff]/40 transition-colors"
-            >
-              REFRESH
-            </button>
-          </div>
+        {/* Right: Controls */}
+        <div className="flex items-center gap-1">
+          <button
+            onClick={() => setPaused(!paused)}
+            className={`rounded-none px-2 py-1 text-[9px] font-mono border transition-colors ${
+              paused
+                ? "bg-[#ff8c00]/20 text-[#ff8c00] border-[#ff8c00]/40"
+                : "bg-transparent text-[#4a4a6a] border-[#1a1a2e] hover:text-[#00bfff] hover:border-[#00bfff]/40"
+            }`}
+          >
+            {paused ? "PAUSED" : "PAUSE"}
+          </button>
+          <button
+            onClick={fetchData}
+            className="rounded-none px-2 py-1 text-[9px] font-mono border border-[#1a1a2e] text-[#4a4a6a] hover:text-[#00bfff] hover:border-[#00bfff]/40 transition-colors"
+          >
+            REFRESH
+          </button>
         </div>
       </div>
     </div>

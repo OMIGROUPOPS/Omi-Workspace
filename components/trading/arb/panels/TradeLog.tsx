@@ -28,8 +28,6 @@ function pmUrl(slug: string | undefined): string | null {
 
 function kalshiUrl(ticker: string | undefined): string | null {
   if (!ticker) return null;
-  // Extract event ticker: KXNCAAMBGAME-26FEB26MOSULT-LT → event is the ticker itself
-  // Kalshi market pages: https://kalshi.com/markets/{ticker}
   return `https://kalshi.com/markets/${ticker}`;
 }
 
@@ -42,50 +40,37 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
   const pmLink = pmUrl(t.pm_slug);
   const kLink = kalshiUrl(t.kalshi_ticker);
 
-  // Cost breakdown
   const ecb = t.estimated_costs_breakdown;
   const kFeeCents = ecb?.k_fee ?? (typeof t.k_fee === 'number' ? t.k_fee : 0);
   const pmFeeCents = ecb?.pm_fee ?? (typeof t.pm_fee === 'number' ? t.pm_fee : 0);
   const netCents = ecb?.net_cents ?? (t.estimated_net_profit_cents || 0);
   const totalCosts = ecb?.total_costs ?? (kFeeCents + pmFeeCents);
 
-  // Determine what we BOUGHT on each exchange
-  // Kalshi has YES/NO per fighter. PM only has YES per fighter.
-  // Show exactly what happened on each exchange.
   let pmAction: string, pmTeam: string, pmPrice: string, pmPriceCents: number;
   let kAction: string, kTeam: string, kPrice: string, kPriceCents: number;
 
-  // When pm_is_buy_short, stored pm_price is the arb cost (100 - token_price).
-  // Display the actual token price the user sees on PM: 100 - pm_price.
   const pmDisplayPrice = t.pm_is_buy_short ? (100 - pmVal) : pmVal;
 
   if (t.direction === "BUY_PM_SELL_K") {
-    // PM side: bought YES team (or opponent if pm_is_buy_short)
     pmAction = "BUY YES";
     pmTeam = t.pm_is_buy_short ? opp : team;
     pmPriceCents = pmDisplayPrice;
     pmPrice = `${pmDisplayPrice.toFixed(0)}c`;
-    // K side: SELL YES team = BUY NO team at (100 - k_price)
-    // Kalshi shows this as "No · [team]" — match that.
     kAction = "BUY NO";
     kTeam = team;
     kPriceCents = 100 - kVal;
     kPrice = `${kPriceCents}c`;
   } else {
-    // BUY_K_SELL_PM
-    // K side: bought YES team
     kAction = "BUY YES";
     kTeam = team;
     kPriceCents = kVal;
     kPrice = `${kVal}c`;
-    // PM side: bought opponent YES (pm_is_buy_short means bought opponent's YES)
     pmAction = "BUY YES";
     pmTeam = t.pm_is_buy_short ? opp : team;
     pmPriceCents = pmDisplayPrice;
     pmPrice = `${pmDisplayPrice.toFixed(0)}c`;
   }
 
-  // Cost calculations: $ per contract and total cost per side
   const kCostPerContract = kPriceCents / 100;
   const pmCostPerContract = pmPriceCents / 100;
   const kTotalCost = kCostPerContract * qty;
@@ -93,7 +78,6 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
 
   return (
     <div className="border border-[#1a1a2e] bg-[#0a0a12] overflow-hidden rounded-none">
-      {/* Header */}
       <div className="flex items-center justify-between px-3 py-1.5 bg-black border-b border-[#1a1a2e]">
         <span className="text-[9px] font-mono font-bold text-[#4a4a6a] uppercase tracking-widest">
           TRADE SPECS
@@ -102,7 +86,6 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
           {t.game_id} &middot; {t.direction}
         </span>
       </div>
-      {/* Two-column leg breakdown */}
       <div className="grid grid-cols-2 divide-x divide-[#1a1a2e]">
         {/* PM Leg */}
         <div className="px-3 py-2">
@@ -169,9 +152,8 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
           )}
         </div>
       </div>
-      {/* ── Net Profit Summary Bar ── */}
+      {/* Net Profit Summary Bar */}
       {(() => {
-        // Prefer arb_net values (post-unwind actual P&L) when available
         const arbNetCPC = (t as any).arb_net_cents_per_contract;
         const arbNetTotal = (t as any).arb_net_total_cents;
         const useArbNet = typeof arbNetCPC === 'number';
@@ -220,16 +202,11 @@ function legsLabel(t: TradeEntry) {
   const team = t.team || "?";
   const opp = t.opponent || "?";
 
-  // When pm_is_buy_short, stored pm_price is arb cost (100 - token_price).
-  // Display the actual token price the user sees on PM.
   const pmDisplayPrice = t.pm_is_buy_short ? (100 - pmVal) : pmVal;
 
   if (t.direction === "BUY_PM_SELL_K") {
-    // PM: bought YES for team (or opponent if pm_is_buy_short)
     const pmFighter = t.pm_is_buy_short ? opp : team;
-    // K: SELL YES team = BUY NO team at (100 - k_price)
     const kNoCost = kVal > 0 ? 100 - kVal : 0;
-    // Total cost uses arb-side costs: pmVal (arb cost) + kNoCost
     const totalCost = pmVal + kNoCost;
     const spread = 100 - totalCost;
     return (
@@ -241,9 +218,7 @@ function legsLabel(t: TradeEntry) {
       </>
     );
   }
-  // BUY_K_SELL_PM: K bought YES team, PM bought YES opponent
   const pmFighter = t.pm_is_buy_short ? opp : team;
-  // Total cost uses arb-side costs: kVal + pmVal (stored arb cost)
   const totalCost = kVal + pmVal;
   const spread = 100 - totalCost;
   return (
@@ -272,15 +247,11 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
           <thead className="sticky top-0 bg-[#0a0a0a] z-10 border-b border-[#1a1a2e]">
             <tr className="text-[#4a4a6a]">
               <th className="px-2 py-1.5 text-left font-mono text-[9px] uppercase tracking-wider font-medium">TIME</th>
-              <th className="px-2 py-1.5 text-left font-mono text-[9px] uppercase tracking-wider font-medium">MATCHUP</th>
+              <th className="px-2 py-1.5 text-left font-mono text-[9px] uppercase tracking-wider font-medium">GAME</th>
               <th className="px-2 py-1.5 text-left font-mono text-[9px] uppercase tracking-wider font-medium">LEGS</th>
               <th className="px-2 py-1.5 text-left font-mono text-[9px] uppercase tracking-wider font-medium">STATUS</th>
-              <th className="px-2 py-1.5 text-right font-mono text-[9px] uppercase tracking-wider font-medium">K QTY</th>
-              <th className="px-2 py-1.5 text-right font-mono text-[9px] uppercase tracking-wider font-medium">PM QTY</th>
               <th className="px-2 py-1.5 text-right font-mono text-[9px] uppercase tracking-wider font-medium">SPREAD</th>
-              <th className="px-2 py-1.5 text-right font-mono text-[9px] uppercase tracking-wider font-medium">DEPTH</th>
               <th className="px-2 py-1.5 text-right font-mono text-[9px] uppercase tracking-wider font-medium">NET P&L</th>
-              <th className="px-2 py-1.5 text-right font-mono text-[9px] uppercase tracking-wider font-medium">MS</th>
             </tr>
           </thead>
           <tbody>
@@ -327,25 +298,8 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                         {badge.label}
                       </span>
                     </td>
-                    <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap">
-                      <span className="text-[#00bfff]">{t.kalshi_fill ?? t.contracts_filled ?? 0}x</span>
-                      <div className="text-[9px] text-[#3a3a5a]">@{(() => { const kp = typeof t.k_price === 'number' ? t.k_price : 0; return t.direction === 'BUY_PM_SELL_K' ? (100 - kp) : kp; })()}c</div>
-                    </td>
-                    <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap">
-                      <span className="text-[#00ff88]">{t.pm_fill ?? t.contracts_filled ?? 0}x</span>
-                      <div className="text-[9px] text-[#3a3a5a]">@{(() => { const raw = normPmNum(t.pm_price); return t.pm_is_buy_short ? (100 - raw).toFixed(0) : raw.toFixed(0); })()}c</div>
-                    </td>
                     <td className="px-2 py-1.5 text-right font-mono text-[#ff8c00]">
                       {t.spread_cents?.toFixed(1) ?? "-"}c
-                    </td>
-                    <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap text-[10px]">
-                      {depth.k !== null || depth.pm !== null ? (
-                        <>
-                          <span className={depthColor(depth.k)}>K:{fmtNum(depth.k!)}</span>
-                          <span className="text-[#3a3a5a] mx-0.5">|</span>
-                          <span className={depthColor(depth.pm)}>PM:{fmtNum(depth.pm!)}</span>
-                        </>
-                      ) : "\u2014"}
                     </td>
                     <td className={`px-2 py-1.5 text-right font-mono ${
                       pnl.totalDollars === null ? "text-[#4a4a6a]" :
@@ -356,17 +310,13 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                         ? `$${pnl.totalDollars.toFixed(4)}`
                         : pnl.isOpen ? <span className="text-[#ff8c00]">OPEN</span> : "-"}
                     </td>
-                    <td className="px-2 py-1.5 text-right text-[#3a3a5a] font-mono text-[10px]">
-                      {t.execution_time_ms || "-"}
-                    </td>
                   </tr>
                   {isExpanded && (
                     <tr className="bg-[#0a0a12]">
-                      <td colSpan={10} className="px-4 py-3">
-                        {/* ── TRADE SPECS: What exactly was traded ── */}
+                      <td colSpan={6} className="px-4 py-3">
                         <TradeSpecs t={t} />
 
-                        {/* ── NO-FILL DIAGNOSTIC (PM_NO_FILL only) ── */}
+                        {/* No-fill diagnostic */}
                         {t.nofill_reason && (
                           <div className="mt-3 border border-[#ff8c00]/30 bg-[#ff8c00]/5 px-3 py-2">
                             <div className="flex items-center gap-2 mb-1">
@@ -413,7 +363,7 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                           </div>
                         )}
 
-                        {/* ── EXECUTION & FINANCIAL DETAIL ── */}
+                        {/* Execution detail */}
                         <div className="mt-3 grid grid-cols-3 gap-x-6 gap-y-2 text-[10px] font-mono">
                           <div>
                             <span className="text-[#4a4a6a] block text-[9px] uppercase tracking-wider">Phase</span>
@@ -427,6 +377,12 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                             <span className="text-[#4a4a6a] block text-[9px] uppercase tracking-wider">Hedged</span>
                             <span className={t.hedged ? "text-[#00ff88]" : "text-[#ff3333]"}>
                               {t.hedged ? "YES" : "NO"}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-[#4a4a6a] block text-[9px] uppercase tracking-wider">Fills (K / PM)</span>
+                            <span className="text-[#ff8c00]">
+                              {t.kalshi_fill ?? t.contracts_filled ?? 0}x / {t.pm_fill ?? t.contracts_filled ?? 0}x
                             </span>
                           </div>
                           <div>
@@ -473,7 +429,7 @@ export function TradeLog({ trades, expandedTrade, setExpandedTrade }: Props) {
                           )}
                         </div>
 
-                        {/* ── DEPTH WALK TABLE ── */}
+                        {/* Depth walk table */}
                         {t.sizing_details?.depth_walk_log && t.sizing_details.depth_walk_log.length > 0 && (
                           <div className="mt-3">
                             <span className="text-[#4a4a6a] block mb-1 text-[9px] font-mono uppercase tracking-wider">Depth Walk</span>

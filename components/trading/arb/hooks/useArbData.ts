@@ -37,7 +37,15 @@ export function useArbData() {
       const res = await fetch("/api/arb", { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
-        setState(data);
+        setState((prev) => {
+          // Guard against momentary data gaps during PM WS reconnects:
+          // If the new payload has no mapped_games but the previous state
+          // had a substantial list, keep the previous games to avoid flicker.
+          if (prev?.mapped_games?.length && !data.mapped_games?.length) {
+            return { ...data, mapped_games: prev.mapped_games };
+          }
+          return data;
+        });
         setLastFetch(new Date());
         setFetchError(false);
       } else {

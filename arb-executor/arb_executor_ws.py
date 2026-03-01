@@ -82,6 +82,7 @@ from executor_core import (
     refresh_position_cache, # Background position refresh (not on hot path)
     load_directional_positions,  # Load OMI directional positions on startup
     MIN_K_DEPTH_L1,         # Depth gate threshold for walk-based check
+    post_trade_audit,       # Lightweight post-trade verification
 )
 
 from pregame_mapper import load_verified_mappings, TEAM_FULL_NAMES
@@ -2189,6 +2190,15 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 save_traded_game(arb.game, pm_slug=arb.pm_slug, team=arb.team)
                 stats['spreads_executed'] += 1
 
+                # Fire-and-forget post-trade audit
+                asyncio.create_task(post_trade_audit(
+                    session, kalshi_api, pm_api,
+                    arb.kalshi_ticker, arb.pm_slug, arb.team,
+                    result.kalshi_filled, result.pm_filled,
+                    result.kalshi_price, result.pm_price,
+                    _params.get('k_action', 'buy'), _is_buy_short,
+                ))
+
             elif result.success:
                 # Show timing breakdown: PM first (unreliable) → K second (reliable)
                 phase = " [GTC]" if result.execution_phase == "gtc" else ""
@@ -2220,6 +2230,15 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 save_traded_game(arb.game, pm_slug=arb.pm_slug, team=arb.team)
 
                 stats['spreads_executed'] += 1
+
+                # Fire-and-forget post-trade audit
+                asyncio.create_task(post_trade_audit(
+                    session, kalshi_api, pm_api,
+                    arb.kalshi_ticker, arb.pm_slug, arb.team,
+                    result.kalshi_filled, result.pm_filled,
+                    result.kalshi_price, result.pm_price,
+                    _params.get('k_action', 'buy'), _is_buy_short,
+                ))
 
                 # Check max trades limit
                 if MAX_TRADES_LIMIT > 0 and stats['spreads_executed'] >= MAX_TRADES_LIMIT:

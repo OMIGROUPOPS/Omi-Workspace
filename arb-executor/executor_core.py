@@ -183,6 +183,71 @@ async def _verify_both_legs(session, kalshi_api, pm_api, ticker: str, pm_slug: s
         return True  # Don't pause on API errors
 
 
+async def post_trade_audit(session, kalshi_api, pm_api, ticker: str, pm_slug: str,
+                           team: str, k_filled: int, pm_filled: int,
+                           k_price: int, pm_price: float,
+                           k_action: str, is_buy_short: bool):
+    """
+    Lightweight post-trade audit: verify the new trade's two legs exist on both
+    platforms with correct quantities and hedged cost. Runs after every successful
+    trade. Exception-safe — API errors log but don't crash or pause.
+
+    Logs [POST_TRADE_AUDIT] CONFIRMED or MISMATCH.
+    """
+    try:
+        # Small delay to let position APIs settle (K SELL can lag ~100ms)
+        await asyncio.sleep(1.0)
+
+        # --- Kalshi leg ---
+        k_pos = await kalshi_api.get_position_for_ticker(session, ticker)
+        k_qty = abs(k_pos) if k_pos else 0
+        k_exists = k_qty > 0
+
+        # --- PM leg ---
+        pm_positions = await pm_api.get_positions(session, market_slug=pm_slug)
+        pm_exists = pm_positions is not None and len(pm_positions) > 0
+        pm_qty = 0
+        if pm_exists:
+            for p in pm_positions:
+                net = p.get('netPosition', p.get('net_position', 0))
+                if net != 0:
+                    pm_qty = abs(net)
+                    break
+
+        # --- Combined cost (hedge check) ---
+        k_cost = k_price if k_action == 'buy' else (100 - k_price)
+        pm_cost = (100 - int(pm_price * 100)) if is_buy_short else int(pm_price * 100)
+        combined = k_cost + pm_cost
+        hedged = 90 <= combined <= 102
+
+        # --- Build verdict ---
+        issues = []
+        if not k_exists:
+            issues.append(f"K MISSING (expected {k_filled})")
+        elif k_qty < k_filled:
+            issues.append(f"K QTY {k_qty} < expected {k_filled}")
+        if not pm_exists:
+            issues.append(f"PM MISSING (expected {pm_filled})")
+        elif pm_qty < pm_filled:
+            issues.append(f"PM QTY {pm_qty} < expected {pm_filled}")
+        if not hedged:
+            issues.append(f"COMBINED {combined}c outside 90-102c")
+
+        if issues:
+            print(f"[POST_TRADE_AUDIT] MISMATCH: {team} | " + " | ".join(issues) +
+                  f" | K={ticker[-20:]} PM={pm_slug[:30]} "
+                  f"k_cost={k_cost}c pm_cost={pm_cost}c combined={combined}c",
+                  flush=True)
+        else:
+            print(f"[POST_TRADE_AUDIT] CONFIRMED: {team} | "
+                  f"K={k_qty}x@{k_price}c PM={pm_qty}x@${pm_price:.2f} "
+                  f"combined={combined}c | hedged",
+                  flush=True)
+    except Exception as e:
+        print(f"[POST_TRADE_AUDIT] ERROR: {team} — {e} (trade already done, skipping)",
+              flush=True)
+
+
 TRADE_PARAMS = {
     # ==========================================================================
     # Case 1: BUY_PM_SELL_K, team IS pm_long_team

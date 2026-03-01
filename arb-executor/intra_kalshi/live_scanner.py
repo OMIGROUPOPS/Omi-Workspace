@@ -2,9 +2,10 @@
 """
 Intra-Kalshi Live Paper Trading Scanner
 
-Standalone persistent process that connects to Kalshi WS, monitors live sports
-events with multiple market types (ML + spread + total), detects 4 types of
-intra-exchange opportunities, and paper trades them.
+Standalone persistent process that connects to Kalshi WS, monitors ALL live/open
+events with 3+ markets, detects 4 types of intra-exchange opportunities
+(momentum lag, mean reversion, contradiction, resolution farming), and paper
+trades them. Category-agnostic — works on sports, crypto, politics, economics.
 
 PAPER MODE ONLY — no real orders.
 
@@ -65,14 +66,6 @@ WS_PING_INTERVAL = 30
 WS_RECONNECT_INITIAL = 1
 WS_RECONNECT_MAX = 60
 
-SPORT_PREFIXES = {
-    "KXNBAGAME", "KXNBASPREAD", "KXNBATOTAL",
-    "KXNHLGAME", "KXNHLSPREAD", "KXNHLTOTAL",
-    "KXNCAAMBGAME", "KXNCAAMBSPREAD", "KXNCAAMBTOTAL",
-    "KXNFLGAME", "KXNFLSPREAD", "KXNFLTOTAL",
-    "KXMLBGAME", "KXMLBSPREAD", "KXMLBTOTAL",
-}
-
 PAPER_TRADES_FILE = os.path.join(os.path.dirname(__file__), "intra_paper_trades.json")
 STATS_LOG = "/tmp/intra_scanner.log"
 
@@ -112,11 +105,11 @@ class MarketInfo:
     ticker: str
     event_ticker: str
     game_id: str
-    market_type: str    # 'moneyline', 'spread', 'total'
+    market_type: str    # 'moneyline', 'spread', 'total', 'variant'
     team: str
     floor_strike: Optional[float] = None
     close_time: Optional[str] = None
-    sport: str = ""
+    category: str = ""
 
 
 @dataclass
@@ -172,32 +165,17 @@ def extract_series_prefix(event_ticker: str) -> str:
     return event_ticker.split("-")[0]
 
 
-def classify_sport_event(event_ticker: str) -> Tuple[Optional[str], Optional[str]]:
-    """Returns (game_id, market_type) or (None, None)."""
-    prefix = extract_series_prefix(event_ticker)
-    if prefix not in SPORT_PREFIXES:
-        return None, None
-    game_id = extract_game_id(event_ticker)
-    if "SPREAD" in prefix:
-        return game_id, "spread"
-    if "TOTAL" in prefix:
-        return game_id, "total"
-    return game_id, "moneyline"
-
-
-def detect_sport(event_ticker: str) -> str:
+def classify_event_market_type(event_ticker: str) -> str:
+    """Infer market type from event ticker prefix.
+    Sports use GAME/SPREAD/TOTAL suffixes in the prefix; non-sports default to 'variant'."""
     prefix = extract_series_prefix(event_ticker).upper()
-    if "NBA" in prefix:
-        return "NBA"
-    if "NHL" in prefix:
-        return "NHL"
-    if "NCAAMB" in prefix:
-        return "CBB"
-    if "NFL" in prefix:
-        return "NFL"
-    if "MLB" in prefix:
-        return "MLB"
-    return "OTHER"
+    if "SPREAD" in prefix:
+        return "spread"
+    if "TOTAL" in prefix:
+        return "total"
+    if "GAME" in prefix:
+        return "moneyline"
+    return "variant"
 
 
 def severity(profit_cents: int) -> str:
@@ -377,6 +355,9 @@ class LiveScanner:
             "events_discovered": 0,
             "tickers_subscribed": 0,
         }
+        # Category tracking
+        self._category_stats: Dict[str, Dict] = {}  # category → {events, tickers, signals}
+
         # Dedup: don't fire same signal repeatedly
         self._recent_signals: Dict[str, float] = {}  # key → timestamp
         self._signal_cooldown = 30.0  # seconds
@@ -389,9 +370,9 @@ class LiveScanner:
         self.api_key, self.private_key = load_credentials()
         print(f"[SCAN] Credentials loaded (key={self.api_key[:8]}...)")
 
-    async def discover_sports_events(self, session) -> int:
-        """Fetch all open events, filter to sports, group by game_id."""
-        print("[SCAN] Discovering sports events...")
+    async def discover_events(self, session) -> int:
+        """Fetch ALL open events, group by event, qualify those with 3+ markets."""
+        print("[SCAN] Discovering all events...")
         events = await paginate(
             session, self.api_key, self.private_key, EVENTS_PATH, "events", self.rate_limiter
         )
@@ -400,12 +381,18 @@ class LiveScanner:
         new_tickers = []
         for ev in events:
             et = ev.get("event_ticker", "")
-            game_id, mtype = classify_sport_event(et)
-            if not game_id or not mtype:
+            if not et:
                 continue
-
-            sport = detect_sport(et)
             markets = ev.get("markets", [])
+            if len(markets) < 3:
+                continue  # Skip events with < 3 markets upfront
+
+            # Derive game_id and market_type from event ticker
+            game_id = extract_game_id(et)
+            if not game_id:
+                game_id = et  # Use full event_ticker as grouping key
+            mtype = classify_event_market_type(et)
+            category = ev.get("category", "") or ""
 
             for m in markets:
                 ticker = m.get("ticker", "")
@@ -428,22 +415,27 @@ class LiveScanner:
                     team=extract_team(ticker),
                     floor_strike=fs_num,
                     close_time=m.get("close_time"),
-                    sport=sport,
+                    category=category,
                 )
                 self.market_info[ticker] = info
 
-                # Group by game
+                # Group by game_id → market_type
                 if game_id not in self.games:
-                    self.games[game_id] = {"moneyline": [], "spread": [], "total": []}
+                    self.games[game_id] = defaultdict(list)
                 self.games[game_id][mtype].append(ticker)
                 new_tickers.append(ticker)
 
-        # Filter: only games with 3+ markets (multiple types available)
+                # Track category
+                if category not in self._category_stats:
+                    self._category_stats[category] = {"events": set(), "tickers": 0, "signals": 0}
+                self._category_stats[category]["events"].add(game_id)
+                self._category_stats[category]["tickers"] += 1
+
+        # Qualify: events with 3+ markets total
         qualified_tickers = []
         for game_id, types in self.games.items():
             total_markets = sum(len(v) for v in types.values())
-            type_count = sum(1 for v in types.values() if v)
-            if total_markets >= 3 and type_count >= 2:
+            if total_markets >= 3:
                 for tlist in types.values():
                     for t in tlist:
                         if t not in self.subscribed_tickers:
@@ -452,9 +444,15 @@ class LiveScanner:
         self.stats["events_discovered"] = len(self.games)
         game_qualified = sum(
             1 for g in self.games.values()
-            if sum(len(v) for v in g.values()) >= 3 and sum(1 for v in g.values() if v) >= 2
+            if sum(len(v) for v in g.values()) >= 3
         )
-        print(f"[SCAN] {len(self.games)} games found, {game_qualified} qualified (3+ markets, 2+ types)")
+        # Category summary
+        cat_summary = []
+        for cat, cdata in sorted(self._category_stats.items(), key=lambda x: -x[1]["tickers"]):
+            cat_label = cat if cat else "unknown"
+            cat_summary.append(f"{cat_label}={len(cdata['events'])}ev/{cdata['tickers']}t")
+        print(f"[SCAN] {len(self.games)} events found, {game_qualified} qualified (3+ markets)")
+        print(f"[SCAN] Categories: {', '.join(cat_summary[:10])}")
         print(f"[SCAN] {len(qualified_tickers)} new tickers to subscribe")
         return len(qualified_tickers)
 
@@ -514,8 +512,7 @@ class LiveScanner:
         to_sub = []
         for game_id, types in self.games.items():
             total_markets = sum(len(v) for v in types.values())
-            type_count = sum(1 for v in types.values() if v)
-            if total_markets >= 3 and type_count >= 2:
+            if total_markets >= 3:
                 for tlist in types.values():
                     for t in tlist:
                         if t not in self.subscribed_tickers:
@@ -716,7 +713,7 @@ class LiveScanner:
                             target=book.best_ask + remaining,
                             stop=book.best_ask - 3,
                             description=(
-                                f"{info.sport} {info.team}: {info.market_type} moved {primary_move:+d}c "
+                                f"{info.category} {info.team}: {info.market_type} moved {primary_move:+d}c "
                                 f"but {other_type} only {other_move:+d}c (expected {expected_move:+.0f}c)"
                             ),
                             depth=book.best_ask_size,
@@ -737,7 +734,7 @@ class LiveScanner:
                             target=100 - (book.best_bid - remaining),
                             stop=100 - (book.best_bid + 3),
                             description=(
-                                f"{info.sport} {info.team}: {info.market_type} moved {primary_move:+d}c "
+                                f"{info.category} {info.team}: {info.market_type} moved {primary_move:+d}c "
                                 f"but {other_type} only {other_move:+d}c (expected {expected_move:+.0f}c)"
                             ),
                             depth=book.best_bid_size,
@@ -784,7 +781,7 @@ class LiveScanner:
                 target=entry - REVERSION_TARGET,
                 stop=entry + REVERSION_STOP,
                 description=(
-                    f"{info.sport} {info.team} {info.market_type}: "
+                    f"{info.category} {info.team} {info.market_type}: "
                     f"spiked {spike:+d}c in {REVERSION_WINDOW:.0f}s — bet reversion"
                 ),
                 depth=book.best_bid_size,
@@ -804,7 +801,7 @@ class LiveScanner:
                 target=entry + REVERSION_TARGET,
                 stop=entry - REVERSION_STOP,
                 description=(
-                    f"{info.sport} {info.team} {info.market_type}: "
+                    f"{info.category} {info.team} {info.market_type}: "
                     f"dropped {spike:+d}c in {REVERSION_WINDOW:.0f}s — bet reversion"
                 ),
                 depth=book.best_ask_size,
@@ -875,7 +872,7 @@ class LiveScanner:
                             target=lo_book.best_ask + exec_profit,
                             stop=lo_book.best_ask - 2,
                             description=(
-                                f"{info.sport} MONO {info.team}: "
+                                f"{info.category} MONO {info.team}: "
                                 f"strike {lo_strike}→{hi_strike}, "
                                 f"ask {lo_book.best_ask}c→{hi_book.best_ask}c, "
                                 f"exec={exec_profit}c depth={depth}"
@@ -925,7 +922,7 @@ class LiveScanner:
                             target=ml_book.best_ask + exec_profit,
                             stop=ml_book.best_ask - 2,
                             description=(
-                                f"{info.sport} CROSS {info.team}: "
+                                f"{info.category} CROSS {info.team}: "
                                 f"spread(>{sp_info.floor_strike}) ask={sp_book.best_ask}c > "
                                 f"ML ask={ml_book.best_ask}c, exec={exec_profit}c depth={depth}"
                             ),
@@ -972,7 +969,7 @@ class LiveScanner:
                 target=100,
                 stop=book.best_ask - 3,
                 description=(
-                    f"{info.sport} {info.team}: YES@{book.best_ask}c, "
+                    f"{info.category} {info.team}: YES@{book.best_ask}c, "
                     f"{secs_to_close:.0f}s to close, settle→100c"
                 ),
                 depth=book.best_ask_size,
@@ -1002,6 +999,11 @@ class LiveScanner:
                 continue
             self._recent_signals[key] = now
             self.stats["scan_signals"] += 1
+
+            # Track signal by category
+            info = self.market_info.get(sig.ticker)
+            if info and info.category in self._category_stats:
+                self._category_stats[info.category]["signals"] += 1
 
             print(f"[SIGNAL] [{sig.severity}] {sig.scan_type}: {sig.description}")
             self.open_paper_trade(sig)
@@ -1184,6 +1186,21 @@ class LiveScanner:
         active_books = sum(1 for b in self.books.values() if b.best_bid is not None)
         lines.append(f"Books: {active_books}/{len(self.books)} active")
 
+        # Category breakdown
+        if self._category_stats:
+            lines.append("Categories:")
+            sorted_cats = sorted(
+                self._category_stats.items(),
+                key=lambda x: -x[1]["signals"]
+            )
+            for cat, cdata in sorted_cats:
+                cat_label = cat if cat else "unknown"
+                ev_count = len(cdata["events"]) if isinstance(cdata["events"], set) else cdata["events"]
+                lines.append(
+                    f"  {cat_label}: {ev_count} events, "
+                    f"{cdata['tickers']} tickers, {cdata['signals']} signals"
+                )
+
         output = "\n".join(lines)
         print(f"\n{output}\n")
 
@@ -1303,7 +1320,7 @@ class LiveScanner:
         while not self.shutdown:
             await asyncio.sleep(REDISCOVERY_INTERVAL)
             try:
-                new_count = await self.discover_sports_events(session)
+                new_count = await self.discover_events(session)
                 if new_count > 0 and self.ws_connected:
                     await self.ws_subscribe_all()
                     print(f"[REDISCOVERY] Subscribed to {new_count} new tickers")
@@ -1320,7 +1337,7 @@ class LiveScanner:
 
         async with aiohttp.ClientSession() as session:
             # Initial discovery
-            await self.discover_sports_events(session)
+            await self.discover_events(session)
 
             # Connect WS
             if not await self.ws_connect():

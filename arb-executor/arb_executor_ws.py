@@ -111,6 +111,7 @@ PM_WS_URL = "wss://api.polymarket.us/v1/ws/markets"
 PM_WS_PATH = "/v1/ws/markets"
 
 PM_PRICE_MAX_AGE_MS = 500   # V2: Tightened from 2000ms — trust WS, skip REST confirmation
+PM_STATUS_FRESH_MS = 10000  # Display-only: count PM markets updated in last 10s (REST polls at 5s)
 K_PRICE_MAX_AGE_MS = 500    # V2: Tightened from 2000ms — stale books cause phantom spreads
 
 WS_RECONNECT_DELAY_INITIAL = 1  # Initial reconnect delay in seconds
@@ -150,6 +151,9 @@ VERIFIED_MAPS: Dict = {}
 price_mismatch_games: set = set()
 # Track which cache_keys have already been sanity-checked (only check once per session)
 _pm_price_checked: set = set()
+
+# PM slugs confirmed expired (MARKET_STATE_EXPIRED) — skip subscription & REST polling
+expired_pm_slugs: set = set()
 
 # Signal file for hot-reload (written by auto_mapper.py)
 MAPPINGS_SIGNAL_FILE = os.path.join(os.path.dirname(__file__) or '.', 'mappings_updated.flag')
@@ -1751,6 +1755,22 @@ async def pm_rest_fallback_poller(
                 await asyncio.sleep(POLL_INTERVAL_S)
                 continue
 
+            # Skip known-expired slugs
+            silent_slugs = [s for s in silent_slugs if s not in expired_pm_slugs]
+            if not silent_slugs:
+                await asyncio.sleep(POLL_INTERVAL_S)
+                continue
+
+            # Prioritize today's games over tomorrow's
+            def _slug_sort_key(slug):
+                cache_keys = pm_slug_to_cache_keys.get(slug, [])
+                for ck in cache_keys:
+                    m = VERIFIED_MAPS.get(ck, {})
+                    d = m.get('date', '9999-99-99')
+                    return d
+                return '9999-99-99'
+            silent_slugs.sort(key=_slug_sort_key)
+
             stats_key = 'pm_rest_fallback_polls'
             if stats_key not in stats:
                 stats[stats_key] = 0
@@ -1761,6 +1781,8 @@ async def pm_rest_fallback_poller(
                 try:
                     ob = await pm_api.get_orderbook(session, slug, debug=False)
                     if not ob or ob.get('best_bid') is None or ob.get('best_ask') is None:
+                        # Mark as expired so we don't re-probe
+                        expired_pm_slugs.add(slug)
                         continue
 
                     # Convert to cents (REST returns decimal like 0.55)
@@ -2425,7 +2447,7 @@ def log_status():
     pm_ws_status = "OK" if stats['pm_ws_connected'] else "DOWN"
 
     fresh_pm = sum(1 for p in pm_prices.values()
-                   if now * 1000 - p['timestamp_ms'] < PM_PRICE_MAX_AGE_MS)
+                   if now * 1000 - p['timestamp_ms'] < PM_STATUS_FRESH_MS)
 
     books_with_data = sum(1 for b in local_books.values()
                           if b.get('best_bid') is not None and b.get('best_ask') is not None)
@@ -2467,7 +2489,7 @@ def print_spread_snapshot():
 
     now_ms = int(time.time() * 1000)
     fresh_pm_count = sum(1 for p in pm_prices.values()
-                         if now_ms - p['timestamp_ms'] < PM_PRICE_MAX_AGE_MS)
+                         if now_ms - p['timestamp_ms'] < PM_STATUS_FRESH_MS)
 
     if fresh_pm_count < 15:
         return  # Wait until we have enough fresh data
@@ -2938,6 +2960,7 @@ async def check_and_reload_mappings(k_ws, pm_ws, pusher=None) -> bool:
     # Clear runtime sanity-check caches so reloaded games get re-checked
     price_mismatch_games.clear()
     _pm_price_checked.clear()
+    expired_pm_slugs.clear()  # Re-probe on reload
 
     # Update pusher's reference to the new VERIFIED_MAPS (it was reassigned above)
     if pusher:
@@ -3013,6 +3036,47 @@ def build_ticker_mappings():
             pm_slug_to_cache_keys[pm_slug].append(cache_key)
 
     print(f"[INIT] Mapped {len(ticker_to_cache_key)} Kalshi tickers to {len(cache_key_to_tickers)} games")
+
+
+async def filter_expired_pm_slugs(pm_api: 'PolymarketUSAPI', session: aiohttp.ClientSession):
+    """
+    Probe all PM slugs via REST and remove expired markets before subscribing.
+    Expired markets (MARKET_STATE_EXPIRED) have empty bids/offers — don't waste WS slots.
+    """
+    global expired_pm_slugs
+    all_slugs = list(pm_slug_to_cache_keys.keys())
+    if not all_slugs:
+        return
+
+    print(f"[INIT] Probing {len(all_slugs)} PM slugs for expired markets...", flush=True)
+    expired = []
+    live = []
+
+    # Batch probe with stagger to avoid rate limits
+    for slug in all_slugs:
+        try:
+            ob = await pm_api.get_orderbook(session, slug, debug=False)
+            if not ob or (ob.get('best_bid') is None and ob.get('best_ask') is None):
+                expired.append(slug)
+            else:
+                live.append(slug)
+        except Exception:
+            live.append(slug)  # Keep on error — might just be transient
+        await asyncio.sleep(0.1)  # 100ms stagger
+
+    # Remove expired slugs from mappings
+    for slug in expired:
+        expired_pm_slugs.add(slug)
+        cache_keys = pm_slug_to_cache_keys.pop(slug, [])
+        for ck in cache_keys:
+            # Remove associated Kalshi tickers too
+            tickers = cache_key_to_tickers.pop(ck, [])
+            for t in tickers:
+                ticker_to_cache_key.pop(t, None)
+
+    print(f"[INIT] PM probe complete: {len(live)} live, {len(expired)} expired (removed)", flush=True)
+    if expired:
+        print(f"[INIT] Expired slugs removed: {expired[:10]}{'...' if len(expired) > 10 else ''}", flush=True)
 
 
 async def run_self_test(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI):
@@ -3265,6 +3329,9 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
         if not await k_ws.subscribe(tickers):
             print("[ERROR] Failed to subscribe to Kalshi tickers")
             return
+
+        # Filter expired PM markets before subscribing
+        await filter_expired_pm_slugs(pm_api, session)
 
         # Connect PM WebSocket
         if not await pm_ws.connect():

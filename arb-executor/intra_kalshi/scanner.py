@@ -324,10 +324,13 @@ def detect_sport(event_ticker):
 
 
 def scan_cross_event(events, markets):
-    """Compare implied probabilities across moneyline vs spread for same game.
-    Both markets must have non-zero volume."""
-    # Group events by game_id
-    games = defaultdict(dict)  # game_id → {moneyline: event, spread: event, total: event}
+    """Flag IMPOSSIBLE contradictions only:
+    Type A: spread(>X) yes_ask > ML yes_ask — can't cover spread without winning.
+            Executable profit = spread_yes_bid - ml_yes_ask (when positive).
+    Type B: same-team spread inversion — higher line costs more than lower line.
+            e.g., spread(>4.5) yes_ask > spread(>1.5) yes_ask.
+    Both markets must have non-zero volume and live books (bid>0, ask<99)."""
+    games = defaultdict(dict)
     for ev in events:
         game_id, mtype = classify_sport_event(ev['event_ticker'])
         if game_id and mtype:
@@ -337,29 +340,30 @@ def scan_cross_event(events, markets):
     for game_id, types in games.items():
         ml_ev = types.get('moneyline')
         sp_ev = types.get('spread')
-        if not ml_ev or not sp_ev:
+        if not sp_ev:
             continue
 
-        sport = detect_sport(ml_ev['event_ticker'])
+        sport = detect_sport(sp_ev['event_ticker'])
 
-        # Get moneyline prices (team YES = win prob) — require volume
+        # Collect ML data per team (if ML event exists)
         ml_data = {}  # team → (yes_ask, yes_bid, ticker, vol)
-        for t in ml_ev.get('market_tickers', []):
-            m = markets.get(t)
-            if not m or m.get('yes_ask') is None:
-                continue
-            if m.get('volume_24h', 0) == 0:
-                continue
-            team = extract_team(t)
-            ml_data[team] = (m['yes_ask'], m.get('yes_bid', 0), t, m.get('volume_24h', 0))
+        if ml_ev:
+            for t in ml_ev.get('market_tickers', []):
+                m = markets.get(t)
+                if not m or m.get('yes_ask') is None:
+                    continue
+                if m.get('volume_24h', 0) == 0 or m.get('yes_bid', 0) <= 0 or m['yes_ask'] >= 99:
+                    continue
+                team = extract_team(t)
+                ml_data[team] = (m['yes_ask'], m.get('yes_bid', 0), t, m.get('volume_24h', 0))
 
-        # Get spread prices — require volume, keep lowest strike per team
-        sp_data = {}  # team → (strike, yes_ask, yes_bid, ticker, vol)
+        # Collect ALL spread lines per team (not just lowest)
+        sp_by_team = defaultdict(list)  # team → [(strike, ask, bid, ticker, vol), ...]
         for t in sp_ev.get('market_tickers', []):
             m = markets.get(t)
             if not m or m.get('yes_ask') is None:
                 continue
-            if m.get('volume_24h', 0) == 0:
+            if m.get('volume_24h', 0) == 0 or m.get('yes_bid', 0) <= 0 or m['yes_ask'] >= 99:
                 continue
             fs = m.get('floor_strike')
             if fs is None:
@@ -369,45 +373,101 @@ def scan_cross_event(events, markets):
             except (ValueError, TypeError):
                 continue
             team = extract_team(t)
-            if team not in sp_data or fs_num < sp_data[team][0]:
-                sp_data[team] = (fs_num, m['yes_ask'], m.get('yes_bid', 0), t, m.get('volume_24h', 0))
+            sp_by_team[team].append((fs_num, m['yes_ask'], m.get('yes_bid', 0), t, m.get('volume_24h', 0)))
 
-        # Compare ML vs lowest-spread implied probs
-        for team in ml_data:
-            if team not in sp_data:
+        # Type A: spread_ask > ml_ask (IMPOSSIBLE — covering implies winning)
+        for team, spreads in sp_by_team.items():
+            if team not in ml_data:
                 continue
             ml_ask, ml_bid, ml_ticker, ml_vol = ml_data[team]
-            sp_strike, sp_ask, sp_bid, sp_ticker, sp_vol = sp_data[team]
 
-            gap = abs(ml_ask - sp_ask)
-            if gap > 5:
-                # Direction: which is cheap, which is expensive?
-                if ml_ask < sp_ask:
-                    action = f'BUY ML YES@{ml_ask}c + SELL Spread YES@{sp_bid}c'
-                else:
-                    action = f'SELL ML YES@{ml_bid}c + BUY Spread YES@{sp_ask}c'
+            for sp_strike, sp_ask, sp_bid, sp_ticker, sp_vol in spreads:
+                if sp_strike <= 0:
+                    continue  # negative spreads can exceed ML
+                if sp_ask > ml_ask:
+                    # Executable arb: buy ML YES (cheap) + buy Spread NO
+                    # Spread NO ask = 100 - sp_bid
+                    # Min payout = 100c in all outcomes
+                    # Profit = sp_bid - ml_ask (if positive)
+                    exec_profit = sp_bid - ml_ask
+                    if exec_profit <= 0:
+                        continue
+                    results.append({
+                        'scan': 'cross_event',
+                        'severity': severity(exec_profit),
+                        'profit_cents': exec_profit,
+                        'type': 'spread_exceeds_ml',
+                        'description': (
+                            f'[{sport}] IMPOSSIBLE: {team} Spread(>{sp_strike}) ask={sp_ask}c > ML ask={ml_ask}c'
+                        ),
+                        'action': (
+                            f'BUY ML YES@{ml_ask}c + BUY Spread NO@{100 - sp_bid}c = '
+                            f'{ml_ask + 100 - sp_bid}c → min payout 100c → {exec_profit}c profit'
+                        ),
+                        'markets': [
+                            {'ticker': ml_ticker, 'yes_ask': ml_ask, 'yes_bid': ml_bid,
+                             'type': 'moneyline', 'volume_24h': ml_vol},
+                            {'ticker': sp_ticker, 'yes_ask': sp_ask, 'yes_bid': sp_bid,
+                             'floor_strike': sp_strike, 'type': 'spread', 'volume_24h': sp_vol},
+                        ],
+                        'event_ticker': game_id,
+                        'game_id': game_id,
+                        'sport': sport,
+                        'team': team,
+                        'category': 'Sports',
+                        'volume_24h': ml_vol + sp_vol,
+                    })
 
-                results.append({
-                    'scan': 'cross_event',
-                    'severity': severity(gap),
-                    'profit_cents': gap,
-                    'description': (
-                        f'[{sport}] {team} ML={ml_ask}c vs Spread(>{sp_strike})={sp_ask}c → {gap}c gap'
-                    ),
-                    'action': action,
-                    'markets': [
-                        {'ticker': ml_ticker, 'yes_ask': ml_ask, 'yes_bid': ml_bid,
-                         'type': 'moneyline', 'volume_24h': ml_vol},
-                        {'ticker': sp_ticker, 'yes_ask': sp_ask, 'yes_bid': sp_bid,
-                         'floor_strike': sp_strike, 'type': 'spread', 'volume_24h': sp_vol},
-                    ],
-                    'event_ticker': game_id,
-                    'game_id': game_id,
-                    'sport': sport,
-                    'team': team,
-                    'category': 'Sports',
-                    'volume_24h': ml_vol + sp_vol,
-                })
+        # Type B: same-team spread inversion (higher line costs more)
+        for team, spreads in sp_by_team.items():
+            if len(spreads) < 2:
+                continue
+            sorted_sp = sorted(spreads, key=lambda x: x[0])  # sort by strike asc
+            for i in range(len(sorted_sp) - 1):
+                lo_strike, lo_ask, lo_bid, lo_ticker, lo_vol = sorted_sp[i]
+                hi_strike, hi_ask, hi_bid, hi_ticker, hi_vol = sorted_sp[i + 1]
+                if hi_ask > lo_ask:
+                    # Executable: buy hi YES + buy lo NO
+                    # If hi hits → lo MUST hit → hi YES=100, lo NO=0 → payout=100
+                    # If lo hits but not hi → hi YES=0, lo NO=0 → payout=0... wait
+                    # Actually: buy lo NO @ (100-lo_bid) + buy hi YES @ hi_ask
+                    # lo hits, hi doesn't: lo NO=0, hi YES=0 → lose both
+                    # So this is NOT a guaranteed arb from buying, it's a mispricing signal
+                    # The arb: SELL hi YES @ hi_bid + BUY lo YES @ lo_ask
+                    # = you think lo > hi (correct), pocket the difference
+                    # Guaranteed: if hi settles YES → lo settles YES too
+                    # If lo settles NO → hi settles NO too
+                    # Only risk: lo YES, hi NO (team wins by between lo and hi)
+                    # Not riskless, but price inversion is still impossible
+                    exec_profit = hi_bid - lo_ask
+                    if exec_profit <= 0:
+                        continue
+                    results.append({
+                        'scan': 'cross_event',
+                        'severity': severity(exec_profit),
+                        'profit_cents': exec_profit,
+                        'type': 'spread_inversion',
+                        'description': (
+                            f'[{sport}] INVERSION: {team} Spread(>{hi_strike}) ask={hi_ask}c > '
+                            f'Spread(>{lo_strike}) ask={lo_ask}c'
+                        ),
+                        'action': (
+                            f'BUY Spread(>{lo_strike}) YES@{lo_ask}c + SELL Spread(>{hi_strike}) YES@{hi_bid}c → '
+                            f'{exec_profit}c edge (hi settles YES → lo MUST too)'
+                        ),
+                        'markets': [
+                            {'ticker': lo_ticker, 'yes_ask': lo_ask, 'yes_bid': lo_bid,
+                             'floor_strike': lo_strike, 'type': 'spread', 'volume_24h': lo_vol},
+                            {'ticker': hi_ticker, 'yes_ask': hi_ask, 'yes_bid': hi_bid,
+                             'floor_strike': hi_strike, 'type': 'spread', 'volume_24h': hi_vol},
+                        ],
+                        'event_ticker': game_id,
+                        'game_id': game_id,
+                        'sport': sport,
+                        'team': team,
+                        'category': 'Sports',
+                        'volume_24h': lo_vol + hi_vol,
+                    })
 
     results.sort(key=lambda x: -x['profit_cents'])
     return results

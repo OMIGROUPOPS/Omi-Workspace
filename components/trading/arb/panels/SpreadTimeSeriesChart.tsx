@@ -72,10 +72,10 @@ export function SpreadTimeSeriesChart({ spreadHistory, spreadMinCents = 4, compa
 
   if (chartData.length === 0) {
     if (compact) {
-      return <div className="text-center text-sm text-gray-500 py-2">Spread history will populate after ~30s of data</div>;
+      return <div className="text-center text-sm text-white py-2">Spread history will populate after ~30s of data</div>;
     }
     return (
-      <div className="rounded-lg border border-gray-800 bg-[#111] p-4 text-center text-sm text-gray-500">
+      <div className="rounded-lg border border-gray-800 bg-[#111] p-4 text-center text-sm text-white">
         Spread history will populate after ~30s of data
       </div>
     );
@@ -124,7 +124,7 @@ export function SpreadTimeSeriesChart({ spreadHistory, spreadMinCents = 4, compa
 
   return (
     <div className="rounded-lg border border-gray-800 bg-[#111] p-3">
-      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
+      <h3 className="text-xs font-semibold text-white uppercase tracking-wide mb-2">
         Spread Time Series (60 min)
       </h3>
       {chart}

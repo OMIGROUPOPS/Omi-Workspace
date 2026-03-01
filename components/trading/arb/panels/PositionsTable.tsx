@@ -13,7 +13,7 @@ export function PositionsTable({ positions, markSettled }: Props) {
   if (positions.length === 0) {
     return (
       <div className="text-center py-6">
-        <span className="text-[9px] font-mono text-[#3a3a5a] uppercase tracking-wider">NO OPEN POSITIONS</span>
+        <span className="text-[9px] font-mono text-[#ffffff] uppercase tracking-wider">NO OPEN POSITIONS</span>
       </div>
     );
   }
@@ -29,12 +29,12 @@ export function PositionsTable({ positions, markSettled }: Props) {
     <div>
       {/* Summary row */}
       <div className="px-3 py-1.5 bg-black border-b border-[#1a1a2e] flex flex-wrap items-center gap-4 text-[9px] font-mono">
-        <span className="text-[#4a4a6a]">
+        <span className="text-[#ffffff]">
           {positions.length} POSITION{positions.length !== 1 ? "S" : ""}
           {hedged.length > 0 && <span className="text-[#00ff88] ml-1">({hedged.length} HEDGED)</span>}
           {unhedged.length > 0 && <span className="text-[#ff3333] ml-1">({unhedged.length} DIRECTIONAL)</span>}
         </span>
-        <span className="text-[#4a4a6a]">|</span>
+        <span className="text-[#ffffff]">|</span>
         <span className={`font-bold ${totalLockedArb >= 0 ? "text-[#00ff88]" : "text-[#ff3333]"}`}>
           Locked Arb: {totalLockedArb >= 0 ? "+" : ""}{totalLockedArb}c total
         </span>
@@ -43,7 +43,7 @@ export function PositionsTable({ positions, markSettled }: Props) {
       <div className="overflow-x-auto">
         <table className="w-full text-[11px]">
           <thead>
-            <tr className="text-[#4a4a6a] text-[9px] uppercase tracking-wider border-b border-[#1a1a2e] font-mono">
+            <tr className="text-[#ffffff] text-[9px] uppercase tracking-wider border-b border-[#1a1a2e] font-mono">
               <th className="py-1.5 px-2 text-left font-medium">GAME</th>
               <th className="py-1.5 px-2 text-left font-medium">TEAM</th>
               <th className="py-1.5 px-2 text-right font-medium">K YES @</th>
@@ -76,13 +76,13 @@ export function PositionsTable({ positions, markSettled }: Props) {
                   <td className="py-1.5 px-2">
                     <div className="flex items-center gap-1">
                       <span className={`inline-block rounded-none px-1 py-0.5 text-[8px] font-medium ${sportBadge(p.sport)}`}>{p.sport}</span>
-                      <span className="text-[#4a4a6a] text-[9px] truncate max-w-[80px]" title={p.game_id}>{p.game_id}</span>
+                      <span className="text-[#ffffff] text-[9px] truncate max-w-[80px]" title={p.game_id}>{p.game_id}</span>
                     </div>
                   </td>
                   <td className="py-1.5 px-2">
                     <span className="text-[#ff8c00] font-medium">{p.team_full_name || p.team}</span>
                     {(p.opponent_full_name || p.opponent) ? (
-                      <span className="text-[#4a4a6a] text-[9px] ml-1">vs {p.opponent_full_name || p.opponent}</span>
+                      <span className="text-[#ffffff] text-[9px] ml-1">vs {p.opponent_full_name || p.opponent}</span>
                     ) : null}
                   </td>
                   <td className="py-1.5 px-2 text-right font-mono text-[#00bfff]">
@@ -94,19 +94,19 @@ export function PositionsTable({ positions, markSettled }: Props) {
                   <td className="py-1.5 px-2 text-right font-mono text-[#ff8c00]">
                     {combined > 0 ? `${combined}c` : "—"}
                   </td>
-                  <td className={`py-1.5 px-2 text-right font-mono font-bold ${lockedArb > 0 ? "text-[#00ff88]" : lockedArb < 0 ? "text-[#ff3333]" : "text-[#4a4a6a]"}`}>
+                  <td className={`py-1.5 px-2 text-right font-mono font-bold ${lockedArb > 0 ? "text-[#00ff88]" : lockedArb < 0 ? "text-[#ff3333]" : "text-[#ffffff]"}`}>
                     {combined > 0 ? `${lockedArb > 0 ? "+" : ""}${lockedArb}c` : "—"}
                   </td>
                   <td className="py-1.5 px-2 text-center font-mono">
                     <span className="text-[#00bfff]">K:{kQty}</span>
-                    <span className="text-[#3a3a5a] mx-0.5">/</span>
+                    <span className="text-[#ffffff] mx-0.5">/</span>
                     <span className="text-[#00ff88]">PM:{pmQty}</span>
                   </td>
                   <td className="py-1.5 px-2 text-center">
                     <span className={`text-[9px] font-medium rounded-none border px-1.5 py-0.5 ${statusColor}`}>{statusLabel}</span>
                   </td>
                   <td className="py-1.5 px-2 text-center">
-                    <button onClick={() => markSettled(p.game_id)} className="text-[9px] text-[#3a3a5a] hover:text-[#ff3333] font-mono transition-colors" title="Hide">
+                    <button onClick={() => markSettled(p.game_id)} className="text-[9px] text-[#ffffff] hover:text-[#ff3333] font-mono transition-colors" title="Hide">
                       {"\u2715"}
                     </button>
                   </td>

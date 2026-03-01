@@ -93,12 +93,12 @@ export function ArbDashboardHeader({
 
           {/* Clock */}
           <span className="text-[11px] font-mono text-[#00ff88] border-l border-[#1a1a2e] pl-4 ml-1">
-            {clock} <span className="text-[#3a3a5a]">ET</span>
+            {clock} <span className="text-[#ffffff]">ET</span>
           </span>
 
           {/* System info */}
           {system && (
-            <span className="text-[9px] font-mono text-[#4a4a6a] border-l border-[#1a1a2e] pl-3">
+            <span className="text-[9px] font-mono text-[#ffffff] border-l border-[#1a1a2e] pl-3">
               UP: {formatUptime(system.uptime_seconds)}
               <span className="mx-1.5 text-[#1a1a2e]">|</span>
               {system.games_monitored} GAMES
@@ -113,14 +113,14 @@ export function ArbDashboardHeader({
             className={`rounded-none px-2 py-1 text-[9px] font-mono border transition-colors ${
               paused
                 ? "bg-[#ff8c00]/20 text-[#ff8c00] border-[#ff8c00]/40"
-                : "bg-transparent text-[#4a4a6a] border-[#1a1a2e] hover:text-[#00bfff] hover:border-[#00bfff]/40"
+                : "bg-transparent text-[#ffffff] border-[#1a1a2e] hover:text-[#00bfff] hover:border-[#00bfff]/40"
             }`}
           >
             {paused ? "PAUSED" : "PAUSE"}
           </button>
           <button
             onClick={fetchData}
-            className="rounded-none px-2 py-1 text-[9px] font-mono border border-[#1a1a2e] text-[#4a4a6a] hover:text-[#00bfff] hover:border-[#00bfff]/40 transition-colors"
+            className="rounded-none px-2 py-1 text-[9px] font-mono border border-[#1a1a2e] text-[#ffffff] hover:text-[#00bfff] hover:border-[#00bfff]/40 transition-colors"
           >
             REFRESH
           </button>

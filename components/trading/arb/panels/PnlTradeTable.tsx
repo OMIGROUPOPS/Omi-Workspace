@@ -37,9 +37,9 @@ function legsLabel(t: TradeEntry) {
     return (
       <>
         <span className="text-emerald-400">PM: {team} @{pmVal.toFixed(0)}c</span>
-        <span className="text-gray-700 mx-1">|</span>
+        <span className="text-white mx-1">|</span>
         <span className="text-blue-400">K: {opp} @{kOppCost.toFixed(0)}c</span>
-        <span className="text-gray-600 ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
+        <span className="text-white ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
       </>
     );
   }
@@ -48,9 +48,9 @@ function legsLabel(t: TradeEntry) {
   return (
     <>
       <span className="text-emerald-400">K: {team} @{kVal}c</span>
-      <span className="text-gray-700 mx-1">|</span>
+      <span className="text-white mx-1">|</span>
       <span className="text-blue-400">PM: {opp} @{pmVal.toFixed(0)}c</span>
-      <span className="text-gray-600 ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
+      <span className="text-white ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
     </>
   );
 }
@@ -80,7 +80,7 @@ export function PnlTradeTable({
       {/* Today summary row */}
       {todayTrades.length > 0 && (
         <div className="px-3 py-2 border-b border-gray-800 bg-gray-800/30 flex items-center gap-4 text-xs">
-          <span className="text-gray-400">Today:</span>
+          <span className="text-white">Today:</span>
           <span className="text-white font-bold">{todayStats.count} trades</span>
           <span className="text-emerald-400">{todayStats.wins}W</span>
           <span className="text-red-400">{todayStats.losses}L</span>
@@ -96,28 +96,28 @@ export function PnlTradeTable({
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-gray-800 text-gray-500">
-              <th className="px-2 py-1.5 text-left font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("time")}>
+            <tr className="border-b border-gray-800 text-white">
+              <th className="px-2 py-1.5 text-left font-medium cursor-pointer hover:text-white" onClick={() => handleSort("time")}>
                 TIME{sortArrow("time")}
               </th>
               <th className="px-2 py-1.5 text-left font-medium">MATCHUP</th>
               <th className="px-2 py-1.5 text-left font-medium">LEGS</th>
               <th className="px-2 py-1.5 text-left font-medium">STATUS</th>
-              <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("qty")}>
+              <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-white" onClick={() => handleSort("qty")}>
                 K QTY{sortArrow("qty")}
               </th>
               <th className="px-2 py-1.5 text-right font-medium">
                 PM QTY
               </th>
-              <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("spread")}>
+              <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-white" onClick={() => handleSort("spread")}>
                 SPREAD{sortArrow("spread")}
               </th>
               <th className="px-2 py-1.5 text-right font-medium">DEPTH</th>
               <th className="px-2 py-1.5 text-right font-medium">FEES</th>
-              <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("net")}>
+              <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-white" onClick={() => handleSort("net")}>
                 NET P&L{sortArrow("net")}
               </th>
-              <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-gray-300" onClick={() => handleSort("phase")}>
+              <th className="px-2 py-1.5 text-right font-medium cursor-pointer hover:text-white" onClick={() => handleSort("phase")}>
                 PHASE{sortArrow("phase")}
               </th>
             </tr>
@@ -136,7 +136,7 @@ export function PnlTradeTable({
                     className="border-b border-gray-800/50 hover:bg-gray-800/30 cursor-pointer"
                     onClick={() => setExpandedTrade(isExpanded ? null : i)}
                   >
-                    <td className="px-2 py-1.5 text-gray-400 whitespace-nowrap font-mono">
+                    <td className="px-2 py-1.5 text-white whitespace-nowrap font-mono">
                       {formatDateTime(t.timestamp)}
                     </td>
                     <td className="px-2 py-1.5 whitespace-nowrap">
@@ -145,7 +145,7 @@ export function PnlTradeTable({
                       </span>
                       <span className="font-bold text-white">{t.team_full_name || t.team}</span>
                       {(t.opponent_full_name || t.opponent) ? (
-                        <span className="text-gray-500 text-[10px] ml-1">vs {t.opponent_full_name || t.opponent}</span>
+                        <span className="text-white text-[10px] ml-1">vs {t.opponent_full_name || t.opponent}</span>
                       ) : null}
                     </td>
                     <td className="px-2 py-1.5 whitespace-nowrap text-[10px] font-mono">
@@ -158,20 +158,20 @@ export function PnlTradeTable({
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap">
                       <span className="text-blue-400">{t.kalshi_fill ?? t.contracts_filled ?? 0}x</span>
-                      <div className="text-[9px] text-gray-600">@{typeof t.k_price === 'number' ? t.k_price : '-'}c</div>
+                      <div className="text-[9px] text-white">@{typeof t.k_price === 'number' ? t.k_price : '-'}c</div>
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap">
                       <span className="text-emerald-400">{t.pm_fill ?? t.contracts_filled ?? 0}x</span>
-                      <div className="text-[9px] text-gray-600">@{normPmNum(t.pm_price).toFixed(0)}c</div>
+                      <div className="text-[9px] text-white">@{normPmNum(t.pm_price).toFixed(0)}c</div>
                     </td>
-                    <td className="px-2 py-1.5 text-right font-mono text-gray-400">
+                    <td className="px-2 py-1.5 text-right font-mono text-white">
                       {t.spread_cents?.toFixed(1) ?? "-"}c
                     </td>
                     <td className="px-2 py-1.5 text-right font-mono whitespace-nowrap text-[10px]">
                       {depth.k !== null || depth.pm !== null ? (
                         <>
                           <span className={depthColor(depth.k)}>K:{fmtNum(depth.k!)}</span>
-                          <span className="text-gray-700 mx-0.5">|</span>
+                          <span className="text-white mx-0.5">|</span>
                           <span className={depthColor(depth.pm)}>PM:{fmtNum(depth.pm!)}</span>
                         </>
                       ) : "\u2014"}
@@ -180,13 +180,13 @@ export function PnlTradeTable({
                       {fees > 0 ? `$${fees.toFixed(2)}` : "-"}
                     </td>
                     <td className={`px-2 py-1.5 text-right font-mono font-bold ${
-                      pnl.totalDollars === null ? "text-gray-500" :
+                      pnl.totalDollars === null ? "text-white" :
                       pnl.totalDollars > 0 ? "text-emerald-400" :
-                      pnl.totalDollars < 0 ? "text-red-400" : "text-gray-400"
+                      pnl.totalDollars < 0 ? "text-red-400" : "text-white"
                     }`}>
                       {pnl.totalDollars !== null ? `$${pnl.totalDollars.toFixed(4)}` : pnl.isOpen ? "OPEN" : "-"}
                     </td>
-                    <td className="px-2 py-1.5 text-right text-gray-500 text-[10px]">
+                    <td className="px-2 py-1.5 text-right text-white text-[10px]">
                       {t.execution_phase || "ioc"}
                       {t.is_maker && <span className="ml-0.5 text-purple-400">M</span>}
                     </td>
@@ -196,69 +196,69 @@ export function PnlTradeTable({
                       <td colSpan={11} className="px-4 py-2">
                         <div className="grid grid-cols-4 gap-3 text-[10px]">
                           <div>
-                            <span className="text-gray-500">Execution:</span>{" "}
-                            <span className="text-gray-300">{t.execution_time_ms}ms total</span>
+                            <span className="text-white">Execution:</span>{" "}
+                            <span className="text-white">{t.execution_time_ms}ms total</span>
                           </div>
                           <div>
-                            <span className="text-gray-500">K order:</span>{" "}
-                            <span className="text-gray-300">{t.k_order_ms || "-"}ms</span>
+                            <span className="text-white">K order:</span>{" "}
+                            <span className="text-white">{t.k_order_ms || "-"}ms</span>
                           </div>
                           <div>
-                            <span className="text-gray-500">PM order:</span>{" "}
-                            <span className="text-gray-300">{t.pm_order_ms || "-"}ms</span>
+                            <span className="text-white">PM order:</span>{" "}
+                            <span className="text-white">{t.pm_order_ms || "-"}ms</span>
                           </div>
                           <div>
-                            <span className="text-gray-500">Game:</span>{" "}
-                            <span className="text-gray-300">{t.game_id}</span>
+                            <span className="text-white">Game:</span>{" "}
+                            <span className="text-white">{t.game_id}</span>
                           </div>
                           {t.pm_slug && (
                             <div>
-                              <span className="text-gray-500">PM Slug:</span>{" "}
-                              <span className="text-gray-300 font-mono text-[9px]">{t.pm_slug}</span>
+                              <span className="text-white">PM Slug:</span>{" "}
+                              <span className="text-white font-mono text-[9px]">{t.pm_slug}</span>
                             </div>
                           )}
                           {t.kalshi_ticker && (
                             <div>
-                              <span className="text-gray-500">K Ticker:</span>{" "}
-                              <span className="text-gray-300 font-mono text-[9px]">{t.kalshi_ticker}</span>
+                              <span className="text-white">K Ticker:</span>{" "}
+                              <span className="text-white font-mono text-[9px]">{t.kalshi_ticker}</span>
                             </div>
                           )}
                           {t.sizing_details && (
                             <>
                               {depth.k !== null && (
                                 <div className="col-span-2">
-                                  <span className="text-gray-500">L1 at arb price:</span>{" "}
+                                  <span className="text-white">L1 at arb price:</span>{" "}
                                   <span className="font-mono">
                                     <span className={depthColor(depth.k)}>K: {fmtNum(depth.k)}</span>
                                     {" @ "}{t.sizing_details.depth_walk_log?.[0]?.k_price ?? "-"}c
-                                    <span className="text-gray-700 mx-1">|</span>
+                                    <span className="text-white mx-1">|</span>
                                     <span className={depthColor(depth.pm)}>PM: {fmtNum(depth.pm!)}</span>
                                     {" @ "}{t.sizing_details.depth_walk_log?.[0]?.pm_cost ?? "-"}c
                                   </span>
                                 </div>
                               )}
                               <div>
-                                <span className="text-gray-500">Total depth:</span>{" "}
-                                <span className="text-gray-300 font-mono">K: {fmtNum(t.sizing_details.k_depth)} | PM: {fmtNum(t.sizing_details.pm_depth)}</span>
+                                <span className="text-white">Total depth:</span>{" "}
+                                <span className="text-white font-mono">K: {fmtNum(t.sizing_details.k_depth)} | PM: {fmtNum(t.sizing_details.pm_depth)}</span>
                               </div>
                               <div>
-                                <span className="text-gray-500">Limit:</span>{" "}
-                                <span className="text-gray-300">{t.sizing_details.limit_reason}</span>
+                                <span className="text-white">Limit:</span>{" "}
+                                <span className="text-white">{t.sizing_details.limit_reason}</span>
                               </div>
                             </>
                           )}
                           {t.actual_pnl && (
                             <>
                               <div>
-                                <span className="text-gray-500">Gross:</span>{" "}
-                                <span className="text-gray-300">${t.actual_pnl.gross_profit_dollars.toFixed(4)}</span>
+                                <span className="text-white">Gross:</span>{" "}
+                                <span className="text-white">${t.actual_pnl.gross_profit_dollars.toFixed(4)}</span>
                               </div>
                               <div>
-                                <span className="text-gray-500">Fees:</span>{" "}
+                                <span className="text-white">Fees:</span>{" "}
                                 <span className="text-yellow-400">${t.actual_pnl.fees_dollars.toFixed(4)}</span>
                               </div>
                               <div>
-                                <span className="text-gray-500">Net:</span>{" "}
+                                <span className="text-white">Net:</span>{" "}
                                 <span className={t.actual_pnl.net_profit_dollars >= 0 ? "text-emerald-400" : "text-red-400"}>
                                   ${t.actual_pnl.net_profit_dollars.toFixed(4)}
                                 </span>
@@ -267,7 +267,7 @@ export function PnlTradeTable({
                           )}
                           {t.settlement_pnl != null && (
                             <div>
-                              <span className="text-gray-500">Settlement:</span>{" "}
+                              <span className="text-white">Settlement:</span>{" "}
                               <span className={t.settlement_pnl >= 0 ? "text-emerald-400" : "text-red-400"}>
                                 ${t.settlement_pnl.toFixed(4)}
                               </span>
@@ -284,7 +284,7 @@ export function PnlTradeTable({
         </table>
       </div>
       {trades.length > 100 && (
-        <div className="px-3 py-2 text-center text-xs text-gray-500 border-t border-gray-800">
+        <div className="px-3 py-2 text-center text-xs text-white border-t border-gray-800">
           Showing 100 of {trades.length} trades
         </div>
       )}

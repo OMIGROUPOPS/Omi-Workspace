@@ -33,7 +33,7 @@ interface Props {
 export function PnlTimeSeriesChart({ data }: Props) {
   if (data.length === 0) {
     return (
-      <div className="rounded-lg border border-gray-800 bg-[#111] p-4 text-center text-sm text-gray-500">
+      <div className="rounded-lg border border-gray-800 bg-[#111] p-4 text-center text-sm text-white">
         No P&L data
       </div>
     );
@@ -41,7 +41,7 @@ export function PnlTimeSeriesChart({ data }: Props) {
 
   return (
     <div className="rounded-lg border border-gray-800 bg-[#111] p-3">
-      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
+      <h3 className="text-xs font-semibold text-white uppercase tracking-wide mb-2">
         Cumulative P&L
       </h3>
       <ResponsiveContainer width="100%" height={220}>

@@ -24,7 +24,7 @@ export function FilterButton({
       className={`rounded-none px-1.5 py-0.5 text-[9px] font-mono border transition-colors ${
         active
           ? activeColors[variant]
-          : "text-[#4a4a6a] border-transparent hover:text-[#ff8c00]"
+          : "text-[#ffffff] border-transparent hover:text-[#ff8c00]"
       }`}
     >
       {children}

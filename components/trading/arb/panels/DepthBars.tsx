@@ -18,13 +18,13 @@ export function DepthBars({ aggregate }: Props) {
 
   return (
     <div className="rounded-lg border border-gray-800 bg-[#111] p-3">
-      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">
+      <h3 className="text-xs font-semibold text-white uppercase tracking-wide mb-3">
         Aggregate Depth (24h)
       </h3>
       <div className="grid grid-cols-5 gap-3">
         {items.map((item) => (
           <div key={item.label}>
-            <span className="text-[10px] text-gray-500 uppercase">{item.label}</span>
+            <span className="text-[10px] text-white uppercase">{item.label}</span>
             <p className="text-lg text-white font-bold font-mono">{item.value}</p>
           </div>
         ))}

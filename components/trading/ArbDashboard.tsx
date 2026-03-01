@@ -66,7 +66,7 @@ export default function ArbDashboard() {
   }, [settledTrades]);
 
   return (
-    <div className="min-h-screen bg-black text-gray-300 relative">
+    <div className="min-h-screen bg-black text-white relative">
       {/* Scanline overlay */}
       <div
         className="pointer-events-none fixed inset-0 z-50"
@@ -94,7 +94,7 @@ export default function ArbDashboard() {
           className={`px-4 py-1.5 text-[10px] font-mono font-bold uppercase tracking-wider transition-colors ${
             activeTab === "cross"
               ? "text-[#ff8c00] border-b-2 border-[#ff8c00]"
-              : "text-[#4a4a6a] hover:text-[#ff8c00]/60"
+              : "text-[#ffffff] hover:text-[#ff8c00]/60"
           }`}
         >
           PM ↔ K
@@ -104,7 +104,7 @@ export default function ArbDashboard() {
           className={`px-4 py-1.5 text-[10px] font-mono font-bold uppercase tracking-wider transition-colors ${
             activeTab === "intra"
               ? "text-[#8b5cf6] border-b-2 border-[#8b5cf6]"
-              : "text-[#4a4a6a] hover:text-[#8b5cf6]/60"
+              : "text-[#ffffff] hover:text-[#8b5cf6]/60"
           }`}
         >
           K INTRA
@@ -156,11 +156,11 @@ export default function ArbDashboard() {
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-[#00bfff]/30" />
               <div className="flex items-center gap-0 divide-x divide-[#1a1a2e]">
                 <div className="px-2 py-1.5 flex-shrink-0">
-                  <span className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">TRADE BREAKDOWN</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-[#ffffff]">TRADE BREAKDOWN</span>
                 </div>
                 {[
                   { key: "arb_success", label: "ARB OK", color: "text-[#00ff88]", icon: "\u2713" },
-                  { key: "pm_no_fill", label: "NO FILL", color: "text-[#4a4a6a]", icon: "\u25CB" },
+                  { key: "pm_no_fill", label: "NO FILL", color: "text-[#ffffff]", icon: "\u25CB" },
                   { key: "exited", label: "EXITED", color: "text-[#ff8c00]", icon: "\u21A9" },
                   { key: "unhedged", label: "UNHEDGED", color: "text-[#ff3333]", icon: "\u25B2" },
                   { key: "directional", label: "DIR", color: "text-[#8b5cf6]", icon: "\u2197" },
@@ -171,7 +171,7 @@ export default function ArbDashboard() {
                     <div key={key} className="px-3 py-1.5 flex items-center gap-2">
                       <span className={`text-sm font-bold font-mono ${color}`}>{icon} {cat.count}</span>
                       <div>
-                        <div className="text-[9px] text-[#4a4a6a] font-mono uppercase">{label}</div>
+                        <div className="text-[9px] text-[#ffffff] font-mono uppercase">{label}</div>
                         {cat.pnl !== 0 && (
                           <div className={`text-[9px] font-mono ${cat.pnl >= 0 ? "text-[#00ff88]" : "text-[#ff3333]"}`}>
                             {cat.pnl >= 0 ? "+" : ""}${cat.pnl.toFixed(2)}
@@ -191,19 +191,19 @@ export default function ArbDashboard() {
               <div className="flex items-center gap-1">
                 <button
                   onClick={() => { setDateAll(false); setDateOffset((o: number) => o - 1); }}
-                  className="px-1 py-0.5 text-[9px] font-mono text-[#4a4a6a] hover:text-[#ff8c00]"
+                  className="px-1 py-0.5 text-[9px] font-mono text-[#ffffff] hover:text-[#ff8c00]"
                 >
                   {"<"}
                 </button>
                 <button
                   onClick={() => { setDateAll(false); setDateOffset(0); }}
-                  className={`px-2 py-0.5 text-[9px] font-mono border rounded-none transition-colors ${!dateAll && dateOffset === 0 ? "bg-[#ff8c00]/20 text-[#ff8c00] border-[#ff8c00]/40" : "text-[#4a4a6a] border-transparent hover:text-[#ff8c00]"}`}
+                  className={`px-2 py-0.5 text-[9px] font-mono border rounded-none transition-colors ${!dateAll && dateOffset === 0 ? "bg-[#ff8c00]/20 text-[#ff8c00] border-[#ff8c00]/40" : "text-[#ffffff] border-transparent hover:text-[#ff8c00]"}`}
                 >
                   {dateLabel}
                 </button>
                 <button
                   onClick={() => { setDateAll(false); setDateOffset((o: number) => Math.min(o + 1, 0)); }}
-                  className="px-1 py-0.5 text-[9px] font-mono text-[#4a4a6a] hover:text-[#ff8c00]"
+                  className="px-1 py-0.5 text-[9px] font-mono text-[#ffffff] hover:text-[#ff8c00]"
                 >
                   {">"}
                 </button>
@@ -231,7 +231,7 @@ export default function ArbDashboard() {
                 className="ml-auto bg-black border border-[#1a1a2e] rounded-none px-2 py-0.5 text-[9px] font-mono text-[#ff8c00] w-28 focus:outline-none focus:border-[#ff8c00]/40 placeholder-[#3a3a5a]"
               />
               <span className={`text-[10px] font-mono ${filteredPnl.netTotal >= 0 ? "text-[#00ff88]" : "text-[#ff3333]"}`}>
-                ${filteredPnl.netTotal.toFixed(2)} <span className="text-[#4a4a6a]">({filteredPnl.fills} fills)</span>
+                ${filteredPnl.netTotal.toFixed(2)} <span className="text-[#ffffff]">({filteredPnl.fills} fills)</span>
               </span>
             </div>
           </div>
@@ -240,7 +240,7 @@ export default function ArbDashboard() {
           <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#ff8c00]" />
             <div className="px-3 py-1.5 border-b border-[#1a1a2e]">
-              <h3 className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">
+              <h3 className="text-[9px] font-mono uppercase tracking-widest text-[#ffffff]">
                 TRADE LOG <span className="text-[#ff8c00] ml-1">({filteredTrades.length})</span>
               </h3>
             </div>
@@ -255,7 +255,7 @@ export default function ArbDashboard() {
           <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#ff8c00]" />
             <div className="px-3 py-1.5 border-b border-[#1a1a2e]">
-              <h3 className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">
+              <h3 className="text-[9px] font-mono uppercase tracking-widest text-[#ffffff]">
                 POSITIONS <span className="text-[#ff8c00] ml-1">({activePositions.length})</span>
               </h3>
             </div>
@@ -279,7 +279,7 @@ export default function ArbDashboard() {
           <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#00bfff]" />
             <div className="px-3 py-1.5 border-b border-[#1a1a2e]">
-              <h3 className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">
+              <h3 className="text-[9px] font-mono uppercase tracking-widest text-[#ffffff]">
                 LIVE MARKETS <span className="text-[#00bfff] ml-1">({state?.mapped_games?.length ?? 0})</span>
                 {mappedGamesStale && (
                   <span className="text-[#ff8c00] ml-2 animate-pulse">STALE</span>
@@ -294,20 +294,20 @@ export default function ArbDashboard() {
         <div className="p-3 space-y-4">
           <div className="text-center py-12">
             <div className="text-[#8b5cf6] text-lg font-mono font-bold mb-2">Coming Soon</div>
-            <div className="text-[#4a4a6a] text-[11px] font-mono">Intra-Kalshi Scanner</div>
+            <div className="text-[#ffffff] text-[11px] font-mono">Intra-Kalshi Scanner</div>
           </div>
           <div className="grid grid-cols-3 gap-2">
             <div className="border border-[#8b5cf6]/30 bg-[#8b5cf6]/5 p-4 text-center">
               <div className="text-[#8b5cf6] text-2xl font-mono font-bold">31,352</div>
-              <div className="text-[9px] font-mono uppercase tracking-wider text-[#4a4a6a] mt-1">Markets</div>
+              <div className="text-[9px] font-mono uppercase tracking-wider text-[#ffffff] mt-1">Markets</div>
             </div>
             <div className="border border-[#8b5cf6]/30 bg-[#8b5cf6]/5 p-4 text-center">
               <div className="text-[#8b5cf6] text-2xl font-mono font-bold">4,264</div>
-              <div className="text-[9px] font-mono uppercase tracking-wider text-[#4a4a6a] mt-1">Events</div>
+              <div className="text-[9px] font-mono uppercase tracking-wider text-[#ffffff] mt-1">Events</div>
             </div>
             <div className="border border-[#8b5cf6]/30 bg-[#8b5cf6]/5 p-4 text-center">
               <div className="text-[#8b5cf6] text-2xl font-mono font-bold">18</div>
-              <div className="text-[9px] font-mono uppercase tracking-wider text-[#4a4a6a] mt-1">Categories</div>
+              <div className="text-[9px] font-mono uppercase tracking-wider text-[#ffffff] mt-1">Categories</div>
             </div>
           </div>
         </div>

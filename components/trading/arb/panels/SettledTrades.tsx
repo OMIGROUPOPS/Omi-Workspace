@@ -39,27 +39,27 @@ export function SettledTrades({ trades, expandedTrade, setExpandedTrade }: Props
         className="w-full px-3 py-1.5 bg-black border-b border-[#1a1a2e] flex items-center gap-3 text-[9px] font-mono hover:bg-[#00ff88]/[0.02] transition-colors"
       >
         <span className="text-[#00ff88]">{collapsed ? "▶" : "▼"}</span>
-        <span className="text-[#4a4a6a] uppercase tracking-widest">SETTLED</span>
+        <span className="text-[#ffffff] uppercase tracking-widest">SETTLED</span>
         <span className="text-[#ff8c00]">{trades.length} trades</span>
         <span className="text-[#1a1a2e]">|</span>
         <span className={`font-bold ${stats.totalPnl >= 0 ? "text-[#00ff88]" : "text-[#ff3333]"}`}>
           ${stats.totalPnl.toFixed(2)}
         </span>
         <span className="text-[#1a1a2e]">|</span>
-        <span className="text-[#4a4a6a]">{stats.winRate}% win rate</span>
+        <span className="text-[#ffffff]">{stats.winRate}% win rate</span>
       </button>
 
       {!collapsed && (
         <>
           {trades.length === 0 ? (
-            <div className="p-4 text-center text-[10px] font-mono text-[#3a3a5a]">
+            <div className="p-4 text-center text-[10px] font-mono text-[#ffffff]">
               NO SETTLED TRADES
             </div>
           ) : (
             <div className="overflow-x-auto" style={{ maxHeight: "400px" }}>
               <table className="w-full text-xs">
                 <thead className="sticky top-0 bg-[#0a0a0a] z-10 border-b border-[#1a1a2e]">
-                  <tr className="text-[#4a4a6a]">
+                  <tr className="text-[#ffffff]">
                     <th className="px-2 py-1.5 text-left font-mono text-[9px] uppercase tracking-wider font-medium">GAME</th>
                     <th className="px-2 py-1.5 text-left font-mono text-[9px] uppercase tracking-wider font-medium">TEAM</th>
                     <th className="px-2 py-1.5 text-right font-mono text-[9px] uppercase tracking-wider font-medium">K @</th>
@@ -95,7 +95,7 @@ export function SettledTrades({ trades, expandedTrade, setExpandedTrade }: Props
                           <td className="px-2 py-1.5 whitespace-nowrap">
                             <span className="font-bold font-mono text-[#ff8c00]">{t.team_full_name || t.team}</span>
                             {(t.opponent_full_name || t.opponent) ? (
-                              <span className="text-[#4a4a6a] font-mono text-[10px] ml-1">vs {t.opponent_full_name || t.opponent}</span>
+                              <span className="text-[#ffffff] font-mono text-[10px] ml-1">vs {t.opponent_full_name || t.opponent}</span>
                             ) : null}
                           </td>
                           <td className="px-2 py-1.5 text-right font-mono text-[#00bfff]">
@@ -108,11 +108,11 @@ export function SettledTrades({ trades, expandedTrade, setExpandedTrade }: Props
                             {combined > 0 ? `${combined.toFixed(0)}c` : "—"}
                           </td>
                           <td className={`px-2 py-1.5 text-right font-mono font-bold ${
-                            pnl.totalDollars === null ? "text-[#4a4a6a]" : netColor(pnl.totalDollars)
+                            pnl.totalDollars === null ? "text-[#ffffff]" : netColor(pnl.totalDollars)
                           }`}>
                             {pnl.totalDollars !== null ? `$${pnl.totalDollars.toFixed(4)}` : "—"}
                           </td>
-                          <td className="px-2 py-1.5 text-right font-mono text-[#4a4a6a] text-[10px]">
+                          <td className="px-2 py-1.5 text-right font-mono text-[#ffffff] text-[10px]">
                             {t.settlement_time ? formatDateTime(t.settlement_time) : "—"}
                           </td>
                         </tr>

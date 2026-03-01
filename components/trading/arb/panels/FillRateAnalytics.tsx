@@ -20,17 +20,17 @@ interface Props {
 export function FillRateAnalytics({ data }: Props) {
   return (
     <div className="rounded-lg border border-gray-800 bg-[#111] p-3">
-      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">
+      <h3 className="text-xs font-semibold text-white uppercase tracking-wide mb-3">
         Fill Rate Analytics
       </h3>
       <div className="grid grid-cols-2 gap-4">
         {/* IOC vs GTC */}
         <div>
-          <p className="text-[10px] text-gray-500 mb-1">By Execution Phase</p>
+          <p className="text-[10px] text-white mb-1">By Execution Phase</p>
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-gray-400">IOC</span>
-              <span className="text-gray-300 font-mono">
+              <span className="text-white">IOC</span>
+              <span className="text-white font-mono">
                 {data.iocFills}/{data.iocAttempts} ({data.iocRate}%)
               </span>
             </div>
@@ -41,8 +41,8 @@ export function FillRateAnalytics({ data }: Props) {
               />
             </div>
             <div className="flex items-center justify-between text-xs">
-              <span className="text-gray-400">GTC</span>
-              <span className="text-gray-300 font-mono">
+              <span className="text-white">GTC</span>
+              <span className="text-white font-mono">
                 {data.gtcFills}/{data.gtcAttempts} ({data.gtcRate}%)
               </span>
             </div>
@@ -57,14 +57,14 @@ export function FillRateAnalytics({ data }: Props) {
 
         {/* By spread bucket */}
         <div>
-          <p className="text-[10px] text-gray-500 mb-1">By Spread Bucket</p>
+          <p className="text-[10px] text-white mb-1">By Spread Bucket</p>
           <div className="space-y-1">
             {Object.entries(data.spreadBuckets).map(([bucket, { attempts, fills }]) => {
               const rate = attempts > 0 ? ((fills / attempts) * 100).toFixed(1) : "0";
               return (
                 <div key={bucket} className="flex items-center justify-between text-xs">
-                  <span className="text-gray-400">{bucket}</span>
-                  <span className="text-gray-300 font-mono">
+                  <span className="text-white">{bucket}</span>
+                  <span className="text-white font-mono">
                     {fills}/{attempts} ({rate}%)
                   </span>
                 </div>
@@ -76,14 +76,14 @@ export function FillRateAnalytics({ data }: Props) {
         {/* No-fill reasons */}
         {Object.keys(data.noFillReasons).length > 0 && (
           <div className="col-span-2">
-            <p className="text-[10px] text-gray-500 mb-1">No-Fill Reasons</p>
+            <p className="text-[10px] text-white mb-1">No-Fill Reasons</p>
             <div className="flex flex-wrap gap-2">
               {Object.entries(data.noFillReasons)
                 .sort(([, a], [, b]) => b - a)
                 .map(([reason, count]) => (
                   <span
                     key={reason}
-                    className="rounded bg-gray-800 px-1.5 py-0.5 text-[10px] text-gray-400"
+                    className="rounded bg-gray-800 px-1.5 py-0.5 text-[10px] text-white"
                   >
                     {reason}: {count}
                   </span>

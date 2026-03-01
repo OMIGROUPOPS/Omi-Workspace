@@ -16,14 +16,14 @@ function tomorrowET(): string {
 
 /** Format bid/ask as compact "42/45" string, or "—" if no data. */
 function ba(p: TeamPrices | undefined, field: "k" | "pm"): React.ReactNode {
-  if (!p) return <span className="text-[#3a3a5a]">&mdash;</span>;
+  if (!p) return <span className="text-[#ffffff]">&mdash;</span>;
   const bid = field === "k" ? p.k_bid : p.pm_bid;
   const ask = field === "k" ? p.k_ask : p.pm_ask;
-  if (!bid && !ask) return <span className="text-[#3a3a5a]">&mdash;</span>;
+  if (!bid && !ask) return <span className="text-[#ffffff]">&mdash;</span>;
   return (
     <>
       <span className="text-[#ff8c00]">{bid || "—"}</span>
-      <span className="text-[#3a3a5a]">/</span>
+      <span className="text-[#ffffff]">/</span>
       <span className="text-[#ff8c00]">{ask || "—"}</span>
     </>
   );
@@ -42,14 +42,14 @@ function gameClockCell(g: MappedGame): React.ReactNode {
     );
   }
   if (gs === "post") {
-    return <span className="text-[#4a4a6a] font-mono">FINAL</span>;
+    return <span className="text-[#ffffff] font-mono">FINAL</span>;
   }
   // Pre-game or no ESPN data — show date + optional start time
   const isTodayGame = isToday(g.date);
   return (
-    <span className="font-mono text-[#4a4a6a]">
+    <span className="font-mono text-[#ffffff]">
       {isTodayGame ? <span className="text-[#00ff88]">TODAY</span> : g.date.slice(5)}
-      {g.game_time ? <span className="text-[#3a3a5a] ml-1 text-[9px]">{g.game_time}</span> : null}
+      {g.game_time ? <span className="text-[#ffffff] ml-1 text-[9px]">{g.game_time}</span> : null}
     </span>
   );
 }
@@ -85,7 +85,7 @@ export function MappedGamesTable({ games }: Props) {
   if (games.length === 0) {
     return (
       <div className="text-center py-6">
-        <span className="text-[9px] font-mono text-[#3a3a5a] uppercase tracking-wider">NO MAPPED GAMES — WAITING FOR EXECUTOR PUSH</span>
+        <span className="text-[9px] font-mono text-[#ffffff] uppercase tracking-wider">NO MAPPED GAMES — WAITING FOR EXECUTOR PUSH</span>
       </div>
     );
   }
@@ -108,21 +108,21 @@ export function MappedGamesTable({ games }: Props) {
             </FilterButton>
           ))}
         </div>
-        <span className="ml-auto text-[9px] text-[#4a4a6a] font-mono">
+        <span className="ml-auto text-[9px] text-[#ffffff] font-mono">
           {liveCount > 0 && <span className="text-[#00ff88] mr-2">{liveCount} LIVE</span>}
-          {filtered.length}<span className="text-[#3a3a5a]">/{games.length}</span>
+          {filtered.length}<span className="text-[#ffffff]">/{games.length}</span>
         </span>
       </div>
 
       {filtered.length === 0 ? (
         <div className="text-center py-6">
-          <span className="text-[9px] font-mono text-[#3a3a5a] uppercase tracking-wider">NO GAMES MATCH FILTERS</span>
+          <span className="text-[9px] font-mono text-[#ffffff] uppercase tracking-wider">NO GAMES MATCH FILTERS</span>
         </div>
       ) : (
         <div className="overflow-auto" style={{ maxHeight: "500px" }}>
           <table className="w-full text-xs">
             <thead className="sticky top-0 bg-[#0a0a0a] z-10 border-b border-[#1a1a2e]">
-              <tr className="text-left text-[9px] font-mono font-medium uppercase tracking-wider text-[#4a4a6a]">
+              <tr className="text-left text-[9px] font-mono font-medium uppercase tracking-wider text-[#ffffff]">
                 <th className="px-2 py-1.5">TEAM</th>
                 <th className="px-2 py-1.5 text-center">K BID/ASK</th>
                 <th className="px-2 py-1.5 text-center">PM BID/ASK</th>
@@ -154,7 +154,7 @@ export function MappedGamesTable({ games }: Props) {
                       <td className="px-2 py-1 whitespace-nowrap">
                         <span className="text-[#ff8c00] font-medium">{g.team1_full || g.team1}</span>
                         {hasScore && (
-                          <span className={`ml-2 font-mono font-bold ${isLive ? "text-[#00ff88]" : "text-[#4a4a6a]"}`}>
+                          <span className={`ml-2 font-mono font-bold ${isLive ? "text-[#00ff88]" : "text-[#ffffff]"}`}>
                             {g.team1_score}
                           </span>
                         )}
@@ -180,14 +180,14 @@ export function MappedGamesTable({ games }: Props) {
                       </td>
                       <td className="px-2 py-1 text-right font-mono text-[10px] whitespace-nowrap" rowSpan={2}>
                         <span className={depthColor(g.k_depth ?? null)}>K:{g.k_depth != null && g.k_depth > 0 ? fmtNum(g.k_depth) : "—"}</span>
-                        <span className="text-[#3a3a5a] mx-0.5">|</span>
+                        <span className="text-[#ffffff] mx-0.5">|</span>
                         <span className={depthColor(g.pm_depth ?? null)}>PM:{g.pm_depth != null && g.pm_depth > 0 ? fmtNum(g.pm_depth) : "—"}</span>
                       </td>
                       <td className="px-2 py-1" rowSpan={2}>
                         <span className={`inline-block rounded-none border px-1 py-0.5 text-[9px] font-mono font-medium ${
                           g.status === "Active"
                             ? "bg-[#00ff88]/10 text-[#00ff88] border-[#00ff88]/30"
-                            : "bg-[#4a4a6a]/10 text-[#4a4a6a] border-[#4a4a6a]/30"
+                            : "bg-[#4a4a6a]/10 text-[#ffffff] border-[#4a4a6a]/30"
                         }`}>
                           {g.status}
                         </span>
@@ -195,7 +195,7 @@ export function MappedGamesTable({ games }: Props) {
                       <td className="px-2 py-1" rowSpan={2}>
                         {g.traded
                           ? <span className="text-[#00ff88] text-[9px] font-mono font-bold">YES</span>
-                          : <span className="text-[#3a3a5a] text-[9px] font-mono">-</span>}
+                          : <span className="text-[#ffffff] text-[9px] font-mono">-</span>}
                       </td>
                     </tr>
                     {/* ── Team 2 row ── */}
@@ -203,7 +203,7 @@ export function MappedGamesTable({ games }: Props) {
                       <td className="px-2 py-1 whitespace-nowrap">
                         <span className="text-[#ff8c00] font-medium">{g.team2_full || g.team2}</span>
                         {hasScore && (
-                          <span className={`ml-2 font-mono font-bold ${isLive ? "text-[#00ff88]" : "text-[#4a4a6a]"}`}>
+                          <span className={`ml-2 font-mono font-bold ${isLive ? "text-[#00ff88]" : "text-[#ffffff]"}`}>
                             {g.team2_score}
                           </span>
                         )}

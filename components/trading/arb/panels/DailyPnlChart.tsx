@@ -72,7 +72,7 @@ export function DailyPnlChart({ data }: Props) {
 
   return (
     <div className="rounded-lg border border-gray-800 bg-[#111] p-3">
-      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
+      <h3 className="text-xs font-semibold text-white uppercase tracking-wide mb-2">
         Daily P&L
       </h3>
       <ResponsiveContainer width="100%" height={180}>
@@ -100,20 +100,20 @@ export function DailyPnlChart({ data }: Props) {
       {/* Summary row */}
       <div className="flex items-center gap-4 mt-2 pt-2 border-t border-gray-800 text-[10px]">
         <div>
-          <span className="text-gray-500">Today: </span>
+          <span className="text-white">Today: </span>
           <span className={`font-mono font-bold ${summary.today >= 0 ? "text-emerald-400" : "text-red-400"}`}>
             ${summary.today.toFixed(2)}
           </span>
-          <span className="text-gray-600 ml-1">({summary.todayTrades}t)</span>
+          <span className="text-white ml-1">({summary.todayTrades}t)</span>
         </div>
         <div>
-          <span className="text-gray-500">This Week: </span>
+          <span className="text-white">This Week: </span>
           <span className={`font-mono font-bold ${summary.week >= 0 ? "text-emerald-400" : "text-red-400"}`}>
             ${summary.week.toFixed(2)}
           </span>
         </div>
         <div>
-          <span className="text-gray-500">All Time: </span>
+          <span className="text-white">All Time: </span>
           <span className={`font-mono font-bold ${summary.allTime >= 0 ? "text-emerald-400" : "text-red-400"}`}>
             ${summary.allTime.toFixed(2)}
           </span>

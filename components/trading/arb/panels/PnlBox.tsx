@@ -35,7 +35,7 @@ export function PnlBox({ settledTrades, totalPnl }: Props) {
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-[#00ff88]/30" />
       <div className="flex items-center gap-0 divide-x divide-[#1a1a2e]">
         <div className="px-2 py-1.5 flex-shrink-0">
-          <span className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">REALIZED P&L</span>
+          <span className="text-[9px] font-mono uppercase tracking-widest text-[#ffffff]">REALIZED P&L</span>
         </div>
         <div className="px-3 py-1.5">
           <span className={`text-sm font-bold font-mono ${totalPnl >= 0 ? "text-[#00ff88]" : "text-[#ff3333]"}`}>
@@ -44,15 +44,15 @@ export function PnlBox({ settledTrades, totalPnl }: Props) {
         </div>
         <div className="px-3 py-1.5">
           <span className="text-[#00ff88] font-mono font-bold">{stats.wins}W</span>
-          <span className="text-[#3a3a5a] font-mono mx-1">/</span>
+          <span className="text-[#ffffff] font-mono mx-1">/</span>
           <span className="text-[#ff3333] font-mono font-bold">{stats.losses}L</span>
         </div>
         <div className="px-3 py-1.5">
-          <span className="text-[9px] text-[#4a4a6a] font-mono uppercase mr-1">Win Rate</span>
+          <span className="text-[9px] text-[#ffffff] font-mono uppercase mr-1">Win Rate</span>
           <span className="text-[#ff8c00] font-mono font-bold">{stats.winRate}%</span>
         </div>
         <div className="px-3 py-1.5">
-          <span className="text-[9px] text-[#4a4a6a] font-mono uppercase mr-1">Avg/Trade</span>
+          <span className="text-[9px] text-[#ffffff] font-mono uppercase mr-1">Avg/Trade</span>
           <span className={`font-mono font-bold ${stats.avg >= 0 ? "text-[#00ff88]" : "text-[#ff3333]"}`}>
             ${stats.avg.toFixed(4)}
           </span>

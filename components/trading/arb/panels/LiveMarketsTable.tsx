@@ -80,16 +80,16 @@ function timeCell(r: MarketRow): React.ReactNode {
     );
   }
   if (r.gameStatus === "post") {
-    return <span className="text-[#4a4a6a] font-mono">FINAL</span>;
+    return <span className="text-[#ffffff] font-mono">FINAL</span>;
   }
   return (
-    <span className="font-mono text-[#4a4a6a]">
+    <span className="font-mono text-[#ffffff]">
       {r.gameTime || r.date.slice(5)}
     </span>
   );
 }
 
-const TH = "px-2 py-1.5 text-[9px] font-mono font-medium uppercase tracking-wider text-[#4a4a6a]";
+const TH = "px-2 py-1.5 text-[9px] font-mono font-medium uppercase tracking-wider text-[#ffffff]";
 
 function SectionTable({ pairs, sectionIdx }: { pairs: MarketRow[][]; sectionIdx: number }) {
   return (
@@ -119,10 +119,10 @@ function SectionTable({ pairs, sectionIdx }: { pairs: MarketRow[][]; sectionIdx:
                 <td className="px-2 py-1 text-right font-mono text-[#00bfff]">{r.kYes}c</td>
                 <td className="px-2 py-1 text-right font-mono text-[#00ff88]">{r.hasPm ? `${r.oppPmYes}c` : "—"}</td>
                 <td className="px-2 py-1 text-right font-mono text-[#ff8c00]">{r.hasPm ? `${r.combined.toFixed(0)}c` : "—"}</td>
-                <td className={`px-2 py-1 text-right font-mono font-bold ${r.hasPm ? arbColor(r.netArb) : "text-[#4a4a6a]"} ${ri === bestIdx && r.hasPm ? "" : "opacity-50"}`}>
+                <td className={`px-2 py-1 text-right font-mono font-bold ${r.hasPm ? arbColor(r.netArb) : "text-[#ffffff]"} ${ri === bestIdx && r.hasPm ? "" : "opacity-50"}`}>
                   {r.hasPm ? `${r.netArb > 0 ? "+" : ""}${r.netArb.toFixed(1)}c` : "—"}
                 </td>
-                <td className="px-2 py-1 text-right font-mono text-[#4a4a6a]">{r.feeEst.toFixed(1)}c</td>
+                <td className="px-2 py-1 text-right font-mono text-[#ffffff]">{r.feeEst.toFixed(1)}c</td>
                 {ri === 0 && (
                   <td className="px-2 py-1 whitespace-nowrap text-[10px]" rowSpan={2}>
                     {timeCell(r)}
@@ -178,7 +178,7 @@ export function LiveMarketsTable({ games }: Props) {
   if (livePairs.length === 0 && todayPairs.length === 0 && tomorrowPairs.length === 0) {
     return (
       <div className="text-center py-6">
-        <span className="text-[9px] font-mono text-[#3a3a5a] uppercase tracking-wider">NO MARKET DATA</span>
+        <span className="text-[9px] font-mono text-[#ffffff] uppercase tracking-wider">NO MARKET DATA</span>
       </div>
     );
   }

@@ -40,7 +40,7 @@ export function SpreadHeatmapTable({ spreads, mappedGames }: Props) {
 
   if (allRows.length === 0) {
     return (
-      <div className="rounded-lg border border-gray-800 bg-[#111] p-4 text-center text-sm text-gray-500">
+      <div className="rounded-lg border border-gray-800 bg-[#111] p-4 text-center text-sm text-white">
         No mapped games
       </div>
     );
@@ -49,14 +49,14 @@ export function SpreadHeatmapTable({ spreads, mappedGames }: Props) {
   return (
     <div className="rounded-lg border border-gray-800 bg-[#111] overflow-hidden">
       <div className="px-3 py-2 border-b border-gray-800 flex items-center justify-between">
-        <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+        <h3 className="text-xs font-semibold text-white uppercase tracking-wide">
           Spread Heatmap ({allRows.length} games)
         </h3>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-gray-800 text-gray-500">
+            <tr className="border-b border-gray-800 text-white">
               <th className="px-2 py-1.5 text-left font-medium">GAME</th>
               <th className="px-2 py-1.5 text-left font-medium">TEAM</th>
               <th className="px-2 py-1.5 text-right font-medium">K BID</th>
@@ -80,35 +80,35 @@ export function SpreadHeatmapTable({ spreads, mappedGames }: Props) {
                     hasData ? "hover:bg-gray-800/30" : "opacity-40"
                   }`}
                 >
-                  <td className="px-2 py-1.5 font-mono text-gray-300 whitespace-nowrap">
+                  <td className="px-2 py-1.5 font-mono text-white whitespace-nowrap">
                     <span className={`inline-block rounded px-1 py-0.5 text-[10px] mr-1 ${sportBadge(row.sport)}`}>
                       {row.sport}
                     </span>
                     {row.game_id.slice(0, 20)}
                   </td>
                   <td className="px-2 py-1.5 font-bold text-white">{row.team}</td>
-                  <td className="px-2 py-1.5 text-right font-mono text-gray-400">
+                  <td className="px-2 py-1.5 text-right font-mono text-white">
                     {hasData ? row.k_bid : "-"}
                   </td>
-                  <td className="px-2 py-1.5 text-right font-mono text-gray-400">
+                  <td className="px-2 py-1.5 text-right font-mono text-white">
                     {hasData ? row.k_ask : "-"}
                   </td>
-                  <td className="px-2 py-1.5 text-right font-mono text-gray-400">
+                  <td className="px-2 py-1.5 text-right font-mono text-white">
                     {hasData ? row.pm_bid.toFixed(1) : "-"}
                   </td>
-                  <td className="px-2 py-1.5 text-right font-mono text-gray-400">
+                  <td className="px-2 py-1.5 text-right font-mono text-white">
                     {hasData ? row.pm_ask.toFixed(1) : "-"}
                   </td>
                   <td className="px-2 py-1.5 text-right">
-                    {hasData ? <SpreadCell cents={row.spread_buy_pm} /> : <span className="text-gray-600">-</span>}
+                    {hasData ? <SpreadCell cents={row.spread_buy_pm} /> : <span className="text-white">-</span>}
                   </td>
                   <td className="px-2 py-1.5 text-right">
-                    {hasData ? <SpreadCell cents={row.spread_buy_k} /> : <span className="text-gray-600">-</span>}
+                    {hasData ? <SpreadCell cents={row.spread_buy_k} /> : <span className="text-white">-</span>}
                   </td>
                   <td className="px-2 py-1.5 text-right">
-                    {hasData ? <SpreadCell cents={best} /> : <span className="text-gray-600">-</span>}
+                    {hasData ? <SpreadCell cents={best} /> : <span className="text-white">-</span>}
                   </td>
-                  <td className="px-2 py-1.5 text-right text-gray-500 whitespace-nowrap">
+                  <td className="px-2 py-1.5 text-right text-white whitespace-nowrap">
                     {row.updated_at ? timeAgo(row.updated_at) : "-"}
                   </td>
                 </tr>

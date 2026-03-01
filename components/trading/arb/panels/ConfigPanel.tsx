@@ -27,7 +27,7 @@ export function ConfigPanel({ specs }: Props) {
 
   return (
     <div className="rounded-lg border border-gray-800 bg-[#111] p-3">
-      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">
+      <h3 className="text-xs font-semibold text-white uppercase tracking-wide mb-3">
         Configuration
       </h3>
 
@@ -35,27 +35,27 @@ export function ConfigPanel({ specs }: Props) {
       <div className="mb-4 p-2 rounded bg-gray-800/50">
         <div className="grid grid-cols-3 gap-2 text-xs">
           <div>
-            <span className="text-gray-500">Mode</span>
+            <span className="text-white">Mode</span>
             <p className={`font-bold ${deployment.execution_mode === "LIVE" ? "text-emerald-400" : "text-yellow-400"}`}>
               {deployment.execution_mode || "-"}
             </p>
           </div>
           <div>
-            <span className="text-gray-500">Server</span>
+            <span className="text-white">Server</span>
             <p className="text-white">{deployment.server || "-"}</p>
           </div>
           <div>
-            <span className="text-gray-500">Python</span>
+            <span className="text-white">Python</span>
             <p className="text-white font-mono">{deployment.python_version || "-"}</p>
           </div>
           <div className="col-span-3">
-            <span className="text-gray-500">Git</span>
+            <span className="text-white">Git</span>
             <p className="text-white font-mono text-[10px]">
               <span className="text-emerald-400">{deployment.git_branch || "-"}</span>
               {" @ "}
               <span className="text-blue-400">{deployment.git_commit_short || "-"}</span>
               {" "}
-              <span className="text-gray-500">{deployment.git_commit_msg || ""}</span>
+              <span className="text-white">{deployment.git_commit_msg || ""}</span>
             </p>
           </div>
         </div>
@@ -65,7 +65,7 @@ export function ConfigPanel({ specs }: Props) {
       <div className="grid grid-cols-4 gap-2">
         {configItems.map((item) => (
           <div key={item.label} className="text-xs">
-            <span className="text-gray-500">{item.label}</span>
+            <span className="text-white">{item.label}</span>
             <p className="text-white font-mono">{item.value}</p>
           </div>
         ))}

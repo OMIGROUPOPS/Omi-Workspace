@@ -21,7 +21,7 @@ export function WsHealthPanel({ specs, system }: Props) {
 
   return (
     <div className="rounded-lg border border-gray-800 bg-[#111] p-3">
-      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">
+      <h3 className="text-xs font-semibold text-white uppercase tracking-wide mb-3">
         WebSocket Health
       </h3>
       <div className="grid grid-cols-2 gap-4">
@@ -30,7 +30,7 @@ export function WsHealthPanel({ specs, system }: Props) {
             <Pulse active={kConnected} />
             <span className="text-sm text-white font-medium">Kalshi WS</span>
           </div>
-          <div className="text-xs text-gray-400 pl-4 space-y-1">
+          <div className="text-xs text-white pl-4 space-y-1">
             <div>{kMsgs.toLocaleString()} messages ({kRate}/s)</div>
           </div>
         </div>
@@ -39,27 +39,27 @@ export function WsHealthPanel({ specs, system }: Props) {
             <Pulse active={pmConnected} />
             <span className="text-sm text-white font-medium">PM WS</span>
           </div>
-          <div className="text-xs text-gray-400 pl-4 space-y-1">
+          <div className="text-xs text-white pl-4 space-y-1">
             <div>{pmMsgs.toLocaleString()} messages ({pmRate}/s)</div>
           </div>
         </div>
         <div>
-          <span className="text-[10px] text-gray-500 uppercase">Uptime</span>
+          <span className="text-[10px] text-white uppercase">Uptime</span>
           <p className="text-sm text-white font-mono">{formatUptime(uptime)}</p>
         </div>
         <div>
-          <span className="text-[10px] text-gray-500 uppercase">Last Scan</span>
+          <span className="text-[10px] text-white uppercase">Last Scan</span>
           <p className="text-sm text-white font-mono">{system?.last_scan_at ? timeAgo(system.last_scan_at) : "-"}</p>
         </div>
         {/* OMI Cache */}
         {conn.omi_signals_cached > 0 && (
           <>
             <div>
-              <span className="text-[10px] text-gray-500 uppercase">OMI Signals</span>
+              <span className="text-[10px] text-white uppercase">OMI Signals</span>
               <p className="text-sm text-white font-mono">{conn.omi_signals_cached} ({conn.omi_live_count} live)</p>
             </div>
             <div>
-              <span className="text-[10px] text-gray-500 uppercase">OMI Refresh</span>
+              <span className="text-[10px] text-white uppercase">OMI Refresh</span>
               <p className={`text-sm font-mono ${conn.omi_is_stale ? "text-red-400" : "text-emerald-400"}`}>
                 {conn.omi_last_refresh_ago_s != null ? `${conn.omi_last_refresh_ago_s}s ago` : "-"}
               </p>

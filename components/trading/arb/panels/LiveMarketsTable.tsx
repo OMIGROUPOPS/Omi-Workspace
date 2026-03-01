@@ -59,7 +59,8 @@ function buildRow(
 ): MarketRow | null {
   if (!tp) return null;
   const { k_bid, k_ask, pm_bid, pm_ask } = tp;
-  if (!k_bid && !k_ask && !pm_bid && !pm_ask) return null;
+  // Need prices from BOTH platforms for arb calculation
+  if ((!k_bid && !k_ask) || (!pm_bid && !pm_ask)) return null;
 
   // Dir A: BUY PM SELL K → buy PM ask, sell K bid
   const feeA = computeFeeEst(k_bid || 0);

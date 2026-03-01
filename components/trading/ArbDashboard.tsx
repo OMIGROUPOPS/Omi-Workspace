@@ -43,12 +43,15 @@ export default function ArbDashboard() {
     markSettled,
   } = data;
 
-  // Settled trades: those with settlement or reconciled P&L
+  // Settled trades: those with settlement or reconciled P&L, excluding open positions
   const settledTrades = useMemo(() => {
+    const openGameIds = new Set(activePositions.map((p) => p.game_id));
     return filteredTrades.filter(
-      (t) => t.settlement_pnl != null || t.reconciled_pnl != null
+      (t) =>
+        (t.settlement_pnl != null || t.reconciled_pnl != null) &&
+        !openGameIds.has(t.game_id)
     );
-  }, [filteredTrades]);
+  }, [filteredTrades, activePositions]);
 
   // Total realized P&L for settled trades
   const settledPnlTotal = useMemo(() => {

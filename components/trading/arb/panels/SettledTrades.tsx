@@ -74,9 +74,12 @@ export function SettledTrades({ trades, expandedTrade, setExpandedTrade }: Props
                     const pnl = tradePnl(t);
                     const isExpanded = expandedTrade === i;
                     const isOdd = i % 2 === 1;
-                    const kCents = typeof t.k_price === "number" ? t.k_price : 0;
-                    const pmCents = normPmCents(t.pm_price);
-                    const combined = kCents + pmCents;
+                    // Compute actual cost per leg (direction-aware)
+                    const rawK = typeof t.k_price === "number" ? t.k_price : 0;
+                    const rawPm = normPmCents(t.pm_price);
+                    const kCost = t.direction === "BUY_PM_SELL_K" ? (100 - rawK) : rawK;
+                    const pmCost = t.pm_is_buy_short ? (100 - rawPm) : rawPm;
+                    const combined = kCost + pmCost;
 
                     return (
                       <React.Fragment key={`${t.timestamp}-${t.team}-${i}`}>
@@ -96,10 +99,10 @@ export function SettledTrades({ trades, expandedTrade, setExpandedTrade }: Props
                             ) : null}
                           </td>
                           <td className="px-2 py-1.5 text-right font-mono text-[#00bfff]">
-                            {kCents > 0 ? `${kCents}c` : "—"}
+                            {kCost > 0 ? `${kCost.toFixed(0)}c` : "—"}
                           </td>
                           <td className="px-2 py-1.5 text-right font-mono text-[#00ff88]">
-                            {pmCents > 0 ? `${pmCents.toFixed(0)}c` : "—"}
+                            {pmCost > 0 ? `${pmCost.toFixed(0)}c` : "—"}
                           </td>
                           <td className="px-2 py-1.5 text-right font-mono text-[#ff8c00]">
                             {combined > 0 ? `${combined.toFixed(0)}c` : "—"}

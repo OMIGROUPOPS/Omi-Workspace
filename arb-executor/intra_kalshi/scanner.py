@@ -257,19 +257,23 @@ def scan_monotonicity(events, markets):
                 # Inversion: higher strike has HIGHER yes_ask
                 if hi_ask > lo_ask:
                     profit = hi_ask - lo_ask
+                    # Correct trade: BUY YES lower (underpriced) + BUY NO higher (overpriced)
+                    # Cost = lo_ask + (100 - hi_bid), profit = hi_bid - lo_ask
+                    exec_profit = hi_bid - lo_ask
                     results.append({
                         'scan': 'monotonicity',
                         'severity': severity(profit),
                         'profit_cents': profit,
+                        'exec_profit': exec_profit,
                         'description': (
                             f'INVERSION {team}: strike {lo["floor_strike"]}→{hi["floor_strike"]}, '
-                            f'ask {lo_ask}c→{hi_ask}c (+{profit}c)'
+                            f'ask {lo_ask}c→{hi_ask}c (+{profit}c, exec={exec_profit}c)'
                         ),
                         'markets': [
                             {'ticker': lo['ticker'], 'floor_strike': lo['floor_strike'],
-                             'yes_ask': lo_ask, 'yes_bid': lo_bid, 'action': 'BUY NO', 'title': lo['title']},
+                             'yes_ask': lo_ask, 'yes_bid': lo_bid, 'action': 'BUY YES', 'title': lo['title']},
                             {'ticker': hi['ticker'], 'floor_strike': hi['floor_strike'],
-                             'yes_ask': hi_ask, 'yes_bid': hi_bid, 'action': 'BUY YES', 'title': hi['title']},
+                             'yes_ask': hi_ask, 'yes_bid': hi_bid, 'action': 'BUY NO', 'title': hi['title']},
                         ],
                         'event_ticker': et,
                         'team': team,

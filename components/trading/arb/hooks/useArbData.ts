@@ -31,6 +31,7 @@ export function useArbData() {
   const [expandedMonitorTrade, setExpandedMonitorTrade] = useState<number | null>(null);
   const prevPortfolioRef = useRef<{ k: number; pm: number; total: number } | null>(null);
   const [portfolioDelta, setPortfolioDelta] = useState<{ k: number; pm: number; total: number }>({ k: 0, pm: 0, total: 0 });
+  const mappedGamesLastUpdateRef = useRef<number>(0);
 
   const fetchData = useCallback(async () => {
     try {
@@ -38,11 +39,16 @@ export function useArbData() {
       if (res.ok) {
         const data = await res.json();
         setState((prev) => {
+          const prevLen = prev?.mapped_games?.length ?? 0;
+          const newLen = Array.isArray(data.mapped_games) ? data.mapped_games.length : 0;
           // Guard against momentary data gaps during PM WS reconnects:
-          // If the new payload has no mapped_games but the previous state
-          // had a substantial list, keep the previous games to avoid flicker.
-          if (prev?.mapped_games?.length && !data.mapped_games?.length) {
-            return { ...data, mapped_games: prev.mapped_games };
+          // If previous state had games but incoming is empty/tiny, keep previous.
+          if (prevLen > 5 && newLen === 0) {
+            return { ...data, mapped_games: prev!.mapped_games };
+          }
+          // Meaningful update — track the timestamp
+          if (newLen > 0) {
+            mappedGamesLastUpdateRef.current = Date.now();
           }
           return data;
         });
@@ -80,6 +86,8 @@ export function useArbData() {
 
   const hasData = state && state.updated_at;
   const isStale = state?.updated_at && Date.now() - new Date(state.updated_at).getTime() > 60_000;
+  const mappedGamesStale = mappedGamesLastUpdateRef.current > 0 &&
+    Date.now() - mappedGamesLastUpdateRef.current > 60_000;
 
   // ── Date navigation ──
   const selectedDate = useMemo(() => {
@@ -493,6 +501,7 @@ export function useArbData() {
     portfolioDelta,
     hasData,
     isStale,
+    mappedGamesStale,
     selectedDate,
     dateLabel,
     sortedSpreads,

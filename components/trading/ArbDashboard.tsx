@@ -42,6 +42,7 @@ export default function ArbDashboard() {
     expandedMonitorTrade,
     setExpandedMonitorTrade,
     markSettled,
+    mappedGamesStale,
   } = data;
 
   // Settled trades: those with settlement or reconciled P&L, excluding open positions
@@ -280,6 +281,9 @@ export default function ArbDashboard() {
             <div className="px-3 py-1.5 border-b border-[#1a1a2e]">
               <h3 className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">
                 LIVE MARKETS <span className="text-[#00bfff] ml-1">({state?.mapped_games?.length ?? 0})</span>
+                {mappedGamesStale && (
+                  <span className="text-[#ff8c00] ml-2 animate-pulse">STALE</span>
+                )}
               </h3>
             </div>
             <LiveMarketsTable games={state?.mapped_games ?? []} />

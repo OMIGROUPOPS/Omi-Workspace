@@ -83,10 +83,21 @@ def parse_close_time(ct):
 # Scan 1: Binary Complement
 # ---------------------------------------------------------------------------
 
+def is_dead(m):
+    """Market is dead/resolved: yes_ask=100, yes_bid=0, or no volume."""
+    return (
+        m.get('yes_ask') in (None, 100) or
+        m.get('yes_bid') in (None, 0) or
+        m.get('volume_24h', 0) == 0
+    )
+
+
 def scan_binary_complement(markets):
     """Markets where yes_ask + no_ask < 98c — buy both = guaranteed profit."""
     results = []
     for ticker, m in markets.items():
+        if is_dead(m):
+            continue
         ya = m.get('yes_ask')
         na = m.get('no_ask')
         if ya is None or na is None:
@@ -112,7 +123,7 @@ def scan_binary_complement(markets):
 # ---------------------------------------------------------------------------
 
 def scan_multi_outcome(events, markets):
-    """Mutually exclusive events where sum of yes_asks deviates from 100c."""
+    """Mutually exclusive events where BID sum deviates from 100c by > 3c."""
     results = []
     for ev in events:
         if not ev.get('mutually_exclusive'):
@@ -130,7 +141,7 @@ def scan_multi_outcome(events, markets):
             ya = m.get('yes_ask')
             yb = m.get('yes_bid')
             if ya is not None:
-                asks.append((t, ya, m.get('title', '')))
+                asks.append((t, ya, yb or 0, m.get('title', ''), m.get('volume_24h', 0)))
             if yb is not None:
                 bids.append((t, yb))
 
@@ -138,18 +149,23 @@ def scan_multi_outcome(events, markets):
             continue
 
         ask_sum = sum(a[1] for a in asks)
-        bid_sum = sum(b[1] for b in bids) if bids else None
-        total_vol = sum(markets[t].get('volume_24h', 0) for t in tickers if t in markets)
+        bid_sum = sum(b[1] for b in bids) if bids else 0
+        total_vol = sum(a[4] for a in asks)
 
-        if ask_sum < 97:
-            # Underpriced: buy all YES outcomes
-            profit = 100 - ask_sum
+        # Only report if BID sum deviates > 3c — that's what's actually executable
+        if bid_sum < 97:
+            # Underpriced on bid side: buy all YES at ask
+            # Profit is limited by what we actually pay (ask side)
+            profit = 100 - ask_sum if ask_sum < 100 else 0
+            if profit <= 0:
+                continue
             results.append({
                 'scan': 'multi_outcome',
                 'severity': severity(profit),
                 'profit_cents': profit,
-                'description': f'BUY ALL: {len(asks)} outcomes sum_yes_ask={ask_sum}c → {profit}c profit (buy all YES)',
-                'markets': [{'ticker': t, 'yes_ask': ya, 'title': title} for t, ya, title in asks],
+                'description': f'BUY ALL: {len(asks)} outcomes ask_sum={ask_sum}c bid_sum={bid_sum}c → {profit}c profit',
+                'markets': [{'ticker': t, 'yes_ask': ya, 'yes_bid': yb, 'title': title}
+                            for t, ya, yb, title, _ in asks],
                 'event_ticker': ev.get('event_ticker', ''),
                 'event_title': ev.get('title', ''),
                 'category': ev.get('category', ''),
@@ -158,17 +174,16 @@ def scan_multi_outcome(events, markets):
                 'market_count': len(asks),
                 'volume_24h': total_vol,
             })
-        elif ask_sum > 103:
-            # Overpriced: sell all YES (= buy NO on each)
-            # Actual profit depends on bid side — you sell at yes_bid
-            sell_profit = (bid_sum - 100) if bid_sum and bid_sum > 100 else None
-            profit = ask_sum - 100
+        elif bid_sum > 103:
+            # Overpriced: sell all YES at bid price
+            profit = bid_sum - 100
             results.append({
                 'scan': 'multi_outcome',
-                'severity': severity(sell_profit if sell_profit else profit),
-                'profit_cents': sell_profit if sell_profit else profit,
-                'description': f'SELL ALL: {len(asks)} outcomes sum_yes_ask={ask_sum}c (sum_yes_bid={bid_sum}) → ~{sell_profit or profit}c profit (sell YES)',
-                'markets': [{'ticker': t, 'yes_ask': ya, 'title': title} for t, ya, title in asks],
+                'severity': severity(profit),
+                'profit_cents': profit,
+                'description': f'SELL ALL: {len(asks)} outcomes bid_sum={bid_sum}c ask_sum={ask_sum}c → {profit}c profit',
+                'markets': [{'ticker': t, 'yes_ask': ya, 'yes_bid': yb, 'title': title}
+                            for t, ya, yb, title, _ in asks],
                 'event_ticker': ev.get('event_ticker', ''),
                 'event_title': ev.get('title', ''),
                 'category': ev.get('category', ''),
@@ -230,13 +245,17 @@ def scan_monotonicity(events, markets):
                 hi = sorted_mkts[i + 1]
                 lo_ask = lo['yes_ask']
                 hi_ask = hi['yes_ask']
+                lo_bid = lo.get('yes_bid')
+                hi_bid = hi.get('yes_bid')
                 if lo_ask is None or hi_ask is None:
+                    continue
+                # Filter dead markets: both must have yes_bid > 0 and yes_ask < 99
+                if not lo_bid or lo_bid <= 0 or not hi_bid or hi_bid <= 0:
+                    continue
+                if lo_ask >= 99 or hi_ask >= 99:
                     continue
                 # Inversion: higher strike has HIGHER yes_ask
                 if hi_ask > lo_ask:
-                    # Buy YES on higher strike (cheaper should be, but isn't)
-                    # Buy NO on lower strike (= sell YES at lower strike)
-                    # If higher strike hits → lower MUST hit too → collect on both
                     profit = hi_ask - lo_ask
                     results.append({
                         'scan': 'monotonicity',
@@ -248,9 +267,9 @@ def scan_monotonicity(events, markets):
                         ),
                         'markets': [
                             {'ticker': lo['ticker'], 'floor_strike': lo['floor_strike'],
-                             'yes_ask': lo_ask, 'action': 'BUY NO', 'title': lo['title']},
+                             'yes_ask': lo_ask, 'yes_bid': lo_bid, 'action': 'BUY NO', 'title': lo['title']},
                             {'ticker': hi['ticker'], 'floor_strike': hi['floor_strike'],
-                             'yes_ask': hi_ask, 'action': 'BUY YES', 'title': hi['title']},
+                             'yes_ask': hi_ask, 'yes_bid': hi_bid, 'action': 'BUY YES', 'title': hi['title']},
                         ],
                         'event_ticker': et,
                         'team': team,
@@ -288,8 +307,25 @@ def classify_sport_event(event_ticker):
     return game_id, mtype
 
 
+def detect_sport(event_ticker):
+    """Detect sport from event ticker prefix."""
+    prefix = extract_series_prefix(event_ticker).upper()
+    if 'NBA' in prefix:
+        return 'NBA'
+    if 'NHL' in prefix:
+        return 'NHL'
+    if 'NCAAMB' in prefix:
+        return 'CBB'
+    if 'NFL' in prefix:
+        return 'NFL'
+    if 'MLB' in prefix:
+        return 'MLB'
+    return 'OTHER'
+
+
 def scan_cross_event(events, markets):
-    """Compare implied probabilities across moneyline vs spread for same game."""
+    """Compare implied probabilities across moneyline vs spread for same game.
+    Both markets must have non-zero volume."""
     # Group events by game_id
     games = defaultdict(dict)  # game_id → {moneyline: event, spread: event, total: event}
     for ev in events:
@@ -304,21 +340,26 @@ def scan_cross_event(events, markets):
         if not ml_ev or not sp_ev:
             continue
 
-        # Get moneyline prices (team YES = win prob)
-        ml_prices = {}  # team → yes_ask
+        sport = detect_sport(ml_ev['event_ticker'])
+
+        # Get moneyline prices (team YES = win prob) — require volume
+        ml_data = {}  # team → (yes_ask, yes_bid, ticker, vol)
         for t in ml_ev.get('market_tickers', []):
             m = markets.get(t)
-            if m and m.get('yes_ask') is not None:
-                team = extract_team(t)
-                ml_prices[team] = m['yes_ask']
+            if not m or m.get('yes_ask') is None:
+                continue
+            if m.get('volume_24h', 0) == 0:
+                continue
+            team = extract_team(t)
+            ml_data[team] = (m['yes_ask'], m.get('yes_bid', 0), t, m.get('volume_24h', 0))
 
-        # Get spread-implied probabilities from the lowest strike
-        # At spread floor_strike=1.5, yes_ask ≈ implied prob of winning by >1.5
-        # We want the ~0.5 strike (closest to moneyline) or lowest available
-        sp_prices = {}
+        # Get spread prices — require volume, keep lowest strike per team
+        sp_data = {}  # team → (strike, yes_ask, yes_bid, ticker, vol)
         for t in sp_ev.get('market_tickers', []):
             m = markets.get(t)
             if not m or m.get('yes_ask') is None:
+                continue
+            if m.get('volume_24h', 0) == 0:
                 continue
             fs = m.get('floor_strike')
             if fs is None:
@@ -328,42 +369,44 @@ def scan_cross_event(events, markets):
             except (ValueError, TypeError):
                 continue
             team = extract_team(t)
-            # Keep the lowest floor_strike per team (closest to moneyline)
-            if team not in sp_prices or fs_num < sp_prices[team][0]:
-                sp_prices[team] = (fs_num, m['yes_ask'], t)
+            if team not in sp_data or fs_num < sp_data[team][0]:
+                sp_data[team] = (fs_num, m['yes_ask'], m.get('yes_bid', 0), t, m.get('volume_24h', 0))
 
         # Compare ML vs lowest-spread implied probs
-        for team in ml_prices:
-            if team not in sp_prices:
+        for team in ml_data:
+            if team not in sp_data:
                 continue
-            ml_prob = ml_prices[team]
-            sp_strike, sp_prob, sp_ticker = sp_prices[team]
-            gap = abs(ml_prob - sp_prob)
+            ml_ask, ml_bid, ml_ticker, ml_vol = ml_data[team]
+            sp_strike, sp_ask, sp_bid, sp_ticker, sp_vol = sp_data[team]
+
+            gap = abs(ml_ask - sp_ask)
             if gap > 5:
-                profit = gap
-                ml_ticker = None
-                for t in ml_ev.get('market_tickers', []):
-                    if extract_team(t) == team:
-                        ml_ticker = t
-                        break
+                # Direction: which is cheap, which is expensive?
+                if ml_ask < sp_ask:
+                    action = f'BUY ML YES@{ml_ask}c + SELL Spread YES@{sp_bid}c'
+                else:
+                    action = f'SELL ML YES@{ml_bid}c + BUY Spread YES@{sp_ask}c'
+
                 results.append({
                     'scan': 'cross_event',
-                    'severity': severity(profit),
-                    'profit_cents': profit,
+                    'severity': severity(gap),
+                    'profit_cents': gap,
                     'description': (
-                        f'{team} ML={ml_prob}c vs Spread({sp_strike})={sp_prob}c → {gap}c gap'
+                        f'[{sport}] {team} ML={ml_ask}c vs Spread(>{sp_strike})={sp_ask}c → {gap}c gap'
                     ),
+                    'action': action,
                     'markets': [
-                        {'ticker': ml_ticker or f'{team}_ML', 'yes_ask': ml_prob,
-                         'type': 'moneyline', 'title': f'{team} moneyline'},
-                        {'ticker': sp_ticker, 'yes_ask': sp_prob, 'floor_strike': sp_strike,
-                         'type': 'spread', 'title': f'{team} spread >{sp_strike}'},
+                        {'ticker': ml_ticker, 'yes_ask': ml_ask, 'yes_bid': ml_bid,
+                         'type': 'moneyline', 'volume_24h': ml_vol},
+                        {'ticker': sp_ticker, 'yes_ask': sp_ask, 'yes_bid': sp_bid,
+                         'floor_strike': sp_strike, 'type': 'spread', 'volume_24h': sp_vol},
                     ],
                     'event_ticker': game_id,
                     'game_id': game_id,
+                    'sport': sport,
                     'team': team,
                     'category': 'Sports',
-                    'volume_24h': 0,
+                    'volume_24h': ml_vol + sp_vol,
                 })
 
     results.sort(key=lambda x: -x['profit_cents'])
@@ -377,15 +420,16 @@ def scan_crypto_time(events, markets):
     """
     Same crypto underlying + same strike at different expiry dates.
     For 'greater' type: later expiry → yes_ask should be >= earlier expiry.
+    Filters: no yes_ask=100 (dead), no expired markets.
     """
+    now = datetime.now().astimezone()
+
     # Group crypto events by base ticker
     crypto_bases = defaultdict(list)
     for ev in events:
         if ev.get('category') != 'Crypto':
             continue
         base = extract_crypto_base(ev['event_ticker'])
-        # Only include 'directional' bases (KXBTCD, KXETHD, KXSOLD, etc.)
-        # Skip 'range' bases (KXBTC, KXETH — these are "between" range markets)
         crypto_bases[base].append(ev)
 
     results = []
@@ -393,8 +437,6 @@ def scan_crypto_time(events, markets):
         if len(base_events) < 2:
             continue
 
-        # For each event, collect 'greater' markets keyed by floor_strike
-        # Structure: {floor_strike: [(close_time, yes_ask, ticker, event_ticker), ...]}
         strike_series = defaultdict(list)
         for ev in base_events:
             for t in ev.get('market_tickers', []):
@@ -403,29 +445,36 @@ def scan_crypto_time(events, markets):
                     continue
                 if m.get('strike_type') != 'greater':
                     continue
+                ya = m.get('yes_ask')
+                # Filter dead markets
+                if ya is None or ya >= 100 or ya <= 0:
+                    continue
+                if m.get('yes_bid', 0) <= 0:
+                    continue
                 fs = m.get('floor_strike')
                 ct = parse_close_time(m.get('close_time'))
-                ya = m.get('yes_ask')
-                if fs is None or ct is None or ya is None:
+                if fs is None or ct is None:
+                    continue
+                # Filter expired
+                if ct <= now:
                     continue
                 try:
                     fs_key = float(fs)
                 except (ValueError, TypeError):
                     continue
-                strike_series[fs_key].append((ct, ya, t, ev['event_ticker']))
+                strike_series[fs_key].append((ct, ya, m.get('yes_bid', 0), t, ev['event_ticker'],
+                                              m.get('volume_24h', 0)))
 
-        # Check monotonicity within each strike
         for fs_key, entries in strike_series.items():
             if len(entries) < 2:
                 continue
-            sorted_entries = sorted(entries, key=lambda x: x[0])  # sort by close_time
+            sorted_entries = sorted(entries, key=lambda x: x[0])
 
             for i in range(len(sorted_entries) - 1):
-                early_ct, early_ask, early_t, early_ev = sorted_entries[i]
-                late_ct, late_ask, late_t, late_ev = sorted_entries[i + 1]
+                early_ct, early_ask, early_bid, early_t, early_ev, early_vol = sorted_entries[i]
+                late_ct, late_ask, late_bid, late_t, late_ev, late_vol = sorted_entries[i + 1]
 
-                # Later expiry should have >= yes_ask (more time to hit target)
-                # Inversion: later expiry has LOWER yes_ask
+                # Later expiry should have >= yes_ask
                 if late_ask < early_ask:
                     profit = early_ask - late_ask
                     results.append({
@@ -438,17 +487,17 @@ def scan_crypto_time(events, markets):
                             f'late({late_ct.strftime("%m/%d")})={late_ask}c → {profit}c inversion'
                         ),
                         'markets': [
-                            {'ticker': early_t, 'yes_ask': early_ask,
+                            {'ticker': early_t, 'yes_ask': early_ask, 'yes_bid': early_bid,
                              'close_time': str(early_ct), 'action': 'SELL (buy NO)',
-                             'title': f'{base} >{fs_key} expires {early_ct.strftime("%m/%d")}'},
-                            {'ticker': late_t, 'yes_ask': late_ask,
+                             'volume_24h': early_vol},
+                            {'ticker': late_t, 'yes_ask': late_ask, 'yes_bid': late_bid,
                              'close_time': str(late_ct), 'action': 'BUY YES',
-                             'title': f'{base} >{fs_key} expires {late_ct.strftime("%m/%d")}'},
+                             'volume_24h': late_vol},
                         ],
                         'event_ticker': base,
                         'floor_strike': fs_key,
                         'category': 'Crypto',
-                        'volume_24h': 0,
+                        'volume_24h': early_vol + late_vol,
                     })
 
     results.sort(key=lambda x: -x['profit_cents'])
@@ -493,14 +542,18 @@ def print_report(all_results):
             print('    None found')
             continue
 
-        # Show top 15 per scan type
-        for r in items[:15]:
+        # Show top 25 for cross_event, 15 for others
+        show_n = 25 if scan_type == 'cross_event' else 15
+        for r in items[:show_n]:
             sev_tag = f'[{r["severity"]:>6s}]'
             profit_tag = f'{r["profit_cents"]:>4d}c'
-            print(f'    {sev_tag} {profit_tag}  {r["description"]}')
-        if len(items) > 15:
-            remaining_profit = sum(r['profit_cents'] for r in items[15:])
-            print(f'    ... +{len(items) - 15} more ({remaining_profit}c total)')
+            vol_tag = f'vol={r.get("volume_24h", 0):>10,}' if r.get('volume_24h') else ''
+            print(f'    {sev_tag} {profit_tag}  {r["description"]}  {vol_tag}')
+            if r.get('action'):
+                print(f'             → {r["action"]}')
+        if len(items) > show_n:
+            remaining_profit = sum(r['profit_cents'] for r in items[show_n:])
+            print(f'    ... +{len(items) - show_n} more ({remaining_profit}c total)')
 
     print('\n' + '=' * 70)
 

@@ -2237,6 +2237,7 @@ async def execute_arb(
             print(f"[TIER] Kalshi IOC failed. Checking Tier 1: wider arb at {wider_price}c "
                   f"(spread {net_spread:.0f}c net of fees, concession {concession}c) -> placing IOC")
 
+            k_order_start = time.time()  # Reset so Tier 1 timing is standalone
             try:
                 t1_result = await kalshi_api.place_order(
                     session, arb.kalshi_ticker,

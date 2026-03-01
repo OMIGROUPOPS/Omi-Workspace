@@ -3740,6 +3740,7 @@ def _calc_kalshi_fee(k_price_cents: float, qty: int) -> float:
 def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
                execution_time_ms: float = 0, pm_order_ms: int = 0,
                unwind_loss_cents: float = None, unwind_pnl_cents: float = None, *,
+               k_order_ms: int = 0,
                sizing_details: Dict = None, execution_phase: str = "ioc",
                is_maker: bool = False, gtc_rest_time_ms: float = 0,
                gtc_spread_checks: int = 0, gtc_cancel_reason: str = "",
@@ -3812,6 +3813,7 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
         # Execution
         'execution_time_ms': round(execution_time_ms, 1),
         'pm_order_ms': pm_order_ms,
+        'k_order_ms': k_order_ms,
         'hedged': hedged,
         'paper_mode': Config.is_paper(),
 

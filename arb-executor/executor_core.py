@@ -1917,6 +1917,53 @@ async def execute_arb(
                     print(f"[PM_FIRST] K price refreshed: {old_k_limit}c -> {k_limit_price}c "
                           f"(live bid={live_bid} ask={live_ask})")
 
+                # Post-refresh profitability check: abort if spread collapsed
+                pm_fill_cents = pm_fill_price * 100
+                if arb.direction == 'BUY_PM_SELL_K':
+                    new_spread = live_bid - pm_fill_cents
+                else:
+                    new_spread = pm_fill_cents - live_ask
+                k_fee = 2  # taker fee
+                new_net = new_spread - k_fee
+                if new_net < 1:
+                    drift = abs(old_k_limit - k_limit_price)
+                    print(f"[K_PRICE_DRIFT] K moved {old_k_limit}c -> {k_limit_price}c ({drift}c drift), "
+                          f"spread collapsed {spread:.0f}c -> {new_spread:.0f}c, net={new_net:.1f}c — aborting, unwinding PM")
+                    original_intent = params['pm_intent']
+                    reverse_intent = REVERSE_INTENT[original_intent]
+                    unwind_filled, unwind_fill_price = await _unwind_pm_position(
+                        session, pm_api, pm_slug, reverse_intent,
+                        pm_fill_cents, pm_filled, actual_pm_outcome_idx,
+                    )
+                    exited = unwind_filled > 0
+                    unwind_pnl = None
+                    if exited and unwind_fill_price is not None:
+                        if reverse_intent == 2:
+                            pnl_per = (unwind_fill_price * 100) - pm_fill_cents
+                        else:
+                            pnl_per = pm_fill_cents - (unwind_fill_price * 100)
+                        unwind_pnl = pnl_per * unwind_filled
+                        pnl_label = "gain" if unwind_pnl > 0 else "loss"
+                        print(f"[K_PRICE_DRIFT] PM unwind {pnl_label}: {abs(pnl_per):.1f}c x {unwind_filled} = {abs(unwind_pnl):.1f}c")
+                    if not exited:
+                        print(f"[K_PRICE_DRIFT] PM unwind failed — position remains open!")
+                    return TradeResult(
+                        success=False, pm_filled=pm_filled,
+                        pm_price=pm_fill_price,
+                        unhedged=not exited,
+                        abort_reason=f"K price drift {drift}c: spread {spread:.0f}c -> {new_spread:.0f}c, PM unwound",
+                        pm_order_ms=pm_order_ms,
+                        execution_time_ms=int((time.time() - start_time) * 1000),
+                        pm_response_details=pm_response_details,
+                        execution_phase="ioc",
+                        exited=exited,
+                        unwind_loss_cents=abs(unwind_pnl) if unwind_pnl and unwind_pnl < 0 else 0,
+                        unwind_pnl_cents=unwind_pnl,
+                        unwind_fill_price=unwind_fill_price if exited else None,
+                        unwind_qty=unwind_filled if exited else 0,
+                        tier="K_PRICE_DRIFT",
+                    )
+
         # k_filled stays 0 — falls through to Step 6 (K order placement)
 
     # Step 5.5: PM filled — NOW lock the game to prevent duplicate trades

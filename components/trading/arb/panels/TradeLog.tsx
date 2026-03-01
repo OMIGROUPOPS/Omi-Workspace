@@ -2,7 +2,7 @@
 
 import React from "react";
 import type { TradeEntry } from "../types";
-import { tradePnl, sportBadge, statusBadge, formatDateTime, netColor, getL1Depth, depthColor, fmtNum } from "../helpers";
+import { tradePnl, sportBadge, statusBadge, formatDateTime, netColor, getL1Depth, depthColor, fmtNum, normPmCents } from "../helpers";
 
 interface Props {
   trades: TradeEntry[];
@@ -10,10 +10,8 @@ interface Props {
   setExpandedTrade: (idx: number | null) => void;
 }
 
-function normPmNum(pm: number | undefined): number {
-  if (typeof pm !== "number") return 0;
-  return pm < 1 && pm > 0 ? pm * 100 : pm;
-}
+/** @deprecated Use normPmCents from helpers */
+const normPmNum = normPmCents;
 
 function normPm(pm: number | undefined): string {
   if (typeof pm !== "number") return "-";
@@ -31,7 +29,7 @@ function kalshiUrl(ticker: string | undefined): string | null {
   return `https://kalshi.com/markets/${ticker}`;
 }
 
-function TradeSpecs({ t }: { t: TradeEntry }) {
+export function TradeSpecs({ t }: { t: TradeEntry }) {
   const pmVal = normPmNum(t.pm_price);
   const kVal = typeof t.k_price === "number" ? t.k_price : 0;
   const team = t.team_full_name || t.team || "?";

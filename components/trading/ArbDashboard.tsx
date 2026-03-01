@@ -1,17 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useState, useMemo } from "react";
 import { useArbData } from "./arb/hooks/useArbData";
 import { useAlerts } from "./arb/hooks/useAlerts";
 import { ArbDashboardHeader } from "./arb/ArbDashboardHeader";
 import { DashboardCard } from "./arb/shared/DashboardCard";
 import { FilterButton } from "./arb/shared/FilterButton";
-import { TradeLog } from "./arb/panels/TradeLog";
+import { LiveMarketsTable } from "./arb/panels/LiveMarketsTable";
 import { PositionsTable } from "./arb/panels/PositionsTable";
+import { SettledTrades } from "./arb/panels/SettledTrades";
+import { PnlBox } from "./arb/panels/PnlBox";
+import type { DashboardTab } from "./arb/types";
 
 export default function ArbDashboard() {
   const data = useArbData();
   const alerts = useAlerts(data.state);
+  const [activeTab, setActiveTab] = useState<DashboardTab>("cross");
+  const [expandedSettledTrade, setExpandedSettledTrade] = useState<number | null>(null);
 
   const {
     state,
@@ -38,6 +43,23 @@ export default function ArbDashboard() {
     markSettled,
   } = data;
 
+  // Settled trades: those with settlement or reconciled P&L
+  const settledTrades = useMemo(() => {
+    return filteredTrades.filter(
+      (t) => t.settlement_pnl != null || t.reconciled_pnl != null
+    );
+  }, [filteredTrades]);
+
+  // Total realized P&L for settled trades
+  const settledPnlTotal = useMemo(() => {
+    let sum = 0;
+    for (const t of settledTrades) {
+      if (t.reconciled_pnl != null) sum += t.reconciled_pnl;
+      else if (t.settlement_pnl != null) sum += t.settlement_pnl;
+    }
+    return sum;
+  }, [settledTrades]);
+
   return (
     <div className="min-h-screen bg-black text-gray-300 relative">
       {/* Scanline overlay */}
@@ -60,149 +82,213 @@ export default function ArbDashboard() {
         fetchData={data.fetchData}
       />
 
-      <div className="p-3 space-y-2">
-        {/* ── Stats Row ──────────────────────────────────────── */}
-        <div className="grid grid-cols-4 gap-2">
-          <DashboardCard
-            label="Portfolio"
-            value={`$${(state?.balances?.total_portfolio ?? 0).toFixed(2)}`}
-            sub={portfolioDelta.total !== 0 ? `${portfolioDelta.total >= 0 ? "+" : ""}$${portfolioDelta.total.toFixed(2)}` : undefined}
-          />
-          {(() => {
-            const cashPnl = state?.pnl_summary?.cash_pnl;
-            const headline = cashPnl != null ? cashPnl : totalPnl.netTotal;
-            const arbPnl = totalPnl.netTotal;
-            const legacy = cashPnl != null ? cashPnl - arbPnl : null;
-            const sub = cashPnl != null
-              ? `Arb: $${arbPnl.toFixed(2)} | Legacy: $${legacy!.toFixed(2)}`
-              : `${totalPnl.realizedWins}W / ${totalPnl.realizedLosses}L${totalPnl.openCount > 0 ? ` (${totalPnl.openCount} open)` : ""}`;
-            return (
-              <DashboardCard
-                label="P&L (All)"
-                value={`${headline < 0 ? "-" : ""}$${Math.abs(headline).toFixed(2)}`}
-                accent={headline >= 0 ? "text-[#00ff88]" : "text-[#ff3333]"}
-                sub={sub}
-              />
-            );
-          })()}
-          <DashboardCard
-            label="Trades"
-            value={`${totalPnl.fills}`}
-            sub={`${totalPnl.count} attempts | ${activePositions.length} positions`}
-            accent="text-[#00bfff]"
-          />
-          <DashboardCard
-            label="Balances"
-            value={`K: $${(state?.balances?.k_cash ?? 0).toFixed(0)} | PM: $${(state?.balances?.pm_cash ?? 0).toFixed(0)}`}
-            sub={`K port: $${(state?.balances?.k_portfolio ?? 0).toFixed(2)} | PM port: $${(state?.balances?.pm_portfolio ?? 0).toFixed(2)}`}
-          />
-        </div>
-
-        {/* ── Trade Category Breakdown ──────────────────────── */}
-        {state?.trade_categories && (
-          <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-[1px] bg-[#00bfff]/30" />
-            <div className="flex items-center gap-0 divide-x divide-[#1a1a2e]">
-              <div className="px-2 py-1.5 flex-shrink-0">
-                <span className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">TRADE BREAKDOWN</span>
-              </div>
-              {[
-                { key: "arb_success", label: "ARB OK", color: "text-[#00ff88]", icon: "✓" },
-                { key: "pm_no_fill", label: "NO FILL", color: "text-[#4a4a6a]", icon: "○" },
-                { key: "exited", label: "EXITED", color: "text-[#ff8c00]", icon: "↩" },
-                { key: "unhedged", label: "UNHEDGED", color: "text-[#ff3333]", icon: "▲" },
-                { key: "directional", label: "DIR", color: "text-[#8b5cf6]", icon: "↗" },
-              ].map(({ key, label, color, icon }) => {
-                const cat = (state.trade_categories as Record<string, { count: number; pnl: number }>)?.[key];
-                if (!cat) return null;
-                return (
-                  <div key={key} className="px-3 py-1.5 flex items-center gap-2">
-                    <span className={`text-sm font-bold font-mono ${color}`}>{icon} {cat.count}</span>
-                    <div>
-                      <div className="text-[9px] text-[#4a4a6a] font-mono uppercase">{label}</div>
-                      {cat.pnl !== 0 && (
-                        <div className={`text-[9px] font-mono ${cat.pnl >= 0 ? "text-[#00ff88]" : "text-[#ff3333]"}`}>
-                          {cat.pnl >= 0 ? "+" : ""}${cat.pnl.toFixed(2)}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* ── Trades Section ────────────────────────────────── */}
-        <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#ff8c00]" />
-          {/* Filter bar */}
-          <div className="px-3 py-1.5 border-b border-[#1a1a2e] flex flex-wrap items-center gap-2">
-            <div className="flex items-center gap-1">
-              <button
-                onClick={() => { setDateAll(false); setDateOffset((o: number) => o - 1); }}
-                className="px-1 py-0.5 text-[9px] font-mono text-[#4a4a6a] hover:text-[#ff8c00]"
-              >
-                {"<"}
-              </button>
-              <button
-                onClick={() => { setDateAll(false); setDateOffset(0); }}
-                className={`px-2 py-0.5 text-[9px] font-mono border rounded-none transition-colors ${!dateAll && dateOffset === 0 ? "bg-[#ff8c00]/20 text-[#ff8c00] border-[#ff8c00]/40" : "text-[#4a4a6a] border-transparent hover:text-[#ff8c00]"}`}
-              >
-                {dateLabel}
-              </button>
-              <button
-                onClick={() => { setDateAll(false); setDateOffset((o: number) => Math.min(o + 1, 0)); }}
-                className="px-1 py-0.5 text-[9px] font-mono text-[#4a4a6a] hover:text-[#ff8c00]"
-              >
-                {">"}
-              </button>
-              <FilterButton active={dateAll} onClick={() => setDateAll(!dateAll)}>ALL</FilterButton>
-            </div>
-            <span className="text-[#1a1a2e] font-mono">|</span>
-            <div className="flex items-center gap-1">
-              <FilterButton active={tradeFilter === "all"} onClick={() => setTradeFilter("all")}>ALL</FilterButton>
-              <FilterButton active={tradeFilter === "live"} onClick={() => setTradeFilter("live")} variant="green">LIVE</FilterButton>
-              <FilterButton active={tradeFilter === "paper"} onClick={() => setTradeFilter("paper")} variant="purple">PAPER</FilterButton>
-            </div>
-            <span className="text-[#1a1a2e] font-mono">|</span>
-            <div className="flex items-center gap-1">
-              {(["all", "SUCCESS", "PM_NO_FILL", "EXITED", "UNHEDGED", "DIRECTIONAL"] as const).map((s) => (
-                <FilterButton key={s} active={statusFilter === s} onClick={() => setStatusFilter(s)}>
-                  {s === "all" ? "ALL" : s === "PM_NO_FILL" ? "NO FILL" : s === "DIRECTIONAL" ? "DIR" : s}
-                </FilterButton>
-              ))}
-            </div>
-            <input
-              type="text"
-              placeholder="Search team..."
-              value={tradeSearch}
-              onChange={(e) => setTradeSearch(e.target.value)}
-              className="ml-auto bg-black border border-[#1a1a2e] rounded-none px-2 py-0.5 text-[9px] font-mono text-[#ff8c00] w-28 focus:outline-none focus:border-[#ff8c00]/40 placeholder-[#3a3a5a]"
-            />
-            <span className={`text-[10px] font-mono ${filteredPnl.netTotal >= 0 ? "text-[#00ff88]" : "text-[#ff3333]"}`}>
-              ${filteredPnl.netTotal.toFixed(2)} <span className="text-[#4a4a6a]">({filteredPnl.fills} fills)</span>
-            </span>
-          </div>
-
-          <TradeLog
-            trades={filteredTrades}
-            expandedTrade={expandedMonitorTrade}
-            setExpandedTrade={setExpandedMonitorTrade}
-          />
-        </div>
-
-        {/* ── Positions ────────────────────────────────────── */}
-        <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#ff8c00]" />
-          <div className="px-3 py-1.5 border-b border-[#1a1a2e]">
-            <h3 className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">
-              POSITIONS <span className="text-[#ff8c00] ml-1">({activePositions.length})</span>
-            </h3>
-          </div>
-          <PositionsTable positions={activePositions} markSettled={markSettled} />
-        </div>
+      {/* ── Tab Bar ───────────────────────────────────────────── */}
+      <div className="px-3 pt-2 flex items-center gap-0 border-b border-[#1a1a2e]">
+        <button
+          onClick={() => setActiveTab("cross")}
+          className={`px-4 py-1.5 text-[10px] font-mono font-bold uppercase tracking-wider transition-colors ${
+            activeTab === "cross"
+              ? "text-[#ff8c00] border-b-2 border-[#ff8c00]"
+              : "text-[#4a4a6a] hover:text-[#ff8c00]/60"
+          }`}
+        >
+          PM ↔ K
+        </button>
+        <button
+          onClick={() => setActiveTab("intra")}
+          className={`px-4 py-1.5 text-[10px] font-mono font-bold uppercase tracking-wider transition-colors ${
+            activeTab === "intra"
+              ? "text-[#8b5cf6] border-b-2 border-[#8b5cf6]"
+              : "text-[#4a4a6a] hover:text-[#8b5cf6]/60"
+          }`}
+        >
+          K INTRA
+        </button>
       </div>
+
+      {activeTab === "cross" ? (
+        <div className="p-3 space-y-2">
+          {/* ── Stats Row ──────────────────────────────────────── */}
+          <div className="grid grid-cols-4 gap-2">
+            <DashboardCard
+              label="Portfolio"
+              value={`$${(state?.balances?.total_portfolio ?? 0).toFixed(2)}`}
+              sub={portfolioDelta.total !== 0 ? `${portfolioDelta.total >= 0 ? "+" : ""}$${portfolioDelta.total.toFixed(2)}` : undefined}
+            />
+            {(() => {
+              const cashPnl = state?.pnl_summary?.cash_pnl;
+              const headline = cashPnl != null ? cashPnl : totalPnl.netTotal;
+              const arbPnl = totalPnl.netTotal;
+              const legacy = cashPnl != null ? cashPnl - arbPnl : null;
+              const sub = cashPnl != null
+                ? `Arb: $${arbPnl.toFixed(2)} | Legacy: $${legacy!.toFixed(2)}`
+                : `${totalPnl.realizedWins}W / ${totalPnl.realizedLosses}L${totalPnl.openCount > 0 ? ` (${totalPnl.openCount} open)` : ""}`;
+              return (
+                <DashboardCard
+                  label="P&L (All)"
+                  value={`${headline < 0 ? "-" : ""}$${Math.abs(headline).toFixed(2)}`}
+                  accent={headline >= 0 ? "text-[#00ff88]" : "text-[#ff3333]"}
+                  sub={sub}
+                />
+              );
+            })()}
+            <DashboardCard
+              label="Trades"
+              value={`${totalPnl.fills}`}
+              sub={`${totalPnl.count} attempts | ${activePositions.length} positions`}
+              accent="text-[#00bfff]"
+            />
+            <DashboardCard
+              label="Balances"
+              value={`K: $${(state?.balances?.k_cash ?? 0).toFixed(0)} | PM: $${(state?.balances?.pm_cash ?? 0).toFixed(0)}`}
+              sub={`K port: $${(state?.balances?.k_portfolio ?? 0).toFixed(2)} | PM port: $${(state?.balances?.pm_portfolio ?? 0).toFixed(2)}`}
+            />
+          </div>
+
+          {/* ── Trade Category Breakdown ──────────────────────── */}
+          {state?.trade_categories && (
+            <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-[#00bfff]/30" />
+              <div className="flex items-center gap-0 divide-x divide-[#1a1a2e]">
+                <div className="px-2 py-1.5 flex-shrink-0">
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">TRADE BREAKDOWN</span>
+                </div>
+                {[
+                  { key: "arb_success", label: "ARB OK", color: "text-[#00ff88]", icon: "\u2713" },
+                  { key: "pm_no_fill", label: "NO FILL", color: "text-[#4a4a6a]", icon: "\u25CB" },
+                  { key: "exited", label: "EXITED", color: "text-[#ff8c00]", icon: "\u21A9" },
+                  { key: "unhedged", label: "UNHEDGED", color: "text-[#ff3333]", icon: "\u25B2" },
+                  { key: "directional", label: "DIR", color: "text-[#8b5cf6]", icon: "\u2197" },
+                ].map(({ key, label, color, icon }) => {
+                  const cat = (state.trade_categories as Record<string, { count: number; pnl: number }>)?.[key];
+                  if (!cat) return null;
+                  return (
+                    <div key={key} className="px-3 py-1.5 flex items-center gap-2">
+                      <span className={`text-sm font-bold font-mono ${color}`}>{icon} {cat.count}</span>
+                      <div>
+                        <div className="text-[9px] text-[#4a4a6a] font-mono uppercase">{label}</div>
+                        {cat.pnl !== 0 && (
+                          <div className={`text-[9px] font-mono ${cat.pnl >= 0 ? "text-[#00ff88]" : "text-[#ff3333]"}`}>
+                            {cat.pnl >= 0 ? "+" : ""}${cat.pnl.toFixed(2)}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* ── Filter Bar ────────────────────────────────────── */}
+          <div className="border border-[#1a1a2e] bg-[#0a0a0a]">
+            <div className="px-3 py-1.5 flex flex-wrap items-center gap-2">
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => { setDateAll(false); setDateOffset((o: number) => o - 1); }}
+                  className="px-1 py-0.5 text-[9px] font-mono text-[#4a4a6a] hover:text-[#ff8c00]"
+                >
+                  {"<"}
+                </button>
+                <button
+                  onClick={() => { setDateAll(false); setDateOffset(0); }}
+                  className={`px-2 py-0.5 text-[9px] font-mono border rounded-none transition-colors ${!dateAll && dateOffset === 0 ? "bg-[#ff8c00]/20 text-[#ff8c00] border-[#ff8c00]/40" : "text-[#4a4a6a] border-transparent hover:text-[#ff8c00]"}`}
+                >
+                  {dateLabel}
+                </button>
+                <button
+                  onClick={() => { setDateAll(false); setDateOffset((o: number) => Math.min(o + 1, 0)); }}
+                  className="px-1 py-0.5 text-[9px] font-mono text-[#4a4a6a] hover:text-[#ff8c00]"
+                >
+                  {">"}
+                </button>
+                <FilterButton active={dateAll} onClick={() => setDateAll(!dateAll)}>ALL</FilterButton>
+              </div>
+              <span className="text-[#1a1a2e] font-mono">|</span>
+              <div className="flex items-center gap-1">
+                <FilterButton active={tradeFilter === "all"} onClick={() => setTradeFilter("all")}>ALL</FilterButton>
+                <FilterButton active={tradeFilter === "live"} onClick={() => setTradeFilter("live")} variant="green">LIVE</FilterButton>
+                <FilterButton active={tradeFilter === "paper"} onClick={() => setTradeFilter("paper")} variant="purple">PAPER</FilterButton>
+              </div>
+              <span className="text-[#1a1a2e] font-mono">|</span>
+              <div className="flex items-center gap-1">
+                {(["all", "SUCCESS", "PM_NO_FILL", "EXITED", "UNHEDGED", "DIRECTIONAL"] as const).map((s) => (
+                  <FilterButton key={s} active={statusFilter === s} onClick={() => setStatusFilter(s)}>
+                    {s === "all" ? "ALL" : s === "PM_NO_FILL" ? "NO FILL" : s === "DIRECTIONAL" ? "DIR" : s}
+                  </FilterButton>
+                ))}
+              </div>
+              <input
+                type="text"
+                placeholder="Search team..."
+                value={tradeSearch}
+                onChange={(e) => setTradeSearch(e.target.value)}
+                className="ml-auto bg-black border border-[#1a1a2e] rounded-none px-2 py-0.5 text-[9px] font-mono text-[#ff8c00] w-28 focus:outline-none focus:border-[#ff8c00]/40 placeholder-[#3a3a5a]"
+              />
+              <span className={`text-[10px] font-mono ${filteredPnl.netTotal >= 0 ? "text-[#00ff88]" : "text-[#ff3333]"}`}>
+                ${filteredPnl.netTotal.toFixed(2)} <span className="text-[#4a4a6a]">({filteredPnl.fills} fills)</span>
+              </span>
+            </div>
+          </div>
+
+          {/* ── Live Markets ──────────────────────────────────── */}
+          <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#00bfff]" />
+            <div className="px-3 py-1.5 border-b border-[#1a1a2e]">
+              <h3 className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">
+                LIVE MARKETS <span className="text-[#00bfff] ml-1">({state?.mapped_games?.length ?? 0})</span>
+              </h3>
+            </div>
+            <LiveMarketsTable games={state?.mapped_games ?? []} />
+          </div>
+
+          {/* ── Positions ────────────────────────────────────── */}
+          <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#ff8c00]" />
+            <div className="px-3 py-1.5 border-b border-[#1a1a2e]">
+              <h3 className="text-[9px] font-mono uppercase tracking-widest text-[#4a4a6a]">
+                POSITIONS <span className="text-[#ff8c00] ml-1">({activePositions.length})</span>
+              </h3>
+            </div>
+            <PositionsTable positions={activePositions} markSettled={markSettled} />
+          </div>
+
+          {/* ── Settled Trades ────────────────────────────────── */}
+          <div className="border border-[#1a1a2e] bg-[#0a0a0a] relative">
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#00ff88]" />
+            <SettledTrades
+              trades={settledTrades}
+              expandedTrade={expandedSettledTrade}
+              setExpandedTrade={setExpandedSettledTrade}
+            />
+          </div>
+
+          {/* ── P&L Box ───────────────────────────────────────── */}
+          <PnlBox settledTrades={settledTrades} totalPnl={settledPnlTotal} />
+        </div>
+      ) : (
+        /* ── Tab 2: Intra-Kalshi (Placeholder) ──────────────── */
+        <div className="p-3 space-y-4">
+          <div className="text-center py-12">
+            <div className="text-[#8b5cf6] text-lg font-mono font-bold mb-2">Coming Soon</div>
+            <div className="text-[#4a4a6a] text-[11px] font-mono">Intra-Kalshi Scanner</div>
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            <div className="border border-[#8b5cf6]/30 bg-[#8b5cf6]/5 p-4 text-center">
+              <div className="text-[#8b5cf6] text-2xl font-mono font-bold">31,352</div>
+              <div className="text-[9px] font-mono uppercase tracking-wider text-[#4a4a6a] mt-1">Markets</div>
+            </div>
+            <div className="border border-[#8b5cf6]/30 bg-[#8b5cf6]/5 p-4 text-center">
+              <div className="text-[#8b5cf6] text-2xl font-mono font-bold">4,264</div>
+              <div className="text-[9px] font-mono uppercase tracking-wider text-[#4a4a6a] mt-1">Events</div>
+            </div>
+            <div className="border border-[#8b5cf6]/30 bg-[#8b5cf6]/5 p-4 text-center">
+              <div className="text-[#8b5cf6] text-2xl font-mono font-bold">18</div>
+              <div className="text-[9px] font-mono uppercase tracking-wider text-[#4a4a6a] mt-1">Categories</div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

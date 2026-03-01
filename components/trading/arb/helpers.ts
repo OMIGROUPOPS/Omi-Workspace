@@ -1,5 +1,25 @@
 import type { TradeEntry } from "./types";
 
+// ── Price / Fee / Arb helpers ────────────────────────────────────────────────
+
+/** Normalize a Polymarket price to cents (values <1 are treated as decimals, e.g. 0.42 → 42). */
+export function normPmCents(pm: number | undefined): number {
+  if (typeof pm !== "number") return 0;
+  return pm < 1 && pm > 0 ? pm * 100 : pm;
+}
+
+/** Kalshi fee estimate ≈ min(price, 100-price) * 0.07 */
+export function computeFeeEst(kPrice: number): number {
+  return Math.min(kPrice, 100 - kPrice) * 0.07;
+}
+
+/** Color class for arb net cents: green (>0), yellow (-2 to 0), red (<-2). */
+export function arbColor(netCents: number): string {
+  if (netCents > 0) return "text-[#00ff88]";
+  if (netCents >= -2) return "text-yellow-400";
+  return "text-[#ff3333]";
+}
+
 // ── Spread colors ───────────────────────────────────────────────────────────
 
 export function spreadColor(cents: number): string {

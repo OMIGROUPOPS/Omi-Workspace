@@ -83,6 +83,7 @@ from executor_core import (
     load_directional_positions,  # Load OMI directional positions on startup
     MIN_K_DEPTH_L1,         # Depth gate threshold for walk-based check
     post_trade_audit,       # Lightweight post-trade verification
+    _yes_teams,             # Team name resolver for log display
 )
 
 from pregame_mapper import load_verified_mappings, TEAM_FULL_NAMES
@@ -599,6 +600,33 @@ async def periodic_snapshot_recorder():
                 _record_kalshi_snapshot(ticker)
             except Exception:
                 pass  # Best-effort — don't crash background task
+
+
+async def intra_k_scanner():
+    """Scan for intra-Kalshi arb every 1s: YES on both sides < 98c = profit."""
+    while not shutdown_requested:
+        await asyncio.sleep(1)
+        try:
+            for ck, tickers in cache_key_to_tickers.items():
+                if len(tickers) < 2:
+                    continue
+                for i in range(len(tickers)):
+                    for j in range(i + 1, len(tickers)):
+                        book_a = local_books.get(tickers[i], {})
+                        book_b = local_books.get(tickers[j], {})
+                        ask_a = book_a.get('best_ask')
+                        ask_b = book_b.get('best_ask')
+                        if ask_a is not None and ask_b is not None:
+                            combined = ask_a + ask_b
+                            if combined < 98:
+                                team_a = tickers[i].split('-')[-1]
+                                team_b = tickers[j].split('-')[-1]
+                                profit = 100 - combined
+                                print(f"[INTRA-K-ARB] {team_a} vs {team_b} | "
+                                      f"YES {team_a} @{ask_a}c + YES {team_b} @{ask_b}c = {combined}c | "
+                                      f"Gross profit: {profit}c", flush=True)
+        except Exception:
+            pass
 
 
 # ============================================================================
@@ -2157,8 +2185,10 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
 
             if result.tier in ("TIER3_OPPOSITE_HEDGE", "TIER3_OPPOSITE_OVERWEIGHT"):
                 # Opposite-side hedge: cross-platform arb (PM team A + K team B)
+                k_yes, pm_yes = _yes_teams(arb.team, _params.get('k_action', 'buy'), arb.cache_key)
                 timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
-                print(f"[EXEC] [{result.tier}]: {result.abort_reason} | {timing}")
+                print(f"[EXEC] [{result.tier}]: K={result.kalshi_filled}x YES {k_yes} @{result.kalshi_price}c | "
+                      f"PM={result.pm_filled}x YES {pm_yes} @${result.pm_price:.2f} | {timing}")
                 k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
                 pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price, 'outcome_index': _actual_pm_oi, 'is_buy_short': _is_buy_short}
                 log_trade(arb, k_result, pm_result, result.tier,
@@ -2197,6 +2227,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                     result.kalshi_filled, result.pm_filled,
                     result.kalshi_price, result.pm_price,
                     _params.get('k_action', 'buy'), _is_buy_short,
+                    cache_key=arb.cache_key,
                 ))
 
             elif result.success:
@@ -2206,7 +2237,9 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                 timing = f"pm={result.pm_order_ms}ms → k={result.k_order_ms}ms → TOTAL={result.execution_time_ms}ms"
                 if result.gtc_rest_time_ms > 0:
                     timing += f" (GTC: {result.gtc_rest_time_ms}ms, {result.gtc_spread_checks} checks)"
-                print(f"[EXEC]{phase} SUCCESS{maker}: PM={result.pm_filled}@{result.pm_price:.2f}, K={result.kalshi_filled}@{result.kalshi_price}c | {timing}")
+                k_yes, pm_yes = _yes_teams(arb.team, _params.get('k_action', 'buy'), arb.cache_key)
+                print(f"[EXEC]{phase} SUCCESS{maker}: K={result.kalshi_filled}x YES {k_yes} @{result.kalshi_price}c | "
+                      f"PM={result.pm_filled}x YES {pm_yes} @${result.pm_price:.2f} | {timing}")
                 # Build result dicts for log_trade compatibility
                 k_result = {'fill_count': result.kalshi_filled, 'fill_price': result.kalshi_price}
                 pm_result = {'fill_count': result.pm_filled, 'fill_price': result.pm_price, 'outcome_index': _actual_pm_oi, 'is_buy_short': _is_buy_short}
@@ -2238,6 +2271,7 @@ async def handle_spread_detected(arb: ArbOpportunity, session: aiohttp.ClientSes
                     result.kalshi_filled, result.pm_filled,
                     result.kalshi_price, result.pm_price,
                     _params.get('k_action', 'buy'), _is_buy_short,
+                    cache_key=arb.cache_key,
                 ))
 
                 # Check max trades limit
@@ -2400,25 +2434,6 @@ def log_status():
     print(f"[STATUS] K_msgs: {stats['k_ws_messages']} | PM_msgs: {stats['pm_ws_messages']}")
     print(f"[STATUS] Spreads detected: {stats['spreads_detected']} | Executed: {stats['spreads_executed']}")
 
-    # Intra-Kalshi spread scanner: check if buying YES on both sides < 98c
-    for ck, tickers in cache_key_to_tickers.items():
-        if len(tickers) < 2:
-            continue
-        for i in range(len(tickers)):
-            for j in range(i + 1, len(tickers)):
-                book_a = local_books.get(tickers[i], {})
-                book_b = local_books.get(tickers[j], {})
-                ask_a = book_a.get('best_ask')
-                ask_b = book_b.get('best_ask')
-                if ask_a is not None and ask_b is not None:
-                    combined = ask_a + ask_b
-                    if combined < 98:
-                        team_a = tickers[i].split('-')[-1]
-                        team_b = tickers[j].split('-')[-1]
-                        profit = 100 - combined
-                        print(f"[INTRA-K-ARB] {team_a} vs {team_b} | "
-                              f"YES asks: {ask_a}c + {ask_b}c = {combined}c | "
-                              f"Gross profit: {profit}c")
 
 
 # Flag to print snapshot once
@@ -3295,6 +3310,9 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
         # Background snapshot recorder (drains dirty_tickers every 5s)
         snapshot_task = asyncio.create_task(periodic_snapshot_recorder())
 
+        # Intra-Kalshi arb scanner (1s interval — mispricings are fleeting)
+        intra_k_task = asyncio.create_task(intra_k_scanner())
+
         # ESPN live scores (polls every 45s, no auth needed)
         espn = ESPNScores()
 
@@ -3343,6 +3361,7 @@ async def main_loop(kalshi_api: KalshiAPI, pm_api: PolymarketUSAPI, pm_secret: s
         resub_task.cancel()
         rest_fallback_task.cancel()
         k_validator_task.cancel()
+        intra_k_task.cancel()
         await k_ws.close()
         await pm_ws.close()
 

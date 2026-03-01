@@ -5,11 +5,11 @@ executor_core.py - Clean execution engine for arb trades.
 Given: a fully resolved arb opportunity with all prices and mappings
 Does: places hedged orders on Kalshi and PM, or safely aborts
 
-4 possible trades (all executable via BUY_LONG/BUY_SHORT):
-  1. BUY_PM_SELL_K, team IS pm_long_team  -> K: SELL YES, PM: BUY_LONG (intent=1)
-  2. BUY_PM_SELL_K, team NOT pm_long_team -> K: SELL YES, PM: BUY_SHORT (intent=3)
-  3. BUY_K_SELL_PM, team IS pm_long_team  -> K: BUY YES,  PM: BUY_SHORT (intent=3)
-  4. BUY_K_SELL_PM, team NOT pm_long_team -> K: BUY YES,  PM: BUY_LONG (intent=1)
+4 possible trades (K and PM always YES opposite teams):
+  1. BUY_PM_SELL_K, team IS pm_long_team  -> K: YES opponent, PM: YES team (intent=1)
+  2. BUY_PM_SELL_K, team NOT pm_long_team -> K: YES opponent, PM: YES team (intent=3)
+  3. BUY_K_SELL_PM, team IS pm_long_team  -> K: YES team,     PM: YES opponent (intent=3)
+  4. BUY_K_SELL_PM, team NOT pm_long_team -> K: YES team,     PM: YES opponent (intent=1)
 
 EXECUTION ORDER: PM FIRST, THEN KALSHI
   - PM is the unreliable leg (IOC orders often expire due to latency)
@@ -101,9 +101,29 @@ def get_depth_cap(spread_cents: float) -> float:
     return 0.35  # 4c spreads, just skim
 
 
+def _get_opposing_team(cache_key: str, team: str) -> str:
+    """From cache_key 'sport:TEAMA-TEAMB:date', return the other team."""
+    try:
+        teams = cache_key.split(':')[1].split('-')
+        return teams[1] if teams[0] == team else teams[0]
+    except Exception:
+        return '?'
+
+
+def _yes_teams(team: str, k_action: str, cache_key: str):
+    """Return (k_yes_team, pm_yes_team) — which team each platform bet YES on.
+    In a hedged arb, K and PM always back opposite teams."""
+    opp = _get_opposing_team(cache_key, team)
+    if k_action == 'buy':
+        return team, opp    # K bought YES team, PM bought YES opponent
+    else:
+        return opp, team    # K sold YES team (=YES opponent), PM bought YES team
+
+
 def _check_hedge_coherence(team: str, k_fill_price: int, pm_fill_price_dollars: float,
                            k_action: str, is_buy_short: bool, direction: str,
-                           pm_long_team: str, is_long_team: bool) -> bool:
+                           pm_long_team: str, is_long_team: bool,
+                           cache_key: str = '') -> bool:
     """
     Post-fill sanity check: verify K + PM positions form a valid hedge.
 
@@ -122,12 +142,12 @@ def _check_hedge_coherence(team: str, k_fill_price: int, pm_fill_price_dollars: 
 
     combined = k_cost + pm_cost
 
+    k_yes, pm_yes = _yes_teams(team, k_action, cache_key) if cache_key else ('?', '?')
+
     if combined < 80 or combined > 110:
-        print(f"[HEDGE_CHECK] WARNING: {team} combined cost={combined:.0f}c "
-              f"(K {'buy' if k_action == 'buy' else 'sell'}@{k_fill_price}c={k_cost:.0f}c + "
-              f"PM {'SHORT' if is_buy_short else 'LONG'}@{pm_fill_cents:.0f}c={pm_cost:.0f}c) | "
-              f"Expected ~96-100c for valid arb | "
-              f"pm_long_team={pm_long_team} is_long={is_long_team} dir={direction}",
+        print(f"[HEDGE_CHECK] WARNING: {team} combined={combined:.0f}c "
+              f"(K YES {k_yes} @{k_cost:.0f}c + PM YES {pm_yes} @{pm_cost:.0f}c) | "
+              f"Expected ~96-100c for valid arb | dir={direction}",
               flush=True)
         if combined < 80:
             print(f"[HEDGE_CHECK] CRITICAL: combined={combined:.0f}c < 80c — "
@@ -137,10 +157,8 @@ def _check_hedge_coherence(team: str, k_fill_price: int, pm_fill_price_dollars: 
     # Post-fill combined cost gate: tighter than pre-trade check
     if combined > 102:
         print(f"[COST_GATE] CRITICAL POST-FILL: {team} combined={combined:.0f}c > 102c "
-              f"(K {'buy' if k_action == 'buy' else 'sell'}@{k_fill_price}c={k_cost:.0f}c + "
-              f"PM {'SHORT' if is_buy_short else 'LONG'}@{pm_fill_cents:.0f}c={pm_cost:.0f}c) | "
-              f"NEGATIVE ARB — will lose {combined - 100:.0f}c per contract at settlement | "
-              f"dir={direction}", flush=True)
+              f"(K YES {k_yes} @{k_cost:.0f}c + PM YES {pm_yes} @{pm_cost:.0f}c) | "
+              f"NEGATIVE ARB — will lose {combined - 100:.0f}c at settlement", flush=True)
         return False
 
     return True
@@ -186,7 +204,8 @@ async def _verify_both_legs(session, kalshi_api, pm_api, ticker: str, pm_slug: s
 async def post_trade_audit(session, kalshi_api, pm_api, ticker: str, pm_slug: str,
                            team: str, k_filled: int, pm_filled: int,
                            k_price: int, pm_price: float,
-                           k_action: str, is_buy_short: bool):
+                           k_action: str, is_buy_short: bool,
+                           cache_key: str = ''):
     """
     Lightweight post-trade audit: verify the new trade's two legs exist on both
     platforms with correct quantities and hedged cost. Runs after every successful
@@ -233,15 +252,16 @@ async def post_trade_audit(session, kalshi_api, pm_api, ticker: str, pm_slug: st
         if not hedged:
             issues.append(f"COMBINED {combined}c outside 90-102c")
 
+        k_yes, pm_yes = _yes_teams(team, k_action, cache_key) if cache_key else ('?', '?')
+
         if issues:
             print(f"[POST_TRADE_AUDIT] MISMATCH: {team} | " + " | ".join(issues) +
-                  f" | K={ticker[-20:]} PM={pm_slug[:30]} "
-                  f"k_cost={k_cost}c pm_cost={pm_cost}c combined={combined}c",
+                  f" | K YES {k_yes} @{k_cost}c PM YES {pm_yes} @{pm_cost}c combined={combined}c",
                   flush=True)
         else:
             print(f"[POST_TRADE_AUDIT] CONFIRMED: {team} | "
-                  f"K={k_qty}x@{k_price}c PM={pm_qty}x@${pm_price:.2f} "
-                  f"combined={combined}c | hedged",
+                  f"K={k_qty}x YES {k_yes} @{k_price}c | PM={pm_qty}x YES {pm_yes} @{int(pm_price*100)}c | "
+                  f"combined={combined}c",
                   flush=True)
     except Exception as e:
         print(f"[POST_TRADE_AUDIT] ERROR: {team} — {e} (trade already done, skipping)",
@@ -251,8 +271,8 @@ async def post_trade_audit(session, kalshi_api, pm_api, ticker: str, pm_slug: st
 TRADE_PARAMS = {
     # ==========================================================================
     # Case 1: BUY_PM_SELL_K, team IS pm_long_team
-    # K: SELL YES (short our team), PM: BUY_LONG (long our team = favorite)
-    # HEDGE: K SHORT + PM LONG = hedged
+    # K: SELL YES team (= YES opponent), PM: BUY YES team (favorite)
+    # HEDGE: K YES opp + PM YES team = hedged
     # Price: pm_ask = favorite's ask from cache (direct, no inversion)
     # ==========================================================================
     ('BUY_PM_SELL_K', True): {
@@ -263,15 +283,15 @@ TRADE_PARAMS = {
         'pm_price_field': 'pm_ask',     # Pay favorite's ask
         'pm_is_buy_short': False,
         'pm_switch_outcome': False,      # Trade on own outcome (long team)
-        'k_result': 'SHORT',
-        'pm_result': 'LONG',
+        'k_result': 'YES_OPP',
+        'pm_result': 'YES_TEAM',
         'executable': True,
     },
 
     # ==========================================================================
     # Case 2: BUY_PM_SELL_K, team is NOT pm_long_team (underdog)
-    # K: SELL YES (short underdog), PM: BUY_SHORT (short pm_long_team = long underdog)
-    # HEDGE: K SHORT underdog + PM LONG underdog = hedged
+    # K: SELL YES team (= YES opponent), PM: BUY YES team (underdog via BUY_SHORT)
+    # HEDGE: K YES opp + PM YES team = hedged
     #
     # BINARY MARKET: PM US SDK DOES accept outcomeIndex (0 or 1).
     # Intent controls direction, outcomeIndex selects which outcome to trade:
@@ -292,15 +312,15 @@ TRADE_PARAMS = {
         'pm_price_field': 'pm_ask',     # Underdog's ask (cache inverted: 100 - long_bid)
         'pm_is_buy_short': True,
         'pm_switch_outcome': True,       # Settlement: actual_oi = 0 (all binary trades are outcome 0)
-        'k_result': 'SHORT',
-        'pm_result': 'LONG',
+        'k_result': 'YES_OPP',
+        'pm_result': 'YES_TEAM',
         'executable': True,
     },
 
     # ==========================================================================
     # Case 3: BUY_K_SELL_PM, team IS pm_long_team
-    # K: BUY YES (long favorite), PM: BUY_SHORT (short favorite = long underdog)
-    # HEDGE: K LONG favorite + PM SHORT favorite = hedged
+    # K: BUY YES team (favorite), PM: BUY YES opponent (via BUY_SHORT favorite)
+    # HEDGE: K YES team + PM YES opp = hedged
     # Price: pm_bid (long team bid) → invert to underdog cost → YES-frame
     # ==========================================================================
     ('BUY_K_SELL_PM', True): {
@@ -312,15 +332,15 @@ TRADE_PARAMS = {
         'pm_invert_price': True,        # Signals to use 100 - pm_bid as underdog cost
         'pm_is_buy_short': True,
         'pm_switch_outcome': False,      # Trade on own outcome (long team)
-        'k_result': 'LONG',
-        'pm_result': 'SHORT',            # SHORT favorite = LONG underdog
+        'k_result': 'YES_TEAM',
+        'pm_result': 'YES_OPP',
         'executable': True,
     },
 
     # ==========================================================================
     # Case 4: BUY_K_SELL_PM, team is NOT pm_long_team (underdog)
-    # K: BUY YES (long underdog), PM: BUY_LONG (long favorite = short underdog)
-    # HEDGE: K LONG underdog + PM LONG favorite = hedged
+    # K: BUY YES team (underdog), PM: BUY YES opponent (via BUY_LONG favorite)
+    # HEDGE: K YES team + PM YES opp = hedged
     # Price: pm_bid (underdog bid) → invert to favorite ask = 100 - pm_bid
     # ==========================================================================
     ('BUY_K_SELL_PM', False): {
@@ -332,8 +352,8 @@ TRADE_PARAMS = {
         'pm_invert_price': True,        # Signals to use 100 - pm_bid as the price
         'pm_is_buy_short': False,
         'pm_switch_outcome': True,       # Must switch to long team's outcome for BUY_LONG
-        'k_result': 'LONG',
-        'pm_result': 'SHORT',            # LONG favorite = SHORT underdog
+        'k_result': 'YES_TEAM',
+        'pm_result': 'YES_OPP',
         'executable': True,
     },
 }
@@ -1779,7 +1799,8 @@ async def execute_arb(
     actual_pm_outcome_idx = (1 - pm_outcome_idx) if params.get('pm_switch_outcome', False) else pm_outcome_idx
 
     # ── PRE-ORDER DEBUG LOG ──
-    _intent_label = {1: 'BUY_LONG', 3: 'BUY_SHORT'}.get(params['pm_intent'], '?')
+    _, _pm_yes = _yes_teams(arb.team, params['k_action'], arb.cache_key)
+    _intent_label = f"YES {_pm_yes}"
     _case_num = '3' if (arb.direction == 'BUY_K_SELL_PM' and is_long_team) else \
                 '4' if (arb.direction == 'BUY_K_SELL_PM' and not is_long_team) else \
                 '1' if (arb.direction == 'BUY_PM_SELL_K' and is_long_team) else '2'
@@ -2060,7 +2081,8 @@ async def execute_arb(
         _check_hedge_coherence(
             arb.team, k_fill_price, pm_fill_price,
             params['k_action'], params.get('pm_is_buy_short', False),
-            arb.direction, arb.pm_long_team, is_long_team)
+            arb.direction, arb.pm_long_team, is_long_team,
+            cache_key=arb.cache_key)
         await _verify_both_legs(session, kalshi_api, pm_api,
                                 arb.kalshi_ticker, pm_slug, arb.team, k_filled, pm_filled)
         print(f"[K_FIRST] SUCCESS: K={k_filled}x@{k_fill_price}c PM={pm_filled}x@${pm_fill_price:.4f} "
@@ -2280,7 +2302,8 @@ async def execute_arb(
                     _check_hedge_coherence(
                         arb.team, t1_fill_price, pm_fill_price,
                         params['k_action'], params.get('pm_is_buy_short', False),
-                        arb.direction, arb.pm_long_team, is_long_team)
+                        arb.direction, arb.pm_long_team, is_long_team,
+                        cache_key=arb.cache_key)
                     await _verify_both_legs(session, kalshi_api, pm_api,
                                             arb.kalshi_ticker, pm_slug, arb.team, k_filled, pm_filled)
                     print(f"[TIER] Tier 1 SUCCESS: hedged {t1_filled}/{pm_filled} @ {t1_fill_price}c "
@@ -2914,7 +2937,8 @@ async def execute_arb(
     _check_hedge_coherence(
         arb.team, k_fill_price, pm_fill_price,
         params['k_action'], params.get('pm_is_buy_short', False),
-        arb.direction, arb.pm_long_team, is_long_team)
+        arb.direction, arb.pm_long_team, is_long_team,
+        cache_key=arb.cache_key)
     await _verify_both_legs(session, kalshi_api, pm_api,
                             arb.kalshi_ticker, pm_slug, arb.team, k_filled, pm_filled)
     return TradeResult(

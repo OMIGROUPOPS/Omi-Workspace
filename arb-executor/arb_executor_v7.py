@@ -3738,6 +3738,15 @@ def _calc_kalshi_fee(k_price_cents: float, qty: int) -> float:
     return round(per_contract * qty, 4)
 
 
+def _get_opp_team(cache_key: str, team: str) -> str:
+    """From cache_key 'sport:TEAMA-TEAMB:date', return the other team."""
+    try:
+        teams = cache_key.split(':')[1].split('-')
+        return teams[1] if teams[0] == team else teams[0]
+    except Exception:
+        return '?'
+
+
 def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
                execution_time_ms: float = 0, pm_order_ms: int = 0,
                unwind_loss_cents: float = None, unwind_pnl_cents: float = None, *,
@@ -3842,6 +3851,8 @@ def log_trade(arb: ArbOpportunity, k_result: Dict, pm_result: Dict, status: str,
         'pm_is_buy_short': pm_result.get('is_buy_short', False),  # True if PM intent was BUY_SHORT (sold YES)
         'pm_long_team': arb.pm_long_team,  # Team with long=true in PM — determines price inversion
         'is_long_team': (arb.team == arb.pm_long_team),  # True if our team IS pm_long_team
+        'k_yes_team': _get_opp_team(arb.cache_key, arb.team) if arb.direction == 'BUY_PM_SELL_K' else arb.team,
+        'pm_yes_team': arb.team if arb.direction == 'BUY_PM_SELL_K' else _get_opp_team(arb.cache_key, arb.team),
         'trade_case': f"Case{'3' if (arb.direction == 'BUY_K_SELL_PM' and arb.team == arb.pm_long_team) else '4' if (arb.direction == 'BUY_K_SELL_PM') else '1' if (arb.team == arb.pm_long_team) else '2'}",
         'mapping_verified': arb.cache_key in VERIFIED_MAPS if VERIFIED_MAPS else False,
         'cache_key': arb.cache_key,

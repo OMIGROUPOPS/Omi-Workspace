@@ -284,10 +284,23 @@ async def run_report(quiet=False):
             pm_qty = abs(net)
             cost = _extract_cost(pm_pos_data.get('cost', 0))
             pm_entry = round(cost / pm_qty * 100, 1) if pm_qty > 0 else 0
-            meta = pm_pos_data.get('marketMetadata', {})
-            outcome = meta.get('outcome', '')
-            team_info = meta.get('team', {})
-            pm_side = team_info.get('abbreviation', outcome[:6]).upper()
+            # Resolve PM YES team from trade record (not SDK metadata)
+            _t_dir = t.get('direction', '')
+            _t_ck = t.get('cache_key', '')
+            if _t_dir and ':' in _t_ck:
+                _cache_teams = _t_ck.split(':')[1].split('-') if ':' in _t_ck else []
+                if _t_dir == 'BUY_PM_SELL_K' and len(_cache_teams) == 2:
+                    pm_side = team  # PM YES same team
+                elif _t_dir == 'BUY_K_SELL_PM' and len(_cache_teams) == 2:
+                    pm_side = _cache_teams[1] if _cache_teams[0] == team else _cache_teams[0]
+                else:
+                    meta = pm_pos_data.get('marketMetadata', {})
+                    team_info = meta.get('team', {})
+                    pm_side = team_info.get('abbreviation', '')[:6].upper() or team
+            else:
+                meta = pm_pos_data.get('marketMetadata', {})
+                team_info = meta.get('team', {})
+                pm_side = team_info.get('abbreviation', '')[:6].upper() or team
 
         # Hedge analysis
         hedged = False
@@ -431,7 +444,7 @@ async def run_report(quiet=False):
         print(f"{'='*95}")
 
         # Table header
-        print(f"  {'Game':<7s} {'K Side':<7s} {'K Qty':>5s} {'K Entry':>8s} {'PM Side':<8s} "
+        print(f"  {'Game':<7s} {'K Side':<7s} {'K Qty':>5s} {'K Entry':>8s} {'PM YES':<8s} "
               f"{'PM Qty':>6s} {'PM Entry':>8s} {'Hedged?':<8s} {'Match?':<7s} {'Gross':>6s} {'Net':>6s}")
         print(f"  {'─'*7} {'─'*7} {'─'*5} {'─'*8} {'─'*8} {'─'*6} {'─'*8} {'─'*8} {'─'*7} {'─'*6} {'─'*6}")
 

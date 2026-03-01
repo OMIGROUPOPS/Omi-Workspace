@@ -53,20 +53,20 @@ function TradeSpecs({ t }: { t: TradeEntry }) {
 
   if (t.direction === "BUY_PM_SELL_K") {
     pmAction = "BUY YES";
-    pmTeam = t.pm_is_buy_short ? opp : team;
+    pmTeam = t.pm_yes_team || (t.pm_is_buy_short ? opp : team);
     pmPriceCents = pmDisplayPrice;
     pmPrice = `${pmDisplayPrice.toFixed(0)}c`;
     kAction = "BUY NO";
-    kTeam = team;
+    kTeam = t.k_yes_team || team;
     kPriceCents = 100 - kVal;
     kPrice = `${kPriceCents}c`;
   } else {
     kAction = "BUY YES";
-    kTeam = team;
+    kTeam = t.k_yes_team || team;
     kPriceCents = kVal;
     kPrice = `${kVal}c`;
     pmAction = "BUY YES";
-    pmTeam = t.pm_is_buy_short ? opp : team;
+    pmTeam = t.pm_yes_team || (t.pm_is_buy_short ? opp : team);
     pmPriceCents = pmDisplayPrice;
     pmPrice = `${pmDisplayPrice.toFixed(0)}c`;
   }
@@ -205,7 +205,8 @@ function legsLabel(t: TradeEntry) {
   const pmDisplayPrice = t.pm_is_buy_short ? (100 - pmVal) : pmVal;
 
   if (t.direction === "BUY_PM_SELL_K") {
-    const pmFighter = t.pm_is_buy_short ? opp : team;
+    const pmFighter = t.pm_yes_team || (t.pm_is_buy_short ? opp : team);
+    const kFighter = t.k_yes_team || team;
     const kNoCost = kVal > 0 ? 100 - kVal : 0;
     const totalCost = pmVal + kNoCost;
     const spread = 100 - totalCost;
@@ -213,17 +214,18 @@ function legsLabel(t: TradeEntry) {
       <>
         <span className="text-[#00ff88]">PM: {pmFighter} @{pmDisplayPrice.toFixed(0)}c</span>
         <span className="text-[#1a1a2e] mx-1">|</span>
-        <span className="text-[#00bfff]">K: NO {team} @{kNoCost.toFixed(0)}c</span>
+        <span className="text-[#00bfff]">K: NO {kFighter} @{kNoCost.toFixed(0)}c</span>
         <span className="text-[#3a3a5a] ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>
       </>
     );
   }
-  const pmFighter = t.pm_is_buy_short ? opp : team;
+  const kFighter = t.k_yes_team || team;
+  const pmFighter = t.pm_yes_team || (t.pm_is_buy_short ? opp : team);
   const totalCost = kVal + pmVal;
   const spread = 100 - totalCost;
   return (
     <>
-      <span className="text-[#00bfff]">K: {team} @{kVal}c</span>
+      <span className="text-[#00bfff]">K: {kFighter} @{kVal}c</span>
       <span className="text-[#1a1a2e] mx-1">|</span>
       <span className="text-[#00ff88]">PM: {pmFighter} @{pmDisplayPrice.toFixed(0)}c</span>
       <span className="text-[#3a3a5a] ml-1.5 text-[9px]">[{totalCost.toFixed(0)}c&rarr;{spread.toFixed(0)}c]</span>

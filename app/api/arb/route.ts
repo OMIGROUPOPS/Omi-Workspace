@@ -157,6 +157,8 @@ export interface TradeEntry {
   arb_net_total_cents?: number;
   unwind_timestamp?: string;
   unwind_timestamp_est?: string;
+  k_yes_team?: string;
+  pm_yes_team?: string;
 }
 
 export interface PnlSummary {

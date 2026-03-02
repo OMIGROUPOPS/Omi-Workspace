@@ -92,6 +92,17 @@ const NAV_SECTIONS: NavSection[] = [
         ),
         tier: 2,
       },
+      {
+        key: 'exchange',
+        label: 'Exchange',
+        href: '/edge/portal/exchange',
+        icon: (
+          <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          </svg>
+        ),
+        tier: 2,
+      },
     ],
   },
   {
@@ -503,6 +514,7 @@ function Header({ onMenuClick }: { onMenuClick: () => void }) {
   const getPageTitle = () => {
     if (pathname.includes('/sports/game/')) return 'Game Analysis';
     if (pathname.includes('/sports/')) return 'Sports Markets';
+    if (pathname === '/edge/portal/exchange') return 'Exchange Terminal';
     if (pathname.includes('/exchanges')) return 'Prediction Exchanges';
     if (pathname.includes('/results')) return 'Results';
     if (pathname.includes('/events')) return 'Events';

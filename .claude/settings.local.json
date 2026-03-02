@@ -127,7 +127,12 @@
       "mcp__claude_ai_Vercel__deploy_to_vercel",
       "WebFetch(domain:www.espn.ph)",
       "Bash(scp:*)",
-      "Bash(ssh:*)"
+      "Bash(ssh:*)",
+      "Bash(git:*)",
+      "mcp__claude_ai_Vercel__list_teams",
+      "mcp__claude_ai_Vercel__list_projects",
+      "mcp__claude_ai_Vercel__list_deployments",
+      "mcp__claude_ai_Vercel__get_project"
     ]
   }
 }

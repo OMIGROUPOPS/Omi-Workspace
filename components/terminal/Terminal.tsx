@@ -173,8 +173,8 @@ export default function Terminal() {
         {/* ── Center + Right panels ── */}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0, minHeight: 0 }}>
 
-          {/* ── Top row: Chart + Orderbook (60%) ── */}
-          <div style={{ height: "60%", display: "flex", minHeight: 0 }}>
+          {/* ── Top row: Chart + Orderbook (flex 6 = ~60%) ── */}
+          <div style={{ flex: 6, display: "flex", minHeight: 0, overflow: "hidden" }}>
             {/* Chart */}
             <div
               style={{
@@ -185,6 +185,7 @@ export default function Terminal() {
                 padding: "6px",
                 overflow: "hidden",
                 minWidth: 0,
+                minHeight: 0,
                 display: "flex",
                 flexDirection: "column",
               }}
@@ -209,8 +210,8 @@ export default function Terminal() {
             </div>
           </div>
 
-          {/* ── Bottom row: Scanner + Countdown + P&L (40%) ── */}
-          <div style={{ flex: 1, display: "flex", minHeight: 0 }}>
+          {/* ── Bottom row: Scanner + Countdown + P&L (flex 4 = ~40%) ── */}
+          <div style={{ flex: 4, display: "flex", minHeight: 0, overflow: "hidden" }}>
             {/* Scanner */}
             <div
               style={{

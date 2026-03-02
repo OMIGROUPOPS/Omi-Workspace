@@ -143,16 +143,36 @@ export default function Chart({ ticker }: ChartProps) {
   );
   const boll = useMemo(() => (data ? computeBollinger(data) : null), [data]);
 
-  // Track container size
+  // Robust container measurement
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
-    const obs = new ResizeObserver((entries) => {
-      const { width, height } = entries[0].contentRect;
-      setDims({ w: Math.floor(width), h: Math.floor(height) });
-    });
+
+    const measure = () => {
+      const w = el.clientWidth;
+      const h = el.clientHeight;
+      if (w > 0 && h > 0) {
+        setDims((prev) =>
+          prev.w === w && prev.h === h ? prev : { w, h },
+        );
+      }
+    };
+
+    // Measure after first layout paint
+    const raf = requestAnimationFrame(measure);
+
+    // ResizeObserver for dynamic changes
+    const obs = new ResizeObserver(measure);
     obs.observe(el);
-    return () => obs.disconnect();
+
+    // Window resize fallback
+    window.addEventListener("resize", measure);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      obs.disconnect();
+      window.removeEventListener("resize", measure);
+    };
   }, []);
 
   // ── Canvas draw ─────────────────────────────────────────────
@@ -163,6 +183,7 @@ export default function Chart({ ticker }: ChartProps) {
     const dpr = window.devicePixelRatio || 1;
     const W = dims.w;
     const H = dims.h;
+    console.log("[Chart] draw", W, "x", H, "ticker:", ticker);
     if (W < 80 || H < 80) return;
 
     canvas.width = W * dpr;
@@ -495,8 +516,9 @@ export default function Chart({ ticker }: ChartProps) {
     ctx.moveTo(L, 0);
     ctx.lineTo(L, H);
     ctx.stroke();
-  }, [data, boll, dims, showBoll, showConv]);
+  }, [data, boll, dims, showBoll, showConv, ticker]);
 
+  // Redraw whenever draw function changes
   useEffect(() => {
     draw();
   }, [draw]);
@@ -506,8 +528,16 @@ export default function Chart({ ticker }: ChartProps) {
   if (!ticker) {
     return (
       <div
-        className="h-full flex items-center justify-center text-zinc-700 text-xs"
-        style={{ fontFamily: "'Courier New', monospace" }}
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#555",
+          fontSize: "11px",
+          fontFamily: "'Courier New', monospace",
+        }}
       >
         Select a ticker from watchlist
       </div>
@@ -521,8 +551,15 @@ export default function Chart({ ticker }: ChartProps) {
 
   return (
     <div
-      className="h-full flex flex-col"
-      style={{ fontFamily: "'Courier New', monospace" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        height: "100%",
+        minHeight: 0,
+        overflow: "hidden",
+        fontFamily: "'Courier New', monospace",
+      }}
     >
       {/* Header bar */}
       <div
@@ -625,9 +662,20 @@ export default function Chart({ ticker }: ChartProps) {
         </div>
       </div>
 
-      {/* Canvas container */}
-      <div ref={containerRef} className="flex-1 min-h-0">
-        <canvas ref={canvasRef} style={{ display: "block" }} />
+      {/* Canvas container — position:relative so canvas can fill via absolute */}
+      <div
+        ref={containerRef}
+        style={{
+          flex: 1,
+          minHeight: 0,
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <canvas
+          ref={canvasRef}
+          style={{ position: "absolute", top: 0, left: 0, display: "block" }}
+        />
       </div>
     </div>
   );

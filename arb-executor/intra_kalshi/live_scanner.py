@@ -73,6 +73,15 @@ WS_RECONNECT_INITIAL = 1
 WS_RECONNECT_MAX = 60
 WS_WATCHDOG_TIMEOUT = 30     # Reconnect if no WS message in 30s
 
+# Kyle's Lambda (price impact filter)
+KYLE_LAMBDA_ALPHA = 0.05     # EWMA smoothing factor
+KYLE_LAMBDA_MAX = 0.008      # Skip signal if lambda > this (too much slippage)
+KYLE_LAMBDA_MIN_UPDATES = 10 # Need 10+ BBO updates before filtering
+
+# Convergence time estimator
+CONV_TIME_WINDOW = 120.0     # Rolling window for directional flow (seconds)
+CONV_TIME_K = 200            # Calibration constant: conv_time = k / (r² + 0.001)
+
 PAPER_TRADES_FILE = os.path.join(os.path.dirname(__file__), "intra_paper_trades.json")
 STATS_LOG = "/tmp/intra_scanner.log"
 
@@ -141,6 +150,8 @@ class PaperTrade:
     entry_depth: int = 0
     hold_time: Optional[float] = None    # seconds held
     bbo_updates_seen: int = 0            # BBO updates since open (skip exit on 0)
+    kyle_lambda: Optional[float] = None  # price impact estimate at entry
+    conv_time: Optional[float] = None    # convergence time estimate at entry
 
 
 @dataclass
@@ -373,6 +384,14 @@ class LiveScanner:
 
         # Warmup tracking: ticker → timestamp of first BBO
         self._ticker_first_bbo: Dict[str, float] = {}
+
+        # Kyle's Lambda: EWMA of price impact per ticker
+        self._ticker_lambda: Dict[str, float] = {}        # ticker → EWMA lambda
+        self._ticker_bbo_count: Dict[str, int] = {}       # ticker → BBO update count
+        self._ticker_prev_mid: Dict[str, int] = {}        # ticker → previous midpoint
+
+        # Convergence time: rolling mid-price changes per ticker (120s window)
+        self._mid_changes: Dict[str, deque] = {}           # ticker → deque[(ts, delta)]
 
         # Dedup: don't fire same signal repeatedly
         self._recent_signals: Dict[str, float] = {}  # key → timestamp
@@ -614,7 +633,7 @@ class LiveScanner:
             book.best_ask_size = 0
 
     def _record_bbo(self, ticker: str):
-        """Record current BBO to rolling history."""
+        """Record current BBO to rolling history + update Kyle's Lambda + mid changes."""
         book = self.books.get(ticker)
         if not book or book.best_bid is None or book.best_ask is None:
             return
@@ -637,6 +656,37 @@ class LiveScanner:
             hist.popleft()
         self.stats["bbo_updates"] += 1
 
+        # --- Kyle's Lambda EWMA update ---
+        mid = (book.best_bid + book.best_ask) // 2
+        prev_mid = self._ticker_prev_mid.get(ticker)
+        self._ticker_prev_mid[ticker] = mid
+        self._ticker_bbo_count[ticker] = self._ticker_bbo_count.get(ticker, 0) + 1
+
+        if prev_mid is not None:
+            mid_change = abs(mid - prev_mid)
+            # Volume proxy: depth at best bid + best ask
+            volume = book.best_bid_size + book.best_ask_size
+            if volume > 0:
+                instant_lambda = mid_change / volume
+                old = self._ticker_lambda.get(ticker)
+                if old is None:
+                    self._ticker_lambda[ticker] = instant_lambda
+                else:
+                    self._ticker_lambda[ticker] = (
+                        KYLE_LAMBDA_ALPHA * instant_lambda + (1 - KYLE_LAMBDA_ALPHA) * old
+                    )
+
+            # --- Convergence time: track mid-price changes ---
+            delta = mid - prev_mid
+            if delta != 0:
+                if ticker not in self._mid_changes:
+                    self._mid_changes[ticker] = deque()
+                self._mid_changes[ticker].append((now, delta))
+                # Prune outside window
+                conv_cutoff = now - CONV_TIME_WINDOW
+                while self._mid_changes[ticker] and self._mid_changes[ticker][0][0] < conv_cutoff:
+                    self._mid_changes[ticker].popleft()
+
     def _is_warmed_up(self, ticker: str) -> bool:
         """Ticker must have 60s+ of continuous BBO history with 3+ data points."""
         first = self._ticker_first_bbo.get(ticker)
@@ -648,6 +698,29 @@ class LiveScanner:
         if not hist or len(hist) < 3:
             return False
         return True
+
+    def _get_kyle_lambda(self, ticker: str) -> Optional[float]:
+        """Get Kyle's Lambda for ticker. Returns None if insufficient data."""
+        count = self._ticker_bbo_count.get(ticker, 0)
+        if count < KYLE_LAMBDA_MIN_UPDATES:
+            return None
+        return self._ticker_lambda.get(ticker)
+
+    def _get_conv_time(self, ticker: str) -> Optional[float]:
+        """Estimate convergence time from informed trader ratio.
+        r = |sum(deltas)| / sum(|deltas|), conv_time = k / (r² + 0.001)."""
+        changes = self._mid_changes.get(ticker)
+        if not changes or len(changes) < 3:
+            return None
+        total_flow = 0
+        directional_flow = 0
+        for _, delta in changes:
+            total_flow += abs(delta)
+            directional_flow += delta
+        if total_flow == 0:
+            return None
+        r = abs(directional_flow) / total_flow
+        return CONV_TIME_K / (r * r + 0.001)
 
     def _estimate_half_life(self, ticker: str) -> Optional[float]:
         """Estimate OU mean-reversion half-life from rolling BBO history.
@@ -1172,6 +1245,19 @@ class LiveScanner:
             if existing.ticker == signal.ticker:
                 return  # Already have an open trade on this ticker
 
+        # Kyle's Lambda filter: skip if price impact too high
+        lam = self._get_kyle_lambda(signal.ticker)
+        if lam is not None and lam > KYLE_LAMBDA_MAX:
+            self.stats["lambda_skipped"] = self.stats.get("lambda_skipped", 0) + 1
+            print(
+                f"[SKIP_HIGH_LAMBDA] {signal.scan_type} {signal.ticker} "
+                f"lambda={lam:.6f} > {KYLE_LAMBDA_MAX}"
+            )
+            return
+
+        # Convergence time estimate (logged, not filtered)
+        conv = self._get_conv_time(signal.ticker)
+
         # Extract spike_size and half_life from description for mean_reversion
         spike_size = None
         half_life_val = None
@@ -1199,14 +1285,18 @@ class LiveScanner:
             spike_size=spike_size,
             half_life=half_life_val,
             entry_depth=signal.depth,
+            kyle_lambda=lam,
+            conv_time=conv,
         )
         self.open_trades.append(trade)
         self.stats["paper_trades_opened"] += 1
         hl_tag = f" hl={half_life_val:.1f}s" if half_life_val else ""
+        lam_tag = f" λ={lam:.5f}" if lam is not None else ""
+        conv_tag = f" ct={conv:.0f}s" if conv is not None else ""
         print(
             f"[PAPER] OPEN {trade.id}: {trade.scan_type} {trade.side} "
             f"{trade.ticker}@{trade.entry_price}c target={trade.target} stop={trade.stop} "
-            f"depth={signal.depth}{hl_tag}"
+            f"depth={signal.depth}{hl_tag}{lam_tag}{conv_tag}"
         )
 
     def check_paper_trades(self, updated_ticker: str):
@@ -1347,6 +1437,7 @@ class LiveScanner:
             f"Discovery: {self.stats['events_discovered']} games, "
             f"{self.stats['tickers_subscribed']} tickers subscribed",
             f"Signals: {self.stats['scan_signals']} total, "
+            f"lambda_skipped={self.stats.get('lambda_skipped', 0)}, "
             f"seq_gaps={self._seq_gaps}, ws_reconnects={self.stats.get('ws_reconnects', 0)}",
             f"Paper: {self.stats['paper_trades_opened']} opened, "
             f"{self.stats['paper_trades_closed']} closed, "
@@ -1364,6 +1455,17 @@ class LiveScanner:
         # Active books summary
         active_books = sum(1 for b in self.books.values() if b.best_bid is not None)
         lines.append(f"Books: {active_books}/{len(self.books)} active")
+
+        # Lambda distribution summary
+        lambdas = [v for v in self._ticker_lambda.values() if v > 0]
+        if lambdas:
+            lambdas.sort()
+            med = lambdas[len(lambdas) // 2]
+            high_count = sum(1 for v in lambdas if v > KYLE_LAMBDA_MAX)
+            lines.append(
+                f"Lambda: {len(lambdas)} tickers tracked, "
+                f"median={med:.5f}, >{KYLE_LAMBDA_MAX}={high_count}"
+            )
 
         # Category breakdown
         if self._category_stats:

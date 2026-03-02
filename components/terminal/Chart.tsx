@@ -674,6 +674,28 @@ export default function Chart({ ticker }: ChartProps) {
           overflow: "hidden",
         }}
       >
+        {/* Red fallback — visible if canvas draw doesn't fire */}
+        {dims.w < 80 || dims.h < 80 ? (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "#220000",
+              border: "2px solid #FF0000",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#FF0000",
+              fontSize: "14px",
+              fontWeight: 700,
+              fontFamily: "'Courier New', monospace",
+              letterSpacing: "0.1em",
+              zIndex: 1,
+            }}
+          >
+            CHART LOADING ({dims.w}x{dims.h})
+          </div>
+        ) : null}
         <canvas
           ref={canvasRef}
           style={{ position: "absolute", top: 0, left: 0, display: "block" }}

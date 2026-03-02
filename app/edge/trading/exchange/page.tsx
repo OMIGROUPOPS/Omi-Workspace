@@ -33,7 +33,7 @@ export default function ExchangePage() {
     return (
       <div
         style={{
-          height: "calc(100vh - 56px)",
+          height: "100vh",
           background: "#0a0a0a",
           display: "flex",
           alignItems: "center",
@@ -183,7 +183,7 @@ export default function ExchangePage() {
   }
 
   return (
-    <div style={{ height: "calc(100vh - 56px)", overflow: "hidden" }}>
+    <div style={{ height: "100vh", overflow: "hidden" }}>
       <Terminal />
     </div>
   );

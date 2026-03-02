@@ -75,7 +75,7 @@ WS_WATCHDOG_TIMEOUT = 30     # Reconnect if no WS message in 30s
 
 # Kyle's Lambda (price impact filter)
 KYLE_LAMBDA_ALPHA = 0.05     # EWMA smoothing factor
-KYLE_LAMBDA_MAX = 0.008      # Skip signal if lambda > this (too much slippage)
+KYLE_LAMBDA_MAX = 0.012      # Skip signal if lambda > this (too much slippage)
 KYLE_LAMBDA_MIN_UPDATES = 10 # Need 10+ BBO updates before filtering
 
 # Convergence time estimator
@@ -393,9 +393,7 @@ class LiveScanner:
         # Convergence time: rolling mid-price changes per ticker (120s window)
         self._mid_changes: Dict[str, deque] = {}           # ticker → deque[(ts, delta)]
 
-        # Dedup: don't fire same signal repeatedly
-        self._recent_signals: Dict[str, float] = {}  # key → timestamp
-        self._signal_cooldown = 30.0  # seconds
+        # (signal dedup removed — only open-trade check in open_paper_trade)
 
     # ------------------------------------------------------------------
     # Startup
@@ -1209,13 +1207,7 @@ class LiveScanner:
         all_signals.extend(self.scan_contradiction(ticker))
         all_signals.extend(self.scan_resolution(ticker))
 
-        now = time.time()
         for sig in all_signals:
-            # Dedup key: scan_type + ticker + game_id
-            key = f"{sig.scan_type}:{sig.ticker}:{sig.game_id}"
-            if key in self._recent_signals and now - self._recent_signals[key] < self._signal_cooldown:
-                continue
-            self._recent_signals[key] = now
             self.stats["scan_signals"] += 1
 
             # Track signal by category
@@ -1229,21 +1221,20 @@ class LiveScanner:
         # Check existing paper trades
         self.check_paper_trades(ticker)
 
-        # Clean old dedup entries
-        if len(self._recent_signals) > 5000:
-            cutoff = now - self._signal_cooldown * 2
-            self._recent_signals = {k: v for k, v in self._recent_signals.items() if v > cutoff}
-
     # ------------------------------------------------------------------
     # Paper Trading
     # ------------------------------------------------------------------
 
     def open_paper_trade(self, signal: ScanSignal):
         """Open a paper trade from a scan signal."""
-        # BUG 2 FIX: Don't open duplicate trades on the same ticker
+        # Only block if there is a currently OPEN trade on this exact ticker
         for existing in self.open_trades:
             if existing.ticker == signal.ticker:
-                return  # Already have an open trade on this ticker
+                print(
+                    f"[SKIP_OPEN_POSITION] {signal.scan_type} {signal.ticker} "
+                    f"already has open trade {existing.id}"
+                )
+                return
 
         # Lambda safety net: require minimum BBO history
         bbo_count = self._ticker_bbo_count.get(signal.ticker, 0)

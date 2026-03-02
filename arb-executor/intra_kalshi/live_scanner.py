@@ -79,6 +79,11 @@ BRIDGE_MIN_CONFIDENCE = 0.98  # Min Brownian bridge confidence for resolution
 BRIDGE_DEFAULT_SIGMA = 0.3    # Default logit-space volatility (fallback)
 BRIDGE_MIN_DEPTH = 50         # Min depth at entry for resolution
 
+# Resolution farming: only these categories auto-trade
+# Sports: smooth settlement paths. Politics/Economics: slow-moving, evaluating.
+# EXCLUDED: Crypto (XRP 99c->7c), Climate (low volume), Financials (volatile)
+RESOLUTION_ALLOWED_CATEGORIES_SET = {"Sports", "Politics", "Economics"}
+
 # Category-specific sigma defaults (logit-space volatility)
 SIGMA_BY_CATEGORY = {
     "Sports": 0.25,
@@ -1355,6 +1360,10 @@ class LiveScanner:
         signals = []
         info = self.market_info.get(ticker)
         if not info or not info.close_time:
+            return signals
+
+        # Category gate: only farm resolution on safe categories
+        if info.category not in RESOLUTION_ALLOWED_CATEGORIES_SET:
             return signals
 
         try:

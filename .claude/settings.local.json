@@ -119,7 +119,15 @@
       "Bash(git reset:*)",
       "Bash(npm install:*)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(ssh-add:*)",
+      "Bash(SSH_AUTH_SOCK= ssh:*)",
+      "Bash(ssh-agent bash:*)",
+      "Bash(wc:*)",
+      "mcp__claude_ai_Vercel__deploy_to_vercel",
+      "WebFetch(domain:www.espn.ph)",
+      "Bash(scp:*)",
+      "Bash(ssh:*)"
     ]
   }
 }

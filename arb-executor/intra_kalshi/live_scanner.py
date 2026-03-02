@@ -37,6 +37,18 @@ import websockets
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
+from scipy.stats import norm  # Brownian bridge CDF
+
+
+def _logit(p_cents: int) -> float:
+    """Cents (1-99) → logit. Clips to [0.01, 0.99]."""
+    p = max(0.01, min(0.99, p_cents / 100.0))
+    return math.log(p / (1 - p))
+
+
+def _expit(x: float) -> float:
+    """Logit → probability (0-1)."""
+    return 1.0 / (1.0 + math.exp(-x))
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -48,7 +60,7 @@ MAX_RPS = 18
 EVENTS_PATH = "/trade-api/v2/events?status=open&with_nested_markets=true&limit=200"
 
 # Scan parameters
-MOMENTUM_THRESHOLD = 5       # Min move (cents) to trigger lag scan
+MOMENTUM_LOGIT_THRESHOLD = 0.15  # Min logit move to trigger lag scan
 MOMENTUM_WINDOW = 30.0       # Lookback (seconds) for price move
 MOMENTUM_LAG_RATIO = 0.5     # Flag if related moved < 50% of expected
 REVERSION_SPIKE = 15          # Min spike (cents) for mean reversion
@@ -61,8 +73,12 @@ REVERSION_CONFIRM_WINDOW = 5.0  # Confirmation must happen within 5s
 REVERSION_ALLOWED_CATEGORIES = {"Sports"}  # Only sports mean-revert on short TF
 REVERSION_MAX_HALF_LIFE = 120.0  # Skip if OU half-life > 120s (price not mean-reverting fast enough)
 CONTRADICTION_MIN_DEPTH = 10  # Both sides need 10+ contracts
-RESOLUTION_PRICE_RANGE = (95, 99)  # Near-settled price range
+BRIDGE_MIN_CONFIDENCE = 0.95  # Min Brownian bridge confidence for resolution
+BRIDGE_DEFAULT_SIGMA = 0.3    # Default logit-space volatility
+BRIDGE_MIN_DEPTH = 20         # Min depth at entry for resolution
 RESOLUTION_TIME = 300         # Within 5 min of close_time (seconds)
+AVAILABLE_CAPITAL = 460       # Current Kalshi balance ($)
+MAX_POSITION_PCT = 0.05       # 5% max per trade
 PAPER_TIMEOUT = 300           # 5-min position timeout (seconds)
 BBO_HISTORY_WINDOW = 60.0    # Rolling price history (seconds)
 STATS_INTERVAL = 300          # Stats dump frequency (seconds)
@@ -161,6 +177,12 @@ class PaperTrade:
     r_estimate: Optional[float] = None   # informed trader ratio at entry
     conv_category: str = ""              # FAST/MEDIUM/SLOW
     vpin_proxy: Optional[float] = None   # volume-weighted price impact proxy
+    bridge_confidence: Optional[float] = None  # Brownian bridge confidence
+    sigma_estimate: Optional[float] = None     # logit-space volatility estimate
+    time_remaining: Optional[float] = None     # seconds to close at entry
+    optimal_contracts: Optional[float] = None  # Kelly-sized position
+    contracts_at_depth: int = 0                # depth at entry
+    potential_pnl: Optional[float] = None      # optimal_contracts * edge
 
 
 @dataclass
@@ -175,6 +197,10 @@ class ScanSignal:
     stop: int
     description: str
     depth: int = 0
+    bridge_confidence: Optional[float] = None
+    sigma_estimate: Optional[float] = None
+    time_remaining: Optional[float] = None
+    optimal_size: Optional[int] = None
 
 
 # ---------------------------------------------------------------------------
@@ -733,7 +759,44 @@ class LiveScanner:
         if total_flow == 0:
             return None, None
         r = abs(directional_flow) / total_flow
-        return CONV_TIME_K / (r * r + 0.001), r
+        conv_time = CONV_TIME_K / (r * r + 0.001)
+        # Boundary factor: prices near 0 or 100 converge faster in logit space
+        mid = self._get_midpoint(ticker)
+        if mid and 1 <= mid <= 99:
+            p = mid / 100.0
+            boundary_factor = 1.0 / (4.0 * p * (1.0 - p))
+            conv_time = conv_time / boundary_factor
+        return conv_time, r
+
+    def _estimate_logit_sigma(self, ticker: str) -> float:
+        """Estimate logit-space volatility (stddev per sqrt-second) from BBO history.
+        Returns BRIDGE_DEFAULT_SIGMA if insufficient data."""
+        hist = self.bbo_history.get(ticker)
+        if not hist or len(hist) < 5:
+            return BRIDGE_DEFAULT_SIGMA
+        # Build logit-mid series with timestamps
+        logit_mids = []
+        for entry in hist:
+            mid = (entry.bid + entry.ask) // 2
+            if 1 <= mid <= 99:
+                logit_mids.append((entry.ts, _logit(mid)))
+        if len(logit_mids) < 5:
+            return BRIDGE_DEFAULT_SIGMA
+        # Compute consecutive diffs
+        diffs = []
+        dts = []
+        for i in range(1, len(logit_mids)):
+            dt = logit_mids[i][0] - logit_mids[i - 1][0]
+            if dt > 0:
+                diffs.append(logit_mids[i][1] - logit_mids[i - 1][1])
+                dts.append(dt)
+        if len(diffs) < 3 or sum(dts) <= 0:
+            return BRIDGE_DEFAULT_SIGMA
+        avg_dt = sum(dts) / len(dts)
+        mean_diff = sum(diffs) / len(diffs)
+        var = sum((d - mean_diff) ** 2 for d in diffs) / len(diffs)
+        sigma = math.sqrt(var) / math.sqrt(avg_dt) if avg_dt > 0 else BRIDGE_DEFAULT_SIGMA
+        return max(0.01, sigma)
 
     def _estimate_half_life(self, ticker: str) -> Optional[float]:
         """Estimate OU mean-reversion half-life from rolling BBO history.
@@ -829,19 +892,33 @@ class LiveScanner:
             return None
         return now_mid - past_mid
 
+    def _logit_move(self, ticker: str, window_seconds: float, min_entries: int = 5):
+        """Returns (logit_delta, cents_delta) or (None, None)."""
+        hist = self.bbo_history.get(ticker)
+        if not hist or len(hist) < min_entries:
+            return None, None
+        now_mid = self._get_midpoint(ticker)
+        past_mid = self._get_midpoint_at(ticker, window_seconds)
+        if now_mid is None or past_mid is None:
+            return None, None
+        if now_mid < 1 or now_mid > 99 or past_mid < 1 or past_mid > 99:
+            return None, None
+        return _logit(now_mid) - _logit(past_mid), now_mid - past_mid
+
     # ------------------------------------------------------------------
     # Scan 1: Momentum Lag
     # ------------------------------------------------------------------
 
     def scan_momentum_lag(self, ticker: str) -> List[ScanSignal]:
-        """Detect when one market moves but related markets haven't caught up."""
+        """Detect when one market moves but related markets haven't caught up.
+        Uses logit-space moves so 5c at 50c and 5c at 95c are weighted correctly."""
         signals = []
         info = self.market_info.get(ticker)
         if not info:
             return signals
 
-        primary_move = self._price_move(ticker, MOMENTUM_WINDOW, min_entries=5)
-        if primary_move is None or abs(primary_move) < MOMENTUM_THRESHOLD:
+        primary_logit, primary_cents = self._logit_move(ticker, MOMENTUM_WINDOW, min_entries=5)
+        if primary_logit is None or abs(primary_logit) < MOMENTUM_LOGIT_THRESHOLD:
             return signals
 
         game = self.games.get(info.game_id)
@@ -862,58 +939,73 @@ class LiveScanner:
                 if not other_info or other_info.team != info.team:
                     continue
 
-                other_move = self._price_move(ot, MOMENTUM_WINDOW, min_entries=5)
-                if other_move is None:
+                other_logit, other_cents = self._logit_move(ot, MOMENTUM_WINDOW, min_entries=5)
+                if other_logit is None:
                     continue
 
-                expected_move = primary_move * corr
-                if abs(expected_move) < 2:
+                expected_logit = primary_logit * corr
+                if abs(expected_logit) < 0.05:
                     continue
 
-                # Check if lagging
-                if expected_move > 0:
-                    # Expected to go up — did it?
-                    if other_move < expected_move * MOMENTUM_LAG_RATIO:
-                        remaining = int(expected_move - other_move)
-                        book = self.books.get(ot)
-                        if not book or book.best_ask is None:
-                            continue
-                        signals.append(ScanSignal(
-                            scan_type="momentum_lag",
-                            severity=severity(remaining),
-                            ticker=ot,
-                            game_id=info.game_id,
-                            entry_side="buy_yes",
-                            entry_price=book.best_ask,
-                            target=book.best_ask + remaining,
-                            stop=book.best_ask - 3,
-                            description=(
-                                f"{info.category} {info.team}: {info.market_type} moved {primary_move:+d}c "
-                                f"but {other_type} only {other_move:+d}c (expected {expected_move:+.0f}c)"
-                            ),
-                            depth=book.best_ask_size,
-                        ))
-                elif expected_move < 0:
-                    if other_move > expected_move * MOMENTUM_LAG_RATIO:
-                        remaining = int(abs(expected_move) - abs(other_move))
-                        book = self.books.get(ot)
-                        if not book or book.best_bid is None:
-                            continue
-                        signals.append(ScanSignal(
-                            scan_type="momentum_lag",
-                            severity=severity(remaining),
-                            ticker=ot,
-                            game_id=info.game_id,
-                            entry_side="buy_no",
-                            entry_price=100 - book.best_bid,
-                            target=100 - (book.best_bid - remaining),
-                            stop=100 - (book.best_bid + 3),
-                            description=(
-                                f"{info.category} {info.team}: {info.market_type} moved {primary_move:+d}c "
-                                f"but {other_type} only {other_move:+d}c (expected {expected_move:+.0f}c)"
-                            ),
-                            depth=book.best_bid_size,
-                        ))
+                other_mid = self._get_midpoint(ot)
+                if other_mid is None or other_mid < 1 or other_mid > 99:
+                    continue
+
+                # Check if lagging in logit space
+                logit_gap = expected_logit - other_logit
+                if expected_logit > 0:
+                    if other_logit >= expected_logit * MOMENTUM_LAG_RATIO:
+                        continue  # Caught up
+                    remaining = round((_expit(_logit(other_mid) + logit_gap) - other_mid / 100.0) * 100)
+                    if remaining <= 0:
+                        continue
+                    book = self.books.get(ot)
+                    if not book or book.best_ask is None:
+                        continue
+                    sev = "HIGH" if logit_gap >= 0.3 else ("MEDIUM" if logit_gap >= 0.15 else "LOW")
+                    signals.append(ScanSignal(
+                        scan_type="momentum_lag",
+                        severity=sev,
+                        ticker=ot,
+                        game_id=info.game_id,
+                        entry_side="buy_yes",
+                        entry_price=book.best_ask,
+                        target=book.best_ask + remaining,
+                        stop=book.best_ask - 3,
+                        description=(
+                            f"{info.category} {info.team}: {info.market_type} moved {primary_cents:+d}c "
+                            f"(\u0394logit={primary_logit:+.2f}) but {other_type} only {other_cents:+d}c "
+                            f"(\u0394logit={other_logit:+.2f})"
+                        ),
+                        depth=book.best_ask_size,
+                    ))
+                elif expected_logit < 0:
+                    if other_logit <= expected_logit * MOMENTUM_LAG_RATIO:
+                        continue  # Caught up
+                    logit_gap = abs(expected_logit) - abs(other_logit)
+                    remaining = round(abs((_expit(_logit(other_mid) - logit_gap) - other_mid / 100.0) * 100))
+                    if remaining <= 0:
+                        continue
+                    book = self.books.get(ot)
+                    if not book or book.best_bid is None:
+                        continue
+                    sev = "HIGH" if logit_gap >= 0.3 else ("MEDIUM" if logit_gap >= 0.15 else "LOW")
+                    signals.append(ScanSignal(
+                        scan_type="momentum_lag",
+                        severity=sev,
+                        ticker=ot,
+                        game_id=info.game_id,
+                        entry_side="buy_no",
+                        entry_price=100 - book.best_bid,
+                        target=100 - (book.best_bid - remaining),
+                        stop=100 - (book.best_bid + 3),
+                        description=(
+                            f"{info.category} {info.team}: {info.market_type} moved {primary_cents:+d}c "
+                            f"(\u0394logit={primary_logit:+.2f}) but {other_type} only {other_cents:+d}c "
+                            f"(\u0394logit={other_logit:+.2f})"
+                        ),
+                        depth=book.best_bid_size,
+                    ))
 
         return signals
 
@@ -1162,7 +1254,7 @@ class LiveScanner:
     # ------------------------------------------------------------------
 
     def scan_resolution(self, ticker: str) -> List[ScanSignal]:
-        """Buy YES near 95-99c when close_time is within 5 min."""
+        """Buy near boundaries when Brownian bridge confidence > 95% within 5 min of close."""
         signals = []
         info = self.market_info.get(ticker)
         if not info or not info.close_time:
@@ -1179,27 +1271,73 @@ class LiveScanner:
             return signals
 
         book = self.books.get(ticker)
-        if not book or book.best_ask is None:
+        if not book or book.best_ask is None or book.best_bid is None:
             return signals
 
-        if RESOLUTION_PRICE_RANGE[0] <= book.best_ask <= RESOLUTION_PRICE_RANGE[1]:
-            if book.best_ask_size < 5:
-                return signals
-            signals.append(ScanSignal(
-                scan_type="resolution",
-                severity="HIGH" if book.best_ask >= 97 else "MEDIUM",
-                ticker=ticker,
-                game_id=info.game_id,
-                entry_side="buy_yes",
-                entry_price=book.best_ask,
-                target=100,
-                stop=book.best_ask - 3,
-                description=(
-                    f"{info.category} {info.team}: YES@{book.best_ask}c, "
-                    f"{secs_to_close:.0f}s to close, settle→100c"
-                ),
-                depth=book.best_ask_size,
-            ))
+        # Check both boundaries: near YES=100 (ask>=95) or near YES=0 (bid<=5)
+        near_100 = book.best_ask >= 95
+        near_0 = book.best_bid <= 5
+        if not near_100 and not near_0:
+            return signals
+
+        # Depth check
+        entry_depth = book.best_ask_size if near_100 else book.best_bid_size
+        if entry_depth < BRIDGE_MIN_DEPTH:
+            return signals
+
+        # Brownian bridge confidence
+        sigma = self._estimate_logit_sigma(ticker)
+        price = book.best_ask if near_100 else book.best_bid
+        logit_price = _logit(price)
+        denom = sigma * math.sqrt(secs_to_close)
+        if denom < 1e-9:
+            return signals
+        bridge_conf = 1.0 - 2.0 * norm.cdf(-abs(logit_price) / denom)
+        if bridge_conf < BRIDGE_MIN_CONFIDENCE:
+            return signals
+
+        # Determine entry side, price, target
+        if near_100:
+            entry_side = "buy_yes"
+            entry_price = book.best_ask
+            payout = 100 - entry_price
+        else:
+            entry_side = "buy_no"
+            entry_price = 100 - book.best_bid
+            payout = 100 - entry_price
+
+        # Kelly sizing (logged only)
+        kelly_f = 0.0
+        kelly_contracts = 0
+        optimal_size = 0
+        if payout > 0:
+            kelly_f = (bridge_conf * payout - (1 - bridge_conf) * entry_price) / payout
+            if kelly_f > 0:
+                kelly_contracts = kelly_f * AVAILABLE_CAPITAL * 100 / max(entry_price, 1)
+                optimal_size = int(min(entry_depth * 0.25, kelly_contracts))
+
+        timeout = int(secs_to_close) + 60
+
+        signals.append(ScanSignal(
+            scan_type="resolution",
+            severity="HIGH" if bridge_conf >= 0.98 else "MEDIUM",
+            ticker=ticker,
+            game_id=info.game_id,
+            entry_side=entry_side,
+            entry_price=entry_price,
+            target=100,
+            stop=0,  # No stop — hold to settlement
+            description=(
+                f"{info.category} {info.team}: {'YES' if near_100 else 'NO'}@{entry_price}c, "
+                f"{secs_to_close:.0f}s to close, bridge={bridge_conf:.2f} "
+                f"\u03c3={sigma:.2f} kelly={optimal_size}ct"
+            ),
+            depth=entry_depth,
+            bridge_confidence=bridge_conf,
+            sigma_estimate=sigma,
+            time_remaining=secs_to_close,
+            optimal_size=optimal_size,
+        ))
 
         return signals
 
@@ -1320,18 +1458,45 @@ class LiveScanner:
             conv_category=conv_cat,
             vpin_proxy=vpin,
         )
+
+        # Position sizing (all strategies)
+        max_pos = AVAILABLE_CAPITAL * MAX_POSITION_PCT * 100  # cents
+        contracts_at_depth = signal.depth
+        optimal = min(
+            int(max_pos / max(signal.entry_price, 1)),
+            int(contracts_at_depth * 0.25),
+        )
+        edge = signal.target - signal.entry_price
+        trade.optimal_contracts = optimal
+        trade.contracts_at_depth = contracts_at_depth
+        trade.potential_pnl = optimal * edge if edge > 0 else 0
+
+        # Bridge fields from resolution signals
+        if signal.bridge_confidence is not None:
+            trade.bridge_confidence = signal.bridge_confidence
+            trade.sigma_estimate = signal.sigma_estimate
+            trade.time_remaining = signal.time_remaining
+
         self.open_trades.append(trade)
         self.stats["paper_trades_opened"] += 1
         hl_tag = f" hl={half_life_val:.1f}s" if half_life_val else ""
-        lam_tag = f" λ={lam:.5f}" if lam is not None else ""
+        lam_tag = f" \u03bb={lam:.5f}" if lam is not None else ""
         conv_tag = f" ct={conv:.0f}s" if conv is not None else ""
         r_tag = f" r={r_est:.3f}" if r_est is not None else ""
         cat_tag = f" [{conv_cat}]" if conv_cat else ""
         vpin_tag = f" vpin={vpin:.6f}" if vpin is not None else ""
+        size_tag = f" size={optimal}ct pnl_pot={trade.potential_pnl}c"
+        bridge_tag = ""
+        if trade.bridge_confidence is not None:
+            bridge_tag = (
+                f" bridge={trade.bridge_confidence:.2f} "
+                f"\u03c3={trade.sigma_estimate:.2f} T={trade.time_remaining:.0f}s"
+            )
         print(
             f"[PAPER] OPEN {trade.id}: {trade.scan_type} {trade.side} "
             f"{trade.ticker}@{trade.entry_price}c target={trade.target} stop={trade.stop} "
             f"depth={signal.depth}{hl_tag}{lam_tag}{conv_tag}{r_tag}{cat_tag}{vpin_tag}"
+            f"{size_tag}{bridge_tag}"
         )
 
     def check_paper_trades(self, updated_ticker: str):
@@ -1359,18 +1524,23 @@ class LiveScanner:
 
             exit_price = None
             exit_reason = None
+            is_resolution = trade.scan_type == "resolution"
+            # Resolution trades: use time_remaining + 60s as timeout, skip stops
+            trade_timeout = PAPER_TIMEOUT
+            if is_resolution and trade.time_remaining is not None:
+                trade_timeout = trade.time_remaining + 60
 
             if trade.side == "buy_yes":
                 # Check if bid hit target
                 if book.best_bid is not None and book.best_bid >= trade.target:
                     exit_price = book.best_bid
                     exit_reason = "TARGET"
-                # Check stop
-                elif book.best_bid is not None and book.best_bid <= trade.stop:
+                # Check stop (skip for resolution — hold to settlement)
+                elif not is_resolution and book.best_bid is not None and book.best_bid <= trade.stop:
                     exit_price = book.best_bid
                     exit_reason = "STOP"
                 # Check timeout
-                elif now - trade.entry_time > PAPER_TIMEOUT:
+                elif now - trade.entry_time > trade_timeout:
                     exit_price = book.best_bid if book.best_bid is not None else trade.entry_price
                     exit_reason = "TIMEOUT"
             elif trade.side == "buy_no":
@@ -1381,10 +1551,10 @@ class LiveScanner:
                     if current_no_value >= trade.target:
                         exit_price = current_no_value
                         exit_reason = "TARGET"
-                    elif current_no_value <= trade.stop:
+                    elif not is_resolution and current_no_value <= trade.stop:
                         exit_price = current_no_value
                         exit_reason = "STOP"
-                    elif now - trade.entry_time > PAPER_TIMEOUT:
+                    elif now - trade.entry_time > trade_timeout:
                         exit_price = current_no_value
                         exit_reason = "TIMEOUT"
 
@@ -1415,7 +1585,10 @@ class LiveScanner:
         now = time.time()
         still_open = []
         for trade in self.open_trades:
-            if now - trade.entry_time > PAPER_TIMEOUT:
+            trade_timeout = PAPER_TIMEOUT
+            if trade.scan_type == "resolution" and trade.time_remaining is not None:
+                trade_timeout = trade.time_remaining + 60
+            if now - trade.entry_time > trade_timeout:
                 book = self.books.get(trade.ticker)
                 if trade.side == "buy_yes":
                     exit_price = book.best_bid if book and book.best_bid is not None else trade.entry_price

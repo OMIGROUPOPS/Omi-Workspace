@@ -50,10 +50,14 @@ EVENTS_PATH = "/trade-api/v2/events?status=open&with_nested_markets=true&limit=2
 MOMENTUM_THRESHOLD = 5       # Min move (cents) to trigger lag scan
 MOMENTUM_WINDOW = 30.0       # Lookback (seconds) for price move
 MOMENTUM_LAG_RATIO = 0.5     # Flag if related moved < 50% of expected
-REVERSION_SPIKE = 10          # Min spike (cents) for mean reversion
+REVERSION_SPIKE = 15          # Min spike (cents) for mean reversion
 REVERSION_WINDOW = 10.0       # Spike must happen within this (seconds)
 REVERSION_TARGET = 4          # Expected reversion amount (cents)
 REVERSION_STOP = 5            # Stop loss on reversion trades (cents)
+REVERSION_MIN_DEPTH = 50      # Both bid+ask need 50+ contracts
+REVERSION_CONFIRM_REVERT = 2  # Must see 2c reversion from peak before entry
+REVERSION_CONFIRM_WINDOW = 5.0  # Confirmation must happen within 5s
+REVERSION_ALLOWED_CATEGORIES = {"Sports"}  # Only sports mean-revert on short TF
 CONTRADICTION_MIN_DEPTH = 10  # Both sides need 10+ contracts
 RESOLUTION_PRICE_RANGE = (95, 99)  # Near-settled price range
 RESOLUTION_TIME = 300         # Within 5 min of close_time (seconds)
@@ -775,10 +779,15 @@ class LiveScanner:
     # ------------------------------------------------------------------
 
     def scan_mean_reversion(self, ticker: str) -> List[ScanSignal]:
-        """Detect 10c+ spikes within 10s — bet on reversion."""
+        """Detect 15c+ spikes within 10s on liquid sports markets — bet on reversion.
+        Requires: sports only, 50+ depth, spike already reversing 2c from peak."""
         signals = []
         info = self.market_info.get(ticker)
         if not info:
+            return signals
+
+        # Category filter: only sports markets mean-revert on short timeframes
+        if info.category not in REVERSION_ALLOWED_CATEGORIES:
             return signals
 
         now_mid = self._get_midpoint(ticker)
@@ -790,18 +799,43 @@ class LiveScanner:
         if abs(spike) < REVERSION_SPIKE:
             return signals
 
-        # Reject data artifacts: anything > 20c is not a real spike, it's
-        # a book materializing from sparse quotes
-        if abs(spike) > 20:
+        # Reject data artifacts: anything > 25c is not a real spike
+        if abs(spike) > 25:
             return signals
 
         book = self.books.get(ticker)
         if not book:
             return signals
 
+        # Depth filter: both sides need 50+ contracts for reliable reversion
+        if book.best_bid_size < REVERSION_MIN_DEPTH or book.best_ask_size < REVERSION_MIN_DEPTH:
+            return signals
+
+        # Confirmation filter: check that the spike has already started reverting.
+        # Look at BBO history in the last 5s to find the peak and verify 2c+ pullback.
+        hist = self.bbo_history.get(ticker)
+        if not hist or len(hist) < 3:
+            return signals
+
+        now_ts = time.time()
+        confirm_cutoff = now_ts - REVERSION_CONFIRM_WINDOW
+        recent_mids = []
+        for entry in reversed(hist):
+            if entry.ts < confirm_cutoff:
+                break
+            recent_mids.append((entry.bid + entry.ask) // 2)
+
+        if len(recent_mids) < 2:
+            return signals
+
         if spike > 0:
-            # Spiked up → buy NO (expect reversion down)
-            if book.best_bid is None or book.best_bid_size < 5:
+            # Spiked up — peak is the max midpoint in the confirm window
+            peak = max(recent_mids)
+            current = recent_mids[0]  # most recent (reversed order)
+            if peak - current < REVERSION_CONFIRM_REVERT:
+                return signals  # Not yet reverting
+
+            if book.best_bid is None:
                 return signals
             entry = 100 - book.best_bid
             signals.append(ScanSignal(
@@ -815,13 +849,18 @@ class LiveScanner:
                 stop=entry + REVERSION_STOP,
                 description=(
                     f"{info.category} {info.team} {info.market_type}: "
-                    f"spiked {spike:+d}c in {REVERSION_WINDOW:.0f}s — bet reversion"
+                    f"spiked {spike:+d}c, reverting {peak - current}c from peak — depth={book.best_bid_size}"
                 ),
                 depth=book.best_bid_size,
             ))
         else:
-            # Spiked down → buy YES (expect reversion up)
-            if book.best_ask is None or book.best_ask_size < 5:
+            # Spiked down — trough is the min midpoint in the confirm window
+            trough = min(recent_mids)
+            current = recent_mids[0]
+            if current - trough < REVERSION_CONFIRM_REVERT:
+                return signals  # Not yet reverting
+
+            if book.best_ask is None:
                 return signals
             entry = book.best_ask
             signals.append(ScanSignal(
@@ -835,7 +874,7 @@ class LiveScanner:
                 stop=entry - REVERSION_STOP,
                 description=(
                     f"{info.category} {info.team} {info.market_type}: "
-                    f"dropped {spike:+d}c in {REVERSION_WINDOW:.0f}s — bet reversion"
+                    f"dropped {spike:+d}c, reverting {current - trough}c from trough — depth={book.best_ask_size}"
                 ),
                 depth=book.best_ask_size,
             ))

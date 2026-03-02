@@ -7045,7 +7045,12 @@
     "arb_net_total_cents": -87,
     "unwind_timestamp_est": "Feb 27 1:00:36 PM EST",
     "opponent": "MAR",
-    "settlement_pnl": null
+    "settlement_pnl": -1.42,
+    "settlement_time": "2026-03-02T19:30:08.521136+00:00",
+    "settlement_winner_index": 0,
+    "settlement_source": "kalshi_reconciled",
+    "k_actual_cost": 841,
+    "k_actual_fee": 0.84
   },
   {
     "timestamp": "2026-02-27T07:30:59.334919+00:00",
@@ -7153,7 +7158,12 @@
     "arb_net_total_cents": -56,
     "unwind_timestamp_est": "Feb 27 1:00:31 PM EST",
     "opponent": "LUN",
-    "settlement_pnl": null
+    "settlement_pnl": -0.82,
+    "settlement_time": "2026-03-02T19:30:08.521272+00:00",
+    "settlement_winner_index": 0,
+    "settlement_source": "kalshi_reconciled",
+    "k_actual_cost": 448,
+    "k_actual_fee": 0.54
   },
   {
     "timestamp": "2026-02-27T07:40:08.432880+00:00",
@@ -7261,7 +7271,12 @@
     "arb_net_total_cents": -30,
     "unwind_timestamp_est": "Feb 27 1:00:38 PM EST",
     "opponent": "KAV",
-    "settlement_pnl": null
+    "settlement_pnl": -40.56,
+    "settlement_time": "2026-03-02T19:30:08.521311+00:00",
+    "settlement_winner_index": 0,
+    "settlement_source": "kalshi_reconciled",
+    "k_actual_cost": -1020,
+    "k_actual_fee": 0.96
   },
   {
     "timestamp": "2026-02-27T07:46:14.275188+00:00",
@@ -7369,7 +7384,12 @@
     "arb_net_total_cents": -84,
     "unwind_timestamp_est": "Feb 27 1:00:34 PM EST",
     "opponent": "ZEL",
-    "settlement_pnl": null
+    "settlement_pnl": -1.24,
+    "settlement_time": "2026-03-02T19:30:08.521327+00:00",
+    "settlement_winner_index": 1,
+    "settlement_source": "kalshi_reconciled",
+    "k_actual_cost": 616,
+    "k_actual_fee": 0.68
   },
   {
     "timestamp": "2026-02-27T22:24:53.352890+00:00",
@@ -7480,7 +7500,13 @@
       "total_costs": 3.07,
       "net_cents": 29.93
     },
-    "reconciled_pnl": 0.3198
+    "reconciled_pnl": 0.3198,
+    "settlement_pnl": 1.95,
+    "settlement_time": "2026-03-02T19:30:08.521339+00:00",
+    "settlement_winner_index": 1,
+    "settlement_source": "kalshi_reconciled",
+    "k_actual_cost": 64,
+    "k_actual_fee": 0.08
   },
   {
     "timestamp": "2026-02-28T00:44:03.038958+00:00",
@@ -8882,9 +8908,12 @@
       "fee_model": "GTC"
     },
     "reconciled_pnl": 0.0098,
-    "settlement_pnl": 0.01,
+    "settlement_pnl": -1.22,
     "settlement_time": "2026-02-28T04:00:08.714316+00:00",
-    "settlement_winner_index": 0
+    "settlement_winner_index": 0,
+    "settlement_source": "kalshi_reconciled",
+    "k_actual_cost": -40,
+    "k_actual_fee": 0.04
   },
   {
     "timestamp": "2026-02-28T03:48:06.833229+00:00",
@@ -9196,7 +9225,14 @@
       "total_costs": 3.05,
       "net_cents": 0.95,
       "fee_model": "IOC"
-    }
+    },
+    "settlement_pnl": -1.73,
+    "settlement_time": "2026-03-02T19:30:08.521438+00:00",
+    "settlement_winner_index": 0,
+    "settlement_source": "kalshi_reconciled",
+    "k_actual_cost": -88,
+    "k_actual_fee": 0.08,
+    "reconciled_pnl": 0.0398
   },
   {
     "timestamp": "2026-02-28T20:06:25.451905+00:00",
@@ -9307,7 +9343,14 @@
       "total_costs": 3.07,
       "net_cents": 0.93,
       "fee_model": "IOC"
-    }
+    },
+    "settlement_pnl": 0.98,
+    "settlement_time": "2026-03-02T19:30:08.521451+00:00",
+    "settlement_winner_index": 0,
+    "settlement_source": "kalshi_reconciled",
+    "k_actual_cost": 65,
+    "k_actual_fee": 0.04,
+    "reconciled_pnl": 0.0198
   },
   {
     "contracts_intended": 1,
@@ -9368,7 +9411,14 @@
     "estimated_net_profit_cents": 0.0,
     "pm_slug": "aec-cbb-camp-tows-2026-02-28",
     "kalshi_ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
-    "cache_key": "cbb:CAMP-TOWS:2026-02-28"
+    "cache_key": "cbb:CAMP-TOWS:2026-02-28",
+    "settlement_pnl": -2.65,
+    "settlement_time": "2026-03-02T19:30:08.521460+00:00",
+    "settlement_winner_index": 0,
+    "settlement_source": "kalshi_reconciled",
+    "k_actual_cost": 91,
+    "k_actual_fee": 0.16,
+    "reconciled_pnl": 0.0798
   },
   {
     "contracts_intended": 1,
@@ -9429,7 +9479,14 @@
     "estimated_net_profit_cents": 0.0,
     "pm_slug": "aec-cbb-lou-clmsn-2026-02-28",
     "kalshi_ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
-    "cache_key": "cbb:LOU-CLEM:2026-02-28"
+    "cache_key": "cbb:LOU-CLEM:2026-02-28",
+    "settlement_pnl": -0.95,
+    "settlement_time": "2026-03-02T19:30:08.521470+00:00",
+    "settlement_winner_index": 0,
+    "settlement_source": "kalshi_reconciled",
+    "k_actual_cost": -52,
+    "k_actual_fee": 0.04,
+    "reconciled_pnl": 0.0898
   },
   {
     "contracts_intended": 1,
@@ -9490,6 +9547,235 @@
     "estimated_net_profit_cents": 0.0,
     "pm_slug": "aec-cbb-umass-bowlgr-2026-02-28",
     "kalshi_ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
-    "cache_key": "cbb:MASS-BGSU:2026-02-28"
+    "cache_key": "cbb:MASS-BGSU:2026-02-28",
+    "settlement_pnl": -1.0,
+    "settlement_time": "2026-03-02T19:30:08.521481+00:00",
+    "settlement_winner_index": 0,
+    "settlement_source": "kalshi_reconciled",
+    "k_actual_cost": 39,
+    "k_actual_fee": 0.04,
+    "reconciled_pnl": 0.0398
+  },
+  {
+    "timestamp": "2026-03-02T19:15:48.405741+00:00",
+    "game_id": "26MAR02DETNSH",
+    "team": "NSH",
+    "sport": "NHL",
+    "direction": "BUY_K_SELL_PM",
+    "contracts_intended": 30,
+    "contracts_filled": 0,
+    "kalshi_fill": 0,
+    "pm_fill": 0,
+    "k_price": 43,
+    "pm_price": 47.0,
+    "k_bid": 42,
+    "k_ask": 43,
+    "pm_bid": 47.0,
+    "pm_ask": 49.0,
+    "spread_cents": 4.0,
+    "profit_dollars": 1.2,
+    "at_risk_dollars": 0.0,
+    "roi_percent": 9.3,
+    "estimated_net_profit_cents": 0.95,
+    "actual_pnl": null,
+    "execution_time_ms": 171,
+    "pm_order_ms": 170,
+    "k_order_ms": 0,
+    "hedged": false,
+    "paper_mode": false,
+    "status": "PM_NO_FILL",
+    "raw_status": "PM_NO_FILL",
+    "pm_slug": "aec-nhl-det-nas-2026-03-02",
+    "kalshi_ticker": "KXNHLGAME-26MAR02DETNSH-NSH",
+    "k_order_id": null,
+    "pm_order_id": null,
+    "pm_success": false,
+    "pm_error": null,
+    "needs_review": false,
+    "review_reason": null,
+    "is_live_game": false,
+    "unwind_loss_cents": null,
+    "unwind_pnl_cents": null,
+    "unwind_fill_price": null,
+    "unwind_qty": 0,
+    "pm_outcome_index": 1,
+    "pm_outcome_index_used": 0,
+    "pm_is_buy_short": false,
+    "pm_long_team": "DET",
+    "is_long_team": false,
+    "k_yes_team": "NSH",
+    "pm_yes_team": "DET",
+    "trade_case": "Case4",
+    "mapping_verified": false,
+    "cache_key": "nhl:DET-NSH:2026-03-02",
+    "sizing_details": {
+      "avg_spread_cents": 8.0,
+      "expected_profit_cents": 178.53,
+      "k_depth": 1124814,
+      "pm_depth": 11941,
+      "limit_reason": "depth_walk",
+      "depth_walk_log": [
+        {
+          "level": 1,
+          "k_price": 43,
+          "pm_cost": 49,
+          "spread": 8,
+          "fees": 2.05,
+          "marginal_profit": 5.95,
+          "k_remaining": 11779,
+          "pm_remaining": 512,
+          "cumulative_contracts": 1,
+          "stopped": false,
+          "contracts_at_level": 30
+        }
+      ],
+      "depth_cap_used": 0.65,
+      "spread_at_sizing": 8,
+      "commitment_cap": 112
+    },
+    "execution_phase": "ioc",
+    "is_maker": false,
+    "gtc_rest_time_ms": 0,
+    "gtc_spread_checks": 0,
+    "gtc_cancel_reason": "",
+    "tier": "",
+    "k_response_details": null,
+    "nofill_reason": null,
+    "nofill_explanation": null,
+    "nofill_details": {
+      "sequence": "PM_FIRST",
+      "pm_latency_ms": 170,
+      "pm_price_sent": 0.54,
+      "pm_intent": 1,
+      "pre_order_bbo": {
+        "bid_cents": 47.0,
+        "ask_cents": 49.0,
+        "bid_size": 107,
+        "ask_size": 512
+      },
+      "pm_data_age_ms": 13
+    },
+    "pm_fee": 0.0,
+    "k_fee": 0.0,
+    "estimated_costs_breakdown": {
+      "raw_spread": 4.0,
+      "k_fee": 2,
+      "pm_fee": 0.05,
+      "slippage": 1,
+      "total_costs": 3.05,
+      "net_cents": 0.95,
+      "fee_model": "IOC"
+    }
+  },
+  {
+    "timestamp": "2026-03-02T19:20:08.035928+00:00",
+    "game_id": "26MAR02DETNSH",
+    "team": "NSH",
+    "sport": "NHL",
+    "direction": "BUY_K_SELL_PM",
+    "contracts_intended": 30,
+    "contracts_filled": 0,
+    "kalshi_fill": 0,
+    "pm_fill": 0,
+    "k_price": 38,
+    "pm_price": 43.00000000000001,
+    "k_bid": 33,
+    "k_ask": 38,
+    "pm_bid": 43.00000000000001,
+    "pm_ask": 46.0,
+    "spread_cents": 5.000000000000007,
+    "profit_dollars": 1.5000000000000022,
+    "at_risk_dollars": 0.0,
+    "roi_percent": 13.16,
+    "estimated_net_profit_cents": 1.95,
+    "actual_pnl": null,
+    "execution_time_ms": 182,
+    "pm_order_ms": 182,
+    "k_order_ms": 0,
+    "hedged": false,
+    "paper_mode": false,
+    "status": "PM_NO_FILL",
+    "raw_status": "PM_NO_FILL",
+    "pm_slug": "aec-nhl-det-nas-2026-03-02",
+    "kalshi_ticker": "KXNHLGAME-26MAR02DETNSH-NSH",
+    "k_order_id": null,
+    "pm_order_id": null,
+    "pm_success": false,
+    "pm_error": null,
+    "needs_review": false,
+    "review_reason": null,
+    "is_live_game": false,
+    "unwind_loss_cents": null,
+    "unwind_pnl_cents": null,
+    "unwind_fill_price": null,
+    "unwind_qty": 0,
+    "pm_outcome_index": 1,
+    "pm_outcome_index_used": 0,
+    "pm_is_buy_short": false,
+    "pm_long_team": "DET",
+    "is_long_team": false,
+    "k_yes_team": "NSH",
+    "pm_yes_team": "DET",
+    "trade_case": "Case4",
+    "mapping_verified": false,
+    "cache_key": "nhl:DET-NSH:2026-03-02",
+    "sizing_details": {
+      "avg_spread_cents": 16.0,
+      "expected_profit_cents": 418.62,
+      "k_depth": 1090842,
+      "pm_depth": 12393,
+      "limit_reason": "depth_walk",
+      "depth_walk_log": [
+        {
+          "level": 1,
+          "k_price": 38,
+          "pm_cost": 46,
+          "spread": 16,
+          "fees": 2.05,
+          "marginal_profit": 13.95,
+          "k_remaining": 16087,
+          "pm_remaining": 30,
+          "cumulative_contracts": 1,
+          "stopped": false,
+          "contracts_at_level": 30
+        }
+      ],
+      "depth_cap_used": 0.75,
+      "spread_at_sizing": 16,
+      "commitment_cap": 119
+    },
+    "execution_phase": "ioc",
+    "is_maker": false,
+    "gtc_rest_time_ms": 0,
+    "gtc_spread_checks": 0,
+    "gtc_cancel_reason": "",
+    "tier": "",
+    "k_response_details": null,
+    "nofill_reason": null,
+    "nofill_explanation": null,
+    "nofill_details": {
+      "sequence": "PM_FIRST",
+      "pm_latency_ms": 182,
+      "pm_price_sent": 0.58,
+      "pm_intent": 1,
+      "pre_order_bbo": {
+        "bid_cents": 43.00000000000001,
+        "ask_cents": 46.0,
+        "bid_size": 112,
+        "ask_size": 30
+      },
+      "pm_data_age_ms": 43
+    },
+    "pm_fee": 0.0,
+    "k_fee": 0.0,
+    "estimated_costs_breakdown": {
+      "raw_spread": 5.000000000000007,
+      "k_fee": 2,
+      "pm_fee": 0.05,
+      "slippage": 1,
+      "total_costs": 3.05,
+      "net_cents": 1.95,
+      "fee_model": "IOC"
+    }
   }
 ]

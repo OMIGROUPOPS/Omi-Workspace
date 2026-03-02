@@ -75,9 +75,9 @@ REVERSION_CONFIRM_WINDOW = 5.0  # Confirmation must happen within 5s
 REVERSION_ALLOWED_CATEGORIES = {"Sports"}  # Only sports mean-revert on short TF
 REVERSION_MAX_HALF_LIFE = 120.0  # Skip if OU half-life > 120s (price not mean-reverting fast enough)
 CONTRADICTION_MIN_DEPTH = 10  # Both sides need 10+ contracts
-BRIDGE_MIN_CONFIDENCE = 0.95  # Min Brownian bridge confidence for resolution
+BRIDGE_MIN_CONFIDENCE = 0.98  # Min Brownian bridge confidence for resolution
 BRIDGE_DEFAULT_SIGMA = 0.3    # Default logit-space volatility (fallback)
-BRIDGE_MIN_DEPTH = 20         # Min depth at entry for resolution
+BRIDGE_MIN_DEPTH = 50         # Min depth at entry for resolution
 
 # Category-specific sigma defaults (logit-space volatility)
 SIGMA_BY_CATEGORY = {
@@ -97,7 +97,7 @@ DEPTH_MULT_LOW = 0.10
 # Whale fill detection
 WHALE_FILL_MIN = 500  # Min contracts for whale flag
 WHALE_FILL_CATEGORIES = {"Sports", "Crypto"}  # Only flag whales in these categories
-RESOLUTION_TIME = 300         # Within 5 min of close_time (seconds)
+RESOLUTION_TIME = 180         # Within 5 min of close_time (seconds)
 AVAILABLE_CAPITAL = 460       # Current Kalshi balance ($)
 MAX_POSITION_PCT = 0.05       # 5% max per trade
 PAPER_TIMEOUT = 300           # 5-min position timeout (seconds)
@@ -982,8 +982,11 @@ class LiveScanner:
             mi = self.market_info.get(sig.ticker)
             if mi and mi.category in self._category_stats:
                 self._category_stats[mi.category]["signals"] += 1
-            print(f"[SIGNAL] [{sig.severity}] whale_momentum: {sig.description}")
-            self.open_paper_trade(sig)
+            lam = self._get_kyle_lambda(sig.ticker)
+            conv, _ = self._get_conv_time(sig.ticker)
+            lam_tag = f" λ={lam:.5f}" if lam is not None else ""
+            conv_tag = f" ct={conv:.0f}s" if conv is not None else ""
+            print(f"[ALERT] [{sig.severity}] whale_momentum: {sig.description}{lam_tag}{conv_tag}")
 
     def _logit_move(self, ticker: str, window_seconds: float, min_entries: int = 5):
         """Returns (logit_delta, cents_delta) or (None, None)."""
@@ -1369,8 +1372,8 @@ class LiveScanner:
             return signals
 
         # Check both boundaries: near YES=100 (ask>=95) or near YES=0 (bid<=5)
-        near_100 = book.best_ask >= 95
-        near_0 = book.best_bid <= 5
+        near_100 = book.best_ask >= 97
+        near_0 = book.best_bid <= 3
         if not near_100 and not near_0:
             return signals
 
@@ -1447,28 +1450,39 @@ class LiveScanner:
     # ------------------------------------------------------------------
 
     def on_bbo_update(self, ticker: str):
-        """Run all scans on BBO change. Dedup signals."""
+        """Run all scans on BBO change. Dedup signals.
+        Only resolution opens paper trades. Momentum and contradiction are alert-only."""
         self._record_bbo(ticker)
 
         # Warmup guard: don't scan until 60s of continuous BBO data
         if not self._is_warmed_up(ticker):
             return
 
-        all_signals = []
-        all_signals.extend(self.scan_momentum_lag(ticker))
-        # BUG 3: mean_reversion DISABLED — 0 wins in 68 trades, sports spikes are real repricing
-        # all_signals.extend(self.scan_mean_reversion(ticker))
-        all_signals.extend(self.scan_contradiction(ticker))
-        all_signals.extend(self.scan_resolution(ticker))
+        # --- Alert-only strategies (detect + log, no auto-trade) ---
+        alert_signals = []
+        alert_signals.extend(self.scan_momentum_lag(ticker))
+        # mean_reversion DISABLED — 0 wins in 68 trades
+        alert_signals.extend(self.scan_contradiction(ticker))
 
-        for sig in all_signals:
+        for sig in alert_signals:
             self.stats["scan_signals"] += 1
-
-            # Track signal by category
             info = self.market_info.get(sig.ticker)
             if info and info.category in self._category_stats:
                 self._category_stats[info.category]["signals"] += 1
+            # Log as ALERT — visible in terminal but no paper trade
+            lam = self._get_kyle_lambda(sig.ticker)
+            conv, r_est = self._get_conv_time(sig.ticker)
+            lam_tag = f" λ={lam:.5f}" if lam is not None else ""
+            conv_tag = f" ct={conv:.0f}s" if conv is not None else ""
+            print(f"[ALERT] [{sig.severity}] {sig.scan_type}: {sig.description}{lam_tag}{conv_tag}")
 
+        # --- Auto-trade strategy: resolution only ---
+        res_signals = self.scan_resolution(ticker)
+        for sig in res_signals:
+            self.stats["scan_signals"] += 1
+            info = self.market_info.get(sig.ticker)
+            if info and info.category in self._category_stats:
+                self._category_stats[info.category]["signals"] += 1
             print(f"[SIGNAL] [{sig.severity}] {sig.scan_type}: {sig.description}")
             self.open_paper_trade(sig)
 

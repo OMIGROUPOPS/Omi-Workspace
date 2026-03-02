@@ -61,7 +61,9 @@ EVENTS_PATH = "/trade-api/v2/events?status=open&with_nested_markets=true&limit=2
 
 # Scan parameters
 MOMENTUM_LOGIT_THRESHOLD = 0.15  # Min logit move to trigger lag scan
-MOMENTUM_WINDOW = 30.0       # Lookback (seconds) for price move
+MOMENTUM_WINDOW_DEFAULT = 15.0   # Default lookback (seconds)
+MOMENTUM_WINDOW_ML_TO_SPREAD = 8.0   # ML→spread: tight window (fast reprice)
+MOMENTUM_WINDOW_SPREAD_TO_OTHER = 20.0  # Spread→props/alt: wider window
 MOMENTUM_LAG_RATIO = 0.5     # Flag if related moved < 50% of expected
 REVERSION_SPIKE = 15          # Min spike (cents) for mean reversion
 REVERSION_WINDOW = 10.0       # Spike must happen within this (seconds)
@@ -74,8 +76,26 @@ REVERSION_ALLOWED_CATEGORIES = {"Sports"}  # Only sports mean-revert on short TF
 REVERSION_MAX_HALF_LIFE = 120.0  # Skip if OU half-life > 120s (price not mean-reverting fast enough)
 CONTRADICTION_MIN_DEPTH = 10  # Both sides need 10+ contracts
 BRIDGE_MIN_CONFIDENCE = 0.95  # Min Brownian bridge confidence for resolution
-BRIDGE_DEFAULT_SIGMA = 0.3    # Default logit-space volatility
+BRIDGE_DEFAULT_SIGMA = 0.3    # Default logit-space volatility (fallback)
 BRIDGE_MIN_DEPTH = 20         # Min depth at entry for resolution
+
+# Category-specific sigma defaults (logit-space volatility)
+SIGMA_BY_CATEGORY = {
+    "Sports": 0.25,
+    "Crypto": 0.50,
+    "Politics": 0.40,
+    "Economics": 0.35,
+    "Climate and Weather": 0.30,
+}
+
+# Depth multiplier for resolution position sizing by category volume
+HIGH_VOLUME_CATEGORIES = {"Sports", "Crypto", "Financials"}
+LOW_VOLUME_CATEGORIES = {"Climate and Weather", "Entertainment", "Politics", "Economics", "Elections"}
+DEPTH_MULT_HIGH = 0.25
+DEPTH_MULT_LOW = 0.10
+
+# Whale fill detection
+WHALE_FILL_MIN = 50  # Min contracts for whale flag
 RESOLUTION_TIME = 300         # Within 5 min of close_time (seconds)
 AVAILABLE_CAPITAL = 460       # Current Kalshi balance ($)
 MAX_POSITION_PCT = 0.05       # 5% max per trade
@@ -183,6 +203,9 @@ class PaperTrade:
     optimal_contracts: Optional[float] = None  # Kelly-sized position
     contracts_at_depth: int = 0                # depth at entry
     potential_pnl: Optional[float] = None      # optimal_contracts * edge
+    depth_mult: Optional[float] = None         # depth multiplier used for sizing
+    cv_edge: Optional[float] = None            # coefficient of variation of edge
+    adjusted_kelly: Optional[float] = None     # Kelly fraction after CV discount
 
 
 @dataclass
@@ -431,6 +454,14 @@ class LiveScanner:
         # VPIN proxy: EWMA of |mid_change| / total_depth per ticker
         self._ticker_vpin: Dict[str, float] = {}
 
+        # Trade stream tracking (whale fills)
+        self._last_trade: Dict[str, Dict] = {}    # ticker → {price, size, ts}
+        self._whale_fills: int = 0                 # count per stats interval
+        self._whale_fills_total: int = 0
+
+        # Edge history per strategy for empirical Kelly adjustment
+        self._edge_history: Dict[str, deque] = {}  # scan_type → deque[edge_cents]
+
         # (signal dedup removed — only open-trade check in open_paper_trade)
 
     # ------------------------------------------------------------------
@@ -578,6 +609,27 @@ class LiveScanner:
         self.stats["tickers_subscribed"] = len(self.subscribed_tickers)
         print(f"[WS] Subscribed to {len(tickers)} tickers (total: {len(self.subscribed_tickers)})")
 
+    async def ws_subscribe_trades(self, tickers: List[str]):
+        """Subscribe to public trade stream for given tickers."""
+        if not self.ws_connected or not self.ws:
+            return
+        for i in range(0, len(tickers), WS_SUBSCRIBE_BATCH):
+            batch = tickers[i:i + WS_SUBSCRIBE_BATCH]
+            self.msg_id += 1
+            msg = {
+                "id": self.msg_id,
+                "cmd": "subscribe",
+                "params": {
+                    "channels": ["trade"],
+                    "market_tickers": batch,
+                },
+            }
+            try:
+                await self.ws.send(json.dumps(msg))
+            except Exception as e:
+                print(f"[WS] Trade subscribe batch failed: {e}")
+        print(f"[WS] Subscribed to trades for {len(tickers)} tickers")
+
     async def ws_subscribe_all(self):
         """Subscribe to all qualified tickers not yet subscribed."""
         to_sub = []
@@ -590,6 +642,7 @@ class LiveScanner:
                             to_sub.append(t)
         if to_sub:
             await self.ws_subscribe(to_sub)
+            await self.ws_subscribe_trades(to_sub)
 
     # ------------------------------------------------------------------
     # Orderbook management
@@ -768,12 +821,13 @@ class LiveScanner:
             conv_time = conv_time / boundary_factor
         return conv_time, r
 
-    def _estimate_logit_sigma(self, ticker: str) -> float:
+    def _estimate_logit_sigma(self, ticker: str, category: str = "") -> float:
         """Estimate logit-space volatility (stddev per sqrt-second) from BBO history.
-        Returns BRIDGE_DEFAULT_SIGMA if insufficient data."""
+        Falls back to category-specific default if insufficient data."""
+        cat_default = SIGMA_BY_CATEGORY.get(category, BRIDGE_DEFAULT_SIGMA)
         hist = self.bbo_history.get(ticker)
         if not hist or len(hist) < 5:
-            return BRIDGE_DEFAULT_SIGMA
+            return cat_default
         # Build logit-mid series with timestamps
         logit_mids = []
         for entry in hist:
@@ -781,7 +835,7 @@ class LiveScanner:
             if 1 <= mid <= 99:
                 logit_mids.append((entry.ts, _logit(mid)))
         if len(logit_mids) < 5:
-            return BRIDGE_DEFAULT_SIGMA
+            return cat_default
         # Compute consecutive diffs
         diffs = []
         dts = []
@@ -791,11 +845,11 @@ class LiveScanner:
                 diffs.append(logit_mids[i][1] - logit_mids[i - 1][1])
                 dts.append(dt)
         if len(diffs) < 3 or sum(dts) <= 0:
-            return BRIDGE_DEFAULT_SIGMA
+            return cat_default
         avg_dt = sum(dts) / len(dts)
         mean_diff = sum(diffs) / len(diffs)
         var = sum((d - mean_diff) ** 2 for d in diffs) / len(diffs)
-        sigma = math.sqrt(var) / math.sqrt(avg_dt) if avg_dt > 0 else BRIDGE_DEFAULT_SIGMA
+        sigma = math.sqrt(var) / math.sqrt(avg_dt) if avg_dt > 0 else cat_default
         return max(0.01, sigma)
 
     def _estimate_half_life(self, ticker: str) -> Optional[float]:
@@ -892,6 +946,42 @@ class LiveScanner:
             return None
         return now_mid - past_mid
 
+    def _momentum_window(self, primary_type: str, other_type: str) -> float:
+        """Return category-aware momentum lookback window in seconds."""
+        if primary_type == "moneyline" and other_type == "spread":
+            return MOMENTUM_WINDOW_ML_TO_SPREAD
+        if primary_type == "spread" and other_type == "moneyline":
+            return MOMENTUM_WINDOW_ML_TO_SPREAD
+        if primary_type in ("spread", "moneyline") and other_type in ("total", "variant"):
+            return MOMENTUM_WINDOW_SPREAD_TO_OTHER
+        return MOMENTUM_WINDOW_DEFAULT
+
+    def _on_whale_fill(self, ticker: str, price: int, count: int, taker_side: str):
+        """Handle whale fill: log + trigger momentum scan on correlated markets."""
+        info = self.market_info.get(ticker)
+        cat_label = info.category if info else "?"
+        print(
+            f"[WHALE] {cat_label} {ticker}: {count}ct @{price}c taker={taker_side}"
+        )
+        self._whale_fills += 1
+        self._whale_fills_total += 1
+
+        # Immediate momentum check on correlated markets
+        if not info or not self._is_warmed_up(ticker):
+            return
+        game = self.games.get(info.game_id)
+        if not game:
+            return
+        # Run momentum lag scan from this ticker's perspective
+        signals = self.scan_momentum_lag(ticker)
+        for sig in signals:
+            self.stats["scan_signals"] += 1
+            mi = self.market_info.get(sig.ticker)
+            if mi and mi.category in self._category_stats:
+                self._category_stats[mi.category]["signals"] += 1
+            print(f"[SIGNAL] [{sig.severity}] whale_momentum: {sig.description}")
+            self.open_paper_trade(sig)
+
     def _logit_move(self, ticker: str, window_seconds: float, min_entries: int = 5):
         """Returns (logit_delta, cents_delta) or (None, None)."""
         hist = self.bbo_history.get(ticker)
@@ -917,10 +1007,6 @@ class LiveScanner:
         if not info:
             return signals
 
-        primary_logit, primary_cents = self._logit_move(ticker, MOMENTUM_WINDOW, min_entries=5)
-        if primary_logit is None or abs(primary_logit) < MOMENTUM_LOGIT_THRESHOLD:
-            return signals
-
         game = self.games.get(info.game_id)
         if not game:
             return signals
@@ -934,12 +1020,17 @@ class LiveScanner:
             if corr is None:
                 continue  # Skip totals
 
+            window = self._momentum_window(info.market_type, other_type)
+            primary_logit, primary_cents = self._logit_move(ticker, window, min_entries=5)
+            if primary_logit is None or abs(primary_logit) < MOMENTUM_LOGIT_THRESHOLD:
+                continue
+
             for ot in other_tickers:
                 other_info = self.market_info.get(ot)
                 if not other_info or other_info.team != info.team:
                     continue
 
-                other_logit, other_cents = self._logit_move(ot, MOMENTUM_WINDOW, min_entries=5)
+                other_logit, other_cents = self._logit_move(ot, window, min_entries=5)
                 if other_logit is None:
                     continue
 
@@ -1285,8 +1376,8 @@ class LiveScanner:
         if entry_depth < BRIDGE_MIN_DEPTH:
             return signals
 
-        # Brownian bridge confidence
-        sigma = self._estimate_logit_sigma(ticker)
+        # Brownian bridge confidence (category-aware sigma)
+        sigma = self._estimate_logit_sigma(ticker, info.category)
         price = book.best_ask if near_100 else book.best_bid
         logit_price = _logit(price)
         denom = sigma * math.sqrt(secs_to_close)
@@ -1306,7 +1397,14 @@ class LiveScanner:
             entry_price = 100 - book.best_bid
             payout = 100 - entry_price
 
-        # Kelly sizing (logged only)
+        # Kelly sizing (logged only) — depth multiplier by category volume
+        if info.category in HIGH_VOLUME_CATEGORIES:
+            depth_mult = DEPTH_MULT_HIGH
+        elif info.category in LOW_VOLUME_CATEGORIES:
+            depth_mult = DEPTH_MULT_LOW
+        else:
+            depth_mult = DEPTH_MULT_LOW  # Conservative default
+
         kelly_f = 0.0
         kelly_contracts = 0
         optimal_size = 0
@@ -1314,7 +1412,7 @@ class LiveScanner:
             kelly_f = (bridge_conf * payout - (1 - bridge_conf) * entry_price) / payout
             if kelly_f > 0:
                 kelly_contracts = kelly_f * AVAILABLE_CAPITAL * 100 / max(entry_price, 1)
-                optimal_size = int(min(entry_depth * 0.25, kelly_contracts))
+                optimal_size = int(min(entry_depth * depth_mult, kelly_contracts))
 
         timeout = int(secs_to_close) + 60
 
@@ -1330,7 +1428,7 @@ class LiveScanner:
             description=(
                 f"{info.category} {info.team}: {'YES' if near_100 else 'NO'}@{entry_price}c, "
                 f"{secs_to_close:.0f}s to close, bridge={bridge_conf:.2f} "
-                f"\u03c3={sigma:.2f} kelly={optimal_size}ct"
+                f"\u03c3={sigma:.2f} kelly={optimal_size}ct dmult={depth_mult}"
             ),
             depth=entry_depth,
             bridge_confidence=bridge_conf,
@@ -1462,14 +1560,49 @@ class LiveScanner:
         # Position sizing (all strategies)
         max_pos = AVAILABLE_CAPITAL * MAX_POSITION_PCT * 100  # cents
         contracts_at_depth = signal.depth
-        optimal = min(
-            int(max_pos / max(signal.entry_price, 1)),
-            int(contracts_at_depth * 0.25),
-        )
         edge = signal.target - signal.entry_price
+
+        # Depth multiplier: category-aware
+        info_cat = self.market_info.get(signal.ticker)
+        cat_name = info_cat.category if info_cat else ""
+        if cat_name in HIGH_VOLUME_CATEGORIES:
+            depth_mult = DEPTH_MULT_HIGH
+        elif cat_name in LOW_VOLUME_CATEGORIES:
+            depth_mult = DEPTH_MULT_LOW
+        else:
+            depth_mult = DEPTH_MULT_LOW
+
+        # Empirical Kelly adjustment: track edge CV per strategy
+        cv_edge_val = None
+        adjusted_kelly = None
+        if signal.scan_type not in self._edge_history:
+            self._edge_history[signal.scan_type] = deque(maxlen=100)
+        self._edge_history[signal.scan_type].append(edge)
+        edges = self._edge_history[signal.scan_type]
+        if len(edges) >= 5:
+            mean_e = sum(edges) / len(edges)
+            if mean_e > 0:
+                var_e = sum((e - mean_e) ** 2 for e in edges) / len(edges)
+                std_e = math.sqrt(var_e)
+                cv_edge_val = std_e / mean_e
+                adjusted_kelly = max(0.1, 1.0 - cv_edge_val)
+
+        # Base Kelly fraction (simple edge/payout)
+        base_kelly_f = edge / max(signal.target, 1) if edge > 0 else 0
+        kelly_discount = adjusted_kelly if adjusted_kelly is not None else 1.0
+        kelly_f_adj = base_kelly_f * kelly_discount
+
+        optimal = min(
+            int(max_pos * kelly_f_adj / max(signal.entry_price, 1)) if kelly_f_adj > 0
+            else int(max_pos / max(signal.entry_price, 1)),
+            int(contracts_at_depth * depth_mult),
+        )
         trade.optimal_contracts = optimal
         trade.contracts_at_depth = contracts_at_depth
         trade.potential_pnl = optimal * edge if edge > 0 else 0
+        trade.depth_mult = depth_mult
+        trade.cv_edge = cv_edge_val
+        trade.adjusted_kelly = adjusted_kelly
 
         # Bridge fields from resolution signals
         if signal.bridge_confidence is not None:
@@ -1485,7 +1618,9 @@ class LiveScanner:
         r_tag = f" r={r_est:.3f}" if r_est is not None else ""
         cat_tag = f" [{conv_cat}]" if conv_cat else ""
         vpin_tag = f" vpin={vpin:.6f}" if vpin is not None else ""
-        size_tag = f" size={optimal}ct pnl_pot={trade.potential_pnl}c"
+        cv_tag = f" cv={cv_edge_val:.2f}" if cv_edge_val is not None else ""
+        ak_tag = f" adjK={adjusted_kelly:.2f}" if adjusted_kelly is not None else ""
+        size_tag = f" size={optimal}ct pnl_pot={trade.potential_pnl}c dm={depth_mult}"
         bridge_tag = ""
         if trade.bridge_confidence is not None:
             bridge_tag = (
@@ -1496,7 +1631,7 @@ class LiveScanner:
             f"[PAPER] OPEN {trade.id}: {trade.scan_type} {trade.side} "
             f"{trade.ticker}@{trade.entry_price}c target={trade.target} stop={trade.stop} "
             f"depth={signal.depth}{hl_tag}{lam_tag}{conv_tag}{r_tag}{cat_tag}{vpin_tag}"
-            f"{size_tag}{bridge_tag}"
+            f"{cv_tag}{ak_tag}{size_tag}{bridge_tag}"
         )
 
     def check_paper_trades(self, updated_ticker: str):
@@ -1641,6 +1776,7 @@ class LiveScanner:
             self._mid_changes.pop(ticker, None)
             self._ticker_vpin.pop(ticker, None)
             self._ticker_first_bbo.pop(ticker, None)
+            self._last_trade.pop(ticker, None)
 
         self.stats["tickers_pruned"] = self.stats.get("tickers_pruned", 0) + len(stale)
         print(f"[PRUNE] Removed {len(stale)} stale tickers (no BBO in {STALE_TICKER_TIMEOUT}s), "
@@ -1676,7 +1812,8 @@ class LiveScanner:
             f"{self.stats['tickers_subscribed']} tickers subscribed",
             f"Signals: {self.stats['scan_signals']} total, "
             f"lambda_skipped={self.stats.get('lambda_skipped', 0)}, "
-            f"seq_gaps={self._seq_gaps}, ws_reconnects={self.stats.get('ws_reconnects', 0)}",
+            f"seq_gaps={self._seq_gaps}, ws_reconnects={self.stats.get('ws_reconnects', 0)}, "
+            f"whale_fills={self._whale_fills}/{self._whale_fills_total}",
             f"Paper: {self.stats['paper_trades_opened']} opened, "
             f"{self.stats['paper_trades_closed']} closed, "
             f"{len(self.open_trades)} open",
@@ -1839,6 +1976,26 @@ class LiveScanner:
                         if book and (book.best_bid != old_bid or book.best_ask != old_ask):
                             self.on_bbo_update(ticker)
 
+                elif msg_type == "trade":
+                    # Public trade stream
+                    ticker = msg_data.get("market_ticker")
+                    if ticker:
+                        trade_price = msg_data.get("yes_price")
+                        trade_count = msg_data.get("count", 0)
+                        taker_side = msg_data.get("taker_side", "")
+                        if trade_price is not None:
+                            self._last_trade[ticker] = {
+                                "price": int(trade_price),
+                                "size": int(trade_count),
+                                "ts": time.time(),
+                                "taker": taker_side,
+                            }
+                            if int(trade_count) >= WHALE_FILL_MIN:
+                                self._on_whale_fill(
+                                    ticker, int(trade_price),
+                                    int(trade_count), taker_side,
+                                )
+
                 elif msg_type == "subscribed":
                     print(f"[WS] Subscribed confirmed: {msg_data}")
 
@@ -1875,6 +2032,7 @@ class LiveScanner:
             self._prune_stale_tickers()
             self.dump_stats()
             self.save_paper_trades()
+            self._whale_fills = 0  # Reset per-interval whale counter
 
     async def paper_trade_monitor(self):
         """Check paper trade timeouts every second."""

@@ -666,9 +666,11 @@ export default function Chart({ ticker }: ChartProps) {
       <div
         ref={containerRef}
         style={{
-          flex: 1,
-          minHeight: 0,
           position: "relative",
+          width: "100%",
+          height: "100%",
+          minHeight: "400px",
+          flex: 1,
           overflow: "hidden",
         }}
       >

@@ -84,6 +84,10 @@ VPIN_ALPHA = 0.05            # EWMA smoothing for VPIN proxy
 CONV_TIME_WINDOW = 120.0     # Rolling window for directional flow (seconds)
 CONV_TIME_K = 200            # Calibration constant: conv_time = k / (r² + 0.001)
 
+STALE_TICKER_TIMEOUT = 600   # Prune ticker data if no BBO update in 10 min
+BBO_HISTORY_MAXLEN = 120     # Max BBO entries per ticker (~60s at 2/sec)
+MID_CHANGES_MAXLEN = 200     # Max mid-price changes per ticker for conv_time
+
 PAPER_TRADES_FILE = os.path.join(os.path.dirname(__file__), "intra_paper_trades.json")
 STATS_LOG = "/tmp/intra_scanner.log"
 
@@ -645,7 +649,7 @@ class LiveScanner:
             return
         now = time.time()
         if ticker not in self.bbo_history:
-            self.bbo_history[ticker] = deque()
+            self.bbo_history[ticker] = deque(maxlen=BBO_HISTORY_MAXLEN)
         if ticker not in self._ticker_first_bbo:
             self._ticker_first_bbo[ticker] = now
         hist = self.bbo_history[ticker]
@@ -656,10 +660,6 @@ class LiveScanner:
             bid_size=book.best_bid_size,
             ask_size=book.best_ask_size,
         ))
-        # Prune old entries
-        cutoff = now - BBO_HISTORY_WINDOW
-        while hist and hist[0].ts < cutoff:
-            hist.popleft()
         self.stats["bbo_updates"] += 1
 
         # --- Kyle's Lambda EWMA update ---
@@ -696,12 +696,8 @@ class LiveScanner:
             delta = mid - prev_mid
             if delta != 0:
                 if ticker not in self._mid_changes:
-                    self._mid_changes[ticker] = deque()
+                    self._mid_changes[ticker] = deque(maxlen=MID_CHANGES_MAXLEN)
                 self._mid_changes[ticker].append((now, delta))
-                # Prune outside window
-                conv_cutoff = now - CONV_TIME_WINDOW
-                while self._mid_changes[ticker] and self._mid_changes[ticker][0][0] < conv_cutoff:
-                    self._mid_changes[ticker].popleft()
 
     def _is_warmed_up(self, ticker: str) -> bool:
         """Ticker must have 60s+ of continuous BBO history with 3+ data points."""
@@ -1447,6 +1443,36 @@ class LiveScanner:
         except Exception as e:
             print(f"[PAPER] Save error: {e}")
 
+    def _prune_stale_tickers(self):
+        """Remove all per-ticker data for tickers with no BBO update in STALE_TICKER_TIMEOUT."""
+        now = time.time()
+        cutoff = now - STALE_TICKER_TIMEOUT
+
+        # Find tickers with open trades (never prune these)
+        active_trade_tickers = {t.ticker for t in self.open_trades}
+
+        stale = []
+        for ticker, book in self.books.items():
+            if book.last_update < cutoff and ticker not in active_trade_tickers:
+                stale.append(ticker)
+
+        if not stale:
+            return
+
+        for ticker in stale:
+            self.books.pop(ticker, None)
+            self.bbo_history.pop(ticker, None)
+            self._ticker_lambda.pop(ticker, None)
+            self._ticker_bbo_count.pop(ticker, None)
+            self._ticker_prev_mid.pop(ticker, None)
+            self._mid_changes.pop(ticker, None)
+            self._ticker_vpin.pop(ticker, None)
+            self._ticker_first_bbo.pop(ticker, None)
+
+        self.stats["tickers_pruned"] = self.stats.get("tickers_pruned", 0) + len(stale)
+        print(f"[PRUNE] Removed {len(stale)} stale tickers (no BBO in {STALE_TICKER_TIMEOUT}s), "
+              f"{len(self.books)} books remaining")
+
     # ------------------------------------------------------------------
     # Stats output
     # ------------------------------------------------------------------
@@ -1493,7 +1519,11 @@ class LiveScanner:
 
         # Active books summary
         active_books = sum(1 for b in self.books.values() if b.best_bid is not None)
-        lines.append(f"Books: {active_books}/{len(self.books)} active")
+        pruned = self.stats.get("tickers_pruned", 0)
+        bbo_hist_entries = sum(len(h) for h in self.bbo_history.values())
+        mid_entries = sum(len(d) for d in self._mid_changes.values())
+        lines.append(f"Books: {active_books}/{len(self.books)} active, "
+                     f"pruned={pruned}, bbo_hist={bbo_hist_entries}, mid_changes={mid_entries}")
 
         # Lambda distribution summary
         lambdas = [v for v in self._ticker_lambda.values() if v > 0]
@@ -1669,6 +1699,7 @@ class LiveScanner:
         """Dump stats every STATS_INTERVAL seconds."""
         while not self.shutdown:
             await asyncio.sleep(STATS_INTERVAL)
+            self._prune_stale_tickers()
             self.dump_stats()
             self.save_paper_trades()
 

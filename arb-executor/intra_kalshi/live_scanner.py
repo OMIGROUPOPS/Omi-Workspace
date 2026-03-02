@@ -358,6 +358,9 @@ class LiveScanner:
         # Category tracking
         self._category_stats: Dict[str, Dict] = {}  # category → {events, tickers, signals}
 
+        # Warmup tracking: ticker → timestamp of first BBO
+        self._ticker_first_bbo: Dict[str, float] = {}
+
         # Dedup: don't fire same signal repeatedly
         self._recent_signals: Dict[str, float] = {}  # key → timestamp
         self._signal_cooldown = 30.0  # seconds
@@ -605,6 +608,8 @@ class LiveScanner:
         now = time.time()
         if ticker not in self.bbo_history:
             self.bbo_history[ticker] = deque()
+        if ticker not in self._ticker_first_bbo:
+            self._ticker_first_bbo[ticker] = now
         hist = self.bbo_history[ticker]
         hist.append(BBOEntry(
             ts=now,
@@ -619,6 +624,18 @@ class LiveScanner:
             hist.popleft()
         self.stats["bbo_updates"] += 1
 
+    def _is_warmed_up(self, ticker: str) -> bool:
+        """Ticker must have 60s+ of continuous BBO history with 3+ data points."""
+        first = self._ticker_first_bbo.get(ticker)
+        if first is None:
+            return False
+        if time.time() - first < BBO_HISTORY_WINDOW:
+            return False
+        hist = self.bbo_history.get(ticker)
+        if not hist or len(hist) < 3:
+            return False
+        return True
+
     def _get_midpoint(self, ticker: str) -> Optional[int]:
         book = self.books.get(ticker)
         if not book or book.best_bid is None or book.best_ask is None:
@@ -626,11 +643,20 @@ class LiveScanner:
         return (book.best_bid + book.best_ask) // 2
 
     def _get_midpoint_at(self, ticker: str, seconds_ago: float) -> Optional[int]:
-        """Get midpoint from N seconds ago."""
+        """Get midpoint from N seconds ago. Returns None if no valid data exists
+        at that time (rejects first-ever BBO as a reference point)."""
         hist = self.bbo_history.get(ticker)
         if not hist:
             return None
-        target_ts = time.time() - seconds_ago
+        now = time.time()
+        target_ts = now - seconds_ago
+        first_bbo = self._ticker_first_bbo.get(ticker)
+
+        # Reject if the target timestamp is before or near the first-ever BBO
+        # (the "first snapshot" is not a real historical price)
+        if first_bbo is not None and target_ts < first_bbo + 5.0:
+            return None
+
         # Find closest entry at or before target_ts
         best = None
         for entry in hist:
@@ -639,15 +665,17 @@ class LiveScanner:
             else:
                 break
         if best is None:
-            # Use oldest available
-            best = hist[0]
-            # Only if it's reasonably close (within 2x window)
-            if time.time() - best.ts > seconds_ago * 2:
-                return None
+            return None  # No entry exists at that time — don't fall back to oldest
+        if best.bid <= 0 or best.ask <= 0:
+            return None
         return (best.bid + best.ask) // 2
 
-    def _price_move(self, ticker: str, window_seconds: float) -> Optional[int]:
-        """Compute price move over window. Positive = price went up."""
+    def _price_move(self, ticker: str, window_seconds: float, min_entries: int = 3) -> Optional[int]:
+        """Compute price move over window. Positive = price went up.
+        Requires min_entries BBO updates in the window to ensure data quality."""
+        hist = self.bbo_history.get(ticker)
+        if not hist or len(hist) < min_entries:
+            return None
         now_mid = self._get_midpoint(ticker)
         past_mid = self._get_midpoint_at(ticker, window_seconds)
         if now_mid is None or past_mid is None:
@@ -665,7 +693,7 @@ class LiveScanner:
         if not info:
             return signals
 
-        primary_move = self._price_move(ticker, MOMENTUM_WINDOW)
+        primary_move = self._price_move(ticker, MOMENTUM_WINDOW, min_entries=5)
         if primary_move is None or abs(primary_move) < MOMENTUM_THRESHOLD:
             return signals
 
@@ -687,7 +715,7 @@ class LiveScanner:
                 if not other_info or other_info.team != info.team:
                     continue
 
-                other_move = self._price_move(ot, MOMENTUM_WINDOW)
+                other_move = self._price_move(ot, MOMENTUM_WINDOW, min_entries=5)
                 if other_move is None:
                     continue
 
@@ -760,6 +788,11 @@ class LiveScanner:
 
         spike = now_mid - past_mid
         if abs(spike) < REVERSION_SPIKE:
+            return signals
+
+        # Reject data artifacts: anything > 20c is not a real spike, it's
+        # a book materializing from sparse quotes
+        if abs(spike) > 20:
             return signals
 
         book = self.books.get(ticker)
@@ -984,6 +1017,10 @@ class LiveScanner:
     def on_bbo_update(self, ticker: str):
         """Run all scans on BBO change. Dedup signals."""
         self._record_bbo(ticker)
+
+        # Warmup guard: don't scan until 60s of continuous BBO data
+        if not self._is_warmed_up(ticker):
+            return
 
         all_signals = []
         all_signals.extend(self.scan_momentum_lag(ticker))

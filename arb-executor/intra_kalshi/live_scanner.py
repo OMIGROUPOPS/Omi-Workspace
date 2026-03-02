@@ -95,7 +95,8 @@ DEPTH_MULT_HIGH = 0.25
 DEPTH_MULT_LOW = 0.10
 
 # Whale fill detection
-WHALE_FILL_MIN = 200  # Min contracts for whale flag
+WHALE_FILL_MIN = 500  # Min contracts for whale flag
+WHALE_FILL_CATEGORIES = {"Sports", "Crypto"}  # Only flag whales in these categories
 RESOLUTION_TIME = 300         # Within 5 min of close_time (seconds)
 AVAILABLE_CAPITAL = 460       # Current Kalshi balance ($)
 MAX_POSITION_PCT = 0.05       # 5% max per trade
@@ -959,7 +960,9 @@ class LiveScanner:
     def _on_whale_fill(self, ticker: str, price: int, count: int, taker_side: str):
         """Handle whale fill: log + trigger momentum scan on correlated markets."""
         info = self.market_info.get(ticker)
-        cat_label = info.category if info else "?"
+        if not info or info.category not in WHALE_FILL_CATEGORIES:
+            return
+        cat_label = info.category
         print(
             f"[WHALE] {cat_label} {ticker}: {count}ct @{price}c taker={taker_side}"
         )

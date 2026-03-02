@@ -1,0 +1,4414 @@
+[
+  {
+    "timestamp": "2026-02-28T20:14:41.434592+00:00",
+    "balances": {
+      "kalshi": 505.21,
+      "polymarket": 393.98,
+      "total": 899.19
+    },
+    "kalshi_positions": [
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "side": "YES",
+        "qty": 1,
+        "exposure": 0.34
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "side": "YES",
+        "qty": 1,
+        "exposure": 0.34
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CITWOF-CIT",
+        "side": "NO",
+        "qty": 1,
+        "exposure": 0.59
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28FGCUSTET-STET",
+        "side": "YES",
+        "qty": 1,
+        "exposure": 0.65
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28LMCNHC-NHC",
+        "side": "YES",
+        "qty": 1,
+        "exposure": 0.55
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1,
+        "exposure": 0.52
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1,
+        "exposure": 0.39
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY",
+        "side": "NO",
+        "qty": 2,
+        "exposure": 0.88
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1,
+        "exposure": 0.47
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28LUNPAC-PAC",
+        "side": "YES",
+        "qty": 28,
+        "exposure": 4.48
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28MORKAV-MOR",
+        "side": "NO",
+        "qty": 30,
+        "exposure": 10.2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28VERMAR-VER",
+        "side": "YES",
+        "qty": 29,
+        "exposure": 8.41
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28ZELGRE-GRE",
+        "side": "YES",
+        "qty": 28,
+        "exposure": 6.16
+      }
+    ],
+    "kalshi_total_exposure": 33.98,
+    "pm_positions": [
+      {
+        "slug": "aec-cbb-ala-tenn-2026-02-28",
+        "outcome": "Crimson Tide",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.35,
+        "team": "ala"
+      },
+      {
+        "slug": "aec-cbb-ausp-bella-2026-02-28",
+        "outcome": "Governors",
+        "net": "2",
+        "cost": 1.07,
+        "cash_value": 1.18,
+        "team": "ausp"
+      },
+      {
+        "slug": "aec-cbb-camp-tows-2026-02-28",
+        "outcome": "Tigers",
+        "net": "-1",
+        "cost": 0.58,
+        "cash_value": 0.2,
+        "team": "tows"
+      },
+      {
+        "slug": "aec-cbb-cita-woff-2026-02-28",
+        "outcome": "Bulldogs",
+        "net": "1",
+        "cost": 0.34,
+        "cash_value": 0.39,
+        "team": "cita"
+      },
+      {
+        "slug": "aec-cbb-flgc-stetsn-2026-02-28",
+        "outcome": "Eagles",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.39,
+        "team": "flgc"
+      },
+      {
+        "slug": "aec-cbb-lou-clmsn-2026-02-28",
+        "outcome": "Cardinals",
+        "net": "1",
+        "cost": 0.43,
+        "cash_value": 0.47,
+        "team": "lou"
+      },
+      {
+        "slug": "aec-cbb-umass-bowlgr-2026-02-28",
+        "outcome": "Falcons",
+        "net": "-1",
+        "cost": 0.57,
+        "cash_value": 0.33,
+        "team": "bowlgr"
+      },
+      {
+        "slug": "aec-nhl-pit-nyr-2026-02-28",
+        "outcome": "Penguins",
+        "net": "1",
+        "cost": 0.49,
+        "cash_value": 0.47,
+        "team": "pit"
+      },
+      {
+        "slug": "aec-ufc-angpac-sanlun-2026-02-28",
+        "outcome": "Santiago Luna",
+        "net": "-28",
+        "cost": 23.8,
+        "cash_value": 24.08,
+        "team": "sanlun"
+      },
+      {
+        "slug": "aec-ufc-bramor-lonkav-2026-02-28",
+        "outcome": "Brandon Moreno",
+        "net": "30",
+        "cost": 19.8,
+        "cash_value": 19.2,
+        "team": "bramor"
+      },
+      {
+        "slug": "aec-ufc-kingre-danzel-2026-02-28",
+        "outcome": "Daniel Zellhuber",
+        "net": "-28",
+        "cost": 22.4,
+        "cash_value": 21.56,
+        "team": "danzel"
+      },
+      {
+        "slug": "aec-ufc-marver-davmar-2026-02-28",
+        "outcome": "David Martinez",
+        "net": "-29",
+        "cost": 21.17,
+        "cash_value": 20.88,
+        "team": "davmar"
+      }
+    ],
+    "pm_total_cost": 91.31,
+    "active_trades": 29,
+    "issues": [
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28CITWOF-CIT",
+        "side": "NO",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28LMCNHC-NHC",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26MEALBY-ALBY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26TBCAR-CAR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26DETOTT-OTT"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26UNHBING-UNH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26NHCWAG-WAG"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26COOKGRAM-COOK"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26LIBKENN-LIB"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26SEASTL-STL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CHINSH-CHI"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26DELJVST-DEL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26NYIMTL-MTL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CBJBOS-BOS"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27DAYGW-GW"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27ODUGAST-ODU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27APPTXST-APP"
+      },
+      {
+        "type": "PHANTOM_PM",
+        "slug": "aec-cbb-cita-woff-2026-02-28"
+      },
+      {
+        "type": "PHANTOM_PM",
+        "slug": "aec-nhl-pit-nyr-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-maine-albny-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-tb-car-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-det-ott-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhamp-bing-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhvn-wag-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-bcook-grmbst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-librty-kenest-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-sea-stl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-chi-nas-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-del-jaxst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-nyi-mon-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-cbj-bos-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nba-hou-orl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-day-geows-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-old-gast-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-brown-colmb-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-mich-ill-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-merri-cans-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-applst-txst-2026-02-27"
+      }
+    ],
+    "live_issue_count": 5,
+    "summary": {
+      "k_count": 13,
+      "pm_count": 12,
+      "trades_active": 29,
+      "total_issues": 43,
+      "live_issues": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-28T20:29:13.745228+00:00",
+    "balances": {
+      "kalshi": 505.47,
+      "polymarket": 391.47,
+      "total": 896.94
+    },
+    "kalshi_positions": [
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 34.0,
+        "exposure": 0.34,
+        "cost": 0.34,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "side": "YES",
+        "qty": 2,
+        "entry_cents": 50.0,
+        "exposure": 1.02,
+        "cost": 1.5,
+        "fills_count": 4
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CITWOF-CIT",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 0,
+        "exposure": 0.59,
+        "cost": 0.59,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28FGCUSTET-STET",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 65.0,
+        "exposure": 0.65,
+        "cost": 0.65,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28GTWNXAV-GTWN",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 0,
+        "exposure": 0.8,
+        "cost": 0.8,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 0,
+        "exposure": 0.52,
+        "cost": 0.52,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 66.0,
+        "exposure": 0.35,
+        "cost": 0.66,
+        "fills_count": 3
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 39.0,
+        "exposure": 0.39,
+        "cost": 0.39,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY",
+        "side": "NO",
+        "qty": 2,
+        "entry_cents": 0,
+        "exposure": 0.88,
+        "cost": 0.88,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28RADLONG-LONG",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 0,
+        "exposure": 0.63,
+        "cost": 0.63,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 47.0,
+        "exposure": 0.47,
+        "cost": 0.47,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28LUNPAC-PAC",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 16.0,
+        "exposure": 4.48,
+        "cost": 4.48,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28MORKAV-MOR",
+        "side": "NO",
+        "qty": 30,
+        "entry_cents": 0,
+        "exposure": 10.2,
+        "cost": 10.2,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28VERMAR-VER",
+        "side": "YES",
+        "qty": 29,
+        "entry_cents": 29.0,
+        "exposure": 8.41,
+        "cost": 8.41,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28ZELGRE-GRE",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 22.0,
+        "exposure": 6.16,
+        "cost": 6.16,
+        "fills_count": 1
+      }
+    ],
+    "kalshi_total_cost": 36.68,
+    "kalshi_total_exposure": 35.89,
+    "pm_positions": [
+      {
+        "slug": "aec-cbb-ala-tenn-2026-02-28",
+        "outcome": "Crimson Tide",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.35,
+        "entry_cents": 33.0,
+        "team": "ala"
+      },
+      {
+        "slug": "aec-cbb-ausp-bella-2026-02-28",
+        "outcome": "Governors",
+        "net": "2",
+        "cost": 1.07,
+        "cash_value": 1.2,
+        "entry_cents": 53.5,
+        "team": "ausp"
+      },
+      {
+        "slug": "aec-cbb-camp-tows-2026-02-28",
+        "outcome": "Tigers",
+        "net": "-3",
+        "cost": 1.35,
+        "cash_value": 0.24,
+        "entry_cents": 45.0,
+        "team": "tows"
+      },
+      {
+        "slug": "aec-cbb-cita-woff-2026-02-28",
+        "outcome": "Bulldogs",
+        "net": "1",
+        "cost": 0.34,
+        "cash_value": 0.47,
+        "entry_cents": 34.0,
+        "team": "cita"
+      },
+      {
+        "slug": "aec-cbb-flgc-stetsn-2026-02-28",
+        "outcome": "Eagles",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.1,
+        "entry_cents": 33.0,
+        "team": "flgc"
+      },
+      {
+        "slug": "aec-cbb-george-xav-2026-02-28",
+        "outcome": "Hoyas",
+        "net": "1",
+        "cost": 0.16,
+        "cash_value": 0.01,
+        "entry_cents": 16.0,
+        "team": "george"
+      },
+      {
+        "slug": "aec-cbb-lou-clmsn-2026-02-28",
+        "outcome": "Cardinals",
+        "net": "1",
+        "cost": 0.43,
+        "cash_value": 0.28,
+        "entry_cents": 43.0,
+        "team": "lou"
+      },
+      {
+        "slug": "aec-cbb-radf-longwd-2026-02-28",
+        "outcome": "Lancers",
+        "net": "-1",
+        "cost": 0.32,
+        "cash_value": 0.46,
+        "entry_cents": 32.0,
+        "team": "longwd"
+      },
+      {
+        "slug": "aec-cbb-umass-bowlgr-2026-02-28",
+        "outcome": "Falcons",
+        "net": "-3",
+        "cost": 1.8,
+        "cash_value": 1.77,
+        "entry_cents": 60.0,
+        "team": "bowlgr"
+      },
+      {
+        "slug": "aec-ufc-angpac-sanlun-2026-02-28",
+        "outcome": "Santiago Luna",
+        "net": "-28",
+        "cost": 23.8,
+        "cash_value": 24.08,
+        "entry_cents": 85.0,
+        "team": "sanlun"
+      },
+      {
+        "slug": "aec-ufc-bramor-lonkav-2026-02-28",
+        "outcome": "Brandon Moreno",
+        "net": "30",
+        "cost": 19.8,
+        "cash_value": 19.2,
+        "entry_cents": 66.0,
+        "team": "bramor"
+      },
+      {
+        "slug": "aec-ufc-kingre-danzel-2026-02-28",
+        "outcome": "Daniel Zellhuber",
+        "net": "-28",
+        "cost": 22.4,
+        "cash_value": 21.56,
+        "entry_cents": 80.0,
+        "team": "danzel"
+      },
+      {
+        "slug": "aec-ufc-marver-davmar-2026-02-28",
+        "outcome": "David Martinez",
+        "net": "-29",
+        "cost": 21.17,
+        "cash_value": 20.88,
+        "entry_cents": 73.0,
+        "team": "davmar"
+      }
+    ],
+    "pm_total_cost": 93.3,
+    "active_trades": 31,
+    "issues": [
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26MEALBY-ALBY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26TBCAR-CAR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26DETOTT-OTT"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26UNHBING-UNH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26NHCWAG-WAG"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26COOKGRAM-COOK"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26LIBKENN-LIB"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26SEASTL-STL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CHINSH-CHI"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26DELJVST-DEL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26NYIMTL-MTL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CBJBOS-BOS"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27DAYGW-GW"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27ODUGAST-ODU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27APPTXST-APP"
+      },
+      {
+        "type": "PHANTOM_PM",
+        "slug": "aec-cbb-lou-clmsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-maine-albny-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-tb-car-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-det-ott-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhamp-bing-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhvn-wag-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-bcook-grmbst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-librty-kenest-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-sea-stl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-chi-nas-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-del-jaxst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-nyi-mon-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-cbj-bos-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nba-hou-orl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-day-geows-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-old-gast-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-brown-colmb-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-mich-ill-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-merri-cans-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-applst-txst-2026-02-27"
+      }
+    ],
+    "price_mismatches": [
+      {
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU",
+        "trades_json_price": 44.0,
+        "fill_price": 43.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "trades_json_price": 35.0,
+        "fill_price": 34.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN",
+        "trades_json_price": 54.0,
+        "fill_price": 53.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH",
+        "trades_json_price": 61.0,
+        "fill_price": 60.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN",
+        "trades_json_price": 41.0,
+        "fill_price": 40.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "trades_json_price": 55.0,
+        "fill_price": 50.0,
+        "delta": -5.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "trades_json_price": 65.0,
+        "fill_price": 66.0,
+        "delta": 1.0
+      }
+    ],
+    "live_issue_count": 4,
+    "summary": {
+      "k_count": 15,
+      "pm_count": 13,
+      "trades_active": 31,
+      "total_issues": 42,
+      "live_issues": 4,
+      "price_mismatches": 7
+    }
+  },
+  {
+    "timestamp": "2026-02-28T20:32:07.573065+00:00",
+    "balances": {
+      "kalshi": 505.7,
+      "polymarket": 391.47,
+      "total": 897.17
+    },
+    "kalshi_positions": [
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 34.0,
+        "exposure": 0.34,
+        "cost": 0.34,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "side": "YES",
+        "qty": 2,
+        "entry_cents": 50.0,
+        "exposure": 1.02,
+        "cost": 1.0,
+        "fills_count": 4
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CITWOF-CIT",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 0,
+        "exposure": 0.59,
+        "cost": 0.59,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28FGCUSTET-STET",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 65.0,
+        "exposure": 0.65,
+        "cost": 0.65,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28GTWNXAV-GTWN",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 0,
+        "exposure": 0.8,
+        "cost": 0.8,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 0,
+        "exposure": 0.52,
+        "cost": 0.52,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 0,
+        "exposure": 0.35,
+        "cost": 0.35,
+        "fills_count": 3
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 39.0,
+        "exposure": 0.39,
+        "cost": 0.39,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY",
+        "side": "NO",
+        "qty": 2,
+        "entry_cents": 0,
+        "exposure": 0.88,
+        "cost": 0.88,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28RADLONG-LONG",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 0,
+        "exposure": 0.63,
+        "cost": 0.63,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 47.0,
+        "exposure": 0.47,
+        "cost": 0.47,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28LUNPAC-PAC",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 16.0,
+        "exposure": 4.48,
+        "cost": 4.48,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28MORKAV-MOR",
+        "side": "NO",
+        "qty": 30,
+        "entry_cents": 0,
+        "exposure": 10.2,
+        "cost": 10.2,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28VERMAR-VER",
+        "side": "YES",
+        "qty": 29,
+        "entry_cents": 29.0,
+        "exposure": 8.41,
+        "cost": 8.41,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28ZELGRE-GRE",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 22.0,
+        "exposure": 6.16,
+        "cost": 6.16,
+        "fills_count": 1
+      }
+    ],
+    "kalshi_total_cost": 35.87,
+    "kalshi_total_exposure": 35.89,
+    "pm_positions": [
+      {
+        "slug": "aec-cbb-ala-tenn-2026-02-28",
+        "outcome": "Crimson Tide",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.35,
+        "entry_cents": 33.0,
+        "team": "ala"
+      },
+      {
+        "slug": "aec-cbb-ausp-bella-2026-02-28",
+        "outcome": "Governors",
+        "net": "2",
+        "cost": 1.07,
+        "cash_value": 1.08,
+        "entry_cents": 53.5,
+        "team": "ausp"
+      },
+      {
+        "slug": "aec-cbb-camp-tows-2026-02-28",
+        "outcome": "Tigers",
+        "net": "-3",
+        "cost": 1.35,
+        "cash_value": 0.24,
+        "entry_cents": 45.0,
+        "team": "tows"
+      },
+      {
+        "slug": "aec-cbb-cita-woff-2026-02-28",
+        "outcome": "Bulldogs",
+        "net": "1",
+        "cost": 0.34,
+        "cash_value": 0.62,
+        "entry_cents": 34.0,
+        "team": "cita"
+      },
+      {
+        "slug": "aec-cbb-flgc-stetsn-2026-02-28",
+        "outcome": "Eagles",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.09,
+        "entry_cents": 33.0,
+        "team": "flgc"
+      },
+      {
+        "slug": "aec-cbb-george-xav-2026-02-28",
+        "outcome": "Hoyas",
+        "net": "1",
+        "cost": 0.16,
+        "cash_value": 0.02,
+        "entry_cents": 16.0,
+        "team": "george"
+      },
+      {
+        "slug": "aec-cbb-lou-clmsn-2026-02-28",
+        "outcome": "Cardinals",
+        "net": "1",
+        "cost": 0.43,
+        "cash_value": 0.23,
+        "entry_cents": 43.0,
+        "team": "lou"
+      },
+      {
+        "slug": "aec-cbb-radf-longwd-2026-02-28",
+        "outcome": "Lancers",
+        "net": "-1",
+        "cost": 0.32,
+        "cash_value": 0.47,
+        "entry_cents": 32.0,
+        "team": "longwd"
+      },
+      {
+        "slug": "aec-cbb-umass-bowlgr-2026-02-28",
+        "outcome": "Falcons",
+        "net": "-3",
+        "cost": 1.8,
+        "cash_value": 1.68,
+        "entry_cents": 60.0,
+        "team": "bowlgr"
+      },
+      {
+        "slug": "aec-ufc-angpac-sanlun-2026-02-28",
+        "outcome": "Santiago Luna",
+        "net": "-28",
+        "cost": 23.8,
+        "cash_value": 24.08,
+        "entry_cents": 85.0,
+        "team": "sanlun"
+      },
+      {
+        "slug": "aec-ufc-bramor-lonkav-2026-02-28",
+        "outcome": "Brandon Moreno",
+        "net": "30",
+        "cost": 19.8,
+        "cash_value": 19.2,
+        "entry_cents": 66.0,
+        "team": "bramor"
+      },
+      {
+        "slug": "aec-ufc-kingre-danzel-2026-02-28",
+        "outcome": "Daniel Zellhuber",
+        "net": "-28",
+        "cost": 22.4,
+        "cash_value": 21.56,
+        "entry_cents": 80.0,
+        "team": "danzel"
+      },
+      {
+        "slug": "aec-ufc-marver-davmar-2026-02-28",
+        "outcome": "David Martinez",
+        "net": "-29",
+        "cost": 21.17,
+        "cash_value": 20.88,
+        "entry_cents": 73.0,
+        "team": "davmar"
+      }
+    ],
+    "pm_total_cost": 93.3,
+    "active_trades": 31,
+    "issues": [
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26MEALBY-ALBY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26TBCAR-CAR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26DETOTT-OTT"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26UNHBING-UNH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26NHCWAG-WAG"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26COOKGRAM-COOK"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26LIBKENN-LIB"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26SEASTL-STL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CHINSH-CHI"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26DELJVST-DEL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26NYIMTL-MTL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CBJBOS-BOS"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27DAYGW-GW"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27ODUGAST-ODU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27APPTXST-APP"
+      },
+      {
+        "type": "PHANTOM_PM",
+        "slug": "aec-cbb-lou-clmsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-maine-albny-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-tb-car-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-det-ott-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhamp-bing-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhvn-wag-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-bcook-grmbst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-librty-kenest-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-sea-stl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-chi-nas-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-del-jaxst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-nyi-mon-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-cbj-bos-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nba-hou-orl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-day-geows-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-old-gast-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-brown-colmb-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-mich-ill-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-merri-cans-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-applst-txst-2026-02-27"
+      }
+    ],
+    "price_mismatches": [
+      {
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU",
+        "trades_json_price": 44.0,
+        "fill_price": 43.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "trades_json_price": 35.0,
+        "fill_price": 34.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN",
+        "trades_json_price": 54.0,
+        "fill_price": 53.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH",
+        "trades_json_price": 61.0,
+        "fill_price": 60.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN",
+        "trades_json_price": 41.0,
+        "fill_price": 40.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "trades_json_price": 55.0,
+        "fill_price": 50.0,
+        "delta": -5.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "trades_json_price": 65.0,
+        "fill_price": 66.0,
+        "delta": 1.0
+      }
+    ],
+    "live_issue_count": 4,
+    "summary": {
+      "k_count": 15,
+      "pm_count": 13,
+      "trades_active": 31,
+      "total_issues": 42,
+      "live_issues": 4,
+      "price_mismatches": 7
+    }
+  },
+  {
+    "timestamp": "2026-02-28T20:33:17.311240+00:00",
+    "balances": {
+      "kalshi": 505.65,
+      "polymarket": 391.47,
+      "total": 897.12
+    },
+    "kalshi_positions": [
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 34.0,
+        "exposure": 0.34,
+        "cost": 0.34,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "side": "YES",
+        "qty": 2,
+        "entry_cents": 50.0,
+        "exposure": 1.02,
+        "cost": 1.0,
+        "fills_count": 4
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CITWOF-CIT",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 59.0,
+        "exposure": 0.59,
+        "cost": 0.59,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28FGCUSTET-STET",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 65.0,
+        "exposure": 0.65,
+        "cost": 0.65,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28GTWNXAV-GTWN",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 80.0,
+        "exposure": 0.8,
+        "cost": 0.8,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 52.0,
+        "exposure": 0.52,
+        "cost": 0.52,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 35.0,
+        "exposure": 0.35,
+        "cost": 0.35,
+        "fills_count": 3
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 39.0,
+        "exposure": 0.39,
+        "cost": 0.39,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY",
+        "side": "NO",
+        "qty": 2,
+        "entry_cents": 44.0,
+        "exposure": 0.88,
+        "cost": 0.88,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28RADLONG-LONG",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 63.0,
+        "exposure": 0.63,
+        "cost": 0.63,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 47.0,
+        "exposure": 0.47,
+        "cost": 0.47,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28LUNPAC-PAC",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 16.0,
+        "exposure": 4.48,
+        "cost": 4.48,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28MORKAV-MOR",
+        "side": "NO",
+        "qty": 30,
+        "entry_cents": 34.0,
+        "exposure": 10.2,
+        "cost": 10.2,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28VERMAR-VER",
+        "side": "YES",
+        "qty": 29,
+        "entry_cents": 29.0,
+        "exposure": 8.41,
+        "cost": 8.41,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28ZELGRE-GRE",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 22.0,
+        "exposure": 6.16,
+        "cost": 6.16,
+        "fills_count": 1
+      }
+    ],
+    "kalshi_total_cost": 35.87,
+    "kalshi_total_exposure": 35.89,
+    "pm_positions": [
+      {
+        "slug": "aec-cbb-ala-tenn-2026-02-28",
+        "outcome": "Crimson Tide",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.35,
+        "entry_cents": 33.0,
+        "team": "ala"
+      },
+      {
+        "slug": "aec-cbb-ausp-bella-2026-02-28",
+        "outcome": "Governors",
+        "net": "2",
+        "cost": 1.07,
+        "cash_value": 1.12,
+        "entry_cents": 53.5,
+        "team": "ausp"
+      },
+      {
+        "slug": "aec-cbb-camp-tows-2026-02-28",
+        "outcome": "Tigers",
+        "net": "-3",
+        "cost": 1.35,
+        "cash_value": 0.39,
+        "entry_cents": 45.0,
+        "team": "tows"
+      },
+      {
+        "slug": "aec-cbb-cita-woff-2026-02-28",
+        "outcome": "Bulldogs",
+        "net": "1",
+        "cost": 0.34,
+        "cash_value": 0.66,
+        "entry_cents": 34.0,
+        "team": "cita"
+      },
+      {
+        "slug": "aec-cbb-flgc-stetsn-2026-02-28",
+        "outcome": "Eagles",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.06,
+        "entry_cents": 33.0,
+        "team": "flgc"
+      },
+      {
+        "slug": "aec-cbb-george-xav-2026-02-28",
+        "outcome": "Hoyas",
+        "net": "1",
+        "cost": 0.16,
+        "cash_value": 0.02,
+        "entry_cents": 16.0,
+        "team": "george"
+      },
+      {
+        "slug": "aec-cbb-lou-clmsn-2026-02-28",
+        "outcome": "Cardinals",
+        "net": "1",
+        "cost": 0.43,
+        "cash_value": 0.21,
+        "entry_cents": 43.0,
+        "team": "lou"
+      },
+      {
+        "slug": "aec-cbb-radf-longwd-2026-02-28",
+        "outcome": "Lancers",
+        "net": "-1",
+        "cost": 0.32,
+        "cash_value": 0.47,
+        "entry_cents": 32.0,
+        "team": "longwd"
+      },
+      {
+        "slug": "aec-cbb-umass-bowlgr-2026-02-28",
+        "outcome": "Falcons",
+        "net": "-3",
+        "cost": 1.8,
+        "cash_value": 2.37,
+        "entry_cents": 60.0,
+        "team": "bowlgr"
+      },
+      {
+        "slug": "aec-ufc-angpac-sanlun-2026-02-28",
+        "outcome": "Santiago Luna",
+        "net": "-28",
+        "cost": 23.8,
+        "cash_value": 24.08,
+        "entry_cents": 85.0,
+        "team": "sanlun"
+      },
+      {
+        "slug": "aec-ufc-bramor-lonkav-2026-02-28",
+        "outcome": "Brandon Moreno",
+        "net": "30",
+        "cost": 19.8,
+        "cash_value": 19.2,
+        "entry_cents": 66.0,
+        "team": "bramor"
+      },
+      {
+        "slug": "aec-ufc-kingre-danzel-2026-02-28",
+        "outcome": "Daniel Zellhuber",
+        "net": "-28",
+        "cost": 22.4,
+        "cash_value": 21.56,
+        "entry_cents": 80.0,
+        "team": "danzel"
+      },
+      {
+        "slug": "aec-ufc-marver-davmar-2026-02-28",
+        "outcome": "David Martinez",
+        "net": "-29",
+        "cost": 21.17,
+        "cash_value": 20.88,
+        "entry_cents": 73.0,
+        "team": "davmar"
+      }
+    ],
+    "pm_total_cost": 93.3,
+    "active_trades": 31,
+    "issues": [
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26MEALBY-ALBY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26TBCAR-CAR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26DETOTT-OTT"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26UNHBING-UNH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26NHCWAG-WAG"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26COOKGRAM-COOK"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26LIBKENN-LIB"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26SEASTL-STL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CHINSH-CHI"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26DELJVST-DEL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26NYIMTL-MTL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CBJBOS-BOS"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27DAYGW-GW"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27ODUGAST-ODU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27APPTXST-APP"
+      },
+      {
+        "type": "PHANTOM_PM",
+        "slug": "aec-cbb-lou-clmsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-maine-albny-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-tb-car-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-det-ott-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhamp-bing-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhvn-wag-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-bcook-grmbst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-librty-kenest-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-sea-stl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-chi-nas-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-del-jaxst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-nyi-mon-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-cbj-bos-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nba-hou-orl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-day-geows-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-old-gast-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-brown-colmb-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-mich-ill-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-merri-cans-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-applst-txst-2026-02-27"
+      }
+    ],
+    "price_mismatches": [
+      {
+        "ticker": "KXNCAAMBGAME-26FEB26MEALBY-ALBY",
+        "trades_json_price": 50.0,
+        "fill_price": 46.7,
+        "delta": -3.3
+      },
+      {
+        "ticker": "KXNHLGAME-26FEB26TBCAR-CAR",
+        "trades_json_price": 78.0,
+        "fill_price": 22.0,
+        "delta": -56.0
+      },
+      {
+        "ticker": "KXNHLGAME-26FEB26DETOTT-OTT",
+        "trades_json_price": 65.0,
+        "fill_price": 35.0,
+        "delta": -30.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB26UNHBING-UNH",
+        "trades_json_price": 32.0,
+        "fill_price": 68.0,
+        "delta": 36.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB26NHCWAG-WAG",
+        "trades_json_price": 25.0,
+        "fill_price": 75.0,
+        "delta": 50.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB26COOKGRAM-COOK",
+        "trades_json_price": 65.0,
+        "fill_price": 35.0,
+        "delta": -30.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB26LIBKENN-LIB",
+        "trades_json_price": 34.0,
+        "fill_price": 66.0,
+        "delta": 32.0
+      },
+      {
+        "ticker": "KXNHLGAME-26FEB26CHINSH-CHI",
+        "trades_json_price": 31.0,
+        "fill_price": 69.0,
+        "delta": 38.0
+      },
+      {
+        "ticker": "KXNHLGAME-26FEB26NYIMTL-MTL",
+        "trades_json_price": 67.0,
+        "fill_price": 33.0,
+        "delta": -34.0
+      },
+      {
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU",
+        "trades_json_price": 44.0,
+        "fill_price": 43.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28MORKAV-MOR",
+        "trades_json_price": 66.0,
+        "fill_price": 34.0,
+        "delta": -32.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "trades_json_price": 35.0,
+        "fill_price": 34.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27ODUGAST-ODU",
+        "trades_json_price": 39.0,
+        "fill_price": 61.0,
+        "delta": 22.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN",
+        "trades_json_price": 54.0,
+        "fill_price": 53.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH",
+        "trades_json_price": 61.0,
+        "fill_price": 60.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN",
+        "trades_json_price": 41.0,
+        "fill_price": 40.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27APPTXST-APP",
+        "trades_json_price": 59.0,
+        "fill_price": 40.0,
+        "delta": -19.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY",
+        "trades_json_price": 57.0,
+        "fill_price": 44.0,
+        "delta": -13.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CITWOF-CIT",
+        "trades_json_price": 41.0,
+        "fill_price": 59.0,
+        "delta": 18.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28GTWNXAV-GTWN",
+        "trades_json_price": 20.0,
+        "fill_price": 80.0,
+        "delta": 60.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28RADLONG-LONG",
+        "trades_json_price": 36.0,
+        "fill_price": 63.0,
+        "delta": 27.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "trades_json_price": 55.0,
+        "fill_price": 50.0,
+        "delta": -5.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "trades_json_price": 65.0,
+        "fill_price": 35.0,
+        "delta": -30.0
+      }
+    ],
+    "live_issue_count": 4,
+    "summary": {
+      "k_count": 15,
+      "pm_count": 13,
+      "trades_active": 31,
+      "total_issues": 42,
+      "live_issues": 4,
+      "price_mismatches": 23
+    }
+  },
+  {
+    "timestamp": "2026-02-28T20:33:59.114144+00:00",
+    "balances": {
+      "kalshi": 505.11,
+      "polymarket": 391.47,
+      "total": 896.58
+    },
+    "kalshi_positions": [
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 34.0,
+        "exposure": 0.34,
+        "cost": 0.34,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "side": "YES",
+        "qty": 2,
+        "entry_cents": 50.0,
+        "exposure": 1.02,
+        "cost": 1.0,
+        "fills_count": 4
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CITWOF-CIT",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 59.0,
+        "exposure": 0.59,
+        "cost": 0.59,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28FGCUSTET-STET",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 65.0,
+        "exposure": 0.65,
+        "cost": 0.65,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28GTWNXAV-GTWN",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 80.0,
+        "exposure": 0.8,
+        "cost": 0.8,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 52.0,
+        "exposure": 0.52,
+        "cost": 0.52,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 35.0,
+        "exposure": 0.35,
+        "cost": 0.35,
+        "fills_count": 3
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 39.0,
+        "exposure": 0.39,
+        "cost": 0.39,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY",
+        "side": "NO",
+        "qty": 2,
+        "entry_cents": 44.0,
+        "exposure": 0.88,
+        "cost": 0.88,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28RADLONG-LONG",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 63.0,
+        "exposure": 0.63,
+        "cost": 0.63,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 47.0,
+        "exposure": 0.47,
+        "cost": 0.47,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28LUNPAC-PAC",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 16.0,
+        "exposure": 4.48,
+        "cost": 4.48,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28MORKAV-MOR",
+        "side": "NO",
+        "qty": 30,
+        "entry_cents": 34.0,
+        "exposure": 10.2,
+        "cost": 10.2,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28VERMAR-VER",
+        "side": "YES",
+        "qty": 29,
+        "entry_cents": 29.0,
+        "exposure": 8.41,
+        "cost": 8.41,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28ZELGRE-GRE",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 22.0,
+        "exposure": 6.16,
+        "cost": 6.16,
+        "fills_count": 1
+      }
+    ],
+    "kalshi_total_cost": 35.87,
+    "kalshi_total_exposure": 35.89,
+    "pm_positions": [
+      {
+        "slug": "aec-cbb-ala-tenn-2026-02-28",
+        "outcome": "Crimson Tide",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.35,
+        "entry_cents": 33.0,
+        "team": "ala"
+      },
+      {
+        "slug": "aec-cbb-ausp-bella-2026-02-28",
+        "outcome": "Governors",
+        "net": "2",
+        "cost": 1.07,
+        "cash_value": 1.26,
+        "entry_cents": 53.5,
+        "team": "ausp"
+      },
+      {
+        "slug": "aec-cbb-camp-tows-2026-02-28",
+        "outcome": "Tigers",
+        "net": "-3",
+        "cost": 1.35,
+        "cash_value": 0.39,
+        "entry_cents": 45.0,
+        "team": "tows"
+      },
+      {
+        "slug": "aec-cbb-cita-woff-2026-02-28",
+        "outcome": "Bulldogs",
+        "net": "1",
+        "cost": 0.34,
+        "cash_value": 0.68,
+        "entry_cents": 34.0,
+        "team": "cita"
+      },
+      {
+        "slug": "aec-cbb-flgc-stetsn-2026-02-28",
+        "outcome": "Eagles",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.04,
+        "entry_cents": 33.0,
+        "team": "flgc"
+      },
+      {
+        "slug": "aec-cbb-george-xav-2026-02-28",
+        "outcome": "Hoyas",
+        "net": "1",
+        "cost": 0.16,
+        "cash_value": 0.02,
+        "entry_cents": 16.0,
+        "team": "george"
+      },
+      {
+        "slug": "aec-cbb-lou-clmsn-2026-02-28",
+        "outcome": "Cardinals",
+        "net": "1",
+        "cost": 0.43,
+        "cash_value": 0.22,
+        "entry_cents": 43.0,
+        "team": "lou"
+      },
+      {
+        "slug": "aec-cbb-radf-longwd-2026-02-28",
+        "outcome": "Lancers",
+        "net": "-1",
+        "cost": 0.32,
+        "cash_value": 0.44,
+        "entry_cents": 32.0,
+        "team": "longwd"
+      },
+      {
+        "slug": "aec-cbb-umass-bowlgr-2026-02-28",
+        "outcome": "Falcons",
+        "net": "-3",
+        "cost": 1.8,
+        "cash_value": 2.58,
+        "entry_cents": 60.0,
+        "team": "bowlgr"
+      },
+      {
+        "slug": "aec-ufc-angpac-sanlun-2026-02-28",
+        "outcome": "Santiago Luna",
+        "net": "-28",
+        "cost": 23.8,
+        "cash_value": 24.08,
+        "entry_cents": 85.0,
+        "team": "sanlun"
+      },
+      {
+        "slug": "aec-ufc-bramor-lonkav-2026-02-28",
+        "outcome": "Brandon Moreno",
+        "net": "30",
+        "cost": 19.8,
+        "cash_value": 19.2,
+        "entry_cents": 66.0,
+        "team": "bramor"
+      },
+      {
+        "slug": "aec-ufc-kingre-danzel-2026-02-28",
+        "outcome": "Daniel Zellhuber",
+        "net": "-28",
+        "cost": 22.4,
+        "cash_value": 21.56,
+        "entry_cents": 80.0,
+        "team": "danzel"
+      },
+      {
+        "slug": "aec-ufc-marver-davmar-2026-02-28",
+        "outcome": "David Martinez",
+        "net": "-29",
+        "cost": 21.17,
+        "cash_value": 20.88,
+        "entry_cents": 73.0,
+        "team": "davmar"
+      }
+    ],
+    "pm_total_cost": 93.3,
+    "active_trades": 31,
+    "issues": [
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26MEALBY-ALBY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26TBCAR-CAR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26DETOTT-OTT"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26UNHBING-UNH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26NHCWAG-WAG"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26COOKGRAM-COOK"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26LIBKENN-LIB"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26SEASTL-STL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CHINSH-CHI"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26DELJVST-DEL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26NYIMTL-MTL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CBJBOS-BOS"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27DAYGW-GW"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27ODUGAST-ODU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27APPTXST-APP"
+      },
+      {
+        "type": "PHANTOM_PM",
+        "slug": "aec-cbb-lou-clmsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-maine-albny-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-tb-car-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-det-ott-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhamp-bing-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhvn-wag-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-bcook-grmbst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-librty-kenest-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-sea-stl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-chi-nas-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-del-jaxst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-nyi-mon-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-cbj-bos-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nba-hou-orl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-day-geows-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-old-gast-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-brown-colmb-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-mich-ill-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-merri-cans-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-applst-txst-2026-02-27"
+      }
+    ],
+    "price_mismatches": [
+      {
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU",
+        "trades_json_price": 44.0,
+        "fill_price": 43.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "trades_json_price": 35.0,
+        "fill_price": 34.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN",
+        "trades_json_price": 54.0,
+        "fill_price": 53.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH",
+        "trades_json_price": 61.0,
+        "fill_price": 60.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN",
+        "trades_json_price": 41.0,
+        "fill_price": 40.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "trades_json_price": 55.0,
+        "fill_price": 50.0,
+        "delta": -5.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "trades_json_price": 65.0,
+        "fill_price": 66.0,
+        "delta": 1.0
+      }
+    ],
+    "live_issue_count": 4,
+    "summary": {
+      "k_count": 15,
+      "pm_count": 13,
+      "trades_active": 31,
+      "total_issues": 42,
+      "live_issues": 4,
+      "price_mismatches": 7
+    }
+  },
+  {
+    "timestamp": "2026-02-28T20:41:26.657501+00:00",
+    "balances": {
+      "kalshi": 503.9,
+      "polymarket": 391.47,
+      "total": 895.37
+    },
+    "kalshi_positions": [
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 34.0,
+        "exposure": 0.34,
+        "cost": 0.34,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "side": "YES",
+        "qty": 2,
+        "entry_cents": 50.0,
+        "exposure": 1.02,
+        "cost": 1.0,
+        "fills_count": 4
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CITWOF-CIT",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 59.0,
+        "exposure": 0.59,
+        "cost": 0.59,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28FGCUSTET-STET",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 65.0,
+        "exposure": 0.65,
+        "cost": 0.65,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28GTWNXAV-GTWN",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 80.0,
+        "exposure": 0.8,
+        "cost": 0.8,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 52.0,
+        "exposure": 0.52,
+        "cost": 0.52,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 35.0,
+        "exposure": 0.35,
+        "cost": 0.35,
+        "fills_count": 3
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 39.0,
+        "exposure": 0.39,
+        "cost": 0.39,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY",
+        "side": "NO",
+        "qty": 2,
+        "entry_cents": 44.0,
+        "exposure": 0.88,
+        "cost": 0.88,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28RADLONG-LONG",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 63.0,
+        "exposure": 0.63,
+        "cost": 0.63,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 47.0,
+        "exposure": 0.47,
+        "cost": 0.47,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28LUNPAC-PAC",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 16.0,
+        "exposure": 4.48,
+        "cost": 4.48,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28MORKAV-MOR",
+        "side": "NO",
+        "qty": 30,
+        "entry_cents": 34.0,
+        "exposure": 10.2,
+        "cost": 10.2,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28VERMAR-VER",
+        "side": "YES",
+        "qty": 29,
+        "entry_cents": 29.0,
+        "exposure": 8.41,
+        "cost": 8.41,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28ZELGRE-GRE",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 22.0,
+        "exposure": 6.16,
+        "cost": 6.16,
+        "fills_count": 1
+      }
+    ],
+    "kalshi_total_cost": 35.87,
+    "kalshi_total_exposure": 35.89,
+    "pm_positions": [
+      {
+        "slug": "aec-cbb-ala-tenn-2026-02-28",
+        "outcome": "Crimson Tide",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.35,
+        "entry_cents": 33.0,
+        "team": "ala"
+      },
+      {
+        "slug": "aec-cbb-ausp-bella-2026-02-28",
+        "outcome": "Governors",
+        "net": "2",
+        "cost": 1.07,
+        "cash_value": 1.02,
+        "entry_cents": 53.5,
+        "team": "ausp"
+      },
+      {
+        "slug": "aec-cbb-camp-tows-2026-02-28",
+        "outcome": "Tigers",
+        "net": "-3",
+        "cost": 1.35,
+        "cash_value": 1.32,
+        "entry_cents": 45.0,
+        "team": "tows"
+      },
+      {
+        "slug": "aec-cbb-cita-woff-2026-02-28",
+        "outcome": "Bulldogs",
+        "net": "1",
+        "cost": 0.34,
+        "cash_value": 0.73,
+        "entry_cents": 34.0,
+        "team": "cita"
+      },
+      {
+        "slug": "aec-cbb-flgc-stetsn-2026-02-28",
+        "outcome": "Eagles",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.01,
+        "entry_cents": 33.0,
+        "team": "flgc"
+      },
+      {
+        "slug": "aec-cbb-lou-clmsn-2026-02-28",
+        "outcome": "Cardinals",
+        "net": "1",
+        "cost": 0.43,
+        "cash_value": 0.28,
+        "entry_cents": 43.0,
+        "team": "lou"
+      },
+      {
+        "slug": "aec-cbb-radf-longwd-2026-02-28",
+        "outcome": "Lancers",
+        "net": "-1",
+        "cost": 0.32,
+        "cash_value": 0.29,
+        "entry_cents": 32.0,
+        "team": "longwd"
+      },
+      {
+        "slug": "aec-cbb-umass-bowlgr-2026-02-28",
+        "outcome": "Falcons",
+        "net": "-3",
+        "cost": 1.8,
+        "cash_value": 2.94,
+        "entry_cents": 60.0,
+        "team": "bowlgr"
+      },
+      {
+        "slug": "aec-ufc-angpac-sanlun-2026-02-28",
+        "outcome": "Santiago Luna",
+        "net": "-28",
+        "cost": 23.8,
+        "cash_value": 24.08,
+        "entry_cents": 85.0,
+        "team": "sanlun"
+      },
+      {
+        "slug": "aec-ufc-bramor-lonkav-2026-02-28",
+        "outcome": "Brandon Moreno",
+        "net": "30",
+        "cost": 19.8,
+        "cash_value": 19.2,
+        "entry_cents": 66.0,
+        "team": "bramor"
+      },
+      {
+        "slug": "aec-ufc-kingre-danzel-2026-02-28",
+        "outcome": "Daniel Zellhuber",
+        "net": "-28",
+        "cost": 22.4,
+        "cash_value": 21.56,
+        "entry_cents": 80.0,
+        "team": "danzel"
+      },
+      {
+        "slug": "aec-ufc-marver-davmar-2026-02-28",
+        "outcome": "David Martinez",
+        "net": "-29",
+        "cost": 21.17,
+        "cash_value": 20.88,
+        "entry_cents": 73.0,
+        "team": "davmar"
+      }
+    ],
+    "pm_total_cost": 93.14,
+    "active_trades": 31,
+    "issues": [
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26MEALBY-ALBY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26TBCAR-CAR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26DETOTT-OTT"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26UNHBING-UNH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26NHCWAG-WAG"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26COOKGRAM-COOK"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26LIBKENN-LIB"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26SEASTL-STL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CHINSH-CHI"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26DELJVST-DEL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26NYIMTL-MTL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CBJBOS-BOS"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27DAYGW-GW"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27ODUGAST-ODU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27APPTXST-APP"
+      },
+      {
+        "type": "PHANTOM_PM",
+        "slug": "aec-cbb-lou-clmsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-maine-albny-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-tb-car-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-det-ott-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhamp-bing-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhvn-wag-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-bcook-grmbst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-librty-kenest-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-sea-stl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-chi-nas-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-del-jaxst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-nyi-mon-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-cbj-bos-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nba-hou-orl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-day-geows-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-old-gast-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-brown-colmb-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-mich-ill-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-merri-cans-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-applst-txst-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-george-xav-2026-02-28"
+      },
+      {
+        "type": "UNHEDGED_K",
+        "ticker": "KXNCAAMBGAME-26FEB28GTWNXAV-GTWN",
+        "pm_slug": "aec-cbb-george-xav-2026-02-28"
+      }
+    ],
+    "price_mismatches": [
+      {
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU",
+        "trades_json_price": 44.0,
+        "fill_price": 43.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "trades_json_price": 35.0,
+        "fill_price": 34.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN",
+        "trades_json_price": 54.0,
+        "fill_price": 53.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH",
+        "trades_json_price": 61.0,
+        "fill_price": 60.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN",
+        "trades_json_price": 41.0,
+        "fill_price": 40.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "trades_json_price": 55.0,
+        "fill_price": 50.0,
+        "delta": -5.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "trades_json_price": 65.0,
+        "fill_price": 66.0,
+        "delta": 1.0
+      }
+    ],
+    "live_issue_count": 5,
+    "summary": {
+      "k_count": 15,
+      "pm_count": 12,
+      "trades_active": 31,
+      "total_issues": 44,
+      "live_issues": 5,
+      "price_mismatches": 7
+    }
+  },
+  {
+    "timestamp": "2026-02-28T20:44:47.636256+00:00",
+    "balances": {
+      "kalshi": 504.06,
+      "polymarket": 391.47,
+      "total": 895.53
+    },
+    "kalshi_positions": [
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 34.0,
+        "exposure": 0.34,
+        "cost": 0.34,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "side": "YES",
+        "qty": 2,
+        "entry_cents": 50.0,
+        "exposure": 1.02,
+        "cost": 1.0,
+        "fills_count": 4
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CITWOF-CIT",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 59.0,
+        "exposure": 0.59,
+        "cost": 0.59,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28FGCUSTET-STET",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 65.0,
+        "exposure": 0.65,
+        "cost": 0.65,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28GTWNXAV-GTWN",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 80.0,
+        "exposure": 0.8,
+        "cost": 0.8,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 52.0,
+        "exposure": 0.52,
+        "cost": 0.52,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 35.0,
+        "exposure": 0.35,
+        "cost": 0.35,
+        "fills_count": 3
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 39.0,
+        "exposure": 0.39,
+        "cost": 0.39,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY",
+        "side": "NO",
+        "qty": 2,
+        "entry_cents": 44.0,
+        "exposure": 0.88,
+        "cost": 0.88,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28RADLONG-LONG",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 63.0,
+        "exposure": 0.63,
+        "cost": 0.63,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 47.0,
+        "exposure": 0.47,
+        "cost": 0.47,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28LUNPAC-PAC",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 16.0,
+        "exposure": 4.48,
+        "cost": 4.48,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28MORKAV-MOR",
+        "side": "NO",
+        "qty": 30,
+        "entry_cents": 34.0,
+        "exposure": 10.2,
+        "cost": 10.2,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28VERMAR-VER",
+        "side": "YES",
+        "qty": 29,
+        "entry_cents": 29.0,
+        "exposure": 8.41,
+        "cost": 8.41,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28ZELGRE-GRE",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 22.0,
+        "exposure": 6.16,
+        "cost": 6.16,
+        "fills_count": 1
+      }
+    ],
+    "kalshi_total_cost": 35.87,
+    "kalshi_total_exposure": 35.89,
+    "pm_positions": [
+      {
+        "slug": "aec-cbb-ala-tenn-2026-02-28",
+        "outcome": "Crimson Tide",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.35,
+        "entry_cents": 33.0,
+        "team": "ala"
+      },
+      {
+        "slug": "aec-cbb-ausp-bella-2026-02-28",
+        "outcome": "Governors",
+        "net": "2",
+        "cost": 1.07,
+        "cash_value": 0.84,
+        "entry_cents": 53.5,
+        "team": "ausp"
+      },
+      {
+        "slug": "aec-cbb-camp-tows-2026-02-28",
+        "outcome": "Tigers",
+        "net": "-3",
+        "cost": 1.35,
+        "cash_value": 1.26,
+        "entry_cents": 45.0,
+        "team": "tows"
+      },
+      {
+        "slug": "aec-cbb-cita-woff-2026-02-28",
+        "outcome": "Bulldogs",
+        "net": "1",
+        "cost": 0.34,
+        "cash_value": 0.84,
+        "entry_cents": 34.0,
+        "team": "cita"
+      },
+      {
+        "slug": "aec-cbb-flgc-stetsn-2026-02-28",
+        "outcome": "Eagles",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.02,
+        "entry_cents": 33.0,
+        "team": "flgc"
+      },
+      {
+        "slug": "aec-cbb-lou-clmsn-2026-02-28",
+        "outcome": "Cardinals",
+        "net": "1",
+        "cost": 0.43,
+        "cash_value": 0.3,
+        "entry_cents": 43.0,
+        "team": "lou"
+      },
+      {
+        "slug": "aec-cbb-radf-longwd-2026-02-28",
+        "outcome": "Lancers",
+        "net": "-1",
+        "cost": 0.32,
+        "cash_value": 0.38,
+        "entry_cents": 32.0,
+        "team": "longwd"
+      },
+      {
+        "slug": "aec-cbb-umass-bowlgr-2026-02-28",
+        "outcome": "Falcons",
+        "net": "-3",
+        "cost": 1.8,
+        "cash_value": 2.97,
+        "entry_cents": 60.0,
+        "team": "bowlgr"
+      },
+      {
+        "slug": "aec-ufc-angpac-sanlun-2026-02-28",
+        "outcome": "Santiago Luna",
+        "net": "-28",
+        "cost": 23.8,
+        "cash_value": 24.08,
+        "entry_cents": 85.0,
+        "team": "sanlun"
+      },
+      {
+        "slug": "aec-ufc-bramor-lonkav-2026-02-28",
+        "outcome": "Brandon Moreno",
+        "net": "30",
+        "cost": 19.8,
+        "cash_value": 19.2,
+        "entry_cents": 66.0,
+        "team": "bramor"
+      },
+      {
+        "slug": "aec-ufc-kingre-danzel-2026-02-28",
+        "outcome": "Daniel Zellhuber",
+        "net": "-28",
+        "cost": 22.4,
+        "cash_value": 21.56,
+        "entry_cents": 80.0,
+        "team": "danzel"
+      },
+      {
+        "slug": "aec-ufc-marver-davmar-2026-02-28",
+        "outcome": "David Martinez",
+        "net": "-29",
+        "cost": 21.17,
+        "cash_value": 20.88,
+        "entry_cents": 73.0,
+        "team": "davmar"
+      }
+    ],
+    "pm_total_cost": 93.14,
+    "active_trades": 31,
+    "issues": [
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26MEALBY-ALBY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26TBCAR-CAR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26DETOTT-OTT"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26UNHBING-UNH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26NHCWAG-WAG"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26COOKGRAM-COOK"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26LIBKENN-LIB"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26SEASTL-STL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CHINSH-CHI"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26DELJVST-DEL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26NYIMTL-MTL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CBJBOS-BOS"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27DAYGW-GW"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27ODUGAST-ODU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27APPTXST-APP"
+      },
+      {
+        "type": "PHANTOM_PM",
+        "slug": "aec-cbb-lou-clmsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-maine-albny-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-tb-car-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-det-ott-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhamp-bing-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhvn-wag-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-bcook-grmbst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-librty-kenest-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-sea-stl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-chi-nas-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-del-jaxst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-nyi-mon-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-cbj-bos-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nba-hou-orl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-day-geows-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-old-gast-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-brown-colmb-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-mich-ill-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-merri-cans-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-applst-txst-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-george-xav-2026-02-28"
+      },
+      {
+        "type": "UNHEDGED_K",
+        "ticker": "KXNCAAMBGAME-26FEB28GTWNXAV-GTWN",
+        "pm_slug": "aec-cbb-george-xav-2026-02-28"
+      }
+    ],
+    "price_mismatches": [
+      {
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU",
+        "trades_json_price": 44.0,
+        "fill_price": 43.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "trades_json_price": 35.0,
+        "fill_price": 34.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN",
+        "trades_json_price": 54.0,
+        "fill_price": 53.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH",
+        "trades_json_price": 61.0,
+        "fill_price": 60.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN",
+        "trades_json_price": 41.0,
+        "fill_price": 40.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "trades_json_price": 55.0,
+        "fill_price": 50.0,
+        "delta": -5.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "trades_json_price": 65.0,
+        "fill_price": 66.0,
+        "delta": 1.0
+      }
+    ],
+    "live_issue_count": 5,
+    "summary": {
+      "k_count": 15,
+      "pm_count": 12,
+      "trades_active": 31,
+      "total_issues": 44,
+      "live_issues": 5,
+      "price_mismatches": 7
+    }
+  },
+  {
+    "timestamp": "2026-02-28T21:07:25.170532+00:00",
+    "balances": {
+      "kalshi": 504.37,
+      "polymarket": 397.47,
+      "total": 901.84
+    },
+    "kalshi_positions": [
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 34.0,
+        "exposure": 0.34,
+        "cost": 0.34,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "side": "YES",
+        "qty": 2,
+        "entry_cents": 50.0,
+        "exposure": 1.02,
+        "cost": 1.0,
+        "fills_count": 4
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CITWOF-CIT",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 59.0,
+        "exposure": 0.59,
+        "cost": 0.59,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28FGCUSTET-STET",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 65.0,
+        "exposure": 0.65,
+        "cost": 0.65,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28GTWNXAV-GTWN",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 80.0,
+        "exposure": 0.8,
+        "cost": 0.8,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 52.0,
+        "exposure": 0.52,
+        "cost": 0.52,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 35.0,
+        "exposure": 0.35,
+        "cost": 0.35,
+        "fills_count": 3
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 39.0,
+        "exposure": 0.39,
+        "cost": 0.39,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY",
+        "side": "NO",
+        "qty": 2,
+        "entry_cents": 44.0,
+        "exposure": 0.88,
+        "cost": 0.88,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28RADLONG-LONG",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 63.0,
+        "exposure": 0.63,
+        "cost": 0.63,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 47.0,
+        "exposure": 0.47,
+        "cost": 0.47,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28LUNPAC-PAC",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 16.0,
+        "exposure": 4.48,
+        "cost": 4.48,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28MORKAV-MOR",
+        "side": "NO",
+        "qty": 30,
+        "entry_cents": 34.0,
+        "exposure": 10.2,
+        "cost": 10.2,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28VERMAR-VER",
+        "side": "YES",
+        "qty": 29,
+        "entry_cents": 29.0,
+        "exposure": 8.41,
+        "cost": 8.41,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28ZELGRE-GRE",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 22.0,
+        "exposure": 6.16,
+        "cost": 6.16,
+        "fills_count": 1
+      }
+    ],
+    "kalshi_total_cost": 35.87,
+    "kalshi_total_exposure": 35.89,
+    "pm_positions": [
+      {
+        "slug": "aec-cbb-ala-tenn-2026-02-28",
+        "outcome": "Crimson Tide",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.35,
+        "entry_cents": 33.0,
+        "team": "ala"
+      },
+      {
+        "slug": "aec-cbb-ausp-bella-2026-02-28",
+        "outcome": "Governors",
+        "net": "2",
+        "cost": 1.07,
+        "cash_value": 0.48,
+        "entry_cents": 53.5,
+        "team": "ausp"
+      },
+      {
+        "slug": "aec-cbb-cita-woff-2026-02-28",
+        "outcome": "Bulldogs",
+        "net": "1",
+        "cost": 0.34,
+        "cash_value": 0.32,
+        "entry_cents": 34.0,
+        "team": "cita"
+      },
+      {
+        "slug": "aec-cbb-lou-clmsn-2026-02-28",
+        "outcome": "Cardinals",
+        "net": "1",
+        "cost": 0.43,
+        "cash_value": 0.02,
+        "entry_cents": 43.0,
+        "team": "lou"
+      },
+      {
+        "slug": "aec-cbb-radf-longwd-2026-02-28",
+        "outcome": "Lancers",
+        "net": "-1",
+        "cost": 0.32,
+        "cash_value": 0.41,
+        "entry_cents": 32.0,
+        "team": "longwd"
+      },
+      {
+        "slug": "aec-ufc-angpac-sanlun-2026-02-28",
+        "outcome": "Santiago Luna",
+        "net": "-28",
+        "cost": 23.8,
+        "cash_value": 24.08,
+        "entry_cents": 85.0,
+        "team": "sanlun"
+      },
+      {
+        "slug": "aec-ufc-bramor-lonkav-2026-02-28",
+        "outcome": "Brandon Moreno",
+        "net": "30",
+        "cost": 19.8,
+        "cash_value": 19.2,
+        "entry_cents": 66.0,
+        "team": "bramor"
+      },
+      {
+        "slug": "aec-ufc-kingre-danzel-2026-02-28",
+        "outcome": "Daniel Zellhuber",
+        "net": "-28",
+        "cost": 22.4,
+        "cash_value": 21.56,
+        "entry_cents": 80.0,
+        "team": "danzel"
+      },
+      {
+        "slug": "aec-ufc-marver-davmar-2026-02-28",
+        "outcome": "David Martinez",
+        "net": "-29",
+        "cost": 21.17,
+        "cash_value": 20.88,
+        "entry_cents": 73.0,
+        "team": "davmar"
+      }
+    ],
+    "pm_total_cost": 89.66,
+    "active_trades": 31,
+    "issues": [
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26MEALBY-ALBY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26TBCAR-CAR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26DETOTT-OTT"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26UNHBING-UNH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26NHCWAG-WAG"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26COOKGRAM-COOK"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26LIBKENN-LIB"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26SEASTL-STL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CHINSH-CHI"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26DELJVST-DEL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26NYIMTL-MTL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CBJBOS-BOS"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27DAYGW-GW"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27ODUGAST-ODU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27APPTXST-APP"
+      },
+      {
+        "type": "PHANTOM_PM",
+        "slug": "aec-cbb-lou-clmsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-maine-albny-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-tb-car-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-det-ott-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhamp-bing-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhvn-wag-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-bcook-grmbst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-librty-kenest-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-sea-stl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-chi-nas-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-del-jaxst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-nyi-mon-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-cbj-bos-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nba-hou-orl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-day-geows-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-old-gast-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-brown-colmb-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-mich-ill-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-merri-cans-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-applst-txst-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-flgc-stetsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-george-xav-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-camp-tows-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-umass-bowlgr-2026-02-28"
+      },
+      {
+        "type": "UNHEDGED_K",
+        "ticker": "KXNCAAMBGAME-26FEB28FGCUSTET-STET",
+        "pm_slug": "aec-cbb-flgc-stetsn-2026-02-28"
+      },
+      {
+        "type": "UNHEDGED_K",
+        "ticker": "KXNCAAMBGAME-26FEB28GTWNXAV-GTWN",
+        "pm_slug": "aec-cbb-george-xav-2026-02-28"
+      },
+      {
+        "type": "UNHEDGED_K",
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "pm_slug": "aec-cbb-camp-tows-2026-02-28"
+      },
+      {
+        "type": "UNHEDGED_K",
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "pm_slug": "aec-cbb-umass-bowlgr-2026-02-28"
+      }
+    ],
+    "price_mismatches": [
+      {
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU",
+        "trades_json_price": 44.0,
+        "fill_price": 43.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "trades_json_price": 35.0,
+        "fill_price": 34.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN",
+        "trades_json_price": 54.0,
+        "fill_price": 53.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH",
+        "trades_json_price": 61.0,
+        "fill_price": 60.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN",
+        "trades_json_price": 41.0,
+        "fill_price": 40.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "trades_json_price": 55.0,
+        "fill_price": 50.0,
+        "delta": -5.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "trades_json_price": 65.0,
+        "fill_price": 66.0,
+        "delta": 1.0
+      }
+    ],
+    "live_issue_count": 8,
+    "summary": {
+      "k_count": 15,
+      "pm_count": 9,
+      "trades_active": 31,
+      "total_issues": 50,
+      "live_issues": 8,
+      "price_mismatches": 7
+    }
+  },
+  {
+    "timestamp": "2026-02-28T21:27:55.525722+00:00",
+    "balances": {
+      "kalshi": 503.63,
+      "polymarket": 398.47,
+      "total": 902.1
+    },
+    "kalshi_positions": [
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 34.0,
+        "exposure": 0.34,
+        "cost": 0.34,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "side": "YES",
+        "qty": 2,
+        "entry_cents": 50.0,
+        "exposure": 1.02,
+        "cost": 1.0,
+        "fills_count": 4
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CITWOF-CIT",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 59.0,
+        "exposure": 0.59,
+        "cost": 0.59,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 52.0,
+        "exposure": 0.52,
+        "cost": 0.52,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 35.0,
+        "exposure": 0.35,
+        "cost": 0.35,
+        "fills_count": 3
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 39.0,
+        "exposure": 0.39,
+        "cost": 0.39,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY",
+        "side": "NO",
+        "qty": 2,
+        "entry_cents": 44.0,
+        "exposure": 0.88,
+        "cost": 0.88,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28RADLONG-LONG",
+        "side": "NO",
+        "qty": 1,
+        "entry_cents": 63.0,
+        "exposure": 0.63,
+        "cost": 0.63,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1,
+        "entry_cents": 47.0,
+        "exposure": 0.47,
+        "cost": 0.47,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28LUNPAC-PAC",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 16.0,
+        "exposure": 4.48,
+        "cost": 4.48,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28MORKAV-MOR",
+        "side": "NO",
+        "qty": 30,
+        "entry_cents": 34.0,
+        "exposure": 10.2,
+        "cost": 10.2,
+        "fills_count": 1
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28VERMAR-VER",
+        "side": "YES",
+        "qty": 29,
+        "entry_cents": 29.0,
+        "exposure": 8.41,
+        "cost": 8.41,
+        "fills_count": 2
+      },
+      {
+        "ticker": "KXUFCFIGHT-26FEB28ZELGRE-GRE",
+        "side": "YES",
+        "qty": 28,
+        "entry_cents": 22.0,
+        "exposure": 6.16,
+        "cost": 6.16,
+        "fills_count": 1
+      }
+    ],
+    "kalshi_total_cost": 34.42,
+    "kalshi_total_exposure": 34.44,
+    "pm_positions": [
+      {
+        "slug": "aec-cbb-ala-tenn-2026-02-28",
+        "outcome": "Crimson Tide",
+        "net": "1",
+        "cost": 0.33,
+        "cash_value": 0.35,
+        "entry_cents": 33.0,
+        "team": "ala"
+      },
+      {
+        "slug": "aec-cbb-radf-longwd-2026-02-28",
+        "outcome": "Lancers",
+        "net": "-1",
+        "cost": 0.32,
+        "cash_value": 0.8,
+        "entry_cents": 32.0,
+        "team": "longwd"
+      },
+      {
+        "slug": "aec-ufc-angpac-sanlun-2026-02-28",
+        "outcome": "Santiago Luna",
+        "net": "-28",
+        "cost": 23.8,
+        "cash_value": 24.08,
+        "entry_cents": 85.0,
+        "team": "sanlun"
+      },
+      {
+        "slug": "aec-ufc-bramor-lonkav-2026-02-28",
+        "outcome": "Brandon Moreno",
+        "net": "30",
+        "cost": 19.8,
+        "cash_value": 19.5,
+        "entry_cents": 66.0,
+        "team": "bramor"
+      },
+      {
+        "slug": "aec-ufc-kingre-danzel-2026-02-28",
+        "outcome": "Daniel Zellhuber",
+        "net": "-28",
+        "cost": 22.4,
+        "cash_value": 21.56,
+        "entry_cents": 80.0,
+        "team": "danzel"
+      },
+      {
+        "slug": "aec-ufc-marver-davmar-2026-02-28",
+        "outcome": "David Martinez",
+        "net": "-29",
+        "cost": 21.17,
+        "cash_value": 20.88,
+        "entry_cents": 73.0,
+        "team": "davmar"
+      }
+    ],
+    "pm_total_cost": 87.82,
+    "active_trades": 29,
+    "issues": [
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-BGSU",
+        "side": "NO",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28RADLONG-LONG",
+        "side": "NO",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28CITWOF-CIT",
+        "side": "NO",
+        "qty": 1
+      },
+      {
+        "type": "PHANTOM_K",
+        "ticker": "KXNCAAMBGAME-26FEB28SFPACCSU-SFPA",
+        "side": "YES",
+        "qty": 1
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26MEALBY-ALBY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26TBCAR-CAR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26DETOTT-OTT"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26UNHBING-UNH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26NHCWAG-WAG"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26COOKGRAM-COOK"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26LIBKENN-LIB"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26SEASTL-STL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CHINSH-CHI"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26DELJVST-DEL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26NYIMTL-MTL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CBJBOS-BOS"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27DAYGW-GW"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27ODUGAST-ODU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27APPTXST-APP"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28FGCUSTET-STET"
+      },
+      {
+        "type": "PHANTOM_PM",
+        "slug": "aec-cbb-radf-longwd-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-maine-albny-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-tb-car-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-det-ott-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhamp-bing-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhvn-wag-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-bcook-grmbst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-librty-kenest-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-sea-stl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-chi-nas-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-del-jaxst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-nyi-mon-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-cbj-bos-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nba-hou-orl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-day-geows-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-old-gast-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-brown-colmb-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-mich-ill-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-merri-cans-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-applst-txst-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-ausp-bella-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-flgc-stetsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-camp-tows-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-lou-clmsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-umass-bowlgr-2026-02-28"
+      },
+      {
+        "type": "UNHEDGED_K",
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY",
+        "pm_slug": "aec-cbb-ausp-bella-2026-02-28"
+      },
+      {
+        "type": "UNHEDGED_K",
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "pm_slug": "aec-cbb-camp-tows-2026-02-28"
+      },
+      {
+        "type": "UNHEDGED_K",
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU",
+        "pm_slug": "aec-cbb-lou-clmsn-2026-02-28"
+      },
+      {
+        "type": "UNHEDGED_K",
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS",
+        "pm_slug": "aec-cbb-umass-bowlgr-2026-02-28"
+      }
+    ],
+    "price_mismatches": [
+      {
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU",
+        "trades_json_price": 44.0,
+        "fill_price": 43.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA",
+        "trades_json_price": 35.0,
+        "fill_price": 34.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN",
+        "trades_json_price": 54.0,
+        "fill_price": 53.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH",
+        "trades_json_price": 61.0,
+        "fill_price": 60.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN",
+        "trades_json_price": 41.0,
+        "fill_price": 40.0,
+        "delta": -1.0
+      },
+      {
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP",
+        "trades_json_price": 34.0,
+        "fill_price": 50.0,
+        "delta": 16.0
+      }
+    ],
+    "live_issue_count": 9,
+    "summary": {
+      "k_count": 13,
+      "pm_count": 6,
+      "trades_active": 29,
+      "total_issues": 53,
+      "live_issues": 9,
+      "price_mismatches": 6
+    }
+  }
+]

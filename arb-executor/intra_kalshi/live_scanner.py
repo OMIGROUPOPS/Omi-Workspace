@@ -704,21 +704,22 @@ class LiveScanner:
             return None
         return self._ticker_lambda.get(ticker)
 
-    def _get_conv_time(self, ticker: str) -> Optional[float]:
+    def _get_conv_time(self, ticker: str):
         """Estimate convergence time from informed trader ratio.
+        Returns (conv_time, r_estimate) tuple.
         r = |sum(deltas)| / sum(|deltas|), conv_time = k / (r² + 0.001)."""
         changes = self._mid_changes.get(ticker)
         if not changes or len(changes) < 3:
-            return None
+            return None, None
         total_flow = 0
         directional_flow = 0
         for _, delta in changes:
             total_flow += abs(delta)
             directional_flow += delta
         if total_flow == 0:
-            return None
+            return None, None
         r = abs(directional_flow) / total_flow
-        return CONV_TIME_K / (r * r + 0.001)
+        return CONV_TIME_K / (r * r + 0.001), r
 
     def _estimate_half_life(self, ticker: str) -> Optional[float]:
         """Estimate OU mean-reversion half-life from rolling BBO history.

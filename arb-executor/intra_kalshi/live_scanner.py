@@ -1245,6 +1245,16 @@ class LiveScanner:
             if existing.ticker == signal.ticker:
                 return  # Already have an open trade on this ticker
 
+        # Lambda safety net: require minimum BBO history
+        bbo_count = self._ticker_bbo_count.get(signal.ticker, 0)
+        if bbo_count < KYLE_LAMBDA_MIN_UPDATES:
+            self.stats["lambda_skipped"] = self.stats.get("lambda_skipped", 0) + 1
+            print(
+                f"[NO_HISTORY_SKIP] {signal.scan_type} {signal.ticker} "
+                f"bbo_updates={bbo_count} < {KYLE_LAMBDA_MIN_UPDATES}"
+            )
+            return
+
         # Kyle's Lambda filter: skip if price impact too high
         lam = self._get_kyle_lambda(signal.ticker)
         if lam is not None and lam > KYLE_LAMBDA_MAX:
@@ -1256,7 +1266,20 @@ class LiveScanner:
             return
 
         # Convergence time estimate (logged, not filtered)
-        conv = self._get_conv_time(signal.ticker)
+        conv, r_est = self._get_conv_time(signal.ticker)
+
+        # Convergence category
+        conv_cat = ""
+        if conv is not None:
+            if conv < 60:
+                conv_cat = "FAST"
+            elif conv < 180:
+                conv_cat = "MEDIUM"
+            else:
+                conv_cat = "SLOW"
+
+        # VPIN proxy (logged, not filtered)
+        vpin = self._ticker_vpin.get(signal.ticker)
 
         # Extract spike_size and half_life from description for mean_reversion
         spike_size = None
@@ -1287,16 +1310,22 @@ class LiveScanner:
             entry_depth=signal.depth,
             kyle_lambda=lam,
             conv_time=conv,
+            r_estimate=r_est,
+            conv_category=conv_cat,
+            vpin_proxy=vpin,
         )
         self.open_trades.append(trade)
         self.stats["paper_trades_opened"] += 1
         hl_tag = f" hl={half_life_val:.1f}s" if half_life_val else ""
         lam_tag = f" λ={lam:.5f}" if lam is not None else ""
         conv_tag = f" ct={conv:.0f}s" if conv is not None else ""
+        r_tag = f" r={r_est:.3f}" if r_est is not None else ""
+        cat_tag = f" [{conv_cat}]" if conv_cat else ""
+        vpin_tag = f" vpin={vpin:.6f}" if vpin is not None else ""
         print(
             f"[PAPER] OPEN {trade.id}: {trade.scan_type} {trade.side} "
             f"{trade.ticker}@{trade.entry_price}c target={trade.target} stop={trade.stop} "
-            f"depth={signal.depth}{hl_tag}{lam_tag}{conv_tag}"
+            f"depth={signal.depth}{hl_tag}{lam_tag}{conv_tag}{r_tag}{cat_tag}{vpin_tag}"
         )
 
     def check_paper_trades(self, updated_ticker: str):
@@ -1466,6 +1495,38 @@ class LiveScanner:
                 f"Lambda: {len(lambdas)} tickers tracked, "
                 f"median={med:.5f}, >{KYLE_LAMBDA_MAX}={high_count}"
             )
+
+        # Lambda skip rate
+        total_signals = self.stats.get("scan_signals", 0)
+        lam_skipped = self.stats.get("lambda_skipped", 0)
+        if total_signals > 0:
+            skip_pct = lam_skipped / total_signals * 100
+            lines.append(f"Lambda skip: {lam_skipped}/{total_signals} ({skip_pct:.1f}%)")
+
+        # Avg lambda and conv_time on entered trades
+        all_trades = list(self.open_trades) + list(self.closed_trades)
+        entered_lambdas = [t.kyle_lambda for t in all_trades if t.kyle_lambda is not None]
+        entered_convs = [t.conv_time for t in all_trades if t.conv_time is not None]
+        if entered_lambdas:
+            avg_lam = sum(entered_lambdas) / len(entered_lambdas)
+            lines.append(f"Entered trades avg lambda: {avg_lam:.5f} (n={len(entered_lambdas)})")
+        if entered_convs:
+            avg_conv = sum(entered_convs) / len(entered_convs)
+            lines.append(f"Entered trades avg conv_time: {avg_conv:.0f}s (n={len(entered_convs)})")
+
+        # Conv category breakdown on entered trades
+        cat_counts = {"FAST": 0, "MEDIUM": 0, "SLOW": 0, "": 0}
+        for t in all_trades:
+            cat = t.conv_category if hasattr(t, "conv_category") else ""
+            if cat in cat_counts:
+                cat_counts[cat] += 1
+            else:
+                cat_counts[cat] = 1
+        cats_with_trades = {k: v for k, v in cat_counts.items() if v > 0 and k}
+        if cats_with_trades:
+            parts = [f"{k}={v}" for k, v in sorted(cats_with_trades.items())]
+            cat_str = ", ".join(parts)
+            lines.append(f"Conv categories: {cat_str}")
 
         # Category breakdown
         if self._category_stats:

@@ -76,7 +76,9 @@ WS_WATCHDOG_TIMEOUT = 30     # Reconnect if no WS message in 30s
 # Kyle's Lambda (price impact filter)
 KYLE_LAMBDA_ALPHA = 0.05     # EWMA smoothing factor
 KYLE_LAMBDA_MAX = 0.012      # Skip signal if lambda > this (too much slippage)
-KYLE_LAMBDA_MIN_UPDATES = 10 # Need 10+ BBO updates before filtering
+KYLE_LAMBDA_MIN_UPDATES = 20 # Need 20+ BBO updates before filtering
+KYLE_LAMBDA_DEFAULT = 0.02   # Default lambda for unknown tickers (safely above MAX)
+VPIN_ALPHA = 0.05            # EWMA smoothing for VPIN proxy
 
 # Convergence time estimator
 CONV_TIME_WINDOW = 120.0     # Rolling window for directional flow (seconds)
@@ -152,6 +154,9 @@ class PaperTrade:
     bbo_updates_seen: int = 0            # BBO updates since open (skip exit on 0)
     kyle_lambda: Optional[float] = None  # price impact estimate at entry
     conv_time: Optional[float] = None    # convergence time estimate at entry
+    r_estimate: Optional[float] = None   # informed trader ratio at entry
+    conv_category: str = ""              # FAST/MEDIUM/SLOW
+    vpin_proxy: Optional[float] = None   # volume-weighted price impact proxy
 
 
 @dataclass
@@ -392,6 +397,9 @@ class LiveScanner:
 
         # Convergence time: rolling mid-price changes per ticker (120s window)
         self._mid_changes: Dict[str, deque] = {}           # ticker → deque[(ts, delta)]
+
+        # VPIN proxy: EWMA of |mid_change| / total_depth per ticker
+        self._ticker_vpin: Dict[str, float] = {}
 
         # (signal dedup removed — only open-trade check in open_paper_trade)
 
@@ -674,6 +682,16 @@ class LiveScanner:
                         KYLE_LAMBDA_ALPHA * instant_lambda + (1 - KYLE_LAMBDA_ALPHA) * old
                     )
 
+                # VPIN proxy EWMA: |mid_change| / (bid_depth + ask_depth)
+                instant_vpin = mid_change / volume
+                old_vpin = self._ticker_vpin.get(ticker)
+                if old_vpin is None:
+                    self._ticker_vpin[ticker] = instant_vpin
+                else:
+                    self._ticker_vpin[ticker] = (
+                        VPIN_ALPHA * instant_vpin + (1 - VPIN_ALPHA) * old_vpin
+                    )
+
             # --- Convergence time: track mid-price changes ---
             delta = mid - prev_mid
             if delta != 0:
@@ -698,10 +716,10 @@ class LiveScanner:
         return True
 
     def _get_kyle_lambda(self, ticker: str) -> Optional[float]:
-        """Get Kyle's Lambda for ticker. Returns None if insufficient data."""
+        """Get Kyle's Lambda for ticker. Returns KYLE_LAMBDA_DEFAULT if insufficient data."""
         count = self._ticker_bbo_count.get(ticker, 0)
         if count < KYLE_LAMBDA_MIN_UPDATES:
-            return None
+            return KYLE_LAMBDA_DEFAULT  # Unknown ticker → skip safely
         return self._ticker_lambda.get(ticker)
 
     def _get_conv_time(self, ticker: str):

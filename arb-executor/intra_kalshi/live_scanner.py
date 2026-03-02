@@ -140,6 +140,7 @@ class PaperTrade:
     half_life: Optional[float] = None
     entry_depth: int = 0
     hold_time: Optional[float] = None    # seconds held
+    bbo_updates_seen: int = 0            # BBO updates since open (skip exit on 0)
 
 
 @dataclass
@@ -1130,7 +1131,8 @@ class LiveScanner:
 
         all_signals = []
         all_signals.extend(self.scan_momentum_lag(ticker))
-        all_signals.extend(self.scan_mean_reversion(ticker))
+        # BUG 3: mean_reversion DISABLED — 0 wins in 68 trades, sports spikes are real repricing
+        # all_signals.extend(self.scan_mean_reversion(ticker))
         all_signals.extend(self.scan_contradiction(ticker))
         all_signals.extend(self.scan_resolution(ticker))
 
@@ -1165,6 +1167,11 @@ class LiveScanner:
 
     def open_paper_trade(self, signal: ScanSignal):
         """Open a paper trade from a scan signal."""
+        # BUG 2 FIX: Don't open duplicate trades on the same ticker
+        for existing in self.open_trades:
+            if existing.ticker == signal.ticker:
+                return  # Already have an open trade on this ticker
+
         # Extract spike_size and half_life from description for mean_reversion
         spike_size = None
         half_life_val = None
@@ -1209,6 +1216,14 @@ class LiveScanner:
 
         for trade in self.open_trades:
             if trade.ticker != updated_ticker:
+                still_open.append(trade)
+                continue
+
+            # BUG 1 FIX: Skip exit evaluation on the same BBO update that opened
+            # the trade. Increment counter first, then only evaluate exits if we've
+            # seen at least 1 subsequent BBO update.
+            trade.bbo_updates_seen += 1
+            if trade.bbo_updates_seen < 2:
                 still_open.append(trade)
                 continue
 

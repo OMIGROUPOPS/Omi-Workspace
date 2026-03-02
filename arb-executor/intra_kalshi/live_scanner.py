@@ -19,6 +19,7 @@ Runs in tmux alongside the cross-platform executor.
 import asyncio
 import base64
 import json
+import math
 import os
 import re
 import signal
@@ -58,6 +59,7 @@ REVERSION_MIN_DEPTH = 50      # Both bid+ask need 50+ contracts
 REVERSION_CONFIRM_REVERT = 2  # Must see 2c reversion from peak before entry
 REVERSION_CONFIRM_WINDOW = 5.0  # Confirmation must happen within 5s
 REVERSION_ALLOWED_CATEGORIES = {"Sports"}  # Only sports mean-revert on short TF
+REVERSION_MAX_HALF_LIFE = 120.0  # Skip if OU half-life > 120s (price not mean-reverting fast enough)
 CONTRADICTION_MIN_DEPTH = 10  # Both sides need 10+ contracts
 RESOLUTION_PRICE_RANGE = (95, 99)  # Near-settled price range
 RESOLUTION_TIME = 300         # Within 5 min of close_time (seconds)
@@ -69,6 +71,7 @@ WS_SUBSCRIBE_BATCH = 100     # Max tickers per subscribe message
 WS_PING_INTERVAL = 30
 WS_RECONNECT_INITIAL = 1
 WS_RECONNECT_MAX = 60
+WS_WATCHDOG_TIMEOUT = 30     # Reconnect if no WS message in 30s
 
 PAPER_TRADES_FILE = os.path.join(os.path.dirname(__file__), "intra_paper_trades.json")
 STATS_LOG = "/tmp/intra_scanner.log"
@@ -132,6 +135,11 @@ class PaperTrade:
     pnl_cents: Optional[int] = None
     exit_reason: Optional[str] = None
     description: str = ""
+    # Extra detail fields for overnight analysis
+    spike_size: Optional[int] = None
+    half_life: Optional[float] = None
+    entry_depth: int = 0
+    hold_time: Optional[float] = None    # seconds held
 
 
 @dataclass
@@ -640,6 +648,54 @@ class LiveScanner:
             return False
         return True
 
+    def _estimate_half_life(self, ticker: str) -> Optional[float]:
+        """Estimate OU mean-reversion half-life from rolling BBO history.
+        Regresses Δp_t on (μ - p_{t-1}) via simple OLS: Δp = λ(μ - p) + ε.
+        Returns half_life = ln(2)/λ in seconds, or None if insufficient data."""
+        hist = self.bbo_history.get(ticker)
+        if not hist or len(hist) < 10:
+            return None
+
+        # Build midpoint time series
+        mids = []
+        times = []
+        for entry in hist:
+            mid = (entry.bid + entry.ask) // 2
+            if mid > 0:
+                mids.append(mid)
+                times.append(entry.ts)
+
+        if len(mids) < 10:
+            return None
+
+        mu = sum(mids) / len(mids)
+
+        # OLS: Δp_t = λ(μ - p_{t-1}) + ε
+        # Regress y = Δp on x = (μ - p_{t-1})
+        sum_xy = 0.0
+        sum_xx = 0.0
+        for i in range(1, len(mids)):
+            dt = times[i] - times[i - 1]
+            if dt <= 0:
+                continue
+            dp = mids[i] - mids[i - 1]
+            x = mu - mids[i - 1]
+            # Normalize by dt so lambda is per-second
+            y = dp / dt
+            sum_xy += x * y
+            sum_xx += x * x
+
+        if sum_xx < 1e-9:
+            return None  # No variance — flat price
+
+        lam = sum_xy / sum_xx  # λ per second
+
+        if lam <= 0:
+            return None  # Not mean-reverting (trending or random walk)
+
+        half_life = math.log(2) / lam
+        return half_life
+
     def _get_midpoint(self, ticker: str) -> Optional[int]:
         book = self.books.get(ticker)
         if not book or book.best_bid is None or book.best_ask is None:
@@ -811,6 +867,13 @@ class LiveScanner:
         if book.best_bid_size < REVERSION_MIN_DEPTH or book.best_ask_size < REVERSION_MIN_DEPTH:
             return signals
 
+        # OU half-life filter: skip if price isn't mean-reverting fast enough
+        half_life = self._estimate_half_life(ticker)
+        if half_life is None:
+            return signals  # Can't estimate — insufficient data
+        if half_life > REVERSION_MAX_HALF_LIFE:
+            return signals  # Mean-reversion too slow to trade
+
         # Confirmation filter: check that the spike has already started reverting.
         # Look at BBO history in the last 5s to find the peak and verify 2c+ pullback.
         hist = self.bbo_history.get(ticker)
@@ -827,6 +890,8 @@ class LiveScanner:
 
         if len(recent_mids) < 2:
             return signals
+
+        hl_str = f"hl={half_life:.1f}s"
 
         if spike > 0:
             # Spiked up — peak is the max midpoint in the confirm window
@@ -849,7 +914,8 @@ class LiveScanner:
                 stop=entry + REVERSION_STOP,
                 description=(
                     f"{info.category} {info.team} {info.market_type}: "
-                    f"spiked {spike:+d}c, reverting {peak - current}c from peak — depth={book.best_bid_size}"
+                    f"spiked {spike:+d}c, reverting {peak - current}c from peak — "
+                    f"depth={book.best_bid_size} {hl_str}"
                 ),
                 depth=book.best_bid_size,
             ))
@@ -874,7 +940,8 @@ class LiveScanner:
                 stop=entry - REVERSION_STOP,
                 description=(
                     f"{info.category} {info.team} {info.market_type}: "
-                    f"dropped {spike:+d}c, reverting {current - trough}c from trough — depth={book.best_ask_size}"
+                    f"dropped {spike:+d}c, reverting {current - trough}c from trough — "
+                    f"depth={book.best_ask_size} {hl_str}"
                 ),
                 depth=book.best_ask_size,
             ))
@@ -1098,6 +1165,19 @@ class LiveScanner:
 
     def open_paper_trade(self, signal: ScanSignal):
         """Open a paper trade from a scan signal."""
+        # Extract spike_size and half_life from description for mean_reversion
+        spike_size = None
+        half_life_val = None
+        if signal.scan_type == "mean_reversion":
+            # Parse spike from description: "spiked +15c" or "dropped -18c"
+            import re as _re
+            spike_m = _re.search(r'(?:spiked|dropped)\s+([+-]?\d+)c', signal.description)
+            if spike_m:
+                spike_size = int(spike_m.group(1))
+            hl_m = _re.search(r'hl=([0-9.]+)s', signal.description)
+            if hl_m:
+                half_life_val = float(hl_m.group(1))
+
         trade = PaperTrade(
             id=str(uuid.uuid4())[:8],
             scan_type=signal.scan_type,
@@ -1109,12 +1189,17 @@ class LiveScanner:
             target=signal.target,
             stop=signal.stop,
             description=signal.description,
+            spike_size=spike_size,
+            half_life=half_life_val,
+            entry_depth=signal.depth,
         )
         self.open_trades.append(trade)
         self.stats["paper_trades_opened"] += 1
+        hl_tag = f" hl={half_life_val:.1f}s" if half_life_val else ""
         print(
             f"[PAPER] OPEN {trade.id}: {trade.scan_type} {trade.side} "
-            f"{trade.ticker}@{trade.entry_price}c target={trade.target} stop={trade.stop}"
+            f"{trade.ticker}@{trade.entry_price}c target={trade.target} stop={trade.stop} "
+            f"depth={signal.depth}{hl_tag}"
         )
 
     def check_paper_trades(self, updated_ticker: str):
@@ -1167,6 +1252,7 @@ class LiveScanner:
                 trade.exit_price = exit_price
                 trade.exit_time = now
                 trade.exit_reason = exit_reason
+                trade.hold_time = now - trade.entry_time
                 if trade.side == "buy_yes":
                     trade.pnl_cents = exit_price - trade.entry_price
                 else:
@@ -1174,9 +1260,10 @@ class LiveScanner:
                 self.closed_trades.append(trade)
                 self.stats["paper_trades_closed"] += 1
                 pnl_str = f"{trade.pnl_cents:+d}c" if trade.pnl_cents is not None else "?"
+                ht_str = f" hold={trade.hold_time:.0f}s" if trade.hold_time else ""
                 print(
                     f"[PAPER] CLOSE {trade.id}: {trade.exit_reason} "
-                    f"entry={trade.entry_price}c exit={exit_price}c pnl={pnl_str}"
+                    f"entry={trade.entry_price}c exit={exit_price}c pnl={pnl_str}{ht_str}"
                 )
             else:
                 still_open.append(trade)
@@ -1197,11 +1284,12 @@ class LiveScanner:
                 trade.exit_price = exit_price
                 trade.exit_time = now
                 trade.exit_reason = "TIMEOUT"
+                trade.hold_time = now - trade.entry_time
                 trade.pnl_cents = exit_price - trade.entry_price
                 self.closed_trades.append(trade)
                 self.stats["paper_trades_closed"] += 1
                 pnl_str = f"{trade.pnl_cents:+d}c" if trade.pnl_cents is not None else "?"
-                print(f"[PAPER] TIMEOUT {trade.id}: pnl={pnl_str}")
+                print(f"[PAPER] TIMEOUT {trade.id}: pnl={pnl_str} hold={trade.hold_time:.0f}s")
             else:
                 still_open.append(trade)
         self.open_trades = still_open
@@ -1244,7 +1332,7 @@ class LiveScanner:
             f"Discovery: {self.stats['events_discovered']} games, "
             f"{self.stats['tickers_subscribed']} tickers subscribed",
             f"Signals: {self.stats['scan_signals']} total, "
-            f"seq_gaps={self._seq_gaps}",
+            f"seq_gaps={self._seq_gaps}, ws_reconnects={self.stats.get('ws_reconnects', 0)}",
             f"Paper: {self.stats['paper_trades_opened']} opened, "
             f"{self.stats['paper_trades_closed']} closed, "
             f"{len(self.open_trades)} open",
@@ -1292,7 +1380,7 @@ class LiveScanner:
     # ------------------------------------------------------------------
 
     async def ws_listen(self):
-        """Main WS message loop with reconnect."""
+        """Main WS message loop with watchdog reconnect."""
         while not self.shutdown:
             if not self.ws_connected or not self.ws:
                 await asyncio.sleep(self.ws_reconnect_delay)
@@ -1302,7 +1390,7 @@ class LiveScanner:
                 continue
 
             try:
-                msg = await asyncio.wait_for(self.ws.recv(), timeout=60)
+                msg = await asyncio.wait_for(self.ws.recv(), timeout=WS_WATCHDOG_TIMEOUT)
                 self.stats["ws_messages"] += 1
 
                 data = json.loads(msg)
@@ -1367,10 +1455,21 @@ class LiveScanner:
                     print(f"[WS] Error: {msg_data}")
 
             except asyncio.TimeoutError:
-                continue
+                # Watchdog: no message in WS_WATCHDOG_TIMEOUT seconds
+                print(f"[WS] Watchdog timeout ({WS_WATCHDOG_TIMEOUT}s no messages) — reconnecting")
+                self.stats["ws_reconnects"] = self.stats.get("ws_reconnects", 0) + 1
+                try:
+                    if self.ws:
+                        await self.ws.close()
+                except Exception:
+                    pass
+                self.ws_connected = False
+                self.ws = None
+                # Loop will reconnect and re-subscribe on next iteration
             except websockets.exceptions.ConnectionClosed as e:
                 print(f"[WS] Connection closed: {e}")
                 self.ws_connected = False
+                self.ws = None
             except Exception as e:
                 print(f"[WS] Error: {e}")
 

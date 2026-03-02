@@ -1,10 +1,25 @@
 "use client";
 
-// OMNI Terminal — Canvas Chart
-// Multi-panel: OHLC Candlesticks + Bollinger Bands + Convergence Time Shading
+// OMNI Terminal — Recharts Chart
+// Multi-panel: OHLC Candlesticks + Bollinger Bands
 //              Kyle's Lambda EWMA | VPIN Proxy Bars | Volume Bars
 
-import { useRef, useEffect, useState, useMemo, useCallback } from "react";
+import { useMemo, useState } from "react";
+import {
+  ComposedChart,
+  LineChart,
+  BarChart,
+  Bar,
+  Line,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  ReferenceLine,
+  Cell,
+} from "recharts";
 
 interface ChartProps {
   ticker?: string;
@@ -77,7 +92,7 @@ function generateOHLCV(ticker: string): OHLCV[] {
     const v = Math.floor((40 + rng.next() * 200) * spike);
 
     // Kyle's lambda EWMA: price impact per unit volume
-    const impact = Math.abs(c - o) / Math.max(v, 1) * 80;
+    const impact = (Math.abs(c - o) / Math.max(v, 1)) * 80;
     lambda = lambda * 0.92 + impact * 0.08;
 
     // VPIN proxy: order imbalance
@@ -128,14 +143,91 @@ function computeBollinger(bars: OHLCV[], period = 20, k = 2) {
   return result;
 }
 
+// ── Custom Candlestick Shape ──────────────────────────────────
+
+const CandleShape = (props: any) => {
+  const { x, y, width, height, payload } = props;
+  if (!payload) return null;
+
+  const { o, h, l, c } = payload;
+  const bull = c >= o;
+  const color = bull ? "#00FF88" : "#FF3366";
+  const candleW = Math.max(1, width * 0.6);
+  const wickX = x + width / 2;
+
+  const bodyMax = Math.max(o, c);
+  const bodyMin = Math.min(o, c);
+  const bodyRange = bodyMax - bodyMin + 0.01; // epsilon to avoid div-by-zero
+  const pxPerCent = height / bodyRange;
+
+  // Compute wick pixel positions from body positions
+  const wickHighPx = y - (h - bodyMax) * pxPerCent;
+  const wickLowPx = y + height + (bodyMin - l) * pxPerCent;
+
+  return (
+    <g>
+      <line
+        x1={wickX}
+        y1={wickHighPx}
+        x2={wickX}
+        y2={wickLowPx}
+        stroke={color}
+        strokeWidth={1}
+      />
+      <rect
+        x={x + (width - candleW) / 2}
+        y={y}
+        width={candleW}
+        height={Math.max(1, height)}
+        fill={color}
+      />
+    </g>
+  );
+};
+
+// ── Custom Tooltip ────────────────────────────────────────────
+
+const PriceTooltip = ({ active, payload }: any) => {
+  if (!active || !payload?.length) return null;
+  const d = payload[0]?.payload;
+  if (!d) return null;
+  return (
+    <div
+      style={{
+        background: "#111",
+        border: "1px solid #333",
+        padding: "6px 10px",
+        fontSize: "10px",
+        fontFamily: "'Courier New', monospace",
+        color: "#ccc",
+        borderRadius: "2px",
+      }}
+    >
+      <div>
+        O:{d.o.toFixed(1)}¢ H:{d.h.toFixed(1)}¢ L:{d.l.toFixed(1)}¢ C:
+        {d.c.toFixed(1)}¢
+      </div>
+      <div style={{ color: "#00BFFF" }}>λ: {d.lambda.toFixed(5)}</div>
+      <div
+        style={{
+          color:
+            d.vpin < 0.15
+              ? "#00FF88"
+              : d.vpin < 0.3
+                ? "#FFA500"
+                : "#FF3366",
+        }}
+      >
+        VPIN: {d.vpin.toFixed(3)}
+      </div>
+    </div>
+  );
+};
+
 // ── Component ─────────────────────────────────────────────────
 
 export default function Chart({ ticker }: ChartProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const [showBoll, setShowBoll] = useState(true);
-  const [showConv, setShowConv] = useState(true);
-  const [dims, setDims] = useState({ w: 0, h: 0 });
 
   const data = useMemo(
     () => (ticker ? generateOHLCV(ticker) : null),
@@ -143,387 +235,42 @@ export default function Chart({ ticker }: ChartProps) {
   );
   const boll = useMemo(() => (data ? computeBollinger(data) : null), [data]);
 
-  // Robust container measurement
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
+  const { chartData, priceMin, priceMax } = useMemo(() => {
+    if (!data || !boll)
+      return { chartData: [] as any[], priceMin: 0, priceMax: 100 };
 
-    const measure = () => {
-      const w = el.clientWidth;
-      const h = el.clientHeight;
-      if (w > 0 && h > 0) {
-        setDims((prev) =>
-          prev.w === w && prev.h === h ? prev : { w, h },
-        );
-      }
+    let pMin = Infinity,
+      pMax = -Infinity;
+    for (const d of data) {
+      pMin = Math.min(pMin, d.l);
+      pMax = Math.max(pMax, d.h);
+    }
+    for (const b of boll) {
+      pMin = Math.min(pMin, b.lower);
+      pMax = Math.max(pMax, b.upper);
+    }
+    const pad = (pMax - pMin) * 0.06 || 1;
+    pMin -= pad;
+    pMax += pad;
+
+    return {
+      chartData: data.map((d, i) => ({
+        ...d,
+        index: i,
+        sma: boll[i].mid,
+        bollUpper: boll[i].upper,
+        bollLower: boll[i].lower,
+        bollBase: boll[i].lower,
+        bollWidth: boll[i].upper - boll[i].lower,
+        candleRange: [
+          Math.min(d.o, d.c) - 0.005,
+          Math.max(d.o, d.c) + 0.005,
+        ] as [number, number],
+      })),
+      priceMin: pMin,
+      priceMax: pMax,
     };
-
-    // Measure after first layout paint
-    const raf = requestAnimationFrame(measure);
-
-    // ResizeObserver for dynamic changes
-    const obs = new ResizeObserver(measure);
-    obs.observe(el);
-
-    // Window resize fallback
-    window.addEventListener("resize", measure);
-
-    return () => {
-      cancelAnimationFrame(raf);
-      obs.disconnect();
-      window.removeEventListener("resize", measure);
-    };
-  }, []);
-
-  // ── Canvas draw ─────────────────────────────────────────────
-  const draw = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || !data || !boll) return;
-
-    const dpr = window.devicePixelRatio || 1;
-    const W = dims.w;
-    const H = dims.h;
-    console.log("[Chart] draw", W, "x", H, "ticker:", ticker);
-    if (W < 80 || H < 80) return;
-
-    canvas.width = W * dpr;
-    canvas.height = H * dpr;
-    canvas.style.width = `${W}px`;
-    canvas.style.height = `${H}px`;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    ctx.scale(dpr, dpr);
-
-    // ── Layout constants ──
-    const L = 44; // left pad (price axis)
-    const R = 6; // right pad
-    const T = 2; // top pad
-    const B = 18; // bottom pad (time axis)
-    const chartW = W - L - R;
-    const N = data.length;
-    const barW = chartW / N;
-    const candleW = Math.max(1, barW * 0.55);
-
-    // Panel heights
-    const CANDLE_H = Math.floor(H * 0.55);
-    const LAMBDA_H = Math.floor(H * 0.12);
-    const VPIN_H = Math.floor(H * 0.12);
-    const VOL_H = H - CANDLE_H - LAMBDA_H - VPIN_H;
-
-    const GREEN = "#00FF88";
-    const RED = "#FF3366";
-    const ORANGE = "#FFA500";
-
-    // Clear
-    ctx.fillStyle = "#0A0A0A";
-    ctx.fillRect(0, 0, W, H);
-    ctx.font = "9px 'Courier New', monospace";
-
-    // Helper: x position for bar index
-    const xBar = (i: number) => L + i * barW + barW / 2;
-
-    // ── Price range (candle area) ──
-    let pMin = Math.min(...data.map((d) => d.l));
-    let pMax = Math.max(...data.map((d) => d.h));
-    if (showBoll) {
-      pMin = Math.min(pMin, ...boll.map((b) => b.lower));
-      pMax = Math.max(pMax, ...boll.map((b) => b.upper));
-    }
-    const pPad = (pMax - pMin) * 0.06 || 1;
-    pMin -= pPad;
-    pMax += pPad;
-    const pRange = pMax - pMin;
-
-    const yP = (p: number) =>
-      T + (1 - (p - pMin) / pRange) * (CANDLE_H - T - 2);
-
-    // ── Convergence time shading ──
-    if (showConv) {
-      for (let i = 0; i < N; i++) {
-        const ct = data[i].convTime;
-        ctx.fillStyle =
-          ct < 60
-            ? "rgba(0,255,136,0.05)"
-            : ct < 120
-              ? "rgba(255,165,0,0.05)"
-              : "rgba(255,51,102,0.04)";
-        ctx.fillRect(L + i * barW, T, barW, CANDLE_H - T - 2);
-      }
-    }
-
-    // ── Horizontal grid lines (candle) ──
-    const gridN = 5;
-    ctx.strokeStyle = "#1a1a1a";
-    ctx.lineWidth = 0.5;
-    for (let g = 0; g <= gridN; g++) {
-      const y = T + (g / gridN) * (CANDLE_H - T - 2);
-      ctx.beginPath();
-      ctx.moveTo(L, y);
-      ctx.lineTo(W - R, y);
-      ctx.stroke();
-
-      const pLabel = pMax - (g / gridN) * pRange;
-      ctx.fillStyle = "#555";
-      ctx.textAlign = "right";
-      ctx.fillText(`${pLabel.toFixed(0)}¢`, L - 4, y + 3);
-    }
-
-    // ── Bollinger bands ──
-    if (showBoll) {
-      // Fill between bands
-      ctx.beginPath();
-      for (let i = 0; i < N; i++) {
-        const x = xBar(i);
-        const y = yP(boll[i].upper);
-        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      for (let i = N - 1; i >= 0; i--) {
-        ctx.lineTo(xBar(i), yP(boll[i].lower));
-      }
-      ctx.closePath();
-      ctx.fillStyle = "rgba(255,165,0,0.07)";
-      ctx.fill();
-
-      // Upper band
-      ctx.strokeStyle = "rgba(255,165,0,0.45)";
-      ctx.lineWidth = 1;
-      ctx.setLineDash([]);
-      ctx.beginPath();
-      for (let i = 0; i < N; i++) {
-        const x = xBar(i);
-        i === 0
-          ? ctx.moveTo(x, yP(boll[i].upper))
-          : ctx.lineTo(x, yP(boll[i].upper));
-      }
-      ctx.stroke();
-
-      // Lower band
-      ctx.beginPath();
-      for (let i = 0; i < N; i++) {
-        const x = xBar(i);
-        i === 0
-          ? ctx.moveTo(x, yP(boll[i].lower))
-          : ctx.lineTo(x, yP(boll[i].lower));
-      }
-      ctx.stroke();
-
-      // SMA (middle)
-      ctx.strokeStyle = "rgba(255,165,0,0.25)";
-      ctx.setLineDash([3, 3]);
-      ctx.beginPath();
-      for (let i = 0; i < N; i++) {
-        const x = xBar(i);
-        i === 0
-          ? ctx.moveTo(x, yP(boll[i].mid))
-          : ctx.lineTo(x, yP(boll[i].mid));
-      }
-      ctx.stroke();
-      ctx.setLineDash([]);
-    }
-
-    // ── Candlesticks ──
-    for (let i = 0; i < N; i++) {
-      const d = data[i];
-      const x = xBar(i);
-      const bull = d.c >= d.o;
-      const col = bull ? GREEN : RED;
-
-      // Wick
-      ctx.strokeStyle = col;
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(x, yP(d.h));
-      ctx.lineTo(x, yP(d.l));
-      ctx.stroke();
-
-      // Body
-      const top = yP(Math.max(d.o, d.c));
-      const bot = yP(Math.min(d.o, d.c));
-      const bodyH = Math.max(1, bot - top);
-
-      ctx.fillStyle = col;
-      ctx.fillRect(x - candleW / 2, top, candleW, bodyH);
-    }
-
-    // ── Current price dashed line ──
-    const lastC = data[N - 1].c;
-    const lastY = yP(lastC);
-    ctx.strokeStyle = "#FF6600";
-    ctx.lineWidth = 1;
-    ctx.setLineDash([5, 4]);
-    ctx.beginPath();
-    ctx.moveTo(L, lastY);
-    ctx.lineTo(W - R, lastY);
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    // Price label box
-    ctx.fillStyle = "#FF6600";
-    const lblW = L - 2;
-    ctx.fillRect(0, lastY - 7, lblW, 14);
-    ctx.fillStyle = "#000";
-    ctx.textAlign = "center";
-    ctx.font = "bold 9px 'Courier New', monospace";
-    ctx.fillText(`${lastC.toFixed(0)}¢`, lblW / 2, lastY + 3);
-    ctx.font = "9px 'Courier New', monospace";
-
-    // ── Panel separators ──
-    const drawSep = (y: number) => {
-      ctx.strokeStyle = "#333";
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(W, y);
-      ctx.stroke();
-    };
-    drawSep(CANDLE_H);
-    drawSep(CANDLE_H + LAMBDA_H);
-    drawSep(CANDLE_H + LAMBDA_H + VPIN_H);
-
-    // ── KYLE'S LAMBDA PANEL ──
-    const lY0 = CANDLE_H;
-    const lH = LAMBDA_H;
-    const lambdas = data.map((d) => d.lambda);
-    const lMax = Math.max(0.02, ...lambdas) * 1.15;
-    const yL = (v: number) => lY0 + 1 + (1 - v / lMax) * (lH - 3);
-
-    // Panel label
-    ctx.fillStyle = "#555";
-    ctx.textAlign = "left";
-    ctx.font = "bold 8px 'Courier New', monospace";
-    ctx.fillText("KYLE \u03BB", L + 3, lY0 + 10);
-    ctx.font = "9px 'Courier New', monospace";
-
-    // Grid line
-    ctx.strokeStyle = "#1a1a1a";
-    ctx.lineWidth = 0.5;
-    ctx.beginPath();
-    ctx.moveTo(L, lY0 + lH / 2);
-    ctx.lineTo(W - R, lY0 + lH / 2);
-    ctx.stroke();
-
-    // Threshold 0.012
-    const threshY = yL(0.012);
-    ctx.strokeStyle = RED;
-    ctx.lineWidth = 1;
-    ctx.setLineDash([4, 3]);
-    ctx.beginPath();
-    ctx.moveTo(L, threshY);
-    ctx.lineTo(W - R, threshY);
-    ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.fillStyle = RED;
-    ctx.textAlign = "right";
-    ctx.font = "bold 8px 'Courier New', monospace";
-    ctx.fillText("0.012", L - 4, threshY + 3);
-    ctx.font = "9px 'Courier New', monospace";
-
-    // Lambda line
-    ctx.strokeStyle = "#00BFFF";
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    for (let i = 0; i < N; i++) {
-      const x = xBar(i);
-      const y = yL(lambdas[i]);
-      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-
-    // Y labels
-    ctx.fillStyle = "#555";
-    ctx.textAlign = "right";
-    ctx.fillText(lMax.toFixed(3), L - 4, lY0 + 10);
-    ctx.fillText("0", L - 4, lY0 + lH - 3);
-
-    // ── VPIN PROXY PANEL ──
-    const vY0 = CANDLE_H + LAMBDA_H;
-    const vH = VPIN_H;
-    const vpins = data.map((d) => d.vpin);
-    const vpMax = Math.max(0.4, ...vpins) * 1.15;
-
-    // Label
-    ctx.fillStyle = "#555";
-    ctx.textAlign = "left";
-    ctx.font = "bold 8px 'Courier New', monospace";
-    ctx.fillText("VPIN", L + 3, vY0 + 10);
-    ctx.font = "9px 'Courier New', monospace";
-
-    // Threshold lines 0.15 and 0.3
-    for (const th of [0.15, 0.3]) {
-      const ty = vY0 + vH - 2 - (th / vpMax) * (vH - 5);
-      ctx.strokeStyle = "#252525";
-      ctx.lineWidth = 0.5;
-      ctx.setLineDash([2, 2]);
-      ctx.beginPath();
-      ctx.moveTo(L, ty);
-      ctx.lineTo(W - R, ty);
-      ctx.stroke();
-      ctx.setLineDash([]);
-    }
-
-    // VPIN bars
-    for (let i = 0; i < N; i++) {
-      const x = xBar(i);
-      const v = vpins[i];
-      const bH = (v / vpMax) * (vH - 5);
-      ctx.fillStyle =
-        v < 0.15
-          ? "rgba(0,255,136,0.6)"
-          : v < 0.3
-            ? "rgba(255,165,0,0.6)"
-            : "rgba(255,51,102,0.6)";
-      ctx.fillRect(x - candleW / 2, vY0 + vH - 2 - bH, candleW, bH);
-    }
-
-    // ── VOLUME PANEL ──
-    const voY0 = CANDLE_H + LAMBDA_H + VPIN_H;
-    const voH = VOL_H;
-    const vols = data.map((d) => d.v);
-    const volMax = Math.max(...vols) * 1.1;
-
-    // Label
-    ctx.fillStyle = "#555";
-    ctx.textAlign = "left";
-    ctx.font = "bold 8px 'Courier New', monospace";
-    ctx.fillText("VOL", L + 3, voY0 + 10);
-    ctx.font = "9px 'Courier New', monospace";
-
-    // Volume bars
-    for (let i = 0; i < N; i++) {
-      const x = xBar(i);
-      const d = data[i];
-      const bH = (d.v / volMax) * (voH - B - 4);
-      ctx.fillStyle =
-        d.c >= d.o ? "rgba(0,255,136,0.35)" : "rgba(255,51,102,0.35)";
-      ctx.fillRect(x - candleW / 2, voY0 + voH - B - bH, candleW, bH);
-    }
-
-    // ── Time axis ──
-    ctx.fillStyle = "#555";
-    ctx.textAlign = "center";
-    const tY = H - 4;
-    const step = N >= 60 ? 20 : 10;
-    for (let i = 0; i < N; i += step) {
-      ctx.fillText(`-${N - i}m`, xBar(i), tY);
-    }
-    ctx.fillText("now", xBar(N - 1), tY);
-
-    // ── Left axis vertical line ──
-    ctx.strokeStyle = "#333";
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(L, 0);
-    ctx.lineTo(L, H);
-    ctx.stroke();
-  }, [data, boll, dims, showBoll, showConv, ticker]);
-
-  // Redraw whenever draw function changes
-  useEffect(() => {
-    draw();
-  }, [draw]);
-
-  // ── Render ──
+  }, [data, boll]);
 
   if (!ticker) {
     return (
@@ -548,6 +295,12 @@ export default function Chart({ ticker }: ChartProps) {
   const first = data ? data[0] : null;
   const change = latest && first ? latest.c - first.o : 0;
   const changeCol = change >= 0 ? "#00FF88" : "#FF3366";
+
+  // Time axis ticks for volume panel
+  const timeTicks: number[] = [];
+  for (let i = 0; i < chartData.length; i += 20) timeTicks.push(i);
+  if (timeTicks[timeTicks.length - 1] !== chartData.length - 1)
+    timeTicks.push(chartData.length - 1);
 
   return (
     <div
@@ -601,105 +354,300 @@ export default function Chart({ ticker }: ChartProps) {
           >
             BOLL
           </button>
-          <button
-            onClick={() => setShowConv((v) => !v)}
+          <span
             style={{
-              fontSize: "8px",
-              padding: "1px 5px",
-              borderRadius: "2px",
-              border: `1px solid ${showConv ? "#00FF88" : "#333"}`,
-              background: showConv ? "rgba(0,255,136,0.12)" : "transparent",
-              color: showConv ? "#00FF88" : "#555",
-              cursor: "pointer",
-              fontFamily: "inherit",
+              width: "1px",
+              height: "12px",
+              background: "#333",
+              margin: "0 2px",
             }}
-          >
-            CONV
-          </button>
-          <span style={{ width: "1px", height: "12px", background: "#333", margin: "0 2px" }} />
-          <button
-            style={{
-              fontSize: "8px",
-              padding: "1px 5px",
-              borderRadius: "2px",
-              border: "1px solid #FF6600",
-              background: "rgba(255,102,0,0.12)",
-              color: "#FF6600",
-              cursor: "pointer",
-              fontFamily: "inherit",
-            }}
-          >
-            1m
-          </button>
-          <button
-            style={{
-              fontSize: "8px",
-              padding: "1px 5px",
-              borderRadius: "2px",
-              border: "1px solid #333",
-              background: "transparent",
-              color: "#555",
-              cursor: "pointer",
-              fontFamily: "inherit",
-            }}
-          >
-            5m
-          </button>
-          <button
-            style={{
-              fontSize: "8px",
-              padding: "1px 5px",
-              borderRadius: "2px",
-              border: "1px solid #333",
-              background: "transparent",
-              color: "#555",
-              cursor: "pointer",
-              fontFamily: "inherit",
-            }}
-          >
-            15m
-          </button>
+          />
+          {["1m", "5m", "15m"].map((tf, i) => (
+            <button
+              key={tf}
+              style={{
+                fontSize: "8px",
+                padding: "1px 5px",
+                borderRadius: "2px",
+                border: `1px solid ${i === 0 ? "#FF6600" : "#333"}`,
+                background:
+                  i === 0 ? "rgba(255,102,0,0.12)" : "transparent",
+                color: i === 0 ? "#FF6600" : "#555",
+                cursor: "pointer",
+                fontFamily: "inherit",
+              }}
+            >
+              {tf}
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* Canvas container — position:relative so canvas can fill via absolute */}
-      <div
-        ref={containerRef}
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "100%",
-          minHeight: "400px",
-          flex: 1,
-          overflow: "hidden",
-        }}
-      >
-        {/* Red fallback — visible if canvas draw doesn't fire */}
-        {dims.w < 80 || dims.h < 80 ? (
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "#220000",
-              border: "2px solid #FF0000",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#FF0000",
-              fontSize: "14px",
-              fontWeight: 700,
-              fontFamily: "'Courier New', monospace",
-              letterSpacing: "0.1em",
-              zIndex: 1,
-            }}
+      {/* ── Main Price Chart ────────────────────────────────── */}
+      <div style={{ flex: 1, minHeight: 0 }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <ComposedChart
+            data={chartData}
+            margin={{ top: 5, right: 6, left: 0, bottom: 5 }}
           >
-            CHART LOADING ({dims.w}x{dims.h})
-          </div>
-        ) : null}
-        <canvas
-          ref={canvasRef}
-          style={{ position: "absolute", top: 0, left: 0, display: "block" }}
-        />
+            <CartesianGrid stroke="#1a1a1a" />
+            <XAxis
+              dataKey="index"
+              tick={false}
+              axisLine={{ stroke: "#333" }}
+            />
+            <YAxis
+              domain={[priceMin, priceMax]}
+              tick={{
+                fontSize: 9,
+                fill: "#888",
+                fontFamily: "'Courier New', monospace",
+              }}
+              tickFormatter={(v: number) => `${v.toFixed(0)}¢`}
+              axisLine={{ stroke: "#333" }}
+              width={44}
+            />
+            <Tooltip
+              content={<PriceTooltip />}
+              cursor={{ stroke: "#444", strokeDasharray: "3 3" }}
+            />
+
+            {/* Bollinger band fill (stacked area trick) */}
+            {showBoll && (
+              <>
+                <Area
+                  dataKey="bollBase"
+                  stackId="boll"
+                  fill="transparent"
+                  stroke="transparent"
+                  type="monotone"
+                  isAnimationActive={false}
+                  tooltipType="none"
+                />
+                <Area
+                  dataKey="bollWidth"
+                  stackId="boll"
+                  fill="rgba(255,165,0,0.15)"
+                  stroke="transparent"
+                  type="monotone"
+                  isAnimationActive={false}
+                  tooltipType="none"
+                />
+                <Line
+                  dataKey="bollUpper"
+                  stroke="rgba(255,165,0,0.45)"
+                  dot={false}
+                  strokeWidth={1}
+                  type="monotone"
+                  isAnimationActive={false}
+                  tooltipType="none"
+                />
+                <Line
+                  dataKey="bollLower"
+                  stroke="rgba(255,165,0,0.45)"
+                  dot={false}
+                  strokeWidth={1}
+                  type="monotone"
+                  isAnimationActive={false}
+                  tooltipType="none"
+                />
+                <Line
+                  dataKey="sma"
+                  stroke="rgba(255,165,0,0.25)"
+                  dot={false}
+                  strokeDasharray="3 3"
+                  strokeWidth={1}
+                  type="monotone"
+                  isAnimationActive={false}
+                  tooltipType="none"
+                />
+              </>
+            )}
+
+            {/* Candlesticks */}
+            <Bar
+              dataKey="candleRange"
+              shape={<CandleShape />}
+              isAnimationActive={false}
+            />
+
+            {/* Current price line */}
+            {latest && (
+              <ReferenceLine
+                y={latest.c}
+                stroke="#FF6600"
+                strokeDasharray="5 4"
+                strokeWidth={1}
+              />
+            )}
+          </ComposedChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* ── Kyle's Lambda Panel ─────────────────────────────── */}
+      <div style={{ height: 80, borderTop: "1px solid #333", position: "relative" }}>
+        <span
+          style={{
+            position: "absolute",
+            top: 2,
+            left: 48,
+            fontSize: 8,
+            color: "#555",
+            fontWeight: 700,
+            zIndex: 1,
+            fontFamily: "'Courier New', monospace",
+          }}
+        >
+          KYLE &lambda;
+        </span>
+        <ResponsiveContainer width="100%" height={80}>
+          <LineChart
+            data={chartData}
+            margin={{ top: 8, right: 6, left: 0, bottom: 0 }}
+          >
+            <CartesianGrid stroke="#1a1a1a" />
+            <XAxis
+              dataKey="index"
+              tick={false}
+              axisLine={{ stroke: "#333" }}
+            />
+            <YAxis
+              tick={{ fontSize: 8, fill: "#555" }}
+              domain={["auto", "auto"]}
+              axisLine={{ stroke: "#333" }}
+              width={44}
+              tickFormatter={(v: number) => v.toFixed(3)}
+            />
+            <ReferenceLine
+              y={0.012}
+              stroke="#FF3366"
+              strokeDasharray="4 3"
+              label={{
+                value: "0.012",
+                position: "left",
+                fill: "#FF3366",
+                fontSize: 8,
+                fontWeight: 700,
+              }}
+            />
+            <Line
+              dataKey="lambda"
+              stroke="#00BFFF"
+              dot={false}
+              strokeWidth={1.5}
+              type="monotone"
+              isAnimationActive={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* ── VPIN Panel ──────────────────────────────────────── */}
+      <div style={{ height: 80, borderTop: "1px solid #333", position: "relative" }}>
+        <span
+          style={{
+            position: "absolute",
+            top: 2,
+            left: 48,
+            fontSize: 8,
+            color: "#555",
+            fontWeight: 700,
+            zIndex: 1,
+            fontFamily: "'Courier New', monospace",
+          }}
+        >
+          VPIN
+        </span>
+        <ResponsiveContainer width="100%" height={80}>
+          <BarChart
+            data={chartData}
+            margin={{ top: 8, right: 6, left: 0, bottom: 0 }}
+          >
+            <CartesianGrid stroke="#1a1a1a" />
+            <XAxis
+              dataKey="index"
+              tick={false}
+              axisLine={{ stroke: "#333" }}
+            />
+            <YAxis
+              tick={{ fontSize: 8, fill: "#555" }}
+              domain={[0, "auto"]}
+              axisLine={{ stroke: "#333" }}
+              width={44}
+            />
+            <ReferenceLine y={0.15} stroke="#333" strokeDasharray="2 2" />
+            <ReferenceLine y={0.3} stroke="#333" strokeDasharray="2 2" />
+            <Bar dataKey="vpin" isAnimationActive={false}>
+              {chartData.map((d, i) => (
+                <Cell
+                  key={i}
+                  fill={
+                    d.vpin < 0.15
+                      ? "rgba(0,255,136,0.6)"
+                      : d.vpin < 0.3
+                        ? "rgba(255,165,0,0.6)"
+                        : "rgba(255,51,102,0.6)"
+                  }
+                />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* ── Volume Panel ────────────────────────────────────── */}
+      <div style={{ height: 80, borderTop: "1px solid #333", position: "relative" }}>
+        <span
+          style={{
+            position: "absolute",
+            top: 2,
+            left: 48,
+            fontSize: 8,
+            color: "#555",
+            fontWeight: 700,
+            zIndex: 1,
+            fontFamily: "'Courier New', monospace",
+          }}
+        >
+          VOL
+        </span>
+        <ResponsiveContainer width="100%" height={80}>
+          <BarChart
+            data={chartData}
+            margin={{ top: 8, right: 6, left: 0, bottom: 5 }}
+          >
+            <CartesianGrid stroke="#1a1a1a" />
+            <XAxis
+              dataKey="index"
+              ticks={timeTicks}
+              tick={{ fontSize: 8, fill: "#555" }}
+              tickFormatter={(i: number) =>
+                i === chartData.length - 1
+                  ? "now"
+                  : `-${chartData.length - i}m`
+              }
+              axisLine={{ stroke: "#333" }}
+            />
+            <YAxis
+              tick={{ fontSize: 8, fill: "#555" }}
+              domain={[0, "auto"]}
+              axisLine={{ stroke: "#333" }}
+              width={44}
+            />
+            <Bar dataKey="v" isAnimationActive={false}>
+              {chartData.map((d, i) => (
+                <Cell
+                  key={i}
+                  fill={
+                    d.c >= d.o
+                      ? "rgba(0,255,136,0.35)"
+                      : "rgba(255,51,102,0.35)"
+                  }
+                />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );

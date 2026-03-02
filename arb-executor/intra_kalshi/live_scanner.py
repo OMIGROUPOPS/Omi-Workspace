@@ -95,7 +95,7 @@ DEPTH_MULT_HIGH = 0.25
 DEPTH_MULT_LOW = 0.10
 
 # Whale fill detection
-WHALE_FILL_MIN = 50  # Min contracts for whale flag
+WHALE_FILL_MIN = 200  # Min contracts for whale flag
 RESOLUTION_TIME = 300         # Within 5 min of close_time (seconds)
 AVAILABLE_CAPITAL = 460       # Current Kalshi balance ($)
 MAX_POSITION_PCT = 0.05       # 5% max per trade

@@ -1,8 +1,8 @@
 "use client";
 
-// OMI Terminal — Main layout (Redesigned)
-// Flex-based panel layout with live scanner data polling.
-// Bloomberg-style dark terminal aesthetic.
+// OMI Terminal — Main layout (Redesigned v2)
+// Bloomberg-style grid layout with prominent chart, visual Greeks, readable watchlist.
+// DO NOT change data fetching, polling, API routes, or orchestration logic.
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import Watchlist from "./Watchlist";
@@ -199,16 +199,16 @@ export default function Terminal() {
 
   return (
     <div
-      className="h-full w-full bg-[#0a0a0a] text-slate-200 flex flex-col overflow-hidden"
+      className="h-full w-full bg-[#080808] text-slate-200 flex flex-col overflow-hidden"
       style={{ fontFamily: "'JetBrains Mono', 'Courier New', monospace" }}
     >
       {/* ── Top bar — Bloomberg-style header ── */}
       <div
         className="flex items-center justify-between px-4 shrink-0"
         style={{
-          height: "30px",
-          background: "linear-gradient(180deg, #111 0%, #0d0d0d 100%)",
-          borderBottom: "1px solid #1a1a1a",
+          height: "32px",
+          background: "linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 100%)",
+          borderBottom: "1px solid rgba(255,102,0,0.15)",
         }}
       >
         <div className="flex items-center gap-3">
@@ -216,18 +216,18 @@ export default function Terminal() {
             style={{
               color: "#FF6600",
               fontWeight: 800,
-              fontSize: "14px",
-              letterSpacing: "0.12em",
-              textShadow: "0 0 12px rgba(255,102,0,0.3)",
+              fontSize: "15px",
+              letterSpacing: "0.15em",
+              textShadow: "0 0 16px rgba(255,102,0,0.4)",
             }}
           >
             OMI
           </span>
           <span
             style={{
-              color: "#666",
+              color: "#555",
               fontSize: "11px",
-              letterSpacing: "0.15em",
+              letterSpacing: "0.2em",
               fontWeight: 500,
             }}
           >
@@ -236,17 +236,17 @@ export default function Terminal() {
           <span style={{ color: "#333", fontSize: "9px" }}>v0.3</span>
         </div>
         <div className="flex items-center gap-4" style={{ fontSize: "10px" }}>
-          <span style={{ color: "#555", fontVariantNumeric: "tabular-nums" }}>
+          <span style={{ color: "#444", fontVariantNumeric: "tabular-nums" }}>
             {new Date().toISOString().slice(0, 10)}
           </span>
-          <span style={{ color: "#666", fontVariantNumeric: "tabular-nums", fontWeight: 600 }} suppressHydrationWarning>
+          <span style={{ color: "#777", fontVariantNumeric: "tabular-nums", fontWeight: 600, fontSize: "11px" }} suppressHydrationWarning>
             {clock}
           </span>
           <span
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "5px",
+              gap: "6px",
               color:
                 connectionStatus === "connected" ? "#00FF88" : connectionStatus === "connecting" ? "#FFD600" : "#FF3366",
             }}
@@ -254,8 +254,8 @@ export default function Terminal() {
             <span
               style={{
                 display: "inline-block",
-                width: "6px",
-                height: "6px",
+                width: "7px",
+                height: "7px",
                 borderRadius: "50%",
                 background:
                   connectionStatus === "connected"
@@ -265,7 +265,7 @@ export default function Terminal() {
                       : "#FF3366",
                 boxShadow:
                   connectionStatus === "connected"
-                    ? "0 0 8px rgba(0,255,136,0.5)"
+                    ? "0 0 10px rgba(0,255,136,0.6)"
                     : "none",
                 animation:
                   connectionStatus === "connected"
@@ -275,7 +275,7 @@ export default function Terminal() {
                       : "none",
               }}
             />
-            <span style={{ fontWeight: 600, letterSpacing: "0.05em", fontSize: "9px" }}>
+            <span style={{ fontWeight: 700, letterSpacing: "0.08em", fontSize: "10px" }}>
               {connectionStatus === "connected"
                 ? "LIVE"
                 : connectionStatus === "connecting"
@@ -290,12 +290,12 @@ export default function Terminal() {
       <div
         style={{ flex: 1, display: "flex", minHeight: 0, overflow: "hidden" }}
       >
-        {/* ── Watchlist sidebar ── */}
+        {/* ── Watchlist sidebar — wider for readable names ── */}
         <div
           style={{
-            width: "175px",
+            width: "220px",
             flexShrink: 0,
-            background: "#0d0d0d",
+            background: "#0a0a0a",
             borderRight: "1px solid #1a1a1a",
             padding: "6px",
             overflow: "hidden",
@@ -320,24 +320,23 @@ export default function Terminal() {
             minHeight: 0,
           }}
         >
-          {/* ── Top row: Chart + Orderbook — capped at 350px ── */}
+          {/* ── Top row: Chart + Greeks + Orderbook — 55% of space ── */}
           <div
             style={{
-              flex: "0 1 350px",
-              maxHeight: "350px",
+              flex: "6 1 0",
               display: "flex",
               minHeight: 0,
               overflow: "hidden",
             }}
           >
-            {/* Chart */}
+            {/* Chart area — takes most space */}
             <div
               style={{
                 flex: 1,
-                background: "#0d0d0d",
+                background: "#0a0a0a",
                 borderBottom: "1px solid #1a1a1a",
                 borderRight: "1px solid #1a1a1a",
-                padding: "6px",
+                padding: "4px 6px",
                 overflow: "hidden",
                 minWidth: 0,
                 minHeight: 0,
@@ -348,14 +347,14 @@ export default function Terminal() {
               <Chart ticker={selectedTicker ?? undefined} />
             </div>
 
-            {/* Orderbook */}
+            {/* Orderbook — right of chart */}
             <div
               style={{
-                width: "210px",
+                width: "200px",
                 flexShrink: 0,
-                background: "#0d0d0d",
+                background: "#0a0a0a",
                 borderBottom: "1px solid #1a1a1a",
-                padding: "6px",
+                padding: "4px 6px",
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
@@ -365,10 +364,10 @@ export default function Terminal() {
             </div>
           </div>
 
-          {/* ── Bottom row: Scanner + Countdown + P&L — takes remaining space ── */}
+          {/* ── Bottom row: Scanner + Countdown + P&L — 45% ── */}
           <div
             style={{
-              flex: 1,
+              flex: "4 1 0",
               display: "flex",
               minHeight: 0,
               overflow: "hidden",
@@ -378,7 +377,7 @@ export default function Terminal() {
             <div
               style={{
                 flex: 5,
-                background: "#0d0d0d",
+                background: "#0a0a0a",
                 borderRight: "1px solid #1a1a1a",
                 padding: "6px",
                 overflow: "hidden",
@@ -398,7 +397,7 @@ export default function Terminal() {
             <div
               style={{
                 flex: 3,
-                background: "#0d0d0d",
+                background: "#0a0a0a",
                 borderRight: "1px solid #1a1a1a",
                 padding: "6px",
                 overflow: "hidden",
@@ -414,7 +413,7 @@ export default function Terminal() {
             <div
               style={{
                 flex: 3,
-                background: "#0d0d0d",
+                background: "#0a0a0a",
                 padding: "6px",
                 overflow: "hidden",
                 display: "flex",

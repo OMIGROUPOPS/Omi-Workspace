@@ -1,7 +1,7 @@
 "use client";
 
-// OMI Terminal — Scanner / Signal feed (Redesigned)
-// Visual hierarchy with severity borders, strategy pills, fade-in animations.
+// OMI Terminal — Scanner / Signal feed (Redesigned v2)
+// Better visual hierarchy, readable labels, severity colors, strategy tags.
 
 import { useState, useEffect, useMemo, useRef } from "react";
 import type { ScanSignal, ScanType } from "@/lib/terminal/types";
@@ -131,8 +131,8 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
       {/* Filter bar */}
       <div style={{
         display: "flex",
-        gap: "3px",
-        marginBottom: "4px",
+        gap: "4px",
+        marginBottom: "6px",
         flexWrap: "wrap",
         alignItems: "center",
       }}>
@@ -144,12 +144,12 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
               key={label}
               onClick={() => onFilterChange?.(type)}
               style={{
-                fontSize: "8px",
-                padding: "2px 7px",
+                fontSize: "9px",
+                padding: "3px 8px",
                 borderRadius: "3px",
                 border: active
                   ? `1px solid ${type === null ? "#FF6600" : (strat?.color || "#555")}`
-                  : "1px solid #1a1a1a",
+                  : "1px solid #222",
                 cursor: "pointer",
                 fontWeight: 600,
                 letterSpacing: "0.05em",
@@ -159,14 +159,14 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
                 color: active
                   ? type === null ? "#FF6600" : strat?.color || "#fff"
                   : "#555",
-                transition: "all 0.1s",
+                transition: "all 0.15s",
               }}
             >
               {label}
             </button>
           );
         })}
-        <span style={{ marginLeft: "auto", fontSize: "9px", color: "#444", alignSelf: "center", fontVariantNumeric: "tabular-nums" }}>
+        <span style={{ marginLeft: "auto", fontSize: "10px", color: "#555", alignSelf: "center", fontVariantNumeric: "tabular-nums", fontWeight: 600 }}>
           {filtered.length}
         </span>
       </div>
@@ -183,16 +183,23 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
             alignItems: "center",
             justifyContent: "center",
             height: "100%",
-            color: "#333",
-            fontSize: "9px",
-            gap: "6px",
+            color: "#444",
+            fontSize: "10px",
+            gap: "10px",
           }}>
-            <span style={{
-              fontSize: "16px",
-              opacity: 0.3,
+            <div style={{
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
+              border: "2px solid #1a1a1a",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
               animation: "terminal-pulse 2s ease-in-out infinite",
-            }}>{"\u25C8"}</span>
-            Scanning...
+            }}>
+              <span style={{ fontSize: "18px", color: "#333" }}>{"\u25C8"}</span>
+            </div>
+            <span>Scanning for signals...</span>
           </div>
         ) : (
           filtered.map((sig, i) => {
@@ -209,7 +216,7 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
             const tickerLabel = parseTickerLabel(sig.ticker, rawTeam, eventTicker);
 
             // Alternating row backgrounds
-            const baseBg = sev.rowBg !== "transparent" ? sev.rowBg : (i % 2 === 0 ? "#0d0d0d" : "#101010");
+            const baseBg = sev.rowBg !== "transparent" ? sev.rowBg : (i % 2 === 0 ? "#0a0a0a" : "#0e0e0e");
 
             return (
               <div
@@ -217,13 +224,15 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "5px",
-                  padding: "4px 5px",
+                  gap: "6px",
+                  padding: "5px 6px",
                   background: baseBg,
                   cursor: "pointer",
                   borderLeft: `3px solid ${sev.border}`,
                   transition: "background 0.08s",
                   animation: isNew ? "terminal-signal-in 0.6s ease-out" : "none",
+                  borderRadius: "0 2px 2px 0",
+                  marginBottom: "1px",
                 }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = "#161616"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = baseBg; }}
@@ -231,11 +240,11 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
                 {/* Timestamp */}
                 {sig.timestamp && (
                   <span style={{
-                    fontSize: "7px",
-                    color: "#333",
+                    fontSize: "8px",
+                    color: "#444",
                     fontVariantNumeric: "tabular-nums",
                     flexShrink: 0,
-                    minWidth: "40px",
+                    minWidth: "44px",
                   }} suppressHydrationWarning>
                     {formatTimestamp(sig.timestamp)}
                   </span>
@@ -246,14 +255,14 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
                   style={{
                     fontSize: "7px",
                     fontWeight: 700,
-                    padding: "1px 4px",
-                    borderRadius: "2px",
+                    padding: "2px 5px",
+                    borderRadius: "3px",
                     background: sev.bg,
                     color: sev.color,
                     lineHeight: "12px",
                     letterSpacing: "0.03em",
                     flexShrink: 0,
-                    minWidth: "12px",
+                    minWidth: "14px",
                     textAlign: "center",
                   }}
                 >
@@ -263,9 +272,9 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
                 {/* Strategy tag */}
                 <span
                   style={{
-                    fontSize: "7px",
+                    fontSize: "8px",
                     fontWeight: 600,
-                    padding: "1px 5px",
+                    padding: "2px 6px",
                     borderRadius: "3px",
                     background: strat.bg,
                     color: strat.color,
@@ -281,9 +290,9 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
                 {isRecentFirst && (
                   <span
                     style={{
-                      fontSize: "6px",
+                      fontSize: "7px",
                       fontWeight: 700,
-                      padding: "1px 4px",
+                      padding: "2px 5px",
                       borderRadius: "3px",
                       background: "rgba(0,255,136,0.2)",
                       color: "#00FF88",
@@ -291,7 +300,7 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
                       letterSpacing: "0.05em",
                       flexShrink: 0,
                       animation: "terminal-new-badge 10s forwards",
-                      boxShadow: "0 0 6px rgba(0,255,136,0.2)",
+                      boxShadow: "0 0 8px rgba(0,255,136,0.2)",
                     }}
                   >
                     NEW
@@ -310,20 +319,20 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
                     minWidth: 0,
                   }}
                 >
-                  <span style={{ color: "#bbb", fontWeight: 600 }}>{tickerLabel}</span>
-                  <span style={{ color: "#2a2a2a", margin: "0 4px" }}>{"\u00B7"}</span>
+                  <span style={{ color: "#ccc", fontWeight: 600 }}>{tickerLabel}</span>
+                  <span style={{ color: "#2a2a2a", margin: "0 5px" }}>{"\u00B7"}</span>
                   <span style={{ color: "#777" }}>{formatDescription(sig.description)}</span>
                 </span>
 
                 {/* Depth */}
                 {sig.depth > 0 && (
                   <span style={{
-                    fontSize: "8px",
-                    color: "#555",
+                    fontSize: "9px",
+                    color: "#666",
                     fontVariantNumeric: "tabular-nums",
                     flexShrink: 0,
-                    background: "rgba(255,255,255,0.03)",
-                    padding: "0 3px",
+                    background: "rgba(255,255,255,0.04)",
+                    padding: "1px 4px",
                     borderRadius: "2px",
                   }}>
                     {sig.depth}
@@ -333,11 +342,11 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
                 {/* Relative time */}
                 {sig.timestamp && (
                   <span style={{
-                    fontSize: "8px",
-                    color: "#444",
+                    fontSize: "9px",
+                    color: "#555",
                     fontVariantNumeric: "tabular-nums",
                     flexShrink: 0,
-                    minWidth: "18px",
+                    minWidth: "20px",
                     textAlign: "right",
                   }}>
                     {relativeTime(sig.timestamp)}

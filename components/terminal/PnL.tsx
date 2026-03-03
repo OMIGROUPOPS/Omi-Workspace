@@ -1,7 +1,7 @@
 "use client";
 
-// OMI Terminal — P&L panel (Redesigned)
-// Session P&L, strategy breakdown, activity feed in paper mode.
+// OMI Terminal — P&L panel (Redesigned v2)
+// Visual stat cards, strategy breakdown with bar charts, activity feed.
 
 import type { PnLBreakdown, ScanType, SignalSeverity } from "@/lib/terminal/types";
 
@@ -31,11 +31,11 @@ const STRAT_COLOR: Record<string, string> = {
 };
 
 const STRAT_LABEL: Record<string, string> = {
-  resolution: "RES",
-  momentum_lag: "MTM",
-  contradiction_mono: "MONO",
-  contradiction_cross: "XCON",
-  whale_momentum: "WHL",
+  resolution: "Resolution",
+  momentum_lag: "Momentum",
+  contradiction_mono: "Mono",
+  contradiction_cross: "Cross",
+  whale_momentum: "Whale",
 };
 
 function formatTimestamp(ts: number): string {
@@ -56,29 +56,31 @@ export default function PnL({
 
   return (
     <div className="h-full flex flex-col">
-      {/* Total P&L header */}
+      {/* Total P&L header — prominent */}
       <div style={{
         marginBottom: "6px",
-        padding: "4px 2px",
+        padding: "6px 4px",
         borderBottom: "1px solid #1a1a1a",
+        background: "rgba(255,255,255,0.01)",
+        borderRadius: "4px 4px 0 0",
       }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "4px" }}>
           <span style={{
-            fontSize: "8px",
-            color: "#555",
+            fontSize: "9px",
+            color: "#666",
             textTransform: "uppercase",
             letterSpacing: "0.1em",
-            fontWeight: 600,
+            fontWeight: 700,
           }}>
             Session P&L
           </span>
           {hasTrades ? (
-            <span style={{ fontSize: "8px", color: "#444" }}>{openTrades} open</span>
+            <span style={{ fontSize: "9px", color: "#555" }}>{openTrades} open</span>
           ) : (
             <span style={{
-              fontSize: "7px",
+              fontSize: "8px",
               fontWeight: 700,
-              padding: "1px 5px",
+              padding: "2px 6px",
               borderRadius: "3px",
               background: "rgba(255,102,0,0.12)",
               color: "#FF6600",
@@ -89,93 +91,114 @@ export default function PnL({
           )}
         </div>
         <div style={{
-          fontSize: "22px",
+          fontSize: "26px",
           fontWeight: 700,
           fontVariantNumeric: "tabular-nums",
           color: pnlColor,
-          lineHeight: 1.2,
-          textShadow: totalPnl !== 0 ? `0 0 12px ${pnlColor}40` : "none",
+          lineHeight: 1.1,
+          textShadow: totalPnl !== 0 ? `0 0 16px ${pnlColor}40` : "none",
         }}>
           {totalPnl >= 0 ? "+" : ""}{(totalPnl / 100).toFixed(2)}
-          <span style={{ fontSize: "9px", color: "#444", marginLeft: "4px", fontWeight: 400 }}>USD</span>
+          <span style={{ fontSize: "10px", color: "#444", marginLeft: "4px", fontWeight: 400 }}>USD</span>
         </div>
       </div>
 
       {/* Strategy breakdown or Activity log */}
       <div className="flex-1 overflow-y-auto" style={{ scrollbarWidth: "none" }}>
         {hasTrades ? (
-          // Real trades — strategy breakdown
-          breakdowns.map((b) => {
-            const c = b.total_pnl > 0 ? "#00FF88" : b.total_pnl < 0 ? "#FF3366" : "#555";
-            const stratColor = STRAT_COLOR[b.scan_type] || "#888";
-            const label = STRAT_LABEL[b.scan_type] || b.scan_type;
+          // Real trades — strategy breakdown with visual bars
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+            {breakdowns.map((b) => {
+              const c = b.total_pnl > 0 ? "#00FF88" : b.total_pnl < 0 ? "#FF3366" : "#555";
+              const stratColor = STRAT_COLOR[b.scan_type] || "#888";
+              const label = STRAT_LABEL[b.scan_type] || b.scan_type;
+              const winRate = b.trade_count > 0 ? (b.winners / b.trade_count) * 100 : 0;
 
-            return (
-              <div
-                key={b.scan_type}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  fontSize: "9px",
-                  padding: "4px 2px",
-                  borderBottom: "1px solid #111",
-                  borderLeft: `2px solid ${stratColor}`,
-                  marginLeft: "-2px",
-                  paddingLeft: "6px",
-                }}
-              >
-                <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                  <span style={{
-                    fontSize: "7px",
-                    fontWeight: 600,
-                    padding: "1px 4px",
+              return (
+                <div
+                  key={b.scan_type}
+                  style={{
+                    padding: "6px 5px",
+                    borderLeft: `3px solid ${stratColor}`,
+                    background: "rgba(255,255,255,0.015)",
+                    borderRadius: "0 3px 3px 0",
+                    marginBottom: "2px",
+                  }}
+                >
+                  {/* Strategy header */}
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "4px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                      <span style={{
+                        fontSize: "9px",
+                        fontWeight: 700,
+                        color: stratColor,
+                      }}>
+                        {label}
+                      </span>
+                      <span style={{ color: "#555", fontSize: "8px", fontVariantNumeric: "tabular-nums" }}>
+                        {b.trade_count}t · {b.winners}W/{b.losers}L
+                      </span>
+                    </div>
+                    <span style={{
+                      fontVariantNumeric: "tabular-nums",
+                      fontWeight: 700,
+                      fontSize: "11px",
+                      color: c,
+                    }}>
+                      {b.total_pnl >= 0 ? "+" : ""}{b.total_pnl}&cent;
+                    </span>
+                  </div>
+                  {/* Win rate bar */}
+                  <div style={{
+                    height: "3px",
+                    background: "#1a1a1a",
                     borderRadius: "2px",
-                    background: `${stratColor}20`,
-                    color: stratColor,
+                    overflow: "hidden",
                   }}>
-                    {label}
-                  </span>
-                  <span style={{ color: "#555", fontSize: "8px", fontVariantNumeric: "tabular-nums" }}>
-                    {b.trade_count}t {b.winners}W/{b.losers}L
-                  </span>
+                    <div style={{
+                      height: "100%",
+                      width: `${winRate}%`,
+                      background: `linear-gradient(90deg, ${stratColor}80, ${stratColor})`,
+                      borderRadius: "2px",
+                    }} />
+                  </div>
                 </div>
-                <span style={{
-                  fontVariantNumeric: "tabular-nums",
-                  fontWeight: 700,
-                  color: c,
-                  minWidth: "42px",
-                  textAlign: "right",
-                }}>
-                  {b.total_pnl >= 0 ? "+" : ""}{b.total_pnl}&cent;
-                </span>
-              </div>
-            );
-          })
+              );
+            })}
+          </div>
         ) : (
-          // Paper mode — Activity log + stats
-          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-            {/* Stats row */}
-            <div style={{
-              display: "flex",
-              gap: "8px",
-              padding: "4px 0",
-              borderBottom: "1px solid #111",
-            }}>
+          // Paper mode — Visual stats + Activity log
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            {/* Stats cards */}
+            <div style={{ display: "flex", gap: "6px" }}>
               {signalCount !== undefined && (
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flex: 1 }}>
-                  <span style={{ fontSize: "14px", fontWeight: 700, color: "#00BCD4", fontVariantNumeric: "tabular-nums" }}>
+                <div style={{
+                  flex: 1,
+                  background: "rgba(0,188,212,0.05)",
+                  border: "1px solid rgba(0,188,212,0.15)",
+                  borderRadius: "4px",
+                  padding: "8px 6px",
+                  textAlign: "center",
+                }}>
+                  <div style={{ fontSize: "18px", fontWeight: 700, color: "#00BCD4", fontVariantNumeric: "tabular-nums", lineHeight: 1.2 }}>
                     {signalCount}
-                  </span>
-                  <span style={{ fontSize: "7px", color: "#444", textTransform: "uppercase", letterSpacing: "0.08em" }}>Signals</span>
+                  </div>
+                  <div style={{ fontSize: "8px", color: "#555", textTransform: "uppercase", letterSpacing: "0.08em", marginTop: "2px" }}>Signals</div>
                 </div>
               )}
               {categoryCount !== undefined && (
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flex: 1 }}>
-                  <span style={{ fontSize: "14px", fontWeight: 700, color: "#888", fontVariantNumeric: "tabular-nums" }}>
+                <div style={{
+                  flex: 1,
+                  background: "rgba(255,102,0,0.05)",
+                  border: "1px solid rgba(255,102,0,0.15)",
+                  borderRadius: "4px",
+                  padding: "8px 6px",
+                  textAlign: "center",
+                }}>
+                  <div style={{ fontSize: "18px", fontWeight: 700, color: "#FF6600", fontVariantNumeric: "tabular-nums", lineHeight: 1.2 }}>
                     {categoryCount}
-                  </span>
-                  <span style={{ fontSize: "7px", color: "#444", textTransform: "uppercase", letterSpacing: "0.08em" }}>Categories</span>
+                  </div>
+                  <div style={{ fontSize: "8px", color: "#555", textTransform: "uppercase", letterSpacing: "0.08em", marginTop: "2px" }}>Markets</div>
                 </div>
               )}
             </div>
@@ -184,35 +207,35 @@ export default function PnL({
             {recentActivity.length > 0 && (
               <div>
                 <div style={{
-                  fontSize: "7px",
+                  fontSize: "8px",
                   color: "#555",
                   textTransform: "uppercase",
                   letterSpacing: "0.1em",
-                  marginBottom: "4px",
-                  fontWeight: 600,
+                  marginBottom: "6px",
+                  fontWeight: 700,
                 }}>
                   Activity Log
                 </div>
                 {recentActivity.map((a, i) => {
                   const stratColor = STRAT_COLOR[a.scan_type] || "#888";
-                  const desc = a.description.length > 35 ? a.description.slice(0, 33) + "\u2026" : a.description;
+                  const desc = a.description.length > 40 ? a.description.slice(0, 38) + "\u2026" : a.description;
                   return (
                     <div
                       key={`${a.ticker}-${a.timestamp}-${i}`}
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "4px",
+                        gap: "5px",
                         fontSize: "8px",
-                        padding: "2px 0",
-                        lineHeight: "13px",
+                        padding: "3px 0",
+                        lineHeight: "14px",
                         borderLeft: `2px solid ${stratColor}`,
-                        paddingLeft: "4px",
-                        marginBottom: "1px",
+                        paddingLeft: "6px",
+                        marginBottom: "2px",
                       }}
                     >
                       <span style={{
-                        color: "#333",
+                        color: "#444",
                         fontVariantNumeric: "tabular-nums",
                         flexShrink: 0,
                         fontSize: "7px",
@@ -220,7 +243,7 @@ export default function PnL({
                         {formatTimestamp(a.timestamp)}
                       </span>
                       <span style={{
-                        color: "#666",
+                        color: "#777",
                         overflow: "hidden",
                         whiteSpace: "nowrap",
                         textOverflow: "ellipsis",
@@ -240,11 +263,23 @@ export default function PnL({
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                padding: "12px 0",
-                gap: "4px",
+                padding: "20px 0",
+                gap: "8px",
               }}>
-                <span style={{ fontSize: "14px", opacity: 0.2 }}>{"\u25B6"}</span>
-                <span style={{ fontSize: "8px", color: "#333" }}>Monitoring for opportunities...</span>
+                <div style={{
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "50%",
+                  border: "2px solid #1a1a1a",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  animation: "terminal-pulse 3s ease-in-out infinite",
+                }}>
+                  <span style={{ fontSize: "16px", color: "#222" }}>{"\u25B6"}</span>
+                </div>
+                <span style={{ fontSize: "9px", color: "#444" }}>Scanning for opportunities...</span>
+                <span style={{ fontSize: "8px", color: "#333" }}>Signals appear here when detected</span>
               </div>
             )}
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-// OMI Terminal — Status bar (Redesigned)
+// OMI Terminal — Status bar (Redesigned v2)
 // Dense single-line status with animated counters, pulse dot, and branding.
 
 import type { ConnectionStatus } from "@/lib/terminal/types";
@@ -20,7 +20,7 @@ function formatUptime(secs: number): string {
   if (secs < 3600) return `${Math.floor(secs / 60)}m`;
   const h = Math.floor(secs / 3600);
   const m = Math.floor((secs % 3600) / 60);
-  return `${h}h${m.toString().padStart(2, "0")}m`;
+  return `${h}h${m.toString().padStart(2, "00")}m`;
 }
 
 export default function StatusBar({
@@ -55,23 +55,23 @@ export default function StatusBar({
         alignItems: "center",
         justifyContent: "space-between",
         padding: "0 12px",
-        height: "22px",
-        background: "#080808",
-        borderTop: "1px solid #1a1a1a",
-        fontSize: "8px",
+        height: "24px",
+        background: "#060606",
+        borderTop: "1px solid rgba(255,102,0,0.1)",
+        fontSize: "9px",
         flexShrink: 0,
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         {/* Connection status */}
-        <span style={{ display: "flex", alignItems: "center", gap: "4px", color: dotColor[status] }}>
+        <span style={{ display: "flex", alignItems: "center", gap: "5px", color: dotColor[status] }}>
           <span
             style={{
-              width: "5px",
-              height: "5px",
+              width: "6px",
+              height: "6px",
               borderRadius: "50%",
               background: dotColor[status],
-              boxShadow: status === "connected" ? `0 0 6px ${dotColor[status]}` : "none",
+              boxShadow: status === "connected" ? `0 0 8px ${dotColor[status]}` : "none",
               animation:
                 status === "connected"
                   ? "terminal-pulse 2s ease-in-out infinite"
@@ -105,19 +105,19 @@ export default function StatusBar({
         {uptime !== undefined && (
           <>
             <span style={{ color: "#1a1a1a" }}>|</span>
-            <span style={{ color: "#444", fontVariantNumeric: "tabular-nums" }}>
+            <span style={{ color: "#555", fontVariantNumeric: "tabular-nums" }}>
               up {formatUptime(uptime)}
             </span>
           </>
         )}
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <span style={{ color: "#666", fontVariantNumeric: "tabular-nums", fontWeight: 600 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <span style={{ color: "#777", fontVariantNumeric: "tabular-nums", fontWeight: 600 }}>
           ${balance.toFixed(2)}
         </span>
         <span style={{ color: "#1a1a1a" }}>|</span>
-        <span style={{ color: "#FF6600", fontWeight: 700, letterSpacing: "0.08em", fontSize: "7px" }}>
+        <span style={{ color: "#FF6600", fontWeight: 700, letterSpacing: "0.1em", fontSize: "8px" }}>
           OMI v0.3
         </span>
       </div>

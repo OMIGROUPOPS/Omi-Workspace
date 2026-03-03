@@ -1,8 +1,8 @@
 "use client";
 
-// OMI Terminal — Recharts Chart (Redesigned)
-// Multi-panel: Candlesticks + Bollinger Bands + Greeks Row
-//              Kyle's Lambda | VPIN Bars | Volume
+// OMI Terminal — Recharts Chart (Redesigned v2)
+// Full-height chart with prominent Greeks cards panel below header.
+// Multi-panel: Candlesticks + Bollinger + Kyle's Lambda + VPIN + Volume
 
 import { useMemo, useState } from "react";
 import {
@@ -156,17 +156,17 @@ const PriceTooltip = ({ active, payload }: any) => {
     <div style={{
       background: "#111",
       border: "1px solid #333",
-      padding: "6px 10px",
-      fontSize: "9px",
+      padding: "8px 12px",
+      fontSize: "10px",
       color: "#999",
-      borderRadius: "3px",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
+      borderRadius: "4px",
+      boxShadow: "0 4px 16px rgba(0,0,0,0.6)",
     }}>
-      <div style={{ marginBottom: "2px" }}>
-        <span style={{ color: "#888" }}>O:</span><span style={{ color: "#ddd" }}>{d.o.toFixed(1)}</span>
-        <span style={{ color: "#888", marginLeft: "4px" }}>H:</span><span style={{ color: "#ddd" }}>{d.h.toFixed(1)}</span>
-        <span style={{ color: "#888", marginLeft: "4px" }}>L:</span><span style={{ color: "#ddd" }}>{d.l.toFixed(1)}</span>
-        <span style={{ color: "#888", marginLeft: "4px" }}>C:</span><span style={{ color: "#ddd", fontWeight: 600 }}>{d.c.toFixed(1)}</span>
+      <div style={{ marginBottom: "3px" }}>
+        <span style={{ color: "#888" }}>O:</span><span style={{ color: "#ddd", fontWeight: 600 }}>{d.o.toFixed(1)}</span>
+        <span style={{ color: "#888", marginLeft: "6px" }}>H:</span><span style={{ color: "#ddd", fontWeight: 600 }}>{d.h.toFixed(1)}</span>
+        <span style={{ color: "#888", marginLeft: "6px" }}>L:</span><span style={{ color: "#ddd", fontWeight: 600 }}>{d.l.toFixed(1)}</span>
+        <span style={{ color: "#888", marginLeft: "6px" }}>C:</span><span style={{ color: "#ddd", fontWeight: 700 }}>{d.c.toFixed(1)}</span>
       </div>
       <div style={{ color: "#00BCD4" }}>{"\u03BB"}: {d.lambda.toFixed(5)}</div>
       <div style={{ color: d.vpin < 0.15 ? "#00FF88" : d.vpin < 0.3 ? "#FF6600" : "#FF3366" }}>VPIN: {d.vpin.toFixed(3)}</div>
@@ -174,38 +174,96 @@ const PriceTooltip = ({ active, payload }: any) => {
   );
 };
 
-// ── Greeks Display Row ────────────────────────────────────────
+// ── Greeks Card Panel ─────────────────────────────────────────
 
-function GreeksRow({ price, sigma }: { price: number; sigma: number }) {
-  // Assume ~4 hours to expiry for display purposes (typical prediction market)
+function GreeksPanel({ price, sigma }: { price: number; sigma: number }) {
   const greeks = calcGreeks(price / 100, 4, sigma || 0.5);
 
-  const items = [
-    { label: "\u0394", value: greeks.delta.toFixed(2), color: "#00BCD4" },
-    { label: "\u0398", value: `${greeks.theta >= 0 ? "+" : ""}${greeks.theta.toFixed(1)}\u00A2/hr`, color: "#00BCD4" },
-    { label: "\u0393", value: greeks.gamma.toFixed(3), color: "#00BCD4" },
-    { label: "\u03BD", value: greeks.vega.toFixed(2), color: "#00BCD4" },
-    { label: "IV", value: `${(greeks.iv * 100).toFixed(0)}%`, color: "#00BCD4" },
+  const cards = [
+    {
+      label: "\u0394 Delta",
+      value: greeks.delta.toFixed(3),
+      color: "#00BCD4",
+      bar: greeks.delta,
+      barColor: "#00BCD4",
+    },
+    {
+      label: "\u0398 Theta",
+      value: `${greeks.theta >= 0 ? "+" : ""}${greeks.theta.toFixed(1)}\u00A2/hr`,
+      color: greeks.theta < 0 ? "#FF3366" : "#00FF88",
+      bar: Math.min(1, Math.abs(greeks.theta) / 10),
+      barColor: greeks.theta < 0 ? "#FF3366" : "#00FF88",
+    },
+    {
+      label: "\u0393 Gamma",
+      value: greeks.gamma.toFixed(3),
+      color: "#c084fc",
+      bar: Math.min(1, greeks.gamma),
+      barColor: "#c084fc",
+    },
+    {
+      label: "\u03BD Vega",
+      value: greeks.vega.toFixed(3),
+      color: "#FFD600",
+      bar: Math.min(1, greeks.vega),
+      barColor: "#FFD600",
+    },
+    {
+      label: "IV",
+      value: `${(greeks.iv * 100).toFixed(0)}%`,
+      color: "#FF6600",
+      bar: Math.min(1, greeks.iv / 3),
+      barColor: "#FF6600",
+    },
   ];
 
   return (
     <div style={{
       display: "flex",
-      alignItems: "center",
-      gap: "12px",
-      height: "22px",
-      padding: "0 4px",
+      gap: "4px",
+      padding: "4px 2px",
       borderBottom: "1px solid #1a1a1a",
       background: "rgba(0,188,212,0.02)",
+      flexShrink: 0,
     }}>
-      {items.map((item, i) => (
-        <span key={i} style={{ display: "flex", alignItems: "center", gap: "3px", fontSize: "9px" }}>
-          <span style={{ color: item.color, fontWeight: 700, fontSize: "10px" }}>{item.label}</span>
-          <span style={{ color: "#ccc", fontVariantNumeric: "tabular-nums" }}>{item.value}</span>
-          {i < items.length - 1 && (
-            <span style={{ color: "#222", marginLeft: "6px" }}>|</span>
-          )}
-        </span>
+      {cards.map((card) => (
+        <div
+          key={card.label}
+          style={{
+            flex: 1,
+            background: "rgba(255,255,255,0.02)",
+            borderRadius: "4px",
+            padding: "4px 6px",
+            border: "1px solid #1a1a1a",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          {/* Background bar indicator */}
+          <div style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            height: `${Math.max(2, card.bar * 100)}%`,
+            background: `${card.barColor}08`,
+            transition: "height 0.5s ease-out",
+          }} />
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <div style={{ fontSize: "7px", color: "#555", letterSpacing: "0.05em", fontWeight: 600, marginBottom: "2px" }}>
+              {card.label}
+            </div>
+            <div style={{
+              fontSize: "12px",
+              fontWeight: 700,
+              color: card.color,
+              fontVariantNumeric: "tabular-nums",
+              textShadow: `0 0 8px ${card.color}30`,
+            }}>
+              {card.value}
+            </div>
+          </div>
+        </div>
       ))}
     </div>
   );
@@ -215,6 +273,7 @@ function GreeksRow({ price, sigma }: { price: number; sigma: number }) {
 
 export default function Chart({ ticker }: ChartProps) {
   const [showBoll, setShowBoll] = useState(true);
+  const [activeTimeframe, setActiveTimeframe] = useState("1m");
 
   const data = useMemo(() => (ticker ? generateOHLCV(ticker) : null), [ticker]);
   const boll = useMemo(() => (data ? computeBollinger(data) : null), [data]);
@@ -248,11 +307,24 @@ export default function Chart({ ticker }: ChartProps) {
         alignItems: "center",
         justifyContent: "center",
         color: "#333",
-        fontSize: "10px",
-        gap: "8px",
+        fontSize: "11px",
+        gap: "12px",
       }}>
-        <div style={{ fontSize: "18px", color: "#222" }}>{"\u25C8"}</div>
-        <div>Select a ticker from watchlist</div>
+        <div style={{
+          width: "48px",
+          height: "48px",
+          borderRadius: "50%",
+          border: "2px solid #1a1a1a",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "20px",
+          color: "#222",
+        }}>
+          {"\u25C8"}
+        </div>
+        <div style={{ color: "#444" }}>Select a market from the watchlist</div>
+        <div style={{ fontSize: "9px", color: "#333" }}>Click any ticker on the left to load chart data</div>
       </div>
     );
   }
@@ -273,71 +345,77 @@ export default function Chart({ ticker }: ChartProps) {
   for (let i = 0; i < chartData.length; i += 30) timeTicks.push(i);
   if (timeTicks[timeTicks.length - 1] !== chartData.length - 1) timeTicks.push(chartData.length - 1);
 
+  const timeframes = ["1m", "5m", "15m", "1h"];
+
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "100%", minHeight: 0, overflow: "hidden" }}>
-      {/* ── Ticker header — Bloomberg-style prominent ── */}
+      {/* ── Ticker header — Bloomberg-style ── */}
       <div className="flex items-center justify-between shrink-0" style={{
-        height: "32px",
-        padding: "0 4px",
+        height: "38px",
+        padding: "0 6px",
         borderBottom: "1px solid #1a1a1a",
+        background: "rgba(255,255,255,0.01)",
       }}>
         <div className="flex items-center gap-3">
-          <span style={{ color: "#eee", fontWeight: 700, fontSize: "13px", letterSpacing: "0.02em" }}>
+          <span style={{ color: "#eee", fontWeight: 700, fontSize: "14px", letterSpacing: "0.02em" }}>
             {tickerLabel}
           </span>
-          <span style={{ color: "#444", fontSize: "9px" }}>{eventName}</span>
+          <span style={{ color: "#555", fontSize: "10px" }}>{eventName}</span>
           {latest && (
             <span style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "5px",
-              padding: "2px 8px",
-              borderRadius: "3px",
-              border: `1px solid ${change >= 0 ? "rgba(0,255,136,0.25)" : "rgba(255,51,102,0.25)"}`,
+              gap: "6px",
+              padding: "3px 10px",
+              borderRadius: "4px",
+              border: `1px solid ${change >= 0 ? "rgba(0,255,136,0.3)" : "rgba(255,51,102,0.3)"}`,
               background: change >= 0 ? "rgba(0,255,136,0.08)" : "rgba(255,51,102,0.08)",
             }}>
               <span style={{
                 color: changeCol,
                 fontWeight: 700,
-                fontSize: "18px",
+                fontSize: "20px",
                 fontVariantNumeric: "tabular-nums",
-                textShadow: `0 0 12px ${change >= 0 ? "rgba(0,255,136,0.3)" : "rgba(255,51,102,0.3)"}`,
+                textShadow: `0 0 16px ${change >= 0 ? "rgba(0,255,136,0.3)" : "rgba(255,51,102,0.3)"}`,
               }}>
                 {latest.c.toFixed(0)}&cent;
               </span>
-              <span style={{ color: changeCol, fontSize: "10px", fontWeight: 600 }}>
+              <span style={{ color: changeCol, fontSize: "11px", fontWeight: 600 }}>
                 {changeArrow}{change >= 0 ? "+" : ""}{change.toFixed(1)}
               </span>
             </span>
           )}
           {latest && (
-            <span style={{ color: "#444", fontSize: "8px", fontVariantNumeric: "tabular-nums" }}>
+            <span style={{ color: "#555", fontSize: "9px", fontVariantNumeric: "tabular-nums" }}>
               H:{latest.h.toFixed(0)} L:{latest.l.toFixed(0)} V:{latest.v}
             </span>
           )}
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => setShowBoll((v) => !v)}
             style={{
-              fontSize: "7px", padding: "2px 6px", borderRadius: "2px",
-              border: `1px solid ${showBoll ? "#FF6600" : "#222"}`,
+              fontSize: "9px", padding: "3px 8px", borderRadius: "3px",
+              border: `1px solid ${showBoll ? "#FF6600" : "#2a2a2a"}`,
               background: showBoll ? "rgba(255,102,0,0.12)" : "transparent",
-              color: showBoll ? "#FF6600" : "#444", cursor: "pointer",
+              color: showBoll ? "#FF6600" : "#555", cursor: "pointer",
               fontWeight: 600, letterSpacing: "0.05em",
+              transition: "all 0.15s",
             }}
           >
             BOLL
           </button>
-          {["1m", "5m", "15m"].map((tf, i) => (
+          {timeframes.map((tf) => (
             <button
               key={tf}
+              onClick={() => setActiveTimeframe(tf)}
               style={{
-                fontSize: "7px", padding: "2px 6px", borderRadius: "2px",
-                border: `1px solid ${i === 0 ? "#FF6600" : "#222"}`,
-                background: i === 0 ? "rgba(255,102,0,0.12)" : "transparent",
-                color: i === 0 ? "#FF6600" : "#444", cursor: "pointer",
+                fontSize: "9px", padding: "3px 8px", borderRadius: "3px",
+                border: `1px solid ${activeTimeframe === tf ? "#FF6600" : "#2a2a2a"}`,
+                background: activeTimeframe === tf ? "rgba(255,102,0,0.15)" : "transparent",
+                color: activeTimeframe === tf ? "#FF6600" : "#555", cursor: "pointer",
                 fontWeight: 600, letterSpacing: "0.05em",
+                transition: "all 0.15s",
               }}
             >
               {tf}
@@ -346,9 +424,9 @@ export default function Chart({ ticker }: ChartProps) {
         </div>
       </div>
 
-      {/* ── Greeks Row ── */}
+      {/* ── Greeks Card Panel — prominent visual ── */}
       {latest && (
-        <GreeksRow price={latest.c} sigma={latest.vpin} />
+        <GreeksPanel price={latest.c} sigma={latest.vpin} />
       )}
 
       {/* ── Main Price Chart ── */}
@@ -359,10 +437,10 @@ export default function Chart({ ticker }: ChartProps) {
             <XAxis dataKey="index" tick={false} axisLine={{ stroke: "#1a1a1a" }} />
             <YAxis
               domain={[priceMin, priceMax]}
-              tick={{ fontSize: 8, fill: "#444" }}
+              tick={{ fontSize: 9, fill: "#555" }}
               tickFormatter={(v: number) => `${v.toFixed(0)}`}
               axisLine={{ stroke: "#1a1a1a" }}
-              width={32}
+              width={36}
             />
             <Tooltip content={<PriceTooltip />} cursor={{ stroke: "#333", strokeDasharray: "3 3" }} />
 
@@ -383,27 +461,27 @@ export default function Chart({ ticker }: ChartProps) {
       </div>
 
       {/* ── Kyle's Lambda Panel ── */}
-      <div style={{ height: 52, borderTop: "1px solid #1a1a1a", position: "relative" }}>
+      <div style={{ height: 48, borderTop: "1px solid #1a1a1a", position: "relative" }}>
         <div style={{
-          position: "absolute", top: 3, left: 36, fontSize: 7, color: "#555", fontWeight: 700, zIndex: 1,
+          position: "absolute", top: 3, left: 36, fontSize: 8, color: "#555", fontWeight: 700, zIndex: 1,
           letterSpacing: "0.08em", textTransform: "uppercase",
         }}>
           KYLE {"\u03BB"}
         </div>
         {latest && (
           <div style={{
-            position: "absolute", top: 2, right: 8, fontSize: 13, color: "#00BCD4", fontWeight: 700, zIndex: 1,
+            position: "absolute", top: 2, right: 8, fontSize: 14, color: "#00BCD4", fontWeight: 700, zIndex: 1,
             fontVariantNumeric: "tabular-nums",
-            textShadow: "0 0 8px rgba(0,188,212,0.3)",
+            textShadow: "0 0 10px rgba(0,188,212,0.3)",
           }}>
             {latest.lambda.toFixed(4)}
           </div>
         )}
-        <ResponsiveContainer width="100%" height={52}>
+        <ResponsiveContainer width="100%" height={48}>
           <LineChart data={chartData} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
             <CartesianGrid stroke="#141414" />
             <XAxis dataKey="index" tick={false} axisLine={{ stroke: "#1a1a1a" }} />
-            <YAxis tick={{ fontSize: 7, fill: "#333" }} domain={["auto", "auto"]} axisLine={{ stroke: "#1a1a1a" }} width={32} tickFormatter={(v: number) => v.toFixed(3)} />
+            <YAxis tick={{ fontSize: 7, fill: "#333" }} domain={["auto", "auto"]} axisLine={{ stroke: "#1a1a1a" }} width={36} tickFormatter={(v: number) => v.toFixed(3)} />
             <ReferenceLine y={0.012} stroke="#FF3366" strokeDasharray="4 3" strokeWidth={1.5} label={{ value: "0.012", position: "right", fill: "#FF3366", fontSize: 7 }} />
             <Line dataKey="lambda" stroke="#00BCD4" dot={false} strokeWidth={1.5} type="monotone" isAnimationActive={false} />
           </LineChart>
@@ -411,28 +489,28 @@ export default function Chart({ ticker }: ChartProps) {
       </div>
 
       {/* ── VPIN Panel ── */}
-      <div style={{ height: 52, borderTop: "1px solid #1a1a1a", position: "relative" }}>
+      <div style={{ height: 48, borderTop: "1px solid #1a1a1a", position: "relative" }}>
         <div style={{
-          position: "absolute", top: 3, left: 36, fontSize: 7, color: "#555", fontWeight: 700, zIndex: 1,
+          position: "absolute", top: 3, left: 36, fontSize: 8, color: "#555", fontWeight: 700, zIndex: 1,
           letterSpacing: "0.08em", textTransform: "uppercase",
         }}>
           VPIN
         </div>
         {latest && (
           <div style={{
-            position: "absolute", top: 2, right: 8, fontSize: 13, fontWeight: 700, zIndex: 1,
+            position: "absolute", top: 2, right: 8, fontSize: 14, fontWeight: 700, zIndex: 1,
             fontVariantNumeric: "tabular-nums",
             color: latest.vpin < 0.15 ? "#00FF88" : latest.vpin < 0.3 ? "#FF6600" : "#FF3366",
-            textShadow: `0 0 8px ${latest.vpin < 0.15 ? "rgba(0,255,136,0.3)" : latest.vpin < 0.3 ? "rgba(255,102,0,0.3)" : "rgba(255,51,102,0.3)"}`,
+            textShadow: `0 0 10px ${latest.vpin < 0.15 ? "rgba(0,255,136,0.3)" : latest.vpin < 0.3 ? "rgba(255,102,0,0.3)" : "rgba(255,51,102,0.3)"}`,
           }}>
             {latest.vpin.toFixed(3)}
           </div>
         )}
-        <ResponsiveContainer width="100%" height={52}>
+        <ResponsiveContainer width="100%" height={48}>
           <BarChart data={chartData} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
             <CartesianGrid stroke="#141414" />
             <XAxis dataKey="index" tick={false} axisLine={{ stroke: "#1a1a1a" }} />
-            <YAxis tick={{ fontSize: 7, fill: "#333" }} domain={[0, "auto"]} axisLine={{ stroke: "#1a1a1a" }} width={32} />
+            <YAxis tick={{ fontSize: 7, fill: "#333" }} domain={[0, "auto"]} axisLine={{ stroke: "#1a1a1a" }} width={36} />
             <ReferenceLine y={0.15} stroke="#333" strokeDasharray="2 2" />
             <ReferenceLine y={0.3} stroke="#333" strokeDasharray="2 2" />
             <Bar dataKey="vpin" isAnimationActive={false}>
@@ -445,11 +523,11 @@ export default function Chart({ ticker }: ChartProps) {
       </div>
 
       {/* ── Volume Panel — compact ── */}
-      <div style={{ height: 36, borderTop: "1px solid #1a1a1a", position: "relative" }}>
-        <div style={{ position: "absolute", top: 2, left: 36, fontSize: 7, color: "#444", fontWeight: 700, zIndex: 1, letterSpacing: "0.05em" }}>
+      <div style={{ height: 32, borderTop: "1px solid #1a1a1a", position: "relative" }}>
+        <div style={{ position: "absolute", top: 2, left: 36, fontSize: 8, color: "#444", fontWeight: 700, zIndex: 1, letterSpacing: "0.05em" }}>
           VOL
         </div>
-        <ResponsiveContainer width="100%" height={36}>
+        <ResponsiveContainer width="100%" height={32}>
           <BarChart data={chartData} margin={{ top: 6, right: 6, left: 0, bottom: 2 }}>
             <XAxis
               dataKey="index" ticks={timeTicks}
@@ -457,7 +535,7 @@ export default function Chart({ ticker }: ChartProps) {
               tickFormatter={(i: number) => i === chartData.length - 1 ? "now" : `-${chartData.length - i}m`}
               axisLine={{ stroke: "#1a1a1a" }}
             />
-            <YAxis tick={false} axisLine={false} width={32} />
+            <YAxis tick={false} axisLine={false} width={36} />
             <Bar dataKey="v" isAnimationActive={false}>
               {chartData.map((d, i) => (
                 <Cell key={i} fill={d.c >= d.o ? "rgba(0,255,136,0.3)" : "rgba(255,51,102,0.3)"} />

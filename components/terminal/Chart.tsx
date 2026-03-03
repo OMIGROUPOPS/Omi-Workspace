@@ -1,8 +1,11 @@
 "use client";
 
-// OMI Terminal — Recharts Chart (Redesigned v2)
+// OMI Terminal — Recharts Chart (Redesigned v3)
 // Full-height chart with prominent Greeks cards panel below header.
 // Multi-panel: Candlesticks + Bollinger + Kyle's Lambda + VPIN + Volume
+// FIXED: Y-axis domain clamped 0-100, auto-scale with padding,
+//        clean cent labels, proper candlestick rendering via Bar shape,
+//        subtle Bollinger bands, dominant price line.
 
 import { useMemo, useState } from "react";
 import {
@@ -11,7 +14,6 @@ import {
   BarChart,
   Bar,
   Line,
-  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -79,7 +81,6 @@ function generateOHLCV(ticker: string, timeframe: string): OHLCV[] {
   let lambda = 0.007;
   let vpin = 0.12;
 
-  // Compute bar timestamps backwards from "now"
   const now = Date.now();
 
   for (let i = 0; i < tf.bars; i++) {
@@ -131,36 +132,97 @@ function computeBollinger(bars: OHLCV[], period = 20, k = 2) {
       const slice = bars.slice(i - period + 1, i + 1).map((b) => b.c);
       const mean = slice.reduce((a, b) => a + b, 0) / period;
       const std = Math.sqrt(slice.reduce((a, b) => a + (b - mean) ** 2, 0) / period);
-      result.push({ mid: mean, upper: mean + std * k, lower: mean - std * k });
+      // Clamp Bollinger bands to valid 0-100 range
+      result.push({
+        mid: mean,
+        upper: Math.min(100, mean + std * k),
+        lower: Math.max(0, mean - std * k),
+      });
     }
   }
   return result;
 }
 
-// ── Custom Candlestick Shape ──────────────────────────────────
+// ── Candlestick Bar shape ─────────────────────────────────────
+// Renders the candle body + wicks using the Bar's `shape` prop.
+// The Bar is stacked: invisible base (bodyBase) + visible body (bodyHeight).
+// This shape function receives pixel coords from Recharts and draws
+// the body rect and wick lines using the payload's OHLCV data.
 
-const CandleShape = (props: any) => {
+function CandleShape(props: any) {
   const { x, y, width, height, payload } = props;
-  if (!payload) return null;
-  const { o, h, l, c } = payload;
+  if (!payload || payload.o == null || !width || !height) return null;
+
+  const { o, h, l, c, bodyBase, bodyHeight } = payload;
   const bull = c >= o;
   const color = bull ? "#00FF88" : "#FF3366";
-  const candleW = Math.max(1, width * 0.6);
-  const wickX = x + width / 2;
-  const bodyMax = Math.max(o, c);
-  const bodyMin = Math.min(o, c);
-  const bodyRange = bodyMax - bodyMin + 0.01;
-  const pxPerCent = height / bodyRange;
-  const wickHighPx = y - (h - bodyMax) * pxPerCent;
-  const wickLowPx = y + height + (bodyMin - l) * pxPerCent;
+
+  // The bar is drawn from bodyBase upward by bodyHeight.
+  // y = top of the body bar (in pixels), height = body height (pixels)
+  // We need pixel Y for high and low wicks.
+  // Pixel-per-cent = height / bodyHeight (body range in data units)
+  // But bodyHeight can be very small (doji), so we need the full range.
+
+  // For the wick, we compute relative to the body top:
+  // bodyTop in data = bodyBase + bodyHeight = max(o,c)
+  // bodyBot in data = bodyBase = min(o,c)
+  // y (pixel) = top of body bar
+  // y + height (pixel) = bottom of body bar
+
+  const bodyTop = bodyBase + bodyHeight; // max(o,c) in data space
+  const bodyBot = bodyBase;              // min(o,c) in data space
+
+  // pixel per cent — derived from the bar's pixel height vs data height
+  // If bodyHeight is 0 (doji), we can't compute pxPerCent from the body.
+  // In that case, we skip wick rendering (they'd be tiny anyway).
+  const candleWidth = Math.max(2, width * 0.85);
+  const xCenter = x + width / 2;
+  const xLeft = xCenter - candleWidth / 2;
+
+  // For wicks: we need to convert data-space distances to pixel-space.
+  // Since y-axis is inverted (higher values = lower y), higher price = lower pixel.
+  // pxPerCent = height / bodyHeight when bodyHeight > 0
+  let wickHighY = y;
+  let wickLowY = y + height;
+
+  if (bodyHeight > 0.01) {
+    const pxPerCent = height / bodyHeight;
+    // High wick extends above body top: h - bodyTop in data units
+    const wickUpData = h - bodyTop;
+    wickHighY = y - wickUpData * pxPerCent;
+    // Low wick extends below body bottom: bodyBot - l in data units
+    const wickDownData = bodyBot - l;
+    wickLowY = y + height + wickDownData * pxPerCent;
+  }
+
+  // Body height: at minimum 1px for doji candles
+  const bodyH = Math.max(1, height);
 
   return (
     <g>
-      <line x1={wickX} y1={wickHighPx} x2={wickX} y2={wickLowPx} stroke={color} strokeWidth={1} />
-      <rect x={x + (width - candleW) / 2} y={y} width={candleW} height={Math.max(1, height)} fill={color} />
+      {/* Wick line */}
+      <line
+        x1={xCenter}
+        y1={wickHighY}
+        x2={xCenter}
+        y2={wickLowY}
+        stroke={color}
+        strokeWidth={1}
+      />
+      {/* Body rectangle */}
+      <rect
+        x={xLeft}
+        y={y}
+        width={candleWidth}
+        height={bodyH}
+        fill={bull ? color : color}
+        stroke={color}
+        strokeWidth={0.5}
+        opacity={bull ? 0.9 : 0.9}
+      />
     </g>
   );
-};
+}
 
 // ── Custom Tooltip ────────────────────────────────────────────
 
@@ -184,7 +246,7 @@ const PriceTooltip = ({ active, payload }: any) => {
         <span style={{ color: "#888", marginLeft: "6px" }}>L:</span><span style={{ color: "#ddd", fontWeight: 600 }}>{d.l.toFixed(1)}</span>
         <span style={{ color: "#888", marginLeft: "6px" }}>C:</span><span style={{ color: "#ddd", fontWeight: 700 }}>{d.c.toFixed(1)}</span>
       </div>
-      <div style={{ color: "#00BCD4" }}>{"λ"}: {d.lambda.toFixed(5)}</div>
+      <div style={{ color: "#00BCD4" }}>{"\u03BB"}: {d.lambda.toFixed(5)}</div>
       <div style={{ color: d.vpin < 0.15 ? "#00FF88" : d.vpin < 0.3 ? "#FF6600" : "#FF3366" }}>VPIN: {d.vpin.toFixed(3)}</div>
     </div>
   );
@@ -197,28 +259,28 @@ function GreeksPanel({ price, sigma }: { price: number; sigma: number }) {
 
   const cards = [
     {
-      label: "Δ Delta",
+      label: "\u0394 Delta",
       value: greeks.delta.toFixed(3),
       color: "#00BCD4",
       bar: greeks.delta,
       barColor: "#00BCD4",
     },
     {
-      label: "Θ Theta",
+      label: "\u0398 Theta",
       value: `${greeks.theta >= 0 ? "+" : ""}${greeks.theta.toFixed(1)}\u00A2/hr`,
       color: greeks.theta < 0 ? "#FF3366" : "#00FF88",
       bar: Math.min(1, Math.abs(greeks.theta) / 10),
       barColor: greeks.theta < 0 ? "#FF3366" : "#00FF88",
     },
     {
-      label: "Γ Gamma",
+      label: "\u0393 Gamma",
       value: greeks.gamma.toFixed(3),
       color: "#c084fc",
       bar: Math.min(1, greeks.gamma),
       barColor: "#c084fc",
     },
     {
-      label: "ν Vega",
+      label: "\u03BD Vega",
       value: greeks.vega.toFixed(3),
       color: "#FFD600",
       bar: Math.min(1, greeks.vega),
@@ -255,7 +317,6 @@ function GreeksPanel({ price, sigma }: { price: number; sigma: number }) {
             overflow: "hidden",
           }}
         >
-          {/* Background bar indicator */}
           <div style={{
             position: "absolute",
             bottom: 0,
@@ -285,31 +346,85 @@ function GreeksPanel({ price, sigma }: { price: number; sigma: number }) {
   );
 }
 
+// ── Y-Axis domain and tick helpers ────────────────────────────
+
+function computeYDomain(
+  dataMin: number,
+  dataMax: number,
+): { domain: [number, number]; ticks: number[] } {
+  const rawMin = Math.max(0, dataMin);
+  const rawMax = Math.min(100, dataMax);
+  const range = rawMax - rawMin || 1;
+
+  const pad = range * 0.1;
+  let lo = Math.floor((rawMin - pad) / 5) * 5;
+  let hi = Math.ceil((rawMax + pad) / 5) * 5;
+
+  lo = Math.max(0, lo);
+  hi = Math.min(100, hi);
+
+  if (hi - lo < 10) {
+    const mid = (lo + hi) / 2;
+    lo = Math.max(0, Math.round(mid - 5));
+    hi = Math.min(100, Math.round(mid + 5));
+  }
+
+  const span = hi - lo;
+  let step: number;
+  if (span <= 15) step = 2;
+  else if (span <= 30) step = 5;
+  else if (span <= 60) step = 10;
+  else step = 20;
+
+  const ticks: number[] = [];
+  const firstTick = Math.ceil(lo / step) * step;
+  for (let v = firstTick; v <= hi; v += step) {
+    ticks.push(v);
+  }
+
+  return { domain: [lo, hi], ticks };
+}
+
 // ── Component ─────────────────────────────────────────────────
 
 export default function Chart({ ticker }: ChartProps) {
-  const [showBoll, setShowBoll] = useState(true);
+  const [showLine, setShowLine] = useState(true);
   const [activeTimeframe, setActiveTimeframe] = useState("1m");
 
   const data = useMemo(() => (ticker ? generateOHLCV(ticker, activeTimeframe) : null), [ticker, activeTimeframe]);
   const boll = useMemo(() => (data ? computeBollinger(data) : null), [data]);
 
-  const { chartData, priceMin, priceMax } = useMemo(() => {
-    if (!data || !boll) return { chartData: [] as any[], priceMin: 0, priceMax: 100 };
-    let pMin = Infinity, pMax = -Infinity;
-    for (const d of data) { pMin = Math.min(pMin, d.l); pMax = Math.max(pMax, d.h); }
-    for (const b of boll) { pMin = Math.min(pMin, b.lower); pMax = Math.max(pMax, b.upper); }
-    const pad = (pMax - pMin) * 0.06 || 1;
-    pMin -= pad;
-    pMax += pad;
+  const { chartData, yDomain, yTicks } = useMemo(() => {
+    if (!data || !boll) return { chartData: [] as any[], yDomain: [0, 100] as [number, number], yTicks: [0, 25, 50, 75, 100] };
+
+    let dataMin = Infinity;
+    let dataMax = -Infinity;
+    for (const d of data) {
+      dataMin = Math.min(dataMin, d.l);
+      dataMax = Math.max(dataMax, d.h);
+    }
+    for (const b of boll) {
+      dataMin = Math.min(dataMin, b.lower);
+      dataMax = Math.max(dataMax, b.upper);
+    }
+
+    const { domain, ticks } = computeYDomain(dataMin, dataMax);
+
     return {
       chartData: data.map((d, i) => ({
-        ...d, index: i, sma: boll[i].mid, bollUpper: boll[i].upper, bollLower: boll[i].lower,
-        bollBase: boll[i].lower, bollWidth: boll[i].upper - boll[i].lower,
-        candleRange: [Math.min(d.o, d.c) - 0.005, Math.max(d.o, d.c) + 0.005] as [number, number],
+        ...d,
+        index: i,
+        sma: boll[i].mid,
+        bollUpper: boll[i].upper,
+        bollLower: boll[i].lower,
+        // Candlestick stacked bar data:
+        // bodyBase = min(open, close) — invisible base bar
+        // bodyHeight = |close - open| — visible body bar
+        bodyBase: Math.min(d.o, d.c),
+        bodyHeight: Math.max(0.01, Math.abs(d.c - d.o)), // min 0.01 for doji
       })),
-      priceMin: pMin,
-      priceMax: pMax,
+      yDomain: domain,
+      yTicks: ticks,
     };
   }, [data, boll]);
 
@@ -351,25 +466,20 @@ export default function Chart({ ticker }: ChartProps) {
   const changeCol = change >= 0 ? "#00FF88" : "#FF3366";
   const changeArrow = change >= 0 ? "\u25B2" : "\u25BC";
 
-  // Parse ticker into human-readable labels
   const eventTicker = ticker.replace(/-[YN]$/, "");
-  // Extract team: try second-to-last segment, fallback to last meaningful chunk
   const parts = ticker.split("-");
   let rawTeam = parts.length >= 3 ? parts[parts.length - 2] : parts[parts.length - 1] || ticker.slice(-8);
-  // If rawTeam looks like a date (digits+letters), try earlier segments
   if (/^\d+[A-Z]+\d+/.test(rawTeam) && parts.length >= 4) {
     rawTeam = parts[parts.length - 3] || rawTeam;
   }
   const tickerLabel = parseTickerLabel(ticker, rawTeam, eventTicker);
   const eventName = parseEventName(eventTicker);
 
-  // Compute evenly-spaced tick indices for time axis (~5-6 labels)
   const tickStep = Math.max(1, Math.floor(chartData.length / 5));
   const timeTicks: number[] = [];
   for (let i = 0; i < chartData.length; i += tickStep) timeTicks.push(i);
   if (timeTicks[timeTicks.length - 1] !== chartData.length - 1) timeTicks.push(chartData.length - 1);
 
-  // Formatter: show HH:MM for 1m/5m/15m, or HH:MM (with date hint) for 1h
   const formatTime = (idx: number) => {
     const bar = chartData[idx];
     if (!bar || !bar.time) return "";
@@ -432,19 +542,19 @@ export default function Chart({ ticker }: ChartProps) {
         </div>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => setShowBoll((v) => !v)}
+            onClick={() => setShowLine((v) => !v)}
             style={{
               fontSize: "9px", padding: "3px 8px", borderRadius: "3px",
-              border: `1px solid ${showBoll ? "#00BCD4" : "#2a2a2a"}`,
-              background: showBoll ? "rgba(0,188,212,0.15)" : "transparent",
-              color: showBoll ? "#00BCD4" : "#555", cursor: "pointer",
+              border: `1px solid ${showLine ? "#00BCD4" : "#2a2a2a"}`,
+              background: showLine ? "rgba(0,188,212,0.15)" : "transparent",
+              color: showLine ? "#00BCD4" : "#555", cursor: "pointer",
               fontWeight: 600, letterSpacing: "0.05em",
               transition: "all 0.15s",
               minWidth: "42px",
               textAlign: "center" as const,
             }}
           >
-            {showBoll ? "LINE" : "OHLC"}
+            {showLine ? "LINE" : "OHLC"}
           </button>
           {timeframes.map((tf) => (
             <button
@@ -465,7 +575,7 @@ export default function Chart({ ticker }: ChartProps) {
         </div>
       </div>
 
-      {/* ── Greeks Card Panel — prominent visual ── */}
+      {/* ── Greeks Card Panel ── */}
       {latest && (
         <GreeksPanel price={latest.c} sigma={latest.vpin} />
       )}
@@ -486,40 +596,134 @@ export default function Chart({ ticker }: ChartProps) {
               height={20}
             />
             <YAxis
-              domain={[priceMin, priceMax]}
+              yAxisId="price"
+              domain={yDomain}
+              ticks={yTicks}
               tick={{ fontSize: 9, fill: "#555" }}
-              tickFormatter={(v: number) => `${v.toFixed(0)}`}
+              tickFormatter={(v: number) => `${v}\u00A2`}
               axisLine={{ stroke: "#1a1a1a" }}
-              width={36}
+              width={40}
+              allowDataOverflow={true}
             />
             <Tooltip content={<PriceTooltip />} cursor={{ stroke: "#333", strokeDasharray: "3 3" }} />
 
-            {showBoll ? (
+            {showLine ? (
               <>
-                {/* ── BOLL mode: Bloomberg-style multi-line chart ── */}
-                {/* Bollinger band fill */}
-                <Area dataKey="bollBase" stackId="boll" fill="transparent" stroke="transparent" type="monotone" isAnimationActive={false} tooltipType="none" />
-                <Area dataKey="bollWidth" stackId="boll" fill="rgba(255,102,0,0.06)" stroke="transparent" type="monotone" isAnimationActive={false} tooltipType="none" />
-                {/* Bollinger upper & lower bands */}
-                <Line dataKey="bollUpper" stroke="rgba(255,102,0,0.5)" dot={false} strokeWidth={1} type="monotone" isAnimationActive={false} tooltipType="none" />
-                <Line dataKey="bollLower" stroke="rgba(255,102,0,0.5)" dot={false} strokeWidth={1} type="monotone" isAnimationActive={false} tooltipType="none" />
-                {/* SMA midline */}
-                <Line dataKey="sma" stroke="#FFD600" dot={false} strokeWidth={1.5} type="monotone" isAnimationActive={false} tooltipType="none" />
-                {/* Close price — primary line */}
-                <Line dataKey="c" stroke="#FFFFFF" dot={false} strokeWidth={2} type="monotone" isAnimationActive={false} />
-                {/* High line — subtle */}
-                <Line dataKey="h" stroke="rgba(0,255,136,0.3)" dot={false} strokeWidth={0.8} type="monotone" isAnimationActive={false} tooltipType="none" />
-                {/* Low line — subtle */}
-                <Line dataKey="l" stroke="rgba(255,51,102,0.3)" dot={false} strokeWidth={0.8} type="monotone" isAnimationActive={false} tooltipType="none" />
+                {/* ── LINE mode ── */}
+                {/* Bollinger upper & lower — thin dashed, subtle */}
+                <Line
+                  yAxisId="price"
+                  dataKey="bollUpper"
+                  stroke="rgba(255,102,0,0.25)"
+                  dot={false}
+                  strokeWidth={0.8}
+                  strokeDasharray="4 3"
+                  type="monotone"
+                  isAnimationActive={false}
+                  tooltipType="none"
+                />
+                <Line
+                  yAxisId="price"
+                  dataKey="bollLower"
+                  stroke="rgba(255,102,0,0.25)"
+                  dot={false}
+                  strokeWidth={0.8}
+                  strokeDasharray="4 3"
+                  type="monotone"
+                  isAnimationActive={false}
+                  tooltipType="none"
+                />
+                {/* SMA midline — thin dashed yellow */}
+                <Line
+                  yAxisId="price"
+                  dataKey="sma"
+                  stroke="#FFD600"
+                  dot={false}
+                  strokeWidth={1}
+                  strokeDasharray="6 4"
+                  type="monotone"
+                  isAnimationActive={false}
+                  tooltipType="none"
+                />
+                {/* Close price — dominant white line */}
+                <Line
+                  yAxisId="price"
+                  dataKey="c"
+                  stroke="#FFFFFF"
+                  dot={false}
+                  strokeWidth={2.5}
+                  type="monotone"
+                  isAnimationActive={false}
+                />
               </>
             ) : (
               <>
-                {/* ── Candlestick mode ── */}
-                <Bar dataKey="candleRange" shape={<CandleShape />} isAnimationActive={false} />
+                {/* ── OHLC Candlestick mode ── */}
+                {/* Bollinger bands — very subtle in OHLC mode */}
+                <Line
+                  yAxisId="price"
+                  dataKey="bollUpper"
+                  stroke="rgba(255,102,0,0.15)"
+                  dot={false}
+                  strokeWidth={0.6}
+                  strokeDasharray="3 3"
+                  type="monotone"
+                  isAnimationActive={false}
+                  tooltipType="none"
+                />
+                <Line
+                  yAxisId="price"
+                  dataKey="bollLower"
+                  stroke="rgba(255,102,0,0.15)"
+                  dot={false}
+                  strokeWidth={0.6}
+                  strokeDasharray="3 3"
+                  type="monotone"
+                  isAnimationActive={false}
+                  tooltipType="none"
+                />
+                <Line
+                  yAxisId="price"
+                  dataKey="sma"
+                  stroke="rgba(255,214,0,0.4)"
+                  dot={false}
+                  strokeWidth={0.8}
+                  strokeDasharray="6 4"
+                  type="monotone"
+                  isAnimationActive={false}
+                  tooltipType="none"
+                />
+                {/* Stacked Bar candlesticks:
+                    Base bar (bodyBase) is invisible — positions the visible bar correctly.
+                    Body bar (bodyHeight) uses custom shape to draw candle + wicks. */}
+                <Bar
+                  yAxisId="price"
+                  dataKey="bodyBase"
+                  stackId="candle"
+                  fill="transparent"
+                  stroke="none"
+                  isAnimationActive={false}
+                />
+                <Bar
+                  yAxisId="price"
+                  dataKey="bodyHeight"
+                  stackId="candle"
+                  shape={<CandleShape />}
+                  isAnimationActive={false}
+                />
               </>
             )}
 
-            {latest && <ReferenceLine y={latest.c} stroke="#FF6600" strokeDasharray="5 4" strokeWidth={1} />}
+            {/* Current price reference line */}
+            {latest && (
+              <ReferenceLine
+                yAxisId="price"
+                y={latest.c}
+                stroke="#FF6600"
+                strokeDasharray="5 4"
+                strokeWidth={1}
+              />
+            )}
           </ComposedChart>
         </ResponsiveContainer>
       </div>
@@ -530,7 +734,7 @@ export default function Chart({ ticker }: ChartProps) {
           position: "absolute", top: 3, left: 36, fontSize: 8, color: "#555", fontWeight: 700, zIndex: 1,
           letterSpacing: "0.08em", textTransform: "uppercase",
         }}>
-          KYLE {"λ"}
+          KYLE {"\u03BB"}
         </div>
         {latest && (
           <div style={{
@@ -545,7 +749,7 @@ export default function Chart({ ticker }: ChartProps) {
           <LineChart data={chartData} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
             <CartesianGrid stroke="#141414" />
             <XAxis dataKey="index" tick={false} axisLine={{ stroke: "#1a1a1a" }} />
-            <YAxis tick={{ fontSize: 7, fill: "#333" }} domain={["auto", "auto"]} axisLine={{ stroke: "#1a1a1a" }} width={36} tickFormatter={(v: number) => v.toFixed(3)} />
+            <YAxis tick={{ fontSize: 7, fill: "#333" }} domain={["auto", "auto"]} axisLine={{ stroke: "#1a1a1a" }} width={40} tickFormatter={(v: number) => v.toFixed(3)} />
             <ReferenceLine y={0.012} stroke="#FF3366" strokeDasharray="4 3" strokeWidth={1.5} label={{ value: "0.012", position: "right", fill: "#FF3366", fontSize: 7 }} />
             <Line dataKey="lambda" stroke="#00BCD4" dot={false} strokeWidth={1.5} type="monotone" isAnimationActive={false} />
           </LineChart>
@@ -574,11 +778,11 @@ export default function Chart({ ticker }: ChartProps) {
           <BarChart data={chartData} margin={{ top: 8, right: 6, left: 0, bottom: 0 }}>
             <CartesianGrid stroke="#141414" />
             <XAxis dataKey="index" tick={false} axisLine={{ stroke: "#1a1a1a" }} />
-            <YAxis tick={{ fontSize: 7, fill: "#333" }} domain={[0, "auto"]} axisLine={{ stroke: "#1a1a1a" }} width={36} />
+            <YAxis tick={{ fontSize: 7, fill: "#333" }} domain={[0, "auto"]} axisLine={{ stroke: "#1a1a1a" }} width={40} />
             <ReferenceLine y={0.15} stroke="#333" strokeDasharray="2 2" />
             <ReferenceLine y={0.3} stroke="#333" strokeDasharray="2 2" />
             <Bar dataKey="vpin" isAnimationActive={false}>
-              {chartData.map((d, i) => (
+              {chartData.map((d: any, i: number) => (
                 <Cell key={i} fill={d.vpin < 0.15 ? "rgba(0,255,136,0.5)" : d.vpin < 0.3 ? "rgba(255,102,0,0.5)" : "rgba(255,51,102,0.5)"} />
               ))}
             </Bar>
@@ -600,9 +804,9 @@ export default function Chart({ ticker }: ChartProps) {
               axisLine={{ stroke: "#1a1a1a" }}
               tickLine={{ stroke: "#333" }}
             />
-            <YAxis tick={false} axisLine={false} width={36} />
+            <YAxis tick={false} axisLine={false} width={40} />
             <Bar dataKey="v" isAnimationActive={false}>
-              {chartData.map((d, i) => (
+              {chartData.map((d: any, i: number) => (
                 <Cell key={i} fill={d.c >= d.o ? "rgba(0,255,136,0.3)" : "rgba(255,51,102,0.3)"} />
               ))}
             </Bar>

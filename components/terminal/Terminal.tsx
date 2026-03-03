@@ -11,6 +11,7 @@ import Orderbook from "./Orderbook";
 import Scanner from "./Scanner";
 import CountdownBoard from "./CountdownBoard";
 import PnL from "./PnL";
+import KalshiPanel from "./KalshiPanel";
 import StatusBar from "./StatusBar";
 import type {
   ScanSignal,
@@ -58,6 +59,7 @@ export default function Terminal() {
   const [selectedTicker, setSelectedTicker] = useState<string | null>(null);
   const [scanFilter, setScanFilter] = useState<ScanType | null>(null);
   const [clock, setClock] = useState("");
+  const [kalshiBalance, setKalshiBalance] = useState<number | null>(null);
 
   // Live data polling
   const rawSignals = usePolling<ScanSignal[]>("/api/scanner/signals", 3000);
@@ -412,8 +414,9 @@ export default function Terminal() {
             {/* P&L */}
             <div
               style={{
-                flex: 3,
+                flex: 2,
                 background: "#0a0a0a",
+                borderRight: "1px solid #1a1a1a",
                 padding: "6px",
                 overflow: "hidden",
                 display: "flex",
@@ -430,6 +433,21 @@ export default function Terminal() {
                 recentActivity={recentActivity}
               />
             </div>
+
+            {/* Kalshi Trading */}
+            <div
+              style={{
+                flex: 3,
+                background: "#0a0a0a",
+                padding: "0",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+                minWidth: 0,
+              }}
+            >
+              <KalshiPanel onBalanceUpdate={setKalshiBalance} />
+            </div>
           </div>
         </div>
       </div>
@@ -439,7 +457,7 @@ export default function Terminal() {
         status={connectionStatus}
         tickerCount={statusData?.tickers_count ?? 0}
         openTrades={openTradeCount}
-        balance={460}
+        balance={kalshiBalance !== null ? kalshiBalance / 100 : 0}
         signalCount={statusData?.scan_signals}
         uptime={statusData?.uptime}
       />

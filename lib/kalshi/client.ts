@@ -18,7 +18,7 @@ async function kalshiFetch<T>(
 
   const opts: RequestInit = {
     method: method.toUpperCase(),
-    headers,
+    headers: { ...headers },
     cache: "no-store",
   };
   if (body && (method === "POST" || method === "PUT" || method === "DELETE")) {

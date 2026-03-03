@@ -80,7 +80,7 @@ body {
   }
 }
 
-/* ── Terminal animations ──────────────────────────────────────── */
+/* ── Terminal animations ──────────────────────────────────── */
 
 /* Pulsing dot for LIVE indicator */
 @keyframes terminal-pulse {

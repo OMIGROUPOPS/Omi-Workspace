@@ -63,146 +63,207 @@ export default function CountdownBoard({ items = [], onSelect, upcomingMarkets =
             <span style={{ width: "40px", textAlign: "right" }}>Time</span>
           </div>
         )}
+        {!hasCountdown && hasUpcoming && (
+          <div style={{ display: "flex", gap: "12px" }}>
+            <span>Mid</span>
+            <span style={{ width: "40px", textAlign: "right" }}>Away</span>
+          </div>
+        )}
       </div>
 
-      {/* Countdown items */}
-      {hasCountdown && (
-        <div className="flex-1 overflow-y-auto" style={{ minHeight: 0 }}>
-          {sorted.map((item) => {
-            const urgent = item.secs_to_close < 300;
-            const greeks = calcGreeks(item.price / 100, item.secs_to_close / 3600, 0.5);
-            const confLabel =
-              item.confidence === "HIGH"
-                ? { label: "HIGH", color: "#FF3366" }
-                : item.confidence === "MED"
-                  ? { label: "MED", color: "#FF6600" }
-                  : { label: "LOW", color: "#444" };
+      {/* List */}
+      <div className="flex-1 overflow-y-auto" style={{ scrollbarWidth: "none" }}>
+        {hasCountdown ? (
+          // Active resolution countdown
+          sorted.map((item, i) => {
+            const urgent = item.secs_to_close < 60;
+            const confPct = (item.bridge_confidence * 100).toFixed(0);
+            const confColor = item.bridge_confidence >= 0.98 ? "#00FF88" : item.bridge_confidence >= 0.95 ? "#FFD600" : "#666";
+
+            // Calculate theta for this item
+            const hoursLeft = item.secs_to_close / 3600;
+            const greeks = calcGreeks(item.price / 100, hoursLeft, item.sigma || 0.5);
+
             return (
-              <div
+              <button
                 key={item.ticker}
                 onClick={() => onSelect?.(item.ticker)}
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr auto",
-                  gap: "4px",
-                  padding: "5px 2px",
-                  borderBottom: "1px solid #0f0f0f",
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "4px 3px",
+                  border: "none",
                   cursor: "pointer",
-                  animation: urgent ? "terminal-urgent-pulse 2s ease-in-out infinite" : undefined,
+                  fontSize: "9px",
+                  textAlign: "left",
+                  background: urgent ? "rgba(255,51,102,0.06)" : (i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)"),
+                  borderLeft: urgent ? "3px solid #FF3366" : "3px solid transparent",
+                  animation: urgent ? "terminal-urgent-pulse 2s ease-in-out infinite" : "none",
+                  transition: "background 0.1s",
                 }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = urgent ? "rgba(255,51,102,0.06)" : (i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)"); }}
               >
-                {/* Left col */}
-                <div style={{ minWidth: 0 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "5px", marginBottom: "3px" }}>
-                    <span style={{
-                      color: urgent ? "#FF3366" : "#ddd",
-                      fontWeight: 700,
-                      fontSize: "10px",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                      textShadow: urgent ? "0 0 8px rgba(255,51,102,0.4)" : undefined,
-                    }}>
-                      {item.ticker}
+                <div style={{ display: "flex", flexDirection: "column", gap: "1px", minWidth: 0, overflow: "hidden" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                    <span style={{ color: item.side === "near_100" ? "#00FF88" : "#FF3366", fontSize: "8px", flexShrink: 0 }}>
+                      {item.side === "near_100" ? "\u25B2" : "\u25BC"}
                     </span>
                     <span style={{
-                      fontSize: "9px",
-                      fontWeight: 700,
-                      color: item.price >= 50 ? "#00FF88" : "#FF3366",
-                      fontVariantNumeric: "tabular-nums",
-                      textShadow: item.price >= 50 ? "0 0 6px rgba(0,255,136,0.3)" : "0 0 6px rgba(255,51,102,0.3)",
+                      color: urgent ? "#FF3366" : "#ccc",
+                      fontWeight: 600,
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                      textOverflow: "ellipsis",
                     }}>
-                      {item.price.toFixed(0)}¢
+                      {item.info.team}
+                    </span>
+                    <span style={{ color: "#444", fontVariantNumeric: "tabular-nums", flexShrink: 0, fontSize: "8px" }}>
+                      {item.price}&cent;
                     </span>
                   </div>
-                  {/* Greeks mini-row */}
-                  <div style={{ display: "flex", gap: "8px", fontSize: "8px", color: "#444" }}>
-                    <span>Δ<span style={{ color: "#00BCD4" }}>{greeks.delta.toFixed(2)}</span></span>
-                    <span>Θ<span style={{ color: "#00BCD4" }}>{greeks.theta.toFixed(1)}</span></span>
-                    <span>IV<span style={{ color: "#00BCD4" }}>{(greeks.iv * 100).toFixed(0)}%</span></span>
+                  {/* Greeks sub-row */}
+                  <div style={{ display: "flex", gap: "6px", fontSize: "7px", paddingLeft: "16px" }}>
+                    <span style={{ color: "#00BCD4" }}>{"\u0398"} {greeks.theta.toFixed(1)}</span>
+                    <span style={{ color: "#444" }}>{"\u0394"} {greeks.delta.toFixed(2)}</span>
                   </div>
                 </div>
-
-                {/* Right col */}
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "3px" }}>
-                  <span style={{ fontSize: "8px", color: confLabel.color, fontWeight: 700, letterSpacing: "0.05em" }}>
-                    {confLabel.label}
-                  </span>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
                   <span style={{
-                    fontSize: "11px",
-                    fontWeight: 700,
-                    color: urgent ? "#FF3366" : "#888",
                     fontVariantNumeric: "tabular-nums",
-                    animation: urgent ? "terminal-counter-tick 0.3s ease-out" : undefined,
-                    textShadow: urgent ? "0 0 8px rgba(255,51,102,0.4)" : undefined,
+                    color: confColor,
+                    fontSize: "9px",
+                    fontWeight: 700,
                   }}>
+                    {confPct}%
+                  </span>
+                  <span
+                    style={{
+                      fontVariantNumeric: "tabular-nums",
+                      fontWeight: 700,
+                      fontSize: urgent ? "11px" : "9px",
+                      width: "40px",
+                      textAlign: "right",
+                      color: urgent ? "#FF3366" : "#888",
+                      textShadow: urgent ? "0 0 8px rgba(255,51,102,0.4)" : "none",
+                    }}
+                  >
                     {formatTime(item.secs_to_close)}
                   </span>
                 </div>
-              </div>
+              </button>
             );
-          })}
-        </div>
-      )}
+          })
+        ) : hasUpcoming ? (
+          // Nearest to settlement fallback
+          upcomingMarkets.map((m, i) => {
+            const distFromBoundary = Math.min(m.mid, 100 - m.mid);
+            const nearHigh = m.mid >= 50;
+            const dirColor = nearHigh ? "#00FF88" : "#FF3366";
+            const dirArrow = nearHigh ? "\u25B2" : "\u25BC";
 
-      {/* Upcoming markets fallback */}
-      {!hasCountdown && hasUpcoming && (
-        <div className="flex-1 overflow-y-auto" style={{ minHeight: 0 }}>
-          {upcomingMarkets.slice(0, 8).map((mkt) => {
-            const greeks = calcGreeks(mkt.mid / 100, 4, 0.5);
+            // Calculate theta for display
+            const greeks = calcGreeks(m.mid / 100, 2, 0.5);
+
             return (
-              <div
-                key={mkt.ticker}
-                onClick={() => onSelect?.(mkt.ticker)}
+              <button
+                key={m.ticker}
+                onClick={() => onSelect?.(m.ticker)}
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr auto",
-                  gap: "4px",
-                  padding: "5px 2px",
-                  borderBottom: "1px solid #0f0f0f",
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "4px 3px",
+                  border: "none",
                   cursor: "pointer",
+                  fontSize: "9px",
+                  textAlign: "left",
+                  background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)",
+                  borderLeft: distFromBoundary <= 3 ? `3px solid ${dirColor}` : "3px solid transparent",
+                  transition: "background 0.1s",
                 }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)"; }}
               >
-                <div style={{ minWidth: 0 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "5px", marginBottom: "3px" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "1px", minWidth: 0, overflow: "hidden" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                    <span style={{ color: dirColor, fontSize: "8px", flexShrink: 0 }}>
+                      {dirArrow}
+                    </span>
                     <span style={{
-                      color: "#888",
-                      fontSize: "8px",
+                      color: "#ccc",
+                      fontWeight: 500,
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                      textOverflow: "ellipsis",
+                    }}>
+                      {m.team || m.ticker.slice(-8)}
+                    </span>
+                    <span style={{
+                      fontSize: "7px",
+                      padding: "0 4px",
+                      borderRadius: "3px",
+                      background: "rgba(255,102,0,0.08)",
+                      color: "#777",
+                      lineHeight: "12px",
+                      flexShrink: 0,
+                      whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
+                      maxWidth: "55px",
                     }}>
-                      {mkt.team}
+                      {m.category}
                     </span>
-                    <span style={{
-                      fontSize: "9px",
-                      fontWeight: 700,
-                      color: mkt.mid >= 50 ? "#00FF88" : "#FF3366",
+                  </div>
+                  {/* Greeks sub-row */}
+                  <div style={{ display: "flex", gap: "6px", fontSize: "7px", paddingLeft: "16px" }}>
+                    <span style={{ color: "#00BCD4" }}>{"\u0398"} {greeks.theta.toFixed(1)}</span>
+                    <span style={{ color: "#444" }}>{"\u0394"} {greeks.delta.toFixed(2)}</span>
+                  </div>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
+                  <span style={{
+                    fontVariantNumeric: "tabular-nums",
+                    color: dirColor,
+                    fontSize: "10px",
+                    fontWeight: 700,
+                  }}>
+                    {m.mid}&cent;
+                  </span>
+                  <span
+                    style={{
                       fontVariantNumeric: "tabular-nums",
-                    }}>
-                      {mkt.mid.toFixed(0)}¢
-                    </span>
-                  </div>
-                  <div style={{ display: "flex", gap: "8px", fontSize: "8px", color: "#444" }}>
-                    <span>Δ<span style={{ color: "#555" }}>{greeks.delta.toFixed(2)}</span></span>
-                    <span>IV<span style={{ color: "#555" }}>{(greeks.iv * 100).toFixed(0)}%</span></span>
-                    <span style={{ color: mkt.spread < 3 ? "#00FF88" : mkt.spread < 6 ? "#FF6600" : "#FF3366" }}>sprd:{mkt.spread.toFixed(1)}</span>
-                  </div>
+                      fontSize: "8px",
+                      width: "40px",
+                      textAlign: "right",
+                      color: distFromBoundary <= 3 ? dirColor : "#555",
+                      fontWeight: distFromBoundary <= 3 ? 700 : 400,
+                    }}
+                  >
+                    {distFromBoundary}&cent; away
+                  </span>
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
-                  <span style={{ fontSize: "7px", color: "#333", textTransform: "uppercase", letterSpacing: "0.06em" }}>{mkt.category}</span>
-                </div>
-              </div>
+              </button>
             );
-          })}
-        </div>
-      )}
-
-      {!hasCountdown && !hasUpcoming && (
-        <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", color: "#222", fontSize: "9px" }}>
-          No settlement data
-        </div>
-      )}
+          })
+        ) : (
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+            gap: "8px",
+          }}>
+            <span style={{ fontSize: "18px", color: "#222", opacity: 0.5 }}>{"\u23F1"}</span>
+            <span style={{ color: "#333", fontSize: "9px" }}>No resolution signals</span>
+            <span style={{ color: "#222", fontSize: "8px" }}>Monitoring for settlement...</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

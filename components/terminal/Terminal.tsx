@@ -1,389 +1,449 @@
 "use client";
 
-// OMI Terminal — Main Layout (Redesigned)
-// Bloomberg-style dark trading terminal with dynamic data and animation.
+// OMI Terminal — Main layout (Redesigned)
+// Flex-based panel layout with live scanner data polling.
+// Bloomberg-style dark terminal aesthetic.
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import Watchlist from "./Watchlist";
 import Chart from "./Chart";
 import Orderbook from "./Orderbook";
 import Scanner from "./Scanner";
-import PnL from "./PnL";
-import Watchlist from "./Watchlist";
 import CountdownBoard from "./CountdownBoard";
+import PnL from "./PnL";
 import StatusBar from "./StatusBar";
 import type {
-  OrderbookData,
-  ScannerSignal,
-  PnLData,
-  TerminalStatus,
+  ScanSignal,
+  ScanType,
   CountdownItem,
+  PnLBreakdown,
+  CategoryData,
+  ScannerStatusData,
+  TradesResponse,
+  ConnectionStatus,
+  MarketInfo,
 } from "@/lib/terminal/types";
-import { MOCK_MARKETS } from "@/lib/terminal/mock-markets";
 
-// ── Mock data generators ──────────────────────────────────────────────────
+// ── Polling helper ──────────────────────────────────────────
 
-function makeMockOrderbook(ticker: string): OrderbookData {
-  let seed = 0;
-  for (const c of ticker) seed += c.charCodeAt(0);
-  const rng = (n: number) => { seed = (seed * 1664525 + 1013904223) & 0xffffffff; return Math.abs(seed % n); };
-  const mid = 30 + rng(40);
-  const spread = 1 + rng(4);
-  const bids: OrderbookData["bids"] = [];
-  const asks: OrderbookData["asks"] = [];
-  let bprice = mid - Math.floor(spread / 2);
-  let aprice = bprice + spread;
-  for (let i = 0; i < 8; i++) {
-    bids.push({ price: Math.max(1, bprice - i), qty: 50 + rng(200) });
-    asks.push({ price: Math.min(99, aprice + i), qty: 50 + rng(200) });
-  }
-  return { bids, asks };
-}
-
-function makeMockSignals(markets: typeof MOCK_MARKETS): ScannerSignal[] {
-  return markets.slice(0, 12).map((m, i) => ({
-    ticker: m.ticker,
-    type: (["SPIKE", "TREND", "SQUEEZE", "HALT", "RESUME", "NEWS"] as const)[i % 6],
-    price: m.mid,
-    lambda: 0.003 + (i % 5) * 0.004 + Math.random() * 0.005,
-    vpin: 0.1 + (i % 4) * 0.08,
-    timestamp: Date.now() - i * 45000,
-  }));
-}
-
-function makeMockPnL(markets: typeof MOCK_MARKETS): PnLData {
-  const positions = markets.slice(0, 5).map((m, i) => {
-    const avgCost = m.mid + (i % 2 === 0 ? -5 : 7);
-    const contracts = (i % 2 === 0 ? 10 : -8) * (i + 1);
-    const unrealized_pnl = ((m.mid - avgCost) / 100) * Math.abs(contracts) * 100;
-    return {
-      ticker: m.ticker,
-      contracts,
-      avg_cost: avgCost,
-      price: m.mid,
-      unrealized_pnl: Math.round(unrealized_pnl * 100) / 100,
-      secs_to_expiry: 3600 * (i + 1),
-    };
-  });
-  return { positions };
-}
-
-function makeMockCountdown(markets: typeof MOCK_MARKETS): CountdownItem[] {
-  return markets.slice(0, 3).map((m, i) => ({
-    ticker: m.ticker,
-    price: m.mid,
-    secs_to_close: 120 + i * 180,
-    confidence: (["HIGH", "MED", "LOW"] as const)[i],
-  }));
-}
-
-function makeMockStatus(markets: typeof MOCK_MARKETS, pnlData: PnLData): TerminalStatus {
-  const now = new Date();
-  return {
-    feed_status: "LIVE",
-    latency_ms: 12 + Math.floor(Math.random() * 8),
-    active_markets: markets.length,
-    daily_volume: 2840000 + Math.floor(Math.random() * 50000),
-    position_count: pnlData.positions.length,
-    total_pnl: pnlData.positions.reduce((s, p) => s + p.unrealized_pnl, 0),
-    timestamp: now.toLocaleTimeString("en-US", { hour12: false }),
-    market_summary: `${markets.length} ACTIVE MKTS  •  VOL $2.84M  •  TOP: ${markets[0]?.ticker ?? ""}`,
-  };
-}
-
-// ── Resize handle ─────────────────────────────────────────────────────────
-
-function ResizeHandle({ onDrag, cursor }: { onDrag: (delta: number, axis: "h" | "v") => void; cursor: string }) {
-  const dragging = useRef(false);
-  const lastPos = useRef(0);
-  const axis = cursor.includes("col") ? "h" : "v";
-
-  const onMouseDown = useCallback((e: React.MouseEvent) => {
-    dragging.current = true;
-    lastPos.current = axis === "h" ? e.clientX : e.clientY;
-    e.preventDefault();
-  }, [axis]);
+function usePolling<T>(url: string, intervalMs: number) {
+  const [data, setData] = useState<T | null>(null);
 
   useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      if (!dragging.current) return;
-      const pos = axis === "h" ? e.clientX : e.clientY;
-      onDrag(pos - lastPos.current, axis);
-      lastPos.current = pos;
+    let active = true;
+    const poll = async () => {
+      try {
+        const res = await fetch(url, { cache: "no-store" });
+        if (res.ok && active) {
+          setData(await res.json());
+        }
+      } catch {
+        // Scanner offline — leave stale data
+      }
     };
-    const onUp = () => { dragging.current = false; };
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseup", onUp);
+    poll();
+    const id = setInterval(poll, intervalMs);
     return () => {
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseup", onUp);
+      active = false;
+      clearInterval(id);
     };
-  }, [onDrag, axis]);
+  }, [url, intervalMs]);
+
+  return data;
+}
+
+// ── Component ────────────────────────────────────────────────
+
+export default function Terminal() {
+  const [selectedTicker, setSelectedTicker] = useState<string | null>(null);
+  const [scanFilter, setScanFilter] = useState<ScanType | null>(null);
+  const [clock, setClock] = useState("");
+
+  // Live data polling
+  const rawSignals = usePolling<ScanSignal[]>("/api/scanner/signals", 3000);
+  const statusData = usePolling<ScannerStatusData>("/api/scanner/status", 5000);
+  const categoriesResp = usePolling<{ categories: CategoryData[]; total_tickers: number; total_events: number }>("/api/scanner/categories", 10000);
+  const tradesData = usePolling<TradesResponse>("/api/scanner/trades", 5000);
+
+  const signals: ScanSignal[] = rawSignals ?? [];
+  const categories: CategoryData[] = categoriesResp?.categories ?? [];
+
+  // Connection status
+  const connectionStatus: ConnectionStatus = statusData
+    ? statusData.ws_connected
+      ? "connected"
+      : "disconnected"
+    : "connecting";
+
+  // 1s clock + countdown timer
+  const [countdown, setCountdown] = useState<CountdownItem[]>([]);
+
+  // Build countdown from resolution signals
+  const buildCountdown = useCallback((): CountdownItem[] => {
+    const now = Date.now();
+    const fiveMinAgo = now - 5 * 60 * 1000;
+    return signals
+      .filter(
+        (s) =>
+          s.scan_type === "resolution" &&
+          s.time_remaining &&
+          (s.timestamp ?? 0) * 1000 > fiveMinAgo,
+      )
+      .map((s) => {
+        const elapsed = (now - (s.timestamp ?? 0) * 1000) / 1000;
+        const secsLeft = Math.max(0, (s.time_remaining || 0) - elapsed);
+        const info: MarketInfo = {
+          ticker: s.ticker,
+          event_ticker: s.ticker.replace(/-[YN]$/, ""),
+          game_id: s.game_id,
+          market_type: "variant",
+          team: s.ticker.split("-").slice(-2, -1)[0] || s.ticker.slice(-8),
+          floor_strike: null,
+          close_time: null,
+          category: "",
+        };
+        return {
+          ticker: s.ticker,
+          info,
+          price: s.entry_price,
+          side: (s.entry_price >= 50 ? "near_100" : "near_0") as
+            | "near_100"
+            | "near_0",
+          secs_to_close: Math.round(secsLeft),
+          bridge_confidence: s.bridge_confidence || 0,
+          sigma: s.sigma_estimate || 0,
+          depth: s.depth,
+          kelly_size: s.optimal_size || 0,
+        };
+      })
+      .filter((c) => c.secs_to_close > 0)
+      .slice(0, 10);
+  }, [signals]);
+
+  useEffect(() => {
+    setCountdown(buildCountdown());
+  }, [buildCountdown]);
+
+  useEffect(() => {
+    const tick = () => {
+      setClock(
+        new Date().toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        }),
+      );
+      setCountdown((prev) =>
+        prev.map((item) => ({
+          ...item,
+          secs_to_close: Math.max(0, item.secs_to_close - 1),
+        })),
+      );
+    };
+    tick();
+    const timer = setInterval(tick, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Build PnL breakdowns from trades data
+  const pnlBreakdowns: PnLBreakdown[] = tradesData
+    ? Object.values(tradesData.summary.by_strategy).map((bs) => ({
+        scan_type: bs.scan_type as ScanType,
+        total_pnl: bs.total_pnl,
+        trade_count: bs.trade_count,
+        winners: bs.winners,
+        losers: bs.losers,
+        avg_hold_time: bs.avg_hold_time,
+        avg_edge: bs.avg_edge,
+      }))
+    : [];
+
+  const totalPnl = tradesData?.summary.total_pnl ?? 0;
+  const openTradeCount = tradesData?.summary.open_count ?? 0;
+
+  // Normalize signal timestamps (API sends epoch seconds, frontend expects ms)
+  const normalizedSignals: ScanSignal[] = signals.map((s) => ({
+    ...s,
+    timestamp:
+      s.timestamp && s.timestamp < 1e12
+        ? s.timestamp * 1000
+        : s.timestamp ?? Date.now(),
+  }));
+
+  // Derive upcomingMarkets: tickers nearest to 0 or 100 (for CountdownBoard empty state)
+  const upcomingMarkets = useMemo(() => {
+    const allTickers: { ticker: string; team: string; mid: number; spread: number; category: string }[] = [];
+    for (const cat of categories) {
+      for (const t of cat.top_tickers) {
+        if (t.mid !== null && t.mid !== undefined) {
+          allTickers.push({ ticker: t.ticker, team: t.team, mid: t.mid, spread: t.spread, category: cat.category });
+        }
+      }
+    }
+    return allTickers
+      .sort((a, b) => Math.min(a.mid, 100 - a.mid) - Math.min(b.mid, 100 - b.mid))
+      .slice(0, 10);
+  }, [categories]);
+
+  // Derive recentActivity: latest 8 signals for PnL activity feed
+  const recentActivity = useMemo(() => {
+    return normalizedSignals.slice(0, 8).map((s) => ({
+      scan_type: s.scan_type,
+      ticker: s.ticker,
+      severity: s.severity,
+      description: s.description,
+      timestamp: s.timestamp,
+    }));
+  }, [normalizedSignals]);
 
   return (
     <div
-      onMouseDown={onMouseDown}
-      style={{
-        background: "#111",
-        cursor,
-        flexShrink: 0,
-        transition: "background 0.15s",
-        ...(axis === "h" ? { width: "3px", height: "100%" } : { height: "3px", width: "100%" }),
-      }}
-      onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.background = "#FF6600"; }}
-      onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.background = "#111"; }}
-    />
-  );
-}
-
-// ── Panel wrapper ─────────────────────────────────────────────────────────
-
-function Panel({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      height: "100%",
-      minWidth: 0,
-      minHeight: 0,
-      overflow: "hidden",
-      background: "#080808",
-    }}>
-      <div style={{
-        height: "18px",
-        display: "flex",
-        alignItems: "center",
-        padding: "0 6px",
-        borderBottom: "1px solid #111",
-        background: "#050505",
-        flexShrink: 0,
-      }}>
-        <span style={{
-          fontSize: "7px",
-          color: "#333",
-          textTransform: "uppercase",
-          letterSpacing: "0.12em",
-          fontWeight: 700,
-        }}>
-          {label}
-        </span>
-      </div>
-      <div style={{ flex: 1, minHeight: 0, overflow: "hidden" }}>
-        {children}
-      </div>
-    </div>
-  );
-}
-
-// ── Terminal ──────────────────────────────────────────────────────────────
-
-export default function Terminal() {
-  const [selectedTicker, setSelectedTicker] = useState<string | undefined>(undefined);
-  const [orderbookData, setOrderbookData] = useState<OrderbookData | undefined>(undefined);
-  const [signals, setSignals] = useState<ScannerSignal[]>([]);
-  const [pnlData, setPnlData] = useState<PnLData | undefined>(undefined);
-  const [countdownItems, setCountdownItems] = useState<CountdownItem[]>([]);
-  const [status, setStatus] = useState<TerminalStatus>({
-    feed_status: "LIVE",
-    latency_ms: 12,
-    active_markets: 0,
-    daily_volume: 0,
-    position_count: 0,
-    total_pnl: 0,
-    timestamp: "",
-    market_summary: "",
-  });
-
-  // Panel sizing state (px)
-  const [leftW, setLeftW] = useState(170);
-  const [rightW, setRightW] = useState(160);
-  const [topH, setTopH] = useState(240);
-
-  const handleResize = useCallback((delta: number, axis: "h" | "v", panel: string) => {
-    if (axis === "h") {
-      if (panel === "left") setLeftW((w) => Math.max(120, Math.min(300, w + delta)));
-      if (panel === "right") setRightW((w) => Math.max(120, Math.min(300, w - delta)));
-    } else {
-      if (panel === "top") setTopH((h) => Math.max(120, Math.min(500, h + delta)));
-    }
-  }, []);
-
-  // Initialize mock data
-  useEffect(() => {
-    const pnl = makeMockPnL(MOCK_MARKETS);
-    setSignals(makeMockSignals(MOCK_MARKETS));
-    setPnlData(pnl);
-    setCountdownItems(makeMockCountdown(MOCK_MARKETS));
-    setStatus(makeMockStatus(MOCK_MARKETS, pnl));
-  }, []);
-
-  // Tick every 2s
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (selectedTicker) setOrderbookData(makeMockOrderbook(selectedTicker));
-      const pnl = makeMockPnL(MOCK_MARKETS);
-      setPnlData(pnl);
-      setStatus(makeMockStatus(MOCK_MARKETS, pnl));
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [selectedTicker]);
-
-  const handleSelect = (ticker: string) => {
-    setSelectedTicker(ticker);
-    setOrderbookData(makeMockOrderbook(ticker));
-  };
-
-  return (
-    <div style={{
-      width: "100%",
-      height: "100vh",
-      background: "#080808",
-      display: "flex",
-      flexDirection: "column",
-      fontFamily: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace",
-      color: "#eee",
-      overflow: "hidden",
-    }}>
-      {/* ── Header ── */}
-      <div style={{
-        height: "28px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "0 12px",
-        borderBottom: "1px solid #111",
-        background: "#050505",
-        flexShrink: 0,
-        position: "relative",
-        overflow: "hidden",
-      }}>
-        {/* Scanline sweep */}
-        <div style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(255,102,0,0.3), transparent)",
-          animation: "terminal-scanline 4s linear infinite",
-          pointerEvents: "none",
-        }} />
-
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{
-            color: "#FF6600",
-            fontWeight: 700,
-            fontSize: "11px",
-            letterSpacing: "0.15em",
-            textShadow: "0 0 12px rgba(255,102,0,0.4)",
-          }}>
-            OMI TERMINAL
+      className="h-full w-full bg-[#0a0a0a] text-slate-200 flex flex-col overflow-hidden"
+      style={{ fontFamily: "'JetBrains Mono', 'Courier New', monospace" }}
+    >
+      {/* ── Top bar — Bloomberg-style header ── */}
+      <div
+        className="flex items-center justify-between px-4 shrink-0"
+        style={{
+          height: "30px",
+          background: "linear-gradient(180deg, #111 0%, #0d0d0d 100%)",
+          borderBottom: "1px solid #1a1a1a",
+        }}
+      >
+        <div className="flex items-center gap-3">
+          <span
+            style={{
+              color: "#FF6600",
+              fontWeight: 800,
+              fontSize: "14px",
+              letterSpacing: "0.12em",
+              textShadow: "0 0 12px rgba(255,102,0,0.3)",
+            }}
+          >
+            OMI
           </span>
-          <span style={{ color: "#1a1a1a", fontSize: "8px" }}>|</span>
-          <span style={{ color: "#222", fontSize: "8px", letterSpacing: "0.08em" }}>PREDICTION MARKETS</span>
+          <span
+            style={{
+              color: "#666",
+              fontSize: "11px",
+              letterSpacing: "0.15em",
+              fontWeight: 500,
+            }}
+          >
+            TERMINAL
+          </span>
+          <span style={{ color: "#333", fontSize: "9px" }}>v0.3</span>
+        </div>
+        <div className="flex items-center gap-4" style={{ fontSize: "10px" }}>
+          <span style={{ color: "#555", fontVariantNumeric: "tabular-nums" }}>
+            {new Date().toISOString().slice(0, 10)}
+          </span>
+          <span style={{ color: "#666", fontVariantNumeric: "tabular-nums", fontWeight: 600 }} suppressHydrationWarning>
+            {clock}
+          </span>
+          <span
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+              color:
+                connectionStatus === "connected" ? "#00FF88" : connectionStatus === "connecting" ? "#FFD600" : "#FF3366",
+            }}
+          >
+            <span
+              style={{
+                display: "inline-block",
+                width: "6px",
+                height: "6px",
+                borderRadius: "50%",
+                background:
+                  connectionStatus === "connected"
+                    ? "#00FF88"
+                    : connectionStatus === "connecting"
+                      ? "#FFD600"
+                      : "#FF3366",
+                boxShadow:
+                  connectionStatus === "connected"
+                    ? "0 0 8px rgba(0,255,136,0.5)"
+                    : "none",
+                animation:
+                  connectionStatus === "connected"
+                    ? "terminal-pulse 2s ease-in-out infinite"
+                    : connectionStatus === "connecting"
+                      ? "terminal-pulse 0.8s ease-in-out infinite"
+                      : "none",
+              }}
+            />
+            <span style={{ fontWeight: 600, letterSpacing: "0.05em", fontSize: "9px" }}>
+              {connectionStatus === "connected"
+                ? "LIVE"
+                : connectionStatus === "connecting"
+                  ? "CONNECTING"
+                  : "OFFLINE"}
+            </span>
+          </span>
+        </div>
+      </div>
+
+      {/* ── Main content area ── */}
+      <div
+        style={{ flex: 1, display: "flex", minHeight: 0, overflow: "hidden" }}
+      >
+        {/* ── Watchlist sidebar ── */}
+        <div
+          style={{
+            width: "175px",
+            flexShrink: 0,
+            background: "#0d0d0d",
+            borderRight: "1px solid #1a1a1a",
+            padding: "6px",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Watchlist
+            categories={categories}
+            selectedTicker={selectedTicker ?? undefined}
+            onSelect={setSelectedTicker}
+          />
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          {["EQUITY", "CRYPTO", "POLITICS", "SPORTS"].map((cat) => (
-            <span
-              key={cat}
+        {/* ── Center + Right panels ── */}
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            minWidth: 0,
+            minHeight: 0,
+          }}
+        >
+          {/* ── Top row: Chart + Orderbook — capped at 350px ── */}
+          <div
+            style={{
+              flex: "0 1 350px",
+              maxHeight: "350px",
+              display: "flex",
+              minHeight: 0,
+              overflow: "hidden",
+            }}
+          >
+            {/* Chart */}
+            <div
               style={{
-                fontSize: "7px",
-                color: "#222",
-                letterSpacing: "0.1em",
-                cursor: "pointer",
-                padding: "2px 6px",
-                borderRadius: "2px",
-                border: "1px solid transparent",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLSpanElement).style.color = "#FF6600";
-                (e.currentTarget as HTMLSpanElement).style.borderColor = "rgba(255,102,0,0.2)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLSpanElement).style.color = "#222";
-                (e.currentTarget as HTMLSpanElement).style.borderColor = "transparent";
+                flex: 1,
+                background: "#0d0d0d",
+                borderBottom: "1px solid #1a1a1a",
+                borderRight: "1px solid #1a1a1a",
+                padding: "6px",
+                overflow: "hidden",
+                minWidth: 0,
+                minHeight: 0,
+                display: "flex",
+                flexDirection: "column",
               }}
             >
-              {cat}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Main grid ── */}
-      <div style={{ flex: 1, display: "flex", minHeight: 0, overflow: "hidden" }}>
-        {/* Left column */}
-        <div style={{ width: leftW, display: "flex", flexDirection: "column", flexShrink: 0, minHeight: 0 }}>
-          {/* Watchlist top */}
-          <div style={{ height: topH, flexShrink: 0, borderBottom: "1px solid #111" }}>
-            <Panel label="Watchlist">
-              <Watchlist
-                markets={MOCK_MARKETS}
-                selectedTicker={selectedTicker}
-                onSelect={handleSelect}
-              />
-            </Panel>
-          </div>
-          <ResizeHandle onDrag={(d) => handleResize(d, "v", "top")} cursor="row-resize" />
-          {/* Countdown bottom */}
-          <div style={{ flex: 1, minHeight: 0, borderTop: "1px solid #111" }}>
-            <Panel label="Settlement">
-              <CountdownBoard
-                items={countdownItems}
-                onSelect={handleSelect}
-                upcomingMarkets={MOCK_MARKETS.slice(0, 6).map((m) => ({
-                  ticker: m.ticker,
-                  team: m.team,
-                  mid: m.mid,
-                  spread: m.spread,
-                  category: m.category,
-                }))}
-              />
-            </Panel>
-          </div>
-        </div>
-
-        <ResizeHandle onDrag={(d) => handleResize(d, "h", "left")} cursor="col-resize" />
-
-        {/* Center column */}
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0, minHeight: 0 }}>
-          {/* Chart top */}
-          <div style={{ height: topH, flexShrink: 0, borderBottom: "1px solid #111" }}>
-            <Panel label={selectedTicker ?? "Chart"}>
-              <Chart ticker={selectedTicker} />
-            </Panel>
-          </div>
-          <ResizeHandle onDrag={(d) => handleResize(d, "v", "top")} cursor="row-resize" />
-          {/* Scanner + P&L bottom */}
-          <div style={{ flex: 1, display: "flex", minHeight: 0 }}>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <Panel label="Scanner">
-                <Scanner signals={signals} onSelect={handleSelect} />
-              </Panel>
+              <Chart ticker={selectedTicker ?? undefined} />
             </div>
-            <div style={{ width: "1px", background: "#111" }} />
-            <div style={{ width: rightW, flexShrink: 0 }}>
-              <Panel label="P&L">
-                <PnL data={pnlData} />
-              </Panel>
+
+            {/* Orderbook */}
+            <div
+              style={{
+                width: "210px",
+                flexShrink: 0,
+                background: "#0d0d0d",
+                borderBottom: "1px solid #1a1a1a",
+                padding: "6px",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Orderbook ticker={selectedTicker ?? undefined} />
             </div>
           </div>
-        </div>
 
-        <ResizeHandle onDrag={(d) => handleResize(d, "h", "right")} cursor="col-resize" />
+          {/* ── Bottom row: Scanner + Countdown + P&L — takes remaining space ── */}
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              minHeight: 0,
+              overflow: "hidden",
+            }}
+          >
+            {/* Scanner */}
+            <div
+              style={{
+                flex: 5,
+                background: "#0d0d0d",
+                borderRight: "1px solid #1a1a1a",
+                padding: "6px",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+                minWidth: 0,
+              }}
+            >
+              <Scanner
+                signals={normalizedSignals}
+                filter={scanFilter}
+                onFilterChange={setScanFilter}
+              />
+            </div>
 
-        {/* Right column */}
-        <div style={{ width: rightW, flexShrink: 0, minHeight: 0 }}>
-          <Panel label="Order Book">
-            <Orderbook data={orderbookData} />
-          </Panel>
+            {/* Countdown */}
+            <div
+              style={{
+                flex: 3,
+                background: "#0d0d0d",
+                borderRight: "1px solid #1a1a1a",
+                padding: "6px",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+                minWidth: 0,
+              }}
+            >
+              <CountdownBoard items={countdown} onSelect={setSelectedTicker} upcomingMarkets={upcomingMarkets} />
+            </div>
+
+            {/* P&L */}
+            <div
+              style={{
+                flex: 3,
+                background: "#0d0d0d",
+                padding: "6px",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+                minWidth: 0,
+              }}
+            >
+              <PnL
+                totalPnl={totalPnl}
+                breakdowns={pnlBreakdowns}
+                openTrades={openTradeCount}
+                signalCount={statusData?.scan_signals}
+                categoryCount={categories.length}
+                recentActivity={recentActivity}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
       {/* ── Status bar ── */}
-      <div style={{ height: "20px", flexShrink: 0 }}>
-        <StatusBar status={status} />
-      </div>
+      <StatusBar
+        status={connectionStatus}
+        tickerCount={statusData?.tickers_count ?? 0}
+        openTrades={openTradeCount}
+        balance={460}
+        signalCount={statusData?.scan_signals}
+        uptime={statusData?.uptime}
+      />
     </div>
   );
 }

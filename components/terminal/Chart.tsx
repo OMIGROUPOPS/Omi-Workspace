@@ -38,7 +38,7 @@ interface OHLCV {
   convTime: number;
 }
 
-// ── Deterministic PRNG ────────────────────────────────────────────────────
+// ── Deterministic PRNG ────────────────────────────────────────
 
 class Rng {
   private s: number;
@@ -56,7 +56,7 @@ class Rng {
   }
 }
 
-// ── Data generation ───────────────────────────────────────────────────────
+// ── Data generation ───────────────────────────────────────────
 
 function generateOHLCV(ticker: string): OHLCV[] {
   let seed = 0;
@@ -121,7 +121,7 @@ function computeBollinger(bars: OHLCV[], period = 20, k = 2) {
   return result;
 }
 
-// ── Custom Candlestick Shape ──────────────────────────────────────────────
+// ── Custom Candlestick Shape ──────────────────────────────────
 
 const CandleShape = (props: any) => {
   const { x, y, width, height, payload } = props;
@@ -146,7 +146,7 @@ const CandleShape = (props: any) => {
   );
 };
 
-// ── Custom Tooltip ────────────────────────────────────────────────────────
+// ── Custom Tooltip ────────────────────────────────────────────
 
 const PriceTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
@@ -174,7 +174,7 @@ const PriceTooltip = ({ active, payload }: any) => {
   );
 };
 
-// ── Greeks Display Row ────────────────────────────────────────────────────
+// ── Greeks Display Row ────────────────────────────────────────
 
 function GreeksRow({ price, sigma }: { price: number; sigma: number }) {
   // Assume ~4 hours to expiry for display purposes (typical prediction market)
@@ -211,7 +211,7 @@ function GreeksRow({ price, sigma }: { price: number; sigma: number }) {
   );
 }
 
-// ── Component ─────────────────────────────────────────────────────────────
+// ── Component ─────────────────────────────────────────────────
 
 export default function Chart({ ticker }: ChartProps) {
   const [showBoll, setShowBoll] = useState(true);

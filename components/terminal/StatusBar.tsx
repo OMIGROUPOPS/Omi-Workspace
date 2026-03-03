@@ -1,16 +1,52 @@
 "use client";
 
-// OMI Terminal — Status Bar (Redesigned)
-// Bloomberg-style bottom info bar.
+// OMI Terminal — Status bar (Redesigned)
+// Dense single-line status with animated counters, pulse dot, and branding.
 
-import type { TerminalStatus } from "@/lib/terminal/types";
+import type { ConnectionStatus } from "@/lib/terminal/types";
+import { useAnimatedNumber } from "@/lib/terminal/hooks";
 
 interface StatusBarProps {
-  status: TerminalStatus;
+  status: ConnectionStatus;
+  balance?: number;
+  openTrades?: number;
+  tickerCount?: number;
+  signalCount?: number;
+  uptime?: number;
 }
 
-export default function StatusBar({ status }: StatusBarProps) {
-  const isLive = status.feed_status === "LIVE";
+function formatUptime(secs: number): string {
+  if (secs < 60) return `${secs}s`;
+  if (secs < 3600) return `${Math.floor(secs / 60)}m`;
+  const h = Math.floor(secs / 3600);
+  const m = Math.floor((secs % 3600) / 60);
+  return `${h}h${m.toString().padStart(2, "0")}m`;
+}
+
+export default function StatusBar({
+  status,
+  balance = 460,
+  openTrades = 0,
+  tickerCount = 0,
+  signalCount,
+  uptime,
+}: StatusBarProps) {
+  const animatedTickers = useAnimatedNumber(tickerCount, 500);
+  const animatedSignals = useAnimatedNumber(signalCount ?? 0, 500);
+
+  const dotColor: Record<ConnectionStatus, string> = {
+    connected: "#00FF88",
+    connecting: "#FFD600",
+    disconnected: "#666",
+    error: "#FF3366",
+  };
+
+  const statusLabel: Record<ConnectionStatus, string> = {
+    connected: "CONNECTED",
+    connecting: "CONNECTING",
+    disconnected: "OFFLINE",
+    error: "ERROR",
+  };
 
   return (
     <div
@@ -18,100 +54,71 @@ export default function StatusBar({ status }: StatusBarProps) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        height: "100%",
-        padding: "0 8px",
+        padding: "0 12px",
+        height: "22px",
+        background: "#080808",
+        borderTop: "1px solid #1a1a1a",
         fontSize: "8px",
-        color: "#333",
-        borderTop: "1px solid #111",
-        background: "#050505",
-        gap: "12px",
-        overflow: "hidden",
+        flexShrink: 0,
       }}
     >
-      {/* Left cluster */}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
-        {/* LIVE / DELAYED badge */}
-        <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-          <div
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        {/* Connection status */}
+        <span style={{ display: "flex", alignItems: "center", gap: "4px", color: dotColor[status] }}>
+          <span
             style={{
               width: "5px",
               height: "5px",
               borderRadius: "50%",
-              background: isLive ? "#00FF88" : "#FF6600",
-              animation: isLive ? "terminal-pulse 1.5s ease-in-out infinite" : undefined,
-              boxShadow: isLive ? "0 0 4px rgba(0,255,136,0.5)" : undefined,
+              background: dotColor[status],
+              boxShadow: status === "connected" ? `0 0 6px ${dotColor[status]}` : "none",
+              animation:
+                status === "connected"
+                  ? "terminal-pulse 2s ease-in-out infinite"
+                  : status === "connecting"
+                    ? "terminal-pulse 0.8s ease-in-out infinite"
+                    : "none",
             }}
           />
-          <span style={{ color: isLive ? "#00FF88" : "#FF6600", fontWeight: 700, letterSpacing: "0.1em" }}>
-            {status.feed_status}
+          <span style={{ fontWeight: 600, letterSpacing: "0.05em" }}>
+            WS: {statusLabel[status]}
           </span>
-        </div>
+        </span>
 
-        {/* Latency */}
-        <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
-          <span style={{ color: "#222" }}>LAT</span>
-          <span style={{
-            color: status.latency_ms < 50 ? "#00FF88" : status.latency_ms < 150 ? "#FF6600" : "#FF3366",
-            fontVariantNumeric: "tabular-nums",
-            fontWeight: 600,
-          }}>
-            {status.latency_ms}ms
-          </span>
-        </div>
+        <span style={{ color: "#1a1a1a" }}>|</span>
+        <span style={{ color: "#666", fontVariantNumeric: "tabular-nums" }}>
+          <span style={{ color: "#888", fontWeight: 600 }}>{animatedTickers.toLocaleString()}</span> tickers
+        </span>
 
-        {/* Positions count */}
-        <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
-          <span style={{ color: "#222" }}>POS</span>
-          <span style={{ color: "#444", fontVariantNumeric: "tabular-nums" }}>{status.position_count}</span>
-        </div>
+        {signalCount !== undefined && (
+          <>
+            <span style={{ color: "#1a1a1a" }}>|</span>
+            <span style={{ color: "#666", fontVariantNumeric: "tabular-nums" }}>
+              <span style={{ color: "#00BCD4", fontWeight: 600 }}>{animatedSignals}</span> signals
+            </span>
+          </>
+        )}
 
-        {/* Total P&L */}
-        <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
-          <span style={{ color: "#222" }}>P&L</span>
-          <span style={{
-            color: status.total_pnl >= 0 ? "#00FF88" : "#FF3366",
-            fontWeight: 700,
-            fontVariantNumeric: "tabular-nums",
-            textShadow: status.total_pnl >= 0 ? "0 0 6px rgba(0,255,136,0.3)" : "0 0 6px rgba(255,51,102,0.3)",
-          }}>
-            {status.total_pnl >= 0 ? "+" : ""}${status.total_pnl.toFixed(2)}
-          </span>
-        </div>
+        <span style={{ color: "#1a1a1a" }}>|</span>
+        <span style={{ color: "#555" }}>{openTrades} open</span>
+
+        {uptime !== undefined && (
+          <>
+            <span style={{ color: "#1a1a1a" }}>|</span>
+            <span style={{ color: "#444", fontVariantNumeric: "tabular-nums" }}>
+              up {formatUptime(uptime)}
+            </span>
+          </>
+        )}
       </div>
 
-      {/* Center — scrolling market summary */}
-      <div style={{
-        flex: 1,
-        overflow: "hidden",
-        textAlign: "center",
-        color: "#222",
-        whiteSpace: "nowrap",
-        textOverflow: "ellipsis",
-      }}>
-        {status.market_summary ?? "OMI TERMINAL — PREDICTION MARKETS"}
-      </div>
-
-      {/* Right cluster */}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
-        {/* Active markets */}
-        <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
-          <span style={{ color: "#222" }}>MKT</span>
-          <span style={{ color: "#444", fontVariantNumeric: "tabular-nums" }}>{status.active_markets}</span>
-        </div>
-
-        {/* Volume */}
-        <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
-          <span style={{ color: "#222" }}>VOL</span>
-          <span style={{ color: "#444", fontVariantNumeric: "tabular-nums" }}>
-            {status.daily_volume >= 1000000
-              ? `$${(status.daily_volume / 1000000).toFixed(1)}M`
-              : `$${(status.daily_volume / 1000).toFixed(0)}K`}
-          </span>
-        </div>
-
-        {/* Timestamp */}
-        <span style={{ color: "#1f1f1f", fontVariantNumeric: "tabular-nums" }}>
-          {status.timestamp}
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <span style={{ color: "#666", fontVariantNumeric: "tabular-nums", fontWeight: 600 }}>
+          ${balance.toFixed(2)}
+        </span>
+        <span style={{ color: "#1a1a1a" }}>|</span>
+        <span style={{ color: "#FF6600", fontWeight: 700, letterSpacing: "0.08em", fontSize: "7px" }}>
+          OMI v0.3
         </span>
       </div>
     </div>

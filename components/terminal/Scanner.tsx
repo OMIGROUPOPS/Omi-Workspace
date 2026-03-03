@@ -212,7 +212,11 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
 
             // Parse ticker label for display
             const eventTicker = sig.ticker.replace(/-[YN]$/, "");
-            const rawTeam = sig.ticker.split("-").slice(-2, -1)[0] || sig.ticker.slice(-8);
+            const sigParts = sig.ticker.split("-");
+            let rawTeam = sigParts.length >= 3 ? sigParts[sigParts.length - 2] : sigParts[sigParts.length - 1] || sig.ticker.slice(-8);
+            if (/^\d+[A-Z]+\d+/.test(rawTeam) && sigParts.length >= 4) {
+              rawTeam = sigParts[sigParts.length - 3] || rawTeam;
+            }
             const tickerLabel = parseTickerLabel(sig.ticker, rawTeam, eventTicker);
 
             // Alternating row backgrounds

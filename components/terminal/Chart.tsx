@@ -337,7 +337,13 @@ export default function Chart({ ticker }: ChartProps) {
 
   // Parse ticker into human-readable labels
   const eventTicker = ticker.replace(/-[YN]$/, "");
-  const rawTeam = ticker.split("-").slice(-2, -1)[0] || ticker.slice(-8);
+  // Extract team: try second-to-last segment, fallback to last meaningful chunk
+  const parts = ticker.split("-");
+  let rawTeam = parts.length >= 3 ? parts[parts.length - 2] : parts[parts.length - 1] || ticker.slice(-8);
+  // If rawTeam looks like a date (digits+letters), try earlier segments
+  if (/^\d+[A-Z]+\d+/.test(rawTeam) && parts.length >= 4) {
+    rawTeam = parts[parts.length - 3] || rawTeam;
+  }
   const tickerLabel = parseTickerLabel(ticker, rawTeam, eventTicker);
   const eventName = parseEventName(eventTicker);
 

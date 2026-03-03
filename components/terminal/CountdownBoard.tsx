@@ -79,7 +79,12 @@ export default function CountdownBoard({ items = [], onSelect, upcomingMarkets =
 
             // Readable label
             const eventTicker = item.ticker.replace(/-[YN]$/, "");
-            const label = parseTickerLabel(item.ticker, item.info.team, eventTicker);
+            const cdParts = item.ticker.split("-");
+            let cdTeam = cdParts.length >= 3 ? cdParts[cdParts.length - 2] : item.info.team;
+            if (/^\d+[A-Z]+\d+/.test(cdTeam) && cdParts.length >= 4) {
+              cdTeam = cdParts[cdParts.length - 3] || cdTeam;
+            }
+            const label = parseTickerLabel(item.ticker, cdTeam || item.info.team, eventTicker);
 
             // Time bar: 0-300s mapped to width
             const timePct = Math.max(0, Math.min(100, (item.secs_to_close / 300) * 100));

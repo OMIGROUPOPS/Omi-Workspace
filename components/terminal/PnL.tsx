@@ -1,169 +1,214 @@
 "use client";
 
-// OMI Terminal — P&L panel
-// Session P&L, strategy breakdown, activity feed in paper mode.
+// OMI Terminal — P&L Panel (Redesigned)
+// Shows position P&L with Greeks and animated counters.
 
-import type { PnLBreakdown, ScanType, SignalSeverity } from "@/lib/terminal/types";
-
-interface RecentActivityItem {
-  scan_type: ScanType;
-  ticker: string;
-  severity: SignalSeverity;
-  description: string;
-  timestamp: number;
-}
+import { useRef, useEffect, useState } from "react";
+import type { Position, PnLData } from "@/lib/terminal/types";
+import { calcGreeks } from "@/lib/terminal/greeks";
 
 interface PnLProps {
-  totalPnl?: number;
-  breakdowns?: PnLBreakdown[];
-  openTrades?: number;
-  signalCount?: number;
-  categoryCount?: number;
-  recentActivity?: RecentActivityItem[];
+  data?: PnLData;
 }
 
-const STRAT_COLOR: Record<string, string> = {
-  resolution: "#00FF88",
-  momentum_lag: "#FFD600",
-  contradiction_mono: "#c084fc",
-  contradiction_cross: "#c084fc",
-  whale_momentum: "#00BCD4",
-};
+// ── Animated counter ──────────────────────────────────────────────────────
 
-function formatTimestamp(ts: number): string {
-  const d = new Date(ts);
-  return d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
-}
+function AnimatedValue({
+  value,
+  formatter,
+  color,
+  fontSize = "11px",
+  glow = false,
+}: {
+  value: number;
+  formatter: (v: number) => string;
+  color: string;
+  fontSize?: string;
+  glow?: boolean;
+}) {
+  const [display, setDisplay] = useState(value);
+  const [ticking, setTicking] = useState(false);
+  const prev = useRef(value);
 
-export default function PnL({
-  totalPnl = 0,
-  breakdowns = [],
-  openTrades = 0,
-  signalCount,
-  categoryCount,
-  recentActivity = [],
-}: PnLProps) {
-  const pnlColor = totalPnl > 0 ? "#00FF88" : totalPnl < 0 ? "#FF3366" : "#666";
+  useEffect(() => {
+    if (prev.current !== value) {
+      setTicking(true);
+      const start = prev.current;
+      const end = value;
+      const duration = 400;
+      const startTime = performance.now();
+
+      const frame = (now: number) => {
+        const t = Math.min(1, (now - startTime) / duration);
+        const eased = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+        setDisplay(start + (end - start) * eased);
+        if (t < 1) requestAnimationFrame(frame);
+        else {
+          setDisplay(end);
+          setTicking(false);
+          prev.current = end;
+        }
+      };
+      requestAnimationFrame(frame);
+    }
+  }, [value]);
 
   return (
-    <div className="h-full flex flex-col">
-      {/* Total */}
-      <div style={{ marginBottom: "6px" }}>
-        <div style={{ fontSize: "8px", color: "#444", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-          Session P&L
+    <span
+      style={{
+        color,
+        fontSize,
+        fontWeight: 700,
+        fontVariantNumeric: "tabular-nums",
+        animation: ticking ? "terminal-counter-tick 0.3s ease-out" : undefined,
+        textShadow: glow ? `0 0 8px ${color}66` : undefined,
+        display: "inline-block",
+      }}
+    >
+      {formatter(display)}
+    </span>
+  );
+}
+
+// ── Position row ──────────────────────────────────────────────────────────
+
+function PositionRow({ pos }: { pos: Position }) {
+  const hoursToExpiry = (pos.secs_to_expiry ?? 14400) / 3600;
+  const greeks = calcGreeks(pos.price / 100, hoursToExpiry, 0.5);
+
+  const pnlColor = pos.unrealized_pnl >= 0 ? "#00FF88" : "#FF3366";
+  const pnlPct = pos.avg_cost > 0 ? ((pos.price - pos.avg_cost) / pos.avg_cost) * 100 : 0;
+
+  // Severity tiers for position sizing
+  const posSize = Math.abs(pos.contracts * pos.price);
+  const severity =
+    posSize > 500 ? "high" :
+    posSize > 200 ? "med" : "low";
+  const severityColor =
+    severity === "high" ? "#FF3366" :
+    severity === "med" ? "#FF6600" : "#444";
+
+  return (
+    <div
+      style={{
+        padding: "5px 4px",
+        borderBottom: "1px solid #0f0f0f",
+        display: "grid",
+        gridTemplateColumns: "1fr auto",
+        gap: "4px",
+      }}
+    >
+      {/* Left: ticker + Greeks */}
+      <div style={{ minWidth: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "5px", marginBottom: "2px" }}>
+          <span style={{
+            fontSize: "10px",
+            fontWeight: 700,
+            color: "#ddd",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}>
+            {pos.ticker}
+          </span>
+          <span style={{ fontSize: "7px", color: severityColor, fontWeight: 700, letterSpacing: "0.05em" }}>
+            {severity.toUpperCase()}
+          </span>
+          <span style={{ fontSize: "9px", color: "#444", fontVariantNumeric: "tabular-nums" }}>
+            {pos.contracts > 0 ? "+" : ""}{pos.contracts} @ {pos.avg_cost.toFixed(0)}¢
+          </span>
         </div>
-        <div style={{ fontSize: "20px", fontWeight: 700, fontVariantNumeric: "tabular-nums", color: pnlColor, lineHeight: 1.2 }}>
-          {totalPnl >= 0 ? "+" : ""}{(totalPnl / 100).toFixed(2)}
-          <span style={{ fontSize: "10px", color: "#333", marginLeft: "4px" }}>USD</span>
-        </div>
-        <div style={{ fontSize: "8px", color: "#444", marginTop: "1px" }}>
-          {openTrades} open
+        {/* Greeks strip */}
+        <div style={{ display: "flex", gap: "8px", fontSize: "8px" }}>
+          <span style={{ color: "#333" }}>Δ<span style={{ color: "#00BCD4" }}>{greeks.delta.toFixed(2)}</span></span>
+          <span style={{ color: "#333" }}>Θ<span style={{ color: "#00BCD4" }}>{greeks.theta.toFixed(1)}</span></span>
+          <span style={{ color: "#333" }}>IV<span style={{ color: "#00BCD4" }}>{(greeks.iv * 100).toFixed(0)}%</span></span>
+          <span style={{ color: "#333" }}>ν<span style={{ color: "#00BCD4" }}>{greeks.vega.toFixed(2)}</span></span>
         </div>
       </div>
 
-      {/* Strategy breakdown */}
-      <div className="flex-1 overflow-y-auto" style={{ scrollbarWidth: "none" }}>
-        {breakdowns.length === 0 ? (
-          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-            <div style={{ fontSize: "9px", color: "#FF6600", fontWeight: 600, letterSpacing: "0.05em" }}>
-              PAPER MODE
-            </div>
+      {/* Right: P&L */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "2px" }}>
+        <AnimatedValue
+          value={pos.unrealized_pnl}
+          formatter={(v) => `${v >= 0 ? "+" : ""}$${Math.abs(v).toFixed(2)}`}
+          color={pnlColor}
+          fontSize="11px"
+          glow
+        />
+        <span style={{
+          fontSize: "8px",
+          color: pnlPct >= 0 ? "rgba(0,255,136,0.5)" : "rgba(255,51,102,0.5)",
+          fontVariantNumeric: "tabular-nums",
+        }}>
+          {pnlPct >= 0 ? "+" : ""}{pnlPct.toFixed(1)}%
+        </span>
+      </div>
+    </div>
+  );
+}
 
-            {/* Activity log */}
-            {recentActivity.length > 0 ? (
-              <div>
-                <div style={{ fontSize: "7px", color: "#444", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "3px", marginTop: "2px" }}>
-                  Activity Log
-                </div>
-                {recentActivity.map((a, i) => {
-                  const stratColor = STRAT_COLOR[a.scan_type] || "#888";
-                  // Truncate description
-                  const desc = a.description.length > 40 ? a.description.slice(0, 38) + "\u2026" : a.description;
-                  return (
-                    <div
-                      key={`${a.ticker}-${a.timestamp}-${i}`}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "4px",
-                        fontSize: "8px",
-                        padding: "1px 0",
-                        lineHeight: "12px",
-                      }}
-                    >
-                      <span style={{ color: "#333", fontVariantNumeric: "tabular-nums", flexShrink: 0, fontSize: "7px" }} suppressHydrationWarning>
-                        {formatTimestamp(a.timestamp)}
-                      </span>
-                      <span style={{
-                        width: "3px",
-                        height: "3px",
-                        borderRadius: "50%",
-                        background: stratColor,
-                        flexShrink: 0,
-                      }} />
-                      <span style={{
-                        color: "#555",
-                        overflow: "hidden",
-                        whiteSpace: "nowrap",
-                        textOverflow: "ellipsis",
-                        minWidth: 0,
-                      }}>
-                        {desc}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <>
-                <div style={{ fontSize: "8px", color: "#444" }}>Monitoring for opportunities...</div>
-                {signalCount !== undefined && (
-                  <div style={{ fontSize: "8px", color: "#555", marginTop: "4px" }}>
-                    <span style={{ color: "#00BCD4" }}>{signalCount}</span> signals detected
-                  </div>
-                )}
-                {categoryCount !== undefined && (
-                  <div style={{ fontSize: "8px", color: "#555" }}>
-                    <span style={{ color: "#888" }}>{categoryCount}</span> categories active
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-        ) : (
-          breakdowns.map((b) => {
-            const c = b.total_pnl > 0 ? "#00FF88" : b.total_pnl < 0 ? "#FF3366" : "#555";
-            const stratColor = STRAT_COLOR[b.scan_type] || "#888";
-            const label = b.scan_type.replace("_", " ");
+// ── Summary bar ───────────────────────────────────────────────────────────
 
-            return (
-              <div
-                key={b.scan_type}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  fontSize: "9px",
-                  padding: "2px 0",
-                  borderBottom: "1px solid #111",
-                }}
-              >
-                <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                  <span style={{ width: "3px", height: "10px", borderRadius: "1px", background: stratColor, flexShrink: 0 }} />
-                  <span style={{ color: "#777", fontSize: "8px" }}>{label}</span>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                  <span style={{ color: "#444", fontVariantNumeric: "tabular-nums", fontSize: "8px" }}>
-                    {b.trade_count}t {b.winners}W/{b.losers}L
-                  </span>
-                  <span style={{ fontVariantNumeric: "tabular-nums", fontWeight: 600, color: c, minWidth: "36px", textAlign: "right" }}>
-                    {b.total_pnl >= 0 ? "+" : ""}{b.total_pnl}&cent;
-                  </span>
-                </div>
-              </div>
-            );
-          })
-        )}
+function SummaryBar({ data }: { data: PnLData }) {
+  const totalPnl = data.positions.reduce((s, p) => s + p.unrealized_pnl, 0);
+  const totalColor = totalPnl >= 0 ? "#00FF88" : "#FF3366";
+  const winCount = data.positions.filter((p) => p.unrealized_pnl > 0).length;
+  const lossCount = data.positions.filter((p) => p.unrealized_pnl < 0).length;
+
+  return (
+    <div style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "3px 4px",
+      borderBottom: "1px solid #1a1a1a",
+      background: "#080808",
+    }}>
+      <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+        <span style={{ fontSize: "7px", color: "#444", textTransform: "uppercase", letterSpacing: "0.08em" }}>Total P&L</span>
+        <AnimatedValue
+          value={totalPnl}
+          formatter={(v) => `${v >= 0 ? "+" : ""}$${Math.abs(v).toFixed(2)}`}
+          color={totalColor}
+          fontSize="12px"
+          glow
+        />
+      </div>
+      <div style={{ display: "flex", gap: "6px", fontSize: "8px" }}>
+        <span style={{ color: "#00FF88" }}>{winCount}W</span>
+        <span style={{ color: "#333" }}>/</span>
+        <span style={{ color: "#FF3366" }}>{lossCount}L</span>
+      </div>
+    </div>
+  );
+}
+
+// ── Main component ────────────────────────────────────────────────────────
+
+export default function PnL({ data }: PnLProps) {
+  if (!data || data.positions.length === 0) {
+    return (
+      <div style={{
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "#222",
+        fontSize: "9px",
+      }}>
+        No positions
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ height: "100%", display: "flex", flexDirection: "column", overflow: "hidden" }}>
+      <SummaryBar data={data} />
+      <div style={{ flex: 1, overflowY: "auto", minHeight: 0 }}>
+        {data.positions.map((pos) => (
+          <PositionRow key={pos.ticker} pos={pos} />
+        ))}
       </div>
     </div>
   );

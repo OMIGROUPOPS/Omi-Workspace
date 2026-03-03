@@ -1,287 +1,238 @@
 "use client";
 
-// OMI Terminal — Scanner / Signal feed
-// Signal feed with severity borders, fade-in animations, NEW badge, ticker labels.
+// OMI Terminal — Scanner (Redesigned)
+// Signals with severity hierarchy, animated NEW badge, slide-in animation.
 
-import { useState, useEffect, useMemo, useRef } from "react";
-import type { ScanSignal, ScanType } from "@/lib/terminal/types";
-import { parseTickerLabel } from "@/lib/terminal/ticker-labels";
+import { useState } from "react";
+import type { ScannerSignal } from "@/lib/terminal/types";
+import { calcGreeks } from "@/lib/terminal/greeks";
 
 interface ScannerProps {
-  signals?: ScanSignal[];
-  filter?: ScanType | null;
-  onFilterChange?: (f: ScanType | null) => void;
+  signals?: ScannerSignal[];
+  onSelect?: (ticker: string) => void;
 }
 
-// Strategy short labels + colors
-const STRAT_TAG: Record<string, { label: string; color: string; bg: string }> = {
-  resolution:         { label: "RES",  color: "#00FF88", bg: "rgba(0,255,136,0.12)" },
-  momentum_lag:       { label: "MTM",  color: "#FFD600", bg: "rgba(255,214,0,0.12)" },
-  contradiction_mono: { label: "MONO", color: "#c084fc", bg: "rgba(192,132,252,0.12)" },
-  contradiction_cross:{ label: "XCON", color: "#c084fc", bg: "rgba(192,132,252,0.12)" },
-  whale_momentum:     { label: "WHL",  color: "#00BCD4", bg: "rgba(0,188,212,0.12)" },
-};
+// ── Severity tier config ──────────────────────────────────────────────────
 
-const SEV_STYLE: Record<string, { color: string; bg: string; border: string; rowBg: string }> = {
-  HIGH:   { color: "#fff", bg: "#FF3366", border: "#FF3366", rowBg: "rgba(255,51,102,0.04)" },
-  MEDIUM: { color: "#000", bg: "#FF6600", border: "#FF6600", rowBg: "rgba(255,102,0,0.03)" },
-  LOW:    { color: "#000", bg: "#00BCD4", border: "#00BCD4", rowBg: "transparent" },
-};
+const SEVERITY_CONFIG = {
+  CRITICAL: { color: "#FF3366", bg: "rgba(255,51,102,0.08)", border: "rgba(255,51,102,0.2)", glow: "rgba(255,51,102,0.3)", rank: 4 },
+  HIGH:     { color: "#FF6600", bg: "rgba(255,102,0,0.08)",  border: "rgba(255,102,0,0.2)",  glow: "rgba(255,102,0,0.3)",  rank: 3 },
+  MEDIUM:   { color: "#FF6600", bg: "transparent",            border: "transparent",          glow: undefined,             rank: 2 },
+  LOW:      { color: "#444",    bg: "transparent",            border: "transparent",          glow: undefined,             rank: 1 },
+} as const;
 
-function relativeTime(ts: number): string {
-  const secs = Math.max(0, Math.floor((Date.now() - ts) / 1000));
-  if (secs < 60) return `${secs}s`;
-  const mins = Math.floor(secs / 60);
-  if (mins < 60) return `${mins}m`;
-  const hrs = Math.floor(mins / 60);
-  return `${hrs}h`;
+type Severity = keyof typeof SEVERITY_CONFIG;
+
+function getSeverity(signal: ScannerSignal): Severity {
+  // Lambda-based classification
+  if (signal.lambda !== undefined) {
+    if (signal.lambda > 0.02)  return "CRITICAL";
+    if (signal.lambda > 0.012) return "HIGH";
+    if (signal.lambda > 0.006) return "MEDIUM";
+  }
+  // Fallback: use signal type
+  if (signal.type === "SPIKE" || signal.type === "HALT") return "HIGH";
+  if (signal.type === "TREND" || signal.type === "SQUEEZE") return "MEDIUM";
+  return "LOW";
 }
 
-// Format description: split on double-spaces as separators, highlight numbers/units
-function formatDescription(desc: string): React.ReactNode[] {
-  const segments = desc.split(/\s{2,}/);
-  const result: React.ReactNode[] = [];
-  segments.forEach((seg, si) => {
-    if (si > 0) {
-      result.push(
-        <span key={`sep-${si}`} style={{ color: "#333", margin: "0 3px" }}>{"\u00B7"}</span>
-      );
-    }
-    const parts = seg.split(/(\d+\.?\d*(?:c|¢|ct|s|%|L)?|@\d+\.?\d*s?)/g);
-    parts.forEach((part, pi) => {
-      if (/^\d+\.?\d*(?:c|¢|ct|s|%|L)?$/.test(part) || /^@\d+/.test(part)) {
-        result.push(<span key={`${si}-${pi}`} style={{ color: "#ddd", fontWeight: 600 }}>{part}</span>);
-      } else {
-        result.push(<span key={`${si}-${pi}`}>{part}</span>);
-      }
-    });
-  });
-  return result;
-}
+// ── Signal row ────────────────────────────────────────────────────────────
 
-export default function Scanner({ signals = [], filter, onFilterChange }: ScannerProps) {
-  // Re-render every 5s to update relative times
-  const [, setTick] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setTick((t) => t + 1), 5000);
-    return () => clearInterval(id);
-  }, []);
+function SignalRow({
+  signal,
+  onSelect,
+  isNew,
+}: {
+  signal: ScannerSignal;
+  onSelect?: (ticker: string) => void;
+  isNew: boolean;
+}) {
+  const severity = getSeverity(signal);
+  const cfg = SEVERITY_CONFIG[severity];
+  const greeks = calcGreeks(signal.price / 100, 4, signal.lambda ?? 0.5);
 
-  // Track seen signal keys for fade-in animation
-  const seenKeysRef = useRef<Set<string>>(new Set());
-
-  // Deduplicate: same ticker + same strategy within 30s → keep latest
-  const deduped = useMemo(() => {
-    const seen = new Map<string, ScanSignal>();
-    for (const sig of signals) {
-      const key = `${sig.ticker}:${sig.scan_type}`;
-      const existing = seen.get(key);
-      if (!existing) {
-        seen.set(key, sig);
-      } else {
-        const gap = Math.abs((sig.timestamp || 0) - (existing.timestamp || 0));
-        if (gap < 30000) {
-          if ((sig.timestamp || 0) > (existing.timestamp || 0)) {
-            seen.set(key, sig);
-          }
-        }
-      }
-    }
-    return Array.from(seen.values());
-  }, [signals]);
-
-  const filtered = filter ? deduped.filter((s) => s.scan_type === filter) : deduped;
-
-  // Determine which signals are new (not previously seen)
-  const newSignalKeys = useMemo(() => {
-    const newKeys = new Set<string>();
-    for (const sig of filtered) {
-      const key = `${sig.ticker}:${sig.timestamp}`;
-      if (!seenKeysRef.current.has(key)) {
-        newKeys.add(key);
-      }
-    }
-    // Update seen set after determining new ones
-    for (const sig of filtered) {
-      seenKeysRef.current.add(`${sig.ticker}:${sig.timestamp}`);
-    }
-    // Cap seen set size
-    if (seenKeysRef.current.size > 500) {
-      const arr = Array.from(seenKeysRef.current);
-      seenKeysRef.current = new Set(arr.slice(-300));
-    }
-    return newKeys;
-  }, [filtered]);
-
-  const filterButtons: { type: ScanType | null; label: string }[] = [
-    { type: null, label: "ALL" },
-    { type: "resolution", label: "RES" },
-    { type: "momentum_lag", label: "MTM" },
-    { type: "contradiction_mono", label: "MONO" },
-    { type: "whale_momentum", label: "WHL" },
-  ];
+  const typeColors: Record<string, string> = {
+    SPIKE: "#FF6600", TREND: "#00BCD4", SQUEEZE: "#FF3366",
+    HALT: "#FF3366", RESUME: "#00FF88", NEWS: "#FFD700",
+  };
+  const typeColor = typeColors[signal.type] ?? "#555";
 
   return (
-    <div className="h-full flex flex-col">
+    <div
+      onClick={() => onSelect?.(signal.ticker)}
+      style={{
+        padding: "5px 4px",
+        borderBottom: "1px solid #0f0f0f",
+        background: cfg.bg,
+        border: cfg.border !== "transparent" ? `1px solid ${cfg.border}` : undefined,
+        borderRadius: cfg.border !== "transparent" ? "2px" : undefined,
+        marginBottom: cfg.border !== "transparent" ? "1px" : undefined,
+        cursor: "pointer",
+        animation: isNew ? "terminal-signal-in 0.6s ease-out" : undefined,
+        display: "grid",
+        gridTemplateColumns: "1fr auto",
+        gap: "4px",
+      }}
+    >
+      {/* Left */}
+      <div style={{ minWidth: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "5px", marginBottom: "2px" }}>
+          {/* Severity dot */}
+          <div style={{
+            width: "5px", height: "5px",
+            borderRadius: "50%",
+            background: cfg.color,
+            flexShrink: 0,
+            boxShadow: cfg.glow ? `0 0 4px ${cfg.glow}` : undefined,
+          }} />
+          <span style={{
+            color: "#ccc",
+            fontSize: "10px",
+            fontWeight: 700,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            textShadow: cfg.glow ? `0 0 8px ${cfg.glow}` : undefined,
+          }}>
+            {signal.ticker}
+          </span>
+          {/* Type badge */}
+          <span style={{
+            fontSize: "7px",
+            padding: "1px 4px",
+            borderRadius: "2px",
+            background: `${typeColor}18`,
+            color: typeColor,
+            fontWeight: 700,
+            letterSpacing: "0.06em",
+            flexShrink: 0,
+          }}>
+            {signal.type}
+          </span>
+          {/* NEW badge */}
+          {isNew && (
+            <span style={{
+              fontSize: "6px",
+              padding: "1px 3px",
+              borderRadius: "2px",
+              background: "rgba(0,255,136,0.15)",
+              color: "#00FF88",
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              animation: "terminal-new-badge 3s ease-out forwards",
+            }}>
+              NEW
+            </span>
+          )}
+        </div>
+        {/* Greeks strip */}
+        <div style={{ display: "flex", gap: "8px", fontSize: "8px" }}>
+          <span style={{ color: "#333" }}>Δ<span style={{ color: "#555" }}>{greeks.delta.toFixed(2)}</span></span>
+          <span style={{ color: "#333" }}>Θ<span style={{ color: "#555" }}>{greeks.theta.toFixed(1)}</span></span>
+          <span style={{ color: "#333" }}>λ<span style={{
+            color: signal.lambda !== undefined
+              ? (signal.lambda > 0.012 ? cfg.color : "#555")
+              : "#555"
+          }}>{signal.lambda !== undefined ? signal.lambda.toFixed(4) : "—"}</span></span>
+        </div>
+      </div>
+
+      {/* Right */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "3px" }}>
+        <span style={{
+          fontSize: "11px",
+          fontWeight: 700,
+          color: signal.price >= 50 ? "#00FF88" : "#FF3366",
+          fontVariantNumeric: "tabular-nums",
+          textShadow: signal.price >= 50 ? "0 0 6px rgba(0,255,136,0.25)" : "0 0 6px rgba(255,51,102,0.25)",
+        }}>
+          {signal.price.toFixed(0)}¢
+        </span>
+        <span style={{ fontSize: "8px", color: cfg.color, fontWeight: 700, letterSpacing: "0.04em" }}>
+          {severity}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+// ── Main component ────────────────────────────────────────────────────────
+
+export default function Scanner({ signals = [], onSelect }: ScannerProps) {
+  const [filter, setFilter] = useState<Severity | "ALL">("ALL");
+
+  // Sort by severity rank desc, then by price distance from 50
+  const sorted = [...signals]
+    .map((s) => ({ ...s, _sev: getSeverity(s) }))
+    .sort((a, b) => {
+      const rankDiff = SEVERITY_CONFIG[b._sev].rank - SEVERITY_CONFIG[a._sev].rank;
+      if (rankDiff !== 0) return rankDiff;
+      return Math.abs(b.price - 50) - Math.abs(a.price - 50);
+    });
+
+  const filtered = filter === "ALL" ? sorted : sorted.filter((s) => s._sev === filter);
+
+  // Track "new" signals (first 2 of each severity)
+  const newSet = new Set(sorted.slice(0, 3).map((s) => s.ticker));
+
+  const counts = {
+    CRITICAL: sorted.filter((s) => s._sev === "CRITICAL").length,
+    HIGH:     sorted.filter((s) => s._sev === "HIGH").length,
+    MEDIUM:   sorted.filter((s) => s._sev === "MEDIUM").length,
+    LOW:      sorted.filter((s) => s._sev === "LOW").length,
+  };
+
+  return (
+    <div style={{ height: "100%", display: "flex", flexDirection: "column", overflow: "hidden" }}>
       {/* Filter bar */}
-      <div style={{ display: "flex", gap: "3px", marginBottom: "4px", flexWrap: "wrap" }}>
-        {filterButtons.map(({ type, label }) => {
-          const active = filter === type;
-          const strat = type ? STRAT_TAG[type] : null;
+      <div style={{
+        display: "flex",
+        gap: "2px",
+        padding: "3px 2px",
+        borderBottom: "1px solid #1a1a1a",
+        flexShrink: 0,
+      }}>
+        {(["ALL", "CRITICAL", "HIGH", "MEDIUM", "LOW"] as const).map((tier) => {
+          const isActive = filter === tier;
+          const cfg = tier !== "ALL" ? SEVERITY_CONFIG[tier] : null;
+          const count = tier === "ALL" ? sorted.length : counts[tier];
           return (
             <button
-              key={label}
-              onClick={() => onFilterChange?.(type)}
+              key={tier}
+              onClick={() => setFilter(tier)}
               style={{
-                fontSize: "8px",
-                padding: "1px 6px",
+                fontSize: "7px",
+                padding: "2px 5px",
                 borderRadius: "2px",
-                border: "none",
+                border: `1px solid ${isActive ? (cfg?.color ?? "#FF6600") : "#1a1a1a"}`,
+                background: isActive ? `${cfg?.color ?? "#FF6600"}18` : "transparent",
+                color: isActive ? (cfg?.color ?? "#FF6600") : "#333",
                 cursor: "pointer",
-                fontWeight: 600,
+                fontWeight: 700,
                 letterSpacing: "0.05em",
-                background: active
-                  ? type === null ? "#FF6600" : strat?.bg || "#333"
-                  : "#111",
-                color: active
-                  ? type === null ? "#000" : strat?.color || "#fff"
-                  : "#555",
               }}
             >
-              {label}
+              {tier} {count > 0 && <span style={{ opacity: 0.7 }}>{count}</span>}
             </button>
           );
         })}
-        <span style={{ marginLeft: "auto", fontSize: "8px", color: "#333", alignSelf: "center" }}>
-          {filtered.length}
-        </span>
       </div>
 
       {/* Signal list */}
-      <div
-        className="flex-1 overflow-y-auto"
-        style={{ scrollbarWidth: "none" }}
-      >
+      <div style={{ flex: 1, overflowY: "auto", minHeight: 0 }}>
         {filtered.length === 0 ? (
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "#333", fontSize: "9px" }}>
-            Scanning...
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "#222", fontSize: "9px" }}>
+            No signals
           </div>
         ) : (
-          filtered.map((sig, i) => {
-            const sev = SEV_STYLE[sig.severity] || SEV_STYLE.LOW;
-            const strat = STRAT_TAG[sig.scan_type] || { label: "SIG", color: "#888", bg: "rgba(136,136,136,0.12)" };
-            const sigKey = `${sig.ticker}:${sig.timestamp}`;
-            const isNew = newSignalKeys.has(sigKey);
-            const isFirst = i === 0;
-            const isRecentFirst = isFirst && sig.timestamp && (Date.now() - sig.timestamp) < 10000;
-
-            // Parse ticker label for display
-            const eventTicker = sig.ticker.replace(/-[YN]$/, "");
-            const rawTeam = sig.ticker.split("-").slice(-2, -1)[0] || sig.ticker.slice(-8);
-            const tickerLabel = parseTickerLabel(sig.ticker, rawTeam, eventTicker);
-
-            return (
-              <div
-                key={`${sig.ticker}-${sig.timestamp}-${i}`}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "4px",
-                  padding: "3px 4px",
-                  background: sev.rowBg !== "transparent" ? sev.rowBg : (i % 2 === 0 ? "#0d0d0d" : "#101010"),
-                  cursor: "pointer",
-                  borderLeft: `2px solid ${sev.border}`,
-                  transition: "background 0.08s",
-                  animation: isNew ? "terminal-signal-in 1s ease-out" : "none",
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "#161616"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = sev.rowBg !== "transparent" ? sev.rowBg : (i % 2 === 0 ? "#0d0d0d" : "#101010"); }}
-              >
-                {/* Severity pill */}
-                <span
-                  style={{
-                    fontSize: "7px",
-                    fontWeight: 700,
-                    padding: "1px 4px",
-                    borderRadius: "2px",
-                    background: sev.bg,
-                    color: sev.color,
-                    lineHeight: "12px",
-                    letterSpacing: "0.03em",
-                    flexShrink: 0,
-                  }}
-                >
-                  {sig.severity.charAt(0)}
-                </span>
-
-                {/* Strategy tag */}
-                <span
-                  style={{
-                    fontSize: "7px",
-                    fontWeight: 600,
-                    padding: "1px 4px",
-                    borderRadius: "2px",
-                    background: strat.bg,
-                    color: strat.color,
-                    lineHeight: "12px",
-                    letterSpacing: "0.05em",
-                    flexShrink: 0,
-                  }}
-                >
-                  {strat.label}
-                </span>
-
-                {/* NEW badge — first signal if arrived within 10s */}
-                {isRecentFirst && (
-                  <span
-                    style={{
-                      fontSize: "6px",
-                      fontWeight: 700,
-                      padding: "0 3px",
-                      borderRadius: "2px",
-                      background: "rgba(0,255,136,0.2)",
-                      color: "#00FF88",
-                      lineHeight: "11px",
-                      letterSpacing: "0.05em",
-                      flexShrink: 0,
-                      animation: "terminal-new-badge 10s forwards",
-                    }}
-                  >
-                    NEW
-                  </span>
-                )}
-
-                {/* Ticker label + Description */}
-                <span
-                  style={{
-                    fontSize: "9px",
-                    color: "#666",
-                    flex: 1,
-                    overflow: "hidden",
-                    whiteSpace: "nowrap",
-                    textOverflow: "ellipsis",
-                    minWidth: 0,
-                  }}
-                >
-                  <span style={{ color: "#aaa", fontWeight: 500 }}>{tickerLabel}</span>
-                  <span style={{ color: "#333", margin: "0 3px" }}>{"\u00B7"}</span>
-                  {formatDescription(sig.description)}
-                </span>
-
-                {/* Depth */}
-                <span style={{ fontSize: "8px", color: "#444", fontVariantNumeric: "tabular-nums", flexShrink: 0 }}>
-                  {sig.depth}
-                </span>
-
-                {/* Timestamp */}
-                {sig.timestamp && (
-                  <span style={{ fontSize: "8px", color: "#333", fontVariantNumeric: "tabular-nums", flexShrink: 0, minWidth: "18px", textAlign: "right" }}>
-                    {relativeTime(sig.timestamp)}
-                  </span>
-                )}
-              </div>
-            );
-          })
+          filtered.map((signal) => (
+            <SignalRow
+              key={signal.ticker}
+              signal={signal}
+              onSelect={onSelect}
+              isNew={newSet.has(signal.ticker)}
+            />
+          ))
         )}
       </div>
     </div>

@@ -79,3 +79,10 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* ── Terminal animations ──────────────────────────────────── */
+@keyframes terminal-pulse { 0%,100% { opacity:1 } 50% { opacity:0.3 } }
+@keyframes terminal-flash-green { 0% { background:rgba(0,255,136,0.25) } 100% { background:transparent } }
+@keyframes terminal-flash-red { 0% { background:rgba(255,51,102,0.25) } 100% { background:transparent } }
+@keyframes terminal-signal-in { 0% { opacity:0; background:rgba(0,255,136,0.2); transform:translateY(-4px) } 60% { opacity:1; background:rgba(0,255,136,0.08) } 100% { opacity:1; background:transparent } }
+@keyframes terminal-new-badge { 0%,70% { opacity:1 } 100% { opacity:0 } }

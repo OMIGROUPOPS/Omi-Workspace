@@ -1,15 +1,26 @@
 "use client";
 
-// OMNI Terminal — Status bar
-// Shows WS connection status, balances, system info at bottom of terminal.
+// OMI Terminal — Status bar
+// Dense single-line status with animated counters and pulse dot.
 
 import type { ConnectionStatus } from "@/lib/terminal/types";
+import { useAnimatedNumber } from "@/lib/terminal/hooks";
 
 interface StatusBarProps {
   status: ConnectionStatus;
   balance?: number;
   openTrades?: number;
   tickerCount?: number;
+  signalCount?: number;
+  uptime?: number;
+}
+
+function formatUptime(secs: number): string {
+  if (secs < 60) return `${secs}s`;
+  if (secs < 3600) return `${Math.floor(secs / 60)}m`;
+  const h = Math.floor(secs / 3600);
+  const m = Math.floor((secs % 3600) / 60);
+  return `${h}h${m.toString().padStart(2, "0")}m`;
 }
 
 export default function StatusBar({
@@ -17,36 +28,94 @@ export default function StatusBar({
   balance = 460,
   openTrades = 0,
   tickerCount = 0,
+  signalCount,
+  uptime,
 }: StatusBarProps) {
-  const statusColor: Record<ConnectionStatus, string> = {
-    connected: "text-emerald-400",
-    connecting: "text-amber-400",
-    disconnected: "text-zinc-500",
-    error: "text-red-400",
+  const animatedTickers = useAnimatedNumber(tickerCount, 500);
+  const animatedSignals = useAnimatedNumber(signalCount ?? 0, 500);
+
+  const dotColor: Record<ConnectionStatus, string> = {
+    connected: "#00FF88",
+    connecting: "#FFD600",
+    disconnected: "#666",
+    error: "#FF3366",
   };
 
   const statusLabel: Record<ConnectionStatus, string> = {
     connected: "CONNECTED",
-    connecting: "CONNECTING...",
-    disconnected: "DISCONNECTED",
+    connecting: "CONNECTING",
+    disconnected: "OFFLINE",
     error: "ERROR",
   };
 
   return (
-    <div className="flex items-center justify-between px-4 h-6 bg-[#111111] border-t border-[#222] text-[10px] shrink-0">
-      <div className="flex items-center gap-4">
-        <span className={statusColor[status]}>
-          {status === "connected" ? "●" : "○"} WS: {statusLabel[status]}
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "0 12px",
+        height: "20px",
+        background: "#0a0a0a",
+        borderTop: "1px solid #222",
+        fontSize: "8px",
+        flexShrink: 0,
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        {/* Connection status */}
+        <span style={{ display: "flex", alignItems: "center", gap: "4px", color: dotColor[status] }}>
+          <span
+            style={{
+              width: "5px",
+              height: "5px",
+              borderRadius: "50%",
+              background: dotColor[status],
+              boxShadow: status === "connected" ? `0 0 4px ${dotColor[status]}` : "none",
+              animation:
+                status === "connected"
+                  ? "terminal-pulse 2s ease-in-out infinite"
+                  : status === "connecting"
+                    ? "terminal-pulse 0.8s ease-in-out infinite"
+                    : "none",
+            }}
+          />
+          WS: {statusLabel[status]}
         </span>
-        <span className="text-zinc-600">|</span>
-        <span className="text-zinc-500">Tickers: {tickerCount.toLocaleString()}</span>
-        <span className="text-zinc-600">|</span>
-        <span className="text-zinc-500">Open: {openTrades}</span>
+
+        <span style={{ color: "#222" }}>|</span>
+        <span style={{ color: "#555", fontVariantNumeric: "tabular-nums" }}>
+          {animatedTickers.toLocaleString()} tickers
+        </span>
+
+        {signalCount !== undefined && (
+          <>
+            <span style={{ color: "#222" }}>|</span>
+            <span style={{ color: "#555", fontVariantNumeric: "tabular-nums" }}>
+              {animatedSignals} signals
+            </span>
+          </>
+        )}
+
+        <span style={{ color: "#222" }}>|</span>
+        <span style={{ color: "#555" }}>{openTrades} open</span>
+
+        {uptime !== undefined && (
+          <>
+            <span style={{ color: "#222" }}>|</span>
+            <span style={{ color: "#444", fontVariantNumeric: "tabular-nums" }}>
+              up {formatUptime(uptime)}
+            </span>
+          </>
+        )}
       </div>
-      <div className="flex items-center gap-4">
-        <span className="text-zinc-500">Balance: ${balance.toFixed(2)}</span>
-        <span className="text-zinc-600">|</span>
-        <span className="text-zinc-600">OMNI Terminal v0.1.0</span>
+
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <span style={{ color: "#555", fontVariantNumeric: "tabular-nums" }}>
+          ${balance.toFixed(2)}
+        </span>
+        <span style={{ color: "#222" }}>|</span>
+        <span style={{ color: "#333" }}>OMI v0.3</span>
       </div>
     </div>
   );

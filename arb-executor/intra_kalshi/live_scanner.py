@@ -468,6 +468,10 @@ class LiveScanner:
         # Edge history per strategy for empirical Kelly adjustment
         self._edge_history: Dict[str, deque] = {}  # scan_type → deque[edge_cents]
 
+        # Recent signals for API exposure
+        self._recent_signals: deque = deque(maxlen=100)
+        self._signal_count_by_type: Dict[str, int] = defaultdict(int)
+
         # (signal dedup removed — only open-trade check in open_paper_trade)
 
     # ------------------------------------------------------------------
@@ -992,6 +996,7 @@ class LiveScanner:
             lam_tag = f" λ={lam:.5f}" if lam is not None else ""
             conv_tag = f" ct={conv:.0f}s" if conv is not None else ""
             print(f"[ALERT] [{sig.severity}] whale_momentum: {sig.description}{lam_tag}{conv_tag}")
+            self._store_signal(sig, is_alert=True)
 
     def _logit_move(self, ticker: str, window_seconds: float, min_entries: int = 5):
         """Returns (logit_delta, cents_delta) or (None, None)."""
@@ -1455,6 +1460,34 @@ class LiveScanner:
         return signals
 
     # ------------------------------------------------------------------
+    # Signal storage for API
+    # ------------------------------------------------------------------
+
+    def _store_signal(self, sig: "ScanSignal", is_alert: bool = True):
+        """Store signal in _recent_signals deque for API exposure."""
+        info = self.market_info.get(sig.ticker)
+        self._recent_signals.append({
+            "timestamp": time.time(),
+            "scan_type": sig.scan_type,
+            "severity": sig.severity,
+            "ticker": sig.ticker,
+            "game_id": sig.game_id,
+            "description": sig.description,
+            "entry_side": sig.entry_side,
+            "entry_price": sig.entry_price,
+            "target": sig.target,
+            "stop": sig.stop,
+            "depth": sig.depth,
+            "bridge_confidence": sig.bridge_confidence,
+            "sigma_estimate": sig.sigma_estimate,
+            "time_remaining": sig.time_remaining,
+            "optimal_size": sig.optimal_size,
+            "is_alert": is_alert,
+            "category": info.category if info else "",
+        })
+        self._signal_count_by_type[sig.scan_type] += 1
+
+    # ------------------------------------------------------------------
     # Signal dispatch + dedup
     # ------------------------------------------------------------------
 
@@ -1478,6 +1511,8 @@ class LiveScanner:
             info = self.market_info.get(sig.ticker)
             if info and info.category in self._category_stats:
                 self._category_stats[info.category]["signals"] += 1
+            # Store in recent signals for API
+            self._store_signal(sig, is_alert=True)
             # Log as ALERT — visible in terminal but no paper trade
             lam = self._get_kyle_lambda(sig.ticker)
             conv, r_est = self._get_conv_time(sig.ticker)
@@ -1492,6 +1527,8 @@ class LiveScanner:
             info = self.market_info.get(sig.ticker)
             if info and info.category in self._category_stats:
                 self._category_stats[info.category]["signals"] += 1
+            # Store in recent signals for API
+            self._store_signal(sig, is_alert=False)
             print(f"[SIGNAL] [{sig.severity}] {sig.scan_type}: {sig.description}")
             self.open_paper_trade(sig)
 
@@ -2086,6 +2123,10 @@ class LiveScanner:
         """Main entry point."""
         self._load_credentials()
 
+        # Register scanner ref for API
+        from .scanner_api import set_scanner, api_app
+        set_scanner(self)
+
         async with aiohttp.ClientSession() as session:
             # Initial discovery
             await self.discover_events(session)
@@ -2101,6 +2142,14 @@ class LiveScanner:
             # Initial stats
             self.dump_stats()
 
+            # Start API server as additional async task
+            import uvicorn
+            api_config = uvicorn.Config(
+                api_app, host="0.0.0.0", port=8080, log_level="warning"
+            )
+            api_server = uvicorn.Server(api_config)
+            print("[API] Starting scanner API on :8080")
+
             # Run concurrent tasks
             try:
                 await asyncio.gather(
@@ -2108,6 +2157,7 @@ class LiveScanner:
                     self.stats_loop(),
                     self.paper_trade_monitor(),
                     self.rediscovery_loop(session),
+                    api_server.serve(),
                 )
             except asyncio.CancelledError:
                 print("[SCAN] Shutting down...")

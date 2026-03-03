@@ -168,3 +168,73 @@ export interface PnLBreakdown {
   avg_hold_time: number;
   avg_edge: number;
 }
+
+export interface CategoryTicker {
+  ticker: string;
+  team: string;
+  event_ticker: string;
+  market_type: string;
+  category: string;
+  best_bid: number | null;
+  best_ask: number | null;
+  mid: number | null;
+  spread: number;
+  bid_size: number;
+  ask_size: number;
+  kyle_lambda: number | null;
+  vpin: number | null;
+  move_30s: number | null;
+}
+
+export interface CategoryData {
+  category: string;
+  active_tickers: number;
+  active_events: number;
+  signals_count: number;
+  last_signal_time: number | null;
+  top_tickers: CategoryTicker[];
+}
+
+export interface ScannerStatusData {
+  uptime: number;
+  pid: number;
+  memory_mb: number;
+  tickers_count: number;
+  events_count: number;
+  ws_messages: number;
+  ws_reconnects: number;
+  ws_connected: boolean;
+  bbo_updates: number;
+  scan_signals: number;
+  open_trades: number;
+  closed_trades: number;
+  total_pnl: number;
+  winners: number;
+  losers: number;
+  whale_fills: number;
+  strategy_stats: Record<string, { signals: number; trades: number }>;
+}
+
+export interface TradesResponse {
+  open: PaperTrade[];
+  closed_recent: PaperTrade[];
+  summary: {
+    total_pnl: number;
+    open_count: number;
+    closed_count: number;
+    winners: number;
+    losers: number;
+    by_strategy: Record<
+      string,
+      {
+        scan_type: string;
+        total_pnl: number;
+        trade_count: number;
+        winners: number;
+        losers: number;
+        avg_hold_time: number;
+        avg_edge: number;
+      }
+    >;
+  };
+}

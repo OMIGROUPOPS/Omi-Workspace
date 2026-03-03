@@ -435,14 +435,16 @@ export default function Chart({ ticker }: ChartProps) {
             onClick={() => setShowBoll((v) => !v)}
             style={{
               fontSize: "9px", padding: "3px 8px", borderRadius: "3px",
-              border: `1px solid ${showBoll ? "#FF6600" : "#2a2a2a"}`,
-              background: showBoll ? "rgba(255,102,0,0.12)" : "transparent",
-              color: showBoll ? "#FF6600" : "#555", cursor: "pointer",
+              border: `1px solid ${showBoll ? "#00BCD4" : "#2a2a2a"}`,
+              background: showBoll ? "rgba(0,188,212,0.15)" : "transparent",
+              color: showBoll ? "#00BCD4" : "#555", cursor: "pointer",
               fontWeight: 600, letterSpacing: "0.05em",
               transition: "all 0.15s",
+              minWidth: "42px",
+              textAlign: "center" as const,
             }}
           >
-            BOLL
+            {showBoll ? "LINE" : "OHLC"}
           </button>
           {timeframes.map((tf) => (
             <button
@@ -492,17 +494,31 @@ export default function Chart({ ticker }: ChartProps) {
             />
             <Tooltip content={<PriceTooltip />} cursor={{ stroke: "#333", strokeDasharray: "3 3" }} />
 
-            {showBoll && (
+            {showBoll ? (
               <>
+                {/* ── BOLL mode: Bloomberg-style multi-line chart ── */}
+                {/* Bollinger band fill */}
                 <Area dataKey="bollBase" stackId="boll" fill="transparent" stroke="transparent" type="monotone" isAnimationActive={false} tooltipType="none" />
                 <Area dataKey="bollWidth" stackId="boll" fill="rgba(255,102,0,0.06)" stroke="transparent" type="monotone" isAnimationActive={false} tooltipType="none" />
-                <Line dataKey="bollUpper" stroke="rgba(255,102,0,0.35)" dot={false} strokeWidth={1} type="monotone" isAnimationActive={false} tooltipType="none" />
-                <Line dataKey="bollLower" stroke="rgba(255,102,0,0.35)" dot={false} strokeWidth={1} type="monotone" isAnimationActive={false} tooltipType="none" />
-                <Line dataKey="sma" stroke="rgba(255,102,0,0.18)" dot={false} strokeDasharray="3 3" strokeWidth={1} type="monotone" isAnimationActive={false} tooltipType="none" />
+                {/* Bollinger upper & lower bands */}
+                <Line dataKey="bollUpper" stroke="rgba(255,102,0,0.5)" dot={false} strokeWidth={1} type="monotone" isAnimationActive={false} tooltipType="none" />
+                <Line dataKey="bollLower" stroke="rgba(255,102,0,0.5)" dot={false} strokeWidth={1} type="monotone" isAnimationActive={false} tooltipType="none" />
+                {/* SMA midline */}
+                <Line dataKey="sma" stroke="#FFD600" dot={false} strokeWidth={1.5} type="monotone" isAnimationActive={false} tooltipType="none" />
+                {/* Close price — primary line */}
+                <Line dataKey="c" stroke="#FFFFFF" dot={false} strokeWidth={2} type="monotone" isAnimationActive={false} />
+                {/* High line — subtle */}
+                <Line dataKey="h" stroke="rgba(0,255,136,0.3)" dot={false} strokeWidth={0.8} type="monotone" isAnimationActive={false} tooltipType="none" />
+                {/* Low line — subtle */}
+                <Line dataKey="l" stroke="rgba(255,51,102,0.3)" dot={false} strokeWidth={0.8} type="monotone" isAnimationActive={false} tooltipType="none" />
+              </>
+            ) : (
+              <>
+                {/* ── Candlestick mode ── */}
+                <Bar dataKey="candleRange" shape={<CandleShape />} isAnimationActive={false} />
               </>
             )}
 
-            <Bar dataKey="candleRange" shape={<CandleShape />} isAnimationActive={false} />
             {latest && <ReferenceLine y={latest.c} stroke="#FF6600" strokeDasharray="5 4" strokeWidth={1} />}
           </ComposedChart>
         </ResponsiveContainer>

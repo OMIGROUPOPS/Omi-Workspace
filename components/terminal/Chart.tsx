@@ -36,6 +36,7 @@ interface OHLCV {
   lambda: number;
   vpin: number;
   convTime: number;
+  time: number; // epoch ms
 }
 
 // ── Deterministic PRNG ────────────────────────────────────────
@@ -56,9 +57,19 @@ class Rng {
   }
 }
 
+// ── Timeframe config ──────────────────────────────────────────
+
+const TF_CONFIG: Record<string, { bars: number; intervalMs: number; volScale: number }> = {
+  "1m":  { bars: 120, intervalMs: 60_000,      volScale: 0.5 },
+  "5m":  { bars: 60,  intervalMs: 300_000,     volScale: 0.9 },
+  "15m": { bars: 40,  intervalMs: 900_000,     volScale: 1.4 },
+  "1h":  { bars: 24,  intervalMs: 3_600_000,   volScale: 2.2 },
+};
+
 // ── Data generation ───────────────────────────────────────────
 
-function generateOHLCV(ticker: string): OHLCV[] {
+function generateOHLCV(ticker: string, timeframe: string): OHLCV[] {
+  const tf = TF_CONFIG[timeframe] || TF_CONFIG["1m"];
   let seed = 0;
   for (let i = 0; i < ticker.length; i++) seed += ticker.charCodeAt(i);
   const rng = new Rng(seed * 31337);
@@ -68,13 +79,17 @@ function generateOHLCV(ticker: string): OHLCV[] {
   let lambda = 0.007;
   let vpin = 0.12;
 
-  for (let i = 0; i < 120; i++) {
+  // Compute bar timestamps backwards from "now"
+  const now = Date.now();
+
+  for (let i = 0; i < tf.bars; i++) {
+    const barTime = now - (tf.bars - 1 - i) * tf.intervalMs;
     const o = price;
     const dist50 = price - 50;
     const drift = -dist50 * 0.003;
     const p01 = Math.max(0.02, Math.min(0.98, price / 100));
     const boundaryVol = 1 / (4 * p01 * (1 - p01));
-    const vol = (0.3 + rng.next() * 0.8) * Math.sqrt(boundaryVol) * 0.5;
+    const vol = (0.3 + rng.next() * 0.8) * Math.sqrt(boundaryVol) * tf.volScale;
     const change = drift + rng.normal() * vol;
     const c = Math.max(1, Math.min(99, o + change));
     const wickUp = rng.next() * vol * 0.8;
@@ -100,6 +115,7 @@ function generateOHLCV(ticker: string): OHLCV[] {
       lambda: Math.round(lambda * 100000) / 100000,
       vpin: Math.round(vpin * 1000) / 1000,
       convTime: Math.round(convTime),
+      time: barTime,
     });
     price = c;
   }
@@ -168,7 +184,7 @@ const PriceTooltip = ({ active, payload }: any) => {
         <span style={{ color: "#888", marginLeft: "6px" }}>L:</span><span style={{ color: "#ddd", fontWeight: 600 }}>{d.l.toFixed(1)}</span>
         <span style={{ color: "#888", marginLeft: "6px" }}>C:</span><span style={{ color: "#ddd", fontWeight: 700 }}>{d.c.toFixed(1)}</span>
       </div>
-      <div style={{ color: "#00BCD4" }}>{"\u03BB"}: {d.lambda.toFixed(5)}</div>
+      <div style={{ color: "#00BCD4" }}>{"λ"}: {d.lambda.toFixed(5)}</div>
       <div style={{ color: d.vpin < 0.15 ? "#00FF88" : d.vpin < 0.3 ? "#FF6600" : "#FF3366" }}>VPIN: {d.vpin.toFixed(3)}</div>
     </div>
   );
@@ -181,28 +197,28 @@ function GreeksPanel({ price, sigma }: { price: number; sigma: number }) {
 
   const cards = [
     {
-      label: "\u0394 Delta",
+      label: "Δ Delta",
       value: greeks.delta.toFixed(3),
       color: "#00BCD4",
       bar: greeks.delta,
       barColor: "#00BCD4",
     },
     {
-      label: "\u0398 Theta",
+      label: "Θ Theta",
       value: `${greeks.theta >= 0 ? "+" : ""}${greeks.theta.toFixed(1)}\u00A2/hr`,
       color: greeks.theta < 0 ? "#FF3366" : "#00FF88",
       bar: Math.min(1, Math.abs(greeks.theta) / 10),
       barColor: greeks.theta < 0 ? "#FF3366" : "#00FF88",
     },
     {
-      label: "\u0393 Gamma",
+      label: "Γ Gamma",
       value: greeks.gamma.toFixed(3),
       color: "#c084fc",
       bar: Math.min(1, greeks.gamma),
       barColor: "#c084fc",
     },
     {
-      label: "\u03BD Vega",
+      label: "ν Vega",
       value: greeks.vega.toFixed(3),
       color: "#FFD600",
       bar: Math.min(1, greeks.vega),
@@ -275,7 +291,7 @@ export default function Chart({ ticker }: ChartProps) {
   const [showBoll, setShowBoll] = useState(true);
   const [activeTimeframe, setActiveTimeframe] = useState("1m");
 
-  const data = useMemo(() => (ticker ? generateOHLCV(ticker) : null), [ticker]);
+  const data = useMemo(() => (ticker ? generateOHLCV(ticker, activeTimeframe) : null), [ticker, activeTimeframe]);
   const boll = useMemo(() => (data ? computeBollinger(data) : null), [data]);
 
   const { chartData, priceMin, priceMax } = useMemo(() => {
@@ -347,9 +363,26 @@ export default function Chart({ ticker }: ChartProps) {
   const tickerLabel = parseTickerLabel(ticker, rawTeam, eventTicker);
   const eventName = parseEventName(eventTicker);
 
+  // Compute evenly-spaced tick indices for time axis (~5-6 labels)
+  const tickStep = Math.max(1, Math.floor(chartData.length / 5));
   const timeTicks: number[] = [];
-  for (let i = 0; i < chartData.length; i += 30) timeTicks.push(i);
+  for (let i = 0; i < chartData.length; i += tickStep) timeTicks.push(i);
   if (timeTicks[timeTicks.length - 1] !== chartData.length - 1) timeTicks.push(chartData.length - 1);
+
+  // Formatter: show HH:MM for 1m/5m/15m, or HH:MM (with date hint) for 1h
+  const formatTime = (idx: number) => {
+    const bar = chartData[idx];
+    if (!bar || !bar.time) return "";
+    const d = new Date(bar.time);
+    const hh = d.getHours().toString().padStart(2, "0");
+    const mm = d.getMinutes().toString().padStart(2, "0");
+    if (activeTimeframe === "1h") {
+      const mon = (d.getMonth() + 1).toString().padStart(2, "0");
+      const day = d.getDate().toString().padStart(2, "0");
+      return `${mon}/${day} ${hh}:${mm}`;
+    }
+    return `${hh}:${mm}`;
+  };
 
   const timeframes = ["1m", "5m", "15m", "1h"];
 
@@ -440,7 +473,16 @@ export default function Chart({ ticker }: ChartProps) {
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={chartData} margin={{ top: 4, right: 6, left: 0, bottom: 4 }}>
             <CartesianGrid stroke="#141414" />
-            <XAxis dataKey="index" tick={false} axisLine={{ stroke: "#1a1a1a" }} />
+            <XAxis
+              dataKey="index"
+              ticks={timeTicks}
+              tick={{ fontSize: 8, fill: "#666" }}
+              tickFormatter={formatTime}
+              axisLine={{ stroke: "#1a1a1a" }}
+              tickLine={{ stroke: "#333" }}
+              interval={0}
+              height={20}
+            />
             <YAxis
               domain={[priceMin, priceMax]}
               tick={{ fontSize: 9, fill: "#555" }}
@@ -472,7 +514,7 @@ export default function Chart({ ticker }: ChartProps) {
           position: "absolute", top: 3, left: 36, fontSize: 8, color: "#555", fontWeight: 700, zIndex: 1,
           letterSpacing: "0.08em", textTransform: "uppercase",
         }}>
-          KYLE {"\u03BB"}
+          KYLE {"λ"}
         </div>
         {latest && (
           <div style={{
@@ -537,9 +579,10 @@ export default function Chart({ ticker }: ChartProps) {
           <BarChart data={chartData} margin={{ top: 6, right: 6, left: 0, bottom: 2 }}>
             <XAxis
               dataKey="index" ticks={timeTicks}
-              tick={{ fontSize: 7, fill: "#333" }}
-              tickFormatter={(i: number) => i === chartData.length - 1 ? "now" : `-${chartData.length - i}m`}
+              tick={{ fontSize: 7, fill: "#555" }}
+              tickFormatter={formatTime}
               axisLine={{ stroke: "#1a1a1a" }}
+              tickLine={{ stroke: "#333" }}
             />
             <YAxis tick={false} axisLine={false} width={36} />
             <Bar dataKey="v" isAnimationActive={false}>

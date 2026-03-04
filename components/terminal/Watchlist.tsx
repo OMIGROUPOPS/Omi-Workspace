@@ -1,10 +1,10 @@
 "use client";
 
-// OMI Terminal — Watchlist sidebar (Redesigned v2)
+// OMI Terminal — Watchlist sidebar (Visual Overhaul v3)
 // Full readable market names, event context, sparklines, price flash.
-// Shows "Chicago → Illinois" not "JBUR".
+// 240px wide. Collapsible categories. Fetches full market names from /api/kalshi/market.
 
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import type { WatchlistItem, CategoryData, CategoryTicker } from "@/lib/terminal/types";
 import { parseTickerLabel, parseEventName } from "@/lib/terminal/ticker-labels";
 
@@ -15,6 +15,32 @@ interface WatchlistProps {
   onSelect?: (ticker: string) => void;
 }
 
+// ── Market name cache ──────────────────────────────────────
+const marketNameCache = new Map<string, string>();
+const pendingFetches = new Set<string>();
+
+async function fetchMarketName(ticker: string): Promise<string | null> {
+  if (marketNameCache.has(ticker)) return marketNameCache.get(ticker)!;
+  if (pendingFetches.has(ticker)) return null;
+  pendingFetches.add(ticker);
+  try {
+    const res = await fetch(`/api/kalshi/market?ticker=${encodeURIComponent(ticker)}`, { cache: "no-store" });
+    if (res.ok) {
+      const data = await res.json();
+      const title = data?.market?.title || data?.title || null;
+      if (title) {
+        marketNameCache.set(ticker, title);
+        return title;
+      }
+    }
+  } catch {
+    // fallback to parsed label
+  } finally {
+    pendingFetches.delete(ticker);
+  }
+  return null;
+}
+
 export default function Watchlist({
   categories,
   items = [],
@@ -23,13 +49,26 @@ export default function Watchlist({
 }: WatchlistProps) {
   const [query, setQuery] = useState("");
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
+  const [, setNameTick] = useState(0); // force re-render when names arrive
 
   // Price history accumulation (no re-render cost)
   const priceHistoryRef = useRef<Map<string, number[]>>(new Map());
 
+  // Batch fetch market names for visible tickers
+  const fetchNamesForTickers = useCallback((tickers: string[]) => {
+    const toFetch = tickers.filter(t => !marketNameCache.has(t) && !pendingFetches.has(t));
+    if (toFetch.length === 0) return;
+    // Fetch in batches of 5 to avoid hammering
+    const batch = toFetch.slice(0, 5);
+    Promise.all(batch.map(fetchMarketName)).then(() => {
+      setNameTick(t => t + 1);
+    });
+  }, []);
+
   // Accumulate price history on each categories poll
   useEffect(() => {
     if (!categories?.length) return;
+    const tickers: string[] = [];
     for (const cat of categories) {
       for (const t of cat.top_tickers) {
         if (t.mid === null || t.mid === undefined) continue;
@@ -37,9 +76,11 @@ export default function Watchlist({
         hist.push(t.mid);
         if (hist.length > 20) hist.shift();
         priceHistoryRef.current.set(t.ticker, hist);
+        tickers.push(t.ticker);
       }
     }
-  }, [categories]);
+    fetchNamesForTickers(tickers);
+  }, [categories, fetchNamesForTickers]);
 
   const toggle = (cat: string) =>
     setCollapsed((prev) => ({ ...prev, [cat]: !prev[cat] }));
@@ -69,7 +110,8 @@ export default function Watchlist({
           (t: CategoryTicker) =>
             (t.team || "").toLowerCase().includes(q) ||
             t.ticker.toLowerCase().includes(q) ||
-            parseTickerLabel(t.ticker, t.team, t.event_ticker).toLowerCase().includes(q),
+            parseTickerLabel(t.ticker, t.team, t.event_ticker).toLowerCase().includes(q) ||
+            (marketNameCache.get(t.ticker) || "").toLowerCase().includes(q),
         ),
       }))
       .filter((cat) => cat.top_tickers.length > 0 || cat.category.toLowerCase().includes(q));
@@ -90,16 +132,43 @@ export default function Watchlist({
 
   return (
     <div className="h-full flex flex-col">
+      {/* Header */}
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: "6px",
+        paddingBottom: "6px",
+        borderBottom: "1px solid #1a1a1a",
+      }}>
+        <span style={{
+          fontSize: "9px",
+          color: "#666",
+          fontWeight: 700,
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+        }}>
+          Markets
+        </span>
+        <span style={{
+          fontSize: "9px",
+          color: "#444",
+          fontVariantNumeric: "tabular-nums",
+        }}>
+          {categories?.reduce((s, c) => s + c.active_tickers, 0) || items.length}
+        </span>
+      </div>
+
       {/* Search */}
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="⌕ Search markets..."
+        placeholder="Search markets..."
         style={{
           width: "100%",
           background: "#111",
-          border: "1px solid #222",
+          border: "1px solid #1a1a1a",
           borderRadius: "4px",
           padding: "6px 10px",
           fontSize: "10px",
@@ -114,7 +183,7 @@ export default function Watchlist({
           e.currentTarget.style.boxShadow = "0 0 8px rgba(255,102,0,0.1)";
         }}
         onBlur={(e) => {
-          e.currentTarget.style.borderColor = "#222";
+          e.currentTarget.style.borderColor = "#1a1a1a";
           e.currentTarget.style.boxShadow = "none";
         }}
       />
@@ -165,35 +234,37 @@ export default function Watchlist({
                     alignItems: "center",
                     gap: "6px",
                     width: "100%",
-                    padding: "6px 6px",
+                    padding: "5px 6px",
                     border: "none",
-                    background: isActive ? "rgba(255,102,0,0.08)" : "rgba(255,255,255,0.02)",
+                    background: isActive ? "rgba(255,102,0,0.06)" : "rgba(255,255,255,0.015)",
                     cursor: "pointer",
-                    borderBottom: "1px solid #151515",
-                    borderLeft: isActive ? "3px solid #FF6600" : "3px solid #222",
+                    borderBottom: "1px solid #111",
+                    borderLeft: isActive ? "2px solid #FF6600" : "2px solid #1a1a1a",
                     transition: "background 0.15s",
-                    marginTop: "2px",
+                    marginTop: "1px",
+                    borderRadius: "0 2px 2px 0",
                   }}
                 >
-                  <span style={{ fontSize: "8px", color: "#555", width: "8px", flexShrink: 0 }}>
-                    {isCollapsed(cat) ? "\u25B8" : "\u25BE"}
+                  <span style={{ fontSize: "7px", color: "#555", width: "8px", flexShrink: 0 }}>
+                    {isCollapsed(cat) ? "▸" : "▾"}
                   </span>
-                  {/* Signal dot */}
+                  {isActive && (
+                    <span
+                      style={{
+                        width: "5px",
+                        height: "5px",
+                        borderRadius: "50%",
+                        background: "#00FF88",
+                        flexShrink: 0,
+                        boxShadow: "0 0 6px rgba(0,255,136,0.5)",
+                        animation: "terminal-pulse 2s ease-in-out infinite",
+                      }}
+                    />
+                  )}
                   <span
                     style={{
-                      width: "6px",
-                      height: "6px",
-                      borderRadius: "50%",
-                      background: isActive ? "#00FF88" : "#333",
-                      flexShrink: 0,
-                      boxShadow: isActive ? "0 0 8px rgba(0,255,136,0.5)" : "none",
-                      animation: isActive ? "terminal-pulse 2s ease-in-out infinite" : "none",
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontSize: "10px",
-                      color: isActive ? "#ddd" : "#888",
+                      fontSize: "9px",
+                      color: isActive ? "#ccc" : "#777",
                       fontWeight: 700,
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",
@@ -206,28 +277,28 @@ export default function Watchlist({
                   >
                     {cat.category}
                   </span>
-                  <div style={{ display: "flex", alignItems: "center", gap: "6px", flexShrink: 0 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "5px", flexShrink: 0 }}>
                     {cat.signals_count > 0 && (
                       <span style={{
-                        fontSize: "8px",
+                        fontSize: "7px",
                         fontWeight: 700,
-                        padding: "1px 5px",
-                        borderRadius: "4px",
-                        background: "rgba(0,255,136,0.15)",
+                        padding: "1px 4px",
+                        borderRadius: "3px",
+                        background: "rgba(0,255,136,0.12)",
                         color: "#00FF88",
-                        lineHeight: "14px",
+                        lineHeight: "12px",
                       }}>
                         {cat.signals_count}
                       </span>
                     )}
                     <span
                       style={{
-                        fontSize: "9px",
-                        color: "#555",
+                        fontSize: "8px",
+                        color: "#444",
                         fontVariantNumeric: "tabular-nums",
                       }}
                     >
-                      {cat.active_tickers.toLocaleString()}
+                      {cat.active_tickers}
                     </span>
                   </div>
                 </button>
@@ -273,7 +344,7 @@ function EmptyState({ text }: { text: string }) {
       fontSize: "10px",
       gap: "8px",
     }}>
-      <span style={{ fontSize: "20px", opacity: 0.3 }}>{"\u25C8"}</span>
+      <span style={{ fontSize: "18px", opacity: 0.3 }}>◈</span>
       {text}
     </div>
   );
@@ -283,7 +354,7 @@ function EmptyState({ text }: { text: string }) {
 
 function Sparkline({ data, color }: { data: number[]; color: string }) {
   if (data.length < 2) return null;
-  const w = 44, h = 16;
+  const w = 40, h = 14;
   const min = Math.min(...data);
   const max = Math.max(...data);
   const range = max - min || 1;
@@ -291,19 +362,18 @@ function Sparkline({ data, color }: { data: number[]; color: string }) {
     .map((v, i) => `${(i / (data.length - 1)) * w},${h - ((v - min) / range) * (h - 2) - 1}`)
     .join(" ");
 
-  // Last point for dot
   const lastX = w;
   const lastY = h - ((data[data.length - 1] - min) / range) * (h - 2) - 1;
 
   return (
     <svg width={w} height={h} style={{ flexShrink: 0 }}>
-      <polyline points={points} fill="none" stroke={color} strokeWidth={1.2} opacity={0.6} />
-      <circle cx={lastX} cy={lastY} r={2} fill={color} opacity={0.9} />
+      <polyline points={points} fill="none" stroke={color} strokeWidth={1} opacity={0.5} />
+      <circle cx={lastX} cy={lastY} r={1.5} fill={color} opacity={0.8} />
     </svg>
   );
 }
 
-// ── Ticker row — full readable name ────────────────────────
+// ── Ticker row — full readable name ────────────────────────────
 
 function TickerRow({
   ticker,
@@ -347,8 +417,9 @@ function TickerRow({
     prevMidRef.current = mid;
   }, [mid]);
 
-  // Build full readable label
-  const label = parseTickerLabel(ticker, team, eventTicker);
+  // Use cached full market name, or fallback to parsed label
+  const fullName = marketNameCache.get(ticker);
+  const label = fullName || parseTickerLabel(ticker, team, eventTicker);
 
   return (
     <button
@@ -357,19 +428,19 @@ function TickerRow({
         display: "flex",
         alignItems: "center",
         width: "100%",
-        padding: "5px 6px 5px 0",
+        padding: "4px 6px 4px 0",
         fontSize: "10px",
         textAlign: "left",
         cursor: "pointer",
         border: "none",
         transition: "background 0.1s",
-        background: isSelected ? "rgba(255,102,0,0.1)" : "transparent",
+        background: isSelected ? "rgba(255,102,0,0.08)" : "transparent",
         color: isSelected ? "#FF6600" : "#ccc",
-        borderLeft: isSelected ? "3px solid #FF6600" : "3px solid transparent",
+        borderLeft: isSelected ? "2px solid #FF6600" : "2px solid transparent",
         position: "relative",
         overflow: "hidden",
       }}
-      onMouseEnter={(e) => { if (!isSelected) e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
+      onMouseEnter={(e) => { if (!isSelected) e.currentTarget.style.background = "rgba(255,255,255,0.02)"; }}
       onMouseLeave={(e) => { if (!isSelected) e.currentTarget.style.background = "transparent"; }}
     >
       {/* Flash overlay */}
@@ -388,25 +459,26 @@ function TickerRow({
       {/* Content */}
       <div style={{ flex: 1, minWidth: 0, overflow: "hidden", paddingLeft: "6px" }}>
         {/* Line 1: Full market name + Price */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", lineHeight: "16px" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", lineHeight: "15px" }}>
           <span
             style={{
-              fontWeight: isSelected ? 700 : 600,
+              fontWeight: isSelected ? 700 : 500,
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
-              fontSize: "10.5px",
+              fontSize: fullName ? "9.5px" : "10px",
               color: isSelected ? "#FF6600" : "#ddd",
-              maxWidth: "120px",
+              flex: 1,
+              minWidth: 0,
             }}
-            title={label}
+            title={fullName || label}
           >
-            {label || team || ticker.slice(-8)}
+            {label}
           </span>
-          <div style={{ display: "flex", alignItems: "center", gap: "3px", flexShrink: 0, marginLeft: "6px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "2px", flexShrink: 0, marginLeft: "4px" }}>
             {mv !== null && mv !== 0 && (
-              <span style={{ fontSize: "8px", color: priceColor, fontWeight: 700, lineHeight: 1 }}>
-                {mv > 0 ? "\u25B2" : "\u25BC"}
+              <span style={{ fontSize: "7px", color: priceColor, fontWeight: 700, lineHeight: 1 }}>
+                {mv > 0 ? "▲" : "▼"}
               </span>
             )}
             <span
@@ -414,16 +486,16 @@ function TickerRow({
                 fontWeight: 700,
                 fontVariantNumeric: "tabular-nums",
                 color: priceColor,
-                fontSize: "11px",
+                fontSize: "10px",
               }}
             >
-              {mid !== null ? `${mid}\u00A2` : "\u2014"}
+              {mid !== null ? `${mid}¢` : "—"}
             </span>
           </div>
         </div>
 
         {/* Line 2: Event name + spread + sparkline */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", lineHeight: "12px", marginTop: "2px" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", lineHeight: "11px", marginTop: "1px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0", fontSize: "8px", color: "#555", overflow: "hidden" }}>
             {eventName && (
               <span style={{
@@ -431,7 +503,7 @@ function TickerRow({
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 maxWidth: "80px",
-                color: "#444",
+                color: "#3a3a3a",
               }}>
                 {eventName}
               </span>
@@ -442,18 +514,18 @@ function TickerRow({
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 maxWidth: "55px",
-                color: "#333",
+                color: "#2a2a2a",
                 textTransform: "uppercase",
               }}>
                 {ticker.slice(-10)}
               </span>
             )}
-            <span style={{ color: "#2a2a2a", margin: "0 3px" }}>{"\u00B7"}</span>
-            <span style={{ fontVariantNumeric: "tabular-nums", color: spread <= 2 ? "#666" : "#444" }}>{spread}s</span>
+            <span style={{ color: "#1e1e1e", margin: "0 3px" }}>·</span>
+            <span style={{ fontVariantNumeric: "tabular-nums", color: spread <= 2 ? "#555" : "#3a3a3a" }}>{spread}s</span>
             {kyle_lambda !== null && kyle_lambda !== undefined && (
               <>
-                <span style={{ color: "#2a2a2a", margin: "0 3px" }}>{"\u00B7"}</span>
-                <span style={{ color: "#00BCD4", fontVariantNumeric: "tabular-nums" }}>{"\u03BB"}{kyle_lambda.toFixed(3)}</span>
+                <span style={{ color: "#1e1e1e", margin: "0 3px" }}>·</span>
+                <span style={{ color: "#00BCD4", fontVariantNumeric: "tabular-nums" }}>λ{kyle_lambda.toFixed(3)}</span>
               </>
             )}
           </div>

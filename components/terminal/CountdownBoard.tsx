@@ -1,8 +1,8 @@
 "use client";
 
-// OMI Terminal — Countdown Board (Redesigned v2)
-// Visual cards with Greeks, progress bars, and settlement countdowns.
-// Falls back to "Nearest to Settlement" from upcomingMarkets when no resolution signals.
+// OMI Terminal — Countdown Board (Visual Overhaul v3)
+// Full market names, theta display, cleaner cards.
+// Props interface preserved: { items, onSelect, upcomingMarkets }
 
 import type { CountdownItem } from "@/lib/terminal/types";
 import { calcGreeks } from "@/lib/terminal/greeks";
@@ -43,37 +43,36 @@ export default function CountdownBoard({ items = [], onSelect, upcomingMarkets =
     <div className="h-full flex flex-col">
       {/* Header */}
       <div
-        className="flex items-center justify-between shrink-0"
         style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
           fontSize: "9px",
           color: "#666",
           textTransform: "uppercase",
           letterSpacing: "0.1em",
-          padding: "2px 2px 6px",
+          padding: "2px 2px 4px",
           borderBottom: "1px solid #1a1a1a",
           marginBottom: "4px",
           fontWeight: 700,
+          flexShrink: 0,
         }}
       >
-        <span style={{ color: hasCountdown ? "#FF6600" : "#666" }}>
-          {hasCountdown ? "\u23F1 Settlement" : hasUpcoming ? "Near Settlement" : "Settlement"}
+        <span style={{ color: hasCountdown ? "#FF6600" : "#555" }}>
+          {hasCountdown ? "Settlement" : hasUpcoming ? "Near Settlement" : "Settlement"}
         </span>
-        {hasCountdown && (
-          <span style={{ fontSize: "8px", color: "#444" }}>{sorted.length} active</span>
-        )}
-        {!hasCountdown && hasUpcoming && (
-          <span style={{ fontSize: "8px", color: "#444" }}>{upcomingMarkets.length} markets</span>
-        )}
+        <span style={{ fontSize: "8px", color: "#3a3a3a" }}>
+          {hasCountdown ? `${sorted.length} active` : hasUpcoming ? `${upcomingMarkets.length}` : ""}
+        </span>
       </div>
 
       {/* List */}
       <div className="flex-1 overflow-y-auto" style={{ scrollbarWidth: "none" }}>
         {hasCountdown ? (
-          // Active resolution countdown — card style
           sorted.map((item, i) => {
             const urgent = item.secs_to_close < 60;
             const confPct = (item.bridge_confidence * 100).toFixed(0);
-            const confColor = item.bridge_confidence >= 0.98 ? "#00FF88" : item.bridge_confidence >= 0.95 ? "#FFD600" : "#666";
+            const confColor = item.bridge_confidence >= 0.98 ? "#00FF88" : item.bridge_confidence >= 0.95 ? "#FFD600" : "#555";
             const hoursLeft = item.secs_to_close / 3600;
             const greeks = calcGreeks(item.price / 100, hoursLeft, item.sigma || 0.5);
 
@@ -86,7 +85,6 @@ export default function CountdownBoard({ items = [], onSelect, upcomingMarkets =
             }
             const label = parseTickerLabel(item.ticker, cdTeam || item.info.team, eventTicker);
 
-            // Time bar: 0-300s mapped to width
             const timePct = Math.max(0, Math.min(100, (item.secs_to_close / 300) * 100));
 
             return (
@@ -97,49 +95,49 @@ export default function CountdownBoard({ items = [], onSelect, upcomingMarkets =
                   width: "100%",
                   display: "flex",
                   flexDirection: "column",
-                  padding: "6px 5px",
+                  padding: "5px 4px",
                   border: "none",
                   cursor: "pointer",
                   textAlign: "left",
-                  background: urgent ? "rgba(255,51,102,0.06)" : (i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)"),
-                  borderLeft: urgent ? "3px solid #FF3366" : "3px solid transparent",
+                  background: urgent ? "rgba(255,51,102,0.04)" : "transparent",
+                  borderLeft: urgent ? "2px solid #FF3366" : "2px solid transparent",
                   animation: urgent ? "terminal-urgent-pulse 2s ease-in-out infinite" : "none",
                   transition: "background 0.1s",
-                  marginBottom: "2px",
-                  borderRadius: "2px",
+                  marginBottom: "1px",
+                  borderRadius: "0 2px 2px 0",
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = urgent ? "rgba(255,51,102,0.06)" : (i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)"); }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = urgent ? "rgba(255,51,102,0.04)" : "transparent"; }}
               >
-                {/* Row 1: Direction + Name + Price + Time */}
+                {/* Row 1: Name + Time */}
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "5px", overflow: "hidden", minWidth: 0 }}>
-                    <span style={{ color: item.side === "near_100" ? "#00FF88" : "#FF3366", fontSize: "9px", flexShrink: 0 }}>
-                      {item.side === "near_100" ? "\u25B2" : "\u25BC"}
+                  <div style={{ display: "flex", alignItems: "center", gap: "4px", overflow: "hidden", minWidth: 0 }}>
+                    <span style={{ color: item.side === "near_100" ? "#00FF88" : "#FF3366", fontSize: "8px", flexShrink: 0 }}>
+                      {item.side === "near_100" ? "▲" : "▼"}
                     </span>
                     <span style={{
-                      color: urgent ? "#FF3366" : "#ddd",
+                      color: urgent ? "#FF3366" : "#ccc",
                       fontWeight: 600,
-                      fontSize: "10px",
+                      fontSize: "9px",
                       overflow: "hidden",
                       whiteSpace: "nowrap",
                       textOverflow: "ellipsis",
                     }}>
                       {label}
                     </span>
-                    <span style={{ color: "#666", fontVariantNumeric: "tabular-nums", flexShrink: 0, fontSize: "9px" }}>
-                      {item.price}&cent;
+                    <span style={{ color: "#555", fontVariantNumeric: "tabular-nums", flexShrink: 0, fontSize: "8px" }}>
+                      {item.price}c
                     </span>
                   </div>
                   <span
                     style={{
                       fontVariantNumeric: "tabular-nums",
                       fontWeight: 700,
-                      fontSize: urgent ? "13px" : "11px",
-                      color: urgent ? "#FF3366" : "#888",
-                      textShadow: urgent ? "0 0 10px rgba(255,51,102,0.5)" : "none",
+                      fontSize: urgent ? "12px" : "10px",
+                      color: urgent ? "#FF3366" : "#777",
+                      textShadow: urgent ? "0 0 8px rgba(255,51,102,0.4)" : "none",
                       flexShrink: 0,
-                      marginLeft: "8px",
+                      marginLeft: "6px",
                     }}
                   >
                     {formatTime(item.secs_to_close)}
@@ -147,34 +145,34 @@ export default function CountdownBoard({ items = [], onSelect, upcomingMarkets =
                 </div>
 
                 {/* Row 2: Greeks + Confidence */}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "4px", width: "100%" }}>
-                  <div style={{ display: "flex", gap: "8px", fontSize: "8px" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "3px", width: "100%" }}>
+                  <div style={{ display: "flex", gap: "6px", fontSize: "7px" }}>
                     <span style={{ color: "#00BCD4" }}>
-                      <span style={{ fontWeight: 700 }}>{"\u0394"}</span> {greeks.delta.toFixed(2)}
+                      Δ{greeks.delta.toFixed(2)}
                     </span>
                     <span style={{ color: greeks.theta < 0 ? "#FF3366" : "#00FF88" }}>
-                      <span style={{ fontWeight: 700 }}>{"\u0398"}</span> {greeks.theta.toFixed(1)}&cent;/h
+                      Θ{greeks.theta.toFixed(1)}c/h
                     </span>
                     <span style={{ color: "#c084fc" }}>
-                      <span style={{ fontWeight: 700 }}>{"\u0393"}</span> {greeks.gamma.toFixed(2)}
+                      Γ{greeks.gamma.toFixed(2)}
                     </span>
                   </div>
                   <span style={{
                     fontVariantNumeric: "tabular-nums",
                     color: confColor,
-                    fontSize: "9px",
+                    fontSize: "8px",
                     fontWeight: 700,
                   }}>
                     {confPct}%
                   </span>
                 </div>
 
-                {/* Row 3: Time progress bar */}
+                {/* Row 3: Progress bar */}
                 <div style={{
                   height: "2px",
-                  background: "#1a1a1a",
+                  background: "#151515",
                   borderRadius: "1px",
-                  marginTop: "4px",
+                  marginTop: "3px",
                   width: "100%",
                   overflow: "hidden",
                 }}>
@@ -182,7 +180,7 @@ export default function CountdownBoard({ items = [], onSelect, upcomingMarkets =
                     height: "100%",
                     width: `${timePct}%`,
                     background: urgent
-                      ? "linear-gradient(90deg, #FF3366, #FF3366)"
+                      ? "#FF3366"
                       : "linear-gradient(90deg, #FF6600, #FFD600)",
                     borderRadius: "1px",
                     transition: "width 1s linear",
@@ -192,19 +190,16 @@ export default function CountdownBoard({ items = [], onSelect, upcomingMarkets =
             );
           })
         ) : hasUpcoming ? (
-          // Nearest to settlement fallback — card style
           upcomingMarkets.map((m, i) => {
             const distFromBoundary = Math.min(m.mid, 100 - m.mid);
             const nearHigh = m.mid >= 50;
             const dirColor = nearHigh ? "#00FF88" : "#FF3366";
-            const dirArrow = nearHigh ? "\u25B2" : "\u25BC";
+            const dirArrow = nearHigh ? "▲" : "▼";
             const greeks = calcGreeks(m.mid / 100, 2, 0.5);
 
-            // Readable label
             const eventTicker = m.ticker.replace(/-[YN]$/, "");
             const label = parseTickerLabel(m.ticker, m.team, eventTicker);
 
-            // Proximity bar: 0 away = full, 50 away = empty
             const proxPct = Math.max(0, 100 - (distFromBoundary / 50) * 100);
 
             return (
@@ -215,29 +210,29 @@ export default function CountdownBoard({ items = [], onSelect, upcomingMarkets =
                   width: "100%",
                   display: "flex",
                   flexDirection: "column",
-                  padding: "6px 5px",
+                  padding: "5px 4px",
                   border: "none",
                   cursor: "pointer",
                   textAlign: "left",
-                  background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)",
-                  borderLeft: distFromBoundary <= 3 ? `3px solid ${dirColor}` : "3px solid transparent",
+                  background: "transparent",
+                  borderLeft: distFromBoundary <= 3 ? `2px solid ${dirColor}` : "2px solid transparent",
                   transition: "background 0.1s",
-                  marginBottom: "2px",
-                  borderRadius: "2px",
+                  marginBottom: "1px",
+                  borderRadius: "0 2px 2px 0",
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
               >
-                {/* Row 1: Direction + Name + Price */}
+                {/* Row 1: Name + Price */}
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "5px", overflow: "hidden", minWidth: 0 }}>
-                    <span style={{ color: dirColor, fontSize: "9px", flexShrink: 0 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "4px", overflow: "hidden", minWidth: 0 }}>
+                    <span style={{ color: dirColor, fontSize: "8px", flexShrink: 0 }}>
                       {dirArrow}
                     </span>
                     <span style={{
-                      color: "#ddd",
+                      color: "#ccc",
                       fontWeight: 600,
-                      fontSize: "10px",
+                      fontSize: "9px",
                       overflow: "hidden",
                       whiteSpace: "nowrap",
                       textOverflow: "ellipsis",
@@ -246,49 +241,47 @@ export default function CountdownBoard({ items = [], onSelect, upcomingMarkets =
                     </span>
                     <span style={{
                       fontSize: "7px",
-                      padding: "1px 5px",
-                      borderRadius: "3px",
-                      background: "rgba(255,102,0,0.08)",
-                      color: "#777",
-                      lineHeight: "12px",
+                      padding: "1px 4px",
+                      borderRadius: "2px",
+                      background: "rgba(255,102,0,0.06)",
+                      color: "#666",
+                      lineHeight: "11px",
                       flexShrink: 0,
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      maxWidth: "55px",
+                      maxWidth: "50px",
                     }}>
                       {m.category}
                     </span>
                   </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "6px", flexShrink: 0 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "4px", flexShrink: 0 }}>
                     <span style={{
                       fontVariantNumeric: "tabular-nums",
                       color: dirColor,
-                      fontSize: "11px",
+                      fontSize: "10px",
                       fontWeight: 700,
                     }}>
-                      {m.mid}&cent;
+                      {m.mid}c
                     </span>
-                    <span
-                      style={{
-                        fontVariantNumeric: "tabular-nums",
-                        fontSize: "9px",
-                        color: distFromBoundary <= 3 ? dirColor : "#555",
-                        fontWeight: distFromBoundary <= 3 ? 700 : 400,
-                      }}
-                    >
-                      {distFromBoundary}&cent;
+                    <span style={{
+                      fontVariantNumeric: "tabular-nums",
+                      fontSize: "8px",
+                      color: distFromBoundary <= 3 ? dirColor : "#444",
+                      fontWeight: distFromBoundary <= 3 ? 700 : 400,
+                    }}>
+                      {distFromBoundary}c
                     </span>
                   </div>
                 </div>
 
                 {/* Row 2: Greeks */}
-                <div style={{ display: "flex", gap: "8px", fontSize: "8px", marginTop: "3px" }}>
+                <div style={{ display: "flex", gap: "6px", fontSize: "7px", marginTop: "3px" }}>
                   <span style={{ color: "#00BCD4" }}>
-                    <span style={{ fontWeight: 700 }}>{"\u0394"}</span> {greeks.delta.toFixed(2)}
+                    Δ{greeks.delta.toFixed(2)}
                   </span>
                   <span style={{ color: greeks.theta < 0 ? "#FF3366" : "#00FF88" }}>
-                    <span style={{ fontWeight: 700 }}>{"\u0398"}</span> {greeks.theta.toFixed(1)}&cent;/h
+                    Θ{greeks.theta.toFixed(1)}c/h
                   </span>
                   <span style={{ color: "#FFD600" }}>
                     IV {(greeks.iv * 100).toFixed(0)}%
@@ -298,9 +291,9 @@ export default function CountdownBoard({ items = [], onSelect, upcomingMarkets =
                 {/* Row 3: Proximity bar */}
                 <div style={{
                   height: "2px",
-                  background: "#1a1a1a",
+                  background: "#151515",
                   borderRadius: "1px",
-                  marginTop: "4px",
+                  marginTop: "3px",
                   width: "100%",
                   overflow: "hidden",
                 }}>
@@ -321,24 +314,23 @@ export default function CountdownBoard({ items = [], onSelect, upcomingMarkets =
             alignItems: "center",
             justifyContent: "center",
             height: "100%",
-            gap: "12px",
+            gap: "8px",
           }}>
             <div style={{
-              width: "40px",
-              height: "40px",
+              width: "32px",
+              height: "32px",
               borderRadius: "50%",
-              border: "2px solid #1a1a1a",
+              border: "1px solid #1a1a1a",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "18px",
-              color: "#222",
+              fontSize: "14px",
+              color: "#1a1a1a",
               animation: "terminal-pulse 3s ease-in-out infinite",
             }}>
-              {"\u23F1"}
+              ⏱
             </div>
-            <span style={{ color: "#444", fontSize: "10px" }}>No settlement signals</span>
-            <span style={{ color: "#333", fontSize: "8px" }}>Monitoring markets...</span>
+            <span style={{ color: "#333", fontSize: "9px" }}>No settlement signals</span>
           </div>
         )}
       </div>

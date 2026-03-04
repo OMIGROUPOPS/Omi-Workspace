@@ -1,7 +1,7 @@
 "use client";
 
-// OMI Terminal — Status bar (Redesigned v2)
-// Dense single-line status with animated counters, pulse dot, and branding.
+// OMI Terminal — Status bar (Visual Overhaul v3)
+// Portfolio values, cleaner layout. Props interface preserved.
 
 import type { ConnectionStatus } from "@/lib/terminal/types";
 import { useAnimatedNumber } from "@/lib/terminal/hooks";
@@ -20,12 +20,12 @@ function formatUptime(secs: number): string {
   if (secs < 3600) return `${Math.floor(secs / 60)}m`;
   const h = Math.floor(secs / 3600);
   const m = Math.floor((secs % 3600) / 60);
-  return `${h}h${m.toString().padStart(2, "00")}m`;
+  return `${h}h${m.toString().padStart(2, "0")}m`;
 }
 
 export default function StatusBar({
   status,
-  balance = 460,
+  balance = 0,
   openTrades = 0,
   tickerCount = 0,
   signalCount,
@@ -37,15 +37,15 @@ export default function StatusBar({
   const dotColor: Record<ConnectionStatus, string> = {
     connected: "#00FF88",
     connecting: "#FFD600",
-    disconnected: "#666",
+    disconnected: "#555",
     error: "#FF3366",
   };
 
   const statusLabel: Record<ConnectionStatus, string> = {
-    connected: "CONNECTED",
-    connecting: "CONNECTING",
-    disconnected: "OFFLINE",
-    error: "ERROR",
+    connected: "LIVE",
+    connecting: "SYNC",
+    disconnected: "OFF",
+    error: "ERR",
   };
 
   return (
@@ -55,23 +55,24 @@ export default function StatusBar({
         alignItems: "center",
         justifyContent: "space-between",
         padding: "0 12px",
-        height: "24px",
+        height: "22px",
         background: "#060606",
-        borderTop: "1px solid rgba(255,102,0,0.1)",
-        fontSize: "9px",
+        borderTop: "1px solid #111",
+        fontSize: "8px",
         flexShrink: 0,
+        color: "#555",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         {/* Connection status */}
-        <span style={{ display: "flex", alignItems: "center", gap: "5px", color: dotColor[status] }}>
+        <span style={{ display: "flex", alignItems: "center", gap: "4px", color: dotColor[status] }}>
           <span
             style={{
-              width: "6px",
-              height: "6px",
+              width: "5px",
+              height: "5px",
               borderRadius: "50%",
               background: dotColor[status],
-              boxShadow: status === "connected" ? `0 0 8px ${dotColor[status]}` : "none",
+              boxShadow: status === "connected" ? `0 0 6px ${dotColor[status]}` : "none",
               animation:
                 status === "connected"
                   ? "terminal-pulse 2s ease-in-out infinite"
@@ -80,44 +81,44 @@ export default function StatusBar({
                     : "none",
             }}
           />
-          <span style={{ fontWeight: 600, letterSpacing: "0.05em" }}>
-            WS: {statusLabel[status]}
+          <span style={{ fontWeight: 600, letterSpacing: "0.06em" }}>
+            {statusLabel[status]}
           </span>
         </span>
 
         <span style={{ color: "#1a1a1a" }}>|</span>
-        <span style={{ color: "#666", fontVariantNumeric: "tabular-nums" }}>
-          <span style={{ color: "#888", fontWeight: 600 }}>{animatedTickers.toLocaleString()}</span> tickers
+        <span style={{ fontVariantNumeric: "tabular-nums" }}>
+          <span style={{ color: "#777", fontWeight: 600 }}>{animatedTickers.toLocaleString()}</span> tickers
         </span>
 
         {signalCount !== undefined && (
           <>
             <span style={{ color: "#1a1a1a" }}>|</span>
-            <span style={{ color: "#666", fontVariantNumeric: "tabular-nums" }}>
+            <span style={{ fontVariantNumeric: "tabular-nums" }}>
               <span style={{ color: "#00BCD4", fontWeight: 600 }}>{animatedSignals}</span> signals
             </span>
           </>
         )}
 
         <span style={{ color: "#1a1a1a" }}>|</span>
-        <span style={{ color: "#555" }}>{openTrades} open</span>
+        <span>{openTrades} open</span>
 
         {uptime !== undefined && (
           <>
             <span style={{ color: "#1a1a1a" }}>|</span>
-            <span style={{ color: "#555", fontVariantNumeric: "tabular-nums" }}>
+            <span style={{ fontVariantNumeric: "tabular-nums" }}>
               up {formatUptime(uptime)}
             </span>
           </>
         )}
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-        <span style={{ color: "#777", fontVariantNumeric: "tabular-nums", fontWeight: 600 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <span style={{ color: "#00FF88", fontVariantNumeric: "tabular-nums", fontWeight: 600, fontSize: "9px" }}>
           ${balance.toFixed(2)}
         </span>
         <span style={{ color: "#1a1a1a" }}>|</span>
-        <span style={{ color: "#FF6600", fontWeight: 700, letterSpacing: "0.1em", fontSize: "8px" }}>
+        <span style={{ color: "#FF6600", fontWeight: 700, letterSpacing: "0.1em", fontSize: "7px" }}>
           OMI v0.3
         </span>
       </div>

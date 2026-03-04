@@ -1,7 +1,7 @@
 "use client";
 
-// OMI Terminal — Main layout (Redesigned v2)
-// Bloomberg-style grid layout with prominent chart, visual Greeks, readable watchlist.
+// OMI Terminal — Main layout (Visual Overhaul v3)
+// 3-column layout: Watchlist 240px | Chart + Positions + Scanner/Settlement | OrderEntry 260px
 // DO NOT change data fetching, polling, API routes, or orchestration logic.
 
 import { useState, useEffect, useCallback, useMemo } from "react";
@@ -11,7 +11,8 @@ import Orderbook from "./Orderbook";
 import Scanner from "./Scanner";
 import CountdownBoard from "./CountdownBoard";
 import PnL from "./PnL";
-import KalshiPanel from "./KalshiPanel";
+import OrderEntry from "./OrderEntry";
+import PositionsTable from "./PositionsTable";
 import StatusBar from "./StatusBar";
 import type {
   ScanSignal,
@@ -201,16 +202,16 @@ export default function Terminal() {
 
   return (
     <div
-      className="h-full w-full bg-[#080808] text-slate-200 flex flex-col overflow-hidden"
+      className="h-full w-full bg-[#0a0a0a] text-slate-200 flex flex-col overflow-hidden"
       style={{ fontFamily: "'JetBrains Mono', 'Courier New', monospace" }}
     >
-      {/* ── Top bar — Bloomberg-style header ── */}
+      {/* ── Top bar ── */}
       <div
         className="flex items-center justify-between px-4 shrink-0"
         style={{
-          height: "32px",
-          background: "linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 100%)",
-          borderBottom: "1px solid rgba(255,102,0,0.15)",
+          height: "30px",
+          background: "#0a0a0a",
+          borderBottom: "1px solid #1a1a1a",
         }}
       >
         <div className="flex items-center gap-3">
@@ -218,37 +219,36 @@ export default function Terminal() {
             style={{
               color: "#FF6600",
               fontWeight: 800,
-              fontSize: "15px",
+              fontSize: "14px",
               letterSpacing: "0.15em",
-              textShadow: "0 0 16px rgba(255,102,0,0.4)",
             }}
           >
             OMI
           </span>
           <span
             style={{
-              color: "#555",
-              fontSize: "11px",
+              color: "#444",
+              fontSize: "10px",
               letterSpacing: "0.2em",
               fontWeight: 500,
             }}
           >
             TERMINAL
           </span>
-          <span style={{ color: "#333", fontSize: "9px" }}>v0.3</span>
+          <span style={{ color: "#2a2a2a", fontSize: "8px" }}>v0.3</span>
         </div>
-        <div className="flex items-center gap-4" style={{ fontSize: "10px" }}>
-          <span style={{ color: "#444", fontVariantNumeric: "tabular-nums" }}>
+        <div className="flex items-center gap-4" style={{ fontSize: "9px" }}>
+          <span style={{ color: "#3a3a3a", fontVariantNumeric: "tabular-nums" }}>
             {new Date().toISOString().slice(0, 10)}
           </span>
-          <span style={{ color: "#777", fontVariantNumeric: "tabular-nums", fontWeight: 600, fontSize: "11px" }} suppressHydrationWarning>
+          <span style={{ color: "#666", fontVariantNumeric: "tabular-nums", fontWeight: 600, fontSize: "10px" }} suppressHydrationWarning>
             {clock}
           </span>
           <span
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "6px",
+              gap: "5px",
               color:
                 connectionStatus === "connected" ? "#00FF88" : connectionStatus === "connecting" ? "#FFD600" : "#FF3366",
             }}
@@ -256,8 +256,8 @@ export default function Terminal() {
             <span
               style={{
                 display: "inline-block",
-                width: "7px",
-                height: "7px",
+                width: "6px",
+                height: "6px",
                 borderRadius: "50%",
                 background:
                   connectionStatus === "connected"
@@ -267,7 +267,7 @@ export default function Terminal() {
                       : "#FF3366",
                 boxShadow:
                   connectionStatus === "connected"
-                    ? "0 0 10px rgba(0,255,136,0.6)"
+                    ? "0 0 8px rgba(0,255,136,0.5)"
                     : "none",
                 animation:
                   connectionStatus === "connected"
@@ -277,25 +277,25 @@ export default function Terminal() {
                       : "none",
               }}
             />
-            <span style={{ fontWeight: 700, letterSpacing: "0.08em", fontSize: "10px" }}>
+            <span style={{ fontWeight: 700, letterSpacing: "0.08em", fontSize: "9px" }}>
               {connectionStatus === "connected"
                 ? "LIVE"
                 : connectionStatus === "connecting"
-                  ? "CONNECTING"
+                  ? "SYNC"
                   : "OFFLINE"}
             </span>
           </span>
         </div>
       </div>
 
-      {/* ── Main content area ── */}
+      {/* ── Main content — 3-column layout ── */}
       <div
         style={{ flex: 1, display: "flex", minHeight: 0, overflow: "hidden" }}
       >
-        {/* ── Watchlist sidebar — wider for readable names ── */}
+        {/* ── Left: Watchlist — 240px ── */}
         <div
           style={{
-            width: "220px",
+            width: "240px",
             flexShrink: 0,
             background: "#0a0a0a",
             borderRight: "1px solid #1a1a1a",
@@ -312,7 +312,7 @@ export default function Terminal() {
           />
         </div>
 
-        {/* ── Center + Right panels ── */}
+        {/* ── Center: Chart + Positions + Scanner/Settlement ── */}
         <div
           style={{
             flex: 1,
@@ -322,16 +322,16 @@ export default function Terminal() {
             minHeight: 0,
           }}
         >
-          {/* ── Top row: Chart + Greeks + Orderbook — 55% of space ── */}
+          {/* Top: Chart + Orderbook — 55% */}
           <div
             style={{
-              flex: "6 1 0",
+              flex: "55 1 0",
               display: "flex",
               minHeight: 0,
               overflow: "hidden",
             }}
           >
-            {/* Chart area — takes most space */}
+            {/* Chart */}
             <div
               style={{
                 flex: 1,
@@ -349,10 +349,10 @@ export default function Terminal() {
               <Chart ticker={selectedTicker ?? undefined} />
             </div>
 
-            {/* Orderbook — right of chart */}
+            {/* Orderbook */}
             <div
               style={{
-                width: "200px",
+                width: "180px",
                 flexShrink: 0,
                 background: "#0a0a0a",
                 borderBottom: "1px solid #1a1a1a",
@@ -366,10 +366,26 @@ export default function Terminal() {
             </div>
           </div>
 
-          {/* ── Bottom row: Scanner + Countdown + P&L — 45% ── */}
+          {/* Middle: Positions table — 20% */}
           <div
             style={{
-              flex: "4 1 0",
+              flex: "20 1 0",
+              background: "#0a0a0a",
+              borderBottom: "1px solid #1a1a1a",
+              padding: "4px 6px",
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+              minHeight: 0,
+            }}
+          >
+            <PositionsTable />
+          </div>
+
+          {/* Bottom: Scanner + Countdown + PnL — 25% */}
+          <div
+            style={{
+              flex: "25 1 0",
               display: "flex",
               minHeight: 0,
               overflow: "hidden",
@@ -381,7 +397,7 @@ export default function Terminal() {
                 flex: 5,
                 background: "#0a0a0a",
                 borderRight: "1px solid #1a1a1a",
-                padding: "6px",
+                padding: "4px 6px",
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
@@ -401,7 +417,7 @@ export default function Terminal() {
                 flex: 3,
                 background: "#0a0a0a",
                 borderRight: "1px solid #1a1a1a",
-                padding: "6px",
+                padding: "4px 6px",
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
@@ -416,8 +432,7 @@ export default function Terminal() {
               style={{
                 flex: 2,
                 background: "#0a0a0a",
-                borderRight: "1px solid #1a1a1a",
-                padding: "6px",
+                padding: "4px 6px",
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
@@ -433,22 +448,25 @@ export default function Terminal() {
                 recentActivity={recentActivity}
               />
             </div>
-
-            {/* Kalshi Trading */}
-            <div
-              style={{
-                flex: 3,
-                background: "#0a0a0a",
-                padding: "0",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-                minWidth: 0,
-              }}
-            >
-              <KalshiPanel onBalanceUpdate={setKalshiBalance} />
-            </div>
           </div>
+        </div>
+
+        {/* ── Right: Order Entry — 260px ── */}
+        <div
+          style={{
+            width: "260px",
+            flexShrink: 0,
+            background: "#0d0d0d",
+            borderLeft: "1px solid #1a1a1a",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <OrderEntry
+            onBalanceUpdate={setKalshiBalance}
+            selectedTicker={selectedTicker ?? undefined}
+          />
         </div>
       </div>
 

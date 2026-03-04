@@ -6,6 +6,7 @@
 // FIXED: Y-axis domain clamped 0-100, auto-scale with padding,
 //        clean cent labels, proper candlestick rendering via Bar shape,
 //        subtle Bollinger bands, dominant price line.
+//        Y-domain computed from OHLC prices ONLY — Bollinger bands excluded.
 
 import { useMemo, useState } from "react";
 import {
@@ -397,15 +398,13 @@ export default function Chart({ ticker }: ChartProps) {
   const { chartData, yDomain, yTicks } = useMemo(() => {
     if (!data || !boll) return { chartData: [] as any[], yDomain: [0, 100] as [number, number], yTicks: [0, 25, 50, 75, 100] };
 
+    // Y-axis domain from OHLC price data ONLY — exclude Bollinger bands
+    // so bands don't inflate the visible range beyond actual price action.
     let dataMin = Infinity;
     let dataMax = -Infinity;
     for (const d of data) {
       dataMin = Math.min(dataMin, d.l);
       dataMax = Math.max(dataMax, d.h);
-    }
-    for (const b of boll) {
-      dataMin = Math.min(dataMin, b.lower);
-      dataMax = Math.max(dataMax, b.upper);
     }
 
     const { domain, ticks } = computeYDomain(dataMin, dataMax);

@@ -523,12 +523,12 @@ export default function Terminal() {
             overflow: "hidden",
           }}
         >
-          {/* Chart box — 55% */}
+          {/* Chart box — 50% */}
           <TermBox
             title="Price Chart"
             icon="◈"
             borderColor="#FF6600"
-            flex="55 1 0"
+            flex="50 1 0"
           >
             <div
               style={{
@@ -543,12 +543,12 @@ export default function Terminal() {
             </div>
           </TermBox>
 
-          {/* Scanner box — flex grow */}
+          {/* Scanner box — 20% */}
           <TermBox
             title="Signal Scanner"
             icon="⬡"
             borderColor="#FF6600"
-            flex="1 1 0"
+            flex="20 1 0"
           >
             <div
               style={{
@@ -567,12 +567,12 @@ export default function Terminal() {
             </div>
           </TermBox>
 
-          {/* Bottom row: FILLS + P&L | NEAR SETTLEMENT */}
+          {/* Bottom row: FILLS + P&L | NEAR SETTLEMENT — 30% */}
           <div
             style={{
               display: "flex",
               gap: "8px",
-              flex: "35 1 0",
+              flex: "30 1 0",
               minHeight: 0,
               overflow: "hidden",
             }}

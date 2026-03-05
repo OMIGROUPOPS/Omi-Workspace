@@ -87,6 +87,8 @@ export default function Watchlist({
     setCollapsed((prev) => ({ ...prev, [cat]: !prev[cat] }));
 
   const isAutoExpanded = (cat: CategoryData) => {
+    // Only auto-expand if the category has actual tickers to show
+    if (cat.top_tickers.length === 0) return false;
     if (cat.signals_count > 0) return true;
     if (cat.last_signal_time) {
       const age = Date.now() / 1000 - cat.last_signal_time;
@@ -102,9 +104,15 @@ export default function Watchlist({
 
   const filteredCategories = useMemo(() => {
     if (!categories?.length) return [];
-    if (!query) return categories;
+    // Sort: categories with tickers first, empty ones at the bottom
+    const sorted = [...categories].sort((a, b) => {
+      const aHas = a.top_tickers.length > 0 ? 1 : 0;
+      const bHas = b.top_tickers.length > 0 ? 1 : 0;
+      return bHas - aHas;
+    });
+    if (!query) return sorted;
     const q = query.toLowerCase();
-    return categories
+    return sorted
       .map((cat) => ({
         ...cat,
         top_tickers: cat.top_tickers.filter(

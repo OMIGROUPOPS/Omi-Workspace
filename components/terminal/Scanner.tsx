@@ -1,10 +1,11 @@
 "use client";
 
-// OMI Terminal — Scanner / Signal feed (Visual Overhaul v3)
-// Severity pills, strategy tags, full market names, cleaner rows.
-// Props interface preserved: { signals, filter, onFilterChange }
+// OMI Terminal — Scanner / Signal feed (Modular Box v4)
+// Inner content of parent TermBox — no outer border/header.
+// Severity pills, strategy tags, two-line signal rows, fade-in, filter bar.
 
 import { useState, useEffect, useMemo, useRef } from "react";
+import type { ReactNode } from "react";
 import type { ScanSignal, ScanType } from "@/lib/terminal/types";
 import { parseTickerLabel } from "@/lib/terminal/ticker-labels";
 
@@ -25,9 +26,9 @@ const STRAT_TAG: Record<string, { label: string; color: string; bg: string }> = 
 
 // Severity styles
 const SEV_STYLE: Record<string, { color: string; bg: string; border: string; pill: string; pillText: string }> = {
-  HIGH:   { color: "#FF3366", bg: "rgba(255,51,102,0.04)", border: "#FF3366", pill: "#FF3366", pillText: "#fff" },
-  MEDIUM: { color: "#FF6600", bg: "rgba(255,102,0,0.03)", border: "#FF6600", pill: "#FF6600", pillText: "#000" },
-  LOW:    { color: "#00BCD4", bg: "transparent",           border: "#1a1a1a", pill: "rgba(0,188,212,0.15)", pillText: "#00BCD4" },
+  HIGH:   { color: "#FF3366", bg: "rgba(255,51,102,0.04)",  border: "#FF3366", pill: "#FF3366",              pillText: "#fff" },
+  MEDIUM: { color: "#FF6600", bg: "rgba(255,102,0,0.03)",   border: "#FF6600", pill: "#FF6600",              pillText: "#000" },
+  LOW:    { color: "#00BCD4", bg: "transparent",            border: "#1a1a1a", pill: "rgba(0,188,212,0.15)", pillText: "#00BCD4" },
 };
 
 function formatTimestamp(ts: number): string {
@@ -44,9 +45,9 @@ function relativeTime(ts: number): string {
   return `${hrs}h`;
 }
 
-function formatDescription(desc: string): React.ReactNode[] {
+function formatDescription(desc: string): ReactNode[] {
   const segments = desc.split(/\s{2,}/);
-  const result: React.ReactNode[] = [];
+  const result: ReactNode[] = [];
   segments.forEach((seg, si) => {
     if (si > 0) {
       result.push(
@@ -125,83 +126,122 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
   ];
 
   return (
-    <div className="h-full flex flex-col">
-      {/* Header + filter bar */}
-      <div style={{
+    <div
+      style={{
+        height: "100%",
         display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        marginBottom: "4px",
-        paddingBottom: "4px",
-        borderBottom: "1px solid #1a1a1a",
-      }}>
-        <div style={{ display: "flex", gap: "3px", alignItems: "center" }}>
-          {filterButtons.map(({ type, label }) => {
-            const active = filter === type;
-            const strat = type ? STRAT_TAG[type] : null;
-            return (
-              <button
-                key={label}
-                onClick={() => onFilterChange?.(type)}
-                style={{
-                  fontSize: "8px",
-                  padding: "2px 6px",
-                  borderRadius: "3px",
-                  border: active
-                    ? `1px solid ${type === null ? "#FF6600" : (strat?.color || "#555")}40`
-                    : "1px solid #1a1a1a",
-                  cursor: "pointer",
-                  fontWeight: 600,
-                  letterSpacing: "0.04em",
-                  background: active
-                    ? type === null ? "rgba(255,102,0,0.1)" : strat?.bg || "#333"
-                    : "transparent",
-                  color: active
-                    ? type === null ? "#FF6600" : strat?.color || "#fff"
-                    : "#444",
-                  transition: "all 0.12s",
-                  fontFamily: "inherit",
-                }}
-              >
-                {label}
-              </button>
-            );
-          })}
-        </div>
-        <span style={{ fontSize: "9px", color: "#444", fontVariantNumeric: "tabular-nums", fontWeight: 600 }}>
+        flexDirection: "column",
+        background: "transparent",
+      }}
+    >
+      {/* Filter buttons bar */}
+      <div
+        style={{
+          flexShrink: 0,
+          display: "flex",
+          alignItems: "center",
+          gap: "3px",
+          paddingBottom: "6px",
+          borderBottom: "1px solid #141414",
+          marginBottom: "4px",
+        }}
+      >
+        {filterButtons.map(({ type, label }) => {
+          const active = filter === type;
+          const strat = type ? STRAT_TAG[type] : null;
+          const activeColor = type === null ? "#FF6600" : (strat?.color || "#888");
+          const activeBg = type === null ? "rgba(255,102,0,0.1)" : (strat?.bg || "rgba(136,136,136,0.1)");
+
+          return (
+            <button
+              key={label}
+              onClick={() => onFilterChange?.(type)}
+              style={{
+                fontSize: "8px",
+                padding: "2px 7px",
+                borderRadius: "3px",
+                border: active
+                  ? `1px solid ${activeColor}40`
+                  : "1px solid #1a1a1a",
+                cursor: "pointer",
+                fontWeight: 700,
+                letterSpacing: "0.05em",
+                background: active ? activeBg : "transparent",
+                color: active ? activeColor : "#3a3a3a",
+                transition: "all 0.12s",
+                fontFamily: "inherit",
+              }}
+              onMouseEnter={(e) => {
+                if (!active) {
+                  e.currentTarget.style.color = "#666";
+                  e.currentTarget.style.borderColor = "#2a2a2a";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!active) {
+                  e.currentTarget.style.color = "#3a3a3a";
+                  e.currentTarget.style.borderColor = "#1a1a1a";
+                }
+              }}
+            >
+              {label}
+            </button>
+          );
+        })}
+
+        {/* Signal count badge */}
+        <span
+          style={{
+            marginLeft: "auto",
+            fontSize: "8px",
+            color: "#333",
+            fontVariantNumeric: "tabular-nums",
+            fontWeight: 600,
+          }}
+        >
           {filtered.length}
         </span>
       </div>
 
       {/* Signal list */}
       <div
-        className="flex-1 overflow-y-auto"
-        style={{ scrollbarWidth: "none" }}
+        style={{
+          flex: 1,
+          overflowY: "auto",
+          scrollbarWidth: "none",
+        }}
       >
         {filtered.length === 0 ? (
-          <div style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-            color: "#333",
-            fontSize: "9px",
-            gap: "8px",
-          }}>
-            <div style={{
-              width: "32px",
-              height: "32px",
-              borderRadius: "50%",
-              border: "1px solid #1a1a1a",
+          // Empty state: centered pulsing icon
+          <div
+            style={{
               display: "flex",
+              flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              animation: "terminal-pulse 2s ease-in-out infinite",
-            }}>
-              <span style={{ fontSize: "14px", color: "#222" }}>◈</span>
+              height: "100%",
+              color: "#2a2a2a",
+              fontSize: "9px",
+              gap: "10px",
+            }}
+          >
+            <div
+              style={{
+                width: "30px",
+                height: "30px",
+                borderRadius: "50%",
+                border: "1px solid #181818",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                animation: "terminal-pulse 2s ease-in-out infinite",
+              }}
+            >
+              <span style={{ fontSize: "13px", color: "#1e1e1e" }}>◈</span>
             </div>
-            <span>Scanning for signals...</span>
+            <span style={{ letterSpacing: "0.06em", textTransform: "uppercase", fontSize: "8px" }}>
+              Scanning for signals...
+            </span>
           </div>
         ) : (
           filtered.map((sig, i) => {
@@ -225,135 +265,176 @@ export default function Scanner({ signals = [], filter, onFilterChange }: Scanne
               <div
                 key={`${sig.ticker}-${sig.timestamp}-${i}`}
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "5px",
-                  padding: "4px 5px",
-                  background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)",
-                  cursor: "pointer",
+                  padding: "5px 6px 5px 0",
                   borderLeft: `2px solid ${sev.border}`,
+                  borderBottom: "1px solid #0f0f0f",
+                  background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.008)",
+                  cursor: "pointer",
                   transition: "background 0.08s",
                   animation: isNew ? "terminal-signal-in 0.6s ease-out" : "none",
                   borderRadius: "0 2px 2px 0",
                   marginBottom: "1px",
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "#131313"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)"; }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.background = "#121212"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.background = i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.008)"; }}
               >
-                {/* Timestamp */}
-                {sig.timestamp && (
-                  <span style={{
-                    fontSize: "7px",
-                    color: "#3a3a3a",
-                    fontVariantNumeric: "tabular-nums",
-                    flexShrink: 0,
-                    minWidth: "38px",
-                  }} suppressHydrationWarning>
-                    {formatTimestamp(sig.timestamp)}
-                  </span>
-                )}
-
-                {/* Severity pill */}
-                <span
+                {/* Line 1: Severity pill · Strategy tag · Ticker · Relative time */}
+                <div
                   style={{
-                    fontSize: "7px",
-                    fontWeight: 700,
-                    padding: "1px 4px",
-                    borderRadius: "2px",
-                    background: sev.pill,
-                    color: sev.pillText,
-                    lineHeight: "11px",
-                    letterSpacing: "0.02em",
-                    flexShrink: 0,
-                    minWidth: "12px",
-                    textAlign: "center",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "4px",
+                    paddingLeft: "5px",
+                    marginBottom: "3px",
                   }}
                 >
-                  {sig.severity.charAt(0)}
-                </span>
-
-                {/* Strategy tag */}
-                <span
-                  style={{
-                    fontSize: "7px",
-                    fontWeight: 600,
-                    padding: "1px 5px",
-                    borderRadius: "2px",
-                    background: strat.bg,
-                    color: strat.color,
-                    lineHeight: "11px",
-                    letterSpacing: "0.04em",
-                    flexShrink: 0,
-                  }}
-                >
-                  {strat.label}
-                </span>
-
-                {/* NEW badge */}
-                {isRecentFirst && (
+                  {/* Severity pill — single char H/M/L */}
                   <span
                     style={{
-                      fontSize: "6px",
-                      fontWeight: 700,
+                      fontSize: "7px",
+                      fontWeight: 800,
                       padding: "1px 4px",
                       borderRadius: "2px",
-                      background: "rgba(0,255,136,0.15)",
-                      color: "#00FF88",
-                      lineHeight: "10px",
-                      letterSpacing: "0.04em",
+                      background: sev.pill,
+                      color: sev.pillText,
+                      lineHeight: "11px",
+                      letterSpacing: "0.02em",
                       flexShrink: 0,
-                      animation: "terminal-new-badge 10s forwards",
+                      minWidth: "12px",
+                      textAlign: "center",
                     }}
                   >
-                    NEW
+                    {sig.severity.charAt(0)}
                   </span>
-                )}
 
-                {/* Ticker label + Description */}
-                <span
+                  {/* Strategy tag */}
+                  <span
+                    style={{
+                      fontSize: "7px",
+                      fontWeight: 700,
+                      padding: "1px 5px",
+                      borderRadius: "2px",
+                      background: strat.bg,
+                      color: strat.color,
+                      lineHeight: "11px",
+                      letterSpacing: "0.05em",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {strat.label}
+                  </span>
+
+                  {/* NEW badge */}
+                  {isRecentFirst && (
+                    <span
+                      style={{
+                        fontSize: "6px",
+                        fontWeight: 700,
+                        padding: "1px 4px",
+                        borderRadius: "2px",
+                        background: "rgba(0,255,136,0.13)",
+                        color: "#00FF88",
+                        lineHeight: "10px",
+                        letterSpacing: "0.05em",
+                        flexShrink: 0,
+                        animation: "terminal-new-badge 10s forwards",
+                      }}
+                    >
+                      NEW
+                    </span>
+                  )}
+
+                  {/* Ticker label — bright white, bold */}
+                  <span
+                    style={{
+                      fontSize: "9px",
+                      fontWeight: 700,
+                      color: "#e8e8e8",
+                      flex: 1,
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                      textOverflow: "ellipsis",
+                      minWidth: 0,
+                    }}
+                  >
+                    {tickerLabel}
+                  </span>
+
+                  {/* Relative time */}
+                  {sig.timestamp && (
+                    <span
+                      style={{
+                        fontSize: "8px",
+                        color: "#2e2e2e",
+                        fontVariantNumeric: "tabular-nums",
+                        flexShrink: 0,
+                        minWidth: "18px",
+                        textAlign: "right",
+                      }}
+                      suppressHydrationWarning
+                    >
+                      {relativeTime(sig.timestamp)}
+                    </span>
+                  )}
+                </div>
+
+                {/* Line 2 (indented): Description + depth badge */}
+                <div
                   style={{
-                    fontSize: "8px",
-                    color: "#666",
-                    flex: 1,
-                    overflow: "hidden",
-                    whiteSpace: "nowrap",
-                    textOverflow: "ellipsis",
-                    minWidth: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "5px",
+                    paddingLeft: "14px",
                   }}
                 >
-                  <span style={{ color: "#bbb", fontWeight: 600 }}>{tickerLabel}</span>
-                  <span style={{ color: "#1e1e1e", margin: "0 4px" }}>·</span>
-                  <span style={{ color: "#666" }}>{formatDescription(sig.description)}</span>
-                </span>
+                  {/* Timestamp (subtle) */}
+                  {sig.timestamp && (
+                    <span
+                      style={{
+                        fontSize: "7px",
+                        color: "#252525",
+                        fontVariantNumeric: "tabular-nums",
+                        flexShrink: 0,
+                      }}
+                      suppressHydrationWarning
+                    >
+                      {formatTimestamp(sig.timestamp)}
+                    </span>
+                  )}
 
-                {/* Depth */}
-                {sig.depth > 0 && (
-                  <span style={{
-                    fontSize: "8px",
-                    color: "#555",
-                    fontVariantNumeric: "tabular-nums",
-                    flexShrink: 0,
-                    background: "rgba(255,255,255,0.03)",
-                    padding: "1px 3px",
-                    borderRadius: "2px",
-                  }}>
-                    {sig.depth}
+                  {/* Description text with highlighted numbers */}
+                  <span
+                    style={{
+                      fontSize: "8px",
+                      color: "#444",
+                      flex: 1,
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                      textOverflow: "ellipsis",
+                      minWidth: 0,
+                    }}
+                  >
+                    {formatDescription(sig.description)}
                   </span>
-                )}
 
-                {/* Relative time */}
-                {sig.timestamp && (
-                  <span style={{
-                    fontSize: "8px",
-                    color: "#444",
-                    fontVariantNumeric: "tabular-nums",
-                    flexShrink: 0,
-                    minWidth: "18px",
-                    textAlign: "right",
-                  }}>
-                    {relativeTime(sig.timestamp)}
-                  </span>
-                )}
+                  {/* Depth badge */}
+                  {sig.depth > 0 && (
+                    <span
+                      style={{
+                        fontSize: "7px",
+                        color: "#3a3a3a",
+                        fontVariantNumeric: "tabular-nums",
+                        flexShrink: 0,
+                        background: "rgba(255,255,255,0.025)",
+                        padding: "1px 4px",
+                        borderRadius: "2px",
+                        border: "1px solid #1a1a1a",
+                      }}
+                    >
+                      {sig.depth}
+                    </span>
+                  )}
+                </div>
               </div>
             );
           })

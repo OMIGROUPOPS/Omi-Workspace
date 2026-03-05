@@ -1,8 +1,9 @@
 "use client";
 
-// OMI Terminal — Watchlist sidebar (Visual Overhaul v3)
+// OMI Terminal — Watchlist sidebar (Modular Box v4)
+// Inner content of parent TermBox — no outer border/header.
 // Full readable market names, event context, sparklines, price flash.
-// 240px wide. Collapsible categories. Fetches full market names from /api/kalshi/market.
+// Collapsible categories. Fetches full market names from /api/kalshi/market.
 
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import type { WatchlistItem, CategoryData, CategoryTicker } from "@/lib/terminal/types";
@@ -131,67 +132,52 @@ export default function Watchlist({
   }, [items, query, useFlatList]);
 
   return (
-    <div className="h-full flex flex-col">
-      {/* Header */}
-      <div style={{
+    <div
+      style={{
+        height: "100%",
         display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        marginBottom: "6px",
-        paddingBottom: "6px",
-        borderBottom: "1px solid #1a1a1a",
-      }}>
-        <span style={{
-          fontSize: "9px",
-          color: "#666",
-          fontWeight: 700,
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-        }}>
-          Markets
-        </span>
-        <span style={{
-          fontSize: "9px",
-          color: "#444",
-          fontVariantNumeric: "tabular-nums",
-        }}>
-          {categories?.reduce((s, c) => s + c.active_tickers, 0) || items.length}
-        </span>
-      </div>
-
+        flexDirection: "column",
+        background: "transparent",
+      }}
+    >
       {/* Search */}
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search markets..."
-        style={{
-          width: "100%",
-          background: "#111",
-          border: "1px solid #1a1a1a",
-          borderRadius: "4px",
-          padding: "6px 10px",
-          fontSize: "10px",
-          color: "#999",
-          outline: "none",
-          marginBottom: "6px",
-          boxSizing: "border-box",
-          transition: "border-color 0.15s, box-shadow 0.15s",
-        }}
-        onFocus={(e) => {
-          e.currentTarget.style.borderColor = "rgba(255,102,0,0.4)";
-          e.currentTarget.style.boxShadow = "0 0 8px rgba(255,102,0,0.1)";
-        }}
-        onBlur={(e) => {
-          e.currentTarget.style.borderColor = "#1a1a1a";
-          e.currentTarget.style.boxShadow = "none";
-        }}
-      />
+      <div style={{ flexShrink: 0, padding: "0 0 6px 0" }}>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search markets..."
+          style={{
+            width: "100%",
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid #1e1e1e",
+            borderRadius: "3px",
+            padding: "5px 8px",
+            fontSize: "10px",
+            color: "#999",
+            outline: "none",
+            boxSizing: "border-box",
+            transition: "border-color 0.15s, box-shadow 0.15s",
+            fontFamily: "inherit",
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = "rgba(255,102,0,0.35)";
+            e.currentTarget.style.boxShadow = "0 0 6px rgba(255,102,0,0.08)";
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = "#1e1e1e";
+            e.currentTarget.style.boxShadow = "none";
+          }}
+        />
+      </div>
 
       {/* Ticker list */}
       <div
-        className="flex-1 overflow-y-auto"
-        style={{ scrollbarWidth: "none" }}
+        style={{
+          flex: 1,
+          overflowY: "auto",
+          scrollbarWidth: "none",
+        }}
       >
         {useFlatList ? (
           flatFiltered.length === 0 ? (
@@ -232,41 +218,44 @@ export default function Watchlist({
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "6px",
+                    gap: "5px",
                     width: "100%",
-                    padding: "5px 6px",
+                    padding: "5px 8px 5px 6px",
                     border: "none",
-                    background: isActive ? "rgba(255,102,0,0.06)" : "rgba(255,255,255,0.015)",
+                    background: isActive ? "rgba(255,102,0,0.05)" : "rgba(255,255,255,0.012)",
                     cursor: "pointer",
                     borderBottom: "1px solid #111",
                     borderLeft: isActive ? "2px solid #FF6600" : "2px solid #1a1a1a",
                     transition: "background 0.15s",
                     marginTop: "1px",
                     borderRadius: "0 2px 2px 0",
+                    fontFamily: "inherit",
                   }}
                 >
-                  <span style={{ fontSize: "7px", color: "#555", width: "8px", flexShrink: 0 }}>
+                  <span style={{ fontSize: "7px", color: "#3a3a3a", width: "8px", flexShrink: 0 }}>
                     {isCollapsed(cat) ? "▸" : "▾"}
                   </span>
+
                   {isActive && (
                     <span
                       style={{
-                        width: "5px",
-                        height: "5px",
+                        width: "4px",
+                        height: "4px",
                         borderRadius: "50%",
                         background: "#00FF88",
                         flexShrink: 0,
-                        boxShadow: "0 0 6px rgba(0,255,136,0.5)",
+                        boxShadow: "0 0 5px rgba(0,255,136,0.45)",
                         animation: "terminal-pulse 2s ease-in-out infinite",
                       }}
                     />
                   )}
+
                   <span
                     style={{
                       fontSize: "9px",
-                      color: isActive ? "#ccc" : "#777",
+                      color: isActive ? "#c0c0c0" : "#555",
                       fontWeight: 700,
-                      letterSpacing: "0.06em",
+                      letterSpacing: "0.07em",
                       textTransform: "uppercase",
                       flex: 1,
                       textAlign: "left",
@@ -277,24 +266,27 @@ export default function Watchlist({
                   >
                     {cat.category}
                   </span>
+
                   <div style={{ display: "flex", alignItems: "center", gap: "5px", flexShrink: 0 }}>
                     {cat.signals_count > 0 && (
-                      <span style={{
-                        fontSize: "7px",
-                        fontWeight: 700,
-                        padding: "1px 4px",
-                        borderRadius: "3px",
-                        background: "rgba(0,255,136,0.12)",
-                        color: "#00FF88",
-                        lineHeight: "12px",
-                      }}>
+                      <span
+                        style={{
+                          fontSize: "7px",
+                          fontWeight: 700,
+                          padding: "1px 4px",
+                          borderRadius: "3px",
+                          background: "rgba(0,255,136,0.1)",
+                          color: "#00FF88",
+                          lineHeight: "12px",
+                        }}
+                      >
                         {cat.signals_count}
                       </span>
                     )}
                     <span
                       style={{
                         fontSize: "8px",
-                        color: "#444",
+                        color: "#3a3a3a",
                         fontVariantNumeric: "tabular-nums",
                       }}
                     >
@@ -334,17 +326,19 @@ export default function Watchlist({
 
 function EmptyState({ text }: { text: string }) {
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      height: "100px",
-      color: "#444",
-      fontSize: "10px",
-      gap: "8px",
-    }}>
-      <span style={{ fontSize: "18px", opacity: 0.3 }}>◈</span>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "80px",
+        color: "#333",
+        fontSize: "10px",
+        gap: "8px",
+      }}
+    >
+      <span style={{ fontSize: "16px", opacity: 0.25 }}>◈</span>
       {text}
     </div>
   );
@@ -428,20 +422,25 @@ function TickerRow({
         display: "flex",
         alignItems: "center",
         width: "100%",
-        padding: "4px 6px 4px 0",
+        padding: "4px 8px 4px 0",
         fontSize: "10px",
         textAlign: "left",
         cursor: "pointer",
         border: "none",
         transition: "background 0.1s",
-        background: isSelected ? "rgba(255,102,0,0.08)" : "transparent",
+        background: isSelected ? "rgba(255,102,0,0.07)" : "transparent",
         color: isSelected ? "#FF6600" : "#ccc",
         borderLeft: isSelected ? "2px solid #FF6600" : "2px solid transparent",
         position: "relative",
         overflow: "hidden",
+        fontFamily: "inherit",
       }}
-      onMouseEnter={(e) => { if (!isSelected) e.currentTarget.style.background = "rgba(255,255,255,0.02)"; }}
-      onMouseLeave={(e) => { if (!isSelected) e.currentTarget.style.background = "transparent"; }}
+      onMouseEnter={(e) => {
+        if (!isSelected) e.currentTarget.style.background = "rgba(255,255,255,0.018)";
+      }}
+      onMouseLeave={(e) => {
+        if (!isSelected) e.currentTarget.style.background = "transparent";
+      }}
     >
       {/* Flash overlay */}
       {flashDir && (
@@ -459,7 +458,14 @@ function TickerRow({
       {/* Content */}
       <div style={{ flex: 1, minWidth: 0, overflow: "hidden", paddingLeft: "6px" }}>
         {/* Line 1: Full market name + Price */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", lineHeight: "15px" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            lineHeight: "15px",
+          }}
+        >
           <span
             style={{
               fontWeight: isSelected ? 700 : 500,
@@ -475,9 +481,24 @@ function TickerRow({
           >
             {label}
           </span>
-          <div style={{ display: "flex", alignItems: "center", gap: "2px", flexShrink: 0, marginLeft: "4px" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "2px",
+              flexShrink: 0,
+              marginLeft: "4px",
+            }}
+          >
             {mv !== null && mv !== 0 && (
-              <span style={{ fontSize: "7px", color: priceColor, fontWeight: 700, lineHeight: 1 }}>
+              <span
+                style={{
+                  fontSize: "7px",
+                  color: priceColor,
+                  fontWeight: 700,
+                  lineHeight: 1,
+                }}
+              >
                 {mv > 0 ? "▲" : "▼"}
               </span>
             )}
@@ -495,37 +516,68 @@ function TickerRow({
         </div>
 
         {/* Line 2: Event name + spread + sparkline */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", lineHeight: "11px", marginTop: "1px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "0", fontSize: "8px", color: "#555", overflow: "hidden" }}>
-            {eventName && (
-              <span style={{
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                maxWidth: "80px",
-                color: "#3a3a3a",
-              }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            lineHeight: "11px",
+            marginTop: "1px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0",
+              fontSize: "8px",
+              color: "#555",
+              overflow: "hidden",
+            }}
+          >
+            {eventName ? (
+              <span
+                style={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  maxWidth: "80px",
+                  color: "#3a3a3a",
+                }}
+              >
                 {eventName}
               </span>
-            )}
-            {!eventName && (
-              <span style={{
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                maxWidth: "55px",
-                color: "#2a2a2a",
-                textTransform: "uppercase",
-              }}>
+            ) : (
+              <span
+                style={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  maxWidth: "55px",
+                  color: "#2a2a2a",
+                  textTransform: "uppercase",
+                }}
+              >
                 {ticker.slice(-10)}
               </span>
             )}
             <span style={{ color: "#1e1e1e", margin: "0 3px" }}>·</span>
-            <span style={{ fontVariantNumeric: "tabular-nums", color: spread <= 2 ? "#555" : "#3a3a3a" }}>{spread}s</span>
+            <span
+              style={{
+                fontVariantNumeric: "tabular-nums",
+                color: spread <= 2 ? "#555" : "#3a3a3a",
+              }}
+            >
+              {spread}s
+            </span>
             {kyle_lambda !== null && kyle_lambda !== undefined && (
               <>
                 <span style={{ color: "#1e1e1e", margin: "0 3px" }}>·</span>
-                <span style={{ color: "#00BCD4", fontVariantNumeric: "tabular-nums" }}>λ{kyle_lambda.toFixed(3)}</span>
+                <span
+                  style={{ color: "#00BCD4", fontVariantNumeric: "tabular-nums" }}
+                >
+                  λ{kyle_lambda.toFixed(3)}
+                </span>
               </>
             )}
           </div>

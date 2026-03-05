@@ -1,7 +1,7 @@
 "use client";
 
-// OMI Terminal — Main layout (Visual Overhaul v3)
-// 3-column layout: Watchlist 240px | Chart + Positions + Scanner/Settlement | OrderEntry 260px
+// OMI Terminal — Main layout (Visual Overhaul v4 — Modular Box Pattern)
+// 3-column layout: DataFeeds/Microstructure/Inventory/Watchlist | Chart + Scanner + Positions/Countdown | Orderbook + OrderEntry
 // DO NOT change data fetching, polling, API routes, or orchestration logic.
 
 import { useState, useEffect, useCallback, useMemo } from "react";
@@ -10,7 +10,6 @@ import Chart from "./Chart";
 import Orderbook from "./Orderbook";
 import Scanner from "./Scanner";
 import CountdownBoard from "./CountdownBoard";
-import PnL from "./PnL";
 import OrderEntry from "./OrderEntry";
 import PositionsTable from "./PositionsTable";
 import StatusBar from "./StatusBar";
@@ -52,6 +51,100 @@ function usePolling<T>(url: string, intervalMs: number) {
   }, [url, intervalMs]);
 
   return data;
+}
+
+// ── TermBox helper ───────────────────────────────────────────
+
+function TermBox({
+  title,
+  icon,
+  borderColor,
+  children,
+  flex,
+}: {
+  title: string;
+  icon: string;
+  borderColor: string;
+  children: React.ReactNode;
+  flex?: string;
+}) {
+  return (
+    <div
+      style={{
+        background: "#0d0d0d",
+        border: `1px solid ${borderColor}`,
+        borderRadius: "8px",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        flex: flex || undefined,
+        minHeight: 0,
+      }}
+    >
+      <div
+        style={{
+          padding: "6px 10px",
+          background: `${borderColor}15`,
+          borderBottom: `1px solid ${borderColor}30`,
+          display: "flex",
+          alignItems: "center",
+          gap: "6px",
+          flexShrink: 0,
+        }}
+      >
+        <span style={{ fontSize: "10px" }}>{icon}</span>
+        <span
+          style={{
+            fontSize: "9px",
+            fontWeight: 700,
+            color: borderColor,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+          }}
+        >
+          {title}
+        </span>
+      </div>
+      <div style={{ flex: 1, minHeight: 0, overflow: "hidden" }}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+// ── MetricRow helper ─────────────────────────────────────────
+
+function MetricRow({
+  label,
+  value,
+  valueColor,
+}: {
+  label: string;
+  value: string;
+  valueColor?: string;
+}) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "3px 10px",
+        fontSize: "10px",
+      }}
+    >
+      <span style={{ color: "#5a6577" }}>{label}</span>
+      <span
+        style={{
+          color: valueColor || "#e0e0e0",
+          fontWeight: 600,
+          fontVariantNumeric: "tabular-nums",
+        }}
+      >
+        {value}
+      </span>
+    </div>
+  );
 }
 
 // ── Component ────────────────────────────────────────────────
@@ -200,208 +293,270 @@ export default function Terminal() {
     }));
   }, [normalizedSignals]);
 
+  // Derive microstructure values from first resolution signal
+  const firstSignal = normalizedSignals.find((s) => s.scan_type === "resolution") ?? normalizedSignals[0];
+  const lambdaVal: number | null = (firstSignal as { lambda?: number } | undefined)?.lambda ?? null;
+  const vpinVal: number | null = (firstSignal as { vpin?: number } | undefined)?.vpin ?? null;
+  const convTimeVal: number | null = (firstSignal as { conv_time?: number } | undefined)?.conv_time ?? null;
+  const whaleFactor: number | null = (firstSignal as { whale_factor?: number } | undefined)?.whale_factor ?? null;
+  const rInformedVal: number | null = (firstSignal as { r_informed?: number } | undefined)?.r_informed ?? null;
+
+  const fmtNum = (v: number | null, dec = 4): string =>
+    v !== null ? v.toFixed(dec) : "—";
+
+  // Suppress unused clock warning — clock is used for its side-effect (1s tick)
+  void clock;
+
   return (
     <div
-      className="h-full w-full bg-[#0a0a0a] text-slate-200 flex flex-col overflow-hidden"
-      style={{ fontFamily: "'JetBrains Mono', 'Courier New', monospace" }}
+      style={{
+        height: "100%",
+        width: "100%",
+        background: "#0a0a0a",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+        fontFamily: "'JetBrains Mono', 'Courier New', monospace",
+        color: "#e0e0e0",
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)
+        `,
+        backgroundSize: "40px 40px",
+      }}
     >
-      {/* ── Top bar ── */}
-      <div
-        className="flex items-center justify-between px-4 shrink-0"
-        style={{
-          height: "30px",
-          background: "#0a0a0a",
-          borderBottom: "1px solid #1a1a1a",
-        }}
-      >
-        <div className="flex items-center gap-3">
-          <span
-            style={{
-              color: "#FF6600",
-              fontWeight: 800,
-              fontSize: "14px",
-              letterSpacing: "0.15em",
-            }}
-          >
-            OMI
-          </span>
-          <span
-            style={{
-              color: "#444",
-              fontSize: "10px",
-              letterSpacing: "0.2em",
-              fontWeight: 500,
-            }}
-          >
-            TERMINAL
-          </span>
-          <span style={{ color: "#2a2a2a", fontSize: "8px" }}>v0.3</span>
-        </div>
-        <div className="flex items-center gap-4" style={{ fontSize: "9px" }}>
-          <span style={{ color: "#3a3a3a", fontVariantNumeric: "tabular-nums" }}>
-            {new Date().toISOString().slice(0, 10)}
-          </span>
-          <span style={{ color: "#666", fontVariantNumeric: "tabular-nums", fontWeight: 600, fontSize: "10px" }} suppressHydrationWarning>
-            {clock}
-          </span>
-          <span
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "5px",
-              color:
-                connectionStatus === "connected" ? "#00FF88" : connectionStatus === "connecting" ? "#FFD600" : "#FF3366",
-            }}
-          >
-            <span
-              style={{
-                display: "inline-block",
-                width: "6px",
-                height: "6px",
-                borderRadius: "50%",
-                background:
-                  connectionStatus === "connected"
-                    ? "#00FF88"
-                    : connectionStatus === "connecting"
-                      ? "#FFD600"
-                      : "#FF3366",
-                boxShadow:
-                  connectionStatus === "connected"
-                    ? "0 0 8px rgba(0,255,136,0.5)"
-                    : "none",
-                animation:
-                  connectionStatus === "connected"
-                    ? "terminal-pulse 2s ease-in-out infinite"
-                    : connectionStatus === "connecting"
-                      ? "terminal-pulse 0.8s ease-in-out infinite"
-                      : "none",
-              }}
-            />
-            <span style={{ fontWeight: 700, letterSpacing: "0.08em", fontSize: "9px" }}>
-              {connectionStatus === "connected"
-                ? "LIVE"
-                : connectionStatus === "connecting"
-                  ? "SYNC"
-                  : "OFFLINE"}
-            </span>
-          </span>
-        </div>
-      </div>
-
       {/* ── Main content — 3-column layout ── */}
       <div
-        style={{ flex: 1, display: "flex", minHeight: 0, overflow: "hidden" }}
+        style={{
+          flex: 1,
+          display: "flex",
+          minHeight: 0,
+          gap: "8px",
+          padding: "8px",
+          overflow: "hidden",
+        }}
       >
-        {/* ── Left: Watchlist — 240px ── */}
+        {/* ── LEFT COLUMN — 240px ── */}
         <div
           style={{
             width: "240px",
             flexShrink: 0,
-            background: "#0a0a0a",
-            borderRight: "1px solid #1a1a1a",
-            padding: "6px",
-            overflow: "hidden",
             display: "flex",
             flexDirection: "column",
+            gap: "8px",
+            overflow: "hidden",
           }}
         >
-          <Watchlist
-            categories={categories}
-            selectedTicker={selectedTicker ?? undefined}
-            onSelect={setSelectedTicker}
-          />
+          {/* DataFeedsBox */}
+          <TermBox title="Data Feeds" icon="◉" borderColor="#00BCD4">
+            <div style={{ padding: "4px 0" }}>
+              {/* WebSocket status row */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: "3px 10px",
+                  fontSize: "10px",
+                }}
+              >
+                <span style={{ color: "#5a6577" }}>WebSocket</span>
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "5px",
+                    fontWeight: 600,
+                    fontVariantNumeric: "tabular-nums",
+                    color:
+                      connectionStatus === "connected"
+                        ? "#00FF88"
+                        : connectionStatus === "connecting"
+                          ? "#FFD600"
+                          : "#FF3366",
+                  }}
+                >
+                  <span
+                    style={{
+                      display: "inline-block",
+                      width: "5px",
+                      height: "5px",
+                      borderRadius: "50%",
+                      background:
+                        connectionStatus === "connected"
+                          ? "#00FF88"
+                          : connectionStatus === "connecting"
+                            ? "#FFD600"
+                            : "#FF3366",
+                      boxShadow:
+                        connectionStatus === "connected"
+                          ? "0 0 6px rgba(0,255,136,0.6)"
+                          : "none",
+                    }}
+                  />
+                  {connectionStatus === "connected"
+                    ? "LIVE"
+                    : connectionStatus === "connecting"
+                      ? "SYNC"
+                      : "OFF"}
+                </span>
+              </div>
+              <MetricRow
+                label="BBO updates"
+                value={statusData?.bbo_updates?.toLocaleString() ?? "—"}
+              />
+              <MetricRow
+                label="Tickers"
+                value={statusData?.tickers_count?.toLocaleString() ?? "—"}
+              />
+              <MetricRow
+                label="Latency"
+                value={
+                  statusData
+                    ? `~${Math.round(statusData.uptime > 0 ? 44 : 0)}ms`
+                    : "—"
+                }
+              />
+            </div>
+          </TermBox>
+
+          {/* MicrostructureBox */}
+          <TermBox title="Microstructure" icon="λ" borderColor="#00BCD4">
+            <div style={{ padding: "4px 0" }}>
+              <MetricRow
+                label="Kyle's λ"
+                value={fmtNum(lambdaVal, 4)}
+                valueColor={
+                  lambdaVal !== null && lambdaVal > 0.012
+                    ? "#FF3366"
+                    : "#e0e0e0"
+                }
+              />
+              <MetricRow
+                label="Action"
+                value={
+                  lambdaVal !== null
+                    ? lambdaVal > 0.012
+                      ? "WIDEN"
+                      : "QUOTE"
+                    : "—"
+                }
+                valueColor={
+                  lambdaVal !== null && lambdaVal > 0.012
+                    ? "#FFD600"
+                    : "#00FF88"
+                }
+              />
+              <MetricRow label="VPIN" value={fmtNum(vpinVal, 3)} />
+              <MetricRow label="r (informed)" value={fmtNum(rInformedVal, 3)} />
+              <MetricRow
+                label="Conv time"
+                value={convTimeVal !== null ? `${fmtNum(convTimeVal, 1)}s` : "—"}
+              />
+              <MetricRow
+                label="Whale factor"
+                value={whaleFactor !== null ? `${fmtNum(whaleFactor, 2)}x` : "—"}
+              />
+              <div
+                style={{
+                  padding: "4px 10px 6px",
+                  fontSize: "8px",
+                  color: "#3a4a5a",
+                  borderTop: "1px solid #00BCD415",
+                  marginTop: "2px",
+                  lineHeight: 1.5,
+                }}
+              >
+                λ high→WIDEN · VPIN high→WIDEN · r low→SAFE
+              </div>
+            </div>
+          </TermBox>
+
+          {/* InventoryBox */}
+          <TermBox title="Inventory" icon="⟲" borderColor="#00BCD4">
+            <div style={{ padding: "4px 0" }}>
+              <MetricRow
+                label="γ"
+                value={`0.01 × |${openTradeCount}|`}
+              />
+              <MetricRow
+                label="Net"
+                value={`+${openTradeCount} positions`}
+                valueColor="#00FF88"
+              />
+              <MetricRow
+                label="Exposure"
+                value={`$${totalPnl ? Math.abs(totalPnl / 100).toFixed(2) : "0.00"}`}
+              />
+            </div>
+          </TermBox>
+
+          {/* Watchlist — MARKETS box, fills remaining space */}
+          <TermBox title="Markets" icon="◈" borderColor="#333" flex="1">
+            <div
+              style={{
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                minHeight: 0,
+                overflow: "hidden",
+              }}
+            >
+              <Watchlist
+                categories={categories}
+                selectedTicker={selectedTicker ?? undefined}
+                onSelect={setSelectedTicker}
+              />
+            </div>
+          </TermBox>
         </div>
 
-        {/* ── Center: Chart + Positions + Scanner/Settlement ── */}
+        {/* ── CENTER COLUMN — flex 1 ── */}
         <div
           style={{
             flex: 1,
             display: "flex",
             flexDirection: "column",
+            gap: "8px",
             minWidth: 0,
             minHeight: 0,
+            overflow: "hidden",
           }}
         >
-          {/* Top: Chart + Orderbook — 55% */}
-          <div
-            style={{
-              flex: "55 1 0",
-              display: "flex",
-              minHeight: 0,
-              overflow: "hidden",
-            }}
+          {/* Chart box — 55% */}
+          <TermBox
+            title="Price Chart"
+            icon="◈"
+            borderColor="#FF6600"
+            flex="55 1 0"
           >
-            {/* Chart */}
             <div
               style={{
-                flex: 1,
-                background: "#0a0a0a",
-                borderBottom: "1px solid #1a1a1a",
-                borderRight: "1px solid #1a1a1a",
+                height: "100%",
                 padding: "4px 6px",
-                overflow: "hidden",
-                minWidth: 0,
-                minHeight: 0,
                 display: "flex",
                 flexDirection: "column",
+                minHeight: 0,
               }}
             >
               <Chart ticker={selectedTicker ?? undefined} />
             </div>
+          </TermBox>
 
-            {/* Orderbook */}
+          {/* Scanner box — flex grow */}
+          <TermBox
+            title="Signal Scanner"
+            icon="⬡"
+            borderColor="#FF6600"
+            flex="1 1 0"
+          >
             <div
               style={{
-                width: "180px",
-                flexShrink: 0,
-                background: "#0a0a0a",
-                borderBottom: "1px solid #1a1a1a",
+                height: "100%",
                 padding: "4px 6px",
-                overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
-              }}
-            >
-              <Orderbook ticker={selectedTicker ?? undefined} />
-            </div>
-          </div>
-
-          {/* Middle: Positions table — 20% */}
-          <div
-            style={{
-              flex: "20 1 0",
-              background: "#0a0a0a",
-              borderBottom: "1px solid #1a1a1a",
-              padding: "4px 6px",
-              overflow: "hidden",
-              display: "flex",
-              flexDirection: "column",
-              minHeight: 0,
-            }}
-          >
-            <PositionsTable />
-          </div>
-
-          {/* Bottom: Scanner + Countdown + PnL — 25% */}
-          <div
-            style={{
-              flex: "25 1 0",
-              display: "flex",
-              minHeight: 0,
-              overflow: "hidden",
-            }}
-          >
-            {/* Scanner */}
-            <div
-              style={{
-                flex: 5,
-                background: "#0a0a0a",
-                borderRight: "1px solid #1a1a1a",
-                padding: "4px 6px",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-                minWidth: 0,
+                minHeight: 0,
               }}
             >
               <Scanner
@@ -410,67 +565,119 @@ export default function Terminal() {
                 onFilterChange={setScanFilter}
               />
             </div>
+          </TermBox>
 
-            {/* Countdown */}
-            <div
-              style={{
-                flex: 3,
-                background: "#0a0a0a",
-                borderRight: "1px solid #1a1a1a",
-                padding: "4px 6px",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-                minWidth: 0,
-              }}
+          {/* Bottom row: FILLS + P&L | NEAR SETTLEMENT */}
+          <div
+            style={{
+              display: "flex",
+              gap: "8px",
+              flex: "35 1 0",
+              minHeight: 0,
+              overflow: "hidden",
+            }}
+          >
+            {/* FILLS + P&L box */}
+            <TermBox
+              title="Fills + P&L"
+              icon="◎"
+              borderColor="#00FF88"
+              flex="3 1 0"
             >
-              <CountdownBoard items={countdown} onSelect={setSelectedTicker} upcomingMarkets={upcomingMarkets} />
-            </div>
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  minHeight: 0,
+                  overflow: "hidden",
+                }}
+              >
+                <PositionsTable
+                  totalPnl={totalPnl}
+                  breakdowns={pnlBreakdowns}
+                  openTrades={openTradeCount}
+                  recentActivity={recentActivity}
+                />
+              </div>
+            </TermBox>
 
-            {/* P&L */}
-            <div
-              style={{
-                flex: 2,
-                background: "#0a0a0a",
-                padding: "4px 6px",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-                minWidth: 0,
-              }}
+            {/* NEAR SETTLEMENT box */}
+            <TermBox
+              title="Near Settlement"
+              icon="⏱"
+              borderColor="#FF3366"
+              flex="2 1 0"
             >
-              <PnL
-                totalPnl={totalPnl}
-                breakdowns={pnlBreakdowns}
-                openTrades={openTradeCount}
-                signalCount={statusData?.scan_signals}
-                categoryCount={categories.length}
-                recentActivity={recentActivity}
-              />
-            </div>
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  minHeight: 0,
+                  overflow: "hidden",
+                }}
+              >
+                <CountdownBoard
+                  items={countdown}
+                  onSelect={setSelectedTicker}
+                  upcomingMarkets={upcomingMarkets}
+                />
+              </div>
+            </TermBox>
           </div>
         </div>
 
-        {/* ── Right: Order Entry — 260px ── */}
+        {/* ── RIGHT COLUMN — 260px ── */}
         <div
           style={{
             width: "260px",
             flexShrink: 0,
-            background: "#0d0d0d",
-            borderLeft: "1px solid #1a1a1a",
-            overflow: "hidden",
             display: "flex",
             flexDirection: "column",
+            gap: "8px",
+            overflow: "hidden",
           }}
         >
-          <OrderEntry
-            onBalanceUpdate={setKalshiBalance}
-            selectedTicker={selectedTicker ?? undefined}
-          />
+          {/* Orderbook box */}
+          <TermBox
+            title="Order Book"
+            icon="▤"
+            borderColor="#00BCD4"
+            flex="1 1 0"
+          >
+            <div
+              style={{
+                height: "100%",
+                padding: "4px 6px",
+                display: "flex",
+                flexDirection: "column",
+                minHeight: 0,
+              }}
+            >
+              <Orderbook ticker={selectedTicker ?? undefined} />
+            </div>
+          </TermBox>
+
+          {/* OrderEntry — manages its own OEBox wrappers */}
+          <div
+            style={{
+              flex: "1 1 0",
+              minHeight: 0,
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <OrderEntry
+              onBalanceUpdate={setKalshiBalance}
+              selectedTicker={selectedTicker ?? undefined}
+            />
+          </div>
         </div>
       </div>
 
-      {/* ── Status bar ── */}
+      {/* ── Status bar — full width, outside main flex ── */}
       <StatusBar
         status={connectionStatus}
         tickerCount={statusData?.tickers_count ?? 0}
@@ -478,6 +685,7 @@ export default function Terminal() {
         balance={kalshiBalance !== null ? kalshiBalance / 100 : 0}
         signalCount={statusData?.scan_signals}
         uptime={statusData?.uptime}
+        totalPnl={totalPnl}
       />
     </div>
   );

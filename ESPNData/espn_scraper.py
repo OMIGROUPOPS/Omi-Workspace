@@ -30,7 +30,10 @@ SPORT_CONFIGS = {
     "ufc":    {"sport": "mma",        "league": "ufc"},
 }
 
-SPORTS_WITH_WIN_PROB = {"nba", "nhl", "ncaamb", "mlb"}
+SPORTS_WITH_WIN_PROB = {"nba", "ncaamb", "mlb"}
+
+# Sports where ESPN summary has no winprobability data at all
+SPORTS_NO_WIN_PROB = {"atp", "wta", "ufc", "nhl"}
 
 SKIP_STATUSES = {"STATUS_SCHEDULED", "STATUS_POSTPONED", "STATUS_CANCELED"}
 
@@ -316,8 +319,11 @@ def scrape_game_detail(session: requests.Session, game: dict, delay: float,
         wp = data.get("winprobability", [])
         game["win_probability"] = parse_win_probability(wp)
 
-        # Scoring plays
-        game["scoring_plays"] = parse_scoring_plays(data.get("scoringPlays", []))
+        # Scoring plays — ESPN has no top-level scoringPlays key;
+        # filter from plays where scoringPlay == true
+        all_plays_raw = data.get("plays", [])
+        scoring_raw = [p for p in all_plays_raw if p.get("scoringPlay")]
+        game["scoring_plays"] = parse_scoring_plays(scoring_raw)
 
         # All plays (PBP)
         if not skip_plays:
@@ -364,7 +370,8 @@ def scrape_sport_date(session: requests.Session, sport_key: str, date_str: str,
         wp_count = len(game["win_probability"])
         sc_count = len(game["scoring_plays"])
         play_count = len(game["all_plays"])
-        log(f"    win_prob={wp_count}, scoring={sc_count}, plays={play_count}")
+        wp_note = " (no ESPN win prob for this sport)" if sport_key in SPORTS_NO_WIN_PROB and wp_count == 0 else ""
+        log(f"    win_prob={wp_count}{wp_note}, scoring={sc_count}, plays={play_count}")
 
         games.append(game)
 

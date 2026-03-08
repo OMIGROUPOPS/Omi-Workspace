@@ -120,19 +120,7 @@
       "Bash(npm install:*)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(rm:*)",
-      "Bash(ssh-add:*)",
-      "Bash(SSH_AUTH_SOCK= ssh:*)",
-      "Bash(ssh-agent bash:*)",
-      "Bash(wc:*)",
-      "mcp__claude_ai_Vercel__deploy_to_vercel",
-      "WebFetch(domain:www.espn.ph)",
-      "Bash(scp:*)",
-      "Bash(ssh:*)",
-      "Bash(git:*)",
-      "mcp__claude_ai_Vercel__list_teams",
-      "mcp__claude_ai_Vercel__list_projects",
-      "mcp__claude_ai_Vercel__list_deployments",
-      "mcp__claude_ai_Vercel__get_project"
+      "Bash(ssh:*)"
     ]
   }
 }

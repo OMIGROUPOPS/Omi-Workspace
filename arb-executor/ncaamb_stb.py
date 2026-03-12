@@ -304,6 +304,7 @@ class Position:
     csv_entry_logged: bool = False
     csv_exit_logged: bool = False
     entry_mode: str = ""  # "" = standard STB, "stb_92plus" = 92c+ taker
+    volume_tier: str = ""  # "standard" always for ncaamb
 
     # Partial fill retry tracking
     retry_remaining: int = 0          # contracts still needed
@@ -346,7 +347,8 @@ class NcaambSTB:
         # Collapse filter state
         self.bid_history: Dict[str, List] = {}         # ticker -> [(ts, bid), ...]
         self.collapse_rejected: Set[str] = set()       # tickers pending re-entry
-        self.pending_reentries: Dict[str, tuple] = {}  # ticker -> (reentry_time, orig_bid)
+        self.pending_reentries: Dict[str, tuple] = {}  # ticker -> (reentry_time, orig_bid, attempt)
+        self._reentry_attempt: Dict[str, int] = {}     # collapse re-entry attempt counter
         self.total_collapse_rejects: int = 0
         self.total_reentries: int = 0
         self.spread_confirmed: Dict[str, bool] = {}  # 2-tick spread confirmation
@@ -889,15 +891,7 @@ class NcaambSTB:
             self.spread_confirmed.pop(ticker, None)  # reset on wide spread
             return False
 
-        # Fix 2: 2-tick spread confirmation
-        if ticker not in self.spread_confirmed:
-            self.spread_confirmed[ticker] = True
-            if log_reject:
-                side = ticker.split("-")[-1]
-                log(f"[SPREAD_WAIT] {side} spread={spread}c — confirming on 2nd tick")
-            return False
-        # 2nd consecutive tick with good spread — proceed
-
+        # 2-tick spread confirmation REMOVED (Phase 1)
         # Filter: combined MID <= 97c (dislocation signal)
         if not partner or not partner_book:
             return False
@@ -933,13 +927,24 @@ class NcaambSTB:
                     f"(max={max_bid}c now={current_bid}c) — re-entry in 10m")
                 self.collapse_rejected.add(ticker)
                 self.pending_reentries[ticker] = (
-                    time.time() + COLLAPSE_REENTRY_DELAY, current_bid)
+                    time.time() + COLLAPSE_REENTRY_DELAY, current_bid, 1)
                 self.total_collapse_rejects += 1
                 return
             else:
-                log(f"[REENTRY_SKIP] {side} still collapsing — "
+                # Re-entry but still collapsing: re-queue if attempts remain
+                attempt = self._reentry_attempt.get(ticker, 1)
+                if attempt < 3:
+                    next_attempt = attempt + 1
+                    self.pending_reentries[ticker] = (
+                        time.time() + COLLAPSE_REENTRY_DELAY, current_bid, next_attempt)
+                    self._reentry_attempt[ticker] = next_attempt
+                    log(f"[REENTRY_REQUEUE] {side} still collapsing attempt {attempt}/3 "
+                        f"dropped {drop}c (max={max_bid}c now={current_bid}c) next in 10m")
+                    return
+                log(f"[REENTRY_EXHAUSTED] {side} still collapsing after 3 attempts "
                     f"dropped {drop}c (max={max_bid}c now={current_bid}c)")
                 self.collapse_rejected.discard(ticker)
+                self._reentry_attempt.pop(ticker, None)
                 self.entered_sides.add(ticker)
                 self.total_reentry_skips += 1
                 return
@@ -1770,6 +1775,7 @@ class NcaambSTB:
         "depth_ratio_5c", "depth_ratio_10c", "depth_ratio_15c",
         "book_spread", "book_mid", "total_depth",
         "entry_mode",
+        "volume_tier",
     ]
 
 
@@ -1890,6 +1896,7 @@ class NcaambSTB:
             "book_mid": ds.get("book_mid", "") if ds else "",
             "total_depth": ds.get("total_depth", "") if ds else "",
             "entry_mode": getattr(pos, 'entry_mode', ''),
+            "volume_tier": getattr(pos, 'volume_tier', ''),
         }
 
         buf = io.StringIO()
@@ -2221,17 +2228,30 @@ class NcaambSTB:
             try:
                 now = time.time()
                 for ticker in list(self.pending_reentries.keys()):
-                    reentry_time, orig_bid = self.pending_reentries[ticker]
+                    entry = self.pending_reentries[ticker]
+                    reentry_time = entry[0]
+                    orig_bid = entry[1]
+                    attempt = entry[2] if len(entry) > 2 else 1
                     if now < reentry_time:
                         continue
                     self.pending_reentries.pop(ticker)
                     self.collapse_rejected.discard(ticker)
+                    self._reentry_attempt[ticker] = attempt
                     side = ticker.split("-")[-1]
                     if not self.check_entry(ticker):
-                        log(f"[REENTRY_SKIP] {side} dislocation resolved")
+                        if attempt < 3:
+                            next_attempt = attempt + 1
+                            self.pending_reentries[ticker] = (
+                                time.time() + COLLAPSE_REENTRY_DELAY, orig_bid, next_attempt)
+                            self.collapse_rejected.add(ticker)
+                            log(f"[REENTRY_NOFILTER] {side} filters fail attempt {attempt}/3 â retry in 10m")
+                            continue
+                        log(f"[REENTRY_SKIP] {side} dislocation resolved after {attempt} attempts")
+                        self._reentry_attempt.pop(ticker, None)
                         self.entered_sides.add(ticker)
                         self.total_reentry_skips += 1
                         continue
+                    self._reentry_attempt.pop(ticker, None)
                     await self.execute_entry(
                         ticker, is_reentry=True, original_price=orig_bid)
             except Exception as e:

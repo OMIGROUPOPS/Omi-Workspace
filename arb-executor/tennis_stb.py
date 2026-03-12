@@ -41,7 +41,8 @@ MAX_COMBINED_MID = 97          # combined MID of both sides ≤ 97c (dislocation
 MIN_ENTRY_ASK = 55             # entry side ask >= 55c
 MAX_ENTRY_ASK = 90             # skip entries > 90c (backtest: 0% win rate above 94c)
 MAX_SPREAD = 4                 # ask - bid ≤ 4c
-MIN_MARKET_VOLUME = 1000       # skip ghost/illiquid markets below this volume
+MIN_MARKET_VOLUME_MAIN = 1000       # main draw volume threshold
+MIN_MARKET_VOLUME_CHALLENGER = 500  # challenger: lower threshold (thinner books)
 MAX_HOURS_TO_EXPIRY = 6        # skip if expected_expiration > 6h away (match not started)
 
 # Conditional time stop — CHALLENGER series only
@@ -305,6 +306,7 @@ class Position:
     csv_entry_logged: bool = False
     csv_exit_logged: bool = False
     entry_mode: str = ""  # "" = standard STB, "stb_92plus_maker" = 92c+ maker
+    volume_tier: str = ""  # "thin" (500-999) or "standard" (1000+)
 
     # Partial fill retry tracking
     retry_remaining: int = 0          # contracts still needed
@@ -346,8 +348,10 @@ class TennisSTB:
 
         # Collapse filter state
         self.bid_history: Dict[str, List] = {}         # ticker -> [(ts, bid), ...]
+        self.ticker_volume: Dict[str, int] = {}        # market volume at discovery
         self.collapse_rejected: Set[str] = set()       # tickers pending re-entry
-        self.pending_reentries: Dict[str, tuple] = {}  # ticker -> (reentry_time, orig_bid)
+        self.pending_reentries: Dict[str, tuple] = {}  # ticker -> (reentry_time, orig_bid, attempt)
+        self._reentry_attempt: Dict[str, int] = {}     # collapse re-entry attempt counter
         self.total_collapse_rejects: int = 0
         self.total_reentries: int = 0
         self.spread_confirmed: Dict[str, bool] = {}  # 2-tick spread confirmation
@@ -589,13 +593,7 @@ class TennisSTB:
         if p2_sets == 0 and p1_sets >= 2:
             return f"player down 0-{p1_sets} sets"
 
-        # Reject if match is in a deciding set (genuine uncertainty, not panic dip)
-        # Deciding set = set 3 in best-of-3, set 5 in best-of-5
-        total_sets = p1_sets + p2_sets
-        if p1_sets == p2_sets and p1_sets >= 1:
-            # Sets are tied — this is a deciding set
-            current_set = total_sets + 1
-            return f"deciding set {current_set} (sets {p1_sets}-{p2_sets})"
+        # Deciding set filter REMOVED (Phase 1)
 
         # Fix 1: Reject if match just started (set 1, <3 games played)
         # Early-match entries have no game state edge — just thin book noise
@@ -656,12 +654,15 @@ class TennisSTB:
                     ticker = m["ticker"]
                     vol = m.get("volume", 0) or 0
                     lp = m.get("last_price", 0) or 0
-                    if vol < MIN_MARKET_VOLUME and lp == 0:
+                    is_chall_market = any(ticker.startswith(s) for s in CHALLENGER_SERIES)
+                    min_vol = MIN_MARKET_VOLUME_CHALLENGER if is_chall_market else MIN_MARKET_VOLUME_MAIN
+                    if vol < min_vol and lp == 0:
                         print(f"  [SKIP] {ticker} volume={vol} last_price={lp} — ghost market")
                         continue
-                    if vol < MIN_MARKET_VOLUME:
-                        print(f"  [SKIP] {ticker} volume={vol} — below minimum")
+                    if vol < min_vol:
+                        print(f"  [SKIP] {ticker} volume={vol} \u2014 below minimum (threshold={min_vol})")
                         continue
+                    self.ticker_volume[ticker] = vol
 
                     # Store/update expiry for pre-match filter
                     expiry_str = m.get("expected_expiration_time", "")
@@ -966,15 +967,7 @@ class TennisSTB:
             self.spread_confirmed.pop(ticker, None)  # reset on wide spread
             return False
 
-        # Fix 2: 2-tick spread confirmation — require spread <= MAX_SPREAD on 2 consecutive ticks
-        if ticker not in self.spread_confirmed:
-            self.spread_confirmed[ticker] = True
-            if log_reject:
-                side = ticker.split("-")[-1]
-                log(f"[SPREAD_WAIT] {side} spread={spread}c — confirming on 2nd tick")
-            return False
-        # 2nd consecutive tick with good spread — proceed
-
+        # 2-tick spread confirmation REMOVED (Phase 1)
         # Filter: combined MID <= 97c (dislocation signal)
         if not partner or not partner_book:
             return False
@@ -1010,13 +1003,24 @@ class TennisSTB:
                     f"(max={max_bid}c now={current_bid}c) — re-entry in 10m")
                 self.collapse_rejected.add(ticker)
                 self.pending_reentries[ticker] = (
-                    time.time() + COLLAPSE_REENTRY_DELAY, current_bid)
+                    time.time() + COLLAPSE_REENTRY_DELAY, current_bid, 1)
                 self.total_collapse_rejects += 1
                 return
             else:
-                log(f"[REENTRY_SKIP] {side} still collapsing — "
+                # Re-entry but still collapsing: re-queue if attempts remain
+                attempt = self._reentry_attempt.get(ticker, 1)
+                if attempt < 3:
+                    next_attempt = attempt + 1
+                    self.pending_reentries[ticker] = (
+                        time.time() + COLLAPSE_REENTRY_DELAY, current_bid, next_attempt)
+                    self._reentry_attempt[ticker] = next_attempt
+                    log(f"[REENTRY_REQUEUE] {side} still collapsing attempt {attempt}/3 "
+                        f"dropped {drop}c (max={max_bid}c now={current_bid}c) next in 10m")
+                    return
+                log(f"[REENTRY_EXHAUSTED] {side} still collapsing after 3 attempts "
                     f"dropped {drop}c (max={max_bid}c now={current_bid}c)")
                 self.collapse_rejected.discard(ticker)
+                self._reentry_attempt.pop(ticker, None)
                 self.entered_sides.add(ticker)
                 self.total_reentry_skips += 1
                 return
@@ -1130,12 +1134,16 @@ class TennisSTB:
         if game_state_log:
             pos.game_state_at_entry = game_state_log.strip()
 
+        # Volume tier tagging
+        vol = self.ticker_volume.get(ticker, 0)
+        pos.volume_tier = "thin" if 0 < vol < 1000 else "standard"
+
         stop_info = " hold-to-settle"  # no conditional stop for any tennis
         now = time.strftime("%H:%M:%S")
         log(f"[ENTRY] {now} {et} {side} ask={ask}c bid={bid}c "
             f"spread={spread}c combined_mid={combined_mid:.1f}c "
             f"target_sell={ask + EXIT_BOUNCE}c oid={order_id[:12]} "
-            f"buy_status={status}{stop_info}")
+            f"buy_status={status}{stop_info} volume_tier={pos.volume_tier}")
 
         # Game state log for every entry (builds dataset for analysis)
         log(f"[GAME_STATE] {et} side={side} entry={ask}c"
@@ -1786,6 +1794,7 @@ class TennisSTB:
         "depth_ratio_5c", "depth_ratio_10c", "depth_ratio_15c",
         "book_spread", "book_mid", "total_depth",
         "entry_mode",
+        "volume_tier",
     ]
 
 
@@ -1906,6 +1915,7 @@ class TennisSTB:
             "book_mid": ds.get("book_mid", "") if ds else "",
             "total_depth": ds.get("total_depth", "") if ds else "",
             "entry_mode": getattr(pos, 'entry_mode', ''),
+            "volume_tier": getattr(pos, 'volume_tier', ''),
         }
 
         buf = io.StringIO()
@@ -2140,17 +2150,8 @@ class TennisSTB:
                         # Event-level dedup
                         et92 = self.ticker_to_event.get(ticker, "")
                         if not (et92 and et92 in self.entered_events):
-                            # Deciding set guard for 92c+
-                            _skip_92 = False
-                            game92 = await self.fetch_game_state(et92)
-                            if game92:
-                                ds_reject = self.check_tennis_game_state(ticker, game92)
-                                if ds_reject and "deciding set" in ds_reject:
-                                    side92 = ticker.split("-")[-1]
-                                    log(f"[REJECT_DECIDING_SET_92+] {side92} — {ds_reject}")
-                                    _skip_92 = True
-
-                            if not _skip_92:
+                            # Deciding set guard REMOVED (Phase 1)
+                            if True:
                                 # Pre-match guard
                                 expiry92 = self.ticker_expiry.get(ticker)
                                 skip_expiry = False
@@ -2242,17 +2243,30 @@ class TennisSTB:
             try:
                 now = time.time()
                 for ticker in list(self.pending_reentries.keys()):
-                    reentry_time, orig_bid = self.pending_reentries[ticker]
+                    entry = self.pending_reentries[ticker]
+                    reentry_time = entry[0]
+                    orig_bid = entry[1]
+                    attempt = entry[2] if len(entry) > 2 else 1
                     if now < reentry_time:
                         continue
                     self.pending_reentries.pop(ticker)
                     self.collapse_rejected.discard(ticker)
+                    self._reentry_attempt[ticker] = attempt
                     side = ticker.split("-")[-1]
                     if not self.check_entry(ticker):
-                        log(f"[REENTRY_SKIP] {side} dislocation resolved")
+                        if attempt < 3:
+                            next_attempt = attempt + 1
+                            self.pending_reentries[ticker] = (
+                                time.time() + COLLAPSE_REENTRY_DELAY, orig_bid, next_attempt)
+                            self.collapse_rejected.add(ticker)
+                            log(f"[REENTRY_NOFILTER] {side} filters fail attempt {attempt}/3 â retry in 10m")
+                            continue
+                        log(f"[REENTRY_SKIP] {side} dislocation resolved after {attempt} attempts")
+                        self._reentry_attempt.pop(ticker, None)
                         self.entered_sides.add(ticker)
                         self.total_reentry_skips += 1
                         continue
+                    self._reentry_attempt.pop(ticker, None)
                     await self.execute_entry(
                         ticker, is_reentry=True, original_price=orig_bid)
             except Exception as e:

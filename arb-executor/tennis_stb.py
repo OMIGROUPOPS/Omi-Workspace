@@ -307,6 +307,7 @@ class Position:
     csv_exit_logged: bool = False
     entry_mode: str = ""  # "" = standard STB, "stb_92plus_maker" = 92c+ maker
     volume_tier: str = ""  # "thin" (500-999) or "standard" (1000+)
+    entry_type: str = ""  # "maker" or "taker"
 
     # Partial fill retry tracking
     retry_remaining: int = 0          # contracts still needed
@@ -1082,21 +1083,94 @@ class TennisSTB:
                 self.entered_sides.add(ticker)
                 return
 
-        # Place taker buy at ask
+        # --- Phase 2: Maker buy first, fallback to taker ---
+        maker_bid_price = ask - 1
+        entry_type = "maker"  # optimistic
         path = "/trade-api/v2/portfolio/orders"
-        payload = {
+        maker_payload = {
             "ticker": ticker,
             "action": "buy",
             "side": "yes",
             "count": order_contracts,
             "type": "limit",
-            "yes_price": ask,
-            "post_only": False,  # taker
+            "yes_price": maker_bid_price,
+            "post_only": True,
             "client_order_id": str(uuid.uuid4()),
         }
+        maker_result = await api_post(self.session, self.api_key, self.private_key,
+                                      path, maker_payload, self.rl)
+        if not maker_result or maker_result.get("error"):
+            # Maker bid rejected (e.g. post_only cross) — go straight to taker
+            err = maker_result.get("error", {}) if maker_result else {}
+            log(f"[MAKER_REJECT] {side} bid={maker_bid_price}c — {err.get('details', 'unknown')}, trying taker")
+            entry_type = "taker"
+            taker_payload = {
+                "ticker": ticker, "action": "buy", "side": "yes",
+                "count": order_contracts, "type": "limit",
+                "yes_price": ask, "post_only": False,
+                "client_order_id": str(uuid.uuid4()),
+            }
+            result = await api_post(self.session, self.api_key, self.private_key,
+                                    path, taker_payload, self.rl)
+        else:
+            maker_order = maker_result.get("order", {})
+            maker_oid = maker_order.get("order_id", "")
+            maker_status = maker_order.get("status", "")
+            if maker_status == "executed":
+                # Filled immediately as maker
+                log(f"[MAKER_BUY] {side} bid={maker_bid_price}c filled immediately")
+                result = maker_result
+                ask = maker_bid_price  # update entry price
+            else:
+                # Resting — wait 3s for fill
+                await asyncio.sleep(3)
+                chk_path = f"/trade-api/v2/portfolio/orders/{maker_oid}"
+                chk = await api_get(self.session, self.api_key, self.private_key,
+                                    chk_path, self.rl)
+                chk_order = chk.get("order", chk) if chk else {}
+                chk_status = chk_order.get("status", "")
+                chk_fills = chk_order.get("fill_count", 0) or 0
+                if chk_status == "executed":
+                    # Fully filled as maker in 3s
+                    log(f"[MAKER_BUY] {side} bid={maker_bid_price}c filled in 3s")
+                    result = maker_result
+                    result["order"] = chk_order
+                    ask = maker_bid_price
+                else:
+                    # Not fully filled — cancel remainder
+                    del_path = f"/trade-api/v2/portfolio/orders/{maker_oid}"
+                    await api_delete(self.session, self.api_key, self.private_key,
+                                    del_path, self.rl)
+                    if chk_fills > 0:
+                        # Partial maker fill — proceed with what we got
+                        log(f"[MAKER_PARTIAL] {side} bid={maker_bid_price}c {chk_fills}/{order_contracts}ct filled")
+                        result = maker_result
+                        result["order"] = chk_order
+                        ask = maker_bid_price
+                        order_contracts = chk_fills  # adjust count
+                    else:
+                        # Zero fills — check if dislocation still valid
+                        book_now = self.books.get(ticker)
+                        current_ask = book_now.best_ask if book_now else None
+                        if current_ask is not None and current_ask <= ask + 2:
+                            # Still close — taker fallback
+                            entry_type = "taker"
+                            log(f"[MAKER_FALLBACK] {side} maker unfilled, taker at {current_ask}c")
+                            ask = current_ask
+                            taker_payload = {
+                                "ticker": ticker, "action": "buy", "side": "yes",
+                                "count": order_contracts, "type": "limit",
+                                "yes_price": current_ask, "post_only": False,
+                                "client_order_id": str(uuid.uuid4()),
+                            }
+                            result = await api_post(self.session, self.api_key, self.private_key,
+                                                    path, taker_payload, self.rl)
+                        else:
+                            orig_ask = ask
+                            log(f"[MAKER_SKIP] {side} ask moved from {orig_ask}c to {current_ask}c — dislocation closed")
+                            return
 
-        result = await api_post(self.session, self.api_key, self.private_key,
-                                path, payload, self.rl)
+        # --- Validate result from maker or taker path ---
         if not result or result.get("error"):
             err = result.get("error", {}) if result else {}
             log(f"[ENTRY_FAIL] {ticker} ask={ask}c err={err}")
@@ -1112,7 +1186,8 @@ class TennisSTB:
         self.total_entries += 1
 
         # Fee: 1c per contract on taker entry
-        entry_fee = order_contracts  # 1c per contract on taker entry
+        # Fee estimate: taker ~1.5c/ct, maker ~0.1c/ct
+        entry_fee = max(1, order_contracts // 5) if entry_type == "maker" else order_contracts
         self.total_fees_cents += entry_fee
 
         buy_confirmed = (status == "executed")
@@ -1128,6 +1203,7 @@ class TennisSTB:
             buy_order_id=order_id, buy_confirmed=buy_confirmed,
             buy_fill_ts=buy_fill_ts,
         )
+        pos.entry_type = entry_type
         self.positions[ticker] = pos
 
         # Populate game state for CSV enrichment
@@ -1143,7 +1219,7 @@ class TennisSTB:
         log(f"[ENTRY] {now} {et} {side} ask={ask}c bid={bid}c "
             f"spread={spread}c combined_mid={combined_mid:.1f}c "
             f"target_sell={ask + EXIT_BOUNCE}c oid={order_id[:12]} "
-            f"buy_status={status}{stop_info} volume_tier={pos.volume_tier}")
+            f"buy_status={status}{stop_info} volume_tier={pos.volume_tier} entry_type={entry_type}")
 
         # Game state log for every entry (builds dataset for analysis)
         log(f"[GAME_STATE] {et} side={side} entry={ask}c"
@@ -1795,6 +1871,7 @@ class TennisSTB:
         "book_spread", "book_mid", "total_depth",
         "entry_mode",
         "volume_tier",
+        "entry_type",
     ]
 
 
@@ -1916,6 +1993,7 @@ class TennisSTB:
             "total_depth": ds.get("total_depth", "") if ds else "",
             "entry_mode": getattr(pos, 'entry_mode', ''),
             "volume_tier": getattr(pos, 'volume_tier', ''),
+            "entry_type": getattr(pos, 'entry_type', ''),
         }
 
         buf = io.StringIO()

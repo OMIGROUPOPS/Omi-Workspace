@@ -1,0 +1,256 @@
+======================================================================
+       NBA 92c+ COMPREHENSIVE ANALYSIS
+======================================================================
+
+Dataset: 182 games, 2026-02-05 to 2026-03-08 (32 days)
+Sides: 364 total (2 per game)
+
+──────────────────────────────────────────────────────────────────────
+A. PRICE CROSSING STATISTICS
+──────────────────────────────────────────────────────────────────────
+
+Total sides: 364
+  >= 85c:  203 sides ( 55.8%)  |  Won: 182  Lost: 21  WR: 89.7%
+  >= 88c:  200 sides ( 54.9%)  |  Won: 182  Lost: 18  WR: 91.0%
+  >= 90c:  198 sides ( 54.4%)  |  Won: 182  Lost: 16  WR: 91.9%
+  >= 92c:  191 sides ( 52.5%)  |  Won: 182  Lost: 9  WR: 95.3%
+  >= 93c:  190 sides ( 52.2%)  |  Won: 182  Lost: 8  WR: 95.8%
+  >= 94c:  189 sides ( 51.9%)  |  Won: 182  Lost: 7  WR: 96.3%
+  >= 95c:  187 sides ( 51.4%)  |  Won: 182  Lost: 5  WR: 97.3%
+  >= 96c:  185 sides ( 50.8%)  |  Won: 182  Lost: 3  WR: 98.4%
+  >= 97c:  185 sides ( 50.8%)  |  Won: 182  Lost: 3  WR: 98.4%
+  >= 98c:  183 sides ( 50.3%)  |  Won: 182  Lost: 1  WR: 99.5%
+  >= 99c:  183 sides ( 50.3%)  |  Won: 182  Lost: 1  WR: 99.5%
+
+Event-level (either side crosses threshold):
+  >= 90c:  182 / 182 games (100.0%)
+  >= 92c:  182 / 182 games (100.0%)
+  >= 95c:  182 / 182 games (100.0%)
+  >= 97c:  182 / 182 games (100.0%)
+  >= 99c:  182 / 182 games (100.0%)
+
+──────────────────────────────────────────────────────────────────────
+B. TAKER 92c+ WITH 99c EXIT
+──────────────────────────────────────────────────────────────────────
+
+--- Entry >= 90c ---
+  Entries: 182 (event-deduped)
+  Exit @99c: 168  |  Settle @99: 0  |  Losses: 14
+  WR: 92.3%
+  Avg PnL/trade: -0.45c  (-4.5c for 10 contracts)
+  Total PnL: $-8.15  |  PnL/day: $-0.25
+
+--- Entry >= 91c ---
+  Entries: 182 (event-deduped)
+  Exit @99c: 173  |  Settle @99: 0  |  Losses: 9
+  WR: 95.1%
+  Avg PnL/trade: 1.22c  (12.2c for 10 contracts)
+  Total PnL: $22.25  |  PnL/day: $0.70
+
+--- Entry >= 92c ---
+  Entries: 182 (event-deduped)
+  Exit @99c: 175  |  Settle @99: 0  |  Losses: 7
+  WR: 96.2%
+  Avg PnL/trade: 1.26c  (12.6c for 10 contracts)
+  Total PnL: $22.85  |  PnL/day: $0.71
+
+--- Entry >= 93c ---
+  Entries: 182 (event-deduped)
+  Exit @99c: 176  |  Settle @99: 0  |  Losses: 6
+  WR: 96.7%
+  Avg PnL/trade: 0.86c  (8.6c for 10 contracts)
+  Total PnL: $15.65  |  PnL/day: $0.49
+
+--- Entry >= 94c ---
+  Entries: 182 (event-deduped)
+  Exit @99c: 177  |  Settle @99: 0  |  Losses: 5
+  WR: 97.3%
+  Avg PnL/trade: 0.46c  (4.6c for 10 contracts)
+  Total PnL: $8.45  |  PnL/day: $0.26
+
+--- Entry >= 95c ---
+  Entries: 182 (event-deduped)
+  Exit @99c: 179  |  Settle @99: 0  |  Losses: 3
+  WR: 98.4%
+  Avg PnL/trade: 0.61c  (6.1c for 10 contracts)
+  Total PnL: $11.15  |  PnL/day: $0.35
+
+──────────────────────────────────────────────────────────────────────
+B2. TAKER 92c+ WITHOUT EVENT DEDUP (both sides counted)
+──────────────────────────────────────────────────────────────────────
+
+--- Entry >= 92c ---
+  Entries: 191
+  Exit @99c: 183  |  Settle @99: 0  |  Losses: 8
+  WR: 95.8%
+  Avg PnL/trade: 0.91c
+  Total PnL: $17.38  |  PnL/day: $0.54
+
+--- Entry >= 95c ---
+  Entries: 187
+  Exit @99c: 183  |  Settle @99: 0  |  Losses: 4
+  WR: 97.9%
+  Avg PnL/trade: 0.13c
+  Total PnL: $2.48  |  PnL/day: $0.08
+
+──────────────────────────────────────────────────────────────────────
+C. MAKER AT VARIOUS THRESHOLDS (resting limit order)
+──────────────────────────────────────────────────────────────────────
+
+--- Maker bid at 90c ---
+  Fills: 182 (event-deduped)
+  Wins: 168  |  Losses: 14  |  WR: 92.3%
+  Avg PnL/trade: 0.59c  |  Total PnL: $10.68  |  PnL/day: $0.33
+  Avg bounce (drawdown after fill): 18.6c  |  Max: 89c
+  PB (<=5c draw): 72  |  BD (>5c draw): 110  |  PB:BD = 0.7:1
+
+--- Maker bid at 91c ---
+  Fills: 182 (event-deduped)
+  Wins: 173  |  Losses: 9  |  WR: 95.1%
+  Avg PnL/trade: 2.28c  |  Total PnL: $41.48  |  PnL/day: $1.30
+  Avg bounce (drawdown after fill): 15.5c  |  Max: 90c
+  PB (<=5c draw): 80  |  BD (>5c draw): 102  |  PB:BD = 0.8:1
+
+--- Maker bid at 92c ---
+  Fills: 182 (event-deduped)
+  Wins: 175  |  Losses: 7  |  WR: 96.2%
+  Avg PnL/trade: 2.36c  |  Total PnL: $42.88  |  PnL/day: $1.34
+  Avg bounce (drawdown after fill): 14.4c  |  Max: 91c
+  PB (<=5c draw): 85  |  BD (>5c draw): 97  |  PB:BD = 0.9:1
+
+--- Maker bid at 93c ---
+  Fills: 182 (event-deduped)
+  Wins: 176  |  Losses: 6  |  WR: 96.7%
+  Avg PnL/trade: 1.89c  |  Total PnL: $34.48  |  PnL/day: $1.08
+  Avg bounce (drawdown after fill): 13.6c  |  Max: 92c
+  PB (<=5c draw): 91  |  BD (>5c draw): 91  |  PB:BD = 1.0:1
+
+--- Maker bid at 94c ---
+  Fills: 182 (event-deduped)
+  Wins: 177  |  Losses: 5  |  WR: 97.3%
+  Avg PnL/trade: 1.43c  |  Total PnL: $26.07  |  PnL/day: $0.81
+  Avg bounce (drawdown after fill): 12.7c  |  Max: 93c
+  PB (<=5c draw): 96  |  BD (>5c draw): 86  |  PB:BD = 1.1:1
+
+--- Maker bid at 95c ---
+  Fills: 182 (event-deduped)
+  Wins: 179  |  Losses: 3  |  WR: 98.4%
+  Avg PnL/trade: 1.51c  |  Total PnL: $27.48  |  PnL/day: $0.86
+  Avg bounce (drawdown after fill): 11.8c  |  Max: 94c
+  PB (<=5c draw): 95  |  BD (>5c draw): 87  |  PB:BD = 1.1:1
+
+--- Maker bid at 96c ---
+  Fills: 182 (event-deduped)
+  Wins: 180  |  Losses: 2  |  WR: 98.9%
+  Avg PnL/trade: 1.05c  |  Total PnL: $19.07  |  PnL/day: $0.60
+  Avg bounce (drawdown after fill): 10.3c  |  Max: 95c
+  PB (<=5c draw): 95  |  BD (>5c draw): 87  |  PB:BD = 1.1:1
+
+--- Maker bid at 97c ---
+  Fills: 182 (event-deduped)
+  Wins: 180  |  Losses: 2  |  WR: 98.9%
+  Avg PnL/trade: 0.05c  |  Total PnL: $0.88  |  PnL/day: $0.03
+  Avg bounce (drawdown after fill): 9.7c  |  Max: 96c
+  PB (<=5c draw): 107  |  BD (>5c draw): 75  |  PB:BD = 1.4:1
+
+──────────────────────────────────────────────────────────────────────
+D. STOP-LOSS ANALYSIS (entry >= 92c, event-deduped)
+──────────────────────────────────────────────────────────────────────
+
+--- Stop at -3c ---
+  Entries: 182
+  Wins (99c): 62  |  Stopped out: 120  |  Settle loss: 0
+  WR: 34.1%
+  Avg PnL/trade: -1.37c
+  Total PnL: $-24.85  |  PnL/day: $-0.78
+
+--- Stop at -5c ---
+  Entries: 182
+  Wins (99c): 86  |  Stopped out: 96  |  Settle loss: 0
+  WR: 47.3%
+  Avg PnL/trade: -1.12c
+  Total PnL: $-20.35  |  PnL/day: $-0.64
+
+--- Stop at -7c ---
+  Entries: 182
+  Wins (99c): 100  |  Stopped out: 82  |  Settle loss: 0
+  WR: 54.9%
+  Avg PnL/trade: -1.11c
+  Total PnL: $-20.25  |  PnL/day: $-0.63
+
+--- Stop at -10c ---
+  Entries: 182
+  Wins (99c): 111  |  Stopped out: 71  |  Settle loss: 0
+  WR: 61.0%
+  Avg PnL/trade: -1.45c
+  Total PnL: $-26.45  |  PnL/day: $-0.83
+
+--- Stop at -15c ---
+  Entries: 182
+  Wins (99c): 134  |  Stopped out: 48  |  Settle loss: 0
+  WR: 73.6%
+  Avg PnL/trade: -0.69c
+  Total PnL: $-12.55  |  PnL/day: $-0.39
+
+--- Stop at -20c ---
+  Entries: 182
+  Wins (99c): 148  |  Stopped out: 34  |  Settle loss: 0
+  WR: 81.3%
+  Avg PnL/trade: 0.05c
+  Total PnL: $0.85  |  PnL/day: $0.03
+
+──────────────────────────────────────────────────────────────────────
+E. LOSS DEEP DIVE (92c+ entries that settled NO)
+──────────────────────────────────────────────────────────────────────
+
+Total losses: 8 / 182
+  KXNBAGAME-26FEB09MEMGSW (MEM): entry=92c  max_after=93c  min_after=1c  hold=24min
+  KXNBAGAME-26FEB11INDBKN (BKN): entry=92c  max_after=94c  min_after=1c  hold=51min
+  KXNBAGAME-26FEB21HOUNYK (HOU): entry=92c  max_after=97c  min_after=1c  hold=42min
+  KXNBAGAME-26FEB21ORLPHX (ORL): entry=94c  max_after=89c  min_after=1c  hold=29min
+  KXNBAGAME-26FEB22DENGSW (DEN): entry=92c  max_after=92c  min_after=1c  hold=32min
+  KXNBAGAME-26FEB25SASTOR (TOR): entry=94c  max_after=90c  min_after=1c  hold=48min
+  KXNBAGAME-26FEB26HOUORL (ORL): entry=92c  max_after=95c  min_after=1c  hold=51min
+  KXNBAGAME-26MAR07BKNDET (DET): entry=92c  max_after=99c  min_after=1c  hold=143min
+
+──────────────────────────────────────────────────────────────────────
+F. TIME-TO-SETTLEMENT FROM 92c CROSSING
+──────────────────────────────────────────────────────────────────────
+  0-5min: 8 trades  |  Won: 8  Lost: 0  WR: 100%
+  5-10min: 17 trades  |  Won: 17  Lost: 0  WR: 100%
+  10-15min: 10 trades  |  Won: 10  Lost: 0  WR: 100%
+  15-20min: 13 trades  |  Won: 13  Lost: 0  WR: 100%
+  20-30min: 22 trades  |  Won: 20  Lost: 2  WR: 91%
+  30-45min: 27 trades  |  Won: 25  Lost: 2  WR: 93%
+  45-60min: 25 trades  |  Won: 22  Lost: 3  WR: 88%
+  60-120min: 43 trades  |  Won: 43  Lost: 0  WR: 100%
+
+──────────────────────────────────────────────────────────────────────
+G. RE-ENTRY ANALYSIS (multiple 92c crossings per game)
+──────────────────────────────────────────────────────────────────────
+
+--- Entry >= 92c, 300s cooldown ---
+  Total entries (with re-entry): 1207
+  Wins: 1197  |  Losses: 10  |  WR: 99.2%
+  Avg PnL/trade: -0.58c  |  Total PnL: $-70.42  |  PnL/day: $-2.20
+
+--- Entry >= 95c, 300s cooldown ---
+  Total entries (with re-entry): 1159
+  Wins: 1153  |  Losses: 6  |  WR: 99.5%
+  Avg PnL/trade: -1.06c  |  Total PnL: $-122.92  |  PnL/day: $-3.84
+
+──────────────────────────────────────────────────────────────────────
+H. AVERAGE PRICE TRAJECTORY AFTER 92c CROSSING
+──────────────────────────────────────────────────────────────────────
+
+ Min   Win Avg   Win N   Loss Avg   Loss N
+    1      91.8     174       89.1        8
+    2      91.8     174       82.5        8
+    3      92.7     174       82.2        8
+    5      93.0     174       82.1        8
+   10      94.4     174       75.2        8
+   15      95.1     174       64.1        8
+   20      96.0     174       62.1        8
+   30      96.5     174       34.4        8
+   45      97.2     174       18.9        8
+   60      97.7     174       13.1        8

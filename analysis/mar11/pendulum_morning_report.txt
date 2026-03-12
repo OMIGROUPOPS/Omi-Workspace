@@ -1,0 +1,81 @@
+======================================================================
+  PENDULUM MORNING REPORT
+  Generated: 2026-03-05 08:46:06 UTC
+======================================================================
+
+[BALANCE] Total: $ERROR  |  Available: $N/A
+
+[RESTING ORDERS] Count: 0
+
+[OPEN POSITIONS] Count: 0
+  --- Total capital in positions: $0.00
+
+[RECENT FILLS] Count: 50
+  2026-03-05T07:51:20  KXWTACHALLENGERMATCH-26MAR05OLISHY-SHY: yes 45ct @16c
+  2026-03-05T07:47:24  KXWTACHALLENGERMATCH-26MAR05AVAKAL-AVA: yes 33ct @29c
+  2026-03-05T07:46:46  KXWTACHALLENGERMATCH-26MAR05AVAKAL-AVA: yes 12ct @29c
+  2026-03-05T07:46:14  KXWTACHALLENGERMATCH-26MAR05UCHBRO-BRO: yes 45ct @21c
+  2026-03-05T07:44:47  KXWTACHALLENGERMATCH-26MAR05KAWIPE-IPE: yes 45ct @31c
+  2026-03-05T07:43:36  KXWTACHALLENGERMATCH-26MAR05KAWIPE-IPE: yes 45ct @34c
+  2026-03-05T07:43:36  KXWTACHALLENGERMATCH-26MAR05KAWIPE-IPE: yes 45ct @34c
+  2026-03-05T07:42:54  KXWTACHALLENGERMATCH-26MAR05OLISHY-SHY: yes 30ct @19c
+  2026-03-05T07:41:40  KXNCAAWBGAME-26MAR05UNIINST-INST: yes 20ct @16c
+  2026-03-05T07:41:36  KXNCAAWBGAME-26MAR05UNIINST-INST: yes 25ct @16c
+  2026-03-05T07:41:08  KXWTACHALLENGERMATCH-26MAR05OLISHY-SHY: yes 15ct @19c
+  2026-03-05T03:10:17  KXNBAGAME-26MAR04ATLMIL-MIL: yes 129ct @76c
+  2026-03-05T00:19:52  KXNCAAMBGAME-26MAR04STNHLMC-LMC: yes 30ct @46c
+  2026-03-05T00:16:05  KXNCAAMBGAME-26MAR04MARQPROV-PROV: no 30ct @50c
+  2026-03-04T22:52:15  KXNCAAMBGAME-26MAR04STETEKY-EKY: yes 15ct @26c
+  2026-03-04T21:12:34  KXEPLGAME-26MAR04NEWMUN-MUN: yes 83ct @58c
+  2026-03-04T18:42:08  KXMLBSTGAME-26MAR041305NYYBOS-NYY: yes 50ct @68c
+  2026-03-04T18:42:08  KXMLBSTGAME-26MAR041305NYYBOS-NYY: yes 16ct @68c
+  2026-03-04T18:42:08  KXMLBSTGAME-26MAR041305NYYBOS-NYY: yes 76ct @69c
+  2026-03-04T18:41:24  KXSECPRESSMENTION-26MAR15-CONG: no 40ct @46c
+
+[RECENT SETTLEMENTS] Count: 50
+  KXNBAGAME-26MAR04ATLMIL-MIL: result=no revenue=$0.00
+  KXNCAAMBGAME-26MAR04STNHLMC-LMC: result=no revenue=$0.00
+  KXNCAAMBGAME-26MAR04MARQPROV-PROV: result=no revenue=$30.00
+  KXNCAAMBGAME-26MAR04STETEKY-EKY: result=no revenue=$0.00
+  KXEPLGAME-26MAR04NEWMUN-MUN: result=no revenue=$0.00
+  KXMLBSTGAME-26MAR041305NYYBOS-NYY: result=yes revenue=$142.00
+  KXSECPRESSMENTION-26MAR15-CONG: result=yes revenue=$0.00
+  KXSENATETXD-26-JTAL: result=yes revenue=$0.00
+  KXNBAGAME-26MAR03PHXSAC-PHX: result=yes revenue=$112.00
+  KXNCAAMBGAME-26MAR03ARPBJKST-ARPB: result=no revenue=$30.00
+  KXNCAAMBGAME-26MAR03SOUALST-ALST: result=no revenue=$0.00
+  KXNCAAMBGAME-26MAR03VANMISS-VAN: result=yes revenue=$0.00
+  KXNBAGAME-26MAR03OKCCHI-CHI: result=no revenue=$0.00
+  KXNHLGAME-26MAR03NSHCBJ-NSH: result=no revenue=$30.00
+  KXNCAAMBGAME-26MAR03OKSTUCF-OKST: result=yes revenue=$0.00
+  KXNCAAMBGAME-26MAR03DAYRICH-DAY: result=yes revenue=$0.00
+  KXNCAAMBGAME-26MAR03ARMYBUCK-BUCK: result=yes revenue=$30.00
+  KXNCAAMBGAME-26MAR03BRYUNH-UNH: result=yes revenue=$30.00
+  KXNHLGAME-26MAR02DALVAN-VAN: result=no revenue=$0.00
+  KXNCAAMBGAME-26MAR02IDHOEWU-EWU: result=no revenue=$0.00
+  --- Net settlement P&L: $404.00
+
+[SCANNER STATUS]
+  Log size: 188 lines
+  Last reconcile: [SWING] [RECONCILE] kalshi_resting=40 internal_resting=0 | kalshi_positions=6 active_pairs=0 | orders_placed=0 filled=0 cancelled=0
+  Orders placed: 0
+  Fills detected: 0
+  Orders cancelled: 0
+  Layers set: 0
+  VPIN filter skips: 0
+  API errors: 120
+
+[DEPLOYMENT STATUS]
+  Code version: v2 - BBO-optimized (5 critical updates)
+  Updates applied:
+    1. Sport-specific deviations (tennis=4c, nba=8c, nhl=6c, etc.)
+    2. VPIN recalibrated: 0.25 -> 0.02
+    3. Graduated layers: 3 orders per side (L1:25%, L2:35%, L3:40%)
+    4. Single-leg exit phases: HOLD->TIGHTEN->EVALUATE->FORCE_EXIT
+    5. Category kill list: cs2, dota2, valorant, lol, ncaawb, cod
+  Exchange status: PAUSED (40 orphan orders pending cancellation)
+  Reconciliation: Running every 60s, will cancel orphans when exchange opens
+
+======================================================================
+  END REPORT
+======================================================================

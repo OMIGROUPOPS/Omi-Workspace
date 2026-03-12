@@ -1,0 +1,219 @@
+================================================================================
+  NCAAMB >=92c DEEP ANALYSIS
+================================================================================
+
+Total trades: 59
+Entry price — mean: 93.9c  median: 94c  min: 92c  max: 96c
+
+── Entry Price Distribution ──
+  92c:  14  ██████████████
+  93c:  10  ██████████
+  94c:   9  █████████
+  95c:  17  █████████████████
+  96c:   9  █████████
+  97c:   0  
+  98c:   0  
+  99c:   0  
+
+── Settlement ──
+  Settled YES: 59  (100.0%)
+  Settled NO:  0  (0.0%)
+
+── Max Bounce Distribution ──
+  +3c:   9
+  +4c:  17
+  +5c:   9
+  +6c:  10
+  +7c:  14
+
+── Bounce Cumulative (% of trades reaching at least X) ──
+  >= +1c:  59 / 59  (100.0%)
+  >= +2c:  59 / 59  (100.0%)
+  >= +3c:  59 / 59  (100.0%)
+  >= +4c:  50 / 59  (84.7%)
+  >= +5c:  33 / 59  (55.9%)
+  >= +6c:  24 / 59  (40.7%)
+  >= +7c:  14 / 59  (23.7%)
+  >= +8c:   0 / 59  (0.0%)
+  >= +9c:   0 / 59  (0.0%)
+  >= +10c:   0 / 59  (0.0%)
+
+================================================================================
+  EXIT STRATEGY COMPARISON
+================================================================================
+Strategy            N  Fill%  Wins  Loss    WR%   TotPnL   AvgPnL   $/day  AvgHold  MedHold
+-------------------------------------------------------------------------------------------
++3c resting        59 100.0%    59     0 100.0%   125.4c    2.12c   4.18c     5.7m     3.0m
++5c resting        59  55.9%    59     0 100.0%   234.4c    3.97c   7.81c  1225.8m   717.6m
++7c resting        59  23.7%    59     0 100.0%   291.4c    4.94c   9.71c  1691.5m  1798.0m
+99c target         59 100.0%    59     0 100.0%   246.4c    4.18c   8.21c     8.3m     6.0m
+Settlement         59 100.0%    59     0 100.0%   305.4c    5.18c  10.18c  1884.0m  1871.6m
+
+── Dollar Conversion (at $1/contract, so 1c = $0.01) ──
+  +3c resting       Total: $1.25  Per trade: $0.0213  Per day: $0.0418
+  +5c resting       Total: $2.34  Per trade: $0.0397  Per day: $0.0781
+  +7c resting       Total: $2.91  Per trade: $0.0494  Per day: $0.0971
+  99c target        Total: $2.46  Per trade: $0.0418  Per day: $0.0821
+  Settlement        Total: $3.05  Per trade: $0.0518  Per day: $0.1018
+
+── At 10 contracts per trade ──
+  +3c resting       Total: $12.54  Per day: $0.42
+  +5c resting       Total: $23.44  Per day: $0.78
+  +7c resting       Total: $29.14  Per day: $0.97
+  99c target        Total: $24.64  Per day: $0.82
+  Settlement        Total: $30.54  Per day: $1.02
+
+── At 100 contracts per trade ──
+  +3c resting       Total: $125.38  Per day: $4.18
+  +5c resting       Total: $234.38  Per day: $7.81
+  +7c resting       Total: $291.38  Per day: $9.71
+  99c target        Total: $246.38  Per day: $8.21
+  Settlement        Total: $305.38  Per day: $10.18
+
+================================================================================
+  BOUNCE THRESHOLD ANALYSIS
+================================================================================
+
+  At avg entry ~93.9c:
+  Settlement gives ~6.1c gross, minus 0.875c fee = ~5.18c net (if YES)
+  +7c bounce gives 7c - 0.875c = 6.125c net (but only if bounce >= 7c)
+  +5c bounce gives 5c - 0.875c = 4.125c net
+  +3c bounce gives 3c - 0.875c = 2.125c net
+
+  Bounce hit rates:
+    max_bounce >= 3c: 59/59 = 100.0%
+    max_bounce >= 5c: 33/59 = 55.9%
+    max_bounce >= 7c: 14/59 = 23.7%
+    Reaches 99c:       59/59 = 100.0%
+
+================================================================================
+  TRADES THAT DON'T HIT +7c BOUNCE (max_bounce < 7)
+================================================================================
+
+  Count: 45 trades
+  Of these, settled YES: 45, settled NO: 0
+
+  Event                                         Team   Entry  MaxB  Final  Settled
+  -------------------------------------------------------------------------------------
+  KXNCAAMBGAME-26FEB06DAYVCU                    VCU       93     6     99      YES
+  KXNCAAMBGAME-26FEB07MASSCCAR                  CCAR      95     4     99      YES
+  KXNCAAMBGAME-26FEB07MTUDEL                    DEL       94     5     99      YES
+  KXNCAAMBGAME-26FEB07NMSUUTEP                  UTEP      96     3     99      YES
+  KXNCAAMBGAME-26FEB07OREPUR                    PUR       93     6     99      YES
+  KXNCAAMBGAME-26FEB07UNHUVM                    UVM       93     6     99      YES
+  KXNCAAMBGAME-26FEB08RICEUAB                   UAB       96     3     99      YES
+  KXNCAAMBGAME-26FEB10FORJOES                   FOR       96     3     99      YES
+  KXNCAAMBGAME-26FEB10PURNEB                    PUR       95     4     99      YES
+  KXNCAAMBGAME-26FEB11UTEPJVST                  UTEP      93     6     99      YES
+  KXNCAAMBGAME-26FEB12DETWRST                   DET       96     3     99      YES
+  KXNCAAMBGAME-26FEB13MASSAKR                   AKR       94     5     99      YES
+  KXNCAAMBGAME-26FEB13UNLVBSU                   UNLV      96     3     99      YES
+  KXNCAAMBGAME-26FEB14ELONWM                    ELON      95     4     99      YES
+  KXNCAAMBGAME-26FEB14GCSJSU                    GC        93     6     99      YES
+  KXNCAAMBGAME-26FEB14GTWNCONN                  CONN      96     3     99      YES
+  KXNCAAMBGAME-26FEB14NAVYCOLG                  NAVY      94     5     99      YES
+  KXNCAAMBGAME-26FEB14NEVSDSU                   SDSU      95     4     99      YES
+  KXNCAAMBGAME-26FEB14WVUUCF                    WVU       95     4     99      YES
+  KXNCAAMBGAME-26FEB15EKYUNA                    UNA       95     4     99      YES
+  KXNCAAMBGAME-26FEB15GBMILW                    MILW      95     4     99      YES
+  KXNCAAMBGAME-26FEB17LOUSMU                    SMU       93     6     99      YES
+  KXNCAAMBGAME-26FEB17MICHPUR                   MICH      94     5     99      YES
+  KXNCAAMBGAME-26FEB18ARKALA                    ALA       94     5     99      YES
+  KXNCAAMBGAME-26FEB19CSNUCSB                   CSN       95     4     99      YES
+  KXNCAAMBGAME-26FEB20GBOAK                     GB        95     4     99      YES
+  KXNCAAMBGAME-26FEB21PSUNEB                    NEB       93     6     99      YES
+  KXNCAAMBGAME-26FEB24ISUUTAH                   ISU       95     4     99      YES
+  KXNCAAMBGAME-26FEB24UCFBYU                    UCF       95     4     99      YES
+  KXNCAAMBGAME-26FEB25CARKPEAY                  CARK      95     4     99      YES
+  KXNCAAMBGAME-26FEB25PORTGONZ                  GONZ      96     3     99      YES
+  KXNCAAMBGAME-26FEB25WSULMU                    LMU       96     3     99      YES
+  KXNCAAMBGAME-26FEB28AFAWYO                    WYO       95     4     99      YES
+  KXNCAAMBGAME-26FEB28FORVCU                    VCU       94     5     99      YES
+  KXNCAAMBGAME-26FEB28MHUSTNH                   MHU       94     5     99      YES
+  KXNCAAMBGAME-26FEB28UNCOIDHO                  UNCO      93     6     99      YES
+  KXNCAAMBGAME-26MAR02NCCUUMES                  NCCU      96     3     99      YES
+  KXNCAAMBGAME-26MAR03BRYUNH                    UNH       95     4     99      YES
+  KXNCAAMBGAME-26MAR03COLOUTAH                  COLO      95     4     99      YES
+  KXNCAAMBGAME-26MAR03OREILL                    ILL       93     6     99      YES
+  KXNCAAMBGAME-26MAR05EVANUNI                   UNI       95     4     99      YES
+  KXNCAAMBGAME-26MAR05ORUNDSU                   NDSU      93     6     99      YES
+  KXNCAAMBGAME-26MAR06WEBBHP                    HP        94     5     99      YES
+  KXNCAAMBGAME-26MAR07PRINYALE                  YALE      95     4     99      YES
+  KXNCAAMBGAME-26MAR07UTAHBAY                   BAY       94     5     99      YES
+
+================================================================================
+  BY ENTRY PRICE — SETTLEMENT ONLY
+================================================================================
+  92c:  14 trades, 14 YES / 0 NO = 100% WR, settlement total PnL = 99.8c, avg = 7.12c
+  93c:  10 trades, 10 YES / 0 NO = 100% WR, settlement total PnL = 61.2c, avg = 6.12c
+  94c:   9 trades, 9 YES / 0 NO = 100% WR, settlement total PnL = 46.1c, avg = 5.12c
+  95c:  17 trades, 17 YES / 0 NO = 100% WR, settlement total PnL = 70.1c, avg = 4.12c
+  96c:   9 trades, 9 YES / 0 NO = 100% WR, settlement total PnL = 28.1c, avg = 3.12c
+
+================================================================================
+  MINUTE-BY-MINUTE TRAJECTORY (trades with max_bounce < 7)
+================================================================================
+
+  VCU @ 93c (bounce +6c, final=99)
+    1m:95, 2m:96, 3m:97, 4m:98, 5m:98, 6m:97, 7m:97, 8m:98, 9m:98, 10m:97, 11m:97, 12m:97, 13m:98, 14m:97, 15m:98, 16m:99, 17m:99, 18m:98, 19m:99, 20m:98, 21m:98, 22m:99, 23m:98, 24m:98, 25m:98, 26m:98, 27m:98, 28m:98, 29m:98, 30m:99
+
+  CCAR @ 95c (bounce +4c, final=99)
+    1m:95, 2m:96, 3m:95, 4m:93, 5m:76, 6m:58, 7m:52, 8m:56, 9m:68, 10m:67, 11m:63, 12m:75, 13m:74, 14m:76, 15m:78, 16m:90, 17m:91, 18m:73, 19m:99, 20m:99, 21m:99, 22m:99, 23m:99, 24m:99, 25m:99, 26m:99, 27m:99, 28m:99, 29m:99, 30m:99
+
+  DEL @ 94c (bounce +5c, final=99)
+    1m:95, 2m:96, 3m:97, 4m:94, 5m:94, 6m:94, 7m:94, 8m:84, 9m:85, 10m:85, 11m:78, 12m:92, 13m:87, 14m:95, 15m:95, 16m:75, 17m:74, 18m:67, 19m:67, 20m:74, 21m:77, 22m:49, 23m:49, 24m:44, 25m:39, 26m:32, 27m:50, 28m:54, 29m:64, 30m:55
+
+  UTEP @ 96c (bounce +3c, final=99)
+    1m:97, 2m:93, 3m:87, 4m:84, 5m:78, 6m:92, 7m:92, 8m:88, 9m:97, 10m:98, 11m:99, 12m:99, 13m:97, 14m:99, 15m:99, 16m:99, 17m:99, 18m:99, 19m:99, 20m:99, 21m:99, 22m:99, 23m:99, 24m:99, 25m:99, 26m:99, 27m:99, 28m:99, 29m:99, 30m:99
+
+  PUR @ 93c (bounce +6c, final=99)
+    1m:93, 2m:92, 3m:92, 4m:93, 5m:93, 6m:93, 7m:93, 8m:93, 9m:93, 10m:92, 11m:92, 12m:92, 13m:93, 14m:92, 15m:89, 16m:88, 17m:87, 18m:87, 19m:87, 20m:87, 21m:87, 22m:88, 23m:88, 24m:87, 25m:89, 26m:92, 27m:93, 28m:95, 29m:93, 30m:92
+
+  UVM @ 93c (bounce +6c, final=99)
+    1m:96, 2m:94, 3m:96, 4m:96, 5m:97, 6m:96, 7m:96, 8m:96, 9m:96, 10m:96, 11m:95, 12m:95, 13m:95, 14m:97, 15m:97, 16m:97, 17m:98, 18m:97, 19m:97, 20m:97, 21m:97, 22m:98, 23m:98, 24m:98, 25m:96, 26m:98, 27m:98, 28m:99, 29m:98, 30m:98
+
+  UAB @ 96c (bounce +3c, final=99)
+    1m:99, 2m:99, 3m:99, 4m:99, 5m:99, 6m:99, 7m:99, 8m:99, 9m:99, 10m:99, 11m:99, 12m:99, 13m:99, 14m:99, 15m:99, 16m:99, 17m:99, 18m:99, 19m:99, 20m:99, 21m:99, 22m:99, 23m:99, 24m:99, 25m:99, 26m:99, 27m:99, 28m:99, 29m:99, 30m:99
+
+  FOR @ 96c (bounce +3c, final=99)
+    1m:98, 2m:94, 3m:96, 4m:92, 5m:96, 6m:97, 7m:99, 8m:99, 9m:99, 10m:99, 11m:99, 12m:99, 13m:99, 14m:99, 15m:99, 16m:99, 17m:99, 18m:99, 19m:99, 20m:99, 21m:99, 22m:99, 23m:99, 24m:99, 25m:99, 26m:99, 27m:99, 28m:99, 29m:99, 30m:99
+
+  PUR @ 95c (bounce +4c, final=99)
+    1m:95, 2m:97, 3m:90, 4m:87, 5m:87, 6m:86, 7m:64, 8m:53, 9m:49, 10m:56, 11m:72, 12m:74, 13m:80, 14m:72, 15m:43, 16m:37, 17m:35, 18m:35, 19m:27, 20m:55, 21m:72, 22m:77, 23m:78, 24m:97, 25m:99, 26m:99, 27m:99, 28m:99, 29m:99, 30m:99
+
+  UTEP @ 93c (bounce +6c, final=99)
+    1m:88, 2m:91, 3m:96, 4m:96, 5m:95, 6m:97, 7m:99, 8m:99, 9m:99, 10m:99, 11m:99, 12m:99, 13m:99, 14m:99, 15m:99, 16m:99, 17m:99, 18m:99, 19m:99, 20m:99, 21m:99, 22m:99, 23m:99, 24m:99, 25m:99, 26m:99, 27m:99, 28m:99, 29m:99, 30m:99
+
+================================================================================
+  KEY INSIGHTS
+================================================================================
+
+  Best strategy by total PnL: Settlement (305.4c total, 5.18c avg)
+
+  Settlement: 305.4c total, 100% WR
+  +3c exit:   125.4c total, 100% fill rate, 100% WR
+  +5c exit:   234.4c total, 56% fill rate, 100% WR
+  +7c exit:   291.4c total, 24% fill rate, 100% WR
+
+  All 59 trades settled YES? YES — 100% WR at settlement
+  Since WR is 100%, settlement is GUARANTEED profit.
+  The question is: can +3c/+5c/+7c resting beat the guaranteed settlement profit?
+  Since all settle YES, unfilled resting sells just go to settlement anyway (still profit).
+  So resting sell strategies can ONLY underperform settlement if target > (100-entry),
+  which is impossible since entry >= 92 means max settlement gain = 8c and our targets are <=7c.
+  Therefore: resting sell strategies have IDENTICAL PnL to settlement for non-fills,
+  but LOWER PnL for fills (since +3c < 100-entry for most). Settlement dominates!
+
+  BOTTOM LINE:
+  With 100% YES settlement at >=92c entries, the optimal play is HOLD TO SETTLEMENT.
+  Any early exit at +3/+5/+7c leaves money on the table vs the guaranteed (100-entry) payout.
+  The only argument for early exit is CAPITAL EFFICIENCY — faster turnover = more trades/day.
+
+  Capital efficiency comparison (avg hold time):
+    +3c resting       avg hold: 5.7m  avg PnL: 2.12c  PnL/minute: 0.3725c
+    +5c resting       avg hold: 1225.8m  avg PnL: 3.97c  PnL/minute: 0.0032c
+    +7c resting       avg hold: 1691.5m  avg PnL: 4.94c  PnL/minute: 0.0029c
+    99c target        avg hold: 8.3m  avg PnL: 4.18c  PnL/minute: 0.5006c
+    Settlement        avg hold: 1884.0m  avg PnL: 5.18c  PnL/minute: 0.0027c
+
+Analysis saved to /tmp/ncaamb_92c_analysis.txt

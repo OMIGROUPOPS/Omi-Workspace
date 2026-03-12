@@ -1,0 +1,1845 @@
+====================================================================================================
+92c+ STRATEGY: LOSS AUTOPSY & STOP OPTIMIZATION
+====================================================================================================
+
+NCAAMB: 2043 rows, price columns: 1m-price_at_30m
+Tennis: 2911 rows, price columns: 1m-price_at_60m
+
+Processing NCAAMB...
+  → 396 trades after sustained filter
+Processing Tennis...
+  → 1109 trades after sustained filter
+
+Total trades: 1505
+  ATP_Chall: 515 trades (487W / 28L, 94.6% WR)
+  ATP_Main: 241 trades (232W / 9L, 96.3% WR)
+  NCAAMB: 396 trades (382W / 14L, 96.5% WR)
+  WTA_Chall: 158 trades (151W / 7L, 95.6% WR)
+  WTA_Main: 195 trades (184W / 11L, 94.4% WR)
+
+====================================================================================================
+PART 1: LOSS AUTOPSY — EVERY LOSS WITH FULL TRAJECTORY
+====================================================================================================
+
+Total losses: 69
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #1: KXNCAAMBGAME-26FEB07HALLCREI-HALL (HALL)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 94c (at trajectory index 12)
+  Entry Time: 2026-02-08T00:39:57
+  Peak After Entry: 99c
+  Min After Entry: 1c
+  Max Drawdown: 93c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 15 min
+    → 80c: 16 min
+    → 70c: 16 min
+    → 60c: 16 min
+    → 50c: 16 min
+  Post-entry trajectory (minute: price):
+    0m:94c  1m:97c  2m:97c  3m:96c  4m:96c  5m:97c  6m:98c  7m:99c  8m:96c  9m:97c  10m:97c  11m:98c
+    12m:99c  13m:96c  14m:91c  15m:82c  16m:1c  17m:1c  18m:1c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #2: KXNCAAMBGAME-26FEB12DETWRST-WRST (WRST)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 92c (at trajectory index 8)
+  Entry Time: 2026-02-13T01:30:14
+  Peak After Entry: 92c
+  Min After Entry: 1c
+  Max Drawdown: 91c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 8 min
+    → 80c: 8 min
+    → 70c: 11 min
+    → 60c: 12 min
+    → 50c: 12 min
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:90c  2m:90c  3m:90c  4m:90c  5m:89c  6m:86c  7m:90c  8m:78c  9m:71c  10m:71c  11m:69c
+    12m:13c  13m:2c  14m:1c  15m:4c  16m:2c  17m:1c  18m:1c  19m:1c  20m:1c  21m:1c  22m:1c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #3: KXNCAAMBGAME-26FEB14TTUARIZ-ARIZ (ARIZ)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 93c (at trajectory index 5)
+  Entry Time: 2026-02-15T01:28:28
+  Peak After Entry: 93c
+  Min After Entry: 23c
+  Max Drawdown: 70c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 4 min
+    → 80c: 10 min
+    → 70c: 11 min
+    → 60c: 11 min
+    → 50c: 11 min
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:91c  2m:86c  3m:86c  4m:85c  5m:85c  6m:85c  7m:81c  8m:91c  9m:89c  10m:79c  11m:33c
+    12m:28c  13m:47c  14m:62c  15m:62c  16m:62c  17m:47c  18m:53c  19m:40c  20m:43c  21m:44c  22m:46c
+    23m:47c  24m:28c  25m:23c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #4: KXNCAAMBGAME-26FEB15UTSACHAR-CHAR (CHAR)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 92c (at trajectory index 21)
+  Entry Time: 2026-02-15T17:25:02
+  Peak After Entry: 95c
+  Min After Entry: 92c
+  Max Drawdown: 0c
+  Final Price: 1c
+  Dropped below 92c: NO
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:93c  2m:94c  3m:95c  4m:94c  5m:93c  6m:94c  7m:94c  8m:94c  9m:94c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #5: KXNCAAMBGAME-26FEB16SOUTXSO-SOU (SOU)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 94c (at trajectory index 27)
+  Entry Time: 2026-02-17T01:21:00
+  Peak After Entry: 95c
+  Min After Entry: 94c
+  Max Drawdown: 0c
+  Final Price: 1c
+  Dropped below 92c: NO
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:94c  1m:94c  2m:94c  3m:95c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #6: KXNCAAMBGAME-26FEB18LIPBELL-BELL (BELL)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 93c (at trajectory index 10)
+  Entry Time: 2026-02-19T01:57:10
+  Peak After Entry: 94c
+  Min After Entry: 20c
+  Max Drawdown: 73c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 8 min
+    → 80c: 8 min
+    → 70c: 11 min
+    → 60c: 12 min
+    → 50c: 13 min
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:92c  2m:94c  3m:93c  4m:92c  5m:92c  6m:90c  7m:90c  8m:77c  9m:84c  10m:83c  11m:64c
+    12m:56c  13m:46c  14m:39c  15m:36c  16m:35c  17m:35c  18m:28c  19m:20c  20m:43c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #7: KXNCAAMBGAME-26FEB19MRSHAPP-APP (APP)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 93c (at trajectory index 23)
+  Entry Time: 2026-02-19T23:46:10
+  Peak After Entry: 93c
+  Min After Entry: 88c
+  Max Drawdown: 5c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:93c  2m:92c  3m:92c  4m:93c  5m:92c  6m:90c  7m:88c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #8: KXNCAAMBGAME-26FEB24MASSBALL-MASS (MASS)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 92c (at trajectory index 24)
+  Entry Time: 2026-02-25T00:07:56
+  Peak After Entry: 97c
+  Min After Entry: 92c
+  Max Drawdown: 0c
+  Final Price: 1c
+  Dropped below 92c: NO
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:93c  2m:93c  3m:93c  4m:93c  5m:93c  6m:97c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #9: KXNCAAMBGAME-26FEB24NWIND-IND (IND)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 92c (at trajectory index 4)
+  Entry Time: 2026-02-25T00:19:23
+  Peak After Entry: 95c
+  Min After Entry: 91c
+  Max Drawdown: 1c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:91c  2m:93c  3m:92c  4m:92c  5m:92c  6m:92c  7m:92c  8m:93c  9m:93c  10m:95c  11m:94c
+    12m:93c  13m:93c  14m:92c  15m:93c  16m:93c  17m:94c  18m:94c  19m:94c  20m:93c  21m:92c  22m:93c
+    23m:93c  24m:92c  25m:93c  26m:93c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #10: KXNCAAMBGAME-26FEB25CARKPEAY-PEAY (PEAY)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 92c (at trajectory index 20)
+  Entry Time: 2026-02-26T01:45:54
+  Peak After Entry: 94c
+  Min After Entry: 90c
+  Max Drawdown: 2c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:90c  2m:90c  3m:92c  4m:91c  5m:92c  6m:92c  7m:93c  8m:94c  9m:93c  10m:90c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #11: KXNCAAMBGAME-26FEB28MVSUARPB-ARPB (ARPB)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 98c (at trajectory index 1)
+  Entry Time: 2026-02-28T23:58:48
+  Peak After Entry: 99c
+  Min After Entry: 92c
+  Max Drawdown: 6c
+  Final Price: 1c
+  Dropped below 92c: NO
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:98c  1m:94c  2m:96c  3m:98c  4m:96c  5m:96c  6m:98c  7m:98c  8m:98c  9m:97c  10m:97c  11m:99c
+    12m:99c  13m:99c  14m:99c  15m:99c  16m:99c  17m:96c  18m:96c  19m:95c  20m:93c  21m:94c  22m:94c
+    23m:94c  24m:94c  25m:93c  26m:93c  27m:92c  28m:93c  29m:92c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #12: KXNCAAMBGAME-26MAR03OKSTUCF-UCF (UCF)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 92c (at trajectory index 17)
+  Entry Time: 2026-03-04T00:02:41
+  Peak After Entry: 93c
+  Min After Entry: 81c
+  Max Drawdown: 11c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 11 min
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:93c  2m:92c  3m:91c  4m:91c  5m:91c  6m:89c  7m:90c  8m:88c  9m:89c  10m:87c  11m:83c
+    12m:81c  13m:81c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #13: KXNCAAMBGAME-26MAR04WEBBSCUS-SCUS (SCUS)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 94c (at trajectory index 15)
+  Entry Time: 2026-03-05T01:05:20
+  Peak After Entry: 95c
+  Min After Entry: 85c
+  Max Drawdown: 9c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 14 min
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:94c  1m:94c  2m:95c  3m:95c  4m:95c  5m:95c  6m:94c  7m:95c  8m:93c  9m:92c  10m:92c  11m:89c
+    12m:87c  13m:88c  14m:85c  15m:88c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #14: KXNCAAMBGAME-26MAR07RICHDUQ-RICH (RICH)
+  Sport: NCAAMB  |  Series: 
+  Entry Price: 93c (at trajectory index 13)
+  Entry Time: 2026-03-07T19:14:35
+  Peak After Entry: 98c
+  Min After Entry: 88c
+  Max Drawdown: 5c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:95c  2m:96c  3m:97c  4m:96c  5m:96c  6m:96c  7m:98c  8m:96c  9m:95c  10m:95c  11m:93c
+    12m:93c  13m:93c  14m:94c  15m:88c  16m:90c  17m:92c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #15: KXATPCHALLENGERMATCH-26FEB07MARCHA-CHA (CHA)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 92c (at trajectory index 19)
+  Entry Time: 2026-02-08T03:29:17
+  Peak After Entry: 94c
+  Min After Entry: 87c
+  Max Drawdown: 5c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:93c  2m:93c  3m:94c  4m:93c  5m:92c  6m:92c  7m:93c  8m:93c  9m:92c  10m:92c  11m:91c
+    12m:92c  13m:94c  14m:93c  15m:93c  16m:90c  17m:91c  18m:91c  19m:91c  20m:88c  21m:88c  22m:88c
+    23m:91c  24m:90c  25m:89c  26m:89c  27m:89c  28m:89c  29m:90c  30m:89c  31m:89c  32m:88c  33m:89c
+    34m:89c  35m:91c  36m:89c  37m:88c  38m:87c  39m:90c  40m:89c  41m:89c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #16: KXATPCHALLENGERMATCH-26FEB07MOCWAL-WAL (WAL)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 96c (at trajectory index 34)
+  Entry Time: 2026-02-08T03:45:29
+  Peak After Entry: 96c
+  Min After Entry: 15c
+  Max Drawdown: 81c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 5 min
+    → 80c: 7 min
+    → 70c: 9 min
+    → 60c: 14 min
+    → 50c: 15 min
+  Post-entry trajectory (minute: price):
+    0m:96c  1m:95c  2m:95c  3m:94c  4m:91c  5m:81c  6m:86c  7m:80c  8m:75c  9m:66c  10m:68c  11m:70c
+    12m:61c  13m:61c  14m:53c  15m:50c  16m:40c  17m:46c  18m:35c  19m:34c  20m:36c  21m:15c  22m:28c
+    23m:25c  24m:25c  25m:27c  26m:31c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #17: KXATPCHALLENGERMATCH-26FEB08PRIBRA-BRA (BRA)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 95c (at trajectory index 9)
+  Entry Time: 2026-02-08T16:13:11
+  Peak After Entry: 98c
+  Min After Entry: 26c
+  Max Drawdown: 69c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 17 min
+    → 80c: 20 min
+    → 70c: 28 min
+    → 60c: 29 min
+    → 50c: 37 min
+  Post-entry trajectory (minute: price):
+    0m:95c  1m:96c  2m:96c  3m:97c  4m:98c  5m:97c  6m:96c  7m:95c  8m:92c  9m:94c  10m:98c  11m:98c
+    12m:97c  13m:95c  14m:95c  15m:93c  16m:90c  17m:82c  18m:84c  19m:82c  20m:80c  21m:81c  22m:81c
+    23m:84c  24m:88c  25m:83c  26m:83c  27m:80c  28m:70c  29m:58c  30m:57c  31m:56c  32m:53c  33m:54c
+    34m:62c  35m:60c  36m:55c  37m:50c  38m:52c  39m:52c  40m:52c  41m:52c  42m:52c  43m:51c  44m:28c
+    45m:37c  46m:26c  47m:30c  48m:48c  49m:32c  50m:39c  51m:33c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #18: KXATPCHALLENGERMATCH-26FEB08SANKAC-KAC (KAC)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 94c (at trajectory index 36)
+  Entry Time: 2026-02-08T15:08:55
+  Peak After Entry: 94c
+  Min After Entry: 73c
+  Max Drawdown: 21c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 6 min
+    → 80c: 10 min
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:94c  1m:94c  2m:94c  3m:91c  4m:92c  5m:92c  6m:85c  7m:84c  8m:82c  9m:81c  10m:78c  11m:79c
+    12m:76c  13m:73c  14m:76c  15m:76c  16m:76c  17m:76c  18m:78c  19m:78c  20m:74c  21m:80c  22m:89c
+    23m:91c  24m:89c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #19: KXATPCHALLENGERMATCH-26FEB11BONKUK-KUK (KUK)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 96c (at trajectory index 29)
+  Entry Time: 2026-02-11T14:54:56
+  Peak After Entry: 99c
+  Min After Entry: 38c
+  Max Drawdown: 58c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 8 min
+    → 80c: 8 min
+    → 70c: 20 min
+    → 60c: 21 min
+    → 50c: 24 min
+  Post-entry trajectory (minute: price):
+    0m:96c  1m:99c  2m:96c  3m:95c  4m:97c  5m:98c  6m:94c  7m:90c  8m:78c  9m:77c  10m:80c  11m:72c
+    12m:73c  13m:73c  14m:77c  15m:77c  16m:77c  17m:79c  18m:72c  19m:74c  20m:66c  21m:54c  22m:53c
+    23m:53c  24m:45c  25m:40c  26m:40c  27m:38c  28m:43c  29m:41c  30m:41c  31m:41c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #20: KXATPCHALLENGERMATCH-26FEB11CASCRA-CRA (CRA)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 93c (at trajectory index 9)
+  Entry Time: 2026-02-12T04:45:05
+  Peak After Entry: 95c
+  Min After Entry: 67c
+  Max Drawdown: 26c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 23 min
+    → 80c: 26 min
+    → 70c: 48 min
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:93c  2m:94c  3m:94c  4m:94c  5m:93c  6m:92c  7m:94c  8m:93c  9m:95c  10m:92c  11m:94c
+    12m:94c  13m:95c  14m:93c  15m:92c  16m:94c  17m:95c  18m:93c  19m:93c  20m:92c  21m:91c  22m:91c
+    23m:85c  24m:82c  25m:83c  26m:80c  27m:78c  28m:78c  29m:74c  30m:78c  31m:79c  32m:78c  33m:76c
+    34m:74c  35m:74c  36m:75c  37m:76c  38m:72c  39m:72c  40m:74c  41m:72c  42m:71c  43m:72c  44m:73c
+    45m:73c  46m:78c  47m:74c  48m:70c  49m:67c  50m:67c  51m:69c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #21: KXATPCHALLENGERMATCH-26FEB12BARNAG-NAG (NAG)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 92c (at trajectory index 14)
+  Entry Time: 2026-02-12T10:06:55
+  Peak After Entry: 94c
+  Min After Entry: 64c
+  Max Drawdown: 28c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 6 min
+    → 80c: 43 min
+    → 70c: 45 min
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:93c  2m:91c  3m:90c  4m:94c  5m:88c  6m:81c  7m:87c  8m:89c  9m:89c  10m:88c  11m:87c
+    12m:87c  13m:87c  14m:89c  15m:85c  16m:85c  17m:89c  18m:89c  19m:87c  20m:87c  21m:88c  22m:85c
+    23m:87c  24m:87c  25m:90c  26m:90c  27m:87c  28m:84c  29m:90c  30m:90c  31m:88c  32m:90c  33m:91c
+    34m:91c  35m:94c  36m:86c  37m:86c  38m:90c  39m:90c  40m:89c  41m:85c  42m:85c  43m:79c  44m:74c
+    45m:64c  46m:72c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #22: KXATPCHALLENGERMATCH-26FEB15CARSUR-CAR (CAR)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 92c (at trajectory index 38)
+  Entry Time: 2026-02-15T08:49:43
+  Peak After Entry: 92c
+  Min After Entry: 80c
+  Max Drawdown: 12c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 10 min
+    → 80c: 20 min
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:92c  2m:90c  3m:90c  4m:89c  5m:90c  6m:89c  7m:90c  8m:86c  9m:86c  10m:84c  11m:88c
+    12m:90c  13m:92c  14m:90c  15m:88c  16m:89c  17m:87c  18m:84c  19m:82c  20m:80c  21m:81c  22m:84c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #23: KXATPCHALLENGERMATCH-26FEB16SHENEF-SHE (SHE)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 92c (at trajectory index 23)
+  Entry Time: 2026-02-16T18:57:01
+  Peak After Entry: 99c
+  Min After Entry: 60c
+  Max Drawdown: 32c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 18 min
+    → 80c: 19 min
+    → 70c: 22 min
+    → 60c: 29 min
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:94c  2m:94c  3m:94c  4m:94c  5m:93c  6m:95c  7m:94c  8m:95c  9m:98c  10m:99c  11m:97c
+    12m:93c  13m:94c  14m:95c  15m:94c  16m:90c  17m:86c  18m:83c  19m:78c  20m:79c  21m:75c  22m:67c
+    23m:73c  24m:74c  25m:74c  26m:69c  27m:61c  28m:63c  29m:60c  30m:61c  31m:63c  32m:68c  33m:66c
+    34m:70c  35m:85c  36m:78c  37m:81c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #24: KXATPCHALLENGERMATCH-26FEB16SINMIC-SIN (SIN)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 92c (at trajectory index 1)
+  Entry Time: 2026-02-16T10:20:13
+  Peak After Entry: 93c
+  Min After Entry: 22c
+  Max Drawdown: 70c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 5 min
+    → 80c: 6 min
+    → 70c: 8 min
+    → 60c: 14 min
+    → 50c: 15 min
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:93c  2m:93c  3m:91c  4m:90c  5m:85c  6m:78c  7m:71c  8m:70c  9m:74c  10m:72c  11m:67c
+    12m:62c  13m:65c  14m:53c  15m:44c  16m:61c  17m:60c  18m:70c  19m:71c  20m:63c  21m:68c  22m:60c
+    23m:64c  24m:54c  25m:65c  26m:70c  27m:70c  28m:62c  29m:61c  30m:70c  31m:70c  32m:65c  33m:72c
+    34m:72c  35m:67c  36m:63c  37m:59c  38m:56c  39m:70c  40m:64c  41m:56c  42m:51c  43m:39c  44m:49c
+    45m:35c  46m:37c  47m:36c  48m:36c  49m:33c  50m:30c  51m:26c  52m:29c  53m:29c  54m:36c  55m:22c
+    56m:33c  57m:35c  58m:33c  59m:31c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #25: KXATPCHALLENGERMATCH-26FEB16VANRIE-RIE (RIE)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 93c (at trajectory index 13)
+  Entry Time: 2026-02-16T18:25:12
+  Peak After Entry: 98c
+  Min After Entry: 31c
+  Max Drawdown: 62c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 27 min
+    → 80c: 27 min
+    → 70c: 29 min
+    → 60c: 33 min
+    → 50c: 42 min
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:93c  2m:92c  3m:95c  4m:94c  5m:94c  6m:93c  7m:92c  8m:90c  9m:90c  10m:88c  11m:94c
+    12m:93c  13m:94c  14m:94c  15m:94c  16m:93c  17m:89c  18m:87c  19m:90c  20m:96c  21m:96c  22m:96c
+    23m:95c  24m:93c  25m:98c  26m:93c  27m:72c  28m:73c  29m:68c  30m:63c  31m:63c  32m:62c  33m:59c
+    34m:69c  35m:66c  36m:65c  37m:70c  38m:60c  39m:55c  40m:64c  41m:52c  42m:42c  43m:43c  44m:43c
+    45m:38c  46m:37c  47m:31c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #26: KXATPCHALLENGERMATCH-26FEB17GOFSCH-GOF (GOF)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 93c (at trajectory index 19)
+  Entry Time: 2026-02-17T19:37:31
+  Peak After Entry: 93c
+  Min After Entry: 71c
+  Max Drawdown: 22c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 19 min
+    → 80c: 19 min
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:93c  2m:90c  3m:91c  4m:90c  5m:88c  6m:87c  7m:86c  8m:88c  9m:91c  10m:91c  11m:91c
+    12m:91c  13m:90c  14m:87c  15m:88c  16m:89c  17m:89c  18m:87c  19m:78c  20m:75c  21m:81c  22m:83c
+    23m:80c  24m:81c  25m:81c  26m:84c  27m:83c  28m:80c  29m:79c  30m:76c  31m:76c  32m:78c  33m:80c
+    34m:81c  35m:71c  36m:74c  37m:77c  38m:78c  39m:78c  40m:76c  41m:80c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #27: KXATPCHALLENGERMATCH-26FEB20GALWIN-WIN (WIN)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 92c (at trajectory index 13)
+  Entry Time: 2026-02-20T19:56:05
+  Peak After Entry: 99c
+  Min After Entry: 43c
+  Max Drawdown: 49c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 35 min
+    → 80c: 37 min
+    → 70c: 38 min
+    → 60c: 42 min
+    → 50c: 43 min
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:91c  2m:95c  3m:95c  4m:94c  5m:95c  6m:89c  7m:87c  8m:91c  9m:90c  10m:97c  11m:99c
+    12m:99c  13m:99c  14m:98c  15m:97c  16m:98c  17m:92c  18m:94c  19m:98c  20m:91c  21m:93c  22m:96c
+    23m:97c  24m:88c  25m:95c  26m:98c  27m:96c  28m:95c  29m:98c  30m:96c  31m:96c  32m:95c  33m:95c
+    34m:94c  35m:81c  36m:87c  37m:75c  38m:70c  39m:61c  40m:61c  41m:63c  42m:59c  43m:46c  44m:56c
+    45m:43c  46m:53c  47m:69c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #28: KXATPCHALLENGERMATCH-26FEB22GHIMAS-MAS (MAS)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 94c (at trajectory index 13)
+  Entry Time: 2026-02-22T09:32:07
+  Peak After Entry: 95c
+  Min After Entry: 45c
+  Max Drawdown: 49c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 7 min
+    → 80c: 7 min
+    → 70c: 8 min
+    → 60c: 22 min
+    → 50c: 23 min
+  Post-entry trajectory (minute: price):
+    0m:94c  1m:95c  2m:94c  3m:90c  4m:90c  5m:91c  6m:87c  7m:76c  8m:69c  9m:73c  10m:73c  11m:73c
+    12m:72c  13m:71c  14m:71c  15m:74c  16m:82c  17m:77c  18m:71c  19m:71c  20m:61c  21m:65c  22m:58c
+    23m:47c  24m:46c  25m:45c  26m:49c  27m:54c  28m:70c  29m:68c  30m:65c  31m:70c  32m:55c  33m:55c
+    34m:71c  35m:75c  36m:69c  37m:74c  38m:84c  39m:84c  40m:67c  41m:69c  42m:60c  43m:56c  44m:67c
+    45m:66c  46m:65c  47m:66c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #29: KXATPCHALLENGERMATCH-26FEB23JANGAD-JAN (JAN)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 92c (at trajectory index 0)
+  Entry Time: 2026-02-23T15:29:45
+  Peak After Entry: 93c
+  Min After Entry: 1c
+  Max Drawdown: 91c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 6 min
+    → 80c: 6 min
+    → 70c: 8 min
+    → 60c: 8 min
+    → 50c: 9 min
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:93c  2m:91c  3m:92c  4m:90c  5m:90c  6m:79c  7m:76c  8m:57c  9m:49c  10m:46c  11m:31c
+    12m:33c  13m:37c  14m:40c  15m:45c  16m:37c  17m:50c  18m:42c  19m:17c  20m:3c  21m:6c  22m:14c
+    23m:1c  24m:1c  25m:1c  26m:1c  27m:1c  28m:1c  29m:1c  30m:1c  31m:1c  32m:1c  33m:1c  34m:1c
+    35m:1c  36m:1c  37m:1c  38m:1c  39m:1c  40m:1c  41m:1c  42m:1c  43m:1c  44m:1c  45m:1c  46m:1c
+    47m:1c  48m:1c  49m:1c  50m:1c  51m:1c  52m:1c  53m:1c  54m:1c  55m:1c  56m:1c  57m:1c  58m:1c
+    59m:1c  60m:1c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #30: KXATPCHALLENGERMATCH-26FEB25MRVMMO-MMO (MMO)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 92c (at trajectory index 17)
+  Entry Time: 2026-02-25T18:50:16
+  Peak After Entry: 97c
+  Min After Entry: 82c
+  Max Drawdown: 10c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 32 min
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:93c  2m:92c  3m:91c  4m:92c  5m:92c  6m:93c  7m:93c  8m:91c  9m:90c  10m:92c  11m:93c
+    12m:93c  13m:92c  14m:91c  15m:91c  16m:92c  17m:94c  18m:95c  19m:95c  20m:96c  21m:97c  22m:96c
+    23m:96c  24m:96c  25m:90c  26m:89c  27m:89c  28m:90c  29m:90c  30m:88c  31m:88c  32m:85c  33m:83c
+    34m:82c  35m:85c  36m:85c  37m:83c  38m:89c  39m:88c  40m:88c  41m:89c  42m:91c  43m:89c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #31: KXATPCHALLENGERMATCH-26FEB27DHAAJD-DHA (DHA)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 93c (at trajectory index 39)
+  Entry Time: 2026-02-27T10:57:52
+  Peak After Entry: 94c
+  Min After Entry: 58c
+  Max Drawdown: 35c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 3 min
+    → 80c: 3 min
+    → 70c: 3 min
+    → 60c: 18 min
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:90c  2m:94c  3m:67c  4m:75c  5m:75c  6m:73c  7m:72c  8m:63c  9m:67c  10m:67c  11m:74c
+    12m:71c  13m:66c  14m:65c  15m:69c  16m:72c  17m:75c  18m:58c  19m:70c  20m:70c  21m:72c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #32: KXATPCHALLENGERMATCH-26FEB28DIAGUI-GUI (GUI)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 92c (at trajectory index 53)
+  Entry Time: 2026-02-28T16:17:27
+  Peak After Entry: 96c
+  Min After Entry: 92c
+  Max Drawdown: 0c
+  Final Price: 1c
+  Dropped below 92c: NO
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:95c  2m:94c  3m:95c  4m:96c  5m:95c  6m:94c  7m:96c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #33: KXATPCHALLENGERMATCH-26MAR02EFSMOR-MOR (MOR)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 92c (at trajectory index 8)
+  Entry Time: 2026-03-02T13:43:52
+  Peak After Entry: 96c
+  Min After Entry: 50c
+  Max Drawdown: 42c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 23 min
+    → 80c: 28 min
+    → 70c: 31 min
+    → 60c: 49 min
+    → 50c: 52 min
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:94c  2m:95c  3m:94c  4m:94c  5m:93c  6m:93c  7m:94c  8m:94c  9m:94c  10m:94c  11m:95c
+    12m:96c  13m:94c  14m:93c  15m:94c  16m:94c  17m:91c  18m:92c  19m:89c  20m:91c  21m:87c  22m:87c
+    23m:84c  24m:85c  25m:83c  26m:83c  27m:82c  28m:80c  29m:77c  30m:80c  31m:69c  32m:67c  33m:73c
+    34m:71c  35m:78c  36m:75c  37m:82c  38m:84c  39m:76c  40m:71c  41m:70c  42m:73c  43m:79c  44m:72c
+    45m:63c  46m:64c  47m:61c  48m:63c  49m:59c  50m:54c  51m:55c  52m:50c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #34: KXATPCHALLENGERMATCH-26MAR02RYBBER-BER (BER)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 93c (at trajectory index 40)
+  Entry Time: 2026-03-02T13:04:14
+  Peak After Entry: 97c
+  Min After Entry: 84c
+  Max Drawdown: 9c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 12 min
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:93c  2m:95c  3m:97c  4m:96c  5m:96c  6m:96c  7m:95c  8m:97c  9m:95c  10m:89c  11m:89c
+    12m:84c  13m:86c  14m:87c  15m:87c  16m:89c  17m:87c  18m:85c  19m:88c  20m:88c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #35: KXATPCHALLENGERMATCH-26MAR03GULMRV-GUL (GUL)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 92c (at trajectory index 19)
+  Entry Time: 2026-03-03T14:00:30
+  Peak After Entry: 96c
+  Min After Entry: 15c
+  Max Drawdown: 77c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 6 min
+    → 80c: 7 min
+    → 70c: 8 min
+    → 60c: 17 min
+    → 50c: 18 min
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:96c  2m:93c  3m:90c  4m:95c  5m:96c  6m:84c  7m:80c  8m:62c  9m:61c  10m:75c  11m:91c
+    12m:86c  13m:93c  14m:90c  15m:81c  16m:69c  17m:54c  18m:38c  19m:45c  20m:51c  21m:57c  22m:59c
+    23m:67c  24m:55c  25m:70c  26m:71c  27m:44c  28m:44c  29m:47c  30m:47c  31m:47c  32m:47c  33m:31c
+    34m:30c  35m:23c  36m:25c  37m:22c  38m:34c  39m:27c  40m:15c  41m:21c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #36: KXATPCHALLENGERMATCH-26MAR04SCHKOL-KOL (KOL)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 93c (at trajectory index 23)
+  Entry Time: 2026-03-04T13:59:04
+  Peak After Entry: 98c
+  Min After Entry: 53c
+  Max Drawdown: 40c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 15 min
+    → 80c: 18 min
+    → 70c: 19 min
+    → 60c: 27 min
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:92c  2m:93c  3m:96c  4m:91c  5m:91c  6m:94c  7m:97c  8m:96c  9m:96c  10m:95c  11m:98c
+    12m:96c  13m:94c  14m:93c  15m:82c  16m:97c  17m:91c  18m:72c  19m:67c  20m:63c  21m:73c  22m:80c
+    23m:73c  24m:75c  25m:84c  26m:63c  27m:53c  28m:55c  29m:57c  30m:54c  31m:53c  32m:63c  33m:62c
+    34m:82c  35m:91c  36m:65c  37m:82c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #37: KXATPCHALLENGERMATCH-26MAR05GIUGAD-GAD (GAD)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 93c (at trajectory index 1)
+  Entry Time: 2026-03-05T10:05:41
+  Peak After Entry: 94c
+  Min After Entry: 37c
+  Max Drawdown: 56c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 9 min
+    → 80c: 29 min
+    → 70c: 32 min
+    → 60c: 38 min
+    → 50c: 39 min
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:91c  2m:93c  3m:92c  4m:92c  5m:89c  6m:90c  7m:90c  8m:90c  9m:85c  10m:88c  11m:81c
+    12m:83c  13m:83c  14m:88c  15m:89c  16m:89c  17m:86c  18m:89c  19m:91c  20m:92c  21m:92c  22m:94c
+    23m:94c  24m:92c  25m:91c  26m:90c  27m:91c  28m:85c  29m:80c  30m:73c  31m:72c  32m:70c  33m:67c
+    34m:69c  35m:66c  36m:66c  37m:65c  38m:58c  39m:49c  40m:45c  41m:43c  42m:46c  43m:48c  44m:48c
+    45m:46c  46m:43c  47m:46c  48m:46c  49m:50c  50m:49c  51m:49c  52m:38c  53m:37c  54m:37c  55m:38c
+    56m:39c  57m:47c  58m:48c  59m:48c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #38: KXATPCHALLENGERMATCH-26MAR08GADPAL-PAL (PAL)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 93c (at trajectory index 50)
+  Entry Time: 2026-03-08T18:07:24
+  Peak After Entry: 93c
+  Min After Entry: 58c
+  Max Drawdown: 35c
+  Final Price: 3c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 6 min
+    → 80c: 6 min
+    → 70c: 9 min
+    → 60c: 9 min
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:91c  2m:91c  3m:92c  4m:90c  5m:89c  6m:76c  7m:80c  8m:72c  9m:59c  10m:58c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #39: KXATPCHALLENGERMATCH-26MAR08LATDE-DE (DE)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 92c (at trajectory index 24)
+  Entry Time: 2026-03-08T08:25:48
+  Peak After Entry: 96c
+  Min After Entry: 88c
+  Max Drawdown: 4c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:91c  2m:91c  3m:93c  4m:94c  5m:94c  6m:94c  7m:94c  8m:94c  9m:94c  10m:94c  11m:94c
+    12m:94c  13m:96c  14m:95c  15m:94c  16m:94c  17m:90c  18m:91c  19m:91c  20m:91c  21m:91c  22m:91c
+    23m:91c  24m:91c  25m:91c  26m:92c  27m:93c  28m:93c  29m:91c  30m:89c  31m:88c  32m:88c  33m:88c
+    34m:90c  35m:91c  36m:89c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #40: KXATPCHALLENGERMATCH-26MAR09MARSTE-MAR (MAR)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 93c (at trajectory index 40)
+  Entry Time: 2026-03-09T08:26:36
+  Peak After Entry: 95c
+  Min After Entry: 88c
+  Max Drawdown: 5c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:93c  2m:94c  3m:95c  4m:91c  5m:94c  6m:89c  7m:89c  8m:88c  9m:93c  10m:94c  11m:94c
+    12m:90c  13m:92c  14m:92c  15m:93c  16m:94c  17m:93c  18m:93c  19m:94c  20m:93c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #41: KXATPCHALLENGERMATCH-26MAR10CARVAS-CAR (CAR)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 93c (at trajectory index 17)
+  Entry Time: 2026-03-10T09:40:08
+  Peak After Entry: 93c
+  Min After Entry: 50c
+  Max Drawdown: 43c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 7 min
+    → 80c: 16 min
+    → 70c: 20 min
+    → 60c: 23 min
+    → 50c: 34 min
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:90c  2m:93c  3m:93c  4m:93c  5m:88c  6m:88c  7m:84c  8m:84c  9m:84c  10m:84c  11m:84c
+    12m:84c  13m:84c  14m:84c  15m:84c  16m:80c  17m:80c  18m:80c  19m:71c  20m:70c  21m:76c  22m:81c
+    23m:59c  24m:53c  25m:61c  26m:60c  27m:75c  28m:75c  29m:72c  30m:74c  31m:74c  32m:74c  33m:66c
+    34m:50c  35m:52c  36m:52c  37m:52c  38m:52c  39m:62c  40m:67c  41m:63c  42m:63c  43m:63c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #42: KXATPCHALLENGERMATCH-26MAR10GENBER-BER (BER)
+  Sport: ATP_Chall  |  Series: ATP_CHALL
+  Entry Price: 92c (at trajectory index 19)
+  Entry Time: 2026-03-10T13:13:09
+  Peak After Entry: 94c
+  Min After Entry: 68c
+  Max Drawdown: 24c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 10 min
+    → 80c: 21 min
+    → 70c: 26 min
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:90c  2m:92c  3m:92c  4m:92c  5m:91c  6m:90c  7m:90c  8m:91c  9m:87c  10m:83c  11m:85c
+    12m:89c  13m:92c  14m:94c  15m:91c  16m:92c  17m:90c  18m:90c  19m:88c  20m:88c  21m:80c  22m:78c
+    23m:77c  24m:77c  25m:74c  26m:69c  27m:70c  28m:69c  29m:68c  30m:69c  31m:74c  32m:68c  33m:75c
+    34m:73c  35m:76c  36m:71c  37m:70c  38m:77c  39m:73c  40m:73c  41m:69c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #43: KXATPMATCH-26FEB07COPBOO-COP (COP)
+  Sport: ATP_Main  |  Series: ATP
+  Entry Price: 92c (at trajectory index 26)
+  Entry Time: 2026-02-07T12:20:37
+  Peak After Entry: 99c
+  Min After Entry: 84c
+  Max Drawdown: 8c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 33 min
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:90c  2m:94c  3m:95c  4m:94c  5m:95c  6m:95c  7m:98c  8m:96c  9m:97c  10m:97c  11m:97c
+    12m:96c  13m:97c  14m:97c  15m:98c  16m:98c  17m:98c  18m:97c  19m:97c  20m:97c  21m:99c  22m:95c
+    23m:95c  24m:95c  25m:99c  26m:98c  27m:97c  28m:97c  29m:98c  30m:92c  31m:87c  32m:90c  33m:84c
+    34m:86c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #44: KXATPMATCH-26FEB07ROTJAC-JAC (JAC)
+  Sport: ATP_Main  |  Series: ATP
+  Entry Price: 94c (at trajectory index 21)
+  Entry Time: 2026-02-07T14:46:49
+  Peak After Entry: 97c
+  Min After Entry: 90c
+  Max Drawdown: 4c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:94c  1m:94c  2m:95c  3m:95c  4m:95c  5m:95c  6m:94c  7m:96c  8m:95c  9m:96c  10m:96c  11m:96c
+    12m:96c  13m:95c  14m:97c  15m:97c  16m:90c  17m:97c  18m:97c  19m:97c  20m:97c  21m:97c  22m:97c
+    23m:93c  24m:96c  25m:96c  26m:96c  27m:97c  28m:97c  29m:95c  30m:95c  31m:95c  32m:95c  33m:95c
+    34m:93c  35m:94c  36m:95c  37m:95c  38m:96c  39m:96c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #45: KXATPMATCH-26FEB08HURBUB-HUR (HUR)
+  Sport: ATP_Main  |  Series: ATP
+  Entry Price: 96c (at trajectory index 42)
+  Entry Time: 2026-02-11T14:22:47
+  Peak After Entry: 97c
+  Min After Entry: 42c
+  Max Drawdown: 54c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 5 min
+    → 80c: 5 min
+    → 70c: 7 min
+    → 60c: 14 min
+    → 50c: 15 min
+  Post-entry trajectory (minute: price):
+    0m:96c  1m:97c  2m:97c  3m:92c  4m:96c  5m:71c  6m:72c  7m:69c  8m:69c  9m:74c  10m:71c  11m:72c
+    12m:81c  13m:71c  14m:56c  15m:45c  16m:48c  17m:42c  18m:45c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #46: KXATPMATCH-26FEB10BUSPAS-PAS (PAS)
+  Sport: ATP_Main  |  Series: ATP
+  Entry Price: 94c (at trajectory index 50)
+  Entry Time: 2026-02-10T20:26:07
+  Peak After Entry: 99c
+  Min After Entry: 94c
+  Max Drawdown: 0c
+  Final Price: 1c
+  Dropped below 92c: NO
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:94c  1m:96c  2m:96c  3m:99c  4m:98c  5m:99c  6m:98c  7m:98c  8m:97c  9m:99c  10m:99c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #47: KXATPMATCH-26FEB15HALCHO-HAL (HAL)
+  Sport: ATP_Main  |  Series: ATP
+  Entry Price: 94c (at trajectory index 29)
+  Entry Time: 2026-02-15T10:40:12
+  Peak After Entry: 94c
+  Min After Entry: 68c
+  Max Drawdown: 26c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 23 min
+    → 80c: 23 min
+    → 70c: 26 min
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:94c  1m:94c  2m:94c  3m:94c  4m:94c  5m:94c  6m:93c  7m:94c  8m:94c  9m:94c  10m:94c  11m:94c
+    12m:94c  13m:91c  14m:91c  15m:91c  16m:91c  17m:93c  18m:91c  19m:91c  20m:91c  21m:91c  22m:88c
+    23m:80c  24m:80c  25m:80c  26m:70c  27m:72c  28m:72c  29m:72c  30m:76c  31m:68c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #48: KXATPMATCH-26FEB18NAKWON-NAK (NAK)
+  Sport: ATP_Main  |  Series: ATP
+  Entry Price: 92c (at trajectory index 11)
+  Entry Time: 2026-02-18T00:18:38
+  Peak After Entry: 92c
+  Min After Entry: 92c
+  Max Drawdown: 0c
+  Final Price: 1c
+  Dropped below 92c: NO
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:92c  2m:92c  3m:92c  4m:92c  5m:92c  6m:92c  7m:92c  8m:92c  9m:92c  10m:92c  11m:92c
+    12m:92c  13m:92c  14m:92c  15m:92c  16m:92c  17m:92c  18m:92c  19m:92c  20m:92c  21m:92c  22m:92c
+    23m:92c  24m:92c  25m:92c  26m:92c  27m:92c  28m:92c  29m:92c  30m:92c  31m:92c  32m:92c  33m:92c
+    34m:92c  35m:92c  36m:92c  37m:92c  38m:92c  39m:92c  40m:92c  41m:92c  42m:92c  43m:92c  44m:92c
+    45m:92c  46m:92c  47m:92c  48m:92c  49m:92c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #49: KXATPMATCH-26FEB19MENSIN-SIN (SIN)
+  Sport: ATP_Main  |  Series: ATP
+  Entry Price: 93c (at trajectory index 0)
+  Entry Time: 2026-02-19T19:39:40
+  Peak After Entry: 93c
+  Min After Entry: 58c
+  Max Drawdown: 35c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 20 min
+    → 80c: 40 min
+    → 70c: 45 min
+    → 60c: 49 min
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:93c  2m:92c  3m:92c  4m:91c  5m:92c  6m:92c  7m:92c  8m:91c  9m:91c  10m:90c  11m:90c
+    12m:90c  13m:92c  14m:91c  15m:90c  16m:88c  17m:88c  18m:88c  19m:86c  20m:81c  21m:86c  22m:81c
+    23m:84c  24m:86c  25m:86c  26m:85c  27m:85c  28m:84c  29m:84c  30m:84c  31m:86c  32m:88c  33m:84c
+    34m:86c  35m:85c  36m:85c  37m:86c  38m:88c  39m:86c  40m:79c  41m:79c  42m:78c  43m:79c  44m:74c
+    45m:69c  46m:66c  47m:67c  48m:64c  49m:58c  50m:62c  51m:63c  52m:59c  53m:67c  54m:66c  55m:69c
+    56m:69c  57m:70c  58m:69c  59m:67c  60m:69c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #50: KXATPMATCH-26FEB22TIRBUS-BUS (BUS)
+  Sport: ATP_Main  |  Series: ATP
+  Entry Price: 92c (at trajectory index 45)
+  Entry Time: 2026-02-24T20:45:46
+  Peak After Entry: 97c
+  Min After Entry: 90c
+  Max Drawdown: 2c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:93c  2m:95c  3m:96c  4m:96c  5m:96c  6m:97c  7m:96c  8m:95c  9m:93c  10m:92c  11m:91c
+    12m:92c  13m:90c  14m:91c  15m:93c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #51: KXATPMATCH-26MAR02SCHBOL-BOL (BOL)
+  Sport: ATP_Main  |  Series: ATP
+  Entry Price: 93c (at trajectory index 24)
+  Entry Time: 2026-03-02T20:23:42
+  Peak After Entry: 95c
+  Min After Entry: 52c
+  Max Drawdown: 41c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 7 min
+    → 80c: 7 min
+    → 70c: 9 min
+    → 60c: 30 min
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:95c  2m:93c  3m:92c  4m:91c  5m:92c  6m:92c  7m:79c  8m:72c  9m:70c  10m:67c  11m:64c
+    12m:64c  13m:69c  14m:73c  15m:67c  16m:66c  17m:66c  18m:68c  19m:66c  20m:62c  21m:70c  22m:70c
+    23m:68c  24m:68c  25m:68c  26m:68c  27m:71c  28m:73c  29m:70c  30m:55c  31m:58c  32m:52c  33m:58c
+    34m:62c  35m:57c  36m:65c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #52: KXWTACHALLENGERMATCH-26FEB08SORLIA-SOR (SOR)
+  Sport: WTA_Chall  |  Series: WTA_CHALL
+  Entry Price: 92c (at trajectory index 47)
+  Entry Time: 2026-02-08T16:44:20
+  Peak After Entry: 99c
+  Min After Entry: 91c
+  Max Drawdown: 1c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:91c  2m:91c  3m:93c  4m:94c  5m:93c  6m:94c  7m:96c  8m:96c  9m:98c  10m:98c  11m:98c
+    12m:99c  13m:99c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #53: KXWTACHALLENGERMATCH-26FEB17MINROS-MIN (MIN)
+  Sport: WTA_Chall  |  Series: WTA_CHALL
+  Entry Price: 93c (at trajectory index 1)
+  Entry Time: 2026-02-17T10:09:49
+  Peak After Entry: 94c
+  Min After Entry: 52c
+  Max Drawdown: 41c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 11 min
+    → 80c: 23 min
+    → 70c: 25 min
+    → 60c: 44 min
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:93c  2m:93c  3m:94c  4m:94c  5m:94c  6m:90c  7m:91c  8m:91c  9m:91c  10m:86c  11m:83c
+    12m:83c  13m:86c  14m:86c  15m:86c  16m:85c  17m:82c  18m:83c  19m:84c  20m:83c  21m:81c  22m:81c
+    23m:80c  24m:80c  25m:67c  26m:67c  27m:63c  28m:69c  29m:70c  30m:71c  31m:71c  32m:72c  33m:67c
+    34m:67c  35m:67c  36m:61c  37m:65c  38m:66c  39m:66c  40m:65c  41m:63c  42m:62c  43m:61c  44m:57c
+    45m:60c  46m:56c  47m:52c  48m:55c  49m:59c  50m:59c  51m:65c  52m:72c  53m:71c  54m:71c  55m:71c
+    56m:65c  57m:72c  58m:75c  59m:75c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #54: KXWTACHALLENGERMATCH-26FEB18FREDAY-DAY (DAY)
+  Sport: WTA_Chall  |  Series: WTA_CHALL
+  Entry Price: 93c (at trajectory index 8)
+  Entry Time: 2026-02-18T16:59:25
+  Peak After Entry: 93c
+  Min After Entry: 90c
+  Max Drawdown: 3c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:93c  2m:93c  3m:93c  4m:93c  5m:93c  6m:93c  7m:93c  8m:93c  9m:93c  10m:93c  11m:93c
+    12m:93c  13m:90c  14m:91c  15m:91c  16m:91c  17m:91c  18m:91c  19m:91c  20m:91c  21m:91c  22m:91c
+    23m:91c  24m:91c  25m:91c  26m:91c  27m:91c  28m:91c  29m:91c  30m:91c  31m:91c  32m:91c  33m:91c
+    34m:91c  35m:91c  36m:91c  37m:91c  38m:91c  39m:91c  40m:91c  41m:91c  42m:91c  43m:92c  44m:92c
+    45m:92c  46m:92c  47m:92c  48m:92c  49m:92c  50m:92c  51m:92c  52m:92c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #55: KXWTACHALLENGERMATCH-26FEB18MARDOD-DOD (DOD)
+  Sport: WTA_Chall  |  Series: WTA_CHALL
+  Entry Price: 93c (at trajectory index 41)
+  Entry Time: 2026-02-18T17:25:21
+  Peak After Entry: 94c
+  Min After Entry: 78c
+  Max Drawdown: 15c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 18 min
+    → 80c: 19 min
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:92c  2m:90c  3m:94c  4m:90c  5m:90c  6m:89c  7m:88c  8m:91c  9m:93c  10m:93c  11m:91c
+    12m:91c  13m:91c  14m:93c  15m:94c  16m:88c  17m:88c  18m:85c  19m:78c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #56: KXWTACHALLENGERMATCH-26FEB26OLITOT-OLI (OLI)
+  Sport: WTA_Chall  |  Series: WTA_CHALL
+  Entry Price: 95c (at trajectory index 11)
+  Entry Time: 2026-02-26T10:05:00
+  Peak After Entry: 99c
+  Min After Entry: 68c
+  Max Drawdown: 27c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 43 min
+    → 80c: 44 min
+    → 70c: 49 min
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:95c  1m:95c  2m:95c  3m:95c  4m:96c  5m:96c  6m:97c  7m:97c  8m:97c  9m:97c  10m:97c  11m:99c
+    12m:99c  13m:99c  14m:99c  15m:99c  16m:99c  17m:99c  18m:99c  19m:99c  20m:99c  21m:99c  22m:99c
+    23m:99c  24m:99c  25m:99c  26m:99c  27m:99c  28m:96c  29m:98c  30m:98c  31m:98c  32m:98c  33m:96c
+    34m:96c  35m:93c  36m:94c  37m:95c  38m:95c  39m:90c  40m:86c  41m:89c  42m:92c  43m:82c  44m:76c
+    45m:76c  46m:76c  47m:76c  48m:76c  49m:68c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #57: KXWTACHALLENGERMATCH-26MAR01RAMKOC-RAM (RAM)
+  Sport: WTA_Chall  |  Series: WTA_CHALL
+  Entry Price: 95c (at trajectory index 0)
+  Entry Time: 2026-03-01T11:05:47
+  Peak After Entry: 97c
+  Min After Entry: 54c
+  Max Drawdown: 41c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 12 min
+    → 80c: 14 min
+    → 70c: 30 min
+    → 60c: 45 min
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:95c  1m:95c  2m:95c  3m:97c  4m:97c  5m:93c  6m:93c  7m:93c  8m:93c  9m:93c  10m:93c  11m:89c
+    12m:85c  13m:87c  14m:79c  15m:79c  16m:85c  17m:80c  18m:85c  19m:87c  20m:88c  21m:88c  22m:91c
+    23m:91c  24m:91c  25m:91c  26m:91c  27m:88c  28m:78c  29m:71c  30m:64c  31m:70c  32m:74c  33m:92c
+    34m:85c  35m:85c  36m:89c  37m:88c  38m:86c  39m:86c  40m:67c  41m:67c  42m:67c  43m:74c  44m:61c
+    45m:60c  46m:64c  47m:56c  48m:56c  49m:62c  50m:62c  51m:55c  52m:55c  53m:63c  54m:65c  55m:65c
+    56m:65c  57m:60c  58m:60c  59m:54c  60m:56c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #58: KXWTACHALLENGERMATCH-26MAR08RISPIG-RIS (RIS)
+  Sport: WTA_Chall  |  Series: WTA_CHALL
+  Entry Price: 92c (at trajectory index 17)
+  Entry Time: 2026-03-08T11:11:07
+  Peak After Entry: 99c
+  Min After Entry: 50c
+  Max Drawdown: 42c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 26 min
+    → 80c: 29 min
+    → 70c: 30 min
+    → 60c: 36 min
+    → 50c: 37 min
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:94c  2m:94c  3m:96c  4m:97c  5m:97c  6m:99c  7m:99c  8m:96c  9m:96c  10m:96c  11m:96c
+    12m:98c  13m:98c  14m:98c  15m:99c  16m:98c  17m:99c  18m:96c  19m:97c  20m:95c  21m:95c  22m:91c
+    23m:90c  24m:90c  25m:89c  26m:81c  27m:89c  28m:83c  29m:77c  30m:70c  31m:69c  32m:64c  33m:72c
+    34m:65c  35m:61c  36m:58c  37m:50c  38m:57c  39m:56c  40m:70c  41m:84c  42m:81c  43m:73c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #59: KXWTAMATCH-26FEB08SHNPAR-SHN (SHN)
+  Sport: WTA_Main  |  Series: WTA
+  Entry Price: 94c (at trajectory index 33)
+  Entry Time: 2026-02-08T13:21:41
+  Peak After Entry: 97c
+  Min After Entry: 87c
+  Max Drawdown: 7c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:94c  1m:93c  2m:93c  3m:92c  4m:93c  5m:90c  6m:88c  7m:89c  8m:88c  9m:91c  10m:94c  11m:92c
+    12m:90c  13m:89c  14m:88c  15m:87c  16m:89c  17m:91c  18m:92c  19m:94c  20m:97c  21m:97c  22m:96c
+    23m:97c  24m:96c  25m:95c  26m:96c  27m:96c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #60: KXWTAMATCH-26FEB09ANIPLI-ANI (ANI)
+  Sport: WTA_Main  |  Series: WTA
+  Entry Price: 95c (at trajectory index 42)
+  Entry Time: 2026-02-09T15:17:33
+  Peak After Entry: 96c
+  Min After Entry: 84c
+  Max Drawdown: 11c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 15 min
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:95c  1m:94c  2m:94c  3m:94c  4m:96c  5m:96c  6m:96c  7m:95c  8m:94c  9m:93c  10m:91c  11m:92c
+    12m:88c  13m:87c  14m:86c  15m:84c  16m:86c  17m:86c  18m:85c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #61: KXWTAMATCH-26FEB13SRARUZ-RUZ (RUZ)
+  Sport: WTA_Main  |  Series: WTA
+  Entry Price: 94c (at trajectory index 44)
+  Entry Time: 2026-02-13T07:57:23
+  Peak After Entry: 97c
+  Min After Entry: 85c
+  Max Drawdown: 9c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 16 min
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:94c  1m:95c  2m:95c  3m:94c  4m:95c  5m:94c  6m:93c  7m:90c  8m:95c  9m:94c  10m:97c  11m:97c
+    12m:95c  13m:93c  14m:90c  15m:90c  16m:85c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #62: KXWTAMATCH-26FEB18RYBRUZ-RYB (RYB)
+  Sport: WTA_Main  |  Series: WTA
+  Entry Price: 93c (at trajectory index 23)
+  Entry Time: 2026-02-18T11:02:35
+  Peak After Entry: 98c
+  Min After Entry: 83c
+  Max Drawdown: 10c
+  Final Price: 2c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 25 min
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:90c  2m:92c  3m:93c  4m:92c  5m:94c  6m:97c  7m:97c  8m:97c  9m:97c  10m:98c  11m:98c
+    12m:97c  13m:97c  14m:97c  15m:97c  16m:96c  17m:94c  18m:94c  19m:94c  20m:92c  21m:92c  22m:89c
+    23m:87c  24m:87c  25m:83c  26m:86c  27m:88c  28m:89c  29m:90c  30m:89c  31m:85c  32m:85c  33m:87c
+    34m:87c  35m:88c  36m:85c  37m:83c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #63: KXWTAMATCH-26FEB19ANDANI-AND (AND)
+  Sport: WTA_Main  |  Series: WTA
+  Entry Price: 92c (at trajectory index 33)
+  Entry Time: 2026-02-19T12:40:34
+  Peak After Entry: 97c
+  Min After Entry: 51c
+  Max Drawdown: 41c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: 11 min
+    → 80c: 13 min
+    → 70c: 22 min
+    → 60c: 24 min
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:93c  2m:92c  3m:92c  4m:97c  5m:95c  6m:94c  7m:91c  8m:90c  9m:88c  10m:87c  11m:85c
+    12m:85c  13m:80c  14m:80c  15m:84c  16m:77c  17m:72c  18m:74c  19m:73c  20m:75c  21m:72c  22m:66c
+    23m:66c  24m:59c  25m:54c  26m:51c  27m:52c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #64: KXWTAMATCH-26FEB23TOWFRU-FRU (FRU)
+  Sport: WTA_Main  |  Series: WTA
+  Entry Price: 92c (at trajectory index 16)
+  Entry Time: 2026-02-24T00:54:49
+  Peak After Entry: 95c
+  Min After Entry: 64c
+  Max Drawdown: 28c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 7 min
+    → 80c: 7 min
+    → 70c: 12 min
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:91c  2m:90c  3m:90c  4m:92c  5m:90c  6m:89c  7m:80c  8m:89c  9m:89c  10m:78c  11m:74c
+    12m:68c  13m:74c  14m:70c  15m:64c  16m:71c  17m:76c  18m:77c  19m:78c  20m:82c  21m:83c  22m:90c
+    23m:84c  24m:86c  25m:95c  26m:89c  27m:84c  28m:81c  29m:81c  30m:86c  31m:87c  32m:90c  33m:84c
+    34m:83c  35m:75c  36m:77c  37m:82c  38m:83c  39m:84c  40m:86c  41m:84c  42m:76c  43m:68c  44m:70c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #65: KXWTAMATCH-26FEB24YUASRA-SRA (SRA)
+  Sport: WTA_Main  |  Series: WTA
+  Entry Price: 94c (at trajectory index 40)
+  Entry Time: 2026-02-24T23:10:04
+  Peak After Entry: 99c
+  Min After Entry: 74c
+  Max Drawdown: 20c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: 16 min
+    → 80c: 16 min
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:94c  1m:93c  2m:92c  3m:91c  4m:91c  5m:94c  6m:94c  7m:95c  8m:96c  9m:96c  10m:95c  11m:95c
+    12m:96c  13m:99c  14m:97c  15m:93c  16m:75c  17m:82c  18m:78c  19m:74c  20m:74c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #66: KXWTAMATCH-26FEB25LINJIM-LIN (LIN)
+  Sport: WTA_Main  |  Series: WTA
+  Entry Price: 92c (at trajectory index 56)
+  Entry Time: 2026-02-25T20:16:20
+  Peak After Entry: 95c
+  Min After Entry: 90c
+  Max Drawdown: 2c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:90c  2m:93c  3m:94c  4m:95c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #67: KXWTAMATCH-26FEB26ANNSON-ANN (ANN)
+  Sport: WTA_Main  |  Series: WTA
+  Entry Price: 93c (at trajectory index 52)
+  Entry Time: 2026-02-26T21:51:45
+  Peak After Entry: 98c
+  Min After Entry: 93c
+  Max Drawdown: 0c
+  Final Price: 1c
+  Dropped below 92c: NO
+  Bounced back above 92c: NO
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:93c  1m:94c  2m:96c  3m:97c  4m:98c  5m:98c  6m:96c  7m:94c  8m:93c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #68: KXWTAMATCH-26MAR06JOVOSO-JOV (JOV)
+  Sport: WTA_Main  |  Series: WTA
+  Entry Price: 92c (at trajectory index 40)
+  Entry Time: 2026-03-07T02:22:11
+  Peak After Entry: 98c
+  Min After Entry: 86c
+  Max Drawdown: 6c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:93c  2m:94c  3m:94c  4m:95c  5m:98c  6m:96c  7m:93c  8m:93c  9m:92c  10m:89c  11m:87c
+    12m:87c  13m:86c  14m:90c  15m:86c  16m:91c  17m:92c  18m:92c  19m:92c  20m:92c
+
+────────────────────────────────────────────────────────────────────────────────
+LOSS #69: KXWTAMATCH-26MAR09ANDSIN-AND (AND)
+  Sport: WTA_Main  |  Series: WTA
+  Entry Price: 92c (at trajectory index 39)
+  Entry Time: 2026-03-09T20:42:01
+  Peak After Entry: 94c
+  Min After Entry: 87c
+  Max Drawdown: 5c
+  Final Price: 1c
+  Dropped below 92c: YES
+  Bounced back above 92c: YES
+  Time to drop levels (minutes after entry):
+    → 85c: never
+    → 80c: never
+    → 70c: never
+    → 60c: never
+    → 50c: never
+  Post-entry trajectory (minute: price):
+    0m:92c  1m:92c  2m:94c  3m:94c  4m:94c  5m:91c  6m:88c  7m:89c  8m:87c  9m:87c  10m:91c  11m:92c
+    12m:92c  13m:92c  14m:93c  15m:93c  16m:93c  17m:92c  18m:93c  19m:93c  20m:91c  21m:91c
+
+====================================================================================================
+PART 2: STOP LOSS OPTIMIZATION
+====================================================================================================
+
+Sport          |  Stop | Total | Wins_Stopped | Losses_Saved |   NetPnL | PnL/trade | vs_NoStop
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ATP_Chall      |  none |   515 |            — |            — |   +469.0 |     +0.91 |  baseline
+ATP_Chall      |   -3c |   515 |          170 |           24 |   +864.2 |     +1.68 |    +395.2
+ATP_Chall      |   -5c |   515 |          130 |           23 |   +875.1 |     +1.70 |    +406.1
+ATP_Chall      |   -7c |   515 |           99 |           21 |   +845.0 |     +1.64 |    +376.0
+ATP_Chall      |  -10c |   515 |           70 |           20 |   +899.2 |     +1.75 |    +430.2
+ATP_Chall      |  -15c |   515 |           53 |           18 |   +681.9 |     +1.32 |    +212.9
+ATP_Chall      |  -20c |   515 |           32 |           18 |   +889.2 |     +1.73 |    +420.2
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ATP_Main       |  none |   241 |            — |            — |   +715.0 |     +2.97 |  baseline
+ATP_Main       |   -3c |   241 |           96 |            5 |   +203.6 |     +0.84 |    -511.4
+ATP_Main       |   -5c |   241 |           62 |            4 |   +302.2 |     +1.25 |    -412.8
+ATP_Main       |   -7c |   241 |           49 |            4 |   +357.6 |     +1.48 |    -357.4
+ATP_Main       |  -10c |   241 |           35 |            4 |   +441.9 |     +1.83 |    -273.1
+ATP_Main       |  -15c |   241 |           19 |            4 |   +597.9 |     +2.48 |    -117.1
+ATP_Main       |  -20c |   241 |           16 |            4 |   +564.5 |     +2.34 |    -150.5
+────────────────────────────────────────────────────────────────────────────────────────────────────
+NCAAMB         |  none |   396 |            — |            — |  +1172.0 |     +2.96 |  baseline
+NCAAMB         |   -3c |   396 |          107 |            7 |   +681.2 |     +1.72 |    -490.8
+NCAAMB         |   -5c |   396 |           66 |            7 |   +949.1 |     +2.40 |    -222.9
+NCAAMB         |   -7c |   396 |           47 |            5 |   +903.5 |     +2.28 |    -268.5
+NCAAMB         |  -10c |   396 |           31 |            4 |   +951.4 |     +2.40 |    -220.6
+NCAAMB         |  -15c |   396 |           14 |            3 |  +1091.1 |     +2.76 |     -80.9
+NCAAMB         |  -20c |   396 |           12 |            3 |  +1059.9 |     +2.68 |    -112.1
+────────────────────────────────────────────────────────────────────────────────────────────────────
+WTA_Chall      |  none |   158 |            — |            — |   +513.0 |     +3.25 |  baseline
+WTA_Chall      |   -3c |   158 |           64 |            4 |   +232.5 |     +1.47 |    -280.5
+WTA_Chall      |   -5c |   158 |           46 |            3 |   +207.1 |     +1.31 |    -305.9
+WTA_Chall      |   -7c |   158 |           32 |            3 |   +306.4 |     +1.94 |    -206.6
+WTA_Chall      |  -10c |   158 |           25 |            3 |   +316.5 |     +2.00 |    -196.5
+WTA_Chall      |  -15c |   158 |           11 |            3 |   +495.8 |     +3.14 |     -17.2
+WTA_Chall      |  -20c |   158 |            4 |            2 |   +547.8 |     +3.47 |     +34.8
+────────────────────────────────────────────────────────────────────────────────────────────────────
+WTA_Main       |  none |   195 |            — |            — |   +161.0 |     +0.83 |  baseline
+WTA_Main       |   -3c |   195 |           73 |            8 |   +133.1 |     +0.68 |     -27.9
+WTA_Main       |   -5c |   195 |           53 |            8 |   +216.6 |     +1.11 |     +55.6
+WTA_Main       |   -7c |   195 |           43 |            6 |    +70.1 |     +0.36 |     -90.9
+WTA_Main       |  -10c |   195 |           31 |            4 |    -43.6 |     -0.22 |    -204.6
+WTA_Main       |  -15c |   195 |           23 |            2 |   -196.9 |     -1.01 |    -357.9
+WTA_Main       |  -20c |   195 |           14 |            2 |    -75.0 |     -0.38 |    -236.0
+────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ALL SPORTS     |  Stop | Total | Wins_Stopped | Losses_Saved |   NetPnL | PnL/trade | vs_NoStop
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ALL::::::::::: |  none |  1505 |            — |            — |  +3030.0 |     +2.01 |  baseline
+ALL::::::::::: |   -3c |  1505 |          510 |           48 |  +2114.8 |     +1.41 |    -915.2
+ALL::::::::::: |   -5c |  1505 |          357 |           45 |  +2550.2 |     +1.69 |    -479.8
+ALL::::::::::: |   -7c |  1505 |          270 |           39 |  +2482.6 |     +1.65 |    -547.4
+ALL::::::::::: |  -10c |  1505 |          192 |           35 |  +2565.4 |     +1.70 |    -464.6
+ALL::::::::::: |  -15c |  1505 |          120 |           30 |  +2669.8 |     +1.77 |    -360.2
+ALL::::::::::: |  -20c |  1505 |           78 |           29 |  +2986.4 |     +1.98 |     -43.6
+
+====================================================================================================
+PART 3: RETRACE ANALYSIS
+====================================================================================================
+
+Sport          | Retrace% | Win_Retr | Avg_Dip | Max_Dip | Med_Dip | Loss_Retr | Avg_Dip | Max_Dip
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ATP_Chall      |    49.3% |      227 |    9.7c |     71c |    6.0c |        27 |   39.1c |     91c
+ATP_Main       |    53.9% |      123 |   10.1c |     66c |    5.0c |         7 |   24.3c |     54c
+NCAAMB         |    38.4% |      142 |    7.5c |     62c |    4.0c |        10 |   36.0c |     93c
+WTA_Chall      |    52.5% |       76 |    9.6c |     73c |    6.5c |         7 |   24.3c |     42c
+WTA_Main       |    49.2% |       86 |   11.2c |     56c |    7.0c |        10 |   13.9c |     41c
+ALL            |    47.5% |      654 |    9.5c |     73c |    5.5c |        61 |   31.0c |     93c
+
+
+RETRACE DIP DISTRIBUTION (ALL SPORTS)
+────────────────────────────────────────────────────────────────────────────────
+
+  ATP_Chall:
+  Dip Range    | Win Retraces | Loss Retraces |   % Win
+  ───────────────────────────────────────────────────────
+  1-3c         |           53 |             0 |  100.0%
+  3-5c         |           36 |             1 |   97.3%
+  5-10c        |           64 |             3 |   95.5%
+  10-15c       |           21 |             2 |   91.3%
+  15-20c       |           21 |             0 |  100.0%
+  20c+         |           32 |            21 |   60.4%
+
+  ATP_Main:
+  Dip Range    | Win Retraces | Loss Retraces |   % Win
+  ───────────────────────────────────────────────────────
+  1-3c         |           27 |             1 |   96.4%
+  3-5c         |           28 |             1 |   96.6%
+  5-10c        |           29 |             1 |   96.7%
+  10-15c       |           18 |             0 |  100.0%
+  15-20c       |            3 |             0 |  100.0%
+  20c+         |           18 |             4 |   81.8%
+
+  NCAAMB:
+  Dip Range    | Win Retraces | Loss Retraces |   % Win
+  ───────────────────────────────────────────────────────
+  1-3c         |           40 |             2 |   95.2%
+  3-5c         |           34 |             0 |  100.0%
+  5-10c        |           36 |             3 |   92.3%
+  10-15c       |           18 |             1 |   94.7%
+  15-20c       |            2 |             0 |  100.0%
+  20c+         |           12 |             4 |   75.0%
+
+  WTA_Chall:
+  Dip Range    | Win Retraces | Loss Retraces |   % Win
+  ───────────────────────────────────────────────────────
+  1-3c         |           12 |             1 |   92.3%
+  3-5c         |           14 |             1 |   93.3%
+  5-10c        |           20 |             0 |  100.0%
+  10-15c       |           15 |             0 |  100.0%
+  15-20c       |            9 |             1 |   90.0%
+  20c+         |            6 |             4 |   60.0%
+
+  WTA_Main:
+  Dip Range    | Win Retraces | Loss Retraces |   % Win
+  ───────────────────────────────────────────────────────
+  1-3c         |           14 |             1 |   93.3%
+  3-5c         |           18 |             0 |  100.0%
+  5-10c        |           21 |             4 |   84.0%
+  10-15c       |            7 |             2 |   77.8%
+  15-20c       |           10 |             0 |  100.0%
+  20c+         |           16 |             3 |   84.2%
+
+  ALL:
+  Dip Range    | Win Retraces | Loss Retraces |   % Win
+  ───────────────────────────────────────────────────────
+  1-3c         |          146 |             5 |   96.7%
+  3-5c         |          130 |             3 |   97.7%
+  5-10c        |          170 |            11 |   93.9%
+  10-15c       |           79 |             5 |   94.0%
+  15-20c       |           45 |             1 |   97.8%
+  20c+         |           84 |            36 |   70.0%
+
+====================================================================================================
+PART 4: TIME-BASED STOP ANALYSIS
+====================================================================================================
+
+Sport          | TimeStop | Total | TimeStopped | Hit99c |   TS_PnL | Total_PnL | PnL/trade | vs_NoStop
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ATP_Chall      |     none |   515 |           — |      — |        — |    +469.0 |     +0.91 |  baseline
+ATP_Chall      |      10m |   515 |         330 |    185 |    -2.13 |    +146.2 |     +0.28 |    -322.8
+ATP_Chall      |      15m |   515 |         286 |    229 |    -2.80 |    +294.8 |     +0.57 |    -174.2
+ATP_Chall      |      20m |   515 |         250 |    265 |    -4.47 |    +198.2 |     +0.38 |    -270.8
+ATP_Chall      |      30m |   515 |         218 |    297 |    -5.35 |    +330.2 |     +0.64 |    -138.8
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ATP_Main       |     none |   241 |           — |      — |        — |    +715.0 |     +2.97 |  baseline
+ATP_Main       |      10m |   241 |         155 |     86 |    -2.29 |     +57.4 |     +0.24 |    -657.6
+ATP_Main       |      15m |   241 |         124 |    117 |    -3.38 |    +171.5 |     +0.71 |    -543.5
+ATP_Main       |      20m |   241 |         115 |    126 |    -3.81 |    +206.4 |     +0.86 |    -508.6
+ATP_Main       |      30m |   241 |          97 |    144 |    -4.39 |    +331.1 |     +1.37 |    -383.9
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+NCAAMB         |     none |   396 |           — |      — |        — |   +1172.0 |     +2.96 |  baseline
+NCAAMB         |      10m |   396 |         261 |    135 |    -1.32 |    +241.6 |     +0.61 |    -930.4
+NCAAMB         |      15m |   396 |         242 |    154 |    -2.23 |    +152.2 |     +0.38 |   -1019.8
+NCAAMB         |      20m |   396 |         231 |    165 |    -2.49 |    +179.9 |     +0.45 |    -992.1
+NCAAMB         |      30m |   396 |         222 |    174 |    -3.05 |    +133.8 |     +0.34 |   -1038.2
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+WTA_Chall      |     none |   158 |           — |      — |        — |    +513.0 |     +3.25 |  baseline
+WTA_Chall      |      10m |   158 |         109 |     49 |    -1.32 |     +76.6 |     +0.48 |    -436.4
+WTA_Chall      |      15m |   158 |          95 |     63 |    -1.83 |    +121.9 |     +0.77 |    -391.1
+WTA_Chall      |      20m |   158 |          85 |     73 |    -2.12 |    +174.6 |     +1.11 |    -338.4
+WTA_Chall      |      30m |   158 |          65 |     93 |    -3.34 |    +260.1 |     +1.65 |    -252.9
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+WTA_Main       |     none |   195 |           — |      — |        — |    +161.0 |     +0.83 |  baseline
+WTA_Main       |      10m |   195 |         124 |     71 |    -1.48 |    +154.5 |     +0.79 |      -6.5
+WTA_Main       |      15m |   195 |         101 |     94 |    -3.14 |    +157.6 |     +0.81 |      -3.4
+WTA_Main       |      20m |   195 |          90 |    105 |    -3.71 |    +212.2 |     +1.09 |     +51.2
+WTA_Main       |      30m |   195 |          76 |    119 |    -4.70 |    +273.5 |     +1.40 |    +112.5
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ALL            |     none |  1505 |           — |      — |        — |   +3030.0 |     +2.01 |  baseline
+ALL            |      10m |  1505 |         979 |    526 |    -1.77 |    +676.4 |     +0.45 |   -2353.6
+ALL            |      15m |  1505 |         848 |    657 |    -2.65 |    +898.0 |     +0.60 |   -2132.0
+ALL            |      20m |  1505 |         771 |    734 |    -3.43 |    +971.4 |     +0.65 |   -2058.6
+ALL            |      30m |  1505 |         678 |    827 |    -4.20 |   +1328.8 |     +0.88 |   -1701.2
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+====================================================================================================
+PART 5: OPTIMAL STOP COMPARISON BY SPORT
+====================================================================================================
+
+ATP_Chall (515 trades, 487W/28L, 94.6% WR):
+  No stop:            +469.0c total,  +0.91c/trade
+  Best price stop:  -10c →   +899.2c total,  +1.75c/trade  (Δ +430.2c)
+  Best time stop:   NONE improve over no-stop
+
+ATP_Main (241 trades, 232W/9L, 96.3% WR):
+  No stop:            +715.0c total,  +2.97c/trade
+  Best price stop:  NONE improve over no-stop
+  Best time stop:   NONE improve over no-stop
+
+NCAAMB (396 trades, 382W/14L, 96.5% WR):
+  No stop:           +1172.0c total,  +2.96c/trade
+  Best price stop:  NONE improve over no-stop
+  Best time stop:   NONE improve over no-stop
+
+WTA_Chall (158 trades, 151W/7L, 95.6% WR):
+  No stop:            +513.0c total,  +3.25c/trade
+  Best price stop:  -20c →   +547.8c total,  +3.47c/trade  (Δ +34.8c)
+  Best time stop:   NONE improve over no-stop
+
+WTA_Main (195 trades, 184W/11L, 94.4% WR):
+  No stop:            +161.0c total,  +0.83c/trade
+  Best price stop:  -5c →   +216.6c total,  +1.11c/trade  (Δ +55.6c)
+  Best time stop:   30m →   +273.5c total,  +1.40c/trade  (Δ +112.5c)
+
+ALL (1505 trades, 1436W/69L, 95.4% WR):
+  No stop:           +3030.0c total,  +2.01c/trade
+  Best price stop:  NONE improve over no-stop
+  Best time stop:   NONE improve over no-stop
+
+====================================================================================================
+PART 6: COMBINED STOP (whichever triggers first)
+====================================================================================================
+
+Sport          | PriceStop | TimeStop | Total_PnL | PnL/trade | vs_NoStop
+────────────────────────────────────────────────────────────────────────────────
+ATP_Chall      |       -5c |      30m |    +574.9 |     +1.12 |    +105.9  (BEST)
+ATP_Main       |         — |        — |    +715.0 |     +2.97 |  baseline
+NCAAMB         |       -3c |      10m |    +306.1 |     +0.77 |    -865.9
+NCAAMB         |       -3c |      15m |    +360.1 |     +0.91 |    -811.9
+NCAAMB         |       -3c |      20m |    +376.4 |     +0.95 |    -795.6
+NCAAMB         |       -3c |      30m |    +373.5 |     +0.94 |    -798.5
+NCAAMB         |       -5c |      10m |    +351.1 |     +0.89 |    -820.9
+NCAAMB         |       -5c |      15m |    +394.0 |     +0.99 |    -778.0
+NCAAMB         |       -5c |      20m |    +414.1 |     +1.05 |    -757.9
+NCAAMB         |       -5c |      30m |    +413.2 |     +1.04 |    -758.8
+NCAAMB         |       -7c |      10m |    +341.8 |     +0.86 |    -830.2
+NCAAMB         |       -7c |      15m |    +369.5 |     +0.93 |    -802.5
+NCAAMB         |       -7c |      20m |    +380.6 |     +0.96 |    -791.4
+NCAAMB         |       -7c |      30m |    +380.8 |     +0.96 |    -791.2
+NCAAMB         |      -10c |      10m |    +314.8 |     +0.79 |    -857.2
+NCAAMB         |      -10c |      15m |    +359.4 |     +0.91 |    -812.6
+NCAAMB         |      -10c |      20m |    +373.1 |     +0.94 |    -798.9
+NCAAMB         |      -10c |      30m |    +355.2 |     +0.90 |    -816.8
+NCAAMB         |      -15c |      10m |    +271.8 |     +0.69 |    -900.2
+NCAAMB         |      -15c |      15m |    +293.4 |     +0.74 |    -878.6
+NCAAMB         |      -15c |      20m |    +313.1 |     +0.79 |    -858.9
+NCAAMB         |      -15c |      30m |    +284.2 |     +0.72 |    -887.8
+NCAAMB         |      -20c |      10m |    +249.8 |     +0.63 |    -922.2
+NCAAMB         |      -20c |      15m |    +279.4 |     +0.71 |    -892.6
+NCAAMB         |      -20c |      20m |    +274.1 |     +0.69 |    -897.9
+NCAAMB         |      -20c |      30m |    +236.1 |     +0.60 |    -935.9
+WTA_Chall      |         — |        — |    +513.0 |     +3.25 |  baseline
+WTA_Main       |       -7c |      15m |    +244.1 |     +1.25 |     +83.1  (BEST)
+ALL            |       -3c |      10m |   +1178.6 |     +0.78 |   -1851.4
+ALL            |       -3c |      15m |   +1331.5 |     +0.88 |   -1698.5
+ALL            |       -3c |      20m |   +1376.2 |     +0.91 |   -1653.8
+ALL            |       -3c |      30m |   +1427.0 |     +0.95 |   -1603.0
+ALL            |       -5c |      10m |   +1281.9 |     +0.85 |   -1748.1
+ALL            |       -5c |      15m |   +1489.5 |     +0.99 |   -1540.5
+ALL            |       -5c |      20m |   +1575.9 |     +1.05 |   -1454.1
+ALL            |       -5c |      30m |   +1672.5 |     +1.11 |   -1357.5
+ALL            |       -7c |      10m |   +1213.2 |     +0.81 |   -1816.8
+ALL            |       -7c |      15m |   +1518.5 |     +1.01 |   -1511.5
+ALL            |       -7c |      20m |   +1530.6 |     +1.02 |   -1499.4
+ALL            |       -7c |      30m |   +1659.0 |     +1.10 |   -1371.0
+ALL            |      -10c |      10m |   +1141.6 |     +0.76 |   -1888.4
+ALL            |      -10c |      15m |   +1474.4 |     +0.98 |   -1555.6
+ALL            |      -10c |      20m |   +1490.9 |     +0.99 |   -1539.1
+ALL            |      -10c |      30m |   +1570.8 |     +1.04 |   -1459.2
+ALL            |      -15c |      10m |    +916.6 |     +0.61 |   -2113.4
+ALL            |      -15c |      15m |   +1223.9 |     +0.81 |   -1806.1
+ALL            |      -15c |      20m |   +1232.9 |     +0.82 |   -1797.1
+ALL            |      -15c |      30m |   +1339.4 |     +0.89 |   -1690.6
+ALL            |      -20c |      10m |    +788.5 |     +0.52 |   -2241.5
+ALL            |      -20c |      15m |   +1126.6 |     +0.75 |   -1903.4
+ALL            |      -20c |      20m |   +1139.4 |     +0.76 |   -1890.6
+ALL            |      -20c |      30m |   +1347.9 |     +0.90 |   -1682.1
+
+====================================================================================================
+FINAL SUMMARY
+====================================================================================================
+
+Total trades (after 5-min sustained filter): 1505
+Wins: 1436 (95.4%)
+Losses: 69 (4.6%)
+No-stop PnL: +3030.0c (+2.01c/trade)
+
+Losses that never exceeded entry price: 13/69 (18.8%)
+Losses that hit 99c but still lost: 11/69
+Avg time to 85c for losses: 14.4m (median 11.5m)
+Avg time to 80c for losses: 17.5m (median 16.0m)
+Avg time to 70c for losses: 21.7m (median 20.0m)
+
+====================================================================================================
+END OF ANALYSIS
+====================================================================================================

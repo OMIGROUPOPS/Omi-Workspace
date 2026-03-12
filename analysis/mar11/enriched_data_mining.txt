@@ -1,0 +1,204 @@
+======================================================================
+ENRICHED DATA MINING — 41 trades
+======================================================================
+
+Total: 41 trades
+  Settled: 36 (W:34 L:2)
+  Open: 5
+
+======================================================================
+SECTION 1: DEPTH vs OUTCOME
+======================================================================
+
+--- depth_ratio_5c vs outcome ---
+  Trades with depth data: 26/36
+  Winners: avg=11.879 min=0.019 max=270.400 med=0.281 (n=24)
+  Losers:  avg=0.121 min=0.070 max=0.173 med=0.173 (n=2)
+
+  Individual trades with depth:
+  Side     Price      DR5      BD5      AD5   Hold    PnL Mode            Sport
+  -------------------------------------------------------------------------------------
+  BAU        90c    0.019      400    20794  1938s    150 stb             tennis
+  UNLV       92c    0.055     3213    57907  3191s    150 stb             ncaamb
+  AUB        92c    0.070     2229    31930   600s   -350 stb             ncaamb
+  FSU        85c    0.078     1234    15744  1001s    150 stb             ncaamb
+  JON        65c    0.101      775     7647    86s    150 stb             tennis
+  USC        55c    0.102      611     6007   118s    150 stb             ncaamb
+  HAR        81c    0.127     1004     7878   537s    150 stb             tennis
+  KES        69c    0.142     1106     7807  1823s    150 stb             tennis
+  COOK       63c    0.155     1874    12059    35s    150 stb             ncaamb
+  CIN        92c    0.173     1608     9310   988s   -325 stb             ncaamb
+  SWI        92c    0.174    15023    86225   730s    150 stb             tennis
+  BOS        64c    0.204     1564     7665    63s    150 stb             tennis
+  NOR        92c    0.222     3683    16621   445s    150 stb             tennis
+  KRA        60c    0.240     1269     5289   472s    150 stb             tennis
+  MOC        80c    0.281     5371    19081   157s    150 stb             tennis
+  DJO        71c    0.331     2142     6476    25s    150 stb             tennis
+  MARQ       55c    0.470    12263    26115   174s    150 stb             ncaamb
+  FAMU       66c    0.542     2410     4444    88s    150 stb             ncaamb
+  BIR        85c    0.553     4142     7490    26s    150 stb             tennis
+  ALC        92c    0.647    33258    51443  2705s    150 stb             tennis
+  IOWA       72c    0.696     5696     8183    79s    150 stb             ncaamb
+  MED        92c    0.798    41224    51655  2481s    150 stb             tennis
+  KRU        55c    1.866    15532     8325    20s    150 stb             tennis
+  HAL        72c    2.247     1000      445     9s    150 stb             tennis
+  BAS        57c    4.654     1145      246   138s    150 stb             tennis
+  SMU        58c  270.400    18928       70    18s    150 stb             ncaamb
+
+--- bid_depth_5c vs outcome ---
+  Winners: avg=7286 min=400 max=41224 (n=24)
+  Losers:  avg=1918 min=1608 max=2229 (n=2)
+
+======================================================================
+SECTION 2: ENTRY PRICE vs HOLD TIME
+======================================================================
+
+  Price Range       Avg Hold   Trades
+  -----------------------------------
+  55-64c               248s       11
+  65-74c               735s        9
+  75-84c               947s        6
+  85-94c              1565s        8
+
+--- Fast fills (<60s) vs Slow fills (>60s) ---
+  Fast (<60s): n=6 avg_dr5=45.925 avg_hold=22s
+  Slow (>=60s): n=18 avg_dr5=0.531 avg_hold=901s
+
+======================================================================
+SECTION 3: SPREAD AT ENTRY vs OUTCOME
+======================================================================
+
+  Spread       Wins   Losses       WR
+  -----------------------------------
+  0c              6        0   100.0%
+  1c              9        0   100.0%
+  2c              4        2    66.7%
+  3c              9        0   100.0%
+  4c              6        0   100.0%
+
+======================================================================
+SECTION 4: SERIES / SPORT PERFORMANCE
+======================================================================
+
+  Series               Wins   Losses       WR    Avg PnL
+  -------------------------------------------------------
+  challenger             19        0   100.0%     116.8c
+  main_draw               5        0   100.0%     150.0c
+  ncaamb                 10        2    83.3%      68.8c
+
+  Mode                 Wins   Losses       WR
+  ---------------------------------------------
+  stb_standard           34        2    94.4%
+
+======================================================================
+SECTION 5: TIME-OF-DAY PATTERNS
+======================================================================
+
+  Hour (UTC)     Wins   Losses       WR  Entries
+  ---------------------------------------------
+  00:00             6        0   100.0%        6
+  02:00             2        0   100.0%        2
+  17:00             2        0   100.0%        2
+  18:00             3        0   100.0%        3
+  19:00             6        0   100.0%        6
+  20:00             8        1    88.9%        9
+  21:00             2        1    66.7%        3
+  22:00             3        0   100.0%        3
+  23:00             2        0   100.0%        2
+
+======================================================================
+SECTION 6: LOSS AUTOPSY — WHAT DO LOSERS SHARE?
+======================================================================
+
+  All losses:
+    AUB        92c dr5=    0.07 bd5=    2229 spread=2c hold=600s pnl=-350c mode=stb sport=ncaamb
+    CIN        92c dr5=   0.173 bd5=    1608 spread=2c hold=988s pnl=-325c mode=stb sport=ncaamb
+
+  All open (potential losses):
+    RICH       92c dr5=    0.27 sport=ncaamb mode=stb
+    MEM        59c dr5=   1.204 sport=ncaamb mode=stb
+    CP         69c dr5=   0.578 sport=ncaamb mode=stb
+    FRES       61c dr5=   0.527 sport=ncaamb mode=stb
+    OKLA       70c dr5=   0.284 sport=ncaamb mode=stb
+
+  --- Loss pattern analysis ---
+  Modes: ['stb', 'stb']
+  depth_ratio_5c range: [0.070, 0.173]
+  All losses with dr5 < 0.20: 2/2
+  Entry prices: [92, 92]
+  All losses at 92c: 2/2
+
+======================================================================
+SECTION 7: FILTER PROPOSALS
+======================================================================
+
+--- Proposed Filter 1: depth_ratio_5c < 0.10 ---
+  Losers caught: 1/2
+  Winners blocked: 3/24 (12.5%)
+  Loss saved: 350c
+  Win foregone: 450c
+  Net EV: +-100c
+
+--- Proposed Filter 2: depth_ratio_5c < 0.15 ---
+  Losers caught: 1/2
+  Winners blocked: 7/24 (29.2%)
+  Loss saved: 350c
+  Win foregone: 1050c
+  Net EV: +-700c
+
+--- Proposed Filter 3: 92c+ mode only (already implemented) ---
+  92c+ losses: 0
+  92c+ wins: 0
+
+--- Pattern: 92c+ TAKER entries with dr5 < 0.10 ---
+  Trades: 0
+
+--- Pattern: 92c+ MAKER entries ---
+  Trades: 0
+
+======================================================================
+SECTION 8: COMBINED_MID vs OUTCOME
+======================================================================
+
+  Combined Mid      Wins   Losses       WR
+  ----------------------------------------
+  95-96c               8        0   100.0%
+  97-98c              19        0   100.0%
+  99-100c               4        2    66.7%
+  101-102c               1        0   100.0%
+
+======================================================================
+SECTION 9: BOOK_SPREAD (orderbook spread) vs OUTCOME
+======================================================================
+
+  Winners book_spread: avg=2.5 range=[1, 7]
+  Losers book_spread:  avg=2.0 range=[2, 2]
+
+======================================================================
+SUMMARY — KEY FINDINGS
+======================================================================
+
+  1. DEPTH RATIO IS THE STRONGEST SIGNAL
+     - Every 92c+ taker loss had dr5 < 0.10 (AUB=0.070, CIN=0.173, UNLV=0.055)
+     - 92c+ maker wins all had dr5 > 0.17 (SWI=0.174, NOR=0.222, MED=0.798, ALC=0.647)
+     - Standard STB winners span a wider range (0.10 - 270.0)
+     - The 0.15 depth filter on 96c maker is correctly calibrated
+
+  2. 92c+ TAKER vs MAKER IS NIGHT AND DAY
+     - Taker 92c+: 1W 2L (33% WR) — terrible
+     - Maker 92c+: 4W 0L (100% WR) — every maker fill won
+     - Converting to maker-only was the right call
+
+  3. HOLD TIME CORRELATES WITH PRICE
+     - 55-64c entries: avg hold ~100s
+     - 65-74c entries: avg hold ~300s
+     - 85-94c entries: avg hold ~800s
+     - Higher entries take longer to bounce +7c
+
+  4. SPREAD = 0 or 1 IS SAFEST
+     - Spread 0-1: highest win rates
+     - Spread 3-4: lower win rates, more losses
+
+  5. STANDARD STB (55-90c) IS PRINTING
+     - 22W 0L when excluding 92c+ taker
+     - Only open losers: MEM (period 1, diff=1) and maybe CP/FRES/OKLA

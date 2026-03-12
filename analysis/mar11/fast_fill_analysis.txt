@@ -1,0 +1,264 @@
+======================================================================
+ENRICHED ANALYSIS — 41 trades (36 settled: 34W 2L, 5 open)
+======================================================================
+
+======================================================================
+SECTION 1: COMBINED MID — SHOULD WE TIGHTEN FROM 97c?
+======================================================================
+
+  Bucket      Total    W    L  Open     WR%   Avg PnL   Avg Hold
+  --------------------------------------------------------------
+  <=93c           2    2    0     0  100.0%      9.0c      1800s
+  94-95c          1    1    0     0  100.0%    150.0c        20s
+  96-97c         30   26    0     4  100.0%    136.6c       553s
+  98-99c          1    1    0     0  100.0%    150.0c       730s
+  100c+           7    4    2     1   66.7%    -12.5c      1735s
+
+  --- Individual trades by combined_mid ---
+  Side      Cmid Price    PnL    Hold Spread Sport    Outcome
+  -----------------------------------------------------------------
+  WON         0c   55c    12c   1563s     0c tennis   WIN
+  LAN         0c   80c     6c   2037s     0c tennis   WIN
+  KRU        95c   55c   150c     20s     3c tennis   WIN
+  JON        96c   65c   150c     86s     3c tennis   WIN
+  SEL        96c   58c   150c    107s     2c tennis   WIN
+  BIR        96c   85c   150c     26s     4c tennis   WIN
+  MOSU       96c   67c   150c   1037s     1c ncaamb   WIN
+  DSU        96c   72c   150c   3381s     2c ncaamb   WIN
+  VAN        96c   75c   150c    155s     3c tennis   WIN
+  BAS        96c   57c   150c    138s     4c tennis   WIN
+  IOWA       97c   72c   150c     79s     1c ncaamb   WIN
+  OLI        97c   70c   150c     90s     1c tennis   WIN
+  HAR        97c   81c   150c    537s     2c tennis   WIN
+  COOK       97c   63c   150c     35s     1c ncaamb   WIN
+  USC        97c   55c   150c    118s     1c ncaamb   WIN
+  KES        97c   69c   150c   1823s     3c tennis   WIN
+  KOT        97c   64c    90c     24s     1c tennis   WIN
+  HAL        97c   72c   150c      9s     4c tennis   WIN
+  SVR        97c   77c     6c   1122s     3c tennis   WIN
+  KRA        97c   60c   150c    472s     3c tennis   WIN
+  SMU        97c   58c   150c     18s     1c ncaamb   WIN
+  BOS        97c   64c   150c     63s     4c tennis   WIN
+  AND        97c   82c     6c   1673s     4c tennis   WIN
+  MARQ       97c   55c   150c    174s     1c ncaamb   WIN
+  FSU        97c   85c   150c   1001s     1c ncaamb   WIN
+  MEM        97c   59c   OPEN      0s     1c ncaamb   OPEN
+  BAU        97c   90c   150c   1938s     2c tennis   WIN
+  FAMU       97c   66c   150c     88s     3c ncaamb   WIN
+  CP         97c   69c   OPEN      0s     1c ncaamb   OPEN
+  DJO        97c   71c   150c     25s     3c tennis   WIN
+  FRES       97c   61c   OPEN      0s     3c ncaamb   OPEN
+  MOC        97c   80c   150c    157s     3c tennis   WIN
+  OKLA       97c   70c   OPEN      0s     1c ncaamb   OPEN
+  SWI        99c   92c   150c    730s     0c tennis   WIN
+  NOR       100c   92c   150c    445s     0c tennis   WIN
+  MED       100c   92c   150c   2481s     0c tennis   WIN
+  AUB       100c   92c  -350c    600s     2c ncaamb   LOSS
+  CIN       100c   92c  -325c    988s     2c ncaamb   LOSS
+  ALC       100c   92c   150c   2705s     0c tennis   WIN
+  RICH      101c   92c   OPEN      0s     3c ncaamb   OPEN
+  UNLV      101c   92c   150c   3191s     4c ncaamb   WIN
+
+  --- What if we tighten combined_mid ceiling? ---
+  <=  99c: pass=30 (30W 0L 100%) blocked=6 (4W 2L) PnL kept=3870c blocked=-75c
+  <=  98c: pass=29 (29W 0L 100%) blocked=7 (5W 2L) PnL kept=3720c blocked=75c
+  <=  97c: pass=29 (29W 0L 100%) blocked=7 (5W 2L) PnL kept=3720c blocked=75c
+  <=  96c: pass=10 (10W 0L 100%) blocked=26 (24W 2L) PnL kept=1218c blocked=2577c
+  <=  95c: pass=3 (3W 0L 100%) blocked=33 (31W 2L) PnL kept=168c blocked=3627c
+  <=  94c: pass=2 (2W 0L 100%) blocked=34 (32W 2L) PnL kept=18c blocked=3777c
+
+  --- Where do losses cluster? ---
+    AUB      combined=100c price=92c pnl=-350c spread=2c dr5=0.07
+    CIN      combined=100c price=92c pnl=-325c spread=2c dr5=0.173
+    RICH     combined=101c price=92c (OPEN) sport=ncaamb
+    MEM      combined=97c price=59c (OPEN) sport=ncaamb
+    CP       combined=97c price=69c (OPEN) sport=ncaamb
+    FRES     combined=97c price=61c (OPEN) sport=ncaamb
+    OKLA     combined=97c price=70c (OPEN) sport=ncaamb
+
+======================================================================
+SECTION 2: FAST FILL PROFILE — WHAT MAKES A TRADE FILL IN <5 MIN?
+======================================================================
+
+  Analyzing 34 winning trades with hold data
+
+  Speed buckets:
+  Bucket        Count  Avg Price  Avg Spread   Avg Cmid    Avg DR5    Avg BD5
+  ---------------------------------------------------------------------------
+  <30s              6      67.5c        2.7c      96.5c     55.079       8349
+  30-60s            1      63.0c        1.0c      97.0c      0.155       1874
+  1-5min           11      65.2c        2.4c      96.6c      0.881       3729
+  5-15min           4      81.2c        1.2c      98.2c      0.191       5245
+  15-45min          9      77.4c        1.6c      75.7c      0.259      10991
+  45min+            3      85.3c        2.0c      99.0c      0.351      18236
+
+  --- Factor correlations with hold time ---
+
+  Factor               Corr w/ hold Direction           
+  -------------------------------------------------------
+  entry_price               +0.015  weak → longer hold
+  spread                    -0.005  weak → shorter hold
+  combined_mid              -0.006  weak → shorter hold
+  depth_ratio_5c            -0.006  weak → shorter hold
+  bid_depth_5c              +0.018  weak → longer hold
+  ask_depth_5c              +0.027  weak → longer hold
+
+  --- Hold time by sport ---
+  ncaamb       n= 10 avg=    912s med=    174s fast(<60s)=2
+  tennis       n= 24 avg=    768s med=    445s fast(<60s)=5
+
+  --- Hold time by series ---
+  challenger         n= 19 avg=    634s med=    155s fast(<60s)=4
+  main_draw          n=  5 avg=   1277s med=    730s fast(<60s)=1
+  ncaamb             n= 10 avg=    912s med=    174s fast(<60s)=2
+
+  --- Hold time vs game state (NCAAMB) ---
+    SMU        58c hold=    18s spread=1c cmid=97c gs=no_data
+    COOK       63c hold=    35s spread=1c cmid=97c gs=no_data
+    IOWA       72c hold=    79s spread=1c cmid=97c gs=no_data
+    FAMU       66c hold=    88s spread=3c cmid=97c gs=no_data
+    USC        55c hold=   118s spread=1c cmid=97c gs=no_data
+    MARQ       55c hold=   174s spread=1c cmid=97c gs=no_data
+    FSU        85c hold=  1001s spread=1c cmid=97c gs=no_data
+    MOSU       67c hold=  1037s spread=1c cmid=96c gs=no_data
+    UNLV       92c hold=  3191s spread=4c cmid=101c gs=no_data
+    DSU        72c hold=  3381s spread=2c cmid=96c gs=no_data
+
+  --- NCAAMB: Period + differential vs hold time ---
+
+  --- What predicts sub-60s fills? ---
+  Fast (<60s): n=7
+  Slow (>=60s): n=27
+    Avg price            fast=   66.9  slow=   73.9  delta=   -7.0
+    Avg spread           fast=    2.4  slow=    1.9  delta=   +0.5
+    Avg combined_mid     fast=   96.6  slow=   90.1  delta=   +6.4
+    Avg dr5              fast= 45.925  slow=  0.531
+    Avg bd5              fast=   7270  slow=   7292
+    Sport mix (fast): {'ncaamb': 2, 'tennis': 5}
+    Sport mix (slow): {'ncaamb': 8, 'tennis': 19}
+    Series mix (fast): {'main_draw': 1, 'ncaamb': 2, 'challenger': 4}
+    Series mix (slow): {'main_draw': 4, 'ncaamb': 8, 'challenger': 15}
+
+  --- What predicts sub-5min fills? ---
+  Fast (<5min): n=18
+  Slow (>=5min): n=16
+    Avg price            fast=   65.8  slow=   79.9  delta=  -14.0
+    Avg spread           fast=    2.4  slow=    1.6  delta=   +0.8
+    Avg combined_mid     fast=   96.6  slow=   85.7  delta=  +10.9
+    Avg dr5              fast= 20.186  slow=  0.250
+    Avg bd5              fast=   5247  slow=  10141
+
+======================================================================
+SECTION 3: FAST FILL SCORE
+======================================================================
+
+  Building score from: price (inverted), dr5, spread (inverted)
+  Only scoring trades with depth data
+
+  Rank Side      Score Price      DR5 Spread    Hold    PnL Outcome
+  -----------------------------------------------------------------
+     1 SMU       90.9   58c  270.400     1c     18s   150c WIN
+     2 BAS       75.2   57c    4.654     4c    138s   150c WIN
+     3 MARQ      67.8   55c    0.470     1c    174s   150c WIN
+     4 MEM       66.8   59c    1.204     1c      0s   OPEN OPEN
+     5 KRU       66.2   55c    1.866     3c     20s   150c WIN
+     6 USC       65.6   55c    0.102     1c    118s   150c WIN
+     7 COOK      55.1   63c    0.155     1c     35s   150c WIN
+     8 FRES      50.1   61c    0.527     3c      0s   OPEN OPEN
+     9 KRA       49.7   60c    0.240     3c    472s   150c WIN
+    10 CP        49.5   69c    0.578     1c      0s   OPEN OPEN
+    11 OKLA      46.4   70c    0.284     1c      0s   OPEN OPEN
+    12 IOWA      46.2   72c    0.696     1c     79s   150c WIN
+    13 FAMU      43.4   66c    0.542     3c     88s   150c WIN
+    14 JON       42.1   65c    0.101     3c     86s   150c WIN
+    15 HAL       40.5   72c    2.247     4c      9s   150c WIN
+    16 BOS       39.1   64c    0.204     4c     63s   150c WIN
+    17 KES       36.9   69c    0.142     3c   1823s   150c WIN
+    18 DJO       35.4   71c    0.331     3c     25s   150c WIN
+    19 HAR       25.6   81c    0.127     2c    537s   150c WIN
+    20 FSU       24.9   85c    0.078     1c   1001s   150c WIN
+    21 MED       24.8   92c    0.798     0c   2481s   150c WIN
+    22 ALC       23.9   92c    0.647     0c   2705s   150c WIN
+    23 MOC       22.9   80c    0.281     3c    157s   150c WIN
+    24 NOR       21.3   92c    0.222     0c    445s   150c WIN
+    25 SWI       21.0   92c    0.174     0c    730s   150c WIN
+    26 BAU       12.8   90c    0.019     2c   1938s   150c WIN
+    27 BIR       12.8   85c    0.553     4c     26s   150c WIN
+    28 CIN       11.0   92c    0.173     2c    988s  -325c LOSS
+    29 AUB       10.4   92c    0.070     2c    600s  -350c LOSS
+    30 RICH       6.6   92c    0.270     3c      0s   OPEN OPEN
+    31 UNLV       0.3   92c    0.055     4c   3191s   150c WIN
+
+  --- Score buckets vs WR and avg hold ---
+  Bucket              Count    W    L  Open     WR%   Avg Hold   Avg PnL
+  ----------------------------------------------------------------------
+  70-100 (fast)           2    2    0     0  100.0%        78s    150.0c
+  50-69                   6    4    0     2  100.0%        87s    150.0c
+  30-49                  10    8    0     2  100.0%       331s    150.0c
+  0-29 (slow)            13   10    2     1   83.3%      1233s     68.8c
+
+======================================================================
+SECTION 4: THE FRESNO QUESTION
+======================================================================
+
+  NOTE: The enriched CSV does not contain pre-game/opening prices.
+  We cannot determine if entries were above or below opening price
+  without historical price data from the Kalshi API.
+
+  What we CAN analyze from the CSV:
+
+  NCAAMB trades: 17
+
+  Side     Price  Cmid Spread    Hold    PnL      DR5 Outcome
+  ------------------------------------------------------------
+  USC        55c   97c     1c    118s   150c    0.102 WIN
+  MARQ       55c   97c     1c    174s   150c    0.470 WIN
+  SMU        58c   97c     1c     18s   150c  270.400 WIN
+  MEM        59c   97c     1c      0s   OPEN    1.204 OPEN
+  FRES       61c   97c     3c      0s   OPEN    0.527 OPEN
+  COOK       63c   97c     1c     35s   150c    0.155 WIN
+  FAMU       66c   97c     3c     88s   150c    0.542 WIN
+  MOSU       67c   96c     1c   1037s   150c        ? WIN
+  CP         69c   97c     1c      0s   OPEN    0.578 OPEN
+  OKLA       70c   97c     1c      0s   OPEN    0.284 OPEN
+  IOWA       72c   97c     1c     79s   150c    0.696 WIN
+  DSU        72c   96c     2c   3381s   150c        ? WIN
+  FSU        85c   97c     1c   1001s   150c    0.078 WIN
+  RICH       92c  101c     3c      0s   OPEN    0.270 OPEN
+  UNLV       92c  101c     4c   3191s   150c    0.055 WIN
+  AUB        92c  100c     2c    600s  -350c    0.070 LOSS
+  CIN        92c  100c     2c    988s  -325c    0.173 LOSS
+
+  --- NCAAMB price bracket analysis ---
+  Bracket         W    L     WR%   Avg Hold   Avg PnL
+  --------------------------------------------------
+  55-64c          4    0  100.0%        86s    150.0c
+  65-74c          4    0  100.0%      1146s    150.0c
+  85-94c          2    2   50.0%      1445s    -93.8c
+
+  --- NCAAMB: combined_mid as proxy for genuine dislocation ---
+  Theory: lower combined_mid = bigger dislocation = more likely to bounce
+  Higher combined_mid = both sides expensive = market says it's close
+    95-96c (big dislocation): 2W 0L (100%) avg_pnl=150c
+    97-98c (normal): 7W 0L (100%) avg_pnl=150c
+    99-100c (tight pair): 0W 2L (0%) avg_pnl=-338c
+
+======================================================================
+RECOMMENDATIONS
+======================================================================
+
+  1. COMBINED MID CEILING:
+     Losses at cmid >= 99: 2/2
+     Losses at cmid <  99: 0/2
+     Wins at cmid >= 99: 5/34
+     PnL from cmid >= 99 wins: 750c
+     PnL saved by blocking cmid >= 99: 675c
+
+  2. FAST FILL FACTORS:
+     - Price is the dominant predictor (lower price → faster fill)
+     - Check correlation results above for secondary factors
+     - Fast fills (<60s) cluster at 55-65c with high dr5
+
+  3. SPORT-SPECIFIC FINDINGS:
+     NCAAMB: 10W 2L (83% WR)
+     Tennis: 24W 0L (100% WR)

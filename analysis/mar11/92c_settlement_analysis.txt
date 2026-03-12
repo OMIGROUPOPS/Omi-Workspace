@@ -1,0 +1,137 @@
+================================================================================
+  >=92c SETTLEMENT STRATEGY - COMPREHENSIVE BACKTEST
+  NCAAMB: 2043 total trades, 59 at >=92c
+  NBA: 42 total trades, 0 at >=92c
+  Backtest period: 30 days | Contracts: 25
+================================================================================
+
+================================================================================
+  NCAAMB >=92c EXIT COMPARISON: 59 trades with entry >= 92c
+================================================================================
+  Entry prices: min=92c, max=96c, median=94c
+  Distribution: {92: 14, 93: 10, 94: 9, 95: 17, 96: 9}
+
+  Strategy           Trades  Fills  FillR%  Wins Losses     WR%   TotPnL   AvgPnL    $/day  AvgHold
+  ------------------ ------ ------ ------- ----- ------ ------- -------- -------- -------- --------
+  +3c resting            59     59  100.0%    59      0  100.0%   125.4c    2.12c $  1.04    5.5m
+  +5c resting            59     33   55.9%    59      0  100.0%   234.4c    3.97c $  1.95   16.8m
+  +7c resting            59     14   23.7%    59      0  100.0%   291.4c    4.94c $  2.43   24.5m
+  99c resting            59     59  100.0%    59      0  100.0%   246.4c    4.18c $  2.05    7.2m
+  Settlement hold        59    n/a     n/a    59      0  100.0%   305.4c    5.18c $  2.54   30.0m
+
+  Settlement hold at 25 contracts:
+    Per-trade avg: $1.29
+    Daily projection: $2.54
+    Monthly projection: $76.34
+
+  === +7c Fill → Settled NO Check ===
+    No cases found where +7c filled AND game settled NO.
+
+================================================================================
+  NBA >=92c ANALYSIS
+================================================================================
+
+  NBA has ZERO trades at >=92c entry.
+  NBA max entry price: 90c
+  NBA was killed at the +7c bounce level in 55-90c range.
+  The STB data simply doesn't contain high-confidence NBA entries.
+
+  For context, NBA >=80c (7 trades):
+
+================================================================================
+  NBA >=80c (for context): 7 trades with entry >= 92c
+================================================================================
+  Entry prices: min=81c, max=90c, median=83c
+  Distribution: {81: 1, 82: 2, 83: 1, 86: 1, 89: 1, 90: 1}
+
+  Strategy           Trades  Fills  FillR%  Wins Losses     WR%   TotPnL   AvgPnL    $/day  AvgHold
+  ------------------ ------ ------ ------- ----- ------ ------- -------- -------- -------- --------
+  +3c resting             7      7  100.0%     7      0  100.0%    14.9c    2.12c $  0.12    6.1m
+  +5c resting             7      7  100.0%     7      0  100.0%    28.9c    4.12c $  0.24    8.4m
+  +7c resting             7      7  100.0%     7      0  100.0%    42.9c    6.12c $  0.36    8.4m
+  99c resting             7      7  100.0%     7      0  100.0%    93.9c   13.41c $  0.78    5.0m
+  Settlement hold         7    n/a     n/a     6      1   85.7%     0.9c    0.12c $  0.01   30.0m
+
+  Settlement hold at 25 contracts:
+    Per-trade avg: $0.03
+    Daily projection: $0.01
+    Monthly projection: $0.22
+
+  === +7c Fill → Settled NO Check ===
+    FOUND: KXNBAGAME-26MAR07BKNDET-DET entry=90.0c bounce=95.0c settled=NO → dodged 90.9c loss!
+    Total dodged losses: 1
+
+================================================================================
+  BREAKEVEN ANALYSIS: Exact Entry Price
+================================================================================
+
+  Entry       BE%  NCAAMB_WR  NCAAMB_N  NCAAMB_Edge   NBA_WR   NBA_N   NBA_Edge
+  ------- ------- ---------- --------- ------------ -------- ------- ----------
+   90c    90.0%       93.8%        16        +3.8%      0.0%       1     -90.0%
+   91c    91.0%       94.4%        18        +3.4%       n/a       0        n/a
+   92c    92.0%      100.0%        14        +8.0%       n/a       0        n/a
+   93c    93.0%      100.0%        10        +7.0%       n/a       0        n/a
+   94c    94.0%      100.0%         9        +6.0%       n/a       0        n/a
+   95c    95.0%      100.0%        17        +5.0%       n/a       0        n/a
+   96c    96.0%      100.0%         9        +4.0%       n/a       0        n/a
+   97c    97.0%         n/a         0          n/a       n/a       0        n/a
+   98c    98.0%         n/a         0          n/a       n/a       0        n/a
+   99c    99.0%         n/a         0          n/a       n/a       0        n/a
+
+================================================================================
+  BREAKEVEN ANALYSIS: Cumulative (>= threshold)
+================================================================================
+
+  Entry>=       BE%    NC_WR   NC_N  NC_EV/trade   NBA_WR  NBA_N NBA_EV/trade
+  --------- ------- -------- ------ ------------ -------- ------ ------------
+  >=90c    90.0%     97.8%     93        $1.07      0.0%      1      $-22.72
+  >=91c    91.0%     98.7%     77        $1.14       n/a      0          n/a
+  >=92c    92.0%    100.0%     59        $1.29       n/a      0          n/a
+  >=93c    93.0%    100.0%     45        $1.14       n/a      0          n/a
+  >=94c    94.0%    100.0%     35        $1.03       n/a      0          n/a
+  >=95c    95.0%    100.0%     26        $0.94       n/a      0          n/a
+  >=96c    96.0%    100.0%      9        $0.78       n/a      0          n/a
+  >=97c    97.0%       n/a      0          n/a       n/a      0          n/a
+  >=98c    98.0%       n/a      0          n/a       n/a      0          n/a
+  >=99c    99.0%       n/a      0          n/a       n/a      0          n/a
+
+================================================================================
+  VOLUME & SAMPLE SIZE
+================================================================================
+
+  NCAAMB:
+    Total trades in backtest: 2043
+    Total >=92c opportunities: 59
+    Opportunities/day (all): 68.1
+    Opportunities/day (>=92c): 1.97
+    Surviving sustained 5-min >=90c filter: 57/59
+
+  NBA:
+    Total trades in backtest: 42
+    Total >=92c opportunities: 0
+    Opportunities/day (all): 1.4
+    Opportunities/day (>=92c): 0.00
+    Surviving sustained 5-min >=90c filter: 0/0
+
+================================================================================
+  COMBINED PROJECTION
+================================================================================
+
+  Existing STB (55-90c): $39.55/day
+  NCAAMB >=92c settlement: $2.54/day
+  NBA >=92c settlement: $0.00/day (NBA has 0 trades >=92c)
+  ────────────────────────────────
+  Combined daily PnL: $42.09/day
+  Combined monthly PnL: $1262.84/month
+
+  === Max Drawdown Analysis ===
+
+  Worst single trade loss: 0.0c ($0.00)
+  Worst consecutive loss streak: 0
+
+  Worst loss by entry price:
+    92c: 0 losses out of 14 trades
+    93c: 0 losses out of 10 trades
+    94c: 0 losses out of 9 trades
+    95c: 0 losses out of 17 trades
+    96c: 0 losses out of 9 trades

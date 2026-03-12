@@ -1,0 +1,126 @@
+================================================================================
+CORRECTED 92c+ ANALYSIS — LATE-CROSSER METHODOLOGY
+================================================================================
+
+NCAAMB Population:
+  Late-crossers (entry < 92c, climbed to 92c): 386
+  Original-high (entry >= 92c from start):     56
+  Total 92c+ entries:                          442
+
+================================================================================
+SECTION 1: NCAAMB STOP ANALYSIS — LATE-CROSSERS ONLY
+================================================================================
+
+Stop       Trades     WR%  PnL/trade  Total PnL   PnL/day  Wins Stopped  Losses Saved
+-------------------------------------------------------------------------------------
+No stop       386   95.3%      2.10c     810.2c     27.0c             0             0 
+-5c           386   76.9%      2.01c     774.2c     25.8c            71            10 (-36.0c)
+-7c           386   80.8%      2.16c     832.2c     27.7c            56            10 (+22.0c)
+-10c          386   86.0%      2.13c     823.2c     27.4c            36             8 (+13.0c)
+-15c          386   90.9%      2.29c     883.2c     29.4c            17             6 (+73.0c)
+-20c          386   92.0%      2.28c     879.2c     29.3c            13             6 (+69.0c)
+
+KEY QUESTION: Does -10c stop help or hurt on corrected late-crosser data?
+  No-stop PnL/trade: 2.10c | -10c stop PnL/trade: 2.13c
+  Delta: +13.0c total (+0.4c/day)
+  -10c stop HELPS on corrected data
+
+--- NCAAMB Original-High (entry >= 92c from start) for reference ---
+  No stop: 56 trades, WR 100.0%, PnL/trade 6.50c, PnL/day 12.1c
+  -10c: 56 trades, WR 82.1%, PnL/trade 3.38c, PnL/day 6.3c
+
+================================================================================
+SECTION 2: ALL SPORTS — CORRECTED LATE-CROSSER ANALYSIS
+================================================================================
+
+Sport              Late-X  Orig     WR%  PnL/tr(ns)  PnL/tr(-10)  PnL/day(ns)  PnL/day(-10)
+----------------------------------------------------------------------------------------------------
+NCAAMB                386    56   95.3%       2.10c        2.13c        27.0c         27.4c
+ATP Main              245    21   95.5%       2.02c        0.73c        16.5c          6.0c
+WTA Main              200    10   93.0%      -0.51c       -1.16c        -3.4c         -7.7c
+ATP Challenger        535    29   93.8%       0.37c        1.04c         6.7c         18.6c
+WTA Challenger        157    11   94.9%       1.42c        1.16c         7.4c          6.1c
+NBA                    51   125  100.0%       6.20c        4.20c        10.5c          7.1c
+
+================================================================================
+SECTION 3: EXIT THRESHOLD VALIDATION — NCAAMB LATE-CROSSERS
+================================================================================
+
+NCAAMB late-crosser outcomes (386 trades):
+  Hit 99c during trajectory: 140 (36.3%)
+  Settled YES (never hit 99c): 228 (59.1%)
+  Settled NO (loss):           18 (4.7%)
+
+  Exit Trades  Exits  Settles     WR%  PnL/trade   PnL/day
+------------------------------------------------------------
+   95c    386    279      107   97.2%      0.66c      8.5c
+   96c    386    245      141   96.1%      0.70c      9.0c
+   97c    386    211      175   96.1%      1.60c     20.6c
+   98c    386    177      209   95.6%      1.80c     23.2c
+   99c    386    140      246   95.3%      2.10c     27.0c
+
+================================================================================
+SECTION 4: ENTRY THRESHOLD OPTIMIZATION — NCAAMB
+================================================================================
+
+Threshold     Stop Trades     WR%  PnL/trade   PnL/day  Total PnL
+---------------------------------------------------------------------------
+      90c  No stop    425   92.9%      1.77c     25.1c     753.1c
+      90c     -10c    425   82.4%      2.31c     32.7c     981.1c
+      91c  No stop    401   95.3%      3.06c     40.8c    1225.1c
+      91c     -10c    401   85.8%      2.89c     38.6c    1157.1c
+      92c  No stop    386   95.3%      2.10c     27.0c     810.2c
+      92c     -10c    386   86.0%      2.13c     27.4c     823.2c
+      93c  No stop    364   95.9%      1.60c     19.4c     582.5c
+      93c     -10c    364   85.4%      1.22c     14.8c     443.5c
+      94c  No stop    341   96.5%      1.16c     13.2c     394.6c
+      94c     -10c    341   87.4%      0.71c      8.1c     241.6c
+      95c  No stop    314   97.5%      1.07c     11.2c     335.2c
+      95c     -10c    314   89.8%      0.76c      7.9c     237.2c
+
+BEST CONFIG: 91c entry, No stop → PnL/day = 40.8c
+
+================================================================================
+SECTION 5: CORRECTED COMBINED PROJECTION
+================================================================================
+
+Per-sport best config (92c entry, testing no-stop vs -10c stop):
+
+Sport              Config                PnL/day(c)  $/day @25ct
+-----------------------------------------------------------------
+NCAAMB             92c + -10c stop            27.4c        6.86
+ATP Main           92c + no stop              16.5c        4.12
+WTA Main           92c + no stop              -3.4c       -0.84
+ATP Challenger     92c + -10c stop            18.6c        4.64
+WTA Challenger     92c + no stop               7.4c        1.86
+NBA                92c + no stop              10.5c        2.64
+-----------------------------------------------------------------
+92c+ SUBTOTAL                                 77.1c $     19.27
+
+Existing STB 55-90c                                $     39.55
+GRAND TOTAL                                        $     58.82/day
+
+Monthly projection: $1765/month
+
+================================================================================
+BONUS: SAMPLE LATE-CROSSER TRAJECTORIES (NCAAMB)
+================================================================================
+
+  [1] KXNCAAMBGAME-26FEB06EVANVALP | entry=68c → cross@min4 | final=99 | post-cross: [88, 87, 86, 91, 88, 89, 88, 88, 76, 80...] | PnL=7.1c
+  [2] KXNCAAMBGAME-26FEB07AKRTROY | entry=77c → cross@min13 | final=99 | post-cross: [91, 94, 94, 94, 93, 94, 95, 97, 94, 95...] | PnL=6.1c
+  [3] KXNCAAMBGAME-26FEB07ALAAUB | entry=73c → cross@min17 | final=99 | post-cross: [98, 97, 97, 98, 97, 98, 97, 99, 99, 99...] | PnL=6.1c
+  [4] KXNCAAMBGAME-26FEB07BALLULM | entry=71c → cross@min10 | final=99 | post-cross: [93, 93, 91, 92, 92, 92, 92, 90, 83, 85...] | PnL=7.1c
+  [5] KXNCAAMBGAME-26FEB07BAYISU | entry=90c → cross@min2 | final=99 | post-cross: [91, 92, 91, 90, 91, 91, 91, 92, 92, 92...] | PnL=7.1c
+
+================================================================================
+BONUS: ORIGINAL-HIGH POPULATION (entry >= 92c from start) — ALL SPORTS
+================================================================================
+
+Sport               Count     WR%  PnL/trade   PnL/day
+-------------------------------------------------------
+NCAAMB                 56  100.0%      6.50c     12.1c
+ATP Main               21   95.2%      1.46c      1.0c
+WTA Main               10  100.0%      6.33c      2.1c
+ATP Challenger         29   93.1%     -0.50c     -0.5c
+WTA Challenger         11   90.9%     -2.60c     -1.0c
+NBA                   125   97.6%      3.87c     16.1c

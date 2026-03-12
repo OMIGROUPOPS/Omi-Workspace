@@ -1,0 +1,35 @@
+WARNING: Could not import from arb_executor_v7.py - API auth unavailable
+[PM-SDK] Polymarket US SDK client initialized (httpx fast path)
+
+===============================================================================================
+  POSITION REPORT — 2026-02-28 23:52:42 UTC
+===============================================================================================
+  Game    K Side  K Qty  K Entry PM Side  PM Qty PM Entry Hedged?  Match?   Gross    Net
+  ─────── ─────── ───── ──────── ──────── ────── ──────── ──────── ─────── ────── ──────
+  VER     YES        29      29c DAVMAR       29      73c YES      YES       -58c  -174c
+  PAC     YES        28      16c SANLUN       28      85c YES      YES       -28c  -140c
+  MOR     NO         30      34c BRAMOR       30      66c YES      YES          —  -120c
+  GRE     YES        28      22c DANZEL       28      80c YES      YES       -56c  -168c
+  ALA     YES         1      34c ALA           1      33c SAME!    YES        33c    29c
+  FAMU    YES         1      74c GRMBST        1      22c YES      YES         4c      —
+  FUR     YES         1      27c WCAR          1      73c YES      YES          —    -4c
+  RICH    YES         1      43c —             0        — ORPHAN   —            —      —
+  LIP     NO          2      26c —             0        — ORPHAN   —            —      —
+  VALP    YES         1      46c —             0        — ORPHAN   —            —      —
+  FIU     YES         1      68c —             0        — ORPHAN   —            —      —
+  AC      NO          1      79c —             0        — ORPHAN   —            —      —
+
+  ──────────────────────────────────────────────────────────────────────────────────────────
+  !! SAME-SIDE: ALA
+  !! ORPHAN: K:RICH, K:LIP, K:VALP, K:FIU, K:AC
+
+  ──────────────────────────────────────────────────────────────────────────────────────────
+  K Cash: $502.05   K Positions: $2.61   K Total: $504.66
+  PM Cash: $399.12  PM Positions: $86.65   PM Total: $485.77
+  Combined Portfolio: $990.44
+  Starting Balance (Feb 15): $317.77
+  Total Deposits: $600.00   Total Capital In: $917.77
+  True P&L: +$72.67  (+7.9%)
+  Locked Profit: $-1.38   Net After Fees: $-6.06   Unhedged Exposure: $2.88
+===============================================================================================
+

@@ -1,0 +1,384 @@
+================================================================================
+DOUBLE LOSS INVESTIGATION: Richmond & UNLV 92c+ Entries
+================================================================================
+
+================================================================================
+SECTION 1: ENRICHED CSV AUTOPSY
+================================================================================
+
+--- RICH ---
+  Timestamp:       2026-03-11 19:16:58
+  Ticker:          KXNCAAMBGAME-26MAR11LCHIRICH-RICH
+  Entry Price:     92c
+  Entry Side:      RICH
+  Combined Mid:    101c
+  Spread:          3c
+  Game State @Entry: 
+  Who Winning:     
+  Pre-entry 10m:   
+  Exit Type:       
+  Exit Price:      
+  Hold Time (s):   
+  PnL (cents):     
+  Game State @Exit: 
+
+  DEPTH DATA:
+    Bid depth 5c:  4163
+    Bid depth 10c: 56643
+    Bid depth 15c: 117015
+    Ask depth 5c:  15412
+    Ask depth 10c: 118053
+    Ask depth 15c: 118053
+    Depth ratio 5c: 0.27
+    Depth ratio 10c:0.48
+    Depth ratio 15c:0.991
+    Book spread:   1c
+    Book mid:      91.5
+    Total depth:   327806
+
+--- UNLV ---
+  Timestamp:       2026-03-11 19:42:11
+  Ticker:          KXNCAAMBGAME-26MAR11WYOUNLV-UNLV
+  Entry Price:     92c
+  Entry Side:      UNLV
+  Combined Mid:    101c
+  Spread:          4c
+  Game State @Entry: 
+  Who Winning:     
+  Pre-entry 10m:   75
+  Exit Type:       
+  Exit Price:      
+  Hold Time (s):   
+  PnL (cents):     
+  Game State @Exit: 
+
+  DEPTH DATA:
+    Bid depth 5c:  3213
+    Bid depth 10c: 20927
+    Bid depth 15c: 33827
+    Ask depth 5c:  57907
+    Ask depth 10c: 670750
+    Ask depth 15c: 670750
+    Depth ratio 5c: 0.055
+    Depth ratio 10c:0.031
+    Depth ratio 15c:0.05
+    Book spread:   4c
+    Book mid:      90.0
+    Total depth:   1825896
+
+--- ALL 92c+ entries in enriched CSV: 6 ---
+  2026-03-11 19:01:05 SWI entry=92c combined_mid=99c pnl=150c exit=fill_7c game_state=
+  2026-03-11 19:12:09 NOR entry=92c combined_mid=100c pnl=150c exit=fill_7c game_state=
+  2026-03-11 19:16:58 RICH entry=92c combined_mid=101c pnl=c exit= game_state=
+  2026-03-11 19:42:11 UNLV entry=92c combined_mid=101c pnl=c exit= game_state=
+  2026-03-11 20:23:58 MED entry=92c combined_mid=100c pnl=c exit= game_state=
+  2026-03-11 20:43:16 AUB entry=92c combined_mid=100c pnl=-350c exit=stop_10c game_state=
+
+================================================================================
+SECTION 2: BACKTEST PRICE MATRIX ANALYSIS (92c+ entries)
+================================================================================
+
+Total trades in price matrix: 2043
+Trades with entry_price >= 92: 59
+
+92c+ backtest results:
+  Wins (settled 99+): 59
+  Losses (settled <99): 0
+  Win rate: 100.0%
+
+  Entry price distribution:
+    Mean: 93.9c
+    Min:  92c
+    Max:  96c
+    92c: 14 trades, 14W/0L = 100.0% WR
+    93c: 10 trades, 10W/0L = 100.0% WR
+    94c: 9 trades, 9W/0L = 100.0% WR
+    95c: 17 trades, 17W/0L = 100.0% WR
+    96c: 9 trades, 9W/0L = 100.0% WR
+
+================================================================================
+SECTION 2b: TICK vs MINUTE ENTRY BIAS ANALYSIS
+================================================================================
+
+KEY INSIGHT: The backtest uses MINUTE-level price snapshots from the price matrix.
+When a teams price rises to 92c+, the backtest records the FIRST MINUTE snapshot
+at or above 92c as the entry price. But the FIRST snapshot might already be 93, 94, 95c+
+because the price crossed 92c mid-minute.
+
+The LIVE bot enters on the FIRST TICK at 92c (exact 92c entry).
+
+This means the backtest has a SYSTEMATICALLY HIGHER effective entry price than live.
+Higher entry = higher probability of winning = inflated backtest win rate.
+
+Backtest first-recorded price above 92c (= effective entry):
+  Entries at exactly 92c: 14 (23.7%)
+  Entries at 93c+:        45 (76.3%)
+  Entries at 95c+:        26 (44.1%)
+  Entries at 97c+:        0 (0.0%)
+
+  Win rate at EXACTLY 92c: 14/14 = 100.0%
+  Win rate at 93c+:        45/45 = 100.0%
+
+================================================================================
+SECTION 3: TIME-TO-SETTLE ANALYSIS (proxy for game progress)
+================================================================================
+
+Time-to-settle for 92c+ entries (minutes):
+  Positive (entry before settlement): 0
+  Negative/zero (data anomaly): 59
+
+================================================================================
+SECTION 3b: SPREAD AT ENTRY FOR 92c+ TRADES
+================================================================================
+  Mean spread at entry: 2.5c
+  Min/Max spread: 0c / 4c
+
+  Win rate by spread:
+    Spread=0c: 1W/0L = 100.0% WR (n=1)
+    Spread=1c: 9W/0L = 100.0% WR (n=9)
+    Spread=2c: 24W/0L = 100.0% WR (n=24)
+    Spread=3c: 8W/0L = 100.0% WR (n=8)
+    Spread=4c: 17W/0L = 100.0% WR (n=17)
+
+================================================================================
+SECTION 4: OTHER-SIDE PRICE AT 92c+ ENTRY
+================================================================================
+  Mean other-side price: 2.8c
+  Max other-side price:  5c
+  Other-side >= 3c: 32/32 = 100.0% WR
+  Other-side >= 5c: 10/10 = 100.0% WR
+  Other-side < 5c:  49/49 = 100.0% WR
+
+  Live trade context:
+    RICH: combined_mid=101c, spread=3c
+    UNLV: combined_mid=101c, spread=4c
+
+================================================================================
+SECTION 5: DEPTH ANALYSIS FROM ENRICHED CSV (ALL 92c+ trades)
+================================================================================
+  SWI: pnl=150c bid_d5=15023 bid_d10=24935 ask_d5=86225 ratio5=0.174 spread=1c total_depth=179919
+  NOR: pnl=150c bid_d5=3683 bid_d10=7276 ask_d5=16621 ratio5=0.222 spread=3c total_depth=76379
+  RICH: pnl=c bid_d5=4163 bid_d10=56643 ask_d5=15412 ratio5=0.27 spread=1c total_depth=327806
+  UNLV: pnl=c bid_d5=3213 bid_d10=20927 ask_d5=57907 ratio5=0.055 spread=4c total_depth=1825896
+  MED: pnl=c bid_d5=41224 bid_d10=46989 ask_d5=51655 ratio5=0.798 spread=2c total_depth=140314
+  AUB: pnl=-350c bid_d5=2229 bid_d10=10070 ask_d5=31930 ratio5=0.07 spread=2c total_depth=1880412
+
+================================================================================
+SECTION 6: ALL BACKTEST 92c+ LOSERS (final_price < 99)
+================================================================================
+
+Total 92c+ losers in backtest: 0
+
+================================================================================
+SECTION 7: PRICE TRAJECTORY OF 92c+ LOSERS
+================================================================================
+
+================================================================================
+SECTION 8: KEY FINDINGS AND RECOMMENDATIONS
+================================================================================
+
+CRITICAL FINDINGS:
+
+1. SUSTAINED FILTER IS DISABLED: _check_sustained_90() returns True ALWAYS.
+   The sustained tick requirement is DISABLED. Any momentary spike to 92c
+   triggers IMMEDIATE entry with no confirmation.
+
+2. NO GAME PROGRESS FILTER: There is NO check on game progress, period,
+   or time remaining. A team at 92c in the FIRST HALF gets entered the same
+   as one hitting 92c with 2 minutes left. This is extremely dangerous.
+
+3. TICK vs MINUTE BIAS: Live bot enters at FIRST TICK of 92c (exact 92c).
+   Backtest enters at first minute snapshot >= 92c (which could be 93-97c).
+   This systematically inflates backtest win rate vs live performance.
+
+4. Both Richmond and UNLV entered at EXACTLY 92c, the minimum threshold.
+   Check the win rate at exactly 92c vs 93c+ above.
+
+RECOMMENDATIONS:
+- IMMEDIATE: Raise minimum entry to 93c or 94c
+- IMMEDIATE: Re-enable sustained filter (require 3-5 ticks >= 90c)
+- URGENT: Add game progress filter (require 2nd half or < 10 min remaining)
+- URGENT: Add other-side price filter (skip if opponent > 10c)
+- INVESTIGATE: What half/period were Richmond and UNLV in at entry?
+
+
+Done.
+
+================================================================================
+APPENDIX A: FULL TRADE TIMELINES (from ncaamb_stb.log)
+================================================================================
+
+--- RICHMOND (LCHI vs RICH) ---
+Timeline:
+  19:10:20  RICH=84/86, LCHI=13/16   (RICH leading heavily)
+  19:14:26  RICH=85/86, LCHI=15/16   (RICH still dominant)
+  19:16:58  [92+_ENTRY] RICH ask=92c bid=89c spread=3c  *** ENTRY ***
+  19:19:26  RICH=90/91, LCHI=9/10    (looking good, RICH dominant)
+  19:24:26  RICH=93/95, LCHI=5/6     (RICH climbing toward 99c)
+  19:29:26  RICH=96/97, LCHI=3/5     (nearly there, RICH at 97c!)
+  19:34:26  RICH=93/94, LCHI=6/7     (REVERSAL BEGINS - dropped from 97 to 93)
+  19:39:26  RICH=92/94, LCHI=6/7     (still holding but stalling)
+  19:44:26  RICH=89/90, LCHI=10/11   (BELOW ENTRY - slipping)
+  19:47:09  combined_mid=96c         (LCHI coming back)
+  19:49:26  RICH=76/77, LCHI=22/23   (COLLAPSE - RICH dropped 20c in 20 min)
+  19:54:26  RICH=66/68, LCHI=32/34   (disaster)
+  19:57:39  combined_mid=89.5c       (total meltdown)
+  19:58:17  combined_mid=80.5c       (game over)
+  19:59:27  RICH=4/5, LCHI=94/96     (RICH LOST - complete reversal)
+
+CONCLUSION: Richmond was at 97c (5 min from settlement) then COMPLETELY 
+reversed. Loyola Chicago came back from ~15c to win. This was a halftime 
+or early 2nd-half entry that caught a devastating comeback.
+
+--- UNLV (Wyoming vs UNLV) ---
+Timeline:
+  19:14:26  UNLV=62/63, WYO=36/37   (UNLV leading)
+  19:29:26  UNLV=68/69, WYO=31/32   (UNLV growing lead)
+  19:34:26  UNLV=78/79, WYO=21/22   (UNLV surging)
+  19:39:26  UNLV=86/88, WYO=12/14   (UNLV dominating)
+  19:42:11  [92+_ENTRY] UNLV ask=92c bid=88c spread=4c  *** ENTRY ***
+  19:44:26  UNLV=89/91, WYO=9/10    (looking great)
+  19:55:49  combined_mid=96.5c       (still OK)
+  20:04:27  UNLV=89/90, WYO=10/11   (stalling at 90, not climbing to 99)
+  20:09:27  UNLV=89/90, WYO=10/11   (frozen)
+  20:19:39  UNLV=81/82, WYO=18/19   (REVERSAL - dropping)
+  20:24:39  UNLV=77/79, WYO=22/23   (accelerating decline)
+  20:29:59  UNLV=68/69, WYO=30/32   (collapse)
+  20:34:59  UNLV=55/57, WYO=43/45   (disaster)
+  20:49:59  UNLV=76/78               (brief recovery)
+  20:54:58  UNLV=36/37, WYO=64/66   (COMPLETE REVERSAL)
+  21:00:00  UNLV=38/39, WYO=60/61   (UNLV likely lost)
+
+CONCLUSION: UNLV went from 92c to 36c. Wyoming came back from ~12c to take over.
+The 10c stop should have triggered but it seems UNLV was in "hold to settle" mode
+with NO STOP LOSS.
+
+================================================================================
+APPENDIX B: CRITICAL CODE ISSUES
+================================================================================
+
+1. SUSTAINED FILTER DISABLED (ncaamb_stb.py line 720):
+   def _check_sustained_90(self, ticker, price):
+       if price >= 90:
+           self.sustained_90_ticks[ticker] = ...
+       else:
+           self.sustained_90_ticks[ticker] = 0
+       return True  # <-- ALWAYS RETURNS TRUE, FILTER IS DEAD
+
+2. NO GAME PROGRESS FILTER:
+   The 92+ entry block (line 1879-1900) checks:
+   - Not already entered (ticker dedup)
+   - Not already entered event-level (event dedup)
+   - Not pre-game (expiry hours check)
+   - Sustained filter (disabled)
+   That is IT. No period check, no clock check, no game progress check.
+
+3. HOLD-TO-SETTLE MODE HAS NO STOP LOSS:
+   The 92+ stop loss block (line 1351-1426) triggers at -10c, BUT both
+   Richmond and UNLV showed "hold to settle" in their status lines.
+   The stop loss may not be active during hold-to-settle mode.
+
+4. RICHMOND SELL_FAIL: After the bot restart at 20:14, the RECONCILE for
+   Richmond failed to post the sell order (SELL_FAIL err={}). This means
+   Richmond had NO EXIT ORDER and will settle at 0c for a full -92c loss.
+
+5. THREE LOSERS TODAY, NOT TWO:
+   AUB also entered at 92c and hit the -10c stop at 80c (-350c = -$3.50).
+   Total 92c+ P&L today: SWI +150c, NOR +150c, RICH ~-2300c, UNLV ~-1400c(?), AUB -350c
+
+================================================================================
+APPENDIX C: TICK vs MINUTE BIAS - THE SMOKING GUN
+================================================================================
+
+The backtest shows 100% win rate for 92c+ entries (59/59).
+But only 23.7% of backtest entries were at EXACTLY 92c.
+76.3% entered at 93c+ (because minute snapshots skip over the exact 92c tick).
+
+The LIVE bot entered ALL trades at exactly 92c (the absolute minimum).
+This is a lower-probability entry than the average backtest entry of 93.9c.
+
+The 100% backtest WR at even 92c (14/14) suggests the sample is too small
+to detect the true loss rate. With n=14, even a 5% true loss rate has a
+48% chance of showing 0 losses in the sample.
+
+Math: P(0 losses in 14 trials | p_loss=0.05) = 0.95^14 = 0.488
+      P(0 losses in 14 trials | p_loss=0.10) = 0.90^14 = 0.229
+
+So the "100% win rate" is entirely consistent with a 5-10% true loss rate.
+
+================================================================================
+APPENDIX D: ROOT CAUSE - STOP LOSS BROKEN ON RECONCILED POSITIONS
+================================================================================
+
+*** THIS IS THE #1 ROOT CAUSE FOR THE UNLV DISASTER ***
+
+The 92+ stop loss requires `pos.entry_mode` to contain "92plus" (line 1352):
+    if pos.buy_confirmed and pos.entry_mode and "92plus" in pos.entry_mode:
+
+But the RECONCILE code (line 2234-2240) creates Position objects WITHOUT
+setting entry_mode:
+    pos = Position(
+        ticker=ticker, event_ticker=et, side=side,
+        entry_ask=actual_price, entry_bid=0, entry_spread=0,
+        combined_ask=0, entry_ts=time.time(),
+        contracts=position, sell_price=sell_price,
+        buy_confirmed=True,
+        buy_fill_ts=time.time(),
+    )
+    # NOTE: entry_mode defaults to "" -- NO stop loss will ever trigger!
+
+This means:
+- UNLV was entered at 19:42 via 92+ mode (with stop loss)
+- Bot restarted at 20:14 -- RECONCILE recovered UNLV WITHOUT entry_mode
+- UNLV dropped from 89c to 76c at 20:25 (below 82c stop level)
+- Stop loss NEVER fired because entry_mode="" after reconcile
+- UNLV continued dropping to 36c with NO protection
+- UNLV will settle at 0c for a full -92c x 25ct = -$23.00 loss
+
+The same bug affected RICHMOND:
+- Richmond was entered at 19:16 via 92+ mode
+- Bot restarted (at some point) -- RECONCILE recovered without entry_mode
+- Richmond collapsed from 97c to 4c with NO stop loss
+- SELL_FAIL also means no exit order -- full -92c x 25ct = -$23.00 loss
+
+TIMELINE OF UNLV STOP FAILURE:
+  19:42:11  ENTRY at 92c (entry_mode="stb_92plus", stop active)
+  20:14:37  [CANCEL_RESTING] -- bot restart cancels sell
+  20:14:38  [RECONCILE] -- recovers position with entry_mode="" (STOP NOW DEAD)
+  20:19:39  UNLV=81/82 -- already below 82c stop, but stop is disabled
+  20:24:39  UNLV=77/79 -- deeper below stop, still no action
+  20:24:57  [ANOTHER RESTART] -- reconcile again, still no entry_mode
+  20:25:00  UNLV=76/78 -- 16c below entry, no stop
+  20:29:59  UNLV=68/69 -- 24c below entry
+  20:34:59  UNLV=55/57 -- 37c below entry
+  20:54:58  UNLV=36/37 -- 56c below entry
+  21:00:00  UNLV=38/39 -- 54c below entry, heading to settlement at 0c
+
+FIX: Add entry_mode detection to RECONCILE:
+    # If entry was at 92c+, mark as 92plus mode for stop loss
+    if actual_price >= 92:
+        pos.entry_mode = "stb_92plus"
+
+================================================================================
+APPENDIX E: FULL DAMAGE ASSESSMENT (92c+ strategy today)
+================================================================================
+
+WINS:
+  SWI:  entry=92c, exit=99c, pnl=+150c (+$1.50)
+  NOR:  entry=92c, exit=99c, pnl=+150c (+$1.50)
+  
+LOSSES:
+  RICH: entry=92c, settled=0c(?), 25ct, pnl=-$23.00 (no stop, no sell order)
+  UNLV: entry=92c, heading to 0c, 25ct, pnl=-$23.00 (no stop after reconcile)
+  AUB:  entry=92c, stop at 80c, pnl=-350c (-$3.50) (stop worked pre-restart)
+
+PENDING:
+  MED:  entry=92c, status unknown
+  CIN:  entry=92c, status unknown
+
+ESTIMATED NET P&L: +$3.00 - $49.50 = -$46.50
+
+The 92c+ strategy that was supposed to be 95%+ WR has a catastrophic -$46.50 
+loss day because of TWO bugs:
+1. RECONCILE does not set entry_mode (stop loss dead after restart)
+2. No game progress filter (entering too early in games)

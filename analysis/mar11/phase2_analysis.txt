@@ -1,0 +1,272 @@
+Total rows loaded: 4954
+  NCAAMB: 2043
+  ATP_Main: 663
+  WTA_Main: 539
+  ATP_Challenger: 1336
+  WTA_Challenger: 373
+==========================================================================================
+  PHASE 2 COMPREHENSIVE ANALYSIS: 90c vs 92c DEPLOYMENT DECISION
+==========================================================================================
+
+==========================================================================================
+SECTION 1: APPLES-TO-APPLES 90c vs 92c COMPARISON
+==========================================================================================
+
+--- WITH production filters (spread<=4, combined_mid<=97) ---
+Threshold | Sport            | Trades |  Wins |    WR% | AvgEntry |  PnL/trade |  TotalPnL |  PnL/day |    Edge
+---------------------------------------------------------------------------------------------------------
+90c       | NCAAMB           |     90 |    89 |  98.9% |    92.7c |     +4.28c |   +385.2c |  +12.84c |   +5.3
+90c       | ATP_Main         |     32 |    30 |  93.8% |    92.5c |     -0.59c |    -19.0c |   -0.63c |   +0.3
+90c       | WTA_Main         |     17 |    17 | 100.0% |    93.0c |     +5.18c |    +88.1c |   +2.94c |   +6.1
+90c       | ATP_Challenger   |     49 |    43 |  87.8% |    92.3c |     -6.20c |   -303.9c |  -10.13c |   -5.4
+90c       | WTA_Challenger   |     20 |    18 |  90.0% |    91.9c |     -3.67c |    -73.5c |   -2.45c |   -2.8
+90c       | ALL              |    208 |   197 |  94.7% |    92.5c |     +0.37c |    +77.0c |   +2.57c |   +1.3
+92c       | NCAAMB           |     58 |    58 | 100.0% |    94.0c |     +4.16c |   +241.2c |   +8.04c |   +5.2
+92c       | ATP_Main         |     20 |    19 |  95.0% |    93.5c |     -0.38c |     -7.5c |   -0.25c |   +0.6
+92c       | WTA_Main         |     10 |    10 | 100.0% |    94.7c |     +3.52c |    +35.2c |   +1.18c |   +4.4
+92c       | ATP_Challenger   |     29 |    26 |  89.7% |    93.5c |     -5.53c |   -160.4c |   -5.35c |   -4.7
+92c       | WTA_Challenger   |     11 |    10 |  90.9% |    93.2c |     -4.06c |    -44.6c |   -1.49c |   -3.1
+92c       | ALL              |    128 |   123 |  96.1% |    93.8c |     +0.50c |    +64.0c |   +2.13c |   +1.4
+
+--- WITHOUT production filters (threshold + dedup only) ---
+Threshold | Sport            | Trades |  Wins |    WR% | AvgEntry |  PnL/trade |  TotalPnL |  PnL/day |    Edge
+---------------------------------------------------------------------------------------------------------
+90c       | NCAAMB           |     93 |    92 |  98.9% |    92.7c |     +4.36c |   +405.6c |  +13.52c |   +5.4
+90c       | ATP_Main         |     34 |    32 |  94.1% |    92.5c |     -0.23c |     -7.8c |   -0.26c |   +0.7
+90c       | WTA_Main         |     19 |    19 | 100.0% |    92.8c |     +5.34c |   +101.4c |   +3.38c |   +6.3
+90c       | ATP_Challenger   |     54 |    48 |  88.9% |    92.2c |     -5.00c |   -270.2c |   -9.01c |   -4.2
+90c       | WTA_Challenger   |     20 |    18 |  90.0% |    91.9c |     -3.67c |    -73.5c |   -2.45c |   -2.8
+90c       | ALL              |    220 |   209 |  95.0% |    92.5c |     +0.71c |   +155.5c |   +5.18c |   +1.6
+92c       | NCAAMB           |     59 |    59 | 100.0% |    93.9c |     +4.18c |   +246.4c |   +8.21c |   +5.2
+92c       | ATP_Main         |     21 |    20 |  95.2% |    93.6c |     -0.21c |     -4.4c |   -0.15c |   +0.7
+92c       | WTA_Main         |     11 |    11 | 100.0% |    94.5c |     +3.76c |    +41.4c |   +1.38c |   +4.7
+92c       | ATP_Challenger   |     31 |    28 |  90.3% |    93.4c |     -4.81c |   -149.1c |   -4.97c |   -4.0
+92c       | WTA_Challenger   |     11 |    10 |  90.9% |    93.2c |     -4.06c |    -44.6c |   -1.49c |   -3.1
+92c       | ALL              |    133 |   128 |  96.2% |    93.8c |     +0.67c |    +89.6c |   +2.99c |   +1.6
+
+==========================================================================================
+SECTION 2: 99c QUEUE vs 98c EXIT COMPARISON
+==========================================================================================
+
+All trades with entry >= 92c (event dedup): 133
+  Reach 98c: 126 (94.7%)
+  Reach 99c: 125 (94.0%)
+  Avg consecutive minutes at 99c+: 23.7
+  Median consecutive minutes at 99c+: 24
+    0min at 99c: 31 trades (24.8%)
+    1min at 99c: 5 trades (4.0%)
+    2min at 99c: 1 trades (0.8%)
+    3-4min at 99c: 2 trades (1.6%)
+    5-9min at 99c: 5 trades (4.0%)
+    10-19min at 99c: 10 trades (8.0%)
+    20-999min at 99c: 71 trades (56.8%)
+
+--- 98c vs 99c Exit PnL Comparison ---
+
+  Exit target: 98c
+  Sport            | Trades | FillRate |    WR% |  PnL/trade |  TotalPnL |  PnL/day
+  ---------------------------------------------------------------------------
+  NCAAMB           |     59 |   100.0% | 100.0% |     +3.18c |   +187.4c |   +6.25c
+  ATP_Main         |     21 |    95.2% |  95.2% |     -1.16c |    -24.4c |   -0.81c
+  WTA_Main         |     11 |   100.0% | 100.0% |     +2.67c |    +29.4c |   +0.98c
+  ATP_Challenger   |     31 |    83.9% |  90.3% |     -5.65c |   -175.1c |   -5.84c
+  WTA_Challenger   |     11 |    90.9% |  90.9% |     -4.97c |    -54.6c |   -1.82c
+  ALL              |    133 |    94.7% |  96.2% |     -0.28c |    -37.4c |   -1.25c
+
+  Exit target: 99c
+  Sport            | Trades | FillRate |    WR% |  PnL/trade |  TotalPnL |  PnL/day
+  ---------------------------------------------------------------------------
+  NCAAMB           |     59 |   100.0% | 100.0% |     +4.18c |   +246.4c |   +8.21c
+  ATP_Main         |     21 |    95.2% |  95.2% |     -0.21c |     -4.4c |   -0.15c
+  WTA_Main         |     11 |    90.9% | 100.0% |     +3.76c |    +41.4c |   +1.38c
+  ATP_Challenger   |     31 |    83.9% |  90.3% |     -4.81c |   -149.1c |   -4.97c
+  WTA_Challenger   |     11 |    90.9% |  90.9% |     -4.06c |    -44.6c |   -1.49c
+  ALL              |    133 |    94.0% |  96.2% |     +0.67c |    +89.6c |   +2.99c
+
+==========================================================================================
+SECTION 3: STOP LOSS ANALYSIS AT >=90c ENTRIES
+==========================================================================================
+
+--- No-stop baseline at 90c ---
+  NCAAMB          : 93 trades, WR 98.9%, PnL/trade +4.36c, Total +405.6c, PnL/day +13.52c
+  ATP_Main        : 34 trades, WR 94.1%, PnL/trade -0.23c, Total -7.8c, PnL/day -0.26c
+  WTA_Main        : 19 trades, WR 100.0%, PnL/trade +5.34c, Total +101.4c, PnL/day +3.38c
+  ATP_Challenger  : 54 trades, WR 88.9%, PnL/trade -5.00c, Total -270.2c, PnL/day -9.01c
+  WTA_Challenger  : 20 trades, WR 90.0%, PnL/trade -3.67c, Total -73.5c, PnL/day -2.45c
+  ALL             : 220 trades, WR 95.0%, PnL/trade +0.71c, Total +155.5c, PnL/day +5.18c
+
+--- Stop loss impact (ALL sports, entry >= 90c) ---
+Stop    | Trades |    WR% |   PnL/tr |  TotalPnL |  PnL/day | PremStop |  Saved |  vs NoStop
+------------------------------------------------------------------------------------------
+None    |    220 |  95.0% |   +0.71c |   +155.5c |   +5.18c |       -- |     -- |   baseline
+-5c     |    220 |  69.5% |   +2.08c |   +457.5c |  +15.25c |       56 |     11 |    +302.0c
+-7c     |    220 |  74.1% |   +2.08c |   +456.5c |  +15.22c |       46 |     11 |    +301.0c
+-10c    |    220 |  79.5% |   +2.26c |   +496.5c |  +16.55c |       34 |     11 |    +341.0c
+-15c    |    220 |  85.5% |   +2.49c |   +547.5c |  +18.25c |       21 |     11 |    +392.0c
+-20c    |    220 |  87.7% |   +2.36c |   +519.5c |  +17.32c |       16 |     11 |    +364.0c
+
+--- Stop loss by sport (entry >= 90c) ---
+
+  Stop = -5c:
+    NCAAMB          : NoStop +405.6c (WR 98.9%) -> WithStop +203.6c (WR 71.0%)  delta -202.0c  [prem=26, saved=1]
+    ATP_Main        : NoStop -7.8c (WR 94.1%) -> WithStop +33.2c (WR 61.8%)  delta +41.0c  [prem=11, saved=2]
+    WTA_Main        : NoStop +101.4c (WR 100.0%) -> WithStop -5.6c (WR 52.6%)  delta -107.0c  [prem=9, saved=0]
+    ATP_Challenger  : NoStop -270.2c (WR 88.9%) -> WithStop +160.8c (WR 75.9%)  delta +431.0c  [prem=7, saved=6]
+    WTA_Challenger  : NoStop -73.5c (WR 90.0%) -> WithStop +65.5c (WR 75.0%)  delta +139.0c  [prem=3, saved=2]
+
+  Stop = -7c:
+    NCAAMB          : NoStop +405.6c (WR 98.9%) -> WithStop +201.6c (WR 75.3%)  delta -204.0c  [prem=22, saved=1]
+    ATP_Main        : NoStop -7.8c (WR 94.1%) -> WithStop +45.2c (WR 70.6%)  delta +53.0c  [prem=8, saved=2]
+    WTA_Main        : NoStop +101.4c (WR 100.0%) -> WithStop -7.6c (WR 57.9%)  delta -109.0c  [prem=8, saved=0]
+    ATP_Challenger  : NoStop -270.2c (WR 88.9%) -> WithStop +134.8c (WR 75.9%)  delta +405.0c  [prem=7, saved=6]
+    WTA_Challenger  : NoStop -73.5c (WR 90.0%) -> WithStop +82.5c (WR 85.0%)  delta +156.0c  [prem=1, saved=2]
+
+  Stop = -10c:
+    NCAAMB          : NoStop +405.6c (WR 98.9%) -> WithStop +221.6c (WR 80.6%)  delta -184.0c  [prem=17, saved=1]
+    ATP_Main        : NoStop -7.8c (WR 94.1%) -> WithStop +86.2c (WR 82.4%)  delta +94.0c  [prem=4, saved=2]
+    WTA_Main        : NoStop +101.4c (WR 100.0%) -> WithStop -16.6c (WR 63.2%)  delta -118.0c  [prem=7, saved=0]
+    ATP_Challenger  : NoStop -270.2c (WR 88.9%) -> WithStop +112.8c (WR 77.8%)  delta +383.0c  [prem=6, saved=6]
+    WTA_Challenger  : NoStop -73.5c (WR 90.0%) -> WithStop +92.5c (WR 90.0%)  delta +166.0c  [prem=0, saved=2]
+
+==========================================================================================
+SECTION 4: MAKER PULLBACK-TO-BREAKDOWN RATIO
+==========================================================================================
+
+--- Maker fill simulation at 90c ---
+(Price goes above 90c, then drops back = maker fill)
+  Sport            |  Fills | Pullback | Breakdown | Partial |  PB:BD |    WR% |  PnL/fill |  TotalPnL
+  -----------------------------------------------------------------------------------------------
+  NCAAMB           |    211 |      194 |        17 |       0 |  11.41 |  91.9% |    +1.02c |   +216.0c
+  ATP_Main         |    186 |      176 |        10 |       0 |  17.60 |  94.6% |    +3.68c |   +684.0c
+  WTA_Main         |    132 |      120 |        11 |       1 |  10.91 |  91.7% |    +0.76c |   +100.0c
+  ATP_Challenger   |    350 |      316 |        32 |       2 |   9.88 |  90.9% |    -0.05c |    -16.0c
+  WTA_Challenger   |    111 |      102 |         9 |       0 |  11.33 |  91.9% |    +0.97c |   +108.0c
+  ALL              |    990 |      908 |        79 |       3 |  11.49 |  92.0% |    +1.10c |  +1092.0c
+
+--- Maker fill simulation at 92c ---
+(Price goes above 92c, then drops back = maker fill)
+  Sport            |  Fills | Pullback | Breakdown | Partial |  PB:BD |    WR% |  PnL/fill |  TotalPnL
+  -----------------------------------------------------------------------------------------------
+  NCAAMB           |    197 |      185 |        12 |       0 |  15.42 |  93.9% |    +0.97c |   +191.0c
+  ATP_Main         |    168 |      162 |         6 |       0 |  27.00 |  96.4% |    +3.46c |   +582.0c
+  WTA_Main         |    123 |      114 |         9 |       0 |  12.67 |  92.7% |    -0.24c |    -30.0c
+  ATP_Challenger   |    313 |      287 |        24 |       2 |  11.96 |  92.3% |    -0.58c |   -183.0c
+  WTA_Challenger   |    104 |       96 |         8 |       0 |  12.00 |  92.3% |    -0.62c |    -64.0c
+  ALL              |    905 |      844 |        59 |       2 |  14.31 |  93.5% |    +0.55c |   +496.0c
+
+==========================================================================================
+SECTION 5: MARGINAL 90-91c TRADES (gained by 90c vs 92c)
+==========================================================================================
+
+Marginal trades (entry 90-91c, never reaches 92c): 1
+  Sport            | Trades |    WR% |  PnL/trade |  TotalPnL |  PnL/day
+  -----------------------------------------------------------------
+  ATP_Challenger   |      1 | 100.0% |     +9.12c |     +9.1c |   +0.30c
+  ALL              |      1 | 100.0% |     +9.12c |     +9.1c |   +0.30c
+
+  VERDICT: 1 marginal trades, WR 100.0%, Total PnL +9.1c
+  -> These marginal trades are NET POSITIVE. 90c captures additional value.
+
+  Context: trades entering 90-91c that DO reach 92c+: 86
+  These have WR 93.0%, PnL/trade +0.66c, Total +56.8c
+  -> These would be captured by BOTH 90c and 92c thresholds (earlier entry at 90c)
+
+==========================================================================================
+SECTION 6: COMBINED PROJECTION
+==========================================================================================
+
+Config                                | Trades |    WR% |   PnL/tr |     Total |  PnL/day
+----------------------------------------------------------------------------------------
+90c / 99c exit / prod filter          |    208 |  94.7% |   +0.37c |    +77.0c |   +2.57c
+90c / 99c exit / no filter            |    220 |  95.0% |   +0.71c |   +155.5c |   +5.18c
+92c / 99c exit / prod filter          |    128 |  96.1% |   +0.50c |    +64.0c |   +2.13c
+92c / 99c exit / no filter            |    133 |  96.2% |   +0.67c |    +89.6c |   +2.99c
+90c / 98c exit / no filter            |    220 |  95.0% |   -0.23c |    -51.5c |   -1.72c
+92c / 98c exit / no filter            |    133 |  96.2% |   -0.28c |    -37.4c |   -1.25c
+90c / 98c exit / prod filter          |    208 |  94.7% |   -0.57c |   -118.0c |   -3.93c
+92c / 98c exit / prod filter          |    128 |  96.1% |   -0.45c |    -58.0c |   -1.93c
+
+Best config: 90c / 99c exit / no filter (+5.18c/day)
+
+--- Combined Daily PnL Projection ---
+Existing STB (55-90c):      $39.55/day (known)
+Best high-range:            90c / 99c exit / no filter
+  PnL/day (30-day avg):     +5.18c/day
+
+--- Per-sport daily PnL breakdown ---
+
+  90c / 99c exit / no filters:
+    NCAAMB          :   93 trades, WR 98.9%, PnL/day +13.52c, PnL/trade +4.36c
+    ATP_Main        :   34 trades, WR 94.1%, PnL/day -0.26c, PnL/trade -0.23c
+    WTA_Main        :   19 trades, WR 100.0%, PnL/day +3.38c, PnL/trade +5.34c
+    ATP_Challenger  :   54 trades, WR 88.9%, PnL/day -9.01c, PnL/trade -5.00c
+    WTA_Challenger  :   20 trades, WR 90.0%, PnL/day -2.45c, PnL/trade -3.67c
+
+  92c / 99c exit / no filters:
+    NCAAMB          :   59 trades, WR 100.0%, PnL/day +8.21c, PnL/trade +4.18c
+    ATP_Main        :   21 trades, WR 95.2%, PnL/day -0.15c, PnL/trade -0.21c
+    WTA_Main        :   11 trades, WR 100.0%, PnL/day +1.38c, PnL/trade +3.76c
+    ATP_Challenger  :   31 trades, WR 90.3%, PnL/day -4.97c, PnL/trade -4.81c
+    WTA_Challenger  :   11 trades, WR 90.9%, PnL/day -1.49c, PnL/trade -4.06c
+
+==========================================================================================
+SECTION 7: POST_ONLY MAKER BEHAVIOR SIMULATION
+==========================================================================================
+
+--- post_only=90c: bid rests when ask > 90c, fills on drop back ---
+  Sport            |  Fills |  Win99 | WinSettle |  Loss |    WR% |  PnL/fill |  TotalPnL |  PnL/day
+  ------------------------------------------------------------------------------------------
+  NCAAMB           |    211 |    194 |         0 |    17 |  91.9% |    +1.02c |   +216.0c |   +7.20c
+  ATP_Main         |    186 |    176 |         0 |    10 |  94.6% |    +3.68c |   +684.0c |  +22.80c
+  WTA_Main         |    132 |    120 |         1 |    11 |  91.7% |    +0.76c |   +100.0c |   +3.33c
+  ATP_Challenger   |    350 |    316 |         2 |    32 |  90.9% |    -0.05c |    -16.0c |   -0.53c
+  WTA_Challenger   |    111 |    102 |         0 |     9 |  91.9% |    +0.97c |   +108.0c |   +3.60c
+  ALL              |    990 |    908 |         3 |    79 |  92.0% |    +1.10c |  +1092.0c |  +36.40c
+
+  Note: Maker fills = 0 fee (post_only). Taker equivalent would subtract 0.875c/trade.
+
+--- post_only=92c: bid rests when ask > 92c, fills on drop back ---
+  Sport            |  Fills |  Win99 | WinSettle |  Loss |    WR% |  PnL/fill |  TotalPnL |  PnL/day
+  ------------------------------------------------------------------------------------------
+  NCAAMB           |    197 |    185 |         0 |    12 |  93.9% |    +0.97c |   +191.0c |   +6.37c
+  ATP_Main         |    168 |    162 |         0 |     6 |  96.4% |    +3.46c |   +582.0c |  +19.40c
+  WTA_Main         |    123 |    114 |         0 |     9 |  92.7% |    -0.24c |    -30.0c |   -1.00c
+  ATP_Challenger   |    313 |    287 |         2 |    24 |  92.3% |    -0.58c |   -183.0c |   -6.10c
+  WTA_Challenger   |    104 |     96 |         0 |     8 |  92.3% |    -0.62c |    -64.0c |   -2.13c
+  ALL              |    905 |    844 |         2 |    59 |  93.5% |    +0.55c |   +496.0c |  +16.53c
+
+  Note: Maker fills = 0 fee (post_only). Taker equivalent would subtract 0.875c/trade.
+
+--- post_only vs taker comparison at 92c ---
+  Taker at 92c: 133 trades, PnL/trade +0.67c (incl 0.875c fee)
+  Maker at 92c: 905 fills, PnL/fill +0.55c (0 fee)
+  Maker total: +496.0c vs Taker total: +89.6c
+
+==========================================================================================
+FINAL VERDICT / KEY FINDINGS
+==========================================================================================
+
+1. THRESHOLD COMPARISON (prod filters, 99c exit):
+   90c: 208 trades, WR 94.7%, PnL/trade +0.37c, PnL/day +2.57c
+   92c: 128 trades, WR 96.1%, PnL/trade +0.50c, PnL/day +2.13c
+   -> 90c wins by +0.43c/day
+
+2. THRESHOLD COMPARISON (no filters, 99c exit):
+   90c: 220 trades, WR 95.0%, PnL/trade +0.71c, PnL/day +5.18c
+   92c: 133 trades, WR 96.2%, PnL/trade +0.67c, PnL/day +2.99c
+
+3. MARGINAL 90-91c TRADES:
+   1 trades that 90c captures but 92c misses
+   WR: 100.0%, PnL/trade: +9.12c, Total: +9.1c
+   CONCLUSION: Marginal trades are PROFITABLE. Deploy at 90c.
+
+4. STOP LOSS: See Section 3 for detailed breakdown.
+   Quick summary: check if any stop level has positive delta vs no-stop.
+
+5. POST_ONLY MAKER:
+   Maker at 92c has 0 fee vs 0.875c taker fee = structural advantage.
+   Fill rate may differ (fewer fills but better quality).
+
+==========================================================================================
+END OF ANALYSIS
+==========================================================================================

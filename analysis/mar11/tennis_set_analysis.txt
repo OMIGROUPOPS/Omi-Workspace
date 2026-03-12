@@ -1,0 +1,143 @@
+================================================================================
+TENNIS STB SET / GAME STATE ANALYSIS
+Generated: 2026-03-11 23:35
+================================================================================
+
+================================================================================
+PART A: DATA AVAILABILITY
+================================================================================
+
+Enriched CSV (/tmp/v3_enriched_trades.csv):
+  - 19 tennis entries today (all today only)
+  - game_state_at_entry column: EMPTY for all tennis entries
+  - game_state_at_exit: has data but CSV parsing broken (commas in dict)
+  - No historical data available (CSV is daily)
+
+Price matrix (/root/espn_data/tennis_stb_price_matrix.csv):
+  - 2,911 historical entries
+  - NO set/game state columns
+  - Series: ATP_CHALL=1336, ATP=663, WTA=539, WTA_CHALL=373
+  - Overall WR: 71.1% (2066W / 840L)
+
+Bot logs (/tmp/tennis_stb.log):
+  - ONLY source of game_state_at_entry
+  - 13 GAME_STATE entries logged today
+  - Log is daily (restarted), no historical logs available
+
+================================================================================
+PART B: TODAYS ENTRIES BY SET (from bot logs)
+================================================================================
+
+Side   Entry Set    Sets      Games    PnL      Notes
+--------------------------------------------------------------------------------
+KES    69    1      0-0       3-4      150c     WIN
+SVR    77    1      0-0       3-4      6c       WIN (small - spread exit)
+KOT    64    3      1-1       3-4      90c      WIN ** DECIDING SET **
+HAL    72    3      1-1       0-0      150c     WIN ** DECIDING SET **
+KRA    60    1      0-0       5-2      150c     WIN
+BOS    64    1      0-0       1-3      150c     WIN
+SEL    58    2      1-0       1-4      150c     WIN
+BIR    85    2      1-0       0-0      150c     WIN (dropped to 50c, recovered)
+AND    82    2      0-1       0-0      6c       WIN (small - spread exit)
+LAN    80    2      0-1       0-0      6c       WIN (small - spread exit)
+WON    55    2      1-0       3-5      12c      WIN (small)
+REI    62    3      1-1       4-4      N/A      2nd entry same event (REIBOS)
+KRU    55    2      0-1       6-5      150c     WIN
+
+SET SUMMARY (today only):
+  Set 1: 4 entries, 4 wins, 0 losses = 100% WR
+  Set 2: 6 entries, 6 wins, 0 losses = 100% WR
+  Set 3: 3 entries, 2 wins (KOT 90c, HAL 150c), 0 losses = 100% WR
+  (REI set 3 entry is 2nd entry for same event, PnL counted on BOS)
+
+Today: ALL 19 tennis entries were WINS. No losses.
+Total tennis PnL today: 2220c
+
+================================================================================
+PART C: BIR DEEP DIVE
+================================================================================
+
+Ticker: KXWTACHALLENGERMATCH-26MAR11BIRRAK-BIR
+Series: WTA Challenger
+Entry:  85c at 20:48:07
+Exit:   92c at 22:02:51 (sold via 7c resting limit)
+PnL:    +150c (WIN)
+Hold:   26 seconds (fill time, but actual hold was ~75 min)
+
+Game state at entry: sets=1-0, games=6-0 vs 2-0
+  => BIR player won set 1 (6-2), starting set 2 at 0-0
+  => NOT a deciding set entry
+
+Price trajectory (brutal but survived):
+  20:48 85c (entry)    -> 20:50 80c -> 20:55 75c
+  21:05 71c            -> 21:10 60c -> 21:15 55c
+  21:20 50c (LOWEST, 35c underwater!)
+  21:35 62c (recovery) -> 21:40 81c -> 21:45 82c
+  21:50 71c (wobble)   -> 21:59 64c -> 22:02 90c -> SOLD 92c
+
+Key insight: BIR opponent fought back hard in set 2, price
+collapsed to 50c (match effectively 50-50), but BIR player
+recovered and won. Hold-to-settle strategy saved this trade.
+
+BIR was a GAME_STATE rejected early (match too early: 2-0 in set 1)
+then re-attempted later at 20:48 when sets=1-0 and was accepted.
+
+================================================================================
+PART D: DECIDING SET ANALYSIS
+================================================================================
+
+Today: 3 deciding set entries (KOT, HAL, REI)
+  - KOT: ep=64c, sets=1-1, games 3-4 in set 3 -> WIN +90c
+  - HAL: ep=72c, sets=1-1, games 0-0 in set 3 -> WIN +150c
+  - REI: ep=62c, sets=1-1, games 4-4 in set 3 -> 2nd entry (BOS already counted)
+
+LIMITATION: Only 1 day of GAME_STATE data available.
+  - Cannot draw statistically significant conclusions
+  - Need to collect set data over 2+ weeks for proper analysis
+  - Today all deciding set entries were profitable
+
+HISTORICAL (price matrix, no set data):
+  - 2,911 entries total, 71.1% WR
+  - No way to split by set without game state data
+  - Cannot simulate deciding set filter historically
+
+================================================================================
+PART E: EXISTING GAME STATE FILTERS IN BOT
+================================================================================
+
+From tennis_stb.py check_tennis_game_state():
+  1. Down 0-2 sets: REJECT (player losing badly)
+  2. Match too early: REJECT if set 1 and <3 games played
+  3. NO deciding set filter exists
+
+REJECT_GAMESTATE events today: ~20 rejections
+  All were match too early in set 1
+  Filter is working correctly
+
+================================================================================
+PART F: RECOMMENDATIONS
+================================================================================
+
+1. DATA COLLECTION (HIGH PRIORITY):
+   - Add set_number and is_deciding_set to enriched CSV
+   - Fix game_state_at_entry: currently empty, should be populated
+   - Add set info to price matrix for historical backtesting
+   - The game_state_at_exit dict breaks CSV parsing (commas inside)
+     -> Fix: use semicolons or JSON-safe format
+
+2. DECIDING SET FILTER (NOT YET RECOMMENDED):
+   - Insufficient data to justify (only 1 day)
+   - Today, 3 deciding set entries were all profitable
+   - Collect 2+ weeks of data before implementing
+   - Hypothesis: deciding sets are more volatile/unpredictable,
+     but STB entries may still have positive edge
+
+3. GAME STATE LOGGING IMPROVEMENT:
+   - Log GAME_STATE for ALL entries (currently only challenger)
+   - Main draw 92c+ entries (SWI, NOR, MED, ALC) had no GAME_STATE
+   - 6/19 entries today had no GAME_STATE logged
+
+4. BIR IS NOT A LOSS:
+   - BIR was a WIN (+150c), entered in set 2 (up 1-0)
+   - The mid-hold drawdown to 50c was scary but hold-to-settle worked
+   - No tennis losses today (19/19 wins, 2220c total)

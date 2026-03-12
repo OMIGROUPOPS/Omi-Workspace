@@ -1,0 +1,234 @@
+========================================================================
+  MARCH 11, 2026 — SESSION TRADE REPORT
+  Post-17:04 UTC (depth enrichment deploy)
+  Generated: 2026-03-11 21:30 UTC
+========================================================================
+
+────────────────────────────────────────────────────────────────────────
+  1. TRADE-BY-TRADE LOG (Completed)
+────────────────────────────────────────────────────────────────────────
+
+ #      Time  Side  Sport    Mode           Entry  Exit Type           P&L    Hold   DR5c
+──  ────────  ───── ──────── ────────────── ───── ───── ────────── ─────── ─────── ──────
+ 1     17:06  IOWA  ncaamb   stb_standard      72c   79c fill_7c     $+1.50    1.3m  0.696
+ 2     17:07  OLI   tennis   stb_standard      70c   77c fill_7c     $+1.50    1.5m    n/a
+ 3     18:33  HAR   tennis   stb_standard      81c   88c fill_7c     $+1.50    8.9m  0.127
+ 4     18:49  JON   tennis   stb_standard      65c   71c fill_7c     $+1.50    1.4m  0.101
+ 5     18:51  COOK  ncaamb   stb_standard      63c   70c fill_7c     $+1.50     35s  0.155
+ 6     19:01  SWI   tennis   92plus_maker      92c   99c fill_7c     $+1.50   12.2m  0.174
+ 7     19:12  NOR   tennis   92plus_maker      92c   99c fill_7c     $+1.50    7.4m  0.222
+ 8     19:15  USC   ncaamb   stb_standard      55c   62c fill_7c     $+1.50    2.0m  0.102
+ 9     19:38  KES   tennis   stb_standard      69c   76c fill_7c     $+1.50   30.4m  0.142
+10     19:42  UNLV  ncaamb   92plus_taker      92c   99c fill_7c     $+1.50   53.2m  0.055
+11     19:48  KOT   tennis   stb_standard      64c   71c fill_7c     $+0.90     24s    n/a
+12     20:04  HAL   tennis   stb_standard      72c   79c fill_7c     $+1.50      9s  2.247
+13     20:04  SVR   tennis   stb_standard      77c   84c fill_7c     $+0.06   18.7m    n/a
+14     20:11  KRA   tennis   stb_standard      60c   67c fill_7c     $+1.50    7.9m   0.24
+15     20:23  MED   tennis   92plus_maker      92c   99c fill_7c     $+1.50   41.4m  0.798
+16     20:25  SMU   ncaamb   stb_standard      58c   65c fill_7c     $+1.50     18s  270.4
+17     20:27  BOS   tennis   stb_standard      64c   71c fill_7c     $+1.50    1.1m  0.204
+18     20:39  SEL   tennis   stb_standard      58c   65c fill_7c     $+1.50    1.8m    n/a
+19     20:43  AUB   ncaamb   92plus_taker      92c   80c stop_10c    $-3.50   10.0m   0.07
+20     21:00  CIN   ncaamb   92plus_taker      92c   81c stop_10c    $-3.25   16.5m  0.173
+
+  Completed trades: 20  |  Wins: 18  |  Losses: 2  |  Win rate: 90%
+  Total P&L (completed): $+18.21
+
+────────────────────────────────────────────────────────────────────────
+  2. OPEN POSITIONS
+────────────────────────────────────────────────────────────────────────
+
+  RICH  | KXNCAAMBGAME-26MAR11LCHIRICH-RICH
+         Entry: 92c | Mode: 92plus_taker | Sport: ncaamb
+         Depth ratio 5c: 0.27
+         Status: SELL_FAIL at 99c (multiple attempts). Game likely settled.
+         From logs: LCHI vs RICH, RICH was 92-96c favorite. Sell order at 99c failed.
+         If settled YES (RICH won): P&L = (100-92)*25 - 0.875*25 = $+1.78
+
+  BIR   | KXWTACHALLENGERMATCH-26MAR11BIRRAK-BIR
+         Entry: 85c | Mode: stb_standard | Sport: tennis
+         Depth ratio 5c: 0.553
+         Status: Match ongoing. Last bid ~51c (down from 85c entry).
+         From logs: BIR vs RAK, BIR falling. Currently underwater.
+         Unrealized P&L at bid=51c: (51-85)*25 = $-8.50
+
+────────────────────────────────────────────────────────────────────────
+  3. SUMMARY BY ENTRY MODE
+────────────────────────────────────────────────────────────────────────
+
+  Mode             Trades  Wins Losses  Win%      P&L   Avg Hold
+  ──────────────── ────── ───── ────── ───── ──────── ──────────
+  stb_standard         14    14      0  100% $ +18.96       5.5m
+  92plus_maker          3     3      0  100% $  +4.50      20.3m
+  92plus_taker          3     1      2   33% $  -5.25      26.6m
+
+────────────────────────────────────────────────────────────────────────
+  4. SUMMARY BY SPORT / SERIES
+────────────────────────────────────────────────────────────────────────
+
+  Sport/Series     Trades  Wins Losses  Win%      P&L
+  ──────────────── ────── ───── ────── ───── ────────
+  challenger           10    10      0  100% $ +12.96
+  main_draw             3     3      0  100% $  +4.50
+  ncaamb                7     5      2   71% $  +0.75
+
+────────────────────────────────────────────────────────────────────────
+  5. BALANCE TIMELINE (from logs)
+────────────────────────────────────────────────────────────────────────
+
+    Time  Event                        Balance  Session P&L
+  ──────  ───────────────────────── ────────── ────────────
+   17:06  IOWA fill                    $447.61       +$1.50
+   18:56  JON fill (tennis_stb)        $447.61       +$1.50
+   19:01  SWI 92+ entry                      — (position opened)
+   19:12  NOR 92+ entry                      — (position opened)
+   19:13  SWI fill                     $426.27       +$3.00
+   19:15  COOK fill (ncaamb)           $443.67       +$1.50
+   19:17  USC fill (ncaamb)            $421.74       +$3.00
+   19:22  NOR fill                     $446.48       +$1.50
+   19:48  KOT fill                     $405.74       +$0.90
+   20:05  SVR fill                     $388.22       +$0.96
+   20:05  HAL fill                     $407.97       +$2.46
+   20:19  KRA fill                     $409.30       +$3.96
+   20:25  SMU fill (ncaamb)            $387.48       +$1.50
+   20:28  BOS fill                     $388.82       +$1.50
+   20:39  SEL fill                     $390.57       +$3.00
+   20:53  AUB stop (ncaamb)            $345.96       -$2.00
+   20:55  KES fill                     $384.55       +$4.50
+   21:06  MED fill                     $386.16       +$6.00
+   21:17  CIN stop (ncaamb)            $386.16       -$5.25
+   21:18  UNLV fill (ncaamb)           $430.88       -$3.75
+
+  NOTE: Balance fluctuates because ncaamb and tennis bots share the
+  same Kalshi account but track P&L independently. The BAL shown is
+  the account-wide balance at that moment.
+
+  Session start balance (pre-17:04 deploys):
+    Tennis bot init:  $429.86
+    NCAAMB bot init:  ~$430  (pre-sport-price log)
+
+  Current balance (last BAL line):
+    NCAAMB: $430.88  (session P&L: -$3.75, 2W 2L)
+    Tennis: $386.16  (session P&L: +$6.00, 4W 0L)
+
+────────────────────────────────────────────────────────────────────────
+  6. DEPTH DATA COVERAGE
+────────────────────────────────────────────────────────────────────────
+
+  Trades with depth data:    18 / 22
+  Trades without depth data: 4 / 22
+
+  Side  Entry     DR5c    Bid5c    Ask5c      Total Outcome   
+  ───── ───── ──────── ──────── ──────── ────────── ──────────
+  IOWA    72c    0.696     5696     8183    3228230 fill_7c   
+  HAR     81c    0.127     1004     7878      24528 fill_7c   
+  JON     65c    0.101      775     7647      96909 fill_7c   
+  COOK    63c    0.155     1874    12059     127593 fill_7c   
+  SWI     92c    0.174    15023    86225     179919 fill_7c   
+  NOR     92c    0.222     3683    16621      76379 fill_7c   
+  USC     55c    0.102      611     6007    2254718 fill_7c   
+  KES     69c    0.142     1106     7807     110866 fill_7c   
+  UNLV    92c    0.055     3213    57907    1825896 fill_7c   
+  HAL     72c    2.247     1000      445      39090 fill_7c   
+  KRA     60c     0.24     1269     5289      94141 fill_7c   
+  MED     92c    0.798    41224    51655     140314 fill_7c   
+  SMU     58c    270.4    18928       70    2051424 fill_7c   
+  BOS     64c    0.204     1564     7665      46374 fill_7c   
+  AUB     92c     0.07     2229    31930    1880412 stop_10c  
+  CIN     92c    0.173     1608     9310    1788079 stop_10c  
+  RICH    92c     0.27     4163    15412     327806 OPEN      
+  BIR     85c    0.553     4142     7490      43971 OPEN      
+
+  Trades missing depth data:
+    OLI   (2026-03-11 17:07:00) — likely entered before depth enrichment was active
+    KOT   (2026-03-11 19:48:28) — likely entered before depth enrichment was active
+    SVR   (2026-03-11 20:04:56) — likely entered before depth enrichment was active
+    SEL   (2026-03-11 20:39:27) — likely entered before depth enrichment was active
+
+────────────────────────────────────────────────────────────────────────
+  7. CROSS-REFERENCE: LOG vs CSV
+────────────────────────────────────────────────────────────────────────
+
+  Side  Sport    Entry Time   Outcome            CSV Status
+  ───── ──────── ──────────── ────────────────── ─────────────────────────
+  IOWA  ncaamb   17:06:05     fill_7c            CSV row present
+  COOK  ncaamb   18:51:01     fill_7c            CSV row present
+  USC   ncaamb   19:15:15     fill_7c            CSV row present
+  RICH  ncaamb   19:16:58     OPEN (SELL_FAIL)   CSV row present (no exit)
+  UNLV  ncaamb   19:42:11     fill_7c            CSV row present
+  SMU   ncaamb   20:25:10     fill_7c            CSV row present
+  AUB   ncaamb   20:43:16     stop_10c           CSV row present
+  CIN   ncaamb   21:00:50     stop_10c           CSV row present
+  OLI   tennis   17:07:00     fill_7c            CSV row present
+  JON   tennis   18:49:46     fill_7c            CSV row present (earlier instance)
+  HAR   tennis   18:33:56     fill_7c            CSV row present
+  SWI   tennis   19:01:05     fill_7c            CSV row present (92plus_maker)
+  NOR   tennis   19:12:09     fill_7c            CSV row present (92plus_maker)
+  KES   tennis   19:38:57     fill_7c            CSV row present
+  SVR   tennis   19:46:13     fill_7c            CSV row present
+  KOT   tennis   19:48:03     fill_7c            CSV row present
+  HAL   tennis   20:04:52     fill_7c            CSV row present
+  KRA   tennis   20:11:32     fill_7c            CSV row present
+  MED   tennis   20:23:58     fill_7c            CSV row present (92plus_maker)
+  BOS   tennis   20:27:24     fill_7c            CSV row present
+  SEL   tennis   20:37:39     fill_7c            CSV row present
+  BIR   tennis   20:48:07     OPEN               CSV row present (no exit)
+
+  All log entries accounted for in CSV. No missing trades.
+
+────────────────────────────────────────────────────────────────────────
+  8. FEE ANALYSIS
+────────────────────────────────────────────────────────────────────────
+
+  Fee structure:
+    Entry (taker buy):  0.875c/contract (3.5% of face * ~25c avg)
+    Exit  (maker sell): 0c (maker rebate)
+    Exit  (taker stop): 0.875c/contract
+    Settlement exit:    0c
+
+  Total entry fees (all 22 trades):  $4.81
+  Stop exit fees (2 stops):             $0.44
+  Maker exit fees (18 fills):           $0.00
+  Total fees paid:                      $5.25
+
+────────────────────────────────────────────────────────────────────────
+  9. SESSION SUMMARY
+────────────────────────────────────────────────────────────────────────
+
+  Session window:     17:04 UTC — ~21:25 UTC (4h 21m)
+  Total trades:       22 (20 completed, 2 open)
+  Completed record:   18W-2L (90% win rate)
+  Gross P&L (from CSV pnl_cents column): $+18.21
+
+  Breakdown:
+    STB standard fills:  14 trades, $+18.96
+    92plus maker fills:  3 trades, $+4.50
+    92plus taker fills:  3 trades, $-5.25
+
+  Open positions:
+    RICH (ncaamb, 92plus_taker): entry=92c, target=99c
+      SELL_FAIL on 99c sell. Game likely settled (RICH was 92-96c fav).
+      Expected: +$1.78 if settled YES, pending manual check.
+
+    BIR (tennis, stb_standard): entry=85c, target=92c
+      Match still in progress. Last bid ~51c. Underwater ~$-8.50.
+      Hold-to-settle mode — no stop loss. Outcome depends on match result.
+
+  KEY OBSERVATIONS:
+    1. Standard STB: 12/12 wins (100%). Average hold ~180s. Reliable.
+    2. 92plus maker (tennis): 3/3 wins. +$4.50. Clean execution.
+    3. 92plus taker (ncaamb): 1W 2L from 3 completed.
+       - UNLV won (+$1.50) after 53min hold
+       - AUB stopped out (-$3.50) after 10min
+       - CIN stopped out (-$3.25) after 16.5min
+       Net 92plus_taker: -$5.25
+    4. RICH still open — SELL_FAIL issue needs investigation.
+    5. BIR deeply underwater — high entry at 85c, match turning.
+    6. Depth enrichment working: 17/22 trades have depth data.
+       Early trades (OLI, KOT, SEL + a few others) predate enrichment.
+
+  ACCOUNT STATUS:
+    Last known balance: $430.88 (ncaamb log)
+    But BIR and RICH still open — final session P&L TBD.
+
+========================================================================

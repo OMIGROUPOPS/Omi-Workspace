@@ -1,0 +1,221 @@
+================================================================================
+  NCAAMB 92c+ LATE-CROSSER TIME-IN-GAME ANALYSIS
+  Data: /root/espn_data/ncaamb_stb_price_matrix.csv
+  Total rows in CSV: 2043
+  Late-crosser trades (92c+): 415
+  Data spans ~32 unique dates
+================================================================================
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  1. TIME-OF-CROSSING ANALYSIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Phase definitions (based on 30-minute price window):
+    early (1-8)    → first quarter of tracked window
+    mid (9-15)     → second quarter
+    late (16-22)   → third quarter (likely 2nd half)
+    very_late (23-30) → final stretch
+
+  Phase                   Trades   Wins  Losses     WR%   TotalPnL  PnL/Trade   PnL/Day
+  ---------------------- ------- ------ ------- ------- ---------- ---------- ---------
+  early (1-8)                155    148       7   95.5%    183.38c      1.18c     5.73c
+  mid (9-15)                  97     90       7   92.8%   -117.88c     -1.22c    -3.68c
+  late (16-22)                88     81       7   92.0%     37.00c      0.42c     1.16c
+  very_late (23-30)           75     69       6   92.0%    -47.62c     -0.64c    -1.49c
+
+  Cross-minute distribution (histogram):
+    min  1:   59 ███████████████████████████████████████████████████████████
+    min  2:   25 █████████████████████████
+    min  3:   15 ███████████████
+    min  4:   16 ████████████████
+    min  5:    9 █████████
+    min  6:    8 ████████
+    min  7:   12 ████████████
+    min  8:   11 ███████████
+    min  9:   17 █████████████████
+    min 10:   16 ████████████████
+    min 11:   14 ██████████████
+    min 12:   16 ████████████████
+    min 13:    9 █████████
+    min 14:    6 ██████
+    min 15:   19 ███████████████████
+    min 16:   19 ███████████████████
+    min 17:   10 ██████████
+    min 18:   15 ███████████████
+    min 19:    8 ████████
+    min 20:   11 ███████████
+    min 21:   13 █████████████
+    min 22:   12 ████████████
+    min 23:   10 ██████████
+    min 24:   11 ███████████
+    min 25:    8 ████████
+    min 26:   10 ██████████
+    min 27:   11 ███████████
+    min 28:    6 ██████
+    min 29:    7 ███████
+    min 30:   12 ████████████
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  2. SCORE DIFFERENTIAL PROXY (by crossing price)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Higher cross price ≈ larger lead at time of entry
+
+  Price Bucket      Trades   Wins  Losses     WR%   TotalPnL  PnL/Trade   PnL/Day
+  ---------------- ------- ------ ------- ------- ---------- ---------- ---------
+  92c exactly          150    142       8   94.7%    126.75c      0.84c     3.96c
+  93-94c               178    168      10   94.4%   -146.75c     -0.82c    -4.59c
+  95-96c                61     60       1   98.4%     69.62c      1.14c     2.18c
+  97c+                  26     18       8   69.2%      5.25c      0.20c     0.16c
+
+  Per-cent breakdown:
+   Price  Trades   Wins  Losses     WR%  PnL/Trade
+  ------ ------- ------ ------- ------- ----------
+     92c     150    142       8   94.7%      0.84c
+     93c     109    103       6   94.5%     -0.32c
+     94c      69     65       4   94.2%     -1.61c
+     95c      39     38       1   97.4%      0.59c
+     96c      22     22       0  100.0%      2.12c
+     97c      10     10       0  100.0%      1.12c
+     98c       8      8       0  100.0%      0.12c
+     99c       8      0       8    0.0%     -0.88c
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  3. FILTER SIMULATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Filter                     Trades   Wins  Loss     WR%    TotPnL   PnL/Tr   PnL/Day  Sharpe*
+  ------------------------- ------- ------ ----- ------- --------- -------- --------- --------
+  Baseline (all 92c+)           415    388    27   93.5%    54.88c    0.13c     1.71c   0.002
+  A: cross after min 20         100     91     9   91.0%   -32.50c   -0.33c    -1.02c  -0.006
+  B: cross after min 15         163    150    13   92.0%   -10.62c   -0.07c    -0.33c  -0.001
+  C: cross after min 10         227    210    17   92.5%    12.38c    0.05c     0.39c   0.001
+  D: entry >= 93c               265    246    19   92.8%   -71.88c   -0.27c    -2.25c  -0.005
+  E: entry >= 94c               156    143    13   91.7%   -36.50c   -0.23c    -1.14c  -0.006
+  F: min>15 AND >=93c            99     90     9   90.9%    -6.62c   -0.07c    -0.21c  -0.002
+  G: min>20 AND >=93c            63     56     7   88.9%   -61.12c   -0.97c    -1.91c  -0.024
+  H: entry >= 95c                87     78     9   89.7%    74.88c    0.86c     2.34c   0.075
+  I: min>10 AND >=93c           139    126    13   90.6%  -130.62c   -0.94c    -4.08c  -0.018
+  J: min>10 AND >=94c            74     64    10   86.5%  -166.75c   -2.25c    -5.21c  -0.059
+
+  * Sharpe-like = PnL/trade / avg_loss_magnitude (higher = better risk-adjusted)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  4. LOSS ANALYSIS BY PHASE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Total losses: 27 out of 415 trades
+
+  Ticker                                        Team   CrossP CrossMin  Final  MaxBnc      PnL
+  --------------------------------------------- ------ ------ -------- ------ ------- --------
+  KXNCAAMBGAME-26FEB07MISSTEX-TEX               TEX       99c       3m    99c     12c   -0.88c
+  KXNCAAMBGAME-26FEB09YALEHOW-HOW               HOW       95c       4m     1c     32c  -95.88c
+  KXNCAAMBGAME-26FEB24NWIND-IND                 IND       92c       4m     1c     10c  -92.88c
+  KXNCAAMBGAME-26FEB14COPPNCCU-COPP             COPP      99c       5m    99c     29c   -0.88c
+  KXNCAAMBGAME-26FEB14TTUARIZ-ARIZ              ARIZ      93c       5m     1c      6c  -93.88c
+  KXNCAAMBGAME-26FEB12DETWRST-WRST              WRST      92c       8m     1c     22c  -92.88c
+  KXNCAAMBGAME-26FEB18LASDUQ-LAS                LAS       93c       8m     1c     19c  -93.88c
+  KXNCAAMBGAME-26FEB26UNHBING-UNH               UNH       92c       9m     1c     24c  -92.88c
+  KXNCAAMBGAME-26FEB13UNLVBSU-BSU               BSU       92c      10m     1c     13c  -92.88c
+  KXNCAAMBGAME-26FEB18LIPBELL-BELL              BELL      93c      10m     1c     33c  -93.88c
+  KXNCAAMBGAME-26FEB18WICHECU-ECU               ECU       94c      13m     1c     19c  -94.88c
+  KXNCAAMBGAME-26MAR07RICHDUQ-RICH              RICH      93c      13m     1c     38c  -93.88c
+  KXNCAAMBGAME-26FEB11MIZZTXAM-MIZZ             MIZZ      99c      15m    99c     44c   -0.88c
+  KXNCAAMBGAME-26MAR04WEBBSCUS-SCUS             SCUS      94c      15m     1c     13c  -94.88c
+  KXNCAAMBGAME-26FEB24MASSBALL-BALL             BALL      99c      16m    99c     41c   -0.88c
+  KXNCAAMBGAME-26MAR03OKSTUCF-UCF               UCF       92c      17m     1c     23c  -92.88c
+  KXNCAAMBGAME-26FEB28SDSTSDAK-SDST             SDST      93c      19m     1c     27c  -93.88c
+  KXNCAAMBGAME-26FEB25CARKPEAY-PEAY             PEAY      92c      20m     1c     30c  -92.88c
+  KXNCAAMBGAME-26FEB15UTSACHAR-CHAR             CHAR      92c      21m     1c     16c  -92.88c
+  KXNCAAMBGAME-26FEB21ILLUCLA-UCLA              UCLA      99c      22m    99c     35c   -0.88c
+  KXNCAAMBGAME-26FEB25LAFCOLG-LAF               LAF       99c      22m    99c     36c   -0.88c
+  KXNCAAMBGAME-26FEB19MRSHAPP-APP               APP       93c      23m     1c     24c  -93.88c
+  KXNCAAMBGAME-26FEB24MASSBALL-MASS             MASS      92c      24m     1c     27c  -92.88c
+  KXNCAAMBGAME-26FEB16SOUTXSO-SOU               SOU       94c      27m     1c     16c  -94.88c
+  KXNCAAMBGAME-26MAR07SCARMISS-SCAR             SCAR      99c      27m    99c     44c   -0.88c
+  KXNCAAMBGAME-26MAR01COFCUNCW-UNCW             UNCW      94c      29m     1c     37c  -94.88c
+  KXNCAAMBGAME-26FEB23NICHLAM-NICH              NICH      99c      30m    99c     39c   -0.88c
+
+  Loss distribution by phase:
+    early (1-8)           :   7 losses ( 25.9% of all losses) | loss rate:   4.5% (7/155)
+    mid (9-15)            :   7 losses ( 25.9% of all losses) | loss rate:   7.2% (7/97)
+    late (16-22)          :   7 losses ( 25.9% of all losses) | loss rate:   8.0% (7/88)
+    very_late (23-30)     :   6 losses ( 22.2% of all losses) | loss rate:   8.0% (6/75)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  5. OPTIMAL FILTER RECOMMENDATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Ranked by PnL/Day:
+    1. H: entry >= 95c           PnL/Day=    2.34c  WR= 89.7%  Trades=  87  Sharpe=0.075 <<<
+    2. Baseline (all 92c+)       PnL/Day=    1.71c  WR= 93.5%  Trades= 415  Sharpe=0.002
+    3. C: cross after min 10     PnL/Day=    0.39c  WR= 92.5%  Trades= 227  Sharpe=0.001
+    4. F: min>15 AND >=93c       PnL/Day=   -0.21c  WR= 90.9%  Trades=  99  Sharpe=-0.002
+    5. B: cross after min 15     PnL/Day=   -0.33c  WR= 92.0%  Trades= 163  Sharpe=-0.001
+    6. A: cross after min 20     PnL/Day=   -1.02c  WR= 91.0%  Trades= 100  Sharpe=-0.006
+    7. E: entry >= 94c           PnL/Day=   -1.14c  WR= 91.7%  Trades= 156  Sharpe=-0.006
+    8. G: min>20 AND >=93c       PnL/Day=   -1.91c  WR= 88.9%  Trades=  63  Sharpe=-0.024
+    9. D: entry >= 93c           PnL/Day=   -2.25c  WR= 92.8%  Trades= 265  Sharpe=-0.005
+    10. I: min>10 AND >=93c       PnL/Day=   -4.08c  WR= 90.6%  Trades= 139  Sharpe=-0.018
+    11. J: min>10 AND >=94c       PnL/Day=   -5.21c  WR= 86.5%  Trades=  74  Sharpe=-0.059
+
+  Ranked by Sharpe-like ratio:
+    1. H: entry >= 95c           Sharpe=0.075  WR= 89.7%  PnL/Day=    2.34c <<<
+    2. Baseline (all 92c+)       Sharpe=0.002  WR= 93.5%  PnL/Day=    1.71c
+    3. C: cross after min 10     Sharpe=0.001  WR= 92.5%  PnL/Day=    0.39c
+    4. B: cross after min 15     Sharpe=-0.001  WR= 92.0%  PnL/Day=   -0.33c
+    5. F: min>15 AND >=93c       Sharpe=-0.002  WR= 90.9%  PnL/Day=   -0.21c
+    6. D: entry >= 93c           Sharpe=-0.005  WR= 92.8%  PnL/Day=   -2.25c
+    7. A: cross after min 20     Sharpe=-0.006  WR= 91.0%  PnL/Day=   -1.02c
+    8. E: entry >= 94c           Sharpe=-0.006  WR= 91.7%  PnL/Day=   -1.14c
+    9. I: min>10 AND >=93c       Sharpe=-0.018  WR= 90.6%  PnL/Day=   -4.08c
+    10. G: min>20 AND >=93c       Sharpe=-0.024  WR= 88.9%  PnL/Day=   -1.91c
+    11. J: min>10 AND >=94c       Sharpe=-0.059  WR= 86.5%  PnL/Day=   -5.21c
+
+  >>> RECOMMENDED FILTER: H: entry >= 95c
+      Trades: 87, WR: 89.7%, PnL/Trade: 0.86c, PnL/Day: 2.34c
+      Over 32 days: 74.88c total
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  6. 99c EXIT (HIT RATE) ANALYSIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Total late-crosser trades: 415
+  Hit 99c (resting sell filled): 396 (95.4%)
+  Settlement wins (didn't hit 99): 0 (0.0%)
+  Losses: 19 (4.6%)
+
+  Max bounce from entry (all late-crossers):
+        0-2c:    0 (  0.0%) 
+        3-5c:   16 (  3.9%) █
+        6-7c:    7 (  1.7%) 
+       8-10c:   48 ( 11.6%) █████
+      11-15c:   56 ( 13.5%) ██████
+      16-20c:   50 ( 12.0%) ██████
+        21c+:  238 ( 57.3%) ████████████████████████████
+
+  At 92c entry specifically:
+    Trades: 150, Hit 99c: 142 (94.7% if trades_92 else 0)
+  At 93c entry: 109 trades, Hit 99c: 103 (94.5%)
+  At 94c entry: 69 trades, Hit 99c: 65 (94.2%)
+  At 95c entry: 39 trades, Hit 99c: 38 (97.4%)
+  At 96c entry: 22 trades, Hit 99c: 22 (100.0%)
+  At 97c entry: 10 trades, Hit 99c: 10 (100.0%)
+  At 98c entry: 8 trades, Hit 99c: 8 (100.0%)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  7. KEY TAKEAWAYS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Baseline 92c+ late-crossers: 415 trades, 93.5% WR, 1.71c/day
+
+  Best PnL/Day filter: H: entry >= 95c
+    → 87 trades, 89.7% WR, 2.34c/day, 74.88c total
+
+  Early crossing (min 1-8) loss rate: 4.5% (7/155)
+  Late crossing (min 16-30) loss rate: 8.0% (13/163)
+  → Late crossings are riskier by 3.5pp
+
+  99c hit rate: 95.4% — majority exit via resting sell
+
+================================================================================

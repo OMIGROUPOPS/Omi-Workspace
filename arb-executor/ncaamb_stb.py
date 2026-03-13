@@ -14,6 +14,7 @@ import json
 import os
 import sys
 import time
+import re
 import uuid
 from collections import deque
 from dataclasses import dataclass, field
@@ -32,16 +33,32 @@ BASE_URL = "https://api.elections.kalshi.com"
 WS_URL = "wss://api.elections.kalshi.com/trade-api/ws/v2"
 WS_PATH = "/trade-api/ws/v2"
 
-SERIES = ["KXNCAAMBGAME", "KXNBAGAME"]
+
+def _parse_price(val):
+    """Convert price from API response (may be cents int or dollar string) to cents int."""
+    if val is None or val == "?" or val == "":
+        return val if val == "?" else 0
+    try:
+        f = float(val)
+        # If value looks like dollars (< 1.01), convert to cents
+        if f < 1.01 and f > 0:
+            return round(f * 100)
+        # Already in cents
+        return int(f)
+    except (ValueError, TypeError):
+        return 0
+
+
+SERIES = ["KXNCAAMBGAME", "KXNBAGAME", "KXNHLGAME"]
 CONTRACTS = 25
-CONTRACTS_92PLUS = 50                  # 96c maker entries: 50ct (3c edge * 50 = $1.50/trade)
+CONTRACTS_92PLUS = 50                  # 95c maker entries: 50ct (4c edge * 50 = $1.50/trade)
 EXIT_BOUNCE = 7               # sell at entry_ask + 7c
 
 # Entry filters
 MAX_COMBINED_MID = 97          # combined MID of both sides <= 97c (dislocation)
 MIN_ENTRY_ASK = 55             # entry side ask >= 55c
 MAX_ENTRY_ASK = 90             # skip entries > 90c (backtest: 0% win rate above 94c)
-MAX_SPREAD = 4                 # ask - bid <= 4c
+MAX_SPREAD = 4                 # default spread cap (overridden per-series in check_entry)
 
 # Conditional time stop
 # At COND_STOP_MINUTES: if bid >= entry, hold and re-check every COND_STOP_RECHECK seconds
@@ -51,12 +68,19 @@ COND_STOP_RECHECK = 60         # re-check every 60s after initial checkpoint
 ENABLE_COND_STOP = False       # DISABLED — backtest shows no-stop is optimal for NCAAMB
 
 # Collapse filter — reject entry if bid dropped in lookback window, re-enter later
-COLLAPSE_DROP_THRESHOLD = 6    # reject if bid dropped >= 6c
+COLLAPSE_DROP_THRESHOLD = 6    # reject if bid dropped >= 6c (NCAAMB/NBA default)
 COLLAPSE_LOOKBACK_SEC = 600    # 10 minute lookback window
 COLLAPSE_REENTRY_DELAY = 600   # re-enter after 10 minutes
 
+# Sport-specific Mona Lisa entry filters (gap = combined_mid - entry_ask)
+SPORT_ENTRY_CONFIGS = {
+    "KXNCAAMBGAME": {"gap_min": 0,  "spread_max": 4, "collapse_drop": 6},   # NCAAMB: no gap filter
+    "KXNBAGAME":    {"gap_min": 0,  "spread_max": 6, "collapse_drop": 6},   # NBA: wider spread
+    "KXNHLGAME":    {"gap_min": 8,  "spread_max": 8, "collapse_drop": 10},  # NHL: gap>=8, wide spread, 10c collapse
+}
+
 # Pre-game filter
-MAX_HOURS_TO_EXPIRY = 3        # skip if expected_expiration > 3h away (game not started)
+MAX_HOURS_TO_EXPIRY = 5        # skip if expected_expiration > 5h away (game not started)
 
 MAX_RPS = 10
 WS_SUBSCRIBE_BATCH = 100
@@ -449,14 +473,14 @@ class NcaambSTB:
 
     def apply_snapshot(self, ticker: str, msg: dict):
         book = LocalBook(ticker=ticker)
-        for level in msg.get("yes", []):
+        for level in msg.get("yes_dollars_fp", msg.get("yes", [])):
             if isinstance(level, list) and len(level) >= 2:
-                price, size = int(level[0]), int(level[1])
+                price, size = round(float(level[0]) * 100), int(float(level[1]))
                 if size > 0:
                     book.yes_bids[price] = size
-        for level in msg.get("no", []):
+        for level in msg.get("no_dollars_fp", msg.get("no", [])):
             if isinstance(level, list) and len(level) >= 2:
-                no_price, size = int(level[0]), int(level[1])
+                no_price, size = round(float(level[0]) * 100), int(float(level[1]))
                 ask_price = 100 - no_price
                 if size > 0:
                     book.yes_asks[ask_price] = size
@@ -468,12 +492,12 @@ class NcaambSTB:
         if ticker not in self.books:
             self.books[ticker] = LocalBook(ticker=ticker)
         book = self.books[ticker]
-        price = msg.get("price")
-        size_delta = msg.get("delta", 0)
+        price = msg.get("price_dollars", msg.get("price"))
+        size_delta = msg.get("delta_fp", msg.get("delta", 0))
         side = msg.get("side", "yes").lower()
         if price is None:
             return
-        price = int(price)
+        price = round(float(price) * 100)
         if side == "yes":
             target = book.yes_bids
             target_price = price
@@ -484,7 +508,7 @@ class NcaambSTB:
             return
         if size_delta != 0:
             current = target.get(target_price, 0)
-            new_val = current + int(size_delta)
+            new_val = current + int(float(size_delta))
             if new_val <= 0:
                 target.pop(target_price, None)
             else:
@@ -626,7 +650,7 @@ class NcaambSTB:
         return None  # passed all filters
 
     def check_collapse(self, ticker: str):
-        """Check if bid dropped >= COLLAPSE_DROP_THRESHOLD in lookback window.
+        """Check if bid dropped >= threshold in lookback window (sport-specific).
         Returns (drop, max_bid, current_bid) or None."""
         book = self.books.get(ticker)
         if not book or book.best_bid is None:
@@ -635,13 +659,23 @@ class NcaambSTB:
         history = self.bid_history.get(ticker, [])
         if not history:
             return None
+
+        # Sport-specific collapse threshold
+        series_key = None
+        for s in SERIES:
+            if ticker.startswith(s):
+                series_key = s
+                break
+        cfg = SPORT_ENTRY_CONFIGS.get(series_key, {"collapse_drop": 6})
+        collapse_threshold = cfg.get("collapse_drop", COLLAPSE_DROP_THRESHOLD)
+
         cutoff = time.time() - COLLAPSE_LOOKBACK_SEC
         max_bid = current_bid
         for ts, bid in history:
             if ts >= cutoff and bid > max_bid:
                 max_bid = bid
         drop = max_bid - current_bid
-        if drop >= COLLAPSE_DROP_THRESHOLD:
+        if drop >= collapse_threshold:
             return (drop, max_bid, current_bid)
         return None
 
@@ -730,7 +764,7 @@ class NcaambSTB:
         return True  # sustained filter disabled (0-tick)
 
     async def execute_entry_92plus(self, ticker: str):
-        """92c+ settlement mode: maker bid at 96c, resting sell at 99c on fill."""
+        """92c+ settlement mode: maker bid at 95c, resting sell at 99c on fill."""
         book = self.books.get(ticker)
         if not book or book.best_ask is None or book.best_bid is None:
             return
@@ -754,6 +788,38 @@ class NcaambSTB:
             log(f"[92+_SKIP_DEPTH] {side} depth_ratio_5c={dr5:.3f} < 0.15")
             return
 
+        # --- Game state check for 92c+ entries ---
+        _gs_log_92 = ""
+        _game_data_92 = await self.fetch_game_state(et)
+        if _game_data_92:
+            _live92 = _game_data_92.get("live_data", {})
+            _det92 = _live92.get("details", {})
+            _status92 = _det92.get("status", "?")
+            _away92 = _det92.get("away_points", "?")
+            _home92 = _det92.get("home_points", "?")
+            _period92 = _det92.get("period", "?")
+            _remaining92 = _det92.get("period_remaining_time", "?")
+            _gs_log_92 = (
+                f" score={_away92}-{_home92} period={_period92}"
+                f" clock={_remaining92} status={_status92}"
+            )
+            # Reject period 1 (first half) for 92c+ entries
+            try:
+                _pnum92 = int(_period92) if _period92 and _period92 != "?" else 0
+            except (ValueError, TypeError):
+                _pnum92 = 0
+            if _pnum92 == 1:
+                log(f"[92+_REJECT_PERIOD1] {side} first half — skipping 92c+ entry{_gs_log_92}")
+                return
+            # Reject if score diff < 10
+            try:
+                _diff92 = abs(int(_away92) - int(_home92))
+            except (ValueError, TypeError):
+                _diff92 = 999  # unknown score — allow entry
+            if _diff92 < 10:
+                log(f"[92+_REJECT_CLOSE_GAME] {side} diff={_diff92}pts < 10{_gs_log_92}")
+                return
+
         # Anti-stack: check portfolio
         pos_check_path = f"/trade-api/v2/portfolio/positions?ticker={ticker}&count_filter=position&limit=1"
         pos_check = await api_get(self.session, self.api_key, self.private_key, pos_check_path, self.rl)
@@ -765,8 +831,13 @@ class NcaambSTB:
                 self.entered_sides.add(ticker)
                 return
 
-        # Post maker bid at 96c (post_only=True, 0 fee)
-        maker_price = 96
+        # Conditional bid: 94c if ask=95c (avoid post_only cross), else 95c
+        if ask == 95:
+            maker_price = 94
+            log(f'[92+_BID] {side} bid=94c (ask=95c fallback)')
+        else:
+            maker_price = 95
+            log(f'[92+_BID] {side} bid=95c (ask={ask}c)')
         order_path = "/trade-api/v2/portfolio/orders"
         payload = {
             "ticker": ticker,
@@ -812,6 +883,8 @@ class NcaambSTB:
             entry_mode="stb_92plus",
         )
         pos.depth_snapshot = depth_snap
+        if _gs_log_92:
+            pos.game_state_at_entry = _gs_log_92.strip()
         self.positions[ticker] = pos
 
         now = time.strftime("%H:%M:%S")
@@ -883,22 +956,36 @@ class NcaambSTB:
                     f"(spread={spread}c combined_mid={combined_mid:.1f}c)")
             return False
 
-        # Filter: spread <= 4c
-        if spread > MAX_SPREAD:
-            if log_reject:
-                side = ticker.split("-")[-1]
-                log(f"[REJECT] {side} spread={spread}c > {MAX_SPREAD}c "
-                    f"(ask={ask}c combined_mid={combined_mid:.1f}c)")
-            self.spread_confirmed.pop(ticker, None)  # reset on wide spread
-            return False
-
-        # 2-tick spread confirmation REMOVED (Phase 1)
-        # Filter: combined MID <= 97c (dislocation signal)
+        # Require partner book for gap calculation
         if not partner or not partner_book:
             return False
         if combined_mid is None:
             return False
-        if combined_mid > MAX_COMBINED_MID:
+
+        # Sport-specific Mona Lisa filters (gap + spread per series)
+        series_key = None
+        for s in SERIES:
+            if ticker.startswith(s):
+                series_key = s
+                break
+        cfg = SPORT_ENTRY_CONFIGS.get(series_key, {"gap_min": 0, "spread_max": 4, "collapse_drop": 6})
+        gap = combined_mid - ask  # distance below fair value
+
+        # Filter: spread <= sport-specific max
+        if spread > cfg["spread_max"]:
+            if log_reject:
+                side = ticker.split("-")[-1]
+                log(f"[REJECT] {side} spread={spread}c > {cfg['spread_max']}c "
+                    f"(ask={ask}c gap={gap:.0f}c series={series_key})")
+            self.spread_confirmed.pop(ticker, None)
+            return False
+
+        # Filter: gap >= sport-specific minimum
+        if gap < cfg["gap_min"]:
+            if log_reject:
+                side = ticker.split("-")[-1]
+                log(f"[REJECT_GAP] {side} gap={gap:.0f}c < {cfg['gap_min']}c "
+                    f"(ask={ask}c combined_mid={combined_mid:.1f}c series={series_key})")
             return False
 
         return True
@@ -974,7 +1061,9 @@ class NcaambSTB:
             )
 
             # Apply rejection filters
-            reject = self.check_ncaamb_game_state(ticker, game_data)
+            # Game state filters only apply to basketball (NCAAMB/NBA), not NHL
+            sport = self._detect_sport(ticker)
+            reject = self.check_ncaamb_game_state(ticker, game_data) if sport != "nhl" else None
             if reject:
                 self.game_state_rejects += 1
                 log(f"[REJECT_GAMESTATE] {et} {side} ask={ask}c "
@@ -1105,6 +1194,10 @@ class NcaambSTB:
         )
         pos.entry_type = entry_type
         self.positions[ticker] = pos
+
+        # Populate game state for CSV enrichment
+        if game_state_log:
+            pos.game_state_at_entry = game_state_log.strip()
 
         now = time.strftime("%H:%M:%S")
         log(f"[ENTRY] {now} {et} {side} ask={ask}c bid={bid}c "
@@ -1348,11 +1441,17 @@ class NcaambSTB:
                 current_bid = book.best_bid
                 current_spread = (current_ask - current_bid) if (current_ask is not None and current_bid is not None) else 99
 
-                # Signal still valid: price in range, spread OK
+                # Signal still valid: price in range, spread OK (sport-specific)
+                _sk = None
+                for _s in SERIES:
+                    if ticker.startswith(_s):
+                        _sk = _s
+                        break
+                _cfg = SPORT_ENTRY_CONFIGS.get(_sk, {"spread_max": 4})
                 price_ok = (current_ask is not None
                            and current_ask >= MIN_ENTRY_ASK
                            and current_ask <= MAX_ENTRY_ASK
-                           and current_spread <= MAX_SPREAD)
+                           and current_spread <= _cfg["spread_max"])
 
                 if price_ok:
                     pos.retry_remaining = remaining
@@ -1398,8 +1497,14 @@ class NcaambSTB:
         current_spread = (current_ask - current_bid) if (current_ask is not None and current_bid is not None) else 99
 
         # Validate signal still active
+        _sk2 = None
+        for _s2 in SERIES:
+            if ticker.startswith(_s2):
+                _sk2 = _s2
+                break
+        _cfg2 = SPORT_ENTRY_CONFIGS.get(_sk2, {"spread_max": 4})
         if (current_ask < MIN_ENTRY_ASK or current_ask > MAX_ENTRY_ASK
-                or current_spread > MAX_SPREAD):
+                or current_spread > _cfg2["spread_max"]):
             log(f"  [RETRY_STOP] {pos.side} — signal expired "
                 f"(ask={current_ask}c spread={current_spread}c), "
                 f"finalizing with {pos.contracts}ct")
@@ -1534,7 +1639,7 @@ class NcaambSTB:
                             pos.contracts += new_fills
                             pos.retry_remaining -= new_fills
                             # Track highest fill price
-                            order_price = order.get("yes_price", 0) or 0
+                            order_price = _parse_price(order.get("yes_price_dollars", order.get("yes_price", 0)))
                             if order_price > 0:
                                 pos.highest_fill_price = max(pos.highest_fill_price, order_price)
                             if pos.retry_remaining <= 0:
@@ -1563,7 +1668,7 @@ class NcaambSTB:
                                 await api_delete(self.session, self.api_key, self.private_key,
                                                  del_path, self.rl)
                                 if pos.retry_remaining > 0:
-                                    order_price = order.get("yes_price", 0) or 0
+                                    order_price = _parse_price(order.get("yes_price_dollars", order.get("yes_price", 0)))
                                     if order_price > 0 and fill_count > 0:
                                         pos.highest_fill_price = max(pos.highest_fill_price, order_price)
                                     log(f"  [RETRY_CYCLE] {pos.side} — cancelling stale retry, "
@@ -1816,10 +1921,14 @@ class NcaambSTB:
 
 
     def _detect_series(self, ticker: str) -> str:
-        return "nba" if "KXNBAGAME" in ticker else "ncaamb"
+        if "KXNBAGAME" in ticker: return "nba"
+        if "KXNHLGAME" in ticker: return "nhl"
+        return "ncaamb"
 
     def _detect_sport(self, ticker: str) -> str:
-        return "nba" if "KXNBAGAME" in ticker else "ncaamb"
+        if "KXNBAGAME" in ticker: return "nba"
+        if "KXNHLGAME" in ticker: return "nhl"
+        return "ncaamb"
 
 
     # ------------------------------------------------------------------
@@ -1839,6 +1948,9 @@ class NcaambSTB:
         "entry_mode",
         "volume_tier",
         "entry_type",
+        "period", "clock_seconds", "score_diff",
+        "exit_depth_ratio_5c", "exit_bid_depth_5c", "exit_ask_depth_5c",
+        "max_bid_after_entry", "price_trajectory",
     ]
 
 
@@ -1857,16 +1969,16 @@ class NcaambSTB:
             if not data or "orderbook" not in data:
                 return snap
             ob = data["orderbook"]
-            yes_bids = ob.get("yes", [])
-            no_bids = ob.get("no", [])
+            yes_bids = ob.get("yes_dollars_fp", ob.get("yes", []))
+            no_bids = ob.get("no_dollars_fp", ob.get("no", []))
             if not yes_bids and not no_bids:
                 return snap
 
             # YES bids sorted descending by price
-            bids = sorted([(int(b[0]), int(b[1])) for b in yes_bids if len(b) >= 2],
+            bids = sorted([(round(float(b[0]) * 100), int(float(b[1]))) for b in yes_bids if len(b) >= 2],
                           key=lambda x: -x[0])
             # YES asks derived from NO side: ask_price = 100 - no_price
-            asks = sorted([(100 - int(a[0]), int(a[1])) for a in no_bids if len(a) >= 2],
+            asks = sorted([(100 - round(float(a[0]) * 100), int(float(a[1]))) for a in no_bids if len(a) >= 2],
                           key=lambda x: x[0])
 
             best_bid = bids[0][0] if bids else None
@@ -1906,6 +2018,55 @@ class NcaambSTB:
             with open(self.CSV_PATH, "w") as f:
                 f.write(",".join(self.CSV_COLS) + "\n")
 
+
+    @staticmethod
+    def _parse_game_state(gs_str):
+        """Parse game_state_at_entry string into (period, clock_seconds, score_diff)."""
+        period = ""
+        clock_seconds = ""
+        score_diff = ""
+        if not gs_str:
+            return period, clock_seconds, score_diff
+        # Extract period=X
+        m = re.search(r'period=(\S+)', gs_str)
+        if m:
+            period = m.group(1)
+        # Extract clock=MM:SS or clock=PT...
+        m = re.search(r'clock=(\S+)', gs_str)
+        if m:
+            clock_raw = m.group(1)
+            try:
+                if ':' in clock_raw:
+                    parts = clock_raw.split(':')
+                    clock_seconds = str(int(parts[0]) * 60 + int(parts[1]))
+                elif clock_raw.startswith('PT'):
+                    # ISO duration PT12M30S
+                    mins = re.search(r'(\d+)M', clock_raw)
+                    secs = re.search(r'(\d+)S', clock_raw)
+                    total = 0
+                    if mins: total += int(mins.group(1)) * 60
+                    if secs: total += int(secs.group(1))
+                    clock_seconds = str(total)
+                else:
+                    clock_seconds = clock_raw
+            except (ValueError, IndexError):
+                clock_seconds = clock_raw
+        # Extract score=A-B → diff = abs(A-B)
+        m = re.search(r'score=(\d+)-(\d+)', gs_str)
+        if m:
+            try:
+                score_diff = str(abs(int(m.group(1)) - int(m.group(2))))
+            except ValueError:
+                pass
+        # Tennis: sets=X-Y
+        m2 = re.search(r'sets=(\d+)-(\d+)', gs_str)
+        if m2 and not score_diff:
+            try:
+                score_diff = str(abs(int(m2.group(1)) - int(m2.group(2))))
+            except ValueError:
+                pass
+        return period, clock_seconds, score_diff
+
     def _csv_write_entry(self, pos):
         """Write entry row to CSV when buy is confirmed."""
         if pos.csv_entry_logged:
@@ -1925,6 +2086,9 @@ class NcaambSTB:
                     pre_10m = bid
                     break
         pos.pre_entry_price_10m = pre_10m
+
+        # Parse game state into structured fields
+        _gs_period, _gs_clock, _gs_diff = self._parse_game_state(pos.game_state_at_entry)
 
         import csv, io
         ds = pos.depth_snapshot
@@ -1961,6 +2125,14 @@ class NcaambSTB:
             "entry_mode": getattr(pos, 'entry_mode', ''),
             "volume_tier": getattr(pos, 'volume_tier', ''),
             "entry_type": getattr(pos, 'entry_type', ''),
+            "period": _gs_period,
+            "clock_seconds": _gs_clock,
+            "score_diff": _gs_diff,
+            "exit_depth_ratio_5c": "",
+            "exit_bid_depth_5c": "",
+            "exit_ask_depth_5c": "",
+            "max_bid_after_entry": "",
+            "price_trajectory": "",
         }
 
         buf = io.StringIO()
@@ -1989,6 +2161,23 @@ class NcaambSTB:
         except Exception:
             pass
 
+        # Capture exit depth snapshot
+        exit_depth = {}
+        try:
+            exit_depth = await self.capture_depth_snapshot(pos.ticker)
+        except Exception:
+            pass
+
+        # Serialize trajectory and max_bid
+        traj_str = ""
+        if hasattr(pos, "trajectory") and pos.trajectory:
+            traj_parts = []
+            for k in ["15s","30s","1m","2m","3m","5m","10m","15m","20m"]:
+                v = pos.trajectory.get(k)
+                traj_parts.append(f"{k}={v}c" if v is not None else f"{k}=?")
+            traj_str = "|".join(traj_parts)
+        max_bid_val = pos.max_bid_after_entry if pos.max_bid_after_entry is not None else ""
+
         # Read CSV, find last row for this ticker with empty exit_type, update it
         import csv, io
         try:
@@ -2009,6 +2198,15 @@ class NcaambSTB:
                         parts[14] = str(int(hold_sec))
                         parts[15] = gs_exit.replace(",", ";")[:200]
                         parts[16] = str(pnl_cents)
+                        # Extend row to include new enrichment columns
+                        while len(parts) < len(self.CSV_COLS):
+                            parts.append("")
+                        # exit depth
+                        parts[35] = str(exit_depth.get("depth_ratio_5c", ""))
+                        parts[36] = str(exit_depth.get("bid_depth_5c", ""))
+                        parts[37] = str(exit_depth.get("ask_depth_5c", ""))
+                        parts[38] = str(max_bid_val)
+                        parts[39] = traj_str
                         lines[i] = ",".join(parts) + "\n"
                         updated = True
                         break
@@ -2026,7 +2224,10 @@ class NcaambSTB:
                 f"{'T' if pos.collapse_triggered else 'F'},"
                 f"{pos.game_state_at_entry.replace(chr(44), chr(59))},"
                 f"{pos.who_winning_at_entry},{pos.pre_entry_price_10m or ''},"
-                f"{exit_type},{exit_price},{int(hold_sec)},{gs_exit[:200]},{pnl_cents},,,,,,,,,,,,\n"
+                f"{exit_type},{exit_price},{int(hold_sec)},{gs_exit[:200]},{pnl_cents}"
+                f",,,,,,,,,,,,,,,"
+                f"{exit_depth.get('depth_ratio_5c', '')},{exit_depth.get('bid_depth_5c', '')},"
+                f"{exit_depth.get('ask_depth_5c', '')},{max_bid_val},{traj_str}\n"
             )
             with open(self.CSV_PATH, "a") as f:
                 f.write(row_str)
@@ -2178,10 +2379,14 @@ class NcaambSTB:
         if ticker not in self.entered_sides and self.check_entry(ticker):
             await self.execute_entry(ticker)
 
-        # --- 92c+ Settlement Mode: maker bid at 96c (additive) ---
+        # --- 92c+ Settlement Mode: maker bid at 95c (NCAAMB + NBA only) ---
         if ticker not in self.entered_sides and ticker not in self.mode_92_entered:
+            # Skip 95c maker for NHL
+            _sport92 = self._detect_sport(ticker)
+            if _sport92 == "nhl":
+                return
             book92 = self.books.get(ticker)
-            if book92 and book92.best_ask is not None and book92.best_ask >= 96:
+            if book92 and book92.best_ask is not None and book92.best_ask >= 95:
                 # Event-level dedup (shared with standard STB)
                 et92 = self.ticker_to_event.get(ticker, "")
                 if not (et92 and et92 in self.entered_events):
@@ -2389,9 +2594,11 @@ class NcaambSTB:
     async def run(self):
         """Main entry point."""
         log("=" * 60)
-        log("  NCAAMB STB v2 — Sell The Bounce + Game State")
-        log(f"  College Basketball | {CONTRACTS} contracts | +{EXIT_BOUNCE}c exit target")
-        log(f"  Combined MID <= {MAX_COMBINED_MID}c | Entry ask >= {MIN_ENTRY_ASK}c | Spread <= {MAX_SPREAD}c")
+        log("  NCAAMB/NBA/NHL STB v2 — Sell The Bounce + Game State")
+        log(f"  Basketball + Hockey | {CONTRACTS} contracts | +{EXIT_BOUNCE}c exit target")
+        log(f"  Entry ask >= {MIN_ENTRY_ASK}c | Sport-specific gap+spread filters")
+        log(f"  NCAAMB: gap>=0 sprd<=4 | NBA: gap>=0 sprd<=6 | NHL: gap>=8 sprd<=8")
+        log(f"  NHL collapse: 10c/10m | NCAAMB/NBA collapse: 6c/10m")
         log(f"  Hold to settlement (no stop)")
         log(f"  Collapse filter: {COLLAPSE_DROP_THRESHOLD}c drop in "
             f"{COLLAPSE_LOOKBACK_SEC//60}m -> re-enter after {COLLAPSE_REENTRY_DELAY//60}m")
@@ -2406,7 +2613,7 @@ class NcaambSTB:
 
             # Initial discovery
             tickers = await self.discover_markets()
-            log(f"[INIT] Found {len(tickers)} NCAAMB tickers across {len(self.known_events)} events")
+            log(f"[INIT] Found {len(tickers)} NCAAMB/NBA/NHL tickers across {len(self.known_events)} events")
 
             if not tickers:
                 log("[INIT] No open NCAAMB markets found. Waiting for new markets...")
@@ -2460,7 +2667,7 @@ class NcaambSTB:
                     continue
                 del_path = f"/trade-api/v2/portfolio/orders/{oid}"
                 await api_delete(self.session, self.api_key, self.private_key, del_path, self.rl)
-                price = o.get("yes_price", "?")
+                price = _parse_price(o.get("yes_price_dollars", o.get("yes_price", "?")))
                 action = o.get("action", "?")
                 log(f"[CANCEL_RESTING] {ticker.split('-')[-1]} {action} yes@{price}c oid={oid[:12]}")
                 cancelled += 1
@@ -2521,7 +2728,7 @@ class NcaambSTB:
         # Find the most recent buy fill
         for f in result.get("fills", []):
             if f.get("action") == "buy" and f.get("side") == "yes":
-                return f.get("yes_price")
+                return _parse_price(f.get("yes_price_dollars", f.get("yes_price")))
         return None
 
     async def reconcile_existing_positions(self):

@@ -1,0 +1,29 @@
+CELL: ATP_MAIN_underdog_15-19 | n_trajs_replayed: 19
+*** SAMPLE WARNING: n < 30 ***
+
+COARSE WINNER: dca=15 exit=10 strat=B | mean=-16.98% med=+52.63% n=17
+FINE WINNER  : dca=15 exit=6 strat=B | mean=-13.53% med=+31.58% n=17
+Fine improvement: +3.45% mean ROI
+
+Top 5 by mean ROI:
+  dca=  15 exit=     6 strat= B | n= 17 mean=-13.53% med=+31.58% win=64.7% maxL= 210c total=  -520c
+  dca=  14 exit=     6 strat= B | n= 17 mean=-13.92% med=+31.58% win=64.7% maxL= 215c total=  -555c
+  dca=  12 exit=    10 strat= B | n= 17 mean=-15.89% med=+52.63% win=52.9% maxL= 225c total=  -665c
+  dca=  13 exit=    10 strat= B | n= 17 mean=-16.05% med=+52.63% win=52.9% maxL= 220c total=  -665c
+  dca=  16 exit=    10 strat= B | n= 17 mean=-16.49% med=+52.63% win=52.9% maxL= 205c total=  -615c
+
+Top 5 by median ROI:
+  dca=  11 exit=    10 strat= B | n= 17 mean=-16.75% med=+52.63% win=52.9% maxL= 230c total=  -720c
+  dca=  12 exit=    10 strat= B | n= 17 mean=-15.89% med=+52.63% win=52.9% maxL= 225c total=  -665c
+  dca=  13 exit=    10 strat= B | n= 17 mean=-16.05% med=+52.63% win=52.9% maxL= 220c total=  -665c
+  dca=  14 exit=    10 strat= B | n= 17 mean=-17.45% med=+52.63% win=52.9% maxL= 215c total=  -705c
+  dca=  15 exit=    10 strat= B | n= 17 mean=-16.98% med=+52.63% win=52.9% maxL= 210c total=  -660c
+
+Top 5 by lowest max_loss:
+  dca=  19 exit=     5 strat= A | n= 17 mean=-25.70% med=+26.32% win=58.8% maxL= 190c total=  -830c
+  dca=  19 exit=     5 strat= B | n= 17 mean=-25.70% med=+26.32% win=58.8% maxL= 190c total=  -830c
+  dca=  19 exit=     6 strat= A | n= 17 mean=-22.60% med=+31.58% win=58.8% maxL= 190c total=  -730c
+  dca=  19 exit=     6 strat= B | n= 17 mean=-22.60% med=+31.58% win=58.8% maxL= 190c total=  -730c
+  dca=  19 exit=     7 strat= A | n= 17 mean=-35.60% med=-100.00% win=47.1% maxL= 190c total= -1150c
+
+ROBUST PICK: none meets all criteria

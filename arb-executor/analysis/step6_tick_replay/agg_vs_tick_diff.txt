@@ -1,0 +1,90 @@
+Aggregate rows: 3731
+Tick-replay rows: 3731
+Common: 3731
+Only in agg: 0
+Only in tick: 0
+
+=== Top 30 largest mean-ROI disagreements (tick - agg) ===
+cell                                    dca  exit s | n_agg n_tick mean_agg mean_tick   Δmean
+ATP_MAIN_underdog_15-19                  15    30 B |    19    17  -69.89  -32.68  +37.21
+ATP_MAIN_underdog_15-19                  15    25 A |    19    17  -63.43  -27.02  +36.41
+ATP_MAIN_underdog_15-19                  10    30 B |    19    17  -70.97  -35.12  +35.85
+ATP_MAIN_underdog_15-19                  15     5 B |    19    17  -52.47  -17.16  +35.31
+ATP_MAIN_underdog_15-19                  15    10 A |    19    17  -59.83  -24.97  +34.86
+ATP_MAIN_underdog_15-19                  10    25 A |    19    17  -60.84  -26.09  +34.75
+ATP_MAIN_underdog_15-19                  15     5 A |    19    17  -57.74  -23.04  +34.70
+WTA_MAIN_underdog_25-29                  25    20 A |    27    22  -11.25   23.23  +34.48
+ATP_MAIN_underdog_15-19                         5 NA |    19    17  -60.11   -25.7  +34.41
+ATP_MAIN_underdog_15-19                  25     5 B |    19    17  -60.11   -25.7  +34.41
+ATP_MAIN_underdog_15-19                  25     5 A |    19    17  -60.11   -25.7  +34.41
+ATP_MAIN_underdog_15-19                  20     5 A |    19    17  -60.11   -25.7  +34.41
+ATP_MAIN_underdog_15-19                  20     5 B |    19    17  -60.11   -25.7  +34.41
+ATP_MAIN_underdog_15-19                  30     5 A |    19    17  -60.11   -25.7  +34.41
+ATP_MAIN_underdog_15-19                  30     5 B |    19    17  -60.11   -25.7  +34.41
+ATP_MAIN_underdog_15-19                  15    25 B |    19    17  -63.43  -29.12  +34.31
+ATP_MAIN_underdog_15-19                   5    25 A |    19    17  -62.26  -27.96  +34.30
+WTA_MAIN_underdog_25-29                  20    20 A |    27    22   -9.13   24.89  +34.02
+ATP_MAIN_underdog_15-19                  15    10 B |    19    17  -50.81  -16.98  +33.83
+WTA_MAIN_underdog_25-29                  10    20 A |    27    22   -8.52   25.27  +33.79
+ATP_MAIN_underdog_15-19                  10    25 B |    19    17  -61.85  -28.34  +33.51
+WTA_MAIN_underdog_25-29                  15    20 A |    27    22   -9.78   23.29  +33.07
+ATP_MAIN_underdog_15-19                   5    25 B |    19    17  -62.87   -30.0  +32.87
+WTA_MAIN_underdog_25-29                   5    20 A |    27    22   -8.43   24.19  +32.62
+WTA_MAIN_underdog_25-29                  25    20 B |    27    22  -11.25   21.28  +32.53
+WTA_MAIN_underdog_25-29                  10    20 B |    27    22   -9.93   22.39  +32.32
+ATP_MAIN_underdog_15-19                  15    20 A |    19    17  -67.59  -35.32  +32.27
+ATP_MAIN_underdog_15-19                  30    10 A |    19    17  -59.83  -28.17  +31.66
+ATP_MAIN_underdog_15-19                  30    10 B |    19    17  -59.83  -28.17  +31.66
+ATP_MAIN_underdog_15-19                        10 NA |    19    17  -59.83  -28.17  +31.66
+
+Mean-ROI delta stats across 3731 configs:
+  mean: +3.586%
+  max abs: 37.21%
+  |Δ| > 1%: 2982 (79.9%)
+  |Δ| > 5%: 1234 (33.1%)
+
+=== Per-cell fine-winner comparison (top by mean ROI per cell) ===
+cell                                   | agg_winner                     | tick_winner                    | match?
+ATP_CHALL_leader_55-59                 | dca=30 exit=hold99 A roi=11.01 | dca=30 exit=hold99 A roi=14.83 | SAME
+ATP_CHALL_leader_60-64                 | dca=25 exit=hold99 A roi=5.45  | dca=25 exit=hold99 A roi=11.15 | SAME
+ATP_CHALL_leader_65-69                 | dca=20 exit=hold99 A roi=8.82  | dca=20 exit=hold99 A roi=11.92 | SAME
+ATP_CHALL_leader_70-74                 | dca=20 exit=hold99 A roi=18.35 | dca=20 exit=hold99 A roi=17.7  | SAME
+ATP_CHALL_leader_75-79                 | dca=25 exit=25 B roi=6.93      | dca=25 exit=25 B roi=6.85      | SAME
+ATP_CHALL_leader_80-84                 | dca=25 exit=hold99 A roi=16.68 | dca=25 exit=hold99 A roi=17.28 | SAME
+ATP_CHALL_underdog_10-14               | dca=5 exit=30 B roi=39.22      | dca=5 exit=30 B roi=36.44      | SAME
+ATP_CHALL_underdog_15-19               | dca=5 exit=30 B roi=-16.09     | dca=10 exit=5 A roi=-8.51      | DIFF
+ATP_CHALL_underdog_20-24               | dca=5 exit=15 B roi=19.85      | dca=15 exit=15 B roi=23.61     | DIFF
+ATP_CHALL_underdog_25-29               | dca=10 exit=10 A roi=-2.22     | dca=15 exit=10 A roi=0.67      | DIFF
+ATP_CHALL_underdog_30-34               | dca=20 exit=5 A roi=1.24       | dca=15 exit=10 B roi=-7.75     | DIFF
+ATP_CHALL_underdog_35-39               | dca=20 exit=10 B roi=6.86      | dca=15 exit=10 B roi=11.13     | DIFF
+ATP_CHALL_underdog_40-44               | dca=25 exit=hold99 A roi=27.64 | dca=25 exit=hold99 A roi=27.59 | SAME
+ATP_MAIN_leader_55-59                  | dca=30 exit=15 B roi=14.83     | dca=30 exit=15 B roi=14.04     | SAME
+ATP_MAIN_leader_60-64                  | dca=25 exit=15 B roi=0.83      | dca=25 exit=30 A roi=7.38      | DIFF
+ATP_MAIN_leader_65-69                  | dca=15 exit=5 B roi=-1.19      | dca=10 exit=5 B roi=-0.76      | DIFF
+ATP_MAIN_leader_70-74                  | dca=20 exit=hold99 A roi=21.41 | dca=20 exit=hold99 A roi=22.85 | SAME
+ATP_MAIN_leader_75-79                  | dca=25 exit=5 B roi=4.93       | dca=25 exit=5 B roi=5.59       | SAME
+ATP_MAIN_underdog_15-19                | dca=5 exit=5 A roi=-44.26      | dca=15 exit=10 B roi=-16.98    | DIFF
+ATP_MAIN_underdog_20-24                | dca=10 exit=30 B roi=2.65      | dca=15 exit=20 A roi=-0.19     | DIFF
+ATP_MAIN_underdog_25-29                | dca=25 exit=5 A roi=-6.47      | dca=15 exit=15 B roi=-8.64     | DIFF
+ATP_MAIN_underdog_30-34                | dca=15 exit=hold99 A roi=27.68 | dca=15 exit=hold99 A roi=42.88 | SAME
+ATP_MAIN_underdog_35-39                | dca=5 exit=25 B roi=0.89       | dca=20 exit=30 B roi=6.48      | DIFF
+ATP_MAIN_underdog_40-44                | dca=20 exit=15 B roi=-16.07    | dca=20 exit=30 B roi=-2.62     | DIFF
+WTA_CHALL_leader_60-64                 | dca=15 exit=5 A roi=-0.7       | dca=10 exit=10 B roi=0.39      | DIFF
+WTA_CHALL_leader_85-89                 | dca=25 exit=hold99 A roi=18.9  | dca=25 exit=hold99 A roi=15.07 | SAME
+WTA_CHALL_underdog_35-39               | dca=15 exit=hold99 A roi=35.61 | dca=15 exit=hold99 A roi=41.86 | SAME
+WTA_CHALL_underdog_40-44               | dca=10 exit=hold99 A roi=53.44 | dca=10 exit=hold99 A roi=56.45 | SAME
+WTA_MAIN_leader_55-59                  | dca=10 exit=5 B roi=-5.54      | dca=10 exit=5 B roi=-0.63      | SAME
+WTA_MAIN_leader_60-64                  | dca=15 exit=20 A roi=13.21     | dca=25 exit=25 A roi=10.62     | DIFF
+WTA_MAIN_leader_65-69                  | dca=30 exit=hold99 A roi=21.86 | dca=15 exit=hold99 A roi=22.06 | DIFF
+WTA_MAIN_leader_70-74                  | dca=20 exit=hold99 A roi=14.95 | dca=20 exit=hold99 A roi=19.23 | SAME
+WTA_MAIN_leader_75-79                  | dca=25 exit=20 B roi=12.78     | dca=25 exit=20 B roi=14.51     | SAME
+WTA_MAIN_leader_80-84                  | dca=30 exit=hold99 A roi=13.42 | dca=30 exit=hold99 A roi=17.35 | SAME
+WTA_MAIN_leader_85-89                  | dca=20 exit=hold99 A roi=15.66 | dca=20 exit=hold99 A roi=14.65 | SAME
+WTA_MAIN_underdog_15-19                | dca=10 exit=25 B roi=-29.53    | dca=10 exit=20 A roi=-12.31    | DIFF
+WTA_MAIN_underdog_20-24                | dca=15 exit=hold99 A roi=40.19 | dca=15 exit=hold99 A roi=31.03 | SAME
+WTA_MAIN_underdog_25-29                | dca=15 exit=20 B roi=3.52      | dca=15 exit=20 B roi=29.91     | SAME
+WTA_MAIN_underdog_30-34                | dca=20 exit=30 A roi=-6.62     | dca=20 exit=30 A roi=10.49     | SAME
+WTA_MAIN_underdog_35-39                | dca=20 exit=25 A roi=18.63     | dca=20 exit=25 A roi=23.5      | SAME
+WTA_MAIN_underdog_40-44                | dca=10 exit=30 A roi=-2.96     | dca=10 exit=30 A roi=4.21      | SAME
+
+Written: /tmp/validation4/step6_real/out/agg_vs_tick_diff.txt

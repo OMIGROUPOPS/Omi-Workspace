@@ -1,0 +1,33 @@
+CELL: ATP_CHALL_underdog_40-44 | n_trajs_replayed: 83
+
+COARSE WINNER: dca=25 exit=hold99 strat=A | mean=+27.59% med=+125.00% n=80
+FINE WINNER  : dca=27 exit=hold99 strat=A | mean=+28.41% med=+125.00% n=80
+Fine improvement: +0.82% mean ROI
+
+Top 5 by mean ROI:
+  dca=  27 exit=hold99 strat= A | n= 80 mean=+28.41% med=+125.00% win=52.5% maxL= 525c total= +8745c
+  dca=  27 exit=hold99 strat= B | n= 80 mean=+28.41% med=+125.00% win=52.5% maxL= 525c total= +8745c
+  dca=  26 exit=hold99 strat= A | n= 80 mean=+28.00% med=+125.00% win=52.5% maxL= 530c total= +8495c
+  dca=  26 exit=hold99 strat= B | n= 80 mean=+28.00% med=+125.00% win=52.5% maxL= 530c total= +8495c
+  dca=  23 exit=hold99 strat= A | n= 80 mean=+27.98% med=+125.00% win=52.5% maxL= 545c total= +8525c
+
+Top 5 by median ROI:
+  dca=  20 exit=hold99 strat= A | n= 80 mean=+27.17% med=+125.00% win=52.5% maxL= 560c total= +8120c
+  dca=  20 exit=hold99 strat= B | n= 80 mean=+27.17% med=+125.00% win=52.5% maxL= 560c total= +8120c
+  dca=  21 exit=hold99 strat= A | n= 80 mean=+27.09% med=+125.00% win=52.5% maxL= 555c total= +8005c
+  dca=  21 exit=hold99 strat= B | n= 80 mean=+27.09% med=+125.00% win=52.5% maxL= 555c total= +8005c
+  dca=  22 exit=hold99 strat= A | n= 80 mean=+27.53% med=+125.00% win=52.5% maxL= 550c total= +8265c
+
+Top 5 by lowest max_loss:
+  dca=  30 exit=hold99 strat= A | n= 80 mean=+25.57% med=+125.00% win=53.8% maxL= 510c total= +7370c
+  dca=  30 exit=hold99 strat= B | n= 80 mean=+25.57% med=+125.00% win=53.8% maxL= 510c total= +7370c
+  dca=  30 exit=     1 strat= A | n= 80 mean= -0.43% med= +2.27% win=96.2% maxL= 510c total=  -295c
+  dca=  30 exit=     1 strat= B | n= 80 mean= -1.54% med= +2.27% win=96.2% maxL= 510c total=  -745c
+  dca=  30 exit=     2 strat= A | n= 80 mean= -0.84% med= +4.55% win=93.8% maxL= 510c total=  -570c
+
+ROBUST PICK (mean>0, med>0, win>50%, p25_roi > -50%):
+  dca=  27 exit=     5 strat= A | n= 80 mean= +5.02% med=+11.36% win=91.2% maxL= 525c total= +1460c
+
+HOLD_99 best in fine grid:
+  dca=  27 exit=hold99 strat= A | n= 80 mean=+28.41% med=+125.00% win=52.5% maxL= 525c total= +8745c
+  vs robust: meanΔ=+23.39% medΔ=+113.64% maxLossΔ=+0c | prefer hold_99

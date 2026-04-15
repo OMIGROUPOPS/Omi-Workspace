@@ -1,0 +1,32 @@
+CELL: ATP_MAIN_underdog_30-34 | n_trajs_replayed: 26
+*** SAMPLE WARNING: n < 30 ***
+
+COARSE WINNER: dca=15 exit=hold99 strat=A | mean=+42.88% med=-51.52% n=26
+FINE WINNER  : dca=15 exit=hold99 strat=A | mean=+42.88% med=-51.52% n=26
+Fine improvement: +0.00% mean ROI
+
+Top 5 by mean ROI:
+  dca=  15 exit=hold99 strat= A | n= 26 mean=+42.88% med=-51.52% win=46.2% maxL= 420c total= +3425c
+  dca=  15 exit=hold99 strat= B | n= 26 mean=+42.88% med=-51.52% win=46.2% maxL= 420c total= +3425c
+  dca=  14 exit=hold99 strat= A | n= 26 mean=+42.19% med=-51.52% win=46.2% maxL= 425c total= +3335c
+  dca=  14 exit=hold99 strat= B | n= 26 mean=+42.19% med=-51.52% win=46.2% maxL= 425c total= +3335c
+  dca=  13 exit=hold99 strat= A | n= 26 mean=+41.52% med=-51.52% win=46.2% maxL= 430c total= +3245c
+
+Top 5 by median ROI:
+  dca=  10 exit=     5 strat= A | n= 26 mean= -4.71% med=+15.15% win=76.9% maxL= 445c total=  -785c
+  dca=  10 exit=     5 strat= B | n= 26 mean= -7.04% med=+15.15% win=76.9% maxL= 445c total= -1055c
+  dca=  11 exit=     5 strat= A | n= 26 mean= -4.37% med=+15.15% win=76.9% maxL= 440c total=  -730c
+  dca=  11 exit=     5 strat= B | n= 26 mean= -3.06% med=+15.15% win=80.8% maxL= 440c total=  -580c
+  dca=  12 exit=     5 strat= A | n= 26 mean= -4.03% med=+15.15% win=76.9% maxL= 435c total=  -675c
+
+Top 5 by lowest max_loss:
+  dca=  20 exit=hold99 strat= A | n= 26 mean=+34.89% med=-51.52% win=46.2% maxL= 395c total= +2155c
+  dca=  20 exit=hold99 strat= B | n= 26 mean=+34.89% med=-51.52% win=46.2% maxL= 395c total= +2155c
+  dca=  20 exit=     1 strat= A | n= 26 mean=-13.05% med= +3.03% win=80.8% maxL= 395c total= -1380c
+  dca=  20 exit=     1 strat= B | n= 26 mean=-13.05% med= +3.03% win=80.8% maxL= 395c total= -1380c
+  dca=  20 exit=     2 strat= A | n= 26 mean=-14.69% med= +6.06% win=76.9% maxL= 395c total= -1585c
+
+ROBUST PICK: none meets all criteria
+
+HOLD_99 best in fine grid:
+  dca=  15 exit=hold99 strat= A | n= 26 mean=+42.88% med=-51.52% win=46.2% maxL= 420c total= +3425c

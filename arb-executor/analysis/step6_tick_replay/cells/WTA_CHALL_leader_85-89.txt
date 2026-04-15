@@ -1,0 +1,34 @@
+CELL: WTA_CHALL_leader_85-89 | n_trajs_replayed: 4
+*** SAMPLE WARNING: n < 30 ***
+
+COARSE WINNER: dca=25 exit=hold99 strat=A | mean=+15.07% med=+11.24% n=3
+FINE WINNER  : dca=26 exit=hold99 strat=A | mean=+15.24% med=+11.24% n=3
+Fine improvement: +0.17% mean ROI
+
+Top 5 by mean ROI:
+  dca=  26 exit=hold99 strat= A | n=  3 mean=+15.24% med=+11.24% win=100.0% maxL=-100c total=  +480c
+  dca=  26 exit=hold99 strat= B | n=  3 mean=+15.24% med=+11.24% win=100.0% maxL=-100c total=  +480c
+  dca=  25 exit=hold99 strat= A | n=  3 mean=+15.07% med=+11.24% win=100.0% maxL=-100c total=  +475c
+  dca=  25 exit=hold99 strat= B | n=  3 mean=+15.07% med=+11.24% win=100.0% maxL=-100c total=  +475c
+  dca=  24 exit=hold99 strat= A | n=  3 mean=+14.90% med=+11.24% win=100.0% maxL=-100c total=  +470c
+
+Top 5 by median ROI:
+  dca=  20 exit=hold99 strat= A | n=  3 mean=+14.24% med=+11.24% win=100.0% maxL=-100c total=  +450c
+  dca=  20 exit=hold99 strat= B | n=  3 mean=+14.24% med=+11.24% win=100.0% maxL=-100c total=  +450c
+  dca=  21 exit=hold99 strat= A | n=  3 mean=+14.40% med=+11.24% win=100.0% maxL=-100c total=  +455c
+  dca=  21 exit=hold99 strat= B | n=  3 mean=+14.40% med=+11.24% win=100.0% maxL=-100c total=  +455c
+  dca=  22 exit=hold99 strat= A | n=  3 mean=+14.57% med=+11.24% win=100.0% maxL=-100c total=  +460c
+
+Top 5 by lowest max_loss:
+  dca=  20 exit=hold99 strat= A | n=  3 mean=+14.24% med=+11.24% win=100.0% maxL=-100c total=  +450c
+  dca=  20 exit=hold99 strat= B | n=  3 mean=+14.24% med=+11.24% win=100.0% maxL=-100c total=  +450c
+  dca=  21 exit=hold99 strat= A | n=  3 mean=+14.40% med=+11.24% win=100.0% maxL=-100c total=  +455c
+  dca=  21 exit=hold99 strat= B | n=  3 mean=+14.40% med=+11.24% win=100.0% maxL=-100c total=  +455c
+  dca=  22 exit=hold99 strat= A | n=  3 mean=+14.57% med=+11.24% win=100.0% maxL=-100c total=  +460c
+
+ROBUST PICK (mean>0, med>0, win>50%, p25_roi > -50%):
+  dca=  26 exit=hold99 strat= A | n=  3 mean=+15.24% med=+11.24% win=100.0% maxL=-100c total=  +480c
+
+HOLD_99 best in fine grid:
+  dca=  26 exit=hold99 strat= A | n=  3 mean=+15.24% med=+11.24% win=100.0% maxL=-100c total=  +480c
+  vs robust: meanΔ=+0.00% medΔ=+0.00% maxLossΔ=+0c | config-insensitive

@@ -1,0 +1,29 @@
+CELL: WTA_MAIN_underdog_15-19 | n_trajs_replayed: 27
+*** SAMPLE WARNING: n < 30 ***
+
+COARSE WINNER: dca=10 exit=20 strat=A | mean=-12.31% med=-100.00% n=27
+FINE WINNER  : dca=11 exit=24 strat=B | mean=-6.71% med=-100.00% n=27
+Fine improvement: +5.59% mean ROI
+
+Top 5 by mean ROI:
+  dca=  11 exit=    24 strat= B | n= 27 mean= -6.71% med=-100.00% win=40.7% maxL= 230c total=  -560c
+  dca=   9 exit=    17 strat= B | n= 27 mean= -6.97% med=-100.00% win=48.1% maxL= 240c total=  -520c
+  dca=  12 exit=    24 strat= B | n= 27 mean= -7.00% med=-100.00% win=40.7% maxL= 225c total=  -595c
+  dca=   8 exit=    17 strat= B | n= 27 mean= -8.01% med=-100.00% win=48.1% maxL= 245c total=  -605c
+  dca=  15 exit=    24 strat= B | n= 27 mean= -8.69% med=-100.00% win=40.7% maxL= 210c total=  -640c
+
+Top 5 by median ROI:
+  dca=   5 exit=    15 strat= A | n= 27 mean=-16.66% med=-100.00% win=44.4% maxL= 260c total= -1070c
+  dca=   5 exit=    15 strat= B | n= 27 mean=-13.67% med=-100.00% win=48.1% maxL= 260c total=  -860c
+  dca=   5 exit=    16 strat= A | n= 27 mean=-21.82% med=-100.00% win=40.7% maxL= 260c total= -1440c
+  dca=   5 exit=    16 strat= B | n= 27 mean=-11.14% med=-100.00% win=48.1% maxL= 260c total=  -690c
+  dca=   5 exit=    17 strat= A | n= 27 mean=-19.73% med=-100.00% win=40.7% maxL= 260c total= -1300c
+
+Top 5 by lowest max_loss:
+  dca=  15 exit=    15 strat= A | n= 27 mean=-18.91% med=-100.00% win=44.4% maxL= 210c total= -1150c
+  dca=  15 exit=    15 strat= B | n= 27 mean=-20.23% med=-100.00% win=44.4% maxL= 210c total= -1225c
+  dca=  15 exit=    16 strat= A | n= 27 mean=-23.52% med=-100.00% win=40.7% maxL= 210c total= -1405c
+  dca=  15 exit=    16 strat= B | n= 27 mean=-24.84% med=-100.00% win=40.7% maxL= 210c total= -1480c
+  dca=  15 exit=    17 strat= A | n= 27 mean=-21.50% med=-100.00% win=40.7% maxL= 210c total= -1300c
+
+ROBUST PICK: none meets all criteria

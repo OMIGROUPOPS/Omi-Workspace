@@ -1,0 +1,31 @@
+CELL: ATP_CHALL_leader_60-64 | n_trajs_replayed: 72
+
+COARSE WINNER: dca=25 exit=hold99 strat=A | mean=+11.15% med=+59.68% n=66
+FINE WINNER  : dca=26 exit=hold99 strat=A | mean=+11.47% med=+59.68% n=66
+Fine improvement: +0.32% mean ROI
+
+Top 5 by mean ROI:
+  dca=  26 exit=hold99 strat= A | n= 66 mean=+11.47% med=+59.68% win=65.2% maxL= 800c total= +3515c
+  dca=  26 exit=hold99 strat= B | n= 66 mean=+11.47% med=+59.68% win=65.2% maxL= 800c total= +3515c
+  dca=  23 exit=hold99 strat= A | n= 66 mean=+11.20% med=+59.68% win=65.2% maxL= 815c total= +3500c
+  dca=  23 exit=hold99 strat= B | n= 66 mean=+11.20% med=+59.68% win=65.2% maxL= 815c total= +3500c
+  dca=  24 exit=hold99 strat= A | n= 66 mean=+11.19% med=+59.68% win=65.2% maxL= 810c total= +3410c
+
+Top 5 by median ROI:
+  dca=  20 exit=hold99 strat= A | n= 66 mean=+11.05% med=+59.68% win=63.6% maxL= 830c total= +3710c
+  dca=  20 exit=hold99 strat= B | n= 66 mean=+11.05% med=+59.68% win=63.6% maxL= 830c total= +3710c
+  dca=  21 exit=hold99 strat= A | n= 66 mean=+10.51% med=+59.68% win=63.6% maxL= 825c total= +3070c
+  dca=  21 exit=hold99 strat= B | n= 66 mean=+10.51% med=+59.68% win=63.6% maxL= 825c total= +3070c
+  dca=  22 exit=hold99 strat= A | n= 66 mean=+10.85% med=+59.68% win=65.2% maxL= 820c total= +3285c
+
+Top 5 by lowest max_loss:
+  dca=  30 exit=hold99 strat= A | n= 66 mean=+10.95% med=+59.68% win=65.2% maxL= 780c total= +2995c
+  dca=  30 exit=hold99 strat= B | n= 66 mean=+10.95% med=+59.68% win=65.2% maxL= 780c total= +2995c
+  dca=  30 exit=     1 strat= A | n= 66 mean= -3.66% med= +1.61% win=93.9% maxL= 780c total= -2035c
+  dca=  30 exit=     1 strat= B | n= 66 mean= -4.53% med= +1.61% win=93.9% maxL= 780c total= -2485c
+  dca=  30 exit=     2 strat= A | n= 66 mean= -6.52% med= +3.23% win=89.4% maxL= 780c total= -3640c
+
+ROBUST PICK: none meets all criteria
+
+HOLD_99 best in fine grid:
+  dca=  26 exit=hold99 strat= A | n= 66 mean=+11.47% med=+59.68% win=65.2% maxL= 800c total= +3515c

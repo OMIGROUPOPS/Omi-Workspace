@@ -1,0 +1,29 @@
+CELL: ATP_CHALL_underdog_20-24 | n_trajs_replayed: 57
+
+COARSE WINNER: dca=15 exit=15 strat=B | mean=+23.61% med=+62.50% n=53
+FINE WINNER  : dca=12 exit=17 strat=A | mean=+26.35% med=+70.83% n=53
+Fine improvement: +2.74% mean ROI
+
+Top 5 by mean ROI:
+  dca=  12 exit=    17 strat= A | n= 53 mean=+26.35% med=+70.83% win=67.9% maxL= 300c total= +3340c
+  dca=  15 exit=    17 strat= A | n= 53 mean=+26.22% med=+70.83% win=67.9% maxL= 285c total= +3195c
+  dca=  12 exit=    18 strat= A | n= 53 mean=+26.13% med=+75.00% win=66.0% maxL= 300c total= +3300c
+  dca=  15 exit=    18 strat= A | n= 53 mean=+25.99% med=+75.00% win=66.0% maxL= 285c total= +3150c
+  dca=  13 exit=    17 strat= A | n= 53 mean=+25.98% med=+70.83% win=67.9% maxL= 295c total= +3205c
+
+Top 5 by median ROI:
+  dca=  10 exit=    20 strat= A | n= 53 mean=+19.06% med=+83.33% win=60.4% maxL= 310c total= +2140c
+  dca=  10 exit=    20 strat= B | n= 53 mean=+18.70% med=+83.33% win=62.3% maxL= 310c total= +2080c
+  dca=  11 exit=    20 strat= A | n= 53 mean=+20.05% med=+83.33% win=60.4% maxL= 305c total= +2320c
+  dca=  11 exit=    20 strat= B | n= 53 mean=+18.19% med=+83.33% win=62.3% maxL= 305c total= +2020c
+  dca=  12 exit=    20 strat= A | n= 53 mean=+21.07% med=+83.33% win=60.4% maxL= 300c total= +2500c
+
+Top 5 by lowest max_loss:
+  dca=  20 exit=    10 strat= A | n= 53 mean=+14.32% med=+41.67% win=79.2% maxL= 260c total= +1640c
+  dca=  20 exit=    10 strat= B | n= 53 mean=+12.80% med=+41.67% win=79.2% maxL= 260c total= +1430c
+  dca=  20 exit=    11 strat= A | n= 53 mean=+14.93% med=+45.83% win=77.4% maxL= 260c total= +1700c
+  dca=  20 exit=    11 strat= B | n= 53 mean=+13.41% med=+45.83% win=77.4% maxL= 260c total= +1490c
+  dca=  20 exit=    12 strat= A | n= 53 mean=+12.55% med=+50.00% win=73.6% maxL= 260c total= +1360c
+
+ROBUST PICK (mean>0, med>0, win>50%, p25_roi > -50%):
+  dca=  11 exit=    12 strat= B | n= 53 mean=+24.06% med=+50.00% win=81.1% maxL= 305c total= +3045c

@@ -1,0 +1,97 @@
+==================================================================================================================================
+PER-POSITION COUNTERFACTUAL — Bucket B losers on hold_99 swap cells
+Simulated OLD config tick-by-tick using /tmp/bbo_log_v4.csv; baby sizing (10/5) matched to NEW
+==================================================================================================================================
+
+### IMA — KXATPCHALLENGERMATCH-26APR15IMABOU-IMA
+  cell=('ATP_CHALL', 'leader', 60, 64) | entry=61c @ 2026-04-15 01:15:01 | settle @ 2026-04-15 05:08:21
+  OLD config: dca_drop=25 | exit_target=25 | strategy=B (blended=True)
+  Initial sell target (PRE-DCA) = 86c
+  BBO window: 194596 ticks
+  Max bid after entry: 63c @ 2026-04-15 03:28:40
+  Min bid after entry: 0c @ 2026-04-15 05:04:44
+  DCA: FIRED @ 2026-04-15 03:43:40, bought 5ct @ 36c → blended=53c
+  New sell target under Strategy B = blended+exit = 78c
+  OUTCOME: SETTLED_LOST at 0c
+  OLD counterfactual P&L: -795c = $-7.95
+  NEW actual P&L:         -780c = $-7.80
+  DELTA (OLD - NEW):      -15c = $-0.15  (NEW better or tied)
+
+### TSE — KXATPCHALLENGERMATCH-26APR15SCHTSE-TSE
+  cell=('ATP_CHALL', 'underdog', 40, 44) | entry=44c @ 2026-04-15 07:36:27 | settle @ 2026-04-15 09:03:46
+  OLD config: dca_drop=30 | exit_target=25 | strategy=A (blended=False)
+  Initial sell target (PRE-DCA) = 69c
+  BBO window: 62712 ticks
+  Max bid after entry: 44c @ 2026-04-15 07:36:27
+  Min bid after entry: 0c @ 2026-04-15 08:37:45
+  DCA: FIRED @ 2026-04-15 08:16:44, bought 5ct @ 14c → blended=23c
+  Strategy A: sell target UNCHANGED at 69c
+  OUTCOME: SETTLED_LOST at 0c
+  OLD counterfactual P&L: -161c = $-1.61
+  NEW actual P&L:         -88c = $-0.88
+  DELTA (OLD - NEW):      -73c = $-0.73  (NEW better or tied)
+
+### LEO — KXATPCHALLENGERMATCH-26APR15LEOSHI-LEO
+  cell=('ATP_CHALL', 'leader', 65, 69) | entry=69c @ 2026-04-15 05:28:22 | settle @ 2026-04-15 06:28:27
+  OLD config: dca_drop=15 | exit_target=30 | strategy=B (blended=True)
+  Initial sell target (PRE-DCA) = 99c
+  BBO window: 83660 ticks
+  Max bid after entry: 74c @ 2026-04-15 05:33:19
+  Min bid after entry: 0c @ 2026-04-15 06:24:45
+  DCA: FIRED @ 2026-04-15 05:39:25, bought 5ct @ 53c → blended=64c
+  New sell target under Strategy B = blended+exit = 94c
+  OUTCOME: SETTLED_LOST at 0c
+  OLD counterfactual P&L: -960c = $-9.60
+  NEW actual P&L:         -690c = $-6.90
+  DELTA (OLD - NEW):      -270c = $-2.70  (NEW better or tied)
+
+### DRA — KXATPCHALLENGERMATCH-26APR15DRAREI-DRA
+  cell=('ATP_CHALL', 'leader', 65, 69) | entry=69c @ 2026-04-15 11:06:32 | settle @ 2026-04-15 12:54:06
+  OLD config: dca_drop=15 | exit_target=30 | strategy=B (blended=True)
+  Initial sell target (PRE-DCA) = 99c
+  BBO window: 259378 ticks
+  Max bid after entry: 76c @ 2026-04-15 11:38:05
+  Min bid after entry: 0c @ 2026-04-15 12:48:56
+  DCA: FIRED @ 2026-04-15 11:23:36, bought 5ct @ 54c → blended=64c
+  New sell target under Strategy B = blended+exit = 94c
+  OUTCOME: SETTLED_LOST at 0c
+  OLD counterfactual P&L: -960c = $-9.60
+  NEW actual P&L:         -690c = $-6.90
+  DELTA (OLD - NEW):      -270c = $-2.70  (NEW better or tied)
+
+### LAJ — KXATPCHALLENGERMATCH-26APR15HOULAJ-LAJ
+  cell=('ATP_CHALL', 'leader', 70, 74) | entry=72c @ 2026-04-15 09:10:18 | settle @ 2026-04-15 11:13:56
+  OLD config: dca_drop=30 | exit_target=10 | strategy=B (blended=True)
+  Initial sell target (PRE-DCA) = 82c
+  BBO window: 264032 ticks
+  Max bid after entry: 83c @ 2026-04-15 09:29:47
+  Min bid after entry: 0c @ 2026-04-15 10:58:10
+  DCA: did NOT fire (bid never dropped to entry-30=42c)
+  OUTCOME: SOLD_AT_TARGET_PRE_DCA at 82c
+  OLD counterfactual P&L: 20c = $+0.20
+  NEW actual P&L:         -975c = $-9.75
+  DELTA (OLD - NEW):      +995c = $+9.95  (OLD better)
+
+### JAC — KXWTAMATCH-26APR13MARJAC-JAC
+  cell=('WTA_MAIN', 'leader', 70, 74) | entry=72c @ 2026-04-15 08:07:35 | settle @ 2026-04-15 10:08:55
+  OLD config: dca_drop=30 | exit_target=10 | strategy=B (blended=True)
+  Initial sell target (PRE-DCA) = 82c
+  BBO window: 114355 ticks
+  Max bid after entry: 89c @ 2026-04-15 08:46:22
+  Min bid after entry: 0c @ 2026-04-15 10:01:10
+  DCA: did NOT fire (bid never dropped to entry-30=42c)
+  OUTCOME: SOLD_AT_TARGET_PRE_DCA at 82c
+  OLD counterfactual P&L: 40c = $+0.40
+  NEW actual P&L:         -960c = $-9.60
+  DELTA (OLD - NEW):      +1000c = $+10.00  (OLD better)
+
+==================================================================================================================================
+SUMMARY
+==================================================================================================================================
+Positions analyzed: 6
+NEW actual P&L total: -4183c = $-41.83
+OLD counterfactual total: -2816c = $-28.16
+DELTA (OLD - NEW): +1367c = $+13.67
+
+VERDICT:
+  OLD config would have made $+13.67 MORE than NEW. hold_99 IS the cancer. REVERT.

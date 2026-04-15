@@ -1,0 +1,28 @@
+CELL: ATP_CHALL_underdog_15-19 | n_trades_in_data: 51
+
+COARSE WINNER: dca=5 exit=30 strat=B | mean_roi=-16.09% med=-100.00% n=48
+FINE WINNER (1c): dca=8 exit=33 strat=A | mean_roi=-12.73% med=-100.00% n=48
+Fine-tuning improvement: +3.36% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=   8 exit=    33 strat= A | n= 48 mean=-12.73%  med=-100.00% win=29.2%  max_loss= 245c  total= -2015c
+  dca=   6 exit=    33 strat= A | n= 48 mean=-13.47%  med=-100.00% win=29.2%  max_loss= 255c  total= -2035c
+  dca=   9 exit=    33 strat= A | n= 48 mean=-13.76%  med=-100.00% win=29.2%  max_loss= 240c  total= -2230c
+  dca=   7 exit=    33 strat= A | n= 48 mean=-13.79%  med=-100.00% win=29.2%  max_loss= 250c  total= -2220c
+  dca=  10 exit=    33 strat= A | n= 48 mean=-14.11%  med=-100.00% win=29.2%  max_loss= 235c  total= -2250c
+
+Top 5 FINE by median ROI:
+  dca=   1 exit=    25 strat= A | n= 48 mean=-21.43%  med=-100.00% win=33.3%  max_loss= 280c  total= -2790c
+  dca=   1 exit=    25 strat= B | n= 48 mean=-21.43%  med=-100.00% win=33.3%  max_loss= 280c  total= -2790c
+  dca=   1 exit=    26 strat= A | n= 48 mean=-24.67%  med=-100.00% win=31.2%  max_loss= 280c  total= -3225c
+  dca=   1 exit=    26 strat= B | n= 48 mean=-24.67%  med=-100.00% win=31.2%  max_loss= 280c  total= -3225c
+  dca=   1 exit=    27 strat= A | n= 48 mean=-22.99%  med=-100.00% win=31.2%  max_loss= 280c  total= -3000c
+
+Top 5 FINE by lowest max_loss:
+  dca=  10 exit=    25 strat= A | n= 48 mean=-17.67%  med=-100.00% win=33.3%  max_loss= 235c  total= -2600c
+  dca=  10 exit=    25 strat= B | n= 48 mean=-19.67%  med=-100.00% win=33.3%  max_loss= 235c  total= -2825c
+  dca=  10 exit=    26 strat= A | n= 48 mean=-20.74%  med=-100.00% win=31.2%  max_loss= 235c  total= -2910c
+  dca=  10 exit=    26 strat= B | n= 48 mean=-22.73%  med=-100.00% win=31.2%  max_loss= 235c  total= -3135c
+  dca=  10 exit=    27 strat= A | n= 48 mean=-18.98%  med=-100.00% win=31.2%  max_loss= 235c  total= -2735c
+
+ROBUST PICK: none meets all criteria — cell has no positive-EV config

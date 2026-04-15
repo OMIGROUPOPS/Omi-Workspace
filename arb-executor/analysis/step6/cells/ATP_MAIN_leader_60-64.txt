@@ -1,0 +1,29 @@
+CELL: ATP_MAIN_leader_60-64 | n_trades_in_data: 56
+
+COARSE WINNER: dca=25 exit=15 strat=B | mean_roi=+0.83% med=+23.44% n=51
+FINE WINNER (1c): dca=25 exit=17 strat=B | mean_roi=+3.19% med=+26.56% n=51
+Fine-tuning improvement: +2.35% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=  25 exit=    17 strat= B | n= 51 mean= +3.19%  med=+26.56% win=70.6%  max_loss= 835c  total=  +345c
+  dca=  24 exit=    17 strat= B | n= 51 mean= +2.96%  med=+26.56% win=70.6%  max_loss= 840c  total=  +230c
+  dca=  25 exit=    19 strat= B | n= 51 mean= +2.82%  med=+29.69% win=68.6%  max_loss= 835c  total=   +60c
+  dca=  23 exit=    17 strat= B | n= 51 mean= +2.79%  med=+26.56% win=70.6%  max_loss= 845c  total=  +195c
+  dca=  24 exit=    19 strat= B | n= 51 mean= +2.60%  med=+29.69% win=68.6%  max_loss= 840c  total=   -55c
+
+Top 5 FINE by median ROI:
+  dca=  20 exit=    20 strat= A | n= 51 mean= -2.78%  med=+31.25% win=60.8%  max_loss= 860c  total= -2410c
+  dca=  20 exit=    20 strat= B | n= 51 mean= -0.14%  med=+31.25% win=64.7%  max_loss= 860c  total= -1255c
+  dca=  21 exit=    20 strat= A | n= 51 mean= -2.58%  med=+31.25% win=60.8%  max_loss= 855c  total= -2290c
+  dca=  21 exit=    20 strat= B | n= 51 mean= +0.07%  med=+31.25% win=64.7%  max_loss= 855c  total= -1135c
+  dca=  22 exit=    20 strat= A | n= 51 mean= -2.38%  med=+31.25% win=60.8%  max_loss= 850c  total= -2170c
+
+Top 5 FINE by lowest max_loss:
+  dca=  30 exit=    10 strat= A | n= 51 mean= -4.46%  med=+15.62% win=68.6%  max_loss= 810c  total= -2590c
+  dca=  30 exit=    10 strat= B | n= 51 mean= -5.66%  med=+15.62% win=70.6%  max_loss= 810c  total= -3085c
+  dca=  30 exit=    11 strat= A | n= 51 mean= -2.99%  med=+17.19% win=68.6%  max_loss= 810c  total= -2025c
+  dca=  30 exit=    11 strat= B | n= 51 mean= -4.52%  med=+17.19% win=70.6%  max_loss= 810c  total= -2655c
+  dca=  30 exit=    12 strat= A | n= 51 mean= -5.44%  med=+18.75% win=66.7%  max_loss= 810c  total= -3040c
+
+ROBUST PICK (mean>0, med>0, win>50%, max_loss<50c):
+  dca=  25 exit=    17 strat= B | n= 51 mean= +3.19%  med=+26.56% win=70.6%  max_loss= 835c  total=  +345c

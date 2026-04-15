@@ -1,0 +1,29 @@
+CELL: WTA_MAIN_underdog_30-34 | n_trades_in_data: 25
+*** SAMPLE WARNING: n < 30 — conclusions tentative ***
+
+COARSE WINNER: dca=20 exit=30 strat=A | mean_roi=-6.62% med=-100.00% n=23
+FINE WINNER (1c): dca=20 exit=34 strat=A | mean_roi=-1.21% med=-100.00% n=23
+Fine-tuning improvement: +5.41% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=  20 exit=    34 strat= A | n= 23 mean= -1.21%  med=-100.00% win=39.1%  max_loss= 395c  total=  -370c
+  dca=  17 exit=    34 strat= A | n= 23 mean= -1.40%  med=-100.00% win=39.1%  max_loss= 410c  total=  -370c
+  dca=  19 exit=    34 strat= A | n= 23 mean= -1.90%  med=-100.00% win=39.1%  max_loss= 400c  total=  -455c
+  dca=  16 exit=    34 strat= A | n= 23 mean= -2.17%  med=-100.00% win=39.1%  max_loss= 415c  total=  -460c
+  dca=  22 exit=    34 strat= A | n= 23 mean= -2.30%  med=-100.00% win=39.1%  max_loss= 385c  total=  -480c
+
+Top 5 FINE by median ROI:
+  dca=  15 exit=    25 strat= B | n= 23 mean=-11.30%  med= -9.09% win=43.5%  max_loss= 420c  total= -1285c
+  dca=  15 exit=    26 strat= B | n= 23 mean= -9.82%  med= -9.09% win=43.5%  max_loss= 420c  total= -1150c
+  dca=  15 exit=    27 strat= B | n= 23 mean= -8.33%  med= -9.09% win=43.5%  max_loss= 420c  total= -1015c
+  dca=  16 exit=    25 strat= B | n= 23 mean=-10.60%  med= -9.09% win=43.5%  max_loss= 415c  total= -1195c
+  dca=  16 exit=    26 strat= B | n= 23 mean= -9.11%  med= -9.09% win=43.5%  max_loss= 415c  total= -1060c
+
+Top 5 FINE by lowest max_loss:
+  dca=  25 exit=    25 strat= A | n= 23 mean=-17.89%  med=-100.00% win=39.1%  max_loss= 370c  total= -1690c
+  dca=  25 exit=    25 strat= B | n= 23 mean=-20.71%  med=-100.00% win=39.1%  max_loss= 370c  total= -1930c
+  dca=  25 exit=    26 strat= A | n= 23 mean=-16.62%  med=-100.00% win=39.1%  max_loss= 370c  total= -1590c
+  dca=  25 exit=    26 strat= B | n= 23 mean=-19.44%  med=-100.00% win=39.1%  max_loss= 370c  total= -1830c
+  dca=  25 exit=    27 strat= A | n= 23 mean=-15.34%  med=-100.00% win=39.1%  max_loss= 370c  total= -1490c
+
+ROBUST PICK: none meets all criteria — cell has no positive-EV config

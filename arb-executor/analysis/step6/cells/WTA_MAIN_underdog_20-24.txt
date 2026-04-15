@@ -1,0 +1,35 @@
+CELL: WTA_MAIN_underdog_20-24 | n_trades_in_data: 15
+*** SAMPLE WARNING: n < 30 — conclusions tentative ***
+
+COARSE WINNER: dca=15 exit=hold99 strat=A | mean_roi=+40.19% med=-100.00% n=14
+FINE WINNER (1c): dca=13 exit=4 strat=B | mean_roi=+42.01% med=+16.67% n=14
+Fine-tuning improvement: +1.82% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=  13 exit=     4 strat= B | n= 14 mean=+42.01%  med=+16.67% win=85.7%  max_loss= 295c  total= +1405c
+  dca=  12 exit=     4 strat= B | n= 14 mean=+41.43%  med=+16.67% win=85.7%  max_loss= 300c  total= +1380c
+  dca=  11 exit=     4 strat= B | n= 14 mean=+40.87%  med=+16.67% win=85.7%  max_loss= 305c  total= +1355c
+  dca=  15 exit=hold99 strat= A | n= 14 mean=+40.19%  med=-100.00% win=28.6%  max_loss= 285c  total= +1180c
+  dca=  15 exit=hold99 strat= B | n= 14 mean=+40.19%  med=-100.00% win=28.6%  max_loss= 285c  total= +1180c
+
+Top 5 FINE by median ROI:
+  dca=  10 exit=     5 strat= B | n= 14 mean=+36.60%  med=+23.32% win=78.6%  max_loss= 310c  total= +1180c
+  dca=  10 exit=     5 strat= A | n= 14 mean=+21.74%  med=+20.83% win=64.3%  max_loss= 310c  total=  +535c
+  dca=  11 exit=     5 strat= A | n= 14 mean=+20.67%  med=+20.83% win=64.3%  max_loss= 305c  total=  +490c
+  dca=  11 exit=     5 strat= B | n= 14 mean=+35.43%  med=+20.83% win=78.6%  max_loss= 305c  total= +1120c
+  dca=  12 exit=     5 strat= A | n= 14 mean=+21.01%  med=+20.83% win=64.3%  max_loss= 300c  total=  +520c
+
+Top 5 FINE by lowest max_loss:
+  dca=  20 exit=hold99 strat= A | n= 14 mean=+32.44%  med=-100.00% win=28.6%  max_loss= 260c  total=  +930c
+  dca=  20 exit=hold99 strat= B | n= 14 mean=+32.44%  med=-100.00% win=28.6%  max_loss= 260c  total=  +930c
+  dca=  20 exit=     1 strat= A | n= 14 mean= +9.52%  med= +4.17% win=71.4%  max_loss= 260c  total=  +240c
+  dca=  20 exit=     1 strat= B | n= 14 mean=+16.94%  med= +4.17% win=78.6%  max_loss= 260c  total=  +510c
+  dca=  20 exit=     2 strat= A | n= 14 mean=+11.90%  med= +8.33% win=71.4%  max_loss= 260c  total=  +320c
+
+ROBUST PICK (mean>0, med>0, win>50%, max_loss<50c):
+  dca=  13 exit=     4 strat= B | n= 14 mean=+42.01%  med=+16.67% win=85.7%  max_loss= 295c  total= +1405c
+
+HOLD_99 comparison (best hold_99 variant):
+  dca=  13 exit=hold99 strat= A | n= 14 mean=+38.93%  med=-100.00% win=28.6%  max_loss= 295c  total= +1090c
+  hold_99 vs robust: mean Δ=-3.08% | median Δ=-116.67% | max_loss Δ=+0c
+  Recommendation: prefer finite (robust pick)

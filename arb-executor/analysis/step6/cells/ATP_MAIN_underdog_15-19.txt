@@ -1,0 +1,29 @@
+CELL: ATP_MAIN_underdog_15-19 | n_trades_in_data: 22
+*** SAMPLE WARNING: n < 30 — conclusions tentative ***
+
+COARSE WINNER: dca=5 exit=5 strat=A | mean_roi=-44.26% med=-100.00% n=19
+FINE WINNER (1c): dca=5 exit=3 strat=B | mean_roi=-33.09% med=+15.38% n=19
+Fine-tuning improvement: +11.17% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=   5 exit=     3 strat= B | n= 19 mean=-33.09%  med=+15.38% win=57.9%  max_loss= 260c  total= -1480c
+  dca=   9 exit=     1 strat= B | n= 19 mean=-33.21%  med= +5.26% win=63.2%  max_loss= 240c  total= -1330c
+  dca=   9 exit=     1 strat= A | n= 19 mean=-33.86%  med= +5.26% win=57.9%  max_loss= 240c  total= -1360c
+  dca=   8 exit=     1 strat= B | n= 19 mean=-33.89%  med= +4.08% win=63.2%  max_loss= 245c  total= -1375c
+  dca=   8 exit=     1 strat= A | n= 19 mean=-34.54%  med= +5.26% win=57.9%  max_loss= 245c  total= -1405c
+
+Top 5 FINE by median ROI:
+  dca=   6 exit=     3 strat= B | n= 19 mean=-38.57%  med=+15.79% win=52.6%  max_loss= 255c  total= -1725c
+  dca=   7 exit=     3 strat= B | n= 19 mean=-37.95%  med=+15.79% win=52.6%  max_loss= 250c  total= -1670c
+  dca=   8 exit=     3 strat= B | n= 19 mean=-38.92%  med=+15.79% win=52.6%  max_loss= 245c  total= -1635c
+  dca=   9 exit=     3 strat= B | n= 19 mean=-38.28%  med=+15.79% win=52.6%  max_loss= 240c  total= -1585c
+  dca=   5 exit=     3 strat= B | n= 19 mean=-33.09%  med=+15.38% win=57.9%  max_loss= 260c  total= -1480c
+
+Top 5 FINE by lowest max_loss:
+  dca=  10 exit=     1 strat= A | n= 19 mean=-39.88%  med= +5.26% win=52.6%  max_loss= 235c  total= -1615c
+  dca=  10 exit=     1 strat= B | n= 19 mean=-38.20%  med= +5.26% win=57.9%  max_loss= 235c  total= -1540c
+  dca=  10 exit=     2 strat= A | n= 19 mean=-49.75%  med=-100.00% win=42.1%  max_loss= 235c  total= -2065c
+  dca=  10 exit=     2 strat= B | n= 19 mean=-46.73%  med=-100.00% win=47.4%  max_loss= 235c  total= -1930c
+  dca=  10 exit=     3 strat= A | n= 19 mean=-47.36%  med=-100.00% win=42.1%  max_loss= 235c  total= -1970c
+
+ROBUST PICK: none meets all criteria — cell has no positive-EV config

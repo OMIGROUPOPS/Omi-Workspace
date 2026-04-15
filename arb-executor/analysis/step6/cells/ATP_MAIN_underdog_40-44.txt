@@ -1,0 +1,28 @@
+CELL: ATP_MAIN_underdog_40-44 | n_trades_in_data: 43
+
+COARSE WINNER: dca=20 exit=15 strat=B | mean_roi=-16.07% med=+35.71% n=39
+FINE WINNER (1c): dca=20 exit=12 strat=A | mean_roi=-13.28% med=+28.57% n=39
+Fine-tuning improvement: +2.79% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=  20 exit=    12 strat= A | n= 39 mean=-13.28%  med=+28.57% win=56.4%  max_loss= 530c  total= -3140c
+  dca=  15 exit=    12 strat= A | n= 39 mean=-13.35%  med=+28.57% win=56.4%  max_loss= 555c  total= -3260c
+  dca=  16 exit=    12 strat= A | n= 39 mean=-13.46%  med=+28.57% win=56.4%  max_loss= 550c  total= -3280c
+  dca=  16 exit=    12 strat= B | n= 39 mean=-13.53%  med=+28.57% win=59.0%  max_loss= 550c  total= -3295c
+  dca=  19 exit=    12 strat= A | n= 39 mean=-13.57%  med=+28.57% win=56.4%  max_loss= 535c  total= -3245c
+
+Top 5 FINE by median ROI:
+  dca=  15 exit=    17 strat= B | n= 39 mean=-17.06%  med=+40.48% win=51.3%  max_loss= 555c  total= -4075c
+  dca=  16 exit=    17 strat= B | n= 39 mean=-16.83%  med=+40.48% win=51.3%  max_loss= 550c  total= -4030c
+  dca=  20 exit=    17 strat= B | n= 39 mean=-17.03%  med=+40.48% win=51.3%  max_loss= 530c  total= -3920c
+  dca=  15 exit=    16 strat= B | n= 39 mean=-18.38%  med=+38.10% win=51.3%  max_loss= 555c  total= -4335c
+  dca=  16 exit=    16 strat= B | n= 39 mean=-18.14%  med=+38.10% win=51.3%  max_loss= 550c  total= -4285c
+
+Top 5 FINE by lowest max_loss:
+  dca=  25 exit=    10 strat= A | n= 39 mean=-17.80%  med=+23.81% win=56.4%  max_loss= 505c  total= -3835c
+  dca=  25 exit=    10 strat= B | n= 39 mean=-20.23%  med=+23.81% win=56.4%  max_loss= 505c  total= -4315c
+  dca=  25 exit=    11 strat= A | n= 39 mean=-16.39%  med=+26.19% win=56.4%  max_loss= 505c  total= -3595c
+  dca=  25 exit=    11 strat= B | n= 39 mean=-18.83%  med=+26.19% win=56.4%  max_loss= 505c  total= -4075c
+  dca=  25 exit=    12 strat= A | n= 39 mean=-14.99%  med=+28.57% win=56.4%  max_loss= 505c  total= -3355c
+
+ROBUST PICK: none meets all criteria — cell has no positive-EV config

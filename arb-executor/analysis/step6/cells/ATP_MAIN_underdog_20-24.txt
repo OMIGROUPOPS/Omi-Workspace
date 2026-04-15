@@ -1,0 +1,29 @@
+CELL: ATP_MAIN_underdog_20-24 | n_trades_in_data: 18
+*** SAMPLE WARNING: n < 30 — conclusions tentative ***
+
+COARSE WINNER: dca=10 exit=30 strat=B | mean_roi=+2.65% med=-100.00% n=14
+FINE WINNER (1c): dca=12 exit=31 strat=B | mean_roi=+5.60% med=-100.00% n=14
+Fine-tuning improvement: +2.95% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=  12 exit=    31 strat= B | n= 14 mean= +5.60%  med=-100.00% win=42.9%  max_loss= 300c  total=  +140c
+  dca=  11 exit=    31 strat= B | n= 14 mean= +4.40%  med=-100.00% win=42.9%  max_loss= 305c  total=   +85c
+  dca=  12 exit=    30 strat= B | n= 14 mean= +3.57%  med=-100.00% win=42.9%  max_loss= 300c  total=   +60c
+  dca=  12 exit=    27 strat= A | n= 14 mean= +3.21%  med=-100.00% win=42.9%  max_loss= 300c  total=   +60c
+  dca=  15 exit=    27 strat= A | n= 14 mean= +3.05%  med=-100.00% win=42.9%  max_loss= 285c  total=   +15c
+
+Top 5 FINE by median ROI:
+  dca=   5 exit=    25 strat= A | n= 14 mean= -7.06%  med=-100.00% win=42.9%  max_loss= 335c  total=  -335c
+  dca=   5 exit=    25 strat= B | n= 14 mean=-10.26%  med=-100.00% win=42.9%  max_loss= 335c  total=  -485c
+  dca=   5 exit=    26 strat= A | n= 14 mean= -5.16%  med=-100.00% win=42.9%  max_loss= 335c  total=  -250c
+  dca=   5 exit=    26 strat= B | n= 14 mean= -8.36%  med=-100.00% win=42.9%  max_loss= 335c  total=  -400c
+  dca=   5 exit=    27 strat= A | n= 14 mean= -3.26%  med=-100.00% win=42.9%  max_loss= 335c  total=  -165c
+
+Top 5 FINE by lowest max_loss:
+  dca=  15 exit=    25 strat= A | n= 14 mean= -0.99%  med=-100.00% win=42.9%  max_loss= 285c  total=  -135c
+  dca=  15 exit=    25 strat= B | n= 14 mean= -6.63%  med=-100.00% win=42.9%  max_loss= 285c  total=  -360c
+  dca=  15 exit=    26 strat= A | n= 14 mean= +1.03%  med=-100.00% win=42.9%  max_loss= 285c  total=   -60c
+  dca=  15 exit=    26 strat= B | n= 14 mean= -4.61%  med=-100.00% win=42.9%  max_loss= 285c  total=  -285c
+  dca=  15 exit=    27 strat= A | n= 14 mean= +3.05%  med=-100.00% win=42.9%  max_loss= 285c  total=   +15c
+
+ROBUST PICK: none meets all criteria — cell has no positive-EV config

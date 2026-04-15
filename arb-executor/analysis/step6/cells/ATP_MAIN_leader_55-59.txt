@@ -1,0 +1,29 @@
+CELL: ATP_MAIN_leader_55-59 | n_trades_in_data: 44
+
+COARSE WINNER: dca=30 exit=15 strat=B | mean_roi=+14.83% med=+26.32% n=42
+FINE WINNER (1c): dca=33 exit=16 strat=B | mean_roi=+16.33% med=+28.07% n=42
+Fine-tuning improvement: +1.50% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=  33 exit=    16 strat= B | n= 42 mean=+16.33%  med=+28.07% win=81.0%  max_loss= 690c  total= +3800c
+  dca=  32 exit=    16 strat= B | n= 42 mean=+16.19%  med=+28.07% win=81.0%  max_loss= 695c  total= +3755c
+  dca=  31 exit=    15 strat= B | n= 42 mean=+14.97%  med=+26.32% win=81.0%  max_loss= 700c  total= +3450c
+  dca=  33 exit=    15 strat= B | n= 42 mean=+14.93%  med=+26.32% win=81.0%  max_loss= 690c  total= +3450c
+  dca=  30 exit=    15 strat= B | n= 42 mean=+14.83%  med=+26.32% win=81.0%  max_loss= 705c  total= +3405c
+
+Top 5 FINE by median ROI:
+  dca=  25 exit=    20 strat= A | n= 42 mean= +1.10%  med=+35.09% win=64.3%  max_loss= 730c  total=  -910c
+  dca=  25 exit=    20 strat= B | n= 42 mean= +6.67%  med=+35.09% win=69.0%  max_loss= 730c  total=  +800c
+  dca=  26 exit=    20 strat= A | n= 42 mean= +1.19%  med=+35.09% win=64.3%  max_loss= 725c  total=  -845c
+  dca=  26 exit=    20 strat= B | n= 42 mean= +3.21%  med=+35.09% win=66.7%  max_loss= 725c  total=  -230c
+  dca=  27 exit=    20 strat= A | n= 42 mean= +1.28%  med=+35.09% win=64.3%  max_loss= 720c  total=  -780c
+
+Top 5 FINE by lowest max_loss:
+  dca=  35 exit=    10 strat= A | n= 42 mean= +1.84%  med=+17.54% win=73.8%  max_loss= 680c  total=  +100c
+  dca=  35 exit=    10 strat= B | n= 42 mean= +5.09%  med=+17.54% win=78.6%  max_loss= 680c  total= +1030c
+  dca=  35 exit=    11 strat= A | n= 42 mean= +2.36%  med=+19.30% win=73.8%  max_loss= 680c  total=   +70c
+  dca=  35 exit=    11 strat= B | n= 42 mean= +6.35%  med=+19.30% win=78.6%  max_loss= 680c  total= +1210c
+  dca=  35 exit=    12 strat= A | n= 42 mean= +3.60%  med=+21.05% win=73.8%  max_loss= 680c  total=  +375c
+
+ROBUST PICK (mean>0, med>0, win>50%, max_loss<50c):
+  dca=  33 exit=    16 strat= B | n= 42 mean=+16.33%  med=+28.07% win=81.0%  max_loss= 690c  total= +3800c

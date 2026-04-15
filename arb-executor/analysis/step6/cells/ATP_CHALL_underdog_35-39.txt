@@ -1,0 +1,29 @@
+CELL: ATP_CHALL_underdog_35-39 | n_trades_in_data: 95
+
+COARSE WINNER: dca=20 exit=10 strat=B | mean_roi=+6.86% med=+25.64% n=86
+FINE WINNER (1c): dca=24 exit=9 strat=A | mean_roi=+10.41% med=+23.08% n=86
+Fine-tuning improvement: +3.54% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=  24 exit=     9 strat= A | n= 86 mean=+10.41%  med=+23.08% win=77.9%  max_loss= 465c  total= +3050c
+  dca=  21 exit=     9 strat= A | n= 86 mean=+10.30%  med=+23.08% win=77.9%  max_loss= 480c  total= +2960c
+  dca=  22 exit=     9 strat= A | n= 86 mean=+10.25%  med=+23.08% win=77.9%  max_loss= 475c  total= +2945c
+  dca=  23 exit=     9 strat= A | n= 86 mean=+10.16%  med=+23.08% win=77.9%  max_loss= 470c  total= +2920c
+  dca=  18 exit=     9 strat= A | n= 86 mean=+10.04%  med=+23.08% win=77.9%  max_loss= 495c  total= +3100c
+
+Top 5 FINE by median ROI:
+  dca=  15 exit=    15 strat= A | n= 86 mean= -3.61%  med=+38.46% win=62.8%  max_loss= 510c  total= -2920c
+  dca=  15 exit=    15 strat= B | n= 86 mean= +1.35%  med=+38.46% win=68.6%  max_loss= 510c  total=  -745c
+  dca=  16 exit=    15 strat= A | n= 86 mean= -3.76%  med=+38.46% win=62.8%  max_loss= 505c  total= -3000c
+  dca=  16 exit=    15 strat= B | n= 86 mean= +1.60%  med=+38.46% win=68.6%  max_loss= 505c  total=  -675c
+  dca=  17 exit=    15 strat= A | n= 86 mean= -3.70%  med=+38.46% win=62.8%  max_loss= 500c  total= -2940c
+
+Top 5 FINE by lowest max_loss:
+  dca=  25 exit=     5 strat= A | n= 86 mean= +1.18%  med=+12.82% win=77.9%  max_loss= 460c  total=  -270c
+  dca=  25 exit=     5 strat= B | n= 86 mean= +0.12%  med=+12.82% win=79.1%  max_loss= 460c  total=  -690c
+  dca=  25 exit=     6 strat= A | n= 86 mean= +2.12%  med=+15.38% win=76.7%  max_loss= 460c  total=   +25c
+  dca=  25 exit=     6 strat= B | n= 86 mean= +0.79%  med=+15.38% win=77.9%  max_loss= 460c  total=  -500c
+  dca=  25 exit=     7 strat= A | n= 86 mean= +2.67%  med=+17.95% win=75.6%  max_loss= 460c  total=  +160c
+
+ROBUST PICK (mean>0, med>0, win>50%, max_loss<50c):
+  dca=  24 exit=     9 strat= A | n= 86 mean=+10.41%  med=+23.08% win=77.9%  max_loss= 465c  total= +3050c

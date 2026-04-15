@@ -1,0 +1,29 @@
+CELL: ATP_MAIN_underdog_25-29 | n_trades_in_data: 22
+*** SAMPLE WARNING: n < 30 — conclusions tentative ***
+
+COARSE WINNER: dca=25 exit=5 strat=A | mean_roi=-6.47% med=+17.86% n=21
+FINE WINNER (1c): dca=26 exit=8 strat=A | mean_roi=-5.74% med=+28.57% n=21
+Fine-tuning improvement: +0.73% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=  26 exit=     8 strat= A | n= 21 mean= -5.74%  med=+28.57% win=57.1%  max_loss= 290c  total=  -400c
+  dca=  25 exit=     8 strat= A | n= 21 mean= -6.04%  med=+28.57% win=57.1%  max_loss= 295c  total=  -450c
+  dca=  26 exit=     5 strat= A | n= 21 mean= -6.19%  med=+17.86% win=61.9%  max_loss= 290c  total=  -420c
+  dca=  24 exit=     8 strat= A | n= 21 mean= -6.33%  med=+28.57% win=57.1%  max_loss= 300c  total=  -500c
+  dca=  25 exit=     5 strat= A | n= 21 mean= -6.47%  med=+17.86% win=61.9%  max_loss= 295c  total=  -465c
+
+Top 5 FINE by median ROI:
+  dca=  20 exit=    10 strat= A | n= 21 mean=-20.45%  med=+35.71% win=52.4%  max_loss= 320c  total= -1500c
+  dca=  20 exit=    10 strat= B | n= 21 mean=-23.58%  med=+35.71% win=52.4%  max_loss= 320c  total= -1710c
+  dca=  21 exit=    10 strat= A | n= 21 mean=-20.18%  med=+35.71% win=52.4%  max_loss= 315c  total= -1445c
+  dca=  21 exit=    10 strat= B | n= 21 mean=-23.36%  med=+35.71% win=52.4%  max_loss= 315c  total= -1655c
+  dca=  22 exit=    10 strat= A | n= 21 mean=-19.90%  med=+35.71% win=52.4%  max_loss= 310c  total= -1390c
+
+Top 5 FINE by lowest max_loss:
+  dca=  28 exit=     1 strat= A | n= 21 mean=-39.12%  med=-100.00% win=42.9%  max_loss= 280c  total= -2300c
+  dca=  28 exit=     1 strat= B | n= 21 mean=-39.12%  med=-100.00% win=42.9%  max_loss= 280c  total= -2300c
+  dca=  28 exit=     2 strat= A | n= 21 mean=-27.55%  med= +7.14% win=52.4%  max_loss= 280c  total= -1620c
+  dca=  28 exit=     2 strat= B | n= 21 mean=-27.55%  med= +7.14% win=52.4%  max_loss= 280c  total= -1620c
+  dca=  28 exit=     3 strat= A | n= 21 mean=-20.58%  med=+10.71% win=57.1%  max_loss= 280c  total= -1210c
+
+ROBUST PICK: none meets all criteria — cell has no positive-EV config

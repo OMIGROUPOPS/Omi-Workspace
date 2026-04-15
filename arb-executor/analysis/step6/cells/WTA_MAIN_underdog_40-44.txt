@@ -1,0 +1,28 @@
+CELL: WTA_MAIN_underdog_40-44 | n_trades_in_data: 51
+
+COARSE WINNER: dca=10 exit=30 strat=A | mean_roi=-2.96% med=+32.95% n=46
+FINE WINNER (1c): dca=10 exit=33 strat=A | mean_roi=+0.96% med=+36.36% n=46
+Fine-tuning improvement: +3.92% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=  10 exit=    33 strat= A | n= 46 mean= +0.96%  med=+36.36% win=50.0%  max_loss= 610c  total=  -295c
+  dca=  11 exit=    33 strat= A | n= 46 mean= +0.86%  med=+36.36% win=50.0%  max_loss= 605c  total=  -555c
+  dca=   9 exit=    33 strat= A | n= 46 mean= +0.65%  med=+36.36% win=50.0%  max_loss= 615c  total=  -265c
+  dca=  12 exit=    33 strat= A | n= 46 mean= +0.64%  med=+36.36% win=50.0%  max_loss= 600c  total=  -835c
+  dca=  13 exit=    33 strat= A | n= 46 mean= +0.28%  med=+36.36% win=50.0%  max_loss= 595c  total= -1135c
+
+Top 5 FINE by median ROI:
+  dca=  14 exit=    29 strat= B | n= 46 mean= -3.70%  med=+65.91% win=52.2%  max_loss= 590c  total= -2210c
+  dca=  11 exit=    28 strat= B | n= 46 mean= -4.83%  med=+63.64% win=52.2%  max_loss= 605c  total= -2095c
+  dca=  12 exit=    28 strat= B | n= 46 mean= -4.63%  med=+63.64% win=52.2%  max_loss= 600c  total= -2210c
+  dca=  13 exit=    28 strat= B | n= 46 mean= -4.55%  med=+63.64% win=52.2%  max_loss= 595c  total= -2345c
+  dca=  14 exit=    28 strat= B | n= 46 mean= -4.94%  med=+63.64% win=52.2%  max_loss= 590c  total= -2500c
+
+Top 5 FINE by lowest max_loss:
+  dca=  15 exit=    25 strat= A | n= 46 mean=-10.29%  med=+27.27% win=50.0%  max_loss= 585c  total= -3915c
+  dca=  15 exit=    25 strat= B | n= 46 mean=-12.24%  med=+27.27% win=50.0%  max_loss= 585c  total= -4440c
+  dca=  15 exit=    26 strat= A | n= 46 mean= -9.11%  med=+28.41% win=50.0%  max_loss= 585c  total= -3650c
+  dca=  15 exit=    26 strat= B | n= 46 mean=-11.06%  med=+28.41% win=50.0%  max_loss= 585c  total= -4175c
+  dca=  15 exit=    27 strat= A | n= 46 mean= -7.93%  med=+29.55% win=50.0%  max_loss= 585c  total= -3385c
+
+ROBUST PICK: none meets all criteria — cell has no positive-EV config

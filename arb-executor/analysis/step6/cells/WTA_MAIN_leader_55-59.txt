@@ -1,0 +1,28 @@
+CELL: WTA_MAIN_leader_55-59 | n_trades_in_data: 36
+
+COARSE WINNER: dca=10 exit=5 strat=B | mean_roi=-5.54% med=+8.77% n=32
+FINE WINNER (1c): dca=14 exit=8 strat=B | mean_roi=-1.62% med=+14.04% n=32
+Fine-tuning improvement: +3.92% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=  14 exit=     8 strat= B | n= 32 mean= -1.62%  med=+14.04% win=78.1%  max_loss= 785c  total=  -935c
+  dca=  13 exit=     7 strat= B | n= 32 mean= -2.77%  med=+12.28% win=78.1%  max_loss= 790c  total= -1170c
+  dca=  12 exit=     7 strat= B | n= 32 mean= -2.92%  med=+12.28% win=78.1%  max_loss= 795c  total= -1225c
+  dca=  14 exit=     7 strat= B | n= 32 mean= -3.02%  med=+12.28% win=78.1%  max_loss= 785c  total= -1220c
+  dca=  11 exit=     7 strat= B | n= 32 mean= -3.06%  med=+12.28% win=78.1%  max_loss= 800c  total= -1220c
+
+Top 5 FINE by median ROI:
+  dca=   5 exit=    10 strat= A | n= 32 mean=-16.27%  med=+17.54% win=62.5%  max_loss= 830c  total= -4760c
+  dca=   6 exit=    10 strat= A | n= 32 mean=-16.04%  med=+17.54% win=62.5%  max_loss= 825c  total= -4665c
+  dca=   6 exit=    10 strat= B | n= 32 mean=-13.49%  med=+17.54% win=65.6%  max_loss= 825c  total= -3990c
+  dca=   7 exit=    10 strat= A | n= 32 mean=-15.97%  med=+17.54% win=62.5%  max_loss= 820c  total= -4655c
+  dca=   7 exit=    10 strat= B | n= 32 mean=-13.28%  med=+17.54% win=65.6%  max_loss= 820c  total= -3950c
+
+Top 5 FINE by lowest max_loss:
+  dca=  15 exit=     1 strat= A | n= 32 mean=-13.52%  med= +1.75% win=75.0%  max_loss= 780c  total= -3370c
+  dca=  15 exit=     1 strat= B | n= 32 mean=-12.13%  med= +1.75% win=78.1%  max_loss= 780c  total= -3025c
+  dca=  15 exit=     2 strat= A | n= 32 mean=-12.68%  med= +3.51% win=75.0%  max_loss= 780c  total= -3460c
+  dca=  15 exit=     2 strat= B | n= 32 mean=-13.88%  med= +3.51% win=75.0%  max_loss= 780c  total= -3760c
+  dca=  15 exit=     3 strat= A | n= 32 mean= -8.12%  med= +5.26% win=75.0%  max_loss= 780c  total= -2370c
+
+ROBUST PICK: none meets all criteria — cell has no positive-EV config

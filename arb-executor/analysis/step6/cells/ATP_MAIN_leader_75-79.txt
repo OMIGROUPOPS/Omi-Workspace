@@ -1,0 +1,30 @@
+CELL: ATP_MAIN_leader_75-79 | n_trades_in_data: 17
+*** SAMPLE WARNING: n < 30 — conclusions tentative ***
+
+COARSE WINNER: dca=25 exit=5 strat=B | mean_roi=+4.93% med=+6.49% n=15
+FINE WINNER (1c): dca=30 exit=9 strat=B | mean_roi=+9.53% med=+11.69% n=15
+Fine-tuning improvement: +4.60% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=  30 exit=     9 strat= B | n= 15 mean= +9.53%  med=+11.69% win=86.7%  max_loss=  60c  total= +1195c
+  dca=  29 exit=     9 strat= B | n= 15 mean= +9.41%  med=+11.69% win=86.7%  max_loss=  60c  total= +1180c
+  dca=  28 exit=     8 strat= B | n= 15 mean= +8.44%  med=+10.39% win=86.7%  max_loss=  60c  total= +1065c
+  dca=  30 exit=     8 strat= B | n= 15 mean= +8.36%  med=+10.39% win=86.7%  max_loss=  60c  total= +1050c
+  dca=  27 exit=     8 strat= B | n= 15 mean= +8.33%  med=+10.39% win=86.7%  max_loss=  60c  total= +1050c
+
+Top 5 FINE by median ROI:
+  dca=  20 exit=    10 strat= A | n= 15 mean= -3.33%  med=+12.99% win=73.3%  max_loss=1055c  total=  -820c
+  dca=  20 exit=    10 strat= B | n= 15 mean= +2.92%  med=+12.99% win=80.0%  max_loss=1055c  total=  +170c
+  dca=  21 exit=    10 strat= A | n= 15 mean= -3.26%  med=+12.99% win=73.3%  max_loss=1050c  total=  -800c
+  dca=  21 exit=    10 strat= B | n= 15 mean= +3.03%  med=+12.99% win=80.0%  max_loss=1050c  total=  +190c
+  dca=  22 exit=    10 strat= A | n= 15 mean= -3.97%  med=+12.99% win=73.3%  max_loss=1045c  total=  -940c
+
+Top 5 FINE by lowest max_loss:
+  dca=  20 exit=     2 strat= A | n= 15 mean= +3.77%  med= +2.60% win=86.7%  max_loss=  60c  total=  +470c
+  dca=  20 exit=     2 strat= B | n= 15 mean= +3.10%  med= +2.60% win=86.7%  max_loss=  60c  total=  +365c
+  dca=  20 exit=     3 strat= B | n= 15 mean= +2.41%  med= +3.90% win=86.7%  max_loss=  60c  total=  +300c
+  dca=  20 exit=     4 strat= B | n= 15 mean= +3.55%  med= +5.19% win=86.7%  max_loss=  60c  total=  +440c
+  dca=  20 exit=     5 strat= B | n= 15 mean= +4.70%  med= +6.49% win=86.7%  max_loss=  60c  total=  +600c
+
+ROBUST PICK (mean>0, med>0, win>50%, max_loss<50c):
+  dca=  30 exit=     9 strat= B | n= 15 mean= +9.53%  med=+11.69% win=86.7%  max_loss=  60c  total= +1195c

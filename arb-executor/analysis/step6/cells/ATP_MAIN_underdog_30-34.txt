@@ -1,0 +1,31 @@
+CELL: ATP_MAIN_underdog_30-34 | n_trades_in_data: 33
+
+COARSE WINNER: dca=15 exit=hold99 strat=A | mean_roi=+27.68% med=-51.52% n=32
+FINE WINNER (1c): dca=13 exit=hold99 strat=A | mean_roi=+27.88% med=-51.52% n=32
+Fine-tuning improvement: +0.21% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=  13 exit=hold99 strat= A | n= 32 mean=+27.88%  med=-51.52% win=43.8%  max_loss= 430c  total= +2640c
+  dca=  13 exit=hold99 strat= B | n= 32 mean=+27.88%  med=-51.52% win=43.8%  max_loss= 430c  total= +2640c
+  dca=  15 exit=hold99 strat= A | n= 32 mean=+27.68%  med=-51.52% win=43.8%  max_loss= 420c  total= +2460c
+  dca=  15 exit=hold99 strat= B | n= 32 mean=+27.68%  med=-51.52% win=43.8%  max_loss= 420c  total= +2460c
+  dca=  12 exit=hold99 strat= A | n= 32 mean=+27.17%  med=-51.52% win=40.6%  max_loss= 435c  total= +2525c
+
+Top 5 FINE by median ROI:
+  dca=  10 exit=     5 strat= A | n= 32 mean=-11.51%  med=+15.15% win=68.8%  max_loss= 445c  total= -1845c
+  dca=  10 exit=     5 strat= B | n= 32 mean=-14.36%  med=+15.15% win=68.8%  max_loss= 445c  total= -2250c
+  dca=  11 exit=     5 strat= A | n= 32 mean=-15.15%  med=+15.15% win=65.6%  max_loss= 440c  total= -2330c
+  dca=  11 exit=     5 strat= B | n= 32 mean=-14.94%  med=+15.15% win=68.8%  max_loss= 440c  total= -2300c
+  dca=  12 exit=     5 strat= A | n= 32 mean=-14.78%  med=+15.15% win=65.6%  max_loss= 435c  total= -2245c
+
+Top 5 FINE by lowest max_loss:
+  dca=  20 exit=hold99 strat= A | n= 32 mean=+20.39%  med=-51.52% win=43.8%  max_loss= 395c  total= +1120c
+  dca=  20 exit=hold99 strat= B | n= 32 mean=+20.39%  med=-51.52% win=43.8%  max_loss= 395c  total= +1120c
+  dca=  20 exit=     1 strat= A | n= 32 mean=-19.45%  med= +3.03% win=59.4%  max_loss= 395c  total= -2685c
+  dca=  20 exit=     1 strat= B | n= 32 mean=-13.87%  med= +3.03% win=65.6%  max_loss= 395c  total= -1980c
+  dca=  20 exit=     2 strat= A | n= 32 mean=-33.44%  med= +6.06% win=56.2%  max_loss= 395c  total= -4225c
+
+ROBUST PICK: none meets all criteria — cell has no positive-EV config
+
+HOLD_99 comparison (best hold_99 variant):
+  dca=  13 exit=hold99 strat= A | n= 32 mean=+27.88%  med=-51.52% win=43.8%  max_loss= 430c  total= +2640c

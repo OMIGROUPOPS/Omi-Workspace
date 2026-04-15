@@ -1,0 +1,28 @@
+CELL: ATP_CHALL_underdog_25-29 | n_trades_in_data: 55
+
+COARSE WINNER: dca=10 exit=10 strat=A | mean_roi=-2.22% med=+35.71% n=54
+FINE WINNER (1c): dca=14 exit=11 strat=A | mean_roi=-1.38% med=+39.29% n=54
+Fine-tuning improvement: +0.84% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=  14 exit=    11 strat= A | n= 54 mean= -1.38%  med=+39.29% win=63.0%  max_loss= 350c  total=  -740c
+  dca=  11 exit=    10 strat= A | n= 54 mean= -1.52%  med=+35.71% win=64.8%  max_loss= 365c  total=  -730c
+  dca=  10 exit=    13 strat= B | n= 54 mean= -1.56%  med=+46.43% win=63.0%  max_loss= 370c  total=  -890c
+  dca=  12 exit=    10 strat= A | n= 54 mean= -1.63%  med=+35.71% win=64.8%  max_loss= 360c  total=  -780c
+  dca=  12 exit=    13 strat= B | n= 54 mean= -1.81%  med=+46.43% win=63.0%  max_loss= 360c  total=  -940c
+
+Top 5 FINE by median ROI:
+  dca=   5 exit=    15 strat= A | n= 54 mean=-10.22%  med=+53.57% win=53.7%  max_loss= 395c  total= -2620c
+  dca=   5 exit=    15 strat= B | n= 54 mean= -7.27%  med=+53.57% win=57.4%  max_loss= 395c  total= -1990c
+  dca=   6 exit=    15 strat= A | n= 54 mean= -9.45%  med=+53.57% win=53.7%  max_loss= 390c  total= -2410c
+  dca=   6 exit=    15 strat= B | n= 54 mean= -9.38%  med=+53.57% win=55.6%  max_loss= 390c  total= -2395c
+  dca=   7 exit=    15 strat= A | n= 54 mean= -9.69%  med=+53.57% win=53.7%  max_loss= 385c  total= -2640c
+
+Top 5 FINE by lowest max_loss:
+  dca=  15 exit=     5 strat= A | n= 54 mean=-17.01%  med=+17.86% win=64.8%  max_loss= 345c  total= -3330c
+  dca=  15 exit=     5 strat= B | n= 54 mean=-18.79%  med=+17.86% win=66.7%  max_loss= 345c  total= -3660c
+  dca=  15 exit=     6 strat= A | n= 54 mean=-15.44%  med=+21.43% win=63.0%  max_loss= 345c  total= -3095c
+  dca=  15 exit=     6 strat= B | n= 54 mean=-16.73%  med=+21.43% win=64.8%  max_loss= 345c  total= -3335c
+  dca=  15 exit=     7 strat= A | n= 54 mean=-12.56%  med=+25.00% win=63.0%  max_loss= 345c  total= -2600c
+
+ROBUST PICK: none meets all criteria — cell has no positive-EV config

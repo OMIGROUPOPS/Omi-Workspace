@@ -1,0 +1,28 @@
+CELL: ATP_MAIN_underdog_35-39 | n_trades_in_data: 42
+
+COARSE WINNER: dca=5 exit=25 strat=B | mean_roi=+0.89% med=+64.10% n=41
+FINE WINNER (1c): dca=7 exit=25 strat=B | mean_roi=+1.95% med=+64.10% n=41
+Fine-tuning improvement: +1.06% mean-ROI
+
+Top 5 FINE by mean ROI:
+  dca=   7 exit=    25 strat= B | n= 41 mean= +1.95%  med=+64.10% win=56.1%  max_loss= 550c  total=  -270c
+  dca=  10 exit=    23 strat= A | n= 41 mean= +1.72%  med=+58.97% win=56.1%  max_loss= 535c  total=  -470c
+  dca=   9 exit=    23 strat= A | n= 41 mean= +1.57%  med=+58.97% win=56.1%  max_loss= 540c  total=  -440c
+  dca=   6 exit=    25 strat= B | n= 41 mean= +1.39%  med=+64.10% win=56.1%  max_loss= 555c  total=  -415c
+  dca=   8 exit=    23 strat= A | n= 41 mean= +1.36%  med=+58.97% win=56.1%  max_loss= 545c  total=  -420c
+
+Top 5 FINE by median ROI:
+  dca=   8 exit=    27 strat= B | n= 41 mean= +0.17%  med=+69.23% win=53.7%  max_loss= 545c  total=  -705c
+  dca=   5 exit=    26 strat= B | n= 41 mean= -1.80%  med=+66.67% win=53.7%  max_loss= 560c  total= -1085c
+  dca=   6 exit=    26 strat= B | n= 41 mean= -1.33%  med=+66.67% win=53.7%  max_loss= 555c  total= -1065c
+  dca=   7 exit=    26 strat= B | n= 41 mean= -0.81%  med=+66.67% win=53.7%  max_loss= 550c  total=  -920c
+  dca=   8 exit=    26 strat= B | n= 41 mean= -1.21%  med=+66.67% win=53.7%  max_loss= 545c  total=  -985c
+
+Top 5 FINE by lowest max_loss:
+  dca=  10 exit=    20 strat= A | n= 41 mean= -3.31%  med=+51.28% win=56.1%  max_loss= 535c  total= -1610c
+  dca=  10 exit=    20 strat= B | n= 41 mean= -5.36%  med=+51.28% win=56.1%  max_loss= 535c  total= -2060c
+  dca=  10 exit=    21 strat= A | n= 41 mean= -1.87%  med=+53.85% win=56.1%  max_loss= 535c  total= -1340c
+  dca=  10 exit=    21 strat= B | n= 41 mean= -3.92%  med=+53.85% win=56.1%  max_loss= 535c  total= -1790c
+  dca=  10 exit=    22 strat= A | n= 41 mean= +0.28%  med=+56.41% win=56.1%  max_loss= 535c  total=  -750c
+
+ROBUST PICK: none meets all criteria — cell has no positive-EV config

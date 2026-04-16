@@ -2035,21 +2035,22 @@ class TennisV5:
                                     side, ms.auto_sell_price, ms.position_qty, _sell_tag))
                     continue
 
-                # --- MAKER PHASE: bid+1c (bid+2c after 30min) + per-cell offset ---
-                # V5 20260415 (Option C): maker_bid_offset stacks on top of
-                # bid+1/bid+2. Leader cells offset=0 (unchanged). Underdog
-                # cells use negative offset to anticipate pregame deflation.
+                # --- MAKER PHASE: direction-aware placement ---
+                # Leaders: ask-1 for fast fill (ride upward drift)
+                # Underdogs: bid+1 (+2 after 30min) + per-cell offset (patient fill)
                 offset = getattr(ms, 'maker_bid_offset', 0)
-                if gate_age > 1800:  # 30min since gate opened
-                    buy_price = min(bid + 2 + offset, ask - 1, max_price, cfg['entry_max'])
+                if ms.direction == 'leader':
+                    buy_price = min(ask - 1, max_price, cfg['entry_max'])
                 else:
-                    buy_price = min(bid + 1 + offset, ask - 1, max_price, cfg['entry_max'])
-                # Floor at 1c (Kalshi minimum)
+                    if gate_age > 1800:
+                        buy_price = min(bid + 2 + offset, ask - 1, max_price, cfg['entry_max'])
+                    else:
+                        buy_price = min(bid + 1 + offset, ask - 1, max_price, cfg['entry_max'])
                 buy_price = max(1, buy_price)
 
                 # Ensure post_only: buy_price must be < ask
                 if buy_price >= ask:
-                    buy_price = bid  # fall back to bid if bid+1 would cross
+                    buy_price = ask - 1 if ask > 1 else 1
 
                 # Bug D fix: sub-range filter applied to buy_price (not bid).
                 # This is the actual price we'd place at — if it drifts above

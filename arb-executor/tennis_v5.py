@@ -558,15 +558,20 @@ class MatchState:
 
     # Match detection
     gate_bid: int = 0               # leader bid at gate open — pregame floor check
+    gate_ask: int = 0               # ask at gate open
+    gate_mid: float = 0.0           # (gate_bid + gate_ask) / 2
+    gate_spread: int = 0            # gate_ask - gate_bid
     match_started: bool = False
     match_start_ts: float = 0.0
     tick_count_window: int = 0
     tick_window_start: float = 0.0
     last_bid: int = 0               # last seen bid for change detection
+    last_ask: int = 0               # last seen ask
     bid_change_count: int = 0        # bid changes in current window
 
     # Entry state
     pick_bid: int = 0              # bid price seen at PICK_SIDE time
+    pick_ask: int = 0              # ask price seen at PICK_SIDE time
     entry_phase: str = "waiting"  # waiting | pregame | seeking | placed | filled | skipped
     pregame_order_id: str = ""     # resting pregame maker buy
     pregame_placed_ts: float = 0.0
@@ -591,6 +596,10 @@ class MatchState:
     price_stability_phase: str = ""   # "" | "monitoring" | "pregame" | "live_detected"
     first_bid: int = 0                # first observed bid on leader side
     first_bid_ts: float = 0.0        # when first_bid was recorded
+    first_ask: int = 0               # first observed ask
+    first_ask_ts: float = 0.0
+    first_mid: float = 0.0           # (first_bid + first_ask) / 2
+    first_spread: int = 0            # first_ask - first_bid
     det_time_ts: float = 0.0         # expected_determination_time from Kalshi
 
     # DCA state
@@ -1221,6 +1230,7 @@ class TennisV5:
             # Suppress false MATCH_START if >2h before estimated start
             if ms.scheduled_start_ts and now < ms.scheduled_start_ts - 7200:
                 ms.last_bid = bid
+                ms.last_ask = book.best_ask if book else 0
                 return  # too early — bid changes are pregame noise
             if bid != ms.last_bid and ms.last_bid > 0:
                 if now - ms.tick_window_start > 60:
@@ -1228,6 +1238,7 @@ class TennisV5:
                     ms.bid_change_count = 0
                 ms.bid_change_count += 1
             ms.last_bid = bid
+            ms.last_ask = book.best_ask if book else 0
             if ms.bid_change_count >= MATCH_START_TPM:
                 ms.match_started = True
                 ms.match_start_ts = now
@@ -1258,6 +1269,11 @@ class TennisV5:
             if ms.first_bid == 0:
                 ms.first_bid = bid
                 ms.first_bid_ts = now
+                _ask = book.best_ask if book else 0
+                ms.first_ask = _ask
+                ms.first_ask_ts = now
+                ms.first_mid = (bid + _ask) / 2.0 if _ask > 0 else float(bid)
+                ms.first_spread = _ask - bid if _ask > 0 else 0
             elif abs(bid - ms.first_bid) >= 5:
                 is_fallback_sched = ms.schedule_source in (
                     "price_stability", "exp_exp-2.5h", "open_time+2h", "det_time-3h")
@@ -1611,7 +1627,15 @@ class TennisV5:
                         if bk and bk.best_bid > best_gate_bid:
                             best_gate_bid = bk.best_bid
                     ms.gate_bid = best_gate_bid
-                    log("[GATE_OPEN] %s | %dm before start | gate_bid=%dc" % (event, max(mins_to, 0), best_gate_bid))
+                    best_gate_ask = 100
+                    for t in ms.tickers:
+                        bk = self.books.get(t)
+                        if bk and bk.best_ask < best_gate_ask:
+                            best_gate_ask = bk.best_ask
+                    ms.gate_ask = best_gate_ask
+                    ms.gate_mid = (best_gate_bid + best_gate_ask) / 2.0
+                    ms.gate_spread = best_gate_ask - best_gate_bid
+                    log("[GATE_OPEN] %s | %dm before start | gate_bid=%dc gate_ask=%dc spread=%dc" % (event, max(mins_to, 0), best_gate_bid, best_gate_ask, ms.gate_spread))
 
             if ms.entry_phase == "pregame":
                 # Short-circuit: if position already filled, skip pregame
@@ -1712,6 +1736,9 @@ class TennisV5:
                                 created_ts=time.time())
                             ms2.tickers = set(ms.tickers)
                             ms2.gate_bid = ms.gate_bid
+                            ms2.gate_ask = ms.gate_ask
+                            ms2.gate_mid = ms.gate_mid
+                            ms2.gate_spread = ms.gate_spread
                             ms2.earliest_entry_ts = ms.earliest_entry_ts
                             ms2.scheduled_start_ts = ms.scheduled_start_ts
                             ms2.latest_entry_ts = ms.latest_entry_ts
@@ -1767,6 +1794,8 @@ class TennisV5:
 
                     ms.our_ticker = chosen_ticker
                     ms.pick_bid = chosen_bid
+                    _pick_bk = self.books.get(chosen_ticker)
+                    ms.pick_ask = _pick_bk.best_ask if _pick_bk else 0
                     side_code = chosen_ticker.split("-")[-1]
                     other_code = (underdog_t if chosen_direction == 'leader' else leader_t).split("-")[-1]
                     other_bid = underdog_bid if chosen_direction == 'leader' else leader_bid
@@ -1840,6 +1869,9 @@ class TennisV5:
                                         created_ts=time.time())
                                     ms2.tickers = set(ms.tickers)
                                     ms2.gate_bid = ms.gate_bid
+                                    ms2.gate_ask = ms.gate_ask
+                                    ms2.gate_mid = ms.gate_mid
+                                    ms2.gate_spread = ms.gate_spread
                                     ms2.earliest_entry_ts = ms.earliest_entry_ts
                                     ms2.scheduled_start_ts = ms.scheduled_start_ts
                                     ms2.latest_entry_ts = ms.latest_entry_ts

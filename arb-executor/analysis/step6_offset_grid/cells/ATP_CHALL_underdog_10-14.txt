@@ -1,0 +1,47 @@
+CELL: ATP_CHALL_underdog_10-14 | entry_range: 11-13 | deployed_offset: -5
+n_trajectories: 31
+
+Peak bid distribution (offset=0 baseline):
+  p25=15c p50=28c p75=47c p90=89c | reaches_95c=10% reaches_99c=10%
+
+Fill rate by offset:
+  offset=+1:   71% fill rate
+  offset=+0:   68% fill rate
+  offset=-1:   61% fill rate
+  offset=-2:    0% fill rate
+  offset=-3:    0% fill rate
+  offset=-4:    0% fill rate
+  offset=-5:    0% fill rate
+
+RECOMMENDATION: off=-1 dca=   5 exit=  +21c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +54.2c med= +210.0c win=  53% maxL= 170c
+  ** OFFSET CHANGE from -5 to -1 **
+
+For comparison, same cell at offset=0 (baseline leader behavior):
+  off=+0 dca=   5 exit=  +21c strat= B | n= 21 fill=  68% fill_px=12.4c mean=  +35.7c med= -140.0c win=  48% maxL= 170c
+
+Best hold_99 variant: off=-1 dca=  10 exit=hold99 strat= A | n= 19 fill=  61% fill_px=12.4c mean=  +22.1c med= -145.0c win=  16% maxL= 145c
+Best finite variant: off=-1 dca=   5 exit=  +21c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +54.2c med= +210.0c win=  53% maxL= 170c
+
+Top 10 by mean_pnl:
+  off=-1 dca=   5 exit=  +21c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +54.2c med= +210.0c win=  53% maxL= 170c
+  off=-1 dca=   4 exit=  +20c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +53.2c med= +200.0c win=  53% maxL= 175c
+  off=-1 dca=   6 exit=  +21c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +52.1c med= +210.0c win=  53% maxL= 165c
+  off=-1 dca=   2 exit=  +20c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +50.8c med= +200.0c win=  53% maxL= 185c
+  off=-1 dca=   4 exit=  +19c strat= A | n= 19 fill=  61% fill_px=12.4c mean=  +50.5c med= +190.0c win=  53% maxL= 175c
+  off=-1 dca=   1 exit=  +19c strat= A | n= 19 fill=  61% fill_px=12.4c mean=  +50.0c med= +190.0c win=  53% maxL= 190c
+  off=-1 dca=   1 exit=  +19c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +50.0c med= +190.0c win=  53% maxL= 190c
+  off=-1 dca=   3 exit=  +20c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +49.5c med= +200.0c win=  53% maxL= 180c
+  off=-1 dca=   2 exit=  +19c strat= A | n= 19 fill=  61% fill_px=12.4c mean=  +48.7c med= +190.0c win=  53% maxL= 185c
+  off=-1 dca=   5 exit=  +20c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +47.9c med= +200.0c win=  53% maxL= 170c
+
+Top 10 by median_pnl:
+  off=-1 dca=   5 exit=  +21c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +54.2c med= +210.0c win=  53% maxL= 170c
+  off=-1 dca=   6 exit=  +21c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +52.1c med= +210.0c win=  53% maxL= 165c
+  off=-1 dca=   4 exit=  +20c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +53.2c med= +200.0c win=  53% maxL= 175c
+  off=-1 dca=   2 exit=  +20c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +50.8c med= +200.0c win=  53% maxL= 185c
+  off=-1 dca=   3 exit=  +20c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +49.5c med= +200.0c win=  53% maxL= 180c
+  off=-1 dca=   5 exit=  +20c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +47.9c med= +200.0c win=  53% maxL= 170c
+  off=-1 dca=   5 exit=  +20c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +47.9c med= +200.0c win=  53% maxL= 170c
+  off=-1 dca=   6 exit=  +20c strat= B | n= 19 fill=  61% fill_px=12.4c mean=  +46.1c med= +200.0c win=  53% maxL= 165c
+  off=-1 dca=   4 exit=  +19c strat= A | n= 19 fill=  61% fill_px=12.4c mean=  +50.5c med= +190.0c win=  53% maxL= 175c
+  off=-1 dca=   1 exit=  +19c strat= A | n= 19 fill=  61% fill_px=12.4c mean=  +50.0c med= +190.0c win=  53% maxL= 190c

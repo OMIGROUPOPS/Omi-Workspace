@@ -1,0 +1,46 @@
+CELL: WTA_CHALL_underdog_40-44 | entry_range: 40-44 | deployed_offset: -1
+n_trajectories: 20
+
+Peak bid distribution (offset=0 baseline):
+  p25=55c p50=99c p75=99c p90=99c | reaches_95c=59% reaches_99c=59%
+
+Fill rate by offset:
+  offset=+1:   85% fill rate
+  offset=+0:   85% fill rate
+  offset=-1:   80% fill rate
+  offset=-2:    0% fill rate
+  offset=-3:    0% fill rate
+  offset=-4:    0% fill rate
+  offset=-5:    0% fill rate
+
+RECOMMENDATION: off=-1 dca=   1 exit=hold99 strat= A | n= 16 fill=  80% fill_px=42.8c mean= +290.9c med= +837.5c win=  62% maxL= 655c
+
+For comparison, same cell at offset=0 (baseline leader behavior):
+  off=+0 dca=   2 exit=hold99 strat= A | n= 17 fill=  85% fill_px=43.2c mean= +255.3c med= +835.0c win=  59% maxL= 650c
+
+Best hold_99 variant: off=-1 dca=   1 exit=hold99 strat= A | n= 16 fill=  80% fill_px=42.8c mean= +290.9c med= +837.5c win=  62% maxL= 655c
+Best finite variant: off=+1 dca=   5 exit=  +30c strat= A | n= 17 fill=  85% fill_px=43.4c mean=  +66.2c med= +475.0c win=  65% maxL= 635c
+
+Top 10 by mean_pnl:
+  off=-1 dca=   1 exit=hold99 strat= A | n= 16 fill=  80% fill_px=42.8c mean= +290.9c med= +837.5c win=  62% maxL= 655c
+  off=-1 dca=   1 exit=hold99 strat= B | n= 16 fill=  80% fill_px=42.8c mean= +290.9c med= +837.5c win=  62% maxL= 655c
+  off=-1 dca=   8 exit=hold99 strat= A | n= 16 fill=  80% fill_px=42.8c mean= +285.0c med= +722.5c win=  62% maxL= 620c
+  off=-1 dca=   8 exit=hold99 strat= B | n= 16 fill=  80% fill_px=42.8c mean= +285.0c med= +722.5c win=  62% maxL= 620c
+  off=-1 dca=   7 exit=hold99 strat= A | n= 16 fill=  80% fill_px=42.8c mean= +280.6c med= +720.0c win=  62% maxL= 625c
+  off=-1 dca=   7 exit=hold99 strat= B | n= 16 fill=  80% fill_px=42.8c mean= +280.6c med= +720.0c win=  62% maxL= 625c
+  off=-1 dca=   2 exit=hold99 strat= A | n= 16 fill=  80% fill_px=42.8c mean= +277.5c med= +835.0c win=  62% maxL= 650c
+  off=-1 dca=   2 exit=hold99 strat= B | n= 16 fill=  80% fill_px=42.8c mean= +277.5c med= +835.0c win=  62% maxL= 650c
+  off=-1 dca=   6 exit=hold99 strat= A | n= 16 fill=  80% fill_px=42.8c mean= +276.2c med= +717.5c win=  62% maxL= 630c
+  off=-1 dca=   6 exit=hold99 strat= B | n= 16 fill=  80% fill_px=42.8c mean= +276.2c med= +717.5c win=  62% maxL= 630c
+
+Top 10 by median_pnl:
+  off=+0 dca=   3 exit=hold99 strat= A | n= 17 fill=  85% fill_px=43.2c mean= +242.9c med= +840.0c win=  59% maxL= 645c
+  off=+0 dca=   3 exit=hold99 strat= B | n= 17 fill=  85% fill_px=43.2c mean= +242.9c med= +840.0c win=  59% maxL= 645c
+  off=-1 dca=   1 exit=hold99 strat= A | n= 16 fill=  80% fill_px=42.8c mean= +290.9c med= +837.5c win=  62% maxL= 655c
+  off=-1 dca=   1 exit=hold99 strat= B | n= 16 fill=  80% fill_px=42.8c mean= +290.9c med= +837.5c win=  62% maxL= 655c
+  off=-1 dca=   2 exit=hold99 strat= A | n= 16 fill=  80% fill_px=42.8c mean= +277.5c med= +835.0c win=  62% maxL= 650c
+  off=-1 dca=   2 exit=hold99 strat= B | n= 16 fill=  80% fill_px=42.8c mean= +277.5c med= +835.0c win=  62% maxL= 650c
+  off=+0 dca=   2 exit=hold99 strat= A | n= 17 fill=  85% fill_px=43.2c mean= +255.3c med= +835.0c win=  59% maxL= 650c
+  off=+0 dca=   2 exit=hold99 strat= B | n= 17 fill=  85% fill_px=43.2c mean= +255.3c med= +835.0c win=  59% maxL= 650c
+  off=+0 dca=   1 exit=hold99 strat= A | n= 17 fill=  85% fill_px=43.2c mean= +250.3c med= +830.0c win=  59% maxL= 655c
+  off=+0 dca=   1 exit=hold99 strat= B | n= 17 fill=  85% fill_px=43.2c mean= +250.3c med= +830.0c win=  59% maxL= 655c

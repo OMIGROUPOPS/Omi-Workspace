@@ -14,6 +14,9 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
+
+ET = ZoneInfo("America/New_York")
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tennis_schedule import get_match_schedule
@@ -21,7 +24,7 @@ from tennis_schedule import get_match_schedule
 OUT_PATH = Path(__file__).resolve().parent / "state" / "schedule.json"
 OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
-now = datetime.now(timezone.utc)
+now = datetime.now(ET)
 today = (now.year, now.month, now.day)
 
 # Tomorrow
@@ -36,7 +39,8 @@ for k, v in sched_tomorrow.items():
         combined[k] = v
 
 output = {
-    "fetched_utc": now.isoformat(),
+    "fetched_et": now.strftime("%Y-%m-%d %I:%M:%S %p ET"),
+    "fetched_epoch": time.time(),
     "today": "%04d-%02d-%02d" % today,
     "tomorrow": "%04d-%02d-%02d" % tomorrow,
     "count": len(combined),
@@ -47,4 +51,4 @@ with open(OUT_PATH, "w") as f:
     json.dump(output, f)
 
 print("[%s] Schedule refreshed: %d matches -> %s" % (
-    now.strftime("%H:%M:%S"), len(combined), OUT_PATH))
+    now.strftime("%I:%M:%S %p ET"), len(combined), OUT_PATH))

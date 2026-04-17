@@ -21,6 +21,9 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Dict, Set, List, Optional
+from zoneinfo import ZoneInfo
+
+ET = ZoneInfo("America/New_York")
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, serialization
@@ -263,7 +266,7 @@ class LiveV3:
         self.start_ts = time.time()
 
         LOG_DIR.mkdir(parents=True, exist_ok=True)
-        date_str = datetime.now().strftime("%Y%m%d")
+        date_str = datetime.now(ET).strftime("%Y%m%d")
         self.log_path = LOG_DIR / ("live_v3_%s.jsonl" % date_str)
         self.log_file = open(self.log_path, "a")
         self._log("system_start", {"mode": "LIVE", "config_path": str(CONFIG_PATH),
@@ -276,7 +279,7 @@ class LiveV3:
 
     def _log(self, event, details=None, ticker=""):
         entry = {
-            "ts": datetime.now(timezone.utc).isoformat(),
+            "ts": datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p ET"),
             "ts_epoch": time.time(),
             "event": event,
             "ticker": ticker,
@@ -285,7 +288,7 @@ class LiveV3:
         self.log_file.write(json.dumps(entry) + "\n")
         self.log_file.flush()
         print("[%s] %s %s %s" % (
-            datetime.now().strftime("%H:%M:%S"),
+            datetime.now(ET).strftime("%I:%M:%S %p"),
             event.upper().ljust(20),
             ticker[:40] if ticker else "",
             json.dumps(details)[:120] if details else ""
@@ -308,10 +311,10 @@ class LiveV3:
             with open(SCHEDULE_FILE) as f:
                 data = json.load(f)
             self.schedule = data.get("schedule", {})
-            age = time.time() - datetime.fromisoformat(data["fetched_utc"]).timestamp()
+            age = time.time() - data.get("fetched_epoch", time.time())
             self._log("schedule_loaded", {
                 "count": len(self.schedule),
-                "fetched": data.get("fetched_utc", "?"),
+                "fetched": data.get("fetched_et", "?"),
                 "age_min": round(age / 60),
             })
         except FileNotFoundError:
@@ -869,7 +872,7 @@ class LiveV3:
                     "reason": "start_too_old",
                     "event": et,
                     "late_sec": round(late_sec),
-                    "start_time": datetime.fromtimestamp(start_ts, tz=timezone.utc).isoformat(),
+                    "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET"),
                 })
                 continue
 
@@ -1168,14 +1171,8 @@ class LiveV3:
             self._save_processed()
 
         # Startup validation
-        try:
-            ET = timezone(timedelta(hours=-4))
-        except Exception:
-            ET = timezone.utc
         now_et = datetime.fromtimestamp(now, tz=ET)
-        now_utc = datetime.fromtimestamp(now, tz=timezone.utc)
-        print("\n[TIME] UTC: %s  ET: %s" % (
-            now_utc.strftime("%Y-%m-%d %H:%M:%S"), now_et.strftime("%Y-%m-%d %H:%M:%S")), flush=True)
+        print("\n[TIME] %s" % now_et.strftime("%Y-%m-%d %I:%M:%S %p ET"), flush=True)
 
         total_events = len(self.event_tickers)
         matched = len(self.event_start_time)
@@ -1186,48 +1183,47 @@ class LiveV3:
 
         # Next 5 matches bot is waiting on
         pending = []
-        for et, start_ts in sorted(self.event_start_time.items(), key=lambda x: x[1]):
-            if et in self.processed_events:
+        for evt, start_ts in sorted(self.event_start_time.items(), key=lambda x: x[1]):
+            if evt in self.processed_events:
                 continue
-            start_et = datetime.fromtimestamp(start_ts, tz=ET)
+            start_et_dt = datetime.fromtimestamp(start_ts, tz=ET)
             mins_away = (start_ts - now) / 60
-            pending.append((et, start_et, mins_away))
+            pending.append((evt, start_et_dt, mins_away))
         print("\n[PENDING] Next matches to enter (%d total):" % len(pending), flush=True)
-        for et, start_et, mins in pending[:5]:
-            players = self.event_player_names.get(et, ["?"])
-            print("  %-40s  start=%s ET  in %.0f min  players=%s" % (
-                et[:40], start_et.strftime("%H:%M"), mins, ", ".join(players)), flush=True)
+        for evt, start_et_dt, mins in pending[:5]:
+            players = self.event_player_names.get(evt, ["?"])
+            print("  %-40s  start=%s  in %.0f min  players=%s" % (
+                evt[:40], start_et_dt.strftime("%I:%M %p ET"), mins, ", ".join(players)), flush=True)
         if not pending:
             print("  (none — all events processed or unmatched)", flush=True)
 
         # Log FOMSUN schedule match verification (if present)
-        for et in self.event_tickers:
-            if "FOMSUN" in et:
-                st = self.event_start_time.get(et)
-                processed = et in self.processed_events
+        for evt in self.event_tickers:
+            if "FOMSUN" in evt:
+                st = self.event_start_time.get(evt)
+                is_processed = evt in self.processed_events
                 if st:
-                    print("\n[VERIFY] %s schedule matched: start=%s UTC, processed=%s" % (
-                        et, datetime.fromtimestamp(st, tz=timezone.utc).strftime("%H:%M:%S"), processed), flush=True)
+                    print("\n[VERIFY] %s schedule matched: start=%s, processed=%s" % (
+                        evt, datetime.fromtimestamp(st, tz=ET).strftime("%I:%M %p ET"), is_processed), flush=True)
                 else:
-                    print("\n[VERIFY] %s schedule: NO MATCH, processed=%s" % (et, processed), flush=True)
+                    print("\n[VERIFY] %s schedule: NO MATCH, processed=%s" % (evt, is_processed), flush=True)
 
         # Unmatched events with recent open_time (coverage gaps)
         recent_unmatched = []
-        for et in self.event_tickers:
-            if et in self.processed_events or et in self.event_start_time:
+        for evt in self.event_tickers:
+            if evt in self.processed_events or evt in self.event_start_time:
                 continue
-            open_ts = self.event_open_time.get(et, 0)
+            open_ts = self.event_open_time.get(evt, 0)
             if now - open_ts < 86400:
-                recent_unmatched.append((et, now - open_ts))
+                recent_unmatched.append((evt, now - open_ts))
         if recent_unmatched:
             print("\n[WARN] Unmatched events with open_time < 24h:", flush=True)
-            for et, age in recent_unmatched:
-                players = self.event_player_names.get(et, ["?"])
-                print("  %-40s  open_age=%.0fh  players=%s" % (et[:40], age/3600, ", ".join(players)), flush=True)
+            for evt, age in recent_unmatched:
+                players = self.event_player_names.get(evt, ["?"])
+                print("  %-40s  open_age=%.0fh  players=%s" % (evt[:40], age/3600, ", ".join(players)), flush=True)
 
         self._log("startup_validation", {
-            "utc": now_utc.isoformat(),
-            "et": now_et.isoformat(),
+            "time_et": now_et.strftime("%Y-%m-%d %I:%M:%S %p ET"),
             "total_events": total_events,
             "schedule_matched": matched,
             "unmatched": unmatched,

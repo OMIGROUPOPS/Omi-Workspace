@@ -39,8 +39,12 @@ WS_PING_INTERVAL = 15
 WS_SUBSCRIBE_BATCH = 50
 DISCOVERY_INTERVAL = 300
 ENTRY_CANCEL_TIMEOUT = 1800  # 30 min
-FILL_CHECK_INTERVAL = 30     # poll fills every 30s
+FILL_CHECK_INTERVAL = 5      # poll fills every 5s
 EXIT_PRICE_CAP = 98           # never post exit above 98c
+PREGAME_WINDOW_SEC = 60       # only enter if open_time within last 60s
+
+STATE_DIR = Path(__file__).resolve().parent / "state"
+PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
 
 SERIES_MAP = {
     'ATP_MAIN': ['KXATPMATCH'],
@@ -233,9 +237,14 @@ class LiveV3:
         self.ticker_to_event: Dict[str, str] = {}
         self.event_tickers: Dict[str, Set[str]] = defaultdict(set)
         self.ticker_category: Dict[str, str] = {}
+        self.event_open_time: Dict[str, float] = {}  # event_ticker -> open_time epoch
 
         self.positions: Dict[str, Position] = {}
         self.seen_events: Set[str] = set()
+
+        # Persistent processed-tickers set (survives restarts)
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        self.processed_events: Set[str] = self._load_processed()
 
         self.n_matches_seen = 0
         self.n_entries = 0
@@ -272,6 +281,17 @@ class LiveV3:
             ticker[:40] if ticker else "",
             json.dumps(details)[:120] if details else ""
         ), flush=True)
+
+    def _load_processed(self):
+        try:
+            with open(PROCESSED_FILE) as f:
+                return set(json.load(f))
+        except (FileNotFoundError, ValueError):
+            return set()
+
+    def _save_processed(self):
+        with open(PROCESSED_FILE, "w") as f:
+            json.dump(sorted(self.processed_events), f)
 
     def get_category(self, ticker):
         for cat_name, prefixes in SERIES_MAP.items():
@@ -467,6 +487,15 @@ class LiveV3:
                     et = m["event_ticker"]
                     self.ticker_to_event[ticker] = et
                     self.event_tickers[et].add(ticker)
+                    # Capture open_time for pregame-close gating
+                    if et not in self.event_open_time:
+                        ot_str = m.get("open_time", "")
+                        if ot_str:
+                            try:
+                                self.event_open_time[et] = datetime.fromisoformat(
+                                    ot_str.replace("Z", "+00:00")).timestamp()
+                            except Exception:
+                                pass
                     cat = self.get_category(ticker)
                     if cat:
                         self.ticker_category[ticker] = cat
@@ -559,8 +588,17 @@ class LiveV3:
                         "kalshi_status": status,
                     }, ticker=tk)
 
-                    # Place exit sell
+                    # Place exit sell (retry once on failure)
                     oid, resp = await self.place_order(tk, "sell", "yes", exit_price, filled)
+                    if not oid:
+                        self._log("exit_retry", {"reason": "first attempt failed"}, ticker=tk)
+                        await asyncio.sleep(1)
+                        oid, resp = await self.place_order(tk, "sell", "yes", exit_price, filled)
+                    if not oid:
+                        self._log("exit_fatal", {
+                            "error": "exit sell failed after retry",
+                            "exit_price": exit_price, "qty": filled,
+                        }, ticker=tk)
                     pos.exit_order_id = oid
                     self._log("exit_posted", {
                         "exit_price": exit_price,
@@ -569,13 +607,22 @@ class LiveV3:
                         "order_id": oid,
                     }, ticker=tk)
 
-                    # Place DCA if applicable
+                    # Place DCA if applicable (retry once on failure)
                     if pos.cell_cfg["strategy"] == "DCA-A":
                         dca_trigger = pos.cell_cfg.get("dca_trigger_cents", 0)
                         dca_price = fill_price - dca_trigger
                         if dca_price >= self.dca_fill_floor:
                             pos.dca_price = dca_price
                             dca_oid, dresp = await self.place_order(tk, "buy", "yes", dca_price, self.dca_size)
+                            if not dca_oid:
+                                self._log("dca_retry", {"reason": "first attempt failed"}, ticker=tk)
+                                await asyncio.sleep(1)
+                                dca_oid, dresp = await self.place_order(tk, "buy", "yes", dca_price, self.dca_size)
+                            if not dca_oid:
+                                self._log("dca_fatal", {
+                                    "error": "DCA buy failed after retry",
+                                    "dca_price": dca_price, "qty": self.dca_size,
+                                }, ticker=tk)
                             pos.dca_order_id = dca_oid
                             self._log("dca_posted", {
                                 "dca_price": dca_price,
@@ -663,13 +710,43 @@ class LiveV3:
                 }, ticker=tk)
 
     # ------------------------------------------------------------------
-    # Routing: cell assignment at post time + real order placement
+    # Routing: PREGAME-CLOSE GATED entry + cell assignment at post time
     # ------------------------------------------------------------------
     async def routing_tick(self):
+        """Only enter markets whose open_time just transitioned from future
+        to past (within PREGAME_WINDOW_SEC). Markets already open at startup
+        are permanently skipped via the processed_events set."""
         now = time.time()
+
         for et, tickers in self.event_tickers.items():
-            if et in self.seen_events:
+            if et in self.processed_events:
                 continue
+
+            # Must have open_time data
+            open_ts = self.event_open_time.get(et)
+            if open_ts is None:
+                continue
+
+            age = now - open_ts  # seconds since market opened
+
+            # GATE: open_time must be in the past (market is open)
+            if age < 0:
+                continue  # not open yet, check again next tick
+
+            # GATE: must have opened within the last PREGAME_WINDOW_SEC
+            if age > PREGAME_WINDOW_SEC:
+                # Too old — permanently skip (was already open before we could act)
+                self.processed_events.add(et)
+                self._save_processed()
+                self._log("skipped", {
+                    "reason": "open_time_too_old",
+                    "event": et,
+                    "age_sec": round(age),
+                    "open_time": datetime.fromtimestamp(open_ts, tz=timezone.utc).isoformat(),
+                })
+                continue
+
+            # open_time is in [now - 60s, now] — this is our entry window
             tk_list = list(tickers)
             if len(tk_list) < 2:
                 continue
@@ -678,9 +755,11 @@ class LiveV3:
                 for tk in tk_list
             )
             if not all_have_bbo:
-                continue
+                continue  # wait for BBO, will retry next tick (still within window)
 
-            self.seen_events.add(et)
+            # Mark as processed BEFORE placing orders (race guard)
+            self.processed_events.add(et)
+            self._save_processed()
             self.n_matches_seen += 1
 
             sides = self.identify_sides(et)
@@ -723,9 +802,9 @@ class LiveV3:
                     "mid_at_post": current_mid, "entry_price": entry_price,
                     "strategy": cell_cfg["strategy"],
                     "exit_cents": cell_cfg["exit_cents"],
+                    "open_time_age_sec": round(age),
                 }, ticker=tk)
 
-                # Place REAL entry buy
                 oid, resp = await self.place_order(tk, "buy", "yes", entry_price, self.entry_size)
 
                 pos = Position(
@@ -787,9 +866,138 @@ class LiveV3:
         })
 
     # ------------------------------------------------------------------
+    # Startup reconciliation: sync in-memory state with Kalshi account
+    # ------------------------------------------------------------------
+    async def reconcile(self):
+        """Load existing positions and resting orders from Kalshi.
+        Populate in-memory state so the bot doesn't re-enter or orphan orders."""
+        print("\n[RECONCILE] Loading account state from Kalshi...", flush=True)
+
+        # 1. Fetch positions
+        pos_path = "/trade-api/v2/portfolio/positions?count_filter=position&settlement_status=unsettled"
+        pos_data = await api_get(self.session, self.ak, self.pk, pos_path, self.rl)
+        positions = (pos_data or {}).get("market_positions", [])
+
+        pos_map = {}  # ticker -> {qty, avg_price, event_ticker}
+        for p in positions:
+            tk = p.get("ticker", "")
+            qty = int(float(p.get("position_fp", 0)))
+            total = float(p.get("total_traded_dollars", 0)) * 100  # cents
+            avg_price = int(total / qty) if qty > 0 else 0
+            et = self.ticker_to_event.get(tk, "")
+            if not et:
+                parts = tk.rsplit("-", 1)
+                et = parts[0] if len(parts) == 2 else ""
+            pos_map[tk] = {"qty": qty, "avg_price": avg_price, "event_ticker": et}
+
+        # 2. Fetch resting orders
+        ord_path = "/trade-api/v2/portfolio/orders?status=resting"
+        ord_data = await api_get(self.session, self.ak, self.pk, ord_path, self.rl)
+        resting = (ord_data or {}).get("orders", [])
+
+        ord_map = {}  # ticker -> list of orders
+        for o in resting:
+            tk = o.get("ticker", "")
+            price_raw = o.get("yes_price_dollars", o.get("yes_price", "0"))
+            price_cents = round(float(price_raw) * 100) if float(price_raw) < 2 else int(price_raw)
+            qty_raw = o.get("remaining_count_fp", o.get("remaining_count", o.get("initial_count_fp", 0)))
+            entry = {
+                "order_id": o.get("order_id", ""),
+                "action": o.get("action", ""),
+                "side": o.get("side", ""),
+                "price": price_cents,
+                "qty": int(float(qty_raw or 0)),
+            }
+            ord_map.setdefault(tk, []).append(entry)
+
+        # 3. Link positions to exits and populate bot state
+        linked = []
+        unmanaged = []
+        orphan_orders = []
+
+        for tk, pinfo in pos_map.items():
+            et = pinfo["event_ticker"]
+            sells = [o for o in ord_map.get(tk, []) if o["action"] == "sell"]
+
+            # Add event to processed set so we don't re-enter
+            if et:
+                self.processed_events.add(et)
+
+            if sells:
+                sell = sells[0]
+                cat = self.get_category(tk) or "?"
+                pos = Position(
+                    ticker=tk, event_ticker=et, category=cat,
+                    direction="reconciled", cell_name="reconciled",
+                    cell_cfg={}, entry_price=pinfo["avg_price"],
+                    entry_qty=pinfo["qty"], phase="active",
+                    exit_price=sell["price"], exit_order_id=sell["order_id"],
+                    entry_filled_ts=time.time(),
+                )
+                self.positions[tk] = pos
+                linked.append((tk, pinfo, sell))
+            else:
+                unmanaged.append((tk, pinfo))
+
+        # Check for orphan resting orders (not matched to any position)
+        for tk, orders in ord_map.items():
+            if tk not in pos_map:
+                for o in orders:
+                    orphan_orders.append((tk, o))
+
+        self._save_processed()
+
+        # 4. Print reconciliation report
+        print("\n" + "=" * 70, flush=True)
+        print("RECONCILIATION REPORT", flush=True)
+        print("=" * 70, flush=True)
+
+        print("\nPositions found: %d" % len(pos_map), flush=True)
+        for tk, p in sorted(pos_map.items()):
+            print("  %-45s qty=%d  avg=%dc" % (tk[:45], p["qty"], p["avg_price"]), flush=True)
+
+        print("\nResting orders found: %d" % len(resting), flush=True)
+        for o in resting:
+            pr = o.get("yes_price_dollars", o.get("yes_price", "0"))
+            pc = round(float(pr) * 100) if float(pr) < 2 else int(pr)
+            qr = o.get("remaining_count_fp", o.get("remaining_count", o.get("initial_count_fp", 0)))
+            print("  %-45s %s %s price=%dc qty=%d oid=%s" % (
+                o.get("ticker","")[:45], o.get("action",""), o.get("side",""),
+                pc, int(float(qr or 0)),
+                o.get("order_id","")[:12]), flush=True)
+
+        print("\nLinked (position + exit): %d" % len(linked), flush=True)
+        for tk, p, s in linked:
+            print("  %-45s qty=%d entry=%dc exit=%dc oid=%s" % (
+                tk[:45], p["qty"], p["avg_price"], s["price"], s["order_id"][:12]), flush=True)
+
+        print("\nUnmanaged (position, NO exit): %d" % len(unmanaged), flush=True)
+        for tk, p in unmanaged:
+            print("  [WARN] %-42s qty=%d avg=%dc" % (tk[:42], p["qty"], p["avg_price"]), flush=True)
+
+        print("\nOrphan orders (no position): %d" % len(orphan_orders), flush=True)
+        for tk, o in orphan_orders:
+            print("  [ORPHAN] %-39s %s price=%s oid=%s" % (
+                tk[:39], o["action"], o["price"], o["order_id"][:12]), flush=True)
+
+        print("\nProcessed events: %d" % len(self.processed_events), flush=True)
+        print("=" * 70, flush=True)
+
+        self._log("reconcile", {
+            "positions": len(pos_map),
+            "resting_orders": len(resting),
+            "linked": len(linked),
+            "unmanaged": len(unmanaged),
+            "orphans": len(orphan_orders),
+            "processed_events": len(self.processed_events),
+        })
+
+        return len(pos_map), len(linked), len(unmanaged), len(orphan_orders)
+
+    # ------------------------------------------------------------------
     # Main loop
     # ------------------------------------------------------------------
-    async def run(self):
+    async def run(self, reconcile_only=False):
         print("=" * 70, flush=True)
         print("LIVE V3 - REAL ORDERS - BABY SIZING 10/5", flush=True)
         print("=" * 70, flush=True)
@@ -811,13 +1019,38 @@ class LiveV3:
         if tickers:
             await self.ws_subscribe(tickers)
 
+        # Reconcile: load existing positions and resting orders
+        await self.reconcile()
+
+        if reconcile_only:
+            print("\n[RECONCILE-ONLY] Exiting after reconciliation.", flush=True)
+            await self.session.close()
+            self.log_file.close()
+            return
+
+        # Pre-populate processed_events: skip all events whose open_time
+        # is already in the past (they were open before this bot started)
+        now = time.time()
+        startup_skipped = 0
+        for et, open_ts in self.event_open_time.items():
+            if et not in self.processed_events and open_ts < now:
+                self.processed_events.add(et)
+                startup_skipped += 1
+        if startup_skipped:
+            self._save_processed()
+        self._log("startup_skip", {
+            "already_open_events": startup_skipped,
+            "total_processed": len(self.processed_events),
+        })
+        print("[INIT] Skipped %d already-open events at startup" % startup_skipped, flush=True)
+
         asyncio.create_task(self.ws_reader())
 
         print("[INIT] Waiting 10s for BBO snapshots...", flush=True)
         await asyncio.sleep(10)
 
         last_discovery = time.time()
-        last_fill_check = time.time()
+        last_fill_check = 0  # force immediate first check_fills
         last_summary = time.time()
 
         print("[RUNNING] Main loop started.", flush=True)
@@ -865,8 +1098,9 @@ class LiveV3:
 
 
 async def main():
+    reconcile_only = "--reconcile-only" in sys.argv
     bot = LiveV3()
-    await bot.run()
+    await bot.run(reconcile_only=reconcile_only)
 
 if __name__ == "__main__":
     asyncio.run(main())

@@ -1051,10 +1051,12 @@ class LiveV3:
     # ------------------------------------------------------------------
     # Startup reconciliation: sync in-memory state with Kalshi account
     # ------------------------------------------------------------------
-    async def reconcile(self):
+    async def reconcile(self, quiet=False):
         """Load existing positions and resting orders from Kalshi.
-        Populate in-memory state so the bot doesn't re-enter or orphan orders."""
-        print("\n[RECONCILE] Loading account state from Kalshi...", flush=True)
+        Populate in-memory state so the bot doesn't re-enter or orphan orders.
+        quiet=True suppresses the full report (for periodic 60s runs)."""
+        if not quiet:
+            print("\n[RECONCILE] Loading account state from Kalshi...", flush=True)
 
         # 1. Fetch positions
         pos_path = "/trade-api/v2/portfolio/positions?count_filter=position&settlement_status=unsettled"
@@ -1096,6 +1098,7 @@ class LiveV3:
         # 3. Link positions to exits and populate bot state
         linked = []
         unmanaged = []
+        reconcile_exits = []
         orphan_orders = []
 
         for tk, pinfo in pos_map.items():
@@ -1120,7 +1123,60 @@ class LiveV3:
                 self.positions[tk] = pos
                 linked.append((tk, pinfo, sell))
             else:
-                unmanaged.append((tk, pinfo))
+                # No exit sell — try to auto-post one
+                cat = self.get_category(tk)
+                avg = pinfo["avg_price"]
+                direction = "leader" if avg > 50 else "underdog"
+                if cat:
+                    cell_name, cell_cfg = self.cell_lookup(cat, direction, avg)
+                else:
+                    cell_name, cell_cfg = None, None
+
+                if cell_cfg:
+                    exit_price = min(avg + cell_cfg["exit_cents"], EXIT_PRICE_CAP)
+                    # Fresh Kalshi check: verify no resting sell already exists
+                    fresh = await api_get(self.session, self.ak, self.pk,
+                        "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
+                    fresh_sells = [o for o in (fresh or {}).get("orders", []) if o.get("action") == "sell"]
+                    if fresh_sells:
+                        sell = {"order_id": fresh_sells[0].get("order_id", ""),
+                                "price": round(float(fresh_sells[0].get("yes_price_dollars", "0")) * 100)}
+                        pos = Position(
+                            ticker=tk, event_ticker=et, category=cat or "?",
+                            direction=direction, cell_name=cell_name, cell_cfg=cell_cfg,
+                            entry_price=avg, entry_qty=pinfo["qty"], phase="active",
+                            exit_price=sell["price"], exit_order_id=sell["order_id"],
+                            entry_filled_ts=time.time(),
+                        )
+                        self.positions[tk] = pos
+                        linked.append((tk, pinfo, sell))
+                        self._log("reconcile_exit_found_fresh", {
+                            "ticker": tk, "exit_price": sell["price"],
+                        }, ticker=tk)
+                    else:
+                        oid, resp = await self.place_order(tk, "sell", "yes", exit_price, pinfo["qty"])
+                        pos = Position(
+                            ticker=tk, event_ticker=et, category=cat or "?",
+                            direction=direction, cell_name=cell_name, cell_cfg=cell_cfg,
+                            entry_price=avg, entry_qty=pinfo["qty"], phase="active",
+                            exit_price=exit_price, exit_order_id=oid,
+                            entry_filled_ts=time.time(),
+                        )
+                        self.positions[tk] = pos
+                        reconcile_exits.append((tk, pinfo, exit_price, cell_name, oid))
+                        self._log("reconcile_exit_posted", {
+                            "exit_price": exit_price, "qty": pinfo["qty"],
+                            "avg_price": avg, "cell": cell_name,
+                            "exit_cents": cell_cfg["exit_cents"],
+                            "order_id": oid,
+                        }, ticker=tk)
+                else:
+                    unmanaged.append((tk, pinfo))
+                    reason = "cell disabled" if cell_name and cell_name in self.config["disabled_cells"] else "no cell config"
+                    self._log("reconcile_orphan_no_cell", {
+                        "ticker": tk, "avg_price": avg, "cell": cell_name or "?",
+                        "reason": reason,
+                    }, ticker=tk)
 
         # Check for orphan resting orders (not matched to any position)
         for tk, orders in ord_map.items():
@@ -1131,45 +1187,55 @@ class LiveV3:
         self._save_processed()
 
         # 4. Print reconciliation report
-        print("\n" + "=" * 70, flush=True)
-        print("RECONCILIATION REPORT", flush=True)
-        print("=" * 70, flush=True)
+        if not quiet:
+            print("\n" + "=" * 70, flush=True)
+            print("RECONCILIATION REPORT", flush=True)
+            print("=" * 70, flush=True)
 
-        print("\nPositions found: %d" % len(pos_map), flush=True)
-        for tk, p in sorted(pos_map.items()):
-            print("  %-45s qty=%d  avg=%dc" % (tk[:45], p["qty"], p["avg_price"]), flush=True)
+            print("\nPositions found: %d" % len(pos_map), flush=True)
+            for tk, p in sorted(pos_map.items()):
+                print("  %-45s qty=%d  avg=%dc" % (tk[:45], p["qty"], p["avg_price"]), flush=True)
 
-        print("\nResting orders found: %d" % len(resting), flush=True)
-        for o in resting:
-            pr = o.get("yes_price_dollars", o.get("yes_price", "0"))
-            pc = round(float(pr) * 100) if float(pr) < 2 else int(pr)
-            qr = o.get("remaining_count_fp", o.get("remaining_count", o.get("initial_count_fp", 0)))
-            print("  %-45s %s %s price=%dc qty=%d oid=%s" % (
-                o.get("ticker","")[:45], o.get("action",""), o.get("side",""),
-                pc, int(float(qr or 0)),
-                o.get("order_id","")[:12]), flush=True)
+            print("\nResting orders found: %d" % len(resting), flush=True)
+            for o in resting:
+                pr = o.get("yes_price_dollars", o.get("yes_price", "0"))
+                pc = round(float(pr) * 100) if float(pr) < 2 else int(pr)
+                qr = o.get("remaining_count_fp", o.get("remaining_count", o.get("initial_count_fp", 0)))
+                print("  %-45s %s %s price=%dc qty=%d oid=%s" % (
+                    o.get("ticker","")[:45], o.get("action",""), o.get("side",""),
+                    pc, int(float(qr or 0)),
+                    o.get("order_id","")[:12]), flush=True)
 
-        print("\nLinked (position + exit): %d" % len(linked), flush=True)
-        for tk, p, s in linked:
-            print("  %-45s qty=%d entry=%dc exit=%dc oid=%s" % (
-                tk[:45], p["qty"], p["avg_price"], s["price"], s["order_id"][:12]), flush=True)
+            print("\nLinked (position + exit): %d" % len(linked), flush=True)
+            for tk, p, s in linked:
+                print("  %-45s qty=%d entry=%dc exit=%dc oid=%s" % (
+                    tk[:45], p["qty"], p["avg_price"], s["price"], s["order_id"][:12]), flush=True)
 
-        print("\nUnmanaged (position, NO exit): %d" % len(unmanaged), flush=True)
-        for tk, p in unmanaged:
-            print("  [WARN] %-42s qty=%d avg=%dc" % (tk[:42], p["qty"], p["avg_price"]), flush=True)
+        # Always print reconcile exits (even in quiet mode — these are actions)
+        if reconcile_exits:
+            print("\n[RECONCILE] Exits auto-posted: %d" % len(reconcile_exits), flush=True)
+            for tk, p, ep, cell, oid in reconcile_exits:
+                print("  [EXIT_POSTED] %-35s avg=%dc exit=%dc cell=%s oid=%s" % (
+                    tk[:35], p["avg_price"], ep, cell, oid[:12]), flush=True)
 
-        print("\nOrphan orders (no position): %d" % len(orphan_orders), flush=True)
-        for tk, o in orphan_orders:
-            print("  [ORPHAN] %-39s %s price=%s oid=%s" % (
-                tk[:39], o["action"], o["price"], o["order_id"][:12]), flush=True)
+        if not quiet:
+            print("\nUnmanaged (position, NO exit, no cell): %d" % len(unmanaged), flush=True)
+            for tk, p in unmanaged:
+                print("  [ORPHAN_NO_CELL] %-35s qty=%d avg=%dc" % (tk[:35], p["qty"], p["avg_price"]), flush=True)
 
-        print("\nProcessed events: %d" % len(self.processed_events), flush=True)
-        print("=" * 70, flush=True)
+            print("\nOrphan orders (no position): %d" % len(orphan_orders), flush=True)
+            for tk, o in orphan_orders:
+                print("  [ORPHAN] %-39s %s price=%s oid=%s" % (
+                    tk[:39], o["action"], o["price"], o["order_id"][:12]), flush=True)
+
+            print("\nProcessed events: %d" % len(self.processed_events), flush=True)
+            print("=" * 70, flush=True)
 
         self._log("reconcile", {
             "positions": len(pos_map),
             "resting_orders": len(resting),
             "linked": len(linked),
+            "reconcile_exits_posted": len(reconcile_exits),
             "unmanaged": len(unmanaged),
             "orphans": len(orphan_orders),
             "processed_events": len(self.processed_events),
@@ -1325,6 +1391,7 @@ class LiveV3:
 
         last_discovery = time.time()
         last_fill_check = 0  # force immediate first check_fills
+        last_reconcile = time.time()
         last_summary = time.time()
 
         print("[RUNNING] Main loop started.", flush=True)
@@ -1351,6 +1418,11 @@ class LiveV3:
                     if new_tickers:
                         await self.ws_subscribe(new_tickers)
                     last_discovery = now
+
+                # Reconcile every 60s — auto-post exits for naked positions
+                if now - last_reconcile > 60:
+                    await self.reconcile(quiet=True)
+                    last_reconcile = now
 
                 # Summary every 30 min
                 if now - last_summary > 1800:

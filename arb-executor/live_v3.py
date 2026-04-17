@@ -924,6 +924,26 @@ class LiveV3:
 
                 entry_price = int(current_mid)
 
+                # Pre-post guard: check for existing resting orders or position on this ticker
+                existing = await api_get(self.session, self.ak, self.pk,
+                    "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
+                if existing and existing.get("orders"):
+                    self._log("skipped", {
+                        "reason": "resting_order_exists",
+                        "ticker": tk, "existing_count": len(existing["orders"]),
+                    }, ticker=tk)
+                    continue
+                existing_pos = await api_get(self.session, self.ak, self.pk,
+                    "/trade-api/v2/portfolio/positions?ticker=%s&count_filter=position&settlement_status=unsettled" % tk, self.rl)
+                if existing_pos:
+                    pos_list = existing_pos.get("market_positions", [])
+                    if any(int(float(p.get("position_fp", 0))) > 0 for p in pos_list):
+                        self._log("skipped", {
+                            "reason": "position_exists",
+                            "ticker": tk,
+                        }, ticker=tk)
+                        continue
+
                 self._log("cell_match", {
                     "event": et, "direction": direction, "cell": cell_name,
                     "mid_at_post": current_mid, "entry_price": entry_price,

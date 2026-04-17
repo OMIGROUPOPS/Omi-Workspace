@@ -41,10 +41,13 @@ DISCOVERY_INTERVAL = 300
 ENTRY_CANCEL_TIMEOUT = 1800  # 30 min
 FILL_CHECK_INTERVAL = 5      # poll fills every 5s
 EXIT_PRICE_CAP = 98           # never post exit above 98c
-PREGAME_WINDOW_SEC = 60       # only enter if open_time within last 60s
+ENTRY_LATE_WINDOW_SEC = 600   # enter up to 10 min after scheduled start
+UNMATCHED_SKIP_CYCLES = 3     # skip unmatched events after this many discovery cycles
+UNMATCHED_SKIP_AGE = 3600     # ...only if open_time is > 1h old
 
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
+SCHEDULE_FILE = STATE_DIR / "schedule.json"
 
 SERIES_MAP = {
     'ATP_MAIN': ['KXATPMATCH'],
@@ -237,14 +240,19 @@ class LiveV3:
         self.ticker_to_event: Dict[str, str] = {}
         self.event_tickers: Dict[str, Set[str]] = defaultdict(set)
         self.ticker_category: Dict[str, str] = {}
-        self.event_open_time: Dict[str, float] = {}  # event_ticker -> open_time epoch
+        self.event_open_time: Dict[str, float] = {}   # Kalshi open_time (for unmatched-skip logic)
+        self.event_start_time: Dict[str, float] = {}   # scheduled start from TE/ESPN
+        self.event_player_names: Dict[str, List[str]] = {}  # player names per event
+        self.event_unmatched_cycles: Dict[str, int] = {}  # discovery cycles without schedule match
 
         self.positions: Dict[str, Position] = {}
-        self.seen_events: Set[str] = set()
 
         # Persistent processed-tickers set (survives restarts)
         STATE_DIR.mkdir(parents=True, exist_ok=True)
         self.processed_events: Set[str] = self._load_processed()
+
+        # Schedule loaded after log_file init (below)
+        self.schedule: dict = {}
 
         self.n_matches_seen = 0
         self.n_entries = 0
@@ -264,6 +272,7 @@ class LiveV3:
                                     "entry_size": self.entry_size,
                                     "dca_size": self.dca_size,
                                     "exit_cap": EXIT_PRICE_CAP})
+        self._load_schedule()
 
     def _log(self, event, details=None, ticker=""):
         entry = {
@@ -292,6 +301,84 @@ class LiveV3:
     def _save_processed(self):
         with open(PROCESSED_FILE, "w") as f:
             json.dump(sorted(self.processed_events), f)
+
+    def _load_schedule(self):
+        """Load schedule from cron-refreshed state/schedule.json."""
+        try:
+            with open(SCHEDULE_FILE) as f:
+                data = json.load(f)
+            self.schedule = data.get("schedule", {})
+            age = time.time() - datetime.fromisoformat(data["fetched_utc"]).timestamp()
+            self._log("schedule_loaded", {
+                "count": len(self.schedule),
+                "fetched": data.get("fetched_utc", "?"),
+                "age_min": round(age / 60),
+            })
+        except FileNotFoundError:
+            self._log("schedule_missing", {"path": str(SCHEDULE_FILE)})
+            self.schedule = {}
+        except Exception as e:
+            self._log("schedule_error", {"error": str(e)})
+            self.schedule = {}
+
+    def _match_event_to_schedule(self, event_ticker):
+        """Match Kalshi event to schedule. Returns (entry, method) or (None, None).
+        Logs every attempt for 7-day audit trail."""
+        from tennis_schedule import match_kalshi_event
+
+        player_names = self.event_player_names.get(event_ticker, [])
+
+        # Try direct match first
+        result = match_kalshi_event(event_ticker, self.schedule)
+        if result:
+            self._log("schedule_match", {
+                "event": event_ticker,
+                "method": "direct_6char",
+                "start_time": result.get("start_time", "?"),
+                "p1": result.get("p1", "?"),
+                "p2": result.get("p2", "?"),
+                "category": result.get("category", "?"),
+                "kalshi_players": player_names,
+            })
+            return result, "direct_6char"
+
+        # Try fuzzy with player names
+        if player_names:
+            result = match_kalshi_event(event_ticker, self.schedule, kalshi_player_names=player_names)
+            if result:
+                self._log("schedule_match", {
+                    "event": event_ticker,
+                    "method": "fuzzy_name",
+                    "start_time": result.get("start_time", "?"),
+                    "p1": result.get("p1", "?"),
+                    "p2": result.get("p2", "?"),
+                    "category": result.get("category", "?"),
+                    "kalshi_players": player_names,
+                })
+                return result, "fuzzy_name"
+
+        # No match — log with closest candidate for debugging
+        import re
+        parts = event_ticker.split("-")
+        raw = parts[-1] if len(parts) >= 2 else ""
+        m = re.match(r"\d{2}[A-Z]{3}\d{2}(.+)", raw)
+        pair_code = m.group(1) if m else raw
+
+        closest = ""
+        if pair_code and self.schedule:
+            candidates = sorted(self.schedule.keys())
+            # Simple prefix match for closest
+            matches = [k for k in candidates if k[:3] == pair_code[:3] or k[3:] == pair_code[3:]]
+            closest = ", ".join(matches[:3]) if matches else "(none with shared prefix)"
+
+        self._log("schedule_unmatched", {
+            "event": event_ticker,
+            "pair_code": pair_code,
+            "kalshi_players": player_names,
+            "closest_schedule_keys": closest,
+            "schedule_size": len(self.schedule),
+        })
+        return None, None
 
     def get_category(self, ticker):
         for cat_name, prefixes in SERIES_MAP.items():
@@ -487,7 +574,7 @@ class LiveV3:
                     et = m["event_ticker"]
                     self.ticker_to_event[ticker] = et
                     self.event_tickers[et].add(ticker)
-                    # Capture open_time for pregame-close gating
+                    # Capture open_time (for unmatched-skip age check)
                     if et not in self.event_open_time:
                         ot_str = m.get("open_time", "")
                         if ot_str:
@@ -496,6 +583,30 @@ class LiveV3:
                                     ot_str.replace("Z", "+00:00")).timestamp()
                             except Exception:
                                 pass
+                    # Capture player names for schedule matching
+                    if et not in self.event_player_names:
+                        names = []
+                        yes_name = m.get("yes_sub_title", "")
+                        no_name = m.get("no_sub_title", "")
+                        if yes_name:
+                            names.append(yes_name)
+                        if no_name and no_name != yes_name:
+                            names.append(no_name)
+                        if names:
+                            self.event_player_names[et] = names
+                    # Schedule match (if not already matched and not processed)
+                    if et not in self.event_start_time and et not in self.processed_events:
+                        sched_entry, method = self._match_event_to_schedule(et)
+                        if sched_entry:
+                            st_str = sched_entry.get("start_time", "")
+                            if st_str:
+                                try:
+                                    self.event_start_time[et] = datetime.fromisoformat(
+                                        st_str.replace("Z", "+00:00")).timestamp()
+                                except Exception:
+                                    pass
+                        else:
+                            self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
                     cat = self.get_category(ticker)
                     if cat:
                         self.ticker_category[ticker] = cat
@@ -710,43 +821,59 @@ class LiveV3:
                 }, ticker=tk)
 
     # ------------------------------------------------------------------
-    # Routing: PREGAME-CLOSE GATED entry + cell assignment at post time
+    # Routing: SCHEDULE-BASED entry trigger + cell assignment at post time
     # ------------------------------------------------------------------
     async def routing_tick(self):
-        """Only enter markets whose open_time just transitioned from future
-        to past (within PREGAME_WINDOW_SEC). Markets already open at startup
-        are permanently skipped via the processed_events set."""
+        """Enter markets whose scheduled_start just passed.
+        Window: start_ts <= now <= start_ts + ENTRY_LATE_WINDOW_SEC.
+        No early entries. No fallback to open_time."""
         now = time.time()
 
         for et, tickers in self.event_tickers.items():
             if et in self.processed_events:
                 continue
 
-            # Must have open_time data
-            open_ts = self.event_open_time.get(et)
-            if open_ts is None:
+            start_ts = self.event_start_time.get(et)
+
+            # No schedule match yet — check unmatched skip logic
+            if start_ts is None:
+                cycles = self.event_unmatched_cycles.get(et, 0)
+                open_ts = self.event_open_time.get(et, now)
+                open_age = now - open_ts
+                if cycles >= UNMATCHED_SKIP_CYCLES and open_age > UNMATCHED_SKIP_AGE:
+                    self.processed_events.add(et)
+                    self._save_processed()
+                    self._log("skipped", {
+                        "reason": "schedule_gap",
+                        "event": et,
+                        "unmatched_cycles": cycles,
+                        "open_age_sec": round(open_age),
+                    })
                 continue
 
-            age = now - open_ts  # seconds since market opened
+            # Match starts more than 24h from now — skip for now, revisit later
+            if start_ts > now + 86400:
+                continue
 
-            # GATE: open_time must be in the past (market is open)
-            if age < 0:
-                continue  # not open yet, check again next tick
+            # Match not started yet — wait
+            if now < start_ts:
+                continue
 
-            # GATE: must have opened within the last PREGAME_WINDOW_SEC
-            if age > PREGAME_WINDOW_SEC:
-                # Too old — permanently skip (was already open before we could act)
+            late_sec = now - start_ts
+
+            # Missed by more than 10 min — permanent skip
+            if late_sec > ENTRY_LATE_WINDOW_SEC:
                 self.processed_events.add(et)
                 self._save_processed()
                 self._log("skipped", {
-                    "reason": "open_time_too_old",
+                    "reason": "start_too_old",
                     "event": et,
-                    "age_sec": round(age),
-                    "open_time": datetime.fromtimestamp(open_ts, tz=timezone.utc).isoformat(),
+                    "late_sec": round(late_sec),
+                    "start_time": datetime.fromtimestamp(start_ts, tz=timezone.utc).isoformat(),
                 })
                 continue
 
-            # open_time is in [now - 60s, now] — this is our entry window
+            # ENTRY WINDOW: start_ts <= now <= start_ts + 600s
             tk_list = list(tickers)
             if len(tk_list) < 2:
                 continue
@@ -802,7 +929,7 @@ class LiveV3:
                     "mid_at_post": current_mid, "entry_price": entry_price,
                     "strategy": cell_cfg["strategy"],
                     "exit_cents": cell_cfg["exit_cents"],
-                    "open_time_age_sec": round(age),
+                    "sched_late_sec": round(late_sec),
                 }, ticker=tk)
 
                 oid, resp = await self.place_order(tk, "buy", "yes", entry_price, self.entry_size)
@@ -1022,31 +1149,102 @@ class LiveV3:
         # Reconcile: load existing positions and resting orders
         await self.reconcile()
 
-        if reconcile_only:
-            print("\n[RECONCILE-ONLY] Exiting after reconciliation.", flush=True)
-            await self.session.close()
-            self.log_file.close()
-            return
-
-        # Pre-populate processed_events: skip all events whose open_time
-        # is already in the past (they were open before this bot started)
+        # Startup skip: events whose scheduled start passed by > 10 min
         now = time.time()
         startup_skipped = 0
-        for et, open_ts in self.event_open_time.items():
-            if et not in self.processed_events and open_ts < now:
+        for et, start_ts in self.event_start_time.items():
+            if et not in self.processed_events and start_ts < now - ENTRY_LATE_WINDOW_SEC:
+                self.processed_events.add(et)
+                startup_skipped += 1
+        # Also skip unmatched events with stale open_time
+        for et in list(self.event_tickers.keys()):
+            if et in self.processed_events or et in self.event_start_time:
+                continue
+            open_ts = self.event_open_time.get(et, now)
+            if now - open_ts > UNMATCHED_SKIP_AGE:
                 self.processed_events.add(et)
                 startup_skipped += 1
         if startup_skipped:
             self._save_processed()
-        self._log("startup_skip", {
-            "already_open_events": startup_skipped,
-            "total_processed": len(self.processed_events),
+
+        # Startup validation
+        try:
+            ET = timezone(timedelta(hours=-4))
+        except Exception:
+            ET = timezone.utc
+        now_et = datetime.fromtimestamp(now, tz=ET)
+        now_utc = datetime.fromtimestamp(now, tz=timezone.utc)
+        print("\n[TIME] UTC: %s  ET: %s" % (
+            now_utc.strftime("%Y-%m-%d %H:%M:%S"), now_et.strftime("%Y-%m-%d %H:%M:%S")), flush=True)
+
+        total_events = len(self.event_tickers)
+        matched = len(self.event_start_time)
+        unmatched = sum(1 for et in self.event_tickers if et not in self.event_start_time and et not in self.processed_events)
+        print("[SCHED] Kalshi events: %d  Schedule-matched: %d  Unmatched: %d  Already-processed: %d" % (
+            total_events, matched, unmatched, len(self.processed_events)), flush=True)
+        print("[INIT] Skipped %d stale events at startup" % startup_skipped, flush=True)
+
+        # Next 5 matches bot is waiting on
+        pending = []
+        for et, start_ts in sorted(self.event_start_time.items(), key=lambda x: x[1]):
+            if et in self.processed_events:
+                continue
+            start_et = datetime.fromtimestamp(start_ts, tz=ET)
+            mins_away = (start_ts - now) / 60
+            pending.append((et, start_et, mins_away))
+        print("\n[PENDING] Next matches to enter (%d total):" % len(pending), flush=True)
+        for et, start_et, mins in pending[:5]:
+            players = self.event_player_names.get(et, ["?"])
+            print("  %-40s  start=%s ET  in %.0f min  players=%s" % (
+                et[:40], start_et.strftime("%H:%M"), mins, ", ".join(players)), flush=True)
+        if not pending:
+            print("  (none — all events processed or unmatched)", flush=True)
+
+        # Log FOMSUN schedule match verification (if present)
+        for et in self.event_tickers:
+            if "FOMSUN" in et:
+                st = self.event_start_time.get(et)
+                processed = et in self.processed_events
+                if st:
+                    print("\n[VERIFY] %s schedule matched: start=%s UTC, processed=%s" % (
+                        et, datetime.fromtimestamp(st, tz=timezone.utc).strftime("%H:%M:%S"), processed), flush=True)
+                else:
+                    print("\n[VERIFY] %s schedule: NO MATCH, processed=%s" % (et, processed), flush=True)
+
+        # Unmatched events with recent open_time (coverage gaps)
+        recent_unmatched = []
+        for et in self.event_tickers:
+            if et in self.processed_events or et in self.event_start_time:
+                continue
+            open_ts = self.event_open_time.get(et, 0)
+            if now - open_ts < 86400:
+                recent_unmatched.append((et, now - open_ts))
+        if recent_unmatched:
+            print("\n[WARN] Unmatched events with open_time < 24h:", flush=True)
+            for et, age in recent_unmatched:
+                players = self.event_player_names.get(et, ["?"])
+                print("  %-40s  open_age=%.0fh  players=%s" % (et[:40], age/3600, ", ".join(players)), flush=True)
+
+        self._log("startup_validation", {
+            "utc": now_utc.isoformat(),
+            "et": now_et.isoformat(),
+            "total_events": total_events,
+            "schedule_matched": matched,
+            "unmatched": unmatched,
+            "processed": len(self.processed_events),
+            "startup_skipped": startup_skipped,
+            "pending": len(pending),
         })
-        print("[INIT] Skipped %d already-open events at startup" % startup_skipped, flush=True)
+
+        if reconcile_only:
+            print("\n[RECONCILE-ONLY] Exiting after validation.", flush=True)
+            await self.session.close()
+            self.log_file.close()
+            return
 
         asyncio.create_task(self.ws_reader())
 
-        print("[INIT] Waiting 10s for BBO snapshots...", flush=True)
+        print("\n[INIT] Waiting 10s for BBO snapshots...", flush=True)
         await asyncio.sleep(10)
 
         last_discovery = time.time()
@@ -1070,8 +1268,9 @@ class LiveV3:
                     await self.check_fills()
                     last_fill_check = now
 
-                # Re-discover every 5 min
+                # Re-discover every 5 min + refresh schedule
                 if now - last_discovery > DISCOVERY_INTERVAL:
+                    self._load_schedule()
                     new_tickers = await self.discover_markets()
                     if new_tickers:
                         await self.ws_subscribe(new_tickers)

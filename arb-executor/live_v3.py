@@ -44,7 +44,8 @@ DISCOVERY_INTERVAL = 300
 ENTRY_CANCEL_TIMEOUT = 1800  # 30 min
 FILL_CHECK_INTERVAL = 5      # poll fills every 5s
 EXIT_PRICE_CAP = 98           # never post exit above 98c
-ENTRY_LATE_WINDOW_SEC = 600   # enter up to 10 min after scheduled start
+ENTRY_WINDOW_EARLY = 1500     # enter starting 25 min before scheduled start
+ENTRY_WINDOW_LATE = 900       # stop entering 15 min before scheduled start
 UNMATCHED_SKIP_CYCLES = 3     # skip unmatched events after this many discovery cycles
 UNMATCHED_SKIP_AGE = 3600     # ...only if open_time is > 1h old
 
@@ -827,9 +828,9 @@ class LiveV3:
     # Routing: SCHEDULE-BASED entry trigger + cell assignment at post time
     # ------------------------------------------------------------------
     async def routing_tick(self):
-        """Enter markets whose scheduled_start just passed.
-        Window: start_ts <= now <= start_ts + ENTRY_LATE_WINDOW_SEC.
-        No early entries. No fallback to open_time."""
+        """Enter markets 15-25 min BEFORE scheduled start.
+        Window: start_ts - 1500 <= now <= start_ts - 900.
+        Never enter at or after scheduled start."""
         now = time.time()
 
         for et, tickers in self.event_tickers.items():
@@ -858,25 +859,25 @@ class LiveV3:
             if start_ts > now + 86400:
                 continue
 
-            # Match not started yet — wait
-            if now < start_ts:
+            time_to_start = start_ts - now
+
+            # Too early — more than 25 min before start
+            if time_to_start > ENTRY_WINDOW_EARLY:
                 continue
 
-            late_sec = now - start_ts
-
-            # Missed by more than 10 min — permanent skip
-            if late_sec > ENTRY_LATE_WINDOW_SEC:
+            # Too close or already started — permanent skip
+            if time_to_start < ENTRY_WINDOW_LATE:
                 self.processed_events.add(et)
                 self._save_processed()
                 self._log("skipped", {
-                    "reason": "start_too_old",
+                    "reason": "too_close_to_start",
                     "event": et,
-                    "late_sec": round(late_sec),
+                    "time_to_start_sec": round(time_to_start),
                     "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET"),
                 })
                 continue
 
-            # ENTRY WINDOW: start_ts <= now <= start_ts + 600s
+            # ENTRY WINDOW: 15-25 min before scheduled start
             tk_list = list(tickers)
             if len(tk_list) < 2:
                 continue
@@ -932,7 +933,7 @@ class LiveV3:
                     "mid_at_post": current_mid, "entry_price": entry_price,
                     "strategy": cell_cfg["strategy"],
                     "exit_cents": cell_cfg["exit_cents"],
-                    "sched_late_sec": round(late_sec),
+                    "min_before_start": round(time_to_start / 60),
                 }, ticker=tk)
 
                 oid, resp = await self.place_order(tk, "buy", "yes", entry_price, self.entry_size)
@@ -1152,11 +1153,11 @@ class LiveV3:
         # Reconcile: load existing positions and resting orders
         await self.reconcile()
 
-        # Startup skip: events whose scheduled start passed by > 10 min
+        # Startup skip: events whose entry window has closed (< 15 min to start)
         now = time.time()
         startup_skipped = 0
         for et, start_ts in self.event_start_time.items():
-            if et not in self.processed_events and start_ts < now - ENTRY_LATE_WINDOW_SEC:
+            if et not in self.processed_events and (start_ts - now) < ENTRY_WINDOW_LATE:
                 self.processed_events.add(et)
                 startup_skipped += 1
         # Also skip unmatched events with stale open_time
@@ -1182,20 +1183,52 @@ class LiveV3:
         print("[INIT] Skipped %d stale events at startup" % startup_skipped, flush=True)
 
         # Next 5 matches bot is waiting on
-        pending = []
-        for evt, start_ts in sorted(self.event_start_time.items(), key=lambda x: x[1]):
+        # Event status report
+        all_events_status = []
+        for evt in sorted(self.event_tickers.keys()):
+            players = ", ".join(self.event_player_names.get(evt, ["?"]))
             if evt in self.processed_events:
+                all_events_status.append((evt, "PROCESSED", 0, "", players))
                 continue
-            start_et_dt = datetime.fromtimestamp(start_ts, tz=ET)
-            mins_away = (start_ts - now) / 60
-            pending.append((evt, start_et_dt, mins_away))
-        print("\n[PENDING] Next matches to enter (%d total):" % len(pending), flush=True)
-        for evt, start_et_dt, mins in pending[:5]:
-            players = self.event_player_names.get(evt, ["?"])
-            print("  %-40s  start=%s  in %.0f min  players=%s" % (
-                evt[:40], start_et_dt.strftime("%I:%M %p ET"), mins, ", ".join(players)), flush=True)
-        if not pending:
-            print("  (none — all events processed or unmatched)", flush=True)
+            start_ts = self.event_start_time.get(evt)
+            if start_ts is None:
+                all_events_status.append((evt, "UNMATCHED", 0, "", players))
+                continue
+            time_to_start = start_ts - now
+            start_str = datetime.fromtimestamp(start_ts, tz=ET).strftime("%I:%M %p ET")
+            window_opens_in = time_to_start - ENTRY_WINDOW_EARLY
+            if time_to_start > ENTRY_WINDOW_EARLY:
+                all_events_status.append((evt, "WAITING", window_opens_in, start_str, players))
+            elif time_to_start >= ENTRY_WINDOW_LATE:
+                all_events_status.append((evt, "ELIGIBLE NOW", time_to_start, start_str, players))
+            else:
+                all_events_status.append((evt, "SKIPPED (too close)", time_to_start, start_str, players))
+
+        print("\n[EVENTS] All discovered events:", flush=True)
+        for evt, status, secs, start_str, players in all_events_status:
+            if status == "WAITING":
+                detail = "window opens in %.0f min, start=%s" % (secs / 60, start_str)
+            elif status == "ELIGIBLE NOW":
+                detail = "%.0f min before start=%s" % (secs / 60, start_str)
+            elif status == "PROCESSED":
+                detail = ""
+            elif status == "UNMATCHED":
+                detail = "no schedule match"
+            else:
+                detail = "%.0f min to start=%s" % (secs / 60, start_str)
+            print("  %-40s  %-15s  %s  [%s]" % (evt[:40], status, detail, players[:30]), flush=True)
+
+        # Next entry window
+        waiting = [(e, s, so) for e, st, s, so, p in all_events_status if st == "WAITING"]
+        waiting.sort(key=lambda x: x[1])
+        if waiting:
+            evt, secs, start_str = waiting[0]
+            window_et = datetime.fromtimestamp(now + secs, tz=ET).strftime("%I:%M %p ET")
+            print("\n[NEXT] Entry window opens: %s at %s (%.0f min from now)" % (
+                evt[:40], window_et, secs / 60), flush=True)
+        eligible = [e for e, st, s, so, p in all_events_status if st == "ELIGIBLE NOW"]
+        if eligible:
+            print("\n[ALERT] %d events ELIGIBLE NOW for entry!" % len(eligible), flush=True)
 
         # Log FOMSUN schedule match verification (if present)
         for evt in self.event_tickers:
@@ -1229,7 +1262,8 @@ class LiveV3:
             "unmatched": unmatched,
             "processed": len(self.processed_events),
             "startup_skipped": startup_skipped,
-            "pending": len(pending),
+            "waiting": len(waiting),
+            "eligible": len(eligible),
         })
 
         if reconcile_only:

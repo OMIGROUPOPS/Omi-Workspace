@@ -1,0 +1,648 @@
+{
+  "cell": "ATP_MAIN_underdog_25-29",
+  "n_matches": 8,
+  "bounce_distribution": {
+    "min": 5.0,
+    "p10": 5.0,
+    "p25": 10.0,
+    "p50": 17.0,
+    "p75": 45.0,
+    "p90": 73.0,
+    "max": 73.0
+  },
+  "hold_dpd_baby": -0.38571428571428573,
+  "best_exit": 5,
+  "best_dpd_baby": 0.14285714285714285,
+  "by_exit": {
+    "1": {
+      "total_pnl_cents": 8,
+      "hits": 8,
+      "hit_rate": 1.0,
+      "avg_pnl_per_match": 1.0,
+      "dpd_baby": 0.028571428571428574,
+      "dpd_25ct": 0.07142857142857144,
+      "dpd_80ct": 0.2285714285714286
+    },
+    "2": {
+      "total_pnl_cents": 16,
+      "hits": 8,
+      "hit_rate": 1.0,
+      "avg_pnl_per_match": 2.0,
+      "dpd_baby": 0.05714285714285715,
+      "dpd_25ct": 0.14285714285714288,
+      "dpd_80ct": 0.4571428571428572
+    },
+    "3": {
+      "total_pnl_cents": 24,
+      "hits": 8,
+      "hit_rate": 1.0,
+      "avg_pnl_per_match": 3.0,
+      "dpd_baby": 0.08571428571428572,
+      "dpd_25ct": 0.2142857142857143,
+      "dpd_80ct": 0.6857142857142857
+    },
+    "4": {
+      "total_pnl_cents": 32,
+      "hits": 8,
+      "hit_rate": 1.0,
+      "avg_pnl_per_match": 4.0,
+      "dpd_baby": 0.1142857142857143,
+      "dpd_25ct": 0.28571428571428575,
+      "dpd_80ct": 0.9142857142857144
+    },
+    "5": {
+      "total_pnl_cents": 40,
+      "hits": 8,
+      "hit_rate": 1.0,
+      "avg_pnl_per_match": 5.0,
+      "dpd_baby": 0.14285714285714285,
+      "dpd_25ct": 0.3571428571428571,
+      "dpd_80ct": 1.1428571428571428
+    },
+    "6": {
+      "total_pnl_cents": 16.5,
+      "hits": 7,
+      "hit_rate": 0.875,
+      "avg_pnl_per_match": 2.0625,
+      "dpd_baby": 0.05892857142857143,
+      "dpd_25ct": 0.14732142857142858,
+      "dpd_80ct": 0.4714285714285714
+    },
+    "7": {
+      "total_pnl_cents": 23.5,
+      "hits": 7,
+      "hit_rate": 0.875,
+      "avg_pnl_per_match": 2.9375,
+      "dpd_baby": 0.08392857142857144,
+      "dpd_25ct": 0.2098214285714286,
+      "dpd_80ct": 0.6714285714285715
+    },
+    "8": {
+      "total_pnl_cents": -3.0,
+      "hits": 6,
+      "hit_rate": 0.75,
+      "avg_pnl_per_match": -0.375,
+      "dpd_baby": -0.010714285714285714,
+      "dpd_25ct": -0.026785714285714288,
+      "dpd_80ct": -0.08571428571428572
+    },
+    "9": {
+      "total_pnl_cents": 3.0,
+      "hits": 6,
+      "hit_rate": 0.75,
+      "avg_pnl_per_match": 0.375,
+      "dpd_baby": 0.010714285714285714,
+      "dpd_25ct": 0.026785714285714288,
+      "dpd_80ct": 0.08571428571428572
+    },
+    "10": {
+      "total_pnl_cents": 9.0,
+      "hits": 6,
+      "hit_rate": 0.75,
+      "avg_pnl_per_match": 1.125,
+      "dpd_baby": 0.03214285714285715,
+      "dpd_25ct": 0.08035714285714286,
+      "dpd_80ct": 0.2571428571428572
+    },
+    "11": {
+      "total_pnl_cents": -59.0,
+      "hits": 4,
+      "hit_rate": 0.5,
+      "avg_pnl_per_match": -7.375,
+      "dpd_baby": -0.21071428571428572,
+      "dpd_25ct": -0.5267857142857143,
+      "dpd_80ct": -1.6857142857142857
+    },
+    "12": {
+      "total_pnl_cents": -55.0,
+      "hits": 4,
+      "hit_rate": 0.5,
+      "avg_pnl_per_match": -6.875,
+      "dpd_baby": -0.19642857142857142,
+      "dpd_25ct": -0.49107142857142855,
+      "dpd_80ct": -1.5714285714285714
+    },
+    "13": {
+      "total_pnl_cents": -51.0,
+      "hits": 4,
+      "hit_rate": 0.5,
+      "avg_pnl_per_match": -6.375,
+      "dpd_baby": -0.18214285714285713,
+      "dpd_25ct": -0.45535714285714285,
+      "dpd_80ct": -1.457142857142857
+    },
+    "14": {
+      "total_pnl_cents": -47.0,
+      "hits": 4,
+      "hit_rate": 0.5,
+      "avg_pnl_per_match": -5.875,
+      "dpd_baby": -0.16785714285714287,
+      "dpd_25ct": -0.4196428571428572,
+      "dpd_80ct": -1.342857142857143
+    },
+    "15": {
+      "total_pnl_cents": -43.0,
+      "hits": 4,
+      "hit_rate": 0.5,
+      "avg_pnl_per_match": -5.375,
+      "dpd_baby": -0.15357142857142855,
+      "dpd_25ct": -0.3839285714285714,
+      "dpd_80ct": -1.2285714285714284
+    },
+    "16": {
+      "total_pnl_cents": -39.0,
+      "hits": 4,
+      "hit_rate": 0.5,
+      "avg_pnl_per_match": -4.875,
+      "dpd_baby": -0.1392857142857143,
+      "dpd_25ct": -0.3482142857142857,
+      "dpd_80ct": -1.1142857142857143
+    },
+    "17": {
+      "total_pnl_cents": -35.0,
+      "hits": 4,
+      "hit_rate": 0.5,
+      "avg_pnl_per_match": -4.375,
+      "dpd_baby": -0.125,
+      "dpd_25ct": -0.3125,
+      "dpd_80ct": -1.0
+    },
+    "18": {
+      "total_pnl_cents": -74.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -9.3125,
+      "dpd_baby": -0.26607142857142857,
+      "dpd_25ct": -0.6651785714285714,
+      "dpd_80ct": -2.1285714285714286
+    },
+    "19": {
+      "total_pnl_cents": -71.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -8.9375,
+      "dpd_baby": -0.2553571428571429,
+      "dpd_25ct": -0.6383928571428572,
+      "dpd_80ct": -2.042857142857143
+    },
+    "20": {
+      "total_pnl_cents": -68.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -8.5625,
+      "dpd_baby": -0.24464285714285713,
+      "dpd_25ct": -0.6116071428571428,
+      "dpd_80ct": -1.957142857142857
+    },
+    "21": {
+      "total_pnl_cents": -65.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -8.1875,
+      "dpd_baby": -0.23392857142857143,
+      "dpd_25ct": -0.5848214285714286,
+      "dpd_80ct": -1.8714285714285714
+    },
+    "22": {
+      "total_pnl_cents": -62.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -7.8125,
+      "dpd_baby": -0.22321428571428573,
+      "dpd_25ct": -0.5580357142857143,
+      "dpd_80ct": -1.7857142857142858
+    },
+    "23": {
+      "total_pnl_cents": -59.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -7.4375,
+      "dpd_baby": -0.2125,
+      "dpd_25ct": -0.53125,
+      "dpd_80ct": -1.7
+    },
+    "24": {
+      "total_pnl_cents": -56.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -7.0625,
+      "dpd_baby": -0.2017857142857143,
+      "dpd_25ct": -0.5044642857142857,
+      "dpd_80ct": -1.6142857142857143
+    },
+    "25": {
+      "total_pnl_cents": -53.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -6.6875,
+      "dpd_baby": -0.19107142857142856,
+      "dpd_25ct": -0.4776785714285714,
+      "dpd_80ct": -1.5285714285714285
+    },
+    "26": {
+      "total_pnl_cents": -50.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -6.3125,
+      "dpd_baby": -0.18035714285714285,
+      "dpd_25ct": -0.45089285714285715,
+      "dpd_80ct": -1.4428571428571428
+    },
+    "27": {
+      "total_pnl_cents": -47.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -5.9375,
+      "dpd_baby": -0.16964285714285715,
+      "dpd_25ct": -0.4241071428571429,
+      "dpd_80ct": -1.3571428571428572
+    },
+    "28": {
+      "total_pnl_cents": -44.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -5.5625,
+      "dpd_baby": -0.15892857142857145,
+      "dpd_25ct": -0.3973214285714286,
+      "dpd_80ct": -1.2714285714285716
+    },
+    "29": {
+      "total_pnl_cents": -41.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -5.1875,
+      "dpd_baby": -0.14821428571428572,
+      "dpd_25ct": -0.3705357142857143,
+      "dpd_80ct": -1.1857142857142857
+    },
+    "30": {
+      "total_pnl_cents": -38.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -4.8125,
+      "dpd_baby": -0.1375,
+      "dpd_25ct": -0.34375,
+      "dpd_80ct": -1.1
+    },
+    "31": {
+      "total_pnl_cents": -35.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -4.4375,
+      "dpd_baby": -0.12678571428571428,
+      "dpd_25ct": -0.3169642857142857,
+      "dpd_80ct": -1.0142857142857142
+    },
+    "32": {
+      "total_pnl_cents": -32.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -4.0625,
+      "dpd_baby": -0.11607142857142858,
+      "dpd_25ct": -0.29017857142857145,
+      "dpd_80ct": -0.9285714285714286
+    },
+    "33": {
+      "total_pnl_cents": -29.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -3.6875,
+      "dpd_baby": -0.10535714285714286,
+      "dpd_25ct": -0.26339285714285715,
+      "dpd_80ct": -0.8428571428571429
+    },
+    "34": {
+      "total_pnl_cents": -26.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -3.3125,
+      "dpd_baby": -0.09464285714285714,
+      "dpd_25ct": -0.23660714285714285,
+      "dpd_80ct": -0.7571428571428571
+    },
+    "35": {
+      "total_pnl_cents": -23.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -2.9375,
+      "dpd_baby": -0.08392857142857144,
+      "dpd_25ct": -0.2098214285714286,
+      "dpd_80ct": -0.6714285714285715
+    },
+    "36": {
+      "total_pnl_cents": -20.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -2.5625,
+      "dpd_baby": -0.0732142857142857,
+      "dpd_25ct": -0.18303571428571425,
+      "dpd_80ct": -0.5857142857142856
+    },
+    "37": {
+      "total_pnl_cents": -17.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -2.1875,
+      "dpd_baby": -0.0625,
+      "dpd_25ct": -0.15625,
+      "dpd_80ct": -0.5
+    },
+    "38": {
+      "total_pnl_cents": -14.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -1.8125,
+      "dpd_baby": -0.05178571428571428,
+      "dpd_25ct": -0.1294642857142857,
+      "dpd_80ct": -0.41428571428571426
+    },
+    "39": {
+      "total_pnl_cents": -11.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -1.4375,
+      "dpd_baby": -0.04107142857142857,
+      "dpd_25ct": -0.10267857142857142,
+      "dpd_80ct": -0.32857142857142857
+    },
+    "40": {
+      "total_pnl_cents": -8.5,
+      "hits": 3,
+      "hit_rate": 0.375,
+      "avg_pnl_per_match": -1.0625,
+      "dpd_baby": -0.030357142857142857,
+      "dpd_25ct": -0.07589285714285714,
+      "dpd_80ct": -0.24285714285714285
+    },
+    "41": {
+      "total_pnl_cents": -72.0,
+      "hits": 2,
+      "hit_rate": 0.25,
+      "avg_pnl_per_match": -9.0,
+      "dpd_baby": -0.2571428571428572,
+      "dpd_25ct": -0.6428571428571429,
+      "dpd_80ct": -2.0571428571428574
+    },
+    "42": {
+      "total_pnl_cents": -70.0,
+      "hits": 2,
+      "hit_rate": 0.25,
+      "avg_pnl_per_match": -8.75,
+      "dpd_baby": -0.25,
+      "dpd_25ct": -0.625,
+      "dpd_80ct": -2.0
+    },
+    "43": {
+      "total_pnl_cents": -68.0,
+      "hits": 2,
+      "hit_rate": 0.25,
+      "avg_pnl_per_match": -8.5,
+      "dpd_baby": -0.24285714285714285,
+      "dpd_25ct": -0.6071428571428571,
+      "dpd_80ct": -1.9428571428571428
+    },
+    "44": {
+      "total_pnl_cents": -66.0,
+      "hits": 2,
+      "hit_rate": 0.25,
+      "avg_pnl_per_match": -8.25,
+      "dpd_baby": -0.2357142857142857,
+      "dpd_25ct": -0.5892857142857143,
+      "dpd_80ct": -1.8857142857142857
+    },
+    "45": {
+      "total_pnl_cents": -64.0,
+      "hits": 2,
+      "hit_rate": 0.25,
+      "avg_pnl_per_match": -8.0,
+      "dpd_baby": -0.2285714285714286,
+      "dpd_25ct": -0.5714285714285715,
+      "dpd_80ct": -1.8285714285714287
+    },
+    "46": {
+      "total_pnl_cents": -135.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -16.9375,
+      "dpd_baby": -0.48392857142857143,
+      "dpd_25ct": -1.2098214285714286,
+      "dpd_80ct": -3.8714285714285714
+    },
+    "47": {
+      "total_pnl_cents": -134.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -16.8125,
+      "dpd_baby": -0.4803571428571428,
+      "dpd_25ct": -1.200892857142857,
+      "dpd_80ct": -3.8428571428571425
+    },
+    "48": {
+      "total_pnl_cents": -133.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -16.6875,
+      "dpd_baby": -0.47678571428571426,
+      "dpd_25ct": -1.1919642857142856,
+      "dpd_80ct": -3.814285714285714
+    },
+    "49": {
+      "total_pnl_cents": -132.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -16.5625,
+      "dpd_baby": -0.4732142857142857,
+      "dpd_25ct": -1.1830357142857142,
+      "dpd_80ct": -3.7857142857142856
+    },
+    "50": {
+      "total_pnl_cents": -131.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -16.4375,
+      "dpd_baby": -0.46964285714285714,
+      "dpd_25ct": -1.1741071428571428,
+      "dpd_80ct": -3.757142857142857
+    },
+    "51": {
+      "total_pnl_cents": -130.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -16.3125,
+      "dpd_baby": -0.4660714285714286,
+      "dpd_25ct": -1.1651785714285714,
+      "dpd_80ct": -3.7285714285714286
+    },
+    "52": {
+      "total_pnl_cents": -129.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -16.1875,
+      "dpd_baby": -0.46249999999999997,
+      "dpd_25ct": -1.15625,
+      "dpd_80ct": -3.6999999999999997
+    },
+    "53": {
+      "total_pnl_cents": -128.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -16.0625,
+      "dpd_baby": -0.4589285714285714,
+      "dpd_25ct": -1.1473214285714286,
+      "dpd_80ct": -3.6714285714285713
+    },
+    "54": {
+      "total_pnl_cents": -127.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -15.9375,
+      "dpd_baby": -0.45535714285714285,
+      "dpd_25ct": -1.1383928571428572,
+      "dpd_80ct": -3.642857142857143
+    },
+    "55": {
+      "total_pnl_cents": -126.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -15.8125,
+      "dpd_baby": -0.4517857142857143,
+      "dpd_25ct": -1.1294642857142858,
+      "dpd_80ct": -3.6142857142857143
+    },
+    "56": {
+      "total_pnl_cents": -125.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -15.6875,
+      "dpd_baby": -0.44821428571428573,
+      "dpd_25ct": -1.1205357142857144,
+      "dpd_80ct": -3.585714285714286
+    },
+    "57": {
+      "total_pnl_cents": -124.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -15.5625,
+      "dpd_baby": -0.4446428571428571,
+      "dpd_25ct": -1.1116071428571428,
+      "dpd_80ct": -3.557142857142857
+    },
+    "58": {
+      "total_pnl_cents": -123.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -15.4375,
+      "dpd_baby": -0.44107142857142856,
+      "dpd_25ct": -1.1026785714285714,
+      "dpd_80ct": -3.5285714285714285
+    },
+    "59": {
+      "total_pnl_cents": -122.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -15.3125,
+      "dpd_baby": -0.4375,
+      "dpd_25ct": -1.09375,
+      "dpd_80ct": -3.5
+    },
+    "60": {
+      "total_pnl_cents": -121.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -15.1875,
+      "dpd_baby": -0.43392857142857144,
+      "dpd_25ct": -1.0848214285714286,
+      "dpd_80ct": -3.4714285714285715
+    },
+    "61": {
+      "total_pnl_cents": -120.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -15.0625,
+      "dpd_baby": -0.4303571428571429,
+      "dpd_25ct": -1.0758928571428572,
+      "dpd_80ct": -3.442857142857143
+    },
+    "62": {
+      "total_pnl_cents": -119.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -14.9375,
+      "dpd_baby": -0.42678571428571427,
+      "dpd_25ct": -1.0669642857142856,
+      "dpd_80ct": -3.414285714285714
+    },
+    "63": {
+      "total_pnl_cents": -118.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -14.8125,
+      "dpd_baby": -0.4232142857142857,
+      "dpd_25ct": -1.0580357142857142,
+      "dpd_80ct": -3.3857142857142857
+    },
+    "64": {
+      "total_pnl_cents": -117.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -14.6875,
+      "dpd_baby": -0.41964285714285715,
+      "dpd_25ct": -1.0491071428571428,
+      "dpd_80ct": -3.357142857142857
+    },
+    "65": {
+      "total_pnl_cents": -116.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -14.5625,
+      "dpd_baby": -0.4160714285714286,
+      "dpd_25ct": -1.0401785714285714,
+      "dpd_80ct": -3.3285714285714287
+    },
+    "66": {
+      "total_pnl_cents": -115.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -14.4375,
+      "dpd_baby": -0.41250000000000003,
+      "dpd_25ct": -1.03125,
+      "dpd_80ct": -3.3000000000000003
+    },
+    "67": {
+      "total_pnl_cents": -114.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -14.3125,
+      "dpd_baby": -0.4089285714285714,
+      "dpd_25ct": -1.0223214285714286,
+      "dpd_80ct": -3.2714285714285714
+    },
+    "68": {
+      "total_pnl_cents": -113.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -14.1875,
+      "dpd_baby": -0.40535714285714286,
+      "dpd_25ct": -1.0133928571428572,
+      "dpd_80ct": -3.242857142857143
+    },
+    "69": {
+      "total_pnl_cents": -112.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -14.0625,
+      "dpd_baby": -0.4017857142857143,
+      "dpd_25ct": -1.0044642857142858,
+      "dpd_80ct": -3.2142857142857144
+    },
+    "70": {
+      "total_pnl_cents": -111.5,
+      "hits": 1,
+      "hit_rate": 0.125,
+      "avg_pnl_per_match": -13.9375,
+      "dpd_baby": -0.39821428571428574,
+      "dpd_25ct": -0.9955357142857144,
+      "dpd_80ct": -3.185714285714286
+    }
+  }
+}

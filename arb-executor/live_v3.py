@@ -52,6 +52,7 @@ UNMATCHED_SKIP_AGE = 3600     # ...only if open_time is > 1h old
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
 SCHEDULE_FILE = STATE_DIR / "schedule.json"
+TICK_DIR = Path(__file__).resolve().parent / "analysis" / "premarket_ticks"
 
 SERIES_MAP = {
     'ATP_MAIN': ['KXATPMATCH'],
@@ -258,6 +259,12 @@ class LiveV3:
         # Schedule loaded after log_file init (below)
         self.schedule: dict = {}
 
+        # Tick logging
+        TICK_DIR.mkdir(parents=True, exist_ok=True)
+        self._tick_files: Dict[str, object] = {}
+        self._tick_writers: Dict[str, object] = {}
+        self._tick_last_bbo: Dict[str, tuple] = {}  # dedup unchanged ticks
+
         self.n_matches_seen = 0
         self.n_entries = 0
         self.n_skips = 0
@@ -400,6 +407,33 @@ class LiveV3:
             return cell_name, self.config["active_cells"][cell_name]
         return cell_name, None
 
+    def _log_tick(self, ticker, book):
+        """Write BBO tick to per-ticker CSV. Dedup unchanged BBO."""
+        bid, ask = book.best_bid, book.best_ask
+        if bid <= 0 or ask >= 100:
+            return
+        last = self._tick_last_bbo.get(ticker)
+        if last and last == (bid, ask):
+            return
+        self._tick_last_bbo[ticker] = (bid, ask)
+        mid = (bid + ask) / 2.0
+
+        if ticker not in self._tick_writers:
+            import csv as _csv
+            path = TICK_DIR / ("%s.csv" % ticker)
+            is_new = not path.exists() or path.stat().st_size == 0
+            fh = open(path, "a", newline="")
+            w = _csv.writer(fh)
+            if is_new:
+                w.writerow(["ts_et", "ticker", "bid", "ask", "mid"])
+                fh.flush()
+            self._tick_files[ticker] = fh
+            self._tick_writers[ticker] = w
+
+        ts_str = datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p")
+        self._tick_writers[ticker].writerow([ts_str, ticker, bid, ask, "%.1f" % mid])
+        self._tick_files[ticker].flush()
+
     # ------------------------------------------------------------------
     # Order placement — REAL Kalshi API calls
     # ------------------------------------------------------------------
@@ -498,6 +532,7 @@ class LiveV3:
         recalc_bbo(book)
         book.updated = time.time()
         self.books[ticker] = book
+        self._log_tick(ticker, book)
 
     def apply_delta(self, ticker, msg):
         if ticker not in self.books:
@@ -520,6 +555,7 @@ class LiveV3:
                 book.asks.pop(ap, None)
         recalc_bbo(book)
         book.updated = time.time()
+        self._log_tick(ticker, book)
 
     async def ws_reader(self):
         while True:

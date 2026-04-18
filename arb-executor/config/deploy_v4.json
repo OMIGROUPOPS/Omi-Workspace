@@ -164,34 +164,14 @@
       "strategy": "DCA-A",
       "exit_cents": 14,
       "dca_trigger_cents": 35
-    },
-    "WTA_MAIN_leader_65-69": {
-      "strategy": "DCA-A",
-      "exit_cents": 17,
-      "dca_trigger_cents": 33
-    },
-    "ATP_CHALL_underdog_45-49": {
-      "strategy": "DCA-A",
-      "exit_cents": 6,
-      "dca_trigger_cents": 35
-    },
-    "ATP_CHALL_leader_55-59": {
-      "strategy": "DCA-A",
-      "exit_cents": 41,
-      "dca_trigger_cents": 10
-    },
-    "ATP_MAIN_leader_55-59": {
-      "strategy": "DCA-A",
-      "exit_cents": 37,
-      "dca_trigger_cents": 8
-    },
-    "ATP_MAIN_leader_65-69": {
-      "strategy": "DCA-A",
-      "exit_cents": 5,
-      "dca_trigger_cents": 35
     }
   },
   "disabled_cells": [
-    "WTA_MAIN_leader_55-59"
+    "ATP_CHALL_leader_55-59",
+    "ATP_CHALL_underdog_45-49",
+    "ATP_MAIN_leader_55-59",
+    "ATP_MAIN_leader_65-69",
+    "WTA_MAIN_leader_55-59",
+    "WTA_MAIN_leader_65-69"
   ]
 }

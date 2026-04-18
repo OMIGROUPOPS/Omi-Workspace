@@ -407,16 +407,37 @@ class LiveV3:
             return cell_name, self.config["active_cells"][cell_name]
         return cell_name, None
 
+    def _extract_depth(self, book, side="bid", levels=5):
+        """Extract top N price levels with sizes. Returns list of (price, size) tuples."""
+        if side == "bid":
+            items = sorted(book.bids.items(), reverse=True)[:levels]
+        else:
+            items = sorted(book.asks.items())[:levels]
+        result = list(items)
+        while len(result) < levels:
+            result.append(("", ""))
+        return result
+
+    def _depth_signature(self, book):
+        """Hashable snapshot of top-5 depth on both sides for dedup."""
+        bids = tuple(sorted(book.bids.items(), reverse=True)[:5])
+        asks = tuple(sorted(book.asks.items())[:5])
+        return (bids, asks)
+
     def _log_tick(self, ticker, book):
-        """Write BBO tick to per-ticker CSV. Dedup unchanged BBO."""
+        """Write depth tick to per-ticker CSV. Dedup on top-5 depth change."""
         bid, ask = book.best_bid, book.best_ask
         if bid <= 0 or ask >= 100:
             return
+        sig = self._depth_signature(book)
         last = self._tick_last_bbo.get(ticker)
-        if last and last == (bid, ask):
+        if last and last == sig:
             return
-        self._tick_last_bbo[ticker] = (bid, ask)
+        self._tick_last_bbo[ticker] = sig
         mid = (bid + ask) / 2.0
+
+        bid_levels = self._extract_depth(book, "bid")
+        ask_levels = self._extract_depth(book, "ask")
 
         if ticker not in self._tick_writers:
             import csv as _csv
@@ -425,13 +446,25 @@ class LiveV3:
             fh = open(path, "a", newline="")
             w = _csv.writer(fh)
             if is_new:
-                w.writerow(["ts_et", "ticker", "bid", "ask", "mid"])
+                header = ["ts_et", "ticker"]
+                for i in range(1, 6):
+                    header += ["bid_%d" % i, "bid_%d_sz" % i]
+                for i in range(1, 6):
+                    header += ["ask_%d" % i, "ask_%d_sz" % i]
+                header.append("mid")
+                w.writerow(header)
                 fh.flush()
             self._tick_files[ticker] = fh
             self._tick_writers[ticker] = w
 
         ts_str = datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p")
-        self._tick_writers[ticker].writerow([ts_str, ticker, bid, ask, "%.1f" % mid])
+        row = [ts_str, ticker]
+        for price, size in bid_levels:
+            row += [price, size]
+        for price, size in ask_levels:
+            row += [price, size]
+        row.append("%.1f" % mid)
+        self._tick_writers[ticker].writerow(row)
         self._tick_files[ticker].flush()
 
     # ------------------------------------------------------------------

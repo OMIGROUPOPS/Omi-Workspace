@@ -48,6 +48,10 @@ ENTRY_BUFFER_SEC = 900        # stop entering 15 min before scheduled start
 ENTRY_MAX_LEAD_SEC = 86400    # don't enter more than 24h before start
 UNMATCHED_SKIP_CYCLES = 3     # skip unmatched events after this many discovery cycles
 UNMATCHED_SKIP_AGE = 3600     # ...only if open_time is > 1h old
+DEAD_SPREAD_THRESHOLD = 20    # don't post if spread > 20c
+STALE_BUY_DELTA = 5           # cancel resting buy if our price > mid + 5c
+PENDING_TIMEOUT_SEC = 7200    # cancel pending entry after 2h with no tight spread
+STALE_CHECK_INTERVAL = 120    # validate resting buys every 2 min
 
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
@@ -66,7 +70,7 @@ ALL_SERIES = []
 for prefixes in SERIES_MAP.values():
     ALL_SERIES.extend(prefixes)
 
-CONFIG_PATH = Path(__file__).resolve().parent / "config" / "deploy_v3.json"
+CONFIG_PATH = Path(__file__).resolve().parent / "config" / "deploy_v4.json"
 LOG_DIR = Path(__file__).resolve().parent / "logs"
 
 # -------------------------------------------------------------------------
@@ -251,6 +255,7 @@ class LiveV3:
         self.event_unmatched_cycles: Dict[str, int] = {}  # discovery cycles without schedule match
 
         self.positions: Dict[str, Position] = {}
+        self.pending_entries: Dict[str, dict] = {}  # ticker -> {event, direction, cat, cell_name, cell_cfg, discovered_ts}
 
         # Persistent processed-tickers set (survives restarts)
         STATE_DIR.mkdir(parents=True, exist_ok=True)
@@ -1004,6 +1009,22 @@ class LiveV3:
                     }, ticker=tk)
                     continue
 
+                # Dead-spread guard: defer entry if spread too wide
+                spread = book.best_ask - book.best_bid
+                if spread > DEAD_SPREAD_THRESHOLD:
+                    if tk not in self.pending_entries:
+                        self.pending_entries[tk] = {
+                            "event": et, "direction": direction, "cat": cat,
+                            "cell_name": cell_name, "cell_cfg": cell_cfg,
+                            "discovered_ts": now,
+                        }
+                        self._log("entry_deferred", {
+                            "reason": "dead_spread", "spread": spread,
+                            "bid": book.best_bid, "ask": book.best_ask,
+                            "cell": cell_name,
+                        }, ticker=tk)
+                    continue
+
                 entry_price = int(current_mid)
 
                 # Pre-post guard: check for existing resting orders or position on this ticker
@@ -1044,6 +1065,104 @@ class LiveV3:
                     entry_posted_ts=now, phase="entry_resting",
                 )
                 self.positions[tk] = pos
+
+    # ------------------------------------------------------------------
+    # Check pending entries: post when spread tightens
+    # ------------------------------------------------------------------
+    async def check_pending_entries(self):
+        now = time.time()
+        for tk in list(self.pending_entries.keys()):
+            pe = self.pending_entries[tk]
+
+            # Timeout: 2h with no tight spread → skip permanently
+            if now - pe["discovered_ts"] > PENDING_TIMEOUT_SEC:
+                del self.pending_entries[tk]
+                self._log("pending_timeout", {"ticker": tk, "cell": pe["cell_name"]}, ticker=tk)
+                continue
+
+            book = self.books.get(tk)
+            if not book or book.updated < now - 120:
+                continue
+
+            spread = book.best_ask - book.best_bid
+            if spread > DEAD_SPREAD_THRESHOLD:
+                continue  # still dead, wait
+
+            current_mid = (book.best_bid + book.best_ask) / 2.0
+            cell_name, cell_cfg = self.cell_lookup(pe["cat"], pe["direction"], current_mid)
+
+            # Cell changed?
+            if cell_name != pe["cell_name"]:
+                del self.pending_entries[tk]
+                self._log("pending_cell_drift", {
+                    "old_cell": pe["cell_name"], "new_cell": cell_name,
+                    "mid": current_mid,
+                }, ticker=tk)
+                continue
+
+            if not cell_cfg or cell_name in self.config["disabled_cells"]:
+                del self.pending_entries[tk]
+                continue
+
+            # Spread tight enough — post now
+            entry_price = int(current_mid)
+            del self.pending_entries[tk]
+
+            self._log("pending_resolved", {
+                "spread": spread, "entry_price": entry_price, "cell": cell_name,
+                "waited_sec": round(now - pe["discovered_ts"]),
+            }, ticker=tk)
+
+            oid, resp = await self.place_order(tk, "buy", "yes", entry_price, self.entry_size)
+            pos = Position(
+                ticker=tk, event_ticker=pe["event"],
+                category=self.ticker_category.get(tk, "?"),
+                direction=pe["direction"], cell_name=cell_name, cell_cfg=cell_cfg,
+                entry_price=entry_price, entry_order_id=oid,
+                entry_posted_ts=now, phase="entry_resting",
+            )
+            self.positions[tk] = pos
+
+    # ------------------------------------------------------------------
+    # Validate resting buys: cancel stale orders
+    # ------------------------------------------------------------------
+    async def validate_resting_buys(self):
+        now = time.time()
+        for tk, pos in list(self.positions.items()):
+            if pos.phase != "entry_resting" or not pos.entry_order_id:
+                continue
+
+            book = self.books.get(tk)
+            if not book or book.updated < now - 120:
+                continue
+
+            current_mid = (book.best_bid + book.best_ask) / 2.0
+            delta = pos.entry_price - current_mid
+
+            # Our price > 5c above current mid → stale, cancel
+            if delta > STALE_BUY_DELTA:
+                await self.cancel_order(tk, pos.entry_order_id, "stale_above_fv")
+                self._log("stale_buy_cancel", {
+                    "reason": "above_fair_value", "our_price": pos.entry_price,
+                    "current_mid": current_mid, "delta": round(delta),
+                }, ticker=tk)
+                pos.phase = "settled"
+                pos.settled = True
+                continue
+
+            # Cell changed from post time
+            cat = self.get_category(tk)
+            if cat:
+                direction = "leader" if current_mid > 50 else "underdog"
+                current_cell, _ = self.cell_lookup(cat, direction, current_mid)
+                if current_cell != pos.cell_name:
+                    await self.cancel_order(tk, pos.entry_order_id, "cell_drift")
+                    self._log("stale_buy_cancel", {
+                        "reason": "cell_drift", "original_cell": pos.cell_name,
+                        "current_cell": current_cell, "current_mid": current_mid,
+                    }, ticker=tk)
+                    pos.phase = "settled"
+                    pos.settled = True
 
     # ------------------------------------------------------------------
     # Summary
@@ -1480,6 +1599,7 @@ class LiveV3:
         last_discovery = time.time()
         last_fill_check = 0  # force immediate first check_fills
         last_reconcile = time.time()
+        last_stale_check = time.time()
         last_summary = time.time()
 
         print("[RUNNING] Main loop started.", flush=True)
@@ -1506,6 +1626,14 @@ class LiveV3:
                     if new_tickers:
                         await self.ws_subscribe(new_tickers)
                     last_discovery = now
+
+                # Check pending entries every loop (lightweight — just reads books)
+                await self.check_pending_entries()
+
+                # Validate resting buys every 2 min
+                if now - last_stale_check > STALE_CHECK_INTERVAL:
+                    await self.validate_resting_buys()
+                    last_stale_check = now
 
                 # Reconcile every 60s — auto-post exits for naked positions
                 if now - last_reconcile > 60:

@@ -66,7 +66,7 @@ ALL_SERIES = []
 for prefixes in SERIES_MAP.values():
     ALL_SERIES.extend(prefixes)
 
-CONFIG_PATH = Path(__file__).resolve().parent / "config" / "deploy_v4.json"
+CONFIG_PATH = Path(__file__).resolve().parent / "config" / "deploy_v3.json"
 LOG_DIR = Path(__file__).resolve().parent / "logs"
 
 # -------------------------------------------------------------------------
@@ -451,7 +451,7 @@ class LiveV3:
                     header += ["bid_%d" % i, "bid_%d_sz" % i]
                 for i in range(1, 6):
                     header += ["ask_%d" % i, "ask_%d_sz" % i]
-                header.append("mid")
+                header += ["mid", "bid_depth_5", "ask_depth_5", "depth_ratio"]
                 w.writerow(header)
                 fh.flush()
             self._tick_files[ticker] = fh
@@ -459,11 +459,19 @@ class LiveV3:
 
         ts_str = datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p")
         row = [ts_str, ticker]
+        total_bid_sz = 0
+        total_ask_sz = 0
         for price, size in bid_levels:
             row += [price, size]
+            if isinstance(size, (int, float)) and size > 0:
+                total_bid_sz += size
         for price, size in ask_levels:
             row += [price, size]
-        row.append("%.1f" % mid)
+            if isinstance(size, (int, float)) and size > 0:
+                total_ask_sz += size
+        total = total_bid_sz + total_ask_sz
+        depth_ratio = total_bid_sz / total if total > 0 else 0.5
+        row += ["%.1f" % mid, total_bid_sz, total_ask_sz, "%.3f" % depth_ratio]
         self._tick_writers[ticker].writerow(row)
         self._tick_files[ticker].flush()
 

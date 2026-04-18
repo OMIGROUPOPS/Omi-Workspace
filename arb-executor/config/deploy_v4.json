@@ -79,7 +79,7 @@
     },
     "WTA_MAIN_leader_70-74": {
       "strategy": "noDCA",
-      "exit_cents": 26
+      "exit_cents": 15
     },
     "ATP_MAIN_leader_75-79": {
       "strategy": "DCA-A",

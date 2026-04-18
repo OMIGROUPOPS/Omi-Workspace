@@ -66,7 +66,7 @@ ALL_SERIES = []
 for prefixes in SERIES_MAP.values():
     ALL_SERIES.extend(prefixes)
 
-CONFIG_PATH = Path(__file__).resolve().parent / "config" / "deploy_v3.json"
+CONFIG_PATH = Path(__file__).resolve().parent / "config" / "deploy_v4.json"
 LOG_DIR = Path(__file__).resolve().parent / "logs"
 
 # -------------------------------------------------------------------------

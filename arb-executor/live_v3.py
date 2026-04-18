@@ -57,6 +57,7 @@ STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
 SCHEDULE_FILE = STATE_DIR / "schedule.json"
 TICK_DIR = Path(__file__).resolve().parent / "analysis" / "premarket_ticks"
+TRADE_DIR = Path(__file__).resolve().parent / "analysis" / "trades"
 
 SERIES_MAP = {
     'ATP_MAIN': ['KXATPMATCH'],
@@ -186,6 +187,9 @@ class Book:
     best_bid: int = 0
     best_ask: int = 100
     updated: float = 0.0
+    last_trade_price: int = 0
+    last_trade_ts: float = 0.0
+    last_trade_side: str = ""
 
 def recalc_bbo(b):
     b.best_bid = max(b.bids.keys()) if b.bids else 0
@@ -266,9 +270,12 @@ class LiveV3:
 
         # Tick logging
         TICK_DIR.mkdir(parents=True, exist_ok=True)
+        TRADE_DIR.mkdir(parents=True, exist_ok=True)
         self._tick_files: Dict[str, object] = {}
         self._tick_writers: Dict[str, object] = {}
         self._tick_last_bbo: Dict[str, tuple] = {}  # dedup unchanged ticks
+        self._trade_files: Dict[str, object] = {}
+        self._trade_writers: Dict[str, object] = {}
 
         self.n_matches_seen = 0
         self.n_entries = 0
@@ -480,6 +487,41 @@ class LiveV3:
         self._tick_writers[ticker].writerow(row)
         self._tick_files[ticker].flush()
 
+    def apply_trade(self, ticker, msg):
+        """Process a trade event from WebSocket."""
+        if ticker not in self.books:
+            self.books[ticker] = Book()
+        book = self.books[ticker]
+        price_raw = msg.get("yes_price", msg.get("yes_price_dollars", 0))
+        if isinstance(price_raw, str):
+            price_raw = float(price_raw)
+        price = round(price_raw * 100) if price_raw < 2 else int(price_raw)
+        count = msg.get("count", msg.get("count_fp", 0))
+        if isinstance(count, str):
+            count = int(float(count))
+        side = msg.get("taker_side", "?")
+        book.last_trade_price = price
+        book.last_trade_ts = time.time()
+        book.last_trade_side = side
+        self._log_trade(ticker, price, count, side)
+
+    def _log_trade(self, ticker, price, count, taker_side):
+        """Write trade to per-ticker CSV."""
+        if ticker not in self._trade_writers:
+            import csv as _csv
+            path = TRADE_DIR / ("%s.csv" % ticker)
+            is_new = not path.exists() or path.stat().st_size == 0
+            fh = open(path, "a", newline="")
+            w = _csv.writer(fh)
+            if is_new:
+                w.writerow(["ts_et", "ticker", "price", "count", "taker_side"])
+                fh.flush()
+            self._trade_files[ticker] = fh
+            self._trade_writers[ticker] = w
+        ts_str = datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p")
+        self._trade_writers[ticker].writerow([ts_str, ticker, price, count, taker_side])
+        self._trade_files[ticker].flush()
+
     # ------------------------------------------------------------------
     # Order placement — REAL Kalshi API calls
     # ------------------------------------------------------------------
@@ -556,7 +598,7 @@ class LiveV3:
             self.msg_id += 1
             try:
                 await self.ws.send(json.dumps({"id": self.msg_id, "cmd": "subscribe",
-                    "params": {"channels": ["orderbook_delta"], "market_tickers": batch}}))
+                    "params": {"channels": ["orderbook_delta", "trade"], "market_tickers": batch}}))
                 self.subscribed.update(batch)
                 await asyncio.sleep(0.05)
             except Exception as e:
@@ -616,6 +658,9 @@ class LiveV3:
                     self.apply_snapshot(msg.get("msg", {}).get("market_ticker", ""), msg.get("msg", {}))
                 elif typ == "orderbook_delta":
                     self.apply_delta(msg.get("msg", {}).get("market_ticker", ""), msg.get("msg", {}))
+                elif typ == "trade":
+                    self.apply_trade(msg.get("msg", {}).get("market_ticker", msg.get("msg", {}).get("ticker", "")),
+                                    msg.get("msg", {}))
             except asyncio.TimeoutError:
                 continue
             except Exception as e:

@@ -6,14 +6,12 @@
   "dca_fill_floor_cents": 10,
   "active_cells": {
     "ATP_CHALL_underdog_20-24": {
-      "strategy": "DCA-A",
-      "exit_cents": 25,
-      "dca_trigger_cents": 10
+      "strategy": "noDCA",
+      "exit_cents": 25
     },
     "ATP_CHALL_underdog_25-29": {
-      "strategy": "DCA-A",
-      "exit_cents": 21,
-      "dca_trigger_cents": 15
+      "strategy": "noDCA",
+      "exit_cents": 21
     },
     "ATP_CHALL_leader_75-79": {
       "strategy": "DCA-A",
@@ -21,24 +19,20 @@
       "dca_trigger_cents": 25
     },
     "ATP_CHALL_underdog_15-19": {
-      "strategy": "DCA-A",
-      "exit_cents": 31,
-      "dca_trigger_cents": 5
+      "strategy": "noDCA",
+      "exit_cents": 31
     },
     "ATP_CHALL_underdog_30-34": {
-      "strategy": "DCA-A",
-      "exit_cents": 15,
-      "dca_trigger_cents": 20
+      "strategy": "noDCA",
+      "exit_cents": 15
     },
     "ATP_CHALL_underdog_35-39": {
-      "strategy": "DCA-A",
-      "exit_cents": 11,
-      "dca_trigger_cents": 25
+      "strategy": "noDCA",
+      "exit_cents": 11
     },
     "ATP_MAIN_underdog_30-34": {
-      "strategy": "DCA-A",
-      "exit_cents": 15,
-      "dca_trigger_cents": 20
+      "strategy": "noDCA",
+      "exit_cents": 15
     },
     "ATP_CHALL_leader_60-64": {
       "strategy": "DCA-A",
@@ -46,19 +40,16 @@
       "dca_trigger_cents": 32
     },
     "ATP_CHALL_leader_80-84": {
-      "strategy": "DCA-A",
-      "exit_cents": 15,
-      "dca_trigger_cents": 29
+      "strategy": "noDCA",
+      "exit_cents": 15
     },
     "WTA_MAIN_underdog_25-29": {
-      "strategy": "DCA-A",
-      "exit_cents": 21,
-      "dca_trigger_cents": 16
+      "strategy": "noDCA",
+      "exit_cents": 21
     },
     "ATP_MAIN_underdog_20-24": {
-      "strategy": "DCA-A",
-      "exit_cents": 25,
-      "dca_trigger_cents": 10
+      "strategy": "noDCA",
+      "exit_cents": 25
     },
     "ATP_CHALL_underdog_40-44": {
       "strategy": "DCA-A",
@@ -66,14 +57,12 @@
       "dca_trigger_cents": 7
     },
     "ATP_CHALL_leader_70-74": {
-      "strategy": "DCA-A",
-      "exit_cents": 7,
-      "dca_trigger_cents": 20
+      "strategy": "noDCA",
+      "exit_cents": 7
     },
     "WTA_MAIN_underdog_30-34": {
-      "strategy": "DCA-A",
-      "exit_cents": 16,
-      "dca_trigger_cents": 20
+      "strategy": "noDCA",
+      "exit_cents": 16
     },
     "ATP_MAIN_underdog_35-39": {
       "strategy": "DCA-A",
@@ -81,19 +70,16 @@
       "dca_trigger_cents": 26
     },
     "WTA_MAIN_underdog_15-19": {
-      "strategy": "DCA-A",
-      "exit_cents": 31,
-      "dca_trigger_cents": 6
+      "strategy": "noDCA",
+      "exit_cents": 31
     },
     "WTA_MAIN_underdog_20-24": {
-      "strategy": "DCA-A",
-      "exit_cents": 25,
-      "dca_trigger_cents": 10
+      "strategy": "noDCA",
+      "exit_cents": 25
     },
     "WTA_MAIN_leader_70-74": {
-      "strategy": "DCA-A",
-      "exit_cents": 26,
-      "dca_trigger_cents": 19
+      "strategy": "noDCA",
+      "exit_cents": 26
     },
     "ATP_MAIN_leader_75-79": {
       "strategy": "DCA-A",
@@ -101,29 +87,24 @@
       "dca_trigger_cents": 25
     },
     "ATP_MAIN_leader_60-64": {
-      "strategy": "DCA-A",
-      "exit_cents": 36,
-      "dca_trigger_cents": 26
+      "strategy": "noDCA",
+      "exit_cents": 36
     },
     "ATP_MAIN_leader_70-74": {
-      "strategy": "DCA-A",
-      "exit_cents": 6,
-      "dca_trigger_cents": 19
+      "strategy": "noDCA",
+      "exit_cents": 6
     },
     "ATP_MAIN_underdog_25-29": {
-      "strategy": "DCA-A",
-      "exit_cents": 23,
-      "dca_trigger_cents": 16
+      "strategy": "noDCA",
+      "exit_cents": 23
     },
     "WTA_MAIN_leader_80-84": {
-      "strategy": "DCA-A",
-      "exit_cents": 17,
-      "dca_trigger_cents": 29
+      "strategy": "noDCA",
+      "exit_cents": 17
     },
     "WTA_MAIN_underdog_35-39": {
-      "strategy": "DCA-A",
-      "exit_cents": 27,
-      "dca_trigger_cents": 25
+      "strategy": "noDCA",
+      "exit_cents": 27
     },
     "ATP_CHALL_leader_65-69": {
       "strategy": "DCA-A",
@@ -131,24 +112,20 @@
       "dca_trigger_cents": 16
     },
     "WTA_MAIN_underdog_45-49": {
-      "strategy": "DCA-A",
-      "exit_cents": 14,
-      "dca_trigger_cents": 35
+      "strategy": "noDCA",
+      "exit_cents": 14
     },
     "ATP_MAIN_underdog_40-44": {
-      "strategy": "DCA-A",
-      "exit_cents": 58,
-      "dca_trigger_cents": 13
+      "strategy": "noDCA",
+      "exit_cents": 58
     },
     "WTA_MAIN_underdog_40-44": {
-      "strategy": "DCA-A",
-      "exit_cents": 49,
-      "dca_trigger_cents": 8
+      "strategy": "noDCA",
+      "exit_cents": 49
     },
     "WTA_MAIN_leader_60-64": {
-      "strategy": "DCA-A",
-      "exit_cents": 34,
-      "dca_trigger_cents": 35
+      "strategy": "noDCA",
+      "exit_cents": 34
     },
     "WTA_MAIN_leader_50-54": {
       "strategy": "DCA-A",
@@ -156,9 +133,8 @@
       "dca_trigger_cents": 16
     },
     "ATP_CHALL_leader_85-89": {
-      "strategy": "DCA-A",
-      "exit_cents": 7,
-      "dca_trigger_cents": 35
+      "strategy": "noDCA",
+      "exit_cents": 7
     },
     "WTA_MAIN_leader_85-89": {
       "strategy": "DCA-A",

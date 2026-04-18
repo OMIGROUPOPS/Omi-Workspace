@@ -746,7 +746,8 @@ class LiveV3:
                 status = order.get("status", "")
                 filled = int(order.get("count_filled_fp", order.get("count_filled", 0)) or 0)
 
-                if filled > 0 and pos.entry_qty == 0:
+                if filled > 0 and filled > pos.entry_qty:
+                    new_fills = filled - pos.entry_qty
                     fill_price_raw = order.get("average_fill_price_fp",
                                                order.get("yes_price", pos.entry_price / 100.0))
                     if isinstance(fill_price_raw, str):
@@ -755,10 +756,12 @@ class LiveV3:
                     if fill_price <= 0:
                         fill_price = pos.entry_price
 
+                    first_fill = pos.entry_qty == 0
                     pos.entry_qty = filled
                     pos.entry_filled_ts = time.time()
                     pos.phase = "active"
-                    self.n_entries += 1
+                    if first_fill:
+                        self.n_entries += 1
 
                     exit_price = min(fill_price + pos.cell_cfg["exit_cents"], EXIT_PRICE_CAP)
                     pos.exit_price = exit_price
@@ -767,26 +770,28 @@ class LiveV3:
                         "fill_price": fill_price,
                         "posted_price": pos.entry_price,
                         "qty": filled,
+                        "new_fills": new_fills,
                         "cell": pos.cell_name,
                         "direction": pos.direction,
                         "kalshi_status": status,
                     }, ticker=tk)
 
-                    # Place exit sell (retry once on failure)
-                    oid, resp = await self.place_order(tk, "sell", "yes", exit_price, filled)
+                    # Place exit sell for NEW fills only (avoids duplicates on partials)
+                    sell_qty = new_fills
+                    oid, resp = await self.place_order(tk, "sell", "yes", exit_price, sell_qty)
                     if not oid:
                         self._log("exit_retry", {"reason": "first attempt failed"}, ticker=tk)
                         await asyncio.sleep(1)
-                        oid, resp = await self.place_order(tk, "sell", "yes", exit_price, filled)
+                        oid, resp = await self.place_order(tk, "sell", "yes", exit_price, sell_qty)
                     if not oid:
                         self._log("exit_fatal", {
                             "error": "exit sell failed after retry",
-                            "exit_price": exit_price, "qty": filled,
+                            "exit_price": exit_price, "qty": sell_qty,
                         }, ticker=tk)
                     pos.exit_order_id = oid
                     self._log("exit_posted", {
                         "exit_price": exit_price,
-                        "qty": filled,
+                        "qty": sell_qty, "total_position": filled,
                         "based_on_fill": fill_price,
                         "order_id": oid,
                     }, ticker=tk)
@@ -1144,6 +1149,7 @@ class LiveV3:
 
             if sells:
                 sell = sells[0]
+                total_sell_qty = sum(s["qty"] for s in sells)
                 cat = self.get_category(tk) or "?"
                 pos = Position(
                     ticker=tk, event_ticker=et, category=cat,
@@ -1155,6 +1161,24 @@ class LiveV3:
                 )
                 self.positions[tk] = pos
                 linked.append((tk, pinfo, sell))
+                # Check qty gap — position may have more contracts than sell covers
+                naked_qty = pinfo["qty"] - total_sell_qty
+                if naked_qty > 0:
+                    exit_price = sell["price"]  # same price as existing sell
+                    fresh = await api_get(self.session, self.ak, self.pk,
+                        "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
+                    fresh_sell_qty = sum(int(float(o.get("remaining_count_fp", 0) or 0))
+                        for o in (fresh or {}).get("orders", []) if o.get("action") == "sell")
+                    actual_naked = pinfo["qty"] - fresh_sell_qty
+                    if actual_naked > 0:
+                        oid, resp = await self.place_order(tk, "sell", "yes", exit_price, actual_naked)
+                        reconcile_exits.append((tk, pinfo, exit_price, "qty_gap_fill", oid))
+                        self._log("reconcile_exit_posted", {
+                            "reason": "qty_gap", "exit_price": exit_price,
+                            "naked_qty": actual_naked, "position_qty": pinfo["qty"],
+                            "sell_qty_before": fresh_sell_qty,
+                            "order_id": oid,
+                        }, ticker=tk)
             else:
                 # No exit sell — try to auto-post one
                 cat = self.get_category(tk)

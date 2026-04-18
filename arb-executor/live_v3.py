@@ -860,20 +860,22 @@ class LiveV3:
                         dca_price = fill_price - dca_trigger
                         if dca_price >= self.dca_fill_floor:
                             pos.dca_price = dca_price
-                            dca_oid, dresp = await self.place_order(tk, "buy", "yes", dca_price, self.dca_size)
+                            # FIX 2: DCA qty = min(5, filled_qty)
+                            dca_qty = min(self.dca_size, filled)
+                            dca_oid, dresp = await self.place_order(tk, "buy", "yes", dca_price, dca_qty)
                             if not dca_oid:
                                 self._log("dca_retry", {"reason": "first attempt failed"}, ticker=tk)
                                 await asyncio.sleep(1)
-                                dca_oid, dresp = await self.place_order(tk, "buy", "yes", dca_price, self.dca_size)
+                                dca_oid, dresp = await self.place_order(tk, "buy", "yes", dca_price, dca_qty)
                             if not dca_oid:
                                 self._log("dca_fatal", {
                                     "error": "DCA buy failed after retry",
-                                    "dca_price": dca_price, "qty": self.dca_size,
+                                    "dca_price": dca_price, "qty": dca_qty,
                                 }, ticker=tk)
                             pos.dca_order_id = dca_oid
                             self._log("dca_posted", {
                                 "dca_price": dca_price,
-                                "qty": self.dca_size,
+                                "qty": dca_qty, "position_qty": filled,
                                 "trigger_cents": dca_trigger,
                                 "based_on_fill": fill_price,
                                 "order_id": dca_oid,
@@ -908,9 +910,12 @@ class LiveV3:
                             "pnl_dollars": pnl / 100.0,
                             "had_dca": pos.dca_qty > 0,
                         }, ticker=tk)
-                        # Cancel DCA if still resting
-                        if pos.dca_order_id and not pos.dca_filled:
-                            await self.cancel_order(tk, pos.dca_order_id, "exit_filled_cancel_dca")
+                        # FIX 3: Cancel ALL resting buys on this ticker (DCA + any extras)
+                        cleanup = await api_get(self.session, self.ak, self.pk,
+                            "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
+                        for co in (cleanup or {}).get("orders", []):
+                            if co.get("action") == "buy":
+                                await self.cancel_order(tk, co.get("order_id", ""), "exit_cleanup_dca")
 
             # Check DCA order fill
             if pos.phase == "active" and pos.dca_order_id and not pos.dca_filled and not pos.exit_filled:
@@ -1360,20 +1365,21 @@ class LiveV3:
                         dca_trigger = dca_cell_cfg.get("dca_trigger_cents", 0)
                         dca_price = avg - dca_trigger
                         if dca_price >= self.dca_fill_floor:
-                            existing_buys = [o for o in ord_map.get(tk, []) if o["action"] == "buy"]
-                            has_dca = any(abs(b["price"] - dca_price) <= 2 for b in existing_buys)
-                            if not has_dca:
-                                fresh_buys = await api_get(self.session, self.ak, self.pk,
-                                    "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
-                                fresh_buy_prices = [round(float(o.get("yes_price_dollars","0"))*100)
-                                    for o in (fresh_buys or {}).get("orders", []) if o.get("action") == "buy"]
-                                if not any(abs(p - dca_price) <= 2 for p in fresh_buy_prices):
-                                    dca_oid, _ = await self.place_order(tk, "buy", "yes", dca_price, self.dca_size)
-                                    reconcile_exits.append((tk, pinfo, dca_price, "dca_missing", dca_oid))
-                                    self._log("reconcile_dca_posted", {
-                                        "dca_price": dca_price, "qty": self.dca_size,
-                                        "cell": dca_cell_name, "order_id": dca_oid,
-                                    }, ticker=tk)
+                            # FIX 1: strict any-resting-buy guard (no price proximity check)
+                            fresh_buys = await api_get(self.session, self.ak, self.pk,
+                                "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
+                            any_resting_buy = any(o.get("action") == "buy"
+                                for o in (fresh_buys or {}).get("orders", []))
+                            if not any_resting_buy:
+                                # FIX 2: DCA qty = min(5, position_qty)
+                                dca_qty = min(self.dca_size, pinfo["qty"])
+                                dca_oid, _ = await self.place_order(tk, "buy", "yes", dca_price, dca_qty)
+                                reconcile_exits.append((tk, pinfo, dca_price, "dca_missing", dca_oid))
+                                self._log("reconcile_dca_posted", {
+                                    "dca_price": dca_price, "qty": dca_qty,
+                                    "position_qty": pinfo["qty"],
+                                    "cell": dca_cell_name, "order_id": dca_oid,
+                                }, ticker=tk)
             else:
                 # No exit sell — try to auto-post one
                 cat = self.get_category(tk)

@@ -796,8 +796,8 @@ class LiveV3:
                         "order_id": oid,
                     }, ticker=tk)
 
-                    # Place DCA if applicable (retry once on failure)
-                    if pos.cell_cfg["strategy"] == "DCA-A":
+                    # Place DCA if applicable (only on first fill, guard against double-post)
+                    if first_fill and not pos.dca_order_id and pos.cell_cfg.get("strategy") == "DCA-A":
                         dca_trigger = pos.cell_cfg.get("dca_trigger_cents", 0)
                         dca_price = fill_price - dca_trigger
                         if dca_price >= self.dca_fill_floor:
@@ -1179,6 +1179,29 @@ class LiveV3:
                             "sell_qty_before": fresh_sell_qty,
                             "order_id": oid,
                         }, ticker=tk)
+                # Check DCA coverage for DCA-A cells
+                avg = pinfo["avg_price"]
+                direction = "leader" if avg > 50 else "underdog"
+                if cat and cat != "?":
+                    dca_cell_name, dca_cell_cfg = self.cell_lookup(cat, direction, avg)
+                    if dca_cell_cfg and dca_cell_cfg.get("strategy") == "DCA-A":
+                        dca_trigger = dca_cell_cfg.get("dca_trigger_cents", 0)
+                        dca_price = avg - dca_trigger
+                        if dca_price >= self.dca_fill_floor:
+                            existing_buys = [o for o in ord_map.get(tk, []) if o["action"] == "buy"]
+                            has_dca = any(abs(b["price"] - dca_price) <= 2 for b in existing_buys)
+                            if not has_dca:
+                                fresh_buys = await api_get(self.session, self.ak, self.pk,
+                                    "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
+                                fresh_buy_prices = [round(float(o.get("yes_price_dollars","0"))*100)
+                                    for o in (fresh_buys or {}).get("orders", []) if o.get("action") == "buy"]
+                                if not any(abs(p - dca_price) <= 2 for p in fresh_buy_prices):
+                                    dca_oid, _ = await self.place_order(tk, "buy", "yes", dca_price, self.dca_size)
+                                    reconcile_exits.append((tk, pinfo, dca_price, "dca_missing", dca_oid))
+                                    self._log("reconcile_dca_posted", {
+                                        "dca_price": dca_price, "qty": self.dca_size,
+                                        "cell": dca_cell_name, "order_id": dca_oid,
+                                    }, ticker=tk)
             else:
                 # No exit sell — try to auto-post one
                 cat = self.get_category(tk)

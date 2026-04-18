@@ -88,7 +88,7 @@
     },
     "ATP_MAIN_leader_60-64": {
       "strategy": "noDCA",
-      "exit_cents": 36
+      "exit_cents": 35
     },
     "ATP_MAIN_leader_70-74": {
       "strategy": "noDCA",
@@ -117,7 +117,7 @@
     },
     "ATP_MAIN_underdog_40-44": {
       "strategy": "noDCA",
-      "exit_cents": 58
+      "exit_cents": 5
     },
     "WTA_MAIN_underdog_40-44": {
       "strategy": "noDCA",

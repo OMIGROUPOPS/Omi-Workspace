@@ -125,9 +125,11 @@ def get_kalshi_books():
                     side = ticker.split("-")[-1] if "-" in ticker else ""
                     if event not in kalshi_markets:
                         kalshi_markets[event] = {}
+                    last_price = m.get("last_price_dollars", m.get("last_price", "0"))
                     kalshi_markets[event][side] = {
                         "ticker": ticker,
                         "bid": int(float(yes_bid) * 100) if yes_bid else 0,
+                        "last_trade_price": int(float(last_price) * 100) if last_price and float(last_price) > 0 else 0,
                         "title": title,
                     }
         except Exception as e:
@@ -298,13 +300,21 @@ def poll_odds(conn, name_cache):
                     away_code = a_match
                     kalshi_home_bid = sides[home_code]["bid"]
                     kalshi_away_bid = sides[away_code]["bid"]
+                    kalshi_home_lt = sides[home_code].get("last_trade_price", 0)
+                    kalshi_away_lt = sides[away_code].get("last_trade_price", 0)
                     break
 
             if matched_event:
                 total_matched += 1
-                # Calculate edge (in cents): fair_prob*100 - kalshi_bid
-                edge_home = fair_home * 100 - kalshi_home_bid
-                edge_away = fair_away * 100 - kalshi_away_bid
+                # Skip if no real trades on Kalshi (AMM defaults unreliable)
+                if kalshi_home_lt == 0 or kalshi_away_lt == 0:
+                    log("[SKIP] %s vs %s — no real Kalshi trades yet" % (home[:20], away[:20]))
+                    total_unmatched += 1
+                    continue
+
+                # Calculate edge (in cents): fair_prob*100 - kalshi_last_traded
+                edge_home = fair_home * 100 - kalshi_home_lt
+                edge_away = fair_away * 100 - kalshi_away_lt
 
                 # Grade based on the LEADER's edge (the side we'd buy)
                 leader_edge = edge_home if kalshi_home_bid >= kalshi_away_bid else edge_away
@@ -315,13 +325,14 @@ def poll_odds(conn, name_cache):
                     (?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                     (matched_event, home, away,
                      round(fair_home * 100, 1), round(fair_away * 100, 1),
-                     kalshi_home_bid, kalshi_away_bid,
+                     kalshi_home_lt, kalshi_away_lt,
                      round(edge_home, 1), round(edge_away, 1),
                      grade, sport_key, commence, now))
 
-                log("[EDGE] %s vs %s | pin=%.0f%%/%.0f%% | kalshi=%dc/%dc | edge=%+.1fc/%+.1fc | grade=%s | %s" % (
+                log("[EDGE] %s vs %s | pin=%.0f%%/%.0f%% | lt=%dc/%dc (bid=%dc/%dc) | edge=%+.1fc/%+.1fc | grade=%s | %s" % (
                     home[:20], away[:20],
                     fair_home * 100, fair_away * 100,
+                    kalshi_home_lt, kalshi_away_lt,
                     kalshi_home_bid, kalshi_away_bid,
                     edge_home, edge_away, grade,
                     matched_event[:40]))
@@ -363,11 +374,39 @@ def main():
     # Initial poll immediately
     poll_odds(conn, name_cache)
 
-    # Then loop
+    # Then loop with priority-based cadence
+    last_poll = time.time()
     while True:
-        time.sleep(POLL_INTERVAL)
+        # Priority polling: check if any urgent events need faster refresh
+        now = time.time()
+        elapsed = now - last_poll
+
+        # Default: 900s. But if we know urgent events exist, poll faster.
+        # We check the edge_scores table for events with near commence times.
+        interval = POLL_INTERVAL  # default 900s
+        try:
+            cur = conn.cursor()
+            cur.execute("SELECT commence_time FROM edge_scores WHERE commence_time != ''")
+            for row in cur.fetchall():
+                try:
+                    ct = datetime.fromisoformat(row[0].replace("Z", "+00:00"))
+                    time_to_start = (ct - datetime.now(timezone.utc)).total_seconds()
+                    if time_to_start < 7200:   # < 2 hours
+                        interval = min(interval, 90)
+                    elif time_to_start < 21600: # < 6 hours
+                        interval = min(interval, 300)
+                except:
+                    pass
+        except:
+            pass
+
+        if elapsed < interval:
+            time.sleep(min(30, interval - elapsed))
+            continue
+
         try:
             poll_odds(conn, name_cache)
+            last_poll = time.time()
         except Exception as e:
             log("[ERR] Poll failed: %s" % e)
             import traceback

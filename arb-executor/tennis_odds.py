@@ -295,6 +295,8 @@ def poll_odds(conn, name_cache):
                 a_match, a_conf = fuzzy_match_name(away, sides, name_cache)
 
                 if h_match and a_match and h_match != a_match:
+                    if h_match not in sides or a_match not in sides:
+                        continue
                     matched_event = event_ticker
                     home_code = h_match
                     away_code = a_match

@@ -139,51 +139,51 @@ def get_kalshi_books():
 
 def fuzzy_match_name(odds_name, kalshi_sides, name_cache):
     """Match an Odds API player name to a Kalshi side code.
+    Requires first+last name agreement to prevent last-name collisions.
     Returns (side_code, confidence) or (None, 0)."""
 
-    # Check cache first
     if odds_name in name_cache:
         return name_cache[odds_name], 1.0
 
-    odds_last = odds_name.split()[-1].upper() if odds_name else ""
-    odds_first = odds_name.split()[0].upper() if odds_name else ""
+    odds_parts = odds_name.split()
+    if len(odds_parts) < 2:
+        return None, 0  # single word too ambiguous
+
+    odds_first = odds_parts[0].upper()
+    odds_last = odds_parts[-1].upper()
+    odds_full = odds_name.upper()
 
     best_match = None
     best_score = 0
 
     for side_code, side_info in kalshi_sides.items():
         title = side_info.get("title", "")
-        # Title format: "Will Hubert Hurkacz win the X vs Y match?"
-        # Extract player name from title
         title_clean = title.replace("Will ", "").split(" win ")[0].strip()
         title_upper = title_clean.upper()
 
-        # Direct code match: last 3 chars of last name
-        if len(odds_last) >= 3 and side_code.upper() == odds_last[:3]:
-            best_match = side_code
-            best_score = 0.9
+        has_last = odds_last in title_upper
+        has_first = odds_first in title_upper
+
+        # REJECT: last name matches but first name doesn't
+        # Prevents Lloyd Harris -> Billy Harris collisions
+        if has_last and not has_first:
             continue
 
-        # Full name in title
-        if odds_name.upper() in title_upper:
-            best_match = side_code
-            best_score = 1.0
-            break
-
-        # Last name match
-        if odds_last in title_upper:
-            score = 0.85
-            if score > best_score:
+        # Both first and last present
+        if has_first and has_last:
+            if odds_full in title_upper:
                 best_match = side_code
-                best_score = score
+                best_score = 1.0
+                break
+            ratio = SequenceMatcher(None, odds_full, title_upper).ratio()
+            if ratio > best_score and ratio > 0.75:
+                best_match = side_code
+                best_score = ratio
+            elif best_score < 0.9:
+                best_match = side_code
+                best_score = 0.9
 
-        # Fuzzy ratio
-        ratio = SequenceMatcher(None, odds_name.upper(), title_upper).ratio()
-        if ratio > best_score and ratio > 0.5:
-            best_match = side_code
-            best_score = ratio
-
-    if best_match and best_score >= 0.5:
+    if best_match and best_score >= 0.75:
         name_cache[odds_name] = best_match
         return best_match, best_score
 

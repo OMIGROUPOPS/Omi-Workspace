@@ -41,7 +41,7 @@ MAX_HOURS_TO_EXPIRY = 36
 WS_PING_INTERVAL = 15
 WS_SUBSCRIBE_BATCH = 50
 DISCOVERY_INTERVAL = 300
-ENTRY_CANCEL_TIMEOUT = 1800  # 30 min
+# ENTRY_CANCEL_TIMEOUT removed in V4.2 -- replaced by match-start-aware expiry
 FILL_CHECK_INTERVAL = 5      # poll fills every 5s
 EXIT_PRICE_CAP = 98           # never post exit above 98c
 ENTRY_BUFFER_SEC = 900        # stop entering 15 min before scheduled start
@@ -212,6 +212,7 @@ class Position:
     entry_qty: int = 0
     entry_order_id: str = ""
     entry_posted_ts: float = 0.0
+    match_start_ts: float = 0.0
     entry_filled_ts: float = 0.0
 
     # Exit
@@ -463,7 +464,7 @@ class LiveV3:
                     header += ["bid_%d" % i, "bid_%d_sz" % i]
                 for i in range(1, 6):
                     header += ["ask_%d" % i, "ask_%d_sz" % i]
-                header += ["mid", "bid_depth_5", "ask_depth_5", "depth_ratio"]
+                header += ["mid", "bid_depth_5", "ask_depth_5", "depth_ratio", "last_trade"]
                 w.writerow(header)
                 fh.flush()
             self._tick_files[ticker] = fh
@@ -483,7 +484,7 @@ class LiveV3:
                 total_ask_sz += size
         total = total_bid_sz + total_ask_sz
         depth_ratio = total_bid_sz / total if total > 0 else 0.5
-        row += ["%.1f" % mid, total_bid_sz, total_ask_sz, "%.3f" % depth_ratio]
+        row += ["%.1f" % mid, total_bid_sz, total_ask_sz, "%.3f" % depth_ratio, book.last_trade_price]
         self._tick_writers[ticker].writerow(row)
         self._tick_files[ticker].flush()
 
@@ -780,20 +781,48 @@ class LiveV3:
     # ------------------------------------------------------------------
     # Check fills via REST API
     # ------------------------------------------------------------------
+    def _untombstone_entry(self, tk, pos):
+        """Handle entry cancellation. If unfilled, remove from processed_events
+        to allow re-entry. If partially filled, keep position managed."""
+        if pos.entry_qty > 0:
+            # Partially filled — position is real, keep it managed
+            pos.entry_order_id = ""
+            pos.phase = "active"
+            self._log("entry_cancel_partial", {
+                "filled_qty": pos.entry_qty, "kept_position": True,
+            }, ticker=tk)
+            return
+        # Unfilled — remove tombstone, allow re-entry
+        et = pos.event_ticker
+        if et and et in self.processed_events:
+            self.processed_events.discard(et)
+            self._save_processed()
+        if tk in self.positions:
+            del self.positions[tk]
+
     async def check_fills(self):
         """Poll Kalshi for fill status on all active orders."""
         for tk, pos in list(self.positions.items()):
             if pos.settled:
                 continue
 
+            # V4.2 migration: backfill match_start_ts from schedule
+            if pos.match_start_ts == 0 and pos.event_ticker:
+                st = self.event_start_time.get(pos.event_ticker, 0)
+                if st > 0:
+                    pos.match_start_ts = st
+
             # Check entry order fill
             if pos.phase == "entry_resting" and pos.entry_order_id:
                 now = time.time()
-                if now - pos.entry_posted_ts > ENTRY_CANCEL_TIMEOUT:
-                    await self.cancel_order(tk, pos.entry_order_id, "entry_timeout_30min")
-                    pos.phase = "settled"
-                    pos.settled = True
-                    self._log("entry_cancelled", {"reason": "timeout_30min"}, ticker=tk)
+                if pos.match_start_ts > 0 and now > pos.match_start_ts - ENTRY_BUFFER_SEC:
+                    await self.cancel_order(tk, pos.entry_order_id, "match_start_buffer")
+                    self._log("entry_cancelled", {
+                        "reason": "match_start_buffer",
+                        "match_start": pos.match_start_ts,
+                        "waited_min": round((now - pos.entry_posted_ts) / 60),
+                    }, ticker=tk)
+                    self._untombstone_entry(tk, pos)
                     continue
 
                 path = "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id
@@ -834,8 +863,20 @@ class LiveV3:
                         "kalshi_status": status,
                     }, ticker=tk)
 
-                    # Place exit sell for NEW fills only (avoids duplicates on partials)
-                    sell_qty = new_fills
+                    # Cancel existing exit sells, then post ONE consolidated sell for total qty
+                    if pos.exit_order_id:
+                        await self.cancel_order(tk, pos.exit_order_id, "exit_consolidate")
+                    # Also cancel any other resting sells on this ticker (from reconcile qty_gap)
+                    existing_orders = await api_get(self.session, self.ak, self.pk,
+                        "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
+                    if existing_orders:
+                        for old_sell in existing_orders.get("orders", []):
+                            if old_sell.get("action") == "sell":
+                                old_oid = old_sell.get("order_id", "")
+                                if old_oid and old_oid != pos.exit_order_id:
+                                    await self.cancel_order(tk, old_oid, "exit_consolidate_extra")
+
+                    sell_qty = filled  # total position qty, not incremental
                     oid, resp = await self.place_order(tk, "sell", "yes", exit_price, sell_qty)
                     if not oid:
                         self._log("exit_retry", {"reason": "first attempt failed"}, ticker=tk)
@@ -852,6 +893,7 @@ class LiveV3:
                         "qty": sell_qty, "total_position": filled,
                         "based_on_fill": fill_price,
                         "order_id": oid,
+                        "consolidated": True,
                     }, ticker=tk)
 
                     # Place DCA if applicable (only on first fill, guard against double-post)
@@ -1021,9 +1063,6 @@ class LiveV3:
             if not all_have_bbo:
                 continue  # wait for BBO, will retry next tick (still within window)
 
-            # Mark as processed BEFORE placing orders (race guard)
-            self.processed_events.add(et)
-            self._save_processed()
             self.n_matches_seen += 1
 
             sides = self.identify_sides(et)
@@ -1113,6 +1152,7 @@ class LiveV3:
                     direction=direction, cell_name=cell_name, cell_cfg=cell_cfg,
                     entry_price=entry_price, entry_order_id=oid,
                     entry_posted_ts=now, phase="entry_resting",
+                    match_start_ts=start_ts,
                 )
                 self.positions[tk] = pos
 
@@ -1139,7 +1179,9 @@ class LiveV3:
                 continue  # still dead, wait
 
             current_mid = (book.best_bid + book.best_ask) / 2.0
-            cell_name, cell_cfg = self.cell_lookup(pe["cat"], pe["direction"], current_mid)
+            # Recompute direction from current mid (opening-state direction may be wrong)
+            current_direction = "leader" if current_mid > 50 else "underdog"
+            cell_name, cell_cfg = self.cell_lookup(pe["cat"], current_direction, current_mid)
 
             # Cell changed?
             if cell_name != pe["cell_name"]:
@@ -1170,6 +1212,7 @@ class LiveV3:
                 direction=pe["direction"], cell_name=cell_name, cell_cfg=cell_cfg,
                 entry_price=entry_price, entry_order_id=oid,
                 entry_posted_ts=now, phase="entry_resting",
+                match_start_ts=self.event_start_time.get(pe["event"], 0),
             )
             self.positions[tk] = pos
 
@@ -1196,8 +1239,7 @@ class LiveV3:
                     "reason": "above_fair_value", "our_price": pos.entry_price,
                     "current_mid": current_mid, "delta": round(delta),
                 }, ticker=tk)
-                pos.phase = "settled"
-                pos.settled = True
+                self._untombstone_entry(tk, pos)
                 continue
 
             # Cell changed from post time
@@ -1206,13 +1248,18 @@ class LiveV3:
                 direction = "leader" if current_mid > 50 else "underdog"
                 current_cell, _ = self.cell_lookup(cat, direction, current_mid)
                 if current_cell != pos.cell_name:
+                    # Hysteresis: don't cancel if mid is within 2c of cell boundary
+                    bucket_low = int(current_mid / 5) * 5
+                    dist_to_boundary = min(abs(current_mid - bucket_low), abs(current_mid - (bucket_low + 5)))
+                    if dist_to_boundary < 2:
+                        continue  # too close to boundary, wait for clearer drift
                     await self.cancel_order(tk, pos.entry_order_id, "cell_drift")
                     self._log("stale_buy_cancel", {
                         "reason": "cell_drift", "original_cell": pos.cell_name,
                         "current_cell": current_cell, "current_mid": current_mid,
+                        "dist_to_boundary": round(dist_to_boundary, 1),
                     }, ticker=tk)
-                    pos.phase = "settled"
-                    pos.settled = True
+                    self._untombstone_entry(tk, pos)
 
     # ------------------------------------------------------------------
     # Summary
@@ -1282,7 +1329,7 @@ class LiveV3:
         for p in positions:
             tk = p.get("ticker", "")
             qty = int(float(p.get("position_fp", 0)))
-            total = float(p.get("total_traded_dollars", 0)) * 100  # cents
+            total = float(p.get("market_exposure_dollars", p.get("total_traded_dollars", 0))) * 100  # cents
             avg_price = int(total / qty) if qty > 0 else 0
             et = self.ticker_to_event.get(tk, "")
             if not et:
@@ -1320,9 +1367,6 @@ class LiveV3:
             et = pinfo["event_ticker"]
             sells = [o for o in ord_map.get(tk, []) if o["action"] == "sell"]
 
-            # Add event to processed set so we don't re-enter
-            if et:
-                self.processed_events.add(et)
 
             if sells:
                 sell = sells[0]
@@ -1348,12 +1392,15 @@ class LiveV3:
                         for o in (fresh or {}).get("orders", []) if o.get("action") == "sell")
                     actual_naked = pinfo["qty"] - fresh_sell_qty
                     if actual_naked > 0:
-                        oid, resp = await self.place_order(tk, "sell", "yes", exit_price, actual_naked)
-                        reconcile_exits.append((tk, pinfo, exit_price, "qty_gap_fill", oid))
+                        # Cancel existing sells and repost consolidated
+                        for old_sell in (fresh or {}).get("orders", []):
+                            if old_sell.get("action") == "sell":
+                                await self.cancel_order(tk, old_sell.get("order_id", ""), "reconcile_consolidate")
+                        oid, resp = await self.place_order(tk, "sell", "yes", exit_price, pinfo["qty"])
+                        reconcile_exits.append((tk, pinfo, exit_price, "qty_gap_consolidated", oid))
                         self._log("reconcile_exit_posted", {
-                            "reason": "qty_gap", "exit_price": exit_price,
-                            "naked_qty": actual_naked, "position_qty": pinfo["qty"],
-                            "sell_qty_before": fresh_sell_qty,
+                            "reason": "qty_gap_consolidated", "exit_price": exit_price,
+                            "position_qty": pinfo["qty"],
                             "order_id": oid,
                         }, ticker=tk)
                 # Check DCA coverage for DCA-A cells

@@ -114,7 +114,7 @@ def get_kalshi_books():
     kalshi_markets = {}
     for series in ["KXATPMATCH", "KXWTAMATCH", "KXATPCHALLENGERMATCH", "KXWTACHALLENGERMATCH"]:
         try:
-            r = requests.get(BASE + "/markets?series_ticker=%s&status=active&limit=500" % series,
+            r = requests.get(BASE + "/markets?series_ticker=%s&status=open&limit=500" % series,
                            headers=sign("GET", "/markets"), timeout=15)
             if r.status_code == 200:
                 for m in r.json().get("markets", []):

@@ -1006,6 +1006,33 @@ class LiveV3:
     # ------------------------------------------------------------------
     # Routing: SCHEDULE-BASED entry trigger + cell assignment at post time
     # ------------------------------------------------------------------
+    def get_market_price(self, ticker, max_last_trade_age_sec=1800):
+        book = self.books.get(ticker)
+        if not book:
+            return None, 'none'
+        now = time.time()
+        mid = (book.best_bid + book.best_ask) / 2.0 if book.best_bid > 0 and book.best_ask < 100 else 0
+        if book.last_trade_price > 0 and book.last_trade_ts > 0:
+            age = now - book.last_trade_ts
+            if age < max_last_trade_age_sec:
+                if mid > 0 and abs(book.last_trade_price - mid) > 2:
+                    self._log('price_signal', {
+                        'source': 'last_traded', 'price': book.last_trade_price,
+                        'mid': round(mid, 1), 'last_traded_age_sec': round(age),
+                        'divergence_cents': round(abs(book.last_trade_price - mid), 1),
+                    }, ticker=ticker)
+                return book.last_trade_price, 'last_traded'
+            else:
+                if mid > 0:
+                    self._log('price_signal', {
+                        'source': 'mid_fallback', 'reason': 'last_traded_stale',
+                        'stale_price': book.last_trade_price,
+                        'stale_age_sec': round(age), 'mid': round(mid, 1),
+                    }, ticker=ticker)
+        if mid > 0:
+            return mid, 'mid'
+        return None, 'none'
+
     async def routing_tick(self):
         """Enter any time from discovery up to 15 min before scheduled start.
         Once inside the 15-min buffer or past start: permanent skip.
@@ -1078,7 +1105,10 @@ class LiveV3:
                 book = self.books.get(tk)
                 if not book or book.updated < now - 120:
                     continue
-                current_mid = (book.best_bid + book.best_ask) / 2.0
+                current_price, price_source = self.get_market_price(tk)
+                if current_price is None:
+                    continue
+                current_mid = current_price
 
                 cell_name, cell_cfg = self.cell_lookup(cat, direction, current_mid)
 
@@ -1178,7 +1208,10 @@ class LiveV3:
             if spread > DEAD_SPREAD_THRESHOLD:
                 continue  # still dead, wait
 
-            current_mid = (book.best_bid + book.best_ask) / 2.0
+            current_price, price_source = self.get_market_price(tk)
+            if current_price is None:
+                continue
+            current_mid = current_price
             # Recompute direction from current mid (opening-state direction may be wrong)
             current_direction = "leader" if current_mid > 50 else "underdog"
             cell_name, cell_cfg = self.cell_lookup(pe["cat"], current_direction, current_mid)
@@ -1229,7 +1262,10 @@ class LiveV3:
             if not book or book.updated < now - 120:
                 continue
 
-            current_mid = (book.best_bid + book.best_ask) / 2.0
+            current_price, price_source = self.get_market_price(tk)
+            if current_price is None:
+                continue
+            current_mid = current_price
             delta = pos.entry_price - current_mid
 
             # Our price > 5c above current mid → stale, cancel

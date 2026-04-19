@@ -306,36 +306,83 @@ def poll_odds(conn, name_cache):
 
             if matched_event:
                 total_matched += 1
-                # Skip if no real trades on Kalshi (AMM defaults unreliable)
-                if kalshi_home_lt == 0 or kalshi_away_lt == 0:
-                    log("[SKIP] %s vs %s — no real Kalshi trades yet" % (home[:20], away[:20]))
-                    total_unmatched += 1
+
+                # Capture ALL books' no-vig FV
+                books_data = []
+                for bk in event.get("bookmakers", []):
+                    for mkt in bk.get("markets", []):
+                        if mkt["key"] == "h2h":
+                            outcomes = dict((o["name"], o["price"]) for o in mkt.get("outcomes", []))
+                            h = outcomes.get(home, 0)
+                            a = outcomes.get(away, 0)
+                            if h > 0 and a > 0:
+                                bk_fair_h, bk_fair_a = calc_no_vig(h, a)
+                                if bk_fair_h:
+                                    raw_sum = (1.0/h) + (1.0/a)
+                                    vig = round((raw_sum - 1.0) * 100, 2)
+                                    books_data.append({
+                                        "book_key": bk["key"],
+                                        "raw_odds_p1": h, "raw_odds_p2": a,
+                                        "book_p1_fv_cents": round(bk_fair_h * 100, 1),
+                                        "book_p2_fv_cents": round(bk_fair_a * 100, 1),
+                                        "vig_pct": vig,
+                                    })
+
+                now = datetime.now(ET).strftime("%Y-%m-%d %H:%M:%S")
+
+                # Insert ALL books into book_prices
+                for bd in books_data:
+                    cur.execute("INSERT OR REPLACE INTO book_prices VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                        (matched_event, bd["book_key"], home, away,
+                         bd["book_p1_fv_cents"], bd["book_p2_fv_cents"],
+                         bd["raw_odds_p1"], bd["raw_odds_p2"], bd["vig_pct"],
+                         sport_key, commence, now))
+
+                if not books_data:
+                    log("[SKIP] %s vs %s — no books with odds" % (home[:20], away[:20]))
                     continue
 
-                # Calculate edge (in cents): fair_prob*100 - kalshi_last_traded
-                edge_home = fair_home * 100 - kalshi_home_lt
-                edge_away = fair_away * 100 - kalshi_away_lt
+                # Pinnacle-first, else aggregate
+                pinnacle = next((b for b in books_data if b["book_key"] == "pinnacle"), None)
+                if pinnacle:
+                    chosen_p1 = pinnacle["book_p1_fv_cents"]
+                    chosen_p2 = pinnacle["book_p2_fv_cents"]
+                    fv_tier = 1
+                    fv_source = "pinnacle"
+                    num_books = 1
+                else:
+                    chosen_p1 = round(sum(b["book_p1_fv_cents"] for b in books_data) / len(books_data), 1)
+                    chosen_p2 = round(sum(b["book_p2_fv_cents"] for b in books_data) / len(books_data), 1)
+                    fv_tier = 2
+                    fv_source = "aggregate_%d_books" % len(books_data)
+                    num_books = len(books_data)
 
-                # Grade based on the LEADER's edge (the side we'd buy)
+                # Edge against Kalshi last-traded
+                if kalshi_home_lt == 0 or kalshi_away_lt == 0:
+                    log("[SKIP] %s vs %s — no real Kalshi trades yet (books=%d)" % (home[:20], away[:20], num_books))
+                    # Still store book_prices but skip edge calculation
+                    continue
+
+                edge_home = chosen_p1 - kalshi_home_lt
+                edge_away = chosen_p2 - kalshi_away_lt
                 leader_edge = edge_home if kalshi_home_bid >= kalshi_away_bid else edge_away
                 grade = grade_edge(leader_edge)
 
-                now = datetime.now(ET).strftime("%Y-%m-%d %H:%M:%S")
-                cur.execute("""INSERT OR REPLACE INTO edge_scores VALUES
-                    (?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                cur.execute("INSERT OR REPLACE INTO edge_scores VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     (matched_event, home, away,
-                     round(fair_home * 100, 1), round(fair_away * 100, 1),
+                     chosen_p1, chosen_p2,
                      kalshi_home_lt, kalshi_away_lt,
                      round(edge_home, 1), round(edge_away, 1),
-                     grade, sport_key, commence, now))
+                     grade, sport_key, commence, now,
+                     fv_tier, fv_source, num_books))
 
-                log("[EDGE] %s vs %s | pin=%.0f%%/%.0f%% | lt=%dc/%dc (bid=%dc/%dc) | edge=%+.1fc/%+.1fc | grade=%s | %s" % (
+                log("[EDGE] %s vs %s | fv=%s (tier %d) | p1/p2=%.1fc/%.1fc | lt=%dc/%dc | edge=%+.1fc/%+.1fc | books=%d | %s" % (
                     home[:20], away[:20],
-                    fair_home * 100, fair_away * 100,
+                    fv_source, fv_tier,
+                    chosen_p1, chosen_p2,
                     kalshi_home_lt, kalshi_away_lt,
-                    kalshi_home_bid, kalshi_away_bid,
-                    edge_home, edge_away, grade,
-                    matched_event[:40]))
+                    edge_home, edge_away,
+                    num_books, matched_event[:40]))
             else:
                 total_unmatched += 1
                 log("[UNMATCHED] %s vs %s (no Kalshi match)" % (home[:25], away[:25]))

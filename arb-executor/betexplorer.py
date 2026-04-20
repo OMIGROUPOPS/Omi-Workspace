@@ -89,7 +89,7 @@ def fetch_tournament(url):
 
 def store_matches(matches, source_url, tournament):
     """Insert matches into betexplorer_staging table."""
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     cur = conn.cursor()
     now = datetime.now(ET).strftime("%Y-%m-%d %H:%M:%S")
 
@@ -196,7 +196,7 @@ def match_player(bx_name, kalshi_players):
 
 def match_and_insert(kalshi_events):
     """Match betexplorer_staging rows to Kalshi events, insert into book_prices."""
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     cur = conn.cursor()
     cur.execute("SELECT p1_name, p2_name, p1_fv_cents, p2_fv_cents, raw_odds_p1, raw_odds_p2, vig_pct, source_url, scraped_at FROM betexplorer_staging ORDER BY scraped_at DESC")
     staging = cur.fetchall()

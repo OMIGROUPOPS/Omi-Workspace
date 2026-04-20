@@ -233,6 +233,7 @@ class Position:
     layered_exit_price: int = 0
     cell_exit_order_id: str = ""
     cell_exit_price: int = 0
+    legacy: bool = False
 
     # State
     phase: str = "entry_pending"
@@ -1202,34 +1203,25 @@ class LiveV3:
                     }, ticker=tk)
                     continue
 
-                # Determine play
+                # Determine play — exhaustive, no fall-through
                 play_type = None
                 entry_price = None
                 entry_size = None
                 layered_exit_price = 0
 
-                if kalshi_cell == fv_cell and abs(gap_cents) <= 2:
+                if kalshi_cell == fv_cell:
                     play_type = "A_tight"
                     entry_price = max(cell_low, int(current_price) - 1)
                     entry_size = 10
-                elif gap_cents < -2 and kalshi_cell != fv_cell:
+                elif current_price < fv_cents:
                     play_type = "B_convergence"
                     entry_price = int(current_price) + 1
                     entry_size = 19
                     layered_exit_price = int(fv_cents) - 2
-                elif gap_cents > 2 and kalshi_cell != fv_cell:
+                else:
                     play_type = "A_patient"
                     entry_price = cell_high
                     entry_size = 10
-                else:
-                    self.n_skips += 1
-                    self._log("skipped", {
-                        "reason": "no_play_matched",
-                        "kalshi_price": current_price, "fv_cents": round(fv_cents, 1),
-                        "gap_cents": round(gap_cents, 1),
-                        "kalshi_cell": kalshi_cell, "fv_cell": fv_cell,
-                    }, ticker=tk)
-                    continue
 
                 # Dead-spread guard
                 spread = book.best_ask - book.best_bid
@@ -1340,28 +1332,25 @@ class LiveV3:
                 del self.pending_entries[tk]
                 continue
 
-            # Re-determine play
+            # Determine play — exhaustive, no fall-through
             play_type = None
             entry_price = None
             entry_size = None
             layered_exit_price = 0
 
-            if kalshi_cell == fv_cell and abs(gap) <= 2:
+            if kalshi_cell == fv_cell:
                 play_type = "A_tight"
                 entry_price = max(cell_low, int(current_price) - 1)
                 entry_size = 10
-            elif gap < -2 and kalshi_cell != fv_cell:
+            elif current_price < fv_cents:
                 play_type = "B_convergence"
                 entry_price = int(current_price) + 1
                 entry_size = 19
                 layered_exit_price = int(fv_cents) - 2
-            elif gap > 2 and kalshi_cell != fv_cell:
+            else:
                 play_type = "A_patient"
                 entry_price = cell_high
                 entry_size = 10
-            else:
-                del self.pending_entries[tk]
-                continue
 
             del self.pending_entries[tk]
 
@@ -1402,6 +1391,10 @@ class LiveV3:
             if current_price is None:
                 continue
 
+            # Legacy positions skip new-rule validation
+            if pos.legacy:
+                continue
+
             # FV-aware validation per play type
             side_fv = self._get_side_fv(tk, pos.event_ticker)
             if side_fv is None or side_fv.get("fv_cents") is None:
@@ -1424,11 +1417,11 @@ class LiveV3:
             play = pos.play_type
 
             if play == "A_tight":
-                # Rule B must still hold: same cell + |gap| <= 2c
-                if kalshi_cell != fv_cell or abs(gap) > 2:
-                    await self.cancel_order(tk, pos.entry_order_id, "rule_b_violation")
+                # Cancel if Kalshi drifted out of FV cell
+                if kalshi_cell != fv_cell:
+                    await self.cancel_order(tk, pos.entry_order_id, "A_tight_cell_drift")
                     self._log("stale_buy_cancel", {
-                        "reason": "A_tight_rule_b_violation",
+                        "reason": "A_tight_cell_drift",
                         "kalshi_cell": kalshi_cell, "fv_cell": fv_cell, "gap": round(gap, 1),
                     }, ticker=tk)
                     self._untombstone_entry(tk, pos)
@@ -1448,8 +1441,8 @@ class LiveV3:
                     }, ticker=tk)
 
             elif play == "B_convergence":
-                # Kalshi must still be cross-cell below FV
-                if kalshi_cell == fv_cell or gap >= -2:
+                # Cancel if Kalshi converged into FV cell (opportunity gone)
+                if kalshi_cell == fv_cell:
                     await self.cancel_order(tk, pos.entry_order_id, "B_convergence_gap_closed")
                     self._log("stale_buy_cancel", {
                         "reason": "B_convergence_gap_closed",
@@ -1475,11 +1468,11 @@ class LiveV3:
                 # Kalshi drifted INTO FV cell — leave rest, may fill
                 if kalshi_cell == fv_cell:
                     continue
-                # Kalshi no longer premium — cancel patient rest
-                if gap < 2:
+                # Kalshi dropped below FV — no longer premium, cancel
+                if current_price < fv_cents:
                     await self.cancel_order(tk, pos.entry_order_id, "A_patient_conditions_changed")
                     self._log("stale_buy_cancel", {
-                        "reason": "A_patient_gap_reduced",
+                        "reason": "A_patient_now_discount",
                         "kalshi": current_price, "fv": round(fv_cents, 1), "gap": round(gap, 1),
                     }, ticker=tk)
                     self._untombstone_entry(tk, pos)
@@ -1614,6 +1607,7 @@ class LiveV3:
                     entry_qty=pinfo["qty"], phase="active",
                     exit_price=sell["price"], exit_order_id=sell["order_id"],
                     entry_filled_ts=time.time(),
+                    legacy=True, play_type="A_legacy",
                 )
                 self.positions[tk] = pos
                 linked.append((tk, pinfo, sell))
@@ -1687,6 +1681,7 @@ class LiveV3:
                             entry_price=avg, entry_qty=pinfo["qty"], phase="active",
                             exit_price=sell["price"], exit_order_id=sell["order_id"],
                             entry_filled_ts=time.time(),
+                            legacy=True, play_type="A_legacy",
                         )
                         self.positions[tk] = pos
                         linked.append((tk, pinfo, sell))
@@ -1701,6 +1696,7 @@ class LiveV3:
                             entry_price=avg, entry_qty=pinfo["qty"], phase="active",
                             exit_price=exit_price, exit_order_id=oid,
                             entry_filled_ts=time.time(),
+                            legacy=True, play_type="A_legacy",
                         )
                         self.positions[tk] = pos
                         reconcile_exits.append((tk, pinfo, exit_price, cell_name, oid))

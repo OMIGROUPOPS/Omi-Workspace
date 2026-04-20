@@ -29,7 +29,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 
-from fv import get_consensus_fv
+from fv import get_consensus_fv, check_fv_stability
 
 def _parse_ticker_date(event_ticker: str):
     """Parse YYMMMDD from ticker like KXATPMATCH-26APR21GEAGAU -> datetime(2026,4,21,11,0 UTC)."""
@@ -907,17 +907,24 @@ class LiveV3:
         ticker_side = ticker.split("-")[-1].upper()
         p1_last3 = p1_name.split()[-1].upper()[:3]
         p2_last3 = p2_name.split()[-1].upper()[:3]
+        resolved_side = None
         if ticker_side[:3] == p1_last3:
-            return get_consensus_fv(event_ticker, "p1")
+            resolved_side = "p1"
         elif ticker_side[:3] == p2_last3:
-            return get_consensus_fv(event_ticker, "p2")
-        p1_full = p1_name.split()[-1].upper()
-        p2_full = p2_name.split()[-1].upper()
-        if ticker_side in p1_full or p1_full.startswith(ticker_side):
-            return get_consensus_fv(event_ticker, "p1")
-        elif ticker_side in p2_full or p2_full.startswith(ticker_side):
-            return get_consensus_fv(event_ticker, "p2")
-        return None
+            resolved_side = "p2"
+        else:
+            p1_full = p1_name.split()[-1].upper()
+            p2_full = p2_name.split()[-1].upper()
+            if ticker_side in p1_full or p1_full.startswith(ticker_side):
+                resolved_side = "p1"
+            elif ticker_side in p2_full or p2_full.startswith(ticker_side):
+                resolved_side = "p2"
+        if resolved_side is None:
+            return None
+        result = get_consensus_fv(event_ticker, resolved_side)
+        if result:
+            result["_side"] = resolved_side
+        return result
 
     async def check_fills(self):
         """Poll Kalshi for fill status on all active orders."""
@@ -1275,6 +1282,20 @@ class LiveV3:
                 fv_source = side_fv["source"]
                 fv_tier = side_fv["tier"]
 
+                # FV stability check — only skip on extreme volatility (>20% range)
+                stability = check_fv_stability(et, side_fv.get("_side", "p1"))
+                if stability["range_pct"] > 20:
+                    self.n_skips += 1
+                    self._log("skipped", {
+                        "reason": "fv_unstable",
+                        "event": et, "fv_now": stability["fv_now"],
+                        "fv_oldest": stability["fv_oldest"],
+                        "range_c": stability["range_c"],
+                        "range_pct": stability["range_pct"],
+                        "samples": stability["samples"],
+                    }, ticker=tk)
+                    continue
+
                 kalshi_cell, _ = self.cell_lookup(cat, direction, current_price)
                 fv_cell, fv_cell_cfg = self.cell_lookup(cat, direction, fv_cents)
                 gap_cents = current_price - fv_cents
@@ -1296,19 +1317,24 @@ class LiveV3:
                 entry_size = None
                 layered_exit_price = 0
 
+                # Confidence-based size multiplier
+                _source_size = {"pinnacle": 1.0, "blended_median": 1.0,
+                                "aggregate": 0.75, "betexplorer": 0.5}
+                size_mult = _source_size.get(fv_source, 0.5)
+
                 if kalshi_cell == fv_cell:
                     play_type = "A_tight"
                     entry_price = max(cell_low, int(current_price) - 1)
-                    entry_size = 10
+                    entry_size = max(1, int(10 * size_mult))
                 elif current_price < fv_cents:
                     play_type = "B_convergence"
                     entry_price = int(current_price) + 1
-                    entry_size = 19
+                    entry_size = max(1, int(19 * size_mult))
                     layered_exit_price = int(fv_cents) - 2
                 else:
                     play_type = "A_patient"
                     entry_price = cell_high
-                    entry_size = 10
+                    entry_size = max(1, int(10 * size_mult))
 
                 # Dead-spread guard
                 spread = book.best_ask - book.best_bid
@@ -1353,10 +1379,12 @@ class LiveV3:
                     "kalshi_price": current_price,
                     "gap_cents": round(gap_cents, 1),
                     "entry_price": entry_price, "entry_size": entry_size,
+                    "size_multiplier": size_mult,
                     "layered_exit_price": layered_exit_price,
                     "strategy": fv_cell_cfg["strategy"],
                     "exit_cents": fv_cell_cfg["exit_cents"],
                     "min_before_start": round(time_to_start / 60),
+                    "fv_stability_range_pct": stability["range_pct"],
                 }, ticker=tk)
 
                 oid, resp = await self.place_order(tk, "buy", "yes", entry_price, entry_size)

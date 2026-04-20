@@ -33,7 +33,7 @@ FRESHNESS_LIMIT_SEC = {
 CONFIDENCE = {
     1: 0.95,   # Pinnacle
     2: 0.80,   # Aggregate
-    3: 0.65,   # BetExplorer
+    3: 0.50,   # BetExplorer (single source, volatile — see Challenger risk)
     5: 0.30,   # Paired-sum
 }
 
@@ -62,7 +62,11 @@ def get_consensus_fv(event_ticker, side, conn=None):
         now = datetime.now(ET)
         stale_best = None
 
-        # Tier 1: Pinnacle
+        # Tier 1+2: Pinnacle with aggregate cross-check
+        pinnacle_fv = None
+        pinnacle_age = None
+        pinnacle_polled = None
+
         cur.execute("""
             SELECT book_p1_fv_cents, book_p2_fv_cents, polled_at
             FROM book_prices
@@ -74,22 +78,13 @@ def get_consensus_fv(event_ticker, side, conn=None):
             p1_fv, p2_fv, polled = row
             age = _age_sec(polled, now)
             if age is not None and age < FRESHNESS_LIMIT_SEC[1]:
-                fv = p1_fv if side == "p1" else p2_fv
-                if fv and fv > 0:
-                    return {
-                        "fv_cents": round(fv, 1),
-                        "source": "pinnacle",
-                        "tier": 1,
-                        "confidence": CONFIDENCE[1],
-                        "age_sec": int(age),
-                        "fetched_at": polled,
-                        "num_books": 1,
-                        "reason": "ok",
-                    }
+                pinnacle_fv = p1_fv if side == "p1" else p2_fv
+                pinnacle_age = int(age)
+                pinnacle_polled = polled
             elif age is not None:
                 stale_best = {"source": "pinnacle", "tier": 1, "age_sec": int(age)}
 
-        # Tier 2: Aggregate (mean of non-Pinnacle, non-BetExplorer books)
+        # Collect aggregate from other books
         cur.execute("""
             SELECT bp.book_key, bp.book_p1_fv_cents, bp.book_p2_fv_cents, bp.polled_at
             FROM book_prices bp
@@ -112,6 +107,38 @@ def get_consensus_fv(event_ticker, side, conn=None):
                 if fv and fv > 0:
                     fresh_fvs.append(fv)
 
+        # Blend: if Pinnacle fresh AND aggregate available, cross-check
+        if pinnacle_fv and pinnacle_fv > 0:
+            if len(fresh_fvs) >= MIN_AGGREGATE_BOOKS:
+                agg_median = sorted(fresh_fvs)[len(fresh_fvs) // 2]
+                divergence_pct = abs(pinnacle_fv - agg_median) / pinnacle_fv * 100 if pinnacle_fv > 0 else 0
+                if divergence_pct > 10:
+                    # Pinnacle is outlier — use median of all books (including Pinnacle)
+                    all_fvs = fresh_fvs + [pinnacle_fv]
+                    blended = sorted(all_fvs)[len(all_fvs) // 2]
+                    return {
+                        "fv_cents": round(blended, 1),
+                        "source": "blended_median",
+                        "tier": 1,
+                        "confidence": CONFIDENCE[1] * 0.9,
+                        "age_sec": pinnacle_age,
+                        "fetched_at": pinnacle_polled,
+                        "num_books": len(all_fvs),
+                        "reason": "ok",
+                    }
+            # Pinnacle consistent with market or no aggregate — use Pinnacle
+            return {
+                "fv_cents": round(pinnacle_fv, 1),
+                "source": "pinnacle",
+                "tier": 1,
+                "confidence": CONFIDENCE[1],
+                "age_sec": pinnacle_age,
+                "fetched_at": pinnacle_polled,
+                "num_books": 1 + len(fresh_fvs),
+                "reason": "ok",
+            }
+
+        # No Pinnacle — use aggregate if available
         if len(fresh_fvs) >= MIN_AGGREGATE_BOOKS:
             mean_fv = sum(fresh_fvs) / len(fresh_fvs)
             return {
@@ -169,6 +196,62 @@ def _age_sec(polled_at_str, now):
         return (now - polled_dt).total_seconds()
     except Exception:
         return None
+
+
+FV_STABILITY_WINDOW_SEC = 1800  # 30 min
+FV_STABILITY_MAX_RANGE_C = 4.0
+FV_STABILITY_MAX_RANGE_PCT = 10.0
+
+
+def check_fv_stability(event_ticker, side, conn=None):
+    """Check if FV has been stable over the last 30 minutes.
+
+    Returns dict: {"stable": bool, "range_c": float, "range_pct": float,
+                   "fv_now": float, "fv_oldest": float, "samples": int}
+    """
+    close_conn = False
+    if conn is None:
+        conn = sqlite3.connect(DB_PATH, timeout=5)
+        close_conn = True
+
+    try:
+        cur = conn.cursor()
+        now = datetime.now(ET)
+        cutoff = (now - __import__("datetime").timedelta(seconds=FV_STABILITY_WINDOW_SEC)).strftime("%Y-%m-%d %H:%M:%S")
+        fv_col = "book_p1_fv_cents" if side == "p1" else "book_p2_fv_cents"
+
+        cur.execute("""
+            SELECT %s, polled_at FROM book_prices
+            WHERE event_ticker = ? AND book_key IN ('pinnacle', 'betexplorer')
+            AND polled_at > ? AND %s > 0
+            ORDER BY polled_at DESC
+        """ % (fv_col, fv_col), (event_ticker, cutoff))
+        rows = cur.fetchall()
+
+        if len(rows) < 2:
+            return {"stable": True, "range_c": 0, "range_pct": 0,
+                    "fv_now": rows[0][0] if rows else 0, "fv_oldest": rows[0][0] if rows else 0,
+                    "samples": len(rows)}
+
+        fvs = [r[0] for r in rows]
+        fv_now = fvs[0]
+        fv_oldest = fvs[-1]
+        fv_min = min(fvs)
+        fv_max = max(fvs)
+        range_c = fv_max - fv_min
+        mean_fv = sum(fvs) / len(fvs)
+        range_pct = (range_c / mean_fv * 100) if mean_fv > 0 else 0
+
+        stable = range_c <= FV_STABILITY_MAX_RANGE_C and range_pct <= FV_STABILITY_MAX_RANGE_PCT
+
+        return {"stable": stable, "range_c": round(range_c, 1), "range_pct": round(range_pct, 1),
+                "fv_now": round(fv_now, 1), "fv_oldest": round(fv_oldest, 1),
+                "samples": len(fvs)}
+    except Exception:
+        return {"stable": True, "range_c": 0, "range_pct": 0, "fv_now": 0, "fv_oldest": 0, "samples": 0}
+    finally:
+        if close_conn:
+            conn.close()
 
 
 def self_test():

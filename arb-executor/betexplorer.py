@@ -20,6 +20,14 @@ ET = ZoneInfo("America/New_York")
 DB_PATH = str(Path(__file__).resolve().parent / "tennis.db")
 POLL_INTERVAL = 600  # 10 minutes
 
+def _write_heartbeat(name, **extra):
+    hb = {"ts": int(time.time()), "name": name, "status": "ok", **extra}
+    try:
+        with open("/tmp/heartbeat_%s.json" % name, "w") as f:
+            json.dump(hb, f)
+    except Exception:
+        pass
+
 load_dotenv(Path(__file__).resolve().parent / ".env")
 _api_key = os.getenv("KALSHI_API_KEY")
 _pk = serialization.load_pem_private_key(
@@ -236,6 +244,7 @@ def poll_cycle():
 
     print("[%s] Scraped %d matches, matched %d to Kalshi (%d Kalshi events)" % (
         now_et.strftime("%I:%M:%S %p ET"), total_scraped, matched, len(kalshi_events)))
+    _write_heartbeat("betexplorer", matches_scraped=total_scraped, matched_to_kalshi=matched)
 
 
 if __name__ == "__main__":

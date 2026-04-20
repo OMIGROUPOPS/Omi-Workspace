@@ -11,6 +11,14 @@ from datetime import datetime, timezone, timedelta
 from difflib import SequenceMatcher
 import requests
 
+def _write_heartbeat(name, **extra):
+    hb = {"ts": int(time.time()), "name": name, "status": "ok", **extra}
+    try:
+        with open("/tmp/heartbeat_%s.json" % name, "w") as f:
+            json.dump(hb, f)
+    except Exception:
+        pass
+
 # ── Config ──
 ODDS_API_KEY = "936fff28812c240d8bb6c96a63387295"
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
@@ -463,6 +471,7 @@ def main():
             conn = sqlite3.connect(DB_PATH, timeout=30)
             poll_odds(conn, name_cache)
             last_poll = time.time()
+            _write_heartbeat("tennis_odds", events_polled=len(name_cache))
         except Exception as e:
             log("[ERR] Poll failed: %s" % e)
             import traceback

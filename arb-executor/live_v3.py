@@ -809,6 +809,31 @@ class LiveV3:
         if tk in self.positions:
             del self.positions[tk]
 
+    SIDECAR_INTERVALS = {
+        "tennis_odds": 600,
+        "betexplorer": 700,
+        "fv_monitor": 400,
+    }
+
+    def _check_sidecar_heartbeats(self):
+        now = int(time.time())
+        for name, expected in self.SIDECAR_INTERVALS.items():
+            path = "/tmp/heartbeat_%s.json" % name
+            try:
+                with open(path) as f:
+                    hb = json.load(f)
+                age = now - hb.get("ts", 0)
+                if age > expected * 2:
+                    self._log("sidecar_stale", {
+                        "name": name, "age_sec": age,
+                        "expected_max_age": expected * 2,
+                        "last_extra": {k: v for k, v in hb.items() if k not in ("ts", "name", "status")},
+                    })
+            except FileNotFoundError:
+                self._log("sidecar_missing", {"name": name, "path": path})
+            except Exception as e:
+                self._log("sidecar_heartbeat_error", {"name": name, "error": str(e)})
+
     def _get_side_fv(self, ticker, event_ticker):
         """Return get_consensus_fv result for the side corresponding to this Kalshi ticker."""
         import sqlite3
@@ -1948,6 +1973,10 @@ class LiveV3:
                     await self.check_fills()
                     last_fill_check = now
 
+                # Check sidecar heartbeats every 5 min
+                if now - last_discovery > DISCOVERY_INTERVAL:
+                    self._check_sidecar_heartbeats()
+
                 # Re-discover every 5 min + refresh schedule
                 if now - last_discovery > DISCOVERY_INTERVAL:
                     self._load_schedule()
@@ -1968,6 +1997,14 @@ class LiveV3:
                 if now - last_reconcile > 60:
                     await self.reconcile(quiet=True)
                     last_reconcile = now
+
+                # Write own heartbeat
+                try:
+                    with open("/tmp/heartbeat_live_v3.json", "w") as _hf:
+                        json.dump({"ts": int(now), "name": "live_v3", "status": "ok",
+                                   "positions": len(self.positions), "resting_orders": len(self.pending_entries)}, _hf)
+                except Exception:
+                    pass
 
                 # Summary every 30 min
                 if now - last_summary > 1800:

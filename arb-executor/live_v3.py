@@ -29,6 +29,8 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 
+from fv import get_consensus_fv
+
 # -------------------------------------------------------------------------
 # Constants
 # -------------------------------------------------------------------------
@@ -225,6 +227,12 @@ class Position:
     dca_order_id: str = ""
     dca_qty: int = 0
     dca_filled: bool = False
+
+    # Play type (Piece 2A)
+    play_type: str = "A_tight"
+    layered_exit_price: int = 0
+    cell_exit_order_id: str = ""
+    cell_exit_price: int = 0
 
     # State
     phase: str = "entry_pending"
@@ -800,6 +808,34 @@ class LiveV3:
         if tk in self.positions:
             del self.positions[tk]
 
+    def _get_side_fv(self, ticker, event_ticker):
+        """Return get_consensus_fv result for the side corresponding to this Kalshi ticker."""
+        import sqlite3
+        conn = sqlite3.connect(str(Path(__file__).resolve().parent / "tennis.db"), timeout=5)
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT player1_name, player2_name FROM book_prices WHERE event_ticker = ? ORDER BY polled_at DESC LIMIT 1",
+            (event_ticker,))
+        row = cur.fetchone()
+        conn.close()
+        if not row:
+            return None
+        p1_name, p2_name = row
+        ticker_side = ticker.split("-")[-1].upper()
+        p1_last3 = p1_name.split()[-1].upper()[:3]
+        p2_last3 = p2_name.split()[-1].upper()[:3]
+        if ticker_side[:3] == p1_last3:
+            return get_consensus_fv(event_ticker, "p1")
+        elif ticker_side[:3] == p2_last3:
+            return get_consensus_fv(event_ticker, "p2")
+        p1_full = p1_name.split()[-1].upper()
+        p2_full = p2_name.split()[-1].upper()
+        if ticker_side in p1_full or p1_full.startswith(ticker_side):
+            return get_consensus_fv(event_ticker, "p1")
+        elif ticker_side in p2_full or p2_full.startswith(ticker_side):
+            return get_consensus_fv(event_ticker, "p2")
+        return None
+
     async def check_fills(self):
         """Poll Kalshi for fill status on all active orders."""
         for tk, pos in list(self.positions.items()):
@@ -850,9 +886,6 @@ class LiveV3:
                     if first_fill:
                         self.n_entries += 1
 
-                    exit_price = min(fill_price + pos.cell_cfg["exit_cents"], EXIT_PRICE_CAP)
-                    pos.exit_price = exit_price
-
                     self._log("entry_filled", {
                         "fill_price": fill_price,
                         "posted_price": pos.entry_price,
@@ -860,41 +893,75 @@ class LiveV3:
                         "new_fills": new_fills,
                         "cell": pos.cell_name,
                         "direction": pos.direction,
+                        "play_type": pos.play_type,
                         "kalshi_status": status,
                     }, ticker=tk)
 
-                    # Cancel existing exit sells, then post ONE consolidated sell for total qty
+                    # Cancel ALL existing exit sells before posting new ones
                     if pos.exit_order_id:
                         await self.cancel_order(tk, pos.exit_order_id, "exit_consolidate")
-                    # Also cancel any other resting sells on this ticker (from reconcile qty_gap)
+                    if pos.cell_exit_order_id:
+                        await self.cancel_order(tk, pos.cell_exit_order_id, "exit_consolidate_cell")
                     existing_orders = await api_get(self.session, self.ak, self.pk,
                         "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
                     if existing_orders:
                         for old_sell in existing_orders.get("orders", []):
                             if old_sell.get("action") == "sell":
                                 old_oid = old_sell.get("order_id", "")
-                                if old_oid and old_oid != pos.exit_order_id:
+                                if old_oid and old_oid not in (pos.exit_order_id, pos.cell_exit_order_id):
                                     await self.cancel_order(tk, old_oid, "exit_consolidate_extra")
 
-                    sell_qty = filled  # total position qty, not incremental
-                    oid, resp = await self.place_order(tk, "sell", "yes", exit_price, sell_qty)
-                    if not oid:
-                        self._log("exit_retry", {"reason": "first attempt failed"}, ticker=tk)
-                        await asyncio.sleep(1)
+                    if pos.play_type == "B_convergence" and pos.layered_exit_price > 0:
+                        # Play 4: layered exits — 9ct at convergence, rest at cell scalp
+                        conv_exit_price = pos.layered_exit_price
+                        cell_exit_price = min(fill_price + pos.cell_cfg["exit_cents"], EXIT_PRICE_CAP)
+
+                        conv_qty = min(9, filled)
+                        cell_qty = filled - conv_qty
+
+                        if conv_qty > 0:
+                            oid_conv, _ = await self.place_order(tk, "sell", "yes", conv_exit_price, conv_qty)
+                            pos.exit_order_id = oid_conv
+                            pos.exit_price = conv_exit_price
+                            self._log("exit_posted_convergence", {
+                                "exit_price": conv_exit_price, "qty": conv_qty,
+                                "order_id": oid_conv,
+                            }, ticker=tk)
+
+                        if cell_qty > 0:
+                            oid_cell, _ = await self.place_order(tk, "sell", "yes", cell_exit_price, cell_qty)
+                            pos.cell_exit_order_id = oid_cell
+                            pos.cell_exit_price = cell_exit_price
+                            self._log("exit_posted_cell_scalp", {
+                                "exit_price": cell_exit_price, "qty": cell_qty,
+                                "order_id": oid_cell,
+                            }, ticker=tk)
+
+                    else:
+                        # Play 3 / Play 1: standard single exit
+                        exit_price = min(fill_price + pos.cell_cfg["exit_cents"], EXIT_PRICE_CAP)
+                        pos.exit_price = exit_price
+
+                        sell_qty = filled
                         oid, resp = await self.place_order(tk, "sell", "yes", exit_price, sell_qty)
-                    if not oid:
-                        self._log("exit_fatal", {
-                            "error": "exit sell failed after retry",
-                            "exit_price": exit_price, "qty": sell_qty,
+                        if not oid:
+                            self._log("exit_retry", {"reason": "first attempt failed"}, ticker=tk)
+                            await asyncio.sleep(1)
+                            oid, resp = await self.place_order(tk, "sell", "yes", exit_price, sell_qty)
+                        if not oid:
+                            self._log("exit_fatal", {
+                                "error": "exit sell failed after retry",
+                                "exit_price": exit_price, "qty": sell_qty,
+                            }, ticker=tk)
+                        pos.exit_order_id = oid
+                        self._log("exit_posted", {
+                            "exit_price": exit_price,
+                            "qty": sell_qty, "total_position": filled,
+                            "based_on_fill": fill_price,
+                            "play_type": pos.play_type,
+                            "order_id": oid,
+                            "consolidated": True,
                         }, ticker=tk)
-                    pos.exit_order_id = oid
-                    self._log("exit_posted", {
-                        "exit_price": exit_price,
-                        "qty": sell_qty, "total_position": filled,
-                        "based_on_fill": fill_price,
-                        "order_id": oid,
-                        "consolidated": True,
-                    }, ticker=tk)
 
                     # Place DCA if applicable (only on first fill, guard against double-post)
                     if first_fill and not pos.dca_order_id and pos.cell_cfg.get("strategy") == "DCA-A":
@@ -1108,45 +1175,82 @@ class LiveV3:
                 current_price, price_source = self.get_market_price(tk)
                 if current_price is None:
                     continue
-                current_mid = current_price
 
-                cell_name, cell_cfg = self.cell_lookup(cat, direction, current_mid)
+                # FV lookup
+                side_fv = self._get_side_fv(tk, et)
+                if side_fv is None or side_fv.get("fv_cents") is None:
+                    self.n_skips += 1
+                    self._log("skipped", {"reason": "no_fv_available", "event": et}, ticker=tk)
+                    continue
 
-                if cell_name in self.config["disabled_cells"]:
+                fv_cents = side_fv["fv_cents"]
+                fv_source = side_fv["source"]
+                fv_tier = side_fv["tier"]
+
+                kalshi_cell, _ = self.cell_lookup(cat, direction, current_price)
+                fv_cell, fv_cell_cfg = self.cell_lookup(cat, direction, fv_cents)
+                gap_cents = current_price - fv_cents
+                cell_low = int(fv_cents / 5) * 5
+                cell_high = cell_low + 4
+
+                # FV cell must have active config
+                if fv_cell_cfg is None or fv_cell in self.config.get("disabled_cells", []):
                     self.n_skips += 1
                     self._log("skipped", {
-                        "reason": "cell_disabled_at_post_time",
-                        "cell": cell_name, "mid_at_post": current_mid, "event": et,
+                        "reason": "fv_cell_not_active",
+                        "fv_cell": fv_cell, "fv_cents": round(fv_cents, 1), "event": et,
                     }, ticker=tk)
                     continue
 
-                if cell_cfg is None:
+                # Determine play
+                play_type = None
+                entry_price = None
+                entry_size = None
+                layered_exit_price = 0
+
+                if kalshi_cell == fv_cell and abs(gap_cents) <= 2:
+                    play_type = "A_tight"
+                    entry_price = max(cell_low, int(current_price) - 1)
+                    entry_size = 10
+                elif gap_cents < -2 and kalshi_cell != fv_cell:
+                    play_type = "B_convergence"
+                    entry_price = int(current_price) + 1
+                    entry_size = 19
+                    layered_exit_price = int(fv_cents) - 2
+                elif gap_cents > 2 and kalshi_cell != fv_cell:
+                    play_type = "A_patient"
+                    entry_price = cell_high
+                    entry_size = 10
+                else:
                     self.n_skips += 1
                     self._log("skipped", {
-                        "reason": "no_cell_config_at_post_time",
-                        "cell": cell_name, "mid_at_post": current_mid, "event": et,
+                        "reason": "no_play_matched",
+                        "kalshi_price": current_price, "fv_cents": round(fv_cents, 1),
+                        "gap_cents": round(gap_cents, 1),
+                        "kalshi_cell": kalshi_cell, "fv_cell": fv_cell,
                     }, ticker=tk)
                     continue
 
-                # Dead-spread guard: defer entry if spread too wide
+                # Dead-spread guard
                 spread = book.best_ask - book.best_bid
                 if spread > DEAD_SPREAD_THRESHOLD:
                     if tk not in self.pending_entries:
                         self.pending_entries[tk] = {
                             "event": et, "direction": direction, "cat": cat,
-                            "cell_name": cell_name, "cell_cfg": cell_cfg,
+                            "cell_name": fv_cell, "cell_cfg": fv_cell_cfg,
                             "discovered_ts": now,
+                            "play_type": play_type,
+                            "entry_size": entry_size,
+                            "layered_exit_price": layered_exit_price,
                         }
                         self._log("entry_deferred", {
                             "reason": "dead_spread", "spread": spread,
                             "bid": book.best_bid, "ask": book.best_ask,
-                            "cell": cell_name,
+                            "cell": fv_cell, "play": play_type,
                         }, ticker=tk)
                     continue
 
-                entry_price = int(current_mid)
-
-                # Pre-post guard: check for existing resting orders or position on this ticker
+                # Pre-post guard: check for existing resting orders or position
                 existing = await api_get(self.session, self.ak, self.pk,
                     "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
                 if existing and existing.get("orders"):
@@ -1160,29 +1264,33 @@ class LiveV3:
                 if existing_pos:
                     pos_list = existing_pos.get("market_positions", [])
                     if any(int(float(p.get("position_fp", 0))) > 0 for p in pos_list):
-                        self._log("skipped", {
-                            "reason": "position_exists",
-                            "ticker": tk,
-                        }, ticker=tk)
+                        self._log("skipped", {"reason": "position_exists", "ticker": tk}, ticker=tk)
                         continue
 
                 self._log("cell_match", {
-                    "event": et, "direction": direction, "cell": cell_name,
-                    "mid_at_post": current_mid, "entry_price": entry_price,
-                    "strategy": cell_cfg["strategy"],
-                    "exit_cents": cell_cfg["exit_cents"],
+                    "event": et, "direction": direction, "cell": fv_cell,
+                    "play_type": play_type,
+                    "fv_cents": round(fv_cents, 1), "fv_source": fv_source, "fv_tier": fv_tier,
+                    "kalshi_price": current_price,
+                    "gap_cents": round(gap_cents, 1),
+                    "entry_price": entry_price, "entry_size": entry_size,
+                    "layered_exit_price": layered_exit_price,
+                    "strategy": fv_cell_cfg["strategy"],
+                    "exit_cents": fv_cell_cfg["exit_cents"],
                     "min_before_start": round(time_to_start / 60),
                 }, ticker=tk)
 
-                oid, resp = await self.place_order(tk, "buy", "yes", entry_price, self.entry_size)
+                oid, resp = await self.place_order(tk, "buy", "yes", entry_price, entry_size)
 
                 pos = Position(
                     ticker=tk, event_ticker=et,
                     category=self.ticker_category.get(tk, "?"),
-                    direction=direction, cell_name=cell_name, cell_cfg=cell_cfg,
+                    direction=direction, cell_name=fv_cell, cell_cfg=fv_cell_cfg,
                     entry_price=entry_price, entry_order_id=oid,
                     entry_posted_ts=now, phase="entry_resting",
                     match_start_ts=start_ts,
+                    play_type=play_type,
+                    layered_exit_price=layered_exit_price,
                 )
                 self.positions[tk] = pos
 
@@ -1211,41 +1319,69 @@ class LiveV3:
             current_price, price_source = self.get_market_price(tk)
             if current_price is None:
                 continue
-            current_mid = current_price
-            # Recompute direction from current mid (opening-state direction may be wrong)
-            current_direction = "leader" if current_mid > 50 else "underdog"
-            cell_name, cell_cfg = self.cell_lookup(pe["cat"], current_direction, current_mid)
 
-            # Cell changed?
-            if cell_name != pe["cell_name"]:
+            # Re-evaluate play with current FV
+            et = pe["event"]
+            side_fv = self._get_side_fv(tk, et)
+            if side_fv is None or side_fv.get("fv_cents") is None:
                 del self.pending_entries[tk]
-                self._log("pending_cell_drift", {
-                    "old_cell": pe["cell_name"], "new_cell": cell_name,
-                    "mid": current_mid,
-                }, ticker=tk)
+                self._log("pending_no_fv", {"ticker": tk}, ticker=tk)
                 continue
 
-            if not cell_cfg or cell_name in self.config["disabled_cells"]:
+            fv_cents = side_fv["fv_cents"]
+            direction = "leader" if current_price > 50 else "underdog"
+            kalshi_cell, _ = self.cell_lookup(pe["cat"], direction, current_price)
+            fv_cell, fv_cell_cfg = self.cell_lookup(pe["cat"], direction, fv_cents)
+            gap = current_price - fv_cents
+            cell_low = int(fv_cents / 5) * 5
+            cell_high = cell_low + 4
+
+            if fv_cell_cfg is None or fv_cell in self.config.get("disabled_cells", []):
                 del self.pending_entries[tk]
                 continue
 
-            # Spread tight enough — post now
-            entry_price = int(current_mid)
+            # Re-determine play
+            play_type = None
+            entry_price = None
+            entry_size = None
+            layered_exit_price = 0
+
+            if kalshi_cell == fv_cell and abs(gap) <= 2:
+                play_type = "A_tight"
+                entry_price = max(cell_low, int(current_price) - 1)
+                entry_size = 10
+            elif gap < -2 and kalshi_cell != fv_cell:
+                play_type = "B_convergence"
+                entry_price = int(current_price) + 1
+                entry_size = 19
+                layered_exit_price = int(fv_cents) - 2
+            elif gap > 2 and kalshi_cell != fv_cell:
+                play_type = "A_patient"
+                entry_price = cell_high
+                entry_size = 10
+            else:
+                del self.pending_entries[tk]
+                continue
+
             del self.pending_entries[tk]
 
             self._log("pending_resolved", {
-                "spread": spread, "entry_price": entry_price, "cell": cell_name,
+                "spread": spread, "entry_price": entry_price, "cell": fv_cell,
+                "play_type": play_type,
+                "fv_cents": round(fv_cents, 1), "gap": round(gap, 1),
                 "waited_sec": round(now - pe["discovered_ts"]),
             }, ticker=tk)
 
-            oid, resp = await self.place_order(tk, "buy", "yes", entry_price, self.entry_size)
+            oid, resp = await self.place_order(tk, "buy", "yes", entry_price, entry_size)
             pos = Position(
-                ticker=tk, event_ticker=pe["event"],
+                ticker=tk, event_ticker=et,
                 category=self.ticker_category.get(tk, "?"),
-                direction=pe["direction"], cell_name=cell_name, cell_cfg=cell_cfg,
+                direction=direction, cell_name=fv_cell, cell_cfg=fv_cell_cfg,
                 entry_price=entry_price, entry_order_id=oid,
                 entry_posted_ts=now, phase="entry_resting",
-                match_start_ts=self.event_start_time.get(pe["event"], 0),
+                match_start_ts=self.event_start_time.get(et, 0),
+                play_type=play_type,
+                layered_exit_price=layered_exit_price,
             )
             self.positions[tk] = pos
 
@@ -1265,35 +1401,98 @@ class LiveV3:
             current_price, price_source = self.get_market_price(tk)
             if current_price is None:
                 continue
-            current_mid = current_price
-            delta = pos.entry_price - current_mid
 
-            # Our price > 5c above current mid → stale, cancel
-            if delta > STALE_BUY_DELTA:
-                await self.cancel_order(tk, pos.entry_order_id, "stale_above_fv")
-                self._log("stale_buy_cancel", {
-                    "reason": "above_fair_value", "our_price": pos.entry_price,
-                    "current_mid": current_mid, "delta": round(delta),
-                }, ticker=tk)
+            # FV-aware validation per play type
+            side_fv = self._get_side_fv(tk, pos.event_ticker)
+            if side_fv is None or side_fv.get("fv_cents") is None:
+                await self.cancel_order(tk, pos.entry_order_id, "fv_disappeared")
+                self._log("stale_buy_cancel", {"reason": "fv_disappeared"}, ticker=tk)
                 self._untombstone_entry(tk, pos)
                 continue
 
-            # Cell changed from post time
+            fv_cents = side_fv["fv_cents"]
             cat = self.get_category(tk)
-            if cat:
-                direction = "leader" if current_mid > 50 else "underdog"
-                current_cell, _ = self.cell_lookup(cat, direction, current_mid)
-                if current_cell != pos.cell_name:
-                    # Hysteresis: don't cancel if mid is within 2c of cell boundary
-                    bucket_low = int(current_mid / 5) * 5
-                    dist_to_boundary = min(abs(current_mid - bucket_low), abs(current_mid - (bucket_low + 5)))
-                    if dist_to_boundary < 2:
-                        continue  # too close to boundary, wait for clearer drift
-                    await self.cancel_order(tk, pos.entry_order_id, "cell_drift")
+            if not cat:
+                continue
+
+            direction = "leader" if current_price > 50 else "underdog"
+            kalshi_cell, _ = self.cell_lookup(cat, direction, current_price)
+            fv_cell, _ = self.cell_lookup(cat, direction, fv_cents)
+            gap = current_price - fv_cents
+            cell_low = int(fv_cents / 5) * 5
+
+            play = pos.play_type
+
+            if play == "A_tight":
+                # Rule B must still hold: same cell + |gap| <= 2c
+                if kalshi_cell != fv_cell or abs(gap) > 2:
+                    await self.cancel_order(tk, pos.entry_order_id, "rule_b_violation")
                     self._log("stale_buy_cancel", {
-                        "reason": "cell_drift", "original_cell": pos.cell_name,
-                        "current_cell": current_cell, "current_mid": current_mid,
-                        "dist_to_boundary": round(dist_to_boundary, 1),
+                        "reason": "A_tight_rule_b_violation",
+                        "kalshi_cell": kalshi_cell, "fv_cell": fv_cell, "gap": round(gap, 1),
+                    }, ticker=tk)
+                    self._untombstone_entry(tk, pos)
+                    continue
+
+                # Asymmetric tape follow: reprice down if tape dropped
+                target = max(cell_low, int(current_price) - 1)
+                if target < pos.entry_price:
+                    await self.cancel_order(tk, pos.entry_order_id, "tape_follow_down")
+                    oid, _ = await self.place_order(tk, "buy", "yes", target, 10)
+                    old = pos.entry_price
+                    pos.entry_price = target
+                    pos.entry_order_id = oid
+                    self._log("reprice_down", {
+                        "old_price": old, "new_price": target,
+                        "kalshi": current_price, "fv": round(fv_cents, 1), "play": "A_tight",
+                    }, ticker=tk)
+
+            elif play == "B_convergence":
+                # Kalshi must still be cross-cell below FV
+                if kalshi_cell == fv_cell or gap >= -2:
+                    await self.cancel_order(tk, pos.entry_order_id, "B_convergence_gap_closed")
+                    self._log("stale_buy_cancel", {
+                        "reason": "B_convergence_gap_closed",
+                        "kalshi_cell": kalshi_cell, "fv_cell": fv_cell, "gap": round(gap, 1),
+                    }, ticker=tk)
+                    self._untombstone_entry(tk, pos)
+                    continue
+
+                # Tape follow: update entry to tape + 1c
+                target = int(current_price) + 1
+                if target != pos.entry_price:
+                    await self.cancel_order(tk, pos.entry_order_id, "B_tape_update")
+                    oid, _ = await self.place_order(tk, "buy", "yes", target, 19)
+                    old = pos.entry_price
+                    pos.entry_price = target
+                    pos.entry_order_id = oid
+                    self._log("reprice_b_tape", {
+                        "old_price": old, "new_price": target,
+                        "kalshi": current_price, "fv": round(fv_cents, 1),
+                    }, ticker=tk)
+
+            elif play == "A_patient":
+                # Kalshi drifted INTO FV cell — leave rest, may fill
+                if kalshi_cell == fv_cell:
+                    continue
+                # Kalshi no longer premium — cancel patient rest
+                if gap < 2:
+                    await self.cancel_order(tk, pos.entry_order_id, "A_patient_conditions_changed")
+                    self._log("stale_buy_cancel", {
+                        "reason": "A_patient_gap_reduced",
+                        "kalshi": current_price, "fv": round(fv_cents, 1), "gap": round(gap, 1),
+                    }, ticker=tk)
+                    self._untombstone_entry(tk, pos)
+                    continue
+
+            else:
+                # Legacy positions: fall back to original stale check
+                delta = pos.entry_price - current_price
+                if delta > STALE_BUY_DELTA:
+                    await self.cancel_order(tk, pos.entry_order_id, "stale_above_fv")
+                    self._log("stale_buy_cancel", {
+                        "reason": "above_fair_value_legacy", "our_price": pos.entry_price,
+                        "current_mid": current_price, "delta": round(delta),
                     }, ticker=tk)
                     self._untombstone_entry(tk, pos)
 

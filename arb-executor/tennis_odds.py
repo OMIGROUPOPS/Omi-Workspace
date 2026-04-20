@@ -407,21 +407,25 @@ def main():
     log("Polling every %ds for %d tournament keys" % (POLL_INTERVAL, len(TENNIS_SPORTS)))
     log("=" * 60)
 
-    conn = init_db()
+    init_db()
 
     # Load name cache from DB
     name_cache = {}
     try:
+        conn = sqlite3.connect(DB_PATH, timeout=30)
         cur = conn.cursor()
         cur.execute("SELECT odds_api_name, kalshi_code FROM name_cache")
         for row in cur.fetchall():
             name_cache[row[0]] = row[1]
+        conn.close()
         log("[INIT] Loaded %d cached name mappings" % len(name_cache))
     except:
         pass
 
     # Initial poll immediately
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     poll_odds(conn, name_cache)
+    conn.close()
 
     # Then loop with priority-based cadence
     last_poll = time.time()
@@ -431,9 +435,9 @@ def main():
         elapsed = now - last_poll
 
         # Default: 900s. But if we know urgent events exist, poll faster.
-        # We check the edge_scores table for events with near commence times.
         interval = POLL_INTERVAL  # default 900s
         try:
+            conn = sqlite3.connect(DB_PATH, timeout=30)
             cur = conn.cursor()
             cur.execute("SELECT commence_time FROM edge_scores WHERE commence_time != ''")
             for row in cur.fetchall():
@@ -446,6 +450,7 @@ def main():
                         interval = min(interval, 300)
                 except:
                     pass
+            conn.close()
         except:
             pass
 
@@ -453,13 +458,21 @@ def main():
             time.sleep(min(30, interval - elapsed))
             continue
 
+        conn = None
         try:
+            conn = sqlite3.connect(DB_PATH, timeout=30)
             poll_odds(conn, name_cache)
             last_poll = time.time()
         except Exception as e:
             log("[ERR] Poll failed: %s" % e)
             import traceback
             traceback.print_exc()
+        finally:
+            if conn:
+                try:
+                    conn.close()
+                except:
+                    pass
 
 
 if __name__ == "__main__":

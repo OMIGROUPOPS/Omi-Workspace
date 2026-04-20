@@ -31,6 +31,22 @@ from cryptography.hazmat.primitives.asymmetric import padding
 
 from fv import get_consensus_fv
 
+def _parse_ticker_date(event_ticker: str):
+    """Parse YYMMMDD from ticker like KXATPMATCH-26APR21GEAGAU -> datetime(2026,4,21,11,0 UTC)."""
+    import re as _re
+    m = _re.search(r'-(\d{2})([A-Z]{3})(\d{2})', event_ticker)
+    if not m:
+        return None
+    yy, mmm, dd = m.groups()
+    _month_map = {"JAN": 1, "FEB": 2, "MAR": 3, "APR": 4, "MAY": 5, "JUN": 6,
+                  "JUL": 7, "AUG": 8, "SEP": 9, "OCT": 10, "NOV": 11, "DEC": 12}
+    if mmm not in _month_map:
+        return None
+    try:
+        return datetime(2000 + int(yy), _month_map[mmm], int(dd), 11, 0, tzinfo=timezone.utc)
+    except ValueError:
+        return None
+
 # -------------------------------------------------------------------------
 # Constants
 # -------------------------------------------------------------------------
@@ -747,7 +763,25 @@ class LiveV3:
                                 except Exception:
                                     pass
                         else:
-                            self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
+                            # Fallback 1: Odds API commence_time from book_prices
+                            ct = self._commence_time_from_book_prices(et)
+                            if ct is not None:
+                                self.event_start_time[et] = ct.timestamp()
+                                self._log("schedule_match", {
+                                    "event": et, "method": "odds_api_commence_time",
+                                    "start_time": ct.isoformat(),
+                                })
+                            else:
+                                # Fallback 2: parse date from ticker + 11:00 UTC nominal
+                                tk_date = _parse_ticker_date(et)
+                                if tk_date is not None:
+                                    self.event_start_time[et] = tk_date.timestamp()
+                                    self._log("schedule_match", {
+                                        "event": et, "method": "ticker_date_nominal",
+                                        "start_time": tk_date.isoformat(),
+                                    })
+                                else:
+                                    self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
                     cat = self.get_category(ticker)
                     if cat:
                         self.ticker_category[ticker] = cat
@@ -833,6 +867,29 @@ class LiveV3:
                 self._log("sidecar_missing", {"name": name, "path": path})
             except Exception as e:
                 self._log("sidecar_heartbeat_error", {"name": name, "error": str(e)})
+
+    def _commence_time_from_book_prices(self, event_ticker):
+        """Query book_prices for most recent commence_time for this event."""
+        import sqlite3 as _sql
+        try:
+            conn = _sql.connect(str(Path(__file__).resolve().parent / "tennis.db"), timeout=5)
+            cur = conn.cursor()
+            cur.execute(
+                "SELECT commence_time FROM book_prices WHERE event_ticker=? "
+                "AND commence_time IS NOT NULL AND commence_time != '' "
+                "ORDER BY polled_at DESC LIMIT 1",
+                (event_ticker,))
+            row = cur.fetchone()
+            conn.close()
+            if not row or not row[0]:
+                return None
+            ct = datetime.fromisoformat(row[0].replace("Z", "+00:00"))
+            now = datetime.now(timezone.utc)
+            if timedelta(hours=-6) < (ct - now) < timedelta(hours=120):
+                return ct
+            return None
+        except Exception:
+            return None
 
     def _get_side_fv(self, ticker, event_ticker):
         """Return get_consensus_fv result for the side corresponding to this Kalshi ticker."""

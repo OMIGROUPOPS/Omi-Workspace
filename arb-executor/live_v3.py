@@ -286,6 +286,7 @@ class LiveV3:
 
         self.positions: Dict[str, Position] = {}
         self.pending_entries: Dict[str, dict] = {}  # ticker -> {event, direction, cat, cell_name, cell_cfg, discovered_ts}
+        self.inflight_orders: Set[str] = set()  # tickers with orders being placed (race guard)
 
         # Persistent processed-tickers set (survives restarts)
         STATE_DIR.mkdir(parents=True, exist_ok=True)
@@ -1208,8 +1209,6 @@ class LiveV3:
                 open_ts = self.event_open_time.get(et, now)
                 open_age = now - open_ts
                 if cycles >= UNMATCHED_SKIP_CYCLES and open_age > UNMATCHED_SKIP_AGE:
-                    self.processed_events.add(et)
-                    self._save_processed()
                     self._log("skipped", {
                         "reason": "schedule_gap",
                         "event": et,
@@ -1258,6 +1257,11 @@ class LiveV3:
             for (tk, direction, cat) in sides:
                 if tk in self.positions:
                     continue
+                if tk in self.inflight_orders:
+                    continue
+                # Claim pending entry to prevent race with check_pending_entries
+                if tk in self.pending_entries:
+                    del self.pending_entries[tk]
 
                 book = self.books.get(tk)
                 if not book or book.updated < now - 120:
@@ -1387,7 +1391,11 @@ class LiveV3:
                     "fv_stability_range_pct": stability["range_pct"],
                 }, ticker=tk)
 
-                oid, resp = await self.place_order(tk, "buy", "yes", entry_price, entry_size)
+                self.inflight_orders.add(tk)
+                try:
+                    oid, resp = await self.place_order(tk, "buy", "yes", entry_price, entry_size)
+                finally:
+                    self.inflight_orders.discard(tk)
 
                 pos = Position(
                     ticker=tk, event_ticker=et,
@@ -1407,6 +1415,11 @@ class LiveV3:
     async def check_pending_entries(self):
         now = time.time()
         for tk in list(self.pending_entries.keys()):
+            # Race guard: skip if routing_tick already handling or position exists
+            if tk in self.positions or tk in self.inflight_orders:
+                del self.pending_entries[tk]
+                continue
+
             pe = self.pending_entries[tk]
 
             # Timeout: 2h with no tight spread → skip permanently
@@ -1476,7 +1489,11 @@ class LiveV3:
                 "waited_sec": round(now - pe["discovered_ts"]),
             }, ticker=tk)
 
-            oid, resp = await self.place_order(tk, "buy", "yes", entry_price, entry_size)
+            self.inflight_orders.add(tk)
+            try:
+                oid, resp = await self.place_order(tk, "buy", "yes", entry_price, entry_size)
+            finally:
+                self.inflight_orders.discard(tk)
             pos = Position(
                 ticker=tk, event_ticker=et,
                 category=self.ticker_category.get(tk, "?"),
@@ -1929,15 +1946,28 @@ class LiveV3:
             if evt not in self.processed_events and (start_ts - now) <= ENTRY_BUFFER_SEC:
                 self.processed_events.add(evt)
                 startup_skipped += 1
-        # Also skip unmatched events with stale open_time
-        for et in list(self.event_tickers.keys()):
-            if et in self.processed_events or et in self.event_start_time:
+
+        # Expire old tombstones: remove events with dates >24h in the past
+        import re as _tomb_re
+        _month_map = {"JAN": 1, "FEB": 2, "MAR": 3, "APR": 4, "MAY": 5, "JUN": 6,
+                      "JUL": 7, "AUG": 8, "SEP": 9, "OCT": 10, "NOV": 11, "DEC": 12}
+        expired = set()
+        for evt in list(self.processed_events):
+            m = _tomb_re.search(r"-(\d{2})([A-Z]{3})(\d{2})", evt)
+            if not m:
                 continue
-            open_ts = self.event_open_time.get(et, now)
-            if now - open_ts > UNMATCHED_SKIP_AGE:
-                self.processed_events.add(et)
-                startup_skipped += 1
-        if startup_skipped:
+            try:
+                evt_date = datetime(2000 + int(m.group(1)), _month_map[m.group(2)], int(m.group(3)),
+                                    tzinfo=timezone.utc)
+                if (datetime.now(timezone.utc) - evt_date).total_seconds() > 86400:
+                    expired.add(evt)
+            except Exception:
+                pass
+        if expired:
+            self.processed_events -= expired
+            startup_skipped -= len(expired)  # net out
+
+        if startup_skipped > 0:
             self._save_processed()
 
         # Startup validation

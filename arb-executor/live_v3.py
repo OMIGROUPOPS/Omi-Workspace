@@ -1206,7 +1206,12 @@ class LiveV3:
                 side_fv = self._get_side_fv(tk, et)
                 if side_fv is None or side_fv.get("fv_cents") is None:
                     self.n_skips += 1
-                    self._log("skipped", {"reason": "no_fv_available", "event": et}, ticker=tk)
+                    fv_reason = side_fv.get("reason", "no_data") if side_fv else "no_data"
+                    skip_info = {"reason": "fv_stale" if fv_reason == "stale" else "no_fv_available", "event": et}
+                    if fv_reason == "stale":
+                        skip_info["stale_source"] = side_fv.get("source")
+                        skip_info["age_sec"] = side_fv.get("age_sec")
+                    self._log("skipped", skip_info, ticker=tk)
                     continue
 
                 fv_cents = side_fv["fv_cents"]

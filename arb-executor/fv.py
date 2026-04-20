@@ -60,7 +60,7 @@ def get_consensus_fv(event_ticker, side, conn=None):
     try:
         cur = conn.cursor()
         now = datetime.now(ET)
-        fv_col = "book_p1_fv_cents" if side == "p1" else "book_p2_fv_cents"
+        stale_best = None
 
         # Tier 1: Pinnacle
         cur.execute("""
@@ -84,7 +84,10 @@ def get_consensus_fv(event_ticker, side, conn=None):
                         "age_sec": int(age),
                         "fetched_at": polled,
                         "num_books": 1,
+                        "reason": "ok",
                     }
+            elif age is not None:
+                stale_best = {"source": "pinnacle", "tier": 1, "age_sec": int(age)}
 
         # Tier 2: Aggregate (mean of non-Pinnacle, non-BetExplorer books)
         cur.execute("""
@@ -119,6 +122,7 @@ def get_consensus_fv(event_ticker, side, conn=None):
                 "age_sec": 0,
                 "fetched_at": datetime.now(ET).strftime("%Y-%m-%d %H:%M:%S"),
                 "num_books": len(fresh_fvs),
+                "reason": "ok",
             }
 
         # Tier 3: BetExplorer (Challenger coverage)
@@ -143,12 +147,15 @@ def get_consensus_fv(event_ticker, side, conn=None):
                         "age_sec": int(age),
                         "fetched_at": polled,
                         "num_books": 1,
+                        "reason": "ok",
                     }
+            elif age is not None and stale_best is None:
+                stale_best = {"source": "betexplorer", "tier": 3, "age_sec": int(age)}
 
-        # Tier 5: Paired-sum (100 - other side's Kalshi last price)
-        # Skipped in self-test mode (no Kalshi API needed for validation)
+        if stale_best:
+            return {"fv_cents": None, "reason": "stale", **stale_best}
 
-        return None
+        return {"fv_cents": None, "reason": "no_data", "source": None, "age_sec": None}
 
     finally:
         if close_conn:

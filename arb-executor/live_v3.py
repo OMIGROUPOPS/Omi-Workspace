@@ -848,6 +848,7 @@ class LiveV3:
         "tennis_odds": 600,
         "betexplorer": 700,
         "fv_monitor": 400,
+        "kalshi_price": 400,
     }
 
     def _check_sidecar_heartbeats(self):

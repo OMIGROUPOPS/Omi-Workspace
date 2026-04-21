@@ -12,6 +12,7 @@ SIDECARS = {
     "betexplorer": {"process": "betexplorer.py", "expected_interval": 700},
     "fv_monitor": {"process": "fv_monitor", "expected_interval": 400},
     "live_v3": {"process": "live_v3.py", "expected_interval": 10},
+    "kalshi_price": {"process": "kalshi_price_scraper.py", "expected_interval": 400},
 }
 
 

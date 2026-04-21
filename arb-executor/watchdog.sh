@@ -20,3 +20,4 @@ check_and_restart "tennis_odds.py" "odds" "cd /root/Omi-Workspace/arb-executor &
 check_and_restart "betexplorer.py" "betexplorer" "cd /root/Omi-Workspace/arb-executor && PYTHONUNBUFFERED=1 python3 betexplorer.py 2>&1 | tee -a logs/betexplorer_console.log"
 check_and_restart "fv_monitor" "fv_monitor" "cd /root/Omi-Workspace/arb-executor && PYTHONUNBUFFERED=1 python3 /tmp/fv_monitor_v3.py 2>&1 | tee -a /tmp/fv_monitor_console.log"
 check_and_restart "live_v3.py" "live_v3" "cd /root/Omi-Workspace/arb-executor && PYTHONUNBUFFERED=1 python3 live_v3.py 2>&1 | tee -a logs/live_v3_console.log"
+check_and_restart "kalshi_price_scraper.py" "kalshi_price" "cd /root/Omi-Workspace/arb-executor && PYTHONUNBUFFERED=1 python3 kalshi_price_scraper.py 2>&1 | tee -a logs/kalshi_price.log"

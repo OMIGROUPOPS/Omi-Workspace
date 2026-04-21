@@ -145,6 +145,35 @@ def main():
         print("  Error: %s" % port["error"])
 
     print()
+    print("INTELLIGENCE:")
+    try:
+        from intelligence import confidence_score, _conn
+        ic = _conn()
+        icur = ic.cursor()
+        icur.execute("""
+            SELECT DISTINCT kps.event_ticker, kps.ticker
+            FROM kalshi_price_snapshots kps
+            INNER JOIN (SELECT ticker, MAX(polled_at) as mp FROM kalshi_price_snapshots GROUP BY ticker) l
+            ON kps.ticker = l.ticker AND kps.polled_at = l.mp
+        """)
+        tks = icur.fetchall()
+        ic.close()
+        tiers = {"HIGH": 0, "MEDIUM": 0, "LOW": 0, "SKIP": 0}
+        for et, tk in tks:
+            try:
+                cs = confidence_score(et, tk)
+                tiers[cs.get("grade", "SKIP")] = tiers.get(cs.get("grade", "SKIP"), 0) + 1
+            except Exception:
+                tiers["SKIP"] += 1
+        total = sum(tiers.values())
+        tradeable = tiers["HIGH"] + tiers["MEDIUM"] + tiers["LOW"]
+        print("  %d tickers: HIGH=%d MEDIUM=%d LOW=%d SKIP=%d  (%.0f%% tradeable)" % (
+            total, tiers["HIGH"], tiers["MEDIUM"], tiers["LOW"], tiers["SKIP"],
+            tradeable / total * 100 if total > 0 else 0))
+    except Exception as e:
+        print("  Error: %s" % str(e)[:100])
+
+    print()
     print("ALERTS:")
     if alerts:
         for a in alerts:

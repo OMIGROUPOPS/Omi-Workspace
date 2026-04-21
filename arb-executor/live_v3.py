@@ -791,16 +791,7 @@ class LiveV3:
                                     "start_time": ct.isoformat(),
                                 })
                             else:
-                                # Fallback 2: parse date from ticker + 11:00 UTC nominal
-                                tk_date = _parse_ticker_date(et)
-                                if tk_date is not None:
-                                    self.event_start_time[et] = tk_date.timestamp()
-                                    self._log("schedule_match", {
-                                        "event": et, "method": "ticker_date_nominal",
-                                        "start_time": tk_date.isoformat(),
-                                    })
-                                else:
-                                    self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
+                                self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
                     cat = self.get_category(ticker)
                     if cat:
                         self.ticker_category[ticker] = cat

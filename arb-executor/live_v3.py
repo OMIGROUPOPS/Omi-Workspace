@@ -68,7 +68,7 @@ DISCOVERY_INTERVAL = 300
 # ENTRY_CANCEL_TIMEOUT removed in V4.2 -- replaced by match-start-aware expiry
 FILL_CHECK_INTERVAL = 5      # poll fills every 5s
 EXIT_PRICE_CAP = 98           # never post exit above 98c
-ENTRY_BUFFER_SEC = 900        # stop entering 15 min before scheduled start
+ENTRY_BUFFER_SEC = 0          # entries allowed until match_already_started fires
 ENTRY_MAX_LEAD_SEC = 14400    # don't enter more than 4h before start
 UNMATCHED_SKIP_CYCLES = 3     # skip unmatched events after this many discovery cycles
 UNMATCHED_SKIP_AGE = 3600     # ...only if open_time is > 1h old
@@ -256,6 +256,7 @@ class Position:
     cell_exit_order_id: str = ""
     cell_exit_price: int = 0
     legacy: bool = False
+    anchor_source: str = "fv_consensus"
 
     # State
     phase: str = "entry_pending"
@@ -1524,6 +1525,7 @@ class LiveV3:
                     match_start_ts=start_ts,
                     play_type=play_type,
                     layered_exit_price=layered_exit_price,
+                    anchor_source=anchor_source,
                 )
                 self.positions[tk] = pos
 
@@ -1663,6 +1665,10 @@ class LiveV3:
                 continue
 
             # FV-aware validation per play type
+            # Kalshi-anchored entries have no external FV — skip FV validation
+            if pos.anchor_source == "kalshi_price":
+                continue
+
             side_fv = self._get_side_fv(tk, pos.event_ticker)
             if side_fv is None or side_fv.get("fv_cents") is None:
                 await self.cancel_order(tk, pos.entry_order_id, "fv_disappeared")

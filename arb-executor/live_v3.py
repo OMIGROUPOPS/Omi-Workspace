@@ -31,6 +31,12 @@ from cryptography.hazmat.primitives.asymmetric import padding
 
 from fv import get_consensus_fv, check_fv_stability
 
+try:
+    from intelligence import recommended_window_seconds, kalshi_price_anchor
+    INTELLIGENCE_AVAILABLE = True
+except ImportError:
+    INTELLIGENCE_AVAILABLE = False
+
 def _parse_ticker_date(event_ticker: str):
     """Parse YYMMMDD from ticker like KXATPMATCH-26APR21GEAGAU -> datetime(2026,4,21,11,0 UTC)."""
     import re as _re
@@ -1230,8 +1236,8 @@ class LiveV3:
 
             time_to_start = start_ts - now
 
-            # More than 24h away — wait, revisit later
-            if time_to_start > ENTRY_MAX_LEAD_SEC:
+            # More than 24h away — wait, revisit later (outer bound before intelligence runs)
+            if time_to_start > 86400:
                 continue
 
             # Past commence — match already started per our data
@@ -1293,35 +1299,88 @@ class LiveV3:
                 if current_price is None:
                     continue
 
-                # FV lookup
-                side_fv = self._get_side_fv(tk, et)
-                if side_fv is None or side_fv.get("fv_cents") is None:
-                    self.n_skips += 1
-                    fv_reason = side_fv.get("reason", "no_data") if side_fv else "no_data"
-                    skip_info = {"reason": "fv_stale" if fv_reason == "stale" else "no_fv_available", "event": et}
-                    if fv_reason == "stale":
-                        skip_info["stale_source"] = side_fv.get("source")
-                        skip_info["age_sec"] = side_fv.get("age_sec")
-                    self._log("skipped", skip_info, ticker=tk)
-                    continue
+                # ── Intelligence gate ──
+                intel_rec = None
+                intel_anchor_mode = "fv"
+                intel_size = self.config["sizing"]["entry_contracts"]  # default 10
+                intel_window = ENTRY_MAX_LEAD_SEC  # fallback 4h
 
-                fv_cents = side_fv["fv_cents"]
-                fv_source = side_fv["source"]
-                fv_tier = side_fv["tier"]
+                if INTELLIGENCE_AVAILABLE:
+                    try:
+                        intel_rec = recommended_window_seconds(et, tk)
+                        intel_window = intel_rec["window_seconds"]
+                        intel_anchor_mode = intel_rec.get("anchor_mode", "fv")
+                        intel_size = intel_rec["recommended_size"]
+                    except Exception as e:
+                        self._log("intelligence_error", {"error": str(e)[:200]}, ticker=tk)
 
-                # FV stability check — only skip on extreme volatility (>20% range)
-                stability = check_fv_stability(et, side_fv.get("_side", "p1"))
-                if stability["range_pct"] > 20:
+                if intel_window == 0:
                     self.n_skips += 1
                     self._log("skipped", {
-                        "reason": "fv_unstable",
-                        "event": et, "fv_now": stability["fv_now"],
-                        "fv_oldest": stability["fv_oldest"],
-                        "range_c": stability["range_c"],
-                        "range_pct": stability["range_pct"],
-                        "samples": stability["samples"],
+                        "reason": "intelligence_skip",
+                        "event": et,
+                        "rationale": intel_rec["rationale"] if intel_rec else "module_error",
+                        "confidence_score": intel_rec.get("confidence_score") if intel_rec else None,
                     }, ticker=tk)
                     continue
+
+                if time_to_start > intel_window:
+                    continue  # outside tier window — revisit next tick
+
+                # ── Anchor resolution: FV-anchored vs Kalshi-anchored ──
+                anchor_source = "fv_consensus"
+                fv_cents = None
+                fv_source = None
+                fv_tier = None
+                stability = {"range_pct": 0, "samples": 0}
+
+                if intel_anchor_mode == "kalshi" and intel_rec and intel_rec.get("anchor_source") == "kalshi_price":
+                    # Kalshi-anchored path: use Kalshi price median as anchor
+                    try:
+                        kpa = kalshi_price_anchor(et, tk, hours=1)
+                    except Exception:
+                        kpa = {}
+                    if kpa.get("median_price_cents") and kpa["median_price_cents"] > 0:
+                        fv_cents = kpa["median_price_cents"]
+                        fv_source = "kalshi_anchor"
+                        fv_tier = 9  # synthetic tier for Kalshi-anchored
+                        anchor_source = "kalshi_price"
+                    else:
+                        self.n_skips += 1
+                        self._log("skipped", {
+                            "reason": "kalshi_anchor_no_data", "event": et,
+                        }, ticker=tk)
+                        continue
+                else:
+                    # FV-anchored path: existing logic
+                    side_fv = self._get_side_fv(tk, et)
+                    if side_fv is None or side_fv.get("fv_cents") is None:
+                        self.n_skips += 1
+                        fv_reason = side_fv.get("reason", "no_data") if side_fv else "no_data"
+                        skip_info = {"reason": "fv_stale" if fv_reason == "stale" else "no_fv_available", "event": et}
+                        if fv_reason == "stale":
+                            skip_info["stale_source"] = side_fv.get("source")
+                            skip_info["age_sec"] = side_fv.get("age_sec")
+                        self._log("skipped", skip_info, ticker=tk)
+                        continue
+
+                    fv_cents = side_fv["fv_cents"]
+                    fv_source = side_fv["source"]
+                    fv_tier = side_fv["tier"]
+
+                    # FV stability check — only skip on extreme volatility (>20% range)
+                    stability = check_fv_stability(et, side_fv.get("_side", "p1"))
+                    if stability["range_pct"] > 20:
+                        self.n_skips += 1
+                        self._log("skipped", {
+                            "reason": "fv_unstable",
+                            "event": et, "fv_now": stability["fv_now"],
+                            "fv_oldest": stability["fv_oldest"],
+                            "range_c": stability["range_c"],
+                            "range_pct": stability["range_pct"],
+                            "samples": stability["samples"],
+                        }, ticker=tk)
+                        continue
 
                 kalshi_cell, _ = self.cell_lookup(cat, direction, current_price)
                 fv_cell, fv_cell_cfg = self.cell_lookup(cat, direction, fv_cents)
@@ -1335,6 +1394,7 @@ class LiveV3:
                     self._log("skipped", {
                         "reason": "fv_cell_not_active",
                         "fv_cell": fv_cell, "fv_cents": round(fv_cents, 1), "event": et,
+                        "anchor_source": anchor_source,
                     }, ticker=tk)
                     continue
 
@@ -1344,24 +1404,19 @@ class LiveV3:
                 entry_size = None
                 layered_exit_price = 0
 
-                # Size multiplier (all 1.0x — full config-defined sizing)
-                _source_size = {"pinnacle": 1.0, "blended_median": 1.0,
-                                "aggregate": 1.0, "betexplorer": 1.0}
-                size_mult = _source_size.get(fv_source, 1.0)
-
                 if kalshi_cell == fv_cell:
                     play_type = "A_tight"
                     entry_price = max(cell_low, int(current_price) - 1)
-                    entry_size = max(1, int(10 * size_mult))
+                    entry_size = intel_size
                 elif current_price < fv_cents:
                     play_type = "B_convergence"
                     entry_price = int(current_price) + 1
-                    entry_size = max(1, int(19 * size_mult))
+                    entry_size = intel_size
                     layered_exit_price = int(fv_cents) - 2
                 else:
                     play_type = "A_patient"
                     entry_price = cell_high
-                    entry_size = max(1, int(10 * size_mult))
+                    entry_size = intel_size
 
                 # Dead-spread guard
                 spread = book.best_ask - book.best_bid
@@ -1374,6 +1429,7 @@ class LiveV3:
                             "play_type": play_type,
                             "entry_size": entry_size,
                             "layered_exit_price": layered_exit_price,
+                            "anchor_source": anchor_source,
                         }
                         self._log("entry_deferred", {
                             "reason": "dead_spread", "spread": spread,
@@ -1403,15 +1459,19 @@ class LiveV3:
                     "event": et, "direction": direction, "cell": fv_cell,
                     "play_type": play_type,
                     "fv_cents": round(fv_cents, 1), "fv_source": fv_source, "fv_tier": fv_tier,
+                    "anchor_source": anchor_source,
                     "kalshi_price": current_price,
                     "gap_cents": round(gap_cents, 1),
                     "entry_price": entry_price, "entry_size": entry_size,
-                    "size_multiplier": size_mult,
                     "layered_exit_price": layered_exit_price,
                     "strategy": fv_cell_cfg["strategy"],
                     "exit_cents": fv_cell_cfg["exit_cents"],
                     "min_before_start": round(time_to_start / 60),
                     "fv_stability_range_pct": stability["range_pct"],
+                    "intel_score": intel_rec.get("confidence_score") if intel_rec else None,
+                    "intel_grade": intel_rec.get("confidence_grade") if intel_rec else None,
+                    "intel_window_sec": intel_window,
+                    "intel_anchor": intel_anchor_mode,
                 }, ticker=tk)
 
                 self.inflight_orders.add(tk)
@@ -1483,6 +1543,23 @@ class LiveV3:
                 del self.pending_entries[tk]
                 continue
 
+            # Intelligence re-query at resolve time (conditions may have changed)
+            pending_intel_size = self.config["sizing"]["entry_contracts"]
+            if INTELLIGENCE_AVAILABLE:
+                try:
+                    p_rec = recommended_window_seconds(et, tk)
+                    if p_rec["window_seconds"] == 0:
+                        del self.pending_entries[tk]
+                        self._log("pending_intel_skip", {
+                            "ticker": tk, "rationale": p_rec.get("rationale", ""),
+                            "confidence_score": p_rec.get("confidence_score"),
+                        }, ticker=tk)
+                        continue
+                    if p_rec["recommended_size"] > 0:
+                        pending_intel_size = p_rec["recommended_size"]
+                except Exception:
+                    pass
+
             # Determine play — exhaustive, no fall-through
             play_type = None
             entry_price = None
@@ -1492,16 +1569,16 @@ class LiveV3:
             if kalshi_cell == fv_cell:
                 play_type = "A_tight"
                 entry_price = max(cell_low, int(current_price) - 1)
-                entry_size = 10
+                entry_size = pending_intel_size
             elif current_price < fv_cents:
                 play_type = "B_convergence"
                 entry_price = int(current_price) + 1
-                entry_size = 19
+                entry_size = pending_intel_size
                 layered_exit_price = int(fv_cents) - 2
             else:
                 play_type = "A_patient"
                 entry_price = cell_high
-                entry_size = 10
+                entry_size = pending_intel_size
 
             del self.pending_entries[tk]
 

@@ -1223,12 +1223,24 @@ class LiveV3:
             if time_to_start > ENTRY_MAX_LEAD_SEC:
                 continue
 
-            # Inside 15-min buffer or past start — permanent skip
+            # Past commence — match already started per our data
+            if time_to_start <= 0:
+                self.processed_events.add(et)
+                self._save_processed()
+                self._log("skipped", {
+                    "reason": "match_already_started",
+                    "event": et,
+                    "time_to_start_sec": round(time_to_start),
+                    "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET"),
+                })
+                continue
+
+            # Inside 15-min buffer — too close to start
             if time_to_start <= ENTRY_BUFFER_SEC:
                 self.processed_events.add(et)
                 self._save_processed()
                 self._log("skipped", {
-                    "reason": "inside_buffer_or_live",
+                    "reason": "inside_buffer",
                     "event": et,
                     "time_to_start_sec": round(time_to_start),
                     "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET"),

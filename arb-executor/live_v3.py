@@ -791,7 +791,16 @@ class LiveV3:
                                     "start_time": ct.isoformat(),
                                 })
                             else:
-                                self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
+                                # Fallback 2: Kalshi's own commence_time from price snapshots
+                                kct = self._kalshi_commence_time(et)
+                                if kct is not None:
+                                    self.event_start_time[et] = kct.timestamp()
+                                    self._log("schedule_match", {
+                                        "event": et, "method": "kalshi_commence_time",
+                                        "start_time": kct.isoformat(),
+                                    })
+                                else:
+                                    self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
                     cat = self.get_category(ticker)
                     if cat:
                         self.ticker_category[ticker] = cat
@@ -897,6 +906,29 @@ class LiveV3:
             ct = datetime.fromisoformat(row[0].replace("Z", "+00:00"))
             now = datetime.now(timezone.utc)
             if timedelta(hours=-6) < (ct - now) < timedelta(hours=120):
+                return ct
+            return None
+        except Exception:
+            return None
+
+    def _kalshi_commence_time(self, event_ticker):
+        """Query kalshi_price_snapshots for commence_time."""
+        import sqlite3 as _sql
+        try:
+            conn = _sql.connect(str(Path(__file__).resolve().parent / "tennis.db"), timeout=5)
+            cur = conn.cursor()
+            cur.execute(
+                "SELECT commence_time FROM kalshi_price_snapshots WHERE event_ticker=? "
+                "AND commence_time IS NOT NULL AND commence_time != '' "
+                "ORDER BY polled_at DESC LIMIT 1",
+                (event_ticker,))
+            row = cur.fetchone()
+            conn.close()
+            if not row or not row[0]:
+                return None
+            ct = datetime.fromisoformat(row[0].replace("Z", "+00:00"))
+            now = datetime.now(timezone.utc)
+            if timedelta(hours=-2) < (ct - now) < timedelta(hours=120):
                 return ct
             return None
         except Exception:

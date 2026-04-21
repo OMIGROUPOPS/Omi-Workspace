@@ -63,7 +63,7 @@ DISCOVERY_INTERVAL = 300
 FILL_CHECK_INTERVAL = 5      # poll fills every 5s
 EXIT_PRICE_CAP = 98           # never post exit above 98c
 ENTRY_BUFFER_SEC = 900        # stop entering 15 min before scheduled start
-ENTRY_MAX_LEAD_SEC = 86400    # don't enter more than 24h before start
+ENTRY_MAX_LEAD_SEC = 14400    # don't enter more than 4h before start
 UNMATCHED_SKIP_CYCLES = 3     # skip unmatched events after this many discovery cycles
 UNMATCHED_SKIP_AGE = 3600     # ...only if open_time is > 1h old
 DEAD_SPREAD_THRESHOLD = 20    # don't post if spread > 20c
@@ -1110,6 +1110,16 @@ class LiveV3:
                             "pnl_dollars": pnl / 100.0,
                             "had_dca": pos.dca_qty > 0,
                         }, ticker=tk)
+                        # Classify: scalp (pregame exit) vs settlement-adjacent
+                        if pos.match_start_ts > 0 and time.time() < pos.match_start_ts:
+                            hrs_before = (pos.match_start_ts - time.time()) / 3600
+                            self._log("scalp_filled", {
+                                "entry_price": pos.entry_price,
+                                "exit_price": pos.exit_price,
+                                "profit_cents": pos.exit_price - pos.entry_price,
+                                "hours_before_commence": round(hrs_before, 2),
+                                "play_type": pos.play_type,
+                            }, ticker=tk)
                         # FIX 3: Cancel ALL resting buys on this ticker (DCA + any extras)
                         cleanup = await api_get(self.session, self.ak, self.pk,
                             "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
@@ -1247,7 +1257,7 @@ class LiveV3:
                 })
                 continue
 
-            # ENTER: start_ts - 86400 < now < start_ts - 900
+            # ENTER: start_ts - 14400 < now < start_ts - 900 (4h to 15min before start)
             tk_list = list(tickers)
             if len(tk_list) < 2:
                 continue

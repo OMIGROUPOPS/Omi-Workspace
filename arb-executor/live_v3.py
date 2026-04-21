@@ -1583,17 +1583,43 @@ class LiveV3:
                     self._untombstone_entry(tk, pos)
                     continue
 
-                # Tape follow: update entry to tape + 1c
+                # Cancel if tape crossed above FV (overshoot — thesis invalid)
+                if current_price >= fv_cents:
+                    await self.cancel_order(tk, pos.entry_order_id, "B_convergence_overshot")
+                    self._log("stale_buy_cancel", {
+                        "reason": "B_convergence_overshot",
+                        "kalshi": current_price, "fv": round(fv_cents, 1),
+                        "original_entry": pos.entry_price,
+                    }, ticker=tk)
+                    self._untombstone_entry(tk, pos)
+                    continue
+
+                # Tape follow: update entry to tape + 1c (only if still below FV)
                 target = int(current_price) + 1
+                if target >= int(fv_cents):
+                    await self.cancel_order(tk, pos.entry_order_id, "B_convergence_would_overshoot")
+                    self._log("stale_buy_cancel", {
+                        "reason": "B_convergence_would_overshoot",
+                        "target": target, "fv": round(fv_cents, 1),
+                    }, ticker=tk)
+                    self._untombstone_entry(tk, pos)
+                    continue
+
                 if target != pos.entry_price:
+                    repost_size = pos.entry_qty if pos.entry_qty > 0 else 19
                     await self.cancel_order(tk, pos.entry_order_id, "B_tape_update")
-                    oid, _ = await self.place_order(tk, "buy", "yes", target, 19)
+                    self.inflight_orders.add(tk)
+                    try:
+                        oid, _ = await self.place_order(tk, "buy", "yes", target, repost_size)
+                    finally:
+                        self.inflight_orders.discard(tk)
                     old = pos.entry_price
                     pos.entry_price = target
                     pos.entry_order_id = oid
                     self._log("reprice_b_tape", {
                         "old_price": old, "new_price": target,
                         "kalshi": current_price, "fv": round(fv_cents, 1),
+                        "size": repost_size,
                     }, ticker=tk)
 
             elif play == "A_patient":

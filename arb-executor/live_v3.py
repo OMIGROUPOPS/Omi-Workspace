@@ -1321,10 +1321,10 @@ class LiveV3:
                 entry_size = None
                 layered_exit_price = 0
 
-                # Confidence-based size multiplier
+                # Size multiplier (all 1.0x — full config-defined sizing)
                 _source_size = {"pinnacle": 1.0, "blended_median": 1.0,
-                                "aggregate": 0.75, "betexplorer": 0.5}
-                size_mult = _source_size.get(fv_source, 0.5)
+                                "aggregate": 1.0, "betexplorer": 1.0}
+                size_mult = _source_size.get(fv_source, 1.0)
 
                 if kalshi_cell == fv_cell:
                     play_type = "A_tight"

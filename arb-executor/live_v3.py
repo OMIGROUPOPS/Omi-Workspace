@@ -2258,11 +2258,11 @@ class LiveV3:
 
                 # Write own heartbeat
                 try:
+                    ws_age = int(now - max((b.updated for b in self.books.values()), default=0)) if self.books else 999
                     with open("/tmp/heartbeat_live_v3.json", "w") as _hf:
-                        ws_age = int(now - max((b.updated for b in self.books.values()), default=0)) if self.books else 999
-                    json.dump({"ts": int(now), "name": "live_v3", "status": "ok",
-                                   "positions": len(self.positions), "resting_orders": len(self.pending_entries),
-                                   "ws_connected": self.ws_connected, "bbo_age_sec": ws_age}, _hf)
+                        json.dump({"ts": int(now), "name": "live_v3", "status": "ok",
+                                       "positions": len(self.positions), "resting_orders": len(self.pending_entries),
+                                       "ws_connected": self.ws_connected, "bbo_age_sec": ws_age}, _hf)
                 except Exception:
                     pass
 

@@ -124,6 +124,10 @@ def main():
             alerts.append("%s is DEAD" % name)
         elif info["status"] == "STALE":
             alerts.append("%s heartbeat stale (%ds old)" % (name, info["age_sec"]))
+        if name == "live_v3" and info["heartbeat"].get("ws_connected") is False:
+            alerts.append("live_v3 WebSocket DISCONNECTED — bot is blind!")
+        if name == "live_v3" and info["heartbeat"].get("bbo_age_sec", 0) > 120:
+            alerts.append("live_v3 BBO data stale (%ds old)" % info["heartbeat"].get("bbo_age_sec", 0))
 
     print()
     print("FV COVERAGE (last 30 min):")

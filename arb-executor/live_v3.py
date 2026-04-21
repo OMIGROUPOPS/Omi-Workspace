@@ -678,11 +678,28 @@ class LiveV3:
         book.updated = time.time()
         self._log_tick(ticker, book)
 
+    async def _ws_reconnect(self):
+        """Reconnect WebSocket with exponential backoff. Never gives up."""
+        delays = [5, 10, 30, 60]
+        attempt = 0
+        while True:
+            delay = delays[min(attempt, len(delays) - 1)]
+            self._log("ws_reconnecting", {"attempt": attempt + 1, "delay_sec": delay})
+            await asyncio.sleep(delay)
+            if await self.ws_connect():
+                if self.subscribed:
+                    old = list(self.subscribed)
+                    self.subscribed.clear()
+                    await self.ws_subscribe(old)
+                self._log("ws_reconnected", {"attempt": attempt + 1})
+                return
+            attempt += 1
+
     async def ws_reader(self):
         while True:
             try:
                 if not self.ws_connected or not self.ws:
-                    await asyncio.sleep(1)
+                    await self._ws_reconnect()
                     continue
                 raw = await asyncio.wait_for(self.ws.recv(), timeout=30)
                 msg = json.loads(raw)
@@ -699,12 +716,7 @@ class LiveV3:
             except Exception as e:
                 self._log("ws_error", {"error": str(e)})
                 self.ws_connected = False
-                await asyncio.sleep(2)
-                await self.ws_connect()
-                if self.ws_connected and self.subscribed:
-                    old = list(self.subscribed)
-                    self.subscribed.clear()
-                    await self.ws_subscribe(old)
+                await self._ws_reconnect()
 
     # ------------------------------------------------------------------
     # Market discovery
@@ -2247,8 +2259,10 @@ class LiveV3:
                 # Write own heartbeat
                 try:
                     with open("/tmp/heartbeat_live_v3.json", "w") as _hf:
-                        json.dump({"ts": int(now), "name": "live_v3", "status": "ok",
-                                   "positions": len(self.positions), "resting_orders": len(self.pending_entries)}, _hf)
+                        ws_age = int(now - max((b.updated for b in self.books.values()), default=0)) if self.books else 999
+                    json.dump({"ts": int(now), "name": "live_v3", "status": "ok",
+                                   "positions": len(self.positions), "resting_orders": len(self.pending_entries),
+                                   "ws_connected": self.ws_connected, "bbo_age_sec": ws_age}, _hf)
                 except Exception:
                     pass
 

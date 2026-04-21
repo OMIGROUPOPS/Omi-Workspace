@@ -1338,7 +1338,6 @@ class LiveV3:
                 # ── Intelligence gate ──
                 intel_rec = None
                 intel_anchor_mode = "fv"
-                intel_size = self.config["sizing"]["entry_contracts"]  # default 10
                 intel_window = ENTRY_MAX_LEAD_SEC  # fallback 4h
 
                 if INTELLIGENCE_AVAILABLE:
@@ -1346,7 +1345,6 @@ class LiveV3:
                         intel_rec = recommended_window_seconds(et, tk)
                         intel_window = intel_rec["window_seconds"]
                         intel_anchor_mode = intel_rec.get("anchor_mode", "fv")
-                        intel_size = intel_rec["recommended_size"]
                     except Exception as e:
                         self._log("intelligence_error", {"error": str(e)[:200]}, ticker=tk)
 
@@ -1443,16 +1441,16 @@ class LiveV3:
                 if kalshi_cell == fv_cell:
                     play_type = "A_tight"
                     entry_price = max(cell_low, int(current_price) - 1)
-                    entry_size = intel_size
+                    entry_size = self.config["sizing"]["entry_contracts"]
                 elif current_price < fv_cents:
                     play_type = "B_convergence"
                     entry_price = int(current_price) + 1
-                    entry_size = intel_size
+                    entry_size = 19
                     layered_exit_price = int(fv_cents) - 2
                 else:
                     play_type = "A_patient"
                     entry_price = cell_high
-                    entry_size = intel_size
+                    entry_size = self.config["sizing"]["entry_contracts"]
 
                 # Dead-spread guard
                 spread = book.best_ask - book.best_bid
@@ -1580,8 +1578,7 @@ class LiveV3:
                 del self.pending_entries[tk]
                 continue
 
-            # Intelligence re-query at resolve time (conditions may have changed)
-            pending_intel_size = self.config["sizing"]["entry_contracts"]
+            # Intelligence re-query at resolve time — gate only, no size override
             if INTELLIGENCE_AVAILABLE:
                 try:
                     p_rec = recommended_window_seconds(et, tk)
@@ -1592,8 +1589,6 @@ class LiveV3:
                             "confidence_score": p_rec.get("confidence_score"),
                         }, ticker=tk)
                         continue
-                    if p_rec["recommended_size"] > 0:
-                        pending_intel_size = p_rec["recommended_size"]
                 except Exception:
                     pass
 
@@ -1606,16 +1601,16 @@ class LiveV3:
             if kalshi_cell == fv_cell:
                 play_type = "A_tight"
                 entry_price = max(cell_low, int(current_price) - 1)
-                entry_size = pending_intel_size
+                entry_size = self.config["sizing"]["entry_contracts"]
             elif current_price < fv_cents:
                 play_type = "B_convergence"
                 entry_price = int(current_price) + 1
-                entry_size = pending_intel_size
+                entry_size = 19
                 layered_exit_price = int(fv_cents) - 2
             else:
                 play_type = "A_patient"
                 entry_price = cell_high
-                entry_size = pending_intel_size
+                entry_size = self.config["sizing"]["entry_contracts"]
 
             del self.pending_entries[tk]
 

@@ -1,0 +1,81 @@
+category,price_bucket,status,exit_cents,dca_settings,N_pregame_close_total,N_pregame_close_since_mar17,N_pregame_close_apr_only,N_days
+ATP_MAIN,0-4,missing,,,0,0,0,0
+ATP_MAIN,5-9,missing,,,0,0,0,0
+ATP_MAIN,10-14,missing,,,3,3,1,0
+ATP_MAIN,15-19,missing,,,10,10,6,0
+ATP_MAIN,20-24,active,25,noDCA,25,25,14,0
+ATP_MAIN,25-29,active,23,noDCA,12,12,7,0
+ATP_MAIN,30-34,active,15,noDCA,38,38,27,1
+ATP_MAIN,35-39,active,12,DCA-A trigger=26c,33,33,23,2
+ATP_MAIN,40-44,active,7,noDCA,50,50,37,3
+ATP_MAIN,45-49,missing,,,40,40,37,4
+ATP_MAIN,50-54,missing,,,29,29,28,3
+ATP_MAIN,55-59,disabled,,,15,15,10,1
+ATP_MAIN,60-64,active,13,noDCA,58,58,36,1
+ATP_MAIN,65-69,active,5,noDCA,31,31,23,2
+ATP_MAIN,70-74,active,10,noDCA,31,31,18,1
+ATP_MAIN,75-79,active,17,DCA-A trigger=25c,21,21,16,1
+ATP_MAIN,80-84,missing,,,9,9,5,0
+ATP_MAIN,85-89,missing,,,1,1,1,0
+ATP_MAIN,90-94,missing,,,0,0,0,0
+ATP_MAIN,95-99,missing,,,0,0,0,0
+ATP_CHALL,0-4,missing,,,1,1,1,1
+ATP_CHALL,5-9,missing,,,3,3,3,0
+ATP_CHALL,10-14,missing,,,20,20,13,3
+ATP_CHALL,15-19,active,31,noDCA,40,40,25,3
+ATP_CHALL,20-24,active,25,noDCA,75,75,44,2
+ATP_CHALL,25-29,active,21,noDCA,57,57,29,2
+ATP_CHALL,30-34,active,16,noDCA,79,79,44,3
+ATP_CHALL,35-39,active,12,noDCA,64,64,35,3
+ATP_CHALL,40-44,active,10,DCA-A trigger=7c,92,92,55,3
+ATP_CHALL,45-49,active,6,noDCA,105,105,88,5
+ATP_CHALL,50-54,missing,,,90,90,83,5
+ATP_CHALL,55-59,active,6,noDCA,41,41,25,3
+ATP_CHALL,60-64,active,10,DCA-A trigger=32c,101,101,51,4
+ATP_CHALL,65-69,active,10,DCA-A trigger=16c,39,39,28,3
+ATP_CHALL,70-74,active,11,noDCA,87,87,49,4
+ATP_CHALL,75-79,active,19,DCA-A trigger=25c,58,58,32,3
+ATP_CHALL,80-84,active,15,noDCA,63,63,41,1
+ATP_CHALL,85-89,active,11,noDCA,18,18,10,2
+ATP_CHALL,90-94,missing,,,2,2,1,0
+ATP_CHALL,95-99,missing,,,1,1,1,1
+WTA_MAIN,0-4,missing,,,0,0,0,0
+WTA_MAIN,5-9,missing,,,2,2,2,1
+WTA_MAIN,10-14,missing,,,7,7,6,1
+WTA_MAIN,15-19,active,31,noDCA,12,12,7,0
+WTA_MAIN,20-24,active,25,noDCA,16,16,10,0
+WTA_MAIN,25-29,active,21,noDCA,26,26,18,1
+WTA_MAIN,30-34,active,16,noDCA,23,23,14,2
+WTA_MAIN,35-39,active,12,noDCA,23,23,10,3
+WTA_MAIN,40-44,active,5,noDCA,39,39,24,3
+WTA_MAIN,45-49,active,14,noDCA,57,57,53,4
+WTA_MAIN,50-54,active,26,DCA-A trigger=16c,54,54,50,4
+WTA_MAIN,55-59,disabled,,,12,12,5,1
+WTA_MAIN,60-64,active,8,noDCA,21,21,11,0
+WTA_MAIN,65-69,disabled,,,27,27,13,2
+WTA_MAIN,70-74,active,15,noDCA,29,29,19,0
+WTA_MAIN,75-79,missing,,,10,10,7,1
+WTA_MAIN,80-84,active,15,noDCA,18,18,10,0
+WTA_MAIN,85-89,disabled,,,17,17,11,1
+WTA_MAIN,90-94,missing,,,2,2,2,0
+WTA_MAIN,95-99,missing,,,0,0,0,0
+WTA_CHALL,0-4,missing,,,0,0,0,0
+WTA_CHALL,5-9,missing,,,0,0,0,0
+WTA_CHALL,10-14,missing,,,0,0,0,0
+WTA_CHALL,15-19,missing,,,0,0,0,0
+WTA_CHALL,20-24,missing,,,0,0,0,0
+WTA_CHALL,25-29,missing,,,0,0,0,0
+WTA_CHALL,30-34,missing,,,1,1,0,0
+WTA_CHALL,35-39,missing,,,6,6,3,1
+WTA_CHALL,40-44,missing,,,23,23,19,2
+WTA_CHALL,45-49,missing,,,14,14,14,4
+WTA_CHALL,50-54,missing,,,25,25,24,3
+WTA_CHALL,55-59,missing,,,0,0,0,0
+WTA_CHALL,60-64,missing,,,6,6,5,1
+WTA_CHALL,65-69,missing,,,3,3,2,1
+WTA_CHALL,70-74,missing,,,1,1,1,1
+WTA_CHALL,75-79,missing,,,0,0,0,0
+WTA_CHALL,80-84,missing,,,0,0,0,0
+WTA_CHALL,85-89,missing,,,1,1,0,0
+WTA_CHALL,90-94,missing,,,4,4,4,1
+WTA_CHALL,95-99,missing,,,0,0,0,0

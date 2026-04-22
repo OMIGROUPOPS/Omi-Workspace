@@ -1,0 +1,17 @@
+ticker,player_yes,player_no,kalshi_yes_price,kalshi_no_price,fv_yes,fv_no,fv_source_count,intel_tier,intel_score,cell_yes,cell_no,cell_yes_active,cell_no_active,minutes_to_commence
+KXATPCHALLENGERMATCH-26APR22KENNIS-NIS,Kei Nishikori,Jack Kennedy,56,43,31.6,68.4,1,MEDIUM,76,ATP_CHALL_underdog_30-34,ATP_CHALL_leader_65-69,True,True,60
+KXATPCHALLENGERMATCH-26APR22KENNIS-KEN,Jack Kennedy,Kei Nishikori,43,56,68.4,31.6,1,MEDIUM,76,ATP_CHALL_leader_65-69,ATP_CHALL_underdog_30-34,True,True,60
+KXATPCHALLENGERMATCH-26APR22MUKERE-MUK,Sasikumar Mukund,Yanki Erel,50,48,,,0,MEDIUM,54,,,False,False,80
+KXATPCHALLENGERMATCH-26APR22MUKERE-ERE,Yanki Erel,Sasikumar Mukund,48,50,,,0,LOW,47,,,False,False,80
+KXATPCHALLENGERMATCH-26APR22BICPOU-BIC,Blaise Bicknell,Oskar Brostrom Poulsen,99,0,,,0,LOW,47,,,False,False,80
+KXATPCHALLENGERMATCH-26APR22BICPOU-POU,Oskar Brostrom Poulsen,Blaise Bicknell,0,99,,,0,LOW,47,,,False,False,80
+KXATPCHALLENGERMATCH-26APR22WOLTAB-TAB,Clement Tabur,Jeffrey John Wolf,53,45,,,0,MEDIUM,56,,,False,False,130
+KXATPCHALLENGERMATCH-26APR22WOLTAB-WOL,Jeffrey John Wolf,Clement Tabur,45,53,,,0,MEDIUM,63,,,False,False,130
+KXATPCHALLENGERMATCH-26APR22KUHKAS-KAS,Maks Kasnikowski,Matt Kuhar,87,11,15.0,85.0,1,MEDIUM,76,ATP_CHALL_underdog_15-19,ATP_CHALL_leader_85-89,True,True,150
+KXATPCHALLENGERMATCH-26APR22KUHKAS-KUH,Matt Kuhar,Maks Kasnikowski,11,87,85.0,15.0,1,HIGH,84,ATP_CHALL_leader_85-89,ATP_CHALL_underdog_15-19,True,True,150
+KXATPCHALLENGERMATCH-26APR22LALHEM-HEM,Calvin Hemery,Younes Lalami Laaroussi,80,18,22.6,77.4,1,MEDIUM,76,ATP_CHALL_underdog_20-24,ATP_CHALL_leader_75-79,True,True,150
+KXATPCHALLENGERMATCH-26APR22LALHEM-LAL,Younes Lalami Laaroussi,Calvin Hemery,18,80,77.4,22.6,1,HIGH,84,ATP_CHALL_leader_75-79,ATP_CHALL_underdog_20-24,True,True,150
+KXATPCHALLENGERMATCH-26APR22DRAFEL-DRA,Liam Draxl,Kilian Feldbausch,56,42,53.6,46.4,1,HIGH,90,ATP_CHALL_leader_50-54,ATP_CHALL_underdog_45-49,False,True,200
+KXATPCHALLENGERMATCH-26APR22DRAFEL-FEL,Kilian Feldbausch,Liam Draxl,42,56,46.4,53.6,1,MEDIUM,76,ATP_CHALL_underdog_45-49,ATP_CHALL_leader_50-54,True,False,200
+KXATPCHALLENGERMATCH-26APR22STECOU-COU,Eliakim Coulibaly,Hamish Stewart,62,33,,,0,MEDIUM,54,,,False,False,220
+KXATPCHALLENGERMATCH-26APR22STECOU-STE,Hamish Stewart,Eliakim Coulibaly,33,62,,,0,MEDIUM,60,,,False,False,220

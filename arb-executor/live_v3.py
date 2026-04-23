@@ -68,7 +68,7 @@ DISCOVERY_INTERVAL = 300
 # ENTRY_CANCEL_TIMEOUT removed in V4.2 -- replaced by match-start-aware expiry
 FILL_CHECK_INTERVAL = 5      # poll fills every 5s
 EXIT_PRICE_CAP = 98           # never post exit above 98c
-ENTRY_BUFFER_SEC = 0          # entries allowed until match_already_started fires
+ENTRY_BUFFER_SEC = 900        # stop entering 15 min before scheduled start
 ENTRY_MAX_LEAD_SEC = 14400    # don't enter more than 4h before start
 UNMATCHED_SKIP_CYCLES = 3     # skip unmatched events after this many discovery cycles
 UNMATCHED_SKIP_AGE = 3600     # ...only if open_time is > 1h old
@@ -250,13 +250,15 @@ class Position:
     dca_qty: int = 0
     dca_filled: bool = False
 
-    # Play type (Piece 2A)
+    # Play type
     play_type: str = "A_tight"
     layered_exit_price: int = 0
     cell_exit_order_id: str = ""
     cell_exit_price: int = 0
     legacy: bool = False
     anchor_source: str = "fv_consensus"
+    routed_cell: str = ""
+    last_cancel_repost_ts: float = 0.0
 
     # State
     phase: str = "entry_pending"
@@ -1244,10 +1246,40 @@ class LiveV3:
             return mid, 'mid'
         return None, 'none'
 
+    def _resolve_anchor(self, tk, et):
+        """Resolve anchor price via priority chain: FV aggregate > Kalshi mid > Kalshi last-traded."""
+        book = self.books.get(tk)
+
+        # Priority A: FV aggregate (>=2 sources, age < 600s)
+        side_fv = self._get_side_fv(tk, et)
+        if side_fv and side_fv.get("fv_cents") and side_fv.get("num_books", 0) >= 2:
+            age = side_fv.get("age_sec", 9999)
+            if age < 600:
+                return side_fv["fv_cents"], "fv_aggregate", side_fv
+
+        # Priority B: Kalshi mid (spread <= 1c, valid bids)
+        if book and book.best_bid > 0 and book.best_ask < 100:
+            spread = book.best_ask - book.best_bid
+            if spread <= 1:
+                mid = (book.best_bid + book.best_ask) / 2.0
+                return mid, "kalshi_mid", None
+
+        # Priority C: Kalshi last-traded (age < 900s, spread <= 2c)
+        if book and book.last_trade_price > 0 and book.last_trade_ts > 0:
+            trade_age = time.time() - book.last_trade_ts
+            if trade_age < 900 and book.best_bid > 0 and book.best_ask < 100:
+                spread = book.best_ask - book.best_bid
+                if spread <= 2:
+                    return book.last_trade_price, "kalshi_last_traded", None
+
+        # Priority D: FV with single source (relaxed — any FV)
+        if side_fv and side_fv.get("fv_cents") and side_fv.get("age_sec", 9999) < 1800:
+            return side_fv["fv_cents"], "fv_single", side_fv
+
+        return None, "no_anchor", None
+
     async def routing_tick(self):
-        """Enter any time from discovery up to 15 min before scheduled start.
-        Once inside the 15-min buffer or past start: permanent skip.
-        One attempt per event, never retry."""
+        """Entry routing with FV-first anchor, A/B/C scenarios, cadence gating."""
         now = time.time()
 
         for et, tickers in self.event_tickers.items():
@@ -1256,60 +1288,59 @@ class LiveV3:
 
             start_ts = self.event_start_time.get(et)
 
-            # No schedule match yet — check unmatched skip logic
+            # No schedule match yet
             if start_ts is None:
                 cycles = self.event_unmatched_cycles.get(et, 0)
                 open_ts = self.event_open_time.get(et, now)
                 open_age = now - open_ts
                 if cycles >= UNMATCHED_SKIP_CYCLES and open_age > UNMATCHED_SKIP_AGE:
-                    self._log("skipped", {
-                        "reason": "schedule_gap",
-                        "event": et,
-                        "unmatched_cycles": cycles,
-                        "open_age_sec": round(open_age),
-                    })
+                    self._log("skipped", {"reason": "schedule_gap", "event": et,
+                        "unmatched_cycles": cycles, "open_age_sec": round(open_age)})
                 continue
 
             time_to_start = start_ts - now
 
-            # More than 24h away — wait, revisit later (outer bound before intelligence runs)
             if time_to_start > 86400:
                 continue
 
-            # Past commence — match already started per our data
             if time_to_start <= 0:
                 self.processed_events.add(et)
                 self._save_processed()
-                self._log("skipped", {
-                    "reason": "match_already_started",
-                    "event": et,
+                self._log("skipped", {"reason": "match_already_started", "event": et,
                     "time_to_start_sec": round(time_to_start),
-                    "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET"),
-                })
+                    "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET")})
                 continue
 
-            # Inside 15-min buffer — too close to start
             if time_to_start <= ENTRY_BUFFER_SEC:
                 self.processed_events.add(et)
                 self._save_processed()
-                self._log("skipped", {
-                    "reason": "inside_buffer",
-                    "event": et,
+                self._log("skipped", {"reason": "inside_buffer", "event": et,
                     "time_to_start_sec": round(time_to_start),
-                    "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET"),
-                })
+                    "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET")})
                 continue
 
-            # ENTER: start_ts - 14400 < now < start_ts - 900 (4h to 15min before start)
+            # Intelligence window gate
+            intel_window = ENTRY_MAX_LEAD_SEC
+            if INTELLIGENCE_AVAILABLE:
+                try:
+                    # Use first ticker for event-level window check
+                    tk0 = list(tickers)[0] if tickers else ""
+                    if tk0:
+                        intel_rec = recommended_window_seconds(et, tk0)
+                        intel_window = intel_rec["window_seconds"]
+                        if intel_window == 0:
+                            continue
+                except Exception:
+                    pass
+            if time_to_start > intel_window:
+                continue
+
             tk_list = list(tickers)
             if len(tk_list) < 2:
                 continue
-            all_have_bbo = all(
-                tk in self.books and self.books[tk].updated > now - 120
-                for tk in tk_list
-            )
+            all_have_bbo = all(tk in self.books and self.books[tk].updated > now - 120 for tk in tk_list)
             if not all_have_bbo:
-                continue  # wait for BBO, will retry next tick (still within window)
+                continue
 
             self.n_matches_seen += 1
 
@@ -1324,162 +1355,76 @@ class LiveV3:
                     continue
                 if tk in self.inflight_orders:
                     continue
-                # Claim pending entry to prevent race with check_pending_entries
-                if tk in self.pending_entries:
-                    del self.pending_entries[tk]
 
                 book = self.books.get(tk)
                 if not book or book.updated < now - 120:
                     continue
-                current_price, price_source = self.get_market_price(tk)
-                if current_price is None:
+
+                # Universal anti-degenerate guard
+                if book.best_bid <= 0 or book.best_ask >= 100 or book.best_bid >= book.best_ask:
+                    self._log("skipped", {"reason": "degenerate_book_skip", "event": et,
+                        "bid": book.best_bid, "ask": book.best_ask}, ticker=tk)
                     continue
 
-                # ── Intelligence gate ──
-                intel_rec = None
-                intel_anchor_mode = "fv"
-                intel_window = ENTRY_MAX_LEAD_SEC  # fallback 4h
-
-                if INTELLIGENCE_AVAILABLE:
-                    try:
-                        intel_rec = recommended_window_seconds(et, tk)
-                        intel_window = intel_rec["window_seconds"]
-                        intel_anchor_mode = intel_rec.get("anchor_mode", "fv")
-                    except Exception as e:
-                        self._log("intelligence_error", {"error": str(e)[:200]}, ticker=tk)
-
-                if intel_window == 0:
+                # Resolve anchor
+                anchor_value, anchor_source, side_fv = self._resolve_anchor(tk, et)
+                if anchor_value is None:
                     self.n_skips += 1
-                    self._log("skipped", {
-                        "reason": "intelligence_skip",
-                        "event": et,
-                        "rationale": intel_rec["rationale"] if intel_rec else "module_error",
-                        "confidence_score": intel_rec.get("confidence_score") if intel_rec else None,
-                    }, ticker=tk)
+                    self._log("skipped", {"reason": "no_anchor_available", "event": et}, ticker=tk)
                     continue
 
-                if time_to_start > intel_window:
-                    continue  # outside tier window — revisit next tick
-
-                # ── Anchor resolution: FV-anchored vs Kalshi-anchored ──
-                anchor_source = "fv_consensus"
-                fv_cents = None
-                fv_source = None
-                fv_tier = None
-                stability = {"range_pct": 0, "samples": 0}
-
-                if intel_anchor_mode == "kalshi" and intel_rec and intel_rec.get("anchor_source") == "kalshi_price":
-                    # Kalshi-anchored path: use Kalshi price median as anchor
-                    try:
-                        kpa = kalshi_price_anchor(et, tk, hours=1)
-                    except Exception:
-                        kpa = {}
-                    if kpa.get("median_price_cents") and kpa["median_price_cents"] > 0:
-                        fv_cents = kpa["median_price_cents"]
-                        fv_source = "kalshi_anchor"
-                        fv_tier = 9  # synthetic tier for Kalshi-anchored
-                        anchor_source = "kalshi_price"
-                    else:
-                        self.n_skips += 1
-                        self._log("skipped", {
-                            "reason": "kalshi_anchor_no_data", "event": et,
-                        }, ticker=tk)
-                        continue
-                else:
-                    # FV-anchored path: existing logic
-                    side_fv = self._get_side_fv(tk, et)
-                    if side_fv is None or side_fv.get("fv_cents") is None:
-                        self.n_skips += 1
-                        fv_reason = side_fv.get("reason", "no_data") if side_fv else "no_data"
-                        skip_info = {"reason": "fv_stale" if fv_reason == "stale" else "no_fv_available", "event": et}
-                        if fv_reason == "stale":
-                            skip_info["stale_source"] = side_fv.get("source")
-                            skip_info["age_sec"] = side_fv.get("age_sec")
-                        self._log("skipped", skip_info, ticker=tk)
-                        continue
-
-                    fv_cents = side_fv["fv_cents"]
-                    fv_source = side_fv["source"]
-                    fv_tier = side_fv["tier"]
-
-                    # FV stability check — only skip on extreme volatility (>20% range)
-                    stability = check_fv_stability(et, side_fv.get("_side", "p1"))
-                    if stability["range_pct"] > 20:
-                        self.n_skips += 1
-                        self._log("skipped", {
-                            "reason": "fv_unstable",
-                            "event": et, "fv_now": stability["fv_now"],
-                            "fv_oldest": stability["fv_oldest"],
-                            "range_c": stability["range_c"],
-                            "range_pct": stability["range_pct"],
-                            "samples": stability["samples"],
-                        }, ticker=tk)
-                        continue
-
-                kalshi_cell, _ = self.cell_lookup(cat, direction, current_price)
-                fv_cell, fv_cell_cfg = self.cell_lookup(cat, direction, fv_cents)
-                gap_cents = current_price - fv_cents
-                cell_low = int(fv_cents / 5) * 5
-                cell_high = cell_low + 4
-
-                # FV cell must have active config
-                if fv_cell_cfg is None or fv_cell in self.config.get("disabled_cells", []):
+                # Cell assignment from anchor
+                anchor_cell, anchor_cell_cfg = self.cell_lookup(cat, direction, anchor_value)
+                if anchor_cell_cfg is None or anchor_cell in self.config.get("disabled_cells", []):
                     self.n_skips += 1
-                    self._log("skipped", {
-                        "reason": "fv_cell_not_active",
-                        "fv_cell": fv_cell, "fv_cents": round(fv_cents, 1), "event": et,
-                        "anchor_source": anchor_source,
-                    }, ticker=tk)
+                    self._log("skipped", {"reason": "fv_cell_not_active",
+                        "fv_cell": anchor_cell, "fv_cents": round(anchor_value, 1),
+                        "event": et, "anchor_source": anchor_source}, ticker=tk)
                     continue
 
-                # Determine play — exhaustive, no fall-through
-                play_type = None
-                entry_price = None
-                entry_size = None
-                layered_exit_price = 0
-
-                if kalshi_cell == fv_cell:
-                    play_type = "A_tight"
-                    entry_price = max(cell_low, int(current_price) - 1)
-                    entry_size = self.config["sizing"]["entry_contracts"]
-                elif current_price < fv_cents:
-                    play_type = "B_convergence"
-                    entry_price = int(current_price) + 1
-                    entry_size = 19
-                    layered_exit_price = int(fv_cents) - 2
-                else:
-                    play_type = "A_patient"
-                    entry_price = cell_high
-                    entry_size = self.config["sizing"]["entry_contracts"]
-
-                # Dead-spread guard
+                # Scenario classification
+                kalshi_mid = (book.best_bid + book.best_ask) / 2.0
+                delta = kalshi_mid - anchor_value
                 spread = book.best_ask - book.best_bid
-                if spread > DEAD_SPREAD_THRESHOLD:
-                    if tk not in self.pending_entries:
-                        self.pending_entries[tk] = {
-                            "event": et, "direction": direction, "cat": cat,
-                            "cell_name": fv_cell, "cell_cfg": fv_cell_cfg,
-                            "discovered_ts": now,
-                            "play_type": play_type,
-                            "entry_size": entry_size,
-                            "layered_exit_price": layered_exit_price,
-                            "anchor_source": anchor_source,
-                        }
-                        self._log("entry_deferred", {
-                            "reason": "dead_spread", "spread": spread,
-                            "bid": book.best_bid, "ask": book.best_ask,
-                            "cell": fv_cell, "play": play_type,
-                        }, ticker=tk)
+                entry_size = self.config["sizing"]["entry_contracts"]
+
+                if not self.config.get("b_convergence_enabled", True) and delta <= -8:
+                    # B strategy disabled — treat as Scenario C
+                    delta = 0  # force Scenario C path
+
+                if delta <= -8:
+                    # Scenario B: large discount, potential take
+                    scenario = "B_take"
+                    if spread <= 2 and book.best_bid > 0 and book.best_ask < 100 and anchor_source.startswith("fv"):
+                        entry_price = book.best_ask
+                        post_only = False
+                    else:
+                        # Guardrails failed — fall through to Scenario C
+                        scenario = "C_discount"
+                        entry_price = book.best_bid
+                        post_only = True
+                elif delta > 0:
+                    # Scenario A: kalshi above anchor
+                    scenario = "A_premium"
+                    if time_to_start > 3600:
+                        continue  # wait — too early for premium entries
+                    entry_price = book.best_bid
+                    post_only = True
+                else:
+                    # Scenario C: kalshi at or slightly below anchor (0 to -7c)
+                    scenario = "C_discount"
+                    entry_price = book.best_bid
+                    post_only = True
+
+                if entry_price <= 0 or entry_price >= 100:
                     continue
 
                 # Pre-post guard: check for existing resting orders or position
                 existing = await api_get(self.session, self.ak, self.pk,
                     "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
                 if existing and existing.get("orders"):
-                    self._log("skipped", {
-                        "reason": "resting_order_exists",
-                        "ticker": tk, "existing_count": len(existing["orders"]),
-                    }, ticker=tk)
+                    self._log("skipped", {"reason": "resting_order_exists",
+                        "ticker": tk, "existing_count": len(existing["orders"])}, ticker=tk)
                     continue
                 existing_pos = await api_get(self.session, self.ak, self.pk,
                     "/trade-api/v2/portfolio/positions?ticker=%s&count_filter=position&settlement_status=unsettled" % tk, self.rl)
@@ -1490,40 +1435,33 @@ class LiveV3:
                         continue
 
                 self._log("cell_match", {
-                    "event": et, "direction": direction, "cell": fv_cell,
-                    "play_type": play_type,
-                    "fv_cents": round(fv_cents, 1), "fv_source": fv_source, "fv_tier": fv_tier,
-                    "anchor_source": anchor_source,
-                    "kalshi_price": current_price,
-                    "gap_cents": round(gap_cents, 1),
+                    "event": et, "direction": direction, "cell": anchor_cell,
+                    "scenario": scenario, "anchor_value": round(anchor_value, 1),
+                    "anchor_source": anchor_source, "kalshi_mid": round(kalshi_mid, 1),
+                    "delta": round(delta, 1), "spread": spread,
                     "entry_price": entry_price, "entry_size": entry_size,
-                    "layered_exit_price": layered_exit_price,
-                    "strategy": fv_cell_cfg["strategy"],
-                    "exit_cents": fv_cell_cfg["exit_cents"],
+                    "post_only": post_only,
+                    "strategy": anchor_cell_cfg["strategy"],
+                    "exit_cents": anchor_cell_cfg["exit_cents"],
                     "min_before_start": round(time_to_start / 60),
-                    "fv_stability_range_pct": stability["range_pct"],
-                    "intel_score": intel_rec.get("confidence_score") if intel_rec else None,
-                    "intel_grade": intel_rec.get("confidence_grade") if intel_rec else None,
-                    "intel_window_sec": intel_window,
-                    "intel_anchor": intel_anchor_mode,
                 }, ticker=tk)
 
                 self.inflight_orders.add(tk)
                 try:
-                    oid, resp = await self.place_order(tk, "buy", "yes", entry_price, entry_size)
+                    oid, resp = await self.place_order(tk, "buy", "yes", entry_price, entry_size, post_only=post_only)
                 finally:
                     self.inflight_orders.discard(tk)
 
                 pos = Position(
                     ticker=tk, event_ticker=et,
                     category=self.ticker_category.get(tk, "?"),
-                    direction=direction, cell_name=fv_cell, cell_cfg=fv_cell_cfg,
+                    direction=direction, cell_name=anchor_cell, cell_cfg=anchor_cell_cfg,
                     entry_price=entry_price, entry_order_id=oid,
                     entry_posted_ts=now, phase="entry_resting",
                     match_start_ts=start_ts,
-                    play_type=play_type,
-                    layered_exit_price=layered_exit_price,
+                    play_type=scenario,
                     anchor_source=anchor_source,
+                    routed_cell=anchor_cell,
                 )
                 self.positions[tk] = pos
 
@@ -1642,6 +1580,7 @@ class LiveV3:
     # Validate resting buys: cancel stale orders
     # ------------------------------------------------------------------
     async def validate_resting_buys(self):
+        """Cadence-gated cancel/repost for resting entry orders + deadline force-take."""
         now = time.time()
         for tk, pos in list(self.positions.items()):
             if pos.phase != "entry_resting" or not pos.entry_order_id:
@@ -1651,137 +1590,74 @@ class LiveV3:
             if not book or book.updated < now - 120:
                 continue
 
-            current_price, price_source = self.get_market_price(tk)
-            if current_price is None:
-                continue
-
-            # Legacy positions skip new-rule validation
+            # Legacy positions skip validation
             if pos.legacy:
                 continue
 
-            # FV-aware validation per play type
-            # Kalshi-anchored entries have no external FV — skip FV validation
-            if pos.anchor_source == "kalshi_price":
-                continue
+            time_to_start = pos.match_start_ts - now if pos.match_start_ts > 0 else 99999
+            spread = book.best_ask - book.best_bid
 
-            side_fv = self._get_side_fv(tk, pos.event_ticker)
-            if side_fv is None or side_fv.get("fv_cents") is None:
-                await self.cancel_order(tk, pos.entry_order_id, "fv_disappeared")
-                self._log("stale_buy_cancel", {"reason": "fv_disappeared"}, ticker=tk)
+            # Immediate cancel conditions (no cadence gate)
+            if spread > 2 or book.best_bid <= 0 or book.best_ask >= 100:
+                await self.cancel_order(tk, pos.entry_order_id, "degenerate_cancel")
+                self._log("stale_buy_cancel", {"reason": "degenerate_or_wide_spread",
+                    "spread": spread, "bid": book.best_bid, "ask": book.best_ask}, ticker=tk)
                 self._untombstone_entry(tk, pos)
                 continue
 
-            fv_cents = side_fv["fv_cents"]
-            cat = self.get_category(tk)
-            if not cat:
+            # Check anchor freshness — cancel if expired
+            anchor_value, anchor_source, _ = self._resolve_anchor(tk, pos.event_ticker)
+            if anchor_value is None:
+                await self.cancel_order(tk, pos.entry_order_id, "anchor_expired")
+                self._log("stale_buy_cancel", {"reason": "anchor_expired"}, ticker=tk)
+                self._untombstone_entry(tk, pos)
                 continue
 
-            direction = "leader" if current_price > 50 else "underdog"
-            kalshi_cell, _ = self.cell_lookup(cat, direction, current_price)
-            fv_cell, _ = self.cell_lookup(cat, direction, fv_cents)
-            gap = current_price - fv_cents
-            cell_low = int(fv_cents / 5) * 5
-
-            play = pos.play_type
-
-            if play == "A_tight":
-                # Cancel if Kalshi drifted out of FV cell
-                if kalshi_cell != fv_cell:
-                    await self.cancel_order(tk, pos.entry_order_id, "A_tight_cell_drift")
-                    self._log("stale_buy_cancel", {
-                        "reason": "A_tight_cell_drift",
-                        "kalshi_cell": kalshi_cell, "fv_cell": fv_cell, "gap": round(gap, 1),
-                    }, ticker=tk)
-                    self._untombstone_entry(tk, pos)
-                    continue
-
-                # Asymmetric tape follow: reprice down if tape dropped
-                target = max(cell_low, int(current_price) - 1)
-                if target < pos.entry_price:
-                    await self.cancel_order(tk, pos.entry_order_id, "tape_follow_down")
-                    oid, _ = await self.place_order(tk, "buy", "yes", target, 10)
-                    old = pos.entry_price
-                    pos.entry_price = target
-                    pos.entry_order_id = oid
-                    self._log("reprice_down", {
-                        "old_price": old, "new_price": target,
-                        "kalshi": current_price, "fv": round(fv_cents, 1), "play": "A_tight",
-                    }, ticker=tk)
-
-            elif play == "B_convergence":
-                # Cancel if Kalshi converged into FV cell (opportunity gone)
-                if kalshi_cell == fv_cell:
-                    await self.cancel_order(tk, pos.entry_order_id, "B_convergence_gap_closed")
-                    self._log("stale_buy_cancel", {
-                        "reason": "B_convergence_gap_closed",
-                        "kalshi_cell": kalshi_cell, "fv_cell": fv_cell, "gap": round(gap, 1),
-                    }, ticker=tk)
-                    self._untombstone_entry(tk, pos)
-                    continue
-
-                # Cancel if tape crossed above FV (overshoot — thesis invalid)
-                if current_price >= fv_cents:
-                    await self.cancel_order(tk, pos.entry_order_id, "B_convergence_overshot")
-                    self._log("stale_buy_cancel", {
-                        "reason": "B_convergence_overshot",
-                        "kalshi": current_price, "fv": round(fv_cents, 1),
-                        "original_entry": pos.entry_price,
-                    }, ticker=tk)
-                    self._untombstone_entry(tk, pos)
-                    continue
-
-                # Tape follow: update entry to tape + 1c (only if still below FV)
-                target = int(current_price) + 1
-                if target >= int(fv_cents):
-                    await self.cancel_order(tk, pos.entry_order_id, "B_convergence_would_overshoot")
-                    self._log("stale_buy_cancel", {
-                        "reason": "B_convergence_would_overshoot",
-                        "target": target, "fv": round(fv_cents, 1),
-                    }, ticker=tk)
-                    self._untombstone_entry(tk, pos)
-                    continue
-
-                if target != pos.entry_price:
-                    repost_size = pos.entry_qty if pos.entry_qty > 0 else 19
-                    await self.cancel_order(tk, pos.entry_order_id, "B_tape_update")
+            # Deadline force-take at T-16 min
+            if 955 <= time_to_start <= 965:
+                kalshi_mid = (book.best_bid + book.best_ask) / 2.0
+                if kalshi_mid < anchor_value and spread <= 2 and book.best_bid > 0 and book.best_ask < 100:
+                    await self.cancel_order(tk, pos.entry_order_id, "deadline_force_take")
                     self.inflight_orders.add(tk)
                     try:
-                        oid, _ = await self.place_order(tk, "buy", "yes", target, repost_size)
+                        oid, _ = await self.place_order(tk, "buy", "yes", book.best_ask,
+                            self.config["sizing"]["entry_contracts"], post_only=False)
                     finally:
                         self.inflight_orders.discard(tk)
-                    old = pos.entry_price
-                    pos.entry_price = target
+                    pos.entry_price = book.best_ask
                     pos.entry_order_id = oid
-                    self._log("reprice_b_tape", {
-                        "old_price": old, "new_price": target,
-                        "kalshi": current_price, "fv": round(fv_cents, 1),
-                        "size": repost_size,
+                    pos.play_type = "deadline_force_take"
+                    self._log("deadline_force_take", {
+                        "old_price": pos.entry_price, "take_price": book.best_ask,
+                        "anchor": round(anchor_value, 1), "kalshi_mid": round(kalshi_mid, 1),
+                        "time_to_start": round(time_to_start),
                     }, ticker=tk)
-
-            elif play == "A_patient":
-                # Kalshi drifted INTO FV cell — leave rest, may fill
-                if kalshi_cell == fv_cell:
-                    continue
-                # Kalshi dropped below FV — no longer premium, cancel
-                if current_price < fv_cents:
-                    await self.cancel_order(tk, pos.entry_order_id, "A_patient_conditions_changed")
-                    self._log("stale_buy_cancel", {
-                        "reason": "A_patient_now_discount",
-                        "kalshi": current_price, "fv": round(fv_cents, 1), "gap": round(gap, 1),
-                    }, ticker=tk)
-                    self._untombstone_entry(tk, pos)
                     continue
 
-            else:
-                # Legacy positions: fall back to original stale check
-                delta = pos.entry_price - current_price
-                if delta > STALE_BUY_DELTA:
-                    await self.cancel_order(tk, pos.entry_order_id, "stale_above_fv")
-                    self._log("stale_buy_cancel", {
-                        "reason": "above_fair_value_legacy", "our_price": pos.entry_price,
-                        "current_mid": current_price, "delta": round(delta),
-                    }, ticker=tk)
-                    self._untombstone_entry(tk, pos)
+            # Cadence-gated cancel/repost
+            cadence = 600 if time_to_start > 7200 else 60
+            if now - pos.last_cancel_repost_ts < cadence:
+                continue
+
+            # Reprice to current best_bid if different
+            target = book.best_bid
+            if target != pos.entry_price and target > 0 and target < 100:
+                await self.cancel_order(tk, pos.entry_order_id, "cadence_repost")
+                self.inflight_orders.add(tk)
+                try:
+                    oid, _ = await self.place_order(tk, "buy", "yes", target,
+                        self.config["sizing"]["entry_contracts"])
+                finally:
+                    self.inflight_orders.discard(tk)
+                old = pos.entry_price
+                pos.entry_price = target
+                pos.entry_order_id = oid
+                pos.last_cancel_repost_ts = now
+                self._log("cadence_repost", {
+                    "old_price": old, "new_price": target,
+                    "anchor": round(anchor_value, 1), "cadence_sec": cadence,
+                    "time_to_start_min": round(time_to_start / 60),
+                }, ticker=tk)
 
     # ------------------------------------------------------------------
     # Summary
@@ -2267,8 +2143,8 @@ class LiveV3:
                         await self.ws_subscribe(new_tickers)
                     last_discovery = now
 
-                # Check pending entries every loop (lightweight — just reads books)
-                await self.check_pending_entries()
+                # check_pending_entries disabled — new routing_tick re-evaluates every tick
+                # await self.check_pending_entries()
 
                 # Validate resting buys every 2 min
                 if now - last_stale_check > STALE_CHECK_INTERVAL:

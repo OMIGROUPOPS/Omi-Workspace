@@ -1927,6 +1927,14 @@ class LiveV3:
                 for o in orders:
                     orphan_orders.append((tk, o))
 
+        # Cancel orphan resting buys so bot can re-discover cleanly
+        for tk, o in orphan_orders:
+            if o["action"] == "buy":
+                await self.cancel_order(tk, o["order_id"], "orphan_buy_reconcile_cleanup")
+                self._log("orphan_buy_cancelled", {
+                    "price": o["price"], "qty": o["qty"],
+                }, ticker=tk)
+
         self._save_processed()
 
         # 4. Print reconciliation report

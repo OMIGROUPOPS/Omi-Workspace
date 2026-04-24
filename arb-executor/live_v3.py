@@ -1272,9 +1272,15 @@ class LiveV3:
                 if spread <= 2:
                     return book.last_trade_price, "kalshi_last_traded", None
 
-        # Priority D: FV with single source (relaxed — any FV)
+        # Priority D: FV with single source (spread <= 1c gate)
         if side_fv and side_fv.get("fv_cents") and side_fv.get("age_sec", 9999) < 1800:
-            return side_fv["fv_cents"], "fv_single", side_fv
+            if book and book.best_bid > 0 and book.best_ask < 100:
+                spread_d = book.best_ask - book.best_bid
+                if spread_d <= 1:
+                    return side_fv["fv_cents"], "fv_single", side_fv
+                else:
+                    self._log("fv_single_spread_gate", {"spread": spread_d, "fv_cents": side_fv["fv_cents"]}, ticker=tk)
+            # No book or degenerate → skip fv_single
 
         return None, "no_anchor", None
 

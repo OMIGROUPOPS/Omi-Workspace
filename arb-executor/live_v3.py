@@ -1021,7 +1021,7 @@ class LiveV3:
                     continue
                 order = data.get("order", data)
                 status = order.get("status", "")
-                filled = int(order.get("count_filled_fp", order.get("count_filled", 0)) or 0)
+                filled = int(order.get("fill_count_fp", order.get("count_filled", 0)) or 0)
 
                 if filled > 0 and filled > pos.entry_qty:
                     new_fills = filled - pos.entry_qty
@@ -1156,7 +1156,7 @@ class LiveV3:
                 data = await api_get(self.session, self.ak, self.pk, path, self.rl)
                 if data:
                     order = data.get("order", data)
-                    filled = int(order.get("count_filled_fp", order.get("count_filled", 0)) or 0)
+                    filled = int(order.get("fill_count_fp", order.get("count_filled", 0)) or 0)
                     if filled >= pos.entry_qty:
                         pos.exit_filled = True
                         pos.settled = True
@@ -1196,7 +1196,7 @@ class LiveV3:
                 data = await api_get(self.session, self.ak, self.pk, path, self.rl)
                 if data:
                     order = data.get("order", data)
-                    filled = int(order.get("count_filled_fp", order.get("count_filled", 0)) or 0)
+                    filled = int(order.get("fill_count_fp", order.get("count_filled", 0)) or 0)
                     if filled > 0 and not pos.dca_filled:
                         pos.dca_filled = True
                         pos.dca_qty = filled
@@ -1667,6 +1667,19 @@ class LiveV3:
             target = book.best_bid
             if target != pos.entry_price and target > 0 and target < 100:
                 await self.cancel_order(tk, pos.entry_order_id, "cadence_repost")
+                # Check if old order filled before placing replacement
+                old_order = await api_get(self.session, self.ak, self.pk,
+                    "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id, self.rl)
+                if old_order:
+                    old_filled = int(float((old_order.get("order", old_order).get("fill_count_fp", 0)) or 0))
+                    if old_filled > 0:
+                        pos.entry_qty = old_filled
+                        pos.phase = "active"
+                        pos.entry_filled_ts = time.time()
+                        self._log("cadence_repost_fill_detected", {
+                            "filled_qty": old_filled, "price": pos.entry_price,
+                        }, ticker=tk)
+                        continue
                 self.inflight_orders.add(tk)
                 try:
                     oid, _ = await self.place_order(tk, "buy", "yes", target,

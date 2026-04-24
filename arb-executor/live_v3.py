@@ -563,6 +563,24 @@ class LiveV3:
     # ------------------------------------------------------------------
     async def place_order(self, ticker, action, side, price, count, post_only=True):
         """Place a real order on Kalshi. Returns (order_id, response_dict) or ("", error_dict)."""
+        # Position accumulation guard: cap total buy exposure per ticker
+        if action == "buy":
+            target_max = self.config["sizing"]["entry_contracts"]
+            existing_pos = self.positions.get(ticker)
+            current_qty = existing_pos.entry_qty if existing_pos and existing_pos.phase == "active" else 0
+            if current_qty >= target_max:
+                self._log("buy_blocked_position_full", {
+                    "current_qty": current_qty, "target_max": target_max,
+                    "attempted_count": count, "price": price,
+                }, ticker=ticker)
+                return "", {"_error": "position_full"}
+            if current_qty + count > target_max:
+                count = target_max - current_qty
+                self._log("buy_qty_reduced", {
+                    "current_qty": current_qty, "reduced_to": count,
+                    "target_max": target_max, "price": price,
+                }, ticker=ticker)
+
         path = "/trade-api/v2/portfolio/orders"
         coid = str(uuid.uuid4())
         payload = {

@@ -1021,7 +1021,7 @@ class LiveV3:
                     continue
                 order = data.get("order", data)
                 status = order.get("status", "")
-                filled = int(order.get("fill_count_fp", order.get("count_filled", 0)) or 0)
+                filled = int(float(order.get("fill_count_fp", order.get("count_filled", 0)) or 0))
 
                 if filled > 0 and filled > pos.entry_qty:
                     new_fills = filled - pos.entry_qty
@@ -1156,7 +1156,7 @@ class LiveV3:
                 data = await api_get(self.session, self.ak, self.pk, path, self.rl)
                 if data:
                     order = data.get("order", data)
-                    filled = int(order.get("fill_count_fp", order.get("count_filled", 0)) or 0)
+                    filled = int(float(order.get("fill_count_fp", order.get("count_filled", 0)) or 0))
                     if filled >= pos.entry_qty:
                         pos.exit_filled = True
                         pos.settled = True
@@ -1196,7 +1196,7 @@ class LiveV3:
                 data = await api_get(self.session, self.ak, self.pk, path, self.rl)
                 if data:
                     order = data.get("order", data)
-                    filled = int(order.get("fill_count_fp", order.get("count_filled", 0)) or 0)
+                    filled = int(float(order.get("fill_count_fp", order.get("count_filled", 0)) or 0))
                     if filled > 0 and not pos.dca_filled:
                         pos.dca_filled = True
                         pos.dca_qty = filled

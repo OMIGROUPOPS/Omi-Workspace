@@ -1924,6 +1924,10 @@ class LiveV3:
         # Check for orphan resting orders (not matched to any position)
         for tk, orders in ord_map.items():
             if tk not in pos_map:
+                # Skip tickers the bot is actively managing in entry_resting phase
+                in_memory_pos = self.positions.get(tk)
+                if in_memory_pos and in_memory_pos.phase == "entry_resting":
+                    continue
                 for o in orders:
                     orphan_orders.append((tk, o))
 

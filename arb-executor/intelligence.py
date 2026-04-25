@@ -668,8 +668,8 @@ def recommended_window_seconds(event_ticker, ticker):
     """Data-driven entry window based on confidence and data quality.
 
     HIGH (80+):  4h, fv_consensus, 10ct
-    MEDIUM (50-79): 2h, fv_consensus if FV else kalshi_price, 10ct if FV else 5ct
-    LOW (30-49): 1h, kalshi_price, 5ct
+    MEDIUM (50-79): 4h, fv_consensus if FV else kalshi_price, 10ct if FV else 5ct
+    LOW (30-49): 4h if cell_fit, kalshi_price, 5ct
     SKIP (<30):  0
 
     Returns: {window_seconds, anchor_source, rationale, recommended_size, ...}
@@ -697,7 +697,7 @@ def recommended_window_seconds(event_ticker, ticker):
         if is_kalshi_anchored:
             kpa = kalshi_price_anchor(event_ticker, ticker, hours=1)
             base.update({
-                "window_seconds": 7200,
+                "window_seconds": 14400,
                 "anchor_source": "kalshi_price",
                 "rationale": "MEDIUM confidence (%d/100, Kalshi-anchored) — no FV, Kalshi price anchor (median %.1fc, %d snaps)" % (
                     score, kpa.get("median_price_cents", 0), kpa.get("n_snapshots", 0)),
@@ -706,7 +706,7 @@ def recommended_window_seconds(event_ticker, ticker):
             })
         else:
             base.update({
-                "window_seconds": 7200,
+                "window_seconds": 14400,
                 "anchor_source": "fv_consensus",
                 "rationale": "MEDIUM confidence (%d/100) — FV available but limited coverage or moderate volatility" % score,
                 "recommended_size": 10,
@@ -721,7 +721,7 @@ def recommended_window_seconds(event_ticker, ticker):
             if kpa.get("is_oscillating"):
                 rationale += " — price oscillating (mean reversion opportunity)"
             base.update({
-                "window_seconds": 3600,
+                "window_seconds": 14400,
                 "anchor_source": "kalshi_price",
                 "rationale": rationale,
                 "recommended_size": 5,

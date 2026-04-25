@@ -812,16 +812,9 @@ class LiveV3:
                                     "start_time": ct.isoformat(),
                                 })
                             else:
-                                # Fallback 2: Kalshi's own commence_time from price snapshots
-                                kct = self._kalshi_commence_time(et)
-                                if kct is not None:
-                                    self.event_start_time[et] = kct.timestamp()
-                                    self._log("schedule_match", {
-                                        "event": et, "method": "kalshi_commence_time",
-                                        "start_time": kct.isoformat(),
-                                    })
-                                else:
-                                    self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
+                                # No reliable commence source — skip rather than use Kalshi expiration
+                                self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
+                                self._log("no_reliable_commence_source", {"event": et})
                     cat = self.get_category(ticker)
                     if cat:
                         self.ticker_category[ticker] = cat

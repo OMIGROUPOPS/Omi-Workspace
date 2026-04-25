@@ -72,6 +72,7 @@ ENTRY_BUFFER_SEC = 900        # stop entering 15 min before scheduled start
 ENTRY_MAX_LEAD_SEC = 14400    # don't enter more than 4h before start
 UNMATCHED_SKIP_CYCLES = 3     # skip unmatched events after this many discovery cycles
 UNMATCHED_SKIP_AGE = 3600     # ...only if open_time is > 1h old
+BOOK_STALENESS_SEC = 900      # 15 min — quiet pregame books may not update for 5-15 min
 DEAD_SPREAD_THRESHOLD = 20    # don't post if spread > 20c
 STALE_BUY_DELTA = 5           # cancel resting buy if our price > mid + 5c
 PENDING_TIMEOUT_SEC = 7200    # cancel pending entry after 2h with no tight spread
@@ -836,7 +837,7 @@ class LiveV3:
         sides = []
         for tk in tickers:
             book = self.books.get(tk)
-            if not book or book.updated < time.time() - 120:
+            if not book or book.updated < time.time() - BOOK_STALENESS_SEC:
                 continue
             sides.append((tk, book.best_bid, book.best_ask))
         if len(sides) < 2:
@@ -1355,8 +1356,13 @@ class LiveV3:
             tk_list = list(tickers)
             if len(tk_list) < 2:
                 continue
-            all_have_bbo = all(tk in self.books and self.books[tk].updated > now - 120 for tk in tk_list)
+            all_have_bbo = all(tk in self.books and self.books[tk].updated > now - BOOK_STALENESS_SEC for tk in tk_list)
             if not all_have_bbo:
+                self._log("event_skip_stale_book", {
+                    "event": et,
+                    "book_ages_sec": [int(now - self.books[tk].updated) for tk in tk_list if tk in self.books],
+                    "missing_books": [tk[-20:] for tk in tk_list if tk not in self.books],
+                })
                 continue
 
             self.n_matches_seen += 1
@@ -1374,7 +1380,10 @@ class LiveV3:
                     continue
 
                 book = self.books.get(tk)
-                if not book or book.updated < now - 120:
+                if not book or book.updated < now - BOOK_STALENESS_SEC:
+                    self._log("side_skip_stale_book", {
+                        "book_age_sec": int(now - book.updated) if book else "missing",
+                    }, ticker=tk)
                     continue
 
                 # Universal anti-degenerate guard
@@ -1604,7 +1613,10 @@ class LiveV3:
                 continue
 
             book = self.books.get(tk)
-            if not book or book.updated < now - 120:
+            if not book or book.updated < now - BOOK_STALENESS_SEC:
+                self._log("validate_skip_stale_book", {
+                    "book_age_sec": int(now - book.updated) if book else "missing",
+                }, ticker=tk)
                 continue
 
             # Legacy positions skip validation

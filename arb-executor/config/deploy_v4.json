@@ -41,7 +41,7 @@
     },
     "ATP_CHALL_leader_80-84": {
       "strategy": "noDCA",
-      "exit_cents": 30
+      "exit_cents": 15
     },
     "WTA_MAIN_underdog_25-29": {
       "strategy": "noDCA",
@@ -57,7 +57,7 @@
     },
     "ATP_CHALL_leader_70-74": {
       "strategy": "noDCA",
-      "exit_cents": 30
+      "exit_cents": 25
     },
     "WTA_MAIN_underdog_30-34": {
       "strategy": "noDCA",

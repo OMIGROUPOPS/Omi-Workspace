@@ -1644,6 +1644,19 @@ class LiveV3:
                 self._untombstone_entry(tk, pos)
                 continue
 
+            # Cancel if our price is far above current mid (falling knife protection)
+            mid = (book.best_bid + book.best_ask) / 2.0
+            if pos.entry_price > mid + STALE_BUY_DELTA:
+                await self.cancel_order(tk, pos.entry_order_id, 'stale_buy_price_too_high')
+                self._log('stale_buy_cancel', {
+                    'reason': 'price_above_mid',
+                    'our_price': pos.entry_price,
+                    'current_mid': round(mid, 1),
+                    'delta': round(pos.entry_price - mid, 1),
+                }, ticker=tk)
+                self._untombstone_entry(tk, pos)
+                continue
+
             # Check anchor freshness — cancel if expired
             anchor_value, anchor_source, _ = self._resolve_anchor(tk, pos.event_ticker)
             if anchor_value is None:

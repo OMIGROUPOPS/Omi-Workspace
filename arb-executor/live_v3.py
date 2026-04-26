@@ -1674,7 +1674,7 @@ class LiveV3:
                     continue
 
             # Cadence-gated cancel/repost
-            cadence = 600 if time_to_start > 7200 else 60
+            cadence = 60
             if now - pos.last_cancel_repost_ts < cadence:
                 continue
 

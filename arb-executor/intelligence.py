@@ -679,13 +679,18 @@ def recommended_window_seconds(event_ticker, ticker):
     grade = cs["grade"]
     is_kalshi_anchored = cs.get("anchor_mode") == "kalshi"
 
+    # Series-specific lead cap
+    _series = event_ticker.split("-")[0] if event_ticker else ""
+    _LEAD_BY_SERIES = {"KXATPMATCH": 43200, "KXWTAMATCH": 43200}
+    _lead_cap = _LEAD_BY_SERIES.get(_series, 14400)
+
     base = {"event_ticker": event_ticker, "ticker": ticker,
             "confidence_score": score, "confidence_grade": grade,
             "anchor_mode": cs.get("anchor_mode", "fv")}
 
     if score >= 80:
         base.update({
-            "window_seconds": 14400,
+            "window_seconds": _lead_cap,
             "anchor_source": "fv_consensus",
             "rationale": "HIGH confidence (%d/100) — full FV coverage, %d-book consensus" % (
                 score, fv_stability(event_ticker).get("num_books", 0)),
@@ -697,7 +702,7 @@ def recommended_window_seconds(event_ticker, ticker):
         if is_kalshi_anchored:
             kpa = kalshi_price_anchor(event_ticker, ticker, hours=1)
             base.update({
-                "window_seconds": 14400,
+                "window_seconds": _lead_cap,
                 "anchor_source": "kalshi_price",
                 "rationale": "MEDIUM confidence (%d/100, Kalshi-anchored) — no FV, Kalshi price anchor (median %.1fc, %d snaps)" % (
                     score, kpa.get("median_price_cents", 0), kpa.get("n_snapshots", 0)),
@@ -706,7 +711,7 @@ def recommended_window_seconds(event_ticker, ticker):
             })
         else:
             base.update({
-                "window_seconds": 14400,
+                "window_seconds": _lead_cap,
                 "anchor_source": "fv_consensus",
                 "rationale": "MEDIUM confidence (%d/100) — FV available but limited coverage or moderate volatility" % score,
                 "recommended_size": 10,
@@ -721,7 +726,7 @@ def recommended_window_seconds(event_ticker, ticker):
             if kpa.get("is_oscillating"):
                 rationale += " — price oscillating (mean reversion opportunity)"
             base.update({
-                "window_seconds": 14400,
+                "window_seconds": _lead_cap,
                 "anchor_source": "kalshi_price",
                 "rationale": rationale,
                 "recommended_size": 5,

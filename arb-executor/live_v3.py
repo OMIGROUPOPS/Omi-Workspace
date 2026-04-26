@@ -69,7 +69,17 @@ DISCOVERY_INTERVAL = 300
 FILL_CHECK_INTERVAL = 5      # poll fills every 5s
 EXIT_PRICE_CAP = 98           # never post exit above 98c
 ENTRY_BUFFER_SEC = 900        # stop entering 15 min before scheduled start
-ENTRY_MAX_LEAD_SEC = 14400    # don't enter more than 4h before start
+ENTRY_MAX_LEAD_SEC_BY_SERIES = {
+    "KXATPMATCH": 43200,         # ATP Main Draw: 12h (books stable at T-12h, 1c spread)
+    "KXWTAMATCH": 43200,         # WTA Main Draw: 12h (books stable at T-12h, 1c spread)
+    "KXATPCHALLENGERMATCH": 14400,  # ATP Challenger: 4h (books not formed until T-4h)
+    "KXWTACHALLENGERMATCH": 14400,  # WTA Challenger: 4h (books not formed until T-4h)
+}
+DEFAULT_ENTRY_MAX_LEAD_SEC = 14400
+
+def _entry_lead_cap(event_ticker):
+    series = event_ticker.split("-")[0] if event_ticker else ""
+    return ENTRY_MAX_LEAD_SEC_BY_SERIES.get(series, DEFAULT_ENTRY_MAX_LEAD_SEC)
 UNMATCHED_SKIP_CYCLES = 3     # skip unmatched events after this many discovery cycles
 UNMATCHED_SKIP_AGE = 3600     # ...only if open_time is > 1h old
 BOOK_STALENESS_SEC = 900      # 15 min — quiet pregame books may not update for 5-15 min
@@ -1338,7 +1348,7 @@ class LiveV3:
                 continue
 
             # Intelligence window gate
-            intel_window = ENTRY_MAX_LEAD_SEC
+            intel_window = _entry_lead_cap(et)
             if INTELLIGENCE_AVAILABLE:
                 try:
                     # Use first ticker for event-level window check
@@ -2088,7 +2098,7 @@ class LiveV3:
             time_to_start = start_ts - now
             start_str = datetime.fromtimestamp(start_ts, tz=ET).strftime("%I:%M %p ET")
             cutoff = datetime.fromtimestamp(start_ts - ENTRY_BUFFER_SEC, tz=ET).strftime("%I:%M %p ET")
-            if time_to_start > ENTRY_MAX_LEAD_SEC:
+            if time_to_start > _entry_lead_cap(evt):
                 all_events_status.append((evt, "WAIT (>24h)", time_to_start, start_str, players))
             elif time_to_start > ENTRY_BUFFER_SEC:
                 all_events_status.append((evt, "ENTER", time_to_start, "eligible until %s, start=%s" % (cutoff, start_str), players))

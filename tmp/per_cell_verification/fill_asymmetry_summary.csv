@@ -1,0 +1,3 @@
+side,N,pct_trending_up,pct_trending_down,pct_oscillating,pct_flat,avg_spread,avg_price_change_30min,avg_osc_range,paired_pct
+leader,61,14.8,8.2,4.9,72.1,1.5,0.1,0.4,31
+underdog,69,16.4,7.5,14.9,61.2,1.3,0.1,0.6,28

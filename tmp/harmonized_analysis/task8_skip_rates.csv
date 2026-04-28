@@ -1,0 +1,17 @@
+reason,count
+no_fv_available,537239
+fv_cell_not_active,417774
+no_anchor_available,183750
+degenerate_book_skip,172077
+schedule_gap,167894
+resting_order_exists,116457
+no_cell_config_at_post_time,83696
+fv_stale,64227
+cell_disabled_at_post_time,49249
+no_valid_sides,16807
+inside_buffer,559
+position_exists,182
+fv_unstable,117
+match_already_started,113
+inside_buffer_or_live,111
+intelligence_skip,104

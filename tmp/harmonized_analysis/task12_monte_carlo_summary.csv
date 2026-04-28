@@ -1,0 +1,15 @@
+metric,value
+mean_daily_pnl,-2.83
+std_dev,17.28
+sharpe_daily,-0.164
+p5_worst,-31.90
+p10,-25.40
+p25,-14.40
+median,-2.20
+p75,9.20
+p90,19.30
+p95_best,24.30
+n_simulations,10000
+n_active_cells,25
+historical_events,1357
+date_range,2026-03-20 to 2026-04-17

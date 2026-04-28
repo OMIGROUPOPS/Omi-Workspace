@@ -1,0 +1,34 @@
+Ultimate Cell Economics Analysis — Methodology
+============================================================
+
+Data Sources:
+  1. historical_events: 1357 events, Mar 20 - Apr 17, 2026
+  2. DCA v3 results: /tmp/validation5/per_cell_dca_summary.csv
+     (515M BBO rows, inline state machine, time-ordered)
+  3. Live bot logs: 7 files (last 7 days)
+     126 fills, 101 exits, 1364 settlements
+  4. deploy_v4.json: 25 active + 18 disabled cells
+
+Cell Classification:
+  tier × direction × 5c price bucket
+  Entry price = first_price from historical_events
+  TWP = fraction of entries in that cell that won settlement
+  Mispricing = TWP*100 - avg_entry_price (in cents)
+
+Scalp WR Calculation:
+  Scalp = max_price >= entry + exit_cents at any point during match lifecycle
+  This includes in-play price movement (exit orders stay resting)
+
+ROI Calculation:
+  EV/fill = scalp_rate * exit_c + (1-scalp_rate) * (TWP*(99-entry) - (1-TWP)*(entry-1))
+  ROI = EV/fill / entry * 100
+  $/fill = EV/fill * 10_contracts / 100_cents_per_dollar
+
+Known Issues:
+  - Task 6: Settlement PnL is per-contract not per-position (double-counted)
+  - Live log ticker→cell mapping fails for some older entries (shows '?')
+  - 32%% of cell matches have blank anchor_source in logs
+  - Monte Carlo uses uniform sampling from historical distribution
+    (doesn't model serial correlation or regime changes)
+
+Run at: 2026-04-28 12:26 PM ET

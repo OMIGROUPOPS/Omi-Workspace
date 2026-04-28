@@ -1,0 +1,7 @@
+grouping,N,optimal_exit_1c,optimal_roi_pct,ci_lower,ci_upper,sum_subcell_roi_pct,grouping_vs_subcell
+ALL_ATP_CHALL_leaders,927,25,4.0,0.2,7.7,3.2,GROUP_BETTER
+ALL_ATP_MAIN_leaders,258,24,-1.2,-8.5,6.2,4.5,SUBCELL_BETTER
+ALL_CHALL_underdogs,883,34,8.3,0.3,16.4,19.4,SUBCELL_BETTER
+ATP_CHALL_leader_50-69,524,16,3.2,-1.1,7.4,4.3,SUBCELL_BETTER
+ATP_CHALL_leader_60-79,448,26,6.1,0.8,11.5,6.9,SUBCELL_BETTER
+ATP_CHALL_leader_70-89,329,16,3.6,-1.0,8.1,3.8,SUBCELL_BETTER

@@ -1,9 +1,16 @@
 # Bug 4 Brief — Missing Settlement Detection
 
-**Version**: v2 (paper-mode gating + persistence verification added)
+**Version**: v3 (paper-mode realized_pnl_cents formula corrected for partial-exit case)
 **Status**: investigation complete, design proposed, no code written
 **Author**: paired with operator, 2026-04-29
 **Target**: live_v3.py settlement detection path
+
+## Changes in v3 (this revision)
+
+- §6.4 paper-mode branch: realized_pnl_cents formula rewritten as **assignment** (not increment) using full double-entry form: `realized_pnl_cents = total_revenue_cents - total_cost_cents + settle_val * net_qty`. The v2 formula (`+= (settle_val - avg_basis) * net_qty`) was wrong for the partial-exit case — it ignored the prior-partial-sell P&L because `realized_pnl_cents` is zero at settlement entry whenever `net_qty > 0` (existing `try_fill` only books realized P&L when `net_qty` hits zero). Worked example: buy 10@40 → sell 5@50 → settle 5@99. Expected total P&L = 50 + 295 = 345. v2 formula gave 295 (understated by 50); v3 formula gives 250 − 400 + 99×5 = 345. ✓
+- §9.2 B4-T8: extended with partial-exit fixture covering the previously-broken case.
+- §9.2 B4-T11: extended to explicitly verify `realized_pnl_cents` round-trips through dump/load (most-likely-to-drift field).
+- §11 risk register: "partial-exit P&L accounting drift" entry rewritten — was a real bug in v2; now correctly handled in v3.
 
 ## Changes in v2
 
@@ -267,14 +274,30 @@ def process_settlement(self, ticker, settle_value_dollars, settled_ts, source):
         ppos.settled = True
         ppos.settlement_price = settle_val
         ppos.last_event_ts = settled_ts
-        # Realized P&L for paper position at settlement:
-        #   pre-settlement net_qty contracts pay out at settle_val
-        #   pre-existing realized_pnl from prior partial-exits unchanged
-        if ppos.qty > 0:
-            avg_basis = ppos.total_cost_cents // ppos.qty
-            net = ppos.net_qty
-            if net > 0:
-                ppos.realized_pnl_cents += (settle_val - avg_basis) * net
+
+        # Realized P&L at settlement — full double-entry form.
+        # ASSIGNMENT (not +=) because this is the closing P&L computation:
+        #   total_revenue_cents already accounts for all prior partial sells
+        #     (booked at fill time inside PaperFillSimulator.try_fill)
+        #   settle_val * net_qty is the settlement payout on remaining unsold contracts
+        #   total_cost_cents is everything paid in
+        #
+        # NOTE: existing try_fill only writes realized_pnl_cents when net_qty
+        # hits zero. For partial-exit positions reaching settlement with
+        # net_qty > 0 and sold_qty > 0, realized_pnl_cents is still zero at
+        # this point — so we must derive the final P&L from the totals, not
+        # increment.
+        #
+        # Worked example:
+        #   Buy 10 @ 40c -> qty=10, total_cost_cents=400, sold_qty=0, total_revenue_cents=0
+        #   Sell 5 @ 50c -> sold_qty=5, total_revenue_cents=250, net_qty=5 (so realized_pnl_cents stays 0)
+        #   Settle @ 99c -> realized_pnl_cents = 250 - 400 + 99*5 = -150 + 495 = 345
+        #     (matches expected: 50 P&L on the partial sell + 295 P&L on the settled portion)
+        ppos.realized_pnl_cents = (
+            ppos.total_revenue_cents
+            - ppos.total_cost_cents
+            + settle_val * ppos.net_qty
+        )
 
         # Silent short-circuit: mark self.positions mirror as settled so
         # check_settlements stops re-iterating on subsequent cycles.
@@ -437,10 +460,19 @@ Unit tests (extend the §11.1 harness already in `/tmp/paper_mode_unit_tests.py`
 
 ### 9.2 Paper-mode tests (mode = `_PAPER_API` is set)
 
-- **B4-T8**: `process_settlement` in paper mode — set `_PAPER_API`, create PaperPosition, call `process_settlement` → `PaperPosition.settled=True`, `settlement_price=N`, `paper_settled` event emitted (NOT `settled`); `realized_pnl_cents` updated; `self.positions[tk]` (if present) silently marked settled to short-circuit `check_settlements`.
+- **B4-T8**: `process_settlement` in paper mode (three fixtures, all must pass):
+  - **B4-T8a** _no-exit happy path_: PaperPosition with qty=10, sold_qty=0, total_cost_cents=400, total_revenue_cents=0; settle at 99c. Expected: `settled=True`, `settlement_price=99`, `realized_pnl_cents = 0 - 400 + 99*10 = 590`. `paper_settled` emitted (NOT `settled`); `self.positions[tk]` (if present) silently marked settled to short-circuit `check_settlements`.
+  - **B4-T8b** _partial-exit fixture_ (covers the v2-formula bug): qty=10, sold_qty=5, total_cost_cents=400, total_revenue_cents=250 (5 contracts sold at 50c earlier); settle at 99c. Expected: `realized_pnl_cents = 250 - 400 + 99*5 = 345`. **NOT 295.** This case would have been undercounted by the v2 formula.
+  - **B4-T8c** _fully-exited-then-settles_: qty=10, sold_qty=10, total_cost_cents=400, total_revenue_cents=600 (full exit at 60c), `realized_pnl_cents=200` from try_fill. Settle event arrives anyway (rare — settled position should not normally re-settle, but the idempotency guard `if ppos.settled` already handles this; this fixture verifies that BEFORE the settled flag is set in some weird edge ordering, the formula still computes correctly: `realized_pnl_cents = 600 - 400 + settle_val*0 = 200`, identical to what try_fill already booked).
 - **B4-T9**: REST poll guard — set `_PAPER_API`, mock `_real_api_get` to fail loudly if called, invoke main-loop tick → `poll_settlements_rest()` is NOT called; no settlement state mutated.
 - **B4-T10**: BBO threshold in paper mode — set `_PAPER_API`, populate `paper_positions[tk]` with net_qty=5, set `book.best_bid=99` → `check_settlements` iterates `paper_positions` (not `self.positions`), routes through `process_settlement`, `paper_settled` emitted with `source="bbo_threshold_yes"`.
-- **B4-T11**: Persistence round-trip with settled state — settle a paper position, call `dump_state`, create fresh `PaperApi`, call `load_state` → loaded `PaperPosition.settled=True` and `settlement_price` correctly restored. (Pre-existing dump_state/load_state implementation already round-trips these fields; this test confirms Bug 4's writes flow through cleanly.)
+- **B4-T11**: Persistence round-trip with settled state — use the partial-exit fixture from B4-T8b (qty=10, sold_qty=5, total_cost=400, total_revenue=250, settle@99 → realized_pnl_cents=345). Settle the paper position, call `dump_state`, create fresh `PaperApi`, call `load_state`. Verify on the loaded `PaperPosition`:
+  - `settled == True`
+  - `settlement_price == 99`
+  - **`realized_pnl_cents == 345` (the settlement-computed value, not 0 or any partial)**
+  - `total_revenue_cents == 250`, `total_cost_cents == 400`, `qty == 10`, `sold_qty == 5` (all balance fields preserved so re-derivation would yield same answer)
+
+  `realized_pnl_cents` is the field most likely to drift if the formula changes (it's a derived value, not a balance counter). This test pins it explicitly. Pre-existing dump_state uses `p.__dict__` (captures all fields including `realized_pnl_cents`); load_state reads `realized_pnl_cents=int(pd.get("realized_pnl_cents", 0))`. Round-trip is mechanical; B4-T11 verifies Bug 4's writes flow through cleanly with the v3 formula.
 
 ### 9.3 Burn-in observation
 
@@ -471,7 +503,8 @@ Unit tests (extend the §11.1 harness already in `/tmp/paper_mode_unit_tests.py`
 | **REST poll fires in paper mode** (gate forgotten by future patch) | Medium-Low | Real-account settlement history would falsely settle paper positions | Defensive guard at top of `poll_settlements_rest()` (`if _PAPER_API is not None: return`) in addition to the cadence gate. B4-T9 verifies. |
 | **Paper-mode bot's `self.positions` mirror grows unbounded** | Low | check_settlements wastes CPU re-iterating same tickers | Silent `self.positions[tk].settled = True` write inside paper branch of `process_settlement` short-circuits next iteration. |
 | **Lifecycle event arrives before bot has a paper_position for ticker** (e.g., bot subscribed but never traded) | Low | `paper_positions.get(ticker)` returns None → silent no-op | By design — settlement of an untraded ticker is irrelevant. No log noise. |
-| **Paper position `realized_pnl_cents` accounting drift** if partial-exit (sold_qty > 0) settles below avg basis | Low-Medium | P&L on remaining net_qty correctly computed; sold_qty proceeds already booked in `total_revenue_cents` | The formula `(settle_val - avg_basis) * net_qty` only credits the unsold portion. Confirmed in B4-T8 with a partial-exit fixture. |
+| **Paper position `realized_pnl_cents` accounting drift** for partial-exit case (sold_qty > 0 reaching settlement with net_qty > 0) | **Was a real bug in v2; fixed in v3.** | v2 formula `+= (settle_val - avg_basis) * net_qty` understated realized P&L by ignoring prior partial-sell proceeds (because `realized_pnl_cents` is 0 going into settlement whenever `net_qty > 0` — existing try_fill only books realized P&L when net_qty hits zero). | v3 formula uses full double-entry assignment `= total_revenue_cents - total_cost_cents + settle_val * net_qty` which correctly reconciles both partial-sell proceeds and settlement payout. B4-T8b fixture covers this exact case; B4-T11 verifies the result round-trips through dump/load. |
+| **`realized_pnl_cents` formula regression** if a future patch reverts to incremental form or changes operand ordering | Low (now that B4-T8b + B4-T11 lock the values) | Per-position P&L drift, accumulating over burn-in | B4-T8b pins three numerical answers to specific formula inputs. B4-T11 pins the value across persistence. Any formula change that breaks either test is caught at unit-test time, before deploy. |
 
 ---
 

@@ -398,9 +398,34 @@ class LiveV3:
 
         player_names = self.event_player_names.get(event_ticker, [])
 
+        # Extract ticker date for cross-day mismatch guard
+        import re as _re
+        _dm = _re.search(r"-(\d{2})([A-Z]{3})(\d{2})", event_ticker)
+        _month_map = {"JAN":1,"FEB":2,"MAR":3,"APR":4,"MAY":5,"JUN":6,
+                      "JUL":7,"AUG":8,"SEP":9,"OCT":10,"NOV":11,"DEC":12}
+
+        def _date_ok(sched_result):
+            """Reject schedule match if start_time date differs from ticker date by >12h."""
+            if not _dm:
+                return True
+            try:
+                tk_date = datetime(2000+int(_dm.group(1)), _month_map[_dm.group(2)],
+                                   int(_dm.group(3)), 16, 0, tzinfo=timezone.utc)
+                sched_dt = datetime.fromisoformat(sched_result.get("start_time","").replace("Z","+00:00"))
+                if abs((sched_dt - tk_date).total_seconds()) > 43200:
+                    self._log("schedule_date_mismatch", {
+                        "event": event_ticker,
+                        "ticker_date": tk_date.strftime("%Y-%m-%d"),
+                        "schedule_date": sched_dt.strftime("%Y-%m-%dT%H:%M"),
+                    })
+                    return False
+            except Exception:
+                pass
+            return True
+
         # Try direct match first
         result = match_kalshi_event(event_ticker, self.schedule)
-        if result:
+        if result and _date_ok(result):
             self._log("schedule_match", {
                 "event": event_ticker,
                 "method": "direct_6char",
@@ -415,7 +440,7 @@ class LiveV3:
         # Try fuzzy with player names
         if player_names:
             result = match_kalshi_event(event_ticker, self.schedule, kalshi_player_names=player_names)
-            if result:
+            if result and _date_ok(result):
                 self._log("schedule_match", {
                     "event": event_ticker,
                     "method": "fuzzy_name",
@@ -1054,6 +1079,32 @@ class LiveV3:
                         "play_type": pos.play_type,
                         "kalshi_status": status,
                     }, ticker=tk)
+
+                    # Re-classify cell based on fill_price (may differ from anchor)
+                    old_cell = pos.cell_name
+                    old_exit_cents = pos.cell_cfg.get("exit_cents", 0) if pos.cell_cfg else 0
+                    fill_cell, fill_cell_cfg = self.cell_lookup(pos.category, pos.direction, fill_price)
+                    if fill_cell != old_cell:
+                        if fill_cell_cfg is None:
+                            fill_cell_cfg = {"exit_cents": 15, "strategy": pos.cell_cfg.get("strategy", "noDCA")}
+                            self._log("cell_drift_to_inactive", {
+                                "old_cell": old_cell, "new_cell": fill_cell,
+                                "anchor_price": pos.entry_price, "fill_price": fill_price,
+                                "drift_cents": pos.entry_price - fill_price,
+                                "old_exit_cents": old_exit_cents, "new_exit_cents": 15,
+                                "direction": pos.direction,
+                            }, ticker=tk)
+                        else:
+                            self._log("cell_reclassified", {
+                                "old_cell": old_cell, "new_cell": fill_cell,
+                                "anchor_price": pos.entry_price, "fill_price": fill_price,
+                                "drift_cents": pos.entry_price - fill_price,
+                                "old_exit_cents": old_exit_cents,
+                                "new_exit_cents": fill_cell_cfg["exit_cents"],
+                                "direction": pos.direction,
+                            }, ticker=tk)
+                        pos.cell_name = fill_cell
+                        pos.cell_cfg = fill_cell_cfg
 
                     # Cancel ALL existing exit sells before posting new ones
                     if pos.exit_order_id:
@@ -1704,6 +1755,31 @@ class LiveV3:
                         pos.entry_qty = old_filled
                         pos.phase = "active"
                         pos.entry_filled_ts = time.time()
+                        # Re-classify cell based on fill price
+                        old_cell = pos.cell_name
+                        old_exit_cents = pos.cell_cfg.get("exit_cents", 0) if pos.cell_cfg else 0
+                        fill_cell, fill_cell_cfg = self.cell_lookup(pos.category, pos.direction, pos.entry_price)
+                        if fill_cell != old_cell:
+                            if fill_cell_cfg is None:
+                                fill_cell_cfg = {"exit_cents": 15, "strategy": pos.cell_cfg.get("strategy", "noDCA")}
+                                self._log("cell_drift_to_inactive", {
+                                    "old_cell": old_cell, "new_cell": fill_cell,
+                                    "anchor_price": pos.entry_price, "fill_price": pos.entry_price,
+                                    "drift_cents": 0,
+                                    "old_exit_cents": old_exit_cents, "new_exit_cents": 15,
+                                    "direction": pos.direction,
+                                }, ticker=tk)
+                            else:
+                                self._log("cell_reclassified", {
+                                    "old_cell": old_cell, "new_cell": fill_cell,
+                                    "anchor_price": pos.entry_price, "fill_price": pos.entry_price,
+                                    "drift_cents": 0,
+                                    "old_exit_cents": old_exit_cents,
+                                    "new_exit_cents": fill_cell_cfg["exit_cents"],
+                                    "direction": pos.direction,
+                                }, ticker=tk)
+                            pos.cell_name = fill_cell
+                            pos.cell_cfg = fill_cell_cfg
                         self._log("cadence_repost_fill_detected", {
                             "filled_qty": old_filled, "price": pos.entry_price,
                         }, ticker=tk)
@@ -1830,6 +1906,23 @@ class LiveV3:
             et = pinfo["event_ticker"]
             sells = [o for o in ord_map.get(tk, []) if o["action"] == "sell"]
 
+            existing = self.positions.get(tk)
+            if existing and existing.entry_price > 0:
+                kalshi_avg = pinfo["avg_price"]
+                if abs(kalshi_avg - existing.entry_price) > 1:
+                    self._log("reconcile_price_mismatch", {
+                        "bot_entry_price": existing.entry_price,
+                        "kalshi_avg_price": kalshi_avg,
+                        "delta": kalshi_avg - existing.entry_price,
+                        "entry_qty": existing.entry_qty,
+                        "kalshi_qty": pinfo["qty"],
+                    }, ticker=tk)
+                if pinfo["qty"] > existing.entry_qty:
+                    existing.entry_qty = pinfo["qty"]
+                if sells and not existing.exit_order_id:
+                    existing.exit_order_id = sells[0]["order_id"]
+                    existing.exit_price = sells[0]["price"]
+                continue
 
             if sells:
                 sell = sells[0]

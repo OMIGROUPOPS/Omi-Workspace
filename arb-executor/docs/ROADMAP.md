@@ -52,7 +52,11 @@ T9. Canonical "ultimate cell economics" designation. **CLOSED 2026-04-30 (commit
 
 T10. Entry-time derivation. **CLOSED 2026-04-30 (commit ae685e9 + 952da9c):** /tmp/kalshi_fills_history.json discovered as Tier-A fact source (7,489 server-side fills, Mar 1 - Apr 29). Closes F17/F9/F8/A26/F10 partially-or-fully. Original framing of "derive from JSONL" wrong (live_v3 only covers Apr 24+); kalshi_fills_history.json is the canonical entry-time source. Ref A30, E29, F26, F27.
 
-T11. Bug 4 (settlement event detection) status check. **OPEN.** Per F8: when bot resting sell unfilled at market close, NO settlement event is logged; position loss invisible to log-based P&L. /tmp/bug4_brief.md (32KB) and /tmp/bug4_probe.md (14KB) exist. Need: probe to determine if fix is landed, in progress, or stalled. Possibly partially superseded by T10 closure (kalshi_fills_history.json has every server-side fill including settlement-adjacent ones).
+T11. Bug 4 (settlement event detection) status check. **CLOSED 2026-04-30:** probe completed — Bug 4 is fully designed (bug4_brief.md v3 + bug4_probe.md, both Apr 29) but ZERO implementation code has been written. Brief explicitly states "investigation complete, design proposed, no code written." Frequency from log analysis: 8 of 130 entry_filled positions are PHANTOM-ACTIVE (6%); 17% of non-exit-fill positions slip past the BBO heuristic. Split into T11a (implementation work) and T11b (sandbox test). Analytical impact MITIGATED by T10 closure (kalshi_fills_history.json). Operational impact remains open per T11a. Decision on prioritization tracked at D6.
+
+T11a. Bug 4 implementation. **OPEN.** Write code per bug4_brief.md v3: WS "market_lifecycle_v2" handler + REST "/portfolio/settlements" poll fallback + partial-exit P&L formula correction + paper-mode gating + persistence verification + test suite B4-T1..T11. Significant work. Operational impact: phantom positions hold resting exit orders past settlement, pollute n_active counts, may cause duplicate-entry attempts. Mitigation precondition: bot is shut down per LESSONS Section 1, so operational bug isn't actively burning state right now.
+
+T11b. Bug 4 sandbox test. **OPEN, depends on T11a partial completion.** Capture real settled event from Kalshi sandbox to validate WS payload schema before production deployment. Probe found settled-event payload is MINIMAL (no market_result or settlement value); REST per-record key is "value" (cents int, nullable), not "settlement_value" as brief originally said. Brief adjustment required.
 
 T12. Security exposures rotation. **OPEN.** Per session note: GitHub PAT in git remote URL, plaintext Kalshi API key in /tmp/probe_kalshi_api2.py. Both in public repo. Operator action required: rotate both keys, verify no other exposed secrets, force-push history rewrite if PAT was committed (or accept it's burned).
 
@@ -138,6 +142,8 @@ D4. Rotate Kalshi API key in /tmp/probe_kalshi_api2.py. Per T12. Operator action
 
 D5. /tmp ephemerality migration. Per F1. Decision: which /tmp files are canonical enough to migrate to durable storage now, vs accept the ephemerality risk?
 
+D6. Bug 4 implementation prioritization. Per T11a. Two paths: (a) implement now to clean up the operational state for any future redeploy, or (b) defer until pre-redeploy phase since bot is shut down and operational state isn't actively burning. Analytical impact already mitigated by T10 closure — forward measurement work doesn't block on this fix.
+
 ---
 
 ## SECTION 7: RECENTLY COMPLETED (Session 4, Apr 30) — high-level
@@ -171,4 +177,5 @@ Earliest first within the session.
 - 2026-04-30 ~13:21 ET: Initial scaffolding (commit c794b26).
 - 2026-04-30 ~14:00 ET: First update reflecting variable-inventory and TZ probes complete (commit cac13c4).
 - 2026-04-30 ~15:10 ET: Section 3 added — flat to-do list with dependency ordering, 12 items (commit 7ce7359).
-- 2026-04-30 ~17:45 ET (this commit): Restructured into T/F/U/G/D categorized indexed system, same model as LESSONS.md. T1-T15 indexed (T1-T10, T15 closed; T2 partial; T11-T14 open). F1-F10 flagged. U1-U9 unknown. G1-G6 (G5/G6 closed historical). D1-D5 awaiting decision. Current state captured comprehensively for handoff durability.
+- 2026-04-30 ~18:00 ET: T11 closed — Bug 4 fully designed but zero implementation written. Split into T11a (implementation, OPEN) and T11b (sandbox test, OPEN). Analytical impact mitigated by T10 closure; operational impact remains. D6 added (Bug 4 prioritization decision).
+- 2026-04-30 ~17:45 ET (prior commit): Restructured into T/F/U/G/D categorized indexed system, same model as LESSONS.md. T1-T15 indexed (T1-T10, T15 closed; T2 partial; T11-T14 open). F1-F10 flagged. U1-U9 unknown. G1-G6 (G5/G6 closed historical). D1-D5 awaiting decision. Current state captured comprehensively for handoff durability.

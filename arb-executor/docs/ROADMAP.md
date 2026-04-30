@@ -1,13 +1,22 @@
-# OMI Roadmap — Current State and Forward Work
+# OMI Roadmap — Categorized Tracking System
 
-**Purpose:** Source of truth for current to-do state of the OMI tennis trading operation. In-flight, queued, blocked, recently completed. Updated continuously as work progresses; future chats consult this to know what is happening now and what is next.
+**Purpose:** Source of truth for current operational state of the OMI tennis trading operation. Append-only categorized indexed tracking, same model as LESSONS.md. Future chats consult this to know what is open, what needs attention, what is unknown, what is missing, and what is awaiting authorization.
+
+**Categories:**
+- **T (To-Do):** actionable items with a clear close condition. Status: OPEN / IN_PROGRESS / CLOSED.
+- **F (Flag):** operational risks or attention items that are not yet actionable, or are ongoing concerns to track.
+- **U (Unknown):** open questions blocking strategic decisions.
+- **G (Gap):** work that does not yet exist but should.
+- **D (Decision):** items awaiting operator authorization or operational call.
+
+Same rules as LESSONS.md: append-only with indexed numbering. Closed items get a CLOSED tag, date, and pointer to the resolution; never delete. Superseded items get a SUPERSEDED tag and a pointer to the replacement.
 
 **Cross-references:**
-- Foundational framing: LESSONS.md Section 1 (where we actually stand) and Section 6 (known unknowns).
+- Foundational framing: LESSONS.md Section 1.
 - Classification language: TAXONOMY.md.
 - Prior work: ANALYSIS_LIBRARY.md.
 
-**Last updated:** 2026-04-30 ~15:10 ET, mid-Session 4.
+**Last updated:** 2026-04-30 (Session 4, mid-session foundational close-out).
 
 ---
 
@@ -15,98 +24,151 @@
 
 **Current phase: Foundational, not tactical.** Per LESSONS.md Section 1.
 
-We are not optimizing config. We are not picking cells to enable. We are rebuilding our ability to trust per-cell metrics. Specifically: classifying data sources by tier, classifying analyses by depth, and re-validating prior anchor findings before any redeployment.
+We are not optimizing config. We are not picking cells to enable. We are rebuilding our ability to trust per-cell metrics. Within the foundational phase, the current sub-phase is: **closing every outstanding foundational item before running any analysis.**
 
-Within the foundational phase, current sub-phase is: **closing every outstanding foundational item before running any analysis.** The four content modules are populated (LESSONS, TAXONOMY, ANALYSIS_LIBRARY, ROADMAP). The remaining work is resolving the foundational unknowns and canonical-source designations cataloged in this ROADMAP. Only after every item below is closed do we proceed to first analysis with intention.
-
----
-
-## SECTION 2: IN FLIGHT
-
-- **Tier-count CC probe** (background task ID bonjf68wx, started Apr 30 12:03 PM ET, now ~3hr running). Streaming 515M-row B-tier gzip plus A-tier file scan plus C-tier sqlite query. Output will populate TAXONOMY.md Section 1 (per-tier match counts per category, both-sides coverage). CPU-starved by concurrent collectors (mlb_bbo_logger, live_v3 paper, te_live, etc.) — operator decision: let it grind. Status: healthy, slow.
+T1-T12 (the foundational close-out list) are the gating items. Most are CLOSED as of this commit; T11, T12 remain OPEN.
 
 ---
 
-## SECTION 3: FOUNDATIONAL TO-DO (every item below must close before analysis)
+## SECTION 2: T (TO-DO) — actionable items with close condition
 
-Order is dependency-driven. Items reference lessons that motivate them.
+T1. ROADMAP refresh — initial scaffolded version. **CLOSED 2026-04-30 (commit c794b26).** Replaced by this restructure (T16 placeholder for self).
 
-1. **ROADMAP refresh** (this commit). Lock in current state.
-2. **Tier-counter completion.** Wait. Populate TAXONOMY Section 1 match counts on landing. Currently running.
-3. **executor_core.py write target.** Per TZ probe finding: line 1023 has `datetime.utcnow().isoformat() + "Z"` write. Determine what column/file this writes. If a current DB writer, TZ inventory is not final until this column is classified. Per F16/F20.
-4. **arb-executor-v2/ directory inventory.** Per LESSONS Section 6: contents not yet inventoried. Could contain canonical implementations of analyses currently fragmented across /tmp. Must inspect before designating canonical sources.
-5. **Snapshot dir investigation.** /root/Omi-Workspace/tmp/ has single-mtime snapshot from Apr 29 17:43 per depth-inventory probe. Understand what triggered the snapshot before treating /tmp as canonical for ANALYSIS_LIBRARY entries.
-6. **/tmp/bbo_aw1.csv and /tmp/bbo_aw2.csv inventory.** Per LESSONS Section 6: "first observed vs late-game BBO snapshot pairs, likely the source for bias correction." Compare against canonical bias file before designating canonical.
-7. **Canonical bias file designation.** Per F19: six+ bias files exist measuring overlapping concepts. Inventory what each file measures (which baseline, which window, which subset). Designate canonical. Document in ANALYSIS_LIBRARY. Resolves the +21-37c vs 10.6c known unknown.
-8. **Canonical scorecard designation.** Per A28: multiple competing scorecards (rebuilt_scorecard, bootstrap_ci_results, optimal_exits) with no source-of-truth tracking. Designate canonical. Document in ANALYSIS_LIBRARY.
-9. **Canonical "ultimate cell economics" designation.** Per E27: multiple competing implementations (ultimate_cell_economics, ultimate_cell_economics_csv, corrected_cell_economics, validate_and_optimize, scalp_constrained_optimize). Designate canonical or explicitly retire others.
-10. **Entry-time derivation from JSONL.** Per F17: matches.entry_time NULL on 977 live/live_log rows. Derive clean entry-time column from JSONL ts (verified ET) for each of the 977 fills. Output as portable CSV/parquet for downstream analysis use.
-11. **Bug 4 status check.** Per F8: settlement event detection broken when bot resting sell unfilled at market close. Either blocking ongoing analysis or actively being remediated. Determine current status; if remediation in progress, document expected completion.
-12. **Security exposures rotation.** Per session note: GitHub PAT in git remote URL plus plaintext Kalshi API key in probe_kalshi_api2.py. Both in public repo. Rotate both keys. Verify no other exposed secrets.
+T2. Tier-counter completion. Started Apr 30 12:03 PM ET, populates TAXONOMY Section 1 match counts. **PARTIALLY CLOSED 2026-04-30:** A-tier landed (854 events; commit 1084503). B-tier failed mid-stream with OOM after ~3hrs; C-tier did not run. See T13.
 
----
+T3. executor_core.py write target verification. **CLOSED 2026-04-30 (commit 58de738):** legacy cross-platform arb code, writes to JSON state files not DB columns, no tennis-stack TZ impact. Ref C15.
 
-## SECTION 4: BLOCKED — DEPENDS ON SECTION 3 COMPLETION
+T4. arb-executor-v2/ directory inventory. **CLOSED 2026-04-30 (commit 58de738):** 30 Python files, zero tennis content, fresh checkout of legacy cross-platform arb code, out of scope per E19.
 
-- **70.7% reproduction analysis.** Per E18/E25.
-- **Per-cell bilateral double-cash rate.** Per E18/E21/E22.
-- **Channel 2 attribution to game events.** Per A25/A27 — also needs alternative game-state source.
-- **First analysis with intention** (whatever it turns out to be).
+T5. Snapshot dir investigation (/root/Omi-Workspace/tmp/). **CLOSED 2026-04-30 (commit 596aaf2):** curated git-tracked archive with multiple curation batches across multiple dates, NOT a single Apr 29 17:43 snapshot. ANALYSIS_LIBRARY corrected. Ref D9.
 
----
+T6. /tmp/bbo_aw1.csv and /tmp/bbo_aw2.csv inventory. **CLOSED 2026-04-30 (commit c791c46):** paired-snapshot drift measurement framework, distinct from entry_price_bias canonical, complementary not redundant. Ref F21.
 
-## SECTION 5: KNOWN UNKNOWNS (from LESSONS.md Section 6)
+T7. Canonical bias file designation. **CLOSED 2026-04-30 (commit 7d7b7fd):** entry_price_bias.csv canonical for B-tier era (Mar 20 - Apr 17). bias_by_cell_from_matches.csv structurally broken post-Apr-10 due to historical_events C-tier coverage limit. Pre-Mar-20 bias and Apr 18+ bias both require separate tier-appropriate implementations (per A28). +21-37c vs 10.6c "discrepancy" was level-of-aggregation difference, not contradiction. Ref A28, B11, F22, F23.
 
-These are open questions blocking strategic decisions. Some are absorbed into Section 3 above; others stay tracked here for visibility.
+T8. Canonical scorecard designation. **CLOSED 2026-04-30 (commit 82809ad):** 8 scorecard files answer 8 distinct questions, per-question canonical-designation table is the artifact (not pick-one-and-retire-others). Original A28 framing of "fragmentation" partially superseded by A29. UNCALIBRATED count verified 30/67. Ref A29, B12.
 
-- Magnitude and distribution of data corruption in the 977-fill matches table records (partially expanded by F7, F17, F18; full magnitude still unmeasured)
-- Right cell definition (strategic question, not foundational; deferred until foundation complete)
-- Per-cell average bounce decomposed by Channel 1 vs Channel 2 (analysis target, not foundation)
-- 30 UNCALIBRATED cells in rebuild scorecard (depends on canonical scorecard — Section 3 #8)
-- 58 still-resting Apr 24-29 positions (wait-and-see)
-- Inverse-cell cross-check on real data (analysis target, not foundation)
-- Apr 24 retune isolation problem (historical forensics, deferred)
+T9. Canonical "ultimate cell economics" designation. **CLOSED 2026-04-30 (commit de3e6a3):** 4 producer scripts in iteration sequence on Apr 28, with corrected_cell_economics.py methodology canonical (Sw/Sl decomposition). validate_and_optimize.py canonical for portfolio optimization. ultimate_cell_economics.py and ultimate_cell_economics_csv.py SUPERSEDED. /tmp/harmonized_analysis/ outputs carry methodology-incorrect data; deprecation marker placed. Ref C16, E28, F25.
+
+T10. Entry-time derivation. **CLOSED 2026-04-30 (commit ae685e9 + 952da9c):** /tmp/kalshi_fills_history.json discovered as Tier-A fact source (7,489 server-side fills, Mar 1 - Apr 29). Closes F17/F9/F8/A26/F10 partially-or-fully. Original framing of "derive from JSONL" wrong (live_v3 only covers Apr 24+); kalshi_fills_history.json is the canonical entry-time source. Ref A30, E29, F26, F27.
+
+T11. Bug 4 (settlement event detection) status check. **OPEN.** Per F8: when bot resting sell unfilled at market close, NO settlement event is logged; position loss invisible to log-based P&L. /tmp/bug4_brief.md (32KB) and /tmp/bug4_probe.md (14KB) exist. Need: probe to determine if fix is landed, in progress, or stalled. Possibly partially superseded by T10 closure (kalshi_fills_history.json has every server-side fill including settlement-adjacent ones).
+
+T12. Security exposures rotation. **OPEN.** Per session note: GitHub PAT in git remote URL, plaintext Kalshi API key in /tmp/probe_kalshi_api2.py. Both in public repo. Operator action required: rotate both keys, verify no other exposed secrets, force-push history rewrite if PAT was committed (or accept it's burned).
+
+T13. Tier-counter B-tier OOM-resilient retry. **OPEN.** Replaces the failed portion of T2. Approach: stream tickers to disk (jsonl append) instead of accumulating in-memory set, aggregate post-stream. Output populates TAXONOMY Section 1 B-tier match counts.
+
+T14. Re-pull schedule for kalshi_fills_history.json. **OPEN.** Per F28: file is on /tmp (ephemeral). Source data extends through Apr 29 13:02 UTC; fill history continues to grow. Need: scheduled re-pull (e.g., daily) or copy to durable storage, or both.
+
+T15. ROADMAP restructure — categorized T/F/U/G/D system. **CLOSED 2026-04-30 (this commit).** Replaces flat sections with append-only indexed structure.
 
 ---
 
-## SECTION 6: RECENTLY COMPLETED (Session 4, Apr 30)
+## SECTION 3: F (FLAG) — operational risks and attention items
 
-- **LESSONS.md created.** 122 lessons across 7 categories: A=27, B=10, C=14, D=8, E=27, F=20, G=16.
-- **Module scaffolding** (README, TAXONOMY, ANALYSIS_LIBRARY, ROADMAP) created.
-- **Variable-inventory CC probe** completed. tennis.db full schemas, premarket_ticks 27-column confirmation, trades CSV taker_side confirmation. Findings: live_scores final-outcome only; book_prices canonical sharp consensus; bookmaker_odds junk-drawer.
-- **TZ probe** completed. Three timezone conventions identified. Verified bbo_log_v4 ET, all polled_at columns ET, live_scores.last_updated ET, players.last_updated UTC (F20 outlier).
-- **TZ follow-up probe** completed. Inferred rows promoted to VERIFIED.
-- **Depth-inventory CC probe** completed. ~30 distinct analyses cataloged across 6 depth levels.
-- **TAXONOMY.md Section 4** fully populated with verified TZ labels (commit 49613eb).
-- **ANALYSIS_LIBRARY.md Sections 2-4** fully populated (commit 85daa0a).
-- **Lessons added this session** in order: changelog correction, A24 + E25 + E26, A25 + A26 + D7 + D8 + F13 + F14 + F15, F16 + F17 + F18, A27 + C14 + E27 + F19, F20.
+F1. /tmp ephemerality risk. Per LESSONS F28: bare /tmp files can be lost over time without warning. Files currently sitting on /tmp that are canonical sources: kalshi_fills_history.json (per A30), bbo_log_v4.csv.gz (B-tier), entry_price_bias.csv cluster, bbo_aw1/aw2, harmonized_analysis/ deprecated outputs. Mitigation tracked at T14 for kalshi_fills_history; broader durability migration not yet planned.
 
----
+F2. /tmp/harmonized_analysis/ outputs retained on disk. Per LESSONS F25: methodology-incorrect data, deprecation marker placed but actual files not deleted. Future readers may consume them despite the marker. Mitigation: depends on D1 (deletion authorization).
 
-## SECTION 7: NEXT MOVES (after this ROADMAP commit)
+F3. Stale references in LESSONS Section 4. Per LESSONS F27: scanner_pendulum.log cited as legacy bot log but does not exist on disk. Reference must be removed in next doc-cleanup pass. Other LESSONS Section 4 entries should also be re-verified given /tmp ephemerality (F1).
 
-Per Section 3 dependency order:
+F4. Apr 17 - Apr 23 fill detection broken locally. Per LESSONS F10/F26: live_v3 JSONL had 0 entry_filled events in this 6-day window despite 393MB of log content (763 cell_match events, 0 entry_filled). Now partially mitigated by T10 closure (kalshi_fills_history.json has server-side fills regardless). But: the local-bot-state for what the bot DECIDED to enter is preserved; the local fill confirmations were lost. For analyses that need both decision intent AND execution, the join is fragile in this window.
 
-1. (this commit completes item 1)
-2. Wait on tier-counter (item 2). Concurrent work below does not contend with it (no gzip reads).
-3. Run executor_core.py write target probe (item 3).
-4. Run arb-executor-v2 inventory probe (item 4).
-5. Run snapshot dir investigation probe (item 5).
-6. Run bbo_aw1/aw2 inventory probe (item 6).
-7. Designate canonical bias file (item 7) after items 4-6 complete.
-8. Designate canonical scorecard (item 8).
-9. Designate canonical "ultimate" economics (item 9).
-10. Run entry-time derivation script (item 10).
-11. Bug 4 status probe (item 11).
-12. Security rotation (item 12).
-13. ALL ITEMS CLOSED. Re-read ROADMAP. Pick first analysis.
+F5. bookmaker_odds table is junk-drawer per LESSONS F15. Player1/player2 fields '?' in samples, kalshi_ticker/kalshi_price/edge_pct NULL in samples. Use book_prices for sharp consensus. F15 implies "do not use bookmaker_odds" but the table still exists; if any future code accidentally reads it, results will be invalid.
 
-Each item resolves to either a CC probe + finding, or a designation + ANALYSIS_LIBRARY update, or a code change. Each closes with a commit so progress is durable.
+F6. live_scores table has only final set scores per A25/A27. Schema columns p1_games/p2_games suggest per-game state but are empty in samples. For Channel 2 game-event attribution work (currently blocked, see U7), live_scores is insufficient.
+
+F7. matches.entry_time NULL on every live/live_log row per F17. Even with T10 closed and kalshi_fills_history.json canonical, the matches table itself remains broken on this column. Any code that joins to matches.entry_time should be flagged.
+
+F8. matches.settlement_time has two writers per F18. Live rows naive ET, backfill rows ISO no-Z. Per-row format detection required. Future joins on this column are fragile.
+
+F9. players.last_updated is UTC via SQLite date('now') per F20, while every other te_live.py-written column is ET. Same-writer-different-tz outlier. If any cross-table join uses players.last_updated as if ET, results are wrong by N hours.
+
+F10. Path 1 lesson-number renames. Three off-by-one drift events occurred in Session 4. D10 added to mitigate; subsequent commits used dynamic on-disk number reads which worked. Still a flag because future Claude sessions need to internalize the pattern.
 
 ---
 
-## SECTION 8: CHANGELOG
+## SECTION 4: U (UNKNOWN) — open questions blocking strategic decisions
+
+U1. Magnitude and distribution of data corruption in matches table records. Per LESSONS Section 6 known unknown #1. Partially expanded by F7 (entry_time NULL), F8 (settlement_time two writers), F17, F18. Full magnitude still unmeasured. T10 closure provides a cleaner alternative source (kalshi_fills_history.json) so this unknown becomes lower priority for forward analysis.
+
+U2. Right cell definition. Per LESSONS Section 6 known unknown #2. Current scheme is tier × side × 5c price band. Open: is 5c the right granularity, is direction redundant with price, should tier be primary or secondary partition. Strategic question, not foundational; deferred until foundation complete.
+
+U3. Per-cell average bounce decomposed by Channel 1 vs Channel 2 on uncorrupted data. Per LESSONS Section 6 known unknown #3. Analysis target.
+
+U4. Per-cell bilateral double-cash rate. Per LESSONS E18/E21/E22. Extends April 14 paired analysis. Analysis target.
+
+U5. 30 UNCALIBRATED cells: edge, no edge, or insufficient data? Per LESSONS Section 6 known unknown #6. **COUNT VERIFIED 2026-04-30 (commit 82809ad):** 30/67 confirmed. Open question reframed: does re-running classification with corrected methodology (canonical bias per F22, scalp-achievable constraint per A9) reduce UNCALIBRATED count or move cells into known-mechanism buckets?
+
+U6. 58 still-resting Apr 24-29 positions outcomes. Per LESSONS Section 6 known unknown #8. Wait-and-see; resolves when positions exit or settle.
+
+U7. Channel 2 attribution to game events. Originally hoped for via live_scores; insufficient per A25/A27. Blocked pending alternative game-state source (Kalshi live_data API, ESPN scraper, or other).
+
+U8. Inverse-cell cross-check on real data. Per LESSONS Section 6 known unknown #9. Does Cell X bouncing +5c correlate with its inverse cell dipping ~minus 5c at the same moment? Analysis target.
+
+U9. Apr 24 retune isolation problem. Per LESSONS Section 6 known unknown #10. 14 cell disables + 8 exit retunes + 12 code changes simultaneously. Cannot determine which intervention drove subsequent improvement. Historical forensics, deferred.
+
+---
+
+## SECTION 5: G (GAP) — work that does not exist but should
+
+G1. A-tier-era bias measurement. Per LESSONS A28 (now A29 after Path 1 rename — being explicit about file-on-disk number). Bias file for Apr 18+ fills using A-tier premarket_ticks 27-column baseline does not exist. Required for trustworthy per-cell analysis on the post-Apr-18 window.
+
+G2. Depth-3 capacity analysis using 5-deep depth columns. Per LESSONS A22/A26 and ANALYSIS_LIBRARY findings. We have A-tier data with bid_2-5 / ask_2-5 with sizes; no analysis uses them. Capacity-for-size, market-impact, book-imbalance dynamics all blocked here.
+
+G3. Depth-4 microstructure analysis using is_taker. Per A26 + T10 closure: trade CSVs have taker_side, kalshi_fills_history.json has is_taker. No volume profile, VWAP, autocorrelation, market impact, or order-flow microstructure analyses exist.
+
+G4. Per-cell economics on cleaned data (post-T7-canonical bias, post-T10 entry-time). corrected_cell_economics.py methodology is canonical (per T9) but has not been re-run with the canonical bias designation from T7 + canonical entry-time from T10.
+
+G5. arb-executor-v2 directory contents. Per LESSONS Section 6 known unknown #11. **CLOSED 2026-04-30:** confirmed legacy cross-platform arb code, no tennis content (T4). Listed here as historical because the gap is now resolved.
+
+G6. /tmp/bbo_aw1.csv and /tmp/bbo_aw2.csv vs canonical bias file. Per LESSONS Section 6 known unknown #12. **CLOSED 2026-04-30:** aw1/aw2 measure premarket-to-late drift, distinct from entry_price_bias canonical. Complementary not redundant. Listed here as historical.
+
+---
+
+## SECTION 6: D (DECISION) — operator authorization or operational call required
+
+D1. Delete /tmp/harmonized_analysis/*.csv methodology-incorrect outputs. Per F2. Currently retained with deprecation marker. Decision: delete entirely, retain indefinitely as forensic reference, or copy to durable archive then delete from /tmp.
+
+D2. Kill mlb_bbo_logger / live_v3.py paper session to free CPU+RAM during heavy analysis. Per Session 4 finding (CPU contention slowed tier-counter to 25% efficiency). Decision: not worth killing to accelerate doc/probe work; revisit if heavy compute needed.
+
+D3. Rotate GitHub PAT exposed in git remote URL. Per T12. Operator action only — generate new PAT, update remote, force-push history rewrite or accept exposure.
+
+D4. Rotate Kalshi API key in /tmp/probe_kalshi_api2.py. Per T12. Operator action only — generate new key, update .env, ensure no plaintext copies remain.
+
+D5. /tmp ephemerality migration. Per F1. Decision: which /tmp files are canonical enough to migrate to durable storage now, vs accept the ephemerality risk?
+
+---
+
+## SECTION 7: RECENTLY COMPLETED (Session 4, Apr 30) — high-level
+
+Earliest first within the session.
+
+- LESSONS.md created and grew from 91 to 140 lessons across 7 categories (A=30, B=12, C=16, D=10, E=29, F=27, G=16).
+- Module scaffolding created: README.md, TAXONOMY.md, ANALYSIS_LIBRARY.md, ROADMAP.md.
+- Variable-inventory probe + TZ probe + TZ follow-up probe completed; all known timestamp columns classified.
+- Depth-inventory probe completed; ~30 prior analyses cataloged.
+- ANALYSIS_LIBRARY.md fully populated with per-question canonical designations.
+- TAXONOMY.md fully populated: tier definitions, depth taxonomy, depth × tier matrix, full variable inventory with verified TZ labels, kalshi_fills_history.json added as Tier-A fact source.
+- T1-T10 closed (10 of 12 foundational items). T11/T12 remain.
+- T13/T14/T15 added during foundational close-out as emergent items.
+- Major discovery: kalshi_fills_history.json closes F17/F9/F8/A26/F10 partially-or-fully (E29 cross-reference closure pattern documented).
+
+---
+
+## SECTION 8: NEXT MOVES
+
+1. T11 (Bug 4 status check) — probe to determine fix state.
+2. T12 (security rotation) — operator action.
+3. T13 (B-tier OOM-resilient retry) — populate TAXONOMY Section 1 B-tier match counts.
+4. T14 (kalshi_fills_history.json re-pull schedule) — durability mitigation.
+5. ALL T-items closed. Re-read this ROADMAP. Pick first analysis with intention from G-items (most strategic) or U-items (most blocking).
+
+---
+
+## SECTION 9: CHANGELOG
 
 - 2026-04-30 ~13:21 ET: Initial scaffolding (commit c794b26).
 - 2026-04-30 ~14:00 ET: First update reflecting variable-inventory and TZ probes complete (commit cac13c4).
-- 2026-04-30 ~15:10 ET (this commit): Section 3 added — full foundational to-do list with dependency ordering. 12 items must close before any analysis. Section 6 reflects all module population complete. Section 7 sequences the close-out.
+- 2026-04-30 ~15:10 ET: Section 3 added — flat to-do list with dependency ordering, 12 items (commit 7ce7359).
+- 2026-04-30 ~17:45 ET (this commit): Restructured into T/F/U/G/D categorized indexed system, same model as LESSONS.md. T1-T15 indexed (T1-T10, T15 closed; T2 partial; T11-T14 open). F1-F10 flagged. U1-U9 unknown. G1-G6 (G5/G6 closed historical). D1-D5 awaiting decision. Current state captured comprehensively for handoff durability.

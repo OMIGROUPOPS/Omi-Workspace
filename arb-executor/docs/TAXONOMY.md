@@ -71,6 +71,7 @@ Tiers are ordered by fidelity: A is highest, C is lowest. Higher tier means more
 - tennis.db.matches (3,627 rows, Feb 5 - Apr 17) — operational fill log; entry_time NULL on live (F17), settlement_time has two formats (F18)
 - analysis/trades/*.csv (1,693 files, Apr 19+) — trade-level with taker_side per A26
 - live_v3_*.jsonl logs — bot structured event log, ts ET-verified, ts_epoch tz-agnostic
+- /tmp/kalshi_fills_history.json (7,489 server-side fills, Mar 1 - Apr 29; producer /tmp/fills_history_pull.py) — TIER-A FACT SOURCE per A30. Canonical for entry timing, fill quantity, taker vs maker, settlement reconciliation. Supersedes matches.matches and local logs for per-fill ground truth. created_time is UTC ISO Z; ts is Unix epoch. /tmp ephemerality risk per F27.
 
 ### External sources (not currently pulled but accessible)
 
@@ -411,7 +412,44 @@ Selected columns of interest: id, date, event_ticker, market_ticker, tournament,
 | ticker | string | n/a | Market ticker |
 | market_ticker | string | n/a | Market ticker (alternate field) |
 
-Per F17: entry timing derivation for the 977 fills happens here, not from matches.entry_time.
+Per F17 [REFINED]: live_v3 JSONL covers Apr 24+ only (166 entry_filled events). For Mar 26 - Apr 23 fills, see kalshi_fills_history.json (per A30) as the canonical source.
+
+### /tmp/kalshi_fills_history.json — TIER-A FACT SOURCE per A30
+
+- Source: `/tmp/kalshi_fills_history.json` (4.5 MB, refreshable via /tmp/fills_history_pull.py)
+- Date range: 2026-03-01 00:06:24 UTC to 2026-04-29 13:02:05 UTC (re-runnable to extend)
+- Total fills: 7,489 (Mar: 3,497; Apr: 3,992)
+- Schema: dict with keys fills (list), min_ts (epoch), max_ts (epoch), fetched_at (epoch float)
+- /tmp ephemerality risk per F27 — re-pull periodically or copy to durable storage.
+
+Per-fill schema (15 fields):
+
+| Field | Type | TZ | Description |
+|---|---|---|---|
+| action | string | n/a | "buy" or "sell" — bot side of the trade |
+| count_fp | string | n/a | Actual executed quantity (decimal string, e.g. "10.00"). AUTHORITATIVE per F9 |
+| created_time | string | VERIFIED UTC | ISO 8601 with Z suffix |
+| fee_cost | float | n/a | Per-fill fee in dollars |
+| fill_id | string | n/a | UUID of the fill |
+| is_taker | boolean | n/a | TRUE if bot was taker (lifted ask / hit bid), FALSE if maker. Depth-4 microstructure per A26 |
+| market_ticker | string | n/a | Full Kalshi market ticker |
+| no_price_dollars | float | n/a | NO-side price per share, decimal dollars |
+| yes_price_dollars | float | n/a | YES-side price per share, decimal dollars |
+| order_id | string | n/a | UUID of the parent order; groups partial fills |
+| side | string | n/a | "yes" or "no" — which side of the binary contract |
+| subaccount_number | int | n/a | 0 (single-account operation) |
+| ticker | string | n/a | Full Kalshi ticker (== market_ticker in samples) |
+| trade_id | string | n/a | UUID of the trade |
+| ts | int | tz-agnostic | Unix epoch seconds (duplicates created_time) |
+
+Closes/refines:
+- F17 (matches.entry_time NULL): created_time is the canonical entry timestamp
+- F9 (qty under-reporting): count_fp is the actual executed quantity
+- F8 partial (settlement events sometimes unlogged locally): server-side has every fill
+- A26 (taker_side underused): is_taker available at execution level
+- F10 (Apr 17-23 fill detection broken locally): server-side has fills regardless of bot-side log gap
+
+Joining: created_time is UTC; conversion required when joining to ET sources (premarket_ticks ts_et, JSONL ts, bbo_log_v4 timestamp). Per F16 / F20.
 
 ### Final TZ verification table
 
@@ -430,6 +468,8 @@ Per F17: entry timing derivation for the 977 fills happens here, not from matche
 | matches | entry_time | NULL on live; UNVERIFIED on backfill (F17) |
 | matches | settlement_time | UNVERIFIED, two writer formats (F18) |
 | live_v3_*.jsonl | ts | VERIFIED ET |
+| kalshi_fills_history.json | created_time | VERIFIED UTC |
+| kalshi_fills_history.json | ts | VERIFIED tz-agnostic (Unix epoch) |
 | live_v3_*.jsonl | ts_epoch | VERIFIED tz-agnostic |
 
 ET sources joining UTC sources require explicit conversion. matches table timestamps require per-row format detection.
@@ -441,3 +481,4 @@ ET sources joining UTC sources require explicit conversion. matches table timest
 - 2026-04-30 ~13:21 ET: Initial scaffolding (commit c794b26).
 - 2026-04-30 ~14:55 ET (this commit): Section 4 fully populated with verified TZ labels per the variable-inventory probe + TZ probe + TZ follow-up probe. Section 1 source descriptions populated; match counts placeholder pending tier-counter completion.
 - 2026-04-30 ~16:00 ET: Section 1 partial-populate. A-tier match counts landed (854 both-sides events across 4 categories, 1,732 total CSV files). B-tier and C-tier counts deferred to OOM-resilient tier-counter retry. F24 (regex undercount) referenced.
+- 2026-04-30 ~17:30 ET (item 10 closure): kalshi_fills_history.json added as Tier-A fact source. Section 1 reference, Section 4 full schema, TZ table updated. F17 reference adjusted to point at A30. Closes F17/F9/F8/A26/F10 partially-or-fully per E29.

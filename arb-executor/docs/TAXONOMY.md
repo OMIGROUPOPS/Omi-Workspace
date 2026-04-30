@@ -18,8 +18,8 @@ Tiers are ordered by fidelity: A is highest, C is lowest. Higher tier means more
 
 - Source: /root/Omi-Workspace/arb-executor/analysis/premarket_ticks/*.csv
 - Date range: Apr 18 2026 to ongoing
-- File count: 1,712 (Apr 30 snapshot)
-- Match count both-sides: TO BE POPULATED from tier-counter
+- File count: 1,732 (Apr 30 snapshot)
+- Match count both-sides: 854 events (per partial tier-counter, Apr 30). Per-category: ATP_CHALL=455, ATP_MAIN=132, WTA_CHALL=133, WTA_MAIN=134. Caveat: 24 filenames unparsed by tier-counter regex (5-letter pair codes like KXATPCHALLENGERMATCH-26APR20LAOST-OST.csv vs assumed 6-letter pairs); true match count is at least 854, undercount likely by ~12-24 events. See F24.
 - Sampling rate: Approximately every second when book changes
 - Schema: 27 columns. ts_et (ET), ticker, bid_1 through bid_5 with sizes, ask_1 through ask_5 with sizes, mid, bid_depth_5, ask_depth_5, depth_ratio, last_trade.
 - All timestamps: VERIFIED ET.
@@ -40,6 +40,7 @@ Tiers are ordered by fidelity: A is highest, C is lowest. Higher tier means more
 - Source: /tmp/bbo_log_v4.csv.gz
 - Date range: 2026-03-20 04:49:51 ET to 2026-04-17 15:15:49 ET
 - Row count: 515,454,156 (~515M)
+- Match count by category: TO BE POPULATED. B-tier counter failed mid-stream Apr 30 (OOM on 515M-row set accumulation in 1.9 GB VPS). Retry pending with disk-incremental approach (jsonl append per ticker, aggregate post-stream).
 - Schema: 5 columns. timestamp (ET), ticker, bid, ask, spread.
 - All timestamps: VERIFIED ET (tennis_v5.py line 285 time.strftime + system tz America/New_York).
 - Producer: tennis_v5.py (legacy bot)
@@ -51,7 +52,7 @@ Tiers are ordered by fidelity: A is highest, C is lowest. Higher tier means more
 - Source: tennis.db.historical_events
 - Date range: Jan 2 2026 to Apr 10 2026
 - Row count: 5,889 (with total_trades >= 10)
-- Match count by category: TO BE POPULATED from tier-counter.
+- Match count by category: TO BE POPULATED. C-tier counts not yet computed; tier-counter completed A-tier successfully but failed B-tier with OOM, and Step 4 cross-tier overlap did not run. C-tier counts deferred to OOM-resilient retry of tier-counter.
 - Schema: 14 columns. event_ticker, category, winner, loser, first/min/max/last for both winner and loser sides, total_trades, first_ts, last_ts.
 - All timestamps: VERIFIED UTC (ISO 8601 with Z suffix).
 - What it uniquely supports: Pre-Mar-20 historical reach; existence proofs across the entire Jan 2 - Apr 10 window; volume proxy via total_trades.
@@ -439,3 +440,4 @@ ET sources joining UTC sources require explicit conversion. matches table timest
 
 - 2026-04-30 ~13:21 ET: Initial scaffolding (commit c794b26).
 - 2026-04-30 ~14:55 ET (this commit): Section 4 fully populated with verified TZ labels per the variable-inventory probe + TZ probe + TZ follow-up probe. Section 1 source descriptions populated; match counts placeholder pending tier-counter completion.
+- 2026-04-30 ~16:00 ET: Section 1 partial-populate. A-tier match counts landed (854 both-sides events across 4 categories, 1,732 total CSV files). B-tier and C-tier counts deferred to OOM-resilient tier-counter retry. F24 (regex undercount) referenced.

@@ -140,6 +140,9 @@ A22. The measurement universe is not bid/ask/mid/spread. Real edge analysis requ
 
 A23. Data sources are pulled from but not fully extracted. A-tier CSVs have 5-deep orderbook depth with sizes; we have been using only level 1. tennis.db has 7 underexplored tables (book_prices, kalshi_price_snapshots, live_scores, bookmaker_odds, betexplorer_staging, dca_truth, edge_scores) whose schemas we have not inventoried. The analysis/trades/ directory has 2.75M trade records we have barely touched. Before designing analysis, inventory what fields exist in each source, not just what we have been using.
 A24. The variable inventory per data tier is the foundation of analysis design. Every analysis can only access the variables present in its source. We have systematically used 6 of 27 columns from A-tier, ignored min/last/total_trades/timestamps in C-tier, and never inventoried 7 underexplored tables in tennis.db (book_prices, kalshi_price_snapshots, live_scores, bookmaker_odds, betexplorer_staging, dca_truth, edge_scores). Before designing analysis at any depth, enumerate variables available at each tier. Analysis questions that seemed impossible may be answerable from data we already have, and questions we have been answering at depth-1 may be answerable at depth-3+ from the same source.
+A25. live_scores has only final set-score outcomes, not in-match state. The columns p1_sets, p2_sets, p1_games, p2_games SUGGEST per-set and per-game tracking, but in samples p1_games/p2_games are empty strings and status is 'finished'. live_scores is insufficient for game-event-level Channel 2 attribution. To attribute Channel 2 captures to specific game events, we would need to source live in-match state from elsewhere (Kalshi live_data API, external scrapers like ESPN). Schema-promised capability does not equal data-populated reality.
+
+A26. Trade-level data with taker_side is already collected in analysis/trades/ CSVs. Schema: ts_et, ticker, price, count, taker_side. 1,693 files, ~2.75M trade records, Apr 19+. Aggressor-side, VWAP, volume profile, and buying-pressure-vs-selling-pressure questions (depth-3 and depth-4 microstructure) are answerable from already-collected data, not requiring new collection.
 
 ### Category B — Statistical confidence
 
@@ -178,6 +181,9 @@ D3. Memory bullets describing scorecards by counts ("11 confirmed SCALPER_EDGE, 
 D4. When operator pushes back, do not generate another plausible-sounding framework. Stop. Ask. Re-anchor. Pattern-matched fabrication compounds.
 D5. Diligence means thinking through the response shape and what could be missing BEFORE the response lands, not after.
 D6. This LESSONS.md is the durable memory. Future chats start by reading this file. Do not reinvent context the file already has.
+D7. Schema columns suggest capability; populated content determines reality. A column named p1_games does not mean per-game state is captured if the column is empty in practice. A column named bookmaker_price does not mean sharp consensus is available if 100% of values are NULL. Before designating a table as a strategic source, verify population status (NULL rate, sample distribution, distinct value count) for the columns that matter. The schema is a promise; the data is the truth.
+
+D8. Before drafting any additive change to LESSONS.md or any module file, first verify on-disk state of that file. Drafted-in-chat content is not on-disk content. A commit prompt drafted N turns ago may not have been executed; the user response may have been about a different topic. Verify before designing operations that depend on prior commits having landed. CC's pre-flight check (read current state, confirm preconditions) is the model to follow.
 
 ### Category E — Strategic framing
 
@@ -224,6 +230,11 @@ F9. Bot has under-reported fill quantity at least once (POTRYB qty=1 logged, act
 F10. Apr 17 to Apr 23 had 763 cell_match events but 0 entry_filled events — fill detection was broken in that window.
 F11. Greeks decomposition analysis flagged as broken (degenerate first-bid bug). Schema is correct (theta_pregame_per_min, theta_early_match_per_min, gamma_avg_excursion_pct, realized_vega, scalp-phase distribution); numbers are not yet trusted.
 F12. Pre-March data exists locally only as historical_events summaries. Tick-level data for Jan 2 - Mar 19 is not on the VPS. Backfillable from Kalshi candlesticks API if needed but not currently pulled.
+F13. Multi-source data integrity requires per-field validity checks. The bookmaker_odds table has player1 field showing '?' literal placeholders in sampled rows, suggesting join failures during scrape. Before using bookmaker_odds (or any scraped/backfilled source) for analysis, verify how many rows have valid values in the columns that matter.
+
+F14. The matches table backfill rows have timestamp issues (settlement_time earlier than entry_time, negative time_to_settle_min in samples). Reinforces F7: backfill data is reconstructed and has known errors. Always treat source='backfill' rows in matches as lower-fidelity than source='live' or source='live_log'.
+
+F15. book_prices is the canonical sharp-consensus source. 3M rows with explicit book_key (pinnacle, gtbets, etc.) and per-event FV cents derived from raw odds with vig stripped, plus polled_at timestamp. bookmaker_odds is a separate table that looks similar but is partially populated junk-drawer data: '?' literal placeholders in player1/player2 fields, no bookmaker provenance column, NULL kalshi_price and edge_pct in samples. Use book_prices for sharp consensus analysis; do not use bookmaker_odds.
 
 ### Category G — Operator-relationship signals
 
@@ -305,3 +316,4 @@ Re-read Section 1. If we are drifting tactical, the foundation is not trustworth
 - 2026-04-30: Initial creation. Session 4 (Druid + Claude). Consolidated handoff doc lessons (A1-A18, B1-B10, C1-C11, D1-D5, E1-E11, F1-F6, G1-G13) plus session 4 additions (A19-A21, C12-C13, D6, E12-E22, F7-F11, G14-G15). Total: 98 lessons across 7 categories. (Math correction: A=21, B=10, C=13, D=6, E=22, F=11, G=15.)
 - 2026-04-30 (later same day): Session 4 mid-session additions: A22-A23 (measurement universe, undersampled sources), E23-E24 (formal tier definition, 70.7% as aggregate-not-cell), F12 (pre-March data limits), G16 (clarifying questions as diagnostic). Total: 104 lessons. (Updated counts: A=23, B=10, C=13, D=6, E=24, F=12, G=16.)
 - 2026-04-30 (later same day, taxonomy framing): A24 (variable inventory as foundation), E25 (70.7% reclassified as depth-0 existence proof not edge validation), E26 (depth and variable inventory are parallel axes). Total: 107 lessons. (Updated counts: A=24, B=10, C=13, D=6, E=26, F=12, G=16.)
+- 2026-04-30 (variable inventory probe results, fully landed): A25 (live_scores final-outcome only despite suggestive schema), A26 (trade CSVs have taker_side), D7 (schema vs populated reality), D8 (verify on-disk state before drafting additive changes), F13 (multi-source per-field validity check), F14 (matches backfill timestamp errors), F15 (book_prices is canonical sharp-consensus source not bookmaker_odds). Total: 114 lessons. (Updated counts: A=26, B=10, C=13, D=8, E=26, F=15, G=16.)

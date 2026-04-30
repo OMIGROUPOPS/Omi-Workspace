@@ -136,6 +136,9 @@ A18. The strategy is not just "buy mispriced binaries" — it is "capture spread
 A19. The cell label only matches reality if the price used for binning is the actual price at our entry window. first_price from historical_events is the first market trade — possibly hours before our entry — not the premarket BBO at the time we would enter.
 A20. Data tiers are not equivalent. Pre-March data is summary-level only; Apr 18+ is tick-level with 5-deep orderbook. Treat A-tier as primary; older tiers as supplementary.
 A21. Wall Street-grade metrics are the bar. Acceptable: Sharpe-like risk-adjusted returns, EV with confidence intervals, drawdown, capital efficiency, hit rate times profit, variance across cells, settlement-loss frequency, Greeks adapted for binary contracts. Not acceptable: small-N pattern matching, single-metric optimization, per-cell numbers without confidence bounds.
+A22. The measurement universe is not bid/ask/mid/spread. Real edge analysis requires: volume and trade flow (aggressor side, VWAP, volume profile), order book dynamics (iceberg detection, fade vs absorb, depth trajectory), realized volatility and autocorrelation, the Greeks (delta/gamma/theta/vega) properly computed, paired-cell lead-lag and slippage, calendar and contextual variables (time of day, tournament stage, surface, format), order flow microstructure (effective spread, realized spread, market impact). Defaulting to top-of-book bid/ask/spread analyses leaves most signal on the table. When designing measurement, ask: "what dimension of this data have we NOT touched yet?"
+
+A23. Data sources are pulled from but not fully extracted. A-tier CSVs have 5-deep orderbook depth with sizes; we have been using only level 1. tennis.db has 7 underexplored tables (book_prices, kalshi_price_snapshots, live_scores, bookmaker_odds, betexplorer_staging, dca_truth, edge_scores) whose schemas we have not inventoried. The analysis/trades/ directory has 2.75M trade records we have barely touched. Before designing analysis, inventory what fields exist in each source, not just what we have been using.
 
 ### Category B — Statistical confidence
 
@@ -199,6 +202,9 @@ E19. Cross-platform arbitrage is no longer in scope. Current strategic frame is 
 E20. Each cell requires its own treatment. No global config. Per-cell calibration of entry conditions, exit_cents, sizing, and channel preference (C1 vs C2 expected fire rate) is required.
 E21. Bilateral capture rate is per-cell, not uniform. Deep-skew cells (95c vs 5c) likely have near-zero bilateral capture because the underdog never bounces enough to fire. Per-cell decision: bilateral deploy, single-sided deploy, or skip.
 E22. Per-cell analysis vs per-game analysis are different. Per-cell asks: across all matches, what does this cell bounce distribution look like? Per-game asks: for this single match, did both cells produce capturable spikes? The double-cash goal requires per-game analysis; per-cell is necessary input but not sufficient.
+E23. Data tier definition (formal). A-tier: analysis/premarket_ticks/*.csv, Apr 18+. 27 columns, 5-deep orderbook with sizes, mid, depth_ratio, last_trade. Highest fidelity. B-tier: /tmp/bbo_log_v4.csv.gz, Mar 20-Apr 17. 5 columns: timestamp, ticker, bid, ask, spread. Top-of-book only, 515M rows. C-tier: historical_events table, Jan 2-Apr 10. Match summaries: first/min/max/last prices both sides, total_trades, first_ts, last_ts. No timing decomposition possible. A-tier and B-tier can both answer "did price reach +X" and Channel 1 vs Channel 2 timing. Only A-tier can answer order book depth, capacity for size, or microstructure questions. Only C-tier can extend N back to January at the cost of timing decomposition.
+
+E24. The 70.7% double-cash rate from April 14 paired analysis is an aggregate across categories, not validated per-cell. Reproducing it on current data is the doc first pressure test. Per-cell decomposition (which cells contribute to the 70.7% and which drag) is a separate open question. Some cells (deep-skew like 95c vs 5c) likely have near-zero bilateral capture even if aggregate is 70.7%.
 
 ### Category F — Data integrity
 
@@ -213,6 +219,7 @@ F8. When bot resting sell is unfilled at market close, NO settlement event is lo
 F9. Bot has under-reported fill quantity at least once (POTRYB qty=1 logged, actual=10 — 10x risk model error).
 F10. Apr 17 to Apr 23 had 763 cell_match events but 0 entry_filled events — fill detection was broken in that window.
 F11. Greeks decomposition analysis flagged as broken (degenerate first-bid bug). Schema is correct (theta_pregame_per_min, theta_early_match_per_min, gamma_avg_excursion_pct, realized_vega, scalp-phase distribution); numbers are not yet trusted.
+F12. Pre-March data exists locally only as historical_events summaries. Tick-level data for Jan 2 - Mar 19 is not on the VPS. Backfillable from Kalshi candlesticks API if needed but not currently pulled.
 
 ### Category G — Operator-relationship signals
 
@@ -231,6 +238,7 @@ G12. Operator pushes back hard when Claude generates plausible-sounding framewor
 G13. Druid is consistently right when pushing back. Treat any disagreement as Druid having insight Claude is missing.
 G14. Operator wants Claude to do the verification work, not ask Druid to be a search engine. CC and GitHub are the authoritative sources; do not ask Druid to recall things that are queryable.
 G15. Operator wants copy-paste-ready CC prompts in fenced blocks, not narrated commands. Format: first line "Read-only.", then ssh command, then commands, then literal phrase indicating end of CC instructions.
+G16. When operator asks a clarifying question that surfaces an analytical gap, that gap likely points at a real lesson to add. Operator question "you ever think about what the gap of understanding currently is?" was the prompt that surfaced A22 (measurement universe is not bid/ask/spread). Future Claude sessions should treat operator clarifying questions as diagnostic of missing framework, not just as requests for clarification.
 
 ### Superseded
 - A19 (original from session 3, Apr 30): "Entry mechanism defines what swings are capturable. Premarket-only capture." Replaced by E16 (the bot captures in-game spikes via passive resting sells; premarket scalping is 4.7% of mechanism).
@@ -291,3 +299,4 @@ Re-read Section 1. If we are drifting tactical, the foundation is not trustworth
 ## SECTION 8: CHANGELOG
 
 - 2026-04-30: Initial creation. Session 4 (Druid + Claude). Consolidated handoff doc lessons (A1-A18, B1-B10, C1-C11, D1-D5, E1-E11, F1-F6, G1-G13) plus session 4 additions (A19-A21, C12-C13, D6, E12-E22, F7-F11, G14-G15). Total: 98 lessons across 7 categories. (Math correction: A=21, B=10, C=13, D=6, E=22, F=11, G=15.)
+- 2026-04-30 (later same day): Session 4 mid-session additions: A22-A23 (measurement universe, undersampled sources), E23-E24 (formal tier definition, 70.7% as aggregate-not-cell), F12 (pre-March data limits), G16 (clarifying questions as diagnostic). Total: 104 lessons. (Updated counts: A=23, B=10, C=13, D=6, E=24, F=12, G=16.)

@@ -7,7 +7,7 @@
 - Classification language: TAXONOMY.md.
 - Prior work: ANALYSIS_LIBRARY.md.
 
-**Last updated:** 2026-04-30 ~14:00 ET, mid-Session 4.
+**Last updated:** 2026-04-30 ~15:10 ET, mid-Session 4.
 
 ---
 
@@ -17,83 +17,96 @@
 
 We are not optimizing config. We are not picking cells to enable. We are rebuilding our ability to trust per-cell metrics. Specifically: classifying data sources by tier, classifying analyses by depth, and re-validating prior anchor findings before any redeployment.
 
-Within the foundational phase, current sub-phase is: **building the durable module library** (LESSONS / TAXONOMY / ANALYSIS_LIBRARY / ROADMAP) and populating it from systematic data probes. Once populated, we move to first analysis with intention.
+Within the foundational phase, current sub-phase is: **closing every outstanding foundational item before running any analysis.** The four content modules are populated (LESSONS, TAXONOMY, ANALYSIS_LIBRARY, ROADMAP). The remaining work is resolving the foundational unknowns and canonical-source designations cataloged in this ROADMAP. Only after every item below is closed do we proceed to first analysis with intention.
 
 ---
 
 ## SECTION 2: IN FLIGHT
 
-- **Tier-count CC probe** (background task ID bonjf68wx, started Apr 30 12:03 PM ET). Streaming 515M-row B-tier gzip plus A-tier file scan plus C-tier sqlite query. Output will populate TAXONOMY.md Section 1 (per-tier match counts per category, both-sides coverage) and Section 3 (depth × tier matrix refinements). Status: running ~2hrs as of 14:00 ET. Long pole was the gzip stream; contention with concurrent variable-inventory probe earlier may have slowed it.
+- **Tier-count CC probe** (background task ID bonjf68wx, started Apr 30 12:03 PM ET, now ~3hr running). Streaming 515M-row B-tier gzip plus A-tier file scan plus C-tier sqlite query. Output will populate TAXONOMY.md Section 1 (per-tier match counts per category, both-sides coverage). CPU-starved by concurrent collectors (mlb_bbo_logger, live_v3 paper, te_live, etc.) — operator decision: let it grind. Status: healthy, slow.
 
 ---
 
-## SECTION 3: QUEUED (drafted, awaiting send)
+## SECTION 3: FOUNDATIONAL TO-DO (every item below must close before analysis)
 
-- **TZ follow-up probe.** Verify bbo_log_v4 timestamp tz (currently LIKELY ET, UNVERIFIED) and the naive polled_at columns in book_prices, kalshi_price_snapshots, live_scores. Method: grep tennis_v5.py for the actual write line that produces bbo_log_v4 timestamp; check VPS code for write paths into the polled_at columns. Send after tier-counter completes to avoid further contention.
-- **TAXONOMY.md Section 4 full population.** Drafted in chat; needs verified tz labels per column from the TZ follow-up before final write. Will include full column listings for A-tier (27 columns), trades CSV (5 columns), B-tier (5 columns), C-tier historical_events (14 columns), book_prices (12 columns), kalshi_price_snapshots (9 columns), live_scores (11 columns) with A25 limit annotation, bookmaker_odds with F15 deprioritization annotation, edge_scores, dca_truth, matches with F17/F18 annotations, players, name_cache, betexplorer_staging.
-- **TAXONOMY.md Section 1 match-count population.** Awaits tier-counter output. Will fill per-tier per-category match counts and tier-overlap matrix.
-- **Depth-inventory CC probe.** Catalog every analysis script in /tmp and /root/Omi-Workspace by intent (read first comment lines), every result file with sample content. Output populates ANALYSIS_LIBRARY.md Section 2 (analyses-by-depth) and Section 3 (broken/invalid).
-- **ANALYSIS_LIBRARY.md population.** After depth-inventory probe lands.
+Order is dependency-driven. Items reference lessons that motivate them.
+
+1. **ROADMAP refresh** (this commit). Lock in current state.
+2. **Tier-counter completion.** Wait. Populate TAXONOMY Section 1 match counts on landing. Currently running.
+3. **executor_core.py write target.** Per TZ probe finding: line 1023 has `datetime.utcnow().isoformat() + "Z"` write. Determine what column/file this writes. If a current DB writer, TZ inventory is not final until this column is classified. Per F16/F20.
+4. **arb-executor-v2/ directory inventory.** Per LESSONS Section 6: contents not yet inventoried. Could contain canonical implementations of analyses currently fragmented across /tmp. Must inspect before designating canonical sources.
+5. **Snapshot dir investigation.** /root/Omi-Workspace/tmp/ has single-mtime snapshot from Apr 29 17:43 per depth-inventory probe. Understand what triggered the snapshot before treating /tmp as canonical for ANALYSIS_LIBRARY entries.
+6. **/tmp/bbo_aw1.csv and /tmp/bbo_aw2.csv inventory.** Per LESSONS Section 6: "first observed vs late-game BBO snapshot pairs, likely the source for bias correction." Compare against canonical bias file before designating canonical.
+7. **Canonical bias file designation.** Per F19: six+ bias files exist measuring overlapping concepts. Inventory what each file measures (which baseline, which window, which subset). Designate canonical. Document in ANALYSIS_LIBRARY. Resolves the +21-37c vs 10.6c known unknown.
+8. **Canonical scorecard designation.** Per A28: multiple competing scorecards (rebuilt_scorecard, bootstrap_ci_results, optimal_exits) with no source-of-truth tracking. Designate canonical. Document in ANALYSIS_LIBRARY.
+9. **Canonical "ultimate cell economics" designation.** Per E27: multiple competing implementations (ultimate_cell_economics, ultimate_cell_economics_csv, corrected_cell_economics, validate_and_optimize, scalp_constrained_optimize). Designate canonical or explicitly retire others.
+10. **Entry-time derivation from JSONL.** Per F17: matches.entry_time NULL on 977 live/live_log rows. Derive clean entry-time column from JSONL ts (verified ET) for each of the 977 fills. Output as portable CSV/parquet for downstream analysis use.
+11. **Bug 4 status check.** Per F8: settlement event detection broken when bot resting sell unfilled at market close. Either blocking ongoing analysis or actively being remediated. Determine current status; if remediation in progress, document expected completion.
+12. **Security exposures rotation.** Per session note: GitHub PAT in git remote URL plus plaintext Kalshi API key in probe_kalshi_api2.py. Both in public repo. Rotate both keys. Verify no other exposed secrets.
 
 ---
 
-## SECTION 4: BLOCKED
+## SECTION 4: BLOCKED — DEPENDS ON SECTION 3 COMPLETION
 
-- **70.7% reproduction analysis.** Blocked on TAXONOMY.md Section 4 being populated. Once unblocked, will pressure-test E18/E25 by reproducing the rate on current data and stratifying per-cell.
-- **Per-cell bilateral double-cash rate.** Blocked on 70.7% reproduction completing.
-- **Channel 2 attribution to game events.** Originally hoped for via live_scores, but live_scores is final-outcome only per A25/A27. Blocked pending alternative game-state source (Kalshi live_data API, ESPN scrape, or other).
-- **Bug 4 (settlement event detection).** Lower priority than foundational classification work. Tracked in LESSONS.md Section 6.
+- **70.7% reproduction analysis.** Per E18/E25.
+- **Per-cell bilateral double-cash rate.** Per E18/E21/E22.
+- **Channel 2 attribution to game events.** Per A25/A27 — also needs alternative game-state source.
+- **First analysis with intention** (whatever it turns out to be).
 
 ---
 
 ## SECTION 5: KNOWN UNKNOWNS (from LESSONS.md Section 6)
 
-These are open questions blocking strategic decisions. Not currently being worked on; tracked here for visibility.
+These are open questions blocking strategic decisions. Some are absorbed into Section 3 above; others stay tracked here for visibility.
 
-- Magnitude and distribution of data corruption in the 977-fill matches table records. (F7 unresolved, partially expanded by F17 — entry_time NULL on live — and F18 — settlement_time two writers.)
-- Right cell definition. Current scheme is tier × side × 5c price band. Open: granularity, redundancy of direction with price, tier as primary or secondary partition.
-- Per-cell average bounce, decomposed by Channel 1 vs Channel 2, on uncorrupted data.
-- Per-cell bilateral double-cash rate (extends April 14 finding).
-- Bias correction reconciliation. Canonical bias file vs run1 vs operator memory disagreement.
-- 30 UNCALIBRATED cells in rebuild scorecard.
-- 58 still-resting Apr 24-29 positions: outcomes unknown until they exit or settle.
-- Inverse-cell cross-check on real data.
-- Apr 24 retune isolation problem.
-- arb-executor-v2 directory contents.
-- /tmp/bbo_aw1.csv and /tmp/bbo_aw2.csv vs canonical bias file.
-- Channel 2 game-event attribution (added this session, blocked).
+- Magnitude and distribution of data corruption in the 977-fill matches table records (partially expanded by F7, F17, F18; full magnitude still unmeasured)
+- Right cell definition (strategic question, not foundational; deferred until foundation complete)
+- Per-cell average bounce decomposed by Channel 1 vs Channel 2 (analysis target, not foundation)
+- 30 UNCALIBRATED cells in rebuild scorecard (depends on canonical scorecard — Section 3 #8)
+- 58 still-resting Apr 24-29 positions (wait-and-see)
+- Inverse-cell cross-check on real data (analysis target, not foundation)
+- Apr 24 retune isolation problem (historical forensics, deferred)
 
 ---
 
 ## SECTION 6: RECENTLY COMPLETED (Session 4, Apr 30)
 
-Earliest first within the session.
-
-- **LESSONS.md created** with foundational framing: bot is shut down, foundation not trustworthy, work is foundational not tactical. (Initial 91 lessons.)
-- **LESSONS.md changelog count corrected** (98 lessons, math fix).
-- **A24, E25, E26 added** (variable inventory as foundation, 70.7% reclassified as depth-0, depth and variables are parallel axes). 107 lessons.
-- **Module scaffolding created:** README.md, TAXONOMY.md, ANALYSIS_LIBRARY.md, ROADMAP.md committed in single commit c794b26.
-- **Variable-inventory CC probe completed.** Schemas of all tennis.db tables, premarket_ticks 27-column confirmation, trades CSV 5-column with taker_side confirmation, bbo_log_v4 5-column header confirmation. Findings: live_scores is final-outcome only (not in-match state); book_prices is canonical sharp-consensus source; bookmaker_odds is partial junk-drawer.
-- **A25, A26, D7, D8, F13, F14, F15 added** from variable-inventory results. 114 lessons.
-- **TZ probe completed.** Three timezone conventions identified across data sources: explicit ET (A-tier ts_et, JSONL ts), explicit UTC (historical_events first/last_ts, all commence_time fields), naive (B-tier bbo_log_v4 timestamp, polled_at columns — likely ET via VPS system clock but UNVERIFIED). Discovered: matches.entry_time NULL on every live/live_log row; matches.settlement_time has two writers with different formats.
-- **F16, F17, F18 added** from TZ probe. 117 lessons.
-
-Still in flight: tier-count CC probe (started 12:03 PM, ~2hrs running).
+- **LESSONS.md created.** 122 lessons across 7 categories: A=27, B=10, C=14, D=8, E=27, F=20, G=16.
+- **Module scaffolding** (README, TAXONOMY, ANALYSIS_LIBRARY, ROADMAP) created.
+- **Variable-inventory CC probe** completed. tennis.db full schemas, premarket_ticks 27-column confirmation, trades CSV taker_side confirmation. Findings: live_scores final-outcome only; book_prices canonical sharp consensus; bookmaker_odds junk-drawer.
+- **TZ probe** completed. Three timezone conventions identified. Verified bbo_log_v4 ET, all polled_at columns ET, live_scores.last_updated ET, players.last_updated UTC (F20 outlier).
+- **TZ follow-up probe** completed. Inferred rows promoted to VERIFIED.
+- **Depth-inventory CC probe** completed. ~30 distinct analyses cataloged across 6 depth levels.
+- **TAXONOMY.md Section 4** fully populated with verified TZ labels (commit 49613eb).
+- **ANALYSIS_LIBRARY.md Sections 2-4** fully populated (commit 85daa0a).
+- **Lessons added this session** in order: changelog correction, A24 + E25 + E26, A25 + A26 + D7 + D8 + F13 + F14 + F15, F16 + F17 + F18, A27 + C14 + E27 + F19, F20.
 
 ---
 
-## SECTION 7: NEXT MOVES (immediately after current ROADMAP commit)
+## SECTION 7: NEXT MOVES (after this ROADMAP commit)
 
-1. **Send TZ follow-up probe** to verify bbo_log_v4 timestamp tz and naive polled_at columns. (Section 3 queued item.)
-2. **Wait for tier-counter to complete.** Integrate output into TAXONOMY.md Section 1 in single commit.
-3. **Populate TAXONOMY.md Section 4** with full variable inventory + verified tz labels in single commit.
-4. **Send depth-inventory probe.** Catalog prior analyses in /tmp and /root/Omi-Workspace.
-5. **Populate ANALYSIS_LIBRARY.md** from depth-inventory results.
-6. **First analysis with intention.** Once all four modules are populated, pick from Section 4 BLOCKED items (most likely 70.7% reproduction + per-cell stratification on B-tier data) and design the analysis grounded in TAXONOMY.
+Per Section 3 dependency order:
+
+1. (this commit completes item 1)
+2. Wait on tier-counter (item 2). Concurrent work below does not contend with it (no gzip reads).
+3. Run executor_core.py write target probe (item 3).
+4. Run arb-executor-v2 inventory probe (item 4).
+5. Run snapshot dir investigation probe (item 5).
+6. Run bbo_aw1/aw2 inventory probe (item 6).
+7. Designate canonical bias file (item 7) after items 4-6 complete.
+8. Designate canonical scorecard (item 8).
+9. Designate canonical "ultimate" economics (item 9).
+10. Run entry-time derivation script (item 10).
+11. Bug 4 status probe (item 11).
+12. Security rotation (item 12).
+13. ALL ITEMS CLOSED. Re-read ROADMAP. Pick first analysis.
+
+Each item resolves to either a CC probe + finding, or a designation + ANALYSIS_LIBRARY update, or a code change. Each closes with a commit so progress is durable.
 
 ---
 
 ## SECTION 8: CHANGELOG
 
-- 2026-04-30 ~13:21 ET: Initial scaffolding creation (commit c794b26). Sections 2, 3, 4, 6 populated with state at that moment.
-- 2026-04-30 ~14:00 ET (this commit): Updated to reflect mid-session state. Variable-inventory and TZ probes completed; tier-counter still running. F16-F18 lessons landed. TAXONOMY Section 4 population queued pending TZ follow-up.
+- 2026-04-30 ~13:21 ET: Initial scaffolding (commit c794b26).
+- 2026-04-30 ~14:00 ET: First update reflecting variable-inventory and TZ probes complete (commit cac13c4).
+- 2026-04-30 ~15:10 ET (this commit): Section 3 added — full foundational to-do list with dependency ordering. 12 items must close before any analysis. Section 6 reflects all module population complete. Section 7 sequences the close-out.

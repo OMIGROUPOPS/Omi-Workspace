@@ -290,4 +290,4 @@ Re-read Section 1. If we are drifting tactical, the foundation is not trustworth
 
 ## SECTION 8: CHANGELOG
 
-- 2026-04-30: Initial creation. Session 4 (Druid + Claude). Consolidated handoff doc lessons (A1-A18, B1-B10, C1-C11, D1-D5, E1-E11, F1-F6, G1-G13) plus session 4 additions (A19-A21, C12-C13, D6, E12-E22, F7-F11, G14-G15). Total: 91 lessons across 7 categories.
+- 2026-04-30: Initial creation. Session 4 (Druid + Claude). Consolidated handoff doc lessons (A1-A18, B1-B10, C1-C11, D1-D5, E1-E11, F1-F6, G1-G13) plus session 4 additions (A19-A21, C12-C13, D6, E12-E22, F7-F11, G14-G15). Total: 98 lessons across 7 categories. (Math correction: A=21, B=10, C=13, D=6, E=22, F=11, G=15.)

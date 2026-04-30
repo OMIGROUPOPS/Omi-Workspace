@@ -25,7 +25,7 @@ Validity status: [valid / partial / broken / unverified / superseded]
 Notes: [known issues, dependencies, supersession info]
 
 
-Heavy duplication exists between /tmp/ (canonical working copies with real mtimes) and /root/Omi-Workspace/tmp/ (single-snapshot copy from Apr 29 17:43). Library entries reference /tmp/ paths as canonical.
+/tmp/ is the live working directory (latest scripts, may include uncommitted work). /root/Omi-Workspace/tmp/ is a durable curated git-tracked subset archive (multiple curation batches over time, including a large batch on Apr 29 17:43 ET but also batches from Mar 13-15 and other dates). For files in both: content is identical on sampled diffs, /tmp serves as canonical reference. For files only in /root/Omi-Workspace/tmp/: that path IS canonical (sole surviving copy after /tmp version deleted). For files only in /tmp/: /tmp is canonical until curated.
 
 ---
 
@@ -410,3 +410,4 @@ Findings from prior analyses that are currently treated as anchor evidence in th
 
 - 2026-04-30 ~13:21 ET: Initial scaffolding (commit c794b26). Section 4 had one entry (70.7%); Sections 2 and 3 placeholder.
 - 2026-04-30 ~14:30 ET (this commit): Sections 2, 3, 4 fully populated from depth-inventory CC probe. Catalog covers ~40 distinct analyses across 6 depth levels plus broken/meta categories.
+- 2026-04-30 (item 5 closure): Corrected mischaracterization of /root/Omi-Workspace/tmp/ — it is a curated git-tracked archive with multiple curation batches, not a single Apr 29 snapshot. Canonical-source rules updated.

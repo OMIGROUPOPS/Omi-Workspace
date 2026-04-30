@@ -58,7 +58,18 @@ T11a. Bug 4 implementation. **OPEN.** Write code per bug4_brief.md v3: WS "marke
 
 T11b. Bug 4 sandbox test. **OPEN, depends on T11a partial completion.** Capture real settled event from Kalshi sandbox to validate WS payload schema before production deployment. Probe found settled-event payload is MINIMAL (no market_result or settlement value); REST per-record key is "value" (cents int, nullable), not "settlement_value" as brief originally said. Brief adjustment required.
 
-T12. Security exposures rotation. **OPEN.** Per session note: GitHub PAT in git remote URL, plaintext Kalshi API key in /tmp/probe_kalshi_api2.py. Both in public repo. Operator action required: rotate both keys, verify no other exposed secrets, force-push history rewrite if PAT was committed (or accept it's burned).
+T12. Security exposures rotation. **AUDITED 2026-04-30, DEFERRED to operator timing.** Comprehensive security audit completed. Findings:
+1. GitHub PAT confirmed embedded in /root/Omi-Workspace/.git/config remote URL. Repo is public; assume already harvested.
+2. probe_kalshi_api2.py: 0 grep matches for KALSHI_ACCESS_KEY pattern in this specific file (variable name pattern may differ from prior framing; manual eyeball recommended pre-rotation). Treat as exposed regardless.
+3. /root/Omi-Workspace/backend/.env IS TRACKED IN GIT despite .gitignore (gitignore only applies to NEW files). Whatever was committed to that file lives in git history forever. Public repo means anything ever in backend/.env is also burnt.
+4. /root/Omi-Workspace/arb-executor/kalshi.pem (RSA private key) and arb-executor/fix_key.py (RSA key embedded as string) on disk; both gitignored for new files. Need to verify never historically committed.
+5. 14 hardcoded secret-pattern matches across 12 active tennis-stack files (tennis_odds.py, kalshi_reconciler.py, bot_server.py, etc.). Refactor to env-vars eventually.
+6. AWS-style keys: zero matches.
+7. /tmp has 69 secret-pattern matches across many ephemeral working scripts.
+
+Audit itself created a new exposure: the probe echoed the PAT in its own output, leaking it into chat transcript. See C17 for prevention.
+
+Status: deferred. Exposures don't block analysis (analysis is read-only on data we already have). Operator will rotate at their own timing. Until rotation: keys remain compromised, repo continues operating with embedded PAT, no production trading active so no ongoing financial exposure beyond credential theft. When rotation happens: see D6, D7 for staged playbook.
 
 T13. Tier-counter B-tier OOM-resilient retry. **OPEN.** Replaces the failed portion of T2. Approach: stream tickers to disk (jsonl append) instead of accumulating in-memory set, aggregate post-stream. Output populates TAXONOMY Section 1 B-tier match counts.
 
@@ -142,6 +153,8 @@ D4. Rotate Kalshi API key in /tmp/probe_kalshi_api2.py. Per T12. Operator action
 
 D5. /tmp ephemerality migration. Per F1. Decision: which /tmp files are canonical enough to migrate to durable storage now, vs accept the ephemerality risk?
 
+D7. Security rotation execution (when operator chooses). Staged playbook for T12: (1) generate new GitHub PAT or switch to SSH remote (`git remote set-url origin git@github.com:OMIGROUPOPS/Omi-Workspace.git`), revoke old PAT in github.com/settings/tokens. (2) Generate new Kalshi API credentials in Kalshi dashboard, replace /root/Omi-Workspace/arb-executor/kalshi.pem with new RSA private key, update KALSHI_ACCESS_KEY in /root/Omi-Workspace/arb-executor/.env. (3) Audit `git log -p -- backend/.env` for every credential ever committed to that file; rotate each independently. (4) `git rm --cached backend/.env` to untrack while keeping local copy. (5) Refactor 14 hardcoded-secret files to use os.environ. (6) Optionally rewrite git history with git-filter-repo or BFG (or accept exposure since repo is public anyway). Estimated time when prioritized: 30-90 minutes.
+
 D6. Bug 4 implementation prioritization. Per T11a. Two paths: (a) implement now to clean up the operational state for any future redeploy, or (b) defer until pre-redeploy phase since bot is shut down and operational state isn't actively burning. Analytical impact already mitigated by T10 closure — forward measurement work doesn't block on this fix.
 
 ---
@@ -177,5 +190,6 @@ Earliest first within the session.
 - 2026-04-30 ~13:21 ET: Initial scaffolding (commit c794b26).
 - 2026-04-30 ~14:00 ET: First update reflecting variable-inventory and TZ probes complete (commit cac13c4).
 - 2026-04-30 ~15:10 ET: Section 3 added — flat to-do list with dependency ordering, 12 items (commit 7ce7359).
+- 2026-04-30 ~18:30 ET: T12 audited and deferred. All 12 foundational close-out items resolved. T11a/T11b/T13/T14 stay OPEN as deferred work, not blockers. D7 added (staged security rotation playbook). C17 lesson added (security audits must redact credentials within the audit itself).
 - 2026-04-30 ~18:00 ET: T11 closed — Bug 4 fully designed but zero implementation written. Split into T11a (implementation, OPEN) and T11b (sandbox test, OPEN). Analytical impact mitigated by T10 closure; operational impact remains. D6 added (Bug 4 prioritization decision).
 - 2026-04-30 ~17:45 ET (prior commit): Restructured into T/F/U/G/D categorized indexed system, same model as LESSONS.md. T1-T15 indexed (T1-T10, T15 closed; T2 partial; T11-T14 open). F1-F10 flagged. U1-U9 unknown. G1-G6 (G5/G6 closed historical). D1-D5 awaiting decision. Current state captured comprehensively for handoff durability.

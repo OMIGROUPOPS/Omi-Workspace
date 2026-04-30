@@ -77,6 +77,8 @@ T14. Re-pull schedule for kalshi_fills_history.json. **OPEN.** Per F28: file is 
 
 T15. ROADMAP restructure — categorized T/F/U/G/D system. **CLOSED 2026-04-30 (this commit).** Replaces flat sections with append-only indexed structure.
 
+T16. CC bootstrap reads LESSONS.md every session. **OPEN.** Currently chat is the only filter applying lessons; CC just executes prompts. Real gap — chat-side filter-failure mode is real risk (Session 4 had three off-by-one drift events on lesson numbers before D10 codified the fix). Three candidate designs: (a) CC reads full LESSONS.md at session start (~70KB context cost every session); (b) chat injects relevant lesson sections inline per prompt (preserves the gap — chat is exactly where failure lives); (c) hybrid — CC reads short LESSONS_QUICKREF.md (~10KB summary of CC-actionable patterns: D10 dynamic numbering, F28 /tmp ephemerality, C17 credential redaction, single-concern commits) at session start, chat injects specific lessons inline as needed. Design choice tracked at D8.
+
 ---
 
 ## SECTION 3: F (FLAG) — operational risks and attention items
@@ -156,6 +158,8 @@ D5. /tmp ephemerality migration. Per F1. Decision: which /tmp files are canonica
 D7. Security rotation execution (when operator chooses). Staged playbook for T12: (1) generate new GitHub PAT or switch to SSH remote (`git remote set-url origin git@github.com:OMIGROUPOPS/Omi-Workspace.git`), revoke old PAT in github.com/settings/tokens. (2) Generate new Kalshi API credentials in Kalshi dashboard, replace /root/Omi-Workspace/arb-executor/kalshi.pem with new RSA private key, update KALSHI_ACCESS_KEY in /root/Omi-Workspace/arb-executor/.env. (3) Audit `git log -p -- backend/.env` for every credential ever committed to that file; rotate each independently. (4) `git rm --cached backend/.env` to untrack while keeping local copy. (5) Refactor 14 hardcoded-secret files to use os.environ. (6) Optionally rewrite git history with git-filter-repo or BFG (or accept exposure since repo is public anyway). Estimated time when prioritized: 30-90 minutes.
 
 D6. Bug 4 implementation prioritization. Per T11a. Two paths: (a) implement now to clean up the operational state for any future redeploy, or (b) defer until pre-redeploy phase since bot is shut down and operational state isn't actively burning. Analytical impact already mitigated by T10 closure — forward measurement work doesn't block on this fix.
+
+D8. CC-LESSONS-bootstrap design choice. Per T16. Three options on the table: (a) CC reads full LESSONS.md every session; (b) chat-side inline injection per prompt; (c) hybrid LESSONS_QUICKREF.md + selective inline. Chat recommendation: (c) — load-bearing CC-actionable patterns on disk for CC, chat retains discretion for context-specific lessons. Operator decision required before any T16 implementation work.
 
 ---
 

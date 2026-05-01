@@ -153,6 +153,22 @@ G7. **Bounce / exit / returns analysis separation.** Operator-flagged 2026-04-30
 
   Captured here so the analysis sequence after Phase 3 doesn't drift back into the conflation pattern that broke prior cell-economics work.
 
+G8. **Trade-tape backfill via Kalshi /historical/trades endpoint.** Operator-flagged Session 5 (via Liams API schema research). Phase 3 v1 ships without trade-flow columns because tennis.db has no trade table for Mar 20 - Apr 10. Stage 0 Probe 2 confirmed: zero trade tables; JSONL trade events Apr 17+ only; kalshi_fills_history.json is sparse bot fills not continuous trade tape.
+
+  **Available source (newly identified):** `/trade-api/v2/historical/trades?ticker=X` returns retroactive trade events with: ticker, trade_id, yes_price_dollars, no_price_dollars, count_fp (size), **taker_side** (yes/no - which side initiated), created_time (millisecond precision).
+
+  **What this unlocks:**
+  - cum_trades_so_far per moment (closes the gap dropped from Phase 3 v1 schema)
+  - trades_last_5min, trades_last_30min flow-rate signals (the volume-at-decision-time strata variable)
+  - taker_side imbalance - fundamental microstructure signal for order flow direction
+  - per-minute volume time-series (alternative: /historical/markets/{ticker}/candlesticks for 1-minute aggregate fallback if full trade tape is too expensive)
+
+  **Cost estimate:** ~2,714 markets x avg 1,500-3,000 trades each = 4M-8M total trades. At Kalshis ~20 req/s rate limit with paginated fetches, ~30-90 minutes of API calls + storage of trade tape (~500MB CSV). Single retroactive build similar to match_facts_v3 producer.
+
+  **Sequencing:** Wait until Phase 3 v1 Stage 1 delivers per-moment BBO state vector and Layer A bounce analysis runs. If "lack of trade-flow signal" is the most common limitation hit in real strategic queries, thats when Phase 3 v2 trade-tape backfill becomes priority. Otherwise lower-priority - dont build synthesis machinery before knowing which gaps it actually fills.
+
+  **Blocked by:** none. Can be implemented anytime after Stage 1 finishes.
+
 ---
 
 ## SECTION 6: D (DECISION) — operator authorization or operational call required

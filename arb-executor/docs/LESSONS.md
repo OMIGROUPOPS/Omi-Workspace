@@ -151,6 +151,8 @@ A31. Volume is a primary predictor of bilateral capture, not a secondary one. U4
 
 ### Category B — Statistical confidence
 
+
+A32. When the operator pushes back on "X makes no sense" or "Y doesnt add up," investigate before defending the existing framing. Pushback is signal, not noise. Two times in Session 5, operator pushback caught real bugs Claude was about to launch heavy compute on top of: (1) "50% skip rate makes no sense" was a real coverage hole Claude was about to relaunch through; (2) "volume metrics were off, matches hit 100K-1M volume" forced the bucket-distribution probe that revealed the wrong-axis problem. The first instinct to defend or rationalize the existing analysis is wrong; treat operator pushback as a probe trigger.
 B1. N must be statistically meaningful before drawing conclusions. N=8 is variance, not signal.
 B2. Two days of live data is confirmation, not evaluation. Historical N=100+ evaluates a config.
 B3. Do not conflate evaluation with confirmation. Historical evaluates, live confirms.

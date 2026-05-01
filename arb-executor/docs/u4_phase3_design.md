@@ -164,7 +164,7 @@ Once dataset validated, every U4-related question becomes a stratification: G17 
 
 ## DELIVERABLES
 
-1. /tmp/u4_phase3_state.parquet — per-moment dataset, ~14M rows x ~30 cols.
+1. /tmp/u4_phase3_state.parquet — per-moment dataset, ~8M rows x ~30 cols (refined estimate; pending Stage 0 active-matches/day confirmation).
 2. /tmp/u4_phase3_streaming_pass1.py — first-pass state extractor.
 3. /tmp/u4_phase3_forward_labels_pass2.py — forward-window labeler.
 4. /tmp/u4_phase3_paired_join_pass3.py — paired-side state joiner.

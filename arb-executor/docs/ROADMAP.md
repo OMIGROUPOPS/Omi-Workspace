@@ -141,6 +141,18 @@ G5. arb-executor-v2 directory contents. Per LESSONS Section 6 known unknown #11.
 
 G6. /tmp/bbo_aw1.csv and /tmp/bbo_aw2.csv vs canonical bias file. Per LESSONS Section 6 known unknown #12. **CLOSED 2026-04-30:** aw1/aw2 measure premarket-to-late drift, distinct from entry_price_bias canonical. Complementary not redundant. Listed here as historical.
 
+G7. **Bounce / exit / returns analysis separation.** Operator-flagged 2026-04-30 (Session 5). The current `corrected_cell_economics.py` and scorecard family conflate three distinct analysis layers, which is why per-cell metrics can't be reasoned about cleanly. The separation principle:
+
+  **Layer A — Pure bounce per cell.** Property of the market. Measure forward bounce distribution (max_mid_next_X minus mid_at_t) per cell from the per-moment dataset. No exit logic. No fill assumptions. No P&L. Outputs: per-cell bounce distribution at each forward window (2min/5min/30min/2hr/until_settlement).
+
+  **Layer B — Exit policy optimization.** Property of strategy. Given Layer A bounce distribution, what exit policy (limit at +Xc, time-stop at Y, trailing stop, etc.) maximizes expected capture? Outputs: per-cell optimal exit policy + expected capture rate.
+
+  **Layer C — Realized returns.** Layer A + Layer B + fees + slippage + fill probability + capital utilization. Outputs: per-cell economics.
+
+  Phase 3 (per-moment dataset) is the foundation for Layer A. Layer B and Layer C build on top. All three layers stay in separate scripts; never cross-conflate. Validates by showing each layer can be re-run with different parameters without recomputing the others (e.g., changing exit policy in Layer B should not require re-running Layer A bounce measurement).
+
+  Captured here so the analysis sequence after Phase 3 doesn't drift back into the conflation pattern that broke prior cell-economics work.
+
 ---
 
 ## SECTION 6: D (DECISION) — operator authorization or operational call required

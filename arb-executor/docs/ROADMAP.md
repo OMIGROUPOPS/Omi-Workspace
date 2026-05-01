@@ -169,6 +169,32 @@ G8. **Trade-tape backfill via Kalshi /historical/trades endpoint.** Operator-fla
 
   **Blocked by:** none. Can be implemented anytime after Stage 1 finishes.
 
+G9. **Historical-scale dataset extension - full Kalshi tennis archive.** Operator-flagged Session 5 (via Liams per-match visualization on a 2025 match). The per-moment dataset Phase 3 v1 builds for Mar 20 - Apr 10 2026 is methodology validation, not final scope. Liams chart on KXATPMATCH-25JUN18RUNMCD-RUN proves Kalshis `/historical/trades` and `/historical/markets/{ticker}/candlesticks` endpoints work retroactively for matches at least back to mid-2025, and likely the full Kalshi tennis archive (~50K-100K markets). This makes the canonical Phase 3 dataset roughly 20x what v1 produces.
+
+  **What this unlocks:**
+  - Statistical power at fine-grained cell resolution. Mar 20 - Apr 10 is borderline for fine state-vector stratification; 20x scale makes it viable.
+  - **Two-channel scope made explicit.** Each market has two structurally different scalping windows: (1) premarket - typically T-24hr before match through commence_time, expectations-driven price formation, no game state; (2) in-match - commence through settlement, game-state-driven volatility and recovery. Historical pulls from `created_time` give us the full premarket arc per market, not just active hours. Premarket window is ~12x longer per match than in-match (24hr vs 2hr typical), so historical scale makes premarket-specific stratification viable that Phase 3 v1s small dataset cant support: volume buildup curves, late-premarket drift, premarket reversion patterns, premarket-to-match-start price stability filters.
+  - **Layer B exit policy parameter sweeps run separately per channel.** Premarket and in-match have different fill dynamics (premarket thinner book), different latency tolerances (premarket slower price changes), and different price-formation processes (expectations vs game-state). Single exit-policy optimization across both windows would average across regimes; separate optimizations per channel are the right unit. For each channel: every (state vector, exit policy) combination - limit thresholds from +1c to +30c at 1c granularity, time-stops from 30s to 4hr, trailing-stops at every offset - simulated forward across all matching observations.
+  - Layer A bounce measurement at higher confidence per cell, conditional on channel.
+  - Layer C realized economics with fee/slippage/fill probability across enough samples that distributions are stable.
+
+  **Tier reframe:** What we labeled C-tier (`historical_events` aggregates) is actually the most-lossy summary of what Kalshi has. The richness was always there in Kalshis archive - `/historical/trades` returns trade-by-trade with taker_side and ms timestamps; `/historical/markets/{ticker}/candlesticks` returns per-minute OHLC bid/ask/volume/OI. Tier framework should be re-described in TAXONOMY post-v2 to reflect this: "historical archive" is its own tier above C, retroactively pullable, richer than B-tier in some dimensions (taker_side, full volume time-series) and equal-or-coarser in others (per-minute candle vs per-tick BBO).
+
+  **Pipeline shape (different from Phase 3 v1):**
+  - Per-market API pulls, not single-file streaming. Each market: 1 candlestick call + paginated trade-tape calls. ~10-30 trade calls per market.
+  - Cost estimate: ~50K-100K markets x ~15 calls avg = 750K-1.5M API calls. At Kalshis ~20 req/s, ~10-30 hours of throughput-bound API time.
+  - Storage: trade tape ~5-10GB CSV; candlesticks ~500MB-1GB.
+  - Per-minute resolution for the historical extension. Per-tick fidelity remains in current bbo_log_v4 22-day window for microstructure questions.
+
+  **Sequencing - strict:**
+  1. Phase 3 v1 Stage 1 finishes (currently running).
+  2. Stages 2-5 deliver, Layer A bounce measurement runs and produces sensible numbers on the small dataset. **This is methodology validation.** If Layer A doesnt reproduce coherent conclusions on the small dataset, scaling 20x would waste 30 hours of API + analysis on a broken methodology. Dont skip this gate.
+  3. **Then** build the historical extension. Producer is similar to `build_match_facts_v3.py` - three-pass (event enumeration via API, per-market trade tape pull, per-market candlestick pull) with pagination and rate-limit handling.
+  4. Layer B exit-policy parameter sweep runs on the v2 dataset, separately for premarket and in-match channels.
+  5. Layer C realized economics with fees/slippage/fill prob.
+
+  **Blocked by:** Phase 3 v1 methodology validation (Layer A on small dataset). Premature scaling without that gate is the same anti-pattern that broke prior cell-economics work.
+
 ---
 
 ## SECTION 6: D (DECISION) — operator authorization or operational call required

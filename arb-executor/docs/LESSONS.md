@@ -170,6 +170,10 @@ B14. Match-level aggregate columns conflate distinct time-window opportunities. 
 
 ### Category C — Process / workflow
 
+
+B15. Every variable in this domain is a flowing time series - price, spread, depth, volume, skew, implied probability. There is no static snapshot of a market except settlement. A bot decides at one moment with the state observed at that moment. Per-match aggregates (first/min/max/last across the entire match window) collapse the temporal structure that drives entry decisions; "1000+ matches achieve 76.4% bilateral capture" averaged across all matches that *eventually* hit 1000 trades regardless of how few trades had occurred at the moment the bot would have entered. The unit of analysis must match the unit of decision. Stratify on values-at-decision-time, not whole-match-aggregates.
+
+B16. Bounce / exit / returns are three separate analysis layers; conflating them breaks reasoning about each. **Layer A (pure bounce per cell)** is a property of the market - measure forward bounce distribution per cell from per-moment data, no exit logic, no fill assumptions, no P&L. **Layer B (exit policy optimization)** is a property of strategy - given Layer A bounce distribution, what exit policy maximizes expected capture. **Layer C (realized returns)** is Layer A + Layer B + fees + slippage + fill probability + capital utilization. Prior cell-economics work (corrected_cell_economics.py and scorecard family) collapsed all three into one calculation, which is why per-cell metrics couldnt be reasoned about cleanly - every parameter change moved multiple things at once. All three layers must stay in separate scripts; never cross-conflate. Validates by showing each layer can be re-run with different parameters without recomputing the others (changing exit policy in B should not require re-running A bounce measurement).
 C1. One question per prompt to CC. Methodical. Not throwing things at the wall.
 C2. Always be suspicious. Never assume CC is correct. Every output gets cross-examined.
 C3. Verify before deploying. Hundreds of past deploys happened on bad math.

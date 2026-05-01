@@ -112,9 +112,9 @@ T2 OOM'd at full 515M-row in-memory accumulation. Phase 3 must stream.
 1. Load historical_events (~10K rows) into a {ticker -> match_metadata} dict. Bounded memory.
 2. Open bbo_log_v4.csv.gz for streaming read (line-by-line or chunksize=1M).
 3. For each ticker, maintain a rolling state object: last 30min of (timestamp, mid) for lookback features; max_mid_so_far, min_mid_so_far, ticks_so_far; last sample emission time (for 30s cadence gate).
-4. On each tick: skip if ticker not in match dict; else update rolling state; if wall-clock advanced >= 30s since last emission for this ticker, emit a state-vector row to /tmp/u4_phase3_state.parquet (append, partitioned by date).
-5. After full first pass, Stage 2 reads the pass1 parquet (sorted by ticker, timestamp), computes forward-window labels via groupby+window functions on parquet. No streaming state required — this is a pure parquet operation. For each row, max_mid_next_5min = max(mid) over rows with same ticker and timestamp in (t, t+5min].
-6. Stage 3 joins paired_side state by reading pass2 parquet, building an indexed lookup of (paired_ticker, timestamp) -> state, then for each row finding the most recent paired observation within tolerance. Most expensive step; benchmark on a single-day subset before full pipeline.
+4. On each tick: skip if ticker not in match dict; else update rolling state; if wall-clock advanced >= 30s since last emission for this ticker, emit a state-vector row to /tmp/u4_phase3_state_pass1.parquet (append, partitioned by date).
+
+Steps 1-4 cover Stage 1 (first-pass streaming). Stage 2 (forward-label pass) and Stage 3 (paired-side join) operate on the pass1 parquet output, not on streaming state — they are pure parquet operations described in the EXECUTION PLAN section.
 
 Memory ceiling for rolling state: O(num_tickers x ~30min of ticks per ticker x ~12 floats) ~ 10K x 200 x 12 bytes x 8 ~ 200MB. Safe.
 

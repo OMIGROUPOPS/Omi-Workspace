@@ -47,10 +47,11 @@ Each row = one (ticker, timestamp) observation. Two tickers per match. At moment
 - category (from historical_events; ATP_MAIN / ATP_CHALL / WTA_MAIN / WTA_CHALL)
 - mid (from bbo_log; (bid + ask) / 2)
 - bid, ask, spread (from bbo_log)
-- bid_size, ask_size (top-of-book from bbo_log)
 - depth_5_bid, depth_5_ask (A-tier only; null on B-tier rows)
-- trades_last_5min, trades_last_30min (flow-rate volume signal at moment t; trade source TBD in Stage 0)
-- cum_trades_so_far (cumulative trade count up to moment t; secondary signal, kept if cheap to compute)
+
+**Dropped from v1 state vector per Stage 0 findings (commit pending):**
+- bid_size, ask_size: bbo_log_v4 schema is 5 columns only (timestamp, ticker, bid, ask, spread). No size data in B-tier. v2 candidate if we backfill from Kalshi historical-orderbook API.
+- trades_last_5min, trades_last_30min, cum_trades_so_far: no trade-tape source for Mar 20 - Apr 10. tennis.db has zero trade tables. JSONL trade events only start Apr 17. kalshi_fills_history.json is sparse bot fills, not continuous trade tape. Per Risk #2, v1 ships without trade-flow. v2 candidate: pull from Kalshi historical-trades API.
 - mid_5min_ago, mid_30min_ago (rolling lookback from bbo_log)
 - mid_change_5min, mid_change_30min (derived deltas)
 - max_mid_so_far, min_mid_so_far (rolling within ticker)
@@ -96,11 +97,11 @@ Cadence is configurable. Stage 0 probe will report row counts at 30s, 60s, 5min 
 
 ## DATA SOURCES & COVERAGE LIMITS
 
-- B-tier bbo_log_v4.csv.gz is the primary source. Covers Mar 20 - Apr 17 ET (~28 days). Top-of-book BBO only — no 5-deep depth. cum_trades_so_far requires a separate trade source.
+- B-tier bbo_log_v4.csv.gz is the primary source. Covers Mar 20 - Apr 17 ET (~28 days). 5-column schema confirmed in Stage 0: timestamp, ticker, bid, ask, spread. No bid_size, no ask_size, no depth. Top-of-book quotes only without volume signal.
 - A-tier premarket_ticks for Apr 18+ has 5-deep depth columns; depth_5_bid / depth_5_ask are populated only here.
 - historical_events Jan 2 - Apr 10 provides commence_time and category. Effective intersection with B-tier: Mar 20 - Apr 10 (~22 days).
 - kalshi_fills_history.json (per A30) is Tier-A fact source for fill events but does not provide per-moment state — it is for joining bot fill outcomes, not for sampling.
-- cum_trades_so_far source: TBD. Stage 0 must identify whether this comes from a trades table, JSONL trade events, or volume_24h time-series in kalshi_price_snapshots (Apr 21+ only per F26). If no source provides cumulative trade count over time per ticker for the Mar 20 - Apr 10 window, we either compute it from BBO ticks (one tick proxy) or drop volume-at-moment from Phase 3 v1 and add in v2.
+- Trade-flow source: NOT AVAILABLE for Mar 20 - Apr 10. Stage 0 confirmed zero trade tables in tennis.db, JSONL trade events Apr 17+ only, kalshi_price_snapshots volume_24h Apr 21+ only. v1 ships without trade-flow. v2 will pull from Kalshi historical-trades API.
 - paired_side_mid requires joining each ticker observation against the companion ticker's most-recent observation at the same timestamp (within tolerance, e.g., 60s). This is the most expensive join in the pipeline.
 
 ---
@@ -118,7 +119,7 @@ Steps 1-4 cover Stage 1 (first-pass streaming). Stage 2 (forward-label pass) and
 
 Memory ceiling for rolling state: O(num_tickers x ~30min of ticks per ticker x ~12 floats) ~ 10K x 200 x 12 bytes x 8 ~ 200MB. Safe.
 
-Output ceiling estimate (refined): ~22 days x ~250 active matches/day x ~1,440 samples/match (6 hours x 120/hour x 2 sides) ~ 8M rows x ~30 columns. Parquet, ~300MB-800MB. Active matches/day is a Stage 0 probe target — the 250/day figure is preliminary.
+Output ceiling (Stage 0 confirmed): 1,357 matches x ~1,440 samples/match (6 hours x 120/hour x 2 sides) ~ 2M rows x ~25 columns. Parquet, ~75-200MB. Active matches/day measured at ~62/day across Mar 20 - Apr 10 (range 10-103). The dataset is 4x smaller than the original design estimate; streaming-pattern memory ceiling is overkill but harmless.
 
 ---
 
@@ -152,7 +153,7 @@ Once dataset validated, every U4-related question becomes a stratification: G17 
 ## RISK ASSESSMENT
 
 1. OOM (T2 precedent). Mitigation: streaming, bounded ticker dict, parquet append. No full-file dataframe.
-2. Trade-flow source missing. If Stage 0 confirms no per-ticker trade source for Mar 20 - Apr 10, v1 ships WITHOUT trade-flow columns. Do not proxy from BBO ticks — they're different events. v2 adds trade-flow once a real source is identified or computed correctly.
+2. Trade-flow source missing — CONFIRMED by Stage 0. tennis.db has no trade table for Mar 20 - Apr 10. v1 ships WITHOUT trade-flow columns (trades_last_5min/30min, cum_trades_so_far). v2 candidate: pull from Kalshi historical-trades API for retroactive flow-rate signal.
 3. Paired-side join performance. O(N) lookups against indexed companion-ticker dict. Measure on single-day subset before full pipeline.
 4. Forward-window labels at match edges. Last 30 minutes of each match have truncated forward windows. Flag with `forward_window_truncated` rather than drop.
 5. Tier mixing (B-tier vs A-tier). depth_5 columns null on B-tier. Strategy queries depending on depth_5 must filter to A-tier rows (Apr 18+).
@@ -164,7 +165,7 @@ Once dataset validated, every U4-related question becomes a stratification: G17 
 
 ## DELIVERABLES
 
-1. /tmp/u4_phase3_state.parquet — per-moment dataset, ~8M rows x ~30 cols (refined estimate; pending Stage 0 active-matches/day confirmation).
+1. /tmp/u4_phase3_state.parquet — per-moment dataset, ~2M rows x ~25 cols (Stage 0 confirmed; ~75-200MB parquet).
 2. /tmp/u4_phase3_streaming_pass1.py — first-pass state extractor.
 3. /tmp/u4_phase3_forward_labels_pass2.py — forward-window labeler.
 4. /tmp/u4_phase3_paired_join_pass3.py — paired-side state joiner.

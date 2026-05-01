@@ -218,6 +218,18 @@ D10. After CC renames a drafted lesson via Path 1 rewrite, the on-disk lesson nu
 
 ### Category E — Strategic framing
 
+
+D11. Cheap probes prevent expensive mistakes. The cost asymmetry is enormous - a 1-min `PRAGMA table_info` vs a 9-hour bad-foundation compute run; an 80-second calibration probe vs running Stage 1 with a 13.5-hour-stdev time anchor; a 30-second grep on bbo_log skip rate vs analyzing data we know is incomplete. Session 5 was this lesson playing out repeatedly. The discipline is not "be skeptical of conclusions" - its "be skeptical of inputs." Conclusions that look wrong get questioned naturally; conclusions that look right on broken data are the dangerous ones because they validate the path that produced them. Five recurring failure modes hit during foundational data verification - interrogate every dataset for all five before analysis runs:
+
+  **Provenance.** Whats the source. Whats the transformation chain. What was filtered. What was derived. Whats the validation against an independent source where one exists.
+
+  **Grain.** Which grain does each column live at - event, market, tick, aggregate, snapshot. Joins between mismatched grains succeed silently and produce wrong results.
+
+  **Unit.** Does the unit of analysis match the unit of decision. Per-match aggregates vs per-moment observations. Whole-match volume vs volume-at-decision-time. The unit defines what conclusions can be drawn.
+
+  **Coverage.** What window does each source cover. Does it intersect with the analysis window. Joins to out-of-window sources silently return empty results that look like "no edge" rather than "no data."
+
+  **Upstream-filter.** What filtered the input before it reached the producer. A "complete-looking" output may reflect upstream filtering (the match_facts_full Mar 24 hole was an upstream-filter artifact, not a detector failure). Trace every dataset back to raw sources or document the filter chain explicitly.
 E1. Cell pairing is deployment artifact, not strategy property. Every cell has an inverse cell that exists whether or not we deploy it.
 E2. Scalping AND inversion cells are both a thing. Always. Cells are not generic "edge or no edge" — they operate under different mechanisms. [REVISED — see E16]
 E3. Bleed cells are not a uniform set, neither are SCALPER_EDGE cells. Magnitude matters. minus 1% ROI bleed at N=10 and minus 30% ROI bleed at N=50 are different findings requiring different responses.

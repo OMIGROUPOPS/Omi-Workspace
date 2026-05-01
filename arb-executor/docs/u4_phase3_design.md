@@ -62,10 +62,10 @@ Each row = one (ticker, timestamp) observation. Two tickers per match. At moment
 
 ### Forward outcome columns (labels, observed forward from t)
 
-- max_mid_next_5min, max_mid_next_30min, max_mid_next_2hr, max_mid_until_settlement
-- min_mid_next_5min, min_mid_next_30min (for downside / stop-loss analysis)
-- paired_max_mid_next_5min, paired_max_mid_next_30min, paired_max_mid_next_2hr, paired_max_mid_until_settlement (companion forward maxes)
-- paired_min_mid_next_5min, paired_min_mid_next_30min (companion downside)
+- max_mid_next_2min, max_mid_next_5min, max_mid_next_30min, max_mid_next_2hr, max_mid_until_settlement
+- min_mid_next_2min, min_mid_next_5min, min_mid_next_30min (for downside / stop-loss analysis)
+- paired_max_mid_next_2min, paired_max_mid_next_5min, paired_max_mid_next_30min, paired_max_mid_next_2hr, paired_max_mid_until_settlement (companion forward maxes)
+- paired_min_mid_next_2min, paired_min_mid_next_5min, paired_min_mid_next_30min (companion downside)
 - terminal_winner (bool from settlement: did this side win)
 
 Note: Bilateral capture booleans are NOT pre-computed. Bilateral at any threshold (+5c, +10c, +15c, +20c) and any window is a query against the raw forward-max columns above. This keeps the dataset neutral about which forward outcome matters — strategy can compute unilateral capture, bilateral capture, conditional-on-paired-path capture, or any combination from the same row data.
@@ -112,12 +112,22 @@ T2 OOM'd at full 515M-row in-memory accumulation. Phase 3 must stream.
 
 1. Load historical_events (~10K rows) into a {ticker -> match_metadata} dict. Bounded memory.
 2. Open bbo_log_v4.csv.gz for streaming read (line-by-line or chunksize=1M).
-3. For each ticker, maintain a rolling state object: last 30min of (timestamp, mid) for lookback features; max_mid_so_far, min_mid_so_far, ticks_so_far; last sample emission time (for 30s cadence gate).
-4. On each tick: skip if ticker not in match dict; else update rolling state; if wall-clock advanced >= 30s since last emission for this ticker, emit a state-vector row to /tmp/u4_phase3_state_pass1.parquet (append, partitioned by date).
+3. For each ticker, maintain a hybrid rolling state object:
+   - **Ring buffer:** 1-second-resolution mid values for the last 30 minutes (1,800 entries × 8 bytes = 14.4 KB per ticker). Used for mid_5min_ago and mid_30min_ago lookups via offset indexing.
+   - **Scalar trackers:** max_mid_so_far, min_mid_so_far, ticks_so_far, last_sample_emission_time. ~12 floats per ticker.
+   - **Eviction:** when a ticker has no tick in the last 30min relative to current stream timestamp, drop its rolling state object. Ticker activity is bounded to match windows, so most tickers age out within hours of their match ending.
+4. On each tick: skip if ticker not in match dict; else update ring buffer + scalars; if wall-clock advanced >= 30s since last emission for this ticker, emit a state-vector row to /tmp/u4_phase3_state_pass1.parquet (append, partitioned by date).
 
 Steps 1-4 cover Stage 1 (first-pass streaming). Stage 2 (forward-label pass) and Stage 3 (paired-side join) operate on the pass1 parquet output, not on streaming state — they are pure parquet operations described in the EXECUTION PLAN section.
 
-Memory ceiling for rolling state: O(num_tickers x ~30min of ticks per ticker x ~12 floats) ~ 10K x 200 x 12 bytes x 8 ~ 200MB. Safe.
+Memory ceiling for rolling state (corrected after Stage 0 Probe 8): the original "200 ticks per 30min per ticker" assumption was wrong by 142x — actual P99 from the bbo_log_v4 sample is 28,458 ticks per 30min per ticker. Storing every tick would have OOM'd at ~27 GB on a 1.9 GB VPS.
+
+Corrected design uses 1-second-resolution ring buffer (max one mid value per second per ticker), bounding per-ticker memory regardless of tick rate. Memory math:
+- Active concurrent tickers: max ~250 (62 matches/day x 2 sides x ~2 day overlap window from Stage 0 Probe 5).
+- Per-ticker state: 14.4 KB ring buffer + 96 bytes scalars ~ 14.5 KB.
+- Total rolling state: 250 x 14.5 KB ~ 3.6 MB. Comfortable headroom.
+
+Eviction (ticker dropped from state when no tick in 30min) keeps the active set bounded as the stream progresses through the dataset chronologically.
 
 Output ceiling (Stage 0 confirmed): 1,357 matches x ~1,440 samples/match (6 hours x 120/hour x 2 sides) ~ 2M rows x ~25 columns. Parquet, ~75-200MB. Active matches/day measured at ~62/day across Mar 20 - Apr 10 (range 10-103). The dataset is 4x smaller than the original design estimate; streaming-pattern memory ceiling is overkill but harmless.
 

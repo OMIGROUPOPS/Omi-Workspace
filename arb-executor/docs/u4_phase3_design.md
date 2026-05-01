@@ -34,7 +34,7 @@ Once the per-moment dataset exists, every strategic question becomes a stratific
 
 ## DATASET SCHEMA
 
-Each row = one (ticker, timestamp) observation. Two tickers per match (winner, loser sides). The "winner" / "loser" labels are assigned retrospectively from settlement; for the bot's perspective these are just two correlated tickers per match.
+Each row = one (ticker, timestamp) observation. Two tickers per match. At moment t neither ticker carries a winner/loser identity — the bot decides on a ticker, not a label. Use `ticker` and `paired_ticker` for state; `terminal_winner` (bool) is a forward-outcome label only, populated from settlement.
 
 ### State columns (observed at moment t)
 
@@ -49,21 +49,25 @@ Each row = one (ticker, timestamp) observation. Two tickers per match (winner, l
 - bid, ask, spread (from bbo_log)
 - bid_size, ask_size (top-of-book from bbo_log)
 - depth_5_bid, depth_5_ask (A-tier only; null on B-tier rows)
-- cum_trades_so_far (volume-at-decision-time; trade source TBD in Stage 0)
+- trades_last_5min, trades_last_30min (flow-rate volume signal at moment t; trade source TBD in Stage 0)
+- cum_trades_so_far (cumulative trade count up to moment t; secondary signal, kept if cheap to compute)
 - mid_5min_ago, mid_30min_ago (rolling lookback from bbo_log)
 - mid_change_5min, mid_change_30min (derived deltas)
 - max_mid_so_far, min_mid_so_far (rolling within ticker)
 - ticks_so_far (rolling bbo update count)
-- paired_side_mid, paired_side_spread (joined from companion ticker at same moment with tolerance)
+- paired_side_mid, paired_side_spread (joined from companion ticker at same moment; tolerance = sampling cadence)
+- paired_stale (bool: True if no paired observation within cadence window; the most-recent paired state is still stored with its lag below)
+- paired_lag_sec (int: actual lag between this observation and the paired observation used)
 
 ### Forward outcome columns (labels, observed forward from t)
 
 - max_mid_next_5min, max_mid_next_30min, max_mid_next_2hr, max_mid_until_settlement
 - min_mid_next_5min, min_mid_next_30min (for downside / stop-loss analysis)
-- paired_max_mid_next_5min, paired_max_mid_next_30min (companion forward max)
-- bilateral_5c_5min (bool: this side AND paired side rose +5c, both within 5min)
-- bilateral_5c_30min, bilateral_10c_5min, bilateral_10c_30min, bilateral_10c_until_settlement
+- paired_max_mid_next_5min, paired_max_mid_next_30min, paired_max_mid_next_2hr, paired_max_mid_until_settlement (companion forward maxes)
+- paired_min_mid_next_5min, paired_min_mid_next_30min (companion downside)
 - terminal_winner (bool from settlement: did this side win)
+
+Note: Bilateral capture booleans are NOT pre-computed. Bilateral at any threshold (+5c, +10c, +15c, +20c) and any window is a query against the raw forward-max columns above. This keeps the dataset neutral about which forward outcome matters — strategy can compute unilateral capture, bilateral capture, conditional-on-paired-path capture, or any combination from the same row data.
 
 ### Computed once dataset exists, not stored
 
@@ -109,12 +113,12 @@ T2 OOM'd at full 515M-row in-memory accumulation. Phase 3 must stream.
 2. Open bbo_log_v4.csv.gz for streaming read (line-by-line or chunksize=1M).
 3. For each ticker, maintain a rolling state object: last 30min of (timestamp, mid) for lookback features; max_mid_so_far, min_mid_so_far, ticks_so_far; last sample emission time (for 30s cadence gate).
 4. On each tick: skip if ticker not in match dict; else update rolling state; if wall-clock advanced >= 30s since last emission for this ticker, emit a state-vector row to /tmp/u4_phase3_state.parquet (append, partitioned by date).
-5. After full first pass, run a second pass to compute forward-window labels (max_mid_next_5min etc.) for each emitted row. This is a forward-lookup against the same per-ticker rolling state.
-6. After second pass, run a third pass to join paired_side state. This is the most expensive step; needs careful design.
+5. After full first pass, Stage 2 reads the pass1 parquet (sorted by ticker, timestamp), computes forward-window labels via groupby+window functions on parquet. No streaming state required — this is a pure parquet operation. For each row, max_mid_next_5min = max(mid) over rows with same ticker and timestamp in (t, t+5min].
+6. Stage 3 joins paired_side state by reading pass2 parquet, building an indexed lookup of (paired_ticker, timestamp) -> state, then for each row finding the most recent paired observation within tolerance. Most expensive step; benchmark on a single-day subset before full pipeline.
 
 Memory ceiling for rolling state: O(num_tickers x ~30min of ticks per ticker x ~12 floats) ~ 10K x 200 x 12 bytes x 8 ~ 200MB. Safe.
 
-Output ceiling: realistic ~10K matches x ~6 active hours x 120 samples/hour x 2 sides ~ 14M rows x ~30 columns. Parquet, ~500MB-1GB.
+Output ceiling estimate (refined): ~22 days x ~250 active matches/day x ~1,440 samples/match (6 hours x 120/hour x 2 sides) ~ 8M rows x ~30 columns. Parquet, ~300MB-800MB. Active matches/day is a Stage 0 probe target — the 250/day figure is preliminary.
 
 ---
 
@@ -122,9 +126,11 @@ Output ceiling: realistic ~10K matches x ~6 active hours x 120 samples/hour x 2 
 
 ### Stage 0 — Pre-flight probes (read-only, ~5 min)
 1. Confirm bbo_log_v4 schema (columns, depth presence, timestamp tz).
-2. Identify cum_trades_so_far source. Candidates: trades table; JSONL trade events; kalshi_price_snapshots.volume_24h time-series (Apr 21+ caveat); BBO ticks as last-resort proxy.
+2. Identify trade-flow source for trades_last_5min / trades_last_30min. Candidates: trades table; JSONL trade events; kalshi_price_snapshots.volume_24h time-series (Apr 21+ caveat). NOT acceptable: BBO ticks as proxy — BBO updates and trades are different events and proxying conflates them by 1-2 orders of magnitude.
 3. Sample 5 random matches from Mar 20 - Apr 10 intersection. Verify both sides' tickers in bbo_log_v4. Verify commence_time vs first BBO tick relationship.
 4. Report row counts at 30s / 60s / 5min cadences for one sample day to size the output.
+5. Active matches per day: count distinct match_ids active per calendar day across the Mar 20 - Apr 10 window. Confirms the ~250/day estimate.
+6. Tick rate distribution per match: histogram of ticks/match across the sample. Validates the rolling-state memory ceiling (200 ticks per ticker assumption).
 
 ### Stage 1 — First-pass streaming (heavy, est. 30-90 min)
 Stream bbo_log_v4, emit state-vector rows at 30s cadence per ticker. Output: /tmp/u4_phase3_state_pass1.parquet.
@@ -136,7 +142,7 @@ Reverse-time pass to populate forward-window outcome columns. Output: /tmp/u4_ph
 For each row, look up companion ticker state at same timestamp (with tolerance). Output: /tmp/u4_phase3_state.parquet (final).
 
 ### Stage 4 — Validation
-Sanity-check against Phase 2. Filter the per-moment dataset to "first observation per ticker" and confirm bilateral_10c rate matches Phase 2's first_price-based number within tolerance. Differences here surface methodological issues before any new analysis runs.
+Sanity-check against Phase 2 *aggregate* only. Filter the per-moment dataset to "first observation per ticker" on the synchronized subset and confirm aggregate bilateral_10c rate matches Phase 2's 62.83% within tolerance. Do NOT validate against Phase 2's strata-conditional rates (76.4% high-volume etc.) — those numbers used a buggy strata variable (whole-match total_trades) and reproducing them would confirm the bug, not the fix. Strata-conditional differences are expected and are the point of Phase 3.
 
 ### Stage 5 — Strategic queries (light)
 Once dataset validated, every U4-related question becomes a stratification: G17 / B14 decomposition, U2 cell definition, U3 channel decomp, U8 inverse-cell. Each query is a single groupby on parquet.
@@ -146,7 +152,7 @@ Once dataset validated, every U4-related question becomes a stratification: G17 
 ## RISK ASSESSMENT
 
 1. OOM (T2 precedent). Mitigation: streaming, bounded ticker dict, parquet append. No full-file dataframe.
-2. cum_trades_so_far source missing. If Stage 0 confirms no per-ticker cumulative trade source for Mar 20 - Apr 10, v1 ships without it; v2 adds it once a source is identified.
+2. Trade-flow source missing. If Stage 0 confirms no per-ticker trade source for Mar 20 - Apr 10, v1 ships WITHOUT trade-flow columns. Do not proxy from BBO ticks — they're different events. v2 adds trade-flow once a real source is identified or computed correctly.
 3. Paired-side join performance. O(N) lookups against indexed companion-ticker dict. Measure on single-day subset before full pipeline.
 4. Forward-window labels at match edges. Last 30 minutes of each match have truncated forward windows. Flag with `forward_window_truncated` rather than drop.
 5. Tier mixing (B-tier vs A-tier). depth_5 columns null on B-tier. Strategy queries depending on depth_5 must filter to A-tier rows (Apr 18+).
@@ -176,9 +182,10 @@ Once dataset validated, every U4-related question becomes a stratification: G17 
 1. Cadence: 30s default. Operator wants finer (10s) or coarser (60s, 5min)?
 2. Forward windows: 5min, 30min, 2hr, until_settlement. Add or remove any?
 3. Bilateral threshold: +5c and +10c included. Add +15c, +20c?
-4. Paired-side tolerance: companion ticker observation within 60s. Tighten (30s) or loosen (120s)?
+4. Paired-side tolerance: now set equal to sampling cadence by default (30s with 30s cadence). Override needed?
 5. Dataset destination after validation: /root/Omi-Workspace/arb-executor/data/ or elsewhere?
 6. Pre-Mar-20 coverage: Phase 3 v1 covers Mar 20 - Apr 10 only (B-tier intersect historical_events). Pre-Mar-20 stays per-match. Acceptable for v1?
+7. Shortest forward window: currently 5min. If realistic bot exit time is faster (e.g., 60-90 sec), shortest should be 90s or 60s. Operator input on actual exit horizon?
 
 ---
 

@@ -83,6 +83,8 @@ T16. CC bootstrap reads LESSONS.md every session. **OPEN.** Currently chat is th
 
 ## SECTION 3: F (FLAG) — operational risks and attention items
 
+
+T17. **G9 dataset parquet conversion.** Convert `arb-executor/data/historical_pull/` (20K CSV + 20K JSON files) to consolidated parquet. Three target outputs: `g9_trades.parquet` (~20M rows: ticker, created_time microsecond, yes_price, no_price, count_fp, taker_side, trade_id), `g9_candles.parquet` (~5M rows: ticker, end_period_ts, OHLC + bid/ask + volume + OI), `g9_metadata.parquet` (~20K rows: full market metadata with category derivation per match_facts_v3 pattern). Estimated ~30-60 min runtime, ~2 GB consolidated output (vs 5 GB raw). Enables groupby-based analysis instead of per-file opens. Blocking for Layer A bounce measurement on G9 dataset.
 F1. /tmp ephemerality risk. Per LESSONS F28: bare /tmp files can be lost over time without warning. Files currently sitting on /tmp that are canonical sources: kalshi_fills_history.json (per A30), bbo_log_v4.csv.gz (B-tier), entry_price_bias.csv cluster, bbo_aw1/aw2, harmonized_analysis/ deprecated outputs. Mitigation tracked at T14 for kalshi_fills_history; broader durability migration not yet planned.
 
 F2. /tmp/harmonized_analysis/ outputs retained on disk. Per LESSONS F25: methodology-incorrect data, deprecation marker placed but actual files not deleted. Future readers may consume them despite the marker. Mitigation: depends on D1 (deletion authorization).
@@ -194,6 +196,26 @@ G9. **Historical-scale dataset extension - full Kalshi tennis archive.** Operato
   5. Layer C realized economics with fees/slippage/fill prob.
 
   **Blocked by:** Phase 3 v1 methodology validation (Layer A on small dataset). Premature scaling without that gate is the same anti-pattern that broke prior cell-economics work.
+
+  **STATUS: DELIVERED 2026-05-02.** Producer `arb-executor/data/scripts/build_g9_archive.py` ran cleanly via `/historical/*` endpoint family (the route Liams chart used, discovered late Session 5 after the wrong-endpoint-family bisection had been corrected). Final scope:
+
+  | dimension | delivered |
+  |---|---|
+  | markets pulled | 20,110 (vs 14,700 enumeration estimate; archive grew during pull, plus live-tier was larger than projected) |
+  | runtime | 12.6 hours (vs 3-4hr projected; high-volume tail dominated single-market extrapolation) |
+  | storage | 5.0 GB |
+  | errors | 0 |
+  | failures | 0 |
+  | output location | `arb-executor/data/historical_pull/` |
+  | output structure | per-market: metadata JSON + trades CSV + candlesticks CSV |
+  | trades coverage | 20,018 markets had trades (92 zero-volume markets correctly skipped) |
+  | candles coverage | 19,687 markets had candles (423 sub-1-minute lifetime markets correctly skipped) |
+
+  **Bug caught and fixed pre-production:** CUTOFF_TS was originally hardcoded as 1772582400 (Mar 4 UTC) when intended Mar 2 UTC = 1772409600. Caught after 30s of producer runtime via CC review. Captured as LESSONS C23: derive epoch constants from ISO strings inline, never from hardcoded numbers with date comments.
+
+  **Pre-Mar-2026 endpoint discovery (load-bearing):** The earlier bisection probe declared horizon-blocked at Mar 2026 because it tested the live endpoint family (`/markets/*`, `/markets/trades`). Liams chat surfaced that Kalshi has a separate `/historical/*` endpoint family - `/historical/cutoff`, `/historical/markets/*`, `/historical/trades`, `/historical/markets/{ticker}/candlesticks` - that serves retired markets. Once probed, this opened up the full archive. Captured as the methodology gap to interrogate the API surface, not just one endpoint family, before declaring horizon-blocked. Worth a LESSONS follow-up.
+
+  **Open follow-on:** Dataset is currently 20K CSVs + 20K JSON files. Querying requires per-file opens. Natural next step is parquet conversion (one big trade-tape parquet, one big candles parquet, one big metadata parquet) for groupby-based analysis. ROADMAP T17 added separately for this work.
 
 ---
 

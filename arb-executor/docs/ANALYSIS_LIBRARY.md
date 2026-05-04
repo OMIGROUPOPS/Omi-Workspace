@@ -25,7 +25,7 @@ Validity status: [valid / partial / broken / unverified / superseded]
 Notes: [known issues, dependencies, supersession info]
 
 
-/tmp/ is the live working directory (latest scripts, may include uncommitted work). /root/Omi-Workspace/tmp/ is a durable curated git-tracked subset archive (multiple curation batches over time, including a large batch on Apr 29 17:43 ET but also batches from Mar 13-15 and other dates). For files in both: content is identical on sampled diffs, /tmp serves as canonical reference. For files only in /root/Omi-Workspace/tmp/: that path IS canonical (sole surviving copy after /tmp version deleted). For files only in /tmp/: /tmp is canonical until curated.
+Canonical-path rules (post-Session-6 Phase 1B/1C). For preserved DATA files: arb-executor/data/durable/ is canonical (sha256-verified per MANIFEST.md, not in git due to size, but durable on disk). For preserved SCRIPTS: arb-executor/tmp/ is canonical (git-tracked, multiple curation batches Mar 13 - Apr 29 plus Session 6 Phase 1A/1C additions). /tmp/ is now the producer WORKING DIRECTORY for live operations (e.g., kalshi_fills_history.json gets re-pulled to /tmp by fills_history_pull.py, then copied to durable/ to update canonical). For files in multiple locations: durable/ wins for data, arb-executor/tmp/ wins for scripts; /tmp serves as producer working file only. F1 PARTIAL CLOSURE in ROADMAP tracks the broader durability migration across this corpus.
 
 ---
 

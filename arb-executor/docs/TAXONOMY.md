@@ -89,7 +89,7 @@ Tiers are ordered by fidelity: A is highest, C is lowest. Higher tier means more
 - tennis.db.matches (3,627 rows, Feb 5 - Apr 17) — operational fill log; entry_time NULL on live (F17), settlement_time has two formats (F18)
 - analysis/trades/*.csv (1,693 files, Apr 19+) — trade-level with taker_side per A26
 - live_v3_*.jsonl logs — bot structured event log, ts ET-verified, ts_epoch tz-agnostic
-- arb-executor/data/durable/kalshi_fills_history.json (7,489 server-side fills, Mar 1 - Apr 29; durable per Phase 1B Session 6, sha256-verified, 4.5 MB; producer at arb-executor/tmp/fills_history_pull.py per Phase 1C-i) — TIER-A FACT SOURCE per A30. Canonical for entry timing, fill quantity, taker vs maker, settlement reconciliation. Supersedes matches.matches and local logs for per-fill ground truth. created_time is UTC ISO Z; ts is Unix epoch. Original /tmp copy remains the live working file for re-pull operations.
+- arb-executor/data/durable/kalshi_fills_history.json (7,489 server-side fills, Mar 1 - Apr 29; durable per Phase 1B Session 6, sha256-verified, 4.5 MB; producer at tmp/fills_history_pull.py per Phase 1C-i) — TIER-A FACT SOURCE per A30. Canonical for entry timing, fill quantity, taker vs maker, settlement reconciliation. Supersedes matches.matches and local logs for per-fill ground truth. created_time is UTC ISO Z; ts is Unix epoch. Original /tmp copy remains the live working file for re-pull operations.
 
 ### External sources (status varies — see per-bullet annotation)
 
@@ -434,7 +434,7 @@ Per F17 [REFINED]: live_v3 JSONL covers Apr 24+ only (166 entry_filled events). 
 
 ### kalshi_fills_history.json (durable: arb-executor/data/durable/) — TIER-A FACT SOURCE per A30
 
-- Source: `arb-executor/data/durable/kalshi_fills_history.json` (4.5 MB, durable per Phase 1B Session 6, sha256-verified). Refresh: rerun `arb-executor/tmp/fills_history_pull.py` (per Phase 1C-i); the producer writes to `/tmp/kalshi_fills_history.json`, then copy to `arb-executor/data/durable/` to update the canonical.
+- Source: `arb-executor/data/durable/kalshi_fills_history.json` (4.5 MB, durable per Phase 1B Session 6, sha256-verified). Refresh: rerun `tmp/fills_history_pull.py` (per Phase 1C-i); the producer writes to `/tmp/kalshi_fills_history.json`, then copy to `arb-executor/data/durable/` to update the canonical.
 - Date range: 2026-03-01 00:06:24 UTC to 2026-04-29 13:02:05 UTC (re-runnable to extend)
 - Total fills: 7,489 (Mar: 3,497; Apr: 3,992)
 - Schema: dict with keys fills (list), min_ts (epoch), max_ts (epoch), fetched_at (epoch float)

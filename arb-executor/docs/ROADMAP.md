@@ -79,12 +79,13 @@ T15. ROADMAP restructure — categorized T/F/U/G/D system. **CLOSED 2026-04-30 (
 
 T16. CC bootstrap reads LESSONS.md every session. **OPEN.** Currently chat is the only filter applying lessons; CC just executes prompts. Real gap — chat-side filter-failure mode is real risk (Session 4 had three off-by-one drift events on lesson numbers before D10 codified the fix). Three candidate designs: (a) CC reads full LESSONS.md at session start (~70KB context cost every session); (b) chat injects relevant lesson sections inline per prompt (preserves the gap — chat is exactly where failure lives); (c) hybrid — CC reads short LESSONS_QUICKREF.md (~10KB summary of CC-actionable patterns: D10 dynamic numbering, F28 /tmp ephemerality, C17 credential redaction, single-concern commits) at session start, chat injects specific lessons inline as needed. Design choice tracked at D8.
 
+T17. **G9 dataset parquet conversion.** **OPEN.** Convert `arb-executor/data/historical_pull/` (20K CSV + 20K JSON files) to consolidated parquet. Three target outputs: `g9_trades.parquet` (~20M rows: ticker, created_time microsecond, yes_price, no_price, count_fp, taker_side, trade_id), `g9_candles.parquet` (~5M rows: ticker, end_period_ts, OHLC + bid/ask + volume + OI), `g9_metadata.parquet` (~20K rows: full market metadata with category derivation per match_facts_v3 pattern). Estimated ~30-60 min runtime, ~2 GB consolidated output (vs 5 GB raw). Enables groupby-based analysis instead of per-file opens. Blocking for Layer A bounce measurement on G9 dataset.
+
 ---
 
 ## SECTION 3: F (FLAG) — operational risks and attention items
 
 
-T17. **G9 dataset parquet conversion.** Convert `arb-executor/data/historical_pull/` (20K CSV + 20K JSON files) to consolidated parquet. Three target outputs: `g9_trades.parquet` (~20M rows: ticker, created_time microsecond, yes_price, no_price, count_fp, taker_side, trade_id), `g9_candles.parquet` (~5M rows: ticker, end_period_ts, OHLC + bid/ask + volume + OI), `g9_metadata.parquet` (~20K rows: full market metadata with category derivation per match_facts_v3 pattern). Estimated ~30-60 min runtime, ~2 GB consolidated output (vs 5 GB raw). Enables groupby-based analysis instead of per-file opens. Blocking for Layer A bounce measurement on G9 dataset.
 F1. /tmp ephemerality risk. Per LESSONS F28: bare /tmp files can be lost over time without warning. Files currently sitting on /tmp that are canonical sources: kalshi_fills_history.json (per A30), bbo_log_v4.csv.gz (B-tier), entry_price_bias.csv cluster, bbo_aw1/aw2, harmonized_analysis/ deprecated outputs. Mitigation tracked at T14 for kalshi_fills_history; broader durability migration not yet planned.
 
 F2. /tmp/harmonized_analysis/ outputs retained on disk. Per LESSONS F25: methodology-incorrect data, deprecation marker placed but actual files not deleted. Future readers may consume them despite the marker. Mitigation: depends on D1 (deletion authorization).

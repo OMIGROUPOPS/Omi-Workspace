@@ -61,19 +61,20 @@ Tiers are ordered by fidelity: A is highest, C is lowest. Higher tier means more
 ### G-tier — Full Kalshi historical archive (per-minute candles + microsecond trades)
 
 - Source: /root/Omi-Workspace/arb-executor/data/historical_pull/
+- Subdirectories: candlesticks/ (per-market CSV), trades/ (per-market CSV), market_metadata/ (per-market JSON), enumeration/manifest.json
 - Date range: 2025-06-18 to 2026-05-02 (full Kalshi tennis archive at delivery)
-- File count: 20,110 markets total — per-market CSV (candlesticks) + per-market JSON (metadata + trades)
-- Total size: 5.0 GB on disk
-- Match count by category: ~20K markets across all tennis categories (ATP_CHALL, ATP_MAIN, WTA_CHALL, WTA_MAIN, plus older series). Per-category breakdown deferred to G9 metadata parquet (T17).
-- Sampling rate: Per-minute candlesticks (yes_bid/yes_ask/yes_close/yes_volume/yes_open_interest etc. at minute granularity); trade tape at microsecond timestamp resolution with taker_side.
-- Schema (candlesticks CSV): minute_ts, yes_bid_open/high/low/close, yes_ask_open/high/low/close, yes_close, no_close, volume, open_interest, plus market metadata in companion JSON.
-- Schema (trades JSON): per-trade records with created_time (UTC ISO Z, microsecond), yes_price, no_price, count, taker_side, trade_id.
-- All timestamps: VERIFIED UTC for trades (created_time ISO Z); candle minute_ts in epoch seconds UTC.
-- Producer: arb-executor/data/scripts/build_g9_archive.py — pulls from Kalshi /historical/markets/{ticker}/candlesticks + /historical/trades endpoints. Re-runnable to extend forward.
-- What it uniquely supports: Per-moment bounce analysis (Layer A) on a 10x larger universe than B-tier; full-archive coverage retroactive to mid-2025; aggressor-flow analysis (taker_side per trade) at microsecond resolution; cross-tier validation against B-tier for the Mar 20 - Apr 17 overlap window.
-- What it does NOT support: Order book depth beyond top-of-book candle bid/ask; pre-Jun-2025 data (Kalshi /historical/* endpoints have a horizon).
+- Manifest count: 20,110 markets total
+- File counts on disk: 19,687 candlestick CSVs (423 sub-1-minute markets correctly skipped), 20,018 trade CSVs (92 zero-volume markets correctly skipped), 20,110 metadata JSONs (one per manifest market)
+- Total size: 5.0 GB
+- Sampling rate: Per-minute candlesticks (median 250 candles per market, p95 485, range 3-647); trade tape at microsecond resolution (median 100 trades per market, p95 525, range 2-792)
+- Schema (candlesticks CSV, 17 columns): end_period_ts (epoch seconds UTC), open_interest_fp, price_close, price_high, price_low, price_mean, price_open, price_previous, volume_fp, yes_ask_close, yes_ask_high, yes_ask_low, yes_ask_open, yes_bid_close, yes_bid_high, yes_bid_low, yes_bid_open. Price fields are decimal dollars; _fp suffix denotes fixed-point integer. Field names confirmed against /candlesticks/*.csv header line.
+- Schema (trades CSV, 7 columns): count_fp, created_time (ISO 8601 microsecond UTC, e.g., 2025-06-18T13:41:08.553962Z), no_price_dollars, taker_side (yes|no), ticker, trade_id, yes_price_dollars.
+- Schema (market_metadata JSON, ~45 keys per market): ticker, event_ticker, custom_strike (contains tennis_competitor UUIDs for player identity), open_time, close_time, created_time, settlement_ts, settlement_value_dollars, result, status, volume_fp, volume_24h_fp, open_interest_fp, last_price_dollars, expected_expiration_time, expiration_time, can_close_early, early_close_condition, rules_primary, rules_secondary, market_type, notional_value_dollars, liquidity_dollars, no_ask_dollars, no_bid_dollars, yes_ask_dollars, yes_bid_dollars, no_sub_title, yes_sub_title, _tier (marks historical vs live), and others. All timestamps ISO 8601 UTC.
+- All timestamps: VERIFIED UTC. Trade created_time is microsecond ISO Z; candle end_period_ts is epoch seconds UTC; metadata timestamps are ISO 8601 UTC.
+- Producer: arb-executor/data/scripts/build_g9_archive.py — pulls from Kalshi /historical/markets/{ticker}/candlesticks + /historical/trades + /historical/markets/{ticker} endpoints. Re-runnable to extend forward.
+- What it uniquely supports: Per-moment bounce analysis (Layer A) on a 10x larger universe than B-tier; full-archive coverage retroactive to mid-2025; aggressor-flow analysis (taker_side per trade) at microsecond resolution; cross-tier validation against B-tier for the Mar 20 - Apr 17 overlap window; player-identity work via custom_strike.tennis_competitor UUIDs (per ROADMAP T25 fair-value scoping).
+- What it does NOT support: Order book depth beyond top-of-book candle bid/ask (no bid_2-5 / ask_2-5 — that requires A-tier); pre-Jun-2025 data (Kalshi /historical/* endpoints have a horizon).
 - Status: G9 dataset DELIVERED 2026-05-02 per ROADMAP G9. Parquet conversion pending T17 (~30-60 min runtime to consolidated g9_trades.parquet + g9_candles.parquet + g9_metadata.parquet). Layer A v1 implementation gated on T17 + T18 (candles semantics probe).
-
 
 ### Other operational data sources (full schemas in Section 4)
 

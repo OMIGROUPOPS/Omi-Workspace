@@ -1,0 +1,20 @@
+variable,bleed_period_value,recovery_period_value,changed
+active_cell_count,39,25,True
+cells_added,,"ATP_CHALL_leader_50-54, WTA_CHALL_leader_55-59",True
+cells_removed,,"ATP_CHALL_leader_60-64, ATP_CHALL_underdog_15-19, ATP_CHALL_underdog_25-29, ATP_CHALL_underdog_30-34, ATP_MAIN_leader_75-79, ATP_MAIN_underdog_20-24, ATP_MAIN_underdog_25-29, ATP_MAIN_underdog_35-39, ATP_MAIN_underdog_40-44, WTA_CHALL_underdog_50-54, WTA_MAIN_leader_60-64, WTA_MAIN_underdog_15-19, WTA_MAIN_underdog_20-24, WTA_MAIN_underdog_30-34, WTA_MAIN_underdog_35-39, WTA_MAIN_underdog_40-44",True
+exit_cents_changed,8,ATP_CHALL_leader_55-59: 5->20; ATP_CHALL_leader_65-69: 6->30; ATP_CHALL_leader_70-74: 7->25; ATP_CHALL_leader_75-79: 19->10; ATP_CHALL_underdog_10-14: 34->30; ATP_CHALL_underdog_20-24: 25->15; ATP_CHALL_underdog_40-44: 6->30; WTA_CHALL_underdog_40-44: 35->30,True
+entry_contracts,10,10,False
+code_change,49af4c7 Activate STALE_BUY_DELTA: cancel resting buys 5c+ above current mid,,True
+code_change,7890d18 Cadence_repost 60s globally (was 600s when >2h out),,True
+code_change,"976939a Per-tier ENTRY_MAX_LEAD_SEC: 12h for ATP_MAIN/WTA_MAIN, 4h for Challenge",,True
+code_change,8be94f7 Loosen fv_single spread gate 1c → 2c (61% of rejected anchors had spread,,True
+code_change,5718d24 Remove confidence-based window cap — real book at T-5h is no less tradea,,True
+code_change,6bd740c Increase book staleness threshold 120s -> 900s (quiet pregame books were,,True
+code_change,3dac66a Remove kalshi_commence_time fallback — Kalshi expected_expiration_time i,,True
+code_change,1ef7530 Fix orphan detection — skip in-memory positions in entry_resting phase (,,True
+code_change,3ff323f Fix orphan resting buy zombies — reconcile cancels orphan buys at startu,,True
+code_change,"2d6307a Fix fill_count_fp parsing — Kalshi returns '0.00' string, needs int(floa",,True
+code_change,f7e8977 Fix fill detection field name (count_filled_fp → fill_count_fp) and cade,,True
+code_change,4608412 Fix position accumulation bug — all buy paths check current position bef,,True
+tournament_context,not available from config,would need schedule data,UNKNOWN
+market_hours,24/7 automated,24/7 automated,False

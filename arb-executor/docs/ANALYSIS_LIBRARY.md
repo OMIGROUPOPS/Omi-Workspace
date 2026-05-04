@@ -124,26 +124,26 @@ Canonical-path rules (post-Session-6 Phase 1B/1C). For preserved DATA files: arb
 - **Validity status:** Valid for diagnostic purposes; the deltas themselves carry F8 caveat.
 
 #### u4_phase1_match_landscape (U4 Phase 1)
-- **File path:** /tmp/u4_phase1_match_landscape.csv (1.04 MB, 5,879 matches).
-- **Producer script:** /tmp/u4_phase1_match_landscape.py.
+- **File path:** arb-executor/tmp/u4_phase1_match_landscape.csv (1.04 MB, 5,879 matches; durable per Phase 1C-iv Session 6, commit f36691c).
+- **Producer script:** arb-executor/tmp/u4_phase1_match_landscape.py (durable per Phase 1C-i Session 6, commit d0462c8).
 - **Date created:** 2026-04-30 (Session 4).
 - **Depth:** 1.
 - **Data tier used:** C (historical_events) + attempted joins to book_prices and kalshi_price_snapshots.
 - **Variables used:** first_price_winner, min_price_winner, max_price_winner, last_price_winner, first_price_loser, min_price_loser, max_price_loser, last_price_loser, total_trades, category, commence_time, duration.
 - **Question answered:** What does the match landscape look like across all relevant variables, with no pre-defined cell scheme?
 - **Validity status:** Valid for population-level characterization; Pinnacle FV join FAILED (book_prices Apr 19+ vs historical_events Jan 2 - Apr 10 = zero date overlap) and volume_24h join FAILED (kalshi_price_snapshots Apr 21+ only).
-- **Notes:** Foundation for U4 Phase 2 stratification. Confirms bounce asymmetry at population level: winner median ~35c, loser median ~12-16c. 33% of matches have first_price_winner + first_price_loser >5c off 100 (per A19 — first_price unsynchronized between sides). Per F28 /tmp ephemerality flag — re-derive if missing. **CAVEAT per B14:** uses match-level aggregates conflating premarket vs in-match windows.
+- **Notes:** Foundation for U4 Phase 2 stratification. Confirms bounce asymmetry at population level: winner median ~35c, loser median ~12-16c. 33% of matches have first_price_winner + first_price_loser >5c off 100 (per A19 — first_price unsynchronized between sides). F28 /tmp ephemerality MITIGATED for this entry per Phase 1C Session 6 — both producer and output durable in arb-executor/tmp/. **CAVEAT per B14:** uses match-level aggregates conflating premarket vs in-match windows.
 
 #### u4_phase2_loser_bounce_predictors (U4 Phase 2)
-- **File path:** /tmp/u4_phase2_loser_bounce_by_strata.csv (8.1 KB, 92 strata) + /tmp/u4_phase2_loser_bounce_summary.txt (2.9 KB).
-- **Producer script:** /tmp/u4_phase2_loser_bounce_predictors.py.
+- **File path:** arb-executor/tmp/u4_phase2_loser_bounce_by_strata.csv (8.1 KB, 92 strata) + arb-executor/tmp/u4_phase2_loser_bounce_summary.txt (2.9 KB; both durable per Phase 1C-iv Session 6, commit f36691c).
+- **Producer script:** arb-executor/tmp/u4_phase2_loser_bounce_predictors.py (durable per Phase 1C-i Session 6, commit d0462c8).
 - **Date created:** 2026-04-30 (Session 4).
 - **Depth:** 1 (distribution stratified).
 - **Data tier used:** C (synchronized subset of historical_events: 3,936 matches where first_price_winner + first_price_loser within 5c of 100).
 - **Variables used:** total_trades, category, duration, skew (first_price_winner - 50), first_price_loser, leg span, plus loser-side bounce magnitudes.
 - **Question answered:** Which match-level variables predict loser-side bounce capture, and at what magnitudes?
 - **Validity status:** Valid as stratified distribution finding on synchronized subset. Strategically useful: volume is canonical predictor.
-- **Notes:** Key finding — **volume is primary predictor of bilateral capture** (33pp swing across volume strata: 50-99 trades = 34.3% bilateral capture at +10c, 1000+ trades = 76.4%). Categories track within 6pp (ATP_CHALL=63.1%, ATP_MAIN=63.5%, WTA_MAIN=64.3%, WTA_CHALL=56.8%). Skew >35 cliff partially CEILING ARTIFACT per B13 (heavy side at 85-89c can't bounce 15c without exceeding 99c). Aggregate +10c bilateral on synchronized subset: 62.83%. Duration 2-4h matches strongest (68.3%). **Reframes the 70.7% April 14 anchor per E30 — that figure was subset-averaged; high-volume regime is 76.4% and low-volume is much lower.** Operator-validated strategic conclusion: high-volume matches (1000+ trades) are bilateral candidates; low-volume are single-side or skip. **CAVEAT per B14/G17:** uses match-level aggregates conflating premarket vs in-match. Decomposition required for strategy-actionable findings (U4 Phase 3, next analysis target). Per F28 /tmp ephemerality flag.
+- **Notes:** Key finding — **volume is primary predictor of bilateral capture** (33pp swing across volume strata: 50-99 trades = 34.3% bilateral capture at +10c, 1000+ trades = 76.4%). Categories track within 6pp (ATP_CHALL=63.1%, ATP_MAIN=63.5%, WTA_MAIN=64.3%, WTA_CHALL=56.8%). Skew >35 cliff partially CEILING ARTIFACT per B13 (heavy side at 85-89c can't bounce 15c without exceeding 99c). Aggregate +10c bilateral on synchronized subset: 62.83%. Duration 2-4h matches strongest (68.3%). **Reframes the 70.7% April 14 anchor per E30 — that figure was subset-averaged; high-volume regime is 76.4% and low-volume is much lower.** Operator-validated strategic conclusion: high-volume matches (1000+ trades) are bilateral candidates; low-volume are single-side or skip. **CAVEAT per B14/G17:** uses match-level aggregates conflating premarket vs in-match. Decomposition required for strategy-actionable findings (U4 Phase 3, next analysis target). F28 /tmp ephemerality MITIGATED for this entry per Phase 1C Session 6 — producer and outputs durable in arb-executor/tmp/.
 
 ---
 

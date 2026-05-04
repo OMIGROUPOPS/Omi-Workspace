@@ -1,0 +1,27 @@
+DCA Time-Ordered Analysis v3
+============================
+
+Input: /tmp/bbo_log_v4.csv.gz (515M rows, gzipped)
+Date range: Mar 20 - Apr 17, 2026
+Rows processed: 515454155
+Tickers processed: 25377
+Runtime: 333 minutes
+Peak memory: 42 MB
+
+Cells tested: 25 (active) + 18 (disabled)
+Triggers: [3, 5, 7, 10, 15, 20, 25]
+Combos: A (original exit), B (recalc avg+exit)
+
+Architecture: Inline state machine (no buffering)
+  - Each (ticker, trigger, combo) has its own state: WAIT/FIRED/DONE
+  - State transitions happen as BBO rows stream in
+  - O(1) memory per ticker (no price history stored)
+  - Stale tickers finalized after 5 min of inactivity
+
+Time-ordering: ENFORCED
+  1. Process BBO rows in chronological order per ticker
+  2. WAIT state: if mid >= target_A → SCALP (done), if mid <= dca_price → FIRED
+  3. FIRED state: if mid >= exit_target → DCA_WIN (done)
+  4. End of ticker in FIRED state → DCA_KNIFE
+  5. End of ticker in WAIT state → NO_OPPORTUNITY
+  6. Entry price = first bid (maker fill)

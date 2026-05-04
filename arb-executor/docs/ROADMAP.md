@@ -280,6 +280,18 @@ D6. Bug 4 implementation prioritization. Per T11a. Two paths: (a) implement now 
 
 D8. CC-LESSONS-bootstrap design choice. Per T16. Three options on the table: (a) CC reads full LESSONS.md every session; (b) chat-side inline injection per prompt; (c) hybrid LESSONS_QUICKREF.md + selective inline. Chat recommendation: (c) — load-bearing CC-actionable patterns on disk for CC, chat retains discretion for context-specific lessons. Operator decision required before any T16 implementation work.
 
+D9. **per_cell_verification canonical designation execution.** Per U10 + F11. Two batches preserved (Apr 28 /tmp at per_cell_verification_tmp_apr28/, Apr 29 17:43 archive at per_cell_verification/), 28 of 30 same-named files differ by sha256. Decision: (a) do the per-question canonical-designation work now (~5 hours scope per U10), or (b) accept both batches as forensic evidence with no single canonical designated; do not consume per_cell_verification outputs for production analysis until resolved. Default to (b) until forward analysis genuinely needs a per_cell_verification number, at which point (a) becomes a prerequisite for that downstream work.
+
+D10. **harmonized_analysis canonical designation.** Per F12 + F25 + F2. Both /tmp and archive batches are methodology-incorrect per F25 (T9 closure marker). Mtime/sha256 mismatch between batches indicates two different methodology-incorrect runs. Decision: (a) leave both, no canonical designated, do not consume per F25 deprecation marker, or (b) delete both per F2 / D1 to reduce future confusion. Default to (a) — preserved forensic evidence is cheap, accidental consumption already mitigated by F25 marker.
+
+D11. **Liam chart-iteration thread reconciliation.** Liam works in parallel AI chat sessions on chart-iteration / per-match visualization (per user-memory). Coordination route: through operator, not chat-to-chat. Decision required when Liam's work product is ready to merge into Phase 3 v2 / G7 architecture: (a) Liam's chart code becomes T24 implementation directly, (b) Liam's chart code is reference for separate chat-implemented T24, or (c) other arrangement. Currently no merge needed; tracked here so the path exists.
+
+D12. **Phase 3 v1 design doc disposition.** Per T23. Phase 3 v1 design doc (arb-executor/docs/u4_phase3_design.md, 209 lines) is partially obsolete: Stage 0 findings still valid, 30s cadence retired (B15/B16), G9 architecture supersedes bbo_log_v4 source. Three options:
+  - (a) rewrite as Phase 3 v2 design doc reflecting native-resolution + G9 architecture (substantial work, supersedes v1)
+  - (b) formally retire Phase 3 v1 with SUPERSEDED tag and pointer to G7 + Layer A v1 spec (T19); Phase 3 v2 only exists as G7/T19/T20/T21 distributed across ROADMAP entries
+  - (c) leave v1 as-is with Session 5 architectural learnings appended; do not write a v2 doc; rely on G7/T19/T20/T21 + ROADMAP for forward design
+Default to (c) — least work, retains v1 as historical record, forward design lives in ROADMAP indices not in a single design doc. Operator countermand if (a) or (b) preferred.
+
 ---
 
 ## SECTION 7: RECENTLY COMPLETED (Session 4, Apr 30) — high-level

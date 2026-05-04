@@ -81,6 +81,36 @@ T16. CC bootstrap reads LESSONS.md every session. **OPEN.** Currently chat is th
 
 T17. **G9 dataset parquet conversion.** **OPEN.** Convert `arb-executor/data/historical_pull/` (20K CSV + 20K JSON files) to consolidated parquet. Three target outputs: `g9_trades.parquet` (~20M rows: ticker, created_time microsecond, yes_price, no_price, count_fp, taker_side, trade_id), `g9_candles.parquet` (~5M rows: ticker, end_period_ts, OHLC + bid/ask + volume + OI), `g9_metadata.parquet` (~20K rows: full market metadata with category derivation per match_facts_v3 pattern). Estimated ~30-60 min runtime, ~2 GB consolidated output (vs 5 GB raw). Enables groupby-based analysis instead of per-file opens. Blocking for Layer A bounce measurement on G9 dataset.
 
+T18. **Candles semantics probe.** **OPEN.** Verify Kalshi candlestick `yes_bid` / `yes_ask` semantics before T17 parquet conversion locks in flattened schema. Hypothesis: best-bid/best-ask snapshot at open/close/high of period (per ANALYSIS_LIBRARY description language). Alternative: VWAP across period, or other aggregation. Probe shape: pick one high-volume Kalshi market with dense trade tape, compare candle `yes_bid_close` to (a) last bid-side trade in window, (b) VWAP of bid-side trades in window, (c) any other plausible interpretation. ~10 min. Gates T17. If semantics are non-snapshot, every analysis using candle bid/ask is on a noisy quote.
+
+T19. **Layer A v1 specification.** **OPEN.** Per G7 architectural commitment + LESSONS B16 (bounce/exit/returns separation). Layer A is pure bounce per cell, no exit logic, no fill assumptions, no P&L. Operational decisions to make explicit:
+  - Bounce definition: MFE only for v1 (max favorable excursion, parameter-free given a forward window). Defer return-to-pre-dip and mean-reversion-to-fair to v2.
+  - Forward windows: 2/5/10/30/60/120min + until_settlement. 2/5/30/120 anchored on Stage 0 Probe 7 exit-time distribution; 10/60 fill bounce-decay-curve gaps. Annotate which is which in the output schema.
+  - Cell granularity: v1 starts at price decile × TTC quintile × volume-bucket × category. Per LESSONS A31 volume is the primary predictor (33pp swing across volume strata vs 6pp across categories). Per B14/G17 decompose by premarket vs in-match time window — strategy-actionable findings require it. Per B13 check threshold ceiling math before interpreting cliffs.
+  - Source: candle close prices only. No trades-candles join in v1 (gated on T18 semantics verification).
+  - Cell minimum sample size: N_min (e.g., 100 obs) below which cells collapse to coarser bins.
+  Output: `arb-executor/docs/layer_a_spec.md`. Blocks T20.
+
+T20. **Layer A v1 implementation.** **OPEN.** Code per T19 spec. Reads `g9_candles.parquet` + `g9_metadata.parquet` (post-T17). Computes MFE per (ticker, candle_minute) for each forward window. Stratifies by cell. Output: `arb-executor/analysis/layer_a/bounce_distribution_per_cell.parquet` + per-cell summary CSV. Blocks T21.
+
+T21. **Layer A coherence read.** **OPEN.** Sanity checks on T20 output. Methodology validation gate. Checks:
+  - Higher leader-prices have lower bounce magnitudes (asymptote near 100c)?
+  - In-match volatility higher than premarket (per B14 decomposition)?
+  - Settlement-conditioned reversion present (matches ending at YES=$1 spent significant time above $0.85 in final window)?
+  - Per-category differences sensible (ATP main vs Challenger, WTA mirror)?
+  - Volume-bucket monotonicity (higher-volume cells should have lower variance per A31)?
+  If coherent: continue to G10 (Layer B exit-policy sweep). If incoherent: investigate dataset before further analysis. Possibilities: candles semantics wrong (T18 missed something), cell granularity too fine, MFE definition wrong, hidden upstream-filter in G9 producer. Session 6 success metric.
+
+T22. **TAXONOMY refactor for multi-tier-as-feature framing.** **OPEN.** Per LESSONS E23 the A/B/C tier framework treats data as richer/thinner versions of the same thing. The right framing is multi-tier-as-feature: tiers serve different question classes (per-minute candles → game-state-level analysis; per-tick BBO → microstructure; microsecond trade tape → aggressor flow). G9 introduces a fourth tier: per-minute candles + microsecond trades, retroactively pullable from `/historical/*`, coverage Jun 2025+. TAXONOMY needs the G9 tier explicitly defined and the multi-tier-as-feature framing landed. Prerequisite: read existing TAXONOMY content before reframe (verified Session 6).
+
+T23. **Phase 3 v1 design doc disposition.** **OPEN.** Pending D12. The Phase 3 v1 design doc (`arb-executor/docs/u4_phase3_design.md`, 209 lines) is partially obsolete: Stage 0 findings still valid, 30s cadence retired (see B15/B16), G9 architecture supersedes the bbo_log_v4 source. Three options: (a) rewrite as Phase 3 v2 design doc reflecting native-resolution + G9 architecture, (b) formally retire Phase 3 v1 with a SUPERSEDED tag and pointer, (c) leave as-is with Session 5 architectural learnings appended. Operator decision tracked at D12; this T-item is the implementation work after D12 resolves.
+
+T24. **Per-match visualization tool.** **OPEN, optional.** Templated `plot_match(ticker)` function reproducing the chart format that originally surfaced G9 (Liam's Jun 2025 ticker chart): `yes_bid` / `yes_ask` step functions + trade scatter colored by `taker_side` + taker flow panel + volume panel. Reads from `g9_trades.parquet` + `g9_candles.parquet` post-T17. Sanity-check companion to aggregate Layer A — lets us visually inspect any cell's worth of matches when Layer A surfaces something surprising. Not blocking analysis; valuable for debugging.
+
+T25. **Fair-value model integration scoping.** **OPEN.** Per user-memory, Klaassen-Magnus tennis win probability model exists at `omi-workspace/ESPNData/tennis_scraper.py` (ATP serve f=0.64, WTA f=0.56). Whether output is joined to any market_id is unknown. Prerequisite for Layer A v2 (fair-value-conditioned bounce definitions) and V4 game-state mispricing thesis. Player-identity cross-walk between Kalshi UUIDs (`custom_strike.tennis_competitor`) and ESPN/ATP/WTA player IDs may be its own multi-hour task. 5-min scoping probe before committing to integration work.
+
+T26. **Live trading deployment plan.** **OPEN, far-future tracking.** Path back to live trading requires: Layer A coherence validated (T21 gate), Layer B exit policy chosen (G10), Layer C economics positive (G11), bot architecture updated to consume Phase 3 v2 / G9-derived dataset (not deprecated 30s-cadence pipeline), auth separation so heavy backfill doesn't share rate-limit bucket with live trading (per L2 lesson when added), Bug 4 implementation per T11a if operator prioritizes (D6). Not Session 6 scope; tracked here so the path is explicit and not assumed.
+
 ---
 
 ## SECTION 3: F (FLAG) — operational risks and attention items

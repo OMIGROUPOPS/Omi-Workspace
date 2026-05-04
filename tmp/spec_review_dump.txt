@@ -1,0 +1,219 @@
+===== SECTION 4 =====
+## 4. VolumeTracker Internals
+
+### Data structure
+
+`trades[ticker]` is a `collections.deque` of `(ts, price, qty)`. Append-only at the head. Eviction from the tail when ts is older than `retention_sec`.
+
+For `volume_at_or_through`, we scan the deque and sum qty matching the predicate. With 6h retention and typical Kalshi tennis trade rates (low single-digit per second per ticker), the deque stays under ~50k entries per ticker, so linear scan is fine. If profiling shows otherwise, switch to a sorted price-bucketed structure.
+
+### Side semantics
+
+A trade print's direction (aggressor side) determines whether it represents volume that would have crossed our resting order. A buy-aggressor print at price P (someone lifted an ask at P) is informative for evaluating sell-side fill probability; it tells us nothing about whether anyone would have hit our resting bid.
+
+- **Paper buy resting at price P** (we are posting a bid at P):
+  - **SELL-aggressor** prints at price <= P represent liquidity that would have hit our bid.
+  - `volume_at_or_through(ticker, "buy", P, since_ts)` = `sum(qty for (ts, price, qty, side) in trades[ticker] if ts >= since_ts and price <= P and side == "sell")`
+  - BUY-aggressor prints at price <= P do NOT count: they represent someone lifting an even lower ask, which tells us about ask-side activity but not about our bid being hit.
+
+- **Paper sell resting at price P** (we are posting an ask at P):
+  - **BUY-aggressor** prints at price >= P represent liquidity that would have lifted our ask.
+  - `volume_at_or_through(ticker, "sell", P, since_ts)` = `sum(qty for (ts, price, qty, side) in trades[ticker] if ts >= since_ts and price >= P and side == "buy")`
+
+### Side annotation requirement
+
+`VolumeTracker.record()` requires `side` ("buy" | "sell"), the AGGRESSOR side (the counterparty that crossed the spread). Kalshi WS trade messages carry this as either `taker_side` or `yes_taker_side` — exact field name verified in the §10 probe.
+
+### Fallback when side is unavailable
+
+If the §10 probe shows side fields are missing in <95% of trade messages, `VolumeTracker.record()` accepts `side=""` and the predicate degrades to:
+
+- `volume_at_or_through_unsided(ticker, "buy", P, since_ts)` = `sum(qty for ... if ts >= since_ts and price <= P)`
+- `volume_at_or_through_unsided(ticker, "sell", P, since_ts)` = `sum(qty for ... if ts >= since_ts and price >= P)`
+
+This OVERCOUNTS (includes buy-aggressors at lower prices for buy-side; sell-aggressors at higher prices for sell-side). Telemetry events report `volume_at_or_through_unsided` instead of `volume_at_or_through` so post-hoc analysis can distinguish. A `paper_volume_unsided_warning` event fires once at startup if the §10 probe confirmed degraded mode.
+
+### depth_for_side
+
+Reads instantaneous book depth from `self.api.bot.books[ticker]`:
+- For a buy at P: depth_for_side returns `bot.books[ticker].asks.get(P, 0)` plus aggregated asks <= P (the volume immediately available to fill us).
+- For a sell at P: returns `bot.books[ticker].bids.get(P, 0)` plus aggregated bids >= P.
+
+Note: Book class fields (line 219) include `bids: Dict[int, int]` and `asks: Dict[int, int]` — int price -> int qty.
+
+---
+
+
+===== SECTION 7 (Directional bias + try_fill block) =====
+## 7. Fill Simulation (Permissive Policy)
+
+### Fill conditions
+
+| Order | Trigger A: book cross | Trigger B: trade print |
+|---|---|---|
+| Resting buy at P | `book.best_ask <= P` | trade at price <= P |
+| Resting sell at P | `book.best_bid >= P` | trade at price >= P |
+
+### Fill price (permissive)
+
+Always fill at `order.yes_price`. No slippage. No partial fills. Full quantity in one shot.
+
+Rationale: under permissive policy, the bot's accounting is exact (no partial-fill code paths to test in paper mode), and realism is assessed via volume telemetry post-hoc.
+
+### Directional bias of permissive fills
+
+Permissive policy is NOT symmetric across buy and sell sides. It biases paper P&L systematically:
+
+- **On BUYS** (paper bot is patient maker, posting a bid): permissive fill is **FAVORABLE** to paper bot. In real markets, if the book gaps through our level (best_ask drops to 30 when we are bid 42), we might not get filled at 42 — a faster taker could sweep the asks before we reprice. Paper assumes we always fill at 42, our posted level. **This OVERSTATES paper fill rate.**
+
+- **On SELLS** (paper bot is patient maker, posting an ask): permissive fill is **UNFAVORABLE** to paper bot. In real markets, if the book gaps through our level (best_bid jumps to 80 when we are offered 60), we might receive 80 (price improvement). Paper fills at 60. **This UNDERSTATES paper P&L.**
+
+Net effect on P&L is sport- and conditions-dependent. Buy-side overcounting and sell-side undercounting partially offset, but not symmetrically.
+
+**USE PAPER P&L ONLY AS A DECISION-QUALITY SIGNAL FOR BUG FIX VALIDATION, NOT AS A REALISM ESTIMATE OF LIVE BOT PERFORMANCE.** Burn-in P&L compared to historical real P&L should be interpreted with this directional asymmetry in mind. Liquidity telemetry (`volume_at_or_through`, `depth_at_price`) is the realism check, not realized P&L.
+
+### evaluate_book_cross(ticker)
+
+Called from `on_book_update`. For each `order in self.paper_orders.values()` matching ticker AND status == "resting":
+- buy + best_ask <= price -> `try_fill(order, order.yes_price, now, "book_cross")`
+- sell + best_bid >= price -> same
+
+### evaluate_trade_print(ticker, ts, price)
+
+Called from `on_trade` after volume_tracker.record. For each resting order on ticker:
+- buy + price <= order.yes_price -> fill
+- sell + price >= order.yes_price -> fill
+
+### try_fill(order, fill_price, fill_ts, trigger)
+
+```
+1. order.status = "executed"
+   order.filled_count = order.count
+   order.remaining_count = 0
+   order.last_event_ts = fill_ts
+
+   # Idempotency: status is set before any further work. Both evaluate_book_cross
+   # and evaluate_trade_print check status == "resting" before calling try_fill,
+   # so a re-entrant call from a chained book/trade hook arriving mid-fill sees
+   # status="executed" and short-circuits. No duplicate fills possible.
+
+2. pos = self.paper_positions[order.ticker]
+   if order.action == "buy":
+       pos.qty += order.count
+       pos.total_cost_cents += order.count * fill_price
+       pos.first_entry_ts = pos.first_entry_ts or fill_ts
+       pos.open_buy_orders.remove(order.order_id)
+   else:  # sell
+       pos.sold_qty += order.count
+       pos.total_revenue_cents += order.count * fill_price
+       pos.open_sell_orders.remove(order.order_id)
+       if pos.net_qty == 0:
+           pos.realized_pnl_cents = pos.total_revenue_cents - pos.total_cost_cents
+
+3. Compute telemetry:
+       time_to_fill_sec = fill_ts - order.post_ts
+       volume_at_or_through_lifetime = volume_tracker.volume_at_or_through(
+           ticker, order.action, order.yes_price, order.post_ts)
+       depth_at_fill = volume_tracker.depth_for_side(
+           ticker, "ask" if order.action == "buy" else "bid", order.yes_price)
+       book_now = bot.books[order.ticker]
+
+4. Emit event:
+       event = "paper_fill" if order.action == "buy" else "paper_exit_fill"
+       _emit(event, {
+           "order_id": order.order_id,
+           "fill_price": fill_price,
+           "qty": order.count,
+           "time_to_fill_sec": time_to_fill_sec,
+           "volume_at_or_through_lifetime": volume_at_or_through_lifetime,
+           "depth_at_fill": depth_at_fill,
+           "fill_trigger": trigger,
+           "best_bid_at_fill": book_now.best_bid,
+           "best_ask_at_fill": book_now.best_ask,
+           "last_trade_price_at_fill": book_now.last_trade_price,
+           "post_telemetry": {
+               "best_bid": order.best_bid_at_post,
+               "best_ask": order.best_ask_at_post,
+               "depth_at_price": order.book_depth_at_price_post,
+               "fv_anchor": order.fv_anchor_at_post,
+               "last_trade_price": order.last_trade_price_at_post,
+           },
+           "entry_avg_price_after_fill": pos.avg_price,
+           "net_qty_after_fill": pos.net_qty,
+           "realized_pnl_cents": pos.realized_pnl_cents if order.action == "sell" else None,
+       }, ticker=order.ticker)
+
+5. Note: paper_fill / paper_exit_fill events are PAPER-NATIVE telemetry. They do NOT
+   replace the bot's existing entry_filled / exit_filled events. The bot's check_fills
+   will independently observe the order status change via api_get and emit its own
+   entry_filled / exit_filled events. Both event streams flow into the JSONL log.
+   Operator analysis can join paper_fill <- order_id -> entry_filled.
+```
+
+---
+
+
+===== SECTION 8.9 =====
+### 8.9 paper_state_restored / paper_state_skipped (Revision 7)
+
+Emitted at startup after persistence load attempt.
+
+`paper_state_restored`:
+```json
+{
+  "event": "paper_state_restored",
+  "details": {
+    "orders_loaded": 5,
+    "positions_loaded": 12,
+    "state_age_sec": 18432.5,
+    "schema_version": "1.0"
+  }
+}
+```
+
+`paper_state_skipped`:
+```json
+{
+  "event": "paper_state_skipped",
+  "details": {
+    "reason": "file_not_found"
+    // other reasons: "file_stale", "version_mismatch", "parse_error"
+  }
+}
+```
+
+If `volume_at_or_through_unsided` mode was confirmed at §10 probe, emit once at startup:
+```json
+{
+  "event": "paper_volume_unsided_warning",
+  "details": {
+    "reason": "ws_trade_messages_missing_side_field",
+    "trade_messages_sampled": 100,
+    "messages_with_side": 47
+  }
+}
+```
+
+---
+
+
+===== SECTION 13 =====
+## 13. Out-of-Scope (explicitly deferred)
+
+- Partial fills under stress (full-fill assumption acceptable for permissive policy)
+- Latency simulation (zero-latency assumption)
+- Fee modeling (paper P&L is gross; fees can be applied post-hoc from telemetry)
+- Order-book queue position simulation
+- Adverse-selection adjustment (telemetry captures volume_at_or_through, post-hoc analysis can apply realistic fill probability)
+- **Persistence** (v1 INCLUDES, scope-limited):
+  - **Path**: `/root/Omi-Workspace/arb-executor/paper_state.json` (NOT `/tmp/` — `/tmp` is cleared on reboot, defeating the resilience purpose).
+  - **Atomic write**: write to `paper_state.json.tmp` then `os.rename` to `paper_state.json` to prevent corruption on crash mid-write.
+  - **Cadence**: dump on every heartbeat (60s) from `maybe_heartbeat`.
+  - **Contents**: `paper_orders` + `paper_positions` only. `next_seq` and schema version included.
+  - **Stale threshold**: configurable via `paper_state_max_age_sec` in `config.json`, default `86400` (24h). Allows tuning during development without code change.
+  - **Startup behavior**: if `paper_mode=true` and `paper_state.json` exists with mtime within `paper_state_max_age_sec`, call `load_state(path, max_age_sec)`. On success, emit `paper_state_restored` with counts. On miss/stale/version-mismatch/parse-error, emit `paper_state_skipped` with reason and start fresh.
+  - **VolumeTracker is NOT persisted.** Cold-start after restart loses up to 6h of rolling trade history; rebuilds organically from incoming WS prints. The first ~5min of post-restart fills will report low `volume_at_or_through`; flag this in burn-in analysis.
+  - **Schema versioning**: dump includes `"PAPER_STATE_VERSION": "1.0"`. Mismatch on load -> `paper_state_skipped` with reason `"version_mismatch"`, start fresh. Allows future schema evolution without breaking burn-in.
+
+---
+

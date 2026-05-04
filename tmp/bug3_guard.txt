@@ -1,0 +1,17 @@
+            existing = self.positions.get(tk)
+            if existing and existing.entry_price > 0:
+                kalshi_avg = pinfo["avg_price"]
+                if abs(kalshi_avg - existing.entry_price) > 1:
+                    self._log("reconcile_price_mismatch", {
+                        "bot_entry_price": existing.entry_price,
+                        "kalshi_avg_price": kalshi_avg,
+                        "delta": kalshi_avg - existing.entry_price,
+                        "entry_qty": existing.entry_qty,
+                        "kalshi_qty": pinfo["qty"],
+                    }, ticker=tk)
+                if pinfo["qty"] > existing.entry_qty:
+                    existing.entry_qty = pinfo["qty"]
+                if sells and not existing.exit_order_id:
+                    existing.exit_order_id = sells[0]["order_id"]
+                    existing.exit_price = sells[0]["price"]
+                continue

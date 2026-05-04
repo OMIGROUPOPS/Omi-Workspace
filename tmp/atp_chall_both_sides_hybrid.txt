@@ -1,0 +1,249 @@
+========================================================================
+STEP 1: PRICE LEVEL CENSUS — ALL TICKERS BOTH SIDES
+========================================================================
+Bucket      Count  Avg Entry   Win Rate  Avg Final
+--------------------------------------------------
+5-15c          52        6.5     15.4%       22.0
+15-25c         28       20.4     21.4%       30.9
+25-35c         28       29.9     14.3%       22.2
+35-50c         24       41.3     16.7%       28.2
+50-65c         26       57.3     50.0%       58.3
+65-80c         38       70.3     47.4%       60.4
+80-95c         22       88.2     63.6%       65.1
+
+========================================================================
+STEP 2: PRICE JOURNEY AFTER ENTRY
+========================================================================
+
+Bucket: 5-15c  (n=52)
+  Avg max bid: 42.7   Avg min bid: 1.8
+  % reach entry×2:    76.9%
+  % reach entry×1.5:  86.5%
+  % reach entry×1.3:  90.4%
+  % reach entry+10c:  65.4%
+  % reach entry+20c:  57.7%
+  % settle at 99c:    15.4%
+
+Bucket: 15-25c  (n=28)
+  Avg max bid: 60.6   Avg min bid: 4.0
+  % reach entry×2:    60.7%
+  % reach entry×1.5:  71.4%
+  % reach entry×1.3:  82.1%
+  % reach entry+10c:  75.0%
+  % reach entry+20c:  57.1%
+  % settle at 99c:    21.4%
+
+Bucket: 25-35c  (n=28)
+  Avg max bid: 61.3   Avg min bid: 3.9
+  % reach entry×2:    46.4%
+  % reach entry×1.5:  60.7%
+  % reach entry×1.3:  78.6%
+  % reach entry+10c:  75.0%
+  % reach entry+20c:  57.1%
+  % settle at 99c:    14.3%
+
+Bucket: 35-50c  (n=24)
+  Avg max bid: 67.2   Avg min bid: 9.5
+  % reach entry×2:    29.2%
+  % reach entry×1.5:  54.2%
+  % reach entry×1.3:  62.5%
+  % reach entry+10c:  66.7%
+  % reach entry+20c:  50.0%
+  % settle at 99c:    16.7%
+
+Bucket: 50-65c  (n=26)
+  Avg max bid: 86.4   Avg min bid: 25.1
+  % reach entry×2:     0.0%
+  % reach entry×1.5:  69.2%
+  % reach entry×1.3:  76.9%
+  % reach entry+10c:  80.8%
+  % reach entry+20c:  76.9%
+  % settle at 99c:    50.0%
+
+Bucket: 65-80c  (n=38)
+  Avg max bid: 91.7   Avg min bid: 30.5
+  % reach entry×2:     0.0%
+  % reach entry×1.5:   5.3%
+  % reach entry×1.3:  57.9%
+  % reach entry+10c:  86.8%
+  % reach entry+20c:  68.4%
+  % settle at 99c:    47.4%
+
+Bucket: 80-95c  (n=22)
+  Avg max bid: 97.8   Avg min bid: 48.5
+  % reach entry×2:     0.0%
+  % reach entry×1.5:   0.0%
+  % reach entry×1.3:   0.0%
+  % reach entry+10c:  54.5%
+  % reach entry+20c:   0.0%
+  % settle at 99c:    63.6%
+
+========================================================================
+STEP 3: OPTIMAL EXIT STRATEGY BY PRICE BUCKET
+========================================================================
+
+--- 5-15c (n=52) ---
+Strategy      Hit%  AvgProfit   Return%    $/Day
+------------------------------------------------
+Hold          Hold       9.60    148.1%   831.67
++5c          82.7%       3.46     53.4%   300.00
++7c          75.0%       4.00     61.7%   346.67
++10c         65.4%       4.94     76.3%   428.33
++15c         63.5%       7.71    119.0%   668.33
++20c         57.7%       9.48    146.3%   821.67
+x1.5         86.5%       1.96     30.3%   170.00
+x2.0         76.9%       3.21     49.6%   278.33
+
+--- 15-25c (n=28) ---
+Strategy      Hit%  AvgProfit   Return%    $/Day
+------------------------------------------------
+Hold          Hold       1.57      7.7%    73.33
++5c          82.1%       0.93      4.5%    43.33
++7c          82.1%       2.57     12.6%   120.00
++10c         75.0%       3.04     14.9%   141.67
++15c         67.9%       4.36     21.3%   203.33
++20c         57.1%       3.57     17.5%   166.67
+x1.5         71.4%       2.20     10.8%   102.50
+x2.0         60.7%       5.61     27.4%   261.67
+
+--- 25-35c (n=28) ---
+Strategy      Hit%  AvgProfit   Return%    $/Day
+------------------------------------------------
+Hold          Hold     -14.86    -49.8%  -693.33
++5c          85.7%       0.43      1.4%    20.00
++7c          85.7%       2.14      7.2%   100.00
++10c         75.0%       0.71      2.4%    33.33
++15c         64.3%      -0.29     -1.0%   -13.33
++20c         57.1%      -0.50     -1.7%   -23.33
+x1.5         60.7%      -1.88     -6.3%   -87.50
+x2.0         46.4%      -0.89     -3.0%   -41.67
+
+--- 35-50c (n=24) ---
+Strategy      Hit%  AvgProfit   Return%    $/Day
+------------------------------------------------
+Hold          Hold     -24.00    -58.1%  -960.00
++5c          75.0%      -5.88    -14.2%  -235.00
++7c          70.8%      -6.33    -15.3%  -253.33
++10c         66.7%      -6.04    -14.6%  -241.67
++15c         62.5%      -5.08    -12.3%  -203.33
++20c         50.0%      -9.42    -22.8%  -376.67
+x1.5         54.2%      -6.38    -15.4%  -255.00
+x2.0         29.2%     -15.79    -38.2%  -631.67
+
+--- 50-65c (n=26) ---
+Strategy      Hit%  AvgProfit   Return%    $/Day
+------------------------------------------------
+Hold          Hold      -7.31    -12.8%  -316.67
++5c          88.5%      -2.04     -3.6%   -88.33
++7c          84.6%      -2.58     -4.5%  -111.67
++10c         80.8%      -2.58     -4.5%  -111.67
++15c         76.9%      -1.04     -1.8%   -45.00
++20c         76.9%       2.81      4.9%   121.67
+x1.5         69.2%       2.77      4.8%   120.00
+x2.0          0.0%      -7.31    -12.8%  -316.67
+
+--- 65-80c (n=38) ---
+Strategy      Hit%  AvgProfit   Return%    $/Day
+------------------------------------------------
+Hold          Hold     -22.89    -32.6% -1450.00
++5c          92.1%      -0.87     -1.2%   -55.00
++7c          92.1%       0.97      1.4%    61.67
++10c         86.8%      -0.39     -0.6%   -25.00
++15c         78.9%      -2.76     -3.9%  -175.00
++20c         68.4%      -5.87     -8.3%  -371.67
+x1.5          5.3%     -22.97    -32.7% -1455.00
+x2.0          0.0%     -22.89    -32.6% -1450.00
+
+--- 80-95c (n=22) ---
+Strategy      Hit%  AvgProfit   Return%    $/Day
+------------------------------------------------
+Hold          Hold     -24.86    -28.2%  -911.67
++5c          77.3%       0.50      0.6%    18.33
++7c          77.3%       2.05      2.3%    75.00
++10c         54.5%      -0.14     -0.2%    -5.00
++15c         18.2%     -25.36    -28.7%  -930.00
++20c          0.0%     -24.86    -28.2%  -911.67
+x1.5          0.0%     -24.86    -28.2%  -911.67
+x2.0          0.0%     -24.86    -28.2%  -911.67
+
+========================================================================
+STEP 4: POST-ENTRY PATHS (first 30 min)
+========================================================================
+
+--- 5-15c (n=52) ---
+  Surge: 84.6% of matches | avg settle=19c | best exit=Hold (avg profit=12.4c, $/day=908.33)
+  Drop: 11.5% of matches | avg settle=1c | best exit=+7c (avg profit=-3.0c, $/day=-30.00)
+  Flat:  3.8% of matches | avg settle=1c | best exit=+5c (avg profit=5.0c, $/day=16.67)
+
+--- 15-25c (n=28) ---
+  Surge: 75.0% of matches | avg settle=29c | best exit=x2.0 (avg profit=9.7c, $/day=338.33)
+  Drop: 21.4% of matches | avg settle=1c | best exit=x2.0 (avg profit=-11.7c, $/day=-116.67)
+  Flat:  3.6% of matches | avg settle=1c | best exit=x2.0 (avg profit=24.0c, $/day=40.00)
+
+--- 25-35c (n=28) ---
+  Surge: 71.4% of matches | avg settle=21c | best exit=+15c (avg profit=10.7c, $/day=355.00)
+  Drop: 28.6% of matches | avg settle=1c | best exit=+7c (avg profit=-10.0c, $/day=-133.33)
+  Flat: 0 matches
+
+--- 35-50c (n=24) ---
+  Surge: 45.8% of matches | avg settle=19c | best exit=x1.5 (avg profit=16.3c, $/day=298.33)
+  Drop: 33.3% of matches | avg settle=13c | best exit=+5c (avg profit=-5.0c, $/day=-66.67)
+  Flat: 20.8% of matches | avg settle=21c | best exit=Hold (avg profit=-21.0c, $/day=-175.00)
+
+--- 50-65c (n=26) ---
+  Surge: 34.6% of matches | avg settle=55c | best exit=x1.5 (avg profit=28.7c, $/day=430.83)
+  Drop: 26.9% of matches | avg settle=1c | best exit=+5c (avg profit=-21.1c, $/day=-246.67)
+  Flat: 38.5% of matches | avg settle=79c | best exit=Hold (avg profit=21.2c, $/day=353.33)
+
+--- 65-80c (n=38) ---
+  Surge: 10.5% of matches | avg settle=26c | best exit=+20c (avg profit=20.0c, $/day=133.33)
+  Drop: 42.1% of matches | avg settle=44c | best exit=+7c (avg profit=-7.3c, $/day=-195.00)
+  Flat: 47.4% of matches | avg settle=55c | best exit=+7c (avg profit=7.0c, $/day=210.00)
+
+--- 80-95c (n=22) ---
+  Surge: 0 matches
+  Drop: 27.3% of matches | avg settle=66c | best exit=+10c (avg profit=9.2c, $/day=91.67)
+  Flat: 72.7% of matches | avg settle=62c | best exit=+7c (avg profit=0.3c, $/day=8.33)
+
+========================================================================
+STEP 5: FINAL STRATEGY COMPARISON
+========================================================================
+
+1. PURE BOXED (both sides, hold to settlement)
+   Events traded: 107
+   Avg spread profit: 19.08c per pair
+   Total profit: $204.20
+   $/Day: $34.03
+
+2. BEST SINGLE-SIDE HOLD (bucket: 5-15c)
+   n=52, avg_profit=9.60c, return=148.1%, $/Day=$831.67
+
+3. BEST SINGLE-SIDE SCALP (bucket: 5-15c, exit: +20c)
+   n=52, avg_profit=9.48c, return=146.3%, $/Day=$821.67
+
+4. CHEAP SIDE (<25c), SELL AT DOUBLE (x2.0)
+   n=80, avg_profit=4.05c, return=35.6%, $/Day=$540.00
+   Hit rate: 71.2%
+
+5. CHEAP SIDE (<25c), HOLD TO SETTLEMENT
+   n=80, avg_profit=6.79c, return=59.7%, $/Day=$905.00
+
+6. HYBRID: PICK BETTER SIDE PER EVENT, OPTIMAL EXIT
+   Events: 107, avg profit: 3.04c
+   Total: $32.50, $/Day: $5.42
+
+========================================================================
+SUMMARY TABLE
+========================================================================
+Strategy                                         $/Day Risk
+------------------------------------------------------------------------
+1. Pure Boxed (both sides, hold)              $  34.03  Low (always 1 win+1 loss)
+2. Best Hold (5-15c)                          $ 831.67  Med (directional)
+3. Best Scalp (5-15c,+20c)                    $ 821.67  Low (capped upside)
+4. Cheap<25c x2.0 exit                        $ 540.00  High (binary)
+5. Cheap<25c hold                             $ 905.00  High (binary)
+6. Hybrid best side + opt exit                $   5.42  Med
+
+Days in dataset: 6  |  Dates: 2026-03-05, 2026-03-06, 2026-03-07, 2026-03-08, 2026-03-18, 2026-03-19
+Total tickers with match start: 218
+Total events with 2 sides: 138

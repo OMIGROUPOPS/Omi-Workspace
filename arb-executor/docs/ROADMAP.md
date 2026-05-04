@@ -314,11 +314,40 @@ Earliest first within the session.
 
 ## SECTION 8: NEXT MOVES
 
-1. T11 (Bug 4 status check) — probe to determine fix state.
-2. T12 (security rotation) — operator action.
-3. T13 (B-tier OOM-resilient retry) — populate TAXONOMY Section 1 B-tier match counts.
-4. T14 (kalshi_fills_history.json re-pull schedule) — durability mitigation.
-5. ALL T-items closed. Re-read this ROADMAP. Pick first analysis with intention from G-items (most strategic) or U-items (most blocking).
+Current path forward post-Session-6: foundational data layer is durable, ROADMAP cleanup is the active work. After Phase 1D-ix and 1D-x close (Section 8 refresh + Section 9 changelog refresh), the analysis path resumes with Layer A v1 on G9 dataset.
+
+**Immediate sequence (gates Layer A coherence read = Session 6 success metric):**
+
+1. T18 (candles semantics probe) — gates T17. ~10 min. If candle bid/ask are not best-bid/best-ask snapshots, schema choice for T17 changes.
+2. T17 (G9 dataset parquet conversion) — gates Layer A. ~30-60 min runtime.
+3. T19 (Layer A v1 specification) — design choices explicit, blocks T20.
+4. T20 (Layer A v1 implementation) — code per T19 spec, reads g9_*.parquet.
+5. T21 (Layer A coherence read) — sanity-check methodology. Session 6 success metric.
+
+**Post-T21 if coherent:**
+
+6. G10 (Layer B exit-policy parameter sweep) — property of strategy given Layer A bounce distribution.
+7. G11 (Layer C realized economics) — Layer A + Layer B + fees + slippage + fill probability + capital constraints.
+
+**Parallel deferred items:**
+
+- T22 (TAXONOMY refactor for multi-tier-as-feature framing) — doc work, can run any time.
+- T23 (Phase 3 v1 design doc disposition) — pending D12 decision; default (c) leave-as-is is currently authoritative until operator countermand.
+- T24 (per-match visualization tool) — sanity-check companion to Layer A; not blocking.
+- T25 (fair-value model integration scoping) — prerequisite for Layer A v2.
+- T26 (live trading deployment plan tracker) — far-future, not Session 6 scope.
+- T11a/T11b (Bug 4 implementation + sandbox test) — operational, not analytical; defer per D6 default.
+- T12 (security rotation) — operator action only per D7 staged playbook.
+- T13 (B-tier OOM-resilient retry) — populates TAXONOMY Section 1 B-tier match counts; lower priority than T22 refactor since multi-tier-as-feature framing supersedes the question.
+- T14 (kalshi_fills_history.json re-pull schedule) — durability mitigation; deferred since file is now durable-copied per F1 partial closure.
+
+**Open decisions blocking nothing immediately:**
+
+- D6 (Bug 4 implementation prioritization) — no impact on Layer A path.
+- D9 (per_cell_verification canonical designation work) — default defer until forward analysis genuinely needs a per_cell number.
+- D10 (harmonized_analysis canonical designation) — default leave both, do not consume.
+- D11 (Liam chart-iteration thread reconciliation) — coordination, not chat-side decision.
+- D12 (Phase 3 v1 design doc disposition) — default leave-as-is, forward design lives in ROADMAP indices.
 
 ---
 

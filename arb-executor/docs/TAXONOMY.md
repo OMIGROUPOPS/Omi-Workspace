@@ -58,6 +58,23 @@ Tiers are ordered by fidelity: A is highest, C is lowest. Higher tier means more
 - What it uniquely supports: Pre-Mar-20 historical reach; existence proofs across the entire Jan 2 - Apr 10 window; volume proxy via total_trades.
 - What it does NOT support: Any timing decomposition (only first and last timestamps for the entire match), order book depth, microstructure.
 
+### G-tier — Full Kalshi historical archive (per-minute candles + microsecond trades)
+
+- Source: /root/Omi-Workspace/arb-executor/data/historical_pull/
+- Date range: 2025-06-18 to 2026-05-02 (full Kalshi tennis archive at delivery)
+- File count: 20,110 markets total — per-market CSV (candlesticks) + per-market JSON (metadata + trades)
+- Total size: 5.0 GB on disk
+- Match count by category: ~20K markets across all tennis categories (ATP_CHALL, ATP_MAIN, WTA_CHALL, WTA_MAIN, plus older series). Per-category breakdown deferred to G9 metadata parquet (T17).
+- Sampling rate: Per-minute candlesticks (yes_bid/yes_ask/yes_close/yes_volume/yes_open_interest etc. at minute granularity); trade tape at microsecond timestamp resolution with taker_side.
+- Schema (candlesticks CSV): minute_ts, yes_bid_open/high/low/close, yes_ask_open/high/low/close, yes_close, no_close, volume, open_interest, plus market metadata in companion JSON.
+- Schema (trades JSON): per-trade records with created_time (UTC ISO Z, microsecond), yes_price, no_price, count, taker_side, trade_id.
+- All timestamps: VERIFIED UTC for trades (created_time ISO Z); candle minute_ts in epoch seconds UTC.
+- Producer: arb-executor/data/scripts/build_g9_archive.py — pulls from Kalshi /historical/markets/{ticker}/candlesticks + /historical/trades endpoints. Re-runnable to extend forward.
+- What it uniquely supports: Per-moment bounce analysis (Layer A) on a 10x larger universe than B-tier; full-archive coverage retroactive to mid-2025; aggressor-flow analysis (taker_side per trade) at microsecond resolution; cross-tier validation against B-tier for the Mar 20 - Apr 17 overlap window.
+- What it does NOT support: Order book depth beyond top-of-book candle bid/ask; pre-Jun-2025 data (Kalshi /historical/* endpoints have a horizon).
+- Status: G9 dataset DELIVERED 2026-05-02 per ROADMAP G9. Parquet conversion pending T17 (~30-60 min runtime to consolidated g9_trades.parquet + g9_candles.parquet + g9_metadata.parquet). Layer A v1 implementation gated on T17 + T18 (candles semantics probe).
+
+
 ### Other operational data sources (full schemas in Section 4)
 
 - tennis.db.book_prices (3,064,108 rows, Apr 19+) — CANONICAL SHARP CONSENSUS SOURCE per F15

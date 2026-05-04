@@ -164,6 +164,8 @@ U8. Inverse-cell cross-check on real data. Per LESSONS Section 6 known unknown #
 
 U9. Apr 24 retune isolation problem. Per LESSONS Section 6 known unknown #10. 14 cell disables + 8 exit retunes + 12 code changes simultaneously. Cannot determine which intervention drove subsequent improvement. Historical forensics, deferred.
 
+U10. **per_cell_verification canonical designation.** Per F11. Two batches durably preserved (Apr 28 /tmp at per_cell_verification_tmp_apr28/, Apr 29 17:43 archive at per_cell_verification/), 28 of 30 same-named files differ by sha256. Question for each file in the overlap set: which batch is canonical for which downstream question? Per A29 pattern, expected answer is per-question canonical-designation table, not pick-one-batch-and-retire. Likely 5-10 minutes per file once methodology-difference is understood; total scope ~5 hours if exhaustive. Operator decision on whether to do this work now (D9) or accept both batches as evidence with no single canonical and consume neither for production analysis until resolved.
+
 ---
 
 ## SECTION 5: G (GAP) — work that does not exist but should

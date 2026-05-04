@@ -248,6 +248,10 @@ G9. **Historical-scale dataset extension - full Kalshi tennis archive.** Operato
 
   **Open follow-on:** Dataset is currently 20K CSVs + 20K JSON files. Querying requires per-file opens. Natural next step is parquet conversion (one big trade-tape parquet, one big candles parquet, one big metadata parquet) for groupby-based analysis. ROADMAP T17 added separately for this work.
 
+G10. **Layer B exit-policy parameter sweep.** Per LESSONS B16. Property of strategy given Layer A bounce distribution. For every (state vector, exit policy) combination, simulate forward across all matching observations and back-derive expected return per combination. Two-channel scope per LESSONS G17: premarket and in-match run as separate sweeps (different fill dynamics, latency tolerances, price-formation processes). Exit policy parameter space: limit thresholds +1c to +30c at 1c granularity, time-stops 30s to 4hr at multiple resolutions, trailing-stops at every offset, combined policies. For each (state vector, policy) combination, output: expected return, P10/P90 return, hit rate (fraction of observations where policy triggered), capital utilization. Gated on T21 Layer A coherence read.
+
+G11. **Layer C realized economics.** Per LESSONS B16. Property of operation: Layer A + Layer B + fees + slippage + fill probability + capital constraints. Final expected P&L per (state vector, exit policy). Where the rubber meets the road on whether a Layer-B-optimal policy survives realistic execution friction. Gated on G10 delivery.
+
 ---
 
 ## SECTION 6: D (DECISION) — operator authorization or operational call required

@@ -91,12 +91,12 @@ Tiers are ordered by fidelity: A is highest, C is lowest. Higher tier means more
 - live_v3_*.jsonl logs — bot structured event log, ts ET-verified, ts_epoch tz-agnostic
 - arb-executor/data/durable/kalshi_fills_history.json (7,489 server-side fills, Mar 1 - Apr 29; durable per Phase 1B Session 6, sha256-verified, 4.5 MB; producer at arb-executor/tmp/fills_history_pull.py per Phase 1C-i) — TIER-A FACT SOURCE per A30. Canonical for entry timing, fill quantity, taker vs maker, settlement reconciliation. Supersedes matches.matches and local logs for per-fill ground truth. created_time is UTC ISO Z; ts is Unix epoch. Original /tmp copy remains the live working file for re-pull operations.
 
-### External sources (not currently pulled but accessible)
+### External sources (status varies — see per-bullet annotation)
 
-- Kalshi candlesticks API — historical OHLC per market per interval. Pulls pre-Mar-20 data not in local archives.
-- Kalshi historical trades API — full trade history with aggressor side.
-- Kalshi orderbook history — periodic depth snapshots.
-- Sportsbook line history (DraftKings, Pinnacle, etc.) — sharp consensus over time.
+- Kalshi `/historical/markets/{ticker}/candlesticks` API — PULLED 2026-05-02 per G9 delivery, now in G-tier at arb-executor/data/historical_pull/candlesticks/. Re-pullable via arb-executor/data/scripts/build_g9_archive.py.
+- Kalshi `/historical/trades` API — PULLED 2026-05-02 per G9 delivery, now in G-tier at arb-executor/data/historical_pull/trades/. Microsecond timestamps + taker_side per A26.
+- Kalshi orderbook history — NOT YET PULLED. Endpoint surface unverified; periodic depth snapshots may or may not be available retroactively. Probe pending if/when depth-history analysis becomes a priority.
+- Sportsbook line history (DraftKings, Pinnacle, etc.) — NOT PULLED. The tennis.db.book_prices table holds poll-based snapshots from this session's bot operation, not full historical DK/Pinnacle line history. Genuinely external; would require separate scraping infrastructure if needed.
 
 ---
 

@@ -118,6 +118,8 @@ T26. **Live trading deployment plan.** **OPEN, far-future tracking.** Path back 
 
 F1. /tmp ephemerality risk. Per LESSONS F28: bare /tmp files can be lost over time without warning. Files currently sitting on /tmp that are canonical sources: kalshi_fills_history.json (per A30), bbo_log_v4.csv.gz (B-tier), entry_price_bias.csv cluster, bbo_aw1/aw2, harmonized_analysis/ deprecated outputs. Mitigation tracked at T14 for kalshi_fills_history; broader durability migration not yet planned.
 
+**PARTIAL CLOSURE 2026-05-04 (Session 6 Phase 1B/1C):** Canonical /tmp sources now durable-copied: kalshi_fills_history.json, bbo_log_v4.csv.gz, entry_price_bias cluster, match_facts_v3_metadata.csv, u4_phase3_state_pass1.parquet (durable archive at arb-executor/data/durable/, sha256-verified, MANIFEST.md). bbo_aw1/aw2 + harmonized_analysis outputs preserved durably under arb-executor/tmp/ (Phase 1C). Remaining /tmp ephemerality risks: ongoing growth files (e.g., fv_convergence_monitor.csv if present, future kalshi_fills_history.json refreshes per T14). New batch-fragmentation flags surfaced: F11 (per_cell_verification), F12 (harmonized_analysis).
+
 F2. /tmp/harmonized_analysis/ outputs retained on disk. Per LESSONS F25: methodology-incorrect data, deprecation marker placed but actual files not deleted. Future readers may consume them despite the marker. Mitigation: depends on D1 (deletion authorization).
 
 F3. Stale references in LESSONS Section 4. Per LESSONS F27: scanner_pendulum.log cited as legacy bot log but does not exist on disk. Reference must be removed in next doc-cleanup pass. Other LESSONS Section 4 entries should also be re-verified given /tmp ephemerality (F1).
@@ -135,6 +137,10 @@ F8. matches.settlement_time has two writers per F18. Live rows naive ET, backfil
 F9. players.last_updated is UTC via SQLite date('now') per F20, while every other te_live.py-written column is ET. Same-writer-different-tz outlier. If any cross-table join uses players.last_updated as if ET, results are wrong by N hours.
 
 F10. Path 1 lesson-number renames. Three off-by-one drift events occurred in Session 4. D10 added to mitigate; subsequent commits used dynamic on-disk number reads which worked. Still a flag because future Claude sessions need to internalize the pattern.
+
+F11. **per_cell_verification batch fragmentation.** Two batches preserved durably (Phase 1C-vi), neither designated canonical for downstream consumption. Batch A: /tmp/per_cell_verification/ Apr 28 mtimes (33 files, preserved at /root/Omi-Workspace/tmp/per_cell_verification_tmp_apr28/ per Phase 1C-vi). Batch B: archive Apr 29 17:43 curation batch (30 files, in /root/Omi-Workspace/tmp/per_cell_verification/, predating Session 6). 28 of 30 same-named files have DIFFERENT sha256 hashes between batches. Hypothesis: Batch B is re-derived methodology run, not /tmp file copy. Resolving which batch is canonical for which question deferred to U10 + D9. Forward analysis must be batch-aware.
+
+F12. **harmonized_analysis batch fragmentation.** Similar finding to F11. Two batches: /tmp/harmonized_analysis/ and archive /root/Omi-Workspace/tmp/harmonized_analysis/. Both methodology-incorrect per F25 (T9 closure). Mtime difference and sha256 mismatch on overlapping files suggest two methodology-incorrect runs, not one canonical preserved copy. Both preserved durably; neither designated canonical. Resolution at D10 (probably "leave both, no canonical, do not consume" per F25 deprecation marker).
 
 ---
 

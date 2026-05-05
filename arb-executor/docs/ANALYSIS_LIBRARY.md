@@ -404,7 +404,7 @@ must reference this foundation explicitly via T28 commit pointer.
 
 ### Layer A v1 outputs (T29, foundation T28 ea84e74)
 
-Per-cell forward-bounce distributions aggregated from G9 candles. Property of the market, not strategy — Layer A per LESSONS B16. No exit logic, no fees, no fill probability. Foundation pointer: T28 commit ea84e74. Producer commit: 1398c39. MANIFEST commit: 37a5216 (sha256-pinned). Validity status: PASSED T21 coherence read 2026-05-04 (4 PASS / 2 INCONCLUSIVE / 0 FAIL) — the five-check methodology validation gate from ROADMAP T21 has not run. Downstream Layer B (ROADMAP G10) and Layer C (ROADMAP G11) must not consume these outputs until T21 passes.
+Per-cell forward-bounce distributions aggregated from G9 candles. Property of the market, not strategy — Layer A per LESSONS B16. No exit logic, no fees, no fill probability. Foundation pointer: T28 commit ea84e74. Producer commit: 1398c39. MANIFEST commit: 37a5216 (sha256-pinned). Validity status: PASSED T21 coherence read 2026-05-04 (4 PASS / 2 INCONCLUSIVE / 0 FAIL). The six-check methodology validation gate from ROADMAP T21 ran in Session 6 Phase 5-ii; 4 cleanly pass (Check 2 premarket vs in_match, Check 3 settlement asymmetry, Check 4 category liquidity-tier dominance, Check 6 YES/NO fold symmetry); 2 inconclusive in informative ways (Check 1 hypothesis shape mismatch per LESSONS B20, Check 5 volume_intensity in_match collapse per LESSONS F30). Downstream Layer B (ROADMAP T31, promoted from G10) and Layer C (ROADMAP G11) cleared to consume. Findings cross-referenced in LESSONS A36, B19, B20, F30.
 
 #### cell_stats.parquet
 

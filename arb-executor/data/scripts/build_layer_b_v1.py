@@ -186,7 +186,7 @@ def evaluate_policy(policy, forward_bids_dollars, forward_asks_dollars,
     Policy params come in cents; converted to dollars at function entry.
 
     Args:
-        policy: dict with keys {policy_type, params}. params is a dict whose
+        policy: dict with keys {type, params}. params is a dict whose
                 threshold/offset values are integer cents and time values are int minutes.
         forward_bids_dollars: list/array of yes_bid_close values for minutes after entry,
                               indexed [0..N-1] where index 0 is the minute immediately
@@ -204,7 +204,7 @@ def evaluate_policy(policy, forward_bids_dollars, forward_asks_dollars,
             capture_dollars: realized capture in dollars (can be negative)
             time_to_fire_min: minutes from entry to fire (None if not fired)
     """
-    ptype = policy['policy_type']
+    ptype = policy['type']
     params = policy['params']
 
     DEFAULT_HORIZON_MIN = 240
@@ -625,7 +625,7 @@ def test_cell_mode(test_cell_key):
         cap_p90 = pct(captures, 0.90)
         cap_max = captures[-1] if captures else float('nan')
 
-        label = f'{policy["policy_type"]}:{policy["params"]}'[:38]
+        label = f'{policy["type"]}:{policy["params"]}'[:38]
         log(f'{label:<40} {n:>4} '
             f'{100*n_fired/n:>5.1f}% {100*n_hexp/n:>5.1f}% {100*n_sett/n:>5.1f}% '
             f'{cap_p10:>+8.4f} {cap_p50:>+8.4f} {cap_p90:>+8.4f} {cap_max:>+8.4f}')
@@ -633,7 +633,7 @@ def test_cell_mode(test_cell_key):
     log(f'')
     log(f'=== Sample fired/expired/settled outcomes from limit_c=5 policy ===')
     for p_idx, policy in enumerate(policies):
-        if policy['policy_type'] == 'limit' and policy['params'].get('limit_c') == 5:
+        if policy['type'] == 'limit' and policy['params'].get('limit_c') == 5:
             outcomes = per_policy_outcomes[p_idx]
             for label, target_outcome in [('fired', 'fired'),
                                           ('horizon_expired', 'horizon_expired'),

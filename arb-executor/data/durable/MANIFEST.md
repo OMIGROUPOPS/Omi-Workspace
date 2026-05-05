@@ -178,5 +178,22 @@ Aggregation scope: 355 cells processed (of 356 in-scope substantial); 1 cells ex
 
 [#validity-status](#validity-status)
 
-PENDING T31c coherence read. Outputs verified on-disk and sha256-pinned, but methodology validation gate (the four-check sanity scan from layer_b_spec.md Validation Gate section, post-T31a-patch-5 corrected formulation) has not run. Downstream Layer C analyses (G11) must not consume these outputs until T31c passes.
+PASSED T31c coherence read 2026-05-05 ET (commit 5cf45e0). 4/4 gating-checks PASS:
+- Check 1 (capture bounded by physical limits): 217 fired trajectories spot-checked across 10 (cell, limit_policy) pairs, 0 violations. Floor min capture_p10 across all = -0.98 >= -1.00.
+- Check 2 (fire rate monotonic): 355/355 cells (100%) exhibit monotone non-increasing fire rate across the limit-policy grid.
+- Check 3a (limit-policy capture_p90 trend in positive-bounce cells): 266/318 cells (83.6%) positive-rho with median Spearman +0.992. Layer B inherits Layer A MFE structure faithfully via limit policies.
+- Check 4 (premarket vs in_match): 6,048 matched (category, entry_band, spread, volume, policy) tuples, median delta in_match - premarket = +0.0087, Wilcoxon signed-rank p = 9.7e-232.
+
+Plus 1 informative-only Check 3b (time-stop horizon trend): 137/354 cells (38.7%) positive-rho, median Spearman -0.321. This is the empirical signature of mean reversion per LESSONS B21 (MFE vs endpoint-capture metric distinction); time-stop endpoint trend is structurally different from Layer A bounce MFE and is reported for completeness, not as a gating check.
+
+Downstream Layer C (G11) cleared to consume.
+
+### coherence_report.md
+
+[#coherence-report-md](#coherence-report-md)
+
+- sha256: 72f1747b5502932f0099b3cbb7e62cabc906dfd89835bc2f9f6138c0e9aab121
+- File: data/durable/layer_b_v1/coherence_report.md
+- Producer: data/scripts/check_layer_b_v1_coherence.py at commit 5cf45e0
+- Spec: layer_b_spec.md Validation Gate section (post-T31a patches 5, 7, 8)
 

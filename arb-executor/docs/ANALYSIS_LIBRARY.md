@@ -465,7 +465,7 @@ Per-cell forward-bounce distributions aggregated from G9 candles. Property of th
 
 [#layer-b-v1-outputs-t31b-gamma-foundation-t28-ea84e74--t29-1398c39](#layer-b-v1-outputs-t31b-gamma-foundation-t28-ea84e74--t29-1398c39)
 
-Per-cell exit-policy capture distributions across 54-policy parameter grid. Property of strategy given Layer A bounce distribution — Layer B per LESSONS B16. No fees, no fill probability, no slippage; those live in Layer C (G11). Foundation pointer: T28 commit ea84e74 (G9 parquets) + T29 commit 1398c39 (Layer A v1 cell_stats). Producer commit: 28e8ab7. MANIFEST commit: this commit. Validity status: PENDING T31c coherence read.
+Per-cell exit-policy capture distributions across 54-policy parameter grid. Property of strategy given Layer A bounce distribution — Layer B per LESSONS B16. No fees, no fill probability, no slippage; those live in Layer C (G11). Foundation pointer: T28 commit ea84e74 (G9 parquets) + T29 commit 1398c39 (Layer A v1 cell_stats). Producer commit: 28e8ab7. MANIFEST commit: this commit. Validity status: PASSED T31c coherence read 2026-05-05 ET (commit 5cf45e0). 4/4 gating-checks PASS. Cleared for downstream Layer C (G11) consumption.
 
 #### exit_policy_per_cell.parquet
 
@@ -479,7 +479,7 @@ Per-cell exit-policy capture distributions across 54-policy parameter grid. Prop
 - Data tier used: G
 - Schema: 21 columns. Cell key: (channel, category, entry_band_lo, entry_band_hi, spread_band, volume_intensity). Policy: (policy_type, policy_params). Counts: n_simulated, n_fired, n_horizon_expired, n_settled_unfired. Distributions: fire_rate, capture_mean, capture_p10/p25/p50/p75/p90. Misc: median_time_to_fire, capital_utilization.
 - Row count: 19170 ((cell, policy) tuples; 355 cells × 54 policies)
-- Validity status: PENDING T31c coherence read 2026-05-05 ET. Outputs sha256-pinned per LESSONS C27 step 6, methodology validation gate has not run. Downstream Layer C (G11) must not consume until T31c PASS.
+- Validity status: PASSED T31c coherence read 2026-05-05 ET (script commit 5cf45e0, report sha256 72f1747b). 4/4 gating-checks PASS (Check 1 capture-bounded spot-check, Check 2 fire-rate monotonic, Check 3a limit-policy capture_p90 trend, Check 4 premarket vs in_match). 1 informative-only Check 3b INCONCLUSIVE (time-stop horizon trend, empirical signature of mean reversion per LESSONS B21 — not gating). Cleared for downstream Layer C (G11) consumption.
 - Notes: 1 cells excluded from output by 50-trajectory threshold (per spec Decision 2 patch 3). 278208 total entry moments evaluated. capital_utilization convention documented inline in producer aggregate_cell_results: held_minutes / denominator (clamped to [0, 1]); denominator = horizon_min for time_stop/limit_time_stop, else 240. T31a patch 5 corrected the validation-gate formulation post-spec; T31a patch 6 dropped sub-minute (30s) horizon, leaving 54 policies in v1.
 
 ## SECTION 3: BROKEN OR INVALID ANALYSES

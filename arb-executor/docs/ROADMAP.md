@@ -93,7 +93,9 @@ T19. **Layer A v1 specification.** **OPEN.** Per G7 architectural commitment + L
 
 T20. **Layer A v1 implementation.** **OPEN.** Code per T19 spec. Reads `g9_candles.parquet` + `g9_metadata.parquet` (post-T17). Computes MFE per (ticker, candle_minute) for each forward window. Stratifies by cell. Output: `arb-executor/analysis/layer_a/bounce_distribution_per_cell.parquet` + per-cell summary CSV. Blocks T21.
 
-T21. **Layer A coherence read.** **OPEN.** Sanity checks on T20 output. Methodology validation gate. Checks:
+T21. **Layer A coherence read.** **CLOSED 2026-05-04 (Session 6 Phase 5-ii):** PASS verdict. T21 Phase 2 ran 6 coherence checks against cell_stats.parquet (371 substantial cells, n_markets >= 20). 4 PASS cleanly: Check 2 premarket vs in_match (in_match > premarket in 91% of 112 matched pairs, Wilcoxon p<0.0001, +5c median diff per B14/E31); Check 3 settlement asymmetry (high-entry pin + low-entry crash both confirmed in ATP cells); Check 4 category sanity (MAIN/CHALL liquidity gap 0.11c is 5x ATP/WTA tour gap 0.02c); Check 6 YES/NO fold (57 mirror pairs, median fold diff +0.01c, std 0.03c -- strongest single confirmation, see LESSONS A36). 2 INCONCLUSIVE in informative ways: Check 1 (asymptote hypothesis wrong shape -- data shows inverted-U centered on 50c, lesson B20 added); Check 5 (volume_intensity collapses to single bucket within in_match per F30). No data integrity bugs surfaced. Layer A v1 foundation methodology validated. Promotes G10 to T31 (Layer B exit-policy parameter sweep).
+
+**Original spec retained for reference:** Sanity checks on T20 output. Methodology validation gate. Checks: Sanity checks on T20 output. Methodology validation gate. Checks:
   - Higher leader-prices have lower bounce magnitudes (asymptote near 100c)?
   - In-match volatility higher than premarket (per B14 decomposition)?
   - Settlement-conditioned reversion present (matches ending at YES=$1 spent significant time above $0.85 in final window)?
@@ -141,6 +143,17 @@ T30. **Layer A v1 tabular metrics.** **OPEN, gated on T29 visual review.** Per L
 - Output measures BOTH yes-side and no-side bounces independently per operator E31 framing (a market that settles YES_WIN can still have a NO-side scalp opportunity)
 - ANALYSIS_LIBRARY entry references T28 foundation + T29 visual review + T30 producer commit
 - Gates Layer B (T31 future, exit policy optimization)
+T31. **Layer B exit-policy parameter sweep.** Per LESSONS B16 + ROADMAP G10 (now promoted from Gap to To-Do per T21 PASS verdict). T21 Phase 2 outcome: 4 of 6 coherence checks PASS cleanly (premarket-vs-in_match, settlement asymmetry, category sanity, YES/NO fold), 2 INCONCLUSIVE in informative ways (Check 1 hypothesis-shape mismatch per LESSONS B20, Check 5 volume_intensity in_match collapse per LESSONS F30). Foundation methodology validated. Layer B can proceed.
+
+Two-channel scope per LESSONS E31: premarket and in_match run as separate sweeps (different fill dynamics, latency tolerances, gross-edge-per-round-trip ratios). Settlement_zone may be its own third channel given the directional asymmetry confirmed in T21 Check 3.
+
+Exit policy parameter space: limit thresholds +1c to +30c at 1c granularity; time-stops at 30s, 1min, 5min, 15min, 30min, 60min, 120min, 240min; trailing-stops at every offset 1-20c; combined policies (limit + time-stop, limit + trailing). For each (cell, exit_policy) tuple, simulate forward across all matching observations in cell_stats reservoir samples, output: expected_capture (mean realized bounce captured), p10/p25/p50/p75/p90 capture, hit rate (fraction of observations where exit fired vs settled), capital utilization.
+
+Substantial-cell scope only (n_markets >= 20, 371 cells per Phase 1 finding). Within in_match regime, drop volume_intensity from cell key (uninformative per F30); use 4-dim key (regime, entry_band, spread, category). Premarket retains 5-dim key.
+
+Output: arb-executor/data/durable/layer_b_v1/exit_policy_per_cell.parquet + per-cell summary visuals. Producer pointer + ANALYSIS_LIBRARY entry per LESSONS C27.
+
+Gates Layer C (G11) realized economics work.
 
 ---
 
@@ -172,6 +185,7 @@ F10. Path 1 lesson-number renames. Three off-by-one drift events occurred in Ses
 F11. **per_cell_verification batch fragmentation.** Two batches preserved durably (Phase 1C-vi), neither designated canonical for downstream consumption. Batch A: /tmp/per_cell_verification/ Apr 28 mtimes (33 files, preserved at /root/Omi-Workspace/tmp/per_cell_verification_tmp_apr28/ per Phase 1C-vi). Batch B: archive Apr 29 17:43 curation batch (30 files, in /root/Omi-Workspace/tmp/per_cell_verification/, predating Session 6). 28 of 30 same-named files have DIFFERENT sha256 hashes between batches. Hypothesis: Batch B is re-derived methodology run, not /tmp file copy. Resolving which batch is canonical for which question deferred to U10 + D9. Forward analysis must be batch-aware.
 
 F12. **harmonized_analysis batch fragmentation.** Similar finding to F11. Two batches: /tmp/harmonized_analysis/ and archive /root/Omi-Workspace/tmp/harmonized_analysis/. Both methodology-incorrect per F25 (T9 closure). Mtime difference and sha256 mismatch on overlapping files suggest two methodology-incorrect runs, not one canonical preserved copy. Both preserved durably; neither designated canonical. Resolution at D10 (probably "leave both, no canonical, do not consume" per F25 deprecation marker).
+F13. cell_stats.parquet does not preserve event_ticker. Per LESSONS B19. Cells are aggregates across many markets keyed on (regime, entry_band, spread, volume, category); per-event pairing key is not a column. Per-event analyses (U8 inverse-cell cross-check, E18 bilateral capture, future game-state attribution) cannot be answered from this artifact and require a different per-moment dataset with event_ticker preserved (see G12). The pairing convention is trivial at source level: event_ticker = ticker.rsplit("-", 1)[0]. Future analytical layers must compute from g9_trades + g9_candles + g9_metadata directly when per-event pairing is required.
 
 ---
 
@@ -292,6 +306,7 @@ G9. **Historical-scale dataset extension - full Kalshi tennis archive.** Operato
 G10. **Layer B exit-policy parameter sweep.** Per LESSONS B16. Property of strategy given Layer A bounce distribution. For every (state vector, exit policy) combination, simulate forward across all matching observations and back-derive expected return per combination. Two-channel scope per LESSONS G17: premarket and in-match run as separate sweeps (different fill dynamics, latency tolerances, price-formation processes). Exit policy parameter space: limit thresholds +1c to +30c at 1c granularity, time-stops 30s to 4hr at multiple resolutions, trailing-stops at every offset, combined policies. For each (state vector, policy) combination, output: expected return, P10/P90 return, hit rate (fraction of observations where policy triggered), capital utilization. Gated on T21 Layer A coherence read.
 
 G11. **Layer C realized economics.** Per LESSONS B16. Property of operation: Layer A + Layer B + fees + slippage + fill probability + capital constraints. Final expected P&L per (state vector, exit policy). Where the rubber meets the road on whether a Layer-B-optimal policy survives realistic execution friction. Gated on G10 delivery.
+G12. **Per-event paired moments dataset.** Per LESSONS B19 + ROADMAP F13. Producer would consume g9_trades + g9_candles + g9_metadata, output per-moment records with: event_ticker (derived via rsplit), side (yes/no), end_period_ts, yes_bid/ask, no_bid/ask, time-aligned counterpart price from the inverse ticker, volume_in_window. Enables U8 (inverse-cell cross-check at per-moment grain), E18 bilateral capture per-event, and any game-state work where simultaneous per-side observations are required. Not blocking T21 to Layer B (T31): T21 Check 6 (LESSONS A36) confirmed cell-aggregate distributional fold is clean, so Layer B can proceed on cell_stats.parquet for distributional exit-policy work. G12 is required for U8 and per-event questions specifically. Estimated scope: 1-2 hour producer (similar architecture to build_g9_parquets.py + a paired-side join), output ~10M rows across ~10K matches.
 
 ---
 
@@ -398,3 +413,4 @@ Current path forward post-Session-6: foundational data layer is durable, ROADMAP
   Phase 1C (commits d0462c8, e067c18, 983444f, f36691c, e7e1ddc, d088cf3): 143 files preserved across 6 single-concern commits — 23 producer scripts + 10 V3-era artifacts + 11 validation4 helpers + 14 outputs + 50 v3_analysis/validation5 + 35 per_cell_verification (Apr 28 batch + 2 TMP_ONLY canonical fills).
   Phase 1D (commits b855e15, 070a410, 0ded25c, 6957f28, 765e5e1, 7584ede, 4964ae1, 69e6862, this commit): T17 placement fix; T18-T26 added; G10/G11 added; F11/F12 added with F1 partial closure; U10 added; D9-D12 added; U4 closed with G7 Layer A continuation pointer; Section 8 NEXT MOVES refreshed with current Layer A pipeline; Section 9 CHANGELOG refreshed (this entry).
 - 2026-05-04 (Session 6 Phase 1D-xi): T27-T30 added (foundation->analysis sequence per LESSONS C27: parquet verification, foundation commit, Layer A v1 visuals, Layer A v1 tabular metrics).
+- 2026-05-04 (Session 6 Phase 5-ii / T21 closure): T21 CLOSED with PASS verdict -- Layer A v1 foundation methodology validated. F13 added (cell_stats event_ticker gap). G12 added (per-event paired moments dataset). T31 added (Layer B exit-policy sweep promoted from G10). LESSONS A36, B19, B20, F30 added in same commit. Section 8 NEXT MOVES requires update (separate commit) to reflect T21 closure and T31 as new active analytical work.

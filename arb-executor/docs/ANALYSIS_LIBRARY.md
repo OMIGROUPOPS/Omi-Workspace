@@ -404,7 +404,7 @@ must reference this foundation explicitly via T28 commit pointer.
 
 ### Layer A v1 outputs (T29, foundation T28 ea84e74)
 
-Per-cell forward-bounce distributions aggregated from G9 candles. Property of the market, not strategy — Layer A per LESSONS B16. No exit logic, no fees, no fill probability. Foundation pointer: T28 commit ea84e74. Producer commit: 1398c39. MANIFEST commit: 37a5216 (sha256-pinned). Validity status: PENDING T21 coherence read — the five-check methodology validation gate from ROADMAP T21 has not run. Downstream Layer B (ROADMAP G10) and Layer C (ROADMAP G11) must not consume these outputs until T21 passes.
+Per-cell forward-bounce distributions aggregated from G9 candles. Property of the market, not strategy — Layer A per LESSONS B16. No exit logic, no fees, no fill probability. Foundation pointer: T28 commit ea84e74. Producer commit: 1398c39. MANIFEST commit: 37a5216 (sha256-pinned). Validity status: PASSED T21 coherence read 2026-05-04 (4 PASS / 2 INCONCLUSIVE / 0 FAIL) — the five-check methodology validation gate from ROADMAP T21 has not run. Downstream Layer B (ROADMAP G10) and Layer C (ROADMAP G11) must not consume these outputs until T21 passes.
 
 #### cell_stats.parquet
 
@@ -416,8 +416,8 @@ Per-cell forward-bounce distributions aggregated from G9 candles. Property of th
 - Data tier used: G
 - Schema: 671 cells x ~80 metric columns. Cell key: (category, regime, entry_price_band, spread_band, volume_intensity). Metrics: forward-bounce distribution at horizons {5, 15, 30, 60 min, settlement}, drawdown distribution, breakeven-threshold fractions at {1c, 2c, 5c, 10c, 20c}, n_markets, n_moments per cell.
 - Row count: 671 cells (aggregated from 8,981,594 moments across 19,603 markets)
-- Validity status: PENDING T21 coherence read
-- Notes: volume_intensity is per-market not per-moment — known v1 caveat documented for v2 follow-up. OTHER category included as fifth bucket beyond ATP_MAIN/ATP_CHALL/WTA_MAIN/WTA_CHALL.
+- Validity status: PASSED T21 coherence read 2026-05-04 (4 PASS / 2 INCONCLUSIVE / 0 FAIL)
+- Notes: volume_intensity is per-market not per-moment — known v1 caveat documented for v2 follow-up. OTHER category included as fifth bucket beyond ATP_MAIN/ATP_CHALL/WTA_MAIN/WTA_CHALL. **T21 verification findings (2026-05-04, commit pointer in CHANGELOG):** (1) Producer is YES-only — reads yes_bid_close + yes_ask_close exclusively, no_* columns ignored. NO-side distributional questions answerable via fold symmetry per LESSONS A36. (2) Bounce definition is forward_max_excursion_excluding_t (max(yes_ask[i+1:i+window]) - yes_ask[i]) — can be negative for monotonically declining trajectories near settlement. 52% of settlement_zone cells have negative bounce_5min_p25; not a bug, definitional choice consistent with B16 Layer A scoping. (3) Reservoir sampling implements Vitter algorithm (line 167-172) — unbiased percentile estimators. (4) volume_intensity collapses to single bucket (high) within in_match regime per LESSONS F30 — uninformative as in_match stratifier; valid for premarket. (5) No event_ticker preserved per LESSONS B19 — per-event analyses require G12 producer.
 
 #### sample_manifest.json
 
@@ -429,7 +429,7 @@ Per-cell forward-bounce distributions aggregated from G9 candles. Property of th
 - Data tier used: G
 - Schema: per-cell list of sampled tickers used for visual reproduction
 - Row count: 671 cells (one entry per populated cell)
-- Validity status: PENDING T21 (paired with cell_stats.parquet)
+- Validity status: PASSED T21 2026-05-04 (paired with cell_stats.parquet)
 - Notes: enables reproducing visual PNGs deterministically; tickers were sampled at producer runtime, not at coherence-read time.
 
 #### build_layer_a_v1.log
@@ -455,7 +455,7 @@ Per-cell forward-bounce distributions aggregated from G9 candles. Property of th
 - Data tier used: G
 - Schema: 5 categories (ATP_MAIN, ATP_CHALL, WTA_MAIN, WTA_CHALL, OTHER) x 3 regimes (premarket, in_match, settlement_zone)
 - Row count: 15 PNG files, 8,758,898 bytes total (per MANIFEST commit 37a5216)
-- Validity status: PENDING T21 visual review
+- Validity status: PASSED T21 visual review 2026-05-04
 - Notes: dense PNGs (ATP/WTA tour-level premarket+in_match) are 800KB-1.1MB each; sparse PNGs (settlement_zone subcategories, OTHER) are 44-273KB. File-size pattern itself is a coverage signal — sparse cells reach the 5-min-pre-settle window or fall into OTHER ticker prefix less often.
 
 ---
@@ -536,4 +536,5 @@ Findings from prior analyses that are currently treated as anchor evidence in th
 - 2026-04-30 ~14:30 ET (this commit): Sections 2, 3, 4 fully populated from depth-inventory CC probe. Catalog covers ~40 distinct analyses across 6 depth levels plus broken/meta categories.
 - 2026-04-30 (item 5 closure): Corrected mischaracterization of /root/Omi-Workspace/tmp/ — it is a curated git-tracked archive with multiple curation batches, not a single Apr 29 snapshot. Canonical-source rules updated.
 - 2026-05-04 (Session 6 T28): G9 parquets (g9_candles, g9_trades, g9_metadata) added as canonical foundation per LESSONS C27. T17 producer commit bd83412, T27 verification 9/9 PASS. sha256 in MANIFEST.md.
-- 2026-05-04 (Session 6 T29): Layer A v1 outputs (cell_stats.parquet, sample_manifest.json, build_layer_a_v1.log, 15 visual PNGs) added under new subsection in Section 2. Foundation pointer T28 commit ea84e74. Producer commit 1398c39. MANIFEST commit 37a5216. Validity: PENDING T21 coherence read.
+- 2026-05-04 (Session 6 T29): Layer A v1 outputs (cell_stats.parquet, sample_manifest.json, build_layer_a_v1.log, 15 visual PNGs) added under new subsection in Section 2. Foundation pointer T28 commit ea84e74. Producer commit 1398c39. MANIFEST commit 37a5216. Validity: PASSED T21 coherence read 2026-05-04 (4 PASS / 2 INCONCLUSIVE / 0 FAIL).
+- 2026-05-04 (Session 6 Phase 5-ii / T21 closure): cell_stats.parquet Notes field updated with T21 verification findings (YES-only producer, bounce-def explanation, Vitter reservoir confirmed unbiased, volume_intensity in_match collapse, no event_ticker preserved). Validity status flipped from PENDING T21 to PASSED T21 2026-05-04 across cell_stats.parquet narrative + Notes line, sample_manifest.json, and visual PNG block. Cross-references to LESSONS A36, B19, B20, F30 and ROADMAP F13, G12, T31.

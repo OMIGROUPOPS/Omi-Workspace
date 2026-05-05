@@ -18,6 +18,7 @@ Out of scope for v1:
 - **Per-event paired exit policies** (e.g., "exit if inverse cell crosses threshold"). Requires per-event paired moments dataset (G12), which is parallel-deferred. Layer B v1 is single-leg.
 - **Capital constraints.** Per B16, Layer B is strategy-side only; capital utilization tracked but does not constrain policy selection. Capital-constrained selection is a Layer C concern.
 - **Resting-order queue position.** Layer B assumes instant fills at limit price. Queue-position fill probability is Layer C.
+- **Scalar-outcome markets.** g9_metadata contains 496 markets (~2.5% of universe) where `result == "scalar"`. These are non-binary markets (set counts, total games, etc.) where settlement is a numeric value rather than YES/NO. Excluded from Layer B v1 scope; the bot's strategy is binary tennis match scalping. Layer B v2 may add a scalar variant if strategy expands.
 
 ## Operational decisions
 
@@ -85,7 +86,7 @@ If actual parameter coverage is undershoot (operator wants finer 1c-step granula
 For each (cell, policy) tuple, simulated trajectories fall into three outcomes:
 - **Fired-and-captured:** policy triggered at minute k_fire; realized capture = yes_bid_close[t+k_fire] - yes_ask_close[t]. Capture can be negative (limit hit on a downward swing for trailing-stop policies).
 - **Horizon-expired:** policy was a time-stop at horizon T but trajectory has only k < T minutes of forward window. Outcome = "horizon_expired"; capture computed at the actual final minute available. For trailing-stop and limit-exit, "horizon-expired" applies if the trajectory ran out of forward window before the policy fired.
-- **Settled-unfired:** market settled before the forward window completed; policy never fired. Outcome = "settled_unfired"; realized capture = settlement_value - yes_ask_close[t] (where settlement_value is 1.00 for YES outcome and 0.00 for NO outcome, derived from g9_metadata.parquet's `result` column).
+- **Settled-unfired:** market settled before the forward window completed; policy never fired. Outcome = "settled_unfired"; realized capture = settlement_value - yes_ask_close[t] where settlement_value resolves from g9_metadata.parquet's `result` column: "yes" → 1.00, "no" → 0.00. Markets where `result == "scalar"` (496 of 20,110 total per disk probe; 2.5% of universe) are **excluded from Layer B v1 scope** because scalar settlement is not binary YES/NO and requires different exit-policy dynamics. The producer must verify result is in {"yes", "no"} per ticker before processing trajectories from that ticker; skipped scalar tickers are counted and reported in the producer log. Layer B v2 may add a scalar-markets variant if strategy expands to non-binary markets.
 
 The capture distribution for each (cell, policy) is computed across all three outcome types — settled-unfired observations contribute their settlement-resolved capture, not a null.
 
@@ -134,7 +135,7 @@ Plus paired summary visuals at `arb-executor/data/durable/layer_b_v1/visual_*.pn
 1. Load cell_stats.parquet and sample_manifest.json. Filter to substantial cells (n_markets >= 20). Split by channel.
 2. For each cell:
    - Read sampled tickers from sample_manifest.json.
-   - For each sampled ticker, re-pull g9_candles row-group(s) for that ticker (column-projection: ticker, end_period_ts, yes_bid_close, yes_ask_close, volume_fp; per C28 streaming discipline).
+   - For each sampled ticker, first verify g9_metadata.parquet `result` column is in {"yes", "no"}; skip ticker (count in producer log) if "scalar". Then re-pull g9_candles row-group(s) for that ticker (column-projection: ticker, end_period_ts, yes_bid_close, yes_ask_close, volume_fp; per C28 streaming discipline). Filter pushdown is efficient because g9_candles row groups are ticker-sorted (probe confirmed disjoint ticker ranges per row group).
    - For each moment in cell (entry_band match), construct forward window of yes_bid_close / yes_ask_close from t through min(t + 240min, settlement).
    - For each policy in the parameter grid, walk the forward window, determine outcome (fired / horizon_expired / settled_unfired), record realized capture.
 3. Per (cell, policy), aggregate capture distribution and write row to exit_policy_per_cell.parquet.

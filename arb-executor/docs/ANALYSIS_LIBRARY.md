@@ -460,6 +460,28 @@ Per-cell forward-bounce distributions aggregated from G9 candles. Property of th
 
 ---
 
+
+### Layer B v1 outputs (T31b-gamma, foundation T28 ea84e74 + T29 1398c39)
+
+[#layer-b-v1-outputs-t31b-gamma-foundation-t28-ea84e74--t29-1398c39](#layer-b-v1-outputs-t31b-gamma-foundation-t28-ea84e74--t29-1398c39)
+
+Per-cell exit-policy capture distributions across 54-policy parameter grid. Property of strategy given Layer A bounce distribution — Layer B per LESSONS B16. No fees, no fill probability, no slippage; those live in Layer C (G11). Foundation pointer: T28 commit ea84e74 (G9 parquets) + T29 commit 1398c39 (Layer A v1 cell_stats). Producer commit: 28e8ab7. MANIFEST commit: this commit. Validity status: PENDING T31c coherence read.
+
+#### exit_policy_per_cell.parquet
+
+[#exit_policy_per_cellparquet](#exit_policy_per_cellparquet)
+
+- File path: arb-executor/data/durable/layer_b_v1/exit_policy_per_cell.parquet
+- Producer script: arb-executor/data/scripts/build_layer_b_v1.py at commit 28e8ab7
+- Source data: g9_candles.parquet + g9_metadata.parquet (T28 foundation, commit ea84e74) + sample_manifest.json (T29 commit 1398c39)
+- Date created: 2026-05-05 ET (Session 7 T31b-gamma-1)
+- Depth: 5 (strategy simulation per TAXONOMY Section 2)
+- Data tier used: G
+- Schema: 21 columns. Cell key: (channel, category, entry_band_lo, entry_band_hi, spread_band, volume_intensity). Policy: (policy_type, policy_params). Counts: n_simulated, n_fired, n_horizon_expired, n_settled_unfired. Distributions: fire_rate, capture_mean, capture_p10/p25/p50/p75/p90. Misc: median_time_to_fire, capital_utilization.
+- Row count: 19170 ((cell, policy) tuples; 355 cells × 54 policies)
+- Validity status: PENDING T31c coherence read 2026-05-05 ET. Outputs sha256-pinned per LESSONS C27 step 6, methodology validation gate has not run. Downstream Layer C (G11) must not consume until T31c PASS.
+- Notes: 1 cells excluded from output by 50-trajectory threshold (per spec Decision 2 patch 3). 278208 total entry moments evaluated. capital_utilization convention documented inline in producer aggregate_cell_results: held_minutes / denominator (clamped to [0, 1]); denominator = horizon_min for time_stop/limit_time_stop, else 240. T31a patch 5 corrected the validation-gate formulation post-spec; T31a patch 6 dropped sub-minute (30s) horizon, leaving 54 policies in v1.
+
 ## SECTION 3: BROKEN OR INVALID ANALYSES
 
 Analyses that ran but produced invalid results due to bugs, methodology errors, or data corruption. Listed here so future chats know not to cite their conclusions.

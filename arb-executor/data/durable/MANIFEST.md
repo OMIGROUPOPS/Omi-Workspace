@@ -154,3 +154,29 @@ Aggregation scope: 19,603 markets, 8,981,594 moments aggregated into 671 cells.
 
 PASSED T21 coherence read 2026-05-04 (commit faf51d9). 4 PASS / 2 INCONCLUSIVE / 0 FAIL. Cleanly passing checks: Check 2 premarket-vs-in_match, Check 3 settlement asymmetry, Check 4 category sanity, Check 6 YES/NO fold symmetry. Informatively inconclusive: Check 1 (hypothesis-shape mismatch -> LESSONS B20), Check 5 (volume_intensity in_match collapse -> LESSONS F30). Downstream Layer B (T31b) cleared to consume.
 
+## Layer B v1 outputs (T31b-gamma producer output, gated on T31c coherence read)
+
+[#layer-b-v1-outputs-t31b-gamma-producer-output-gated-on-t31c-coherence-read](#layer-b-v1-outputs-t31b-gamma-producer-output-gated-on-t31c-coherence-read)
+
+Foundation pointer: T28 commit ea84e74 (G9 parquets) + T29 commit 1398c39 (Layer A v1 cell_stats + sample_manifest).
+Producer: arb-executor/data/scripts/build_layer_b_v1.py at commit 28e8ab7.
+Output directory: arb-executor/data/durable/layer_b_v1/
+Producer runtime: 79.5 min, clean exit (Session 7, 2026-05-05 ET).
+Aggregation scope: 355 cells processed (of 356 in-scope substantial); 1 cells excluded by 50-trajectory threshold per spec Decision 2 patch 3. 278208 total entry moments evaluated across the 54-policy grid.
+
+### exit_policy_per_cell.parquet
+
+[#exit_policy_per_cellparquet](#exit_policy_per_cellparquet)
+
+- sha256: d94bc56c7909738a8f8ad8ae388102b34fe81909d493015cb90d3f8390262f92
+- Size: 646464 bytes
+- Row count: 19170 rows (one per (cell, policy) tuple)
+- Schema: 21 columns per spec Decision 4 (channel, category, entry_band_lo, entry_band_hi, spread_band, volume_intensity, policy_type, policy_params, n_simulated, n_fired, n_horizon_expired, n_settled_unfired, fire_rate, capture_mean, capture_p10/p25/p50/p75/p90, median_time_to_fire, capital_utilization)
+- Compression: snappy
+
+### Validity status
+
+[#validity-status](#validity-status)
+
+PENDING T31c coherence read. Outputs verified on-disk and sha256-pinned, but methodology validation gate (the four-check sanity scan from layer_b_spec.md Validation Gate section, post-T31a-patch-5 corrected formulation) has not run. Downstream Layer C analyses (G11) must not consume these outputs until T31c passes.
+

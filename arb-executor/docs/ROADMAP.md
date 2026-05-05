@@ -95,7 +95,7 @@ T20. **Layer A v1 implementation.** **OPEN.** Code per T19 spec. Reads `g9_candl
 
 T21. **Layer A coherence read.** **CLOSED 2026-05-04 (Session 6 Phase 5-ii):** PASS verdict. T21 Phase 2 ran 6 coherence checks against cell_stats.parquet (371 substantial cells, n_markets >= 20). 4 PASS cleanly: Check 2 premarket vs in_match (in_match > premarket in 91% of 112 matched pairs, Wilcoxon p<0.0001, +5c median diff per B14/E31); Check 3 settlement asymmetry (high-entry pin + low-entry crash both confirmed in ATP cells); Check 4 category sanity (MAIN/CHALL liquidity gap 0.11c is 5x ATP/WTA tour gap 0.02c); Check 6 YES/NO fold (57 mirror pairs, median fold diff +0.01c, std 0.03c — strongest single confirmation, see LESSONS A36). 2 INCONCLUSIVE in informative ways: Check 1 (asymptote hypothesis wrong shape — data shows inverted-U centered on 50c, lesson B20 added); Check 5 (volume_intensity collapses to single bucket within in_match per F30). No data integrity bugs surfaced. Layer A v1 foundation methodology validated. Promotes G10 to T31 (Layer B exit-policy parameter sweep).
 
-**Original spec retained for reference:** Sanity checks on T20 output. Methodology validation gate. Checks: Sanity checks on T20 output. Methodology validation gate. Checks:
+**Original spec retained for reference:** Sanity checks on T20 output. Methodology validation gate. Checks:
   - Higher leader-prices have lower bounce magnitudes (asymptote near 100c)?
   - In-match volatility higher than premarket (per B14 decomposition)?
   - Settlement-conditioned reversion present (matches ending at YES=$1 spent significant time above $0.85 in final window)?
@@ -360,42 +360,38 @@ Earliest first within the session.
 
 ## SECTION 8: NEXT MOVES
 
-Current path forward post-Session-6: foundational data layer is durable, ROADMAP cleanup is the active work. After Phase 1D-ix and 1D-x close (Section 8 refresh + Section 9 changelog refresh), the analysis path resumes with Layer A v1 on G9 dataset.
+Foundation phase complete: G9 parquets (T28 ea84e74) sha256-pinned and verified; Layer A v1 outputs (T29 commit 1398c39, MANIFEST commit 37a5216) registered with ANALYSIS_LIBRARY entry (commit cf31903); T21 coherence read closed with PASS verdict (commit faf51d9, four cleanly pass plus two informatively inconclusive). Layer A v1 methodology validated. The analytical path now resumes with Layer B exit-policy work against the Layer A v1 cell distributions.
 
-**Immediate sequence (gates Layer A coherence read = Session 6 success metric):**
+### Immediate sequence
 
-1. T18 (candles semantics probe) — gates T17. ~10 min. If candle bid/ask are not best-bid/best-ask snapshots, schema choice for T17 changes.
-2. T17 (G9 dataset parquet conversion) — gates Layer A. ~30-60 min runtime.
-3. T19 (Layer A v1 specification) — design choices explicit, blocks T20.
-4. T20 (Layer A v1 implementation) — code per T19 spec, reads g9_*.parquet.
-5. T21 (Layer A coherence read) — sanity-check methodology. Session 6 success metric.
+1. **T31 — Layer B exit-policy parameter sweep.** Promoted from G10 in faf51d9. Sweeps exit-policy parameter space (limit thresholds 1c-30c, time-stops 30s-4hr, trailing-stops 1-20c, combined policies) against cell_stats.parquet forward-bounce distributions. Two-channel scope per E31 (premarket + in_match as separate sweeps). Substantial-cell scope only (n_markets >= 20, 371 cells). Within in_match, drop volume_intensity from cell key per F30 (uninformative within in_match). Output: arb-executor/data/durable/layer_b_v1/exit_policy_per_cell.parquet plus per-cell summary visuals. Producer pointer + ANALYSIS_LIBRARY entry per LESSONS C27. Gates Layer C (G11).
 
-**Post-T21 if coherent:**
+### Post-T31
 
-6. G10 (Layer B exit-policy parameter sweep) — property of strategy given Layer A bounce distribution.
-7. G11 (Layer C realized economics) — Layer A + Layer B + fees + slippage + fill probability + capital constraints.
+2. **G11 — Layer C realized economics.** Apply fees (Kalshi maker/taker), fill probability (resting sell hit rate), slippage to T31 exit policies. Output: per-(cell, policy) realized P&L distribution. The money answer per LESSONS B16. Foundation pointers: T28 (g9 parquets), T29/T31 (Layer A/B). Currently a Gap; will be promoted to a T-item when T31 closes.
 
-**Parallel deferred items:**
+### Parallel / deferred
 
-- T22 (TAXONOMY refactor for multi-tier-as-feature framing) — doc work, can run any time.
-- T23 (Phase 3 v1 design doc disposition) — pending D12 decision; default (c) leave-as-is is currently authoritative until operator countermand.
-- T24 (per-match visualization tool) — sanity-check companion to Layer A; not blocking.
-- T25 (fair-value model integration scoping) — prerequisite for Layer A v2.
-- T26 (live trading deployment plan tracker) — far-future, not Session 6 scope.
-- T11a/T11b (Bug 4 implementation + sandbox test) — operational, not analytical; defer per D6 default.
-- T12 (security rotation) — operator action only per D7 staged playbook.
-- T13 (B-tier OOM-resilient retry) — populates TAXONOMY Section 1 B-tier match counts; lower priority than T22 refactor since multi-tier-as-feature framing supersedes the question.
-- T14 (kalshi_fills_history.json re-pull schedule) — durability mitigation; deferred since file is now durable-copied per F1 partial closure.
+- **G12 — Per-event paired moments dataset.** Per LESSONS B19 + ROADMAP F13. Producer outputs per-moment records preserving event_ticker, side flag, time-aligned counterpart price. Enables U8 inverse-cell cross-check, E18 bilateral capture, future game-state work. Not blocking T31 (T21 Check 6 / LESSONS A36 confirmed cell-aggregate distributional fold is clean for distributional questions). Required for per-event analyses specifically.
+- **T22 — TAXONOMY G-tier multi-tier-as-feature refactor.** Schema variants per F29 still need a thorough refactor beyond the single-line addendum at a13fc1d. Documentation polish, not foundation-blocking.
+- **T11a / T11b** — bug 4 brief follow-ups (operational impact on phantom-active positions). Independent of analytical foundation.
+- **T12 / T13 / T14** — pre-Session-6 scoped items, status unchanged by T21 closure.
 
-**Open decisions blocking nothing immediately:**
+### Open decisions / known unknowns
 
-- D6 (Bug 4 implementation prioritization) — no impact on Layer A path.
-- D9 (per_cell_verification canonical designation work) — default defer until forward analysis genuinely needs a per_cell number.
-- D10 (harmonized_analysis canonical designation) — default leave both, do not consume.
-- D11 (Liam chart-iteration thread reconciliation) — coordination, not chat-side decision.
-- D12 (Phase 3 v1 design doc disposition) — default leave-as-is, forward design lives in ROADMAP indices.
+- **D6 / D9 / D10 / D11 / D12** — disposition unchanged by T21 closure; no closure-driven re-evaluation needed at this time.
+- **F13** — cell_stats.parquet event_ticker gap, formally noted; G12 is the disposition path.
+- **F30** — volume_intensity in_match collapse, formally noted; T31 incorporates the implication (drop volume_intensity from in_match cell key).
 
----
+### Foundation-phase commit chain (for reference)
+
+- **bd83412** — T17 G9 producer code
+- **ea84e74** — T28 G9 parquets foundation commit (sha256-pinned)
+- **1398c39** — T29 Layer A v1 producer (refactored for streaming)
+- **37a5216** — T29 MANIFEST sha256 entry
+- **cf31903** — T29 ANALYSIS_LIBRARY entry
+- **faf51d9** — T21 closure (PASS verdict, LESSONS A36/B19/B20/F30, ROADMAP F13/G12/T31)
+- **00f2604, 03be86b, 53d3598** — T21 cleanup commits (narrative contradiction + em-dash normalization)
 
 ## SECTION 9: CHANGELOG
 
@@ -414,3 +410,4 @@ Current path forward post-Session-6: foundational data layer is durable, ROADMAP
   Phase 1D (commits b855e15, 070a410, 0ded25c, 6957f28, 765e5e1, 7584ede, 4964ae1, 69e6862, this commit): T17 placement fix; T18-T26 added; G10/G11 added; F11/F12 added with F1 partial closure; U10 added; D9-D12 added; U4 closed with G7 Layer A continuation pointer; Section 8 NEXT MOVES refreshed with current Layer A pipeline; Section 9 CHANGELOG refreshed (this entry).
 - 2026-05-04 (Session 6 Phase 1D-xi): T27-T30 added (foundation->analysis sequence per LESSONS C27: parquet verification, foundation commit, Layer A v1 visuals, Layer A v1 tabular metrics).
 - 2026-05-04 (Session 6 Phase 5-ii / T21 closure): T21 CLOSED with PASS verdict — Layer A v1 foundation methodology validated. F13 added (cell_stats event_ticker gap). G12 added (per-event paired moments dataset). T31 added (Layer B exit-policy sweep promoted from G10). LESSONS A36, B19, B20, F30 added in same commit. Section 8 NEXT MOVES requires update (separate commit) to reflect T21 closure and T31 as new active analytical work.
+- 2026-05-04 (Session 6 Phase 5-iii): Section 8 NEXT MOVES rewritten to reflect post-T21 reality — T31 (Layer B exit-policy sweep) is the active analytical item, Layer A v1 foundation phase commit chain documented for reference, F13/G12 added to parallel-deferred list. Line 98 duplicate-sentence ('Sanity checks on T20 output. Methodology validation gate. Checks:' repeated) deduped.

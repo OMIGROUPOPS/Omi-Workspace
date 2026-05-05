@@ -326,7 +326,9 @@ def dry_run():
     log(f"  Cells with manifest match: {cells_with_manifest} / {len(in_scope_cells)}")
     log(f"  Cells missing from manifest: {cells_missing_manifest}")
     log(f"  Cells affected by scalar-ticker exclusion: {cells_with_scalar_skips}")
-    log(f"  Cells below {MIN_TRAJECTORIES_PER_CELL}-trajectory threshold: {cells_below_threshold}")
+    log(f"  Cells below {MIN_TRAJECTORIES_PER_CELL}-TICKER threshold: {cells_below_threshold}")
+    log(f"    NOTE: This is the ticker-level proxy. The actual 50-TRAJECTORY threshold (per (ticker, entry_moment) tuple)")
+    log(f"    is computed in T31b-beta after g9_candles reads. Per spec patch 3, threshold-check deferred from dry-run.")
     log(f"  Total trajectories (allowed only) across in-scope cells: {total_trajectories:,}")
     log(f"  Approx trajectory-policy evaluations: {total_trajectories * len(policies):,}")
 

@@ -103,3 +103,54 @@ Layer A consumers should use bid/ask as primary signal.
 
 Producer: arb-executor/data/scripts/build_g9_parquets.py at commit bd83412.
 Verification probe: T27 (this commit's parent for foundation-pointer purposes).
+
+## Layer A v1 outputs (T29 producer output, gated on T21 coherence read)
+
+Foundation pointer: T28 commit ea84e74 (G9 parquets).
+Producer: arb-executor/data/scripts/build_layer_a_v1.py at commit 1398c39.
+Output directory: arb-executor/data/durable/layer_a_v1/
+Producer runtime: 60.7 min, clean exit (Session 6, May 4 2026).
+Aggregation scope: 19,603 markets, 8,981,594 moments aggregated into 671 cells.
+
+### cell_stats.parquet
+
+- sha256: 20e9fcbb18f6079ef09e01fd959ea4f1647c7aa6603997ea4fba8c7c78dde290
+- Size: 233804 bytes
+- Content: 671 cells, ~80 metric columns, forward-bounce distribution per cell
+
+### sample_manifest.json
+
+- sha256: 39ab373a68214d997458754ca286516c7080935b1ea8a2e59f05f85866846031
+- Size: 621246 bytes
+- Content: Per-cell sampled tickers used in visual reproduction
+
+### build_layer_a_v1.log
+
+- sha256: ec73efb501668877a24d9475b41d5070db20bec448a8ede166d4de9eb4cc7050
+- Size: 8656 bytes
+- Content: Producer log
+
+### Visual PNGs (15 files, 8758898 bytes total)
+
+5 categories (ATP_MAIN, ATP_CHALL, WTA_MAIN, WTA_CHALL, OTHER) x 3 regimes (premarket, in_match, settlement_zone).
+
+  - visual_ATP_CHALL_in_match.png: c836b6df4a1de80f5097d25c91ee7a1868b6dc73ddd7d6d80713d4ba43374769 (817187 bytes)
+  - visual_ATP_CHALL_premarket.png: 60f36b3729aa55651e4cd8790ff5485d1f37101d0dcdd95f6db6b2c1de1d1655 (1131437 bytes)
+  - visual_ATP_CHALL_settlement_zone.png: 0dd91c8ea359f13c3c6ce0fbdbd4abfacff8462ab9a859fb7a36b724ebc37e74 (717368 bytes)
+  - visual_ATP_MAIN_in_match.png: 7e6ed084a07bea2826e65e86aa06b260fc0ffb0acd360cd5ed3fc6faffd12aab (944958 bytes)
+  - visual_ATP_MAIN_premarket.png: f7f52e7aacfa5702d18aa571d3535aab4b83e9f9c1d89991535253a418bcf544 (868809 bytes)
+  - visual_ATP_MAIN_settlement_zone.png: 7bb407b34db2bf56e68ef2654ae392eb54bdf8b24ac96aa2314ad9fdc83e4508 (279123 bytes)
+  - visual_OTHER_in_match.png: ef053352d7ae2230dbcbd857c39e1a2c0018a6a3d918576739b3b3d8b9afdebc (44620 bytes)
+  - visual_OTHER_premarket.png: 5c101ffb2a82890af261f1e36d026a2e7340f5540bd17fcb9c9ccb77fc351d00 (45046 bytes)
+  - visual_OTHER_settlement_zone.png: 4b31fed2997f34fea4ff2daab23ad8ad73d7bf3cf818d4a7896e1a8837f33900 (45879 bytes)
+  - visual_WTA_CHALL_in_match.png: f88268d37a7c15453c080aa138ba9839aea2d84543ebcbb18912753f7252e34a (891444 bytes)
+  - visual_WTA_CHALL_premarket.png: 18bdda3e5cfb57aa5a666ea9d492844d0f9dba66397692f670e6dbf479b83252 (985868 bytes)
+  - visual_WTA_CHALL_settlement_zone.png: df7b572e8a2350ec720df5ba2c0a33ef70631b2b743b93df53a8ba6d40260bf7 (47362 bytes)
+  - visual_WTA_MAIN_in_match.png: b3bf670c54d93eff5f39b1ed4b11cb04c9c6a3a9d5cd16ca05b7126cf8893092 (984028 bytes)
+  - visual_WTA_MAIN_premarket.png: 4a263f88304f77a51070f733ea0b47e4eb632331b684f5e8e246b1027f8521aa (892456 bytes)
+  - visual_WTA_MAIN_settlement_zone.png: 380e779679846e39316211f8eef150599a6f92fde88e66cca5b10c3b55e8df5b (63313 bytes)
+
+### Validity status
+
+PENDING T21 coherence read. Outputs verified on-disk and sha256-pinned, but methodology validation gate (the five-check sanity scan from ROADMAP T21) has not run. Downstream Layer B / Layer C analyses must not consume these outputs until T21 passes.
+

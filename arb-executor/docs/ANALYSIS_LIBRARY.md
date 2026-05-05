@@ -402,6 +402,64 @@ must reference this foundation explicitly via T28 commit pointer.
 
 ---
 
+### Layer A v1 outputs (T29, foundation T28 ea84e74)
+
+Per-cell forward-bounce distributions aggregated from G9 candles. Property of the market, not strategy — Layer A per LESSONS B16. No exit logic, no fees, no fill probability. Foundation pointer: T28 commit ea84e74. Producer commit: 1398c39. MANIFEST commit: 37a5216 (sha256-pinned). Validity status: PENDING T21 coherence read — the five-check methodology validation gate from ROADMAP T21 has not run. Downstream Layer B (ROADMAP G10) and Layer C (ROADMAP G11) must not consume these outputs until T21 passes.
+
+#### cell_stats.parquet
+
+- File path: arb-executor/data/durable/layer_a_v1/cell_stats.parquet
+- Producer script: arb-executor/data/scripts/build_layer_a_v1.py at commit 1398c39
+- Source data: g9_candles.parquet + g9_metadata.parquet (T28 foundation, commit ea84e74)
+- Date created: 2026-05-04 (Session 6, 60.7 min producer runtime)
+- Depth: 1 (Distribution per TAXONOMY Section 2)
+- Data tier used: G
+- Schema: 671 cells x ~80 metric columns. Cell key: (category, regime, entry_price_band, spread_band, volume_intensity). Metrics: forward-bounce distribution at horizons {5, 15, 30, 60 min, settlement}, drawdown distribution, breakeven-threshold fractions at {1c, 2c, 5c, 10c, 20c}, n_markets, n_moments per cell.
+- Row count: 671 cells (aggregated from 8,981,594 moments across 19,603 markets)
+- Validity status: PENDING T21 coherence read
+- Notes: volume_intensity is per-market not per-moment — known v1 caveat documented for v2 follow-up. OTHER category included as fifth bucket beyond ATP_MAIN/ATP_CHALL/WTA_MAIN/WTA_CHALL.
+
+#### sample_manifest.json
+
+- File path: arb-executor/data/durable/layer_a_v1/sample_manifest.json
+- Producer script: arb-executor/data/scripts/build_layer_a_v1.py at commit 1398c39
+- Source data: same as cell_stats.parquet (T28 foundation)
+- Date created: 2026-05-04 (Session 6)
+- Depth: 0 (manifest, not analysis)
+- Data tier used: G
+- Schema: per-cell list of sampled tickers used for visual reproduction
+- Row count: 671 cells (one entry per populated cell)
+- Validity status: PENDING T21 (paired with cell_stats.parquet)
+- Notes: enables reproducing visual PNGs deterministically; tickers were sampled at producer runtime, not at coherence-read time.
+
+#### build_layer_a_v1.log
+
+- File path: arb-executor/data/durable/layer_a_v1/build_layer_a_v1.log
+- Producer script: arb-executor/data/scripts/build_layer_a_v1.py at commit 1398c39
+- Source data: producer stdout/stderr only
+- Date created: 2026-05-04 (Session 6)
+- Depth: n/a (operational log)
+- Data tier used: n/a
+- Schema: text log
+- Row count: n/a
+- Validity status: n/a (log artifact)
+- Notes: 60.7 min runtime, clean exit, memory pressure at 67% during visual phase (paged but did not OOM).
+
+#### visual PNGs (15 files)
+
+- File path: arb-executor/data/durable/layer_a_v1/visual_*.png (15 files)
+- Producer script: arb-executor/data/scripts/build_layer_a_v1.py at commit 1398c39
+- Source data: cell_stats.parquet + sample_manifest.json
+- Date created: 2026-05-04 (Session 6)
+- Depth: 0 (visual sanity check, not statistical analysis)
+- Data tier used: G
+- Schema: 5 categories (ATP_MAIN, ATP_CHALL, WTA_MAIN, WTA_CHALL, OTHER) x 3 regimes (premarket, in_match, settlement_zone)
+- Row count: 15 PNG files, 8,758,898 bytes total (per MANIFEST commit 37a5216)
+- Validity status: PENDING T21 visual review
+- Notes: dense PNGs (ATP/WTA tour-level premarket+in_match) are 800KB-1.1MB each; sparse PNGs (settlement_zone subcategories, OTHER) are 44-273KB. File-size pattern itself is a coverage signal — sparse cells reach the 5-min-pre-settle window or fall into OTHER ticker prefix less often.
+
+---
+
 ## SECTION 3: BROKEN OR INVALID ANALYSES
 
 Analyses that ran but produced invalid results due to bugs, methodology errors, or data corruption. Listed here so future chats know not to cite their conclusions.
@@ -478,3 +536,4 @@ Findings from prior analyses that are currently treated as anchor evidence in th
 - 2026-04-30 ~14:30 ET (this commit): Sections 2, 3, 4 fully populated from depth-inventory CC probe. Catalog covers ~40 distinct analyses across 6 depth levels plus broken/meta categories.
 - 2026-04-30 (item 5 closure): Corrected mischaracterization of /root/Omi-Workspace/tmp/ — it is a curated git-tracked archive with multiple curation batches, not a single Apr 29 snapshot. Canonical-source rules updated.
 - 2026-05-04 (Session 6 T28): G9 parquets (g9_candles, g9_trades, g9_metadata) added as canonical foundation per LESSONS C27. T17 producer commit bd83412, T27 verification 9/9 PASS. sha256 in MANIFEST.md.
+- 2026-05-04 (Session 6 T29): Layer A v1 outputs (cell_stats.parquet, sample_manifest.json, build_layer_a_v1.log, 15 visual PNGs) added under new subsection in Section 2. Foundation pointer T28 commit ea84e74. Producer commit 1398c39. MANIFEST commit 37a5216. Validity: PENDING T21 coherence read.

@@ -152,5 +152,5 @@ Aggregation scope: 19,603 markets, 8,981,594 moments aggregated into 671 cells.
 
 ### Validity status
 
-PENDING T21 coherence read. Outputs verified on-disk and sha256-pinned, but methodology validation gate (the five-check sanity scan from ROADMAP T21) has not run. Downstream Layer B / Layer C analyses must not consume these outputs until T21 passes.
+PASSED T21 coherence read 2026-05-04 (commit faf51d9). 4 PASS / 2 INCONCLUSIVE / 0 FAIL. Cleanly passing checks: Check 2 premarket-vs-in_match, Check 3 settlement asymmetry, Check 4 category sanity, Check 6 YES/NO fold symmetry. Informatively inconclusive: Check 1 (hypothesis-shape mismatch -> LESSONS B20), Check 5 (volume_intensity in_match collapse -> LESSONS F30). Downstream Layer B (T31b) cleared to consume.
 

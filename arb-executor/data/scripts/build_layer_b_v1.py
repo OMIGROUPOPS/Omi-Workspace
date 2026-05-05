@@ -133,7 +133,7 @@ def channel_for_regime(regime):
 
 # Per spec Decision 4
 LIMIT_THRESHOLDS = [1, 2, 3, 5, 7, 10, 15, 20, 30]   # cents
-TIME_STOPS = [0.5, 1, 5, 15, 30, 60, 120, 240]       # minutes; "settle" handled separately
+TIME_STOPS = [1, 5, 15, 30, 60, 120, 240]  # patch 6: dropped 0.5min (sub-minute requires v2 trade-tape resolution)       # minutes; "settle" handled separately
 TRAILING_OFFSETS = [1, 2, 3, 5, 7, 10, 15, 20]       # cents
 LIMIT_TIMESTOP_THRESHOLDS = [3, 5, 10, 15, 20]       # cents
 LIMIT_TIMESTOP_HORIZONS = [15, 30, 60, 120]          # minutes
@@ -142,7 +142,7 @@ LIMIT_TRAILING_OFFSETS = [3, 5, 10]                  # cents
 
 
 def build_policy_grid():
-    """Build the full 55-policy parameter grid per spec Decision 4."""
+    """Build the full 54-policy parameter grid per spec Decision 4."""
     policies = []
 
     # Limit-exit (9)

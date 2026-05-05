@@ -68,14 +68,14 @@ Trade-tape (g9_trades) not used in v1. Candle-level resolution is the simulation
 
 Single-policy types:
 - **Limit-exit:** thresholds {1, 2, 3, 5, 7, 10, 15, 20, 30} cents above entry. 9 policies.
-- **Time-stop:** horizons {30s, 1min, 5min, 15min, 30min, 60min, 120min, 240min, settle}. 9 policies.
+- **Time-stop:** horizons {1min, 5min, 15min, 30min, 60min, 120min, 240min, settle}. 8 policies. Sub-minute horizons (30s) removed in v1 per minute-cadence candle data limitation: g9_candles minimum cadence is 1-minute, so a 30-second time-stop cannot be expressed in v1 (the first observable forward minute is at entry+60s, past any sub-minute horizon). Sub-minute time-stops require trade-tape resolution per Open items for v2 below.
 - **Trailing-stop:** offsets {1, 2, 3, 5, 7, 10, 15, 20} cents below running max. 8 policies.
 
 Combined policy types:
 - **Limit + time-stop:** Cartesian product, but pruned to dominant cells (e.g., +1c limit with 240min stop is not strategy-meaningful since hitting +1c is trivial). Subset: thresholds {3, 5, 10, 15, 20} × horizons {15min, 30min, 60min, 120min}. 20 combined policies.
 - **Limit + trailing:** {5, 10, 15} × {3, 5, 10}. 9 combined policies.
 
-Total policies per cell: 9 + 9 + 8 + 20 + 9 = 55. Across 375 substantial cells (premarket + in-match): ~20,625 (cell, policy) tuples per channel sweep. Output schema is one row per tuple.
+Total policies per cell: 9 + 8 + 8 + 20 + 9 = 54. Across 375 substantial cells (premarket + in-match): ~20,250 (cell, policy) tuples per channel sweep. Output schema is one row per tuple.
 
 If actual parameter coverage is undershoot (operator wants finer 1c-step granularity on limit-exit), v2 expands the parameter space. v1 captures the strategy-relevant grid.
 

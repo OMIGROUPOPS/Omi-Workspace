@@ -10,7 +10,7 @@
 In-match scalp exit policies on substantial cells (n_markets >= 20, 371 cells per Phase 1 finding). Two channels processed as separate sweeps per LESSONS E31:
 
 - **Premarket channel.** Cell key: (category, regime=premarket, entry_band, spread_band, volume_intensity). 5-dimensional. ~258 substantial cells.
-- **In-match channel.** Cell key: (category, regime=in_match, entry_band, spread_band). 4-dimensional. volume_intensity dropped per LESSONS F30 (collapses to single bucket within in_match; no information). ~117 substantial cells (collapsing 117 high + 3 mid into a single "any volume" bucket within in_match).
+- **In-match channel.** Cell key from sample_manifest.json: (category, regime=in_match, entry_band, spread_band, volume_intensity). 5-dimensional. The sample_manifest was built by Layer A v1 (T29) before the F30 finding and uses 5-dim keys uniformly across all regimes. Layer B v1 retains the 5-dim key for invariant preservation: rebuilding sample_manifest with 4-dim in_match keys would require re-running the T29 producer (60 min) and producer-time fan-out aggregation introduces re-derivation drift. Per F30, volume_intensity is uninformative within in_match (117 substantial high cells, 3 substantial mid, 0 substantial low — collapses to single bucket). Layer B output records volume_intensity faithfully; downstream consumers (Layer C, strategy selection) collapse the dimension via filter at consumption time. ~117+3 = ~120 substantial in_match cells across volume_intensity buckets.
 
 Out of scope for v1:
 
@@ -133,6 +133,7 @@ Plus paired summary visuals at `arb-executor/data/durable/layer_b_v1/visual_*.pn
 `arb-executor/data/scripts/build_layer_b_v1.py`. Flow:
 
 1. Load cell_stats.parquet and sample_manifest.json. Filter to substantial cells (n_markets >= 20). Split by channel.
+   - **Cell-key parsing:** sample_manifest.json keys use the format `{regime}__{entry_band_idx}__{spread_band}__{volume_intensity}__{category}` where entry_band_idx is the integer index 0-9 into the ENTRY_BANDS constant from cell_key_helpers. Producer parses each key by splitting on `__`, then maps `entry_band_idx` to `(entry_band_lo, entry_band_hi)` via `ENTRY_BANDS[idx]` for output schema columns. The cell-key parsing logic must use the same ENTRY_BANDS constant from cell_key_helpers as Layer A used at aggregation time (refactored to shared module per commit 8174ec0).
 2. For each cell:
    - Read sampled tickers from sample_manifest.json.
    - For each sampled ticker, first verify g9_metadata.parquet `result` column is in {"yes", "no"}; skip ticker (count in producer log) if "scalar". Then re-pull g9_candles row-group(s) for that ticker (column-projection: ticker, end_period_ts, yes_bid_close, yes_ask_close, volume_fp; per C28 streaming discipline). Filter pushdown is efficient because g9_candles row groups are ticker-sorted (probe confirmed disjoint ticker ranges per row group).

@@ -391,20 +391,136 @@ def walk_trajectory(ticker, candles_df, metadata_row, target_cell_key,
     return results
 
 
-def aggregate_cell_results(cell_info, per_policy_results):
+def aggregate_cell_results(cell_info, per_policy_results, policies):
     """Aggregate per-trajectory policy outcomes into per-(cell, policy) summary rows.
 
-    NOT YET IMPLEMENTED in T31b-alpha — lands in T31b-gamma with full run.
+    Args:
+        cell_info: dict with cell-key parts (channel, category, entry_band_lo,
+                   entry_band_hi, spread_band, volume_intensity).
+        per_policy_results: dict {p_idx: list of outcome dicts} accumulated across
+                            all sampled tickers in this cell.
+        policies: the policy grid (list of dicts with type + params).
+
+    Returns:
+        list of row dicts, one per policy. Empty list if no trajectories were collected
+        (cell failed real 50-trajectory threshold; caller decides exclusion handling).
+
+    capital_utilization convention (per spec Decision 4 + T31a patch 7-deferred clarification):
+      held_minutes = time_to_fire_min for fired; else minutes-walked from entry to final_cap
+      denominator = horizon_min for time_stop/limit_time_stop policies; else 240 (default cap)
+      capital_utilization = mean(held_minutes / denominator) clamped to [0, 1]
     """
-    raise NotImplementedError("aggregate_cell_results: T31b-gamma scope")
+    import json
+    import statistics
+
+    rows = []
+
+    for p_idx, policy in enumerate(policies):
+        outcomes = per_policy_results.get(p_idx, [])
+        if not outcomes:
+            # Skip cells with no trajectories for this policy (shouldn't happen if cell
+            # passed the 50-trajectory threshold — every policy gets every trajectory)
+            continue
+
+        n = len(outcomes)
+        n_fired = sum(1 for o in outcomes if o['outcome'] == 'fired')
+        n_hexp = sum(1 for o in outcomes if o['outcome'] == 'horizon_expired')
+        n_sett = sum(1 for o in outcomes if o['outcome'] == 'settled_unfired')
+
+        captures = sorted(o['capture_dollars'] for o in outcomes)
+
+        def pct(vals, q):
+            if not vals: return float('nan')
+            i = int(q * (len(vals) - 1))
+            return vals[i]
+
+        capture_mean = statistics.mean(captures) if captures else float('nan')
+        capture_p10 = pct(captures, 0.10)
+        capture_p25 = pct(captures, 0.25)
+        capture_p50 = pct(captures, 0.50)
+        capture_p75 = pct(captures, 0.75)
+        capture_p90 = pct(captures, 0.90)
+
+        # median_time_to_fire over fired-only
+        fired_times = [o['time_to_fire_min'] for o in outcomes
+                       if o['outcome'] == 'fired' and o['time_to_fire_min'] is not None]
+        median_ttf = statistics.median(fired_times) if fired_times else None
+
+        # capital_utilization
+        ptype = policy['type']
+        params = policy['params']
+        if ptype in ('time_stop', 'limit_time_stop'):
+            horizon_min = params.get('horizon_min')
+            if horizon_min == 'settle' or horizon_min is None:
+                denom = 240.0  # settle policies use the 240-min cap when computing util
+            else:
+                denom = float(horizon_min)
+        else:
+            denom = 240.0
+
+        utils = []
+        for o in outcomes:
+            if o['outcome'] == 'fired':
+                held = o['time_to_fire_min'] if o['time_to_fire_min'] is not None else denom
+            elif o['outcome'] == 'horizon_expired':
+                held = denom  # held until horizon
+            else:  # settled_unfired
+                held = denom  # held until settlement-cap-equivalent (240-min effective)
+            u = min(max(held / denom, 0.0), 1.0)
+            utils.append(u)
+        capital_util = statistics.mean(utils) if utils else float('nan')
+
+        row = {
+            'channel': cell_info['channel'],
+            'category': cell_info['category'],
+            'entry_band_lo': cell_info['entry_band_lo'],
+            'entry_band_hi': cell_info['entry_band_hi'],
+            'spread_band': cell_info['spread_band'],
+            'volume_intensity': cell_info['volume_intensity'],
+            'policy_type': ptype,
+            'policy_params': json.dumps(params),
+            'n_simulated': n,
+            'n_fired': n_fired,
+            'n_horizon_expired': n_hexp,
+            'n_settled_unfired': n_sett,
+            'fire_rate': n_fired / n,
+            'capture_mean': capture_mean,
+            'capture_p10': capture_p10,
+            'capture_p25': capture_p25,
+            'capture_p50': capture_p50,
+            'capture_p75': capture_p75,
+            'capture_p90': capture_p90,
+            'median_time_to_fire': median_ttf,
+            'capital_utilization': capital_util,
+        }
+        rows.append(row)
+
+    return rows
 
 
-def write_output_parquet(rows):
-    """Write final exit_policy_per_cell.parquet.
+def write_output_parquet(rows, output_path):
+    """Write the accumulated rows to parquet at output_path.
 
-    NOT YET IMPLEMENTED in T31b-alpha — lands in T31b-gamma with full run.
+    Schema is defined by the keys in each row dict (see aggregate_cell_results).
     """
-    raise NotImplementedError("write_output_parquet: T31b-gamma scope")
+    import pandas as pd
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+    from pathlib import Path
+
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if not rows:
+        log(f'WARNING: no rows to write; skipping parquet output')
+        return
+
+    df = pd.DataFrame(rows)
+    table = pa.Table.from_pandas(df, preserve_index=False)
+    pq.write_table(table, output_path, compression='snappy')
+
+    log(f'Wrote {len(rows)} rows to {output_path}')
+    log(f'Output parquet size: {output_path.stat().st_size:,} bytes')
 
 
 def generate_visuals():
@@ -660,6 +776,177 @@ def test_cell_mode(test_cell_key):
             break
 
 
+
+def full_run_mode():
+    """T31b-gamma full-run mode.
+
+    Loops over all in-scope substantial cells, walks all sampled tickers per cell,
+    aggregates per-policy outcomes, writes parquet output. No visuals (gamma-2 scope).
+    """
+    import json
+    import sys
+    import time
+    from pathlib import Path
+    import pyarrow.parquet as pq
+    sys.path.insert(0, str(Path(__file__).parent))
+    import cell_key_helpers as ckh
+
+    OUTPUT_DIR = Path('data/durable/layer_b_v1')
+    OUTPUT_PARQUET = OUTPUT_DIR / 'exit_policy_per_cell.parquet'
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    log('=== T31b-gamma full-run mode ===')
+    t_start = time.time()
+
+    # Load manifest, filter to in-scope substantial cells (excluding settlement_zone)
+    with open('data/durable/layer_a_v1/sample_manifest.json') as f:
+        manifest = json.load(f)
+
+    in_scope_keys = sorted(
+        k for k, v in manifest.items()
+        if v.get('n_total', 0) >= 20
+        and not k.startswith('settlement_zone__')
+    )
+    log(f'In-scope substantial cells: {len(in_scope_keys)}')
+
+    # Build policy grid
+    policies = build_policy_grid()
+    log(f'Policy grid: {len(policies)} policies')
+
+    # Pre-load all relevant ticker metadata once (cheap; ~10K rows projected)
+    all_relevant_tickers = set()
+    for k in in_scope_keys:
+        for t in manifest[k]['tickers']:
+            all_relevant_tickers.add(t)
+    log(f'Total unique tickers across all in-scope cells: {len(all_relevant_tickers)}')
+
+    meta_table = pq.read_table(
+        'data/durable/g9_metadata.parquet',
+        columns=['ticker', 'result', 'settlement_ts'],
+        filters=[('ticker', 'in', list(all_relevant_tickers))],
+    )
+    meta_df = meta_table.to_pandas().set_index('ticker')
+    log(f'Loaded metadata for {len(meta_df)} tickers')
+
+    # Process cells
+    all_rows = []
+    cells_processed = 0
+    cells_excluded_threshold = 0
+    cells_excluded_no_meta = 0
+    total_entry_moments = 0
+    total_skipped_scalar = 0
+    total_skipped_missing_meta = 0
+
+    for cell_idx, cell_key in enumerate(in_scope_keys):
+        cell_t_start = time.time()
+
+        entry = manifest[cell_key]
+        tickers = entry['tickers']
+
+        # Parse cell_info
+        parts = cell_key.split('__')
+        regime = parts[0]
+        eb_idx = int(parts[1])
+        sb = parts[2]
+        vi = parts[3]
+        cat = parts[4]
+
+        eb_lo, eb_hi = ckh.ENTRY_BANDS[eb_idx]
+        cell_info = {
+            'channel': channel_for_regime(regime),
+            'category': cat,
+            'entry_band_lo': eb_lo,
+            'entry_band_hi': eb_hi,
+            'spread_band': sb,
+            'volume_intensity': vi,
+        }
+
+        # Walk all sampled tickers, accumulate per-policy outcomes
+        per_policy_outcomes = {p_idx: [] for p_idx in range(len(policies))}
+        cell_entry_moments = 0
+        cell_skipped_scalar = 0
+        cell_skipped_missing_meta = 0
+
+        for ticker in tickers:
+            if ticker not in meta_df.index:
+                cell_skipped_missing_meta += 1
+                continue
+            meta_row = meta_df.loc[ticker]
+            if meta_row['result'] not in ('yes', 'no'):
+                cell_skipped_scalar += 1
+                continue
+
+            candles_table = pq.read_table(
+                'data/durable/g9_candles.parquet',
+                columns=['ticker', 'end_period_ts', 'yes_bid_close',
+                         'yes_ask_close', 'volume_fp'],
+                filters=[('ticker', '=', ticker)],
+            )
+            candles_df = candles_table.to_pandas()
+            if len(candles_df) == 0:
+                continue
+            candles_df = candles_df.sort_values('end_period_ts').reset_index(drop=True)
+
+            ticker_results = walk_trajectory(
+                ticker=ticker,
+                candles_df=candles_df,
+                metadata_row=meta_row,
+                target_cell_key=cell_key,
+                policies=policies,
+                helpers=ckh,
+            )
+
+            cell_moments = len(set(r[0] for r in ticker_results))
+            cell_entry_moments += cell_moments
+
+            for moment_idx, p_idx, outcome in ticker_results:
+                per_policy_outcomes[p_idx].append(outcome)
+
+        # Real 50-trajectory threshold check (per spec Decision 2 patch 3)
+        if cell_entry_moments < 50:
+            cells_excluded_threshold += 1
+            log(f'  [{cell_idx+1}/{len(in_scope_keys)}] {cell_key}: '
+                f'EXCLUDED (only {cell_entry_moments} moments < 50 threshold) '
+                f'(elapsed {time.time()-cell_t_start:.1f}s)')
+            continue
+
+        # Aggregate
+        rows = aggregate_cell_results(cell_info, per_policy_outcomes, policies)
+        all_rows.extend(rows)
+        cells_processed += 1
+        total_entry_moments += cell_entry_moments
+        total_skipped_scalar += cell_skipped_scalar
+        total_skipped_missing_meta += cell_skipped_missing_meta
+
+        # Progress logging — every 10 cells
+        if (cell_idx + 1) % 10 == 0 or cell_idx == 0:
+            elapsed = time.time() - t_start
+            pct_done = (cell_idx + 1) / len(in_scope_keys)
+            eta = elapsed / pct_done - elapsed if pct_done > 0 else 0
+            log(f'  [{cell_idx+1}/{len(in_scope_keys)}] processed={cells_processed} '
+                f'excluded={cells_excluded_threshold} '
+                f'rows={len(all_rows)} elapsed={elapsed:.0f}s eta={eta:.0f}s')
+
+    # Write output
+    log('')
+    log('=== Writing output parquet ===')
+    write_output_parquet(all_rows, OUTPUT_PARQUET)
+
+    # Final stats
+    elapsed = time.time() - t_start
+    log('')
+    log('=== T31b-gamma summary ===')
+    log(f'In-scope cells: {len(in_scope_keys)}')
+    log(f'Cells processed: {cells_processed}')
+    log(f'Cells excluded (< 50 moments): {cells_excluded_threshold}')
+    log(f'Total entry moments: {total_entry_moments}')
+    log(f'Total skipped scalar tickers: {total_skipped_scalar}')
+    log(f'Total skipped missing-metadata: {total_skipped_missing_meta}')
+    log(f'Output rows: {len(all_rows)}')
+    log(f'Total runtime: {elapsed:.0f}s ({elapsed/60:.1f} min)')
+    log(f'Output: {OUTPUT_PARQUET}')
+
+
 def main():
     parser = argparse.ArgumentParser(description="Layer B v1 exit-policy parameter sweep")
     parser.add_argument("--dry-run", action="store_true", help="T31b-alpha: load inputs, print work plan, exit")
@@ -677,8 +964,8 @@ def main():
         return
     
     else:
-        log("Full-run mode NOT YET IMPLEMENTED (T31b-gamma scope)")
-        log("Use --dry-run for T31b-alpha work-plan output.")
+        full_run_mode()
+        return 0
         return 1
 
 

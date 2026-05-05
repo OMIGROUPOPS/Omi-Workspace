@@ -177,35 +177,202 @@ def build_policy_grid():
 # Policy evaluation (T31b-beta — stubbed for alpha)
 # ============================================================
 
-def evaluate_policy(policy, forward_window_bid, forward_window_ask, settlement_value):
-    """Evaluate a single policy against a forward window trajectory.
+def evaluate_policy(policy, forward_bids_dollars, forward_asks_dollars,
+                    forward_ts_unix, entry_ask_dollars, entry_ts_unix,
+                    settlement_value_dollars, settlement_ts_unix):
+    """Walk a forward window and determine policy outcome.
 
-    NOT YET IMPLEMENTED in T31b-alpha — lands in T31b-beta with single-cell test.
+    Per spec Decision 3-5 (layer_b_spec.md). All price inputs in dollars (float64).
+    Policy params come in cents; converted to dollars at function entry.
 
     Args:
-        policy: dict with 'type' and 'params'
-        forward_window_bid: array of yes_bid_close from t+1 onward
-        forward_window_ask: array of yes_ask_close from t+1 onward
-        settlement_value: 1.0 (yes), 0.0 (no), or None if no settlement reached
+        policy: dict with keys {policy_type, params}. params is a dict whose
+                threshold/offset values are integer cents and time values are int minutes.
+        forward_bids_dollars: list/array of yes_bid_close values for minutes after entry,
+                              indexed [0..N-1] where index 0 is the minute immediately
+                              after entry_ts_unix.
+        forward_asks_dollars: list/array of yes_ask_close values for the same minutes.
+        forward_ts_unix: list/array of end_period_ts values for those minutes.
+        entry_ask_dollars: yes_ask_close at entry minute (cross-the-spread entry).
+        entry_ts_unix: end_period_ts at entry minute.
+        settlement_value_dollars: 1.00 if result=='yes', 0.00 if result=='no'.
+        settlement_ts_unix: settlement timestamp in unix seconds.
 
     Returns:
-        dict with 'outcome' ('fired'/'horizon_expired'/'settled_unfired'),
-        'capture' (cents), 'time_to_fire' (minutes or None)
+        dict with keys:
+            outcome: 'fired' | 'horizon_expired' | 'settled_unfired'
+            capture_dollars: realized capture in dollars (can be negative)
+            time_to_fire_min: minutes from entry to fire (None if not fired)
     """
-    raise NotImplementedError("evaluate_policy: T31b-beta scope")
+    ptype = policy['policy_type']
+    params = policy['params']
+
+    DEFAULT_HORIZON_MIN = 240
+
+    if ptype == 'time_stop':
+        horizon_min = params['horizon_min']
+    elif ptype == 'limit_time_stop':
+        horizon_min = params['horizon_min']
+    else:
+        horizon_min = DEFAULT_HORIZON_MIN
+
+    if horizon_min == 'settle' or horizon_min is None:
+        horizon_cap_ts = settlement_ts_unix
+    else:
+        horizon_cap_ts = entry_ts_unix + int(horizon_min) * 60
+
+    final_cap_ts = min(horizon_cap_ts, settlement_ts_unix)
+
+    limit_dollars = params.get('limit_c', 0) / 100.0 if 'limit_c' in params else None
+    trail_dollars = params.get('trail_c', 0) / 100.0 if 'trail_c' in params else None
+
+    running_max_bid = entry_ask_dollars
+    n = len(forward_bids_dollars)
+    last_walked_idx = -1
+
+    for i in range(n):
+        t_i = forward_ts_unix[i]
+        if t_i > final_cap_ts:
+            break
+        last_walked_idx = i
+
+        bid_i = forward_bids_dollars[i]
+        ask_i = forward_asks_dollars[i]
+
+        if bid_i is None or ask_i is None:
+            continue
+
+        if bid_i > running_max_bid:
+            running_max_bid = bid_i
+
+        if limit_dollars is not None and ptype in ('limit', 'limit_time_stop', 'limit_trailing'):
+            if bid_i >= entry_ask_dollars + limit_dollars:
+                return {
+                    'outcome': 'fired',
+                    'capture_dollars': bid_i - entry_ask_dollars,
+                    'time_to_fire_min': (t_i - entry_ts_unix) / 60.0,
+                }
+
+        if trail_dollars is not None and ptype in ('trailing', 'limit_trailing'):
+            if bid_i <= running_max_bid - trail_dollars:
+                return {
+                    'outcome': 'fired',
+                    'capture_dollars': bid_i - entry_ask_dollars,
+                    'time_to_fire_min': (t_i - entry_ts_unix) / 60.0,
+                }
+
+        if ptype in ('time_stop', 'limit_time_stop'):
+            if horizon_min != 'settle' and t_i >= entry_ts_unix + int(horizon_min) * 60:
+                return {
+                    'outcome': 'fired',
+                    'capture_dollars': bid_i - entry_ask_dollars,
+                    'time_to_fire_min': (t_i - entry_ts_unix) / 60.0,
+                }
+
+    if final_cap_ts >= settlement_ts_unix - 60:
+        return {
+            'outcome': 'settled_unfired',
+            'capture_dollars': settlement_value_dollars - entry_ask_dollars,
+            'time_to_fire_min': None,
+        }
+    else:
+        if last_walked_idx >= 0:
+            capture = forward_bids_dollars[last_walked_idx] - entry_ask_dollars
+        else:
+            capture = 0.0
+        return {
+            'outcome': 'horizon_expired',
+            'capture_dollars': capture,
+            'time_to_fire_min': None,
+        }
 
 
-def walk_trajectory(ticker, candles_df, metadata_row, policies):
-    """Walk forward windows for all moments in a ticker, evaluate all policies.
+def walk_trajectory(ticker, candles_df, metadata_row, target_cell_key,
+                    policies, helpers):
+    """Walk all moments in a ticker, identify cell-matching moments, evaluate all policies.
 
-    NOT YET IMPLEMENTED in T31b-alpha — lands in T31b-beta with single-cell test.
+    Args:
+        ticker: ticker string (for logging).
+        candles_df: pandas DataFrame with columns
+                    [end_period_ts, yes_bid_close, yes_ask_close, volume_fp]
+                    sorted ascending by end_period_ts.
+        metadata_row: pandas Series with fields {result, settlement_ts}. result must be 'yes' or 'no'.
+        target_cell_key: cell key string in format
+                         'regime__entry_band_idx__spread_band__volume_intensity__category'.
+        policies: list of policy dicts.
+        helpers: cell_key_helpers module.
+
+    Returns:
+        list of (moment_idx, policy_idx, outcome_dict) tuples for moments matching the target cell.
     """
-    raise NotImplementedError("walk_trajectory: T31b-beta scope")
+    from datetime import datetime
 
+    timestamps = candles_df['end_period_ts'].values
+    volumes = candles_df['volume_fp'].values
 
-# ============================================================
-# Aggregation (T31b-gamma — stubbed for alpha)
-# ============================================================
+    match_start_ts = helpers.detect_match_start(timestamps, volumes)
+    volume_intensity = helpers.volume_intensity_for_market(volumes)
+    category = helpers.categorize(ticker)
+
+    settlement_ts_unix = int(
+        datetime.fromisoformat(metadata_row['settlement_ts'].replace('Z', '+00:00')).timestamp()
+    )
+    settlement_value_dollars = 1.0 if metadata_row['result'] == 'yes' else 0.0
+
+    target_parts = target_cell_key.split('__')
+    if len(target_parts) != 5:
+        raise ValueError(f'Bad target_cell_key shape: {target_cell_key!r}')
+    target_regime, target_eb_str, target_sb, target_vi, target_cat = target_parts
+    target_eb = int(target_eb_str)
+
+    if category != target_cat or volume_intensity != target_vi:
+        return []
+
+    bids = candles_df['yes_bid_close'].values
+    asks = candles_df['yes_ask_close'].values
+
+    results = []
+    n_moments = len(candles_df)
+
+    for i in range(n_moments):
+        t = int(timestamps[i])
+        bid = bids[i]
+        ask = asks[i]
+
+        if bid is None or ask is None:
+            continue
+        try:
+            bid_f = float(bid)
+            ask_f = float(ask)
+        except (TypeError, ValueError):
+            continue
+
+        regime = helpers.regime_for_moment(t, match_start_ts, settlement_ts_unix)
+        eb = helpers.entry_band_idx(ask_f)
+        sb = helpers.spread_band_name(bid_f, ask_f)
+
+        if regime != target_regime or eb != target_eb or sb != target_sb:
+            continue
+
+        forward_bids = bids[i+1:]
+        forward_asks = asks[i+1:]
+        forward_ts = timestamps[i+1:]
+
+        for p_idx, policy in enumerate(policies):
+            outcome = evaluate_policy(
+                policy=policy,
+                forward_bids_dollars=forward_bids,
+                forward_asks_dollars=forward_asks,
+                forward_ts_unix=forward_ts,
+                entry_ask_dollars=ask_f,
+                entry_ts_unix=t,
+                settlement_value_dollars=settlement_value_dollars,
+                settlement_ts_unix=settlement_ts_unix,
+            )
+            results.append((i, p_idx, outcome))
+
+    return results
+
 
 def aggregate_cell_results(cell_info, per_policy_results):
     """Aggregate per-trajectory policy outcomes into per-(cell, policy) summary rows.
@@ -342,6 +509,140 @@ def dry_run():
 # Main
 # ============================================================
 
+
+def test_cell_mode(test_cell_key):
+    """T31b-beta single-cell test mode. No parquet write, no visuals.
+
+    Loads target cell from sample_manifest, walks all sampled tickers,
+    aggregates per-policy outcomes, prints summary distribution + samples.
+    """
+    import json
+    import sys
+    import statistics
+    from pathlib import Path
+    import pyarrow.parquet as pq
+    sys.path.insert(0, str(Path(__file__).parent))
+    import cell_key_helpers as ckh
+
+    log(f'=== T31b-beta test mode: cell {test_cell_key!r} ===')
+
+    manifest_path = Path('data/durable/layer_a_v1/sample_manifest.json')
+    with open(manifest_path) as f:
+        manifest = json.load(f)
+    if test_cell_key not in manifest:
+        log(f'ABORT: cell {test_cell_key!r} not in sample_manifest')
+        return
+    entry = manifest[test_cell_key]
+    tickers = entry['tickers']
+    log(f'Cell n_total={entry["n_total"]} n_sampled={entry["n_sampled"]} '
+        f'tickers_in_manifest={len(tickers)}')
+
+    policies = build_policy_grid()
+    log(f'Policy grid: {len(policies)} policies')
+
+    meta_table = pq.read_table(
+        'data/durable/g9_metadata.parquet',
+        columns=['ticker', 'result', 'settlement_ts'],
+        filters=[('ticker', 'in', tickers)],
+    )
+    meta_df = meta_table.to_pandas().set_index('ticker')
+
+    per_policy_outcomes = {p_idx: [] for p_idx in range(len(policies))}
+    skipped_scalar = 0
+    skipped_missing_meta = 0
+    skipped_empty_candles = 0
+    total_entry_moments = 0
+
+    for ticker in tickers:
+        if ticker not in meta_df.index:
+            skipped_missing_meta += 1
+            continue
+        meta_row = meta_df.loc[ticker]
+        if meta_row['result'] not in ('yes', 'no'):
+            skipped_scalar += 1
+            continue
+
+        candles_table = pq.read_table(
+            'data/durable/g9_candles.parquet',
+            columns=['ticker', 'end_period_ts', 'yes_bid_close', 'yes_ask_close', 'volume_fp'],
+            filters=[('ticker', '=', ticker)],
+        )
+        candles_df = candles_table.to_pandas()
+        if len(candles_df) == 0:
+            skipped_empty_candles += 1
+            continue
+        candles_df = candles_df.sort_values('end_period_ts').reset_index(drop=True)
+
+        ticker_results = walk_trajectory(
+            ticker=ticker,
+            candles_df=candles_df,
+            metadata_row=meta_row,
+            target_cell_key=test_cell_key,
+            policies=policies,
+            helpers=ckh,
+        )
+
+        moments_this_ticker = len(set(r[0] for r in ticker_results))
+        total_entry_moments += moments_this_ticker
+        log(f'  {ticker}: {moments_this_ticker} entry moments, '
+            f'{len(ticker_results)} (moment, policy) pairs')
+
+        for moment_idx, p_idx, outcome in ticker_results:
+            per_policy_outcomes[p_idx].append(outcome)
+
+    log(f'')
+    log(f'=== Aggregate ===')
+    log(f'Total entry moments across all tickers: {total_entry_moments}')
+    log(f'Skipped scalar tickers: {skipped_scalar}')
+    log(f'Skipped missing-metadata tickers: {skipped_missing_meta}')
+    log(f'Skipped empty-candles tickers: {skipped_empty_candles}')
+    log(f'')
+    log(f'Trajectory threshold check (>= 50 moments): '
+        f'{"PASS" if total_entry_moments >= 50 else "FAIL"}')
+    log(f'')
+
+    log(f'=== Per-policy capture distribution ===')
+    log(f'{"policy":<40} {"n":>4} {"fire%":>6} {"hexp%":>6} {"sett%":>6} '
+        f'{"cap_p10":>8} {"cap_p50":>8} {"cap_p90":>8} {"cap_max":>8}')
+
+    for p_idx, policy in enumerate(policies):
+        outcomes = per_policy_outcomes[p_idx]
+        if not outcomes:
+            continue
+        n = len(outcomes)
+        n_fired = sum(1 for o in outcomes if o['outcome'] == 'fired')
+        n_hexp = sum(1 for o in outcomes if o['outcome'] == 'horizon_expired')
+        n_sett = sum(1 for o in outcomes if o['outcome'] == 'settled_unfired')
+        captures = sorted(o['capture_dollars'] for o in outcomes)
+
+        def pct(vals, q):
+            if not vals: return float('nan')
+            i = int(q * (len(vals) - 1))
+            return vals[i]
+
+        cap_p10 = pct(captures, 0.10)
+        cap_p50 = pct(captures, 0.50)
+        cap_p90 = pct(captures, 0.90)
+        cap_max = captures[-1] if captures else float('nan')
+
+        label = f'{policy["policy_type"]}:{policy["params"]}'[:38]
+        log(f'{label:<40} {n:>4} '
+            f'{100*n_fired/n:>5.1f}% {100*n_hexp/n:>5.1f}% {100*n_sett/n:>5.1f}% '
+            f'{cap_p10:>+8.4f} {cap_p50:>+8.4f} {cap_p90:>+8.4f} {cap_max:>+8.4f}')
+
+    log(f'')
+    log(f'=== Sample fired/expired/settled outcomes from limit_c=5 policy ===')
+    for p_idx, policy in enumerate(policies):
+        if policy['policy_type'] == 'limit' and policy['params'].get('limit_c') == 5:
+            outcomes = per_policy_outcomes[p_idx]
+            for label, target_outcome in [('fired', 'fired'),
+                                          ('horizon_expired', 'horizon_expired'),
+                                          ('settled_unfired', 'settled_unfired')]:
+                samples = [o for o in outcomes if o['outcome'] == target_outcome][:3]
+                log(f'  {label} samples (up to 3): {samples}')
+            break
+
+
 def main():
     parser = argparse.ArgumentParser(description="Layer B v1 exit-policy parameter sweep")
     parser.add_argument("--dry-run", action="store_true", help="T31b-alpha: load inputs, print work plan, exit")
@@ -355,8 +656,9 @@ def main():
         dry_run()
         return 0
     elif args.test_cell:
-        log("--test-cell NOT YET IMPLEMENTED (T31b-beta scope)")
-        return 1
+        test_cell_mode(args.test_cell)
+        return
+    
     else:
         log("Full-run mode NOT YET IMPLEMENTED (T31b-gamma scope)")
         log("Use --dry-run for T31b-alpha work-plan output.")

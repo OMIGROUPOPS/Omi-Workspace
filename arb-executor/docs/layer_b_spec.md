@@ -79,6 +79,8 @@ Total policies per cell: 9 + 9 + 8 + 20 + 9 = 55. Across 375 substantial cells (
 
 If actual parameter coverage is undershoot (operator wants finer 1c-step granularity on limit-exit), v2 expands the parameter space. v1 captures the strategy-relevant grid.
 
+**Unit convention.** All policy parameters in this section (limit thresholds, trailing offsets) are expressed in **cents** as integers (e.g., `limit_c=5` means 5 cents = $0.05). Time horizons (`horizon_min`, `trail_c`) are in minutes. The forward-window source data (g9_candles `yes_bid_close`, `yes_ask_close`) is in **dollars** as float64 (0.0 to 1.0). The producer (`evaluate_policy`) converts thresholds from cents to dollars at function entry (`limit_dollars = limit_c / 100`) so the price-comparison loop operates in consistent dollar units. The conversion happens once per policy evaluation, not per forward-window minute. This convention is single-sourced in `evaluate_policy`; downstream consumers reading exit_policy_per_cell.parquet receive cent-denominated `policy_params` (matching the spec's natural strategy-side terminology) and dollar-denominated `capture_*` columns (matching Layer A's natural data-side terminology).
+
 ### 5. Policy non-fire handling
 
 **Decision: explicit "settled_unfired" and "horizon_expired" buckets in capture distribution.**

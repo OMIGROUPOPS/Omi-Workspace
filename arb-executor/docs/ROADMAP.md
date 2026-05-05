@@ -111,6 +111,37 @@ T25. **Fair-value model integration scoping.** **OPEN.** Per user-memory, Klaass
 
 T26. **Live trading deployment plan.** **OPEN, far-future tracking.** Path back to live trading requires: Layer A coherence validated (T21 gate), Layer B exit policy chosen (G10), Layer C economics positive (G11), bot architecture updated to consume Phase 3 v2 / G9-derived dataset (not deprecated 30s-cadence pipeline), auth separation so heavy backfill doesn't share rate-limit bucket with live trading (per L2 lesson when added), Bug 4 implementation per T11a if operator prioritizes (D6). Not Session 6 scope; tracked here so the path is explicit and not assumed.
 
+T27. **G9 parquet verification probe.** **OPEN, immediate.** Gate before any Layer A work per LESSONS C27. Verify the T17 producer outputs (g9_candles.parquet, g9_trades.parquet, g9_metadata.parquet) against the source CSVs/JSONs:
+- Row count parity: sum of all source CSV rows == parquet row count, per file type
+- Schema normalization: zero `_dollars`-suffixed column names survived in candles parquet (per F29)
+- Reconstruction equivalence: sample 10 random markets, reconstruct each market's CSV from the parquet, byte-compare against original — must match exactly modulo column ordering
+- Era distribution: 2025 vs 2026 split matches what producer log reported during run
+- Trade taker_side: all values in {`yes`, `no`}, no nulls
+- Metadata custom_strike: JSON-stringified, parses back to dict cleanly
+- No NaN columns where era detection went wrong (i.e., a column having all-null in one era and all-populated in the other — would indicate normalize_candle_row missed a key)
+Probe runtime ~5-10 min. Output: pass/fail per check + diagnostic detail. If any FAIL, T17 producer needs fix + re-run before T28 proceeds.
+
+T28. **Foundation commit + ANALYSIS_LIBRARY G9 entry.** **OPEN, gated on T27.** Per LESSONS C27 step 2-3:
+- Compute sha256 for each of the 3 parquets
+- Append to arb-executor/data/durable/MANIFEST.md with parquet checksums + producer commit pin (build_g9_parquets.py at bd83412) + verification commit pin (T27 commit)
+- Append G9 parquets entry to ANALYSIS_LIBRARY.md cross-cutting Canonical Sources subsection (or new subsection) with: file paths, producer pointer, verification pointer, schema normalization summary, validity status (verified per T27 commit), date created
+- This commit becomes the foundation-commit pointer that all downstream Layer A/B/C entries reference
+
+T29. **Layer A v1 visual producer.** **OPEN, gated on T28.** Per LESSONS C27 step 4-5 + B16 (Layer A separation) + E31 (regime-aware) + B17 (one-sided book filtering) + G18 (candle close fields = BBO snapshots):
+- Producer: arb-executor/data/scripts/build_layer_a_visuals.py
+- Cell schema: regime (premarket / in_match / settlement_zone via volume-jump heuristic per A35) × entry_price_band (10c bins) × spread_band (tight/medium/wide) × volume_intensity (low/mid/high) × category (ATP_MAIN / ATP_CHALL / WTA_MAIN / WTA_CHALL / other)
+- Output: PNG grid per category (4 PNGs total), each PNG showing 6 cells (price-band × spread-band sample) with 30-market trajectory overlays, median + p25/p75 envelopes, regime-boundary marker per market, regime-region tinting
+- One-sided-book filter applied per B17; settlement-zone filter applied per G18
+- Output dir: arb-executor/data/durable/layer_a_v1_visuals/
+- ANALYSIS_LIBRARY entry registers each PNG with: source-foundation pointer (T28 commit), producer pointer (T29 commit), cell parameters, sample size, sample manifest (which tickers were sampled per cell)
+
+T30. **Layer A v1 tabular metrics.** **OPEN, gated on T29 visual review.** Per LESSONS C27 step 6 + B16. After T29 visuals reveal which cells show clean signal, run the tabular metrics producer on those cells specifically (or all cells with sufficient sample size):
+- Producer: arb-executor/data/scripts/build_layer_a_v1_metrics.py
+- Output: arb-executor/data/durable/layer_a_v1_metrics.parquet — one row per cell with forward-bounce distribution stats (count, mean, median, p25/p50/p75/p90/p95) at horizons {5, 15, 30, 60 min, settlement}, plus drawdown stats, plus breakeven-threshold fractions at {1c, 2c, 5c, 10c, 20c}
+- Output measures BOTH yes-side and no-side bounces independently per operator E31 framing (a market that settles YES_WIN can still have a NO-side scalp opportunity)
+- ANALYSIS_LIBRARY entry references T28 foundation + T29 visual review + T30 producer commit
+- Gates Layer B (T31 future, exit policy optimization)
+
 ---
 
 ## SECTION 3: F (FLAG) — operational risks and attention items
@@ -366,4 +397,4 @@ Current path forward post-Session-6: foundational data layer is durable, ROADMAP
   Phase 1B: 2.3 GB of irreplaceable /tmp data files copied to arb-executor/data/durable/ with sha256 verification + MANIFEST.md (parquet, bbo_log_v4.csv.gz, kalshi_fills_history.json, match_facts_v3_metadata.csv, u4_phase3_stage1.log, validation4_ticks/).
   Phase 1C (commits d0462c8, e067c18, 983444f, f36691c, e7e1ddc, d088cf3): 143 files preserved across 6 single-concern commits — 23 producer scripts + 10 V3-era artifacts + 11 validation4 helpers + 14 outputs + 50 v3_analysis/validation5 + 35 per_cell_verification (Apr 28 batch + 2 TMP_ONLY canonical fills).
   Phase 1D (commits b855e15, 070a410, 0ded25c, 6957f28, 765e5e1, 7584ede, 4964ae1, 69e6862, this commit): T17 placement fix; T18-T26 added; G10/G11 added; F11/F12 added with F1 partial closure; U10 added; D9-D12 added; U4 closed with G7 Layer A continuation pointer; Section 8 NEXT MOVES refreshed with current Layer A pipeline; Section 9 CHANGELOG refreshed (this entry).
-
+- 2026-05-04 (Session 6 Phase 1D-xi): T27-T30 added (foundation->analysis sequence per LESSONS C27: parquet verification, foundation commit, Layer A v1 visuals, Layer A v1 tabular metrics).

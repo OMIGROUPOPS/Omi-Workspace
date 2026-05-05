@@ -358,6 +358,50 @@ Six+ files measuring overlapping concepts. Per F19, before reconciling: inventor
 
 ---
 
+### Canonical foundation: G9 parquets (T17 + T27, foundation-commit anchor)
+
+These three parquets are the canonical foundation for all Layer A/B/C work going forward
+per LESSONS C27 (analytical-foundation discipline). Every downstream analysis entry below
+must reference this foundation explicitly via T28 commit pointer.
+
+#### g9_candles.parquet
+- **File path:** arb-executor/data/durable/g9_candles.parquet
+- **Producer script:** arb-executor/data/scripts/build_g9_parquets.py (commit bd83412)
+- **Source data:** arb-executor/data/historical_pull/candlesticks/*.csv (19,687 files)
+- **Date created:** 2026-05-04 (Session 6 T17)
+- **Depth:** N/A (canonical source, not analysis)
+- **Data tier used:** G-tier source → canonical parquet
+- **Schema:** 18 columns — ticker (injected), end_period_ts, open_interest_fp, price_close, price_high, price_low, price_mean, price_open, price_previous, volume_fp, yes_ask_close, yes_ask_high, yes_ask_low, yes_ask_open, yes_bid_close, yes_bid_high, yes_bid_low, yes_bid_open. Bare names canonical (era variation per F29 normalized at producer).
+- **Row count:** 9,500,168
+- **Validity status:** VERIFIED per T27 verification probe (Session 6, 9/9 checks passed including row count parity, schema normalization, reconstruction equivalence, no all-null era columns).
+- **Notes:** ~65% of minutes have null price_close/volume_fp/open_interest_fp (no-trade minutes per G19); yes_bid_close/yes_ask_close are 100% populated. sha256 in arb-executor/data/durable/MANIFEST.md.
+
+#### g9_trades.parquet
+- **File path:** arb-executor/data/durable/g9_trades.parquet
+- **Producer script:** arb-executor/data/scripts/build_g9_parquets.py (commit bd83412)
+- **Source data:** arb-executor/data/historical_pull/trades/*.csv (20,018 files)
+- **Date created:** 2026-05-04 (Session 6 T17)
+- **Depth:** N/A (canonical source)
+- **Data tier used:** G-tier source → canonical parquet
+- **Schema:** 7 columns — count_fp, created_time (ISO 8601 microsecond UTC), no_price_dollars, taker_side ({yes, no}), ticker, trade_id, yes_price_dollars.
+- **Row count:** 33,727,162
+- **Validity status:** VERIFIED per T27 (taker_side enum: only {yes, no}, 0 nulls; row count parity exact).
+- **Notes:** Microsecond-precision trade tape. sha256 in MANIFEST.md.
+
+#### g9_metadata.parquet
+- **File path:** arb-executor/data/durable/g9_metadata.parquet
+- **Producer script:** arb-executor/data/scripts/build_g9_parquets.py (commit bd83412)
+- **Source data:** arb-executor/data/historical_pull/market_metadata/*.json (20,110 files)
+- **Date created:** 2026-05-04 (Session 6 T17)
+- **Depth:** N/A (canonical source)
+- **Data tier used:** G-tier source → canonical parquet
+- **Schema:** 48 columns including ticker, event_ticker, custom_strike (JSON-stringified, contains tennis_competitor UUIDs per T25), settlement_ts, settlement_value_dollars, result, status, volume_fp, open_interest_fp, plus all metadata fields per market.
+- **Row count:** 20,110
+- **Validity status:** VERIFIED per T27 (custom_strike round-trip: 20,110/20,110 parse back to dict cleanly).
+- **Notes:** sha256 in MANIFEST.md.
+
+---
+
 ## SECTION 3: BROKEN OR INVALID ANALYSES
 
 Analyses that ran but produced invalid results due to bugs, methodology errors, or data corruption. Listed here so future chats know not to cite their conclusions.
@@ -433,3 +477,4 @@ Findings from prior analyses that are currently treated as anchor evidence in th
 - 2026-04-30 ~13:21 ET: Initial scaffolding (commit c794b26). Section 4 had one entry (70.7%); Sections 2 and 3 placeholder.
 - 2026-04-30 ~14:30 ET (this commit): Sections 2, 3, 4 fully populated from depth-inventory CC probe. Catalog covers ~40 distinct analyses across 6 depth levels plus broken/meta categories.
 - 2026-04-30 (item 5 closure): Corrected mischaracterization of /root/Omi-Workspace/tmp/ — it is a curated git-tracked archive with multiple curation batches, not a single Apr 29 snapshot. Canonical-source rules updated.
+- 2026-05-04 (Session 6 T28): G9 parquets (g9_candles, g9_trades, g9_metadata) added as canonical foundation per LESSONS C27. T17 producer commit bd83412, T27 verification 9/9 PASS. sha256 in MANIFEST.md.

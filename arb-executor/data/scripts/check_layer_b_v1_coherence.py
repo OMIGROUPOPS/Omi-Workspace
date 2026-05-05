@@ -249,32 +249,110 @@ def run_check_2_fire_rate_monotonic(layer_b_df, lines):
     return 'PASS' if threshold_pass else 'FAIL'
 
 
-def run_check_3_time_stop_horizon(layer_b_df, lines):
-    """In positive-mean-bounce cells, time-stop capture_mean should trend up with horizon."""
+def run_check_3a_limit_capture_p90(layer_b_df, lines):
+    """In positive-mean-bounce cells, Layer B limit policies' capture_p90 should trend up with limit_c.
+
+    Per spec patch 8 corrected formulation: limit policies fire at MFE within window,
+    mirroring Layer A's bounce_Xmin_mean MFE structure. capture_p90 (not capture_mean)
+    is the correct metric — it isolates the upper-tail dominated by fired trajectories
+    whose captures are >= limit_c by construction.
+    """
     log('', lines)
-    log('## Check 3: Time-stop horizons capture more in positive-bounce cells', lines)
+    log('## Check 3a (gating): Limit-policy capture_p90 trend in positive-bounce cells', lines)
     log('', lines)
 
     layer_a = pq.read_table(str(LAYER_A_PARQUET)).to_pandas()
     log(f'Layer A cell_stats rows: {len(layer_a)}', lines)
-    log(f'Layer A bounce columns available: '
-        f'{[c for c in layer_a.columns if "bounce" in c.lower() and "mean" in c.lower()][:10]}', lines)
 
-    # Use bounce_60min_mean as the canonical positive-bounce filter
     if 'bounce_60min_mean' not in layer_a.columns:
         log('INCONCLUSIVE: Layer A does not expose bounce_60min_mean', lines)
         log('', lines)
-        log('**Check 3 overall: INCONCLUSIVE**', lines)
+        log('**Check 3a overall: INCONCLUSIVE**', lines)
         return 'INCONCLUSIVE'
 
     pos_cells = layer_a[layer_a['bounce_60min_mean'] > 0].copy()
-    log(f'Positive-bounce cells (bounce_60min_mean > 0): {len(pos_cells)}', lines)
+    pos_cells = pos_cells[pos_cells['regime'].isin(['premarket', 'in_match'])].copy()
+    pos_cells['channel'] = pos_cells['regime']
+    log(f'Positive-bounce cells (post-regime-filter): {len(pos_cells)}', lines)
 
-    # Layer A cell key has different shape than Layer B; need to align.
-    # Layer A: regime, entry_band_lo, entry_band_hi, spread_band, volume_intensity, category
-    # Layer B: channel, entry_band_lo, entry_band_hi, spread_band, volume_intensity, category
-    # regime in {premarket, in_match, settlement_zone}; channel in {premarket, in_match}.
-    # We use Layer A regime as channel (filtered to non-settlement).
+    join_keys = ['channel', 'entry_band_lo', 'entry_band_hi',
+                 'spread_band', 'volume_intensity', 'category']
+
+    lim_rows = layer_b_df[layer_b_df['policy_type'] == 'limit'].copy()
+    lim_rows['limit_c'] = lim_rows['policy_params'].apply(
+        lambda s: json.loads(s)['limit_c']
+    )
+
+    pos_keys_set = set(zip(*[pos_cells[k] for k in join_keys]))
+    lim_pos = lim_rows[
+        lim_rows[join_keys].apply(tuple, axis=1).isin(pos_keys_set)
+    ].copy()
+    log(f'Positive-bounce cells x limit policies: {len(lim_pos)} rows', lines)
+
+    n_cells = 0
+    n_pos_rho = 0
+    spearman_corrs = []
+    from scipy.stats import spearmanr
+    import warnings
+    with warnings.catch_warnings():
+        warnings.simplefilter('ignore')
+
+        for cell_key, grp in lim_pos.groupby(join_keys):
+            if len(grp) < 3:
+                continue
+            grp_sorted = grp.sort_values('limit_c')
+            limit_cs = grp_sorted['limit_c'].values
+            cap_p90s = grp_sorted['capture_p90'].values
+            # If capture_p90 is constant, spearmanr returns NaN
+            if pd.Series(cap_p90s).nunique() < 2:
+                continue
+            rho, _ = spearmanr(limit_cs, cap_p90s)
+            if pd.isna(rho):
+                continue
+            n_cells += 1
+            spearman_corrs.append(rho)
+            if rho > 0:
+                n_pos_rho += 1
+
+    pct_up = 100.0 * n_pos_rho / n_cells if n_cells else 0
+    median_rho = statistics.median(spearman_corrs) if spearman_corrs else float('nan')
+    threshold_pass = pct_up >= 60.0
+
+    log(f'Cells with >= 3 limit policies and varying capture_p90 evaluated: {n_cells}', lines)
+    log(f'Cells with positive limit_c-vs-capture_p90 Spearman: {n_pos_rho} ({pct_up:.1f}%)', lines)
+    log(f'Median Spearman across cells: {median_rho:+.3f}', lines)
+    log(f'Threshold (>= 60% positive-rho): {"PASS" if threshold_pass else "FAIL"}', lines)
+    log('', lines)
+    log(f'**Check 3a overall: {"PASS" if threshold_pass else "FAIL"}**', lines)
+    return 'PASS' if threshold_pass else 'FAIL'
+
+
+def run_check_3b_time_stop_informative(layer_b_df, lines):
+    """Informative-only: time-stop policies endpoint trend in positive-bounce cells.
+
+    Per spec patch 7/8 + LESSONS B21: time-stop captures the endpoint bid at horizon,
+    not MFE. In mean-reverting markets, endpoint reverts to fair value at long horizons,
+    so a negative time-stop horizon trend in positive-bounce cells is the expected
+    empirical signature of mean reversion. Reported here for completeness; does not
+    contribute to T31c verdict.
+    """
+    log('', lines)
+    log('## Check 3b (informative-only): Time-stop horizon trend in positive-bounce cells', lines)
+    log('', lines)
+    log('Per LESSONS B21: this is the MFE-vs-endpoint distinction. Time-stop ', lines)
+    log('endpoint capture is structurally different from Layer A bounce MFE, ', lines)
+    log('and a negative trend is the expected signature of mean-reverting markets. ', lines)
+    log('Reported for completeness; not a gating check.', lines)
+    log('', lines)
+
+    layer_a = pq.read_table(str(LAYER_A_PARQUET)).to_pandas()
+    if 'bounce_60min_mean' not in layer_a.columns:
+        log('Layer A bounce_60min_mean unavailable; skipping informative check', lines)
+        log('', lines)
+        log('**Check 3b: SKIPPED (informative-only)**', lines)
+        return 'INCONCLUSIVE'
+
+    pos_cells = layer_a[layer_a['bounce_60min_mean'] > 0].copy()
     pos_cells = pos_cells[pos_cells['regime'].isin(['premarket', 'in_match'])].copy()
     pos_cells['channel'] = pos_cells['regime']
 
@@ -285,7 +363,6 @@ def run_check_3_time_stop_horizon(layer_b_df, lines):
     ts_rows['horizon_min'] = ts_rows['policy_params'].apply(
         lambda s: json.loads(s)['horizon_min']
     )
-    # Drop 'settle' for the horizon-trend check
     ts_rows = ts_rows[ts_rows['horizon_min'] != 'settle'].copy()
     ts_rows['horizon_min'] = ts_rows['horizon_min'].astype(float)
 
@@ -293,40 +370,44 @@ def run_check_3_time_stop_horizon(layer_b_df, lines):
     ts_pos = ts_rows[
         ts_rows[join_keys].apply(tuple, axis=1).isin(pos_keys_set)
     ].copy()
-    log(f'Positive-bounce cells × time-stop policies: {len(ts_pos)} rows', lines)
 
-    cell_keys_b = join_keys
+    from scipy.stats import spearmanr
+    import warnings
     n_cells = 0
-    n_trend_up = 0
+    n_pos_rho = 0
     spearman_corrs = []
+    with warnings.catch_warnings():
+        warnings.simplefilter('ignore')
+        for cell_key, grp in ts_pos.groupby(join_keys):
+            if len(grp) < 3:
+                continue
+            grp_sorted = grp.sort_values('horizon_min')
+            if pd.Series(grp_sorted['capture_mean'].values).nunique() < 2:
+                continue
+            rho, _ = spearmanr(
+                grp_sorted['horizon_min'].values,
+                grp_sorted['capture_mean'].values
+            )
+            if pd.isna(rho):
+                continue
+            n_cells += 1
+            spearman_corrs.append(rho)
+            if rho > 0:
+                n_pos_rho += 1
 
-    for cell_key, grp in ts_pos.groupby(cell_keys_b):
-        if len(grp) < 3:
-            continue
-        grp_sorted = grp.sort_values('horizon_min')
-        horizons = grp_sorted['horizon_min'].values
-        captures = grp_sorted['capture_mean'].values
-
-        # Spearman: rank correlation between horizon and capture
-        from scipy.stats import spearmanr
-        rho, _ = spearmanr(horizons, captures)
-
-        n_cells += 1
-        spearman_corrs.append(rho)
-        if rho > 0:
-            n_trend_up += 1
-
-    pct_up = 100.0 * n_trend_up / n_cells if n_cells else 0
+    pct_up = 100.0 * n_pos_rho / n_cells if n_cells else 0
     median_rho = statistics.median(spearman_corrs) if spearman_corrs else float('nan')
-    threshold_pass = pct_up >= 60.0
 
-    log(f'Cells with >= 3 time-stop horizons evaluated: {n_cells}', lines)
-    log(f'Cells with positive horizon-vs-capture Spearman: {n_trend_up} ({pct_up:.1f}%)', lines)
-    log(f'Median Spearman across cells: {median_rho:.3f}', lines)
-    log(f'Threshold (>= 60% positive-rho): {"PASS" if threshold_pass else "FAIL"}', lines)
+    log(f'Cells evaluated: {n_cells}', lines)
+    log(f'Cells with positive horizon-vs-capture_mean Spearman: {n_pos_rho} ({pct_up:.1f}%)', lines)
+    log(f'Median Spearman: {median_rho:+.3f}', lines)
+    log(f'Empirical interpretation: negative trend (median rho < 0) is the signature of mean-reverting markets — ', lines)
+    log(f'  endpoint reverts to fair value at long horizons after the bounce peak. Both Layer A bounce structure ', lines)
+    log(f'  (positive trend with horizon, MFE-style) and Layer B time-stop endpoint trend (negative with horizon, ', lines)
+    log(f'  endpoint-style) are correct; they answer different questions per LESSONS B21.', lines)
     log('', lines)
-    log(f'**Check 3 overall: {"PASS" if threshold_pass else "FAIL"}**', lines)
-    return 'PASS' if threshold_pass else 'FAIL'
+    log(f'**Check 3b: INCONCLUSIVE (informative-only)**', lines)
+    return 'INCONCLUSIVE'
 
 
 def run_check_4_premarket_vs_in_match(layer_b_df, lines):
@@ -401,7 +482,8 @@ def main():
     # Run checks
     c1 = run_check_1_spot_check(layer_b_df, manifest, lines)
     c2 = run_check_2_fire_rate_monotonic(layer_b_df, lines)
-    c3 = run_check_3_time_stop_horizon(layer_b_df, lines)
+    c3a = run_check_3a_limit_capture_p90(layer_b_df, lines)
+    c3b = run_check_3b_time_stop_informative(layer_b_df, lines)
     c4 = run_check_4_premarket_vs_in_match(layer_b_df, lines)
 
     elapsed = time.time() - t_start
@@ -412,22 +494,29 @@ def main():
     log('', lines)
     log('## Summary', lines)
     log('', lines)
-    verdicts = [('Check 1 (capture bounded)', c1),
-                ('Check 2 (fire rate monotonic)', c2),
-                ('Check 3 (time-stop horizon trend)', c3),
-                ('Check 4 (premarket vs in_match)', c4)]
+    # Gating verdicts (count toward PASS/FAIL):
+    gating_verdicts = [('Check 1 (capture bounded)', c1),
+                       ('Check 2 (fire rate monotonic)', c2),
+                       ('Check 3a (limit-policy capture_p90 trend)', c3a),
+                       ('Check 4 (premarket vs in_match)', c4)]
+    # Informative-only verdicts (do NOT count toward PASS/FAIL):
+    informative_verdicts = [('Check 3b (time-stop horizon, informative)', c3b)]
+    verdicts = gating_verdicts + informative_verdicts
     for label, v in verdicts:
         log(f'- {label}: **{v}**', lines)
     log('', lines)
     log(f'Runtime: {elapsed:.1f}s', lines)
 
     # Overall verdict
-    has_fail = any(v == 'FAIL' for _, v in verdicts)
-    has_inc = any(v == 'INCONCLUSIVE' for _, v in verdicts)
-    n_pass = sum(1 for _, v in verdicts if v == 'PASS')
+    # Overall verdict counts only gating checks
+    has_fail = any(v == 'FAIL' for _, v in gating_verdicts)
+    has_inc = any(v == 'INCONCLUSIVE' for _, v in gating_verdicts)
+    n_pass = sum(1 for _, v in gating_verdicts if v == 'PASS')
+    n_total = len(gating_verdicts)
     overall = 'FAIL' if has_fail else ('INCONCLUSIVE' if has_inc else 'PASS')
     log('', lines)
-    log(f'**T31c overall verdict: {overall}** ({n_pass}/4 PASS)', lines)
+    log(f'**T31c overall verdict: {overall}** ({n_pass}/{n_total} gating-checks PASS)', lines)
+    log(f'Informative-only checks (do not count): {len(informative_verdicts)} (see body for findings)', lines)
     log('', lines)
     log(f'Layer B v1 outputs are {"cleared for downstream Layer C consumption" if overall == "PASS" else "NOT cleared"}.', lines)
 

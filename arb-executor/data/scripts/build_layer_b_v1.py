@@ -219,7 +219,7 @@ def evaluate_policy(policy, forward_bids_dollars, forward_asks_dollars,
     if horizon_min == 'settle' or horizon_min is None:
         horizon_cap_ts = settlement_ts_unix
     else:
-        horizon_cap_ts = entry_ts_unix + int(horizon_min) * 60
+        horizon_cap_ts = entry_ts_unix + int(horizon_min * 60)
 
     final_cap_ts = min(horizon_cap_ts, settlement_ts_unix)
 
@@ -262,12 +262,25 @@ def evaluate_policy(policy, forward_bids_dollars, forward_asks_dollars,
                 }
 
         if ptype in ('time_stop', 'limit_time_stop'):
-            if horizon_min != 'settle' and t_i >= entry_ts_unix + int(horizon_min) * 60:
+            if horizon_min != 'settle' and t_i >= entry_ts_unix + int(horizon_min * 60):
                 return {
                     'outcome': 'fired',
                     'capture_dollars': bid_i - entry_ask_dollars,
                     'time_to_fire_min': (t_i - entry_ts_unix) / 60.0,
                 }
+
+    # Fix A (time-stop candle-gap fallback): if a time-stop policy reached its horizon
+    # (final_cap_ts == horizon_cap_ts < settlement_ts_unix - 60) but never saw a candle
+    # at exactly t_i >= horizon, fire at the last observed minute's bid instead of falling
+    # through to horizon_expired. This handles candle gaps that straddle the horizon minute.
+    if ptype in ('time_stop', 'limit_time_stop') and horizon_min != 'settle':
+        if final_cap_ts < settlement_ts_unix - 60 and last_walked_idx >= 0:
+            # Horizon reached but candle gap meant we never saw the exact horizon minute
+            return {
+                'outcome': 'fired',
+                'capture_dollars': forward_bids_dollars[last_walked_idx] - entry_ask_dollars,
+                'time_to_fire_min': (forward_ts_unix[last_walked_idx] - entry_ts_unix) / 60.0,
+            }
 
     if final_cap_ts >= settlement_ts_unix - 60:
         return {
@@ -317,6 +330,10 @@ def walk_trajectory(ticker, candles_df, metadata_row, target_cell_key,
     settlement_ts_unix = int(
         datetime.fromisoformat(metadata_row['settlement_ts'].replace('Z', '+00:00')).timestamp()
     )
+    # Fix B: explicit scalar refusal (defense in depth — test_cell_mode also gates upstream,
+    # but gamma's full sweep loop may not, so harden walk_trajectory itself per spec Decision 5).
+    if metadata_row['result'] not in ('yes', 'no'):
+        return []
     settlement_value_dollars = 1.0 if metadata_row['result'] == 'yes' else 0.0
 
     target_parts = target_cell_key.split('__')

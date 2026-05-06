@@ -26,8 +26,8 @@ print()
 # Identify column names robustly
 # (Layer B columns from probe: includes regime, category, entry_band_lo, entry_band_hi, spread_band, volume_intensity, policy_class, policy_param, n_simulated, fire_count, fire_rate, capture_mean, capture_p10, capture_p25, capture_p50, capture_p75, capture_p90)
 # Verify
-expected_cols = {'regime', 'category', 'entry_band_lo', 'entry_band_hi', 'spread_band', 'volume_intensity',
-                 'policy_class', 'policy_param', 'n_simulated', 'fire_rate', 'capture_mean', 'capture_p90'}
+expected_cols = {'channel', 'category', 'entry_band_lo', 'entry_band_hi', 'spread_band', 'volume_intensity',
+                 'policy_type', 'policy_params', 'n_simulated', 'fire_rate', 'capture_mean', 'capture_p90'}
 missing = expected_cols - set(df.columns)
 if missing:
     print(f'WARN: missing expected columns: {missing}')
@@ -55,10 +55,10 @@ print('-' * 100)
 print('1. TOP 30 (cell, policy) BY EXPECTED VALUE (capture_mean × fire_rate) — in_match only')
 print('   Per LESSONS E16: 95% of P&L lives in_match. This is the alpha-discovery primary lens.')
 print('-' * 100)
-inmatch = substantial[substantial['regime'] == 'in_match']
+inmatch = substantial[substantial['channel'] == 'in_match']
 top_inmatch = inmatch.nlargest(30, 'expected_value')[
-    ['regime', 'category', 'entry_band_lo', 'entry_band_hi', 'spread_band', 'volume_intensity',
-     'policy_class', 'policy_param', 'n_simulated', 'fire_rate', 'capture_mean', 'capture_p90', 'expected_value']
+    ['channel', 'category', 'entry_band_lo', 'entry_band_hi', 'spread_band', 'volume_intensity',
+     'policy_type', 'policy_params', 'n_simulated', 'fire_rate', 'capture_mean', 'capture_p90', 'expected_value']
 ]
 print(top_inmatch.to_string(index=False))
 print()
@@ -68,10 +68,10 @@ print('-' * 100)
 print('2. TOP 30 (cell, policy) BY EXPECTED VALUE — premarket only')
 print('   Per E16: only 5% of P&L; lower priority. But check for any cells with unusually high EV.')
 print('-' * 100)
-premarket = substantial[substantial['regime'] == 'premarket']
+premarket = substantial[substantial['channel'] == 'premarket']
 top_premarket = premarket.nlargest(30, 'expected_value')[
-    ['regime', 'category', 'entry_band_lo', 'entry_band_hi', 'spread_band', 'volume_intensity',
-     'policy_class', 'policy_param', 'n_simulated', 'fire_rate', 'capture_mean', 'capture_p90', 'expected_value']
+    ['channel', 'category', 'entry_band_lo', 'entry_band_hi', 'spread_band', 'volume_intensity',
+     'policy_type', 'policy_params', 'n_simulated', 'fire_rate', 'capture_mean', 'capture_p90', 'expected_value']
 ]
 print(top_premarket.to_string(index=False))
 print()
@@ -82,10 +82,10 @@ print('3. TOP 30 BY capture_p90 (TAIL EDGE) — in_match, limit-bearing policies
 print('   Per LESSONS B21: time_stop trends opposite to MFE; limit policies capture MFE in mean-reverting markets.')
 print('   capture_p90 isolates upper tail of the all-outcome distribution.')
 print('-' * 100)
-limit_inmatch = inmatch[inmatch['policy_class'].str.contains('limit', case=False, na=False)]
+limit_inmatch = inmatch[inmatch['policy_type'].str.contains('limit', case=False, na=False)]
 top_p90 = limit_inmatch.nlargest(30, 'capture_p90')[
-    ['regime', 'category', 'entry_band_lo', 'entry_band_hi', 'spread_band', 'volume_intensity',
-     'policy_class', 'policy_param', 'n_simulated', 'fire_rate', 'capture_mean', 'capture_p90', 'expected_value']
+    ['channel', 'category', 'entry_band_lo', 'entry_band_hi', 'spread_band', 'volume_intensity',
+     'policy_type', 'policy_params', 'n_simulated', 'fire_rate', 'capture_mean', 'capture_p90', 'expected_value']
 ]
 print(top_p90.to_string(index=False))
 print()
@@ -106,8 +106,8 @@ print()
 print('-' * 100)
 print('5. PER-POLICY-CLASS EXPECTED-VALUE SUMMARY (in_match)')
 print('-' * 100)
-for pc in sorted(inmatch['policy_class'].unique()):
-    sub = inmatch[inmatch['policy_class'] == pc]
+for pc in sorted(inmatch['policy_type'].unique()):
+    sub = inmatch[inmatch['policy_type'] == pc]
     print(f'\n{pc} ({len(sub):,} rows):')
     print(f'  EV median: {sub["expected_value"].median():+.4f}')
     print(f'  EV p95: {sub["expected_value"].quantile(0.95):+.4f}')

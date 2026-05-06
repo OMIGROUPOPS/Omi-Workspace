@@ -28,9 +28,9 @@ print()
 start = time.time()
 
 # Load metadata for tier classification (small file)
-md = pq.read_table('data/durable/g9_metadata.parquet', columns=['ticker', 'category', 'open_time']).to_pandas()
+md = pq.read_table('data/durable/g9_metadata.parquet', columns=['ticker', '_tier', 'open_time']).to_pandas()
 md['ticker'] = md['ticker'].astype(str)
-ticker_to_category = dict(zip(md['ticker'], md['category']))
+ticker_to_category = dict(zip(md['ticker'], md['_tier']))
 print(f'Metadata loaded: {len(md):,} markets')
 print()
 

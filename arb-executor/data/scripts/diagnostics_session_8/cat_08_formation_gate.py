@@ -25,7 +25,7 @@ print()
 start = time.time()
 
 # Load metadata
-md = pq.read_table('data/durable/g9_metadata.parquet', columns=['ticker', 'category', 'open_time']).to_pandas()
+md = pq.read_table('data/durable/g9_metadata.parquet', columns=['ticker', '_tier', 'open_time']).to_pandas()
 md['ticker'] = md['ticker'].astype(str)
 md['open_time'] = pd.to_datetime(md['open_time'], errors='coerce', utc=True)
 print(f'Metadata loaded: {len(md):,} markets')
@@ -93,8 +93,8 @@ print()
 print('-' * 100)
 print('2. PER-TIER FORMATION GATE DISTRIBUTION')
 print('-' * 100)
-for cat in sorted(valid['category'].dropna().unique()):
-    sub = valid[valid['category'] == cat]
+for cat in sorted(valid['_tier'].dropna().unique()):
+    sub = valid[valid['_tier'] == cat]
     print(f'\n{cat} ({len(sub):,} markets):')
     print(f'  median: {sub["gate_minutes"].median():.1f} min ({sub["gate_hours"].median():.2f} hr)')
     print(f'  p25: {sub["gate_minutes"].quantile(0.25):.1f} min, p75: {sub["gate_minutes"].quantile(0.75):.1f} min, p95: {sub["gate_minutes"].quantile(0.95):.1f} min')
@@ -121,12 +121,12 @@ print('-' * 100)
 neg = valid[valid['gate_minutes'] < 0].nsmallest(10, 'gate_minutes')
 print(f'\nMost-negative gates (n={len(neg)} of {n_negative} total negatives shown):')
 if len(neg) > 0:
-    print(neg[['ticker', 'category', 'open_time', 'first_trade_ts', 'gate_minutes']].to_string(index=False))
+    print(neg[['ticker', '_tier', 'open_time', 'first_trade_ts', 'gate_minutes']].to_string(index=False))
 
 multi_day = valid[valid['gate_hours'] > 24]
 print(f'\nMulti-day gates (>24hr): {len(multi_day):,}')
 if len(multi_day) > 0:
-    print(multi_day.nlargest(10, 'gate_hours')[['ticker', 'category', 'gate_hours']].to_string(index=False))
+    print(multi_day.nlargest(10, 'gate_hours')[['ticker', '_tier', 'gate_hours']].to_string(index=False))
 
 print()
 print('=' * 100)

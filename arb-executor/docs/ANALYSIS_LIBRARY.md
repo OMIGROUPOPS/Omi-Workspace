@@ -572,6 +572,18 @@ Findings from prior analyses that are currently treated as anchor evidence in th
 
 ---
 
+
+#### Combined-trade-price distortion absence (Cat 9, Session 9, commit 631e653)
+- **Depth:** 0 (existence proof — null result).
+- **Producer:** data/scripts/diagnostics_session_8/cat_09_distortion_events.py (sha256 `653e9d74888376f1`, runtime 643s).
+- **Data tier used:** G (g9_trades.parquet + g9_candles.parquet).
+- **Variables used:** g9_trades (33,727,162 rows × 20,018 markets), g9_candles per-minute close prices, derived combined = yes_close + no_close per minute.
+- **Question answered:** Across the full G9 corpus, do any per-minute candle bins exhibit combined trade price exceeding $1.00 + ε (ε=$0.01)?
+- **Strict reading:** Zero events found. Zero of 20,018 markets had even one flagged minute. Per-tier: historical 0 of 1,838,273 minutes; live 0 of 1,397,886 minutes. Per-stage (formation / post-formation / in-match) distribution: empty.
+- **Does NOT establish:** Absence at finer ε (e.g., $0.005, half-tick), absence of sub-minute distortions resolved before per-minute close binning, absence of microsecond intraminute distortions, absence of the converse direction (combined < $1.00 bilateral discount, which is B23's mechanism and was not Cat 9's measurement target).
+- **Strategic implication:** F32's sub-claim (1) — combined > $1.00 over-pay distortions as direct alpha — is downgraded from alpha signal to alpha hypothesis pending deeper-probe disambiguation. T34 closed as superseded.
+- **References:** LESSONS.md F32 (amended), LESSONS.md C31 (new — meta-lesson), ROADMAP.md T34 (closed), SIMONS_MODE.md Section 8.
+
 ## SECTION 5: CHANGELOG
 
 - 2026-04-30 ~13:21 ET: Initial scaffolding (commit c794b26). Section 4 had one entry (70.7%); Sections 2 and 3 placeholder.

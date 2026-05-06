@@ -213,7 +213,7 @@ If any of those answers feels off, stop the current work and resolve the framing
 ### LESSONS.md (load empirically; treat as mostly correct but not infallible)
 - **Category B (strategic):** B22 cell anchoring, B23 bilateral capture, B24 cross-ticker asymmetry. **Note:** B23 amended down — bilateral feasibility is 29.8% of markets, not the default. B24 amended down — 4× anchor is top 2-3% tail, 2× is the strategic threshold.
 - **Category E (operational):** E16 in-match P&L dominance. **Note:** E16 needs refinement — aggregate-P&L dominance of in_match doesn't mean per-moment-EV dominance. Specific premarket cells have higher per-moment alpha density.
-- **Category F (data layer):** F31 (OI partially tracked, see commit 9c93505 amendment), F32 (distortion events — Cat 9 found zero at ε=0.01, framing needs amendment), F33 (depth chain genuinely missing — true G13 collection gap), F34 (formation gate reconstructable).
+- **Category F (data layer):** F31 (OI partially tracked, see commit 9c93505 amendment), F32 (distortion events — Cat 9 found zero at ε=0.01; framing amended this commit; sub-claim (1) over-pay direction empirically absent at first operationalization, downgraded to alpha hypothesis pending deeper probes; sub-claim (2) under-pay bilateral direction unaffected, lives under B23), F33 (depth chain genuinely missing — true G13 collection gap), F34 (formation gate reconstructable).
 - **Category C (process):** C28 streaming, C29 grep-c brittleness, C30 schema-probe-depth (commit 9c93505).
 - **Category D (memory/context):** D14 handoff doc discipline, D15 chat-side draft drift.
 

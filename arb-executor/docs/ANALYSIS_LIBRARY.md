@@ -584,6 +584,18 @@ Findings from prior analyses that are currently treated as anchor evidence in th
 - **Strategic implication:** F32's sub-claim (1) — combined > $1.00 over-pay distortions as direct alpha — is downgraded from alpha signal to alpha hypothesis pending deeper-probe disambiguation. T34 closed as superseded.
 - **References:** LESSONS.md F32 (amended), LESSONS.md C31 (new — meta-lesson), ROADMAP.md T34 (closed), SIMONS_MODE.md Section 8.
 
+
+#### Premarket trajectory width and bilateral feasibility (Cat 6, Session 9, commit 631e653)
+- **Depth:** 0–1 (existence + distribution of trajectory width across the corpus).
+- **Producer:** data/scripts/diagnostics_session_8/cat_06_trajectory_width.py (sha256 `c5280167c244eefb`, runtime 236s).
+- **Data tier used:** G (g9_candles.parquet + g9_metadata.parquet for filtering to markets with sufficient premarket coverage).
+- **Variables used:** g9_candles per-market premarket bid/ask, derived trajectory width = max(yes_close) − min(yes_close) over each market's premarket window; g9_metadata _tier for historical / live partition.
+- **Question answered:** Across the G9 corpus, what is the distribution of premarket trajectory width per market, and what fraction of markets meet the B23 bilateral-mechanism feasibility bar (≥$0.10 trajectory width)?
+- **Strict reading:** 9,238 markets had sufficient premarket data. Distribution: median $0.05, p25 $0.02, p75 $0.12, p95 $0.51, mean $0.116. Per-threshold: ≥$0.05 → 48.8% (4,505); **≥$0.10 → 29.8% (2,755)**; ≥$0.20 → 16.7% (1,545); ≥$0.30 → 11.1% (1,027). Per-tier: historical 33.2%, live 28.2%. Top-20 widest trajectories all >$0.90 (extreme favorite settlements).
+- **Does NOT establish:** Bilateral-fill probability at any cell or price (orderbook depth at non-BBO is the F33/G13 gap), conditional double-cash rate given paired entries (that is the E18/E30 layer of the funnel), per-cell bilateral capture rate (Layer A/B aggregations don't stratify on trajectory width yet — gap), why the live-vs-historical 5pp gap exists structurally.
+- **Strategic implication:** B23's bilateral-mechanism prevalence is empirically 29.8% of markets, not "broadly applicable." Funnel structure named explicitly: 29.8% feasibility × ~70-76% conditional success ≈ ~21-23% unconditional double-cash rate. Forensic replay's bilateral evaluation should compute cell-level applicability against the 29.8% feasibility bound. Trajectory width should be a Layer A v2 / B v2 cell-key partition axis or filter for bilateral-relevant analyses.
+- **References:** LESSONS.md B23 (amended this commit), LESSONS.md E18 / E25 / E30 (the conditional-rate funnel layer — separate amendment trajectory), SIMONS_MODE.md Section 3 paragraph 4 + Section 8 (forward-references that this commit backfills), F33 (depth-chain gap — independent measurement bottleneck for the next funnel layer).
+
 ## SECTION 5: CHANGELOG
 
 - 2026-04-30 ~13:21 ET: Initial scaffolding (commit c794b26). Section 4 had one entry (70.7%); Sections 2 and 3 placeholder.

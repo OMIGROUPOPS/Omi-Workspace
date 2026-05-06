@@ -72,7 +72,7 @@ The bot's job is to identify market states (cells) where this oscillation is sta
    - **Exit Window 1 — premarket itself.** Price oscillates within premarket; if the target bounce hits before match start, exit in the calmer environment.
    - **Exit Window 2 — in_match.** If premarket didn't deliver, the position rides into the match and game momentum provides exit volatility.
 3. **Exits are automatic.** Once a buy fills, a resting limit sell goes up at entry + cell-specific bounce target. If the price kisses, it fills. If not, time-stop or settlement closes the position. No active decisions after order placement.
-4. **Bilateral capture (B23) is an amplifier, not a hedge.** When both sides of a paired event have entered cells that look attractive at sub-mid prices, both cells are entered independently. Premarket oscillations exit one side; in_match momentum exits the other. Same paired event, two independent profitable exits. This is feasible on ~30% of markets per Cat 6 (the 30% with ≥10c premarket trajectory).
+4. **Bilateral capture (B23) is an amplifier, not a hedge.** When both sides of a paired event have entered cells that look attractive at sub-mid prices, both cells are entered independently. Premarket oscillations exit one side; in_match momentum exits the other. Same paired event, two independent profitable exits. This is feasible on ~30% of markets per Cat 6 (commit 631e653; the 30% with ≥10c premarket trajectory width — see B23 amendment in this commit chain for empirical anchor and funnel-layer disambiguation).
 
 ### What the alpha is NOT
 
@@ -211,7 +211,7 @@ If any of those answers feels off, stop the current work and resolve the framing
 ## Section 8 — Cross-References
 
 ### LESSONS.md (load empirically; treat as mostly correct but not infallible)
-- **Category B (strategic):** B22 cell anchoring, B23 bilateral capture, B24 cross-ticker asymmetry. **Note:** B23 amended down — bilateral feasibility is 29.8% of markets, not the default. B24 amended down — 4× anchor is top 2-3% tail, 2× is the strategic threshold.
+- **Category B (strategic):** B22 cell anchoring, B23 bilateral capture, B24 cross-ticker asymmetry. **Note:** B23 amended (commit chain landing this session) — bilateral feasibility is 29.8% of markets at trajectory width ≥10c per Cat 6 (sha256 `c5280167c244eefb`); composes with E18/E30 conditional-success rate ~70-76% for unconditional double-cash ~21-23%. B24 amended down — 4× anchor is top 2-3% tail, 2× is the strategic threshold (separate amendment commit pending).
 - **Category E (operational):** E16 in-match P&L dominance. **Note:** E16 needs refinement — aggregate-P&L dominance of in_match doesn't mean per-moment-EV dominance. Specific premarket cells have higher per-moment alpha density.
 - **Category F (data layer):** F31 (OI partially tracked, see commit 9c93505 amendment), F32 (distortion events — Cat 9 found zero at ε=0.01; framing amended this commit; sub-claim (1) over-pay direction empirically absent at first operationalization, downgraded to alpha hypothesis pending deeper probes; sub-claim (2) under-pay bilateral direction unaffected, lives under B23), F33 (depth chain genuinely missing — true G13 collection gap), F34 (formation gate reconstructable).
 - **Category C (process):** C28 streaming, C29 grep-c brittleness, C30 schema-probe-depth (commit 9c93505).

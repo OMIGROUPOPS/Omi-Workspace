@@ -5,33 +5,170 @@ Foundation: Layer B v1 PASSED T31c 2026-05-05 ET (commit 5cf45e0); 19,170 rows; 
 
 Total rows: 19,170, columns: ['channel', 'category', 'entry_band_lo', 'entry_band_hi', 'spread_band', 'volume_intensity', 'policy_type', 'policy_params', 'n_simulated', 'n_fired', 'n_horizon_expired', 'n_settled_unfired', 'fire_rate', 'capture_mean', 'capture_p10', 'capture_p25', 'capture_p50', 'capture_p75', 'capture_p90', 'median_time_to_fire', 'capital_utilization']
 
-WARN: missing expected columns: {'regime', 'policy_param', 'policy_class'}
-Available: ['channel', 'category', 'entry_band_lo', 'entry_band_hi', 'spread_band', 'volume_intensity', 'policy_type', 'policy_params', 'n_simulated', 'n_fired', 'n_horizon_expired', 'n_settled_unfired', 'fire_rate', 'capture_mean', 'capture_p10', 'capture_p25', 'capture_p50', 'capture_p75', 'capture_p90', 'median_time_to_fire', 'capital_utilization']
 Substantial (n_simulated >= 50): 19,170 of 19,170
 
 ----------------------------------------------------------------------------------------------------
 1. TOP 30 (cell, policy) BY EXPECTED VALUE (capture_mean × fire_rate) — in_match only
    Per LESSONS E16: 95% of P&L lives in_match. This is the alpha-discovery primary lens.
 ----------------------------------------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.12/dist-packages/pandas/core/indexes/base.py", line 3641, in get_loc
-    return self._engine.get_loc(casted_key)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
-  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
-  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
-  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
-KeyError: 'regime'
+ channel  category  entry_band_lo  entry_band_hi spread_band volume_intensity     policy_type                       policy_params  n_simulated  fire_rate  capture_mean  capture_p90  expected_value
+in_match ATP_CHALL             60             70       tight             high           limit                     {"limit_c": 30}         1031   0.554801      0.161300         0.32        0.089489
+in_match WTA_CHALL             50             60       tight             high           limit                     {"limit_c": 30}          280   0.735714      0.118821         0.38        0.087419
+in_match ATP_CHALL             60             70       tight             high       time_stop                {"horizon_min": 240}         1031   0.482056      0.176722         0.37        0.085190
+in_match ATP_CHALL             60             70       tight             high           limit                     {"limit_c": 20}         1031   0.607177      0.116760         0.24        0.070894
+in_match ATP_CHALL             60             70       tight             high       time_stop                {"horizon_min": 120}         1031   0.776916      0.080873         0.35        0.062831
+in_match WTA_CHALL             50             60       tight             high           limit                     {"limit_c": 15}          280   0.842857      0.074536         0.21        0.062823
+in_match WTA_CHALL             50             60       tight             high           limit                     {"limit_c": 20}          280   0.782143      0.076286         0.29        0.059666
+in_match WTA_CHALL             50             60       tight             high limit_time_stop {"limit_c": 15, "horizon_min": 120}          280   0.871429      0.068107         0.21        0.059351
+in_match WTA_CHALL             20             30       tight             high           limit                     {"limit_c": 20}          422   0.672986      0.081919         0.25        0.055131
+in_match WTA_CHALL             50             60       tight             high limit_time_stop {"limit_c": 20, "horizon_min": 120}          280   0.817857      0.065250         0.29        0.053365
+in_match WTA_CHALL             20             30       tight             high limit_time_stop {"limit_c": 20, "horizon_min": 120}          422   0.710900      0.073626         0.25        0.052340
+in_match ATP_CHALL             60             70       tight             high           limit                     {"limit_c": 15}         1031   0.640155      0.081203         0.17        0.051982
+in_match  ATP_MAIN             40             50      medium             high       time_stop                {"horizon_min": 240}          752   0.567819      0.091370         0.55        0.051881
+in_match  ATP_MAIN             30             40       tight             high       time_stop                {"horizon_min": 240}         1713   0.614127      0.083981         0.64        0.051575
+in_match ATP_CHALL             60             70       tight             high limit_time_stop {"limit_c": 20, "horizon_min": 120}         1031   0.966052      0.052793         0.24        0.051001
+in_match WTA_CHALL             20             30       tight             high           limit                     {"limit_c": 15}          422   0.713270      0.069076         0.23        0.049270
+in_match WTA_CHALL             50             60       tight             high           limit                     {"limit_c": 10}          280   0.875000      0.056286         0.16        0.049250
+in_match WTA_CHALL             50             60       tight             high limit_time_stop {"limit_c": 10, "horizon_min": 120}          280   0.903571      0.052143         0.16        0.047115
+in_match ATP_CHALL             50             60       tight             high           limit                     {"limit_c": 15}          740   0.709459      0.066135         0.21        0.046920
+in_match WTA_CHALL             20             30       tight             high limit_time_stop {"limit_c": 15, "horizon_min": 120}          422   0.746445      0.062773         0.23        0.046856
+in_match  WTA_MAIN             60             70       tight             high       time_stop                {"horizon_min": 240}         2069   0.633639      0.073813         0.37        0.046771
+in_match WTA_CHALL             10             20       tight             high           limit                     {"limit_c": 30}          700   0.438571      0.105386         0.34        0.046219
+in_match WTA_CHALL             60             70        wide             high           limit                     {"limit_c": 30}          144   0.583333      0.078542         0.33        0.045816
+in_match  ATP_MAIN             30             40       tight             high       time_stop                {"horizon_min": 120}         1713   0.824285      0.053222         0.61        0.043870
+in_match ATP_CHALL             40             50       tight             high       time_stop                 {"horizon_min": 60}          396   0.777778      0.056389         0.53        0.043858
+in_match WTA_CHALL             50             60       tight             high           limit                      {"limit_c": 7}          280   0.903571      0.047714         0.15        0.043113
+in_match WTA_CHALL             60             70        wide             high limit_time_stop {"limit_c": 20, "horizon_min": 120}          144   0.875000      0.048264         0.32        0.042231
+in_match  ATP_MAIN             70             80      medium             high       time_stop                {"horizon_min": 240}          735   0.696599      0.058667         0.27        0.040867
+in_match ATP_CHALL             20             30       tight             high       time_stop                {"horizon_min": 120}          804   0.713930      0.057177         0.71        0.040820
+in_match  ATP_MAIN             70             80      medium             high limit_time_stop {"limit_c": 20, "horizon_min": 120}          735   0.986395      0.041320         0.21        0.040758
 
-The above exception was the direct cause of the following exception:
+----------------------------------------------------------------------------------------------------
+2. TOP 30 (cell, policy) BY EXPECTED VALUE — premarket only
+   Per E16: only 5% of P&L; lower priority. But check for any cells with unusually high EV.
+----------------------------------------------------------------------------------------------------
+  channel  category  entry_band_lo  entry_band_hi spread_band volume_intensity     policy_type                       policy_params  n_simulated  fire_rate  capture_mean  capture_p90  expected_value
+premarket WTA_CHALL              0             10       tight             high       time_stop                {"horizon_min": 240}          332   0.870482      0.143494         0.73        0.124909
+premarket ATP_CHALL             80             90       tight              low           limit                     {"limit_c": 10}          330   0.963636      0.087909         0.13        0.084712
+premarket ATP_CHALL             80             90       tight              low limit_time_stop {"limit_c": 10, "horizon_min": 120}          330   0.972727      0.071909         0.13        0.069948
+premarket ATP_CHALL             80             90       tight              low limit_time_stop  {"limit_c": 10, "horizon_min": 60}          330   0.978788      0.069030         0.13        0.067566
+premarket ATP_CHALL             80             90       tight              low           limit                      {"limit_c": 7}          330   0.975758      0.064848         0.11        0.063276
+premarket  WTA_MAIN             60             70       tight              low       time_stop                {"horizon_min": 240}         1618   0.724969      0.086669         0.35        0.062832
+premarket  WTA_MAIN             40             50       tight              low       time_stop                {"horizon_min": 240}         4125   0.859879      0.061299         0.52        0.052710
+premarket WTA_CHALL             50             60       tight              low limit_time_stop {"limit_c": 10, "horizon_min": 120}          262   0.896947      0.058550         0.18        0.052516
+premarket WTA_CHALL             50             60       tight              low           limit                     {"limit_c": 10}          262   0.881679      0.057634         0.18        0.050814
+premarket ATP_CHALL             80             90       tight              low           limit                      {"limit_c": 5}          330   0.978788      0.051061         0.09        0.049978
+premarket ATP_CHALL             40             50       tight              low       time_stop                {"horizon_min": 120}          381   0.700787      0.069685         0.54        0.048834
+premarket ATP_CHALL             60             70        wide              low limit_time_stop {"limit_c": 20, "horizon_min": 120}          284   0.887324      0.053944         0.25        0.047866
+premarket ATP_CHALL             80             90       tight              low limit_time_stop  {"limit_c": 15, "horizon_min": 60}          330   0.672727      0.068545         0.16        0.046112
+premarket ATP_CHALL             80             90       tight              low limit_time_stop {"limit_c": 15, "horizon_min": 120}          330   0.530303      0.086424         0.16        0.045831
+premarket ATP_CHALL             40             50       tight              low       time_stop                 {"horizon_min": 60}          381   0.826772      0.052572         0.52        0.043465
+premarket ATP_CHALL             80             90       tight              low limit_time_stop  {"limit_c": 5, "horizon_min": 120}          330   0.987879      0.043939         0.09        0.043407
+premarket WTA_CHALL             50             60       tight              low           limit                      {"limit_c": 7}          262   0.900763      0.048053         0.15        0.043285
+premarket ATP_CHALL             60             70        wide              low           limit                     {"limit_c": 20}          284   0.584507      0.073662         0.25        0.043056
+premarket ATP_CHALL             80             90       tight              low limit_time_stop   {"limit_c": 5, "horizon_min": 60}          330   0.990909      0.043303         0.09        0.042909
+premarket WTA_CHALL             30             40      medium              low       time_stop                {"horizon_min": 120}          856   0.704439      0.060456         0.64        0.042587
+premarket ATP_CHALL             60             70        wide              low           limit                     {"limit_c": 30}          284   0.390845      0.108556         0.38        0.042429
+premarket ATP_CHALL             80             90        wide              mid           limit                     {"limit_c": 10}          283   0.724382      0.056502         0.12        0.040929
+premarket ATP_CHALL             60             70        wide              low limit_time_stop {"limit_c": 15, "horizon_min": 120}          284   0.936620      0.042359         0.21        0.039674
+premarket WTA_CHALL             40             50       tight             high       time_stop                {"horizon_min": 240}          836   0.553828      0.071364         0.59        0.039523
+premarket WTA_CHALL             50             60       tight              low limit_time_stop  {"limit_c": 5, "horizon_min": 120}          262   0.931298      0.039580         0.15        0.036861
+premarket ATP_CHALL             80             90       tight              low           limit                     {"limit_c": 15}          330   0.457576      0.080394         0.16        0.036786
+premarket ATP_CHALL             70             80      medium              low       time_stop                {"horizon_min": 240}         1257   0.579952      0.063413         0.26        0.036776
+premarket ATP_CHALL             80             90        wide              mid           limit                      {"limit_c": 7}          283   0.724382      0.050601         0.12        0.036654
+premarket ATP_CHALL             40             50        wide              low       time_stop                {"horizon_min": 240}          256   0.328125      0.110195         0.60        0.036158
+premarket WTA_CHALL             50             60       tight              low           limit                      {"limit_c": 5}          262   0.916031      0.038664         0.15        0.035418
 
-Traceback (most recent call last):
-  File "/root/Omi-Workspace/arb-executor/data/scripts/diagnostics_session_8/cat_05_alpha_discovery.py", line 58, in <module>
-    inmatch = substantial[substantial['regime'] == 'in_match']
-                          ~~~~~~~~~~~^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/pandas/core/frame.py", line 4378, in __getitem__
-    indexer = self.columns.get_loc(key)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/pandas/core/indexes/base.py", line 3648, in get_loc
-    raise KeyError(key) from err
-KeyError: 'regime'
+----------------------------------------------------------------------------------------------------
+3. TOP 30 BY capture_p90 (TAIL EDGE) — in_match, limit-bearing policies only
+   Per LESSONS B21: time_stop trends opposite to MFE; limit policies capture MFE in mean-reverting markets.
+   capture_p90 isolates upper tail of the all-outcome distribution.
+----------------------------------------------------------------------------------------------------
+ channel  category  entry_band_lo  entry_band_hi spread_band volume_intensity policy_type   policy_params  n_simulated  fire_rate  capture_mean  capture_p90  expected_value
+in_match WTA_CHALL             20             30      medium             high       limit {"limit_c": 30}          386   0.297927      0.024715         0.74        0.007363
+in_match WTA_CHALL             40             50        wide             high       limit {"limit_c": 30}           98   0.551020      0.020306         0.50        0.011189
+in_match ATP_CHALL             40             50       tight             high       limit {"limit_c": 20}          396   0.608586      0.061490         0.48        0.037422
+in_match ATP_CHALL             40             50       tight             high       limit {"limit_c": 30}          396   0.573232      0.069217         0.48        0.039678
+in_match ATP_CHALL             20             30      medium             high       limit {"limit_c": 30}          529   0.353497      0.032136         0.44        0.011360
+in_match ATP_CHALL             40             50      medium             high       limit {"limit_c": 30}          194   0.355670     -0.129433         0.41       -0.046035
+in_match ATP_CHALL              0             10      medium             high       limit {"limit_c": 30}          282   0.145390      0.028369         0.39        0.004125
+in_match WTA_CHALL             50             60        wide             high       limit {"limit_c": 30}           66   0.560606     -0.046667         0.39       -0.026162
+in_match ATP_CHALL             20             30        wide             high       limit {"limit_c": 30}           83   0.397590     -0.003976         0.38       -0.001581
+in_match WTA_CHALL             50             60       tight             high       limit {"limit_c": 30}          280   0.735714      0.118821         0.38        0.087419
+in_match ATP_CHALL             30             40        wide             high       limit {"limit_c": 30}           83   0.518072      0.010482         0.37        0.005430
+in_match WTA_CHALL             30             40        wide             high       limit {"limit_c": 30}           81   0.333333     -0.099630         0.36       -0.033210
+in_match ATP_CHALL             60             70      medium             high       limit {"limit_c": 30}          895   0.357542     -0.017453         0.36       -0.006240
+in_match ATP_CHALL             50             60        wide             high       limit {"limit_c": 30}           86   0.534884      0.018605         0.35        0.009951
+in_match WTA_CHALL             30             40       tight             high       limit {"limit_c": 30}          260   0.461538      0.001423         0.35        0.000657
+in_match ATP_CHALL             40             50        wide             high       limit {"limit_c": 30}          125   0.400000     -0.103120         0.35       -0.041248
+in_match WTA_CHALL             40             50        wide             high       limit {"limit_c": 20}           98   0.571429     -0.004898         0.35       -0.002799
+in_match WTA_CHALL             20             30       tight             high       limit {"limit_c": 30}          422   0.454976      0.026848         0.35        0.012215
+in_match WTA_CHALL             40             50      medium             high       limit {"limit_c": 30}          413   0.467312     -0.003293         0.35       -0.001539
+in_match  WTA_MAIN             40             50        wide             high       limit {"limit_c": 30}          121   0.314050     -0.075124         0.35       -0.023593
+in_match WTA_CHALL             50             60      medium             high       limit {"limit_c": 30}          389   0.562982      0.045167         0.35        0.025428
+in_match  WTA_MAIN             50             60        wide             high       limit {"limit_c": 30}           84   0.547619      0.023452         0.35        0.012843
+in_match ATP_CHALL             10             20       tight             high       limit {"limit_c": 30}          474   0.329114      0.045232         0.34        0.014887
+in_match WTA_CHALL             10             20       tight             high       limit {"limit_c": 30}          700   0.438571      0.105386         0.34        0.046219
+in_match  WTA_MAIN             20             30      medium             high       limit {"limit_c": 30}          164   0.262195     -0.071402         0.34       -0.018721
+in_match  ATP_MAIN             40             50      medium             high       limit {"limit_c": 30}          752   0.329787      0.043630         0.34        0.014389
+in_match  WTA_MAIN             20             30       tight             high       limit {"limit_c": 30}         1399   0.313081      0.041665         0.34        0.013045
+in_match ATP_CHALL             30             40       tight             high       limit {"limit_c": 30}          518   0.279923     -0.129421         0.34       -0.036228
+in_match WTA_CHALL             60             70       tight             high       limit {"limit_c": 30}          450   0.540000     -0.042378         0.34       -0.022884
+in_match ATP_CHALL             50             60      medium             high       limit {"limit_c": 30}          645   0.382946     -0.022977         0.33       -0.008799
+
+----------------------------------------------------------------------------------------------------
+4. PER-CATEGORY EXPECTED-VALUE SUMMARY (in_match, substantial cells)
+----------------------------------------------------------------------------------------------------
+
+ATP_CHALL (1,782 (cell, policy) rows):
+  EV: median=-0.0198, p75=-0.0056, p95=+0.0076, max=+0.0895
+  capture_mean: median=-0.0268
+  fire_rate: median=0.827
+
+ATP_MAIN (1,566 (cell, policy) rows):
+  EV: median=-0.0141, p75=-0.0057, p95=+0.0038, max=+0.0519
+  capture_mean: median=-0.0234
+  fire_rate: median=0.796
+
+WTA_CHALL (1,566 (cell, policy) rows):
+  EV: median=-0.0203, p75=-0.0052, p95=+0.0137, max=+0.0874
+  capture_mean: median=-0.0259
+  fire_rate: median=0.888
+
+WTA_MAIN (1,566 (cell, policy) rows):
+  EV: median=-0.0182, p75=-0.0073, p95=+0.0033, max=+0.0468
+  capture_mean: median=-0.0270
+  fire_rate: median=0.798
+
+----------------------------------------------------------------------------------------------------
+5. PER-POLICY-CLASS EXPECTED-VALUE SUMMARY (in_match)
+----------------------------------------------------------------------------------------------------
+
+limit (1,080 rows):
+  EV median: -0.0057
+  EV p95: +0.0163
+  capture_p90 median: +0.0900
+
+limit_time_stop (2,400 rows):
+  EV median: -0.0205
+  EV p95: +0.0050
+  capture_p90 median: +0.0800
+
+limit_trailing (1,080 rows):
+  EV median: -0.0252
+  EV p95: -0.0017
+  capture_p90 median: +0.0500
+
+time_stop (960 rows):
+  EV median: -0.0146
+  EV p95: +0.0144
+  capture_p90 median: +0.0800
+
+trailing (960 rows):
+  EV median: -0.0235
+  EV p95: +0.0000
+  capture_p90 median: +0.0200
+
+====================================================================================================
+END Cat 5 — top alpha-bearing (cell, policy) targets surfaced. Use these to focus T32b producer development.
+====================================================================================================

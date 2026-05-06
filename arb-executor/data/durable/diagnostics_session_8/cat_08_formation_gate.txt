@@ -3,71 +3,83 @@ Cat 8: FORMATION GATE DISTRIBUTION (line release -> first trade gap per market)
 Per LESSONS F34 + E12. Bot uses uniform 4-hour gate; this checks whether that fits the data.
 ====================================================================================================
 
-Traceback (most recent call last):
-  File "/root/Omi-Workspace/arb-executor/data/scripts/diagnostics_session_8/cat_08_formation_gate.py", line 28, in <module>
-    md = pq.read_table('data/durable/g9_metadata.parquet', columns=['ticker', 'category', 'open_time']).to_pandas()
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/pyarrow/parquet/core.py", line 1959, in read_table
-    return dataset.read(columns=columns, use_threads=use_threads,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/pyarrow/parquet/core.py", line 1585, in read
-    table = self._dataset.to_table(
-            ^^^^^^^^^^^^^^^^^^^^^^^
-  File "pyarrow/_dataset.pyx", line 579, in pyarrow._dataset.Dataset.to_table
-  File "pyarrow/_dataset.pyx", line 415, in pyarrow._dataset.Dataset.scanner
-  File "pyarrow/_dataset.pyx", line 3704, in pyarrow._dataset.Scanner.from_dataset
-  File "pyarrow/_dataset.pyx", line 3617, in pyarrow._dataset.Scanner._make_scan_options
-  File "pyarrow/_dataset.pyx", line 3567, in pyarrow._dataset._populate_builder
-  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
-pyarrow.lib.ArrowInvalid: No match for FieldRef.Name(category) in can_close_early: bool
-close_time: string
-created_time: string
-custom_strike: string
-early_close_condition: string
-event_ticker: string
-expected_expiration_time: string
-expiration_time: string
-expiration_value: string
-fractional_trading_enabled: bool
-last_price_dollars: string
-latest_expiration_time: string
-liquidity_dollars: string
-market_type: string
-no_ask_dollars: string
-no_bid_dollars: string
-no_sub_title: string
-notional_value_dollars: string
-open_interest_fp: string
-open_time: string
-previous_price_dollars: string
-previous_yes_ask_dollars: string
-previous_yes_bid_dollars: string
-price_level_structure: string
-price_ranges: string
-response_price_units: string
-result: string
-rules_primary: string
-rules_secondary: string
-settlement_timer_seconds: int64
-settlement_ts: string
-settlement_value_dollars: string
-status: string
-strike_type: string
-tick_size: int64
-ticker: string
-title: string
-updated_time: string
-volume_24h_fp: string
-volume_fp: string
-yes_ask_dollars: string
-yes_ask_size_fp: string
-yes_bid_dollars: string
-yes_bid_size_fp: string
-yes_sub_title: string
-_tier: string
-subtitle: string
-occurrence_datetime: string
-__fragment_index: int32
-__batch_index: int32
-__last_in_fragment: bool
-__filename: string
+Metadata loaded: 20,110 markets
+  with open_time: 20,110
+
+g9_trades: 33,727,162 rows. Computing min(created_time) per ticker...
+
+  RG 1/52, 1,048,576 rows, 413 tickers, 2s
+  RG 11/52, 8,843,273 rows, 4,000 tickers, 10s
+  RG 21/52, 15,368,894 rows, 8,500 tickers, 18s
+  RG 31/52, 21,717,588 rows, 11,804 tickers, 25s
+  RG 41/52, 27,318,043 rows, 15,500 tickers, 46s
+  RG 51/52, 33,653,157 rows, 20,000 tickers, 67s
+  RG 52/52, 33,727,162 rows, 20,018 tickers, 67s
+
+Streaming complete in 67s.
+
+Markets with both open_time and first_trade_ts: 20,018 of 20,110
+
+----------------------------------------------------------------------------------------------------
+1. OVERALL FORMATION GATE DISTRIBUTION
+----------------------------------------------------------------------------------------------------
+Median: 164.6 min (2.74 hr)
+Mean:   311.0 min
+p25:    49.0 min
+p75:    374.8 min
+p95:    1045.1 min
+Min:    0.0 min
+Max:    5232.0 min
+Negative gates (anomalous): 0
+Gates <= 4 hours (bot uniform threshold): 12136 (60.6%)
+
+----------------------------------------------------------------------------------------------------
+2. PER-TIER FORMATION GATE DISTRIBUTION
+----------------------------------------------------------------------------------------------------
+
+historical (11,909 markets):
+  median: 211.0 min (3.52 hr)
+  p25: 61.5 min, p75: 463.1 min, p95: 1555.4 min
+  gates <= 4hr (bot threshold): 6408 (53.8%)
+
+live (8,109 markets):
+  median: 121.3 min (2.02 hr)
+  p25: 34.5 min, p75: 272.8 min, p95: 565.6 min
+  gates <= 4hr (bot threshold): 5728 (70.6%)
+
+----------------------------------------------------------------------------------------------------
+3. BUCKETED DISTRIBUTION
+----------------------------------------------------------------------------------------------------
+
+Bucket          Count   % of total
+<5min             884         4.4%
+5-30min         2,784        13.9%
+30-60min        1,993        10.0%
+1-2hr           2,748        13.7%
+2-4hr           3,727        18.6%
+4-8hr           4,333        21.6%
+8-24hr          2,876        14.4%
+>24hr             673         3.4%
+
+----------------------------------------------------------------------------------------------------
+4. ANOMALIES
+----------------------------------------------------------------------------------------------------
+
+Most-negative gates (n=0 of 0 total negatives shown):
+
+Multi-day gates (>24hr): 673
+                      ticker      _tier  gate_hours
+KXATPMATCH-25JUN30OFNMED-MED historical   87.199689
+KXWTAMATCH-25JUN30BAPCIR-CIR historical   86.312736
+KXWTAMATCH-26JAN17NOSSEM-SEM historical   85.907567
+KXATPMATCH-25JUN30ETCPIN-PIN historical   84.633178
+KXWTAMATCH-26JAN17STATOM-STA historical   84.324760
+KXATPMATCH-25JUN30MCCMAR-MCC historical   83.532537
+KXWTAMATCH-26JAN17ERJFRE-ERJ historical   79.950885
+KXATPMATCH-25JUN30ETCPIN-ETC historical   79.835516
+KXWTAMATCH-26JAN17GRAGOL-GOL historical   79.695253
+KXWTAMATCH-26JAN17BONMAN-MAN historical   79.640157
+
+====================================================================================================
+END Cat 8 in 68s — formation gate distribution catalogued.
+====================================================================================================

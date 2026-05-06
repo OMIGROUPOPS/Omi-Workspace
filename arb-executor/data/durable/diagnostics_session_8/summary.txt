@@ -1,20 +1,20 @@
 Diagnostic chain summary
-Start: 2026-05-06 00:20:46 EDT
-End:   2026-05-06 00:21:12 EDT
+Start: 2026-05-06 11:49:49 EDT
+End:   2026-05-06 12:16:48 EDT
 
 Per-category results:
 
 Order  Cat  Name                     Status              Runtime    SHA256(first 16)
 ---------------------------------------------------------------------------------
-1      05   alpha_discovery          FAIL_EXIT_1             2s      (no output)
-2      02   fee_table                OK                      3s      c11c9ba01c014ecb
-3      09   distortion_events        FAIL_EXIT_1             3s      (no output)
-4      07   oi_reconstruction        FAIL_EXIT_1             3s      (no output)
-5      10   oi_asymmetry             FAIL_EXIT_1             2s      (no output)
-6      08   formation_gate           FAIL_EXIT_1             4s      (no output)
-7      06   trajectory_width         FAIL_EXIT_1             3s      (no output)
-8      01   within_band              OK                      2s      6b2b1701e4132a43
-9      03   formation_contam         OK                      3s      446841f7d4eeb3d4
+1      05   alpha_discovery          OK                      1s      df8257a183e4c637
+2      02   fee_table                OK                      2s      c11c9ba01c014ecb
+3      09   distortion_events        OK                    643s      653e9d74888376f1
+4      07   oi_reconstruction        OK                    607s      501752facfb3e700
+5      10   oi_asymmetry             OK                     48s      c09956376f9745ba
+6      08   formation_gate           OK                     71s      621ee40969216f60
+7      06   trajectory_width         OK                    242s      c5280167c244eefb
+8      01   within_band              OK                      3s      6b2b1701e4132a43
+9      03   formation_contam         OK                      2s      446841f7d4eeb3d4
 
 Outputs: /root/Omi-Workspace/arb-executor/data/durable/diagnostics_session_8/cat_*.txt
 Sha256:  /root/Omi-Workspace/arb-executor/data/durable/diagnostics_session_8/cat_*.sha256

@@ -4,71 +4,83 @@ Per LESSONS B23 + E18. Foundation: g9_candles + g9_metadata.
 Bilateral feasibility: trajectory width >= 10c minimum required for paired YES+NO maker capture.
 ====================================================================================================
 
-Traceback (most recent call last):
-  File "/root/Omi-Workspace/arb-executor/data/scripts/diagnostics_session_8/cat_06_trajectory_width.py", line 31, in <module>
-    md = pq.read_table('data/durable/g9_metadata.parquet', columns=['ticker', 'category', 'open_time', 'close_time']).to_pandas()
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/pyarrow/parquet/core.py", line 1959, in read_table
-    return dataset.read(columns=columns, use_threads=use_threads,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/pyarrow/parquet/core.py", line 1585, in read
-    table = self._dataset.to_table(
-            ^^^^^^^^^^^^^^^^^^^^^^^
-  File "pyarrow/_dataset.pyx", line 579, in pyarrow._dataset.Dataset.to_table
-  File "pyarrow/_dataset.pyx", line 415, in pyarrow._dataset.Dataset.scanner
-  File "pyarrow/_dataset.pyx", line 3704, in pyarrow._dataset.Scanner.from_dataset
-  File "pyarrow/_dataset.pyx", line 3617, in pyarrow._dataset.Scanner._make_scan_options
-  File "pyarrow/_dataset.pyx", line 3567, in pyarrow._dataset._populate_builder
-  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
-pyarrow.lib.ArrowInvalid: No match for FieldRef.Name(category) in can_close_early: bool
-close_time: string
-created_time: string
-custom_strike: string
-early_close_condition: string
-event_ticker: string
-expected_expiration_time: string
-expiration_time: string
-expiration_value: string
-fractional_trading_enabled: bool
-last_price_dollars: string
-latest_expiration_time: string
-liquidity_dollars: string
-market_type: string
-no_ask_dollars: string
-no_bid_dollars: string
-no_sub_title: string
-notional_value_dollars: string
-open_interest_fp: string
-open_time: string
-previous_price_dollars: string
-previous_yes_ask_dollars: string
-previous_yes_bid_dollars: string
-price_level_structure: string
-price_ranges: string
-response_price_units: string
-result: string
-rules_primary: string
-rules_secondary: string
-settlement_timer_seconds: int64
-settlement_ts: string
-settlement_value_dollars: string
-status: string
-strike_type: string
-tick_size: int64
-ticker: string
-title: string
-updated_time: string
-volume_24h_fp: string
-volume_fp: string
-yes_ask_dollars: string
-yes_ask_size_fp: string
-yes_bid_dollars: string
-yes_bid_size_fp: string
-yes_sub_title: string
-_tier: string
-subtitle: string
-occurrence_datetime: string
-__fragment_index: int32
-__batch_index: int32
-__last_in_fragment: bool
-__filename: string
+Metadata: 20,110 markets, 20,110 with open_time
+
+Tickers with both open/close: 12,470
+
+g9_candles: 9,500,168 rows in 40 row groups. Streaming...
+
+Candles columns: ['ticker', 'end_period_ts', 'open_interest_fp', 'price_close', 'price_high', 'price_low', 'price_mean', 'price_open', 'price_previous', 'volume_fp', 'yes_ask_close', 'yes_ask_high', 'yes_ask_low', 'yes_ask_open', 'yes_bid_close', 'yes_bid_high', 'yes_bid_low', 'yes_bid_open']
+Using yes_close_col=price_close, ts_col=end_period_ts
+
+  RG 1/40, 65,421 rows, 497 markets, 11s
+  RG 6/40, 410,761 rows, 2,997 markets, 18s
+  RG 11/40, 714,643 rows, 4,497 markets, 24s
+  RG 16/40, 1,058,569 rows, 6,777 markets, 29s
+  RG 21/40, 1,502,215 rows, 7,062 markets, 35s
+  RG 26/40, 2,107,243 rows, 8,816 markets, 47s
+  RG 31/40, 2,442,164 rows, 10,324 markets, 54s
+  RG 36/40, 2,874,110 rows, 11,517 markets, 62s
+  RG 40/40, 3,160,735 rows, 12,408 markets, 68s
+
+Streaming complete in 68s.
+
+Per-market trajectory data computed: 9,238 markets
+
+----------------------------------------------------------------------------------------------------
+1. OVERALL PREMARKET TRAJECTORY WIDTH (yes_close max - min during premarket-half)
+----------------------------------------------------------------------------------------------------
+Median: $0.0500
+Mean:   $0.1156
+p25: $0.0200
+p75: $0.1200
+p95: $0.5100
+
+----------------------------------------------------------------------------------------------------
+2. BILATERAL FEASIBILITY (per B23: trajectory >= 10c minimum)
+----------------------------------------------------------------------------------------------------
+  >= $0.05:  4,505 ( 48.8%)
+  >= $0.10:  2,755 ( 29.8%) <- B23 minimum bilateral feasibility
+  >= $0.20:  1,545 ( 16.7%)
+  >= $0.30:  1,027 ( 11.1%)
+
+----------------------------------------------------------------------------------------------------
+3. PER-TIER TRAJECTORY WIDTH
+----------------------------------------------------------------------------------------------------
+
+historical (2,994 markets):
+  pre_range: median=$0.0500, p75=$0.1400, p95=$0.5300
+  bilateral-feasible (>=10c): 993 (33.2%)
+
+live (6,244 markets):
+  pre_range: median=$0.0500, p75=$0.1200, p95=$0.5000
+  bilateral-feasible (>=10c): 1,762 (28.2%)
+
+----------------------------------------------------------------------------------------------------
+4. TOP 20 WIDEST PREMARKET TRAJECTORIES
+----------------------------------------------------------------------------------------------------
+                                ticker      _tier  pre_n_minutes  pre_min  pre_max  pre_range
+KXATPCHALLENGERMATCH-26MAR01RONDOS-DOS historical             13     0.03     0.96       0.93
+KXATPCHALLENGERMATCH-26MAR01SCHCAR-SCH historical             28     0.03     0.96       0.93
+KXATPCHALLENGERMATCH-26APR28COUPOU-POU       live              6     0.04     0.96       0.92
+KXATPCHALLENGERMATCH-26APR29HERLAJ-LAJ       live             11     0.04     0.96       0.92
+KXATPCHALLENGERMATCH-26FEB19COLTOR-TOR historical              5     0.04     0.96       0.92
+KXATPCHALLENGERMATCH-26MAR01RONDOS-RON historical             14     0.04     0.96       0.92
+KXATPCHALLENGERMATCH-26MAR03JONDOS-JON       live              3     0.04     0.96       0.92
+KXATPCHALLENGERMATCH-26MAR08ISHCOV-COV       live              5     0.04     0.96       0.92
+KXATPCHALLENGERMATCH-26MAR08SAKJAN-SAK       live             10     0.04     0.96       0.92
+KXATPCHALLENGERMATCH-26MAR12MONDED-MON       live             19     0.04     0.96       0.92
+KXWTACHALLENGERMATCH-26FEB16GOLSAN-GOL historical             13     0.04     0.96       0.92
+KXWTACHALLENGERMATCH-26MAR27KALHER-HER       live             23     0.04     0.96       0.92
+KXATPCHALLENGERMATCH-26FEB22RIBMON-RIB historical             10     0.05     0.96       0.91
+          KXATPMATCH-26APR09ALCETC-ETC       live            136     0.03     0.94       0.91
+KXWTACHALLENGERMATCH-26MAR27KALHER-KAL       live             39     0.05     0.96       0.91
+KXATPCHALLENGERMATCH-26APR11WENTUL-WEN       live             63     0.06     0.96       0.90
+KXATPCHALLENGERMATCH-26APR18BRORIE-RIE       live             39     0.04     0.94       0.90
+KXATPCHALLENGERMATCH-26FEB03SEYABO-SEY historical             30     0.06     0.96       0.90
+KXATPCHALLENGERMATCH-26MAR03JONDOS-DOS       live              5     0.06     0.96       0.90
+KXATPCHALLENGERMATCH-26MAR24BARPER-BAR       live              4     0.04     0.94       0.90
+
+====================================================================================================
+END Cat 6 in 236s — premarket trajectory width catalogued.
+====================================================================================================

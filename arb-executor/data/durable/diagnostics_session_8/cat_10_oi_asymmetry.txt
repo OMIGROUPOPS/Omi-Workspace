@@ -1,22 +1,112 @@
 ====================================================================================================
-Cat 10: PER-SIDE OI ASYMMETRY
-Per LESSONS B24. Reads Cat 7 output /tmp/diagnostics_session_8/oi_per_minute_cat7.parquet.
+Cat 10: PER-SIDE OI ASYMMETRY (F31-AMENDED — cross-ticker paired-match analysis)
+Per LESSONS B24 + F31 (amended). Reads g9_candles directly; no Cat 7 dependency.
 ====================================================================================================
 
-Traceback (most recent call last):
-  File "/root/Omi-Workspace/arb-executor/data/scripts/diagnostics_session_8/cat_10_oi_asymmetry.py", line 31, in <module>
-    oi_df = pd.read_parquet('/tmp/diagnostics_session_8/oi_per_minute_cat7.parquet')
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/pandas/io/parquet.py", line 671, in read_parquet
-    return impl.read(
-           ^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/pandas/io/parquet.py", line 253, in read
-    path_or_handle, handles, filesystem = _get_path_or_handle(
-                                          ^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/pandas/io/parquet.py", line 141, in _get_path_or_handle
-    handles = get_handle(
-              ^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/pandas/io/common.py", line 935, in get_handle
-    handle = open(handle, ioargs.mode)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: '/tmp/diagnostics_session_8/oi_per_minute_cat7.parquet'
+Metadata loaded: 20,110 markets
+
+Streaming g9_candles (9,500,168 rows, 40 row groups)...
+  RG 1/40, 137,027 non-null OI rows, 0s
+  RG 6/40, 720,586 non-null OI rows, 1s
+  RG 11/40, 746,014 non-null OI rows, 1s
+  RG 16/40, 1,441,018 non-null OI rows, 2s
+  RG 21/40, 1,630,317 non-null OI rows, 2s
+  RG 26/40, 2,262,138 non-null OI rows, 3s
+  RG 31/40, 2,613,789 non-null OI rows, 4s
+  RG 36/40, 2,956,986 non-null OI rows, 4s
+  RG 40/40, 3,358,891 non-null OI rows, 5s
+
+Streaming complete in 5s. Tickers with OI data: 8,106
+
+Per-ticker OI dataframe: 8,106 rows
+
+----------------------------------------------------------------------------------------------------
+1. CROSS-TICKER PAIRED-MATCH ASYMMETRY (B24 anchor framing)
+----------------------------------------------------------------------------------------------------
+Paired events with both tickers having OI data: 4,053 matches
+
+Paired matches with non-zero OI on both sides: 4,044
+
+----------------------------------------------------------------------------------------------------
+2. PER-TIER ASYMMETRY DISTRIBUTION
+----------------------------------------------------------------------------------------------------
+
+live (4,044 paired matches):
+  asymmetry_ratio: median=1.48x, p75=2.01x, p95=3.36x, max=38.68x
+  >= 2x asymmetry: 1,024 (25.3%)
+  >= 4x asymmetry: 97 (2.4%) <- B24 anchor threshold (Dzumhur/Mannarino was 4.15x)
+  >= 10x asymmetry: 10 (0.2%)
+
+----------------------------------------------------------------------------------------------------
+3. TOP 20 MOST-ASYMMETRIC PAIRED MATCHES (cross-ticker max-OI ratio)
+----------------------------------------------------------------------------------------------------
+                      event_ticker _tier                          side_a_ticker  side_a_max_oi                          side_b_ticker  side_b_max_oi  asymmetry_ratio
+KXWTACHALLENGERMATCH-26APR26SIDZHU  live KXWTACHALLENGERMATCH-26APR26SIDZHU-SID             31 KXWTACHALLENGERMATCH-26APR26SIDZHU-ZHU           1199        38.677419
+KXATPCHALLENGERMATCH-26APR12ZARSCH  live KXATPCHALLENGERMATCH-26APR12ZARSCH-SCH             61 KXATPCHALLENGERMATCH-26APR12ZARSCH-ZAR           1862        30.524590
+KXATPCHALLENGERMATCH-26APR27ELLRIG  live KXATPCHALLENGERMATCH-26APR27ELLRIG-ELL           5414 KXATPCHALLENGERMATCH-26APR27ELLRIG-RIG            233        23.236052
+KXATPCHALLENGERMATCH-26MAR24BUETIR  live KXATPCHALLENGERMATCH-26MAR24BUETIR-BUE             93 KXATPCHALLENGERMATCH-26MAR24BUETIR-TIR           1762        18.946237
+KXATPCHALLENGERMATCH-26APR06JOHCOL  live KXATPCHALLENGERMATCH-26APR06JOHCOL-COL           7657 KXATPCHALLENGERMATCH-26APR06JOHCOL-JOH         107783        14.076401
+KXATPCHALLENGERMATCH-26APR29VANLAJ  live KXATPCHALLENGERMATCH-26APR29VANLAJ-LAJ          15070 KXATPCHALLENGERMATCH-26APR29VANLAJ-VAN           1112        13.552158
+KXATPCHALLENGERMATCH-26MAR23SCHCUK  live KXATPCHALLENGERMATCH-26MAR23SCHCUK-CUK            210 KXATPCHALLENGERMATCH-26MAR23SCHCUK-SCH           2654        12.638095
+KXATPCHALLENGERMATCH-26APR01DUCRUB  live KXATPCHALLENGERMATCH-26APR01DUCRUB-DUC           9245 KXATPCHALLENGERMATCH-26APR01DUCRUB-RUB         104087        11.258734
+          KXATPMATCH-26APR20GARJAR  live           KXATPMATCH-26APR20GARJAR-GAR          28591           KXATPMATCH-26APR20GARJAR-JAR           2760        10.359058
+KXWTACHALLENGERMATCH-26MAR08MONATA  live KXWTACHALLENGERMATCH-26MAR08MONATA-ATA         212703 KXWTACHALLENGERMATCH-26MAR08MONATA-MON          20690        10.280474
+KXATPCHALLENGERMATCH-26MAR23SAIBLA  live KXATPCHALLENGERMATCH-26MAR23SAIBLA-BLA           1617 KXATPCHALLENGERMATCH-26MAR23SAIBLA-SAI            175         9.240000
+KXATPCHALLENGERMATCH-26APR05PELOST  live KXATPCHALLENGERMATCH-26APR05PELOST-OST            596 KXATPCHALLENGERMATCH-26APR05PELOST-PEL           5454         9.151007
+          KXATPMATCH-26APR12VACATM  live           KXATPMATCH-26APR12VACATM-ATM            219           KXATPMATCH-26APR12VACATM-VAC           1982         9.050228
+KXATPCHALLENGERMATCH-26MAR22FLOCOL  live KXATPCHALLENGERMATCH-26MAR22FLOCOL-COL           1528 KXATPCHALLENGERMATCH-26MAR22FLOCOL-FLO            181         8.441989
+          KXWTAMATCH-26APR12CHAPIE  live           KXWTAMATCH-26APR12CHAPIE-CHA         190626           KXWTAMATCH-26APR12CHAPIE-PIE          23132         8.240792
+KXATPCHALLENGERMATCH-26MAR12CAZBAS  live KXATPCHALLENGERMATCH-26MAR12CAZBAS-BAS            501 KXATPCHALLENGERMATCH-26MAR12CAZBAS-CAZ           4120         8.223553
+KXATPCHALLENGERMATCH-26APR25TUNWEI  live KXATPCHALLENGERMATCH-26APR25TUNWEI-TUN           5494 KXATPCHALLENGERMATCH-26APR25TUNWEI-WEI          44739         8.143247
+          KXWTAMATCH-26MAR17GALSAK  live           KXWTAMATCH-26MAR17GALSAK-GAL            171           KXWTAMATCH-26MAR17GALSAK-SAK           1313         7.678363
+KXATPCHALLENGERMATCH-26APR25HAOMOR  live KXATPCHALLENGERMATCH-26APR25HAOMOR-HAO         215131 KXATPCHALLENGERMATCH-26APR25HAOMOR-MOR          30350         7.088336
+KXATPCHALLENGERMATCH-26MAR22CHAING  live KXATPCHALLENGERMATCH-26MAR22CHAING-CHA              7 KXATPCHALLENGERMATCH-26MAR22CHAING-ING              1         7.000000
+
+----------------------------------------------------------------------------------------------------
+4. B24 ANCHOR REPRODUCTION (Dzumhur/Mannarino paired-match search)
+----------------------------------------------------------------------------------------------------
+
+Found 38 paired matches with DZU or MAN tickers:
+                      event_ticker _tier                          side_a_ticker  side_a_max_oi                          side_b_ticker  side_b_max_oi  asymmetry_ratio
+KXATPCHALLENGERMATCH-26APR05MANNEG  live KXATPCHALLENGERMATCH-26APR05MANNEG-MAN          38328 KXATPCHALLENGERMATCH-26APR05MANNEG-NEG          42231         1.101832
+KXATPCHALLENGERMATCH-26APR06STRMAN  live KXATPCHALLENGERMATCH-26APR06STRMAN-MAN          60244 KXATPCHALLENGERMATCH-26APR06STRMAN-STR          17528         3.437015
+KXATPCHALLENGERMATCH-26APR12IMANAK  live KXATPCHALLENGERMATCH-26APR12IMANAK-IMA         199339 KXATPCHALLENGERMATCH-26APR12IMANAK-NAK         161756         1.232344
+KXATPCHALLENGERMATCH-26APR26MANWEI  live KXATPCHALLENGERMATCH-26APR26MANWEI-MAN          40054 KXATPCHALLENGERMATCH-26APR26MANWEI-WEI          63790         1.592600
+KXATPCHALLENGERMATCH-26APR29NAVDZU  live KXATPCHALLENGERMATCH-26APR29NAVDZU-DZU         107923 KXATPCHALLENGERMATCH-26APR29NAVDZU-NAV         177016         1.640206
+KXATPCHALLENGERMATCH-26APR30DEJMAN  live KXATPCHALLENGERMATCH-26APR30DEJMAN-DEJ         145868 KXATPCHALLENGERMATCH-26APR30DEJMAN-MAN         382309         2.620924
+KXATPCHALLENGERMATCH-26MAR02RIBMAN  live KXATPCHALLENGERMATCH-26MAR02RIBMAN-MAN         219026 KXATPCHALLENGERMATCH-26MAR02RIBMAN-RIB         487713         2.226736
+KXATPCHALLENGERMATCH-26MAR08RIBMAN  live KXATPCHALLENGERMATCH-26MAR08RIBMAN-MAN          10683 KXATPCHALLENGERMATCH-26MAR08RIBMAN-RIB          19235         1.800524
+KXATPCHALLENGERMATCH-26MAR09RONMAN  live KXATPCHALLENGERMATCH-26MAR09RONMAN-MAN         165062 KXATPCHALLENGERMATCH-26MAR09RONMAN-RON         122472         1.347753
+KXATPCHALLENGERMATCH-26MAR10MANSOT  live KXATPCHALLENGERMATCH-26MAR10MANSOT-MAN          36929 KXATPCHALLENGERMATCH-26MAR10MANSOT-SOT          68006         1.841534
+KXATPCHALLENGERMATCH-26MAR11MARMAN  live KXATPCHALLENGERMATCH-26MAR11MARMAN-MAN         158762 KXATPCHALLENGERMATCH-26MAR11MARMAN-MAR         101383         1.565963
+KXATPCHALLENGERMATCH-26MAR12BICMAN  live KXATPCHALLENGERMATCH-26MAR12BICMAN-BIC          50104 KXATPCHALLENGERMATCH-26MAR12BICMAN-MAN         102236         2.040476
+KXATPCHALLENGERMATCH-26MAR12WONDZU  live KXATPCHALLENGERMATCH-26MAR12WONDZU-DZU         122044 KXATPCHALLENGERMATCH-26MAR12WONDZU-WON         113881         1.071680
+KXATPCHALLENGERMATCH-26MAR13HARMAN  live KXATPCHALLENGERMATCH-26MAR13HARMAN-HAR         331686 KXATPCHALLENGERMATCH-26MAR13HARMAN-MAN         391315         1.179775
+KXATPCHALLENGERMATCH-26MAR13MANOLI  live KXATPCHALLENGERMATCH-26MAR13MANOLI-MAN         104628 KXATPCHALLENGERMATCH-26MAR13MANOLI-OLI          88503         1.182197
+KXATPCHALLENGERMATCH-26MAR31MANTOB  live KXATPCHALLENGERMATCH-26MAR31MANTOB-MAN          57310 KXATPCHALLENGERMATCH-26MAR31MANTOB-TOB         107091         1.868627
+          KXATPMATCH-26APR01BORDZU  live           KXATPMATCH-26APR01BORDZU-BOR         788622           KXATPMATCH-26APR01BORDZU-DZU         366283         2.153040
+          KXATPMATCH-26APR02MERMAN  live           KXATPMATCH-26APR02MERMAN-MAN         294049           KXATPMATCH-26APR02MERMAN-MER         292097         1.006683
+          KXATPMATCH-26APR03DZUVAN  live           KXATPMATCH-26APR03DZUVAN-DZU          70808           KXATPMATCH-26APR03DZUVAN-VAN         153023         2.161098
+          KXATPMATCH-26APR04DZUBUD  live           KXATPMATCH-26APR04DZUBUD-BUD         331540           KXATPMATCH-26APR04DZUBUD-DZU         580295         1.750302
+          KXATPMATCH-26APR05BERMAN  live           KXATPMATCH-26APR05BERMAN-BER         161463           KXATPMATCH-26APR05BERMAN-MAN         115373         1.399487
+          KXATPMATCH-26APR05DZUBLO  live           KXATPMATCH-26APR05DZUBLO-BLO          60446           KXATPMATCH-26APR05DZUBLO-DZU         185217         3.064173
+          KXATPMATCH-26APR07DZUMAR  live           KXATPMATCH-26APR07DZUMAR-DZU          42062           KXATPMATCH-26APR07DZUMAR-MAR         139639         3.319837
+          KXATPMATCH-26APR11DZUSAC  live           KXATPMATCH-26APR11DZUSAC-DZU          52823           KXATPMATCH-26APR11DZUSAC-SAC          18611         2.838268
+          KXATPMATCH-26APR12BORMAN  live           KXATPMATCH-26APR12BORMAN-BOR         289263           KXATPMATCH-26APR12BORMAN-MAN         264460         1.093787
+          KXATPMATCH-26APR22BUSMAN  live           KXATPMATCH-26APR22BUSMAN-BUS          48952           KXATPMATCH-26APR22BUSMAN-MAN         207061         4.229878
+          KXATPMATCH-26APR22DZUBEL  live           KXATPMATCH-26APR22DZUBEL-BEL         272669           KXATPMATCH-26APR22DZUBEL-DZU         270896         1.006545
+          KXATPMATCH-26APR24GRIDZU  live           KXATPMATCH-26APR24GRIDZU-DZU          58465           KXATPMATCH-26APR24GRIDZU-GRI          80903         1.383785
+          KXATPMATCH-26MAR04BERMAN  live           KXATPMATCH-26MAR04BERMAN-BER         458688           KXATPMATCH-26MAR04BERMAN-MAN         437613         1.048159
+          KXATPMATCH-26MAR04FEADZU  live           KXATPMATCH-26MAR04FEADZU-DZU         168792           KXATPMATCH-26MAR04FEADZU-FEA         181219         1.073623
+          KXATPMATCH-26MAR17ZHAMAN  live           KXATPMATCH-26MAR17ZHAMAN-MAN         305970           KXATPMATCH-26MAR17ZHAMAN-ZHA         343158         1.121541
+          KXATPMATCH-26MAR18BUSDZU  live           KXATPMATCH-26MAR18BUSDZU-BUS         602168           KXATPMATCH-26MAR18BUSDZU-DZU         354260         1.699791
+          KXATPMATCH-26MAR20DZUSIN  live           KXATPMATCH-26MAR20DZUSIN-DZU         278633           KXATPMATCH-26MAR20DZUSIN-SIN         225310         1.236665
+          KXATPMATCH-26MAR20PAUMAN  live           KXATPMATCH-26MAR20PAUMAN-MAN         198561           KXATPMATCH-26MAR20PAUMAN-PAU         436411         2.197869
+          KXATPMATCH-26MAR29DZUJIA  live           KXATPMATCH-26MAR29DZUJIA-DZU         641668           KXATPMATCH-26MAR29DZUJIA-JIA         433024         1.481830
+KXWTACHALLENGERMATCH-26APR06JONMAN  live KXWTACHALLENGERMATCH-26APR06JONMAN-JON         174739 KXWTACHALLENGERMATCH-26APR06JONMAN-MAN          79795         2.189849
+          KXWTAMATCH-26APR11SALMAN  live           KXWTAMATCH-26APR11SALMAN-MAN          53196           KXWTAMATCH-26APR11SALMAN-SAL          40458         1.314845
+          KXWTAMATCH-26MAR30MANPAR  live           KXWTAMATCH-26MAR30MANPAR-MAN         231620           KXWTAMATCH-26MAR30MANPAR-PAR         256892         1.109110
+
+====================================================================================================
+END Cat 10 in 43s — cross-ticker OI asymmetry catalogued.
+====================================================================================================

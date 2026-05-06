@@ -1,74 +1,117 @@
 ====================================================================================================
-Cat 7: PER-MINUTE OPEN INTEREST RECONSTRUCTION
-Per LESSONS F31 + B24. Foundation: g9_trades.parquet (T28 ea84e74).
-Computation: signed cumulative count_fp by taker_side per market per minute.
+Cat 7: PER-MINUTE OI (F31-AMENDED — candle primary + trade-tape per-side flow secondary)
+Per LESSONS F31 (amended 2026-05-06) + B24 + C30 + ROADMAP T33 (amended).
 ====================================================================================================
 
-Traceback (most recent call last):
-  File "/root/Omi-Workspace/arb-executor/data/scripts/diagnostics_session_8/cat_07_oi_reconstruction.py", line 43, in <module>
-    md = pq.read_table('data/durable/g9_metadata.parquet', columns=['ticker', 'category']).to_pandas()
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/pyarrow/parquet/core.py", line 1959, in read_table
-    return dataset.read(columns=columns, use_threads=use_threads,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.12/dist-packages/pyarrow/parquet/core.py", line 1585, in read
-    table = self._dataset.to_table(
-            ^^^^^^^^^^^^^^^^^^^^^^^
-  File "pyarrow/_dataset.pyx", line 579, in pyarrow._dataset.Dataset.to_table
-  File "pyarrow/_dataset.pyx", line 415, in pyarrow._dataset.Dataset.scanner
-  File "pyarrow/_dataset.pyx", line 3704, in pyarrow._dataset.Scanner.from_dataset
-  File "pyarrow/_dataset.pyx", line 3617, in pyarrow._dataset.Scanner._make_scan_options
-  File "pyarrow/_dataset.pyx", line 3567, in pyarrow._dataset._populate_builder
-  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
-pyarrow.lib.ArrowInvalid: No match for FieldRef.Name(category) in can_close_early: bool
-close_time: string
-created_time: string
-custom_strike: string
-early_close_condition: string
-event_ticker: string
-expected_expiration_time: string
-expiration_time: string
-expiration_value: string
-fractional_trading_enabled: bool
-last_price_dollars: string
-latest_expiration_time: string
-liquidity_dollars: string
-market_type: string
-no_ask_dollars: string
-no_bid_dollars: string
-no_sub_title: string
-notional_value_dollars: string
-open_interest_fp: string
-open_time: string
-previous_price_dollars: string
-previous_yes_ask_dollars: string
-previous_yes_bid_dollars: string
-price_level_structure: string
-price_ranges: string
-response_price_units: string
-result: string
-rules_primary: string
-rules_secondary: string
-settlement_timer_seconds: int64
-settlement_ts: string
-settlement_value_dollars: string
-status: string
-strike_type: string
-tick_size: int64
-ticker: string
-title: string
-updated_time: string
-volume_24h_fp: string
-volume_fp: string
-yes_ask_dollars: string
-yes_ask_size_fp: string
-yes_bid_dollars: string
-yes_bid_size_fp: string
-yes_sub_title: string
-_tier: string
-subtitle: string
-occurrence_datetime: string
-__fragment_index: int32
-__batch_index: int32
-__last_in_fragment: bool
-__filename: string
+Metadata loaded: 20,110 markets
+
+----------------------------------------------------------------------------------------------------
+SECTION A: Streaming g9_candles for total per-ticker per-minute OI
+----------------------------------------------------------------------------------------------------
+g9_candles: 9,500,168 rows in 40 row groups
+  RG 1/40, 137,027 non-null OI rows, 2s
+  RG 6/40, 720,586 non-null OI rows, 6s
+  RG 11/40, 746,014 non-null OI rows, 6s
+  RG 16/40, 1,441,018 non-null OI rows, 10s
+  RG 21/40, 1,630,317 non-null OI rows, 11s
+  RG 26/40, 2,262,138 non-null OI rows, 15s
+  RG 31/40, 2,613,789 non-null OI rows, 18s
+  RG 36/40, 2,956,986 non-null OI rows, 22s
+  RG 40/40, 3,358,891 non-null OI rows, 29s
+
+Section A streaming complete in 29s.
+Total non-null OI rows: 3,358,891
+
+Tickers with at least one non-null OI: 8,106 of 20,110
+Per-ticker summary built: 8,106 tickers
+
+Tickers needing trade-tape fallback (no candle OI): 12,004
+
+----------------------------------------------------------------------------------------------------
+SECTION B: Streaming g9_trades for per-side directional flow (cumulative)
+----------------------------------------------------------------------------------------------------
+g9_trades: 33,727,162 rows in 52 row groups
+  RG 1/52, 1,048,576 rows, 57s elapsed
+  RG 11/52, 8,843,273 rows, 154s elapsed
+  RG 21/52, 15,368,894 rows, 229s elapsed
+  RG 31/52, 21,717,588 rows, 314s elapsed
+  RG 41/52, 27,318,043 rows, 408s elapsed
+  RG 51/52, 33,653,157 rows, 486s elapsed
+  RG 52/52, 33,727,162 rows, 487s elapsed
+
+Section B streaming complete in 487s.
+Tickers with yes-side trades: 19,997
+Tickers with no-side trades: 19,902
+
+----------------------------------------------------------------------------------------------------
+SECTION C: Per-tier total-OI distribution (from candle data)
+----------------------------------------------------------------------------------------------------
+
+live (8,106 markets):
+  final_oi: median=133329, p75=293550, p95=699650, max=2949331
+  n_minutes_with_oi: median=325, max=2912
+
+----------------------------------------------------------------------------------------------------
+SECTION D: B24 anchor reproduction (Dzumhur YES OI 2,070 vs Mannarino YES OI 8,594 from screenshot)
+----------------------------------------------------------------------------------------------------
+
+Tickers containing "DZU" (n=28):
+                                ticker _tier  final_oi  max_oi  n_minutes_with_oi
+KXATPCHALLENGERMATCH-26APR29NAVDZU-DZU  live    107923  107923                395
+KXATPCHALLENGERMATCH-26APR29NAVDZU-NAV  live    174984  177016                460
+KXATPCHALLENGERMATCH-26MAR12WONDZU-DZU  live    122044  122044                287
+KXATPCHALLENGERMATCH-26MAR12WONDZU-WON  live    113881  113881                302
+          KXATPMATCH-26APR01BORDZU-BOR  live    788622  788622                475
+          KXATPMATCH-26APR01BORDZU-DZU  live    366283  366283                387
+          KXATPMATCH-26APR03DZUVAN-DZU  live     70808   70808                536
+          KXATPMATCH-26APR03DZUVAN-VAN  live    152310  153023                498
+          KXATPMATCH-26APR04DZUBUD-BUD  live    328558  331540                493
+          KXATPMATCH-26APR04DZUBUD-DZU  live    572832  580295                532
+
+Tickers containing "MAN" (n=48):
+                                ticker _tier  final_oi  max_oi  n_minutes_with_oi
+KXATPCHALLENGERMATCH-26APR05MANNEG-MAN  live     38328   38328                108
+KXATPCHALLENGERMATCH-26APR05MANNEG-NEG  live     42231   42231                 89
+KXATPCHALLENGERMATCH-26APR06STRMAN-MAN  live     60244   60244                252
+KXATPCHALLENGERMATCH-26APR06STRMAN-STR  live     17528   17528                161
+KXATPCHALLENGERMATCH-26APR12IMANAK-IMA  live    199158  199339                290
+KXATPCHALLENGERMATCH-26APR12IMANAK-NAK  live    161756  161756                240
+KXATPCHALLENGERMATCH-26APR26MANWEI-MAN  live     40054   40054                213
+KXATPCHALLENGERMATCH-26APR26MANWEI-WEI  live     63590   63790                194
+KXATPCHALLENGERMATCH-26APR30DEJMAN-DEJ  live    145868  145868                333
+KXATPCHALLENGERMATCH-26APR30DEJMAN-MAN  live    382309  382309                279
+
+----------------------------------------------------------------------------------------------------
+SECTION E: Top 20 markets by final OI
+----------------------------------------------------------------------------------------------------
+                      ticker _tier  final_oi  max_oi  n_minutes_with_oi
+KXATPMATCH-26APR12ALCSIN-ALC  live   2949331 2949331               1239
+  KXATPMATCH-26APR10VACDE-DE  live   2526247 2688653               1121
+KXATPMATCH-26MAR10DJODRA-DJO  live   2499972 2499972               2038
+KXATPMATCH-26APR28MEDCOB-MED  live   2269853 2269853               1092
+KXATPMATCH-26APR24SINBON-BON  live   2180860 2180860                399
+KXWTAMATCH-26APR28SABBAP-SAB  live   2163672 2292500               1061
+KXATPMATCH-26APR29SINJOD-SIN  live   2129257 2129257               1143
+KXWTAMATCH-26MAR25RYBPEG-RYB  live   2101132 2101132               1045
+KXATPMATCH-26MAR22ALCKOR-ALC  live   2092103 2114058                890
+KXATPMATCH-26MAR14ALCMED-ALC  live   2062074 2265480                928
+KXWTAMATCH-26APR17RYBFER-RYB  live   1929125 1946757                867
+KXATPMATCH-26APR09ALCETC-ALC  live   1885367 1894669                640
+KXATPMATCH-26APR27BLOAUG-AUG  live   1857025 1857025                854
+KXATPMATCH-26APR29SINJOD-JOD  live   1831417 1831417               1063
+KXATPMATCH-26APR09VACHUR-VAC  live   1810989 1877426                913
+KXATPMATCH-26MAR25TIASIN-TIA  live   1801807 1801807               1423
+KXATPMATCH-26MAY01BLOZVE-BLO  live   1778907 1778907               1005
+KXATPMATCH-26APR24TIRPAU-PAU  live   1764056 1764056                616
+KXATPMATCH-26APR07GARZVE-ZVE  live   1726727 1873073               1417
+KXWTAMATCH-26MAR25RYBPEG-PEG  live   1725620 1725620                917
+
+Persisted /tmp/diagnostics_session_8/oi_per_minute_cat7.parquet (20,110 rows)
+  source distribution:
+    trade_reconstruction: 11,925
+    candle: 8,093
+    no_data: 92
+
+====================================================================================================
+END Cat 7 in 582s — total OI from candle + per-side flow from trades.
+====================================================================================================

@@ -18,6 +18,9 @@ Same rules as LESSONS.md: append-only with indexed numbering. Closed items get a
 
 **Last updated:** 2026-04-30 (Session 4, mid-session foundational close-out).
 
+
+**See also:** [SIMONS_MODE.md](SIMONS_MODE.md) — operating philosophy doc that frames how T-items should be prioritized (Simons-style alpha selection, peer-to-peer market structure axioms, Problem 1 vs Problem 2 prioritization). Created 2026-05-06 ET (Session 9).
+
 ---
 
 ## SECTION 1: PHASE

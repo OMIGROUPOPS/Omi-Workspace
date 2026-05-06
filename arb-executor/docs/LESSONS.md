@@ -10,6 +10,9 @@ Working dir: /root/Omi-Workspace/arb-executor/
 This file: /root/Omi-Workspace/arb-executor/docs/LESSONS.md
 Raw URL for new chats: https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/main/arb-executor/docs/LESSONS.md
 
+
+**See also:** [SIMONS_MODE.md](SIMONS_MODE.md) — operating philosophy doc that frames how these lessons should be acted upon (Simons-style alpha selection, peer-to-peer market structure axioms, Problem 1 vs Problem 2 prioritization). Created 2026-05-06 ET (Session 9).
+
 ---
 
 ## SECTION 1: WHERE WE ACTUALLY STAND (READ THIS FIRST)

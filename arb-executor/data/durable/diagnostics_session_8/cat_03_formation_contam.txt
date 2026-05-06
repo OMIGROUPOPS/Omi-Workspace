@@ -1,0 +1,96 @@
+====================================================================================================
+Cat 3: FORMATION CONTAMINATION MEASUREMENT (Decision 6 / Check 5 preview)
+Tests whether premarket Layer A cells conflate formation vs post-formation entries.
+====================================================================================================
+
+Premarket Layer A cells: 330
+
+----------------------------------------------------------------------------------------------------
+1. PREMARKET BOUNCE BY ENTRY_BAND (within-category)
+   Hypothesis: if formation contaminates premarket, near-formation entries (when prices wider)
+   should have systematically different bounce vs settled-premarket entries.
+----------------------------------------------------------------------------------------------------
+
+ATP_CHALL premarket (85 cells):
+               n_cells  median_bounce  std_bounce
+entry_band_lo                                    
+0                    5         0.1186      0.0431
+10                   9         0.0974      0.0757
+20                   9         0.0984      0.0523
+30                   9         0.0923      0.0614
+40                   9         0.0714      0.0510
+50                   9         0.0546      0.0436
+60                   8         0.0562      0.0343
+70                   9         0.0494      0.0287
+80                   9         0.0394      0.0189
+90                   9         0.0219      0.0101
+
+ATP_MAIN premarket (68 cells):
+               n_cells  median_bounce  std_bounce
+entry_band_lo                                    
+0                    5         0.0708      0.0546
+10                   6         0.0477      0.0614
+20                   6         0.0453      0.0556
+30                   9         0.0304      0.0387
+40                   9         0.0410      0.0359
+50                   8         0.0397      0.0345
+60                   6         0.0303      0.0296
+70                   7         0.0206      0.0206
+80                   6         0.0188      0.0229
+90                   6         0.0122      0.0115
+
+WTA_CHALL premarket (70 cells):
+               n_cells  median_bounce  std_bounce
+entry_band_lo                                    
+0                    5         0.1959      0.0873
+10                   8         0.0582      0.0888
+20                   8         0.0631      0.0622
+30                   6         0.1127      0.0568
+40                   7         0.0757      0.0697
+50                   6         0.0905      0.0661
+60                   7         0.0471      0.0541
+70                   6         0.0739      0.0404
+80                   8         0.0419      0.0294
+90                   9         0.0274      0.0109
+
+WTA_MAIN premarket (65 cells):
+               n_cells  median_bounce  std_bounce
+entry_band_lo                                    
+0                    5         0.1270      0.0842
+10                   6         0.0653      0.0670
+20                   6         0.0456      0.0541
+30                   8         0.0545      0.0530
+40                   7         0.0491      0.0417
+50                   6         0.0479      0.0436
+60                   6         0.0449      0.0324
+70                   8         0.0324      0.0193
+80                   7         0.0109      0.0195
+90                   6         0.0219      0.0129
+
+----------------------------------------------------------------------------------------------------
+2. PREMARKET vs IN_MATCH BOUNCE SHAPE COMPARISON (per cell-key)
+   For cells that exist in both regimes (matching category/band/spread/volume), compare:
+   - Is premarket bounce systematically lower? (Per E16: 95% of P&L is in_match)
+   - Is the bounce IQR wider in premarket? (Sign of mixed regimes within premarket)
+----------------------------------------------------------------------------------------------------
+Cells matched across premarket and in_match: 155
+
+bounce_delta (in_match - premarket): median=+0.0529, mean=+0.0542
+iqr_pre median: 0.0300
+iqr_inm median: 0.0800
+iqr_delta (premarket - in_match) median: -0.0500
+
+  Positive iqr_delta = premarket has wider IQR than in_match = mixed-regime smearing in premarket cell
+  Cells where premarket IQR > in_match IQR: 16 (10.3%)
+
+----------------------------------------------------------------------------------------------------
+3. FORMATION-GATE CONTAMINATION CHECK (cross-reference with Cat 8 if available)
+----------------------------------------------------------------------------------------------------
+Cat 8 output present at /root/Omi-Workspace/arb-executor/data/durable/diagnostics_session_8/cat_08_formation_gate.txt
+Cross-reference: review Cat 8 + Cat 3 outputs together to see if formation_gate distribution
+aligns with premarket cell IQR width pattern (wider IQR cells should correlate with longer formation gates).
+
+====================================================================================================
+END Cat 3 in 0s — formation contamination diagnostic complete.
+Note: Definitive Check 5 measurement requires T35 formation_gate per-market field; this is the cell-aggregate proxy.
+====================================================================================================

@@ -1,0 +1,74 @@
+====================================================================================================
+Cat 9: COMBINED-TRADE-PRICE DISTORTION EVENTS
+Per LESSONS F32 + B23. Foundation: g9_trades.parquet (T28 ea84e74, 33.7M rows).
+Definition: per-market per-minute, flag minutes where (last_yes_price + last_no_price) > $1.01.
+====================================================================================================
+
+Traceback (most recent call last):
+  File "/root/Omi-Workspace/arb-executor/data/scripts/diagnostics_session_8/cat_09_distortion_events.py", line 31, in <module>
+    md = pq.read_table('data/durable/g9_metadata.parquet', columns=['ticker', 'category', 'open_time']).to_pandas()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pyarrow/parquet/core.py", line 1959, in read_table
+    return dataset.read(columns=columns, use_threads=use_threads,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pyarrow/parquet/core.py", line 1585, in read
+    table = self._dataset.to_table(
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/_dataset.pyx", line 579, in pyarrow._dataset.Dataset.to_table
+  File "pyarrow/_dataset.pyx", line 415, in pyarrow._dataset.Dataset.scanner
+  File "pyarrow/_dataset.pyx", line 3704, in pyarrow._dataset.Scanner.from_dataset
+  File "pyarrow/_dataset.pyx", line 3617, in pyarrow._dataset.Scanner._make_scan_options
+  File "pyarrow/_dataset.pyx", line 3567, in pyarrow._dataset._populate_builder
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: No match for FieldRef.Name(category) in can_close_early: bool
+close_time: string
+created_time: string
+custom_strike: string
+early_close_condition: string
+event_ticker: string
+expected_expiration_time: string
+expiration_time: string
+expiration_value: string
+fractional_trading_enabled: bool
+last_price_dollars: string
+latest_expiration_time: string
+liquidity_dollars: string
+market_type: string
+no_ask_dollars: string
+no_bid_dollars: string
+no_sub_title: string
+notional_value_dollars: string
+open_interest_fp: string
+open_time: string
+previous_price_dollars: string
+previous_yes_ask_dollars: string
+previous_yes_bid_dollars: string
+price_level_structure: string
+price_ranges: string
+response_price_units: string
+result: string
+rules_primary: string
+rules_secondary: string
+settlement_timer_seconds: int64
+settlement_ts: string
+settlement_value_dollars: string
+status: string
+strike_type: string
+tick_size: int64
+ticker: string
+title: string
+updated_time: string
+volume_24h_fp: string
+volume_fp: string
+yes_ask_dollars: string
+yes_ask_size_fp: string
+yes_bid_dollars: string
+yes_bid_size_fp: string
+yes_sub_title: string
+_tier: string
+subtitle: string
+occurrence_datetime: string
+__fragment_index: int32
+__batch_index: int32
+__last_in_fragment: bool
+__filename: string

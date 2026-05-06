@@ -548,7 +548,7 @@ Findings from prior analyses that are currently treated as anchor evidence in th
 - **Tier:** C (historical_events).
 - **Strict reading:** Bilateral oscillation exists at the +10c threshold across 458 matches.
 - **Does NOT establish:** Capturability, fillability, profitability, or per-cell consistency.
-- **References:** LESSONS.md E18 (assertion), E25 (depth-0 caveat).
+- **References:** LESSONS.md E18 (amended Session 9 — names this finding as the conditional-rate layer of the bilateral funnel; B23 amendment commit d56edfd introduces the upstream feasibility layer at 29.8%; multiplicative composition ~21-23% unconditional double-cash rate), E25 (depth-0 caveat — applies to the conditional-rate layer), E30 (subset-averaging caveat — applies to the conditional-rate layer).
 - **Reproduction status:** Pending. ROADMAP Section 4 BLOCKED.
 
 #### Channel 1 vs Channel 2 split (4.7% / 95.3%)

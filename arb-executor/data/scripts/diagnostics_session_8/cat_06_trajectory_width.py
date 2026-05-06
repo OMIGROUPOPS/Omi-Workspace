@@ -28,7 +28,7 @@ print()
 start = time.time()
 
 # Load metadata for premarket windows
-md = pq.read_table('data/durable/g9_metadata.parquet', columns=['ticker', 'category', 'open_time', 'close_time']).to_pandas()
+md = pq.read_table('data/durable/g9_metadata.parquet', columns=['ticker', '_tier', 'open_time', 'close_time']).to_pandas()
 md['ticker'] = md['ticker'].astype(str)
 md['open_time'] = pd.to_datetime(md['open_time'], errors='coerce', utc=True)
 md['close_time'] = pd.to_datetime(md['close_time'], errors='coerce', utc=True)
@@ -58,7 +58,7 @@ print()
 # Probe column names from candles schema
 sample_cols = [f.name for f in cf.schema_arrow]
 print(f'Candles columns: {sample_cols}')
-yes_close_col = 'yes_close' if 'yes_close' in sample_cols else 'yes_close_dollars' if 'yes_close_dollars' in sample_cols else None
+yes_close_col = 'price_close' if 'price_close' in sample_cols else 'yes_ask_close' if 'yes_ask_close' in sample_cols else None
 ts_col = 'end_period_ts' if 'end_period_ts' in sample_cols else 'period_end' if 'period_end' in sample_cols else 'ts_minute' if 'ts_minute' in sample_cols else None
 ticker_col = 'ticker'
 
@@ -114,7 +114,12 @@ for ticker, series in ticker_yes_series.items():
     pre_series = []
     post_series = []
     for ts_str, yc in series:
-        ts = pd.Timestamp(ts_str, tz='UTC') if 'T' in ts_str or '-' in ts_str else None
+        if 'T' in ts_str or '-' in ts_str:
+            ts = pd.Timestamp(ts_str, tz='UTC')
+        elif ts_str.lstrip('-').isdigit():
+            ts = pd.Timestamp(int(ts_str), unit='s', tz='UTC')
+        else:
+            ts = None
         if ts is None:
             continue
         if ts < midpoint:
@@ -128,9 +133,9 @@ for ticker, series in ticker_yes_series.items():
     pre_min, pre_max = min(pre_series), max(pre_series)
     pre_range = pre_max - pre_min
 
-    cat = md[md['ticker'] == ticker]['category'].iloc[0] if len(md[md['ticker'] == ticker]) > 0 else 'UNKNOWN'
+    cat = md[md['ticker'] == ticker]['_tier'].iloc[0] if len(md[md['ticker'] == ticker]) > 0 else 'UNKNOWN'
     per_market.append({
-        'ticker': ticker, 'category': cat,
+        'ticker': ticker, '_tier': cat,
         'pre_n_minutes': len(pre_series),
         'pre_min': pre_min, 'pre_max': pre_max,
         'pre_range': pre_range,
@@ -171,8 +176,8 @@ print()
 print('-' * 100)
 print('3. PER-TIER TRAJECTORY WIDTH')
 print('-' * 100)
-for cat in sorted(trajectory_df['category'].dropna().unique()):
-    sub = trajectory_df[trajectory_df['category'] == cat]
+for cat in sorted(trajectory_df['_tier'].dropna().unique()):
+    sub = trajectory_df[trajectory_df['_tier'] == cat]
     print(f'\n{cat} ({len(sub):,} markets):')
     print(f'  pre_range: median=${sub["pre_range"].median():.4f}, p75=${sub["pre_range"].quantile(0.75):.4f}, p95=${sub["pre_range"].quantile(0.95):.4f}')
     n_10c_cat = (sub['pre_range'] >= 0.10).sum()
@@ -183,7 +188,7 @@ print()
 print('-' * 100)
 print('4. TOP 20 WIDEST PREMARKET TRAJECTORIES')
 print('-' * 100)
-top = trajectory_df.nlargest(20, 'pre_range')[['ticker', 'category', 'pre_n_minutes', 'pre_min', 'pre_max', 'pre_range']]
+top = trajectory_df.nlargest(20, 'pre_range')[['ticker', '_tier', 'pre_n_minutes', 'pre_min', 'pre_max', 'pre_range']]
 print(top.to_string(index=False))
 
 print()

@@ -482,6 +482,26 @@ Per-cell exit-policy capture distributions across 54-policy parameter grid. Prop
 - Validity status: PASSED T31c coherence read 2026-05-05 ET (script commit 5cf45e0, report sha256 72f1747b). 4/4 gating-checks PASS (Check 1 capture-bounded spot-check, Check 2 fire-rate monotonic, Check 3a limit-policy capture_p90 trend, Check 4 premarket vs in_match). 1 informative-only Check 3b INCONCLUSIVE (time-stop horizon trend, empirical signature of mean reversion per LESSONS B21 — not gating). Cleared for downstream Layer C (G11) consumption.
 - Notes: 1 cells excluded from output by 50-trajectory threshold (per spec Decision 2 patch 3). 278208 total entry moments evaluated. capital_utilization convention documented inline in producer aggregate_cell_results: held_minutes / denominator (clamped to [0, 1]); denominator = horizon_min for time_stop/limit_time_stop, else 240. T31a patch 5 corrected the validation-gate formulation post-spec; T31a patch 6 dropped sub-minute (30s) horizon, leaving 54 policies in v1.
 
+### Layer C v1 specification (T32a, foundation T28 ea84e74 + T29 1398c39 + T31b 28e8ab7)
+
+[#layer-c-v1-specification-t32a-foundation-t28-ea84e74--t29-1398c39--t31b-28e8ab7](#layer-c-v1-specification-t32a-foundation-t28-ea84e74--t29-1398c39--t31b-28e8ab7)
+
+Realized economics from empirical fees on top of Layer B v1's idealized-fill capture distributions. Per LESSONS B16 layered-realism discipline, Layer C has its own v1/v2/v3/v4 sub-staging; v1 adds ONE modeling concept (empirical fees from kalshi_fills_history.json per A30) and inherits idealized fills from Layer B v1. v1 strictly per-cell per E20, single-leg per E18, channel-preserving per E16/B14/E31, ROI on cost basis per G1. Foundation pointers: T28 commit ea84e74 (G9 parquets, sha256-pinned) + T29 commit 1398c39 (Layer A v1 cell_stats) + T31b commit 28e8ab7 (Layer B v1 exit_policy_per_cell.parquet, sha256 d94bc56c..., validated by T31c PASS at 5cf45e0). Spec commit: 4bed07f. MANIFEST entry: PENDING T32b/T32c (no output artifacts yet — spec only). Validity status: SPEC (not output-bearing). T32b (producer build_layer_c_v1.py) and T32c (coherence read check_layer_c_v1_coherence.py + report) will add output artifacts in subsequent commits.
+
+#### docs/layer_c_spec.md
+
+[#docs-layer-c-spec-md](#docs-layer-c-spec-md)
+
+- File path: docs/layer_c_spec.md
+- Authored: 2026-05-05 ET (Session 8, T32a)
+- Author commit: 4bed07f
+- Length: 189 lines, 9 sections
+- Structure: Scope (v1) + Foundation pointers + Operational decisions (6 numbered) + Output schema (32 columns) + Producer architecture + Validation gate (4 gating + 1 informative checks) + Open items for v2/v3/v4 + Cross-references (16 keystone lessons) + Outstanding ROADMAP correction
+- Key decisions: D1 empirical fee derivation per (is_taker, yes_price_bucket) from kalshi_fills_history.json — NOT maker-zero (37.7% of bot maker fills are non-zero, parabolic per Kalshi schedule); D2 maker-maker production model with policy-class taker-exposure for time-stop horizon-fired exits; D3 1:1 row mapping to Layer B (no posting_strategy or capital_size sweep dimensions); D6 formation-period contamination per E12 inherited explicitly with Check 5 measuring impact informatively
+- Validation gate: Check 1 realized_capture ≤ capture; Check 2 parabolic-shape match; Check 3 policy-class taxonomic match; Check 4 Layer B → Layer C ranking preservation (≥90% cells Spearman ≥ 0.99); Check 5 (informative-only) formation-period contamination measurement
+- Validity status: SPEC stable post-author. Closes T32a when this ANALYSIS_LIBRARY entry lands.
+- Notes: Spec Section 9 explicitly flags ROADMAP T32 entry (commit f048267) as needing correction — currently states "maker-zero canonical confirmed empirically" which is empirically wrong per Decision 1. Correction follows in separate single-concern commit.
+
 ## SECTION 3: BROKEN OR INVALID ANALYSES
 
 Analyses that ran but produced invalid results due to bugs, methodology errors, or data corruption. Listed here so future chats know not to cite their conclusions.
@@ -560,3 +580,4 @@ Findings from prior analyses that are currently treated as anchor evidence in th
 - 2026-05-04 (Session 6 T28): G9 parquets (g9_candles, g9_trades, g9_metadata) added as canonical foundation per LESSONS C27. T17 producer commit bd83412, T27 verification 9/9 PASS. sha256 in MANIFEST.md.
 - 2026-05-04 (Session 6 T29): Layer A v1 outputs (cell_stats.parquet, sample_manifest.json, build_layer_a_v1.log, 15 visual PNGs) added under new subsection in Section 2. Foundation pointer T28 commit ea84e74. Producer commit 1398c39. MANIFEST commit 37a5216. Validity: PASSED T21 coherence read 2026-05-04 (4 PASS / 2 INCONCLUSIVE / 0 FAIL).
 - 2026-05-04 (Session 6 Phase 5-ii / T21 closure): cell_stats.parquet Notes field updated with T21 verification findings (YES-only producer, bounce-def explanation, Vitter reservoir confirmed unbiased, volume_intensity in_match collapse, no event_ticker preserved). Validity status flipped from PENDING T21 to PASSED T21 2026-05-04 across cell_stats.parquet narrative + Notes line, sample_manifest.json, and visual PNG block. Cross-references to LESSONS A36, B19, B20, F30 and ROADMAP F13, G12, T31.
+- 2026-05-05 ET (Session 8 / T32a-followup): Layer C v1 specification entry registered. Foundation pointers T28 ea84e74 + T29 1398c39 + T31b 28e8ab7. Spec at docs/layer_c_spec.md (commit 4bed07f, 189 lines, 9 sections, 6 numbered Decisions, 5 validation checks). Validity status SPEC (not output-bearing — T32b producer and T32c coherence read add output artifacts in subsequent commits). Closes T32a per its own definition (spec lands and is referenced in ANALYSIS_LIBRARY).

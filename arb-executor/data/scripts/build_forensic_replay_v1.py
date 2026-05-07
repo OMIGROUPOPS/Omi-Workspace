@@ -171,7 +171,12 @@ def load_ticker_trades(ticker, start_ts_unix=None):
 
     # created_time is microsecond-precision timestamp (per Session 9 schema probe).
     # Convert to unix seconds for arithmetic with end_period_ts.
-    df["created_time_ts"] = pd.to_datetime(df["created_time"]).astype("int64") // 10**9
+    # Per-row .timestamp() is precision-agnostic — avoids the microsecond-vs-nanosecond
+    # footgun where pd.to_datetime() of microsecond-precision ISO strings produces datetime64[us]
+    # arrays whose .astype("int64") returns microseconds (not nanoseconds), making // 10**9 yield
+    # values 1000x too small. The bug surfaced in Phase 1 as fill_rate=0% (every trade timestamp
+    # ~1.77e6 vs candle timestamp ~1.77e9, no overlap, so the forward-walk never matched).
+    df["created_time_ts"] = pd.to_datetime(df["created_time"]).map(lambda x: int(x.timestamp()))
     df = df.sort_values("created_time_ts").reset_index(drop=True)
 
     if start_ts_unix is not None:

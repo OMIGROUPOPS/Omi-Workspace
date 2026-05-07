@@ -614,6 +614,227 @@ def phase1():
 
 
 # ============================================================
+# Phase 2 main
+# ============================================================
+
+def phase2():
+    """Phase 2 single-candidate full run: 1 candidate × ALL entry moments.
+
+    Per spec Section 5.2: confirms per-candidate runtime estimate scales linearly
+    with moment count, validates memory profile under realistic load. Output to
+    data/durable/forensic_replay_v1/phase2/. Gating for Phase 3.
+
+    Same candidate as Phase 1 (rank-7 non-settle premarket: ATP_CHALL 80-90 tight
+    low / limit / limit_c=10) so that Phase 2 distributions are directly
+    comparable to Phase 1's 100-moment subset.
+    """
+    out_dir = os.path.join(OUT_DIR, "phase2")
+    log_path = log_setup(out_dir)
+    t_start = time.time()
+
+    log("=" * 60, log_path)
+    log("Forensic replay v1 - Phase 2 single-candidate full run", log_path)
+    log("=" * 60, log_path)
+
+    c = select_phase1_candidate()
+    cid = candidate_id(c)
+    mkey = manifest_key_for_candidate(c)
+    log(f"Candidate: {cid}", log_path)
+    log(f"Manifest key: {mkey}", log_path)
+    log(f"Layer B simulated capture_mean=${c['capture_mean']:.4f}, fire_rate={c['fire_rate']:.3f}, n_simulated={int(c['n_simulated'])}", log_path)
+    policy_type = c["policy_type"]
+    policy_params = json.loads(c["policy_params"])
+
+    with open(SAMPLE_MANIFEST) as f:
+        manifest = json.load(f)
+    if mkey not in manifest:
+        log(f"ABORT: manifest key {mkey} not found", log_path)
+        sys.exit(1)
+    tickers = manifest[mkey]["tickers"]
+    log(f"Tickers in manifest: {len(tickers)}", log_path)
+
+    rows = []
+    moments_collected = 0
+    skipped_meta = 0
+    skipped_no_candles = 0
+    skipped_no_trades = 0
+    tickers_processed = 0
+
+    # Phase 2: NO MOMENT BUDGET - process ALL cell-matching moments across ALL tickers
+    for ticker in tickers:
+        tickers_processed += 1
+        log(f"Ticker {tickers_processed}/{len(tickers)}: {ticker} (cumulative moments: {moments_collected})", log_path)
+
+        meta = load_market_settlement(ticker)
+        if meta is None:
+            skipped_meta += 1
+            continue
+        settlement_ts_unix, settlement_value, _ = meta
+
+        candles_df = load_ticker_candles(ticker)
+        if candles_df is None or len(candles_df) == 0:
+            skipped_no_candles += 1
+            continue
+
+        timestamps = candles_df["end_period_ts"].values
+        volumes = candles_df["volume_fp"].values
+        match_start_ts = detect_match_start(timestamps, volumes)
+
+        matching_moments = []
+        for i in range(len(candles_df)):
+            t = int(timestamps[i])
+            row = candles_df.iloc[i]
+            if row["yes_bid_close"] is None or row["yes_ask_close"] is None:
+                continue
+            try:
+                bid_f = float(row["yes_bid_close"])
+                ask_f = float(row["yes_ask_close"])
+            except (TypeError, ValueError):
+                continue
+
+            regime = regime_for_moment(t, match_start_ts, settlement_ts_unix)
+            eb = entry_band_idx(ask_f)
+            sb = spread_band_name(bid_f, ask_f)
+            vi = volume_intensity_for_market(volumes)
+            cat = categorize(ticker)
+
+            target_parts = mkey.split("__")
+            target_regime, target_eb_str, target_sb, target_vi, target_cat = target_parts
+            if (regime == target_regime
+                and eb == int(target_eb_str)
+                and sb == target_sb
+                and vi == target_vi
+                and cat == target_cat):
+                matching_moments.append((i, t, bid_f, ask_f, regime, eb, sb, vi, cat))
+
+        if not matching_moments:
+            continue
+
+        trades_df = load_ticker_trades(ticker, start_ts_unix=int(timestamps[0]))
+        if trades_df is None:
+            skipped_no_trades += 1
+            continue
+
+        for (i, t, bid_f, ask_f, regime, eb, sb, vi, cat) in matching_moments:
+            T0_cell = {
+                "regime": regime, "entry_band_idx": eb,
+                "spread_band": sb, "volume_intensity": vi, "category": cat,
+                "yes_bid_close": bid_f, "yes_ask_close": ask_f,
+            }
+            forward_trades = trades_df[trades_df["created_time_ts"] >= t].reset_index(drop=True)
+            row = replay_one_moment(
+                ticker=ticker,
+                candles_df=candles_df,
+                trades_df=forward_trades,
+                T0_unix=t,
+                T0_cell=T0_cell,
+                policy_type=policy_type,
+                policy_params=policy_params,
+                settlement_ts_unix=settlement_ts_unix,
+                settlement_value=settlement_value,
+                match_start_ts=match_start_ts,
+                log_path=log_path,
+                log_warnings=False,
+            )
+            row["candidate_id"] = cid
+            rows.append(row)
+            moments_collected += 1
+
+    elapsed = time.time() - t_start
+    log("", log_path)
+    log("=" * 60, log_path)
+    log(f"Phase 2 complete. Runtime: {elapsed:.1f}s ({elapsed/60:.2f} min)", log_path)
+    log(f"Moments collected: {moments_collected}", log_path)
+    log(f"Tickers processed: {tickers_processed}/{len(tickers)}", log_path)
+    log(f"Skipped (no metadata or scalar): {skipped_meta}", log_path)
+    log(f"Skipped (no candles): {skipped_no_candles}", log_path)
+    log(f"Skipped (no trades): {skipped_no_trades}", log_path)
+    log("=" * 60, log_path)
+
+    df = pd.DataFrame(rows)
+    log("", log_path)
+    log("=== Outcome distribution ===", log_path)
+    log(f"  Scenario A: {df['outcome_A'].value_counts().to_dict()}", log_path)
+    log(f"  Scenario B: {df['outcome_B'].value_counts().to_dict()}", log_path)
+    fill_count = df["fill_time_unix"].notna().sum()
+    log(f"  Fill rate: {fill_count}/{len(df)} = {fill_count/max(1,len(df)):.4f}", log_path)
+    if fill_count > 0:
+        log(f"  Cell drift at fill: {df['cell_drift_at_fill'].sum()}/{fill_count} = {df['cell_drift_at_fill'].sum()/fill_count:.4f}", log_path)
+
+    captures_A = df["capture_A_net_dollars"].dropna()
+    captures_B = df["capture_B_net_dollars"].dropna()
+    if len(captures_A) > 0:
+        log(f"  Scenario A capture: n={len(captures_A)}, mean=${captures_A.mean():.4f}, p10=${captures_A.quantile(0.1):.4f}, p50=${captures_A.median():.4f}, p90=${captures_A.quantile(0.9):.4f}, min=${captures_A.min():.4f}, max=${captures_A.max():.4f}", log_path)
+    if len(captures_B) > 0:
+        log(f"  Scenario B capture: n={len(captures_B)}, mean=${captures_B.mean():.4f}, p10=${captures_B.quantile(0.1):.4f}, p50=${captures_B.median():.4f}, p90=${captures_B.quantile(0.9):.4f}, min=${captures_B.min():.4f}, max=${captures_B.max():.4f}", log_path)
+    log(f"  Layer B simulated capture_mean: ${c['capture_mean']:.4f}", log_path)
+    if len(captures_A) > 0:
+        log(f"  Realized A vs simulated delta: ${captures_A.mean() - c['capture_mean']:.4f} ({100*(captures_A.mean()-c['capture_mean'])/c['capture_mean']:+.1f}%)", log_path)
+
+    paired = df.dropna(subset=["capture_A_net_dollars", "capture_B_net_dollars"])
+    if len(paired) > 0:
+        delta_AB = paired["capture_A_net_dollars"] - paired["capture_B_net_dollars"]
+        log(f"  A vs B paired delta: n={len(paired)}, mean=${delta_AB.mean():.4f}, |median|=${delta_AB.abs().median():.4f}", log_path)
+        try:
+            from scipy.stats import spearmanr
+            rho, pval = spearmanr(paired["capture_A_net_dollars"], paired["capture_B_net_dollars"])
+            log(f"  A vs B Spearman rho: {rho:.4f} (p={pval:.4g})", log_path)
+        except ImportError:
+            log(f"  scipy not available - skipping Spearman; using pandas .corr() instead", log_path)
+            rho = paired["capture_A_net_dollars"].corr(paired["capture_B_net_dollars"], method="spearman")
+            log(f"  A vs B Spearman rho (pandas): {rho:.4f}", log_path)
+
+    phase1_summary_path = os.path.join(OUT_DIR, "probe", "run_summary_phase1.json")
+    if os.path.exists(phase1_summary_path):
+        with open(phase1_summary_path) as f:
+            p1 = json.load(f)
+        log("", log_path)
+        log("=== Phase 1 vs Phase 2 stability ===", log_path)
+        log(f"  Phase 1: n=100, fill_rate={p1['fill_rate']:.4f}, cell_drift={p1.get('cell_drift_rate_at_fill')}, capture_A_mean=${p1.get('scenario_A_capture_mean'):.4f}", log_path)
+        log(f"  Phase 2: n={len(df)}, fill_rate={fill_count/max(1,len(df)):.4f}, cell_drift={df['cell_drift_at_fill'].sum()/max(1,fill_count):.4f}, capture_A_mean=${captures_A.mean():.4f}", log_path)
+
+    out_path = os.path.join(out_dir, "replay_tape_phase2.parquet")
+    table = pa.Table.from_pandas(df, preserve_index=False)
+    pq.write_table(table, out_path, compression="snappy")
+    log(f"Wrote {len(df)} rows to {out_path}", log_path)
+    log(f"Output size: {os.path.getsize(out_path):,} bytes", log_path)
+
+    summary = {
+        "phase": 2,
+        "candidate_id": cid,
+        "manifest_key": mkey,
+        "moments_collected": int(moments_collected),
+        "tickers_processed": tickers_processed,
+        "skipped_meta": skipped_meta,
+        "skipped_no_candles": skipped_no_candles,
+        "skipped_no_trades": skipped_no_trades,
+        "runtime_seconds": round(elapsed, 1),
+        "layer_b_capture_mean": float(c["capture_mean"]),
+        "layer_b_fire_rate": float(c["fire_rate"]),
+        "layer_b_n_simulated": int(c["n_simulated"]),
+        "fill_rate": float(fill_count / max(1, len(df))),
+        "scenario_A_outcomes": df["outcome_A"].value_counts().to_dict(),
+        "scenario_B_outcomes": df["outcome_B"].value_counts().to_dict(),
+        "scenario_A_capture_mean": float(captures_A.mean()) if len(captures_A) > 0 else None,
+        "scenario_A_capture_p10": float(captures_A.quantile(0.1)) if len(captures_A) > 0 else None,
+        "scenario_A_capture_p50": float(captures_A.quantile(0.5)) if len(captures_A) > 0 else None,
+        "scenario_A_capture_p90": float(captures_A.quantile(0.9)) if len(captures_A) > 0 else None,
+        "scenario_B_capture_mean": float(captures_B.mean()) if len(captures_B) > 0 else None,
+        "scenario_B_capture_p10": float(captures_B.quantile(0.1)) if len(captures_B) > 0 else None,
+        "scenario_B_capture_p50": float(captures_B.quantile(0.5)) if len(captures_B) > 0 else None,
+        "scenario_B_capture_p90": float(captures_B.quantile(0.9)) if len(captures_B) > 0 else None,
+        "cell_drift_rate_at_fill": float(df["cell_drift_at_fill"].sum() / max(1, fill_count)) if fill_count > 0 else None,
+        "spec_commits": ["40db959", "3b62039"],
+        "producer_commit_at_run": "43ae049_or_later",
+    }
+    summary_path = os.path.join(out_dir, "run_summary_phase2.json")
+    with open(summary_path, "w") as f:
+        json.dump(summary, f, indent=2, default=str)
+    log(f"Wrote summary to {summary_path}", log_path)
+    log("=" * 60, log_path)
+
+
+# ============================================================
 # CLI
 # ============================================================
 
@@ -624,8 +845,10 @@ def main():
 
     if args.phase == 1:
         phase1()
+    elif args.phase == 2:
+        phase2()
     else:
-        print(f"Phase {args.phase} not yet implemented. Phase 1 only for this commit.", file=sys.stderr)
+        print(f"Phase {args.phase} not yet implemented (Phase 3 lands after Phase 2 PASS).", file=sys.stderr)
         sys.exit(2)
 
 

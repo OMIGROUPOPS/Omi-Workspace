@@ -56,13 +56,13 @@ Layer B v1 produces 19,170 (cell, policy) rows. v1 forensic replay does not eval
 
 Per SIMONS_MODE Section 6, for each candidate (cell, policy) and each entry moment T0 in the candidate's market history where the cell conditions hold:
 
-1. **Identify the moment.** From g9_candles, find every minute T where `regime_for_moment(T)`, `entry_band_idx(yes_ask_close[T])`, `spread_band_name(yes_bid_close[T], yes_ask_close[T])`, `volume_intensity_for_market`, and `categorize(ticker)` all match the cell key. Producer mirrors `walk_trajectory` in `build_layer_b_v1.py`.
+1. **Identify the moment.** From g9_candles, find every minute T where `regime_for_moment(T)`, `entry_band_idx(yes_ask_close[T])`, `spread_band_name(yes_bid_close[T], yes_ask_close[T])`, `volume_intensity_for_market`, and `categorize(ticker)` all match the cell key. Producer mirrors `walk_trajectory` in `build_layer_b_v1.py`. **Schema invariants (verified Session 9 from on-disk probe):** g9_candles columns used are `yes_bid_close`, `yes_ask_close`, `volume_fp`, `end_period_ts` (with `_close` suffix on bid/ask). g9_trades columns used are `yes_price_dollars`, `no_price_dollars`, `taker_side`, `created_time`, `count_fp`, `ticker` (with `_dollars` suffix on price). The two parquets use different column-name conventions — producer must not conflate them. **NaN-preservation invariant:** `volume_intensity_for_market` is NaN-safe and Layer B v1's `walk_trajectory` passes raw NaN-containing `volume_fp` arrays directly (see `build_layer_b_v1.py` lines 324-327). Producer mirrors this — NaN-stripping at the producer level would cause volume_intensity classification drift between Layer B v1 sample selection and forensic replay re-classification, breaking the cell-key match invariant. Pass volumes raw.
 
 2. **Hypothetically post a maker bid.** At T0, post a hypothetical maker bid at `yes_bid_close[T0]` for size = unit (1 contract; sizing is Layer D's concern). The bid sits at the cell's prevailing bid price.
 
 3. **Walk g9_trades forward second-by-second from T0.** Stream `g9_trades` rows for this ticker with `created_time >= T0` ordered ascending. For each trade event:
    - **Cell drift recording:** every minute boundary (`floor(created_time / 60)`), recompute the cell state using the bid/ask snapshot at that minute (from g9_candles) and record whether the cell still matches. Outputs the cell-drift distribution (Output 4 in Section 4).
-   - **Fill check:** if `taker_side == "yes"` and `yes_price <= our_bid_price`, the trade hits our bid — we are filled. Record `fill_time = trade.created_time`, `fill_price = our_bid_price`. Stop walking forward for fill purposes.
+   - **Fill check:** if `taker_side == "yes"` and `yes_price_dollars <= our_bid_price`, the trade hits our bid — we are filled. Record `fill_time = trade.created_time`, `fill_price = our_bid_price`. Stop walking forward for fill purposes.
    - **Maximum hold:** if the bid has not filled within `policy.entry_timeout_minutes` (default: 240 minutes, the same `DEFAULT_HORIZON_MIN` used in `evaluate_policy`) or the market settles, record `outcome = "unfilled"` and skip steps 5-8 for this moment.
 
 4. **Record fill-time cell state.** At `fill_time`, recompute the cell state from g9_candles bid/ask at `floor(fill_time / 60)`. Store as `fill_time_cell` (may differ from the post-time `T0_cell`).
@@ -74,8 +74,8 @@ Per SIMONS_MODE Section 6, for each candidate (cell, policy) and each entry mome
    For policy types that are not threshold-based (time_stop, trailing): scenario A applies the policy's parameters as set at T0; scenario B applies the policy's parameters as set at fill_time. For settle-horizon time_stops, A and B converge by construction.
 
 6. **Walk g9_trades forward from fill_time looking for the kiss.** Continue streaming g9_trades with `created_time >= fill_time` ordered ascending. For each trade:
-   - **Scenario A exit check:** if `taker_side == "no"` (taker sells; our resting sell would fill) and `yes_price >= scenario_A_target`, scenario A exits. Record `exit_time_A`, `exit_price_A`, `capture_A_dollars = exit_price_A - fill_price`.
-   - **Scenario B exit check:** same logic against `scenario_B_target`. Both scenarios may fire at different trades.
+   - **Scenario A exit check:** if `taker_side == "no"` (taker sells; our resting sell would fill) and `yes_price_dollars >= scenario_A_target`, scenario A exits. Record `exit_time_A`, `exit_price_A`, `capture_A_dollars = exit_price_A - fill_price`.
+   - **Scenario B exit check:** same logic against `scenario_B_target` (using `yes_price_dollars`). Both scenarios may fire at different trades.
    - **Horizon:** if neither has fired by `fill_time + policy.horizon_minutes` (per the policy's horizon, mirroring `evaluate_policy`), record outcome at horizon. Time-stop policies fire at horizon for both scenarios.
    - **Settlement:** if the market settles before either fires, record `outcome = "settled_unfired"`, `capture = settlement_value - fill_price`.
 

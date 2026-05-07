@@ -835,6 +835,425 @@ def phase2():
 
 
 # ============================================================
+# Phase 3: candidate selection
+# ============================================================
+
+def select_top_n_candidates(n_per_cat=20):
+    """Top N non-settle premarket candidates per category by Layer B capture_mean.
+
+    Per spec Section 2 Decision 1:
+    - channel=premarket, n_simulated>=50, exclude settle-horizon time_stops.
+    - Rank within each (channel, category); return top n_per_cat per category.
+    - 4 categories x n_per_cat -> N candidates total (default 80).
+    """
+    t = pq.read_table(LAYER_B_PARQUET).to_pandas()
+    pre = t[(t["channel"] == "premarket") & (t["n_simulated"] >= 50)].copy()
+
+    def is_settle(row):
+        if row["policy_type"] not in ("time_stop", "limit_time_stop"):
+            return False
+        try:
+            params = json.loads(row["policy_params"])
+        except Exception:
+            return False
+        return params.get("horizon_min") == "settle"
+
+    pre["is_settle"] = pre.apply(is_settle, axis=1)
+    non_settle = pre[~pre["is_settle"]].copy()
+
+    selected_rows = []
+    for cat in ("ATP_MAIN", "ATP_CHALL", "WTA_MAIN", "WTA_CHALL"):
+        cat_df = non_settle[non_settle["category"] == cat]
+        top = cat_df.sort_values("capture_mean", ascending=False).head(n_per_cat)
+        selected_rows.append(top)
+    return pd.concat(selected_rows, ignore_index=True)
+
+
+# ============================================================
+# Phase 3 main
+# ============================================================
+
+def phase3(n_per_cat=20):
+    """Full forensic replay: top-N per (channel, category) candidates evaluated end-to-end.
+
+    Outputs to data/durable/forensic_replay_v1/phase3/:
+    - replay_tape.parquet (per-moment, spec Output 1)
+    - candidate_summary.parquet (one row per candidate, spec Output 2)
+    - scenario_comparison.parquet (per-candidate A/B, spec Output 3)
+    - cell_drift_per_minute.parquet (per-candidate per-5min drift, spec Output 4)
+    - run_summary.json (with embedded validation gate per spec Section 6)
+    """
+    out_dir = os.path.join(OUT_DIR, "phase3")
+    log_path = log_setup(out_dir)
+    t_start = time.time()
+
+    log("=" * 60, log_path)
+    log(f"Forensic replay v1 - Phase 3 (top {n_per_cat} per category)", log_path)
+    log("=" * 60, log_path)
+
+    candidates = select_top_n_candidates(n_per_cat=n_per_cat)
+    log(f"Selected {len(candidates)} candidates across 4 categories", log_path)
+    cat_counts = candidates["category"].value_counts().to_dict()
+    for cat in ("ATP_MAIN", "ATP_CHALL", "WTA_MAIN", "WTA_CHALL"):
+        n = cat_counts.get(cat, 0)
+        cat_df = candidates[candidates["category"] == cat]
+        if len(cat_df) > 0:
+            log(f"  {cat}: {n}, capture_mean ${cat_df['capture_mean'].min():.4f} to ${cat_df['capture_mean'].max():.4f}", log_path)
+        else:
+            log(f"  {cat}: 0 candidates", log_path)
+
+    with open(SAMPLE_MANIFEST) as f:
+        manifest = json.load(f)
+
+    # Per-candidate incremental writes — produces partial-recoverable output.
+    # If the run is killed mid-loop, every candidate completed so far has its own
+    # replay_tape_cand_NNN.parquet and its row appended to the aggregate JSONL.
+    candidate_summary_rows = []
+    scenario_comparison_rows = []
+    cell_drift_rows = []
+    # Per-candidate replay_tape parquets are written incrementally per-candidate, then merged at end.
+    summary_jsonl_path = os.path.join(out_dir, "_progress_summary.jsonl")
+    open(summary_jsonl_path, "w").close()  # reset
+
+    for cidx in range(len(candidates)):
+        cand_t_start = time.time()
+        c = candidates.iloc[cidx]
+        cid = candidate_id(c)
+        mkey = manifest_key_for_candidate(c)
+        log("", log_path)
+        log(f"--- Candidate {cidx+1}/{len(candidates)}: {cid} ---", log_path)
+        log(f"    mkey={mkey}, sim_mean=${c['capture_mean']:.4f}, sim_fire={c['fire_rate']:.3f}, n_sim={int(c['n_simulated'])}", log_path)
+
+        if mkey not in manifest:
+            log(f"    SKIP: manifest key not found", log_path)
+            continue
+
+        policy_type = c["policy_type"]
+        policy_params = json.loads(c["policy_params"])
+        tickers = manifest[mkey]["tickers"]
+
+        cand_rows = []
+        moments_collected = 0
+        skipped_meta = 0
+        skipped_no_candles = 0
+        skipped_no_trades = 0
+        drift_per_minute = {m: [0, 0] for m in range(0, 241, 5)}
+
+        for ticker in tickers:
+            meta = load_market_settlement(ticker)
+            if meta is None:
+                skipped_meta += 1
+                continue
+            settlement_ts_unix, settlement_value, _ = meta
+
+            candles_df = load_ticker_candles(ticker)
+            if candles_df is None or len(candles_df) == 0:
+                skipped_no_candles += 1
+                continue
+
+            timestamps = candles_df["end_period_ts"].values
+            volumes = candles_df["volume_fp"].values
+            match_start_ts = detect_match_start(timestamps, volumes)
+
+            matching_moments = []
+            for i in range(len(candles_df)):
+                t = int(timestamps[i])
+                row_c = candles_df.iloc[i]
+                if row_c["yes_bid_close"] is None or row_c["yes_ask_close"] is None:
+                    continue
+                try:
+                    bid_f = float(row_c["yes_bid_close"])
+                    ask_f = float(row_c["yes_ask_close"])
+                except (TypeError, ValueError):
+                    continue
+                regime = regime_for_moment(t, match_start_ts, settlement_ts_unix)
+                eb = entry_band_idx(ask_f)
+                sb = spread_band_name(bid_f, ask_f)
+                vi = volume_intensity_for_market(volumes)
+                cat_ck = categorize(ticker)
+                tp = mkey.split("__")
+                target_regime, target_eb_str, target_sb, target_vi, target_cat = tp
+                if (regime == target_regime and eb == int(target_eb_str)
+                    and sb == target_sb and vi == target_vi and cat_ck == target_cat):
+                    matching_moments.append((i, t, bid_f, ask_f, regime, eb, sb, vi, cat_ck))
+
+            if not matching_moments:
+                continue
+
+            trades_df = load_ticker_trades(ticker, start_ts_unix=int(timestamps[0]))
+            if trades_df is None:
+                skipped_no_trades += 1
+                continue
+
+            for (i, t, bid_f, ask_f, regime, eb, sb, vi, cat_ck) in matching_moments:
+                T0_cell = {
+                    "regime": regime, "entry_band_idx": eb, "spread_band": sb,
+                    "volume_intensity": vi, "category": cat_ck,
+                    "yes_bid_close": bid_f, "yes_ask_close": ask_f,
+                }
+                forward_trades = trades_df[trades_df["created_time_ts"] >= t].reset_index(drop=True)
+                row = replay_one_moment(
+                    ticker=ticker, candles_df=candles_df, trades_df=forward_trades,
+                    T0_unix=t, T0_cell=T0_cell,
+                    policy_type=policy_type, policy_params=policy_params,
+                    settlement_ts_unix=settlement_ts_unix, settlement_value=settlement_value,
+                    match_start_ts=match_start_ts, log_path=log_path, log_warnings=False,
+                )
+                row["candidate_id"] = cid
+                cand_rows.append(row)
+                moments_collected += 1
+
+                T0_cell_key = cell_key_str(T0_cell)
+                for offset in range(0, 241, 5):
+                    minute_ts = ((t + offset * 60) // 60) * 60
+                    state = cell_state_at_minute(candles_df, minute_ts, match_start_ts, settlement_ts_unix, ticker)
+                    if state is not None:
+                        drift_per_minute[offset][0] += 1
+                        if cell_key_str(state) == T0_cell_key:
+                            drift_per_minute[offset][1] += 1
+
+        cand_elapsed = time.time() - cand_t_start
+
+        df = pd.DataFrame(cand_rows)
+        n = len(df)
+        fill_count = int(df["fill_time_unix"].notna().sum()) if n > 0 else 0
+        captures_A = df["capture_A_net_dollars"].dropna() if n > 0 else pd.Series(dtype=float)
+        captures_B = df["capture_B_net_dollars"].dropna() if n > 0 else pd.Series(dtype=float)
+        win_rate_A = float((captures_A > 0).mean()) if len(captures_A) > 0 else None
+        win_rate_B = float((captures_B > 0).mean()) if len(captures_B) > 0 else None
+        cell_drift_rate = float(df["cell_drift_at_fill"].sum() / max(1, fill_count)) if fill_count > 0 else None
+        ttf_p50 = float(df["time_to_fill_minutes"].median()) if n > 0 and df["time_to_fill_minutes"].notna().any() else None
+        tta_p50 = float(df["time_to_exit_A_minutes"].median()) if n > 0 and df["time_to_exit_A_minutes"].notna().any() else None
+        ttb_p50 = float(df["time_to_exit_B_minutes"].median()) if n > 0 and df["time_to_exit_B_minutes"].notna().any() else None
+
+        summary_row = {
+            "candidate_id": cid,
+            "channel": c["channel"], "category": c["category"],
+            "entry_band_lo": int(c["entry_band_lo"]), "entry_band_hi": int(c["entry_band_hi"]),
+            "spread_band": c["spread_band"], "volume_intensity": c["volume_intensity"],
+            "policy_type": c["policy_type"], "policy_params": c["policy_params"],
+            "n_simulated": int(c["n_simulated"]),
+            "fire_rate_simulated": float(c["fire_rate"]),
+            "capture_mean_simulated": float(c["capture_mean"]),
+            "capture_p10_simulated": float(c.get("capture_p10", float("nan"))),
+            "capture_p50_simulated": float(c.get("capture_p50", float("nan"))),
+            "capture_p90_simulated": float(c.get("capture_p90", float("nan"))),
+            "n_replay_moments": n,
+            "replay_fill_rate": float(fill_count / max(1, n)),
+            "replay_capture_A_net_mean": float(captures_A.mean()) if len(captures_A) > 0 else None,
+            "replay_capture_A_net_p10": float(captures_A.quantile(0.10)) if len(captures_A) > 0 else None,
+            "replay_capture_A_net_p50": float(captures_A.quantile(0.50)) if len(captures_A) > 0 else None,
+            "replay_capture_A_net_p90": float(captures_A.quantile(0.90)) if len(captures_A) > 0 else None,
+            "replay_capture_B_net_mean": float(captures_B.mean()) if len(captures_B) > 0 else None,
+            "replay_capture_B_net_p10": float(captures_B.quantile(0.10)) if len(captures_B) > 0 else None,
+            "replay_capture_B_net_p50": float(captures_B.quantile(0.50)) if len(captures_B) > 0 else None,
+            "replay_capture_B_net_p90": float(captures_B.quantile(0.90)) if len(captures_B) > 0 else None,
+            "replay_win_rate_A": win_rate_A, "replay_win_rate_B": win_rate_B,
+            "replay_time_to_fill_p50": ttf_p50,
+            "replay_time_to_exit_A_p50": tta_p50, "replay_time_to_exit_B_p50": ttb_p50,
+            "cell_drift_rate_at_fill": cell_drift_rate,
+            "simulated_vs_realized_delta_A": (float(c["capture_mean"]) - float(captures_A.mean())) if len(captures_A) > 0 else None,
+            "simulated_vs_realized_delta_B": (float(c["capture_mean"]) - float(captures_B.mean())) if len(captures_B) > 0 else None,
+            "candidate_runtime_seconds": round(cand_elapsed, 1),
+            "skipped_meta": skipped_meta,
+            "skipped_no_candles": skipped_no_candles,
+            "skipped_no_trades": skipped_no_trades,
+        }
+        candidate_summary_rows.append(summary_row)
+
+        paired = df.dropna(subset=["capture_A_net_dollars", "capture_B_net_dollars"]) if n > 0 else pd.DataFrame()
+        if len(paired) > 1:
+            try:
+                from scipy.stats import spearmanr
+                rho, pval = spearmanr(paired["capture_A_net_dollars"], paired["capture_B_net_dollars"])
+            except Exception:
+                rho = paired["capture_A_net_dollars"].corr(paired["capture_B_net_dollars"], method="spearman")
+                pval = None
+            mean_delta = float((paired["capture_A_net_dollars"] - paired["capture_B_net_dollars"]).mean())
+        else:
+            rho, pval, mean_delta = None, None, None
+
+        cells_diverged_count = int(df["cell_drift_at_fill"].sum()) if n > 0 else 0
+        scenario_comparison_rows.append({
+            "candidate_id": cid,
+            "n_paired_moments": int(len(paired)),
+            "corr_A_B_spearman": float(rho) if rho is not None else None,
+            "corr_A_B_pval": float(pval) if pval is not None else None,
+            "mean_delta_A_minus_B": mean_delta,
+            "cells_diverged_count": cells_diverged_count,
+            "cells_diverged_pct": float(cells_diverged_count / max(1, fill_count)),
+        })
+
+        for minute_offset, (n_total, n_match) in drift_per_minute.items():
+            cell_drift_rows.append({
+                "candidate_id": cid, "minutes_since_T0": minute_offset,
+                "n_moments_total": n_total, "n_moments_cell_still_matches": n_match,
+                "pct_still_matches": float(n_match / max(1, n_total)),
+            })
+
+        # Per-candidate replay_tape write — incremental, on disk
+        if cand_rows:
+            tape_path = os.path.join(out_dir, f"replay_tape_cand_{cidx:03d}.parquet")
+            df_cand = pd.DataFrame(cand_rows)
+            pq.write_table(pa.Table.from_pandas(df_cand, preserve_index=False), tape_path, compression="snappy")
+            del df_cand
+
+        # Per-candidate summary append to progress JSONL — survives kill
+        with open(summary_jsonl_path, "a") as fjl:
+            fjl.write(json.dumps(summary_row, default=str) + "\n")
+
+        a_mean_str = f"{float(captures_A.mean()):.4f}" if len(captures_A) > 0 else "nan"
+        b_mean_str = f"{float(captures_B.mean()):.4f}" if len(captures_B) > 0 else "nan"
+        delta_a_str = f"{(float(c['capture_mean']) - float(captures_A.mean())):.4f}" if len(captures_A) > 0 else "nan"
+        log(f"    done: n={n}, fill_rate={fill_count/max(1,n):.3f}, A_mean=${a_mean_str}, B_mean=${b_mean_str}, sim_delta_A=${delta_a_str}, runtime={cand_elapsed:.1f}s", log_path)
+
+        del df, cand_rows, captures_A, captures_B, paired
+
+        if (cidx + 1) % 10 == 0:
+            elapsed_total = time.time() - t_start
+            log(f"    [memsnap cand {cidx+1}/{len(candidates)}, elapsed={elapsed_total:.0f}s]", log_path)
+            try:
+                with open("/proc/meminfo") as f:
+                    for ml in f:
+                        if ml.startswith(("MemTotal", "MemFree", "MemAvailable", "Buffers", "Cached", "SwapFree")):
+                            log(f"      {ml.strip()}", log_path)
+            except Exception:
+                pass
+
+    elapsed_total = time.time() - t_start
+    log("", log_path)
+    log("=" * 60, log_path)
+    total_moments = sum(int(s.get("n_replay_moments", 0)) for s in candidate_summary_rows)
+    log(f"Phase 3 candidate-loop done. runtime={elapsed_total:.1f}s ({elapsed_total/60:.2f} min)", log_path)
+    log(f"Candidates processed: {len(candidate_summary_rows)}/{len(candidates)}", log_path)
+    log(f"Total replay moments: {total_moments}", log_path)
+    log("=" * 60, log_path)
+
+    log("Merging per-candidate replay_tape parquets ...", log_path)
+    import glob
+    cand_tape_paths = sorted(glob.glob(os.path.join(out_dir, "replay_tape_cand_*.parquet")))
+    log(f"  found {len(cand_tape_paths)} per-candidate tape parquets", log_path)
+    if cand_tape_paths:
+        merged_dfs = []
+        for tp in cand_tape_paths:
+            d = pq.read_table(tp).to_pandas()
+            merged_dfs.append(d)
+        merged = pd.concat(merged_dfs, ignore_index=True)
+        out_path = os.path.join(out_dir, "replay_tape.parquet")
+        pq.write_table(pa.Table.from_pandas(merged, preserve_index=False), out_path, compression="snappy")
+        log(f"  wrote merged {len(merged)} rows, {os.path.getsize(out_path):,} bytes", log_path)
+        del merged, merged_dfs
+        # Per-candidate intermediates kept on disk for diagnostic / resume use.
+    else:
+        log(f"  no per-candidate tapes found - empty replay", log_path)
+
+    log("Writing candidate_summary.parquet ...", log_path)
+    df_summary = pd.DataFrame(candidate_summary_rows)
+    out_path = os.path.join(out_dir, "candidate_summary.parquet")
+    pq.write_table(pa.Table.from_pandas(df_summary, preserve_index=False), out_path, compression="snappy")
+    log(f"  wrote {len(df_summary)} rows, {os.path.getsize(out_path):,} bytes", log_path)
+
+    log("Writing scenario_comparison.parquet ...", log_path)
+    df_scen = pd.DataFrame(scenario_comparison_rows)
+    out_path = os.path.join(out_dir, "scenario_comparison.parquet")
+    pq.write_table(pa.Table.from_pandas(df_scen, preserve_index=False), out_path, compression="snappy")
+    log(f"  wrote {len(df_scen)} rows, {os.path.getsize(out_path):,} bytes", log_path)
+
+    log("Writing cell_drift_per_minute.parquet ...", log_path)
+    df_drift = pd.DataFrame(cell_drift_rows)
+    out_path = os.path.join(out_dir, "cell_drift_per_minute.parquet")
+    pq.write_table(pa.Table.from_pandas(df_drift, preserve_index=False), out_path, compression="snappy")
+    log(f"  wrote {len(df_drift)} rows, {os.path.getsize(out_path):,} bytes", log_path)
+
+    log("", log_path)
+    log("=== Validation gate (spec Section 6) ===", log_path)
+
+    check1_count = int((df_summary["n_replay_moments"] >= 50).sum())
+    check1_pass = bool(check1_count == len(df_summary))
+    log(f"  Check 1 (n_replay_moments >= 50): {check1_count}/{len(df_summary)} {'PASS' if check1_pass else 'FAIL'}", log_path)
+
+    check2_in_band = ((df_summary["replay_fill_rate"] >= 0.05) & (df_summary["replay_fill_rate"] <= 0.95))
+    check2_pass = bool(check2_in_band.all())
+    log(f"  Check 2 (fill_rate in [0.05,0.95]): {int(check2_in_band.sum())}/{len(df_summary)} {'PASS' if check2_pass else 'FAIL'}", log_path)
+    if not check2_pass:
+        outliers = df_summary[~check2_in_band][["candidate_id","replay_fill_rate"]].head(5)
+        log(f"    outliers head: {outliers.to_dict('records')}", log_path)
+
+    deltas = df_summary["replay_capture_A_net_mean"] - df_summary["replay_capture_B_net_mean"]
+    deltas_clean = deltas.dropna()
+    if len(deltas_clean) > 0:
+        mean_abs_delta = float(deltas_clean.abs().mean())
+        directional = float((deltas_clean < 0).mean())
+        check3_pass = bool((mean_abs_delta < 0.01) or (directional > 0.7) or (directional < 0.3))
+        log(f"  Check 3 (A/B coherence): mean|A-B|=${mean_abs_delta:.4f}, B>A in {directional:.1%} {'PASS' if check3_pass else 'FAIL'}", log_path)
+    else:
+        check3_pass, mean_abs_delta, directional = False, None, None
+        log(f"  Check 3: no paired data, FAIL", log_path)
+
+    sim_vs_real_A = (df_summary["replay_capture_A_net_mean"] <= df_summary["capture_mean_simulated"])
+    sim_vs_real_A_clean = sim_vs_real_A.dropna()
+    check4_pct = float(sim_vs_real_A_clean.mean()) if len(sim_vs_real_A_clean) > 0 else 0.0
+    check4_pass = bool(check4_pct >= 0.90)
+    log(f"  Check 4 (realized<=simulated): {check4_pct:.1%} {'PASS' if check4_pass else 'FAIL'}", log_path)
+
+    paired_summary = df_summary.dropna(subset=["capture_mean_simulated", "replay_capture_A_net_mean"])
+    if len(paired_summary) >= 5:
+        try:
+            from scipy.stats import spearmanr
+            rho_sim, pval_sim = spearmanr(paired_summary["capture_mean_simulated"], paired_summary["replay_capture_A_net_mean"])
+            check5_pass = bool(rho_sim is not None and rho_sim >= 0.75)
+            log(f"  Check 5 (Spearman sim vs real): rho={rho_sim:.4f} p={pval_sim:.4g} n={len(paired_summary)} {'PASS' if check5_pass else 'FAIL'}", log_path)
+        except Exception as e:
+            rho_sim = paired_summary["capture_mean_simulated"].corr(paired_summary["replay_capture_A_net_mean"], method="spearman")
+            pval_sim = None
+            check5_pass = bool(rho_sim is not None and rho_sim >= 0.75)
+            log(f"  Check 5 (Spearman pandas fallback): rho={rho_sim} {'PASS' if check5_pass else 'FAIL'}", log_path)
+    else:
+        check5_pass, rho_sim, pval_sim = False, None, None
+        log(f"  Check 5: insufficient data n={len(paired_summary)}, FAIL", log_path)
+
+    drift_t30 = df_drift[df_drift["minutes_since_T0"] == 30]
+    median_drift_t30 = float(drift_t30["pct_still_matches"].median()) if len(drift_t30) > 0 else None
+    log(f"  Check 6 (informative): median pct_still_matches at T+30 = {median_drift_t30}", log_path)
+
+    overall_pass = check1_pass and check2_pass and check3_pass and check4_pass and check5_pass
+    log("", log_path)
+    log(f"=== OVERALL Phase 3 verdict: {'PASS' if overall_pass else 'FAIL'} ===", log_path)
+    log("=" * 60, log_path)
+
+    summary = {
+        "phase": 3,
+        "n_per_cat": n_per_cat,
+        "candidates_total": int(len(candidates)),
+        "candidates_processed": int(len(candidate_summary_rows)),
+        "total_replay_moments": int(total_moments),
+        "runtime_seconds": round(elapsed_total, 1),
+        "runtime_minutes": round(elapsed_total / 60, 2),
+        "spec_commits": ["40db959", "3b62039"],
+        "validation_gate": {
+            "check1_n_moments_50_pass": check1_pass,
+            "check1_count": check1_count,
+            "check2_fill_rate_band_pass": check2_pass,
+            "check2_in_band_count": int(check2_in_band.sum()),
+            "check3_AB_coherence_pass": check3_pass,
+            "check3_mean_abs_delta": mean_abs_delta,
+            "check3_B_gt_A_pct": directional,
+            "check4_realized_le_simulated_pass": check4_pass,
+            "check4_pct_satisfied": check4_pct,
+            "check5_spearman_rank_pass": check5_pass,
+            "check5_rho": float(rho_sim) if rho_sim is not None else None,
+            "check5_pval": float(pval_sim) if pval_sim is not None else None,
+            "check6_median_drift_t30": median_drift_t30,
+            "OVERALL_PASS": overall_pass,
+        },
+    }
+    summary_path = os.path.join(out_dir, "run_summary.json")
+    with open(summary_path, "w") as f:
+        json.dump(summary, f, indent=2, default=str)
+    log(f"Wrote run_summary.json", log_path)
+
+
+# ============================================================
 # CLI
 # ============================================================
 
@@ -847,8 +1266,10 @@ def main():
         phase1()
     elif args.phase == 2:
         phase2()
+    elif args.phase == 3:
+        phase3()
     else:
-        print(f"Phase {args.phase} not yet implemented (Phase 3 lands after Phase 2 PASS).", file=sys.stderr)
+        print(f"Phase {args.phase} not implemented.", file=sys.stderr)
         sys.exit(2)
 
 

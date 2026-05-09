@@ -294,7 +294,10 @@ def replay_one_moment(ticker, candles_df, trades_df, T0_unix, T0_cell,
         t_unix = int(trade["created_time_ts"])
         if t_unix > entry_timeout_ts or t_unix > settlement_ts_unix:
             break
-        if trade["taker_side"] == "yes" and float(trade["yes_price_dollars"]) <= our_bid_price:
+        # Convention: taker_side names the side the taker BOUGHT (Session 9 empirical, 5,878-pair probe).
+        # Maker BID for yes is filled by a taker who BUYS no (= SELLS yes, hitting the bid).
+        # Therefore entry fill condition is taker_side == "no", not "yes".
+        if trade["taker_side"] == "no" and float(trade["yes_price_dollars"]) <= our_bid_price:
             fill_time_unix = t_unix
             fill_price = our_bid_price
             break
@@ -359,8 +362,8 @@ def replay_one_moment(ticker, candles_df, trades_df, T0_unix, T0_cell,
         t_unix = int(trade["created_time_ts"])
         if t_unix > horizon_for_exit_ts:
             break
-        if trade["taker_side"] != "no":
-            continue  # only taker-sells fill our resting sell
+        if trade["taker_side"] != "yes":
+            continue  # Convention: maker SELL for yes is filled by taker who BUYS yes (taker_side == "yes"), paying ask.
         yes_price = float(trade["yes_price_dollars"])
         if exit_A_time is None and yes_price >= scenario_A_target:
             exit_A_time = t_unix

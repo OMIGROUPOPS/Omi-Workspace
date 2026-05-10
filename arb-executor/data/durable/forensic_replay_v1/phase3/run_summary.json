@@ -1,0 +1,29 @@
+{
+  "phase": 3,
+  "n_per_cat": 20,
+  "candidates_total": 80,
+  "candidates_processed": 80,
+  "total_replay_moments": 75833,
+  "runtime_seconds": 15492.9,
+  "runtime_minutes": 258.21,
+  "spec_commits": [
+    "40db959",
+    "3b62039"
+  ],
+  "validation_gate": {
+    "check1_n_moments_50_pass": true,
+    "check1_count": 80,
+    "check2_fill_rate_band_pass": false,
+    "check2_in_band_count": 75,
+    "check3_AB_coherence_pass": true,
+    "check3_mean_abs_delta": 0.015780366352771358,
+    "check3_B_gt_A_pct": 0.7875,
+    "check4_realized_le_simulated_pass": false,
+    "check4_pct_satisfied": 0.2375,
+    "check5_spearman_rank_pass": false,
+    "check5_rho": 0.13627513191999022,
+    "check5_pval": 0.22807561947278646,
+    "check6_median_drift_t30": 0.5174050632911392,
+    "OVERALL_PASS": false
+  }
+}

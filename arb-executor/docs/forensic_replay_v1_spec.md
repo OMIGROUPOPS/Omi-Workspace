@@ -297,4 +297,36 @@ This check is informative — does NOT gate v1 PASS — but informs deployment c
 
 ---
 
-*Spec authored 2026-05-06 ET (Session 9). Closes the SIMONS_MODE Section 6 first-deliverable forward reference when committed and producer (build_forensic_replay_v1.py) implementation lands.*
+## 10. Phase 3 corrected verdict (2026-05-10 ET amendment)
+
+**AMENDMENT 2026-05-10 ET (Session 9, Cat 11 anchor — commit `73de3a6`, B25 mechanism — commit `033fb8a`, SIMONS_MODE Section 6 closure — commit `c87e797`):**
+
+The deliverable this spec authored has now been built and run end-to-end. Phase 1 (calibration probe, commit `4567699d` initial + `43ae049` timestamp fix), Phase 2 (single-candidate full run, commit `ed4d2e7`), and Phase 3 (top-80 candidates × full moments, commit `db1d249` base + `a058212` convention fix) all completed. The corrected Phase 3 outcome is **FAIL on the spec's gating Checks 4 and 5** — see ANALYSIS_LIBRARY.md Cat 11 (commit `4e36f30`) for the canonical anchor with full validation-gate-by-check breakdown.
+
+**Convention amendment trail:** Spec commits `40db959` (initial) → `3b62039` (column-name + NaN-preservation invariant in Section 3.1 step 1) → `a058212` (taker_side convention invariant in Section 3.1 step 1, plus step 3 entry-fill and step 6 exit-fill condition flips). The `a058212` amendment is anchored on a Session 9 empirical probe of 5,878 trade-candle pairs across 5 tickers, which established that `taker_side` names the side the taker BOUGHT (clusters: `taker_side="yes"` at AT_ASK 56% vs AT_BID 24%; `taker_side="no"` at AT_BID 49% vs AT_ASK 26%). The OSO/KAL forensic single-moment evidence (producer matched a `taker_side="no"` at $0.99 settlement-bid-clearing event when the real fill was the `taker_side="yes"` at $0.91 target threshold 22 seconds earlier) was the smoking-gun motivator.
+
+**Producer commit chain:** `4567699d` (Phase 1 base) → `43ae049` (microsecond-vs-nanosecond timestamp conversion fix in `load_ticker_trades` — pandas datetime64[us] cast to int64 returns microseconds, not nanoseconds; `// 10**9` produced values 1000× too small; symptom was Phase 1 fill_rate=0%) → `ed4d2e7` (Phase 2 implementation) → `db1d249` (Phase 3 base + per-candidate incremental writes for kill-resilience) → `a058212` (taker_side convention fix on entry leg + exit leg, mirroring the spec amendment).
+
+**Phase 3 corrected outputs:** Commit `73de3a6`, persisted at `data/durable/forensic_replay_v1/phase3/`. Five files in repo: `run_summary.json` + `candidate_summary.parquet` + `scenario_comparison.parquet` + `cell_drift_per_minute.parquet` + `NOTE.md` (catalog). Per-candidate intermediates and the corrupted-archive `phase3_pre_convention_fix/` are on-disk-only per the NOTE.md catalog.
+
+**Verdict:** Spearman ρ=0.136 (p=0.23) between Layer B simulated `capture_mean` and realized `capture_A_net_mean` across 80 candidates — far below the spec's Section 6 Check 5 PASS threshold of 0.75. Check 4 (realized ≤ simulated for ≥90%): FAIL at 23.8% — 76.2% of candidates have realized > simulated. The convention amendment trail did NOT change Check 4 + Check 5 outcomes (corrupted-run had ρ=0.333; corrected-run dropped to ρ=0.136 — the corrupted-run ρ was inflated by the bug introducing a spurious settlement-trends-to-yes correlation that masked the underlying structural divergence).
+
+**Mechanism named:** B25 (commit `033fb8a` in `docs/LESSONS.md`) — minute-cadence fire_rate undercount. Layer B v1's `walk_trajectory` detects threshold crosses by checking `yes_bid_close` at minute boundaries (g9_candles cadence). Tick-level reality has trades happening at sub-minute granularity; between consecutive candle minutes, the bid can spike to threshold and back down, hitting a hypothetical resting sell, with no trace in the minute close. Within `capture_mean = fire_rate × capture_per_fired`, `capture_per_fired` is correct (limit policies fire at exactly +limit_c when they fire) but `fire_rate` undercounts. Policy-class-dependent: limit policies (n=39, 49% of corpus) realize +$0.072 over simulated (2.4× understatement); time_stop (n=21) calibrated within $0.008; trailing (n=10) under-realize by $0.005.
+
+**Path forward:** Layer B v2 with tick-level fill semantics, NOT a producer bug fix on v1. The v1 producer is empirically validated against the convention probe and 5,878-pair empirical anchor; its outputs are correct measurements of tick-level reality. The simulator (Layer B v1) is what needs revision. Layer B v2 folds forensic replay's tick-level mechanism back into the simulator at the source, generalizes to all 12,455 non-settle premarket cells (Phase 3 evaluated only top-20-per-category = 80). ROADMAP T32 (Layer C v1, fees on idealized fills) is demoted by this finding — fees are a 1-2¢ correction, candle-cadence undercount is a 7¢+ correction on the dominant policy class. Layer B v2 spec authoring becomes the higher-priority deliverable; ROADMAP demotion + new T-item land in a subsequent single-concern commit.
+
+**Deployable cohort identified empirically** (per Cat 11): 40 of 80 candidates meet `replay_fill_rate ≥ 0.40 AND cell_drift_at_fill ≤ 0.50`. Top deployable by Scenario B is **ATP_MAIN 50-60 tight low / limit_c=30** (B=$0.261/moment, fill 76%, drift 9%, win 94%, n=2914 moments) — most production-ready cell in the evaluated set.
+
+**Production execution recommendation:** Scenario B (fill-time exit anchor). B > A in 78.8% of candidates with mean delta $0.0158/moment, empirically robust under both convention readings (corrupted-run B>A 66.2% strengthens to 78.8% under corrected convention).
+
+**Implications for prior sections of this spec:**
+- Section 6 validation gate Checks 4 + 5 FAIL — structural per the B25 mechanism, NOT a convention-bug artifact (corrected-run ρ dropped relative to corrupted) and NOT a sample-size artifact (n=80 candidates with full moment universes per cell).
+- Section 6 Check 2 FAIL on 5 WTA_CHALL outliers (deep-favorite cells with `fill_rate > 0.95`); other 75 candidates within band. Outliers are a known cell-class limitation, not a producer issue.
+- Section 7 calibration probe against `kalshi_fills_history.json` — DEFERRED. Not run, because Phase 3 surfaced the structural simulator failure (B25 mechanism) that supersedes the queue-position calibration question. Section 7 remains valid v2 scope.
+- Section 8 "v2: in_match channel" and "v2: queue position modeling" remain valid open items but are now LOWER priority than the now-named "v2: tick-level fill semantics" (Layer B v2) deliverable, which the ROADMAP T-item (subsequent commit) will introduce.
+
+**Cross-references:** Cat 11 (commit `4e36f30` ANALYSIS_LIBRARY anchor — full per-check validation gate breakdown + by-policy gap pattern + empirical deployable cohort metrics); B25 (commit `033fb8a` LESSONS mechanism); SIMONS_MODE Section 6 closure (commit `c87e797`); spec commits `40db959` + `3b62039` + `a058212`; outputs commit `73de3a6`; sibling Session 9 Cat-anchored mechanism amendments (B23/Cat 6, B24/Cat 10, E16/Cat 5, F32/Cat 9) — Cat 11 + B25 + this Section 10 are the post-diagnostic-chain forensic-replay analog.
+
+---
+
+*Spec authored 2026-05-06 ET (Session 9). Phase 3 corrected verdict landed 2026-05-10 ET via Section 10 amendment. The SIMONS_MODE Section 6 first-deliverable forward-reference is closed in commit `c87e797` (forensic replay produced the divergence finding the original Section 6 framing forecasted as a possibility).*

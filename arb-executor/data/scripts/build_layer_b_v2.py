@@ -191,7 +191,13 @@ def load_ticker_trades(ticker, start_ts_unix=None):
     if table.num_rows == 0:
         return None
     df = table.to_pandas()
-    df["created_time_ts"] = pd.to_datetime(df["created_time"]).map(lambda x: int(x.timestamp()))
+    # ISO8601 format='ISO8601' invokes pandas' flexible ISO8601 parser, handling mixed
+    # variants in the g9_trades created_time column: '2026-04-22T19:24:34.123456+00:00',
+    # '2026-02-05T16:30:19.13876Z', and '2026-02-16T14:48:39Z' all coexist. Default
+    # auto-inference picks one strict format from the sampled cache and crashes on rows
+    # that don't match (Session 11 Phase 3 crash at cell 20, KXATPCHALLENGERMATCH-26FEB05ROTPRI-ROT).
+    df["created_time_ts"] = pd.to_datetime(df["created_time"], format="ISO8601") \
+        .map(lambda x: int(x.timestamp()))
     df = df.sort_values("created_time_ts").reset_index(drop=True)
     if start_ts_unix is not None:
         df = df[df["created_time_ts"] >= start_ts_unix].reset_index(drop=True)

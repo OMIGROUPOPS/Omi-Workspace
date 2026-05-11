@@ -1,0 +1,111 @@
+[2026-05-11T08:58:53] ============================================================
+[2026-05-11T08:58:53] Layer B v2 — Phase 2: single cell × all non-settle policies × all moments
+[2026-05-11T08:58:53] ============================================================
+[2026-05-11T08:58:53] Cell: premarket__ATP_MAIN__50-60__tight__low
+[2026-05-11T08:58:53] Manifest key: premarket__5__tight__low__ATP_MAIN
+[2026-05-11T08:58:53] Policy grid: 53 non-settle policies
+[2026-05-11T08:58:53]   By type: {'limit': 9, 'time_stop': 7, 'trailing': 8, 'limit_time_stop': 20, 'limit_trailing': 9}
+[2026-05-11T08:58:53] Tickers in manifest: 30
+[2026-05-11T08:58:53] Ticker 1/30: KXATPMATCH-26JAN14YMEWON-WON (moments so far: 0, elapsed: 0s)
+[2026-05-11T08:58:54] Ticker 2/30: KXATPMATCH-25OCT13KECMUL-KEC (moments so far: 3, elapsed: 1s)
+[2026-05-11T08:58:55] Ticker 3/30: KXATPMATCH-25JUL02RUBHAR-RUB (moments so far: 5, elapsed: 2s)
+[2026-05-11T08:58:56] Ticker 4/30: KXATPMATCH-25JUN30DARSAF-DAR (moments so far: 12, elapsed: 3s)
+[2026-05-11T08:58:57] Ticker 5/30: KXATPMATCH-25SEP30TIEMED-TIE (moments so far: 14, elapsed: 4s)
+[2026-05-11T08:59:00] Ticker 6/30: KXATPMATCH-26FEB09DZUDEL-DEL (moments so far: 16, elapsed: 7s)
+[2026-05-11T08:59:28] Ticker 7/30: KXATPMATCH-25OCT07MUNDJO-DJO (moments so far: 203, elapsed: 35s)
+[2026-05-11T08:59:33] Ticker 8/30: KXATPMATCH-25AUG03RUBDAV-DAV (moments so far: 207, elapsed: 40s)
+[2026-05-11T08:59:43] Ticker 9/30: KXATPMATCH-25OCT30FRIBUB-BUB (moments so far: 259, elapsed: 50s)
+[2026-05-11T08:59:45] Ticker 10/30: KXATPMATCH-25OCT18MPELEH-LEH (moments so far: 261, elapsed: 52s)
+[2026-05-11T08:59:46] Ticker 11/30: KXATPMATCH-26JAN04MMOKYP-MMO (moments so far: 303, elapsed: 53s)
+[2026-05-11T08:59:47] Ticker 12/30: KXATPMATCH-25OCT31MEDZVE-MED (moments so far: 305, elapsed: 54s)
+[2026-05-11T09:06:40] Ticker 13/30: KXATPMATCH-26FEB18GIRRUU-RUU (moments so far: 1201, elapsed: 467s)
+[2026-05-11T09:06:44] Ticker 14/30: KXATPMATCH-26JAN13GRIHUM-GRI (moments so far: 1204, elapsed: 471s)
+[2026-05-11T09:06:46] Ticker 15/30: KXATPMATCH-26JAN21SPIYIB-YIB (moments so far: 1213, elapsed: 473s)
+[2026-05-11T09:06:48] Ticker 16/30: KXATPMATCH-25NOV12SHEAUG-SHE (moments so far: 1220, elapsed: 475s)
+[2026-05-11T09:15:14] Ticker 17/30: KXATPMATCH-25AUG19BELMUN-BEL (moments so far: 1817, elapsed: 981s)
+[2026-05-11T09:15:15] Ticker 18/30: KXATPMATCH-25JUL31KHANAV-NAV (moments so far: 1821, elapsed: 982s)
+[2026-05-11T09:15:16] Ticker 19/30: KXATPMATCH-26FEB18FUCKHA-FUC (moments so far: 1826, elapsed: 983s)
+[2026-05-11T09:15:19] Ticker 20/30: KXATPMATCH-25AUG24BLAMAR-MAR (moments so far: 1828, elapsed: 986s)
+[2026-05-11T09:15:23] Ticker 21/30: KXATPMATCH-26JAN08MULGIR-MUL (moments so far: 1843, elapsed: 990s)
+[2026-05-11T09:15:28] Ticker 22/30: KXATPMATCH-26FEB26YIBCOB-COB (moments so far: 1851, elapsed: 995s)
+[2026-05-11T09:15:31] Ticker 23/30: KXATPMATCH-25SEP26RUUBER-RUU (moments so far: 1852, elapsed: 998s)
+[2026-05-11T09:15:35] Ticker 24/30: KXATPMATCH-25OCT21MAJSHE-MAJ (moments so far: 1875, elapsed: 1002s)
+[2026-05-11T09:15:38] Ticker 25/30: KXATPMATCH-25AUG30ZVEAUG-AUG (moments so far: 1878, elapsed: 1005s)
+[2026-05-11T09:15:45] Ticker 26/30: KXATPMATCH-25SEP18VUKGOF-VUK (moments so far: 1895, elapsed: 1012s)
+[2026-05-11T09:18:40] Ticker 27/30: KXATPMATCH-25OCT01CILBAS-CIL (moments so far: 2675, elapsed: 1187s)
+[2026-05-11T09:18:42] Ticker 28/30: KXATPMATCH-25OCT18COMGOF-GOF (moments so far: 2693, elapsed: 1189s)
+[2026-05-11T09:18:53] Ticker 29/30: KXATPMATCH-25JUL13DUCMAN-DUC (moments so far: 2822, elapsed: 1200s)
+[2026-05-11T09:18:57] Ticker 30/30: KXATPMATCH-25OCT16FEAYME-FEA (moments so far: 2902, elapsed: 1204s)
+[2026-05-11T09:19:06] 
+[2026-05-11T09:19:06] ============================================================
+[2026-05-11T09:19:06] Phase 2 complete. Runtime: 1212.6s (20.21 min)
+[2026-05-11T09:19:06] Moments collected: 2914
+[2026-05-11T09:19:06] Policies × moments rows emitted: 154442 = 2914 × 53
+[2026-05-11T09:19:06] Tickers processed: 30/30
+[2026-05-11T09:19:06] Skipped (no metadata or scalar): 0
+[2026-05-11T09:19:06] Skipped (no candles): 0
+[2026-05-11T09:19:06] Skipped (no trades): 0
+[2026-05-11T09:19:06] ============================================================
+[2026-05-11T09:19:13] Wrote replay_tape_phase2.parquet: 154,442 rows, 362,897 bytes
+[2026-05-11T09:19:13] Wrote cell_summary_phase2.parquet: 53 rows
+[2026-05-11T09:19:13] 
+[2026-05-11T09:19:13] === Validation: v2 vs v1 phase3 byte-equivalence on limit-policy overlap ===
+[2026-05-11T09:19:13] v1 phase3 limit candidates for this cell: 5
+[2026-05-11T09:19:13]   {"limit_c": 30}: v1=$0.2610  v2=$0.2610  delta=$+0.0000  PASS
+[2026-05-11T09:19:13]   {"limit_c": 20}: v1=$0.1785  v2=$0.1785  delta=$+0.0000  PASS
+[2026-05-11T09:19:13]   {"limit_c": 15}: v1=$0.1436  v2=$0.1436  delta=$+0.0000  PASS
+[2026-05-11T09:19:13]   {"limit_c": 10}: v1=$0.1044  v2=$0.1044  delta=$+0.0000  PASS
+[2026-05-11T09:19:13]   {"limit_c": 7}: v1=$0.0909  v2=$0.0909  delta=$+0.0000  PASS
+[2026-05-11T09:19:13] Phase 2 calibration verdict: PASS (5/5 limit candidates byte-match within ±$0.01)
+[2026-05-11T09:19:13] 
+[2026-05-11T09:19:13] === Non-limit policy canonical measurements (v2 proper semantics) ===
+[2026-05-11T09:19:13]   time_stop (n=7 policies):
+[2026-05-11T09:19:13]     {"horizon_min": 1}: A=$-0.0027  B=$-0.0027  fill=0.757
+[2026-05-11T09:19:13]     {"horizon_min": 5}: A=$-0.0025  B=$-0.0025  fill=0.757
+[2026-05-11T09:19:13]     {"horizon_min": 15}: A=$-0.0031  B=$-0.0031  fill=0.757
+[2026-05-11T09:19:13]     {"horizon_min": 30}: A=$-0.0023  B=$-0.0023  fill=0.757
+[2026-05-11T09:19:13]     {"horizon_min": 60}: A=$0.0078  B=$0.0078  fill=0.757
+[2026-05-11T09:19:13]     {"horizon_min": 120}: A=$0.0126  B=$0.0126  fill=0.757
+[2026-05-11T09:19:13]     {"horizon_min": 240}: A=$-0.0097  B=$-0.0097  fill=0.757
+[2026-05-11T09:19:13]   trailing (n=8 policies):
+[2026-05-11T09:19:13]     {"trail_c": 1}: A=$-0.0070  B=$-0.0070  fill=0.757
+[2026-05-11T09:19:13]     {"trail_c": 2}: A=$0.0003  B=$0.0003  fill=0.757
+[2026-05-11T09:19:13]     {"trail_c": 3}: A=$-0.0019  B=$-0.0019  fill=0.757
+[2026-05-11T09:19:13]     {"trail_c": 5}: A=$-0.0009  B=$-0.0009  fill=0.757
+[2026-05-11T09:19:13]     {"trail_c": 7}: A=$-0.0124  B=$-0.0124  fill=0.757
+[2026-05-11T09:19:13]     {"trail_c": 10}: A=$-0.0017  B=$-0.0017  fill=0.757
+[2026-05-11T09:19:13]     {"trail_c": 15}: A=$0.0395  B=$0.0395  fill=0.757
+[2026-05-11T09:19:13]     {"trail_c": 20}: A=$0.0122  B=$0.0122  fill=0.757
+[2026-05-11T09:19:13]   limit_time_stop (n=20 policies):
+[2026-05-11T09:19:13]     {"limit_c": 3, "horizon_min": 15}: A=$-0.0002  B=$0.0004  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 3, "horizon_min": 30}: A=$0.0006  B=$0.0012  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 3, "horizon_min": 60}: A=$0.0027  B=$0.0028  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 3, "horizon_min": 120}: A=$0.0099  B=$0.0110  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 5, "horizon_min": 15}: A=$-0.0001  B=$0.0005  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 5, "horizon_min": 30}: A=$0.0011  B=$0.0023  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 5, "horizon_min": 60}: A=$0.0047  B=$0.0059  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 5, "horizon_min": 120}: A=$0.0137  B=$0.0161  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 10, "horizon_min": 15}: A=$-0.0003  B=$-0.0008  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 10, "horizon_min": 30}: A=$0.0019  B=$0.0018  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 10, "horizon_min": 60}: A=$0.0060  B=$0.0063  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 10, "horizon_min": 120}: A=$0.0192  B=$0.0207  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 15, "horizon_min": 15}: A=$-0.0019  B=$-0.0019  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 15, "horizon_min": 30}: A=$0.0008  B=$0.0004  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 15, "horizon_min": 60}: A=$0.0094  B=$0.0091  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 15, "horizon_min": 120}: A=$0.0274  B=$0.0273  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 20, "horizon_min": 15}: A=$-0.0017  B=$-0.0016  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 20, "horizon_min": 30}: A=$0.0012  B=$0.0013  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 20, "horizon_min": 60}: A=$0.0128  B=$0.0127  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 20, "horizon_min": 120}: A=$0.0348  B=$0.0357  fill=0.757
+[2026-05-11T09:19:13]   limit_trailing (n=9 policies):
+[2026-05-11T09:19:13]     {"limit_c": 5, "trail_c": 3}: A=$-0.0001  B=$-0.0033  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 5, "trail_c": 5}: A=$0.0029  B=$0.0006  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 5, "trail_c": 10}: A=$0.0100  B=$0.0062  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 10, "trail_c": 3}: A=$0.0005  B=$0.0018  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 10, "trail_c": 5}: A=$0.0052  B=$0.0080  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 10, "trail_c": 10}: A=$0.0148  B=$0.0191  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 15, "trail_c": 3}: A=$-0.0013  B=$-0.0014  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 15, "trail_c": 5}: A=$0.0055  B=$0.0066  fill=0.757
+[2026-05-11T09:19:13]     {"limit_c": 15, "trail_c": 10}: A=$0.0133  B=$0.0146  fill=0.757
+[2026-05-11T09:19:13] Wrote /root/Omi-Workspace/arb-executor/data/durable/layer_b_v2/phase2/run_summary_phase2.json
+[2026-05-11T09:19:13] ============================================================

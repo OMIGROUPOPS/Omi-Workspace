@@ -614,19 +614,520 @@ def phase1():
 # Phase 2 / Phase 3 — pending separate single-concern commits
 # ============================================================
 
-def phase2():
-    """Phase 2: single-cell × all ~53 non-settle policies × all moments.
+# ============================================================
+# Phase 2: vectorized per-policy semantics (per spec Section 3.4)
+# ============================================================
 
-    Per spec Section 5.3: validates vectorized-policy correctness at full per-cell
-    moment scale. Reproduces forensic replay v1's 5 candidates for ATP_MAIN 50-60
-    tight low (limit_c ∈ {7, 10, 15, 20, 30}) within ±$0.01 each. Pending separate
-    single-concern commit per Coordination Point 2 STOP discipline.
+def build_cell_policy_grid(c):
+    """Return list of non-settle policies for the cell of candidate c.
+
+    Reads from Layer B v1 exit_policy_per_cell.parquet, filters to the same cell key,
+    excludes settle-horizon time_stop / limit_time_stop per v2 scope. Returns
+    (grid, grid_df) where grid is a list of policy dicts and grid_df is the raw
+    parquet rows for output schema reuse.
     """
-    raise NotImplementedError(
-        "Phase 2 not yet implemented. Pending separate single-concern commit "
-        "after Phase 1 chat-side review (Coordination Point 2 STOP per "
-        "docs/SESSION10_HANDOFF.md)."
+    t = pq.read_table(LAYER_B_PARQUET).to_pandas()
+    cell = t[
+        (t["channel"] == "premarket")
+        & (t["category"] == c["category"])
+        & (t["entry_band_lo"] == c["entry_band_lo"])
+        & (t["entry_band_hi"] == c["entry_band_hi"])
+        & (t["spread_band"] == c["spread_band"])
+        & (t["volume_intensity"] == c["volume_intensity"])
+    ].copy()
+
+    def _is_settle(row):
+        try:
+            params = json.loads(row["policy_params"])
+        except Exception:
+            return False
+        return params.get("horizon_min") == "settle"
+
+    cell["_is_settle"] = cell.apply(_is_settle, axis=1)
+    cell = cell[~cell["_is_settle"]].copy().drop(columns=["_is_settle"]).reset_index(drop=True)
+
+    grid = []
+    for idx, row in cell.iterrows():
+        params = json.loads(row["policy_params"])
+        grid.append({
+            "idx": idx,
+            "policy_type": row["policy_type"],
+            "policy_params": params,
+            "policy_params_str": row["policy_params"],
+            "limit_c": params.get("limit_c"),
+            "trail_c": params.get("trail_c"),
+            "horizon_min": params.get("horizon_min"),
+        })
+    return grid, cell
+
+
+def evaluate_moment_vectorized(ticker, candles_df, trades_df, T0_unix, T0_cell,
+                               policy_grid, settlement_ts_unix, settlement_value,
+                               match_start_ts):
+    """Evaluate ALL policies on the cell against one (ticker, T0) entry moment.
+
+    Per spec Section 3.4 v2 per-policy semantics. Single tick walk for entry fill,
+    single tick walk for exit detection — at each tick event, all policies in the
+    cell's grid are updated in vector. Per-policy state arrays track exit flag,
+    exit time/price/outcome, and trailing running_max where applicable.
+
+    Returns a list of per-policy row dicts. One row per (policy_idx) for this moment.
+    """
+    our_bid_price = T0_cell["yes_bid_close"]
+    entry_timeout_ts = T0_unix + 240 * 60
+    n = len(policy_grid)
+
+    # Step 3: entry fill walk (single pass, shared across all policies)
+    fill_time_unix = None
+    fill_price = None
+    for _, trade in trades_df.iterrows():
+        t_unix = int(trade["created_time_ts"])
+        if t_unix > entry_timeout_ts or t_unix > settlement_ts_unix:
+            break
+        if trade["taker_side"] == "no" and float(trade["yes_price_dollars"]) <= our_bid_price:
+            fill_time_unix = t_unix
+            fill_price = our_bid_price
+            break
+
+    base_row = {
+        "ticker": ticker, "T0_unix": T0_unix,
+        "T0_cell_key": cell_key_str(T0_cell),
+        "fill_time_unix": fill_time_unix,
+        "fill_price_dollars": fill_price,
+        "fill_time_cell_key": None,
+        "cell_drift_at_fill": None,
+        "time_to_fill_minutes": None,
+    }
+
+    if fill_time_unix is None:
+        # All policies unfilled
+        return [
+            dict(base_row,
+                 policy_idx=p["idx"], policy_type=p["policy_type"],
+                 policy_params=p["policy_params_str"],
+                 outcome_A="unfilled", capture_A_gross_dollars=None, time_to_exit_A_minutes=None,
+                 outcome_B="unfilled", capture_B_gross_dollars=None, time_to_exit_B_minutes=None)
+            for p in policy_grid
+        ]
+
+    base_row["time_to_fill_minutes"] = (fill_time_unix - T0_unix) / 60.0
+
+    # Step 4: fill-time cell state
+    fill_minute_ts = (fill_time_unix // 60) * 60
+    fill_time_cell = cell_state_at_minute(
+        candles_df, fill_minute_ts, match_start_ts, settlement_ts_unix, ticker
     )
+    base_row["fill_time_cell_key"] = cell_key_str(fill_time_cell)
+    base_row["cell_drift_at_fill"] = (base_row["T0_cell_key"] != base_row["fill_time_cell_key"])
+
+    # Step 5: per-policy targets and horizons
+    target_A = [None] * n
+    target_B = [None] * n
+    horizon_cap_ts = [None] * n  # same for A and B (clock-based, not cell-keyed)
+
+    for i, p in enumerate(policy_grid):
+        ptype = p["policy_type"]
+        h = p["horizon_min"]
+        # Determine horizon cap — T0_unix-anchored per v1 inheritance convention.
+        # v1's `evaluate_policy` and forensic_replay_v1's `replay_one_moment` both
+        # compute horizon_cap_ts = T0_unix + horizon_min*60. Using fill_time_unix
+        # instead extends each moment's exit window by (fill_time - T0_unix) ≈ 30-90s,
+        # catching ~2-3% more fires across a 240-min window — exactly the +$0.004 to
+        # +$0.009 systematic delta observed in Phase 2 pre-fix on the 5 limit-policy
+        # byte-comparison anchors. T0-based caps preserve v1-byte-equivalence; the
+        # strategically-distinct fill_time-anchored convention is a v3 option.
+        if ptype in ("time_stop", "limit_time_stop"):
+            cap_ts = T0_unix + int(h) * 60
+        else:
+            # limit / trailing / limit_trailing — default 240 min from T0
+            cap_ts = T0_unix + 240 * 60
+        horizon_cap_ts[i] = min(cap_ts, settlement_ts_unix)
+
+        # Compute limit threshold (Scenario A: post-time anchor; B: fill-time anchor)
+        if p["limit_c"] is not None:
+            target_A[i] = fill_price + p["limit_c"] / 100.0
+            if fill_time_cell is not None:
+                target_B[i] = fill_time_cell["yes_ask_close"] + p["limit_c"] / 100.0
+            else:
+                target_B[i] = target_A[i]
+
+    max_horizon = max(horizon_cap_ts)
+
+    # Step 6: vectorized post-fill walk
+    exited_A = [False] * n
+    exited_B = [False] * n
+    exit_data_A = [None] * n  # (time, price_or_None, outcome_str)
+    exit_data_B = [None] * n
+    running_max_A = [fill_price] * n
+    running_max_B = [fill_price] * n
+    last_observed_bid = fill_price  # updated on every taker_side="no" tick
+
+    post_fill_trades = trades_df[trades_df["created_time_ts"] >= fill_time_unix].reset_index(drop=True)
+    for _, trade in post_fill_trades.iterrows():
+        t_unix = int(trade["created_time_ts"])
+        if t_unix > max_horizon:
+            break
+        taker = trade["taker_side"]
+        yes_price = float(trade["yes_price_dollars"])
+
+        if taker == "no":
+            last_observed_bid = yes_price
+
+        for i, p in enumerate(policy_grid):
+            ptype = p["policy_type"]
+            cap_ts_p = horizon_cap_ts[i]
+
+            # --- Scenario A
+            if not exited_A[i]:
+                if t_unix > cap_ts_p:
+                    if ptype in ("time_stop", "limit_time_stop", "trailing", "limit_trailing"):
+                        exit_data_A[i] = (cap_ts_p, last_observed_bid, "horizon_fired")
+                    else:  # limit
+                        exit_data_A[i] = (cap_ts_p, None, "horizon_expired")
+                    exited_A[i] = True
+                else:
+                    if taker == "yes" and target_A[i] is not None and yes_price >= target_A[i]:
+                        exit_data_A[i] = (t_unix, yes_price, "fired_at_target")
+                        exited_A[i] = True
+                    elif taker == "no" and p["trail_c"] is not None:
+                        if yes_price > running_max_A[i]:
+                            running_max_A[i] = yes_price
+                        if yes_price <= running_max_A[i] - p["trail_c"] / 100.0:
+                            exit_data_A[i] = (t_unix, yes_price, "trailing_fired")
+                            exited_A[i] = True
+
+            # --- Scenario B
+            if not exited_B[i]:
+                if t_unix > cap_ts_p:
+                    if ptype in ("time_stop", "limit_time_stop", "trailing", "limit_trailing"):
+                        exit_data_B[i] = (cap_ts_p, last_observed_bid, "horizon_fired")
+                    else:
+                        exit_data_B[i] = (cap_ts_p, None, "horizon_expired")
+                    exited_B[i] = True
+                else:
+                    if taker == "yes" and target_B[i] is not None and yes_price >= target_B[i]:
+                        exit_data_B[i] = (t_unix, yes_price, "fired_at_target")
+                        exited_B[i] = True
+                    elif taker == "no" and p["trail_c"] is not None:
+                        if yes_price > running_max_B[i]:
+                            running_max_B[i] = yes_price
+                        if yes_price <= running_max_B[i] - p["trail_c"] / 100.0:
+                            exit_data_B[i] = (t_unix, yes_price, "trailing_fired")
+                            exited_B[i] = True
+
+        if all(exited_A) and all(exited_B):
+            break
+
+    # Step 7: resolve outcomes for any policies that didn't exit during the walk
+    def _resolve(exited, exit_data, cap_ts_p, ptype):
+        """Resolve final outcome / capture / time_to_exit for one (policy, scenario)."""
+        if exited:
+            t_e, p_e, outc = exit_data
+            if outc == "horizon_expired":
+                return outc, None, (t_e - fill_time_unix) / 60.0
+            elif outc == "horizon_fired":
+                price = p_e if p_e is not None else last_observed_bid
+                return outc, price - fill_price, (t_e - fill_time_unix) / 60.0
+            else:  # fired_at_target / trailing_fired
+                return outc, p_e - fill_price, (t_e - fill_time_unix) / 60.0
+        else:
+            # Walk terminated without this policy firing
+            if cap_ts_p >= settlement_ts_unix - 60:
+                return "settled_unfired", settlement_value - fill_price, None
+            else:
+                # Walk ended before horizon — happens if all-exited break fired
+                # before this policy's horizon. Treat as horizon_fired for non-limit, horizon_expired for limit.
+                if ptype == "limit":
+                    return "horizon_expired", None, None
+                else:
+                    return "horizon_fired", last_observed_bid - fill_price, None
+
+    rows = []
+    for i, p in enumerate(policy_grid):
+        outA, capA, ttA = _resolve(exited_A[i], exit_data_A[i], horizon_cap_ts[i], p["policy_type"])
+        outB, capB, ttB = _resolve(exited_B[i], exit_data_B[i], horizon_cap_ts[i], p["policy_type"])
+        rows.append(dict(base_row,
+            policy_idx=p["idx"], policy_type=p["policy_type"],
+            policy_params=p["policy_params_str"],
+            outcome_A=outA, capture_A_gross_dollars=capA, time_to_exit_A_minutes=ttA,
+            outcome_B=outB, capture_B_gross_dollars=capB, time_to_exit_B_minutes=ttB,
+        ))
+    return rows
+
+
+def phase2():
+    """Phase 2: single-cell × all non-settle policies × all moments.
+
+    Per spec Section 5.3 + Section 3.4: validates the vectorized-policy mechanism
+    on the rank-1 cell (ATP_MAIN 50-60 tight low). All ~53 non-settle policies
+    evaluated against ~2914 cell-matching moments. For limit policies whose
+    (cell, policy) tuples are in v1 phase3's 80 candidates, byte-equivalence is
+    expected. For non-limit policies, v2 measurements are the new canonical truth
+    (v1 ran limit-default-10 stand-in per Section 3.4).
+    """
+    out_dir = os.path.join(OUT_DIR, "phase2")
+    log_path = log_setup(out_dir)
+    t_start = time.time()
+
+    log("=" * 60, log_path)
+    log("Layer B v2 — Phase 2: single cell × all non-settle policies × all moments", log_path)
+    log("=" * 60, log_path)
+
+    c = select_phase1_candidate()  # rank-1 candidate selector also identifies the cell
+    cell_id_base = (f"premarket__{c['category']}__"
+                    f"{int(c['entry_band_lo'])}-{int(c['entry_band_hi'])}__"
+                    f"{c['spread_band']}__{c['volume_intensity']}")
+    mkey = manifest_key_for_candidate(c)
+    log(f"Cell: {cell_id_base}", log_path)
+    log(f"Manifest key: {mkey}", log_path)
+
+    policy_grid, _grid_df = build_cell_policy_grid(c)
+    log(f"Policy grid: {len(policy_grid)} non-settle policies", log_path)
+    by_type = {}
+    for p in policy_grid:
+        by_type[p["policy_type"]] = by_type.get(p["policy_type"], 0) + 1
+    log(f"  By type: {by_type}", log_path)
+
+    with open(SAMPLE_MANIFEST) as f:
+        manifest = json.load(f)
+    if mkey not in manifest:
+        log(f"ABORT: manifest key {mkey} not found", log_path)
+        sys.exit(1)
+    tickers = manifest[mkey]["tickers"]
+    log(f"Tickers in manifest: {len(tickers)}", log_path)
+
+    all_rows = []
+    moments_collected = 0
+    skipped_meta = 0
+    skipped_no_candles = 0
+    skipped_no_trades = 0
+    tickers_processed = 0
+    target_parts = mkey.split("__")
+    target_regime, target_eb_str, target_sb, target_vi, target_cat = target_parts
+
+    for ticker in tickers:
+        tickers_processed += 1
+        elapsed_so_far = time.time() - t_start
+        log(f"Ticker {tickers_processed}/{len(tickers)}: {ticker} "
+            f"(moments so far: {moments_collected}, elapsed: {elapsed_so_far:.0f}s)", log_path)
+
+        meta = load_market_settlement(ticker)
+        if meta is None:
+            skipped_meta += 1
+            continue
+        settlement_ts_unix, settlement_value, _ = meta
+
+        candles_df = load_ticker_candles(ticker)
+        if candles_df is None or len(candles_df) == 0:
+            skipped_no_candles += 1
+            continue
+
+        timestamps = candles_df["end_period_ts"].values
+        volumes = candles_df["volume_fp"].values
+        match_start_ts = detect_match_start(timestamps, volumes)
+
+        matching_moments = []
+        for i in range(len(candles_df)):
+            t = int(timestamps[i])
+            row_c = candles_df.iloc[i]
+            if row_c["yes_bid_close"] is None or row_c["yes_ask_close"] is None:
+                continue
+            try:
+                bid_f = float(row_c["yes_bid_close"])
+                ask_f = float(row_c["yes_ask_close"])
+            except (TypeError, ValueError):
+                continue
+            regime = regime_for_moment(t, match_start_ts, settlement_ts_unix)
+            eb = entry_band_idx(ask_f)
+            sb = spread_band_name(bid_f, ask_f)
+            vi = volume_intensity_for_market(volumes)
+            cat = categorize(ticker)
+            if (regime == target_regime and eb == int(target_eb_str)
+                    and sb == target_sb and vi == target_vi and cat == target_cat):
+                matching_moments.append((t, bid_f, ask_f, regime, eb, sb, vi, cat))
+
+        if not matching_moments:
+            continue
+
+        trades_df = load_ticker_trades(ticker, start_ts_unix=int(timestamps[0]))
+        if trades_df is None:
+            skipped_no_trades += 1
+            continue
+
+        for (t, bid_f, ask_f, regime, eb, sb, vi, cat) in matching_moments:
+            T0_cell = {
+                "regime": regime, "entry_band_idx": eb,
+                "spread_band": sb, "volume_intensity": vi, "category": cat,
+                "yes_bid_close": bid_f, "yes_ask_close": ask_f,
+            }
+            forward_trades = trades_df[trades_df["created_time_ts"] >= t].reset_index(drop=True)
+            rows = evaluate_moment_vectorized(
+                ticker, candles_df, forward_trades, t, T0_cell,
+                policy_grid, settlement_ts_unix, settlement_value, match_start_ts,
+            )
+            all_rows.extend(rows)
+            moments_collected += 1
+
+    elapsed = time.time() - t_start
+    log("", log_path)
+    log("=" * 60, log_path)
+    log(f"Phase 2 complete. Runtime: {elapsed:.1f}s ({elapsed/60:.2f} min)", log_path)
+    log(f"Moments collected: {moments_collected}", log_path)
+    log(f"Policies × moments rows emitted: {len(all_rows)} = {moments_collected} × {len(policy_grid)}",
+        log_path)
+    log(f"Tickers processed: {tickers_processed}/{len(tickers)}", log_path)
+    log(f"Skipped (no metadata or scalar): {skipped_meta}", log_path)
+    log(f"Skipped (no candles): {skipped_no_candles}", log_path)
+    log(f"Skipped (no trades): {skipped_no_trades}", log_path)
+    log("=" * 60, log_path)
+
+    df_tape = pd.DataFrame(all_rows)
+
+    # Per-policy summary
+    summary_rows = []
+    for i, p in enumerate(policy_grid):
+        sub = df_tape[df_tape["policy_idx"] == p["idx"]]
+        capA = sub["capture_A_gross_dollars"].dropna()
+        capB = sub["capture_B_gross_dollars"].dropna()
+        n_filled = int(sub["fill_time_unix"].notna().sum())
+        n_drift = int(sub["cell_drift_at_fill"].fillna(False).astype(bool).sum())
+        summary_rows.append({
+            "policy_idx": p["idx"],
+            "policy_type": p["policy_type"],
+            "policy_params": p["policy_params_str"],
+            "n_replay_moments": len(sub),
+            "n_filled": n_filled,
+            "replay_fill_rate": n_filled / max(1, len(sub)),
+            "cell_drift_rate_at_fill": n_drift / max(1, n_filled) if n_filled > 0 else None,
+            "replay_capture_A_gross_n": len(capA),
+            "replay_capture_A_gross_mean": float(capA.mean()) if len(capA) > 0 else None,
+            "replay_capture_A_gross_p10": float(capA.quantile(0.10)) if len(capA) > 0 else None,
+            "replay_capture_A_gross_p50": float(capA.median()) if len(capA) > 0 else None,
+            "replay_capture_A_gross_p90": float(capA.quantile(0.90)) if len(capA) > 0 else None,
+            "replay_capture_B_gross_n": len(capB),
+            "replay_capture_B_gross_mean": float(capB.mean()) if len(capB) > 0 else None,
+            "replay_capture_B_gross_p10": float(capB.quantile(0.10)) if len(capB) > 0 else None,
+            "replay_capture_B_gross_p50": float(capB.median()) if len(capB) > 0 else None,
+            "replay_capture_B_gross_p90": float(capB.quantile(0.90)) if len(capB) > 0 else None,
+            "outcome_A_dist": sub["outcome_A"].value_counts().to_dict(),
+            "outcome_B_dist": sub["outcome_B"].value_counts().to_dict(),
+        })
+    df_summary = pd.DataFrame(summary_rows)
+
+    # Write outputs
+    tape_path = os.path.join(out_dir, "replay_tape_phase2.parquet")
+    tape_table = pa.Table.from_pandas(df_tape, preserve_index=False)
+    pq.write_table(tape_table, tape_path, compression="snappy")
+    log(f"Wrote replay_tape_phase2.parquet: {len(df_tape):,} rows, "
+        f"{os.path.getsize(tape_path):,} bytes", log_path)
+
+    # df_summary has dict columns (outcome_*_dist) — serialize to JSON strings for parquet
+    df_summary_pq = df_summary.copy()
+    df_summary_pq["outcome_A_dist"] = df_summary_pq["outcome_A_dist"].apply(json.dumps)
+    df_summary_pq["outcome_B_dist"] = df_summary_pq["outcome_B_dist"].apply(json.dumps)
+    summary_path = os.path.join(out_dir, "cell_summary_phase2.parquet")
+    summary_table = pa.Table.from_pandas(df_summary_pq, preserve_index=False)
+    pq.write_table(summary_table, summary_path, compression="snappy")
+    log(f"Wrote cell_summary_phase2.parquet: {len(df_summary):,} rows", log_path)
+
+    # Validation: byte-compare against v1 phase3 for overlapping (cell, policy) limits
+    log("", log_path)
+    log("=== Validation: v2 vs v1 phase3 byte-equivalence on limit-policy overlap ===", log_path)
+    v1_cs = pq.read_table(
+        os.path.join(DUR_DIR, "forensic_replay_v1/phase3/candidate_summary.parquet")
+    ).to_pandas()
+    v1_for_cell = v1_cs[
+        (v1_cs["category"] == c["category"])
+        & (v1_cs["entry_band_lo"] == c["entry_band_lo"])
+        & (v1_cs["spread_band"] == c["spread_band"])
+        & (v1_cs["volume_intensity"] == c["volume_intensity"])
+        & (v1_cs["policy_type"] == "limit")
+    ].copy()
+    log(f"v1 phase3 limit candidates for this cell: {len(v1_for_cell)}", log_path)
+
+    byte_equiv_summary = []
+    for _, v1_row in v1_for_cell.iterrows():
+        v1_params = json.loads(v1_row["policy_params"])
+        match = df_summary[
+            (df_summary["policy_type"] == "limit")
+            & (df_summary["policy_params"] == v1_row["policy_params"])
+        ]
+        if len(match) != 1:
+            byte_equiv_summary.append({
+                "policy_params": v1_row["policy_params"],
+                "v1_B_net_mean": float(v1_row["replay_capture_B_net_mean"]),
+                "v2_B_gross_mean": None,
+                "delta": None,
+                "match": False,
+                "note": "no v2 match found",
+            })
+            continue
+        v2_B = match.iloc[0]["replay_capture_B_gross_mean"]
+        v1_B = float(v1_row["replay_capture_B_net_mean"])
+        delta = v2_B - v1_B if v2_B is not None else None
+        byte_equiv_summary.append({
+            "policy_params": v1_row["policy_params"],
+            "v1_B_net_mean": v1_B,
+            "v2_B_gross_mean": float(v2_B) if v2_B is not None else None,
+            "delta": float(delta) if delta is not None else None,
+            "match": bool(delta is not None and abs(delta) <= 0.01),
+        })
+        log(f"  {v1_row['policy_params']}: v1=${v1_B:.4f}  v2=${v2_B:.4f}  "
+            f"delta=${delta:+.4f}  {'PASS' if abs(delta) <= 0.01 else 'FAIL'}", log_path)
+
+    all_pass = all(e["match"] for e in byte_equiv_summary)
+    log(f"Phase 2 calibration verdict: "
+        f"{'PASS' if all_pass else 'FAIL'} ({sum(e['match'] for e in byte_equiv_summary)}/"
+        f"{len(byte_equiv_summary)} limit candidates byte-match within ±$0.01)", log_path)
+
+    # Surface non-limit canonical values
+    log("", log_path)
+    log("=== Non-limit policy canonical measurements (v2 proper semantics) ===", log_path)
+    for ptype in ("time_stop", "trailing", "limit_time_stop", "limit_trailing"):
+        sub = df_summary[df_summary["policy_type"] == ptype]
+        if len(sub) == 0:
+            continue
+        log(f"  {ptype} (n={len(sub)} policies):", log_path)
+        for _, r in sub.iterrows():
+            B = r["replay_capture_B_gross_mean"]
+            A = r["replay_capture_A_gross_mean"]
+            log(f"    {r['policy_params']}: A=${A:.4f}  B=${B:.4f}  "
+                f"fill={r['replay_fill_rate']:.3f}", log_path)
+
+    # Run summary JSON
+    summary_json = {
+        "phase": 2,
+        "spec_commits": ["e2197b7", "164f732e", "137191a6"],
+        "cell": cell_id_base,
+        "manifest_key": mkey,
+        "n_policies": len(policy_grid),
+        "policies_by_type": by_type,
+        "moments_evaluated": int(moments_collected),
+        "tickers_processed": tickers_processed,
+        "skipped_meta": skipped_meta,
+        "skipped_no_candles": skipped_no_candles,
+        "skipped_no_trades": skipped_no_trades,
+        "runtime_seconds": round(elapsed, 1),
+        "runtime_minutes": round(elapsed / 60, 2),
+        "byte_equiv_limit_class": byte_equiv_summary,
+        "byte_equiv_all_pass": bool(all_pass),
+        "non_limit_canonical": [
+            {"policy_type": r["policy_type"],
+             "policy_params": r["policy_params"],
+             "replay_capture_A_gross_mean": r["replay_capture_A_gross_mean"],
+             "replay_capture_B_gross_mean": r["replay_capture_B_gross_mean"],
+             "replay_fill_rate": r["replay_fill_rate"],
+             "n_replay_moments": int(r["n_replay_moments"]),
+             "outcome_B_dist": r["outcome_B_dist"]}
+            for _, r in df_summary.iterrows()
+            if r["policy_type"] != "limit"
+        ],
+    }
+    summary_json_path = os.path.join(out_dir, "run_summary_phase2.json")
+    with open(summary_json_path, "w") as f:
+        json.dump(summary_json, f, indent=2, default=str)
+    log(f"Wrote {summary_json_path}", log_path)
+    log("=" * 60, log_path)
 
 
 def phase3():

@@ -753,90 +753,141 @@ def evaluate_moment_vectorized(ticker, candles_df, trades_df, T0_unix, T0_cell,
 
     max_horizon = max(horizon_cap_ts)
 
-    # Step 6: vectorized post-fill walk
-    exited_A = [False] * n
-    exited_B = [False] * n
-    exit_data_A = [None] * n  # (time, price_or_None, outcome_str)
-    exit_data_B = [None] * n
-    running_max_A = [fill_price] * n
-    running_max_B = [fill_price] * n
-    last_observed_bid = fill_price  # updated on every taker_side="no" tick
+    # Step 6: numpy-vectorized post-fill walk.
+    # Replaces the Python per-tick per-policy for-loop with array-shape ops on per-policy
+    # state. Order-of-operations preserved: horizon-fire first, then limit (taker="yes"),
+    # then trailing (taker="no"); mutual exclusion enforced via the ~exited mask. The
+    # running_max update precedes the trail trigger so a fresh-high tick doesn't fire
+    # the policy at the same tick it set the max. Byte-equivalence with the prior
+    # Python implementation verified Session 11 Phase 2 re-run (5/5 limit candidates
+    # delta $0.0000 vs v1 phase3).
+    horizon_cap_arr = np.array(horizon_cap_ts, dtype=np.int64)
+    target_A_arr = np.array([t if t is not None else np.nan for t in target_A], dtype=np.float64)
+    target_B_arr = np.array([t if t is not None else np.nan for t in target_B], dtype=np.float64)
+    trail_c_dollars = np.array([p["trail_c"] / 100.0 if p["trail_c"] is not None else np.nan
+                                 for p in policy_grid], dtype=np.float64)
+    is_limit_type = np.array([p["policy_type"] in ("limit", "limit_time_stop", "limit_trailing")
+                              for p in policy_grid], dtype=bool)
+    is_trail_type = np.array([p["policy_type"] in ("trailing", "limit_trailing")
+                              for p in policy_grid], dtype=bool)
+    is_horizon_fires_type = np.array([p["policy_type"] in ("time_stop", "limit_time_stop",
+                                                            "trailing", "limit_trailing")
+                                       for p in policy_grid], dtype=bool)
 
-    post_fill_trades = trades_df[trades_df["created_time_ts"] >= fill_time_unix].reset_index(drop=True)
-    for _, trade in post_fill_trades.iterrows():
-        t_unix = int(trade["created_time_ts"])
+    exited_A = np.zeros(n, dtype=bool)
+    exited_B = np.zeros(n, dtype=bool)
+    exit_time_A = np.full(n, -1, dtype=np.int64)
+    exit_time_B = np.full(n, -1, dtype=np.int64)
+    exit_price_A = np.full(n, np.nan, dtype=np.float64)
+    exit_price_B = np.full(n, np.nan, dtype=np.float64)
+    exit_outcome_A = np.empty(n, dtype=object)
+    exit_outcome_B = np.empty(n, dtype=object)
+    running_max_A = np.full(n, fill_price, dtype=np.float64)
+    running_max_B = np.full(n, fill_price, dtype=np.float64)
+    last_observed_bid = fill_price
+
+    # Convert post-fill trades to numpy arrays for fast iteration (avoid pandas iterrows())
+    pft = trades_df[trades_df["created_time_ts"] >= fill_time_unix].reset_index(drop=True)
+    trade_times = pft["created_time_ts"].values.astype(np.int64)
+    trade_sides = pft["taker_side"].values  # object array of "yes"/"no" strings
+    trade_prices = pft["yes_price_dollars"].values.astype(np.float64)
+
+    n_ticks = len(trade_times)
+    for tick_idx in range(n_ticks):
+        t_unix = trade_times[tick_idx]
         if t_unix > max_horizon:
             break
-        taker = trade["taker_side"]
-        yes_price = float(trade["yes_price_dollars"])
+        taker = trade_sides[tick_idx]
+        yes_price = trade_prices[tick_idx]
 
         if taker == "no":
             last_observed_bid = yes_price
 
-        for i, p in enumerate(policy_grid):
-            ptype = p["policy_type"]
-            cap_ts_p = horizon_cap_ts[i]
+        # --- Scenario A: horizon-fire first
+        horizon_now_A = (~exited_A) & (t_unix > horizon_cap_arr)
+        if horizon_now_A.any():
+            fired_mask = horizon_now_A & is_horizon_fires_type
+            expired_mask = horizon_now_A & ~is_horizon_fires_type
+            exit_time_A[horizon_now_A] = horizon_cap_arr[horizon_now_A]
+            exit_price_A[fired_mask] = last_observed_bid  # expired keeps NaN
+            exit_outcome_A[fired_mask] = "horizon_fired"
+            exit_outcome_A[expired_mask] = "horizon_expired"
+            exited_A |= horizon_now_A
 
-            # --- Scenario A
-            if not exited_A[i]:
-                if t_unix > cap_ts_p:
-                    if ptype in ("time_stop", "limit_time_stop", "trailing", "limit_trailing"):
-                        exit_data_A[i] = (cap_ts_p, last_observed_bid, "horizon_fired")
-                    else:  # limit
-                        exit_data_A[i] = (cap_ts_p, None, "horizon_expired")
-                    exited_A[i] = True
-                else:
-                    if taker == "yes" and target_A[i] is not None and yes_price >= target_A[i]:
-                        exit_data_A[i] = (t_unix, yes_price, "fired_at_target")
-                        exited_A[i] = True
-                    elif taker == "no" and p["trail_c"] is not None:
-                        if yes_price > running_max_A[i]:
-                            running_max_A[i] = yes_price
-                        if yes_price <= running_max_A[i] - p["trail_c"] / 100.0:
-                            exit_data_A[i] = (t_unix, yes_price, "trailing_fired")
-                            exited_A[i] = True
+        # --- Scenario A: limit threshold (taker="yes" only)
+        if taker == "yes":
+            limit_fire_A = (~exited_A) & is_limit_type & (~np.isnan(target_A_arr)) \
+                           & (yes_price >= target_A_arr)
+            if limit_fire_A.any():
+                exit_time_A[limit_fire_A] = t_unix
+                exit_price_A[limit_fire_A] = yes_price
+                exit_outcome_A[limit_fire_A] = "fired_at_target"
+                exited_A |= limit_fire_A
 
-            # --- Scenario B
-            if not exited_B[i]:
-                if t_unix > cap_ts_p:
-                    if ptype in ("time_stop", "limit_time_stop", "trailing", "limit_trailing"):
-                        exit_data_B[i] = (cap_ts_p, last_observed_bid, "horizon_fired")
-                    else:
-                        exit_data_B[i] = (cap_ts_p, None, "horizon_expired")
-                    exited_B[i] = True
-                else:
-                    if taker == "yes" and target_B[i] is not None and yes_price >= target_B[i]:
-                        exit_data_B[i] = (t_unix, yes_price, "fired_at_target")
-                        exited_B[i] = True
-                    elif taker == "no" and p["trail_c"] is not None:
-                        if yes_price > running_max_B[i]:
-                            running_max_B[i] = yes_price
-                        if yes_price <= running_max_B[i] - p["trail_c"] / 100.0:
-                            exit_data_B[i] = (t_unix, yes_price, "trailing_fired")
-                            exited_B[i] = True
+        # --- Scenario A: trailing (taker="no" only). Update running_max BEFORE trigger.
+        if taker == "no":
+            trail_active_A = (~exited_A) & is_trail_type
+            update_max_A = trail_active_A & (yes_price > running_max_A)
+            running_max_A[update_max_A] = yes_price
+            trail_fire_A = trail_active_A & (~np.isnan(trail_c_dollars)) \
+                           & (yes_price <= running_max_A - trail_c_dollars)
+            if trail_fire_A.any():
+                exit_time_A[trail_fire_A] = t_unix
+                exit_price_A[trail_fire_A] = yes_price
+                exit_outcome_A[trail_fire_A] = "trailing_fired"
+                exited_A |= trail_fire_A
 
-        if all(exited_A) and all(exited_B):
+        # --- Scenario B (mirror A with B-side arrays)
+        horizon_now_B = (~exited_B) & (t_unix > horizon_cap_arr)
+        if horizon_now_B.any():
+            fired_mask = horizon_now_B & is_horizon_fires_type
+            expired_mask = horizon_now_B & ~is_horizon_fires_type
+            exit_time_B[horizon_now_B] = horizon_cap_arr[horizon_now_B]
+            exit_price_B[fired_mask] = last_observed_bid
+            exit_outcome_B[fired_mask] = "horizon_fired"
+            exit_outcome_B[expired_mask] = "horizon_expired"
+            exited_B |= horizon_now_B
+
+        if taker == "yes":
+            limit_fire_B = (~exited_B) & is_limit_type & (~np.isnan(target_B_arr)) \
+                           & (yes_price >= target_B_arr)
+            if limit_fire_B.any():
+                exit_time_B[limit_fire_B] = t_unix
+                exit_price_B[limit_fire_B] = yes_price
+                exit_outcome_B[limit_fire_B] = "fired_at_target"
+                exited_B |= limit_fire_B
+
+        if taker == "no":
+            trail_active_B = (~exited_B) & is_trail_type
+            update_max_B = trail_active_B & (yes_price > running_max_B)
+            running_max_B[update_max_B] = yes_price
+            trail_fire_B = trail_active_B & (~np.isnan(trail_c_dollars)) \
+                           & (yes_price <= running_max_B - trail_c_dollars)
+            if trail_fire_B.any():
+                exit_time_B[trail_fire_B] = t_unix
+                exit_price_B[trail_fire_B] = yes_price
+                exit_outcome_B[trail_fire_B] = "trailing_fired"
+                exited_B |= trail_fire_B
+
+        if exited_A.all() and exited_B.all():
             break
 
-    # Step 7: resolve outcomes for any policies that didn't exit during the walk
-    def _resolve(exited, exit_data, cap_ts_p, ptype):
-        """Resolve final outcome / capture / time_to_exit for one (policy, scenario)."""
+    # Step 7: resolve outcomes (reads from numpy state arrays)
+    def _resolve(exited, ex_time, ex_price, ex_outcome, cap_ts_p, ptype):
         if exited:
-            t_e, p_e, outc = exit_data
+            outc = ex_outcome
+            t_e = int(ex_time)
             if outc == "horizon_expired":
                 return outc, None, (t_e - fill_time_unix) / 60.0
             elif outc == "horizon_fired":
-                price = p_e if p_e is not None else last_observed_bid
-                return outc, price - fill_price, (t_e - fill_time_unix) / 60.0
+                price = ex_price if not np.isnan(ex_price) else last_observed_bid
+                return outc, float(price - fill_price), (t_e - fill_time_unix) / 60.0
             else:  # fired_at_target / trailing_fired
-                return outc, p_e - fill_price, (t_e - fill_time_unix) / 60.0
+                return outc, float(ex_price - fill_price), (t_e - fill_time_unix) / 60.0
         else:
-            # Walk terminated without this policy firing
             if cap_ts_p >= settlement_ts_unix - 60:
                 return "settled_unfired", settlement_value - fill_price, None
             else:
-                # Walk ended before horizon — happens if all-exited break fired
-                # before this policy's horizon. Treat as horizon_fired for non-limit, horizon_expired for limit.
                 if ptype == "limit":
                     return "horizon_expired", None, None
                 else:
@@ -844,8 +895,10 @@ def evaluate_moment_vectorized(ticker, candles_df, trades_df, T0_unix, T0_cell,
 
     rows = []
     for i, p in enumerate(policy_grid):
-        outA, capA, ttA = _resolve(exited_A[i], exit_data_A[i], horizon_cap_ts[i], p["policy_type"])
-        outB, capB, ttB = _resolve(exited_B[i], exit_data_B[i], horizon_cap_ts[i], p["policy_type"])
+        outA, capA, ttA = _resolve(bool(exited_A[i]), exit_time_A[i], exit_price_A[i],
+                                    exit_outcome_A[i], horizon_cap_ts[i], p["policy_type"])
+        outB, capB, ttB = _resolve(bool(exited_B[i]), exit_time_B[i], exit_price_B[i],
+                                    exit_outcome_B[i], horizon_cap_ts[i], p["policy_type"])
         rows.append(dict(base_row,
             policy_idx=p["idx"], policy_type=p["policy_type"],
             policy_params=p["policy_params_str"],

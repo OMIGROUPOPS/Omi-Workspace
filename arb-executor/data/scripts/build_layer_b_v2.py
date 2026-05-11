@@ -1377,10 +1377,20 @@ def process_one_cell(c, cell_idx, manifest, out_dir, log_path):
         pq.write_table(pa.Table.from_pandas(df_summary, preserve_index=False),
                        cell_parquet_path, compression="snappy")
 
-    # JSONL line (compact per-cell metadata + top-limit signal)
-    n_filled_overall = int(df_tape["fill_time_unix"].notna().sum()) if len(df_tape) > 0 else 0
-    drift_overall = int(df_tape["cell_drift_at_fill"].fillna(False).astype(bool).sum()) \
-        if len(df_tape) > 0 else 0
+    # JSONL line (compact per-cell metadata + top-limit signal).
+    # Bug fix (Session 11 sanity-check probe): the per-cell fill_overall and drift_overall
+    # counts must be computed from a SINGLE policy slice of df_tape — not the full df_tape —
+    # because df_tape has one row per (policy, moment) pair, so summing fill_time_unix.notna()
+    # across all rows inflates by len(policy_grid)≈53. All policies on a cell see the same
+    # per-moment fill outcome, so any single policy_idx slice gives the unique-moment count.
+    if len(df_tape) > 0:
+        first_idx = int(df_tape["policy_idx"].iloc[0])
+        _one_policy_slice = df_tape[df_tape["policy_idx"] == first_idx]
+        n_filled_overall = int(_one_policy_slice["fill_time_unix"].notna().sum())
+        drift_overall = int(_one_policy_slice["cell_drift_at_fill"].fillna(False).astype(bool).sum())
+    else:
+        n_filled_overall = 0
+        drift_overall = 0
     top_limit_B = None
     top_limit_params = None
     if len(df_summary) > 0:

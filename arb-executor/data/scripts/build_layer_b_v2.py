@@ -37,6 +37,7 @@ calibration anchor; Phase 2/3 introduce the new vectorized-policy architecture.
 """
 
 import argparse
+import glob
 import json
 import os
 import sys
@@ -1183,16 +1184,475 @@ def phase2():
     log("=" * 60, log_path)
 
 
-def phase3():
-    """Phase 3: full corpus (~12,455 non-settle premarket (cell, policy) tuples).
+# ============================================================
+# Phase 3: full corpus with kill-resilient incremental writes
+# ============================================================
 
-    Per spec Section 5.3: per-cell streaming, vectorized policy evaluation, kill-
-    resilient incremental writes. Runtime budget <20 hours. Pending separate
-    single-concern commit gated on Phase 2 PASS.
+def build_corpus_cell_list():
+    """Return the deterministic-ordered list of non-settle premarket cells.
+
+    Each cell is represented by a row from Layer B v1 exit_policy_per_cell.parquet
+    (any policy on that cell — we use the first), carrying the cell-key fields used
+    downstream by manifest_key_for_candidate / build_cell_policy_grid / select-from-
+    sample_manifest. Cell ordering is alphabetical by
+    (category, entry_band_lo, spread_band, volume_intensity) for repeatability —
+    the cell_idx assigned in this function is referenced in per-cell parquet names
+    and the progress JSONL, so the order must be stable across resumed runs.
     """
-    raise NotImplementedError(
-        "Phase 3 not yet implemented. Pending Phase 2 PASS + separate single-concern commit."
-    )
+    t = pq.read_table(LAYER_B_PARQUET).to_pandas()
+    pre = t[t["channel"] == "premarket"].copy()
+
+    def _is_settle(s):
+        try:
+            return json.loads(s).get("horizon_min") == "settle"
+        except Exception:
+            return False
+
+    pre["_is_settle"] = pre["policy_params"].apply(_is_settle)
+    non_settle = pre[~pre["_is_settle"]].copy()
+
+    cell_cols = ["category", "entry_band_lo", "entry_band_hi", "spread_band", "volume_intensity"]
+    # One row per cell — take the first policy occurrence per cell, ordered alphabetically.
+    cells = (non_settle
+             .sort_values(cell_cols + ["policy_type", "policy_params"])
+             .drop_duplicates(subset=cell_cols, keep="first")
+             .sort_values(cell_cols)
+             .reset_index(drop=True))
+    return cells
+
+
+def cell_key_str_compact(c):
+    """Return a compact cell-key string for logging / JSONL."""
+    return (f"{c['category']}|{int(c['entry_band_lo'])}|{int(c['entry_band_hi'])}|"
+            f"{c['spread_band']}|{c['volume_intensity']}")
+
+
+def read_progress_jsonl(progress_path):
+    """Return a set of cell_idx values already recorded as completed in the JSONL.
+
+    Used for kill-resilient resume: a re-launched producer reads the JSONL,
+    identifies which cells already have per-cell parquets written, and skips them.
+    """
+    completed = set()
+    if not os.path.exists(progress_path):
+        return completed
+    with open(progress_path) as f:
+        for line in f:
+            try:
+                entry = json.loads(line)
+                if "cell_idx" in entry:
+                    completed.add(int(entry["cell_idx"]))
+            except Exception:
+                continue
+    return completed
+
+
+def process_one_cell(c, cell_idx, manifest, out_dir, log_path):
+    """Process a single cell × all non-settle policies × all moments.
+
+    Writes per-cell parquet `cell_summary_cell_{cell_idx:03d}.parquet` and returns
+    the JSONL progress dict for the caller to append to `_progress_summary.jsonl`.
+    Mirrors phase2()'s per-cell logic but operates standalone (no v1-comparison
+    inline — Section 6 Check 1 validation runs once across all cells at end).
+    """
+    t_cell_start = time.time()
+    cell_key = cell_key_str_compact(c)
+    mkey = manifest_key_for_candidate(c)
+    policy_grid, _grid_df = build_cell_policy_grid(c)
+
+    if mkey not in manifest:
+        log(f"Cell {cell_idx} {cell_key}: WARNING manifest key not found, skipping", log_path)
+        return {
+            "cell_idx": int(cell_idx), "cell_key": cell_key,
+            "category": c["category"], "entry_band_lo": int(c["entry_band_lo"]),
+            "entry_band_hi": int(c["entry_band_hi"]), "spread_band": c["spread_band"],
+            "volume_intensity": c["volume_intensity"],
+            "n_moments": 0, "n_filled": 0, "replay_fill_rate": None,
+            "cell_drift_rate_at_fill": None, "runtime_seconds": 0.0,
+            "capture_B_mean_top_limit": None, "top_limit_policy_params": None,
+            "skipped_reason": "manifest_key_not_found",
+            "completed_at": datetime.now().isoformat(timespec="seconds"),
+        }
+
+    tickers = manifest[mkey]["tickers"]
+    target_parts = mkey.split("__")
+    target_regime, target_eb_str, target_sb, target_vi, target_cat = target_parts
+
+    all_rows = []
+    moments_collected = 0
+    for ticker in tickers:
+        meta = load_market_settlement(ticker)
+        if meta is None:
+            continue
+        settlement_ts_unix, settlement_value, _ = meta
+        candles_df = load_ticker_candles(ticker)
+        if candles_df is None or len(candles_df) == 0:
+            continue
+
+        timestamps = candles_df["end_period_ts"].values
+        volumes = candles_df["volume_fp"].values
+        match_start_ts = detect_match_start(timestamps, volumes)
+
+        matching_moments = []
+        for i in range(len(candles_df)):
+            t = int(timestamps[i])
+            row_c = candles_df.iloc[i]
+            if row_c["yes_bid_close"] is None or row_c["yes_ask_close"] is None:
+                continue
+            try:
+                bid_f = float(row_c["yes_bid_close"])
+                ask_f = float(row_c["yes_ask_close"])
+            except (TypeError, ValueError):
+                continue
+            regime = regime_for_moment(t, match_start_ts, settlement_ts_unix)
+            eb = entry_band_idx(ask_f)
+            sb = spread_band_name(bid_f, ask_f)
+            vi = volume_intensity_for_market(volumes)
+            cat = categorize(ticker)
+            if (regime == target_regime and eb == int(target_eb_str)
+                    and sb == target_sb and vi == target_vi and cat == target_cat):
+                matching_moments.append((t, bid_f, ask_f, regime, eb, sb, vi, cat))
+
+        if not matching_moments:
+            continue
+
+        trades_df = load_ticker_trades(ticker, start_ts_unix=int(timestamps[0]))
+        if trades_df is None:
+            continue
+
+        for (t, bid_f, ask_f, regime, eb, sb, vi, cat) in matching_moments:
+            T0_cell = {
+                "regime": regime, "entry_band_idx": eb,
+                "spread_band": sb, "volume_intensity": vi, "category": cat,
+                "yes_bid_close": bid_f, "yes_ask_close": ask_f,
+            }
+            forward_trades = trades_df[trades_df["created_time_ts"] >= t].reset_index(drop=True)
+            rows = evaluate_moment_vectorized(
+                ticker, candles_df, forward_trades, t, T0_cell,
+                policy_grid, settlement_ts_unix, settlement_value, match_start_ts,
+            )
+            all_rows.extend(rows)
+            moments_collected += 1
+
+    # Aggregate per-policy
+    df_tape = pd.DataFrame(all_rows)
+    summary_rows = []
+    if len(df_tape) > 0:
+        for p in policy_grid:
+            sub = df_tape[df_tape["policy_idx"] == p["idx"]]
+            capA = sub["capture_A_gross_dollars"].dropna()
+            capB = sub["capture_B_gross_dollars"].dropna()
+            n_filled = int(sub["fill_time_unix"].notna().sum())
+            n_drift = int(sub["cell_drift_at_fill"].fillna(False).astype(bool).sum())
+            summary_rows.append({
+                "cell_idx": int(cell_idx),
+                "cell_key": cell_key,
+                "category": c["category"],
+                "entry_band_lo": int(c["entry_band_lo"]),
+                "entry_band_hi": int(c["entry_band_hi"]),
+                "spread_band": c["spread_band"],
+                "volume_intensity": c["volume_intensity"],
+                "policy_idx": p["idx"],
+                "policy_type": p["policy_type"],
+                "policy_params": p["policy_params_str"],
+                "n_replay_moments": len(sub),
+                "n_filled": n_filled,
+                "replay_fill_rate": n_filled / max(1, len(sub)),
+                "cell_drift_rate_at_fill": n_drift / max(1, n_filled) if n_filled > 0 else None,
+                "replay_capture_A_gross_n": len(capA),
+                "replay_capture_A_gross_mean": float(capA.mean()) if len(capA) > 0 else None,
+                "replay_capture_A_gross_p10": float(capA.quantile(0.10)) if len(capA) > 0 else None,
+                "replay_capture_A_gross_p50": float(capA.median()) if len(capA) > 0 else None,
+                "replay_capture_A_gross_p90": float(capA.quantile(0.90)) if len(capA) > 0 else None,
+                "replay_capture_B_gross_n": len(capB),
+                "replay_capture_B_gross_mean": float(capB.mean()) if len(capB) > 0 else None,
+                "replay_capture_B_gross_p10": float(capB.quantile(0.10)) if len(capB) > 0 else None,
+                "replay_capture_B_gross_p50": float(capB.median()) if len(capB) > 0 else None,
+                "replay_capture_B_gross_p90": float(capB.quantile(0.90)) if len(capB) > 0 else None,
+            })
+
+    df_summary = pd.DataFrame(summary_rows)
+    cell_parquet_path = os.path.join(out_dir, f"cell_summary_cell_{cell_idx:03d}.parquet")
+    if len(df_summary) > 0:
+        pq.write_table(pa.Table.from_pandas(df_summary, preserve_index=False),
+                       cell_parquet_path, compression="snappy")
+
+    # JSONL line (compact per-cell metadata + top-limit signal)
+    n_filled_overall = int(df_tape["fill_time_unix"].notna().sum()) if len(df_tape) > 0 else 0
+    drift_overall = int(df_tape["cell_drift_at_fill"].fillna(False).astype(bool).sum()) \
+        if len(df_tape) > 0 else 0
+    top_limit_B = None
+    top_limit_params = None
+    if len(df_summary) > 0:
+        limit_rows = df_summary[df_summary["policy_type"] == "limit"]
+        if len(limit_rows) > 0 and limit_rows["replay_capture_B_gross_mean"].notna().any():
+            top_idx = limit_rows["replay_capture_B_gross_mean"].fillna(-1e9).idxmax()
+            top_limit_B = float(limit_rows.loc[top_idx, "replay_capture_B_gross_mean"])
+            top_limit_params = str(limit_rows.loc[top_idx, "policy_params"])
+
+    elapsed = time.time() - t_cell_start
+    return {
+        "cell_idx": int(cell_idx),
+        "cell_key": cell_key,
+        "category": c["category"],
+        "entry_band_lo": int(c["entry_band_lo"]),
+        "entry_band_hi": int(c["entry_band_hi"]),
+        "spread_band": c["spread_band"],
+        "volume_intensity": c["volume_intensity"],
+        "n_moments": int(moments_collected),
+        "n_filled": n_filled_overall,
+        "replay_fill_rate": n_filled_overall / max(1, moments_collected) if moments_collected > 0 else None,
+        "cell_drift_rate_at_fill": drift_overall / max(1, n_filled_overall) if n_filled_overall > 0 else None,
+        "runtime_seconds": round(elapsed, 1),
+        "capture_B_mean_top_limit": top_limit_B,
+        "top_limit_policy_params": top_limit_params,
+        "completed_at": datetime.now().isoformat(timespec="seconds"),
+    }
+
+
+def phase3():
+    """Phase 3: full non-settle premarket corpus, kill-resilient.
+
+    Per spec Section 5.3 + Section 3.4: ~235 cells × ~53 policies × ~857 moments
+    avg = ~201,414 moments total. Runtime estimate at numpy-vectorized 0.234 s/moment
+    (Phase 2 measurement Session 11): ~13.1 hours. Within spec budget (13-16h).
+
+    Architecture (per Commit B kill-resilience design):
+    - Per-cell parquet `cell_summary_cell_{cell_idx:03d}.parquet` written after each
+      cell completes its policy-grid evaluation (53 rows per file).
+    - `_progress_summary.jsonl` appended one line per cell with compact metadata.
+    - Resume mode: re-launched producer reads JSONL, skips already-completed cells.
+    - Final merge: concat all per-cell parquets in cell_idx order → `cell_summary_phase3.parquet`.
+    - Pattern mirrors forensic_replay_v1 commit `db1d249`.
+    """
+    out_dir = os.path.join(OUT_DIR, "phase3")
+    log_path = log_setup(out_dir)
+    t_start = time.time()
+
+    log("=" * 60, log_path)
+    log("Layer B v2 — Phase 3: full non-settle premarket corpus", log_path)
+    log("=" * 60, log_path)
+
+    cell_list = build_corpus_cell_list()
+    log(f"Cell list: {len(cell_list)} non-settle premarket cells (deterministic order)", log_path)
+    log(f"  Categories: {cell_list['category'].value_counts().to_dict()}", log_path)
+
+    # Kill-resilient resume: read progress JSONL
+    progress_path = os.path.join(out_dir, "_progress_summary.jsonl")
+    completed_cell_ids = read_progress_jsonl(progress_path)
+    if completed_cell_ids:
+        log(f"Resume mode: {len(completed_cell_ids)} cells already completed in JSONL", log_path)
+
+    with open(SAMPLE_MANIFEST) as f:
+        manifest = json.load(f)
+
+    cells_processed_this_run = 0
+    cells_skipped_resume = 0
+    for cell_idx, c in cell_list.iterrows():
+        if cell_idx in completed_cell_ids:
+            cells_skipped_resume += 1
+            continue
+        elapsed_so_far = time.time() - t_start
+        log(f"Cell {cell_idx}/{len(cell_list)}: {cell_key_str_compact(c)} "
+            f"(processed_this_run={cells_processed_this_run}, "
+            f"elapsed={elapsed_so_far:.0f}s)", log_path)
+        jsonl_entry = process_one_cell(c, cell_idx, manifest, out_dir, log_path)
+        # Append JSONL line atomically (open-append-close)
+        with open(progress_path, "a") as f:
+            f.write(json.dumps(jsonl_entry, default=str) + "\n")
+        cells_processed_this_run += 1
+        log(f"  → n_moments={jsonl_entry['n_moments']}, "
+            f"runtime={jsonl_entry['runtime_seconds']}s, "
+            f"top_limit_B={jsonl_entry.get('capture_B_mean_top_limit')}", log_path)
+
+    elapsed = time.time() - t_start
+    log("", log_path)
+    log("=" * 60, log_path)
+    log(f"Phase 3 cell loop complete. Runtime: {elapsed:.1f}s ({elapsed/3600:.2f} h)", log_path)
+    log(f"Cells processed this run: {cells_processed_this_run}", log_path)
+    log(f"Cells skipped (resume): {cells_skipped_resume}", log_path)
+    log("=" * 60, log_path)
+
+    # Final merge: read all per-cell parquets, concat, write cell_summary_phase3.parquet
+    log("Merging per-cell parquets...", log_path)
+    cell_files = sorted(glob.glob(os.path.join(out_dir, "cell_summary_cell_*.parquet")))
+    log(f"  Found {len(cell_files)} per-cell parquets", log_path)
+    if cell_files:
+        dfs = [pd.read_parquet(f) for f in cell_files]
+        df_phase3 = pd.concat(dfs, ignore_index=True)
+        merged_path = os.path.join(out_dir, "cell_summary_phase3.parquet")
+        pq.write_table(pa.Table.from_pandas(df_phase3, preserve_index=False),
+                       merged_path, compression="snappy")
+        log(f"  Wrote {merged_path}: {len(df_phase3):,} rows, "
+            f"{os.path.getsize(merged_path):,} bytes", log_path)
+    else:
+        log(f"  WARNING: no per-cell parquets found, skipping merge", log_path)
+        df_phase3 = pd.DataFrame()
+
+    # Validation gate per spec Section 6 — hard gates
+    log("", log_path)
+    log("=== Validation gate (spec Section 6) ===", log_path)
+    validation = {}
+
+    if len(df_phase3) > 0:
+        # Check 1: byte-equivalence on 39 v1-phase3 limit candidates
+        v1_cs = pd.read_parquet(
+            os.path.join(DUR_DIR, "forensic_replay_v1/phase3/candidate_summary.parquet")
+        )
+        v1_limit = v1_cs[v1_cs["policy_type"] == "limit"].copy()
+        check1_results = []
+        for _, v1_row in v1_limit.iterrows():
+            match = df_phase3[
+                (df_phase3["category"] == v1_row["category"])
+                & (df_phase3["entry_band_lo"] == v1_row["entry_band_lo"])
+                & (df_phase3["spread_band"] == v1_row["spread_band"])
+                & (df_phase3["volume_intensity"] == v1_row["volume_intensity"])
+                & (df_phase3["policy_type"] == "limit")
+                & (df_phase3["policy_params"] == v1_row["policy_params"])
+            ]
+            if len(match) != 1:
+                check1_results.append({"v1_params": v1_row["policy_params"],
+                                       "cell": cell_key_str_compact(v1_row),
+                                       "match": False, "note": "no v2 match"})
+                continue
+            v2_B = match.iloc[0]["replay_capture_B_gross_mean"]
+            v1_B = float(v1_row["replay_capture_B_net_mean"])
+            delta = (v2_B - v1_B) if v2_B is not None else None
+            check1_results.append({
+                "v1_params": v1_row["policy_params"],
+                "cell": cell_key_str_compact(v1_row),
+                "v1_B": v1_B, "v2_B": v2_B,
+                "delta": delta,
+                "match": bool(delta is not None and abs(delta) <= 0.0001),
+            })
+        check1_pass = all(r["match"] for r in check1_results) and len(check1_results) >= 39
+        validation["check1_byte_equiv_v1_limit_pass"] = bool(check1_pass)
+        validation["check1_n_compared"] = len(check1_results)
+        validation["check1_failures"] = [r for r in check1_results if not r["match"]]
+        log(f"  Check 1 byte-equiv on {len(check1_results)} v1 limit candidates: "
+            f"{'PASS' if check1_pass else 'FAIL'}", log_path)
+        if not check1_pass:
+            for r in validation["check1_failures"][:10]:
+                log(f"    FAIL: {r}", log_path)
+
+        # Check 2: fill rate band 100% (strict per Section 6 amendment)
+        fill = df_phase3["replay_fill_rate"].dropna()
+        in_band = ((fill >= 0.05) & (fill <= 0.95))
+        check2_pass = bool(in_band.all())
+        outliers = df_phase3[df_phase3["replay_fill_rate"].notna()
+                             & ~((df_phase3["replay_fill_rate"] >= 0.05)
+                                 & (df_phase3["replay_fill_rate"] <= 0.95))]
+        validation["check2_fill_rate_band_pass"] = check2_pass
+        validation["check2_n_compared"] = int(fill.notna().sum() if hasattr(fill, "notna") else len(fill))
+        validation["check2_outliers_observed"] = [
+            {"cell": cell_key_str_compact(r), "policy_params": r["policy_params"],
+             "fill_rate": float(r["replay_fill_rate"])}
+            for _, r in outliers.iterrows()
+        ]
+        log(f"  Check 2 fill_rate ∈ [0.05, 0.95] (strict 100%): "
+            f"{'PASS' if check2_pass else 'FAIL'} "
+            f"({len(outliers)} outliers)", log_path)
+
+        # Check 3: A-vs-B coherence
+        both = df_phase3.dropna(subset=["replay_capture_A_gross_mean", "replay_capture_B_gross_mean"])
+        abs_delta_AB = (both["replay_capture_A_gross_mean"] - both["replay_capture_B_gross_mean"]).abs()
+        mean_abs_delta = float(abs_delta_AB.mean()) if len(both) > 0 else None
+        b_gt_a_pct = float((both["replay_capture_B_gross_mean"] > both["replay_capture_A_gross_mean"]).mean()) \
+            if len(both) > 0 else None
+        check3_pass = bool(mean_abs_delta is not None and mean_abs_delta < 0.02
+                            and b_gt_a_pct is not None and b_gt_a_pct > 0.6)
+        validation["check3_AB_coherence_pass"] = check3_pass
+        validation["check3_mean_abs_delta_AB"] = mean_abs_delta
+        validation["check3_B_gt_A_pct"] = b_gt_a_pct
+        log(f"  Check 3 A-vs-B coherence (mean abs Δ<$0.02, B>A>60%): "
+            f"{'PASS' if check3_pass else 'FAIL'} "
+            f"(mean abs Δ=${mean_abs_delta}, B>A={b_gt_a_pct})", log_path)
+
+    # Informative measurements (do not gate PASS) — surface aggregates for Coord 4
+    informative = {}
+    if len(df_phase3) > 0:
+        # By-policy class gap pattern (corpus-wide)
+        by_class = []
+        for ptype, grp in df_phase3.groupby("policy_type"):
+            n = len(grp)
+            B = grp["replay_capture_B_gross_mean"].dropna()
+            A = grp["replay_capture_A_gross_mean"].dropna()
+            by_class.append({
+                "policy_type": ptype,
+                "n_cell_policy_rows": n,
+                "B_gross_mean_corpus": float(B.mean()) if len(B) > 0 else None,
+                "B_gross_median_corpus": float(B.median()) if len(B) > 0 else None,
+                "A_gross_mean_corpus": float(A.mean()) if len(A) > 0 else None,
+                "A_gross_median_corpus": float(A.median()) if len(A) > 0 else None,
+            })
+        informative["by_policy_class_gap_pattern"] = by_class
+
+        # Top-50 (cell, policy) by Scenario B at corpus scale
+        ranked = df_phase3.dropna(subset=["replay_capture_B_gross_mean"]) \
+            .sort_values("replay_capture_B_gross_mean", ascending=False).head(50)
+        informative["top_50_by_capture_B"] = [
+            {
+                "rank": i + 1,
+                "cell": cell_key_str_compact(r),
+                "policy_type": r["policy_type"], "policy_params": r["policy_params"],
+                "replay_capture_B_gross_mean": float(r["replay_capture_B_gross_mean"]),
+                "replay_capture_A_gross_mean": float(r["replay_capture_A_gross_mean"])
+                    if r["replay_capture_A_gross_mean"] is not None else None,
+                "replay_fill_rate": float(r["replay_fill_rate"])
+                    if r["replay_fill_rate"] is not None else None,
+                "cell_drift_rate_at_fill": float(r["cell_drift_rate_at_fill"])
+                    if r["cell_drift_rate_at_fill"] is not None else None,
+                "n_replay_moments": int(r["n_replay_moments"]),
+            }
+            for i, (_, r) in enumerate(ranked.iterrows())
+        ]
+
+        # Non-limit canonical (per-class deployable cohort: fill≥0.4 AND drift≤0.5)
+        nonlimit = df_phase3[df_phase3["policy_type"] != "limit"].copy()
+        deployable = nonlimit[
+            (nonlimit["replay_fill_rate"] >= 0.40)
+            & (nonlimit["cell_drift_rate_at_fill"] <= 0.50)
+        ].dropna(subset=["replay_capture_B_gross_mean"]) \
+         .sort_values("replay_capture_B_gross_mean", ascending=False).head(50)
+        informative["non_limit_top_50_deployable"] = [
+            {
+                "rank": i + 1,
+                "cell": cell_key_str_compact(r),
+                "policy_type": r["policy_type"], "policy_params": r["policy_params"],
+                "replay_capture_B_gross_mean": float(r["replay_capture_B_gross_mean"]),
+                "replay_fill_rate": float(r["replay_fill_rate"]),
+                "cell_drift_rate_at_fill": float(r["cell_drift_rate_at_fill"]),
+                "n_replay_moments": int(r["n_replay_moments"]),
+            }
+            for i, (_, r) in enumerate(deployable.iterrows())
+        ]
+
+    # Checkpoint state
+    checkpoint_state = {
+        "n_cells_total": int(len(cell_list)),
+        "n_cells_completed": int(len(cell_files)),
+        "n_cells_skipped_resume": int(cells_skipped_resume),
+        "n_cells_processed_this_run": int(cells_processed_this_run),
+        "all_cells_completed": int(len(cell_files)) == int(len(cell_list)),
+        "last_completed_cell_idx": int(max(read_progress_jsonl(progress_path)))
+            if read_progress_jsonl(progress_path) else None,
+    }
+
+    summary_json = {
+        "phase": 3,
+        "spec_commits": ["e2197b7", "164f732e", "137191a6", "96257909"],
+        "producer_commits": ["c0b5e7c2", "6948000e", "a23545a1"],
+        "runtime_seconds_this_run": round(elapsed, 1),
+        "runtime_hours_this_run": round(elapsed / 3600, 2),
+        "checkpoint_state": checkpoint_state,
+        "validation_gate": validation,
+        "informative": informative,
+    }
+    summary_json_path = os.path.join(out_dir, "run_summary_phase3.json")
+    with open(summary_json_path, "w") as f:
+        json.dump(summary_json, f, indent=2, default=str)
+    log(f"Wrote {summary_json_path}", log_path)
+    log("=" * 60, log_path)
 
 
 # ============================================================

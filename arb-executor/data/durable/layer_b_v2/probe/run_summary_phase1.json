@@ -1,0 +1,46 @@
+{
+  "phase": 1,
+  "spec_commits": [
+    "e2197b7",
+    "164f732e"
+  ],
+  "calibration_anchor": {
+    "source": "data/durable/forensic_replay_v1/phase3/candidate_summary.parquet (commit 73de3a6)",
+    "cell": "ATP_MAIN 50-60 tight low",
+    "policy": "limit / limit_c=30",
+    "anchor_capture_B_net_mean": 0.261,
+    "anchor_fill_rate": 0.757,
+    "anchor_cell_drift_rate": 0.093,
+    "anchor_n_replay_moments": 2914
+  },
+  "candidate_id": "premarket__ATP_MAIN__50-60__tight__low__limit__{\"limit_c\": 30}",
+  "manifest_key": "premarket__5__tight__low__ATP_MAIN",
+  "moments_collected": 100,
+  "moments_budget": 100,
+  "tickers_processed": 6,
+  "skipped_meta": 0,
+  "skipped_no_candles": 0,
+  "skipped_no_trades": 0,
+  "runtime_seconds": 18.5,
+  "layer_b_v1_capture_mean_simulated": 0.05187371310912837,
+  "layer_b_v1_fire_rate_simulated": 0.2590940288263555,
+  "layer_b_v1_n_simulated": 2914,
+  "fill_rate": 0.7,
+  "scenario_A_outcomes": {
+    "horizon_expired": 59,
+    "unfilled": 30,
+    "fired_at_target": 8,
+    "settled_unfired": 3
+  },
+  "scenario_B_outcomes": {
+    "horizon_expired": 59,
+    "unfilled": 30,
+    "fired_at_target": 6,
+    "settled_unfired": 5
+  },
+  "scenario_A_capture_mean": 0.07727272727272727,
+  "scenario_B_capture_mean": 0.11181818181818182,
+  "cell_drift_rate_at_fill": 0.07142857142857142,
+  "calibration_delta": -0.1491818181818182,
+  "calibration_pass": false
+}

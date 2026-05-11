@@ -1,0 +1,40 @@
+[2026-05-10T20:06:54] ============================================================
+[2026-05-10T20:06:54] Layer B v2 — Phase 1 calibration probe
+[2026-05-10T20:06:54] ============================================================
+[2026-05-10T20:06:55] Candidate: premarket__ATP_MAIN__50-60__tight__low__limit__{"limit_c": 30}
+[2026-05-10T20:06:55] Manifest key: premarket__5__tight__low__ATP_MAIN
+[2026-05-10T20:06:55] Layer B v1 simulated capture_mean=$0.0519, fire_rate=0.259
+[2026-05-10T20:06:55] Policy: type=limit, params={"limit_c": 30}
+[2026-05-10T20:06:55] Calibration target: capture_B_gross_mean within $0.2610 ± $0.01 (anchor: forensic replay v1 phase3 ATP_MAIN 50-60 tight low / limit_c=30 = $0.2610 / fill=0.757 / drift=0.093 / n=2914).
+[2026-05-10T20:06:55] Tickers in manifest: 30
+[2026-05-10T20:06:55] Ticker 1/30: KXATPMATCH-26JAN14YMEWON-WON (moments so far: 0)
+[2026-05-10T20:06:57] Ticker 2/30: KXATPMATCH-25OCT13KECMUL-KEC (moments so far: 3)
+[2026-05-10T20:06:59] Ticker 3/30: KXATPMATCH-25JUL02RUBHAR-RUB (moments so far: 5)
+[2026-05-10T20:07:01] Ticker 4/30: KXATPMATCH-25JUN30DARSAF-DAR (moments so far: 12)
+[2026-05-10T20:07:04] Ticker 5/30: KXATPMATCH-25SEP30TIEMED-TIE (moments so far: 14)
+[2026-05-10T20:07:07] Ticker 6/30: KXATPMATCH-26FEB09DZUDEL-DEL (moments so far: 16)
+[2026-05-10T20:07:13] 
+[2026-05-10T20:07:13] ============================================================
+[2026-05-10T20:07:13] Phase 1 complete. Runtime: 18.5s (0.31 min)
+[2026-05-10T20:07:13] Moments collected: 100/100
+[2026-05-10T20:07:13] Tickers processed: 6/30
+[2026-05-10T20:07:13] Skipped (no metadata or scalar): 0
+[2026-05-10T20:07:13] Skipped (no candles): 0
+[2026-05-10T20:07:13] Skipped (no trades): 0
+[2026-05-10T20:07:13] ============================================================
+[2026-05-10T20:07:13] 
+[2026-05-10T20:07:13] === Outcome distribution ===
+[2026-05-10T20:07:13]   Scenario A: {'horizon_expired': 59, 'unfilled': 30, 'fired_at_target': 8, 'settled_unfired': 3}
+[2026-05-10T20:07:13]   Scenario B: {'horizon_expired': 59, 'unfilled': 30, 'fired_at_target': 6, 'settled_unfired': 5}
+[2026-05-10T20:07:13]   Fill rate: 70/100 = 0.700
+[2026-05-10T20:07:13]   Cell drift at fill: 5/70 = 0.071
+[2026-05-10T20:07:13]   Scenario A capture: n=11, mean=$0.0773, median=$0.3100, min=$-0.5800, max=$0.3600
+[2026-05-10T20:07:13]   Scenario B capture: n=11, mean=$0.1118, median=$0.3100, min=$-0.5800, max=$0.4900
+[2026-05-10T20:07:13]   Layer B v1 simulated capture_mean: $0.0519
+[2026-05-10T20:07:13]   Calibration anchor (v1 phase3 B_net_mean): $0.2610
+[2026-05-10T20:07:13]   Calibration delta (v2 B - anchor): $-0.1492 (tolerance ±$0.01: FAIL)
+[2026-05-10T20:07:13] Wrote 100 rows to /root/Omi-Workspace/arb-executor/data/durable/layer_b_v2/probe/replay_tape_phase1.parquet
+[2026-05-10T20:07:13] Output size: 12,018 bytes
+[2026-05-10T20:07:13] Wrote summary to /root/Omi-Workspace/arb-executor/data/durable/layer_b_v2/probe/run_summary_phase1.json
+[2026-05-10T20:07:13] Phase 1 calibration verdict: FAIL (delta -0.1492 vs ±0.01 tolerance)
+[2026-05-10T20:07:13] ============================================================

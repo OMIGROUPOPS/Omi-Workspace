@@ -217,14 +217,22 @@ def aggregate_trades_per_minute(candles_df, trades_df):
     """For each minute_ts in candles_df, compute trade-derived aggregates plus
     depth-proxy features per spec Section 2.10.
 
+    Numpy-vectorized implementation per Layer B v2 a23545a1 pattern. Replaces the
+    prior per-minute Python for-loop with batched np.searchsorted + np.bincount +
+    a single pandas groupby for the two per-bucket statistics that can't be
+    bincounted (price_levels distinct count, trade_clustering inter-gap std).
+    Expected 3-5× speedup → Phase 3 runtime 35h → 7-10h.
+
     Aggregates produced:
       - trade_count_in_minute, taker_yes_count_in_minute, taker_no_count_in_minute
       - vwap_in_minute
       - price_levels_consumed_in_minute (count distinct yes_price_dollars; depth proxy)
       - trade_clustering_in_minute (std of inter-trade gap times, in seconds;
-        null when trade_count < 3 — need ≥3 trades for ≥2 inter-gaps)
+        null when trade_count < 3)
 
-    Window is [minute_ts - 60, minute_ts) (half-open, ending at minute close).
+    Window: [minute_ts - 60, minute_ts) (half-open, ending at minute close).
+    Each trade belongs to the smallest minute_ts > trade_ts where
+    minute_ts - 60 <= trade_ts. Trades in candle-gaps are dropped.
     """
     n_candles = len(candles_df)
     out = {
@@ -244,28 +252,70 @@ def aggregate_trades_per_minute(candles_df, trades_df):
     trade_price = trades_df["yes_price_dollars"].values.astype(np.float64)
     minute_ts_arr = candles_df["end_period_ts"].values.astype(np.int64)
 
-    for i, m_ts in enumerate(minute_ts_arr):
-        window_start = m_ts - 60
-        window_end = m_ts
-        idx_lo = np.searchsorted(trade_ts, window_start, side="left")
-        idx_hi = np.searchsorted(trade_ts, window_end, side="left")
-        if idx_lo == idx_hi:
-            continue
-        win_side = trade_side[idx_lo:idx_hi]
-        win_count = trade_count[idx_lo:idx_hi]
-        win_price = trade_price[idx_lo:idx_hi]
-        win_ts = trade_ts[idx_lo:idx_hi]
-        out["trade_count_in_minute"][i] = idx_hi - idx_lo
-        out["taker_yes_count_in_minute"][i] = win_count[win_side == "yes"].sum()
-        out["taker_no_count_in_minute"][i] = win_count[win_side == "no"].sum()
-        tot = win_count.sum()
-        if tot > 0:
-            out["vwap_in_minute"][i] = (win_price * win_count).sum() / tot
-        # Depth proxies (Section 2.10):
-        out["price_levels_consumed_in_minute"][i] = int(len(np.unique(win_price)))
-        if len(win_ts) >= 3:
-            gaps = np.diff(np.sort(win_ts))  # inter-trade gap times in seconds
-            out["trade_clustering_in_minute"][i] = float(np.std(gaps))
+    # Map each trade to its candle minute index via vectorized searchsorted.
+    # side='right' so trade_ts == minute_ts maps to next minute (matches the
+    # original window_end-exclusive semantics: window is [m-60, m), so a trade at
+    # exactly m belongs to m+1, not m).
+    minute_idx = np.searchsorted(minute_ts_arr, trade_ts, side="right")
+
+    # Drop trades that fall outside any candle window:
+    # (a) idx == n_candles (trade is after the last minute close), AND
+    # (b) idx < n_candles BUT trade_ts < minute_ts_arr[idx] - 60 (trade in a
+    #     candle-gap with no minute window covering it).
+    in_bounds = minute_idx < n_candles
+    minute_idx_clamped = np.minimum(minute_idx, n_candles - 1)
+    window_start = minute_ts_arr[minute_idx_clamped] - 60
+    in_window = in_bounds & (trade_ts >= window_start)
+    if not in_window.any():
+        return out
+
+    v_idx = minute_idx[in_window].astype(np.int64)
+    v_side = trade_side[in_window]
+    v_count = trade_count[in_window]
+    v_price = trade_price[in_window]
+    v_ts = trade_ts[in_window]
+
+    # trade_count_in_minute = bincount of v_idx
+    tc = np.bincount(v_idx, minlength=n_candles).astype(np.int32)
+    out["trade_count_in_minute"][:] = tc
+
+    # taker_yes / taker_no count: weighted bincount by side mask
+    yes_mask = v_side == "yes"
+    no_mask = v_side == "no"
+    out["taker_yes_count_in_minute"][:] = np.bincount(
+        v_idx[yes_mask], weights=v_count[yes_mask], minlength=n_candles
+    )
+    out["taker_no_count_in_minute"][:] = np.bincount(
+        v_idx[no_mask], weights=v_count[no_mask], minlength=n_candles
+    )
+
+    # vwap = sum(price * count) / sum(count) per minute_idx
+    total_count = np.bincount(v_idx, weights=v_count, minlength=n_candles)
+    total_pc = np.bincount(v_idx, weights=v_price * v_count, minlength=n_candles)
+    nonzero = total_count > 0
+    out["vwap_in_minute"][nonzero] = total_pc[nonzero] / total_count[nonzero]
+
+    # price_levels_consumed_in_minute (distinct yes_price per minute) and
+    # trade_clustering_in_minute (std of inter-trade gaps) — single pandas
+    # groupby covers both. Only iterates over minute-buckets that contain trades.
+    gb_df = pd.DataFrame({"minute_idx": v_idx, "trade_ts": v_ts, "trade_price": v_price})
+    gb = gb_df.groupby("minute_idx", sort=False)
+    # Distinct price count per bucket
+    nunique_per_bucket = gb["trade_price"].nunique()
+    out["price_levels_consumed_in_minute"][nunique_per_bucket.index.values.astype(np.int64)] = \
+        nunique_per_bucket.values.astype(np.int32)
+
+    # trade_clustering: std of inter-trade gaps, null when fewer than 3 trades
+    def _clustering(s):
+        if len(s) < 3:
+            return np.nan
+        return float(np.std(np.diff(np.sort(s.values))))
+    clustering_per_bucket = gb["trade_ts"].apply(_clustering)
+    valid_mask_clust = clustering_per_bucket.notna()
+    out["trade_clustering_in_minute"][
+        clustering_per_bucket.index[valid_mask_clust].values.astype(np.int64)
+    ] = clustering_per_bucket[valid_mask_clust].values.astype(np.float64)
+
     return out
 
 

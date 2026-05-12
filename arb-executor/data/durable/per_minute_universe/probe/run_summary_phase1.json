@@ -4,8 +4,8 @@
   "ticker": "KXATPMATCH-25JUN18RUNMCD-RUN",
   "formation_window_min": 120,
   "n_rows": 210,
-  "n_columns": 69,
-  "runtime_seconds": 2.98,
+  "n_columns": 83,
+  "runtime_seconds": 3.59,
   "validation_gate": {
     "check1_row_count_parity_pass": true,
     "check1_per_minute_rows": 210,
@@ -26,16 +26,16 @@
     "check3_DEFERRED": "regression vs L Bv2 cell_summary_phase3 requires corpus; runs at T37b Phase 3 / T37c"
   },
   "regime_distribution": {
-    "premarket": "151",
-    "in_match": "59"
+    "in_match": "163",
+    "premarket": "47"
   },
   "premarket_phase_distribution": {
-    "stable": 141,
-    "nan": 59,
+    "nan": 163,
+    "stable": 37,
     "formation": 10
   },
   "match_start_method": {
-    "expected_expiration_fallback": "210"
+    "trade_density": "210"
   },
-  "match_start_ts": 1750273200
+  "match_start_ts": 1750266360
 }

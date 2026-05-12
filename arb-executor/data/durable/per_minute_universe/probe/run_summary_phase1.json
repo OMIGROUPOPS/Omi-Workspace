@@ -5,7 +5,7 @@
   "formation_window_min": 120,
   "n_rows": 210,
   "n_columns": 83,
-  "runtime_seconds": 3.59,
+  "runtime_seconds": 3.87,
   "validation_gate": {
     "check1_row_count_parity_pass": true,
     "check1_per_minute_rows": 210,
@@ -26,16 +26,16 @@
     "check3_DEFERRED": "regression vs L Bv2 cell_summary_phase3 requires corpus; runs at T37b Phase 3 / T37c"
   },
   "regime_distribution": {
-    "in_match": "163",
-    "premarket": "47"
+    "premarket": "133",
+    "in_match": "77"
   },
   "premarket_phase_distribution": {
-    "nan": 163,
-    "stable": 37,
+    "stable": 123,
+    "nan": 77,
     "formation": 10
   },
   "match_start_method": {
-    "trade_density": "210"
+    "both_sides_price_discovery": "210"
   },
-  "match_start_ts": 1750266360
+  "match_start_ts": 1750272120
 }

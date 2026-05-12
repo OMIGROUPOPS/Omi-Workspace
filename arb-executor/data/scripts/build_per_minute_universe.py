@@ -40,8 +40,9 @@ PROBE_DIR = os.path.join(OUT_DIR, "probe")
 
 PHASE1_TICKER = "KXATPMATCH-25JUN18RUNMCD-RUN"
 FORMATION_WINDOW_MIN_DEFAULT = 120  # per spec Section 2.6
-MATCH_START_K_DEFAULT = 3  # K consecutive minutes per LESSONS A35 amended v3
-MATCH_START_M_DEFAULT = 5  # M min trade_count per side per LESSONS A35 amended v3
+MATCH_START_K_DEFAULT = 3  # K consecutive minutes per LESSONS A35 amended v4
+MATCH_START_M_TRADES_DEFAULT = 3  # M min trade_count per side per LESSONS A35 amended v4
+MATCH_START_R_DEFAULT = 0.02  # R min intra-minute bid OR ask range per LESSONS A35 amended v4
 
 # Forward-label horizons in seconds (spec Section 2.8)
 HORIZONS = {
@@ -120,33 +121,60 @@ def parse_iso_ts(s):
         return None
 
 
-def derive_match_start_ts(minute_ts_arr, own_trade_count_arr, partner_trade_count_arr,
-                           K=MATCH_START_K_DEFAULT, M=MATCH_START_M_DEFAULT):
-    """Derive match_start_ts via both-sides-simultaneous trade-density signal per
-    LESSONS A35 amended v3 (spec Section 2.5).
+def derive_match_start_ts(minute_ts_arr,
+                           own_trade_count_arr, partner_trade_count_arr,
+                           own_bid_range_arr, own_ask_range_arr,
+                           partner_bid_range_arr, partner_ask_range_arr,
+                           K=MATCH_START_K_DEFAULT,
+                           M_TRADES=MATCH_START_M_TRADES_DEFAULT,
+                           R=MATCH_START_R_DEFAULT):
+    """Derive match_start_ts via four-level signal hierarchy per LESSONS A35
+    amended v4 (spec Section 2.5).
 
-    Signal: first minute in a sustained run of K consecutive minutes where BOTH
-    own.trade_count_in_minute ≥ M AND partner.trade_count_in_minute ≥ M.
+    Returns (match_start_ts, method). Method is one of:
+      "both_sides_price_discovery" — tier 1: K consecutive minutes where BOTH
+        sides have ≥M_TRADES trades AND BOTH sides show intra-minute range
+        (bid OR ask) > R. Distinguishes match-driven price discovery from
+        premarket positioning at stable prices.
+      "both_sides_trade_density" — tier 2 fallback: K consecutive minutes where
+        BOTH sides have ≥M_TRADES trades, no price-range gate.
+      "expected_expiration_fallback" — tier 3: caller falls back to
+        g9_metadata.expected_expiration_time when neither tier 1 nor tier 2 fires.
+        Returned by this function as None, "unknown" (caller substitutes).
+      "unknown" — tier 4: neither this function nor caller's metadata fallback yields
+        a sensible value.
 
-    Rationale: real match-start events produce simultaneous trader reaction on both
-    paired-leg sides; sporadic premarket activity is one-sided. M=5 filters out
-    single-trade noise.
-
-    Returns (match_start_ts, method).
-    method ∈ {"both_sides_trade_density", "expected_expiration_fallback", "unknown"}.
-
-    Partner trade-count array must be aligned to own minute_ts_arr (same length,
-    same minutes). Missing partner minutes are treated as count=0 by caller.
+    All input arrays must be aligned to minute_ts_arr (same length, same minutes).
+    Missing partner minutes are treated as count=0 / range=0 by the caller before
+    passing here.
     """
     n = len(minute_ts_arr)
     if n < K:
         return None, "unknown"
+
+    # Tier 1: both_sides_price_discovery
+    for i in range(n - K + 1):
+        ok = True
+        for j in range(K):
+            own_range = max(own_bid_range_arr[i + j] or 0.0, own_ask_range_arr[i + j] or 0.0)
+            p_range = max(partner_bid_range_arr[i + j] or 0.0, partner_ask_range_arr[i + j] or 0.0)
+            if not (own_trade_count_arr[i + j] >= M_TRADES
+                    and partner_trade_count_arr[i + j] >= M_TRADES
+                    and own_range > R
+                    and p_range > R):
+                ok = False
+                break
+        if ok:
+            return int(minute_ts_arr[i]), "both_sides_price_discovery"
+
+    # Tier 2: both_sides_trade_density (no price-range gate)
     for i in range(n - K + 1):
         if all(
-            own_trade_count_arr[i + j] >= M and partner_trade_count_arr[i + j] >= M
+            own_trade_count_arr[i + j] >= M_TRADES and partner_trade_count_arr[i + j] >= M_TRADES
             for j in range(K)
         ):
             return int(minute_ts_arr[i]), "both_sides_trade_density"
+
     return None, "unknown"
 
 
@@ -316,7 +344,8 @@ def build_partner_observables(partner_ticker):
     """Return {minute_ts → dict-of-partner-observables} per spec Section 2.9.
 
     Lighter-weight than build_ticker_rows: only the columns needed for paired-leg
-    emission. Reuses aggregate_trades_per_minute for trade-derived columns.
+    emission + the bid/ask intra-minute range columns needed by v4 match-start
+    signal (spec Section 2.5).
     """
     if partner_ticker is None:
         return {}
@@ -340,6 +369,13 @@ def build_partner_observables(partner_ticker):
         vol_f = float(vol_v) if pd.notna(vol_v) else None
         oi_f = float(oi_ffill[i]) if not np.isnan(oi_ffill[i]) else None
         flow = float(aggs["taker_yes_count_in_minute"][i] - aggs["taker_no_count_in_minute"][i])
+        # Intra-minute bid/ask range (needed by v4 match-start price-discovery gate)
+        bh = candles["yes_bid_high"].iloc[i]
+        bl = candles["yes_bid_low"].iloc[i]
+        ah = candles["yes_ask_high"].iloc[i]
+        al = candles["yes_ask_low"].iloc[i]
+        bid_range = float(bh - bl) if (pd.notna(bh) and pd.notna(bl)) else None
+        ask_range = float(ah - al) if (pd.notna(ah) and pd.notna(al)) else None
         out[m_ts] = {
             "partner_yes_bid_close": bid_c,
             "partner_yes_ask_close": ask_c,
@@ -348,6 +384,8 @@ def build_partner_observables(partner_ticker):
             "partner_trade_count_in_minute": int(aggs["trade_count_in_minute"][i]),
             "partner_taker_flow_in_minute": flow,
             "partner_open_interest_ffill": oi_f,
+            "partner_bid_range_intra_minute": bid_range,
+            "partner_ask_range_intra_minute": ask_range,
         }
     return out
 
@@ -423,25 +461,46 @@ def build_ticker_rows(ticker, formation_window_min=FORMATION_WINDOW_MIN_DEFAULT)
     # Trade aggregation for own ticker
     trade_aggs = aggregate_trades_per_minute(candles_df, trades_df)
 
-    # Build partner trade-count array aligned to own minute_ts_arr (v3 signal needs
-    # both sides). Minutes where partner has no candle → count=0 (treated as not
-    # trading on the partner side).
+    # Own intra-minute bid/ask ranges (needed by v4 match-start price-discovery gate)
+    yes_bid_high_pre = candles_df["yes_bid_high"].astype(np.float64).values
+    yes_bid_low_pre = candles_df["yes_bid_low"].astype(np.float64).values
+    yes_ask_high_pre = candles_df["yes_ask_high"].astype(np.float64).values
+    yes_ask_low_pre = candles_df["yes_ask_low"].astype(np.float64).values
+    own_bid_range_arr = yes_bid_high_pre - yes_bid_low_pre
+    own_ask_range_arr = yes_ask_high_pre - yes_ask_low_pre
+    own_bid_range_arr = np.where(np.isnan(own_bid_range_arr), 0.0, own_bid_range_arr)
+    own_ask_range_arr = np.where(np.isnan(own_ask_range_arr), 0.0, own_ask_range_arr)
+
+    # Build partner aligned arrays (v4 signal needs both-sides simultaneous trade
+    # count AND intra-minute price ranges). Minutes where partner has no candle →
+    # count=0 / range=0 (treated as not trading on the partner side).
     partner_trade_count_aligned = np.zeros(n, dtype=np.int64)
+    partner_bid_range_aligned = np.zeros(n, dtype=np.float64)
+    partner_ask_range_aligned = np.zeros(n, dtype=np.float64)
     for idx_i in range(n):
         m_ts_i = int(minute_ts_arr[idx_i])
         p_obs_i = partner_obs_map.get(m_ts_i, {})
         partner_trade_count_aligned[idx_i] = int(p_obs_i.get("partner_trade_count_in_minute", 0))
+        partner_bid_range_aligned[idx_i] = p_obs_i.get("partner_bid_range_intra_minute") or 0.0
+        partner_ask_range_aligned[idx_i] = p_obs_i.get("partner_ask_range_intra_minute") or 0.0
 
-    # Match-start derivation via v3 both-sides-simultaneous trade-density signal
-    # (spec Section 2.5 amended v3): first K consecutive minutes where BOTH
-    # own.trade_count ≥ M AND partner.trade_count ≥ M.
+    # Match-start derivation via v4 four-level signal hierarchy
+    # (spec Section 2.5 amended v4):
+    #   tier 1 both_sides_price_discovery (trade-count ≥ M_TRADES + range > R)
+    #   tier 2 both_sides_trade_density (trade-count ≥ M_TRADES, no range gate)
+    #   tier 3 expected_expiration_fallback
+    #   tier 4 unknown
     match_start_ts, match_start_method = derive_match_start_ts(
         minute_ts_arr,
         trade_aggs["trade_count_in_minute"],
         partner_trade_count_aligned,
+        own_bid_range_arr,
+        own_ask_range_arr,
+        partner_bid_range_aligned,
+        partner_ask_range_aligned,
     )
     if match_start_ts is None and expected_expiration_ts is not None:
-        # Fallback per spec Section 2.5
+        # Tier 3 fallback per spec Section 2.5
         if settlement_ts is not None and expected_expiration_ts < settlement_ts:
             match_start_ts = expected_expiration_ts
             match_start_method = "expected_expiration_fallback"

@@ -1,0 +1,41 @@
+{
+  "phase": 1,
+  "spec_commit": "87e8e9a2",
+  "ticker": "KXATPMATCH-25JUN18RUNMCD-RUN",
+  "formation_window_min": 120,
+  "n_rows": 210,
+  "n_columns": 69,
+  "runtime_seconds": 2.98,
+  "validation_gate": {
+    "check1_row_count_parity_pass": true,
+    "check1_per_minute_rows": 210,
+    "check1_g9_candles_rows": 210,
+    "check2_always_populated_pass": true,
+    "check2_null_counts": {
+      "yes_bid_close": 0,
+      "yes_ask_close": 0,
+      "spread_close": 0,
+      "mid_close": 0,
+      "ticker": 0,
+      "minute_ts": 0,
+      "regime": 0
+    },
+    "check4_forward_monotonicity_pass": true,
+    "check4_bid_violations": 0,
+    "check4_ask_violations": 0,
+    "check3_DEFERRED": "regression vs L Bv2 cell_summary_phase3 requires corpus; runs at T37b Phase 3 / T37c"
+  },
+  "regime_distribution": {
+    "premarket": "151",
+    "in_match": "59"
+  },
+  "premarket_phase_distribution": {
+    "stable": 141,
+    "nan": 59,
+    "formation": 10
+  },
+  "match_start_method": {
+    "expected_expiration_fallback": "210"
+  },
+  "match_start_ts": 1750273200
+}

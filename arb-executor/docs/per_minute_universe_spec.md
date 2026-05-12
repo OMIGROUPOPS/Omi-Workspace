@@ -103,6 +103,8 @@ Per LESSONS A26 + G19: taker_side is in g9_trades. Trade columns are null when n
 
 OI is the only persistent state-of-the-market variable beyond price. Tracking deltas surfaces position-building and position-unwinding regimes that don't show up in price alone.
 
+Per LESSONS G19: historical-tier markets (the pre-Apr-18-2026 subset) have OI null throughout in g9_candles because the historical pull backfill omits OI; live-tier markets (Apr 18 2026+) have OI populated. Producer emits null where source is null. Downstream consumers handle tier-aware OI availability via the `_tier` field in g9_metadata or directly via null-rate. Same disposition applies to `volume_in_minute` (g9_candles.volume_fp): null throughout for historical-tier; producer recomputes trade-derived activity from g9_trades into `trade_count_in_minute`, `taker_yes_count_in_minute`, `taker_no_count_in_minute`, `taker_flow_in_minute`, `vwap_in_minute` per Section 2.3 so trade activity is observable on historical-tier rows even where candle volume_fp is null.
+
 ### 2.5 Match-lifecycle timing
 
 | Column | Type | Notes |
@@ -111,14 +113,14 @@ OI is the only persistent state-of-the-market variable beyond price. Tracking de
 | `expected_expiration_ts` | int64 | g9_metadata.expected_expiration_time |
 | `close_time_ts` | int64 | g9_metadata.close_time |
 | `settlement_ts` | int64 | g9_metadata.settlement_ts |
-| `match_start_ts` | int64 | Inferred from candle-volume signal per LESSONS A35 (first minute in a sustained run of K≥3 consecutive non-zero-volume candles); null if signal unreliable |
-| `match_start_method` | string | "candle_volume" / "expected_expiration_fallback" / "unknown" |
+| `match_start_ts` | int64 | Inferred from trade-density signal per LESSONS A35 amended (first minute in a sustained run of K≥3 consecutive minutes with `trade_count_in_minute > 0`, derived from g9_trades aggregation per Section 2.3); null if no such run exists |
+| `match_start_method` | string | "trade_density" / "expected_expiration_fallback" / "unknown" |
 | `time_to_match_start_min` | float64 | (match_start_ts − minute_ts) / 60; negative once in-match |
 | `time_to_close_min` | float64 | (close_time_ts − minute_ts) / 60 |
 | `time_to_settlement_min` | float64 | (settlement_ts − minute_ts) / 60 |
 | `minutes_since_open` | float64 | (minute_ts − open_time_ts) / 60 |
 
-Per LESSONS C19: Kalshi market-lifecycle timestamps don't track actual match start (pooled stdev 13.5 hours across categories). Per LESSONS A35: candle-volume signal is the cleanest match-start anchor available in G9. The producer derives match_start_ts via the volume signal where possible, falls back to expected_expiration only when the volume signal is unreliable, and emits the method as a column so downstream consumers can filter.
+Per LESSONS C19: Kalshi market-lifecycle timestamps don't track actual match start (pooled stdev 13.5 hours across categories). Per LESSONS A35 (amended 2026-05-12 post-T37b Phase 1 visual review): the cleanest match-start anchor available in G9 is the **trade-density signal** (consecutive minutes with `trade_count_in_minute > 0`, where `trade_count_in_minute` is derived per Section 2.3 from g9_trades aggregation). Candle `volume_fp` was the original signal but is null throughout for historical-tier markets per LESSONS G19, so it returns "unknown" on the entire historical subset (~58% of corpus). The trade-density signal works on every ticker with trade events recorded. The producer derives match_start_ts via the trade-density signal where possible, falls back to expected_expiration_time only when the trade-density signal is unreliable (no run of K consecutive trade-bearing minutes exists), and emits the method as a column so downstream consumers can filter.
 
 ### 2.6 Regime classification
 
@@ -177,6 +179,33 @@ For each minute, compute the forward-looking max/min bid and ask within configur
 | `result` | string | g9_metadata.result; same across all minutes of a ticker |
 
 Per LESSONS B16: Layer A is the property of the market (forward bounce distribution). These forward-looking label columns ARE the Layer A measurement, computed per-minute instead of per-cell. Layer A v1 aggregated to per-cell distributions; this table preserves per-minute granularity. Per-cell distributions become groupby + percentile operations against these columns.
+
+### 2.9 Paired-leg observables (added 2026-05-12 post-T37b Phase 1 visual review)
+
+Every match has two tickers sharing the same `event_ticker` — the two players' YES-side contracts (e.g., `KXATPMATCH-25JUN18RUNMCD-RUN` and `KXATPMATCH-25JUN18RUNMCD-MCD`). They are inverse positions on the same underlying outcome: yes-side bid on RUN at $0.40 implies the market is pricing MCD's yes-side bid near $0.60, and so on. Analysis that looks at only one ticker's BBO sees half the picture; the partner's BBO carries inverse-side context that exposes arbitrage gaps, sided pressure, and paired-leg execution opportunities.
+
+For each row, also emit the partner ticker's observables at the same minute:
+
+| Column | Type | Notes |
+|---|---|---|
+| `partner_ticker` | string | The other ticker sharing this row's `event_ticker` (e.g., for RUN this is MCD) |
+| `partner_yes_bid_close` | float64 | Partner's yes_bid_close at this minute |
+| `partner_yes_ask_close` | float64 | Partner's yes_ask_close at this minute |
+| `partner_spread_close` | float64 | Partner's spread_close (yes_ask − yes_bid) |
+| `partner_volume_in_minute` | float64 | Partner's g9_candles.volume_fp (null pattern follows tier) |
+| `partner_trade_count_in_minute` | int32 | Partner's trade events in [minute_ts−60, minute_ts) |
+| `partner_taker_flow_in_minute` | float64 | Partner's taker_yes − taker_no in the minute (signed) |
+| `partner_open_interest_ffill` | float64 | Partner's forward-filled OI |
+| `paired_yes_bid_sum` | float64 | own.yes_bid_close + partner.yes_bid_close |
+| `paired_yes_ask_sum` | float64 | own.yes_ask_close + partner.yes_ask_close |
+| `paired_mid_sum` | float64 | own.mid_close + partner.mid_close (should hover near $1 in well-formed markets) |
+| `paired_arb_gap_maker` | float64 | 1.00 − paired_yes_bid_sum (positive = both sides could rest bids for free spread capture if filled) |
+| `paired_arb_gap_taker` | float64 | paired_yes_ask_sum − 1.00 (positive = paying both asks costs > $1, no taker-arbitrage; negative = sub-$1 paired-ask, true taker arbitrage) |
+| `partner_volume_ratio` | float64 | own.volume_in_minute / (own.volume_in_minute + partner.volume_in_minute); null when both sides have null/zero volume; shows which side carries activity |
+
+Paired-leg columns are computed by joining the per-minute output of the partner ticker (loaded as a separate per-ticker block during processing) on `(event_ticker, minute_ts)`. When partner data is missing for a minute (one side has a candle, the other doesn't), partner columns are null for that row.
+
+Per LESSONS B23 (bilateral mechanism — distortions are negative-cost-basis extreme) + LESSONS E18 (bilateral funnel layers): `paired_arb_gap_maker` directly surfaces the maker-side double-cash opportunity Druid's framework anchors on. `paired_mid_sum` deviation from $1 is the market-efficiency signal — wider deviations correlate with thinner books and asymmetric information across the two sides. Downstream consumers can filter cells where `paired_arb_gap_maker > threshold` for bilateral strategies.
 
 ---
 
@@ -362,6 +391,7 @@ Join per_minute on event_ticker to pair the two sides of every match. Then verif
 ## 9. CHANGELOG
 
 - **2026-05-12 ET (initial spec, T37a):** Sections 1-8 + footer. Drafted Session 11, post-temporal-probe-completion. Anchored on operator's challenge to surface every variable per N (player-in-game) at every minute of the premarket window — the unit-of-analysis must match the unit-of-decision (LESSONS B15). Supersedes the cell-keyed binning architecture as the canonical observation grain; cell aggregation becomes a downstream query, not the producer output.
+- **2026-05-12 ET (T37a amendment, post-Phase-1 visual review):** Three coordinated edits driven by Phase 1 RUN-ticker visual inspection. (1) Section 2.5 match-start signal source switched from candle-volume (LESSONS G19: null throughout for historical-tier) to **trade-density** (consecutive minutes with `trade_count_in_minute > 0` from g9_trades aggregation). Method values changed to `trade_density / expected_expiration_fallback / unknown`. Expected outcome on RUN: match_start_ts lands at the visual regime change in_match boundary rather than the 19:00 UTC expected_expiration approximation. (2) Section 2.4 OI/volume tier-note added: historical-tier markets have OI null throughout (per G19); producer emits null where source is null; trade-derived volume columns recompute activity from g9_trades so historical-tier rows are still observable. (3) New Section 2.9 paired-leg observables: every match has two tickers sharing event_ticker, and the partner's BBO/volume/OI/taker-flow observables are emitted alongside own-side data for each row. Adds `partner_ticker`, `partner_yes_bid_close`, `partner_yes_ask_close`, `partner_spread_close`, `partner_volume_in_minute`, `partner_trade_count_in_minute`, `partner_taker_flow_in_minute`, `partner_open_interest_ffill`, `paired_yes_bid_sum`, `paired_yes_ask_sum`, `paired_mid_sum`, `paired_arb_gap_maker`, `paired_arb_gap_taker`, `partner_volume_ratio` — 14 new columns. Anchored on LESSONS B23 + E18 bilateral mechanism framings. Producer working memory roughly doubles to ~2 MB per pair; well within VPS budget.
 
 ---
 

@@ -119,20 +119,23 @@ def parse_iso_ts(s):
         return None
 
 
-def derive_match_start_ts(candles_df, K=MATCH_START_K_DEFAULT):
-    """Derive match_start_ts via consecutive-non-zero-volume signal per LESSONS A35.
+def derive_match_start_ts(minute_ts_arr, trade_count_in_minute_arr, K=MATCH_START_K_DEFAULT):
+    """Derive match_start_ts via trade-density signal per LESSONS A35 amended.
+
+    Per spec Section 2.5 (post-Phase-1 amendment): historical-tier markets have
+    candle volume_fp null throughout, so the original candle-volume signal returns
+    "unknown" on ~58% of corpus. Switch to trade-density (consecutive minutes with
+    trade_count_in_minute > 0, derived from g9_trades aggregation).
 
     Returns (match_start_ts, method).
-    method ∈ {"candle_volume", "expected_expiration_fallback", "unknown"}.
+    method ∈ {"trade_density", "expected_expiration_fallback", "unknown"}.
     """
-    volumes = candles_df["volume_fp"].fillna(0).values
-    timestamps = candles_df["end_period_ts"].values
-    n = len(volumes)
+    n = len(minute_ts_arr)
     if n < K:
         return None, "unknown"
     for i in range(n - K + 1):
-        if all(volumes[i + j] > 0 for j in range(K)):
-            return int(timestamps[i]), "candle_volume"
+        if all(trade_count_in_minute_arr[i + j] > 0 for j in range(K)):
+            return int(minute_ts_arr[i]), "trade_density"
     return None, "unknown"
 
 
@@ -280,6 +283,91 @@ def compute_forward_labels(candles_df, match_start_ts, settlement_ts):
 
 
 # ============================================================
+# Paired-leg partner discovery + observables (spec Section 2.9)
+# ============================================================
+
+def find_partner_ticker(event_ticker, own_ticker):
+    """For a given event_ticker (which pairs the two players in a match), return
+    the ticker that is NOT own_ticker. Returns None if no partner exists."""
+    if event_ticker is None:
+        return None
+    t = pq.read_table(
+        META_PARQUET, columns=["ticker"],
+        filters=[("event_ticker", "=", event_ticker)],
+    ).to_pandas()
+    others = [tk for tk in t["ticker"].tolist() if tk != own_ticker]
+    if not others:
+        return None
+    return others[0]
+
+
+def build_partner_observables(partner_ticker):
+    """Return {minute_ts → dict-of-partner-observables} per spec Section 2.9.
+
+    Lighter-weight than build_ticker_rows: only the columns needed for paired-leg
+    emission. Reuses aggregate_trades_per_minute for trade-derived columns.
+    """
+    if partner_ticker is None:
+        return {}
+    candles = load_ticker_candles(partner_ticker)
+    if candles is None or len(candles) == 0:
+        return {}
+    trades = load_ticker_trades(partner_ticker)
+    aggs = aggregate_trades_per_minute(candles, trades)
+    oi_raw = candles["open_interest_fp"].astype(np.float64).values
+    oi_ffill = pd.Series(oi_raw).ffill().values
+    n = len(candles)
+    out = {}
+    for i in range(n):
+        m_ts = int(candles["end_period_ts"].iloc[i])
+        bid_v = candles["yes_bid_close"].iloc[i]
+        ask_v = candles["yes_ask_close"].iloc[i]
+        bid_c = float(bid_v) if pd.notna(bid_v) else None
+        ask_c = float(ask_v) if pd.notna(ask_v) else None
+        spread = (ask_c - bid_c) if (bid_c is not None and ask_c is not None) else None
+        vol_v = candles["volume_fp"].iloc[i]
+        vol_f = float(vol_v) if pd.notna(vol_v) else None
+        oi_f = float(oi_ffill[i]) if not np.isnan(oi_ffill[i]) else None
+        flow = float(aggs["taker_yes_count_in_minute"][i] - aggs["taker_no_count_in_minute"][i])
+        out[m_ts] = {
+            "partner_yes_bid_close": bid_c,
+            "partner_yes_ask_close": ask_c,
+            "partner_spread_close": spread,
+            "partner_volume_in_minute": vol_f,
+            "partner_trade_count_in_minute": int(aggs["trade_count_in_minute"][i]),
+            "partner_taker_flow_in_minute": flow,
+            "partner_open_interest_ffill": oi_f,
+        }
+    return out
+
+
+def compute_paired_columns(own_bid, own_ask, own_mid, own_vol, partner_obs):
+    """Build the 7 paired-leg derived columns (paired_yes_bid_sum, paired_yes_ask_sum,
+    paired_mid_sum, paired_arb_gap_maker, paired_arb_gap_taker, partner_volume_ratio)
+    plus partner_mid_close derived inline."""
+    p_bid = partner_obs.get("partner_yes_bid_close")
+    p_ask = partner_obs.get("partner_yes_ask_close")
+    p_vol = partner_obs.get("partner_volume_in_minute")
+    paired_yes_bid_sum = (own_bid + p_bid) if (own_bid is not None and p_bid is not None) else None
+    paired_yes_ask_sum = (own_ask + p_ask) if (own_ask is not None and p_ask is not None) else None
+    partner_mid = (p_bid + p_ask) / 2.0 if (p_bid is not None and p_ask is not None) else None
+    paired_mid_sum = (own_mid + partner_mid) if (own_mid is not None and partner_mid is not None) else None
+    paired_arb_gap_maker = (1.0 - paired_yes_bid_sum) if paired_yes_bid_sum is not None else None
+    paired_arb_gap_taker = (paired_yes_ask_sum - 1.0) if paired_yes_ask_sum is not None else None
+    partner_vol_ratio = None
+    if own_vol is not None and p_vol is not None and (own_vol + p_vol) > 0:
+        partner_vol_ratio = own_vol / (own_vol + p_vol)
+    return {
+        "paired_yes_bid_sum": paired_yes_bid_sum,
+        "paired_yes_ask_sum": paired_yes_ask_sum,
+        "paired_mid_sum": paired_mid_sum,
+        "paired_arb_gap_maker": paired_arb_gap_maker,
+        "paired_arb_gap_taker": paired_arb_gap_taker,
+        "partner_volume_ratio": partner_vol_ratio,
+    }
+
+
+# ============================================================
 # Per-ticker row builder
 # ============================================================
 
@@ -314,8 +402,21 @@ def build_ticker_rows(ticker, formation_window_min=FORMATION_WINDOW_MIN_DEFAULT)
     elif isinstance(cs, dict):
         player_uuid = cs.get("tennis_competitor")
 
-    # Match-start derivation
-    match_start_ts, match_start_method = derive_match_start_ts(candles_df)
+    # Partner ticker discovery + observables (spec Section 2.9)
+    partner_ticker = find_partner_ticker(event_ticker, ticker)
+    partner_obs_map = build_partner_observables(partner_ticker) if partner_ticker else {}
+
+    n = len(candles_df)
+    minute_ts_arr = candles_df["end_period_ts"].astype(np.int64).values
+
+    # Trade aggregation (must precede match-start derivation; spec Section 2.5 amended
+    # — match-start signal is now trade-density, not candle volume_fp)
+    trade_aggs = aggregate_trades_per_minute(candles_df, trades_df)
+
+    # Match-start derivation via trade-density (LESSONS A35 amended)
+    match_start_ts, match_start_method = derive_match_start_ts(
+        minute_ts_arr, trade_aggs["trade_count_in_minute"]
+    )
     if match_start_ts is None and expected_expiration_ts is not None:
         # Fallback per spec Section 2.5
         if settlement_ts is not None and expected_expiration_ts < settlement_ts:
@@ -324,17 +425,11 @@ def build_ticker_rows(ticker, formation_window_min=FORMATION_WINDOW_MIN_DEFAULT)
         else:
             match_start_method = "unknown"
 
-    n = len(candles_df)
-    minute_ts_arr = candles_df["end_period_ts"].astype(np.int64).values
-
     # Forward-fill open_interest
     oi_raw = candles_df["open_interest_fp"].astype(np.float64).values
     oi_ffill = pd.Series(oi_raw).ffill().values
     oi_delta = np.full(n, np.nan, dtype=np.float64)
     oi_delta[1:] = oi_ffill[1:] - oi_ffill[:-1]
-
-    # Trade aggregation
-    trade_aggs = aggregate_trades_per_minute(candles_df, trades_df)
 
     # Derived BBO columns
     yes_bid_close = candles_df["yes_bid_close"].astype(np.float64).values
@@ -405,11 +500,21 @@ def build_ticker_rows(ticker, formation_window_min=FORMATION_WINDOW_MIN_DEFAULT)
     # Assemble per-row dicts
     rows = []
     for i in range(n):
+        # Paired-leg lookup for this minute
+        m_ts_i = int(minute_ts_arr[i])
+        p_obs = partner_obs_map.get(m_ts_i, {})
+        own_bid_f = float(yes_bid_close[i]) if not np.isnan(yes_bid_close[i]) else None
+        own_ask_f = float(yes_ask_close[i]) if not np.isnan(yes_ask_close[i]) else None
+        own_mid_f = float(mid_close[i]) if not np.isnan(mid_close[i]) else None
+        own_vol_raw = candles_df["volume_fp"].iloc[i]
+        own_vol_f = float(own_vol_raw) if pd.notna(own_vol_raw) else None
+        paired_cols = compute_paired_columns(own_bid_f, own_ask_f, own_mid_f, own_vol_f, p_obs)
+
         r = {
             # Identity
             "ticker": ticker,
             "event_ticker": event_ticker,
-            "minute_ts": int(minute_ts_arr[i]),
+            "minute_ts": m_ts_i,
             "category": cat,
             "player_competitor_uuid": player_uuid,
             # BBO range
@@ -485,6 +590,22 @@ def build_ticker_rows(ticker, formation_window_min=FORMATION_WINDOW_MIN_DEFAULT)
             "bounce_to_settlement": _f(bounces["bounce_to_settlement"][i]),
             "settlement_value": settlement_value,
             "result": result,
+            # Paired-leg (spec Section 2.9, 14 columns)
+            "partner_ticker": partner_ticker,
+            "partner_yes_bid_close": p_obs.get("partner_yes_bid_close"),
+            "partner_yes_ask_close": p_obs.get("partner_yes_ask_close"),
+            "partner_spread_close": p_obs.get("partner_spread_close"),
+            "partner_volume_in_minute": p_obs.get("partner_volume_in_minute"),
+            "partner_trade_count_in_minute": int(p_obs["partner_trade_count_in_minute"])
+                if "partner_trade_count_in_minute" in p_obs else None,
+            "partner_taker_flow_in_minute": p_obs.get("partner_taker_flow_in_minute"),
+            "partner_open_interest_ffill": p_obs.get("partner_open_interest_ffill"),
+            "paired_yes_bid_sum": paired_cols["paired_yes_bid_sum"],
+            "paired_yes_ask_sum": paired_cols["paired_yes_ask_sum"],
+            "paired_mid_sum": paired_cols["paired_mid_sum"],
+            "paired_arb_gap_maker": paired_cols["paired_arb_gap_maker"],
+            "paired_arb_gap_taker": paired_cols["paired_arb_gap_taker"],
+            "partner_volume_ratio": paired_cols["partner_volume_ratio"],
         }
         rows.append(r)
     return pd.DataFrame(rows)

@@ -27,6 +27,7 @@ ET_OFFSET_HRS = -4
 def main():
     df = pd.read_parquet(PROBE)
     ticker = df["ticker"].iloc[0]
+    partner_ticker = df["partner_ticker"].iloc[0] if "partner_ticker" in df.columns and pd.notna(df["partner_ticker"].iloc[0]) else None
     df["dt_et"] = pd.to_datetime(df["minute_ts"] + ET_OFFSET_HRS * 3600, unit="s")
 
     trades = pq.read_table(
@@ -36,25 +37,58 @@ def main():
     ).to_pandas()
     trades["dt_et"] = pd.to_datetime(trades["created_time"], format="ISO8601") + pd.Timedelta(hours=ET_OFFSET_HRS)
 
+    partner_trades = None
+    if partner_ticker is not None:
+        partner_trades = pq.read_table(
+            TRADES,
+            columns=["ticker", "created_time", "taker_side", "yes_price_dollars", "count_fp"],
+            filters=[("ticker", "=", partner_ticker)],
+        ).to_pandas()
+        if len(partner_trades) > 0:
+            partner_trades["dt_et"] = pd.to_datetime(partner_trades["created_time"], format="ISO8601") + pd.Timedelta(hours=ET_OFFSET_HRS)
+
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 10), sharex=True,
                                     gridspec_kw={"height_ratios": [3, 1]})
 
-    # --- Top panel: bid/ask + trade scatter ---
+    # --- Top panel: bid/ask + trade scatter (own + partner overlay) ---
     ax1.fill_between(df["dt_et"], df["yes_bid_close"], df["yes_ask_close"],
-                     alpha=0.15, color="grey", label="Spread")
-    ax1.plot(df["dt_et"], df["yes_bid_close"], color="tab:blue", linewidth=1.4, label="yes_bid_close")
-    ax1.plot(df["dt_et"], df["yes_ask_close"], color="tab:red", linewidth=1.4, label="yes_ask_close")
+                     alpha=0.15, color="grey", label=f"Own spread ({ticker.split('-')[-1]})")
+    ax1.plot(df["dt_et"], df["yes_bid_close"], color="tab:blue", linewidth=1.6,
+             label=f"own yes_bid_close ({ticker.split('-')[-1]})")
+    ax1.plot(df["dt_et"], df["yes_ask_close"], color="tab:red", linewidth=1.6,
+             label=f"own yes_ask_close ({ticker.split('-')[-1]})")
+
+    # Partner overlay (dashed, lighter)
+    if partner_ticker is not None and "partner_yes_bid_close" in df.columns:
+        pt_short = partner_ticker.split('-')[-1]
+        ax1.plot(df["dt_et"], df["partner_yes_bid_close"], color="tab:green", linewidth=1.2,
+                 linestyle="--", alpha=0.85, label=f"partner yes_bid_close ({pt_short})")
+        ax1.plot(df["dt_et"], df["partner_yes_ask_close"], color="tab:orange", linewidth=1.2,
+                 linestyle="--", alpha=0.85, label=f"partner yes_ask_close ({pt_short})")
 
     yes_trades = trades[trades["taker_side"] == "yes"]
     no_trades = trades[trades["taker_side"] == "no"]
     if len(yes_trades) > 0:
         ax1.scatter(yes_trades["dt_et"], yes_trades["yes_price_dollars"],
-                    s=30, color="tab:red", marker="^", alpha=0.7, zorder=5,
-                    label=f"taker=yes ({len(yes_trades)})")
+                    s=30, color="tab:red", marker="^", alpha=0.85, zorder=5,
+                    label=f"own taker=yes ({len(yes_trades)})")
     if len(no_trades) > 0:
         ax1.scatter(no_trades["dt_et"], no_trades["yes_price_dollars"],
-                    s=30, color="tab:blue", marker="v", alpha=0.7, zorder=5,
-                    label=f"taker=no ({len(no_trades)})")
+                    s=30, color="tab:blue", marker="v", alpha=0.85, zorder=5,
+                    label=f"own taker=no ({len(no_trades)})")
+
+    # Partner trades at half opacity
+    if partner_trades is not None and len(partner_trades) > 0:
+        pt_yes = partner_trades[partner_trades["taker_side"] == "yes"]
+        pt_no = partner_trades[partner_trades["taker_side"] == "no"]
+        if len(pt_yes) > 0:
+            ax1.scatter(pt_yes["dt_et"], pt_yes["yes_price_dollars"],
+                        s=22, color="tab:orange", marker="^", alpha=0.45, zorder=4,
+                        label=f"partner taker=yes ({len(pt_yes)})")
+        if len(pt_no) > 0:
+            ax1.scatter(pt_no["dt_et"], pt_no["yes_price_dollars"],
+                        s=22, color="tab:green", marker="v", alpha=0.45, zorder=4,
+                        label=f"partner taker=no ({len(pt_no)})")
 
     # Vertical lines: open, match_start (fallback), settlement
     open_ts = int(df["open_time_ts"].iloc[0])

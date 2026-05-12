@@ -1315,7 +1315,7 @@ def phase2(formation_window_min=FORMATION_WINDOW_MIN_DEFAULT):
         "n_matches_target": 100,
         "n_matches_selected": len(selected_matches),
         "n_tickers_target": 200,
-        "n_tickers_processed": len(all_dfs),
+        "n_tickers_processed": int(n_processed),
         "n_tickers_skipped": len(skipped_tickers),
         "skipped_tickers": skipped_tickers,
         "n_rows": int(len(df_all)),

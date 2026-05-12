@@ -1,110 +1,114 @@
-[2026-05-12T12:33:21] ============================================================
-[2026-05-12T12:33:21] Per-minute universe — Phase 1 (single-ticker mode)
-[2026-05-12T12:33:21] Ticker: KXATPMATCH-25JUN18RUNMCD-RUN
-[2026-05-12T12:33:21] formation_window_min: 120
-[2026-05-12T12:33:21] ============================================================
-[2026-05-12T12:33:25] Rows produced: 210
-[2026-05-12T12:33:25] Columns: 83
-[2026-05-12T12:33:25] Runtime: 3.9s
-[2026-05-12T12:33:25] 
-[2026-05-12T12:33:25] === HARD GATES (spec Section 5) ===
-[2026-05-12T12:33:25] Check 1 (row count parity with g9_candles[ticker]): per_minute=210 g9_candles=210 → PASS
-[2026-05-12T12:33:25] Check 2 (always-populated column null counts): {'yes_bid_close': 0, 'yes_ask_close': 0, 'spread_close': 0, 'mid_close': 0, 'ticker': 0, 'minute_ts': 0, 'regime': 0} → PASS
-[2026-05-12T12:33:25] Check 4 (forward-label monotonicity): bid violations=0, ask violations=0 → PASS
-[2026-05-12T12:33:25] 
-[2026-05-12T12:33:25] === SCHEMA (column → dtype, sample value, null count) ===
-[2026-05-12T12:33:25]   ticker                                     dtype=str          non_null= 210/210 null=   0 sample=KXATPMATCH-25JUN18RUNMCD-RUN
-[2026-05-12T12:33:25]   event_ticker                               dtype=str          non_null= 210/210 null=   0 sample=KXATPMATCH-25JUN18RUNMCD
-[2026-05-12T12:33:25]   minute_ts                                  dtype=int64        non_null= 210/210 null=   0 sample=1750253580
-[2026-05-12T12:33:25]   category                                   dtype=str          non_null= 210/210 null=   0 sample=ATP_MAIN
-[2026-05-12T12:33:25]   player_competitor_uuid                     dtype=str          non_null= 210/210 null=   0 sample=74375c7f-a183-40d6-abae-9cbecd41a45f
-[2026-05-12T12:33:25]   yes_bid_open                               dtype=float64      non_null= 210/210 null=   0 sample=0.01
-[2026-05-12T12:33:25]   yes_bid_high                               dtype=float64      non_null= 210/210 null=   0 sample=0.01
-[2026-05-12T12:33:25]   yes_bid_low                                dtype=float64      non_null= 210/210 null=   0 sample=0.01
-[2026-05-12T12:33:25]   yes_bid_close                              dtype=float64      non_null= 210/210 null=   0 sample=0.01
-[2026-05-12T12:33:25]   yes_ask_open                               dtype=float64      non_null= 210/210 null=   0 sample=1.0
-[2026-05-12T12:33:25]   yes_ask_high                               dtype=float64      non_null= 210/210 null=   0 sample=1.0
-[2026-05-12T12:33:25]   yes_ask_low                                dtype=float64      non_null= 210/210 null=   0 sample=0.99
-[2026-05-12T12:33:25]   yes_ask_close                              dtype=float64      non_null= 210/210 null=   0 sample=0.99
-[2026-05-12T12:33:25]   spread_close                               dtype=float64      non_null= 210/210 null=   0 sample=0.98
-[2026-05-12T12:33:25]   mid_close                                  dtype=float64      non_null= 210/210 null=   0 sample=0.5
-[2026-05-12T12:33:25]   bid_range_intra_minute                     dtype=float64      non_null= 210/210 null=   0 sample=0.0
-[2026-05-12T12:33:25]   ask_range_intra_minute                     dtype=float64      non_null= 210/210 null=   0 sample=0.010000000000000009
-[2026-05-12T12:33:25]   price_close                                dtype=float64      non_null=  91/210 null= 119 sample=nan
-[2026-05-12T12:33:25]   price_open                                 dtype=float64      non_null=  91/210 null= 119 sample=nan
-[2026-05-12T12:33:25]   price_high                                 dtype=float64      non_null=  91/210 null= 119 sample=nan
-[2026-05-12T12:33:25]   price_low                                  dtype=float64      non_null=  91/210 null= 119 sample=nan
-[2026-05-12T12:33:25]   price_mean                                 dtype=float64      non_null=  91/210 null= 119 sample=nan
-[2026-05-12T12:33:26]   price_previous                             dtype=float64      non_null= 179/210 null=  31 sample=nan
-[2026-05-12T12:33:26]   volume_in_minute                           dtype=object       non_null=   0/210 null= 210 sample=(all null)
-[2026-05-12T12:33:26]   trade_count_in_minute                      dtype=int64        non_null= 210/210 null=   0 sample=0
-[2026-05-12T12:33:26]   minute_has_trade                           dtype=bool         non_null= 210/210 null=   0 sample=False
-[2026-05-12T12:33:26]   taker_yes_count_in_minute                  dtype=float64      non_null= 210/210 null=   0 sample=0.0
-[2026-05-12T12:33:26]   taker_no_count_in_minute                   dtype=float64      non_null= 210/210 null=   0 sample=0.0
-[2026-05-12T12:33:26]   taker_flow_in_minute                       dtype=float64      non_null= 210/210 null=   0 sample=0.0
-[2026-05-12T12:33:26]   vwap_in_minute                             dtype=float64      non_null=  91/210 null= 119 sample=nan
-[2026-05-12T12:33:26]   open_interest_at_minute_end                dtype=object       non_null=   0/210 null= 210 sample=(all null)
-[2026-05-12T12:33:26]   open_interest_ffill                        dtype=object       non_null=   0/210 null= 210 sample=(all null)
-[2026-05-12T12:33:26]   open_interest_delta_from_prior_minute      dtype=object       non_null=   0/210 null= 210 sample=(all null)
-[2026-05-12T12:33:26]   open_time_ts                               dtype=int64        non_null= 210/210 null=   0 sample=1750253520
-[2026-05-12T12:33:26]   expected_expiration_ts                     dtype=int64        non_null= 210/210 null=   0 sample=1750273200
-[2026-05-12T12:33:26]   close_time_ts                              dtype=int64        non_null= 210/210 null=   0 sample=1750276857
-[2026-05-12T12:33:26]   settlement_ts                              dtype=int64        non_null= 210/210 null=   0 sample=1750277357
-[2026-05-12T12:33:26]   match_start_ts                             dtype=int64        non_null= 210/210 null=   0 sample=1750272120
-[2026-05-12T12:33:26]   match_start_method                         dtype=str          non_null= 210/210 null=   0 sample=both_sides_price_discovery
-[2026-05-12T12:33:26]   time_to_match_start_min                    dtype=float64      non_null= 210/210 null=   0 sample=309.0
-[2026-05-12T12:33:26]   time_to_close_min                          dtype=float64      non_null= 210/210 null=   0 sample=387.95
-[2026-05-12T12:33:26]   time_to_settlement_min                     dtype=float64      non_null= 210/210 null=   0 sample=396.28333333333336
-[2026-05-12T12:33:26]   minutes_since_open                         dtype=float64      non_null= 210/210 null=   0 sample=1.0
-[2026-05-12T12:33:26]   regime                                     dtype=str          non_null= 210/210 null=   0 sample=premarket
-[2026-05-12T12:33:26]   premarket_phase                            dtype=str          non_null= 133/210 null=  77 sample=formation
-[2026-05-12T12:33:26]   entry_band_lo                              dtype=int64        non_null= 210/210 null=   0 sample=90
-[2026-05-12T12:33:26]   entry_band_hi                              dtype=int64        non_null= 210/210 null=   0 sample=100
-[2026-05-12T12:33:26]   spread_band                                dtype=str          non_null= 210/210 null=   0 sample=wide
-[2026-05-12T12:33:26]   volume_intensity                           dtype=str          non_null= 210/210 null=   0 sample=low
-[2026-05-12T12:33:26]   max_yes_bid_forward_5min                   dtype=float64      non_null= 202/210 null=   8 sample=nan
-[2026-05-12T12:33:26]   max_yes_bid_forward_15min                  dtype=float64      non_null= 205/210 null=   5 sample=nan
-[2026-05-12T12:33:26]   max_yes_bid_forward_30min                  dtype=float64      non_null= 207/210 null=   3 sample=nan
-[2026-05-12T12:33:26]   max_yes_bid_forward_60min                  dtype=float64      non_null= 209/210 null=   1 sample=0.51
-[2026-05-12T12:33:26]   max_yes_bid_forward_to_match_start         dtype=float64      non_null= 133/210 null=  77 sample=0.82
-[2026-05-12T12:33:26]   max_yes_bid_forward_to_settlement          dtype=float64      non_null= 209/210 null=   1 sample=0.99
-[2026-05-12T12:33:26]   min_yes_ask_forward_5min                   dtype=float64      non_null= 202/210 null=   8 sample=nan
-[2026-05-12T12:33:26]   min_yes_ask_forward_15min                  dtype=float64      non_null= 205/210 null=   5 sample=nan
-[2026-05-12T12:33:26]   min_yes_ask_forward_30min                  dtype=float64      non_null= 207/210 null=   3 sample=nan
-[2026-05-12T12:33:26]   min_yes_ask_forward_60min                  dtype=float64      non_null= 209/210 null=   1 sample=0.98
-[2026-05-12T12:33:26]   min_yes_ask_forward_to_match_start         dtype=float64      non_null= 133/210 null=  77 sample=0.6
-[2026-05-12T12:33:26]   min_yes_ask_forward_to_settlement          dtype=float64      non_null= 209/210 null=   1 sample=0.4
-[2026-05-12T12:33:26]   bounce_5min                                dtype=float64      non_null= 202/210 null=   8 sample=nan
-[2026-05-12T12:33:26]   bounce_15min                               dtype=float64      non_null= 205/210 null=   5 sample=nan
-[2026-05-12T12:33:26]   bounce_30min                               dtype=float64      non_null= 207/210 null=   3 sample=nan
-[2026-05-12T12:33:26]   bounce_60min                               dtype=float64      non_null= 209/210 null=   1 sample=-0.48
-[2026-05-12T12:33:26]   bounce_to_match_start                      dtype=float64      non_null= 133/210 null=  77 sample=-0.17000000000000004
-[2026-05-12T12:33:26]   bounce_to_settlement                       dtype=float64      non_null= 209/210 null=   1 sample=0.0
-[2026-05-12T12:33:26]   settlement_value                           dtype=float64      non_null= 210/210 null=   0 sample=1.0
-[2026-05-12T12:33:26]   result                                     dtype=str          non_null= 210/210 null=   0 sample=yes
-[2026-05-12T12:33:26]   partner_ticker                             dtype=str          non_null= 210/210 null=   0 sample=KXATPMATCH-25JUN18RUNMCD-MCD
-[2026-05-12T12:33:26]   partner_yes_bid_close                      dtype=float64      non_null= 173/210 null=  37 sample=0.01
-[2026-05-12T12:33:26]   partner_yes_ask_close                      dtype=float64      non_null= 173/210 null=  37 sample=0.99
-[2026-05-12T12:33:26]   partner_spread_close                       dtype=float64      non_null= 173/210 null=  37 sample=0.98
-[2026-05-12T12:33:26]   partner_volume_in_minute                   dtype=object       non_null=   0/210 null= 210 sample=(all null)
-[2026-05-12T12:33:26]   partner_trade_count_in_minute              dtype=float64      non_null= 173/210 null=  37 sample=0.0
-[2026-05-12T12:33:26]   partner_taker_flow_in_minute               dtype=float64      non_null= 173/210 null=  37 sample=0.0
-[2026-05-12T12:33:26]   partner_open_interest_ffill                dtype=object       non_null=   0/210 null= 210 sample=(all null)
-[2026-05-12T12:33:26]   paired_yes_bid_sum                         dtype=float64      non_null= 173/210 null=  37 sample=0.02
-[2026-05-12T12:33:26]   paired_yes_ask_sum                         dtype=float64      non_null= 173/210 null=  37 sample=1.98
-[2026-05-12T12:33:26]   paired_mid_sum                             dtype=float64      non_null= 173/210 null=  37 sample=1.0
-[2026-05-12T12:33:26]   paired_arb_gap_maker                       dtype=float64      non_null= 173/210 null=  37 sample=0.98
-[2026-05-12T12:33:26]   paired_arb_gap_taker                       dtype=float64      non_null= 173/210 null=  37 sample=0.98
-[2026-05-12T12:33:26]   partner_volume_ratio                       dtype=object       non_null=   0/210 null= 210 sample=(all null)
-[2026-05-12T12:33:26] 
-[2026-05-12T12:33:26] === regime distribution ===
-[2026-05-12T12:33:26]   {'premarket': np.int64(133), 'in_match': np.int64(77)}
-[2026-05-12T12:33:26] === premarket_phase distribution ===
-[2026-05-12T12:33:26]   {'stable': np.int64(123), nan: np.int64(77), 'formation': np.int64(10)}
-[2026-05-12T12:33:26] === match_start_method ===
-[2026-05-12T12:33:26]   {'both_sides_price_discovery': np.int64(210)}
-[2026-05-12T12:33:26]   match_start_ts = 1750272120
-[2026-05-12T12:33:26] 
-[2026-05-12T12:33:26] Wrote /root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/probe/per_minute_universe_phase1.parquet: 210 rows, 79,345 bytes
-[2026-05-12T12:33:26] Wrote /root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/probe/run_summary_phase1.json
-[2026-05-12T12:33:26] ============================================================
+[2026-05-12T12:52:11] ============================================================
+[2026-05-12T12:52:11] Per-minute universe — Phase 1 (single-ticker mode)
+[2026-05-12T12:52:11] Ticker: KXATPMATCH-25JUN18RUNMCD-RUN
+[2026-05-12T12:52:11] formation_window_min: 120
+[2026-05-12T12:52:11] ============================================================
+[2026-05-12T12:52:13] Rows produced: 210
+[2026-05-12T12:52:13] Columns: 87
+[2026-05-12T12:52:13] Runtime: 2.3s
+[2026-05-12T12:52:13] 
+[2026-05-12T12:52:13] === HARD GATES (spec Section 5) ===
+[2026-05-12T12:52:14] Check 1 (row count parity with g9_candles[ticker]): per_minute=210 g9_candles=210 → PASS
+[2026-05-12T12:52:14] Check 2 (always-populated column null counts): {'yes_bid_close': 0, 'yes_ask_close': 0, 'spread_close': 0, 'mid_close': 0, 'ticker': 0, 'minute_ts': 0, 'regime': 0} → PASS
+[2026-05-12T12:52:14] Check 4 (forward-label monotonicity): bid violations=0, ask violations=0 → PASS
+[2026-05-12T12:52:14] 
+[2026-05-12T12:52:14] === SCHEMA (column → dtype, sample value, null count) ===
+[2026-05-12T12:52:14]   ticker                                     dtype=str          non_null= 210/210 null=   0 sample=KXATPMATCH-25JUN18RUNMCD-RUN
+[2026-05-12T12:52:14]   event_ticker                               dtype=str          non_null= 210/210 null=   0 sample=KXATPMATCH-25JUN18RUNMCD
+[2026-05-12T12:52:14]   minute_ts                                  dtype=int64        non_null= 210/210 null=   0 sample=1750253580
+[2026-05-12T12:52:14]   category                                   dtype=str          non_null= 210/210 null=   0 sample=ATP_MAIN
+[2026-05-12T12:52:14]   player_competitor_uuid                     dtype=str          non_null= 210/210 null=   0 sample=74375c7f-a183-40d6-abae-9cbecd41a45f
+[2026-05-12T12:52:14]   yes_bid_open                               dtype=float64      non_null= 210/210 null=   0 sample=0.01
+[2026-05-12T12:52:14]   yes_bid_high                               dtype=float64      non_null= 210/210 null=   0 sample=0.01
+[2026-05-12T12:52:14]   yes_bid_low                                dtype=float64      non_null= 210/210 null=   0 sample=0.01
+[2026-05-12T12:52:14]   yes_bid_close                              dtype=float64      non_null= 210/210 null=   0 sample=0.01
+[2026-05-12T12:52:14]   yes_ask_open                               dtype=float64      non_null= 210/210 null=   0 sample=1.0
+[2026-05-12T12:52:14]   yes_ask_high                               dtype=float64      non_null= 210/210 null=   0 sample=1.0
+[2026-05-12T12:52:14]   yes_ask_low                                dtype=float64      non_null= 210/210 null=   0 sample=0.99
+[2026-05-12T12:52:14]   yes_ask_close                              dtype=float64      non_null= 210/210 null=   0 sample=0.99
+[2026-05-12T12:52:14]   spread_close                               dtype=float64      non_null= 210/210 null=   0 sample=0.98
+[2026-05-12T12:52:14]   mid_close                                  dtype=float64      non_null= 210/210 null=   0 sample=0.5
+[2026-05-12T12:52:14]   bid_range_intra_minute                     dtype=float64      non_null= 210/210 null=   0 sample=0.0
+[2026-05-12T12:52:14]   ask_range_intra_minute                     dtype=float64      non_null= 210/210 null=   0 sample=0.010000000000000009
+[2026-05-12T12:52:14]   price_close                                dtype=float64      non_null=  91/210 null= 119 sample=nan
+[2026-05-12T12:52:14]   price_open                                 dtype=float64      non_null=  91/210 null= 119 sample=nan
+[2026-05-12T12:52:14]   price_high                                 dtype=float64      non_null=  91/210 null= 119 sample=nan
+[2026-05-12T12:52:14]   price_low                                  dtype=float64      non_null=  91/210 null= 119 sample=nan
+[2026-05-12T12:52:14]   price_mean                                 dtype=float64      non_null=  91/210 null= 119 sample=nan
+[2026-05-12T12:52:14]   price_previous                             dtype=float64      non_null= 179/210 null=  31 sample=nan
+[2026-05-12T12:52:14]   volume_in_minute                           dtype=object       non_null=   0/210 null= 210 sample=(all null)
+[2026-05-12T12:52:14]   trade_count_in_minute                      dtype=int64        non_null= 210/210 null=   0 sample=0
+[2026-05-12T12:52:14]   minute_has_trade                           dtype=bool         non_null= 210/210 null=   0 sample=False
+[2026-05-12T12:52:14]   taker_yes_count_in_minute                  dtype=float64      non_null= 210/210 null=   0 sample=0.0
+[2026-05-12T12:52:14]   taker_no_count_in_minute                   dtype=float64      non_null= 210/210 null=   0 sample=0.0
+[2026-05-12T12:52:14]   taker_flow_in_minute                       dtype=float64      non_null= 210/210 null=   0 sample=0.0
+[2026-05-12T12:52:14]   vwap_in_minute                             dtype=float64      non_null=  91/210 null= 119 sample=nan
+[2026-05-12T12:52:14]   open_interest_at_minute_end                dtype=object       non_null=   0/210 null= 210 sample=(all null)
+[2026-05-12T12:52:14]   open_interest_ffill                        dtype=object       non_null=   0/210 null= 210 sample=(all null)
+[2026-05-12T12:52:14]   open_interest_delta_from_prior_minute      dtype=object       non_null=   0/210 null= 210 sample=(all null)
+[2026-05-12T12:52:14]   open_time_ts                               dtype=int64        non_null= 210/210 null=   0 sample=1750253520
+[2026-05-12T12:52:14]   expected_expiration_ts                     dtype=int64        non_null= 210/210 null=   0 sample=1750273200
+[2026-05-12T12:52:14]   close_time_ts                              dtype=int64        non_null= 210/210 null=   0 sample=1750276857
+[2026-05-12T12:52:14]   settlement_ts                              dtype=int64        non_null= 210/210 null=   0 sample=1750277357
+[2026-05-12T12:52:14]   match_start_ts                             dtype=int64        non_null= 210/210 null=   0 sample=1750272120
+[2026-05-12T12:52:14]   match_start_method                         dtype=str          non_null= 210/210 null=   0 sample=both_sides_price_discovery
+[2026-05-12T12:52:14]   time_to_match_start_min                    dtype=float64      non_null= 210/210 null=   0 sample=309.0
+[2026-05-12T12:52:14]   time_to_close_min                          dtype=float64      non_null= 210/210 null=   0 sample=387.95
+[2026-05-12T12:52:14]   time_to_settlement_min                     dtype=float64      non_null= 210/210 null=   0 sample=396.28333333333336
+[2026-05-12T12:52:14]   minutes_since_open                         dtype=float64      non_null= 210/210 null=   0 sample=1.0
+[2026-05-12T12:52:14]   regime                                     dtype=str          non_null= 210/210 null=   0 sample=premarket
+[2026-05-12T12:52:14]   premarket_phase                            dtype=str          non_null= 133/210 null=  77 sample=formation
+[2026-05-12T12:52:14]   entry_band_lo                              dtype=int64        non_null= 210/210 null=   0 sample=90
+[2026-05-12T12:52:14]   entry_band_hi                              dtype=int64        non_null= 210/210 null=   0 sample=100
+[2026-05-12T12:52:14]   spread_band                                dtype=str          non_null= 210/210 null=   0 sample=wide
+[2026-05-12T12:52:14]   volume_intensity                           dtype=str          non_null= 210/210 null=   0 sample=low
+[2026-05-12T12:52:14]   max_yes_bid_forward_5min                   dtype=float64      non_null= 202/210 null=   8 sample=nan
+[2026-05-12T12:52:14]   max_yes_bid_forward_15min                  dtype=float64      non_null= 205/210 null=   5 sample=nan
+[2026-05-12T12:52:14]   max_yes_bid_forward_30min                  dtype=float64      non_null= 207/210 null=   3 sample=nan
+[2026-05-12T12:52:14]   max_yes_bid_forward_60min                  dtype=float64      non_null= 209/210 null=   1 sample=0.51
+[2026-05-12T12:52:14]   max_yes_bid_forward_to_match_start         dtype=float64      non_null= 133/210 null=  77 sample=0.82
+[2026-05-12T12:52:14]   max_yes_bid_forward_to_settlement          dtype=float64      non_null= 209/210 null=   1 sample=0.99
+[2026-05-12T12:52:14]   min_yes_ask_forward_5min                   dtype=float64      non_null= 202/210 null=   8 sample=nan
+[2026-05-12T12:52:14]   min_yes_ask_forward_15min                  dtype=float64      non_null= 205/210 null=   5 sample=nan
+[2026-05-12T12:52:14]   min_yes_ask_forward_30min                  dtype=float64      non_null= 207/210 null=   3 sample=nan
+[2026-05-12T12:52:14]   min_yes_ask_forward_60min                  dtype=float64      non_null= 209/210 null=   1 sample=0.98
+[2026-05-12T12:52:14]   min_yes_ask_forward_to_match_start         dtype=float64      non_null= 133/210 null=  77 sample=0.6
+[2026-05-12T12:52:14]   min_yes_ask_forward_to_settlement          dtype=float64      non_null= 209/210 null=   1 sample=0.4
+[2026-05-12T12:52:14]   bounce_5min                                dtype=float64      non_null= 202/210 null=   8 sample=nan
+[2026-05-12T12:52:14]   bounce_15min                               dtype=float64      non_null= 205/210 null=   5 sample=nan
+[2026-05-12T12:52:14]   bounce_30min                               dtype=float64      non_null= 207/210 null=   3 sample=nan
+[2026-05-12T12:52:14]   bounce_60min                               dtype=float64      non_null= 209/210 null=   1 sample=-0.48
+[2026-05-12T12:52:14]   bounce_to_match_start                      dtype=float64      non_null= 133/210 null=  77 sample=-0.17000000000000004
+[2026-05-12T12:52:14]   bounce_to_settlement                       dtype=float64      non_null= 209/210 null=   1 sample=0.0
+[2026-05-12T12:52:14]   settlement_value                           dtype=float64      non_null= 210/210 null=   0 sample=1.0
+[2026-05-12T12:52:14]   result                                     dtype=str          non_null= 210/210 null=   0 sample=yes
+[2026-05-12T12:52:14]   partner_ticker                             dtype=str          non_null= 210/210 null=   0 sample=KXATPMATCH-25JUN18RUNMCD-MCD
+[2026-05-12T12:52:14]   partner_yes_bid_close                      dtype=float64      non_null= 173/210 null=  37 sample=0.01
+[2026-05-12T12:52:14]   partner_yes_ask_close                      dtype=float64      non_null= 173/210 null=  37 sample=0.99
+[2026-05-12T12:52:14]   partner_spread_close                       dtype=float64      non_null= 173/210 null=  37 sample=0.98
+[2026-05-12T12:52:14]   partner_volume_in_minute                   dtype=object       non_null=   0/210 null= 210 sample=(all null)
+[2026-05-12T12:52:14]   partner_trade_count_in_minute              dtype=float64      non_null= 173/210 null=  37 sample=0.0
+[2026-05-12T12:52:14]   partner_taker_flow_in_minute               dtype=float64      non_null= 173/210 null=  37 sample=0.0
+[2026-05-12T12:52:14]   partner_open_interest_ffill                dtype=object       non_null=   0/210 null= 210 sample=(all null)
+[2026-05-12T12:52:14]   paired_yes_bid_sum                         dtype=float64      non_null= 173/210 null=  37 sample=0.02
+[2026-05-12T12:52:14]   paired_yes_ask_sum                         dtype=float64      non_null= 173/210 null=  37 sample=1.98
+[2026-05-12T12:52:14]   paired_mid_sum                             dtype=float64      non_null= 173/210 null=  37 sample=1.0
+[2026-05-12T12:52:14]   paired_arb_gap_maker                       dtype=float64      non_null= 173/210 null=  37 sample=0.98
+[2026-05-12T12:52:14]   paired_arb_gap_taker                       dtype=float64      non_null= 173/210 null=  37 sample=0.98
+[2026-05-12T12:52:14]   partner_volume_ratio                       dtype=object       non_null=   0/210 null= 210 sample=(all null)
+[2026-05-12T12:52:14]   price_levels_consumed_in_minute            dtype=int64        non_null= 210/210 null=   0 sample=0
+[2026-05-12T12:52:14]   bid_consumption_velocity                   dtype=float64      non_null= 209/210 null=   1 sample=nan
+[2026-05-12T12:52:14]   ask_consumption_velocity                   dtype=float64      non_null= 209/210 null=   1 sample=nan
+[2026-05-12T12:52:14]   trade_clustering_in_minute                 dtype=float64      non_null=  34/210 null= 176 sample=nan
+[2026-05-12T12:52:14] 
+[2026-05-12T12:52:14] === regime distribution ===
+[2026-05-12T12:52:14]   {'premarket': np.int64(133), 'in_match': np.int64(77)}
+[2026-05-12T12:52:14] === premarket_phase distribution ===
+[2026-05-12T12:52:14]   {'stable': np.int64(123), nan: np.int64(77), 'formation': np.int64(10)}
+[2026-05-12T12:52:14] === match_start_method ===
+[2026-05-12T12:52:14]   {'both_sides_price_discovery': np.int64(210)}
+[2026-05-12T12:52:14]   match_start_ts = 1750272120
+[2026-05-12T12:52:14] 
+[2026-05-12T12:52:14] Wrote /root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/probe/per_minute_universe_phase1.parquet: 210 rows, 83,281 bytes
+[2026-05-12T12:52:14] Wrote /root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/probe/run_summary_phase1.json
+[2026-05-12T12:52:14] ============================================================

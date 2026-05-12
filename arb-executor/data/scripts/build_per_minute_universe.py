@@ -12,8 +12,10 @@ Phase 2 and Phase 3 deferred to separate single-concern commits per spec Section
 """
 
 import argparse
+import glob
 import json
 import os
+import re
 import sys
 import time
 from datetime import datetime
@@ -47,6 +49,10 @@ MATCH_START_R_DEFAULT = 0.02  # R min intra-minute bid OR ask range per LESSONS 
 # Phase 2 sampling design (spec Section 5.3)
 PHASE2_SAMPLE_SEED = 42
 PHASE2_N_MATCHES_PER_STRATUM = 5  # 20 strata × 5 = 100 matches × 2 sides = 200 tickers
+
+# Kill-resilient writes (spec Section 5.3 + Layer B v2 73826c29 pattern)
+PHASE2_BATCH_SIZE = 50    # tickers per per-batch parquet at Phase 2 scale
+PHASE3_BATCH_SIZE = 100   # tickers per per-batch parquet at Phase 3 scale
 
 # Forward-label horizons in seconds (spec Section 2.8)
 HORIZONS = {
@@ -481,6 +487,132 @@ def compute_paired_columns(own_bid, own_ask, own_mid, own_vol, partner_obs):
         "paired_arb_gap_taker": paired_arb_gap_taker,
         "partner_volume_ratio": partner_vol_ratio,
     }
+
+
+# ============================================================
+# Kill-resilient per-batch writer (mirrors Layer B v2 commit 73826c29)
+# ============================================================
+
+class IncrementalTickerWriter:
+    """Per-batch parquet writes + JSONL progress + resume-on-restart.
+
+    Mirrors Layer B v2 commit 73826c29 pattern. Tickers are processed sequentially;
+    every BATCH_SIZE tickers, the producer flushes accumulated DataFrames to a
+    per-batch parquet (`per_minute_features_batch_NNN.parquet`) and appends the
+    batch's JSONL progress lines (one line per ticker) to `_progress_summary.jsonl`.
+
+    Resume mode: on restart, the writer reads existing JSONL and collects the set
+    of already-completed tickers. The caller skips those tickers in its loop. The
+    writer continues numbering batches from the next available index (scanned via
+    glob of existing batch files), so a partial run + restart yields a clean
+    contiguous batch sequence with no overwrites.
+
+    Final merge: after all tickers processed, `merge_all(out_path)` reads all
+    per-batch parquets in numerical order and writes a single merged parquet.
+    """
+
+    def __init__(self, out_dir, batch_size, log_path=None,
+                 batch_filename_prefix="per_minute_features_batch",
+                 progress_filename="_progress_summary.jsonl"):
+        self.out_dir = out_dir
+        self.batch_size = batch_size
+        self.log_path = log_path
+        self.batch_prefix = batch_filename_prefix
+        self.progress_path = os.path.join(out_dir, progress_filename)
+        self.batch_buffer = []
+        self.batch_jsonl_entries = []
+        self.batch_idx = self._next_batch_idx()
+        self.completed_tickers = self._read_progress()
+        os.makedirs(out_dir, exist_ok=True)
+
+    def _next_batch_idx(self):
+        existing = sorted(glob.glob(os.path.join(self.out_dir, f"{self.batch_prefix}_*.parquet")))
+        if not existing:
+            return 0
+        # Filenames like ..._batch_NNN.parquet; extract trailing integer
+        m = re.search(rf"{re.escape(self.batch_prefix)}_(\d+)\.parquet$", existing[-1])
+        return int(m.group(1)) + 1 if m else 0
+
+    def _read_progress(self):
+        completed = set()
+        if not os.path.exists(self.progress_path):
+            return completed
+        with open(self.progress_path) as f:
+            for line in f:
+                try:
+                    entry = json.loads(line)
+                    if "ticker" in entry:
+                        completed.add(entry["ticker"])
+                except Exception:
+                    continue
+        return completed
+
+    def should_skip(self, ticker):
+        return ticker in self.completed_tickers
+
+    def add_ticker(self, ticker, df, runtime_seconds, status="processed", extra_fields=None):
+        if df is not None and len(df) > 0:
+            self.batch_buffer.append(df)
+        entry = {
+            "ticker": ticker,
+            "status": status,
+            "n_rows": int(len(df)) if df is not None else 0,
+            "runtime_seconds": round(runtime_seconds, 2),
+            "completed_at": datetime.now().isoformat(timespec="seconds"),
+        }
+        if extra_fields:
+            entry.update(extra_fields)
+        self.batch_jsonl_entries.append(entry)
+        if len(self.batch_jsonl_entries) >= self.batch_size:
+            self.flush_batch()
+
+    def flush_batch(self):
+        """Write current batch to disk + append JSONL lines. Idempotent: a flush
+        with no pending entries is a no-op."""
+        if not self.batch_jsonl_entries:
+            return
+        # Write per-batch parquet (only if any rows; some batches may be all-skipped)
+        if self.batch_buffer:
+            batch_path = os.path.join(
+                self.out_dir, f"{self.batch_prefix}_{self.batch_idx:03d}.parquet"
+            )
+            df_batch = pd.concat(self.batch_buffer, ignore_index=True)
+            pq.write_table(
+                pa.Table.from_pandas(df_batch, preserve_index=False),
+                batch_path, compression="snappy",
+            )
+            if self.log_path:
+                log(f"  wrote batch {self.batch_idx} parquet: {len(df_batch):,} rows → {batch_path}",
+                    self.log_path)
+        # Append JSONL lines (atomic: open-append-close)
+        with open(self.progress_path, "a") as f:
+            for entry in self.batch_jsonl_entries:
+                f.write(json.dumps(entry, default=str) + "\n")
+        # Reset buffers + advance idx
+        self.batch_buffer = []
+        self.batch_jsonl_entries = []
+        self.batch_idx += 1
+
+    def merge_all(self, out_path):
+        """Glob all per-batch parquets in numerical order, concat, write merged."""
+        batch_paths = sorted(glob.glob(
+            os.path.join(self.out_dir, f"{self.batch_prefix}_*.parquet")
+        ))
+        if not batch_paths:
+            return 0, None
+        dfs = []
+        for p in batch_paths:
+            dfs.append(pd.read_parquet(p))
+        df_merged = pd.concat(dfs, ignore_index=True)
+        pq.write_table(
+            pa.Table.from_pandas(df_merged, preserve_index=False),
+            out_path, compression="snappy",
+        )
+        return len(df_merged), df_merged
+
+    def get_completed_tickers(self):
+        """Return the set of tickers already processed (per JSONL)."""
+        return set(self.completed_tickers)
 
 
 # ============================================================
@@ -1031,27 +1163,42 @@ def phase2(formation_window_min=FORMATION_WINDOW_MIN_DEFAULT):
         ticker_list.extend(m["tickers"])
     log(f"  expanded to {len(ticker_list)} tickers", log_path)
 
-    all_dfs = []
+    # Kill-resilient batched writer (mirrors Layer B v2 commit 73826c29)
+    writer = IncrementalTickerWriter(
+        out_dir, batch_size=PHASE2_BATCH_SIZE, log_path=log_path,
+        batch_filename_prefix="per_minute_features_phase2_batch",
+    )
+    if writer.completed_tickers:
+        log(f"  resume mode: {len(writer.completed_tickers)} tickers already in JSONL, will skip",
+            log_path)
+
     per_ticker_runtimes = []
     skipped_tickers = []
+    n_processed = 0
     for i, ticker in enumerate(ticker_list):
+        if writer.should_skip(ticker):
+            continue  # resume: already processed in prior run
         t_ticker = time.time()
         df = build_ticker_rows(ticker, formation_window_min=formation_window_min)
         elapsed_ticker = time.time() - t_ticker
         if df is None:
+            writer.add_ticker(ticker, None, elapsed_ticker, status="skipped")
             skipped_tickers.append(ticker)
             log(f"  [{i+1}/{len(ticker_list)}] {ticker}: SKIPPED ({elapsed_ticker:.1f}s)", log_path)
             continue
-        all_dfs.append(df)
+        writer.add_ticker(ticker, df, elapsed_ticker, status="processed")
         per_ticker_runtimes.append(elapsed_ticker)
+        n_processed += 1
         if (i + 1) % 10 == 0 or (i + 1) == len(ticker_list):
             log(f"  [{i+1}/{len(ticker_list)}] {ticker}: {len(df)} rows ({elapsed_ticker:.1f}s) "
                 f"elapsed_total={time.time()-t_start:.0f}s", log_path)
+    # Flush any final non-full batch
+    writer.flush_batch()
 
     elapsed_total = time.time() - t_start
     log("", log_path)
     log(f"Phase 2 ticker loop complete: {elapsed_total:.1f}s ({elapsed_total/60:.2f} min)", log_path)
-    log(f"  tickers processed: {len(all_dfs)}/{len(ticker_list)}", log_path)
+    log(f"  tickers processed: {n_processed}/{len(ticker_list)}", log_path)
     log(f"  skipped: {len(skipped_tickers)}", log_path)
 
     runtimes_arr = np.array(per_ticker_runtimes) if per_ticker_runtimes else np.array([0.0])
@@ -1060,13 +1207,11 @@ def phase2(formation_window_min=FORMATION_WINDOW_MIN_DEFAULT):
         f"p90={np.percentile(runtimes_arr, 90):.2f}, max={runtimes_arr.max():.2f}", log_path)
 
     log("", log_path)
-    log("Concat + write parquet...", log_path)
-    df_all = pd.concat(all_dfs, ignore_index=True)
+    log("Merging per-batch parquets...", log_path)
     out_path = os.path.join(out_dir, "per_minute_universe_phase2.parquet")
-    pq.write_table(pa.Table.from_pandas(df_all, preserve_index=False),
-                   out_path, compression="snappy")
-    out_size = os.path.getsize(out_path)
-    log(f"  rows: {len(df_all):,}, cols: {len(df_all.columns)}, "
+    n_merged_rows, df_all = writer.merge_all(out_path)
+    out_size = os.path.getsize(out_path) if os.path.exists(out_path) else 0
+    log(f"  rows: {n_merged_rows:,}, cols: {len(df_all.columns) if df_all is not None else 0}, "
         f"size: {out_size:,} bytes ({out_size/(1024*1024):.2f} MB)", log_path)
 
     log("", log_path)
@@ -1223,6 +1368,147 @@ def phase2(formation_window_min=FORMATION_WINDOW_MIN_DEFAULT):
     log("=" * 60, log_path)
 
 
+# ============================================================
+# Phase 3 — full non-settle corpus, kill-resilient
+# ============================================================
+
+def build_corpus_ticker_list():
+    """Return the deterministic list of binary-outcome tickers (sorted alphabetical).
+
+    Phase 3 processes every binary-outcome ticker in g9_metadata. Order is sorted
+    ascending by ticker string for resume-determinism.
+    """
+    meta = pq.read_table(META_PARQUET, columns=["ticker", "result"]).to_pandas()
+    binary = meta[meta["result"].isin(["yes", "no"])].copy()
+    return sorted(binary["ticker"].tolist())
+
+
+def phase3(formation_window_min=FORMATION_WINDOW_MIN_DEFAULT):
+    """Phase 3: full non-settle premarket corpus, kill-resilient.
+
+    Per spec Section 5.3 + Layer B v2 commit 73826c29 pattern:
+      - All binary-outcome tickers in g9_metadata processed (~19,562 tickers)
+      - Batched per-batch parquet writes (batch size PHASE3_BATCH_SIZE = 100)
+      - JSONL progress per ticker; resume mode skips already-completed tickers
+      - Final merge concatenates all per-batch parquets into single output
+      - Output: data/durable/per_minute_universe/per_minute_features.parquet
+      - Runtime budget: <8 h (post numpy-vectorization)
+    """
+    out_dir = OUT_DIR  # NOT probe/ — this is the canonical Phase 3 path
+    os.makedirs(out_dir, exist_ok=True)
+    log_path = os.path.join(out_dir, "build_log_phase3.txt")
+    t_start = time.time()
+
+    log("=" * 60, log_path)
+    log("Per-minute universe — Phase 3 (full corpus, kill-resilient)", log_path)
+    log("=" * 60, log_path)
+
+    ticker_list = build_corpus_ticker_list()
+    log(f"  binary-outcome tickers in corpus: {len(ticker_list):,}", log_path)
+
+    writer = IncrementalTickerWriter(
+        out_dir, batch_size=PHASE3_BATCH_SIZE, log_path=log_path,
+        batch_filename_prefix="per_minute_features_batch",
+    )
+    if writer.completed_tickers:
+        log(f"  resume mode: {len(writer.completed_tickers):,} tickers already in JSONL "
+            f"(will skip)", log_path)
+
+    per_ticker_runtimes = []
+    skipped_tickers = []
+    n_processed = 0
+    n_skipped_resume = 0
+    for i, ticker in enumerate(ticker_list):
+        if writer.should_skip(ticker):
+            n_skipped_resume += 1
+            continue
+        t_ticker = time.time()
+        df = build_ticker_rows(ticker, formation_window_min=formation_window_min)
+        elapsed_ticker = time.time() - t_ticker
+        if df is None:
+            writer.add_ticker(ticker, None, elapsed_ticker, status="skipped")
+            skipped_tickers.append(ticker)
+            continue
+        writer.add_ticker(ticker, df, elapsed_ticker, status="processed",
+                          extra_fields={
+                              "category": df["category"].iloc[0],
+                              "n_minutes": int(len(df)),
+                              "match_start_method": df["match_start_method"].iloc[0],
+                          })
+        per_ticker_runtimes.append(elapsed_ticker)
+        n_processed += 1
+        if n_processed % 50 == 0 or (i + 1) == len(ticker_list):
+            elapsed_so_far = time.time() - t_start
+            avg_per_ticker = elapsed_so_far / max(1, n_processed)
+            remaining = len(ticker_list) - (i + 1) - n_skipped_resume
+            eta_min = (remaining * avg_per_ticker) / 60.0
+            log(f"  [{i+1}/{len(ticker_list)}] processed={n_processed} "
+                f"elapsed={elapsed_so_far:.0f}s avg={avg_per_ticker:.2f}s/ticker "
+                f"ETA_remaining={eta_min:.1f}min", log_path)
+    writer.flush_batch()
+
+    elapsed_total = time.time() - t_start
+    log("", log_path)
+    log(f"Phase 3 ticker loop complete: {elapsed_total:.1f}s "
+        f"({elapsed_total/3600:.2f} hours)", log_path)
+    log(f"  tickers processed this run: {n_processed}", log_path)
+    log(f"  tickers skipped (no data): {len(skipped_tickers)}", log_path)
+    log(f"  tickers skipped (resume): {n_skipped_resume}", log_path)
+
+    runtimes_arr = np.array(per_ticker_runtimes) if per_ticker_runtimes else np.array([0.0])
+    log(f"  per-ticker runtime distribution (sec): "
+        f"median={np.median(runtimes_arr):.2f}, p90={np.percentile(runtimes_arr, 90):.2f}, "
+        f"max={runtimes_arr.max():.2f}", log_path)
+
+    log("", log_path)
+    log("Merging per-batch parquets into final output...", log_path)
+    out_path = os.path.join(out_dir, "per_minute_features.parquet")
+    n_merged_rows, df_all = writer.merge_all(out_path)
+    out_size = os.path.getsize(out_path) if os.path.exists(out_path) else 0
+    log(f"  rows: {n_merged_rows:,}, cols: {len(df_all.columns) if df_all is not None else 0}, "
+        f"size: {out_size:,} bytes ({out_size/(1024*1024):.2f} MB)", log_path)
+
+    # Lightweight hard-gate summary (full validation by T37c coherence-read script)
+    if df_all is not None:
+        method_counts = df_all.groupby("ticker")["match_start_method"].first().value_counts().to_dict()
+        log("", log_path)
+        log("match_start_method distribution:", log_path)
+        total_t = sum(method_counts.values())
+        for method, count in sorted(method_counts.items(), key=lambda x: -x[1]):
+            log(f"  {method}: {count:,} ({count/total_t:.1%})", log_path)
+
+    summary = {
+        "phase": 3,
+        "spec_commit": "f7ccadac",
+        "n_corpus_tickers": int(len(ticker_list)),
+        "n_processed_this_run": int(n_processed),
+        "n_skipped_no_data": int(len(skipped_tickers)),
+        "n_skipped_resume": int(n_skipped_resume),
+        "n_rows": int(n_merged_rows),
+        "n_columns": int(len(df_all.columns)) if df_all is not None else 0,
+        "runtime_seconds": round(elapsed_total, 2),
+        "runtime_hours": round(elapsed_total / 3600, 2),
+        "output_path": out_path,
+        "output_size_bytes": int(out_size),
+        "output_size_mb": round(out_size / (1024*1024), 2),
+        "per_ticker_runtime_distribution_seconds": {
+            "median": float(np.median(runtimes_arr)),
+            "mean": float(runtimes_arr.mean()),
+            "p90": float(np.percentile(runtimes_arr, 90)),
+            "max": float(runtimes_arr.max()),
+            "min": float(runtimes_arr.min()),
+        },
+        "match_start_method_distribution":
+            df_all.groupby("ticker")["match_start_method"].first().value_counts().to_dict()
+            if df_all is not None else {},
+    }
+    summary_path = os.path.join(out_dir, "run_summary_phase3.json")
+    with open(summary_path, "w") as f:
+        json.dump(summary, f, indent=2, default=str)
+    log(f"\nWrote {summary_path}", log_path)
+    log("=" * 60, log_path)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--phase", type=int, choices=[1, 2, 3], required=True)
@@ -1234,6 +1520,8 @@ def main():
         phase1(ticker=args.ticker, formation_window_min=args.formation_window_min)
     elif args.phase == 2:
         phase2(formation_window_min=args.formation_window_min)
+    elif args.phase == 3:
+        phase3(formation_window_min=args.formation_window_min)
     else:
         raise NotImplementedError(f"Phase {args.phase} not yet implemented; pending separate single-concern commit.")
 

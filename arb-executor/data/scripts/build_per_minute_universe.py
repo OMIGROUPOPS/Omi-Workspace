@@ -210,10 +210,16 @@ def safe_div(num, den):
 # ============================================================
 
 def aggregate_trades_per_minute(candles_df, trades_df):
-    """For each minute_ts in candles_df, compute:
-      - trade_count_in_minute
-      - taker_yes_count_in_minute, taker_no_count_in_minute
+    """For each minute_ts in candles_df, compute trade-derived aggregates plus
+    depth-proxy features per spec Section 2.10.
+
+    Aggregates produced:
+      - trade_count_in_minute, taker_yes_count_in_minute, taker_no_count_in_minute
       - vwap_in_minute
+      - price_levels_consumed_in_minute (count distinct yes_price_dollars; depth proxy)
+      - trade_clustering_in_minute (std of inter-trade gap times, in seconds;
+        null when trade_count < 3 — need ≥3 trades for ≥2 inter-gaps)
+
     Window is [minute_ts - 60, minute_ts) (half-open, ending at minute close).
     """
     n_candles = len(candles_df)
@@ -222,6 +228,8 @@ def aggregate_trades_per_minute(candles_df, trades_df):
         "taker_yes_count_in_minute": np.zeros(n_candles, dtype=np.float64),
         "taker_no_count_in_minute": np.zeros(n_candles, dtype=np.float64),
         "vwap_in_minute": np.full(n_candles, np.nan, dtype=np.float64),
+        "price_levels_consumed_in_minute": np.zeros(n_candles, dtype=np.int32),
+        "trade_clustering_in_minute": np.full(n_candles, np.nan, dtype=np.float64),
     }
     if len(trades_df) == 0:
         return out
@@ -232,7 +240,6 @@ def aggregate_trades_per_minute(candles_df, trades_df):
     trade_price = trades_df["yes_price_dollars"].values.astype(np.float64)
     minute_ts_arr = candles_df["end_period_ts"].values.astype(np.int64)
 
-    # For each candle minute, find trades in [minute_ts - 60, minute_ts)
     for i, m_ts in enumerate(minute_ts_arr):
         window_start = m_ts - 60
         window_end = m_ts
@@ -243,12 +250,18 @@ def aggregate_trades_per_minute(candles_df, trades_df):
         win_side = trade_side[idx_lo:idx_hi]
         win_count = trade_count[idx_lo:idx_hi]
         win_price = trade_price[idx_lo:idx_hi]
+        win_ts = trade_ts[idx_lo:idx_hi]
         out["trade_count_in_minute"][i] = idx_hi - idx_lo
         out["taker_yes_count_in_minute"][i] = win_count[win_side == "yes"].sum()
         out["taker_no_count_in_minute"][i] = win_count[win_side == "no"].sum()
         tot = win_count.sum()
         if tot > 0:
             out["vwap_in_minute"][i] = (win_price * win_count).sum() / tot
+        # Depth proxies (Section 2.10):
+        out["price_levels_consumed_in_minute"][i] = int(len(np.unique(win_price)))
+        if len(win_ts) >= 3:
+            gaps = np.diff(np.sort(win_ts))  # inter-trade gap times in seconds
+            out["trade_clustering_in_minute"][i] = float(np.std(gaps))
     return out
 
 
@@ -526,6 +539,12 @@ def build_ticker_rows(ticker, formation_window_min=FORMATION_WINDOW_MIN_DEFAULT)
     bid_range_intra_min = yes_bid_high - yes_bid_low
     ask_range_intra_min = yes_ask_high - yes_ask_low_arr
 
+    # Depth-proxy velocities (Section 2.10): close-quote delta across minute boundaries
+    bid_velocity = np.full(n, np.nan, dtype=np.float64)
+    ask_velocity = np.full(n, np.nan, dtype=np.float64)
+    bid_velocity[1:] = yes_bid_close[1:] - yes_bid_close[:-1]
+    ask_velocity[1:] = yes_ask_close[1:] - yes_ask_close[:-1]
+
     # Regime + premarket_phase + cell-key features per minute
     cat = categorize(ticker)
     volumes_full = candles_df["volume_fp"].fillna(0).values
@@ -688,6 +707,11 @@ def build_ticker_rows(ticker, formation_window_min=FORMATION_WINDOW_MIN_DEFAULT)
             "paired_arb_gap_maker": paired_cols["paired_arb_gap_maker"],
             "paired_arb_gap_taker": paired_cols["paired_arb_gap_taker"],
             "partner_volume_ratio": paired_cols["partner_volume_ratio"],
+            # Depth-proxy features (spec Section 2.10, 4 columns)
+            "price_levels_consumed_in_minute": int(trade_aggs["price_levels_consumed_in_minute"][i]),
+            "bid_consumption_velocity": _f(bid_velocity[i]),
+            "ask_consumption_velocity": _f(ask_velocity[i]),
+            "trade_clustering_in_minute": _f(trade_aggs["trade_clustering_in_minute"][i]),
         }
         rows.append(r)
     return pd.DataFrame(rows)

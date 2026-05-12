@@ -15,10 +15,10 @@
   ],
   "n_rows": 70620,
   "n_columns": 87,
-  "runtime_seconds": 1046.04,
-  "runtime_minutes": 17.43,
+  "runtime_seconds": 1196.03,
+  "runtime_minutes": 19.93,
   "output_path": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/probe/per_minute_universe_phase2.parquet",
-  "output_size_bytes": 3096654,
+  "output_size_bytes": 3096694,
   "output_size_mb": 2.95,
   "validation_gate": {
     "check1_row_count_parity_pass": true,
@@ -38,12 +38,12 @@
   },
   "per_ticker_runtime_distribution_seconds": {
     "n": 132,
-    "median": 6.323574185371399,
-    "mean": 7.786530306845,
-    "p90": 14.331736445426943,
-    "p99": 26.040912964344013,
-    "max": 30.38742446899414,
-    "min": 1.62644624710083
+    "median": 7.495116114616394,
+    "mean": 8.66295616012631,
+    "p90": 15.399254488945012,
+    "p99": 26.23690516948699,
+    "max": 31.035006046295166,
+    "min": 1.7366690635681152
   },
   "per_ticker_minutes_distribution": {
     "median": 447,
@@ -92,10 +92,10 @@
     "WTA_MAIN|q3": 5
   },
   "phase3_projection": {
-    "median_runtime_per_ticker_s": 6.323574185371399,
+    "median_runtime_per_ticker_s": 7.495116114616394,
     "total_tickers": 20110,
-    "projected_seconds": 127167.07686781883,
-    "projected_hours": 35.32,
+    "projected_seconds": 150726.78506493568,
+    "projected_hours": 41.87,
     "spec_budget_hours": 8
   }
 }

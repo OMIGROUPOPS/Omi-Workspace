@@ -1,0 +1,101 @@
+{
+  "phase": 2,
+  "spec_commit": "5bd66e5a",
+  "seed": 42,
+  "n_matches_target": 100,
+  "n_matches_selected": 68,
+  "n_tickers_target": 200,
+  "n_tickers_processed": 132,
+  "n_tickers_skipped": 4,
+  "skipped_tickers": [
+    "KXATPMATCH-26JAN17LEHGEA-GEA",
+    "KXATPMATCH-26JAN17LEHGEA-LEH",
+    "KXWTAMATCH-25JUN30VOLMAR-MAR",
+    "KXWTAMATCH-25JUN30VOLMAR-VOL"
+  ],
+  "n_rows": 70620,
+  "n_columns": 87,
+  "runtime_seconds": 1046.04,
+  "runtime_minutes": 17.43,
+  "output_path": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/probe/per_minute_universe_phase2.parquet",
+  "output_size_bytes": 3096654,
+  "output_size_mb": 2.95,
+  "validation_gate": {
+    "check1_row_count_parity_pass": true,
+    "check2_always_populated_pass": true,
+    "check2_null_counts": {
+      "yes_bid_close": 0,
+      "yes_ask_close": 0,
+      "spread_close": 0,
+      "mid_close": 0,
+      "ticker": 0,
+      "minute_ts": 0,
+      "regime": 0
+    },
+    "check4_forward_monotonicity_pass": true,
+    "check4_bid_violations": 0,
+    "check4_ask_violations": 0
+  },
+  "per_ticker_runtime_distribution_seconds": {
+    "n": 132,
+    "median": 6.323574185371399,
+    "mean": 7.786530306845,
+    "p90": 14.331736445426943,
+    "p99": 26.040912964344013,
+    "max": 30.38742446899414,
+    "min": 1.62644624710083
+  },
+  "per_ticker_minutes_distribution": {
+    "median": 447,
+    "p90": 1053,
+    "max": 1856,
+    "min": 93,
+    "total": 70620
+  },
+  "match_start_method_distribution": {
+    "both_sides_price_discovery": 118,
+    "unknown": 8,
+    "expected_expiration_fallback": 4,
+    "both_sides_trade_density": 2
+  },
+  "match_start_method_fallback_pct": 0.0303,
+  "available_stratification": {
+    "ATP_CHALL|q0": 1180,
+    "ATP_CHALL|q1": 2342,
+    "ATP_CHALL|q2": 279,
+    "ATP_MAIN|q0": 721,
+    "ATP_MAIN|q1": 647,
+    "ATP_MAIN|q2": 702,
+    "ATP_MAIN|q3": 661,
+    "WTA_CHALL|q0": 239,
+    "WTA_CHALL|q1": 406,
+    "WTA_CHALL|q2": 3,
+    "WTA_MAIN|q0": 684,
+    "WTA_MAIN|q1": 620,
+    "WTA_MAIN|q2": 751,
+    "WTA_MAIN|q3": 546
+  },
+  "realized_stratification": {
+    "ATP_CHALL|q0": 5,
+    "ATP_CHALL|q1": 5,
+    "ATP_CHALL|q2": 5,
+    "ATP_MAIN|q0": 5,
+    "ATP_MAIN|q1": 5,
+    "ATP_MAIN|q2": 5,
+    "ATP_MAIN|q3": 5,
+    "WTA_CHALL|q0": 5,
+    "WTA_CHALL|q1": 5,
+    "WTA_CHALL|q2": 3,
+    "WTA_MAIN|q0": 5,
+    "WTA_MAIN|q1": 5,
+    "WTA_MAIN|q2": 5,
+    "WTA_MAIN|q3": 5
+  },
+  "phase3_projection": {
+    "median_runtime_per_ticker_s": 6.323574185371399,
+    "total_tickers": 20110,
+    "projected_seconds": 127167.07686781883,
+    "projected_hours": 35.32,
+    "spec_budget_hours": 8
+  }
+}

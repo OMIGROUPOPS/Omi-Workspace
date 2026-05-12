@@ -1,0 +1,80 @@
+[2026-05-12T15:08:08] ============================================================
+[2026-05-12T15:08:08] Per-minute universe — Phase 2 (stratified 100-match sample)
+[2026-05-12T15:08:08] ============================================================
+[2026-05-12T15:08:08]   PHASE2_SAMPLE_SEED = 42
+[2026-05-12T15:08:08]   PHASE2_N_MATCHES_PER_STRATUM = 5
+[2026-05-12T15:08:08]   formation_window_min = 120
+[2026-05-12T15:08:08]   total metadata rows: 20110
+[2026-05-12T15:08:08]   binary-outcome tickers with valid timing: 19562
+[2026-05-12T15:08:08]   category distribution: {'ATP_CHALL': 7602, 'ATP_MAIN': 5462, 'WTA_MAIN': 5202, 'WTA_CHALL': 1296}
+[2026-05-12T15:08:24]   paired matches (both sides binary): 9781
+[2026-05-12T15:08:24]   category × quartile match counts:
+[2026-05-12T15:08:24]     ATP_CHALL    q0: 1180 matches
+[2026-05-12T15:08:24]     ATP_CHALL    q1: 2342 matches
+[2026-05-12T15:08:24]     ATP_CHALL    q2: 279 matches
+[2026-05-12T15:08:24]     ATP_MAIN     q0: 721 matches
+[2026-05-12T15:08:24]     ATP_MAIN     q1: 647 matches
+[2026-05-12T15:08:24]     ATP_MAIN     q2: 702 matches
+[2026-05-12T15:08:24]     ATP_MAIN     q3: 661 matches
+[2026-05-12T15:08:24]     WTA_CHALL    q0: 239 matches
+[2026-05-12T15:08:24]     WTA_CHALL    q1: 406 matches
+[2026-05-12T15:08:24]     WTA_CHALL    q2: 3 matches
+[2026-05-12T15:08:24]     WTA_MAIN     q0: 684 matches
+[2026-05-12T15:08:24]     WTA_MAIN     q1: 620 matches
+[2026-05-12T15:08:24]     WTA_MAIN     q2: 751 matches
+[2026-05-12T15:08:24]     WTA_MAIN     q3: 546 matches
+[2026-05-12T15:08:24]   selected 68 matches across 14 strata
+[2026-05-12T15:08:24]   expanded to 136 tickers
+[2026-05-12T15:09:23]   [10/136] KXATPCHALLENGERMATCH-26APR26OZDPOU-POU: 185 rows (8.9s) elapsed_total=75s
+[2026-05-12T15:10:11]   [20/136] KXATPCHALLENGERMATCH-26FEB10SIMDHA-SIM: 136 rows (5.7s) elapsed_total=124s
+[2026-05-12T15:10:59]   [30/136] KXATPCHALLENGERMATCH-26MAR24GALTOB-TOB: 271 rows (6.1s) elapsed_total=171s
+[2026-05-12T15:12:22]   [40/136] KXATPMATCH-25NOV04PASBLO-PAS: 909 rows (19.6s) elapsed_total=254s
+[2026-05-12T15:14:57]   [50/136] KXATPMATCH-26FEB12DEWAW-WAW: 392 rows (6.3s) elapsed_total=409s
+[2026-05-12T15:16:24]   [60/136] KXATPMATCH-26JAN10DEJTIR-TIR: 483 rows (5.1s) elapsed_total=497s
+[2026-05-12T15:17:32]   [69/136] KXATPMATCH-26JAN17LEHGEA-GEA: SKIPPED (0.8s)
+[2026-05-12T15:17:33]   [70/136] KXATPMATCH-26JAN17LEHGEA-LEH: SKIPPED (0.7s)
+[2026-05-12T15:18:26]   [80/136] KXWTACHALLENGERMATCH-26APR28WANQUE-WAN: 301 rows (5.3s) elapsed_total=619s
+[2026-05-12T15:19:17]   [90/136] KXWTACHALLENGERMATCH-26FEB17JOKJON-JON: 162 rows (2.5s) elapsed_total=669s
+[2026-05-12T15:20:37]   [100/136] KXWTAMATCH-25AUG25JACBOU-JAC: 1107 rows (17.8s) elapsed_total=749s
+[2026-05-12T15:21:42]   [107/136] KXWTAMATCH-25JUN30VOLMAR-MAR: SKIPPED (0.3s)
+[2026-05-12T15:21:42]   [108/136] KXWTAMATCH-25JUN30VOLMAR-VOL: SKIPPED (0.4s)
+[2026-05-12T15:21:51]   [110/136] KXWTAMATCH-25OCT08CRIRYB-RYB: 448 rows (4.3s) elapsed_total=823s
+[2026-05-12T15:23:04]   [120/136] KXWTAMATCH-26APR23OSOOSA-OSO: 492 rows (10.4s) elapsed_total=896s
+[2026-05-12T15:24:32]   [130/136] KXWTAMATCH-26JAN13BRASNI-SNI: 798 rows (10.9s) elapsed_total=984s
+[2026-05-12T15:25:34]   [136/136] KXWTAMATCH-26MAR30ZHASTA-ZHA: 570 rows (10.6s) elapsed_total=1046s
+[2026-05-12T15:25:34] 
+[2026-05-12T15:25:34] Phase 2 ticker loop complete: 1046.0s (17.43 min)
+[2026-05-12T15:25:34]   tickers processed: 132/136
+[2026-05-12T15:25:34]   skipped: 4
+[2026-05-12T15:25:34]   per-ticker runtime distribution (sec):
+[2026-05-12T15:25:34]     median=6.32, mean=7.79, p90=14.33, max=30.39
+[2026-05-12T15:25:34] 
+[2026-05-12T15:25:34] Concat + write parquet...
+[2026-05-12T15:25:36]   rows: 70,620, cols: 87, size: 3,096,654 bytes (2.95 MB)
+[2026-05-12T15:25:36] 
+[2026-05-12T15:25:36] === HARD GATES (spec Section 5) ===
+[2026-05-12T15:25:42] Check 1 (row count parity): per_minute=70,620 g9_candles_sum=70,620 → PASS
+[2026-05-12T15:25:43] Check 2 (always-pop nulls): {'yes_bid_close': 0, 'yes_ask_close': 0, 'spread_close': 0, 'mid_close': 0, 'ticker': 0, 'minute_ts': 0, 'regime': 0} → PASS
+[2026-05-12T15:28:09] Check 4 (forward monotonicity): bid=0, ask=0 → PASS
+[2026-05-12T15:28:09] 
+[2026-05-12T15:28:09] match_start_method distribution (per ticker):
+[2026-05-12T15:28:09]   both_sides_price_discovery: 118 (89.4%)
+[2026-05-12T15:28:09]   unknown: 8 (6.1%)
+[2026-05-12T15:28:09]   expected_expiration_fallback: 4 (3.0%)
+[2026-05-12T15:28:09]   both_sides_trade_density: 2 (1.5%)
+[2026-05-12T15:28:09] 
+[2026-05-12T15:28:09] Per-ticker minute counts: median=447, p90=1053, max=1856, min=93, total=70,620
+[2026-05-12T15:28:09] 
+[2026-05-12T15:28:09] Phase 3 projection (divide-by-N sanity check vs spec budget 8 h):
+[2026-05-12T15:28:09]   per-ticker median runtime: 6.32s
+[2026-05-12T15:28:09]   20,110 tickers × 6.32s = 127167s = 35.32 hours
+[2026-05-12T15:28:09] 
+[2026-05-12T15:28:09] === Sample tickers spanning match_start_method distribution ===
+[2026-05-12T15:28:10]   [both_sides_price_discovery] KXATPCHALLENGERMATCH-26APR04RIBSAC-RIB: n_rows=179 category=ATP_CHALL match_start_ts=1775312040 premarket_len_until_match_start_min=183.0
+[2026-05-12T15:28:10]   [both_sides_price_discovery] KXATPCHALLENGERMATCH-26APR04RIBSAC-SAC: n_rows=174 category=ATP_CHALL match_start_ts=1775312040 premarket_len_until_match_start_min=183.0
+[2026-05-12T15:28:10] NaN
+[2026-05-12T15:28:10] NaN
+[2026-05-12T15:28:10]   [expected_expiration_fallback] KXATPMATCH-25JUL17DEJGRI-DEJ: n_rows=264 category=ATP_MAIN match_start_ts=1752753600 premarket_len_until_match_start_min=1225.0
+[2026-05-12T15:28:10] 
+Wrote /root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/probe/run_summary_phase2.json
+[2026-05-12T15:28:10] ============================================================

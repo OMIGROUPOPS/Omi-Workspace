@@ -44,6 +44,10 @@ MATCH_START_K_DEFAULT = 3  # K consecutive minutes per LESSONS A35 amended v4
 MATCH_START_M_TRADES_DEFAULT = 3  # M min trade_count per side per LESSONS A35 amended v4
 MATCH_START_R_DEFAULT = 0.02  # R min intra-minute bid OR ask range per LESSONS A35 amended v4
 
+# Phase 2 sampling design (spec Section 5.3)
+PHASE2_SAMPLE_SEED = 42
+PHASE2_N_MATCHES_PER_STRATUM = 5  # 20 strata × 5 = 100 matches × 2 sides = 200 tickers
+
 # Forward-label horizons in seconds (spec Section 2.8)
 HORIZONS = {
     "5min": 300,
@@ -864,6 +868,296 @@ def phase1(ticker=PHASE1_TICKER, formation_window_min=FORMATION_WINDOW_MIN_DEFAU
     log("=" * 60, log_path)
 
 
+# ============================================================
+# Phase 2 — stratified 100-match sample per spec Section 5.3
+# ============================================================
+
+def select_phase2_matches(seed=PHASE2_SAMPLE_SEED, n_per_stratum=PHASE2_N_MATCHES_PER_STRATUM,
+                          log_path=None):
+    """Return list of selected match dicts.
+
+    Stratifies on (category × premarket-length quartile). Premarket length is
+    derived from g9_metadata as (expected_expiration_time - open_time) since
+    actual match_start_ts requires trade walking (chicken-and-egg). Per-category
+    quartile binning avoids cross-category length-bias.
+
+    Spec Section 5.3: 5 categories × 4 quartiles = 20 strata × 5 matches/stratum.
+    """
+    import random as _rng_module
+    meta = pq.read_table(
+        META_PARQUET,
+        columns=["ticker", "event_ticker", "open_time", "expected_expiration_time", "result"],
+    ).to_pandas()
+    if log_path:
+        log(f"  total metadata rows: {len(meta)}", log_path)
+    binary = meta[meta["result"].isin(["yes", "no"])].copy()
+    binary["open_ts"] = binary["open_time"].apply(parse_iso_ts)
+    binary["expected_ts"] = binary["expected_expiration_time"].apply(parse_iso_ts)
+    binary = binary.dropna(subset=["open_ts", "expected_ts"]).copy()
+    binary["premarket_len_min"] = (binary["expected_ts"] - binary["open_ts"]) / 60.0
+    binary = binary[binary["premarket_len_min"] > 0].copy()
+    binary["category"] = binary["ticker"].apply(categorize)
+    if log_path:
+        log(f"  binary-outcome tickers with valid timing: {len(binary)}", log_path)
+        cat_dist = binary["category"].value_counts().to_dict()
+        log(f"  category distribution: {cat_dist}", log_path)
+
+    # Pair by event_ticker — keep matches with both sides binary-outcome
+    paired = []
+    for ev, group in binary.groupby("event_ticker"):
+        if len(group) == 2:
+            tickers = sorted(group["ticker"].tolist())  # deterministic order
+            cat = categorize(tickers[0])
+            premarket_len = float(group.iloc[0]["premarket_len_min"])
+            paired.append({
+                "event_ticker": ev,
+                "category": cat,
+                "premarket_len_min": premarket_len,
+                "tickers": tickers,
+            })
+    df_m = pd.DataFrame(paired)
+    if log_path:
+        log(f"  paired matches (both sides binary): {len(df_m)}", log_path)
+
+    # Per-category quartile binning of premarket_len
+    df_m["quartile"] = df_m.groupby("category")["premarket_len_min"].transform(
+        lambda x: pd.qcut(x, q=4, labels=[0, 1, 2, 3], duplicates="drop")
+    )
+    if log_path:
+        log(f"  category × quartile match counts:", log_path)
+        for (cat, q), cnt in df_m.groupby(["category", "quartile"], observed=True).size().items():
+            log(f"    {cat:12s} q{q}: {cnt} matches", log_path)
+
+    # Sample n_per_stratum per (category, quartile) deterministically
+    rng = _rng_module.Random(seed)
+    selected = []
+    for (cat, q), grp in df_m.groupby(["category", "quartile"], observed=True):
+        grp_sorted = grp.sort_values("event_ticker").reset_index(drop=True)
+        n_take = min(n_per_stratum, len(grp_sorted))
+        indices = list(range(len(grp_sorted)))
+        rng.shuffle(indices)
+        for idx in indices[:n_take]:
+            row = grp_sorted.iloc[idx].to_dict()
+            selected.append(row)
+    if log_path:
+        log(f"  selected {len(selected)} matches across {df_m[['category','quartile']].drop_duplicates().shape[0]} strata", log_path)
+    return selected
+
+
+def phase2(formation_window_min=FORMATION_WINDOW_MIN_DEFAULT):
+    """Phase 2: stratified 100-match × 2-side sample per spec Section 5.3."""
+    out_dir = PROBE_DIR
+    os.makedirs(out_dir, exist_ok=True)
+    log_path = os.path.join(out_dir, "build_log_phase2.txt")
+    if os.path.exists(log_path):
+        os.remove(log_path)
+    t_start = time.time()
+
+    log("=" * 60, log_path)
+    log("Per-minute universe — Phase 2 (stratified 100-match sample)", log_path)
+    log("=" * 60, log_path)
+    log(f"  PHASE2_SAMPLE_SEED = {PHASE2_SAMPLE_SEED}", log_path)
+    log(f"  PHASE2_N_MATCHES_PER_STRATUM = {PHASE2_N_MATCHES_PER_STRATUM}", log_path)
+    log(f"  formation_window_min = {formation_window_min}", log_path)
+
+    selected_matches = select_phase2_matches(log_path=log_path)
+    # Expand to ticker list — deterministic ordering by event_ticker then ticker
+    selected_matches_sorted = sorted(selected_matches, key=lambda m: m["event_ticker"])
+    ticker_list = []
+    for m in selected_matches_sorted:
+        ticker_list.extend(m["tickers"])
+    log(f"  expanded to {len(ticker_list)} tickers", log_path)
+
+    all_dfs = []
+    per_ticker_runtimes = []
+    skipped_tickers = []
+    for i, ticker in enumerate(ticker_list):
+        t_ticker = time.time()
+        df = build_ticker_rows(ticker, formation_window_min=formation_window_min)
+        elapsed_ticker = time.time() - t_ticker
+        if df is None:
+            skipped_tickers.append(ticker)
+            log(f"  [{i+1}/{len(ticker_list)}] {ticker}: SKIPPED ({elapsed_ticker:.1f}s)", log_path)
+            continue
+        all_dfs.append(df)
+        per_ticker_runtimes.append(elapsed_ticker)
+        if (i + 1) % 10 == 0 or (i + 1) == len(ticker_list):
+            log(f"  [{i+1}/{len(ticker_list)}] {ticker}: {len(df)} rows ({elapsed_ticker:.1f}s) "
+                f"elapsed_total={time.time()-t_start:.0f}s", log_path)
+
+    elapsed_total = time.time() - t_start
+    log("", log_path)
+    log(f"Phase 2 ticker loop complete: {elapsed_total:.1f}s ({elapsed_total/60:.2f} min)", log_path)
+    log(f"  tickers processed: {len(all_dfs)}/{len(ticker_list)}", log_path)
+    log(f"  skipped: {len(skipped_tickers)}", log_path)
+
+    runtimes_arr = np.array(per_ticker_runtimes) if per_ticker_runtimes else np.array([0.0])
+    log(f"  per-ticker runtime distribution (sec):", log_path)
+    log(f"    median={np.median(runtimes_arr):.2f}, mean={runtimes_arr.mean():.2f}, "
+        f"p90={np.percentile(runtimes_arr, 90):.2f}, max={runtimes_arr.max():.2f}", log_path)
+
+    log("", log_path)
+    log("Concat + write parquet...", log_path)
+    df_all = pd.concat(all_dfs, ignore_index=True)
+    out_path = os.path.join(out_dir, "per_minute_universe_phase2.parquet")
+    pq.write_table(pa.Table.from_pandas(df_all, preserve_index=False),
+                   out_path, compression="snappy")
+    out_size = os.path.getsize(out_path)
+    log(f"  rows: {len(df_all):,}, cols: {len(df_all.columns)}, "
+        f"size: {out_size:,} bytes ({out_size/(1024*1024):.2f} MB)", log_path)
+
+    log("", log_path)
+    log("=== HARD GATES (spec Section 5) ===", log_path)
+    # Check 1: row-count parity (sum over sampled tickers)
+    g9_total_rows = 0
+    for ticker in ticker_list:
+        if ticker in skipped_tickers:
+            continue
+        g9_total_rows += pq.read_table(
+            CANDLES_PARQUET, columns=["ticker"], filters=[("ticker", "=", ticker)]
+        ).num_rows
+    check1_pass = len(df_all) == g9_total_rows
+    log(f"Check 1 (row count parity): per_minute={len(df_all):,} g9_candles_sum={g9_total_rows:,} "
+        f"→ {'PASS' if check1_pass else 'FAIL'}", log_path)
+
+    # Check 2: 0 nulls on always-populated columns
+    always_pop_cols = ["yes_bid_close", "yes_ask_close", "spread_close", "mid_close",
+                       "ticker", "minute_ts", "regime"]
+    null_counts = {c: int(df_all[c].isna().sum()) for c in always_pop_cols}
+    check2_pass = all(v == 0 for v in null_counts.values())
+    log(f"Check 2 (always-pop nulls): {null_counts} → {'PASS' if check2_pass else 'FAIL'}", log_path)
+
+    # Check 4: forward-label monotonicity (per ticker)
+    monotonic_violations_bid = 0
+    monotonic_violations_ask = 0
+    fwd_cols_bid = ["max_yes_bid_forward_5min", "max_yes_bid_forward_15min",
+                    "max_yes_bid_forward_30min", "max_yes_bid_forward_60min"]
+    fwd_cols_ask = ["min_yes_ask_forward_5min", "min_yes_ask_forward_15min",
+                    "min_yes_ask_forward_30min", "min_yes_ask_forward_60min"]
+    for tk in df_all["ticker"].unique():
+        sub = df_all[df_all["ticker"] == tk].sort_values("minute_ts").reset_index(drop=True)
+        for i in range(len(sub)):
+            b5, b15, b30, b60 = (sub[c].iloc[i] for c in fwd_cols_bid)
+            if not any(pd.isna(x) for x in [b5, b15, b30, b60]):
+                if not (b60 >= b30 >= b15 >= b5):
+                    monotonic_violations_bid += 1
+            a5, a15, a30, a60 = (sub[c].iloc[i] for c in fwd_cols_ask)
+            if not any(pd.isna(x) for x in [a5, a15, a30, a60]):
+                if not (a60 <= a30 <= a15 <= a5):
+                    monotonic_violations_ask += 1
+    check4_pass = monotonic_violations_bid == 0 and monotonic_violations_ask == 0
+    log(f"Check 4 (forward monotonicity): bid={monotonic_violations_bid}, ask={monotonic_violations_ask} "
+        f"→ {'PASS' if check4_pass else 'FAIL'}", log_path)
+
+    # match_start_method distribution
+    method_counts = df_all.groupby("ticker")["match_start_method"].first().value_counts().to_dict()
+    log("", log_path)
+    log("match_start_method distribution (per ticker):", log_path)
+    total_t = sum(method_counts.values())
+    for method, count in sorted(method_counts.items(), key=lambda x: -x[1]):
+        log(f"  {method}: {count} ({count/total_t:.1%})", log_path)
+    pct_fallback = method_counts.get("expected_expiration_fallback", 0) / max(1, total_t)
+    if pct_fallback > 0.20:
+        log(f"  WARNING: {pct_fallback:.1%} fell to expected_expiration_fallback (>20% threshold)", log_path)
+
+    # Per-ticker minute distribution
+    per_ticker_minutes = df_all.groupby("ticker").size()
+    log("", log_path)
+    log(f"Per-ticker minute counts: median={int(per_ticker_minutes.median())}, "
+        f"p90={int(per_ticker_minutes.quantile(0.9))}, max={int(per_ticker_minutes.max())}, "
+        f"min={int(per_ticker_minutes.min())}, total={int(per_ticker_minutes.sum()):,}", log_path)
+
+    # Phase 3 projection (divide-by-N)
+    median_runtime = float(np.median(runtimes_arr))
+    projected_phase3_sec = median_runtime * 20110
+    log("", log_path)
+    log("Phase 3 projection (divide-by-N sanity check vs spec budget 8 h):", log_path)
+    log(f"  per-ticker median runtime: {median_runtime:.2f}s", log_path)
+    log(f"  20,110 tickers × {median_runtime:.2f}s = {projected_phase3_sec:.0f}s = "
+        f"{projected_phase3_sec/3600:.2f} hours", log_path)
+
+    # Sample 5 tickers spanning the method distribution
+    log("", log_path)
+    log("=== Sample tickers spanning match_start_method distribution ===", log_path)
+    samples_listed = 0
+    for method in method_counts.keys():
+        if samples_listed >= 5:
+            break
+        method_tickers = df_all[df_all["match_start_method"] == method]["ticker"].unique()[:2]
+        for tk in method_tickers:
+            if samples_listed >= 5:
+                break
+            sub = df_all[df_all["ticker"] == tk]
+            row = sub.iloc[0]
+            ms = row["match_start_ts"]
+            ot = row["open_time_ts"]
+            premarket_min = ((ms - ot) / 60.0) if (pd.notna(ms) and pd.notna(ot)) else None
+            log(f"  [{method}] {tk}: n_rows={len(sub)} "
+                f"category={row['category']} "
+                f"match_start_ts={ms} "
+                f"premarket_len_until_match_start_min="
+                f"{premarket_min:.1f}" if premarket_min is not None else f"NaN", log_path)
+            samples_listed += 1
+
+    # Run summary
+    summary = {
+        "phase": 2,
+        "spec_commit": "5bd66e5a",
+        "seed": PHASE2_SAMPLE_SEED,
+        "n_matches_target": 100,
+        "n_matches_selected": len(selected_matches),
+        "n_tickers_target": 200,
+        "n_tickers_processed": len(all_dfs),
+        "n_tickers_skipped": len(skipped_tickers),
+        "skipped_tickers": skipped_tickers,
+        "n_rows": int(len(df_all)),
+        "n_columns": int(len(df_all.columns)),
+        "runtime_seconds": round(elapsed_total, 2),
+        "runtime_minutes": round(elapsed_total / 60, 2),
+        "output_path": out_path,
+        "output_size_bytes": int(out_size),
+        "output_size_mb": round(out_size / (1024*1024), 2),
+        "validation_gate": {
+            "check1_row_count_parity_pass": bool(check1_pass),
+            "check2_always_populated_pass": bool(check2_pass),
+            "check2_null_counts": null_counts,
+            "check4_forward_monotonicity_pass": bool(check4_pass),
+            "check4_bid_violations": int(monotonic_violations_bid),
+            "check4_ask_violations": int(monotonic_violations_ask),
+        },
+        "per_ticker_runtime_distribution_seconds": {
+            "n": int(len(runtimes_arr)),
+            "median": float(np.median(runtimes_arr)),
+            "mean": float(runtimes_arr.mean()),
+            "p90": float(np.percentile(runtimes_arr, 90)),
+            "p99": float(np.percentile(runtimes_arr, 99)),
+            "max": float(runtimes_arr.max()),
+            "min": float(runtimes_arr.min()),
+        },
+        "per_ticker_minutes_distribution": {
+            "median": int(per_ticker_minutes.median()),
+            "p90": int(per_ticker_minutes.quantile(0.9)),
+            "max": int(per_ticker_minutes.max()),
+            "min": int(per_ticker_minutes.min()),
+            "total": int(per_ticker_minutes.sum()),
+        },
+        "match_start_method_distribution": method_counts,
+        "match_start_method_fallback_pct": round(pct_fallback, 4),
+        "phase3_projection": {
+            "median_runtime_per_ticker_s": median_runtime,
+            "total_tickers": 20110,
+            "projected_seconds": projected_phase3_sec,
+            "projected_hours": round(projected_phase3_sec / 3600, 2),
+            "spec_budget_hours": 8,
+        },
+    }
+    summary_path = os.path.join(out_dir, "run_summary_phase2.json")
+    with open(summary_path, "w") as f:
+        json.dump(summary, f, indent=2, default=str)
+    log(f"\nWrote {summary_path}", log_path)
+    log("=" * 60, log_path)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--phase", type=int, choices=[1, 2, 3], required=True)
@@ -873,6 +1167,8 @@ def main():
     args = parser.parse_args()
     if args.phase == 1:
         phase1(ticker=args.ticker, formation_window_min=args.formation_window_min)
+    elif args.phase == 2:
+        phase2(formation_window_min=args.formation_window_min)
     else:
         raise NotImplementedError(f"Phase {args.phase} not yet implemented; pending separate single-concern commit.")
 

@@ -40,7 +40,8 @@ PROBE_DIR = os.path.join(OUT_DIR, "probe")
 
 PHASE1_TICKER = "KXATPMATCH-25JUN18RUNMCD-RUN"
 FORMATION_WINDOW_MIN_DEFAULT = 120  # per spec Section 2.6
-MATCH_START_K_DEFAULT = 3  # K consecutive non-zero-volume candles per LESSONS A35
+MATCH_START_K_DEFAULT = 3  # K consecutive minutes per LESSONS A35 amended v3
+MATCH_START_M_DEFAULT = 5  # M min trade_count per side per LESSONS A35 amended v3
 
 # Forward-label horizons in seconds (spec Section 2.8)
 HORIZONS = {
@@ -119,23 +120,33 @@ def parse_iso_ts(s):
         return None
 
 
-def derive_match_start_ts(minute_ts_arr, trade_count_in_minute_arr, K=MATCH_START_K_DEFAULT):
-    """Derive match_start_ts via trade-density signal per LESSONS A35 amended.
+def derive_match_start_ts(minute_ts_arr, own_trade_count_arr, partner_trade_count_arr,
+                           K=MATCH_START_K_DEFAULT, M=MATCH_START_M_DEFAULT):
+    """Derive match_start_ts via both-sides-simultaneous trade-density signal per
+    LESSONS A35 amended v3 (spec Section 2.5).
 
-    Per spec Section 2.5 (post-Phase-1 amendment): historical-tier markets have
-    candle volume_fp null throughout, so the original candle-volume signal returns
-    "unknown" on ~58% of corpus. Switch to trade-density (consecutive minutes with
-    trade_count_in_minute > 0, derived from g9_trades aggregation).
+    Signal: first minute in a sustained run of K consecutive minutes where BOTH
+    own.trade_count_in_minute ≥ M AND partner.trade_count_in_minute ≥ M.
+
+    Rationale: real match-start events produce simultaneous trader reaction on both
+    paired-leg sides; sporadic premarket activity is one-sided. M=5 filters out
+    single-trade noise.
 
     Returns (match_start_ts, method).
-    method ∈ {"trade_density", "expected_expiration_fallback", "unknown"}.
+    method ∈ {"both_sides_trade_density", "expected_expiration_fallback", "unknown"}.
+
+    Partner trade-count array must be aligned to own minute_ts_arr (same length,
+    same minutes). Missing partner minutes are treated as count=0 by caller.
     """
     n = len(minute_ts_arr)
     if n < K:
         return None, "unknown"
     for i in range(n - K + 1):
-        if all(trade_count_in_minute_arr[i + j] > 0 for j in range(K)):
-            return int(minute_ts_arr[i]), "trade_density"
+        if all(
+            own_trade_count_arr[i + j] >= M and partner_trade_count_arr[i + j] >= M
+            for j in range(K)
+        ):
+            return int(minute_ts_arr[i]), "both_sides_trade_density"
     return None, "unknown"
 
 
@@ -409,13 +420,25 @@ def build_ticker_rows(ticker, formation_window_min=FORMATION_WINDOW_MIN_DEFAULT)
     n = len(candles_df)
     minute_ts_arr = candles_df["end_period_ts"].astype(np.int64).values
 
-    # Trade aggregation (must precede match-start derivation; spec Section 2.5 amended
-    # — match-start signal is now trade-density, not candle volume_fp)
+    # Trade aggregation for own ticker
     trade_aggs = aggregate_trades_per_minute(candles_df, trades_df)
 
-    # Match-start derivation via trade-density (LESSONS A35 amended)
+    # Build partner trade-count array aligned to own minute_ts_arr (v3 signal needs
+    # both sides). Minutes where partner has no candle → count=0 (treated as not
+    # trading on the partner side).
+    partner_trade_count_aligned = np.zeros(n, dtype=np.int64)
+    for idx_i in range(n):
+        m_ts_i = int(minute_ts_arr[idx_i])
+        p_obs_i = partner_obs_map.get(m_ts_i, {})
+        partner_trade_count_aligned[idx_i] = int(p_obs_i.get("partner_trade_count_in_minute", 0))
+
+    # Match-start derivation via v3 both-sides-simultaneous trade-density signal
+    # (spec Section 2.5 amended v3): first K consecutive minutes where BOTH
+    # own.trade_count ≥ M AND partner.trade_count ≥ M.
     match_start_ts, match_start_method = derive_match_start_ts(
-        minute_ts_arr, trade_aggs["trade_count_in_minute"]
+        minute_ts_arr,
+        trade_aggs["trade_count_in_minute"],
+        partner_trade_count_aligned,
     )
     if match_start_ts is None and expected_expiration_ts is not None:
         # Fallback per spec Section 2.5

@@ -1,0 +1,2989 @@
+{
+  "phase": 3,
+  "spec_commits": [
+    "e2197b7",
+    "164f732e",
+    "137191a6",
+    "96257909"
+  ],
+  "producer_commits": [
+    "c0b5e7c2",
+    "6948000e",
+    "a23545a1"
+  ],
+  "runtime_seconds_this_run": 19231.2,
+  "runtime_hours_this_run": 5.34,
+  "checkpoint_state": {
+    "n_cells_total": 235,
+    "n_cells_completed": 235,
+    "n_cells_skipped_resume": 20,
+    "n_cells_processed_this_run": 215,
+    "all_cells_completed": true,
+    "last_completed_cell_idx": 234
+  },
+  "validation_gate": {
+    "check1_byte_equiv_v1_limit_pass": true,
+    "check1_n_compared": 39,
+    "check1_failures": [],
+    "check2_fill_rate_band_pass": false,
+    "check2_n_compared": 12455,
+    "check2_outliers_observed": [
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 1}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 2}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 3}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 5}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 7}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 10}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 15}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 20}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 30}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"horizon_min\": 1}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"horizon_min\": 5}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"horizon_min\": 15}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"horizon_min\": 30}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"horizon_min\": 60}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"horizon_min\": 120}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"horizon_min\": 240}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"trail_c\": 1}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"trail_c\": 2}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"trail_c\": 3}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"trail_c\": 5}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"trail_c\": 7}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"trail_c\": 10}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"trail_c\": 15}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"trail_c\": 20}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 15}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 30}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 60}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 120}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 15}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 30}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 60}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 120}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 15}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 30}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 60}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 120}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 15}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 30}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 60}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 120}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 15}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 30}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 60}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 120}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 3}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 5}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 10}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 3}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 5}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 10}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 3}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 5}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 10}",
+        "fill_rate": 0.964824120603015
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 1}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 2}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 3}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 5}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 7}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 10}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 15}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 20}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 30}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"horizon_min\": 1}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"horizon_min\": 5}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"horizon_min\": 15}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"horizon_min\": 30}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"horizon_min\": 60}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"horizon_min\": 120}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"horizon_min\": 240}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"trail_c\": 1}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"trail_c\": 2}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"trail_c\": 3}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"trail_c\": 5}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"trail_c\": 7}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"trail_c\": 10}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"trail_c\": 15}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"trail_c\": 20}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 15}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 30}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 60}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 120}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 15}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 30}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 60}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 120}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 15}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 30}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 60}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 120}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 15}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 30}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 60}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 120}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 15}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 30}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 60}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 120}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 3}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 5}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 10}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 3}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 5}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 10}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 3}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 5}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 10}",
+        "fill_rate": 0.976905311778291
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 1}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 2}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 3}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 7}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 20}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 30}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 1}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 5}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 15}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 30}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 60}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 120}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 240}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 1}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 2}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 3}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 5}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 7}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 10}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 15}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 20}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 15}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 30}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 60}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 120}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 15}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 30}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 60}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 120}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 15}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 30}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 60}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 120}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 15}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 30}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 60}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 120}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 15}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 30}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 60}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 120}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 3}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 5}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 10}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 3}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 5}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 10}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 3}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 5}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "ATP_MAIN|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 10}",
+        "fill_rate": 0.9710344827586207
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 1}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 2}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 3}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 7}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 20}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 30}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 1}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 5}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 15}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 30}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 60}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 120}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"horizon_min\": 240}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 1}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 2}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 3}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 5}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 7}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 10}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 15}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"trail_c\": 20}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 15}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 30}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 60}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 120}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 15}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 30}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 60}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 120}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 15}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 30}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 60}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 120}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 15}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 30}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 60}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 120}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 15}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 30}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 60}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 120}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 3}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 5}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 10}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 3}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 5}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 10}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 3}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 5}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|10|20|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 10}",
+        "fill_rate": 0.9938461538461538
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 1}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 2}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 3}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 5}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 7}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 10}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 15}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 20}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 30}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"horizon_min\": 1}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"horizon_min\": 5}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"horizon_min\": 15}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"horizon_min\": 30}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"horizon_min\": 60}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"horizon_min\": 120}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"horizon_min\": 240}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"trail_c\": 1}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"trail_c\": 2}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"trail_c\": 3}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"trail_c\": 5}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"trail_c\": 7}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"trail_c\": 10}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"trail_c\": 15}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"trail_c\": 20}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 15}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 30}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 60}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 120}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 15}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 30}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 60}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 120}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 15}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 30}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 60}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 120}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 15}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 30}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 60}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 120}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 15}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 30}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 60}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 120}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 3}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 5}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 10}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 3}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 5}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 10}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 3}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 5}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 10}",
+        "fill_rate": 0.9769230769230769
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 1}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 2}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 3}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 5}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 7}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 10}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 15}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 20}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 30}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"horizon_min\": 1}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"horizon_min\": 5}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"horizon_min\": 15}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"horizon_min\": 30}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"horizon_min\": 60}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"horizon_min\": 120}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"horizon_min\": 240}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"trail_c\": 1}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"trail_c\": 2}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"trail_c\": 3}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"trail_c\": 5}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"trail_c\": 7}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"trail_c\": 10}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"trail_c\": 15}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"trail_c\": 20}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 15}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 30}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 60}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 120}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 15}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 30}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 60}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 120}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 15}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 30}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 60}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 120}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 15}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 30}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 60}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 120}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 15}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 30}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 60}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 120}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 3}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 5}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 10}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 3}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 5}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 10}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 3}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 5}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|30|40|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 10}",
+        "fill_rate": 0.9778481012658228
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 1}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 2}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 3}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 5}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 7}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 10}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 15}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 20}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 30}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"horizon_min\": 1}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"horizon_min\": 5}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"horizon_min\": 15}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"horizon_min\": 30}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"horizon_min\": 60}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"horizon_min\": 120}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"horizon_min\": 240}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"trail_c\": 1}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"trail_c\": 2}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"trail_c\": 3}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"trail_c\": 5}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"trail_c\": 7}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"trail_c\": 10}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"trail_c\": 15}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"trail_c\": 20}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 15}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 30}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 60}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 120}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 15}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 30}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 60}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 120}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 15}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 30}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 60}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 120}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 15}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 30}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 60}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 120}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 15}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 30}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 60}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 120}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 3}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 5}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 10}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 3}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 5}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 10}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 3}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 5}",
+        "fill_rate": 0.950381679389313
+      },
+      {
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 10}",
+        "fill_rate": 0.950381679389313
+      }
+    ],
+    "check3_AB_coherence_pass": false,
+    "check3_mean_abs_delta_AB": 0.0075550130214404225,
+    "check3_B_gt_A_pct": 0.27721651984159057
+  },
+  "informative": {
+    "by_policy_class_gap_pattern": [
+      {
+        "policy_type": "limit",
+        "n_cell_policy_rows": 2115,
+        "B_gross_mean_corpus": 0.0355110200911098,
+        "B_gross_median_corpus": 0.03729064039408865,
+        "A_gross_mean_corpus": 0.037006603464097884,
+        "A_gross_median_corpus": 0.03388386123680241
+      },
+      {
+        "policy_type": "limit_time_stop",
+        "n_cell_policy_rows": 4700,
+        "B_gross_mean_corpus": -0.0035349076531733174,
+        "B_gross_median_corpus": -0.003265306122448976,
+        "A_gross_mean_corpus": 0.00010016055077217719,
+        "A_gross_median_corpus": -0.002470630769202466
+      },
+      {
+        "policy_type": "limit_trailing",
+        "n_cell_policy_rows": 2115,
+        "B_gross_mean_corpus": -0.006277432995388595,
+        "B_gross_median_corpus": -0.005517241379310342,
+        "A_gross_mean_corpus": -0.0019235195833050894,
+        "A_gross_median_corpus": -0.0025505617977528085
+      },
+      {
+        "policy_type": "time_stop",
+        "n_cell_policy_rows": 1645,
+        "B_gross_mean_corpus": -0.014125119149396964,
+        "B_gross_median_corpus": -0.008639240506329115,
+        "A_gross_mean_corpus": -0.014125119149396964,
+        "A_gross_median_corpus": -0.008639240506329115
+      },
+      {
+        "policy_type": "trailing",
+        "n_cell_policy_rows": 1880,
+        "B_gross_mean_corpus": -0.01867157147375065,
+        "B_gross_median_corpus": -0.01454966369837059,
+        "A_gross_mean_corpus": -0.01867157147375065,
+        "A_gross_median_corpus": -0.01454966369837059
+      }
+    ],
+    "top_50_by_capture_B": [
+      {
+        "rank": 1,
+        "cell": "ATP_MAIN|60|70|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.4833333333333334,
+        "replay_capture_A_gross_mean": 0.4833333333333334,
+        "replay_fill_rate": 0.1411764705882353,
+        "cell_drift_rate_at_fill": 1.0,
+        "n_replay_moments": 595
+      },
+      {
+        "rank": 2,
+        "cell": "ATP_MAIN|40|50|medium|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.4145454545454545,
+        "replay_capture_A_gross_mean": 0.38272727272727275,
+        "replay_fill_rate": 0.38390092879256965,
+        "cell_drift_rate_at_fill": 0.8790322580645161,
+        "n_replay_moments": 646
+      },
+      {
+        "rank": 3,
+        "cell": "ATP_MAIN|60|70|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 20}",
+        "replay_capture_B_gross_mean": 0.388,
+        "replay_capture_A_gross_mean": 0.388,
+        "replay_fill_rate": 0.1411764705882353,
+        "cell_drift_rate_at_fill": 1.0,
+        "n_replay_moments": 595
+      },
+      {
+        "rank": 4,
+        "cell": "ATP_CHALL|90|100|wide|mid",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.38263888888888886,
+        "replay_capture_A_gross_mean": 0.35458333333333336,
+        "replay_fill_rate": 0.2099056603773585,
+        "cell_drift_rate_at_fill": 0.38202247191011235,
+        "n_replay_moments": 424
+      },
+      {
+        "rank": 5,
+        "cell": "ATP_CHALL|90|100|wide|mid",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 20}",
+        "replay_capture_B_gross_mean": 0.38152777777777774,
+        "replay_capture_A_gross_mean": 0.3333766233766233,
+        "replay_fill_rate": 0.2099056603773585,
+        "cell_drift_rate_at_fill": 0.38202247191011235,
+        "n_replay_moments": 424
+      },
+      {
+        "rank": 6,
+        "cell": "ATP_MAIN|20|30|tight|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.38072289156626504,
+        "replay_capture_A_gross_mean": 0.30000000000000004,
+        "replay_fill_rate": 0.41548927263212976,
+        "cell_drift_rate_at_fill": 0.6612090680100756,
+        "n_replay_moments": 1911
+      },
+      {
+        "rank": 7,
+        "cell": "ATP_MAIN|60|70|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 15}",
+        "replay_capture_B_gross_mean": 0.38,
+        "replay_capture_A_gross_mean": 0.38,
+        "replay_fill_rate": 0.1411764705882353,
+        "cell_drift_rate_at_fill": 1.0,
+        "n_replay_moments": 595
+      },
+      {
+        "rank": 8,
+        "cell": "ATP_CHALL|90|100|wide|mid",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 15}",
+        "replay_capture_B_gross_mean": 0.3797222222222222,
+        "replay_capture_A_gross_mean": 0.3205194805194804,
+        "replay_fill_rate": 0.2099056603773585,
+        "cell_drift_rate_at_fill": 0.38202247191011235,
+        "n_replay_moments": 424
+      },
+      {
+        "rank": 9,
+        "cell": "WTA_MAIN|20|30|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 10}",
+        "replay_capture_B_gross_mean": 0.37666666666666665,
+        "replay_capture_A_gross_mean": 0.3075,
+        "replay_fill_rate": 0.09235668789808917,
+        "cell_drift_rate_at_fill": 0.9310344827586207,
+        "n_replay_moments": 314
+      },
+      {
+        "rank": 10,
+        "cell": "WTA_MAIN|20|30|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 5}",
+        "replay_capture_B_gross_mean": 0.37666666666666665,
+        "replay_capture_A_gross_mean": 0.345,
+        "replay_fill_rate": 0.09235668789808917,
+        "cell_drift_rate_at_fill": 0.9310344827586207,
+        "n_replay_moments": 314
+      },
+      {
+        "rank": 11,
+        "cell": "WTA_MAIN|20|30|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 15}",
+        "replay_capture_B_gross_mean": 0.37666666666666665,
+        "replay_capture_A_gross_mean": 0.37666666666666665,
+        "replay_fill_rate": 0.09235668789808917,
+        "cell_drift_rate_at_fill": 0.9310344827586207,
+        "n_replay_moments": 314
+      },
+      {
+        "rank": 12,
+        "cell": "WTA_MAIN|20|30|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.37666666666666665,
+        "replay_capture_A_gross_mean": 0.37666666666666665,
+        "replay_fill_rate": 0.09235668789808917,
+        "cell_drift_rate_at_fill": 0.9310344827586207,
+        "n_replay_moments": 314
+      },
+      {
+        "rank": 13,
+        "cell": "WTA_MAIN|20|30|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 3}",
+        "replay_capture_B_gross_mean": 0.37666666666666665,
+        "replay_capture_A_gross_mean": 0.038095238095238106,
+        "replay_fill_rate": 0.09235668789808917,
+        "cell_drift_rate_at_fill": 0.9310344827586207,
+        "n_replay_moments": 314
+      },
+      {
+        "rank": 14,
+        "cell": "WTA_MAIN|20|30|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 20}",
+        "replay_capture_B_gross_mean": 0.37666666666666665,
+        "replay_capture_A_gross_mean": 0.37666666666666665,
+        "replay_fill_rate": 0.09235668789808917,
+        "cell_drift_rate_at_fill": 0.9310344827586207,
+        "n_replay_moments": 314
+      },
+      {
+        "rank": 15,
+        "cell": "WTA_MAIN|20|30|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 7}",
+        "replay_capture_B_gross_mean": 0.37666666666666665,
+        "replay_capture_A_gross_mean": 0.35750000000000004,
+        "replay_fill_rate": 0.09235668789808917,
+        "cell_drift_rate_at_fill": 0.9310344827586207,
+        "n_replay_moments": 314
+      },
+      {
+        "rank": 16,
+        "cell": "ATP_CHALL|90|100|wide|mid",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 10}",
+        "replay_capture_B_gross_mean": 0.3743055555555555,
+        "replay_capture_A_gross_mean": 0.2964556962025317,
+        "replay_fill_rate": 0.2099056603773585,
+        "cell_drift_rate_at_fill": 0.38202247191011235,
+        "n_replay_moments": 424
+      },
+      {
+        "rank": 17,
+        "cell": "ATP_MAIN|50|60|medium|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.37,
+        "replay_capture_A_gross_mean": 0.32999999999999996,
+        "replay_fill_rate": 0.33072407045009783,
+        "cell_drift_rate_at_fill": 0.9911242603550295,
+        "n_replay_moments": 1022
+      },
+      {
+        "rank": 18,
+        "cell": "ATP_MAIN|30|40|medium|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.36016000000000015,
+        "replay_capture_A_gross_mean": 0.3083200000000001,
+        "replay_fill_rate": 0.3951828724353256,
+        "cell_drift_rate_at_fill": 0.909706546275395,
+        "n_replay_moments": 1121
+      },
+      {
+        "rank": 19,
+        "cell": "ATP_CHALL|90|100|wide|mid",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 7}",
+        "replay_capture_B_gross_mean": 0.34075949367088604,
+        "replay_capture_A_gross_mean": 0.26550561797752803,
+        "replay_fill_rate": 0.2099056603773585,
+        "cell_drift_rate_at_fill": 0.38202247191011235,
+        "n_replay_moments": 424
+      },
+      {
+        "rank": 20,
+        "cell": "ATP_CHALL|70|80|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.34,
+        "replay_capture_A_gross_mean": 0.30000000000000004,
+        "replay_fill_rate": 0.2192513368983957,
+        "cell_drift_rate_at_fill": 0.975609756097561,
+        "n_replay_moments": 187
+      },
+      {
+        "rank": 21,
+        "cell": "ATP_MAIN|70|80|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 15}",
+        "replay_capture_B_gross_mean": 0.3366666666666666,
+        "replay_capture_A_gross_mean": 0.1847619047619047,
+        "replay_fill_rate": 0.11672473867595819,
+        "cell_drift_rate_at_fill": 0.40298507462686567,
+        "n_replay_moments": 574
+      },
+      {
+        "rank": 22,
+        "cell": "ATP_MAIN|80|90|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.33368421052631575,
+        "replay_capture_A_gross_mean": 0.30263157894736836,
+        "replay_fill_rate": 0.11382113821138211,
+        "cell_drift_rate_at_fill": 1.0,
+        "n_replay_moments": 369
+      },
+      {
+        "rank": 23,
+        "cell": "WTA_MAIN|50|60|tight|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.3335294117647058,
+        "replay_capture_A_gross_mean": 0.3191011235955055,
+        "replay_fill_rate": 0.4420415224913495,
+        "cell_drift_rate_at_fill": 0.7964774951076321,
+        "n_replay_moments": 1156
+      },
+      {
+        "rank": 24,
+        "cell": "ATP_CHALL|90|100|wide|mid",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 5}",
+        "replay_capture_B_gross_mean": 0.32999999999999996,
+        "replay_capture_A_gross_mean": 0.257752808988764,
+        "replay_fill_rate": 0.2099056603773585,
+        "cell_drift_rate_at_fill": 0.38202247191011235,
+        "n_replay_moments": 424
+      },
+      {
+        "rank": 25,
+        "cell": "ATP_MAIN|30|40|tight|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.32062500000000005,
+        "replay_capture_A_gross_mean": 0.301875,
+        "replay_fill_rate": 0.5011904761904762,
+        "cell_drift_rate_at_fill": 0.6460807600950119,
+        "n_replay_moments": 1680
+      },
+      {
+        "rank": 26,
+        "cell": "ATP_MAIN|90|100|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.31999999999999995,
+        "replay_capture_A_gross_mean": 0.29999999999999993,
+        "replay_fill_rate": 0.2012987012987013,
+        "cell_drift_rate_at_fill": 0.967741935483871,
+        "n_replay_moments": 308
+      },
+      {
+        "rank": 27,
+        "cell": "ATP_MAIN|20|30|medium|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.31999999999999995,
+        "replay_capture_A_gross_mean": 0.31,
+        "replay_fill_rate": 0.4346774193548387,
+        "cell_drift_rate_at_fill": 0.6771799628942486,
+        "n_replay_moments": 1240
+      },
+      {
+        "rank": 28,
+        "cell": "ATP_CHALL|90|100|wide|mid",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 3}",
+        "replay_capture_B_gross_mean": 0.3160975609756097,
+        "replay_capture_A_gross_mean": 0.25662921348314605,
+        "replay_fill_rate": 0.2099056603773585,
+        "cell_drift_rate_at_fill": 0.38202247191011235,
+        "n_replay_moments": 424
+      },
+      {
+        "rank": 29,
+        "cell": "WTA_MAIN|10|20|tight|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.31399999999999995,
+        "replay_capture_A_gross_mean": 0.30166666666666675,
+        "replay_fill_rate": 0.4382077794190054,
+        "cell_drift_rate_at_fill": 0.7067415730337079,
+        "n_replay_moments": 2031
+      },
+      {
+        "rank": 30,
+        "cell": "ATP_MAIN|30|40|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.31,
+        "replay_capture_A_gross_mean": 0.31,
+        "replay_fill_rate": 0.09851301115241635,
+        "cell_drift_rate_at_fill": 0.7169811320754716,
+        "n_replay_moments": 538
+      },
+      {
+        "rank": 31,
+        "cell": "ATP_MAIN|30|40|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 15}",
+        "replay_capture_B_gross_mean": 0.31,
+        "replay_capture_A_gross_mean": 0.31,
+        "replay_fill_rate": 0.09851301115241635,
+        "cell_drift_rate_at_fill": 0.7169811320754716,
+        "n_replay_moments": 538
+      },
+      {
+        "rank": 32,
+        "cell": "ATP_MAIN|30|40|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 20}",
+        "replay_capture_B_gross_mean": 0.31,
+        "replay_capture_A_gross_mean": 0.31,
+        "replay_fill_rate": 0.09851301115241635,
+        "cell_drift_rate_at_fill": 0.7169811320754716,
+        "n_replay_moments": 538
+      },
+      {
+        "rank": 33,
+        "cell": "WTA_MAIN|60|70|tight|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.30999999999999994,
+        "replay_capture_A_gross_mean": 0.29999999999999993,
+        "replay_fill_rate": 0.3114754098360656,
+        "cell_drift_rate_at_fill": 0.7894736842105263,
+        "n_replay_moments": 427
+      },
+      {
+        "rank": 34,
+        "cell": "ATP_MAIN|70|80|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 10}",
+        "replay_capture_B_gross_mean": 0.3082051282051282,
+        "replay_capture_A_gross_mean": 0.1847619047619047,
+        "replay_fill_rate": 0.11672473867595819,
+        "cell_drift_rate_at_fill": 0.40298507462686567,
+        "n_replay_moments": 574
+      },
+      {
+        "rank": 35,
+        "cell": "WTA_MAIN|20|30|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 2}",
+        "replay_capture_B_gross_mean": 0.3075,
+        "replay_capture_A_gross_mean": 0.03400000000000001,
+        "replay_fill_rate": 0.09235668789808917,
+        "cell_drift_rate_at_fill": 0.9310344827586207,
+        "n_replay_moments": 314
+      },
+      {
+        "rank": 36,
+        "cell": "WTA_MAIN|60|70|tight|low",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.3059100204498977,
+        "replay_capture_A_gross_mean": 0.29066265060240953,
+        "replay_fill_rate": 0.6909765142150803,
+        "cell_drift_rate_at_fill": 0.3148479427549195,
+        "n_replay_moments": 1618
+      },
+      {
+        "rank": 37,
+        "cell": "WTA_MAIN|20|30|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 1}",
+        "replay_capture_B_gross_mean": 0.30500000000000005,
+        "replay_capture_A_gross_mean": 0.03360000000000001,
+        "replay_fill_rate": 0.09235668789808917,
+        "cell_drift_rate_at_fill": 0.9310344827586207,
+        "n_replay_moments": 314
+      },
+      {
+        "rank": 38,
+        "cell": "WTA_MAIN|40|50|medium|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.3044736842105264,
+        "replay_capture_A_gross_mean": 0.308421052631579,
+        "replay_fill_rate": 0.30674448767833984,
+        "cell_drift_rate_at_fill": 0.828752642706131,
+        "n_replay_moments": 1542
+      },
+      {
+        "rank": 39,
+        "cell": "ATP_CHALL|90|100|wide|mid",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 2}",
+        "replay_capture_B_gross_mean": 0.3005882352941176,
+        "replay_capture_A_gross_mean": 0.25662921348314605,
+        "replay_fill_rate": 0.2099056603773585,
+        "cell_drift_rate_at_fill": 0.38202247191011235,
+        "n_replay_moments": 424
+      },
+      {
+        "rank": 40,
+        "cell": "ATP_MAIN|70|80|medium|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.30000000000000004,
+        "replay_capture_A_gross_mean": 0.30000000000000004,
+        "replay_fill_rate": 0.2983050847457627,
+        "cell_drift_rate_at_fill": 0.9772727272727273,
+        "n_replay_moments": 295
+      },
+      {
+        "rank": 41,
+        "cell": "WTA_MAIN|90|100|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.30000000000000004,
+        "replay_capture_A_gross_mean": 0.30000000000000004,
+        "replay_fill_rate": 0.06310679611650485,
+        "cell_drift_rate_at_fill": 0.8846153846153846,
+        "n_replay_moments": 412
+      },
+      {
+        "rank": 42,
+        "cell": "WTA_MAIN|40|50|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 10}",
+        "replay_capture_B_gross_mean": 0.3,
+        "replay_capture_A_gross_mean": 0.21000000000000002,
+        "replay_fill_rate": 0.17819148936170212,
+        "cell_drift_rate_at_fill": 0.9850746268656716,
+        "n_replay_moments": 376
+      },
+      {
+        "rank": 43,
+        "cell": "WTA_MAIN|90|100|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 20}",
+        "replay_capture_B_gross_mean": 0.29500000000000004,
+        "replay_capture_A_gross_mean": 0.29500000000000004,
+        "replay_fill_rate": 0.06310679611650485,
+        "cell_drift_rate_at_fill": 0.8846153846153846,
+        "n_replay_moments": 412
+      },
+      {
+        "rank": 44,
+        "cell": "ATP_CHALL|90|100|wide|mid",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 1}",
+        "replay_capture_B_gross_mean": 0.29282352941176465,
+        "replay_capture_A_gross_mean": 0.25662921348314605,
+        "replay_fill_rate": 0.2099056603773585,
+        "cell_drift_rate_at_fill": 0.38202247191011235,
+        "n_replay_moments": 424
+      },
+      {
+        "rank": 45,
+        "cell": "ATP_CHALL|90|100|wide|mid",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 240}",
+        "replay_capture_B_gross_mean": 0.292247191011236,
+        "replay_capture_A_gross_mean": 0.292247191011236,
+        "replay_fill_rate": 0.2099056603773585,
+        "cell_drift_rate_at_fill": 0.38202247191011235,
+        "n_replay_moments": 424
+      },
+      {
+        "rank": 46,
+        "cell": "ATP_MAIN|50|60|medium|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 20}",
+        "replay_capture_B_gross_mean": 0.2799999999999999,
+        "replay_capture_A_gross_mean": 0.22999999999999998,
+        "replay_fill_rate": 0.33072407045009783,
+        "cell_drift_rate_at_fill": 0.9911242603550295,
+        "n_replay_moments": 1022
+      },
+      {
+        "rank": 47,
+        "cell": "ATP_CHALL|70|80|tight|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.2752238805970149,
+        "replay_capture_A_gross_mean": 0.2752238805970149,
+        "replay_fill_rate": 0.44990892531876137,
+        "cell_drift_rate_at_fill": 0.6963562753036437,
+        "n_replay_moments": 549
+      },
+      {
+        "rank": 48,
+        "cell": "ATP_MAIN|90|100|wide|high",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 20}",
+        "replay_capture_B_gross_mean": 0.2749999999999999,
+        "replay_capture_A_gross_mean": 0.2749999999999999,
+        "replay_fill_rate": 0.2012987012987013,
+        "cell_drift_rate_at_fill": 0.967741935483871,
+        "n_replay_moments": 308
+      },
+      {
+        "rank": 49,
+        "cell": "WTA_MAIN|50|60|wide|low",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.2706779661016949,
+        "replay_capture_A_gross_mean": 0.23864406779661015,
+        "replay_fill_rate": 0.3382084095063985,
+        "cell_drift_rate_at_fill": 0.6270270270270271,
+        "n_replay_moments": 547
+      },
+      {
+        "rank": 50,
+        "cell": "ATP_CHALL|60|70|wide|low",
+        "policy_type": "limit",
+        "policy_params": "{\"limit_c\": 30}",
+        "replay_capture_B_gross_mean": 0.2638728323699422,
+        "replay_capture_A_gross_mean": 0.22011560693641619,
+        "replay_fill_rate": 0.6338028169014085,
+        "cell_drift_rate_at_fill": 0.75,
+        "n_replay_moments": 284
+      }
+    ],
+    "non_limit_top_50_deployable": [
+      {
+        "rank": 1,
+        "cell": "ATP_CHALL|40|50|wide|low",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 240}",
+        "replay_capture_B_gross_mean": 0.22373737373737373,
+        "replay_fill_rate": 0.7734375,
+        "cell_drift_rate_at_fill": 0.32323232323232326,
+        "n_replay_moments": 256
+      },
+      {
+        "rank": 2,
+        "cell": "WTA_MAIN|60|70|tight|low",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 240}",
+        "replay_capture_B_gross_mean": 0.15292486583184256,
+        "replay_fill_rate": 0.6909765142150803,
+        "cell_drift_rate_at_fill": 0.3148479427549195,
+        "n_replay_moments": 1618
+      },
+      {
+        "rank": 3,
+        "cell": "ATP_CHALL|40|50|wide|low",
+        "policy_type": "trailing",
+        "policy_params": "{\"trail_c\": 10}",
+        "replay_capture_B_gross_mean": 0.10813131313131313,
+        "replay_fill_rate": 0.7734375,
+        "cell_drift_rate_at_fill": 0.32323232323232326,
+        "n_replay_moments": 256
+      },
+      {
+        "rank": 4,
+        "cell": "ATP_CHALL|80|90|tight|low",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 240}",
+        "replay_capture_B_gross_mean": 0.10217557251908398,
+        "replay_fill_rate": 0.793939393939394,
+        "cell_drift_rate_at_fill": 0.3282442748091603,
+        "n_replay_moments": 330
+      },
+      {
+        "rank": 5,
+        "cell": "ATP_CHALL|80|90|tight|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.10164122137404581,
+        "replay_fill_rate": 0.793939393939394,
+        "cell_drift_rate_at_fill": 0.3282442748091603,
+        "n_replay_moments": 330
+      },
+      {
+        "rank": 6,
+        "cell": "WTA_MAIN|40|50|tight|low",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 240}",
+        "replay_capture_B_gross_mean": 0.10074934432371678,
+        "replay_fill_rate": 0.6470303030303031,
+        "cell_drift_rate_at_fill": 0.33083551892094415,
+        "n_replay_moments": 4125
+      },
+      {
+        "rank": 7,
+        "cell": "ATP_CHALL|40|50|wide|low",
+        "policy_type": "trailing",
+        "policy_params": "{\"trail_c\": 15}",
+        "replay_capture_B_gross_mean": 0.10035353535353535,
+        "replay_fill_rate": 0.7734375,
+        "cell_drift_rate_at_fill": 0.32323232323232326,
+        "n_replay_moments": 256
+      },
+      {
+        "rank": 8,
+        "cell": "ATP_CHALL|80|90|medium|low",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 240}",
+        "replay_capture_B_gross_mean": 0.09604347826086956,
+        "replay_fill_rate": 0.5386416861826698,
+        "cell_drift_rate_at_fill": 0.4043478260869565,
+        "n_replay_moments": 854
+      },
+      {
+        "rank": 9,
+        "cell": "ATP_CHALL|40|50|wide|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 10}",
+        "replay_capture_B_gross_mean": 0.09414141414141412,
+        "replay_fill_rate": 0.7734375,
+        "cell_drift_rate_at_fill": 0.32323232323232326,
+        "n_replay_moments": 256
+      },
+      {
+        "rank": 10,
+        "cell": "ATP_CHALL|80|90|tight|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.09137404580152671,
+        "replay_fill_rate": 0.793939393939394,
+        "cell_drift_rate_at_fill": 0.3282442748091603,
+        "n_replay_moments": 330
+      },
+      {
+        "rank": 11,
+        "cell": "ATP_CHALL|40|50|wide|low",
+        "policy_type": "trailing",
+        "policy_params": "{\"trail_c\": 20}",
+        "replay_capture_B_gross_mean": 0.08979797979797978,
+        "replay_fill_rate": 0.7734375,
+        "cell_drift_rate_at_fill": 0.32323232323232326,
+        "n_replay_moments": 256
+      },
+      {
+        "rank": 12,
+        "cell": "ATP_CHALL|80|90|tight|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 60}",
+        "replay_capture_B_gross_mean": 0.08580152671755727,
+        "replay_fill_rate": 0.793939393939394,
+        "cell_drift_rate_at_fill": 0.3282442748091603,
+        "n_replay_moments": 330
+      },
+      {
+        "rank": 13,
+        "cell": "ATP_CHALL|50|60|tight|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 10}",
+        "replay_capture_B_gross_mean": 0.08196132596685081,
+        "replay_fill_rate": 0.9305912596401028,
+        "cell_drift_rate_at_fill": 0.1574585635359116,
+        "n_replay_moments": 389
+      },
+      {
+        "rank": 14,
+        "cell": "ATP_CHALL|80|90|tight|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 60}",
+        "replay_capture_B_gross_mean": 0.0814503816793893,
+        "replay_fill_rate": 0.793939393939394,
+        "cell_drift_rate_at_fill": 0.3282442748091603,
+        "n_replay_moments": 330
+      },
+      {
+        "rank": 15,
+        "cell": "ATP_CHALL|80|90|tight|low",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.0784732824427481,
+        "replay_fill_rate": 0.793939393939394,
+        "cell_drift_rate_at_fill": 0.3282442748091603,
+        "n_replay_moments": 330
+      },
+      {
+        "rank": 16,
+        "cell": "ATP_CHALL|80|90|tight|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.07774809160305343,
+        "replay_fill_rate": 0.793939393939394,
+        "cell_drift_rate_at_fill": 0.3282442748091603,
+        "n_replay_moments": 330
+      },
+      {
+        "rank": 17,
+        "cell": "ATP_CHALL|40|50|wide|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 10}",
+        "replay_capture_B_gross_mean": 0.07404040404040405,
+        "replay_fill_rate": 0.7734375,
+        "cell_drift_rate_at_fill": 0.32323232323232326,
+        "n_replay_moments": 256
+      },
+      {
+        "rank": 18,
+        "cell": "ATP_MAIN|50|60|medium|low",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 240}",
+        "replay_capture_B_gross_mean": 0.07111328125,
+        "replay_fill_rate": 0.6649350649350649,
+        "cell_drift_rate_at_fill": 0.49609375,
+        "n_replay_moments": 770
+      },
+      {
+        "rank": 19,
+        "cell": "ATP_CHALL|50|60|tight|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 5}",
+        "replay_capture_B_gross_mean": 0.07044198895027622,
+        "replay_fill_rate": 0.9305912596401028,
+        "cell_drift_rate_at_fill": 0.1574585635359116,
+        "n_replay_moments": 389
+      },
+      {
+        "rank": 20,
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 3}",
+        "replay_capture_B_gross_mean": 0.06999999999999999,
+        "replay_fill_rate": 0.964824120603015,
+        "cell_drift_rate_at_fill": 0.4739583333333333,
+        "n_replay_moments": 199
+      },
+      {
+        "rank": 21,
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 5}",
+        "replay_capture_B_gross_mean": 0.06749999999999999,
+        "replay_fill_rate": 0.964824120603015,
+        "cell_drift_rate_at_fill": 0.4739583333333333,
+        "n_replay_moments": 199
+      },
+      {
+        "rank": 22,
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 10}",
+        "replay_capture_B_gross_mean": 0.06729166666666667,
+        "replay_fill_rate": 0.964824120603015,
+        "cell_drift_rate_at_fill": 0.4739583333333333,
+        "n_replay_moments": 199
+      },
+      {
+        "rank": 23,
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.06706827309236946,
+        "replay_fill_rate": 0.950381679389313,
+        "cell_drift_rate_at_fill": 0.23694779116465864,
+        "n_replay_moments": 262
+      },
+      {
+        "rank": 24,
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 3}",
+        "replay_capture_B_gross_mean": 0.06229166666666666,
+        "replay_fill_rate": 0.964824120603015,
+        "cell_drift_rate_at_fill": 0.4739583333333333,
+        "n_replay_moments": 199
+      },
+      {
+        "rank": 25,
+        "cell": "ATP_MAIN|0|10|wide|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 5}",
+        "replay_capture_B_gross_mean": 0.06218749999999999,
+        "replay_fill_rate": 0.6956521739130435,
+        "cell_drift_rate_at_fill": 0.46875,
+        "n_replay_moments": 92
+      },
+      {
+        "rank": 26,
+        "cell": "ATP_CHALL|50|60|tight|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 10}",
+        "replay_capture_B_gross_mean": 0.061325966850828736,
+        "replay_fill_rate": 0.9305912596401028,
+        "cell_drift_rate_at_fill": 0.1574585635359116,
+        "n_replay_moments": 389
+      },
+      {
+        "rank": 27,
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 240}",
+        "replay_capture_B_gross_mean": 0.060590551181102376,
+        "replay_fill_rate": 0.9769230769230769,
+        "cell_drift_rate_at_fill": 0.3346456692913386,
+        "n_replay_moments": 260
+      },
+      {
+        "rank": 28,
+        "cell": "ATP_MAIN|0|10|wide|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 10}",
+        "replay_capture_B_gross_mean": 0.06015624999999999,
+        "replay_fill_rate": 0.6956521739130435,
+        "cell_drift_rate_at_fill": 0.46875,
+        "n_replay_moments": 92
+      },
+      {
+        "rank": 29,
+        "cell": "ATP_CHALL|80|90|tight|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.06007633587786261,
+        "replay_fill_rate": 0.793939393939394,
+        "cell_drift_rate_at_fill": 0.3282442748091603,
+        "n_replay_moments": 330
+      },
+      {
+        "rank": 30,
+        "cell": "ATP_MAIN|0|10|wide|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 5}",
+        "replay_capture_B_gross_mean": 0.06,
+        "replay_fill_rate": 0.6956521739130435,
+        "cell_drift_rate_at_fill": 0.46875,
+        "n_replay_moments": 92
+      },
+      {
+        "rank": 31,
+        "cell": "ATP_CHALL|70|80|tight|low",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 240}",
+        "replay_capture_B_gross_mean": 0.05995271867612293,
+        "replay_fill_rate": 0.976905311778291,
+        "cell_drift_rate_at_fill": 0.2718676122931442,
+        "n_replay_moments": 433
+      },
+      {
+        "rank": 32,
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 5}",
+        "replay_capture_B_gross_mean": 0.05880208333333333,
+        "replay_fill_rate": 0.964824120603015,
+        "cell_drift_rate_at_fill": 0.4739583333333333,
+        "n_replay_moments": 199
+      },
+      {
+        "rank": 33,
+        "cell": "ATP_MAIN|0|10|wide|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 10}",
+        "replay_capture_B_gross_mean": 0.057968749999999986,
+        "replay_fill_rate": 0.6956521739130435,
+        "cell_drift_rate_at_fill": 0.46875,
+        "n_replay_moments": 92
+      },
+      {
+        "rank": 34,
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 60}",
+        "replay_capture_B_gross_mean": 0.05748031496062993,
+        "replay_fill_rate": 0.9769230769230769,
+        "cell_drift_rate_at_fill": 0.3346456692913386,
+        "n_replay_moments": 260
+      },
+      {
+        "rank": 35,
+        "cell": "ATP_CHALL|10|20|wide|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 15, \"trail_c\": 10}",
+        "replay_capture_B_gross_mean": 0.05677083333333333,
+        "replay_fill_rate": 0.964824120603015,
+        "cell_drift_rate_at_fill": 0.4739583333333333,
+        "n_replay_moments": 199
+      },
+      {
+        "rank": 36,
+        "cell": "WTA_MAIN|40|50|tight|low",
+        "policy_type": "trailing",
+        "policy_params": "{\"trail_c\": 20}",
+        "replay_capture_B_gross_mean": 0.05660172349194455,
+        "replay_fill_rate": 0.6470303030303031,
+        "cell_drift_rate_at_fill": 0.33083551892094415,
+        "n_replay_moments": 4125
+      },
+      {
+        "rank": 37,
+        "cell": "ATP_CHALL|40|50|wide|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 5, \"trail_c\": 10}",
+        "replay_capture_B_gross_mean": 0.05595959595959595,
+        "replay_fill_rate": 0.7734375,
+        "cell_drift_rate_at_fill": 0.32323232323232326,
+        "n_replay_moments": 256
+      },
+      {
+        "rank": 38,
+        "cell": "WTA_MAIN|30|40|tight|low",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 240}",
+        "replay_capture_B_gross_mean": 0.055616113744075824,
+        "replay_fill_rate": 0.7462422634836428,
+        "cell_drift_rate_at_fill": 0.44549763033175355,
+        "n_replay_moments": 1131
+      },
+      {
+        "rank": 39,
+        "cell": "ATP_CHALL|90|100|wide|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.0549032258064516,
+        "replay_fill_rate": 0.6078431372549019,
+        "cell_drift_rate_at_fill": 0.23225806451612904,
+        "n_replay_moments": 510
+      },
+      {
+        "rank": 40,
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.05476377952755907,
+        "replay_fill_rate": 0.9769230769230769,
+        "cell_drift_rate_at_fill": 0.3346456692913386,
+        "n_replay_moments": 260
+      },
+      {
+        "rank": 41,
+        "cell": "ATP_MAIN|70|80|tight|low",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 240}",
+        "replay_capture_B_gross_mean": 0.054180225281602004,
+        "replay_fill_rate": 0.595972153157633,
+        "cell_drift_rate_at_fill": 0.12390488110137672,
+        "n_replay_moments": 4022
+      },
+      {
+        "rank": 42,
+        "cell": "WTA_CHALL|20|30|tight|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.054015748031496065,
+        "replay_fill_rate": 0.9769230769230769,
+        "cell_drift_rate_at_fill": 0.3346456692913386,
+        "n_replay_moments": 260
+      },
+      {
+        "rank": 43,
+        "cell": "ATP_CHALL|80|90|tight|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 60}",
+        "replay_capture_B_gross_mean": 0.05389312977099238,
+        "replay_fill_rate": 0.793939393939394,
+        "cell_drift_rate_at_fill": 0.3282442748091603,
+        "n_replay_moments": 330
+      },
+      {
+        "rank": 44,
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 5, \"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.05212851405622488,
+        "replay_fill_rate": 0.950381679389313,
+        "cell_drift_rate_at_fill": 0.23694779116465864,
+        "n_replay_moments": 262
+      },
+      {
+        "rank": 45,
+        "cell": "ATP_CHALL|90|100|wide|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 3, \"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.0509032258064516,
+        "replay_fill_rate": 0.6078431372549019,
+        "cell_drift_rate_at_fill": 0.23225806451612904,
+        "n_replay_moments": 510
+      },
+      {
+        "rank": 46,
+        "cell": "ATP_MAIN|50|60|medium|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 20, \"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.0508203125,
+        "replay_fill_rate": 0.6649350649350649,
+        "cell_drift_rate_at_fill": 0.49609375,
+        "n_replay_moments": 770
+      },
+      {
+        "rank": 47,
+        "cell": "WTA_CHALL|50|60|tight|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 15, \"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.05008032128514054,
+        "replay_fill_rate": 0.950381679389313,
+        "cell_drift_rate_at_fill": 0.23694779116465864,
+        "n_replay_moments": 262
+      },
+      {
+        "rank": 48,
+        "cell": "ATP_MAIN|60|70|wide|low",
+        "policy_type": "limit_time_stop",
+        "policy_params": "{\"limit_c\": 10, \"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.04940149625935165,
+        "replay_fill_rate": 0.6446945337620579,
+        "cell_drift_rate_at_fill": 0.47880299251870323,
+        "n_replay_moments": 622
+      },
+      {
+        "rank": 49,
+        "cell": "ATP_CHALL|50|60|tight|low",
+        "policy_type": "limit_trailing",
+        "policy_params": "{\"limit_c\": 10, \"trail_c\": 5}",
+        "replay_capture_B_gross_mean": 0.0483425414364641,
+        "replay_fill_rate": 0.9305912596401028,
+        "cell_drift_rate_at_fill": 0.1574585635359116,
+        "n_replay_moments": 389
+      },
+      {
+        "rank": 50,
+        "cell": "WTA_CHALL|30|40|medium|low",
+        "policy_type": "time_stop",
+        "policy_params": "{\"horizon_min\": 120}",
+        "replay_capture_B_gross_mean": 0.04722222222222222,
+        "replay_fill_rate": 0.6308411214953271,
+        "cell_drift_rate_at_fill": 0.48703703703703705,
+        "n_replay_moments": 856
+      }
+    ]
+  }
+}

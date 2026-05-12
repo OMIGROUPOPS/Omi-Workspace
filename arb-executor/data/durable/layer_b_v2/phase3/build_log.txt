@@ -1,0 +1,498 @@
+[2026-05-11T12:40:45] ============================================================
+[2026-05-11T12:40:45] Layer B v2 — Phase 3: full non-settle premarket corpus
+[2026-05-11T12:40:45] ============================================================
+[2026-05-11T12:40:45] Cell list: 235 non-settle premarket cells (deterministic order)
+[2026-05-11T12:40:45]   Categories: {'ATP_CHALL': 65, 'WTA_CHALL': 58, 'WTA_MAIN': 57, 'ATP_MAIN': 55}
+[2026-05-11T12:40:45] Cell 0/235: ATP_CHALL|0|10|medium|high (processed_this_run=0, elapsed=0s)
+[2026-05-11T12:41:54]   → n_moments=537, runtime=69.2s, top_limit_B=0.11224489795918367
+[2026-05-11T12:41:54] Cell 1/235: ATP_CHALL|0|10|medium|low (processed_this_run=1, elapsed=69s)
+[2026-05-11T12:42:29]   → n_moments=192, runtime=34.3s, top_limit_B=0.02219178082191781
+[2026-05-11T12:42:29] Cell 2/235: ATP_CHALL|0|10|tight|high (processed_this_run=2, elapsed=104s)
+[2026-05-11T12:43:29]   → n_moments=598, runtime=60.0s, top_limit_B=0.0821978021978022
+[2026-05-11T12:43:29] Cell 3/235: ATP_CHALL|0|10|tight|low (processed_this_run=3, elapsed=164s)
+[2026-05-11T12:45:27]   → n_moments=491, runtime=118.4s, top_limit_B=0.017919075144508672
+[2026-05-11T12:45:27] Cell 4/235: ATP_CHALL|0|10|wide|low (processed_this_run=4, elapsed=282s)
+[2026-05-11T12:46:13]   → n_moments=71, runtime=45.9s, top_limit_B=0.03327586206896552
+[2026-05-11T12:46:13] Cell 5/235: ATP_CHALL|10|20|medium|high (processed_this_run=5, elapsed=328s)
+[2026-05-11T12:47:54]   → n_moments=910, runtime=100.9s, top_limit_B=0.11642276422764226
+[2026-05-11T12:47:54] Cell 6/235: ATP_CHALL|10|20|medium|low (processed_this_run=6, elapsed=429s)
+[2026-05-11T12:49:28]   → n_moments=644, runtime=93.7s, top_limit_B=0.056666666666666685
+[2026-05-11T12:49:28] Cell 7/235: ATP_CHALL|10|20|tight|high (processed_this_run=7, elapsed=523s)
+[2026-05-11T12:51:32]   → n_moments=686, runtime=124.7s, top_limit_B=0.09707446808510635
+[2026-05-11T12:51:32] Cell 8/235: ATP_CHALL|10|20|tight|low (processed_this_run=8, elapsed=648s)
+[2026-05-11T12:54:34]   → n_moments=625, runtime=181.3s, top_limit_B=0.019601518026565467
+[2026-05-11T12:54:34] Cell 9/235: ATP_CHALL|10|20|wide|high (processed_this_run=9, elapsed=829s)
+[2026-05-11T12:55:23]   → n_moments=413, runtime=48.9s, top_limit_B=0.12599999999999997
+[2026-05-11T12:55:23] Cell 10/235: ATP_CHALL|10|20|wide|low (processed_this_run=10, elapsed=878s)
+[2026-05-11T12:56:11]   → n_moments=199, runtime=47.9s, top_limit_B=0.06528795811518324
+[2026-05-11T12:56:11] Cell 11/235: ATP_CHALL|20|30|medium|high (processed_this_run=11, elapsed=926s)
+[2026-05-11T12:57:42]   → n_moments=1052, runtime=91.4s, top_limit_B=0.22610256410256407
+[2026-05-11T12:57:42] Cell 12/235: ATP_CHALL|20|30|medium|low (processed_this_run=12, elapsed=1017s)
+[2026-05-11T13:00:24]   → n_moments=942, runtime=162.3s, top_limit_B=0.09092561983471076
+[2026-05-11T13:00:24] Cell 13/235: ATP_CHALL|20|30|tight|high (processed_this_run=13, elapsed=1180s)
+[2026-05-11T13:04:55]   → n_moments=1358, runtime=270.3s, top_limit_B=0.10111332007952287
+[2026-05-11T13:04:55] Cell 14/235: ATP_CHALL|20|30|tight|low (processed_this_run=14, elapsed=1450s)
+[2026-05-11T13:07:12]   → n_moments=353, runtime=137.0s, top_limit_B=0.031139240506329113
+[2026-05-11T13:07:12] Cell 15/235: ATP_CHALL|20|30|wide|high (processed_this_run=15, elapsed=1587s)
+[2026-05-11T13:08:03]   → n_moments=214, runtime=50.6s, top_limit_B=0.023561643835616434
+[2026-05-11T13:08:03] Cell 16/235: ATP_CHALL|20|30|wide|low (processed_this_run=16, elapsed=1638s)
+[2026-05-11T13:08:55]   → n_moments=143, runtime=52.1s, top_limit_B=0.032991452991452994
+[2026-05-11T13:08:55] Cell 17/235: ATP_CHALL|30|40|medium|high (processed_this_run=17, elapsed=1690s)
+[2026-05-11T13:10:43]   → n_moments=1240, runtime=107.9s, top_limit_B=0.11159663865546222
+[2026-05-11T13:10:43] Cell 18/235: ATP_CHALL|30|40|medium|low (processed_this_run=18, elapsed=1798s)
+[2026-05-11T13:15:28]   → n_moments=1810, runtime=285.4s, top_limit_B=0.01957100591715977
+[2026-05-11T13:15:28] Cell 19/235: ATP_CHALL|30|40|tight|high (processed_this_run=19, elapsed=2083s)
+[2026-05-11T13:17:34]   → n_moments=879, runtime=125.9s, top_limit_B=-0.002925170068027215
+[2026-05-11T13:17:34] Cell 20/235: ATP_CHALL|30|40|tight|low (processed_this_run=20, elapsed=2209s)
+[2026-05-11T18:01:43] ============================================================
+[2026-05-11T18:01:43] Layer B v2 — Phase 3: full non-settle premarket corpus
+[2026-05-11T18:01:43] ============================================================
+[2026-05-11T18:01:44] Cell list: 235 non-settle premarket cells (deterministic order)
+[2026-05-11T18:01:44]   Categories: {'ATP_CHALL': 65, 'WTA_CHALL': 58, 'WTA_MAIN': 57, 'ATP_MAIN': 55}
+[2026-05-11T18:01:44] Resume mode: 20 cells already completed in JSONL
+[2026-05-11T18:01:44] Cell 20/235: ATP_CHALL|30|40|tight|low (processed_this_run=0, elapsed=1s)
+[2026-05-11T18:03:56]   → n_moments=439, runtime=132.0s, top_limit_B=0.013016949152542366
+[2026-05-11T18:03:56] Cell 21/235: ATP_CHALL|30|40|wide|high (processed_this_run=1, elapsed=133s)
+[2026-05-11T18:04:24]   → n_moments=193, runtime=28.3s, top_limit_B=0.08523809523809522
+[2026-05-11T18:04:24] Cell 22/235: ATP_CHALL|30|40|wide|low (processed_this_run=2, elapsed=161s)
+[2026-05-11T18:05:15]   → n_moments=166, runtime=50.5s, top_limit_B=0.031119402985074627
+[2026-05-11T18:05:15] Cell 23/235: ATP_CHALL|30|40|wide|mid (processed_this_run=3, elapsed=212s)
+[2026-05-11T18:05:21]   → n_moments=66, runtime=6.4s, top_limit_B=-0.041851851851851855
+[2026-05-11T18:05:21] Cell 24/235: ATP_CHALL|40|50|medium|high (processed_this_run=4, elapsed=218s)
+[2026-05-11T18:06:52]   → n_moments=1020, runtime=91.4s, top_limit_B=0.12565217391304348
+[2026-05-11T18:06:52] Cell 25/235: ATP_CHALL|40|50|medium|low (processed_this_run=5, elapsed=310s)
+[2026-05-11T18:09:58]   → n_moments=1110, runtime=185.1s, top_limit_B=0.21087378640776697
+[2026-05-11T18:09:58] Cell 26/235: ATP_CHALL|40|50|tight|high (processed_this_run=6, elapsed=495s)
+[2026-05-11T18:12:59]   → n_moments=1573, runtime=180.8s, top_limit_B=0.16056133056133057
+[2026-05-11T18:12:59] Cell 27/235: ATP_CHALL|40|50|tight|low (processed_this_run=7, elapsed=676s)
+[2026-05-11T18:15:42]   → n_moments=381, runtime=163.9s, top_limit_B=0.1603896103896104
+[2026-05-11T18:15:42] Cell 28/235: ATP_CHALL|40|50|wide|high (processed_this_run=8, elapsed=839s)
+[2026-05-11T18:16:21]   → n_moments=396, runtime=38.9s, top_limit_B=-0.039268292682926816
+[2026-05-11T18:16:21] Cell 29/235: ATP_CHALL|40|50|wide|low (processed_this_run=9, elapsed=878s)
+[2026-05-11T18:17:23]   → n_moments=256, runtime=62.0s, top_limit_B=0.1314754098360656
+[2026-05-11T18:17:23] Cell 30/235: ATP_CHALL|50|60|medium|high (processed_this_run=10, elapsed=940s)
+[2026-05-11T18:18:26]   → n_moments=547, runtime=62.7s, top_limit_B=0.11016393442622957
+[2026-05-11T18:18:26] Cell 31/235: ATP_CHALL|50|60|medium|low (processed_this_run=11, elapsed=1003s)
+[2026-05-11T18:22:02]   → n_moments=1289, runtime=216.2s, top_limit_B=-0.016160990712074323
+[2026-05-11T18:22:02] Cell 32/235: ATP_CHALL|50|60|tight|high (processed_this_run=12, elapsed=1219s)
+[2026-05-11T18:23:10]   → n_moments=630, runtime=67.3s, top_limit_B=0.08851851851851852
+[2026-05-11T18:23:10] Cell 33/235: ATP_CHALL|50|60|tight|low (processed_this_run=13, elapsed=1287s)
+[2026-05-11T18:25:00]   → n_moments=389, runtime=110.6s, top_limit_B=0.11523121387283236
+[2026-05-11T18:25:00] Cell 34/235: ATP_CHALL|50|60|wide|high (processed_this_run=14, elapsed=1397s)
+[2026-05-11T18:25:35]   → n_moments=413, runtime=34.7s, top_limit_B=-0.38073394495412843
+[2026-05-11T18:25:35] Cell 35/235: ATP_CHALL|50|60|wide|low (processed_this_run=15, elapsed=1432s)
+[2026-05-11T18:27:23]   → n_moments=394, runtime=107.6s, top_limit_B=0.17746575342465754
+[2026-05-11T18:27:23] Cell 36/235: ATP_CHALL|60|70|medium|high (processed_this_run=16, elapsed=1540s)
+[2026-05-11T18:28:33]   → n_moments=1341, runtime=70.5s, top_limit_B=0.11480000000000003
+[2026-05-11T18:28:33] Cell 37/235: ATP_CHALL|60|70|medium|low (processed_this_run=17, elapsed=1610s)
+[2026-05-11T18:31:35]   → n_moments=1285, runtime=182.0s, top_limit_B=0.18541509433962267
+[2026-05-11T18:31:35] Cell 38/235: ATP_CHALL|60|70|tight|high (processed_this_run=18, elapsed=1792s)
+[2026-05-11T18:32:31]   → n_moments=463, runtime=55.5s, top_limit_B=0.09829268292682926
+[2026-05-11T18:32:31] Cell 39/235: ATP_CHALL|60|70|tight|low (processed_this_run=19, elapsed=1848s)
+[2026-05-11T18:33:36]   → n_moments=172, runtime=65.3s, top_limit_B=0.02130434782608694
+[2026-05-11T18:33:36] Cell 40/235: ATP_CHALL|60|70|wide|high (processed_this_run=20, elapsed=1913s)
+[2026-05-11T18:34:15]   → n_moments=367, runtime=38.9s, top_limit_B=0.13
+[2026-05-11T18:34:15] Cell 41/235: ATP_CHALL|60|70|wide|low (processed_this_run=21, elapsed=1952s)
+[2026-05-11T18:35:13]   → n_moments=284, runtime=58.3s, top_limit_B=0.2638728323699422
+[2026-05-11T18:35:13] Cell 42/235: ATP_CHALL|60|70|wide|mid (processed_this_run=22, elapsed=2010s)
+[2026-05-11T18:35:19]   → n_moments=77, runtime=5.1s, top_limit_B=-0.05666666666666667
+[2026-05-11T18:35:19] Cell 43/235: ATP_CHALL|70|80|medium|high (processed_this_run=23, elapsed=2016s)
+[2026-05-11T18:36:53]   → n_moments=580, runtime=94.0s, top_limit_B=0.23677419354838705
+[2026-05-11T18:36:53] Cell 44/235: ATP_CHALL|70|80|medium|low (processed_this_run=24, elapsed=2110s)
+[2026-05-11T18:39:42]   → n_moments=1257, runtime=169.2s, top_limit_B=0.14537914691943127
+[2026-05-11T18:39:42] Cell 45/235: ATP_CHALL|70|80|tight|high (processed_this_run=25, elapsed=2279s)
+[2026-05-11T18:41:23]   → n_moments=549, runtime=101.4s, top_limit_B=0.2752238805970149
+[2026-05-11T18:41:23] Cell 46/235: ATP_CHALL|70|80|tight|low (processed_this_run=26, elapsed=2380s)
+[2026-05-11T18:43:06]   → n_moments=433, runtime=102.6s, top_limit_B=0.062334293948126805
+[2026-05-11T18:43:06] Cell 47/235: ATP_CHALL|70|80|wide|high (processed_this_run=27, elapsed=2483s)
+[2026-05-11T18:43:34]   → n_moments=187, runtime=28.3s, top_limit_B=0.34
+[2026-05-11T18:43:34] Cell 48/235: ATP_CHALL|70|80|wide|low (processed_this_run=28, elapsed=2511s)
+[2026-05-11T18:44:53]   → n_moments=616, runtime=78.3s, top_limit_B=0.22980694980694982
+[2026-05-11T18:44:53] Cell 49/235: ATP_CHALL|80|90|medium|high (processed_this_run=29, elapsed=2590s)
+[2026-05-11T18:46:21]   → n_moments=856, runtime=88.2s, top_limit_B=0.04925324675324672
+[2026-05-11T18:46:21] Cell 50/235: ATP_CHALL|80|90|medium|low (processed_this_run=30, elapsed=2678s)
+[2026-05-11T18:47:37]   → n_moments=854, runtime=76.3s, top_limit_B=0.12218543046357613
+[2026-05-11T18:47:37] Cell 51/235: ATP_CHALL|80|90|tight|high (processed_this_run=31, elapsed=2754s)
+[2026-05-11T18:48:54]   → n_moments=755, runtime=76.8s, top_limit_B=0.0266268656716418
+[2026-05-11T18:48:54] Cell 52/235: ATP_CHALL|80|90|tight|low (processed_this_run=32, elapsed=2831s)
+[2026-05-11T18:51:31]   → n_moments=330, runtime=156.4s, top_limit_B=0.11572519083969465
+[2026-05-11T18:51:31] Cell 53/235: ATP_CHALL|80|90|wide|high (processed_this_run=33, elapsed=2988s)
+[2026-05-11T18:52:25]   → n_moments=280, runtime=54.4s, top_limit_B=0.1175
+[2026-05-11T18:52:25] Cell 54/235: ATP_CHALL|80|90|wide|low (processed_this_run=34, elapsed=3042s)
+[2026-05-11T18:53:28]   → n_moments=865, runtime=62.5s, top_limit_B=0.25063636363636366
+[2026-05-11T18:53:28] Cell 55/235: ATP_CHALL|80|90|wide|mid (processed_this_run=35, elapsed=3105s)
+[2026-05-11T18:53:37]   → n_moments=283, runtime=9.7s, top_limit_B=0.2604819277108434
+[2026-05-11T18:53:37] Cell 56/235: ATP_CHALL|90|100|medium|high (processed_this_run=36, elapsed=3114s)
+[2026-05-11T18:54:31]   → n_moments=939, runtime=53.7s, top_limit_B=0.10924764890282129
+[2026-05-11T18:54:31] Cell 57/235: ATP_CHALL|90|100|medium|low (processed_this_run=37, elapsed=3168s)
+[2026-05-11T18:55:42]   → n_moments=557, runtime=71.2s, top_limit_B=0.021489361702127657
+[2026-05-11T18:55:42] Cell 58/235: ATP_CHALL|90|100|medium|mid (processed_this_run=38, elapsed=3239s)
+[2026-05-11T18:56:13]   → n_moments=1053, runtime=31.0s, top_limit_B=0.05504273504273506
+[2026-05-11T18:56:13] Cell 59/235: ATP_CHALL|90|100|tight|high (processed_this_run=39, elapsed=3270s)
+[2026-05-11T18:57:28]   → n_moments=763, runtime=74.8s, top_limit_B=0.07935064935064932
+[2026-05-11T18:57:28] Cell 60/235: ATP_CHALL|90|100|tight|low (processed_this_run=40, elapsed=3345s)
+[2026-05-11T18:58:13]   → n_moments=408, runtime=44.6s, top_limit_B=0.006801242236024832
+[2026-05-11T18:58:13] Cell 61/235: ATP_CHALL|90|100|tight|mid (processed_this_run=41, elapsed=3390s)
+[2026-05-11T18:58:31]   → n_moments=382, runtime=18.5s, top_limit_B=0.06267605633802818
+[2026-05-11T18:58:31] Cell 62/235: ATP_CHALL|90|100|wide|high (processed_this_run=42, elapsed=3408s)
+[2026-05-11T18:59:11]   → n_moments=689, runtime=39.4s, top_limit_B=0.13586956521739135
+[2026-05-11T18:59:11] Cell 63/235: ATP_CHALL|90|100|wide|low (processed_this_run=43, elapsed=3448s)
+[2026-05-11T18:59:45]   → n_moments=510, runtime=34.3s, top_limit_B=0.1302803738317757
+[2026-05-11T18:59:45] Cell 64/235: ATP_CHALL|90|100|wide|mid (processed_this_run=44, elapsed=3482s)
+[2026-05-11T19:00:13]   → n_moments=424, runtime=27.8s, top_limit_B=0.38263888888888886
+[2026-05-11T19:00:13] Cell 65/235: ATP_MAIN|0|10|medium|low (processed_this_run=45, elapsed=3510s)
+[2026-05-11T19:00:58]   → n_moments=232, runtime=44.7s, top_limit_B=0.021497005988023954
+[2026-05-11T19:00:58] Cell 66/235: ATP_MAIN|0|10|tight|low (processed_this_run=46, elapsed=3555s)
+[2026-05-11T19:02:39]   → n_moments=748, runtime=101.2s, top_limit_B=0.03465174129353233
+[2026-05-11T19:02:39] Cell 67/235: ATP_MAIN|0|10|wide|low (processed_this_run=47, elapsed=3656s)
+[2026-05-11T19:03:42]   → n_moments=92, runtime=62.8s, top_limit_B=0.06322580645161292
+[2026-05-11T19:03:42] Cell 68/235: ATP_MAIN|10|20|medium|high (processed_this_run=48, elapsed=3719s)
+[2026-05-11T19:05:05]   → n_moments=730, runtime=83.5s, top_limit_B=-0.030780141843971622
+[2026-05-11T19:05:05] Cell 69/235: ATP_MAIN|10|20|medium|low (processed_this_run=49, elapsed=3802s)
+[2026-05-11T19:06:35]   → n_moments=521, runtime=89.7s, top_limit_B=0.005227272727272729
+[2026-05-11T19:06:35] Cell 70/235: ATP_MAIN|10|20|tight|high (processed_this_run=50, elapsed=3892s)
+[2026-05-11T19:08:26]   → n_moments=1834, runtime=111.3s, top_limit_B=0.0682122905027932
+[2026-05-11T19:08:26] Cell 71/235: ATP_MAIN|10|20|tight|low (processed_this_run=51, elapsed=4003s)
+[2026-05-11T19:13:10]   → n_moments=725, runtime=283.8s, top_limit_B=0.0910576923076923
+[2026-05-11T19:13:10] Cell 72/235: ATP_MAIN|10|20|wide|high (processed_this_run=52, elapsed=4287s)
+[2026-05-11T19:14:04]   → n_moments=244, runtime=54.1s, top_limit_B=0.11750000000000001
+[2026-05-11T19:14:04] Cell 73/235: ATP_MAIN|10|20|wide|low (processed_this_run=53, elapsed=4341s)
+[2026-05-11T19:14:59]   → n_moments=271, runtime=54.2s, top_limit_B=0.0705785123966942
+[2026-05-11T19:14:59] Cell 74/235: ATP_MAIN|20|30|medium|high (processed_this_run=54, elapsed=4396s)
+[2026-05-11T19:17:11]   → n_moments=1240, runtime=132.5s, top_limit_B=0.31999999999999995
+[2026-05-11T19:17:11] Cell 75/235: ATP_MAIN|20|30|medium|low (processed_this_run=55, elapsed=4528s)
+[2026-05-11T19:19:46]   → n_moments=1798, runtime=154.5s, top_limit_B=0.13343478260869568
+[2026-05-11T19:19:46] Cell 76/235: ATP_MAIN|20|30|tight|high (processed_this_run=56, elapsed=4683s)
+[2026-05-11T19:21:35]   → n_moments=1911, runtime=108.8s, top_limit_B=0.38072289156626504
+[2026-05-11T19:21:35] Cell 77/235: ATP_MAIN|20|30|tight|low (processed_this_run=57, elapsed=4792s)
+[2026-05-11T19:25:50]   → n_moments=1518, runtime=254.9s, top_limit_B=0.07250000000000001
+[2026-05-11T19:25:50] Cell 78/235: ATP_MAIN|20|30|wide|high (processed_this_run=58, elapsed=5047s)
+[2026-05-11T19:26:45]   → n_moments=140, runtime=55.8s, top_limit_B=0.10200000000000001
+[2026-05-11T19:26:45] Cell 79/235: ATP_MAIN|20|30|wide|low (processed_this_run=59, elapsed=5102s)
+[2026-05-11T19:27:59]   → n_moments=305, runtime=73.9s, top_limit_B=0.10026315789473683
+[2026-05-11T19:27:59] Cell 80/235: ATP_MAIN|30|40|medium|high (processed_this_run=60, elapsed=5176s)
+[2026-05-11T19:30:52]   → n_moments=1121, runtime=173.0s, top_limit_B=0.36016000000000015
+[2026-05-11T19:30:52] Cell 81/235: ATP_MAIN|30|40|medium|low (processed_this_run=61, elapsed=5349s)
+[2026-05-11T19:33:20]   → n_moments=946, runtime=147.4s, top_limit_B=0.08897654584221748
+[2026-05-11T19:33:20] Cell 82/235: ATP_MAIN|30|40|tight|high (processed_this_run=62, elapsed=5497s)
+[2026-05-11T19:34:57]   → n_moments=1680, runtime=96.9s, top_limit_B=0.32062500000000005
+[2026-05-11T19:34:57] Cell 83/235: ATP_MAIN|30|40|tight|low (processed_this_run=63, elapsed=5594s)
+[2026-05-11T19:42:27]   → n_moments=4645, runtime=450.2s, top_limit_B=0.023003558718861204
+[2026-05-11T19:42:27] Cell 84/235: ATP_MAIN|30|40|wide|high (processed_this_run=64, elapsed=6044s)
+[2026-05-11T19:43:25]   → n_moments=538, runtime=57.5s, top_limit_B=0.31
+[2026-05-11T19:43:25] Cell 85/235: ATP_MAIN|30|40|wide|low (processed_this_run=65, elapsed=6102s)
+[2026-05-11T19:44:11]   → n_moments=278, runtime=46.7s, top_limit_B=0.047130434782608706
+[2026-05-11T19:44:11] Cell 86/235: ATP_MAIN|40|50|medium|high (processed_this_run=66, elapsed=6148s)
+[2026-05-11T19:45:27]   → n_moments=646, runtime=75.4s, top_limit_B=0.4145454545454545
+[2026-05-11T19:45:27] Cell 87/235: ATP_MAIN|40|50|medium|low (processed_this_run=67, elapsed=6224s)
+[2026-05-11T19:47:24]   → n_moments=842, runtime=117.5s, top_limit_B=0.055896414342629486
+[2026-05-11T19:47:24] Cell 88/235: ATP_MAIN|40|50|tight|high (processed_this_run=68, elapsed=6341s)
+[2026-05-11T19:49:07]   → n_moments=2149, runtime=102.4s, top_limit_B=0.14230769230769227
+[2026-05-11T19:49:07] Cell 89/235: ATP_MAIN|40|50|tight|low (processed_this_run=69, elapsed=6444s)
+[2026-05-11T19:56:53]   → n_moments=5114, runtime=466.1s, top_limit_B=0.24834295136026383
+[2026-05-11T19:56:53] Cell 90/235: ATP_MAIN|40|50|wide|high (processed_this_run=70, elapsed=6910s)
+[2026-05-11T19:57:37]   → n_moments=459, runtime=44.3s, top_limit_B=0.07
+[2026-05-11T19:57:37] Cell 91/235: ATP_MAIN|40|50|wide|low (processed_this_run=71, elapsed=6954s)
+[2026-05-11T19:58:35]   → n_moments=312, runtime=57.6s, top_limit_B=0.03759036144578314
+[2026-05-11T19:58:35] Cell 92/235: ATP_MAIN|50|60|medium|high (processed_this_run=72, elapsed=7012s)
+[2026-05-11T19:59:33]   → n_moments=1022, runtime=58.2s, top_limit_B=0.37
+[2026-05-11T19:59:33] Cell 93/235: ATP_MAIN|50|60|medium|low (processed_this_run=73, elapsed=7070s)
+[2026-05-11T20:02:06]   → n_moments=770, runtime=153.0s, top_limit_B=0.16999999999999998
+[2026-05-11T20:02:06] Cell 94/235: ATP_MAIN|50|60|tight|high (processed_this_run=74, elapsed=7223s)
+[2026-05-11T20:03:15]   → n_moments=982, runtime=68.8s, top_limit_B=0.15600000000000003
+[2026-05-11T20:03:15] Cell 95/235: ATP_MAIN|50|60|tight|low (processed_this_run=75, elapsed=7292s)
+[2026-05-11T20:13:47]   → n_moments=2914, runtime=631.8s, top_limit_B=0.26098623853211006
+[2026-05-11T20:13:47] Cell 96/235: ATP_MAIN|50|60|wide|high (processed_this_run=76, elapsed=7924s)
+[2026-05-11T20:14:51]   → n_moments=568, runtime=64.2s, top_limit_B=0.11500000000000002
+[2026-05-11T20:14:51] Cell 97/235: ATP_MAIN|50|60|wide|low (processed_this_run=77, elapsed=7988s)
+[2026-05-11T20:16:16]   → n_moments=516, runtime=84.3s, top_limit_B=0.2172093023255814
+[2026-05-11T20:16:16] Cell 98/235: ATP_MAIN|60|70|medium|high (processed_this_run=78, elapsed=8073s)
+[2026-05-11T20:17:32]   → n_moments=859, runtime=76.2s, top_limit_B=0.10000000000000009
+[2026-05-11T20:17:32] Cell 99/235: ATP_MAIN|60|70|medium|low (processed_this_run=79, elapsed=8149s)
+[2026-05-11T20:21:16]   → n_moments=1826, runtime=223.9s, top_limit_B=-0.010901898734177205
+[2026-05-11T20:21:16] Cell 100/235: ATP_MAIN|60|70|tight|high (processed_this_run=80, elapsed=8373s)
+[2026-05-11T20:22:22]   → n_moments=819, runtime=66.2s, top_limit_B=0.039428571428571466
+[2026-05-11T20:22:22] Cell 101/235: ATP_MAIN|60|70|tight|low (processed_this_run=81, elapsed=8439s)
+[2026-05-11T20:25:09]   → n_moments=1826, runtime=167.1s, top_limit_B=0.1681684981684982
+[2026-05-11T20:25:09] Cell 102/235: ATP_MAIN|60|70|wide|high (processed_this_run=82, elapsed=8606s)
+[2026-05-11T20:26:11]   → n_moments=595, runtime=61.3s, top_limit_B=0.4833333333333334
+[2026-05-11T20:26:11] Cell 103/235: ATP_MAIN|60|70|wide|low (processed_this_run=83, elapsed=8668s)
+[2026-05-11T20:26:55]   → n_moments=622, runtime=43.7s, top_limit_B=0.19798387096774195
+[2026-05-11T20:26:55] Cell 104/235: ATP_MAIN|70|80|medium|high (processed_this_run=84, elapsed=8712s)
+[2026-05-11T20:27:59]   → n_moments=295, runtime=64.9s, top_limit_B=0.30000000000000004
+[2026-05-11T20:27:59] Cell 105/235: ATP_MAIN|70|80|medium|low (processed_this_run=85, elapsed=8776s)
+[2026-05-11T20:31:54]   → n_moments=2888, runtime=234.6s, top_limit_B=0.033228511530398325
+[2026-05-11T20:31:54] Cell 106/235: ATP_MAIN|70|80|tight|high (processed_this_run=86, elapsed=9011s)
+[2026-05-11T20:33:36]   → n_moments=235, runtime=101.5s, top_limit_B=0.050000000000000044
+[2026-05-11T20:33:36] Cell 107/235: ATP_MAIN|70|80|tight|low (processed_this_run=87, elapsed=9113s)
+[2026-05-11T20:38:21]   → n_moments=4022, runtime=285.1s, top_limit_B=0.2477251184834123
+[2026-05-11T20:38:21] Cell 108/235: ATP_MAIN|70|80|wide|high (processed_this_run=88, elapsed=9398s)
+[2026-05-11T20:39:21]   → n_moments=574, runtime=59.5s, top_limit_B=0.3366666666666666
+[2026-05-11T20:39:21] Cell 109/235: ATP_MAIN|70|80|wide|low (processed_this_run=89, elapsed=9458s)
+[2026-05-11T20:40:07]   → n_moments=364, runtime=46.2s, top_limit_B=0.062331288343558285
+[2026-05-11T20:40:07] Cell 110/235: ATP_MAIN|80|90|medium|high (processed_this_run=90, elapsed=9504s)
+[2026-05-11T20:41:01]   → n_moments=663, runtime=53.7s, top_limit_B=0.05999999999999994
+[2026-05-11T20:41:01] Cell 111/235: ATP_MAIN|80|90|medium|low (processed_this_run=91, elapsed=9558s)
+[2026-05-11T20:42:58]   → n_moments=1486, runtime=117.5s, top_limit_B=0.058849104859335005
+[2026-05-11T20:42:58] Cell 112/235: ATP_MAIN|80|90|tight|high (processed_this_run=92, elapsed=9675s)
+[2026-05-11T20:44:50]   → n_moments=1884, runtime=112.1s, top_limit_B=0.16106382978723405
+[2026-05-11T20:44:50] Cell 113/235: ATP_MAIN|80|90|tight|low (processed_this_run=93, elapsed=9787s)
+[2026-05-11T20:47:13]   → n_moments=672, runtime=142.4s, top_limit_B=0.031782608695652186
+[2026-05-11T20:47:13] Cell 114/235: ATP_MAIN|80|90|wide|high (processed_this_run=94, elapsed=9930s)
+[2026-05-11T20:48:14]   → n_moments=369, runtime=60.8s, top_limit_B=0.33368421052631575
+[2026-05-11T20:48:14] Cell 115/235: ATP_MAIN|80|90|wide|low (processed_this_run=95, elapsed=9991s)
+[2026-05-11T20:49:09]   → n_moments=376, runtime=55.2s, top_limit_B=0.20015151515151514
+[2026-05-11T20:49:09] Cell 116/235: ATP_MAIN|90|100|medium|low (processed_this_run=96, elapsed=10046s)
+[2026-05-11T20:50:53]   → n_moments=864, runtime=104.5s, top_limit_B=0.01293357933579336
+[2026-05-11T20:50:53] Cell 117/235: ATP_MAIN|90|100|tight|low (processed_this_run=97, elapsed=10150s)
+[2026-05-11T20:52:04]   → n_moments=630, runtime=70.3s, top_limit_B=0.04536687631027254
+[2026-05-11T20:52:04] Cell 118/235: ATP_MAIN|90|100|wide|high (processed_this_run=98, elapsed=10221s)
+[2026-05-11T20:52:52]   → n_moments=308, runtime=48.5s, top_limit_B=0.31999999999999995
+[2026-05-11T20:52:52] Cell 119/235: ATP_MAIN|90|100|wide|low (processed_this_run=99, elapsed=10269s)
+[2026-05-11T20:53:48]   → n_moments=466, runtime=55.4s, top_limit_B=0.0002459016393442734
+[2026-05-11T20:53:48] Cell 120/235: WTA_CHALL|0|10|medium|high (processed_this_run=100, elapsed=10325s)
+[2026-05-11T20:54:18]   → n_moments=219, runtime=30.3s, top_limit_B=0.18571428571428578
+[2026-05-11T20:54:18] Cell 121/235: WTA_CHALL|0|10|medium|low (processed_this_run=101, elapsed=10355s)
+[2026-05-11T20:54:55]   → n_moments=284, runtime=37.4s, top_limit_B=0.019054054054054057
+[2026-05-11T20:54:55] Cell 122/235: WTA_CHALL|0|10|tight|high (processed_this_run=102, elapsed=10392s)
+[2026-05-11T20:55:48]   → n_moments=332, runtime=53.0s, top_limit_B=-0.026500000000000003
+[2026-05-11T20:55:48] Cell 123/235: WTA_CHALL|0|10|tight|low (processed_this_run=103, elapsed=10445s)
+[2026-05-11T20:56:51]   → n_moments=779, runtime=62.7s, top_limit_B=0.05285198555956678
+[2026-05-11T20:56:51] Cell 124/235: WTA_CHALL|0|10|wide|low (processed_this_run=104, elapsed=10508s)
+[2026-05-11T20:57:41]   → n_moments=85, runtime=50.1s, top_limit_B=0.03407407407407408
+[2026-05-11T20:57:41] Cell 125/235: WTA_CHALL|10|20|medium|high (processed_this_run=105, elapsed=10558s)
+[2026-05-11T20:59:37]   → n_moments=839, runtime=116.0s, top_limit_B=0.06872483221476507
+[2026-05-11T20:59:37] Cell 126/235: WTA_CHALL|10|20|medium|low (processed_this_run=106, elapsed=10674s)
+[2026-05-11T21:00:30]   → n_moments=337, runtime=52.7s, top_limit_B=0.06050761421319797
+[2026-05-11T21:00:30] Cell 127/235: WTA_CHALL|10|20|tight|high (processed_this_run=107, elapsed=10727s)
+[2026-05-11T21:01:14]   → n_moments=825, runtime=44.4s, top_limit_B=-0.001538461538461517
+[2026-05-11T21:01:14] Cell 128/235: WTA_CHALL|10|20|tight|low (processed_this_run=108, elapsed=10771s)
+[2026-05-11T21:01:57]   → n_moments=325, runtime=42.9s, top_limit_B=0.042163265306122445
+[2026-05-11T21:01:57] Cell 129/235: WTA_CHALL|10|20|wide|high (processed_this_run=109, elapsed=10814s)
+[2026-05-11T21:02:16]   → n_moments=138, runtime=18.8s, top_limit_B=0.084
+[2026-05-11T21:02:16] Cell 130/235: WTA_CHALL|10|20|wide|low (processed_this_run=110, elapsed=10833s)
+[2026-05-11T21:02:50]   → n_moments=192, runtime=33.8s, top_limit_B=0.0069822485207100575
+[2026-05-11T21:02:50] Cell 131/235: WTA_CHALL|20|30|medium|high (processed_this_run=111, elapsed=10867s)
+[2026-05-11T21:04:04]   → n_moments=1469, runtime=73.7s, top_limit_B=0.034864864864864877
+[2026-05-11T21:04:04] Cell 132/235: WTA_CHALL|20|30|medium|low (processed_this_run=112, elapsed=10941s)
+[2026-05-11T21:05:13]   → n_moments=661, runtime=69.6s, top_limit_B=0.044210526315789464
+[2026-05-11T21:05:13] Cell 133/235: WTA_CHALL|20|30|tight|high (processed_this_run=113, elapsed=11010s)
+[2026-05-11T21:07:33]   → n_moments=839, runtime=140.2s, top_limit_B=0.1697058823529412
+[2026-05-11T21:07:33] Cell 134/235: WTA_CHALL|20|30|tight|low (processed_this_run=114, elapsed=11150s)
+[2026-05-11T21:08:30]   → n_moments=260, runtime=56.9s, top_limit_B=0.05322834645669291
+[2026-05-11T21:08:30] Cell 135/235: WTA_CHALL|20|30|wide|high (processed_this_run=115, elapsed=11207s)
+[2026-05-11T21:09:05]   → n_moments=121, runtime=34.1s, top_limit_B=0.04625000000000002
+[2026-05-11T21:09:05] Cell 136/235: WTA_CHALL|20|30|wide|low (processed_this_run=116, elapsed=11242s)
+[2026-05-11T21:09:40]   → n_moments=173, runtime=35.9s, top_limit_B=0.030236220472440945
+[2026-05-11T21:09:40] Cell 137/235: WTA_CHALL|30|40|medium|high (processed_this_run=117, elapsed=11277s)
+[2026-05-11T21:13:12]   → n_moments=1169, runtime=211.6s, top_limit_B=0.13877232142857143
+[2026-05-11T21:13:12] Cell 138/235: WTA_CHALL|30|40|medium|low (processed_this_run=118, elapsed=11489s)
+[2026-05-11T21:15:09]   → n_moments=856, runtime=117.0s, top_limit_B=0.06389937106918238
+[2026-05-11T21:15:09] Cell 139/235: WTA_CHALL|30|40|tight|high (processed_this_run=119, elapsed=11606s)
+[2026-05-11T21:16:12]   → n_moments=661, runtime=63.3s, top_limit_B=0.03691119691119691
+[2026-05-11T21:16:12] Cell 140/235: WTA_CHALL|30|40|tight|low (processed_this_run=120, elapsed=11669s)
+[2026-05-11T21:17:12]   → n_moments=316, runtime=59.9s, top_limit_B=0.0693258426966292
+[2026-05-11T21:17:12] Cell 141/235: WTA_CHALL|30|40|wide|high (processed_this_run=121, elapsed=11729s)
+[2026-05-11T21:17:31]   → n_moments=271, runtime=18.8s, top_limit_B=0.10085714285714287
+[2026-05-11T21:17:31] Cell 142/235: WTA_CHALL|30|40|wide|low (processed_this_run=122, elapsed=11748s)
+[2026-05-11T21:18:28]   → n_moments=129, runtime=56.5s, top_limit_B=0.04783505154639174
+[2026-05-11T21:18:28] Cell 143/235: WTA_CHALL|40|50|medium|high (processed_this_run=123, elapsed=11805s)
+[2026-05-11T21:19:57]   → n_moments=1391, runtime=89.2s, top_limit_B=0.10592814371257483
+[2026-05-11T21:19:57] Cell 144/235: WTA_CHALL|40|50|medium|low (processed_this_run=124, elapsed=11894s)
+[2026-05-11T21:22:45]   → n_moments=1227, runtime=167.9s, top_limit_B=0.14111498257839722
+[2026-05-11T21:22:45] Cell 145/235: WTA_CHALL|40|50|tight|high (processed_this_run=125, elapsed=12062s)
+[2026-05-11T21:25:11]   → n_moments=836, runtime=146.6s, top_limit_B=0.02645687645687646
+[2026-05-11T21:25:11] Cell 146/235: WTA_CHALL|40|50|tight|low (processed_this_run=126, elapsed=12208s)
+[2026-05-11T21:28:23]   → n_moments=774, runtime=191.8s, top_limit_B=0.025689948892674598
+[2026-05-11T21:28:23] Cell 147/235: WTA_CHALL|40|50|wide|high (processed_this_run=127, elapsed=12400s)
+[2026-05-11T21:28:48]   → n_moments=366, runtime=24.9s, top_limit_B=0.05587628865979382
+[2026-05-11T21:28:48] Cell 148/235: WTA_CHALL|40|50|wide|low (processed_this_run=128, elapsed=12425s)
+[2026-05-11T21:29:23]   → n_moments=161, runtime=34.9s, top_limit_B=0.06245901639344264
+[2026-05-11T21:29:23] Cell 149/235: WTA_CHALL|50|60|medium|high (processed_this_run=129, elapsed=12460s)
+[2026-05-11T21:30:27]   → n_moments=1446, runtime=63.7s, top_limit_B=-0.01592342342342342
+[2026-05-11T21:30:27] Cell 150/235: WTA_CHALL|50|60|medium|low (processed_this_run=130, elapsed=12524s)
+[2026-05-11T21:33:48]   → n_moments=980, runtime=200.7s, top_limit_B=0.08151724137931034
+[2026-05-11T21:33:48] Cell 151/235: WTA_CHALL|50|60|tight|high (processed_this_run=131, elapsed=12725s)
+[2026-05-11T21:34:48]   → n_moments=1015, runtime=60.2s, top_limit_B=0.0911065573770491
+[2026-05-11T21:34:48] Cell 152/235: WTA_CHALL|50|60|tight|low (processed_this_run=132, elapsed=12785s)
+[2026-05-11T21:36:11]   → n_moments=262, runtime=82.6s, top_limit_B=0.09396624472573836
+[2026-05-11T21:36:11] Cell 153/235: WTA_CHALL|50|60|wide|high (processed_this_run=133, elapsed=12868s)
+[2026-05-11T21:37:06]   → n_moments=496, runtime=55.4s, top_limit_B=0.06933333333333334
+[2026-05-11T21:37:06] Cell 154/235: WTA_CHALL|50|60|wide|low (processed_this_run=134, elapsed=12923s)
+[2026-05-11T21:38:04]   → n_moments=164, runtime=58.1s, top_limit_B=-0.02610169491525424
+[2026-05-11T21:38:04] Cell 155/235: WTA_CHALL|60|70|medium|high (processed_this_run=135, elapsed=12981s)
+[2026-05-11T21:39:24]   → n_moments=1164, runtime=80.2s, top_limit_B=0.058507936507936516
+[2026-05-11T21:39:24] Cell 156/235: WTA_CHALL|60|70|medium|low (processed_this_run=136, elapsed=13061s)
+[2026-05-11T21:42:15]   → n_moments=1455, runtime=170.6s, top_limit_B=0.062423900789177
+[2026-05-11T21:42:15] Cell 157/235: WTA_CHALL|60|70|tight|high (processed_this_run=137, elapsed=13232s)
+[2026-05-11T21:43:13]   → n_moments=587, runtime=57.7s, top_limit_B=0.14505050505050507
+[2026-05-11T21:43:13] Cell 158/235: WTA_CHALL|60|70|tight|low (processed_this_run=138, elapsed=13290s)
+[2026-05-11T21:45:16]   → n_moments=699, runtime=123.6s, top_limit_B=0.12522598870056495
+[2026-05-11T21:45:16] Cell 159/235: WTA_CHALL|60|70|wide|high (processed_this_run=139, elapsed=13413s)
+[2026-05-11T21:45:59]   → n_moments=714, runtime=43.1s, top_limit_B=0.25625
+[2026-05-11T21:45:59] Cell 160/235: WTA_CHALL|60|70|wide|low (processed_this_run=140, elapsed=13456s)
+[2026-05-11T21:46:45]   → n_moments=383, runtime=45.7s, top_limit_B=0.16732394366197184
+[2026-05-11T21:46:45] Cell 161/235: WTA_CHALL|70|80|medium|high (processed_this_run=141, elapsed=13502s)
+[2026-05-11T21:48:16]   → n_moments=1527, runtime=91.1s, top_limit_B=-0.12834733893557426
+[2026-05-11T21:48:16] Cell 162/235: WTA_CHALL|70|80|medium|low (processed_this_run=142, elapsed=13593s)
+[2026-05-11T21:53:08]   → n_moments=1280, runtime=291.5s, top_limit_B=0.04673913043478259
+[2026-05-11T21:53:08] Cell 163/235: WTA_CHALL|70|80|tight|high (processed_this_run=143, elapsed=13885s)
+[2026-05-11T21:54:00]   → n_moments=385, runtime=52.4s, top_limit_B=0.03227848101265824
+[2026-05-11T21:54:00] Cell 164/235: WTA_CHALL|70|80|tight|low (processed_this_run=144, elapsed=13937s)
+[2026-05-11T21:55:31]   → n_moments=408, runtime=90.4s, top_limit_B=0.09266055045871559
+[2026-05-11T21:55:31] Cell 165/235: WTA_CHALL|70|80|wide|high (processed_this_run=145, elapsed=14028s)
+[2026-05-11T21:56:05]   → n_moments=473, runtime=34.2s, top_limit_B=0.06225806451612904
+[2026-05-11T21:56:05] Cell 166/235: WTA_CHALL|70|80|wide|low (processed_this_run=146, elapsed=14062s)
+[2026-05-11T21:56:39]   → n_moments=165, runtime=34.2s, top_limit_B=-0.052631578947368404
+[2026-05-11T21:56:39] Cell 167/235: WTA_CHALL|80|90|medium|high (processed_this_run=147, elapsed=14096s)
+[2026-05-11T21:57:36]   → n_moments=821, runtime=56.9s, top_limit_B=-0.07687258687258688
+[2026-05-11T21:57:36] Cell 168/235: WTA_CHALL|80|90|medium|low (processed_this_run=148, elapsed=14153s)
+[2026-05-11T21:58:40]   → n_moments=360, runtime=63.5s, top_limit_B=0.08426900584795322
+[2026-05-11T21:58:40] Cell 169/235: WTA_CHALL|80|90|tight|high (processed_this_run=149, elapsed=14217s)
+[2026-05-11T21:59:27]   → n_moments=451, runtime=47.2s, top_limit_B=0.05005813953488369
+[2026-05-11T21:59:27] Cell 170/235: WTA_CHALL|80|90|tight|low (processed_this_run=150, elapsed=14264s)
+[2026-05-11T22:00:13]   → n_moments=183, runtime=46.3s, top_limit_B=-0.0041221374045801494
+[2026-05-11T22:00:13] Cell 171/235: WTA_CHALL|80|90|wide|high (processed_this_run=151, elapsed=14310s)
+[2026-05-11T22:00:40]   → n_moments=589, runtime=27.0s, top_limit_B=0.26
+[2026-05-11T22:00:40] Cell 172/235: WTA_CHALL|80|90|wide|low (processed_this_run=152, elapsed=14337s)
+[2026-05-11T22:01:12]   → n_moments=305, runtime=31.5s, top_limit_B=0.12122222222222222
+[2026-05-11T22:01:12] Cell 173/235: WTA_CHALL|90|100|medium|high (processed_this_run=153, elapsed=14369s)
+[2026-05-11T22:01:46]   → n_moments=591, runtime=33.9s, top_limit_B=-0.25561151079136696
+[2026-05-11T22:01:46] Cell 174/235: WTA_CHALL|90|100|medium|low (processed_this_run=154, elapsed=14403s)
+[2026-05-11T22:02:33]   → n_moments=866, runtime=47.6s, top_limit_B=0.07565989847715737
+[2026-05-11T22:02:33] Cell 175/235: WTA_CHALL|90|100|tight|low (processed_this_run=155, elapsed=14450s)
+[2026-05-11T22:04:29]   → n_moments=613, runtime=115.7s, top_limit_B=0.01276422764227641
+[2026-05-11T22:04:29] Cell 176/235: WTA_CHALL|90|100|wide|high (processed_this_run=156, elapsed=14566s)
+[2026-05-11T22:05:17]   → n_moments=553, runtime=48.2s, top_limit_B=0.10399999999999998
+[2026-05-11T22:05:17] Cell 177/235: WTA_CHALL|90|100|wide|low (processed_this_run=157, elapsed=14614s)
+[2026-05-11T22:05:56]   → n_moments=316, runtime=38.8s, top_limit_B=0.2391818181818182
+[2026-05-11T22:05:56] Cell 178/235: WTA_MAIN|0|10|medium|low (processed_this_run=158, elapsed=14653s)
+[2026-05-11T22:06:50]   → n_moments=276, runtime=53.9s, top_limit_B=0.00915929203539823
+[2026-05-11T22:06:50] Cell 179/235: WTA_MAIN|0|10|tight|high (processed_this_run=159, elapsed=14707s)
+[2026-05-11T22:07:44]   → n_moments=706, runtime=53.9s, top_limit_B=0.1175
+[2026-05-11T22:07:44] Cell 180/235: WTA_MAIN|0|10|tight|low (processed_this_run=160, elapsed=14761s)
+[2026-05-11T22:09:27]   → n_moments=1195, runtime=103.0s, top_limit_B=0.028747731397459165
+[2026-05-11T22:09:27] Cell 181/235: WTA_MAIN|0|10|wide|low (processed_this_run=161, elapsed=14864s)
+[2026-05-11T22:09:51]   → n_moments=123, runtime=23.8s, top_limit_B=0.15094594594594596
+[2026-05-11T22:09:51] Cell 182/235: WTA_MAIN|10|20|medium|high (processed_this_run=162, elapsed=14888s)
+[2026-05-11T22:10:56]   → n_moments=1362, runtime=64.8s, top_limit_B=0.030000000000000013
+[2026-05-11T22:10:56] Cell 183/235: WTA_MAIN|10|20|medium|low (processed_this_run=163, elapsed=14953s)
+[2026-05-11T22:11:42]   → n_moments=497, runtime=46.1s, top_limit_B=0.030288065843621398
+[2026-05-11T22:11:42] Cell 184/235: WTA_MAIN|10|20|tight|high (processed_this_run=164, elapsed=14999s)
+[2026-05-11T22:12:41]   → n_moments=2031, runtime=59.1s, top_limit_B=0.31399999999999995
+[2026-05-11T22:12:41] Cell 185/235: WTA_MAIN|10|20|tight|low (processed_this_run=165, elapsed=15058s)
+[2026-05-11T22:14:14]   → n_moments=1448, runtime=92.5s, top_limit_B=0.042607076350093115
+[2026-05-11T22:14:14] Cell 186/235: WTA_MAIN|10|20|wide|high (processed_this_run=166, elapsed=15151s)
+[2026-05-11T22:14:51]   → n_moments=140, runtime=37.3s, top_limit_B=0.039999999999999994
+[2026-05-11T22:14:51] Cell 187/235: WTA_MAIN|10|20|wide|low (processed_this_run=167, elapsed=15188s)
+[2026-05-11T22:15:34]   → n_moments=99, runtime=42.5s, top_limit_B=0.03613636363636363
+[2026-05-11T22:15:34] Cell 188/235: WTA_MAIN|20|30|medium|high (processed_this_run=168, elapsed=15231s)
+[2026-05-11T22:17:32]   → n_moments=1600, runtime=118.4s, top_limit_B=0.09548076923076923
+[2026-05-11T22:17:32] Cell 189/235: WTA_MAIN|20|30|medium|low (processed_this_run=169, elapsed=15349s)
+[2026-05-11T22:19:51]   → n_moments=3711, runtime=139.3s, top_limit_B=0.004938775510204083
+[2026-05-11T22:19:51] Cell 190/235: WTA_MAIN|20|30|tight|high (processed_this_run=170, elapsed=15488s)
+[2026-05-11T22:21:33]   → n_moments=1853, runtime=101.1s, top_limit_B=0.011919431279620855
+[2026-05-11T22:21:33] Cell 191/235: WTA_MAIN|20|30|tight|low (processed_this_run=171, elapsed=15590s)
+[2026-05-11T22:24:16]   → n_moments=2909, runtime=163.0s, top_limit_B=0.12635483870967743
+[2026-05-11T22:24:16] Cell 192/235: WTA_MAIN|20|30|wide|high (processed_this_run=172, elapsed=15753s)
+[2026-05-11T22:25:06]   → n_moments=314, runtime=50.3s, top_limit_B=0.37666666666666665
+[2026-05-11T22:25:06] Cell 193/235: WTA_MAIN|20|30|wide|low (processed_this_run=173, elapsed=15803s)
+[2026-05-11T22:25:48]   → n_moments=342, runtime=42.0s, top_limit_B=0.06797665369649805
+[2026-05-11T22:25:48] Cell 194/235: WTA_MAIN|30|40|medium|high (processed_this_run=174, elapsed=15845s)
+[2026-05-11T22:26:47]   → n_moments=2117, runtime=58.9s, top_limit_B=0.12634782608695652
+[2026-05-11T22:26:47] Cell 195/235: WTA_MAIN|30|40|medium|low (processed_this_run=175, elapsed=15904s)
+[2026-05-11T22:28:24]   → n_moments=2274, runtime=97.3s, top_limit_B=0.09392473118279569
+[2026-05-11T22:28:24] Cell 196/235: WTA_MAIN|30|40|tight|high (processed_this_run=176, elapsed=16001s)
+[2026-05-11T22:32:30]   → n_moments=2749, runtime=245.9s, top_limit_B=0.11732522796352579
+[2026-05-11T22:32:30] Cell 197/235: WTA_MAIN|30|40|tight|low (processed_this_run=177, elapsed=16247s)
+[2026-05-11T22:34:59]   → n_moments=1131, runtime=148.2s, top_limit_B=0.1171455938697318
+[2026-05-11T22:34:59] Cell 198/235: WTA_MAIN|30|40|wide|high (processed_this_run=178, elapsed=16396s)
+[2026-05-11T22:35:46]   → n_moments=316, runtime=47.4s, top_limit_B=0.08
+[2026-05-11T22:35:46] Cell 199/235: WTA_MAIN|30|40|wide|low (processed_this_run=179, elapsed=16443s)
+[2026-05-11T22:36:31]   → n_moments=272, runtime=45.4s, top_limit_B=0.12916666666666668
+[2026-05-11T22:36:31] Cell 200/235: WTA_MAIN|40|50|medium|high (processed_this_run=180, elapsed=16488s)
+[2026-05-11T22:37:35]   → n_moments=1542, runtime=63.1s, top_limit_B=0.3044736842105264
+[2026-05-11T22:37:35] Cell 201/235: WTA_MAIN|40|50|medium|low (processed_this_run=181, elapsed=16552s)
+[2026-05-11T22:39:35]   → n_moments=2659, runtime=120.6s, top_limit_B=0.15021103896103896
+[2026-05-11T22:39:35] Cell 202/235: WTA_MAIN|40|50|tight|high (processed_this_run=182, elapsed=16672s)
+[2026-05-11T22:40:50]   → n_moments=1677, runtime=74.8s, top_limit_B=0.03269662921348316
+[2026-05-11T22:40:50] Cell 203/235: WTA_MAIN|40|50|tight|low (processed_this_run=183, elapsed=16747s)
+[2026-05-11T22:47:09]   → n_moments=4125, runtime=378.4s, top_limit_B=0.24239103362391035
+[2026-05-11T22:47:09] Cell 204/235: WTA_MAIN|40|50|wide|high (processed_this_run=184, elapsed=17126s)
+[2026-05-11T22:47:42]   → n_moments=376, runtime=33.4s, top_limit_B=0.3
+[2026-05-11T22:47:42] Cell 205/235: WTA_MAIN|40|50|wide|low (processed_this_run=185, elapsed=17159s)
+[2026-05-11T22:48:26]   → n_moments=380, runtime=43.7s, top_limit_B=0.07522388059701493
+[2026-05-11T22:48:26] Cell 206/235: WTA_MAIN|50|60|medium|high (processed_this_run=186, elapsed=17203s)
+[2026-05-11T22:49:08]   → n_moments=799, runtime=41.9s, top_limit_B=0.122
+[2026-05-11T22:49:08] Cell 207/235: WTA_MAIN|50|60|medium|low (processed_this_run=187, elapsed=17245s)
+[2026-05-11T22:51:11]   → n_moments=3642, runtime=123.4s, top_limit_B=0.11868852459016391
+[2026-05-11T22:51:11] Cell 208/235: WTA_MAIN|50|60|tight|high (processed_this_run=188, elapsed=17368s)
+[2026-05-11T22:52:32]   → n_moments=1156, runtime=80.9s, top_limit_B=0.3335294117647058
+[2026-05-11T22:52:32] Cell 209/235: WTA_MAIN|50|60|tight|low (processed_this_run=189, elapsed=17449s)
+[2026-05-11T22:54:18]   → n_moments=1288, runtime=105.9s, top_limit_B=0.06943161634103022
+[2026-05-11T22:54:18] Cell 210/235: WTA_MAIN|50|60|wide|high (processed_this_run=190, elapsed=17555s)
+[2026-05-11T22:55:19]   → n_moments=736, runtime=60.7s, top_limit_B=0.1348888888888889
+[2026-05-11T22:55:19] Cell 211/235: WTA_MAIN|50|60|wide|low (processed_this_run=191, elapsed=17616s)
+[2026-05-11T22:57:08]   → n_moments=547, runtime=109.3s, top_limit_B=0.2706779661016949
+[2026-05-11T22:57:08] Cell 212/235: WTA_MAIN|60|70|medium|high (processed_this_run=192, elapsed=17725s)
+[2026-05-11T22:58:29]   → n_moments=1271, runtime=81.0s, top_limit_B=-0.22644670050761415
+[2026-05-11T22:58:29] Cell 213/235: WTA_MAIN|60|70|medium|low (processed_this_run=193, elapsed=17806s)
+[2026-05-11T23:00:42]   → n_moments=1693, runtime=132.4s, top_limit_B=0.11643749999999997
+[2026-05-11T23:00:42] Cell 214/235: WTA_MAIN|60|70|tight|high (processed_this_run=194, elapsed=17939s)
+[2026-05-11T23:01:22]   → n_moments=427, runtime=40.0s, top_limit_B=0.30999999999999994
+[2026-05-11T23:01:22] Cell 215/235: WTA_MAIN|60|70|tight|low (processed_this_run=195, elapsed=17979s)
+[2026-05-11T23:03:58]   → n_moments=1618, runtime=156.0s, top_limit_B=0.3059100204498977
+[2026-05-11T23:03:58] Cell 216/235: WTA_MAIN|60|70|wide|high (processed_this_run=196, elapsed=18135s)
+[2026-05-11T23:04:45]   → n_moments=689, runtime=47.1s, top_limit_B=0.050000000000000044
+[2026-05-11T23:04:45] Cell 217/235: WTA_MAIN|60|70|wide|low (processed_this_run=197, elapsed=18182s)
+[2026-05-11T23:05:33]   → n_moments=530, runtime=48.1s, top_limit_B=0.040567375886524815
+[2026-05-11T23:05:33] Cell 218/235: WTA_MAIN|70|80|medium|high (processed_this_run=198, elapsed=18230s)
+[2026-05-11T23:06:33]   → n_moments=1278, runtime=59.4s, top_limit_B=0.06999999999999995
+[2026-05-11T23:06:33] Cell 219/235: WTA_MAIN|70|80|medium|low (processed_this_run=199, elapsed=18290s)
+[2026-05-11T23:07:39]   → n_moments=1066, runtime=66.0s, top_limit_B=0.12246951219512194
+[2026-05-11T23:07:39] Cell 220/235: WTA_MAIN|70|80|tight|high (processed_this_run=200, elapsed=18356s)
+[2026-05-11T23:08:39]   → n_moments=535, runtime=60.3s, top_limit_B=0.1058333333333333
+[2026-05-11T23:08:39] Cell 221/235: WTA_MAIN|70|80|tight|low (processed_this_run=201, elapsed=18416s)
+[2026-05-11T23:11:10]   → n_moments=1134, runtime=151.4s, top_limit_B=0.06570327552986516
+[2026-05-11T23:11:10] Cell 222/235: WTA_MAIN|70|80|wide|high (processed_this_run=202, elapsed=18567s)
+[2026-05-11T23:11:55]   → n_moments=552, runtime=44.5s, top_limit_B=0.11487499999999998
+[2026-05-11T23:11:55] Cell 223/235: WTA_MAIN|70|80|wide|low (processed_this_run=203, elapsed=18612s)
+[2026-05-11T23:12:37]   → n_moments=648, runtime=42.3s, top_limit_B=0.015921052631578936
+[2026-05-11T23:12:37] Cell 224/235: WTA_MAIN|80|90|medium|high (processed_this_run=204, elapsed=18654s)
+[2026-05-11T23:13:28]   → n_moments=899, runtime=50.7s, top_limit_B=0.1
+[2026-05-11T23:13:28] Cell 225/235: WTA_MAIN|80|90|medium|low (processed_this_run=205, elapsed=18705s)
+[2026-05-11T23:14:10]   → n_moments=736, runtime=42.5s, top_limit_B=0.009383116883116877
+[2026-05-11T23:14:10] Cell 226/235: WTA_MAIN|80|90|tight|high (processed_this_run=206, elapsed=18747s)
+[2026-05-11T23:14:59]   → n_moments=952, runtime=48.8s, top_limit_B=0.18999999999999995
+[2026-05-11T23:14:59] Cell 227/235: WTA_MAIN|80|90|tight|low (processed_this_run=207, elapsed=18796s)
+[2026-05-11T23:16:10]   → n_moments=1115, runtime=70.3s, top_limit_B=0.02572139303482588
+[2026-05-11T23:16:10] Cell 228/235: WTA_MAIN|80|90|wide|high (processed_this_run=208, elapsed=18867s)
+[2026-05-11T23:17:01]   → n_moments=1009, runtime=51.2s, top_limit_B=0.16000000000000003
+[2026-05-11T23:17:01] Cell 229/235: WTA_MAIN|80|90|wide|low (processed_this_run=209, elapsed=18918s)
+[2026-05-11T23:17:51]   → n_moments=730, runtime=50.6s, top_limit_B=0.13520833333333335
+[2026-05-11T23:17:51] Cell 230/235: WTA_MAIN|90|100|medium|high (processed_this_run=210, elapsed=18968s)
+[2026-05-11T23:18:39]   → n_moments=281, runtime=47.2s, top_limit_B=0.06999999999999995
+[2026-05-11T23:18:39] Cell 231/235: WTA_MAIN|90|100|medium|low (processed_this_run=211, elapsed=19016s)
+[2026-05-11T23:19:23]   → n_moments=380, runtime=44.1s, top_limit_B=0.03720472440944883
+[2026-05-11T23:19:23] Cell 232/235: WTA_MAIN|90|100|tight|low (processed_this_run=212, elapsed=19060s)
+[2026-05-11T23:20:14]   → n_moments=399, runtime=51.6s, top_limit_B=-0.005596026490066236
+[2026-05-11T23:20:14] Cell 233/235: WTA_MAIN|90|100|wide|high (processed_this_run=213, elapsed=19111s)
+[2026-05-11T23:20:59]   → n_moments=412, runtime=44.3s, top_limit_B=0.30000000000000004
+[2026-05-11T23:20:59] Cell 234/235: WTA_MAIN|90|100|wide|low (processed_this_run=214, elapsed=19156s)
+[2026-05-11T23:22:14]   → n_moments=750, runtime=75.5s, top_limit_B=0.17573248407643313
+[2026-05-11T23:22:14] 
+[2026-05-11T23:22:14] ============================================================
+[2026-05-11T23:22:14] Phase 3 cell loop complete. Runtime: 19231.2s (5.34 h)
+[2026-05-11T23:22:14] Cells processed this run: 215
+[2026-05-11T23:22:14] Cells skipped (resume): 20
+[2026-05-11T23:22:14] ============================================================
+[2026-05-11T23:22:14] Merging per-cell parquets...
+[2026-05-11T23:22:14]   Found 235 per-cell parquets
+[2026-05-11T23:22:23]   Wrote /root/Omi-Workspace/arb-executor/data/durable/layer_b_v2/phase3/cell_summary_phase3.parquet: 12,455 rows, 364,357 bytes
+[2026-05-11T23:22:23] 
+[2026-05-11T23:22:23] === Validation gate (spec Section 6) ===
+[2026-05-11T23:22:26]   Check 1 byte-equiv on 39 v1 limit candidates: PASS
+[2026-05-11T23:22:26]   Check 2 fill_rate ∈ [0.05, 0.95] (strict 100%): FAIL (371 outliers)
+[2026-05-11T23:22:26]   Check 3 A-vs-B coherence (mean abs Δ<$0.02, B>A>60%): FAIL (mean abs Δ=$0.0075550130214404225, B>A=0.27721651984159057)
+[2026-05-11T23:22:27] Wrote /root/Omi-Workspace/arb-executor/data/durable/layer_b_v2/phase3/run_summary_phase3.json
+[2026-05-11T23:22:27] ============================================================

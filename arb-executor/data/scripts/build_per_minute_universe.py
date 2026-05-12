@@ -919,10 +919,19 @@ def select_phase2_matches(seed=PHASE2_SAMPLE_SEED, n_per_stratum=PHASE2_N_MATCHE
     if log_path:
         log(f"  paired matches (both sides binary): {len(df_m)}", log_path)
 
-    # Per-category quartile binning of premarket_len
-    df_m["quartile"] = df_m.groupby("category")["premarket_len_min"].transform(
-        lambda x: pd.qcut(x, q=4, labels=[0, 1, 2, 3], duplicates="drop")
-    )
+    # Per-category quartile binning of premarket_len. Wrap qcut to handle the
+    # tennis-corpus quirk per spec v6 amendment: many markets share identical
+    # expected_expiration_time offsets (hourly schedules) → duplicate quartile
+    # edges → qcut drops bins below 4 → ValueError when labels=[0,1,2,3] doesn't
+    # match. Use labels=False (auto-assigns 0..n-1 for whatever n bins survive
+    # after dedup) and catch ValueError for the all-identical degenerate case.
+    def _qcut_safe(x):
+        try:
+            return pd.qcut(x, q=4, labels=False, duplicates="drop")
+        except ValueError:
+            # All values identical → single bin (0)
+            return pd.Series([0] * len(x), index=x.index, dtype="int64")
+    df_m["quartile"] = df_m.groupby("category")["premarket_len_min"].transform(_qcut_safe)
     if log_path:
         log(f"  category × quartile match counts:", log_path)
         for (cat, q), cnt in df_m.groupby(["category", "quartile"], observed=True).size().items():
@@ -931,17 +940,21 @@ def select_phase2_matches(seed=PHASE2_SAMPLE_SEED, n_per_stratum=PHASE2_N_MATCHE
     # Sample n_per_stratum per (category, quartile) deterministically
     rng = _rng_module.Random(seed)
     selected = []
+    available_strat = {}   # (cat, q) → available matches BEFORE sampling
+    realized_strat = {}    # (cat, q) → matches actually sampled
     for (cat, q), grp in df_m.groupby(["category", "quartile"], observed=True):
         grp_sorted = grp.sort_values("event_ticker").reset_index(drop=True)
+        available_strat[f"{cat}|q{q}"] = int(len(grp_sorted))
         n_take = min(n_per_stratum, len(grp_sorted))
         indices = list(range(len(grp_sorted)))
         rng.shuffle(indices)
         for idx in indices[:n_take]:
             row = grp_sorted.iloc[idx].to_dict()
             selected.append(row)
+        realized_strat[f"{cat}|q{q}"] = int(n_take)
     if log_path:
-        log(f"  selected {len(selected)} matches across {df_m[['category','quartile']].drop_duplicates().shape[0]} strata", log_path)
-    return selected
+        log(f"  selected {len(selected)} matches across {len(realized_strat)} strata", log_path)
+    return selected, available_strat, realized_strat
 
 
 def phase2(formation_window_min=FORMATION_WINDOW_MIN_DEFAULT):
@@ -960,7 +973,7 @@ def phase2(formation_window_min=FORMATION_WINDOW_MIN_DEFAULT):
     log(f"  PHASE2_N_MATCHES_PER_STRATUM = {PHASE2_N_MATCHES_PER_STRATUM}", log_path)
     log(f"  formation_window_min = {formation_window_min}", log_path)
 
-    selected_matches = select_phase2_matches(log_path=log_path)
+    selected_matches, available_strat, realized_strat = select_phase2_matches(log_path=log_path)
     # Expand to ticker list — deterministic ordering by event_ticker then ticker
     selected_matches_sorted = sorted(selected_matches, key=lambda m: m["event_ticker"])
     ticker_list = []
@@ -1143,6 +1156,8 @@ def phase2(formation_window_min=FORMATION_WINDOW_MIN_DEFAULT):
         },
         "match_start_method_distribution": method_counts,
         "match_start_method_fallback_pct": round(pct_fallback, 4),
+        "available_stratification": available_strat,
+        "realized_stratification": realized_strat,
         "phase3_projection": {
             "median_runtime_per_ticker_s": median_runtime,
             "total_tickers": 20110,

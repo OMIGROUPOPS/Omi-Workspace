@@ -223,11 +223,15 @@ def aggregate_trades_per_minute(candles_df, trades_df):
     """For each minute_ts in candles_df, compute trade-derived aggregates plus
     depth-proxy features per spec Section 2.10.
 
-    Numpy-vectorized implementation per Layer B v2 a23545a1 pattern. Replaces the
-    prior per-minute Python for-loop with batched np.searchsorted + np.bincount +
-    a single pandas groupby for the two per-bucket statistics that can't be
-    bincounted (price_levels distinct count, trade_clustering inter-gap std).
-    Expected 3-5× speedup → Phase 3 runtime 35h → 7-10h.
+    Pure-numpy implementation. All six aggregates produced via batched
+    np.searchsorted + np.bincount + np.lexsort:
+      - taker_*_count, trade_count, vwap: weighted bincount on (v_idx)
+      - price_levels: lex-sort by (idx, price), count rows where (idx, price) changes
+      - trade_clustering: lex-sort by (idx, ts), bincount sum_gaps and sum_gaps_sq,
+        compute population std via std-from-moments sqrt(E[X²] - E[X]²)
+    No pandas groupby. v3 pandas-groupby fallback (398706e1) was slower than v2
+    candles-loop because per-bucket pandas overhead exceeded the gain from the
+    numpy bincount path on the bincount-able stats.
 
     Aggregates produced:
       - trade_count_in_minute, taker_yes_count_in_minute, taker_no_count_in_minute
@@ -301,26 +305,50 @@ def aggregate_trades_per_minute(candles_df, trades_df):
     nonzero = total_count > 0
     out["vwap_in_minute"][nonzero] = total_pc[nonzero] / total_count[nonzero]
 
-    # price_levels_consumed_in_minute (distinct yes_price per minute) and
-    # trade_clustering_in_minute (std of inter-trade gaps) — single pandas
-    # groupby covers both. Only iterates over minute-buckets that contain trades.
-    gb_df = pd.DataFrame({"minute_idx": v_idx, "trade_ts": v_ts, "trade_price": v_price})
-    gb = gb_df.groupby("minute_idx", sort=False)
-    # Distinct price count per bucket
-    nunique_per_bucket = gb["trade_price"].nunique()
-    out["price_levels_consumed_in_minute"][nunique_per_bucket.index.values.astype(np.int64)] = \
-        nunique_per_bucket.values.astype(np.int32)
+    # price_levels_consumed_in_minute (distinct yes_price per minute):
+    # Lex-sort by (v_idx, v_price); a "new distinct price" is any row where
+    # idx OR price changes from the previous row. Bincount the new-price flag
+    # by sorted_idx → count of distinct prices per bucket. Pure numpy, no pandas.
+    if len(v_idx) > 0:
+        order_price = np.lexsort((v_price, v_idx))
+        sorted_idx_p = v_idx[order_price]
+        sorted_price = v_price[order_price]
+        is_new_price = np.ones(len(sorted_idx_p), dtype=bool)
+        if len(sorted_idx_p) > 1:
+            is_new_price[1:] = (sorted_idx_p[1:] != sorted_idx_p[:-1]) | (
+                sorted_price[1:] != sorted_price[:-1]
+            )
+        out["price_levels_consumed_in_minute"][:] = np.bincount(
+            sorted_idx_p[is_new_price], minlength=n_candles
+        ).astype(np.int32)
 
-    # trade_clustering: std of inter-trade gaps, null when fewer than 3 trades
-    def _clustering(s):
-        if len(s) < 3:
-            return np.nan
-        return float(np.std(np.diff(np.sort(s.values))))
-    clustering_per_bucket = gb["trade_ts"].apply(_clustering)
-    valid_mask_clust = clustering_per_bucket.notna()
-    out["trade_clustering_in_minute"][
-        clustering_per_bucket.index[valid_mask_clust].values.astype(np.int64)
-    ] = clustering_per_bucket[valid_mask_clust].values.astype(np.float64)
+    # trade_clustering_in_minute (std of inter-trade gaps, null when trade_count<3):
+    # Lex-sort by (v_idx, v_ts) → within each bucket, ts is sorted. A gap is the
+    # diff between consecutive trades in the SAME bucket. Compute per-bucket
+    # std via std-from-moments: std = sqrt(E[X²] - E[X]²). Population std
+    # (ddof=0) matches the baseline np.std default.
+    if len(v_idx) > 1:
+        order_ts = np.lexsort((v_ts, v_idx))
+        sorted_idx_t = v_idx[order_ts]
+        sorted_ts = v_ts[order_ts]
+        same_bucket = sorted_idx_t[1:] == sorted_idx_t[:-1]
+        if same_bucket.any():
+            gap_bucket = sorted_idx_t[1:][same_bucket]
+            gap_vals = (sorted_ts[1:] - sorted_ts[:-1])[same_bucket].astype(np.float64)
+            sum_gaps = np.bincount(gap_bucket, weights=gap_vals, minlength=n_candles)
+            sum_gaps_sq = np.bincount(
+                gap_bucket, weights=gap_vals * gap_vals, minlength=n_candles
+            )
+            n_gaps = np.bincount(gap_bucket, minlength=n_candles).astype(np.float64)
+            # Valid: trade_count >= 3 → n_gaps >= 2. Compute std-from-moments only
+            # where valid. Clamp tiny negatives from fp cancellation to 0.
+            valid_clust = tc >= 3
+            with np.errstate(invalid="ignore", divide="ignore"):
+                mean_x = np.where(n_gaps > 0, sum_gaps / np.maximum(n_gaps, 1), 0.0)
+                mean_x2 = np.where(n_gaps > 0, sum_gaps_sq / np.maximum(n_gaps, 1), 0.0)
+                var = np.maximum(mean_x2 - mean_x * mean_x, 0.0)
+                std = np.sqrt(var)
+            out["trade_clustering_in_minute"][valid_clust] = std[valid_clust]
 
     return out
 

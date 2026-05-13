@@ -304,9 +304,54 @@ Schema is partitioned by ticker for filter-pushdown efficiency on downstream que
 
 ### Output 2: Run summary
 
-`data/durable/per_minute_universe/run_summary.json`
+`data/durable/per_minute_universe/run_summary.json` (Phase 3)
+`data/durable/per_minute_universe/probe/run_summary_phase{1,2}.json` (Phase 1, 2)
 
-Producer metadata: runtime per phase, ticker count, total minutes, sha256 of inputs, git commit of producer, peak working-set memory, validation-gate check results.
+Producer metadata for each phase. Schema is stable across Phase 2 and Phase 3 except for the stratification-related keys (`n_matches_target`, `n_tickers_target`, `available_stratification`, `realized_stratification`), which are Phase-2-specific. Phase 3 omits those keys because the full corpus is processed without sampling. Phase 1 is a single-ticker probe; the file is structurally similar but most distribution fields collapse to n=1 statistics.
+
+**Top-level keys (all phases):**
+- `phase` — int. 1, 2, or 3.
+- `spec_commit` — string. Short SHA of the spec commit the producer was run against.
+- `n_tickers_processed` — int. Tickers for which the producer completed without error.
+- `n_tickers_skipped` — int. Tickers excluded for missing data (e.g., zero candles or zero trades after foundation filter).
+- `skipped_tickers` — list of strings. Ticker IDs of the skipped tickers (full list — no truncation, so reviewers can identify systematic skip patterns).
+- `n_rows` — int. Total rows in output parquet.
+- `n_columns` — int. Total columns in output parquet (87 at spec v6).
+- `runtime_seconds`, `runtime_minutes` — float. Total ticker-loop wall-clock.
+- `output_path` — string. Absolute path to the output parquet.
+- `output_size_bytes`, `output_size_mb` — int / float. On-disk size after merge.
+
+**Validation gate block (all phases):**
+- `validation_gate` — nested dict per Section 5 hard gates:
+  - `check1_row_count_parity_pass` — bool. Output row count matches sum of g9_candles row counts across processed tickers.
+  - `check2_always_populated_pass` — bool. Always-populated columns have zero nulls.
+  - `check2_null_counts` — dict mapping each always-populated column name to its null count (should all be 0 if the bool is true). Columns: `yes_bid_close`, `yes_ask_close`, `spread_close`, `mid_close`, `ticker`, `minute_ts`, `regime`.
+  - `check4_forward_monotonicity_pass` — bool. Forward-window labels are monotonic across horizons per row.
+  - `check4_bid_violations`, `check4_ask_violations` — int. Count of rows violating monotonicity (should be 0 if pass).
+- Check 3 (Layer B v2 regression cross-check) is reported in `validation_report.md`, not the run_summary, because it requires the L Bv2 cell_summary_phase3.parquet artifact.
+
+**Distribution blocks (all phases):**
+- `per_ticker_runtime_distribution_seconds` — dict: `n`, `median`, `mean`, `p90`, `p99`, `max`, `min`. The `median` is the divide-by-N input for the Phase 3 projection sanity check.
+- `per_ticker_minutes_distribution` — dict: `median`, `p90`, `max`, `min`, `total`. Captures per-ticker row-count distribution; the `total` field should equal `n_rows`.
+
+**Match-start signal coverage (all phases):**
+- `match_start_method_distribution` — dict mapping each v4 hierarchy method name to ticker count: `both_sides_price_discovery`, `both_sides_trade_density`, `expected_expiration_fallback`, `unknown`. Sum equals `n_tickers_processed`.
+- `match_start_method_fallback_pct` — float. Fraction of tickers that fell to `expected_expiration_fallback` or `unknown`. Used as an informative measurement per Section 5.
+
+**Phase-2-specific keys:**
+- `seed` — int. `PHASE2_SAMPLE_SEED` value used (default 42, deterministic).
+- `n_matches_target` — int. Target number of paired matches (default 100).
+- `n_matches_selected` — int. Actual matches selected after stratification + qcut bin-collapse handling.
+- `n_tickers_target` — int. 2 × `n_matches_target` (paired-leg invariant).
+- `available_stratification` — dict mapping `"category|quartile"` (e.g., `"ATP_MAIN|q2"`) to the count of available paired matches in that stratum. Surfaces which strata have fewer than the per-stratum target and which premarket-length quartiles collapsed.
+- `realized_stratification` — dict with the same key format mapping to the actual count of matches drawn per stratum. Diff vs `available_stratification` surfaces stratum-level under-coverage per LESSONS C27.
+
+**Projection block (Phase 2 only):**
+- `phase3_projection` — nested dict:
+  - `median_runtime_per_ticker_s` — float. Same as `per_ticker_runtime_distribution_seconds.median`.
+  - `total_tickers` — int. Full corpus binary-outcome ticker count (currently 19,614).
+  - `projected_seconds`, `projected_hours` — float. Divide-by-N projection vs the corpus budget. Used to decide whether Phase 3 fits the spec budget or needs operator escalation.
+  - `spec_budget_hours` — int. Always 8 per current Section 3.3.
 
 ### Output 3: Build log
 

@@ -18,6 +18,7 @@ import os
 import re
 import sys
 import time
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
@@ -622,21 +623,45 @@ class IncrementalTickerWriter:
         self.batch_idx += 1
 
     def merge_all(self, out_path):
-        """Glob all per-batch parquets in numerical order, concat, write merged."""
+        """Stream per-batch parquets into the merged output via a single
+        pq.ParquetWriter; never materialize the full merged corpus in memory.
+
+        Original implementation was `pd.concat([pd.read_parquet(p) for p in
+        batch_paths])` — which OOM'd on Phase 3's 197 batches × ~50-150 MB
+        in-memory each on a 1.9 GB VPS (see LESSONS C35). This version reads
+        one batch at a time, casts to the writer's bare schema (stripping
+        per-batch pandas metadata that otherwise trips ParquetWriter's strict
+        schema-equality check), and write_table's it. Peak memory ~one batch.
+
+        Returns (n_rows, None). df_all is intentionally not materialized for
+        memory safety on Phase 3 scale (9.3M rows × 87 cols would not fit).
+        Callers that need the merged DataFrame should pd.read_parquet(out_path)
+        after this returns (safe for Phase 1/Phase 2 sizes).
+        """
         batch_paths = sorted(glob.glob(
             os.path.join(self.out_dir, f"{self.batch_prefix}_*.parquet")
         ))
         if not batch_paths:
             return 0, None
-        dfs = []
-        for p in batch_paths:
-            dfs.append(pd.read_parquet(p))
-        df_merged = pd.concat(dfs, ignore_index=True)
-        pq.write_table(
-            pa.Table.from_pandas(df_merged, preserve_index=False),
-            out_path, compression="snappy",
-        )
-        return len(df_merged), df_merged
+        first_pf = pq.ParquetFile(batch_paths[0])
+        # Strip pandas metadata from the writer schema so per-batch metadata
+        # variation (a few-byte diff in the pandas blob across batches) doesn't
+        # trip ParquetWriter's strict schema-equality check on write.
+        schema = first_pf.schema_arrow.remove_metadata()
+        n_rows = 0
+        writer = pq.ParquetWriter(out_path, schema, compression="snappy")
+        try:
+            for p in batch_paths:
+                table = pq.ParquetFile(p).read()
+                # cast(schema) rebuilds the table against the bare schema —
+                # no-op data-wise (columns/types identical across batches by
+                # construction), just normalizes the attached metadata.
+                writer.write_table(table.cast(schema))
+                n_rows += table.num_rows
+                del table
+        finally:
+            writer.close()
+        return n_rows, None
 
     def get_completed_tickers(self):
         """Return the set of tickers already processed (per JSONL)."""
@@ -1237,7 +1262,10 @@ def phase2(formation_window_min=FORMATION_WINDOW_MIN_DEFAULT):
     log("", log_path)
     log("Merging per-batch parquets...", log_path)
     out_path = os.path.join(out_dir, "per_minute_universe_phase2.parquet")
-    n_merged_rows, df_all = writer.merge_all(out_path)
+    n_merged_rows, _ = writer.merge_all(out_path)
+    # merge_all no longer returns df_all (memory safety for Phase 3 scale);
+    # Phase 2 is small enough to read the merged output back for gate checks.
+    df_all = pd.read_parquet(out_path) if n_merged_rows > 0 else None
     out_size = os.path.getsize(out_path) if os.path.exists(out_path) else 0
     log(f"  rows: {n_merged_rows:,}, cols: {len(df_all.columns) if df_all is not None else 0}, "
         f"size: {out_size:,} bytes ({out_size/(1024*1024):.2f} MB)", log_path)
@@ -1491,14 +1519,30 @@ def phase3(formation_window_min=FORMATION_WINDOW_MIN_DEFAULT):
     log("", log_path)
     log("Merging per-batch parquets into final output...", log_path)
     out_path = os.path.join(out_dir, "per_minute_features.parquet")
-    n_merged_rows, df_all = writer.merge_all(out_path)
+    n_merged_rows, _ = writer.merge_all(out_path)
     out_size = os.path.getsize(out_path) if os.path.exists(out_path) else 0
-    log(f"  rows: {n_merged_rows:,}, cols: {len(df_all.columns) if df_all is not None else 0}, "
+    # n_columns: read schema directly from merged parquet — no full materialization.
+    n_columns = len(pq.ParquetFile(out_path).schema_arrow) if n_merged_rows > 0 else 0
+    log(f"  rows: {n_merged_rows:,}, cols: {n_columns}, "
         f"size: {out_size:,} bytes ({out_size/(1024*1024):.2f} MB)", log_path)
 
-    # Lightweight hard-gate summary (full validation by T37c coherence-read script)
-    if df_all is not None:
-        method_counts = df_all.groupby("ticker")["match_start_method"].first().value_counts().to_dict()
+    # match_start_method distribution — computed from the progress jsonl
+    # (which already records match_start_method per ticker) rather than from
+    # a materialized df_all. At Phase 3 scale the full df cannot fit in
+    # memory; the progress jsonl gives the same per-ticker disposition for
+    # free. See LESSONS C35.
+    method_per_ticker = {}
+    if os.path.exists(writer.progress_path):
+        with open(writer.progress_path) as f:
+            for line in f:
+                try:
+                    rec = json.loads(line)
+                    if rec.get("status") == "processed" and "match_start_method" in rec:
+                        method_per_ticker[rec["ticker"]] = rec["match_start_method"]
+                except Exception:
+                    pass
+    method_counts = dict(Counter(method_per_ticker.values()))
+    if method_counts:
         log("", log_path)
         log("match_start_method distribution:", log_path)
         total_t = sum(method_counts.values())
@@ -1513,7 +1557,7 @@ def phase3(formation_window_min=FORMATION_WINDOW_MIN_DEFAULT):
         "n_skipped_no_data": int(len(skipped_tickers)),
         "n_skipped_resume": int(n_skipped_resume),
         "n_rows": int(n_merged_rows),
-        "n_columns": int(len(df_all.columns)) if df_all is not None else 0,
+        "n_columns": int(n_columns),
         "runtime_seconds": round(elapsed_total, 2),
         "runtime_hours": round(elapsed_total / 3600, 2),
         "output_path": out_path,
@@ -1526,9 +1570,7 @@ def phase3(formation_window_min=FORMATION_WINDOW_MIN_DEFAULT):
             "max": float(runtimes_arr.max()),
             "min": float(runtimes_arr.min()),
         },
-        "match_start_method_distribution":
-            df_all.groupby("ticker")["match_start_method"].first().value_counts().to_dict()
-            if df_all is not None else {},
+        "match_start_method_distribution": method_counts,
     }
     summary_path = os.path.join(out_dir, "run_summary_phase3.json")
     with open(summary_path, "w") as f:

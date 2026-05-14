@@ -292,8 +292,14 @@ def aggregate_trades_per_minute(candles_df, trades_df):
     v_price = trade_price[in_window]
     v_ts = trade_ts[in_window]
 
-    # trade_count_in_minute = bincount of v_idx
-    tc = np.bincount(v_idx, minlength=n_candles).astype(np.int32)
+    # trade_count_in_minute counts only trades with positive contract volume.
+    # Zero-count_fp Kalshi trade events (~0.20% of g9_trades; 67,191 of 33.7M
+    # rows surfaced 2026-05-14) are filtered so this column aligns with
+    # volume_in_minute by construction: (tc > 0) <=> (vol > 0) always holds.
+    # The yes/no taker-side columns below are already weighted by v_count and
+    # don't need the same filter (zero-weight trades contribute 0 naturally).
+    pos_size_mask = v_count > 0
+    tc = np.bincount(v_idx[pos_size_mask], minlength=n_candles).astype(np.int32)
     out["trade_count_in_minute"][:] = tc
 
     # taker_yes / taker_no count: weighted bincount by side mask

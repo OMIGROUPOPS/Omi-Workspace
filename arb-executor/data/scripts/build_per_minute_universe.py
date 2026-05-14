@@ -250,6 +250,12 @@ def aggregate_trades_per_minute(candles_df, trades_df):
         "trade_count_in_minute": np.zeros(n_candles, dtype=np.int32),
         "taker_yes_count_in_minute": np.zeros(n_candles, dtype=np.float64),
         "taker_no_count_in_minute": np.zeros(n_candles, dtype=np.float64),
+        # volume_in_minute: trade-tape-sourced total contract volume per minute.
+        # Zero-filled by np.zeros init (matches trade_count_in_minute convention).
+        # Source of truth is the trade tape, not candles_df["volume_fp"] (which
+        # is 65% null at source and over-reports vs trade tape on 12% of
+        # populated minutes — see LESSONS C36).
+        "volume_in_minute": np.zeros(n_candles, dtype=np.float64),
         "vwap_in_minute": np.full(n_candles, np.nan, dtype=np.float64),
         "price_levels_consumed_in_minute": np.zeros(n_candles, dtype=np.int32),
         "trade_clustering_in_minute": np.full(n_candles, np.nan, dtype=np.float64),
@@ -305,6 +311,12 @@ def aggregate_trades_per_minute(candles_df, trades_df):
     total_pc = np.bincount(v_idx, weights=v_price * v_count, minlength=n_candles)
     nonzero = total_count > 0
     out["vwap_in_minute"][nonzero] = total_pc[nonzero] / total_count[nonzero]
+
+    # volume_in_minute = total contract volume per minute, trade-tape-sourced.
+    # Same bincount that produces total_count for vwap; stored here as the
+    # canonical volume column (replaces the candle-sourced volume_fp path that
+    # was 65% null and over-reported on 12% of populated minutes per C36).
+    out["volume_in_minute"][:] = total_count
 
     # price_levels_consumed_in_minute (distinct yes_price per minute):
     # Lex-sort by (v_idx, v_price); a "new distinct price" is any row where
@@ -467,8 +479,10 @@ def build_partner_observables(partner_ticker):
         bid_c = float(bid_v) if pd.notna(bid_v) else None
         ask_c = float(ask_v) if pd.notna(ask_v) else None
         spread = (ask_c - bid_c) if (bid_c is not None and ask_c is not None) else None
-        vol_v = candles["volume_fp"].iloc[i]
-        vol_f = float(vol_v) if pd.notna(vol_v) else None
+        # Partner volume: trade-tape-sourced for parity with own-side
+        # volume_in_minute (see C36; candles_df["volume_fp"] is 65% null and
+        # over-reports vs trade tape on 12% of populated minutes).
+        vol_f = float(aggs["volume_in_minute"][i])
         oi_f = float(oi_ffill[i]) if not np.isnan(oi_ffill[i]) else None
         flow = float(aggs["taker_yes_count_in_minute"][i] - aggs["taker_no_count_in_minute"][i])
         # Intra-minute bid/ask range (needed by v4 match-start price-discovery gate)
@@ -846,8 +860,9 @@ def build_ticker_rows(ticker, formation_window_min=FORMATION_WINDOW_MIN_DEFAULT)
         own_bid_f = float(yes_bid_close[i]) if not np.isnan(yes_bid_close[i]) else None
         own_ask_f = float(yes_ask_close[i]) if not np.isnan(yes_ask_close[i]) else None
         own_mid_f = float(mid_close[i]) if not np.isnan(mid_close[i]) else None
-        own_vol_raw = candles_df["volume_fp"].iloc[i]
-        own_vol_f = float(own_vol_raw) if pd.notna(own_vol_raw) else None
+        # own_vol from trade tape (matches the canonical volume_in_minute
+        # column written at line 880, not the bug-prone candle volume_fp).
+        own_vol_f = float(trade_aggs["volume_in_minute"][i])
         paired_cols = compute_paired_columns(own_bid_f, own_ask_f, own_mid_f, own_vol_f, p_obs)
 
         r = {
@@ -877,7 +892,7 @@ def build_ticker_rows(ticker, formation_window_min=FORMATION_WINDOW_MIN_DEFAULT)
             "price_low": float(candles_df["price_low"].iloc[i]) if pd.notna(candles_df["price_low"].iloc[i]) else None,
             "price_mean": float(candles_df["price_mean"].iloc[i]) if pd.notna(candles_df["price_mean"].iloc[i]) else None,
             "price_previous": float(candles_df["price_previous"].iloc[i]) if pd.notna(candles_df["price_previous"].iloc[i]) else None,
-            "volume_in_minute": float(candles_df["volume_fp"].iloc[i]) if pd.notna(candles_df["volume_fp"].iloc[i]) else None,
+            "volume_in_minute": float(trade_aggs["volume_in_minute"][i]),
             "trade_count_in_minute": int(trade_aggs["trade_count_in_minute"][i]),
             "minute_has_trade": bool(trade_aggs["trade_count_in_minute"][i] > 0),
             "taker_yes_count_in_minute": float(trade_aggs["taker_yes_count_in_minute"][i]),

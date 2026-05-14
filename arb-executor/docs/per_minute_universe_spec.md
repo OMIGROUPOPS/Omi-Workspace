@@ -440,7 +440,110 @@ Join per_minute on event_ticker to pair the two sides of every match. Then verif
 
 ---
 
-## 7. Cross-references
+## 7. Amendment v0.2 — phase_state classifier (empirically anchored thresholds)
+
+**Status:** Draft v0.2 (calibrated on full Phase 3 corpus)
+**Scope:** Lock phase_state classifier thresholds on spread, pair-gap coherence, persistence, and prematch surge.
+
+### 7.1 Overview
+
+T37's per-minute universe now carries a 4-state phase_state label: PHASE_1_FORMATION, PHASE_2_STABLE_PREMATCH, PHASE_3_PREMATCH_SURGE, PHASE_4_IN_MATCH.
+
+This amendment locks the numeric thresholds and rules for the Phase 1 to Phase 2 and Phase 2 to Phase 3 boundaries using the full Phase 3 corpus (per_minute_features.parquet, 9.33M rows, 19,207 tickers). All thresholds are derived from actual distributions and are ticker-relative where appropriate.
+
+### 7.2 Spread threshold for PHASE_2
+
+Goal: define "low relative spread" per ticker using only Kalshi observables.
+
+Let spread_close be the minute-close spread in dollars (0.02 = 2 cents). For each ticker i, compute its median prematch spread median_premarket_spread_i over rows with regime = premarket.
+
+Define a per-ticker spread threshold: spread_threshold_i = min(0.02, median_premarket_spread_i)
+
+PHASE_2 spread criterion (minute t): spread_close_{i,t} <= spread_threshold_i
+
+Rationale: Q1 shows half of tickers have median spreads at or below 2 cents, with global median 2 cents and substantial mass at 1-2 cents. Capping at 2 cents ensures "tight" is anchored to a realistic best-practice band while still adapting to instruments with slightly wider typical spreads.
+
+### 7.3 Pair-gap coherence threshold for PHASE_2
+
+Goal: ensure PHASE_2 requires not just tight spreads, but also coherent paired-leg pricing in binary pairs.
+
+A new derived column has been added: pair_gap_abs = ABS(paired_mid_sum - 1.0), where paired_mid_sum is the per-minute sum of the two yes-side mids for the paired legs at aligned minute_ts. This yields the canonical per-minute pair-gap as the absolute deviation from the 1.00 binary constraint, in dollars.
+
+For each ticker i, compute the prematch 75th percentile pair_gap_p75_i over rows with regime = premarket and non-null pair_gap_abs.
+
+Define a per-ticker pair-gap coherence threshold: pair_gap_threshold_i = min(0.015, pair_gap_p75_i) (1.5 cent cap)
+
+PHASE_2 pair coherence criterion (minute t): pair_gap_abs_{i,t} <= pair_gap_threshold_i
+
+Rationale: Q2 shows per-ticker pair_gap_abs distributions are heavily right-skewed with central mass between 0 and 1 cent and pair_gap_p75 median around 1 cent. Using the ticker's own p75 adapts to each market's typical coherence, while the 1.5 cent cap prevents the PHASE_2 band from drifting into structurally incoherent territory for noisy pairs. For "perfect-coherence" tickers where most minutes have pair-gap near zero, this rule simply requires the pair to stay within the range that is already typical for that market.
+
+### 7.4 Minimum persistence window for PHASE_2
+
+Goal: avoid labeling one- or two-minute noise pulses as "stable prematch" while still recognizing realistic periods of stability.
+
+Define is_tight_and_coherent_{i,t} to be true when both: spread_close_{i,t} <= spread_threshold_i, and pair_gap_abs_{i,t} <= pair_gap_threshold_i.
+
+Using z-scored approximations on the full corpus, Q3 finds: coupled "tight and coherent" minutes (spread_z <= -0.5, abs(pair_gap_z) <= 0.5) are ~2.35% of all minutes. Run-length distribution of contiguous coupled runs: p50 length = 1 minute, p75 = 2 minutes, p90 = 4 minutes, p95 = 5 minutes. ~63% of runs are length 1, ~19% length 2, ~13% length 3-5.
+
+PHASE_1 to PHASE_2 transition rule: For ticker i, PHASE_2 begins at the third consecutive minute in a run where is_tight_and_coherent_{i,t} is true. While consecutive is_tight_and_coherent_{i,t} remains true, the phase stays PHASE_2. On the first break (minute failing either spread or pair-gap condition), the phase transitions out of PHASE_2 (to PHASE_1 or PHASE_3 depending on surge conditions below).
+
+Rationale: Requiring 3 consecutive tight-and-coherent minutes filters out the majority of one-minute pulses and a large share of two-minute pulses, while preserving the bulk of genuinely persistent 3-5 minute stable episodes observed in Q3.
+
+### 7.5 Surge thresholds for PHASE_3
+
+Goal: define PHASE_3_PREMATCH_SURGE as clearly elevated prematch trading activity relative to each ticker's own Phase 2 baseline, across both high-activity and low-activity markets.
+
+Due to a volume null/zero convention discrepancy in low-activity tickers (volume_in_minute null-dominated vs trade_count_in_minute fully populated), surge thresholds in v0.2 are defined only on trade counts, with volume-based surge deferred to a future amendment once producer semantics are resolved.
+
+#### 7.5.1 Activity stratification
+
+Prematch rows are defined as regime = premarket. Per ticker, define n_trades_gt0 = count of prematch minutes where trade_count_in_minute > 0.
+
+Two cohorts: High-activity tickers: n_trades_gt0 >= 20. Low-activity tickers: n_trades_gt0 < 20.
+
+This definition corrects an earlier interim classification that also used n_vol_gt0; that volume-based gating is not used for surge thresholds due to the volume_in_minute null behavior.
+
+#### 7.5.2 High-activity: z-score-based surge on trade counts
+
+For each high-activity ticker i: restrict to prematch rows. Define a Phase 2 baseline band as the central 50% of prematch time (by position between first and last prematch minute), and compute trades_mean_p2_i and trades_std_p2_i. For each prematch minute t, define trades_z_{i,t} = (trade_count_in_minute_{i,t} - trades_mean_p2_i) / trades_std_p2_i when trades_std_p2_i > 0.
+
+From Q4B, the finite trades_z distribution was calibrated on the subset of markets that qualified as high-activity under a volume-inclusive definition (n_trades_gt0 >= 20 AND n_vol_gt0 >= 20, 7,333 tickers). In application, the same trades_z threshold is applied to the broader trades-only high-activity cohort (n_trades_gt0 >= 20, ~17,436 tickers). The trades_z >= 3.0 cutoff should therefore be treated as a v0.2 approximation and re-validated against the full trades-only cohort when the classifier is run; a future amendment may recenter this threshold if the realized distribution for the full cohort meaningfully diverges.
+
+High-activity PHASE_2 to PHASE_3 rule: A prematch minute t in ticker i is labeled PHASE_3_PREMATCH_SURGE if the previous minute t-1 was PHASE_2_STABLE_PREMATCH, and trades_z_{i,t} >= 3.0.
+
+This selects roughly the top 5-10% of prematch minutes (by trade z-score) as surge out of Phase 2 baseline in the calibrated cohort.
+
+#### 7.5.3 Low-activity: percentile-based surge on trade counts
+
+For each low-activity ticker i: restrict to prematch rows. Compute trades_prank_{i,t} = PERCENT_RANK of trade_count_in_minute within ticker i's prematch history.
+
+From Q4C, across low-activity rows, trades_prank has p90 around 0.871, p95 around 0.946, p99 around 0.991, with a fire rate of ~8.3% at trades_prank >= 0.9 and ~5% at trades_prank >= 0.95.
+
+Low-activity PHASE_2 to PHASE_3 rule: A prematch minute t in ticker i is labeled PHASE_3_PREMATCH_SURGE if the previous minute t-1 was PHASE_2_STABLE_PREMATCH, and trades_prank_{i,t} >= 0.95.
+
+This selects roughly the top 5% of each low-activity ticker's prematch minutes (by trade count) as surge candidates, consistent with the high-activity p95 z-score threshold.
+
+#### 7.5.4 PHASE_3 decay and interaction with PHASE_4
+
+This amendment locks only the entry conditions into PHASE_3_PREMATCH_SURGE from PHASE_2_STABLE_PREMATCH. Decay rules (back to PHASE_2 or PHASE_1) and transitions from PHASE_3 into PHASE_4_IN_MATCH remain as in the existing draft and may be refined in a follow-up amendment once in-match boundaries are finalized.
+
+### 7.6 Implementation notes
+
+All thresholds and predicates are anchored strictly on Kalshi observables (spreads, paired mids, trade counts, and prematch regimes). Volume-based surge modeling is intentionally excluded from v0.2 due to null/zero inconsistencies in volume_in_minute for low-activity tickers; this will be revisited once the producer convention is clarified. The PHASE_2 and PHASE_3 criteria are intended as classifier defaults. More detailed regime tagging and downstream cell-derivation can further subdivide these phases but must remain consistent with the locked boundaries in this amendment.
+
+### 7.7 Amendment changelog
+
+2026-05-14 — v0.2:
+- Locked per-ticker spread thresholds for PHASE_2 (spread_threshold_i = min(0.02, median_premarket_spread_i)).
+- Added pair_gap_abs = ABS(paired_mid_sum - 1.0) feature and locked per-ticker pair-gap coherence thresholds (pair_gap_threshold_i = min(0.015, pair_gap_p75_i)).
+- Set minimum persistence window for PHASE_2 entry at 3 consecutive tight-and-coherent minutes.
+- Defined PHASE_3 surge thresholds using trade-based z-scores (high-activity) and within-ticker percent ranks (low-activity), with trades_z >= 3.0 and trades_prank >= 0.95 respectively.
+- Deferred volume-based surge thresholds to a future amendment pending producer-side clarification of volume_in_minute null/zero conventions.
+- Noted that the trades_z >= 3.0 high-activity surge cutoff was calibrated on a volume-inclusive high-activity subset and must be re-validated against the full trades-only high-activity cohort in a future amendment.
+
+---
+
+## 8. Cross-references
 
 - **ROADMAP T37** — to be authored at commit pointer pending. T37 chain: T37a (this spec), T37b (producer build), T37c (validation gate).
 - **ROADMAP T36c** — Layer B v2 deployment-readiness assessment. Subsumed by T37 corpus delivery: deployment ranking comes from queries against per_minute_features, not from cell_summary_phase3 alone. T36 outputs remain valid as a cross-check anchor (per_minute_universe regenerates the same cell-keyed measurements under richer grain).
@@ -453,7 +556,7 @@ Join per_minute on event_ticker to pair the two sides of every match. Then verif
 
 ---
 
-## 8. Open items for v2 of this spec
+## 9. Open items for v2 of this spec
 
 - **Within-minute resolution for high-activity periods.** g9_trades has microsecond timestamps. For minutes with N > 10 trades, the trade tape carries sub-minute price signal that the minute-aggregate columns smooth over. T37 v2 could emit a parallel `per_trade_features` table joinable to per_minute_features by (ticker, trade_id) for high-resolution downstream analysis. Deferred — wait for the per_minute_features queries to surface concrete need.
 - **In-match game-state features.** ESPN scrape (per session-history G9 work) covers Mar 4-8 2026 with point-by-point game state for 504 games. Joining game-state to per_minute_features for in_match regime minutes would expose mispricing-vs-true-probability dynamics. Out of T37 scope; v2 candidate.
@@ -462,13 +565,14 @@ Join per_minute on event_ticker to pair the two sides of every match. Then verif
 
 ---
 
-## 9. CHANGELOG
+## 10. CHANGELOG
 
 - **2026-05-12 ET (initial spec, T37a):** Sections 1-8 + footer. Drafted Session 11, post-temporal-probe-completion. Anchored on operator's challenge to surface every variable per N (player-in-game) at every minute of the premarket window — the unit-of-analysis must match the unit-of-decision (LESSONS B15). Supersedes the cell-keyed binning architecture as the canonical observation grain; cell aggregation becomes a downstream query, not the producer output.
 - **2026-05-12 ET (T37a amendment, post-Phase-1 visual review):** Three coordinated edits driven by Phase 1 RUN-ticker visual inspection. (1) Section 2.5 match-start signal source switched from candle-volume (LESSONS G19: null throughout for historical-tier) to **trade-density** (consecutive minutes with `trade_count_in_minute > 0` from g9_trades aggregation). Method values changed to `trade_density / expected_expiration_fallback / unknown`. Expected outcome on RUN: match_start_ts lands at the visual regime change in_match boundary rather than the 19:00 UTC expected_expiration approximation. (2) Section 2.4 OI/volume tier-note added: historical-tier markets have OI null throughout (per G19); producer emits null where source is null; trade-derived volume columns recompute activity from g9_trades so historical-tier rows are still observable. (3) New Section 2.9 paired-leg observables: every match has two tickers sharing event_ticker, and the partner's BBO/volume/OI/taker-flow observables are emitted alongside own-side data for each row. Adds `partner_ticker`, `partner_yes_bid_close`, `partner_yes_ask_close`, `partner_spread_close`, `partner_volume_in_minute`, `partner_trade_count_in_minute`, `partner_taker_flow_in_minute`, `partner_open_interest_ffill`, `paired_yes_bid_sum`, `paired_yes_ask_sum`, `paired_mid_sum`, `paired_arb_gap_maker`, `paired_arb_gap_taker`, `partner_volume_ratio` — 14 new columns. Anchored on LESSONS B23 + E18 bilateral mechanism framings. Producer working memory roughly doubles to ~2 MB per pair; well within VPS budget.
 - **2026-05-12 ET (T37a amendment v3, post-Phase-1-v2 visual review):** Two coordinated edits driven by Phase 1 v2 chart inspection. (1) Section 2.5 match-start signal upgraded from v2 single-ticker trade-density (`trade_count_in_minute > 0`, fired at 13:06 ET on RUN — too early, sporadic premarket trades not the regime change) to **v3 both-sides-simultaneous trade-density** (first K≥3 consecutive minutes where BOTH own.trade_count_in_minute ≥ M AND partner.trade_count_in_minute ≥ M, default M=5). Method values changed to `both_sides_trade_density / expected_expiration_fallback / unknown`. Leverages paired-leg structure now available via Section 2.9. Rationale: real match-start events trigger simultaneous trader reaction on both sides; sporadic premarket activity is one-sided. (2) New Section 2.10 depth-limitation paragraph documenting that G9 captures top-of-book at minute resolution; A-tier 5-deep orderbook covers Apr 18+ as a v2-spec join target; trade-tape behavioral-depth signals (iceberg, fade-vs-absorb, depth-trajectory) are v2 candidates.
 - **2026-05-12 ET (T37a amendment v4, post-Phase-1-v3 trade-count probe):** Section 2.5 match-start signal upgraded from v3 single-tier `both_sides_trade_density` (M=5 too strict; returned None on RUN; fell back to expected_expiration) to **v4 four-level signal hierarchy**. Tier 1 `both_sides_price_discovery` adds an intra-minute price-range gate (own AND partner both show bid OR ask range > R=0.02 within the minute) on top of K=3 / M_TRADES=3 trade-density; this distinguishes match-driven price discovery from premarket positioning at stable prices. Tier 2 fallback `both_sides_trade_density` is K=3 / M_TRADES=3 without the price-range gate (Option A from the probe; lands at 14:41 ET on RUN). Tier 3 `expected_expiration_fallback`; Tier 4 `unknown`. Probe data anchoring the tuning: at the 14:39-14:41 ET trade-density window on RUN, intra-minute bid/ask ranges were small (premarket-style positioning at stable prices); at the 15:33-15:55 ET window, ranges expanded materially as bid/ask started moving on event-driven information. Producer constants: `MATCH_START_K_DEFAULT=3`, `MATCH_START_M_TRADES_DEFAULT=3`, `MATCH_START_R_DEFAULT=0.02`.
 - **2026-05-12 ET (T37a amendment v5, post-Phase-1-v4 visual review):** Two coordinated edits before Phase 2 launch. (1) New Section 2.10 sub-section "Behavioral proxies derived from trade tape": four columns derived from how g9_trades interact with g9_candles BBO — `price_levels_consumed_in_minute` (depth-breadth proxy: count distinct yes_price_dollars in the minute), `bid_consumption_velocity` and `ask_consumption_velocity` (signed delta close-quote across minute boundaries: directional pressure proxies), `trade_clustering_in_minute` (std of inter-trade gap times within the minute, in seconds: burstiness proxy). G9 lacks explicit depth (A-tier covers Apr 18+); these proxies are the observable substitute for the historical subset. Schema column count: 83 → 87 (+4 own-side behavioral-depth proxies). (2) Section 5.3 Phase 2 sampling design changed from "100 tickers stratified" to **100 matches × 2 tickers = 200 tickers**, stratified across 5 categories × 4 premarket-length quartiles = 20 strata × 5 matches/stratum, deterministic seed. Rationale: sampling-by-tickers would split paired event_tickers ~50% of the time, breaking paired-leg signal coverage; sampling-by-matches preserves pair integrity. Match_start signal locked at v4 — no further tuning planned.
+- **2026-05-14 ET (phase_state classifier amendment v0.2, post-Phase-3-calibration):** Added new Section 7 "Amendment v0.2 — phase_state classifier (empirically anchored thresholds)" locking the PHASE_1→PHASE_2 and PHASE_2→PHASE_3 boundaries on the full Phase 3 corpus (9.33M rows, 19,207 tickers). Spread threshold capped at 2¢ adapted per-ticker; pair-gap coherence threshold capped at 1.5¢ adapted per-ticker via the new `pair_gap_abs = ABS(paired_mid_sum - 1.0)` derived column (atomic-added at corpus sha256 `f9a71d5c23be...`); minimum persistence window = 3 consecutive tight-and-coherent minutes; PHASE_3 surge defined on trade counts only (z ≥ 3.0 for high-activity ≥ 20 trades-positive prematch minutes, percent-rank ≥ 0.95 for low-activity). Volume-based surge deferred pending resolution of `volume_in_minute` null/zero convention (see LESSONS C36). Subsequent sections renumbered: 7→8 (cross-refs), 8→9 (open items), 9→10 (this changelog).
 - **2026-05-12 ET (T37a amendment v6, post-Phase-2-crash triage):** Section 5.3 sampling design corrected to match empirical corpus structure and producer robustness. (1) **4 categories not 5** — tennis corpus contains zero `OTHER`-classified binary-outcome tickers per Phase 2 metadata probe (19,562 binary tickers split across ATP_CHALL=7,602 / ATP_MAIN=5,462 / WTA_MAIN=5,202 / WTA_CHALL=1,296). (2) **Sample size revised** from "100 matches × 2 = 200 tickers" to "up to 80 matches × 2 = up to 160 tickers" (4 cats × 4 quartiles × 5 matches max). (3) **Adaptive quartile binning** — original spec's `pd.qcut(q=4, labels=[0,1,2,3], duplicates='drop')` crashed with `ValueError: Bin labels must be one fewer than the number of bin edges` because tennis markets cluster `expected_expiration_time` at hour boundaries, producing duplicate `premarket_len_min` values that collapse quartile bins below 4. Producer now uses `pd.qcut(labels=False, duplicates='drop')` wrapped in `_qcut_safe` (catches `ValueError`, falls back to single bin in all-identical degenerate case). (4) **Realized stratification surfacing** per LESSONS C27 — `run_summary_phase2.json` records `realized_stratification` dict so dependency state is visible. (5) Runtime budget revised to <30 min (was <40 min) based on Phase 1 v5 per-ticker median anchor.
 
 ---

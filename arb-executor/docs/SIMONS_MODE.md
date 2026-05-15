@@ -110,6 +110,15 @@ Most analytical effort goes into Problem 1. Problem 2 is treated as solved-enoug
 
 ---
 
+**CURRENT-STATE AMENDMENT (2026-05-14):** Sections 3-4 above describe the alpha thesis and the Problem 1 / Problem 2 split. As of 2026-05-14 the foundation-rebuild work has converged Problem 1 ('cell selection — the hard problem') onto a locked cell/exit model. The locked specifics, which Sections 3-4's framing now resolves to:
+- The cell = the N's Kalshi price at a fixed late-premarket mark, T-20m before match start. One axis: price.
+- Tightness (spread, pair-gap coherence, volatility) is a property of the cell, not a gate — and a clean stable window before match start is a MINORITY property of N's (~6-27% by category, confirmed on two independent diagnostics; see data/analysis/stable_window_diagnostic_v2.json). Most cells are not in a clean stable regime at the mark; the cell definition accepts this.
+- Objective: average bounce per cell band. No stop — reach the exit target or ride to settlement. Settlement is the answer key, not the objective.
+- The two exit windows in Section 3 remain exactly as stated (premarket + in-match); the single entry venue (premarket only) remains exactly as stated.
+Full model: LESSONS E32. Classification axes for prior findings: TAXONOMY Section 2.5. This amendment does not supersede Sections 3-4 — it is their resolution to concrete locked parameters.
+
+---
+
 ## Section 5 — Data Regimes Available
 
 The new chat should understand precisely what each data source can and cannot answer.
@@ -248,7 +257,7 @@ If any of those answers feels off, stop the current work and resolve the framing
 The new chat (or whoever inherits this document) should:
 
 1. **Read this document fully before doing any analytical work.** Take it as load-bearing.
-2. **Read LESSONS.md, ROADMAP.md, ANALYSIS_LIBRARY.md, TAXONOMY.md** for empirical context. Read the Session 9 diagnostic chain outputs in `data/durable/diagnostics_session_8/` for the latest analytical findings.
+2. **Read LESSONS.md, ROADMAP.md, ANALYSIS_LIBRARY.md, TAXONOMY.md** for empirical context. The latest analytical findings are the T37 foundation rebuild (per_minute_features.parquet, checkpoint 3), the locked cell/exit model (LESSONS E32), and the stable-window diagnostics (data/analysis/stable_window_diagnostic.json + _v2.json). The Session 9 diagnostic chain outputs in `data/durable/diagnostics_session_8/` remain valid as earlier empirical context.
 3. **Be willing to web-search.** When something needs sharpening — Kalshi venue specifics, retail participation data, Renaissance methodology, prediction market microstructure literature — search. Don't rely on training data for a venue this specific.
 4. **Probe before assuming.** Per LESSONS C30. Schema, semantics, population reliability, per-tier coverage all need empirical verification, not assumption.
 5. **One CC prompt per turn.** Per LESSONS C1.
@@ -288,3 +297,4 @@ This document is amended when its empirical foundations or strategic implication
 - 2026-05-10 ET (Session 9 / Cat 11 anchor + B25 mechanism — commits `73de3a6` + `033fb8a` + `4e36f30`): Section 6 forward-reference closed in-place via AMENDMENT block. Forensic replay v1 Phase 3 corrected measured ρ=0.136 simulator-vs-realized correlation (FAIL on 0.75 threshold); mechanism named in B25 (minute-cadence fire_rate undercount); fix path is Layer B v2 (tick-level fill semantics), not producer bug fix; ROADMAP T32 (Layer C v1) demoted (handled in subsequent commit). Production execution recommendation: Scenario B fill-time anchor (B>A in 78.8% of candidates). Top deployable cell: ATP_MAIN 50-60 tight low / limit_c=30. Section 5 line-24 + Section 8 T32 partial-demotion follow in subsequent single-concern commits.
 - 2026-05-10 ET (Session 9 / Cat 11 + B25 + Section 6 closure — commits `73de3a6` + `033fb8a` + `c87e797` + `827fc22`): Section 5 line-24 forward-reference closed in-place via AMENDMENT block. The "Layer C v1 / T32b is exactly this validation work" framing is superseded — Layer B v2 (tick-level fill semantics) is the validation work, not Layer C v1 (fees on idealized fills). Layer C v1 demoted; fees are 1-2¢ correction while candle-cadence undercount is 7¢+ correction on the dominant policy class. ROADMAP T32 demotion + new T-item introducing Layer B v2 spec authoring follow in subsequent commit.
 - 2026-05-10 ET (Session 9 / Cat 11 + B25 + ROADMAP T32 demotion — commits `73de3a6` + `033fb8a` + `4e36f30` + `c87e797` + `827fc22` + `c1cdcea`): Section 8 T32a/b/c partial-demotion text amended in-place. T32b/c reframing noted in May 6 framing is now superseded by ROADMAP T36 introducing Layer B v2 as a new deliverable distinct from forensic replay v1. T32 formally demoted in same commit. **Cat 11 / B25 canonicalization sweep complete with this commit.** Full chain: 73de3a6 (Phase 3 outputs) + 4e36f30 (ANALYSIS_LIBRARY Cat 11 + Cat 5 closure) + 033fb8a (LESSONS B25) + c87e797 (SIMONS_MODE Section 6) + 827fc22 (spec Section 10) + c1cdcea (SIMONS_MODE Section 5) + this commit (ROADMAP T32 demotion + T36 + SIMONS_MODE Section 8). Next strategic deliverable: T36 Layer B v2 spec authoring.
+- 2026-05-14 ET: Currency pass. Added CURRENT-STATE AMENDMENT after Section 4 (Problem 1 converged onto the locked cell/exit model — cell = price at T-20m, average bounce per cell band, no stop; full model LESSONS E32). Refreshed Section 9 item 2's stale 'latest findings' pointer from the Session 9 diagnostic chain to the T37 foundation rebuild. Sections 1-4 NOT modified — the foundation-rebuild work converged on the model they already describe.

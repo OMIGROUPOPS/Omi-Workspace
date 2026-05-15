@@ -270,7 +270,7 @@ Additional v1.0 additions not in v0.1:
 - Section 2.1: T-20m-as-tractability paragraph added; pre-T-20m research direction queued.
 - Section 3: peak-walk termination clarified to first-extreme-touch; dual peak (full vs pre-resolution) emitted on every row.
 - Section 4.4: three premarket-context columns added (n_minutes_premarket, first_trade_ts, n_trades_pre_t20m).
-- Section 5: schema grew from 27 to 36 columns (operator's v1.1 instructions had target "35" via arithmetic `27 − 5 + 9 + 4`; the explicit per-column instructions yield `27 − 5 + 10 + 4 = 36` because the peak_bid_ts replacement also goes 1→2; spec follows the per-column instructions verbatim).
+- Section 5: schema grew from 27 to 36 columns (5 old peak columns → 10 new dual-peak columns + first_extreme_touch_ts + 3 premarket-context columns).
 - Section 6: peak monotonicity gate updated for dual peak (full and pre-resolution both must clear t20m_trade_price; full ≥ pre-resolution by construction).
 
 The producer build is gated on v1.1, not v1.0 — operator amendment caught before producer arc launched.

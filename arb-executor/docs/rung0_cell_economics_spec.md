@@ -194,7 +194,7 @@ One row per N that resolved a valid trade-tape T-20m anchor AND fell in a band w
 | 35 | `first_trade_ts` | ts ET or null | **v1.1** — Timestamp of N's first trade ever (formation gate; null if no pre-T-20m trades) |
 | 36 | `n_trades_pre_t20m` | int | **v1.1** — Count of trades (count_fp > 0) from open_time to t20m_trade_ts |
 
-**36 columns total** (v1.1). One row per qualifying N. Operator's v1.1 instruction wrote a target of "35 columns" with arithmetic `27 − 5 + 9 + 4`, but the explicit per-column instructions (replace each of 5 old peak columns with 2 each → +5 net; add 1 `first_extreme_touch_ts`; add 3 premarket-context columns → +4 net) yield `27 − 5 + 10 + 4 = 36`. The discrepancy is the `+9 vs +10` in the operator's arithmetic — the `peak_bid_ts → peak_bid_ts_pre_resolution AND peak_bid_ts_full` replacement contributes +1 like the other four, so the new-peak group is 10 (not 9). Schema follows the per-column instructions verbatim. Estimated row count: lower than the 89.48% per-minute-foundation coverage from the Decision 3 probe, because the trade-tape entry rule is stricter. Phase 1 measures actual.
+**36 columns total** (v1.1). One row per qualifying N. Estimated row count: lower than the 89.48% per-minute-foundation coverage from the Decision 3 probe, because the trade-tape entry rule is stricter. Phase 1 measures actual.
 
 ---
 

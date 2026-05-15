@@ -1,149 +1,89 @@
-# SESSION 5 HANDOFF — 2026-05-01
+# SESSION HANDOFF — current
 
-**Read order for next session:** README → this file → LESSONS → TAXONOMY → ANALYSIS_LIBRARY → ROADMAP. Then resume at Stage 1 validation when it finishes (or has finished).
+**Convention:** This file (SESSION_HANDOFF.md) is ALWAYS the current handoff — overwrite it in place at the end of each session. Numbered SESSION{N}_HANDOFF.md files are frozen historical snapshots; do not edit them.
+
+**Last updated:** 2026-05-14 ET.
+**Repo state at handoff:** see `git log` — most recent commits are the five-doc currency sweep (TAXONOMY, ANALYSIS_LIBRARY, README, SIMONS_MODE, this file).
+
+**Read order for a fresh chat or CC instance:** README → this file → LESSONS (Section 1 first) → TAXONOMY → ANALYSIS_LIBRARY → ROADMAP → SIMONS_MODE.
 
 ---
 
 ## WHO YOU'RE WORKING WITH
 
-Operator is Druid, co-founder OMI Group Holdings (trading division OMQS). Algorithmic prediction-market trading on Kalshi. Direct, technically precise, pushes back on premature conclusions and is consistently right when he does. Treat operator pushback as probe-trigger, not defend-trigger (per A32 added this session).
+Operator is Druid, co-founder OMI Group Holdings (trading division OMQS). Algorithmic prediction-market trading on Kalshi tennis binary markets. Direct, technically precise, high-urgency. Pushes back on premature conclusions and is consistently right when he does — treat operator pushback as a probe-trigger, not a defend-trigger.
 
----
+Four-way coordination, operator is the mandatory routing layer (no inter-agent comms):
+- **Chat-side Claude** — strategy, spec drafting, verification, coordination. Drafts and verifies; does not execute server-side.
+- **App / CC (Claude Code)** — server-side executor with VPS shell access. Runs commits, scripts, queries.
+- **Plex (Perplexity Comet)** — research and synthesis partner. Public GitHub URL read access only; no shell, no write.
 
 ## SYSTEMS ACCESS
 
 - **VPS:** `ssh root@104.131.191.95`
-- **Workspace:** `/root/Omi-Workspace`, primary subdirs `arb-executor/` and `arb-executor/docs/`
-- **GitHub:** `github.com/OMIGROUPOPS/Omi-Workspace`
-- **CC (Claude Code):** primary server-side execution agent. Chat drafts and verifies; CC executes.
+- **Workspace:** `/root/Omi-Workspace`, primary subdir `arb-executor/` and `arb-executor/docs/`
+- **GitHub:** `github.com/OMIGROUPOPS/Omi-Workspace` (public)
+- **Commit pattern:** commits land via the local Windows repo (`C:\Users\liamm\OMI\tennis\Omi-Workspace`), pushed to origin/main. The VPS git tree runs behind origin/main by design — it only needs a pull when the producer code is re-run, which is an explicit operator decision.
 
----
+## WHERE THE OPERATION STANDS
 
-## WHAT SESSION 5 ACCOMPLISHED
+The live bot is intentionally PAUSED. All prior bot versions (v1, v2, v3, V4.2c) traded on a foundation now known to be broken. Capital is unused. The entire current arc is foundation rebuild — not tactical trading.
 
-### Phase 3 design — fully written and validated through Stage 0
-- `arb-executor/docs/u4_phase3_design.md` (209 lines after seven review-pass commits)
-- Reframes unit of analysis from per-match (Phase 1+2 approach) to per-moment (the unit a bot decides on)
-- 11 sections: REFRAMING, CORE QUESTION, DATASET SCHEMA, SAMPLING CADENCE, DATA SOURCES & COVERAGE LIMITS, STREAMING PATTERN, EXECUTION PLAN, RISK ASSESSMENT, DELIVERABLES, OPEN QUESTIONS FOR OPERATOR, NEXT STEPS
-- Stage 0 (pre-flight probes) ran 7 probes empirically; design corrected against all findings:
-  - Drop bid_size/ask_size (bbo_log_v4 is 5-col schema, no sizes)
-  - Drop trade-flow columns (no trade source for Mar 20 - Apr 10 — flagged G8 for retroactive backfill)
-  - Output ceiling 8M -> 2M rows (62 active matches/day actual vs 250 estimate)
-  - Add 2min as shortest forward window (Probe 7: 12% of bot exits complete <5min, P5 ~2min)
-  - Hybrid rolling state: 1-second-resolution ring buffer + scalar trackers + 30-min eviction (Probe 8 caught design's 200-tick assumption was 142x off — would have OOM'd at ~27GB)
+**The foundation is now built and validated.** `data/durable/per_minute_universe/per_minute_features.parquet` — 9,330,878 ticker-minute rows, 88 columns, checkpoint 3 sha256 `9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4`. This is the canonical analysis foundation (TAXONOMY FOUNDATION-TIER). It supersedes the Layer A v1 / G9-parquet anchors. Checkpoint lineage: `c80e5fc2` (raw merge) → `f9a71d5c` (+pair_gap_abs) → `9fde4b5d` (vol/tc trade-tape aligned, LIVE).
 
-### match_facts_v3.csv — canonical match-start source built and validated
-- Located at `arb-executor/data/match_facts_v3.csv` (durable, also `/tmp/match_facts_v3.csv` as ephemeral copy)
-- Producer: `arb-executor/data/scripts/build_match_facts_v3.py` (durable)
-- Three-pass builder: Kalshi API metadata + bbo_log volatility-jump detector + Pass 3 validation against match_facts_full overlap
-- 2,714 markets in Mar 20 - Apr 10 window (vs match_facts_full's 1,167 — **2.3× coverage**)
-- 81% jump-detected real volatility signal; 16% no_bbo_data (zero-tick markets, correct skip); 3% fallback
-- Pass 3 validation: median delta vs match_facts_full reference 1.6min, P10 = 0.0 (exact matches at decile)
-- **Caveat:** P90 delta is 326min and stdev 341min — ~10% of derived pregame_close_ts have wide deltas vs reference. Likely restarted/postponed matches where multiple volatility-jumps exist and detectors picked different ones. Acceptable for v1 bilateral/Layer-A analysis; flagged if downstream conclusions correlate with the noisy tail.
+**The cell/exit model is locked** (LESSONS E32):
+- The cell = the N's Kalshi price at a fixed late-premarket mark, T-20m before match start. One axis: price.
+- Tightness (spread, pair-gap coherence, volatility) is a property of the cell, not a gate. A clean stable window before match start is a MINORITY property of N's (~6-27% by category — confirmed on two independent diagnostics, `data/analysis/stable_window_diagnostic.json` + `_v2.json`). The cell definition accepts that most cells are not in a clean stable regime at the mark.
+- Objective: average bounce per cell band. No stop — reach the exit target or ride to settlement. Settlement (first touch of 99c/1c) is the answer key, not the objective.
+- Two exit windows (premarket + in-match); one entry venue (premarket only — never enter in-match).
+- Four category partitions, every split runs across all four: WTA Main / WTA Challenger / ATP Main / ATP Challenger.
 
-### Phase 3 Stage 1 — running in background as of session close
-- PID 2566750 launched ~05:13 UTC May 1
-- Source: `match_facts_v3.csv` (2,270 valid markets after no_bbo_data skip)
-- Output: `/tmp/u4_phase3_state_pass1.parquet`
-- Log: `/tmp/u4_phase3_stage1.log`
-- Expected finish: ~9 hours from launch (515M bbo_log lines at ~16K/sec gzip-decode rate)
-- **Next session: first action is to check Stage 1 status. If complete, validate output and proceed to Stage 2 (forward-window labels via parquet groupby).**
+**The phase_state classifier is locked at v0.2** (per_minute_universe_spec.md Section 7).
 
-### 9 new LESSONS captured (147 → 156)
-- A32: operator pushback is signal, not noise
-- B15: flowing time series + per-moment unit of analysis
-- B16: bounce/exit/returns separation (3 layers)
-- C18: design docs must verify column names against schema
-- C19: Kalshi market lifecycle timestamps don't track match start
-- C20: multi-source joins require grain checks
-- C21: A-tier features can't be retroactively synthesized from B-tier without overlap calibration
-- C22: shell conditional exit codes after pipes check the wrong command
-- D11: cheap probes prevent expensive mistakes — 5 failure modes (provenance, grain, unit, coverage, upstream-filter)
+## WHAT JUST HAPPENED (this session)
 
-### ROADMAP additions
-- G7: bounce/exit/returns analysis separation (architectural commitment)
-- G8: trade-tape backfill via Kalshi `/historical/trades` endpoint (Liam-flagged data layer; pursue after Phase 3 v1 delivers)
-- T16: CC bootstrap reads LESSONS.md every session (open, design at D8)
-- D8: T16 design choice — chat recommends hybrid LESSONS_QUICKREF approach
-- U4: closed (PARTIALLY ANALYZED 2026-04-30 superseded by Phase 3 design 2026-05-01)
+1. T37 Phase 3 foundation corpus completed and validated; volume-bug saga resolved (checkpoint 3).
+2. v0.2 phase_state amendment landed.
+3. The cell/exit model was re-derived from first principles and locked (LESSONS E32).
+4. Stable-window diagnostic run twice (flat thresholds, then flat-vs-ticker-relative) — established T-20m as the cell mark and confirmed the stable-window-is-a-minority finding.
+5. Doc-sync batch 1: ROADMAP T37 status, LESSONS Section 6 resolution, LESSONS E32.
+6. Doc-sync batch 2 (the five-doc currency sweep): TAXONOMY (FOUNDATION-TIER + Section 2.5 GRAIN/VECTOR/OBJECTIVE axes), ANALYSIS_LIBRARY (structural readiness), README (bootstrap currency), SIMONS_MODE (currency pass), and this handoff.
+7. Plex briefed on the four-point framing delta + the resolved stable-window finding; acknowledged, holding for the unit-of-analysis audit query set.
 
----
+## WHAT'S NEXT
 
-## CURRENT STATE — WHAT'S OPEN
+**Immediate — the unit-of-analysis audit (Plex).** Plex reclassifies every prior finding in ANALYSIS_LIBRARY against the GRAIN / VECTOR / OBJECTIVE axes (TAXONOMY Section 2.5). The load-bearing output: every settlement-scored finding gets surfaced as needing recomputation against the exit-optimized model, not silent reclassification. Plex is briefed and waiting for the audit query set from chat-side.
 
-### Immediate (next session, action required)
+**Then — per-band optimized-exit-target derivation.** With the cell mark locked at T-20m, derive the optimized exit target for each cell band across the price range, per category. Metric: highest average bounce per band.
 
-**1. Verify Stage 1 finished cleanly.** Check process, log, parquet output. If anomalies in skipped-ticker count or rate, investigate before Stage 2.
+**App's next-eligible work — Layer B v2** (T38b is also gate-satisfied; sequencing is an operator call). Layer B v2 must use tick-level fill semantics, follow the IncrementalTickerWriter streaming pattern, and consume the trade tape directly (per LESSONS C36). The SESSION10_HANDOFF.md archive has the full T36/Layer-B-v2 briefing including calibration target and the three Coordination Points — that briefing still stands for the Layer B v2 work itself.
 
-**2. Stage 2: forward-window labels.** Reads pass1.parquet, computes max_mid_next_2min/5min/30min/2hr/until_settlement per row via parquet groupby+window. Write `/tmp/u4_phase3_state_pass2.parquet`. Estimated 30-60 min.
+## OPEN UNCERTAINTIES (do not underweight)
 
-**3. Stage 3: paired-side join.** Reads pass2.parquet, joins companion ticker state at same timestamp with cadence-tolerance. Write `/tmp/u4_phase3_state.parquet` (final). Estimated 60+ min.
+- Whether the ~6-27% stable-window coverage means one of the three attack vectors must shoulder most of the operation's coverage — this is an explicit question in the Plex audit.
+- Whether the four categories want different cell marks (Challengers behave differently — they trade structurally wide; v2 diagnostic confirmed `never_tight_spread` is real structure, not a threshold artifact). T-20m is locked for Main; Challenger mark is an open sub-question deferred to the Plex audit.
+- v0.3 phase_state amendment candidates: volume-based surge thresholds (volume bug now fixed); possible PHASE_1→PHASE_2 trade-activity floor pending the Finding-2 diagnostic.
 
-**4. Stage 4: validation.** Sanity-check aggregate bilateral_10c rate against Phase 2's 62.83% on synchronized subset (NOT against strata-conditional rates — Phase 2 strata used buggy variable). Aggregate-only validation is the correctness check.
+## OPERATING NORMS (carry over — battle-tested)
 
-**5. Stage 5: strategic queries.** Layer A bounce measurement per cell. Premarket vs in_match decomposition (B14/G17 closure). Then Layer B exit policy + Layer C returns once Layer A delivers.
+1. **Single-concern commits.** Never bundle. Each commit one concern, dependency-ordered when sequenced.
+2. **One CC prompt per turn, never bundled.** If a workflow is multi-step, sequence it across turns.
+3. **Probe-validate-probe-validate.** Cheap probes before expensive compute. Verify data foundations before appending or converting. Five failure modes to probe: provenance, grain, unit, coverage, upstream-filter (D11).
+4. **Corpus mutations require a pre-replace validation gate** (C37). Compute `.new`, run hard gates against it, `os.replace` only on all-pass. Gate failures get adjudicated with evidence from disk, not overridden on a summary.
+5. **Streaming discipline on the VPS.** ~1.9 GB RAM. >3-4 full columns into pandas risks OOM. Use iter_batches / per-ticker streaming.
+6. **Web-fetch / verify every commit against origin.** Don't assume a reported diff matches what landed. Chat-side verifies from the repo.
+7. **Recommendation posture.** State a clear recommendation with reasoning; don't present a/b/c menus when the right answer is clear. Resolve uncertainty through probes, not open-ended operator questions.
+8. **When you background a job, you own the follow-through.** Poll it, surface the result when it lands — don't wait to be asked.
+9. **All times ET. Full player names — never abbreviations or 3-letter Kalshi codes.**
+10. **The repo is the shared brain.** Anything that would otherwise be copy-pasted between agents gets committed and read from origin/main.
 
-### Open ROADMAP items
+## KEY FILE PATHS
 
-T11a/T11b (Bug 4 implementation + sandbox), T13 (B-tier OOM-resilient retry), T14 (kalshi_fills_history.json re-pull schedule — file is now ~36hr stale), T16 (CC bootstrap design + impl pending D8 decision)
+- Foundation corpus: `data/durable/per_minute_universe/per_minute_features.parquet` (checkpoint 3)
+- Diagnostics: `data/analysis/stable_window_diagnostic.json` + `stable_window_diagnostic_v2.json`
+- Canonical docs: `docs/{README, SESSION_HANDOFF, LESSONS, TAXONOMY, ANALYSIS_LIBRARY, ROADMAP, SIMONS_MODE}.md`
+- Spec docs: `docs/{per_minute_universe_spec, layer_b_v2_spec, t38_books_daemon_spec, forensic_replay_v1_spec, bot_v5_shell_architecture}.md`
+- Producer scripts: `data/scripts/build_per_minute_universe.py`, `build_forensic_replay_v1.py`, `live_v3.py`
+- Historical archive (Session 10 and earlier): `docs/SESSION10_HANDOFF.md` and `docs/handoffs/`
 
-F-items: ongoing flags, no action required this session
-
-U-items: U1-U3, U5-U9 still open. U4 closed. Strategic decisions blocked on Phase 3 dataset delivery.
-
-G-items: G1-G4 (existing data layer gaps), G7 (architectural), G8 (trade-tape backfill — pursue after Phase 3 v1)
-
-D-items: D1-D7 awaiting operator decisions, D8 awaiting T16 design choice
-
----
-
-## KEY FILES & SOURCES
-
-### Trust (verified Session 5)
-- `arb-executor/data/match_facts_v3.csv` — canonical match metadata Mar 20 - Apr 10. 2,714 markets. Use this for all match-start joins.
-- `arb-executor/data/scripts/build_match_facts_v3.py` — producer. Re-runnable for window extension.
-- `arb-executor/docs/u4_phase3_design.md` — Phase 3 design (209 lines, 11 sections, all Stage 0 findings applied)
-- `/tmp/bbo_log_v4.csv.gz` — 515M-row B-tier source. 5-col schema (timestamp, ticker, bid, ask, spread). Mar 20 - Apr 17 ET. Single appending writer = timestamp-monotonic.
-- LESSONS.md (156 entries, all sourced from probes or analysis)
-
-### Don't trust without re-verifying
-- `match_facts_full.csv` — 53.7% in-window coverage hole (Mar 24 etc.). **Superseded by match_facts_v3.csv.** Don't use for new analysis.
-- `/tmp/extract_facts.py` — producer of match_facts_full's incomplete output. Reads from `step6_real/ticks/*.bin` upstream-filtered intermediate. Don't re-run.
-- Anything in `/tmp` (F28 ephemerality)
-- Pre-Session-5 framings in older docs that reference commence_time on historical_events (column doesn't exist)
-
-### Watch for
-- Stage 1 finish status — check first thing next session
-- F28 /tmp ephemerality — kalshi_fills_history.json now ~36hr stale, build_match_facts_v3.py durable but `/tmp/match_facts_v3_metadata.csv` is not, may want to durable-copy
-- D10 dynamic on-disk lesson numbering — LESSONS now at A32/B16/C22/D11/E30/F28/G17 on disk
-
----
-
-## OPERATING PATTERNS REFINED THIS SESSION
-
-### Probe-validate-probe-validate as core discipline
-Every dataset interrogation hits five failure modes before analysis runs (D11): provenance, grain, unit, coverage, upstream-filter. Cheap probes (1 min) prevent expensive mistakes (9hr bad-foundation runs). Session 5 burned ~30min on a wrong-key Stage 1 launch + ~9.5hr on a producer build that was correct but long. Both were caught by probes; without them we'd have run analyses on broken foundations.
-
-### Operator pushback (A32)
-Two times Session 5: "50% skip rate makes no sense" and "matches hit 100K-1M volume" both caught real bugs Claude was about to launch heavy compute on. Pushback is probe-trigger.
-
-### Single-concern commits maintained
-17 commits this session, each single concern. Lesson commits split by category (A/B/C/D each separate). ROADMAP additions separate from LESSONS additions. Dynamic on-disk number reads (D10 pattern with `last_num()` regex) prevented chat-drift-from-disk numbering bugs.
-
-### CC interaction
-- One CC prompt per turn. Wait for CC to finish.
-- File-staging via heredoc with sentinel `OMIDOCEND_4F4620FF` for content too long for command line.
-- Splitting heredocs across two prompts when single heredoc gets truncated in transit (large doc creation).
-- Raw GitHub URLs for byte-exact re-reading of recently committed files; CC echoes the URL after each commit.
-- CC pastes raw URLs in commit confirmations — use those for review rather than stale GitHub CDN cache.
-
----
-
-## NEXT-SESSION OPENING
-
-1. Check Stage 1 status: `tail /tmp/u4_phase3_stage1.log` and `ls -la /tmp/u4_phase3_state_pass1.parquet`
-2. If Stage 1 done: proceed to Stage 2 design + execution
-3. If Stage 1 still running: wait, or work on Stage 2 script in parallel
-4. After Stages 2-5 deliver per-moment dataset: Layer A bounce measurement is the first analysis to run
-
-**End of handoff. Next session: verify Stage 1, then Stage 2, then Layer A.**
+**End of handoff.**

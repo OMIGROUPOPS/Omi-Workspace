@@ -117,6 +117,8 @@ Most analytical effort goes into Problem 1. Problem 2 is treated as solved-enoug
 - The two exit windows in Section 3 remain exactly as stated (premarket + in-match); the single entry venue (premarket only) remains exactly as stated.
 Full model: LESSONS E32. Classification axes for prior findings: TAXONOMY Section 2.5. This amendment does not supersede Sections 3-4 — it is their resolution to concrete locked parameters.
 
+**Operational enforcement (2026-05-14):** The Problem 1 / Problem 2 distinction is a load-bearing axis on the recomputation_ladder.json — each rung carries a `problem` field (P1 / P2 / bridge). Any new rung or T-item must declare its problem class. Rungs marked `bridge` must split their P1 and P2 components in spec rather than collapse them; bot deployment cannot proceed on a rung that conflates the two (per E32). This makes implicit doctrine explicit in the planning artifact and prevents future specs from drifting back into the legacy 'single simulator solves everything' shape that T36 originally carried (pre-T37 era).
+
 ---
 
 ## Section 5 — Data Regimes Available

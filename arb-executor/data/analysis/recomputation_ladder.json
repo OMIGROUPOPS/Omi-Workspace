@@ -4,11 +4,13 @@
     "date": "2026-05-14",
     "source": "data/analysis/unit_of_analysis_audit.json (commit 2547f6a) — the 22 NEEDS RECOMPUTATION + PARTIAL entries",
     "principle": "The 22 recompute entries collapse into ~4 build units in dependency order. Each rung is built on the rung below. Recomputation under the locked model is groupby/vectorized passes on per_minute_features.parquet (FOUNDATION-TIER), per ROADMAP T37 validity gate — not new simulator builds.",
-    "sequencing": "Path is Rung 0 -> 1 -> 2 (Problem 1, cell selection — per SESSION_HANDOFF WHAT'S NEXT and SIMONS_MODE Section 4 priority). Rung 3 (policy layer / revised T36) follows after, not in parallel."
+    "sequencing": "Path is Rung 0 -> 1 -> 2 (Problem 1, cell selection — per SESSION_HANDOFF WHAT'S NEXT and SIMONS_MODE Section 4 priority). Rung 3 (policy layer / revised T36) follows after, not in parallel.",
+    "problem_axis": "Per SIMONS_MODE Section 4: Problem 1 = cell selection / 'what edge exists where' (strategy); Problem 2 = execution / 'how to fill' (mechanism). Rungs marked 'bridge' span both; their specs must split P1 and P2 components rather than collapse them. Bot deployment cannot proceed on a rung that conflates the two (E32 enforcement)."
   },
   "rungs": [
     {
       "rung": 0,
+      "problem": "P1",
       "name": "Canonical exit-optimized cell economics",
       "builds": "A single canonical exit-optimized per-cell economics pass on per_minute_features.parquet, grouping by the locked cell key (category, T-20m price band), computing realized bounce/ROI, scalp/settlement frequencies, confidence intervals. Replaces all legacy settlement-scored matches-based per-cell economics; closes LESSONS E27 methodology drift.",
       "absorbed_entries": [
@@ -25,6 +27,7 @@
     },
     {
       "rung": 1,
+      "problem": "P1",
       "name": "Per-band optimized-exit-target derivation",
       "builds": "For each cell band, over a grid of candidate exit thresholds, compute exit-optimized bounce/ROI and hit rates from FOUNDATION-TIER. Produces exit-sweep curves and a per-band recommended exit target with CIs. Metric: highest average bounce per band.",
       "absorbed_entries": [
@@ -39,6 +42,7 @@
     },
     {
       "rung": 2,
+      "problem": "P1",
       "name": "Recomputed anchor findings",
       "builds": "Exit-optimized restatements of the key anchor numbers on the foundation corpus — the April 14 paired analysis as exit-optimized bilateral capture per cell band per phase; the 977-fill and Apr 24-29 legacy windows as exit-optimized ROI/bounce per cell band per phase; Cat 5's structural channel-EV-distribution under exit-optimized scoring.",
       "absorbed_entries": [
@@ -54,6 +58,7 @@
     },
     {
       "rung": 3,
+      "problem": "bridge",
       "name": "Policy and DCA layer (revised-T36 zone)",
       "builds": "A Layer B v2-style per-(cell, policy) exit-optimized policy evaluation layer, implemented as groupbys/vectorized passes on per_minute_features.parquet (plus T38 when available) — NOT a standalone long-running simulator. Produces a new canonical exit_policy_per_cell-style table tied by construction to the foundation corpus.",
       "absorbed_entries": [
@@ -67,6 +72,7 @@
     },
     {
       "rung": 4,
+      "problem": "P2",
       "name": "Retune forensics and bleed decomposition",
       "builds": "Exit-optimized forensic tools around the Apr 24 retune and bleed episode. NOTE: these diagnose a specific historical bot/retune (old cell_lookup / deploy_v4.json) that no longer exists.",
       "absorbed_entries": [
@@ -82,6 +88,7 @@
     },
     {
       "rung": 5,
+      "problem": "P1",
       "name": "Legacy anchor restatement cross-checks",
       "builds": "Purely comparative views showing how the old settlement-scored anchors change under exit-optimized scoring. For human intuition/communication, not deployment decisions.",
       "absorbed_entries": [],

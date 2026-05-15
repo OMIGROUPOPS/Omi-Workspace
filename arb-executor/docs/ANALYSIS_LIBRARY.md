@@ -6,7 +6,9 @@
 - Taxonomy used for classification: TAXONOMY.md.
 - Lessons that motivate this library: A23 (sources pulled from but not fully extracted), A28 (D1/D2 fragmentation), C14 (canonical output paths), E25 (70.7% as depth-0), E26 (depth and variable inventory parallel axes), E27 (D5 methodology drift), F19 (bias reconciliation fragmented).
 
-**Last populated:** 2026-04-30 ~14:30 ET, mid-Session 4, from depth-inventory probe results.
+**Last populated:** 2026-05-14 ET — structural readiness pass for the unit-of-analysis audit (entry-format extended with GRAIN/VECTOR/OBJECTIVE; pre-rebuild entries flagged). Entry-content reclassification pending the audit itself.
+
+**FOUNDATION-REBUILD NOTICE (2026-05-14):** Every entry below dated before 2026-05-14 predates the T37 foundation rebuild. The canonical analysis foundation is now per_minute_features.parquet (FOUNDATION-TIER, checkpoint 3 sha256 9fde4b5d...) — NOT the Layer A v1 / G9 parquet anchors that older entries reference as 'canonical foundation.' This catalog is the input to the unit-of-analysis audit, which will (a) tag every entry with the GRAIN / VECTOR / OBJECTIVE axes per TAXONOMY Section 2.5, and (b) surface every settlement-scored finding as needing recomputation against the exit-optimized model (LESSONS E32), not silent reclassification. Until the audit runs, treat pre-rebuild entries' validity status and conclusions as provisional.
 
 ---
 
@@ -18,12 +20,16 @@ File path: [VPS path]
 Producer script: [VPS path of code]
 Date created: [date or git commit date]
 Depth: [0-6 per TAXONOMY.md Section 2]
+Grain: [match-aggregate / per-minute / per-tick / per-cell — per TAXONOMY Section 2.5]
+Vector: [vector-A / vector-B / vector-C / vector-agnostic — per TAXONOMY Section 2.5]
+Objective: [settlement-scored / exit-optimized / objective-agnostic — per TAXONOMY Section 2.5]
 Data tier used: [A / B / C / mixed / N/A]
 Variables used: [columns from TAXONOMY Section 4]
 Question answered: [one sentence]
 Validity status: [valid / partial / broken / unverified / superseded]
 Notes: [known issues, dependencies, supersession info]
 
+The GRAIN / VECTOR / OBJECTIVE triple is mandatory for every entry as of 2026-05-14 (TAXONOMY Section 2.5). Entries created before that date do not yet carry the triple; populating them is the unit-of-analysis audit's job. New entries created after that date must carry all three at creation.
 
 Canonical-path rules (post-Session-6 Phase 1B/1C). For preserved DATA files: arb-executor/data/durable/ is canonical (sha256-verified per MANIFEST.md, not in git due to size, but durable on disk). For preserved SCRIPTS: tmp/ is canonical (git-tracked, multiple curation batches Mar 13 - Apr 29 plus Session 6 Phase 1A/1C additions). /tmp/ is now the producer WORKING DIRECTORY for live operations (e.g., kalshi_fills_history.json gets re-pulled to /tmp by fills_history_pull.py, then copied to durable/ to update canonical). For files in multiple locations: durable/ wins for data, tmp/ wins for scripts; /tmp serves as producer working file only. F1 PARTIAL CLOSURE in ROADMAP tracks the broader durability migration across this corpus.
 
@@ -358,7 +364,7 @@ Six+ files measuring overlapping concepts. Per F19, before reconciling: inventor
 
 ---
 
-### Canonical foundation: G9 parquets (T17 + T27, foundation-commit anchor)
+### G9 parquets (T17 + T27) — [SUPERSEDED 2026-05-14 as 'canonical foundation' — now an intermediate source; the canonical foundation is FOUNDATION-TIER per_minute_features.parquet, see TAXONOMY Section 1]
 
 These three parquets are the canonical foundation for all Layer A/B/C work going forward
 per LESSONS C27 (analytical-foundation discipline). Every downstream analysis entry below
@@ -402,7 +408,7 @@ must reference this foundation explicitly via T28 commit pointer.
 
 ---
 
-### Layer A v1 outputs (T29, foundation T28 ea84e74)
+### Layer A v1 outputs (T29, foundation T28 ea84e74) — [pre-rebuild; superseded as canonical by FOUNDATION-TIER, retained as regression cross-check]
 
 Per-cell forward-bounce distributions aggregated from G9 candles. Property of the market, not strategy — Layer A per LESSONS B16. No exit logic, no fees, no fill probability. Foundation pointer: T28 commit ea84e74. Producer commit: 1398c39. MANIFEST commit: 37a5216 (sha256-pinned). Validity status: PASSED T21 coherence read 2026-05-04 (4 PASS / 2 INCONCLUSIVE / 0 FAIL). The six-check methodology validation gate from ROADMAP T21 ran in Session 6 Phase 5-ii; 4 cleanly pass (Check 2 premarket vs in_match, Check 3 settlement asymmetry, Check 4 category liquidity-tier dominance, Check 6 YES/NO fold symmetry); 2 inconclusive in informative ways (Check 1 hypothesis shape mismatch per LESSONS B20, Check 5 volume_intensity in_match collapse per LESSONS F30). Downstream Layer B (ROADMAP T31, promoted from G10) and Layer C (ROADMAP G11) cleared to consume. Findings cross-referenced in LESSONS A36, B19, B20, F30.
 
@@ -680,3 +686,4 @@ Findings from prior analyses that are currently treated as anchor evidence in th
 - 2026-05-04 (Session 6 T29): Layer A v1 outputs (cell_stats.parquet, sample_manifest.json, build_layer_a_v1.log, 15 visual PNGs) added under new subsection in Section 2. Foundation pointer T28 commit ea84e74. Producer commit 1398c39. MANIFEST commit 37a5216. Validity: PASSED T21 coherence read 2026-05-04 (4 PASS / 2 INCONCLUSIVE / 0 FAIL).
 - 2026-05-04 (Session 6 Phase 5-ii / T21 closure): cell_stats.parquet Notes field updated with T21 verification findings (YES-only producer, bounce-def explanation, Vitter reservoir confirmed unbiased, volume_intensity in_match collapse, no event_ticker preserved). Validity status flipped from PENDING T21 to PASSED T21 2026-05-04 across cell_stats.parquet narrative + Notes line, sample_manifest.json, and visual PNG block. Cross-references to LESSONS A36, B19, B20, F30 and ROADMAP F13, G12, T31.
 - 2026-05-05 ET (Session 8 / T32a-followup): Layer C v1 specification entry registered. Foundation pointers T28 ea84e74 + T29 1398c39 + T31b 28e8ab7. Spec at docs/layer_c_spec.md (commit 4bed07f, 189 lines, 9 sections, 6 numbered Decisions, 5 validation checks). Validity status SPEC (not output-bearing — T32b producer and T32c coherence read add output artifacts in subsequent commits). Closes T32a per its own definition (spec lands and is referenced in ANALYSIS_LIBRARY).
+- 2026-05-14 ET: Structural readiness pass. Entry format extended with the GRAIN / VECTOR / OBJECTIVE triple (TAXONOMY Section 2.5). FOUNDATION-REBUILD NOTICE added to header. G9-parquets and Layer-A-v1 'canonical foundation' subsection headers flagged as superseded (canonical foundation is now FOUNDATION-TIER per_minute_features.parquet). NO entry content reclassified — that is the unit-of-analysis audit, which runs separately against this now-structurally-ready catalog.

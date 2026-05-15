@@ -33,7 +33,29 @@ import numpy as np
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
-import pytz
+from zoneinfo import ZoneInfo
+
+
+# ============================================================
+# pandas 3.0 + pyarrow 24 compat patch
+# ------------------------------------------------------------
+# pyarrow.pandas_compat.make_datetimetz calls pa.lib.string_to_tzinfo() which
+# returns a pytz.tzfile object. pandas 3.0's DatetimeTZDtype constructor calls
+# timezones.tz_standardize() which no longer accepts pytz objects directly,
+# raising AttributeError("'NoneType' object has no attribute 'timezone'").
+# We patch make_datetimetz to pass the tz STRING straight to DatetimeTZDtype,
+# which pandas 3.0 accepts cleanly.
+def _install_pandas3_pyarrow_compat_patch():
+    try:
+        import pyarrow.pandas_compat as _papc
+        from pandas.core.dtypes.dtypes import DatetimeTZDtype as _DTZD
+        def _patched_make_datetimetz(unit, tz):
+            return _DTZD(unit=unit, tz=tz)
+        _papc.make_datetimetz = _patched_make_datetimetz
+    except Exception:
+        pass
+
+_install_pandas3_pyarrow_compat_patch()
 
 # ============================================================
 # Constants
@@ -62,8 +84,12 @@ PHASE_LABELS = [
     "PHASE_3_PREMATCH_SURGE", "PHASE_4_IN_MATCH",
 ]
 
-ET_TZ = pytz.timezone("America/New_York")
-UTC_TZ = pytz.UTC
+# Pandas 3.x rejects pytz timezone objects in tz_convert; use string for pandas
+# ops and ZoneInfo for stdlib datetime ops.
+ET_TZ_STR = "America/New_York"
+UTC_TZ_STR = "UTC"
+ET_TZ = ZoneInfo("America/New_York")
+UTC_TZ = ZoneInfo("UTC")
 
 
 def log(msg):
@@ -83,7 +109,7 @@ def iso_to_et(iso_str):
     """Convert ISO 8601 UTC string → tz-aware datetime in ET."""
     if iso_str is None or (isinstance(iso_str, float) and np.isnan(iso_str)):
         return None
-    return pd.to_datetime(iso_str, format="ISO8601").tz_convert(ET_TZ)
+    return pd.to_datetime(iso_str, format="ISO8601").tz_convert(ET_TZ_STR)
 
 
 def price_band_5c(price):
@@ -189,7 +215,7 @@ def read_trades_for_ticker(ticker):
     df = t.to_pandas()
     df = normalize_trades_df(df)
     # Parse created_time UTC → ET (tz-aware)
-    df["trade_ts_et"] = pd.to_datetime(df["created_time"], format="ISO8601", utc=True).dt.tz_convert(ET_TZ)
+    df["trade_ts_et"] = pd.to_datetime(df["created_time"], format="ISO8601", utc=True).dt.tz_convert(ET_TZ_STR)
     df = df.sort_values("trade_ts_et").reset_index(drop=True)
     return df
 

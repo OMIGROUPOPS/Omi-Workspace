@@ -1,0 +1,373 @@
+[
+  {
+    "entry_name": "April 14 paired analysis (the 70.7% double-cash rate)",
+    "section": "2",
+    "subsection": "Depth 0 — Existence",
+    "depth": 0,
+    "full_text": "- **File path:** Reconstructed from chat memory; original output not located in /tmp inventory.\n- **Producer script:** Unknown; possibly /tmp/per_cell_verification or ad-hoc one-off.\n- **Date created:** ~April 14 2026.\n- **Depth:** 0 (existence proof).\n- **Data tier used:** C (historical_events).\n- **Variables used:** first_price_winner, max_price_winner, first_price_loser, max_price_loser.\n- **Question answered:** Did both sides of paired matches ever reach +10c above first observed price.\n- **Validity status:** Partial — see E25. Valid as existence proof; invalid as edge validation. Not reproduced on current data.\n- **Notes:** Cited as \"70.7% across 458 paired matches\" in LESSONS.md E18. First pressure test in queue (ROADMAP Section 4)."
+  },
+  {
+    "entry_name": "Heartbeat / operational health checks",
+    "section": "2",
+    "subsection": "Depth 0 — Existence",
+    "depth": 0,
+    "full_text": "- **File paths:** /tmp/heartbeat_*.json (live_v3, kalshi_price, fv_monitor, betexplorer, tennis_odds).\n- **Depth:** 0 (operational, not strategy).\n- **Notes:** Real-time health checks, not analysis. Excluded from strategic catalog but flagged here for completeness.\n\n---"
+  },
+  {
+    "entry_name": "exit_sweep_grid",
+    "section": "2",
+    "subsection": "Depth 1 — Distribution",
+    "depth": 1,
+    "full_text": "- **File path:** /tmp/exit_sweep_grid.csv (85.7 KB).\n- **Producer:** /tmp/exit_sweep.py.\n- **Depth:** 1.\n- **Data tier used:** mixed (matches table + BBO).\n- **Variables used:** Per-cell ROI and hit_rate at every exit_c from 1c to 49c.\n- **Question answered:** What is the optimal exit_c per cell, and how does ROI change across exit_c?\n- **Validity status:** Unverified — uses fixed exit baseline; classifier threshold not surfaced.\n- **Notes:** Underdog only (leaders absent). N at least 30 per cell."
+  },
+  {
+    "entry_name": "exit_sweep_curves",
+    "section": "2",
+    "subsection": "Depth 1 — Distribution",
+    "depth": 1,
+    "full_text": "- **File path:** /tmp/exit_sweep_curves.csv (15.8 KB).\n- **Producer:** /tmp/exit_sweep.py.\n- **Depth:** 1.\n- **Notes:** Wider variant of exit_sweep_grid including band_width and N. Same producer."
+  },
+  {
+    "entry_name": "optimal_exits",
+    "section": "2",
+    "subsection": "Depth 1 — Distribution",
+    "depth": 1,
+    "full_text": "- **File path:** /tmp/optimal_exits.csv (9.8 KB).\n- **Producer:** /tmp/exit_sweep.py.\n- **Depth:** 1.\n- **Variables used:** Per-cell optimal_exit, optimal_ROI, hit_at_opt with 15c baseline comparison.\n- **Validity status:** Partial — same caveats as exit_sweep_grid."
+  },
+  {
+    "entry_name": "baseline_econ",
+    "section": "2",
+    "subsection": "Depth 1 — Distribution",
+    "depth": 1,
+    "full_text": "- **File path:** /tmp/baseline_econ.csv (2.5 KB).\n- **Depth:** 1.\n- **Variables used:** Per-cell status (ACTIVE/disabled), exit_cents, N, avg_entry, scalp_WR_pct, ROI_pct, daily_dollar, confidence.\n- **Validity status:** Partial — pre-V3 baseline, predates Mona Lisa retune."
+  },
+  {
+    "entry_name": "bootstrap_ci_results",
+    "section": "2",
+    "subsection": "Depth 1 — Distribution",
+    "depth": 1,
+    "full_text": "- **File path:** /tmp/bootstrap_ci_results.csv (1.3 KB).\n- **Producer:** /tmp/bootstrap_ci.py and /tmp/bootstrap_negative.py.\n- **Depth:** 1.\n- **Variables used:** Per-cell bootstrap mean/std/CI vs analytical CI; ci_match flag.\n- **Validity status:** Valid for the cells included (subset of total cells).\n- **Notes:** Per B4, validates that analytical CIs align with bootstrap on existing data."
+  },
+  {
+    "entry_name": "rebuilt_scorecard",
+    "section": "2",
+    "subsection": "Depth 1 — Distribution",
+    "depth": 1,
+    "full_text": "- **File path:** /tmp/rebuilt_scorecard.csv (8.5 KB).\n- **Producer:** /tmp/rebuilt_scorecard_script.py.\n- **Depth:** 1 (with classification on top).\n- **Variables used:** TWP, Sw, Sl, decomposed_ROI per 67-cell scorecard.\n- **Validity status:** Partial — methodology issues per LESSONS (uses fixed 15c exit, classifier threshold not surfaced, bias correction undersized vs operator memory).\n- **Notes:** 67-cell SCALPER_EDGE / SCALPER_BREAK_EVEN / SCALPER_NEGATIVE / MIXED_BREAK_EVEN / SETTLEMENT_RIDE_CONTAMINATED / UNCALIBRATED classification."
+  },
+  {
+    "entry_name": "post_retune_economics",
+    "section": "2",
+    "subsection": "Depth 1 — Distribution",
+    "depth": 1,
+    "full_text": "- **File path:** /tmp/per_cell_verification/post_retune_economics.csv.\n- **Depth:** 1.\n- **Variables used:** Per-cell N / avg_fill_price / realized_pnl / CI for the post-retune window.\n- **Validity status:** Unverified — must re-derive entry timing per F17."
+  },
+  {
+    "entry_name": "pnl_by_cell_config",
+    "section": "2",
+    "subsection": "Depth 1 — Distribution",
+    "depth": 1,
+    "full_text": "- **File path:** /tmp/per_cell_verification/pnl_by_cell_config.csv.\n- **Depth:** 1.\n- **Variables used:** Per-cell per-config-hash N_fills, avg_pnl_pct, total_pnl_dollars.\n- **Validity status:** Unverified.\n- **Notes:** Distinct config hashes visible — implements F2 (config drift contamination tracking)."
+  },
+  {
+    "entry_name": "per_cell_real_economics",
+    "section": "2",
+    "subsection": "Depth 1 — Distribution",
+    "depth": 1,
+    "full_text": "- **File path:** /tmp/per_cell_verification/per_cell_real_economics.csv.\n- **Depth:** 1.\n- **Variables used:** Per-cell scalps / settle_wins / settle_losses / scalp_WR_pct / total_pnl_dollars / daily_fills.\n- **Validity status:** Partial — settlement detection broken per F8 (Bug 4)."
+  },
+  {
+    "entry_name": "comparison_real_vs_analysis",
+    "section": "2",
+    "subsection": "Depth 1 — Distribution",
+    "depth": 1,
+    "full_text": "- **File path:** /tmp/per_cell_verification/comparison_real_vs_analysis.csv.\n- **Depth:** 1.\n- **Variables used:** Per-cell delta between realized P&L and analysis-predicted P&L; assessment column flags REAL_WORSE / REAL_BETTER / TOO_FEW_FILLS.\n- **Validity status:** Valid for diagnostic purposes; the deltas themselves carry F8 caveat."
+  },
+  {
+    "entry_name": "u4_phase1_match_landscape (U4 Phase 1)",
+    "section": "2",
+    "subsection": "Depth 1 — Distribution",
+    "depth": 1,
+    "full_text": "- **File path:** tmp/u4_phase1_match_landscape.csv (1.04 MB, 5,879 matches; durable per Phase 1C-iv Session 6, commit f36691c).\n- **Producer script:** tmp/u4_phase1_match_landscape.py (durable per Phase 1C-i Session 6, commit d0462c8).\n- **Date created:** 2026-04-30 (Session 4).\n- **Depth:** 1.\n- **Data tier used:** C (historical_events) + attempted joins to book_prices and kalshi_price_snapshots.\n- **Variables used:** first_price_winner, min_price_winner, max_price_winner, last_price_winner, first_price_loser, min_price_loser, max_price_loser, last_price_loser, total_trades, category, commence_time, duration.\n- **Question answered:** What does the match landscape look like across all relevant variables, with no pre-defined cell scheme?\n- **Validity status:** Valid for population-level characterization; Pinnacle FV join FAILED (book_prices Apr 19+ vs historical_events Jan 2 - Apr 10 = zero date overlap) and volume_24h join FAILED (kalshi_price_snapshots Apr 21+ only).\n- **Notes:** Foundation for U4 Phase 2 stratification. Confirms bounce asymmetry at population level: winner median ~35c, loser median ~12-16c. 33% of matches have first_price_winner + first_price_loser >5c off 100 (per A19 — first_price unsynchronized between sides). F28 /tmp ephemerality MITIGATED for this entry per Phase 1C Session 6 — both producer and output durable in tmp/. **CAVEAT per B14:** uses match-level aggregates conflating premarket vs in-match windows."
+  },
+  {
+    "entry_name": "u4_phase2_loser_bounce_predictors (U4 Phase 2)",
+    "section": "2",
+    "subsection": "Depth 1 — Distribution",
+    "depth": 1,
+    "full_text": "- **File path:** tmp/u4_phase2_loser_bounce_by_strata.csv (8.1 KB, 92 strata) + tmp/u4_phase2_loser_bounce_summary.txt (2.9 KB; both durable per Phase 1C-iv Session 6, commit f36691c).\n- **Producer script:** tmp/u4_phase2_loser_bounce_predictors.py (durable per Phase 1C-i Session 6, commit d0462c8).\n- **Date created:** 2026-04-30 (Session 4).\n- **Depth:** 1 (distribution stratified).\n- **Data tier used:** C (synchronized subset of historical_events: 3,936 matches where first_price_winner + first_price_loser within 5c of 100).\n- **Variables used:** total_trades, category, duration, skew (first_price_winner - 50), first_price_loser, leg span, plus loser-side bounce magnitudes.\n- **Question answered:** Which match-level variables predict loser-side bounce capture, and at what magnitudes?\n- **Validity status:** Valid as stratified distribution finding on synchronized subset. Strategically useful: volume is canonical predictor.\n- **Notes:** Key finding — **volume is primary predictor of bilateral capture** (33pp swing across volume strata: 50-99 trades = 34.3% bilateral capture at +10c, 1000+ trades = 76.4%). Categories track within 6pp (ATP_CHALL=63.1%, ATP_MAIN=63.5%, WTA_MAIN=64.3%, WTA_CHALL=56.8%). Skew >35 cliff partially CEILING ARTIFACT per B13 (heavy side at 85-89c can't bounce 15c without exceeding 99c). Aggregate +10c bilateral on synchronized subset: 62.83%. Duration 2-4h matches strongest (68.3%). **Reframes the 70.7% April 14 anchor per E30 — that figure was subset-averaged; high-volume regime is 76.4% and low-volume is much lower.** Operator-validated strategic conclusion: high-volume matches (1000+ trades) are bilateral candidates; low-volume are single-side or skip. **CAVEAT per B14/G17:** uses match-level aggregates conflating premarket vs in-match. Decomposition required for strategy-actionable findings (U4 Phase 3, next analysis target). F28 /tmp ephemerality MITIGATED for this entry per Phase 1C Session 6 — producer and outputs durable in tmp/.\n\n---"
+  },
+  {
+    "entry_name": "entry_price_bias (canonical run)",
+    "section": "2",
+    "subsection": "Depth 2 — Trajectory",
+    "depth": 2,
+    "full_text": "- **File path:** /tmp/per_cell_verification/entry_price_bias.csv (320 KB).\n- **Depth:** 2.\n- **Data tier used:** B + matches.\n- **Variables used:** Per-ticker first_mid / first_bid vs T-15m / T-1h / T-2h / T-4h mid and bid.\n- **Question answered:** What is the bias between bot fill price and pre-match BBO at various windows?\n- **Validity status:** Unverified canonical — F19 fragmentation; multiple bias files exist measuring overlapping concepts.\n- **Notes:** Bias-correction primary source per Mona Lisa work. The \"operator memory says +21-37c, file shows max 10.6c\" mystery in known unknowns originates here."
+  },
+  {
+    "entry_name": "entry_price_bias_by_cell",
+    "section": "2",
+    "subsection": "Depth 2 — Trajectory",
+    "depth": 2,
+    "full_text": "- **File path:** /tmp/per_cell_verification/entry_price_bias_by_cell.csv (2.6 KB).\n- **Depth:** 2.\n- **Variables used:** Per-cell aggregate (mean / median / stddev / pct_within_3c / pct_within_5c).\n- **Validity status:** Same as entry_price_bias."
+  },
+  {
+    "entry_name": "entry_price_bias.run1",
+    "section": "2",
+    "subsection": "Depth 2 — Trajectory",
+    "depth": 2,
+    "full_text": "- **File path:** /tmp/per_cell_verification/entry_price_bias.run1.csv + entry_price_bias_by_cell.run1.csv.\n- **Depth:** 2.\n- **Validity status:** Earlier run, identical schema. Per F19, exact relation to canonical run undocumented.\n- **Notes:** Source of fragmentation per F19."
+  },
+  {
+    "entry_name": "bias_by_cell_from_matches",
+    "section": "2",
+    "subsection": "Depth 2 — Trajectory",
+    "depth": 2,
+    "full_text": "- **File path:** /tmp/per_cell_verification/bias_by_cell_from_matches.csv.\n- **Depth:** 2.\n- **Data tier used:** matches table.\n- **Variables used:** Per-cell bias from matches table (bot_entry_price vs first_price_historical).\n- **Validity status:** Partial — uses matches.entry_time which is NULL on live rows per F17."
+  },
+  {
+    "entry_name": "linkage_sanity_check",
+    "section": "2",
+    "subsection": "Depth 2 — Trajectory",
+    "depth": 2,
+    "full_text": "- **File path:** /tmp/per_cell_verification/linkage_sanity_check.csv.\n- **Depth:** 2.\n- **Variables used:** Per-fill linkage diagnostic comparing cell_by_first_price vs cell_by_bot_entry; flags cell_mismatch.\n- **Validity status:** Valid — implements A11 (cell mismatches at boundaries contaminate per-cell numbers)."
+  },
+  {
+    "entry_name": "swing_script",
+    "section": "2",
+    "subsection": "Depth 2 — Trajectory",
+    "depth": 2,
+    "full_text": "- **File path:** /tmp/swing_script.py (script only; outputs not located).\n- **Depth:** 2.\n- **Variables used:** first_mid, pre-commence_max_mid, post-commence_max_mid per ticker.\n- **Question answered:** Channel 1 vs Channel 2 trajectory primitive — separate the pregame max from the in-match max per ticker.\n- **Validity status:** Unverified; not located as committed output."
+  },
+  {
+    "entry_name": "channel_decomp (current session)",
+    "section": "2",
+    "subsection": "Depth 2 — Trajectory",
+    "depth": 2,
+    "full_text": "- **File path:** /tmp/channel_decomp.py.\n- **Depth:** 2.\n- **Variables used:** JSONL log entry_filled and exit_filled events; ts_et fields.\n- **Question answered:** What fraction of bot fills exit via Channel 1 (pregame) vs Channel 2 (in-game)?\n- **Validity status:** Valid — produced the 4.7% / 95.3% split that anchors LESSONS Section 2.\n- **Notes:** Reads from JSONL logs which are tz-clean per F16."
+  },
+  {
+    "entry_name": "replay_inplay",
+    "section": "2",
+    "subsection": "Depth 2 — Trajectory",
+    "depth": 2,
+    "full_text": "- **File path:** /tmp/replay_inplay.py.\n- **Depth:** 2.\n- **Notes:** Replay of in-play trajectory. Output not located.\n\n---"
+  },
+  {
+    "entry_name": "fill_asymmetry_per_fill",
+    "section": "2",
+    "subsection": "Depth 3 — Capacity",
+    "depth": 3,
+    "full_text": "- **File path:** /tmp/per_cell_verification/fill_asymmetry_per_fill.csv (17.8 KB).\n- **Producer:** /tmp/fill_asymmetry.py.\n- **Depth:** 3 (top-of-book only — does NOT use 5-deep depth).\n- **Data tier used:** A or B (top-of-book).\n- **Variables used:** Per-fill bid_at_fill / ask_at_fill / spread_at_fill, mid 30 min before, oscillation_range, n_window_snaps, paired flag.\n- **Validity status:** Partial — implements only level-1 capacity; A22 unfulfilled at Depth 3 because 5-deep depth columns from premarket_ticks remain unused."
+  },
+  {
+    "entry_name": "fill_asymmetry_summary",
+    "section": "2",
+    "subsection": "Depth 3 — Capacity",
+    "depth": 3,
+    "full_text": "- **File path:** /tmp/per_cell_verification/fill_asymmetry_summary.csv.\n- **Depth:** 3 (level-1 only).\n- **Variables used:** Leader vs underdog aggregate (% trending up / down / oscillating / flat, paired_pct).\n\n**Depth 3 capacity-with-full-depth: NONE EXIST.** No prior analysis uses bid_2 through bid_5 with sizes from premarket_ticks. A22 + A26 unfulfilled at Depth 3.\n\n---"
+  },
+  {
+    "entry_name": "Greeks decomposition (BROKEN per F11)",
+    "section": "2",
+    "subsection": "Depth 4 — Microstructure",
+    "depth": 4,
+    "full_text": "- **File path:** /tmp/per_cell_verification/greeks_decomposition.csv.\n- **Producer:** /tmp/greeks_decomposition.py and /tmp/greeks_check.py.\n- **Depth:** 4.\n- **Variables used:** Per-cell theta_pregame, theta_early_match, gamma_excursion, realized_vega, scalp-phase distribution.\n- **Validity status:** **BROKEN.** Degenerate first-bid bug per F11. Schema is correct; numbers are not trusted.\n- **Notes:** Listed in Section 3."
+  },
+  {
+    "entry_name": "greeks_per_match",
+    "section": "2",
+    "subsection": "Depth 4 — Microstructure",
+    "depth": 4,
+    "full_text": "- **File path:** /tmp/per_cell_verification/greeks_per_match.csv.\n- **Depth:** 4.\n- **Validity status:** **BROKEN.** Same degenerate first-bid bug. Per-ticker version of decomposition.\n\n**Depth 4 microstructure-beyond-Greeks: NONE EXIST.** No volume-profile, VWAP, autocorrelation, market impact, or order-flow microstructure analyses exist despite trade CSVs having taker_side per A26.\n\n---"
+  },
+  {
+    "entry_name": "fill_outcomes",
+    "section": "2",
+    "subsection": "Depth 5 — Strategy simulation",
+    "depth": 5,
+    "full_text": "- **File path:** /tmp/fill_outcomes.csv (23.7 KB).\n- **Producer:** /tmp/fill_outcomes_analysis.py.\n- **Depth:** 5.\n- **Variables used:** Per-fill cell, direction, play_type, entry_price, qty, terminal_event (exit_filled / settled), exit_price, pnl_cents_total, ROI%.\n- **Validity status:** Partial — uses fill records that may be subject to F8 (settlement detection broken)."
+  },
+  {
+    "entry_name": "dca_event_test / dca_event_analysis",
+    "section": "2",
+    "subsection": "Depth 5 — Strategy simulation",
+    "depth": 5,
+    "full_text": "- **File paths:** /tmp/dca_event_test.py / /tmp/dca_event_analysis.py (26.4 KB each).\n- **Output:** /tmp/validation5/dca_event_matched.csv (23.7 KB).\n- **Depth:** 5.\n- **Variables used:** Per-cell DCA fire_rate_pct, win_rate_pct, dca_ev_per_fire_c, cell_roi_delta_pct across multiple trigger thresholds and combo variants.\n- **Validity status:** Unverified."
+  },
+  {
+    "entry_name": "dca_bbo_v3 + variants",
+    "section": "2",
+    "subsection": "Depth 5 — Strategy simulation",
+    "depth": 5,
+    "full_text": "- **File paths:** /tmp/dca_bbo_v3.py + variants, /tmp/dca_bbo_v3_test.py, /tmp/dca_bbo_v3_test5m.py.\n- **Promoted version:** /root/Omi-Workspace/arb-executor/dca_bbo_timeorder.py.\n- **Depth:** 5.\n- **Validity status:** Promoted version addresses A3 (time-order enforcement). Earlier variants superseded."
+  },
+  {
+    "entry_name": "scalp_constrained_optimize",
+    "section": "2",
+    "subsection": "Depth 5 — Strategy simulation",
+    "depth": 5,
+    "full_text": "- **File path:** /tmp/scalp_constrained_optimize.py.\n- **Depth:** 5.\n- **Implements:** A9 (exit target must be scalp-achievable: entry + exit_cents at most 95c)."
+  },
+  {
+    "entry_name": "Multiple \"ultimate cell economics\" implementations (E27 — methodology drift)",
+    "section": "2",
+    "subsection": "Depth 5 — Strategy simulation",
+    "depth": 5,
+    "full_text": "- /tmp/validate_and_optimize.py\n- /tmp/corrected_cell_economics.py\n- /tmp/ultimate_cell_economics.py\n- /tmp/ultimate_cell_economics_csv.py\n- **Depth:** 5.\n- **Validity status:** Unknown which is canonical. Per E27, this is methodology drift, not iteration. Before re-running strategy simulation, must designate canonical or retire others.\n\n---"
+  },
+  {
+    "entry_name": "fv_convergence_monitor (live operational, not closed analysis)",
+    "section": "2",
+    "subsection": "Depth 6 — Cross-sectional context",
+    "depth": 6,
+    "full_text": "- **File path:** /tmp/fv_convergence_monitor.csv (14.2 MB, actively growing).\n- **Depth:** 6.\n- **Variables used:** Live FV vs Kalshi convergence with per-side gap_cents, gap_pct, time_to_start_hrs, fv_source, fv_tier.\n- **Validity status:** Valid as live operational dashboard; not closed retrospective analysis."
+  },
+  {
+    "entry_name": "bias_from_bbo / bias_check / bias_check2",
+    "section": "2",
+    "subsection": "Depth 6 — Cross-sectional context",
+    "depth": 6,
+    "full_text": "- **File paths:** /tmp/bias_from_bbo.py / /tmp/bias_check.py / /tmp/bias_check2.py.\n- **Depth:** 6.\n- **Notes:** Sharp-bias measurement vs BBO. Multiple iterations; canonical not designated. Part of F19 fragmentation."
+  },
+  {
+    "entry_name": "rebuild_vs_paper_diff",
+    "section": "2",
+    "subsection": "Depth 6 — Cross-sectional context",
+    "depth": 6,
+    "full_text": "- **File path:** /root/Omi-Workspace/arb-executor/docs/rebuild_vs_paper_diff.md (41.3 KB).\n- **Producer:** /tmp/rebuild_diff_analysis.py (34.5 KB).\n- **Depth:** 6 (config-vs-config narrative comparison).\n- **Validity status:** Valid — narrative documentation of strategy variants.\n\n**Depth 6 systematic external-data analysis: NONE EXIST.** No closed-form analyses of edge by tournament tier, by surface, by ranking, by day of week, or by Kalshi-vs-DraftKings lag. All depth-6 work to date is operational (fv_monitor) or narrative (rebuild_diff).\n\n---"
+  },
+  {
+    "entry_name": "variable_isolation",
+    "section": "2",
+    "subsection": "Variable-isolation / retune forensics (cross-cutting)",
+    "depth": null,
+    "full_text": "- **File path:** /tmp/per_cell_verification/variable_isolation.csv.\n- **Implements:** E7 / E8 (isolate variable impact across the Apr 24 retune).\n- **Notes:** Bleed period vs recovery period. active_cell_count went 39 to 25, with itemized cells_added and cells_removed lists."
+  },
+  {
+    "entry_name": "cell_groupings",
+    "section": "2",
+    "subsection": "Variable-isolation / retune forensics (cross-cutting)",
+    "depth": null,
+    "full_text": "- **File path:** /tmp/per_cell_verification/cell_groupings.csv.\n- **Implements:** A12 (sub-cell statistical power vs wider groupings).\n- **Notes:** Grouping vs subcell ROI; flags GROUP_BETTER vs SUBCELL_BETTER."
+  },
+  {
+    "entry_name": "bleed_decomposition",
+    "section": "2",
+    "subsection": "Variable-isolation / retune forensics (cross-cutting)",
+    "depth": null,
+    "full_text": "- **File path:** /tmp/per_cell_verification/bleed_decomposition.csv.\n- **Notes:** Per-cell bleed contribution to -$228.80 with status_change (KEPT / ADDED_LATER / REMOVED) and pre/post-exit_cents columns."
+  },
+  {
+    "entry_name": "exit_sweep_leader_70_74",
+    "section": "2",
+    "subsection": "Variable-isolation / retune forensics (cross-cutting)",
+    "depth": null,
+    "full_text": "- **File path:** /tmp/per_cell_verification/exit_sweep_leader_70_74.csv.\n- **Notes:** Per-c exit sweep at 1c granularity for one cell (drilldown). Implements A13 (granularity matters)."
+  },
+  {
+    "entry_name": "config_history_trace",
+    "section": "2",
+    "subsection": "Variable-isolation / retune forensics (cross-cutting)",
+    "depth": null,
+    "full_text": "- **File path:** /tmp/config_history_trace.py + duplicate.\n- **Notes:** Traces config changes over time relative to bleed periods.\n\n---"
+  },
+  {
+    "entry_name": "g9_candles.parquet",
+    "section": "2",
+    "subsection": "G9 parquets (T17 + T27) — [SUPERSEDED 2026-05-14 as 'canonical foundation' — now an intermediate source; the canonical foundation is FOUNDATION-TIER per_minute_features.parquet, see TAXONOMY Section 1]",
+    "depth": null,
+    "full_text": "- **File path:** arb-executor/data/durable/g9_candles.parquet\n- **Producer script:** arb-executor/data/scripts/build_g9_parquets.py (commit bd83412)\n- **Source data:** arb-executor/data/historical_pull/candlesticks/*.csv (19,687 files)\n- **Date created:** 2026-05-04 (Session 6 T17)\n- **Depth:** N/A (canonical source, not analysis)\n- **Data tier used:** G-tier source → canonical parquet\n- **Schema:** 18 columns — ticker (injected), end_period_ts, open_interest_fp, price_close, price_high, price_low, price_mean, price_open, price_previous, volume_fp, yes_ask_close, yes_ask_high, yes_ask_low, yes_ask_open, yes_bid_close, yes_bid_high, yes_bid_low, yes_bid_open. Bare names canonical (era variation per F29 normalized at producer).\n- **Row count:** 9,500,168\n- **Validity status:** VERIFIED per T27 verification probe (Session 6, 9/9 checks passed including row count parity, schema normalization, reconstruction equivalence, no all-null era columns).\n- **Notes:** ~65% of minutes have null price_close/volume_fp/open_interest_fp (no-trade minutes per G19); yes_bid_close/yes_ask_close are 100% populated. sha256 in arb-executor/data/durable/MANIFEST.md."
+  },
+  {
+    "entry_name": "g9_trades.parquet",
+    "section": "2",
+    "subsection": "G9 parquets (T17 + T27) — [SUPERSEDED 2026-05-14 as 'canonical foundation' — now an intermediate source; the canonical foundation is FOUNDATION-TIER per_minute_features.parquet, see TAXONOMY Section 1]",
+    "depth": null,
+    "full_text": "- **File path:** arb-executor/data/durable/g9_trades.parquet\n- **Producer script:** arb-executor/data/scripts/build_g9_parquets.py (commit bd83412)\n- **Source data:** arb-executor/data/historical_pull/trades/*.csv (20,018 files)\n- **Date created:** 2026-05-04 (Session 6 T17)\n- **Depth:** N/A (canonical source)\n- **Data tier used:** G-tier source → canonical parquet\n- **Schema:** 7 columns — count_fp, created_time (ISO 8601 microsecond UTC), no_price_dollars, taker_side ({yes, no}), ticker, trade_id, yes_price_dollars.\n- **Row count:** 33,727,162\n- **Validity status:** VERIFIED per T27 (taker_side enum: only {yes, no}, 0 nulls; row count parity exact).\n- **Notes:** Microsecond-precision trade tape. sha256 in MANIFEST.md."
+  },
+  {
+    "entry_name": "g9_metadata.parquet",
+    "section": "2",
+    "subsection": "G9 parquets (T17 + T27) — [SUPERSEDED 2026-05-14 as 'canonical foundation' — now an intermediate source; the canonical foundation is FOUNDATION-TIER per_minute_features.parquet, see TAXONOMY Section 1]",
+    "depth": null,
+    "full_text": "- **File path:** arb-executor/data/durable/g9_metadata.parquet\n- **Producer script:** arb-executor/data/scripts/build_g9_parquets.py (commit bd83412)\n- **Source data:** arb-executor/data/historical_pull/market_metadata/*.json (20,110 files)\n- **Date created:** 2026-05-04 (Session 6 T17)\n- **Depth:** N/A (canonical source)\n- **Data tier used:** G-tier source → canonical parquet\n- **Schema:** 48 columns including ticker, event_ticker, custom_strike (JSON-stringified, contains tennis_competitor UUIDs per T25), settlement_ts, settlement_value_dollars, result, status, volume_fp, open_interest_fp, plus all metadata fields per market.\n- **Row count:** 20,110\n- **Validity status:** VERIFIED per T27 (custom_strike round-trip: 20,110/20,110 parse back to dict cleanly).\n- **Notes:** sha256 in MANIFEST.md.\n\n---"
+  },
+  {
+    "entry_name": "cell_stats.parquet",
+    "section": "2",
+    "subsection": "Layer A v1 outputs (T29, foundation T28 ea84e74) — [pre-rebuild; superseded as canonical by FOUNDATION-TIER, retained as regression cross-check]",
+    "depth": 1,
+    "full_text": "- File path: arb-executor/data/durable/layer_a_v1/cell_stats.parquet\n- Producer script: arb-executor/data/scripts/build_layer_a_v1.py at commit 1398c39\n- Source data: g9_candles.parquet + g9_metadata.parquet (T28 foundation, commit ea84e74)\n- Date created: 2026-05-04 (Session 6, 60.7 min producer runtime)\n- Depth: 1 (Distribution per TAXONOMY Section 2)\n- Data tier used: G\n- Schema: 671 cells x ~80 metric columns. Cell key: (category, regime, entry_price_band, spread_band, volume_intensity). Metrics: forward-bounce distribution at horizons {5, 15, 30, 60 min, settlement}, drawdown distribution, breakeven-threshold fractions at {1c, 2c, 5c, 10c, 20c}, n_markets, n_moments per cell.\n- Row count: 671 cells (aggregated from 8,981,594 moments across 19,603 markets)\n- Validity status: PASSED T21 coherence read 2026-05-04 (4 PASS / 2 INCONCLUSIVE / 0 FAIL)\n- Notes: volume_intensity is per-market not per-moment — known v1 caveat documented for v2 follow-up. OTHER category included as fifth bucket beyond ATP_MAIN/ATP_CHALL/WTA_MAIN/WTA_CHALL. **T21 verification findings (2026-05-04, commit pointer in CHANGELOG):** (1) Producer is YES-only — reads yes_bid_close + yes_ask_close exclusively, no_* columns ignored. NO-side distributional questions answerable via fold symmetry per LESSONS A36. (2) Bounce definition is forward_max_excursion_excluding_t (max(yes_ask[i+1:i+window]) - yes_ask[i]) — can be negative for monotonically declining trajectories near settlement. 52% of settlement_zone cells have negative bounce_5min_p25; not a bug, definitional choice consistent with B16 Layer A scoping. (3) Reservoir sampling implements Vitter algorithm (line 167-172) — unbiased percentile estimators. (4) volume_intensity collapses to single bucket (high) within in_match regime per LESSONS F30 — uninformative as in_match stratifier; valid for premarket. (5) No event_ticker preserved per LESSONS B19 — per-event analyses require G12 producer."
+  },
+  {
+    "entry_name": "sample_manifest.json",
+    "section": "2",
+    "subsection": "Layer A v1 outputs (T29, foundation T28 ea84e74) — [pre-rebuild; superseded as canonical by FOUNDATION-TIER, retained as regression cross-check]",
+    "depth": 0,
+    "full_text": "- File path: arb-executor/data/durable/layer_a_v1/sample_manifest.json\n- Producer script: arb-executor/data/scripts/build_layer_a_v1.py at commit 1398c39\n- Source data: same as cell_stats.parquet (T28 foundation)\n- Date created: 2026-05-04 (Session 6)\n- Depth: 0 (manifest, not analysis)\n- Data tier used: G\n- Schema: per-cell list of sampled tickers used for visual reproduction\n- Row count: 671 cells (one entry per populated cell)\n- Validity status: PASSED T21 2026-05-04 (paired with cell_stats.parquet)\n- Notes: enables reproducing visual PNGs deterministically; tickers were sampled at producer runtime, not at coherence-read time."
+  },
+  {
+    "entry_name": "build_layer_a_v1.log",
+    "section": "2",
+    "subsection": "Layer A v1 outputs (T29, foundation T28 ea84e74) — [pre-rebuild; superseded as canonical by FOUNDATION-TIER, retained as regression cross-check]",
+    "depth": null,
+    "full_text": "- File path: arb-executor/data/durable/layer_a_v1/build_layer_a_v1.log\n- Producer script: arb-executor/data/scripts/build_layer_a_v1.py at commit 1398c39\n- Source data: producer stdout/stderr only\n- Date created: 2026-05-04 (Session 6)\n- Depth: n/a (operational log)\n- Data tier used: n/a\n- Schema: text log\n- Row count: n/a\n- Validity status: n/a (log artifact)\n- Notes: 60.7 min runtime, clean exit, memory pressure at 67% during visual phase (paged but did not OOM)."
+  },
+  {
+    "entry_name": "visual PNGs (15 files)",
+    "section": "2",
+    "subsection": "Layer A v1 outputs (T29, foundation T28 ea84e74) — [pre-rebuild; superseded as canonical by FOUNDATION-TIER, retained as regression cross-check]",
+    "depth": 0,
+    "full_text": "- File path: arb-executor/data/durable/layer_a_v1/visual_*.png (15 files)\n- Producer script: arb-executor/data/scripts/build_layer_a_v1.py at commit 1398c39\n- Source data: cell_stats.parquet + sample_manifest.json\n- Date created: 2026-05-04 (Session 6)\n- Depth: 0 (visual sanity check, not statistical analysis)\n- Data tier used: G\n- Schema: 5 categories (ATP_MAIN, ATP_CHALL, WTA_MAIN, WTA_CHALL, OTHER) x 3 regimes (premarket, in_match, settlement_zone)\n- Row count: 15 PNG files, 8,758,898 bytes total (per MANIFEST commit 37a5216)\n- Validity status: PASSED T21 visual review 2026-05-04\n- Notes: dense PNGs (ATP/WTA tour-level premarket+in_match) are 800KB-1.1MB each; sparse PNGs (settlement_zone subcategories, OTHER) are 44-273KB. File-size pattern itself is a coverage signal — sparse cells reach the 5-min-pre-settle window or fall into OTHER ticker prefix less often.\n\n---"
+  },
+  {
+    "entry_name": "exit_policy_per_cell.parquet",
+    "section": "2",
+    "subsection": "Layer B v1 outputs (T31b-gamma, foundation T28 ea84e74 + T29 1398c39)",
+    "depth": 5,
+    "full_text": "[#exit_policy_per_cellparquet](#exit_policy_per_cellparquet)\n\n- File path: arb-executor/data/durable/layer_b_v1/exit_policy_per_cell.parquet\n- Producer script: arb-executor/data/scripts/build_layer_b_v1.py at commit 28e8ab7\n- Source data: g9_candles.parquet + g9_metadata.parquet (T28 foundation, commit ea84e74) + sample_manifest.json (T29 commit 1398c39)\n- Date created: 2026-05-05 ET (Session 7 T31b-gamma-1)\n- Depth: 5 (strategy simulation per TAXONOMY Section 2)\n- Data tier used: G\n- Schema: 21 columns. Cell key: (channel, category, entry_band_lo, entry_band_hi, spread_band, volume_intensity). Policy: (policy_type, policy_params). Counts: n_simulated, n_fired, n_horizon_expired, n_settled_unfired. Distributions: fire_rate, capture_mean, capture_p10/p25/p50/p75/p90. Misc: median_time_to_fire, capital_utilization.\n- Row count: 19170 ((cell, policy) tuples; 355 cells × 54 policies)\n- Validity status: PASSED T31c coherence read 2026-05-05 ET (script commit 5cf45e0, report sha256 72f1747b). 4/4 gating-checks PASS (Check 1 capture-bounded spot-check, Check 2 fire-rate monotonic, Check 3a limit-policy capture_p90 trend, Check 4 premarket vs in_match). 1 informative-only Check 3b INCONCLUSIVE (time-stop horizon trend, empirical signature of mean reversion per LESSONS B21 — not gating). Cleared for downstream Layer C (G11) consumption.\n- Notes: 1 cells excluded from output by 50-trajectory threshold (per spec Decision 2 patch 3). 278208 total entry moments evaluated. capital_utilization convention documented inline in producer aggregate_cell_results: held_minutes / denominator (clamped to [0, 1]); denominator = horizon_min for time_stop/limit_time_stop, else 240. T31a patch 5 corrected the validation-gate formulation post-spec; T31a patch 6 dropped sub-minute (30s) horizon, leaving 54 policies in v1."
+  },
+  {
+    "entry_name": "docs/layer_c_spec.md",
+    "section": "2",
+    "subsection": "Layer C v1 specification (T32a, foundation T28 ea84e74 + T29 1398c39 + T31b 28e8ab7)",
+    "depth": null,
+    "full_text": "[#docs-layer-c-spec-md](#docs-layer-c-spec-md)\n\n- File path: docs/layer_c_spec.md\n- Authored: 2026-05-05 ET (Session 8, T32a)\n- Author commit: 4bed07f\n- Length: 189 lines, 9 sections\n- Structure: Scope (v1) + Foundation pointers + Operational decisions (6 numbered) + Output schema (32 columns) + Producer architecture + Validation gate (4 gating + 1 informative checks) + Open items for v2/v3/v4 + Cross-references (16 keystone lessons) + Outstanding ROADMAP correction\n- Key decisions: D1 empirical fee derivation per (is_taker, yes_price_bucket) from kalshi_fills_history.json — NOT maker-zero (37.7% of bot maker fills are non-zero, parabolic per Kalshi schedule); D2 maker-maker production model with policy-class taker-exposure for time-stop horizon-fired exits; D3 1:1 row mapping to Layer B (no posting_strategy or capital_size sweep dimensions); D6 formation-period contamination per E12 inherited explicitly with Check 5 measuring impact informatively\n- Validation gate: Check 1 realized_capture ≤ capture; Check 2 parabolic-shape match; Check 3 policy-class taxonomic match; Check 4 Layer B → Layer C ranking preservation (≥90% cells Spearman ≥ 0.99); Check 5 (informative-only) formation-period contamination measurement\n- Validity status: SPEC stable post-author. Closes T32a when this ANALYSIS_LIBRARY entry lands.\n- Notes: Spec Section 9 explicitly flags ROADMAP T32 entry (commit f048267) as needing correction — currently states \"maker-zero canonical confirmed empirically\" which is empirically wrong per Decision 1. Correction follows in separate single-concern commit."
+  },
+  {
+    "entry_name": "Greeks decomposition (Depth 4)",
+    "section": "3",
+    "subsection": null,
+    "depth": null,
+    "full_text": "- **Files:** /tmp/per_cell_verification/greeks_decomposition.csv, /tmp/per_cell_verification/greeks_per_match.csv.\n- **Lesson:** F11.\n- **Issue:** Degenerate first-bid bug. Schema is correct; numbers are not trusted.\n- **Status:** Awaiting rebuild on cleaner data."
+  },
+  {
+    "entry_name": "Bias reconciliation fragmentation (Depth 2 + 6)",
+    "section": "3",
+    "subsection": null,
+    "depth": null,
+    "full_text": "- **Files:** Six+ entries in F19 cluster above.\n- **Lesson:** F19.\n- **Issue:** Multiple files measuring overlapping but non-identical concepts; \"operator memory says +21-37c, file shows max 10.6c\" discrepancy persists.\n- **Status:** Awaiting canonical designation."
+  },
+  {
+    "entry_name": "matches.entry_time-dependent analyses",
+    "section": "3",
+    "subsection": null,
+    "depth": null,
+    "full_text": "- **Files:** Any analysis depending on matches.entry_time on live/live_log rows.\n- **Lesson:** F17.\n- **Issue:** Column is NULL on every live and live_log row sampled.\n- **Status:** Re-derive entry timing from JSONL logs (tz-clean per F16) or cell_match events."
+  },
+  {
+    "entry_name": "Pre-Bug-3-fix entry_price-dependent analyses",
+    "section": "3",
+    "subsection": null,
+    "depth": null,
+    "full_text": "- **Files:** Any analysis using entry_price from bot reconcile-path-affected windows.\n- **Lesson:** F6.\n- **Issue:** Reconcile path was unconditionally overwriting Position.entry_price every 60 seconds before the Apr 29 fix.\n- **Status:** Validity depends on fill date relative to fix."
+  },
+  {
+    "entry_name": "Settlement-event-dependent P&L",
+    "section": "3",
+    "subsection": null,
+    "depth": null,
+    "full_text": "- **Files:** Any per-cell P&L analysis using log-based settlement detection.\n- **Lesson:** F8.\n- **Issue:** When bot resting sell is unfilled at market close, NO settlement event is logged. Position loss is invisible.\n- **Status:** Bug 4 remediation in progress; analyses await fix.\n\n---"
+  }
+]

@@ -1,0 +1,601 @@
+{
+  "metadata": {
+    "audit_name": "unit-of-analysis audit",
+    "date": "2026-05-14",
+    "classified_against": "TAXONOMY Section 2.5 (GRAIN / VECTOR / OBJECTIVE) + LESSONS E32 locked cell/exit model",
+    "source_files": [
+      "docs/ANALYSIS_LIBRARY.md Section 4",
+      "data/analysis/analysis_library_sec23_dump.json (Sections 2+3)"
+    ],
+    "phase1_entries": 12,
+    "phase2_entries": 53,
+    "total_entries": 65
+  },
+  "entries": [
+    {
+      "entry_name": "70.7% bilateral double-cash rate at +10c (April 14, 458 paired matches)",
+      "section": "4",
+      "grain": "match-aggregate",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Pre-vector legacy bilateral existence proof; recompute as exit-optimized average realized bounce per cell band from T-20m entry, with prematch/in-match phase attribution."
+    },
+    {
+      "entry_name": "Channel 1 vs Channel 2 split (4.7% / 95.3%)",
+      "section": "4",
+      "grain": "match-aggregate",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Routing/flow-allocation statistic by channel; describes traffic distribution, not performance vs any objective."
+    },
+    {
+      "entry_name": "977-fill realized P&L (Mar 26 to Apr 17): -$1,339.52",
+      "section": "4",
+      "grain": "match-aggregate",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Legacy live-bot hold-to-settlement P&L on 977 fills; recompute as exit-optimized ROI/bounce per cell band with phase-state breakdown on the foundation corpus."
+    },
+    {
+      "entry_name": "Apr 24 to Apr 29 post-retune: 106 resolved at +$17.21 net",
+      "section": "4",
+      "grain": "match-aggregate",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Legacy live-bot settlement-scored slice; recompute as exit-optimized realized ROI/bounce per cell band over that window with PHASE_1/2/3 attribution."
+    },
+    {
+      "entry_name": "Combined-trade-price distortion absence (Cat 9, Session 9, commit 631e653)",
+      "section": "4",
+      "grain": "per-tick",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Microstructure correctness check; confirms no systematic combined-price distortion in the tape."
+    },
+    {
+      "entry_name": "Premarket trajectory width and bilateral feasibility (Cat 6, Session 9, commit 631e653)",
+      "section": "4",
+      "grain": "per-minute",
+      "vector": "vector-B",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Characterizes prematch price-path width and structural bilateral feasibility; a market-trajectory property, not a strategy return."
+    },
+    {
+      "entry_name": "Cross-ticker OI asymmetry distribution (Cat 10, Session 9, commit 631e653)",
+      "section": "4",
+      "grain": "match-aggregate",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Structural market property — how open interest distributes between paired sides; informs opportunity structure, not outcomes."
+    },
+    {
+      "entry_name": "Per-(cell, policy) EV distribution by channel (Cat 5, Session 9, commit 631e653)",
+      "section": "4",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "PARTIALLY SUPERSEDED / PARTIALLY NEEDS RECOMPUTATION",
+      "note": "Cat 5's simulated top-cell predictions for 80 candidates are superseded by Cat 11; its structural channel-distribution result still stands but must be recomputed under the exit-optimized objective on the foundation corpus."
+    },
+    {
+      "entry_name": "Empirical fee table by is_taker × price bucket (Cat 2, Session 9, commit 631e653)",
+      "section": "4",
+      "grain": "per-tick",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Structural fee measurement by side and price bucket; an EV input, not itself scored vs settlement or exit."
+    },
+    {
+      "entry_name": "Per-ticker OI reconstruction — candle direct read + trade-tape per-side flow (Cat 7, Session 9, commit 631e653)",
+      "section": "4",
+      "grain": "per-minute",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Data-integrity/microstructure reconstruction of OI time series; not a performance measure."
+    },
+    {
+      "entry_name": "Per-market formation gate distribution (Cat 8, Session 9, commit 631e653)",
+      "section": "4",
+      "grain": "match-aggregate",
+      "vector": "vector-A",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Characterizes formation-gate width per market; informs when vector-A can consider entering, independent of payoff objective."
+    },
+    {
+      "entry_name": "Forensic replay realized capture (Cat 11, Session 9, commit 73de3a6)",
+      "section": "4",
+      "grain": "per-tick",
+      "vector": "vector-agnostic",
+      "objective": "exit-optimized",
+      "disposition": "CARRIES FORWARD",
+      "note": "Canonical exit-optimized realized-capture benchmark from tick-level replay; already measures the right objective and grain, anchors how cell-level policies should be evaluated."
+    },
+    {
+      "entry_name": "April 14 paired analysis (the 70.7% double-cash rate)",
+      "section": "2",
+      "grain": "match-aggregate",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Existence proof both sides reached +10c in many paired matches; recompute as exit-optimized bounce per cell band with prematch/in-match decomposition."
+    },
+    {
+      "entry_name": "Heartbeat / operational health checks",
+      "section": "2",
+      "grain": "N/A",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Live health checks for feeds and services; operational monitoring, not strategy or market analysis."
+    },
+    {
+      "entry_name": "exit_sweep_grid",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Per-cell ROI and hit rates over an exit_c grid using matches+BBO and a fixed baseline; recompute as exit-optimized bounce per cell band on the FOUNDATION-TIER corpus."
+    },
+    {
+      "entry_name": "exit_sweep_curves",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Aggregated curves over the same exit_sweep grid on the legacy matches table; recompute as exit-optimized bounce per cell band on the FOUNDATION-TIER corpus."
+    },
+    {
+      "entry_name": "optimal_exits",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Summarizes per-cell optimal exit and ROI relative to a fixed baseline on settlement-contaminated data; recompute as exit-optimized bounce per cell band on the FOUNDATION-TIER corpus."
+    },
+    {
+      "entry_name": "baseline_econ",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Pre-V3 baseline per-cell economics using fixed exit and settlement-contaminated regime; recompute as exit-optimized ROI per cell on foundation-tier data."
+    },
+    {
+      "entry_name": "bootstrap_ci_results",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Compares bootstrap vs analytical CIs for per-cell estimates; a measurement-method validation, not a strategy objective."
+    },
+    {
+      "entry_name": "rebuilt_scorecard",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "67-cell classification using fixed 15c exit and legacy scorecard; recompute as exit-optimized per-cell scorecard with explicit thresholds on foundation-tier cells."
+    },
+    {
+      "entry_name": "post_retune_economics",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Per-cell realized_pnl and CI in post-retune window; recompute as exit-optimized bounce/ROI per cell with corrected entry timing and settlement handling."
+    },
+    {
+      "entry_name": "pnl_by_cell_config",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Per-cell per-config-hash P&L; recompute with exit-optimized metrics and clean config lineage on foundation-tier corpus."
+    },
+    {
+      "entry_name": "per_cell_real_economics",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Per-cell scalps/settlements and P&L built on broken settlement detection; rebuild with correct settlement visibility and exit-optimized objective."
+    },
+    {
+      "entry_name": "comparison_real_vs_analysis",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Compares realized vs predicted per-cell P&L under settlement-contaminated baseline; useful diagnostic pattern but recompute under exit-optimized per-cell metrics."
+    },
+    {
+      "entry_name": "u4_phase1_match_landscape (U4 Phase 1)",
+      "section": "2",
+      "grain": "match-aggregate",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Population-level match landscape over winner/loser price trajectories and volume/duration; structural characterization, not strategy scoring (prematch/in-match conflation caveat)."
+    },
+    {
+      "entry_name": "u4_phase2_loser_bounce_predictors (U4 Phase 2)",
+      "section": "2",
+      "grain": "match-aggregate",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Stratified loser-side bounce distributions and bilateral capture rates by volume/category/skew; describes bounce structure, not a particular strategy's outcome."
+    },
+    {
+      "entry_name": "entry_price_bias (canonical run)",
+      "section": "2",
+      "grain": "per-tick",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Measures bias between bot fill prices and BBO at multiple prematch windows; structural entry-price bias diagnostic, conceptually objective-agnostic."
+    },
+    {
+      "entry_name": "entry_price_bias_by_cell",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Cell-level aggregation of the same entry-price bias; structural bias measurement, carries forward though execution should be de-fragmented."
+    },
+    {
+      "entry_name": "entry_price_bias.run1",
+      "section": "2",
+      "grain": "per-tick",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "SUPERSEDED",
+      "note": "Earlier fragment of entry-bias measurement, same schema; superseded by the canonical run, needs no independent rebuild."
+    },
+    {
+      "entry_name": "bias_by_cell_from_matches",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "BROKEN",
+      "note": "Uses matches.entry_time (null on live rows); conceptually useful but rebuild using JSONL log times and foundation-tier joins."
+    },
+    {
+      "entry_name": "linkage_sanity_check",
+      "section": "2",
+      "grain": "per-fill",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Valid linkage diagnostic comparing cell_by_first_price vs cell_by_bot_entry; structural hygiene check enforcing correct cell assignment."
+    },
+    {
+      "entry_name": "swing_script",
+      "section": "2",
+      "grain": "match-aggregate",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Separates pregame vs in-match max mid per ticker for channel-trajectory decomposition; output missing, question still important, re-run on foundation data."
+    },
+    {
+      "entry_name": "channel_decomp (current session)",
+      "section": "2",
+      "grain": "per-fill",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Computes fraction of fills exiting via Channel 1 vs 2; routing/flow-allocation statistic, not a performance score; matches the Section 4 Channel 1 vs 2 split."
+    },
+    {
+      "entry_name": "replay_inplay",
+      "section": "2",
+      "grain": "match-aggregate",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Replay of in-play trajectories, output missing; structurally useful for trajectory understanding, not itself an objective score."
+    },
+    {
+      "entry_name": "fill_asymmetry_per_fill",
+      "section": "2",
+      "grain": "per-fill",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Per-fill spread/pre-window-mid/oscillation/paired flag at level-1 depth; structural capacity primitive, extend to full depth when T38 lands."
+    },
+    {
+      "entry_name": "fill_asymmetry_summary",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Summarizes leader vs underdog capacity/oscillation patterns; structural capacity view needing full-depth augmentation in v2."
+    },
+    {
+      "entry_name": "Greeks decomposition (BROKEN per F11)",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "BROKEN",
+      "note": "theta/gamma/vega-style microstructure metrics per cell, invalid due to first-bid bug; worth rebuilding on foundation-tier data plus T38 depth."
+    },
+    {
+      "entry_name": "greeks_per_match",
+      "section": "2",
+      "grain": "match-aggregate",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "BROKEN",
+      "note": "Per-match version of the same broken Greeks decomposition; regenerate after fixing the underlying bug, only if the cell-level rebuild proves useful."
+    },
+    {
+      "entry_name": "fill_outcomes",
+      "section": "2",
+      "grain": "per-fill",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Per-fill exit_filled vs settled and ROI% built on broken settlement detection; recompute as exit-optimized realized bounce/ROI with correct settlement and phase attribution."
+    },
+    {
+      "entry_name": "dca_event_test / dca_event_analysis",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Per-cell DCA fire/win rates and EV per fire across thresholds; exit-optimized re-run on foundation-tier cells, with clear vector-specific triggering if kept."
+    },
+    {
+      "entry_name": "dca_bbo_v3 + variants",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Promoted DCA policy implementation enforcing time order; strategy logic fine, but any v1 performance numbers must be recomputed under exit-optimized metrics on the new corpus."
+    },
+    {
+      "entry_name": "scalp_constrained_optimize",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Implements the A9 constraint that exit targets must be ≤95c; a producer-side guardrail for exit search, not a scored analysis."
+    },
+    {
+      "entry_name": "Multiple \"ultimate cell economics\" implementations (E27 — methodology drift)",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "BROKEN",
+      "note": "Competing implementations of per-cell economics; methodology-drift cluster, replace entirely with a single exit-optimized canonical cell-economics pipeline on foundation-tier data."
+    },
+    {
+      "entry_name": "fv_convergence_monitor (live operational, not closed analysis)",
+      "section": "2",
+      "grain": "per-minute",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Live FV vs Kalshi convergence dashboard with gap and time-to-start; operational cross-sectional context, not a retrospective performance analysis."
+    },
+    {
+      "entry_name": "bias_from_bbo / bias_check / bias_check2",
+      "section": "2",
+      "grain": "per-tick",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "BROKEN",
+      "note": "Fragmented sharp-bias measurement vs BBO; consolidate into a single canonical bias analysis on foundation-tier data and T38 depth."
+    },
+    {
+      "entry_name": "rebuild_vs_paper_diff",
+      "section": "2",
+      "grain": "N/A",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Narrative comparison of strategy configs; documentation rather than numeric objective scoring, remains valid as a config-history artifact."
+    },
+    {
+      "entry_name": "variable_isolation",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Decomposes Apr 24 retune bleed vs recovery at cell level; recompute with exit-optimized per-cell metrics and clean config lineage."
+    },
+    {
+      "entry_name": "cell_groupings",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Compares GROUP vs SUBCELL ROI; grouping logic useful, but outcomes must be regenerated as exit-optimized returns and CIs."
+    },
+    {
+      "entry_name": "bleed_decomposition",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Attributes -$228.80 bleed by cell and status_change; recompute as exit-optimized per-cell contribution with correct settlement and entry timing."
+    },
+    {
+      "entry_name": "exit_sweep_leader_70_74",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "One-cell exit_sweep drilldown on legacy matches+BBO and fixed exits; recompute as exit-optimized bounce per cell band on the FOUNDATION-TIER corpus."
+    },
+    {
+      "entry_name": "config_history_trace",
+      "section": "2",
+      "grain": "N/A",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Traces config changes vs bleed periods; operational forensic tool, not itself an objective-scored analysis."
+    },
+    {
+      "entry_name": "g9_candles.parquet",
+      "section": "2",
+      "grain": "per-minute",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "SUPERSEDED",
+      "note": "Canonical G9 candle parquet, superseded as the foundation by per_minute_features; remains a verified intermediate source feeding foundation-tier builds."
+    },
+    {
+      "entry_name": "g9_trades.parquet",
+      "section": "2",
+      "grain": "per-tick",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "SUPERSEDED",
+      "note": "G9 trade parquet, superseded as canonical foundation, still the verified microsecond trade tape behind T37 and replay."
+    },
+    {
+      "entry_name": "g9_metadata.parquet",
+      "section": "2",
+      "grain": "match-aggregate",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "SUPERSEDED",
+      "note": "G9 metadata parquet, no longer the canonical foundation, remains a verified intermediate metadata source referenced by later tiers."
+    },
+    {
+      "entry_name": "cell_stats.parquet",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "SUPERSEDED",
+      "note": "Pre-rebuild Layer A v1 per-cell distribution outputs, superseded by FOUNDATION-TIER per_minute_features; retained only as a regression cross-check against new Layer A."
+    },
+    {
+      "entry_name": "sample_manifest.json",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "SUPERSEDED",
+      "note": "Manifest of sampled tickers for visual reproduction; superseded with Layer A v1, relevant only for regression."
+    },
+    {
+      "entry_name": "build_layer_a_v1.log",
+      "section": "2",
+      "grain": "N/A",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Build log for Layer A v1; operational artifact with no objective dimension."
+    },
+    {
+      "entry_name": "visual PNGs (15 files)",
+      "section": "2",
+      "grain": "N/A",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "SUPERSEDED",
+      "note": "Visual sanity checks for Layer A v1; superseded as canonical view, still useful for comparison against regenerated visuals from the new foundation."
+    },
+    {
+      "entry_name": "exit_policy_per_cell.parquet",
+      "section": "2",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "NEEDS RECOMPUTATION",
+      "note": "Layer B v1 per-(cell, policy) simulated capture/fire-rate table; rebuild as exit-optimized realized metrics using foundation-tier per-minute and T38 depth, with vector-specific policies."
+    },
+    {
+      "entry_name": "docs/layer_c_spec.md",
+      "section": "2",
+      "grain": "N/A",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "CARRIES FORWARD",
+      "note": "Layer C v1 spec codifying fee model and realized_capture definition; aligned with exit-optimized thinking, remains valid as design pending fee-table and input updates."
+    },
+    {
+      "entry_name": "Greeks decomposition (Depth 4)",
+      "section": "3",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "BROKEN",
+      "note": "Degenerate first-bid bug invalidates numbers; rebuild under exit-optimized model: YES — a cleaned Greeks-style microstructure panel over foundation+T38 would be valuable if tightly scoped."
+    },
+    {
+      "entry_name": "Bias reconciliation fragmentation (Depth 2 + 6)",
+      "section": "3",
+      "grain": "per-tick",
+      "vector": "vector-agnostic",
+      "objective": "objective-agnostic",
+      "disposition": "BROKEN",
+      "note": "Fragmented bias-from-BBO analyses leave a key discrepancy unresolved; rebuild under exit-optimized model: YES — a single canonical bias-reconciliation using FOUNDATION-TIER + T38 is worth queuing."
+    },
+    {
+      "entry_name": "matches.entry_time-dependent analyses",
+      "section": "3",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "BROKEN",
+      "note": "Any analysis relying on matches.entry_time is structurally invalid; rebuild under exit-optimized model: YES — must reconstruct entry times from JSONL logs then re-score under exit-optimized metrics."
+    },
+    {
+      "entry_name": "Pre-Bug-3-fix entry_price-dependent analyses",
+      "section": "3",
+      "grain": "per-fill",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "BROKEN",
+      "note": "entry_price overwritten by the reconcile path pre-fix; rebuild under exit-optimized model: PARTIAL — contaminated windows re-run with corrected entry fields and exit-optimized scoring, uncontaminated windows retained."
+    },
+    {
+      "entry_name": "Settlement-event-dependent P&L",
+      "section": "3",
+      "grain": "per-cell",
+      "vector": "vector-agnostic",
+      "objective": "settlement-scored",
+      "disposition": "BROKEN",
+      "note": "Log-based settlement omission makes P&L under-report losses; rebuild under exit-optimized model: YES — recompute from reconstructed positions with correct settlement and exit-optimized objective once Bug 4 remediation lands."
+    }
+  ]
+}

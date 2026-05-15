@@ -252,11 +252,15 @@ def find_t20m_anchor(trades_df, target_ts_et):
         return None, None, None
     diffs = (trades_df["trade_ts_et"] - target_ts_et).dt.total_seconds()
     idx_nearest = diffs.abs().idxmin()
-    offset = int(diffs.loc[idx_nearest])
-    if abs(offset) > ANCHOR_TOLERANCE_SEC:
+    # Float precision throughout: gate's float arithmetic must agree with the
+    # producer's boundary check. Earlier int() truncation accepted offsets in
+    # [120.0, 121.0) (e.g., 120.913 → int 120 → passed) that the gate then
+    # flagged. Compare as float against an explicit float threshold.
+    offset_sec = float(diffs.loc[idx_nearest])
+    if abs(offset_sec) > 120.0:
         return None, None, None
-    method = "exact" if abs(offset) <= ANCHOR_EXACT_SEC else "nearest_within_2min"
-    return trades_df.loc[idx_nearest], method, offset
+    method = "exact" if abs(offset_sec) <= float(ANCHOR_EXACT_SEC) else "nearest_within_2min"
+    return trades_df.loc[idx_nearest], method, offset_sec
 
 
 def walk_peaks(trades_df, t20m_ts_et, settlement_ts_et):

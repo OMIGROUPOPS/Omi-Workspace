@@ -1,0 +1,93 @@
+{
+  "metadata": {
+    "artifact": "recomputation ladder",
+    "date": "2026-05-14",
+    "source": "data/analysis/unit_of_analysis_audit.json (commit 2547f6a) — the 22 NEEDS RECOMPUTATION + PARTIAL entries",
+    "principle": "The 22 recompute entries collapse into ~4 build units in dependency order. Each rung is built on the rung below. Recomputation under the locked model is groupby/vectorized passes on per_minute_features.parquet (FOUNDATION-TIER), per ROADMAP T37 validity gate — not new simulator builds.",
+    "sequencing": "Path is Rung 0 -> 1 -> 2 (Problem 1, cell selection — per SESSION_HANDOFF WHAT'S NEXT and SIMONS_MODE Section 4 priority). Rung 3 (policy layer / revised T36) follows after, not in parallel."
+  },
+  "rungs": [
+    {
+      "rung": 0,
+      "name": "Canonical exit-optimized cell economics",
+      "builds": "A single canonical exit-optimized per-cell economics pass on per_minute_features.parquet, grouping by the locked cell key (category, T-20m price band), computing realized bounce/ROI, scalp/settlement frequencies, confidence intervals. Replaces all legacy settlement-scored matches-based per-cell economics; closes LESSONS E27 methodology drift.",
+      "absorbed_entries": [
+        "baseline_econ",
+        "rebuilt_scorecard",
+        "pnl_by_cell_config",
+        "per_cell_real_economics",
+        "comparison_real_vs_analysis",
+        "post_retune_economics (base metrics)"
+      ],
+      "prerequisite": "T37 foundation corpus (landed/validated). Settlement reconstruction sufficient for the window used.",
+      "effort": "substantial build",
+      "disposition": "BUILD"
+    },
+    {
+      "rung": 1,
+      "name": "Per-band optimized-exit-target derivation",
+      "builds": "For each cell band, over a grid of candidate exit thresholds, compute exit-optimized bounce/ROI and hit rates from FOUNDATION-TIER. Produces exit-sweep curves and a per-band recommended exit target with CIs. Metric: highest average bounce per band.",
+      "absorbed_entries": [
+        "exit_sweep_grid",
+        "exit_sweep_curves",
+        "optimal_exits",
+        "exit_sweep_leader_70_74"
+      ],
+      "prerequisite": "Rung 0 — the sweep is Rung 0 parameterized over exit threshold; shares all data plumbing.",
+      "effort": "moderate",
+      "disposition": "BUILD"
+    },
+    {
+      "rung": 2,
+      "name": "Recomputed anchor findings",
+      "builds": "Exit-optimized restatements of the key anchor numbers on the foundation corpus — the April 14 paired analysis as exit-optimized bilateral capture per cell band per phase; the 977-fill and Apr 24-29 legacy windows as exit-optimized ROI/bounce per cell band per phase; Cat 5's structural channel-EV-distribution under exit-optimized scoring.",
+      "absorbed_entries": [
+        "70.7% bilateral double-cash rate at +10c (April 14, 458 paired matches)",
+        "April 14 paired analysis (the 70.7% double-cash rate)",
+        "977-fill realized P&L (Mar 26 to Apr 17): -$1,339.52",
+        "Apr 24 to Apr 29 post-retune: 106 resolved at +$17.21 net",
+        "Per-(cell, policy) EV distribution by channel (Cat 5, Session 9, commit 631e653)"
+      ],
+      "prerequisite": "Rung 0 (exit-optimized per-cell metrics); Rung 1 for the Cat 5 entry (channel EV distribution needs a defensible exit-target choice).",
+      "effort": "moderate",
+      "disposition": "BUILD"
+    },
+    {
+      "rung": 3,
+      "name": "Policy and DCA layer (revised-T36 zone)",
+      "builds": "A Layer B v2-style per-(cell, policy) exit-optimized policy evaluation layer, implemented as groupbys/vectorized passes on per_minute_features.parquet (plus T38 when available) — NOT a standalone long-running simulator. Produces a new canonical exit_policy_per_cell-style table tied by construction to the foundation corpus.",
+      "absorbed_entries": [
+        "exit_policy_per_cell.parquet",
+        "dca_event_test / dca_event_analysis",
+        "dca_bbo_v3 + variants"
+      ],
+      "prerequisite": "Rung 0 and Rung 1. T38 optional (depth-aware policies); first pass can be T37-only.",
+      "effort": "substantial build",
+      "disposition": "BUILD — revise T36 spec first"
+    },
+    {
+      "rung": 4,
+      "name": "Retune forensics and bleed decomposition",
+      "builds": "Exit-optimized forensic tools around the Apr 24 retune and bleed episode. NOTE: these diagnose a specific historical bot/retune (old cell_lookup / deploy_v4.json) that no longer exists.",
+      "absorbed_entries": [
+        "fill_outcomes",
+        "variable_isolation",
+        "cell_groupings",
+        "bleed_decomposition",
+        "post_retune_economics (forensic slice)"
+      ],
+      "prerequisite": "Rung 0; Rung 3 for policy-specific slices.",
+      "effort": "moderate",
+      "disposition": "CLOSE — do not rebuild. Reason: backward-looking diagnostics of a bot that no longer exists. The analytical shapes (variable isolation, grouping, bleed attribution) will be needed again but should be designed fresh against the new system, not rebuilt as legacy replicas."
+    },
+    {
+      "rung": 5,
+      "name": "Legacy anchor restatement cross-checks",
+      "builds": "Purely comparative views showing how the old settlement-scored anchors change under exit-optimized scoring. For human intuition/communication, not deployment decisions.",
+      "absorbed_entries": [],
+      "prerequisite": "Rung 2.",
+      "effort": "cheap groupby pass",
+      "disposition": "OPTIONAL — likely folded into Rung 2 documentation."
+    }
+  ]
+}

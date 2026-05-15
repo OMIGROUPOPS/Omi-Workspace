@@ -1,6 +1,6 @@
 # Rung 0 Spec — Canonical Exit-Optimized Cell Economics
 
-**Status:** v1.0 — all decisions locked 2026-05-14, producer build unblocked. Replaces v0.1 (commit b169ca6b) which carried 5 DECISION POINTs; operator sharpenings collapsed the spec materially before v1.0 lock.
+**Status:** v1.1 — operator amendment 2026-05-14 (pre-T-20m metadata preserved, dual peak vs first-extreme-touch). Producer build unblocked at v1.1.
 
 **Anchored to:**
 - per_minute_universe_spec.md (T37 foundation, checkpoint 3 sha256 9fde4b5d…)
@@ -53,6 +53,8 @@ That's the whole metric. No exit grid sweep, no per-threshold matrix — just th
 ### 2.1 Definition
 A cell is `(category, price_band_at_T-20m)`. Per E32: the cell is the N's Kalshi price at a fixed T-20m mark, one axis (price), partitioned by the four categories. Direction is NOT an axis — N and its inverse are two faces of one event, joined via `event_ticker`.
 
+**Note on T-20m as a tractability choice (v1.0+):** T-20m is the v1.1 cell anchor because the stable-window diagnostic established it as the late-premarket convergence point (per_minute_universe_spec.md Section 7; data/analysis/stable_window_diagnostic_v2.json). The choice is for analytical tractability and to keep the strategic interpretation crisp — anchor at one moment, measure forward. A lot of market behavior in the preceding hours (formation, FV-anchor convergence, volume buildup, BBO dynamics) is not analyzed here and is queued as future research. Earlier anchors (T-1h, T-2h, formation-gate-relative) and entry-condition-driven anchors (FV-divergence threshold crossings, volume-threshold crossings) are deferred to Rung 1+ as variants once the T-20m baseline is established. The v1.1 columns `n_minutes_premarket`, `first_trade_ts`, and `n_trades_pre_t20m` preserve pre-T-20m metadata on every row so future variants can stratify without re-running the producer.
+
 ### 2.2 Categories
 Four, partitioning every output: `WTA_MAIN`, `WTA_CHALL`, `ATP_MAIN`, `ATP_CHALL`. The fifth `OTHER` bucket from `cell_key_helpers.CATEGORIES` is empirically empty in the tennis corpus — exclude. Fail loud if any ticker categorizes as `OTHER`.
 
@@ -82,22 +84,35 @@ Expected coverage: the Decision-3 probe (commit 2547f6a6 audit + /tmp/decision3_
 ## 3. The peak — operational definition
 
 ### 3.1 Headline: peak-bid
-Per operator sharpening + B25 mechanism: walk the trade tape from `t20m_trade_ts` through `settlement_ts` for the N.
-- `peak_bid_price` = the highest *bid* that was live during that window. Reconstructed from the trade tape per the C36/B25 framework:
-  - For every trade with `taker_side = "no"` (a no-taker hit the bid): the trade's `yes_price_dollars` reveals the bid at that microsecond.
-  - The maximum `yes_price_dollars` across all `taker_side = "no"` trades in the window IS the peak bid achieved.
-- `peak_bid_bounce` = `peak_bid_price - t20m_trade_price`. In dollars. **This is the headline metric.**
+Per operator sharpening + B25 mechanism: walk the trade tape from `t20m_trade_ts` forward. The walk has a natural terminator: the first trade where the yes-side price hits an extreme (`yes_price_dollars ≥ 0.99` OR `≤ 0.01`) marks the moment the outcome is structurally decided — the position is over. Two peaks are recorded:
+
+- `peak_bid_price_full` = max(`yes_price_dollars` where `taker_side='no'`) from `t20m_trade_ts` through `settlement_ts`. The full-window peak; for winning N's this saturates near 0.99.
+- `peak_bid_price_pre_resolution` = max(`yes_price_dollars` where `taker_side='no'`) from `t20m_trade_ts` through (`first_extreme_touch_ts - epsilon`), i.e., before the outcome is structurally revealed. For winning N's this is the peak that could have been exited at as a maker BEFORE the answer was known — the volatility-en-route, not the saturation. For N's that never touch an extreme before settlement (rare; markets that resolve at exactly 0.5 or via some other mechanism), `peak_bid_price_pre_resolution` equals `peak_bid_price_full`.
+
+For Rung 1 ranking purposes the headline metric is `peak_bid_bounce_pre_resolution` — that's the answer to "highest exit you could have hit before the answer was known." `peak_bid_bounce_full` is preserved for comparison and diagnostics.
+
+Derived columns emitted (per N):
+- `peak_bid_price_full`, `peak_bid_bounce_full` = `peak_bid_price_full - t20m_trade_price`.
+- `peak_bid_price_pre_resolution`, `peak_bid_bounce_pre_resolution` = `peak_bid_price_pre_resolution - t20m_trade_price`. **Headline metric.**
+- `first_extreme_touch_ts` — timestamp of the first trade with `yes_price_dollars ≥ 0.99` OR `≤ 0.01`, or null if no extreme touch occurred before `settlement_ts`.
 
 ### 3.2 Secondary: peak-trade
-- `peak_trade_price` = max `yes_price_dollars` across ALL trades in the window (any taker_side).
-- `peak_trade_bounce` = `peak_trade_price - t20m_trade_price`.
+Parallel dual treatment to peak-bid — emit both full-window and pre-resolution variants:
+
+- `peak_trade_price_full` = max `yes_price_dollars` across ALL trades from `t20m_trade_ts` through `settlement_ts` (any `taker_side`).
+- `peak_trade_bounce_full` = `peak_trade_price_full - t20m_trade_price`.
+- `peak_trade_price_pre_resolution` = max `yes_price_dollars` across ALL trades from `t20m_trade_ts` through (`first_extreme_touch_ts - epsilon`).
+- `peak_trade_bounce_pre_resolution` = `peak_trade_price_pre_resolution - t20m_trade_price`.
 
 Free to compute; carried alongside. Useful for diagnostic comparison: where peak-trade ≫ peak-bid, a yes-taker reached high but no maker bid stayed there long enough to be hit.
 
 ### 3.3 Peak context (when did it happen)
-- `peak_bid_ts` — timestamp of the bid-revealing trade that produced peak_bid_price (ET).
-- `peak_bid_in_premarket` — bool. True if `peak_bid_ts < match_start_ts`; false if peak was in-match.
-- `peak_bid_minutes_after_entry` — `(peak_bid_ts - t20m_trade_ts).total_seconds() / 60`.
+The headline timestamp is `peak_bid_ts_pre_resolution` — when peak-bid was live BEFORE the outcome was structurally revealed (matching the headline metric `peak_bid_bounce_pre_resolution`). `peak_bid_ts_full` carries the full-window peak's timestamp for diagnostic comparison.
+
+- `peak_bid_ts_pre_resolution` — timestamp of the bid-revealing trade that produced `peak_bid_price_pre_resolution` (ET). **Headline.**
+- `peak_bid_ts_full` — timestamp of the bid-revealing trade that produced `peak_bid_price_full` (ET). Diagnostic.
+- `peak_bid_in_premarket` — bool. True if `peak_bid_ts_pre_resolution < match_start_ts`; false if peak was in-match.
+- `peak_bid_minutes_after_entry` — `(peak_bid_ts_pre_resolution - t20m_trade_ts).total_seconds() / 60`.
 
 ### 3.4 Why this is enough
 Under the locked model (no stop, ride to target or settlement), every threshold below `peak_bid_price` is "would have hit." Every threshold above is "would not have hit." The peak IS the answer to the threshold-sweep question — no need to enumerate the grid. Rung 1 derives per-band optimized targets directly from the distribution of peaks within each band.
@@ -127,6 +142,13 @@ For each N, attach activity-level context at the cell band level for downstream 
 
 (Deep orderbook depth is NOT in this schema — F33 gap, T38 forward-only. Surface this absence honestly; do not synthesize.)
 
+### 4.4 Premarket-context columns (preserved for future research, not analyzed in Rung 0)
+Emitted on every row to preserve pre-T-20m metadata so future variants (earlier anchors, formation-relative stratification, FV-convergence research per Section 2.1) can stratify without re-running the producer. Not analyzed in Rung 0's headline outputs.
+
+- `n_minutes_premarket` — int. Total premarket lifetime in minutes = `(match_start_ts - open_time) / 60`. Stratifier for future "long premarket vs short premarket" analysis.
+- `first_trade_ts` — ts ET (nullable). Timestamp of the N's first trade ever (the formation gate per Cat 8 / LESSONS F34). Null if no trades pre-T-20m.
+- `n_trades_pre_t20m` — int. Count of trades (`count_fp > 0` per C36) from `open_time` to `t20m_trade_ts`.
+
 ---
 
 ## 5. Output schema (final)
@@ -149,21 +171,30 @@ One row per N that resolved a valid trade-tape T-20m anchor AND fell in a band w
 | 12 | `cell_key` | string | `"{category}__{price_band}"` |
 | 13 | `band_n_count` | int | Total N's in this row's cell (load-bearing, populated after first-pass aggregation) |
 | 14 | `phase_state_at_t20m` | string | From v0.2 classifier (PHASE_2 / PHASE_3 expected) |
-| 15 | `peak_bid_price` | float | Headline: highest bid live from entry to settlement |
-| 16 | `peak_bid_bounce` | float | Headline: peak_bid_price - t20m_trade_price |
-| 17 | `peak_bid_ts` | ts ET | When peak bid was live |
-| 18 | `peak_bid_in_premarket` | bool | True if peak before match_start_ts |
-| 19 | `peak_bid_minutes_after_entry` | float | Minutes from entry to peak |
-| 20 | `peak_trade_price` | float | Secondary: max trade price in window |
-| 21 | `peak_trade_bounce` | float | peak_trade_price - t20m_trade_price |
-| 22 | `realized_at_settlement` | float | settlement_value - t20m_trade_price (no-action baseline) |
-| 23 | `total_premarket_volume` | int | Volume from open_time to match_start |
-| 24 | `total_premarket_trade_count` | int | Trade count (count_fp > 0 only) from open_time to match_start |
-| 25 | `oi_at_t20m` | int or null | Open interest at T-20m minute (null for historical-tier-zero per F31) |
-| 26 | `bbo_bid_size_at_t20m` | int or null | Top-of-book bid size at T-20m minute |
-| 27 | `bbo_ask_size_at_t20m` | int or null | Top-of-book ask size at T-20m minute |
+| 15 | `peak_bid_price_full` | float | **v1.1** — Full-window peak bid (t20m → settlement). Diagnostic. |
+| 16 | `peak_bid_price_pre_resolution` | float | **v1.1, HEADLINE** — Peak bid before first 99¢/1¢ extreme touch |
+| 17 | `peak_bid_bounce_full` | float | **v1.1** — peak_bid_price_full − t20m_trade_price |
+| 18 | `peak_bid_bounce_pre_resolution` | float | **v1.1, HEADLINE** — peak_bid_price_pre_resolution − t20m_trade_price |
+| 19 | `peak_bid_ts_pre_resolution` | ts ET | **v1.1, HEADLINE** — Timestamp of pre-resolution peak bid |
+| 20 | `peak_bid_ts_full` | ts ET | **v1.1** — Timestamp of full-window peak bid |
+| 21 | `peak_bid_in_premarket` | bool | True if `peak_bid_ts_pre_resolution < match_start_ts` |
+| 22 | `peak_bid_minutes_after_entry` | float | Minutes from entry to peak_bid_ts_pre_resolution |
+| 23 | `peak_trade_price_full` | float | **v1.1** — Secondary: full-window max trade price |
+| 24 | `peak_trade_price_pre_resolution` | float | **v1.1** — Secondary: pre-resolution max trade price |
+| 25 | `peak_trade_bounce_full` | float | **v1.1** — peak_trade_price_full − t20m_trade_price |
+| 26 | `peak_trade_bounce_pre_resolution` | float | **v1.1** — peak_trade_price_pre_resolution − t20m_trade_price |
+| 27 | `first_extreme_touch_ts` | ts ET or null | **v1.1** — Timestamp of first trade with `yes_price_dollars ≥ 0.99` OR `≤ 0.01`; null if none |
+| 28 | `realized_at_settlement` | float | settlement_value − t20m_trade_price (no-action baseline) |
+| 29 | `total_premarket_volume` | int | Volume from open_time to match_start |
+| 30 | `total_premarket_trade_count` | int | Trade count (count_fp > 0 only) from open_time to match_start |
+| 31 | `oi_at_t20m` | int or null | Open interest at T-20m minute (null for historical-tier-zero per F31) |
+| 32 | `bbo_bid_size_at_t20m` | int or null | Top-of-book bid size at T-20m minute |
+| 33 | `bbo_ask_size_at_t20m` | int or null | Top-of-book ask size at T-20m minute |
+| 34 | `n_minutes_premarket` | int | **v1.1** — Total premarket lifetime: `(match_start_ts − open_time) / 60` |
+| 35 | `first_trade_ts` | ts ET or null | **v1.1** — Timestamp of N's first trade ever (formation gate; null if no pre-T-20m trades) |
+| 36 | `n_trades_pre_t20m` | int | **v1.1** — Count of trades (count_fp > 0) from open_time to t20m_trade_ts |
 
-~27 columns. One row per qualifying N. Estimated row count: lower than the 89.48% per-minute-foundation coverage from the Decision 3 probe, because the trade-tape entry rule is stricter. Phase 1 measures actual.
+**36 columns total** (v1.1). One row per qualifying N. Operator's v1.1 instruction wrote a target of "35 columns" with arithmetic `27 − 5 + 9 + 4`, but the explicit per-column instructions (replace each of 5 old peak columns with 2 each → +5 net; add 1 `first_extreme_touch_ts`; add 3 premarket-context columns → +4 net) yield `27 − 5 + 10 + 4 = 36`. The discrepancy is the `+9 vs +10` in the operator's arithmetic — the `peak_bid_ts → peak_bid_ts_pre_resolution AND peak_bid_ts_full` replacement contributes +1 like the other four, so the new-peak group is 10 (not 9). Schema follows the per-column instructions verbatim. Estimated row count: lower than the 89.48% per-minute-foundation coverage from the Decision 3 probe, because the trade-tape entry rule is stricter. Phase 1 measures actual.
 
 ---
 
@@ -172,7 +203,7 @@ One row per N that resolved a valid trade-tape T-20m anchor AND fell in a band w
 ### Hard gates
 1. **Anchor consistency.** Every row's `t20m_trade_ts` is within ±2 minutes of (`match_start_ts - 20min`). Zero violations.
 2. **Band exclusion.** Zero rows with `price_band` in 0.00-0.05 or 0.95-1.00.
-3. **Peak monotonicity.** `peak_bid_price ≥ t20m_trade_price` and `peak_trade_price ≥ t20m_trade_price` for every row (peak in the forward window must at least match entry; if the bid never rose above entry, peak_bid_price = the highest bid observed which may equal entry).
+3. **Peak monotonicity.** Both `peak_bid_price_full ≥ t20m_trade_price` and `peak_bid_price_pre_resolution ≥ t20m_trade_price` for every row. Same for peak_trade equivalents. Additionally `peak_bid_price_full ≥ peak_bid_price_pre_resolution` by construction (full window is a superset). Same for peak_trade.
 4. **Settlement consistency.** `realized_at_settlement = settlement_value_dollars - t20m_trade_price` exactly per row. Zero drift.
 5. **TZ correctness.** Every emitted timestamp is timezone-aware ET. Zero naive timestamps, zero UTC leakage to operator-facing columns (per G21).
 
@@ -234,3 +265,12 @@ Additional v1.0 additions not in v0.1:
 - TZ discipline: all emitted timestamps ET per G21; UTC stays at raw-bytes layer only.
 - Tick-level inline confirmation: g9_trades preserves every trade microsecond-precise; taker_side reveals one side of the book per tick; both sides reconstructible at tick resolution by walking the tape (B25 mechanism).
 - F33 depth-chain gap acknowledged honestly: not in Rung 0, T38 forward-only.
+
+### v1.1 amendment (2026-05-14)
+- Section 2.1: T-20m-as-tractability paragraph added; pre-T-20m research direction queued.
+- Section 3: peak-walk termination clarified to first-extreme-touch; dual peak (full vs pre-resolution) emitted on every row.
+- Section 4.4: three premarket-context columns added (n_minutes_premarket, first_trade_ts, n_trades_pre_t20m).
+- Section 5: schema grew from 27 to 36 columns (operator's v1.1 instructions had target "35" via arithmetic `27 − 5 + 9 + 4`; the explicit per-column instructions yield `27 − 5 + 10 + 4 = 36` because the peak_bid_ts replacement also goes 1→2; spec follows the per-column instructions verbatim).
+- Section 6: peak monotonicity gate updated for dual peak (full and pre-resolution both must clear t20m_trade_price; full ≥ pre-resolution by construction).
+
+The producer build is gated on v1.1, not v1.0 — operator amendment caught before producer arc launched.

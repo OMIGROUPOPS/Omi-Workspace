@@ -23,7 +23,7 @@ Four-way coordination, operator is the mandatory routing layer (no inter-agent c
 - **VPS:** `ssh root@104.131.191.95`
 - **Workspace:** `/root/Omi-Workspace`, primary subdir `arb-executor/` and `arb-executor/docs/`
 - **GitHub:** `github.com/OMIGROUPOPS/Omi-Workspace` (public)
-- **Commit pattern:** commits land via the local Windows repo (`C:\Users\liamm\OMI\tennis\Omi-Workspace`), pushed to origin/main. The VPS git tree runs behind origin/main by design — it only needs a pull when the producer code is re-run, which is an explicit operator decision.
+- **Commit pattern:** commits land via the local Windows repo (`C:\Users\omigr\OMI-Workspace\arb-executor`), pushed to origin/main. The VPS git tree runs behind origin/main by design — it only needs a pull when the producer code is re-run, which is an explicit operator decision.
 
 ## WHERE THE OPERATION STANDS
 

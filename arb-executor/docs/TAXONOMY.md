@@ -6,7 +6,7 @@
 - Lessons that establish this framing: A20, A22, A23, A24, A28, E23, E26, F16, F20.
 - Library entries that classify against this taxonomy: ANALYSIS_LIBRARY.md.
 
-**Last populated:** 2026-04-30 ~14:55 ET, mid-Session 4. Section 1 match-counts placeholder pending tier-counter completion. Section 4 fully populated with verified TZ labels.
+**Last populated:** 2026-05-14 ET — brought current with the T37 foundation rebuild; FOUNDATION-TIER and Section 2.5 classification axes added.
 
 ---
 
@@ -74,7 +74,18 @@ Tiers are ordered by fidelity: A is highest, C is lowest. Higher tier means more
 - Producer: arb-executor/data/scripts/build_g9_archive.py — pulls from Kalshi /historical/markets/{ticker}/candlesticks + /historical/trades + /historical/markets/{ticker} endpoints. Re-runnable to extend forward.
 - What it uniquely supports: Per-moment bounce analysis (Layer A) on a 10x larger universe than B-tier; full-archive coverage retroactive to mid-2025; aggressor-flow analysis (taker_side per trade) at microsecond resolution; cross-tier validation against B-tier for the Mar 20 - Apr 17 overlap window; player-identity work via custom_strike.tennis_competitor UUIDs (per ROADMAP T25 fair-value scoping).
 - What it does NOT support: Order book depth beyond top-of-book candle bid/ask (no bid_2-5 / ask_2-5 — that requires A-tier); pre-Jun-2025 data (Kalshi /historical/* endpoints have a horizon).
-- Status: G9 dataset DELIVERED 2026-05-02 per ROADMAP G9. Parquet conversion pending T17 (~30-60 min runtime to consolidated g9_trades.parquet + g9_candles.parquet + g9_metadata.parquet). Layer A v1 implementation gated on T17 + T18 (candles semantics probe).
+- Status: G9 dataset DELIVERED 2026-05-02. Parquet conversion COMPLETE (T17). The G9 parquets are now an intermediate source, not the canonical analysis foundation — see the FOUNDATION-TIER entry below.
+
+### FOUNDATION-TIER — Per-minute universe corpus (canonical analysis foundation)
+
+- Source: arb-executor/data/durable/per_minute_universe/per_minute_features.parquet
+- Built by: T37 Phase 3 producer (build_per_minute_universe.py), consuming G-tier g9_candles + g9_trades + g9_metadata
+- Rows: 9,330,878 (one row per ticker-minute). Tickers: 19,207 processed.
+- Columns: 88. Each row carries the full observable feature set at that minute (BBO, spread, trade activity, OI, regime, phase_state) plus pair_gap_abs and forward-looking labels.
+- Checkpoint lineage (sha256, each gate-validated): c80e5fc2 (raw merge, 87 cols) -> f9a71d5c (+pair_gap_abs, 88 cols) -> 9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4 (vol/tc trade-tape aligned, current LIVE).
+- phase_state classifier: per_minute_universe_spec.md Section 7 (v0.2 thresholds locked).
+- What it uniquely supports: this is the canonical grain for all cell-level analysis. Cell aggregation and policy evaluation are groupby/vectorized operations against this table. It supersedes Layer A v1's cell_stats.parquet and Layer B v1's cell_summary as the canonical observation foundation.
+- Status: COMPLETE and validated 2026-05-14. Canonical foundation for the unit-of-analysis audit and all downstream cell-derivation work.
 
 ### Other operational data sources (full schemas in Section 4)
 
@@ -158,6 +169,34 @@ Depth describes what class of question is being asked, not how complex the math 
 - Minimum data: Depth-5 plus external data (sportsbook lines, surface, round, ranking, calendar).
 - Tier sufficient: A plus external sources.
 - Example questions: Does Kalshi lag DraftKings by N seconds and is that exploitable. Does our edge vary by tournament tier or surface. Cross-match correlation during tournament-level news events.
+
+---
+
+## SECTION 2.5: CLASSIFICATION AXES BEYOND DEPTH
+
+Depth (Section 2) describes the question class. Three further axes are required to classify any analysis or prior finding under the current cell/exit model (LESSONS E32). Every entry in ANALYSIS_LIBRARY.md carries all three.
+
+### Axis: GRAIN
+The unit of observation the analysis operates on.
+- match-aggregate: one row per match (or per match-side); premarket and in-match conflated. The weakest grain — LESSONS B14/G17 establish that premarket and in-match are structurally distinct and must not be conflated.
+- per-minute: one row per ticker-minute (the FOUNDATION-TIER grain). The canonical grain.
+- per-tick: one row per trade or per BBO update (A-tier / G-tier trade tape). Finer than per-minute; needed for fill-semantics questions.
+- per-cell: aggregated to the cell (a groupby over per-minute rows). A derived grain, not a primary one.
+
+### Axis: VECTOR
+Which of the three attack vectors the analysis informs. (Vectors per the established strategy framing.)
+- vector-A: entry through formation (early dual entry).
+- vector-B: post-formation dual entry in the stable regime.
+- vector-C: fair-value anchor mispricing lunge (taker exception).
+- vector-agnostic: the analysis informs cell structure or market microstructure generally, not one vector.
+
+### Axis: OBJECTIVE
+What objective the analysis scored performance against. This is the load-bearing axis for the unit-of-analysis audit.
+- settlement-scored: performance measured to settlement (first touch of 99c/1c, or hold-to-resolution). Under the locked model, settlement is the ANSWER KEY, not the objective. A settlement-scored number measured the WRONG objective and needs recomputation against the exit-optimized model, not just reclassification.
+- exit-optimized: performance measured as realized bounce from fill to an optimized exit target (the locked objective — average bounce per cell band, no stop, two exit windows).
+- objective-agnostic: the analysis measures a market property (e.g., trajectory width, OI distribution, formation gate) that is not scored against any trading objective.
+
+Cross-reference: LESSONS E32 (the locked cell/exit model these axes serve), LESSONS B14/G17 (grain — premarket vs in-match distinction), per_minute_universe_spec.md Section 7 (the FOUNDATION-TIER classifier).
 
 ---
 
@@ -506,3 +545,4 @@ ET sources joining UTC sources require explicit conversion. matches table timest
 - 2026-05-04 (Session 6 Phase 5-ii): /tmp paths updated to durable paths (commit f492d25). Five references updated: B-tier source (line 40), kalshi_fills_history.json bullet in Section 1 'Other operational data sources' (line 92), Section 4 heading (line 435), Section 4 source line (line 437), Section 4 ephemerality risk note (line 441 — risk → MITIGATED). Reflects Phase 1B/1C durability migration done earlier in Session 6.
 - 2026-05-04 (Session 6 Phase 5-iii): External Sources section updated for G9 delivery reflection (commit c5a2477). Header changed from '(not currently pulled but accessible)' to '(status varies — see per-bullet annotation)'. Bullets 1-2 (Kalshi candlesticks + historical trades APIs) annotated PULLED (now in G-tier); bullets 3-4 (Kalshi orderbook history, sportsbook line history) annotated NOT PULLED with rationale.
 - 2026-05-04 (Session 6 Phase 5-iv): This commit. CHANGELOG entries for Session 5 G9 delivery and Session 6 Phase 5 work appended.
+- 2026-05-14 ET: Brought current with the foundation rebuild. G-tier status corrected (T17 complete). FOUNDATION-TIER added (per_minute_features.parquet, the canonical analysis foundation, checkpoint 3 sha256 9fde4b5d...). SECTION 2.5 added defining the GRAIN / VECTOR / OBJECTIVE classification axes required by LESSONS E32 — every ANALYSIS_LIBRARY entry now carries all three. These axes are the structural input to the unit-of-analysis audit.

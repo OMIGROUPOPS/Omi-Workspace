@@ -163,7 +163,7 @@ Selection criteria for v0.1:
 
 Plus one helper column (not in the count of 16; computed from row timestamps):
 
-- `daily_opportunity_rate` — `observations_n / corpus_active_days_in_sample`, where `corpus_active_days_in_sample` is the count of distinct dates in the corpus where Rung 0 emitted rows (computed once and reused per row). Same for every threshold within a cell.
+- `daily_opportunity_rate` — `observations_n / corpus_active_days_in_sample`, where `corpus_active_days_in_sample` is the count of distinct dates in the corpus where Rung 0 emitted rows (computed once on the FULL unfiltered Rung 0 corpus and reused per row). Measures **N's-per-day** for this cell (per LESSONS G22: N is the player-binary market, the unit-of-observation; ct is the position-size unit. Each row is one N, not one ct). Same value for every threshold within a cell. Note: this is the corpus-wide rate (averaging across active and dead days). Per-category and per-cell active-day-normalized rate variants are deferred to Rung 1.5 — the corpus-wide rate is the operationally-correct denominator for the v0.1 deployment-EV math.
 
 ### 3.2 The full output schema
 
@@ -208,7 +208,7 @@ Plus one helper column (not in the count of 16; computed from row timestamps):
 | 37 | `low_n_flag` | bool | metric 13 |
 | 38 | `weak_ci_flag` | bool | metric 14 |
 | 39 | `mean_entry_price_cents` | float | metric 15 |
-| 40 | `daily_opportunity_rate` | float | helper (cts/day for this cell) |
+| 40 | `daily_opportunity_rate` | float | helper (N's/day for this cell — qualifying-entry arrival rate; per G22) |
 | 41 | `expected_cents_per_dollar_capital_day` | float | metric 16 |
 
 **41 columns total.** 16 core metrics + their CI bounds (24 CI cols) + 1 helper (`daily_opportunity_rate`).

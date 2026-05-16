@@ -103,14 +103,16 @@ SCHEMA_COLUMNS = [
     # Partner-N stats (4)
     "partner_total_volume_lifetime", "partner_total_trade_count_lifetime",
     "partner_total_volume_premarket", "both_sides_active_minutes",
-    # Sample-quality flags (3)
+    # Sample-quality flags (4 — incl match_start_method col 45 per spec e4e0fdb)
     "has_complete_trade_tape", "has_complete_candle_tape", "tier",
+    "match_start_method",
 ]
-# 44 enumerated columns (spec §2.1, in order; commit 7a72bc8 added
-# n_minutes_observed as col 44 — the gate-3 RHS and §4.2 coverage-ratio
-# denominator). This reconciles the prior v0.1 header off-by-one correctly:
-# the column earns the 44th slot by purpose, not as a phantom filler.
-assert len(SCHEMA_COLUMNS) == 44, f"schema column count = {len(SCHEMA_COLUMNS)} != 44"
+# 45 enumerated columns (spec §2.1, in order). Commit 7a72bc8 added
+# n_minutes_observed (col 44, gate-3 RHS + §4.2 denominator); commit e4e0fdb
+# added match_start_method (col 45, F35 interim mitigation — makes the
+# boundary-unreliable 6.4% tier-3 cohort downstream-filterable). Both columns
+# earn their slots by purpose, not as phantom fillers.
+assert len(SCHEMA_COLUMNS) == 45, f"schema column count = {len(SCHEMA_COLUMNS)} != 45"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -306,6 +308,16 @@ def compute_per_ticker_row(
         pp = per_minute_subset["partner_ticker"].dropna().unique()
         if len(pp) > 0:
             partner_ticker = str(pp[0])
+
+    # match_start_method (spec §2.1 col 45, F35 interim mitigation) — the T37
+    # signal tier that fired: both_sides_price_discovery / both_sides_trade_density
+    # / expected_expiration_fallback (tier-3, boundary-unreliable per F35) /
+    # unknown (C32 early-settle). Same source pattern as partner_ticker.
+    match_start_method = None
+    if not per_minute_subset.empty and "match_start_method" in per_minute_subset.columns:
+        msm = per_minute_subset["match_start_method"].dropna().unique()
+        if len(msm) > 0:
+            match_start_method = str(msm[0])
 
     # Lifetime timing
     lifetime_minutes = None
@@ -520,6 +532,7 @@ def compute_per_ticker_row(
         "has_complete_trade_tape": has_trade_tape,
         "has_complete_candle_tape": has_candle_tape,
         "tier": assign_tier(market_open_ts),
+        "match_start_method": match_start_method,
     }
 
 
@@ -920,9 +933,9 @@ def main() -> int:
     # - partner column is `partner_ticker` (large_string), NOT paired_event_partner_ticker
     # - category, settlement_value live here (T37-derived; double respectively)
     # - match_start_ts and minute_ts are int64 unix seconds with NaN
-    log.info("Loading per_minute_features narrow projection (8 cols, one-time, pq.read_table)...")
+    log.info("Loading per_minute_features narrow projection (9 cols, one-time, pq.read_table)...")
     pm_cols = ["ticker", "minute_ts", "match_start_ts", "partner_ticker",
-               "category", "settlement_value",
+               "category", "settlement_value", "match_start_method",
                "trade_count_in_minute", "volume_in_minute"]
     per_minute = pq.read_table(str(per_minute_path), columns=pm_cols).to_pandas()
     log.info(f"  per_minute_features: {len(per_minute)} rows x {len(pm_cols)} cols")

@@ -154,11 +154,13 @@ All read-only.
 2. Load per_minute_features (subset of columns: ticker, minute_ts, match_start_ts, partner_ticker, category, settlement_value, trade_count_in_minute, volume_in_minute). Source-of-truth notes per schema probe: (a) partner column is `partner_ticker` (large_string), NOT `paired_event_partner_ticker` — the output schema uses `paired_event_partner_ticker` for the column name, but the input read targets `partner_ticker`. (b) `match_start_ts` and `minute_ts` are int64 unix seconds (with NaN where no match-start signal fired), NOT tz-aware timestamps; convert via `pd.to_datetime(x, unit='s', utc=True).tz_convert(ET)` with NaN guard. (c) `settlement_value` is double {0.0, 1.0} — already numeric, can be used directly without coercion. (d) `category` is large_string ∈ {ATP_MAIN, ATP_CHALL, WTA_MAIN, WTA_CHALL} — the T37-derived category. Read by row groups for memory discipline per C28.
 3. For each ticker in the binary-outcome subset:
    - Look up match_start_ts (per_minute_universe_spec hierarchy)
-   - Load g9_trades for this ticker (single ticker, streaming acceptable)
+   - Load g9_trades for this ticker via **pyarrow predicate-pushdown** — `pq.read_table(g9_trades_path, filters=[("ticker", "=", ticker)])` — NOT `pd.read_parquet(full_file)` followed by in-memory `.isin()`. **MANDATORY per Phase 1 retry #3 OOM (2026-05-16):** the full g9_trades.parquet is 1.5 GB / 33.7M rows and full-load OOM-kills on the ~1.9 GB VPS regardless of phase. This is the same pattern the Rung 0 producer used to run the FULL corpus in ~1.9 GB without OOM. Equivalently, a single batched pushdown `filters=[("ticker", "in", set(tickers))]` is acceptable for phase-bounded ticker sets, provided the resulting table fits in memory (50-ticker Phase 1 ≪ envelope; full-corpus Phase 3 should use per-ticker iteration or chunked pushdown to stay bounded).
    - Compute trade-tape aggregates (volume / count / taker-side / price min/max/first/last) split by premarket vs in_match phase
-   - Load g9_candles for this ticker, compute OI trajectory aggregates
+   - Load g9_candles for this ticker via the same pushdown pattern (g9_candles is only ~82 MB so full-load is survivable, but pushdown is preferred for consistency and Phase 3 safety)
    - Compute per-minute aggregates from per_minute_features for active-minute counts
    - Emit one row with all 43 columns (partner stats column-44 / both_sides_active filled in pass 2)
+
+   **Memory discipline (per LESSONS C28 + Phase 1 retry #3):** NEVER full-load g9_trades.parquet into a DataFrame and filter in memory. Predicate-pushdown at the parquet read is mandatory. The Rung 0 producer (build_rung0_cell_economics.py) is the proven-working reference pattern; mirror its `pq.read_table(..., filters=[("ticker","=",ticker)])` per-ticker loop rather than re-deriving the load strategy.
 4. Pass 2: for each row, look up partner_event_partner_ticker, join partner's stats columns from pass-1 output.
 5. Pass 3: compute both_sides_active_minutes by per-minute join on (ticker, minute_ts) for paired rows where both N's have count_fp > 0 in the same minute.
 

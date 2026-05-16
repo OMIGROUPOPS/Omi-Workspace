@@ -197,3 +197,49 @@ Downstream Layer C (G11) cleared to consume.
 - Producer: data/scripts/check_layer_b_v1_coherence.py at commit 5cf45e0
 - Spec: layer_b_spec.md Validation Gate section (post-T31a patches 5, 7, 8)
 
+## Rung 0 outputs (T39 recomputation ladder Rung 0; ROADMAP T39, recomputation_ladder.json problem=P1)
+
+[#rung-0-outputs-t39-recomputation-ladder-rung-0](#rung-0-outputs-t39-recomputation-ladder-rung-0)
+
+Foundation pointer: T37 per_minute_features.parquet sha256 9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4 (checkpoint 3) + g9_trades.parquet (trade-tape entry/peak) + g9_metadata.parquet (binary-outcome filter + settlement value).
+Spec: docs/rung0_cell_economics_spec.md at commit 87103d0d (v1.1, 36-column schema).
+Producer: arb-executor/data/scripts/build_rung0_cell_economics.py at commit 10322a8f (base 356f25f4; pandas3/pyarrow24 compat 52edf132; find_t20m_anchor float-precision anchor fix 10322a8f).
+Output directory: arb-executor/data/durable/rung0_cell_economics/
+Producer runtime: 4h 45m 03s Phase 3 re-run, clean exit (2026-05-15 ET; attempt #1 halted at C37 gate on 21 int()-truncation boundary violations, fixed and re-run strictly).
+Coverage: 14,033 emitted / 19,614 binary-outcome tickers (71.5%); 5,581 dropouts (dominant no_trade_near_t20m=3,390, the strict trade-tape entry cost per LESSONS A37). 72/72 cells populated; 54 cells n>=100, 62 n>=50.
+
+### cell_economics.parquet
+
+[#cell_economicsparquet](#cell_economicsparquet)
+
+- sha256: 6fdd019d08722d0afb5688181fb60394d73dc2b05765af74d6c5675edd17c992
+- File: data/durable/rung0_cell_economics/cell_economics.parquet
+- Size: 1721074 bytes
+- Row count: 14033 rows (one per qualifying N — trade-tape T-20m anchor within +/-2min, band 5-95c, binary outcome)
+- Schema: 36 columns per spec rung0_cell_economics_spec.md commit 87103d0d (ticker/event/category, t20m trade anchor, 5c price_band, cell_key, band_n_count, phase_state_at_t20m, dual peak bid+trade [full vs pre_resolution], bounce columns, first_extreme_touch_ts, realized_at_settlement, premarket volume/OI/context, n_minutes_premarket/first_trade_ts/n_trades_pre_t20m); all timestamps tz-aware ET per G21
+- Compression: snappy
+- Date: 2026-05-15 ET
+
+### Validity status
+
+[#validity-status-rung0](#validity-status-rung0)
+
+PASSED C37 pre-replace gate 2026-05-15 ET (producer commit 10322a8f). 5/5 hard gates PASS, run in-loop AND independently re-validated against the on-disk .new bytes before os.replace:
+- Gate 1 anchor_consistency: 0 violations (t20m_trade_ts within +/-2min of match_start_ts - 20min; float-precision after 10322a8f fix).
+- Gate 2 band_exclusion: 0 violations (no extreme 0.00-0.05 / 0.95-1.00 bands).
+- Gate 3 peak_monotonicity: 0 violations across all 6 sub-checks (peak_bid/trade full >= pre_resolution >= entry).
+- Gate 4 settlement_consistency: 0 violations (realized_at_settlement = settlement_value_dollars - t20m_trade_price exact).
+- Gate 5 tz_correctness: all timestamp columns tz-aware ET.
+
+Headline (top cell by mean peak_bid_bounce_pre_resolution): WTA_CHALL__0.30-0.35 n=55 mean +0.3398. Diagnostic peak_bid_bounce_full and A39 ROI complement in validation_report.md.
+
+### validation_report.md
+
+[#validation_report-md-rung0](#validation_report-md-rung0)
+
+- sha256: 8f1ec4ffe931bf0bb304852b3735c2d4b209baf4dc620ee10ee02bc561fffadf
+- File: data/durable/rung0_cell_economics/validation_report.md
+- Producer: gen_rung0_report.py (deterministic report generator over cell_economics.parquet)
+- Spec: docs/rung0_cell_economics_spec.md Section 6 hard gates (commit 87103d0d)
+- Lessons earned this arc: LESSONS A37 (strict-entry coverage cost), A38 (dual-peak vs settlement saturation), A39 (cents vs ROI ranking)
+

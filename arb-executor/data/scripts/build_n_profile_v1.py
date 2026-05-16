@@ -694,15 +694,33 @@ def write_validation_report(report_path: Path, df: pd.DataFrame, result: Produce
 # Main
 # ---------------------------------------------------------------------------
 
-def select_phase_tickers(metadata: pd.DataFrame, phase: int) -> list[str]:
-    """Phase 1: 50 stratified. Phase 2: 1000 stratified. Phase 3: all."""
+def select_phase_tickers(
+    metadata: pd.DataFrame, phase: int, per_minute_path: Path
+) -> list[str]:
+    """
+    Phase 1: 50 stratified. Phase 2: 1000 stratified. Phase 3: all binary tickers.
+
+    category is a T37-derived column (lives in per_minute_features.parquet, NOT
+    in g9_metadata). For stratified phases we load a (ticker → category) map
+    from per_minute_features once and join onto the binary subset.
+    """
     binary = metadata[metadata["settlement_value_dollars"].isin([0.0, 1.0])].copy() \
         if "settlement_value_dollars" in metadata.columns \
         else metadata[metadata["settlement_value"].isin([0.0, 1.0])].copy()
 
     if phase == 3:
         return binary["ticker"].tolist()
-    elif phase == 1:
+
+    # Stratified phases need category — derive from per_minute_features.
+    log.info("Loading (ticker → category) map from per_minute_features for phase stratification")
+    cat_map = pd.read_parquet(per_minute_path, columns=["ticker", "category"]).drop_duplicates(
+        subset=["ticker"]
+    )
+    log.info(f"  category map: {len(cat_map)} unique tickers")
+    binary = binary.merge(cat_map, on="ticker", how="left")
+    binary["category"] = binary["category"].fillna("unknown")
+
+    if phase == 1:
         per_cat = binary.groupby("category", group_keys=False).apply(
             lambda g: g.sample(min(10, len(g)), random_state=42)
         )
@@ -749,7 +767,7 @@ def main() -> int:
     metadata = pd.read_parquet(g9_metadata_path)
     log.info(f"  {len(metadata)} markets in metadata")
 
-    tickers = select_phase_tickers(metadata, args.phase)
+    tickers = select_phase_tickers(metadata, args.phase, per_minute_path)
     log.info(f"Phase {args.phase}: processing {len(tickers)} tickers")
     expected_count = len(tickers)
 

@@ -150,8 +150,8 @@ All read-only.
 
 ### 3.2 Pipeline
 
-1. Load g9_metadata. Filter to binary-outcome subset (settlement_value ∈ {0.0, 1.0}; scalars excluded per Rung 0).
-2. Load per_minute_features (subset of columns: ticker, minute_ts, match_start_ts derived per row, trade_count_in_minute, volume_in_minute). Read by row groups for memory discipline per C28.
+1. Load g9_metadata. Filter to binary-outcome subset via `result.isin(['yes','no'])` (string column; the canonical binary filter used by Rung 0 and corpus probes; 19,614 binary, 'scalar' = 496 excluded). Note: g9_metadata.settlement_value_dollars is a STRING column ('0.0000'/'1.0000'/'0.5000'/...) — not a float — so float-comparison filtering fails silently. Use `result` for outcome filtering; coerce settlement_value_dollars via `pd.to_numeric(..., errors='coerce')` if a numeric settlement value is needed.
+2. Load per_minute_features (subset of columns: ticker, minute_ts, match_start_ts, partner_ticker, category, settlement_value, trade_count_in_minute, volume_in_minute). Source-of-truth notes per schema probe: (a) partner column is `partner_ticker` (large_string), NOT `paired_event_partner_ticker` — the output schema uses `paired_event_partner_ticker` for the column name, but the input read targets `partner_ticker`. (b) `match_start_ts` and `minute_ts` are int64 unix seconds (with NaN where no match-start signal fired), NOT tz-aware timestamps; convert via `pd.to_datetime(x, unit='s', utc=True).tz_convert(ET)` with NaN guard. (c) `settlement_value` is double {0.0, 1.0} — already numeric, can be used directly without coercion. (d) `category` is large_string ∈ {ATP_MAIN, ATP_CHALL, WTA_MAIN, WTA_CHALL} — the T37-derived category. Read by row groups for memory discipline per C28.
 3. For each ticker in the binary-outcome subset:
    - Look up match_start_ts (per_minute_universe_spec hierarchy)
    - Load g9_trades for this ticker (single ticker, streaming acceptable)
@@ -249,5 +249,6 @@ Fraction of paired matches where both N's have total_volume_premarket > {50, 100
 | 6 | Match-start signal | Reuse per_minute_universe_spec 4-tier hierarchy from per_minute_features.parquet. | A35; T37 |
 | 7 | Tier discrimination | Add `tier` column ("historical" / "live") for downstream filtering per F29 era-based behavior. | F29 |
 | 8 | Phase boundary handling | match_start_ts column on per_minute_features is authoritative; phase splits computed via timestamp comparison. | per_minute_universe_spec |
+| 9 | On-disk schema source-of-truth mapping | Binary-outcome filter = g9_metadata.result ∈ {'yes','no'} (string). category source = per_minute_features.category. partner source = per_minute_features.partner_ticker (NOT paired_event_partner_ticker). match_start_ts and minute_ts in per_minute_features are int64 unix seconds (NaN-bearing). g9_metadata.settlement_value_dollars is string, not float; coerce or use per_minute_features.settlement_value (double) instead. g9_metadata.open_time and g9_metadata.settlement_ts are ISO-8601 strings; pd.Timestamp() parses cleanly. | Schema probe 2026-05-16 ET; aligned with Rung 0 corpus filter convention |
 
 End of n_profile_v1 spec v0.1.

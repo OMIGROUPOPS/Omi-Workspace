@@ -10,7 +10,7 @@ Inputs (all read-only):
   - data/durable/per_minute_universe/per_minute_features.parquet
 
 Output:
-  - data/durable/n_profile_v1/n_profile.parquet (44 cols, one row per N)
+  - data/durable/n_profile_v1/n_profile.parquet (43 cols, one row per N)
   - data/durable/n_profile_v1/validation_report.md
   - data/durable/n_profile_v1/n_profile.meta.json
 
@@ -41,6 +41,7 @@ from zoneinfo import ZoneInfo
 
 import numpy as np
 import pandas as pd
+import pyarrow.parquet as pq
 
 # ---------------------------------------------------------------------------
 # pandas 3.0 + pyarrow 24 compat patch
@@ -104,7 +105,10 @@ SCHEMA_COLUMNS = [
     # Sample-quality flags (3)
     "has_complete_trade_tape", "has_complete_candle_tape", "tier",
 ]
-# 44 columns total
+# 43 enumerated columns (spec §2.1, in order). The spec header prose says
+# "44 columns total" — a known off-by-one in the prose; we emit exactly the
+# 43 enumerated columns and never synthesize a phantom 44th.
+assert len(SCHEMA_COLUMNS) == 43, f"schema column count = {len(SCHEMA_COLUMNS)} != 43"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -189,6 +193,47 @@ def assign_tier(market_open_ts: Optional[pd.Timestamp]) -> str:
     if t.tz is None:
         t = t.tz_localize("UTC")
     return "historical" if t < pd.Timestamp(TIER_CUTOFF_UTC) else "live"
+
+
+# ---------------------------------------------------------------------------
+# Per-ticker pyarrow predicate-pushdown I/O
+# ---------------------------------------------------------------------------
+# Mirrors build_rung0_cell_economics.py read_trades_for_ticker (~line 205):
+# the proven in-repo pattern that ran the FULL g9 corpus in ~1.9 GB without
+# OOM. NEVER full-load-then-filter the trade tape in a DataFrame — Phase 1
+# retry #3 was OOM-killed full-loading the 1.5 GB / 33.7M-row
+# g9_trades.parquet on the ~1.9 GB VPS. Each ticker reads only its own row
+# group(s) via the pushdown predicate.
+
+TRADES_PUSHDOWN_COLS = [
+    "created_time", "count_fp", "taker_side",
+    "yes_price_dollars", "no_price_dollars",
+]
+CANDLES_PUSHDOWN_COLS = ["end_period_ts", "open_interest_fp"]
+
+
+def read_trades_for_ticker(trades_path: Path, ticker: str) -> pd.DataFrame:
+    """Pushdown read of g9_trades for one ticker. Empty DF if no rows."""
+    tbl = pq.read_table(
+        str(trades_path),
+        columns=TRADES_PUSHDOWN_COLS,
+        filters=[("ticker", "=", ticker)],
+    )
+    if tbl.num_rows == 0:
+        return pd.DataFrame()
+    return tbl.to_pandas()
+
+
+def read_candles_for_ticker(candles_path: Path, ticker: str) -> pd.DataFrame:
+    """Pushdown read of g9_candles for one ticker. Empty DF if no rows."""
+    tbl = pq.read_table(
+        str(candles_path),
+        columns=CANDLES_PUSHDOWN_COLS,
+        filters=[("ticker", "=", ticker)],
+    )
+    if tbl.num_rows == 0:
+        return pd.DataFrame()
+    return tbl.to_pandas()
 
 
 # ---------------------------------------------------------------------------
@@ -646,7 +691,7 @@ def gate7_tz_correctness(df: pd.DataFrame) -> GateResult:
 def run_all_gates(on_disk_path: Path, expected_count: int, dropout_count: int) -> list[GateResult]:
     """C37 discipline: reload .new from disk and validate against bytes."""
     log.info(f"Reloading {on_disk_path} for gate validation")
-    df = pd.read_parquet(on_disk_path)
+    df = pq.read_table(str(on_disk_path)).to_pandas()
     log.info(f"On-disk shape: {df.shape}")
     return [
         gate1_row_count(df, expected_count, dropout_count),
@@ -739,7 +784,7 @@ def write_validation_report(report_path: Path, df: pd.DataFrame, result: Produce
 # ---------------------------------------------------------------------------
 
 def select_phase_tickers(
-    metadata: pd.DataFrame, phase: int, per_minute_path: Path
+    metadata: pd.DataFrame, phase: int, per_minute: pd.DataFrame
 ) -> list[str]:
     """
     Phase 1: 50 stratified. Phase 2: 1000 stratified. Phase 3: all binary tickers.
@@ -750,7 +795,8 @@ def select_phase_tickers(
     silently fail.
 
     category is T37-derived in per_minute_features.parquet, not in g9_metadata.
-    For stratified phases we load (ticker → category) once and join.
+    For stratified phases we reuse the one-time narrow per_minute projection
+    (already loaded in main via pq.read_table) — no extra parquet read here.
     """
     if "result" not in metadata.columns:
         raise RuntimeError(
@@ -766,11 +812,10 @@ def select_phase_tickers(
     if phase == 3:
         return binary["ticker"].tolist()
 
-    # Stratified phases need category — derive from per_minute_features.
-    log.info("Loading (ticker → category) map from per_minute_features for phase stratification")
-    cat_map = pd.read_parquet(per_minute_path, columns=["ticker", "category"]).drop_duplicates(
-        subset=["ticker"]
-    )
+    # Stratified phases need category — derive from the already-loaded
+    # per_minute narrow projection (zero additional parquet reads).
+    log.info("Deriving (ticker → category) map from per_minute narrow projection for phase stratification")
+    cat_map = per_minute[["ticker", "category"]].drop_duplicates(subset=["ticker"])
     log.info(f"  category map: {len(cat_map)} unique tickers")
     binary = binary.merge(cat_map, on="ticker", how="left")
     binary["category"] = binary["category"].fillna("unknown")
@@ -826,57 +871,54 @@ def main() -> int:
     }
     log.info(f"Inputs (sha256-16): {inputs_sha}")
 
-    log.info("Loading g9_metadata...")
-    metadata = pd.read_parquet(g9_metadata_path)
+    log.info("Loading g9_metadata (full load via pq.read_table — small, ~20K rows)...")
+    metadata = pq.read_table(str(g9_metadata_path)).to_pandas()
     log.info(f"  {len(metadata)} markets in metadata")
 
-    tickers = select_phase_tickers(metadata, args.phase, per_minute_path)
-    log.info(f"Phase {args.phase}: processing {len(tickers)} tickers")
-    expected_count = len(tickers)
-
-    log.info("Loading per_minute_features (this may take a moment)...")
+    # One-time NARROW per_minute_features projection (8 cols of 88) via
+    # pq.read_table — NOT a full-column load. Serves three consumers:
+    #   (a) ticker→category map for phase stratification
+    #   (b) per-ticker slice for compute (pass 1)
+    #   (c) pass-3 both-sides active-minute map
     # Per schema probe 2026-05-16 and spec §3.2 (commit b43fbaf7):
     # - partner column is `partner_ticker` (large_string), NOT paired_event_partner_ticker
-    # - category, settlement_value live here (T37-derived, double respectively)
+    # - category, settlement_value live here (T37-derived; double respectively)
     # - match_start_ts and minute_ts are int64 unix seconds with NaN
+    log.info("Loading per_minute_features narrow projection (8 cols, one-time, pq.read_table)...")
     pm_cols = ["ticker", "minute_ts", "match_start_ts", "partner_ticker",
                "category", "settlement_value",
                "trade_count_in_minute", "volume_in_minute"]
-    per_minute = pd.read_parquet(per_minute_path, columns=pm_cols)
-    log.info(f"  per_minute_features: {len(per_minute)} rows")
-    per_minute_indexed = per_minute[per_minute["ticker"].isin(set(tickers))].copy()
-    log.info(f"  filtered to phase tickers: {len(per_minute_indexed)} rows")
+    per_minute = pq.read_table(str(per_minute_path), columns=pm_cols).to_pandas()
+    log.info(f"  per_minute_features: {len(per_minute)} rows x {len(pm_cols)} cols")
 
-    log.info("Loading g9_trades (filtered to phase tickers)...")
-    trades_full = pd.read_parquet(g9_trades_path)
-    trades_indexed = trades_full[trades_full["ticker"].isin(set(tickers))].copy()
-    log.info(f"  trades filtered: {len(trades_indexed)} rows")
-    del trades_full
+    tickers = select_phase_tickers(metadata, args.phase, per_minute)
+    log.info(f"Phase {args.phase}: processing {len(tickers)} tickers")
+    expected_count = len(tickers)
+    ticker_set = set(tickers)
 
-    log.info("Loading g9_candles (filtered to phase tickers)...")
-    candles_full = pd.read_parquet(g9_candles_path)
-    candles_indexed = candles_full[candles_full["ticker"].isin(set(tickers))].copy()
-    log.info(f"  candles filtered: {len(candles_indexed)} rows")
-    del candles_full
+    per_minute_indexed = per_minute[per_minute["ticker"].isin(ticker_set)].copy()
+    log.info(f"  per_minute filtered to phase tickers: {len(per_minute_indexed)} rows")
+    del per_minute
 
-    metadata_indexed = metadata[metadata["ticker"].isin(set(tickers))].set_index("ticker")
-    trades_grouped = trades_indexed.groupby("ticker")
-    candles_grouped = candles_indexed.groupby("ticker")
+    metadata_indexed = metadata[metadata["ticker"].isin(ticker_set)].set_index("ticker")
     per_minute_grouped = per_minute_indexed.groupby("ticker")
 
-    # Pass 1
-    log.info("Pass 1: per-ticker rollup")
+    # Pass 1 — per-ticker pyarrow predicate-pushdown for g9_trades + g9_candles.
+    # g9_trades (1.5 GB / 33.7M rows) and g9_candles are NEVER full-loaded;
+    # each ticker reads only its own rows via filters=[("ticker","=",ticker)],
+    # mirroring the proven Rung 0 producer that ran the full corpus in ~1.9 GB.
+    log.info("Pass 1: per-ticker rollup (Rung 0 pushdown I/O — no full-file load)")
     rows = []
     dropouts = 0
     for i, t in enumerate(tickers):
         if i > 0 and i % 1000 == 0:
-            log.info(f"  Pass 1 progress: {i}/{len(tickers)}")
+            log.info(f"  Pass 1 progress: {i}/{len(tickers)}  emitted={len(rows)}  dropouts={dropouts}")
         if t not in metadata_indexed.index:
             dropouts += 1
             continue
         meta_row = metadata_indexed.loc[t]
-        trades_sub = trades_grouped.get_group(t) if t in trades_grouped.groups else pd.DataFrame()
-        candles_sub = candles_grouped.get_group(t) if t in candles_grouped.groups else pd.DataFrame()
+        trades_sub = read_trades_for_ticker(g9_trades_path, t)
+        candles_sub = read_candles_for_ticker(g9_candles_path, t)
         pm_sub = per_minute_grouped.get_group(t) if t in per_minute_grouped.groups else pd.DataFrame()
         row = compute_per_ticker_row(t, meta_row, trades_sub, candles_sub, pm_sub)
         if row is None:

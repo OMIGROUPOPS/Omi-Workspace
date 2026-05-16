@@ -76,7 +76,8 @@ DEFAULT_META_FILE = "n_profile.meta.json"
 # Cutoff between historical and live tier per F29 / TAXONOMY
 TIER_CUTOFF_UTC = datetime(2026, 3, 2, 0, 0, 0, tzinfo=UTC)
 
-# Spec Section 2.1 — 44-column schema in exact order
+# Spec Section 2.1 — 45-column schema in exact order (col 44 n_minutes_observed
+# per 7a72bc8; col 45 match_start_method per e4e0fdb — see SCHEMA_COLUMNS comment below)
 SCHEMA_COLUMNS = [
     # Identity / pairing (7)
     "ticker", "event_ticker", "paired_event_partner_ticker",

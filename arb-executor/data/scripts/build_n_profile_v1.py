@@ -152,12 +152,32 @@ def derive_event_ticker(ticker: str) -> str:
 
 
 def to_et(ts) -> Optional[pd.Timestamp]:
-    """Convert any timestamp to tz-aware ET. Returns None on null."""
-    if ts is None or pd.isna(ts):
+    """
+    Convert any timestamp to tz-aware ET. Returns None on null.
+
+    Handles:
+    - None / NaN / NaT → None
+    - ISO-8601 strings ('2026-04-01T04:31:00Z') — pd.Timestamp parses fine
+    - tz-aware pd.Timestamp → tz_convert
+    - int / float / int64 / float64 representing UNIX SECONDS — common in
+      per_minute_features (match_start_ts, minute_ts) per schema probe
+    - existing tz-naive pd.Timestamp → assume UTC, then convert
+    """
+    if ts is None:
         return None
-    t = pd.Timestamp(ts)
-    if t.tz is None:
-        t = t.tz_localize("UTC")
+    # Guard against NaN/NaT for numerics
+    try:
+        if pd.isna(ts):
+            return None
+    except (TypeError, ValueError):
+        pass
+    # Unix seconds (int/float) — convert via to_datetime with unit='s'
+    if isinstance(ts, (int, float, np.integer, np.floating)):
+        t = pd.to_datetime(ts, unit="s", utc=True)
+    else:
+        t = pd.Timestamp(ts)
+        if t.tz is None:
+            t = t.tz_localize("UTC")
     return t.tz_convert(ET)
 
 
@@ -189,30 +209,54 @@ def compute_per_ticker_row(
     """
     # Identity
     event_ticker = derive_event_ticker(ticker)
-    settlement_value = metadata_row.get("settlement_value_dollars",
-                                         metadata_row.get("settlement_value"))
-    if settlement_value is None or pd.isna(settlement_value):
+
+    # Settlement value: source from per_minute_features.settlement_value (double 0.0/1.0)
+    # per spec §3.2 corrected at b43fbaf7. g9_metadata.settlement_value_dollars is a
+    # STRING column ('0.0000'/'1.0000'/etc) per schema probe and float comparisons
+    # silently fail. Upstream binary filter (result ∈ yes/no) has already excluded scalars.
+    settlement_value = None
+    if not per_minute_subset.empty and "settlement_value" in per_minute_subset.columns:
+        sv_vals = per_minute_subset["settlement_value"].dropna().unique()
+        if len(sv_vals) > 0:
+            settlement_value = float(sv_vals[0])
+    if settlement_value is None:
+        # Metadata fallback (coerce string to numeric); should rarely fire post-probe.
+        meta_sv = metadata_row.get("settlement_value_dollars")
+        if meta_sv is not None and not pd.isna(meta_sv):
+            try:
+                settlement_value = float(meta_sv)
+            except (TypeError, ValueError):
+                settlement_value = None
+    if settlement_value is None:
         return None
     if settlement_value not in (0.0, 1.0):
-        return None  # scalars excluded
+        return None  # scalars excluded (defensive — upstream filter should have excluded)
 
-    category = metadata_row.get("category")
+    # Category from per_minute_features (T37-derived; metadata has no category column).
+    category = None
+    if not per_minute_subset.empty and "category" in per_minute_subset.columns:
+        cat_vals = per_minute_subset["category"].dropna().unique()
+        if len(cat_vals) > 0:
+            category = str(cat_vals[0])
+
     market_open_ts = to_et(metadata_row.get("market_open_ts",
                                              metadata_row.get("open_time")))
     settlement_ts = to_et(metadata_row.get("settlement_ts",
                                             metadata_row.get("settlement_time")))
 
-    # match_start_ts from per_minute_features (canonical match-start)
+    # match_start_ts from per_minute_features (canonical; int64 unix seconds with NaN per probe).
+    # to_et() handles unix-second numerics.
     match_start_ts = None
     if not per_minute_subset.empty and "match_start_ts" in per_minute_subset.columns:
         ms_vals = per_minute_subset["match_start_ts"].dropna().unique()
         if len(ms_vals) > 0:
             match_start_ts = to_et(ms_vals[0])
 
-    # Partner ticker
+    # Partner ticker — source column is `partner_ticker` (large_string) per schema probe;
+    # output column name stays `paired_event_partner_ticker` per spec §2.1.
     partner_ticker = None
-    if not per_minute_subset.empty and "paired_event_partner_ticker" in per_minute_subset.columns:
-        pp = per_minute_subset["paired_event_partner_ticker"].dropna().unique()
+    if not per_minute_subset.empty and "partner_ticker" in per_minute_subset.columns:
+        pp = per_minute_subset["partner_ticker"].dropna().unique()
         if len(pp) > 0:
             partner_ticker = str(pp[0])
 
@@ -700,13 +744,24 @@ def select_phase_tickers(
     """
     Phase 1: 50 stratified. Phase 2: 1000 stratified. Phase 3: all binary tickers.
 
-    category is a T37-derived column (lives in per_minute_features.parquet, NOT
-    in g9_metadata). For stratified phases we load a (ticker → category) map
-    from per_minute_features once and join onto the binary subset.
+    Binary-outcome filter: g9_metadata.result ∈ {'yes', 'no'} per spec §3.2
+    (the canonical Rung 0 / corpus-probe filter; 'scalar' excluded). g9_metadata
+    is all-string per schema probe — float comparisons on settlement_value_dollars
+    silently fail.
+
+    category is T37-derived in per_minute_features.parquet, not in g9_metadata.
+    For stratified phases we load (ticker → category) once and join.
     """
-    binary = metadata[metadata["settlement_value_dollars"].isin([0.0, 1.0])].copy() \
-        if "settlement_value_dollars" in metadata.columns \
-        else metadata[metadata["settlement_value"].isin([0.0, 1.0])].copy()
+    if "result" not in metadata.columns:
+        raise RuntimeError(
+            "g9_metadata missing required 'result' column per schema probe 2026-05-16"
+        )
+    binary = metadata[metadata["result"].isin(["yes", "no"])].copy()
+    log.info(f"Binary-outcome filter (result ∈ yes/no): {len(binary)} tickers from {len(metadata)} metadata rows")
+    if len(binary) == 0:
+        raise RuntimeError(
+            "Binary-outcome filter selected 0 tickers — verify g9_metadata.result column"
+        )
 
     if phase == 3:
         return binary["ticker"].tolist()
@@ -724,14 +779,22 @@ def select_phase_tickers(
         per_cat = binary.groupby("category", group_keys=False).apply(
             lambda g: g.sample(min(10, len(g)), random_state=42)
         )
-        return per_cat["ticker"].tolist()[:50]
+        tickers = per_cat["ticker"].tolist()[:50]
     elif phase == 2:
         per_cat = binary.groupby("category", group_keys=False).apply(
             lambda g: g.sample(min(250, len(g)), random_state=42)
         )
-        return per_cat["ticker"].tolist()[:1000]
+        tickers = per_cat["ticker"].tolist()[:1000]
     else:
         raise ValueError(f"phase must be 1, 2, or 3 — got {phase}")
+
+    if len(tickers) == 0:
+        raise RuntimeError(
+            f"Phase {phase} stratified selection produced 0 tickers — "
+            f"check per_minute_features category coverage"
+        )
+    log.info(f"Phase {phase} selected {len(tickers)} tickers")
+    return tickers
 
 
 def main() -> int:
@@ -772,7 +835,12 @@ def main() -> int:
     expected_count = len(tickers)
 
     log.info("Loading per_minute_features (this may take a moment)...")
-    pm_cols = ["ticker", "minute_ts", "match_start_ts", "paired_event_partner_ticker",
+    # Per schema probe 2026-05-16 and spec §3.2 (commit b43fbaf7):
+    # - partner column is `partner_ticker` (large_string), NOT paired_event_partner_ticker
+    # - category, settlement_value live here (T37-derived, double respectively)
+    # - match_start_ts and minute_ts are int64 unix seconds with NaN
+    pm_cols = ["ticker", "minute_ts", "match_start_ts", "partner_ticker",
+               "category", "settlement_value",
                "trade_count_in_minute", "volume_in_minute"]
     per_minute = pd.read_parquet(per_minute_path, columns=pm_cols)
     log.info(f"  per_minute_features: {len(per_minute)} rows")

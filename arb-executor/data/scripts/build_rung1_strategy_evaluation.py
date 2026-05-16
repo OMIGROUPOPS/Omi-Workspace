@@ -43,6 +43,28 @@ import numpy as np
 import pandas as pd
 
 # ---------------------------------------------------------------------------
+# pandas 3.0 + pyarrow 24 compat patch
+# ---------------------------------------------------------------------------
+# pyarrow.pandas_compat.make_datetimetz calls pa.lib.string_to_tzinfo() which
+# returns a pytz.tzfile object. pandas 3.0's DatetimeTZDtype constructor calls
+# timezones.tz_standardize() which no longer accepts pytz objects directly,
+# raising AttributeError("'NoneType' object has no attribute 'timezone'").
+# We patch make_datetimetz to pass the tz STRING straight to DatetimeTZDtype,
+# which pandas 3.0 accepts cleanly. Same fix as Rung 0 producer commit 52edf132.
+def _install_pandas3_pyarrow_compat_patch():
+    try:
+        import pyarrow.pandas_compat as _papc
+        from pandas.core.dtypes.dtypes import DatetimeTZDtype as _DTZD
+        def _patched_make_datetimetz(unit, tz):
+            return _DTZD(unit=unit, tz=tz)
+        _papc.make_datetimetz = _patched_make_datetimetz
+    except Exception:
+        pass
+
+_install_pandas3_pyarrow_compat_patch()
+
+
+# ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
 

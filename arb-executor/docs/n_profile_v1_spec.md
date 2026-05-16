@@ -83,7 +83,7 @@ One row per N. Estimated row count: ~19,614 (binary-outcome subset of g9_metadat
 | 8 | `market_open_ts` | ts ET | When the N's market opened |
 | 9 | `first_trade_ts` | ts ET or null | Microsecond timestamp of N's first trade (any size) |
 | 10 | `last_trade_ts_pre_resolution` | ts ET or null | Last trade before first_extreme_touch_ts (per Rung 0 col 27 semantics) |
-| 11 | `lifetime_minutes` | int | Total minutes from market_open_ts to settlement_ts |
+| 11 | `lifetime_minutes` | int | Market WALL-CLOCK lifetime: minutes from g9_metadata open_time → settlement_ts. Markets open hours-to-days before match start (median ~15h, observed max ~4.9d). This is intentionally NOT equal to the per_minute_features observed-minute count — per_minute_features (T37) is a bounded observation window that begins well after market open. The gap between wall-clock lifetime and observed minutes is surfaced as an informative coverage measurement (§4.2), not a correctness invariant. NaN if open_time or settlement_ts unresolvable. |
 
 **Premarket vs in-match phase counts (4 columns):**
 | 12 | `n_minutes_premarket` | int | Minutes from market_open_ts to match_start_ts |
@@ -188,7 +188,7 @@ C37 discipline: write to `.new`, reload-from-disk, gate-validate, `os.replace` o
 
 1. **Row count parity.** Emitted row count = unique tickers in binary-outcome subset of g9_metadata minus measured dropouts. Dropouts must be enumerated by reason and totaled exactly.
 2. **Partner-ticker resolution.** For every emitted row where partner_total_volume_lifetime is non-null, the partner ticker must also be an emitted row. Bilateral joins must close (or be explicitly logged as orphan).
-3. **Phase consistency.** For every row, n_minutes_premarket + n_minutes_in_match = lifetime_minutes (within 1-minute rounding tolerance). Zero violations.
+3. **Phase partition exhaustiveness.** For every row, n_minutes_premarket + n_minutes_in_match = the count of per_minute_features rows observed for that ticker (the phase split at match_start_ts must be exhaustive and non-overlapping over the OBSERVED minutes — every observed minute is classified premarket xor in_match). Zero violations. NOTE: this is an internal-consistency invariant over the observation window, NOT a wall-clock check — lifetime_minutes (§2.1 col 11, market wall-clock) is definitionally larger than the observed-minute count because per_minute_features (T37) is a bounded window that starts after market open. Comparing phase_sum to lifetime_minutes is a category error (the original v0.1 gate-3 defect, surfaced Phase 1 retry #4); the correct invariant is phase_sum == observed_row_count. For no-match-start N's (match_start_ts is NaT), all observed minutes classify as premarket (n_minutes_in_match = 0) and the invariant still holds (premarket count == observed count).
 4. **Volume conservation.** total_volume_lifetime = total_volume_premarket + total_volume_in_match exactly per row.
 5. **Taker-side conservation.** yes_taker_volume_cum + no_taker_volume_cum = total_volume_lifetime exactly per row (per G19 100%-populated taker_side).
 6. **OI monotonicity sanity.** oi_max_lifetime >= oi_at_match_start (if both non-null) and >= oi_at_t20m (if both non-null).
@@ -201,6 +201,7 @@ C37 discipline: write to `.new`, reload-from-disk, gate-validate, `os.replace` o
 - Per-tier counts and dropout breakdown.
 - yes_taker_imbalance distribution (centered? skewed?).
 - Partner-volume-pairing ratio distribution: this_N_volume / partner_N_volume, log-scale. Reveals symmetric vs asymmetric paired liquidity.
+- **Observation-coverage ratio:** (n_minutes_premarket + n_minutes_in_match) / lifetime_minutes per N. The fraction of the market's wall-clock life that per_minute_features actually observed. Phase 1 retry #4 sample showed median ~0.27 (T37's observation window covers ~27% of median market wall-clock lifetime; the rest is pre-observation-window market existence). This is a coverage characterization, NOT a correctness gate — surfaced because it explains why lifetime_minutes ≫ phase_sum by construction. Distribution (min/p25/median/p75/p90/max) logged in validation_report.
 
 ---
 
@@ -252,5 +253,6 @@ Fraction of paired matches where both N's have total_volume_premarket > {50, 100
 | 7 | Tier discrimination | Add `tier` column ("historical" / "live") for downstream filtering per F29 era-based behavior. | F29 |
 | 8 | Phase boundary handling | match_start_ts column on per_minute_features is authoritative; phase splits computed via timestamp comparison. | per_minute_universe_spec |
 | 9 | On-disk schema source-of-truth mapping | Binary-outcome filter = g9_metadata.result ∈ {'yes','no'} (string). category source = per_minute_features.category. partner source = per_minute_features.partner_ticker (NOT paired_event_partner_ticker). match_start_ts and minute_ts in per_minute_features are int64 unix seconds (NaN-bearing). g9_metadata.settlement_value_dollars is string, not float; coerce or use per_minute_features.settlement_value (double) instead. g9_metadata.open_time and g9_metadata.settlement_ts are ISO-8601 strings; pd.Timestamp() parses cleanly. | Schema probe 2026-05-16 ET; aligned with Rung 0 corpus filter convention |
+| 10 | Gate 3 definition (phase consistency vs partition exhaustiveness) | Original v0.1 gate 3 equated phase_sum with lifetime_minutes (wall-clock) — structurally impossible since per_minute_features (T37) is a bounded observation window, not a per-wall-clock-minute table (Phase 1 retry #4: 50/50 rows failed, median delta −679 min). REDEFINED: gate 3 = phase partition exhaustiveness over OBSERVED minutes (phase_sum == per_minute_features observed row count). lifetime_minutes retained as honest market wall-clock; wall-clock-vs-observed gap demoted to §4.2 informative coverage ratio. No-match-start N's (match_start_ts NaT) classify all observed minutes as premarket; invariant still holds. | Operator adjudication 2026-05-16 ET (App Option 1); same defect class as resolution-log row 9 |
 
 End of n_profile_v1 spec v0.1.

@@ -466,15 +466,20 @@ def filter_by_phase(rung0: pd.DataFrame, phase: int) -> pd.DataFrame:
         raise ValueError(f"phase must be 1, 2, or 3 — got {phase}")
 
 
-def build_output(rung0: pd.DataFrame) -> pd.DataFrame:
+def build_output(rung0: pd.DataFrame, corpus_active_days: int) -> pd.DataFrame:
     """
     Main pipeline. For each threshold, compute per-row realized values.
     Then groupby cell_key and aggregate. Result: 72×8 = 576 rows (or fewer in
     phase 1/2).
+
+    corpus_active_days is passed in from caller — must be computed on the FULL
+    unfiltered Rung 0 corpus (per spec Section 3.1, G22-aligned), NOT on the
+    phase-filtered slice. The denominator measures N's-per-day across the
+    operational total span regardless of which cells the current phase is
+    processing (LESSONS G22: N = market / unit-of-observation; ct = sizing unit).
     """
-    corpus_active_days = compute_corpus_active_days(rung0)
-    log.info(f"Corpus active days: {corpus_active_days}")
-    log.info(f"Rung 0 rows: {len(rung0)}; unique cells: {rung0['cell_key'].nunique()}")
+    log.info(f"Corpus active days (full-corpus denominator for N's-per-day): {corpus_active_days}")
+    log.info(f"Rung 0 N's this phase: {len(rung0)}; cells: {rung0['cell_key'].nunique()}")
 
     rows = []
     for threshold_cents in THRESHOLD_GRID_CENTS:
@@ -775,15 +780,21 @@ def main() -> int:
     # Load Rung 0
     rung0_full = load_rung0(args.input)
     input_sha = sha256_of_file(args.input)
-    log.info(f"Loaded Rung 0: {len(rung0_full)} rows, sha256 {input_sha[:16]}…")
+    log.info(f"Loaded Rung 0: {len(rung0_full)} N's, sha256 {input_sha[:16]}…")
+
+    # Compute corpus_active_days ONCE on the FULL unfiltered corpus per G22-aligned
+    # spec Section 3.1. This is the operational total span denominator for
+    # daily_opportunity_rate (N's-per-day) — must NOT be recomputed on filtered slices.
+    corpus_active_days = compute_corpus_active_days(rung0_full)
+    log.info(f"Full-corpus active days: {corpus_active_days} (denominator for N's-per-day)")
 
     # Phase filter
     rung0 = filter_by_phase(rung0_full, args.phase)
     expected_cells = sorted(rung0["cell_key"].unique().tolist())
-    log.info(f"Filtered to {len(rung0)} rows, {len(expected_cells)} cells")
+    log.info(f"Filtered to {len(rung0)} N's, {len(expected_cells)} cells")
 
     # Build output
-    df_out = build_output(rung0)
+    df_out = build_output(rung0, corpus_active_days)
 
     # Write .new
     args.output_dir.mkdir(parents=True, exist_ok=True)

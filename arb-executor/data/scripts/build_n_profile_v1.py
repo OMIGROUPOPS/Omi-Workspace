@@ -346,10 +346,15 @@ def compute_per_ticker_row(
         # Filter to non-zero count_fp per C36 zero-size-trade discovery
         active_trades = trades_subset[trades_subset["count_fp"] > 0].copy()
         if not active_trades.empty:
-            # Normalize created_time to ET
-            ct = pd.to_datetime(active_trades["created_time"])
-            if ct.dt.tz is None:
-                ct = ct.dt.tz_localize("UTC")
+            # Normalize created_time to ET. g9_trades.created_time is string
+            # ISO-8601 with HETEROGENEOUS fractional-second precision (probe
+            # 2026-05-16: 27-char/6-digit bulk down to no-frac; pandas inferred
+            # fixed format crashes on the variants — the :350 ValueError).
+            # format='ISO8601' handles all precision variants; utc=True makes
+            # the result tz-aware directly (no localize branch needed).
+            ct = pd.to_datetime(
+                active_trades["created_time"], format="ISO8601", utc=True
+            )
             ct = ct.dt.tz_convert(ET)
             active_trades = active_trades.assign(_ts_et=ct)
             active_trades = active_trades.sort_values("_ts_et")
@@ -405,10 +410,12 @@ def compute_per_ticker_row(
     if not per_minute_subset.empty:
         pm = per_minute_subset.copy()
         if "minute_ts" in pm.columns:
-            pm["_ts_et"] = pd.to_datetime(pm["minute_ts"])
-            if pm["_ts_et"].dt.tz is None:
-                pm["_ts_et"] = pm["_ts_et"].dt.tz_localize("UTC")
-            pm["_ts_et"] = pm["_ts_et"].dt.tz_convert(ET)
+            # minute_ts is int64 UNIX SECONDS (probe 2026-05-16). Parsing
+            # without unit='s' interprets it as nanoseconds → 1970 garbage
+            # → silently corrupts the premarket/in-match phase split.
+            pm["_ts_et"] = pd.to_datetime(
+                pm["minute_ts"], unit="s", utc=True
+            ).dt.tz_convert(ET)
             if match_start_ts is not None:
                 pm_pre = pm[pm["_ts_et"] < match_start_ts]
                 pm_post = pm[pm["_ts_et"] >= match_start_ts]
@@ -588,9 +595,12 @@ def compute_both_sides_active_minutes(
     active_minutes = per_minute_df[per_minute_df["trade_count_in_minute"] > 0][
         ["ticker", "minute_ts"]
     ].copy()
-    active_minutes["minute_ts_norm"] = pd.to_datetime(active_minutes["minute_ts"])
-    if active_minutes["minute_ts_norm"].dt.tz is None:
-        active_minutes["minute_ts_norm"] = active_minutes["minute_ts_norm"].dt.tz_localize("UTC")
+    # minute_ts is int64 UNIX SECONDS (probe 2026-05-16) — parse with unit='s'
+    # or the integer is read as nanoseconds → 1970 garbage. utc=True yields
+    # tz-aware directly (set-membership join below only needs consistent tz).
+    active_minutes["minute_ts_norm"] = pd.to_datetime(
+        active_minutes["minute_ts"], unit="s", utc=True
+    )
 
     ticker_minute_set = active_minutes.groupby("ticker")["minute_ts_norm"].apply(set).to_dict()
 

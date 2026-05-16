@@ -1,7 +1,8 @@
 """
 n_profile_v1 producer — per-N measurement universe rollup.
 
-Spec: docs/n_profile_v1_spec.md v0.1 (commit 373e769).
+Spec: docs/n_profile_v1_spec.md (evolving commit chain — see producer_commit
+in n_profile.meta.json for the exact code provenance of any given artifact).
 
 Inputs (all read-only):
   - data/durable/g9_trades.parquet
@@ -10,7 +11,7 @@ Inputs (all read-only):
   - data/durable/per_minute_universe/per_minute_features.parquet
 
 Output:
-  - data/durable/n_profile_v1/n_profile.parquet (43 cols, one row per N)
+  - data/durable/n_profile_v1/n_profile.parquet (45 cols, one row per N)
   - data/durable/n_profile_v1/validation_report.md
   - data/durable/n_profile_v1/n_profile.meta.json
 
@@ -32,6 +33,7 @@ import hashlib
 import json
 import logging
 import os
+import subprocess
 import sys
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -768,6 +770,22 @@ def run_all_gates(on_disk_path: Path, expected_count: int, dropout_count: int) -
 # Output I/O
 # ---------------------------------------------------------------------------
 
+def _producer_commit() -> str:
+    """
+    Short git commit of the producer code that generated an artifact — the
+    most meaningful provenance anchor (the spec chain is reconstructable from
+    the producer commit, not vice versa). Degrades to 'unknown' on ANY failure:
+    provenance metadata must never abort an otherwise-valid data run.
+    """
+    try:
+        return subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            capture_output=True, text=True, timeout=10, check=True,
+        ).stdout.strip() or "unknown"
+    except Exception:
+        return "unknown"
+
+
 def write_meta_sidecar(meta_path: Path, result: ProducerResult) -> None:
     meta = {
         "output_sha256": result.output_sha256,
@@ -775,8 +793,8 @@ def write_meta_sidecar(meta_path: Path, result: ProducerResult) -> None:
         "rows_emitted": result.rows_emitted,
         "run_started_at_et": result.run_started_at_et,
         "run_completed_at_et": result.run_completed_at_et,
-        "spec": "docs/n_profile_v1_spec.md v0.1",
-        "spec_commit": "373e769",
+        "spec": "docs/n_profile_v1_spec.md",
+        "producer_commit": _producer_commit(),
         "inputs_sha256": result.inputs_sha256,
         "gates": [
             {"name": g.name, "passed": g.passed, "n_violations": g.n_violations, "detail": g.detail}
@@ -791,7 +809,8 @@ def write_validation_report(report_path: Path, df: pd.DataFrame, result: Produce
         "# n_profile_v1 Validation Report",
         "",
         f"**Run completed:** {result.run_completed_at_et}",
-        f"**Spec:** docs/n_profile_v1_spec.md v0.1 (commit 373e769)",
+        f"**Spec:** docs/n_profile_v1_spec.md (commit chain)",
+        f"**Producer commit:** {_producer_commit()}",
         f"**Output sha256:** {result.output_sha256}",
         f"**Output bytes:** {result.output_bytes}",
         f"**Rows emitted:** {result.rows_emitted}",
@@ -836,6 +855,27 @@ def write_validation_report(report_path: Path, df: pd.DataFrame, result: Produce
     ]
     for cat, count in df["category"].value_counts().items():
         lines.append(f"- {cat}: {count}")
+    # §4.2 match_start_method distribution + zero-in-match breakdown (spec e4e0fdb;
+    # LESSONS F35 — surfaces the tier-3 boundary-unreliable + unknown early-settle
+    # cohorts in every build so downstream F35-reliability filtering is visible,
+    # not just ad-hoc computable from the parquet).
+    lines += [
+        "",
+        "## match_start_method distribution + zero-in-match (LESSONS F35)",
+        "",
+        "| method | N | zero_in_match | pct_zero | median_in_match |",
+        "|---|---|---|---|---|",
+    ]
+    if "match_start_method" in df.columns:
+        _z = df["n_minutes_in_match"] == 0
+        for method, grp in df.groupby(df["match_start_method"].fillna("<null>")):
+            n = len(grp)
+            zc = int((grp["n_minutes_in_match"] == 0).sum())
+            pz = (zc / n) if n else 0.0
+            mim = grp["n_minutes_in_match"].median()
+            lines.append(f"| {method} | {n} | {zc} | {pz:.1%} | {mim:.0f} |")
+    else:
+        lines.append("| (match_start_method column absent) | - | - | - | - |")
     report_path.write_text("\n".join(lines) + "\n")
 
 

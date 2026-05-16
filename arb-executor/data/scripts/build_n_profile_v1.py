@@ -83,9 +83,10 @@ SCHEMA_COLUMNS = [
     "category", "match_start_ts", "settlement_ts", "settlement_value_dollars",
     # Lifetime timing (4)
     "market_open_ts", "first_trade_ts", "last_trade_ts_pre_resolution", "lifetime_minutes",
-    # Premarket vs in-match phase counts (4)
+    # Premarket vs in-match phase counts (5 — incl n_minutes_observed col 44 per spec 7a72bc8)
     "n_minutes_premarket", "n_minutes_in_match",
     "n_active_minutes_premarket", "n_active_minutes_in_match",
+    "n_minutes_observed",
     # Volume profile (6)
     "total_volume_lifetime", "total_volume_premarket", "total_volume_in_match",
     "peak_volume_minute_ts", "peak_volume_in_that_minute", "mean_volume_per_active_minute",
@@ -105,10 +106,11 @@ SCHEMA_COLUMNS = [
     # Sample-quality flags (3)
     "has_complete_trade_tape", "has_complete_candle_tape", "tier",
 ]
-# 43 enumerated columns (spec §2.1, in order). The spec header prose says
-# "44 columns total" — a known off-by-one in the prose; we emit exactly the
-# 43 enumerated columns and never synthesize a phantom 44th.
-assert len(SCHEMA_COLUMNS) == 43, f"schema column count = {len(SCHEMA_COLUMNS)} != 43"
+# 44 enumerated columns (spec §2.1, in order; commit 7a72bc8 added
+# n_minutes_observed as col 44 — the gate-3 RHS and §4.2 coverage-ratio
+# denominator). This reconciles the prior v0.1 header off-by-one correctly:
+# the column earns the 44th slot by purpose, not as a phantom filler.
+assert len(SCHEMA_COLUMNS) == 44, f"schema column count = {len(SCHEMA_COLUMNS)} != 44"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -482,6 +484,13 @@ def compute_per_ticker_row(
         "n_minutes_in_match": n_minutes_in_match,
         "n_active_minutes_premarket": n_active_minutes_premarket,
         "n_active_minutes_in_match": n_active_minutes_in_match,
+        # col 44 per spec 7a72bc8: observed-row count = the phase partition's
+        # total. By construction n_minutes_premarket + n_minutes_in_match IS the
+        # exhaustive partition of this ticker's per_minute_features rows
+        # (pm_pre ⊎ pm_post = pm, or all-premarket when match_start_ts is NaT),
+        # so this equals len(per_minute_subset). Computed as the sum so gate-3
+        # sub-invariant (a) holds by construction while staying disk-checkable.
+        "n_minutes_observed": n_minutes_premarket + n_minutes_in_match,
         "total_volume_lifetime": volume_lifetime,
         "total_volume_premarket": volume_premarket,
         "total_volume_in_match": volume_in_match,
@@ -611,16 +620,43 @@ def gate2_partner_resolution(df: pd.DataFrame) -> GateResult:
     )
 
 
-def gate3_phase_consistency(df: pd.DataFrame) -> GateResult:
-    """n_minutes_premarket + n_minutes_in_match = lifetime_minutes (within 1-min tolerance)."""
-    sub = df[df["lifetime_minutes"].notna()].copy()
-    sub["diff"] = (sub["n_minutes_premarket"] + sub["n_minutes_in_match"]) - sub["lifetime_minutes"]
-    bad = sub[sub["diff"].abs() > 1]
+def gate3_phase_partition_exhaustiveness(df: pd.DataFrame) -> GateResult:
+    """
+    Spec §4.1 gate 3 (redefined 8ccb92d, made disk-checkable 7a72bc8).
+    Three sub-invariants over the OBSERVATION WINDOW (NOT wall-clock —
+    lifetime_minutes is definitionally larger; comparing to it was the
+    original v0.1 category-error defect surfaced Phase 1 retry #4):
+
+      (a) EXHAUSTIVE PARTITION: n_minutes_premarket + n_minutes_in_match
+          == n_minutes_observed exactly (zero tolerance).
+      (b) ACTIVE SUBSET: n_active_minutes_premarket <= n_minutes_premarket
+          AND n_active_minutes_in_match <= n_minutes_in_match.
+      (c) NON-NEGATIVE: all four phase counts >= 0.
+    """
+    a_bad = df[
+        (df["n_minutes_premarket"] + df["n_minutes_in_match"])
+        != df["n_minutes_observed"]
+    ]
+    b_bad = df[
+        (df["n_active_minutes_premarket"] > df["n_minutes_premarket"])
+        | (df["n_active_minutes_in_match"] > df["n_minutes_in_match"])
+    ]
+    c_bad = df[
+        (df["n_minutes_premarket"] < 0)
+        | (df["n_minutes_in_match"] < 0)
+        | (df["n_active_minutes_premarket"] < 0)
+        | (df["n_active_minutes_in_match"] < 0)
+    ]
+    n_viol = len(a_bad) + len(b_bad) + len(c_bad)
     return GateResult(
-        name="gate3_phase_consistency",
-        passed=(len(bad) == 0),
-        n_violations=len(bad),
-        detail=f"{len(bad)} rows with phase-sum != lifetime ±1min",
+        name="gate3_phase_partition_exhaustiveness",
+        passed=(n_viol == 0),
+        n_violations=n_viol,
+        detail=(
+            f"(a)exhaustive_partition_viol={len(a_bad)} "
+            f"(b)active_subset_viol={len(b_bad)} "
+            f"(c)negative_count_viol={len(c_bad)}"
+        ),
     )
 
 
@@ -696,7 +732,7 @@ def run_all_gates(on_disk_path: Path, expected_count: int, dropout_count: int) -
     return [
         gate1_row_count(df, expected_count, dropout_count),
         gate2_partner_resolution(df),
-        gate3_phase_consistency(df),
+        gate3_phase_partition_exhaustiveness(df),
         gate4_volume_conservation(df),
         gate5_taker_side_conservation(df),
         gate6_oi_monotonicity(df),
@@ -951,6 +987,28 @@ def main() -> int:
     all_pass = all(g.passed for g in gate_results)
     if not all_pass:
         log.error("HARD GATE FAILURE — halting; .new preserved at " + str(new_path))
+        # Spec §3.4: write disk-evidence halt log for operator adjudication.
+        try:
+            halt_dir = args.output_dir / "logs"
+            halt_dir.mkdir(parents=True, exist_ok=True)
+            ts = datetime.now(ET).strftime("%Y%m%dT%H%M%S")
+            halt_path = halt_dir / f"halted_{ts}.log"
+            lines = [
+                f"n_profile_v1 HALTED (hard gate failure) {datetime.now(ET).isoformat()}",
+                f".new preserved (NOT replaced): {new_path}",
+                f"expected_count={expected_count} dropouts={dropouts}",
+                "",
+                "Gate results:",
+            ]
+            for g in gate_results:
+                lines.append(
+                    f"  {g.name}: {'PASS' if g.passed else 'FAIL'} "
+                    f"n_violations={g.n_violations} {g.detail}"
+                )
+            halt_path.write_text("\n".join(lines) + "\n")
+            log.error(f"Halt log written: {halt_path}")
+        except Exception as e:
+            log.error(f"Failed to write halt log: {type(e).__name__}: {e}")
         return 1
 
     log.info(f"All gates PASS — performing os.replace({new_path} → {final_path})")

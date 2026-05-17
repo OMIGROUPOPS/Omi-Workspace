@@ -218,6 +218,13 @@ TRADES_PUSHDOWN_COLS = [
 ]
 CANDLES_PUSHDOWN_COLS = ["end_period_ts", "open_interest_fp"]
 
+# per_minute_features columns needed per-ticker (Pass-1 compute slice).
+# Pushed down per-ticker, mirroring TRADES/CANDLES — never whole-frame
+# resident (Phase-3 OOM remediation).
+PMF_PUSHDOWN_COLS = ["ticker", "minute_ts", "match_start_ts", "partner_ticker",
+                     "category", "settlement_value", "match_start_method",
+                     "trade_count_in_minute", "volume_in_minute"]
+
 
 def read_trades_for_ticker(trades_path: Path, ticker: str) -> pd.DataFrame:
     """Pushdown read of g9_trades for one ticker. Empty DF if no rows."""
@@ -236,6 +243,23 @@ def read_candles_for_ticker(candles_path: Path, ticker: str) -> pd.DataFrame:
     tbl = pq.read_table(
         str(candles_path),
         columns=CANDLES_PUSHDOWN_COLS,
+        filters=[("ticker", "=", ticker)],
+    )
+    if tbl.num_rows == 0:
+        return pd.DataFrame()
+    return tbl.to_pandas()
+
+
+def read_pmf_for_ticker(pmf_path: Path, ticker: str) -> pd.DataFrame:
+    """
+    Pushdown read of per_minute_features for one ticker. Empty DF if no rows.
+    Mirrors read_trades_for_ticker / read_candles_for_ticker — the proven
+    Rung-0 per-ticker pattern. Phase-3 OOM remediation: the PMF projection is
+    NEVER held whole-frame; each ticker reads only its own rows.
+    """
+    tbl = pq.read_table(
+        str(pmf_path),
+        columns=PMF_PUSHDOWN_COLS,
         filters=[("ticker", "=", ticker)],
     )
     if tbl.num_rows == 0:
@@ -583,20 +607,26 @@ def join_partner_stats(df: pd.DataFrame) -> pd.DataFrame:
 # ---------------------------------------------------------------------------
 
 def compute_both_sides_active_minutes(
-    df: pd.DataFrame, per_minute_df: pd.DataFrame
+    df: pd.DataFrame, pmf_path: Path
 ) -> pd.DataFrame:
     """
     For each ticker, count minutes where BOTH this N and partner N had
     trade_count_in_minute > 0 at the same minute_ts.
+
+    Phase-3 OOM remediation: reads PMF pushed-down to active minutes only
+    (filters=[("trade_count_in_minute",">",0)]) + 3 cols — never the whole
+    9.3M-row frame. Active minutes are a small fraction of total per G19.
     """
-    log.info("Pass 3: computing both_sides_active_minutes")
-    if "trade_count_in_minute" not in per_minute_df.columns:
+    log.info("Pass 3: computing both_sides_active_minutes (active-only pushdown read)")
+    active_tbl = pq.read_table(
+        str(pmf_path),
+        columns=["ticker", "minute_ts", "trade_count_in_minute"],
+        filters=[("trade_count_in_minute", ">", 0)],
+    )
+    if active_tbl.num_rows == 0:
         df["both_sides_active_minutes"] = 0
         return df
-
-    active_minutes = per_minute_df[per_minute_df["trade_count_in_minute"] > 0][
-        ["ticker", "minute_ts"]
-    ].copy()
+    active_minutes = active_tbl.to_pandas()[["ticker", "minute_ts"]].copy()
     # minute_ts is int64 UNIX SECONDS (probe 2026-05-16) — parse with unit='s'
     # or the integer is read as nanoseconds → 1970 garbage. utc=True yields
     # tz-aware directly (set-membership join below only needs consistent tz).
@@ -884,7 +914,7 @@ def write_validation_report(report_path: Path, df: pd.DataFrame, result: Produce
 # ---------------------------------------------------------------------------
 
 def select_phase_tickers(
-    metadata: pd.DataFrame, phase: int, per_minute: pd.DataFrame
+    metadata: pd.DataFrame, phase: int, per_minute_path: Path
 ) -> list[str]:
     """
     Phase 1: 50 stratified. Phase 2: 1000 stratified. Phase 3: all binary tickers.
@@ -895,8 +925,8 @@ def select_phase_tickers(
     silently fail.
 
     category is T37-derived in per_minute_features.parquet, not in g9_metadata.
-    For stratified phases we reuse the one-time narrow per_minute projection
-    (already loaded in main via pq.read_table) — no extra parquet read here.
+    For stratified phases category comes from a 2-col pushdown read of
+    per_minute_features — no whole-frame residency (Phase-3 OOM remediation).
     """
     if "result" not in metadata.columns:
         raise RuntimeError(
@@ -912,10 +942,12 @@ def select_phase_tickers(
     if phase == 3:
         return binary["ticker"].tolist()
 
-    # Stratified phases need category — derive from the already-loaded
-    # per_minute narrow projection (zero additional parquet reads).
-    log.info("Deriving (ticker → category) map from per_minute narrow projection for phase stratification")
-    cat_map = per_minute[["ticker", "category"]].drop_duplicates(subset=["ticker"])
+    # Stratified phases need category — 2-col pushdown read + immediate
+    # dedupe (~19,614 rows; no whole-frame residency, Phase-3 OOM remediation).
+    log.info("Deriving (ticker → category) map via 2-col pushdown read (no whole-frame residency)")
+    cat_map = pq.read_table(
+        str(per_minute_path), columns=["ticker", "category"]
+    ).to_pandas().drop_duplicates(subset=["ticker"])
     log.info(f"  category map: {len(cat_map)} unique tickers")
     binary = binary.merge(cat_map, on="ticker", how="left")
     binary["category"] = binary["category"].fillna("unknown")
@@ -984,24 +1016,16 @@ def main() -> int:
     # - partner column is `partner_ticker` (large_string), NOT paired_event_partner_ticker
     # - category, settlement_value live here (T37-derived; double respectively)
     # - match_start_ts and minute_ts are int64 unix seconds with NaN
-    log.info("Loading per_minute_features narrow projection (9 cols, one-time, pq.read_table)...")
-    pm_cols = ["ticker", "minute_ts", "match_start_ts", "partner_ticker",
-               "category", "settlement_value", "match_start_method",
-               "trade_count_in_minute", "volume_in_minute"]
-    per_minute = pq.read_table(str(per_minute_path), columns=pm_cols).to_pandas()
-    log.info(f"  per_minute_features: {len(per_minute)} rows x {len(pm_cols)} cols")
-
-    tickers = select_phase_tickers(metadata, args.phase, per_minute)
+    # Phase-3 OOM remediation: PMF is NEVER loaded whole. select_phase_tickers
+    # does its own 2-col pushdown for the category map; Pass-1 reads each
+    # ticker's PMF rows via read_pmf_for_ticker pushdown; Pass-3 does its own
+    # active-only pushdown. Zero whole-frame residency anywhere.
+    tickers = select_phase_tickers(metadata, args.phase, per_minute_path)
     log.info(f"Phase {args.phase}: processing {len(tickers)} tickers")
     expected_count = len(tickers)
     ticker_set = set(tickers)
 
-    per_minute_indexed = per_minute[per_minute["ticker"].isin(ticker_set)].copy()
-    log.info(f"  per_minute filtered to phase tickers: {len(per_minute_indexed)} rows")
-    del per_minute
-
     metadata_indexed = metadata[metadata["ticker"].isin(ticker_set)].set_index("ticker")
-    per_minute_grouped = per_minute_indexed.groupby("ticker")
 
     # Pass 1 — per-ticker pyarrow predicate-pushdown for g9_trades + g9_candles.
     # g9_trades (1.5 GB / 33.7M rows) and g9_candles are NEVER full-loaded;
@@ -1019,7 +1043,7 @@ def main() -> int:
         meta_row = metadata_indexed.loc[t]
         trades_sub = read_trades_for_ticker(g9_trades_path, t)
         candles_sub = read_candles_for_ticker(g9_candles_path, t)
-        pm_sub = per_minute_grouped.get_group(t) if t in per_minute_grouped.groups else pd.DataFrame()
+        pm_sub = read_pmf_for_ticker(per_minute_path, t)
         row = compute_per_ticker_row(t, meta_row, trades_sub, candles_sub, pm_sub)
         if row is None:
             dropouts += 1
@@ -1033,7 +1057,7 @@ def main() -> int:
     df = join_partner_stats(df)
 
     # Pass 3: both_sides_active_minutes
-    df = compute_both_sides_active_minutes(df, per_minute_indexed)
+    df = compute_both_sides_active_minutes(df, per_minute_path)
 
     # Write .new
     args.output_dir.mkdir(parents=True, exist_ok=True)

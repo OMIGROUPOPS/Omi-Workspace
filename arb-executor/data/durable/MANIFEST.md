@@ -243,3 +243,18 @@ Headline (top cell by mean peak_bid_bounce_pre_resolution): WTA_CHALL__0.30-0.35
 - Spec: docs/rung0_cell_economics_spec.md Section 6 hard gates (commit 87103d0d)
 - Lessons earned this arc: LESSONS A37 (strict-entry coverage cost), A38 (dual-peak vs settlement saturation), A39 (cents vs ROI ranking)
 
+## n_profile_v1 (Phase-3 full-corpus, gate-validated foundation)
+
+Foundation pointer: per_minute_features T37 ckpt-3 (inputs sha256 9fde4b5d). Producer commit: a28840e (Pass-1 del + gc-every-200 OOM remediation, validated at full-corpus heavy-tail scale). ANALYSIS_LIBRARY lineage commit: c76eee5. Run: 2026-05-17 20:56 → 2026-05-18 02:37 ET (~5h41m, detached). Spec: docs/n_profile_v1_spec.md (commit chain to ef3add7; both_sides_active_minutes corpus-scoped per LESSONS G23). Lessons this arc: F35, G23, C38.
+
+### n_profile.parquet
+
+- sha256: a7ed11550e8226f18c22069cc5937d35b184e7f0d2a9264435604a0270c1837e
+- Size: 3423678 bytes
+- Rows: 19614 (45 cols, one row per binary N, 0 dropouts, unique tickers == rows — gate-1 parity exact)
+- File: data/durable/n_profile_v1/n_profile.parquet
+- Producer: data/scripts/build_n_profile_v1.py at commit a28840e
+- Source: per_minute_features.parquet (T37 ckpt-3, sha256 9fde4b5d) + g9_trades + g9_candles + g9_metadata, per-ticker pushdown I/O
+- Validity status: PASSED — all 7 gates at full corpus 2026-05-18 (gate1 row-parity 0-dropout, gate2 0 orphans, gate3 phase-partition-exhaustiveness a/b/c all 0, gate4-7 0 violations), re-validated vs on-disk .new bytes pre-replace (C37). OOM remediation validated at full-corpus heavy-tail scale (~5.7h continuous watch, bounded ~700-720MB plateau, zero OOM).
+- Companions: n_profile.meta.json (producer_commit a28840e, inputs pinned), validation_report.md (7-gate PASS table + F35 match_start_method section)
+

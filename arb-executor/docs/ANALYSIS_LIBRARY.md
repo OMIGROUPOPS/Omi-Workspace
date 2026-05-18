@@ -676,6 +676,28 @@ Per-cell exit-policy capture distributions across 54-policy parameter grid. Prop
 - Notes: 1 cells excluded from output by 50-trajectory threshold (per spec Decision 2 patch 3). 278208 total entry moments evaluated. capital_utilization convention documented inline in producer aggregate_cell_results: held_minutes / denominator (clamped to [0, 1]); denominator = horizon_min for time_stop/limit_time_stop, else 240. T31a patch 5 corrected the validation-gate formulation post-spec; T31a patch 6 dropped sub-minute (30s) horizon, leaving 54 policies in v1.
 - **Audit disposition (2026-05-14):** NEEDS RECOMPUTATION — Layer B v1 per-(cell, policy) simulated capture/fire-rate table; rebuild as exit-optimized realized metrics using foundation-tier per-minute and T38 depth, with vector-specific policies.
 
+### n_profile_v1 — FOUNDATION-TIER per-N measurement universe (Phase-3 full-corpus, gate-validated)
+
+The canonical per-N measurement-universe foundation: one row per player-binary market N, the universe every downstream stratification (Rung 0/1/2) and deployment N-selection screens against. NOT strategy-anchored (distinct from Rung-0 cell_economics which is T-20m strategy-anchored). Foundation pointer: per_minute_features T37 ckpt-3 (inputs sha256 9fde4b5d). Producer commit: a28840e (the Pass-1 per-iteration del + gc-every-200 OOM remediation, probe-proven regimes B+C, validated at full-corpus heavy-tail scale — the only scale that could test it). Spec: docs/n_profile_v1_spec.md (commit chain b43fbaf→ef3add7; both_sides_active_minutes corpus-scoped per G23, §7 row 13). MANIFEST entry: PENDING (data/durable/MANIFEST.md on-disk append, App action — sha256 a7ed1155 preserved in meta.json sidecar + App Phase-3 report). Validity status: PASSED — all 7 gates at full corpus (gate1 row-parity 19614=19614 0-dropout, gate2 0 orphans, gate3 phase-partition-exhaustiveness a/b/c all 0, gate4-7 0 violations), re-validated vs on-disk .new bytes pre-replace (C37). Memory OOM remediation validated at full-corpus heavy-tail scale (~5.7h continuous watch, bounded ~700-720MB plateau, zero OOM — categorically unlike the pre-fix unbounded climb). Lessons earned this arc: LESSONS F35 (tier-3 calibration defect → T37-RECAL deferred), G23 (both_sides_active batch→corpus scoping correction), C38 (operation systematically mistakes sub-corpus bugs for sampling artifacts — 4/4 instances). Cross-reference spec §7 rows 10-13, ROADMAP T37-RECAL.
+
+#### n_profile.parquet
+
+- File path: arb-executor/data/durable/n_profile_v1/n_profile.parquet
+- **Grain:** per-N (one row per player-binary market)
+- **Vector:** vector-agnostic
+- **Objective:** objective-agnostic (measurement universe, not scored)
+- Producer script: arb-executor/data/scripts/build_n_profile_v1.py at commit a28840e
+- Source data: per_minute_features.parquet (T37 ckpt-3, sha256 9fde4b5d) + g9_trades + g9_candles + g9_metadata, per-ticker pushdown I/O
+- Date created: 2026-05-18 (Phase-3 full corpus, ~5h41m detached runtime)
+- Depth: 0 (Foundation / measurement universe per TAXONOMY)
+- Data tier used: FOUNDATION-TIER (per_minute_features) + G (g9)
+- Schema: 19,614 rows x 45 cols, one row per binary N. Sample-quality family incl match_start_method (col 45, F35 tier-3 filter); both_sides_active_minutes (col 40, corpus-scoped per G23); n_minutes_observed (col 44, gate-3 RHS).
+- Row count: 19,614 N's (0 dropouts; unique tickers == rows, gate-1 parity exact)
+- sha256: a7ed11550e8226f18c22069cc5937d35b184e7f0d2a9264435604a0270c1837e (3,423,678 bytes)
+- Validity status: PASSED — 7/7 gates at full corpus 2026-05-18; OOM remediation validated at full-corpus heavy-tail scale
+- Notes: match_start_method corpus dist tier-1/2 85.7% / tier-3 6.3% / unknown 6.0% / null 2.1% (tracks F35 ~87.5/6.4/6.1 within the expected shift from 407 no-PMF binary tickers). In-match path exercised 91.5% (the ~1,658 zeros = the F35-characterized irreducible cohort). both_sides_active_minutes corpus-scoped (G23): 97.3% >0, median 95, max 1,354 (≫ the 72/1000 batch-scoped artifact — the adjudicated correction manifest at full corpus). First corpus-scale numbers: in-match volume ~8x premarket at median; ATP_MAIN highest-volume category. timestamps all 2025-06→2026-05 ET (zero 1970 — the 4c100f7 parse fix holds at full scale).
+- **Audit disposition (2026-05-18):** CANONICAL — the live per-N measurement-universe foundation; all downstream (Rung 0/1/2 stratification, deployment N-selection, band-free in-match bounce analysis) reads from this.
+
 ### Layer C v1 specification (T32a, foundation T28 ea84e74 + T29 1398c39 + T31b 28e8ab7)
 
 [#layer-c-v1-specification-t32a-foundation-t28-ea84e74--t29-1398c39--t31b-28e8ab7](#layer-c-v1-specification-t32a-foundation-t28-ea84e74--t29-1398c39--t31b-28e8ab7)
@@ -948,6 +970,7 @@ Findings from prior analyses that are currently treated as anchor evidence in th
 - 2026-05-05 ET (Session 8 / T32a-followup): Layer C v1 specification entry registered. Foundation pointers T28 ea84e74 + T29 1398c39 + T31b 28e8ab7. Spec at docs/layer_c_spec.md (commit 4bed07f, 189 lines, 9 sections, 6 numbered Decisions, 5 validation checks). Validity status SPEC (not output-bearing — T32b producer and T32c coherence read add output artifacts in subsequent commits). Closes T32a per its own definition (spec lands and is referenced in ANALYSIS_LIBRARY).
 - 2026-05-14 ET: Structural readiness pass. Entry format extended with the GRAIN / VECTOR / OBJECTIVE triple (TAXONOMY Section 2.5). FOUNDATION-REBUILD NOTICE added to header. G9-parquets and Layer-A-v1 'canonical foundation' subsection headers flagged as superseded (canonical foundation is now FOUNDATION-TIER per_minute_features.parquet). NO entry content reclassified — that is the unit-of-analysis audit, which runs separately against this now-structurally-ready catalog.
 - 2026-05-14 ET: Unit-of-analysis audit applied. All 65 entries (Sections 2/3/4) classified inline with GRAIN/VECTOR/OBJECTIVE + disposition per TAXONOMY Section 2.5. Section 6 added with the disposition summary. Source: data/analysis/unit_of_analysis_audit.json (commit 2547f6a).
+- 2026-05-18 ET (n_profile_v1 FOUNDATION landed): n_profile_v1 registered in Section 2 as the canonical FOUNDATION-TIER per-N measurement universe. Phase-3 full-corpus run COMPLETE 2026-05-18 02:37 ET (~5h41m, detached on producer a28840e). Artifact: n_profile.parquet, sha256 a7ed1155, 19,614 x 45, 0 dropouts. All 7 gates PASS at full corpus. OOM remediation (Pass-1 del + gc-every-200, a28840e) validated at full-corpus heavy-tail scale — the defect class that killed two prior Phase-3 attempts (whole-PMF residency 51b1cd6, then per-ticker allocator accumulation a28840e). Foundation pointer per_minute_features 9fde4b5d (T37 ckpt-3). Lessons this arc: F35, G23, C38. MANIFEST.md on-disk sha256 append PENDING (App action; sha256 preserved in meta.json sidecar). Cleared for downstream consumption (Rung 0/1/2, band-free in-match bounce analysis).
 
 ---
 

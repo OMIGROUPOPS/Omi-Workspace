@@ -29,6 +29,7 @@ Phases (per spec Section 3.3):
 from __future__ import annotations
 
 import argparse
+import gc
 import hashlib
 import json
 import logging
@@ -1037,6 +1038,13 @@ def main() -> int:
     for i, t in enumerate(tickers):
         if i > 0 and i % 1000 == 0:
             log.info(f"  Pass 1 progress: {i}/{len(tickers)}  emitted={len(rows)}  dropouts={dropouts}")
+        # Phase-3 OOM remediation (probe 2026-05-17, H-arrow confirmed): without
+        # explicit release the allocator retains freed per-ticker pyarrow->pandas
+        # frame pages (~+1.36 MB/heavy-ticker, unbounded over ~19,614 -> OOM).
+        # Periodic gc.collect() forces deterministic reclamation (regime C: flat);
+        # the per-iteration del below is the proven minimal arrest (regime B).
+        if i > 0 and i % 200 == 0:
+            gc.collect()
         if t not in metadata_indexed.index:
             dropouts += 1
             continue
@@ -1046,9 +1054,11 @@ def main() -> int:
         pm_sub = read_pmf_for_ticker(per_minute_path, t)
         row = compute_per_ticker_row(t, meta_row, trades_sub, candles_sub, pm_sub)
         if row is None:
+            del trades_sub, candles_sub, pm_sub
             dropouts += 1
             continue
         rows.append(row)
+        del trades_sub, candles_sub, pm_sub, row
     log.info(f"Pass 1 complete: {len(rows)} rows, {dropouts} dropouts")
 
     df = pd.DataFrame(rows, columns=SCHEMA_COLUMNS)

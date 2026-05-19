@@ -1,6 +1,6 @@
 # Rung 1 Spec — Per-Band Optimized-Exit-Target Strategy Evaluation
 
-**Status:** v0.3.1 — 2026-05-19 ET. Whole-spec coherence completion of the v0.2/v0.3 continuous-exit-axis design (every surviving v0.1-grid contradiction across §1/§1.1/§1.2/§2.3/§3/§6.2/§8 closed) + restored §3.1 metric 16 (expected_cents_per_dollar_capital_day) into both artifacts. Spec internally consistent. Two artifacts: dense per-cell exit curve (Artifact A) + 72-row per-cell data-derived optimum (Artifact B), cents/ROI/Sharpe per A39. 72 cells (4 cat × 18 band) fixed; exit axis continuous 1..98c. Producer build unblocked at v0.3.1.
+**Status:** v0.3.2 — 2026-05-19 ET. v0.3.1 closed the dead-grid defect class whole-file; v0.3.2 closes the gate-count staleness class (§7.5 et al. reconciled to §6.1's true 7-hard-+-1-soft). Two artifacts (dense per-cell exit curve + 72-row per-cell data-derived optimum, cents/ROI/Sharpe per A39, metric 16 restored). 72 cells fixed; exit axis continuous 1..98c. Spec internally consistent and build-ready at v0.3.2.
 
 **Anchored to:**
 - `rung0_cell_economics_spec.md` v1.1 (commit 87103d0d) — Rung 0 schema is the input
@@ -344,7 +344,7 @@ Vectorized pandas (14,033 rows x 36 cols, comfortably in RAM):
 ### 7.5 C37 discipline applied
 
 - Write to `.new` extension only.
-- Run all 6 hard gates against on-disk `.new` bytes (re-load the .new parquet, validate against its actual contents — not against in-memory data).
+- Run all 7 hard gates (§6.1 gates 1-7) against on-disk `.new` bytes of BOTH artifacts (re-load the .new parquets, validate against their actual contents — not against in-memory data); gate 8 (mean-vs-median) is soft (logged, non-blocking).
 - `os.replace` only on all-pass.
 - Failure: preserve `.new`, write halt log to `logs/`, exit non-zero. Operator investigates with disk-evidence (C37 doctrine).
 
@@ -395,3 +395,7 @@ v0.2 amended §2.2 to the continuous per-cell design but left §3.2/§5/§6/§7 
 ### v0.3.1 amendment — 2026-05-19 ET (whole-spec coherence completion + metric-16 restoration)
 
 v0.3 made §3.2/§5/§6/§7 continuous-coherent but a full-file sweep found the dead v0.1 grid ALSO surviving in §1/§1.1/§1.2 (scope/operational-def/in-scope), the §1.2 "Anchored to" + §8 GRAIN/VECTOR cross-refs, the §3 title, §3.1 metric-def wording, §2.3 L101 derivation prose, and §6.2 informative bullets — and that v0.3 had DROPPED §3.1 metric 16 (expected_cents_per_dollar_capital_day, the deployment-EV-per-dollar-capital number) from BOTH artifact schemas. The spec was still internally incoherent after v0.3 and was missing its most operator-relevant throughput metric. v0.3.1 closes EVERY surviving REAL dead-grid contradiction in one pass (§1/§1.1/§1.2/§2.3-prose/§3-title/§3.1-wording/§6.2/§8/§12-anchor) consistent with the two-artifact continuous design, and RESTORES metric 16 into Artifact A (cell-level col) and Artifact B (at each regime optimum). §9 historical logs + v0.2/v0.3 amendment blocks + v0.2/v0.3 supersession notes + deferred-metric proper nouns + v0.3 schema column names preserved untouched (benign provenance). Honest provenance: v0.2 and v0.3 were each INCOMPLETE coherence passes (scoped to edited sections, not whole-spec verified) and v0.3 additionally introduced a metric-drop regression — the recurring scoping-incompleteness pattern; the durable fix is whole-file defect-class sweep BEFORE asserting coherence, applied here. Spec is internally consistent ONLY at v0.3.1 — producer build unblocked at v0.3.1, not before.
+
+### v0.3.2 amendment — 2026-05-19 ET (gate-count reconciliation)
+
+v0.3 added §6.1 gates 7 (summary-derivation consistency) and 8 (mean-vs-median soft) but left §7.5's "Run all 6 hard gates" stale (correct under v0.1's 6-gate set). The v0.3.1 sweep targeted the dead-grid defect class only; gate-count staleness is a distinct defect class and survived. v0.3.2 reconciles every gate-count statement to §6.1's true count (7 hard + 1 soft) via a whole-file gate-count-class sweep. §6.1 (ground truth) untouched. Honest provenance: same recurring scoping-incompleteness pattern — a spec amendment introduced a second defect class not covered by the sweep targeting the first; durable fix = sweep EVERY internal-consistency defect class before declaring build-ready, not just the one being chased. Spec is build-ready at v0.3.2 (dead-grid class closed v0.3.1; gate-count class closed v0.3.2; no other open incoherence known).

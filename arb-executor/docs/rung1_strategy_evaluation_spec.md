@@ -1,6 +1,6 @@
 # Rung 1 Spec — Per-Band Optimized-Exit-Target Strategy Evaluation
 
-**Status:** v0.2 — 2026-05-19 ET. v0.2 supersedes the v0.1 operator-locked 8-point absolute exit grid with a continuous per-cell realized-distribution design (§2.2, §9 v0.2 amendment); A39/E32(e)-grounded. Metric subset and Greek-label deferral unchanged from v0.1. Producer build unblocked at v0.2.
+**Status:** v0.3 — 2026-05-19 ET. v0.3 makes §3.2/§5/§6/§7 coherent with the v0.2 continuous exit-axis design: two artifacts — a dense per-cell exit-curve table + a 72-row per-cell data-derived optimum summary (cents/ROI/Sharpe per A39, with curve-shape honesty flag). 72 cells (4 cat x 18 band) fixed; exit axis continuous. Producer build unblocked at v0.3.
 
 **Anchored to:**
 - `rung0_cell_economics_spec.md` v1.1 (commit 87103d0d) — Rung 0 schema is the input
@@ -158,53 +158,80 @@ Plus one helper column (not in the count of 16; computed from row timestamps):
 
 - `daily_opportunity_rate` — `observations_n / corpus_active_days_in_sample`, where `corpus_active_days_in_sample` is the count of distinct dates in the corpus where Rung 0 emitted rows (computed once on the FULL unfiltered Rung 0 corpus and reused per row). Measures **N's-per-day** for this cell (per LESSONS G22: N is the player-binary market, the unit-of-observation; ct is the position-size unit. Each row is one N, not one ct). Same value for every threshold within a cell. Note: this is the corpus-wide rate (averaging across active and dead days). Per-category and per-cell active-day-normalized rate variants are deferred to Rung 1.5 — the corpus-wide rate is the operationally-correct denominator for the v0.1 deployment-EV math.
 
-### 3.2 The full output schema
+### 3.2 The two output artifacts (v0.3)
+
+v0.3 emits TWO artifacts (the v0.1 single 576-row grid table is superseded — see §9 v0.3 amendment):
+
+**Artifact A — the dense exit-curve table** (`strategy_evaluation_curve.parquet`). One row per (cell_key, exit_line_cents) where exit_line_cents sweeps 1..98 at 1c step. 72 cells x 98 lines = 7,056 rows (less any (cell,line) with zero contributing rows — none expected; every cell row contributes to every line per the §2.3 hit test). This IS the per-cell curve — the evidence. Schema (per (cell, exit_line)):
 
 | # | Column | Type | Source / formula |
 |---|---|---|---|
 | 1 | `cell_key` | string | Rung 0 cell_key |
-| 2 | `category` | string | Rung 0 category (denormalized for readability) |
+| 2 | `category` | string | Rung 0 category (denormalized) |
 | 3 | `price_band` | string | Rung 0 price_band (denormalized) |
-| 4 | `threshold_cents` | int8 | one of {5,10,15,20,25,30,40,50} |
-| 5 | `threshold_hit_rate` | float | Section 3.1 metric 1 |
-| 6 | `threshold_hit_rate_ci_lower` | float | Wilson lower bound |
-| 7 | `threshold_hit_rate_ci_upper` | float | Wilson upper bound |
-| 8 | `mean_realized_cents` | float | metric 2 |
+| 4 | `exit_line_cents` | int16 | the candidate exit line, 1..98 (replaces the v0.1 locked threshold_cents) |
+| 5 | `threshold_hit_rate` | float | §3.1 metric 1 at this exit_line |
+| 6 | `threshold_hit_rate_ci_lower` | float | Wilson lower |
+| 7 | `threshold_hit_rate_ci_upper` | float | Wilson upper |
+| 8 | `mean_realized_cents` | float | §3.1 metric 2 |
 | 9 | `mean_realized_cents_ci_lower` | float | BCa lower |
 | 10 | `mean_realized_cents_ci_upper` | float | BCa upper |
-| 11 | `mean_realized_roi_pct` | float | metric 3 |
+| 11 | `mean_realized_roi_pct` | float | §3.1 metric 3 |
 | 12 | `mean_realized_roi_pct_ci_lower` | float | BCa lower |
 | 13 | `mean_realized_roi_pct_ci_upper` | float | BCa upper |
-| 14 | `median_realized_cents` | float | metric 4 |
-| 15 | `median_realized_cents_ci_lower` | float | BCa lower |
-| 16 | `median_realized_cents_ci_upper` | float | BCa upper |
-| 17 | `median_realized_roi_pct` | float | metric 5 |
-| 18 | `median_realized_roi_pct_ci_lower` | float | BCa lower |
-| 19 | `median_realized_roi_pct_ci_upper` | float | BCa upper |
-| 20 | `std_realized_cents` | float | metric 6 |
-| 21 | `std_realized_cents_ci_lower` | float | BCa lower |
-| 22 | `std_realized_cents_ci_upper` | float | BCa upper |
-| 23 | `std_realized_roi_pct` | float | metric 7 |
-| 24 | `std_realized_roi_pct_ci_lower` | float | BCa lower |
-| 25 | `std_realized_roi_pct_ci_upper` | float | BCa upper |
-| 26 | `downside_std_realized_cents` | float | metric 8 |
-| 27 | `downside_std_realized_cents_ci_lower` | float | BCa lower |
-| 28 | `downside_std_realized_cents_ci_upper` | float | BCa upper |
-| 29 | `sharpe_like_roi` | float or null | metric 9 |
-| 30 | `sharpe_like_roi_ci_lower` | float or null | BCa lower |
-| 31 | `sharpe_like_roi_ci_upper` | float or null | BCa upper |
-| 32 | `sortino_like_roi` | float or null | metric 10 |
-| 33 | `sortino_like_roi_ci_lower` | float or null | BCa lower |
-| 34 | `sortino_like_roi_ci_upper` | float or null | BCa upper |
-| 35 | `observations_n` | int32 | metric 11 |
-| 36 | `unique_match_count` | int32 | metric 12 |
-| 37 | `low_n_flag` | bool | metric 13 |
-| 38 | `weak_ci_flag` | bool | metric 14 |
-| 39 | `mean_entry_price_cents` | float | metric 15 |
-| 40 | `daily_opportunity_rate` | float | helper (N's/day for this cell — qualifying-entry arrival rate; per G22) |
-| 41 | `expected_cents_per_dollar_capital_day` | float | metric 16 |
+| 14 | `median_realized_cents` | float | §3.1 metric 4 |
+| 15 | `median_realized_roi_pct` | float | §3.1 metric 5 |
+| 16 | `std_realized_cents` | float | §3.1 metric 6 |
+| 17 | `std_realized_roi_pct` | float | §3.1 metric 7 |
+| 18 | `downside_std_realized_cents` | float | §3.1 metric 8 |
+| 19 | `sharpe_like_roi` | float or null | §3.1 metric 9 |
+| 20 | `sortino_like_roi` | float or null | §3.1 metric 10 |
+| 21 | `observations_n` | int32 | §3.1 metric 11 (cell-level; same across all exit_lines in a cell) |
+| 22 | `unique_match_count` | int32 | §3.1 metric 12 (cell-level) |
+| 23 | `low_n_flag` | bool | §3.1 metric 13 (cell-level) |
+| 24 | `weak_ci_flag` | bool | §3.1 metric 14 (evaluated at this exit_line) |
+| 25 | `b13_ceiling_bind_flag` | bool | TRUE when exit_line_cents >= (99 - entry_price_cents - 1) for this cell — the line is geometrically near-unreachable (LESSONS B13); set so a cell is never falsely judged "no edge at this line" when the line was mathematically impossible there |
+| 26 | `mean_entry_price_cents` | float | §3.1 metric 15 (cell-level) |
+| 27 | `daily_opportunity_rate` | float | helper (N's/day for this cell per G22; cell-level) |
 
-**41 columns total.** 16 core metrics + their CI bounds (24 CI cols) + 1 helper (`daily_opportunity_rate`).
+CI bounds emitted only on the four decision-load-bearing metrics (hit_rate Wilson; mean_cents / mean_roi / the ratio metrics BCa) to keep the dense table tractable at 7,056 rows x 1000-resample bootstrap; the full 24-CI inventory from v0.1 is preserved in Artifact B at the per-cell optimum (where decisions are actually read) per §3.1/§4. std/median emitted as point estimates on the dense curve (shape diagnostics, not the decision read).
+
+**Artifact B — the per-cell optimum summary** (`strategy_evaluation_optimum.parquet`). Exactly 72 rows (one per cell). For each cell, the DATA-DERIVED optimal exit line, separately for the cents view and the ROI view (A39 — they answer different questions and their optima differ), each with that line's full metric+CI set:
+
+| # | Column | Type | Source / formula |
+|---|---|---|---|
+| 1 | `cell_key` | string | the cell |
+| 2 | `category` | string | denormalized |
+| 3 | `price_band` | string | denormalized |
+| 4 | `observations_n` | int32 | cell row count |
+| 5 | `unique_match_count` | int32 | distinct event_ticker in cell |
+| 6 | `low_n_flag` | bool | observations_n < 30 |
+| 7 | `mean_entry_price_cents` | float | cell mean entry |
+| 8 | `daily_opportunity_rate` | float | N's/day (G22) |
+| 9 | `opt_cents_exit_line` | int16 | argmax over the dense curve of mean_realized_cents for this cell (B13-bound lines excluded from the argmax search) |
+| 10 | `opt_cents_mean_realized_cents` | float | mean_realized_cents at opt_cents_exit_line |
+| 11 | `opt_cents_mean_realized_cents_ci_lower` | float | BCa lower at that line |
+| 12 | `opt_cents_mean_realized_cents_ci_upper` | float | BCa upper |
+| 13 | `opt_cents_hit_rate` | float | hit_rate at that line |
+| 14 | `opt_cents_hit_rate_ci_lower` | float | Wilson lower |
+| 15 | `opt_cents_hit_rate_ci_upper` | float | Wilson upper |
+| 16 | `opt_cents_mean_realized_roi_pct` | float | mean ROI at the cents-optimal line (cross-view reference) |
+| 17 | `opt_cents_weak_ci_flag` | bool | §3.1 metric 14 at that line |
+| 18 | `opt_roi_exit_line` | int16 | argmax over the dense curve of mean_realized_roi_pct for this cell (B13-bound lines excluded) |
+| 19 | `opt_roi_mean_realized_roi_pct` | float | mean ROI at opt_roi_exit_line |
+| 20 | `opt_roi_mean_realized_roi_pct_ci_lower` | float | BCa lower |
+| 21 | `opt_roi_mean_realized_roi_pct_ci_upper` | float | BCa upper |
+| 22 | `opt_roi_hit_rate` | float | hit_rate at that line |
+| 23 | `opt_roi_hit_rate_ci_lower` | float | Wilson lower |
+| 24 | `opt_roi_hit_rate_ci_upper` | float | Wilson upper |
+| 25 | `opt_roi_mean_realized_cents` | float | mean cents at the ROI-optimal line (cross-view reference) |
+| 26 | `opt_roi_weak_ci_flag` | bool | §3.1 metric 14 at that line |
+| 27 | `opt_sharpe_exit_line` | int16 | argmax over the dense curve of sharpe_like_roi (risk-adjusted regime; B13-bound excluded) |
+| 28 | `opt_sharpe_value` | float or null | sharpe_like_roi at that line |
+| 29 | `opt_sharpe_mean_realized_roi_pct` | float | mean ROI at the Sharpe-optimal line |
+| 30 | `curve_shape_note` | string | one of {"clean_peak","flat_ridge","ceiling_truncated","monotone","weak_low_n"} — deterministic classifier over the cell's dense curve (peak prominence + B13-bind fraction + low_n), so the summary states whether the optimum is a robust peak or fragile; definition in §5.3 |
+
+Artifact B is a PURE DETERMINISTIC read off Artifact A (argmax + the already-computed metrics/CIs at the argmax line) — no additional modeling, no additional bootstrap beyond what Artifact A already computed at that line. The two artifacts are consistency-gated (§6 gate 7).
 
 ---
 
@@ -230,32 +257,22 @@ When metrics aggregate across cells where the same match contributes to multiple
 
 ## 5. Headline rankings emitted in validation_report.md
 
-The producer emits the parquet AND a markdown report with operator-readable summaries:
+The producer emits both parquets AND a markdown report:
 
-### 5.1 Top-10 by mean realized cents (per A39, cents view)
+### 5.1 Top-20 cells by cents-optimal realized cents (A39 cents view)
+From Artifact B sorted by `opt_cents_mean_realized_cents` desc: cell_key, observations_n, opt_cents_exit_line, the cents value with CI, the cross-view ROI, low_n_flag, opt_cents_weak_ci_flag, curve_shape_note.
 
-For each threshold in the grid, list the top-10 cells by `mean_realized_cents`. Include cell_key, observations_n, mean cents (with CI), mean ROI (with CI), low_n_flag, weak_ci_flag.
+### 5.2 Top-20 cells by ROI-optimal realized ROI (A39 ROI view)
+From Artifact B sorted by `opt_roi_mean_realized_roi_pct` desc: same structure, ROI-view columns. Per A39 the two top-20 lists are expected to differ materially; their overlap fraction is surfaced (§6.2).
 
-### 5.2 Top-10 by mean realized ROI (per A39, ROI view)
+### 5.3 Curve-shape classifier (definition + per-cell table)
+`curve_shape_note` deterministic rules over a cell's dense Artifact-A curve (mean_realized_cents vs exit_line, B13-bound lines excluded from peak search): "weak_low_n" if low_n_flag; else "ceiling_truncated" if >50% of 1..98 lines are b13_ceiling_bind_flag; else "monotone" if |Spearman(exit_line, mean_realized_cents)| >= 0.9; else "clean_peak" if the max is >= 1.0c above both the value at the lowest non-B13 line and the value 10c either side of the argmax; else "flat_ridge". Emit the 72-cell table of cell_key -> curve_shape_note + opt_cents_exit_line + peak prominence (max minus the mean of the curve).
 
-Same structure, sorted by `mean_realized_roi_pct` per threshold.
-
-### 5.3 Per-cell recommended threshold
-
-For each of the 72 cells, list the threshold maximizing each of:
-- `mean_realized_cents` (capital-throughput regime)
-- `mean_realized_roi_pct` (capital-efficiency regime)
-- `sharpe_like_roi` (risk-adjusted regime)
-
-Three recommendations per cell. Operator-facing chosen-threshold decision is downstream.
-
-### 5.4 Threshold-curve summaries
-
-For each cell, show how `mean_realized_cents`, `mean_realized_roi_pct`, and `threshold_hit_rate` change across the 8 thresholds. ASCII sparkline-style table or per-cell mini-plots. Reveals which cells have steep vs flat threshold curves — informs the Rung 1.5 curve-shape diagnostics.
+### 5.4 Per-cell recommended exit (the deliverable headline)
+The 72-cell table: cell_key, opt_cents_exit_line (+ cents & CI), opt_roi_exit_line (+ ROI & CI), opt_sharpe_exit_line, curve_shape_note, low_n_flag, weak_ci_flags. This is the operator-facing answer — per cell, the data-derived exit line under each regime, with the curve-shape honesty flag.
 
 ### 5.5 Sample-quality summary
-
-Counts of cells flagged by `low_n_flag` and `weak_ci_flag` at each threshold. Coverage map: which thresholds have N≥30 in all 72 cells vs which collapse to low-N tails at aggressive thresholds.
+Counts of cells by low_n_flag and by curve_shape_note. How many of 72 cells have a clean_peak vs flat_ridge vs ceiling_truncated vs weak_low_n cents-optimum. Coverage read: which categories (ATP_MAIN/ATP_CHALL/WTA_MAIN/WTA_CHALL) carry the clean-peak cells.
 
 ---
 
@@ -263,13 +280,16 @@ Counts of cells flagged by `low_n_flag` and `weak_ci_flag` at each threshold. Co
 
 ### 6.1 Hard gates (must PASS before os.replace, per C37)
 
-1. **Row count.** Output must have exactly 72 × 8 = **576 rows**. Zero violations.
-2. **Cell coverage.** Every (cell_key, threshold) combination in the cross-product of 72 cells × 8 thresholds appears exactly once. Zero missing combinations; zero duplicates.
-3. **Hit rate monotonicity within cell.** For each cell, `threshold_hit_rate` must be monotonically non-increasing as threshold increases (higher target = lower hit rate, by construction). Zero violations.
-4. **Realized cents bounds.** For each row, `mean_realized_cents` must be ≤ `threshold_cents` (since hit rows contribute exactly threshold; miss rows contribute ≤ 0 under E32 ride-to-settlement which can't exceed threshold). For each row, `mean_realized_cents` must be ≥ `min(realized_at_settlement * 100)` for any contributing Rung 0 row (i.e., not below the worst possible loss). Zero violations on either bound.
-5. **CI ordering.** For every metric with CI bounds, `ci_lower ≤ point_estimate ≤ ci_upper`. Zero violations across all 8 CI-bounded metrics.
-6. **Sample-quality consistency.** Where `low_n_flag` is TRUE, `weak_ci_flag` must also be TRUE (per definition: weak_ci_flag is OR-composite including low_n_flag). Zero violations.
-7. **Mean-vs-median sanity.** For positive-skewed distributions (which most cell-threshold groups will be — most rows hit moderate, a few hit huge), `mean_realized_cents ≥ median_realized_cents`. v0.1 makes this a **soft gate** (logged as anomaly, not blocking) because some (cell, threshold) groups with high losing-ride fractions could legitimately invert this. Surface count in validation_report.
+Gates run against the reloaded-from-disk .new bytes of BOTH artifacts.
+
+1. **Curve table row count.** Artifact A has exactly 72 cells x 98 exit_lines = 7,056 rows. Zero missing (cell_key, exit_line_cents) combinations in the 72 x (1..98) cross-product; zero duplicates. Zero violations.
+2. **Summary row count.** Artifact B has exactly 72 rows, one per cell_key, every one of the 72 fixed cells present exactly once. Zero violations.
+3. **Hit-rate monotonicity within cell.** In Artifact A, for each cell, `threshold_hit_rate` is monotonically non-increasing as `exit_line_cents` increases (higher line = lower hit rate, by construction). Zero violations (tolerance 1e-9 for float noise).
+4. **Realized-cents bounds.** In Artifact A, for each row, `mean_realized_cents` <= `exit_line_cents` (hit rows contribute exactly the line; miss rows ride to settlement, <= the line) AND `mean_realized_cents` >= the cell's worst single-row `realized_at_settlement * 100`. Zero violations either bound.
+5. **CI ordering.** Every emitted CI triple (point, lower, upper) in BOTH artifacts satisfies lower <= point <= upper. Zero violations.
+6. **Sample-quality consistency.** Wherever `low_n_flag` is TRUE, `weak_ci_flag` is TRUE (weak_ci_flag is the OR-composite including low_n_flag), in both artifacts. Zero violations.
+7. **Summary-derivation consistency (the v0.3 load-bearing gate).** Artifact B is a pure read off Artifact A: for every cell, `opt_cents_exit_line` equals the argmax of Artifact A's `mean_realized_cents` over that cell's non-B13-bound lines, and `opt_cents_mean_realized_cents` (and its CIs, hit_rate, etc.) equals Artifact A's value at exactly that (cell, opt_cents_exit_line) row — byte-equal on the metric, CI-consistent. Same for the ROI-optimal and Sharpe-optimal lines. Zero violations: the summary must be derivable from the curve, never independently computed.
+8. **Mean-vs-median soft gate (logged, not blocking).** In Artifact A, count rows where `mean_realized_cents < median_realized_cents` (legit for high-losing-ride groups); surface the count in validation_report, do not block.
 
 ### 6.2 Informative measurements (logged, not gating)
 
@@ -291,32 +311,29 @@ That's the only input. Rung 1 is a derived table from Rung 0; no foundation-corp
 
 ### 7.2 Processing
 
-Vectorized pandas pass (or polars if memory is a concern, though 14,033 rows × 36 cols is comfortably within RAM):
-
-1. Load Rung 0 parquet.
-2. Compute `corpus_active_days_in_sample` once: `len(set(rung0.match_start_ts.dt.date))`. Reused per row.
-3. For each threshold in {5, 10, 15, 20, 25, 30, 40, 50}:
-   a. Compute per-row `hit`, `realized_cents`, `realized_roi` (Section 2.3 derivation).
-   b. Group by `cell_key`.
-   c. For each (cell, threshold), compute the 16 metrics + helpers (Section 3).
-   d. Compute CIs via 1000-resample BCa bootstrap per metric per (cell, threshold). For Wilson CIs (proportions), use closed-form.
-4. Assemble the 41-column output DataFrame.
-5. Compute validation gates (Section 6).
-6. C37 discipline: write to `strategy_evaluation.parquet.new`; if all hard gates PASS, `os.replace`. If any hard gate fails, halt, preserve `.new` for inspection, write halt log.
-7. Generate `validation_report.md` (Section 5).
+Vectorized pandas (14,033 rows x 36 cols, comfortably in RAM):
+1. Load Rung 0 parquet (the only input).
+2. Compute `corpus_active_days_in_sample` once = distinct dates in the FULL unfiltered Rung 0 corpus; reused per cell.
+3. Group by `cell_key` (the 72 fixed cells; cell = T-20m recorded entry, 4 categories x 18 bands).
+4. For each cell, for each exit_line in 1..98 (1c step): compute per-row hit/realized_cents/realized_roi via §2.3 (continuous in the line by construction), aggregate the §3.1 metrics, compute CIs (Wilson closed-form for hit_rate; row-level n=1000 BCa per §4 for mean_cents/mean_roi/ratio metrics — fallback to percentile, flagged), set b13_ceiling_bind_flag. -> Artifact A (the dense curve).
+5. For each cell, derive Artifact B by argmax over Artifact A's non-B13-bound lines (separately for mean_realized_cents, mean_realized_roi_pct, sharpe_like_roi) and copy that line's already-computed metrics/CIs; compute curve_shape_note per §5.3. Artifact B is a pure read of Artifact A — no new bootstrap.
+6. Validation gates §6 against reloaded .new bytes of BOTH artifacts.
+7. C37: write both `.new`; if all hard gates PASS, os.replace both; else halt, preserve both .new, write halt log to logs/, exit non-zero.
+8. Generate validation_report.md (§5).
 
 ### 7.3 Runtime budget
 
-- 576 metric groups × ~10 metrics needing bootstrap × 1000 resamples = ~5.76M bootstrap computations.
+- 7,056 (cell x exit_line) groups x 3 bootstrap metrics x 1000 resamples ~= 21M bootstrap computations (each a small array op on ~30-330 floats); Artifact B adds zero bootstrap (pure argmax read of Artifact A).
 - Each bootstrap computation is a small array operation (mean, std, or percentile on ~50-330 floats).
-- Expected runtime: **5-20 minutes single-threaded**. Faster if vectorized with numpy. No multi-process / multi-thread requirement for v0.1.
+- Expected runtime: 15-45 minutes single-threaded (denser exit axis than v0.1); numpy-vectorized bootstrap recommended. Phased rollout 1/2/3 (subsample cells -> all cells -> all cells + report).
 - Memory: ~10 MB peak (14,033 rows × 36 cols ~1.7 MB; transient bootstrap arrays add <10 MB at peak). Well within VPS limits.
 
 ### 7.4 Output
 
-- `data/durable/rung1_strategy_evaluation/strategy_evaluation.parquet` (576 rows × 41 cols)
-- `data/durable/rung1_strategy_evaluation/validation_report.md`
-- `data/durable/rung1_strategy_evaluation/strategy_evaluation.meta.json` (sidecar: sha256, input sha256, producer commit, run timestamp)
+- `data/durable/rung1_strategy_evaluation/strategy_evaluation_curve.parquet` (Artifact A — 7,056 rows x 27 cols, the dense per-cell exit curve)
+- `data/durable/rung1_strategy_evaluation/strategy_evaluation_optimum.parquet` (Artifact B — 72 rows x 30 cols, the per-cell data-derived optimum, cents & ROI & Sharpe regimes)
+- `data/durable/rung1_strategy_evaluation/validation_report.md` (§5)
+- `data/durable/rung1_strategy_evaluation/strategy_evaluation.meta.json` (sidecar: both sha256s, input sha256 6fdd019d, producer commit, run timestamp)
 
 ### 7.5 C37 discipline applied
 
@@ -364,3 +381,7 @@ End of Rung 1 spec v0.1.
 ### v0.2 amendment — 2026-05-19 ET (operator scrutiny: continuous exit axis)
 
 The v0.1 operator-locked 8-point absolute grid (§2.2) is SUPERSEDED. Operator scrutiny established it as the same defect class LESSONS A39 already caught one level up in this spec: a fixed ABSOLUTE-cent grid is the wrong exit axis because absolute-cent lines are not comparable across cells of different entry price (A39: +5c = +20% ROI at 25c vs +6.7% at 75c), and LESSONS E32(e) states verbatim "Every band gets its own exit target derived from the band" — a universal fixed grid contradicts E32's own per-band-derived-target model. v0.2 replaces the grid with a continuous design: emit the per-cell per-row realized-outcome distribution as the exit-axis-agnostic primitive (a pure function of three already-stored Rung 0 columns per §2.3, which was already continuous-ready and is preserved unchanged); derive dense-absolute + ROI-relative + ceiling-relative views and the per-cell argmax-optimal exit (separately for cents and ROI per A39) downstream; flag B13 ceiling-bind per (cell, L). §3/§4 metrics+bootstrap retargeted from "8 locked points" to "the per-cell data-derived optimum + any downstream L" (machinery unchanged, evaluation point now data-derived). Honest provenance: the v0.1 grid was an operator-locked constraint at spec-authoring time, superseded by later operator scrutiny — recorded, not silently rewritten, same discipline this spec already applied to the A39 cents-vs-ROI catch (G23/4f55339 honest-provenance lineage). No producer exists yet at v0.2; producer build follows in a separate single-concern commit against this amended spec.
+
+### v0.3 amendment — 2026-05-19 ET (spec-coherence: §3.2/§5/§6/§7 made consistent with the continuous design)
+
+v0.2 amended §2.2 to the continuous per-cell design but left §3.2/§5/§6/§7 v0.1-grid-shaped (still "{5..50}", "576 rows", "72 x 8") — the spec contradicted itself and "build to spec" was undefined. v0.3 makes the whole spec coherent. Output shape (operator decision): BOTH a dense (cell x 1c exit line, 1..98) curve table = the evidence, AND a 72-row per-cell-optimum summary (data-derived optimal exit separately for cents and ROI and Sharpe per A39, each with that line's metrics/CIs, plus a deterministic curve_shape_note) = the answer. The 72 cells (4 categories x 18 bands, cell = T-20m recorded entry) are FIXED and unchanged; only the exit axis became continuous. Artifact B is a pure deterministic read of Artifact A, consistency-gated (§6 gate 7). §2.2/§2.3 preserved. Honest provenance: v0.2 left the spec internally incoherent; v0.3 resolves it — recorded, not silently reshaped (G23/4f55339 lineage). No producer exists at v0.3; producer build follows in a separate single-concern commit against this amended spec.

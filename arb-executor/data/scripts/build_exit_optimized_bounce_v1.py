@@ -435,28 +435,32 @@ def gate6_a39_dual_completeness(surface):
                       f"rows_with_one_metric_missing={xor}")
 
 
-def gate7_band_support(surface):
-    # Frame-aware (probe /tmp/g7_probe.log, full-cohort measured): Frame I
-    # is dense (~2,128/band) -- keep the real >=200 reliability bar. Frame P
-    # is structurally sparse by construction (one T-20m conservative fill
-    # per ticker -- this IS the conservative-fill assumption, not a data
-    # deficiency); measured per-band min 27 / median 172, zero bands <10,
-    # 39/40 >=30. Calibrated Frame-P floor = 30 (below the populated cluster
-    # p10=80, above the lone extreme-dislocation outlier idx39 n=27 which
-    # carries low_support, not a hard fail). The v0.1 flat-200 was a
-    # frame-blind defect that would reject the deliverable for correctly
-    # implementing the chosen dual-conservative-frame model.
+def gate7_band_support(surface, attempted_n, full_cohort_n):
+    # Frame-aware AND phase-aware. Frame I is dense (~2,128/band at full
+    # cohort) -- keep the real >=200 reliability bar (it is dense enough to
+    # hold at Phase-1 sampling too; min Frame-I n was 1535 at Phase-1). Frame
+    # P is structurally sparse by construction (one T-20m conservative fill
+    # per ticker); the calibrated floor 30 is probe-grounded for the FULL
+    # COHORT (/tmp/g7_probe.log: 7,115 positions, 39/40 bands >=30). It must
+    # be PHASE-SCALED -- applying the full-cohort constant to a downsampled
+    # Phase-1 run is the identical defect class as the original G1
+    # phase-blindness (full-cohort threshold vs subsample). Scale by the
+    # phase sampling fraction: == 30 at Phase-2 (attempted_n == full cohort,
+    # the deliverable, probe-grounded unchanged), proportionate at Phase-1.
+    frac = (attempted_n / full_cohort_n) if full_cohort_n else 1.0
+    frame_p_floor = max(1, round(FRAME_P_MIN_BAND_SUPPORT * frac))
     allrows = surface[surface["category"] == "ALL"]
     fi = allrows[allrows["fill_frame"] == FRAME_I]
     fp = allrows[allrows["fill_frame"] == FRAME_P]
     thin_i = int((fi["n_positions"] < MIN_BAND_SUPPORT).sum())
-    thin_p = int((fp["n_positions"] < FRAME_P_MIN_BAND_SUPPORT).sum())
+    thin_p = int((fp["n_positions"] < frame_p_floor).sum())
     n = thin_i + thin_p
     return GateResult("G7_band_support", n == 0, n,
                       f"frameI_below_{MIN_BAND_SUPPORT}={thin_i} "
-                      f"frameP_below_{FRAME_P_MIN_BAND_SUPPORT}={thin_p} "
-                      f"(frame-aware: Frame P structurally sparse, "
-                      f"calibrated floor per probe /tmp/g7_probe.log)")
+                      f"frameP_below_{frame_p_floor}={thin_p} "
+                      f"(frame+phase-aware: Frame-P floor "
+                      f"{FRAME_P_MIN_BAND_SUPPORT} scaled by phase frac "
+                      f"{frac:.3f}; ==30 at Phase-2 per /tmp/g7_probe.log)")
 
 
 def gate8_memory_bound(peak_rss_mb):
@@ -483,7 +487,7 @@ def gate9_robustness_completeness(surface, robustness):
 
 
 def run_all_gates(surface_path, robustness_path, attempted_n, contributing,
-                  dropouts, pos_for_gates, peak_rss_mb):
+                  dropouts, pos_for_gates, peak_rss_mb, full_cohort_n):
     surface = pd.read_parquet(surface_path)
     robustness = pd.read_parquet(robustness_path)
     return [
@@ -493,7 +497,7 @@ def run_all_gates(surface_path, robustness_path, attempted_n, contributing,
         gate4_ranking_metric_integrity(surface),
         gate5_no_stop_integrity(pos_for_gates),
         gate6_a39_dual_completeness(surface),
-        gate7_band_support(surface),
+        gate7_band_support(surface, attempted_n, full_cohort_n),
         gate8_memory_bound(peak_rss_mb),
         gate9_robustness_completeness(surface, robustness),
     ]
@@ -781,7 +785,8 @@ def main() -> int:
              f"reloading from disk for gate validation (C37)")
 
     gate_results = run_all_gates(new_surface, new_robust, attempted_n,
-                                 contributing, dropouts, pos, peak_rss)
+                                 contributing, dropouts, pos, peak_rss,
+                                 cohort_n)
     for g in gate_results:
         log.info(f"  {g.name}: {'PASS' if g.passed else 'FAIL'} "
                  f"n_violations={g.n_violations} {g.detail}")

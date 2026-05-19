@@ -1,6 +1,6 @@
 # Rung 1 Spec — Per-Band Optimized-Exit-Target Strategy Evaluation
 
-**Status:** v0.1 — initial draft 2026-05-15 ET. Operator-locked threshold grid, metric subset, and Greek-label deferral. Producer build unblocked at v0.1.
+**Status:** v0.2 — 2026-05-19 ET. v0.2 supersedes the v0.1 operator-locked 8-point absolute exit grid with a continuous per-cell realized-distribution design (§2.2, §9 v0.2 amendment); A39/E32(e)-grounded. Metric subset and Greek-label deferral unchanged from v0.1. Producer build unblocked at v0.2.
 
 **Anchored to:**
 - `rung0_cell_economics_spec.md` v1.1 (commit 87103d0d) — Rung 0 schema is the input
@@ -66,27 +66,19 @@ A Rung 1 row is keyed `(cell_key, threshold_cents)` where:
 
 72 cells × 8 thresholds = **576 output rows** under the v0.1 design.
 
-### 2.2 The threshold grid (locked)
+### 2.2 The exit axis (v0.2 — continuous, per-cell data-derived)
 
-Eight candidate exit targets:
+v0.1 locked an 8-point absolute-cent grid (5/10/15/20/25/30/40/50). v0.2 replaces it. Rationale (operator scrutiny, recorded §9): a fixed ABSOLUTE grid is the wrong axis by the operation's own doctrine — LESSONS A39 (a +5c line is +20% ROI on a 25c cell vs +6.7% on a 75c cell; absolute-cent lines are not comparable across cells of different entry price) and LESSONS E32(e) verbatim ("Every band gets its own exit target derived from the band" — a universal fixed grid contradicts the per-band-derived-target model). This is the same defect class A39 already caught one level up in this spec's metric design; the grid is the same error relocated to the exit axis.
 
-| threshold_cents | rationale |
-|---|---|
-| 5 | Lowest tradeable target; high-hit-rate baseline |
-| 10 | Strategically central; B23 bilateral capture anchor was at +10¢ |
-| 15 | Strategically central; modest stretch |
-| 20 | Strategically central |
-| 25 | Aggressive within the headline range (mean Rung 0 bounces are in the 30-34¢ range for top-10 cents cells) |
-| 30 | Near the mean for top-10 cents cells |
-| 40 | Stretch target; expected hit-rate decline |
-| 50 | Ceiling target for v1; above this hit rates collapse for most cells |
+v0.2 design: the producer does NOT pre-impose an exit grid. For each cell it emits the **full per-row realized-outcome distribution** — the raw material from which any exit line's realized outcome is a pure downstream function of three Rung 0 columns already stored per N (`peak_bid_bounce_pre_resolution`, `realized_at_settlement`, `t20m_trade_price`). Per §2.3, for ANY candidate exit line L: `hit = peak_bounce_cents >= L`; `realized_cents = L if hit else realized_at_settlement_cents`. This is continuous in L by construction — the v0.1 grid was an unnecessary discretization of a function that is defined for all L.
 
-The grid is dense in the +5 to +30¢ region (the strategically interesting deployment zone) and sparser above. Above +50¢ is not measured in v1 because:
-- A 75¢ contract has only +24¢ to ceiling — a +50¢ target is structurally impossible
-- For mid-band cells (25-50¢ entries), +50¢ targets put the exit at 75-100¢ where most peaks don't reach
-- Adding +60/+70/+80¢ thresholds would inflate the output schema without adding decision-relevant information
+The producer emits, per cell:
+- The per-row arrays needed to evaluate any L: `peak_bid_bounce_pre_resolution`, `realized_at_settlement`, `t20m_trade_price` (and identity/context columns) for every N in the cell. This is the primitive; it is exit-axis-agnostic.
+- A **dense realized curve** over a 1c absolute sweep (L = 1c..98c, every 1c) AND over a ROI-relative sweep (L = entry_price * m for m in a dense multiple set) AND a ceiling-relative reference (L as fraction of available room = 99c - entry_price), so all three A39-relevant views are precomputed for the report; NONE is privileged as "the" grid — they are views of the same per-row primitive.
+- The **per-cell optimal exit line** = argmax over the dense absolute sweep of mean_realized (cents) AND, separately, argmax of mean_realized_roi (per A39 — both emitted, neither a proxy for the other; downstream picks the decision-appropriate one). The full realized curve is surfaced (§5) so the shape is visible — a clean peak vs a flat ridge vs a B13 ceiling-truncated cliff is decision-relevant and must not be summarized away.
+- A **B13 ceiling-bind flag** per (cell, L): set when L is geometrically near-unreachable for that cell's entry price (L >= 99c - entry_price_cents - epsilon), so a cell is never falsely judged "no edge at L" when L was mathematically impossible there (LESSONS B13: bounded-variable ceiling artifacts must be flagged before interpreting threshold cliffs as edge findings).
 
-If a Rung 1.5 amendment establishes that specific cells have peak distributions warranting higher thresholds, the grid can be extended; v0.1 ships at 8 thresholds.
+Sample-quality and CIs (§3/§4) are computed AT the per-cell data-derived optimum (and at any downstream-requested L), not at 8 pre-chosen points — the Wilson/BCa machinery is unchanged, only its evaluation point becomes data-derived rather than locked.
 
 ### 2.3 Per-row realized cents computation (load-bearing)
 
@@ -125,6 +117,7 @@ Selection criteria for v0.1:
 3. **No mechanical redundancy** — `mean_realized_bounce_cents` and `expected_value_cents` are the same number with different labels; v1 emits only the operationally-named one.
 4. **No diagnostic-only metrics** in v1 (e.g., `threshold_hit_rate_full_window` exists only as a sanity comparator against A38 saturation; v1 doesn't ship it as a row column).
 5. **Greek labels excluded** (deferred entirely to Rung 1.5; v0.1 ships clean of them).
+6. **(v0.2) Evaluation point is data-derived, not grid-locked.** Every metric below is computed at the per-cell optimal exit line (argmax of the dense realized curve, emitted separately for cents and ROI per A39) and is also computable at any downstream-requested L from the emitted per-row primitive. "Per (cell, threshold)" throughout §3/§4 now means "per (cell, evaluated-exit-line)" where the headline evaluated line is the per-cell data-derived optimum; the locked-grid framing is superseded per §2.2 v0.2.
 
 ### 3.1 The 16 metrics (definitions)
 
@@ -221,7 +214,7 @@ Plus one helper column (not in the count of 16; computed from row timestamps):
 
 Row-level bootstrap with n=1000 resamples. BCa where computable; percentile fallback if BCa fails to converge (rare; flagged in validation report).
 
-Justification (operator-readable): Rung 0 emits one row per N per side. The two sides of a paired match fall in different price bands (their T-20m prices sum to ~$1, so one side at 0.30 puts the other at 0.70 — different cells). Within a single cell, rows are functionally independent observations from different matches. Row-level resampling is statistically correct at the within-cell level.
+Justification (operator-readable): Rung 0 emits one row per N per side. The two sides of a paired match fall in different price bands (their T-20m prices sum to ~$1, so one side at 0.30 puts the other at 0.70 — different cells). Within a single cell, rows are functionally independent observations from different matches. Row-level resampling is statistically correct at the within-cell level. (v0.2) The bootstrap is evaluated at the per-cell data-derived optimal exit line (and any downstream-requested L), not at 8 locked grid points; the resampling protocol (row-level, n=1000, BCa with percentile fallback) is unchanged — only the evaluation point becomes data-derived. CIs are therefore reported on the ACTUAL per-cell optimum, not on whichever of 8 arbitrary points was nearest it (a strict improvement in decision-relevance).
 
 BCa specifics:
 - 1000 bootstrap resamples per (cell, threshold) metric.
@@ -367,3 +360,7 @@ Operator-locked decisions at spec authoring time:
 | 10 | `weak_ci_flag` definition | Composite: ROI CI crosses zero OR hit_rate CI width > 0.20 OR low_n_flag TRUE | Operator-default; threshold values can be amended in Rung 1.5 if operator wants tighter/looser filter |
 
 End of Rung 1 spec v0.1.
+
+### v0.2 amendment — 2026-05-19 ET (operator scrutiny: continuous exit axis)
+
+The v0.1 operator-locked 8-point absolute grid (§2.2) is SUPERSEDED. Operator scrutiny established it as the same defect class LESSONS A39 already caught one level up in this spec: a fixed ABSOLUTE-cent grid is the wrong exit axis because absolute-cent lines are not comparable across cells of different entry price (A39: +5c = +20% ROI at 25c vs +6.7% at 75c), and LESSONS E32(e) states verbatim "Every band gets its own exit target derived from the band" — a universal fixed grid contradicts E32's own per-band-derived-target model. v0.2 replaces the grid with a continuous design: emit the per-cell per-row realized-outcome distribution as the exit-axis-agnostic primitive (a pure function of three already-stored Rung 0 columns per §2.3, which was already continuous-ready and is preserved unchanged); derive dense-absolute + ROI-relative + ceiling-relative views and the per-cell argmax-optimal exit (separately for cents and ROI per A39) downstream; flag B13 ceiling-bind per (cell, L). §3/§4 metrics+bootstrap retargeted from "8 locked points" to "the per-cell data-derived optimum + any downstream L" (machinery unchanged, evaluation point now data-derived). Honest provenance: the v0.1 grid was an operator-locked constraint at spec-authoring time, superseded by later operator scrutiny — recorded, not silently rewritten, same discipline this spec already applied to the A39 cents-vs-ROI catch (G23/4f55339 honest-provenance lineage). No producer exists yet at v0.2; producer build follows in a separate single-concern commit against this amended spec.

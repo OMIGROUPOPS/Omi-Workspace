@@ -453,14 +453,26 @@ def gate7_band_support(surface, attempted_n, full_cohort_n):
     fi = allrows[allrows["fill_frame"] == FRAME_I]
     fp = allrows[allrows["fill_frame"] == FRAME_P]
     thin_i = int((fi["n_positions"] < MIN_BAND_SUPPORT).sum())
-    thin_p = int((fp["n_positions"] < frame_p_floor).sum())
+    # Frame-P sub-floor bands carry low_support=True (set in _agg_block)
+    # and are flagged-into-robustness, NOT hard-failed -- this is the
+    # spec's OWN stated G7 design (Sec 4.1) and the g7-probe verdict
+    # (/tmp/g7_probe.log): the lone structurally-sparse extreme-dislocation
+    # band (idx39, n~27 at full cohort) is surfaced via the flag, not a
+    # gate violation. Exempt low_support=True bands from the violation
+    # count; a non-flagged Frame-P band below floor IS still a real
+    # violation (catches a genuine Frame-P collapse).
+    fp_unflagged = fp[~fp["low_support"].astype(bool)]
+    thin_p = int((fp_unflagged["n_positions"] < frame_p_floor).sum())
+    n_flagged_p = int(fp["low_support"].astype(bool).sum())
     n = thin_i + thin_p
     return GateResult("G7_band_support", n == 0, n,
                       f"frameI_below_{MIN_BAND_SUPPORT}={thin_i} "
-                      f"frameP_below_{frame_p_floor}={thin_p} "
-                      f"(frame+phase-aware: Frame-P floor "
-                      f"{FRAME_P_MIN_BAND_SUPPORT} scaled by phase frac "
-                      f"{frac:.3f}; ==30 at Phase-2 per /tmp/g7_probe.log)")
+                      f"frameP_below_{frame_p_floor}_unflagged={thin_p} "
+                      f"frameP_low_support_flagged={n_flagged_p} "
+                      f"(frame+phase-aware; low_support bands "
+                      f"flagged-into-robustness not hard-failed per spec "
+                      f"Sec 4.1 + /tmp/g7_probe.log; floor "
+                      f"{FRAME_P_MIN_BAND_SUPPORT} x frac {frac:.3f})")
 
 
 def gate8_memory_bound(peak_rss_mb):

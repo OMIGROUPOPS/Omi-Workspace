@@ -397,14 +397,35 @@ def write_validation_report(report_path, surface, result):
     if len(h) >= 4:
         cm = h["bounce_c_mean"].values
         rm = h["bounce_roi_mean"].values
-        c_dir = ("MONOTONE-DOWN" if cm[0] > cm[-1] and np.argmax(cm) <= 1
-                 else "MONOTONE-UP" if cm[-1] > cm[0] and np.argmin(cm) <= 1
-                 else f"NON-MONOTONE(peak@{int(np.argmax(cm))})")
-        r_dir = ("MONOTONE-UP" if rm[-1] > rm[0] and np.argmin(rm) <= 1
-                 else "MONOTONE-DOWN" if rm[0] > rm[-1] and np.argmax(rm) <= 1
-                 else f"NON-MONOTONE(peak@{int(np.argmax(rm))})")
-        inverted = ("DOWN" in c_dir and "UP" in r_dir) or \
-                   ("UP" in c_dir and "DOWN" in r_dir)
+        # v0.3: Spearman rank-correlation sign IS the monotone-direction
+        # measure (the v0.2 rigid argmin/argmax<=1 positional heuristic
+        # false-negatived whenever the characterized mid-axis trough/peak
+        # was not in the first two bins -- same brittle pattern flagged on
+        # the probe-2 classifier, C38/B20: read the curve, not the position).
+        _bins = np.arange(len(cm))
+        try:
+            from scipy.stats import spearmanr
+            _rho_c = float(spearmanr(_bins, cm).correlation)
+            _rho_r = float(spearmanr(_bins, rm).correlation)
+        except Exception:
+            # numpy rank-correlation fallback (mirrors the probe-2 substitution)
+            def _rankcorr(a, b):
+                ra = pd.Series(a).rank().values
+                rb = pd.Series(b).rank().values
+                return float(np.corrcoef(ra, rb)[0, 1])
+            _rho_c = _rankcorr(_bins, cm)
+            _rho_r = _rankcorr(_bins, rm)
+        _MONO = 0.5  # |rho| >= 0.5 => directional monotone trend
+        c_dir = ("MONOTONE-DOWN" if _rho_c <= -_MONO
+                 else "MONOTONE-UP" if _rho_c >= _MONO
+                 else f"NON-MONOTONE(rho={_rho_c:+.3f})")
+        r_dir = ("MONOTONE-UP" if _rho_r >= _MONO
+                 else "MONOTONE-DOWN" if _rho_r <= -_MONO
+                 else f"NON-MONOTONE(rho={_rho_r:+.3f})")
+        # Inversion = cents and roi trend OPPOSITE signs (the load-bearing
+        # A39 structure), judged by rho sign, not string-match.
+        inverted = bool((_rho_c < 0 and _rho_r > 0) or
+                        (_rho_c > 0 and _rho_r < 0))
         L.append(f"**Shape (measured, B20):** cents-curve {c_dir}; "
                  f"roi-curve {r_dir}; inversion present: {inverted}. "
                  f"(probe-1+2 expectation: cents-DOWN, roi-UP, inverted=True — "

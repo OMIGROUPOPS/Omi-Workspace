@@ -744,6 +744,58 @@ Spec: methodology described inline in the four LOCKED_DOWN.md files (no standalo
 - Notes: Three-axis caveat (load-bearing for every headline number) recorded verbatim in each LOCKED_DOWN.md and in SESSION_HANDOFF.md. AXIS 1 exit-side fill realism pushes DOWN (expected realized 0.4-0.8× of simulated per B25/Cat-11). AXIS 2 entry-side maker improvement pushes UP (expected ~+10-30% on headline; the bot's 97%-Scenario-C_discount thesis lives here). AXIS 3 arrival frequency (G22) not collapsed (N/day × ct/N never combined into a single number). Corpus blended +8.70% per-trade ROI at 10ct; max-overlap operational picture ~91 N/day, ~$460 capital/day, ~$40.62 earnings/day before execution adjustments.
 - **Audit disposition (2026-05-20):** CANONICAL — the strategy-anchored descriptive deliverable. Per-cell hindsight-optimal rules at three resolutions. NOT a predictive rule (the deployable rule shape is an open question pending paper-mode validation). NOT deployable dollars (three-axis caveat between headline and realized PnL). The execution-lock arc validates against these hindsight rules; the deployable rule shape is downstream.
 
+### exit_optimized_bounce_v1 — Phase-1 PASS, Phase-2 halted-then-gate-fixed, not re-run (T39.2, superseded by T42 atlas)
+
+Phase-2 exit-optimization producer per spec v0.1 → v0.4 (commits `de62d7f`, `8e8f46e`, `5020f10`, `d23fff5`). Layer-B-equivalent per LESSONS B16 (descriptive market measurement at the band level with exit-optimization, downstream of validated Layer A `inmatch_bounce_surface_v1` at commit `6f1d4bd`). Dual conservative-fill frame design (per operator decision option 3): both Frame I (idealized) and Frame P (probabilistic) emitted with cross-frame robustness as headline. T-20m reinterpreted as conservative FV-anchored fill assumption (not axiom). Foundations pinned at producer level: per_minute_features `9fde4b5d` / n_profile `a7ed1155` / Layer-A surface `14241db0`.
+
+**Status: Phase-1 PASS, Phase-2 halted then gate-fixed, never re-run.** Phase-1 (direction-sanity smoke) PASSED with byte-identical 0/40 violations (Frame-I exit-opt ≤ Layer-A unconditional, A38/no-stop/ranking-integrity all PASS). Phase-2 v0.3 halted with n_violations=1, exactly the lone extreme-dislocation Frame-P band (idx39, n=27) that the G7 probe predicted; producer correctly set low_support=True but the gate still hard-counted it. v0.4 (commit `d23fff5`) fixed the G7 exemption logic (violation count excludes low_support=True bands). Phase-2 not re-run after the v0.4 gate-fix landed because the atlas (T42) approach was prioritized and ate the deployment-ranking lane between 2026-05-18 and 2026-05-20.
+
+Spec/producer iteration this arc: spec v0.1 `de62d7f` → producer v0.2 G2/G7 probe-grounded fixes `8e8f46e` → producer v0.3 G7 Frame-P phase-aware `5020f10` (corrects v0.2 phase-blindness) → producer v0.4 G7 low_support exemption `d23fff5` (corrects v0.3 spec-contradicting hard-count). Producer sha256 of v0.2 canonical (the file that ran Phase-1): `fea91dc085e241e37389cf516fb08dd4b26069482f878c5fc5d1330172f5b59a`.
+
+#### build_exit_optimized_bounce_v1.py (T39.2, Phase-2-halted)
+
+- **File path:** arb-executor/data/scripts/build_exit_optimized_bounce_v1.py (commit `d23fff5` v0.4)
+- **Output:** would write to arb-executor/data/durable/exit_optimized_bounce_v1/ on Phase-2 re-execution; directory does not exist on origin/main; MANIFEST entry never landed.
+- **Grain:** per-band (40 band × 2 frame × per-band exit-opt result)
+- **Vector:** vector-agnostic
+- **Objective:** exit-optimized (Phase-2 exit-optimization at band level with dual conservative-fill frame)
+- Producer script: arb-executor/data/scripts/build_exit_optimized_bounce_v1.py at commit `d23fff5` (v0.4 — G7 gate-exemption aligned to spec design).
+- Spec: arb-executor/docs/exit_optimized_bounce_v1_spec.md at commit `de62d7f` (v0.1, ASCII-clean, single-concern).
+- Source data: inmatch_bounce_surface_v1 surface.parquet (sha256 `14241db0`) + n_profile.parquet (sha256 `a7ed1155`) + per_minute_features.parquet (sha256 `9fde4b5d`).
+- Date created: 2026-05-19 ET (spec v0.1 + producer v0.2 ran Phase-1 successfully) through 2026-05-20 ET (v0.4 gate-fix landed, Phase-2 not re-run).
+- Depth: 2 (Layer-B-equivalent per B16; exit-optimization downstream of Layer A descriptive surface).
+- Data tier used: derived from FOUNDATION-TIER (per_minute_features) via n_profile_v1 + inmatch_bounce_surface_v1 lineage.
+- Schema: dual Frame I + Frame P emission with cross-frame robustness as headline. Band-level rows with exit-optimized bounce metrics, low_support flag, gate status per spec.
+- Validity status: **superseded** (preserved-not-deprecated). Phase-1 PASSED; Phase-2 v0.3 halted at G7 violation (correctly flagged extreme-dislocation band); v0.4 gate-fix landed but Phase-2 never re-run. Direction-sanity invariant holds (0/40 bands; gate edits cannot alter exit_bounce_c_mean). Science untouched per v0.2/v0.3/v0.4 commit messages.
+- Notes: This and Rung 1 (T39.1) are the two superseded parallel attempts that the atlas (T42) ate. Different methodology than atlas: band-level rather than cell-level, dual conservative-fill frame rather than taker-floor anchoring, Layer-B-equivalent rather than Layer-A-equivalent. Operator decision: preserve-not-deprecate. Code available if future work wants the dual-frame approach or the band-level Phase-2 exit-optimization framing.
+- **Audit disposition (2026-05-21, Stage 0):** SUPERSEDED-PRESERVED — committed code on origin/main, Phase-1 PASSED, Phase-2 halted-then-gate-fixed but never re-run. Open question on formal retirement vs retroactive Phase-2 run tracked at SESSION_HANDOFF.md Open Uncertainty #7.
+
+### rung1_strategy_evaluation_v0.3.2 — committed producer, never run (T39.1, superseded by T42 atlas)
+
+The Rung 1 strategy_evaluation producer per the recomputation ladder framework (data/analysis/recomputation_ladder.json), built to spec v0.3.2 at commit `5fc6d40`. Two-artifact continuous design: dense per-cell exit curve Artifact A (cell_key × 1-98c exit lines, 7,056 rows full) plus per-cell argmax optimum Artifact B (72 rows, cents/ROI/Sharpe per A39, pure deterministic read of A). Three statistical functions implemented at v0.3.2: Wilson CI (closed-form, unit-verified), BCa bootstrap (n=1,000, jackknife accel, Acklam-ppf fallback when scipy absent), ratio-direct BCa Sharpe/Sortino. Seven hard gates + one soft per spec §6.1 including load-bearing gate-7 summary-derivation-consistency. C37 two-`.new` discipline + meta sidecar. ARTIFACT_A_COLUMNS=28, ARTIFACT_B_COLUMNS=32, EXIT_LINES_CENTS=98 per spec §3.2.
+
+**Status: committed-but-never-run.** Per commit message `5fc6d40`: "PHASE-1 DATA SMOKE PENDING: Rung 0 corpus cell_economics.parquet (sha256 6fdd019d...) is VPS-resident, not git-tracked by design; phase-1 integration smoke + phase-3 full run both execute on VPS via App where the corpus lives. Operator explicitly waived the local-smoke gate (data physically VPS-only)." Phase-1 smoke and Phase-3 full run were intended for subsequent App-driven execution that never happened — the atlas approach (T42) took over the per-cell exit-rule lane between 2026-05-18 and 2026-05-20 with different methodology (taker-floor anchoring, 1c/2c/3c resolutions, four-category sweep rather than the 72-cell × continuous-exit-axis design).
+
+Spec arc: v0.1 → v0.2 → v0.3 → v0.3.1 → v0.3.2 (commits `92198d6`, `59c3f14`, `ba09107`, `c916c50`, `3bbac37`). Producer iteration: `6d284bb` (Phase-A skeleton) → `168728d` (pandas 3.0 + pyarrow 24 compat) → `4d1cec3` (corpus_active_days bugfix) → `5fc6d40` (Phase-B real Wilson + BCa, build-ready at v0.3.2). G22 alignment landed at spec commit `2e1d49e9` (daily_opportunity_rate corrected from cts/day to N's/day).
+
+#### build_rung1_strategy_evaluation.py (T39.1, committed not run)
+
+- **File path:** arb-executor/data/scripts/build_rung1_strategy_evaluation.py (commit `5fc6d40`)
+- **Output:** would write to arb-executor/data/durable/rung1_strategy_evaluation/ on execution; directory does not exist on origin/main; MANIFEST entry never landed.
+- **Grain:** per-cell (Artifact A 7,056 rows = 72 cells × 98 exit lines; Artifact B 72 rows = 72 cells × per-cell-optimum)
+- **Vector:** vector-agnostic
+- **Objective:** exit-optimized (per-cell argmax over continuous exit axis)
+- Producer script: arb-executor/data/scripts/build_rung1_strategy_evaluation.py at commit `5fc6d40`, build-ready against spec v0.3.2.
+- Spec: arb-executor/docs/rung1_strategy_evaluation_spec.md at commit `3bbac37` (v0.3.2, internally consistent and build-ready).
+- Source data (would be): arb-executor/data/durable/rung0_cell_economics/cell_economics.parquet (sha256 `6fdd019d`, Rung 0 output — VPS-resident, not git-tracked).
+- Date created: 2026-05-15 ET (initial Phase-A skeleton) through 2026-05-19 ET (Phase-B v0.3.2 build-ready).
+- Depth: 1 (descriptive aggregation per cell with CI intervals).
+- Data tier used: Rung 0 output (downstream of FOUNDATION-TIER per_minute_features).
+- Schema: documented in spec v0.3.2 §3.2. Artifact A: 28 columns (cell_key, exit_line_c, plus 26 metric columns per spec §3.1). Artifact B: 32 columns (cell-level summary + per-A39-axis argmax point with CIs).
+- Validity status: **superseded** (preserved-not-deprecated). Code committed and build-ready; Phase-1 smoke + Phase-3 full run never executed. The atlas (T42) ate the lane this would have occupied with different methodology.
+- Notes: Operator-decision per SESSION_HANDOFF.md Open Uncertainty #7 — "do we ever want to run them retroactively for cross-validation? Or formally retire? Operator call." Preserved-not-deprecated status reflects current ambiguity: code is available if future work wants the Rung-framing (continuous exit axis at fixed 72-cell resolution, Wilson + BCa intervals, A39 cents/ROI/Sharpe separated optima). Different shape than atlas (atlas uses taker-floor anchoring + 1c/2c/3c resolutions; Rung 1 used mid-price entry + continuous exit-axis at 5¢ bands).
+- **Audit disposition (2026-05-21, Stage 0):** SUPERSEDED-PRESERVED — committed code on origin/main, never executed, lane eaten by T42 atlas. Open question on formal retirement vs retroactive run tracked at SESSION_HANDOFF.md Open Uncertainty #7.
+
 ### Layer C v1 specification (T32a, foundation T28 ea84e74 + T29 1398c39 + T31b 28e8ab7)
 
 [#layer-c-v1-specification-t32a-foundation-t28-ea84e74--t29-1398c39--t31b-28e8ab7](#layer-c-v1-specification-t32a-foundation-t28-ea84e74--t29-1398c39--t31b-28e8ab7)

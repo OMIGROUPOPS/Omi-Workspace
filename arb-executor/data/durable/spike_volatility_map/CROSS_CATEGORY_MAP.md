@@ -1,5 +1,19 @@
 # Spike volatility map -- cross-category
 
+**DEPRECATED 2026-05-21 ET (Stage 0 Commit 7).** This file is the early-arc 2-of-4-category cross-comparison generated 2026-05-19 when only ATP_MAIN + WTA_MAIN had landed. The "Pending (not yet computed)" line below is stale — ATP_CHALL landed at commit `ec1f593` (2026-05-20) and WTA_CHALL at commit `d038cb3` (same day), completing the four-category atlas at HEAD `d99c6e9`.
+
+**Canonical replacements:**
+- Per-category methodology and headline numbers: the four LOCKED_DOWN.md files in this directory (ATP_MAIN_LOCKED_DOWN.md, WTA_MAIN_LOCKED_DOWN.md, ATP_CHALL_LOCKED_DOWN.md, WTA_CHALL_LOCKED_DOWN.md).
+- Cross-category and pairing analysis: PAIRING_DIAGNOSTIC.md in this directory (event-level pairing rate 79.3%, per-category breakdown).
+- Catalog-style cross-reference: SESSION_HANDOFF.md "Atlas headline" section (four-category headline table); ANALYSIS_LIBRARY.md Section 2 atlas entry (deliverable catalog) + Section 4 atlas finding entry (corpus-wide findings).
+- Reproducibility: data/scripts/build_spike_perN.py at commit `c5e377f` reproduces all four spike per-N parquets byte-identical.
+
+The body below is preserved as a 2-category historical snapshot from 2026-05-19. Do not consume it as the current cross-category reference.
+
+---
+
+# Spike volatility map -- cross-category
+
 Generated: 2026-05-19T22:06:36.215107+00:00 (UTC), fresh from parquets in this directory.
 
 ## Completeness

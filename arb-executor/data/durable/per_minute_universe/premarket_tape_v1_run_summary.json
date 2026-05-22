@@ -1,0 +1,30 @@
+{
+  "producer": "build_premarket_tape_v1.py",
+  "producer_commit": "a6734c3",
+  "input_source": "data/durable/per_minute_universe/per_minute_features.parquet",
+  "input_sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
+  "filter": "regime == premarket AND time_to_match_start_min in [20, 240]",
+  "scope_resolution": "foundation per_minute_features universe confirmed; atlas is a downstream filter applied at analysis time as needed via inner-join on the 14,033 atlas ticker list. Foundation scope (17,979 tickers) is a strict superset of atlas; 3,946 foundation-only tickers preserve edge-case premarket dynamics for upstream analysis.",
+  "output_path": "data/durable/per_minute_universe/premarket_tape_v1.parquet",
+  "output_sha256": "ff2a63d9951d1a3d6b80044106c96ca9fdfd8d3951590e73eec1b46209c5a214",
+  "output_rows": 2064211,
+  "output_size_bytes": 86344070,
+  "tickers_processed": 17979,
+  "tickers_skipped_no_premarket_window": 1228,
+  "total_foundation_tickers": 19207,
+  "distinct_event_tickers": 8993,
+  "atlas_ticker_coverage": "14033/14033 (100.0%)",
+  "foundation_only_ticker_count": 3946,
+  "wall_clock_seconds": 50.7,
+  "peak_rss_mb": 493,
+  "validation_gates_passed": [
+    "regime_pure",
+    "window_in_range",
+    "ticker_coverage_foundation_scope_confirmed",
+    "paired_arb_gap_present",
+    "size_per_row_matches_foundation_density"
+  ],
+  "gate3_resolution": "scope ambiguity surfaced by App, resolved by operator to foundation scope (A)",
+  "gate5_resolution": "prompt size estimate was uncompressed/order-of-magnitude error; 86 MB at 41.8 bytes/row matches per_minute_features compression density (43.6 bytes/row) exactly",
+  "run_timestamp_utc": "2026-05-22T04:04:05.444831+00:00"
+}

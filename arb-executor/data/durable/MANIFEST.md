@@ -345,3 +345,20 @@ Methodology and findings documentation — the canonical reference for what each
 - PAIRING_DIAGNOSTIC.md (6812 bytes, commit d99c6e9) — event-level pairing analysis, 79.3% paired (6,208 of 7,825 events), per-category breakdown
 - CROSS_CATEGORY_MAP.md (6111 bytes, pre-Challenger; flagged stale; deprecation header pending Stage 0 Commit 7)
 
+
+## premarket_tape_v1 (Track 1 microstructure-only premarket substrate)
+
+Foundation pointer: per_minute_features T37 ckpt-3 (sha256 9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4). Producer: data/scripts/build_premarket_tape_v1.py at commit a6734c3. Run: 2026-05-22 04:04 UTC (~51s wall; arrow-native row-group streaming over 94 row-groups, incremental ParquetWriter; peak RSS 493 MB, 35% of 1.4 GiB gate). Filter: regime == premarket AND time_to_match_start_min in [20, 240] (T-4h to T-20m window). Scope: foundation universe (17,979 tickers with a qualifying premarket window of 19,207 total foundation tickers; 1,228 skipped for no qualifying window) — a strict SUPERSET of the atlas 14,033-ticker universe (atlas 100% covered; 3,946 foundation-only tickers retained for upstream microstructure edge-case dynamics). Descriptive Track 1 substrate (microstructure-only); NO FV anchor join (Track 2 is a separate workstream). Lineage note: App stopped at validation per overnight protocol when Gate 3 surfaced a prompt scope ambiguity (Step 2 producer logic = foundation universe vs Gate 3 = atlas universe); operator resolved to foundation scope (A). Gate 5 size band (500MB-2GB) was a prompt order-of-magnitude error.
+
+### premarket_tape_v1.parquet
+
+- sha256: ff2a63d9951d1a3d6b80044106c96ca9fdfd8d3951590e73eec1b46209c5a214
+- Size: 86344070 bytes
+- Rows: 2064211 (one per (ticker, minute) in T-4h to T-20m window; 92 cols = 88 source + 4 convenience)
+- File: data/durable/per_minute_universe/premarket_tape_v1.parquet (NOT git-tracked — size; sha256 here per durable-corpus discipline, mirrors per_minute_features.parquet)
+- Producer: data/scripts/build_premarket_tape_v1.py at commit a6734c3
+- Source: per_minute_features.parquet (T37 ckpt-3, sha256 9fde4b5d), arrow-native row-group streaming filter
+- Coverage: 17,979 distinct tickers / 8,993 distinct event_tickers; atlas 14,033/14,033 (100.0%) + 3,946 foundation-only
+- Convenience cols: premarket_minute_index (backward minute count from T-20m, 0 at T-20m up to 220 at T-4h), time_to_t20m_min (float, ttm-20), in_t4h_t2h_subwindow (ttm in [120,240]), in_t2h_t20m_subwindow (ttm in [20,120])
+- Validity status: PASSED — 5 gates: gate1 regime_pure (premarket only), gate2 window_in_range ([20,240]), gate4 paired_arb_gap_present (16.34% null), gate3 ticker_coverage resolved to foundation scope by operator, gate5 size resolved as prompt mis-estimate (41.8 bytes/row == foundation 43.6 bytes/row density). 493 MB peak RSS bounded.
+- Companions: premarket_tape_v1_run_summary.json

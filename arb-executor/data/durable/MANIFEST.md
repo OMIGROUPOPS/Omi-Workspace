@@ -417,3 +417,24 @@ Producer: data/scripts/build_premarket_scope_a_v1.py at commit f33e25e. Run 2026
 - Headline patterns (see scope_a_corpus_map_findings.md): mid-drift is a clean monotonic ~symmetric function of anchor regime (~+/-11c at the extremes, ~0 at coin-flip), near-identical across categories; spread tails widen into T-20m; large paired distortions ~2x more frequent on Challenger than ATP_MAIN.
 - Memory note: in-memory build peaked 1.42 GB RSS (exceeded the 1.2 GB run-gate; completed cleanly with headroom on 1.9 GB + 2 GB swap; conservative gate, not load-bearing). Future expanded-atlas re-runs may need a streaming rewrite. See scope_a_v1_run_summary.json deviations + future_rebuild_note.
 - Companions: data/durable/per_minute_universe/scope_a_v1_run_summary.json; docs/analysis/premarket_dynamics_v1/scope_a_corpus_map_findings.md
+
+
+## Path B premarket fill mechanics (path_b_per_n_fill_results_v1 + path_b_per_regime_fill_summary_v1)
+
+Producer: data/scripts/build_path_b_fill_mechanics_v1.py at commit 884e951. Run 2026-05-23 (~15s wall, peak RSS 762 MB). Measures, for each atlas N x (placement_minute, bid_offset) cell, whether a maker bid at anchor_price - offset would have filled by natural premarket trajectory (price_close <= bid OR yes_ask_close <= bid) between placement and T-20m. Pure fill mechanics: no PnL, no exit logic. Downstream of locked atlas T42 (d99c6e9); Axis 2 (entry-side improvement) per G22. Doctrine A39/B16/B25/G22.
+
+### path_b_per_n_fill_results_v1.parquet
+- sha256: 603ac54a4410837cec8891719ceaf447c6987ee667cb05e7d36758cb2bb23e62 ; Size: 835964 bytes ; Rows: 589386 (14033 N x 42 cells)
+- File: data/durable/per_minute_universe/path_b_per_n_fill_results_v1.parquet (NOT git-tracked)
+- Cols: ticker, event_ticker, category, anchor_price_cents, anchor_regime, placement_minute, bid_offset_cents, bid_price_cents, fill_outcome, fill_minute.
+
+### path_b_per_regime_fill_summary_v1.parquet
+- sha256: d9e2c3c55c6d7fb5d93beeddfde8a40f1298b841a0547d3743e14cd21e64e37e ; Size: 45355 bytes ; Rows: 1512 (4 cat x 9 regime x 6 placement x 7 offset)
+- File: data/durable/per_minute_universe/path_b_per_regime_fill_summary_v1.parquet (NOT git-tracked)
+- Cols: category, anchor_regime, placement_minute, bid_offset_cents, n_tickers_in_stratum, fill_rate, mean_fill_minute, median_fill_minute, expected_improvement_cents (= fill_rate x bid_offset).
+
+- Source: premarket_tape_v1.parquet (sha256 ff2a63d9) + atlas membership/anchor from 4 spike_perN parquets.
+- Gates: 1 rowcount PASS (589386); 2 coverage PASS (exact per-cat N, 9 regimes); 3/4 fill-rate sanity PASS (majority; exceedances are the prompt-anticipated favorite/underdog drift asymmetry); 5 monotonicity 216/216=100% PASS.
+- Headline: expected entry-improvement rises monotonically with anchor regime -- heavy favorites (r85_94) ~6.3-7.0c/N via 15c offsets (books drift up ~11c), deep underdogs (r05_14) ~1.0-1.2c via 2-3c offsets only (books drift down to anchor). Corpus hindsight ceiling 2.46c/N; best single uniform cell (T-240, 15c) 2.25c/N. Earlier placement weakly dominates.
+- Caveats: hindsight-optimal (live loses to per-event placement uncertainty); minute-cadence fill (no sub-minute/queue); fill realism downstream (Axis 1/B25) separate; entry-side ONLY (atlas T42 owns exit).
+- Companions: data/durable/per_minute_universe/path_b_v1_run_summary.json ; docs/analysis/premarket_dynamics_v1/path_b_fill_mechanics_findings.md

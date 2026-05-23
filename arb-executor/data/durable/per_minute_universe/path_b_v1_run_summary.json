@@ -1,0 +1,38 @@
+{
+  "analysis": "path_b_premarket_fill_mechanics",
+  "producer": "data/scripts/build_path_b_fill_mechanics_v1.py",
+  "producer_commit": "884e951",
+  "run_timestamp_utc": "2026-05-23T19:52:00Z",
+  "sources": {
+    "premarket_tape_v1.parquet": "ff2a63d9951d1a3d6b80044106c96ca9fdfd8d3951590e73eec1b46209c5a214",
+    "atlas_spike_perN_parquets": ["atp_main", "wta_main", "atp_chall", "wta_chall"]
+  },
+  "universe": "atlas-only (14,033 tickers: ATP_MAIN 4137 / WTA_MAIN 3683 / ATP_CHALL 5326 / WTA_CHALL 887)",
+  "window": "T-4h to T-20m",
+  "methodology": "For each N x (placement_minute in {240,180,120,90,60,40}, bid_offset in {1,2,3,5,8,10,15c}): bid_price = anchor_price_cents - bid_offset (clamp >=1). Walk premarket_tape_v1 forward from placement_minute to T-20m; fill at first minute where price_close <= bid_price OR yes_ask_close <= bid_price (NaN treated as non-filling on that channel). Pure fill mechanics: NO PnL, NO exit logic, NO settlement, NO atlas reproduction. expected_improvement_cents = fill_rate x bid_offset.",
+  "outputs": {
+    "path_b_per_n_fill_results_v1.parquet": {"sha256": "603ac54a4410837cec8891719ceaf447c6987ee667cb05e7d36758cb2bb23e62", "rows": 589386, "size_bytes": 835964, "note": "14033 N x 42 strategy cells"},
+    "path_b_per_regime_fill_summary_v1.parquet": {"sha256": "d9e2c3c55c6d7fb5d93beeddfde8a40f1298b841a0547d3743e14cd21e64e37e", "rows": 1512, "size_bytes": 45355, "note": "category x anchor_regime x placement_minute x bid_offset (4x9x6x7)"}
+  },
+  "validation_gates": {
+    "gate1_rowcount": "PASS. per-N rows = 589,386 (= 14,033 x 42).",
+    "gate2_coverage": "PASS. per-category N exact (ATP_MAIN 4137 / WTA_MAIN 3683 / ATP_CHALL 5326 / WTA_CHALL 887); all 4 categories, all 9 standard anchor regimes present.",
+    "gate3_fillrate_low_end": "PASS (majority). (P=240, off=1) fill rates 0.65-0.96; 19/36 cells >=0.85, all high. Sub-0.85 cells are underdog/mid regimes -- the drift asymmetry the prompt's Step 1 anticipated (a bid below anchor fills less when the market lands AT anchor; underdog books drift down to anchor). Not a logic error.",
+    "gate4_fillrate_high_end": "PASS (majority). (P=40, off=15) fill rates 0.00-0.25; 31/36 cells <0.20. The few >0.20 are favorite extremes (r75_84/r85_94) where ~11c upward drift makes a 15c discount occasionally reachable -- correct behavior.",
+    "gate5_monotonicity": "PASS. fill_rate monotonically decreasing in bid_offset within (category x anchor_regime x placement_minute): 216/216 = 100% (>=80% required). Strongly corroborates simulation correctness."
+  },
+  "headline_findings": {
+    "corpus_hindsight_ceiling_cents_per_N": 2.461,
+    "best_single_uniform_cell": "T-240 placement, 15c offset: fill 0.150, expected_improvement 2.25 c/N blended",
+    "favorite_regime_optimal": "r85_94: place T-180/T-240, 15c offset, fill ~0.42-0.47, expected_improvement ~6.3-7.0 c/N (favorite books drift up ~11c so large offsets fill and capture full offset)",
+    "underdog_regime_optimal": "r05_14: place T-240, 2-3c offset, fill ~0.39-0.56, expected_improvement ~1.0-1.2 c/N (underdog books drift down to anchor; bids below anchor rarely fill at large offsets)",
+    "pattern": "expected_improvement and optimal bid_offset both rise monotonically with anchor regime; earlier placement weakly dominates (more window); offset choice dominates placement timing."
+  },
+  "doctrine_alignment": ["A39", "B16", "B25", "G22"],
+  "performance": {"wall_clock_seconds": 15.2, "peak_rss_mb": 762},
+  "deviations": [
+    "Reframe (per operator direction): the original Path B draft computed hold-to-settlement PnL and compared it against the atlas's +8.70% SPIKE-EXIT baseline -- a conflation (recon measured the hold-to-settlement taker baseline at -1.02c/N, not +8.70%, because you own both legs of each paired event so anchors sum to ~101.9c). This version is PURE FILL MECHANICS: no PnL, no exit logic, no atlas reproduction. expected_improvement is an entry-side edge additive on top of the locked atlas exit.",
+    "Gate 3/4 thresholds ('>85% most' / '<20% most') are met in the majority sense but with explainable exceedances reflecting the (prompt-anticipated) favorite/underdog drift asymmetry, not logic errors; gate 5's 100% monotonicity corroborates correctness.",
+    "Internal: .to_numpy() returned read-only views; used copy=True for in-place inf-fill of NaN ask/price. No output-contract effect."
+  ]
+}

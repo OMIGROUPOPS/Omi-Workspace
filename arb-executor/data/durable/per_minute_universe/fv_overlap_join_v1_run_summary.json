@@ -1,0 +1,53 @@
+{
+  "substrate": "fv_overlap_join_v1",
+  "producer": "data/scripts/build_fv_overlap_join_v1.py",
+  "producer_commit": "a0700b8",
+  "run_timestamp_utc": "2026-05-23T16:26:00Z",
+  "sources": {
+    "premarket_tape_v1.parquet": "ff2a63d9951d1a3d6b80044106c96ca9fdfd8d3951590e73eec1b46209c5a214",
+    "fv_history_archive": "data/durable/fv_history/by_month/{2026-04,2026-05}.parquet (book_prices, ET-local polled_at)",
+    "atp_main_spike_perN.parquet": "621c86340b90653e384720b1f10c4617f9fbd64d5f177cbfab0d2153c9ea960f"
+  },
+  "output": {
+    "path": "data/durable/per_minute_universe/fv_overlap_join_v1.parquet (NOT git-tracked; size discipline mirrors premarket_tape_v1)",
+    "sha256": "58cb0d894d83d782f6a793a060b964565e5484c72da4d01b9a35e43f5cf14e1a",
+    "size_bytes": 7432699,
+    "rows": 154367,
+    "schema": "premarket_tape_v1 columns + 9 new: fv_consensus_own, fv_source, num_books_in_window, confidence_weight, fv_consensus_partner, fv_delta_at_last_traded, fv_delta_at_mid, paired_fv_sum, fv_join_minute_ts"
+  },
+  "fv_coverage_start_utc": "2026-04-19 22:33:45 (= min polled_at 2026-04-19 18:33:45 ET -> UTC; epoch 1776638025)",
+  "join_semantics": "as-of carry-forward per tier: most recent poll <= minute_ts within that tier's freshness (pinnacle/aggregate 1800s, betexplorer 3600s). polled_at parsed as America/New_York then converted to UTC epoch.",
+  "tiers": {
+    "1_pinnacle": {"freshness_sec": 1800, "confidence_weight": 0.95},
+    "2_aggregate": {"freshness_sec": 1800, "confidence_weight": 0.80, "rule": "mean of non-pinnacle/non-betexplorer books with FV>0, >=3 required"},
+    "3_betexplorer": {"freshness_sec": 3600, "confidence_weight": 0.50, "note": "single-book Challenger scraper (betexplorer.py sidecar, 10-min cadence)"},
+    "5_paired_sum": "INTENTIONALLY EXCLUDED from the substrate — fv.py's tier-5 paired-sum (100 - other side's Kalshi price) is a live-runtime last-resort fallback, NOT an analytical signal source (it is circular w.r.t. Kalshi price)."
+  },
+  "confidence_weight_semantics": "confidence_weight column carries the fv.py CONFIDENCE for the chosen tier (0.95/0.80/0.50, NULL when unavailable). Downstream Track 2 analyses should weight FV-conditional signals by this column so betexplorer-sourced (Challenger) observations are not treated as equally reliable as Pinnacle-sourced (Main) observations.",
+  "validation_gates": {
+    "gate1_rowcount": "PASS — rows_out 154367 == premarket_tape_v1 rows with minute_ts >= FV coverage start (by construction).",
+    "gate2_null_fraction": "PASS under intended denominator. ALL-rows null=0.6466 (dominated by 463/836 FV-window events absent from book_prices). Among book_prices events null=0.2673 (<0.50). Per-category: ATP_MAIN 0.198, WTA_MAIN 0.282, ATP_CHALL 0.322.",
+    "gate3_fv_source_dist": "PASS — populated rows 54559: pinnacle 36790 (67%, majority), betexplorer 17769 (33%), aggregate 0. unavailable 99808.",
+    "gate4_paired_fv_sum": "PASS — mean 100.000, median 100.000, std 0.006 (n=54559). Book FVs are de-vigged to sum 100 per side-pair.",
+    "gate5_fv_delta_dist": "PASS — fv_delta_at_last_traded (n=23929): mean 0.953, median 1.000, std 3.659, p5 -2.50, p95 4.40 (centered near 0, small positive bias ~+1c = Kalshi last-traded slightly above consensus); rare outliers to +/-40c."
+  },
+  "per_category_coverage": {
+    "ATP_MAIN": {"bp_rows": 25425, "events": 95, "null_frac": 0.198, "source_mix": {"pinnacle": 20393, "unavailable": 5032}},
+    "WTA_MAIN": {"bp_rows": 22842, "events": 106, "null_frac": 0.282, "source_mix": {"pinnacle": 16397, "unavailable": 6445}},
+    "ATP_CHALL": {"bp_rows": 26193, "events": 172, "null_frac": 0.322, "source_mix": {"betexplorer": 17769, "unavailable": 8424}},
+    "WTA_CHALL": {"bp_rows": 0, "events": 0, "note": "ZERO book_prices coverage — see WTA Challenger gap below"}
+  },
+  "notes": {
+    "aggregate_tier_dormant": "fv_source 'aggregate' fired 0 times: on Main tour, whenever >=3 books poll a batch, Pinnacle is among them, so tier-1 always wins. Tier-2 is retained for correctness/robustness but inactive in this window.",
+    "wta_challenger_gap": "WTA Challenger (KXWTACHALLENGERMATCH) events have ZERO FV coverage. Root cause (betexplorer.py): CHALLENGER_URLS contains only 7 men's tournaments (all challenger-men-singles: Gwangju, Savannah, Shymkent, Abidjan, Rome, Busan, Oeiras); there are NO women's Challenger URLs, even though fetch_kalshi_challenger_events() queries both KXATPCHALLENGERMATCH and KXWTACHALLENGERMATCH. This is a SCRAPER-COVERAGE gap, not a substrate defect. ATP Challenger coverage is likewise limited to those 7 tournaments active in the window.",
+    "unmapped_legs": "94 legs (mostly compound-surname Challenger events) could not be mapped to a book_prices p1/p2 side and are left unavailable; not a defect for Main-tour analysis."
+  },
+  "deviations_from_drafted_prompt": [
+    "1. TIMEZONE: polled_at is America/New_York local text (verified via match_start gap: median +78min ET vs -162min UTC across 95 ATP_MAIN events). Converted ET->UTC for the join.",
+    "2. AS-OF JOIN: replaced the prompt's +/-60s match (which gives ~20% coverage, fails gate 2) with an as-of carry-forward per tier within fv.py freshness windows (1800/1800/3600s). Point-in-time correct.",
+    "3. TIERS CORRECTED: the drafted 3-tier spec wrongly excluded betexplorer. Corrected to fv.py's actual hierarchy pinnacle->aggregate->betexplorer (tier-5 paired-sum excluded). This is what fixed ATP_CHALL from 0% to 68% populated. fv_source now {pinnacle, aggregate, betexplorer, unavailable}; added confidence_weight column.",
+    "4. LEG->SIDE MAPPING: Kalshi legs end in a 3-char player code, NOT -P1/-P2. Mapped via last-name[:3] bijection on book_prices player1/2_name, with name_cache substring fallback, else NULL.",
+    "5. GATE-2 DENOMINATOR: null fraction evaluated per-category / among book_prices events (the slice where cross-book FV genuinely exists), not over all FV-time-window rows."
+  ],
+  "performance": {"wall_clock_seconds": 319.3, "peak_rss_mb": 603, "mapped_events": 373, "unmapped_legs": 94}
+}

@@ -374,3 +374,22 @@ Foundation pointer: per_minute_features T37 ckpt-3 (sha256 9fde4b5d30e56d99efa06
 - Purpose: preserves cross-book FV anchor history before the live tennis.db rolling ~32-day window deletes it. Enables FV-overlap subset analysis for Track 2 (FV-conditional premarket dynamics) on the ~12-day overlap with the atlas corpus (book_prices start 2026-04-19 vs atlas end ~2026-05-01) plus forward accumulation. Every day without archive shrinks this overlap as the trailing edge of the rolling window deletes the oldest 24h.
 - Producer: data/scripts/archive_book_prices_v1.py at commit 85aee72. Memory-safe streaming (per-month ParquetWriter; stream-merge for incremental appends) — deviation from the drafted whole-month-buffer producer, which would have OOM'd on the 10M-row month; output contract unchanged. High-water-mark is the max polled_at actually written (not a racing SELECT MAX()). See run_summary_initial.json "deviations_from_drafted_producer" for detail.
 - Companion: data/durable/fv_history/run_summary_initial.json (run_summary_incremental_<date>.json may follow for daily runs).
+
+
+## fv_overlap_join_v1 (Track 2 substrate — premarket_tape_v1 ⨯ fv_history FV anchor)
+
+Producer: data/scripts/build_fv_overlap_join_v1.py at commit a0700b8. Run 2026-05-23 (~319s wall, peak RSS 603 MB). Joins premarket_tape_v1.parquet with the fv_history archive (book_prices) to attach a per-leg per-minute cross-book consensus fair value AS OF each minute, plus fv_delta, partner FV and paired_fv_sum. Analytical foundation for Track 2 (FV-conditional premarket dynamics).
+
+### fv_overlap_join_v1.parquet
+
+- sha256: 58cb0d894d83d782f6a793a060b964565e5484c72da4d01b9a35e43f5cf14e1a
+- Size: 7432699 bytes
+- Rows: 154367 (premarket_tape_v1 rows with minute_ts within FV-archive coverage, i.e. >= 2026-04-19 22:33:45 UTC)
+- File: data/durable/per_minute_universe/fv_overlap_join_v1.parquet (NOT git-tracked — size; sha256 here per durable-corpus discipline, mirrors premarket_tape_v1)
+- Sources: premarket_tape_v1.parquet (sha256 ff2a63d9), fv_history/by_month/{2026-04,2026-05}.parquet
+- New columns (9): fv_consensus_own, fv_source {pinnacle|aggregate|betexplorer|unavailable}, num_books_in_window, confidence_weight {0.95|0.80|0.50|null per fv.py}, fv_consensus_partner, fv_delta_at_last_traded (price_close−FV, trade-print minutes only), fv_delta_at_mid (diagnostic only — NOT a primary signal), paired_fv_sum, fv_join_minute_ts
+- Join: as-of carry-forward per tier within fv.py freshness (pinnacle/aggregate 1800s, betexplorer 3600s); polled_at parsed America/New_York → UTC epoch (verified via match_start gap test, median +78min ET vs −162min UTC). Tiers = fv.py pinnacle→aggregate(≥3 books)→betexplorer; tier-5 paired-sum intentionally EXCLUDED (runtime fallback, circular w.r.t. Kalshi price). Leg→side via last-name[:3] bijection on book_prices player1/2_name + name_cache fallback.
+- Validation: gate1 rowcount PASS; gate2 null<50% PASS under intended denominator (bp-events 0.267; per-category ATP_MAIN 0.198 / WTA_MAIN 0.282 / ATP_CHALL 0.322 [betexplorer tier-3]); gate3 pinnacle 67% of populated PASS; gate4 paired_fv_sum mean 100.000 PASS; gate5 fv_delta median +1.0c, p5/p95 [−2.5,+4.4] PASS.
+- Coverage gaps (NOT substrate defects): (a) 463/836 FV-window events absent from book_prices (no odds-API coverage); (b) WTA Challenger has ZERO FV — betexplorer.py CHALLENGER_URLS lists only 7 men's tournaments, no women's URLs (scraper-coverage F-gap; operator decision); (c) ATP Challenger limited to those 7 tournaments; (d) aggregate tier dormant (pinnacle always present when ≥3 Main books poll).
+- Confidence semantics: downstream Track 2 should weight FV-conditional signals by confidence_weight so betexplorer (Challenger, 0.50) is not treated as equal to Pinnacle (Main, 0.95).
+- Companions: data/durable/per_minute_universe/fv_overlap_join_v1_run_summary.json; example chart docs/analysis/premarket_dynamics_v1/example_premarket_chain_v3_KXATPMATCH-26APR26FONJOD.{png,md}

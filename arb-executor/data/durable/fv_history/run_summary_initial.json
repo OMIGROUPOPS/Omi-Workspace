@@ -1,0 +1,51 @@
+{
+  "archive": "book_prices",
+  "mode": "initial",
+  "producer": "data/scripts/archive_book_prices_v1.py",
+  "producer_commit": "85aee72",
+  "source_db": "tennis.db",
+  "source_db_size_bytes": 5706797056,
+  "table": "book_prices",
+  "schema_cols": [
+    "event_ticker", "book_key", "player1_name", "player2_name",
+    "book_p1_fv_cents", "book_p2_fv_cents",
+    "raw_odds_p1", "raw_odds_p2", "vig_pct",
+    "sport_key", "commence_time", "polled_at"
+  ],
+  "rows_archived": 13155461,
+  "polled_at_min": "2026-04-19 18:33:45",
+  "polled_at_max": "2026-05-23 13:01:31",
+  "distinct_event_tickers": 914,
+  "distinct_book_keys": 35,
+  "monthly_partitions": ["2026-04.parquet", "2026-05.parquet"],
+  "partition_sizes_mb": {"2026-04.parquet": 11, "2026-05.parquet": 46},
+  "cron_scheduled": "30 2 * * * UTC",
+  "wall_clock_seconds": 571,
+  "peak_rss_mb": 314,
+  "run_timestamp_utc": "2026-05-23T17:01:38Z",
+  "validation": {
+    "consistency_check": "archive_total == DB COUNT(*) WHERE polled_at <= archive_max : PASS (13155461 == 13155461). The DB is live (rows added during the run); SQLite gave the streamed SELECT a consistent snapshot as of query-start (13:01:31), so this snapshot-bounded check is the correct invariant rather than a raw COUNT(*) on a growing table.",
+    "spot_check_event": "KXATPMATCH-26MAY06SHANAV: archive=62770 == db(polled_at<=archive_max)=62770 : PASS",
+    "distinct_events_match": "archive 914 == DB 914",
+    "distinct_books_match": "archive 35 == DB 35",
+    "incremental_validation_run": {
+      "note": "ran --mode incremental once to validate the cron's exact code path (stream-merge append) before committing",
+      "rows_written": 88593,
+      "rows_per_month": {"2026-05": 88593},
+      "new_last_archived_ts": "2026-05-23 13:49:24",
+      "db_max_at_close": "2026-05-23 13:50:59",
+      "peak_rss_mb": 253,
+      "wall_clock_seconds": 193
+    }
+  },
+  "current_state_after_validation_incremental": {
+    "total_rows_archived": 13244054,
+    "last_archived_ts": "2026-05-23 13:49:24",
+    "partition_rows": {"2026-04": 3088738, "2026-05": 10155316},
+    "partition_sizes_bytes": {"2026-04.parquet": 10976102, "2026-05.parquet": 45573620}
+  },
+  "deviations_from_drafted_producer": {
+    "memory_safety": "The originally-drafted write_monthly_partitions buffered an entire month in a Python list before flushing (flush only on month change) AND used read-existing+concat+rewrite for appends. The source has a ~10M-row month (2026-05); on the VPS (~1.47 GB free RAM) that buffer would have exceeded the 1.4 GB STOP gate and OOM'd, contradicting the prompt's '<500 MB peak' / 'memory-safe streaming' intent. Replaced with bounded-batch SQLite streaming straight through a per-month pyarrow ParquetWriter; incremental appends stream-merge the existing file's row groups one at a time then atomic-rename. Output contract unchanged (same by_month/YYYY-MM.parquet layout, same 12-col schema, byte-faithful values). Measured peak RSS: 314 MB (initial), 253 MB (incremental).",
+    "high_water_mark_correctness": "The drafted code set last_archived_ts from a separate 'SELECT MAX(polled_at)' taken after the stream. On a live DB that MAX() races ahead of the streamed snapshot (recorded 13:09:49 vs true archived max 13:01:31), which would leave the (13:01:31, 13:09:49] window — 73,734 rows — permanently un-archivable by incremental runs (polled_at > last_archived_ts). Fixed: high-water-mark is now the max polled_at actually written. state.json was reconciled post-hoc to the true archived max for the initial run."
+  }
+}

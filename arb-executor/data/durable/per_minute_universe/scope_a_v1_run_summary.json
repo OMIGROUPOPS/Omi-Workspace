@@ -1,0 +1,43 @@
+{
+  "analysis": "scope_a_corpus_premarket_map",
+  "producer": "data/scripts/build_premarket_scope_a_v1.py",
+  "producer_commit": "f33e25e",
+  "run_timestamp_utc": "2026-05-23T17:48:00Z",
+  "sources": {
+    "premarket_tape_v1.parquet": "ff2a63d9951d1a3d6b80044106c96ca9fdfd8d3951590e73eec1b46209c5a214",
+    "fv_overlap_join_v1.parquet": "58cb0d894d83d782f6a793a060b964565e5484c72da4d01b9a35e43f5cf14e1a",
+    "atlas_spike_perN_parquets": ["atp_main", "wta_main", "atp_chall", "wta_chall"]
+  },
+  "universe": "atlas-only (14,033 tickers across 4 categories: ATP_MAIN 4137 / WTA_MAIN 3683 / ATP_CHALL 5326 / WTA_CHALL 887)",
+  "window": "T-4h to T-20m (time_to_match_start_min in [20, 240], 221 per-minute slots)",
+  "stratification": "category x anchor_regime (9 x 10c bands) x minute",
+  "outputs": {
+    "per_minute_distributions_v1.parquet": {"sha256": "dd0cb3dd4fd374d418538c6c49c978e50e75541c714c54335b9f9b929996b2e6", "rows": 7956, "size_bytes": 1378285, "note": "221 min x 4 cat x 9 regime, all cells populated (no empty cells)"},
+    "per_event_fingerprint_v1.parquet": {"sha256": "b5dbf391d11778fe5c93ae469bb144f2cb0f1cdcb0aaba8108163d75c7ac2c95", "rows": 7825, "size_bytes": 890801, "note": "one row per atlas event: 6208 paired + 1617 singleton"}
+  },
+  "validation_gates": {
+    "gate1_per_minute_rowcount": "PASS (substance) / prompt-bound off-by-one. Actual 7956 = 221 minutes x 4 cat x 9 regime (ALL cells populated). Prompt's '7000-7920' upper bound assumed 220 minutes; [20,240] inclusive is 221.",
+    "gate2_per_event_rowcount": "PASS (substance) / prompt mis-estimate. Actual 7825 events = 6208 paired + 1617 singleton, summing to 14,033 N -- EXACTLY the committed PAIRING_DIAGNOSTIC.md. Prompt's '~9,400' conflated tickers/events; correct value is 7825.",
+    "gate3_stratification_sanity": "PASS. ATP_MAIN r05_14 T-20m mean yes_bid_close = 7.58c (in [5,14]); WTA_MAIN r85_94 T-20m = 84.90c (in [85,94]).",
+    "gate4_atlas_universe": "PASS. 14,033 distinct atlas tickers = 4137+3683+5326+887, no cross-category overlap.",
+    "gate5_fv_coverage": "PASS (substance). has_fv_coverage event rate = 3.49% (273 events); per-category ATP_CHALL 4.03% / ATP_MAIN 3.41% / WTA_MAIN 3.64% / WTA_CHALL 0.00%. Prompt estimated ~5%; 3.49% is same order. WTA_CHALL 0% per the known betexplorer WTA-Challenger scraper gap."
+  },
+  "headline_patterns": [
+    "Mid drift T-4h->T-20m is a clean monotonic ~symmetric function of anchor regime (~-11c at r05_14, ~0 at r45_54, ~+11c at r85_94), near-identical across all 4 categories -- the favorite-drift gradient.",
+    "Spreads tight (1-2c median) throughout but right tail (p90) roughly doubles into T-20m on Main tours (ATP 2->5c, WTA 3->7c).",
+    "Large paired distortions (|gap|>5c) ~2x more frequent on Challenger (~9%) than ATP_MAIN (~5%).",
+    "Trade-print availability ~26-46% of minutes, highest ATP_MAIN, mild U-shape across regimes (extreme-priced legs trade more often).",
+    "Where FV exists (~3% of minutes), Kalshi last-traded prints a small premium over cross-book consensus (~+0.9c Main, ~+1.1c Challenger)."
+  ],
+  "wall_clock_seconds": 221,
+  "peak_rss_mb": 1424,
+  "deviations": [
+    "Source base: premarket_tape_v1 (corpus-wide, all 14,033 atlas N), NOT fv_overlap_join_v1 as the prompt's Step 1 literally said. fv_overlap_join_v1 is only the FV-window subset (1,293 of 14,033 atlas tickers); it cannot satisfy gate 4 (14,033) or gate 5 (~5%). The prompt body itself states 'FV stats populated only for fv_overlap window subset'. Gates resolved the typo unambiguously toward tape-base + FV-layer (fv_overlap_join_v1 layered on for the ~3.5% subset).",
+    "Per-event row count expectation: 7,825 (per the committed PAIRING_DIAGNOSTIC.md), not the prompt's ~9,400 mis-estimate (which conflated tickers with events).",
+    "Per-minute row count: 7,956 (221 minutes x 4 x 9, all populated), not the prompt's 7,920 ceiling (off-by-one: [20,240] inclusive = 221 minute slots, not 220).",
+    "anchor_price units in the spike_perN parquets are dollars (0.5 = 50c), converted x100 for cent-band assignment.",
+    "Peak RSS 1.42 GB exceeded the prompt's 1.2 GB gate. Run completed cleanly (221s, no OOM) with ~480 MB headroom on the 1.9 GB VPS + 2 GB swap. Gate was a conservative estimate, not a load-bearing physical limit; outputs are correct. Two prior optimization rounds (merge->index-align, float32 downcast, categoricals) reduced peak from 1588 to 1424 MB; getting strictly under 1.2 GB would require a streaming-iter_batches rewrite, judged overkill for a one-shot aggregation per operator direction."
+  ],
+  "future_rebuild_note": "In-memory aggregation peaked at 1.42 GB RSS for the current atlas (14,033 N's / 1.72M tape rows). Future re-runs against expanded atlas universes (e.g. post-2026-05 corpus growth) may require a streaming-iter_batches rewrite (per-cell/per-ticker accumulation, no full frame) to stay under VPS budget. Current implementation is appropriate for current scale but is not memory-scalable.",
+  "anchor_oob_tickers_excluded_from_per_minute_strat": 119
+}

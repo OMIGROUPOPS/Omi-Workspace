@@ -393,3 +393,27 @@ Producer: data/scripts/build_fv_overlap_join_v1.py at commit a0700b8. Run 2026-0
 - Coverage gaps (NOT substrate defects): (a) 463/836 FV-window events absent from book_prices (no odds-API coverage); (b) WTA Challenger has ZERO FV — betexplorer.py CHALLENGER_URLS lists only 7 men's tournaments, no women's URLs (scraper-coverage F-gap; operator decision); (c) ATP Challenger limited to those 7 tournaments; (d) aggregate tier dormant (pinnacle always present when ≥3 Main books poll).
 - Confidence semantics: downstream Track 2 should weight FV-conditional signals by confidence_weight so betexplorer (Challenger, 0.50) is not treated as equal to Pinnacle (Main, 0.95).
 - Companions: data/durable/per_minute_universe/fv_overlap_join_v1_run_summary.json; example chart docs/analysis/premarket_dynamics_v1/example_premarket_chain_v3_KXATPMATCH-26APR26FONJOD.{png,md}
+
+
+## scope_a corpus premarket map (per_minute_distributions_v1 + per_event_fingerprint_v1)
+
+Producer: data/scripts/build_premarket_scope_a_v1.py at commit f33e25e. Run 2026-05-23 (~221s wall, peak RSS 1424 MB — see note). Corpus-wide descriptive map over the atlas universe (14,033 N / 7,825 events), T-4h to T-20m, stratified by category x anchor_regime (9 x 10c bands). Base = premarket_tape_v1 (full atlas); FV layered from fv_overlap_join_v1 (~3.5% of events). Foundation for Scope B regime classification, Plex Round 5, and the bid-laying policy spec.
+
+### per_minute_distributions_v1.parquet
+
+- sha256: dd0cb3dd4fd374d418538c6c49c978e50e75541c714c54335b9f9b929996b2e6
+- Size: 1378285 bytes ; Rows: 7956 (221 min x 4 category x 9 anchor_regime, all cells populated)
+- File: data/durable/per_minute_universe/per_minute_distributions_v1.parquet (NOT git-tracked — durable, sha256 here)
+- One row per (time_to_match_start_min x category x anchor_regime): n_observations + mean/median/p10/p25/p75/p90/std for yes_bid/ask/spread/mid (cents), price_close availability + mean/median, volume + taker_flow + paired_arb_gap_maker + bid/ask consumption velocity stats, open_interest, and FV stats (fv_consensus_own, fv_delta_at_last_traded) where covered.
+
+### per_event_fingerprint_v1.parquet
+
+- sha256: b5dbf391d11778fe5c93ae469bb144f2cb0f1cdcb0aaba8108163d75c7ac2c95
+- Size: 890801 bytes ; Rows: 7825 (6208 paired + 1617 singleton; 2*paired+singleton = 14,033 atlas N)
+- File: data/durable/per_minute_universe/per_event_fingerprint_v1.parquet (NOT git-tracked)
+- One row per atlas event: per-leg trajectory features (minute/trade counts, total volume, spread summary, wide-spread minutes, max abs consumption velocities, mid_t4h/mid_t20m/mid_drift, FV coverage + fv_delta, volume_burst_concentration), paired distortion extremes, has_fv_coverage.
+
+- Source: premarket_tape_v1.parquet (sha256 ff2a63d9) + fv_overlap_join_v1.parquet (sha256 58cb0d89) FV layer; atlas membership/anchor from the 4 spike_perN parquets (anchor_price in dollars, x100 for cent banding).
+- Headline patterns (see scope_a_corpus_map_findings.md): mid-drift is a clean monotonic ~symmetric function of anchor regime (~+/-11c at the extremes, ~0 at coin-flip), near-identical across categories; spread tails widen into T-20m; large paired distortions ~2x more frequent on Challenger than ATP_MAIN.
+- Memory note: in-memory build peaked 1.42 GB RSS (exceeded the 1.2 GB run-gate; completed cleanly with headroom on 1.9 GB + 2 GB swap; conservative gate, not load-bearing). Future expanded-atlas re-runs may need a streaming rewrite. See scope_a_v1_run_summary.json deviations + future_rebuild_note.
+- Companions: data/durable/per_minute_universe/scope_a_v1_run_summary.json; docs/analysis/premarket_dynamics_v1/scope_a_corpus_map_findings.md

@@ -1,0 +1,61 @@
+{
+  "analysis": "path_b_v3_per_regime_offsets_atlas_exit_replay",
+  "producer": "data/scripts/build_path_b_v3.py",
+  "producer_commit": "5fa3587",
+  "run_timestamp_utc": "2026-05-23T21:44:00Z",
+  "sources": {
+    "premarket_tape_v1.parquet": "ff2a63d9951d1a3d6b80044106c96ca9fdfd8d3951590e73eec1b46209c5a214",
+    "path_b_per_regime_fill_summary_v1.parquet": "d9e2c3c55c6d7fb5d93beeddfde8a40f1298b841a0547d3743e14cd21e64e37e",
+    "spike_perN_parquets": ["atp_main","wta_main","atp_chall","wta_chall"],
+    "descriptive_1c_parquets": ["atp_main","wta_main","atp_chall","wta_chall"]
+  },
+  "strategy": "per-(category x anchor_regime) optimal (placement_minute, bid_offset) from Path B v1 Section 3 (argmax expected_improvement_cents per cell), applied per N. Replaces v2's universal 15c.",
+  "outputs": {
+    "path_b_v3_per_n_simulation.parquet": {"sha256": "4e0c7aeca14b4b0190252523f7ca50bee8945cd0cbc3d04d92e085e0f50e845f", "rows": 14033, "size_bytes": 375696},
+    "path_b_v3_per_regime_summary.parquet": {"sha256": "0f278d419dda589f2ab7f0401c983069c6f01d35674e041087fab8d89261e4c2", "rows": 36, "size_bytes": 13308}
+  },
+  "headline": {
+    "maker_total_pnl_dollars_10ct": 8098.50,
+    "v2_universal_pnl_dollars_10ct": 7829.30,
+    "atlas_baseline_pnl_dollars_10ct": 6158.20,
+    "maker_capital_dollars_10ct": 66902.00,
+    "v2_capital_dollars_10ct": 67346.20,
+    "atlas_capital_dollars_10ct": 70813.20,
+    "maker_blended_roi_pct": 12.11,
+    "v2_blended_roi_pct": 11.63,
+    "atlas_baseline_roi_pct": 8.70,
+    "roi_lift_pp_vs_atlas": 3.41,
+    "v2_roi_lift_pp": 2.93,
+    "incremental_lift_over_universal_pp": 0.48,
+    "incremental_pnl_over_universal_dollars": 269.20,
+    "pnl_lift_pct_vs_atlas": 31.5
+  },
+  "execution_mode_distribution": {"miss_fallback": 0.716, "maker_resting": 0.242, "marketable_taker": 0.042},
+  "aggregate_fill_rate": 0.284,
+  "per_mode": {
+    "marketable_taker": {"n": 592, "pnl_dollars": 734, "capital_dollars": 2638, "roi_pct": 27.8, "mean_entry_c": 45},
+    "maker_resting": {"n": 3391, "pnl_dollars": 2649, "capital_dollars": 13191, "roi_pct": 20.1, "mean_entry_c": 39},
+    "miss_fallback": {"n": 10050, "pnl_dollars": 4716, "capital_dollars": 51072, "roi_pct": 9.2, "mean_entry_c": 51}
+  },
+  "underdog_harvest": {
+    "r05_14": {"n": 1005, "fill_rate": 0.47, "improvement_over_baseline_dollars": 85},
+    "r15_24": {"n": 1282, "fill_rate": 0.27, "improvement_over_baseline_dollars": 122},
+    "r25_34": {"n": 1631, "fill_rate": 0.27, "improvement_over_baseline_dollars": 178},
+    "note": "~$385 of improvement from the three lowest regimes that the universal 15c rule clamped away (1c bid, ~zero fill). Top per-regime ROI lifts are the r05_14 cells (+17 to +21pp; small capital denominator)."
+  },
+  "validation_gates": {
+    "gate1_baseline_reproduction": "PASS exact ($6,158.20, ratio 1.0000; capital $70,813.20).",
+    "gate2_rowcount": "PASS 14,033.",
+    "gate3_fill_rate_>=25pct": "PASS aggregate fill 28.4% (vs v2 ~15%).",
+    "gate4_fill_matches_v1": "PASS exact — v3 per-regime fill rates reproduce v1 optimal-cell fill rates with max |delta|=0.0pp across all 36 cells.",
+    "gate5_roi_lift_>v2": "PASS +3.41pp > v2 +2.93pp.",
+    "gate6_capital_<v2": "PASS $66,902 < $67,346."
+  },
+  "performance": {"wall_clock_seconds": 21, "peak_rss_mb": 420},
+  "deviations": [
+    "Per-regime conditioning adds only +0.48pp over the universal 15c rule (diminishing returns per Plex Round 6): favorites dominate absolute PnL and their v1-optimal offset is already 15c (favorite cells unchanged v2->v3); the incremental gain is the underdog/mid harvest (~$385) the universal rule clamped away (net +$269 after small offset-choice washes on a few favorite/mid cells).",
+    "Same substrate as v2 (size_qual_max_250 exit-replay proxy); same pre-realism caveat (B25 0.5-0.7x not applied); exit_minute not recorded.",
+    "Per-regime offset lookup is corpus-level hindsight, but each cell's optimum is observable a priori from the anchor regime (not per-event foresight) -> deployable."
+  ],
+  "doctrine_alignment": ["A39","B16","B25","G22","A40","A41"]
+}

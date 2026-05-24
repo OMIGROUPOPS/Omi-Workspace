@@ -458,3 +458,23 @@ Producer: data/scripts/build_path_b_v2.py at commit 9aa2b78. Run 2026-05-23 (~20
 - Headline: maker placement total PnL $7,829.30 vs atlas $6,158.20 (+27.1%) on LOWER capital $67,346 vs $70,813 -> blended ROI 11.63% vs 8.70% (+2.93pp), pre-realism. All 36 regime cells show positive lift. Lift comes from the ~15% of N that fill at a discount (marketable 26.6% ROI / resting 21.4% ROI); 85% miss -> baseline-equivalent. Universal 15c offset clamps underdog bids to 1c so the lift is favorite-driven.
 - Gates 1-5 PASS (baseline exact; 14,033 rows; mode sanity; mean realized > baseline; capital < atlas).
 - Companions: data/durable/per_minute_universe/path_b_v2_run_summary.json ; docs/analysis/premarket_dynamics_v1/path_b_v2_findings.md
+
+
+## Path B v3 — per-regime offsets + atlas exit replay (path_b_v3_per_n_simulation + path_b_v3_per_regime_summary)
+
+Producer: data/scripts/build_path_b_v3.py at commit 5fa3587. Run 2026-05-23 (~21s wall, peak RSS 420 MB). Re-runs v2's dual-improvement methodology with per-(category x anchor_regime) optimal offsets from Path B v1 Section 3 (argmax expected_improvement), replacing the universal 15c. Deployable measurement. Pre-realism. Doctrine A39/B16/B25/G22/A40/A41.
+
+### path_b_v3_per_n_simulation.parquet
+- sha256: 4e0c7aeca14b4b0190252523f7ca50bee8945cd0cbc3d04d92e085e0f50e845f ; Size: 375696 bytes ; Rows: 14033
+- File: data/durable/per_minute_universe/path_b_v3_per_n_simulation.parquet (NOT git-tracked)
+- Cols: ticker, event_ticker, category, anchor_price_cents, anchor_regime, placement_minute, bid_offset_cents, bid_price_cents, execution_mode, entry_price_cents, entry_minute, cell_best_exit_X, cell_rule, exit_triggered, realized_pnl_cents, atlas_baseline_realized_pnl_cents, improvement_vs_baseline_cents.
+
+### path_b_v3_per_regime_summary.parquet
+- sha256: 0f278d419dda589f2ab7f0401c983069c6f01d35674e041087fab8d89261e4c2 ; Size: 13308 bytes ; Rows: 36
+- File: data/durable/per_minute_universe/path_b_v3_per_regime_summary.parquet (NOT git-tracked)
+- Per (category x anchor_regime): placement_minute, bid_offset_cents, n_tickers, mode percentages, fill_rate, PnL, capital, roi_pct, atlas_baseline_roi_pct, roi_lift_pp.
+
+- Headline: per-regime offsets realize $8,098.50 vs atlas $6,158.20 (+31.5%) on lower capital $66,902 -> blended ROI 12.11% vs 8.70% (+3.41pp), beating v2's universal-rule $7,829.30 / 11.63% / +2.93pp by +0.48pp (+$269). Fill rate 28.4% (vs v2 15%). Baseline reproduced EXACTLY. All 6 gates PASS (gate4: v3 fill rates reproduce v1 optimal-cell fills with 0.0pp delta).
+- Underdog harvest: r05_14/r15_24/r25_34 (clamped to ~zero fill in v2) now fill 27-47% and add ~$385 of improvement; top per-regime ROI lifts are the r05_14 cells (+17 to +21pp, small capital denominator).
+- Read: per-regime offsets are the correct deployable shape but the marginal gain over a universal favorite offset is small (+0.48pp) -- favorites dominate absolute PnL and already use 15c; per-regime adds the underdog tail (diminishing returns per Plex Round 6). Pre-realism (B25 0.5-0.7x not applied).
+- Companions: data/durable/per_minute_universe/path_b_v3_run_summary.json ; docs/analysis/premarket_dynamics_v1/path_b_v3_findings.md

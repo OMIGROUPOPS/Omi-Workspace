@@ -1,11 +1,22 @@
 # Bug 4 Brief — Missing Settlement Detection
 
-**Version**: v3 (paper-mode realized_pnl_cents formula corrected for partial-exit case)
-**Status**: investigation complete, design proposed, no code written
-**Author**: paired with operator, 2026-04-29
+**Version**: v4 (probe-corrected WS/REST schema + four design decisions resolved)
+**Status**: design locked, ready for implementation, no code written
+**Author**: paired with operator, 2026-04-29; v4 promotion 2026-05-24
 **Target**: live_v3.py settlement detection path
 
-## Changes in v3 (this revision)
+## Changes in v4 (this revision)
+
+Folds in `docs/bug4_probe.md` §4.1/§4.2/§7 (the probe verified Kalshi's WS and REST schemas against the docs and found the v3 pseudocode assumed payload fields that do not exist). Four open design decisions are resolved with operator-confirmed answers (§0).
+
+- **§4 / §6.2 — WS settled payload is MINIMAL.** The `market_lifecycle_v2` `settled` event carries only `market_ticker`, `event_type`, `settled_ts` — **no settlement value, no `market_result`**. v3's pseudocode read `sub.get("settlement_value")` from the WS payload; that field does not exist. v4 replaces the inline handler with an async REST hop to `GET /markets/{ticker}` that fetches `settlement_value_dollars` once `status == "finalized"` (with a pre-finalized race fallback to the REST poll).
+- **§6.2 — WS envelope strings corrected.** Envelope `type` is `"market_lifecycle_v2"` (with the `_v2` suffix), not `"market_lifecycle"`. The event discriminator is the nested `msg.event_type`, not `msg.event`.
+- **§6.3 — REST settlements field names corrected.** Per-record settlement value is `value` (integer cents, **nullable**), not `settlement_value`. Outcome is `market_result` (enum `yes`/`no`/`scalar`/`void`). Timestamp is `settled_time`, an **RFC3339 string** (e.g. `"2024-01-15T12:00:00Z"`), not Unix epoch — must be parsed. v4 maps `market_result` → cents at the call site.
+- **§6.4 — `_normalize_settle_value` removed (decision c).** Central format-inference (`round(sv*100) if sv<=1.5 else int(sv)`) was brittle. Each source now produces integer cents at its own call site, where the wire format is known. `process_settlement` takes `settle_val_cents` (already 0–100) and applies only a defensive clamp.
+- **Void handling (decision b).** `void` settlements are **skipped from automatic processing**, logged, and flagged for manual reconciliation. v4 does NOT assume a 50¢ payout (a void typically refunds cost basis, not a 50¢ settlement — the accounting differs and is low-frequency, so it is handled by hand rather than guessed).
+- Partial-exit P&L fix from v3 retained verbatim (double-entry assignment).
+
+## Changes in v3
 
 - §6.4 paper-mode branch: realized_pnl_cents formula rewritten as **assignment** (not increment) using full double-entry form: `realized_pnl_cents = total_revenue_cents - total_cost_cents + settle_val * net_qty`. The v2 formula (`+= (settle_val - avg_basis) * net_qty`) was wrong for the partial-exit case — it ignored the prior-partial-sell P&L because `realized_pnl_cents` is zero at settlement entry whenever `net_qty > 0` (existing `try_fill` only books realized P&L when `net_qty` hits zero). Worked example: buy 10@40 → sell 5@50 → settle 5@99. Expected total P&L = 50 + 295 = 345. v2 formula gave 295 (understated by 50); v3 formula gives 250 − 400 + 99×5 = 345. ✓
 - §9.2 B4-T8: extended with partial-exit fixture covering the previously-broken case.
@@ -23,9 +34,22 @@
 
 ---
 
+## 0. Design decisions (resolved for v4)
+
+These four were open at v3. They are now locked; implementation does not re-litigate them.
+
+| # | Decision | Resolution | Rationale |
+|---|---|---|---|
+| a | WS-hop vs caching `determination` events to source the settle value | **REST hop** to `/markets/{ticker}` on each WS `settled` | Simpler — no buffered determination-state to track/clean up. Overhead is ~100–200ms per settlement, firing <1×/min in steady state. The `determination`-cache optimization stays deferred (§13). |
+| b | `void` market settlement semantics | **Skip from automatic processing; log; require manual reconciliation.** Do not assume 50¢ payout. | A void refunds cost basis, not a 50¢ settlement. Auto-applying 50¢ would mis-account. Voids are rare in tennis; manual handling is correct and cheap. |
+| c | Settle-value normalization site | **Per-source at the call site.** Remove the central `_normalize_settle_value` inference. | Each source's wire format is known where it is read (REST = `market_result` enum / `value` cents; WS-hop = `settlement_value_dollars`; BBO = literal). Central inference across ambiguous formats is brittle. |
+| d | Bug 4 prioritization (now vs defer to pre-redeploy) | **Proceed now.** | Locked execution-lock sequence puts Bug 4 first; it is the gate to a trustworthy paper-mode burn-in (paper-mode must be running by Sunday evening for live Monday 5am ET). |
+
+---
+
 ## 1. Problem statement
 
-The bot's only settlement-detection mechanism is `check_settlements()` (live_v3.py:1884-1903), a BBO threshold check that fires `pos.settled = True` when `book.best_bid >= 98` or `book.best_ask <= 2`. This is fragile: when the WebSocket book stops updating after market settlement, the threshold never fires and the position stays in `phase="active"` forever. Resting exit orders linger; reconcile loops re-touch dead state every cycle; phantom positions accumulate over multi-day burn-ins.
+The bot's only settlement-detection mechanism is `check_settlements()` (live_v3.py:1884), a BBO threshold check that fires `pos.settled = True` when `book.best_bid >= 98` or `book.best_ask <= 2`. This is fragile: when the WebSocket book stops updating after market settlement, the threshold never fires and the position stays in `phase="active"` forever. Resting exit orders linger; reconcile loops re-touch dead state every cycle; phantom positions accumulate over multi-day burn-ins.
 
 Bug 5 was scoped to clean up these phantoms. Bug 4 fixes the source.
 
@@ -94,11 +118,11 @@ When `_PAPER_API` is set (paper_mode=true), settlement state is held in `_PAPER_
 
 | Source | Paper mode behavior | Live mode behavior |
 |---|---|---|
-| WS `market_lifecycle_v2` `settled` event | Mutate `PaperPosition.settled` + `settlement_price`; emit `paper_settled` | Mutate `self.positions[tk].settled`; emit `settled` |
+| WS `market_lifecycle_v2` `settled` event | Run the async `/markets/{ticker}` hop (public data, paper-safe), then mutate `PaperPosition.settled` + `settlement_price`; emit `paper_settled` | Same hop, then mutate `self.positions[tk].settled`; emit `settled` |
 | REST `/portfolio/settlements` poll | **SKIP entirely.** REST returns the user's REAL Kalshi settlement history; applying it to paper positions would falsely settle them based on outcomes the paper bot did not actually trade. | Run on cadence; call `process_settlement(source="rest_poll")` per record. |
 | BBO threshold (`check_settlements`) | Iterate `paper_positions` and route via paper handler. | Iterate `self.positions` and route via live handler (current behavior). |
 
-**Single chokepoint principle preserved**: `process_settlement(ticker, settle_value, ts, source)` internally branches on `_PAPER_API`. Callers (WS handler, REST poller, BBO check) don't need to know about paper vs live — they call the same function.
+**Single chokepoint principle preserved**: `process_settlement(ticker, settle_val_cents, settled_ts, source)` internally branches on `_PAPER_API`. Callers (WS hop, REST poller, BBO check) don't need to know about paper vs live — they call the same function with already-normalized integer cents.
 
 **Side effect on `self.positions` in paper mode**: when paper settlement fires, also silently set `self.positions[ticker].settled = True` and `phase = "settled"` if the ticker exists there. The bot's `check_fills`-driven self.positions mirror in paper mode would otherwise stay "active" forever and cause `check_settlements` to re-iterate every cycle. No telemetry from this — it's just a quiet short-circuit.
 
@@ -122,31 +146,44 @@ Failure modes:
 
 ---
 
-## 4. Kalshi-side data sources we are not using
+## 4. Kalshi-side data sources (schema verified by probe)
 
-Web research confirmed two channels Kalshi already provides:
+Web research + probe (`docs/bug4_probe.md`) confirmed the channels Kalshi provides and their exact payloads.
 
 ### 4.1 WebSocket: `market_lifecycle_v2` channel
 Reference: https://docs.kalshi.com/websockets/market-&-event-lifecycle
 
-Emits real-time events for every subscribed market:
-- `settled` — final settlement; payload includes `settled_ts`, `determination_ts`, `settlement_value` (e.g., `"0.0000"` for NO, `"1.0000"` for YES, scalar in between for partial), `result` (`yes` / `no` / `scalar` / `void`).
-- `determined` — outcome known but not yet settled.
+Subscribed alongside `orderbook_delta` / `trade` in the same WS connection. No additional auth. Inbound envelope `type` is literally `"market_lifecycle_v2"`; the event discriminator is the nested `msg.event_type`.
+
+Event types on this channel:
+- `settled` — final settlement. **Payload is minimal:** `market_ticker`, `event_type`, `settled_ts` (Unix epoch seconds). It does **NOT** carry `market_result`, `settlement_value`, `value`, `revenue`, or any position/cost info. Verbatim docs example:
+  ```json
+  { "type": "market_lifecycle_v2", "sid": 13,
+    "msg": { "market_ticker": "INXD-23SEP14-B4487", "event_type": "settled", "settled_ts": 1694808000 } }
+  ```
+- `determination` — outcome known but not yet settled; carries `market_result` (yes/no/scalar/void). Used only by the deferred caching optimization (§13).
 - `deactivated` — trading paused.
 
-Subscribed alongside `orderbook_delta` / `trade` in the same WS connection. No additional auth.
+Because the `settled` event lacks the payout, the WS path must do a follow-up REST hop to source the settlement value (§4.3, §6.2).
 
 ### 4.2 REST: `GET /trade-api/v2/portfolio/settlements`
 Reference: https://docs.kalshi.com/api-reference/portfolio/get-settlements
 
-Returns settlements for the authenticated account. Filter by `ticker`, `event_ticker`, time range (`min_ts`, `max_ts`). Pagination via `cursor` + `limit`. Per-record fields: `market_result`, `settlement_value`, `revenue` (payout), `settled_time`.
+Returns settlements for the authenticated account. Filter by `ticker`, `event_ticker`, time range (`min_ts` exclusive, `max_ts`). Pagination via `cursor` + `limit` (default 100, max 1000). Top-level array key is `"settlements"`. Per-record fields (verbatim from probe §2b):
+- `ticker` (string)
+- `event_ticker` (string)
+- `market_result` (enum: `yes` / `no` / `scalar` / `void`)
+- `value` (integer cents, **nullable**) — per-contract settlement payout
+- `revenue` (integer cents) — total account payout
+- `settled_time` (**RFC3339 string**, e.g. `"2024-01-15T12:00:00Z"` — NOT Unix epoch)
+- `yes_count_fp`, `yes_total_cost_dollars`, `no_count_fp`, `no_total_cost_dollars`, `fee_cost`
 
-Useful as a backup/recovery query: "give me everything that settled since I last checked." Authoritative — no dependence on WS continuity.
+Authoritative — no dependence on WS continuity. Used as the live-mode safety-net catch-up: "everything that settled since `last_seen_ts`."
 
 ### 4.3 REST: `GET /trade-api/v2/markets/{ticker}`
 Reference: https://docs.kalshi.com/api-reference/market/get-market
 
-Per-market lookup. After determination, returns `status: "finalized"` plus `settlement_value_dollars`. Useful for ad-hoc verification of a specific phantom. Not a primary mechanism (would require iterating all positions).
+Public market data — **NOT account-scoped**, so safe to call in paper mode (passes through `PaperApi.handle_get` → `_real_api_get` per paper-spec §5.1; does not leak real-account state into paper accounting). After determination, returns `status: "finalized"` plus `settlement_value_dollars` (and/or `settlement_value`). This is the value-fetch for the WS `settled` path: when a `settled` lifecycle event arrives (which lacks the value), hit this endpoint once to obtain it.
 
 ---
 
@@ -158,13 +195,13 @@ Use **both** Kalshi-side mechanisms, with the existing BBO heuristic kept as a t
 
 | Tier | Mechanism | Latency | Reliability |
 |---|---|---|---|
-| 1 (primary) | WS `market_lifecycle_v2` `settled` event | seconds | High when bot online; lossy when bot offline |
-| 2 (safety net) | REST poll of `/portfolio/settlements?min_ts=<last_seen>` every 5 min | up to 5 min | Authoritative; catches everything WS missed |
+| 1 (primary) | WS `market_lifecycle_v2` `settled` event → `/markets/{ticker}` value hop | seconds | High when bot online; lossy when bot offline |
+| 2 (safety net) | REST poll of `/portfolio/settlements?min_ts=<last_seen>` every 5 min (LIVE ONLY) | up to 5 min | Authoritative; catches everything WS missed |
 | 3 (backstop) | Existing `check_settlements()` BBO heuristic | seconds (when book updates) | Low; current Bug 4 surface |
 
 Tier 2 alone would be sufficient for correctness; tier 1 reduces latency from minutes to seconds for live positions. Tier 3 stays in place for free — costs nothing and may catch edge cases (e.g., transient REST failure followed by reconnect with a stale lifecycle channel).
 
-A single `process_settlement(ticker, settle_value_dollars, settled_ts, source)` function handles all three sources idempotently (via `pos.settled` short-circuit). Same telemetry shape; new `settle_source` field distinguishes which tier fired.
+A single `process_settlement(ticker, settle_val_cents, settled_ts, source)` function handles all three sources idempotently (via `pos.settled` short-circuit). Same telemetry shape; the `settle_source` field distinguishes which tier fired. Each source normalizes its own wire format to integer cents before calling (decision c).
 
 ### Why not REST-only
 
@@ -172,7 +209,7 @@ REST polling alone works but introduces minutes of latency for active position c
 
 ### Why not WS-only
 
-WS misses events when the bot is offline (deploys, OS updates, crashes during burn-in). REST `/portfolio/settlements` gives a deterministic catch-up: "everything that settled since `last_seen_ts`." This is exactly the recovery semantics the existing BBO heuristic lacks.
+WS misses events when the bot is offline (deploys, OS updates, crashes during burn-in). REST `/portfolio/settlements` gives a deterministic catch-up: "everything that settled since `last_seen_ts`." This is exactly the recovery semantics the existing BBO heuristic lacks. WS also requires the §4.3 value hop, which can transiently race ahead of finalization (handled by falling back to the REST poll).
 
 ---
 
@@ -193,29 +230,60 @@ sub_msg = {
 }
 ```
 
-(Verify exact channel name string at implementation time against the docs URL above.)
+### 6.2 Handle lifecycle messages in `ws_reader` (probe-corrected)
 
-### 6.2 Handle lifecycle messages in `ws_reader`
-
-After the existing `orderbook_snapshot` / `orderbook_delta` / `trade` branches in `ws_reader` (live_v3.py:1370):
+After the existing `orderbook_snapshot` / `orderbook_delta` / `trade` branches in `ws_reader` (live_v3.py:1370). The envelope `type` is `"market_lifecycle_v2"`; the event is `msg.event_type`; the settled payload has no value, so dispatch to an async hop:
 
 ```python
-elif typ == "market_lifecycle":  # exact type-string verified at impl time
+elif typ == "market_lifecycle_v2":
     sub = msg.get("msg", {})
-    lifecycle_event = sub.get("event", "")  # "settled" | "determined" | "deactivated"
-    tk = sub.get("market_ticker", "")
-    if lifecycle_event == "settled" and tk:
-        self.process_settlement(
-            ticker=tk,
-            settle_value_dollars=sub.get("settlement_value", "0"),
-            settled_ts=sub.get("settled_ts", time.time()),
-            source="ws_lifecycle",
-        )
+    if sub.get("event_type") == "settled":
+        tk = sub.get("market_ticker", "")
+        settled_ts = sub.get("settled_ts", time.time())
+        if tk:
+            # Don't block the WS reader on a REST call — fire and forget.
+            asyncio.create_task(self._handle_ws_settlement(tk, settled_ts))
+    # determination / deactivated: ignored in v1 (see §13 deferred caching)
+
+
+async def _handle_ws_settlement(self, ticker, settled_ts):
+    """WS settled events carry no settlement value (§4.1). Fetch it from the
+    public /markets/{ticker} endpoint (paper-safe — passes through to real
+    Kalshi). Decoupled into its own coroutine so the WS reader loop is not
+    blocked by the REST call."""
+    path = "/trade-api/v2/markets/%s" % ticker
+    data = await api_get(self.session, self.ak, self.pk, path, self.rl)
+    market = (data or {}).get("market", data) or {}
+
+    if market.get("status") != "finalized":
+        # Pre-finalized race: determination not yet complete. Do NOT settle.
+        # The 5-min REST poll (live) or a later BBO cross will catch it.
+        self._log("ws_settled_pre_finalized",
+                  {"market_status": market.get("status")}, ticker=ticker)
+        return
+
+    # Void guard (decision b): never auto-settle a voided market.
+    result = market.get("result") or market.get("market_result")
+    if result == "void":
+        self._log("settlement_void_manual",
+                  {"source": "ws_lifecycle"}, ticker=ticker)
+        return
+
+    # Normalize dollars -> integer cents at the call site (decision c).
+    sv_dollars = market.get("settlement_value_dollars",
+                            market.get("settlement_value", "0"))
+    try:
+        settle_val_cents = max(0, min(100, round(float(sv_dollars) * 100)))
+    except (TypeError, ValueError):
+        self._log("ws_settle_value_unparseable", {"raw": sv_dollars}, ticker=ticker)
+        return
+
+    self.process_settlement(ticker, settle_val_cents, settled_ts, source="ws_lifecycle")
 ```
 
-### 6.3 Add periodic REST poll (LIVE MODE ONLY)
+### 6.3 Add periodic REST poll (LIVE MODE ONLY, probe-corrected)
 
-In the main loop (live_v3.py:2920 area, near `check_settlements()`), add cadence-gated call. **Gated on `_PAPER_API is None`** — paper mode does not poll REST settlements (would falsely close paper positions using real-account history):
+In the main loop (live_v3.py:2920 area, near `check_settlements()`), add a cadence-gated call. **Gated on `_PAPER_API is None`** — paper mode does not poll REST settlements (would falsely close paper positions using real-account history):
 
 ```python
 SETTLEMENT_POLL_INTERVAL = 300  # 5 min
@@ -238,33 +306,51 @@ async def poll_settlements_rest(self):
     path = "/trade-api/v2/portfolio/settlements?min_ts=%d&limit=100" % int(min_ts)
     data = await api_get(self.session, self.ak, self.pk, path, self.rl)
     for s in (data or {}).get("settlements", []):
+        # market_result -> integer cents, normalized at the call site (decision c).
+        result = s.get("market_result", "")
+        if result == "yes":
+            settle_val_cents = 100
+        elif result == "no":
+            settle_val_cents = 0
+        elif result == "scalar":
+            settle_val_cents = max(0, min(100, int(s.get("value") or 0)))
+        elif result == "void":
+            # decision b: skip + log, manual reconciliation. No auto-settle.
+            self._log("settlement_void_manual",
+                      {"source": "rest_poll"}, ticker=s.get("ticker"))
+            continue
+        else:
+            self._log("rest_settlement_unknown_result",
+                      {"result": result, "ticker": s.get("ticker")})
+            continue
+        # settled_time is RFC3339, not epoch -> parse.
+        settled_time_str = s.get("settled_time", "")
+        try:
+            settled_ts = datetime.fromisoformat(
+                settled_time_str.replace("Z", "+00:00")).timestamp()
+        except (TypeError, ValueError):
+            settled_ts = time.time()
         self.process_settlement(
             ticker=s.get("ticker", ""),
-            settle_value_dollars=s.get("settlement_value", "0"),
-            settled_ts=s.get("settled_time", time.time()),
+            settle_val_cents=settle_val_cents,
+            settled_ts=settled_ts,
             source="rest_poll",
         )
     self._last_settlement_min_ts = time.time() - 60  # 60s overlap to avoid edge gaps
 ```
 
+(`datetime` is `from datetime import datetime` — verify the import exists at impl time.)
+
 ### 6.4 Unified `process_settlement` with paper-mode dispatch
 
+`process_settlement` now receives **already-normalized integer cents** (decision c removed the central `_normalize_settle_value`). It applies only a defensive clamp.
+
 ```python
-def _normalize_settle_value(self, settle_value_dollars):
-    """Kalshi may deliver '0.5000' (float-string), 50 (cents int), or 0.5 (float).
-    Normalize to integer cents 0-100."""
-    try:
-        sv = float(settle_value_dollars)
-        cents = round(sv * 100) if sv <= 1.5 else int(sv)
-    except (TypeError, ValueError):
-        cents = 0
-    return max(0, min(100, cents))
-
-
-def process_settlement(self, ticker, settle_value_dollars, settled_ts, source):
+def process_settlement(self, ticker, settle_val_cents, settled_ts, source):
     """Single chokepoint for all three settlement sources (WS, REST, BBO).
-    Routes paper vs live based on module-level _PAPER_API."""
-    settle_val = self._normalize_settle_value(settle_value_dollars)
+    Routes paper vs live based on module-level _PAPER_API.
+    settle_val_cents is integer cents 0-100, already normalized at the call site."""
+    settle_val = max(0, min(100, int(settle_val_cents)))  # defensive clamp only
 
     if _PAPER_API is not None:
         # Paper mode: mutate PaperPosition, emit paper_settled
@@ -361,6 +447,8 @@ def process_settlement(self, ticker, settle_value_dollars, settled_ts, source):
 
 ### 6.5 Refactor `check_settlements` with paper-mode dispatch
 
+The BBO backstop passes literal cents (yes=100, no=0) — already normalized.
+
 ```python
 def check_settlements(self):
     """BBO threshold backstop. Iterates the appropriate position dict based
@@ -374,9 +462,9 @@ def check_settlements(self):
             if not book:
                 continue
             if book.best_bid >= 98:
-                self.process_settlement(tk, 1.0, time.time(), source="bbo_threshold_yes")
+                self.process_settlement(tk, 100, time.time(), source="bbo_threshold_yes")
             elif book.best_ask <= 2:
-                self.process_settlement(tk, 0.0, time.time(), source="bbo_threshold_no")
+                self.process_settlement(tk, 0, time.time(), source="bbo_threshold_no")
         return
 
     # Live mode: iterate self.positions (current behavior)
@@ -387,9 +475,9 @@ def check_settlements(self):
         if not book:
             continue
         if book.best_bid >= 98:
-            self.process_settlement(tk, 1.0, time.time(), source="bbo_threshold_yes")
+            self.process_settlement(tk, 100, time.time(), source="bbo_threshold_yes")
         elif book.best_ask <= 2:
-            self.process_settlement(tk, 0.0, time.time(), source="bbo_threshold_no")
+            self.process_settlement(tk, 0, time.time(), source="bbo_threshold_no")
 ```
 
 ---
@@ -413,9 +501,14 @@ New event field: `settle_source` (string) on existing `settled` event. Values:
 - `"ws_lifecycle"` (primary)
 - `"rest_poll"` (safety net catch)
 - `"bbo_threshold_yes"` / `"bbo_threshold_no"` (backstop)
-- `"settlement_unexpected_phase"` (warning event, separate name)
 
-Burn-in metric: distribution of `settle_source` over a window. Healthy steady-state should be ~99% `ws_lifecycle`, with `rest_poll` only firing during/after bot restarts. If `rest_poll` dominates, WS subscription is broken.
+Warning/diagnostic events (separate names):
+- `"settlement_unexpected_phase"` — settle arrived while position not active/entry_pending.
+- `"ws_settled_pre_finalized"` — WS settled fired but `/markets/{ticker}` not yet `finalized` (REST poll will catch).
+- `"settlement_void_manual"` — a void was detected and skipped; needs manual reconciliation.
+- `"ws_settle_value_unparseable"` / `"rest_settlement_unknown_result"` — defensive parse failures.
+
+Burn-in metric: distribution of `settle_source` over a window. Healthy steady-state should be ~99% `ws_lifecycle`, with `rest_poll` only firing during/after bot restarts. If `rest_poll` dominates, WS subscription is broken. A nonzero `settlement_void_manual` stream is the manual-reconciliation queue.
 
 ### 8.2 Paper mode: new `paper_settled` event
 
@@ -452,11 +545,14 @@ Unit tests (extend the §11.1 harness already in `/tmp/paper_mode_unit_tests.py`
 
 - **B4-T1**: `process_settlement` happy path (live) — ticker with active position settles at value=99 → `pos.settled=True`, pnl computed, `settled` event emits with correct `settle_source`.
 - **B4-T2**: Idempotency — call `process_settlement` twice for same ticker, only one `settled` event fires.
-- **B4-T3**: WS lifecycle handler — feed synthetic `market_lifecycle` message into `ws_reader`'s dispatch logic, verify `process_settlement` is called.
-- **B4-T4**: REST poll — mock `_real_api_get` to return synthetic settlements, verify each settlement triggers `process_settlement(source="rest_poll")` AND only when `_PAPER_API is None`.
+- **B4-T3**: WS lifecycle handler — feed synthetic `market_lifecycle_v2` / `event_type="settled"` message into `ws_reader`'s dispatch logic; mock `/markets/{ticker}` to return `status="finalized"`, `settlement_value_dollars="1.0000"`; verify `_handle_ws_settlement` fires and `process_settlement(source="ws_lifecycle", settle_val_cents=100)` is called. Add a `status="active"` variant → verify `ws_settled_pre_finalized` logged and NO settlement. Add a `result="void"` variant → verify `settlement_void_manual` logged and NO settlement.
+- **B4-T4**: REST poll — mock `api_get` to return synthetic settlements with `market_result` ∈ {yes, no, scalar, void} and RFC3339 `settled_time`; verify each non-void triggers `process_settlement(source="rest_poll")` with correct cents (yes→100, no→0, scalar→`value`), `settled_ts` parsed from RFC3339, void→`settlement_void_manual` (no settle), AND the whole poll runs only when `_PAPER_API is None`.
 - **B4-T5**: Cleanup — confirm `exit_order_id`, `dca_order_id`, `cell_exit_order_id` are cancelled after settlement.
-- **B4-T6**: BBO threshold still works — refactored `check_settlements` correctly calls `process_settlement(source="bbo_threshold_*")` for live positions.
-- **B4-T7**: Settle value normalization — `"0.0000"`, `"1.0000"`, `"0.5000"`, `0`, `99`, `50` all map to expected cents.
+- **B4-T6**: BBO threshold still works — refactored `check_settlements` correctly calls `process_settlement(source="bbo_threshold_*", settle_val_cents ∈ {100,0})` for live positions.
+- **B4-T7**: Per-source normalization (replaces v3's central `_normalize_settle_value` test). Three call-site converters map correctly to integer cents 0–100:
+  - WS hop: `settlement_value_dollars` `"1.0000"`→100, `"0.0000"`→0, `"0.5000"`→50, unparseable→`ws_settle_value_unparseable` (no settle).
+  - REST poll: `market_result` yes→100, no→0, scalar(`value`=37)→37, void→skip, unknown→skip.
+  - BBO: literal 100 / 0 passed through.
 
 ### 9.2 Paper-mode tests (mode = `_PAPER_API` is set)
 
@@ -464,8 +560,8 @@ Unit tests (extend the §11.1 harness already in `/tmp/paper_mode_unit_tests.py`
   - **B4-T8a** _no-exit happy path_: PaperPosition with qty=10, sold_qty=0, total_cost_cents=400, total_revenue_cents=0; settle at 99c. Expected: `settled=True`, `settlement_price=99`, `realized_pnl_cents = 0 - 400 + 99*10 = 590`. `paper_settled` emitted (NOT `settled`); `self.positions[tk]` (if present) silently marked settled to short-circuit `check_settlements`.
   - **B4-T8b** _partial-exit fixture_ (covers the v2-formula bug): qty=10, sold_qty=5, total_cost_cents=400, total_revenue_cents=250 (5 contracts sold at 50c earlier); settle at 99c. Expected: `realized_pnl_cents = 250 - 400 + 99*5 = 345`. **NOT 295.** This case would have been undercounted by the v2 formula.
   - **B4-T8c** _fully-exited-then-settles_: qty=10, sold_qty=10, total_cost_cents=400, total_revenue_cents=600 (full exit at 60c), `realized_pnl_cents=200` from try_fill. Settle event arrives anyway (rare — settled position should not normally re-settle, but the idempotency guard `if ppos.settled` already handles this; this fixture verifies that BEFORE the settled flag is set in some weird edge ordering, the formula still computes correctly: `realized_pnl_cents = 600 - 400 + settle_val*0 = 200`, identical to what try_fill already booked).
-- **B4-T9**: REST poll guard — set `_PAPER_API`, mock `_real_api_get` to fail loudly if called, invoke main-loop tick → `poll_settlements_rest()` is NOT called; no settlement state mutated.
-- **B4-T10**: BBO threshold in paper mode — set `_PAPER_API`, populate `paper_positions[tk]` with net_qty=5, set `book.best_bid=99` → `check_settlements` iterates `paper_positions` (not `self.positions`), routes through `process_settlement`, `paper_settled` emitted with `source="bbo_threshold_yes"`.
+- **B4-T9**: REST poll guard — set `_PAPER_API`, mock `api_get` to fail loudly if called with a `/portfolio/settlements` path, invoke main-loop tick → `poll_settlements_rest()` is NOT called; no settlement state mutated. (Note: `/markets/{ticker}` hop IS still permitted in paper mode — it is public data — so the guard is specific to the settlements poll.)
+- **B4-T10**: BBO threshold in paper mode — set `_PAPER_API`, populate `paper_positions[tk]` with net_qty=5, set `book.best_bid=99` → `check_settlements` iterates `paper_positions` (not `self.positions`), routes through `process_settlement`, `paper_settled` emitted with `source="bbo_threshold_yes"` and `settle_price=100`.
 - **B4-T11**: Persistence round-trip with settled state — use the partial-exit fixture from B4-T8b (qty=10, sold_qty=5, total_cost=400, total_revenue=250, settle@99 → realized_pnl_cents=345). Settle the paper position, call `dump_state`, create fresh `PaperApi`, call `load_state`. Verify on the loaded `PaperPosition`:
   - `settled == True`
   - `settlement_price == 99`
@@ -478,15 +574,17 @@ Unit tests (extend the §11.1 harness already in `/tmp/paper_mode_unit_tests.py`
 
 - **Live deploy**: after Bug 4, expect `phantom-active count → 0` over ~24 hours (REST poll picks up the 8 historical phantoms on first wide-window query).
 - **Live deploy**: steady-state distribution of `settle_source` across new positions ~99% `ws_lifecycle`, residual `rest_poll` only on bot restart.
-- **Paper deploy**: every paper position's lifecycle ends in `paper_settled` (no phantoms accumulating); `settle_source` distribution heavily favors `ws_lifecycle`; zero `rest_poll` events (confirmed gated off).
+- **Paper deploy**: every paper position's lifecycle ends in `paper_settled` (no phantoms accumulating); `settle_source` distribution heavily favors `ws_lifecycle`; zero `rest_poll` events (confirmed gated off); any `settlement_void_manual` events surfaced for hand-reconciliation.
 
 ---
 
 ## 10. Out-of-scope for Bug 4
 
-- Scalar-market handling (settle_value not in {0, 1}). Tennis is binary; this is a non-issue for current scope. Spec accepts it via the `settle_value_dollars` parameter signature; downstream pnl math handles fractional cents correctly.
-- Settlement of positions that were never `entry_filled` (i.e., entry never filled but Kalshi opened/closed the market with a stranded resting buy). These get cancelled by reconcile, not by settlement detection.
-- Account-level settlement reconciliation (i.e., reconcile bot pnl_cents totals against Kalshi `revenue` field). Useful for audit but outside Bug 4's surface.
+- **Void auto-processing** (decision b): voids are logged + skipped, reconciled manually. Automatic void accounting (cost-basis refund) is a separate follow-up.
+- **`determination`-event caching** to avoid the `/markets/{ticker}` hop (decision a): deferred; v1 uses the REST hop.
+- Scalar-market handling beyond the `value`-cents passthrough. Tennis is binary; the `scalar` branch exists for completeness.
+- Settlement of positions that were never `entry_filled` (stranded resting buy). These get cancelled by reconcile, not by settlement detection.
+- Account-level settlement reconciliation (reconcile bot pnl_cents totals against Kalshi `revenue` field). Useful for audit — and would have caught the original foundation corruption — but outside Bug 4's surface; queue as a follow-up.
 - WS subscription scope — `market_lifecycle_v2` is added to the existing tickers list; we do not auto-subscribe to historical/settled markets.
 
 ---
@@ -495,37 +593,43 @@ Unit tests (extend the §11.1 harness already in `/tmp/paper_mode_unit_tests.py`
 
 | Risk | Likelihood | Impact | Mitigation |
 |---|---|---|---|
-| Kalshi WS channel name not exactly `market_lifecycle_v2` | Medium | Lifecycle events not received | Verify exact name at impl-time via docs + sandbox test |
-| `settlement_value` payload format different from spec assumption | Low-Medium | Settle value parses to wrong cents | Defensive normalization in `process_settlement`; both string and numeric paths covered |
+| WS settled event lacks settlement value | **Confirmed (probe §1c)** | v3 inline value-read was broken | v4 §6.2 async `/markets/{ticker}` hop sources the value; B4-T3 covers it |
+| `/markets/{ticker}` not yet `finalized` when WS `settled` arrives (race) | Medium | WS path can't settle yet | `ws_settled_pre_finalized` log + return; REST poll (live) or BBO (paper) catches it within the cycle |
+| `/markets/{ticker}` exact value field name (`settlement_value` vs `settlement_value_dollars`) | Low-Medium | Value parses to 0 | v4 reads `settlement_value_dollars` with `settlement_value` fallback; first live settlement confirms (T11b) |
+| REST `settled_time` RFC3339 vs epoch confusion | **Confirmed (probe §2b)** | Wrong ts | v4 §6.3 parses RFC3339 → epoch with try/except fallback |
+| REST per-record field is `value` not `settlement_value` | **Confirmed (probe §2b)** | Wrong cents | v4 maps `market_result` → cents; `scalar` uses `value` |
+| `void` mis-accounted as 50¢ | Low (rare) | Wrong P&L | decision b: skip + log + manual reconcile; never auto-settle void |
+| Kalshi WS channel name not exactly `market_lifecycle_v2` | **Resolved (probe §1a/1b)** | — | Confirmed verbatim |
 | REST `/portfolio/settlements` rate-limited under heavy poll | Low | Some polls fail (return None) | Existing rate-limiter handles; failed poll is non-fatal (next poll catches up) |
 | Cancellation of resting orders on already-canceled settled market | Low | Spurious `order_error` logs | Existing `cancel_order` returns False on dead order; no state corruption |
 | `process_settlement` fires before reconcile sees the position (race) | Low | Brief window where position is `settled` but reconcile re-touches | `pos.settled` short-circuit in reconcile already gates this |
-| **REST poll fires in paper mode** (gate forgotten by future patch) | Medium-Low | Real-account settlement history would falsely settle paper positions | Defensive guard at top of `poll_settlements_rest()` (`if _PAPER_API is not None: return`) in addition to the cadence gate. B4-T9 verifies. |
-| **Paper-mode bot's `self.positions` mirror grows unbounded** | Low | check_settlements wastes CPU re-iterating same tickers | Silent `self.positions[tk].settled = True` write inside paper branch of `process_settlement` short-circuits next iteration. |
-| **Lifecycle event arrives before bot has a paper_position for ticker** (e.g., bot subscribed but never traded) | Low | `paper_positions.get(ticker)` returns None → silent no-op | By design — settlement of an untraded ticker is irrelevant. No log noise. |
-| **Paper position `realized_pnl_cents` accounting drift** for partial-exit case (sold_qty > 0 reaching settlement with net_qty > 0) | **Was a real bug in v2; fixed in v3.** | v2 formula `+= (settle_val - avg_basis) * net_qty` understated realized P&L by ignoring prior partial-sell proceeds (because `realized_pnl_cents` is 0 going into settlement whenever `net_qty > 0` — existing try_fill only books realized P&L when net_qty hits zero). | v3 formula uses full double-entry assignment `= total_revenue_cents - total_cost_cents + settle_val * net_qty` which correctly reconciles both partial-sell proceeds and settlement payout. B4-T8b fixture covers this exact case; B4-T11 verifies the result round-trips through dump/load. |
-| **`realized_pnl_cents` formula regression** if a future patch reverts to incremental form or changes operand ordering | Low (now that B4-T8b + B4-T11 lock the values) | Per-position P&L drift, accumulating over burn-in | B4-T8b pins three numerical answers to specific formula inputs. B4-T11 pins the value across persistence. Any formula change that breaks either test is caught at unit-test time, before deploy. |
+| **REST settlements poll fires in paper mode** (gate forgotten by future patch) | Medium-Low | Real-account settlement history would falsely settle paper positions | Defensive guard at top of `poll_settlements_rest()` in addition to the cadence gate. B4-T9 verifies. The `/markets/{ticker}` hop is exempt — public data, paper-safe. |
+| **Paper-mode bot's `self.positions` mirror grows unbounded** | Low | check_settlements wastes CPU re-iterating same tickers | Silent `self.positions[tk].settled = True` write inside paper branch short-circuits next iteration |
+| **Lifecycle event arrives before bot has a paper_position for ticker** | Low | `paper_positions.get(ticker)` returns None → silent no-op | By design — settlement of an untraded ticker is irrelevant. No log noise. |
+| **Paper position `realized_pnl_cents` accounting drift** for partial-exit case | **Was a real bug in v2; fixed in v3.** | Understated realized P&L | v3 double-entry assignment `= total_revenue_cents - total_cost_cents + settle_val * net_qty`. B4-T8b covers; B4-T11 verifies round-trip. |
+| **`realized_pnl_cents` formula regression** if a future patch reverts to incremental form | Low (B4-T8b + B4-T11 pin the values) | Per-position P&L drift | B4-T8b pins three numerical answers; B4-T11 pins value across persistence |
 
 ---
 
 ## 12. Implementation plan (for the next session)
 
-1. Pre-impl probe: verify exact `market_lifecycle_v2` channel name + `settled` payload format via Kalshi sandbox or docs deep-read.
-2. Build `/tmp/live_v3_bug4.py` patched copy. Diff against current `live_v3.py` (post-paper-mode).
-3. Run unit tests B4-T1 through B4-T7 against the patched module.
+1. ~~Pre-impl probe~~ — DONE (`docs/bug4_probe.md`); schemas folded into this v4.
+2. Build `/tmp/live_v3_bug4.py` patched copy. Diff against current `live_v3.py` (post-paper-mode). Touch points: `ws_subscribe` (§6.1), `ws_reader` dispatch + new `_handle_ws_settlement` (§6.2), main loop + new `poll_settlements_rest` (§6.3), new `process_settlement` (§6.4), refactored `check_settlements` (§6.5). Confirm `from datetime import datetime` import present.
+3. Run unit tests B4-T1 through B4-T11 against the patched module.
 4. Apply patch, commit, push for review.
 5. Restart paper bot with patched binary.
-6. Burn-in: observe phantom resolution + `settle_source` distribution over 24h.
+6. Burn-in: observe phantom resolution + `settle_source` distribution + any `settlement_void_manual` / `ws_settled_pre_finalized` events over 24h.
 7. On clean burn-in: green light Bug 5 design.
 
 ---
 
-## 13. Open questions (flag before implementation)
+## 13. Open questions (runtime-verification only; design is locked)
 
-1. **Exact WS message type string** — docs say channel is `market_lifecycle_v2` but the Kalshi message envelope `type` field may be `"market_lifecycle"`, `"market_settled"`, or something else. Needs verification.
-2. **`settled_ts` field name** — could be `settled_time`, `settlement_time`, `final_ts`, `determination_ts`. Defensive code reads both.
-3. **REST `min_ts` semantics** — is it inclusive or exclusive? Whichever, the 60s overlap in `_last_settlement_min_ts` covers the boundary.
-4. **Settled positions held beyond the REST `min_ts` window** — for the existing 8 phantoms, the entries are all <90 days old, well within any reasonable REST history window. New deploys with longer-stale phantoms would need a one-shot manual sweep.
-5. **Persistence** (RESOLVED in v2) — `PaperPosition.settled` and `settlement_price` round-trip cleanly through `dump_state` (uses `p.__dict__` which captures both fields automatically) and `load_state` (explicitly reads `settled=bool(pd.get("settled", False))`, `settlement_price=pd.get("settlement_price")`). Verified against deployed live_v3.py at the dump_state/load_state methods. Bug 4 implementation can rely on this — no prerequisite paper-mode persistence fix needed.
+1. **`/markets/{ticker}` exact value field** — `settlement_value` vs `settlement_value_dollars`. v4 reads `_dollars` with a plain-`settlement_value` fallback. First live settlement (T11b) confirms.
+2. **`determination` event field shape** — needed only for the deferred caching optimization (decision a, §10). Not on the v1 path.
+3. **REST `min_ts` inclusive/exclusive** — confirmed exclusive (`> min_ts`, probe §2c); 60s overlap window covers the boundary.
+4. **Settled positions older than the REST history window** — the 8 phantoms are <90 days old, well within range. Longer-stale phantoms on a future deploy would need a one-shot manual sweep.
+5. **Persistence** (RESOLVED in v2) — `PaperPosition.settled` and `settlement_price` round-trip cleanly through `dump_state` / `load_state`. Verified against deployed live_v3.py. No prerequisite fix needed.
+6. **Sandbox capture of a real settled event** (T11b) — deferred (probe §5): opening a second WS subscription on the same credentials could kick the running paper bot off. Compensating control: first post-deploy live settlement is ground truth; field divergence logs (non-fatal) rather than crashes.
 
 End of brief.

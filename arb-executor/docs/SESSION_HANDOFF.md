@@ -253,7 +253,19 @@ Operator stated: plenty of capital to scale up. Sizing is not the binding constr
 
 ## RECENT COMMIT TRAIL
 
-Most recent first. Atlas arc:
+Most recent first.
+
+Premarket-dynamics arc (2026-05-22 → 2026-05-23, most recent):
+
+- `5bd88b6` / `4f07e5a` — Path B doc-system commits (ROADMAP T43; ANALYSIS_LIBRARY registration).
+- `1e00818` — Path B premarket maker-bid fill mechanics (T43). 14,033 N × 42 placement×offset cells; entry-side fill rates only (no PnL, no exit logic). Corpus hindsight entry-improvement ceiling 2.46¢/N; monotonic favorite>underdog gradient (r85_94 ~6.5¢ via 15¢ offsets, r05_14 ~1.1¢ via 2-3¢). Outputs on-disk only; producer `884e951`.
+- `7c15776` — Walkover/retirement sanity check. T4 mid-drift gradient NOT robust: removing reversal-prone events (17.7-25% of N by duration proxy) ~halves the extreme-band drift (±11¢ → ±5-6¢).
+- `2ca8890` — Scope A corpus premarket map (per_minute_distributions_v1 + per_event_fingerprint_v1, 14,033 N). Headline: monotonic ~±11¢ anchor-regime mid-drift gradient (T4), near-identical across categories.
+- `a0bc5e6` — fv_overlap_join_v1 substrate + v3 example chart. Cross-book consensus FV layered on premarket_tape (~3.5% of atlas events have FV coverage; WTA_CHALL 0% per betexplorer scraper gap).
+- `7d98e74` — book_prices → durable fv_history archive + daily 02:30 UTC cron (stops the rolling-32-day FV-poll leak).
+- `30a47b6` — premarket_tape_v1 substrate (T-4h→T-20m per-minute tape, 2.06M rows, foundation scope).
+
+Atlas arc:
 
 - `d99c6e9` — Pairing diagnostic: 79.3% events have both N's anchored. ATP_MAIN 85.5% / WTA_MAIN 81.2% / Challengers ~74%. Empirical upstream feasibility for B23.
 - `d038cb3` — WTA_CHALL descriptive locked. 887 N, 1c +$645/+14.52% across 80 days. ALL FOUR CATEGORIES LOCKED.
@@ -282,6 +294,7 @@ Pre-arc context: `7911478` CHAT_HANDOFF post-Rung-0 landing (2026-05-15); `44c9e
 
 ## IMMEDIATE NEXT ACTIONS (post-Stage-0)
 
+0. **Premarket-dynamics arc landed (2026-05-22 → 2026-05-23).** Chain: premarket_tape_v1 (`30a47b6`) → fv_history archive + cron (`7d98e74`) → fv_overlap_join_v1 (`a0bc5e6`) → Scope A corpus map (`2ca8890`) → walkover/retirement check (`7c15776`) → **Path B fill mechanics (T43, `1e00818`)**. Net empirical picture: the atlas T-20m taker anchor (T42, locked exit) can be entered earlier as a maker for a per-regime expected entry-improvement of up to ~2.46¢/N (hindsight ceiling), strongly favorite-skewed (Scope A T4 drift gradient is the mechanism; walkover check shows ~half the extreme drift is reversal-driven so the deployable signal is the completed-match ~±5-6¢ gradient). **Next:** the bid-laying policy spec can now be drafted from Path B's per-regime fill rates (entry side) layered on the locked atlas exit — it is its own T-item, not yet opened.
 1. **This Stage 0 reconcile completes first** — eight commits land before any new execution-phase work:
    1. SESSION_HANDOFF.md rewrite (this doc)
    2. CHAT_HANDOFF.md → pointer stub
@@ -298,5 +311,9 @@ Pre-arc context: `7911478` CHAT_HANDOFF post-Rung-0 landing (2026-05-15); `44c9e
 6. **Capital deployment plan** — after paper-mode validation against live tape. Far-future tracking per T26.
 
 ---
+
+---
+
+Latest landed analysis: **Path B premarket fill mechanics (T43)**, analytical commit `1e00818` (2026-05-23). Entry-side maker-bid fill rates across the atlas corpus; complements the locked exit-optimized atlas T42. Doc-system commits `5bd88b6` (ROADMAP) + `4f07e5a` (ANALYSIS_LIBRARY) + this SESSION_HANDOFF update. The bid-laying policy spec is the open downstream T-item.
 
 End of handoff.

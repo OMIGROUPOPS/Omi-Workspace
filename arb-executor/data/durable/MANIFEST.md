@@ -519,3 +519,33 @@ Producer: data/scripts/build_path_b_v4.py at commit 558e0c3. Run 2026-05-23 (~47
 - Structural insight: net-PnL-optimal offsets are SHALLOW (1-3c for 27/36 cells), opposite v1's deep-15c-favorite table -- the atlas fixed-profit exit (+X) makes deep offsets add no exit upside, only raise miss rate; shallow bids fill reliably + lower capital. v1 optimized the wrong objective (entry-capture). Positive complement to the Path C negative arc (the lever was the offset, mis-set by v1).
 - Deployable: per_regime_offsets_v2.csv (v4 winners) + bid_laying_policy_v1.md Section 12. Pre-realism (B25 0.5-0.7x applies). Net-$ objective (3 cells trade ROI for throughput); +-5min ask fallback lifts baseline ~1.7%.
 - Companions: data/durable/per_minute_universe/path_b_v4_run_summary.json ; docs/analysis/premarket_dynamics_v1/path_b_v4_findings.md ; docs/policy/per_regime_offsets_v2.csv
+
+
+## Path C arc — feature-conditioned entry refinement (NEGATIVE): Phase 2 offset modulation + Phase 3 corrected execution-mode
+
+Producers: data/scripts/build_path_c_phase2.py + data/scripts/build_path_c_phase3_corrected.py at commit 489c639. Run 2026-05-23. Tests whether a per-event fill predictor (Phase 1, holdout AUC 0.73, committed 22f3221) can beat the static Path B table via offset modulation (Phase 2) or execution-mode switching (Phase 3). Both NEGATIVE -- the atlas fixed-profit exit caps entry-side conditioning. Doctrine A39/B16/B25/A40/A41/A42/A43/E32. Synthesis: docs/analysis/premarket_dynamics_v1/path_c_arc_findings.md.
+
+### path_c_phase2_per_n_simulation.parquet
+- sha256: db07c90fc91fa17fde7feb6401f3c20d8d1d8f6fd2f572b4502084328580b6ac ; Size: 384413 bytes ; Rows: 14033 ; Cols: 15
+- File: data/durable/per_minute_universe/path_c_phase2_per_n_simulation.parquet (NOT git-tracked)
+- Per-N modulated-offset simulation (P(drift)-tiered offset on top of v3).
+
+### path_c_phase2_per_regime_summary.parquet
+- sha256: 6d5bcfbec81cf5ec8ec10544b8dcae20840c2dc79a822f70ed592fd1226b09d8 ; Size: 11250 bytes ; Rows: 36 ; Cols: 13
+- File: data/durable/per_minute_universe/path_c_phase2_per_regime_summary.parquet (NOT git-tracked)
+- Per (category x anchor_regime): variant ROI, fill, per-cell dominance vs v3.
+
+### path_c_phase3_corrected_per_n_simulation.parquet
+- sha256: d6abc058b4f14b83441eae66c63e72d5218430d646341b8cb7d1baad945d2aa6 ; Size: 344897 bytes ; Rows: 14033 ; Cols: 14
+- File: data/durable/per_minute_universe/path_c_phase3_corrected_per_n_simulation.parquet (NOT git-tracked)
+- Per-N execution-mode simulation (drift>=Xc cross-taker on favorites, maker-wait elsewhere; net of 1c fee).
+
+### path_c_phase3_corrected_per_regime_summary.parquet
+- sha256: e153485c326ac5b1f217171929b95d265601bb2f89e58430f22d36c9335b12e1 ; Size: 10174 bytes ; Rows: 36 ; Cols: 12
+- File: data/durable/per_minute_universe/path_c_phase3_corrected_per_regime_summary.parquet (NOT git-tracked)
+- Per (category x anchor_regime): drift-threshold variant net ROI, immediate-cross frac, fee.
+
+- Headline Phase 2: best variant broad_060_040 gross 12.194% vs v3 12.105% = +0.089pp (NOISE); per-cell dominance 22/36. Not promoted.
+- Headline Phase 3 corrected: best drift threshold >=4c nets 10.266% vs v3 10.514% = -0.248pp (NEGATIVE net); 8 favorite cells net -$191.1; cross cohort entry 75.84c vs v3 76.82c (~1c cheaper, eaten by 1c fee). Drift reproduces Scope A T4 within 0.19c. Not promoted.
+- Structural insight: the locked atlas fixed-profit exit (+X regardless of entry) caps the value of per-event entry-side conditioning -- a cheaper/conditioned entry only changes the hold-to-settlement minority + capital, not the dominant triggered-exit payoff. Contrast Path B v4 (+1.024pp): the productive lever is the STATIC per-cell offset re-optimized on net-PnL, not per-event feature conditioning. See LESSONS A42 + A43.
+- Companions: data/durable/per_minute_universe/path_c_phase2_run_summary.json ; data/durable/per_minute_universe/path_c_phase3_corrected_run_summary.json ; docs/analysis/premarket_dynamics_v1/path_c_arc_findings.md

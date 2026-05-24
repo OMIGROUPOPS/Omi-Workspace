@@ -1,0 +1,48 @@
+{
+  "analysis": "path_c_phase3_corrected_per_cell_execution_mode",
+  "producer": "data/scripts/build_path_c_phase3_corrected.py",
+  "producer_commit": "489c639",
+  "run_timestamp_utc": "2026-05-23T23:14:00Z",
+  "objective": "Per-cell execution-mode switch driven by the Scope A T4 drift gradient with paired-leg inverse logic: on cells where the favorite leg drifts UP by >= X cents (a resting below-anchor maker bid will be swept past, not filled cheaply), CROSS IMMEDIATELY as a marketable taker to lock entry; elsewhere keep maker-wait. NET of the 1c taker fee on every crossed entry. Tests whether execution-mode conditioning on the drift gradient beats v3.",
+  "sources": {
+    "premarket_tape_v1.parquet": "ff2a63d9951d1a3d6b80044106c96ca9fdfd8d3951590e73eec1b46209c5a214",
+    "scope_a_premarket_drift": "T4 mid-drift gradient (per-regime), read from data",
+    "path_b_v3_per_n_simulation.parquet": "v3 maker-wait-everywhere baseline (net of fee)",
+    "spike_perN + descriptive_1c parquets": "atlas exit rule + anchor"
+  },
+  "method": "Per-cell drift threshold X swept over {3,4,5,6} cents. The drift-trigger fires on 8 heavy-favorite cells (r75_84 / r85_94). Crossed entries pay a flat 1c taker fee; maker-wait entries pay 0. Drift read from data reproduces the Scope A T4 gradient within 0.19 cents (gate PASS).",
+  "v3_baseline": {"gross_pnl_dollars": 8098.50, "net_pnl_dollars": 7034.30, "net_roi_pct": 10.514, "capital_dollars": 66902.00},
+  "drift_reproduction": {"max_abs_diff_vs_scope_a_t4_cents": 0.19, "verdict": "PASS - drift read from data matches Scope A T4 within 0.19c"},
+  "variants_by_drift_threshold": {
+    "3": {"gross_roi_pct": 11.827, "net_roi_pct": 10.167, "net_pnl_dollars": 6777.20, "immediate_cross_frac": 0.162, "fee_dollars": 1106.0, "n_fallback": 887},
+    "4": {"gross_roi_pct": 11.919, "net_roi_pct": 10.266, "net_pnl_dollars": 6843.20, "immediate_cross_frac": 0.123, "fee_dollars": 1101.9, "n_fallback": 730, "best_net": true},
+    "5": {"gross_roi_pct": 11.919, "net_roi_pct": 10.266, "net_pnl_dollars": 6843.20, "immediate_cross_frac": 0.123, "fee_dollars": 1101.9, "n_fallback": 730},
+    "6": {"gross_roi_pct": 11.919, "net_roi_pct": 10.266, "net_pnl_dollars": 6843.20, "immediate_cross_frac": 0.123, "fee_dollars": 1101.9, "n_fallback": 730}
+  },
+  "headline": {
+    "best_drift_threshold_cents": 4,
+    "best_net_roi_pct": 10.266, "v3_net_roi_pct": 10.514, "best_vs_v3_pp": -0.248,
+    "cross_cohort_mean_entry_cents": 75.84, "v3_same_cohort_mean_entry_cents": 76.82,
+    "favorite_8cell_net_contribution_dollars": -191.1,
+    "per_cell_dominance_of_36": 29,
+    "verdict": "NEGATIVE - every threshold is net-negative; best (>=4c) nets 10.266% vs v3 10.514% = -0.248pp."
+  },
+  "structural_insight": "Cross-taker buys a ~1c-cheaper entry on the cohort it touches (75.84c vs 76.82c) but (a) the ~1c is eaten by the 1c taker fee, and (b) on triggered-exit events the cheaper entry does not flow to the realized +X anyway (atlas fixed-profit exit cap). The 8 favorite cells net -$191.1. See path_c_arc_findings.md Section 4/6 and LESSONS A43.",
+  "supersedes": "Original binary Phase 3 (fixed 55c cross-favorites cutoff) found the cross-mode favorite entry at 67.3c ~ v3's 67.4c (no improvement); held unpromoted, superseded by this corrected per-cell drift-driven version.",
+  "outputs": {
+    "path_c_phase3_corrected_per_n_simulation.parquet": {"sha256": "d6abc058b4f14b83441eae66c63e72d5218430d646341b8cb7d1baad945d2aa6", "rows": 14033, "cols": 14, "size_bytes": 344897},
+    "path_c_phase3_corrected_per_regime_summary.parquet": {"sha256": "e153485c326ac5b1f217171929b95d265601bb2f89e58430f22d36c9335b12e1", "rows": 36, "cols": 12, "size_bytes": 10174}
+  },
+  "validation_gates": {
+    "gate1_rowcount": "PASS - 14,033 N.",
+    "gate_drift_repro": "PASS - drift within 0.19c of Scope A T4.",
+    "gate6_material_roi": "NOT CLEARED (documented negative, not a STOP) - best net -0.248pp vs v3; execution-mode switching is net-negative under the 1c fee + exit cap."
+  },
+  "recommendation": "DO NOT promote to policy. Execution-mode conditioning on the drift gradient is net-negative. The deployable lever remains the static per-cell offset (Path B v4 T47, +1.024pp net).",
+  "deviations": [
+    "Net of flat 1c taker fee on crossed entries (0 on maker-wait); the fee is the proximate cause of the net loss given the exit cap.",
+    "Drift read from data (reproduces Scope A T4 within 0.19c) rather than re-derived.",
+    "Pre-realism: B25 0.5-0.7x not applied."
+  ],
+  "doctrine_alignment": ["A39","B16","B25","A40","A41","A42","A43","E32"]
+}

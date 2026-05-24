@@ -1,0 +1,44 @@
+{
+  "analysis": "path_c_phase2_conditional_offset_modulation",
+  "producer": "data/scripts/build_path_c_phase2.py",
+  "producer_commit": "489c639",
+  "run_timestamp_utc": "2026-05-23T22:49:00Z",
+  "objective": "Map the Phase-1 P(drift_reached_bid) predictor to bid-offset aggressiveness (per-event tiered offset: larger when P high, smaller/safer when P low), layered on the Path B v3 per-regime table. Tests whether feature-conditioned offset MODULATION beats v3 place-everywhere - the channel Phase 1 recommended after binary skip-gating failed (A42).",
+  "sources": {
+    "premarket_tape_v1.parquet": "ff2a63d9951d1a3d6b80044106c96ca9fdfd8d3951590e73eec1b46209c5a214",
+    "per_minute_features.parquet": "9fde4b5d... - taker_imbalance pre-T-4h window (Phase 1 feature 2)",
+    "path_b_v3_per_n_simulation.parquet": "v3 per-N realized PnL baseline for the comparison",
+    "per_regime_offsets_v1.csv": "v3 baseline per-regime offsets (the offsets being modulated)",
+    "phase1_holdout_model": "3-feature logistic, holdout AUC 0.7298 - P(drift) applied to all N"
+  },
+  "method": "Four P-threshold parameterizations splitting the corpus into aggressive/neutral/conservative tiers, each tier applying a tier-specific offset on top of v3. Gross ROI (pre-fee) vs v3 repro. P from the holdout-trained model applied to all N (in-sample-optimistic for CPCV rows - the negative result strengthens out of sample).",
+  "v3_repro": {"gross_pnl_dollars": 8098.50, "gross_roi_pct": 12.105},
+  "variants": {
+    "primary_065_035": {"gross_roi_pct": 12.183, "gross_pnl_dollars": 8153.00, "capital_dollars": 66920.40, "fill_rate": 0.2976, "vs_v3_pp": 0.078},
+    "narrow_070_030":  {"gross_roi_pct": 12.131, "gross_pnl_dollars": 8118.20, "capital_dollars": 66920.10, "fill_rate": 0.3023, "vs_v3_pp": 0.026},
+    "broad_060_040":   {"gross_roi_pct": 12.194, "gross_pnl_dollars": 8162.70, "capital_dollars": 66937.90, "fill_rate": 0.2948, "vs_v3_pp": 0.089, "best": true},
+    "twotier_050":     {"gross_roi_pct": 12.176, "gross_pnl_dollars": 8150.90, "capital_dollars": 66941.40, "fill_rate": 0.2157, "vs_v3_pp": 0.071}
+  },
+  "headline": {
+    "best_variant": "broad_060_040",
+    "best_gross_roi_pct": 12.194, "v3_gross_roi_pct": 12.105, "best_vs_v3_pp": 0.089,
+    "per_cell_dominance_of_36": 22,
+    "verdict": "NEGATIVE - best variant +0.089pp gross is noise (inside run-to-run jitter, vanishes pre-realism); conditional offset does not beat v3 in 14/36 cells."
+  },
+  "structural_insight": "Offset modulation reshuffles WHICH events fill and at WHAT discount, but the entry discount only changes hold-to-settlement minority payoffs; on the majority triggered-exit outcomes realized PnL is +X regardless of entry (atlas fixed-profit exit cap). Confidence-weighting the offset cannot move the payoff that dominates the blend. See path_c_arc_findings.md Section 3/6 and LESSONS A43.",
+  "outputs": {
+    "path_c_phase2_per_n_simulation.parquet": {"sha256": "db07c90fc91fa17fde7feb6401f3c20d8d1d8f6fd2f572b4502084328580b6ac", "rows": 14033, "cols": 15, "size_bytes": 384413},
+    "path_c_phase2_per_regime_summary.parquet": {"sha256": "6d5bcfbec81cf5ec8ec10544b8dcae20840c2dc79a822f70ed592fd1226b09d8", "rows": 36, "cols": 13, "size_bytes": 11250}
+  },
+  "validation_gates": {
+    "gate1_rowcount": "PASS - 14,033 N.",
+    "gate6_material_roi": "NOT CLEARED (documented negative, not a STOP) - best +0.089pp gross < 0.5pp material bar and far below v3's 12.11%; pre-realism it is zero. Offset modulation is not a productive lever."
+  },
+  "recommendation": "DO NOT promote to policy. The predictor is real (Phase 1 AUC 0.73) but the atlas fixed-profit exit caps entry-side conditioning. The productive lever is the STATIC per-cell offset re-optimized on net-PnL (Path B v4 T47, +1.024pp), not per-event modulation.",
+  "deviations": [
+    "Gross (pre-fee) comparison - the modulation gain is pre-fee; net it is no better.",
+    "P from holdout-trained model applied to all N (in-sample-optimistic for CPCV rows); negative result is robust to the optimism.",
+    "Pre-realism: B25 0.5-0.7x not applied."
+  ],
+  "doctrine_alignment": ["A39","B16","B25","A40","A41","A42","A43","E32"]
+}

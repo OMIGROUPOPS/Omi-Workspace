@@ -438,3 +438,23 @@ Producer: data/scripts/build_path_b_fill_mechanics_v1.py at commit 884e951. Run 
 - Headline: expected entry-improvement rises monotonically with anchor regime -- heavy favorites (r85_94) ~6.3-7.0c/N via 15c offsets (books drift up ~11c), deep underdogs (r05_14) ~1.0-1.2c via 2-3c offsets only (books drift down to anchor). Corpus hindsight ceiling 2.46c/N; best single uniform cell (T-240, 15c) 2.25c/N. Earlier placement weakly dominates.
 - Caveats: hindsight-optimal (live loses to per-event placement uncertainty); minute-cadence fill (no sub-minute/queue); fill realism downstream (Axis 1/B25) separate; entry-side ONLY (atlas T42 owns exit).
 - Companions: data/durable/per_minute_universe/path_b_v1_run_summary.json ; docs/analysis/premarket_dynamics_v1/path_b_fill_mechanics_findings.md
+
+
+## Path B v2 — marketable-vs-resting + atlas exit replay (path_b_v2_per_n_simulation + path_b_v2_per_regime_summary)
+
+Producer: data/scripts/build_path_b_v2.py at commit 9aa2b78. Run 2026-05-23 (~20s wall, peak RSS 429 MB). Single universal rule (place bid at T-240, 15c below anchor) over all 14,033 atlas N: splits execution into {marketable_taker, maker_resting, miss_fallback}, captures actual entry price, replays the locked atlas cell exit-rule from that entry, computes realized PnL/ct. Pre-realism (B25 0.5-0.7x not applied). Doctrine A39/B16/B25/G22/A40/A41.
+
+### path_b_v2_per_n_simulation.parquet
+- sha256: 2c15b45ea8b6d9b4bdd7f7963b2b411239a78bd17844904a66017329d2c3f6eb ; Size: 362186 bytes ; Rows: 14033
+- File: data/durable/per_minute_universe/path_b_v2_per_n_simulation.parquet (NOT git-tracked)
+- Cols: ticker, event_ticker, category, anchor_price_cents, anchor_regime, settlement_value, bid_price_cents, execution_mode, entry_price_cents, entry_minute, cell_best_exit_X, cell_rule, exit_triggered, exit_minute (NULL; proxy gives boolean), realized_pnl_cents, atlas_baseline_realized_pnl_cents, improvement_vs_baseline_cents.
+
+### path_b_v2_per_regime_summary.parquet
+- sha256: d2827cd6c5d90b61f39e7d4929502cc0365816c499531ed73c7f7a405980940b ; Size: 11020 bytes ; Rows: 36
+- File: data/durable/per_minute_universe/path_b_v2_per_regime_summary.parquet (NOT git-tracked)
+- Per (category x anchor_regime): n_tickers, pct_{marketable_taker,maker_resting,miss_fallback}, mean_realized_pnl_cents, total_realized_pnl_dollars, capital_deployed_dollars, roi_pct, atlas_baseline_roi_pct, roi_lift_pct.
+
+- Substrate: atlas exit replay via spike_perN size_qual_max_250 (>=250ct depth-qualified post-anchor max) + settlement_value (conservative lower-bound trigger; no g9_trades walk). Baseline reproduced EXACTLY ($6,158.20, ratio 1.0000; capital $70,813.20).
+- Headline: maker placement total PnL $7,829.30 vs atlas $6,158.20 (+27.1%) on LOWER capital $67,346 vs $70,813 -> blended ROI 11.63% vs 8.70% (+2.93pp), pre-realism. All 36 regime cells show positive lift. Lift comes from the ~15% of N that fill at a discount (marketable 26.6% ROI / resting 21.4% ROI); 85% miss -> baseline-equivalent. Universal 15c offset clamps underdog bids to 1c so the lift is favorite-driven.
+- Gates 1-5 PASS (baseline exact; 14,033 rows; mode sanity; mean realized > baseline; capital < atlas).
+- Companions: data/durable/per_minute_universe/path_b_v2_run_summary.json ; docs/analysis/premarket_dynamics_v1/path_b_v2_findings.md

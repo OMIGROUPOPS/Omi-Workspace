@@ -257,7 +257,9 @@ Most recent first.
 
 Premarket-dynamics arc (2026-05-22 → 2026-05-23, most recent):
 
-- `5bd88b6` / `4f07e5a` — Path B doc-system commits (ROADMAP T43; ANALYSIS_LIBRARY registration).
+- `a61830c` (+ `5470754`/`23e6898` docs) — **Path B v2 (T44): marketable-vs-resting split + atlas exit replay.** Maker placement realizes **$7,829.30 vs atlas $6,158.20 (+27.1%)** on lower capital → blended ROI **11.63% vs 8.70% (+2.93pp), pre-realism**; baseline reproduced exactly; favorite-driven (universal 15¢ clamps underdog bids to 1¢). The load-bearing measurement for the policy spec. Outputs on-disk only.
+- `8d2f259` / `41eb0f2` (842d213) / `5e37400` — Path B worked-example charts v3 / v2 / v1 (one paired event each; v3 added the marketable-vs-resting honesty + atlas exit overlay that drove Path B v2's execution split).
+- `5bd88b6` / `4f07e5a` — Path B v1 doc-system commits (ROADMAP T43; ANALYSIS_LIBRARY registration).
 - `1e00818` — Path B premarket maker-bid fill mechanics (T43). 14,033 N × 42 placement×offset cells; entry-side fill rates only (no PnL, no exit logic). Corpus hindsight entry-improvement ceiling 2.46¢/N; monotonic favorite>underdog gradient (r85_94 ~6.5¢ via 15¢ offsets, r05_14 ~1.1¢ via 2-3¢). Outputs on-disk only; producer `884e951`.
 - `7c15776` — Walkover/retirement sanity check. T4 mid-drift gradient NOT robust: removing reversal-prone events (17.7-25% of N by duration proxy) ~halves the extreme-band drift (±11¢ → ±5-6¢).
 - `2ca8890` — Scope A corpus premarket map (per_minute_distributions_v1 + per_event_fingerprint_v1, 14,033 N). Headline: monotonic ~±11¢ anchor-regime mid-drift gradient (T4), near-identical across categories.
@@ -314,6 +316,6 @@ Pre-arc context: `7911478` CHAT_HANDOFF post-Rung-0 landing (2026-05-15); `44c9e
 
 ---
 
-Latest landed analysis: **Path B premarket fill mechanics (T43)**, analytical commit `1e00818` (2026-05-23). Entry-side maker-bid fill rates across the atlas corpus; complements the locked exit-optimized atlas T42. Doc-system commits `5bd88b6` (ROADMAP) + `4f07e5a` (ANALYSIS_LIBRARY) + this SESSION_HANDOFF update. The bid-laying policy spec is the open downstream T-item.
+Latest landed analysis: **Path B v2 — marketable-vs-resting + atlas exit replay (T44)**, analytical commit `a61830c` (2026-05-23). The load-bearing measurement: maker placement realizes $7,829.30 vs the atlas $6,158.20 (+27.1%) on lower capital → blended ROI 11.63% vs 8.70% (+2.93pp, pre-realism), favorite-driven; baseline reproduced exactly. Doc-system commits `5470754` (ROADMAP T44) + `23e6898` (ANALYSIS_LIBRARY) + this SESSION_HANDOFF update + LESSONS A41 (fill_outcome must split marketable vs resting). Preceding: Path B v1 fill mechanics (T43, `1e00818`) + worked-example charts v1/v2/v3. **The bid-laying policy spec is the open downstream T-item** — it can now be drafted from Path B v2's realized per-regime ROI (entry side) on the locked atlas exit, then discounted by B25 realism (0.5-0.7×) for deployment.
 
 End of handoff.

@@ -300,3 +300,16 @@ This document is amended when its empirical foundations or strategic implication
 - 2026-05-10 ET (Session 9 / Cat 11 + B25 + Section 6 closure — commits `73de3a6` + `033fb8a` + `c87e797` + `827fc22`): Section 5 line-24 forward-reference closed in-place via AMENDMENT block. The "Layer C v1 / T32b is exactly this validation work" framing is superseded — Layer B v2 (tick-level fill semantics) is the validation work, not Layer C v1 (fees on idealized fills). Layer C v1 demoted; fees are 1-2¢ correction while candle-cadence undercount is 7¢+ correction on the dominant policy class. ROADMAP T32 demotion + new T-item introducing Layer B v2 spec authoring follow in subsequent commit.
 - 2026-05-10 ET (Session 9 / Cat 11 + B25 + ROADMAP T32 demotion — commits `73de3a6` + `033fb8a` + `4e36f30` + `c87e797` + `827fc22` + `c1cdcea`): Section 8 T32a/b/c partial-demotion text amended in-place. T32b/c reframing noted in May 6 framing is now superseded by ROADMAP T36 introducing Layer B v2 as a new deliverable distinct from forensic replay v1. T32 formally demoted in same commit. **Cat 11 / B25 canonicalization sweep complete with this commit.** Full chain: 73de3a6 (Phase 3 outputs) + 4e36f30 (ANALYSIS_LIBRARY Cat 11 + Cat 5 closure) + 033fb8a (LESSONS B25) + c87e797 (SIMONS_MODE Section 6) + 827fc22 (spec Section 10) + c1cdcea (SIMONS_MODE Section 5) + this commit (ROADMAP T32 demotion + T36 + SIMONS_MODE Section 8). Next strategic deliverable: T36 Layer B v2 spec authoring.
 - 2026-05-14 ET: Currency pass. Added CURRENT-STATE AMENDMENT after Section 4 (Problem 1 converged onto the locked cell/exit model — cell = price at T-20m, average bounce per cell band, no stop; full model LESSONS E32). Refreshed Section 9 item 2's stale 'latest findings' pointer from the Session 9 diagnostic chain to the T37 foundation rebuild. Sections 1-4 NOT modified — the foundation-rebuild work converged on the model they already describe.
+
+---
+
+## Section 7 — Strategy Target Economics (2026-05-23 update post-T45)
+
+- **Atlas floor:** +8.70% blended ROI (locked, T42).
+- **Maker placement adds (pre-realism):** +3.41pp blended → 12.11% (T45).
+- **Realism-discounted deployable:** ~10–11% blended (0.5–0.7× B25 discount on the lift).
+- **Capital scaling:** 10ct/contract baseline; F33 depth gates higher sizing.
+- The **12% number is the operational target for paper-mode validation.** Live deployment is expected slightly below the post-realism figure.
+- Operator working norm: *"Don't celebrate hindsight numbers; validate realism in paper mode."*
+
+Deployable specification: `docs/bid_laying_policy_v1.md` (canonical) + `docs/policy/per_regime_offsets_v1.csv` (36-entry lookup).

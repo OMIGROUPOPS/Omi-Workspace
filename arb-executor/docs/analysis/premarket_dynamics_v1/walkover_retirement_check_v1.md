@@ -1,3 +1,5 @@
+> **SUPERSEDE NOTE (2026-05-23):** This analysis used a duration-proxy (settlement_ts − match_start_ts) to classify walkover/retirement events. The duration proxy conflates true walkovers (3-5% of corpus) with fast straight-set wins and Kalshi settlement-lag noise, producing an inflated 17-25% "reversal-prone" classification. Per operator pushback: the atlas (T42) already accounts for reversal events by construction — its +8.70% measured return IS net of reversal-driven losses. Recomputing T4 drift gradient excluding "reversal-prone" events answers the wrong question; the gradient including all events is the operating reality the strategy trades against. **The methodology conclusion of this doc (T4 gradient is "not robust") is invalid.** The corpus T4 gradient is robust as the strategy operates net of reversals.
+
 # Walkover / retirement frequency sanity check (Round 5 Failure Mode 1 quantification)
 
 **Date:** 2026-05-23

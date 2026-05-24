@@ -87,6 +87,7 @@ DEAD_SPREAD_THRESHOLD = 20    # don't post if spread > 20c
 STALE_BUY_DELTA = 5           # cancel resting buy if our price > mid + 5c
 PENDING_TIMEOUT_SEC = 7200    # cancel pending entry after 2h with no tight spread
 STALE_CHECK_INTERVAL = 120    # validate resting buys every 2 min
+SETTLEMENT_POLL_INTERVAL = 300  # Bug 4 §6.3: REST settlements safety-net poll every 5 min (LIVE only)
 
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
@@ -1299,7 +1300,7 @@ class LiveV3:
             self.msg_id += 1
             try:
                 await self.ws.send(json.dumps({"id": self.msg_id, "cmd": "subscribe",
-                    "params": {"channels": ["orderbook_delta", "trade"], "market_tickers": batch}}))
+                    "params": {"channels": ["orderbook_delta", "trade", "market_lifecycle_v2"], "market_tickers": batch}}))
                 self.subscribed.update(batch)
                 await asyncio.sleep(0.05)
             except Exception as e:
@@ -1383,12 +1384,56 @@ class LiveV3:
                 elif typ == "trade":
                     self.apply_trade(msg.get("msg", {}).get("market_ticker", msg.get("msg", {}).get("ticker", "")),
                                     msg.get("msg", {}))
+                elif typ == "market_lifecycle_v2":
+                    # Bug 4 §6.2: settled payload is minimal (no value) -> async REST hop.
+                    sub = msg.get("msg", {})
+                    if sub.get("event_type") == "settled":
+                        tk = sub.get("market_ticker", "")
+                        settled_ts = sub.get("settled_ts", time.time())
+                        if tk:
+                            # Don't block the WS reader on a REST call -- fire and forget.
+                            asyncio.create_task(self._handle_ws_settlement(tk, settled_ts))
+                    # determination / deactivated: ignored in v1 (§13 deferred caching)
             except asyncio.TimeoutError:
                 continue
             except Exception as e:
                 self._log("ws_error", {"error": str(e)})
                 self.ws_connected = False
                 await self._ws_reconnect()
+
+    async def _handle_ws_settlement(self, ticker, settled_ts):
+        """Bug 4 §6.2: WS settled events carry no settlement value (§4.1). Fetch
+        it from the public /markets/{ticker} endpoint (paper-safe -- passes
+        through to real Kalshi via PaperApi.handle_get). Decoupled into its own
+        coroutine so the WS reader loop is not blocked by the REST call."""
+        path = "/trade-api/v2/markets/%s" % ticker
+        data = await api_get(self.session, self.ak, self.pk, path, self.rl)
+        market = (data or {}).get("market", data) or {}
+
+        if market.get("status") != "finalized":
+            # Pre-finalized race: determination not yet complete. Do NOT settle.
+            # The 5-min REST poll (live) or a later BBO cross will catch it.
+            self._log("ws_settled_pre_finalized",
+                      {"market_status": market.get("status")}, ticker=ticker)
+            return
+
+        # Void guard (decision b): never auto-settle a voided market.
+        result = market.get("result") or market.get("market_result")
+        if result == "void":
+            self._log("settlement_void_manual",
+                      {"source": "ws_lifecycle"}, ticker=ticker)
+            return
+
+        # Normalize dollars -> integer cents at the call site (decision c).
+        sv_dollars = market.get("settlement_value_dollars",
+                                market.get("settlement_value", "0"))
+        try:
+            settle_val_cents = max(0, min(100, round(float(sv_dollars) * 100)))
+        except (TypeError, ValueError):
+            self._log("ws_settle_value_unparseable", {"raw": sv_dollars}, ticker=ticker)
+            return
+
+        self.process_settlement(ticker, settle_val_cents, settled_ts, source="ws_lifecycle")
 
     # ------------------------------------------------------------------
     # Market discovery
@@ -1881,28 +1926,168 @@ class LiveV3:
     # ------------------------------------------------------------------
     # Detect settlement via BBO
     # ------------------------------------------------------------------
+    async def poll_settlements_rest(self):
+        """Bug 4 §6.3: catch any settlements missed via WS. Idempotent --
+        process_settlement short-circuits on pos.settled. LIVE MODE ONLY --
+        never called when _PAPER_API is set (defensive guard at top in case a
+        caller forgets the cadence gate; the real-account settlement history
+        would otherwise falsely settle paper positions)."""
+        if _PAPER_API is not None:
+            return  # paper mode: WS lifecycle is the only settlement source
+        min_ts = getattr(self, "_last_settlement_min_ts", 0) or (time.time() - 86400)
+        path = "/trade-api/v2/portfolio/settlements?min_ts=%d&limit=100" % int(min_ts)
+        data = await api_get(self.session, self.ak, self.pk, path, self.rl)
+        for s in (data or {}).get("settlements", []):
+            # market_result -> integer cents, normalized at the call site (decision c).
+            result = s.get("market_result", "")
+            if result == "yes":
+                settle_val_cents = 100
+            elif result == "no":
+                settle_val_cents = 0
+            elif result == "scalar":
+                settle_val_cents = max(0, min(100, int(s.get("value") or 0)))
+            elif result == "void":
+                # decision b: skip + log, manual reconciliation. No auto-settle.
+                self._log("settlement_void_manual",
+                          {"source": "rest_poll"}, ticker=s.get("ticker"))
+                continue
+            else:
+                self._log("rest_settlement_unknown_result",
+                          {"result": result, "ticker": s.get("ticker")})
+                continue
+            # settled_time is RFC3339, not epoch -> parse.
+            settled_time_str = s.get("settled_time", "")
+            try:
+                settled_ts = datetime.fromisoformat(
+                    settled_time_str.replace("Z", "+00:00")).timestamp()
+            except (TypeError, ValueError, AttributeError):
+                settled_ts = time.time()
+            self.process_settlement(
+                ticker=s.get("ticker", ""),
+                settle_val_cents=settle_val_cents,
+                settled_ts=settled_ts,
+                source="rest_poll",
+            )
+        self._last_settlement_min_ts = time.time() - 60  # 60s overlap to avoid edge gaps
+
+    def process_settlement(self, ticker, settle_val_cents, settled_ts, source):
+        """Bug 4 §6.4: single chokepoint for all three settlement sources
+        (WS, REST, BBO). Routes paper vs live based on module-level _PAPER_API.
+        settle_val_cents is integer cents 0-100, already normalized at the call
+        site (decision c removed the central _normalize_settle_value)."""
+        settle_val = max(0, min(100, int(settle_val_cents)))  # defensive clamp only
+
+        if _PAPER_API is not None:
+            # Paper mode: mutate PaperPosition, emit paper_settled
+            ppos = _PAPER_API.paper_positions.get(ticker)
+            if not ppos or ppos.settled:
+                return  # idempotent
+            ppos.settled = True
+            ppos.settlement_price = settle_val
+            ppos.last_event_ts = settled_ts
+
+            # Realized P&L at settlement -- full double-entry form (v3 fix).
+            # ASSIGNMENT (not +=) because try_fill only books realized_pnl_cents
+            # when net_qty hits zero; a partial-exit position reaching settlement
+            # with net_qty > 0 still has realized_pnl_cents == 0 here, so the
+            # final P&L must be derived from the totals:
+            #   total_revenue_cents already accounts for all prior partial sells
+            #   settle_val * net_qty is the payout on remaining unsold contracts
+            #   total_cost_cents is everything paid in
+            ppos.realized_pnl_cents = (
+                ppos.total_revenue_cents
+                - ppos.total_cost_cents
+                + settle_val * ppos.net_qty
+            )
+
+            # Silent short-circuit: mark self.positions mirror as settled so
+            # check_settlements stops re-iterating on subsequent cycles.
+            # No event emitted -- paper_settled (below) is the source of truth.
+            if ticker in self.positions:
+                self.positions[ticker].settled = True
+                self.positions[ticker].phase = "settled"
+
+            _PAPER_API._emit("paper_settled", {
+                "settle_price": settle_val,
+                "settle_source": source,
+                "settled_ts": settled_ts,
+                "qty": ppos.qty,
+                "sold_qty": ppos.sold_qty,
+                "net_qty_at_settlement": ppos.net_qty,
+                "avg_entry_price": ppos.avg_price,
+                "realized_pnl_cents": ppos.realized_pnl_cents,
+            }, ticker=ticker)
+
+            # Cleanup: cancel resting paper orders via dispatch (handle_delete -> paper)
+            for oid in list(ppos.open_buy_orders) + list(ppos.open_sell_orders):
+                asyncio.create_task(self.cancel_order(ticker, oid, "settlement_cleanup"))
+            return
+
+        # ---- Live mode ----
+        pos = self.positions.get(ticker)
+        if not pos or pos.settled:
+            return  # idempotent
+        if pos.phase not in ("active", "entry_pending"):
+            self._log("settlement_unexpected_phase", {
+                "phase": pos.phase, "source": source,
+            }, ticker=ticker)
+
+        pnl = (settle_val - pos.entry_price) * pos.entry_qty
+        if pos.dca_qty > 0:
+            pnl += (settle_val - pos.dca_price) * pos.dca_qty
+        pos.pnl_cents = pnl
+        pos.settled = True
+        pos.phase = "settled"
+        self.n_settlements += 1
+
+        self._log("settled", {
+            "settle": "WIN" if settle_val >= 50 else "LOSS",
+            "settle_price": settle_val,
+            "settle_source": source,             # ws_lifecycle | rest_poll | bbo_threshold_*
+            "settled_ts": settled_ts,
+            "pnl_cents": pnl,
+            "pnl_dollars": pnl / 100.0,
+            "entry_price": pos.entry_price,
+            "had_dca": pos.dca_qty > 0,
+        }, ticker=ticker)
+
+        # Cleanup: cancel any resting orders for this ticker
+        if pos.exit_order_id:
+            asyncio.create_task(self.cancel_order(ticker, pos.exit_order_id, "settlement_cleanup"))
+        if pos.dca_order_id:
+            asyncio.create_task(self.cancel_order(ticker, pos.dca_order_id, "settlement_cleanup"))
+        if pos.cell_exit_order_id:
+            asyncio.create_task(self.cancel_order(ticker, pos.cell_exit_order_id, "settlement_cleanup"))
+
     def check_settlements(self):
+        """Bug 4 §6.5: BBO threshold backstop. Iterates the appropriate position
+        dict based on _PAPER_API and routes via process_settlement (which
+        dispatches paper/live). Passes literal cents (yes=100, no=0)."""
+        if _PAPER_API is not None:
+            # Paper mode: iterate paper_positions
+            for tk, ppos in list(_PAPER_API.paper_positions.items()):
+                if ppos.settled or ppos.net_qty <= 0:
+                    continue
+                book = self.books.get(tk)
+                if not book:
+                    continue
+                if book.best_bid >= 98:
+                    self.process_settlement(tk, 100, time.time(), source="bbo_threshold_yes")
+                elif book.best_ask <= 2:
+                    self.process_settlement(tk, 0, time.time(), source="bbo_threshold_no")
+            return
+
+        # Live mode: iterate self.positions (current behavior)
         for tk, pos in list(self.positions.items()):
             if pos.settled or pos.phase != "active":
                 continue
             book = self.books.get(tk)
             if not book:
                 continue
-            if book.best_bid >= 98 or book.best_ask <= 2:
-                settle_val = 99 if book.best_bid >= 98 else 1
-                label = "WIN" if settle_val == 99 else "LOSS"
-                pnl = (settle_val - pos.entry_price) * pos.entry_qty
-                if pos.dca_qty > 0:
-                    pnl += (settle_val - pos.dca_price) * pos.dca_qty
-                pos.pnl_cents = pnl
-                pos.settled = True
-                pos.phase = "settled"
-                self.n_settlements += 1
-                self._log("settled", {
-                    "settle": label, "settle_price": settle_val,
-                    "pnl_cents": pnl, "pnl_dollars": pnl / 100.0,
-                    "entry_price": pos.entry_price,
-                }, ticker=tk)
+            if book.best_bid >= 98:
+                self.process_settlement(tk, 100, time.time(), source="bbo_threshold_yes")
+            elif book.best_ask <= 2:
+                self.process_settlement(tk, 0, time.time(), source="bbo_threshold_no")
 
     # ------------------------------------------------------------------
     # Routing: SCHEDULE-BASED entry trigger + cell assignment at post time
@@ -2916,6 +3101,7 @@ class LiveV3:
         last_reconcile = time.time()
         last_stale_check = time.time()
         last_summary = time.time()
+        last_settlement_poll = 0  # Bug 4 §6.3: force first REST settlements poll early (live only)
 
         print("[RUNNING] Main loop started.", flush=True)
 
@@ -2923,8 +3109,15 @@ class LiveV3:
             try:
                 now = time.time()
 
-                # Check settlements via BBO
+                # Check settlements via BBO (tier-3 backstop)
                 self.check_settlements()
+
+                # Bug 4 §6.3: REST settlements safety-net poll (LIVE ONLY; 5-min cadence).
+                # Gated on _PAPER_API is None -- paper mode must NOT poll real-account
+                # settlement history (would falsely close paper positions).
+                if _PAPER_API is None and now - last_settlement_poll > SETTLEMENT_POLL_INTERVAL:
+                    await self.poll_settlements_rest()
+                    last_settlement_poll = now
 
                 # Route new events (places real orders)
                 await self.routing_tick()

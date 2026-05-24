@@ -1,0 +1,43 @@
+{
+  "analysis": "path_b_v4_per_cell_offset_reoptimization_net_pnl",
+  "producer": "data/scripts/build_path_b_v4.py",
+  "producer_commit": "558e0c3",
+  "run_timestamp_utc": "2026-05-23T23:31:00Z",
+  "objective": "net realized PnL through the full strategy (entry capture + atlas X exit + miss-fallback - 1c taker fee), per (category x anchor_regime) cell, vs v1's fill_rate x offset entry-capture objective",
+  "sources": {
+    "premarket_tape_v1.parquet": "ff2a63d9951d1a3d6b80044106c96ca9fdfd8d3951590e73eec1b46209c5a214",
+    "per_regime_offsets_v1.csv": "v3 baseline configs",
+    "spike_perN + descriptive_1c parquets": "atlas exit rule + anchor"
+  },
+  "grid": "placement {240,180,120,90,60,30,20} x offset {0,1,2,3,4,5,7,10,12,15,18,20} = 84 configs/cell + v3 exact config; 1,178,772 N-config evaluations",
+  "outputs": {
+    "path_b_v4_per_n_simulation.parquet": {"sha256": "e5001ab08336cb2313618f4b29412c7483212d71a49678de9db2d25eed8a95ae", "rows": 1178772, "size_bytes": 6989216},
+    "path_b_v4_cell_optimum.parquet": {"sha256": "2cf92910a5ded2e538e982d4208b00efe3a1aa7681089b64a86467b0a513c568", "rows": 36, "size_bytes": 10901}
+  },
+  "headline": {
+    "v4_net_pnl_dollars": 7765.70, "v3_net_pnl_dollars": 7116.70,
+    "v4_net_roi_pct": 11.73, "v3_net_roi_pct": 10.70, "net_roi_lift_pp": 1.024,
+    "v4_capital_dollars": 66231.00, "v3_capital_dollars": 66506.30,
+    "v3_gross_repro_dollars": 8237.00, "canonical_v3_gross": 8098.50,
+    "vs_canonical_v3_net_roi_lift_pp": 1.22
+  },
+  "structural_insight": "Net-PnL-optimal offsets are SHALLOW: offset 1c (10 cells), 2c (13), 3c (4) -> 27/36 cells want 1-3c, opposite v1's deep 15c-for-favorites. The atlas fixed-profit exit (+X) means a deeper offset adds no exit upside, only raises the miss rate (fallback to anchor, zero improvement); a shallow bid fills reliably, captures a small consistent discount, lowers capital. v1 optimized entry-capture (wrong objective once the exit caps payoff). Winning placements: {240:12,180:8,120:6,90:5,60:5}.",
+  "per_cell": {"cells_winner_ne_v3": 34, "material_cells_ge_0.5pp": 25, "negative_roi_cells": 3, "improvement_pp_mean": 0.804, "improvement_pp_median": 0.878, "improvement_pp_max": 2.408, "improvement_pp_min": -0.760,
+    "negative_roi_cells_note": "ATP_MAIN r05_14, WTA_CHALL r05_14, WTA_CHALL r15_24 - net-$ winner picks shallower offset, fills more, deploys more capital for higher total $ but slightly lower ROI (Step-3 argmax-net-$ objective; atlas doctrine prefers throughput)."},
+  "validation_gates": {
+    "gate1_v3_reproduction": "PASS - v3-repro gross $8,237 within 2% of $8,098.50 (the +1.7% is the prompt-prescribed +-5min ask fallback).",
+    "gate2_rowcount": "PASS - 1,178,772 = 14,033 x 84.",
+    "gate3_strict_dominance": "PASS - 36/36 cells winner >= v3 (v3 in candidate set).",
+    "gate4_non_degeneracy": "PASS - 21 distinct winning (placement,offset) configs.",
+    "gate5_corpus_ge_v3": "PASS - v4 net ROI 11.73% >= v3 10.70% (by construction).",
+    "gate6_material": "PASS - +1.024pp >= 0.5pp bar. DEPLOYABLE improvement."
+  },
+  "recommendation": "v4 REPLACES v3 as the deployable per-cell table (per_regime_offsets_v2.csv). Shallow offsets re-optimized on net-PnL. bid_laying_policy_v1.md updated (Section 12). Design choices flagged: winners maximize net-$ (3 cells trade ROI for throughput; switch to net-ROI argmax if capital-constrained); +-5min ask fallback lifts baseline ~1.7%.",
+  "performance": {"wall_clock_seconds": 47, "peak_rss_mb": 517},
+  "deviations": [
+    "+-5min ask fallback (prompt Step 2) when ask@placement is null: lifts the v3-repro +1.7% vs canonical v3 (within gate-1 2%); the +1.024pp improvement is apples-to-apples within v4 machinery.",
+    "Per-cell winner = argmax net-$ (Step 3), not net-ROI; 3 deep-underdog cells gain net-$ but lose ROI (deploy more capital). Corpus blended net ROI still +1.024pp.",
+    "Pre-realism: B25 0.5-0.7x not applied. Fee = flat 1c taker on marketable/miss entries, 0 on maker_resting."
+  ],
+  "doctrine_alignment": ["A39","B16","B25","G22","A40","A41","A42","E32"]
+}

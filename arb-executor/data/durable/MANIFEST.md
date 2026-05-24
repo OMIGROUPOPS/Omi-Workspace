@@ -499,3 +499,23 @@ Producer: data/scripts/build_path_c_phase1.py at commit 07c703a. Run 2026-05-23 
 - KEY FINDING: binary skip-gates (Rule A >=2/3, Rule B P>0.5) LOWER ROI (9.17%/9.36%) vs place-everywhere v3 (12.11%) - skip-gating forgoes profitable fills because v3 already falls back safely on misses. The predictor's value is OFFSET MODULATION (Phase 2), not skip-gating (LESSONS A42).
 - Recommendation: BUILD Path C Phase 2 as offset modulation; signal is real (holdout 0.73). Pre-realism (B25 0.5-0.7x not applied).
 - Companions: data/durable/per_minute_universe/path_c_phase1_run_summary.json ; docs/analysis/premarket_dynamics_v1/path_c_phase1_findings.md
+
+
+## Path B v4 — per-cell offset re-optimization on net-PnL (path_b_v4_per_n_simulation + path_b_v4_cell_optimum)
+
+Producer: data/scripts/build_path_b_v4.py at commit 558e0c3. Run 2026-05-23 (~47s wall, peak RSS 517 MB). Re-sweeps the (placement_minute x bid_offset) grid (7x12=84 configs + v3 exact, per cell) optimizing NET realized PnL through the full strategy (entry + atlas X exit + miss-fallback - 1c taker fee) -- correcting v1's entry-capture-only objective. Doctrine A39/B16/B25/G22/A40/A41/A42/E32.
+
+### path_b_v4_per_n_simulation.parquet
+- sha256: e5001ab08336cb2313618f4b29412c7483212d71a49678de9db2d25eed8a95ae ; Size: 6989216 bytes ; Rows: 1178772 (14,033 N x 84 configs)
+- File: data/durable/per_minute_universe/path_b_v4_per_n_simulation.parquet (NOT git-tracked)
+- Cols: ticker, cell, placement_minute, offset, execution_mode, entry_price, gross_pnl, fee, net_pnl.
+
+### path_b_v4_cell_optimum.parquet
+- sha256: 2cf92910a5ded2e538e982d4208b00efe3a1aa7681089b64a86467b0a513c568 ; Size: 10901 bytes ; Rows: 36
+- File: data/durable/per_minute_universe/path_b_v4_cell_optimum.parquet (NOT git-tracked)
+- Per cell: winning + v3 (placement, offset), net PnL, net ROI, improvement_pp.
+
+- Headline: v4 net ROI 11.73% vs v3 10.70% (+1.024pp net; +1.22pp vs canonical v3) on lower capital -> DEPLOYABLE. All 6 gates PASS (gate 6 material +1.024pp >= 0.5pp). 25/36 cells material; 34/36 re-optimize away from v3.
+- Structural insight: net-PnL-optimal offsets are SHALLOW (1-3c for 27/36 cells), opposite v1's deep-15c-favorite table -- the atlas fixed-profit exit (+X) makes deep offsets add no exit upside, only raise miss rate; shallow bids fill reliably + lower capital. v1 optimized the wrong objective (entry-capture). Positive complement to the Path C negative arc (the lever was the offset, mis-set by v1).
+- Deployable: per_regime_offsets_v2.csv (v4 winners) + bid_laying_policy_v1.md Section 12. Pre-realism (B25 0.5-0.7x applies). Net-$ objective (3 cells trade ROI for throughput); +-5min ask fallback lifts baseline ~1.7%.
+- Companions: data/durable/per_minute_universe/path_b_v4_run_summary.json ; docs/analysis/premarket_dynamics_v1/path_b_v4_findings.md ; docs/policy/per_regime_offsets_v2.csv

@@ -478,3 +478,24 @@ Producer: data/scripts/build_path_b_v3.py at commit 5fa3587. Run 2026-05-23 (~21
 - Underdog harvest: r05_14/r15_24/r25_34 (clamped to ~zero fill in v2) now fill 27-47% and add ~$385 of improvement; top per-regime ROI lifts are the r05_14 cells (+17 to +21pp, small capital denominator).
 - Read: per-regime offsets are the correct deployable shape but the marginal gain over a universal favorite offset is small (+0.48pp) -- favorites dominate absolute PnL and already use 15c; per-regime adds the underdog tail (diminishing returns per Plex Round 6). Pre-realism (B25 0.5-0.7x not applied).
 - Companions: data/durable/per_minute_universe/path_b_v3_run_summary.json ; docs/analysis/premarket_dynamics_v1/path_b_v3_findings.md
+
+
+## Path C Phase 1 — 3-feature drift predictor (path_c_phase1_per_n_features + path_c_phase1_logistic_results)
+
+Producer: data/scripts/build_path_c_phase1.py at commit 07c703a. Run 2026-05-23 (~10s wall, peak RSS 738 MB). Tests whether 3 features at T-4h (initial_spread, taker_imbalance_30min, paired_arb_gap) predict drift_reached_bid (did the maker bid's fill level get reached by T-20m). Plex Round 7 (9d11ed9) Tier 1. Pure numpy (no sklearn): rank-AUC, IRLS logistic, manual CPCV. Doctrine A39/B16/B25/G22/A40/A41/A42.
+
+### path_c_phase1_per_n_features.parquet
+- sha256: f1336e75d90f752f9b347769d98e2710c39d2c4bf82d1007afef9c8ac890330b ; Size: 375105 bytes ; Rows: 14033
+- File: data/durable/per_minute_universe/path_c_phase1_per_n_features.parquet (NOT git-tracked)
+- Cols: ticker, event_ticker, category, anchor_regime, anchor_price_cents, target_bid_cents, drift_reached_bid, initial_spread_cents, taker_imbalance_30min, paired_arb_gap_cents, taker_data_available, tournament_block, holdout, pred_p_drift.
+
+### path_c_phase1_logistic_results.parquet
+- sha256: da6cc2243f16ee2aaf17504c4c3a8ad025feb7df3350764513f5cfc58ce515f3 ; Size: 201657 bytes ; Rows: 14033
+- File: data/durable/per_minute_universe/path_c_phase1_logistic_results.parquet (NOT git-tracked)
+- Per-N predicted P(drift_reached_bid). Coefficients / CPCV-fold AUC / holdout AUC / importances are in path_c_phase1_run_summary.json.
+
+- Substrate: feature 2 (taker imbalance) from per_minute_features pre-T-4h window [240,270] (premarket_tape lacks pre-T-4h); causally-correct before-window. No sklearn -> numpy logistic/AUC/CPCV.
+- Headline: drift_reached_bid 3,983 (= Path B v3 fill count exactly). Holdout AUC 0.7298 (>0.62 bar; CPCV 0.6625+-0.0418). paired_arb_gap is the strongest single feature (within-cell lift up to 3.5x, AUC up to 0.748); taker_imbalance dominates the multivariate (permutation 0.022) with NEGATIVE sign (buying pushes price up, away from below-anchor bid). All 5 gates resolved (gate 5 documented tradeoff).
+- KEY FINDING: binary skip-gates (Rule A >=2/3, Rule B P>0.5) LOWER ROI (9.17%/9.36%) vs place-everywhere v3 (12.11%) - skip-gating forgoes profitable fills because v3 already falls back safely on misses. The predictor's value is OFFSET MODULATION (Phase 2), not skip-gating (LESSONS A42).
+- Recommendation: BUILD Path C Phase 2 as offset modulation; signal is real (holdout 0.73). Pre-realism (B25 0.5-0.7x not applied).
+- Companions: data/durable/per_minute_universe/path_c_phase1_run_summary.json ; docs/analysis/premarket_dynamics_v1/path_c_phase1_findings.md

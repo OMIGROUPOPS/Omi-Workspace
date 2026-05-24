@@ -1,0 +1,55 @@
+{
+  "analysis": "path_c_phase1_drift_predictor",
+  "producer": "data/scripts/build_path_c_phase1.py",
+  "producer_commit": "07c703a",
+  "run_timestamp_utc": "2026-05-23T22:35:00Z",
+  "plex_reference": "docs/external_synthesis/plex_premarket_execution_round7_2026-05-23.md (commit 9d11ed9), priority Tier 1",
+  "sources": {
+    "premarket_tape_v1.parquet": "ff2a63d9951d1a3d6b80044106c96ca9fdfd8d3951590e73eec1b46209c5a214",
+    "per_minute_features.parquet": "9fde4b5d (feature-2 pre-T-4h taker window [240,270])",
+    "path_b_v3_per_n_simulation.parquet": "conditional-rule ROI comparison",
+    "per_regime_offsets_v1.csv": "target-bid offsets"
+  },
+  "outputs": {
+    "path_c_phase1_per_n_features.parquet": {"sha256": "f1336e75d90f752f9b347769d98e2710c39d2c4bf82d1007afef9c8ac890330b", "rows": 14033, "size_bytes": 375105},
+    "path_c_phase1_logistic_results.parquet": {"sha256": "da6cc2243f16ee2aaf17504c4c3a8ad025feb7df3350764513f5cfc58ce515f3", "rows": 14033, "size_bytes": 201657, "note": "per-N predicted P(drift); coefficients/AUCs/importances in this run_summary"}
+  },
+  "target": {"drift_reached_bid_count": 3983, "matches_path_b_v3_fill_count": true, "base_rate": 0.284},
+  "univariate_auc_corpus": {"paired_arb_gap_cents": 0.616, "initial_spread_cents": 0.597, "taker_imbalance_30min_abs": 0.433},
+  "univariate_strong_cells_auc_gt_0.60": {"total": 39, "paired_arb_gap": 20, "initial_spread": 19, "taker_imbalance": 0, "example": "ATP_MAIN r45_54 gap>=5: base 12.3% -> 40.0% fill, lift 3.24x, AUC 0.746"},
+  "multivariate": {
+    "cpcv_mean_auc": 0.6625, "cpcv_std": 0.0418, "cpcv_folds": 28,
+    "holdout_auc": 0.7298, "holdout_bar_0.62_cleared": true,
+    "holdout_n_events": 6047, "cpcv_window_n_events": 7986,
+    "coefficients_standardized": {
+      "paired_arb_gap_cents": {"coef": 0.155, "ci": [0.077, 0.233], "odds_ratio": 1.168},
+      "initial_spread_cents": {"coef": 0.116, "ci": [0.038, 0.193], "odds_ratio": 1.123},
+      "taker_imbalance_30min": {"coef": -0.218, "ci": [-0.270, -0.165], "odds_ratio": 0.804}
+    },
+    "permutation_importance_auc_drop": {"taker_imbalance_30min": 0.022, "paired_arb_gap_cents": 0.0038, "initial_spread_cents": 0.0033},
+    "note": "taker_imbalance dominates (Plex predicted) but with NEGATIVE sign - net buying pushes price up, away from a below-anchor bid (mechanically coherent for drift_reached_bid)."
+  },
+  "conditional_rules_vs_v3": {
+    "v3_baseline_roi_pct": 12.11,
+    "rule_A_2of3_gate": {"place_fraction": 0.071, "roi_pct": 9.17, "delta_pp": -2.94},
+    "rule_B_logistic_P_gt_0.5": {"place_fraction": 0.206, "roi_pct": 9.36, "delta_pp": -2.75},
+    "interpretation": "Both binary skip-gates LOWER ROI than place-everywhere v3, because v3 already falls back to a costless taker-at-anchor on misses, so skipping only forgoes profitable fills (reduces volume, no offsetting gain). The predictor's value is OFFSET MODULATION (aggressiveness ~ P(drift)), not binary skip-gating - that is Phase 2."
+  },
+  "validation_gates": {
+    "gate1_rowcount": "PASS 14,033.",
+    "gate2_feature_non_degeneracy": "PASS - all 3 features vary in 36/36 cells.",
+    "gate3_drift_count_match": "PASS exact (3,983 == Path B v3 fill count).",
+    "gate4_holdout_auc": "PASS - holdout AUC 0.7298 > 0.62 bar (CPCV 0.6625).",
+    "gate5_conditional_rule_sanity": "DOCUMENTED TRADEOFF (not STOP): Rule A 9.17% / Rule B 9.36% < v3 12.11%. Binary skip-gating reduces volume without increasing per-fill capture; the signal must be deployed as offset modulation (Phase 2), not skip-gating."
+  },
+  "recommendation": "BUILD Path C Phase 2 - as OFFSET MODULATION (P(drift) -> bid aggressiveness), NOT skip-gating. Predictor has real out-of-sample signal (holdout AUC 0.73); paired_arb_gap (within-cell lift up to 3.5x) is the strongest deployable feature; taker_imbalance dominates the model (negative sign). If Phase 2's modulated-offset sim doesn't beat v3's +3.41pp, the Path B ceiling is near the feature set's extractable limit.",
+  "performance": {"wall_clock_seconds": 10, "peak_rss_mb": 738},
+  "deviations": [
+    "Feature 2 sourced from per_minute_features (pre-T-4h window [240,270]) not premarket_tape_v1 (which lacks pre-T-4h data); causally-correct before-window. taker_data_available 61.1% (sparse premarket flow).",
+    "No sklearn on VPS -> AUC/logistic(IRLS)/CPCV/importance implemented in pure numpy.",
+    "Tournament block = ISO year-week of the event date (per the prompt's week-of-year proxy).",
+    "pred_p_drift written to outputs is from the holdout-trained model applied to all N (in-sample for CPCV rows; use CPCV/holdout AUCs for signal-strength claims). The conditional-rule comparison uses it in-sample-optimistically yet rules still underperform v3, so the skip-gating conclusion is robust.",
+    "Pre-realism: B25 0.5-0.7x not applied."
+  ],
+  "doctrine_alignment": ["A39","B16","B25","G22","A40","A41","A42"]
+}

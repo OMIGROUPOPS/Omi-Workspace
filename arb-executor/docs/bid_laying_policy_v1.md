@@ -25,8 +25,13 @@ For every atlas-qualifying paired event, at **T-4h** (or as soon as the market o
 
 ## Section 3 — Per-regime offset table (deployable)
 
+> **SUPERSEDED by v2 (2026-05-23, Path B v4 / ROADMAP T47).** The deployable table is now
+> `docs/policy/per_regime_offsets_v2.csv` — offsets re-optimized on net realized PnL rather than
+> v1's entry-capture objective, lifting blended net ROI from 10.70% to 11.73% (+1.024pp). See
+> Section 12. The v1 offsets below are retained for provenance.
+
 The full 36-entry table (4 categories × 9 anchor regimes) is read at bot startup from
-`docs/policy/per_regime_offsets_v1.csv`. Schema:
+`docs/policy/per_regime_offsets_v1.csv` (v1; see Section 12 for the v2 successor). Schema:
 
 ```
 category, anchor_regime, anchor_low_cents, anchor_high_cents,
@@ -127,3 +132,36 @@ From the **actual entry point** forward (whether marketable taker, resting fill,
 - **Layer B v2 producer** — tick-level fill-realism replacement for the minute-cadence simulator (T36, not yet built).
 - **Bug 4 implementation** — settlement-state mechanics correction.
 - **Paper-mode integration test suite.**
+
+## Section 12 — v4 update: net-PnL-optimized per-cell offsets (2026-05-23, ROADMAP T47)
+
+**This section supersedes the Section 3 / v1 offset table.** Path B v4 re-swept the
+(placement_minute × bid_offset) grid per (category × anchor_regime) cell, optimizing **net realized
+PnL through the full strategy** (entry capture + atlas X exit + miss-fallback − 1¢ taker fee) rather
+than v1's entry-side `fill_rate × offset`. The deployable table is now
+**`docs/policy/per_regime_offsets_v2.csv`** (same schema, with `expected_net_roi_pct`).
+
+**Result:** blended **net ROI 11.73% vs v3's 10.70% (+1.024pp; +1.22pp vs canonical v3), on lower
+capital** — pre-realism (apply the B25 0.5–0.7× discount for deploy-time expectations). Analytical
+commit `c90985b`; finding doc `docs/analysis/premarket_dynamics_v1/path_b_v4_findings.md`; per-cell
+detail `path_b_v4_cell_optimum.csv`.
+
+**The load-bearing change — offsets are now SHALLOW.** v4's net-PnL-optimal offsets are 1–3¢ on
+27 of 36 cells (vs v1's deep 15¢ on favorites). Mechanism: the atlas exit realizes a fixed +X above
+entry regardless of how deep the entry, so a deeper offset adds **no exit upside** — it only raises
+the miss rate (→ fallback to the T-20m anchor, zero improvement). A shallow bid fills reliably,
+captures a small consistent entry discount, and deploys less capital. v1's "ask for a big discount on
+favorites" was optimizing the wrong objective once the fixed-profit exit caps the payoff. (This is
+also why the Path C drift-predictor refinements — Phase 1–3, held unpromoted — could not beat v3: the
+exit cap binds against feature-conditional *entry* tweaks; the productive lever was simply re-setting
+the static offset on the correct objective.)
+
+**Deployment notes / open design choices:**
+- v2 offsets maximize net **dollars** per cell (atlas doctrine: throughput is the constraint, not
+  capital). 3 deep-underdog cells (ATP_MAIN r05_14, WTA_CHALL r05_14/r15_24) thereby trade a little
+  ROI for more total $; switch those to a net-ROI argmax if capital becomes the binding constraint.
+- The v4 measurement used a ±5min ask fallback at the placement minute (lifts the v3-repro baseline
+  ~1.7% vs the canonical exact-ask v3; the +1.024pp improvement is apples-to-apples within v4).
+- Execution branch (Section 4), resting-bid management (Section 5), T-20m taker fallback (Section 6),
+  and atlas exit application (Section 7) are unchanged — only the per-cell offset/placement table is
+  re-optimized.

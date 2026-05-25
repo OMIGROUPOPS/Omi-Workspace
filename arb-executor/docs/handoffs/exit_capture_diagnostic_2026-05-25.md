@@ -129,6 +129,6 @@ Read-only. Separates **execution misses** (price hit exit_target but the exit di
 | KXWTAMATCH-26MAY24MARMER-MAR | WTA_MAIN | 9 | miss_fallback | 9 | exit_at_X | 15 | 24 | rode_to_settle | 0 | -0.90 |
 
 ## Interpretation
-Of the 25 ride-to-settle legs, **0 are execution misses** (recoverable with the WS patch -- $0.00 missed) and **17 are target-not-reached** (genuine variance). 8 undetermined (blind during a WS gap; execution-miss is a lower bound). The WS keepalive churn (~43/h) is the mechanism behind the misses; the morning's realized loss is therefore partly recoverable execution, not all genuine edge failure.
+Of the 25 ride-to-settle legs, **0 are execution misses** (recoverable with the WS patch -- $0.00 missed) and **17 are target-not-reached** (genuine variance). 8 undetermined (blind during a WS gap; execution-miss is a lower bound). **The exit mechanism is clean: 46/46 posted exits filled at exactly entry+band_x, 0 confirmed execution misses, $0 recoverable on the exit side.** The morning's loss on the ride-to-settle legs is genuine variance (17 never reached +X and the settlement outcome decided them) plus 8 WS-blind-undetermined (upper bound 8 hidden misses). **The WS bug's recoverable impact is on the ENTRY side (14%% fill vs 58%% corpus -> 86%% defaulting to T-20m fallback), NOT exits.** So the patch should lift entry fill rate; it will not change exit capture, which already works.
 
 *Read-only on logs. tick-log walk reflects the bot's observed book (WS-blind crossings -> stale_book). Pre-fee realized per P0 #5.*

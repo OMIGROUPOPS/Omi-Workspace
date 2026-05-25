@@ -1,0 +1,20 @@
+{
+  "version": "v4_2026-05-25",
+  "sizing": {
+    "entry_contracts": 5,
+    "exit_contracts": 5
+  },
+  "categories_enabled": [
+    "ATP_MAIN",
+    "WTA_MAIN",
+    "ATP_CHALL",
+    "WTA_CHALL"
+  ],
+  "fv_anchor_scenarios_enabled": false,
+  "round5_detector_enabled": false,
+  "paper_mode": false,
+  "min_depth_for_exit_realization": 250,
+  "exit_band_resolution": "adaptive_calibrated_2026-05-24",
+  "entry_table_path": "docs/policy/per_regime_offsets_v2.csv",
+  "exit_table_dir": "data/durable/spike_volatility_map/"
+}

@@ -99,6 +99,7 @@ STALE_BUY_DELTA = 5           # cancel resting buy if our price > mid + 5c
 PENDING_TIMEOUT_SEC = 7200    # cancel pending entry after 2h with no tight spread
 STALE_CHECK_INTERVAL = 120    # validate resting buys every 2 min
 SETTLEMENT_POLL_INTERVAL = 300  # Bug 4 §6.3: REST settlements safety-net poll every 5 min (LIVE only)
+ROUTING_SWEEP_INTERVAL = 60     # backstop full-universe routing sweep cadence (placement is event-driven via on_bbo_update)
 
 # v4 bid-laying timing (all ET-relative to scheduled match start)
 V4_MAX_PLACEMENT_SEC = 240 * 60   # earliest placement in per_regime_offsets_v2 (T-4h)
@@ -966,6 +967,8 @@ class LiveV3:
         self.positions: Dict[str, Position] = {}
         self.pending_entries: Dict[str, dict] = {}  # ticker -> {event, direction, cat, cell_name, cell_cfg, discovered_ts}
         self.inflight_orders: Set[str] = set()  # tickers with orders being placed (race guard)
+        self._event_routing: Set[str] = set()   # events currently being routed (on_bbo_update vs backstop sweep)
+        self._mgmt_inflight: Set[str] = set()    # tickers whose v4 resting bid is being managed (serialize callers)
 
         # Persistent processed-tickers set (survives restarts)
         STATE_DIR.mkdir(parents=True, exist_ok=True)
@@ -1536,9 +1539,22 @@ class LiveV3:
                 msg = json.loads(raw)
                 typ = msg.get("type", "")
                 if typ == "orderbook_snapshot":
-                    self.apply_snapshot(msg.get("msg", {}).get("market_ticker", ""), msg.get("msg", {}))
+                    tk = msg.get("msg", {}).get("market_ticker", "")
+                    self.apply_snapshot(tk, msg.get("msg", {}))
+                    if tk:
+                        await self.on_bbo_update(tk)
                 elif typ == "orderbook_delta":
-                    self.apply_delta(msg.get("msg", {}).get("market_ticker", ""), msg.get("msg", {}))
+                    tk = msg.get("msg", {}).get("market_ticker", "")
+                    bk_before = self.books.get(tk)
+                    old_bbo = (bk_before.best_bid, bk_before.best_ask) if bk_before else None
+                    self.apply_delta(tk, msg.get("msg", {}))
+                    bk_after = self.books.get(tk)
+                    new_bbo = (bk_after.best_bid, bk_after.best_ask) if bk_after else None
+                    # Only route on an actual BBO change (matches tennis_stb): a
+                    # delta that doesn't move best_bid/best_ask can't change any
+                    # placement decision, so skip the routing work.
+                    if tk and new_bbo != old_bbo:
+                        await self.on_bbo_update(tk)
                 elif typ == "trade":
                     self.apply_trade(msg.get("msg", {}).get("market_ticker", msg.get("msg", {}).get("ticker", "")),
                                     msg.get("msg", {}))
@@ -2404,17 +2420,32 @@ class LiveV3:
         return False
 
     async def routing_tick(self):
-        """Entry routing with FV-first anchor, A/B/C scenarios, cadence gating."""
+        """Periodic backstop sweep over all events. Placement is now primarily
+        event-driven (on_bbo_update, one event per BBO message); this slow sweep
+        runs on a 60s main-loop cadence -- OFF the 1s hot path -- only to catch
+        legs whose placement_minute opens while their book is quiet (no BBO
+        update to trigger on_bbo_update). Per-event reentrancy is guarded inside
+        _route_event so the sweep and on_bbo_update never double-place."""
         now = time.time()
-
-        for et, tickers in self.event_tickers.items():
-            # Yield to the event loop after every event so the WS keepalive
-            # ping runs during the full-universe sweep (274 tickers). Without
-            # this the synchronous iteration blocks past ping_timeout and forces
-            # ~43 reconnects/h. No delay -- sleep(0) yields control only.
+        for et, tickers in list(self.event_tickers.items()):
+            # Yield after every event so a long sweep never blocks the loop /
+            # WS keepalive. No delay -- sleep(0) yields control only.
             await asyncio.sleep(0)
+            await self._route_event(et, tickers, now)
+
+    async def _route_event(self, et, tickers, now):
+        """Route ONE event (both legs) to v4 bid-laying placement. Invoked from
+        on_bbo_update (per-ticker hot path) and routing_tick (periodic backstop).
+        Bounded to a single event so the loop is never blocked across the full
+        ticker universe. Logic is byte-identical to the pre-restructure per-event
+        body -- only the invocation pattern changed. The reentrancy guard
+        serializes the two callers so they cannot double-place the same event."""
+        if et in self._event_routing:
+            return
+        self._event_routing.add(et)
+        try:
             if et in self.processed_events:
-                continue
+                return
 
             start_ts = self.event_start_time.get(et)
 
@@ -2426,12 +2457,12 @@ class LiveV3:
                 if cycles >= UNMATCHED_SKIP_CYCLES and open_age > UNMATCHED_SKIP_AGE:
                     self._log("skipped", {"reason": "schedule_gap", "event": et,
                         "unmatched_cycles": cycles, "open_age_sec": round(open_age)})
-                continue
+                return
 
             time_to_start = start_ts - now
 
             if time_to_start > 86400:
-                continue
+                return
 
             if time_to_start <= 0:
                 self.processed_events.add(et)
@@ -2439,7 +2470,7 @@ class LiveV3:
                 self._log("skipped", {"reason": "match_already_started", "event": et,
                     "time_to_start_sec": round(time_to_start),
                     "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET")})
-                continue
+                return
 
             if time_to_start <= ENTRY_BUFFER_SEC:
                 self.processed_events.add(et)
@@ -2447,7 +2478,7 @@ class LiveV3:
                 self._log("skipped", {"reason": "inside_buffer", "event": et,
                     "time_to_start_sec": round(time_to_start),
                     "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET")})
-                continue
+                return
 
             # v4: coarse event-level gate only. The fine-grained per-leg
             # placement timing (post at T-placement_minute for that leg's
@@ -2463,18 +2494,18 @@ class LiveV3:
                             intel_rec = recommended_window_seconds(et, tk0)
                             intel_window = intel_rec["window_seconds"]
                             if intel_window == 0:
-                                continue
+                                return
                     except Exception:
                         pass
                 if time_to_start > intel_window:
-                    continue
+                    return
             else:
                 if time_to_start > V4_MAX_PLACEMENT_SEC:
-                    continue
+                    return
 
             tk_list = list(tickers)
             if len(tk_list) < 2:
-                continue
+                return
             all_have_bbo = all(tk in self.books and self.books[tk].updated > now - BOOK_STALENESS_SEC for tk in tk_list)
             if not all_have_bbo:
                 self._log("event_skip_stale_book", {
@@ -2482,7 +2513,7 @@ class LiveV3:
                     "book_ages_sec": [int(now - self.books[tk].updated) for tk in tk_list if tk in self.books],
                     "missing_books": [tk[-20:] for tk in tk_list if tk not in self.books],
                 })
-                continue
+                return
 
             self.n_matches_seen += 1
 
@@ -2490,7 +2521,7 @@ class LiveV3:
             if not sides:
                 self.n_skips += 1
                 self._log("skipped", {"reason": "no_valid_sides", "event": et})
-                continue
+                return
 
             for (tk, direction, cat) in sides:
                 if tk in self.positions:
@@ -2607,6 +2638,40 @@ class LiveV3:
                 self.positions[tk] = pos
                 if entry_mode == "resting_maker":
                     self._save_v4_resting()
+        finally:
+            self._event_routing.discard(et)
+
+    async def on_bbo_update(self, ticker):
+        """Event-driven hot path (tennis_stb pattern): a single ticker's BBO
+        changed. Route its event for placement and manage its own resting bid --
+        both bounded to one ticker/event so the WS reader (which awaits this
+        inline) never blocks long enough to starve the keepalive ping. Wrapped
+        so any routing error is logged, never bubbling into ws_reader's
+        reconnect path (a routing bug must NOT trigger a WS reconnect)."""
+        et = self.ticker_to_event.get(ticker)
+        if not et:
+            return
+        tickers = self.event_tickers.get(et)
+        if not tickers:
+            return
+        try:
+            now = time.time()
+            # Placement for this ticker's event (bounded to one event; the
+            # reentrancy guard makes this safe against the periodic sweep).
+            await self._route_event(et, tickers, now)
+            # Manage this ticker's own resting bid (move-repost, T-20m fallback)
+            # on its own BBO update. validate_resting_buys remains the backstop
+            # for quiet books; the per-ticker mgmt guard serializes the two.
+            pos = self.positions.get(ticker)
+            if (pos and pos.is_v4 and pos.phase == "entry_resting"
+                    and pos.entry_order_id):
+                book = self.books.get(ticker)
+                if book and book.updated >= now - BOOK_STALENESS_SEC:
+                    await self._v4_manage_resting(ticker, pos, book, now)
+        except Exception as e:
+            self._log("on_bbo_update_error",
+                      {"error": str(e), "traceback": traceback.format_exc()},
+                      ticker=ticker)
 
     async def _legacy_route_side(self, tk, et, direction, cat, book, time_to_start, start_ts, now):
         """LEGACY FV-anchor A/B/C scenario routing for one side. Fires only when
@@ -2883,6 +2948,19 @@ class LiveV3:
             self._log("v4_resting_restored", {"count": restored})
 
     async def _v4_manage_resting(self, tk, pos, book, now):
+        """Serialized entry point for v4 resting-bid management. Both
+        on_bbo_update (per BBO tick) and validate_resting_buys (120s backstop)
+        can call this; the per-ticker guard ensures only one manager runs at a
+        time so they cannot race a double cancel/repost or double T-20m take."""
+        if tk in self._mgmt_inflight:
+            return
+        self._mgmt_inflight.add(tk)
+        try:
+            await self._v4_manage_resting_inner(tk, pos, book, now)
+        finally:
+            self._mgmt_inflight.discard(tk)
+
+    async def _v4_manage_resting_inner(self, tk, pos, book, now):
         """Manage one v4 resting bid from placement -> T-20m. Maintains
         target_bid (re-classifies regime and re-posts when the current Kalshi
         price moves > 1 cell width from the last placement basis), cancels on a
@@ -3694,6 +3772,7 @@ class LiveV3:
         last_stale_check = time.time()
         last_summary = time.time()
         last_settlement_poll = 0  # Bug 4 §6.3: force first REST settlements poll early (live only)
+        last_routing_sweep = 0    # force first backstop routing sweep immediately at startup
 
         print("[RUNNING] Main loop started.", flush=True)
 
@@ -3711,8 +3790,15 @@ class LiveV3:
                     await self.poll_settlements_rest()
                     last_settlement_poll = now
 
-                # Route new events (places real orders)
-                await self.routing_tick()
+                # Backstop routing sweep (placement is primarily event-driven
+                # via on_bbo_update per BBO message). Runs on a slow cadence,
+                # OFF the 1s hot path, only to catch legs whose placement window
+                # opens while their book is quiet (no BBO update to trigger
+                # on_bbo_update). This is what keeps the full-universe iteration
+                # from starving the WS keepalive.
+                if now - last_routing_sweep > ROUTING_SWEEP_INTERVAL:
+                    await self.routing_tick()
+                    last_routing_sweep = now
 
                 # Poll fills every 30s
                 if now - last_fill_check > FILL_CHECK_INTERVAL:

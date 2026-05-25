@@ -73,7 +73,7 @@ WS_PATH = "/trade-api/ws/v2"
 MAX_RPS = 8
 MIN_VOLUME = 0
 MAX_HOURS_TO_EXPIRY = 36
-WS_PING_INTERVAL = 15
+WS_PING_INTERVAL = 30
 WS_SUBSCRIBE_BATCH = 50
 DISCOVERY_INTERVAL = 300
 # ENTRY_CANCEL_TIMEOUT removed in V4.2 -- replaced by match-start-aware expiry
@@ -2408,6 +2408,11 @@ class LiveV3:
         now = time.time()
 
         for et, tickers in self.event_tickers.items():
+            # Yield to the event loop after every event so the WS keepalive
+            # ping runs during the full-universe sweep (274 tickers). Without
+            # this the synchronous iteration blocks past ping_timeout and forces
+            # ~43 reconnects/h. No delay -- sleep(0) yields control only.
+            await asyncio.sleep(0)
             if et in self.processed_events:
                 continue
 

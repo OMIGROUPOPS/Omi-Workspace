@@ -1094,21 +1094,23 @@ class LiveV3:
         data, err = await loop.run_in_executor(None, self._read_schedule_file)
         self._apply_schedule_data(data, err)
 
-    def _match_event_to_schedule(self, event_ticker):
-        """Match Kalshi event to schedule. Returns (entry, method) or (None, None).
-        Logs every attempt for 7-day audit trail."""
+    @staticmethod
+    def _match_event_pure(event_ticker, schedule, player_names):
+        """Pure-CPU schedule match (no I/O, no logging, no shared-state mutation)
+        -> safe to run in an executor. match_kalshi_event's fuzzy path scans all
+        ~2198 schedule entries; a single call can take seconds, so this is the
+        block to offload. Returns (result|None, method|None, logs) where logs is
+        a list of (event, details) for the caller to emit ON the loop. Logic is
+        byte-identical to the prior inline _match_event_to_schedule."""
         from tennis_schedule import match_kalshi_event
-
-        player_names = self.event_player_names.get(event_ticker, [])
-
-        # Extract ticker date for cross-day mismatch guard
         import re as _re
+        logs = []
         _dm = _re.search(r"-(\d{2})([A-Z]{3})(\d{2})", event_ticker)
         _month_map = {"JAN":1,"FEB":2,"MAR":3,"APR":4,"MAY":5,"JUN":6,
                       "JUL":7,"AUG":8,"SEP":9,"OCT":10,"NOV":11,"DEC":12}
 
         def _date_ok(sched_result):
-            """Reject schedule match if start_time date differs from ticker date by >12h."""
+            """Reject match if start_time date differs from ticker date by >12h."""
             if not _dm:
                 return True
             try:
@@ -1116,67 +1118,80 @@ class LiveV3:
                                    int(_dm.group(3)), 16, 0, tzinfo=timezone.utc)
                 sched_dt = datetime.fromisoformat(sched_result.get("start_time","").replace("Z","+00:00"))
                 if abs((sched_dt - tk_date).total_seconds()) > 43200:
-                    self._log("schedule_date_mismatch", {
+                    logs.append(("schedule_date_mismatch", {
                         "event": event_ticker,
                         "ticker_date": tk_date.strftime("%Y-%m-%d"),
                         "schedule_date": sched_dt.strftime("%Y-%m-%dT%H:%M"),
-                    })
+                    }))
                     return False
             except Exception:
                 pass
             return True
 
         # Try direct match first
-        result = match_kalshi_event(event_ticker, self.schedule)
+        result = match_kalshi_event(event_ticker, schedule)
         if result and _date_ok(result):
-            self._log("schedule_match", {
-                "event": event_ticker,
-                "method": "direct_6char",
+            logs.append(("schedule_match", {
+                "event": event_ticker, "method": "direct_6char",
                 "start_time": result.get("start_time", "?"),
-                "p1": result.get("p1", "?"),
-                "p2": result.get("p2", "?"),
+                "p1": result.get("p1", "?"), "p2": result.get("p2", "?"),
                 "category": result.get("category", "?"),
                 "kalshi_players": player_names,
-            })
-            return result, "direct_6char"
+            }))
+            return result, "direct_6char", logs
 
         # Try fuzzy with player names
         if player_names:
-            result = match_kalshi_event(event_ticker, self.schedule, kalshi_player_names=player_names)
+            result = match_kalshi_event(event_ticker, schedule, kalshi_player_names=player_names)
             if result and _date_ok(result):
-                self._log("schedule_match", {
-                    "event": event_ticker,
-                    "method": "fuzzy_name",
+                logs.append(("schedule_match", {
+                    "event": event_ticker, "method": "fuzzy_name",
                     "start_time": result.get("start_time", "?"),
-                    "p1": result.get("p1", "?"),
-                    "p2": result.get("p2", "?"),
+                    "p1": result.get("p1", "?"), "p2": result.get("p2", "?"),
                     "category": result.get("category", "?"),
                     "kalshi_players": player_names,
-                })
-                return result, "fuzzy_name"
+                }))
+                return result, "fuzzy_name", logs
 
-        # No match — log with closest candidate for debugging
-        import re
+        # No match — record closest candidate for debugging
         parts = event_ticker.split("-")
         raw = parts[-1] if len(parts) >= 2 else ""
-        m = re.match(r"\d{2}[A-Z]{3}\d{2}(.+)", raw)
+        m = _re.match(r"\d{2}[A-Z]{3}\d{2}(.+)", raw)
         pair_code = m.group(1) if m else raw
-
         closest = ""
-        if pair_code and self.schedule:
-            candidates = sorted(self.schedule.keys())
-            # Simple prefix match for closest
+        if pair_code and schedule:
+            candidates = sorted(schedule.keys())
             matches = [k for k in candidates if k[:3] == pair_code[:3] or k[3:] == pair_code[3:]]
             closest = ", ".join(matches[:3]) if matches else "(none with shared prefix)"
-
-        self._log("schedule_unmatched", {
-            "event": event_ticker,
-            "pair_code": pair_code,
+        logs.append(("schedule_unmatched", {
+            "event": event_ticker, "pair_code": pair_code,
             "kalshi_players": player_names,
             "closest_schedule_keys": closest,
-            "schedule_size": len(self.schedule),
-        })
-        return None, None
+            "schedule_size": len(schedule),
+        }))
+        return None, None, logs
+
+    def _match_event_to_schedule(self, event_ticker):
+        """Sync match (startup / non-async callers): pure match + emit logs."""
+        player_names = self.event_player_names.get(event_ticker, [])
+        result, method, logs = self._match_event_pure(event_ticker, self.schedule, player_names)
+        for ev, det in logs:
+            self._log(ev, det)
+        return result, method
+
+    async def _match_event_to_schedule_async(self, event_ticker):
+        """Offload the pure-CPU schedule match (the ~2198-entry fuzzy scan, the
+        residual ~10-16s post-reload stall) to a thread so a single multi-second
+        match can't block the loop. The GIL releases on the ~5ms switch interval
+        during the match, keeping the loop / keepalive serviced. Logging and
+        state stay on the loop."""
+        player_names = self.event_player_names.get(event_ticker, [])
+        loop = asyncio.get_running_loop()
+        result, method, logs = await loop.run_in_executor(
+            None, self._match_event_pure, event_ticker, self.schedule, player_names)
+        for ev, det in logs:
+            self._log(ev, det)
+        return result, method
 
     # ------------------------------------------------------------------
     # v4 deployable table loaders (STEP 3) -- run once at init
@@ -1819,7 +1834,7 @@ class LiveV3:
                             self.event_player_names[et] = names
                     # Schedule match (if not already matched and not processed)
                     if et not in self.event_start_time and et not in self.processed_events:
-                        sched_entry, method = self._match_event_to_schedule(et)
+                        sched_entry, method = await self._match_event_to_schedule_async(et)
                         if sched_entry:
                             st_str = sched_entry.get("start_time", "")
                             if st_str:
@@ -3939,6 +3954,7 @@ class LiveV3:
         last_summary = time.time()
         last_settlement_poll = 0  # Bug 4 §6.3: force first REST settlements poll early (live only)
         last_routing_sweep = 0    # force first backstop routing sweep immediately at startup
+        discovery_pending = False # FIX 3 stagger: discover one loop turn after the schedule reload
 
         print("[RUNNING] Main loop started.", flush=True)
 
@@ -3977,13 +3993,21 @@ class LiveV3:
                 if now - last_discovery > DISCOVERY_INTERVAL:
                     self._check_sidecar_heartbeats()
 
-                # Re-discover every 5 min + refresh schedule
+                # Refresh schedule + re-discover every 5 min. FIX 3 (stagger):
+                # the schedule reload and the discovery re-match/subscribe run in
+                # SEPARATE loop turns (~1s apart) so their work can't converge in
+                # one turn. Both heavy parts are now offloaded (parse via FIX 2's
+                # executor; per-event match via _match_event_to_schedule_async),
+                # so neither blocks the loop even on the reload boundary.
                 if now - last_discovery > DISCOVERY_INTERVAL:
                     await self._load_schedule_async()  # FIX 2: parse off the loop
+                    last_discovery = now
+                    discovery_pending = True
+                elif discovery_pending:
+                    discovery_pending = False
                     new_tickers = await self.discover_markets()
                     if new_tickers:
                         await self.ws_subscribe(new_tickers)
-                    last_discovery = now
 
                 # check_pending_entries disabled — new routing_tick re-evaluates every tick
                 # await self.check_pending_entries()

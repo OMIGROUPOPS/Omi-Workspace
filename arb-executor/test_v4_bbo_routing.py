@@ -368,6 +368,49 @@ async def test_discovery_chunking():
           % (worst * 1000.0, len(tickers)))
 
 
+async def test_schedule_rematch_offload():
+    """This commit: the post-reload schedule re-match (the ~2198-entry fuzzy
+    scan, a single multi-second call that cannot be chunked) is offloaded to a
+    thread; the loop stays responsive (probe lag <100ms) across ~10 heavy
+    matches, mirroring a reload cycle."""
+    bot = _new_bot()
+    bot.event_player_names = {}
+    def _heavy_match(event_ticker, schedule, player_names):
+        t0 = time.monotonic()
+        while time.monotonic() - t0 < 0.08:  # 80ms pure-CPU stand-in per match
+            pass
+        return None, None, [("schedule_unmatched", {"event": event_ticker})]
+    bot._match_event_pure = _heavy_match
+
+    probe = asyncio.create_task(_probe_max_lag(1.2))
+    for i in range(10):  # ~800ms of matching, offloaded
+        await bot._match_event_to_schedule_async("KXATPMATCH-26MAY25EV%03d" % i)
+    worst = await probe
+    assert worst < 0.1, "loop starved during re-match: max lag %.1f ms" % (worst * 1000.0)
+    print("[17]  PASS  schedule re-match offloaded; loop lag %.1f ms over 10x80ms matches (<100)"
+          % (worst * 1000.0))
+
+
+async def test_rematch_parity():
+    """The offloaded async match returns the same (result, method) and emits the
+    same logs as the sync path -- offload must not change matching behavior."""
+    bot = _new_bot()
+    bot.schedule = {"AAABBB": {"start_time": "2026-05-25T16:00:00Z",
+                               "p1": "X", "p2": "Y", "category": "ATP_MAIN"}}
+    bot.event_player_names = {}
+    et = "KXATPMATCH-26MAY25AAABBB"
+    logged = []
+    orig_log = bot._log
+    bot._log = lambda ev, det=None, ticker="": logged.append(ev)
+    r_sync, m_sync = bot._match_event_to_schedule(et)
+    r_async, m_async = await bot._match_event_to_schedule_async(et)
+    bot._log = orig_log
+    assert m_sync == m_async == "direct_6char", "method mismatch: %r vs %r" % (m_sync, m_async)
+    assert r_sync == r_async and r_async is not None, "result mismatch"
+    assert logged.count("schedule_match") == 2, "expected 2 schedule_match logs, got %r" % logged
+    print("[18]  PASS  async re-match parity: same result/method/logs as sync (direct_6char)")
+
+
 async def main():
     await test_on_bbo_update_routing()
     await test_coalescing_and_trade_lifecycle()
@@ -375,6 +418,8 @@ async def main():
     await test_settlement_dedup()
     await test_schedule_parse_offload()
     await test_discovery_chunking()
+    await test_schedule_rematch_offload()
+    await test_rematch_parity()
     print("\nALL CHECKS PASSED")
 
 

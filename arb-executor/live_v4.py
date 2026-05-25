@@ -100,6 +100,11 @@ PENDING_TIMEOUT_SEC = 7200    # cancel pending entry after 2h with no tight spre
 STALE_CHECK_INTERVAL = 120    # validate resting buys every 2 min
 SETTLEMENT_POLL_INTERVAL = 300  # Bug 4 §6.3: REST settlements safety-net poll every 5 min (LIVE only)
 
+# v4 bid-laying timing (all ET-relative to scheduled match start)
+V4_MAX_PLACEMENT_SEC = 240 * 60   # earliest placement in per_regime_offsets_v2 (T-4h)
+V4_T20M_SEC = 20 * 60             # T-20m taker fallback = atlas baseline entry
+V4_REPRICE_MOVE_CENTS = 5         # resting bid re-post threshold (1 cell width); STEP 5 heuristic
+
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
 SCHEDULE_FILE = STATE_DIR / "schedule.json"
@@ -2353,21 +2358,28 @@ class LiveV3:
                     "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET")})
                 continue
 
-            # Intelligence window gate
-            intel_window = _entry_lead_cap(et)
-            if INTELLIGENCE_AVAILABLE:
-                try:
-                    # Use first ticker for event-level window check
-                    tk0 = list(tickers)[0] if tickers else ""
-                    if tk0:
-                        intel_rec = recommended_window_seconds(et, tk0)
-                        intel_window = intel_rec["window_seconds"]
-                        if intel_window == 0:
-                            continue
-                except Exception:
-                    pass
-            if time_to_start > intel_window:
-                continue
+            # v4: coarse event-level gate only. The fine-grained per-leg
+            # placement timing (post at T-placement_minute for that leg's
+            # regime) lives in the side loop below. Earliest placement in the
+            # v2 table is T-240m, so don't even evaluate sides before T-4h.
+            # (Legacy FV path keeps its intel-window gate when enabled.)
+            if self.fv_scenarios_enabled:
+                intel_window = _entry_lead_cap(et)
+                if INTELLIGENCE_AVAILABLE:
+                    try:
+                        tk0 = list(tickers)[0] if tickers else ""
+                        if tk0:
+                            intel_rec = recommended_window_seconds(et, tk0)
+                            intel_window = intel_rec["window_seconds"]
+                            if intel_window == 0:
+                                continue
+                    except Exception:
+                        pass
+                if time_to_start > intel_window:
+                    continue
+            else:
+                if time_to_start > V4_MAX_PLACEMENT_SEC:
+                    continue
 
             tk_list = list(tickers)
             if len(tk_list) < 2:
@@ -2408,60 +2420,56 @@ class LiveV3:
                         "bid": book.best_bid, "ask": book.best_ask}, ticker=tk)
                     continue
 
-                # Resolve anchor
-                anchor_value, anchor_source, side_fv = self._resolve_anchor(tk, et)
-                if anchor_value is None:
-                    self.n_skips += 1
-                    self._log("skipped", {"reason": "no_anchor_available", "event": et}, ticker=tk)
+                # ---- Dispatch: legacy FV A/B/C scenarios (gated) vs v4 ----
+                if self.fv_scenarios_enabled:
+                    await self._legacy_route_side(tk, et, direction, cat,
+                                                  book, time_to_start, start_ts, now)
                     continue
 
-                # Cell assignment from anchor
-                anchor_cell, anchor_cell_cfg = self._legacy_cell_lookup(cat, direction, anchor_value)
-                if anchor_cell_cfg is None or anchor_cell in self.config.get("disabled_cells", []):
-                    self.n_skips += 1
-                    self._log("skipped", {"reason": "fv_cell_not_active",
-                        "fv_cell": anchor_cell, "fv_cents": round(anchor_value, 1),
-                        "event": et, "anchor_source": anchor_source}, ticker=tk)
+                # ===== v4 bid-laying placement (STEP 4) =====
+                if cat not in self.categories_enabled:
                     continue
 
-                # Scenario classification
-                kalshi_mid = (book.best_bid + book.best_ask) / 2.0
-                delta = kalshi_mid - anchor_value
-                spread = book.best_ask - book.best_bid
-                entry_size = self.config["sizing"]["entry_contracts"]
+                # Marshall the current Kalshi yes-price from the book at decision
+                # time (v4 cell = current price, NOT FV).
+                cur_mid = (book.best_bid + book.best_ask) / 2.0
+                current_price = int(round(cur_mid))
+                regime = self.regime_lookup(cat, current_price)
+                ekey = (cat, regime)
+                if ekey not in self.entry_table:
+                    self.n_skips += 1
+                    self._log("skipped", {"reason": "no_entry_table_row",
+                        "cat": cat, "regime": regime, "price": current_price}, ticker=tk)
+                    continue
+                placement_min, offset, exp_fill, exp_roi = self.entry_table[ekey]
 
-                if not self.config.get("b_convergence_enabled", True) and delta <= -8:
-                    # B strategy disabled — treat as Scenario C
-                    delta = 0  # force Scenario C path
+                # Per-leg placement timing: wait until this leg's regime window
+                # opens (post at T-placement_minute). Event is NOT marked
+                # processed, so the next tick re-evaluates this leg.
+                if time_to_start > placement_min * 60:
+                    continue
 
-                if delta <= -8:
-                    # Scenario B: large discount, potential take
-                    scenario = "B_take"
-                    if spread <= 2 and book.best_bid > 0 and book.best_ask < 100 and anchor_source.startswith("fv"):
-                        entry_price = book.best_ask
-                        post_only = False
-                    else:
-                        # Guardrails failed — fall through to Scenario C
-                        scenario = "C_discount"
-                        entry_price = book.best_bid
-                        post_only = True
-                elif delta > 0:
-                    # Scenario A: kalshi above anchor
-                    scenario = "A_premium"
-                    if time_to_start > 3600:
-                        continue  # wait — too early for premium entries
-                    entry_price = book.best_bid
-                    post_only = True
+                current_ask = book.best_ask
+                target_bid = max(1, current_price - offset)
+                force_cross = self.round5_enabled and self.round5_detector_fire(
+                    tk, current_ask, target_bid)
+
+                # Execution branch (Section 4) with late-discovery / T-20m
+                # fallback folded in.
+                if time_to_start <= V4_T20M_SEC:
+                    # At/after T-20m -> atlas baseline taker (the +8.70% floor).
+                    entry_price, post_only, entry_mode = current_ask, False, "miss_fallback"
+                elif target_bid >= current_ask or force_cross:
+                    # MARKETABLE TAKER: lift the ask, pay the 1c taker fee.
+                    entry_price, post_only, entry_mode = current_ask, False, "marketable_taker"
                 else:
-                    # Scenario C: kalshi at or slightly below anchor (0 to -7c)
-                    scenario = "C_discount"
-                    entry_price = book.best_bid
-                    post_only = True
+                    # RESTING MAKER limit buy at target_bid; manage to T-20m.
+                    entry_price, post_only, entry_mode = target_bid, True, "resting_maker"
 
                 if entry_price <= 0 or entry_price >= 100:
                     continue
 
-                # Pre-post guard: check for existing resting orders or position
+                # Pre-post guards: existing resting order / open position.
                 existing = await api_get(self.session, self.ak, self.pk,
                     "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
                 if existing and existing.get("orders"):
@@ -2471,41 +2479,138 @@ class LiveV3:
                 existing_pos = await api_get(self.session, self.ak, self.pk,
                     "/trade-api/v2/portfolio/positions?ticker=%s&count_filter=position&settlement_status=unsettled" % tk, self.rl)
                 if existing_pos:
-                    pos_list = existing_pos.get("market_positions", [])
-                    if any(int(float(p.get("position_fp", 0))) > 0 for p in pos_list):
+                    if any(int(float(p.get("position_fp", 0))) > 0
+                           for p in existing_pos.get("market_positions", [])):
                         self._log("skipped", {"reason": "position_exists", "ticker": tk}, ticker=tk)
                         continue
 
-                self._log("cell_match", {
-                    "event": et, "direction": direction, "cell": anchor_cell,
-                    "scenario": scenario, "anchor_value": round(anchor_value, 1),
-                    "anchor_source": anchor_source, "kalshi_mid": round(kalshi_mid, 1),
-                    "delta": round(delta, 1), "spread": spread,
-                    "entry_price": entry_price, "entry_size": entry_size,
-                    "post_only": post_only,
-                    "strategy": anchor_cell_cfg["strategy"],
-                    "exit_cents": anchor_cell_cfg["exit_cents"],
+                self._log("v4_place", {
+                    "event": et, "direction": direction, "cat": cat,
+                    "regime": regime, "current_price": current_price,
+                    "offset": offset, "target_bid": target_bid,
+                    "current_ask": current_ask, "entry_price": entry_price,
+                    "entry_mode": entry_mode, "post_only": post_only,
+                    "placement_minute": placement_min,
                     "min_before_start": round(time_to_start / 60),
+                    "exp_fill_rate": round(exp_fill, 3), "exp_net_roi_pct": round(exp_roi, 2),
                 }, ticker=tk)
 
                 self.inflight_orders.add(tk)
                 try:
-                    oid, resp = await self.place_order(tk, "buy", "yes", entry_price, entry_size, post_only=post_only)
+                    oid, resp = await self.place_order(tk, "buy", "yes", entry_price,
+                                                       self.entry_size, post_only=post_only)
                 finally:
                     self.inflight_orders.discard(tk)
 
                 pos = Position(
-                    ticker=tk, event_ticker=et,
-                    category=self.ticker_category.get(tk, "?"),
-                    direction=direction, cell_name=anchor_cell, cell_cfg=anchor_cell_cfg,
+                    ticker=tk, event_ticker=et, category=cat,
+                    direction=direction, cell_name="", cell_cfg={},
                     entry_price=entry_price, entry_order_id=oid,
                     entry_posted_ts=now, phase="entry_resting",
                     match_start_ts=start_ts,
-                    play_type=scenario,
-                    anchor_source=anchor_source,
-                    routed_cell=anchor_cell,
+                    play_type="v4_" + entry_mode,
+                    is_v4=True, regime_at_posting=regime, target_price=target_bid,
+                    placement_minute=placement_min, entry_mode=entry_mode,
+                    paid_taker_fee=(post_only is False),
                 )
                 self.positions[tk] = pos
+
+    async def _legacy_route_side(self, tk, et, direction, cat, book, time_to_start, start_ts, now):
+        """LEGACY FV-anchor A/B/C scenario routing for one side. Fires only when
+        config fv_anchor_scenarios_enabled is true (default false). Preserved
+        verbatim for emergency rollback. `continue` semantics become `return`."""
+        # Resolve anchor
+        anchor_value, anchor_source, side_fv = self._resolve_anchor(tk, et)
+        if anchor_value is None:
+            self.n_skips += 1
+            self._log("skipped", {"reason": "no_anchor_available", "event": et}, ticker=tk)
+            return
+
+        # Cell assignment from anchor
+        anchor_cell, anchor_cell_cfg = self._legacy_cell_lookup(cat, direction, anchor_value)
+        if anchor_cell_cfg is None or anchor_cell in self.config.get("disabled_cells", []):
+            self.n_skips += 1
+            self._log("skipped", {"reason": "fv_cell_not_active",
+                "fv_cell": anchor_cell, "fv_cents": round(anchor_value, 1),
+                "event": et, "anchor_source": anchor_source}, ticker=tk)
+            return
+
+        # Scenario classification
+        kalshi_mid = (book.best_bid + book.best_ask) / 2.0
+        delta = kalshi_mid - anchor_value
+        spread = book.best_ask - book.best_bid
+        entry_size = self.config["sizing"]["entry_contracts"]
+
+        if not self.config.get("b_convergence_enabled", True) and delta <= -8:
+            delta = 0  # B disabled -> force Scenario C path
+
+        if delta <= -8:
+            scenario = "B_take"
+            if spread <= 2 and book.best_bid > 0 and book.best_ask < 100 and anchor_source.startswith("fv"):
+                entry_price = book.best_ask
+                post_only = False
+            else:
+                scenario = "C_discount"
+                entry_price = book.best_bid
+                post_only = True
+        elif delta > 0:
+            scenario = "A_premium"
+            if time_to_start > 3600:
+                return  # too early for premium entries
+            entry_price = book.best_bid
+            post_only = True
+        else:
+            scenario = "C_discount"
+            entry_price = book.best_bid
+            post_only = True
+
+        if entry_price <= 0 or entry_price >= 100:
+            return
+
+        existing = await api_get(self.session, self.ak, self.pk,
+            "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
+        if existing and existing.get("orders"):
+            self._log("skipped", {"reason": "resting_order_exists",
+                "ticker": tk, "existing_count": len(existing["orders"])}, ticker=tk)
+            return
+        existing_pos = await api_get(self.session, self.ak, self.pk,
+            "/trade-api/v2/portfolio/positions?ticker=%s&count_filter=position&settlement_status=unsettled" % tk, self.rl)
+        if existing_pos:
+            pos_list = existing_pos.get("market_positions", [])
+            if any(int(float(p.get("position_fp", 0))) > 0 for p in pos_list):
+                self._log("skipped", {"reason": "position_exists", "ticker": tk}, ticker=tk)
+                return
+
+        self._log("cell_match", {
+            "event": et, "direction": direction, "cell": anchor_cell,
+            "scenario": scenario, "anchor_value": round(anchor_value, 1),
+            "anchor_source": anchor_source, "kalshi_mid": round(kalshi_mid, 1),
+            "delta": round(delta, 1), "spread": spread,
+            "entry_price": entry_price, "entry_size": entry_size,
+            "post_only": post_only,
+            "strategy": anchor_cell_cfg["strategy"],
+            "exit_cents": anchor_cell_cfg["exit_cents"],
+            "min_before_start": round(time_to_start / 60),
+        }, ticker=tk)
+
+        self.inflight_orders.add(tk)
+        try:
+            oid, resp = await self.place_order(tk, "buy", "yes", entry_price, entry_size, post_only=post_only)
+        finally:
+            self.inflight_orders.discard(tk)
+
+        pos = Position(
+            ticker=tk, event_ticker=et,
+            category=self.ticker_category.get(tk, "?"),
+            direction=direction, cell_name=anchor_cell, cell_cfg=anchor_cell_cfg,
+            entry_price=entry_price, entry_order_id=oid,
+            entry_posted_ts=now, phase="entry_resting",
+            match_start_ts=start_ts,
+            play_type=scenario,
+            anchor_source=anchor_source,
+            routed_cell=anchor_cell,
+        )
+        self.positions[tk] = pos
 
     # ------------------------------------------------------------------
     # Check pending entries: post when spread tightens

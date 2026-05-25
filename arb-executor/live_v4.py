@@ -107,6 +107,7 @@ V4_REPRICE_MOVE_CENTS = 5         # resting bid re-post threshold (1 cell width)
 
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
+V4_RESTING_FILE = STATE_DIR / "live_v4_resting.json"  # v4 resting-bid recovery (STEP 5)
 SCHEDULE_FILE = STATE_DIR / "schedule.json"
 TICK_DIR = Path(__file__).resolve().parent / "analysis" / "premarket_ticks"
 TRADE_DIR = Path(__file__).resolve().parent / "analysis" / "trades"
@@ -2514,6 +2515,8 @@ class LiveV3:
                     paid_taker_fee=(post_only is False),
                 )
                 self.positions[tk] = pos
+                if entry_mode == "resting_maker":
+                    self._save_v4_resting()
 
     async def _legacy_route_side(self, tk, et, direction, cat, book, time_to_start, start_ts, now):
         """LEGACY FV-anchor A/B/C scenario routing for one side. Fires only when
@@ -2726,6 +2729,157 @@ class LiveV3:
     # ------------------------------------------------------------------
     # Validate resting buys: cancel stale orders
     # ------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # v4 resting-bid management + state persistence (STEP 5)
+    # ------------------------------------------------------------------
+    def _save_v4_resting(self):
+        """Persist live v4 resting bids for restart recovery (STEP 5). Holds
+        order_id, posted_at, posted_price, target_price, regime_at_posting and
+        the fields needed to rebuild the Position. Live mode only; paper mode
+        recovers via PaperApi.load_state."""
+        if _PAPER_API is not None:
+            return
+        out = {}
+        for tk, pos in self.positions.items():
+            if pos.is_v4 and pos.phase == "entry_resting" and pos.entry_order_id:
+                out[tk] = {
+                    "order_id": pos.entry_order_id,
+                    "event_ticker": pos.event_ticker,
+                    "category": pos.category,
+                    "direction": pos.direction,
+                    "posted_at": pos.entry_posted_ts,
+                    "posted_price": pos.entry_price,
+                    "target_price": pos.target_price,
+                    "regime_at_posting": pos.regime_at_posting,
+                    "placement_minute": pos.placement_minute,
+                    "entry_mode": pos.entry_mode,
+                    "match_start_ts": pos.match_start_ts,
+                }
+        tmp = str(V4_RESTING_FILE) + ".tmp"
+        with open(tmp, "w") as f:
+            json.dump(out, f)
+        os.replace(tmp, str(V4_RESTING_FILE))
+
+    def _load_v4_resting(self):
+        """Rebuild v4 resting-bid Positions from the state file on startup.
+        Skips tickers already present (reconcile may have linked them)."""
+        if _PAPER_API is not None:
+            return
+        try:
+            with open(V4_RESTING_FILE) as f:
+                data = json.load(f)
+        except (FileNotFoundError, ValueError):
+            return
+        restored = 0
+        for tk, d in data.items():
+            if tk in self.positions:
+                continue
+            self.positions[tk] = Position(
+                ticker=tk, event_ticker=d.get("event_ticker", ""),
+                category=d.get("category", "?"), direction=d.get("direction", ""),
+                cell_name="", cell_cfg={},
+                entry_price=int(d.get("posted_price", 0)),
+                entry_order_id=d.get("order_id", ""),
+                entry_posted_ts=float(d.get("posted_at", 0.0)),
+                phase="entry_resting", match_start_ts=float(d.get("match_start_ts", 0.0)),
+                play_type="v4_" + d.get("entry_mode", "resting_maker"),
+                is_v4=True, regime_at_posting=d.get("regime_at_posting", ""),
+                target_price=int(d.get("target_price", 0)),
+                placement_minute=int(d.get("placement_minute", 0)),
+                entry_mode=d.get("entry_mode", "resting_maker"),
+            )
+            restored += 1
+        if restored:
+            self._log("v4_resting_restored", {"count": restored})
+
+    async def _v4_manage_resting(self, tk, pos, book, now):
+        """Manage one v4 resting bid from placement -> T-20m. Maintains
+        target_bid (re-classifies regime and re-posts when the current Kalshi
+        price moves > 1 cell width from the last placement basis), cancels on a
+        degenerate/wide-spread book, and crosses as taker if a re-evaluated
+        target becomes marketable. T-20m fallback is handled below (STEP 6)."""
+        spread = book.best_ask - book.best_bid
+        # Degenerate / wide-spread book: cancel and free the leg for re-entry.
+        if spread > 2 or book.best_bid <= 0 or book.best_ask >= 100:
+            await self.cancel_order(tk, pos.entry_order_id, "v4_degenerate_cancel")
+            self._log("v4_resting_cancel", {"reason": "degenerate_or_wide_spread",
+                "spread": spread, "bid": book.best_bid, "ask": book.best_ask}, ticker=tk)
+            self._untombstone_entry(tk, pos)
+            self._save_v4_resting()
+            return
+
+        time_to_start = pos.match_start_ts - now if pos.match_start_ts > 0 else 99999
+
+        # --- STEP 6 hook: T-20m taker fallback inserted in the next commit ---
+
+        # Significant-move re-post (cadence-gated 60s). "Significant" = the
+        # current Kalshi price has moved > V4_REPRICE_MOVE_CENTS (5c = 1 cell
+        # width) from the price basis at the last placement. Heuristic --
+        # surfaced for operator review.
+        if now - pos.last_cancel_repost_ts < 60:
+            return
+        offset_at_post = self.entry_table.get((pos.category, pos.regime_at_posting), (0, 0, 0, 0))[1]
+        price_basis = pos.target_price + offset_at_post  # current price when last placed
+        current_price = int(round((book.best_bid + book.best_ask) / 2.0))
+        if abs(current_price - price_basis) <= V4_REPRICE_MOVE_CENTS:
+            return
+
+        # Re-classify regime and recompute the target at the new price.
+        new_regime = self.regime_lookup(pos.category, current_price)
+        row = self.entry_table.get((pos.category, new_regime))
+        if row is None:
+            return
+        _, new_offset, _, _ = row
+        new_target = max(1, current_price - new_offset)
+        current_ask = book.best_ask
+
+        # Cancel the old bid, but first check it didn't just fill.
+        old = await api_get(self.session, self.ak, self.pk,
+            "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id, self.rl)
+        if old:
+            old_filled = int(float((old.get("order", old).get("fill_count_fp", 0)) or 0))
+            if old_filled > 0:
+                # Fill happened -- let check_fills book it on its next pass.
+                return
+        await self.cancel_order(tk, pos.entry_order_id, "v4_move_repost")
+
+        if new_target >= current_ask:
+            # Re-evaluated target is now marketable -> cross as taker.
+            self.inflight_orders.add(tk)
+            try:
+                oid, _ = await self.place_order(tk, "buy", "yes", current_ask,
+                                                self.entry_size, post_only=False)
+            finally:
+                self.inflight_orders.discard(tk)
+            pos.entry_price = current_ask
+            pos.entry_order_id = oid
+            pos.entry_mode = "marketable_taker"
+            pos.play_type = "v4_marketable_taker"
+            pos.paid_taker_fee = True
+            mode = "cross_on_move"
+        else:
+            self.inflight_orders.add(tk)
+            try:
+                oid, _ = await self.place_order(tk, "buy", "yes", new_target,
+                                                self.entry_size, post_only=True)
+            finally:
+                self.inflight_orders.discard(tk)
+            pos.entry_price = new_target
+            pos.entry_order_id = oid
+            pos.entry_mode = "resting_maker"
+            pos.play_type = "v4_resting_maker"
+            mode = "repost_resting"
+        pos.target_price = new_target
+        pos.regime_at_posting = new_regime
+        pos.last_cancel_repost_ts = now
+        self._log("v4_move_repost", {
+            "mode": mode, "old_basis": price_basis, "current_price": current_price,
+            "new_regime": new_regime, "new_offset": new_offset,
+            "new_target": new_target, "current_ask": current_ask,
+            "move_cents": current_price - price_basis,
+        }, ticker=tk)
+        self._save_v4_resting()
+
     async def validate_resting_buys(self):
         """Cadence-gated cancel/repost for resting entry orders + deadline force-take."""
         now = time.time()
@@ -2738,6 +2892,12 @@ class LiveV3:
                 self._log("validate_skip_stale_book", {
                     "book_age_sec": int(now - book.updated) if book else "missing",
                 }, ticker=tk)
+                continue
+
+            # v4 resting bids are managed by the v4 manager (target-bid based,
+            # not best-bid reprice / FV-anchor freshness).
+            if pos.is_v4:
+                await self._v4_manage_resting(tk, pos, book, now)
                 continue
 
             # Legacy positions skip validation
@@ -3206,6 +3366,9 @@ class LiveV3:
 
         # Reconcile: load existing positions and resting orders
         await self.reconcile()
+
+        # v4: rebuild any persisted resting bids reconcile didn't link (STEP 5)
+        self._load_v4_resting()
 
         # Startup skip: events inside the 15-min buffer or past start
         now = time.time()

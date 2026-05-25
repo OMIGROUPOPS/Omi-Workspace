@@ -10,14 +10,16 @@ PART A -- on_bbo_update routing (d437137c restructure):
   5.   on_bbo_update swallows routing errors (no escape into the reader/reconnect).
   6.   on_bbo_update on an untracked ticker is a graceful no-op.
 
-PART B -- WS producer/consumer split (this commit):
-  7.   Producer (ws_reader) enqueues frames fast (<1ms/msg) and loses none.
-  8.   Worker drains + dispatches correctly: snapshot->book+route, trade->tape,
-       market_lifecycle_v2->settlement dispatch (Bug 4 preserved).
-  9.   No message loss under burst (every enqueued frame dispatched exactly once).
-  10.  Loop NOT starved under burst: a concurrent 50ms probe stays well under the
-       1.5s starvation threshold while the worker drains a 300-frame flood.
-  11.  Paired-leg placement still works end-to-end through the worker path.
+PART B -- WS coalescing split (this commit):
+  7.   Coalescing: 1000 BBO frames over 5 tickers -> AT MOST 5 on_bbo_update
+       calls (one per ticker, last-value-wins); no bounded queue, no blocking.
+  8.   Trades and lifecycle (Bug 4) are NOT coalesced/dropped under a mixed
+       flood; BBO is coalesced. Lifecycle reaches the settlement dispatch.
+  9.   ws_reader ingest is non-blocking (no await on a full queue) -- a flood is
+       absorbed without backpressure on recv.
+  10.  Loop NOT starved under a 1000+ frame burst through the real ws_reader:
+       a concurrent 50ms probe stays <100ms while the worker drains.
+  11.  Paired-leg placement still works end-to-end through the coalesced path.
 
 Run: python test_v4_bbo_routing.py   (exit 0 = all pass)
 """
@@ -137,111 +139,129 @@ async def test_on_bbo_update_routing():
     print("[6]   PASS  untracked ticker handled gracefully")
 
 
-async def test_producer_speed_and_no_loss():
-    bot = _new_bot()
-    et = "KXATPMATCH-26MAY25TSTCCC"
-    leader_tk, under_tk = et + "-AAA", et + "-BBB"
-    frames = []
-    for _ in range(150):
-        frames.append(_snapshot_frame(leader_tk, 60, 61))
-        frames.append(_snapshot_frame(under_tk, 39, 41))  # 300 frames total
-    bot._ws_queue = asyncio.Queue(maxsize=5000)
-    bot.ws = FakeWS(frames)
-    bot.ws_connected = True
-
-    t0 = time.monotonic()
-    reader = asyncio.create_task(bot.ws_reader())
-    while bot._ws_queue.qsize() < len(frames):
-        await asyncio.sleep(0.001)
-    elapsed = time.monotonic() - t0
-    reader.cancel()
-    try:
-        await reader
-    except asyncio.CancelledError:
-        pass
-    per_msg_ms = elapsed / len(frames) * 1000.0
-    assert bot._ws_queue.qsize() == len(frames), "producer lost frames"
-    assert per_msg_ms < 1.0, "producer too slow: %.3f ms/msg" % per_msg_ms
-    print("[7]   PASS  producer enqueued %d frames, %.4f ms/msg, 0 lost"
-          % (len(frames), per_msg_ms))
-
-
-async def test_worker_dispatch_and_burst_lag():
+async def test_coalescing_and_trade_lifecycle():
     bot = _new_bot()
     api = live_v4._PAPER_API
+    bot._bbo_event = asyncio.Event()
     now = time.time()
     start_ts = now + 2 * 3600
-    et = "KXATPMATCH-26MAY25TSTDDD"
+    et = "KXATPMATCH-26MAY25TSTCCC"
     leader_tk, under_tk = et + "-AAA", et + "-BBB"
     _inject_event(bot, et, leader_tk, under_tk, now, start_ts)
-    bot._ws_queue = asyncio.Queue(maxsize=5000)
+    # 3 standalone tickers (no event) -> on_bbo_update entered but early-returns.
+    extra = ["KXATPMATCH-26MAY25TSTCCC-EEE", "KXWTAMATCH-26MAY25TSTCCC-FFF",
+             "KXATPCHALLENGERMATCH-26MAY25TSTCCC-GGG"]
+    five = [leader_tk, under_tk] + extra
 
-    # Instrument dispatch: count every message the worker handles (no-loss check),
-    # and stub the Bug-4 settlement hop so we verify dispatch routing without net.
-    dispatched = {"n": 0, "lifecycle": 0}
-    orig_dispatch = bot._dispatch_ws_message
-    async def _counting_dispatch(raw):
-        dispatched["n"] += 1
-        await orig_dispatch(raw)
-    bot._dispatch_ws_message = _counting_dispatch
+    # Count on_bbo_update entries (coalescing assertion).
+    routed = {"n": 0}
+    orig_obu = bot.on_bbo_update
+    async def _counting_obu(tk):
+        routed["n"] += 1
+        await orig_obu(tk)
+    bot.on_bbo_update = _counting_obu
+    # Stub the Bug-4 REST hop (public-data call) so lifecycle dispatch is offline.
     lifecycle_hits = []
     async def _fake_settlement(tk, ts):
         lifecycle_hits.append(tk)
     bot._handle_ws_settlement = _fake_settlement
 
-    # Build a burst: 300 BBO snapshots (flood) + 1 trade + 1 lifecycle.
-    burst = []
-    for _ in range(150):
-        burst.append(_snapshot_frame(leader_tk, 60, 61))
-        burst.append(_snapshot_frame(under_tk, 39, 41))
-    burst.append(_trade_frame(leader_tk, 60, 7))
-    burst.append(_lifecycle_frame(leader_tk))
-    for raw in burst:
-        bot._ws_queue.put_nowait(raw)
-    total = len(burst)
+    # Ingest 1000 BBO frames cycling the 5 tickers + 40 trades + 5 lifecycle.
+    n_bbo = 1000
+    for i in range(n_bbo):
+        tk = five[i % 5]
+        bid, ask = (60, 61) if tk == leader_tk else (39, 41) if tk == under_tk else (50, 52)
+        bot._ingest_ws_frame(_snapshot_frame(tk, bid, ask))
+    n_trades = 40
+    for i in range(n_trades):
+        bot._ingest_ws_frame(_trade_frame(leader_tk, 60, 3))
+    n_life = 5
+    for i in range(n_life):
+        bot._ingest_ws_frame(_lifecycle_frame(et + "-LIFE%d" % i))
 
-    # Concurrent loop-lag probe: 50ms sleeps, record the worst overshoot while the
-    # worker drains. If the worker monopolized the loop, the probe would stall.
-    max_lag = {"v": 0.0}
-    async def _probe():
-        for _ in range(40):  # ~2s of probing
-            t0 = time.monotonic()
-            await asyncio.sleep(0.05)
-            lag = (time.monotonic() - t0) - 0.05
-            if lag > max_lag["v"]:
-                max_lag["v"] = lag
+    # 9: ingest never blocked -> all BBO collapsed to a 5-ticker dirty set.
+    assert len(bot._bbo_dirty) == 5, "expected 5 dirty tickers, got %d" % len(bot._bbo_dirty)
+    # Trades applied in-order (not coalesced): VolumeTracker saw every print.
+    assert api.volume_tracker.sample_count == n_trades, \
+        "trade loss: VolumeTracker saw %d of %d" % (api.volume_tracker.sample_count, n_trades)
+    # Lifecycle dispatched for every settled event (Bug 4 not dropped).
+    await asyncio.sleep(0)  # let the create_task lifecycle coroutines run
+    assert len(lifecycle_hits) == n_life, \
+        "lifecycle loss: %d of %d dispatched" % (len(lifecycle_hits), n_life)
+    print("[9]   PASS  ingest non-blocking; %d BBO frames coalesced to %d dirty tickers"
+          % (n_bbo, len(bot._bbo_dirty)))
+    print("[8]   PASS  trades not coalesced (%d/%d), lifecycle not dropped (%d/%d, Bug 4 intact)"
+          % (api.volume_tracker.sample_count, n_trades, len(lifecycle_hits), n_life))
+
+    # 7: drain the worker once -> AT MOST 5 on_bbo_update calls for 1000 frames.
     worker = asyncio.create_task(bot._ws_worker())
-    probe = asyncio.create_task(_probe())
-    # Wait for the queue to drain.
-    while bot._ws_queue.qsize() > 0:
+    while bot._bbo_dirty:
         await asyncio.sleep(0.005)
-    await asyncio.sleep(0.05)  # let the final task_done/yield settle
-    await probe
+    await asyncio.sleep(0.02)
     worker.cancel()
     try:
         await worker
     except asyncio.CancelledError:
         pass
-
-    assert dispatched["n"] == total, "message loss: dispatched %d of %d" % (dispatched["n"], total)
-    assert leader_tk in bot.positions and under_tk in bot.positions, "worker path must place both legs"
+    assert routed["n"] == 5, "coalescing failed: %d on_bbo_update calls for 1000 frames" % routed["n"]
+    # 11: paired-leg placement happened on the latest state via the coalesced path.
+    assert leader_tk in bot.positions and under_tk in bot.positions, "paired placement missing"
     buys = [o for o in api.paper_orders.values() if o.action == "buy"]
-    assert len(buys) == 2, "expected 2 buys via worker path, got %d" % len(buys)
-    book = bot.books[leader_tk]
-    assert book.last_trade_price == 60, "trade-tape not applied via worker"
-    assert lifecycle_hits == [leader_tk], "Bug-4 lifecycle dispatch broken: %r" % lifecycle_hits
-    assert max_lag["v"] < 1.5, "LOOP STARVED under burst: max probe lag %.3fs" % max_lag["v"]
-    print("[8]   PASS  worker dispatched snapshot/trade/lifecycle correctly (Bug 4 intact)")
-    print("[9]   PASS  no message loss under burst (%d/%d dispatched)" % (dispatched["n"], total))
-    print("[10]  PASS  loop NOT starved under 302-frame burst: max probe lag %.1f ms (<1500)"
+    assert len(buys) == 2, "expected 2 buys, got %d" % len(buys)
+    print("[7]   PASS  1000 BBO frames -> %d on_bbo_update calls (coalesced, <=5)" % routed["n"])
+    print("[11]  PASS  paired-leg placement intact through coalesced path (%d buys)" % len(buys))
+
+
+async def test_loop_not_starved_under_burst():
+    bot = _new_bot()
+    bot._bbo_event = asyncio.Event()
+    now = time.time()
+    start_ts = now + 2 * 3600
+    et = "KXATPMATCH-26MAY25TSTDDD"
+    leader_tk, under_tk = et + "-AAA", et + "-BBB"
+    _inject_event(bot, et, leader_tk, under_tk, now, start_ts)
+
+    # 1200-frame flood through the REAL ws_reader (recv yields per frame via
+    # wait_for) + the worker draining concurrently + a 50ms loop-lag probe.
+    frames = []
+    for _ in range(600):
+        frames.append(_snapshot_frame(leader_tk, 60, 61))
+        frames.append(_snapshot_frame(under_tk, 39, 41))
+    bot.ws = FakeWS(frames)
+    bot.ws_connected = True
+
+    max_lag = {"v": 0.0}
+    async def _probe():
+        for _ in range(40):  # ~2s
+            t0 = time.monotonic()
+            await asyncio.sleep(0.05)
+            lag = (time.monotonic() - t0) - 0.05
+            if lag > max_lag["v"]:
+                max_lag["v"] = lag
+    reader = asyncio.create_task(bot.ws_reader())
+    worker = asyncio.create_task(bot._ws_worker())
+    probe = asyncio.create_task(_probe())
+    while bot.ws.recv_count < len(frames):
+        await asyncio.sleep(0.005)
+    await asyncio.sleep(0.1)
+    await probe
+    for t in (reader, worker):
+        t.cancel()
+        try:
+            await t
+        except asyncio.CancelledError:
+            pass
+
+    assert leader_tk in bot.positions and under_tk in bot.positions, "placement missing under burst"
+    assert max_lag["v"] < 0.1, "LOOP STARVED: max probe lag %.1f ms (>=100)" % (max_lag["v"] * 1000.0)
+    print("[10]  PASS  loop NOT starved under 1200-frame burst: max probe lag %.1f ms (<100)"
           % (max_lag["v"] * 1000.0))
-    print("[11]  PASS  paired-leg placement intact through worker path (%d buys)" % len(buys))
 
 
 async def main():
     await test_on_bbo_update_routing()
-    await test_producer_speed_and_no_loss()
-    await test_worker_dispatch_and_burst_lag()
+    await test_coalescing_and_trade_lifecycle()
+    await test_loop_not_starved_under_burst()
     print("\nALL CHECKS PASSED")
 
 

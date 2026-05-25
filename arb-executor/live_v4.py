@@ -904,8 +904,22 @@ class LiveV3:
         with open(CONFIG_PATH) as f:
             self.config = json.load(f)
         self.entry_size = self.config["sizing"]["entry_contracts"]
-        self.dca_size = self.config["sizing"]["dca_contracts"]
-        self.dca_fill_floor = self.config["dca_fill_floor_cents"]
+        # v4 has no DCA. deploy_v5.json omits these keys; default safely so the
+        # FV/legacy DCA paths (gated off) don't KeyError at init.
+        self.dca_size = self.config["sizing"].get("dca_contracts", 0)
+        self.dca_fill_floor = self.config.get("dca_fill_floor_cents", 10)
+        self.exit_size = self.config["sizing"].get("exit_contracts", self.entry_size)
+        # v4 toggles
+        self.fv_scenarios_enabled = self.config.get("fv_anchor_scenarios_enabled", False)
+        self.round5_enabled = self.config.get("round5_detector_enabled", False)
+        self.exit_depth_floor = self.config.get("min_depth_for_exit_realization", 250)
+        self.categories_enabled = set(self.config.get("categories_enabled",
+            ["ATP_MAIN", "WTA_MAIN", "ATP_CHALL", "WTA_CHALL"]))
+        # v4 deployable tables (loaded once into plain dicts; no hot-path I/O)
+        self.entry_table = {}   # (category, regime) -> (placement_min, offset_cents, fill_rate, net_roi_pct)
+        self.exit_table = {}    # category -> {cell_id(int) -> (band_x|None, "exit"|"hold")}
+        self._load_entry_table()
+        self._load_exit_table()
 
         self.books: Dict[str, Book] = {}
         self.subscribed: Set[str] = set()
@@ -951,10 +965,14 @@ class LiveV3:
         self.log_path = LOG_DIR / ("live_v3_%s.jsonl" % date_str)
         self.log_file = open(self.log_path, "a")
         self._log("system_start", {"mode": "LIVE", "config_path": str(CONFIG_PATH),
-                                    "active_cells": len(self.config["active_cells"]),
-                                    "disabled_cells": len(self.config["disabled_cells"]),
+                                    "executor": "v4_bid_laying",
+                                    "fv_scenarios_enabled": self.fv_scenarios_enabled,
+                                    "active_cells": len(self.config.get("active_cells", {})),
+                                    "disabled_cells": len(self.config.get("disabled_cells", [])),
+                                    "entry_table_rows": len(self.entry_table),
+                                    "exit_table_categories": list(self.exit_table.keys()),
                                     "entry_size": self.entry_size,
-                                    "dca_size": self.dca_size,
+                                    "exit_size": self.exit_size,
                                     "exit_cap": EXIT_PRICE_CAP})
         self._load_schedule()
 
@@ -1098,6 +1116,73 @@ class LiveV3:
             "schedule_size": len(self.schedule),
         })
         return None, None
+
+    # ------------------------------------------------------------------
+    # v4 deployable table loaders (STEP 3) -- run once at init
+    # ------------------------------------------------------------------
+    def _load_entry_table(self):
+        """Load per_regime_offsets_v2.csv into self.entry_table keyed
+        (category, anchor_regime) -> (placement_minute, bid_offset_cents,
+        expected_fill_rate, expected_net_roi_pct). 36 rows = 4 cat x 9 regime."""
+        import csv as _csv
+        rel = self.config.get("entry_table_path", "docs/policy/per_regime_offsets_v2.csv")
+        path = Path(__file__).resolve().parent / rel
+        n = 0
+        with open(path, newline="") as f:
+            for row in _csv.DictReader(f):
+                key = (row["category"].strip(), row["anchor_regime"].strip())
+                self.entry_table[key] = (
+                    int(float(row["placement_minute"])),
+                    int(float(row["bid_offset_cents"])),
+                    float(row["expected_fill_rate"]),
+                    float(row["expected_net_roi_pct"]),
+                )
+                n += 1
+        self._log("entry_table_loaded", {"rows": n, "path": str(rel)})
+
+    def _load_exit_table(self):
+        """Load the 4 {category}_adaptive_exit_bands.parquet into
+        self.exit_table[category] = {cell_id -> (band_x|None, "exit"|"hold")}.
+        Each band's [price_low, price_high] is expanded to its constituent 1c
+        cell_ids; band_exit_X == "HOLD" -> ("hold", band_x=None), else
+        ("exit", band_x=int). pyarrow read happens here only; the hot path
+        reads the cached dict."""
+        import pyarrow.parquet as _pq
+        rel_dir = self.config.get("exit_table_dir", "data/durable/spike_volatility_map/")
+        base = Path(__file__).resolve().parent / rel_dir
+        loaded = {}
+        for cat in ("ATP_MAIN", "WTA_MAIN", "ATP_CHALL", "WTA_CHALL"):
+            fp = base / ("%s_adaptive_exit_bands.parquet" % cat.lower())
+            tbl = _pq.read_table(fp).to_pandas()
+            cell_map = {}
+            n_hold = 0
+            for _, r in tbl.iterrows():
+                lo, hi = int(r["price_low"]), int(r["price_high"])
+                raw = str(r["band_exit_X"]).strip()
+                if raw.upper() == "HOLD":
+                    rule, band_x = "hold", None
+                    n_hold += (hi - lo + 1)
+                else:
+                    rule, band_x = "exit", int(round(float(raw)))
+                for cid in range(lo, hi + 1):
+                    cell_map[cid] = (band_x, rule)
+            loaded[cat] = cell_map
+            self._log("exit_table_loaded", {
+                "category": cat, "bands": len(tbl),
+                "cells_mapped": len(cell_map), "hold_cells": n_hold,
+            })
+        self.exit_table = loaded
+
+    def exit_rule_for(self, category, price_cents):
+        """v4 exit lookup: returns (band_x|None, rule) for the 1c cell of
+        price_cents. rule in {"exit","hold"}. Falls back to ("exit", default)
+        if the category/cell is somehow absent (never expected for the 4
+        enabled categories)."""
+        cid = self.cell_lookup(category, price_cents)
+        cmap = self.exit_table.get(category)
+        if cmap and cid in cmap:
+            return cmap[cid]
+        return (15, "exit")  # defensive default; logged by caller if hit
 
     def get_category(self, ticker):
         for cat_name, prefixes in SERIES_MAP.items():

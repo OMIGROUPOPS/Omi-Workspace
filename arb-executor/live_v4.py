@@ -939,6 +939,13 @@ class LiveV3:
         self.exit_depth_floor = self.config.get("min_depth_for_exit_realization", 250)
         self.categories_enabled = set(self.config.get("categories_enabled",
             ["ATP_MAIN", "WTA_MAIN", "ATP_CHALL", "WTA_CHALL"]))
+        # Open the log file BEFORE anything that calls _log() (the table
+        # loaders below log their results). _log needs self.log_file.
+        LOG_DIR.mkdir(parents=True, exist_ok=True)
+        date_str = datetime.now(ET).strftime("%Y%m%d")
+        self.log_path = LOG_DIR / ("live_v3_%s.jsonl" % date_str)
+        self.log_file = open(self.log_path, "a")
+
         # v4 deployable tables (loaded once into plain dicts; no hot-path I/O)
         self.entry_table = {}   # (category, regime) -> (placement_min, offset_cents, fill_rate, net_roi_pct)
         self.exit_table = {}    # category -> {cell_id(int) -> (band_x|None, "exit"|"hold")}
@@ -984,10 +991,7 @@ class LiveV3:
         self.n_settlements = 0
         self.start_ts = time.time()
 
-        LOG_DIR.mkdir(parents=True, exist_ok=True)
-        date_str = datetime.now(ET).strftime("%Y%m%d")
-        self.log_path = LOG_DIR / ("live_v3_%s.jsonl" % date_str)
-        self.log_file = open(self.log_path, "a")
+        # log_file already opened above (before the table loaders).
         self._log("system_start", {"mode": "LIVE", "config_path": str(CONFIG_PATH),
                                     "executor": "v4_bid_laying",
                                     "fv_scenarios_enabled": self.fv_scenarios_enabled,

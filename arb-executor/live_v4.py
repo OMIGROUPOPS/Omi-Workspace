@@ -2810,7 +2810,37 @@ class LiveV3:
 
         time_to_start = pos.match_start_ts - now if pos.match_start_ts > 0 else 99999
 
-        # --- STEP 6 hook: T-20m taker fallback inserted in the next commit ---
+        # T-20m taker fallback (STEP 6): if the bid is still unfilled at T-20m,
+        # cross as a taker at the current ask. This IS the atlas baseline entry
+        # -- the +8.70% floor -- so the strategy can never underperform it. Pay
+        # the 1c taker fee (by design). Fires once; after crossing, entry_mode is
+        # miss_fallback and we just wait for the taker fill.
+        if time_to_start <= V4_T20M_SEC and pos.entry_mode != "miss_fallback":
+            old = await api_get(self.session, self.ak, self.pk,
+                "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id, self.rl)
+            if old:
+                old_filled = int(float((old.get("order", old).get("fill_count_fp", 0)) or 0))
+                if old_filled > 0:
+                    return  # filled as maker before the deadline -- let check_fills book it
+            await self.cancel_order(tk, pos.entry_order_id, "v4_t20m_fallback")
+            self.inflight_orders.add(tk)
+            try:
+                oid, _ = await self.place_order(tk, "buy", "yes", book.best_ask,
+                                                self.entry_size, post_only=False)
+            finally:
+                self.inflight_orders.discard(tk)
+            pos.entry_price = book.best_ask
+            pos.entry_order_id = oid
+            pos.entry_mode = "miss_fallback"
+            pos.play_type = "v4_miss_fallback"
+            pos.paid_taker_fee = True
+            self._log("v4_t20m_fallback", {
+                "take_price": book.best_ask, "target_was": pos.target_price,
+                "regime": pos.regime_at_posting,
+                "time_to_start_min": round(time_to_start / 60, 1),
+            }, ticker=tk)
+            self._save_v4_resting()
+            return
 
         # Significant-move re-post (cadence-gated 60s). "Significant" = the
         # current Kalshi price has moved > V4_REPRICE_MOVE_CENTS (5c = 1 cell

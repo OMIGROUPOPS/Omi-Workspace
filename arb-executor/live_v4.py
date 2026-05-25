@@ -99,6 +99,7 @@ STALE_BUY_DELTA = 5           # cancel resting buy if our price > mid + 5c
 PENDING_TIMEOUT_SEC = 7200    # cancel pending entry after 2h with no tight spread
 STALE_CHECK_INTERVAL = 120    # validate resting buys every 2 min
 SETTLEMENT_POLL_INTERVAL = 300  # Bug 4 §6.3: REST settlements safety-net poll every 5 min (LIVE only)
+SETTLEMENT_RETRY_COOLDOWN = 60  # min seconds between WS-lifecycle settlement hops per ticker (kills pre-finalized re-emit storm)
 ROUTING_SWEEP_INTERVAL = 60     # backstop full-universe routing sweep cadence (placement is event-driven via on_bbo_update)
 
 # v4 bid-laying timing (all ET-relative to scheduled match start)
@@ -972,6 +973,8 @@ class LiveV3:
         self._bbo_dirty: Set[str] = set()        # tickers with unprocessed BBO change (coalesced; last-value-wins)
         self._bbo_event = None                   # asyncio.Event: recv producer -> worker; created in run()
         self._loop_lag_samples = 0               # loop-lag monitor sample counter
+        self._inflight_settlements: Set[str] = set()   # tickers with an in-flight settlement hop (dedup task spawn)
+        self._settlement_attempt_ts: Dict[str, float] = {}  # last WS-lifecycle settlement-hop attempt per ticker
 
         # Persistent processed-tickers set (survives restarts)
         STATE_DIR.mkdir(parents=True, exist_ok=True)
@@ -1048,24 +1051,48 @@ class LiveV3:
         with open(PROCESSED_FILE, "w") as f:
             json.dump(sorted(self.processed_events), f)
 
-    def _load_schedule(self):
-        """Load schedule from cron-refreshed state/schedule.json."""
+    @staticmethod
+    def _read_schedule_file():
+        """Pure-CPU file read + JSON parse (the 2126-event schedule). Touches no
+        shared state, so it is safe to run in an executor. Returns (data, err)."""
         try:
             with open(SCHEDULE_FILE) as f:
-                data = json.load(f)
-            self.schedule = data.get("schedule", {})
-            age = time.time() - data.get("fetched_epoch", time.time())
-            self._log("schedule_loaded", {
-                "count": len(self.schedule),
-                "fetched": data.get("fetched_et", "?"),
-                "age_min": round(age / 60),
-            })
+                return json.load(f), None
         except FileNotFoundError:
+            return None, "__missing__"
+        except Exception as e:
+            return None, str(e)
+
+    def _apply_schedule_data(self, data, err):
+        """Apply a parsed schedule onto self (main-thread only)."""
+        if err == "__missing__":
             self._log("schedule_missing", {"path": str(SCHEDULE_FILE)})
             self.schedule = {}
-        except Exception as e:
-            self._log("schedule_error", {"error": str(e)})
+            return
+        if err is not None:
+            self._log("schedule_error", {"error": err})
             self.schedule = {}
+            return
+        self.schedule = data.get("schedule", {})
+        age = time.time() - data.get("fetched_epoch", time.time())
+        self._log("schedule_loaded", {
+            "count": len(self.schedule),
+            "fetched": data.get("fetched_et", "?"),
+            "age_min": round(age / 60),
+        })
+
+    def _load_schedule(self):
+        """Synchronous load -- startup only, before the event loop is running."""
+        data, err = self._read_schedule_file()
+        self._apply_schedule_data(data, err)
+
+    async def _load_schedule_async(self):
+        """FIX 2: offload the schedule file parse to a thread so the json.load
+        (2126 events) doesn't block the event loop on the 5-min refresh path.
+        The parse touches no shared state; the apply runs back on the loop."""
+        loop = asyncio.get_running_loop()
+        data, err = await loop.run_in_executor(None, self._read_schedule_file)
+        self._apply_schedule_data(data, err)
 
     def _match_event_to_schedule(self, event_ticker):
         """Match Kalshi event to schedule. Returns (entry, method) or (None, None).
@@ -1602,7 +1629,7 @@ class LiveV3:
                 tk = sub.get("market_ticker", "")
                 settled_ts = sub.get("settled_ts", time.time())
                 if tk:
-                    asyncio.create_task(self._handle_ws_settlement(tk, settled_ts))
+                    self._maybe_spawn_settlement(tk, settled_ts)
             # determination / deactivated: ignored in v1 (§13 deferred caching)
 
     def _mark_bbo_dirty(self, ticker):
@@ -1658,6 +1685,42 @@ class LiveV3:
                 self._log("loop_lag_sample", {"actual_sec": round(delta, 3),
                                               "bbo_dirty_depth": dd})
 
+    def _is_settled(self, ticker):
+        """True if this ticker's position is already settled (paper or live)."""
+        if _PAPER_API is not None:
+            ppos = _PAPER_API.paper_positions.get(ticker)
+            return bool(ppos and ppos.settled)
+        pos = self.positions.get(ticker)
+        return bool(pos and pos.settled)
+
+    def _maybe_spawn_settlement(self, ticker, settled_ts):
+        """FIX 1: dedup the settled-lifecycle handler spawn. A pre-finalized
+        market re-emits `settled` repeatedly; spawning the /markets hop on every
+        emit was a CPU/REST storm (1,175 ws_settled_pre_finalized hits, all on
+        the event loop). Spawn only if no handler is in-flight for this ticker,
+        it isn't already settled, and we haven't attempted within
+        SETTLEMENT_RETRY_COOLDOWN. The BBO backstop (and, live, the 5-min REST
+        poll) still guarantee settlement, so cooling down repeat hops cannot
+        lose one. process_settlement remains idempotent regardless."""
+        if ticker in self._inflight_settlements:
+            return
+        if self._is_settled(ticker):
+            return
+        now_ts = time.time()
+        if now_ts - self._settlement_attempt_ts.get(ticker, 0.0) < SETTLEMENT_RETRY_COOLDOWN:
+            return
+        self._inflight_settlements.add(ticker)
+        self._settlement_attempt_ts[ticker] = now_ts
+        asyncio.create_task(self._handle_ws_settlement_dedup(ticker, settled_ts))
+
+    async def _handle_ws_settlement_dedup(self, ticker, settled_ts):
+        """Wrap the settlement hop so the in-flight guard is always released,
+        even on error (the guard is what suppresses the re-emit storm)."""
+        try:
+            await self._handle_ws_settlement(ticker, settled_ts)
+        finally:
+            self._inflight_settlements.discard(ticker)
+
     async def _handle_ws_settlement(self, ticker, settled_ts):
         """Bug 4 §6.2: WS settled events carry no settlement value (§4.1). Fetch
         it from the public /markets/{ticker} endpoint (paper-safe -- passes
@@ -1699,6 +1762,7 @@ class LiveV3:
         all_tickers = []
         now = time.time()
         counts = defaultdict(int)
+        last_yield = time.monotonic()  # FIX 3: time-based chunk-yield cursor
         for series in ALL_SERIES:
             cursor = ""
             for _ in range(10):
@@ -1709,6 +1773,15 @@ class LiveV3:
                 if not data:
                     break
                 for m in data.get("markets", []):
+                    # FIX 3: yield whenever ~2ms of synchronous work has
+                    # accumulated (schedule fuzzy-match + per-event sqlite
+                    # commence lookups). Bounding work-between-yields (not market
+                    # count) keeps the loop / keepalive serviced even when many
+                    # events hit the heavy match path. ~2ms chunks -> sub-30ms
+                    # loop lag (verified).
+                    if time.monotonic() - last_yield > 0.002:
+                        await asyncio.sleep(0)
+                        last_yield = time.monotonic()
                     ticker = m["ticker"]
                     vol = int(float(m.get("volume_fp", "0") or "0"))
                     if vol < MIN_VOLUME:
@@ -3440,6 +3513,7 @@ class LiveV3:
         orphan_orders = []
 
         for tk, pinfo in pos_map.items():
+            await asyncio.sleep(0)  # FIX 3: yield per position so reconcile can't block the loop
             et = pinfo["event_ticker"]
             sells = [o for o in ord_map.get(tk, []) if o["action"] == "sell"]
 
@@ -3905,7 +3979,7 @@ class LiveV3:
 
                 # Re-discover every 5 min + refresh schedule
                 if now - last_discovery > DISCOVERY_INTERVAL:
-                    self._load_schedule()
+                    await self._load_schedule_async()  # FIX 2: parse off the loop
                     new_tickers = await self.discover_markets()
                     if new_tickers:
                         await self.ws_subscribe(new_tickers)

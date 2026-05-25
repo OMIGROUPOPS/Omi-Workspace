@@ -258,10 +258,123 @@ async def test_loop_not_starved_under_burst():
           % (max_lag["v"] * 1000.0))
 
 
+async def test_settlement_dedup():
+    """FIX 1: 50 settled-lifecycle events for one ticker -> exactly 1 handler
+    spawn (in-flight guard); a settled ticker -> 0 spawns; a repeat within the
+    cooldown -> 0 spawns."""
+    from live_v4 import PaperPosition
+    bot = _new_bot()
+    api = live_v4._PAPER_API
+    bot._bbo_event = asyncio.Event()
+
+    state = {"cur": 0, "max": 0, "runs": []}
+    async def _probe_settlement(tk, ts):
+        state["cur"] += 1
+        state["max"] = max(state["max"], state["cur"])
+        state["runs"].append(tk)
+        await asyncio.sleep(0.02)
+        state["cur"] -= 1
+    bot._handle_ws_settlement = _probe_settlement
+
+    tk = "KXATPMATCH-26MAY25TSTEEE-AAA"
+    for _ in range(50):
+        bot._ingest_ws_frame(_lifecycle_frame(tk))  # synchronous spawns
+    assert bot._inflight_settlements == {tk}, "in-flight guard not set: %r" % bot._inflight_settlements
+    await asyncio.sleep(0.05)  # let the single task run + release
+    assert state["runs"].count(tk) == 1, "expected 1 spawn for 50 events, got %d" % state["runs"].count(tk)
+    assert state["max"] == 1, "concurrent handlers for one ticker: %d" % state["max"]
+    assert tk not in bot._inflight_settlements, "in-flight guard not released"
+    print("[12]  PASS  50 settled events -> 1 handler spawn, max concurrency 1")
+
+    # Repeat within cooldown -> still skipped.
+    for _ in range(10):
+        bot._ingest_ws_frame(_lifecycle_frame(tk))
+    await asyncio.sleep(0.03)
+    assert state["runs"].count(tk) == 1, "cooldown failed: re-spawned within %ds" % live_v4.SETTLEMENT_RETRY_COOLDOWN
+    print("[13]  PASS  re-emit within cooldown -> 0 re-spawn")
+
+    # Already-settled ticker -> 0 spawns.
+    tk2 = "KXATPMATCH-26MAY25TSTEEE-BBB"
+    api.paper_positions[tk2] = PaperPosition(ticker=tk2, settled=True)
+    bot._ingest_ws_frame(_lifecycle_frame(tk2))
+    await asyncio.sleep(0.02)
+    assert tk2 not in state["runs"], "settled-guard failed: spawned for already-settled ticker"
+    print("[14]  PASS  settled ticker -> 0 handler spawn (Bug 4 idempotency upheld)")
+
+
+async def _probe_max_lag(seconds, step=0.05):
+    """Run a loop-lag probe for `seconds`; return the worst overshoot."""
+    worst = 0.0
+    n = int(seconds / step)
+    for _ in range(n):
+        t0 = time.monotonic()
+        await asyncio.sleep(step)
+        lag = (time.monotonic() - t0) - step
+        if lag > worst:
+            worst = lag
+    return worst
+
+
+async def test_schedule_parse_offload():
+    """FIX 2: a heavy schedule parse runs in an executor; the loop stays
+    responsive (probe lag <100ms) instead of blocking on the parse."""
+    bot = _new_bot()
+    def _spin():
+        t0 = time.monotonic()
+        while time.monotonic() - t0 < 0.3:  # 300ms pure-CPU stand-in for the parse
+            pass
+        return {"schedule": {"x": 1}, "fetched_epoch": time.time(), "fetched_et": "test"}, None
+    bot._read_schedule_file = _spin
+
+    probe = asyncio.create_task(_probe_max_lag(0.6))
+    await bot._load_schedule_async()
+    worst = await probe
+    assert bot.schedule == {"x": 1}, "schedule not applied after offloaded parse"
+    assert worst < 0.1, "loop starved during schedule parse: max lag %.1f ms" % (worst * 1000.0)
+    print("[15]  PASS  schedule parse offloaded; loop lag %.1f ms during 300ms parse (<100)"
+          % (worst * 1000.0))
+
+
+async def test_discovery_chunking():
+    """FIX 3: discovery yields periodically so the per-market sync work
+    (schedule match + sqlite) can't block the loop (probe lag <100ms)."""
+    bot = _new_bot()
+    orig_api_get = live_v4.api_get
+    async def _fake_api_get(s, ak, pk, path, rl):
+        if "series_ticker" in path and "cursor" not in path:
+            markets = [{"ticker": "KXATPMATCH-26MAY25EV%03d-AAA" % i,
+                        "event_ticker": "KXATPMATCH-26MAY25EV%03d" % i,
+                        "volume_fp": "100", "yes_sub_title": "A", "no_sub_title": "B"}
+                       for i in range(200)]
+            return {"markets": markets, "cursor": ""}
+        return {"markets": [], "cursor": ""}
+    def _heavy_match(et):
+        t0 = time.monotonic()
+        while time.monotonic() - t0 < 0.002:  # 2ms CPU per new event
+            pass
+        return None, None
+    live_v4.api_get = _fake_api_get
+    bot._match_event_to_schedule = _heavy_match
+    bot._commence_time_from_book_prices = lambda et: None
+    try:
+        probe = asyncio.create_task(_probe_max_lag(0.8))
+        tickers = await bot.discover_markets()
+        worst = await probe
+    finally:
+        live_v4.api_get = orig_api_get
+    assert tickers, "discovery returned no tickers"
+    assert worst < 0.1, "loop starved during discovery: max lag %.1f ms" % (worst * 1000.0)
+    print("[16]  PASS  discovery chunked; loop lag %.1f ms over %d markets w/ 2ms-each match (<100)"
+          % (worst * 1000.0, len(tickers)))
+
+
 async def main():
     await test_on_bbo_update_routing()
     await test_coalescing_and_trade_lifecycle()
     await test_loop_not_starved_under_burst()
+    await test_settlement_dedup()
+    await test_schedule_parse_offload()
+    await test_discovery_chunking()
     print("\nALL CHECKS PASSED")
 
 

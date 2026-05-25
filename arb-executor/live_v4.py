@@ -1106,7 +1106,37 @@ class LiveV3:
                     return cat_name
         return None
 
-    def cell_lookup(self, category, direction, entry_mid):
+    def cell_lookup(self, category, current_kalshi_price_cents):
+        """v4 direction-free 1c cell classification from the current Kalshi
+        yes-price. Returns an int cell_id in [5, 94] (the exit-band table's
+        domain). No direction, no 5c bucket -- the exit band table is keyed on
+        the 1c cell of the *current* price (entry-priced cell at exit lookup)."""
+        cell_id = int(round(current_kalshi_price_cents))
+        if cell_id < 5:
+            cell_id = 5
+        if cell_id > 94:
+            cell_id = 94
+        return cell_id
+
+    def regime_lookup(self, category, current_kalshi_price_cents):
+        """Map the current Kalshi yes-price to its 10c regime band for the v4
+        entry-offset table (per_regime_offsets_v2.csv). Band low boundaries:
+        5,15,25,...,85 -> r05_14 ... r85_94."""
+        p = current_kalshi_price_cents
+        if p < 15: return "r05_14"
+        if p < 25: return "r15_24"
+        if p < 35: return "r25_34"
+        if p < 45: return "r35_44"
+        if p < 55: return "r45_54"
+        if p < 65: return "r55_64"
+        if p < 75: return "r65_74"
+        if p < 85: return "r75_84"
+        return "r85_94"
+
+    def _legacy_cell_lookup(self, category, direction, entry_mid):
+        """LEGACY FV-anchor cell lookup (5c bucket + direction). Used only by the
+        FV-scenario routing path, which v4 gates off by default
+        (config fv_anchor_scenarios_enabled). Retained for emergency rollback."""
         bucket = int(entry_mid / 5) * 5
         cell_name = "%s_%s_%d-%d" % (category, direction, bucket, bucket + 4)
         if cell_name in self.config["disabled_cells"]:
@@ -1757,7 +1787,7 @@ class LiveV3:
                     # Re-classify cell based on fill_price (may differ from anchor)
                     old_cell = pos.cell_name
                     old_exit_cents = pos.cell_cfg.get("exit_cents", 0) if pos.cell_cfg else 0
-                    fill_cell, fill_cell_cfg = self.cell_lookup(pos.category, pos.direction, fill_price)
+                    fill_cell, fill_cell_cfg = self._legacy_cell_lookup(pos.category, pos.direction, fill_price)
                     if fill_cell != old_cell:
                         if fill_cell_cfg is None:
                             fill_cell_cfg = {"exit_cents": 15, "strategy": pos.cell_cfg.get("strategy", "noDCA")}
@@ -2275,7 +2305,7 @@ class LiveV3:
                     continue
 
                 # Cell assignment from anchor
-                anchor_cell, anchor_cell_cfg = self.cell_lookup(cat, direction, anchor_value)
+                anchor_cell, anchor_cell_cfg = self._legacy_cell_lookup(cat, direction, anchor_value)
                 if anchor_cell_cfg is None or anchor_cell in self.config.get("disabled_cells", []):
                     self.n_skips += 1
                     self._log("skipped", {"reason": "fv_cell_not_active",
@@ -2407,8 +2437,8 @@ class LiveV3:
 
             fv_cents = side_fv["fv_cents"]
             direction = "leader" if current_price > 50 else "underdog"
-            kalshi_cell, _ = self.cell_lookup(pe["cat"], direction, current_price)
-            fv_cell, fv_cell_cfg = self.cell_lookup(pe["cat"], direction, fv_cents)
+            kalshi_cell, _ = self._legacy_cell_lookup(pe["cat"], direction, current_price)
+            fv_cell, fv_cell_cfg = self._legacy_cell_lookup(pe["cat"], direction, fv_cents)
             gap = current_price - fv_cents
             cell_low = int(fv_cents / 5) * 5
             cell_high = cell_low + 4
@@ -2572,7 +2602,7 @@ class LiveV3:
                         # Re-classify cell based on fill price
                         old_cell = pos.cell_name
                         old_exit_cents = pos.cell_cfg.get("exit_cents", 0) if pos.cell_cfg else 0
-                        fill_cell, fill_cell_cfg = self.cell_lookup(pos.category, pos.direction, pos.entry_price)
+                        fill_cell, fill_cell_cfg = self._legacy_cell_lookup(pos.category, pos.direction, pos.entry_price)
                         if fill_cell != old_cell:
                             if fill_cell_cfg is None:
                                 fill_cell_cfg = {"exit_cents": 15, "strategy": pos.cell_cfg.get("strategy", "noDCA")}
@@ -2778,7 +2808,7 @@ class LiveV3:
                 avg = pinfo["avg_price"]
                 direction = "leader" if avg > 50 else "underdog"
                 if cat and cat != "?":
-                    dca_cell_name, dca_cell_cfg = self.cell_lookup(cat, direction, avg)
+                    dca_cell_name, dca_cell_cfg = self._legacy_cell_lookup(cat, direction, avg)
                     if dca_cell_cfg and dca_cell_cfg.get("strategy") == "DCA-A":
                         dca_trigger = dca_cell_cfg.get("dca_trigger_cents", 0)
                         dca_price = avg - dca_trigger
@@ -2804,7 +2834,7 @@ class LiveV3:
                 avg = pinfo["avg_price"]
                 direction = "leader" if avg > 50 else "underdog"
                 if cat:
-                    cell_name, cell_cfg = self.cell_lookup(cat, direction, avg)
+                    cell_name, cell_cfg = self._legacy_cell_lookup(cat, direction, avg)
                 else:
                     cell_name, cell_cfg = None, None
 

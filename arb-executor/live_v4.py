@@ -1825,6 +1825,71 @@ class LiveV3:
             result["_side"] = resolved_side
         return result
 
+    async def _v4_apply_exit(self, tk, pos, fill_price, filled):
+        """STEP 7. Apply the atlas exit rule for a freshly-filled v4 position
+        from its entry-priced 1c cell. Two outcomes:
+
+          rule == "hold"  -> post NO exit. Set strategy="hold"; the position is
+            left net-open so Bug 4's settlement chokepoint (WS lifecycle / REST
+            safety-net / BBO backstop -> process_settlement) closes it at
+            settlement. (P0 #1, #4.)
+          rule == "exit"  -> post a resting sell at min(fill+band_x, cap),
+            sized to the filled qty, after clearing any stray sells. (P0 #4.)
+
+        Highest-risk surface (inventory #8c, checklist P0). Bug 4 paths are NOT
+        touched here -- a hold position simply never gets an exit order, and
+        arrives at the same chokepoint it would have via an exit-fill."""
+        pos.phase = "active"
+        cell_id = self.cell_lookup(pos.category, fill_price)
+        band_x, rule = self.exit_rule_for(pos.category, fill_price)
+        pos.exit_cell_id = cell_id
+
+        # Clear any stray resting sells (idempotent; fresh fill normally has none)
+        if pos.exit_order_id:
+            await self.cancel_order(tk, pos.exit_order_id, "v4_exit_reset")
+            pos.exit_order_id = ""
+        existing = await api_get(self.session, self.ak, self.pk,
+            "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
+        for o in (existing or {}).get("orders", []):
+            if o.get("action") == "sell":
+                await self.cancel_order(tk, o.get("order_id", ""), "v4_exit_reset_stray")
+
+        if rule == "hold":
+            pos.strategy = "hold"
+            pos.exit_band_x = None
+            self._log("hold_to_settle", {
+                "cell_id": cell_id, "entry_price": fill_price,
+                "regime": pos.regime_at_posting, "category": pos.category,
+                "entry_mode": pos.entry_mode, "qty": filled,
+                "expected_settle_note": "Bug4 chokepoint closes at settlement",
+            }, ticker=tk)
+            return
+
+        # exit at +X
+        pos.strategy = "exit"
+        pos.exit_band_x = band_x
+        exit_target = min(fill_price + band_x, EXIT_PRICE_CAP)
+        pos.exit_price = exit_target
+        book = self.books.get(tk)
+        depth_at_target = book.asks.get(exit_target, 0) if book else 0
+
+        oid, resp = await self.place_order(tk, "sell", "yes", exit_target, filled)
+        if not oid:
+            await asyncio.sleep(1)
+            oid, resp = await self.place_order(tk, "sell", "yes", exit_target, filled)
+        if not oid:
+            self._log("v4_exit_fatal", {
+                "exit_price": exit_target, "qty": filled,
+            }, ticker=tk)
+        pos.exit_order_id = oid
+        self._log("v4_exit_posted", {
+            "exit_price": exit_target, "band_x": band_x, "cell_id": cell_id,
+            "entry_price": fill_price, "qty": filled,
+            "depth_at_exit": depth_at_target, "depth_floor": self.exit_depth_floor,
+            "depth_ok": depth_at_target >= self.exit_depth_floor,
+            "order_id": oid,
+        }, ticker=tk)
+
     async def check_fills(self):
         """Poll Kalshi for fill status on all active orders."""
         for tk, pos in list(self.positions.items()):
@@ -1885,6 +1950,14 @@ class LiveV3:
                         "play_type": pos.play_type,
                         "kalshi_status": status,
                     }, ticker=tk)
+
+                    # v4 exit application (STEP 7): hold-skip or exit-at-+X from
+                    # the adaptive exit band table. Bypasses the legacy
+                    # re-classify / exit_cents / DCA block entirely.
+                    if pos.is_v4:
+                        await self._v4_apply_exit(tk, pos, fill_price, filled)
+                        self._save_v4_resting()
+                        continue
 
                     # Re-classify cell based on fill_price (may differ from anchor)
                     old_cell = pos.cell_name
@@ -3102,6 +3175,42 @@ class LiveV3:
     # ------------------------------------------------------------------
     # Startup reconciliation: sync in-memory state with Kalshi account
     # ------------------------------------------------------------------
+    async def _v4_reconcile_naked(self, tk, et, cat, avg, pinfo):
+        """v4 restart recovery for a naked open position (no resting sell):
+        re-post the exit-band sell, or -- for a hold cell -- leave it naked and
+        tracked so Bug 4 closes it at settlement (STEP 7 / P0 #4)."""
+        qty = pinfo["qty"]
+        cell_id = self.cell_lookup(cat, avg)
+        band_x, rule = self.exit_rule_for(cat, avg)
+        base = dict(
+            ticker=tk, event_ticker=et, category=cat, direction="",
+            cell_name="", cell_cfg={}, entry_price=avg, entry_qty=qty,
+            phase="active", entry_filled_ts=time.time(),
+            is_v4=True, exit_cell_id=cell_id, play_type="v4_reconciled",
+        )
+        if rule == "hold":
+            self.positions[tk] = Position(**base, strategy="hold", exit_band_x=None)
+            self._log("reconcile_v4_hold", {
+                "cell_id": cell_id, "avg": avg, "qty": qty}, ticker=tk)
+            return
+        exit_target = min(avg + band_x, EXIT_PRICE_CAP)
+        fresh = await api_get(self.session, self.ak, self.pk,
+            "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
+        fresh_sells = [o for o in (fresh or {}).get("orders", []) if o.get("action") == "sell"]
+        if fresh_sells:
+            sp = round(float(fresh_sells[0].get("yes_price_dollars", "0")) * 100)
+            self.positions[tk] = Position(**base, strategy="exit", exit_band_x=band_x,
+                exit_price=sp, exit_order_id=fresh_sells[0].get("order_id", ""))
+            self._log("reconcile_v4_exit_found", {
+                "exit_price": sp, "cell_id": cell_id}, ticker=tk)
+            return
+        oid, _ = await self.place_order(tk, "sell", "yes", exit_target, qty)
+        self.positions[tk] = Position(**base, strategy="exit", exit_band_x=band_x,
+            exit_price=exit_target, exit_order_id=oid)
+        self._log("reconcile_v4_exit_posted", {
+            "exit_price": exit_target, "band_x": band_x, "cell_id": cell_id,
+            "qty": qty, "order_id": oid}, ticker=tk)
+
     async def reconcile(self, quiet=False):
         """Load existing positions and resting orders from Kalshi.
         Populate in-memory state so the bot doesn't re-enter or orphan orders.
@@ -3238,6 +3347,11 @@ class LiveV3:
                 # No exit sell — try to auto-post one
                 cat = self.get_category(tk)
                 avg = pinfo["avg_price"]
+                # v4: use the adaptive exit band table (hold-skip aware). Avoids
+                # posting an unwanted exit on a hold-cell position after restart.
+                if not self.fv_scenarios_enabled and cat in self.categories_enabled:
+                    await self._v4_reconcile_naked(tk, et, cat, avg, pinfo)
+                    continue
                 direction = "leader" if avg > 50 else "underdog"
                 if cat:
                     cell_name, cell_cfg = self._legacy_cell_lookup(cat, direction, avg)

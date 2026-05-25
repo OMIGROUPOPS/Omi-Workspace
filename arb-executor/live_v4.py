@@ -75,6 +75,7 @@ MIN_VOLUME = 0
 MAX_HOURS_TO_EXPIRY = 36
 WS_PING_INTERVAL = 30
 WS_SUBSCRIBE_BATCH = 50
+WS_QUEUE_MAXSIZE = 5000       # WS recv->worker queue cap; lossless backpressure when worker is behind
 DISCOVERY_INTERVAL = 300
 # ENTRY_CANCEL_TIMEOUT removed in V4.2 -- replaced by match-start-aware expiry
 FILL_CHECK_INTERVAL = 5      # poll fills every 5s
@@ -969,6 +970,8 @@ class LiveV3:
         self.inflight_orders: Set[str] = set()  # tickers with orders being placed (race guard)
         self._event_routing: Set[str] = set()   # events currently being routed (on_bbo_update vs backstop sweep)
         self._mgmt_inflight: Set[str] = set()    # tickers whose v4 resting bid is being managed (serialize callers)
+        self._ws_queue = None                    # asyncio.Queue: WS recv (producer) -> worker (consumer); created in run()
+        self._loop_lag_samples = 0               # loop-lag monitor sample counter
 
         # Persistent processed-tickers set (survives restarts)
         STATE_DIR.mkdir(parents=True, exist_ok=True)
@@ -1530,50 +1533,113 @@ class LiveV3:
             attempt += 1
 
     async def ws_reader(self):
+        """PRODUCER: read frames off the WebSocket and enqueue them -- nothing
+        else. Kept deliberately trivial so the recv loop yields to the event
+        loop (and thus the websockets keepalive ping coroutine) on every frame,
+        regardless of routing load. ALL heavy processing -- parse, book apply,
+        on_bbo_update routing, lifecycle settlement -- happens in _ws_worker
+        draining the queue.
+
+        Why this matters: in paper mode the api_get/place_order calls inside
+        on_bbo_update route through PaperApi coroutines that complete WITHOUT
+        awaiting any real I/O, so awaiting them does NOT yield to the loop.
+        Processing a resubscribe snapshot flood inline here therefore blocked
+        the loop past ping_timeout (1011) -> reconnect -> flood -> repeat. The
+        queue + per-message worker yield breaks that self-sustaining loop."""
         while True:
             try:
                 if not self.ws_connected or not self.ws:
                     await self._ws_reconnect()
                     continue
                 raw = await asyncio.wait_for(self.ws.recv(), timeout=30)
-                msg = json.loads(raw)
-                typ = msg.get("type", "")
-                if typ == "orderbook_snapshot":
-                    tk = msg.get("msg", {}).get("market_ticker", "")
-                    self.apply_snapshot(tk, msg.get("msg", {}))
-                    if tk:
-                        await self.on_bbo_update(tk)
-                elif typ == "orderbook_delta":
-                    tk = msg.get("msg", {}).get("market_ticker", "")
-                    bk_before = self.books.get(tk)
-                    old_bbo = (bk_before.best_bid, bk_before.best_ask) if bk_before else None
-                    self.apply_delta(tk, msg.get("msg", {}))
-                    bk_after = self.books.get(tk)
-                    new_bbo = (bk_after.best_bid, bk_after.best_ask) if bk_after else None
-                    # Only route on an actual BBO change (matches tennis_stb): a
-                    # delta that doesn't move best_bid/best_ask can't change any
-                    # placement decision, so skip the routing work.
-                    if tk and new_bbo != old_bbo:
-                        await self.on_bbo_update(tk)
-                elif typ == "trade":
-                    self.apply_trade(msg.get("msg", {}).get("market_ticker", msg.get("msg", {}).get("ticker", "")),
-                                    msg.get("msg", {}))
-                elif typ == "market_lifecycle_v2":
-                    # Bug 4 §6.2: settled payload is minimal (no value) -> async REST hop.
-                    sub = msg.get("msg", {})
-                    if sub.get("event_type") == "settled":
-                        tk = sub.get("market_ticker", "")
-                        settled_ts = sub.get("settled_ts", time.time())
-                        if tk:
-                            # Don't block the WS reader on a REST call -- fire and forget.
-                            asyncio.create_task(self._handle_ws_settlement(tk, settled_ts))
-                    # determination / deactivated: ignored in v1 (§13 deferred caching)
+                # Lossless backpressure: await put applies backpressure when the
+                # worker is behind (bounds memory) without dropping frames -- a
+                # dropped frame could be a market_lifecycle settlement (Bug 4) or
+                # a trade-tape print. The await itself yields, keeping recv (and
+                # the keepalive) responsive.
+                await self._ws_queue.put(raw)
             except asyncio.TimeoutError:
                 continue
             except Exception as e:
                 self._log("ws_error", {"error": str(e)})
                 self.ws_connected = False
                 await self._ws_reconnect()
+
+    async def _ws_worker(self):
+        """CONSUMER: drain the WS queue and dispatch each frame. Yields to the
+        event loop after EVERY message (await asyncio.sleep(0)) so a burst (e.g.
+        a 134-ticker resubscribe snapshot flood) can never block the keepalive
+        ping -- synchronous work is bounded to one message between yields.
+        Processing errors are logged and never propagate (no reconnect)."""
+        while True:
+            raw = await self._ws_queue.get()
+            try:
+                await self._dispatch_ws_message(raw)
+            except Exception as e:
+                self._log("ws_worker_error",
+                          {"error": str(e), "traceback": traceback.format_exc()})
+            finally:
+                self._ws_queue.task_done()
+                # Yield -- bounds synchronous work to a single message so the
+                # loop (recv + keepalive) is serviced between every dispatch.
+                await asyncio.sleep(0)
+
+    async def _dispatch_ws_message(self, raw):
+        """Dispatch one raw WS frame. Identical processing to the pre-split
+        ws_reader body -- only the invocation moved off the recv coroutine onto
+        the worker. Preserves Bug 4 lifecycle handling and trade-tape capture."""
+        msg = json.loads(raw)
+        typ = msg.get("type", "")
+        if typ == "orderbook_snapshot":
+            tk = msg.get("msg", {}).get("market_ticker", "")
+            self.apply_snapshot(tk, msg.get("msg", {}))
+            if tk:
+                await self.on_bbo_update(tk)
+        elif typ == "orderbook_delta":
+            tk = msg.get("msg", {}).get("market_ticker", "")
+            bk_before = self.books.get(tk)
+            old_bbo = (bk_before.best_bid, bk_before.best_ask) if bk_before else None
+            self.apply_delta(tk, msg.get("msg", {}))
+            bk_after = self.books.get(tk)
+            new_bbo = (bk_after.best_bid, bk_after.best_ask) if bk_after else None
+            # Only route on an actual BBO change (matches tennis_stb): a delta
+            # that doesn't move best_bid/best_ask can't change any placement
+            # decision, so skip the routing work.
+            if tk and new_bbo != old_bbo:
+                await self.on_bbo_update(tk)
+        elif typ == "trade":
+            self.apply_trade(msg.get("msg", {}).get("market_ticker", msg.get("msg", {}).get("ticker", "")),
+                            msg.get("msg", {}))
+        elif typ == "market_lifecycle_v2":
+            # Bug 4 §6.2: settled payload is minimal (no value) -> async REST hop.
+            sub = msg.get("msg", {})
+            if sub.get("event_type") == "settled":
+                tk = sub.get("market_ticker", "")
+                settled_ts = sub.get("settled_ts", time.time())
+                if tk:
+                    # Don't block the worker on a REST call -- fire and forget.
+                    asyncio.create_task(self._handle_ws_settlement(tk, settled_ts))
+            # determination / deactivated: ignored in v1 (§13 deferred caching)
+
+    async def _loop_lag_monitor(self):
+        """Instrument event-loop scheduling lag (verification for the keepalive
+        starvation fix). Sleeps 1.0s and measures the actual elapsed time; a
+        delta >1.5s means the loop was starved by synchronous work. Emits a
+        loop_lag event on any starvation spike and a periodic loop_lag_sample
+        baseline every 30s. App greps loop_lag* to confirm starvation is gone
+        before the cutover gate (healthy steady-state ~1.000s, zero spikes)."""
+        while True:
+            t0 = time.monotonic()
+            await asyncio.sleep(1.0)
+            delta = time.monotonic() - t0
+            self._loop_lag_samples += 1
+            qd = self._ws_queue.qsize() if self._ws_queue is not None else 0
+            if delta > 1.5:
+                self._log("loop_lag", {"expected_sec": 1.0, "actual_sec": round(delta, 3),
+                                       "lag_sec": round(delta - 1.0, 3), "ws_queue_depth": qd})
+            elif self._loop_lag_samples % 30 == 0:
+                self._log("loop_lag_sample", {"actual_sec": round(delta, 3),
+                                              "ws_queue_depth": qd})
 
     async def _handle_ws_settlement(self, ticker, settled_ts):
         """Bug 4 §6.2: WS settled events carry no settlement value (§4.1). Fetch
@@ -3743,7 +3809,14 @@ class LiveV3:
             self.log_file.close()
             return
 
+        # WS producer/consumer split: ws_reader only enqueues frames; _ws_worker
+        # drains + dispatches (parse, book apply, on_bbo_update routing) yielding
+        # per message so a snapshot flood can't starve the keepalive ping.
+        # _loop_lag_monitor instruments scheduling lag for the cutover gate.
+        self._ws_queue = asyncio.Queue(maxsize=WS_QUEUE_MAXSIZE)
         asyncio.create_task(self.ws_reader())
+        asyncio.create_task(self._ws_worker())
+        asyncio.create_task(self._loop_lag_monitor())
 
         print("\n[INIT] Waiting 10s for BBO snapshots...", flush=True)
         await asyncio.sleep(10)

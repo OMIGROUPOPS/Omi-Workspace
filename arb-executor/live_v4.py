@@ -1252,10 +1252,11 @@ class LiveV3:
         (config fv_anchor_scenarios_enabled). Retained for emergency rollback."""
         bucket = int(entry_mid / 5) * 5
         cell_name = "%s_%s_%d-%d" % (category, direction, bucket, bucket + 4)
-        if cell_name in self.config["disabled_cells"]:
+        active = self.config.get("active_cells", {})
+        if cell_name in self.config.get("disabled_cells", []):
             return cell_name, None
-        if cell_name in self.config["active_cells"]:
-            return cell_name, self.config["active_cells"][cell_name]
+        if cell_name in active:
+            return cell_name, active[cell_name]
         return cell_name, None
 
     def _extract_depth(self, book, side="bid", levels=5):
@@ -3411,7 +3412,7 @@ class LiveV3:
                         }, ticker=tk)
                 else:
                     unmanaged.append((tk, pinfo))
-                    reason = "cell disabled" if cell_name and cell_name in self.config["disabled_cells"] else "no cell config"
+                    reason = "cell disabled" if cell_name and cell_name in self.config.get("disabled_cells", []) else "no cell config"
                     self._log("reconcile_orphan_no_cell", {
                         "ticker": tk, "avg_price": avg, "cell": cell_name or "?",
                         "reason": reason,
@@ -3498,13 +3499,21 @@ class LiveV3:
     # Main loop
     # ------------------------------------------------------------------
     async def run(self, reconcile_only=False):
+        mode = "PAPER" if _PAPER_API is not None else "LIVE - REAL ORDERS"
         print("=" * 70, flush=True)
-        print("LIVE V3 - REAL ORDERS - BABY SIZING 10/5", flush=True)
+        print("LIVE V4 - BID-LAYING EXECUTOR - %s" % mode, flush=True)
         print("=" * 70, flush=True)
         print("Config: %s" % CONFIG_PATH, flush=True)
-        print("Active cells: %d  Disabled: %d" % (
-            len(self.config["active_cells"]), len(self.config["disabled_cells"])), flush=True)
-        print("Entry: %d contracts  DCA: %d contracts" % (self.entry_size, self.dca_size), flush=True)
+        if self.fv_scenarios_enabled:
+            print("Mode: LEGACY FV-anchor scenarios (active=%d disabled=%d)" % (
+                len(self.config.get("active_cells", {})),
+                len(self.config.get("disabled_cells", []))), flush=True)
+        else:
+            print("Mode: v4 bid-laying  |  entry rows: %d  |  categories: %s" % (
+                len(self.entry_table), ",".join(sorted(self.categories_enabled))), flush=True)
+            print("Exit bands/cat: %s" % {c: len(self.exit_table.get(c, {}))
+                for c in sorted(self.categories_enabled)}, flush=True)
+        print("Entry: %d contracts  Exit: %d contracts" % (self.entry_size, self.exit_size), flush=True)
         print("Exit cap: %dc" % EXIT_PRICE_CAP, flush=True)
         print("Log: %s" % self.log_path, flush=True)
         print("=" * 70, flush=True)

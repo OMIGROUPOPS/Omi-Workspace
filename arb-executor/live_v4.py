@@ -1,10 +1,21 @@
 #!/usr/bin/env python3
 """
-live_v3.py - LIVE Deploy V3, baby sizing (10ct entry / 5ct DCA).
+live_v4.py - Path B v4 bid-laying executor (forked from live_v3.py).
 
-Places REAL orders on Kalshi. Maker-only, post_only=true.
-Exit price capped at min(fill_price + exit_cents, 98).
-Cell assignment at order-post time. Fill price drives exit/DCA offsets.
+Strategy: docs/bid_laying_policy_v1.md Sections 2-7 + Section 12 (v4 net-PnL
+offsets). For each atlas-qualifying paired leg, post a maker bid at
+T-(placement_minute) per the leg's anchor regime; marketable-taker if the
+target bid is already at/through the ask, else resting maker; T-20m taker
+fallback (= atlas baseline). Exit per the adaptive exit band table: "exit at
++X" with >=250ct depth, or "hold to settlement" (no exit posted; Bug 4 closes).
+
+Entry table : docs/policy/per_regime_offsets_v2.csv
+Exit table  : data/durable/spike_volatility_map/{category}_adaptive_exit_bands.parquet
+Config      : config/deploy_v5.json (live_v3.py keeps deploy_v4.json -- rollback)
+
+Bug 4 settlement detection (WS market_lifecycle_v2 + REST safety-net + BBO
+backstop + idempotent process_settlement chokepoint) is inherited VERBATIM from
+live_v3.py @366d8aa -- DO NOT modify those paths.
 """
 
 import asyncio
@@ -107,8 +118,11 @@ ALL_SERIES = []
 for prefixes in SERIES_MAP.values():
     ALL_SERIES.extend(prefixes)
 
-CONFIG_PATH = Path(__file__).resolve().parent / "config" / "deploy_v4.json"
-_cfg_override = os.environ.get("LIVE_V3_CONFIG")
+# v4: own config file (deploy_v5.json). deploy_v4.json stays as live_v3.py's
+# rollback config -- zero coupling. Env override var also renamed so the two
+# executors cannot accidentally share one config.
+CONFIG_PATH = Path(__file__).resolve().parent / "config" / "deploy_v5.json"
+_cfg_override = os.environ.get("LIVE_V4_CONFIG")
 if _cfg_override:
     CONFIG_PATH = Path(__file__).resolve().parent / _cfg_override
 LOG_DIR = Path(__file__).resolve().parent / "logs"

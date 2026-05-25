@@ -307,6 +307,13 @@ class Position:
     placement_minute: int = 0         # minutes-before-start this leg's bid was scheduled
     entry_mode: str = ""              # marketable_taker | resting_maker | miss_fallback
     paid_taker_fee: bool = False      # 1c/ct fee applies to marketable + fallback entries
+    # P0 #5 decision (operator, 2026-05-25): fee is NOT modeled in computed
+    # pnl_cents -- this flag only records the mode. The Bug-4 / paper try_fill
+    # PnL math is left untouched (highest-risk surface; no edits near the
+    # idempotent chokepoint before the live window). Computed PnL is ~1c/ct
+    # optimistic on taker entries in BOTH paper and live; the Kalshi account
+    # reconciliation reflects true fees. Paper findings report raw + fee-haircut
+    # PnL; live cash is fee-accurate via exchange-side deduction.
     strategy: str = ""                # "exit" | "hold" (set at fill from exit table)
     exit_band_x: Optional[int] = None  # +X cents for exit cells; None for hold cells
     exit_cell_id: int = 0             # 1c cell used for the exit-table lookup (entry-priced)

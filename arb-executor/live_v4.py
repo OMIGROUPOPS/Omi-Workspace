@@ -294,6 +294,17 @@ class Position:
     settled: bool = False
     pnl_cents: float = 0.0
 
+    # ---- v4 bid-laying fields ----
+    is_v4: bool = False
+    regime_at_posting: str = ""        # e.g. "r85_94" at the minute the bid was placed
+    target_price: int = 0             # the regime-offset target bid (resting maker)
+    placement_minute: int = 0         # minutes-before-start this leg's bid was scheduled
+    entry_mode: str = ""              # marketable_taker | resting_maker | miss_fallback
+    paid_taker_fee: bool = False      # 1c/ct fee applies to marketable + fallback entries
+    strategy: str = ""                # "exit" | "hold" (set at fill from exit table)
+    exit_band_x: Optional[int] = None  # +X cents for exit cells; None for hold cells
+    exit_cell_id: int = 0             # 1c cell used for the exit-table lookup (entry-priced)
+
 # -------------------------------------------------------------------------
 # Paper Mode (spec sha 32f29fda)
 # -------------------------------------------------------------------------
@@ -2285,6 +2296,21 @@ class LiveV3:
             # No book or degenerate → skip fv_single
 
         return None, "no_anchor", None
+
+    def round5_detector_fire(self, ticker, current_ask, target_bid):
+        # TODO: Implement the 2-of-4 composite per bid_laying_policy_v1.md Section 5
+        # (volume burst + bilateral taker flow + BBO velocity + distortion spike).
+        # When it fires AND current_ask <= target_bid + 5c, cross immediately
+        # (Round-6 Stage-3 velocity override); when it fires AND ask > target+5c,
+        # the spread is pathological -> hold (do NOT cross).
+        # Currently stubbed False -- the static placement is never overridden.
+        # Reusable components for the real build (per live_v3_v4_inventory #6b):
+        #   volume-burst    -> VolumeTracker rolling counts
+        #   bilateral taker -> taker_side mix (book.last_trade_side)
+        #   BBO velocity    -> tennis_stb.py capture_depth_snapshot deltas
+        #   distortion      -> arb_executor_ws.py ~628 combined yes+no > $1
+        # Follow-up patch (production week 1).
+        return False
 
     async def routing_tick(self):
         """Entry routing with FV-first anchor, A/B/C scenarios, cadence gating."""

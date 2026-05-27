@@ -1,7 +1,7 @@
 {
-  "producer_commit_hash": "ec7cdae44bf6efd52eaa79c67823c4b08e25d4ff",
-  "run_timestamp_utc": "2026-05-27 21:00:56 UTC",
-  "run_timestamp_et": "2026-05-27 17:00:56 ET",
+  "producer_commit_hash": "a18b5be6e3f4a097fcce04b249c5ce5696e3cdb5",
+  "run_timestamp_utc": "2026-05-27 21:35:27 UTC",
+  "run_timestamp_et": "2026-05-27 17:35:27 ET",
   "path": "A (F35 tier-1/2 live-era cohort; thresholds calibrated to this universe)",
   "input_sha256": {
     "per_minute_features.parquet": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
@@ -20,16 +20,16 @@
     "both_legs_inmatch_tape_ok": 651
   },
   "runtime_per_phase_s": {
-    "sha256_inputs_s": 4.37,
-    "cohort_screen_s": 0.07,
-    "load_tape_s": 4.96,
+    "sha256_inputs_s": 3.79,
+    "cohort_screen_s": 0.04,
+    "load_tape_s": 4.13,
     "probe1_pairing_s": 0.0,
-    "probe2_t20_s": 5.28,
-    "probe3_inmatch_s": 5.47,
-    "probe4_inversion_s": 0.22
+    "probe2_t20_s": 4.94,
+    "probe3_inmatch_s": 4.42,
+    "probe4_inversion_s": 0.11
   },
-  "total_runtime_s": 21.51,
-  "peak_rss_mb": 612.0,
+  "total_runtime_s": 18.38,
+  "peak_rss_mb": 572.8,
   "probes": {
     "probe1_pairing": {
       "cohort_tickers": 1326,
@@ -75,6 +75,6 @@
     }
   },
   "halted": false,
-  "output_sha256": "5442e313306f031911429ff8902ff3c779b6ac308ded8d9ffca33975e7d6f772",
+  "output_sha256": "cedbf559ec5f123f3f9f68307ff1847498ca58c3ceb36d020bbd98a921eebeed",
   "primitive_rows": 651
 }

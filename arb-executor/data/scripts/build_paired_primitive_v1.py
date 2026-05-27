@@ -92,7 +92,7 @@ def load_tape(cohort_tickers):
     """Column-projected, ticker-pushdown load of per_minute tape for the cohort.
     C28: never load full columns into pandas; filter to cohort first."""
     cols = ["ticker", "minute_ts", "time_to_match_start_min",
-            "yes_ask_close", "yes_bid_close",
+            "yes_ask_close", "price_high",
             "match_start_ts", "settlement_ts", "settlement_value"]
     dataset = ds.dataset(PMF, format="parquet")
     tbl = dataset.to_table(
@@ -351,12 +351,20 @@ def build_rows(p3_events, paired_ev, by_ticker, leg_t20):
             stt = int(g["settlement_ts"].dropna().iloc[0])
             sv = float(g["settlement_value"].dropna().iloc[-1])
             win = g[(g["minute_ts"] >= ms) & (g["minute_ts"] <= stt - SETTLE_TAIL_S)]
-            jb = win["yes_bid_close"].idxmax()
-            peak_bid_c = round(float(win.loc[jb, "yes_bid_close"]) * 100)
-            peak_bid_ts = int(win.loc[jb, "minute_ts"])
+            # exit-fill threshold = price_high (max trade print per minute,
+            # per_minute_universe spec 2.3). A resting sell fills when a trade
+            # prints at/above the sell price. Non-null only on minutes that traded.
+            ph = win[win["price_high"].notna()]
+            if len(ph) == 0:
+                peak_trade_c = None
+                peak_trade_ts = None
+            else:
+                jt = ph["price_high"].idxmax()
+                peak_trade_c = round(float(ph.loc[jt, "price_high"]) * 100)
+                peak_trade_ts = int(ph.loc[jt, "minute_ts"])
             legs.append(dict(
                 ticker=tk, anchor_d=anchor_d, anchor_c=round(anchor_d * 100),
-                ttms=int(round(ttms)), peak_bid_c=peak_bid_c, peak_bid_ts=peak_bid_ts,
+                ttms=int(round(ttms)), peak_trade_c=peak_trade_c, peak_trade_ts=peak_trade_ts,
                 settle_v=sv, realized_c=round(sv * 100), ms=ms, st=stt))
         # leg labeling: A = higher anchor; tie-break alphabetical on ticker
         a, b = legs
@@ -370,12 +378,12 @@ def build_rows(p3_events, paired_ev, by_ticker, leg_t20):
             settlement_winner_side=winner,
             match_duration_min=round((settlement_ts - match_start_ts) / 60.0, 3),
             legA_anchor_cents=a["anchor_c"], legA_anchor_dollars=a["anchor_d"],
-            legA_T20m_ttms_min=a["ttms"], legA_peak_bid_inmatch_cents=a["peak_bid_c"],
-            legA_peak_bid_inmatch_ts=a["peak_bid_ts"], legA_settle_value=a["settle_v"],
+            legA_T20m_ttms_min=a["ttms"], legA_peak_trade_inmatch_cents=a["peak_trade_c"],
+            legA_peak_trade_inmatch_ts=a["peak_trade_ts"], legA_settle_value=a["settle_v"],
             legA_realized_at_settlement_cents=a["realized_c"],
             legB_anchor_cents=b["anchor_c"], legB_anchor_dollars=b["anchor_d"],
-            legB_T20m_ttms_min=b["ttms"], legB_peak_bid_inmatch_cents=b["peak_bid_c"],
-            legB_peak_bid_inmatch_ts=b["peak_bid_ts"], legB_settle_value=b["settle_v"],
+            legB_T20m_ttms_min=b["ttms"], legB_peak_trade_inmatch_cents=b["peak_trade_c"],
+            legB_peak_trade_inmatch_ts=b["peak_trade_ts"], legB_settle_value=b["settle_v"],
             legB_realized_at_settlement_cents=b["realized_c"],
             pair_combined_anchor_cents=a["anchor_c"] + b["anchor_c"],
             pair_skew_cents=a["anchor_c"] - b["anchor_c"],
@@ -392,12 +400,12 @@ def emit_primitive(rows):
         ("settlement_ts", pa.int64()), ("settlement_winner_side", pa.string()),
         ("match_duration_min", pa.float64()),
         ("legA_anchor_cents", pa.int64()), ("legA_anchor_dollars", pa.float64()),
-        ("legA_T20m_ttms_min", pa.int64()), ("legA_peak_bid_inmatch_cents", pa.int64()),
-        ("legA_peak_bid_inmatch_ts", pa.int64()), ("legA_settle_value", pa.float64()),
+        ("legA_T20m_ttms_min", pa.int64()), ("legA_peak_trade_inmatch_cents", pa.int64()),
+        ("legA_peak_trade_inmatch_ts", pa.int64()), ("legA_settle_value", pa.float64()),
         ("legA_realized_at_settlement_cents", pa.int64()),
         ("legB_anchor_cents", pa.int64()), ("legB_anchor_dollars", pa.float64()),
-        ("legB_T20m_ttms_min", pa.int64()), ("legB_peak_bid_inmatch_cents", pa.int64()),
-        ("legB_peak_bid_inmatch_ts", pa.int64()), ("legB_settle_value", pa.float64()),
+        ("legB_T20m_ttms_min", pa.int64()), ("legB_peak_trade_inmatch_cents", pa.int64()),
+        ("legB_peak_trade_inmatch_ts", pa.int64()), ("legB_settle_value", pa.float64()),
         ("legB_realized_at_settlement_cents", pa.int64()),
         ("pair_combined_anchor_cents", pa.int64()), ("pair_skew_cents", pa.int64()),
         ("pair_anchor_sum_off_100c", pa.int64()),
@@ -445,6 +453,8 @@ def write_handoff(probes, summary, rows, u_et, u_utc):
     winA = sum(1 for r in rows if r["settlement_winner_side"] == "A")
     winB = sum(1 for r in rows if r["settlement_winner_side"] == "B")
     winN = sum(1 for r in rows if r["settlement_winner_side"] == "NONE")
+    nullA = sum(1 for r in rows if r["legA_peak_trade_inmatch_cents"] is None)
+    nullB = sum(1 for r in rows if r["legB_peak_trade_inmatch_cents"] is None)
     samp = random.sample(rows, min(5, len(rows)))
 
     def dist(a):
@@ -476,6 +486,10 @@ def write_handoff(probes, summary, rows, u_et, u_utc):
          f"- {dist(dur)}\n",
          "## settlement winner side\n",
          f"- A: {winA}, B: {winB}, NONE: {winN}\n",
+         "## peak-trade exit-fill coverage (price_high null edge case)\n",
+         f"- legs with zero non-null price_high in [match_start, settlement-300s]: "
+         f"legA {nullA}, legB {nullB} (of {len(rows)} each)\n",
+         f"- {'MATERIAL — surface for review.' if (nullA+nullB) > 0 else 'None — every in-match leg traded, as expected on the F35 cohort.'}\n",
          "## 5 random sample rows\n", "```json", json.dumps(samp, indent=2), "```\n",
          "## Honest unknowns / calibration context (G23)\n",
          "- **Why the floor numbers differ from PAIRING_DIAGNOSTIC.md:** the prior halted "
@@ -496,7 +510,14 @@ def write_handoff(probes, summary, rows, u_et, u_utc):
          f"settled 1.0 (data anomaly). This run: {winN}.\n",
          "- **Premarket excluded by construction:** the forward walk is match_start → "
          "settlement-300s only. R hits in premarket (the +1c/+2c/+3c trap) are out of scope "
-         "here and handled separately downstream.\n"]
+         "here and handled separately downstream.\n",
+         "- **Exit-fill threshold = price_high (max trade print/min), not yes_bid_close** "
+         "(corrected from a18b5be). A resting sell fills when a trade prints at/above the sell "
+         "price, so `legX_peak_trade_inmatch_cents = max(price_high*100)` over non-null "
+         "price_high in [match_start, settlement-300s]. No depth qualification — we trade "
+         "5-10ct, not 250. Downstream: `legX_hit_R(R) = peak_trade_inmatch_cents >= "
+         "anchor + R`; realized = (anchor+R) if hit else realized_at_settlement_cents. "
+         "Null peak_trade (no in-match trade) surfaced above.\n"]
     path.write_text("\n".join(L))
 
 

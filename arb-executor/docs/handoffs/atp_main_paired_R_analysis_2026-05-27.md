@@ -54,7 +54,7 @@ Measured in-sample "uplift" is **+$909.60 (+91.7%)** joint EV (v6 $991.80 → pa
 | 57-58 | 45-46 | 43 | 18 | 39 | 11 | 39 | 51% | 44.1 | 49.0 | +4.9 |
 | 69-71 | 33-35 | 30 | 17 | 24 | 18 | 24 | 60% | 51.0 | 53.9 | +2.9 |
 | 86-89 | 10-16 | 89 | 11 | 6 | 11 | 6 | 57% | 63.2 | 63.2 | +0.0 |
-| 80-82 | 20-22 | 63 | 1 | 52 | 1 | HOLD | — | 50.0 | 45.3 | +-4.7 |
-| 90-94 | 5-9 | 54 | 2 | 63 | 1 | 45 | 31% | 59.0 | 53.6 | +-5.4 |
+| 80-82 | 20-22 | 63 | 1 | 52 | 1 | HOLD | — | 50.0 | 45.3 | -4.7 |
+| 90-94 | 5-9 | 54 | 2 | 63 | 1 | 45 | 31% | 59.0 | 53.6 | -5.4 |
 
 *Read-only, local. The Δ column is in-sample (overfit) and is NOT deployable gain — see headline. v6 zone-aware per-leg R stands; paired optimization adds no structural edge (EV is separable).*

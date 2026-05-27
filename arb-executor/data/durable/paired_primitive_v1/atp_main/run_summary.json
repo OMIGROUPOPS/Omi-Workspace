@@ -1,0 +1,83 @@
+{
+  "producer_commit_hash": "bde78eb9da8301607d9a37ac144eb21a4803a8b2",
+  "run_timestamp_utc": "2026-05-27 20:41:35 UTC",
+  "run_timestamp_et": "2026-05-27 16:41:35 ET",
+  "input_sha256": {
+    "per_minute_features.parquet": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
+    "n_profile.parquet": "a7ed11550e8226f18c22069cc5937d35b184e7f0d2a9264435604a0270c1837e",
+    "atp_main_descriptive_1c.parquet": "2d836bf8504d7c77bd50cc152c7057bfbe49b25c08baf3b99864b95bffcd6427"
+  },
+  "input_sha256_expected_match": {
+    "per_minute_features.parquet": true,
+    "n_profile.parquet": true
+  },
+  "cohort_definition": "ATP_MAIN F35 tier-1/2 live-era (match_start_method in {both_sides_*}, tier==live, total_volume_in_match>0)",
+  "n_at_each_step": {
+    "cohort_tickers": 1326,
+    "total_events": 663,
+    "paired_events": 663,
+    "both_legs_t20_observable": 651,
+    "both_legs_inmatch_tape_ok": 651
+  },
+  "runtime_per_phase_s": {
+    "sha256_inputs_s": 7.35,
+    "cohort_screen_s": 0.45,
+    "load_tape_s": 7.08,
+    "probe1_pairing_s": 0.01,
+    "probe2_t20_s": 11.43,
+    "probe3_inmatch_s": 10.95,
+    "probe4_inversion_s": 0.19
+  },
+  "total_runtime_s": 39.07,
+  "peak_rss_mb": 636.5,
+  "probes": {
+    "probe1_pairing": {
+      "cohort_tickers": 1326,
+      "total_events": 663,
+      "paired_events": 663,
+      "singleton_events": 0,
+      "over_paired_events": 0,
+      "pairing_rate_pct": 100.0,
+      "expected_pct": 85.52,
+      "halt_band": [
+        80.0,
+        92.0
+      ],
+      "halt_triggered": true
+    },
+    "probe2_t20": {
+      "paired_events_in": 663,
+      "both_legs_t20_observable": 651,
+      "one_leg_only": 7,
+      "neither_leg": 5,
+      "t20_window": [
+        18.0,
+        22.0
+      ],
+      "halt_min_events": 1500,
+      "halt_triggered": true
+    },
+    "probe3_inmatch": {
+      "both_t20_in": 651,
+      "both_legs_inmatch_tape_ok": 651,
+      "dropped": 0,
+      "drop_pct_from_probe2": 0.0,
+      "severe_loss_flag": false
+    },
+    "probe4_inversion": {
+      "n": 651,
+      "mean": 101.99,
+      "median": 102,
+      "std": 2.48,
+      "p10": 101.0,
+      "p25": 101.0,
+      "p75": 102.0,
+      "p90": 103.0,
+      "count_off_gt_3c": 23,
+      "pct_within_3c": 96.47
+    }
+  },
+  "halted": true,
+  "output_sha256": null,
+  "primitive_rows": 0
+}

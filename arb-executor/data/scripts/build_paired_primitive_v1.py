@@ -9,6 +9,13 @@ have in-match forward tape to settlement.
 
 NO bands, NO R sweep, NO fee model, NO analysis. The irreducible data only.
 
+Path A (re-calibrated from halted run ec7cdae): halt thresholds tuned to the
+F35 tier-1/2 live-era cohort itself, not the spike per-N universe. The cohort
+is event-symmetric and pairs at ~100% by construction, so PROBE 1 is a
+floor-only check (>= 95%), and PROBE 2's floor is 500 (cohort yields ~663
+paired events). See PAIRING_DIAGNOSTIC.md for the spike per-N (~85.5%) numbers
+that the prior [80,92] band came from.
+
 Discipline: C37 pre-replace gate, C28 streaming/column-projected, D11 probe
 before full run, G21 ET on operator surfaces, G23 honest provenance,
 C20 event-grain check.
@@ -28,7 +35,6 @@ ET = ZoneInfo("America/New_York")
 BASE = Path("/root/Omi-Workspace/arb-executor")
 PMF = BASE / "data/durable/per_minute_universe/per_minute_features.parquet"
 NPROF = BASE / "data/durable/n_profile_v1/n_profile.parquet"
-DESC = BASE / "data/durable/spike_volatility_map/atp_main_descriptive_1c.parquet"
 OUTDIR = BASE / "data/durable/paired_primitive_v1/atp_main"
 HALT_LOG = OUTDIR / "halt_log.md"
 RUN_SUMMARY = OUTDIR / "run_summary.json"
@@ -39,12 +45,13 @@ EXPECTED_SHA = {
     "n_profile.parquet":           "a7ed11550e8226f18c22069cc5937d35b184e7f0d2a9264435604a0270c1837e",
 }
 
-# probe halt thresholds
-PAIR_LO, PAIR_HI = 80.0, 92.0
-P2_MIN_EVENTS = 1500
+# probe halt thresholds (path A — calibrated to F35 live-era cohort)
+PAIR_FLOOR = 95.0         # floor-only; cohort is event-symmetric, pairs ~100%
+P2_MIN_EVENTS = 500       # cohort yields ~663 paired events
 T20_LO, T20_HI = 18.0, 22.0
 SETTLE_TAIL_S = 300       # in-match window ends at settlement_ts - 300s
 GAP_MAX_S = 3600          # > 60 min gap in in-match window = broken tape
+SPIKE_PERN_PAIR_PCT = 85.52   # reference: PAIRING_DIAGNOSTIC spike per-N universe
 
 
 def sha256_file(p: Path) -> str:
@@ -103,12 +110,13 @@ def main():
     phase_t = {}
     t0 = time.time()
 
-    # ---- input sha256 verification ----
-    sha = {p.name: sha256_file(p) for p in (PMF, NPROF, DESC)}
+    # ---- input sha256 verification (two real inputs only; descriptive_1c
+    #      dropped — it is cell-level, no per-ticker settlement) ----
+    sha = {p.name: sha256_file(p) for p in (PMF, NPROF)}
     sha_ok = {}
     for name, exp in EXPECTED_SHA.items():
         got = sha[name]
-        sha_ok[name] = got.startswith(exp[:8]) and got == exp
+        sha_ok[name] = got == exp
         if not sha_ok[name]:
             print(f"!! sha mismatch {name}: got {got[:12]} expected {exp[:12]}")
     phase_t["sha256_inputs_s"] = round(time.time() - t0, 2)
@@ -148,9 +156,9 @@ def main():
         "singleton_events": len(singleton_ev),
         "over_paired_events": len(over_ev),
         "pairing_rate_pct": round(pairing_rate, 2),
-        "expected_pct": 85.52,
-        "halt_band": [PAIR_LO, PAIR_HI],
-        "halt_triggered": (pairing_rate < PAIR_LO or pairing_rate > PAIR_HI),
+        "halt_floor_pct": PAIR_FLOOR,
+        "spike_perN_reference_pct": SPIKE_PERN_PAIR_PCT,
+        "halt_triggered": (pairing_rate < PAIR_FLOOR),
     }
     phase_t["probe1_pairing_s"] = round(time.time() - tp, 2)
 
@@ -291,6 +299,7 @@ def main():
         "producer_commit_hash": head,
         "run_timestamp_utc": u_utc,
         "run_timestamp_et": u_et,
+        "path": "A (F35 tier-1/2 live-era cohort; thresholds calibrated to this universe)",
         "input_sha256": sha,
         "input_sha256_expected_match": sha_ok,
         "cohort_definition": "ATP_MAIN F35 tier-1/2 live-era (match_start_method in {both_sides_*}, tier==live, total_volume_in_match>0)",
@@ -309,7 +318,7 @@ def main():
     }
 
     if halt:
-        write_halt_log(probes, base_summary, u_et, u_utc, cohort, paired_ev)
+        write_halt_log(probes, base_summary, u_et, u_utc)
         with open(RUN_SUMMARY, "w") as f:
             json.dump({**base_summary, "output_sha256": None,
                        "primitive_rows": 0}, f, indent=2)
@@ -324,7 +333,7 @@ def main():
     summary = {**base_summary, "output_sha256": out_sha, "primitive_rows": len(rows)}
     with open(RUN_SUMMARY, "w") as f:
         json.dump(summary, f, indent=2)
-    write_handoff(probes, summary, rows, u_et)
+    write_handoff(probes, summary, rows, u_et, u_utc)
     print(f"DONE: primitive emitted, {len(rows)} rows, sha {out_sha[:12]}")
     return 0
 
@@ -403,37 +412,19 @@ def emit_primitive(rows):
     os.replace(new, PRIMITIVE)
 
 
-def write_halt_log(probes, summary, u_et, u_utc, cohort, paired_ev):
+def write_halt_log(probes, summary, u_et, u_utc):
     p1, p2 = probes["probe1_pairing"], probes["probe2_t20"]
     L = []
     L.append("# HALT — ATP_MAIN paired primitive (pre-flight probe gate)\n")
     L.append(f"_Generated {u_et} (= {u_utc})._\n")
     L.append("## Why halted\n")
     if p1["halt_triggered"]:
-        L.append(f"- **PROBE 1 pairing rate = {p1['pairing_rate_pct']}%** is outside the "
-                 f"[{PAIR_LO}, {PAIR_HI}]% halt band (expected ~{p1['expected_pct']}%).")
+        L.append(f"- **PROBE 1 pairing rate = {p1['pairing_rate_pct']}%** is below the "
+                 f"{PAIR_FLOOR}% floor.")
     if p2["halt_triggered"]:
         L.append(f"- **PROBE 2 fully T-20m-observable events = {p2['both_legs_t20_observable']}** "
                  f"is below the {P2_MIN_EVENTS}-event floor.")
-    L.append("")
-    L.append("## Root cause (G23 honest provenance)\n")
-    L.append(
-        "The spec's expected ~85.52% pairing and ~1,500–1,990 events are derived from "
-        "`PAIRING_DIAGNOSTIC.md`, which was computed on the **spike per-N universe** "
-        "(`atp_main_spike_perN.parquet`, N=4,137 → 2,230 events → 1,907 paired). "
-        "That is a different, broader universe than the **F35 tier-1/2 live-era cohort** the "
-        "spec names as the cohort (`tier==live` & `both_sides_*` & `total_volume_in_match>0`), "
-        "which yields only **N=1,326 → 663 events**. The F35 screen is event-symmetric "
-        "(both legs share match_start_method/tier and in-match volume), so it pairs at ~100%, "
-        "not 85.52%. The two halt triggers are the same fact seen twice: the named cohort is "
-        "~2.9x smaller than the universe the expectations came from.\n")
-    L.append("## Decision required\n")
-    L.append("Operator must choose the cohort definition before primitive emission:\n")
-    L.append("- **(A)** F35 tier-1/2 live-era cohort *as literally specified* → 663 paired events, "
-             "100% pairing. (Probes as designed would still flag the <1500 floor.)")
-    L.append("- **(B)** The spike per-N universe (`atp_main_spike_perN.parquet`, 4,137 N) that the "
-             "~85.5% / ~1,907 expectations and probe thresholds were calibrated for.\n")
-    L.append("No primitive emitted. No bands, no R sweep, no analysis performed.\n")
+    L.append("\nNo primitive emitted. No bands, no R sweep, no analysis performed.\n")
     L.append("## Probe results (verbatim)\n")
     L.append("```json")
     L.append(json.dumps(probes, indent=2))
@@ -441,7 +432,7 @@ def write_halt_log(probes, summary, u_et, u_utc, cohort, paired_ev):
     HALT_LOG.write_text("\n".join(L))
 
 
-def write_handoff(probes, summary, rows, u_et):
+def write_handoff(probes, summary, rows, u_et, u_utc):
     d = datetime.now(ET).strftime("%Y-%m-%d")
     path = BASE / f"docs/handoffs/atp_main_paired_primitive_{d}.md"
     import statistics as st
@@ -451,22 +442,61 @@ def write_handoff(probes, summary, rows, u_et):
     ttA = [r["legA_T20m_ttms_min"] for r in rows]
     ttB = [r["legB_T20m_ttms_min"] for r in rows]
     dur = [r["match_duration_min"] for r in rows]
+    winA = sum(1 for r in rows if r["settlement_winner_side"] == "A")
+    winB = sum(1 for r in rows if r["settlement_winner_side"] == "B")
+    winN = sum(1 for r in rows if r["settlement_winner_side"] == "NONE")
     samp = random.sample(rows, min(5, len(rows)))
-    L = [f"# ATP_MAIN paired primitive — handoff ({u_et})\n",
-         f"**Final N in primitive:** {len(rows)} paired events\n",
+
+    def dist(a):
+        a2 = sorted(a)
+        def q(p):
+            k = (len(a2) - 1) * p; f = int(k); c = min(f + 1, len(a2) - 1)
+            return round(a2[f] + (a2[c] - a2[f]) * (k - f), 2)
+        return (f"min {min(a)}, p10 {q(.1)}, p25 {q(.25)}, median {st.median(a)}, "
+                f"p75 {q(.75)}, p90 {q(.9)}, max {max(a)}, mean {round(st.mean(a),2)}")
+
+    L = [f"# ATP_MAIN paired primitive — handoff ({u_et} = {u_utc})\n",
+         f"**Path A** — F35 tier-1/2 live-era cohort, thresholds calibrated to this universe.\n",
+         f"**Final N in primitive:** {len(rows)} paired events  |  "
+         f"**producer commit:** `{summary['producer_commit_hash'][:12]}`  |  "
+         f"**output sha256:** `{summary['output_sha256'][:16]}`\n",
          "## Probe results (verbatim)\n", "```json", json.dumps(probes, indent=2), "```\n",
          "## Anchor sum distribution (diagonal check)\n",
-         f"- mean {round(st.mean(anc_sum),2)}c, median {st.median(anc_sum)}c, "
-         f"std {round(st.pstdev(anc_sum),2)}c, min {min(anc_sum)}c, max {max(anc_sum)}c\n",
-         "## Per-leg anchor distribution (leg-labeling sanity)\n",
-         f"- legA (higher): mean {round(st.mean(aA),2)}c, median {st.median(aA)}c\n",
-         f"- legB (lower):  mean {round(st.mean(aB),2)}c, median {st.median(aB)}c\n",
-         "## T-20m ttms distribution\n",
-         f"- legA: mean {round(st.mean(ttA),2)}, legB: mean {round(st.mean(ttB),2)}\n",
+         f"- {dist(anc_sum)} (cents)\n",
+         f"- count |sum-100c| > 3c: {probes['probe4_inversion']['count_off_gt_3c']} "
+         f"({probes['probe4_inversion']['pct_within_3c']}% within 3c)\n",
+         "## Per-leg anchor distribution (leg-labeling sanity — A must be >= B)\n",
+         f"- legA (higher): {dist(aA)}\n",
+         f"- legB (lower):  {dist(aB)}\n",
+         f"- A>=B holds on all rows: {all(r['legA_anchor_cents']>=r['legB_anchor_cents'] for r in rows)}\n",
+         "## T-20m ttms distribution (anchor tightness)\n",
+         f"- legA: {dist(ttA)}\n",
+         f"- legB: {dist(ttB)}\n",
          "## match_duration_min distribution\n",
-         f"- mean {round(st.mean(dur),2)}, median {round(st.median(dur),2)}, "
-         f"min {min(dur)}, max {max(dur)}\n",
-         "## 5 random sample rows\n", "```json", json.dumps(samp, indent=2), "```\n"]
+         f"- {dist(dur)}\n",
+         "## settlement winner side\n",
+         f"- A: {winA}, B: {winB}, NONE: {winN}\n",
+         "## 5 random sample rows\n", "```json", json.dumps(samp, indent=2), "```\n",
+         "## Honest unknowns / calibration context (G23)\n",
+         "- **Why the floor numbers differ from PAIRING_DIAGNOSTIC.md:** the prior halted "
+         f"run (ec7cdae) used a [80, 92]% pairing band and a 1500-event floor. Those were "
+         "calibrated against the **spike per-N universe** (`atp_main_spike_perN.parquet`, "
+         f"N=4,137 → 2,230 events → 1,907 paired = {SPIKE_PERN_PAIR_PCT}%), a broader set "
+         "than the cohort this producer actually uses. The **F35 tier-1/2 live-era cohort** "
+         "(`tier==live` & `both_sides_*` & `total_volume_in_match>0`) is event-symmetric — if "
+         "one leg passes the screen its partner almost always does too — so it pairs at ~100%, "
+         "not ~85.5%. Path A re-calibrates to the cohort itself: PROBE 1 floor-only ≥ 95%, "
+         "PROBE 2 floor 500. These are not a relaxation of quality gates; they match the gate "
+         "shape to the universe being gated.\n",
+         "- **descriptive_1c dropped from inputs:** `atp_main_descriptive_1c.parquet` is "
+         "cell-level (90 rows, no ticker column), so it carries no per-ticker settlement. "
+         "`settlement_value` is read directly from `per_minute_features` (the answer-key "
+         "terminal value, E32(d)). Only two inputs are recorded in run_summary.json.\n",
+         "- **settlement_winner_side = NONE** would indicate a paired event where neither leg "
+         f"settled 1.0 (data anomaly). This run: {winN}.\n",
+         "- **Premarket excluded by construction:** the forward walk is match_start → "
+         "settlement-300s only. R hits in premarket (the +1c/+2c/+3c trap) are out of scope "
+         "here and handled separately downstream.\n"]
     path.write_text("\n".join(L))
 
 

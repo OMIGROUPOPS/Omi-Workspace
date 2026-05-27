@@ -4,17 +4,18 @@ build_paired_primitive_v1.py — ATP_MAIN paired-event primitive emitter.
 
 Single concern: emit the irreducible paired-event primitive from Druid's
 Foundational (per_minute_features). One row per paired ATP_MAIN event where
-BOTH legs are anchored at T-20m, both in the F35 live-era cohort, and both
+BOTH legs are anchored at T-20m, both in the atlas N cohort, and both
 have in-match forward tape to settlement.
 
 NO bands, NO R sweep, NO fee model, NO analysis. The irreducible data only.
 
-Path A (re-calibrated from halted run ec7cdae): halt thresholds tuned to the
-F35 tier-1/2 live-era cohort itself, not the spike per-N universe. The cohort
-is event-symmetric and pairs at ~100% by construction, so PROBE 1 is a
-floor-only check (>= 95%), and PROBE 2's floor is 500 (cohort yields ~663
-paired events). See PAIRING_DIAGNOSTIC.md for the spike per-N (~85.5%) numbers
-that the prior [80,92] band came from.
+Cohort = atlas N universe: the ticker list from atp_main_spike_perN.parquet
+(4,137 N) directly, with NO tier filter and NO F35 screen. This is the same N
+universe the atlas/spike-volatility map was built on. It is NOT event-symmetric,
+so it pairs at ~85.5% (PAIRING_DIAGNOSTIC.md). PROBE 1 uses the [80,92]% band
+and PROBE 2 a 1500-event floor — the universe-appropriate thresholds from
+ec7cdae. (The path-A F35 screen + >=95% floor were inappropriately inherited
+and are reverted here.)
 
 Discipline: C37 pre-replace gate, C28 streaming/column-projected, D11 probe
 before full run, G21 ET on operator surfaces, G23 honest provenance,
@@ -34,7 +35,7 @@ import pyarrow.compute as pc
 ET = ZoneInfo("America/New_York")
 BASE = Path("/root/Omi-Workspace/arb-executor")
 PMF = BASE / "data/durable/per_minute_universe/per_minute_features.parquet"
-NPROF = BASE / "data/durable/n_profile_v1/n_profile.parquet"
+SPIKE_PERN = BASE / "data/durable/spike_volatility_map/atp_main_spike_perN.parquet"
 OUTDIR = BASE / "data/durable/paired_primitive_v1/atp_main"
 HALT_LOG = OUTDIR / "halt_log.md"
 RUN_SUMMARY = OUTDIR / "run_summary.json"
@@ -42,12 +43,15 @@ PRIMITIVE = OUTDIR / "primitive.parquet"
 
 EXPECTED_SHA = {
     "per_minute_features.parquet": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
-    "n_profile.parquet":           "a7ed11550e8226f18c22069cc5937d35b184e7f0d2a9264435604a0270c1837e",
 }
 
-# probe halt thresholds (path A — calibrated to F35 live-era cohort)
-PAIR_FLOOR = 95.0         # floor-only; cohort is event-symmetric, pairs ~100%
-P2_MIN_EVENTS = 500       # cohort yields ~663 paired events
+# probe halt thresholds (cohort = atp_main_spike_perN atlas universe).
+# PROBE 1 band [80, 92] is the universe-appropriate check restored from the
+# original run ec7cdae — the spike per-N universe pairs at ~85.5% by design,
+# NOT event-symmetric like the F35 cohort, so the path-A floor-only >=95% does
+# not apply here. PROBE 2 floor 1500 (atlas yields ~1768 paired events).
+PAIR_LO, PAIR_HI = 80.0, 92.0
+P2_MIN_EVENTS = 1500
 T20_LO, T20_HI = 18.0, 22.0
 SETTLE_TAIL_S = 300       # in-match window ends at settlement_ts - 300s
 GAP_MAX_S = 3600          # > 60 min gap in in-match window = broken tape
@@ -73,19 +77,12 @@ def git_head() -> str:
 
 
 def select_cohort():
-    """F35-reliable tier-1/2 live-era ATP_MAIN cohort — same screen as
-    inmatch_bounce_surface_v1 / atlas select_cohort()."""
-    t = pq.read_table(NPROF, columns=[
-        "ticker", "category", "match_start_method", "tier", "total_volume_in_match"])
-    import pandas as pd
-    df = t.to_pandas()
-    coh = df[
-        (df["category"] == "ATP_MAIN")
-        & (df["match_start_method"].isin(["both_sides_price_discovery", "both_sides_trade_density"]))
-        & (df["tier"] == "live")
-        & (df["total_volume_in_match"] > 0)
-    ]["ticker"].tolist()
-    return sorted(set(coh))
+    """ATP_MAIN cohort = the N universe the atlas was built on: the ticker list
+    from atp_main_spike_perN.parquet (4,137 N) directly. No tier filter, no F35
+    screen — that screen was inappropriately inherited in path A and is reverted
+    here. Pairs at ~85.5% (PAIRING_DIAGNOSTIC), not event-symmetric."""
+    t = pq.read_table(SPIKE_PERN, columns=["ticker"])
+    return sorted(set(t.column("ticker").to_pylist()))
 
 
 def load_tape(cohort_tickers):
@@ -110,9 +107,9 @@ def main():
     phase_t = {}
     t0 = time.time()
 
-    # ---- input sha256 verification (two real inputs only; descriptive_1c
-    #      dropped — it is cell-level, no per-ticker settlement) ----
-    sha = {p.name: sha256_file(p) for p in (PMF, NPROF)}
+    # ---- input sha256 verification. per_minute_features = tape/anchor/settle;
+    #      atp_main_spike_perN = cohort source (replaces the F35 n_profile screen). ----
+    sha = {p.name: sha256_file(p) for p in (PMF, SPIKE_PERN)}
     sha_ok = {}
     for name, exp in EXPECTED_SHA.items():
         got = sha[name]
@@ -156,9 +153,9 @@ def main():
         "singleton_events": len(singleton_ev),
         "over_paired_events": len(over_ev),
         "pairing_rate_pct": round(pairing_rate, 2),
-        "halt_floor_pct": PAIR_FLOOR,
-        "spike_perN_reference_pct": SPIKE_PERN_PAIR_PCT,
-        "halt_triggered": (pairing_rate < PAIR_FLOOR),
+        "halt_band": [PAIR_LO, PAIR_HI],
+        "expected_pct": SPIKE_PERN_PAIR_PCT,
+        "halt_triggered": (pairing_rate < PAIR_LO or pairing_rate > PAIR_HI),
     }
     phase_t["probe1_pairing_s"] = round(time.time() - tp, 2)
 
@@ -299,10 +296,10 @@ def main():
         "producer_commit_hash": head,
         "run_timestamp_utc": u_utc,
         "run_timestamp_et": u_et,
-        "path": "A (F35 tier-1/2 live-era cohort; thresholds calibrated to this universe)",
+        "path": "atlas N universe (atp_main_spike_perN.parquet, 4137 N; no F35/tier screen)",
         "input_sha256": sha,
         "input_sha256_expected_match": sha_ok,
-        "cohort_definition": "ATP_MAIN F35 tier-1/2 live-era (match_start_method in {both_sides_*}, tier==live, total_volume_in_match>0)",
+        "cohort_definition": "ATP_MAIN atlas N universe: ticker list from atp_main_spike_perN.parquet (4137 N), no tier/F35 screen",
         "n_at_each_step": {
             "cohort_tickers": len(cohort),
             "total_events": total_events,
@@ -427,8 +424,8 @@ def write_halt_log(probes, summary, u_et, u_utc):
     L.append(f"_Generated {u_et} (= {u_utc})._\n")
     L.append("## Why halted\n")
     if p1["halt_triggered"]:
-        L.append(f"- **PROBE 1 pairing rate = {p1['pairing_rate_pct']}%** is below the "
-                 f"{PAIR_FLOOR}% floor.")
+        L.append(f"- **PROBE 1 pairing rate = {p1['pairing_rate_pct']}%** is outside the "
+                 f"[{PAIR_LO}, {PAIR_HI}]% band (expected ~{SPIKE_PERN_PAIR_PCT}%).")
     if p2["halt_triggered"]:
         L.append(f"- **PROBE 2 fully T-20m-observable events = {p2['both_legs_t20_observable']}** "
                  f"is below the {P2_MIN_EVENTS}-event floor.")
@@ -466,7 +463,8 @@ def write_handoff(probes, summary, rows, u_et, u_utc):
                 f"p75 {q(.75)}, p90 {q(.9)}, max {max(a)}, mean {round(st.mean(a),2)}")
 
     L = [f"# ATP_MAIN paired primitive — handoff ({u_et} = {u_utc})\n",
-         f"**Path A** — F35 tier-1/2 live-era cohort, thresholds calibrated to this universe.\n",
+         f"**Cohort = atlas N universe** — ticker list from `atp_main_spike_perN.parquet` "
+         f"(4,137 N), no tier/F35 screen. PROBE 1 band [80,92]%, PROBE 2 floor 1500.\n",
          f"**Final N in primitive:** {len(rows)} paired events  |  "
          f"**producer commit:** `{summary['producer_commit_hash'][:12]}`  |  "
          f"**output sha256:** `{summary['output_sha256'][:16]}`\n",
@@ -488,24 +486,27 @@ def write_handoff(probes, summary, rows, u_et, u_utc):
          f"- A: {winA}, B: {winB}, NONE: {winN}\n",
          "## peak-trade exit-fill coverage (price_high null edge case)\n",
          f"- legs with zero non-null price_high in [match_start, settlement-300s]: "
-         f"legA {nullA}, legB {nullB} (of {len(rows)} each)\n",
-         f"- {'MATERIAL — surface for review.' if (nullA+nullB) > 0 else 'None — every in-match leg traded, as expected on the F35 cohort.'}\n",
+         f"legA {nullA}, legB {nullB} (of {len(rows)} each; "
+         f"{round(100.0*(nullA+nullB)/(2*len(rows)),3)}% of legs)\n",
+         f"- {'MATERIAL — surface for review.' if (nullA+nullB) > max(10, 0.01*2*len(rows)) else 'Near-zero / within tolerance — these legs never traded in-match, so peak_trade is null and R can only resolve at settlement.'}\n",
          "## 5 random sample rows\n", "```json", json.dumps(samp, indent=2), "```\n",
          "## Honest unknowns / calibration context (G23)\n",
-         "- **Why the floor numbers differ from PAIRING_DIAGNOSTIC.md:** the prior halted "
-         f"run (ec7cdae) used a [80, 92]% pairing band and a 1500-event floor. Those were "
-         "calibrated against the **spike per-N universe** (`atp_main_spike_perN.parquet`, "
-         f"N=4,137 → 2,230 events → 1,907 paired = {SPIKE_PERN_PAIR_PCT}%), a broader set "
-         "than the cohort this producer actually uses. The **F35 tier-1/2 live-era cohort** "
-         "(`tier==live` & `both_sides_*` & `total_volume_in_match>0`) is event-symmetric — if "
-         "one leg passes the screen its partner almost always does too — so it pairs at ~100%, "
-         "not ~85.5%. Path A re-calibrates to the cohort itself: PROBE 1 floor-only ≥ 95%, "
-         "PROBE 2 floor 500. These are not a relaxation of quality gates; they match the gate "
-         "shape to the universe being gated.\n",
-         "- **descriptive_1c dropped from inputs:** `atp_main_descriptive_1c.parquet` is "
-         "cell-level (90 rows, no ticker column), so it carries no per-ticker settlement. "
-         "`settlement_value` is read directly from `per_minute_features` (the answer-key "
-         "terminal value, E32(d)). Only two inputs are recorded in run_summary.json.\n",
+         "- **Cohort universe reverted to the atlas N set (corrects 49c88be):** the cohort is "
+         "now the ticker list from `atp_main_spike_perN.parquet` (4,137 N) directly — the same "
+         "N universe the atlas/spike-volatility map was built on — with NO tier filter and NO "
+         "F35 screen. The F35 `tier==live` & `both_sides_*` & `total_volume_in_match>0` screen "
+         "used in path A was inappropriately inherited; it produced a 663-event event-symmetric "
+         f"cohort (~100% pairing). This universe pairs at ~{SPIKE_PERN_PAIR_PCT}% "
+         "(PAIRING_DIAGNOSTIC.md), the expected non-symmetric rate.\n",
+         "- **PROBE 1/2 thresholds restored to the universe-appropriate values from ec7cdae:** "
+         f"PROBE 1 band [{int(PAIR_LO)}, {int(PAIR_HI)}]% (admits the ~85.5% atlas pairing), "
+         f"PROBE 2 floor {P2_MIN_EVENTS}. The path-A PROBE 1 floor-only ≥95% was specific to "
+         "the event-symmetric F35 cohort and does NOT apply here — leaving it would have "
+         "false-halted this universe at ~85.5%. PROBE 3/4 unchanged.\n",
+         "- **Inputs:** `per_minute_features` (tape/anchor/settlement, sha-verified 9fde4b5d) "
+         "and `atp_main_spike_perN.parquet` (cohort source). `n_profile_v1` is no longer used. "
+         "`settlement_value` is read from `per_minute_features` (answer-key terminal value, "
+         "E32(d)), not from the spike per-N file. Both inputs' sha256 recorded in run_summary.\n",
          "- **settlement_winner_side = NONE** would indicate a paired event where neither leg "
          f"settled 1.0 (data anomaly). This run: {winN}.\n",
          "- **Premarket excluded by construction:** the forward walk is match_start → "

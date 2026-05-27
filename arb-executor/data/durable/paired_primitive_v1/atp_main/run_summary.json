@@ -1,80 +1,82 @@
 {
-  "producer_commit_hash": "a18b5be6e3f4a097fcce04b249c5ce5696e3cdb5",
-  "run_timestamp_utc": "2026-05-27 21:35:27 UTC",
-  "run_timestamp_et": "2026-05-27 17:35:27 ET",
-  "path": "A (F35 tier-1/2 live-era cohort; thresholds calibrated to this universe)",
+  "producer_commit_hash": "49c88bea2e8af2c3fa799e7fbd8120bd4f0abb7e",
+  "run_timestamp_utc": "2026-05-27 21:55:00 UTC",
+  "run_timestamp_et": "2026-05-27 17:55:00 ET",
+  "path": "atlas N universe (atp_main_spike_perN.parquet, 4137 N; no F35/tier screen)",
   "input_sha256": {
     "per_minute_features.parquet": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
-    "n_profile.parquet": "a7ed11550e8226f18c22069cc5937d35b184e7f0d2a9264435604a0270c1837e"
+    "atp_main_spike_perN.parquet": "621c86340b90653e384720b1f10c4617f9fbd64d5f177cbfab0d2153c9ea960f"
   },
   "input_sha256_expected_match": {
-    "per_minute_features.parquet": true,
-    "n_profile.parquet": true
+    "per_minute_features.parquet": true
   },
-  "cohort_definition": "ATP_MAIN F35 tier-1/2 live-era (match_start_method in {both_sides_*}, tier==live, total_volume_in_match>0)",
+  "cohort_definition": "ATP_MAIN atlas N universe: ticker list from atp_main_spike_perN.parquet (4137 N), no tier/F35 screen",
   "n_at_each_step": {
-    "cohort_tickers": 1326,
-    "total_events": 663,
-    "paired_events": 663,
-    "both_legs_t20_observable": 651,
-    "both_legs_inmatch_tape_ok": 651
+    "cohort_tickers": 4137,
+    "total_events": 2230,
+    "paired_events": 1907,
+    "both_legs_t20_observable": 1907,
+    "both_legs_inmatch_tape_ok": 1881
   },
   "runtime_per_phase_s": {
-    "sha256_inputs_s": 3.79,
+    "sha256_inputs_s": 5.3,
     "cohort_screen_s": 0.04,
-    "load_tape_s": 4.13,
-    "probe1_pairing_s": 0.0,
-    "probe2_t20_s": 4.94,
-    "probe3_inmatch_s": 4.42,
-    "probe4_inversion_s": 0.11
+    "load_tape_s": 8.76,
+    "probe1_pairing_s": 0.02,
+    "probe2_t20_s": 18.31,
+    "probe3_inmatch_s": 15.16,
+    "probe4_inversion_s": 0.63
   },
-  "total_runtime_s": 18.38,
-  "peak_rss_mb": 572.8,
+  "total_runtime_s": 53.78,
+  "peak_rss_mb": 911.7,
   "probes": {
     "probe1_pairing": {
-      "cohort_tickers": 1326,
-      "total_events": 663,
-      "paired_events": 663,
-      "singleton_events": 0,
+      "cohort_tickers": 4137,
+      "total_events": 2230,
+      "paired_events": 1907,
+      "singleton_events": 323,
       "over_paired_events": 0,
-      "pairing_rate_pct": 100.0,
-      "halt_floor_pct": 95.0,
-      "spike_perN_reference_pct": 85.52,
+      "pairing_rate_pct": 85.52,
+      "halt_band": [
+        80.0,
+        92.0
+      ],
+      "expected_pct": 85.52,
       "halt_triggered": false
     },
     "probe2_t20": {
-      "paired_events_in": 663,
-      "both_legs_t20_observable": 651,
-      "one_leg_only": 7,
-      "neither_leg": 5,
+      "paired_events_in": 1907,
+      "both_legs_t20_observable": 1907,
+      "one_leg_only": 0,
+      "neither_leg": 0,
       "t20_window": [
         18.0,
         22.0
       ],
-      "halt_min_events": 500,
+      "halt_min_events": 1500,
       "halt_triggered": false
     },
     "probe3_inmatch": {
-      "both_t20_in": 651,
-      "both_legs_inmatch_tape_ok": 651,
-      "dropped": 0,
-      "drop_pct_from_probe2": 0.0,
+      "both_t20_in": 1907,
+      "both_legs_inmatch_tape_ok": 1881,
+      "dropped": 26,
+      "drop_pct_from_probe2": 1.36,
       "severe_loss_flag": false
     },
     "probe4_inversion": {
-      "n": 651,
-      "mean": 101.99,
+      "n": 1881,
+      "mean": 103.11,
       "median": 102,
-      "std": 2.48,
+      "std": 5.24,
       "p10": 101.0,
       "p25": 101.0,
-      "p75": 102.0,
-      "p90": 103.0,
-      "count_off_gt_3c": 23,
-      "pct_within_3c": 96.47
+      "p75": 103.0,
+      "p90": 104.0,
+      "count_off_gt_3c": 275,
+      "pct_within_3c": 85.38
     }
   },
   "halted": false,
-  "output_sha256": "cedbf559ec5f123f3f9f68307ff1847498ca58c3ceb36d020bbd98a921eebeed",
-  "primitive_rows": 651
+  "output_sha256": "564c19382ad6464ed7d944e64914684250fa7cf78800ee13a0eaa6d899fccab5",
+  "primitive_rows": 1881
 }

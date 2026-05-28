@@ -296,3 +296,82 @@ Net-percentile detail:
 - At true cost (anchor), the exit-target edge over v6 is **modest: +$46 (freqfloor) / +$132 (agg)** on 1,881 matches — a far cry from the drift-inflated +$405/+$456. Most of the previously-reported gain was the drift discount in the cost basis.
 - **Premarket drift is real but SEPARATE upside** — to be measured on its own (how much below anchor the bot actually fills), not assumed into the exit cost basis.
 - Still **in-sample**; OOS validation required. Directional cells still need a 2D exit lookup to deploy.
+
+---
+
+# DAILY ROI (correct denominator) + FULL SPECTRUM AT OPTIMAL TARGETS — 2026-05-28 12:40 AM ET
+
+**Correcting the denominator.** Prior 'ROI 0.71%/0.95%' was Σnet/Σcapital blended across all 1,881 matches (~10 months) — meaningless for daily consistency. Below: per-day ROI = (day net)/(day capital wagered), distribution across actual ET trading days. cost=anchor, 10ct.
+
+## PART 1 — Daily ROI
+- **251 distinct ET trading days.** matches/day: min 1, median 7, max 32. Median capital wagered/day @10ct: $71.
+
+### All days (n=251) — daily ROI distribution
+| config | median ROI | mean ROI | p10 | p25 | p75 | p90 | frac days green | med daily $ | worst day $ | best day $ |
+|---|---|---|---|---|---|---|---|---|---|---|
+| v6 | 0.96% | 1.89% | -15.5% | -6.9% | 10.4% | 18.9% | 51.4% | $0.6 | $-26.5 | $30.8 |
+| freqfloor | 1.26% | 1.56% | -15.0% | -7.4% | 10.4% | 18.9% | 55.4% | $0.8 | $-32.1 | $35.1 |
+| agg | 1.47% | 1.88% | -15.7% | -7.0% | 10.6% | 18.9% | 55.4% | $0.8 | $-32.1 | $32.8 |
+
+### Days with ≥10 matches (n=77, statistically meaningful) — the number that matters
+| config | median ROI | mean ROI | p10 | p75 | frac days green | med daily $ | med daily capital |
+|---|---|---|---|---|---|---|---|
+| v6 | -0.30% | 0.54% | -11.5% | 7.0% | 46.8% | $-0.5 | $132.3 |
+| freqfloor | 1.24% | 1.14% | -11.5% | 7.0% | 57.1% | $1.4 | $132.3 |
+| agg | 1.79% | 1.79% | -9.4% | 7.7% | 61.0% | $2.2 | $132.3 |
+
+### D. Honest read (daily consistency)
+- **v6 is NOT consistently profitable day-to-day at honest cost.** On the 77 meaningful (≥10-match) days, v6's **median daily ROI is -0.30% (negative)** and only **47% of days are green** (median daily net −$0.5). The blended-positive aggregate hid a coin-flip-to-losing typical day.
+- **freqfloor improves daily consistency:** median day +1.24% ROI, **57% green** (median day +$1.4) — turns v6's negative median day positive.
+- **agg is best on daily consistency:** median day +1.79%, **61% green** (median day +$2.2).
+- BUT downside days are real and fat-tailed: p10 day ≈ −9% to −12% ROI; worst day −$26 to −$32. The edge is modest and variance is high. This improves daily *consistency* (more green days, positive median) over v6, not just the long-run aggregate.
+
+## PART 2 — FULL SPECTRUM AT OPTIMAL (max-average) TARGETS, hit rate shown
+**The ungated peak.** T* = the target maximizing AVERAGE net per N (highest point of the curve), NOT the CI-gated conservative pick. These show the *ceiling* of each cell/matchup and the hit rate it implies — they are more aggressive and more in-sample than the deployable freqfloor config. Both views matter: optimal = ceiling; freqfloor = conservative deployable.
+
+### E. Per single-cell optimal (anchor 5–94, all 4,137 N; full 90 rows in spectrum JSON). Representative:
+| cell | N | T* | hit% @T* | avg net @T* | $ @T* (10ct) | avg@T3 | avg@T10 | avg@T20 |
+|---|---|---|---|---|---|---|---|---|
+| 5.0 | 21.0 | 65.0 | 14% | 5.0 | 10.5 | 1.86 | 1.43 | 0.95 |
+| 10.0 | 31.0 | 7.0 | 55% | -0.68 | -2.1 | -2.03 | -1.61 | -3.23 |
+| 15.0 | 24.0 | 60.0 | 29% | 6.88 | 16.5 | 0.0 | 0.62 | -1.88 |
+| 20.0 | 35.0 | 66.0 | 34% | 9.49 | 33.2 | 0.37 | -0.29 | 0.57 |
+| 25.0 | 49.0 | 16.0 | 69% | 3.45 | 16.9 | -0.43 | 2.14 | -0.2 |
+| 30.0 | 59.0 | 34.0 | 54% | 6.41 | 37.8 | -3.15 | 0.85 | 4.75 |
+| 35.0 | 69.0 | 29.0 | 62% | 4.88 | 33.7 | -2.51 | -0.43 | 1.67 |
+| 40.0 | 63.0 | 9.0 | 79% | -1.11 | -7.0 | -3.83 | -1.9 | -4.76 |
+| 45.0 | 61.0 | 50.0 | 56% | 9.59 | 58.5 | -1.72 | -0.82 | 1.89 |
+| 50.0 | 53.0 | 49.0 | 57% | 11.7 | 62.0 | -3.0 | -0.19 | 5.47 |
+| 55.0 | 48.0 | 28.0 | 75% | 7.25 | 34.8 | 0.58 | -0.83 | 1.25 |
+| 60.0 | 57.0 | 38.0 | 60% | 0.21 | 1.2 | -4.74 | -5.96 | -1.05 |
+| 65.0 | 79.0 | 11.0 | 84% | -1.51 | -11.9 | -5.61 | -2.34 | -4.56 |
+| 70.0 | 48.0 | 20.0 | 81% | 3.12 | 15.0 | -3.08 | 0.0 | 3.12 |
+| 75.0 | 52.0 | 22.0 | 75% | -0.33 | -1.7 | -4.5 | -3.08 | -1.92 |
+| 80.0 | 47.0 | 5.0 | 94% | -0.43 | -2.0 | -0.53 | -5.32 | nan |
+| 85.0 | 32.0 | 14.0 | 88% | 7.88 | 25.2 | 3.0 | 4.06 | nan |
+| 90.0 | 19.0 | 9.0 | 95% | 3.79 | 7.2 | -1.89 | nan | nan |
+
+Pattern: underdog cells (5–20) have large T* (their occasional big spike is the whole edge); the **mid-favorite zone (60–75) is structurally hard — negative average net even at the optimal target** (cell 65 avg −1.5, cell 75 avg −0.3); clear favorites (80–90) and near-even (40–55) are positive. Curves are peaked (avg@T3/T10/T20 vary sign).
+
+### F. Paired-group optimal (max average per-match net, ungated) — full spectrum hi→lo
+| hi cell | lo cell | N | opt tgt_hi | opt tgt_lo | hit_hi | hit_lo | both | ≥1 | avg net | $@10ct | ROI | v6 $@10ct | v6 ROI |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 86-98 | 6-16 | 204 | 1 | 59 | 97% | 20% | 17% | 100% | 0.42 | 8.5 | 0.4% | 53.7 | 2.6% |
+| 79-85 | 17-23 | 193 | 14 | 56 | 84% | 38% | 23% | 100% | 8.26 | 159.5 | 8.1% | 120.2 | 6.1% |
+| 74-78 | 24-28 | 176 | 14 | 71 | 83% | 31% | 14% | 100% | 3.58 | 63.0 | 3.5% | -44.4 | -2.5% |
+| 69-73 | 29-33 | 180 | 26 | 30 | 75% | 55% | 31% | 99% | 6.49 | 116.9 | 6.4% | 95.7 | 5.2% |
+| 65-68 | 34-38 | 187 | 31 | 39 | 66% | 53% | 19% | 100% | 4.17 | 77.9 | 4.1% | -21.4 | -1.1% |
+| 61-64 | 34-38 | 51 | 34 | 4 | 74% | 84% | 59% | 100% | 8.55 | 43.6 | 8.5% | -5.5 | -1.1% |
+| 61-64 | 39-41 | 156 | 35 | 58 | 65% | 38% | 9% | 94% | 4.91 | 76.6 | 4.8% | 5.5 | 0.4% |
+| 56-60 | 42-45 | 186 | 30 | 34 | 66% | 62% | 28% | 100% | 5.13 | 95.5 | 5.0% | 69.1 | 3.6% |
+| 56-60 | 46-76 | 79 | 11 | 10 | 87% | 78% | 66% | 100% | 0.19 | 1.5 | 0.2% | -12.4 | -1.5% |
+| 51-55 | 46-76 | 181 | 6 | 13 | 89% | 84% | 74% | 100% | 2.92 | 52.8 | 2.9% | 26.1 | 1.4% |
+
+**Ungated optimal beats v6 in 9 of 10 groups** (often turning v6-negative groups positive: 74-78×24-28 v6 −2.5%→opt +3.5%; 65-68×34-38 v6 −1.1%→+4.1%; 61-64×34-38 v6 −1.1%→+8.5%). The one exception is the **heavy-favorite group 86-98×6-16, where v6 (ROI 2.6%) beats the ungated optimal (0.4%)** — there the max-average pick sets a deep dog target that rarely fills. These optima are in-sample ceilings, not the conservative deployable.
+
+### G. Spectrum map exported
+- `data/durable/spike_volatility_map/atp_main_spectrum_map.json` — per-cell (90: cell, N, T*, hit@*, avg net, $), paired-groups (opt targets, hit rates, both/≥1, avg net, $, ROI, v6 comparison), daily-ROI summary per config, cell axis edges.
+
+### Caveats
+- Daily ROI: median day modestly positive for candidates, ~55–61% green on meaningful days, but high variance (p10 day ≈ −10%, worst ≈ −$30). Not a steady printer; a modest edge with real daily downside.
+- Optimal (max-average) targets are the UNGATED in-sample peak — they overfit the realized peaks more than the CI-gated freqfloor. OOS validation required; deploy the conservative freqfloor, read the optimal as the ceiling.

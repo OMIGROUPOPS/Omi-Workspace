@@ -252,3 +252,47 @@ Numbers are identical to prior (the 'settlement source' split was just a reframi
 ### Caveats (unchanged)
 - **In-sample** target cents fit to this corpus; capture generalizes in kind (price spikes recur, who-won-independent) but specific targets need OOS validation before deploy.
 - Raw-peak no-depth realism; 5c-capped drift cost basis; bootstrap-CI overlaps; ~14.5% singleton fallback; directional cells require a 2D exit lookup (current `exit_rule_for(category, fill_price)` is 1D — code change to deploy).
+
+---
+
+# COST = ANCHOR (honest foundation, NO drift discount) — 2026-05-28 12:29 AM ET
+
+**Correction to all prior sections.** Cost basis = `anchor_cents` exactly (the T-20m cell price you pay). The earlier `anchor − clip(drift_low_vs_anchor,0,5)` discount was an unfounded assumption that baked premarket drift into the entry. Here you pay the cell price, period; premarket drift is **separate upside, to be quantified later — not baked in.**
+
+Model: enter at anchor; target T captures T cents iff `peak_trade ≥ anchor + T`, else resolve at final (99 winner / 1 loser, already in peak per Part 2). Sweep T=1..(99−anchor). ROI denominator = anchorA + anchorB.
+
+## Impact of removing the drift discount
+- **v6 baseline collapses from $1,384.80 → $137.20 @10ct** (ROI 0.71%). The ~$1,247 difference was the drift discount, NOT exit edge — i.e. ~90% of the prior apparent P&L was the (now-removed) drift assumption.
+- At honest cost, v6 is only marginally profitable; the real exit-target edge over it is correspondingly smaller in absolute terms.
+
+## A–D. Results (cost=anchor)
+
+| config | agg \$@10ct | \$@5ct | ROI (Σnet/Σanchor) | EV/match | ≥1-capture | both | median net |
+|---|---|---|---|---|---|---|---|
+| **v6 baseline** | $137.2 | $68.6 | 0.71% | $0.073 | 0.983 | 0.510 | 6c |
+| agg (unconstrained, CI-gated) | $268.8 | $134.4 | 1.39% | $0.143 | 0.983 | 0.427 | -4c |
+| **freqfloor (CI-gated, ≥1≥v6)** | **$183.5** | $91.8 | **0.95%** | $0.098 | **0.988** | 0.479 | -1c |
+
+**Deltas vs v6:** agg +$131.6 (ROI +0.68pp); freqfloor **+$46.3** (ROI +0.24pp), ≥1-capture 0.988 ≥ v6 0.983 (no regression).
+
+Net-percentile detail:
+- v6: {'mean': 0.73, 'p10': -45.0, 'p25': -20.0, 'median': 6.0, 'p75': 26.0, 'p90': 36.0}
+- agg: {'mean': 1.43, 'p10': -42.0, 'p25': -17.0, 'median': -4.0, 'p75': 22.0, 'p90': 47.0}
+- freqfloor: {'mean': 0.98, 'p10': -43.0, 'p25': -18.0, 'median': -1.0, 'p75': 22.0, 'p90': 44.0}
+
+## E. Staging (cost=anchor)
+- freqfloor beats v6 on aggregate ROI (0.95% > 0.71%) with no ≥1-capture regression (0.988 ≥ 0.983) → **STAGED** `atp_main_exit_cells_v7_anchor_freqfloor.parquet`.
+- Only **2 matchup groups** clear both the frequency floor AND the CI-lower>0 gate at honest cost (the rest fall back to v6):
+
+| hi cell | lo cell | N | tgt_hi (v6) | tgt_lo (v6) | capture\$ Δ vs v6 | group ROI |
+|---|---|---|---|---|---|---|
+| 69-73 | 29-33 | 180 | 25 (17) | 30 (12) | +$235 | 5.6% |
+| 79-85 | 17-23 | 193 | 14 (1) | 56 (52) | +$148 | 8.1% |
+
+## F. Map data exported
+- `data/durable/spike_volatility_map/atp_main_exit_map.json` — per matchup-group (10 populated, MIN=50): cell ranges, N, chosen vs v6 targets, group \$/ROI/≥1/both, capture-\$ delta; cell axis edges; corpus totals (v6, freqfloor, agg).
+
+## Honest read
+- At true cost (anchor), the exit-target edge over v6 is **modest: +$46 (freqfloor) / +$132 (agg)** on 1,881 matches — a far cry from the drift-inflated +$405/+$456. Most of the previously-reported gain was the drift discount in the cost basis.
+- **Premarket drift is real but SEPARATE upside** — to be measured on its own (how much below anchor the bot actually fills), not assumed into the exit cost basis.
+- Still **in-sample**; OOS validation required. Directional cells still need a 2D exit lookup to deploy.

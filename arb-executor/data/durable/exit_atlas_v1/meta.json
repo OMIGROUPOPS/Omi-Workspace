@@ -1,0 +1,104 @@
+{
+  "producer": "build_exit_atlas_v1.py",
+  "producer_commit_at_run": "83ef84ce0bcea645b5e9bc891f8569968869dd68",
+  "generated_utc": "2026-05-28T21:45:45.449424+00:00",
+  "status": "PASS",
+  "runtime_seconds": 1.5,
+  "input": {
+    "path": "data/durable/spike_volatility_map/atp_main_spike_perN.parquet",
+    "sha256": "621c86340b90653e384720b1f10c4617f9fbd64d5f177cbfab0d2153c9ea960f",
+    "rows_total": 4137,
+    "rows_kept": 4137
+  },
+  "coordinate_system": {
+    "cents": "5..94 (90)",
+    "targets": "5..99 (95)",
+    "valid_cell": "T>=c+1",
+    "ceiling": "T<=99 per row"
+  },
+  "sigma": 1.0,
+  "slice_row_counts": {
+    "atlas_rows": 8550,
+    "atlas_valid_cells": 4455,
+    "row_dims_rows": 90,
+    "neighborhood_reach_defined": 4455,
+    "raw_reach_defined": 4455,
+    "win_cond_defined": 4273,
+    "loss_cond_defined": 4455
+  },
+  "ev_full_flavors": {
+    "ev_full_cell_basis": "CANONICAL \u2014 absolute-T, PnL from cost basis c; coherent with reach slices; forward deployment view",
+    "ev_full_own_basis": "DIAGNOSTIC \u2014 anchor-relative offset X=T-c, PnL from each N's own anchor; backward attribution; reproduces sigma=1 picker"
+  },
+  "skipped_slices": {
+    "time_to_peak (slice 10)": "spike_perN lacks per-T first-reach timing (only time_to_max_min=time-to-single-peak); per_minute_universe sub-build deferred to atlas_v2",
+    "drift_signature (slice 13)": "premarket entry-side signal; deferred to entry_atlas_v1; out of scope for exit-only v1"
+  },
+  "gates": [
+    {
+      "id": "G1",
+      "desc": "atlas 90x95 (8550 rows) + row_dims 90 rows",
+      "hard": true,
+      "passed": true,
+      "detail": "atlas=8550 (exp 8550), row_dims=90 (exp 90)"
+    },
+    {
+      "id": "G2",
+      "desc": "T<c+1 cells NaN; no T>99 (ceiling-aware)",
+      "hard": true,
+      "passed": true,
+      "detail": "invalid-cell non-NaN count=0, Tmax=99"
+    },
+    {
+      "id": "G3",
+      "desc": "raw_reach[c,c+1] ~1.0 (SOFT, degenerate-aware)",
+      "hard": false,
+      "passed": true,
+      "detail": "min=0.885 mean=0.9821; 47 cells <1.0 (degenerate N): [(6, 0.96), (10, 0.935), (11, 0.964), (15, 0.958), (16, 0.9), (17, 0.95), (19, 0.967), (20, 0.971)]"
+    },
+    {
+      "id": "G4",
+      "desc": "raw_reach non-increasing in T per row",
+      "hard": true,
+      "passed": true,
+      "detail": "violating rows=0"
+    },
+    {
+      "id": "G5",
+      "desc": "win_cond_reach >= loss_cond_reach (SOFT, flag)",
+      "hard": false,
+      "passed": true,
+      "detail": "violations=0/4273 cells; examples (c,T,win,loss)=[]"
+    },
+    {
+      "id": "G6",
+      "desc": "ev_full_own_basis argmax reproduces $1910.20 +/-$5",
+      "hard": true,
+      "passed": true,
+      "detail": "computed=$1910.20 delta=$-0.00"
+    },
+    {
+      "id": "G7",
+      "desc": "breakeven_floor_R[94]==5, [5]==1",
+      "hard": true,
+      "passed": true,
+      "detail": "R[94]=5, R[5]=1"
+    },
+    {
+      "id": "G8",
+      "desc": "ceiling_max_R[94]==5, [5]==94",
+      "hard": true,
+      "passed": true,
+      "detail": "max_R[94]=5, max_R[5]=94"
+    },
+    {
+      "id": "SPOT",
+      "desc": "ev_full_cell_basis[38,70]==-1.96 (SOFT)",
+      "hard": false,
+      "passed": true,
+      "detail": "computed=-1.9605 (expected -1.96, delta -0.0005)"
+    }
+  ],
+  "hard_gates_pass": true,
+  "regression_dollars": 1910.2
+}

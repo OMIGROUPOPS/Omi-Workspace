@@ -190,20 +190,22 @@ def build():
         # Breakeven floor is a forward-math APPROXIMATION (assumes a flat 95%
         # hit). For favorites the real hit is 97-100%, so a profitable exit can
         # genuinely exist BELOW the formula's guess -- and the empirical best-X
-        # then lands left of the floor line, which reads as a bug. Ground truth
-        # wins: clamp the floor so it never sits above this cell's PROVEN best-X
-        # (finest eff-N best, else achievable). The line marks 'below here, no
-        # proven profit'; if proven profit is found lower, the floor yields.
+        # tick then lands left of the floor line, which reads as a bug. Ground
+        # truth wins: clamp the floor so it never sits above ANY profitable
+        # best-X that is actually DRAWN/REFERENCED on the surface. Both the
+        # achievable tick (the cyan Best-X overlay) AND the finest-config tick
+        # are visible reads, so the floor must yield below the LOWER of the two
+        # whenever that tick is genuinely profitable. The line means 'below
+        # here, no proven profit'; proven profit lower => floor descends to it.
         be_raw = int(ec.breakeven_floor_R(int(c)))
-        proven_x = None
-        _fin = finest.get(int(c))
+        proven_xs = []
+        _a = achievable.get(int(c))          # cyan Best-X tick that is DRAWN
+        if _a and _a.get("bestX") is not None and (_a.get("ev") or 0) > 0:
+            proven_xs.append(int(_a["bestX"]))
+        _fin = finest.get(int(c))            # finest-config tick (eff-N best)
         if _fin and _fin.get("bestX") is not None and _fin.get("effEv", 0) > 0:
-            proven_x = int(_fin["bestX"])
-        else:
-            _a = achievable.get(int(c))
-            if _a and _a.get("bestX") is not None and (_a.get("ev") or 0) > 0:
-                proven_x = int(_a["bestX"])
-        be_eff = min(be_raw, proven_x) if proven_x is not None else be_raw
+            proven_xs.append(int(_fin["bestX"]))
+        be_eff = min([be_raw] + proven_xs)
 
         rows.append({
             "c": int(c),

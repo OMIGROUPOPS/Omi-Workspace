@@ -345,6 +345,10 @@ const DATA = {DATA_JSON};
     rows.forEach(r => {
       const a = r.achievable || achByC(r.c);
       if (!a || a.bestX == null) return;
+      // No profitable exit => no "best" tick. Drawing a cyan best-X on a cell
+      // whose achievable EV is <=0 (the honest no-config cells, e.g. 68/82)
+      // falsely reads as a profitable best and lands under the floor.
+      if ((a.ev || 0) <= 0) return;
       const Rb = a.bestX;
       if (Rb < rMin || Rb > r.ceilingMaxR) return;
       ovBestX.append("line").attr("class", "overlay-bestx")

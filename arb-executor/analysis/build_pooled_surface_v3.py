@@ -187,12 +187,31 @@ def build():
         comp = 99 - int(c)
         comp = comp if C_MIN <= comp <= C_MAX else None
 
+        # Breakeven floor is a forward-math APPROXIMATION (assumes a flat 95%
+        # hit). For favorites the real hit is 97-100%, so a profitable exit can
+        # genuinely exist BELOW the formula's guess -- and the empirical best-X
+        # then lands left of the floor line, which reads as a bug. Ground truth
+        # wins: clamp the floor so it never sits above this cell's PROVEN best-X
+        # (finest eff-N best, else achievable). The line marks 'below here, no
+        # proven profit'; if proven profit is found lower, the floor yields.
+        be_raw = int(ec.breakeven_floor_R(int(c)))
+        proven_x = None
+        _fin = finest.get(int(c))
+        if _fin and _fin.get("bestX") is not None and _fin.get("effEv", 0) > 0:
+            proven_x = int(_fin["bestX"])
+        else:
+            _a = achievable.get(int(c))
+            if _a and _a.get("bestX") is not None and (_a.get("ev") or 0) > 0:
+                proven_x = int(_a["bestX"])
+        be_eff = min(be_raw, proven_x) if proven_x is not None else be_raw
+
         rows.append({
             "c": int(c),
             "ownN": int(own_n[int(c)]),
             "effN": _clean(eff_n[int(c)]),
             "sigma": _clean(sigma),
-            "breakevenFloorR": int(ec.breakeven_floor_R(int(c))),
+            "breakevenFloorR": int(be_eff),
+            "breakevenFloorForwardR": be_raw,
             "ceilingMaxR": int(99 - int(c)),
             "complementC": comp,
             "neighbors": contrib,

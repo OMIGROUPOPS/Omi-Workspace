@@ -155,6 +155,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
       <label><input type="radio" name="lens" value="ev"> EV (cents/N)</label>
       <label><input type="radio" name="lens" value="roi"> ROI (EV/cost %)</label>
       <label><input type="radio" name="lens" value="ach" checked> Achievable (pooled best-X ROI)</label>
+      <label><input type="radio" name="lens" value="fin"> Finest config (dual-layer)</label>
     </div>
     <div class="ctl-sep"></div>
     <div class="ctl-group">
@@ -215,7 +216,9 @@ const DATA = {DATA_JSON};
   const rowByC = new Map(rows.map(r => [r.c, r]));
   const ach = DATA.achievable || {};
   const achLocked = DATA.achievableLocked || {};
+  const finest = DATA.finest || {};
   const achByC = c => ach[c] || (rowByC.get(c) && rowByC.get(c).achievable) || null;
+  const finByC = c => finest[c] || null;
   const achLockedByC = c => achLocked[c] || (rowByC.get(c) && rowByC.get(c).achievableLocked) || null;
   // achievable ROI range (locked best-X per cent) for the achievable lens scale
   const achRois = Object.values(ach).map(a => a.roi).filter(v => v != null);
@@ -272,14 +275,27 @@ const DATA = {DATA_JSON};
   const leftVal = d => {
     if (lens === "ev") return d.ev;
     if (lens === "roi") return d.roi;
+    if (lens === "fin") { const f = finByC(d.c); return f ? f.effRoi : null; }
     const a = achByC(d.c);
     return a ? a.roi : null;
+  };
+  // Finest lens renders the DUAL layer: hue = eff-N ROI (pooled depth), and
+  // CONFIDENCE modulates it -- 'confident' (own-N and eff-N agree) renders at
+  // full opacity; 'thin'/'own-only' (layers diverge) renders dimmed so a
+  // borrowed positive can't masquerade as a proven one. A cell with NO positive
+  // config is absent from finest -> transparent (honestly blank, not least-bad).
+  const finOpacity = c => {
+    const f = finByC(c);
+    if (!f) return 0.0;
+    if (f.confidence === "confident") return 1.0;
+    if (f.confidence === "thin") return 0.42;
+    return 0.62; // own-only
   };
   const leftColor = v => {
     if (v == null) return "transparent";
     if (lens === "ev") return evColor(v);
     if (lens === "roi") return roiColor(v);
-    return achColor(v);
+    return achColor(v);  // "ach" and "fin" both use the RdYlGn ROI scale
   };
 
   function buildPlot(containerId, kind) {
@@ -425,6 +441,10 @@ const DATA = {DATA_JSON};
   // ---- lens switch --------------------------------------------------------
   function applyLens() {
     P_LEFT.sel.attr("fill", d => leftColor(leftVal(d)));
+    // Finest lens dims cells whose two layers disagree (thin/own-only) so a
+    // borrowed positive never reads as a proven one; full opacity = confident
+    // (own-N actual value AND eff-N pooled depth both positive at the same X).
+    P_LEFT.sel.attr("fill-opacity", d => (lens === "fin" ? finOpacity(d.c) : 1));
     P_LEFT.refreshLegend();
     if (lens === "ev") {
       document.getElementById("left-title").textContent = "Pooled EV — avg cents earned per N";
@@ -432,6 +452,9 @@ const DATA = {DATA_JSON};
     } else if (lens === "roi") {
       document.getElementById("left-title").textContent = "Pooled ROI — EV ÷ entry cost";
       document.getElementById("left-sub").textContent = "cheap & expensive cents on one scale · diverging RdYlGn @ 0";
+    } else if (lens === "fin") {
+      document.getElementById("left-title").textContent = "Finest config — dual-layer (own-N value × eff-N depth)";
+      document.getElementById("left-sub").textContent = "hue = stability-scored eff-N ROI · FULL = confident (both layers agree) · DIM = thin/borrowed (layers diverge) · blank = no positive config";
     } else {
       document.getElementById("left-title").textContent = "Achievable ROI — pooled best-X exit-or-hold (per cent)";
       document.getElementById("left-sub").textContent = "each row colored by its neighbor-pooled best-X ROI · best-X tick marks the R · CV-selected σ, own-N fallback · descriptive";
@@ -575,9 +598,17 @@ const DATA = {DATA_JSON};
         (aL ? ` Locked own-N ref: +${aL.bestX}c → ${fmtRoi(aL.roi)} [N=${aL.N}].` : "") +
         ` Hindsight-optimal / descriptive — not predictive.`
       : "";
+    // dual-layer finest config: own-N actual value AND eff-N pooled depth
+    const f = finByC(c);
+    const finLine = f
+      ? ` ★ FINEST CONFIG: exit +${f.bestX}c (T=${f.bestT}c) — ${f.confidence.toUpperCase()}.` +
+        ` Layer A own-N (actual value, N=${f.ownN}): ROI ${fmtRoi(f.ownRoi)}, hit ${fmtHit(f.ownHit)}%.` +
+        ` Layer B eff-N (pooled depth, σ=${f.sigma.toFixed(1)}): ROI ${fmtRoi(f.effRoi)}, hit ${fmtHit(f.effHit)}%, Sharpe ${f.effSharpe.toFixed(2)}.` +
+        ` ${f.confidence === "confident" ? "Both layers agree positive — proven & deep." : f.confidence === "thin" ? "Eff-N positive but own-N flat/negative — borrowed, unproven." : "Own-N positive but pooled depth thin."}`
+      : ` ★ FINEST CONFIG: none — no exit clears positive EV on the converted basis (honestly blank, not least-bad).`;
     renderTable(
       `Cell c=${c}c  ·  ownN=${r ? r.ownN : "—"}  effN=${effTxt}`,
-      `Every conceivable R for this entry cent (pooled). Breakeven R≥${r ? r.breakevenFloorR : "—"}, ceiling R≤${r ? r.ceilingMaxR : "—"}. Complement ${r && r.complementC!=null ? r.complementC+"c" : "—"}. $ = EV × this cent's ${effTxt} eff-N @10ct (its own price range, NOT the full corpus).` + achLine,
+      `Every conceivable R for this entry cent (pooled). Breakeven R≥${r ? r.breakevenFloorR : "—"}, ceiling R≤${r ? r.ceilingMaxR : "—"}. Complement ${r && r.complementC!=null ? r.complementC+"c" : "—"}. $ = EV × this cent's ${effTxt} eff-N @10ct (its own price range, NOT the full corpus).` + finLine + achLine,
       [COL_R, COL_T, COL_HIT, COL_EV, COL_ROI, COL_DOL], data
     );
   }

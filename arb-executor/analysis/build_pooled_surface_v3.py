@@ -124,6 +124,9 @@ def build():
     base, scores = ec.select_bandwidth_cv(df)
     sigma_c = ec.select_adaptive_sigma(df, base)
     surf = ec.build_surface(df, sigma_c)
+    # dual-layered finest config per cell (own-N actual value + eff-N pooled depth)
+    sigma_pc, _err_pc = ec.select_per_cent_sigma(df)
+    finest = {int(k): v for k, v in ec.finest_config(df, sigma_pc).items()}
 
     EV, HR, ROI = surf["ev"], surf["hr"], surf["roi"]
     own_n, eff_n = surf["own_n"], surf["eff_n"]
@@ -217,6 +220,7 @@ def build():
         "rows": rows,
         "achievable": achievable,
         "achievableLocked": achievable_locked,
+        "finest": finest,
     }
     return payload, scores
 

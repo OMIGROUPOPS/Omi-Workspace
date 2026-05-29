@@ -375,6 +375,101 @@ def pooled_best_x(df, sigma_c):
     return out
 
 
+def finest_config(df, sigma_c):
+    """
+    DUAL-LAYERED finest config per cell -- the operator's single best exit X.
+
+    Two layers are measured INDEPENDENTLY for every cell, then reconciled:
+
+      Layer A -- OWN-N (actual cell value): the cell's own raw T-20 Foundation
+        tape. What it literally printed. Truth, but thin conviction.
+      Layer B -- EFF-N (pooled depth): the converted-basis neighbor-weighted
+        read (oranges->apples relative trajectory). Deep/confident, but borrowed.
+
+    Why both: own-N alone is too thin to trust a single X; eff-N alone is
+    borrowed and can drift off the cell's true character. The finest config is
+    only CONFIDENT when both layers point the same direction.
+
+    Selection score (NOT raw EV, NOT pure stability -- both extremes are wrong):
+      score(X) = EV_X / (dispersion_X + EPS)  *  (1 - hit_X**k)
+      - EV/dispersion is risk-adjusted edge (Sharpe-like): rewards the STABILITY
+        the favorite zone earns -- tight, near-certain outcomes score high even
+        at small EV; wide-dispersion lottery exits must earn real EV to win.
+      - (1 - hit**k) damps the un-paid +1c near-certainty trap (a 100%-hit +1c
+        crumb has tiny dispersion but you're paid nothing for risk -> killed).
+      EV itself must be > 0 to be eligible (no 'least-bad negative' configs).
+
+    The X is chosen on the EFF-N score (depth), but the OWN-N layer is scored at
+    that same X and reported alongside. confidence:
+      'confident' -- own-N EV and eff-N EV both > 0 at the chosen X (agree)
+      'thin'      -- eff-N positive but own-N flat/negative (borrowed, unproven)
+      'own-only'  -- own-N positive but eff-N couldn't support it (rare; trust tape)
+    Returns {c: {...both layers..., confidence}}.
+    """
+    cents, peaks, wins, own_n, ownc = _cent_profiles(df)
+    EPS = 1.0  # cents; dispersion floor so a zero-noise crumb can't divide to inf
+    K = 6.0
+    out = {}
+    for c in cents:
+        c = int(c)
+        w = _gauss_weights(c, sigma_c[c], cents)
+        pk_o, wn_o = peaks[c], wins[c]
+
+        def own_at(T):
+            if len(pk_o) == 0:
+                return np.nan, np.nan, np.nan
+            reached = pk_o >= T
+            pnl = np.where(reached, T - c,
+                           np.where(wn_o == 1, SETTLE_WIN - c, -c)).astype(float)
+            ev = float(pnl.mean())
+            hr = float(reached.mean())
+            disp = float(pnl.std())
+            return ev, hr, disp
+
+        best = None  # (score, X, T, evB, hrB, dispB, evA, hrA, dispA)
+        for T in range(c + 1, 100):
+            evB, hrB, dispB = _pooled_ev_hr_at(c, T, cents, peaks, wins, w,
+                                               ownc=ownc, relative=True)
+            if evB is None or np.isnan(evB) or evB <= 0:
+                continue
+            score = (evB / (dispB + EPS)) * (1.0 - hrB ** K)
+            if best is None or score > best[0]:
+                evA, hrA, dispA = own_at(T)
+                best = (score, T - c, T, evB, hrB, dispB, evA, hrA, dispA)
+        if best is None:
+            continue
+        _, X, T, evB, hrB, dispB, evA, hrA, dispA = best
+
+        if not np.isnan(evA) and evA > 0 and evB > 0:
+            confidence = "confident"
+        elif evB > 0 and (np.isnan(evA) or evA <= 0):
+            confidence = "thin"
+        else:
+            confidence = "own-only"
+
+        out[c] = {
+            "c": c,
+            "bestX": int(X),
+            "bestT": int(T),
+            # eff-N pooled depth layer (the selection layer)
+            "effEv": float(evB),
+            "effRoi": float(evB / c * 100.0),
+            "effHit": float(hrB * 100.0),
+            "effDisp": float(dispB),
+            "effSharpe": float(evB / (dispB + EPS)),
+            # own-N actual-value layer (the truth layer)
+            "ownEv": (None if np.isnan(evA) else float(evA)),
+            "ownRoi": (None if np.isnan(evA) else float(evA / c * 100.0)),
+            "ownHit": (None if np.isnan(hrA) else float(hrA * 100.0)),
+            "ownDisp": (None if np.isnan(dispA) else float(dispA)),
+            "ownN": int(own_n[c]),
+            "sigma": float(sigma_c[c]),
+            "confidence": confidence,
+            "rule": f"exit at +{int(X)}c (T={int(T)}c)",
+        }
+    return out
+
+
 def select_adaptive_sigma(df, base_sigma):
     """
     Adaptive (variable) bandwidth: widen where the chain is thin, tighten where

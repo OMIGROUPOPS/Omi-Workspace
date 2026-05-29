@@ -96,7 +96,10 @@
 <body>
   <h1>ATP_MAIN — Ground Truth v3 · Pooled Best-X</h1>
   <p class="sub">
-    Every cell &times; every conceivable R out to the ceiling (T&le;99), EV/hit/ROI
+    <b>Default lens = Achievable:</b> every row is colored by its best pooled exit, so
+    every cent &mdash; favorites included &mdash; reads its true achievable edge (green = positive).
+    Switch to <b>EV</b> to see every individual exit (most are bad, so the top looks red there &mdash;
+    that is the average of all exits, not the best one). EV/hit/ROI
     pooled across the full <code>4,137-N</code> corpus with each cent borrowing N
     from its neighbors (Gaussian, <code id="sigtxt">&sigma;</code>, CV-chosen). No
     picker, no chains, no filters — overlays only. <span id="cellcount"></span>
@@ -105,9 +108,9 @@
   <div class="controls">
     <div class="ctl-group">
       <b class="glabel">Left lens</b>
-      <label><input type="radio" name="lens" value="ev" checked> EV (cents/N)</label>
+      <label><input type="radio" name="lens" value="ev"> EV (cents/N)</label>
       <label><input type="radio" name="lens" value="roi"> ROI (EV/cost %)</label>
-      <label><input type="radio" name="lens" value="ach"> Achievable (pooled best-X ROI)</label>
+      <label><input type="radio" name="lens" value="ach" checked> Achievable (pooled best-X ROI)</label>
     </div>
     <div class="ctl-sep"></div>
     <div class="ctl-group">
@@ -212,7 +215,7 @@ const DATA = {"meta":{"nTotal":4137,"cMin":5,"cMax":94,"rMax":94,"sigmaBase":5.0
   const CONTRACTS = 10;
   const dollarsOf = ev => ev == null ? null : ev * M.nTotal / 100 * CONTRACTS;
 
-  let lens = "ev";  // "ev" | "roi" | "ach"
+  let lens = "ach";  // "ev" | "roi" | "ach" — default to the achievable best-X surface
   // For the achievable lens every cell in a cent's row shares that cent's locked
   // best-X ROI (it is a per-cent achievable read, not per-(c,R)). The best-X
   // marker shows WHICH R that is.

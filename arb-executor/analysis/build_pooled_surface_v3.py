@@ -37,7 +37,7 @@ CORPUS = ARB_ROOT / "data" / "durable" / "spike_volatility_map" / "atp_main_spik
 # Canonical hindsight-optimal exit-or-hold map (per-cell, own-N, fill-realistic).
 # This is the LOCKED ground truth from ATP_MAIN_LOCKED_DOWN.md / descriptive_1c.
 LOCKED = ARB_ROOT / "data" / "durable" / "spike_volatility_map" / "atp_main_descriptive_1c.parquet"
-OUT_JSON = ARB_ROOT / "data" / "durable" / "exit_atlas_v1" / "atp_main_pooled_surface.json"
+OUT_JSON = ARB_ROOT / "data" / "durable" / "exit_atlas_v1" / "atp_main_pooled_surface_v3.json"
 
 C_MIN, C_MAX = ec.C_MIN, ec.C_MAX
 SETTLE_WIN = ec.SETTLE_WIN
@@ -86,9 +86,41 @@ def load_achievable():
     return ach
 
 
+def build_pooled_achievable(df):
+    """v3 achievable map: per-cent CV-selected POOLED best-X (neighbor-weighted),
+    with an own-N contamination fallback. Each cent pools as wide as its own
+    leave-one-cent-out CV error supports (wide where cheap, tight in the favorite
+    zone), uses its full effective-N rather than the thin own-N count, and falls
+    back to its own tape only when neighbors were dragging it negative.
+
+    Carries basis ('pooled' | 'own-N') and the effective sigma per cent so the
+    viz can show exactly how wide each cell's feed is. Descriptive / hindsight,
+    not predictive.
+    """
+    sigma_c, err_c = ec.select_per_cent_sigma(df)
+    bx = ec.pooled_best_x(df, sigma_c)
+    out = {}
+    for c, d in bx.items():
+        out[int(c)] = {
+            "c": int(c),
+            "bestX": int(d["bestX"]),
+            "bestT": int(d["bestT"]),
+            "ev": _clean(d["ev"]),
+            "roi": _clean(d["roi"]),
+            "hit": _clean(d["hit"]),
+            "holdEv": _clean(d["holdEv"]),
+            "sigma": _clean(d["sigma"]),
+            "basis": d["basis"],
+            "rule": d["rule"],
+            "cvErr": _clean(err_c.get(int(c))),
+        }
+    return out
+
+
 def build():
     df = ec.load_corpus(str(CORPUS))
-    achievable = load_achievable()
+    achievable = build_pooled_achievable(df)       # v3: pooled best-X (primary)
+    achievable_locked = load_achievable()          # own-N locked reference
     base, scores = ec.select_bandwidth_cv(df)
     sigma_c = ec.select_adaptive_sigma(df, base)
     surf = ec.build_surface(df, sigma_c)
@@ -153,6 +185,7 @@ def build():
             "complementC": comp,
             "neighbors": contrib,
             "achievable": achievable.get(int(c)),
+            "achievableLocked": achievable_locked.get(int(c)),
         })
 
     ev_vals = [d["ev"] for d in cells if d["ev"] is not None]
@@ -174,6 +207,7 @@ def build():
         "cells": cells,
         "rows": rows,
         "achievable": achievable,
+        "achievableLocked": achievable_locked,
     }
     return payload, scores
 

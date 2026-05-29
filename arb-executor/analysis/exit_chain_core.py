@@ -128,6 +128,10 @@ def _pooled_ev_hr_at(entry_c, T, cents, peaks, wins, weights, exclude_c=None):
 
 
 def _gauss_weights(center_c, sigma, cents):
+    # sigma -> 0 means OWN-CENT ONLY (the tightest, most basis-faithful pool):
+    # the cent uses only the N that actually traded at it, no neighbor borrow.
+    if sigma <= 0:
+        return {int(c): (1.0 if int(c) == int(center_c) else 0.0) for c in cents}
     d = (cents - center_c).astype(float)
     w = np.exp(-(d * d) / (2 * sigma * sigma))
     return {int(c): float(wi) for c, wi in zip(cents, w)}
@@ -175,6 +179,158 @@ def select_bandwidth_cv(df, sigma_grid=None):
         scores[sigma] = se / max(cnt, 1)
     best = min(scores, key=scores.get)
     return best, scores
+
+
+def select_per_cent_sigma(df, sigma_grid=None):
+    """
+    PER-CENT leave-one-cent-out CV: for each cent c independently, pick the sigma
+    that best lets its NEIGHBORS (cent c held out) reproduce c's own empirical EV
+    curve. This is the honest, data-driven bandwidth: each cent pools exactly as
+    wide as its own data supports.
+
+    Why this matters for the favorite zone: a global sigma (chosen by averaging
+    CV error across ALL cents) is dominated by the cheap end, where wide pooling
+    helps, and it badly over-smooths the favorites (c>=70). Those high cents,
+    when pooled wide, borrow from cheaper cents whose losers are catastrophic
+    when re-entered at the favorite's entry cost -- dragging the favorite zone
+    spuriously negative. Per-cent CV picks a TIGHT sigma there (typically 0.5-1),
+    so favorites use only the cents that genuinely traded near them, and their
+    true positive economics survive. Cheap cents keep their wide, data-earned
+    pool. No global constant is imposed.
+
+    Returns {c: sigma_c} and {c: cv_error_at_chosen}.
+    """
+    # NOTE: sigma=0 (own-cent only) is NOT a CV candidate -- with the cent held
+    # out it has no neighbors to predict from, so it cannot be CV-scored. Own-N
+    # enters instead as an explicit, documented fallback in pooled_best_x: when
+    # the CV-pooled best-X is non-positive but the cent's OWN-N best-X is
+    # positive, the neighbors were contaminating it and we trust its own tape.
+    if sigma_grid is None:
+        sigma_grid = [0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4, 5, 6]
+    cents, peaks, wins, own_n = _cent_profiles(df)
+
+    def own_ev(c, T):
+        pk, wn = peaks[c], wins[c]
+        if len(pk) == 0:
+            return np.nan
+        reached = pk >= T
+        pnl = np.where(reached, T - c, np.where(wn == 1, SETTLE_WIN - c, -c)).astype(float)
+        return pnl.mean()
+
+    sigma_c = {}
+    err_c = {}
+    for c in cents:
+        Ts = range(c + 1, min(99, c + R_MAX) + 1)
+        best_s, best_e = None, None
+        for sigma in sigma_grid:
+            w = _gauss_weights(c, sigma, cents)
+            se = 0.0
+            cnt = 0
+            for T in Ts:
+                pred, _, _ = _pooled_ev_hr_at(c, T, cents, peaks, wins, w, exclude_c=c)
+                obs = own_ev(c, T)
+                if np.isnan(pred) or np.isnan(obs):
+                    continue
+                se += (pred - obs) ** 2
+                cnt += 1
+            e = se / max(cnt, 1)
+            if best_e is None or e < best_e:
+                best_e, best_s = e, sigma
+        sigma_c[int(c)] = float(best_s)
+        err_c[int(c)] = float(best_e)
+    return sigma_c, err_c
+
+
+def pooled_best_x(df, sigma_c):
+    """
+    Per-cent POOLED best-X (the neighbor-weighted achievable read).
+
+    For each cent c, sweep every reachable absolute target T = c+1..99, compute
+    the neighbor-pooled EV at (c, T) using c's own CV-selected sigma, and take
+    the X = T-c that maximizes pooled EV (exit-or-hold is already baked into the
+    per-N PnL: reach T -> +X, else settle). The pool uses each cent's full
+    neighbor-weighted N (effN, often hundreds) rather than the thin own-N count,
+    while the basis stays correct (PnL scored at c's own entry cost).
+
+    Returns {c: {bestX, bestT, ev, roi, hit, holdEv, effSupport}} where roi is
+    pooled EV / c in percent, hit is the pooled reach fraction at best-X, and
+    holdEv is the pooled hold-to-settle EV (the no-exit baseline).
+    """
+    cents, peaks, wins, own_n = _cent_profiles(df)
+    out = {}
+    for c in cents:
+        w = _gauss_weights(c, sigma_c[int(c)], cents)
+        # hold-to-settle baseline (no exit): pooled mean of (99-c if win else -c)
+        hnum = 0.0
+        hden = 0.0
+        for nc in cents:
+            wi = w.get(int(nc), 0.0)
+            if wi <= 0:
+                continue
+            wn = wins[nc]
+            if len(wn) == 0:
+                continue
+            hpnl = np.where(wn == 1, SETTLE_WIN - c, -c).astype(float)
+            hnum += wi * hpnl.sum()
+            hden += wi * len(wn)
+        hold_ev = (hnum / hden) if hden > 0 else np.nan
+
+        best = None  # (X, ev, hit, T)
+        for T in range(c + 1, 100):
+            ev, hr, _ = _pooled_ev_hr_at(c, T, cents, peaks, wins, w)
+            if ev is None or np.isnan(ev):
+                continue
+            if best is None or ev > best[1]:
+                best = (T - c, float(ev), float(hr), T)
+        if best is None:
+            continue
+        X, ev, hit, T = best
+        basis = "pooled"
+        eff_sigma = float(sigma_c[int(c)])
+
+        # --- own-N contamination fallback -----------------------------------
+        # If the CV-pooled best-X is non-positive but this cent's OWN N (the
+        # contracts that actually traded here) has a positive best-X, the wide
+        # pool was dragging it down with cross-basis losers. Trust the cent's
+        # own tape -- the tightest, most basis-faithful read. This is the user's
+        # directive: every cell should find what its own feed supports.
+        if ev <= 0:
+            pk_o, wn_o = peaks[int(c)], wins[int(c)]
+            if len(pk_o) > 0:
+                obest = None
+                for To in range(c + 1, 100):
+                    reached = pk_o >= To
+                    pnl = np.where(reached, To - c,
+                                   np.where(wn_o == 1, SETTLE_WIN - c, -c)).astype(float)
+                    evo = float(pnl.mean())
+                    if obest is None or evo > obest[1]:
+                        obest = (To - c, evo, float(reached.mean()), To)
+                if obest is not None and obest[1] > ev and obest[1] > 0:
+                    X, ev, hit, T = obest
+                    basis = "own-N"
+                    eff_sigma = 0.0
+
+        # if holding beats every exit, the rule is hold-to-settle
+        rule = f"exit at +{X}c"
+        if not np.isnan(hold_ev) and hold_ev >= ev:
+            ev = float(hold_ev)
+            X = 99 - c
+            T = 99
+            hit = float('nan')
+            rule = "hold to 99c on winners, 1c on losers"
+        out[int(c)] = {
+            "c": int(c),
+            "bestX": int(X),
+            "bestT": int(T),
+            "ev": float(ev),
+            "roi": float(ev / c * 100.0),
+            "hit": (None if (hit is None or np.isnan(hit)) else float(hit * 100.0)),
+            "holdEv": (None if np.isnan(hold_ev) else float(hold_ev)),
+            "sigma": eff_sigma,
+            "basis": basis,
+            "rule": rule,
+        }
+    return out
 
 
 def select_adaptive_sigma(df, base_sigma):

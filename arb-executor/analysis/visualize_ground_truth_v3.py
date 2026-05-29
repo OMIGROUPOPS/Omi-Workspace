@@ -35,8 +35,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ARB_ROOT = HERE.parent
 ATLAS_DIR = ARB_ROOT / "data" / "durable" / "exit_atlas_v1"
-SURFACE_JSON = ATLAS_DIR / "atp_main_pooled_surface.json"
-OUT_HTML = ATLAS_DIR / "atp_main_ground_truth_v2.html"
+SURFACE_JSON = ATLAS_DIR / "atp_main_pooled_surface_v3.json"
+OUT_HTML = ATLAS_DIR / "atp_main_ground_truth_v3.html"
 
 
 HTML_TEMPLATE = r"""<!DOCTYPE html>
@@ -44,7 +44,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ATP_MAIN — Ground Truth v2 · Neighbor-Pooled</title>
+<title>ATP_MAIN — Ground Truth v3 · Pooled Best-X</title>
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 <style>
   :root {
@@ -135,7 +135,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 </style>
 </head>
 <body>
-  <h1>ATP_MAIN — Ground Truth v2 · Neighbor-Pooled</h1>
+  <h1>ATP_MAIN — Ground Truth v3 · Pooled Best-X</h1>
   <p class="sub">
     Every cell &times; every conceivable R out to the ceiling (T&le;99), EV/hit/ROI
     pooled across the full <code>4,137-N</code> corpus with each cent borrowing N
@@ -148,14 +148,14 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
       <b class="glabel">Left lens</b>
       <label><input type="radio" name="lens" value="ev" checked> EV (cents/N)</label>
       <label><input type="radio" name="lens" value="roi"> ROI (EV/cost %)</label>
-      <label><input type="radio" name="lens" value="ach"> Achievable (best-X ROI)</label>
+      <label><input type="radio" name="lens" value="ach"> Achievable (pooled best-X ROI)</label>
     </div>
     <div class="ctl-sep"></div>
     <div class="ctl-group">
       <b class="glabel">Overlays</b>
       <label><input type="checkbox" id="tg-floor"><span class="swatch" style="background:var(--overlay-floor)"></span>Breakeven floor</label>
       <label><input type="checkbox" id="tg-ceil"><span class="swatch" style="background:var(--overlay-ceil)"></span>Ceiling (R=99&minus;c)</label>
-      <label><input type="checkbox" id="tg-bestx" checked><span class="swatch" style="background:var(--overlay-bestx)"></span>Best-X (locked)</label>
+      <label><input type="checkbox" id="tg-bestx" checked><span class="swatch" style="background:var(--overlay-bestx)"></span>Best-X (pooled)</label>
       <label><input type="checkbox" id="tg-density">Density (ownN)</label>
     </div>
     <div class="ctl-sep"></div>
@@ -184,14 +184,15 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   </div>
 
   <div class="foot">
-    Source: <code>atp_main_pooled_surface.json</code> (built by
-    <code>build_pooled_surface.py</code> from <code>atp_main_spike_perN.parquet</code>).
+    Source: <code>atp_main_pooled_surface_v3.json</code> (built by
+    <code>build_pooled_surface_v3.py</code> from <code>atp_main_spike_perN.parquet</code>).
     Cell basis: enter at c; reach T &rarr; +(T&minus;c); else settle 99&minus;c (win) or &minus;c (loss).
     R = T &minus; c. Neighbor pooling &sigma; from leave-one-cent-out CV.
-    <br><b>Best-X</b> / <b>Achievable</b> read from the LOCKED per-cell hindsight-optimal
-    exit-or-hold map (<code>descriptive_1c</code> · <code>ATP_MAIN_LOCKED_DOWN.md</code>):
-    sweep every reachable X, pick X maximizing realized PnL (kiss-the-target hit; hold-to-settle
-    fallback), own-N, fill-realism applied. These are <b>descriptive / hindsight</b> numbers, NOT predictive.
+    <br><b>Best-X</b> / <b>Achievable</b> are the <b>POOLED</b> hindsight-optimal exit-or-hold per cent:
+    each cent sweeps every reachable X over its <b>neighbor-weighted N</b> (effN, often hundreds) and picks
+    the X maximizing pooled PnL. Pool width &sigma; is chosen per-cent by leave-one-cent-out CV (wide where
+    cheap, tight in the favorite zone), with an <b>own-N fallback</b> when neighbors only contaminate the cell.
+    The LOCKED own-N map (<code>descriptive_1c</code>) is shown alongside for reference. <b>Descriptive / hindsight</b>, NOT predictive.
   </div>
 
   <div id="tip"></div>
@@ -207,7 +208,9 @@ const DATA = {DATA_JSON};
   const rows = DATA.rows;
   const rowByC = new Map(rows.map(r => [r.c, r]));
   const ach = DATA.achievable || {};
+  const achLocked = DATA.achievableLocked || {};
   const achByC = c => ach[c] || (rowByC.get(c) && rowByC.get(c).achievable) || null;
+  const achLockedByC = c => achLocked[c] || (rowByC.get(c) && rowByC.get(c).achievableLocked) || null;
   // achievable ROI range (locked best-X per cent) for the achievable lens scale
   const achRois = Object.values(ach).map(a => a.roi).filter(v => v != null);
   const achAbsMax = achRois.length ? Math.max(Math.abs(d3.min(achRois)), Math.abs(d3.max(achRois))) : 1;
@@ -331,11 +334,22 @@ const DATA = {DATA_JSON};
 
     const gut = svg.append("g");
     rows.forEach(r => {
-      gut.append("text").attr("class", "gutter-label")
-        .attr("x", GUT - 3).attr("y", yOf(r.c) + CH - 1).attr("text-anchor", "end")
-        .attr("fill", r.ownN < 30 ? "var(--ink-faint)" : "var(--ink)")
-        .text("N=" + r.ownN).style("cursor", "pointer")
-        .on("click", () => selectRow(r.c));
+      // Thin the gutter to every 5th cent so the 8px "N=" labels never crowd.
+      // Non-labeled rows still get a clickable tick to preserve row selection.
+      const labeled = (r.c % 5 === 0);
+      if (labeled) {
+        gut.append("text").attr("class", "gutter-label")
+          .attr("x", GUT - 3).attr("y", yOf(r.c) + CH - 1).attr("text-anchor", "end")
+          .attr("fill", r.ownN < 30 ? "var(--ink-faint)" : "var(--ink)")
+          .text(r.c + "\u00A2 \u00B7 N=" + r.ownN).style("cursor", "pointer")
+          .on("click", () => selectRow(r.c));
+      } else {
+        gut.append("line").attr("class", "gutter-tick")
+          .attr("x1", GUT - 6).attr("x2", GUT - 3)
+          .attr("y1", yOf(r.c) + CH / 2).attr("y2", yOf(r.c) + CH / 2)
+          .attr("stroke", "var(--ink-faint)").attr("stroke-width", 0.5)
+          .style("cursor", "pointer").on("click", () => selectRow(r.c));
+      }
     });
 
     const xaxis = svg.append("g");
@@ -407,8 +421,8 @@ const DATA = {DATA_JSON};
       document.getElementById("left-title").textContent = "Pooled ROI — EV ÷ entry cost";
       document.getElementById("left-sub").textContent = "cheap & expensive cents on one scale · diverging RdYlGn @ 0";
     } else {
-      document.getElementById("left-title").textContent = "Achievable ROI — locked best-X exit-or-hold (per cent)";
-      document.getElementById("left-sub").textContent = "each row colored by its hindsight-optimal best-X ROI · best-X tick marks the R · descriptive, not predictive";
+      document.getElementById("left-title").textContent = "Achievable ROI — pooled best-X exit-or-hold (per cent)";
+      document.getElementById("left-sub").textContent = "each row colored by its neighbor-pooled best-X ROI · best-X tick marks the R · CV-selected σ, own-N fallback · descriptive";
     }
   }
   document.querySelectorAll('input[name=lens]').forEach(r => {
@@ -433,16 +447,27 @@ const DATA = {DATA_JSON};
     const dol = dollarsOf(d.ev);
     const dolCls = d.ev == null ? "" : (d.ev >= 0 ? "tip-ev-pos" : "tip-ev-neg");
     const a = achByC(d.c);
+    const aL = achLockedByC(d.c);
     let achHtml = "";
     if (a) {
       const aCls = a.roi == null ? "" : (a.roi >= 0 ? "tip-ev-pos" : "tip-ev-neg");
       const isBest = (d.R === a.bestX);
+      const basisTxt = a.basis === "own-N"
+        ? `own-N only (neighbors contaminated; \u03c3=0)`
+        : `pooled \u03c3=${a.sigma!=null?a.sigma:"?"} (neighbor-weighted)`;
       achHtml =
         `<div class="tip-rule"></div>` +
-        `<span class="tip-dim">LOCKED best-X (hindsight-optimal, own N=${a.N}):</span><br>` +
-        `exit +${a.bestX}c (T=${a.bestT}c) &nbsp; ROI <span class="${aCls}">${fmtRoi(a.roi)}</span> &nbsp; hit ${fmtHit(a.hit)}%` +
+        `<span class="tip-dim">POOLED best-X (${basisTxt}):</span><br>` +
+        `exit +${a.bestX}c (T=${a.bestT}c) &nbsp; ROI <span class="${aCls}">${fmtRoi(a.roi)}</span> &nbsp; ` +
+        (a.hit!=null ? `hit ${fmtHit(a.hit)}%` : `hold-to-settle`) +
         (isBest ? ` &nbsp;<b style="color:#00c2ff">\u25c0 this R</b>` : "") + `<br>` +
         `<span class="tip-dim">rule:</span> ${a.rule}`;
+      if (aL) {
+        const lCls = aL.roi == null ? "" : (aL.roi >= 0 ? "tip-ev-pos" : "tip-ev-neg");
+        achHtml +=
+          `<br><span class="tip-dim">locked own-N ref (N=${aL.N}):</span> ` +
+          `+${aL.bestX}c \u2192 <span class="${lCls}">${fmtRoi(aL.roi)}</span>`;
+      }
     }
     tip.innerHTML =
       `<b>c=${d.c}c</b> &middot; R=+${d.R} &rarr; T=${T}c<br>` +
@@ -531,8 +556,12 @@ const DATA = {DATA_JSON};
     sortState = { key: "R", asc: true };
     const effTxt = r && r.effN != null ? r.effN.toFixed(0) : "—";
     const a = achByC(c);
+    const aL = achLockedByC(c);
+    const basisTxt = a ? (a.basis === "own-N" ? "own-N only (σ=0, neighbors contaminated)" : `pooled σ=${a.sigma}`) : "";
     const achLine = a
-      ? ` LOCKED best-X: exit +${a.bestX}c (T=${a.bestT}c) → ROI ${fmtRoi(a.roi)}, hit ${fmtHit(a.hit)}% [own N=${a.N}]. Rule: ${a.rule}. Hindsight-optimal / descriptive — not predictive.`
+      ? ` POOLED best-X (${basisTxt}): exit +${a.bestX}c (T=${a.bestT}c) → ROI ${fmtRoi(a.roi)}${a.hit!=null?", hit "+fmtHit(a.hit)+"%":" (hold-to-settle)"}. Rule: ${a.rule}.` +
+        (aL ? ` Locked own-N ref: +${aL.bestX}c → ${fmtRoi(aL.roi)} [N=${aL.N}].` : "") +
+        ` Hindsight-optimal / descriptive — not predictive.`
       : "";
     renderTable(
       `Cell c=${c}c  ·  ownN=${r ? r.ownN : "—"}  effN=${effTxt}`,

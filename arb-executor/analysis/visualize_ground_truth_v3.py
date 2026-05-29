@@ -284,12 +284,15 @@ const DATA = {DATA_JSON};
   // full opacity; 'thin'/'own-only' (layers diverge) renders dimmed so a
   // borrowed positive can't masquerade as a proven one. A cell with NO positive
   // config is absent from finest -> transparent (honestly blank, not least-bad).
+  // EFF-N LEADS: a positive eff-N pool is the verdict. 'confident' = own-N also
+  // agrees (full). 'tape-watch' = eff-N positive but the thin/drift-biased own
+  // tape lags -- a mild dim (watch-note), NOT the old heavy downgrade, because
+  // own-N can no longer veto the deep pool. Blank only if no positive config.
   const finOpacity = c => {
     const f = finByC(c);
     if (!f) return 0.0;
     if (f.confidence === "confident") return 1.0;
-    if (f.confidence === "thin") return 0.42;
-    return 0.62; // own-only
+    return 0.78; // tape-watch: eff-N positive, own tape lags (likely T-20 drift bias)
   };
   const leftColor = v => {
     if (v == null) return "transparent";
@@ -454,7 +457,7 @@ const DATA = {DATA_JSON};
       document.getElementById("left-sub").textContent = "cheap & expensive cents on one scale · diverging RdYlGn @ 0";
     } else if (lens === "fin") {
       document.getElementById("left-title").textContent = "Finest config — dual-layer (own-N value × eff-N depth)";
-      document.getElementById("left-sub").textContent = "hue = stability-scored eff-N ROI · FULL = confident (both layers agree) · DIM = thin/borrowed (layers diverge) · blank = no positive config";
+      document.getElementById("left-sub").textContent = "hue = stability-scored eff-N ROI (the deep, drift-unbiased estimator leads) · FULL = own-N tape also agrees · slight DIM = tape-watch (thin own tape lags, likely T-20 drift bias) · blank = no positive config";
     } else {
       document.getElementById("left-title").textContent = "Achievable ROI — pooled best-X exit-or-hold (per cent)";
       document.getElementById("left-sub").textContent = "each row colored by its neighbor-pooled best-X ROI · best-X tick marks the R · CV-selected σ, own-N fallback · descriptive";
@@ -604,7 +607,7 @@ const DATA = {DATA_JSON};
       ? ` ★ FINEST CONFIG: exit +${f.bestX}c (T=${f.bestT}c) — ${f.confidence.toUpperCase()}.` +
         ` Layer A own-N (actual value, N=${f.ownN}): ROI ${fmtRoi(f.ownRoi)}, hit ${fmtHit(f.ownHit)}%.` +
         ` Layer B eff-N (pooled depth, σ=${f.sigma.toFixed(1)}): ROI ${fmtRoi(f.effRoi)}, hit ${fmtHit(f.effHit)}%, Sharpe ${f.effSharpe.toFixed(2)}.` +
-        ` ${f.confidence === "confident" ? "Both layers agree positive — proven & deep." : f.confidence === "thin" ? "Eff-N positive but own-N flat/negative — borrowed, unproven." : "Own-N positive but pooled depth thin."}`
+        ` ${f.confidence === "confident" ? "Eff-N (deep, drift-unbiased) leads positive AND the own tape agrees — proven & deep." : "Eff-N (deep, drift-unbiased) leads positive; the thin own tape lags — likely T-20 snapshot drift bias (the cells that read this cent late skew toward just-weakened). Eff-N is the truer estimator, so this is a watch-note, not a downgrade."}`
       : ` ★ FINEST CONFIG: none — no exit clears positive EV on the converted basis (honestly blank, not least-bad).`;
     renderTable(
       `Cell c=${c}c  ·  ownN=${r ? r.ownN : "—"}  effN=${effTxt}`,

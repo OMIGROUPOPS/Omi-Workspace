@@ -399,17 +399,35 @@ def finest_config(df, sigma_c):
         crumb has tiny dispersion but you're paid nothing for risk -> killed).
       EV itself must be > 0 to be eligible (no 'least-bad negative' configs).
 
-    The X is chosen on the EFF-N score (depth), but the OWN-N layer is scored at
-    that same X and reported alongside. confidence:
-      'confident' -- own-N EV and eff-N EV both > 0 at the chosen X (agree)
-      'thin'      -- eff-N positive but own-N flat/negative (borrowed, unproven)
-      'own-only'  -- own-N positive but eff-N couldn't support it (rare; trust tape)
+    EFF-N LEADS, OWN-N CORROBORATES (the objectively-truer weighting)
+    -----------------------------------------------------------------
+    At a high cent, own-N is not merely thin -- it is BIASED. The handful of
+    tapes that read exactly this cent AT THE T-20 SNAPSHOT are a selected
+    sample: because a contract's cent drifts over the T-4h -> T-20m window, the
+    ones caught at, say, 93c right at T-20 skew toward contracts that drifted
+    DOWN into 93 late (i.e. had just weakened). That selection biases own-N
+    pessimistic and manufactures false negatives at the top (the 93c
+    -9.7% / 86%-hit artifact). The converted eff-N pool -- hundreds of N,
+    relative-trajectory matched -- is the larger AND less-biased estimator of
+    'what a favorite of this character does'. So EFF-N is the primary truth.
+
+    Own-N is reported as corroboration and can NEVER, on its own thin/biased
+    read, drag a positive eff-N cell into the red. confidence:
+      'confident' -- eff-N EV > 0 (the deep, fair estimator says go). The
+                     PRIMARY verdict. Own-N agreement is noted but not required.
+      'tape-watch'-- eff-N > 0 but own-N flat/negative: deep pool is positive,
+                     the thin own tape disagrees -- most likely T-20 drift
+                     selection bias, shown as a watch-note, NOT a downgrade.
+      (no cell is marked negative on own-N alone.)
     Returns {c: {...both layers..., confidence}}.
     """
     cents, peaks, wins, own_n, ownc = _cent_profiles(df)
     EPS = 1.0  # cents; dispersion floor so a zero-noise crumb can't divide to inf
     K = 6.0
     out = {}
+    # NOTE: eligibility is eff-N EV > 0 ONLY (see _pooled loop below). own-N is
+    # never used to gate eligibility, so a drift-biased thin own tape cannot
+    # delete a cell that the deep pool supports.
     for c in cents:
         c = int(c)
         w = _gauss_weights(c, sigma_c[c], cents)
@@ -440,12 +458,12 @@ def finest_config(df, sigma_c):
             continue
         _, X, T, evB, hrB, dispB, evA, hrA, dispA = best
 
-        if not np.isnan(evA) and evA > 0 and evB > 0:
-            confidence = "confident"
-        elif evB > 0 and (np.isnan(evA) or evA <= 0):
-            confidence = "thin"
+        # EFF-N leads: the deep, drift-unbiased pool decides the verdict. Own-N
+        # is corroboration only and cannot pull a positive eff-N cell negative.
+        if not np.isnan(evA) and evA > 0:
+            confidence = "confident"      # both agree positive
         else:
-            confidence = "own-only"
+            confidence = "tape-watch"     # eff-N positive; thin own tape lags (drift bias)
 
         out[c] = {
             "c": c,

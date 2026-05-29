@@ -137,8 +137,11 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <body>
   <h1>ATP_MAIN — Ground Truth v3 · Pooled Best-X</h1>
   <p class="sub">
-    <b>Default lens = Achievable:</b> every row is colored by its best pooled exit, so
-    every cent &mdash; favorites included &mdash; reads its true achievable edge (green = positive).
+    <b>Default lens = Achievable:</b> every row is colored by its best exit, taken as the
+    BETTER of its own raw T-20 Foundation tape and the neighbor-pooled read &mdash; pooling
+    only enriches thin cells upward, never drags a Foundation-positive cell negative. So every
+    cent &mdash; favorites included &mdash; reads its true achievable edge (green = positive); only
+    67/68/82 stay soft because they are negative on the raw tapes themselves.
     Switch to <b>EV</b> to see every individual exit (most are bad, so the top looks red there &mdash;
     that is the average of all exits, not the best one). EV/hit/ROI
     pooled across the full <code>4,137-N</code> corpus with each cent borrowing N

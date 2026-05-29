@@ -288,27 +288,31 @@ def pooled_best_x(df, sigma_c):
         basis = "pooled"
         eff_sigma = float(sigma_c[int(c)])
 
-        # --- own-N contamination fallback -----------------------------------
-        # If the CV-pooled best-X is non-positive but this cent's OWN N (the
-        # contracts that actually traded here) has a positive best-X, the wide
-        # pool was dragging it down with cross-basis losers. Trust the cent's
-        # own tape -- the tightest, most basis-faithful read. This is the user's
-        # directive: every cell should find what its own feed supports.
-        if ev <= 0:
-            pk_o, wn_o = peaks[int(c)], wins[int(c)]
-            if len(pk_o) > 0:
-                obest = None
-                for To in range(c + 1, 100):
-                    reached = pk_o >= To
-                    pnl = np.where(reached, To - c,
-                                   np.where(wn_o == 1, SETTLE_WIN - c, -c)).astype(float)
-                    evo = float(pnl.mean())
-                    if obest is None or evo > obest[1]:
-                        obest = (To - c, evo, float(reached.mean()), To)
-                if obest is not None and obest[1] > ev and obest[1] > 0:
-                    X, ev, hit, T = obest
-                    basis = "own-N"
-                    eff_sigma = 0.0
+        # --- Foundation-true own-N read (the fix for top-cell false negatives) -
+        # The locked descriptive_1c map carried false negatives at several top
+        # cells (77, 80, 81, 93) where its rule was NOT the true argmax of the
+        # raw Foundation tapes. So we ALWAYS recompute this cent's best exit
+        # directly from its own raw T-20 tapes (Druids Foundation), and take the
+        # BETTER of pooled-vs-raw. Neighbor pooling may only ENRICH a thin cell
+        # upward -- it can never drag a Foundation-positive cell into the red.
+        # This is the operator's directive: rely on neighbor N to help configure
+        # cells to their best exit, never to invent a false negative.
+        pk_o, wn_o = peaks[int(c)], wins[int(c)]
+        if len(pk_o) > 0:
+            obest = None
+            for To in range(c + 1, 100):
+                reached = pk_o >= To
+                pnl = np.where(reached, To - c,
+                               np.where(wn_o == 1, SETTLE_WIN - c, -c)).astype(float)
+                evo = float(pnl.mean())
+                if obest is None or evo > obest[1]:
+                    obest = (To - c, evo, float(reached.mean()), To)
+            # Use the raw own-N read whenever it beats the pooled read. Pooling
+            # only wins when it genuinely lifts a thin cell ABOVE its own tape.
+            if obest is not None and obest[1] > ev:
+                X, ev, hit, T = obest
+                basis = "own-N"
+                eff_sigma = 0.0
 
         # if holding beats every exit, the rule is hold-to-settle
         rule = f"exit at +{X}c"

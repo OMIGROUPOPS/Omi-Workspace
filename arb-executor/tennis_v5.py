@@ -45,9 +45,13 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 
-# Import VERSION B deployment blueprint
+# Import VERSION C v3 deployment blueprint (own-tape EXIT FLOOR, 2026-05-29).
+# Replaces version_b_blueprint, which was built on the broken pre-late-May
+# foundation (40/41 cells had wrong exit_target). v3 gates every TRADE cell on
+# OWN-TAPE realized EV>0 (the binding floor); maker_bid_offset=0 = taker entry
+# (conservative). Part 2 entry-discount layers on top later.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from version_b_blueprint import (
+from version_c_blueprint_v3 import (
     DEPLOYMENT,
     get_strategy as _bp_get_strategy,
     use_blended_target as _bp_use_blended_target,

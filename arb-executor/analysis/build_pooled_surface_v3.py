@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 from pathlib import Path
 
 import numpy as np
@@ -33,11 +34,14 @@ import exit_chain_core as ec
 
 HERE = Path(__file__).resolve().parent
 ARB_ROOT = HERE.parent
-CORPUS = ARB_ROOT / "data" / "durable" / "spike_volatility_map" / "atp_main_spike_perN.parquet"
+# Category-parameterized (default ATP_MAIN). Pass CATEGORY=atp_chall|wta_main|wta_chall.
+CAT = os.environ.get("CATEGORY", "atp_main").lower()
+_SVM = ARB_ROOT / "data" / "durable" / "spike_volatility_map"
+CORPUS = _SVM / f"{CAT}_spike_perN.parquet"
 # Canonical hindsight-optimal exit-or-hold map (per-cell, own-N, fill-realistic).
-# This is the LOCKED ground truth from ATP_MAIN_LOCKED_DOWN.md / descriptive_1c.
-LOCKED = ARB_ROOT / "data" / "durable" / "spike_volatility_map" / "atp_main_descriptive_1c.parquet"
-OUT_JSON = ARB_ROOT / "data" / "durable" / "exit_atlas_v1" / "atp_main_pooled_surface_v3.json"
+# This is the LOCKED ground truth from <CAT>_LOCKED_DOWN.md / descriptive_1c.
+LOCKED = _SVM / f"{CAT}_descriptive_1c.parquet"
+OUT_JSON = ARB_ROOT / "data" / "durable" / "exit_atlas_v1" / f"{CAT}_pooled_surface_v3.json"
 
 C_MIN, C_MAX = ec.C_MIN, ec.C_MAX
 SETTLE_WIN = ec.SETTLE_WIN
@@ -229,6 +233,7 @@ def build():
 
     payload = {
         "meta": {
+            "category": CAT.upper(),
             "nTotal": int(len(df)),
             "cMin": C_MIN, "cMax": C_MAX, "rMax": int(ec.R_MAX),
             "sigmaBase": _clean(base),

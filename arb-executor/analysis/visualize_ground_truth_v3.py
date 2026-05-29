@@ -30,13 +30,16 @@ Rich hover exposes what each cell "takes from and assumes":
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ARB_ROOT = HERE.parent
 ATLAS_DIR = ARB_ROOT / "data" / "durable" / "exit_atlas_v1"
-SURFACE_JSON = ATLAS_DIR / "atp_main_pooled_surface_v3.json"
-OUT_HTML = ATLAS_DIR / "atp_main_ground_truth_v3.html"
+# Category-parameterized (default ATP_MAIN). Pass CATEGORY=atp_chall|wta_main|wta_chall.
+CAT = os.environ.get("CATEGORY", "atp_main").lower()
+SURFACE_JSON = ATLAS_DIR / f"{CAT}_pooled_surface_v3.json"
+OUT_HTML = ATLAS_DIR / f"{CAT}_ground_truth_v3.html"
 
 
 HTML_TEMPLATE = r"""<!DOCTYPE html>
@@ -44,7 +47,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ATP_MAIN — Ground Truth v3 · Pooled Best-X</title>
+<title>{CAT_LABEL} — Ground Truth v3 · Pooled Best-X</title>
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 <style>
   :root {
@@ -135,16 +138,16 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 </style>
 </head>
 <body>
-  <h1>ATP_MAIN — Ground Truth v3 · Pooled Best-X</h1>
+  <h1>{CAT_LABEL} — Ground Truth v3 · Pooled Best-X</h1>
   <p class="sub">
     <b>Default lens = Achievable:</b> every row is colored by its best exit, taken as the
     BETTER of its own raw T-20 Foundation tape and the neighbor-pooled read &mdash; pooling
     only enriches thin cells upward, never drags a Foundation-positive cell negative. So every
     cent &mdash; favorites included &mdash; reads its true achievable edge (green = positive); only
-    67/68/82 stay soft because they are negative on the raw tapes themselves.
+    a few cents stay soft because they are negative on the raw tapes themselves.
     Switch to <b>EV</b> to see every individual exit (most are bad, so the top looks red there &mdash;
     that is the average of all exits, not the best one). EV/hit/ROI
-    pooled across the full <code>4,137-N</code> corpus with each cent borrowing N
+    pooled across the full <code>{NTOTAL}-N</code> corpus with each cent borrowing N
     from its neighbors (Gaussian, <code id="sigtxt">&sigma;</code>, CV-chosen). No
     picker, no chains, no filters — overlays only. <span id="cellcount"></span>
   </p>
@@ -191,8 +194,8 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   </div>
 
   <div class="foot">
-    Source: <code>atp_main_pooled_surface_v3.json</code> (built by
-    <code>build_pooled_surface_v3.py</code> from <code>atp_main_spike_perN.parquet</code>).
+    Source: <code>{CAT}_pooled_surface_v3.json</code> (built by
+    <code>build_pooled_surface_v3.py</code> from <code>{CAT}_spike_perN.parquet</code>).
     Cell basis: enter at c; reach T &rarr; +(T&minus;c); else settle 99&minus;c (win) or &minus;c (loss).
     R = T &minus; c. Neighbor pooling &sigma; from leave-one-cent-out CV.
     <br><b>Best-X</b> / <b>Achievable</b> are the <b>POOLED</b> hindsight-optimal exit-or-hold per cent:
@@ -260,7 +263,7 @@ const DATA = {DATA_JSON};
   const fmtDol = v => (v == null ? "—" : (v < 0 ? "-$" + Math.abs(v).toFixed(2) : "$" + v.toFixed(2)));
   // $ if this exit were deployed at 10 contracts/N. CRITICAL: scale by THIS
   // cell's effective neighbor N (the contracts actually in its price range),
-  // NOT the whole 4,137 corpus. The full corpus is dominated by cheap/mid
+  // NOT the whole per-category corpus. The full corpus is dominated by cheap/mid
   // anchors that never traded near a favorite cent -- pricing them all at an
   // 88c entry booked nonsense -88c losses and made every favorite look
   // "deployed-negative." Each cell feeds only from its own neighborhood.
@@ -657,7 +660,13 @@ const DATA = {DATA_JSON};
 def main() -> None:
     payload = json.loads(SURFACE_JSON.read_text(encoding="utf-8"))
     data_json = json.dumps(payload, separators=(",", ":"))
-    html = HTML_TEMPLATE.replace("{DATA_JSON}", data_json)
+    cat_label = payload.get("meta", {}).get("category", CAT.upper())
+    ntotal = payload.get("meta", {}).get("nTotal", 0)
+    html = (HTML_TEMPLATE
+            .replace("{CAT_LABEL}", cat_label)
+            .replace("{NTOTAL}", f"{ntotal:,}")
+            .replace("{CAT}", CAT)
+            .replace("{DATA_JSON}", data_json))
     OUT_HTML.write_text(html, encoding="utf-8")
     m = payload["meta"]
     print(f"wrote {OUT_HTML}")

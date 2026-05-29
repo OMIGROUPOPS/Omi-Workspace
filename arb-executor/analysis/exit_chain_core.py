@@ -84,24 +84,51 @@ def per_n_pnl(entry_c: int, peak: int, win: int, T: int) -> float:
 # Adaptive bandwidth via leave-one-cent-out cross-validation
 # ---------------------------------------------------------------------------
 def _cent_profiles(df: pd.DataFrame):
-    """Pre-bin peaks & wins per cent for fast pooled estimation."""
+    """Pre-bin peaks & wins per cent for fast pooled estimation.
+
+    Also pre-bins each tape's OWN anchor cent so pooled scoring can use the
+    neighbor's RELATIVE trajectory (move from its own anchor) instead of
+    re-pricing the neighbor's absolute outcome at the borrowing cell's basis.
+    """
     cents = np.arange(C_MIN, C_MAX + 1)
     peaks = {c: df.loc[df.c == c, "peak"].to_numpy() for c in cents}
     wins = {c: df.loc[df.c == c, "win"].to_numpy() for c in cents}
+    # the neighbor's own anchor cent, aligned 1:1 with peaks[c]/wins[c]
+    ownc = {c: df.loc[df.c == c, "c"].to_numpy() for c in cents}
     own_n = {c: len(peaks[c]) for c in cents}
-    return cents, peaks, wins, own_n
+    return cents, peaks, wins, own_n, ownc
 
 
-def _pooled_ev_hr_at(entry_c, T, cents, peaks, wins, weights, exclude_c=None):
+def _pooled_ev_hr_at(entry_c, T, cents, peaks, wins, weights, exclude_c=None,
+                     ownc=None, relative=True):
     """
     Pooled EV (cents) and HR at (entry_c, T) using cent->weight dict `weights`.
-    Each neighbor cent's N's are evaluated as if ENTERED at entry_c (cell basis),
-    contributing with that cent's weight. Optionally exclude one cent (for CV).
+    Optionally exclude one cent (for CV).
+
+    RELATIVE basis (default, the fix for top-cell contamination)
+    ------------------------------------------------------------
+    A neighbor anchored at its own cent `nc` that ran to peak `pk` made a
+    RELATIVE move of (pk - nc) cents above its own entry. We borrow that
+    *trajectory shape*, not the neighbor's absolute price level. Mapped onto
+    the borrowing cell at entry_c, the target X = T - entry_c is "kissed" iff
+    the neighbor's relative move (pk - nc) >= X. PnL is then scored at the
+    borrowing cell's own basis: kiss -> +X; else settle (win -> 99-entry_c,
+    loss -> -entry_c).
+
+    This removes the artifact where a cheap-anchor neighbor's loss was
+    re-priced as a full -entry_c (e.g. an 84c loser booked as -88c) and where
+    a cheap anchor's huge absolute headroom let it "kiss" high absolute T's it
+    never could at the borrowing basis. Strong favorite neighbors (relative
+    move to ~99 on their own basis) now correctly support the favorite cell.
+
+    relative=False restores the legacy absolute-basis behavior (kept for the
+    EV/ROI exploration lenses, which describe absolute (c,R) outcomes).
     """
     num_ev = 0.0
     num_hit = 0.0
     den = 0.0
     sq = 0.0
+    X = T - entry_c
     for c in cents:
         if exclude_c is not None and c == exclude_c:
             continue
@@ -112,8 +139,13 @@ def _pooled_ev_hr_at(entry_c, T, cents, peaks, wins, weights, exclude_c=None):
         wn = wins[c]
         if len(pk) == 0:
             continue
-        reached = pk >= T
-        pnl = np.where(reached, T - entry_c,
+        if relative and ownc is not None:
+            # relative reach: did this neighbor move at least X above ITS anchor?
+            rel_move = pk - ownc[c]
+            reached = rel_move >= X
+        else:
+            reached = pk >= T
+        pnl = np.where(reached, X if (relative and ownc is not None) else (T - entry_c),
                        np.where(wn == 1, SETTLE_WIN - entry_c, -entry_c)).astype(float)
         num_ev += w * pnl.sum()
         num_hit += w * reached.sum()
@@ -150,7 +182,7 @@ def select_bandwidth_cv(df, sigma_grid=None):
     """
     if sigma_grid is None:
         sigma_grid = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5, 6, 8]
-    cents, peaks, wins, own_n = _cent_profiles(df)
+    cents, peaks, wins, own_n, ownc = _cent_profiles(df)
 
     # empirical (own-sample) EV per (c,R) as the CV target
     def own_ev(c, T):
@@ -207,7 +239,7 @@ def select_per_cent_sigma(df, sigma_grid=None):
     # positive, the neighbors were contaminating it and we trust its own tape.
     if sigma_grid is None:
         sigma_grid = [0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4, 5, 6]
-    cents, peaks, wins, own_n = _cent_profiles(df)
+    cents, peaks, wins, own_n, ownc = _cent_profiles(df)
 
     def own_ev(c, T):
         pk, wn = peaks[c], wins[c]
@@ -256,7 +288,7 @@ def pooled_best_x(df, sigma_c):
     pooled EV / c in percent, hit is the pooled reach fraction at best-X, and
     holdEv is the pooled hold-to-settle EV (the no-exit baseline).
     """
-    cents, peaks, wins, own_n = _cent_profiles(df)
+    cents, peaks, wins, own_n, ownc = _cent_profiles(df)
     out = {}
     for c in cents:
         w = _gauss_weights(c, sigma_c[int(c)], cents)
@@ -344,7 +376,7 @@ def select_adaptive_sigma(df, base_sigma):
     range. This makes the width naturally decided by local density — no global
     constant imposed; base_sigma comes from CV.
     """
-    cents, peaks, wins, own_n = _cent_profiles(df)
+    cents, peaks, wins, own_n, ownc = _cent_profiles(df)
     med = np.median([own_n[c] for c in cents])
     sigma_c = {}
     for c in cents:
@@ -382,7 +414,7 @@ def build_surface(df, sigma_c):
               derive_bands_and_chains where the region is known.
       eff_n : neighborhood-weighted effective sample count per cent (confidence)
     """
-    cents, peaks, wins, own_n = _cent_profiles(df)
+    cents, peaks, wins, own_n, ownc = _cent_profiles(df)
     nC = C_MAX - C_MIN + 1
     EV = np.full((nC, R_MAX), np.nan)
     HR = np.full((nC, R_MAX), np.nan)

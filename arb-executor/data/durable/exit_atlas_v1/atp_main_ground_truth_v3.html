@@ -214,9 +214,15 @@ const DATA = {"meta":{"nTotal":4137,"cMin":5,"cMax":94,"rMax":94,"sigmaBase":5.0
   const fmtRoi = v => (v == null ? "—" : (v >= 0 ? "+" : "") + v.toFixed(0) + "%");
   const fmtHit = v => (v == null ? "—" : v.toFixed(1));
   const fmtDol = v => (v == null ? "—" : (v < 0 ? "-$" + Math.abs(v).toFixed(2) : "$" + v.toFixed(2)));
-  // $ if this exit were deployed on the full corpus at 10 contracts/N (v1 convention)
+  // $ if this exit were deployed at 10 contracts/N. CRITICAL: scale by THIS
+  // cell's effective neighbor N (the contracts actually in its price range),
+  // NOT the whole 4,137 corpus. The full corpus is dominated by cheap/mid
+  // anchors that never traded near a favorite cent -- pricing them all at an
+  // 88c entry booked nonsense -88c losses and made every favorite look
+  // "deployed-negative." Each cell feeds only from its own neighborhood.
   const CONTRACTS = 10;
-  const dollarsOf = ev => ev == null ? null : ev * M.nTotal / 100 * CONTRACTS;
+  const effNofC = c => { const r = rowByC.get(c); return (r && r.effN != null) ? r.effN : M.nTotal; };
+  const dollarsOf = (ev, c) => ev == null ? null : ev * effNofC(c) / 100 * CONTRACTS;
 
   let lens = "ach";  // "ev" | "roi" | "ach" — default to the achievable best-X surface
   // For the achievable lens every cell in a cent's row shares that cent's locked
@@ -409,7 +415,7 @@ const DATA = {"meta":{"nTotal":4137,"cMin":5,"cMax":94,"rMax":94,"sigmaBase":5.0
       ).join("&nbsp; ");
     }
     const comp = (r && r.complementC != null) ? (r.complementC + "c") : "—";
-    const dol = dollarsOf(d.ev);
+    const dol = dollarsOf(d.ev, d.c);
     const dolCls = d.ev == null ? "" : (d.ev >= 0 ? "tip-ev-pos" : "tip-ev-neg");
     const a = achByC(d.c);
     const aL = achLockedByC(d.c);
@@ -439,7 +445,7 @@ const DATA = {"meta":{"nTotal":4137,"cMin":5,"cMax":94,"rMax":94,"sigmaBase":5.0
       `<span class="tip-dim">pooled @ this R:</span> EV <span class="${evCls}">${fmtEv(d.ev)}c</span> &nbsp; ` +
       `ROI <span class="${roiCls}">${fmtRoi(d.roi)}</span> &nbsp; ` +
       `hit ${fmtHit(d.hit)}%<br>` +
-      `<span class="tip-dim">if deployed on all ${M.nTotal.toLocaleString()} N @10ct:</span> <span class="${dolCls}">${fmtDol(dol)}</span>` +
+      `<span class="tip-dim">if deployed on this cent's ${effNofC(d.c).toFixed(0)} eff-N (its price range) @10ct:</span> <span class="${dolCls}">${fmtDol(dol)}</span>` +
       achHtml +
       `<div class="tip-rule"></div>` +
       `<span class="tip-dim">borrows from (own N=${r ? r.ownN : "—"}, eff N=${r && r.effN!=null ? r.effN.toFixed(0) : "—"}):</span><br>` +
@@ -517,7 +523,7 @@ const DATA = {"meta":{"nTotal":4137,"cMin":5,"cMax":94,"rMax":94,"sigmaBase":5.0
   function selectRow(c) {
     highlightRow(c);
     const r = rowByC.get(c);
-    const data = cells.filter(d => d.c === c).map(d => ({ R: d.R, T: d.c + d.R, hit: d.hit, ev: d.ev, roi: d.roi, dollars: dollarsOf(d.ev) }));
+    const data = cells.filter(d => d.c === c).map(d => ({ R: d.R, T: d.c + d.R, hit: d.hit, ev: d.ev, roi: d.roi, dollars: dollarsOf(d.ev, d.c) }));
     sortState = { key: "R", asc: true };
     const effTxt = r && r.effN != null ? r.effN.toFixed(0) : "—";
     const a = achByC(c);
@@ -530,17 +536,17 @@ const DATA = {"meta":{"nTotal":4137,"cMin":5,"cMax":94,"rMax":94,"sigmaBase":5.0
       : "";
     renderTable(
       `Cell c=${c}c  ·  ownN=${r ? r.ownN : "—"}  effN=${effTxt}`,
-      `Every conceivable R for this entry cent (pooled). Breakeven R≥${r ? r.breakevenFloorR : "—"}, ceiling R≤${r ? r.ceilingMaxR : "—"}. Complement ${r && r.complementC!=null ? r.complementC+"c" : "—"}. $ = pooled EV over all ${M.nTotal.toLocaleString()} N @10ct.` + achLine,
+      `Every conceivable R for this entry cent (pooled). Breakeven R≥${r ? r.breakevenFloorR : "—"}, ceiling R≤${r ? r.ceilingMaxR : "—"}. Complement ${r && r.complementC!=null ? r.complementC+"c" : "—"}. $ = EV × this cent's ${effTxt} eff-N @10ct (its own price range, NOT the full corpus).` + achLine,
       [COL_R, COL_T, COL_HIT, COL_EV, COL_ROI, COL_DOL], data
     );
   }
   function selectCol(R) {
     highlightCol(R);
-    const data = cells.filter(d => d.R === R).map(d => ({ c: d.c, T: d.c + d.R, hit: d.hit, ev: d.ev, roi: d.roi, dollars: dollarsOf(d.ev) }));
+    const data = cells.filter(d => d.R === R).map(d => ({ c: d.c, T: d.c + d.R, hit: d.hit, ev: d.ev, roi: d.roi, dollars: dollarsOf(d.ev, d.c) }));
     sortState = { key: "c", asc: true };
     renderTable(
       `Fixed R = +${R}  ·  cross-cent spectrum`,
-      `How the same +${R}c offset performs across every entry cent (pooled). $ = pooled EV over all ${M.nTotal.toLocaleString()} N @10ct.`,
+      `How the same +${R}c offset performs across every entry cent (pooled). $ = EV × each cent's own eff-N @10ct (its price range, NOT the full corpus).`,
       [COL_C, COL_T, COL_HIT, COL_EV, COL_ROI, COL_DOL], data
     );
   }

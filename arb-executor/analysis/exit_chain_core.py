@@ -202,7 +202,8 @@ def select_bandwidth_cv(df, sigma_grid=None):
             # sample R offsets across this cent's valid exit range
             Ts = range(c + 1, min(99, c + R_MAX) + 1)
             for T in Ts:
-                pred, _, _ = _pooled_ev_hr_at(c, T, cents, peaks, wins, w, exclude_c=c)
+                pred, _, _ = _pooled_ev_hr_at(c, T, cents, peaks, wins, w,
+                                              exclude_c=c, ownc=ownc, relative=True)
                 obs = own_ev(c, T)
                 if np.isnan(pred) or np.isnan(obs):
                     continue
@@ -259,7 +260,8 @@ def select_per_cent_sigma(df, sigma_grid=None):
             se = 0.0
             cnt = 0
             for T in Ts:
-                pred, _, _ = _pooled_ev_hr_at(c, T, cents, peaks, wins, w, exclude_c=c)
+                pred, _, _ = _pooled_ev_hr_at(c, T, cents, peaks, wins, w,
+                                              exclude_c=c, ownc=ownc, relative=True)
                 obs = own_ev(c, T)
                 if np.isnan(pred) or np.isnan(obs):
                     continue
@@ -309,7 +311,11 @@ def pooled_best_x(df, sigma_c):
 
         best = None  # (X, ev, hit, T)
         for T in range(c + 1, 100):
-            ev, hr, _ = _pooled_ev_hr_at(c, T, cents, peaks, wins, w)
+            # CONVERTED basis: translate each neighbor's RELATIVE trajectory onto
+            # this cell (oranges -> apples) before measuring reach, instead of
+            # pricing a cheap-anchor neighbor's absolute peak at this cell's cost.
+            ev, hr, _ = _pooled_ev_hr_at(c, T, cents, peaks, wins, w,
+                                         ownc=ownc, relative=True)
             if ev is None or np.isnan(ev):
                 continue
             if best is None or ev > best[1]:

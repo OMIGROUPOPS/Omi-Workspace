@@ -130,22 +130,31 @@ def build():
     cents = np.arange(C_MIN, C_MAX + 1)
 
     # ---- cells: every valid (c, R) up to the ceiling -----------------------
+    # CONVERTED basis (oranges -> apples): each per-R cell is scored on the SAME
+    # relative-trajectory pooling the achievable read uses, so the inspector's
+    # R-by-R table AGREES with the cell color instead of showing the stale
+    # absolute-basis numbers. Reach is the neighbor's RELATIVE move (pk - ownc)
+    # mapped onto this cell; PnL is priced at THIS cell's own entry cost (carry
+    # preserved: +Xc at 94 settles 99/-94, not the same as +Xc at 86).
+    cprof = ec._cent_profiles(df)
+    cents_arr, peaks, wins, _own_n, ownc = cprof
     cells = []
     for c in cents:
-        ci = c - C_MIN
+        w = ec._gauss_weights(c, sigma_c[c], cents_arr)
         for R in range(1, ec.R_MAX + 1):
             T = c + R
             if T > 99:
                 break
-            ev = EV[ci, R - 1]
-            if np.isnan(ev):
+            ev, hr, _ = ec._pooled_ev_hr_at(int(c), int(T), cents_arr, peaks,
+                                            wins, w, ownc=ownc, relative=True)
+            if ev is None or np.isnan(ev):
                 continue
             cells.append({
                 "c": int(c),
                 "R": int(R),
                 "ev": _clean(ev),
-                "hit": _clean(HR[ci, R - 1] * 100.0),
-                "roi": _clean(ROI[ci, R - 1] * 100.0),
+                "hit": _clean(hr * 100.0),
+                "roi": _clean(ev / c * 100.0),
             })
 
     # ---- per-cent pooling metadata -----------------------------------------

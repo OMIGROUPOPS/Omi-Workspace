@@ -45,3 +45,44 @@ DIFFERENT, more-favorable tape population at their cent.
 > **never** in the **reactivation** sense (a discount cannot revive a parked cell, because
 > resolvability is on moves and a discount does not move the band). Expecting parked cheap cells to
 > "light up" under a uniform discount is a category error the kernel structurally forbids.
+
+---
+
+# DOCTRINE NOTE (v14) — The firewall gates the CAUSE (cond), never a correlate (occ·cond)
+
+**The third instance of the same failure mode. Recorded so it is never reintroduced.**
+
+## The principle
+Resolvability has exactly one epistemic question: **"when I look, is the answer the same?"** That is
+`cond` — the conditional stability of the mode center (majority of bootstrap visits agree on it within
+±WIN). `cond` is the CAUSE of the c44 noise failure (c44 cond 0.33 = the center is unrepeatable).
+
+`occ` (occupancy = how often a resample visits the cluster at all) is a **FREQUENCY, not an epistemic
+fact**. Frequency is an economic input — it is already priced as the hit-rate inside EV/breakeven, and
+it already scales the confidence cushion `m·(1−occ·cond)`. Putting `occ` into the firewall as the
+product `occ·cond ≥ FLOOR` **double-charges occupancy** and lets a high-occ smear sneak a weak cond
+over the line while dropping a sharp-but-infrequent reach (and the cheap engine-start c5/c6) under it.
+
+## The rule
+- **Firewall:** `cond ≥ FLOOR` (FLOOR=0.50: "the majority of visits agree on the center"). Cause only.
+- **occ:** flows through (a) the hit-rate in EV/breakeven and (b) the cushion scaling `(1−occ·cond)`.
+  Never as a hard pre-screen.
+
+## Why not the literal split (cond-firewall + raw breakeven, occ deleted)
+Deleting occ entirely leaves the raw breakeven gate as the sole defense against low-occ lottery tails;
+at realized N it admits a band of sub-1-SE noise cells. And a flat SE-margin *requirement* kills the
+favorite ballast (hit≈0.97 → SE→0 → ratio explodes). The cushion `m·(1−occ·cond)` is the correct
+margin shape: → 0 for resolved ballast (no cushion needed), widens for unresolved reaches. Keep it.
+
+## The pattern (now three times — STOP building firewalls on correlates)
+1. **X-veto** (reach-region in X-space): X correlates with un-paid crumbs but isn't the cause; vetoed favorite ballast. DROPPED.
+2. **Sharpe conjunct**: rewarded concentrated tails; the lotteries were already dead on occ·cond. REJECTED.
+3. **occ·cond product floor**: occ correlates with lotteries (they're low-occ) but the cause is cond; the product double-charged occ and parked the cheap engine. SPLIT to cond-only firewall (v14).
+
+Each time the extra/wrong conjunct **caught nothing live** (the bad thing was already dead on the true
+cause + breakeven) and **rejected something real**. The firewall gates the cause. Full stop.
+
+## Observable signature (v14)
+Moving the firewall from occ·cond to cond recovered exactly 4 cells, lost 0: c5/c6 (cheap engine-start,
++4.9 SE), c12/c36 (frequently-visited borderline-cond, +3.6/+1.3 SE). c44 still PARK-noise (cond 0.33
+kills it). Ballast intact. v14 strictly dominates v13's fire set.

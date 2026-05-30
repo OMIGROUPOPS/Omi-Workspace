@@ -26,6 +26,12 @@ from blend_continuous import (CENTS, curve, effN, SE, bandwidth, SPREAD, ownN, r
 K, H = 0.215, 2.006
 WA, WB = 3, 12   # regime width thresholds (Opus suggested wA~3, wB~12)
 
+# v5 ROOT-CAUSE FIX: HOLD is not "max score<=0"; it's "too little EV-positive
+# conviction to be a real exit". Expensive favorites are EV-negative almost everywhere
+# and only a razor-thin single X squeaks positive -> that needle flips on sub-penny noise.
+SCORE_FLOOR = 0.05   # absolute conviction floor on max(EV*paid*supp)
+NPOS_MIN = 3         # need >=3 EV-positive candidates to constitute a real exit band
+
 def readout(c, kp=2.0, m0=1.2, floor=1, tau=0.7):
     """Regime-aware. Returns dict with regime, fire_x (executor X), band, diagnostics."""
     Xs = np.arange(floor, 95 - c)
@@ -36,9 +42,10 @@ def readout(c, kp=2.0, m0=1.2, floor=1, tau=0.7):
     paid = 1 - (HIT / 100) ** kp
     supp = np.minimum(1.0, (HIT / 100) / (m0 * se))
     s = np.where(EV > 0, EV * paid * supp, 0.0)
+    npos = int((EV > 0).sum())
 
-    # Regime C: no positive-score exit -> HOLD
-    if s.max() <= 0:
+    # Regime C: marginal/needle cell -> HOLD (economic fact, not a knob)
+    if s.max() <= SCORE_FLOOR or npos < NPOS_MIN:
         return dict(c=c, regime="C", fire_x=None, xlo=None, xhi=None, width=None,
                     ev=None, hit=None, roi=None, eff=float(eff), se=float(se))
 

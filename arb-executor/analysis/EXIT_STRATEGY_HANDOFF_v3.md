@@ -157,3 +157,40 @@ The current kernel for **20c** (σ = 7.03) is a near-flat smear reaching **±15c
 - **Each cell = unique config**, achieved via apples→oranges (pool the move, re-express against own cost basis) — NOT by single-anchor-price bucketing (too thin/artificial).
 - **Show renders before committing.** Never deploy off the broken `cells` grid.
 - **Whatever objectively makes the most sense.** This blend question is believed to have an objective answer — derive it.
+
+---
+
+## 8. FOR OPUS — your task (read this first)
+
+You're one of two agents working this in parallel. A second agent is running the numeric derivation in the sandbox/Cursor against the real data. **Your job is the METHOD, not the numbers** — you do not have the data files loaded, so do not invent values. Derive the *objectively-correct* kernel form and fit procedure; the other agent executes it and we diff the two answers to keep each other honest. **Push back** on the assumptions in §5b–§5c — do not rubber-stamp this doc.
+
+### The codebase carries everything (it's a public repo)
+The data and the project's own verbiage are committed — not just this doc. Key paths (all under `arb-executor/`):
+
+- **This doc:** `arb-executor/analysis/EXIT_STRATEGY_HANDOFF_v3.md`
+- **Ground-truth surface:** `arb-executor/data/durable/exit_atlas_v1/atp_main_pooled_surface_v3.json` (`rows[].achievable` = answer key; `rows[].neighbors[]` = the current mis-weighted kernel; `cells` grid = BROKEN, ignore).
+- **Raw corpus (the tape):** `arb-executor/data/durable/spike_volatility_map/atp_main_spike_perN.parquet` (4137 rows; anchor_price + raw_max only — no pre-anchor band).
+- **Honest reconstruction:** `arb-executor/analysis/build_curve_atp_main.py` → `curve_atp_main.json`.
+- **Corrected surface:** `arb-executor/analysis/build_corrected_surface.py` → `{cat}_corrected_surface_v3.json`.
+- **Interactive pyramid:** `arb-executor/analysis/build_pyramid_html.py` → `{cat}_pyramid_v3.html`.
+- **Surface builder + kernel math (where the bug lives):** `arb-executor/analysis/build_pooled_surface_v3.py` + `arb-executor/analysis/exit_chain_core.py` (`_gauss_weights`, `_pooled_ev_hr_at`, `select_per_cent_sigma`, `finest_config`).
+
+### CRITICAL existing finding — the doctrine verbiage (read before proposing aggressive pooling)
+`arb-executor/data/durable/spike_volatility_map/ATP_MAIN_LOCKED_DOWN.md` is the project's locked doctrine (codes A21/A39/B13/B16/B18/E32/G22; "Plex-confirmed methodology"). It contains a result that **directly constrains your answer**:
+
+> Pooling adjacent 1c cells *DESTROYED* edge in two specific cases: pooling cells 37 (+$42, X=39c) and 38 (−$12.60, X=1c) into [37,39) produced −$8.10 (constituent sum was +$29.40). **Direct evidence that some of the 1c-vs-3c gap is real cell-by-cell heterogeneity that pooling destroys, not pure over-optimization.**
+
+Also from that doc: cheap regime (5–30c) deploys 8% of capital but makes 38% of dollar profit; A39 geometry — 1c of move at 7c entry = 14% ROI vs 1c at 90c = 1% ROI. The cheap cells are exactly the thin/extreme cells with the lottery-exit problem.
+
+### The tension you must resolve
+There are two opposing forces, and the objective kernel sits between them:
+- **Thin cells need sample mass** (own-N as low as 18–23) → argues *for* borrowing from neighbors.
+- **Pooling demonstrably destroys real heterogeneity** (the 37/38 case) → argues *against* borrowing, or for borrowing only from the *immediately* overlapping cents.
+
+The user's stated shape (own dominant; ±1 heavy but strictly below own; ±2 lighter; ~zero past that) is the hypothesis. Your task: is that shape *objectively* correct, and how do you fit its exact decay from the data without hand-picking σ? Define the held-out validation that would prove it.
+
+### Deliverable from you
+1. The kernel family + an objective fit procedure (how to set the decay from data, not by eye).
+2. The best-X **stop-rule** that avoids jackpots (frequency floor vs freq×ROI peak vs knee-of-curve — pick and justify).
+3. How to honestly surface provenance (the tooltip currently shows a pooled blend that wasn't actually used for own-N picks).
+4. Explicit reconciliation with the 37/38 anti-pooling evidence above.

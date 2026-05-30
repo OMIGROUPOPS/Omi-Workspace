@@ -58,14 +58,27 @@ def bandwidth(c,k):
     b = k*SPREAD[c]*NTARGET**(-0.2)
     return float(np.clip(b, 0.55, 2.2))   # +-1..+-2c meaningful, never wider
 
-def weights(c,k,h,reach=6):
-    b=bandwidth(c,k); out={}
+R0=3.0   # distance-taper scale for similarity (Opus: 1+|d|/r0)
+def weights(c,k,h,reach=6,symmetrize=True):
+    b=bandwidth(c,k); raw={}
     for d in range(-reach,reach+1):
         n=c+d
         if n<5 or n>94: continue
         g=np.exp(-d*d/(2*b*b))
-        s=np.exp(-ksd(c,n)**2/(2*h*h)) if d!=0 else 1.0
-        out[n]=g*s
+        # distance-tapered KS so a single noisy far/adjacent KS can't skew one side
+        s=np.exp(-(ksd(c,n)*(1+abs(d)/R0))**2/(2*h*h)) if d!=0 else 1.0
+        raw[n]=g*s
+    if not symmetrize: return raw
+    # symmetrize magnitude across +-d (keep each neighbor's own tapes via its key)
+    out={}
+    for d in range(-reach,reach+1):
+        n=c+d
+        if n not in raw: continue
+        m=c-d
+        if m in raw and d!=0:
+            out[n]=0.5*(raw[n]+raw[m])
+        else:
+            out[n]=raw[n]
     return out
 
 def effN(c,k,h):
@@ -89,69 +102,85 @@ def curve(c,k,h,Xs):
     ROI=EV/c*100
     return EV,HIT,ROI
 
-def best_x(c,k,h,kp=2.0,m0=9.0,floor=1):
+def SE(c,k,h):
+    eff=effN(c,k,h)
+    return SPREAD[c]/np.sqrt(max(eff,1e-9))   # standard-error of the move (Opus)
+
+def best_x(c,k,h,kp=2.0,m0=1.2,floor=1,tau=0.7):
+    """Conviction-weighted CENTROID over credible region (>=tau*peak), not argmax.
+    supp keys off SE(c) so favorites (tight spread) clear support on own tape and
+    cheap cells must earn it via effN depth."""
     Xs=np.arange(floor,95-c)
     if len(Xs)==0: return None
     EV,HIT,ROI=curve(c,k,h,Xs)
-    eff=effN(c,k,h)
+    eff=effN(c,k,h); se=SE(c,k,h)
     paid=1-(HIT/100)**kp
-    supp=np.minimum(1.0, eff*(HIT/100)/m0)
-    score=np.where(EV>0, EV*paid*supp, -1e9)
-    if not (score>-1e8).any(): return None
-    i=int(np.argmax(score))
-    return dict(X=int(Xs[i]),ev=float(EV[i]),hit=float(HIT[i]),roi=float(ROI[i]),
-                eff=float(eff),b=float(bandwidth(c,k)))
+    supp=np.minimum(1.0, (HIT/100)/(m0*se))      # SE-based support
+    s=np.where(EV>0, EV*paid*supp, 0.0)
+    if s.max()<=0: return None
+    cred = s >= tau*s.max()                       # credible region
+    Xc = Xs[cred]; sc = s[cred]
+    xstar = float(np.sum(Xc*sc)/np.sum(sc))       # centroid readout
+    xlo,xhi = int(Xc.min()), int(Xc.max())        # conviction width
+    # report EV/hit/roi at the centroid X (nearest integer offset)
+    i = int(np.argmin(np.abs(Xs-xstar)))
+    return dict(X=round(xstar,1),Xint=int(Xs[i]),xlo=xlo,xhi=xhi,width=xhi-xlo,
+                ev=float(EV[i]),hit=float(HIT[i]),roi=float(ROI[i]),
+                eff=float(eff),se=float(se),b=float(bandwidth(c,k)))
 
 if __name__=="__main__":
-    # -------- CALIBRATE k: median cell -> +-1 weight ~0.6, +-2 ~0.15 --------
-    # geometry only (sim=1 at d for the calibration of pure shape on median cell)
-    import math
-    # k so the MEDIAN-spread cell yields +-1 weight ~0.6  (exp(-1/(2b^2))=0.6 => b~0.99)
-    b_target = math.sqrt(-1/(2*math.log(0.6)))
-    spread_med = np.median([SPREAD[c] for c in CENTS])
-    k = b_target/(spread_med*NTARGET**(-0.2))
-    # -------- CALIBRATE h: p~0.16 neighbor (KS~0.26) keeps ~0.7; 37/38 (KS~0.36)->~0.4 --
-    import math
-    h = math.sqrt(-0.26**2/(2*math.log(0.7)))
-    print(f"Calibrated  k={k:.3f}  h={h:.3f}  (b_target={b_target:.3f})")
-    # show resulting median-cell kernel shape
-    med_c=49
-    W=weights(med_c,k,h); w0=W[med_c]
-    print(f"median cell c={med_c} kernel (norm to own):",
-          {d:round(W.get(med_c+d,0)/w0,3) for d in [-2,-1,0,1,2,3]})
+    from scipy.optimize import minimize
+    import numpy as np
+    # ---- JOINT (k,h) fit to median realized W(+-1)/W(0)=0.60, W(+-2)/W(0)=0.15 ----
+    def realized_ratios(k,h):
+        r1=[]; r2=[]
+        for c in CENTS:
+            W=weights(c,k,h); w0=W.get(c,0)
+            if w0<=0: continue
+            a1=[W[c+d]/w0 for d in (-1,1) if c+d in W]
+            a2=[W[c+d]/w0 for d in (-2,2) if c+d in W]
+            if a1: r1.append(np.mean(a1))
+            if a2: r2.append(np.mean(a2))
+        return np.median(r1), np.median(r2)
+    def obj(p):
+        k,h=p
+        if k<=0 or h<=0: return 1e9
+        m1,m2=realized_ratios(k,h)
+        return (m1-0.60)**2 + (m2-0.15)**2
+    res=minimize(obj,[0.3,0.4],method="Nelder-Mead",
+                 options=dict(xatol=1e-3,fatol=1e-6,maxiter=400))
+    k,h=res.x
+    m1,m2=realized_ratios(k,h)
+    print(f"JOINT FIT  k={k:.3f} h={h:.3f}  -> realized median +-1={m1:.3f} (t0.60)  +-2={m2:.3f} (t0.15)")
+    # symmetry check on median cell
+    W=weights(49,k,h); w0=W[49]
+    asym=abs(W.get(48,0)-W.get(50,0))/w0*100
+    print(f"  c=49 kernel norm: " + " ".join(f"{d:+d}:{W.get(49+d,0)/w0:.3f}" for d in [-2,-1,0,1,2]) + f"   asym={asym:.1f}%")
 
-    # ===== DIFF 1: does bandwidth track stability? =====
-    print("\n"+"="*64)
-    print("DIFF 1: bandwidth b(c) vs known stability (favorites tight, cheap wide)")
-    print("="*64)
-    for c in [5,7,9,12,13,38,67,89,90,91,92,93]:
-        print(f"  c={c:>2} ownN={ownN[c]:>2} spread={SPREAD[c]:>4.1f} b(c)={bandwidth(c,k):>4.2f} effN={effN(c,k,h):>5.1f}")
-
-    # ===== DIFF 2: is X*(c) smooth across cents + kills jackpots? =====
-    print("\n"+"="*64)
-    print("DIFF 2: X*(c) continuity + jackpot kill (5->65? 9->90? keep 12->20?)")
-    print("="*64)
-    res={}
+    # ===== DIFF A: continuity — centroid readout, count >8c jumps =====
+    print("\n"+"="*64); print("DIFF A: centroid X*(c) continuity (target: jumps>8c -> single digits)"); print("="*64)
+    res_x={}
     for c in CENTS:
         r=best_x(c,k,h)
-        if r: res[c]=r
-    for c in [5,6,7,8,9,10,11,12,13,14,15,20,38,67,88,89,90,91,92,93]:
-        if c in res:
-            r=res[c]; print(f"  c={c:>2}: X*=+{r['X']:>2}  ev={r['ev']:>5.2f} hit={r['hit']:>4.0f}% roi={r['roi']:>5.0f}% effN={r['eff']:>4.1f}")
-    # smoothness: how many adjacent X* jumps > 8c
-    xs=[res[c]['X'] for c in CENTS if c in res]
-    cs=[c for c in CENTS if c in res]
+        if r: res_x[c]=r
+    cs=[c for c in CENTS if c in res_x]; xs=[res_x[c]["X"] for c in cs]
     jumps=sum(1 for i in range(1,len(xs)) if abs(xs[i]-xs[i-1])>8)
-    print(f"  adjacent-cent X* jumps >8c: {jumps} of {len(xs)-1}")
+    print(f"  adjacent-cent X* jumps >8c: {jumps} of {len(xs)-1}   (was 27)")
+    for c in [5,6,7,8,9,10,11,12,13,14,15,20,38,67,88,89,90,91,92,93]:
+        if c in res_x:
+            r=res_x[c]; print(f"  c={c:>2}: X*=+{r['X']:>4}  [{r['xlo']:>2},{r['xhi']:>2}] w={r['width']:>2} hit={r['hit']:>3.0f}% roi={r['roi']:>4.0f}% effN={r['eff']:>4.1f} SE={r['se']:>4.1f}")
 
-    # ===== DIFF 3: 37/38 continuous down-weight recovers $ vs blind pool? =====
-    print("\n"+"="*64)
-    print("DIFF 3: 37/38 soft down-weight vs blind pool (constituent +$39.90 truth)")
-    print("="*64)
-    print(f"  sim(37,38)={np.exp(-ksd(37,38)**2/(2*h*h)):.2f}  (Opus target ~0.4)")
-    def dollars(c,X):
-        m,sv=rel[c]
-        return np.where(m>=X,X,np.where(sv==1,100-c,-c)).sum()/100*10
-    r37=res.get(37); r38=res.get(38)
-    if r37 and r38:
-        print(f"  blended X*: 37->+{r37['X']} (${dollars(37,r37['X']):+.2f}), 38->+{r38['X']} (${dollars(38,r38['X']):+.2f})  sum=${dollars(37,r37['X'])+dollars(38,r38['X']):+.2f}")
+    # ===== DIFF B: SE-supp leaves favorites convicted, kills 5->65 =====
+    print("\n"+"="*64); print("DIFF B: favorites convicted (supp~1 own tape) AND 5c jackpot killed"); print("="*64)
+    for c in [5,9,89,90,92]:
+        r=best_x(c,k,h)
+        Xs=np.arange(1,95-c); EV,HIT,ROI=curve(c,k,h,Xs); se=SE(c,k,h)
+        supp=np.minimum(1.0,(HIT/100)/(1.2*se))
+        print(f"  c={c:>2}: X*=+{r['X']}  SE={se:.2f}  max-supp={supp.max():.2f}  (5/9 should NOT reach +65/+90)")
+
+    # ===== DIFF C: joint kernel symmetric at median, favorites sharper =====
+    print("\n"+"="*64); print("DIFF C: median symmetric 0.6/0.15; favorites sharper by design"); print("="*64)
+    for c in [9,49,90]:
+        W=weights(c,k,h); w0=W[c]
+        r1=np.mean([W.get(c+d,0)/w0 for d in(-1,1)])
+        print(f"  c={c:>2} spread={SPREAD[c]:>4.1f} b={bandwidth(c,k):.2f}  +-1 weight={r1:.3f}")

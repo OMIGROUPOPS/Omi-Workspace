@@ -86,3 +86,40 @@ cause + breakeven) and **rejected something real**. The firewall gates the cause
 Moving the firewall from occ·cond to cond recovered exactly 4 cells, lost 0: c5/c6 (cheap engine-start,
 +4.9 SE), c12/c36 (frequently-visited borderline-cond, +3.6/+1.3 SE). c44 still PARK-noise (cond 0.33
 kills it). Ballast intact. v14 strictly dominates v13's fire set.
+
+---
+
+# DOCTRINE NOTE (v14 LOCK) — `cond` is per-mode, not diluted-global. Test-quantity == fired-quantity.
+
+**Opus's seam 4 (bimodal cells parked by a unimodal cond statistic) was REAL but already pre-solved.**
+The danger: if `cond` were measured against a single global consensus center over ALL bootstrap draws,
+a bimodal-but-sharp cell would score low cond purely because its mass splits across two tight modes
+straddling the blend point — the exact artifact that once called c5 "noise." The fear was that this
+artifact had reincarnated inside the firewall statistic.
+
+**It hasn't.** `boot_modes` splits the draws into ≤2 modes FIRST (line 47–48), then measures `cond` on
+`draws[inc]` — *this mode's own cluster* — against *this mode's own center* (line 61). `cond` is the
+within-mode conditional stability of the fired (lowest) mode. `occ` carries the between-mode split.
+They are already decomposed exactly as the c5-vs-c44 falsifier did it.
+
+**The airtight proof (exact global-cond recomputed from re-drawn bootstrap):**
+| cell | per-mode cond | global (unimodal) cond | fires? |
+|---|---|---|---|
+| c5 | 0.72 | **0.21** | EXIT (+4.93 SE) |
+| c6 | 0.78 | **0.04** | EXIT (+4.89 SE) |
+| c36 | 0.51 | 0.49 | EXIT (+1.31 SE) |
+
+c5/c6 — the cheap bimodal engine-start — fire ONLY because the firewall uses per-mode cond. A global
+statistic reads them at 0.21 / 0.04 (noise) and parks ~$10 of edge. The per-mode statistic is
+load-bearing, not incidental.
+
+**Over-recovery check:** c17/18/21 pass the cond firewall (per-mode 0.54–0.77, trustworthy centers) but
+are still parked PARK-engine by the breakeven gate, because their low occ makes them sub-1-SE on
+breakeven. Firewall lets the trustworthy-but-infrequent center through; the economics catch the
+infrequency. End-to-end architecture confirmed.
+
+**The unifying principle (what closed the null, the band, the centroid, and now the firewall):** the
+statistic that gates a decision must be computed on the SAME object the readout acts on. The readout
+fires the lowest mode; the firewall judges that lowest mode's own within-mode cond. Test-quantity and
+fired-quantity are unified — no structural gap remains for a special-cell to hide in. Every gate is now
+(a) on the cause and (b) computed on the fired object. **ATP_MAIN exit LOCKS at v14.**

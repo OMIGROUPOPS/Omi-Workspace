@@ -1,0 +1,50 @@
+{
+  "ATP_MAIN": {
+    "cells": 70,
+    "gateA_strict": {
+      "total_realized_own": 16576.2,
+      "trades": 65
+    },
+    "gateB_blended": {
+      "total_realized_own": 7134.0,
+      "trades": 70
+    },
+    "more_profitable": "A_strict"
+  },
+  "ATP_CHALL": {
+    "cells": 70,
+    "gateA_strict": {
+      "total_realized_own": 22841.9,
+      "trades": 62
+    },
+    "gateB_blended": {
+      "total_realized_own": 14660.0,
+      "trades": 59
+    },
+    "more_profitable": "A_strict"
+  },
+  "WTA_MAIN": {
+    "cells": 70,
+    "gateA_strict": {
+      "total_realized_own": 17088.8,
+      "trades": 65
+    },
+    "gateB_blended": {
+      "total_realized_own": 7747.0,
+      "trades": 57
+    },
+    "more_profitable": "A_strict"
+  },
+  "WTA_CHALL": {
+    "cells": 70,
+    "gateA_strict": {
+      "total_realized_own": 6499.0,
+      "trades": 63
+    },
+    "gateB_blended": {
+      "total_realized_own": 1820.0,
+      "trades": 54
+    },
+    "more_profitable": "A_strict"
+  }
+}

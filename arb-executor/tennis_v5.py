@@ -226,10 +226,16 @@ UNDERDOG_TIERS_V5 = [(10, 14), (15, 19), (20, 24), (25, 29), (30, 34), (35, 39),
 
 
 def get_strategy_v5(category, direction, entry_price):
-    """Look up the per-cell strategy from the VERSION B blueprint.
+    """Resolve the band, then SPECIALIZE to the entry CENT's own exit.
 
-    Returns the strategy dict (with baby-sizing applied if BABY_SIZING_MODE)
-    or None if no viable cell exists for this category/direction/price.
+    v3 per-cent blueprint: the band key (cat,dir,lo,hi) is the lookup ENVELOPE;
+    each cell's `percent_exits[cent]` carries that specific cent's own exit
+    target/ev/hit/basis (own-N where credible, pooled where own-N is thin --
+    the locked ground-truth v3 blend). 'Every cent is its own cent.'
+
+    Returns the strategy dict (baby-sizing applied if BABY_SIZING_MODE) with
+    exit_target specialized to entry_price, or None if the band is absent, the
+    band is a full SKIP, or THIS cent is non-viable (achievable EV<=0).
     """
     if direction == 'leader':
         tiers = LEADER_TIERS_V5
@@ -241,14 +247,28 @@ def get_strategy_v5(category, direction, entry_price):
         cell = DEPLOYMENT.get((category, direction, lo, hi))
         if cell is None:
             return None  # explicit SKIP (key absent from blueprint)
-        # SKIP marker: entry_size == 0 in the blueprint (15 of 56 cells)
+        # Band-level SKIP: entry_size==0 means NO cent in the band is viable.
         if cell.get('entry_size', 0) == 0:
             return None
         # Apply entry sub-range filter
         if not (cell['entry_lo'] <= entry_price <= cell['entry_hi']):
             return None  # outside the optimal sub-range
-        # Apply baby-sizing override (AFTER skip check, so we never trade SKIP cells)
+        # --- PER-CENT specialization (the binding floor) ---
+        pe = cell.get('percent_exits', {}).get(entry_price)
+        if pe is None:
+            return None  # cent absent from surface -> no viable read
+        if (pe.get('ev') or 0) <= 0:
+            return None  # cent-level SKIP even though the band trades
         result = dict(cell)
+        # exit_target is THIS cent's own value (None = hold-to-settle).
+        result['exit_target'] = pe['exit_target']
+        # surface the per-cent context the callers/logs read.
+        result['in_sample_daily_pnl'] = pe['ev']            # primary-side tiebreaker
+        result['in_sample_hit_rate'] = (pe['hit'] / 100.0
+                                        if pe.get('hit') is not None else 0.0)
+        result['in_sample_n'] = pe.get('ownN') or 0
+        result['cent_basis'] = pe.get('basis')
+        result['cent_effN'] = pe.get('effN')
         if BABY_SIZING_MODE:
             result['entry_size'] = BABY_ENTRY_SIZE
             result['dca_size'] = BABY_DCA_SIZE if cell['dca_drop'] is not None else 0

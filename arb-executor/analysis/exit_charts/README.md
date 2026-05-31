@@ -121,15 +121,37 @@ Thin favorites (c=81–94, raw 8–13 matches) rise to **17–20 matches**; thin
 (c=8–14) to 25–31. The minute-N multiple (3–23×) is inflated by within-match autocorrelation
 — **the distinct-match count is the honest denominator for any hit-rate gate.**
 
-**Shape revealed (not pre-imposed):** optimal-net X folds monotonically from base to apex —
-deep underdogs swing big (c=5 → +81, reach 47%, net +35¢; a miss costs ≤5¢), favorites take
-small-certain (c=93 → +6, reach 100%, net +6¢; a miss costs ~93¢). The even line (c≈50) holds
-the largest nets (c=53 → +46, net +40¢). This is the unified mirror-fold the gauge was meant
-to surface.
+### Optimal-X objective — PREDICTABILITY-GATED (not argmax-net)
 
-> ⚠️ Deep-underdog extreme-X optima (c≤14, X≥70) ride a handful of comeback paths; reach there
-> is path-autocorrelated. Do not deploy these until gated on **distinct-match** hit-rates
-> (not minute-N). The 85% floor stays unlocked per instruction.
+argmax(net) chases the cheap-cell moonshot — c5 → +81 at 47% reach nets +35¢ only because a
+miss costs ~5¢. That variance-chase is rejected. The optimum is now:
+
+> **optimal X = the deepest X whose pooled reach ≥ floor** (on the monotone reach envelope, so
+> it never jumps a sub-floor dip to grab the 99-lock spike). Raw net stays as a visible compare
+> layer only — never optimised on.
+
+**Floor locked at 0.85** from the sweep (on healthy-pooled-N cells): 0.80 is unstable
+(mean|ΔX| spike at the 0.80→0.81 step) and lets c5 creep to +17; 0.90 over-clamps the even
+line (c50 +20→+7 off a reach cliff past 0.88). 0.85 sits mid-plateau. At 0.85, **c5 → +14
+(89% reach, 280% ROI)** — the moonshot is gone and the fold is the *predictable* shape.
+
+### Minute- vs match-weighted reach (the honest denominator)
+
+Minute-weighted pooled reach over-counts winner-minutes (a winner lingers near c on its way up
+and reaches 99). So a few deep mid-cell picks look predictable but aren't: **c53 → +46 reads
+94% minute-weighted but only 68% match-weighted**; c21 → +34 reads 86% / 56%. These are
+**flagged amber on the chart and `<<MATCH-UNCONFIRMED` in the report** (27/90 cells). The gauge
+exposes them; it does not hide or deploy them.
+
+- `--gate-basis minute` (default): honors the c5 +14 anchor; deep picks flagged.
+- `--gate-basis match` (conservative deploy gate): gates on match-weighted reach (each match
+  once). Result: **c5 → +13, c21 → +15, c53 → +12, 0/90 unconfirmed** — clean predictable fold,
+  no moonshot, no 99-magnet. Recommended for deployment numbers.
+
+**Shape revealed (not pre-imposed):** a monotone fold — deep underdogs take a moderate deep
+offset on their cheap basis (c5 → +13/+14, ~240–280% ROI), the even line takes the largest
+predictable offsets, favorites take small-certain (c93 → +6, ~100% reach). The mirror-fold the
+gauge was meant to surface — now on the predictable, not the moonshot, optimum.
 
 ## Caveats for the full-universe re-run
 - Edge/low-c cells are sparse on 38 games (drives sand mean down, creates off-diagonal optima).

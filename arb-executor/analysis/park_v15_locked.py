@@ -12,16 +12,23 @@ GATE STACK (each on its own CAUSE; none is an SE-relative margin -> no third-dec
   EV_fire > holdEV     beat-settling.
   hit >= be + M_CUSHION*(1-occ*cond)   rate-sanity + SAFETY (this is what parks the c44 noise smear;
                                        it is LOAD-BEARING and stays BINDING -- demoting it fires c44).
-  EV_fire >= EV_VETO   magnitude       ("is it worth trading?") -- LOW secondary veto, drops the one
-                                       bank-nothing exit (c38 @ +0.08c). Plateau-flat over [0.25,0.75]c.
+
+NO magnitude / EV_VETO gate. An interim EV_VETO=0.5c was considered (to drop the one near-null exit
+c38 @ +0.08c) and then REMOVED: EV-in-cents is a CONTINUUM (0.08, 0.59, 0.88, 1.00, ...) with no natural
+break, so any positive threshold slices a smear -- the same third-decimal fragility this session killed,
+relocated to EV-space. The "plateau" [0.25,0.75]c was a one-cell gap (c38 alone in that window), not a
+structural valley (verified: c38 is the SOLE cell in (0,0.5)c clearing cond+occ+cushion). A gate whose
+entire effect is to toggle a single economically-null cell (+0.08c, a rounding error on the book) does
+not earn its place under the no-knob-that-does-nothing discipline that governs every other gate here.
+So c38 fires (+0.08c, a non-event); the stack carries ZERO hand-set magnitude constants.
 
 FALSIFIED en route (kept as scar tissue): (a) mse / margin-in-SE floor -> kills ballast (thin margin
 over a high breakeven; the seam-3 wall). (b) absolute-EV as the PRIMARY gate (E_min~1c) -> breaks c44
 AND parks legitimate cheap-certain exits (c72 0.88c); EV is a continuum with no high gap, so a high
-E_min just relocates the wobble. The cheap-end disqualification (c38) and the high-hit-crumb
-disqualification are BOTH "doesn't pay", caught here by EV_VETO (cents) and cushion (rate) respectively.
+E_min just relocates the wobble. (The high-hit-crumb "doesn't pay" case is caught by the cushion; the
+cheap near-null case c38 is left to fire as the non-event it is -- see the EV_VETO removal note above.)
 
-Lock params: B(NBOOT)=1000, smooth=2, MIN_OCC=0.10, EV_VETO=0.50, FLOOR=0.50, M_CUSHION=0.15, WIN=3.
+Lock params: B(NBOOT)=1000, smooth=2, MIN_OCC=0.10, FLOOR=0.50, M_CUSHION=0.15, WIN=3. (No EV_VETO.)
 Stability: c44 PARK at every B and smooth; c13->X11 at every B/smooth; EXIT-set smooth{1,2}-stable to
 within 1 immaterial cell (c29, banks ~4c at a coin-flip hit margin = the labeled risk dial).
 """
@@ -35,8 +42,8 @@ WIN = 3
 FLOOR = 0.50                 # per-mode cond floor (resolvability firewall; the CAUSE). v14, unchanged.
 M_CUSHION = 0.15             # LABELED risk dial; rate-sanity + safety (parks c44). BINDING. v14, unchanged.
 MIN_OCC = 0.10               # SEAM-5 FIX: peak prominence floor. Flat plateau [0.08,0.20].
-EV_VETO = 0.50               # secondary magnitude veto (cents). Flat plateau [0.25,0.75]. Drops null exits.
 SMOOTH = 2                   # histogram smoothing half-window. Cap at 2 (smooth=3 over-merges modes).
+# (EV_VETO removed: any positive cents-threshold slices a continuum; its sole effect was toggling c38.)
 
 def boot_draws(c):
     """Bootstrap best-X draws on OWN moves. Returns (draws array, npos)."""
@@ -121,7 +128,6 @@ def state(c, discount=0, smooth=SMOOTH):
             else: saw_hold = True
             continue
         if hit < hit_be + M_CUSHION * (1 - occ * cond): continue    # rate-sanity + SAFETY (parks c44)
-        if EV_fire < EV_VETO: continue                              # magnitude: drops bank-nothing exits
         return 'EXIT'                                               # lowest fully-qualifying peak fires
     if not saw_cond: return 'PARK-noise'
     if saw_hold: return 'HOLD'
@@ -139,15 +145,14 @@ def fired_center(c, discount=0, smooth=SMOOTH):
         hit, hit_be, EV_fire, holdEV = fired_breakeven(c, ctr, discount)
         if EV_fire <= holdEV: continue
         if hit < hit_be + M_CUSHION * (1 - occ * cond): continue
-        if EV_fire < EV_VETO: continue
         return ctr
     return None
 
 if __name__ == '__main__':
     from collections import Counter
     print("=" * 78)
-    print(f"v15 PEAK-READOUT LOCKED  B={NBOOT} smooth={SMOOTH} MIN_OCC={MIN_OCC} EV_VETO={EV_VETO} "
-          f"FLOOR={FLOOR} M_CUSHION={M_CUSHION} WIN=+-{WIN}  [GAP REMOVED]")
+    print(f"v15 PEAK-READOUT LOCKED  B={NBOOT} smooth={SMOOTH} MIN_OCC={MIN_OCC} "
+          f"FLOOR={FLOOR} M_CUSHION={M_CUSHION} WIN=+-{WIN}  [GAP REMOVED, no EV_VETO]")
     print("=" * 78)
     cen = Counter(); exits = {}
     for c in CENTS:

@@ -44,6 +44,24 @@ run at **B>=1000, smooth in {1,2}.**
 - **Residual wobble: c62, c75 flip ONLY at smooth=3** (over-smoothing erases/merges their modes).
   smooth in {1,2} is identical for both at B>=1000. So: cap smooth at 2.
 
+## FINAL CALL (Opus signed) — EV_VETO REMOVED. Zero hand-set magnitude constants.
+
+Opus conceded the abs-EV primary gate (own diff: breaks c44 at 2.78c; continuum 0.29/0.61/0.62/0.75/
+0.89/1.00 has no break; parks cheap-certain c72) and then held me to my OWN argument: a fixed positive
+cents-threshold on a continuum is the smear-slice this session killed, whether at 1.0c (his error) or
+0.5c (the interim lock). The [0.25,0.75] "plateau" is a ONE-CELL gap (c38 alone in the window), not a
+structural valley. Diff-1 CONFIRMED: c38 (+0.081c) is the SOLE cell in (0,0.5)c clearing cond+occ+cushion
+(next up: c37 +0.592c, c72 +0.884c). A gate whose entire effect is to toggle one +0.08c non-event does
+NOT earn its place. **EV_VETO removed.** c38 fires (+0.08c, a rounding error); the stack now carries no
+hand-set magnitude constant. The c37/c38 "line" dissolves — there was never a categorical break; both are
+marginal-but-positive, right number of new gates = 0.
+
+Named residual (Opus): one truly-INDIFFERENT cell (c29/c41 class) sits within +-0.004 of its cushion-
+adjusted breakeven; banks ~4c but flips on RNG-stream / smooth-window. NOT a sampling artifact (B doesn't
+settle it) — it's a cell genuinely indifferent between exit and park. This is the labeled risk dial
+(M_CUSHION) doing its job; named here, not chased. (At the cached B=1000 draw both c29/c41 park with
+margins -0.082/-0.073; which cell lands on the knife-edge is draw-dependent.)
+
 ## SYNTHESIS — both agents partly right; the tape shows the real structure
 
 B=1000 sharpened modes but did NOT kill the knife-edge: a band of ~6 cells (c29/c37/c38/c41/c42/c61/
@@ -59,21 +77,20 @@ legitimate cheap-certain exits (c72 0.88c, c37 0.59c) — confirming the primary
 c72 (occ 0.88, hit 0.96, near-lock) SURVIVES at 0.5c — the veto is low enough to keep cheap-certain
 engine exits an E_min=1.0 would have killed.
 
-## Lock config
+## Lock config (FINAL)
 v14 firewall (cond>=FLOOR, per-mode, occ as cushion-scaling) + peak-readout (scan low->high, fire lowest
-peak with occ>=MIN_OCC AND cond>=FLOOR AND EVf>hold AND hit>=be+M_CUSHION*(1-occ*cond) AND EVf>=EV_VETO)
-+ GAP REMOVED.
-Params: MIN_OCC=0.10, EV_VETO=0.50c, B=1000, smooth=2, FLOOR=0.50, M_CUSHION=0.15, WIN=3.
+peak with occ>=MIN_OCC AND cond>=FLOOR AND EVf>hold AND hit>=be+M_CUSHION*(1-occ*cond)) + GAP REMOVED.
+Params: MIN_OCC=0.10, B=1000, smooth=2, FLOOR=0.50, M_CUSHION=0.15, WIN=3.  NO EV_VETO.
 
-Gate stack, each on its own CAUSE: cond (resolvability) / occ (is-it-a-mode, prominence) / cushion
-(rate-sanity + safety, parks c44) / EVf>hold (beat-settling) / EV_VETO=0.5c (is-it-worth-trading,
-drops the one null exit). None is an SE-relative margin.
+Gate stack, each on its own CAUSE, none a positive threshold on a continuum: cond (resolvability) /
+occ>=0.10 (is-it-a-mode, prominence) / EVf>hold (beat-settling) / cushion (rate-sanity + SAFETY, parks
+c44; BINDING; = the labeled risk dial). Four gates, zero hand-set magnitude constant.
 
-## Final census (B=1000, smooth=2, EV_VETO=0.5)
-EXIT=25: [5,6,10,11,12,13,14,15,16,30,31,32,33,34,35,36,37,61,62,72,78,80,86,87,91]. c44 PARK (SAFE).
+## Final census (B=1000, smooth=2, NO veto)
+EXIT=26: [5,6,10,11,12,13,14,15,16,30,31,32,33,34,35,36,37,38,61,62,72,78,80,86,87,91]. c44 PARK (SAFE).
 c13->X11 (defect fixed), c10->X8 (recovered), ballast c91/86/87 preserved, c36 seam-3 recovery kept,
-c72 cheap-certain kept, c38 (0.08c null) dropped. Residual wobble = 1 cell (c29, smooth1 fires / smooth2
-parks; banks ~4c at a coin-flip hit margin) = irreducible labeled-risk-dial, immaterial.
+c72 cheap-certain kept, c38 fires (+0.08c non-event). Residual = 1 truly-indifferent cell (c29/c41 class,
+banks ~4c, flips at +-0.004 cushion margin) = labeled risk dial, named not chased.
 
 ## Verification (B=300 confirmed; B=1000 full-board census pending regen)
 - c44 PARK at every B, every smooth. SAFE.

@@ -14,6 +14,37 @@ python build_chart_pyramid.py --input ../../data/durable/per_minute_universe/ful
 
 Shared data layer: `chart_common.py` (ONE cell definition, ONE reach engine).
 
+```
+python build_chart_pooled_gauge.py     # LAYER 2 -> chart_pooled_gauge.html (+ pooled_N_per_cell.csv)
+```
+
+## Conceptual corrections adopted (2026-05-31)
+
+1. **No winner/loser split — reach is settlement-blind.** reach(c,X) = fraction of ALL
+   contracts passing through c that ever trade to c+X. A contract that settles at 1¢ but
+   traded through c+X earlier filled our resting sell = a real fill. Settlement enters
+   ONLY on the misses: `net = reach·X − miss_rate·(c − 100·settle | miss)`.
+   *(Layer 1 reach was already settlement-blind & traded-price; Layer 2 adds the net term.)*
+2. **Reach instrument = TRADED price** `max(forward price_high) ≥ c+X` (skip-inclusive).
+   `max_yes_bid_forward_*` are quoted bid → false-positive risk → banned for reach.
+   **`bounce_*` is bid-derived** (corr **0.84** vs `max_yes_bid_forward` at settlement, 0.74
+   vs traded; and goes negative) → not reused for reach either.
+3. **Layer 2 — sand-pooled sample** (`build_chart_pooled_gauge.py`): every cell's reach/net/ROI
+   is computed on the overlap-weighted neighbor pool, not own-cell N. Both raw-N and pooled-N
+   reported.
+
+### Schema flag-back — existing fields (check before imposing new bands)
+| field | encodes | values (ATP_MAIN probe) |
+|---|---|---|
+| `regime` | match phase | premarket 23093 / in_match 4109 / settlement_zone 28 |
+| `premarket_phase` | pregame sub-phase | stable 22141 / formation 952 / None 4137 |
+| `spread_band` | liquidity | tight 15276 / medium 7739 / wide 4215 |
+| `entry_band_lo/hi` | **price deciles** (0-10…90-100) | already a cost-basis banding by price (~75% concordant with per-minute round(100·yes_bid); the gap = it's anchored at a reference minute, not per-minute) |
+
+→ **The proposed 5 cost-basis bands (5-20/21-40/…/81-94) reinvent `entry_band` at coarser
+resolution.** Layer 2 therefore pools on the **continuous cell grid** and lets the shape
+emerge; if a banding is wanted, reuse `entry_band` deciles rather than a conflicting 5-band scheme.
+
 > ⚠️ The spec referenced `arb-executor/analysis/CHART_DEFINITIONS_VERIFIED.md`, which
 > **does not exist in the repo**. The instruments below are taken verbatim from the
 > build prompt (which supersedes that file for the reach instrument anyway).
@@ -75,6 +106,30 @@ underdog rows. **8 off-diagonal optima flagged** (magenta) — all in sparse low
 cells; the full-universe re-run should collapse these. Objective is `argmax_X(fill × ROI-on-cost)`,
 **not** max fill alone. Every optimal block surfaces its full variable stack on hover
 (fill%, ROI-on-cost, miss/comeback, N, partner mirror-check) — never a single-number verdict.
+
+## Layer 2 — sand-pooled settlement-blind gauge (probe)
+
+Pooling each cell through the sand overlap weights (k±3) thickens every cell's sample,
+favorites included:
+
+| denominator | raw (own-cell) | pooled (k±3) |
+|---|---|---|
+| minute-grains N | 31 – 1097 | **174 – 4497** |
+| **distinct matches** (deployment-relevant) | 8 – 23 | **14 – 31** of 39 |
+
+Thin favorites (c=81–94, raw 8–13 matches) rise to **17–20 matches**; thin deep underdogs
+(c=8–14) to 25–31. The minute-N multiple (3–23×) is inflated by within-match autocorrelation
+— **the distinct-match count is the honest denominator for any hit-rate gate.**
+
+**Shape revealed (not pre-imposed):** optimal-net X folds monotonically from base to apex —
+deep underdogs swing big (c=5 → +81, reach 47%, net +35¢; a miss costs ≤5¢), favorites take
+small-certain (c=93 → +6, reach 100%, net +6¢; a miss costs ~93¢). The even line (c≈50) holds
+the largest nets (c=53 → +46, net +40¢). This is the unified mirror-fold the gauge was meant
+to surface.
+
+> ⚠️ Deep-underdog extreme-X optima (c≤14, X≥70) ride a handful of comeback paths; reach there
+> is path-autocorrelated. Do not deploy these until gated on **distinct-match** hit-rates
+> (not minute-N). The 85% floor stays unlocked per instruction.
 
 ## Caveats for the full-universe re-run
 - Edge/low-c cells are sparse on 38 games (drives sand mean down, creates off-diagonal optima).

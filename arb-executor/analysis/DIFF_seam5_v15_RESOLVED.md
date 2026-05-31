@@ -44,10 +44,36 @@ run at **B>=1000, smooth in {1,2}.**
 - **Residual wobble: c62, c75 flip ONLY at smooth=3** (over-smoothing erases/merges their modes).
   smooth in {1,2} is identical for both at B>=1000. So: cap smooth at 2.
 
+## SYNTHESIS — both agents partly right; the tape shows the real structure
+
+B=1000 sharpened modes but did NOT kill the knife-edge: a band of ~6 cells (c29/c37/c38/c41/c42/c61/
+c62/c79) clusters against the cushion boundary, decided at the +-0.02 level (c61 fires +0.006, c42 parks
+-0.004 — statistically identical). So the wobble is NOT pure B-noise. AND one fired cell, **c38, banks
++0.08c** — Opus's objection ("an exit worth a fifth of a cent isn't a trade") is VALID for c38, even
+though his EV-floor-as-PRIMARY-gate was falsified. Synthesis: keep cushion binding (safety), add a LOW
+secondary EV-veto purely to drop bank-nothing cells.
+
+**Secondary EV-veto has a real plateau [0.25, 0.75]c** (identical EXIT-set across the band — drops
+EXACTLY c38 (0.08c) and nothing else). Set EV_VETO=0.5c (plateau center). At 1.0c it wrongly eats
+legitimate cheap-certain exits (c72 0.88c, c37 0.59c) — confirming the primary-gate version was wrong.
+c72 (occ 0.88, hit 0.96, near-lock) SURVIVES at 0.5c — the veto is low enough to keep cheap-certain
+engine exits an E_min=1.0 would have killed.
+
 ## Lock config
 v14 firewall (cond>=FLOOR, per-mode, occ as cushion-scaling) + peak-readout (scan low->high, fire lowest
-peak with occ>=MIN_OCC AND cond>=FLOOR AND EVf>hold AND hit>=be+M_CUSHION*(1-occ*cond)) + GAP REMOVED.
-Params: MIN_OCC=0.10, B=1000, smooth=2, FLOOR=0.50, M_CUSHION=0.15, WIN=3.
+peak with occ>=MIN_OCC AND cond>=FLOOR AND EVf>hold AND hit>=be+M_CUSHION*(1-occ*cond) AND EVf>=EV_VETO)
++ GAP REMOVED.
+Params: MIN_OCC=0.10, EV_VETO=0.50c, B=1000, smooth=2, FLOOR=0.50, M_CUSHION=0.15, WIN=3.
+
+Gate stack, each on its own CAUSE: cond (resolvability) / occ (is-it-a-mode, prominence) / cushion
+(rate-sanity + safety, parks c44) / EVf>hold (beat-settling) / EV_VETO=0.5c (is-it-worth-trading,
+drops the one null exit). None is an SE-relative margin.
+
+## Final census (B=1000, smooth=2, EV_VETO=0.5)
+EXIT=25: [5,6,10,11,12,13,14,15,16,30,31,32,33,34,35,36,37,61,62,72,78,80,86,87,91]. c44 PARK (SAFE).
+c13->X11 (defect fixed), c10->X8 (recovered), ballast c91/86/87 preserved, c36 seam-3 recovery kept,
+c72 cheap-certain kept, c38 (0.08c null) dropped. Residual wobble = 1 cell (c29, smooth1 fires / smooth2
+parks; banks ~4c at a coin-flip hit margin) = irreducible labeled-risk-dial, immaterial.
 
 ## Verification (B=300 confirmed; B=1000 full-board census pending regen)
 - c44 PARK at every B, every smooth. SAFE.

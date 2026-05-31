@@ -143,10 +143,21 @@ and reaches 99). So a few deep mid-cell picks look predictable but aren't: **c53
 **flagged amber on the chart and `<<MATCH-UNCONFIRMED` in the report** (27/90 cells). The gauge
 exposes them; it does not hide or deploy them.
 
-- `--gate-basis minute` (default): honors the c5 +14 anchor; deep picks flagged.
-- `--gate-basis match` (conservative deploy gate): gates on match-weighted reach (each match
-  once). Result: **c5 → +13, c21 → +15, c53 → +12, 0/90 unconfirmed** — clean predictable fold,
-  no moonshot, no 99-magnet. Recommended for deployment numbers.
+- **`--gate-basis match` (DEFAULT — canonical deploy gate):** one match one vote. Result:
+  **c5 → +13 (86% match reach, +10.3¢ expected return, 27 matches), c21 → +15, c53 → +12**,
+  no moonshot, no 99-magnet. **1/90 cells thin** (matchN<15) on the probe.
+- `--gate-basis minute` (DIAGNOSTIC ONLY — do not deploy): over-optimistic wherever winners
+  loiter. The minute−match gap per cell maps the winner-contaminated cells (c53 +9pp, c21 +10pp)
+  — useful info, never a deploy basis.
+
+Why minute-weighted is rigged: a winning contract loiters at a price on its way up to 99 and
+donates dozens of "reached" minutes — ballot-box stuffing. Match-weighted asks the only question
+that matters for deployment: of N distinct matches, how many actually paid. Confirmed over-optimistic
+in 41/90 cells (e.g. c53 +46 reads 94% minute / 68% match; c40 +26 reads 85% / 55%).
+
+**Deploy surface color = expected return** `= reach_match·X − miss_rate·(c−settle)` (cents), NOT
+ROI-on-cost-when-hit — so cheap cells don't look 2× better than they deploy. **Per-cell match-N
+shown** in hover; thin picks (<15 matches) flagged magenta.
 
 **Shape revealed (not pre-imposed):** a monotone fold — deep underdogs take a moderate deep
 offset on their cheap basis (c5 → +13/+14, ~240–280% ROI), the even line takes the largest

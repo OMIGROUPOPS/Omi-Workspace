@@ -49,30 +49,36 @@ def raw_cell_block_table(df: pd.DataFrame) -> pd.DataFrame:
         ft = g["fwd_max_traded"].to_numpy() * 100.0          # traded forward high, cents
         settle = g["settlement_value"].to_numpy() * 100.0    # 0 or 100 cents
         n = len(g)
-        # match-weighted reach denominator: best forward-traded per DISTINCT match (ticker).
-        # minute-weighted reach over-counts winner-minutes (a winner lingers near c on its
-        # way up and reaches 99); per-match collapses that survivorship bias.
-        match_max = g.groupby("ticker")["fwd_max_traded"].max().to_numpy() * 100.0
+        # MATCH-weighted denominator (canonical deploy gate): one match = one vote.
+        # minute-weighted reach over-counts winner-minutes (a winner loiters at a price on
+        # its way up to 99 and donates dozens of "reached" minutes — stuffs the ballot box).
+        # Per-match (best forward-traded + settlement per ticker) is the honest denominator:
+        # of N matches, how many actually paid.
+        gm = g.groupby("ticker")
+        match_max = gm["fwd_max_traded"].max().to_numpy() * 100.0
+        match_settle = gm["settlement_value"].first().to_numpy() * 100.0  # 0/100, const per match
         n_tk = len(match_max)
         for X in range(1, cc.LOCK - c + 1):
             tgt = c + X
             fill_mask = ft >= tgt                            # settlement-blind reach
-            reach = float(np.nanmean(fill_mask.astype(float)))
-            match_reach = float(np.nanmean((match_max >= tgt).astype(float)))
+            reach = float(np.nanmean(fill_mask.astype(float)))           # minute (diagnostic)
+            m_reach = float(np.nanmean((match_max >= tgt).astype(float)))  # match (canonical)
+            # minute miss-cost (diagnostic)
             miss_mask = ~fill_mask & ~np.isnan(ft)
             miss_rate = 1.0 - reach
-            # downside of a miss: hold to settlement -> realise settle; loss = c - settle
-            if miss_mask.any():
-                settle_on_miss = np.nanmean(settle[miss_mask])
-            else:
-                settle_on_miss = np.nan
+            settle_on_miss = np.nanmean(settle[miss_mask]) if miss_mask.any() else np.nan
             miss_cost = c - settle_on_miss if not np.isnan(settle_on_miss) else 0.0
             net = reach * X - miss_rate * miss_cost
+            # match miss-cost + EXPECTED RETURN (deploy surface): hold a miss to settlement.
+            m_miss = match_max < tgt
+            m_settle_on_miss = np.nanmean(match_settle[m_miss]) if m_miss.any() else np.nan
+            m_miss_cost = c - m_settle_on_miss if not np.isnan(m_settle_on_miss) else 0.0
+            exp_ret_match = m_reach * X - (1.0 - m_reach) * m_miss_cost
             rows.append({
                 "c": c, "X": X, "target": tgt, "raw_N": n, "n_tk": n_tk,
-                "reach": reach, "match_reach": match_reach, "miss_rate": miss_rate,
-                "settle_on_miss": settle_on_miss, "miss_cost": miss_cost,
-                "net": net, "roi_on_cost": net / c,
+                "reach": reach, "match_reach": m_reach, "miss_rate": miss_rate,
+                "settle_on_miss": settle_on_miss, "miss_cost": miss_cost, "net": net,
+                "match_miss_cost": m_miss_cost, "exp_ret_match": exp_ret_match,
             })
     return pd.DataFrame(rows)
 
@@ -84,16 +90,22 @@ def pooled_gauge(raw: pd.DataFrame, df: pd.DataFrame, kmax: int):
     kpos = {k: bso.OFFSETS.index(k) for k in bso.OFFSETS}
     Nraw = raw.groupby("c")["raw_N"].first().to_dict()
     Ntk = raw.groupby("c")["n_tk"].first().to_dict()   # distinct matches per cell
+    # distinct-match sets per cell -> pooled match-N = union of matches over k±kmax (the
+    # deployment-relevant N behind a gated pick; NOT a minute count).
+    vis = df[df["cell"].notna()].groupby("cell")["ticker"].apply(set).to_dict()
 
     # weight w(c,k) = overlap mass; pooled_N(c) = Σ_k w·N(c+k)
-    pooled_N = {}
+    pooled_N, match_N = {}, {}
     for c in Nraw:
         tot = 0.0
+        u = set()
         for k in range(-kmax, kmax + 1):
             nb = c + k
             if nb in Nraw and not np.isnan(mat[cell_idx[c], kpos[k]]):
                 tot += mat[cell_idx[c], kpos[k]] * Nraw[nb]
+            u |= vis.get(nb, set())
         pooled_N[c] = tot
+        match_N[c] = len(u)
 
     # index raw by (c,X) for fast neighbor lookup
     raw_ix = {(r.c, r.X): r for r in raw.itertuples()}
@@ -102,8 +114,8 @@ def pooled_gauge(raw: pd.DataFrame, df: pd.DataFrame, kmax: int):
         c, X = r.c, r.X
         wsum = 0.0          # minute-mass weight (overlap × minute-N)
         wsum_tk = 0.0       # match weight (overlap × distinct-match-N)
-        rch = net = roi = 0.0
-        mrch = 0.0
+        rch = net = 0.0
+        mrch = expret = 0.0
         for k in range(-kmax, kmax + 1):
             nb = c + k
             w = mat[cell_idx[c], kpos[k]] if (c in cell_idx) else np.nan
@@ -116,42 +128,45 @@ def pooled_gauge(raw: pd.DataFrame, df: pd.DataFrame, kmax: int):
             wsum += wn
             rch += wn * nbr.reach
             net += wn * nbr.net
-            roi += wn * nbr.roi_on_cost
             wtk = w * Ntk[nb]
             wsum_tk += wtk
             mrch += wtk * nbr.match_reach
+            expret += wtk * nbr.exp_ret_match
         if wsum > 0:
             out.append({
                 "c": c, "X": X, "target": r.target,
                 "raw_N": int(r.raw_N), "pooled_N": round(pooled_N[c], 1),
-                "reach_raw": r.reach, "reach_pooled": rch / wsum,
-                "reach_pooled_match": (mrch / wsum_tk) if wsum_tk > 0 else np.nan,
-                "net_raw": r.net, "net_pooled": net / wsum,
-                "roi_pooled": roi / wsum,
-                "miss_rate_raw": r.miss_rate, "miss_cost_raw": r.miss_cost,
+                "match_N": match_N[c],                       # distinct matches behind the pick
+                "reach_raw": r.reach, "reach_pooled": rch / wsum,            # minute (diagnostic)
+                "reach_pooled_match": (mrch / wsum_tk) if wsum_tk > 0 else np.nan,  # canonical
+                "exp_ret_match": (expret / wsum_tk) if wsum_tk > 0 else np.nan,     # DEPLOY value
+                "net_raw": r.net, "net_pooled": net / wsum,                 # minute net (diag)
+                "miss_cost_raw": r.miss_cost,
             })
     res = pd.DataFrame(out)
     # monotone reach envelope (physical: P(reach higher target) <= P(reach lower target)).
     # cummin over X within each cell removes the 99-lock uptick artifact before gating.
-    res["reach_pooled_mono"] = res.sort_values("X").groupby("c")["reach_pooled"].cummin()
+    s = res.sort_values("X")
+    res["reach_pooled_mono"] = s.groupby("c")["reach_pooled"].cummin()
+    res["reach_pooled_match_mono"] = s.groupby("c")["reach_pooled_match"].cummin()
     return res, pooled_N, Nraw
 
 
 def predictability_optimal(pooled: pd.DataFrame, reach_floor: float,
-                           gate_basis: str = "minute") -> pd.DataFrame:
+                           gate_basis: str = "match") -> pd.DataFrame:
     """PREDICTABILITY-GATED optimum: per cell, the DEEPEST X whose pooled reach clears
     the floor. NOT argmax(net) — that chases cheap-cell moonshots (c5→+81 at 47% reach
     nets +35c only because miss-cost is ~5c, the variance-chase the operator rejects).
     Going as deep as the floor allows maximises offset while keeping the fill predictable.
     Cells where no X clears the floor are not deployable at that floor.
 
-    gate_basis='minute' (default, honors the +14 c5 anchor): gate on the monotone
-        minute-weighted pooled reach. Deep picks may be minute-survivorship-inflated
-        (flagged via match_confirmed).
-    gate_basis='match' (conservative deploy gate): gate on match-weighted pooled reach
-        (each distinct match once) — collapses winner-minute survivorship.
+    gate_basis='match' (DEFAULT, canonical deploy gate): gate on the monotone match-weighted
+        pooled reach — one match one vote. Collapses winner-minute survivorship (a winning
+        contract loitering on its way to 99 would otherwise stuff the ballot box).
+    gate_basis='minute' (DIAGNOSTIC ONLY): monotone minute-weighted reach. Over-optimistic
+        wherever winners linger; the minute-vs-match gap pinpoints those cells. Do NOT deploy.
     """
-    gate_col = {"minute": "reach_pooled_mono", "match": "reach_pooled_match"}[gate_basis]
+    gate_col = {"match": "reach_pooled_match_mono", "minute": "reach_pooled_mono"}[gate_basis]
     rows = []
     for c, grp in pooled.groupby("c"):
         # deepest X in the contiguous high-reach run from X=1 (never jump a sub-floor dip).
@@ -159,10 +174,8 @@ def predictability_optimal(pooled: pd.DataFrame, reach_floor: float,
         if len(ok):
             rows.append(ok.loc[ok.X.idxmax()])
     opt = pd.DataFrame(rows).sort_values("c").reset_index(drop=True)
-    # honesty flag: is the gated optimum still predictable on the MATCH denominator?
-    # If match-weighted pooled reach falls well below the floor, the depth is inflated
-    # by minute-level winner-survivorship — surface, do not deploy blindly.
-    opt["match_confirmed"] = opt["reach_pooled_match"] >= (reach_floor - 0.05)
+    # diagnostic: how far the minute gate would have over-reached vs this match-gated pick.
+    opt["minute_over_optimistic"] = opt["reach_pooled"] - opt["reach_pooled_match"]
     return opt
 
 
@@ -190,69 +203,79 @@ def floor_sweep(pooled: pd.DataFrame, pooled_N: dict, floors=(0.80, 0.85, 0.90),
     return pd.DataFrame(rows)
 
 
-def build(df: pd.DataFrame, out_html: str, category: str, kmax: int, reach_floor: float, gate_basis: str = "minute"):
+THIN_MATCH_N = 15  # distinct matches below which a gated pick is structurally thin
+
+def build(df: pd.DataFrame, out_html: str, category: str, kmax: int, reach_floor: float, gate_basis: str = "match"):
     raw = raw_cell_block_table(df)
     pooled, pooled_N, Nraw = pooled_gauge(raw, df, kmax)
 
-    # PREDICTABILITY-GATED optimal (deepest X clearing the reach floor) — NOT argmax net.
+    # PREDICTABILITY-GATED optimal (deepest X clearing the reach floor) — MATCH-weighted.
     opt = predictability_optimal(pooled, reach_floor, gate_basis)
     opt_keys = set(zip(opt.c, opt.X))
+    thin = {(r.c, r.X) for r in opt.itertuples() if r.match_N < THIN_MATCH_N}
 
     pooled["W"] = cc.LOCK - pooled["c"]
     pooled["xpos"] = pooled["X"] - (pooled["W"] + 1) / 2.0
-    mlow = {(r.c, r.X) for r in opt.itertuples() if not r.match_confirmed}
     hov = [
         f"<b>cost c={int(r.c)}c → exit +{int(r.X)}c (sell @ {int(r.target)}c)</b><br>"
-        f"reach (settlement-blind, traded): raw {r.reach_raw*100:.1f}% → <b>pooled {r.reach_pooled*100:.1f}%</b><br>"
-        f"  match-weighted (honest denom): {r.reach_pooled_match*100:.1f}%<br>"
-        f"net: raw {r.net_raw:+.2f}c → <b>pooled {r.net_pooled:+.2f}c</b>  · ROI {r.roi_pooled*100:+.1f}%<br>"
-        f"miss {r.miss_rate_raw*100:.1f}% · miss-cost {r.miss_cost_raw:.1f}c (c − settle)<br>"
-        f"N: raw {r.raw_N} → <b>pooled {r.pooled_N:.0f}</b>"
-        + (f"<br><b>★ optimal — deepest X with reach≥{reach_floor*100:.0f}%</b>" if (r.c, r.X) in opt_keys else "")
-        + ("<br>⚠ match-weighted reach below floor — minute-survivorship-inflated depth"
-           if (r.c, r.X) in mlow else "")
+        f"<b>match-weighted reach (CANONICAL): {r.reach_pooled_match*100:.1f}%</b>  "
+        f"[minute diag: {r.reach_pooled*100:.1f}%, gap {(r.reach_pooled-r.reach_pooled_match)*100:+.1f}pp]<br>"
+        f"<b>expected return: {r.exp_ret_match:+.2f}c</b>  = reach_match·X − miss·(c−settle)<br>"
+        f"minute net (diag, do not deploy): {r.net_pooled:+.2f}c<br>"
+        f"<b>match-N (distinct matches): {r.match_N}</b> · pooled minute-N {r.pooled_N:.0f}"
+        + (f"<br><b>★ optimal — deepest X with match reach≥{reach_floor*100:.0f}%</b>" if (r.c, r.X) in opt_keys else "")
+        + ("<br>⚠ THIN: <15 distinct matches behind this pick" if (r.c, r.X) in thin else "")
         for r in pooled.itertuples()
     ]
 
-    # default color layer = pooled reach (the gated quantity); net layers are for comparison.
+    # CANONICAL deploy layer first = match-weighted EXPECTED RETURN. Minute layers = diagnostic.
     fig = go.Figure()
-    fig.add_trace(go.Scatter(  # 0
-        x=pooled.xpos, y=pooled.c, mode="markers", name=f"pooled reach % (gate={reach_floor*100:.0f})",
-        marker=dict(symbol="square", size=7, color=pooled.reach_pooled * 100, colorscale="YlGnBu",
-                    cmin=0, cmax=100, colorbar=dict(title="pooled reach %"), line=dict(width=0)),
+    er = pooled.exp_ret_match
+    erlim = float(np.nanpercentile(np.abs(er), 98))
+    fig.add_trace(go.Scatter(  # 0 — DEPLOY surface
+        x=pooled.xpos, y=pooled.c, mode="markers", name="expected return (c) — DEPLOY",
+        marker=dict(symbol="square", size=7, color=er, colorscale="RdYlGn", cmid=0,
+                    cmin=-erlim, cmax=erlim, colorbar=dict(title="exp. return (c)"), line=dict(width=0)),
         text=hov, hoverinfo="text", visible=True))
-    fig.add_trace(go.Scatter(  # 1
-        x=pooled.xpos, y=pooled.c, mode="markers", name="pooled net (c)",
-        marker=dict(symbol="square", size=7, color=pooled.net_pooled, colorscale="RdYlGn",
-                    cmid=0, colorbar=dict(title="pooled net (c)"), line=dict(width=0)),
+    fig.add_trace(go.Scatter(  # 1 — canonical reach
+        x=pooled.xpos, y=pooled.c, mode="markers", name="match reach % (canonical)",
+        marker=dict(symbol="square", size=7, color=pooled.reach_pooled_match * 100, colorscale="YlGnBu",
+                    cmin=0, cmax=100, colorbar=dict(title="match reach %"), line=dict(width=0)),
         text=hov, hoverinfo="text", visible=False))
-    fig.add_trace(go.Scatter(  # 2 — raw (own-cell) net, comparison only; NOT optimised on
-        x=pooled.xpos, y=pooled.c, mode="markers", name="raw net (own-cell, compare only)",
-        marker=dict(symbol="square", size=7, color=pooled.net_raw, colorscale="RdYlGn",
-                    cmid=0, colorbar=dict(title="raw net (c)"), line=dict(width=0)),
+    fig.add_trace(go.Scatter(  # 2 — minute reach DIAGNOSTIC
+        x=pooled.xpos, y=pooled.c, mode="markers", name="minute reach % (DIAGNOSTIC — over-optimistic)",
+        marker=dict(symbol="square", size=7, color=pooled.reach_pooled * 100, colorscale="YlOrBr",
+                    cmin=0, cmax=100, colorbar=dict(title="minute reach %"), line=dict(width=0)),
+        text=hov, hoverinfo="text", visible=False))
+    fig.add_trace(go.Scatter(  # 3 — minute-vs-match gap DIAGNOSTIC (winner-contamination map)
+        x=pooled.xpos, y=pooled.c, mode="markers", name="minute−match gap pp (winner contamination)",
+        marker=dict(symbol="square", size=7, color=(pooled.reach_pooled - pooled.reach_pooled_match) * 100,
+                    colorscale="Reds", cmin=0, cmax=40, colorbar=dict(title="gap pp"), line=dict(width=0)),
         text=hov, hoverinfo="text", visible=False))
     ot_mask = [(c, X) in opt_keys for c, X in zip(pooled.c, pooled.X)]
     ot = pooled[ot_mask]
-    # white = match-confirmed; amber = minute-survivorship-inflated depth (audit before deploy)
-    ot_colors = ["#ffb020" if (c, X) in mlow else "#ffffff" for c, X in zip(ot.c, ot.X)]
-    fig.add_trace(go.Scatter(  # 3 — predictability-gated optimum, always visible
+    ot_colors = ["#ff2bd6" if (c, X) in thin else "#ffffff" for c, X in zip(ot.c, ot.X)]
+    fig.add_trace(go.Scatter(  # 4 — gated optimum, always visible (magenta = thin match-N)
         x=ot.xpos, y=ot.c, mode="markers",
-        name=f"optimal (deepest X, reach≥{reach_floor*100:.0f}%; amber=match-unconfirmed)",
+        name=f"optimal (deepest X, match reach≥{reach_floor*100:.0f}%; magenta=thin <{THIN_MATCH_N})",
         marker=dict(symbol="square-open", size=11, color="rgba(0,0,0,0)", line=dict(width=2, color=ot_colors)),
         text=[h for h, k in zip(hov, ot_mask) if k], hoverinfo="text", visible=True))
 
+    V = lambda i: [j == i for j in range(4)] + [True]
     fig.update_layout(
-        title=(f"LAYER 2 — sand-pooled, SETTLEMENT-BLIND exit gauge ({category}, {df.ticker.nunique()} tickers, k±{kmax})<br>"
-               f"<sub>reach = traded-forward to c+X (no winner/loser split) · net = reach·X − miss·(c−settle) · "
-               f"pooled sample · ★ = PREDICTABILITY-GATED optimum: deepest X with pooled reach ≥ {reach_floor*100:.0f}% "
-               f"(NOT argmax-net; raw net kept as compare layer only)</sub>"),
+        title=(f"LAYER 2 — sand-pooled, SETTLEMENT-BLIND exit gauge · MATCH-WEIGHTED deploy gate "
+               f"({category}, {df.ticker.nunique()} tickers, k±{kmax})<br>"
+               f"<sub>reach = traded-forward to c+X (no winner/loser split) · canonical = match-weighted "
+               f"(one match one vote) · ★ = deepest X with match reach ≥ {reach_floor*100:.0f}% · "
+               f"DEPLOY color = expected return = reach_match·X − miss·(c−settle) · minute layers DIAGNOSTIC only</sub>"),
         xaxis=dict(title="exit offset slots (centred; reach to the 99 lock)", zeroline=False, showgrid=False),
         yaxis=dict(title="cost-basis cell c (cents)", autorange="reversed", dtick=5, showgrid=False),
         template="plotly_dark", width=1400, height=1150, plot_bgcolor="#0a0a0a",
         updatemenus=[dict(type="buttons", direction="right", x=0, y=1.06, xanchor="left", buttons=[
-            dict(label="pooled reach %", method="update", args=[{"visible": [True, False, False, True]}]),
-            dict(label="pooled net", method="update", args=[{"visible": [False, True, False, True]}]),
-            dict(label="raw net (compare)", method="update", args=[{"visible": [False, False, True, True]}]),
+            dict(label="expected return (DEPLOY)", method="update", args=[{"visible": V(0)}]),
+            dict(label="match reach %", method="update", args=[{"visible": V(1)}]),
+            dict(label="minute reach (diag)", method="update", args=[{"visible": V(2)}]),
+            dict(label="minute−match gap (diag)", method="update", args=[{"visible": V(3)}]),
         ])])
     fig.write_html(out_html, include_plotlyjs="cdn")
     return raw, pooled, opt, pooled_N, Nraw
@@ -265,8 +288,8 @@ def main():
     ap.add_argument("--kmax", type=int, default=3)
     ap.add_argument("--reach-floor", type=float, default=0.85,
                     help="predictability gate: optimal X = deepest X with pooled reach >= this")
-    ap.add_argument("--gate-basis", choices=["minute", "match"], default="minute",
-                    help="minute (default, honors c5 +14 anchor) or match (conservative deploy gate)")
+    ap.add_argument("--gate-basis", choices=["match", "minute"], default="match",
+                    help="match (DEFAULT, canonical deploy gate) or minute (DIAGNOSTIC only)")
     ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "chart_pooled_gauge.html"))
     args = ap.parse_args()
     df = cc.load_universe(args.input, args.category)
@@ -309,14 +332,15 @@ def main():
     print(f"\nPREDICTABILITY-GATE floor sweep (locked floor = {args.reach_floor:.2f}):")
     print(sweep.to_string(index=False, float_format=lambda v: f"{v:.2f}"))
 
-    n_unconf = int((~opt.match_confirmed).sum())
-    print(f"\nGATED optimum (deepest X, monotone pooled reach >= {args.reach_floor:.0%}) per cell, sample "
-          f"({n_unconf}/{len(opt)} match-UNconfirmed = minute-survivorship-inflated depth):")
+    opt.to_csv(os.path.join(os.path.dirname(__file__), "deploy_gated_optima.csv"), index=False)
+    n_thin = int((opt.match_N < THIN_MATCH_N).sum())
+    print(f"\nDEPLOY optimum — gate_basis={args.gate_basis}, MATCH reach >= {args.reach_floor:.0%} "
+          f"({n_thin}/{len(opt)} cells THIN <{THIN_MATCH_N} matches):")
     for r in opt.iloc[::8].itertuples():
-        flag = "" if r.match_confirmed else "  <<MATCH-UNCONFIRMED"
-        print(f"  c={int(r.c):2d}  +{int(r.X):2d}  reach_min={r.reach_pooled*100:5.1f}%  "
-              f"reach_match={r.reach_pooled_match*100:5.1f}%  ROI(X/c)={r.X/r.c*100:5.0f}%  "
-              f"net={r.net_pooled:+.2f}c{flag}")
+        flag = f"  <<THIN(N={int(r.match_N)})" if r.match_N < THIN_MATCH_N else ""
+        print(f"  c={int(r.c):2d}  +{int(r.X):2d}  match_reach={r.reach_pooled_match*100:5.1f}%  "
+              f"(minute {r.reach_pooled*100:4.0f}%, gap {r.minute_over_optimistic*100:+4.0f}pp)  "
+              f"exp_ret={r.exp_ret_match:+6.2f}c  matchN={int(r.match_N)}{flag}")
 
 
 if __name__ == "__main__":

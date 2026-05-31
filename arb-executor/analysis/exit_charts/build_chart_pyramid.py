@@ -29,6 +29,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 import chart_common as cc
+import build_chart_pooled_gauge as bpg
 
 
 def per_block_table(df: pd.DataFrame) -> pd.DataFrame:
@@ -84,11 +85,17 @@ def slot_x(X: int, W: int) -> float:
     return X - (W + 1) / 2.0
 
 
-def build(df: pd.DataFrame, out_html: str, category: str):
+def build(df: pd.DataFrame, out_html: str, category: str, reach_floor: float = 0.85):
     t = per_block_table(df)
-    opt = optimal_per_row(t)
-    opt_keys = set(zip(opt["c"], opt["X"]))
-    offdiag_keys = set(zip(opt.loc[opt.off_diagonal, "c"], opt.loc[opt.off_diagonal, "X"]))
+    # Highlight the CANONICAL deploy optima (match-weighted predictability gate from the pooled
+    # gauge) — NOT argmax(fill×ROI), which re-surfaces the rejected moonshot. The pyramid's job
+    # is the geometry (row width = opportunity space) + the fill/ROI heat; the gate is canonical.
+    rawg = bpg.raw_cell_block_table(df)
+    pooledg, _, _ = bpg.pooled_gauge(rawg, df, kmax=3)
+    optg = bpg.predictability_optimal(pooledg, reach_floor, gate_basis="match")
+    opt_keys = {(int(r.c), int(r.X)) for r in optg.itertuples()}
+    thin_keys = {(int(r.c), int(r.X)) for r in optg.itertuples() if r.match_N < bpg.THIN_MATCH_N}
+    opt = optg
 
     # geometry
     t["W"] = cc.LOCK - t["c"]
@@ -102,8 +109,8 @@ def build(df: pd.DataFrame, out_html: str, category: str):
         f"miss: {r.miss*100:.1f}%  · of misses recovered-to-cost: {r.comeback_of_miss*100:.1f}%<br>"
         f"N (band density): {r.N}<br>"
         f"mirror-check: favorite ≈ {r.mc_partner_at_entry:.0f}c at entry · bid-sum {r.mc_bid_sum:.3f}"
-        + ("<br><b>★ OPTIMAL (max fill×ROI)</b>" if (r.c, r.X) in opt_keys else "")
-        + ("  ⚑ OFF-DIAGONAL" if (r.c, r.X) in offdiag_keys else "")
+        + (f"<br><b>★ DEPLOY optimal (match-gated, reach≥{reach_floor*100:.0f}%)</b>" if (r.c, r.X) in opt_keys else "")
+        + ("  ⚑ THIN (<15 matches)" if (r.c, r.X) in thin_keys else "")
         for r in t.itertuples()
     ]
 
@@ -124,22 +131,24 @@ def build(df: pd.DataFrame, out_html: str, category: str):
                     colorbar=dict(title="ROI-on-cost %"), line=dict(width=0)),
         text=hov, hoverinfo="text", visible=False,
     ))
-    # optimal highlight (always on): white outlined squares; magenta if off-diagonal
-    ot = t[[(c, X) in opt_keys for c, X in zip(t.c, t.X)]].copy()
-    ocolors = ["#ff2bd6" if (c, X) in offdiag_keys else "#ffffff" for c, X in zip(ot.c, ot.X)]
+    # optimal highlight (always on): canonical match-gated optima; magenta if thin match-N
+    omask = [(c, X) in opt_keys for c, X in zip(t.c, t.X)]
+    ot = t[omask].copy()
+    ocolors = ["#ff2bd6" if (c, X) in thin_keys else "#ffffff" for c, X in zip(ot.c, ot.X)]
     fig.add_trace(go.Scatter(
-        x=ot.xpos, y=ot.ypos, mode="markers", name="optimal (fill×ROI)",
+        x=ot.xpos, y=ot.ypos, mode="markers", name="DEPLOY optimal (match-gated)",
         marker=dict(symbol="square-open", size=msize + 4,
                     color="rgba(0,0,0,0)", line=dict(width=2, color=ocolors)),
-        text=[h for h, keep in zip(hov, [(c, X) in opt_keys for c, X in zip(t.c, t.X)]) if keep],
+        text=[h for h, keep in zip(hov, omask) if keep],
         hoverinfo="text", visible=True,
     ))
 
-    n_off = int(opt.off_diagonal.sum())
+    n_thin = len(thin_keys)
     fig.update_layout(
         title=(f"PYRAMID — {category} exit opportunity ({df.ticker.nunique()} tickers)<br>"
-               f"<sub>row width = opportunity space (99−c slots) · CORRECTED price_high fill · "
-               f"★ optimal = argmax(fill×ROI) · ⚑ {n_off} off-diagonal optima flagged</sub>"),
+               f"<sub>row width = opportunity space (99−c slots) · settlement-blind price_high fill · "
+               f"★ = DEPLOY optimal (match-gated, reach≥{reach_floor*100:.0f}%, from pooled gauge) · "
+               f"⚑ {n_thin} thin (<{bpg.THIN_MATCH_N} matches)</sub>"),
         xaxis=dict(title="exit offset slots (centred; left=+1 … right=+(99−c) reaching the 99 lock)",
                    zeroline=False, showgrid=False),
         yaxis=dict(title="cost-basis cell c (cents) — apex 94c (narrow) top, base 5c (wide) bottom",
@@ -157,11 +166,11 @@ def build(df: pd.DataFrame, out_html: str, category: str):
     )
     fig.write_html(out_html, include_plotlyjs="cdn")
 
-    # console summary: the optima diagonal
+    # console summary: the canonical match-gated optima overlaid on the geometry
     return {
-        "n_blocks": int(len(t)), "n_off_diagonal": n_off,
-        "optima": [{"c": int(r.c), "X": int(r.X), "fill": round(r.fill, 3),
-                    "roi_on_cost": round(r.roi_on_cost, 3), "off_diagonal": bool(r.off_diagonal)}
+        "n_blocks": int(len(t)), "n_thin": n_thin,
+        "optima": [{"c": int(r.c), "X": int(r.X), "match_reach": round(r.reach_pooled_match, 3),
+                    "exp_ret": round(r.exp_ret_match, 2), "match_N": int(r.match_N)}
                    for r in opt.itertuples()],
         "out": out_html,
     }, t, opt
@@ -178,10 +187,11 @@ def main():
     summary, t, opt = build(df, args.out, args.category)
     t.to_csv(args.dump, index=False)
     print("PYRAMID:", {k: v for k, v in summary.items() if k != "optima"})
-    print("optima diagonal (c -> X@fill):")
-    for o in summary["optima"]:
-        flag = " <<OFF-DIAG" if o["off_diagonal"] else ""
-        print(f"  c={o['c']:2d}  +{o['X']:2d}  fill={o['fill']*100:5.1f}%  roi={o['roi_on_cost']*100:6.1f}%{flag}")
+    print("DEPLOY optima overlaid (match-gated, c -> X):")
+    for o in summary["optima"][::8]:
+        flag = f" <<THIN(N={o['match_N']})" if o["match_N"] < bpg.THIN_MATCH_N else ""
+        print(f"  c={o['c']:2d}  +{o['X']:2d}  match_reach={o['match_reach']*100:5.1f}%  "
+              f"exp_ret={o['exp_ret']:+.2f}c  matchN={o['match_N']}{flag}")
 
 
 if __name__ == "__main__":

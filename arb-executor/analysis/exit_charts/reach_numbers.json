@@ -1,0 +1,35 @@
+{
+  "probe": {
+    "tickers": 39,
+    "events": 20,
+    "rows": 27230,
+    "entry_obs_with_cell": 25881
+  },
+  "reach_+5c": {
+    "eligible_cells": 90,
+    "corrected_cells_ge50pct": 88,
+    "old_yesbidhigh_cells_ge50pct": 88,
+    "corrected_mean_fill": 0.967,
+    "old_mean_fill": 0.926
+  },
+  "reach_+10c": {
+    "eligible_cells": 85,
+    "corrected_cells_ge50pct": 80,
+    "old_yesbidhigh_cells_ge50pct": 77,
+    "corrected_mean_fill": 0.899,
+    "old_mean_fill": 0.849
+  },
+  "reach_+15c": {
+    "eligible_cells": 80,
+    "corrected_cells_ge50pct": 73,
+    "old_yesbidhigh_cells_ge50pct": 67,
+    "corrected_mean_fill": 0.847,
+    "old_mean_fill": 0.766
+  },
+  "corrected_vs_old_+10c": {
+    "cells_corrected_higher": 71,
+    "cells_lower": 0,
+    "cells_equal": 14,
+    "max_understatement_by_old": 0.468
+  }
+}

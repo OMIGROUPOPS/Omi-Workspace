@@ -72,7 +72,7 @@ def pick_paired_event(df: pd.DataFrame) -> str:
     """Pick the underdog ticker (lower mean yes_bid) of the event with the largest
     underdog price travel — clearest visual mirror."""
     best, best_range = None, -1
-    for tk, g in df.groupby("ticker"):
+    for tk, g in df.groupby("ticker", observed=True):
         rng = g.yes_bid_close.max() - g.yes_bid_close.min()
         if g.yes_bid_close.mean() < 0.5 and rng > best_range and g.partner_yes_bid_close.notna().mean() > 0.8:
             best, best_range = tk, rng

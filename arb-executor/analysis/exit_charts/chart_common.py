@@ -116,10 +116,27 @@ def load_universe(input_path: str = DEFAULT_INPUT, category: str = "ATP_MAIN") -
     df = pd.concat(frames, ignore_index=True)
     if category is not None and (len(df) == 0 or (df["category"] != category).any()):
         df = df[df["category"] == category].copy()
-    df = df.sort_values(["ticker", "minute_ts"]).reset_index(drop=True)
 
-    # Cost-basis cell. round() to nearest cent; keep only entry-eligible cells.
-    cell = np.round(df["yes_bid_close"].to_numpy() * 100.0)
+    # Cost-basis cell from full-precision yes_bid_close (compute BEFORE any downcast).
+    cell = np.round(df["yes_bid_close"].to_numpy(dtype=float) * 100.0)
+    cell[(cell < CELL_MIN) | (cell > CELL_MAX)] = np.nan
+
+    # Memory-safe downcast so the full 3.7M-row ATP_MAIN frame stays ~120-165MB (vs ~1GB)
+    # on the 2GB VPS. Harmless on the probe. ticker/event_ticker -> category codes; the
+    # forward-traded reach columns -> float32 (cent-scale precision is ample for >= tests).
+    for col in ("ticker", "event_ticker"):
+        if col in df.columns:
+            df[col] = df[col].astype("category")
+    for col in ("yes_bid_high", "price_high", "partner_yes_bid_close",
+                "paired_yes_bid_sum", "settlement_value"):
+        if col in df.columns:
+            df[col] = df[col].astype("float32")
+    if "minute_ts" in df.columns:
+        df["minute_ts"] = df["minute_ts"].astype("int64")
+
+    df = df.sort_values(["ticker", "minute_ts"], kind="stable").reset_index(drop=True)
+    # recompute cell on the sorted frame (full precision yes_bid_close)
+    cell = np.round(df["yes_bid_close"].to_numpy(dtype=float) * 100.0)
     cell[(cell < CELL_MIN) | (cell > CELL_MAX)] = np.nan
     df["cell"] = cell
 

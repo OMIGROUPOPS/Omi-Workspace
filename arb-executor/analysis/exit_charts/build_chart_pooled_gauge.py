@@ -55,7 +55,7 @@ def raw_cell_block_table(df: pd.DataFrame) -> pd.DataFrame:
         # c≈50 where BOTH sides pass through (validated: ~1.5x inflation at mid-cells). So we
         # dedup to distinct MATCHES (event_ticker): each side gives a 0/1 outcome, averaged
         # within the match to one vote in [0,1]. Unbiased, no inflation, no winner re-contamination.
-        sm = g.groupby(["event_ticker", "ticker"]).agg(
+        sm = g.groupby(["event_ticker", "ticker"], observed=True).agg(
             side_max=("fwd_max_traded", "max"), side_settle=("settlement_value", "first"))
         side_max = sm["side_max"].to_numpy() * 100.0
         side_settle = sm["side_settle"].to_numpy() * 100.0

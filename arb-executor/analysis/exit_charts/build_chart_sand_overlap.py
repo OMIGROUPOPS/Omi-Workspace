@@ -33,9 +33,9 @@ def grain_mass_overlap(df: pd.DataFrame):
     sub["cell"] = sub["cell"].astype(int)
 
     # grains[(ticker, cell)] = minutes that ticker spent at that cell
-    grains = sub.groupby(["ticker", "cell"]).size()
+    grains = sub.groupby(["ticker", "cell"], observed=True).size()
     # set of cells each ticker ever visits
-    visits = sub.groupby("ticker")["cell"].apply(lambda s: set(s.unique())).to_dict()
+    visits = sub.groupby("ticker", observed=True)["cell"].apply(lambda s: set(s.unique())).to_dict()
 
     cells = list(range(cc.CELL_MIN, cc.CELL_MAX + 1))
     mat = np.full((len(cells), len(OFFSETS)), np.nan)

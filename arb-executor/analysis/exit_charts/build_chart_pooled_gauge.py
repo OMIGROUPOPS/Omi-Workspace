@@ -49,36 +49,40 @@ def raw_cell_block_table(df: pd.DataFrame) -> pd.DataFrame:
         ft = g["fwd_max_traded"].to_numpy() * 100.0          # traded forward high, cents
         settle = g["settlement_value"].to_numpy() * 100.0    # 0 or 100 cents
         n = len(g)
-        # MATCH-weighted denominator (canonical deploy gate): one match = one vote.
-        # minute-weighted reach over-counts winner-minutes (a winner loiters at a price on
-        # its way up to 99 and donates dozens of "reached" minutes — stuffs the ballot box).
-        # Per-match (best forward-traded + settlement per ticker) is the honest denominator:
-        # of N matches, how many actually paid.
-        gm = g.groupby("ticker")
-        match_max = gm["fwd_max_traded"].max().to_numpy() * 100.0
-        match_settle = gm["settlement_value"].first().to_numpy() * 100.0  # 0/100, const per match
-        n_tk = len(match_max)
+        # MATCH-weighted denominator (canonical deploy gate): ONE MATCH = ONE VOTE.
+        # minute-weighted reach over-counts winner-minutes (a winner loiters on its way to 99
+        # and stuffs the ballot box). Per-SIDE (ticker) still double-counts a single match near
+        # c≈50 where BOTH sides pass through (validated: ~1.5x inflation at mid-cells). So we
+        # dedup to distinct MATCHES (event_ticker): each side gives a 0/1 outcome, averaged
+        # within the match to one vote in [0,1]. Unbiased, no inflation, no winner re-contamination.
+        sm = g.groupby(["event_ticker", "ticker"]).agg(
+            side_max=("fwd_max_traded", "max"), side_settle=("settlement_value", "first"))
+        side_max = sm["side_max"].to_numpy() * 100.0
+        side_settle = sm["side_settle"].to_numpy() * 100.0
+        ev_codes = pd.factorize(sm.index.get_level_values(0))[0]   # event index per side
+        n_matches = int(ev_codes.max() + 1) if len(ev_codes) else 0
         for X in range(1, cc.LOCK - c + 1):
             tgt = c + X
-            fill_mask = ft >= tgt                            # settlement-blind reach
-            reach = float(np.nanmean(fill_mask.astype(float)))           # minute (diagnostic)
-            m_reach = float(np.nanmean((match_max >= tgt).astype(float)))  # match (canonical)
-            # minute miss-cost (diagnostic)
+            # minute-weighted (DIAGNOSTIC only)
+            fill_mask = ft >= tgt
+            reach = float(np.nanmean(fill_mask.astype(float)))
             miss_mask = ~fill_mask & ~np.isnan(ft)
             miss_rate = 1.0 - reach
             settle_on_miss = np.nanmean(settle[miss_mask]) if miss_mask.any() else np.nan
             miss_cost = c - settle_on_miss if not np.isnan(settle_on_miss) else 0.0
             net = reach * X - miss_rate * miss_cost
-            # match miss-cost + EXPECTED RETURN (deploy surface): hold a miss to settlement.
-            m_miss = match_max < tgt
-            m_settle_on_miss = np.nanmean(match_settle[m_miss]) if m_miss.any() else np.nan
-            m_miss_cost = c - m_settle_on_miss if not np.isnan(m_settle_on_miss) else 0.0
-            exp_ret_match = m_reach * X - (1.0 - m_reach) * m_miss_cost
+            # MATCH-weighted, one-vote-per-match: per side realised return, averaged to event, then over events
+            side_hit = side_max >= tgt
+            side_ret = np.where(side_hit, X, -(c - side_settle))     # per-contract realised c
+            ev_vote = np.bincount(ev_codes, side_hit.astype(float), n_matches) / np.bincount(ev_codes, minlength=n_matches)
+            ev_ret = np.bincount(ev_codes, side_ret, n_matches) / np.bincount(ev_codes, minlength=n_matches)
+            m_reach = float(ev_vote.mean()) if n_matches else np.nan
+            exp_ret_match = float(ev_ret.mean()) if n_matches else np.nan
             rows.append({
-                "c": c, "X": X, "target": tgt, "raw_N": n, "n_tk": n_tk,
+                "c": c, "X": X, "target": tgt, "raw_N": n, "n_match": n_matches,
                 "reach": reach, "match_reach": m_reach, "miss_rate": miss_rate,
                 "settle_on_miss": settle_on_miss, "miss_cost": miss_cost, "net": net,
-                "match_miss_cost": m_miss_cost, "exp_ret_match": exp_ret_match,
+                "exp_ret_match": exp_ret_match,
             })
     return pd.DataFrame(rows)
 
@@ -89,10 +93,10 @@ def pooled_gauge(raw: pd.DataFrame, df: pd.DataFrame, kmax: int):
     cell_idx = {c: i for i, c in enumerate(cells)}
     kpos = {k: bso.OFFSETS.index(k) for k in bso.OFFSETS}
     Nraw = raw.groupby("c")["raw_N"].first().to_dict()
-    Ntk = raw.groupby("c")["n_tk"].first().to_dict()   # distinct matches per cell
-    # distinct-match sets per cell -> pooled match-N = union of matches over k±kmax (the
-    # deployment-relevant N behind a gated pick; NOT a minute count).
-    vis = df[df["cell"].notna()].groupby("cell")["ticker"].apply(set).to_dict()
+    Nmatch = raw.groupby("c")["n_match"].first().to_dict()   # distinct MATCHES (events) per cell
+    # distinct-match sets per cell -> pooled match-N = union of MATCHES (events) over k±kmax (the
+    # deployment-relevant N behind a gated pick; one match one vote, NOT a side or minute count).
+    vis = df[df["cell"].notna()].groupby("cell")["event_ticker"].apply(set).to_dict()
 
     # weight w(c,k) = overlap mass; pooled_N(c) = Σ_k w·N(c+k)
     pooled_N, match_N = {}, {}
@@ -128,7 +132,7 @@ def pooled_gauge(raw: pd.DataFrame, df: pd.DataFrame, kmax: int):
             wsum += wn
             rch += wn * nbr.reach
             net += wn * nbr.net
-            wtk = w * Ntk[nb]
+            wtk = w * Nmatch[nb]
             wsum_tk += wtk
             mrch += wtk * nbr.match_reach
             expret += wtk * nbr.exp_ret_match

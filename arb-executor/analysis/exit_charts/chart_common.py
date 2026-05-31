@@ -51,6 +51,14 @@ CELL_MIN = 5
 CELL_MAX = 94
 LOCK = 99  # exits reach up to here
 
+# Columns the three producers actually use — projected at read time so the full
+# 9.3M-row universe never fully materialises (memory-safe on the 2GB VPS).
+NEEDED_COLUMNS = [
+    "ticker", "event_ticker", "category", "minute_ts",
+    "yes_bid_close", "yes_bid_high", "price_high",
+    "partner_yes_bid_close", "paired_yes_bid_sum", "settlement_value",
+]
+
 # Cost-basis bands used by the mirror/pyramid producers.
 BANDS = [
     ("deep-underdog", 5, 20),
@@ -93,10 +101,20 @@ def load_universe(input_path: str = DEFAULT_INPUT, category: str = "ATP_MAIN") -
     files = resolve_input(input_path)
     frames = []
     for f in files:
-        d = pd.read_parquet(f)
+        # Memory-safe: project only the columns the producers use and push the category
+        # filter down to the parquet reader, so the full 9.3M×88 universe is never
+        # materialised on a 2GB box. Falls back to a plain read if projection fails.
+        try:
+            filt = [("category", "==", category)] if category is not None else None
+            cols = [c for c in NEEDED_COLUMNS]
+            d = pd.read_parquet(f, columns=cols, filters=filt)
+        except Exception:
+            d = pd.read_parquet(f)
+            if category is not None:
+                d = d[d["category"] == category]
         frames.append(d)
     df = pd.concat(frames, ignore_index=True)
-    if category is not None:
+    if category is not None and (len(df) == 0 or (df["category"] != category).any()):
         df = df[df["category"] == category].copy()
     df = df.sort_values(["ticker", "minute_ts"]).reset_index(drop=True)
 

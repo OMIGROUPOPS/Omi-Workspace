@@ -159,6 +159,17 @@ in 41/90 cells (e.g. c53 +46 reads 94% minute / 68% match; c40 +26 reads 85% / 5
 ROI-on-cost-when-hit — so cheap cells don't look 2× better than they deploy. **Per-cell match-N
 shown** in hover; thin picks (<15 matches) flagged magenta.
 
+### One match one vote (event-dedup — guard against side double-counting)
+
+A tennis match has TWO sides (tickers). Counting per-side double-counts a single match wherever
+**both** sides pass through a cell — validated on the full universe at **~1.5× near c≈50** (both
+sides hover mid-range as the lead swings), tapering to ~1.0× at the extremes. So the canonical
+denominator dedups to distinct **matches (event_ticker)**: each side gives a 0/1 reach outcome,
+**averaged within the match to one vote in [0,1]**. Unbiased, no inflation, and `match_N` =
+distinct matches (not sides). This is what prevents the winner-contamination from sneaking back
+via the pairing. Memory-safe loader (`NEEDED_COLUMNS` projection + category filter pushdown)
+keeps the 9.3M-row universe from ever fully materialising.
+
 **Shape revealed (not pre-imposed):** a monotone fold — deep underdogs take a moderate deep
 offset on their cheap basis (c5 → +13/+14, ~240–280% ROI), the even line takes the largest
 predictable offsets, favorites take small-certain (c93 → +6, ~100% reach). The mirror-fold the

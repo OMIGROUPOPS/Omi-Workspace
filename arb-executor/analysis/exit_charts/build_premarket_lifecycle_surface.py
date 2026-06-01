@@ -61,6 +61,7 @@ WIN_LO, WIN_HI = 1, 240
 TBINS = [(180, 240), (120, 180), (90, 120), (60, 90), (45, 60), (30, 45),
          (20, 30), (15, 20), (10, 15), (7, 10), (5, 7), (3, 5), (2, 3), (1, 2)]
 DBUCKET_CLIP = 20    # discount/premium clipped to +-20c (1c buckets)
+RUNNING_MID_K = 30   # Stage-2 live anchor: trailing-K-min mean of last-traded price (pure microstructure, observable in real time; NOT the eventual close, NOT a fair-value model)
 
 PM_COLS = ["ticker", "event_ticker", "category", "minute_ts", "time_to_match_start_min",
            "price_close", "price_low", "price_high", "trade_count_in_minute",
@@ -101,8 +102,10 @@ def tbin_label(tts):
     return -1
 
 
-def per_minute_records(df):
-    """Per TRADED premarket minute, one record with the joint state + forward stats."""
+def per_minute_records(df, anchor="close"):
+    """Per TRADED premarket minute, one record with the joint state + forward stats.
+    anchor='close' = eventual premarket-close (hindsight; descriptive).
+    anchor='running_mid' = contemporaneous trailing-K running mid (live-observable)."""
     tts_a = df["time_to_match_start_min"].to_numpy(float)
     pc = df["price_close"].to_numpy(float); plo = df["price_low"].to_numpy(float)
     tcnt = df["trade_count_in_minute"].to_numpy(float)
@@ -137,9 +140,21 @@ def per_minute_records(df):
         evx = ev[ix]; tkx = tkr[ix]; volx = vol[ix]; pysx = pys[ix]; pmsx = pms[ix]
         sprx = spr[ix]; psprx = pspr[ix]; tfx = tflow[ix]
         cum = np.nancumsum(np.where(np.isfinite(volx), volx, 0.0))
+        # per-minute cost-basis anchor: eventual close (hindsight) OR the live-observable
+        # contemporaneous RUNNING MID (trailing-K-min mean of the last-traded price).
+        if anchor == "running_mid":
+            pc_pm = pd.Series(pcx[pm_pos]).ffill()
+            mid_pm = pc_pm.rolling(RUNNING_MID_K, min_periods=3).mean().to_numpy()
+            anchor_cents = np.round(mid_pm * 100.0)
+        else:
+            anchor_cents = np.full(len(pm_pos), float(c0))
         for j, p in enumerate(pm_pos):
             if not (hastr[ix][p] and np.isfinite(pcx[p])):
                 continue
+            cell_t = anchor_cents[j]
+            if not np.isfinite(cell_t) or cell_t < CELL_MIN or cell_t > CELL_MAX:
+                continue
+            cell_t = int(cell_t)
             cur = round(pcx[p] * 100.0)
             tb = tbin_label(tts[p])
             if tb < 0:
@@ -148,8 +163,8 @@ def per_minute_records(df):
             fill_here = 1.0 if (np.isfinite(fml) and fml <= cur) else 0.0
             deepen = 1.0 if (np.isfinite(fml) and fml <= cur - 1) else 0.0
             extra = (cur - fml) if np.isfinite(fml) else np.nan
-            rec.append((evx[p], tkx[p], int(c0), int(tb),
-                        int(np.clip(cur - c0, -DBUCKET_CLIP, DBUCKET_CLIP)),
+            rec.append((evx[p], tkx[p], cell_t, int(tb),
+                        int(np.clip(cur - cell_t, -DBUCKET_CLIP, DBUCKET_CLIP)),
                         fill_here, deepen, extra, float(cum[p]),
                         pysx[p], pmsx[p], sprx[p], psprx[p], tfx[p]))
     cols = ["event", "ticker", "c", "tbin", "dbucket", "fill_here", "deepen",
@@ -224,6 +239,8 @@ def main():
     ap.add_argument("--category", default="ATP_MAIN")
     ap.add_argument("--kmax", type=int, default=3)
     ap.add_argument("--limit-tickers", type=int, default=0)
+    ap.add_argument("--anchor", choices=["close", "running_mid"], default="close",
+                    help="close = eventual premarket-close (hindsight); running_mid = live-observable trailing mid")
     ap.add_argument("--suffix", default="")
     args = ap.parse_args()
     HERE = os.path.dirname(os.path.abspath(__file__))
@@ -234,14 +251,15 @@ def main():
     print("LIFECYCLE: %s · %s rows · %d tickers · %d events"
           % (args.category, f"{len(df):,}", df.ticker.nunique(), df.event_ticker.nunique()))
 
-    rec = per_minute_records(df)
-    print("traded premarket minute-records:", f"{len(rec):,}")
+    rec = per_minute_records(df, args.anchor)
+    print("anchor=%s · traded premarket minute-records: %s" % (args.anchor, f"{len(rec):,}"))
     # VALIDATION: mirror check
     pys_mean = float(np.nanmean(df["paired_yes_bid_sum"].to_numpy(float)))
     print("MIRROR check paired_yes_bid_sum mean: %.3f (expect ~0.97)" % pys_mean)
 
     surf, paired = aggregate(rec, df, args.kmax)
-    s = args.suffix or ("_" + args.category)
+    base = "_midanchor" if args.anchor == "running_mid" else ""
+    s = args.suffix or (base + "_" + args.category)
     surf.to_csv(os.path.join(HERE, "premarket_lifecycle_surface%s.csv" % s), index=False)
     paired.to_csv(os.path.join(HERE, "premarket_paired_sum_lifecycle%s.csv" % s), index=False)
     print("wrote premarket_lifecycle_surface%s.csv (%d states) + premarket_paired_sum_lifecycle%s.csv" % (s, len(surf), s))

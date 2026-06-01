@@ -108,6 +108,12 @@ V4_T20M_SEC = 20 * 60             # T-20m taker fallback = atlas baseline entry
 V4_REPRICE_MOVE_CENTS = 5         # resting bid re-post threshold (1 cell width); STEP 5 heuristic
 V4_PAIRED_BASIS_CAP = 99          # T50: refuse entering BOTH sides of an event when (this side + sibling) basis > this cap. yes+no > ~100 is a guaranteed loss (KESMAR 37+75=112). Ported from arb_executor_ws.py intra-k combined=ask_a+ask_b math (negative space). Cap 99 leaves ~1c for the taker fee.
 
+# T51 match-live detection (VOLUME ACCELERATION, not price-move — a tight even
+# match stays price-flat so price-move is blind, proven on TIAARN's 50-51c book).
+LIVE_DETECT_WINDOW_SEC = 60       # rolling window for the trade-burst signal
+LIVE_TRADE_BURST = 10             # >= this many trade prints in the window across both legs => match is live (tunable; pre-match tennis books trade far below this)
+LIVE_TRADE_RETENTION_SEC = 600    # prune per-ticker trade-time deques older than this
+
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
 V4_RESTING_FILE = STATE_DIR / "live_v4_resting.json"  # v4 resting-bid recovery (STEP 5)
@@ -976,6 +982,10 @@ class LiveV3:
         self._loop_lag_samples = 0               # loop-lag monitor sample counter
         self._inflight_settlements: Set[str] = set()   # tickers with an in-flight settlement hop (dedup task spawn)
         self._settlement_attempt_ts: Dict[str, float] = {}  # last WS-lifecycle settlement-hop attempt per ticker
+        # T51 match-live detection (volume-acceleration): per-ticker rolling
+        # trade timestamps + latched live-event set.
+        self._trade_times: Dict[str, deque] = defaultdict(deque)
+        self._events_live: Set[str] = set()
 
         # Persistent processed-tickers set (survives restarts)
         STATE_DIR.mkdir(parents=True, exist_ok=True)
@@ -1392,6 +1402,12 @@ class LiveV3:
         book.last_trade_price = price
         book.last_trade_ts = time.time()
         book.last_trade_side = side
+        # T51: feed the volume-acceleration live detector (per-ticker trade times).
+        dq = self._trade_times[ticker]
+        dq.append(book.last_trade_ts)
+        cutoff = book.last_trade_ts - LIVE_TRADE_RETENTION_SEC
+        while dq and dq[0] < cutoff:
+            dq.popleft()
         if _PAPER_API is not None:
             _PAPER_API.on_trade(ticker, book.last_trade_ts, price, count, side)
         self._log_trade(ticker, price, count, side)
@@ -1930,6 +1946,30 @@ class LiveV3:
             sp.entry_order_id = ""
             self._untombstone_entry(sib, sp)
             self._save_v4_resting()
+
+    def _is_match_live(self, et):
+        """T51 match-live detection via VOLUME ACCELERATION. Live = >=
+        LIVE_TRADE_BURST trade prints across the event's legs within the last
+        LIVE_DETECT_WINDOW_SEC. Latched (a match does not un-start). Price-move
+        is deliberately NOT the signal — a tight even match stays price-flat
+        (TIAARN sat at 50-51c through its window), so the old >=10c proxy was
+        blind; trade flow is the reliable tell. (A reliable in-play status feed
+        would strengthen this; none is currently available — see T51.)"""
+        if et in self._events_live:
+            return True
+        cutoff = time.time() - LIVE_DETECT_WINDOW_SEC
+        recent = 0
+        for tk in self.event_tickers.get(et, ()):
+            dq = self._trade_times.get(tk)
+            if dq:
+                recent += sum(1 for t in dq if t >= cutoff)
+        if recent >= LIVE_TRADE_BURST:
+            self._events_live.add(et)
+            self._log("match_live_detected", {
+                "event": et, "trades_in_window": recent,
+                "window_sec": LIVE_DETECT_WINDOW_SEC, "signal": "volume_burst"})
+            return True
+        return False
 
     def identify_sides(self, event_ticker):
         tickers = list(self.event_tickers.get(event_ticker, set()))
@@ -2764,6 +2804,15 @@ class LiveV3:
                 return
 
             self.n_matches_seen += 1
+
+            # T51: never ENTER a live match (existing positions are managed
+            # separately by check_fills / _v4_manage_resting). Volume-accel
+            # detector, latched per event.
+            if self._is_match_live(et):
+                self.processed_events.add(et)
+                self._save_processed()
+                self._log("skip_live_match", {"event": et})
+                return
 
             sides = self.identify_sides(et)
             if not sides:

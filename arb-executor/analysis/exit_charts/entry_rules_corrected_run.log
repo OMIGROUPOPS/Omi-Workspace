@@ -1,0 +1,29 @@
+
+==== ATP_MAIN — CORRECTED entry rules (honest fill+exit, OOS) — 4756 tickers ====
+  taker baseline:           $105.93
+  SKIP   in-sample (overfit): $131.72  (+24.3%)   ->  OOS honest: $88.66  (-16.3%)
+  FALLBACK in-sample (overfit): $173.45  (+63.7%)   ->  OOS honest: $145.85  (+37.7%)
+  [in-sample fallback uplift = the old '+53%' style overfit ceiling; OOS = honest expectation]
+  per-band fallback discount/post_start + honest fill rate -> entry_rules_corrected_ATP_MAIN.csv
+
+==== WTA_MAIN — CORRECTED entry rules (honest fill+exit, OOS) — 4496 tickers ====
+  taker baseline:           $98.81
+  SKIP   in-sample (overfit): $111.99  (+13.3%)   ->  OOS honest: $64.26  (-35.0%)
+  FALLBACK in-sample (overfit): $176.65  (+78.8%)   ->  OOS honest: $157.56  (+59.5%)
+  [in-sample fallback uplift = the old '+53%' style overfit ceiling; OOS = honest expectation]
+  per-band fallback discount/post_start + honest fill rate -> entry_rules_corrected_WTA_MAIN.csv
+
+==== ATP_CHALL — CORRECTED entry rules (honest fill+exit, OOS) — 6814 tickers ====
+  taker baseline:           $204.17
+  SKIP   in-sample (overfit): $188.47  (-7.7%)   ->  OOS honest: $143.64  (-29.6%)
+  FALLBACK in-sample (overfit): $309.47  (+51.6%)   ->  OOS honest: $284.59  (+39.4%)
+  [in-sample fallback uplift = the old '+53%' style overfit ceiling; OOS = honest expectation]
+  per-band fallback discount/post_start + honest fill rate -> entry_rules_corrected_ATP_CHALL.csv
+
+==== WTA_CHALL — CORRECTED entry rules (honest fill+exit, OOS) — 1123 tickers ====
+  taker baseline:           $14.53
+  SKIP   in-sample (overfit): $41.96  (+188.8%)   ->  OOS honest: $20.06  (+38.1%)
+  FALLBACK in-sample (overfit): $39.20  (+169.8%)   ->  OOS honest: $24.21  (+66.6%)
+  [in-sample fallback uplift = the old '+53%' style overfit ceiling; OOS = honest expectation]
+  per-band fallback discount/post_start + honest fill rate -> entry_rules_corrected_WTA_CHALL.csv
+ALL DONE

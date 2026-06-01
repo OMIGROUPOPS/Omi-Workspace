@@ -534,6 +534,13 @@ First line is the literal phrase "Read-only." (period included). Second blank li
 4. Commit to git with meaningful message.
 5. Lessons that supersede earlier lessons get marked as SUPERSEDED with a pointer to the replacement; never delete.
 
+### Version-control discipline — production must never run uncommitted changes [STANDING PRACTICE, added 2026-06-01]
+Audit 2026-06-01 found TWO live production artifacts running outside version control: a 42-line `live_v4.py` "TRASQU NO_EXIT" hotfix (uncommitted working-tree change) and the coarse `spike_volatility_map` exit table (working-tree parquets differing from committed VC). VC did not reflect what production was actually running — a systemic drift, not a one-off.
+- Every hotfix/edit applied to a running production file (code, config, or data table) **commits immediately** with a message, on `blend/agent-derivation`, then reconciles to `main`. No "edit-in-place and leave it."
+- Before any merge/pull/reset on the production checkout, run `git status` on the VPS working tree and reconcile every `M`/`??` that the bot depends on — uncommitted production state is silently destroyed by a pull.
+- Production branch (`main`) must track exactly what runs. Confirm `production-running file == origin/main` after any reconciliation.
+- Credentials (`kalshi.pem`) and regenerated runtime state (`state/*.json`, `tennis.db`) are the only intentionally-unversioned files; everything else the bot reads must be in VC.
+
 ### When things spin out
 Re-read Section 1. If we are drifting tactical, the foundation is not trustworthy yet. Pause and re-anchor.
 

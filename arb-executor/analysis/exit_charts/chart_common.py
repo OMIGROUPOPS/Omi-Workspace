@@ -167,6 +167,24 @@ def compute_forward_max(df: pd.DataFrame, col: str) -> np.ndarray:
     return out
 
 
+def compute_forward_min(df: pd.DataFrame, col: str) -> np.ndarray:
+    """Strictly-forward MIN of `col` within each ticker (NaN-skipping). Entry-side mirror of
+    compute_forward_max: fwd[i] = min(col over rows i+1..end of the ticker), NaN if none after.
+    Used for the maker-fill check — did a real traded low come DOWN to the resting bid."""
+    out = np.full(len(df), np.nan)
+    vals = df[col].to_numpy(dtype=float)
+    codes = pd.factorize(df["ticker"], sort=False)[0]
+    for _, idx in pd.Series(np.arange(len(df))).groupby(codes):
+        ix = idx.to_numpy()
+        x = vals[ix]
+        rev_incl = np.fmin.accumulate(x[::-1])[::-1]   # rev_incl[i] = min(x[i..end])
+        strict = np.empty_like(rev_incl)
+        strict[:-1] = rev_incl[1:]                     # min(x[i+1..end])
+        strict[-1] = np.nan
+        out[ix] = strict
+    return out
+
+
 def reach_table(df: pd.DataFrame, x_max: int = 40) -> pd.DataFrame:
     """Per (cell c, exit offset X) fill rates on both instruments.
 

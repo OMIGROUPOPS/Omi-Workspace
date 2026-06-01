@@ -255,6 +255,41 @@ Outputs per category: `deploy_gated_optima_<CAT>.csv`, `pooled_gauge_blocks_<CAT
 `chart_pooled_gauge_<CAT>.html`. Mirror not re-run (pinned). `validate_category.py` is the
 per-category validation pass.
 
+## ENTRY maker-fill surface (Axis 2) — premarket tape, all 4 categories (2026-05-31)
+
+`build_chart_entry_fill.py` on `premarket_tape_v1.parquet` (T-4h→T-20m, 2.06M rows, sha ff2a63d9).
+Entry-side mirror of the exit ROC surface; supersedes Path B v4. Rest a maker BUY at cell c during
+premarket; **fill = a real traded low ≤ bid before T-20m** (`min(forward price_low) ≤ bid/100`) —
+the honest cross DOWN into the bid, NOT the quoted-ask-comes-down phantom Path B counted. Per-cent,
+per-minute placement, cluster-sand-pooled, one-match-one-vote. A maker fill (0 fees, bought at bid)
+lands a cost basis below the taker baseline → lifts that position's exit ROC.
+
+Headline = place at the first premarket minute price is at c, rest to T-20. Base bid at c plus
+conservative variants 1–2¢ below (fills only on a genuine dip). Per-cell × per-placement-minute
+heatmap shows fill-prob growing the earlier you place.
+
+| category | premarket rows | matches | c5 fill @c / @c−2 | mid–fav fill @c | WAIT/90 | CHASE/PASS cells |
+|---|---|---|---|---|---|---|
+| ATP_MAIN | 704k | 2,488 | 46% / **29%** | 65–72% | 86 | **c5,6,7,8** |
+| WTA_MAIN | 614k | 2,366 | 52% / 37% | 66–71% | 90 | none |
+| ATP_CHALL | 643k | 3,550 | 48% / 30% | 56–69% | 88 | c5,6 |
+| WTA_CHALL | 103k | 589 | 56% / 35% | 58–70% | 90 | none |
+
+**The tension is real and quantified (and tour-specific):**
+- **Cheap cells = highest exit ROC but hardest to maker-fill.** ATP_MAIN c5: exit ROC **56%** but
+  entry fill only **46% @c / 29% @c−2** → flagged **CHASE/PASS** (take the taker; the drift rarely
+  comes down to a 5¢ bid). The richest exit cells are the hardest to fill cheap.
+- **ATP runs hot-but-hard, WTA runs cool-but-easy.** ATP (higher ROC) flags its 2–4 cheapest cells
+  CHASE/PASS; **WTA fills easier everywhere (c5 52–56% @c)** and says WAIT on all 90 despite lower ROC.
+  The chase-vs-wait call differs by tour — the surface makes it per-cell explicit.
+- Shape direction matches the sanity prior (cheap lowest, rising); the **conservative c−2 bid is where
+  the ~30% cheap-cell fill shows up** (anchor @c is higher because price is already at c). Offsets
+  correctly monotone (fill@c ≥ @c−1 ≥ @c−2 — a dip to c−2 implies passing c).
+
+Outputs per category: `deploy_entry_fill_<CAT>.csv` (per-cell headline + verdict + cost basis),
+`entry_placement_surface_<CAT>.csv` (c × placement-minute), `chart_entry_fill_<CAT>.html`.
+Premarket coverage is ~5% fewer matches than the exit universe (some matches lack premarket tape).
+
 ## Caveats for the full-universe re-run
 - Edge/low-c cells are sparse on 38 games (drives sand mean down, creates off-diagonal optima).
 - Entry = every minute (yes_bid_close always populated) → entry observations are autocorrelated

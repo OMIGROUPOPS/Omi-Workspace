@@ -213,6 +213,48 @@ Outputs: `chart_pooled_gauge_full.html`, `*_full.csv`.
   fit (1.4 GB avail + swap) and finished in 30 s without starving the trader, but a true chunked
   row-group read is the follow-up for strict <200 MB.
 
+## ALL FOUR CATEGORIES (2026-05-31) — same locked method, run-only on full universe
+
+Ran WTA_MAIN / ATP_CHALL / WTA_CHALL through the identical pipeline (settlement-blind traded
+price_high reach, sand-pooled k±3, match-weighted one-match-one-vote gate, 0.85 floor, ROC deploy).
+Headless+frugal on the VPS, nice'd, isolated scratch — peaked ~1.18 GB/run and ran slow under the
+box's memory pressure (load → 3.2, nice kept the trader CPU-priority); disk held at 3.8 GB free.
+
+| category | matches | sides | 2:1? | window | no-trade % | mid-cell side-infl | gap (killed?) | match-N range | top ROC | deep-ud / fav ROC |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ATP_MAIN | 2,631 | 5,261 | ✓ 2.00 | Jun25–May26 | 67% | 1.46× | −0.3pp ✓ | 1,886–2,585 | c5 **56%** | 26.1 / 5.9 = **4.4×** |
+| WTA_MAIN | 2,520 | 5,040 | ✓ 2.00 | Jun25–Apr26 | **72%** | 1.46× | −1.2pp ✓ | 1,822–2,492 | c5 38% | 21.7 / 4.5 = 4.8× |
+| ATP_CHALL | 3,804 | 7,608 | ✓ 2.00 | Jan26–May26 | **58%** | 1.46× | +0.2pp ✓ | 2,608–3,747 | c5 50% | 21.1 / 4.7 = 4.5× |
+| WTA_CHALL | 649 | 1,298 | ✓ 2.00 | Jan26–May26 | 56% | 1.50× | −0.9pp ✓ | **431–640** | c5 38% | 15.0 / 4.2 = 3.6× |
+
+**Validations confirmed per category (not assumed from ATP):**
+- **2:1 sides:matches** holds exactly in all four (mean 2.00, zero matches with ≠2 sides).
+- **c≤50 side double-count is real in every category** (mid-cell sides/matches ~1.5×, ~1.0× at
+  extremes) and the match-weighted gate **kills it everywhere** — minute−match gap collapses to
+  −1.2…+0.2 pp at mid-cells (vs the +7…+11 pp it would be on per-side counting).
+
+**Findings (reported as findings, not bugs):**
+1. **Deep-underdog ROC engine repeats in all four** (concentration 3.6–4.8×, top cell always c5).
+   The fold holds: deep-ud exits +3–6, even +8–17, favorites lock-clipped; reach pinned ~87%; bands
+   uniform. The structure is category-invariant.
+2. **ATP_MAIN runs HOTTEST, not WTA — opposite of the "WTA runs hotter" prior.** On return-on-capital
+   ATP_MAIN c5=56% / deep-ud 26% beats WTA_MAIN c5=38% / 21.7% (same exit depth, but WTA underdogs
+   bounce *less*: c5 exp-ret +1.9¢ vs ATP +2.8¢). Flagging the contradiction with the prior.
+3. **Challenger surfaces rest on MORE real prints, not fewer:** no-trade 56–58% vs Mains' 67–72%.
+   WTA_MAIN is the thinnest-printing surface (72% no-trade). ATP_CHALL has the **most matches** (3,804)
+   and densest prints — Challenger liquidity is not the weak point.
+4. **Thinnest cells are EVEN-MONEY (c44–50), not the favorite tail** — cost basis is bimodal
+   (fav/underdog) with a trough at even money; favorites stay well-populated (winners traverse the
+   tail to settlement). So the operator's expected favorite-tail thinness did **not** materialise.
+5. **No category has a statistically thin cell.** Smallest is WTA_CHALL (649 matches) whose thinnest
+   cell still carries **431 pooled matches** (~±3% CI on an 85% rate) — fine. WTA_CHALL is ~5× smaller
+   and spans only ~3 months (Jan29–May1; Challenger collection started late), so treat its magnitudes
+   as provisional, but the shape is the same.
+
+Outputs per category: `deploy_gated_optima_<CAT>.csv`, `pooled_gauge_blocks_<CAT>.csv`,
+`chart_pooled_gauge_<CAT>.html`. Mirror not re-run (pinned). `validate_category.py` is the
+per-category validation pass.
+
 ## Caveats for the full-universe re-run
 - Edge/low-c cells are sparse on 38 games (drives sand mean down, creates off-diagonal optima).
 - Entry = every minute (yes_bid_close always populated) → entry observations are autocorrelated

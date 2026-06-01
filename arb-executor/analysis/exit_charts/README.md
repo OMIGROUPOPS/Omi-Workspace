@@ -330,6 +330,40 @@ before the push" has no push to front-run. Chase-vs-wait therefore stays **fill-
 where it isn't. No directional overlay. A clean, money-saving negative result. Per-band CSVs:
 `premarket_drift_<CAT>.csv`.
 
+## ENTRY BID-DEPTH optimizer — harvest the premarket dip (2026-06-01)
+
+`build_chart_entry_depth.py` joins three locked pieces to answer "how far below anchor to lay the
+maker bid": (1) honest dip→fill curve p(c,D) = traded low ≤ (c−D)/100 before T-20m, depth-swept
+0–12, cluster-sand-pooled, one-match-one-vote; (2) the locked exit ROC per cost cell; (3) optimal
+depth. NOT directional (that was rejected) — it harvests the reliable below-anchor oscillation found
+by the drift-envelope (`drift_envelope_*_2026-05-26.md`: median ~3¢ bid-dip, ~97% dip below anchor).
+
+Two depths per anchor cell:
+- **reliable depth (headline)** = max-ROC-lift depth whose HONEST fill ≥ 40%, falling back to D=0
+  (no dip) where dipping doesn't lift ROC. The dip you can actually rest into.
+- **aggressive argmax** = unconstrained argmax p·(ROC(c−D)−ROC(c)); flagged when pinned at DMAX=12
+  (the deep-underdog ROC gradient pulls past the cap at 17–29% fill — speculative low-fill tail).
+
+**Findings (all 4 categories):**
+- **The dip-harvest lift is real but MODEST and concentrated in the low-cell band.** Reliable-depth
+  ROC lift by band (mean): **deep-ud +1.7…+2.8pp**, slight-ud +0.7…+0.9pp, even/fav **+0.1…+0.4pp**.
+  Dipping a few cents toward the deep-underdog engine is where it pays; for even/favorite cells the
+  exit ROC is flat across neighbours so a cheaper basis barely lifts. ~28–43 of 90 cells show any
+  positive lift; the rest lay at the anchor (D=0).
+- **The richest cell (c5) has NO dip room** (already at the 5¢ floor → D=0). You can't harvest below
+  the floor, so the top-ROC cell is taken at anchor.
+- **Honest traded fill at the reliable dip is ~40–46%** — far below the envelope's bid-based "97% dip
+  / median 3¢". The quoted-bid dip **overstates** maker fillability; a real trade comes down to a
+  2–5¢ dip only ~40% of the time. (Instrument distinction; the bid-based env median is carried as a
+  cross-check column, not the gate.)
+- WTA harvests slightly more than ATP (deep-ud +2.4/+2.8 vs +1.7) — consistent with WTA's easier fills.
+
+**Net:** the entry→exit lifted picture is a **small, low-cell-concentrated ROC bump on top of the
+exit engine**, not a new edge — consistent with the efficient-premarket drift result. Deploy: lay
+the maker bid a few cents below anchor in the underdog band (reliable_depth), take at anchor elsewhere.
+Outputs: `deploy_entry_depth_<CAT>.csv` (reliable + aggressive + cost basis + combined ROC + env
+cross-check), `entry_depth_fill_<CAT>.csv` (full c×D fill surface), `chart_entry_depth_<CAT>.html`.
+
 ## Caveats for the full-universe re-run
 - Edge/low-c cells are sparse on 38 games (drives sand mean down, creates off-diagonal optima).
 - Entry = every minute (yes_bid_close always populated) → entry observations are autocorrelated

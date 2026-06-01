@@ -187,12 +187,26 @@ Outputs: `chart_pooled_gauge_full.html`, `*_full.csv`.
 - **Side double-count killed (guard 2 confirmed):** minute−match gap collapsed to mean **−2.1 pp**
   (range −8.3…+3.5), only 11/90 cells >±5 pp. On the probe the per-side count inflated mid-cells
   to +7…+11 pp; one-match-one-vote removed it. Distinct matches **2,631 / 5,261 sides** (clean 2:1).
-- **Shape — the probe's deep-underdog moonshot was small-sample illusion.** At full N the honest
-  fold **rises with cost basis**: deep underdogs only support shallow exits (c5→+4, c17→+5, ~85–88%
-  reach, exp-ret +2–2.6¢), the even line deepens (c53→+13, +3.9¢), and **favorites are the best exit
-  cells** (c65→+18, c77→+20, exp-ret +5–6.6¢), clipped at the top only by the 99 lock (c83→+16,
-  c93→+6 are ceiling-limited). Reach pins at the 0.85 floor across underdog→slight-fav; bands uniform.
-  Fold monotone-rising modulo the geometric lock ceiling.
+- **Shape — the probe's deep-underdog MOONSHOT was the illusion, NOT the engine.** The dead part is
+  c5's +81: honest full-N is a **shallow reliable +4/+5 at 85–88%** — the predictable-bounce engine.
+  The exit-OFFSET X rises with cost basis (deep-ud +4/+5, even +13, slight-fav +20), clipped at the
+  top by the 99 lock; reach pins at the 0.85 floor; bands uniform.
+- **DEPLOY metric = RETURN-ON-CAPITAL (exp_ret / c), not cents/trade.** Capital is the binding
+  constraint, so cents/trade flatters favorites that tie up 80–93¢ to earn them. On return-on-capital
+  the **deep-underdog engine dominates (~7× favorites)** — this CONFIRMS the engine (LESSONS A39),
+  it does not reverse it:
+
+  | rank | cell | exit | match reach | cents/trade | **ROC** | matchN |
+  |---|---|---|---|---|---|---|
+  | 1 | c5 | +4 | 88% | +2.8¢ | **55.7%** | 2547 |
+  | 2 | c6 | +5 | 85% | +3.3¢ | **55.1%** | 2559 |
+  | 3 | c7 | +5 | 85% | +3.2¢ | **46.2%** | 2580 |
+  | … | … | | | | | |
+  | low | c83 | +16 | 90% | +6.6¢ | **8.0%** | 2433 |
+  | low | c90 | +5 | 97% | +4.4¢ | **4.8%** | 2400 |
+
+  Band mean ROC: deep-ud **26.1%**, slight-ud 7.3%, even 6.4%, slight-fav 8.5%, heavy-fav 5.9%.
+  Primary deploy-surface color is now ROC; cents/trade is a secondary toggle layer.
 - Mirror was NOT re-run (pinned). HTML rendered locally from the pulled blocks CSV (plotly optional
   on the VPS; `render_from_blocks`). **Caveat:** peak RSS 1.18 GB > the <200 MB target — the parquet
   category filter didn't prune row groups, so 9.3M rows materialised transiently before downcast; it

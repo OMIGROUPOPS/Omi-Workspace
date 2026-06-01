@@ -146,7 +146,10 @@ def pooled_gauge(raw: pd.DataFrame, df: pd.DataFrame, kmax: int):
                 "match_N": match_N[c],                       # distinct matches behind the pick
                 "reach_raw": r.reach, "reach_pooled": rch / wsum,            # minute (diagnostic)
                 "reach_pooled_match": (mrch / wsum_tk) if wsum_tk > 0 else np.nan,  # canonical
-                "exp_ret_match": (expret / wsum_tk) if wsum_tk > 0 else np.nan,     # DEPLOY value
+                "exp_ret_match": (expret / wsum_tk) if wsum_tk > 0 else np.nan,     # cents/trade (secondary)
+                # PRIMARY deploy metric: return ON CAPITAL = exp_ret / cost. Capital is the binding
+                # constraint, so cents/trade flatters favorites that tie up 80-93c to earn them.
+                "roc_match": ((expret / wsum_tk) / c) if wsum_tk > 0 else np.nan,
                 "net_raw": r.net, "net_pooled": net / wsum,                 # minute net (diag)
                 "miss_cost_raw": r.miss_cost,
             })
@@ -238,36 +241,43 @@ def render_gauge(pooled, opt, out_html, category, reach_floor, kmax, n_tickers):
     pooled["xpos"] = pooled["X"] - (pooled["W"] + 1) / 2.0
     hov = [
         f"<b>cost c={int(r.c)}c → exit +{int(r.X)}c (sell @ {int(r.target)}c)</b><br>"
+        f"<b>return-on-capital (DEPLOY): {r.roc_match*100:+.1f}%</b>  = exp_ret / c<br>"
+        f"expected return: {r.exp_ret_match:+.2f}c/trade (ties up {int(r.c)}c)<br>"
         f"<b>match-weighted reach (CANONICAL): {r.reach_pooled_match*100:.1f}%</b>  "
         f"[minute diag: {r.reach_pooled*100:.1f}%, gap {(r.reach_pooled-r.reach_pooled_match)*100:+.1f}pp]<br>"
-        f"<b>expected return: {r.exp_ret_match:+.2f}c</b>  = reach_match·X − miss·(c−settle)<br>"
-        f"minute net (diag, do not deploy): {r.net_pooled:+.2f}c<br>"
         f"<b>match-N (distinct matches): {r.match_N}</b> · pooled minute-N {r.pooled_N:.0f}"
         + (f"<br><b>★ optimal — deepest X with match reach≥{reach_floor*100:.0f}%</b>" if (r.c, r.X) in opt_keys else "")
         + ("<br>⚠ THIN: <15 distinct matches behind this pick" if (r.c, r.X) in thin else "")
         for r in pooled.itertuples()
     ]
 
-    # CANONICAL deploy layer first = match-weighted EXPECTED RETURN. Minute layers = diagnostic.
+    # PRIMARY deploy layer = return ON CAPITAL (exp_ret/c). Cents/trade demoted to secondary.
     fig = go.Figure()
+    roc = pooled.roc_match * 100
+    roclim = float(np.nanpercentile(np.abs(roc), 98))
+    fig.add_trace(go.Scatter(  # 0 — DEPLOY surface = return on capital
+        x=pooled.xpos, y=pooled.c, mode="markers", name="return-on-capital % — DEPLOY",
+        marker=dict(symbol="square", size=7, color=roc, colorscale="RdYlGn", cmid=0,
+                    cmin=-roclim, cmax=roclim, colorbar=dict(title="ROC %"), line=dict(width=0)),
+        text=hov, hoverinfo="text", visible=True))
     er = pooled.exp_ret_match
     erlim = float(np.nanpercentile(np.abs(er), 98))
-    fig.add_trace(go.Scatter(  # 0 — DEPLOY surface
-        x=pooled.xpos, y=pooled.c, mode="markers", name="expected return (c) — DEPLOY",
+    fig.add_trace(go.Scatter(  # 1 — cents/trade (SECONDARY — flatters favorites)
+        x=pooled.xpos, y=pooled.c, mode="markers", name="exp. return c/trade (secondary)",
         marker=dict(symbol="square", size=7, color=er, colorscale="RdYlGn", cmid=0,
                     cmin=-erlim, cmax=erlim, colorbar=dict(title="exp. return (c)"), line=dict(width=0)),
-        text=hov, hoverinfo="text", visible=True))
-    fig.add_trace(go.Scatter(  # 1 — canonical reach
+        text=hov, hoverinfo="text", visible=False))
+    fig.add_trace(go.Scatter(  # 2 — match reach % (canonical gate quantity)
         x=pooled.xpos, y=pooled.c, mode="markers", name="match reach % (canonical)",
         marker=dict(symbol="square", size=7, color=pooled.reach_pooled_match * 100, colorscale="YlGnBu",
                     cmin=0, cmax=100, colorbar=dict(title="match reach %"), line=dict(width=0)),
         text=hov, hoverinfo="text", visible=False))
-    fig.add_trace(go.Scatter(  # 2 — minute reach DIAGNOSTIC
+    fig.add_trace(go.Scatter(  # 3 — minute reach DIAGNOSTIC
         x=pooled.xpos, y=pooled.c, mode="markers", name="minute reach % (DIAGNOSTIC — over-optimistic)",
         marker=dict(symbol="square", size=7, color=pooled.reach_pooled * 100, colorscale="YlOrBr",
                     cmin=0, cmax=100, colorbar=dict(title="minute reach %"), line=dict(width=0)),
         text=hov, hoverinfo="text", visible=False))
-    fig.add_trace(go.Scatter(  # 3 — minute-vs-match gap DIAGNOSTIC (winner-contamination map)
+    fig.add_trace(go.Scatter(  # 4 — minute-vs-match gap DIAGNOSTIC (winner-contamination map)
         x=pooled.xpos, y=pooled.c, mode="markers", name="minute−match gap pp (winner contamination)",
         marker=dict(symbol="square", size=7, color=(pooled.reach_pooled - pooled.reach_pooled_match) * 100,
                     colorscale="Reds", cmin=0, cmax=40, colorbar=dict(title="gap pp"), line=dict(width=0)),
@@ -275,27 +285,28 @@ def render_gauge(pooled, opt, out_html, category, reach_floor, kmax, n_tickers):
     ot_mask = [(c, X) in opt_keys for c, X in zip(pooled.c, pooled.X)]
     ot = pooled[ot_mask]
     ot_colors = ["#ff2bd6" if (c, X) in thin else "#ffffff" for c, X in zip(ot.c, ot.X)]
-    fig.add_trace(go.Scatter(  # 4 — gated optimum, always visible (magenta = thin match-N)
+    fig.add_trace(go.Scatter(  # 5 — gated optimum, always visible (magenta = thin match-N)
         x=ot.xpos, y=ot.c, mode="markers",
         name=f"optimal (deepest X, match reach≥{reach_floor*100:.0f}%; magenta=thin <{THIN_MATCH_N})",
         marker=dict(symbol="square-open", size=11, color="rgba(0,0,0,0)", line=dict(width=2, color=ot_colors)),
         text=[h for h, k in zip(hov, ot_mask) if k], hoverinfo="text", visible=True))
 
-    V = lambda i: [j == i for j in range(4)] + [True]
+    V = lambda i: [j == i for j in range(5)] + [True]
     fig.update_layout(
-        title=(f"LAYER 2 — sand-pooled, SETTLEMENT-BLIND exit gauge · MATCH-WEIGHTED deploy gate "
+        title=(f"LAYER 2 — sand-pooled, SETTLEMENT-BLIND exit gauge · MATCH-WEIGHTED · RETURN-ON-CAPITAL deploy "
                f"({category}, {n_tickers} tickers, k±{kmax})<br>"
                f"<sub>reach = traded-forward to c+X (no winner/loser split) · canonical = match-weighted "
                f"(one match one vote) · ★ = deepest X with match reach ≥ {reach_floor*100:.0f}% · "
-               f"DEPLOY color = expected return = reach_match·X − miss·(c−settle) · minute layers DIAGNOSTIC only</sub>"),
+               f"DEPLOY color = return-on-capital = (reach_match·X − miss·(c−settle)) / c · cents/trade is secondary</sub>"),
         xaxis=dict(title="exit offset slots (centred; reach to the 99 lock)", zeroline=False, showgrid=False),
         yaxis=dict(title="cost-basis cell c (cents)", autorange="reversed", dtick=5, showgrid=False),
         template="plotly_dark", width=1400, height=1150, plot_bgcolor="#0a0a0a",
         updatemenus=[dict(type="buttons", direction="right", x=0, y=1.06, xanchor="left", buttons=[
-            dict(label="expected return (DEPLOY)", method="update", args=[{"visible": V(0)}]),
-            dict(label="match reach %", method="update", args=[{"visible": V(1)}]),
-            dict(label="minute reach (diag)", method="update", args=[{"visible": V(2)}]),
-            dict(label="minute−match gap (diag)", method="update", args=[{"visible": V(3)}]),
+            dict(label="return-on-capital (DEPLOY)", method="update", args=[{"visible": V(0)}]),
+            dict(label="cents/trade (secondary)", method="update", args=[{"visible": V(1)}]),
+            dict(label="match reach %", method="update", args=[{"visible": V(2)}]),
+            dict(label="minute reach (diag)", method="update", args=[{"visible": V(3)}]),
+            dict(label="minute−match gap (diag)", method="update", args=[{"visible": V(4)}]),
         ])])
     fig.write_html(out_html, include_plotlyjs="cdn")
 
@@ -303,6 +314,8 @@ def render_gauge(pooled, opt, out_html, category, reach_floor, kmax, n_tickers):
 def render_from_blocks(blocks_csv, out_html, category="ATP_MAIN", reach_floor=0.85, kmax=3, n_tickers=0):
     """Render full HTML locally from a pulled pooled-blocks CSV (no source data needed)."""
     pooled = pd.read_csv(blocks_csv)
+    if "roc_match" not in pooled.columns:        # backfill for CSVs predating the ROC column
+        pooled["roc_match"] = pooled["exp_ret_match"] / pooled["c"]
     pooled["reach_pooled_match_mono"] = pooled.sort_values("X").groupby("c")["reach_pooled_match"].cummin()
     pooled["reach_pooled_mono"] = pooled.sort_values("X").groupby("c")["reach_pooled"].cummin()
     opt = predictability_optimal(pooled, reach_floor, "match")
@@ -361,15 +374,15 @@ def main():
     print(f"\nPREDICTABILITY-GATE floor sweep (locked floor = {args.reach_floor:.2f}):")
     print(sweep.to_string(index=False, float_format=lambda v: f"{v:.2f}"))
 
+    opt["roc"] = opt["exp_ret_match"] / opt["c"]      # return on capital (PRIMARY deploy rank)
     opt.to_csv(os.path.join(os.path.dirname(__file__), "deploy_gated_optima.csv"), index=False)
     n_thin = int((opt.match_N < THIN_MATCH_N).sum())
-    print(f"\nDEPLOY optimum — gate_basis={args.gate_basis}, MATCH reach >= {args.reach_floor:.0%} "
-          f"({n_thin}/{len(opt)} cells THIN <{THIN_MATCH_N} matches):")
-    for r in opt.iloc[::8].itertuples():
+    print(f"\nDEPLOY ranking by RETURN-ON-CAPITAL (exp_ret/c) — gate match reach >= {args.reach_floor:.0%} "
+          f"({n_thin}/{len(opt)} cells THIN <{THIN_MATCH_N}):")
+    for r in opt.sort_values("roc", ascending=False).head(12).itertuples():
         flag = f"  <<THIN(N={int(r.match_N)})" if r.match_N < THIN_MATCH_N else ""
-        print(f"  c={int(r.c):2d}  +{int(r.X):2d}  match_reach={r.reach_pooled_match*100:5.1f}%  "
-              f"(minute {r.reach_pooled*100:4.0f}%, gap {r.minute_over_optimistic*100:+4.0f}pp)  "
-              f"exp_ret={r.exp_ret_match:+6.2f}c  matchN={int(r.match_N)}{flag}")
+        print(f"  c={int(r.c):2d}  +{int(r.X):2d}  ROC={r.roc*100:5.1f}%  exp_ret={r.exp_ret_match:+5.2f}c  "
+              f"match_reach={r.reach_pooled_match*100:4.0f}%  matchN={int(r.match_N)}{flag}")
 
 
 if __name__ == "__main__":

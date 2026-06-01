@@ -106,6 +106,7 @@ ROUTING_SWEEP_INTERVAL = 60     # backstop full-universe routing sweep cadence (
 V4_MAX_PLACEMENT_SEC = 240 * 60   # earliest placement in per_regime_offsets_v2 (T-4h)
 V4_T20M_SEC = 20 * 60             # T-20m taker fallback = atlas baseline entry
 V4_REPRICE_MOVE_CENTS = 5         # resting bid re-post threshold (1 cell width); STEP 5 heuristic
+V4_PAIRED_BASIS_CAP = 99          # T50: refuse entering BOTH sides of an event when (this side + sibling) basis > this cap. yes+no > ~100 is a guaranteed loss (KESMAR 37+75=112). Ported from arb_executor_ws.py intra-k combined=ask_a+ask_b math (negative space). Cap 99 leaves ~1c for the taker fee.
 
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
@@ -1870,6 +1871,66 @@ class LiveV3:
     # ------------------------------------------------------------------
     # Side identification
     # ------------------------------------------------------------------
+    def _sibling_ticker(self, tk, et):
+        """The other side of a two-outcome event (None if not exactly one sibling)."""
+        sibs = [t for t in self.event_tickers.get(et, ()) if t != tk]
+        return sibs[0] if len(sibs) == 1 else None
+
+    def _paired_basis_ok(self, tk, et, this_price):
+        """T50 paired-basis guard. Returns False if entering `tk` at this_price
+        would push the event's COMBINED basis (this side + the sibling's
+        committed cost) over V4_PAIRED_BASIS_CAP — i.e. a yes+no > ~100
+        guaranteed loss (KESMAR 37+75=112). Sibling committed cost = its
+        Position.entry_price if we hold/rest a side (fill price if filled, bid
+        price if resting), else the sibling's current ask (the level we'd pay).
+        No sibling signal -> allow (cancel-on-fill is the backstop). Ports the
+        arb_executor_ws.py intra-k combined=ask_a+ask_b math (negative space)."""
+        sib = self._sibling_ticker(tk, et)
+        if not sib:
+            return True
+        sp = self.positions.get(sib)
+        if sp is not None and not sp.settled and sp.entry_price > 0:
+            sib_cost = sp.entry_price
+        else:
+            sb = self.books.get(sib)
+            sib_cost = sb.best_ask if sb else None
+        if not sib_cost or sib_cost <= 0:
+            return True
+        combined = this_price + sib_cost
+        if combined > V4_PAIRED_BASIS_CAP:
+            self._log("paired_basis_skip", {
+                "event": et, "this_price": this_price, "sibling": sib[-12:],
+                "sibling_cost": sib_cost, "combined": combined,
+                "cap": V4_PAIRED_BASIS_CAP}, ticker=tk)
+            return False
+        return True
+
+    async def _cancel_sibling_if_paired_over_cap(self, tk, et, this_basis):
+        """T50 backstop: after `tk` fills at this_basis, cancel the sibling's
+        still-RESTING entry bid if (this_basis + sibling_bid) > cap. Closes the
+        both-bids-resting race the placement guard can't prevent (both legs laid
+        before either filled). No-op if the sibling already filled (pair already
+        locked) or isn't a resting entry."""
+        sib = self._sibling_ticker(tk, et)
+        if not sib:
+            return
+        sp = self.positions.get(sib)
+        if sp is None or sp.settled or sp.phase != "entry_resting" or not sp.entry_order_id:
+            return
+        if sp.entry_qty > 0:
+            return  # sibling already filled -> nothing to cancel
+        sib_bid = sp.entry_price
+        if sib_bid > 0 and (this_basis + sib_bid) > V4_PAIRED_BASIS_CAP:
+            await self.cancel_order(sib, sp.entry_order_id, "paired_basis_cancel")
+            self._log("paired_basis_cancel", {
+                "event": et, "filled_side": tk[-12:], "filled_basis": this_basis,
+                "cancelled_sibling": sib[-12:], "sibling_bid": sib_bid,
+                "combined": this_basis + sib_bid, "cap": V4_PAIRED_BASIS_CAP},
+                ticker=sib)
+            sp.entry_order_id = ""
+            self._untombstone_entry(sib, sp)
+            self._save_v4_resting()
+
     def identify_sides(self, event_ticker):
         tickers = list(self.event_tickers.get(event_ticker, set()))
         if len(tickers) < 2:
@@ -2168,6 +2229,9 @@ class LiveV3:
                     # re-classify / exit_cents / DCA block entirely.
                     if pos.is_v4:
                         await self._v4_apply_exit(tk, pos, fill_price, filled)
+                        # T50 backstop: this side just filled -> cancel the
+                        # sibling's resting bid if the pair would exceed cap.
+                        await self._cancel_sibling_if_paired_over_cap(tk, pos.event_ticker, fill_price)
                         self._save_v4_resting()
                         continue
 
@@ -2775,6 +2839,11 @@ class LiveV3:
                 if entry_price <= 0 or entry_price >= 100:
                     continue
 
+                # T50 paired-basis guard: refuse this leg if (this side +
+                # sibling committed cost) > cap (yes+no > ~100 guaranteed loss).
+                if not self._paired_basis_ok(tk, et, entry_price):
+                    continue
+
                 # Pre-post guards: existing resting order / open position.
                 existing = await api_get(self.session, self.ak, self.pk,
                     "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
@@ -3174,6 +3243,14 @@ class LiveV3:
                 old_filled = int(float((old.get("order", old).get("fill_count_fp", 0)) or 0))
                 if old_filled > 0:
                     return  # filled as maker before the deadline -- let check_fills book it
+            # T50: do not fallback-cross into a guaranteed-loss pair. If the
+            # sibling is already committed and best_ask would push combined
+            # basis over cap, cancel the unfilled bid and stay flat on this leg.
+            if not self._paired_basis_ok(tk, pos.event_ticker, book.best_ask):
+                await self.cancel_order(tk, pos.entry_order_id, "paired_basis_no_fallback")
+                self._untombstone_entry(tk, pos)
+                self._save_v4_resting()
+                return
             await self.cancel_order(tk, pos.entry_order_id, "v4_t20m_fallback")
             self.inflight_orders.add(tk)
             try:
@@ -3219,6 +3296,7 @@ class LiveV3:
                 }, ticker=tk)
                 if pos.is_v4:
                     await self._v4_apply_exit(tk, pos, fill_price, filled)
+                    await self._cancel_sibling_if_paired_over_cap(tk, pos.event_ticker, fill_price)
             self._save_v4_resting()
             return
 

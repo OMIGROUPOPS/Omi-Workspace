@@ -175,6 +175,30 @@ offset on their cheap basis (c5 → +13/+14, ~240–280% ROI), the even line tak
 predictable offsets, favorites take small-certain (c93 → +6, ~100% reach). The mirror-fold the
 gauge was meant to surface — now on the predictable, not the moonshot, optimum.
 
+## FULL-UNIVERSE results (2026-05-31) — match-weighted, 2,631 ATP_MAIN matches
+
+Ran the match-gated gauge on the already-built full universe (`per_minute_features.parquet`,
+9.33M rows, window 2025-06-18→2026-05-01) on the VPS, headless+frugal, peak RSS 1.18 GB, ~30 s.
+Outputs: `chart_pooled_gauge_full.html`, `*_full.csv`.
+
+- **Match-N firmed up everywhere:** per-cell pooled distinct-match-N **1,886–2,585** (of 2,631);
+  raw own-cell **1,494–3,727**. **0/90 thin** (probe was 14–31 with 1 thin). Even favorites — which
+  we expected to stay structurally thin — carry ~2,300+ pooled matches.
+- **Side double-count killed (guard 2 confirmed):** minute−match gap collapsed to mean **−2.1 pp**
+  (range −8.3…+3.5), only 11/90 cells >±5 pp. On the probe the per-side count inflated mid-cells
+  to +7…+11 pp; one-match-one-vote removed it. Distinct matches **2,631 / 5,261 sides** (clean 2:1).
+- **Shape — the probe's deep-underdog moonshot was small-sample illusion.** At full N the honest
+  fold **rises with cost basis**: deep underdogs only support shallow exits (c5→+4, c17→+5, ~85–88%
+  reach, exp-ret +2–2.6¢), the even line deepens (c53→+13, +3.9¢), and **favorites are the best exit
+  cells** (c65→+18, c77→+20, exp-ret +5–6.6¢), clipped at the top only by the 99 lock (c83→+16,
+  c93→+6 are ceiling-limited). Reach pins at the 0.85 floor across underdog→slight-fav; bands uniform.
+  Fold monotone-rising modulo the geometric lock ceiling.
+- Mirror was NOT re-run (pinned). HTML rendered locally from the pulled blocks CSV (plotly optional
+  on the VPS; `render_from_blocks`). **Caveat:** peak RSS 1.18 GB > the <200 MB target — the parquet
+  category filter didn't prune row groups, so 9.3M rows materialised transiently before downcast; it
+  fit (1.4 GB avail + swap) and finished in 30 s without starving the trader, but a true chunked
+  row-group read is the follow-up for strict <200 MB.
+
 ## Caveats for the full-universe re-run
 - Edge/low-c cells are sparse on 38 games (drives sand mean down, creates off-diagonal optima).
 - Entry = every minute (yes_bid_close always populated) → entry observations are autocorrelated

@@ -34,7 +34,10 @@ import argparse
 import os
 import numpy as np
 import pandas as pd
-import plotly.graph_objects as go
+try:
+    import plotly.graph_objects as go      # optional: HTML render. Headless (numbers/CSV) works without it.
+except ImportError:
+    go = None
 
 import chart_common as cc
 import build_chart_sand_overlap as bso
@@ -218,6 +221,19 @@ def build(df: pd.DataFrame, out_html: str, category: str, kmax: int, reach_floor
     opt_keys = set(zip(opt.c, opt.X))
     thin = {(r.c, r.X) for r in opt.itertuples() if r.match_N < THIN_MATCH_N}
 
+    if go is None:
+        print("[headless] plotly not available — skipping HTML, returning numbers/CSV only")
+        return raw, pooled, opt, pooled_N, Nraw
+    render_gauge(pooled, opt, out_html, category, reach_floor, kmax, df.ticker.nunique())
+    return raw, pooled, opt, pooled_N, Nraw
+
+
+def render_gauge(pooled, opt, out_html, category, reach_floor, kmax, n_tickers):
+    """Render the interactive HTML from an already-computed pooled grid + optima.
+    Split out so the full-universe HTML can be rendered locally (with plotly) from the
+    pooled-blocks CSV produced by a headless VPS run."""
+    opt_keys = set(zip(opt.c, opt.X))
+    thin = {(r.c, r.X) for r in opt.itertuples() if r.match_N < THIN_MATCH_N}
     pooled["W"] = cc.LOCK - pooled["c"]
     pooled["xpos"] = pooled["X"] - (pooled["W"] + 1) / 2.0
     hov = [
@@ -268,7 +284,7 @@ def build(df: pd.DataFrame, out_html: str, category: str, kmax: int, reach_floor
     V = lambda i: [j == i for j in range(4)] + [True]
     fig.update_layout(
         title=(f"LAYER 2 — sand-pooled, SETTLEMENT-BLIND exit gauge · MATCH-WEIGHTED deploy gate "
-               f"({category}, {df.ticker.nunique()} tickers, k±{kmax})<br>"
+               f"({category}, {n_tickers} tickers, k±{kmax})<br>"
                f"<sub>reach = traded-forward to c+X (no winner/loser split) · canonical = match-weighted "
                f"(one match one vote) · ★ = deepest X with match reach ≥ {reach_floor*100:.0f}% · "
                f"DEPLOY color = expected return = reach_match·X − miss·(c−settle) · minute layers DIAGNOSTIC only</sub>"),
@@ -282,7 +298,16 @@ def build(df: pd.DataFrame, out_html: str, category: str, kmax: int, reach_floor
             dict(label="minute−match gap (diag)", method="update", args=[{"visible": V(3)}]),
         ])])
     fig.write_html(out_html, include_plotlyjs="cdn")
-    return raw, pooled, opt, pooled_N, Nraw
+
+
+def render_from_blocks(blocks_csv, out_html, category="ATP_MAIN", reach_floor=0.85, kmax=3, n_tickers=0):
+    """Render full HTML locally from a pulled pooled-blocks CSV (no source data needed)."""
+    pooled = pd.read_csv(blocks_csv)
+    pooled["reach_pooled_match_mono"] = pooled.sort_values("X").groupby("c")["reach_pooled_match"].cummin()
+    pooled["reach_pooled_mono"] = pooled.sort_values("X").groupby("c")["reach_pooled"].cummin()
+    opt = predictability_optimal(pooled, reach_floor, "match")
+    render_gauge(pooled, opt, out_html, category, reach_floor, kmax, n_tickers)
+    return pooled, opt
 
 
 def main():

@@ -20,7 +20,10 @@ import argparse
 import os
 import numpy as np
 import pandas as pd
-import plotly.graph_objects as go
+try:
+    import plotly.graph_objects as go      # optional: HTML render only
+except ImportError:
+    go = None
 
 import chart_common as cc
 

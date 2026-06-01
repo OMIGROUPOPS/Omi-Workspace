@@ -42,15 +42,24 @@ async def main():
     print("resting_orders: %d" % len(rest))
     for o in rest[:25]:
         print("    %s %s %s" % (o.get("ticker"), o.get("action"), o.get("side")))
-    # 24h realized revenue from settlements (field name varies; best-effort)
-    rev, have = 0.0, False
+    # 24h realized P&L from settlements (NET, in dollars).
+    # Bug fixed 2026-06-01: prior code summed the `revenue` field — which is in
+    # CENTS (100x overstatement when printed as dollars), is GROSS not net, and
+    # is 0 for hedged both-leg holdings (so it silently missed most payouts).
+    # Correct per-settlement payout = yes_count*value + no_count*(100-value) in
+    # cents (value = per-contract settle: 100/0 for binary, scalar value e.g. 92
+    # otherwise); net = payout - cost_basis - fees. Reported net per the
+    # P&L-reporting discipline (net realized, never gross notional).
+    fnum = lambda d, k: float(d.get(k) or 0)
+    payout = cost = fees = 0.0
     for x in settlements:
-        r = x.get("revenue", x.get("revenue_dollars"))
-        if r is not None:
-            try: rev += float(r); have = True
-            except (TypeError, ValueError): pass
-    print("settlements_last_24h: %d%s" % (len(settlements),
-          ("  revenue=%s" % rev) if have else ""))
+        yc = fnum(x, "yes_count_fp"); nc = fnum(x, "no_count_fp"); val = fnum(x, "value")
+        payout += (yc * val + nc * (100.0 - val)) / 100.0
+        cost += fnum(x, "yes_total_cost_dollars") + fnum(x, "no_total_cost_dollars")
+        fees += fnum(x, "fee_cost")
+    net = payout - cost - fees
+    print("settlements_last_24h: %d  net_realized_pnl=$%.2f  (gross_payout=$%.2f cost=$%.2f fees=$%.2f)"
+          % (len(settlements), net, payout, cost, fees))
 
     flat = (len(opn) == 0 and len(rest) == 0)
     print("portfolio: cash only" if flat else "portfolio: cash + %d open position(s)" % len(opn))

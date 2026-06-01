@@ -14,7 +14,7 @@
   "round5_detector_enabled": false,
   "paper_mode": false,
   "min_depth_for_exit_realization": 250,
-  "exit_band_resolution": "adaptive_calibrated_2026-05-24",
+  "exit_band_resolution": "gated_optima_validated_2026-06-01",
   "entry_table_path": "docs/policy/per_regime_offsets_v2.csv",
-  "exit_table_dir": "data/durable/spike_volatility_map/"
+  "exit_table_dir": "data/durable/exit_surface_gated_optima/"
 }
